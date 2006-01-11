@@ -182,11 +182,11 @@ if [ $1 -eq 0 ]; then
 fi
 
 %postun 
+/sbin/service nrpe condrestart &>/dev/null || :
 if [ $1 -eq 0 ]; then
 	/usr/sbin/userdel nagios || %logmsg "User \"nagios\" could not be deleted."
 	/usr/sbin/groupdel nagios || %logmsg "Group \"nagios\" could not be deleted."
 fi
-/sbin/service nrpe condrestart &>/dev/null || :
 
 %clean
 %{__rm} -rf %{buildroot}

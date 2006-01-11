@@ -25,21 +25,18 @@
 
 %define tls_maj 1.4
 %define tls_min 1
-%define real_version 0_94
 
 Summary: Full featured MSN Messenger clone
 Name: amsn
 Version: 0.95
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://amsn.sourceforge.net/
 
-Source: http://dl.sf.net/amsn/amsn-%{real_version}.tar.gz
-### FIXME: tls-plugin doesn't build because of missing tclPort.h in tcl-devel
+Source: http://dl.sf.net/amsn/amsn-%{version}.tar.gz
 #Source1: http://dl.sf.net/amsn/tls%{tls_maj}.%{tls_min}-src.tar.bz2
 Source2: http://dl.sf.net/amsn/tls%{tls_maj}.%{tls_min}-linux-x86.tar.gz
-
 # Makefile is completely different
 #Patch: amsn-0.83-makefile.patch
 Patch1: amsn-0.92-login.patch
@@ -59,91 +56,32 @@ Unix, Windows, or Macintosh platforms. It supports file transfers,
 groups, and many more features.
 
 %prep
-%setup -n amsn-%{real_version} -a 2
+%setup -a 2
 %patch1 -p0
 
-%{__perl} -pi.orig -e 's|\$\(datadir\)|\$(datadir)/amsn|g' Makefile
-
-%{__cat} <<EOF >amsn.desktop
-[Desktop Entry]
-Name=Amsn Instant Messenger
-Comment=Chat and send files using MSN
-Exec=amsn
-Icon=amsn.png
-Type=Application
-Terminal=false
-Encoding=UTF-8
-StartupNotify=true
-Categories=Application;Network;
-EOF
-
-%{__cat} <<'EOF2' >amsn.sh
-#!/bin/bash
-
-AMSNLANG="$(echo $LANG | tr '[A-Z]' '[a-z]')"
-if [ ! -e "%{_datadir}/amsn/lang/lang$AMSNLANG" ]; then
-	AMSNLANG="$(echo $LANG | cut -f1 -d_)"
-fi
-if [ ! -e "%{_datadir}/amsn/lang/lang$AMSNLANG" ]; then
-	AMSNLANG="en"
-fi
-
-if [ ! -e "$HOME/.amsn/config.xml" ]; then
-	mkdir -p "$HOME/.amsn/"
-	cat <<EOF >"$HOME/.amsn/config.xml"
-<?xml version="1.0"?>
-<config>
-   <entry>
-      <attribute>language</attribute>
-      <value>$AMSNLANG</value>
-   </entry>
-   <entry>
-      <attribute>last_client_version</attribute>
-      <value>%{version}</value>
-   </entry>
-</config>
-EOF
-fi
-
-exec "%{_datadir}/amsn/amsn"
-EOF2
-
 %build
-cd plugins/traydock
 %configure
 %{__make} %{?_smp_mflags}
-#cd -
-#
-#cd tls%{tls_maj} 
-#%configure \
-#	--with-ssl-dir="%{_prefix}"
-#%{__make} %{?_smp_mflags}
-#%{__perl} -pi -e 's|\.\.||' pkgIndex.tcl
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall \
-   	proot="%{buildroot}%{_prefix}" \
-	gnomelinks="%{buildroot}%{_datadir}/applications/" \
-	version="%{version}" \
-	libdir="%{buildroot}%{_datadir}/amsn"
+%{__make} rpm-install INSTALL_PREFIX="%{buildroot}"
 
-%{__install} -Dp -m0755 amsn.sh %{buildroot}%{_bindir}/amsn
-%{__install} -Dp -m0644 skins/default/pixmaps/messenger.png %{buildroot}%{_datadir}/pixmaps/amsn.png
-
-%{__install} -p -m0644 FAQ HELP README %{buildroot}%{_datadir}/amsn/
+%{__install} -Dp -m0644 %{buildroot}%{_datadir}/amsn/icons/48x48/msn.png %{buildroot}%{_datadir}/pixmaps/amsn.png
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/amsn/plugins/tls%{tls_maj}/
 %{__install} -p -m0755 tls%{tls_maj}/libtls%{tls_maj}.so tls%{tls_maj}/pkgIndex.tcl tls%{tls_maj}/tls.tcl %{buildroot}%{_datadir}/amsn/plugins/tls%{tls_maj}/
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -Dp -m0644 amsn.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/amsn.desktop
+	%{__install} -Dp -m0644 %{buildroot}%{_datadir}/amsn/amsn.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/amsn.desktop
+#	%{__install} -Dp -m0644 amsn.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/amsn.desktop
 %else
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
-		amsn.desktop
+		%{buildroot}%{_datadir}/amsn/amsn.desktop
+#		amsn.desktop
 %endif
 
 %clean
@@ -151,14 +89,17 @@ cd plugins/traydock
 
 %files
 %defattr(-, root, root, 0755)
-%doc FAQ GNUGPL HELP README TODO
+%doc AGREEMENT CREDITS FAQ GNUGPL HELP INSTALL README TODO
 %{_bindir}/amsn
 %{_datadir}/amsn/
-%{_datadir}/pixmaps/*.png
+%{_datadir}/pixmaps/amsn.png
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/amsn.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-amsn.desktop}
 
 %changelog
+* Wed Jan 11 2006 Dag Wieers <dag@wieers.com> - 0.95-2
+- Really include release 0.95. (Jaime Ventura)
+
 * Tue Dec 27 2005 Dag Wieers <dag@wieers.com> - 0.95-1
 - Updated to release 0.95.
 

@@ -15,7 +15,8 @@ URL: http://www.nongnu.org/gksu/
 Source: http://people.debian.org/~kov/gksu/gksu/gksu-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libgksu-devel, gcc-c++, gettext, intltool, perl(XML::Parser)
+BuildRequires: gtk+-devel >= 2.4.0, libgksu-devel, libgksuui-devel
+BuildRequires: gcc-c++, gettext, intltool, perl(XML::Parser)
 BuildRequires: bison, gtk-doc
 
 %description
