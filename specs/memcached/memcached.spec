@@ -4,27 +4,28 @@
 
 Summary: Distributed memory object caching system
 Name: memcached
-Version: 1.1.11
+Version: 1.1.12
 Release: 1
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.danga.com/memcached/
 
 Source: http://www.danga.com/memcached/dist/memcached-%{version}.tar.gz
-Patch: memcached-1.1.11-segfault.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libevent-devel
-Requires: /sbin/chkconfig
+Requires(post): /sbin/chkconfig
+Requires(preun): /sbin/chkconfig, /sbin/service
+Requires(postun): /sbin/service
 
 %description
 memcached is a high-performance, distributed memory object caching system, 
 generic in nature, but intended for use in speeding up dynamic web 
 applications by alleviating database load.
 
+
 %prep
 %setup
-%patch -p0
 
 %{__cat} <<EOF >memcached.sysconfig
 PORT="11211"
@@ -39,7 +40,7 @@ EOF
 #
 # Init file for memcached
 #
-# Written by Dag Wieërs <dag@wieers.com>
+# Written by Dag WieÃ«rs <dag@wieers.com>
 #
 # chkconfig: - 80 12
 # description: Distributed memory caching daemon
@@ -49,7 +50,7 @@ EOF
 # config: /etc/memcached.conf
 # pidfile: /var/run/memcached.pid
 
-source %{_initrddir}/functions
+source %{_sysconfdir}/rc.d/init.d/functions
 
 ### Default variables
 PORT="11211"
@@ -111,34 +112,36 @@ case "$1" in
 	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
 	RETVAL=$?
 	;;
+  reload)
+	reload
+	;;
   status)
 	status $prog
 	RETVAL=$?
 	;;
    *)
-         echo $"Usage: $0 {start|stop|restart|condrestart|status}"
-         RETVAL=1
+	echo $"Usage: $0 {start|stop|restart|condrestart|status}"
+	RETVAL=1
 esac
 
 exit $RETVAL
 EOF
 
+
 %build
-%configure \
-	--enable-shared
+%configure --enable-shared
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 
-### FIXME: Problems installing manpage (Please fix upstream)
-#%{__make} install \
-#	DESTDIR="%{buildroot}"
+%{__install} -D -m0755 memcached.sysv \
+    %{buildroot}%{_sysconfdir}/rc.d/init.d/memcached
+%{__install} -D -m0644 memcached.sysconfig \
+    %{buildroot}%{_sysconfdir}/sysconfig/memcached
 
-%{__install} -Dp -m0755 memcached %{buildroot}%{_bindir}/memcached
-%{__install} -Dp -m0644 doc/memcached.1 %{buildroot}%{_mandir}/man1/memcached.1
-%{__install} -Dp -m0755 memcached.sysv %{buildroot}%{_initrddir}/memcached
-%{__install} -Dp -m0644 memcached.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/memcached
 
 %post
 /sbin/chkconfig --add memcached
@@ -152,22 +155,34 @@ fi
 %postun
 /sbin/service memcached condrestart &>/dev/null || :
 
+
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING doc/*.txt INSTALL NEWS README TODO
-%doc %{_mandir}/man1/memcached.1*
+%doc AUTHORS ChangeLog COPYING doc/*.txt NEWS README TODO
 %config(noreplace) %{_sysconfdir}/sysconfig/memcached
-%config %{_initrddir}/memcached
+%{_sysconfdir}/rc.d/init.d/memcached
 %{_bindir}/memcached
-#exclude %{_bindir}/nal_test
-#exclude %{_bindir}/piper
+%{_mandir}/man1/memcached.1*
+
 
 %changelog
+* Wed Jan 11 2006 Matthias Saou <http://freshrpms.net/> 1.1.12-1
+- Update to 1.1.12.
+- Remove no longer needed segfault patch.
+- Add Requires(foo):...
+- Remove INSTALL from %%doc.
+- Don't have the init script be tagged as config, the config part is all in
+  the sysconfig file.
+- make install now works again.
+- Fix non working reload in the init script.
+
 * Mon Mar 07 2005 Dag Wieers <dag@wieers.com> - 1.1.11-1
 - Cosmetic changes.
 
 * Thu Feb 24 2005 Rob Starkey <falcon@rasterburn.com> - 1.1.11-1
 - Initial package.
+

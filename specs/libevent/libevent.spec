@@ -4,7 +4,7 @@
 
 Summary: Abstract asynchronous event notification library
 Name: libevent
-Version: 1.0e
+Version: 1.1a
 Release: 1
 License: BSD
 Group: System Environment/Libraries
@@ -21,6 +21,7 @@ loop found in event driven network servers. An application just needs
 to call event_dispatch() and can then add or remove events dynamically
 without having to change the event loop.
 
+
 %package devel
 Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
@@ -31,58 +32,50 @@ This package contains the header files, static libraries and development
 documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
+
 %prep
 %setup
 
-%build
-%configure \
-	--enable-shared
-%{__make} %{?_smp_mflags} \
-	CFLAGS="%{optflags} -fPIC"
 
-### FIXME: configure should have the ability to specify for static or shared libraries
-${CC:-%{__cc}} -Wl,-soname,libevent.so.0 -shared %{optflags} -fPIC -o libevent.so.0.0.7 *.o
+%build
+%configure
+%{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-### FIXME: This should be part of the normal 'make install' procedure !
-%{__install} -Dp -m0755 libevent.so.0.0.7 %{buildroot}%{_libdir}/libevent.so.0.0.7
-%{__ln_s} -f libevent.so.0.0.7 %{buildroot}%{_libdir}/libevent.so
-%{__ln_s} -f libevent.so.0.0.7 %{buildroot}%{_libdir}/libevent.so.0
-
-%{__install} -Dp -m0755 event.h %{buildroot}%{_includedir}/event.h
-%{__ln_s} -f event.h %{buildroot}%{_includedir}/libevent.h
-%{__install} -Dp -m0755 event-internal.h %{buildroot}%{_includedir}/event-internal.h
-
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}
 
+
+%post -p /sbin/ldconfig
+
+%postun -p /sbin/ldconfig
+
+
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%{_libdir}/libevent.so.*
-%{_libdir}/libevent-%{version}.so*
+%{_libdir}/libevent-%{version}.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc sample/
-%doc %{_mandir}/man3/event.3*
 %{_includedir}/event.h
-%{_includedir}/event-internal.h
-%{_includedir}/libevent.h
-%{_libdir}/libevent*.a
-%{_libdir}/libevent*.so
-%{_libdir}/libevent*.la
+%{_libdir}/libevent.a
+%{_libdir}/libevent.so
+%exclude %{_libdir}/libevent.la
+%{_mandir}/man3/event.3*
+
 
 %changelog
+* Wed Jan 11 2006 Matthias Saou <http://freshrpms.net/> 1.1a-1
+- Update to 1.1a.
+- Clean up spec file, as make install now works properly, and PIC too.
+
 * Fri May 06 2005 Dag Wieers <dag@wieers.com> - 1.0e-1
 - Updated to release 1.0e.
 
