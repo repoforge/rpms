@@ -10,7 +10,7 @@ Name: python-paramiko
 Version: 1.5.2
 Release: 1
 License: GPL
-Group: Development/Python
+Group: System Environment/Libraries
 URL: http://www.lag.net/~robey/paramiko/
 
 Source: http://www.lag.net/paramiko/download/paramiko-%{version}.zip
