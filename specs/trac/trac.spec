@@ -78,7 +78,7 @@ EOF
 %{_localstatedir}/lib/trac/
 
 %changelog
-* Wed Jan 11 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.3-1
+* Wed Jan 11 2006 Dag Wieers <dag@wieers.com> - 0.9.3-1
 - Updated to release 0.9.3.
 
 * Tue Dec 06 2005 Dries Verachtert <dries@ulyssis.org> - 0.9.2-1
