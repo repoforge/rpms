@@ -2,13 +2,11 @@
 # Authority: dries
 # Upstream: Ilya Zakharevich <cpan$ilyaz,org>
 
-%define pari_version 2.1.6
-
-%define real_name Math-Pari
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Math-Pari
+%define pari_version 2.1.7
 
 Summary: Perl interface to PARI
 Name: perl-Math-Pari
@@ -19,25 +17,30 @@ Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Pari/
 
 Source0: http://search.cpan.org/CPAN/authors/id/I/IL/ILYAZ/modules/Math-Pari-%{version}.tar.gz
-Source1: pari-%{pari_version}.tgz
+Source1: http://pari.math.u-bordeaux.fr/pub/pari/unix/pari-%{pari_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, perl-Module-Build
+### FIXME: Make it build with external pre-build pari package
+#Buildrequires: pari-devel
 
 %description
 Math::Pari is the PERL interface to the PARI part of GP/PARI (version 2.*).
 More info can be found at http://www.parigp-home.de/
 
 %prep
-%setup -n %{real_name}-%{version} -a 1
+%setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" LIBPARI="-L/usr/lib -lpari" pari_tgz="%{SOURCE1}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -46,11 +49,11 @@ More info can be found at http://www.parigp-home.de/
 %defattr(-, root, root, 0755)
 %doc Changes README
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorarch}/Math/
 %{perl_vendorarch}/Math/Pari*
 %{perl_vendorarch}/Math/libPARI*
+%dir %{perl_vendorarch}/auto/Math/
 %{perl_vendorarch}/auto/Math/Pari/Pari.*
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.010702-1

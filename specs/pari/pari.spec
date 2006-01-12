@@ -3,7 +3,7 @@
 
 Summary: PARI/GP Number Theory-oriented Computer Algebra System
 Name: pari
-Version: 2.1.6
+Version: 2.1.7
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -38,20 +38,17 @@ you will need to install %{name}-devel.
 %{__perl} -pi -e "s|^ *Defun\(.*||g;" src/gp/gp_rl.c
 %{__perl} -pi -e "s|^ *Bind\(.*||g;" src/gp/gp_rl.c
 
-./Configure --host=i686-redhat-linux-gnu  --prefix=/usr \
-	--bindir=/usr/bin  --datadir=/usr/share \
-	--includedir=/usr/include --libdir=/usr/lib --mandir=/usr/share/man/man1
+./Configure --host="%{_host}" --prefix="%{_prefix}" --bindir="%{_bindir}" \
+	--datadir="%{_datadir}" --includedir="%{_includedir}" --libdir="%{_libdir}" \
+	--mandir="%{_mandir}/man1"
 %{__make} all %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall DESTDIR=%{buildroot}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -63,13 +60,16 @@ you will need to install %{name}-devel.
 %{_bindir}/tex2mail
 %{_bindir}/gp*
 %{_libdir}/libpari.so.*
-%{_libdir}/pari
+%{_libdir}/pari/
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/pari
+%{_includedir}/pari/
 %{_libdir}/libpari.so
 
 %changelog
+* Thu Jan 12 2006 Dag Wieers <dag@wieers.com> - 2.1.7-1
+- Updated to release 2.1.7.
+
 * Wed Aug 17 2005 Dries Verachtert <dries@ulyssis.org> - 2.1.6-1
 - Initial package.

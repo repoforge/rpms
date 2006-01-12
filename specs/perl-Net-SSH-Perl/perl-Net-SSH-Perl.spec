@@ -18,7 +18,9 @@ URL: http://search.cpan.org/dist/Net-SSH-Perl/
 Source: http://www.cpan.org/modules/by-module/Net/Net-SSH-Perl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl-Math-Pari
+BuildArch: noarch
+BuildRequires: perl
+#, perl-Math-Pari
 
 %description
 Net::SSH::Perl contains implementations of
@@ -28,7 +30,7 @@ both the SSH1 and SSH2 protocols.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+echo "3" | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -46,8 +48,10 @@ both the SSH1 and SSH2 protocols.
 %defattr(-, root, root, 0755)
 %doc Changes README
 %doc %{_mandir}/man3/*
-#%{perl_vendorlib}/NAMEDIR.pm
-#%{perl_vendorlib}/NAMEDIR/*
+%dir %{perl_vendorlib}/Net/
+%dir %{perl_vendorlib}/Net/SSH/
+%{perl_vendorlib}/Net/SSH/Perl.pm
+%{perl_vendorlib}/Net/SSH/Perl/
 
 %changelog
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.29-1
