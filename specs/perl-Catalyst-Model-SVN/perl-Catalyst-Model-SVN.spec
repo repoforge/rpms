@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CL/CLACO/Catalyst-Model-SVN-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 5.8.0
 
 %description
 This model class uses the perl-subversion bindings to access a
@@ -37,6 +37,8 @@ client at a later time.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 
 %clean
@@ -46,7 +48,12 @@ client at a later time.
 %defattr(-, root, root, 0755)
 %doc Changes README
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Catalyst/
+%dir %{perl_vendorlib}/Catalyst/Model/
 %{perl_vendorlib}/Catalyst/Model/SVN.pm
+%dir %{perl_vendorlib}/Catalyst/
+%dir %{perl_vendorlib}/Catalyst/Helper/
+%dir %{perl_vendorlib}/Catalyst/Helper/Model/
 %{perl_vendorlib}/Catalyst/Helper/Model/SVN.pm
 
 %changelog

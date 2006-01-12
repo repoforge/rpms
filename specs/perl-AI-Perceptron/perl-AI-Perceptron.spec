@@ -38,7 +38,9 @@ Gradient-Descent* model.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-#%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,6 +49,7 @@ Gradient-Descent* model.
 %defattr(-, root, root, 0755)
 %doc Changes README
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/AI/
 %{perl_vendorlib}/AI/Perceptron.pm
 
 %changelog

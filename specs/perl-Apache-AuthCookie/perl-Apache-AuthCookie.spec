@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHOUT/Apache-AuthCookie-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, mod_perl
+BuildRequires: perl, mod_perl >= 2.0
 
 %description
 Apache::AuthCookie allows you to intercept a user's first unauthenticated
@@ -44,6 +44,8 @@ AuthCookie will verify the session key and re-authenticate the user.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### CLean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
@@ -52,9 +54,10 @@ AuthCookie will verify the session key and re-authenticate the user.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+#doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Apache/
 %{perl_vendorlib}/Apache/AuthCookie.pm
-%{perl_vendorlib}/Apache/AuthCookie
+%{perl_vendorlib}/Apache/AuthCookie/
 
 %changelog
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 3.08-1

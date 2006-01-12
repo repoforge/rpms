@@ -20,7 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl, perl-ExtUtils-AutoInstall
-BuildRequires: perl(List::Util) >= 1.18
+BuildRequires: perl(Test::More) >= 0.47, perl(Carp) >= 1.01, perl(File::Spec) >= 0.80, perl(List::Util) >= 1.18
+
 #Test-Simple and Scalar-List-Utils is already included in the perl package on fedora core
 
 %description
@@ -33,9 +34,7 @@ large amounts of memory, and decrease the script load time.
 %setup -n %{real_name}-%{version}
 
 %build
-echo n | %{__perl} Makefile.PL \
-	INSTALLDIRS="vendor" \
-	PREFIX="%{buildroot}%{_prefix}"
+echo n | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -43,8 +42,7 @@ echo n | %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -56,7 +54,7 @@ echo n | %{__perl} Makefile.PL \
 %dir %{perl_vendorlib}/Class/
 %{perl_vendorlib}/Class/Autouse.pm
 #%{perl_vendorlib}/Class/prefork.pm
-%{perl_vendorlib}/Class/Autouse
+%{perl_vendorlib}/Class/Autouse/
 
 %changelog
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.23-1
