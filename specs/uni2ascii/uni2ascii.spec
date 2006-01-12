@@ -4,13 +4,13 @@
 
 Summary: Convert between UTF-8 Unicode and 7-bit ASCII equivalents
 Name: uni2ascii
-Version: 3.0
+Version: 3.1
 Release: 1
 License: GPL
 Group: Applications/Publishing
 URL: http://billposer.org/Software/uni2ascii.html
 
-Source: http://billposer.org/Software/Downloads/uni2ascii.tgz
+Source: http://billposer.org/Software/Downloads/uni2ascii-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python, python-devel
@@ -29,14 +29,12 @@ handle the Unicode character set but are not 8-bit safe, and when debugging.
 
 %build
 %configure
-%{__make} %{?_smp_mflags} BINDIR=%{_bindir} MANDIR=%{_mandir}/man1 LOCALEDIR=%{_datadir}/locale
+%{__make} %{?_smp_mflags} BINDIR="%{_bindir}" MANDIR="%{_mandir}/man1" LOCALEDIR="%{_datadir}/locale"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d %{buildroot}%{_bindir} \
-  %{buildroot}%{_mandir}/man1 \
-  %{buildroot}%{_datadir}/locale
-%makeinstall BINDIR=%{buildroot}%{_bindir} MANDIR=%{buildroot}%{_mandir}/man1 LOCALEDIR=%{buildroot}%{_datadir}/locale
+%{__install} -d %{buildroot}%{_bindir} %{buildroot}%{_mandir}/man1 %{buildroot}%{_datadir}/locale
+%makeinstall BINDIR=%{buildroot}%{_bindir} MANDIR="%{buildroot}%{_mandir}/man1" LOCALEDIR="%{buildroot}%{_datadir}/locale"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -44,8 +42,8 @@ handle the Unicode character set but are not 8-bit safe, and when debugging.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING CREDITS INSTALL README
-%doc %{_mandir}/man1/ascii2uni*
-%doc %{_mandir}/man1/uni2ascii*
+%doc %{_mandir}/man1/ascii2uni.1*
+%doc %{_mandir}/man1/uni2ascii.1*
 %{_bindir}/u2a
 %{_bindir}/ascii2uni*
 %{_bindir}/uni2ascii*
@@ -53,6 +51,9 @@ handle the Unicode character set but are not 8-bit safe, and when debugging.
 #%{_bindir}/uni2html*
 
 %changelog
+* Thu Jan 12 2006 Dries Verachtert <dries@ulyssis.org> - 3.1-1
+- Updated to release 3.1.
+
 * Fri Dec 16 2005 Dries Verachtert <dries@ulyssis.org> - 3.0-1
 - Updated to release 3.0.
 
