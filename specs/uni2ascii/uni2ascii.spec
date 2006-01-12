@@ -7,7 +7,7 @@ Name: uni2ascii
 Version: 3.1
 Release: 1
 License: GPL
-Group: Applications/Publishing
+Group: Applications/Text
 URL: http://billposer.org/Software/uni2ascii.html
 
 Source: http://billposer.org/Software/Downloads/uni2ascii-%{version}.tgz
