@@ -17,7 +17,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel >= 2.4.0, libgksu-devel, libgksuui-devel
 BuildRequires: gcc-c++, gettext, intltool, perl(XML::Parser)
-BuildRequires: bison, gtk-doc
+BuildRequires: bison, gtk-doc, libgksuui-devel, gtk2-devel, gnome-keyring-devel
+BuildRequires: GConf2-devel
 
 %description
 Gtk+ frontend to /bin/su. It supports login shells and preserving environment 

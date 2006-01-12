@@ -14,7 +14,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: varconf-devel, atlas-c++-devel, mercator-devel, skstream-devel
 BuildRequires: postgresql-devel, python-devel, readline-devel, gcc-c++
-BuildRequires: libsigc++-devel, wfmath-devel
+BuildRequires: libsigc++-devel, wfmath-devel, libgcrypt-devel
 
 %description
 Cyphesis is a fantasy MMORPG server (and NPC engine for servers) using
