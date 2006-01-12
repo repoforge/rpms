@@ -6,7 +6,7 @@
 Summary: Audio/Video Control library for IEEE-1394 devices
 Name: libavc1394
 Version: 0.5.1
-Release: 0
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://sourceforge.net/projects/libavc1394/
@@ -14,6 +14,7 @@ Source: http://dl.sf.net/libavc1394/libavc1394-%{version}.tar.gz
 Patch: libavc1394-0.5.1-librom.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libraw1394-devel, pkgconfig
+Obsoletes: librom1394 <= 0.5.0
 
 %description
 The libavc1394 library allows utilities to control IEEE-1394 devices
@@ -25,6 +26,7 @@ Summary: Development libs for libavc1394
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: libraw1394-devel
+Obsoletes: librom1394-devel <= 0.5.0
 
 %description devel
 Development libraries required to build applications using libavc1394.
@@ -71,7 +73,11 @@ Development libraries required to build applications using libavc1394.
 
 
 %changelog
-* Fri Dec  9 2003 Matthias Saou <http://freshrpms.net/> 0.5.1-0
+* Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 0.5.1-1
+- Add obsoletes for librom1394 <= 0.5.0 to enable upgrade path for users
+  with atrpms packages installed.
+
+* Fri Dec  9 2005 Matthias Saou <http://freshrpms.net/> 0.5.1-0
 - Update to 0.5.1.
 - Sync with Fedora Core spec file.
 
