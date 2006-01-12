@@ -3,7 +3,7 @@
 
 Summary: Queue manager for the Postfix mail transport agent
 Name: pfqueue
-Version: 0.5.0
+Version: 0.5.1
 Release: 1
 License: GPL
 Group: Applications/System
@@ -43,6 +43,9 @@ Postfix mail transport agent.
 %{_libdir}/libpfq*.so*
 
 %changelog
+* Thu Jan 12 2006 Dag Wieers <dag@wieers.com> - 0.5.1-1
+- Updated to release 0.5.1.
+
 * Sat Sep 03 2005 Dag Wieers <dag@wieers.com> - 0.5.0-1
 - Updated to release 0.5.0.
 

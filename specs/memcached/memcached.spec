@@ -129,7 +129,9 @@ EOF
 
 
 %build
-%configure --enable-shared
+%configure \
+	--program-prefix="%{?_program_prefix}" \
+	--enable-shared
 %{__make} %{?_smp_mflags}
 
 
