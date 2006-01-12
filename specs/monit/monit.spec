@@ -4,7 +4,7 @@
 
 Summary: Process monitor and restart utility
 Name: monit
-Version: 4.4
+Version: 4.7
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -110,7 +110,8 @@ exit $RETVAL
 EOF
 
 %build
-%configure
+%configure \
+	--with-ssl-lib-dir="%{_libdir}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -146,6 +147,9 @@ fi
 %{_bindir}/monit
 
 %changelog
+* Thu Jan 12 2006 Dag Wieers <dag@wieers.com> - 4.7-1
+- Updated to release 4.7.
+
 * Fri Sep 24 2004 Dag Wieers <dag@wieers.com> - 4.4-1
 - Updated to release 4.4.
 
