@@ -37,6 +37,8 @@ such IO::String is a replacement for IO::Scalar.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
@@ -45,7 +47,8 @@ such IO::String is a replacement for IO::Scalar.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorlib}/IO/
 %{perl_vendorlib}/IO/String.pm
 
 %changelog

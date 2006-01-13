@@ -9,7 +9,7 @@
 Summary: MLDBM module for perl
 Name: perl-MLDBM
 Version: 2.01
-Release: 1
+Release: 2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MLDBM/
@@ -28,9 +28,7 @@ MLDBM module for perl.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -38,8 +36,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-                %{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,10 +44,13 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST README
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man3/*.3pm*
 %{perl_vendorlib}/MLDBM/
 %{perl_vendorlib}/MLDBM.pm
 
 %changelog
+* Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 2.01-2
+- Cosmetic cleanup.
+
 * Wed Jul 16 2003 Dag Wieers <dag@wieers.com> - 2.01-0
 - Initial package. (using DAR)

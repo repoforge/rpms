@@ -13,8 +13,8 @@
 
 Summary: Perl modules for parsing (and creating!) MIME entities
 Name: perl-MIME-tools
-Version: 5.418
-Release: 2
+Version: 5.419
+Release: 1
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-tools/
@@ -43,8 +43,8 @@ parser and tool for building your own MIME parser, and utilities.
 #patch1 -p1
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" 
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" 
+%{__make} %{?_smp_mflags}
 #{__make} test
 
 %install
@@ -52,8 +52,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -61,11 +60,13 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING INSTALLING MANIFEST README* examples/
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man3/*.3pm*
 %{perl_vendorlib}/MIME/
-#%{perl_vendorlib}/set-version.pl
 
 %changelog
+* Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 5.419-1
+- Updated to release 5.419.
+
 * Sun Dec 04 2005 Dries Verachtert <dries@ulyssis.org> - 5.418-2
 - Rebuild.
 

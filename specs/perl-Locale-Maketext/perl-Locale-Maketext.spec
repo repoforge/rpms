@@ -31,7 +31,7 @@ in this dist).
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTALLDIRS="vendor"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -47,7 +47,7 @@ in this dist).
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog MANIFEST README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Locale/
 %{perl_vendorlib}/Locale/Maketext/
 %{perl_vendorlib}/Locale/Maketext.pm

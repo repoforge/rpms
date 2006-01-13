@@ -47,8 +47,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -56,7 +55,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST README fip180-1*
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorarch}/Digest/
 %{perl_vendorarch}/Digest/SHA1.pm
 %dir %{perl_vendorarch}/auto/Digest/

@@ -4,12 +4,15 @@
 ### Already ships with 0.13
 # ExcludeDist: fc2 fc3 el4
 
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name XML-LibXML-Common
 
 Summary: Routines and Constants common for XML::LibXML and XML::GDOME
 Name: perl-XML-LibXML-Common
 Version: 0.13
-Release: 2
+Release: 3
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-LibXML-Common/
@@ -27,19 +30,15 @@ Routines and Constants common for XML::LibXML and XML::GDOME.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags} \
-	OPTIMIZE="%{optflags}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*{,/*}}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,10 +46,18 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %files
 %defattr(-, root, root, 0755)
 %doc Changes LICENSE MANIFEST README
-%doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/XML/
+%dir %{perl_vendorarch}/XML/LibXML/
+%{perl_vendorarch}/XML/LibXML/Common.pm
+%dir %{perl_vendorarch}/auto/XML/
+%dir %{perl_vendorarch}/auto/XML/LibXML/
+%{perl_vendorarch}/auto/XML/LibXML/Common/
 
 %changelog
+* Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 0.13-3
+- Cosmetic fixes.
+
 * Tue Mar 23 2004 Dag Wieers <dag@wieers.com> - 0.13-2
 - This is not a noarch package. (Ivo Clarysse)
 

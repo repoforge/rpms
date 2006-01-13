@@ -9,7 +9,7 @@
 Summary: Utilities to read and manipulate patches and CVS
 Name: perl-PatchReader
 Version: 0.9.5
-Release: 1
+Release: 2
 License: MPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PatchReader/
@@ -41,8 +41,7 @@ output a patch as HTML).
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -50,10 +49,13 @@ output a patch as HTML).
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
 %{perl_vendorlib}/PatchReader.pm
 %{perl_vendorlib}/PatchReader/
 
 %changelog
+* Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 0.9.5-2
+- Fixed group.
+
 * Thu Mar 31 2005 Dag Wieers <dag@wieers.com> - 0.9.5-1
 - Initial package. (using DAR)

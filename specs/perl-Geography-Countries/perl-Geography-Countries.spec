@@ -2,12 +2,15 @@
 # Authority: dag
 # Upstream: Nigel Wetters <nigel$wetters,net>
 
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name Geography-Countries
 
 Summary: Classes for 2-letter, 3-letter, and numerical codes for countries
 Name: perl-Geography-Countries
 Version: 1.4
-Release: 1
+Release: 2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geography-Countries/
@@ -29,9 +32,7 @@ and defined by the UNSD.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -39,9 +40,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/ \
-                %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/ \
-                %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux/
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -49,10 +48,14 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %files
 %defattr(-, root, root, 0755)
 %doc MANIFEST
-%doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorlib}/Geography/
+%{perl_vendorlib}/Geography/Countries.pm
 
 %changelog
+* Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 1.4-2
+- Cosmetic cleanup.
+
 * Fri Jan 02 2004 Dag Wieers <dag@wieers.com> - 1.4-1
 - Obsolete older perl-IP-Country package.
 

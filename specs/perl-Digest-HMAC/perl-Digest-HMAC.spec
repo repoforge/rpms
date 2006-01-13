@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# ExclusiveDist: rh6 rh7 rh8
+# ExclusiveDist: rh6 el2 rh7 rh8
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -10,10 +10,10 @@
 
 %define real_name Digest-HMAC
 
+Summary: Digest-HMAC Perl module
 Name: perl-Digest-HMAC
 Version: 1.01
-Release: 1
-Summary: Digest-HMAC Perl module
+Release: 2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-HMAC/
@@ -27,7 +27,7 @@ BuildRequires: perl >= 0:5.00503
 BuildRequires: perl(Digest::SHA1)
 %{?rh7:BuildRequires: perl(Digest::MD5)}
 Requires: perl(Digest::SHA1)
-%{?rh7:BuildRequires: perl(Digest::MD5)}
+%{?rh7:Requires: perl(Digest::MD5)}
 
 %description
 HMAC is used for message integrity checks between two parties that
@@ -42,7 +42,7 @@ the secret key and the name of some other simple Digest:: as argument.
 %setup -n %{real_name}-%{version} 
 
 %build
-%{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTALLDIRS="vendor"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 #{__make} %{?_smp_mflags} test
 
@@ -59,11 +59,14 @@ the secret key and the name of some other simple Digest:: as argument.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README rfc2104.txt
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Digest/
 %{perl_vendorlib}/Digest/HMAC.pm
 %{perl_vendorlib}/Digest/HMAC_*.pm
 
 %changelog
-* Sun Jan 26 2003 Dag Wieers <dag@wieers.com>
+* Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 1.01-2
+- Cosmetic cleanup.
+
+* Sun Jan 26 2003 Dag Wieers <dag@wieers.com> - 1.01-1
 - Initial package. (using DAR)
