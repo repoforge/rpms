@@ -40,7 +40,9 @@ laziness in mind.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-#%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -50,7 +52,7 @@ laziness in mind.
 %doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/accessors.pm
-%{perl_vendorlib}/accessors
+%{perl_vendorlib}/accessors/
 
 %changelog
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.02-1

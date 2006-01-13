@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Adam Kennedy <cpan$al,as>
 
@@ -20,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Config/Config-Tiny-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(Test::More) >= 0.47, perl(FindBin) >= 1.42
 
 %description
 Config::Tiny is a perl class to read and write .ini style configuration
@@ -45,8 +44,9 @@ file.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -55,6 +55,7 @@ file.
 %defattr(-, root, root, 0755)
 %doc Changes LICENSE README
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Config/
 %{perl_vendorlib}/Config/Tiny.pm
 
 %changelog
