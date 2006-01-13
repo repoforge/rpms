@@ -3,12 +3,12 @@
 
 Summary: Musepack audio decoding library
 Name: libmpcdec
-Version: 1.2
+Version: 1.2.2
 Release: 1
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.musepack.net/
-Source: http://musepack.origean.net/files/source/libmpcdec-%{version}.tar.bz2
+Source: http://files2.musepack.net/source/libmpcdec-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 
@@ -77,6 +77,9 @@ heavily optimized and patentless code.
 
 
 %changelog
+* Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 1.2.2-1
+- Update to 1.2.2.
+
 * Mon May  9 2005 Matthias Saou <http://freshrpms.net/> 1.2-1
 - Update to 1.2 and rename to libmpcdec.
 - Don't obsolete libmusepack just yet, wait for apps to use this new lib.
