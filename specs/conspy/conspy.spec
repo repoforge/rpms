@@ -13,6 +13,8 @@ URL: http://ace-host.stuart.id.au/russell/files/conspy/
 Source: http://ace-host.stuart.id.au/russell/files/conspy/conspy-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: ncurses-devel
+
 %description
 Conspy allows a (possibly remote) user to see what is displayed on a
 Linux virtual console, and to send keystrokes to it. It only known to

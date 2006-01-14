@@ -3,7 +3,7 @@
 
 Summary: Network scanner for network shares
 Name: linscope
-Version: 0.2.0
+Version: 0.3.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -59,11 +59,14 @@ desktop-file-install --vendor rpmforge             \
 
 %files
 %defattr(-, root, root, 0755)
-%doc changes README.TXT
+%doc CHANGES.TXT README.TXT TODO.TXT
 %{_bindir}/linscope
 %{_bindir}/lrpcscanip
 %{_datadir}/applications/*linscope.desktop
 
 %changelog
+* Sat Jan 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.2-1
+- Updated to release 0.3.2.
+
 * Fri Dec 02 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.0-1
 - Initial package.
