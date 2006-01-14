@@ -31,7 +31,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel
 BuildRequires: arts-devel, gcc-c++, gettext
-BuildRequires: zlib-devel, qt-devel, libjpeg-devel, kdelibs-devel
+BuildRequires: zlib-devel, qt-devel, libjpeg-devel, kdelibs-devel >= 3.3
 BuildRequires: postgresql-devel, libpqxx, libpqxx-devel, libacl-devel
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}

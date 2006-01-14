@@ -43,11 +43,8 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -58,9 +55,10 @@ you will need to install %{name}-devel.
 %{_libdir}/libcmt.so
 
 %files devel
-%{_includedir}/gtransaction.h
+%defattr(-, root, root, 0755)
+%{_includedir}/cmt/
 %{_libdir}/libcmt.a
-%exclude %{_libdir}/*.la
+%exclude %{_libdir}/libcmt.la
 %{_libdir}/pkgconfig/libcmt.pc
 
 %changelog
