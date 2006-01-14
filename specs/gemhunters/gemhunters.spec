@@ -1,14 +1,12 @@
 # $Id$
-
 # Authority: dries
 # Upstream: 
 # Screenshot: http://gemhun.sourceforge.net/images/screenshots/20031016/jungle.jpg
 
-%define real_version 20040529
-
 Summary: Group gems together
 Name: gemhunters
-Version: 0.%{real_version}
+%define real_version 20040529
+Version: 0.20040529
 Release: 1
 License: GPL
 Group: Amusements/Games

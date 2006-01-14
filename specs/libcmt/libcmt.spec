@@ -13,7 +13,7 @@ URL: http://libcmt.sourceforge.net
 Source: http://dl.sf.net/libcmt/libcmt-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pkgconfig, glib2-devel, gcc-c++
+BuildRequires: gcc-c++, pkgconfig, glib2-devel >= 2.4
 
 %description
 LibCMT (Composable Memory Transactions Library) implements a transactional 

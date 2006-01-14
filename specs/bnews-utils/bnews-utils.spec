@@ -2,11 +2,10 @@
 # Authority: dag
 # Upstream: Stef Van Dessel <stef$iguana,be>
 
-%define real_version 20020930
-
 Summary: Download, upload, decode and/or encode "Bommanews"-encoded files
 Name: bnews-utils
-Version: 0.0.%{real_version}
+%define real_version 20020930
+Version: 0.0.20020930
 Release: 1
 License: GPL
 Group: Applications/Internet
