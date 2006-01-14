@@ -13,8 +13,6 @@ URL: http://www.gnu.org/software/barcode/barcode.html
 Source: ftp://ftp.gnu.org/pub/gnu/barcode/barcode-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: 
-
 %description
 GNU-barcode is meant to solve most needs in barcode creation with a 
 conventional printer. It can create printouts for the conventional 
@@ -37,13 +35,15 @@ you will need to install %{name}-devel.
 %prep
 %setup
 
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure Makefile.in
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall MAN1DIR=%{buildroot}%{_mandir}/man1 MAN3DIR=%{buildroot}%{_mandir}/man3 INFODIR=%{buildroot}%{_infodir}
+%makeinstall "MAN1DIR=%{buildroot}%{_mandir}/man1" MAN3DIR="%{buildroot}%{_mandir}/man3" INFODIR="%{buildroot}%{_infodir}"
 # avoid file conflict on fedora systems
 %{__mv} %{buildroot}%{_mandir}/man1/barcode.1 %{buildroot}%{_mandir}/man1/gnubarcode.1
 
@@ -55,8 +55,8 @@ you will need to install %{name}-devel.
 %doc ChangeLog COPYING INSTALL README TODO
 %doc %{_mandir}/man1/gnubarcode*
 %doc %{_mandir}/man3/barcode*
+%doc %{_infodir}/barcode.info*
 %{_bindir}/barcode
-%{_infodir}/barcode.info*
 
 %files devel
 %defattr(-, root, root, 0755)

@@ -23,7 +23,6 @@ Group: Applications/File
 URL: http://kdirstat.sourceforge.net/
 
 Source: http://kdirstat.sourceforge.net/download/kdirstat-%{version}.tar.bz2
-Patch: gcc34-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc, make, libpng-devel
 BuildRequires: libart_lgpl-devel, arts-devel
@@ -51,7 +50,6 @@ programma bevat ook een aantal hulpmiddelen om terug vrije ruimte te winnen.
 %prep
 %{__rm} -rf %{buildroot}
 %setup
-%patch -p1
 
 %build
 . /etc/profile.d/qt.sh
@@ -72,13 +70,12 @@ echo "Categories=Application;System;X-Red-Hat-Extra" >> %{buildroot}/usr/share/a
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING COPYING.LIB CREDITS INSTALL README TODO
+%doc AUTHORS COPYING* CREDITS INSTALL README TODO
 %{_bindir}/kdirstat
 %{_datadir}/applications/kdirstat.desktop
-%{_datadir}/apps/kdirstat
-%{_datadir}/doc/HTML/en/kdirstat
+%{_datadir}/apps/kdirstat/
+%{_datadir}/doc/HTML/en/kdirstat/
 %{_datadir}/icons/*/*/apps/kdirstat.png
-%{_datadir}/*/*/actions/symlink.png
 
 %changelog
 * Mon Jan 09 2006 Dries Verachtert <dries@ulyssis.org> - 2.4.4-1
