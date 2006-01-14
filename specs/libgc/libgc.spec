@@ -6,7 +6,7 @@
 Summary: Conservative garbage collector for C
 Name: libgc
 Version: 6.6
-Release: 0
+Release: 1
 Epoch: 1
 License: BSD
 Group: System Environment/Libraries
@@ -48,17 +48,14 @@ you will need to install %{name}-devel.
 %makeinstall
 #	DESTDIR="%{buildroot}"
 #%{__install} -Dp -m0644 include/*.h %{buildroot}%{_includedir}/libgc/
-%{__install} -Dp -m0655 doc/gc.man %{buildroot}%{_mandir}/man1/gc.1
+%{__install} -Dp -m0655 doc/gc.man %{buildroot}%{_mandir}/man1/libgc.1
 
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_libdir}/*.la
 %{__rm} -rf %{buildroot}%{_datadir}/gc/
 
-%post 
-/sbin/ldconfig 2>/dev/null
-
-%postun 
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -80,6 +77,9 @@ you will need to install %{name}-devel.
 #exclude %{_libdir}/*.la
 
 %changelog
+* Sat Jan 14 2006 Dag Wieers <dag@wieers.com> - 6.6-1
+- Excluded gc.1 manpage.
+
 * Tue Sep 20 2005 Dries Verachtert <dries@ulyssis.org> - 6.6-0
 - Updated to release 6.6.
 

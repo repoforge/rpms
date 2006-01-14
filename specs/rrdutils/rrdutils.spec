@@ -1,22 +1,26 @@
 # $Id$
 # Authority: dag
 
-%define real_name rrdUtils
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name RRDutils
 
 Summary: Utilities to deal with RRD files and graphs
 Name: rrdutils
-Version: 3.3
+Version: 4.2
 Release: 1
 License: El Menda
 Group: Applications/Databases
-URL: http://www.rediris.es/app/rrdUtils/
+URL: http://rrdutils.sourceforge.net/
 
-Source: ftp://ftp.rediris.es/rediris/software/rrdUtils/rrdUtils-%{version}.tar.gz
+Source: http://dl.sf.net/rrdutils/RRDutils-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Obsoletes: rrdUtils <= %{version}-%{release}
 BuildArch: noarch
+BuildRequires: perl
 Requires: perl, rrdtool
+Obsoletes: rrdUtils <= %{version}-%{release}
 
 %description
 This is a set of tools intended to help creation and displaying of RRD
@@ -25,28 +29,34 @@ and the graphs are described in a configuration file that we can use to
 create new instances of a RRD, and to generate the graphs for them.
 
 %prep
-%setup -n %{real_name}
+%setup -n %{real_name}-%{version}
 
 %build
-%configure \
-	--with-rrddir="%{_localstatedir}/lib/rrd"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install install-snmp DESTDIR=%{buildroot}
+%makeinstall
+
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/rrd/conf/
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc DESCRIPTION EXAMPLES examples.dir snmp-kit/table_db.patch ToDo
+%doc ChangeLog DESCRIPTION MANIFEST README snmp-kit/table_db.patch ToDo examples/ rrdGrapher.cgi
 %{_bindir}/RRD*
-%{_bindir}/*.sh
-%{_libdir}/perl5/site_perl/RRDutils.pm
+%{perl_vendorlib}/RRDutils.pm
 %{_localstatedir}/lib/rrd/
 
 %changelog
+* Sat Jan 14 2005 Dag Wieers <dag@wieers.com> - 4.2-1
+- Updated to release 4.2.
+
 * Sat Sep 25 2004 Dag Wieers <dag@wieers.com> - 3.3.5-1
 - Initial package. (using DAR)

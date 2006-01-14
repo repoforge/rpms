@@ -69,17 +69,17 @@ source /etc/profile.d/qt.sh
 * Thu Mar 24 2005 Dag Wieers <dag@wieers.com> - 0.2.8-1
 - Updated to release 0.2.8.
 
-* Fri Oct 29 2004 Dries Verachtert <dries@ulyssis.org> 0.2.7-1
-- Update to release 0.2.7.
+* Fri Oct 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.2.7-1
+- UpdatedA to release 0.2.7.
 
-* Sun May 16 2004 Dries Verachtert <dries@ulyssis.org> 0.2.6-1
+* Sun May 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.2.6-1
 - update to 0.2.6
 
-* Wed Apr 21 2004 Dries Verachtert <dries@ulyssis.org> 0.2.5-3
+* Wed Apr 21 2004 Dries Verachtert <dries@ulyssis.org> - 0.2.5-3
 - buildreqs update
 
-* Sat Jan 10 2004 Dries Verachtert <dries@ulyssis.org> 0.2.5-2
+* Sat Jan 10 2004 Dries Verachtert <dries@ulyssis.org> - 0.2.5-2
 - update of spec file
 
-* Fri Dec 12 2003 Dries Verachtert <dries@ulyssis.org> 0.2.5-1
+* Fri Dec 12 2003 Dries Verachtert <dries@ulyssis.org> - 0.2.5-1
 - first packaging for Fedora Core 1

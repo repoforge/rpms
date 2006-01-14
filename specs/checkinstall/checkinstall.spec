@@ -3,8 +3,8 @@
 
 Summary: CheckInstall installations tracker
 Name: checkinstall
-Version: 1.5.3
-Release: 3
+Version: 1.6.0
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://asic-linux.com.mx/~izto/checkinstall/
@@ -25,9 +25,9 @@ standard package management  utilities.
 
 ### FIXME: Fix the path to not use /usr/local (Please fix upstream)
 %{__perl} -pi.orig -e '
-		s|/usr/local/sbin|\$(sbindir)|;
-		s|/usr/local/bin|\$(bindir)|;
-		s|/usr/local/lib|\$(libdir)|;
+		s|/usr/local/sbin|\$(sbindir)|g;
+		s|/usr/local/bin|\$(bindir)|g;
+		s|/usr/local/lib|\$(libdir)|g;
 	' Makefile
 %{__perl} -pi.orig -e 's|/usr/local|%{_prefix}|g' checkinstall checkinstallrc
 %{__perl} -pi.orig -e 's|#PREFIX#|%{_prefix}|g' installwatch
@@ -56,12 +56,16 @@ standard package management  utilities.
 %files
 %defattr(-, root, root, 0755)
 %doc BUGS Changelog COPYING CREDITS FAQ README RELNOTES TODO
-%{_bindir}/*
-%{_sbindir}/*
+%{_bindir}/installwatch
+%{_sbindir}/checkinstall
+%{_sbindir}/makepak
 %{_libdir}/checkinstall/
 %{_libdir}/*.so
 
 %changelog
+* Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 1.6.0-1
+- Updated to release 1.6.0.
+
 * Sat Jan 31 2004 Dag Wieers <dag@wieers.com> - 1.5.3-3
 - Fixed the longstanding undefined symbol (__builtin_va_start) bug.
 

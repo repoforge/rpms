@@ -36,8 +36,8 @@ Source21: http://www.xinehq.de/index.php/force-download/skins/Polaris.tar.gz
 Source22: http://www.xinehq.de/index.php/force-download/skins/Bluton.tar.gz
 Source23: http://www.xinehq.de/index.php/force-download/skins/xinium.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+#BuildRequires: xine >= 0.99.0
 Requires: xine >= 0.99.0
-BuildRequires: xine >= 0.99.0
 BuildArch: noarch
 
 %description

@@ -3,7 +3,7 @@
 
 Summary: Powerful and fullfeatured server logfile analyzer
 Name: awstats
-Version: 6.4
+Version: 6.5
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -102,12 +102,15 @@ EOF
 %defattr(-, root, root, 0755)
 %doc README.TXT docs/*
 %config(noreplace) %{_sysconfdir}/awstats/
-%config(noreplace) %{_sysconfdir}/httpd/conf.d/*
-%config %{_sysconfdir}/cron.hourly/*
+%config(noreplace) %{_sysconfdir}/httpd/conf.d/awstats.conf
+%config %{_sysconfdir}/cron.hourly/00awstats
 %{_bindir}/*
 %{_localstatedir}/www/awstats/
 
 %changelog
+* Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 6.5-1
+- Updated to release 6.5.
+
 * Tue Mar 08 2005 Dag Wieers <dag@wieers.com> - 6.4-1
 - Updated to release 6.4.
 

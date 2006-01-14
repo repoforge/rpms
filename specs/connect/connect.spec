@@ -20,7 +20,7 @@ and SOCKS-servers.
 
 %prep
 #setup -n %{name}
-%setup -c
+%setup -c -T
 %{__cp} -avx %{SOURCE0} connect.c
 %{__cp} -avx %{SOURCE1} connect.html
 

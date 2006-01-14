@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DW/DWHEELER/Exception-Class-DBI
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl-Module-Build, perl(Exception::Class)
 
 %description
 This module offers a set of DBI-specific exception classes. They inherit from

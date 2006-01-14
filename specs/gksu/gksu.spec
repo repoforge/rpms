@@ -9,7 +9,7 @@ Name: gksu
 Version: 1.3.4
 Release: 1
 License: GPL
-Group: Applications/
+Group: Applications/System
 URL: http://www.nongnu.org/gksu/
 
 Source: http://people.debian.org/~kov/gksu/gksu/gksu-%{version}.tar.gz
@@ -44,13 +44,16 @@ user.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-%doc %{_mandir}/man1/*
+%doc %{_mandir}/man1/*.1*
 %{_sysconfdir}/gconf/schemas/gksu.schemas
 %{_bindir}/gksu*
 %{_datadir}/gksu/
-%{_datadir}/pixmaps/gksu**.png
+%{_datadir}/pixmaps/gksu*.png
 %{_datadir}/applications/gksu*.desktop
 
 %changelog
+* Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 1.3.4-2
+- Fixed group.
+
 * Sat Sep 17 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.4-1
 - Initial package.

@@ -15,7 +15,8 @@ URL: http://perso.wanadoo.fr/gleguelv/soft/
 Source: http://perso.wanadoo.fr/gleguelv/soft/publimark/publimark-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: audiofile-devel, botan-devel, gcc-c++, automake, autoconf
+BuildRequires: gcc-c++, automake, autoconf
+BuildRequires: audiofile-devel, botan-devel >= 1.3.12
 
 %description
 Publimark is a command line tool to secretly embed text in an audio file.
@@ -28,12 +29,13 @@ Marked audio files are still playable.
 %setup
 
 %build
+autoreconf --force --install --symlink
 %configure
 # seems to be necessary when gcc296 is used:
 # sed -i "s/#include.*\"scs.h\"/#include \"scs.h\"\n#include <math.h>/g;" src/scs.cpp
-%{__aclocal}
-%{__automake} -a
-%{__autoconf}
+#%{__aclocal}
+#%{__automake} -a
+#%{__autoconf}
 %{__make} %{?_smp_mflags}
 
 %install
