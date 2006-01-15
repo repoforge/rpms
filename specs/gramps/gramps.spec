@@ -1,14 +1,14 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Laurent Protois <laurent,protois$free,fr>
 
+%define desktop_vendor rpmforge
 %define _localstatedir /var/lib
 
 Summary: Genealogical Research and Analysis Management Programming System
 Name: gramps
 Version: 2.0.9
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Editors
 URL: http://gramps.sourceforge.net/
@@ -34,33 +34,38 @@ based plugin system.
 %setup
 
 %build
-%configure \
-	 --disable-schemas-install
+%configure --enable-packager-mode
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall \
 	GNOME_DATADIR="%{buildroot}%{_datadir}"
 %find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor rpmforge --delete-original \
+desktop-file-install --delete-original                   \
+	--vendor %{desktop_vendor}                       \
 	--add-category X-Red-Hat-Base                    \
 	--add-category Application                       \
 	--add-category Utility                           \
 	--dir %{buildroot}%{_datadir}/applications       \
-	%{buildroot}%{_datadir}/applications/%{name}.desktop
+	%{buildroot}%{_datadir}/applications/gramps.desktop
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_localstatedir}/scrollkeeper/
 
 %post
+export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
+gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
 scrollkeeper-update -q || :
+/usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
+/usr/bin/update-desktop-database -q || :
 
 %postun
 scrollkeeper-update -q || :
+/usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
+/usr/bin/update-desktop-database -q || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -68,26 +73,21 @@ scrollkeeper-update -q || :
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* FAQ INSTALL NEWS README TODO
-%doc %{_mandir}/man?/*
-#%doc %{_datadir}/gnome/help/gramps-manual/
-#%doc %{_datadir}/gnome/help/extending-gramps/
-%{_bindir}/*
-%{_datadir}/applications/*.desktop
-%{_datadir}/gramps/
-%{_datadir}/omf/gramps/
+%doc %{_mandir}/man1/gramps.1*
 %{_sysconfdir}/gconf/schemas/gramps.schemas
+%{_bindir}/gramps
 %{_datadir}/application-registry/gramps.applications
-%{_datadir}/icons/*/*/*/*.png
+%{_datadir}/applications/%{desktop_vendor}-gramps.desktop
+%{_datadir}/gramps/
+%{_datadir}/icons/gnome/48x48/mimetypes/*.png
 %{_datadir}/mime-info/gramps.*
-%{_datadir}/mime/application/*.xml
 %{_datadir}/mime/packages/gramps.xml
-%exclude %{_datadir}/mime/aliases
-%exclude %{_datadir}/mime/XMLnamespaces
-%exclude %{_datadir}/mime/globs
-%exclude %{_datadir}/mime/magic
-%exclude %{_datadir}/mime/subclasses
+%{_datadir}/omf/gramps/
  
 %changelog
+* Sun Jan 15 2006 Dag Wieers <dag@wieers.com> - 2.0.9-2
+- Fixed mime and desktop installation.
+
 * Fri Dec 16 2005 Dries Verachtert <dries@ulyssis.org> - 2.0.9-1
 - Updated to release 2.0.9.
 
