@@ -4,7 +4,7 @@
 
 Summary: IRC to other chat networks gateway
 Name: bitlbee
-Version: 1.0
+Version: 1.0.1
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -89,6 +89,9 @@ EOF
 %{_localstatedir}/lib/bitlbee/
 
 %changelog
+* Mon Jan 16 2006 Dag Wieers <dag@wieers.com> - 1.0.1-1
+- Updated to release 1.0.1.
+
 * Sun Dec 04 2005 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Updated to release 1.0.
 
