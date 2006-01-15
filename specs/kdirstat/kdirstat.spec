@@ -16,7 +16,7 @@
 
 Summary: Graphical disk usage utility
 Name: kdirstat
-Version: 2.4.4
+Version: 2.5.2
 Release: 1
 License: GPL
 Group: Applications/File
@@ -72,12 +72,18 @@ echo "Categories=Application;System;X-Red-Hat-Extra" >> %{buildroot}/usr/share/a
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING* CREDITS INSTALL README TODO
 %{_bindir}/kdirstat
+%{_bindir}/kdirstat-cache-writer
+%{_datadir}/apps/kconf_update/fix_move_to_trash_bin.pl
+%{_datadir}/apps/kconf_update/kdirstat.upd
 %{_datadir}/applications/kdirstat.desktop
 %{_datadir}/apps/kdirstat/
 %{_datadir}/doc/HTML/en/kdirstat/
 %{_datadir}/icons/*/*/apps/kdirstat.png
 
 %changelog
+* Sat Jan 14 2006 Dries Verachtert <dries@ulyssis.org> - 2.5.2-1
+- Updated to release 2.5.2.
+
 * Mon Jan 09 2006 Dries Verachtert <dries@ulyssis.org> - 2.4.4-1
 - Updated to release 2.4.4.
 
