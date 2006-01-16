@@ -4,7 +4,7 @@
 
 Summary: Reclaim disk space by finding unneeded files
 Name: kleansweep
-Version: 0.2.3
+Version: 0.2.4
 Release: 1
 License: GPL
 Group: Applications/Utilities
@@ -43,5 +43,8 @@ scons install prefix=%{buildroot}%{_prefix}
 %{_bindir}/kleansweep*
 
 %changelog
+* Mon Jan 16 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.4-1
+- Updated to release 0.2.4.
+
 * Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.3-1
 - Initial package.

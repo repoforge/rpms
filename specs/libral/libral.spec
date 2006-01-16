@@ -4,7 +4,7 @@
 
 Summary: Address book engine
 Name: libral
-Version: 0.50
+Version: 0.70
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -73,5 +73,8 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libral.pc
 
 %changelog
+* Mon Jan 16 2006 Dries Verachtert <dries@ulyssis.org> - 0.70-1
+- Updated to release 0.70.
+
 * Mon Nov 14 2005 Dries Verachtert <dries@ulyssis.org> - 0.50-1
 - Initial package.
