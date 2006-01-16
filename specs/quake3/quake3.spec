@@ -1,22 +1,30 @@
 # $Id$
 # Authority: matthias
 
-%define svn 338
+%{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
+
+%define svn 470
 
 Summary: Quake 3 Arena tournament 3D shooter game
 Name: quake3
 Version: 1.33
-Release: 0.1%{?svn:.svn%{svn}}
+Release: 0.2%{?svn:.svn%{svn}}
 Group: Amusements/Games
 License: GPL
 URL: http://www.icculus.org/quake3/
 # SVN checkout, then "make dist"
+# svn co svn://svn.icculus.org/quake3/trunk quake3
 Source0: %{name}-%{version}%{?svn:_SVN%{svn}}.tar.bz2
 Source1: quake3.png
 Patch0: quake3-1.33-nostrip.patch
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: SDL-devel, xorg-x11-devel, xorg-x11-devel
-BuildRequires: nasm
+BuildRequires: SDL-devel, openal-devel, nasm
+%{?_with_modxorg:BuildRequires: libXt-devel, mesa-libGL-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 
 %description
 This is Quake 3 Arena.
@@ -32,7 +40,7 @@ original CD-ROM to %{_prefix}/games/quake3/.
 
 %build
 # Note that using %{optflags} instead of the flags in the Makefiles screw up
-# the binary badly!
+# the binary badly! So... don't :-(
 %{__make} %{?_smp_mflags}
 
 
@@ -41,7 +49,7 @@ original CD-ROM to %{_prefix}/games/quake3/.
 %{__mkdir_p} %{buildroot}%{_prefix}/games/quake3/baseq3/
 %{__make} copyfiles COPYDIR="%{buildroot}%{_prefix}/games/quake3"
 
-%{__install} -D -m 0644 %{SOURCE1} \
+%{__install} -D -p -m 0644 %{SOURCE1} \
     %{buildroot}%{_datadir}/pixmaps/quake3.png
 
 # Desktop file
@@ -77,7 +85,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING.txt id-readme.txt i_o-q3-readme
+%doc BUGS ChangeLog COPYING.txt id-readme.txt README TODO
 %attr(0755, root, root) %{_bindir}/quake3
 %{_prefix}/games/quake3/
 %{_datadir}/applications/quake3.desktop
@@ -85,6 +93,13 @@ EOF
 
 
 %changelog
+* Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 1.33-0.2.svn470
+- Update to today's svn sode (rev. 470).
+- Add modular xorg build conditional.
+- Revisit nostrip patch for the new code.
+- Add (new?) openal-devel build requirement.
+- Update %%doc files.
+
 * Sun Nov 13 2005 Matthias Saou <http://freshrpms.net/> 1.33-0.1.svn338
 - Update to GPL'ed 1.33 and spec file cleanup.
 

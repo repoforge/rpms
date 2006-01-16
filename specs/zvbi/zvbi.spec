@@ -1,16 +1,24 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
+
 Summary: Raw VBI, Teletext and Closed Caption decoding library
 Name: zvbi
-Version: 0.2.15
+Version: 0.2.17
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
 Source: http://dl.sf.net/zapping/zvbi-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: XFree86-devel, libpng-devel, gcc-c++, doxygen, gettext
+BuildRequires: libpng-devel, gcc-c++, doxygen, gettext
+#{?_with_modxorg:BuildRequires: libXt-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 Obsoletes: libzvbi <= 0.2.4
 
 %description
@@ -52,20 +60,20 @@ the zvbi library.
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS COPYING ChangeLog NEWS README TODO doc/html
 %{_bindir}/zvbi-chains
+%{_bindir}/zvbi-ntsc-cc
 %{_sbindir}/zvbid
 %{_libdir}/*.so.*
 %{_mandir}/man1/zvbi-chains.1*
+%{_mandir}/man1/zvbi-ntsc-cc.1*
 %{_mandir}/man1/zvbid.1*
 
 %files devel
@@ -78,6 +86,11 @@ the zvbi library.
 
 
 %changelog
+* Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 0.2.17-1
+- Update to 0.2.17.
+- Add now zvbi-ntsc-cc binary and man page.
+- Add modular xorg build conditional.
+
 * Thu Mar 31 2005 Dag Wieers <dag@wieers.com> - 0.2.15-1
 - Updated to release 0.2.15.
 

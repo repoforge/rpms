@@ -7,13 +7,13 @@
 Summary: X MultiMedia System input plugin to play mpegplus (mpc) files
 Name: xmms-musepack
 Version: 1.2
-Release: 0.1%{?prever:.%{prever}}
+Release: 0.2%{?prever:.%{prever}}
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.musepack.net/
 Source: http://musepack.origean.net/files/linux/plugins/xmms-musepack-%{version}%{?prever:-%{prever}}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: xmms-devel, libmpcdec-devel, taglib-devel, gcc-c++
+BuildRequires: xmms-devel, pkgconfig, libmpcdec-devel, taglib-devel, gcc-c++
 
 
 %description
@@ -46,6 +46,9 @@ X MultiMedia System input plugin to play mpegplus, aka mpc files.
 
 
 %changelog
+* Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 1.2-0.2.RC1
+- Add pkgconfig build requirement to fix build.
+
 * Mon May  9 2005 Matthias Saou <http://freshrpms.net/> 1.2-0.1.RC1
 - Update to 1.2-RC1.
 - Now build against new libmpcdec and not libmusepack.

@@ -70,6 +70,10 @@ pushd jpeg-mmx
     ./configure && %{__make} CFLAGS="%{optflags}"
 popd
 %endif
+
+# Required for 1.8.0 with gcc 4.1 (FC5+)
+export CFLAGS="%{optflags} -fpermissive"
+export CXXFLAGS="%{optflags} -fpermissive"
 %configure \
 %ifarch %{ix86}
     %{?_without_mmx:--with-jpeg-mmx="`pwd`/jpeg-mmx-%{jpegmmx_version}"}
@@ -118,6 +122,9 @@ fi
 
 
 %changelog
+* Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 1.8.0-2
+- Add -fpermissive to CFLAGS for now, as otherwise the build fails on FC5.
+
 * Fri Dec  9 2005 Matthias Saou <http://freshrpms.net/> 1.8.0-1
 - Update to 1.8.0.
 - Remove %%{?_smp_mflags}, as the build failed for me on x86_64 with -j4.

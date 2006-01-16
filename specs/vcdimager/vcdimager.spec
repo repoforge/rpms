@@ -4,16 +4,14 @@
 Summary: VideoCD (pre-)mastering and ripping tool
 Name: vcdimager
 Version: 0.7.23
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.vcdimager.org/
-
 Source: ftp://ftp.gnu.org/pub/gnu/vcdimager/vcdimager-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-BuildRequires: libxml2-devel >= 2.3.8, zlib-devel, pkgconfig >= 0.9, popt, gcc-c++
-BuildRequires: libcdio-devel >= 0.72
+BuildRequires: libcdio-devel >= 0.72, libxml2-devel >= 2.3.8
+BuildRequires: zlib-devel, pkgconfig >= 0.9, popt, gcc-c++
 
 %description
 VCDImager allows you to create VideoCD BIN/CUE CD images from mpeg
@@ -61,13 +59,14 @@ applications that will use VCDImager.
 
 %post
 for infofile in vcdxrip.info vcdimager.info vcd-info.info; do
-    /sbin/install-info %{_infodir}/${infofile} %{_infodir}/dir || :
+    /sbin/install-info %{_infodir}/${infofile} %{_infodir}/dir 2>/dev/null || :
 done
 
 %preun
 if [ $1 -eq 0 ]; then
     for infofile in vcdxrip.info vcdimager.info vcd-info.info; do
-        /sbin/install-info --delete %{_infodir}/${infofile} %{_infodir}/dir || :
+        /sbin/install-info --delete %{_infodir}/${infofile} %{_infodir}/dir \
+            2>/dev/null || :
     done
 fi
 
@@ -93,6 +92,9 @@ fi
 
 
 %changelog
+* Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 0.7.23-3
+- Silence install-info scriplets.
+
 * Sat Jul 30 2005 Matthias Saou <http://freshrpms.net/> 0.7.23-2
 - Rebuild against new libcdio.
 

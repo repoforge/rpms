@@ -3,6 +3,10 @@
 # Upstream: <libquicktime-devel$lists,sourceforge,net>
 
 %{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:%define _with_modxorg 1}
 
 %{?fc1:%define _without_alsa 1}
 %{?el3:%define _without_alsa 1}
@@ -19,7 +23,7 @@
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
 Version: 0.9.7
-Release: 2%{?prever:.%{prever}}
+Release: 3%{?prever:.%{prever}}
 License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sourceforge.net/
@@ -30,6 +34,7 @@ BuildRequires: libpng-devel >= 1.0.8, libjpeg-devel, gcc-c++
 %{?!_without_1394:BuildRequires: libraw1394-devel, libavc1394-devel}
 %{?!_without_alsa:BuildRequires: alsa-lib-devel}
 %{?!_without_ffmpeg:BuildRequires: ffmpeg-devel}
+%{?_with_modxorg:BuildRequires: libXt-devel, mesa-libGLU-devel, libXaw-devel, libXv-devel}
 # A bug, the devel libs don't require the main ones :-(
 %{?yd3:BuildRequires: libraw1394, libavc1394}
 
@@ -119,6 +124,9 @@ programs that need to access quicktime files using libquicktime.
 
 
 %changelog
+* Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 0.9.7-3
+- Enable modular xorg conditional build.
+
 * Sun Jun  5 2005 Matthias Saou <http://freshrpms.net/> 0.9.7-2
 - Add quicktime -> lqt include symlink (required currently for transcode).
 - Add zlib-devel devel package requirement.

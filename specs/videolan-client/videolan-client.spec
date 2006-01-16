@@ -3,6 +3,10 @@
 # Upstream: <vlc-devel$videolan,org>
 
 %{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
 
 %{?el4:%define _without_wxwidgets 1}
 
@@ -61,17 +65,20 @@
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
 Version: 0.8.4a
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
 Source0: http://downloads.videolan.org/pub/videolan/vlc/%{version}/vlc-%{version}.tar.bz2
 Source1: http://downloads.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
 Source2: http://www.live555.com/liveMedia/public/live.2006.01.05.tar.gz
+Patch0: vlc-0.8.4a-extraqualif.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, XFree86-devel, libpng-devel, libxml2-devel
+BuildRequires: gcc-c++, libpng-devel, libxml2-devel
 BuildRequires: libgcrypt-devel, gnutls-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+#{?_with_modxorg:BuildRequires: libXt-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_dvdread:BuildRequires: libdvdread-devel}
 %{!?_without_dvdnav:BuildRequires: libdvdnav-devel}
 %{!?_without_smb:BuildRequires: samba-common}
@@ -145,6 +152,7 @@ to link statically to it.
 
 %prep
 %setup -n %{real_name}-%{version} -a 1 -a 2
+%patch0 -p1 -b .extraqualif
 # Fix PLUGIN_PATH path for lib64
 %{__perl} -pi -e 's|/lib/vlc|/%{_lib}/vlc|g' vlc-config.in.in configure*
 
@@ -177,7 +185,6 @@ export CFLAGS="%{optflags} -maltivec -mabi=altivec"
 %endif
 
 %configure \
-    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
     --enable-release \
     %{!?_without_dvdread:--enable-dvdread} \
     %{?_without_dvdnav:--disable-dvdnav} \
@@ -292,6 +299,10 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 0.8.4a-2
+- Add modular xorg build conditional.
+- Include extraqualif patch to fix FC5 / gcc 4.1 errors.
+
 * Sun Jan  8 2006 Matthias Saou <http://freshrpms.net/> 0.8.4a-1
 - Update to 0.8.4a.
 - Enable live555.

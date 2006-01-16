@@ -4,7 +4,7 @@
 Summary: XMMS plugin for mp3 playback.
 Name: xmms-mp3
 Version: 1.2.10
-Release: 13
+Release: 14
 Epoch: 1
 License: GPL
 Group: Applications/Multimedia
@@ -48,6 +48,9 @@ Linux because the patented mp3 format itself is theoretically GPL incompatible.
 
 
 %changelog
+* Tue Dec 20 2005 Matthias Saou <http://freshrpms.net/> 1:1.2.10-14
+- Update gcc4 patch to include fix for xmms.org bug #1730, fixes FC5 build.
+
 * Tue Dec 20 2005 Matthias Saou <http://freshrpms.net/> 1:1.2.10-13
 - Fix xmms requirement by adding the 1 epoch.
 

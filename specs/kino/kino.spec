@@ -2,6 +2,12 @@
 # Authority: dag
 # Upstream: Dan Dennedy <ddennedy$users,sf,net>
 
+%{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
+
 #define cvs 20040802
 
 Summary: Simple non-linear video editor
@@ -17,8 +23,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.6
 BuildRequires: libdv-devel >= 0.102, libavc1394-devel, libraw1394-devel
 BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel
-BuildRequires: XFree86-devel, gtk2-devel >= 2.6, libglade2-devel, gettext
+BuildRequires: gtk2-devel >= 2.6, libglade2-devel, gettext
 BuildRequires: libxml2-devel, libsamplerate-devel, intltool
+%{?_with_modxorg:BuildRequires: libXv-devel}
 # libtool *sigh*
 BuildRequires: gcc-c++
 %{!?_without_quicktime:BuildRequires: libquicktime-devel}
@@ -92,6 +99,9 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 
 
 %changelog
+* Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 0.8.0-2
+- Add modular xorg build conditional.
+
 * Wed Dec  7 2005 Matthias Saou <http://freshrpms.net> 0.8.0-1
 - Update to 0.8.0.
 - Change libgnomeui-devel dependency to new gtk2-devel only.

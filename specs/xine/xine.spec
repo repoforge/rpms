@@ -2,6 +2,10 @@
 # Authority: matthias
 
 %{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
@@ -11,7 +15,7 @@
 Summary: Free multimedia player
 Name: xine
 Version: 0.99.4
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -24,10 +28,12 @@ Patch1: xine-ui-0.99.3-xftfontsize.patch
 Patch2: xine-ui-0.99.3-uifixups.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xine-lib >= 1.0.0
-BuildRequires: gcc-c++, XFree86-devel, libpng-devel, xine-lib-devel >= 1.0.0
+BuildRequires: gcc-c++, libpng-devel, xine-lib-devel >= 1.0.0
 BuildRequires: curl-devel, libidn-devel, libtermcap-devel, readline-devel
 BuildRequires: pkgconfig, /usr/bin/find
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+#{?_with_modxorg:BuildRequires: libXt-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_aalib:BuildRequires: aalib-devel}
 %{!?_without_caca:BuildRequires: libcaca-devel}
 %{!?_without_lirc:BuildRequires: lirc-devel}
@@ -151,6 +157,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 0.99.4-2
+- Add modular xorg build conditional.
+
 * Sat Jul 30 2005 Matthias Saou <http://freshrpms.net/> 0.99.4-1
 - Update to 0.99.4, which includes gcc4 fixes.
 

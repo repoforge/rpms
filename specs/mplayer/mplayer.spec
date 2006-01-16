@@ -1,9 +1,15 @@
 # $Id$
 # Authority: matthias
 
-%define _without_x264 1
+# Overridable kernel version, needed for the DVB includes
+%{!?kernel: %define kernel %(uname -r)}
 
 %{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
+%{?_with_modxorg: %define _without_xvmc 1}
 
 %{?fc1:%define _without_alsa 1}
 %{?fc1:%define _without_theora 1}
@@ -45,47 +51,48 @@
 %{?yd3:%define _without_theora 1}
 
 # Is this a daily build? If so, put the date like "20020808" otherwise put 0
-#define date      20041025
-%define rcver     pre7
+%define date      20060113
+#define rcver     pre7
 
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.20%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.24%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
 %if %{?date:1}0
+# cvs -z3 -d:pserver:anonymous@mplayerhq.hu:/cvsroot/mplayer co -P
+# cvs -z3 -d:pserver:anonymous@mplayerhq.hu:/cvsroot/ffmpeg co -P
+# cp -a mplayer MPlayer-%{date}
+# cp -a ffmpeg/{libavcodec,libavformat,libavutil} MPlayer-%{date}/
+# find MPlayer-%{date} -name CVS -o -name .cvsignore | xargs rm -rf
+# tar cjvf MPlayer-%{date}.tar.bz2 MPlayer-%{date}/
 Source0: http://www.mplayerhq.hu/MPlayer/cvs/MPlayer-%{date}.tar.bz2
 %else
 Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{version}%{?rcver}.tar.bz2
 %endif
-Source2: http://www.mplayerhq.hu/MPlayer/Skin/Blue-1.4.tar.bz2
+Source1: http://www.live555.com/liveMedia/public/live.2006.01.05.tar.gz
+Source2: http://www.mplayerhq.hu/MPlayer/Skin/Blue-1.5.tar.bz2
 # Only for reference, required on YDL4 at least
 Source10: uio.h-ppc.patch
 Patch0: MPlayer-0.90pre9-runtimemsg.patch
 Patch1: MPlayer-0.90-playlist.patch
 Patch2: MPlayer-0.90pre10-redhat.patch
 Patch10: MPlayer-1.0pre6a-fribidi.patch
-Patch11: MPlayer-1.0pre6a-udev.patch
-Patch12: MPlayer-1.0pre7-gcc4.patch
-Patch13: MPlayer-1.0pre7-gcc_detection.patch
-Patch14: MPlayer-1.0pre7-nostrip.patch
-Patch15: MPlayer-1.0pre7-x86_64.patch
-Patch16: MPlayer-1.0pre7-ad_pcm_fix.patch
-Patch17: MPlayer-1.0pre7-gcc4-altivec.patch
-Patch18: MPlayer-1.0pre7-x264.patch
+Patch11: MPlayer-1.0pre8-udev.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: mplayer-fonts
-BuildRequires: XFree86-devel, gtk+-devel, SDL-devel
+BuildRequires: gtk2-devel, SDL-devel
 BuildRequires: libpng-devel, libjpeg-devel, libungif-devel
 BuildRequires: lame-devel, libmad-devel, flac-devel
 BuildRequires: libmatroska-devel
-BuildRequires: libmad-devel
 BuildRequires: ImageMagick
-%{!?_without_dv:BuildRequires: libdv-devel}
 %{?_with_samba:BuildRequires: samba-common}
-%{?_with_dvb:BuildRequires: kernel-source}
+%{?_with_dvdread:BuildRequires: libdvdread-devel}
+%{!?_without_dvb:BuildRequires: kernel-devel = %{kernel}}
+%{!?_without_dv:BuildRequires: libdv-devel}
+%{!?_without_ladspa:BuildRequires: ladspa-devel}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_fribidi:BuildRequires: fribidi-devel}
 %{!?_without_aalib:BuildRequires: aalib-devel}
@@ -95,14 +102,16 @@ BuildRequires: ImageMagick
 %{!?_without_xvid:BuildRequires: xvidcore-devel}
 %{!?_without_x264:BuildRequires: x264-devel}
 %{!?_without_esd:BuildRequires: esound-devel}
-%{!?_without_dvdread:BuildRequires: libdvdread-devel}
 %{!?_without_lzo:BuildRequires: lzo-devel}
 %{!?_without_fame:BuildRequires: libfame-devel}
 %{!?_without_caca:BuildRequires: libcaca-devel}
 %{!?_without_theora:BuildRequires: libtheora-devel}
 %{!?_without_xvmc:BuildRequires: libXvMCW-devel}
 %{!?_without_dts:BuildRequires: libdca-devel}
-#{!?_without_dvdnav:BuildRequires: libdvdnav-devel}
+%{!?_without_faac:BuildRequires: faac-devel}
+%{!?_without_mpc:BuildRequires: libmpcdec-devel}
+%{!?_without_vstream:BuildRequires: vstream-client-devel}
+%{?_with_modxorg:BuildRequires: libXv-devel, mesa-libGL-devel, libXvMC-devel}
 
 %description
 MPlayer is a multimedia player. It plays most video formats as well as DVDs.
@@ -112,9 +121,9 @@ nice antialiased shaded subtitles and OSD.
 On x86, additional Win32 binary codecs should be added to %{_libdir}/win32/.
 
 Available rpmbuild rebuild options :
---with : samba dvb
---without : aalib lirc cdparanoia arts xvid esd dvdread lzo fame caca
-            theora osdmenu gcccheck fribidi xvmc
+--with : samba dvdread
+--without : aalib lirc cdparanoia arts xvid esd lzo fame caca dvb vstream
+            theora osdmenu gcccheck fribidi xvmc x264 faac mpc live ladspa
 
 
 %package -n mencoder
@@ -145,22 +154,18 @@ This package contains the end user documentation.
 
 %prep
 %if %{?date:1}0
-%setup -n MPlayer-%{date}
+%setup -n MPlayer-%{date} -a 1
 %else
-%setup -n MPlayer-%{version}%{?rcver}
+%setup -n MPlayer-%{version}%{?rcver} -a 1
 %endif
 %patch0 -p1 -b .runtimemsg
 %patch1 -p1 -b .playlist
 %patch2 -p0 -b .redhat
 %patch10 -p1 -b .fribidi
 %patch11 -p1 -b .udev
-%patch12 -p1 -b .gcc4
-%patch13 -p0 -b .gcc_detection
-%patch14 -p1 -b .nostrip
-%patch15 -p1 -b .x86_64
-%patch16 -p0 -b .ad_pcm_fix
-%patch17 -p0 -b .gcc4-altivec
-%patch18 -p1 -b .x264
+
+# Clean up the tarball contents (useful for the included docs)
+find . -name "CVS" | xargs %{__rm} -rf
 
 # Overwrite some of the details of the provided system menu entry
 %{__perl} -pi -e 's|^Exec=gmplayer$|Exec=gmplayer %f|g;
@@ -170,13 +175,24 @@ echo "MimeType=video/dv;video/mpeg;video/x-mpeg;video/msvideo;video/quicktime;vi
 
 
 %build
-find . -name "CVS" | xargs %{__rm} -rf
+# Build statically linked live555 libraries
+%if 0%{!?_without_live:1}
+pushd live
+    # Force the use of our CFLAGS
+    %{__perl} -pi -e 's|-O2|%{optflags}|g' config.linux
+    # Configure and build
+    ./genMakefiles linux && %{__make}
+popd
+%endif
+
 export CFLAGS="%{optflags}"
 echo | ./configure \
     --prefix=%{_prefix} \
+    --bindir=%{_bindir} \
     --datadir=%{_datadir}/mplayer \
-    --confdir=%{_sysconfdir}/mplayer \
     --mandir=%{_mandir} \
+    --confdir=%{_sysconfdir}/mplayer \
+    --libdir=%{_libdir} \
     --enable-gui \
     --enable-largefiles \
     --enable-dynamic-plugins \
@@ -189,7 +205,6 @@ echo | ./configure \
     --with-reallibdir=%{_libdir}/real \
 %endif
     --enable-joystick \
-    --disable-mpdvdkit \
     %{?_without_gcccheck:--disable-gcc-checking} \
     %{?_without_alsa:--disable-alsa} \
     %{?_without_aalib:--disable-aa} \
@@ -199,13 +214,12 @@ echo | ./configure \
     %{?_without_libdv:--disable-libdv} \
     %{?_without_arts:--disable-arts} \
     %{?_without_esd:--disable-esd} \
-    %{?_without_dvdread:--disable-dvdread} \
+    %{!?_with_dvdread:--disable-dvdread} \
     %{?_without_fame:--disable-libfame} \
     %{?_without_caca:--disable-caca} \
     %{?_without_theora:--disable-theora} \
-    %{?_without_x264:--disable-x264} \
-    %{?_with_dvb:--enable-dvbhead} \
-    %{?_with_dvb:--with-dvbincdir=/lib/modules/`uname -r`/build/include} \
+    %{!?_without_dvb:--enable-dvbhead} \
+    %{!?_without_dvb:--with-dvbincdir=/lib/modules/%{kernel}/build/include} \
     --disable-fastmemcpy \
     --enable-i18n \
     --language=all \
@@ -213,10 +227,8 @@ echo | ./configure \
     %{?_with_samba:--enable-smb} \
     %{!?_without_fribidi:--enable-fribidi} \
     %{!?_without_xvmc:--enable-xvmc --with-xvmclib=XvMCW} \
+    %{!?_without_live:--with-livelibdir=`pwd`/live} \
     --enable-debug
-
-    # "dvdnav disabled, it does not work" (1.0pre5, still the same)
-    #{!?_without_dvdnav:--enable-dvdnav} \
 
 %{__make} %{?_smp_mflags}
 
@@ -224,10 +236,12 @@ echo | ./configure \
 %install
 %{__rm} -rf %{buildroot}
 # The libdir override is required for libpostproc when _libdir is /usr/lib64
-%{__make} install DESTDIR=%{buildroot} \
+%{__make} install \
+    STRIPBINARIES="no" \
+    DESTDIR=%{buildroot} \
     libdir=%{buildroot}%{_libdir}
 
-### The default Skin
+# The default Skin
 %{__mkdir_p} %{buildroot}%{_datadir}/mplayer/Skin/
 %{__tar} -xjf %{SOURCE2} -C %{buildroot}%{_datadir}/mplayer/Skin/
 %{__mv} -f %{buildroot}%{_datadir}/mplayer/Skin/* %{buildroot}%{_datadir}/mplayer/Skin/default
@@ -241,6 +255,8 @@ echo | ./configure \
 # Create empty Win32 binary codec directory
 %ifarch %{ix86}
 %{__mkdir_p} %{buildroot}%{_libdir}/win32
+%else
+%{__mkdir_p} %{buildroot}%{_libdir}/real
 %endif
 
 
@@ -266,11 +282,11 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{_bindir}/mplayer
 %ifarch %{ix86}
 %dir %{_libdir}/win32/
+%else
+%dir %{_libdir}/real/
 %endif
-%ifarch %{ix86} ppc
 %{_libdir}/libdha.so*
 %{_libdir}/mplayer/
-%endif
 %{!?_without_freedesktop:%{_datadir}/applications/mplayer.desktop}
 %{_datadir}/mplayer/
 %{_datadir}/pixmaps/mplayer-desktop.xpm
@@ -303,6 +319,36 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Mon Dec 19 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.24.20060113
+- Update to a Friday the 13th snapshot! :-)
+- Update live555 library to 2006.01.05.
+- Remove XFree86-devel build requirement, gtk2-devel takes care of the
+  required X stuff.
+- Remove no longer needed nostrip patch, use STRIPBINARIES now.
+- Disable "xvmc" (the old wrapper) on FC5, and use the xorg libXvMC instead.
+
+* Mon Dec 19 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.23.20051211
+- Enable vstream support (TiVo vserver stream).
+
+* Tue Dec 13 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.22.20051211
+- Force _libdir since libdha and vidix modules are now built on x86_64.
+- Include empty _libdir/real/ for non-x86 archs.
+
+* Sun Dec 11 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.21.20051211
+- Update to CVS code.
+- Update Blue skin to 1.5.
+- Update udev patch (v4l detection no longer uses test on /dev files, but lirc
+  still does).
+- Remove all obsolete patches.
+- Change gtk+ build requirement to gtk2.
+- Enable x264 again.
+- Add faac, ladspa and musepack (mpc) support (enabled).
+- Add live555 support, include latest snapshot : live.2005.12.09.
+- Enable dvb by default, and make overriding the kernel version possible.
+- Switch from external libdvdread to mpdvdkit, since the streaming part fails
+  to build otherwise.
+- Remove disabled dvdnav support, as it's no longer available.
+
 * Sun Dec 11 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.20.pre7
 - Enable DTS (libdca).
 - Try to enable x264, fix configure check (libpthread), but compile fails.

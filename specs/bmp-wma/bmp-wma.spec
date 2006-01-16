@@ -6,7 +6,7 @@
 Summary: Windows Media Audio (WMA) playback plugin for the Beep Media Player
 Name: bmp-wma
 Version: 0.1.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://bmp-plugins.berlios.de/
@@ -28,6 +28,7 @@ on Winamp 2.x skins, and is based on ("forked off") XMMS.
 
 
 %build
+export CFLAGS="%{optflags} -DHAVE_LRINTF -fPIC"
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -50,7 +51,12 @@ on Winamp 2.x skins, and is based on ("forked off") XMMS.
 
 
 %changelog
-* Thu Jul 21 2005 Matthias Saou <http://freshrpms.net/> 0.1.1-2
+* Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 0.1.1-2
+- Force -DHAVE_LRINTF in CFLAGS since it's not detected by configure on FC5
+  as it should.
+- Force -fPIC too as build fails otherwise.
+
+* Thu Jul 21 2005 Matthias Saou <http://freshrpms.net/> 0.1.1-1
 - Include bmp-wma-0.1.1-gcc4.patch with the "usual" ffmpeg common.h change.
 
 * Thu May 26 2005 Matthias Saou <http://freshrpms.net/> 0.1.1-1

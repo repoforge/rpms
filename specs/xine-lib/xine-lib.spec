@@ -3,6 +3,10 @@
 # Upstream: <xine-user$lists,sf,net>
 
 %{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
 
 %{?fc1:%define _without_alsa 1}
 %{?fc1:%define _without_theora 1}
@@ -46,10 +50,12 @@ URL: http://xinehq.de/
 Source: http://dl.sf.net/xine/xine-lib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libdvdcss
-BuildRequires: gcc-c++, pkgconfig, XFree86-devel, zlib-devel
+BuildRequires: gcc-c++, pkgconfig, zlib-devel
 BuildRequires: libvorbis-devel, SDL-devel
 # BUG : libmng-devel should apparently require libjpeg-devel for includes
 BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
+%{?_with_modxorg:BuildRequires: libXvMC-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{?_with_rte:BuildRequires: rte-devel}
 %{?_with_extdvdnav:BuildRequires: libdvdnav-devel >= 0.1.4}
 %{?_with_extffmpeg:BuildRequires: ffmpeg-devel}
@@ -91,7 +97,9 @@ Available rpmbuild rebuild options :
 %package devel
 Summary: Development files for the xine library
 Group: Development/Libraries
-Requires: %{name} = %{version}, pkgconfig, zlib-devel, XFree86-devel
+Requires: %{name} = %{version}, pkgconfig, zlib-devel
+%{?_with_modxorg:Requires: libXvMC-devel}
+%{!?_with_modxorg:Requires: XFree86-devel}
 Obsoletes: xine-libs-devel <= 1.0.0
 
 %description devel

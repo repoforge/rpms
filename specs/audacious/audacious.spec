@@ -1,6 +1,11 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{?fc5:%define _with_modxorg 1}
+
 Summary: Media player which uses a skinned interface
 Name: audacious
 Version: 0.1.2
@@ -22,6 +27,7 @@ BuildRequires: alsa-lib-devel, esound-devel
 %{!?_without_lirc:BuildRequires: lirc-devel}
 BuildRequires: libsndfile, libsamplerate, libsidplay
 BuildRequires: ImageMagick
+%{?_with_modxorg:BuildRequires: libXext-devel, libXt-devel}
 
 %description
 Audacious is a media player forked from BMP (Beep Media Player) which uses a

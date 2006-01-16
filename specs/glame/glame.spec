@@ -1,12 +1,18 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:%define _with_modxorg 1}
+
 %define desktop_vendor rpmforge
 
 Summary: GNU/Linux Audio MEchanics, the GIMP of audio processing
 Name: glame
 Version: 2.0.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 Source0: http://dl.sf.net/glame/glame-%{version}.tar.gz
@@ -21,6 +27,7 @@ BuildRequires: fftw-devel, audiofile-devel, esound-devel
 BuildRequires: lame-devel, libmad-devel, libvorbis-devel, ladspa-devel
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%{?_with_modxorg:BuildRequires: xorg-x11-xbitmaps}
 
 %description
 GLAME is meant to be the GIMP of audio processing. It is designed to be
@@ -122,6 +129,9 @@ fi
 
 
 %changelog
+* Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 2.0.1-2
+- Add modular xorg build conditional.
+
 * Tue Mar 29 2005 Matthias Saou <http://freshrpms.net/> 2.0.1-1
 - Update to 2.0.1.
 - Requires gtk2 >= 2.6.0, which will only be relased when FC4 is.

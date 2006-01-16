@@ -1,9 +1,15 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
+
 Summary: MP3 playback plugin for the Beep Media Player
 Name: bmp-mp3
-Version: 0.9.7
+Version: 0.9.7.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -11,8 +17,9 @@ URL: http://beepmp.sourceforge.net/
 Source: http://dl.sf.net/beepmp/bmp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: bmp >= %{version}
-BuildRequires: XFree86-devel, gtk2-devel, libglade2-devel, libvorbis-devel
+BuildRequires: bmp-devel, libglade2-devel, libvorbis-devel
 BuildRequires: id3lib-devel, gcc-c++
+%{?_with_modxorg:BuildRequires: libXt-devel}
 
 %description
 This package contains an MP3 playback plugin for BMP (Beep Media Player),
@@ -46,6 +53,12 @@ and is based on ("forked off") XMMS.
 
 
 %changelog
+* Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 0.9.7.1-1
+- Update to 0.9.7.1.
+- Simplify some build requirements to "bmp-devel", which does look like a
+  strange loop, but isn't :-)
+- Enable modular xorg conditional.
+
 * Wed Apr 13 2005 Matthias Saou <http://freshrpms.net/> 0.9.7-1
 - Initial RPM release, rebuild the whole application and take only mpg123
   plugin. Pure packager laziness in action.

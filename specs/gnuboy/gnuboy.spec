@@ -1,17 +1,25 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:%define _with_modxorg 1}
+
 Summary: Nintendo GameBoy Color emulator
 Name: gnuboy
 Version: 1.0.3
-Release: 7
+Release: 8
 License: GPL
 Group: Applications/Emulators
 Source: http://gnuboy.unix-fu.org/src/%{name}-%{version}.tar.gz
 URL: http://gnuboy.unix-fu.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL >= 1.2.0
-BuildRequires: SDL-devel >= 1.2.0, XFree86-devel
+BuildRequires: SDL-devel >= 1.2.0
+%{?_with_modxorg:BuildRequires: libX11-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 
 %description
 gnuboy (all lowercase) is a portable program for emulating the 
@@ -43,6 +51,9 @@ Nintendo GameBoy Color software platform.
 
 
 %changelog
+* Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 1.0.3-8
+- Add modular xorg build conditional.
+
 * Fri Nov 11 2005 Dries verachtert <dries@ulyssis.org> 1.0.3-7
 - Fixed the source url.
 

@@ -2,27 +2,35 @@
 # Authority: dag
 
 %{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
 
+%{!?dist: %define _without_gstreamer 1}
+%{?fc5:   %define _without_gstreamer 1}
+%{!?dist: %define _with_modxorg 1}
+%{?fc5:   %define _with_modxorg 1}
 %{!?dist: %define gimp_plugin 1}
+%{?fc5:   %define gimp_plugin 1}
 %{?el4:   %define gimp_plugin 1}
 %{?fc4:   %define gimp_plugin 1}
 %{?fc3:   %define gimp_plugin 1}
 %{?fc2:   %define gimp_plugin 1}
 %{?yd4:   %define gimp_plugin 1}
-%{?fc1: %define _without_mozilla 1}
-%{?el3: %define _without_mozilla 1}
-%{?el3: %define _without_gstreamer 1}
-%{?rh9: %define _without_mozilla 1}
-%{?rh9: %define _without_gstreamer 1}
-%{?rh7: %define _without_mozilla 1}
-%{?rh7: %define _without_gstreamer 1}
-%{?el2: %define _without_mozilla 1}
-%{?el2: %define _without_gstreamer 1}
+%{!?dist: %define _without_mozilla 1}
+%{?fc5:   %define _without_mozilla 1}
+%{?fc1:   %define _without_mozilla 1}
+%{?el3:   %define _without_mozilla 1}
+%{?el3:   %define _without_gstreamer 1}
+%{?rh9:   %define _without_mozilla 1}
+%{?rh9:   %define _without_gstreamer 1}
+%{?rh7:   %define _without_mozilla 1}
+%{?rh7:   %define _without_gstreamer 1}
+%{?el2:   %define _without_mozilla 1}
+%{?el2:   %define _without_gstreamer 1}
 
 Summary: Flash animations rendering library
 Name: swfdec
 Version: 0.3.5
-Release: 1
+Release: 2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://swfdec.sourceforge.net/
@@ -34,6 +42,7 @@ BuildRequires: liboil-devel, GConf2-devel
 %{?gimp_plugin:BuildRequires: gimp-devel >= 2.0}
 %{!?_without_mozilla:BuildRequires: mozilla-devel}
 %{!?_without_gstreamer:BuildRequires: gstreamer-plugins-devel}
+%{?_with_modxorg:BuildRequires: libXt-devel}
 
 %description
 Libswfdec is a library for rendering Flash animations. Currently it
@@ -128,6 +137,11 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 
 %changelog
+* Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 0.3.5-2
+- Disable gstreamer support on FC5 (as it's for 0.8).
+- Disable mozilla plugin on FC5 (if someone wants to look into it...).
+- Add modular xorg build conditional.
+
 * Wed May 25 2005 Matthias Saou <http://freshrpms.net/> 0.3.5-1
 - Update to 0.3.5.
 

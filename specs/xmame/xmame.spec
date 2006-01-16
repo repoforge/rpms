@@ -2,6 +2,10 @@
 # Authority: matthias
 
 %{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
 
 %{?el4:%define _without_glide3 1}
 %{?fc1:%define _without_alsa 1}
@@ -24,7 +28,7 @@
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
 Version: 0.102
-Release: 1%{?rcver:.%{rcver}}
+Release: 2%{?rcver:.%{rcver}}
 Source0: http://x.mame.net/download/xmame-%{version}.tar.bz2
 # http://cheat.retrogames.com/ 0.81 - 21/04/2004
 Source20: http://cheat.retrogames.com/cheat.zip
@@ -43,8 +47,11 @@ Group: Applications/Emulators
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: %{name}-x11 <= 0.87
 Obsoletes: %{name}-xgl <= 0.87
-BuildRequires: unzip, XFree86-devel, zlib-devel, expat-devel
-%{?opengl:BuildRequires: Mesa-devel, libjpeg-devel}
+BuildRequires: unzip, zlib-devel, expat-devel
+%{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel, libXext-devel}
+%{?_with_modxorg:%{?opengl:BuildRequires: mesa-libGLU-devel, libjpeg-devel}}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_with_modxorg:%{?opengl:BuildRequires: Mesa-devel, libjpeg-devel}}
 %{?glide3:BuildRequires: Glide3-devel}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_esound:BuildRequires: esound-devel}
@@ -260,6 +267,9 @@ popd
 
 
 %changelog
+* Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 0.102-2
+- Add modular xorg build conditional.
+
 * Sun Nov 27 2005 Matthias Saou <http://freshrpms.net/> 0.102-1
 - Update to 0.102.
 

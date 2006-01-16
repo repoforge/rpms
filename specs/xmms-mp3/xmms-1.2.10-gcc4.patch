@@ -1,6 +1,6 @@
---- xmms-1.2.10.orig/General/ir/ir.h	2001-03-06 00:17:44.000000000 +1100
-+++ xmms-1.2.10/General/ir/ir.h	2005-08-07 18:07:23.000000000 +1000
-@@ -49,8 +49,6 @@ typedef struct
+--- xmms-1.2.10/General/ir/ir.h.orig	2001-03-05 23:17:44.000000000 +1000
++++ xmms-1.2.10/General/ir/ir.h	2005-03-24 20:48:31.000000000 +1000
+@@ -49,8 +49,6 @@
  }
  irConfig;
  
@@ -9,15 +9,16 @@
  extern irConfig ircfg;
  extern gboolean irconf_is_going;
  
-
---- xmms-1.2.10.orig/Output/esd/esdout.h	2001-12-03 13:38:42.000000000 +1100
-+++ xmms-1.2.10/Output/esd/esdout.h	2005-08-07 17:59:45.000000000 +1000
-@@ -58,6 +58,7 @@ typedef struct
- ESDConfig;
+--- xmms-1.2.10/xmms/sm.c.orig	2004-01-11 18:33:00.000000000 +0100
++++ xmms-1.2.10/xmms/sm.c	2004-04-12 22:44:28.000000000 +0200
+@@ -147,8 +147,9 @@
  
- extern ESDConfig esd_cfg;
-+extern void esdout_reset_playerid(void);
+ #else
  
- void esdout_init(void);
- void esdout_about(void);
-
+-void sm_init(int argc, char **argv, const char *previous_session_id)
++const char * sm_init(int argc, char **argv, const char *previous_session_id)
+ {
++	return NULL;
+ }
+ 
+ void sm_cleanup(void)

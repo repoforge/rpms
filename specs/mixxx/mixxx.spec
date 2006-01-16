@@ -1,6 +1,12 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
+
 %{?fc1:%define _without_alsa 1}
 %{?el3:%define _without_alsa 1}
 %{?rh9:%define _without_alsa 1}
@@ -13,16 +19,18 @@
 Summary: DJ software emulating an analog mixer with two playback devices
 Name: mixxx
 Version: 1.4.2
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://mixxx.sourceforge.net/
 Source: http://dl.sf.net/mixxx/mixxx-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: glibc-devel, XFree86-devel, qt-devel >= 3.0, glib-devel
+BuildRequires: qt-devel >= 3.0, glib-devel
 BuildRequires: audiofile-devel, libmad-devel, libid3tag-devel
 BuildRequires: libvorbis-devel, libogg-devel, libsndfile-devel
 BuildRequires: portaudio, fftw-devel, gcc-c++
+%{?_with_modxorg:BuildRequires: libXmu-devel, mesa-libGLU-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 
@@ -37,9 +45,10 @@ Use mouse, keyboard, MIDI equipment, PowerMates, and joystics to interact with
 Mixxx. Low latency operation and hardware controllers makes the big difference
 in a live gig. Mixxx supports it all.
 
+
 %prep
 %setup
-
+# Create desktop entry
 %{__cat} <<EOF >mixxx.desktop
 [Desktop Entry]
 Name=Mixxx DJ Software
@@ -51,6 +60,7 @@ Type=Application
 Encoding=UTF-8
 Categories=Application;AudioVideo;
 EOF
+
 
 %build
 source "/etc/profile.d/qt.sh"
@@ -64,6 +74,7 @@ pushd src
     %{__perl} -pi.orig -e 's|install_readme install_licence install_copying install_manual ||g' Makefile
     %{__make} %{?_smp_mflags}
 popd
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -83,8 +94,10 @@ popd
         mixxx.desktop
 %endif
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -95,7 +108,11 @@ popd
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-mixxx.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/mixxx.desktop}
 
+
 %changelog
+* Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 1.4.2-3
+- Add modular xorg build conditional.
+
 * Wed Nov  3 2004 Matthias Saou <http://freshrpms.net/> 1.4.2-2
 - Enable ALSA properly.
 

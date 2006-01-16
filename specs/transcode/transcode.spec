@@ -5,6 +5,10 @@
 #define prever rc1
 
 %{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
 
 %{?fc1:%define _without_theora 1}
 
@@ -24,7 +28,7 @@
 Summary: Linux video stream processing utility
 Name: transcode
 Version: 1.0.2
-Release: 2%{?prever:.%{prever}}
+Release: 3%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
@@ -36,6 +40,7 @@ BuildRequires: libdv-devel, bzip2-devel, ed, lzo-devel, libpng-devel
 BuildRequires: mpeg2dec-devel, ffmpeg-devel
 # Seems like ImageMagick-devel should require this! (FC2 and higher)
 BuildRequires: libexif-devel
+%{?_with_modxorg:BuildRequires: libXv-devel}
 %{!?_without_postproc:BuildRequires: ffmpeg-libpostproc-devel}
 %{!?_without_lame:BuildRequires: lame-devel >= 3.89}
 %{!?_without_theora:BuildRequires: libtheora-devel}
@@ -94,16 +99,12 @@ export CFLAGS="%{optflags} -I%{_includedir}/postproc"
     %{!?_without_libfame:--enable-libfame} \
     %{!?_without_magick:--enable-imagemagick}
 %{__make} %{?_smp_mflags}
-    pkgdir="%{_libdir}/transcode" \
-    MOD_PATH="%{_libdir}/transcode"
 
 
 %install
 %{__rm} -rf %{buildroot} _docs
 %makeinstall \
     docsdir="../_docs/"
-    pkgdir="%{buildroot}%{_libdir}/transcode" \
-    MOD_PATH="%{buildroot}%{_libdir}/transcode"
 
 
 %clean
@@ -127,6 +128,10 @@ export CFLAGS="%{optflags} -I%{_includedir}/postproc"
 
 
 %changelog
+* Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 1.0.2-3
+- Add modular xorg build conditional.
+- No longer override pkgdir and MOD_PATH, it's not needed anymore.
+
 * Fri Dec  9 2005 Matthias Saou <http://freshrpms.net/> 1.0.2-2
 - Rebuild against mjpegtools 1.8.0.
 

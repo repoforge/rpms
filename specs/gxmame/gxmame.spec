@@ -2,8 +2,10 @@
 # Authority: matthias
 
 %{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{!?dist:%define _with_gettextdevel 1}
+%{?fc5:  %define _with_gettextdevel 1}
 %{?fc4:  %define _with_gettextdevel 1}
 %{?fc3:  %define _with_gettextdevel 1}
 
@@ -13,7 +15,7 @@
 Summary: Complete GTK frontend for xmame
 Name: gxmame
 Version: 0.35
-Release: 0.2%{?date:.%{date}}%{?prever:.%{prever}}
+Release: 0.3%{?date:.%{date}}%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Emulators
 URL: http://gxmame.sourceforge.net/
@@ -69,6 +71,9 @@ times played, last game selected, gui preference...) under windows and Linux.
 
 
 %changelog
+* Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 0.35-0.3.beta2
+- Add FC5 to the build conditionals.
+
 * Sat Jul 30 2005 Matthias Saou <http://freshrpms.net/> 0.35-0.2.beta2
 - Remove the xpm icon, only the png one is used.
 

@@ -2,19 +2,27 @@
 # Authority: matthias
 # Upstream: <libmpeg2-devel$lists,sf,net>
 
+%{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:%define _with_modxorg 1}
+
 #define date 20040610
 
 Summary: MPEG-2 and MPEG-1 decoding library and test program
 Name: mpeg2dec
 Version: 0.4.0
-Release: %{?date:0.%{date}.}5b
+Release: %{?date:0.%{date}.}6b
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libmpeg2.sourceforge.net/
 Source: http://libmpeg2.sourceforge.net/files/mpeg2dec-%{?date:snapshot}%{!?date:%{version}}b.tar.gz
 Patch: mpeg2dec-0.4.0b-pic.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: XFree86-devel, SDL-devel, pkgconfig, gcc-c++
+BuildRequires: SDL-devel, pkgconfig, gcc-c++
+%{?_with_modxorg:BuildRequires: libX11-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 # Required for ./bootstrap
 BuildRequires: autoconf, automake, libtool
 
@@ -55,11 +63,9 @@ CFLAGS="%{optflags}" \
 %makeinstall
 
 
-%post
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%postun -p /sbin/ldconfig
 
 
 %clean
@@ -85,6 +91,9 @@ CFLAGS="%{optflags}" \
 
 
 %changelog
+* Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 0.4.0-6b
+- Add modular xorg build conditional.
+
 * Fri Dec 10 2004 Matthias Saou <http://freshrpms.net/> 0.4.0-5b
 - Add patch from rpm.livna.org to remove -prefer-non-pic.
 - Downgrade to 0.4.0b to fix permanent segfaults...

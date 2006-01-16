@@ -1,6 +1,12 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
+
 %{?fc1:%define _without_xorg 1}
 %{?el3:%define _without_xorg 1}
 %{?rh9:%define _without_xorg 1}
@@ -12,7 +18,7 @@
 Summary: Library for encoding and decoding H264/AVC video streams
 Name: x264
 Version: 0.0.396
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/x264.html
@@ -21,8 +27,12 @@ URL: http://developers.videolan.org/x264.html
 Source: %{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: nasm, yasm
+%if 0%{?_with_modxorg:1}
+BuildRequires: libXt-devel
+%else
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%endif
 # version.sh requires svnversion
 BuildRequires: subversion
 
@@ -90,6 +100,9 @@ mv -f AUTHORS.utf8 AUTHORS
 
 
 %changelog
+* Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 0.0.396-2
+- Enable modular xorg conditional build.
+
 * Mon Jan  9 2006 Matthias Saou <http://freshrpms.net/> 0.0.396-1
 - Update to svn 396.
 
