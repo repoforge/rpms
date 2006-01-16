@@ -3,13 +3,13 @@
 
 Summary: Server for Red Hat's up2date tools
 Name: current
-Version: 1.5.11
+Version: 1.6.1
 Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://current.tigris.org/
 
-Source: ftp://ftp.quackmaster.net/current/current-%{version}.tar.gz
+Source: ftp://ftp.biology.duke.edu/pub/admin/current/current-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -43,12 +43,14 @@ workstations/servers.
 %doc CHANGELOG LICENSE README RELEASE-NOTES TODO
 %doc docs/*.txt docs/client/ docs/current-guide/ docs/developer_docs/ docs/FAQ
 %config(noreplace) %{_sysconfdir}/current/current.conf
-%config %{_sysconfdir}/current/
+%dir %{_sysconfdir}/current/
 %{_sbindir}/cadmin
 %{_sbindir}/cinstall
 %{_datadir}/current/
 
-
 %changelog
-* Wed Mar 09 2005 Dag Wieers <dag@wieers.com> - 0.5.11-1 - $Rev$
+* Mon Jan 16 2006 Dag Wieers <dag@wieers.com> - 1.6.1-1
+- Updated to release 1.6.1.
+
+* Wed Mar 09 2005 Dag Wieers <dag@wieers.com> - 0.5.11-1
 - Initial package. (using DAR)

@@ -9,7 +9,7 @@ License: GPL
 Group: Applications/Internet
 URL: http://awstats.sourceforge.net/
 
-Source: http://dl.sf.net/awstats/awstats-%{version}.tgz
+Source: http://dl.sf.net/awstats/awstats-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
