@@ -12,7 +12,7 @@ Source: http://liba52.sourceforge.net/files/a52dec-%{version}.tar.gz
 Patch: a52dec-0.7.4-PIC.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
-#BuildRequires: autoconf >= 2.52, automake, libtool
+BuildRequires: autoconf >= 2.52, automake, libtool
 
 %description
 liba52 is a free library for decoding ATSC A/52 streams. It is released
@@ -42,10 +42,10 @@ to build programs that use it.
 
 
 %build
-#%{__libtoolize} --force
-#%{__aclocal}
-#%{__automake} -a
-#%{__autoconf}
+%{__libtoolize} --force
+%{__aclocal}
+%{__automake} -a
+%{__autoconf}
 %configure --enable-shared
 %{__make} %{?_smp_mflags}
 
@@ -59,11 +59,9 @@ to build programs that use it.
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%postun -p /sbin/ldconfig
 
 
 %files
