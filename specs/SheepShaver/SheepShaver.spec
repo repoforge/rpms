@@ -1,6 +1,12 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
+
 %define date 20051130
 %define mon_version 3.1
 %define desktop_vendor rpmforge
@@ -8,7 +14,7 @@
 Summary: Power Macintosh emulator
 Name: SheepShaver
 Version: 2.3
-Release: 0.1.%{date}
+Release: 0.2.%{date}
 License: GPL
 Group: Applications/Emulators
 URL: http://www.gibix.net/projects/sheepshaver/
@@ -21,6 +27,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gtk2-devel, esound-devel >= 0.2.8
 BuildRequires: desktop-file-utils, readline-devel
 %{?_with_sdl:BuildRequires: SDL-devel}
+%{?_with_modxorg:BuildRequires: libXt-devel}
 #BuildRequires: SDL-devel
 # Other archs need an instruction skipper on well-known invalid
 # memory references (e.g. illegal writes to ROM).
@@ -52,7 +59,7 @@ pushd src/Unix
     --datadir=%{_sysconfdir} \
     %{!?_without_mon: --with-mon=../../cxmon-%{mon_version}/src} \
     %{?_with_sdl: --enable-sdl-video --enable-sdl-audio}
-%{__make} %{?_smp_mflags}
+    %{__make} %{?_smp_mflags}
 popd
 
 
@@ -100,6 +107,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 2.3-0.2.20051130
+- Add modular xorg build conditional.
+
 * Thu Dec  1 2005 Matthias Saou <http://freshrpms.net/> 2.3-0.1.20051130
 - Update to 2.3 20051130 snapshot.
 - Update URLs to gibix.net.

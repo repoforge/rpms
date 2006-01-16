@@ -1,12 +1,18 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
+
 #define prever -WIP1
 
 Summary: Portable, freeware Super Nintendo Entertainment System (TM) emulator
 Name: snes9x
 Version: 1.43
-Release: 3
+Release: 4
 License: Other
 Group: Applications/Emulators
 URL: http://www.snes9x.com/
@@ -14,8 +20,10 @@ Source: http://www.lysator.liu.se/snes9x/%{version}%{?prever}/snes9x-%{version}%
 Patch0: snes9x-1.43-src-gcc4.patch
 Patch1: snes9x-1.43-usagemsg.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: XFree86-devel, gcc-c++, zlib-devel, libpng-devel
-%{?_with_opengl:BuildRequires: %{_libdir}/libGL.so.1}
+BuildRequires: gcc-c++, zlib-devel, libpng-devel
+%{?_with_opengl:BuildRequires: %{_libdir}/libGL.so}
+%{?_with_modxorg:BuildRequires: libXt-devel, libXext-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 %ifarch %{ix86} x86_64
 BuildRequires: nasm
 %endif
@@ -60,6 +68,9 @@ popd
 
 
 %changelog
+* Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 1.43-4
+- Add modular xorg build conditional.
+
 * Thu Nov 10 2005 Matthias Saou <http://freshrpms.net/> 1.43-3
 - Merge things from Ville's package : Usage message patch, optional OpenGL
   support using --with opengl.

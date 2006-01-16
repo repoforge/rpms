@@ -1,0 +1,152 @@
+diff -Naupr cinelerra-2.0.orig/cinelerra/ffmpeg.h cinelerra-2.0/cinelerra/ffmpeg.h
+--- cinelerra-2.0.orig/cinelerra/ffmpeg.h	2004-09-07 10:42:43.000000000 +0200
++++ cinelerra-2.0/cinelerra/ffmpeg.h	2006-01-12 18:47:33.000000000 +0100
+@@ -24,11 +24,11 @@ class FFMPEG
+ 	static int convert_cmodel_transfer(VFrame *frame_in,VFrame *frame_out);
+ 	static int init_picture_from_frame(AVPicture *picture, VFrame *frame);
+ 
+-	static CodecID FFMPEG::codec_id(char *codec_string);
++	static CodecID codec_id(char *codec_string);
+ 
+  private:
+ 	static PixelFormat color_model_to_pix_fmt(int color_model);
+-	static int FFMPEG::pix_fmt_to_color_model(PixelFormat pix_fmt);
++	static int pix_fmt_to_color_model(PixelFormat pix_fmt);
+ 
+ 	int got_picture;
+ 	Asset *asset;
+diff -Naupr cinelerra-2.0.orig/cinelerra/file.h cinelerra-2.0/cinelerra/file.h
+--- cinelerra-2.0.orig/cinelerra/file.h	2005-09-28 21:47:11.000000000 +0200
++++ cinelerra-2.0/cinelerra/file.h	2006-01-12 17:50:21.000000000 +0100
+@@ -139,7 +139,7 @@ public:
+ 
+ 
+ // Read frame of video into the argument
+-	int File::read_frame(VFrame *frame);
++	int read_frame(VFrame *frame);
+ 
+ 
+ // The following involve no extra copies.
+diff -Naupr cinelerra-2.0.orig/cinelerra/framecache.h cinelerra-2.0/cinelerra/framecache.h
+--- cinelerra-2.0.orig/cinelerra/framecache.h	2004-08-16 21:51:49.000000000 +0200
++++ cinelerra-2.0/cinelerra/framecache.h	2006-01-12 18:48:16.000000000 +0100
+@@ -72,7 +72,7 @@ private:
+ 		int64_t position,
+ 		double frame_rate,
+ 		int *item_return);
+-	int FrameCache::frame_exists(int64_t position, 
++	int frame_exists(int64_t position, 
+ 		double frame_rate,
+ 		int color_model,
+ 		int w,
+diff -Naupr cinelerra-2.0.orig/cinelerra/pipe.h cinelerra-2.0/cinelerra/pipe.h
+--- cinelerra-2.0.orig/cinelerra/pipe.h	2005-05-07 16:26:37.000000000 +0200
++++ cinelerra-2.0/cinelerra/pipe.h	2006-01-12 18:48:58.000000000 +0100
+@@ -11,16 +11,16 @@ extern "C" {
+ 
+ class Pipe {
+  public:
+-	Pipe::Pipe(char *command, char *sub_str = 0, char sub_char = '%');
+- 	Pipe::~Pipe() ;		
+-	int Pipe::open_read() ;
+-	int Pipe::open_write() ;
+-	void Pipe::close() ;
++	Pipe(char *command, char *sub_str = 0, char sub_char = '%');
++ 	~Pipe() ;		
++	int open_read() ;
++	int open_write() ;
++	void close() ;
+ 
+ 	int fd;
+  private:
+-	int Pipe::substitute() ;
+- 	int Pipe::open(char *mode) ;
++	int substitute() ;
++ 	int open(char *mode) ;
+ 	
+ 	char sub_char;
+ 	char *sub_str;
+diff -Naupr cinelerra-2.0.orig/cinelerra/renderfarmclient.h cinelerra-2.0/cinelerra/renderfarmclient.h
+--- cinelerra-2.0.orig/cinelerra/renderfarmclient.h	2005-09-28 21:11:49.000000000 +0200
++++ cinelerra-2.0/cinelerra/renderfarmclient.h	2006-01-12 18:49:46.000000000 +0100
+@@ -70,7 +70,7 @@ public:
+ 
+ 
+ 
+-	void RenderFarmClientThread::read_preferences(int socket_fd, 
++	void read_preferences(int socket_fd, 
+ 		Preferences *preferences);
+ 	void read_asset(int socket_fd, Asset *asset);
+ 	void read_edl(int socket_fd, 
+diff -Naupr cinelerra-2.0.orig/cinelerra/virtualconsole.h cinelerra-2.0/cinelerra/virtualconsole.h
+--- cinelerra-2.0.orig/cinelerra/virtualconsole.h	2004-08-16 21:31:36.000000000 +0200
++++ cinelerra-2.0/cinelerra/virtualconsole.h	2006-01-12 18:14:26.000000000 +0100
+@@ -28,7 +28,7 @@ public:
+ 
+ // Called during each process buffer operation to reset the status
+ // of the attachments to unprocessed.
+-	void VirtualConsole::reset_attachments();
++	void reset_attachments();
+ 	void dump();
+ 
+ 
+diff -Naupr cinelerra-2.0.orig/cinelerra/vrender.h cinelerra-2.0/cinelerra/vrender.h
+--- cinelerra-2.0.orig/cinelerra/vrender.h	2004-12-10 22:15:24.000000000 +0100
++++ cinelerra-2.0/cinelerra/vrender.h	2006-01-12 18:50:00.000000000 +0100
+@@ -48,7 +48,7 @@ public:
+ // Flash the output on the display
+ 	int flash_output();
+ // Determine if data can be copied directly from the file to the output device.
+-	void VRender::get_render_strategy(Edit* &playable_edit, 
++	void get_render_strategy(Edit* &playable_edit, 
+ 		int &colormodel, 
+ 		int &use_vconsole,
+ 		int64_t position);
+diff -Naupr cinelerra-2.0.orig/cinelerra/zoombar.h cinelerra-2.0/cinelerra/zoombar.h
+--- cinelerra-2.0.orig/cinelerra/zoombar.h	2005-09-28 21:11:49.000000000 +0200
++++ cinelerra-2.0/cinelerra/zoombar.h	2006-01-12 18:46:41.000000000 +0100
+@@ -24,7 +24,7 @@ public:
+ 	~ZoomBar();
+ 
+ 	int create_objects();
+-	void ZoomBar::resize_event();
++	void resize_event();
+ 	int draw();
+ 	int resize_event(int w, int h);
+ 	void redraw_time_dependancies();
+diff -Naupr cinelerra-2.0.orig/guicast/bclistbox.h cinelerra-2.0/guicast/bclistbox.h
+--- cinelerra-2.0.orig/guicast/bclistbox.h	2005-09-28 21:47:11.000000000 +0200
++++ cinelerra-2.0/guicast/bclistbox.h	2006-01-12 17:31:19.000000000 +0100
+@@ -354,7 +354,7 @@ private:
+ 
+ 	int get_title_h();
+ 	int calculate_item_coords();
+-	void BC_ListBox::calculate_last_coords_recursive(
++	void calculate_last_coords_recursive(
+ 		ArrayList<BC_ListBoxItem*> *data,
+ 		int *icon_x,
+ 		int *next_icon_x,
+diff -Naupr cinelerra-2.0.orig/plugins/burn/burn.h cinelerra-2.0/plugins/burn/burn.h
+--- cinelerra-2.0.orig/plugins/burn/burn.h	2004-08-16 21:31:36.000000000 +0200
++++ cinelerra-2.0/plugins/burn/burn.h	2006-01-12 19:30:21.000000000 +0100
+@@ -75,7 +75,7 @@ public:
+ 
+ 
+ 
+-	void BurnMain::HSItoRGB(double H, 
++	void HSItoRGB(double H, 
+ 		double S, 
+ 		double I, 
+ 		int *r, 
+diff -Naupr cinelerra-2.0.orig/plugins/polar/polar.h cinelerra-2.0/plugins/polar/polar.h
+--- cinelerra-2.0.orig/plugins/polar/polar.h	2003-06-16 22:00:48.000000000 +0200
++++ cinelerra-2.0/plugins/polar/polar.h	2006-01-12 19:30:58.000000000 +0100
+@@ -62,7 +62,7 @@ public:
+ 	int wait_process_frame();
+ 	void run();
+ 	void get_pixel(const int &x, const int &y, VPixel *pixel, VPixel **input_rows);
+-	int PolarEngine::calc_undistorted_coords(int wx,
++	int calc_undistorted_coords(int wx,
+ 			 int wy,
+ 			 double &x,
+ 			 double &y);

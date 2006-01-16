@@ -1,11 +1,17 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
+
 %define prever cvs
 
 Summary: TV viewer for GNOME
 Name: zapping
-Version: 0.9.7
+Version: 0.10
 Release: 0.1%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
@@ -16,6 +22,7 @@ BuildRequires: libgnomeui-devel, libglade2-devel, gtk2-devel >= 2.4
 BuildRequires: scrollkeeper, gettext, libjpeg-devel, libpng-devel
 BuildRequires: zvbi-devel, arts-devel, lirc-devel
 BuildRequires: python-devel, desktop-file-utils, gcc-c++
+%{?_with_modxorg:BuildRequires: libXmu-devel}
 %ifarch %{ix86}
 %{!?_without_rte:BuildRequires: rte-devel >= 0.5}
 %endif
@@ -33,8 +40,8 @@ features, plus extensibility through a plugin system.
 
 %build
 %configure
-# Workaround
-#{__perl} -pi.orig -e 's|/usr/lib/|%{_libdir}/|g' configure {,*/,*/*/}Makefile*
+# Workaround (still required in 0.10cvs)
+%{__perl} -pi.orig -e 's|\${prefix}/lib/|\${libdir}/|g' configure*
 %{__make} %{?_smp_mflags}
 
 
@@ -66,6 +73,7 @@ scrollkeeper-update -q || :
 %config %{_sysconfdir}/security/console.apps/zapping_setup_fb
 %{_bindir}/*
 %{_libdir}/%{name}/
+%exclude %{_libdir}/%{name}/plugins/*.la
 %{_sbindir}/*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/gnome/help/%{name}/
@@ -76,6 +84,12 @@ scrollkeeper-update -q || :
 
 
 %changelog
+* Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 0.10-0.1.cvs
+- Update to 0.10cvs.
+- Add modular xorg build conditional.
+- Exclude .la files from plugins.
+- Update lib vs. lib64 workaround for the plugins.
+
 * Mon Jul 18 2005 Matthias Saou <http://freshrpms.net/> 0.9.7-0.1.cvs
 - Update to 0.9.7cvs.
 

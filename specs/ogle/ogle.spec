@@ -5,6 +5,10 @@
 %define cvs -cvs
 
 %{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
 
 %{?fc1:%define _without_alsa 1}
 %{?el3:%define _without_alsa 1}
@@ -15,25 +19,27 @@
 %{?rh6:%define _without_alsa 1}
 %{?yd3:%define _without_alsa 1}
 
+# MMX on x86_64 gets enabled otherwise, but fails to compile (still in 0.9.2cvs)
 %ifarch x86_64
 %define _without_mmx 1
 %endif
 
-Summary: DVD player that supports DVD menus
+Summary: DVD video player
 Name: ogle
 Version: 0.9.2
-Release: 4
+Release: 5
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.dtek.chalmers.se/groups/dvd/
 Source0: http://www.dtek.chalmers.se/groups/dvd/dist/ogle-%{version}%{?cvs}.tar.gz
 Source1: bluecurve-xine.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: XFree86-devel
 BuildRequires: libdvdread-devel >= 0.9.4, libjpeg-devel, a52dec-devel >= 0.7.3
 BuildRequires: libxml2-devel >= 2.4.19, libmad-devel, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
+%{?_with_modxorg:BuildRequires: libXt-devel, libXext-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 
 %description
 Ogle is a DVD player. It's features are: Supports DVD menus and navigation,
@@ -61,11 +67,6 @@ to build programs that use it (like GUIs).
 
 %prep
 %setup -n %{name}-%{version}%{?cvs}
-### Workaround the hardcoded "lib" path for dvdread (vs. lib64)... doesn't work
-%{__perl} -pi.orig -e '
-		s|/lib\b|/%{_lib}|g;
-		s|-ldvdread\b|-ldl -ldvdread|g;
-	' configure*
 
 
 %build
@@ -77,10 +78,8 @@ to build programs that use it (like GUIs).
 
 %install
 %{__rm} -rf %{buildroot}
-# Needed for library dependencies (still current in 0.9.2)
-export LIBRARY_PATH=%{buildroot}/usr/lib/ogle
 %{__make} DESTDIR=%{buildroot} install
-%{__install} -Dp -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/ogle.png
+%{__install} -D -p -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/ogle.png
 
 # Change the ALSA default to OSS if we have --without alsa
 %{?_without_alsa:%{__perl} -pi -e 's|<driver>alsa</driver>|<driver>oss</driver>|g' %{buildroot}%{_datadir}/ogle/oglerc}
@@ -104,7 +103,7 @@ desktop-file-install \
     --dir %{buildroot}%{_datadir}/applications \
     ogle.desktop
 %else
-%{__install} -Dp -m 0644 ogle.desktop \
+%{__install} -D -p -m 0644 ogle.desktop \
     %{buildroot}/etc/X11/applnk/Multimedia/ogle.desktop
 %endif
 
@@ -118,8 +117,7 @@ desktop-file-install \
 # If the /dev/dvd link doesn't exist, create a default one
 test -e /dev/dvd || test -L /dev/dvd || ln -s cdrom /dev/dvd || :
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files
@@ -147,6 +145,11 @@ test -e /dev/dvd || test -L /dev/dvd || ln -s cdrom /dev/dvd || :
 
 
 %changelog
+* Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 0.9.2-5
+- Add modular xorg build conditional.
+- Remove hacks no longer needed (lib vs. lib64 for dvdread and the
+  LIBRARY_PATH overriding).
+
 * Thu Nov  4 2004 Matthias Saou <http://freshrpms.net/> 0.9.2-4
 - Updated to latest available CVS snapshot to fix FC3 build failure.
 
