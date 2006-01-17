@@ -2,6 +2,10 @@
 # Authority: matthias
 
 %{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
 
 %{?fc1:%define _without_xorg 1}
 %{?el3:%define _without_xorg 1}
@@ -13,7 +17,7 @@
 %{?yd3:%define _without_xorg 1}
 
 %define desktop_vendor rpmforge
-%define prever beta3
+%define prever beta4
 
 Summary: Multiplayer 'Tron' 3D racing game
 Name: armagetronad
@@ -24,14 +28,18 @@ Group: Amusements/Games
 URL: http://www.armagetronad.net/
 Source: http://dl.sf.net/armagetronad/armagetronad-%{version}%{?prever:_%{prever}}.src.tar.bz2
 Patch0: armagetronad-0.2.8_beta3-gcc4.patch
-Patch1: armagetronad-0.2.8_beta3-desktop.patch
+Patch1: armagetronad-0.2.8_beta4-desktop.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libstdc++-devel, zlib-devel, libpng-devel, libjpeg-devel
 BuildRequires: SDL_image-devel, SDL-devel, esound-devel, libxml2-devel
 BuildRequires: /usr/bin/find, unzip, gcc-c++
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%if 0%{!?_with_modxorg:1}
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%else
+BuildRequires: libXt-devel, mesa-libGLU-devel
+%endif
 Obsoletes: armagetron <= 0.2.6.1
 Provides: armagetron = %{version}-%{release}
 
@@ -126,6 +134,11 @@ gtk-update-icon-cache || :
 
 
 %changelog
+* Tue Jan 17 2006 Matthias Saou <http://freshrpms.net/> 0.2.8-0.2.beta4
+- Update to 0.2.8_beta4.
+- Add modular xorg build conditional.
+- Update desktop patch.
+
 * Mon Nov 14 2005 Matthias Saou <http://freshrpms.net/> 0.2.8-0.1.beta3
 - Update to 0.2.8_beta3.
 - Update gcc4 patch (only one line left now).
