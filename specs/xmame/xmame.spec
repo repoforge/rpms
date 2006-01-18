@@ -27,17 +27,17 @@
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.102
-Release: 2%{?rcver:.%{rcver}}
+Version: 0.103
+Release: 1%{?rcver:.%{rcver}}
 Source0: http://x.mame.net/download/xmame-%{version}.tar.bz2
 # http://cheat.retrogames.com/ 0.81 - 21/04/2004
 Source20: http://cheat.retrogames.com/cheat.zip
-# http://www.mameworld.net/highscore/ 0.100 - 18/09/2005
-Source21: http://www.mameworld.net/highscore/uhsdat0100.zip
-# http://www.arcade-history.com/ 1.04a - 07/10/2005
-Source22: http://www.arcade-history.com/download/history1_04a.zip
-# http://www.mameworld.net/mameinfo/ 0.100u3 - 30/09/2005
-Source23: http://www.mameworld.net/mameinfo/update/Mameinfo0100u3.zip
+# http://www.mameworld.net/highscore/ 0.103 - 04/01/2006
+Source21: http://www.mameworld.net/highscore/uhsdat0103.zip
+# http://www.arcade-history.com/ 1.05k - 11/01/2006
+Source22: http://www.arcade-history.com/download/history1_05k.zip
+# http://www.mameworld.net/mameinfo/ 0.103 - 30/12/2005
+Source23: http://www.mameworld.net/mameinfo/update/Mameinfo0103.zip
 # http://www.mameworld.net/catlist/ 0.99u2 - 12/09/2005
 Source30: http://www.mameworld.net/catlist/files/catver.zip
 Patch0: xmame-0.100-libgl.patch
@@ -267,6 +267,9 @@ popd
 
 
 %changelog
+* Tue Jan 17 2006 Matthias Saou <http://freshrpms.net/> 0.103-1
+- Update to 0.103.
+
 * Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 0.102-2
 - Add modular xorg build conditional.
 
