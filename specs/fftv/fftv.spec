@@ -7,7 +7,7 @@
 
 Summary: Advanced television viewing and recording program
 Name: fftv
-Version: 0.7.9
+Version: 0.8.3
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -86,6 +86,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 #%{_includedir}/ffmpeg/
 
 %changelog
+* Tue Jan 17 2006 Dag Wieers <dag@wieers.com> - 0.8.3-1
+- Updated to release 0.8.3.
+
 * Wed Jun 02 2004 Dag Wieers <dag@wieers.com> - 0.7.9-1
 - Updated to release 0.7.9.
 

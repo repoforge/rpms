@@ -1,0 +1,12 @@
+diff -rubB ipac-ng-1.31.orig/agents/ipchains/libipfwc.c ipac-ng-1.31/agents/ipchains/libipfwc.c
+--- ipac-ng-1.31.orig/agents/ipchains/libipfwc.c	2003-07-06 13:33:13 +0300
++++ ipac-ng-1.31/agents/ipchains/libipfwc.c	2005-02-02 17:32:14 +0200
+@@ -500,7 +500,7 @@
+ 					       " doesn't support"
+ 					       " transparent proxying?)");
+ 					break;
+-				default:
++				default:;
+ 				}
+ 			return message;
+ 		}

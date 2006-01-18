@@ -14,7 +14,7 @@
 
 Summary: Friendly interactive shell
 Name: fish
-Version: 1.19.0
+Version: 1.20.0
 Release: 1
 License: GPL
 Group: System Environment/Shells
@@ -43,20 +43,21 @@ is simple but incompatible with other shell languages.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
+%find_lang %{name}
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %post
 #echo %{_bindir}/fish >>%{_sysconfdir}/shells
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc *.html doc_src/*.txt INSTALL README user_doc/html/
 %doc %{_mandir}/man1/count.1*
 %doc %{_mandir}/man1/fish.1*
 %doc %{_mandir}/man1/mimedb.1*
 %doc %{_mandir}/man1/set_color.1*
-%doc %{_mandir}/man1/tokenize.1*
 %doc %{_mandir}/man1/xsel.1x*
 %config(noreplace) %{_sysconfdir}/fish
 %config(noreplace) %{_sysconfdir}/fish_inputrc
@@ -65,13 +66,15 @@ is simple but incompatible with other shell languages.
 %{_bindir}/fish
 %{_bindir}/mimedb
 %{_bindir}/set_color
-%{_bindir}/tokenize
 %{_bindir}/xsel
 %{_bindir}/fish_pager
 %{_bindir}/fishd
 %exclude %{_docdir}/fish/
 
 %changelog
+* Tue Jan 17 2006 Dag Wieers <dag@wieers.com> - 1.20.0-1
+- Updated to release 1.20.0.
+
 * Tue Dec 27 2005 Dag Wieers <dag@wieers.com> - 1.19.0-1
 - Updated to release 1.19.0.
 

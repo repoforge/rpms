@@ -4,7 +4,7 @@
 
 Summary: Comic book viewer
 Name: comix
-Version: 2.5
+Version: 2.6
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -45,6 +45,9 @@ archives (often called .cbz, .cbr and .cbt) as well as normal image files.
 %{_datadir}/pixmaps/comix/
 
 %changelog
+* Tue Jan 17 2006 Dag Wieers <dag@wieers.com> - 2.6-1
+- Updated to release 2.6.
+
 * Wed Jan 11 2006 Dries Verachtert <dries@ulyssis.org> - 2.5-1
 - Updated to release 2.5.
 - Added the python-imaging requirement, thanks to Gergely Gabor!
