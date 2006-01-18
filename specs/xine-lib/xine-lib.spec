@@ -56,6 +56,7 @@ BuildRequires: libvorbis-devel, SDL-devel
 BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
 %{?_with_modxorg:BuildRequires: libXvMC-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_with_modxorg:%{!?_without_xvmc:BuildRequires: libXvMCW-devel}}
 %{?_with_rte:BuildRequires: rte-devel}
 %{?_with_extdvdnav:BuildRequires: libdvdnav-devel >= 0.1.4}
 %{?_with_extffmpeg:BuildRequires: ffmpeg-devel}
@@ -69,7 +70,6 @@ BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
 %{!?_without_speex:BuildRequires: speex-devel}
 %{!?_without_caca:BuildRequires: libcaca-devel}
 %{!?_without_theora:BuildRequires: libtheora-devel}
-%{!?_without_xvmc:BuildRequires: libXvMCW-devel}
 %{!?dist:BuildRequires: freeglut-devel}
 %{?fc3:BuildRequires: freeglut-devel}
 %{?fc2:BuildRequires: freeglut-devel}

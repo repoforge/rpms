@@ -94,6 +94,8 @@ fi
 %config %{_sysconfdir}/mach/dist.d/*-i386
 %ifarch x86_64
 %config %{_sysconfdir}/mach/dist.d/*-x86_64
+%else
+%exclude %{_sysconfdir}/mach/dist.d/*-x86_64
 %endif
 %else
 %exclude %{_sysconfdir}/mach/dist.d/*-i386

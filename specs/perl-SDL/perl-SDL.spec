@@ -2,6 +2,10 @@
 # Authority: matthias
 
 %{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:%define _with_modxorg 1}
 
 %define perl_archsitelib %(eval "`%{__perl} -V:installsitearch`"; echo $installsitearch)
 %define _use_internal_dependency_generator 0
@@ -9,7 +13,7 @@
 Summary: Simple DirectMedia Layer - Bindings for the perl language
 Name: perl-SDL
 Version: 2.1.2
-Release: 3
+Release: 4
 License: GPL
 Group: System Environment/Libraries
 URL: http://sdl.perl.org/
@@ -18,14 +22,18 @@ Source10: filter-depends.sh
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, SDL_net-devel
 BuildRequires: SDL_ttf-devel, SDL_gfx-devel
-BuildRequires: smpeg-devel, libjpeg-devel, libpng-devel, XFree86-devel
+BuildRequires: smpeg-devel, libjpeg-devel, libpng-devel
 BuildRequires: perl(Module::Build)
+%if 0%{?_with_modxorg:1}
+BuildRequires: libXt-devel, mesa-libGLU-devel
+%else
 # This is to pull in missing libs, to fix the "undefined symbol: _Znwj" problem
-%{?!dist:BuildRequires: xorg-x11-Mesa-libGLU}
-%{?el4:BuildRequires: xorg-x11-Mesa-libGLU}
-%{?fc3:BuildRequires: xorg-x11-Mesa-libGLU}
-%{?fc2:BuildRequires: xorg-x11-Mesa-libGLU}
-%{?fc1:BuildRequires: XFree86-Mesa-libGLU}
+%{?!dist:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
+%{?el4:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
+%{?fc3:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
+%{?fc2:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
+%{?fc1:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
+%endif
 Provides: SDL_perl = %{version}-%{release}
 Provides: SDL_Perl = %{version}-%{release}
 
@@ -72,6 +80,9 @@ export PERL_INSTALL_ROOT=%{buildroot}
 
 
 %changelog
+* Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 2.1.2-4
+- Add modular xorg build conditional.
+
 * Thu Apr 21 2005 Matthias Saou <http://freshrpms.net/> 2.1.2-3
 - Change PREFIX override to env PERL_INSTALL_ROOT, as perl 5.8.6 requires it.
 

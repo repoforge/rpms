@@ -106,12 +106,12 @@ BuildRequires: ImageMagick
 %{!?_without_fame:BuildRequires: libfame-devel}
 %{!?_without_caca:BuildRequires: libcaca-devel}
 %{!?_without_theora:BuildRequires: libtheora-devel}
-%{!?_without_xvmc:BuildRequires: libXvMCW-devel}
 %{!?_without_dts:BuildRequires: libdca-devel}
 %{!?_without_faac:BuildRequires: faac-devel}
 %{!?_without_mpc:BuildRequires: libmpcdec-devel}
 %{!?_without_vstream:BuildRequires: vstream-client-devel}
 %{?_with_modxorg:BuildRequires: libXv-devel, mesa-libGL-devel, libXvMC-devel}
+%{!?_with_modxorg:%{!?_without_xvmc:BuildRequires: libXvMCW-devel}}
 
 %description
 MPlayer is a multimedia player. It plays most video formats as well as DVDs.

@@ -39,7 +39,7 @@ Patch0: ffmpeg-0.4.9-20051207-a52link.patch
 Patch1: ffmpeg-0.4.9-20051207-gsm.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel
-BuildRequires: /usr/bin/texi2html
+BuildRequires: texi2html
 %{!?_without_lame:BuildRequires: lame-devel}
 %{!?_without_vorbis:BuildRequires: libogg-devel, libvorbis-devel}
 %{!?_without_theora:BuildRequires: libogg-devel, libtheora-devel}

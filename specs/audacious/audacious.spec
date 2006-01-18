@@ -4,6 +4,7 @@
 %{?dist: %{expand: %%define %dist 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
+%{!?dist:%define _with_modxorg 1}
 %{?fc5:%define _with_modxorg 1}
 
 Summary: Media player which uses a skinned interface
