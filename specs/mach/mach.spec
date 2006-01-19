@@ -10,7 +10,7 @@
 Summary: Make A CHroot
 Name: mach
 Version: 0.4.8
-Release: 0.1
+Release: 0.2
 Group: Applications/System
 License: GPL
 URL: http://thomas.apestaart.org/projects/mach/
@@ -113,6 +113,12 @@ fi
 
 
 %changelog
+* Thu Jan 19 2006 Matthias Saou <http://freshrpms.net> 0.4.8-0.2
+- Add freshrpms to FC development dist.d files.
+
+* Wed Dec 21 2005 Matthias Saou <http://freshrpms.net> 0.4.8-0.2
+- Fix fedora development core location (remove trailing "os").
+
 * Mon Dec 12 2005 Matthias Saou <http://freshrpms.net> 0.4.8-0.1
 - Update to 0.4.8 (and only support yum, not apt).
 - Include only relevant dist.d files for given archs.

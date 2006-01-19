@@ -1354,8 +1354,8 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-4-x86_64 mach-0.4.8-cfgchange/etc/
 +
 diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-i386 mach-0.4.8-cfgchange/etc/dist.d/fedora-development-i386
 --- mach-0.4.8.orig/etc/dist.d/fedora-development-i386	2004-11-08 20:26:32.000000000 +0100
-+++ mach-0.4.8-cfgchange/etc/dist.d/fedora-development-i386	2005-12-19 18:59:26.000000000 +0100
-@@ -1,87 +1,39 @@
++++ mach-0.4.8-cfgchange/etc/dist.d/fedora-development-i386	2006-01-19 13:55:36.000000000 +0100
+@@ -1,87 +1,53 @@
 -# mach dist configuration                          -*- python -*-
 +# mach dist configuration                                        -*- python -*-
  
@@ -1380,11 +1380,8 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-i386 mach-0.4.8-cfgcha
 -    'livna-stable':     'rpm ' + livna       + ' fedora/3/i386 stable',
 -    'livna-testing':    'rpm ' + livna       + ' fedora/3/i386 testing',
 -    'livna-unstable':   'rpm ' + livna       + ' fedora/3/i386 unstable',
-+yumsources[DVA] = {
-+  'core':             fedora      + '/core/' + V + '/' + A + '/os',
-+  'extras':           fedora      + '/extras/' + V + '/' + A ,
- }
- 
+-}
+-
 -# Fedora Core Development
 -packages['fedora-development-i386-core'] = {
 -    'dir':      'fedoracore-development-i386',
@@ -1392,24 +1389,13 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-i386 mach-0.4.8-cfgcha
 -    'base':     'coreutils findutils openssh-server',
 -    'build':    'dev rpm-build make gcc tar gzip patch ' +
 -                'unzip bzip2 diffutils cpio elfutils',
-+# Fedora Core
-+packages[DVA + '-core'] = {
-+  'dir':      DVA,
-+  'minimal':  'bash glibc fedora-release',
-+  'base':     'coreutils findutils openssh-server',
-+  'build':    'dev redhat-rpm-config rpm-build make gcc gcc-c++ tar gzip ' +
-+              'unzip bzip2 diffutils cpio elfutils',
- }
+-}
 -sourceslist['fedora-development-i386-core'] = {
 -    'fedora-development-i386': ('core', )
-+sourceslist[DVA + '-core'] = {
-+  DVA : ('core', )
- }
+-}
 -config['fedora-development-i386-core'] = {}
 -aliases['fedora-development-i386-core'] = ('fd', 'fcd', )
-+config[DVA + '-core'] = {}
-+aliases[DVA + '-core'] = ('f' + V + 'c' + AS, 'fc' + V + AS, )
- 
+-
 -# Fedora Development with fedora.us
 -packages['fedora-development-i386-fedora-stable'] = packages['fedora-development-i386-core'].copy ()
 -packages['fedora-development-i386-fedora-stable']['build'] = packages['fedora-development-i386-core']['build'] + " fedora-rpmdevtools"
@@ -1433,13 +1419,7 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-i386 mach-0.4.8-cfgcha
 -    'fedora-development-i386':
 -    sourceslist['fedora-development-i386-fedora-testing']['fedora-development-i386'] +
 -    ('fedora-unstable', )
-+# Fedora Core with extras
-+packages[DVA + '-extras'] = packages[DVA + '-core']
-+sourceslist[DVA + '-extras'] = {
-+  DVA :
-+  sourceslist[DVA + '-core'][DVA ] +
-+  ('extras', )
- }
+-}
 -config['fedora-development-i386-fedora-unstable']  = config['fedora-development-i386-fedora-testing']
 -aliases['fedora-development-i386-fedora-unstable'] = ('fdfu', )
 -                                                                                
@@ -1448,9 +1428,7 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-i386 mach-0.4.8-cfgcha
 -packages['fedora-development-i386-livna-stable']['build'] = packages['fedora-development-i386-core']['build'] + " fedora-rpmdevtools"
 -sourceslist['fedora-development-i386-livna-stable'] = {
 -    'fedora-development-i386': ('core', 'fedora-stable', 'livna-stable', )
-+config[DVA + '-extras'] = {
-+  'buildopts': "--define 'dist .fc" + NEXTV + "'",
- }
+-}
 -config['fedora-development-i386-livna-stable']  = { 'release': '1.91' }
 -aliases['fedora-development-i386-livna-stable'] = ('fdls', )
 -                                                                                
@@ -1468,15 +1446,57 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-i386 mach-0.4.8-cfgcha
 -    'fedora-development-i386':
 -    sourceslist['fedora-development-i386-livna-testing']['fedora-development-i386'] +
 -    ('fedora-unstable', 'livna-unstable', )
--}
++yumsources[DVA] = {
++  'core':             fedora      + '/core/' + V + '/' + A ,
++  'extras':           fedora      + '/extras/' + V + '/' + A ,
++  'freshrpms':        freshrpmsfd + '/' + V + '/' + A + '/freshrpms',
+ }
 -config['fedora-development-i386-livna-unstable']  = config['fedora-development-i386-livna-testing']
 -aliases['fedora-development-i386-livna-unstable'] = ('fdlu', )
++
++# Fedora Core
++packages[DVA + '-core'] = {
++  'dir':      DVA,
++  'minimal':  'bash glibc fedora-release',
++  'base':     'coreutils findutils openssh-server',
++  'build':    'dev redhat-rpm-config rpm-build make gcc gcc-c++ tar gzip ' +
++              'unzip bzip2 diffutils cpio elfutils',
++}
++sourceslist[DVA + '-core'] = {
++  DVA : ('core', )
++}
++config[DVA + '-core'] = {}
++aliases[DVA + '-core'] = ('f' + V + 'c' + AS, 'fc' + V + AS, )
++
++# Fedora Core with extras
++packages[DVA + '-extras'] = packages[DVA + '-core']
++sourceslist[DVA + '-extras'] = {
++  DVA :
++  sourceslist[DVA + '-core'][DVA ] +
++  ('extras', )
++}
++config[DVA + '-extras'] = {
++  'buildopts': "--define 'dist .fc" + NEXTV + "'",
++}
 +aliases[DVA + '-extras'] = ('f' + V + 'e' + AS, )
++
++# Fedora Core with freshrpms (+ extras)
++packages[DVA + '-freshrpms'] = packages[DVA + '-core']
++sourceslist[DVA + '-freshrpms'] = {
++  DVA :
++  sourceslist[DVA + '-extras'][DVA ] +
++  ('freshrpms', )
++}
++config[DVA + '-freshrpms'] = {
++  'release': '2.fc' + NEXTV,
++  'buildopts': "--define 'dist fc" + NEXTV + "'",
++}
++aliases[DVA + '-freshrpms'] = ('f' + V + 'fr' + AS, )
 +
 diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-ppc mach-0.4.8-cfgchange/etc/dist.d/fedora-development-ppc
 --- mach-0.4.8.orig/etc/dist.d/fedora-development-ppc	1970-01-01 01:00:00.000000000 +0100
-+++ mach-0.4.8-cfgchange/etc/dist.d/fedora-development-ppc	2005-12-19 18:59:35.000000000 +0100
-@@ -0,0 +1,39 @@
++++ mach-0.4.8-cfgchange/etc/dist.d/fedora-development-ppc	2006-01-19 13:55:50.000000000 +0100
+@@ -0,0 +1,53 @@
 +# mach dist configuration                                        -*- python -*-
 +
 +V = 'development'             # distro version
@@ -1486,8 +1506,9 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-ppc mach-0.4.8-cfgchan
 +DVA = 'fedora-' + V + '-' + A # distro-version-architecture
 +
 +yumsources[DVA] = {
-+  'core':             fedora      + '/core/' + V + '/' + A + '/os',
++  'core':             fedora      + '/core/' + V + '/' + A ,
 +  'extras':           fedora      + '/extras/' + V + '/' + A ,
++  'freshrpms':        freshrpmsfd + '/' + V + '/' + A + '/freshrpms',
 +}
 +
 +# Fedora Core
@@ -1516,10 +1537,23 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-ppc mach-0.4.8-cfgchan
 +}
 +aliases[DVA + '-extras'] = ('f' + V + 'e' + AS, )
 +
++# Fedora Core with freshrpms (+ extras)
++packages[DVA + '-freshrpms'] = packages[DVA + '-core']
++sourceslist[DVA + '-freshrpms'] = {
++  DVA :
++  sourceslist[DVA + '-extras'][DVA ] +
++  ('freshrpms', )
++}
++config[DVA + '-freshrpms'] = {
++  'release': '2.fc' + NEXTV,
++  'buildopts': "--define 'dist fc" + NEXTV + "'",
++}
++aliases[DVA + '-freshrpms'] = ('f' + V + 'fr' + AS, )
++
 diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-x86_64 mach-0.4.8-cfgchange/etc/dist.d/fedora-development-x86_64
 --- mach-0.4.8.orig/etc/dist.d/fedora-development-x86_64	1970-01-01 01:00:00.000000000 +0100
-+++ mach-0.4.8-cfgchange/etc/dist.d/fedora-development-x86_64	2005-12-19 18:59:30.000000000 +0100
-@@ -0,0 +1,39 @@
++++ mach-0.4.8-cfgchange/etc/dist.d/fedora-development-x86_64	2006-01-19 13:55:43.000000000 +0100
+@@ -0,0 +1,53 @@
 +# mach dist configuration                                        -*- python -*-
 +
 +V = 'development'             # distro version
@@ -1529,8 +1563,9 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-x86_64 mach-0.4.8-cfgc
 +DVA = 'fedora-' + V + '-' + A # distro-version-architecture
 +
 +yumsources[DVA] = {
-+  'core':             fedora      + '/core/' + V + '/' + A + '/os',
++  'core':             fedora      + '/core/' + V + '/' + A ,
 +  'extras':           fedora      + '/extras/' + V + '/' + A ,
++  'freshrpms':        freshrpmsfd + '/' + V + '/' + A + '/freshrpms',
 +}
 +
 +# Fedora Core
@@ -1558,6 +1593,19 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-x86_64 mach-0.4.8-cfgc
 +  'buildopts': "--define 'dist .fc" + NEXTV + "'",
 +}
 +aliases[DVA + '-extras'] = ('f' + V + 'e' + AS, )
++
++# Fedora Core with freshrpms (+ extras)
++packages[DVA + '-freshrpms'] = packages[DVA + '-core']
++sourceslist[DVA + '-freshrpms'] = {
++  DVA :
++  sourceslist[DVA + '-extras'][DVA ] +
++  ('freshrpms', )
++}
++config[DVA + '-freshrpms'] = {
++  'release': '2.fc' + NEXTV,
++  'buildopts': "--define 'dist fc" + NEXTV + "'",
++}
++aliases[DVA + '-freshrpms'] = ('f' + V + 'fr' + AS, )
 +
 diff -Naupr mach-0.4.8.orig/etc/dist.d/Makefile.am mach-0.4.8-cfgchange/etc/dist.d/Makefile.am
 --- mach-0.4.8.orig/etc/dist.d/Makefile.am	2005-06-13 16:50:25.000000000 +0200
