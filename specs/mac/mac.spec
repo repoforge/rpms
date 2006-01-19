@@ -4,11 +4,11 @@
 Summary: Monkey's Audio Codec (MAC) utility and library
 Name: mac
 Version: 3.99
-Release: 1.u4b3
+Release: 1.u4b4
 License: See License.htm
 Group: System Environment/Libraries
 URL: http://supermmx.org/linux/mac/
-Source: http://dl.sf.net/mac-port/mac-%{version}-u4-b3.tar.gz
+Source: http://dl.sf.net/mac-port/mac-%{version}-u4-b4.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, nasm
 
@@ -39,7 +39,7 @@ library.
 
 
 %prep
-%setup -n %{name}-%{version}-u4-b3
+%setup -n %{name}-%{version}-u4-b4
 
 
 %build
@@ -77,6 +77,10 @@ library.
 
 
 %changelog
+* Thu Jan 19 2006 Matthias Saou <http://freshrpms.net/> 3.99-1.u4b4
+- Update to 3.99-u4-b4.
+- Still only works on x86, so if anyone feels like fixing this...
+
 * Thu May 26 2005 Matthias Saou <http://freshrpms.net/> 3.99-1.u4b3
 - Initial RPM release.
 

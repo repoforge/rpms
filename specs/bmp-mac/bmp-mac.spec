@@ -10,7 +10,7 @@ Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://supermmx.org/linux/mac/
-Source: http://supermmx.org/download/linux/mac/bmp-mac-%{version}.tar.gz
+Source: http://dl.sf.net/mac-port/bmp-mac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: bmp-devel, mac-devel, gcc-c++
 
