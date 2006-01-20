@@ -9,6 +9,7 @@ License: See License.htm
 Group: System Environment/Libraries
 URL: http://supermmx.org/linux/mac/
 Source: http://dl.sf.net/mac-port/mac-%{version}-u4-b4.tar.gz
+Patch0: mac-3.99-u4-b4-64bit.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, nasm
 
@@ -40,6 +41,7 @@ library.
 
 %prep
 %setup -n %{name}-%{version}-u4-b4
+%patch0 -p1 -b .64bit
 
 
 %build
@@ -79,7 +81,7 @@ library.
 %changelog
 * Thu Jan 19 2006 Matthias Saou <http://freshrpms.net/> 3.99-1.u4b4
 - Update to 3.99-u4-b4.
-- Still only works on x86, so if anyone feels like fixing this...
+- Port over 64bit patch from the gstreamer-monkeysaudio package.
 
 * Thu May 26 2005 Matthias Saou <http://freshrpms.net/> 3.99-1.u4b3
 - Initial RPM release.

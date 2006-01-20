@@ -5,6 +5,12 @@
 
 # Archs: i686 x86_64 ppc
 
+%{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _without_mmx 1}
+%{?fc5:  %define _without_mmx 1}
+
 %{?fc1:%define _without_alsa 1}
 %{?el3:%define _without_alsa 1}
 %{?rh9:%define _without_alsa 1}
@@ -66,9 +72,11 @@ of the mjpegtools package.
 
 %build
 %ifarch %{ix86}
+%if 0%{!?_without_mmx:1}
 pushd jpeg-mmx
     ./configure && %{__make} CFLAGS="%{optflags}"
 popd
+%endif
 %endif
 
 # Required for 1.8.0 with gcc 4.1 (FC5+)
@@ -76,7 +84,7 @@ export CFLAGS="%{optflags} -fpermissive"
 export CXXFLAGS="%{optflags} -fpermissive"
 %configure \
 %ifarch %{ix86}
-    %{?_without_mmx:--with-jpeg-mmx="`pwd`/jpeg-mmx-%{jpegmmx_version}"}
+    %{!?_without_mmx:--with-jpeg-mmx="`pwd`/jpeg-mmx-%{jpegmmx_version}"}
 %endif
 # Don't use %{?_smp_mflags}, the build can fail! (1.8.0)
 %{__make}
@@ -124,6 +132,8 @@ fi
 %changelog
 * Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 1.8.0-2
 - Add -fpermissive to CFLAGS for now, as otherwise the build fails on FC5.
+- Fix mmx conditional to actually get jpeg-mmx used.
+- Disable mmx on FC5 for now, since the included jpeg-mmx fails to build.
 
 * Fri Dec  9 2005 Matthias Saou <http://freshrpms.net/> 1.8.0-1
 - Update to 1.8.0.

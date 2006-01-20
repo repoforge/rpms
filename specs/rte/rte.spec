@@ -4,15 +4,13 @@
 Summary: Real Time software audio/video Encoder library
 Name: rte
 Version: 0.5.6
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
 Source: http://dl.sf.net/zapping/rte-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: doxygen, gettext, gcc-c++
-# Definitely doesn't build on anything else... (0.5.4)
-ExclusiveArch: %{ix86}
 
 %description
 The RTE library is a frontend or wrapper of other libraries or programs
@@ -43,8 +41,12 @@ needed to develop programs that will use RTE.
 
 
 %build
-# In 0.5.2, configure has an exit status of 1...
-%configure --with-pic || :
+%configure \
+    --with-pic \
+%ifnarch %{ix86}
+    --without-mp1e \
+    --without-ffmpeg
+%endif
 %{__make} %{?_smp_mflags}
 
 
@@ -58,11 +60,9 @@ needed to develop programs that will use RTE.
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files -f %{name}.lang
@@ -80,6 +80,9 @@ needed to develop programs that will use RTE.
 
 
 %changelog
+* Thu Jan 19 2006 Matthias Saou <http://freshrpms.net/> 0.5.6-2
+- Disable mp1e and ffmpeg backends on non-x86 archs (they require x86 mmx).
+
 * Fri Apr  1 2005 Matthias Saou <http://freshrpms.net/> 0.5.6-1
 - Update to 0.5.6.
 

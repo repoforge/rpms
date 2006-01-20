@@ -15,7 +15,6 @@ Group: Applications/Archiving
 URL: http://www.rarlabs.com/
 Source: http://www.rarlabs.com/rar/rarlinux-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildArch: i586
 
 %description
 RAR is a powerful tool allowing you to manage and control archive files.

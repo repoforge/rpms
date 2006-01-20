@@ -47,7 +47,7 @@ BuildRequires: libexif-devel
 %{!?_without_dvdread:BuildRequires: libdvdread-devel}
 %{!?_without_quicktime:BuildRequires: libquicktime-devel}
 %{!?_without_a52:BuildRequires: a52dec-devel >= 0.7.3}
-%{!?_without_mpeg3:BuildRequires: libmpeg3}
+%{!?_without_mpeg3:BuildRequires: libmpeg3-devel}
 %{!?_without_mjpeg:BuildRequires: mjpegtools-devel}
 %{!?_without_libfame:BuildRequires: libfame-devel}
 %{!?_without_magick:BuildRequires: ImageMagick-devel >= 5.4.3}

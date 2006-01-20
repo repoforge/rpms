@@ -4,16 +4,15 @@
 
 Summary: Decoder of various derivatives of MPEG standards
 Name: libmpeg3
-Version: 1.5.4
-Release: 5
+Version: 1.6
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://heroinewarrior.com/libmpeg3.php3
 Source: http://dl.sf.net/heroines/libmpeg3-%{version}-src.tar.bz2
-Patch: libmpeg3-1.5.4-gcc4.patch
+Patch0: libmpeg3-1.6-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: nasm
-Provides: %{name}-devel = %{version}-%{release}
 
 %description
 LibMPEG3 decodes the many many derivatives of MPEG standards into
@@ -27,50 +26,81 @@ libmpeg3 currently decodes:
  - IFO files
  - VOB files
 
+
+%package utils
+Summary: Utilities from libmpeg3
+Group: Applications/Multimedia
+
+%description utils
+LibMPEG3 decodes the many many derivatives of MPEG standards into
+uncompressed data suitable for editing and playback.
+
+This package contains utility programs based on libmpeg3.
+
+
+%package devel
+Summary: Development files for libmpeg3
+Group: Development/Libraries
+
+%description devel
+LibMPEG3 decodes the many many derivatives of MPEG standards into
+uncompressed data suitable for editing and playback.
+
+This package contains files needed to build applications that will use
+libmpeg3.
+
+
 %prep
 %setup
-%patch -p1 -b .gcc4
-# Workaround for FC4 ppc build failure
-echo "#define __USE_LARGEFILE64" >> mpeg3private.h
+%patch0 -p1 -b .makefile
+
 
 %build
-# With gcc 3.4 (FC3), build fails with -O2 and also with -fPIC :-(
-%ifarch %{ix86}
-export CFLAGS="`echo "%{optflags}" | sed 's/-O./-O1/'`"
-%else
-export CFLAGS="`echo "%{optflags} -fPIC" | sed 's/-O./-O1/'`"
+export OBJDIR=%{_arch}
+export CFLAGS="%{optflags}"
+# Enable USE_MMX for archs that support it, not by default on i386
+%ifarch i686 athlon
+%{__perl} -pi -e 's|^USE_MMX = 0|USE_MMX = 1|g' Makefile
 %endif
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -p -m0755 */mpeg3dump */mpeg3cat */mpeg3toc \
-    %{buildroot}%{_bindir}/
+export OBJDIR=%{_arch}
+%{__make} install \
+    LIBDIR=%{_libdir} \
+    DESTDIR=%{buildroot}
 
-%{__install} -d -m0755 %{buildroot}%{_includedir}
-%{__install} -p -m0644 libmpeg3.h mpeg3private.h mpeg3protos.h \
-    %{buildroot}%{_includedir}
-
-%{__install} -Dp -m0755 */libmpeg3.a %{buildroot}%{_libdir}/libmpeg3.a
-
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+
+#post -p /sbin/ldconfig
+
+#postun -p /sbin/ldconfig
+
+
+%files utils
 %defattr(-, root, root, 0755)
-%doc COPYING docs/
+%doc COPYING
 %{_bindir}/*
-%{_libdir}/*.*
+
+%files devel
+%defattr(-, root, root, 0755)
+%doc docs/*
+%{_libdir}/*.a
 %{_includedir}/*.h
 
+
 %changelog
+* Thu Jan 19 2006 Matthias Saou <http://freshrpms.net/> 1.6-1
+- Update to 1.6.
+- Split "main" into "utils" (bin) and "devel" (the static lib).
+- Add Makefile patch to ease install and get our CFLAGS used.
+- Don't enable MMX on x86_64, the x86 asm fails.
+
 * Mon Aug 15 2005 Matthias Saou <http://freshrpms.net/> 1.5.4-5
 - Force __USE_LARGEFILE64 to fix FC4 ppc build.
 

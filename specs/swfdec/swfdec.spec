@@ -29,8 +29,8 @@
 
 Summary: Flash animations rendering library
 Name: swfdec
-Version: 0.3.5
-Release: 2
+Version: 0.3.6
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://swfdec.sourceforge.net/
@@ -38,7 +38,7 @@ Source: http://www.schleef.org/swfdec/download/swfdec-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libart_lgpl-devel, gtk2-devel >= 2.1.2
 BuildRequires: libmad-devel, SDL-devel, gdk-pixbuf-devel, gcc-c++
-BuildRequires: liboil-devel, GConf2-devel
+BuildRequires: liboil-devel, GConf2-devel, js-devel
 %{?gimp_plugin:BuildRequires: gimp-devel >= 2.0}
 %{!?_without_mozilla:BuildRequires: mozilla-devel}
 %{!?_without_gstreamer:BuildRequires: gstreamer-plugins-devel}
@@ -111,7 +111,6 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 %files 
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING README TODO
-%{_bindir}/swf_play
 %{_libdir}/libswfdec*.so.*
 %{?gimp_plugin:%{_libdir}/gimp/2.0/plug-ins/swf}
 %{_libdir}/gtk-2.0/*/loaders/swf_loader.so
@@ -137,9 +136,14 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 
 %changelog
+* Thu Jan 19 2006 Matthias Saou <http://freshrpms.net/> 0.3.6-1
+- Update to 0.3.6.
+- Add js-devel buil requirement, configure should check this.
+- Remove no longer included swf_play.
+
 * Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 0.3.5-2
 - Disable gstreamer support on FC5 (as it's for 0.8).
-- Disable mozilla plugin on FC5 (if someone wants to look into it...).
+- Disable mozilla plugin on FC5 (no more mozilla-config script).
 - Add modular xorg build conditional.
 
 * Wed May 25 2005 Matthias Saou <http://freshrpms.net/> 0.3.5-1
