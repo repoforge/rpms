@@ -3,7 +3,7 @@
 
 Summary: Lightweight library to easily extract data from zip files
 Name: zziplib
-Version: 0.13.38
+Version: 0.13.45
 Release: 1
 License: LGPL/MPL
 Group: Applications/Archiving
@@ -54,11 +54,9 @@ zziplib library.
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files
@@ -80,6 +78,9 @@ zziplib library.
 
 
 %changelog
+* Tue Dec 20 2005 Matthias Saou <http://freshrpms.net/> 0.13.45-1
+- Update to 0.13.45.
+
 * Tue Apr  5 2005 Matthias Saou <http://freshrpms.net/> 0.13.38-1
 - Update to 0.13.38, fixes gcc4 compile issues (Adrian Reber).
 

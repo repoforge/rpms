@@ -27,7 +27,7 @@ applications.
 %package devel
 Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
+Requires: %{name} = %{version}-%{release}, SDL-devel
 
 %description devel
 This package contains the header files, static libraries and development
