@@ -1,18 +1,16 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Steve Holland <sdh4$cornell,edu>
 
 Summary: Dynamic process renicer and killer
 Name: verynice
 Version: 1.1
-Release: 0
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.tam.cornell.edu/~sdh4/verynice/
 
-Source: http://www.tam.cornell.edu/~sdh4/verynice/down/%{name}-%{version}.tar.gz
+Source: http://www.tam.cornell.edu/~sdh4/verynice/down/verynice-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -201,12 +199,12 @@ runawayexe "xfig"
 EOF
 
 %build
-%{__make} %{?_smp_mflags} RPM_OPT_FLAGS="%{optflags}"
+%{__make} %{?_smp_mflags} RPM_OPT_FLAGS="%{optflags}" PREFIX="%{_prefix}"
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_initrddir}
-%makeinstall PREFIX="%{_prefix}" RPM_BUILD_ROOT="%{buildroot}"
+%{__make} install PREFIX="%{_prefix}" RPM_BUILD_ROOT="%{buildroot}"
 %{__install} -Dp -m0755 verynice.sysv %{buildroot}%{_initrddir}/verynice
 
 ### Clean up buildroot
@@ -230,10 +228,13 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGELOG COPYING README* verynice.html
-%{_sbindir}/*
-%config %{_sysconfdir}/*.conf
-%config %{_initrddir}/*
+%config(noreplace) %{_sysconfdir}/verynice.conf
+%config %{_initrddir}/verynice
+%{_sbindir}/verynice
 
 %changelog
+* Sat Jan 21 2006 Dag Wieers <dag@wieers.com> - 1.1-1
+- Fixed a prefix-bug in the binary. (Fred Tam)
+
 * Tue Apr 29 2003 Dag Wieers <dag@wieers.com> - 1.1-0
 - Initial package. (using dar)
