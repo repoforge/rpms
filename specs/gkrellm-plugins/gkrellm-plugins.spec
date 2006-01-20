@@ -285,12 +285,12 @@ export CXXFLAGS="%{optflags}"
 * Wed Jan 29 2003 Matthias Saou <http://freshrpms.net/>
 - Added gkleds 0.8.1.
 
-* Sun Jan 26 2003 Ville Skytt‰ <ville.skytta at iki.fi> - 2:2.1.6-fr1
+* Sun Jan 26 2003 Ville Skytt√§ <ville.skytta at iki.fi> - 2:2.1.6-fr1
 - Updated multiping (2.0.2), gkrellmms (2.1.7), volume (2.1.7),
   mailwatch (2.2.2), radio (2.0.3) and gkrelldnet (0.12.1).
 - Rebuilt with GKrellm 2.1.6.
 
-* Sun Jan  5 2003 Ville Skytt‰ <ville.skytta at iki.fi> - 2:2.1.4-fr1
+* Sun Jan  5 2003 Ville Skytt√§ <ville.skytta at iki.fi> - 2:2.1.4-fr1
 - Updated gkrellmoon (0.6), gkrellweather (2.0.5), gkrellm-radio (2.0.2),
   gkrellmms (2.1.6), mailwatch (2.1), wireless (2.0.2) and gkrelldnet (0.12).
 - Re-added gkrellm-reminder (2.0.0).
@@ -299,7 +299,7 @@ export CXXFLAGS="%{optflags}"
 * Thu Nov 28 2002 Matthias Saou <http://freshrpms.net/>
 - Updated gkrellmms to 2.1.5.
 
-* Wed Nov 20 2002 Ville Skytt‰ <ville.skytta at iki.fi> - 2:2.1.0-fr5
+* Wed Nov 20 2002 Ville Skytt√§ <ville.skytta at iki.fi> - 2:2.1.0-fr5
 - Updated gkrellweather, gkrellmms, gkrellmwireless and volume plugins.
 
 * Tue Oct 29 2002 Matthias Saou <http://freshrpms.net/>
@@ -310,17 +310,17 @@ export CXXFLAGS="%{optflags}"
 - Replaced gkrellmPing by multiping (deactivated, bad binary search path!).
 - Added Flynn ;-)
 
-* Sat Oct 19 2002 Ville Skytt‰ <ville.skytta at iki.fi> 2:2.1.0-fr2
+* Sat Oct 19 2002 Ville Skytt√§ <ville.skytta at iki.fi> 2:2.1.0-fr2
 - Re-added GkrellWeather.
 
-* Fri Oct 11 2002 Ville Skytt‰ <ville.skytta at iki.fi> 2:2.1.0-fr1
+* Fri Oct 11 2002 Ville Skytt√§ <ville.skytta at iki.fi> 2:2.1.0-fr1
 - Re-added GkACPI.
 - Rebuild with GKrellM 2.1.0.
 
-* Wed Oct  9 2002 Ville Skytt‰ <ville.skytta at iki.fi> 2:2.0.4-fr2
+* Wed Oct  9 2002 Ville Skytt√§ <ville.skytta at iki.fi> 2:2.0.4-fr2
 - Re-added SETI@Home, built with patch from the author homepage.
 
-* Sun Oct  6 2002 Ville Skytt‰ <ville.skytta at iki.fi> 2:2.0.4-fr1
+* Sun Oct  6 2002 Ville Skytt√§ <ville.skytta at iki.fi> 2:2.0.4-fr1
 - Rebuild with Red Hat 8.0 and GKrellM 2.0.4.
 - Update aclock, gkrelldnet, gkrellmms, volume, mailwatch, wireless, radio
   and gkrellshoot.
@@ -329,7 +329,7 @@ export CXXFLAGS="%{optflags}"
   reminder, x86info, taskman and weather for now (they don't build with 2.0
   or have missing requirements).
 
-* Wed Jul 31 2002 Ville Skytt‰ <ville.skytta at iki.fi> 2:1.2.13-fr1
+* Wed Jul 31 2002 Ville Skytt√§ <ville.skytta at iki.fi> 2:1.2.13-fr1
 - Updated gkacpi, gkrelldnet, gkrellshoot, gkrellm-radio, gkrellmms and
   consolewatch.
 - Added gamma.
@@ -342,14 +342,14 @@ export CXXFLAGS="%{optflags}"
 * Fri May  3 2002 Matthias Saou <http://freshrpms.net/>
 - Rebuilt against Red Hat Linux 7.3.
 
-* Tue Apr  2 2002 Ville Skytt‰ <ville.skytta at iki.fi> 1.2.11-fr1
+* Tue Apr  2 2002 Ville Skytt√§ <ville.skytta at iki.fi> 1.2.11-fr1
 - Added Gk-Taskman and GKrellShoot.
 - Added a patch for gkrellmms to make it compile with 1.2.11.
 - Updated aclock, gkrellkam, gkrellm-newsticker, radio, reminder and seti.
 - Didn't update gkrellmss because 0.4 would require fftw, which we don't have.
 - Rebuilt with GKrellM 1.2.11.
 
-* Tue Jan  8 2002 Ville Skytt‰ <ville.skytta at iki.fi>
+* Tue Jan  8 2002 Ville Skytt√§ <ville.skytta at iki.fi>
 - Updated seven plugins : seti, gkrelldnet, mailwatch, gkrellm-radio,
   gkrellkam, gkrellm-newsticker and reminder.
 - GKrellKam now actually belongs to a package (misc) :)

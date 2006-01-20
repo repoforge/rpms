@@ -118,9 +118,9 @@ menu navigation with keyboard shortcuts.
 - Spec file cleanup and fixes (Requires: and %files)
 - Addedd a GNOME desktop entry.
 
-* Thu Sep 20 2001 Martin Norb‰ck <d95mback@dtek.chalmers.se>
+* Thu Sep 20 2001 Martin Norb√§ck <d95mback@dtek.chalmers.se>
 - New version, added patch to install pixmaps correctly
 
-* Thu Sep 20 2001 Martin Norb‰ck <d95mback@dtek.chalmers.se>
+* Thu Sep 20 2001 Martin Norb√§ck <d95mback@dtek.chalmers.se>
 - initial version
 

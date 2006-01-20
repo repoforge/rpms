@@ -31,7 +31,7 @@ mod_gzip is all that you need.
 
 mod_gzip uses the well established and publicly available IETF ( Internet
 Engineering Task Force ) Content-Encoding standards in conjunction with
-publicy available GZIP compression libraries such as ZLIB ( Copyright ©
+publicy available GZIP compression libraries such as ZLIB ( Copyright Â©
 1995-1998 Jean-loup Gailly and Mark Adler ) to deliver dynamically
 compressed content 'on the fly' to any browser or user-agent that is capable
 of receiving it. It is a software based solution that runs perfectly in

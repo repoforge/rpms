@@ -167,18 +167,18 @@ scrollkeeper-update -q || :
 - pamified zapping_setup_fb, now no need for suid root bits, and no
 crippling of the app :)
 
-* Thu Sep 12 2000 Iñaki García Etxebarria <garetxe@users.sourceforge.net>
+* Thu Sep 12 2000 IÃ±aki GarcÃ­a Etxebarria <garetxe@users.sourceforge.net>
 - Removed the LibPng dependency, now libjpeg is used.
 
-* Mon Sep 11 2000 Iñaki García Etxebarria <garetxe@users.sourceforge.net>
+* Mon Sep 11 2000 IÃ±aki GarcÃ­a Etxebarria <garetxe@users.sourceforge.net>
 - Added the dependency to GdkPixbuf and LibPng
 
-* Mon Jun 19 2000 Iñaki García Etxebarria <garetxe@users.sourceforge.net>
+* Mon Jun 19 2000 IÃ±aki GarcÃ­a Etxebarria <garetxe@users.sourceforge.net>
 - Added the desktop entry and removed the specified --datadir
 
-* Mon Jun 12 2000 Iñaki García Etxebarria <garetxe@users.sourceforge.net>
+* Mon Jun 12 2000 IÃ±aki GarcÃ­a Etxebarria <garetxe@users.sourceforge.net>
 - Fixed, it didn't include the translations properly.
 
-* Thu Jun 06 2000 Iñaki García Etxebarria <garetxe@users.sourceforge.net>
+* Thu Jun 06 2000 IÃ±aki GarcÃ­a Etxebarria <garetxe@users.sourceforge.net>
 - Created, it works fine.
 

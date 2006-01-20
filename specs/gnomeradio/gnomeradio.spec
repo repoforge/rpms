@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jörgen Scheibengruber <mfcn$wh-hms,uni-ulm,de>
+# Upstream: JÃ¶rgen Scheibengruber <mfcn$wh-hms,uni-ulm,de>
 
 Summary: Graphical FM-Tuner program
 Name: gnomeradio

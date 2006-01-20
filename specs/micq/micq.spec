@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: RÃdiger Kuhlmann <info$ruediger-kuhlmann,de>
+# Upstream: RÃƒdiger Kuhlmann <info$ruediger-kuhlmann,de>
 # Upstream: <micq-list$micq,org>
 
 %{?dist: %{expand: %%define %dist 1}}

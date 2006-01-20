@@ -100,7 +100,7 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
-* Wed Mar 03 2004 Bert de Bruijn <bert édebruijn.be> - 0.5.20-0
+* Wed Mar 03 2004 Bert de Bruijn <bert Ã©debruijn.be> - 0.5.20-0
 - Updated to release 0.5.20.
 
 * Fri Nov 21 2003 Dag Wieers <dag@wieers.com> - 0.5.19-0

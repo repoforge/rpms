@@ -116,6 +116,6 @@ needed to develop programs that will use RTE.
 * Tue Jun 18 2002 Michael H. Schimek <mschimek@users.sourceforge.net>
 - Requires gettext 0.11.2, amended doc list
 
-* Tue Aug 8 2001 Iñaki García Etxebarria <garetxe@users.sourceforge.net>
+* Tue Aug 8 2001 IÃ±aki GarcÃ­a Etxebarria <garetxe@users.sourceforge.net>
 - Created
 

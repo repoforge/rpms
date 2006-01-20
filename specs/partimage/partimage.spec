@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: François Dupoux <fdupoux$partimage,org>
+# Upstream: FranÃ§ois Dupoux <fdupoux$partimage,org>
 
 Summary: partition imaging utility, much like Ghost
 Name: partimage

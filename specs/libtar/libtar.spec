@@ -59,7 +59,7 @@ you will need to install %{name}-devel.
 
 %changelog
 * Sat Mar 05 2005 Dag Wieers <dag@wieers.com> - 1.2.11-2
-- Compiled with -fPIC for x86_64·
+- Compiled with -fPIC for x86_64.
 
 * Sat Jan 01 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.11-1
 - Initial package.

@@ -122,10 +122,10 @@ to build programs that use it.
 * Mon Oct 29 2001 Matthias Saou <http://freshrpms.net/>
 - Spec file cleanup and fixes.
 
-* Thu Sep 20 2001 Martin Norb‰ck <d95mback@dtek.chalmers.se>
+* Thu Sep 20 2001 Martin Norb√§ck <d95mback@dtek.chalmers.se>
 - Added missing .la files
 - Building statically
 
-* Thu Sep 20 2001 Martin Norb‰ck <d95mback@dtek.chalmers.se>
+* Thu Sep 20 2001 Martin Norb√§ck <d95mback@dtek.chalmers.se>
 - Initial version
 

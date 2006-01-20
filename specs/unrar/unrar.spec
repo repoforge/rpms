@@ -85,9 +85,9 @@ archives created with the RAR archiver version 1.50 and above.
 * Thu Oct 10 2002 Matthias Saou <http://freshrpms.net/>
 - Spec file cleanup.
 
-* Sat Oct  5 2002 Ville Skytt‰ <ville.skytta at iki.fi> 3.00-2cr
+* Sat Oct  5 2002 Ville Skytt√§ <ville.skytta at iki.fi> 3.00-2cr
 - Rebuild for Red Hat 8.0, using the compat GCC.
 
-* Tue Sep 17 2002 Ville Skytt‰ <ville.skytta at iki.fi> 3.00-1cr
+* Tue Sep 17 2002 Ville Skytt√§ <ville.skytta at iki.fi> 3.00-1cr
 - RedHatified PLD version.
 

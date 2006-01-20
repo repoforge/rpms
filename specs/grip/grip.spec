@@ -110,7 +110,7 @@ servers.
 * Tue Jan 14 2003 Matthias Saou <http://freshrpms.net/>
 - Update to 3.0.5.
 
-* Tue Dec 31 2002 Ville Skytt‰ <ville.skytta at iki.fi> - 1:3.0.4-fr1
+* Tue Dec 31 2002 Ville Skytt√§ <ville.skytta at iki.fi> - 1:3.0.4-fr1
 - Update to 3.0.4.
 - Use shared cdparanoia and id3lib.
 

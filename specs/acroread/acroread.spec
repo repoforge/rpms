@@ -124,7 +124,7 @@ ln -f %{buildroot}%{_libdir}/acroread/Browser/intellinux/nppdf.so %{buildroot}%{
 
 %changelog
 * Fri Mar 18 2005 Dag Wieers <dag@wieers.com> - 7.0.0-2
-- Disabled stripping globally to make plugin working. (Jürgen Möllenhoff)
+- Disabled stripping globally to make plugin working. (JÃ¼rgen MÃ¶llenhoff)
 
 * Tue Mar 15 2005 Dag Wieers <dag@wieers.com> - 7.0.0-1
 - Updated to release 7.0.0.

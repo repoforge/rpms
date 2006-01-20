@@ -128,22 +128,22 @@ autoreconf --force --install --symlink
 * Mon Oct 29 2001 Matthias Saou <http://freshrpms.net/>
 - Spec file cleanup and fixes.
 
-* Thu Oct 11 2001 Martin Norb‰ck <d95mback@dtek.chalmers.se>
+* Thu Oct 11 2001 Martin Norb√§ck <d95mback@dtek.chalmers.se>
 - Updated to version 0.9.2
 
-* Tue Sep 25 2001 Martin Norb‰ck <d95mback@dtek.chalmers.se>
+* Tue Sep 25 2001 Martin Norb√§ck <d95mback@dtek.chalmers.se>
 - Added small patch to fix the ldopen of libdvdcss
 
-* Tue Sep 18 2001 Martin Norb‰ck <d95mback@dtek.chalmers.se>
+* Tue Sep 18 2001 Martin Norb√§ck <d95mback@dtek.chalmers.se>
 - Updated to version 0.9.1
 
-* Fri Sep 14 2001 Martin Norb‰ck <d95mback@dtek.chalmers.se>
+* Fri Sep 14 2001 Martin Norb√§ck <d95mback@dtek.chalmers.se>
 - Split into normal and devel package
 
-* Thu Sep 6 2001 Martin Norb‰ck <d95mback@dtek.chalmers.se>
+* Thu Sep 6 2001 Martin Norb√§ck <d95mback@dtek.chalmers.se>
 - Updated to version 0.9.0
 
-* Tue Jul 03 2001 Martin Norb‰ck <d95mback@dtek.chalmers.se>
+* Tue Jul 03 2001 Martin Norb√§ck <d95mback@dtek.chalmers.se>
 - initial version
 
 

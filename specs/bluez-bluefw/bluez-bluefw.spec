@@ -55,7 +55,7 @@ The BLUETOOTH trademarks are owned by Bluetooth SIG, Inc., U.S.A.
 
 %changelog
 * Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 1.0-1
-- Changed %%{_sbindir} to /sbin. (Soós Péter, RHbz #120881)
+- Changed %%{_sbindir} to /sbin. (SoÃ³s PÃ©ter, RHbz #120881)
 
 * Wed Feb 25 2004 Dag Wieers <dag@wieers.com> - 1.0-0
 - Initial package. (using DAR)

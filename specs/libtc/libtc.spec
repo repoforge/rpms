@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Måns Rullgård <mru$inprovide,com>
+# Upstream: MÃ¥ns RullgÃ¥rd <mru$inprovide,com>
 
 Summary: Collection of useful functions for C programming
 Name: libtc

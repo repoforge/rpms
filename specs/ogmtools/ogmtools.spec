@@ -102,6 +102,6 @@ streams".
 * Sun Sep 22 2002 Moritz Bunkus <moritz@bunkus.org> 0.950-1
 - changes to the description and version number
 
-* Sun Sep 22 2002 Marc Lavallée <odradek@videotron.ca> 0.931-1
+* Sun Sep 22 2002 Marc LavallÃ©e <odradek@videotron.ca> 0.931-1
 - initial spec file
 

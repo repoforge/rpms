@@ -70,7 +70,7 @@ hinting which directories and files to use.
 * Sat Feb  1 2003 Matthias Saou <http://freshrpms.net/>
 - Update to 0.1.54.
 
-* Sun Dec 22 2002 Ville Skytt‰ <ville.skytta at iki.fi> - 1:0.1.53-fr1
+* Sun Dec 22 2002 Ville Skytt√§ <ville.skytta at iki.fi> - 1:0.1.53-fr1
 - Update to 0.1.53.
 - Fix desktop menu entry and build requirements.
 

@@ -257,7 +257,7 @@ export CFLAGS="%{optflags} -I%{_includedir}/postproc"
 - Update to 0.6.4.20030325 in order to fix ppc build.
 
 * Tue Feb 18 2003 Matthias Saou <http://freshrpms.net/>
-- Added lzo support, thanks to José Romildo Malaquias.
+- Added lzo support, thanks to JosÃ© Romildo Malaquias.
 
 * Sun Feb 16 2003 Matthias Saou <http://freshrpms.net/>
 - Rebuild against new libdvdread.
@@ -312,11 +312,11 @@ export CFLAGS="%{optflags} -I%{_includedir}/postproc"
 * Sun Nov 25 2001 Matthias Saou <http://freshrpms.net/>
 - Major spec file cleanup.
 
-* Wed Jul 11 2001 Thomas Östreich
+* Wed Jul 11 2001 Thomas Ã–streich
 - update to transcode v0.3.3
 - small changes suggested by VM
 
-* Tue Jul 10 2001 Thomas Östreich
+* Tue Jul 10 2001 Thomas Ã–streich
 - update to transcode v0.3.2
 - added pkgdir in install section
 

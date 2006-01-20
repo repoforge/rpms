@@ -70,8 +70,8 @@ keyboard.
 - bmp-itouch port
 - initial relase
 
-* Thu Aug 30 2001 Ville Syrj‰l‰ <syrjala@sci.fi>
+* Thu Aug 30 2001 Ville Syrj√§l√§ <syrjala@sci.fi>
 - Minor cleanup.
 
-* Sun Jan 14 2001 Ville Syrj‰l‰ <syrjala@sci.fi>
+* Sun Jan 14 2001 Ville Syrj√§l√§ <syrjala@sci.fi>
 - Intial release.

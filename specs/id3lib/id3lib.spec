@@ -105,7 +105,7 @@ export LDFLAGS="-lstdc++ -lz ${LDFLAGS}"
 - Rebuilt for Red Hat Linux 9.
 - Exclude .la file.
 
-* Wed Dec 25 2002 Ville Skytt‰ <ville.skytta at iki.fi> 3.8.2-fr1
+* Wed Dec 25 2002 Ville Skytt√§ <ville.skytta at iki.fi> 3.8.2-fr1
 - Update to 3.8.2 (GCC 3.2 patch no longer needed).
 
 * Tue Oct 08 2002 Erich Schraer <erich@wubios.wustl.edu>

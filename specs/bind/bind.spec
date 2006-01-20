@@ -282,7 +282,7 @@ fi
 * Mon Jan 29 2001 Bernhard Rosenkraenzer <bero@redhat.com>
 - Add named-checkconf, named-checkzone (#25170)
 
-* Mon Jan 29 2001 Trond Eivind Glomsr¯d <teg@redhat.com>
+* Mon Jan 29 2001 Trond Eivind Glomsr√∏d <teg@redhat.com>
 - use echo, not gprintf
 
 * Wed Jan 24 2001 Bernhard Rosenkraenzer <bero@redhat.com>
@@ -373,13 +373,13 @@ fi
 * Fri Jul  7 2000 Florian La Roche <Florian.LaRoche@redhat.de>
 - add prereq init.d and cleanup install section
 
-* Fri Jun 30 2000 Trond Eivind Glomsr¯d <teg@redhat.com>
+* Fri Jun 30 2000 Trond Eivind Glomsr√∏d <teg@redhat.com>
 - fix the init script
 
 * Wed Jun 28 2000 Nalin Dahyabhai <nalin@redhat.com>
 - make libbind.a and nslookup.help readable again by setting INSTALL_LIB to ""
 
-* Mon Jun 26 2000 Bernhard Rosenkr‰nzer <bero@redhat.com>
+* Mon Jun 26 2000 Bernhard Rosenkr√§nzer <bero@redhat.com>
 - Fix up the initscript (Bug #13033)
 - Fix build with current glibc (Bug #12755)
 - /etc/rc.d/init.d -> /etc/init.d
@@ -408,10 +408,10 @@ fi
 - fix SYSTYPE bug in all makefiles
 - move creation of named user from %%post into %%pre
 
-* Mon Feb 28 2000 Bernhard Rosenkr‰nzer <bero@redhat.com>
+* Mon Feb 28 2000 Bernhard Rosenkr√§nzer <bero@redhat.com>
 - Fix TTL (patch from ISC, Bug #9820)
 
-* Wed Feb 16 2000 Bernhard Rosenkr‰nzer <bero@redhat.com>
+* Wed Feb 16 2000 Bernhard Rosenkr√§nzer <bero@redhat.com>
 - fix typo in spec (it's %post, without a leading blank) introduced in -6
 - change SYSTYPE to linux
 

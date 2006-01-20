@@ -94,10 +94,10 @@ MP2, FLAC, Ogg Vorbis, MusePack and Monkey's Audio files.
 * Fri Feb  7 2003 Matthias Saou <http://freshrpms.net/>
 - Update to 0.27.
 
-* Fri Jan  3 2003 Ville Skyttä <ville.skytta at iki.fi> 0.26-fr1
+* Fri Jan  3 2003 Ville SkyttÃ¤ <ville.skytta at iki.fi> 0.26-fr1
 - Update to 0.26.
 
-* Wed Dec 25 2002 Ville Skyttä <ville.skytta at iki.fi> 0.25b-fr1
+* Wed Dec 25 2002 Ville SkyttÃ¤ <ville.skytta at iki.fi> 0.25b-fr1
 - Update to 0.25b.
 - Build with flac support.
 
@@ -119,7 +119,7 @@ MP2, FLAC, Ogg Vorbis, MusePack and Monkey's Audio files.
 * Thu Sep 22 2001 Jerome Couderc <j.couderc@ifrance.com>
 - Updated for /etc/X11/applnk/Multimedia/easytag.desktop
 
-* Thu Sep 20 2001 Götz Waschk <waschk@linux-mandrake.com> 0.15.1-1
+* Thu Sep 20 2001 GÃ¶tz Waschk <waschk@linux-mandrake.com> 0.15.1-1
 - Updated for autoconf
 
 * Fri Jun 2 2000 Jerome Couderc <j.couderc@ifrance.com>

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Juan J. Martínez <jjm$usebox,net>
+# Upstream: Juan J. MartÃ­nez <jjm$usebox,net>
 
 %{?dist: %{expand: %%define %dist 1}}
 

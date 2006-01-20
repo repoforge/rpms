@@ -255,7 +255,7 @@ update-desktop-database %{_datadir}/desktop-menu-patches &>/dev/null || :
 - Added _without_arts macros. (Tres Seaver)
 
 * Mon Jan 03 2005 Dag Wieers <dag@wieers.com> - 1:1.2.10-9.2
-- Fix a problem with update-desktop-database on older dists. (Erik Kjær Pedersen)
+- Fix a problem with update-desktop-database on older dists. (Erik KjÃ¦r Pedersen)
 
 * Thu Nov  4 2004 Matthias Saou <http://freshrpms.net/> 1:1.2.10-9.1
 - Put back pristine sources.

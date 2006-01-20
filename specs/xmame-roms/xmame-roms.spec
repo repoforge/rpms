@@ -19,9 +19,9 @@ BuildRequires: unzip
 
 %description
 This package contains 3 arcade games that are freely available:
-- Gridlee © 1983 Videa.
-- Poly-Play © 1985 VEB Polytechnik Karl-Marx-Stadt.
-- Robby Roto © 1981 Bally Midway, © 1999 Jay Fenton.
+- Gridlee Â© 1983 Videa.
+- Poly-Play Â© 1985 VEB Polytechnik Karl-Marx-Stadt.
+- Robby Roto Â© 1981 Bally Midway, Â© 1999 Jay Fenton.
 
 
 %prep

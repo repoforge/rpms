@@ -159,10 +159,10 @@ find %{buildroot} -name "*.la" | xargs rm -f
 - added this file as directfb.spec.in to the DirectFB source tree
 - moved directfbrc manpage to the main package
 
-* Fri Aug 23 2002 Götz Waschk <waschk@linux-mandrake.com> 0.9.13-1mdk
+* Fri Aug 23 2002 GÃ¶tz Waschk <waschk@linux-mandrake.com> 0.9.13-1mdk
 - add directfb-csource and man page
 - 0.9.13
 
-* Thu Jul 11 2002 Götz Waschk <waschk@linux-mandrake.com> 0.9.12-1mdk
+* Thu Jul 11 2002 GÃ¶tz Waschk <waschk@linux-mandrake.com> 0.9.12-1mdk
 - initial package based on PLD effort
 

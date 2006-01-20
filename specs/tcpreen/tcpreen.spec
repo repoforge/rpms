@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Rémi Denis-Courmont <rdenis$simphalempin,com>
+# Upstream: RÃ©mi Denis-Courmont <rdenis$simphalempin,com>
 # Upstream: <tcpreen-devel$lists,sourceforge,net>
 
 Summary: TCP/IP re-engineering and monitoring program

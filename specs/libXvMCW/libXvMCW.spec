@@ -67,6 +67,6 @@ XvMC Wrapper.
 - Spec file cleanup.
 - Split off -devel package.
 
-* Thu Sep 23 2004 Thomas Hellström <sthomas@shipmail.org>
+* Thu Sep 23 2004 Thomas HellstrÃ¶m <sthomas@shipmail.org>
 - Initial release
 

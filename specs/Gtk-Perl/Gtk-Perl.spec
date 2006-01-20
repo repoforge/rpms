@@ -133,17 +133,17 @@ done
 * Wed Jan 09 2002 Tim Powers <timp@redhat.com>
 - automated rebuild
 
-* Fri Dec 14 2001 Trond Eivind Glomsrød <teg@redhat.com> 0.7008-4
+* Fri Dec 14 2001 Trond Eivind GlomsrÃ¸d <teg@redhat.com> 0.7008-4
 - Don't hardcode 5.6.0
 
-* Thu Aug 30 2001 Trond Eivind Glomsrød <teg@redhat.com> 0.7008-3
+* Thu Aug 30 2001 Trond Eivind GlomsrÃ¸d <teg@redhat.com> 0.7008-3
 - remove *::reference man pages, as we don't ship all the modules
   the package wants do build them (#52851)
 
-* Tue Jul 31 2001 Trond Eivind Glomsrød <teg@redhat.com>
+* Tue Jul 31 2001 Trond Eivind GlomsrÃ¸d <teg@redhat.com>
 - More BuildRequires
 
-* Mon Jul 23 2001 Trond Eivind Glomsrød <teg@redhat.com>
+* Mon Jul 23 2001 Trond Eivind GlomsrÃ¸d <teg@redhat.com>
 - Use %%{_tmppath}
 - 0.7008
 - Update URL and file location

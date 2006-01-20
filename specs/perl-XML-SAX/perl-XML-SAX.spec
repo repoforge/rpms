@@ -62,7 +62,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 - Updated to release 0.13.
 
 * Mon Aug 25 2003 Dag Wieers <dag@wieers.com> - 0.12-3
-- Added missing provides. (Ville Skytt‰)
+- Added missing provides. (Ville Skytt√§)
 - Obsoletes perl-XML-SAX-PurePerl and perl-XML-SAX-Base.
 
 * Sun Aug 24 2003 Dag Wieers <dag@wieers.com> - 0.12-1

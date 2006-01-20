@@ -341,7 +341,7 @@ fi
 - Don't crash if we can't open /dev/console
   (Happens with some devfs enabled kernels)
 
-* Tue Jan 23 2001 Trond Eivind Glomsrød <teg@redhat.com>
+* Tue Jan 23 2001 Trond Eivind GlomsrÃ¸d <teg@redhat.com>
 - fix bug in i18n of initscript
 
 * Tue Jan 23 2001 Preston Brown <pbrown@redhat.com>

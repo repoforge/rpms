@@ -394,11 +394,11 @@ exit 0
 - updated Japanese locale defaults
 - move movemail, movemail-src, spell to communicator package
 
-* Wed Mar  1 2000 Bernhard Rosenkr‰nzer <bero@redhat.com>
+* Wed Mar  1 2000 Bernhard Rosenkr√§nzer <bero@redhat.com>
 - Add German nethelp
 - fix up broken HTML in nethelp, all locales
 
-* Tue Feb 29 2000 Bernhard Rosenkr‰nzer <bero@redhat.com>
+* Tue Feb 29 2000 Bernhard Rosenkr√§nzer <bero@redhat.com>
 - Add locale files for German
 - while at it, fix up the ISO-8859-15-entry for French and Spanish
 

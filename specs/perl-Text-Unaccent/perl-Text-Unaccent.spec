@@ -22,7 +22,7 @@ BuildRequires: perl
 
 %description
 Text::Unaccent is a module that provides functions to remove accents
-from a string.  For instance the string été will become ete.  The
+from a string.  For instance the string Ã©tÃ© will become ete.  The
 charset of the input string is specified as an argument. The input is
 converted to UTF-16 using iconv(3), accents are stripped and the
 result is converted back to the original charset. The iconv -l

@@ -133,7 +133,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 - Updated to release 4.2.0.
 
 * Sat Sep 03 2005 Dag Wieers <dag@wieers.com> - 4.1.4-2
-- Added python-crypto dependency. (Jim Perrin, Petr Klíma)
+- Added python-crypto dependency. (Jim Perrin, Petr KlÃ­ma)
 
 * Sat Aug 27 2005 Dries Verachtert <dries@ulyssis.org> - 4.1.4-1
 - Update to release 4.1.4.

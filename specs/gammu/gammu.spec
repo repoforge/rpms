@@ -103,7 +103,7 @@ you will need to install %{name}-devel.
 - Updated to release 0.94.0.
 
 * Sat Feb 07 2004 Dag Wieers <dag@wieers.com> - 0.93.0-1
-- Added BuildRequires for bluez-libs-devel. (Soós Péter)
+- Added BuildRequires for bluez-libs-devel. (SoÃ³s PÃ©ter)
 
 * Wed Feb 04 2004 Dag Wieers <dag@wieers.com> - 0.93.0-0
 - Initial package. (using DAR)

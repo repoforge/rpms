@@ -196,7 +196,7 @@ fi
 - Updated to release 0.7.0.
 
 * Wed Mar 23 2005 Dag Wieers <dag@wieers.com> - 0.6.1-3
-- Removed erroneous dovecot reference. (Zoltán Vörösbaranyi)
+- Removed erroneous dovecot reference. (ZoltÃ¡n VÃ¶rÃ¶sbaranyi)
 
 * Mon Feb 28 2005 Dag Wieers <dag@wieers.com> - 0.6.1-2
 - Added SDL-devel buildrequirement. (Matthias Saou)

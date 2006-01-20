@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Remko Tronçon <spike$ulyssis,org>
+# Upstream: Remko TronÃ§on <spike$ulyssis,org>
 
 # Schreenshot: http://spit.sf.net/images/screenshot-kde.jpg
 

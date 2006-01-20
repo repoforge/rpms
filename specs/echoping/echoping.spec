@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Stéphane Bortzmeyer <bortz$users,sf,net>
+# Upstream: StÃ©phane Bortzmeyer <bortz$users,sf,net>
 
 Summary: Test performances of a remote host by sending it TCP "echo" packets
 Name: echoping

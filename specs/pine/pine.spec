@@ -180,7 +180,7 @@ cd pinepgp-%{pgpver}
 - Updated to release 4.63.
 
 * Thu Mar 24 2005 Dag Wieers <dag@wieers.com> - 4.62-2
-- Fixed ownership of mlock. (Soós Péter)
+- Fixed ownership of mlock. (SoÃ³s PÃ©ter)
 
 * Sat Mar 19 2005 Dag Wieers <dag@wieers.com> - 4.62-1
 - Updated to release 4.62.

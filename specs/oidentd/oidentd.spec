@@ -98,7 +98,7 @@ fi
 - Rebuilt for Red Hat Linux 8.0.
 
 * Thu Aug 22 2002 Matthias Saou <http://freshrpms.net/>
-- Fixed the init script's status, thanks to Jørn for spotting this.
+- Fixed the init script's status, thanks to JÃ¸rn for spotting this.
 
 * Wed Aug 21 2002 Matthias Saou <http://freshrpms.net/>
 - Update to 2.0.4.

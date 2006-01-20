@@ -216,7 +216,7 @@ test -e /dev/dvd || test -L /dev/dvd || ln -s cdrom /dev/dvd || :
 
 * Wed Jun 12 2002 Matthias Saou <http://freshrpms.net/>
 - Update to 0.8.3.
-- Spec file cleanup and inclusion of the Ogle team changes (Bjˆrn & Martin).
+- Spec file cleanup and inclusion of the Ogle team changes (Bj√∂rn & Martin).
 
 * Wed May 15 2002 Matthias Saou <http://freshrpms.net/>
 - Rebuilt for Red Hat Linux 7.3 (added a workaround for libxml2).
@@ -235,18 +235,18 @@ test -e /dev/dvd || test -L /dev/dvd || ln -s cdrom /dev/dvd || :
 * Wed Oct 31 2001 Matthias Saou <http://freshrpms.net/>
 - Spec file cleanup and fixes.
 
-* Fri Oct 26 2001 Martin Norb‰ck <d95mback@dtek.chalmers.se>
+* Fri Oct 26 2001 Martin Norb√§ck <d95mback@dtek.chalmers.se>
 - Updated version to 0.8.1
-* Thu Oct 11 2001 Martin Norb‰ck <d95mback@dtek.chalmers.se>
+* Thu Oct 11 2001 Martin Norb√§ck <d95mback@dtek.chalmers.se>
 - Updated version to 0.8.0
-* Thu Sep 20 2001 Martin Norb‰ck <d95mback@dtek.chalmers.se>
+* Thu Sep 20 2001 Martin Norb√§ck <d95mback@dtek.chalmers.se>
 - Added missing .la files
-* Thu Sep 20 2001 Martin Norb‰ck <d95mback@dtek.chalmers.se>
+* Thu Sep 20 2001 Martin Norb√§ck <d95mback@dtek.chalmers.se>
 - Updated version to 0.7.5
 - Split into normal and devel package
-* Thu Sep 6 2001 Martin Norb‰ck <d95mback@dtek.chalmers.se>
+* Thu Sep 6 2001 Martin Norb√§ck <d95mback@dtek.chalmers.se>
 - Updated version to 0.7.4
-* Fri Aug 10 2001 Martin Norb‰ck <d95mback@dtek.chalmers.se>
+* Fri Aug 10 2001 Martin Norb√§ck <d95mback@dtek.chalmers.se>
 - Updated version to 0.7.2
-* Sun Jul 22 2001 Martin Norb‰ck <d95mback@dtek.chalmers.se>
+* Sun Jul 22 2001 Martin Norb√§ck <d95mback@dtek.chalmers.se>
 - initial version

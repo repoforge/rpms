@@ -82,7 +82,7 @@ find . -type d -and \( -name "CVS" -or -name ".xvpics" \) \
 - Added Polaris and Bluton skins.
 
 * Tue Jul  6 2004 Matthias Saou <http://freshrpms.net/> 1.8-1
-- Added blackslim2, caramel, Bambino-Blue (no more, it's big) and Antarès.
+- Added blackslim2, caramel, Bambino-Blue (no more, it's big) and AntarÃ¨s.
 
 * Mon Jan  5 2004 Matthias Saou <http://freshrpms.net/> 1.7-1
 - Removed cloudy (included in xine-ui).
@@ -100,10 +100,10 @@ find . -type d -and \( -name "CVS" -or -name ".xvpics" \) \
 - Rebuilt for Red Hat Linux 9.
 
 * Fri Mar 21 2003 Matthias Saou <http://freshrpms.net/>
-- Updated many skins to 0.9.19 versions from Jérôme.
+- Updated many skins to 0.9.19 versions from JÃ©rÃ´me.
 
 * Thu Feb 27 2003 Matthias Saou <http://freshrpms.net/>
-- Added Keramic_rh8 and oms_legacy, thanks Jérôme!
+- Added Keramic_rh8 and oms_legacy, thanks JÃ©rÃ´me!
 
 * Thu Jan 30 2003 Matthias Saou <http://freshrpms.net/>
 - Updated all skins to theur current versions (4.0 mostly).

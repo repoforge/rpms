@@ -61,6 +61,6 @@ find %{buildroot} -type f -print | \
 * Thu Mar  6 2003 Matthias Saou <http://freshrpms.net/>
 - Stole the package, minor cosmetic changes :-)
 
-* Sun Feb  9 2003 Ville Skytt‰ <ville.skytta at iki.fi> 1.11-1.fedora.1
+* Sun Feb  9 2003 Ville Skytt√§ <ville.skytta at iki.fi> 1.11-1.fedora.1
 - First Fedora release.
 

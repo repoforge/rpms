@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Gaël Roualland <gael,roualland$iname,com>
+# Upstream: GaÃ«l Roualland <gael,roualland$iname,com>
 
 %{?dist: %{expand: %%define %dist 1}}
 

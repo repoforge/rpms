@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Pádraig Brady <P$draigBrady,com>
+# Upstream: PÃ¡draig Brady <P$draigBrady,com>
 
 # ExclusiveDist: fc1 el3 rh9 rh8
 

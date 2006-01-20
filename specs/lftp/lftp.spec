@@ -67,7 +67,7 @@ export CPPFLAGS="-I/usr/kerberos/include"
 - Fixed missing ssl support on rh9 and el3. (Michael McCallister)
 
 * Thu Jul 14 2005 Dag Wieers <dag@wieers.com> - 3.2.1-2
-- Fixed openssl build. (Tomá¨ Janou¨ek)
+- Fixed openssl build. (TomÃ¡Â¨ JanouÂ¨ek)
 
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 3.2.1-1
 - Updated to release 3.2.1.

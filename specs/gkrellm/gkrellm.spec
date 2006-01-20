@@ -317,7 +317,7 @@ fi
 * Mon Oct 21 2002 Matthias Saou <http://freshrpms.net/>
 - Update to 2.1.0.
 
-* Sun Oct  6 2002 Ville Skytt‰ <ville.skytta at iki.fi> 1:2.0.4-fr2
+* Sun Oct  6 2002 Ville Skytt√§ <ville.skytta at iki.fi> 1:2.0.4-fr2
 - Install server to sbin instead of bin.
 - Include default config for the server.
 

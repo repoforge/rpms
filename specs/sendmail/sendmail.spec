@@ -811,14 +811,14 @@ exit 0
 * Fri Feb 16 2001 Tim Powers <timp@redhat.com>
 - don't obsolete postfix and exim, only conflict (for RHN purposes)
 
-* Thu Feb 15 2001 Trond Eivind Glomsrød <teg@redhat.com>
+* Thu Feb 15 2001 Trond Eivind GlomsrÃ¸d <teg@redhat.com>
 - obsolete and conflict with exim and postfix
 
 * Wed Feb 14 2001 Florian La Roche <Florian.LaRoche@redhat.de>
 - fix devision by zero bug in #20395
 - mv /usr/lib/sendmail-cf /usr/share/sendmail-cf
 
-* Wed Feb  7 2001 Trond Eivind Glomsrød <teg@redhat.com>
+* Wed Feb  7 2001 Trond Eivind GlomsrÃ¸d <teg@redhat.com>
 - i18n tweaks to initscript
 
 * Wed Feb 07 2001 Florian La Roche <Florian.LaRoche@redhat.de>
@@ -938,7 +938,7 @@ exit 0
 * Thu Feb 17 2000 Cristian Gafton <gafton@redhat.com>
 - break the hard link for makemap and create it as a symlnk (#8223)
 
-* Thu Feb 17 2000 Bernhard Rosenkränzer <bero@redhat.com>
+* Thu Feb 17 2000 Bernhard RosenkrÃ¤nzer <bero@redhat.com>
 - Fix location of mailertable (Bug #6035)
 
 * Sat Feb  5 2000 Bill Nottingham <notting@redhat.com>

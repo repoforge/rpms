@@ -68,7 +68,7 @@ recommended but not required in order to run pointless.
 - Fixed the libdir problem. (Jacob Weismann Poulsen)
 
 * Mon Feb 16 2004 Dag Wieers <dag@wieers.com> - 0.5-2
-- Fixed the libdir problem. (Stéphane Lentz)
+- Fixed the libdir problem. (StÃ©phane Lentz)
 
 * Sat Jan 31 2004 Dag Wieers <dag@wieers.com> - 0.5-1
 - Updated to release 0.5.
