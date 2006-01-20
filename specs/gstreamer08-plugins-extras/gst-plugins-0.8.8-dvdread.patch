@@ -1,0 +1,11 @@
+diff -Naupr gst-plugins-0.8.8.orig/ext/dvdread/stream_labels.h gst-plugins-0.8.8/ext/dvdread/stream_labels.h
+--- gst-plugins-0.8.8.orig/ext/dvdread/stream_labels.h	2005-01-09 20:00:28.000000000 +0100
++++ gst-plugins-0.8.8/ext/dvdread/stream_labels.h	2006-01-20 13:05:07.000000000 +0100
+@@ -17,6 +17,7 @@
+  * Boston, MA 02111-1307, USA.
+  */
+ 
++#include <inttypes.h>
+ #include <dvdread/ifo_types.h>
+ 
+ #include "dvdreadsrc.h"

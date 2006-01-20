@@ -1,10 +1,12 @@
 # $Id$
 # Authority: matthias
 
+# ExclusiveDist: fc5
+
 %define gst_minver 0.8.9
 %define gstp_minver 0.8.8
 %define majorminor 0.8
-%define gstreamer gstreamer
+%define gstreamer gstreamer08
 %define register %{_bindir}/gst-register-%{majorminor}
 
 # gst plugins we want (this is passed to configure with spaces converted to
@@ -31,7 +33,7 @@ BuildRequires: %{gstreamer}-devel >= %{gst_minver}
 # libtool needs this, sigh
 BuildRequires: gcc-c++
 # so gst-libs can build
-BuildRequires: XFree86-devel
+BuildRequires: libXt-devel
 # so configure passes
 BuildRequires: GConf2-devel
 # because we patch configure.in
@@ -67,6 +69,8 @@ Provides: %{gstreamer}-gsm = %{version}-%{release}
 Provides: %{gstreamer}-lame = %{version}-%{release}
 Provides: %{gstreamer}-mad = %{version}-%{release}
 Provides: %{gstreamer}-musepack = %{version}-%{release}
+
+Obsoletes: gstreamer-plugins-extra-audio <= 0.8.8
 
 %description audio
 This package contains extra audio plugins for GStreamer, including :
@@ -109,6 +113,8 @@ Provides: %{gstreamer}-dvd = %{version}-%{release}
 Provides: %{gstreamer}-dvdnavsrc = %{version}-%{release}
 Provides: %{gstreamer}-dvdreadsrc = %{version}-%{release}
 
+Obsoletes: gstreamer-plugins-extra-dvd <= 0.8.8
+
 %description dvd
 This package contains dvd plugins for GStreamer, including :
 - libdvdnav
@@ -142,6 +148,8 @@ Requires(post): %{register}
 Provides: %{gstreamer}-libfame = %{version}-%{release}
 Provides: %{gstreamer}-mpeg2dec = %{version}-%{release}
 Provides: %{gstreamer}-swfdec = %{version}-%{release}
+
+Obsoletes: gstreamer-plugins-extra-video <= 0.8.8
 
 %description video
 This package contains extra video plugins for GStreamer, including :
@@ -231,6 +239,7 @@ cd ..
 
 %changelog
 * Fri Jan 20 2006 Matthias Saou <http://freshrpms.net/> 0.8.8-3
+- Rename to gstreamer08-plugins-extras for 0.8.x FC5 compatibility.
 - Include patch to fix dvdread include with recent versions of the lib.
 
 * Tue May 10 2005 Matthias Saou <http://freshrpms.net/> 0.8.8-2

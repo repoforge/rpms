@@ -1,10 +1,12 @@
 # $Id$
 # Authority: matthias
 
+# ExclusiveDist: fc5
+
 %define gst_minver 0.8.0
 %define gstp_minver 0.8.0
 %define majorminor 0.8
-%define gstreamer gstreamer
+%define gstreamer gstreamer08
 %define register %{_bindir}/gst-register-%{majorminor}
 
 Summary: GStreamer streaming media framework Monkey's Audio plugin
@@ -25,6 +27,7 @@ BuildRequires: %{gstreamer}-plugins-devel >= %{gstp_minver}
 Buildrequires: mac-devel
 # libtool needs this, sigh
 BuildRequires: gcc-c++
+Obsoletes: gstreamer-monkeysaudio <= 0.8.2
 
 %description
 GStreamer is a streaming-media framework, based on graphs of filters which
@@ -71,6 +74,9 @@ This package provides a plugin to decode Monkey's Audio (.ape) files.
 
 
 %changelog
+* Fri Jan 20 2006 Matthias Saou <http://freshrpms.net/> 0.8.2-1
+- Rename to gstreamer08-monkeysaudio for 0.8.x compatibility on FC5.
+
 * Thu Jan 19 2006 Matthias Saou <http://freshrpms.net/> 0.8.2-1
 - Update to 0.8.2.
 - Remove no longer needed 64bit patch.

@@ -1,35 +1,33 @@
 # $Id$
 # Authority: matthias
 
-# ExclusiveDist: fc5
-
-%define desktop_vendor rpmforge
-
-%define gst_minver 0.10.0
-%define gstpb_minver 0.10.0
-%define majorminor 0.10
+%define gst_minver 0.8.0
+%define gstp_minver 0.8.0
+%define majorminor 0.8
 %define gstreamer gstreamer
+%define register %{_bindir}/gst-register-%{majorminor}
 
 Summary: GStreamer streaming media framework FFmpeg-based plugin
 Name: %{gstreamer}-ffmpeg
-Version: 0.10.0
+Version: 0.8.7
 Release: 1
-License: LGPL
+License: GPL
 Group: Applications/Multimedia
 URL: http://gstreamer.net/
 Source: http://gstreamer.freedesktop.org/src/gst-ffmpeg/gst-ffmpeg-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Requires(pre): %{register}
+Requires(post): %{register}
 Requires: %{gstreamer} >= %{gst_minver}
-Requires: %{gstreamer}-plugins-base >= %{gstpb_minver}
+Requires: %{gstreamer}-plugins >= %{gstp_minver}
 BuildRequires: %{gstreamer}-devel >= %{gst_minver}
-BuildRequires: %{gstreamer}-plugins-base-devel >= %{gstpb_minver}
+BuildRequires: %{gstreamer}-plugins-devel >= %{gstp_minver}
 # libtool needs this, sigh
 BuildRequires: gcc-c++
 # The FFmpeg dependencies we need to get the codecs we want
 BuildRequires: freetype-devel
 BuildRequires: imlib2-devel
 BuildRequires: SDL-devel
-BuildRequires: alsa-lib-devel
 
 %description
 GStreamer is a streaming-media framework, based on graphs of filters which
@@ -39,20 +37,17 @@ else media-related.  Its plugin-based architecture means that new data
 types or processing capabilities can be added simply by installing new 
 plugins.
 
-This package provides FFmpeg-based GStreamer plug-ins.
-
 
 %prep
 %setup -n gst-ffmpeg-%{version}
 
 
 %build
-%configure \
 %ifarch ppc
-    --disable-altivec \
+%configure --disable-altivec
+%else
+%configure
 %endif
-    --with-package-name='gst-plugins-ffmpeg %{desktop_vendor} rpm' \
-    --with-package-origin='http://www.rpmforge.net/'
 %{__make} %{?_smp_mflags}
 
 
@@ -65,23 +60,23 @@ This package provides FFmpeg-based GStreamer plug-ins.
 %{__rm} -rf %{buildroot}
 
 
+%post
+%{register} &>/dev/null || :
+
+%postun
+%{register} &>/dev/null || :
+
+
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING NEWS README TODO
 %{_libdir}/gstreamer-%{majorminor}/libgstffmpeg.so
-#{_libdir}/gstreamer-%{majorminor}/libgstpostproc.so
+%{_libdir}/gstreamer-%{majorminor}/libgstpostproc.so
 %exclude %{_libdir}/gstreamer-%{majorminor}/libgstffmpeg.la
-#exclude %{_libdir}/gstreamer-%{majorminor}/libgstpostproc.la
+%exclude %{_libdir}/gstreamer-%{majorminor}/libgstpostproc.la
 
 
 %changelog
-* Thu Jan 19 2006 Matthias Saou <http://freshrpms.net/> 0.10.0-1
-- Update to 0.10.0.
-- Update plugins dependencies to plugins-base.
-- Remove no longer needed "register" calls.
-- Add alsa-lib-devel build requirement.
-- Remove no longer provided postproc library.
-
 * Fri Dec  2 2005 Matthias Saou <http://freshrpms.net/> 0.8.7-1
 - Update to 0.8.7.
 

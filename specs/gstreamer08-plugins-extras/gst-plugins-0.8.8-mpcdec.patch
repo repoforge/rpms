@@ -1,0 +1,76 @@
+Index: configure.ac
+===================================================================
+RCS file: /cvs/gstreamer/gst-plugins/configure.ac,v
+retrieving revision 1.524.2.18
+diff -u -r1.524.2.18 configure.ac
+--- configure.ac	18 Apr 2005 14:17:33 -0000	1.524.2.18
++++ configure.ac	6 May 2005 13:38:00 -0000
+@@ -1489,9 +1489,9 @@
+ translit(dnm, m, l) AM_CONDITIONAL(USE_MUSEPACK, true)
+ GST_CHECK_FEATURE(MUSEPACK, [musepackdec], musepack, [
+   AC_LANG_CPLUSPLUS
+-  AC_CHECK_HEADER([musepack/musepack.h], [
++  AC_CHECK_HEADER([mpcdec/mpcdec.h], [
+     HAVE_MUSEPACK="yes"
+-    MUSEPACK_LIBS="-lmusepack"
++    MUSEPACK_LIBS="-lmpcdec"
+     AC_SUBST(MUSEPACK_LIBS)
+     ], [HAVE_MUSEPACK="no"])
+   AC_LANG_C
+Index: ext/musepack/gstmusepackdec.h
+===================================================================
+RCS file: /cvs/gstreamer/gst-plugins/ext/musepack/gstmusepackdec.h,v
+retrieving revision 1.3
+diff -u -r1.3 gstmusepackdec.h
+--- ext/musepack/gstmusepackdec.h	29 Jan 2005 01:28:34 -0000	1.3
++++ ext/musepack/gstmusepackdec.h	6 May 2005 13:38:02 -0000
+@@ -22,7 +22,7 @@
+ 
+ #include <gst/gst.h>
+ #include <gst/bytestream/bytestream.h>
+-#include <musepack/musepack.h>
++#include <mpcdec/mpcdec.h>
+ #include "gstmusepackreader.h"
+ 
+ G_BEGIN_DECLS
+Index: ext/musepack/gstmusepackreader.c
+===================================================================
+RCS file: /cvs/gstreamer/gst-plugins/ext/musepack/gstmusepackreader.c,v
+retrieving revision 1.4
+diff -u -r1.4 gstmusepackreader.c
+--- ext/musepack/gstmusepackreader.c	29 Jan 2005 01:28:34 -0000	1.4
++++ ext/musepack/gstmusepackreader.c	6 May 2005 13:38:02 -0000
+@@ -89,7 +89,7 @@
+   return read;
+ }
+ 
+-static BOOL
++static mpc_bool_t
+ gst_musepack_reader_seek (void *this, mpc_int32_t offset)
+ {
+   GstByteStream *bs = this;
+@@ -126,7 +126,7 @@
+   return gst_bytestream_length (bs);
+ }
+ 
+-static BOOL
++static mpc_bool_t
+ gst_musepack_reader_canseek (void *this)
+ {
+   return TRUE;
+Index: ext/musepack/gstmusepackreader.h
+===================================================================
+RCS file: /cvs/gstreamer/gst-plugins/ext/musepack/gstmusepackreader.h,v
+retrieving revision 1.3
+diff -u -r1.3 gstmusepackreader.h
+--- ext/musepack/gstmusepackreader.h	29 Jan 2005 01:28:34 -0000	1.3
++++ ext/musepack/gstmusepackreader.h	6 May 2005 13:38:03 -0000
+@@ -20,7 +20,7 @@
+ #ifndef __GST_MUSEPACK_READER_H__
+ #define __GST_MUSEPACK_READER_H__
+ 
+-#include <musepack/musepack.h>
++#include <mpcdec/mpcdec.h>
+ #include <gst/bytestream/bytestream.h>
+ 
+ void gst_musepack_init_reader (mpc_reader * r, GstByteStream * bs);
