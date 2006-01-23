@@ -1,13 +1,13 @@
 # $Id$
 # Authority: matthias
 
-%define prever RC1
+#define prever RC1
 %define xmms_inputdir %(xmms-config --input-plugin-dir 2>/dev/null || echo %{_libdir}/xmms/Input)
 
 Summary: X MultiMedia System input plugin to play mpegplus (mpc) files
 Name: xmms-musepack
 Version: 1.2
-Release: 0.2%{?prever:.%{prever}}
+Release: 1%{?prever:.%{prever}}
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.musepack.net/
@@ -46,6 +46,9 @@ X MultiMedia System input plugin to play mpegplus, aka mpc files.
 
 
 %changelog
+* Mon Jan 23 2006 Matthias Saou <http://freshrpms.net/> 1.2-1
+- Update to 1.2 final.
+
 * Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 1.2-0.2.RC1
 - Add pkgconfig build requirement to fix build.
 

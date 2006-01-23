@@ -1,13 +1,13 @@
 # $Id$
 # Authority: matthias
 
-%define prever RC1
+#define prever RC1
 %define bmp_inputdir %(pkg-config --variable=input_plugin_dir bmp 2>/dev/null || echo %{_libdir}/bmp/Input)
 
 Summary: Mpegplus (mpc) playback plugin for the Beep Media Player
 Name: bmp-musepack
 Version: 1.2
-Release: 0.1%{?prever:.%{prever}}
+Release: 1%{?prever:.%{prever}}
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.musepack.net/
@@ -48,6 +48,9 @@ and is based on ("forked off") XMMS.
 
 
 %changelog
+* Mon Jan 23 2006 Matthias Saou <http://freshrpms.net/> 1.2-1
+- Update to 1.2 final.
+
 * Mon May  9 2005 Matthias Saou <http://freshrpms.net/> 1.2-0.1.RC1
 - Update to 1.2-RC1.
 - Now build against new libmpcdec and not libmusepack.
