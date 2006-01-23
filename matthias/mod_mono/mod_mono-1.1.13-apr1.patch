@@ -1,0 +1,12 @@
+diff -Naupr mod_mono-1.1.13.orig/src/mod_mono.c mod_mono-1.1.13/src/mod_mono.c
+--- mod_mono-1.1.13.orig/src/mod_mono.c	2006-01-06 20:20:15.000000000 +0100
++++ mod_mono-1.1.13/src/mod_mono.c	2006-01-23 15:10:40.000000000 +0100
+@@ -1164,7 +1164,7 @@ setup_socket (apr_socket_t **sock, xsp_d
+ 
+ 	family = (conf->listen_port != NULL) ? PF_INET : PF_UNIX;
+ #ifdef APACHE2
+-	rv = apr_socket_create (sock, family, SOCK_STREAM, pool);
++	rv = apr_socket_create (sock, family, SOCK_STREAM, APR_PROTO_TCP, pool);
+ #else
+ 	(*sock)->fd = ap_psocket (pool, family, SOCK_STREAM, 0);
+ 	(*sock)->pool = pool;
