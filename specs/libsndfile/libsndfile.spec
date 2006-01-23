@@ -11,7 +11,7 @@
 
 Summary: Library for reading and writing files containing sampled sound
 Name: libsndfile
-Version: 1.0.12
+Version: 1.0.13
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -62,11 +62,9 @@ documentation for libsndfile.
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files
@@ -88,6 +86,9 @@ documentation for libsndfile.
 
 
 %changelog
+* Mon Jan 23 2006 Matthias Saou <http://freshrpms.net/> 1.0.13-1
+- Update to 1.0.13.
+
 * Fri Sep 30 2005 Matthias Saou <http://freshrpms.net/> 1.0.12-1
 - Update to 1.0.12.
 - Enabled new FLAC support (not sqlite3, though).
