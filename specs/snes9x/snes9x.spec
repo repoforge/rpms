@@ -12,13 +12,14 @@
 Summary: Portable, freeware Super Nintendo Entertainment System (TM) emulator
 Name: snes9x
 Version: 1.43
-Release: 4
+Release: 5
 License: Other
 Group: Applications/Emulators
 URL: http://www.snes9x.com/
 Source: http://www.lysator.liu.se/snes9x/%{version}%{?prever}/snes9x-%{version}%{?prever}-src.tar.gz
 Patch0: snes9x-1.43-src-gcc4.patch
 Patch1: snes9x-1.43-usagemsg.patch
+Patch2: snes9x-1.43-wmclass.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, zlib-devel, libpng-devel
 %{?_with_opengl:BuildRequires: %{_libdir}/libGL.so}
@@ -38,6 +39,7 @@ and Super Famicom Nintendo game systems on your computer.
 %setup -n %{name}-%{version}%{?prever:-dev}-src
 %patch0 -p1 -b .gcc4
 %patch1 -p0 -b .usagemsg
+%patch2 -p1 -b .wmclass
 
 
 %build
@@ -68,6 +70,9 @@ popd
 
 
 %changelog
+* Tue Jan 24 2006 Matthias Saou <http://freshrpms.net/> 1.43-5
+- Add wmclass patch from Bryan Moffit.
+
 * Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 1.43-4
 - Add modular xorg build conditional.
 

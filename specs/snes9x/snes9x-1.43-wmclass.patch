@@ -1,0 +1,17 @@
+--- snes9x-1.43-src/snes9x/unix/x11.cpp_old	2005-12-31 20:02:44.000000000 -0500
++++ snes9x-1.43-src/snes9x/unix/x11.cpp	2006-01-01 19:14:01.487158707 -0500
+@@ -524,8 +524,13 @@ supporting PseudoColor, TrueColor or Gra
+     GUI.cross_hair_cursor = XCreateFontCursor (GUI.display, XC_crosshair);
+     GUI.gc = DefaultGCOfScreen (GUI.screen);
+     {
++        XClassHint classhint;
+         XSizeHints Hints;
+-	XWMHints WMHints;
++        XWMHints WMHints;
++
++	classhint.res_name = "snes9x";
++	classhint.res_class = "Snes9x";
++	XSetClassHint(GUI.display, GUI.window, &classhint);
+ 
+ 	memset ((void *) &Hints, 0, sizeof (XSizeHints));
+ 	memset ((void *) &WMHints, 0, sizeof (XWMHints));
