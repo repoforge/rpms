@@ -1,0 +1,77 @@
+diff -Naupr mach-0.4.8.2.orig/scripts/mach.in mach-0.4.8.2-uid500fix/scripts/mach.in
+--- mach-0.4.8.2.orig/scripts/mach.in	2006-01-22 19:29:47.000000000 +0100
++++ mach-0.4.8.2-uid500fix/scripts/mach.in	2006-01-24 14:37:27.000000000 +0100
+@@ -1036,6 +1036,11 @@ class Root:
+                 debug ("BuildRequires after filtering: %s" % buildreqs)
+                 # only try to install if filtering left buildreqs
+                 if (buildreqs):
++
++                    # FIXME : workaround as owner here must be the "outside" user
++                    self.do_chroot ("cd /usr/src/rpm/RPMS && test -d repodata/ && chown -R %s repodata/ || true" %
++                        os.getuid ())
++
+                     update_local_repo (self.config)
+                     try:
+                         # wrap all buildreqs in quotes
+@@ -1114,6 +1119,10 @@ class Root:
+             else:
+                nrcpus = os.environ['RPM_BUILD_NCPUS']
+ 
++            # FIXME : workaround as owner here must be the "outside" user
++            self.do_chroot ("chown %s:%s /usr/src/rpm/SOURCES/*" %
++                (os.getuid (), buildgroup))
++
+             # run an rpmbuild test using the root argument to check for
+             # fulfilled BuildRequires, using the host's rpmbuild
+             # so that it understands the created database
+@@ -1134,6 +1143,10 @@ class Root:
+             except self.ReturnValue, (retval, output):
+                 raise self.Error, "BuildRequires not met:\n%s" % output
+ 
++            # FIXME : workaround as owner here must now be the "inside" user
++            self.do_chroot ("chown %s:%s /usr/src/rpm/SOURCES/*" %
++                (builduser, buildgroup))
++
+             # rebuild from spec inside chroot, note: using a login shell
+             # in order to get a vanilla default environment
+             # we use --nodeps here so that the build doesn't try to read
+@@ -1468,6 +1481,10 @@ reposdir = /../../../../..''' + os.path.
+ 
+         self.set_state ("yum.conf", conf)
+ 
++        # FIXME : workaround as owner here must be the "outside" user
++        self.do_chroot ("cd /usr/src/rpm/RPMS && test -d repodata/ && chown -R %s repodata/ || true" %
++            os.getuid ())
++
+         # create sources.list
+         srcs = get_sources_dict (config)
+         create_sources_list (config, srcs)
+@@ -1564,8 +1581,8 @@ reposdir = /../../../../..''' + os.path.
+ 
+         # create dir structure
+         for dir in ('RPMS', 'SRPMS', 'SOURCES', 'SPECS', 'BUILD'):
+-            self.do_chroot ("%s -c 'mkdir -p /usr/src/rpm/%s' %s" %
+-                            (self.config['runuser'], dir, builduser), fatal = True)
++            self.do_chroot ("%s -c 'mkdir -p /usr/src/rpm/%s; chmod 775 /usr/src/rpm/%s' %s" %
++                            (self.config['runuser'], dir, dir, builduser), fatal = True)
+ 
+         # this ensures that locally built RPMS are already used for apt-get
+         for dir in ('RPMS', 'SRPMS'):
+@@ -1878,7 +1895,7 @@ def update_local_repo (config):
+     root = config['root']
+     rootdir = get_config_dir (config, 'root')
+     if config['installer'] == 'yum':
+-        line = 'file://%s/usr/src/rpm/RPMS.mach-local' % rootdir
++        line = 'file://%s/usr/src/rpm/RPMS' % rootdir
+     else:
+         line = 'rpm-dir file://%s/usr/src rpm mach-local' % rootdir
+     srcs['local.%s' % root] = line
+@@ -1918,7 +1935,7 @@ def create_sources_list (config, list):
+             ensure_dir (os.path.join (root, 'var/cache/mach/yum/%s/headers' % source))
+             if source.startswith('local.'):
+                 debug ('updating local repository %s' % source)
+-                cmd = 'createrepo %s/usr/src/rpm/RPMS.mach-local' % root
++                cmd = 'createrepo %s/usr/src/rpm/RPMS' % root
+                 (status, output) = do_with_output (cmd, False)
+                 if status != 0:
+                     raise Exception, "Could not update local yum repository"

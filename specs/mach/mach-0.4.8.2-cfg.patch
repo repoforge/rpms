@@ -1,57 +1,6 @@
-diff -Naupr mach-0.4.8.orig/configure.in mach-0.4.8-cfgchange/configure.in
---- mach-0.4.8.orig/configure.in	2005-11-21 17:00:51.000000000 +0100
-+++ mach-0.4.8-cfgchange/configure.in	2005-12-14 13:30:07.000000000 +0100
-@@ -83,19 +83,20 @@ AC_MSG_NOTICE(Using build groupname $BUI
- 
- dnl default root
- dnl first try to guess the platform
--CHECK_RELEASE(fedora,    "(Stentz)",     defaultroot="fedora-4-i386")
--CHECK_RELEASE(fedora,    "(Heidelberg)", defaultroot="fedora-3-i386")
--CHECK_RELEASE(fedora,    "(Tettnang)",   defaultroot="fedora-2-i386")
--CHECK_RELEASE(fedora,    "(Yarrow)",     defaultroot="fedora-1-i386")
--
--CHECK_RELEASE(redhat,    "(Guinness)",   defaultroot="redhat-70-i386")
--CHECK_RELEASE(redhat,    "(Seawolf)",    defaultroot="redhat-71-i386")
--CHECK_RELEASE(redhat,    "(Enigma)",     defaultroot="redhat-72-i386")
--CHECK_RELEASE(redhat,    "(Valhalla)",   defaultroot="redhat-73-i386")
--CHECK_RELEASE(redhat,    "(Psyche)",     defaultroot="redhat-80-i386")
--CHECK_RELEASE(redhat,    "(Shrike)",     defaultroot="redhat-9-i386")
-+CHECK_RELEASE(fedora,    "(Stentz)",     defaultroot="fedora-4-i386-core")
-+CHECK_RELEASE(fedora,    "(Heidelberg)", defaultroot="fedora-3-i386-core")
-+CHECK_RELEASE(fedora,    "(Tettnang)",   defaultroot="fedora-2-i386-core")
-+CHECK_RELEASE(fedora,    "(Yarrow)",     defaultroot="fedora-1-i386-core")
-+
-+CHECK_RELEASE(redhat,    "(Guinness)",   defaultroot="redhat-70-i386-os")
-+CHECK_RELEASE(redhat,    "(Seawolf)",    defaultroot="redhat-71-i386-os")
-+CHECK_RELEASE(redhat,    "(Enigma)",     defaultroot="redhat-72-i386-os")
-+CHECK_RELEASE(redhat,    "(Valhalla)",   defaultroot="redhat-73-i386-os")
-+CHECK_RELEASE(redhat,    "(Psyche)",     defaultroot="redhat-80-i386-os")
-+CHECK_RELEASE(redhat,    "(Shrike)",     defaultroot="redhat-9-i386-os")
- 
--CHECK_RELEASE(yellowdog, "(Sirius)",     defaultroot="yellowdog-30-ppc")
-+CHECK_RELEASE(yellowdog, "(Orion)",      defaultroot="yellowdog-40-ppc-os")
-+CHECK_RELEASE(yellowdog, "(Sirius)",     defaultroot="yellowdog-30-ppc-os")
- 
- dnl now append a modifier if asked for
- 
-diff -Naupr mach-0.4.8.orig/etc/conf.in mach-0.4.8-cfgchange/etc/conf.in
---- mach-0.4.8.orig/etc/conf.in	2004-11-07 17:47:59.000000000 +0100
-+++ mach-0.4.8-cfgchange/etc/conf.in	2005-12-15 14:09:18.000000000 +0100
-@@ -35,11 +35,6 @@ nameserver 192.168.1.1
- ''',
-     '/etc/hosts': '''
- 127.0.0.1 localhost localhost.localdomain
--''',
--    '/usr/bin/apt-sigchecker': '''#!/bin/bash
--while read p; do
--/bin/true
--done
- '''
- }
- 
-diff -Naupr mach-0.4.8.orig/etc/dist.d/cnc-9-i386 mach-0.4.8-cfgchange/etc/dist.d/cnc-9-i386
---- mach-0.4.8.orig/etc/dist.d/cnc-9-i386	2004-03-28 21:04:16.000000000 +0200
-+++ mach-0.4.8-cfgchange/etc/dist.d/cnc-9-i386	1970-01-01 01:00:00.000000000 +0100
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/cnc-9-i386 mach-0.4.8.2-cfgchange/etc/dist.d/cnc-9-i386
+--- mach-0.4.8.2.orig/etc/dist.d/cnc-9-i386	2006-01-22 11:41:22.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/cnc-9-i386	1970-01-01 01:00:00.000000000 +0100
 @@ -1,36 +0,0 @@
 -# mach dist configuration                          -*- python -*-
 -
@@ -89,9 +38,9 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/cnc-9-i386 mach-0.4.8-cfgchange/etc/dist.
 -}
 -config['cnc-9-i386-updates'] = {}
 -aliases['cnc-9-i386-updates'] = ('cnc9u', )
-diff -Naupr mach-0.4.8.orig/etc/dist.d/davedina mach-0.4.8-cfgchange/etc/dist.d/davedina
---- mach-0.4.8.orig/etc/dist.d/davedina	2004-07-29 10:26:35.000000000 +0200
-+++ mach-0.4.8-cfgchange/etc/dist.d/davedina	1970-01-01 01:00:00.000000000 +0100
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/davedina mach-0.4.8.2-cfgchange/etc/dist.d/davedina
+--- mach-0.4.8.2.orig/etc/dist.d/davedina	2006-01-22 11:41:22.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/davedina	1970-01-01 01:00:00.000000000 +0100
 @@ -1,37 +0,0 @@
 -# mach dist configuration                          -*- python -*-
 -
@@ -130,9 +79,9 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/davedina mach-0.4.8-cfgchange/etc/dist.d/
 -}
 -config['davedina-00-oven'] = {}
 -aliases['davedina-00-oven'] = ('dd00o', 'ddo', )
-diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-1-i386 mach-0.4.8-cfgchange/etc/dist.d/fedora-1-i386
---- mach-0.4.8.orig/etc/dist.d/fedora-1-i386	2005-09-17 23:08:13.000000000 +0200
-+++ mach-0.4.8-cfgchange/etc/dist.d/fedora-1-i386	1970-01-01 01:00:00.000000000 +0100
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/fedora-1-i386 mach-0.4.8.2-cfgchange/etc/dist.d/fedora-1-i386
+--- mach-0.4.8.2.orig/etc/dist.d/fedora-1-i386	2006-01-22 11:41:22.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/fedora-1-i386	1970-01-01 01:00:00.000000000 +0100
 @@ -1,142 +0,0 @@
 -# mach dist configuration                                        -*- python -*-
 -
@@ -164,7 +113,7 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-1-i386 mach-0.4.8-cfgchange/etc/di
 -
 -# Fedora Core 1
 -packages['fedora-1-i386-core'] = {
--    'dir':      'fedoracore-1-i386',
+-    'dir':      'fedora-1-i386',
 -    'minimal':  'bash glibc',
 -    'base':     'coreutils findutils openssh-server',
 -    'build':    'dev rpm-build make gcc-c++ tar gzip patch ' +
@@ -276,9 +225,9 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-1-i386 mach-0.4.8-cfgchange/etc/di
 -}
 -config['fedora-1-i386-jpackage'] = {}
 -aliases['fedora-1-i386-jpackage'] = ('fc1jpp', )
-diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-2-i386 mach-0.4.8-cfgchange/etc/dist.d/fedora-2-i386
---- mach-0.4.8.orig/etc/dist.d/fedora-2-i386	2005-09-17 23:08:06.000000000 +0200
-+++ mach-0.4.8-cfgchange/etc/dist.d/fedora-2-i386	1970-01-01 01:00:00.000000000 +0100
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/fedora-2-i386 mach-0.4.8.2-cfgchange/etc/dist.d/fedora-2-i386
+--- mach-0.4.8.2.orig/etc/dist.d/fedora-2-i386	2006-01-22 11:41:22.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/fedora-2-i386	1970-01-01 01:00:00.000000000 +0100
 @@ -1,142 +0,0 @@
 -# mach dist configuration                                        -*- python -*-
 -
@@ -310,7 +259,7 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-2-i386 mach-0.4.8-cfgchange/etc/di
 -
 -# Fedora Core 2
 -packages['fedora-2-i386-core'] = {
--    'dir':      'fedoracore-2-i386',
+-    'dir':      'fedora-2-i386',
 -    'minimal':  'bash glibc',
 -    'base':     'coreutils findutils openssh-server',
 -    'build':    'dev rpm-build make gcc gcc-c++ tar gzip patch ' +
@@ -422,9 +371,9 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-2-i386 mach-0.4.8-cfgchange/etc/di
 -}
 -config['fedora-2-i386-jpackage'] = {}
 -aliases['fedora-2-i386-jpackage'] = ('fc2jpp', )
-diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-3-i386 mach-0.4.8-cfgchange/etc/dist.d/fedora-3-i386
---- mach-0.4.8.orig/etc/dist.d/fedora-3-i386	2005-09-17 23:07:52.000000000 +0200
-+++ mach-0.4.8-cfgchange/etc/dist.d/fedora-3-i386	2005-12-19 18:58:47.000000000 +0100
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/fedora-3-i386 mach-0.4.8.2-cfgchange/etc/dist.d/fedora-3-i386
+--- mach-0.4.8.2.orig/etc/dist.d/fedora-3-i386	2006-01-22 11:41:22.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/fedora-3-i386	2005-12-19 18:58:47.000000000 +0100
 @@ -1,146 +1,104 @@
  # mach dist configuration                                        -*- python -*-
  
@@ -481,7 +430,7 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-3-i386 mach-0.4.8-cfgchange/etc/di
  
  # Fedora Core
 -packages['fedora-' + V + '-' + A + '-core'] = {
--  'dir':      'fedoracore-' + V + '-' + A ,
+-  'dir':      'fedora-' + V + '-' + A ,
 -  'minimal':  'bash glibc',
 +packages[DVA + '-core'] = {
 +  'dir':      DVA,
@@ -641,10 +590,10 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-3-i386 mach-0.4.8-cfgchange/etc/di
 +config[DVA + '-jpackage'] = config[DVA + '-core']
 +aliases[DVA + '-jpackage'] = ('fc' + V + 'jpp' + AS, )
 +
-diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-3-x86_64 mach-0.4.8-cfgchange/etc/dist.d/fedora-3-x86_64
---- mach-0.4.8.orig/etc/dist.d/fedora-3-x86_64	2005-06-14 20:56:22.000000000 +0200
-+++ mach-0.4.8-cfgchange/etc/dist.d/fedora-3-x86_64	2005-12-19 18:59:00.000000000 +0100
-@@ -1,147 +1,104 @@
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/fedora-3-x86_64 mach-0.4.8.2-cfgchange/etc/dist.d/fedora-3-x86_64
+--- mach-0.4.8.2.orig/etc/dist.d/fedora-3-x86_64	2006-01-22 11:41:22.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/fedora-3-x86_64	2006-01-24 11:58:21.000000000 +0100
+@@ -1,150 +1,106 @@
  # mach dist configuration                                        -*- python -*-
  
 -# fedora-3-x86_64: configuration for Fedora 3
@@ -701,7 +650,7 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-3-x86_64 mach-0.4.8-cfgchange/etc/
  
  # Fedora Core
 -packages['fedora-' + V + '-' + A + '-core'] = {
--  'dir':      'fedoracore-' + V + '-' + A ,
+-  'dir':      'fedora-' + V + '-' + A ,
 -  'minimal':  'bash glibc',
 +packages[DVA + '-core'] = {
 +  'dir':      DVA,
@@ -718,9 +667,12 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-3-x86_64 mach-0.4.8-cfgchange/etc/
 +  DVA : ('core', )
  }
 -# FC3 roots should use runuser instead of su
--config['fedora-' + V + '-' + A + '-core'] = {'runuser': '/sbin/runuser'}
+-config['fedora-' + V + '-' + A + '-core'] = {
+-  'runuser': '/sbin/runuser',
++config[DVA + '-core'] = {
+   'excludearch': 'i386 i486 i586 i686 athlon',
+ }
 -aliases['fedora-' + V + '-' + A + '-core'] = ('f' + V + 'c' + AS, 'fc' + V + AS, )
-+config[DVA + '-core'] = {}
 +aliases[DVA + '-core'] = ('f' + V + 'c' + AS, 'fc' + V + AS, )
  
  # Fedora Core with updates
@@ -747,12 +699,13 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-3-x86_64 mach-0.4.8-cfgchange/etc/
 +  sourceslist[DVA + '-updates'][DVA ] +
    ('extras', )
  }
--config['fedora-' + V + '-' + A + '-extras'] = {
--  'runuser': '/sbin/runuser',
+-config['fedora-' + V + '-' + A + '-extras'] = config['fedora-' + V + '-' + A + '-core'].copy()
+-config['fedora-' + V + '-' + A + '-extras'].update({
 +config[DVA + '-extras'] = {
    'buildopts': "--define 'dist .fc" + V + "'",
- }
+-})
 -aliases['fedora-' + V + '-' + A + '-extras'] = ('f' + V + 'e' + AS, )
++}
 +aliases[DVA + '-extras'] = ('f' + V + 'e' + AS, )
  
  # Fedora Core with GStreamer
@@ -763,12 +716,13 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-3-x86_64 mach-0.4.8-cfgchange/etc/
 +sourceslist[DVA + '-gstreamer'] = {
 +  DVA : ('core', 'updates', 'extras', 'gstreamer-deps', 'gstreamer-build', 'gstreamer')
  }
--config['fedora-' + V + '-' + A + '-gstreamer'] = {
--  'runuser': '/sbin/runuser',
+-config['fedora-' + V + '-' + A + '-gstreamer'] = config['fedora-' + V + '-' + A + '-core'].copy()
+-config['fedora-' + V + '-' + A + '-gstreamer'].update({
 +config[DVA + '-gstreamer'] = {
    'release': V,
- }
+-})
 -aliases['fedora-' + V + '-' + A + '-gstreamer'] = ('f' + V + 'g' + AS, )
++}
 +aliases[DVA + '-gstreamer'] = ('f' + V + 'g' + AS, )
  
 -packages['fedora-' + V + '-' + A + '-gstreamer-deps'] = packages['fedora-' + V + '-' + A + '-core']
@@ -861,9 +815,9 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-3-x86_64 mach-0.4.8-cfgchange/etc/
 +config[DVA + '-jpackage'] = config[DVA + '-core']
 +aliases[DVA + '-jpackage'] = ('fc' + V + 'jpp' + AS, )
 +
-diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-4-i386 mach-0.4.8-cfgchange/etc/dist.d/fedora-4-i386
---- mach-0.4.8.orig/etc/dist.d/fedora-4-i386	2005-09-17 23:07:43.000000000 +0200
-+++ mach-0.4.8-cfgchange/etc/dist.d/fedora-4-i386	2005-12-19 18:59:12.000000000 +0100
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/fedora-4-i386 mach-0.4.8.2-cfgchange/etc/dist.d/fedora-4-i386
+--- mach-0.4.8.2.orig/etc/dist.d/fedora-4-i386	2006-01-22 19:08:05.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/fedora-4-i386	2005-12-19 18:59:12.000000000 +0100
 @@ -1,35 +1,14 @@
  # mach dist configuration                                        -*- python -*-
  
@@ -914,7 +868,7 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-4-i386 mach-0.4.8-cfgchange/etc/di
  
  # Fedora Core
 -packages['fedora-' + V + '-' + A + '-core'] = {
--  'dir':      'fedoracore-' + V + '-' + A ,
+-  'dir':      'fedora-' + V + '-' + A ,
 -  'minimal':  'bash glibc',
 +packages[DVA + '-core'] = {
 +  'dir':      DVA,
@@ -1052,9 +1006,9 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-4-i386 mach-0.4.8-cfgchange/etc/di
 +config[DVA + '-jpackage'] = config[DVA + '-core']
 +aliases[DVA + '-jpackage'] = ('fc' + V + 'jpp' + AS, )
 +
-diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-4-ppc mach-0.4.8-cfgchange/etc/dist.d/fedora-4-ppc
---- mach-0.4.8.orig/etc/dist.d/fedora-4-ppc	1970-01-01 01:00:00.000000000 +0100
-+++ mach-0.4.8-cfgchange/etc/dist.d/fedora-4-ppc	2005-12-19 18:59:17.000000000 +0100
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/fedora-4-ppc mach-0.4.8.2-cfgchange/etc/dist.d/fedora-4-ppc
+--- mach-0.4.8.2.orig/etc/dist.d/fedora-4-ppc	1970-01-01 01:00:00.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/fedora-4-ppc	2005-12-19 18:59:17.000000000 +0100
 @@ -0,0 +1,104 @@
 +# mach dist configuration                                        -*- python -*-
 +
@@ -1160,9 +1114,9 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-4-ppc mach-0.4.8-cfgchange/etc/dis
 +config[DVA + '-jpackage'] = config[DVA + '-core']
 +aliases[DVA + '-jpackage'] = ('fc' + V + 'jpp' + AS, )
 +
-diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-4-x86_64 mach-0.4.8-cfgchange/etc/dist.d/fedora-4-x86_64
---- mach-0.4.8.orig/etc/dist.d/fedora-4-x86_64	2005-06-15 11:49:38.000000000 +0200
-+++ mach-0.4.8-cfgchange/etc/dist.d/fedora-4-x86_64	2005-12-19 18:59:20.000000000 +0100
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/fedora-4-x86_64 mach-0.4.8.2-cfgchange/etc/dist.d/fedora-4-x86_64
+--- mach-0.4.8.2.orig/etc/dist.d/fedora-4-x86_64	2006-01-22 11:41:22.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/fedora-4-x86_64	2006-01-24 11:58:35.000000000 +0100
 @@ -1,36 +1,14 @@
  # mach dist configuration                                        -*- python -*-
  
@@ -1209,12 +1163,12 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-4-x86_64 mach-0.4.8-cfgchange/etc/
    'gstreamer':        gstreamer   + '/fedora/' + V + '/' + A + '/yum/gst',
    'gstreamer-build':  gstreamer   + '/fedora/' + V + '/' + A + '/yum/build',
    'gstreamer-deps':   gstreamer   + '/fedora/' + V + '/' + A + '/yum/deps',
-@@ -39,87 +17,88 @@ yumsources['fedora-' + V + '-' + A ] = {
+@@ -39,90 +17,90 @@ yumsources['fedora-' + V + '-' + A ] = {
  }
  
  # Fedora Core
 -packages['fedora-' + V + '-' + A + '-core'] = {
--  'dir':      'fedoracore-' + V + '-' + A ,
+-  'dir':      'fedora-' + V + '-' + A ,
 -  'minimal':  'bash glibc',
 +packages[DVA + '-core'] = {
 +  'dir':      DVA,
@@ -1230,9 +1184,12 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-4-x86_64 mach-0.4.8-cfgchange/etc/
 +  DVA : ('core', )
  }
 -# FC4 roots should use runuser instead of su
--config['fedora-' + V + '-' + A + '-core'] = {'runuser': '/sbin/runuser'}
+-config['fedora-' + V + '-' + A + '-core'] = {
+-  'runuser': '/sbin/runuser',
++config[DVA + '-core'] = {
+   'excludearch': 'i386 i486 i586 i686 athlon',
+ }
 -aliases['fedora-' + V + '-' + A + '-core'] = ('f' + V + 'c' + AS, 'fc' + V + AS, )
-+config[DVA + '-core'] = {}
 +aliases[DVA + '-core'] = ('f' + V + 'c' + AS, 'fc' + V + AS, )
  
  # Fedora Core with updates
@@ -1259,12 +1216,13 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-4-x86_64 mach-0.4.8-cfgchange/etc/
 +  sourceslist[DVA + '-updates'][DVA ] +
    ('extras', )
  }
--config['fedora-' + V + '-' + A + '-extras'] = {
--  'runuser': '/sbin/runuser',
+-config['fedora-' + V + '-' + A + '-extras'] = config['fedora-' + V + '-' + A + '-core'].copy()
+-config['fedora-' + V + '-' + A + '-extras'].update({
 +config[DVA + '-extras'] = {
    'buildopts': "--define 'dist .fc" + V + "'",
- }
+-})
 -aliases['fedora-' + V + '-' + A + '-extras'] = ('f' + V + 'e' + AS, )
++}
 +aliases[DVA + '-extras'] = ('f' + V + 'e' + AS, )
  
  # Fedora Core with GStreamer
@@ -1275,12 +1233,13 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-4-x86_64 mach-0.4.8-cfgchange/etc/
 +sourceslist[DVA + '-gstreamer'] = {
 +  DVA : ('core', 'updates', 'extras', 'gstreamer-deps', 'gstreamer-build', 'gstreamer')
  }
--config['fedora-' + V + '-' + A + '-gstreamer'] = {
--  'runuser': '/sbin/runuser',
+-config['fedora-' + V + '-' + A + '-gstreamer'] = config['fedora-' + V + '-' + A + '-core'].copy()
+-config['fedora-' + V + '-' + A + '-gstreamer'].update({
 +config[DVA + '-gstreamer'] = {
    'release': V,
- }
+-})
 -aliases['fedora-' + V + '-' + A + '-gstreamer'] = ('f' + V + 'g' + AS, )
++}
 +aliases[DVA + '-gstreamer'] = ('f' + V + 'g' + AS, )
  
 -packages['fedora-' + V + '-' + A + '-gstreamer-deps'] = packages['fedora-' + V + '-' + A + '-core']
@@ -1352,129 +1311,83 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-4-x86_64 mach-0.4.8-cfgchange/etc/
 +config[DVA + '-jpackage'] = config[DVA + '-core']
 +aliases[DVA + '-jpackage'] = ('fc' + V + 'jpp' + AS, )
 +
-diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-i386 mach-0.4.8-cfgchange/etc/dist.d/fedora-development-i386
---- mach-0.4.8.orig/etc/dist.d/fedora-development-i386	2004-11-08 20:26:32.000000000 +0100
-+++ mach-0.4.8-cfgchange/etc/dist.d/fedora-development-i386	2006-01-19 13:55:36.000000000 +0100
-@@ -1,87 +1,53 @@
--# mach dist configuration                          -*- python -*-
-+# mach dist configuration                                        -*- python -*-
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/fedora-development-i386 mach-0.4.8.2-cfgchange/etc/dist.d/fedora-development-i386
+--- mach-0.4.8.2.orig/etc/dist.d/fedora-development-i386	2006-01-22 11:49:58.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/fedora-development-i386	2006-01-19 13:55:36.000000000 +0100
+@@ -1,53 +1,53 @@
+ # mach dist configuration                                        -*- python -*-
  
 -# fedora-development-i386: configuration for Fedora development
-+V = 'development'             # distro version
-+NEXTV = '5'                   # next (target) distro version
-+A = 'i386'                    # architecture
-+AS = ''                       # 'short' version of arch
-+DVA = 'fedora-' + V + '-' + A # distro-version-architecture
- 
+-
 -# each distro flavour has an aptsources line describing where to get each
 -# kind of package from
 -# each actual dist has a packages dict for bootstrap packages and
 -# a sourceslist dict referencing aptsources lines to use
 -
--### Fedora Core Development flavours
--aptsources['fedora-development-i386'] = {
--    'core':             'rpm ' + fedora + ' development/i386 core',
--    'fedora-stable':    'rpm ' + fedoraus    + ' fedora/latest/i386 stable',
--    'fedora-testing':   'rpm ' + fedoraus    + ' fedora/latest/i386 testing',
--    'fedora-unstable':  'rpm ' + fedoraus    + ' fedora/latest/i386 unstable',
--    'livna-stable':     'rpm ' + livna       + ' fedora/3/i386 stable',
--    'livna-testing':    'rpm ' + livna       + ' fedora/3/i386 testing',
--    'livna-unstable':   'rpm ' + livna       + ' fedora/3/i386 unstable',
+-V = 'development'  # distro version
+-VS = 'd'           # short distro version
+-A = 'i386'         # architecture
+-AS = ''            # 'short' version of arch
+-
+-### Fedora Core flavours
+-aptsources['fedora-' + V + '-' + A ] = {
+-  'core':             'rpm ' + fedora      + ' ' + V + '/' + A + ' core',
+-  'extras':           'rpm ' + freshrpmsfd + ' ' + V + '/' + A + ' extras',
 -}
 -
--# Fedora Core Development
--packages['fedora-development-i386-core'] = {
--    'dir':      'fedoracore-development-i386',
--    'minimal':  'bash glibc',
--    'base':     'coreutils findutils openssh-server',
--    'build':    'dev rpm-build make gcc tar gzip patch ' +
--                'unzip bzip2 diffutils cpio elfutils',
--}
--sourceslist['fedora-development-i386-core'] = {
--    'fedora-development-i386': ('core', )
--}
--config['fedora-development-i386-core'] = {}
--aliases['fedora-development-i386-core'] = ('fd', 'fcd', )
--
--# Fedora Development with fedora.us
--packages['fedora-development-i386-fedora-stable'] = packages['fedora-development-i386-core'].copy ()
--packages['fedora-development-i386-fedora-stable']['build'] = packages['fedora-development-i386-core']['build'] + " fedora-rpmdevtools"
--sourceslist['fedora-development-i386-fedora-stable'] = {
--    'fedora-development-i386': ('core', 'fedora-stable', )
--}
--config['fedora-development-i386-fedora-stable']  = { 'release': '1.91' }
--aliases['fedora-development-i386-fedora-stable'] = ('fdfs', )
--                                                                                
--packages['fedora-development-i386-fedora-testing'] = packages['fedora-development-i386-fedora-stable']
--sourceslist['fedora-development-i386-fedora-testing'] = {
--    'fedora-development-i386':
--    sourceslist['fedora-development-i386-fedora-stable']['fedora-development-i386'] +
--    ('fedora-testing', )
--}
--config['fedora-development-i386-fedora-testing']  = config['fedora-development-i386-fedora-stable']
--aliases['fedora-development-i386-fedora-testing'] = ('fdft', )
--                                                                                
--packages['fedora-development-i386-fedora-unstable'] = packages['fedora-development-i386-fedora-testing']
--sourceslist['fedora-development-i386-fedora-unstable'] = {
--    'fedora-development-i386':
--    sourceslist['fedora-development-i386-fedora-testing']['fedora-development-i386'] +
--    ('fedora-unstable', )
--}
--config['fedora-development-i386-fedora-unstable']  = config['fedora-development-i386-fedora-testing']
--aliases['fedora-development-i386-fedora-unstable'] = ('fdfu', )
--                                                                                
--# Fedora Core development with livna (+ fedora.us)
--packages['fedora-development-i386-livna-stable'] = packages['fedora-development-i386-core'].copy ()
--packages['fedora-development-i386-livna-stable']['build'] = packages['fedora-development-i386-core']['build'] + " fedora-rpmdevtools"
--sourceslist['fedora-development-i386-livna-stable'] = {
--    'fedora-development-i386': ('core', 'fedora-stable', 'livna-stable', )
--}
--config['fedora-development-i386-livna-stable']  = { 'release': '1.91' }
--aliases['fedora-development-i386-livna-stable'] = ('fdls', )
--                                                                                
--packages['fedora-development-i386-livna-testing'] = packages['fedora-development-i386-livna-stable']
--sourceslist['fedora-development-i386-livna-testing'] = {
--    'fedora-development-i386':
--    sourceslist['fedora-development-i386-livna-stable']['fedora-development-i386'] +
--    ('fedora-testing', 'livna-testing', )
--}
--config['fedora-development-i386-livna-testing']  = config['fedora-development-i386-livna-stable']
--aliases['fedora-development-i386-livna-testing'] = ('fdlt', )
--                                                                                
--packages['fedora-development-i386-livna-unstable'] = packages['fedora-development-i386-livna-testing']
--sourceslist['fedora-development-i386-livna-unstable'] = {
--    'fedora-development-i386':
--    sourceslist['fedora-development-i386-livna-testing']['fedora-development-i386'] +
--    ('fedora-unstable', 'livna-unstable', )
+-yumsources['fedora-' + V + '-' + A ] = {
+-  'core':             fedorayum   + '/core/' + V + '/' + A ,
+-  'extras':           fedorayum   + '/extras/' + V + '/' + A ,
++V = 'development'             # distro version
++NEXTV = '5'                   # next (target) distro version
++A = 'i386'                    # architecture
++AS = ''                       # 'short' version of arch
++DVA = 'fedora-' + V + '-' + A # distro-version-architecture
++
 +yumsources[DVA] = {
 +  'core':             fedora      + '/core/' + V + '/' + A ,
 +  'extras':           fedora      + '/extras/' + V + '/' + A ,
 +  'freshrpms':        freshrpmsfd + '/' + V + '/' + A + '/freshrpms',
  }
--config['fedora-development-i386-livna-unstable']  = config['fedora-development-i386-livna-testing']
--aliases['fedora-development-i386-livna-unstable'] = ('fdlu', )
-+
-+# Fedora Core
+ 
+ # Fedora Core
+-packages['fedora-' + V + '-' + A + '-core'] = {
+-  'dir':      'fedora-' + V + '-' + A ,
+-  'minimal':  'bash glibc',
 +packages[DVA + '-core'] = {
 +  'dir':      DVA,
 +  'minimal':  'bash glibc fedora-release',
-+  'base':     'coreutils findutils openssh-server',
+   'base':     'coreutils findutils openssh-server',
+-  'build':    'dev redhat-rpm-config rpm-build make gcc gcc-c++ tar gzip patch ' +
 +  'build':    'dev redhat-rpm-config rpm-build make gcc gcc-c++ tar gzip ' +
-+              'unzip bzip2 diffutils cpio elfutils',
-+}
+               'unzip bzip2 diffutils cpio elfutils',
+ }
+-sourceslist['fedora-' + V + '-' + A + '-core'] = {
+-  'fedora-' + V + '-' + A : ('core', )
 +sourceslist[DVA + '-core'] = {
 +  DVA : ('core', )
-+}
+ }
+-# FC4 roots should use runuser instead of su
+-config['fedora-' + V + '-' + A + '-core'] = {'runuser': '/sbin/runuser'}
+-aliases['fedora-' + V + '-' + A + '-core'] = ('f' + VS + 'c' + AS, 'fc' + VS + AS, )
 +config[DVA + '-core'] = {}
 +aliases[DVA + '-core'] = ('f' + V + 'c' + AS, 'fc' + V + AS, )
-+
-+# Fedora Core with extras
+ 
+ # Fedora Core with extras
+-packages['fedora-' + V + '-' + A + '-extras'] = packages['fedora-' + V + '-' + A + '-core'].copy ()
+-packages['fedora-' + V + '-' + A + '-extras']['build'] = packages['fedora-' + V + '-' + A + '-core']['build'] # + " fedora-rpmdevtools"
+-sourceslist['fedora-' + V + '-' + A + '-extras'] = {
+-  'fedora-' + V + '-' + A :
+-  sourceslist['fedora-' + V + '-' + A + '-core']['fedora-' + V + '-' + A ] +
 +packages[DVA + '-extras'] = packages[DVA + '-core']
 +sourceslist[DVA + '-extras'] = {
 +  DVA :
 +  sourceslist[DVA + '-core'][DVA ] +
-+  ('extras', )
-+}
+   ('extras', )
+ }
+-config['fedora-' + V + '-' + A + '-extras'] = {
+-  'runuser': '/sbin/runuser',
+-  'buildopts': "--define 'dist .fc" + V + "'",
 +config[DVA + '-extras'] = {
 +  'buildopts': "--define 'dist .fc" + NEXTV + "'",
 +}
@@ -1490,12 +1403,13 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-i386 mach-0.4.8-cfgcha
 +config[DVA + '-freshrpms'] = {
 +  'release': '2.fc' + NEXTV,
 +  'buildopts': "--define 'dist fc" + NEXTV + "'",
-+}
+ }
+-aliases['fedora-' + V + '-' + A + '-extras'] = ('f' + VS + 'e' + AS, )
 +aliases[DVA + '-freshrpms'] = ('f' + V + 'fr' + AS, )
 +
-diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-ppc mach-0.4.8-cfgchange/etc/dist.d/fedora-development-ppc
---- mach-0.4.8.orig/etc/dist.d/fedora-development-ppc	1970-01-01 01:00:00.000000000 +0100
-+++ mach-0.4.8-cfgchange/etc/dist.d/fedora-development-ppc	2006-01-19 13:55:50.000000000 +0100
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/fedora-development-ppc mach-0.4.8.2-cfgchange/etc/dist.d/fedora-development-ppc
+--- mach-0.4.8.2.orig/etc/dist.d/fedora-development-ppc	1970-01-01 01:00:00.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/fedora-development-ppc	2006-01-19 13:55:50.000000000 +0100
 @@ -0,0 +1,53 @@
 +# mach dist configuration                                        -*- python -*-
 +
@@ -1550,12 +1464,33 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-ppc mach-0.4.8-cfgchan
 +}
 +aliases[DVA + '-freshrpms'] = ('f' + V + 'fr' + AS, )
 +
-diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-x86_64 mach-0.4.8-cfgchange/etc/dist.d/fedora-development-x86_64
---- mach-0.4.8.orig/etc/dist.d/fedora-development-x86_64	1970-01-01 01:00:00.000000000 +0100
-+++ mach-0.4.8-cfgchange/etc/dist.d/fedora-development-x86_64	2006-01-19 13:55:43.000000000 +0100
-@@ -0,0 +1,53 @@
-+# mach dist configuration                                        -*- python -*-
-+
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/fedora-development-x86_64 mach-0.4.8.2-cfgchange/etc/dist.d/fedora-development-x86_64
+--- mach-0.4.8.2.orig/etc/dist.d/fedora-development-x86_64	2006-01-22 11:41:22.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/fedora-development-x86_64	2006-01-24 11:58:53.000000000 +0100
+@@ -1,57 +1,55 @@
+ # mach dist configuration                                        -*- python -*-
+ 
+-# fedora-development-x86_64: configuration for Fedora development
+-
+-# each distro flavour has an aptsources line describing where to get each
+-# kind of package from
+-# each actual dist has a packages dict for bootstrap packages and
+-# a sourceslist dict referencing aptsources lines to use
+-
+-V = 'development'  # distro version
+-VS = 'd'           # short distro version
+-A = 'x86_64'       # architecture
+-AS = '64'          # 'short' version of arch
+-
+-### Fedora Core flavours
+-aptsources['fedora-' + V + '-' + A ] = {
+-  'core':             'rpm ' + fedora      + ' ' + V + '/' + A + ' core',
+-  'extras':           'rpm ' + freshrpmsfd + ' ' + V + '/' + A + ' extras',
+-}
+-
+-yumsources['fedora-' + V + '-' + A ] = {
+-  'core':             fedorayum   + '/core/' + V + '/' + A ,
+-  'extras':           fedorayum   + '/extras/' + V + '/' + A ,
 +V = 'development'             # distro version
 +NEXTV = '5'                   # next (target) distro version
 +A = 'x86_64'                  # architecture
@@ -1566,29 +1501,52 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-x86_64 mach-0.4.8-cfgc
 +  'core':             fedora      + '/core/' + V + '/' + A ,
 +  'extras':           fedora      + '/extras/' + V + '/' + A ,
 +  'freshrpms':        freshrpmsfd + '/' + V + '/' + A + '/freshrpms',
-+}
-+
-+# Fedora Core
+ }
+ 
+ # Fedora Core
+-packages['fedora-' + V + '-' + A + '-core'] = {
+-  'dir':      'fedora-' + V + '-' + A ,
+-  'minimal':  'bash glibc',
 +packages[DVA + '-core'] = {
 +  'dir':      DVA,
 +  'minimal':  'bash glibc fedora-release',
-+  'base':     'coreutils findutils openssh-server',
+   'base':     'coreutils findutils openssh-server',
+-  'build':    'dev redhat-rpm-config rpm-build make gcc gcc-c++ tar gzip patch ' +
 +  'build':    'dev redhat-rpm-config rpm-build make gcc gcc-c++ tar gzip ' +
-+              'unzip bzip2 diffutils cpio elfutils',
-+}
+               'unzip bzip2 diffutils cpio elfutils',
+ }
+-sourceslist['fedora-' + V + '-' + A + '-core'] = {
+-  'fedora-' + V + '-' + A : ('core', )
 +sourceslist[DVA + '-core'] = {
 +  DVA : ('core', )
-+}
-+config[DVA + '-core'] = {}
+ }
+-# FC4 roots should use runuser instead of su
+-config['fedora-' + V + '-' + A + '-core'] = {
+-  'runuser': '/sbin/runuser',
++config[DVA + '-core'] = {
+   'excludearch': 'i386 i486 i586 i686 athlon',
+ }
+-aliases['fedora-' + V + '-' + A + '-core'] = ('f' + V + 'c' + AS, 'fc' + V + AS, )
+-aliases['fedora-' + V + '-' + A + '-core'] = ('f' + VS + 'c' + AS, 'fc' + VS + AS, )
 +aliases[DVA + '-core'] = ('f' + V + 'c' + AS, 'fc' + V + AS, )
-+
-+# Fedora Core with extras
+ 
+ # Fedora Core with extras
+-packages['fedora-' + V + '-' + A + '-extras'] = packages['fedora-' + V + '-' + A + '-core'].copy ()
+-packages['fedora-' + V + '-' + A + '-extras']['build'] = packages['fedora-' + V + '-' + A + '-core']['build'] # + " fedora-rpmdevtools"
+-sourceslist['fedora-' + V + '-' + A + '-extras'] = {
+-  'fedora-' + V + '-' + A :
+-  sourceslist['fedora-' + V + '-' + A + '-core']['fedora-' + V + '-' + A ] +
 +packages[DVA + '-extras'] = packages[DVA + '-core']
 +sourceslist[DVA + '-extras'] = {
 +  DVA :
 +  sourceslist[DVA + '-core'][DVA ] +
-+  ('extras', )
-+}
+   ('extras', )
+ }
+-config['fedora-' + V + '-' + A + '-extras'] = config['fedora-' + V + '-' + A + '-core'].copy()
+-config['fedora-' + V + '-' + A + '-extras'].update({
+-  'buildopts': "--define 'dist .fc" + V + "'",
+-})
+-aliases['fedora-' + V + '-' + A + '-extras'] = ('f' + VS + 'e' + AS, )
 +config[DVA + '-extras'] = {
 +  'buildopts': "--define 'dist .fc" + NEXTV + "'",
 +}
@@ -1607,10 +1565,10 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-x86_64 mach-0.4.8-cfgc
 +}
 +aliases[DVA + '-freshrpms'] = ('f' + V + 'fr' + AS, )
 +
-diff -Naupr mach-0.4.8.orig/etc/dist.d/Makefile.am mach-0.4.8-cfgchange/etc/dist.d/Makefile.am
---- mach-0.4.8.orig/etc/dist.d/Makefile.am	2005-06-13 16:50:25.000000000 +0200
-+++ mach-0.4.8-cfgchange/etc/dist.d/Makefile.am	2005-12-13 13:39:18.000000000 +0100
-@@ -1,24 +1,16 @@
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/Makefile.am mach-0.4.8.2-cfgchange/etc/dist.d/Makefile.am
+--- mach-0.4.8.2.orig/etc/dist.d/Makefile.am	2006-01-22 11:41:22.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/Makefile.am	2005-12-13 13:39:18.000000000 +0100
+@@ -1,25 +1,16 @@
  dists = \
 -	redhat-70-i386 \
 -	redhat-71-i386 \
@@ -1626,6 +1584,8 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/Makefile.am mach-0.4.8-cfgchange/etc/dist
 +	fedora-4-ppc \
  	fedora-4-x86_64 \
  	fedora-development-i386 \
++	fedora-development-ppc \
+ 	fedora-development-x86_64 \
 -	cnc-9-i386 \
 -	suse-81-i386 \
 -	suse-82-i386 \
@@ -1633,8 +1593,6 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/Makefile.am mach-0.4.8-cfgchange/etc/dist
 -	yellowdog-23-ppc \
 -	yellowdog-30-ppc \
 -	davedina
-+	fedora-development-ppc \
-+	fedora-development-x86_64 \
 +	redhat-70-i386 \
 +	redhat-73-i386 \
 +	rhel-4AS-i386 \
@@ -1642,9 +1600,20 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/Makefile.am mach-0.4.8-cfgchange/etc/dist
  
  configdir = $(sysconfdir)/mach/dist.d
  config_DATA = $(dists)
-diff -Naupr mach-0.4.8.orig/etc/dist.d/redhat-70-i386 mach-0.4.8-cfgchange/etc/dist.d/redhat-70-i386
---- mach-0.4.8.orig/etc/dist.d/redhat-70-i386	2004-07-29 10:26:35.000000000 +0200
-+++ mach-0.4.8-cfgchange/etc/dist.d/redhat-70-i386	2005-12-19 19:00:25.000000000 +0100
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/Makefile.in mach-0.4.8.2-cfgchange/etc/dist.d/Makefile.in
+--- mach-0.4.8.2.orig/etc/dist.d/Makefile.in	2006-01-22 19:39:11.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/Makefile.in	2005-12-13 13:18:49.000000000 +0100
+@@ -198,7 +198,6 @@ dists = \
+ 	fedora-4-i386 \
+ 	fedora-4-x86_64 \
+ 	fedora-development-i386 \
+-	fedora-development-x86_64 \
+ 	cnc-9-i386 \
+ 	suse-81-i386 \
+ 	suse-82-i386 \
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/redhat-70-i386 mach-0.4.8.2-cfgchange/etc/dist.d/redhat-70-i386
+--- mach-0.4.8.2.orig/etc/dist.d/redhat-70-i386	2006-01-22 11:41:22.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/redhat-70-i386	2006-01-24 13:28:32.000000000 +0100
 @@ -1,54 +1,50 @@
  # mach dist configuration                                        -*- python -*-
  
@@ -1703,8 +1672,8 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/redhat-70-i386 mach-0.4.8-cfgchange/etc/d
 +DVA = 'redhat-' + V + '-' + A # distro-version-architecture
 +
 +yumsources[DVA] = {
-+  'os':               redhatyum   + V + '/' + A + '/os',
-+  'updates':          redhatyum   + V + '/' + A + '/updates',
++  'os':               redhat      + V + '/' + A + '/os',
++  'updates':          redhat      + V + '/' + A + '/updates',
 +  'freshrpms':        freshrpmsrh + V + '/' + A + '/freshrpms',
 +}
 +
@@ -1747,9 +1716,9 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/redhat-70-i386 mach-0.4.8-cfgchange/etc/d
 -aliases['redhat-70-i386-updates-freshrpms'] = ('rh70ufr', )
 +aliases[DVA + '-freshrpms'] = ('rh' + V + 'fr' + AS, )
 +
-diff -Naupr mach-0.4.8.orig/etc/dist.d/redhat-71-i386 mach-0.4.8-cfgchange/etc/dist.d/redhat-71-i386
---- mach-0.4.8.orig/etc/dist.d/redhat-71-i386	2004-07-29 10:26:35.000000000 +0200
-+++ mach-0.4.8-cfgchange/etc/dist.d/redhat-71-i386	1970-01-01 01:00:00.000000000 +0100
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/redhat-71-i386 mach-0.4.8.2-cfgchange/etc/dist.d/redhat-71-i386
+--- mach-0.4.8.2.orig/etc/dist.d/redhat-71-i386	2006-01-22 11:41:22.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/redhat-71-i386	1970-01-01 01:00:00.000000000 +0100
 @@ -1,55 +0,0 @@
 -# mach dist configuration                                        -*- python -*-
 -
@@ -1806,9 +1775,9 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/redhat-71-i386 mach-0.4.8-cfgchange/etc/d
 -}
 -config['redhat-71-i386-updates-freshrpms'] = {}
 -aliases['redhat-71-i386-updates-freshrpms'] = ('rh71ufr', )
-diff -Naupr mach-0.4.8.orig/etc/dist.d/redhat-72-i386 mach-0.4.8-cfgchange/etc/dist.d/redhat-72-i386
---- mach-0.4.8.orig/etc/dist.d/redhat-72-i386	2004-07-29 10:26:35.000000000 +0200
-+++ mach-0.4.8-cfgchange/etc/dist.d/redhat-72-i386	1970-01-01 01:00:00.000000000 +0100
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/redhat-72-i386 mach-0.4.8.2-cfgchange/etc/dist.d/redhat-72-i386
+--- mach-0.4.8.2.orig/etc/dist.d/redhat-72-i386	2006-01-22 11:41:22.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/redhat-72-i386	1970-01-01 01:00:00.000000000 +0100
 @@ -1,69 +0,0 @@
 -# mach dist configuration                                        -*- python -*-
 -
@@ -1879,9 +1848,9 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/redhat-72-i386 mach-0.4.8-cfgchange/etc/d
 -}
 -config['redhat-72-i386-jpackage'] = {}
 -aliases['redhat-72-i386-jpackage'] = ('rh72jpp', )
-diff -Naupr mach-0.4.8.orig/etc/dist.d/redhat-73-i386 mach-0.4.8-cfgchange/etc/dist.d/redhat-73-i386
---- mach-0.4.8.orig/etc/dist.d/redhat-73-i386	2004-07-29 10:26:35.000000000 +0200
-+++ mach-0.4.8-cfgchange/etc/dist.d/redhat-73-i386	2005-12-19 19:00:35.000000000 +0100
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/redhat-73-i386 mach-0.4.8.2-cfgchange/etc/dist.d/redhat-73-i386
+--- mach-0.4.8.2.orig/etc/dist.d/redhat-73-i386	2006-01-22 11:41:22.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/redhat-73-i386	2006-01-24 13:28:42.000000000 +0100
 @@ -1,68 +1,50 @@
  # mach dist configuration                                        -*- python -*-
  
@@ -1954,8 +1923,8 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/redhat-73-i386 mach-0.4.8-cfgchange/etc/d
 +DVA = 'redhat-' + V + '-' + A # distro-version-architecture
 +
 +yumsources[DVA] = {
-+  'os':               redhatyum   + V + '/' + A + '/os',
-+  'updates':          redhatyum   + V + '/' + A + '/updates',
++  'os':               redhat      + V + '/' + A + '/os',
++  'updates':          redhat      + V + '/' + A + '/updates',
 +  'freshrpms':        freshrpmsrh + V + '/' + A + '/freshrpms',
 +}
 +
@@ -1998,9 +1967,9 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/redhat-73-i386 mach-0.4.8-cfgchange/etc/d
 -aliases['redhat-73-i386-jpackage'] = ('rh73jpp', )
 +aliases[DVA + '-freshrpms'] = ('rh' + V + 'fr' + AS, )
 +
-diff -Naupr mach-0.4.8.orig/etc/dist.d/redhat-80-i386 mach-0.4.8-cfgchange/etc/dist.d/redhat-80-i386
---- mach-0.4.8.orig/etc/dist.d/redhat-80-i386	2004-07-29 10:26:35.000000000 +0200
-+++ mach-0.4.8-cfgchange/etc/dist.d/redhat-80-i386	1970-01-01 01:00:00.000000000 +0100
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/redhat-80-i386 mach-0.4.8.2-cfgchange/etc/dist.d/redhat-80-i386
+--- mach-0.4.8.2.orig/etc/dist.d/redhat-80-i386	2006-01-22 11:41:22.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/redhat-80-i386	1970-01-01 01:00:00.000000000 +0100
 @@ -1,150 +0,0 @@
 -# mach dist configuration                                        -*- python -*-
 -
@@ -2152,9 +2121,9 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/redhat-80-i386 mach-0.4.8-cfgchange/etc/d
 -}
 -config['redhat-80-i386-jpackage'] = {}
 -aliases['redhat-80-i386-jpackage'] = ('rh8jpp', 'rh80jpp')
-diff -Naupr mach-0.4.8.orig/etc/dist.d/redhat-9-i386 mach-0.4.8-cfgchange/etc/dist.d/redhat-9-i386
---- mach-0.4.8.orig/etc/dist.d/redhat-9-i386	2004-07-29 10:26:35.000000000 +0200
-+++ mach-0.4.8-cfgchange/etc/dist.d/redhat-9-i386	1970-01-01 01:00:00.000000000 +0100
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/redhat-9-i386 mach-0.4.8.2-cfgchange/etc/dist.d/redhat-9-i386
+--- mach-0.4.8.2.orig/etc/dist.d/redhat-9-i386	2006-01-22 11:41:22.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/redhat-9-i386	1970-01-01 01:00:00.000000000 +0100
 @@ -1,150 +0,0 @@
 -# mach dist configuration                                        -*- python -*-
 -
@@ -2306,9 +2275,9 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/redhat-9-i386 mach-0.4.8-cfgchange/etc/di
 -}
 -config['redhat-9-i386-jpackage'] = {}
 -aliases['redhat-9-i386-jpackage'] = ('rh9jpp', 'rh90jpp')
-diff -Naupr mach-0.4.8.orig/etc/dist.d/rhel-4AS-i386 mach-0.4.8-cfgchange/etc/dist.d/rhel-4AS-i386
---- mach-0.4.8.orig/etc/dist.d/rhel-4AS-i386	1970-01-01 01:00:00.000000000 +0100
-+++ mach-0.4.8-cfgchange/etc/dist.d/rhel-4AS-i386	2005-12-19 18:59:59.000000000 +0100
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/rhel-4AS-i386 mach-0.4.8.2-cfgchange/etc/dist.d/rhel-4AS-i386
+--- mach-0.4.8.2.orig/etc/dist.d/rhel-4AS-i386	1970-01-01 01:00:00.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/rhel-4AS-i386	2006-01-24 13:24:15.000000000 +0100
 @@ -0,0 +1,34 @@
 +# mach dist configuration                                        -*- python -*-
 +
@@ -2318,8 +2287,8 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/rhel-4AS-i386 mach-0.4.8-cfgchange/etc/di
 +DVA = 'rhel-' + V + '-' + A   # distro-version-architecture
 +
 +yumsources[DVA] = {
-+  'os':               rhelyum + '/el' + V + '/' + A + '/os',
-+  'updates':          rhelyum + '/el' + V + '/' + A + '/updates',
++  'os':               rhel + '/el' + V + '/' + A + '/os',
++  'updates':          rhel + '/el' + V + '/' + A + '/updates',
 +}
 +
 +# RHEL
@@ -2344,10 +2313,10 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/rhel-4AS-i386 mach-0.4.8-cfgchange/etc/di
 +config[DVA + '-updates'] = config[DVA + '-os']
 +aliases[DVA + '-updates'] = ('rh' + V + 'u' + AS, 'rhel' + V + 'u' + AS, )
 +
-diff -Naupr mach-0.4.8.orig/etc/dist.d/rhel-4AS-x86_64 mach-0.4.8-cfgchange/etc/dist.d/rhel-4AS-x86_64
---- mach-0.4.8.orig/etc/dist.d/rhel-4AS-x86_64	1970-01-01 01:00:00.000000000 +0100
-+++ mach-0.4.8-cfgchange/etc/dist.d/rhel-4AS-x86_64	2005-12-19 19:00:10.000000000 +0100
-@@ -0,0 +1,34 @@
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/rhel-4AS-x86_64 mach-0.4.8.2-cfgchange/etc/dist.d/rhel-4AS-x86_64
+--- mach-0.4.8.2.orig/etc/dist.d/rhel-4AS-x86_64	1970-01-01 01:00:00.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/rhel-4AS-x86_64	2006-01-24 13:24:23.000000000 +0100
+@@ -0,0 +1,36 @@
 +# mach dist configuration                                        -*- python -*-
 +
 +V = '4AS'                     # distro version
@@ -2356,8 +2325,8 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/rhel-4AS-x86_64 mach-0.4.8-cfgchange/etc/
 +DVA = 'rhel-' + V + '-' + A   # distro-version-architecture
 +
 +yumsources[DVA] = {
-+  'os':               rhelyum + '/el' + V + '/' + A + '/os',
-+  'updates':          rhelyum + '/el' + V + '/' + A + '/updates',
++  'os':               rhel + '/el' + V + '/' + A + '/os',
++  'updates':          rhel + '/el' + V + '/' + A + '/updates',
 +}
 +
 +# RHEL
@@ -2371,7 +2340,9 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/rhel-4AS-x86_64 mach-0.4.8-cfgchange/etc/
 +sourceslist[DVA + '-os'] = {
 +  DVA : ('os', )
 +}
-+config[DVA + '-os'] = {}
++config[DVA + '-os'] = {
++  'excludearch': 'i386 i486 i586 i686 athlon',
++}
 +aliases[DVA + '-os'] = ('rh' + V + AS, 'rhel' + V + AS, )
 +
 +# RHEL with updates
@@ -2382,9 +2353,9 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/rhel-4AS-x86_64 mach-0.4.8-cfgchange/etc/
 +config[DVA + '-updates'] = config[DVA + '-os']
 +aliases[DVA + '-updates'] = ('rh' + V + 'u' + AS, 'rhel' + V + 'u' + AS, )
 +
-diff -Naupr mach-0.4.8.orig/etc/dist.d/suse-81-i386 mach-0.4.8-cfgchange/etc/dist.d/suse-81-i386
---- mach-0.4.8.orig/etc/dist.d/suse-81-i386	2004-07-29 10:26:35.000000000 +0200
-+++ mach-0.4.8-cfgchange/etc/dist.d/suse-81-i386	1970-01-01 01:00:00.000000000 +0100
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/suse-81-i386 mach-0.4.8.2-cfgchange/etc/dist.d/suse-81-i386
+--- mach-0.4.8.2.orig/etc/dist.d/suse-81-i386	2006-01-22 11:41:22.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/suse-81-i386	1970-01-01 01:00:00.000000000 +0100
 @@ -1,36 +0,0 @@
 -# mach dist configuration                          -*- python -*-
 -
@@ -2422,9 +2393,9 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/suse-81-i386 mach-0.4.8-cfgchange/etc/dis
 -}
 -config['suse-81-i386-updates'] = config['suse-81-i386']
 -aliases['suse-81-i386-updates'] = ('suse81u', )
-diff -Naupr mach-0.4.8.orig/etc/dist.d/suse-82-i386 mach-0.4.8-cfgchange/etc/dist.d/suse-82-i386
---- mach-0.4.8.orig/etc/dist.d/suse-82-i386	2004-07-29 10:26:35.000000000 +0200
-+++ mach-0.4.8-cfgchange/etc/dist.d/suse-82-i386	1970-01-01 01:00:00.000000000 +0100
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/suse-82-i386 mach-0.4.8.2-cfgchange/etc/dist.d/suse-82-i386
+--- mach-0.4.8.2.orig/etc/dist.d/suse-82-i386	2006-01-22 11:41:22.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/suse-82-i386	1970-01-01 01:00:00.000000000 +0100
 @@ -1,37 +0,0 @@
 -# mach dist configuration                          -*- python -*-
 -
@@ -2463,9 +2434,9 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/suse-82-i386 mach-0.4.8-cfgchange/etc/dis
 -}
 -config['suse-82-i386-updates'] = config['suse-82-i386']
 -aliases['suse-82-i386-updates'] = ('suse82u', )
-diff -Naupr mach-0.4.8.orig/etc/dist.d/suse-90-i386 mach-0.4.8-cfgchange/etc/dist.d/suse-90-i386
---- mach-0.4.8.orig/etc/dist.d/suse-90-i386	2004-07-29 10:26:35.000000000 +0200
-+++ mach-0.4.8-cfgchange/etc/dist.d/suse-90-i386	1970-01-01 01:00:00.000000000 +0100
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/suse-90-i386 mach-0.4.8.2-cfgchange/etc/dist.d/suse-90-i386
+--- mach-0.4.8.2.orig/etc/dist.d/suse-90-i386	2006-01-22 11:41:22.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/suse-90-i386	1970-01-01 01:00:00.000000000 +0100
 @@ -1,36 +0,0 @@
 -# mach dist configuration                          -*- python -*-
 -
@@ -2503,9 +2474,9 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/suse-90-i386 mach-0.4.8-cfgchange/etc/dis
 -}
 -config['suse-90-i386-updates'] = {}
 -aliases['suse-90-i386-updates'] = ('suse9u', 'suse90u', )
-diff -Naupr mach-0.4.8.orig/etc/dist.d/yellowdog-23-ppc mach-0.4.8-cfgchange/etc/dist.d/yellowdog-23-ppc
---- mach-0.4.8.orig/etc/dist.d/yellowdog-23-ppc	2004-07-29 10:26:35.000000000 +0200
-+++ mach-0.4.8-cfgchange/etc/dist.d/yellowdog-23-ppc	1970-01-01 01:00:00.000000000 +0100
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/yellowdog-23-ppc mach-0.4.8.2-cfgchange/etc/dist.d/yellowdog-23-ppc
+--- mach-0.4.8.2.orig/etc/dist.d/yellowdog-23-ppc	2006-01-22 11:41:22.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/yellowdog-23-ppc	1970-01-01 01:00:00.000000000 +0100
 @@ -1,53 +0,0 @@
 -# mach dist configuration                          -*- python -*-
 -
@@ -2560,9 +2531,9 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/yellowdog-23-ppc mach-0.4.8-cfgchange/etc
 -}
 -config['yellowdog-23-ppc-updates-freshrpms'] = {}
 -aliases['yellowdog-23-ppc-updates-freshrpms'] = ('yd23ufr', )
-diff -Naupr mach-0.4.8.orig/etc/dist.d/yellowdog-30-ppc mach-0.4.8-cfgchange/etc/dist.d/yellowdog-30-ppc
---- mach-0.4.8.orig/etc/dist.d/yellowdog-30-ppc	2004-07-29 10:26:35.000000000 +0200
-+++ mach-0.4.8-cfgchange/etc/dist.d/yellowdog-30-ppc	1970-01-01 01:00:00.000000000 +0100
+diff -Naupr mach-0.4.8.2.orig/etc/dist.d/yellowdog-30-ppc mach-0.4.8.2-cfgchange/etc/dist.d/yellowdog-30-ppc
+--- mach-0.4.8.2.orig/etc/dist.d/yellowdog-30-ppc	2006-01-22 11:41:22.000000000 +0100
++++ mach-0.4.8.2-cfgchange/etc/dist.d/yellowdog-30-ppc	1970-01-01 01:00:00.000000000 +0100
 @@ -1,53 +0,0 @@
 -# mach dist configuration                          -*- python -*-
 -
@@ -2617,28 +2588,16 @@ diff -Naupr mach-0.4.8.orig/etc/dist.d/yellowdog-30-ppc mach-0.4.8-cfgchange/etc
 -}
 -config['yellowdog-30-ppc-updates-freshrpms'] = {}
 -aliases['yellowdog-30-ppc-updates-freshrpms'] = ('yd30ufr', )
-diff -Naupr mach-0.4.8.orig/etc/location mach-0.4.8-cfgchange/etc/location
---- mach-0.4.8.orig/etc/location	2005-06-12 22:25:40.000000000 +0200
-+++ mach-0.4.8-cfgchange/etc/location	2005-12-13 12:26:24.000000000 +0100
-@@ -9,32 +9,16 @@
- 
- # Official distributions
- 
--# Red Hat Linux base; this location should contain versioned directories
--redhat      = 'http://ayo.freshrpms.net/redhat'
--#redhat      = 'http://download.fedora.us/fedora/redhat'
--
--# Fedora Core; this location should contain versioned directions
--fedora      = 'http://ayo.freshrpms.net/fedora/linux'
--#fedora      = 'http://download.fedora.us/fedora/fedora'
+diff -Naupr mach-0.4.8.2.orig/etc/location mach-0.4.8.2-cfgchange/etc/location
+--- mach-0.4.8.2.orig/etc/location	2005-06-12 22:25:40.000000000 +0200
++++ mach-0.4.8.2-cfgchange/etc/location	2006-01-24 13:24:02.000000000 +0100
+@@ -16,25 +16,11 @@ redhat      = 'http://ayo.freshrpms.net/
+ # Fedora Core; this location should contain versioned directions
+ fedora      = 'http://ayo.freshrpms.net/fedora/linux'
+ #fedora      = 'http://download.fedora.us/fedora/fedora'
 -# fedorayum trees should contain their repodata/ dirs in the "official"
 -# location, and start in the dir that has "core" and "extras"
 -fedorayum   = 'http://download.fedora.redhat.com/pub/fedora/linux'
-+# Red Hat Linux
-+redhatyum   = 'http://ayo.freshrpms.net/redhat'
-+
-+# Fedora Core
-+fedora      = 'http://download.fedora.redhat.com/pub/fedora/linux'
  
  # Yellow Dog Linux
  yellowdog   = 'http://ayo.freshrpms.net/yellowdog'
@@ -2658,12 +2617,12 @@ diff -Naupr mach-0.4.8.orig/etc/location mach-0.4.8-cfgchange/etc/location
  livna       = 'http://rpm.livna.org'
  gstreamer   = 'http://gstreamer.freedesktop.org/pkg'
  freshrpmsrh = 'http://ayo.freshrpms.net/redhat'
-@@ -46,3 +30,8 @@ jpackage    = 'http://dl.sf.net/jpackage
+@@ -46,3 +32,8 @@ jpackage    = 'http://dl.sf.net/jpackage
  # must set up one yourself and point this variable at if before you can use
  # the JPackage configurations.  http://www.jpackage.org/faq.php
  jpackagenf  = ''
 +
 +# RHEL
 +# you must create your own yum repository for RHEL, there are no public ones
-+rhelyum     = ''
++rhel        = ''
 +

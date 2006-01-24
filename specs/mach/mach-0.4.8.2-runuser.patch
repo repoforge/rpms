@@ -1,0 +1,12 @@
+diff -Naupr mach-0.4.8.2.orig/scripts/mach.in mach-0.4.8.2-binchange/scripts/mach.in
+--- mach-0.4.8.2.orig/scripts/mach.in	2006-01-22 19:29:47.000000000 +0100
++++ mach-0.4.8.2-binchange/scripts/mach.in	2006-01-24 12:27:17.000000000 +0100
+@@ -88,7 +88,7 @@ config = {
+   'apt-cache': '/usr/bin/apt-cache',
+   'yum': '@SBINDIR@/mach-helper yum',
+   'mknod': '@SBINDIR@/mach-helper mknod',
+-  'runuser': '/bin/su',
++  'runuser': '/sbin/runuser',
+   'installer': 'yum',
+ 
+   # root_*: commands run inside the build root

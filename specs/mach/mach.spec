@@ -9,14 +9,15 @@
 
 Summary: Make A CHroot
 Name: mach
-Version: 0.4.8
-Release: 0.2
+Version: 0.4.8.2
+Release: 0
 Group: Applications/System
 License: GPL
 URL: http://thomas.apestaart.org/projects/mach/
 Source: http://thomas.apestaart.org/download/mach/mach-%{version}.tar.bz2
-Patch0: mach-0.4.8-fr-cfg.patch
-Patch1: mach-0.4.8-fr-bin.patch
+Patch0: mach-0.4.8.2-cfg.patch
+Patch1: mach-0.4.8.2-runuser.patch
+Patch2: mach-0.4.8.2-uid500fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: yum, createrepo, rpm-build, sed, cpio
 BuildRequires: %{python} >= 2.0, libselinux-devel
@@ -32,7 +33,8 @@ easily generate pristine packages.
 %prep
 %setup
 %patch0 -p1 -b .cfg
-%patch1 -p1 -b .bin
+%patch1 -p1 -b .runuser
+%patch2 -p1 -b .uid500fix
 autoreconf
 
 
@@ -113,6 +115,9 @@ fi
 
 
 %changelog
+* Tue Jan 24 2006 Matthias Saou <http://freshrpms.net> 0.4.8.2-1
+- Update to 0.4.8.2 pre-release.
+
 * Thu Jan 19 2006 Matthias Saou <http://freshrpms.net> 0.4.8-0.2
 - Add freshrpms to FC development dist.d files.
 
