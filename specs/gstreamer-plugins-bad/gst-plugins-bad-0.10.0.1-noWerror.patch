@@ -1,0 +1,98 @@
+diff -Naupr gst-plugins-bad-0.10.0.1.orig/configure gst-plugins-bad-0.10.0.1/configure
+--- gst-plugins-bad-0.10.0.1.orig/configure	2005-12-16 13:22:08.000000000 +0100
++++ gst-plugins-bad-0.10.0.1/configure	2006-01-25 19:42:45.000000000 +0100
+@@ -16661,72 +16661,6 @@ echo "${ECHO_T}$flag_ok" >&6
+ if test "x$GST_WALL" = "xyes"; then
+    GST_ERROR="$GST_ERROR -Wall"
+ 
+-   if test "x$GST_CVS" = "xyes"; then
+-
+-  echo "$as_me:$LINENO: checking to see if compiler understands -Werror" >&5
+-echo $ECHO_N "checking to see if compiler understands -Werror... $ECHO_C" >&6
+-
+-  save_CFLAGS="$CFLAGS"
+-  CFLAGS="$CFLAGS -Werror"
+-
+-  cat >conftest.$ac_ext <<_ACEOF
+-/* confdefs.h.  */
+-_ACEOF
+-cat confdefs.h >>conftest.$ac_ext
+-cat >>conftest.$ac_ext <<_ACEOF
+-/* end confdefs.h.  */
+-
+-int
+-main ()
+-{
+-
+-  ;
+-  return 0;
+-}
+-_ACEOF
+-rm -f conftest.$ac_objext
+-if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
+-  (eval $ac_compile) 2>conftest.er1
+-  ac_status=$?
+-  grep -v '^ *+' conftest.er1 >conftest.err
+-  rm -f conftest.er1
+-  cat conftest.err >&5
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); } &&
+-	 { ac_try='test -z "$ac_c_werror_flag"
+-			 || test ! -s conftest.err'
+-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+-  (eval $ac_try) 2>&5
+-  ac_status=$?
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; } &&
+-	 { ac_try='test -s conftest.$ac_objext'
+-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+-  (eval $ac_try) 2>&5
+-  ac_status=$?
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; }; then
+-  flag_ok=yes
+-else
+-  echo "$as_me: failed program was:" >&5
+-sed 's/^/| /' conftest.$ac_ext >&5
+-
+-flag_ok=no
+-fi
+-rm -f conftest.err conftest.$ac_objext conftest.$ac_ext
+-  CFLAGS="$save_CFLAGS"
+-
+-  if test "X$flag_ok" = Xyes ; then
+-    GST_ERROR="$GST_ERROR -Werror"
+-    true
+-  else
+-    GST_ERROR="$GST_ERROR"
+-    true
+-  fi
+-  echo "$as_me:$LINENO: result: $flag_ok" >&5
+-echo "${ECHO_T}$flag_ok" >&6
+-
+-   fi
+ fi
+ 
+ ac_ext=cc
+diff -Naupr gst-plugins-bad-0.10.0.1.orig/configure.ac gst-plugins-bad-0.10.0.1/configure.ac
+--- gst-plugins-bad-0.10.0.1.orig/configure.ac	2005-12-14 23:41:47.000000000 +0100
++++ gst-plugins-bad-0.10.0.1/configure.ac	2006-01-25 19:41:19.000000000 +0100
+@@ -11,7 +11,6 @@ dnl AM_MAINTAINER_MODE only provides the
+ AM_MAINTAINER_MODE
+ 
+ dnl when going to/from release please set the nano (fourth number) right !
+-dnl releases only do Wall, cvs and prerelease does Werror too
+ AS_VERSION(gst-plugins-bad, GST_PLUGINS_BAD_VERSION, 0, 10, 0, 1,
+     GST_CVS="no", GST_CVS="yes")
+ 
+@@ -61,10 +60,6 @@ AS_COMPILER_FLAG(-Wall, GST_WALL="yes", 
+ 
+ if test "x$GST_WALL" = "xyes"; then
+    GST_ERROR="$GST_ERROR -Wall"
+-
+-   if test "x$GST_CVS" = "xyes"; then
+-     AS_COMPILER_FLAG(-Werror,GST_ERROR="$GST_ERROR -Werror",GST_ERROR="$GST_ERROR")
+-   fi
+ fi
+ 
+ dnl determine c++ compiler
