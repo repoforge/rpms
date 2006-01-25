@@ -4,7 +4,7 @@
 
 Summary: Collection of widgets written in C for ncurses
 Name: gandi
-Version: 0.4.1
+Version: 0.5.0
 Release: 1
 License: LGPL
 Group: Development/Libraries
@@ -65,6 +65,9 @@ you will need to install %{name}-devel.
 %{_libdir}/GANDI/libgandi*.so
 
 %changelog
+* Wed Jan 25 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.0-1
+- Updated to release 0.5.0.
+
 * Mon Nov 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.4.1-1
 - Updated to release 0.4.1.
 

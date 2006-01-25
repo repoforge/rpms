@@ -4,7 +4,7 @@
 
 Summary: Tool to find strings in a set of files
 Name: sagasu
-Version: 2.0.6
+Version: 2.0.8
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -53,6 +53,9 @@ CVS directories.
 %exclude %{_docdir}
 
 %changelog
+* Wed Jan 25 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.8-1
+- Updated to release 2.0.8.
+
 * Sat Jun 12 2004 Dag Wieers <dag@wieers.com> - 2.0.6-1
 - Updated to release 2.0.6.
 

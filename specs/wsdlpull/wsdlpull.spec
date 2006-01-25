@@ -1,11 +1,11 @@
 # $Id$
 # Authority: dries
 
-%define real_version 1.9.6
+%define real_version 1.9.7
 
 Summary: C++  web services client library
 Name: wsdlpull
-Version: 1.9.6
+Version: 1.9.7
 Release: 1
 License: LGPL
 Group: Applications/Internet
@@ -80,6 +80,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Wed Jan 25 2006 Dries Verachtert <dries@ulyssis.org> - 1.9.7-1
+- Updated to release 1.9.7.
+
 * Mon Dec 12 2005 Dries Verachtert <dries@ulyssis.org> - 1.9.6-1
 - Updated to release 1.9.6.
 

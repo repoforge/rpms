@@ -3,7 +3,7 @@
 
 Summary: Fantasy MMORPG server suing AI/A-Life techniques
 Name: cyphesis
-Version: 0.5.5
+Version: 0.5.6
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -55,6 +55,9 @@ WorldForge project.
 %{_datadir}/cyphesis/
 
 %changelog
+* Wed Jan 25 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.6-1
+- Updated to release 0.5.6.
+
 * Sun Dec 18 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.5-1
 - Updated to release 0.5.5.
 

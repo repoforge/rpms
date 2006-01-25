@@ -4,7 +4,7 @@
 
 Summary: Remote control for text mode virtual consoles
 Name: conspy
-Version: 1.3
+Version: 1.4
 Release: 1
 License: GPL
 Group: Applications/System
@@ -44,5 +44,8 @@ used.
 %{_bindir}/conspy
 
 %changelog
+* Wed Jan 25 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1
+- Updated to release 1.4.
+
 * Wed Jan 11 2006 Dag Wieers <dag@wieers.com> - 1.3-1
 - Initial package. (using DAR)

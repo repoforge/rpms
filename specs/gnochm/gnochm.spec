@@ -12,7 +12,7 @@
 
 Summary: CHM file viewer
 Name: gnochm
-Version: 0.9.6
+Version: 0.9.7
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -91,6 +91,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Wed Jan 25 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.7-1
+- Updated to release 0.9.7.
+
 * Sun Sep 11 2005 Dag Wieers <dag@wieers.com> - 0.9.6-1
 - Updated to release 0.9.6.
 

@@ -19,8 +19,8 @@
 
 Summary: Extensible Perl toolkit for multi-platform GUI development
 Name: prima
-Version: 1.19
-Release: 2
+Version: 1.20
+Release: 1
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.prima.eu.org/
@@ -76,6 +76,9 @@ identically on X, Win32 and OS/2 PM.
 %{_bindir}/fmview
 
 %changelog
+* Wed Jan 25 2005 Dries Verachtert <dries@ulyssis.org> - 1.20-1
+- Updated to release 1.20.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.19-2
 - fmview added to files section.
 
