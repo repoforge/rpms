@@ -7,14 +7,13 @@
 
 Summary: Graphical password manager
 Name: revelation
-Version: 0.4.5
+Version: 0.4.6
 Release: 1
 License: GPL
 Group: Applications/Productivity
 URL: http://oss.codepoet.no/revelation/
 
 Source: ftp://oss.codepoet.no/revelation/revelation-%{version}.tar.bz2
-Patch: revelation-0.4.5-bonobo-ui.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python >= 2.3, python-devel, python-crypto >= 1.9
@@ -32,7 +31,6 @@ a tree structure, and stores them as AES-encrypted XML files.
 
 %prep
 %setup
-%patch
 
 %build
 %configure \
@@ -79,6 +77,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/icons/hicolor/*/apps/revelation-locked.png
 
 %changelog
+* Fri Jan 26 2006 Dag Wieers <dag@wieers.com> - 0.4.6-1
+- Updated to release 0.4.6.
+
 * Fri Aug 26 2005 Dag Wieers <dag@wieers.com> - 0.4.5-1
 - Updated to release 0.4.5.
 
