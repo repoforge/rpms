@@ -14,7 +14,7 @@
 
 Summary: Friendly interactive shell
 Name: fish
-Version: 1.20.0
+Version: 1.20.1
 Release: 1
 License: GPL
 Group: System Environment/Shells
@@ -56,6 +56,8 @@ is simple but incompatible with other shell languages.
 %doc *.html doc_src/*.txt INSTALL README user_doc/html/
 %doc %{_mandir}/man1/count.1*
 %doc %{_mandir}/man1/fish.1*
+%doc %{_mandir}/man1/fish_pager.1*
+%doc %{_mandir}/man1/fishd.1*
 %doc %{_mandir}/man1/mimedb.1*
 %doc %{_mandir}/man1/set_color.1*
 %doc %{_mandir}/man1/xsel.1x*
@@ -64,14 +66,17 @@ is simple but incompatible with other shell languages.
 %config(noreplace) %{_sysconfdir}/fish.d/
 %{_bindir}/count
 %{_bindir}/fish
+%{_bindir}/fish_pager
+%{_bindir}/fishd
 %{_bindir}/mimedb
 %{_bindir}/set_color
 %{_bindir}/xsel
-%{_bindir}/fish_pager
-%{_bindir}/fishd
 %exclude %{_docdir}/fish/
 
 %changelog
+* Thu Jan 26 2006 Dag Wieers <dag@wieers.com> - 1.20.1-1
+- Updated to release 1.20.1.
+
 * Tue Jan 17 2006 Dag Wieers <dag@wieers.com> - 1.20.0-1
 - Updated to release 1.20.0.
 
