@@ -48,7 +48,8 @@ identically on X, Win32 and OS/2 PM.
 %setup -n Prima-%{version}
 
 %build
-%{__perl} Makefile.PL PREFIX=%{buildroot}/usr
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g;' Makefile.PL
+%{__perl} Makefile.PL PREFIX="%{buildroot}/usr"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -61,22 +62,22 @@ identically on X, Win32 and OS/2 PM.
 %files
 %defattr(-, root, root, 0755)
 %doc Copying HISTORY README
+%doc %{perl_sitearch}/man/man?/*
 %{perl_sitearch}/Prima.pm
-%{perl_sitearch}/Prima
+%{perl_sitearch}/Prima/
 %exclude %{perl_sitearch}/auto/Prima/.packlist
-%{perl_sitearch}/auto/Prima/Prima.so
+%{perl_sitearch}/auto/Prima/
 %{perl_sitearch}/gencls.pod
-%{perl_sitearch}/man/man?
+%{_bindir}/cfgmaint
+%{_bindir}/fmview
+%{_bindir}/gencls
+%{_bindir}/p-class
+%{_bindir}/podview
 %{_bindir}/tmlink
 %{_bindir}/VB
-%{_bindir}/cfgmaint
-%{_bindir}/p-class
-%{_bindir}/gencls
-%{_bindir}/podview
-%{_bindir}/fmview
 
 %changelog
-* Wed Jan 25 2005 Dries Verachtert <dries@ulyssis.org> - 1.20-1
+* Wed Jan 25 2006 Dries Verachtert <dries@ulyssis.org> - 1.20-1
 - Updated to release 1.20.
 
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.19-2

@@ -12,7 +12,7 @@ URL: http://libbraille.sourceforge.net/
 
 Source: http://dl.sf.net/libbraille/libbraille-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, libusb-devel
+BuildRequires: gcc-c++, libusb-devel >= 0.1.8
 
 %description
 This library makes it possible to easily access Braille displays and

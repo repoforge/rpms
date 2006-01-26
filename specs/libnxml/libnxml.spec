@@ -41,18 +41,15 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %{_libdir}/libnxml.so.*
 
 %files devel
