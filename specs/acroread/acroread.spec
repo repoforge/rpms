@@ -12,8 +12,6 @@
 
 %define desktop_vendor rpmforge
 
-%define real_version 705
-
 Summary: Adobe Reader for viewing PDF files
 Name: acroread
 Version: 7.0.5
@@ -22,7 +20,7 @@ License: Commercial, Freely Distributable
 Group: Applications/Publishing
 URL: http://www.adobe.com/products/acrobat/readermain.html
 
-Source: http://ardownload.adobe.com/pub/adobe/reader/unix/7x/7.0/enu/AdbeRdr%{real_version}_linux_enu.tar.gz
+Source: http://ardownload.adobe.com/pub/adobe/reader/unix/7x/%{version}/enu/AdobeReader_enu-%{version}-1.i386.tar.gz
 NoSource: 0
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
