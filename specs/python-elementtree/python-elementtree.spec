@@ -12,7 +12,7 @@ Name: python-elementtree
 %define real_version 1.2.6-20050316
 %define real_version_celementtree 1.0.2-20050302
 Version: 1.2.6
-Release: 5
+Release: 6
 License: PSF
 Group: Development/Libraries
 URL: http://effbot.org/zone/element-index.htm
@@ -23,7 +23,7 @@ Source2: cElementTree-system-expat-setup.py
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: expat-devel, python-devel
-Requires: python-abi = %{python_abi}
+#Requires: python-abi = %{python_abi}
 Obsoletes: python-celementtree
 
 %description
@@ -67,6 +67,9 @@ popd
 %{python_sitearch}/*.so
 
 %changelog
+* Fri Jan 27 2006 Dag Wieers <dag@wieers.com> - 1.2.6-6
+- Removed python-abi since older releases do not provide it.
+
 * Thu Jan 05 2006 Dag Wieers <dag@wieers.com> - 1.2.6-5
 - Obsoleted python-celementtree.
 
