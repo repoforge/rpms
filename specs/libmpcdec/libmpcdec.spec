@@ -10,7 +10,7 @@ Group: System Environment/Libraries
 URL: http://www.musepack.net/
 Source: http://files2.musepack.net/source/libmpcdec-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, autoconf >= 2.58
 
 %description
 Musepack is an audio compression format with a strong emphasis on high quality.

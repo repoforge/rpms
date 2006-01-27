@@ -38,7 +38,8 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure
+%configure \
+	--program-prefix="%{?_program_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install

@@ -10,7 +10,7 @@ License: GPL
 Group: Applications/Publishing
 URL: http://www.billposer.org/Software/msort.html
 
-Source: http://www.billposer.org/Software/Downloads/msort.tgz
+Source: http://www.billposer.org/Software/Downloads/msort-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: tre-devel

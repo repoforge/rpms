@@ -2,14 +2,16 @@
 # Authority: dag
 # Conrad Parker <conrad@vergenet.net>
 
+%define desktop_vendor rpmforge
+
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
 Summary: Sound wave editor
 Name: sweep
-Version: 0.8.3
-Release: 2
+Version: 0.9.0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://sweep.sourceforge.net/
@@ -18,7 +20,7 @@ Source: http://dl.sf.net/sweep/sweep-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libsndfile-devel >= 1.0.1, libmad-devel
-BuildRequires: gtk+-devel >= 1.2.0, libvorbis-devel, speex-devel
+BuildRequires: glib-devel >= 2.2, gtk+-devel >= 2.2, libvorbis-devel, speex-devel
 BuildRequires: gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
@@ -40,20 +42,6 @@ you will need to install %{name}-devel.
 %prep
 %setup
 
-### FIXME: Include improved desktop-file. (Please fix upstream)
-%{__cat} <<EOF >sweep.desktop
-[Desktop Entry]
-Name=Sweep Sound Editor
-Comment=Edit audio files
-Icon=sweep.png
-Exec=sweep
-Terminal=false
-Type=Application
-Encoding=UTF-8
-MimeType=audio/x-wav
-Categories=GNOME;Application;AudioVideo;
-EOF
-
 %build
 %configure \
 	--libdir="%{_libdir}/sweep"
@@ -64,28 +52,19 @@ EOF
 %makeinstall libdir="%{buildroot}%{_libdir}/sweep"
 %find_lang %{name}
 
-%if %{!?_without_freedesktop:1}0
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor gnome --delete-original \
-		--add-category X-Red-Hat-Base                 \
-		--dir %{buildroot}%{_datadir}/applications    \
-		%{buildroot}%{_datadir}/gnome/apps/Multimedia/sweep.desktop
-%endif
-
 %clean
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ChangeLog NEWS README* doc/*.txt
-%doc %{_mandir}/man1/*
-%{_bindir}/*
+%doc %{_mandir}/man1/sweep.1*
+%{_bindir}/sweep
 %dir %{_libdir}/sweep/
 %{_libdir}/sweep/*.so
-%{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/sweep.svg
 %{_datadir}/sweep/
-%{!?_without_freedesktop:%{_datadir}/applications/gnome-sweep.desktop}
-%{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/sweep.desktop}
+%{_datadir}/applications/sweep.desktop
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -96,6 +75,9 @@ EOF
 %{_libdir}/sweep/*.la
 
 %changelog
+* Fri Jan 27 2006 Dag Wieers <dag@wieers.com> - 0.9.0-1
+- Updated to release 0.9.0.
+
 * Sat Jun 06 2004 Dag Wieers <dag@wieers.com> - 0.8.3-2
 - Add improved desktop file.
 

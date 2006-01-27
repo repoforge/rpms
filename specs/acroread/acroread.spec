@@ -12,12 +12,12 @@
 
 %define desktop_vendor rpmforge
 
-%define real_version 70
+%define real_version 705
 
 Summary: Adobe Reader for viewing PDF files
 Name: acroread
-Version: 7.0.0
-Release: 2
+Version: 7.0.5
+Release: 1
 License: Commercial, Freely Distributable
 Group: Applications/Publishing
 URL: http://www.adobe.com/products/acrobat/readermain.html
@@ -123,6 +123,9 @@ ln -f %{buildroot}%{_libdir}/acroread/Browser/intellinux/nppdf.so %{buildroot}%{
 %{_libdir}/netscape/plugins/nppdf.so
 
 %changelog
+* Fri Jan 27 2006 Dag Wieers <dag@wieers.com> - 7.0.5-1
+- Updated to release 7.0.5.
+
 * Fri Mar 18 2005 Dag Wieers <dag@wieers.com> - 7.0.0-2
 - Disabled stripping globally to make plugin working. (Jürgen Möllenhoff)
 

@@ -8,9 +8,9 @@
 
 Summary: Utilities to deal with RRD files and graphs
 Name: rrdutils
-Version: 4.2
+Version: 5.0.1
 Release: 1
-License: El Menda
+License: BSD
 Group: Applications/Databases
 URL: http://rrdutils.sourceforge.net/
 
@@ -49,12 +49,15 @@ create new instances of a RRD, and to generate the graphs for them.
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog DESCRIPTION MANIFEST README snmp-kit/table_db.patch ToDo examples/ rrdGrapher.cgi
+%doc ChangeLog DESCRIPTION MANIFEST README ToDo examples/
 %{_bindir}/RRD*
 %{perl_vendorlib}/RRDutils.pm
 %{_localstatedir}/lib/rrd/
 
 %changelog
+* Fri Jan 27 2006 Dag Wieers <dag@wieers.com> - 5.0.1-1
+- Updated to release 5.0.1.
+
 * Sat Jan 14 2005 Dag Wieers <dag@wieers.com> - 4.2-1
 - Updated to release 4.2.
 

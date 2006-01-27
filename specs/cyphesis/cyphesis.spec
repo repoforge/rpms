@@ -12,7 +12,7 @@ URL: http://www.worldforge.org/wf/dev/eng/servers/cyphesis
 Source: http://dl.sf.net/worldforge/cyphesis-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: varconf-devel, atlas-c++-devel, mercator-devel, skstream-devel
+BuildRequires: varconf-devel >= 0.6.4, atlas-c++-devel, mercator-devel, skstream-devel
 BuildRequires: postgresql-devel, python-devel, readline-devel, gcc-c++
 BuildRequires: libsigc++-devel, wfmath-devel, libgcrypt-devel
 

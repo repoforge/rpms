@@ -35,19 +35,19 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-./configure --prefix=%{_prefix}
+./configure --prefix="%{_prefix}"
 %{__perl} -pi -e "s|.*ldconfig.*||g;" Makefile */Makefile
-%{__make} %{?_smp_mflags} DOCDIR=%{_mandir}
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall PREFIX=%{buildroot}%{_prefix} DOCDIR=%{buildroot}%{_mandir}
+%{__make} install \
+	PREFIX="%{buildroot}%{_prefix}" \
+	DOCDIR="%{buildroot}%{_mandir}" \
+	LIBDIR="%{buildroot}%{_libdir}/GANDI"
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
