@@ -1,8 +1,8 @@
 # $Id$
 # Authority: dries
 
-# Screenshot: http://psi.affinix.com/gfx/screenshots/iceram-roster.png
-# ScreenshotURL: http://psi.affinix.com/?page=screenshots
+# Screenshot: http://psi-im.org/gfx/screenshots//0.9.3/lin_0-9-3_roster.png
+# ScreenshotURL: http://psi-im.org/screenshots
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -27,10 +27,10 @@
 Summary: Client application for the Jabber network
 Name: psi
 Version: 0.10
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Communications
-URL: http://psi.affinix.com/
+URL: http://psi-im.org/
 Source0: http://dl.sf.net/psi/psi-%{version}.tar.bz2
 Source1: http://psi.affinix.com/beta/%{tls_plugin}.tar.bz2
 Source2: http://delta.affinix.com/qca/%{qca}.tar.bz2
@@ -199,6 +199,9 @@ popd
 %lang(ru) %{_datadir}/psi/psi_ru.qm
 
 %changelog
+* Sat Jan 29 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-2
+- Fixed the url, thanks to Hal Rottenberg.
+
 * Wed Jan 11 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Updated to release 0.10.
 
