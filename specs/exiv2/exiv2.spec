@@ -4,7 +4,7 @@
 
 Summary: Exif and Iptc metadata manipulation library and tools
 Name: exiv2
-Version: 0.8
+Version: 0.9
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -30,6 +30,16 @@ or the plain data for each tag (here is a sample)
 * extract, insert and delete Exif metadata, Iptc metadata and Jpeg comments
 * extract, insert and delete the thumbnail image embedded in the Exif metadata
 
+%package devel
+Summary: Header files, libraries and development documentation for %{name}.
+Group: Development/Libraries
+Requires: %{name} = %{version}-%{release}
+
+%description devel
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
+
 %prep
 %setup
 
@@ -37,10 +47,11 @@ or the plain data for each tag (here is a sample)
 %configure
 %{__make} %{?_smp_mflags} \
 	CFLAGS="%{optflags}"
+%{__make} doc
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall incdir=%{buildroot}%{_includedir}/exiv2
+%makeinstall incdir=%{buildroot}%{_includedir}/exiv2 mandir=%{buildroot}%{_mandir} man1dir=%{buildroot}%{_mandir}/man1
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,12 +59,24 @@ or the plain data for each tag (here is a sample)
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README
+%doc %{_mandir}/man1/exiv*
 %{_bindir}/exiv2
+%{_libdir}/libexiv2*so
+
+%files devel
+%defattr(-, root, root, 0755)
+%doc doc/html
 %{_bindir}/exiv2-config
-%{_includedir}/exiv2
-%{_libdir}/libexiv2*
+%{_includedir}/exiv2/
+%{_libdir}/libexiv2*.a
+%exclude %{_libdir}/libexiv2*.la
 
 %changelog
+* Fri Jan 27 2006 Oron Peled <oron@actcom.co.il> - 0.9-1
+- Updated to release 0.9
+- Split into exiv2 and exiv2-devel packages
+- Added the documentation into exiv2-devel
+
 * Mon Nov 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.8-1
 - Updated to release 0.8.
 
