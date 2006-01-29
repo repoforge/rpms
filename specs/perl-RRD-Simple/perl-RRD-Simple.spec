@@ -11,7 +11,7 @@ Summary: Interface to RRDTool
 Name: perl-RRD-Simple
 Version: 1.29
 Release: 1
-License: Artistic/GPL
+License: Apache 2.0
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RRD-Simple/
 
@@ -51,11 +51,15 @@ RRA definitions.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README TODO
+%doc Changes LICENSE NOTICE README TODO
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/RRD/Simple.pm
 
 %changelog
+* Sun Jan 29 2006 Dries Verachtert <dries@ulyssis.org> - 1.29-2
+- Fixed the license (Apache 2.0) and added the LICENSE and 
+  NOTICE files, thanks to Nicola Worthington.
+
 * Fri Jan 06 2006 Dries Verachtert <dries@ulyssis.org> - 1.29-1
 - Updated to release 1.29.
 
