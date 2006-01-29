@@ -4,7 +4,7 @@
 
 Summary: C source code analyzer
 Name: ncc
-Version: 2.2
+Version: 2.3
 Release: 1
 License: Artistic
 Group: Development/Languages
@@ -54,5 +54,8 @@ gcc, gdb, bind, mpg123, ncftp, and many other famous projects.
 %{_bindir}/nccnavi
 
 %changelog
+* Sun Jan 29 2006 Dries Verachtert <dries@ulyssis.org> - 2.3-1
+- Updated to release 2.3.
+
 * Tue Sep 13 2005 Dries Verachtert <dries@ulyssis.org> - 2.2-1
 - Initial package.
