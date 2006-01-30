@@ -14,7 +14,8 @@ Patch0: ipac-ng-1.31-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: mysql-devel, gdbm-devel, postgresql-devel
-BuildRequires: flex, openssl-devel, zlib-devel
+# Actually bison or byacc is required.
+BuildRequires: flex, openssl-devel, zlib-devel, byacc
 Requires: apache, iptables
 #Provides: perl(ipac_cfg.pm)
 

@@ -12,7 +12,7 @@ URL: http://www.worldforge.org/dev/eng/libraries/varconf
 Source: http://dl.sf.net/worldforge/varconf-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, pkgconfig, libsigc++-devel
+BuildRequires: gcc-c++, pkgconfig, libsigc++20-devel
 
 %description
 Varconf is configuration handling library required by many WorldForge 

@@ -61,8 +61,8 @@ you will need to install %{name}-devel.
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %{_libdir}/libral.so.*
 %{_datadir}/gtk-doc/html/libRAL/
-%exclude %{_datadir}/doc/libral/libRAL.svg
-%exclude %{_datadir}/doc/libral/libRAL.vpp
+#exclude %{_datadir}/doc/libral/libRAL.svg
+#exclude %{_datadir}/doc/libral/libRAL.vpp
 
 %files devel
 %defattr(-, root, root, 0755)

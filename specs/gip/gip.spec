@@ -19,7 +19,7 @@ URL: http://www.debain.org/software/gip/
 Source: http://web222.mis02.de/releases/gip/gip-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gettext, gtkmm24-devel, which, gcc-c++
+BuildRequires: gettext, gtkmm24-devel, which, gcc-c++, desktop-file-utils
 BuildRequires: intltool, perl-XML-Parser, libsigc++20-devel
 
 %description

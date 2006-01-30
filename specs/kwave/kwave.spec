@@ -13,7 +13,7 @@ URL: http://kwave.sourceforge.net/
 Source: http://dl.sf.net/kwave/kwave-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: kdelibs-devel, gettext, gcc-c++, gsl-devel
+BuildRequires: kdelibs-devel, gettext, gcc-c++, gsl-devel, libtool
 
 %description
 Kwave is a 24-bit sound editor that allows simple operations, such as cut, 

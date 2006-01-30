@@ -28,7 +28,7 @@ Gfax is a popup tool for easily sending facsimilies by printing
 to a fax printer.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup -n %{name}
 
 ### FIXME: makeinstall without DESTDIR/autotool paths
 %{__perl} -pi.orig -e '
