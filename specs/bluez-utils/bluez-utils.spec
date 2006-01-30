@@ -18,7 +18,7 @@
 
 Summary: Bluetooth utilities
 Name: bluez-utils
-Version: 2.9
+Version: 2.10
 Release: 1
 License: GPL
 Group: Applications/System
@@ -275,6 +275,9 @@ fi
 %{_libdir}/cups/backend/bluetooth
 
 %changelog
+* Mon Jan 30 2006 Dag Wieers <dag@wieers.com> - 2.10-1
+- Updated to new release 2.10.
+
 * Sat Aug 07 2004 Dag Wieers <dag@wieers.com> - 2.9-1
 - Updated to new release 2.9.
 - Reworked sysv script.

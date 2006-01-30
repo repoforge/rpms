@@ -6,7 +6,7 @@
 
 Summary: Bluetooth libraries
 Name: bluez-libs
-Version: 2.9
+Version: 2.10
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -46,11 +46,8 @@ you will need to install %{name}-devel.
 %makeinstall \
 	includedir="%{buildroot}%{_includedir}/bluetooth"
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -69,6 +66,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/bluez.pc
 
 %changelog
+* Mon Jan 30 2006 Dag Wieers <dag@wieers.com> - 2.10-1
+- Updated to release 2.10.
+
 * Sat Aug 07 2004 Dag Wieers <dag@wieers.com> - 2.9-1
 - Updated to release 2.9.
 

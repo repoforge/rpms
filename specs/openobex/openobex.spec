@@ -1,7 +1,8 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: fc1 fc2 fc3 el4
+##ExcludeDist: fc1 fc2 fc3
+#ExclusiveDist: el2 rh7 rh9 el3 el4
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -11,17 +12,13 @@ Version: 1.0.1
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
-URL: http://openobex.sourceforge.net/
+#URL: http://openobex.sourceforge.net/
+URL: http://openobex.triq.net/
 
 Source: http://dl.sf.net/openobex/openobex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glib-devel >= 1.2.0
-%{?el4:BuildRequires: bluez-libs-devel}
-%{?fc3:BuildRequires: bluez-libs-devel}
-%{?fc2:BuildRequires: bluez-libs-devel}
-%{?fc1:BuildRequires: bluez-libs-devel}
-%{?rh9:BuildRequires: bluez-libs-devel}
+BuildRequires: glib-devel >= 1.2.0, bluez-libs-devel
 
 %description
 Open OBEX shared c-library.
@@ -51,11 +48,8 @@ you will need to install %{name}-devel.
 %clean
 %{__rm} -rf %{buildroot}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)

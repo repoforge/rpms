@@ -9,7 +9,7 @@
 
 Summary: Fast c-based poller for the cacti graphing solution
 Name: cacti-cactid
-Version: 0.8.6e
+Version: 0.8.6g
 Release: 1
 License: LGPL
 Group: Applications/System
@@ -56,6 +56,9 @@ to achieve excellent performance.
 %config(noreplace) %{_sysconfdir}/cactid.conf
 
 %changelog
+* Mon Jan 30 2006 Dag Wieers <dag@wieers.com> - 0.8.6g-1
+- Updated to release 0.8.6g.
+
 * Tue Aug 09 2005 Dag Wieers <dag@wieers.com> - 0.8.6e-1
 - Updated to release 0.8.6e.
 
