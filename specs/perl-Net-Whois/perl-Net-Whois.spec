@@ -7,7 +7,7 @@
 
 %define real_name Net-Whois
 
-Summary: et and parse whois domain data from InterNIC
+Summary: Get and parse whois domain data from InterNIC
 Name: perl-Net-Whois
 Version: 1.9
 Release: 1
