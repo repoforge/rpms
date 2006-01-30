@@ -5,7 +5,7 @@
 Summary: Flexible, stable and highly-configurable FTP server
 Name: proftpd
 Version: 1.2.10
-Release: 8%{?_with_ldap:_ldap}%{?_with_mysql:_mysql}%{?_with_postgresql:_pgsql}
+Release: 9
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.proftpd.org/
@@ -15,8 +15,10 @@ Source2: proftpd.init
 Source3: proftpd-xinetd
 Source4: proftpd.logrotate
 Source5: welcome.msg
+Source6: proftpd.pam
+Patch0: proftpd-1.2.10-backport-CAN-2005-2390.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: pam >= 0.59, /sbin/service, /sbin/chkconfig, /etc/init.d
+Requires: pam >= 0.59, /sbin/service, /sbin/chkconfig
 BuildRequires: pam-devel, perl, ncurses-devel, pkgconfig
 %{!?_without_tls:Requires: openssl}
 %{!?_without_tls:BuildRequires: openssl-devel, krb5-devel}
@@ -41,16 +43,20 @@ needed scripts to have it run by xinetd instead are included.
 
 Available rpmbuild rebuild options :
 --without : tls
---with : ldap mysql postgresql
+--with : ldap mysql postgresql ipv6
 
 
 %prep
 %setup
+%patch0 -p0 -b .CAN-2005-2390
 
 
 %build
 # Workaround for the PostgreSQL include file
 %{__perl} -pi -e 's|pgsql/libpq-fe.h|libpq-fe.h|g' contrib/mod_sql_postgres.c
+
+# Disable stripping in order to get useful debuginfo packages
+%{__perl} -pi -e 's|"-s"|""|g' configure
 
 # TLS includes
 OPENSSL_INC=""
@@ -64,6 +70,7 @@ fi
 %configure \
     --localstatedir="/var/run" \
     --with-includes="%{_includedir}%{!?_without_tls:${OPENSSL_INC}}%{?_with_mysql::%{_includedir}/mysql}" \
+    %{?_with_ipv6:--enable-ipv6} \
     %{?_with_mysql:--with-libraries="%{_libdir}/mysql"} \
     %{?_with_postgresql:--with-libraries="%{_libdir}"} \
     --with-modules=mod_readme:mod_auth_pam%{?_with_ldap::mod_ldap}%{?_with_mysql::mod_sql:mod_sql_mysql}%{?_with_postgresql::mod_sql:mod_sql_postgres}%{!?_without_tls::mod_tls}
@@ -75,12 +82,16 @@ fi
 %makeinstall rundir="%{buildroot}%{_localstatedir}/run/proftpd" \
     INSTALL_USER=`id -un` \
     INSTALL_GROUP=`id -gn`
-%{__install} -Dp -m 644 contrib/dist/rpm/ftp.pamd %{buildroot}%{_sysconfdir}/pam.d/ftp
-%{__install} -Dp -m 640 %{SOURCE1} %{buildroot}%{_sysconfdir}/proftpd.conf
-%{__install} -Dp -m 755 %{SOURCE2} %{buildroot}%{_sysconfdir}/rc.d/init.d/proftpd
-%{__install} -Dp -m 640 %{SOURCE3} %{buildroot}%{_sysconfdir}/xinetd.d/xproftpd
-%{__install} -Dp -m 644 %{SOURCE4} %{buildroot}%{_sysconfdir}/logrotate.d/proftpd
-%{__install} -Dp -m 644 %{SOURCE5} %{buildroot}/var/ftp/welcome.msg
+%{__install} -D -p -m 640 %{SOURCE1} \
+    %{buildroot}%{_sysconfdir}/proftpd.conf
+%{__install} -D -p -m 755 %{SOURCE2} \
+    %{buildroot}%{_sysconfdir}/rc.d/init.d/proftpd
+%{__install} -D -p -m 640 %{SOURCE3} \
+    %{buildroot}%{_sysconfdir}/xinetd.d/xproftpd
+%{__install} -D -p -m 644 %{SOURCE4} \
+    %{buildroot}%{_sysconfdir}/logrotate.d/proftpd
+%{__install} -D -p -m 644 %{SOURCE5} %{buildroot}/var/ftp/welcome.msg
+%{__install} -D -p -m 644 %{SOURCE6} %{buildroot}%{_sysconfdir}/pam.d/proftpd
 %{__mkdir_p} %{buildroot}/var/ftp/uploads
 %{__mkdir_p} %{buildroot}/var/ftp/pub
 %{__mkdir_p} %{buildroot}/var/log/proftpd
@@ -104,9 +115,9 @@ fi
 
 %preun
 if [ $1 = 0 ]; then
-    /sbin/service proftpd stop >/dev/null 2>&1 || :
+    /sbin/service proftpd stop &>/dev/null || :
     /sbin/chkconfig --del proftpd
-    /sbin/service xinetd reload >/dev/null 2>&1 || :
+    /sbin/service xinetd reload &>/dev/null || :
     if [ -d /var/run/proftpd ]; then
         rm -rf /var/run/proftpd/*
     fi
@@ -114,7 +125,7 @@ fi
 
 %postun
 if [ $1 -ge 1 ]; then
-    /sbin/service proftpd condrestart >/dev/null 2>&1
+    /sbin/service proftpd condrestart &>/dev/null || :
 fi
 
 
@@ -122,24 +133,30 @@ fi
 %defattr(-, root, root, 0755)
 %doc COPYING CREDITS ChangeLog NEWS README*
 %doc doc/* sample-configurations/
-%dir %{_localstatedir}/run/proftpd
+%dir %{_localstatedir}/run/proftpd/
 %config(noreplace) %{_sysconfdir}/proftpd.conf
 %config(noreplace) %{_sysconfdir}/xinetd.d/xproftpd
 %config %{_sysconfdir}/ftpusers
-%config %{_sysconfdir}/pam.d/ftp
+%config %{_sysconfdir}/pam.d/proftpd
 %config %{_sysconfdir}/logrotate.d/proftpd
 %{_sysconfdir}/rc.d/init.d/proftpd
 %{_mandir}/*/*
 %{_bindir}/*
 %{_sbindir}/*
-%dir /var/ftp
-%attr(331, ftp, ftp) %dir /var/ftp/uploads
-%dir /var/ftp/pub
+%dir /var/ftp/
+%attr(331, ftp, ftp) %dir /var/ftp/uploads/
+%dir /var/ftp/pub/
 %config(noreplace) /var/ftp/welcome.msg
-%attr(750, root, root) %dir /var/log/proftpd
+%attr(750, root, root) %dir /var/log/proftpd/
 
 
 %changelog
+* Mon Jan 30 2006 Matthias Saou <http://freshrpms.net/> 1.2.10-9
+- Sync changes from the Fedora Extras package (fixed pam file).
+- Remove extra info from the release tag that caused update problems.
+- Add conditional IPv6 support.
+- Include CAN-2005-2390 patch.
+
 * Wed Sep 22 2004 Matthias Saou <http://freshrpms.net/> 1.2.10-1
 - Updated to release 1.2.10.
 
