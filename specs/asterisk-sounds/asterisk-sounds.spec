@@ -4,8 +4,8 @@
 
 Summary: Sound files for the Asterisk PBX and telephony application and toolkit
 Name: asterisk-sounds
-Version: 1.2.0
-Release: 1
+Version: 1.2.1
+Release: 2
 License: BSD
 Group: Applications/Internet
 URL: http://www.asterisk.org/
@@ -53,9 +53,14 @@ used with Asterisk.
 %exclude %{_var}/lib/asterisk/sounds/conf-hasleft.gsm
 %exclude %{_var}/lib/asterisk/sounds/conf-thereare.gsm
 %exclude %{_var}/lib/asterisk/sounds/invalid.gsm
+%exclude %{_var}/lib/asterisk/sounds/letters/
 
 
 %changelog
+* Fri Jan 27 2006 Matthias Saou <http://freshrpms.net> 1.2.1-2
+- Update to 1.2.1.
+- Exclude letters from sounds (they're also in the main asterisk package).
+
 * Fri Nov 25 2005 Matthias Saou <http://freshrpms.net> 1.2.0-1
 - Update to 1.2.0.
 - Update list of excluded conflicting sounds (+conf-hasleft, +conf-thereare).
