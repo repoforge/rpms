@@ -22,8 +22,8 @@
 
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
-Version: 0.9.7
-Release: 3%{?prever:.%{prever}}
+Version: 0.9.8
+Release: 1%{?prever:.%{prever}}
 License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sourceforge.net/
@@ -73,8 +73,8 @@ programs that need to access quicktime files using libquicktime.
 
 %build
 %configure \
-    --with-cpuflags="%{optflags}" \
-    --enable-static
+    --enable-gpl \
+    --with-cpuflags="%{optflags}"
 %{__make} %{?_smp_mflags}
 
 
@@ -99,7 +99,6 @@ programs that need to access quicktime files using libquicktime.
 %defattr(-, root, root, 0755)
 %doc COPYING README TODO
 %{_bindir}/lqtplay
-%{_bindir}/lqtvrplay
 %{_bindir}/lqt_transcode
 %{_bindir}/qt*
 %{_libdir}/*.so.*
@@ -113,17 +112,19 @@ programs that need to access quicktime files using libquicktime.
 %{_bindir}/lqt-config
 %{_includedir}/lqt/
 %{_includedir}/quicktime
-%{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
-%dir %{_libdir}/libquicktime/
-%{_libdir}/%{name}/*.a
 %exclude %{_libdir}/%{name}/*.la
 %{_datadir}/aclocal/*.m4
 %{_libdir}/pkgconfig/libquicktime.pc
 
 
 %changelog
+* Mon Jan 30 2006 Matthias Saou <http://freshrpms.net/> 0.9.8-1
+- Update to 0.9.8.
+- Remove static libraries, as nothing actually uses them.
+- Remove from %%files no longer included lqtvrplay binary.
+
 * Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 0.9.7-3
 - Enable modular xorg conditional build.
 
