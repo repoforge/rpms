@@ -15,7 +15,7 @@
 Summary: Free multimedia player
 Name: xine
 Version: 0.99.4
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -32,7 +32,7 @@ BuildRequires: gcc-c++, libpng-devel, xine-lib-devel >= 1.0.0
 BuildRequires: curl-devel, libidn-devel, libtermcap-devel, readline-devel
 BuildRequires: pkgconfig, /usr/bin/find
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-#{?_with_modxorg:BuildRequires: libXt-devel}
+%{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel, libXinerama-devel, libXtst-devel, libXxf86vm-devel, libXext-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_aalib:BuildRequires: aalib-devel}
 %{!?_without_caca:BuildRequires: libcaca-devel}
@@ -143,7 +143,13 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %defattr(-, root, root, 0755)
 %doc xine-ui-doc/*
 #{!?_without_aalib:%{_bindir}/aaxine}
-%{_bindir}/*
+%{_bindir}/aaxine
+%{_bindir}/cacaxine
+%{_bindir}/fbxine
+%{_bindir}/xine
+%{_bindir}/xine-bugreport
+%{_bindir}/xine-check
+%{_bindir}/xine-remote
 %{_datadir}/application-registry/xine.applications
 %{_datadir}/pixmaps/xine.png
 %{_datadir}/xine/
@@ -157,6 +163,10 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Mon Jan 30 2006 Matthias Saou <http://freshrpms.net/> 0.99.4-3
+- Fix modular xorg requirements since the "xine" binary wasn't being built.
+- List all bindir entries in %%files so that the above makes the build fail.
+
 * Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 0.99.4-2
 - Add modular xorg build conditional.
 
