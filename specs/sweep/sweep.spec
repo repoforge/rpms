@@ -10,13 +10,13 @@
 
 Summary: Sound wave editor
 Name: sweep
-Version: 0.9.0
+Version: 0.9.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://sweep.sourceforge.net/
 
-Source: http://dl.sf.net/sweep/sweep-%{version}.tar.gz
+Source: http://dl.sf.net/sweep/sweep-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libsndfile-devel >= 1.0.1, libmad-devel
@@ -75,6 +75,9 @@ you will need to install %{name}-devel.
 %{_libdir}/sweep/*.la
 
 %changelog
+* Tue Jan 31 2006 Dag Wieers <dag@wieers.com> - 0.9.1-1
+- Updated to release 0.9.1.
+
 * Fri Jan 27 2006 Dag Wieers <dag@wieers.com> - 0.9.0-1
 - Updated to release 0.9.0.
 

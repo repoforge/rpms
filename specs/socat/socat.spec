@@ -4,7 +4,7 @@
 
 Summary: Relay for bidirectional data transfer between 2 channels
 Name: socat
-Version: 1.4.3.0
+Version: 1.4.3.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -58,6 +58,9 @@ line editor, a program, or a combination of two of these.
 %{_bindir}/socat
 
 %changelog
+* Tue Jan 31 2006 Dag Wieers <dag@wieers.com> - 1.4.3.1-1
+- Updated to release 1.4.3.1.
+
 * Sun Sep 11 2005 Dag Wieers <dag@wieers.com> - 1.4.3.0-1
 - Updated to release 1.4.3.0.
 
