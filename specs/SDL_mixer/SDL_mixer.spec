@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dries
 
+### Only build for Enterprise Linux (that are missing it) and unsupported fedoras
+# ExclusiveDist: rh7 rh9 el3 fc1 fc2 fc3 el4
+
 Summary: Simple multi-channel audio mixer
 Name: SDL_mixer
 Version: 1.2.6
@@ -12,7 +15,7 @@ URL: http://www.libsdl.org/projects/SDL_mixer/
 Source: http://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: smpeg-devel, libvorbis-devel, gcc-c++, SDL-devel, mikmod-devel
+BuildRequires: gcc-c++, SDL-devel, libvorbis-devel, smpeg-devel, mikmod-devel
 
 %description
 SDL_mixer is a simple multi-channel audio mixer. It supports 8 channels of 16 
@@ -42,12 +45,8 @@ you will need to install %{name}-devel.
 %{__install} -D playmus %{buildroot}%{_bindir}/playmus
 %{__install} -D playwave %{buildroot}%{_bindir}/playwave
 
-
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -55,12 +54,13 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYING README
-%{_libdir}/libSDL_mixer-*.so.*
 %{_bindir}/playmus
 %{_bindir}/playwave
+%{_libdir}/libSDL_mixer-*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
+%dir %{_includedir}/SDL/
 %{_includedir}/SDL/SDL_mixer.h
 %{_libdir}/libSDL_mixer.a
 %{_libdir}/libSDL_mixer.so
