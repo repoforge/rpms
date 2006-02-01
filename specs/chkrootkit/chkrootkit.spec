@@ -11,8 +11,8 @@
 
 Summary: Check locally for signs of a rootkit
 Name: chkrootkit
-Version: 0.45
-Release: 2
+Version: 0.46a
+Release: 1
 License: BSD-like
 Group: Applications/System
 URL: http://www.chkrootkit.org/
@@ -120,6 +120,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-chkrootkit.desktop}
 
 %changelog
+* Wed Feb 01 2006 Dag Wieers <dag@wieers.com> - 0.46a-1
+- Updated to release 0.46a.
+
 * Mon Mar 07 2005 Dag Wieers <dag@wieers.com> - 0.45-2
 - Added missing chkutmp. (Bradley Leonard)
 

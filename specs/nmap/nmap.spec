@@ -2,12 +2,24 @@
 # Authority: matthias
 # Upstream: <nmap-dev$insecure,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_gtk24 1}
+%{?el3:%define _without_gtk24 1}
+%{?rh9:%define _without_gtk24 1}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?rh7:%define _without_gtk24 1}
+
+%{?el2:%define _without_freedesktop 1}
+%{?el2:%define _without_gtk24 1}
+
 %define desktop_vendor rpmforge
 
 Summary: Network exploration tool and security scanner
 Name: nmap
-Version: 3.93
-Release: 0
+Version: 4.00
+Release: 1
 Epoch: 2
 License: GPL
 Group: Applications/System
@@ -15,6 +27,9 @@ URL: http://www.insecure.org/nmap/
 Source: http://download.insecure.org/nmap/dist/nmap-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, libpcap, pcre-devel, openssl-devel
+
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%{!?_without_gtk24:BuildRequires: gtk2-devel >= 2.4}
 
 %description
 Nmap is a utility for network exploration or security auditing.  It supports
@@ -29,7 +44,6 @@ predictability characteristics, reverse-identd scanning, and more.
 Summary: Gtk+ frontend for nmap
 Group: Applications/System
 Requires: nmap = %{epoch}:%{version}, gtk+
-BuildRequires: gtk+-devel, desktop-file-utils, openssl-devel
 
 %description frontend
 This package includes nmapfe, a Gtk+ frontend for nmap. The nmap package must
@@ -43,7 +57,8 @@ be installed before installing nmap-frontend.
 
 %build
 %configure \
-    --enable-ipv6
+    --enable-ipv6 \
+%{?_without_gtk24:--without-nmapfe}
 %{__make} %{?_smp_mflags}
 
 
@@ -51,13 +66,14 @@ be installed before installing nmap-frontend.
 %{__rm} -rf %{buildroot}
 %makeinstall nmapdatadir=%{buildroot}%{_datadir}/nmap
 
-
+%if %{!?_without_gtk24:1}0
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install \
     --vendor %{desktop_vendor} \
     --delete-original \
     --dir %{buildroot}%{_datadir}/applications \
     %{buildroot}%{_datadir}/applications/nmapfe.desktop
+%endif
 
 
 %clean
@@ -66,11 +82,12 @@ desktop-file-install \
 
 %files 
 %defattr(-, root, root, 0755)
-%doc COPYING docs/*.html docs/*.txt docs/README
+%doc CHANGELOG COPYING* HACKING docs/*.txt docs/*.xml docs/README
 %{_bindir}/nmap
 %{_datadir}/nmap
 %{_mandir}/man1/nmap.1*
 
+%if %{!?_without_gtk24:1}0
 %files frontend
 %defattr(-, root, root, 0755)
 %{_bindir}/nmapfe
@@ -78,9 +95,13 @@ desktop-file-install \
 %{_datadir}/applications/%{desktop_vendor}-nmapfe.desktop
 %{_mandir}/man1/nmapfe.1*
 %{_mandir}/man1/xnmap.1*
+%endif
 
 
 %changelog
+* Tue Jan 31 2006 Dag Wieers <dag@wieers.com> - 4.00-1
+- Updated to release 4.00.
+
 * Tue Sep 13 2005 Matthias Saou <http://freshrpms.net/> 3.93-0
 - Update to 3.93.
 

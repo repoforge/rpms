@@ -13,7 +13,7 @@ URL: http://kwave.sourceforge.net/
 Source: http://dl.sf.net/kwave/kwave-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: kdelibs-devel, gettext, gcc-c++, gsl-devel, libtool, ImageMagick
+BuildRequires: gcc-c++, libtool, gettext, recode, gsl-devel, kdelibs-devel, ImageMagick
 Requires: ImageMagick
 
 %description
@@ -55,11 +55,8 @@ you will need to install %{name}-devel.
 %makeinstall
 %find_lang %{name}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -67,12 +64,12 @@ you will need to install %{name}-devel.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS README TODO
+%doc %{_docdir}/HTML/*/kwave/
 %{_bindir}/kwave
 %{_libdir}/libkwave.so.*
 %{_libdir}/libkwavegui.so.*
 %{_datadir}/applnk/Multimedia/kwave.desktop
 %{_datadir}/apps/kwave/
-%{_datadir}/doc/HTML/*/kwave/
 %{_datadir}/icons/*/*/apps/kwave.png
 %{_datadir}/mimelnk/audio/*.desktop
 
