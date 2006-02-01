@@ -57,11 +57,8 @@ you will need to install %{name}-devel.
 %clean
 %{__rm} -rf %{buildroot}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
@@ -70,9 +67,10 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
+%dir %{_includedir}/SDL/
+%{_includedir}/SDL/*.h
 %{_libdir}/*.a
 %{_libdir}/*.so
-%{_includedir}/SDL/
 #exclude %{_libdir}/*.la
 
 %changelog

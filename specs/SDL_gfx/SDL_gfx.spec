@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dries
 # Upstream: A. Schiffler <aschiffler$appwares,com>
+
 # Screenshot: http://www.ferzkopp.net/~aschiffler/Software/SDL_gfx-2.0/Screenshots/SDL_gfxPrimitives.jpg
 # ScreenshotURL: http://www.ferzkopp.net/~aschiffler/Software/SDL_gfx-2.0/index.html
 
@@ -12,6 +13,7 @@ License: LGPL
 Group: System Environment/Libraries
 URL: http://www.ferzkopp.net/mambo/index.php?option=com_content&task=view&id=14&Itemid=29
 Source: http://www.ferzkopp.net/Software/SDL_gfx-2.0/SDL_gfx-%{version}.tar.gz
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, gcc-c++, automake, autoconf, perl
 
@@ -52,11 +54,8 @@ you will need to install %{name}-devel.
 %clean
 %{__rm} -rf %{buildroot}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
@@ -65,9 +64,10 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
+%dir %{_includedir}/SDL/
+%{_includedir}/SDL/*.h
 %{_libdir}/*.a
 %{_libdir}/*.so
-%{_includedir}/SDL/*.h
 %exclude %{_libdir}/*.la
 
 %changelog

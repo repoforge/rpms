@@ -9,7 +9,7 @@ Name: SDL_mixer
 Version: 1.2.6
 Release: 1
 License: LGPL
-Group: Development/Libraries
+Group: System Environment/Libraries
 URL: http://www.libsdl.org/projects/SDL_mixer/
 
 Source: http://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-%{version}.tar.gz

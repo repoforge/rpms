@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Bram Cohen <bram$bitconjurer,org>
 
-### Requires python >= 2.3, works on 2.2 too (Pasi Pirhonen)
+### Requires python >= 2.3, works on 2.2.1+ too (Pasi Pirhonen)
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
@@ -12,7 +12,7 @@
 
 Summary: Network file transfer tool
 Name: bittorrent
-Version: 4.2.2
+Version: 4.4.0
 Release: 1
 License: BitTorrent Open Source License
 Group: Applications/Internet
@@ -22,9 +22,9 @@ Source: http://bittorrent.com/dl/BitTorrent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: python-devel >= 2.3, pygtk2-devel >= 2.4
+BuildRequires: python-devel >= 2.2.1, pygtk2-devel >= 2.6
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-Requires: python >= 2.3, python-khashmir, python-crypto
+Requires: python >= 2.2.1, python-khashmir, python-crypto
 Obsoletes: BitTorrent <= %{version}
 
 %description
@@ -37,7 +37,7 @@ download, making the publisher's burden almost nothing.
 %package gui
 Summary: GUI versions of the BitTorrent file transfer tool
 Group: Applications/Internet
-Requires: pygtk2 >= 2.4
+Requires: pygtk2 >= 2.6
 Requires: %{name} = %{version}-%{release}
 
 %description gui 
@@ -123,6 +123,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{python_sitelib}/khashmir/
 
 %changelog
+* Wed Feb 01 2006 Dag Wieers <dag@wieers.com> - 4.4.0-1
+- Updated to release 4.4.0.
+
 * Sun Dec 18 2005 Dag Wieers <dag@wieers.com> - 4.2.2-1
 - Updated to release 4.2.2.
 

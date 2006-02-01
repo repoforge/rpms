@@ -6,13 +6,13 @@ Name: SDL_net
 Version: 1.2.5
 Release: 1
 License: LGPL
-Group: Development/Libraries
+Group: System Environment/Libraries
 URL: http://www.libsdl.org/projects/SDL_net/
 
 Source: http://www.libsdl.org/projects/SDL_net/release/SDL_net-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: SDL-devel
+BuildRequires: SDL-devel >= 1.2.4
 
 %description
 SDL_net is a thin API layer over sockets which is meant to be a simple 
@@ -52,6 +52,7 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
+%dir %{_includedir}/SDL/
 %{_includedir}/SDL/SDL_net.h
 %{_libdir}/libSDL_net.a
 %{_libdir}/libSDL_net.so
