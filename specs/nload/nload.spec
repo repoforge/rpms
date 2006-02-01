@@ -12,7 +12,7 @@ URL: http://www.roland-riegel.de/nload/
 Source: http://dl.sf.net/nload/nload-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ncurses-devel >= 5.0
+BuildRequires: ncurses-devel >= 5.0, gcc-c++
 
 %description
 nload is a console application which monitors network traffic and bandwidth

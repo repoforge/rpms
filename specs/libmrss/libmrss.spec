@@ -13,7 +13,7 @@ URL: http://www2.autistici.org/bakunin/libmrss/
 Source: http://www2.autistici.org/bakunin/libmrss/libmrss-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: curl-devel
+BuildRequires: curl-devel, libnxml-devel
 
 %description
 mRss is a C library for parsing, writing and creating RSS files or streams. 
