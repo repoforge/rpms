@@ -23,7 +23,7 @@ URL: http://roo.no-ip.org/fish/
 Source: http://roo.no-ip.org/fish/files/%{version}/fish-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ncurses-devel, doxygen, groff
+BuildRequires: ncurses-devel, doxygen, groff, gettext
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 

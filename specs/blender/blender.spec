@@ -18,11 +18,11 @@
 
 %define desktop_vendor rpmforge
 
-%define real_version 2.40
+%define real_version 2.41
 
 Summary: 3D modeling, animation, rendering and post-production
 Name: blender
-Version: 2.40
+Version: 2.41
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -112,6 +112,9 @@ scons
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-blender.desktop}
 
 %changelog
+* Tue Jan 31 2006 Dries Verachtert <dries@ulyssis.org> - 2.41-1
+- Updated to release 2.41.
+
 * Fri Dec 23 2005 Dries Verachtert <dries@ulyssis.org> - 2.40-1
 - Updated to release 2.40.
 

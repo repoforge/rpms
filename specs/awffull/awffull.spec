@@ -13,7 +13,7 @@ URL: http://www.stedee.id.au/awffull
 Source: http://www.stedee.id.au/files/awffull-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: zlib-devel, libpng-devel, db4-devel, gd-devel
+BuildRequires: zlib-devel, libpng-devel, db4-devel, gd-devel, pcre-devel
 
 %description
 AWFFull is a Web server log analysis program, forked from Webalizer. It 

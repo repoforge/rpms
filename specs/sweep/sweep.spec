@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libsndfile-devel >= 1.0.1, libmad-devel
 BuildRequires: glib-devel >= 2.2, gtk+-devel >= 2.2, libvorbis-devel, speex-devel
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, gtk2-devel, glib2-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description

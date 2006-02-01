@@ -11,6 +11,8 @@ Source: http://dl.sf.net/wifidog/wifidog-%{version}.tar.gz
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gcc-c++
+
 %description
 The WiFi Guard Dog project is a complete and embeedable captive portal
 solution for wireless community groups or individuals who wish to open
