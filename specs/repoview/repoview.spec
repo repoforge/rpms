@@ -3,8 +3,8 @@
 
 Summary: Create static HTML pages of a yum repository
 Name: repoview
-Version: 0.3
-Release: 2
+Version: 0.5
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://linux.duke.edu/projects/mini/repoview/
@@ -48,6 +48,9 @@ customizeable.
 %{_datadir}/repoview/
 
 %changelog
+* Thu Feb 02 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-1
+- Updated to release 0.5, thanks to Douglas E. Warner!
+
 * Mon May 09 2005 Dag Wieers <dag@wieers.com> - 0.3-2
 - Changed python-elementtree dependency into python-celementtree.
 
