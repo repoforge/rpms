@@ -13,7 +13,7 @@ URL: http://kwave.sourceforge.net/
 Source: http://dl.sf.net/kwave/kwave-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, libtool, gettext, recode, gsl-devel, kdelibs-devel, ImageMagick
+BuildRequires: gcc-c++, libtool, gettext, recode, gsl-devel, kdelibs-devel, ImageMagick, kdesdk
 Requires: ImageMagick
 
 %description

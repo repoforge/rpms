@@ -12,7 +12,7 @@ URL: http://www.libsdl.org/projects/SDL_net/
 Source: http://www.libsdl.org/projects/SDL_net/release/SDL_net-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: SDL-devel >= 1.2.4
+BuildRequires: SDL-devel >= 1.2.4, gcc-c++
 
 %description
 SDL_net is a thin API layer over sockets which is meant to be a simple 

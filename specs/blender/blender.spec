@@ -50,7 +50,7 @@ secure, multi-platform content to the web, CD-ROMs, and other media, whether
 they are users of Windows, Linux, Irix, Sun Solaris, FreeBSD or OSX.
 
 %prep
-%setup
+%setup -n blender
 
 %{__cat} <<EOF >blender.desktop
 [Desktop Entry]

@@ -12,7 +12,7 @@ URL: http://home.arcor.de/ahuggel/exiv2/index.html
 
 Source: http://home.arcor.de/ahuggel/exiv2/exiv2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, libtool, doxygen, libxslt, graphviz
+BuildRequires: gcc-c++, libtool, doxygen, libxslt, graphviz, python
 
 %description
 Exiv2 comprises of a C++ library and a command line utility to access image

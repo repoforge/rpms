@@ -22,7 +22,7 @@ Source: http://bittorrent.com/dl/BitTorrent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: python-devel >= 2.2.1, pygtk2-devel >= 2.6
+BuildRequires: python-devel >= 2.2.1, pygtk2-devel >= 2.6, gettext
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Requires: python >= 2.2.1, python-khashmir, python-crypto
 Obsoletes: BitTorrent <= %{version}

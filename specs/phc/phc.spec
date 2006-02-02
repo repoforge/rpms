@@ -5,11 +5,12 @@ Summary: PHP compiler
 Name: phc
 Version: 0.1.5.1
 Release: 1
-License: GPL
+# versions below 0.1.5.1 were GPL
+License: BSD
 Group: Development/Languages
 URL: http://www.phpcompiler.org/
 
-Source: http://www.phpcompiler.org/src/phc-%{version}.tar.gz
+Source: http://www.phpcompiler.org/src/archive/phc-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: flex, bison, gcc-c++
