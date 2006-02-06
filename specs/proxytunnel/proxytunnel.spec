@@ -13,6 +13,8 @@ URL: http://proxytunnel.sourceforge.net/
 Source: http://proxytunnel.sf.net/files/proxytunnel-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: openssl-devel
+
 %description
 ProxyTunnel is a program that connects stdin and stdout to a server somewhere
 on the network, through a standard HTTPS proxy. We mostly use it to tunnel
@@ -52,7 +54,7 @@ proxy authentication
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES CREDITS LICENSE.txt README
-%{_mandir}/man1/proxytunnel.1*
+%doc %{_mandir}/man1/proxytunnel.1*
 %{_bindir}/proxytunnel
 
 %changelog

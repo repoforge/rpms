@@ -4,7 +4,7 @@
 
 Summary: Library for parsing, writing and creating XML
 Name: libnxml
-Version: 0.5
+Version: 0.6
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -61,6 +61,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/nxml.pc
 
 %changelog
+* Mon Feb 06 2006 Dag Wieers <dag@wieers.com> - 0.6-1
+- Updated to release 0.6.
+
 * Wed Jan 25 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-1
 - Updated to release 0.5.
 
