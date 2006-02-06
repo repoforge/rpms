@@ -3,14 +3,14 @@
 
 Summary: Portable mail access library
 Name: libetpan
-Version: 0.40
+Version: 0.42
 Release: 1
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.etpan.org/
 Source: http://dl.sf.net/libetpan/libetpan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, openssl-devel, db4-devel, cyrus-sasl-devel
+BuildRequires: gcc-c++, openssl-devel, db4-devel, cyrus-sasl-devel, autoconf
 
 %description
 The purpose of this mail library is to provide a portable, efficient middleware
@@ -75,6 +75,10 @@ the libetpan library.
 
 
 %changelog
+* Tue Jan 31 2006 Matthias Saou <http://freshrpms.net/> 0.42-1
+- Update to 0.42.
+- Add autoconf build requirement (autoheader is needed now apparently).
+
 * Thu Nov 17 2005 Matthias Saou <http://freshrpms.net/> 0.40-1
 - Update to 0.40.
 

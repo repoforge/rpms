@@ -12,7 +12,7 @@
 
 Summary: Enhanced branch of the sylpheed e-mail client
 Name: sylpheed-claws
-Version: 1.9.100
+Version: 2.0.0
 Release: 1%{?extraver:.%{extraver}}
 License: GPL
 Group: Applications/Internet
@@ -25,7 +25,7 @@ Requires: gtk2 >= 2.0.0, gdk-pixbuf >= 0.8.0
 BuildRequires: gtk2-devel >= 2.0.0, gdk-pixbuf-devel >= 0.8.0
 BuildRequires: flex, pkgconfig, gcc-c++
 BuildRequires: openssl-devel, gpgme-devel >= 0.4.5, openldap-devel
-BuildRequires: compface-devel, libetpan-devel >= 0.40
+BuildRequires: compface-devel, libetpan-devel >= 0.41
 BuildRequires: startup-notification-devel
 %{?gettextdevel:BuildRequires: gettext-devel}
 BuildRequires: gettext
@@ -124,6 +124,10 @@ desktop-file-install \
 
 
 %changelog
+* Tue Jan 31 2006 Matthias Saou <http://freshrpms.net/> 2.0.0-1
+- Update to 2.0.0.
+- Update libetpan dependency to >= 0.41.
+
 * Thu Nov 17 2005 Matthias Saou <http://freshrpms.net/> 1.9.100-1
 - Update to 1.9.100.
 - Binary and man page are s/sylpheed/sylpheed-claws/ too now.
