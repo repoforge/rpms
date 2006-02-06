@@ -3,7 +3,7 @@
 
 Summary: Creates user directories on demand
 Name: autodir
-Version: 0.99.0
+Version: 0.99.1
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -96,6 +96,9 @@ fi
 
 
 %changelog
+* Mon Feb  6 2006 Matthias Saou <http://freshrpms.net/> 0.99.1-1
+- Update to 0.99.1.
+
 * Fri Dec 16 2005 Matthias Saou <http://freshrpms.net/> 0.99.0-1
 - Update to 0.99.0.
 
