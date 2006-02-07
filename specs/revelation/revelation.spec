@@ -7,7 +7,7 @@
 
 Summary: Graphical password manager
 Name: revelation
-Version: 0.4.6
+Version: 0.4.7
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -77,6 +77,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/icons/hicolor/*/apps/revelation-locked.png
 
 %changelog
+* Tue Feb 07 2006 Dag Wieers <dag@wieers.com> - 0.4.7-1
+- Updated to release 0.4.7.
+
 * Fri Jan 26 2006 Dag Wieers <dag@wieers.com> - 0.4.6-1
 - Updated to release 0.4.6.
 
