@@ -7,7 +7,7 @@
 
 Summary: Find common bugs in Python source code
 Name: python-checker
-Version: 0.8.16
+Version: 0.8.17
 Release: 1
 License: BSD
 Group: Development/Tools
@@ -56,5 +56,8 @@ parameters to a function/method, and not using a module/variable.
 %exclude %{python_sitelib}/pychecker/VERSION
 
 %changelog
+* Mon Jan 06 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.17-1
+- Updated to release 0.8.17.
+
 * Fri Oct 14 2005 Dries Verachtert <dries@ulyssis.org> - 0.8.16-1
 - Initial package.

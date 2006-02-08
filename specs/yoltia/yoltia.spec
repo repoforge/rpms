@@ -2,11 +2,11 @@
 # Authority: dries
 # Upstream: Stefan Bauer <yoltia-maintain$freenet,de>
 
-%define real_version 0.19.0-0
+%define real_version 0.19.2-0
 
 Summary: Program for editing image files
 Name: yoltia
-Version: 0.19.0.0
+Version: 0.19.2.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -33,7 +33,7 @@ drag-and-drop-interaction, and a simple and fast GUI with
 hotkey-orientated usage.
 
 %prep
-%setup -n %{name}-0.19.0
+%setup -n %{name}-0.19.2
 %{__perl} -pi -e 's|/usr/X11/bin|%{_bindir}|g;' install.sh
 %{__perl} -pi -e 's|/usr|%{buildroot}%{_prefix}|g;' install.sh
 
@@ -79,5 +79,8 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/rpmforge-yoltia.desktop
 
 %changelog
+* Tue Feb 07 2006 Dries Verachtert <dries@ulyssis.org> - 0.19.2.0-1
+- Updated to release 0.19.2.
+
 * Sun Jan 29 2006 Dries Verachtert <dries@ulyssis.org> - 0.19.0.0-1
 - Initial package.

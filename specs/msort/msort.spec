@@ -4,7 +4,7 @@
 
 Summary: Sort files in sophisticated ways
 Name: msort
-Version: 8.12
+Version: 8.13
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -47,8 +47,8 @@ by an optional GUI.
 %{_bindir}/msg.tcl
 
 %changelog
-* Wed Jan 25 2006 Dries Verachtert <dries@ulyssis.org> - 8.12-1
-- Updated to release 8.12.
+* Mon Feb 06 2006 Dries Verachtert <dries@ulyssis.org> - 8.13-1
+- Updated to release 8.13.
 
 * Wed Nov 02 2005 Dries Verachtert <dries@ulyssis.org> - 8.10-1
 - Updated to release 8.10.
