@@ -1,15 +1,16 @@
 # $Id$
-
 # Authority: dag
 
 ### FIXME: usermod -G nagios apache removes other groups.
+
+%define logmsg logger -t %{name}/rpm
 
 %define real_name nsca
 
 Summary: Nagios Service Check Acceptor
 Name: nagios-nsca
-Version: 2.4
-Release: 2
+Version: 2.5
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.nagios.org/
@@ -17,10 +18,10 @@ URL: http://www.nagios.org/
 Source: http://dl.sf.net/nagios/nsca-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 %{?!rh62:BuildRequires: libmcrypt-devel}
 Provides: nsca
 Obsoletes: nsca, netsaint-nsca
+Requires: bash, nagios, libmcrypt, xinetd
 
 %description
 The purpose of this addon is to allow you to execute NetSaint/Nagios
@@ -29,10 +30,10 @@ plugins on a remote host in as transparent a manner as possible.
 %prep
 %setup -n %{real_name}-%{version} 
 
-%{__perl} -pi.orig -e '
-		s|^(command_file)=\@localstatedir\@/rw/nagios.cmd|$1=%{_localstatedir}/spool/nagios/nagios.cmd|;
-		s|^(alternate_dump_file)=\@localstatedir\@/rw/nsca.dump|$1=%{_localstatedir}/spool/nagios/nsca.dump|;
-	' nsca.cfg.in
+#%{__perl} -pi.orig -e '
+#		s|^(command_file)=\@localstatedir\@/rw/nagios.cmd|$1=%{_localstatedir}/spool/nagios/nagios.cmd|;
+#		s|^(alternate_dump_file)=\@localstatedir\@/rw/nsca.dump|$1=%{_localstatedir}/spool/nagios/nsca.dump|;
+#	' nsca.cfg.in
 
 %{__cat} <<EOF >nsca.xinetd.dag
 # default: off
@@ -82,7 +83,7 @@ desc="Nagios NSCA daemon"
 
 start() {
 	echo -n $"Starting $desc ($prog): "
-	daemon $prog -c "$CONFIG" -d
+	daemon $prog -s -c "$CONFIG" -d
 	RETVAL=$?
 	echo
 	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
@@ -142,6 +143,8 @@ EOF
 
 %build
 %configure \
+	--sysconfdir="%{_sysconfdir}/nagios" \
+	--localstatedir="%{_localstatedir}/log/nagios" \
 	--with-nsca-user="nagios" \
         --with-nsca-grp="nagios" \
         --with-nsca-port="5667"
@@ -152,12 +155,14 @@ EOF
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 src/nsca %{buildroot}%{_sbindir}/nsca
 %{__install} -Dp -m0755 src/send_nsca %{buildroot}%{_sbindir}/send_nsca
-%{__install} -Dp -m0644 nsca.cfg %{buildroot}%{_sysconfdir}/nagios/nsca.cfg
-%{__install} -Dp -m0644 send_nsca.cfg %{buildroot}%{_sysconfdir}/nagios/send_nsca.cfg
+%{__install} -Dp -m0644 sample-config/nsca.cfg %{buildroot}%{_sysconfdir}/nagios/nsca.cfg
+%{__install} -Dp -m0644 sample-config/send_nsca.cfg %{buildroot}%{_sysconfdir}/nagios/send_nsca.cfg
 %{__install} -Dp -m0755 nsca.sysv %{buildroot}%{_initrddir}/nsca
 %{__install} -Dp -m0644 nsca.xinetd.dag %{buildroot}%{_sysconfdir}/xinetd.d/nsca
+#%{__install} -Dp -m0644 sample-config/nsca.xinetd %{buildroot}%{_sysconfdir}/xinetd.d/nsca
 
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/spool/nagios/
+#%{__install} -d -m0755 %{buildroot}%{_localstatedir}/spool/nagios/
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/nagios/rw/
 
 %post
 /sbin/chkconfig --add nsca
@@ -180,11 +185,15 @@ fi
 %config(noreplace) %{_sysconfdir}/nagios/
 %config(noreplace) %{_sysconfdir}/xinetd.d/nsca
 %config %{_initrddir}/nsca
-%dir %{_localstatedir}/spool/nagios/
+#%dir %{_localstatedir}/spool/nagios/
+%dir %{_localstatedir}/log/nagios/rw/
 %{_sbindir}/nsca
 %{_sbindir}/send_nsca
 
 %changelog
+* Wed Feb 08 2006 Dag Wieers <dag@wieers.com> - 2.5-1
+- Updated to release 2.5.
+
 * Tue Nov 11 2003 Dag Wieers <dag@wieers.com> - 2.4-2
 - Fixed command_file and alternate_dump_file in nsca.cfg. (Johan Krisar)
 - Removed the nagios dependency. (Johan Krisar)

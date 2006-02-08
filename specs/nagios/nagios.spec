@@ -2,26 +2,26 @@
 # Authority: dag
 # Upstream: Ethan Galstad <nagios$nagios,org>
 
-# Tag: test
+%{?rh7:%define _without_embedperl 1}
+%{?el2:%define _without_embedperl 1}
 
 ### FIXME: TODO: Add sysv script based on template. (remove cmd-file on start-up)
 %define logmsg logger -t %{name}/rpm
 
 Summary: Open Source host, service and network monitoring program
 Name: nagios
-%define real_version 2.0rc2
 Version: 2.0
-Release: 0.rc2
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
 
-Source: http://dl.sf.net/nagios/nagios-%{real_version}.tar.gz
+Source: http://dl.sf.net/nagios/nagios-%{version}.tar.gz
 Source1: http://dl.sf.net/nagios/imagepak-base.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gd-devel > 1.8, zlib-devel, libpng-devel, libjpeg-devel
-Obsoletes: %{name}-www
+Obsoletes: nagios-www <= %{version}
 
 %description
 Nagios is an application, system and network monitoring application.
@@ -46,7 +46,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
 
 %build
 %configure \
@@ -66,7 +66,7 @@ you will need to install %{name}-devel.
 	--with-mail="/bin/mail" \
 	--with-nagios-user="nagios" \
 	--with-nagios-group="nagios" \
-	--enable-embedded-perl \
+%{!?_without_embedperl:--enable-embedded-perl} \
 	--with-perlcache \
 	--with-template-objects \
 	--with-template-extinfo \
@@ -106,13 +106,14 @@ if ! /usr/bin/id nagios &>/dev/null; then
 	/usr/sbin/useradd -r -d %{_localstatedir}/log/nagios -s /bin/sh -c "nagios" nagios || \
 		%logmsg "Unexpected error adding user \"nagios\". Aborting installation."
 fi
+/usr/sbin/groupadd nagiocmd &>/dev/null
 
 %post
 /sbin/chkconfig --add nagios
 
 if /usr/bin/id apache &>/dev/null; then
 	if ! /usr/bin/id -Gn apache 2>/dev/null | grep -q nagios ; then 
-		/usr/sbin/usermod -G nagios apache &>/dev/null
+		/usr/sbin/usermod -G nagios,nagiocmd apache &>/dev/null
 	fi
 else
 	%logmsg "User \"apache\" does not exist and is not added to group \"nagios\". Sending commands to Nagios from the command CGI is not possible."
@@ -148,7 +149,12 @@ fi
 %config(noreplace) %{_sysconfdir}/nagios/*.cfg
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/nagios.conf
 %config %{_initrddir}/nagios
-%{_bindir}/*
+%{_bindir}/convertcfg
+%{_bindir}/nagios
+%{_bindir}/nagiostats
+%{_bindir}/p1.pl
+%{_bindir}/mini_epn
+%{_bindir}/new_mini_epn
 %{_libdir}/nagios/
 %{_datadir}/nagios/
 
@@ -157,17 +163,20 @@ fi
 
 %defattr(-, nagios, nagios, 0755)
 %{_localstatedir}/log/nagios/
-#%dir %{_localstatedir}/run/nagios/
 
 %defattr(-, nagios, apache, 2755)
 %{_localstatedir}/log/nagios/rw/
-#%dir %{_localstatedir}/log/nagios/rw/
+### FIXME: Start using /var/spool/nagios instead of /var/log/nagios/rw ??
+#%{_localstatedir}/spool/nagios/
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/nagios/
 
 %changelog
+* Wed Feb 08 2006 Dag Wieers <dag@wieers.com> - 2.0-1
+- Updated to release 2.0.
+
 * Thu Jan 12 2006 Dag Wieers <dag@wieers.com> - 2.0-0.rc2
 - Updated to release 2.0rc2.
 

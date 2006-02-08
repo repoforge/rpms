@@ -2,12 +2,14 @@
 # Authority: dag
 # Upstream: Ethan Galstad <nagios$nagios,org>
 
+%define logmsg logger -t %{name}/rpm
+
 %define real_name nrpe
 
 Summary: Nagios Remote Plug-ins Execution daemon
 Name: nagios-nrpe
-Version: 2.0
-Release: 4
+Version: 2.3
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.nagios.org/
@@ -18,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: openssl-devel, krb5-devel
 Provides: nrpe
 Obsoletes: nrpe, netsaint-nrpe
-Requires: nagios-plugins
+Requires: bash, grep, nagios-plugins
 Conflicts: nagios
 
 %description
@@ -34,6 +36,7 @@ from check_nrpe on this hosts.
 Summary: Nagios plug-in for NRPE
 Group: Applications/Internet
 Requires: nagios, nagios-plugins
+Obsoletes: nrpe-plugins
 
 %description -n nagios-plugins-nrpe
 Plug-in for Nagios monitoring system. With this plug-in you can send check
@@ -91,7 +94,7 @@ desc="Nagios NRPE daemon"
 
 start() {
 	echo -n $"Starting $desc ($prog): "
-	daemon $prog -c "$CONFIG" -d
+	daemon $prog -s -c "$CONFIG" -d
 	RETVAL=$?
 	echo
 	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
@@ -151,19 +154,25 @@ EOF
 
 %build
 %configure \
+	--datadir="%{_datadir}/nagios" \
 	--libexecdir="%{_libdir}/nagios/plugins" \
+	--localstatedir="%{_localstatedir}/log/nagios" \
+	--sbindir="%{_libdir}/nagios/cgi" \
+	--sysconfdir="%{_sysconfdir}/nagios" \
 	--enable-command-args \
+	--with-init-dir="%{_initrddir}" \
 	--with-nrpe-user="nagios" \
-	--with-nrpe-grp="nagios" \
+	--with-nrpe-group="nagios" \
 	--with-nrpe-port="5666"
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} all
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0711 src/nrpe %{buildroot}%{_sbindir}/nrpe
 %{__install} -Dp -m0711 src/check_nrpe %{buildroot}%{_libdir}/nagios/plugins/check_nrpe
-%{__install} -Dp -m0644 nrpe.cfg %{buildroot}%{_sysconfdir}/nagios/nrpe.cfg
+%{__install} -Dp -m0644 sample-config/nrpe.cfg %{buildroot}%{_sysconfdir}/nagios/nrpe.cfg
 %{__install} -Dp -m0755 nrpe.sysv %{buildroot}%{_initrddir}/nrpe
+#%{__install} -Dp -m0755 init-script %{buildroot}%{_initrddir}/nrpe
 %{__install} -Dp -m0644 nrpe.xinetd.dag %{buildroot}%{_sysconfdir}/xinetd.d/nrpe
 
 %pre
@@ -208,6 +217,9 @@ fi
 %{_libdir}/nagios/plugins/
 
 %changelog
+* Wed Feb 08 2006 Dag Wieers <dag@wieers.com> - 2.3-1
+- Updated to release 2.3.
+
 * Sat Aug 06 2005 Dag Wieers <dag@wieers.com> - 2.0-4
 - Added nagios user-creation. (Jamie Wilkinson)
 - Conflicts nagios-nrpe with nagios. (Jesse Keating)
