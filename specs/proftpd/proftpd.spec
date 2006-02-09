@@ -5,7 +5,7 @@
 Summary: Flexible, stable and highly-configurable FTP server
 Name: proftpd
 Version: 1.2.10
-Release: 9
+Release: 10
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.proftpd.org/
@@ -151,6 +151,9 @@ fi
 
 
 %changelog
+* Thu Feb  9 2006 Matthias Saou <http://freshrpms.net/> 1.2.10-10
+- Fix the default configuration to match the PAM file name change.
+
 * Mon Jan 30 2006 Matthias Saou <http://freshrpms.net/> 1.2.10-9
 - Sync changes from the Fedora Extras package (fixed pam file).
 - Remove extra info from the release tag that caused update problems.
