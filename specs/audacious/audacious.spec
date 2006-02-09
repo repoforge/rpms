@@ -9,7 +9,7 @@
 
 Summary: Media player which uses a skinned interface
 Name: audacious
-Version: 0.1.2
+Version: 0.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -22,11 +22,11 @@ Requires(postun): /sbin/ldconfig, desktop-file-utils
 BuildRequires: gtk2-devel, libglade2-devel, gettext-devel
 BuildRequires: libvisual-devel, SDL-devel
 BuildRequires: libogg-devel, libvorbis-devel, flac-devel, id3lib-devel
-BuildRequires: alsa-lib-devel, esound-devel
-%{?_with_gconf:Buildrequires: GConf2-devel}
+BuildRequires: alsa-lib-devel, esound-devel, libmpcdec-devel, taglib-devel
 %{?_with_vfs:BuildRequires: gnome-vfs2-devel}
+%{!?_without_gconf:BuildRequires: GConf2-devel}
 %{!?_without_lirc:BuildRequires: lirc-devel}
-BuildRequires: libsndfile, libsamplerate, libsidplay
+BuildRequires: libsndfile-devel, libsamplerate-devel, libsidplay-devel
 BuildRequires: ImageMagick
 %{?_with_modxorg:BuildRequires: libXext-devel, libXt-devel}
 
@@ -38,7 +38,9 @@ skinned interface based on Winamp 2.x skins, and in turn based on XMMS.
 %package devel
 Summary: Development files for the audacious media player
 Group: Development/Libraries
-Requires: %{name} = %{version}, pkgconfig
+Requires: %{name} = %{version}, gtk2-devel, pkgconfig
+%{?_with_vfs:Requires: gnome-vfs2-devel}
+%{!?_without_gconf:Requires: GConf2-devel}
 
 %description devel
 Audacious is a media player forked from BMP (Beep Media Player) which uses a
@@ -55,10 +57,11 @@ Development files required to develop plugins for audacious.
 %build
 %configure \
     --disable-rpath \
-    %{?_with_gconf:--enable-gconf} \
+    %{!?_without_gconf:--enable-gconf} \
     %{?_with_vfs:--enable-gnome-vfs} \
     --with-xmms-eq \
-    --enable-sid
+    --enable-sid \
+    --enable-amidiplug
 %{__make} %{?_smp_mflags}
 
 
@@ -106,6 +109,15 @@ update-desktop-database -q || :
 
 
 %changelog
+* Thu Feb  9 2006 Matthias Saou <http://freshrpms.net/> 0.2-1
+- Update to 0.2.
+- Enable GConf, as things seem fine with it now.
+- Opening files still fails for me when gnome-vfs is enabled :-(
+- Force --enable-amidiplug since configure checks for /proc entries.
+- Add libmpcdec-devel and taglib-devel build requirements to enable musepack.
+- Require the -devel libsamplerate, libsndfile and libsidplay, d'oh!
+- Add requirements to the devel package to match what pkgconfig expects.
+
 * Tue Dec 20 2005 Matthias Saou <http://freshrpms.net/> 0.1.2-1
 - Initial RPM release.
 - Can't seem to get libsamplerate nor sndfile enabled.
