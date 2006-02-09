@@ -3,7 +3,9 @@
 # Upstream: Ethan Galstad <nagios$nagios,org>
 
 %{?rh7:%define _without_embedperl 1}
+%{?rh7:%define _without_perlcache 1}
 %{?el2:%define _without_embedperl 1}
+%{?el2:%define _without_perlcache 1}
 
 ### FIXME: TODO: Add sysv script based on template. (remove cmd-file on start-up)
 %define logmsg logger -t %{name}/rpm
@@ -11,7 +13,7 @@
 Summary: Open Source host, service and network monitoring program
 Name: nagios
 Version: 2.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
@@ -67,6 +69,7 @@ you will need to install %{name}-devel.
 	--with-nagios-user="nagios" \
 	--with-nagios-group="nagios" \
 %{!?_without_embedperl:--enable-embedded-perl} \
+%{!?_without_perlcache:--with-perlcache} \
 	--with-perlcache \
 	--with-template-objects \
 	--with-template-extinfo \
@@ -106,7 +109,10 @@ if ! /usr/bin/id nagios &>/dev/null; then
 	/usr/sbin/useradd -r -d %{_localstatedir}/log/nagios -s /bin/sh -c "nagios" nagios || \
 		%logmsg "Unexpected error adding user \"nagios\". Aborting installation."
 fi
-/usr/sbin/groupadd nagiocmd &>/dev/null
+if ! /usr/bin/getent group nagiocmd &>/dev/null; then
+	/usr/sbin/groupadd nagiocmd &>/dev/null || \
+		%logmsg "Unexpected error adding group \"nagiocmd\". Aborting installation."
+fi
 
 %post
 /sbin/chkconfig --add nagios
@@ -152,7 +158,7 @@ fi
 %{_bindir}/convertcfg
 %{_bindir}/nagios
 %{_bindir}/nagiostats
-%{_bindir}/p1.pl
+%{!?_without_perlcache:%{_bindir}/p1.pl}
 %{_bindir}/mini_epn
 %{_bindir}/new_mini_epn
 %{_libdir}/nagios/
@@ -174,6 +180,10 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Wed Feb 08 2006 Dag Wieers <dag@wieers.com> - 2.0-2
+- Fixed the nagiocmd group creation. (Rick Johnson)
+- Added _without_perlcache macro. (Rick Johnson)
+
 * Wed Feb 08 2006 Dag Wieers <dag@wieers.com> - 2.0-1
 - Updated to release 2.0.
 

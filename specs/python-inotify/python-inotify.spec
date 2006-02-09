@@ -6,13 +6,13 @@
 
 Summary: Python module implementing Linux inotify support
 Name: python-inotify
-Version: 0.0.6
+Version: 0.1.0
 Release: 1
-License: UNKNOWN
+License: GPL
 Group: Development/Libraries
-URL: http://www.amautacorp.com/staff/Rudd-O/projects/search-services/
+URL: http://rudd-o.com/projects/python-inotify/
 
-Source: http://www.amautacorp.com/staff/Rudd-O/projects/files/search-services/python-inotify-%{version}.tar.gz
+Source: http://rudd-o.com/wp-content/projects/files/python-inotify/python-inotify-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python, python-devel
@@ -44,9 +44,12 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{python_sitearch}/_inotify.so
 %{python_sitearch}/inotify.py
 %{python_sitearch}/inotify.pyc
-%{python_sitearch}/FSTree.pyo
-%{python_sitearch}/inotify.pyo
+%ghost %{python_sitearch}/FSTree.pyo
+%ghost %{python_sitearch}/inotify.pyo
 
 %changelog
+* Wed Feb 08 2006 Dag Wieers <dag@wieers.com> - 0.1.0-1
+- Updated to release 0.1.0.
+
 * Mon May 30 2005 Dag Wieers <dag@wieers.com> - 0.0.6-1
 - Initial package. (using DAR)

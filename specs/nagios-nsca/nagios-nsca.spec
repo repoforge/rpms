@@ -10,7 +10,7 @@
 Summary: Nagios Service Check Acceptor
 Name: nagios-nsca
 Version: 2.5
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.nagios.org/
@@ -83,7 +83,7 @@ desc="Nagios NSCA daemon"
 
 start() {
 	echo -n $"Starting $desc ($prog): "
-	daemon $prog -s -c "$CONFIG" -d
+	daemon $prog -c "$CONFIG" -d
 	RETVAL=$?
 	echo
 	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
@@ -191,6 +191,9 @@ fi
 %{_sbindir}/send_nsca
 
 %changelog
+* Wed Feb 08 2006 Dag Wieers <dag@wieers.com> - 2.5-2
+- Removed -s option in sysv script. (Rick Johnson)
+
 * Wed Feb 08 2006 Dag Wieers <dag@wieers.com> - 2.5-1
 - Updated to release 2.5.
 

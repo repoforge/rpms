@@ -1,0 +1,51 @@
+diff -urN mirrordir-0.10.49-old/diffie/arc.h mirrordir-0.10.49/diffie/arc.h
+--- mirrordir-0.10.49-old/diffie/arc.h	Tue Nov 23 09:40:09 1999
++++ mirrordir-0.10.49/diffie/arc.h	Fri Jan 12 16:46:32 2001
+@@ -41,8 +41,8 @@
+ } Arc;
+ 
+ #ifndef HAVE_BUILTIN_ARC
+-#define ARC_INIT_SCRIPT		SYSCONFDIR "/ssocket/arcinit.cs"
+-#define ARC_ENCRYPT_SCRIPT	SYSCONFDIR "/ssocket/arcencrypt.cs"
++#define ARC_INIT_SCRIPT		SYSCONFDIR "/mirrordir/arcinit.cs"
++#define ARC_ENCRYPT_SCRIPT	SYSCONFDIR "/mirrordir/arcencrypt.cs"
+ #endif
+ 
+ void arc_init (Arc * arc, unsigned char *key, int key_size);
+diff -urN mirrordir-0.10.49-old/diffie/diffie-socket.h mirrordir-0.10.49/diffie/diffie-socket.h
+--- mirrordir-0.10.49-old/diffie/diffie-socket.h	Tue Nov 23 09:40:09 1999
++++ mirrordir-0.10.49/diffie/diffie-socket.h	Fri Jan 12 16:46:16 2001
+@@ -348,14 +348,14 @@
+ 
+ #else
+ 
+-#define SCRIPT_ACCEPT		SYSCONFDIR "/ssocket/accept.cs"
+-#define SCRIPT_CONNECT		SYSCONFDIR "/ssocket/connect.cs"
++#define SCRIPT_ACCEPT		SYSCONFDIR "/mirrordir/accept.cs"
++#define SCRIPT_CONNECT		SYSCONFDIR "/mirrordir/connect.cs"
+ 
+-#define KEY_DIR			SYSCONFDIR "/ssocket"
+-#define PRIVATE_KEY_DIR		SYSCONFDIR "/ssocket/private"
+-#define PUBLIC_KEY_DIR		SYSCONFDIR "/ssocket/public"
+-#define PRIVATE_KEY_FILE	SYSCONFDIR "/ssocket/private/%d"
+-#define PUBLIC_KEY_FILE		SYSCONFDIR "/ssocket/public/%d"
++#define KEY_DIR			SYSCONFDIR "/mirrordir"
++#define PRIVATE_KEY_DIR		SYSCONFDIR "/mirrordir/private"
++#define PUBLIC_KEY_DIR		SYSCONFDIR "/mirrordir/public"
++#define PRIVATE_KEY_FILE	SYSCONFDIR "/mirrordir/private/%d"
++#define PUBLIC_KEY_FILE		SYSCONFDIR "/mirrordir/public/%d"
+ #define USER_KEY_DIR		".ssocket"
+ 
+ #endif
+diff -urN mirrordir-0.10.49-old/scripts/Makefile.in mirrordir-0.10.49/scripts/Makefile.in
+--- mirrordir-0.10.49-old/scripts/Makefile.in	Sun Jan 16 22:19:32 2000
++++ mirrordir-0.10.49/scripts/Makefile.in	Fri Jan 12 16:48:01 2001
+@@ -77,7 +77,7 @@
+ system = @system@
+ 
+ sysconf_DATA = accept.cs connect.cs arcencrypt.cs arcinit.cs
+-sysconfdir = ${prefix}/etc/ssocket
++sysconfdir = ${datadir}/mirrordir
+ mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = ../config.h
+ CONFIG_CLEAN_FILES = 
