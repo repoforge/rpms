@@ -13,7 +13,7 @@
 
 Summary: Telephony interface support
 Name: zaptel
-Version: 1.2.0
+Version: 1.2.3
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -101,8 +101,8 @@ ${MAKEDEV} \
 
 # Move kernel modules in the "kernel" subdirectory
 %{__mkdir_p} %{buildroot}/lib/modules/%{kernel}/kernel
-%{__mv} %{buildroot}/lib/modules/%{kernel}/extra \
-        %{buildroot}/lib/modules/%{kernel}/kernel/
+%{__mv} %{buildroot}/lib/modules/%{kernel}/misc \
+        %{buildroot}/lib/modules/%{kernel}/kernel/extra
 
 # Move the modules config file back in order to put it in docs instead
 %{__mv} %{buildroot}%{_sysconfdir}/modprobe.conf . || :
@@ -156,6 +156,12 @@ ${MAKEDEV} \
 
 
 %changelog
+* Tue Jan 31 2006 Matthias Saou <http://freshrpms.net/> 1.2.3-1
+- Update to 1.2.3.
+
+* Fri Jan 27 2006 Matthias Saou <http://freshrpms.net/> 1.2.2-1
+- Update to 1.2.2.
+
 * Fri Nov 25 2005 Matthias Saou <http://freshrpms.net/> 1.2.0-1
 - Update to 1.2.0.
 - No longer patch the Makefile, horray!
