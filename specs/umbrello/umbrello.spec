@@ -18,8 +18,8 @@
 
 Summary: unified modelling language (UML) diagrams modeller
 Name: umbrello
-Version: 1.5.0
-Release: 2
+Version: 1.5.1
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://uml.sourceforge.net/
@@ -88,6 +88,9 @@ EOF
 %{_datadir}/doc/HTML/*/umbrello
 
 %changelog
+* Sun Feb 12 2006 Dries Verachtert <dries@ulyssis.org> 1.5.1-1
+- Updated to release 1.5.1.
+
 * Fri Jan 06 2006 Dries Verachtert <dries@ulyssis.org> 1.5.0-2
 - Fixed the download url.
 

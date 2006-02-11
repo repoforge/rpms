@@ -6,7 +6,7 @@
 
 Summary: Object oriented wrapper for PostgreSQL
 Name: bonddb
-Version: 2.2.2
+Version: 2.2.3
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -85,6 +85,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libbond*.la
 
 %changelog
+* Sun Feb 12 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.3-1
+- Updated to release 2.2.3.
+
 * Mon Jan 09 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.2-1
 - Updated to release 2.2.2.
 

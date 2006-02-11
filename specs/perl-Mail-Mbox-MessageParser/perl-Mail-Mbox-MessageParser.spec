@@ -8,7 +8,7 @@
 
 Summary: Fast and simple mbox folder reader 
 Name: perl-Mail-Mbox-MessageParser
-Version: 1.4001
+Version: 1.4002
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ echo -e "\n" | %{__perl} Makefile.PL \
 %{perl_vendorlib}/Mail/
 
 %changelog
+* Sun Feb 12 2006 Dries Verachtert <dries@ulyssis.org> - 1.4002-1
+- Updated to release 1.4002.
+
 * Sat Aug 06 2005 Dries Verachtert <dries@ulyssis.org> - 1.4001-1
 - Updated to release 1.4001.
 
