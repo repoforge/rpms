@@ -4,7 +4,7 @@
 Summary: CheckInstall installations tracker
 Name: checkinstall
 Version: 1.6.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://asic-linux.com.mx/~izto/checkinstall/
@@ -29,7 +29,7 @@ standard package management  utilities.
 		s|/usr/local/bin|\$(bindir)|g;
 		s|/usr/local/lib|\$(libdir)|g;
 	' Makefile
-%{__perl} -pi.orig -e 's|/usr/local|%{_prefix}|g' checkinstall checkinstallrc
+%{__perl} -pi.orig -e 's|/usr/local|%{_prefix}|g' checkinstall checkinstallrc*
 %{__perl} -pi.orig -e 's|#PREFIX#|%{_prefix}|g' installwatch
 
 %build
@@ -44,7 +44,7 @@ standard package management  utilities.
 %makeinstall \
 	PREFIX="%{_prefix}" \
 	BINDIR="%{buildroot}%{_bindir}" \
-	LIBDIR="%{buildroot}%{_libdir}"
+	LIBDIR="%{buildroot}%{_libdir}" INSTALLWATCH_PREFIX=%{_prefix}
 #%{__install} -p -m0755 installwatch-*/installwatch %{buildroot}%{_bindir}
 #%{__install} -p -m0755 checkinstall makepak %{buildroot}%{_sbindir}
 #%{__install} -p -m0755 installwatch-*/installwatch.so %{buildroot}%{_libdir}
@@ -63,6 +63,9 @@ standard package management  utilities.
 %{_libdir}/*.so
 
 %changelog
+* Sun Feb 12 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.0-2
+- Fixed the path to installwatch, thanks to Renato Ramonda. (atrpms bugzilla bug 723)
+
 * Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 1.6.0-1
 - Updated to release 1.6.0.
 
