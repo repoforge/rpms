@@ -42,7 +42,7 @@ you will need to install %{name}-devel.
 
 %build
 %{__libtoolize} --force --copy
-%{__aclocal} --force
+%{__aclocal} #--force
 %{__autoheader}
 %{__automake} --add-missing -a --foreign
 %{__autoconf}

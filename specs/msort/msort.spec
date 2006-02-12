@@ -42,9 +42,9 @@ by an optional GUI.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING Doc/* INSTALL NEWS README
-%doc %{_mandir}/man1/msort*
+%doc %{_mandir}/man1/msort.1*
+%{_bindir}/msg
 %{_bindir}/msort
-%{_bindir}/msg.tcl
 
 %changelog
 * Sun Feb 12 2006 Dries Verachtert <dries@ulyssis.org> - 8.15-1

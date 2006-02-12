@@ -38,10 +38,13 @@ archives (often called .cbz, .cbr and .cbt) as well as normal image files.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING README
+%doc %{_mandir}/man1/comicthumb.1*
 %doc %{_mandir}/man1/comix.1*
+%{_bindir}/comicthumb
 %{_bindir}/comix
-%{_datadir}/pixmaps/comix.png
 %{_datadir}/applications/*comix.desktop
+%{_datadir}/icons/hicolor/48x48/apps/comix.png
+%{_datadir}/pixmaps/comix.png
 %{_datadir}/pixmaps/comix/
 
 %changelog
