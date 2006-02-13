@@ -6,8 +6,8 @@
 
 Summary: Tool to recover from or prevent Repetitive Strain Injury
 Name: workrave
-Version: 1.8.1
-Release: 2
+Version: 1.8.2
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://workrave.sourceforge.net/
@@ -72,6 +72,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/locale/*/LC_MESSAGES/workrave.po
 
 %changelog
+* Sun Feb 12 2006 Dries Verachtert <dries@ulyssis.org> - 1.8.2-1
+- Updated to release 1.8.2.
+
 * Tue Nov 08 2005 Dries Verachtert <dries@ulyssis.org> - 1.8.1-2
 - gnome-panel-devel added to buildreqs.
 

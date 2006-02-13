@@ -4,7 +4,7 @@
 
 Summary: Proxy server for ultima online
 Name: uoproxy
-Version: 0.1.1
+Version: 0.1.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -41,6 +41,9 @@ and much more.
 %{_bindir}/uoproxy
 
 %changelog
+* Sun Feb 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.2-1
+- Updated to release 0.1.2.
+
 * Tue Dec 27 2005 Dries Verachtert <dries@ulyssis.org> - 0.1.1-1
 - Updated to release 0.1.1.
 

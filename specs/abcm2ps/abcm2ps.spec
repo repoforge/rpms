@@ -4,7 +4,7 @@
 
 Summary: Convert music tunes from ABC format to PostScript
 Name: abcm2ps
-Version: 4.12.6
+Version: 4.12.7
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -45,7 +45,10 @@ music.
 %{_datadir}/abcm2ps/
 
 %changelog
-* Mon Dec 30 2006 Dries Verachtert <dries@ulyssis.org> - 4.12.6-1
+* Sun Feb 12 2006 Dries Verachtert <dries@ulyssis.org> - 4.12.7-1
+- Updated to release 4.12.7.
+
+* Mon Jan 30 2006 Dries Verachtert <dries@ulyssis.org> - 4.12.6-1
 - Updated to release 4.12.6.
 
 * Tue Dec 06 2005 Dries Verachtert <dries@ulyssis.org> - 4.12.3-1
