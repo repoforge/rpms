@@ -10,17 +10,17 @@
 
 Summary: Clone of Mirabilis' popular ICQ
 Name: gnomeicu
-Version: 0.99.5
+Version: 0.99.9
 Release: 1
 Epoch: 1
 License: GPL
 Group: Applications/Communications
 URL: http://gnomeicu.sourceforge.net/
 
-Source: http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
+Source: http://download.sourceforge.net/gnomeicu/gnomeicu-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libgnomeui-devel >= 2.0.0, gnet-devel >= 1.1.3
+BuildRequires: pkgconfig >= 0.16, libgnomeui-devel >= 2.0.0, gnet-devel >= 1.1.3
 BuildRequires: libxml2-devel >= 2.4.7, scrollkeeper >= 0.3.5
 BuildRequires: gtkspell-devel >= 2.0.4
 
@@ -88,6 +88,9 @@ scrollkeeper-update -q || :
 %endif
 
 %changelog
+* Mon Feb 13 2006 Dag Wieers <dag@wieers.com> - 0.99.9-1
+- Updated to release 0.99.9.
+
 * Mon Nov 29 2004 Dag Wieers <dag@wieers.com> - 0.99.5-1
 - Updated to release 0.99.5.
 - Merged with SPEC file contributed by Andreas Rogge.

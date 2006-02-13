@@ -2,6 +2,11 @@
 # Authority: dries
 # Upstream: Bill Cheng <cheng$acm,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+
 Summary: Vector-based drawing tool
 Name: tgif
 Version: 4.1.44
@@ -24,7 +29,7 @@ parts of the drawing, or to other drawings accessible via HTTP.
 %prep
 %setup -n tgif-QPL-%{version}
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >tgif.desktop
 [Desktop Entry]
 Name=Tgif
 Comment=Vector-based drawing tool
@@ -32,23 +37,27 @@ Exec=tgif
 Terminal=false
 Type=Application
 StartupNotify=true
-Icon=/usr/lib/tgif/tgificon.xpm
+Icon=%{_libdir}/tgif/tgificon.xpm
 Categories=Application;Graphics;
 EOF
 
 %build
 xmkmf
-%{__make} %{?_smp_mflags} BINDIR=%{_bindir} LIBDIR=%{_libdir}
+%{__make} %{?_smp_mflags} BINDIR="%{_bindir}" LIBDIR="%{_libdir}"
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall BINDIR=%{buildroot}%{_bindir} LIBDIR=%{buildroot}%{_libdir}
+%makeinstall BINDIR="%{buildroot}%{_bindir}" LIBDIR="%{buildroot}%{_libdir}"
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor rpmforge             \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+%if %{?_without_freedesktop:1}0
+	%{__install} -D -m 0644 tgif.desktop %{buildroot}/etc/X11/applnk/Multimedia/tgif.desktop
+%else
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+	desktop-file-install --vendor %{desktop_vendor}    \
+		--add-category X-Red-Hat-Base              \
+		--dir %{buildroot}%{_datadir}/applications \
+		tgif.desktop
+%endif
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -58,7 +67,8 @@ desktop-file-install --vendor rpmforge             \
 %doc HISTORY LICENSE.QPL README*
 %{_bindir}/tgif
 %{_libdir}/tgif/
-%{_datadir}/applications/*-tgif.desktop
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-tgif.desktop}
+%{?_without_freedesktop:/etc/X11/applnk/Multimedia/tgif.desktop}
 
 %changelog
 * Mon Feb 06 2006 Dries Verachtert <dries@ulyssis.org> - 4.1.44-1

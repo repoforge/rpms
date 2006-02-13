@@ -38,7 +38,7 @@ accepts filter expressions like tcpdump.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO
+%doc AUTHORS ChangeLog COPYING NEWS README
 %doc %{_mandir}/man1/pktstat.1*
 %{_bindir}/pktstat
 

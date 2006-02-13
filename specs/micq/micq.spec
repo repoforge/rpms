@@ -12,7 +12,7 @@
 
 Summary: Clone of the Mirabilis ICQ online messaging program
 Name: micq
-Version: 0.4.11
+Version: 0.5.1
 Release: 1
 Group: Applications/Internet
 License: GPL
@@ -50,7 +50,7 @@ program.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -59,9 +59,13 @@ program.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* doc/*.txt doc/README* FAQ NEWS README TODO
 %doc %{_mandir}/man?/micq*
+%doc %{_mandir}/*/man?/micq*
 %{_bindir}/micq
 %{_datadir}/micq/
 
 %changelog
+* Mon Feb 13 2006 Dag Wieers <dag@wieers.com> - 0.5.1-1
+- Updated to release 0.5.1.
+
 * Wed Apr 07 2004 Dag Wieers <dag@wieers.com> - 0.4.11-1
 - Initial package. (using DAR)

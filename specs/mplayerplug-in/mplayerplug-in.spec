@@ -7,7 +7,7 @@
 
 Summary: Browser plugin for mplayer
 Name: mplayerplug-in
-Version: 3.17
+Version: 3.21
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -60,6 +60,9 @@ in your browser.
 %{_libdir}/mozilla/plugins/mplayerplug-in-wmp.xpt
 
 %changelog
+* Mon Feb 13 2006 Dag Wieers <dag@wieers.com> - 3.21-1
+- Updated to release 3.21.
+
 * Thu Dec 08 2005 Dag Wieers <dag@wieers.com> - 3.17-1
 - Updated to release 3.17.
 
