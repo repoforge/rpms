@@ -7,7 +7,7 @@
 Summary: iTouch keyboard control plugin for the Audacious media player
 Name: audacious-itouch
 Version: 0.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://nedudu.hu/?page_id=11
@@ -34,7 +34,9 @@ the keyboard.
 %configure \
     --libdir=%{aud_general} \
     --datadir=%{aud_datadir}
-%{__make} %{?_smp_mflags}
+# Build "sometimes" fails, so remove %{?_smp_mflags}, although it seems like
+# that's not it.
+%{__make}
 
 
 %install
@@ -57,6 +59,9 @@ the keyboard.
 
 
 %changelog
+* Mon Feb 13 2006 Matthias Saou <http://freshrpms.net/> 0.2-2
+- Rebuild against proper FC4 gtk2 to fix unexisting dependencies.
+
 * Thu Feb  9 2006 Matthias Saou <http://freshrpms.net/> 0.1-1
 - Initial RPM release based on bmp-itouch.
 - Something is weird, as the build can sometimes fail ("@CATALOGS@")...
