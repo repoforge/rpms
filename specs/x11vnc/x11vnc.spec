@@ -14,7 +14,7 @@
 
 Summary: VNC server for the current X11 session
 Name: x11vnc
-Version: 0.7.2
+Version: 0.8
 Release: 1
 License: GPL
 Group: User Interface/X
@@ -58,6 +58,9 @@ into a versatile and performant while still easy to use program.
 %{_datadir}/x11vnc/
 
 %changelog
+* Tue Feb 14 2006 Dag Wieers <dag@wieers.com> - 0.8-1
+- Updated to release 0.8.
+
 * Thu Jul 14 2005 Dag Wieers <dag@wieers.com> - 0.7.2-1
 - Updated to release 0.7.2.
 
