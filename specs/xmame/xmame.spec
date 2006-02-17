@@ -27,15 +27,15 @@
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.103
+Version: 0.104
 Release: 1%{?rcver:.%{rcver}}
 Source0: http://x.mame.net/download/xmame-%{version}.tar.bz2
 # http://cheat.retrogames.com/ 0.81 - 21/04/2004
 Source20: http://cheat.retrogames.com/cheat.zip
 # http://www.mameworld.net/highscore/ 0.103 - 04/01/2006
 Source21: http://www.mameworld.net/highscore/uhsdat0103.zip
-# http://www.arcade-history.com/ 1.05k - 11/01/2006
-Source22: http://www.arcade-history.com/download/history1_05k.zip
+# http://www.arcade-history.com/ 1.06 - 20/01/2006
+Source22: http://www.arcade-history.com/download/history1_06.zip
 # http://www.mameworld.net/mameinfo/ 0.103 - 30/12/2005
 Source23: http://www.mameworld.net/mameinfo/update/Mameinfo0103.zip
 # http://www.mameworld.net/catlist/ 0.99u2 - 12/09/2005
@@ -267,6 +267,9 @@ popd
 
 
 %changelog
+* Fri Feb 17 2006 Matthias Saou <http://freshrpms.net/> 0.104-1
+- Update to 1.104.
+
 * Tue Jan 17 2006 Matthias Saou <http://freshrpms.net/> 0.103-1
 - Update to 0.103.
 
