@@ -4,7 +4,7 @@
 Summary: Create static HTML pages of a yum repository
 Name: repoview
 Version: 0.5
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/System
 URL: http://linux.duke.edu/projects/mini/repoview/
@@ -13,7 +13,7 @@ Source: http://linux.duke.edu/projects/mini/repoview/download/repoview-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-Requires: python >= 2.2, python-kid, python-celementtree, yum >= 2.3
+Requires: python >= 2.2, python-kid, python-elementtree, yum >= 2.3
 
 %description
 repoview allows to easily create a set of static HTML pages in a YUM
@@ -48,6 +48,9 @@ customizeable.
 %{_datadir}/repoview/
 
 %changelog
+* Fri Feb 17 2006 Dag Wieers <dag@wieers.com> - 0.5-3
+- Changed python-celementtree dependency to python-elementtree. (Douglas E. Warner)
+
 * Tue Feb 14 2006 Dag Wieers <dag@wieers.com> - 0.5-2
 - Added yum >= 2.3 dependency.
 

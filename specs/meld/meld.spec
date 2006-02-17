@@ -15,11 +15,11 @@ URL: http://meld.sourceforge.net/
 Source: http://ftp.gnome.org/pub/gnome/sources/meld/1.1/meld-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pygtk2-devel >= 1.99.14, gnome-python2 >= 1.99.14
+BuildRequires: pygtk2-devel >= 2.6, gnome-python2 >= 1.99.14
 BuildRequires: pyorbit-devel >= 1.99, desktop-file-utils
 
 BuildArch: noarch
-Requires: pygtk2 >= 1.99.14, gnome-python2 >= 1.99, gnome-python2-canvas
+Requires: pygtk2 >= 2.6, gnome-python2 >= 1.99, gnome-python2-canvas
 Requires: pygtk2-libglade, gnome-python2-gconf >= 1.99
 
 %description

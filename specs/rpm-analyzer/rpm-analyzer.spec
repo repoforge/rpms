@@ -7,7 +7,7 @@
 Summary: Graphical interface for RPM analyze
 Name: rpm-analyzer
 Version: 1.0
-Release: 0.r10
+Release: 0.r15
 License: GPL
 Group: Applications/System
 URL: http://www.maisondubonheur.com/rpm-analyzer/
