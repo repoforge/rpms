@@ -4,7 +4,7 @@
 
 Summary: Tool that helps in the creation of packages
 Name: packer
-Version: 0.1.4
+Version: 0.1.5
 Release: 1
 License: GPL
 Group: Applications/Utilities
@@ -48,5 +48,8 @@ that are hand-crafted.
 %{_datadir}/packer/
 
 %changelog
+* Sun Feb 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.5-1
+- Updated to release 0.1.5.
+
 * Wed Jan 04 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.4-1
 - Initial package.

@@ -4,7 +4,7 @@
 
 Summary: Bootstraps rpm-based systems
 Name: rpmstrap
-Version: 0.5
+Version: 0.5.2
 Release: 1
 License: GPL
 Group: Development/Utilities
@@ -48,5 +48,8 @@ DESTDIR=%{buildroot} bash install.sh
 %{_libdir}/rpmstrap
 
 %changelog
+* Sun Feb 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.2-1
+- Updated to release 0.5.2.
+
 * Wed Aug 31 2005 Dries Verachtert <dries@ulyssis.org> - 0.5-1
 - Initial package.

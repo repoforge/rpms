@@ -19,6 +19,7 @@ Source: ftp://bourbon.usc.edu/pub/tgif/tgif-QPL-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: qt-devel, gcc-c++
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 tgif is a vector-based drawing tool, with the additional benefit of being 

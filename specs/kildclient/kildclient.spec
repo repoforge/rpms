@@ -4,7 +4,7 @@
 
 Summary: MUD client
 Name: kildclient
-Version: 2.3.0
+Version: 2.4.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -76,6 +76,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*kildclient.desktop
 
 %changelog
+* Sun Feb 19 2006 Dries Verachtert <dries@ulyssis.org> - 2.4.0-1
+- Updated to release 2.4.0.
+
 * Fri Dec 23 2005 Dries Verachtert <dries@ulyssis.org> - 2.3.0-1
 - Updated to release 2.3.0.
 

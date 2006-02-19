@@ -34,7 +34,7 @@ Exec=tuxcards
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=Application;Office
+Categories=Application;Office;
 Encoding=UTF-8
 EOF
 

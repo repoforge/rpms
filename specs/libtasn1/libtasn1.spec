@@ -37,6 +37,7 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{_infodir}/dir
 
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_libdir}/*.la
@@ -64,7 +65,7 @@ you will need to install %{name}-devel.
 %{_bindir}/libtasn1-config
 %{_libdir}/pkgconfig/libtasn1.pc
 %{_datadir}/aclocal/libtasn1.m4
-%{_datadir}/info/libtasn1*
+%{_infodir}/libtasn1*
 %{_mandir}/man3/*asn1*
 
 %changelog

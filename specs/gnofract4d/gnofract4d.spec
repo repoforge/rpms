@@ -6,7 +6,7 @@
 
 Summary: Program to generate and view fractals
 Name: gnofract4d
-Version: 2.11
+Version: 2.12
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -68,6 +68,9 @@ scrollkeeper-update -q || :
 %{_datadir}/formulas/gnofract4d/
 
 %changelog
+* Mon Feb 13 2006 Dries Verachtert <dries@ulyssis.org> - 2.12-1
+- Updated to release 2.12.
+
 * Mon Nov 21 2005 Dries Verachtert <dries@ulyssis.org> - 2.11-1
 - Updated to release 2.11.
 
