@@ -52,7 +52,7 @@ if [ $1 -eq 0 ]; then
 fi
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO
 %doc %{_mandir}/man5/yum.conf.5*
 %doc %{_mandir}/man8/yum-arch.8*

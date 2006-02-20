@@ -12,7 +12,7 @@ License: GPL
 Group: System Environment/Base
 URL: http://www.dulug.duke.edu/yum/
 
-Source: %{name}-%{version}.tar.gz
+Source: http://linux.duke.edu/projects/yum/download/1.0/yum-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -41,27 +41,28 @@ automatically prompting the user as necessary.
 
 %post
 /sbin/chkconfig --add yum
-/sbin/chkconfig yum off
-/sbin/service yum condrestart >> /dev/null
+/sbin/service yum condrestart &>/dev/null || :
 
 %preun
 if [ $1 -eq 0 ]; then
 	/sbin/chkconfig --del yum
-	/sbin/service yum stop >> /dev/null
+	/sbin/service yum stop &>/dev/null || :
 fi
 
 %files 
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING INSTALL README TODO
-%doc %{_mandir}/man*/*
+%doc AUTHORS ChangeLog COPYING INSTALL README TODO
+%doc %{_mandir}/man5/yum.conf.5*
+%doc %{_mandir}/man8/yum-arch.8*
+%doc %{_mandir}/man8/yum.8*
 %config(noreplace) %{_sysconfdir}/yum.conf
-%config %{_sysconfdir}/cron.daily/yum.cron
+%config(noreplace) %{_sysconfdir}/cron.daily/yum.cron
 %config %{_sysconfdir}/init.d/yum
 %config %{_sysconfdir}/logrotate.d/yum
 %{_bindir}/yum
 %{_bindir}/yum-arch
 %{_datadir}/yum/
-%{_localstatedir}/cache/yum
+%{_localstatedir}/cache/yum/
 
 %changelog
 * Mon Feb 20 2006 Dag Wieers <dag@wieers.com> - 1.0.3-1
