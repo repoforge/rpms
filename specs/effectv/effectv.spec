@@ -4,7 +4,7 @@
 
 Summary: Real-time video effector
 Name: effectv
-Version: 0.3.10
+Version: 0.3.11
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -43,6 +43,9 @@ amazing effectors.
 %{_bindir}/effectv
 
 %changelog
+* Sat Feb 18 2006 Dag Wieers <dag@wieers.com> - 0.3.11-1
+- Updated to release 0.3.11.
+
 * Tue Feb 15 2005 Dag Wieers <dag@wieers.com> - 0.3.10-1
 - Updated to release 0.3.10.
 
