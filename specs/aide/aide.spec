@@ -4,8 +4,8 @@
 
 Summary: Advanced intrusion detection environment
 Name: aide
-Version: 0.10
-Release: 2
+Version: 0.11
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.cs.tut.fi/~rammer/aide.html
@@ -13,7 +13,6 @@ URL: http://www.cs.tut.fi/~rammer/aide.html
 Source: http://dl.sf.net/aide/aide-%{version}.tar.gz
 Source1: aide.conf
 Source2: README.quickstart
-Patch1: aide-useless-includes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildrequires: flex, bison, m4
@@ -28,7 +27,6 @@ checker and intrusion detection program.
 
 %prep
 %setup
-%patch1 -p1
 
 %{__perl} -pi.orig -e 's|^C(PP)?FLAGS=.+$||' configure
 %{__perl} -pi.orig -e 's|%{_sysconfdir}/aide.db|%{_localstatedir}/lib/aide.db|' config.h
@@ -45,23 +43,20 @@ checker and intrusion detection program.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall \
-	bindir="%{buildroot}%{_sbindir}"
+%{__make} install DESTDIR="%{buildroot}" \
+	bindir="%{_sbindir}"
 %{__install} -Dp -m0600 %{SOURCE1} %{buildroot}%{_sysconfdir}/aide.conf
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/aide/
 
 %{__install} -p -m0644 %{SOURCE2} README.quickstart
-%{__install} -Dp -m0644 doc/aide.1.ru %{buildroot}%{_mandir}/ru/man1/aide.1
-%{__install} -Dp -m0644 doc/aide.conf.5.ru %{buildroot}%{_mandir}/ru/man5/aide.conf.5
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ./doc/manual.html AUTHORS ChangeLog COPYING NEWS README*
+%doc ./doc/manual.html AUTHORS ChangeLog COPYING NEWS README* Todo contrib/
 %doc %{_mandir}/man?/aide.*
-%doc %lang(ru) %{_mandir}/ru/man?/aide.*
 
 %defattr(0600, root, root, 0755)
 %config(noreplace) %{_sysconfdir}/aide.conf
@@ -73,6 +68,9 @@ checker and intrusion detection program.
 %{_localstatedir}/lib/aide/
 
 %changelog
+* Mon Feb 20 2006 Dag Wieers <dag@wieers.com> - 0.11-1
+- Updated to release 0.11.
+
 * Tue Nov 23 2004 Dag Wieers <dag@wieers.com> - 0.10-2
 - Cosmetic changes and re-added %%changelog.
 

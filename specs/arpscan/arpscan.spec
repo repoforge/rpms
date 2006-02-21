@@ -13,7 +13,7 @@ URL: http://ish.cx/~jason/arpscan/
 Source: http://ish.cx/~jason/arpscan/arpscan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libdnet, libpcap
+BuildRequires: libdnet-devel, libpcap
 
 %description
 arpscan is a very simple scanner which sends out arp requests for the

@@ -14,7 +14,8 @@ URL: http://labrea.sourceforge.net/
 
 Source: http://dl.sf.net/labrea/labrea-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: libpcap, libdnet
+
+BuildRequires: libpcap, libdnet-devel
 
 %description
 LaBrea takes over unused IP addresses, and creates virtual servers that

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# ExclusiveDist: el2
+# ExclusiveDist: el2 rh7
 
 Summary: RPM installer/updater
 Name: yum

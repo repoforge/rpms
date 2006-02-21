@@ -4,8 +4,8 @@
 
 Summary: Honeypot daemon
 Name: honeyd
-Version: 1.0
-Release: 2
+Version: 1.5a
+Release: 1
 License: BSD
 Group: Applications/Internet
 URL: http://www.citi.umich.edu/u/provos/honeyd/
@@ -13,8 +13,9 @@ URL: http://www.citi.umich.edu/u/provos/honeyd/
 Source: http://www.citi.umich.edu/u/provos/honeyd/honeyd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libevent-devel, flex, libpcap, libdnet, automake, autoconf
-BuildRequires: readline-devel, bison, libdnet-devel
+BuildRequires: readline-devel, flex, bison, libdnet-devel, automake, autoconf
+BuildRequires: libpcap, libdnet-devel, libdnsres-devel, libevent-devel
+BuildRequires: python-devel >= 2.4
 
 %description
 Honeyd is a small daemon that creates virtual hosts on a network.
@@ -52,6 +53,9 @@ host to claim multiple addresses on a LAN for network simulation.
 %{_libdir}/honeyd/
 
 %changelog
+* Tue Feb 21 2006 Dag Wieers <dag@wieers.com> - 1.5a-1
+- Updated to release 1.5a.
+
 * Sun Apr 10 2005 Dag Wieers <dag@wieers.com> - 1.0-2
 - Added pf.os, use %%{__make} install. (Mario Pascucci)
 

@@ -14,7 +14,7 @@ URL: http://www.monkey.org/~dugsong/fragroute/
 Source: http://www.monkey.org/~dugsong/fragroute/fragroute-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libdnet, libpcap, libevent-devel
+BuildRequires: libdnet-devel, libpcap, libevent-devel
 
 %description
 Fragroute intercepts, modifies, and rewrites egress traffic destined

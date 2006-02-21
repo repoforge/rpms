@@ -23,7 +23,7 @@ URL: http://www.unixuser.org/~euske/vnc2swf/
 Source: http://www.unixuser.org/~euske/vnc2swf/vnc2swf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ming-devel, libdnet, libstdc++-devel, zlib-devel, gcc-c++
+BuildRequires: ming-devel, libdnet-devel, libstdc++-devel, zlib-devel, gcc-c++
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 

@@ -3,20 +3,23 @@
 # Upstream: Dug Song <dugsong$monkey,org>
 # Upstream: <libdnet-devel$lists,sf,net>
 
-Summary: Simple portable interface to lowlevel networking routines
-Name: libdnet
-Version: 1.11
+Summary: Non-blocking DNS resolver library
+Name: libdnsres
+Version: 0.1a
 Release: 1
 License: BSD-like
 Group: System Environment/Libraries
-URL: http://libdnet.sourceforge.net/
+URL: http://www.monkey.org/~provos/libdnsres/
 
-Source: http://dl.sf.net/libdnet/libdnet-%{version}.tar.gz
-Patch0: libdnet-1.7-fw-ipchains.patch
+Source: http://www.monkey.org/~provos/libdnsres-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
-Libdnet provides a simple portable interface to lowlevel networking routines.
+ibdnsres provides a non-blocking thread-safe API for resolving DNS names.
+It requires that your main application is built on top of libevent.
+Libdnsres' API essentially mirrors the traditional gethostbyname and
+getaddrinfo interfaces. All return values have been replaced by callbacks
+instead.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.
@@ -30,7 +33,6 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-#patch0
 
 %build
 %configure
@@ -41,28 +43,20 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-%{__mv} -f %{buildroot}%{_libdir}/libdnet.1.0.1 %{buildroot}%{_libdir}/libdnet.so.1.0.1
-%{__ln_s} -f libdnet.so.1.0.1 %{buildroot}%{_libdir}/libdnet.so.1
-%{__ln_s} -f libdnet.so.1.0.1 %{buildroot}%{_libdir}/libdnet.so
-
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man8/dnet.8*
-%{_libdir}/libdnet.so.*
-%{_sbindir}/dnet
+%{_libdir}/libdnsres.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man3/dnet.3*
-%{_bindir}/dnet-config
-%{_includedir}/dnet.h
-%{_includedir}/dnet/
-%{_libdir}/libdnet.a
-%{_libdir}/libdnet.so
-%exclude %{_libdir}/libdnet.la
+%doc %{_mandir}/man3/dnsres.3*
+%{_includedir}/dnsres.h
+%{_libdir}/libdnsres.a
+%{_libdir}/libdnsres.so
+%exclude %{_libdir}/libdnsres.la
 
 %changelog
 * Tue Feb 21 2006 Dag Wieers <dag@wieers.com> - 1.11-1
