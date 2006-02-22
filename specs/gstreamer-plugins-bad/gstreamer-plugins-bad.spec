@@ -8,18 +8,17 @@
 %define majorminor   0.10
 %define gstreamer    gstreamer
 
-%define gst_minver   0.10.0
-%define gstpb_minver 0.10.0
+%define gst_minver   0.10.2
+%define gstpb_minver 0.10.2
 
 Summary: GStreamer streaming media framework "bad" plug-ins
 Name: %{gstreamer}-plugins-bad
-Version: 0.10.0.1
+Version: 0.10.1
 Release: 1
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
 Source: http://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-%{version}.tar.bz2
-Patch: gst-plugins-bad-0.10.0.1-noWerror.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: %{gstreamer} >= %{gst_minver}
 BuildRequires: %{gstreamer}-devel >= %{gst_minver}
@@ -41,6 +40,9 @@ BuildRequires: SDL-devel
 BuildRequires: swfdec-devel
 Buildrequires: wavpack-devel
 BuildRequires: xvidcore-devel
+BuildRequires: bzip2-devel
+BuildRequires: mesa-libGLU-devel
+BuildRequires: neon-devel
 
 %description
 GStreamer is a streaming media framework, based on graphs of elements which
@@ -67,7 +69,6 @@ This package contains development files and documentation.
 
 %prep
 %setup -q -n gst-plugins-bad-%{version}
-%patch -p1 -b .noWerror
 
 
 %build
@@ -97,17 +98,22 @@ This package contains development files and documentation.
 %doc AUTHORS COPYING README REQUIREMENTS
 
 # Plugins without external dependencies
+%{_libdir}/gstreamer-%{majorminor}/libgstcdxaparse.so
+%{_libdir}/gstreamer-%{majorminor}/libgstfreeze.so
 %{_libdir}/gstreamer-%{majorminor}/libgstqtdemux.so
 %{_libdir}/gstreamer-%{majorminor}/libgstspeed.so
 %{_libdir}/gstreamer-%{majorminor}/libgsttta.so
 
 # Plugins with external dependencies
+%{_libdir}/gstreamer-%{majorminor}/libgstbz2.so
 %{_libdir}/gstreamer-%{majorminor}/libgstdfbvideosink.so
 %{_libdir}/gstreamer-%{majorminor}/libgstdtsdec.so
 %{_libdir}/gstreamer-%{majorminor}/libgstfaac.so
 %{_libdir}/gstreamer-%{majorminor}/libgstfaad.so
+%{_libdir}/gstreamer-%{majorminor}/libgstglimagesink.so
 %{_libdir}/gstreamer-%{majorminor}/libgstgsm.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmusepack.so
+%{_libdir}/gstreamer-%{majorminor}/libgstneonhttpsrc.so
 %{_libdir}/gstreamer-%{majorminor}/libgstsdlvideosink.so
 %{_libdir}/gstreamer-%{majorminor}/libgstswfdec.so
 %{_libdir}/gstreamer-%{majorminor}/libgstwavpack.so
@@ -120,6 +126,11 @@ This package contains development files and documentation.
 
 
 %changelog
+* Wed Feb 22 2006 Matthias Saou <http://freshrpms.net/> 0.10.1-1
+- Update to 0.10.1.
+- Add libgstcdxaparse.so and libgstfreeze.so.
+- Enable libgstbz2.so, libgstglimagesink.so and libgstneonhttpsrc.so.
+
 * Wed Jan 25 2006 Matthias Saou <http://freshrpms.net/> 0.10.0.1-1
 - Update to 0.10.0.1, add new plugins.
 - Spec file cleanup and rebuild for FC5.

@@ -13,7 +13,7 @@
 
 Summary: GStreamer streaming media framework "ugly" plug-ins
 Name: %{gstreamer}-plugins-ugly
-Version: 0.10.1
+Version: 0.10.2
 Release: 1
 License: LGPL
 Group: Applications/Multimedia
@@ -31,7 +31,7 @@ BuildRequires: gettext-devel
 BuildRequires: libsidplay-devel >= 1.36.0
 BuildRequires: a52dec-devel >= 0.7.3
 #BuildRequires: libdvdnav-devel >= 0.1.3
-#BuildRequires: libdvdread-devel >= 0.9.0
+BuildRequires: libdvdread-devel >= 0.9.0
 BuildRequires: lame-devel >= 3.89
 BuildRequires: libid3tag-devel >= 0.15.0
 BuildRequires: libmad-devel >= 0.15.0
@@ -44,8 +44,8 @@ Provides: gstreamer-sid = %{version}-%{release}
 Provides: gstreamer-lame = %{version}-%{release}
 Provides: gstreamer-mad = %{version}-%{release}
 Provides: gstreamer-a52dec = %{version}-%{release}
-#Provides: gstreamer-dvdnavsrc = %{version}-%{release}
-#Provides: gstreamer-dvdreadsrc = %{version}-%{release}
+#Provides: gstreamer-dvdnav = %{version}-%{release}
+Provides: gstreamer-dvdread = %{version}-%{release}
 Provides: gstreamer-mpeg2dec = %{version}-%{release}
 
 %description
@@ -95,10 +95,8 @@ This package contains development files and documentation.
 %makeinstall
 
 # Clean out files that should not be part of the rpm.
-%{__rm} -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.la
-%{__rm} -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.a
-%{__rm} -f %{buildroot}%{_libdir}/*.a
-%{__rm} -f %{buildroot}%{_libdir}/*.la
+%{__rm} -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.{a,la}
+%{__rm} -f %{buildroot}%{_libdir}/*.{a,la}
 
 
 %clean
@@ -110,6 +108,7 @@ This package contains development files and documentation.
 %doc AUTHORS COPYING README REQUIREMENTS
 
 # Plugins without external dependencies
+%{_libdir}/gstreamer-%{majorminor}/libgstasf.so
 %{_libdir}/gstreamer-%{majorminor}/libgstdvdlpcmdec.so
 %{_libdir}/gstreamer-%{majorminor}/libgstiec958.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmpegaudioparse.so
@@ -119,8 +118,8 @@ This package contains development files and documentation.
 # Plugins with external dependencies
 %{_libdir}/gstreamer-%{majorminor}/libgsta52dec.so
 %{_libdir}/gstreamer-%{majorminor}/libgstamrnb.so
-#{_libdir}/gstreamer-%{majorminor}/libgstdvdnavsrc.so
-#{_libdir}/gstreamer-%{majorminor}/libgstdvdreadsrc.so
+#{_libdir}/gstreamer-%{majorminor}/libgstdvdnav.so
+%{_libdir}/gstreamer-%{majorminor}/libgstdvdread.so
 %{_libdir}/gstreamer-%{majorminor}/libgstlame.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmad.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmpeg2dec.so
@@ -133,6 +132,11 @@ This package contains development files and documentation.
 
 
 %changelog
+* Wed Feb 22 2006 Matthias Saou <http://freshrpms.net/> 0.10.2-1
+- Update to 0.10.2.
+- Add libgstasf.so.
+- Enable re-added libgstdvdread.so.
+
 * Thu Jan 19 2006 Matthias Saou <http://freshrpms.net/> 0.10.1-1
 - Update to 0.10.1.
 
@@ -391,3 +395,4 @@ This package contains development files and documentation.
 - added more BuildRequires and Requires
 - rearranged some plug-ins
 - added changelog ;)
+
