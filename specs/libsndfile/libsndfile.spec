@@ -11,7 +11,7 @@
 
 Summary: Library for reading and writing files containing sampled sound
 Name: libsndfile
-Version: 1.0.13
+Version: 1.0.14
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -86,6 +86,9 @@ documentation for libsndfile.
 
 
 %changelog
+* Wed Feb 22 2006 Matthias Saou <http://freshrpms.net/> 1.0.14-1
+- Update to 1.0.14.
+
 * Mon Jan 23 2006 Matthias Saou <http://freshrpms.net/> 1.0.13-1
 - Update to 1.0.13.
 
