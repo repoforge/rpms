@@ -7,7 +7,7 @@
 Summary: Graphical interface for RPM analyze
 Name: rpm-analyzer
 Version: 1.0
-Release: 0.r15
+Release: 0.r17
 License: GPL
 Group: Applications/System
 URL: http://www.maisondubonheur.com/rpm-analyzer/
@@ -58,6 +58,12 @@ so please consider installing comps.
 %{_datadir}/rpm-analyzer/
 
 %changelog
+* Wed Feb 22 2006 Dag Wieers <dag@wieers.com> - 1.0-0.r17
+- Updated to release 1.0-17.
+
+* Fri Feb 17 2006 Dag Wieers <dag@wieers.com> - 1.0-0.r15
+- Updated to release 1.0-15.
+
 * Wed Aug 20 2003 Dag Wieers <dag@wieers.com> - 1.0-0.r10
 - Updated to release 1.0-10.
 

@@ -9,7 +9,7 @@ Summary: RPM installer/updater
 Name: yum
 Version: 2.4.2
 ### Do not update release > 1 as we do not want to replace CentOS yum
-Release: 0
+Release: 0.3
 License: GPL
 Group: System Environment/Base
 Source: http://linux.duke.edu/projects/yum/download/2.4/yum-%{version}.tar.gz
@@ -20,11 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: gettext, python
 Requires: python, rpm-python, rpm >= 0:4.1.1
-Requires: python-sqlite
-Requires: urlgrabber
-Requires: python-elementtree
+Requires: python-sqlite, urlgrabber, python-elementtree
 Requires: libxml2-python
-Requires: yumconf
 Prereq: /sbin/chkconfig, /sbin/service, coreutils
 
 %description
@@ -77,6 +74,9 @@ fi
 %{_localstatedir}/cache/yum/
 
 %changelog
+* Tue Feb 21 2006 Dag Wieers <dag@wieers.com> - 2.4.2-0.3
+- Removed (CentOS) yumconf from requirements.
+
 * Mon Feb 20 2006 Dag Wieers <dag@wieers.com> - 2.4.2-0
 - Imported SPEC file from CentOS 4.
 
