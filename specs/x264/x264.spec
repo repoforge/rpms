@@ -17,8 +17,8 @@
 
 Summary: Library for encoding and decoding H264/AVC video streams
 Name: x264
-Version: 0.0.396
-Release: 2
+Version: 0.0.439
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/x264.html
@@ -67,8 +67,10 @@ mv -f AUTHORS.utf8 AUTHORS
 %configure \
     --enable-pthread \
     --enable-debug \
-    --extra-cflags="%{optflags} -fPIC" \
-    --extra-asflags="-D__PIC__"
+    --enable-pic
+# Remains from when --enable-pic wasn't yet available
+#   --extra-cflags="%{optflags} -fPIC" \
+#   --extra-asflags="-D__PIC__"
 %{__make} %{?_smp_mflags}
 
 
@@ -100,6 +102,9 @@ mv -f AUTHORS.utf8 AUTHORS
 
 
 %changelog
+* Thu Feb 23 2006 Matthias Saou <http://freshrpms.net/> 0.0.439-1
+- Update to svn 439.
+
 * Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 0.0.396-2
 - Enable modular xorg conditional build.
 

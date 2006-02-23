@@ -51,7 +51,7 @@
 %{?yd3:%define _without_theora 1}
 
 # Is this a daily build? If so, put the date like "20020808" otherwise put 0
-%define date      20060113
+%define date      20060223
 #define rcver     pre7
 
 Summary: MPlayer, the Movie Player for Linux
@@ -72,7 +72,7 @@ Source0: http://www.mplayerhq.hu/MPlayer/cvs/MPlayer-%{date}.tar.bz2
 %else
 Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{version}%{?rcver}.tar.bz2
 %endif
-Source1: http://www.live555.com/liveMedia/public/live.2006.01.05.tar.gz
+Source1: http://www.live555.com/liveMedia/public/live.2006.02.15.tar.gz
 Source2: http://www.mplayerhq.hu/MPlayer/Skin/Blue-1.5.tar.bz2
 # Only for reference, required on YDL4 at least
 Source10: uio.h-ppc.patch
@@ -110,6 +110,7 @@ BuildRequires: ImageMagick
 %{!?_without_faac:BuildRequires: faac-devel}
 %{!?_without_mpc:BuildRequires: libmpcdec-devel}
 %{!?_without_vstream:BuildRequires: vstream-client-devel}
+%{!?_without_amrnb:BuildRequires: amrnb-devel}
 %{?_with_modxorg:BuildRequires: libXv-devel, mesa-libGL-devel, libXvMC-devel}
 %{!?_with_modxorg:%{!?_without_xvmc:BuildRequires: libXvMCW-devel}}
 
@@ -124,6 +125,7 @@ Available rpmbuild rebuild options :
 --with : samba dvdread
 --without : aalib lirc cdparanoia arts xvid esd lzo fame caca dvb vstream
             theora osdmenu gcccheck fribidi xvmc x264 faac mpc live ladspa
+            amrnb
 
 
 %package -n mencoder
@@ -319,7 +321,12 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
-* Mon Dec 19 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.24.20060113
+* Thu Feb 23 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.24.20060223
+- Update to current CVS.
+- Update live555 library to 2006.02.15.
+- Add support for amrnb.
+
+* Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.24.20060113
 - Update to a Friday the 13th snapshot! :-)
 - Update live555 library to 2006.01.05.
 - Remove XFree86-devel build requirement, gtk2-devel takes care of the
