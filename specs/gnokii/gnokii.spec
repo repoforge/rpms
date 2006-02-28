@@ -9,7 +9,7 @@
 
 Summary: Linux/UNIX tool suite for various mobile phones
 Name: gnokii
-Version: 0.6.10
+Version: 0.6.11
 Release: 1
 License: GPL
 Group: Applications/Communications
@@ -80,11 +80,10 @@ you will need to install %{name}-devel.
 %pre
 /usr/sbin/groupadd -r -f gnokii &>/dev/null || :
 
-%post
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
 
 %postun
-/sbin/ldconfig 2>/dev/null
+/sbin/ldconfig
 /usr/sbin/groupdel gnokii &>/dev/null || :
 
 %clean
@@ -129,6 +128,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Tue Feb 28 2006 Dag Wieers <dag@wieers.com> - 0.6.11-1
+- Updated to release 0.6.11.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.6.10-1
 - Updated to release 0.6.10.
 

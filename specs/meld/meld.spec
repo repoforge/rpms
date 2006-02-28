@@ -6,8 +6,8 @@
 
 Summary: Graphical visual diff and merge tool
 Name: meld
-Version: 1.1.2
-Release: 2
+Version: 1.1.3
+Release: 1
 License: GPL
 Group: Applications/Text
 URL: http://meld.sourceforge.net/
@@ -94,8 +94,11 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/meld.png
 
 %changelog
-* Wed Dec 07 2005 James Begley <james@hafro.is> - 1.1.2-2
-- Fixes: vc/* and help/* subdirectories added.
+* Tue Feb 28 2006 Dag Wieers <dag@wieers.com> - 1.1.3-1
+- Updated to release 1.1.3.
+
+* Wed Dec 07 2005 Dries Verachtert <dries@ulyssis.org> - 1.1.2-2
+- Fixes: vc/* and help/* subdirectories added. (James Begley)
 
 * Wed Nov 30 2005 Dag Wieers <dag@wieers.com> - 1.1.2-1
 - Updated to release 1.1.2.

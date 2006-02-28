@@ -18,7 +18,8 @@ Source: http://dl.sf.net/denyhosts/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
-BuildRequires: python
+BuildRequires: python-devel >= 2.3
+Requires: python >= 2.3
 
 %description
 DenyHosts is a script intended to help Linux system administrators thwart 
