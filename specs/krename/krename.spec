@@ -4,7 +4,7 @@
 
 Summary: Batch file renamer
 Name: krename
-Version: 3.0.10
+Version: 3.0.11
 Release: 1
 License: GPL
 Group: Applications/Utilities
@@ -51,5 +51,8 @@ permissions, and file ownership.
 %{_datadir}/applnk/Utilities/krename.desktop
 
 %changelog
+* Wed Mar 01 2006 Dries Verachtert <dries@ulyssis.org> - 3.0.11-1
+- Updated to release 3.0.11.
+
 * Sat Jan 14 2006 Dries Verachtert <dries@ulyssis.org> - 3.0.10-1
 - Initial package.

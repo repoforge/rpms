@@ -3,7 +3,7 @@
 
 Summary: GUI for rsync
 Name: grsync
-Version: 0.2.1
+Version: 0.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -44,5 +44,8 @@ used to synchronize local directories.
 %{_datadir}/applications/grsync.desktop
 
 %changelog
+* Wed Mar 01 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-1
+- Updated to release 0.3.
+
 * Sun Jan 29 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.1-1
 - Initial package.
