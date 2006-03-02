@@ -4,7 +4,7 @@
 
 Summary: Turn-based strategy game
 Name: freelords
-Version: 0.3.6
+Version: 0.3.7
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -46,5 +46,8 @@ save, and configuration files have an easy-to-read XML format.
 %{_datadir}/freelords/
 
 %changelog
+* Thu Mar 02 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.7-1
+- Updated to release 0.3.7.
+
 * Thu Nov 10 2005 Dries Verachtert <dries@ulyssis.org> - 0.3.6-1
 - Initial package.

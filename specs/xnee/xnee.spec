@@ -4,7 +4,7 @@
 
 Summary: Record, distribute and replay X protocol data
 Name: xnee
-Version: 2.03
+Version: 2.04
 Release: 1
 License: GPL
 Group: User Interface/X
@@ -61,5 +61,8 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Tue Feb 28 2006 Dries Verachtert <dries@ulyssis.org> - 2.04-1
+- Updated to release 2.04.
+
 * Tue Jan 03 2006 Dries Verachtert <dries@ulyssis.org> - 2.03-1
 - Initial package.

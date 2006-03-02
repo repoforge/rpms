@@ -6,7 +6,7 @@
 
 Summary: Notification script which can be used as subversion hook
 Name: svnmailer
-Version: 1.0.6
+Version: 1.0.7
 Release: 1
 License: Apache License 2.0
 Group: Development/Tools
@@ -55,6 +55,9 @@ python setup.py install --root=%{buildroot}
 %{python_sitelib}/svnmailer
 
 %changelog
+* Wed Mar 01 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.7-1
+- Updated to release 1.0.7.
+
 * Mon Feb 06 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.6-1
 - Updated to release 1.0.6.
 
