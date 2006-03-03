@@ -36,6 +36,7 @@ host to claim multiple addresses on a LAN for network simulation.
 
 %install
 %{__rm} -rf %{buildroot}
+%{__install} -d %{buildroot}%{_datadir}/honeyd
 %{__make} install DESTDIR="%{buildroot}"
 
 %clean
@@ -43,9 +44,10 @@ host to claim multiple addresses on a LAN for network simulation.
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE README TODO config.sample nmap.prints scripts/
+%doc LICENSE README config.sample nmap.prints scripts/
 %doc %{_mandir}/man1/honeydctl.1*
 %doc %{_mandir}/man8/honeyd.8*
+%{_bindir}/honeydstats
 %{_bindir}/honeyd
 %{_bindir}/honeydctl
 %{_datadir}/honeyd/
