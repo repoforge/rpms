@@ -3,13 +3,11 @@
 # Upstream: Alexander V. Lukyanov <lav$yars,free,net>
 # Upstream: <lftp-devel$uniyar,ac,ru>
 
-# ExcludeDist: el4
-
 # Rationale: lftp 3.0+ supports sftp, http redirects and lots of important improvements
 
 Summary: Sophisticated file transfer program
 Name: lftp
-Version: 3.3.5
+Version: 3.4.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -51,12 +49,21 @@ export CPPFLAGS="-I/usr/kerberos/include"
 %defattr(-, root, root, 0755)
 %doc BUGS ChangeLog COPYING FAQ FEATURES INSTALL MIRRORS NEWS README* THANKS TODO
 %doc %{_mandir}/man1/lftp.1*
+%doc %{_mandir}/man1/lftpget.1*
 %config(noreplace) %{_sysconfdir}/lftp.conf
-%{_bindir}/lftp*
+%{_bindir}/lftp
+%{_bindir}/lftpget
 %{_datadir}/lftp/
 %{_libdir}/lftp/
+%exclude %{_libdir}/liblftp-jobs.la
+%{_libdir}/liblftp-jobs.so.*
+%exclude %{_libdir}/liblftp-tasks.la
+%{_libdir}/liblftp-tasks.so.*
 
 %changelog
+* Wed Mar 01 2006 Dag Wieers <dag@wieers.com> - 3.4.2-1
+- Updated to release 3.4.2.
+
 * Wed Dec 07 2005 Dag Wieers <dag@wieers.com> - 3.3.5-1
 - Updated to release 3.3.5.
 
