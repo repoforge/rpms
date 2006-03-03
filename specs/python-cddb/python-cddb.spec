@@ -14,7 +14,7 @@ License: GPL
 Group: Applications/Internet
 URL: http://cddb-py.sourceforge.net/
 
-Source: http://dl.sf.net/ccdb-py/CDDB-%{version}.tar.gz
+Source: http://dl.sf.net/cddb-py/CDDB-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python, python-devel

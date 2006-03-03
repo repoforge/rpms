@@ -14,7 +14,7 @@ Source: http://dl.sf.net/freelords/freelords-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: paragui-devel, gcc-c++, SDL-devel, gettext, pkgconfig
-BuildRequires: SDL_image-devel, libsigc++-devel
+BuildRequires: SDL_image-devel, libsigc++-devel, SDL_mixer-devel
 
 %description
 Freelords is a rewrite of the well-known Warlords II. It mainly resembles 
