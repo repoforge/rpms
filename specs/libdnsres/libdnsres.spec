@@ -14,6 +14,8 @@ URL: http://www.monkey.org/~provos/libdnsres/
 Source: http://www.monkey.org/~provos/libdnsres-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: libevent-devel
+
 %description
 ibdnsres provides a non-blocking thread-safe API for resolving DNS names.
 It requires that your main application is built on top of libevent.

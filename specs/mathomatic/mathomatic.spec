@@ -29,6 +29,7 @@ Gesslein II and has been under development since 1986.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -rf %{buildroot}%{_datadir}/doc/mathomatic
 
 %clean
 %{__rm} -rf %{buildroot}

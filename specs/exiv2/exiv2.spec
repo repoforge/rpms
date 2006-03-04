@@ -72,7 +72,7 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libexiv2*.la
 
 %changelog
-* Mon Jan 06 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1
+* Mon Feb 06 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1
 - Updated to release 0.9.1.
 
 * Fri Jan 27 2006 Oron Peled <oron@actcom.co.il> - 0.9-1

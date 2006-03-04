@@ -15,6 +15,8 @@ Source: http://dl.sf.net/libdnet/libdnet-%{version}.tar.gz
 Patch0: libdnet-1.7-fw-ipchains.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gcc-c++
+
 %description
 Libdnet provides a simple portable interface to lowlevel networking routines.
 

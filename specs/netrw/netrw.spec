@@ -45,6 +45,8 @@ it sums up the transfer.
 %doc AUTHORS COPYING NEWS README THANKS
 %{_bindir}/netread
 %{_bindir}/netwrite
+%{_bindir}/nr
+%{_bindir}/nw
 
 %changelog
 * Tue Feb 07 2006 Dag Wieers <dag@wieers.com> - 1.3-1

@@ -4,6 +4,9 @@
 ### Prevent the plugins from being stripped and disabled
 %define __spec_install_post /usr/lib/rpm/brp-compress || :
 
+# Don't create a debuginfo package.
+%define debug_package %{nil}
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?rh7:%define _without_freedesktop 1}
@@ -15,7 +18,7 @@
 Summary: Adobe Reader for viewing PDF files
 Name: acroread
 Version: 7.0.5
-Release: 1
+Release: 2
 License: Commercial, Freely Distributable
 Group: Applications/Publishing
 URL: http://www.adobe.com/products/acrobat/readermain.html
@@ -121,6 +124,9 @@ ln -f %{buildroot}%{_libdir}/acroread/Browser/intellinux/nppdf.so %{buildroot}%{
 %{_libdir}/netscape/plugins/nppdf.so
 
 %changelog
+* Sat Mar 04 2006 Dries Verachtert <dries@ulyssis.org> - 7.0.5-2
+- Disabled creation of a debuginfo package.
+
 * Fri Jan 27 2006 Dag Wieers <dag@wieers.com> - 7.0.5-1
 - Updated to release 7.0.5.
 

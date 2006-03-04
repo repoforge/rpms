@@ -142,7 +142,7 @@ EOF
 
 %build
 %configure \
-	--interp-prefix="%{_prefix}/qemu-%%M" \
+	--disable-gcc-check --interp-prefix="%{_prefix}/qemu-%%M" \
 
 %{__perl} -pi.orig -e '
 		s|\$\(datadir\)|\$(datadir)/qemu|;

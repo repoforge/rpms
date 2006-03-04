@@ -47,8 +47,8 @@ permissions, and file ownership.
 %{_datadir}/icons/*/*/apps/krename.png
 %{_datadir}/doc/HTML/en/krename/
 %{_datadir}/apps/krename/
-%{_datadir}/apps/konqueror/servicemenus/krename*.desktop
-%{_datadir}/applnk/Utilities/krename.desktop
+%{_datadir}/service/krename*.desktop
+%{_datadir}/applications/kde/krename.desktop
 
 %changelog
 * Wed Mar 01 2006 Dries Verachtert <dries@ulyssis.org> - 3.0.11-1

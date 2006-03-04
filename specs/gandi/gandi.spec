@@ -13,7 +13,7 @@ URL: http://y.unlit.org/gandi/
 Source: http://dl.sf.net/gandi/gandi-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ncurses-devel
+BuildRequires: ncurses-devel, gcc-c++
 
 %description
 GANDI (Gathering of Additional Ncurses Development Implements) is a 

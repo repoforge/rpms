@@ -45,7 +45,7 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-#%find_lang %{name}
+%find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor %{desktop_vendor}    \
@@ -56,12 +56,11 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
-# -f %{name}.lang
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
 %config %{_sysconfdir}/sound/events/*
-%{_bindir}/*
+%{_bindir}/workrave
 %{_libexecdir}/*
 %{_libdir}/bonobo/servers/*.server
 %{_datadir}/applications/%{desktop_vendor}-workrave.desktop
@@ -69,7 +68,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/workrave/
 %{_datadir}/sounds/workrave/
 %{_datadir}/workrave/
-%{_datadir}/locale/*/LC_MESSAGES/workrave.po
+#%{_datadir}/locale/*/LC_MESSAGES/workrave.*
 
 %changelog
 * Sun Feb 12 2006 Dries Verachtert <dries@ulyssis.org> - 1.8.2-1
