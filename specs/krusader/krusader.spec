@@ -92,7 +92,7 @@ source %{_sysconfdir}/profile.d/qt.sh
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO
 %doc %{_mandir}/man?/*
 %{_bindir}/*
-%{_datadir}/applnk/Applications/krusader*.desktop
+%{_datadir}/applnk/krusader*.desktop
 %{_datadir}/icons/*/*/apps/krusader*.png
 %{_datadir}/apps/krusader
 %{_datadir}/doc/HTML/en/krusader

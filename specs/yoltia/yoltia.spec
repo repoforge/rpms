@@ -33,7 +33,7 @@ drag-and-drop-interaction, and a simple and fast GUI with
 hotkey-orientated usage.
 
 %prep
-%setup -n %{name}-0.19.2
+%setup
 %{__perl} -pi -e 's|/usr/X11/bin|%{_bindir}|g;' install.sh
 %{__perl} -pi -e 's|/usr|%{buildroot}%{_prefix}|g;' install.sh
 

@@ -74,7 +74,7 @@ source /etc/profile.d/qt.sh
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %doc %{_docdir}/HTML/en/tellico/
 %{_bindir}/*
-%{_datadir}/applnk/Applications/tellico.desktop
+%{_datadir}/applications/kde/tellico.desktop
 %dir %{_datadir}/apps/kconf_update/
 %{_datadir}/apps/kconf_update/tellico.upd
 %{_datadir}/apps/kconf_update/tellico-rename.upd

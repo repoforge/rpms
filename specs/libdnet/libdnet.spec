@@ -43,6 +43,7 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
+%{__rm} -f %{buildroot}%{_libdir}/libdnet %{buildroot}%{_libdir}/libdnet.1
 %{__mv} -f %{buildroot}%{_libdir}/libdnet.1.0.1 %{buildroot}%{_libdir}/libdnet.so.1.0.1
 %{__ln_s} -f libdnet.so.1.0.1 %{buildroot}%{_libdir}/libdnet.so.1
 %{__ln_s} -f libdnet.so.1.0.1 %{buildroot}%{_libdir}/libdnet.so

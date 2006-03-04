@@ -47,7 +47,7 @@ permissions, and file ownership.
 %{_datadir}/icons/*/*/apps/krename.png
 %{_datadir}/doc/HTML/en/krename/
 %{_datadir}/apps/krename/
-%{_datadir}/service/krename*.desktop
+%{_datadir}/services/krename*.desktop
 %{_datadir}/applications/kde/krename.desktop
 
 %changelog

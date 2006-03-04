@@ -46,6 +46,13 @@ DESTDIR=%{buildroot} bash install.sh
 %{_bindir}/rpm_solver.py
 %{_bindir}/rpmstrap
 %{_libdir}/rpmstrap
+%{_bindir}/compstool.py
+%{_bindir}/progress_bar.py
+%{_bindir}/rpm_get-update.py
+%{_bindir}/rpm_migrate.sh
+%{_bindir}/rpmdiff.py
+%{_bindir}/rpmdiff_lib.py
+%{_bindir}/suite_upgrader.py
 
 %changelog
 * Sun Feb 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.2-1
