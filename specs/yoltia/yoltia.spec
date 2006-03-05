@@ -73,7 +73,7 @@ desktop-file-install --vendor rpmforge             \
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHOR BUGS CHANGELOG COPYING HOTKEYS README TODO
+%doc AUTHOR BUGS CHANGELOG COPYING README TODO
 %{_bindir}/yoltia
 %{_datadir}/yoltia/
 %{_datadir}/applications/rpmforge-yoltia.desktop

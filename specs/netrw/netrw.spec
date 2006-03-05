@@ -4,7 +4,7 @@
 
 Summary: Tool for transporting data over the internet
 Name: netrw
-Version: 1.3
+Version: 1.3.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -35,7 +35,7 @@ it sums up the transfer.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}

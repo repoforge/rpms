@@ -9,17 +9,17 @@
 %{?rh7:%define _without_gtk24 1}
 %{?el2:%define _without_gtk24 1}
 
-%define real_version B.02.06
+%define real_version B.02.07
 
 Summary: Hardware lister
 Name: lshw
-Version: 2.06
+Version: 2.07
 Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.ezix.org/software/lshw.html
 
-Source: http://ezix.sourceforge.net/software/files/lshw-%{real_version}.tar.gz
+Source: http://www.ezix.org/software/files/lshw-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
@@ -95,6 +95,9 @@ Information can be output in plain text, XML or HTML.
 %endif
 
 %changelog
+* Sun Mar 05 2006 Dag Wieers <dag@wieers.com> - 2.07-1
+- Updated to release B.02.07.
+
 * Wed Nov 30 2005 Dag Wieers <dag@wieers.com> - 2.06-1
 - Updated to release B.02.06.
 

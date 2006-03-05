@@ -18,6 +18,7 @@ Source: http://dl.sf.net/cddb-py/CDDB-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python, python-devel
+Requires: python
 
 %description
 This is a set of three modules to access the CDDB and FreeDB online 
@@ -40,7 +41,9 @@ databases of audio CD track titles and information.
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYING README
 %{python_sitearch}/CDDB.py*
+%ghost %{python_sitearch}/CDDB.pyo
 %{python_sitearch}/DiscID.py*
+%ghost %{python_sitearch}/DiscID.pyo
 %{python_sitearch}/cdrom.so
 
 %changelog

@@ -2,6 +2,8 @@
 # Authority: dries
 # Upstream: Henrik Sandklef
 
+%define desktop_vendor rpmforge
+
 Summary: Record, distribute and replay X protocol data
 Name: xnee
 Version: 2.04
@@ -43,10 +45,10 @@ EOF
 %makeinstall
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor rpmforge             \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+	xnee.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -54,11 +56,13 @@ desktop-file-install --vendor rpmforge             \
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING FAQ INSTALL NEWS README TODO
+%doc %{_infodir}/cnee.info*
+%doc %{_mandir}/man1/cnee.1*
 %{_bindir}/cnee
 %{_bindir}/gnee
 %{_libdir}/libxnee*
 %{_datadir}/Xnee/
-%{_datadir}/applications/*.desktop
+%{_datadir}/applications/%{desktop_vendor}-xnee.desktop
 
 %changelog
 * Tue Feb 28 2006 Dries Verachtert <dries@ulyssis.org> - 2.04-1

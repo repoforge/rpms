@@ -4,7 +4,7 @@
 
 Summary: Interactivity benchmark tool
 Name: interbench
-Version: 0.29
+Version: 0.30
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -28,16 +28,21 @@ hardware can be compared.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 interbench %{buildroot}%{_bindir}/interbench
+%{__install} -Dp -m0644 interbench.8 %{buildroot}%{_mandir}/man8/interbench.8
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING readme* sample.log
+%doc COPYING readme*
+%doc %{_mandir}/man8/interbench.8*
 %{_bindir}/interbench
 
 %changelog
+* Fri Aug 12 2005 Dag Wieers <dag@wieers.com> - 0.30-1
+- Updated to release 0.30.
+
 * Fri Aug 12 2005 Dag Wieers <dag@wieers.com> - 0.29-1
 - Updated to release 0.29.
 
