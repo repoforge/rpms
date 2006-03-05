@@ -10,7 +10,7 @@
 Summary: Module for simple terminal control 
 Name: perl-Term-ReadKey
 Version: 2.30
-Release: 1
+Release: 2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/TermReadKey/
@@ -18,6 +18,7 @@ URL: http://search.cpan.org/dist/TermReadKey/
 Source: http://search.cpan.org/CPAN/authors/id/J/JS/JSTOWE/TermReadKey-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+Obsoletes: perl-TermReadKey <= %{version}
 BuildRequires: perl
 
 %description
@@ -55,6 +56,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Term/ReadKey/
 
 %changelog
+* Sun Mar 05 2006 Dag Wieers <dag@wieers.com> - 2.30-2
+- Obsolete wrongly named perl-TermReadKey.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 2.30-1
 - Updated to release 2.30.
 

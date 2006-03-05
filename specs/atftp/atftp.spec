@@ -11,6 +11,7 @@ Group: Applications/Internet
 URL: ftp://ftp.mamalinux.com/pub/atftp/
 
 Source: ftp://ftp.mamalinux.com/pub/atftp/atftp-%{version}.tar.gz
+Patch: atftp-0.7-inlines.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libtermcap-devel, pcre-devel, ncurses-devel, readline-devel
@@ -40,6 +41,7 @@ lacks IPv6 support.
 
 %prep
 %setup
+%patch -p1
 
 ### FIXME: Change location of pcre.h to pcre/pcre.h (Please fix upstream)
 %{__perl} -pi.orig -e 's|\bpcre.h\b|pcre/pcre.h|' configure tftpd.c tftpd_pcre.h

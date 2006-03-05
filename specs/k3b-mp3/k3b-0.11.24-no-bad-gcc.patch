@@ -1,0 +1,95 @@
+diff -Nur k3b-0.11.24-orig/configure k3b-0.11.24/configure
+--- k3b-0.11.24-orig/configure	2005-05-11 10:58:16.000000000 +0200
++++ k3b-0.11.24/configure	2005-05-11 20:04:18.000000000 +0200
+@@ -4173,91 +4173,6 @@
+ 
+ 
+ 
+-  echo "$as_me:$LINENO: checking whether $CC is blacklisted" >&5
+-echo $ECHO_N "checking whether $CC is blacklisted... $ECHO_C" >&6
+-
+-
+-  cat >conftest.$ac_ext <<_ACEOF
+-/* confdefs.h.  */
+-_ACEOF
+-cat confdefs.h >>conftest.$ac_ext
+-cat >>conftest.$ac_ext <<_ACEOF
+-/* end confdefs.h.  */
+-
+-#ifdef __GNUC__
+-#if __GNUC__ == 4 && __GNUC_MINOR__ == 0 && __GNUC_PATCHLEVEL__ == 0
+-choke me
+-#endif
+-#endif
+-
+-int
+-main ()
+-{
+-
+-  ;
+-  return 0;
+-}
+-_ACEOF
+-rm -f conftest.$ac_objext
+-if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
+-  (eval $ac_compile) 2>conftest.er1
+-  ac_status=$?
+-  grep -v '^ *+' conftest.er1 >conftest.err
+-  rm -f conftest.er1
+-  cat conftest.err >&5
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); } &&
+-	 { ac_try='test -z "$ac_c_werror_flag"
+-			 || test ! -s conftest.err'
+-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+-  (eval $ac_try) 2>&5
+-  ac_status=$?
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; } &&
+-	 { ac_try='test -s conftest.$ac_objext'
+-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+-  (eval $ac_try) 2>&5
+-  ac_status=$?
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; }; then
+-  kde_bad_compiler=no
+-else
+-  echo "$as_me: failed program was:" >&5
+-sed 's/^/| /' conftest.$ac_ext >&5
+-
+-kde_bad_compiler=yes
+-
+-fi
+-rm -f conftest.err conftest.$ac_objext conftest.$ac_ext
+-
+-  echo "$as_me:$LINENO: result: $kde_bad_compiler" >&5
+-echo "${ECHO_T}$kde_bad_compiler" >&6
+-
+-if test "$kde_bad_compiler" = "yes"; then
+-  { { echo "$as_me:$LINENO: error:
+-
+-This particular compiler version is blacklisted because it
+-is known to miscompile KDE. Please use a newer version, or
+-if that is not yet available, choose an older version.
+-
+-Please do not report a bug or bother us reporting this
+-configure error. We know about it, and we introduced
+-it by intention to avoid untraceable bugs or crashes in KDE.
+-
+-" >&5
+-echo "$as_me: error:
+-
+-This particular compiler version is blacklisted because it
+-is known to miscompile KDE. Please use a newer version, or
+-if that is not yet available, choose an older version.
+-
+-Please do not report a bug or bother us reporting this
+-configure error. We know about it, and we introduced
+-it by intention to avoid untraceable bugs or crashes in KDE.
+-
+-" >&2;}
+-   { (exit 1); exit 1; }; }
+-fi
+ 
+ 
+ 

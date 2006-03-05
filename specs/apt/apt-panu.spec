@@ -1,31 +1,25 @@
 # $Id$
 # Authority: dag
-# Upstream: Gustavo Niemeyer <niemeyer$conectiva,com>
+# Upstream: Panu Matilainen <pmatilai$laiskiainen,org>
+
+# Tag: test
 
 %{?dist: %{expand: %%define %dist 1}}
 %define LIBVER 3.3
 
 Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
-Version: 0.5.15cnc7
-Release: 1
+%define real_version 01032006
+Version: 0.5.15lorg2
+Release: 0.20060301
 License: GPL
 Group: System Environment/Base
 URL: https://moin.conectiva.com.br/AptRpm
 
-#can't find a normal link which works with spectool or wget
-Source: apt-%{version}.tar.bz2
-#Source: https://moin.conectiva.com.br/AptRpm?action=AttachFile&do=get&target=apt-%{version}.tar.bz2
-#Source: http://moin.conectiva.com.br/files/AptRpm/attachments/apt-%{version}.tar.bz2
-Patch0: apt-0.5.15cnc6-rpmpriorities.patch
-Patch1: apt-0.5.15cnc5-nodignosig.patch
-Patch2: apt-0.5.15cnc4-nopromote.patch
-#Patch3: apt-0.5.5cnc6-rpm402.patch
-#is applied in 0.5.15cnc7
-Patch4: apt-0.5.15cnc6-rpmhandler.patch
+Source: http://laiskiainen.org/apt/testing/apt-repomd-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: rpm-devel >= 4.0, zlib-devel, gettext
+BuildRequires: rpm-devel >= 3.0.5, zlib-devel, gettext
 BuildRequires: readline-devel, bison, gcc-c++, libtool
 BuildRequires: pkg-config >= 0.9
 %{!?rh6:BuildRequires: bzip2-devel, libstdc++-devel, docbook-utils}
@@ -43,7 +37,7 @@ BuildRequires: pkg-config >= 0.9
 %{?el2:BuildRequires: libelf}
 %{?rh6:BuildRequires: libelf}
 
-Requires: rpm >= 4.0, zlib, bzip2-libs, libstdc++
+Requires: rpm >= 3.0.5, zlib, bzip2-libs, libstdc++
 
 %description
 A port of Debian's apt tools for RPM based distributions, or at least
@@ -63,37 +57,9 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup
-%patch0 -b .rpmpriorities
-#patch1 -b .nodignosig
-#patch2 -p1 -b .nopromote
-#{?rh6:%patch3 -b .402}
-#%patch4 -b .rpmhandler
+%setup -n %{name}-repomd-%{real_version}
 
-%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag RPM Repository %{dist}/%{_arch} APT-HTTP/1.3|' methods/http.cc
-
-%{__cat} <<EOF >dag.list
-# Name: Dag RPM Repository
-# URL: http://dag.wieers.com/apt/
-
-### Dag RPM Repository for Fedora Core
-%{!?fc5:#}rpm http://apt.sw.be fedora/5/en/%{_arch} dag
-%{!?fc4:#}rpm http://apt.sw.be fedora/4/en/%{_arch} dag
-%{!?fc3:#}rpm http://apt.sw.be fedora/3/en/%{_arch} dag
-%{!?fc2:#}rpm http://apt.sw.be fedora/2/en/%{_arch} dag
-%{!?fc1:#}rpm http://apt.sw.be fedora/1/en/i386 dag
-
-### Dag RPM Repository for Red Hat Enterprise Linux
-%{!?el4:#}rpm http://apt.sw.be redhat/el4/en/%{_arch} dag
-%{!?el3:#}rpm http://apt.sw.be redhat/el3/en/%{_arch} dag
-%{!?el2:#}rpm http://apt.sw.be redhat/el2.1/en/%{_arch} dag
-
-### Dag RPM Repository for Red Hat
-%{!?rh9:#}rpm http://apt.sw.be redhat/9/en/i386 dag
-%{!?rh8:#}rpm http://apt.sw.be redhat/8.0/en/i386 dag
-%{!?rh7:#}rpm http://apt.sw.be redhat/7.3/en/i386 dag
-%{!?rh6:#}rpm http://apt.sw.be redhat/6.2/en/i386 dag
-EOF
+%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|RPMforge RPM Repository %{dist}/%{_arch} APT-HTTP/1.3|' methods/http.cc
 
 %{__cat} <<EOF >os.list
 # Name: FreshRPMS OS/updates
@@ -111,72 +77,6 @@ EOF
 %{!?rh8:#}rpm http://ayo.freshrpms.net redhat/8.0/i386 os updates
 %{!?rh7:#}rpm http://ayo.freshrpms.net redhat/7.3/i386 os updates
 %{!?rh6:#}rpm http://ayo.freshrpms.net redhat/6.2/i386 os powertools updates
-EOF
-
-%{__cat} <<EOF >freshrpms.list
-# Name: FreshRPMS
-# URL: http://ayo.freshrpms.net/
-
-### Fedora Core
-%{!?fc5:#}rpm http://ayo.freshrpms.net fedora/linux/5/%{_arch} freshrpms
-%{!?fc4:#}rpm http://ayo.freshrpms.net fedora/linux/4/%{_arch} freshrpms
-%{!?fc3:#}rpm http://ayo.freshrpms.net fedora/linux/3/%{_arch} freshrpms
-%{!?fc2:#}rpm http://ayo.freshrpms.net fedora/linux/2/%{_arch} freshrpms
-%{!?fc1:#}rpm http://ayo.freshrpms.net fedora/linux/1/i386 freshrpms
-
-### Red Hat Linux
-%{!?rh9:#}rpm http://ayo.freshrpms.net redhat/9/i386 freshrpms
-%{!?rh8:#}rpm http://ayo.freshrpms.net redhat/8.0/i386 freshrpms
-%{!?rh7:#}rpm http://ayo.freshrpms.net redhat/7.3/i386 freshrpms
-%{!?rh6:#}rpm http://ayo.freshrpms.net redhat/6.2/i386 freshrpms
-EOF
-
-%{__cat} <<EOF >newrpms.list
-# Name: NewRPMS
-# URL: http://newrpms.sunsite.dk/
-
-### Fedora Core
-%{!?fc5:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc5 newrpms
-%{!?fc4:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc4 newrpms
-%{!?fc3:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc3 newrpms
-%{!?fc2:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc2 newrpms
-%{!?fc1:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc1 newrpms
-
-### Red Hat Linux
-%{!?rh9:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/9.0 newrpms 
-%{!?rh8:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/8.0 newrpms 
-EOF
-
-%{__cat} <<EOF >dries.list
-# Name: Dries RPM Repository
-# URL: http://dries.studentenweb.org/apt/
-
-### Fedora Core
-%{!?fc5:#}rpm http://apt.sw.be dries/fedora/fc5/i386 dries
-%{!?fc4:#}rpm http://apt.sw.be dries/fedora/fc4/i386 dries
-%{!?fc3:#}rpm http://apt.sw.be dries/fedora/fc3/i386 dries
-%{!?fc2:#}rpm http://apt.sw.be dries/fedora/fc2/i386 dries
-%{!?fc1:#}rpm http://apt.sw.be dries/fedora/fc1/i386 dries
-
-### Red Hat Enterprise Linux
-%{!?el4:#}rpm http://apt.sw.be dries/redhat/el4/en/i386 dries
-%{!?el3:#}rpm http://apt.sw.be dries/redhat/el3/en/i386 dries
-EOF
-
-%{__cat} <<EOF >atrpms.list
-# Name: ATrpms
-# URL: http://atrpms.physik.fu-berlin.de/
-
-### Fedora Core
-#rpm http://apt.physik.fu-berlin.de fedora/4/en/i386 at-testing
-#rpm http://apt.physik.fu-berlin.de fedora/3/en/i386 at-testing
-#rpm http://apt.physik.fu-berlin.de fedora/2/en/i386 at-testing
-#rpm http://apt.physik.fu-berlin.de fedora/1/en/i386 at-testing
-
-### Red Hat Linux
-#rpm http://apt.physik.fu-berlin.de redhat/9/en/i386 at-testing
-#rpm http://apt.physik.fu-berlin.de redhat/8.0/en/i386 at-testing
-#rpm http://apt.physik.fu-berlin.de redhat/7.3/en/i386 at-testing
 EOF
 
 %{__cat} <<'EOF' >apt.conf
@@ -239,17 +139,14 @@ EOF
 		%{buildroot}%{_localstatedir}/state/apt/lists/partial \
 		%{buildroot}%{_libdir}/apt/scripts/
 %{__install} -p -m0644 rpmpriorities apt.conf %{buildroot}%{_sysconfdir}/apt/
-%{__install} -p -m0644 dag.list os.list freshrpms.list newrpms.list dries.list atrpms.list %{buildroot}%{_sysconfdir}/apt/sources.list.d/
+%{__install} -p -m0644 os.list %{buildroot}%{_sysconfdir}/apt/sources.list.d/
 touch %{buildroot}%{_sysconfdir}/apt/preferences \
 	%{buildroot}%{_sysconfdir}/apt/vendors.list
 
 #%{__ln_s} -f %{_libdir}libapt-pkg-libc6.3-5.so.0 %{buildroot}%{_libdir}libapt-pkg-libc6.3-5.so.%{LIBVER}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -289,6 +186,9 @@ touch %{buildroot}%{_sysconfdir}/apt/preferences \
 #exclude %{_libdir}/*.la
 
 %changelog
+* Sun Mar 05 2006 Dag Wieers <dag@wieers.com> - 0.5.15lorg2-0.20060301
+- Experimental version from Panu with repomd and multilib support.
+
 * Mon Jan 02 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.15cnc7-1
 - Added libtoolize and autoreconf fix for Fedora Core 5, thanks 
   to Stephen Clement.

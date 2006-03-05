@@ -1,0 +1,149 @@
+--- k3b-0.11.23/src/projects/k3btempdirselectionwidget.cpp.statfs	2005-04-06 13:31:55.000000000 +0000
++++ k3b-0.11.23/src/projects/k3btempdirselectionwidget.cpp	2005-04-06 13:32:16.000000000 +0000
+@@ -109,7 +109,7 @@
+   if( !QFile::exists( path ) )
+     path.truncate( path.findRev('/') );
+ 
+-  unsigned long size, avail;
++  unsigned long long size, avail;
+   if( K3b::kbFreeOnFs( path, size, avail ) )
+     slotFreeTempSpace( path, size, 0, avail );
+   else
+--- k3b-0.11.23/src/cdcopy/k3bcdcopyjob.cpp.statfs	2005-04-06 13:41:00.000000000 +0000
++++ k3b-0.11.23/src/cdcopy/k3bcdcopyjob.cpp	2005-04-06 13:41:20.000000000 +0000
+@@ -294,7 +294,7 @@
+ 	  imageSpaceNeeded += (*it).length().mode1Bytes();
+       }
+ 
+-      unsigned long avail, size;
++      unsigned long long avail, size;
+       QString pathToTest = m_tempPath.left( m_tempPath.findRev( '/' ) );
+       if( !K3b::kbFreeOnFs( pathToTest, size, avail ) ) {
+ 	emit infoMessage( i18n("Unable to determine free space in temporary directory '%1'.").arg(pathToTest), ERROR );
+--- k3b-0.11.23/src/rip/k3bvideocdrippingdialog.cpp.statfs	2005-04-06 13:35:36.000000000 +0000
++++ k3b-0.11.23/src/rip/k3bvideocdrippingdialog.cpp	2005-04-06 13:39:24.000000000 +0000
+@@ -186,9 +186,9 @@
+ }
+ 
+ void K3bVideoCdRippingDialog::slotFreeSpace(const QString&,
+-						  unsigned long,
+-						  unsigned long,
+-						  unsigned long kbAvail)
++						  unsigned long long,
++						  unsigned long long,
++						  unsigned long long kbAvail)
+ {
+     m_labelFreeSpace->setText( KIO::convertSizeFromKB(kbAvail) );
+ 
+@@ -210,7 +210,7 @@
+     if( !QFile::exists( path ) )
+         path.truncate( path.findRev('/') );
+ 
+-    unsigned long size, avail;
++    unsigned long long size, avail;
+     if( K3b::kbFreeOnFs( path, size, avail ) )
+         slotFreeSpace( path, size, 0, avail );
+     else
+--- k3b-0.11.23/src/rip/k3bvideocdrippingdialog.h.statfs	2005-04-06 13:38:54.000000000 +0000
++++ k3b-0.11.23/src/rip/k3bvideocdrippingdialog.h	2005-04-06 13:37:13.000000000 +0000
+@@ -66,7 +66,7 @@
+   void slotSaveUserDefaults();
+ 
+   void slotUpdateFreeSpace();
+-  void slotFreeSpace(const QString&, unsigned long, unsigned long, unsigned long);
++  void slotFreeSpace(const QString&, unsigned long long, unsigned long long, unsigned long long);
+ 
+ };
+ 
+--- k3b-0.11.23/src/rip/k3bdvdripperwidget.h.statfs	2004-01-21 10:20:20.000000000 +0000
++++ k3b-0.11.23/src/rip/k3bdvdripperwidget.h	2005-04-06 13:18:57.000000000 +0000
+@@ -95,8 +95,8 @@
+     void slotFindStaticDir();
+     void slotRipJobDeleted();
+     void slotSetDependDirs( const QString& );
+-    void slotFreeTempSpace( const QString & mountPoint, unsigned long kBSize,
+-        unsigned long kBUsed, unsigned long kBAvail );
++    void slotFreeTempSpace( const QString & mountPoint, unsigned long long kBSize,
++        unsigned long long kBUsed, unsigned long long kBAvail );
+     void slotParseError( KProcess *p, char *text, int len );
+     void slotCheckOpenEncoding(int);
+     void slotOpenEncoding( bool );
+--- k3b-0.11.23/src/rip/k3bdvdripperwidget.cpp.statfs	2004-09-27 07:18:03.000000000 +0000
++++ k3b-0.11.23/src/rip/k3bdvdripperwidget.cpp	2005-04-06 13:18:57.000000000 +0000
+@@ -243,12 +243,17 @@
+     }
+     struct statfs fs;
+     ::statfs( QFile::encodeName( tmp ), &fs );
+-    unsigned int kBfak = (unsigned int)(fs.f_bsize/1024);
+-    slotFreeTempSpace( tmp, fs.f_blocks*kBfak, (fs.f_blocks-fs.f_bfree)*kBfak, fs.f_bavail*kBfak );
++    unsigned long long size, used, avail;
++    size = (fs.f_blocks * static_cast<unsigned long long> (fs.f_bsize)) / 1024;
++    used = ((fs.f_blocks-fs.f_bfree) * static_cast<unsigned long long> (fs.f_bsize)) / 1024;
++    avail = (fs.f_bavail * static_cast<unsigned long long> (fs.f_bsize)) / 1024;
++    slotFreeTempSpace( tmp, size, used, avail );
++    // unsigned int kBfak = (unsigned int)(fs.f_bsize/1024);
++    // slotFreeTempSpace( tmp, fs.f_blocks*kBfak, (fs.f_blocks-fs.f_bfree)*kBfak, fs.f_bavail*kBfak );
+ }
+ 
+-void K3bDvdRipperWidget::slotFreeTempSpace( const QString &, unsigned long kBSize,
+-        unsigned long kBUsed, unsigned long kBAvail ){
++void K3bDvdRipperWidget::slotFreeTempSpace( const QString &, unsigned long long kBSize,
++        unsigned long long kBUsed, unsigned long long kBAvail ){
+     m_fillDisplay->setKbSize( kBSize );
+     m_fillDisplay->setKbAvailable( kBAvail );
+     m_fillDisplay->setKbUsed( kBUsed );
+--- k3b-0.11.23/src/dvdcopy/k3bdvdcopyjob.cpp.statfs	2005-04-06 13:42:54.000000000 +0000
++++ k3b-0.11.23/src/dvdcopy/k3bdvdcopyjob.cpp	2005-04-06 13:43:13.790966576 +0000
+@@ -238,7 +238,7 @@
+       // check free temp space
+       //
+       KIO::filesize_t imageSpaceNeeded = (KIO::filesize_t)(d->lastSector.lba()+1)*2048;
+-      unsigned long avail, size;
++      unsigned long long avail, size;
+       QString pathToTest = m_imagePath.left( m_imagePath.findRev( '/' ) );
+       if( !K3b::kbFreeOnFs( pathToTest, size, avail ) ) {
+ 	emit infoMessage( i18n("Unable to determine free space in temporary directory '%1'.").arg(pathToTest), ERROR );
+--- k3b-0.11.23/src/core/k3bglobals.cpp.statfs	2005-01-19 12:54:42.000000000 +0000
++++ k3b-0.11.23/src/core/k3bglobals.cpp	2005-04-06 13:18:57.000000000 +0000
+@@ -215,15 +215,15 @@
+ }
+ 
+ 
+-bool K3b::kbFreeOnFs( const QString& path, unsigned long& size, unsigned long& avail )
++bool K3b::kbFreeOnFs( const QString& path, unsigned long long& size, unsigned long long& avail )
+ {
+   struct statfs fs;
+ 
+   if( ::statfs( QFile::encodeName(path), &fs ) == 0 ) {
+-    unsigned long kBfak = fs.f_bsize/1024;
++    // unsigned long kBfak = fs.f_bsize/1024;
+ 
+-    size = fs.f_blocks*kBfak;
+-    avail = fs.f_bavail*kBfak;
++    size = (fs.f_blocks*static_cast<unsigned long long>( fs.f_bsize )) / 1024;
++    avail = (fs.f_bavail*static_cast<unsigned long long>( fs.f_bsize )) / 1024;
+ 
+     return true;
+   }
+--- k3b-0.11.23/src/core/k3bglobals.h.statfs	2005-01-19 12:54:42.000000000 +0000
++++ k3b-0.11.23/src/core/k3bglobals.h	2005-04-06 13:18:57.563346824 +0000
+@@ -83,7 +83,7 @@
+    * We use this since we encountered problems with the KDE version.
+    * @returns true on success.
+    */
+-  bool kbFreeOnFs( const QString& path, unsigned long& size, unsigned long& avail );
++  bool kbFreeOnFs( const QString& path, unsigned long long& size, unsigned long long& avail );
+ 
+   /**
+    * Cut a filename preserving the extension
+--- k3b-0.11.23/src/k3bstatusbarmanager.cpp.statfs	2005-04-06 15:57:21.417541376 +0000
++++ k3b-0.11.23/src/k3bstatusbarmanager.cpp	2005-04-06 15:57:34.742515672 +0000
+@@ -83,7 +83,7 @@
+   if( !QFile::exists( path ) )
+     path.truncate( path.findRev('/') );
+ 
+-  unsigned long size, avail;
++  unsigned long long size, avail;
+   if( K3b::kbFreeOnFs( path, size, avail ) )
+     slotFreeTempSpace( path, size, 0, avail );
+   else
