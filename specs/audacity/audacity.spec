@@ -11,7 +11,7 @@
 
 Summary: Powerful audio editor
 Name: audacity
-Version: 1.3.0
+Version: 1.3.0b
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -19,6 +19,7 @@ URL: http://audacity.sourceforge.net/
 Source: http://dl.sf.net/audacity/audacity-src-%{version}.tar.gz
 Patch0: audacity-src-1.3.0-beta-localeinstall.patch
 Patch1: audacity-src-1.3.0-beta-desktop.patch
+Patch2: audacity-src-1.3.0b-beta-samplerate.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: wxGTK >= 2.6.0
 BuildRequires: gcc-c++, zip, zlib-devel, gettext, desktop-file-utils
@@ -42,11 +43,13 @@ and Noise Removal, and it also supports VST plug-in effects.
 %setup -n %{name}-src-%{version}-beta
 %patch0 -p1 -b .localeinstall
 %patch1 -p1 -b .desktop
+%patch2 -p1 -b .samplerate
 
 
 %build
 %configure \
     --with-libsndfile="system" \
+    --with-libsamplerate="system" \
     --with-portaudio="v18"
 %{__make} %{?_smp_mflags}
 
@@ -87,6 +90,11 @@ update-desktop-database -q || :
 
 
 %changelog
+* Mon Mar  6 2006 Matthias Saou <http://freshrpms.net/> 1.3.0b-1
+- Update to 1.3.0b.
+- Explicitely pass --with-libsamplerate since libresample is used otherwise.
+- Include patch to correct the version of libsamplerate being checked.
+
 * Wed Nov 30 2005 Matthias Saou <http://freshrpms.net/> 1.3.0-1
 - Update to 1.3.0, the wxGTK 2.6.x compatible development branch.
 - Include patch to fix the locale installation (weird...).
