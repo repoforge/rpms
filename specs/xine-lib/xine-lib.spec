@@ -43,7 +43,7 @@
 Summary: Core library of the xine multimedia player
 Name: xine-lib
 Version: 1.1.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -53,8 +53,8 @@ Requires: libdvdcss
 BuildRequires: gcc-c++, pkgconfig, zlib-devel
 BuildRequires: libvorbis-devel, SDL-devel
 # BUG : libmng-devel should apparently require libjpeg-devel for includes
-BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
-%{?_with_modxorg:BuildRequires: libXvMC-devel}
+BuildRequires: libpng-devel, libmng-devel, libjpeg-devel, freetype-devel
+%{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel, libGL-devel, libGLU-devel, libXinerama-devel, libXvMC-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{!?_with_modxorg:%{!?_without_xvmc:BuildRequires: libXvMCW-devel}}
 %{?_with_rte:BuildRequires: rte-devel}
@@ -71,6 +71,8 @@ BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
 %{!?_without_caca:BuildRequires: libcaca-devel}
 %{!?_without_theora:BuildRequires: libtheora-devel}
 %{!?dist:BuildRequires: freeglut-devel}
+%{?fc5:BuildRequires: freeglut-devel}
+%{?fc4:BuildRequires: freeglut-devel}
 %{?fc3:BuildRequires: freeglut-devel}
 %{?fc2:BuildRequires: freeglut-devel}
 %{?fc1:BuildRequires: freeglut-devel}
@@ -98,7 +100,7 @@ Available rpmbuild rebuild options :
 Summary: Development files for the xine library
 Group: Development/Libraries
 Requires: %{name} = %{version}, pkgconfig, zlib-devel
-%{?_with_modxorg:Requires: libXvMC-devel}
+%{?_with_modxorg:Requires: libXt-devel, libXv-devel, libGL-devel, libGLU-devel, libXinerama-devel, libXvMC-devel}
 %{!?_with_modxorg:Requires: XFree86-devel}
 Obsoletes: xine-libs-devel <= 1.0.0
 
@@ -119,6 +121,7 @@ use the Xine library.
 
 %build
 %configure \
+    %{?_with_modxorg:--with-xv-path=%{_libdir}} \
     --enable-ipv6 \
     %{?_with_extffmpeg:--with-external-ffmpeg} \
     %{?_without_alsa:--disable-alsa} \
@@ -167,6 +170,11 @@ use the Xine library.
 
 
 %changelog
+* Mon Mar  6 2006 Matthias Saou <http://freshrpms.net/> 1.1.1-2
+- Add freetype support.
+- Add many missing modular X build requirements.
+- Force Xv path to prefix for modular X, otherwise it it not found.
+
 * Tue Jan 10 2006 Matthias Saou <http://freshrpms.net/> 1.1.1-1
 - Update to 1.1.1 (missed that one in Nov.!).
 - Remove no longer needed faad patch.

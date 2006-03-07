@@ -15,7 +15,7 @@
 Summary: Free multimedia player
 Name: xine
 Version: 0.99.4
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -32,7 +32,7 @@ BuildRequires: gcc-c++, libpng-devel, xine-lib-devel >= 1.0.0
 BuildRequires: curl-devel, libidn-devel, libtermcap-devel, readline-devel
 BuildRequires: pkgconfig, /usr/bin/find
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel, libXinerama-devel, libXtst-devel, libXxf86vm-devel, libXext-devel}
+%{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel, libXinerama-devel, libXtst-devel, libXxf86vm-devel, libXext-devel, libXft-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_aalib:BuildRequires: aalib-devel}
 %{!?_without_caca:BuildRequires: libcaca-devel}
@@ -95,7 +95,6 @@ EOF
 
 %build
 %configure \
-    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
     %{?_without_lirc:--disable-lirc}
 %{__make} %{?_smp_mflags}
 
@@ -163,6 +162,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Mon Mar  6 2006 Matthias Saou <http://freshrpms.net/> 0.99.4-4
+- Remove setting of the X libs location, as it breaks with modular X.
+
 * Mon Jan 30 2006 Matthias Saou <http://freshrpms.net/> 0.99.4-3
 - Fix modular xorg requirements since the "xine" binary wasn't being built.
 - List all bindir entries in %%files so that the above makes the build fail.
