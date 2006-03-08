@@ -3,7 +3,7 @@
 
 Summary: Navigate cd
 Name: cdargs
-Version: 1.31
+Version: 1.35
 Release: 1
 License: GPL
 Group: Applications/File
@@ -39,5 +39,8 @@ Navigate cd Arguments/expand the shell built-in cd with bookmarks and browser
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Tue Mar 07 2006 Dag Wieers <dag@wieers.com> - 1.35-1
+- Updated to release 1.35.
+
 * Tue Sep 20 2005 Dag Wieers <dag@wieers.com> - 1.31-1
 - Initial package. (using DAR)

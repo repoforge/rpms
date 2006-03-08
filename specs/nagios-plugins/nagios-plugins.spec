@@ -16,7 +16,7 @@
 
 Summary: Host/service/network monitoring program plugins for Nagios
 Name: nagios-plugins
-Version: 1.4.1
+Version: 1.4.2
 Release: 1
 License: GPL
 Group: Applications/System
@@ -103,6 +103,9 @@ done
 %{perl_vendorlib}/utils.pm
 
 %changelog
+* Tue Mar 07 2006 Dag Wieers <dag@wieers.com> - 1.4.2-1
+- Updated to release 1.4.2.
+
 * Fri Aug 05 2005 Dag Wieers <dag@wieers.com> - 1.4.1-1
 - Updated to release 1.4.1.
 

@@ -14,7 +14,7 @@
 
 Summary: Graphical video editing tool
 Name: avidemux2
-Version: 2.1.0
+Version: 2.1.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -99,6 +99,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/avidemux2.desktop}
 
 %changelog
+* Wed Mar 08 2006 Dag Wieers <dag@wieers.com> - 2.1.2-1
+- Updated to release 2.1.2.
+
 * Thu Jan 05 2006 Dag Wieers <dag@wieers.com> - 2.1.0-1
 - Updated to release 2.1.0.
 
