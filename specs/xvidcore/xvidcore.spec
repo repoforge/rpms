@@ -1,22 +1,20 @@
 # $Id$
 # Authority: matthias
 
-#define prever rc4
+#define prever beta2
 %define somaj  4
-%define somin  0
+%define somin  1
 
 Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore
-Version: 1.0.3
-Release: %{?prever:0.%{prever}.}1
+Version: 1.1.0
+Release: 1%{?prever:.%{prever}}
 License: XviD
 Group: System Environment/Libraries
 URL: http://www.xvid.org/
-Source: http://files.xvid.org/downloads/xvidcore-%{version}%{?prever:-%{prever}}.tar.bz2
+Source: http://downloads.xvid.org/downloads/xvidcore-%{version}%{?prever:-%{prever}}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-%ifarch %ix86 ia64 x86_64
-BuildRequires: nasm
-%endif
+BuildRequires: yasm
 Provides: lib%{name} = %{version}-%{release}
 
 %description
@@ -44,6 +42,15 @@ needed to build applications that will use the XviD video codec.
 
 
 %build
+# CFLAGS recommended in the XviD configure script :
+# -fstrength-reduce : Enabled at levels -O2, -O3, -Os.
+# -finline-functions
+# -freduce-all-givs : No longer present in gcc 4.1, so omit.
+# -ffast-math
+# -fomit-frame-pointer : Enabled at levels -O, -O2, -O3, -Os.
+# We use -Wa,--execstack to work with execshield/selinux. See :
+# http://www.crypt.gen.nz/selinux/faq.html
+export CFLAGS="%{optflags} -finline-functions -ffast-math -Wa,--execstack"
 pushd build/generic
     %configure
     %{__make} %{?_smp_mflags}
@@ -68,11 +75,9 @@ popd
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files
@@ -84,12 +89,28 @@ popd
 %files devel
 %defattr(-, root, root, 0755)
 %doc CodingStyle doc/* examples
-%{_includedir}/*
+%{_includedir}/xvid.h
 %{_libdir}/*.a
 %{_libdir}/*.so
 
 
 %changelog
+* Thu Mar  9 2006 Matthias Saou <http://freshrpms.net/> 1.1.0-1
+- Update to 1.1.0 final.
+- Increase somin from 0 to 1 (we now have libxvidcore.so.4.1).
+- Add -Wa,--execstack to CFLAGS to work with execshield/selinux.
+- Add relevant CFLAGS from the XviD defaults.
+- Require yasm on all archs, since it's also available on PPC (maybe not used,
+  though).
+- Update Source URL.
+
+* Sun Apr 17 2005 Matthias Saou <http://freshrpms.net/> 1.1.0-0.1.beta2
+- Update to 1.1.0-beta2.
+
+* Fri Jan 28 2005 Matthias Saou <http://freshrpms.net/> 1.1.0-0.beta1.1
+- Fork off the devel branch.
+- Switch from using nasm to yasm for improved x86_64 and ppc support.
+
 * Fri Jan 28 2005 Matthias Saou <http://freshrpms.net/> 1.0.3-1
 - Update to 1.0.3.
 
