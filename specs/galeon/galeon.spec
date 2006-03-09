@@ -2,6 +2,15 @@
 # Authority: dag
 # Upstream: <galeon-devel$lists,sourceforge,net>
 
+%{?el4:%define _without_gnome212 1}
+%{?fc3:%define _without_gnome212 1}
+%{?fc2:%define _without_gnome212 1}
+%{?fc1:%define _without_gnome212 1}
+%{?el3:%define _without_gnome212 1}
+%{?rh9:%define _without_gnome212 1}
+%{?rh7:%define _without_gnome212 1}
+%{?el2:%define _without_gnome212 1}
+
 %define mversion %(rpm -q mozilla-devel --qf '%{RPMTAG_EPOCH}:%{RPMTAG_VERSION}' | tail -1)
 %define lversion %(rpm -q mozilla-devel --qf '%{RPMTAG_VERSION}' | tail -1)
 
@@ -20,6 +29,7 @@ BuildRequires: mozilla-devel = %{mversion}, gtk2-devel >= 2.4, libxml2-devel >= 
 BuildRequires: libgnomeui-devel >= 2.0.5, libbonoboui-devel >= 2.1.1, libglade2-devel >= 2.0.0
 BuildRequires: gnome-vfs2-devel >= 2.0, GConf2-devel >= 2.0, bonobo-activation-devel >= 2.0.0
 BuildRequires: scrollkeeper
+%{!?_without_gnome212:BuildRequires: gnome-devel >= 2.12}
 
 Requires: mozilla = %{mversion}
 Requires(post): scrollkeeper
@@ -34,7 +44,9 @@ engine, for rendering Web pages. It is developed to be fast and lightweight.
 %build
 %configure \
 	--disable-werror \
-	--disable-schemas-install
+	--disable-schemas-install \
+%{!?_without_gnome212:--enable-nautilus-view}
+
 %{__make} %{?_smp_mflags}
 
 %install

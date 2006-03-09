@@ -3,8 +3,8 @@
 
 Summary: Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
 Name: asciidoc
-Version: 7.0.1
-Release: 3
+Version: 7.1.2
+Release: 1
 License: GPL
 Group: Applications/Text
 URL: http://www.methods.co.nz/asciidoc/
@@ -13,8 +13,8 @@ Source: http://www.methods.co.nz/asciidoc/asciidoc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: python-devel
-Requires: python
+BuildRequires: python-devel >= 2.3
+Requires: python >= 2.3
 
 %description
 AsciiDoc is a text document format for writing short documents, articles,
@@ -54,6 +54,9 @@ books and UNIX man pages.
 %{_datadir}/asciidoc/
 
 %changelog
+* Thu Mar 09 2006 Dag Wieers <dag@wieers.com> - 7.1.2-1
+- Updated to release 7.1.2.
+
 * Fri Aug 12 2005 Dag Wieers <dag@wieers.com> - 7.0.1-3
 - Add missing deffatr(). (Alain Rykaert)
 - Put asciidoc in %%{_bindir}, instead of a symlink.

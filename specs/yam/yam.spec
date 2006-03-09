@@ -2,9 +2,9 @@
 # Authority: dag
 # Upstream: Dag Wieers <dag$wieers,com>
 
-Summary: Tool to set up a Yum/Apt mirror from various sources (ISO, rsync, http, ftp, ...)
+Summary: Set up a Yum/Apt mirror from various sources (ISO, RHN, rsync, http, ftp, ...)
 Name: yam
-Version: 0.7.3
+Version: 0.8.0
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -15,11 +15,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: /usr/bin/python2
-Requires: python >= 2.0
+Requires: python >= 2.0, createrepo >= 0.4.3
 
 %description
 Yam builds a local Apt/Yum RPM repository from local ISO files,
-downloaded updates and extra packages from 3rd party repositories.
+downloaded updates and extra packages from RHN and 3rd party
+repositories.
 
 It can download all updates and extras automatically, creates
 the repository structure and meta-data, enables HTTP access to 
@@ -41,29 +42,37 @@ allow installations via the network.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
+%preun
+if [ $1 -eq 0 ]; then
+	/service yam stop &>/dev/null || :
+	/sbin/chkconfig --del yam
+fi
+
 %post
 /sbin/chkconfig --add yam
 
-%postun
-if [ $1 -eq 0 ]; then
-	/sbin/chkconfig --del yam
-fi
+#%postun
+#/sbin/service nagios condrestart &>/dev/null || :
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc *.conf AUTHORS ChangeLog COPYING README* THANKS TODO
+%doc AUTHORS ChangeLog COPYING README* THANKS TODO WISHLIST *.conf
 %config(noreplace) %{_sysconfdir}/yam.conf
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/yam.conf
 %config %{_initrddir}/yam
 %{_bindir}/yam
 %{_datadir}/yam/
-%{_localstatedir}/yam/
+%{_localstatedir}/cache/yam/
 %{_localstatedir}/www/yam/
+%{_localstatedir}/yam/
 
 %changelog
+* Thu Mar 09 2006 Dag Wieers <dag@wieers.com> - 0.8.0-1
+- Updated to release 0.8.0.
+
 * Fri Mar 25 2005 Dag Wieers <dag@wieers.com> - 0.7.3-1
 - Updated to release 0.7.3.
 

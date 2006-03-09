@@ -9,7 +9,7 @@
 
 Summary: Versatile resource statistics tool
 Name: dstat
-Version: 0.6.1
+Version: 0.6.2
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -44,7 +44,7 @@ confusion, less mistakes.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %{?_with_python15:%{__install} -Dp -m0755 dstat15 %{buildroot}%{_bindir}/dstat}
 
@@ -53,13 +53,16 @@ confusion, less mistakes.
 
 %files
 %defattr(-, root, root, 0755)
-%doc *.conf AUTHORS ChangeLog COPYING examples/ README* TODO
+%doc AUTHORS ChangeLog COPYING README* TODO *.conf *.html examples/
 %doc %{_mandir}/man1/dstat.1*
 #%config(noreplace) %{_sysconfdir}/dstat.conf
 %{_bindir}/dstat
 %{_datadir}/dstat/
 
 %changelog
+* Thu Mar 09 2006 Dag Wieers <dag@wieers.com> - 0.6.2-1
+- Updated to release 0.6.2.
+
 * Mon Sep 05 2005 Dag Wieers <dag@wieers.com> - 0.6.1-1
 - Updated to release 0.6.1.
 
