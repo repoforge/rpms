@@ -8,7 +8,7 @@
 Summary: SSH2 protocol for Python
 Name: python-pyrss2gen
 Version: 1.0.0
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.dalkescientific.com/Python/PyRSS2Gen.html
@@ -27,9 +27,12 @@ A Python RSS2 generator.
 %prep
 %setup -n %{real_name}-%{version}
 
+%build
+%{__python} setup.py build
+
 %install
 %{__rm} -rf %{buildroot}
-%{__python} setup.py install --root="%{buildroot}"
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -39,8 +42,11 @@ A Python RSS2 generator.
 %doc LICENSE README example.py test.py
 %{python_sitelib}/PyRSS2Gen.py
 %{python_sitelib}/PyRSS2Gen.pyc
-#%ghost %{python_sitelib}/PyRSS2Gen.pyo
+%ghost %{python_sitelib}/PyRSS2Gen.pyo
 
 %changelog
+* Fri Mar 10 2006 Dag Wieers <dag@wieers.com> - 1.0.0-2
+- Added .pyo ghost files.
+
 * Thu Feb 09 2006 Dag Wieers <dag@wieers.com> - 1.0.0-1
 - Initial package. (using DAR)

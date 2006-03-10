@@ -8,7 +8,7 @@
 
 Summary: Python bindings for sqlite
 Name: python-sqlite
-Version: 2.0.5
+Version: 2.0.6
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -41,10 +41,15 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE doc/
-%{python_sitearch}/*
 %{_bindir}/test-pysqlite
+%{python_sitearch}/_sqlite.so
+%{python_sitearch}/sqlite/
+%exclude %{python_sitearch}/sqlite/*.pyo
 
 %changelog
+* Fri Feb 10 2006 Dag Wieers <dag@wieers.com> - 2.0.6-1
+- Updated to release 2.0.6.
+
 * Mon Jan 09 2006 Dag Wieers <dag@wieers.com> - 2.0.5-1
 - Updated to release 2.0.5.
 

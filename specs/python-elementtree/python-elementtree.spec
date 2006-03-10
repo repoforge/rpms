@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-%define python_abi %(%{__python} -c 'import sys; print ".".join(sys.version.split(".")[:2])')
+#define python_abi %(%{__python} -c 'import sys; print ".".join(sys.version.split(".")[:2])')
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
@@ -32,7 +32,7 @@ to store hierarchical data structures, such as simplified XML
 infosets, in memory. The element type can be described as a cross
 between a Python list and a Python dictionary.
 
-This package also includes the C implementation, %{_upstream_cnvr}.
+This package also includes the C implementation, %{real_version_celementtree}.
 
 %prep
 %setup -a1 -n %{real_name}-%{real_version}
@@ -51,9 +51,9 @@ popd
 
 %install
 %{__rm} -rf %{buildroot}
-%{__python} setup.py install -O1 --skip-build --root="%{buildroot}"
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 pushd cElementTree-%{real_version_celementtree}
-%{__python} setup.py install -O1 --skip-build --root="%{buildroot}"
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 popd
 
 %clean

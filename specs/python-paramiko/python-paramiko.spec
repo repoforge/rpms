@@ -8,7 +8,7 @@
 Summary: SSH2 protocol for Python
 Name: python-paramiko
 Version: 1.5.3
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.lag.net/~robey/paramiko/
@@ -35,9 +35,12 @@ the paramiko module.
 %prep
 %setup -n %{real_name}-%{version}
 
+%build
+%{__python} setup.py build
+
 %install
 %{__rm} -rf %{buildroot}
-%{__python} setup.py install --root="%{buildroot}"
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -46,9 +49,12 @@ the paramiko module.
 %defattr(-, root, root, 0755)
 %doc LICENSE README docs/ tests/ demo*
 %{python_sitelib}/paramiko/
-#%ghost %{python_sitelib}/paramiko/*.pyo
+%ghost %{python_sitelib}/paramiko/*.pyo
 
 %changelog
+* Fri Mar 10 2006 Dag Wieers <dag@wieers.com> - 1.5.3-2
+- Added .pyo ghost files.
+
 * Mon Feb 20 2006 Dag Wieers <dag@wieers.com> - 1.5.3-1
 - Updated to release 1.5.3.
 
