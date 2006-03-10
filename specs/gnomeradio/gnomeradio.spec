@@ -4,13 +4,13 @@
 
 Summary: Graphical FM-Tuner program
 Name: gnomeradio
-Version: 1.4
+Version: 1.5
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://mfcn.ilo.de/gnomeradio/
 
-Source: http://mfcn.ilo.de/gnomeradio/gnomeradio-%{version}.tar.gz
+Source: http://www.wh-hms.uni-ulm.de/~mfcn/gnomeradio/packages/gnomeradio-%{version}.tar.gz
 Patch: gnomeradio-1.4-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -24,7 +24,7 @@ A FM-Tuner program for GNOME.
 
 %prep
 %setup
-%patch -p1
+#patch -p1
 
 %build
 %configure \
@@ -61,6 +61,12 @@ scrollkeeper-update -q || :
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Wed Mar 08 2006 Dag Wieers <dag@wieers.com> - 1.6-1
+- Updated to release 1.6.
+
+* Wed Mar 08 2006 Dag Wieers <dag@wieers.com> - 1.5-1
+- Updated to release 1.5.
+
 * Sat Nov 06 2004 Dag Wieers <dag@wieers.com> - 1.4-1                                        
 - Fixed build problem with gnome 2.6+. (Alan Cox)
 

@@ -58,7 +58,7 @@ parameters to a function/method, and not using a module/variable.
 
 %changelog
 * Fri Mar 10 2006 Dag Wieers <dag@wieers.com> - 0.8.17-2
-- Added .pyo ghost files.
+- Added .pyo ghost files, renamed to pychecker.
 
 * Mon Jan 06 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.17-1
 - Updated to release 0.8.17.

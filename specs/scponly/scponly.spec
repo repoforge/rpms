@@ -1,10 +1,11 @@
 # $Id$
 # Authority: dag
+# Upstream: <scponly$lists,ccs,neu,edu>
 
 Summary: Limited shell for secure file transfers
 Name: scponly
 Version: 4.6
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Shells
 URL: http://sublimation.org/scponly/
@@ -24,15 +25,16 @@ as a wrapper to the "tried and true" ssh suite of applications.
 %prep
 %setup
 
+### FIXME: Remove ownership changes from Makefile
+%{__perl} -pi.orig -e 's|-o 0 -g 0||g' Makefile*
+
 %build
 %configure
-%{__make} %{?_smp_mflags} \
-	OPTS="%{optflags}"
+%{__make} %{?_smp_mflags} OPTS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 scponly %{buildroot}%{_bindir}/scponly
-%{__install} -Dp -m0644 scponly.8 %{buildroot}%{_mandir}/man8/scponly.8
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -40,10 +42,16 @@ as a wrapper to the "tried and true" ssh suite of applications.
 %files 
 %defattr(-, root, root, 0755)
 %doc AUTHOR CHANGELOG CONTRIB COPYING INSTALL README TODO
+%doc setup_chroot.sh build_extras/setup_chroot.sh*
 %doc %{_mandir}/man8/scponly.8*
+%config(noreplace) %{_sysconfdir}/scponly/
 %{_bindir}/scponly
 
 %changelog
+* Thu Mar 09 2006 Dag Wieers <dag@wieers.com> - 4.6-2
+- Use make install and added %%{_sysconfdir}/scponly/debuglevel.
+- Added setup_chroot helper scripts as documentation.
+
 * Tue Feb 21 2006 Matthias Saou <http://freshrpms.net/> 4.6-1
 - Update to 4.6.
 

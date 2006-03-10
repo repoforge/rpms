@@ -5,7 +5,7 @@
 Summary: Set up a Yum/Apt mirror from various sources (ISO, RHN, rsync, http, ftp, ...)
 Name: yam
 Version: 0.8.0
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Base
 URL: http://dag.wieers.com/home-made/yam/
@@ -42,6 +42,8 @@ allow installations via the network.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
+%{__install} -D -m0755 gensystemid %{buildroot}%{_bindir}/gensystemid
+
 %preun
 if [ $1 -eq 0 ]; then
 	/service yam stop &>/dev/null || :
@@ -52,7 +54,7 @@ fi
 /sbin/chkconfig --add yam
 
 #%postun
-#/sbin/service nagios condrestart &>/dev/null || :
+#/sbin/service yam condrestart &>/dev/null || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -63,6 +65,7 @@ fi
 %config(noreplace) %{_sysconfdir}/yam.conf
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/yam.conf
 %config %{_initrddir}/yam
+%{_bindir}/gensystemid
 %{_bindir}/yam
 %{_datadir}/yam/
 %{_localstatedir}/cache/yam/
@@ -70,6 +73,9 @@ fi
 %{_localstatedir}/yam/
 
 %changelog
+* Fri Mar 10 2006 Dag Wieers <dag@wieers.com> - 0.8.0-2
+- Added gensystemid to installation. (Ian Forde)
+
 * Thu Mar 09 2006 Dag Wieers <dag@wieers.com> - 0.8.0-1
 - Updated to release 0.8.0.
 
