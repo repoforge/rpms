@@ -5,6 +5,12 @@
 %define somaj  4
 %define somin  1
 
+%{?fc1:%define _without_selinux 1}
+%{?el3:%define _without_selinux 1}
+%{?rh9:%define _without_selinux 1}
+%{?rh7:%define _without_selinux 1}
+%{?el2:%define _without_selinux 1}
+
 Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore
 Version: 1.1.0
@@ -50,7 +56,11 @@ needed to build applications that will use the XviD video codec.
 # -fomit-frame-pointer : Enabled at levels -O, -O2, -O3, -Os.
 # We use -Wa,--execstack to work with execshield/selinux. See :
 # http://www.crypt.gen.nz/selinux/faq.html
-export CFLAGS="%{optflags} -finline-functions -ffast-math -Wa,--execstack"
+%if %{?_without_selinux:1}0
+%{expand: %%define optflags %{optflags} -finline-functions -ffast-math}
+%else
+%{expand: %%define optflags %{optflags} -finline-functions -ffast-math -Wa,--execstack}
+%endif
 pushd build/generic
     %configure
     %{__make} %{?_smp_mflags}
