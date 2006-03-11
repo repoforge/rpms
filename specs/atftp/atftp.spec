@@ -5,7 +5,7 @@
 Summary: Advanced Trivial File Transfer Protocol (TFTP) client
 Name: atftp
 Version: 0.7
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Internet
 URL: ftp://ftp.mamalinux.com/pub/atftp/
@@ -44,7 +44,9 @@ lacks IPv6 support.
 %patch -p1
 
 ### FIXME: Change location of pcre.h to pcre/pcre.h (Please fix upstream)
-%{__perl} -pi.orig -e 's|\bpcre.h\b|pcre/pcre.h|' configure tftpd.c tftpd_pcre.h
+if [ -r %{_includedir}/pcre/pcre.h ]; then
+	%{__perl} -pi.orig -e 's|\bpcre.h\b|pcre/pcre.h|' configure tftpd_pcre.h
+fi
 
 %{__cat} <<EOF >tftp.xinetd
 # default: off
@@ -86,19 +88,24 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc BUGS Changelog FAQ INSTALL LICENSE README* TODO
-%doc %{_mandir}/man?/atftp.*
-%{_sysconfdir}/xinetd.d/*
+%doc %{_mandir}/man1/atftp.1*
 %{_bindir}/atftp
 
 %files server
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man?/atftpd.*
 %doc docs/*
+%doc %{_mandir}/man8/atftpd.8*
+%doc %{_mandir}/man8/in.tftpd.8*
 %dir /tftpboot/
+%config(noreplace) %{_sysconfdir}/xinetd.d/tftp
 %{_sbindir}/atftpd
 %{_sbindir}/in.tftpd
 
 %changelog
+* Sat Mar 11 2006 Dag Wieers <dag@wieers.com> - 0.7.0-4
+- Moved tftp xinetd config to atftp-server. (Diego Torres Milano)
+- Fixed FC4 build.
+
 * Sun Mar 28 2004 Dag Wieers <dag@wieers.com> - 0.7.0-3
 - Removed Conflicts-tag.
 
