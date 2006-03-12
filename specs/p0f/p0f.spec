@@ -7,7 +7,7 @@
 
 Summary: Passive OS fingerprinting tool
 Name: p0f
-Version: 2.0.5
+Version: 2.0.6
 Release: 1
 License: LGPL
 Group: Applications/Internet
@@ -172,17 +172,24 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc doc/ChangeLog doc/COPYING doc/CREDITS doc/KNOWN_BUGS doc/README doc/TODO
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/p0f.1*
 %config(noreplace) %{_sysconfdir}/sysconfig/p0f
 %config %{_sysconfdir}/p0f/
 %config %{_initrddir}/p0f
-%{_bindir}/*
-%{_sbindir}/*
+%{_bindir}/p0fq
+%{_bindir}/p0frep
+%{_bindir}/sendack
+%{_bindir}/sendack2
+%{_bindir}/sendsyn
+%{_sbindir}/p0f
 
 %defattr(-, pcap, pcap, 0755)
 %{_localstatedir}/arpwatch/
 
 %changelog
+* Sun Mar 12 2006 Dag Wieers <dag@wieers.com> - 2.0.6-1
+- Updated to release 2.0.6.
+
 * Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 2.0.5-1
 - Updated to release 2.0.5.
 
