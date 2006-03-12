@@ -6,7 +6,7 @@
 
 Summary: Medial image viewer for DICOM images
 Name: aeskulap
-Version: 0.2.0
+Version: 0.2.1
 Release: 1
 License: GPL/LGPL
 Group: Applications/Multimedia
@@ -56,6 +56,9 @@ any platform were these packages are available.
 %{_datadir}/gconf/schemas/aeskulap.schema
 
 %changelog
+* Sun Mar 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.1-1
+- Updated to release 0.2.1.
+
 * Fri Oct 14 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.0-2
 - zlib-devel and libpng-devel buildrequirements added.
 

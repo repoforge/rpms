@@ -2,11 +2,11 @@
 # Authority: dries
 # Upstream: Stefan Bauer <yoltia-maintain$freenet,de>
 
-%define real_version 0.20.1
+%define real_version 0.21.0
 
 Summary: Program for editing image files
 Name: yoltia
-Version: 0.20.1
+Version: 0.21.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -79,6 +79,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/rpmforge-yoltia.desktop
 
 %changelog
+* Sun Mar 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.21.0-1
+- Updated to release 0.21.0.
+
 * Thu Mar 02 2006 Dries Verachtert <dries@ulyssis.org> - 0.20.1-1
 - Updated to release 0.20.1.
 

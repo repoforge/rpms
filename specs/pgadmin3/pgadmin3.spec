@@ -6,7 +6,7 @@
 
 Summary: Graphical client for PostgreSQL
 Name: pgadmin3
-Version: 1.4.1
+Version: 1.4.2
 Release: 1
 License: Artistic
 Group: Applications/Databases
@@ -61,6 +61,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pgadmin3/
 
 %changelog
+* Sun Mar 12 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.2-1
+- Updated to release 1.4.2.
+
 * Mon Dec 19 2005 Dries Verachtert <dries@ulyssis.org> - 1.4.1-1
 - Updated to release 1.4.1.
 
