@@ -4,8 +4,8 @@
 
 Summary: Desktop news aggregator
 Name: straw
-Version: 0.25.1
-Release: 2
+Version: 0.26
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.nongnu.org/straw/
@@ -78,6 +78,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Sun Mar 12 2006 Dag Wieers <dag@wieers.com> - 0.26-1
+- Updated to release 0.26.
+
 * Thu Jul 22 2004 Dag Wieers <dag@wieers.com> - 0.25.1-1
 - Updated to release 0.25.1.
 
