@@ -26,7 +26,8 @@ RSA encryption support for Gaim.
 %{__make} %{?_smp_mflags}
 
 %install
-%makeinstall
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %clean
@@ -34,7 +35,7 @@ RSA encryption support for Gaim.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%{_libdir}/gaim/
+%dir %{_libdir}/gaim/
 %exclude %{_libdir}/gaim/encrypt.a
 %exclude %{_libdir}/gaim/encrypt.la
 %{_libdir}/gaim/encrypt.so

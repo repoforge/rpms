@@ -6,7 +6,7 @@
 
 Summary: Mobile phone tools
 Name: gammu
-Version: 1.04.0
+Version: 1.05.00
 Release: 1
 License: GPL
 Group: Applications/Communications
@@ -74,16 +74,16 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/*.pc
 %exclude %{_docdir}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Mon Mar 13 2006 Dag Wieers <dag@wieers.com> - 1.05.00-1
+- Updated to release 1.05.00.
+
 * Sun Jan 01 2006 Dries Verachtert <dries@ulyssis.org> - 1.04.0-1
 - Updated to release 1.04.0.
 

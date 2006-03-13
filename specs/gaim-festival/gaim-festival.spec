@@ -17,7 +17,7 @@ Source: http://dl.sf.net/festival-gaim/festival-gaim-%{version}.tar.gz
 Patch0: gaim-festival-1.00-voice-selection.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gaim, pkgconfig, libtool, gtk2-devel
+BuildRequires: gaim-devel, pkgconfig, libtool, gtk2-devel
 Requires: gaim, festival
 Obsoletes: festival-gaim
 
@@ -48,7 +48,8 @@ It use festival and is configurable.
 %files
 %defattr(-, root, root, 0755)
 %doc INSTALL LICENSE README THANKS
-%{_libdir}/gaim/
+%dir %{_libdir}/gaim/
+%{_libdir}/gaim/festival.so
 
 %changelog
 * Tue Mar 22 2005 Dag Wieers <dag@wieers.com> - 1.00-3

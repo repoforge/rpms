@@ -38,6 +38,7 @@ Lotus Sametime Community Client plugin for Gaim for Persona support.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
+%dir %{_libdir}/gaim/
 %exclude %{_libdir}/gaim/libpersona.a
 %exclude %{_libdir}/gaim/libpersona.la
 %{_libdir}/gaim/libpersona.so

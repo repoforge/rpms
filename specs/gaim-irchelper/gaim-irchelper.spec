@@ -22,7 +22,6 @@ edges of the IRC protocol through network-specific code.
 %prep
 %setup
 
-
 %build
 %{__make} all
 
@@ -36,7 +35,8 @@ edges of the IRC protocol through network-specific code.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING COPYRIGHT IDEAS INSTALL PHILOSOPHY README
-%{_libdir}/gaim/
+%dir %{_libdir}/gaim/
+%{_libdir}/gaim/irchelper.so
 
 %changelog
 * Mon Mar 13 2006 Dag Wieers <dag@wieers.com> - 0.12-1

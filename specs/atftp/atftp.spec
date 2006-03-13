@@ -5,7 +5,7 @@
 Summary: Advanced Trivial File Transfer Protocol (TFTP) client
 Name: atftp
 Version: 0.7
-Release: 4
+Release: 5
 License: GPL
 Group: Applications/Internet
 URL: ftp://ftp.mamalinux.com/pub/atftp/
@@ -15,7 +15,7 @@ Patch: atftp-0.7-inlines.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libtermcap-devel, pcre-devel, ncurses-devel, readline-devel
-Requires: binutils, gawk, readline, readline-devel
+Requires: binutils, gawk
 Provides: tftp
 
 %description
@@ -102,6 +102,9 @@ EOF
 %{_sbindir}/in.tftpd
 
 %changelog
+* Mon Mar 13 2006 Dag Wieers <dag@wieers.com> - 0.7.0-5
+- Removed readline and readline-devel as a dependency.
+
 * Sat Mar 11 2006 Dag Wieers <dag@wieers.com> - 0.7.0-4
 - Moved tftp xinetd config to atftp-server. (Diego Torres Milano)
 - Fixed FC4 build.

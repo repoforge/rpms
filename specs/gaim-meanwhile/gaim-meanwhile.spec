@@ -37,6 +37,7 @@ Lotus Sametime Community Client plugin for Gaim
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
+%dir %{_libdir}/gaim/
 %{_libdir}/gaim/libmwgaim.so
 %exclude %{_libdir}/gaim/libmwgaim.la
 %{_datadir}/pixmaps/gaim/
