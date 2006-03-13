@@ -7,7 +7,7 @@
 
 Summary: Tool for easily maintaining remote web sites
 Name: sitecopy
-Version: 0.16.2
+Version: 0.16.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -87,6 +87,9 @@ cd -
 %endif
 
 %changelog
+* Sun Mar 12 2006 Dag Wieers <dag@wieers.com> - 0.16.3-1
+- Updated to release 0.16.3.
+
 * Sun Jan 01 2006 Dag Wieers <dag@wieers.com> - 0.16.2-1
 - Updated to release 0.16.2.
 

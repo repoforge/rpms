@@ -29,9 +29,7 @@ this host.
 %prep
 %setup -n %{name}
 
-%{?el4:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' *.c *.h}
-%{?fc3:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' *.c *.h}
-%{?fc2:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' *.c *.h}
+%{__perl} -pi.orig -e 's|/usr/include/pcap/\$USE_BPF|/usr/include/\$USE_BPF|' Build
 
 %{__cat} <<EOF >p0f.sysconfig
 ### Uncomment and change this if you want to change the default p0f options.

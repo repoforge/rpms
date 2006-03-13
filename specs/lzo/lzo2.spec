@@ -2,11 +2,11 @@
 # Authority: dag
 # Upstream: Markus F.X.J. Oberhumer <markus$oberhumer,com>
 
-# Tag: test
+%define real_name lzo
 
 Summary: Portable lossless data compression library
-Name: lzo
-Version: 2.00
+Name: lzo2
+Version: 2.02
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -36,7 +36,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup
+%setup -n %{real_name}-%{version}
 
 %build
 %configure \
@@ -45,7 +45,7 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -55,17 +55,21 @@ you will need to install %{name}-devel.
 
 %files 
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS ChangeLog NEWS README THANKS doc/
-%{_libdir}/liblzo.so.*
+%doc AUTHORS BUGS ChangeLog NEWS README THANKS
+%{_libdir}/liblzo2.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
+%doc doc/
 %{_includedir}/lzo/
-%{_libdir}/liblzo.a
-%exclude %{_libdir}/liblzo.la
-%{_libdir}/liblzo.so
+%{_libdir}/liblzo2.a
+%exclude %{_libdir}/liblzo2.la
+%{_libdir}/liblzo2.so
 
 %changelog
+* Mon Mar 13 2006 Dag Wieers <dag@wieers.com> - 2.02-1
+- Updated to release 2.02.
+
 * Tue May 31 2005 Dag Wieers <dag@wieers.com> - 2.00-1
 - Updated to release 2.00.
 
