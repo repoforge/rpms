@@ -19,6 +19,7 @@ License: XviD
 Group: System Environment/Libraries
 URL: http://www.xvid.org/
 Source: http://downloads.xvid.org/downloads/xvidcore-%{version}%{?prever:-%{prever}}.tar.bz2
+Patch0: xvidcore-1.1.0-verbose-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: yasm
 Provides: lib%{name} = %{version}-%{release}
@@ -45,6 +46,7 @@ needed to build applications that will use the XviD video codec.
 
 %prep
 %setup -n %{name}-%{version}%{?prever:-%{prever}}
+%patch0 -p1 -b .verbose-build
 
 
 %build

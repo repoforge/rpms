@@ -86,7 +86,7 @@ This package contains development files and documentation.
     --with-package-name='gst-plugins-ugly %{desktop_vendor} rpm' \
     --with-package-origin='http://www.rpmforge.net/' \
     --enable-debug \
-    --enable-gtk-doc
+    --disable-gtk-doc
 %{__make} %{?_smp_mflags}
 
 
@@ -128,7 +128,7 @@ This package contains development files and documentation.
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc %{_datadir}/gtk-doc/html/gst-plugins-ugly-plugins-%{majorminor}/
+#doc %{_datadir}/gtk-doc/html/gst-plugins-ugly-plugins-%{majorminor}/
 
 
 %changelog

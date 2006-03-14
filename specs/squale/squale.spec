@@ -8,8 +8,8 @@
 
 Summary: Persistent SQL database connection library and daemon
 Name: squale
-Version: 0.1.5
-Release: 2
+Version: 0.1.6
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://squale.sourceforge.net/
@@ -149,6 +149,12 @@ fi
 
 
 %changelog
+* Tue Mar 14 2006 Matthias Saou <http://freshrpms.net/> 0.1.6-1
+- Update to 0.1.6 final.
+
+* Mon Jan 23 2006 Matthias Saou <http://freshrpms.net/> 0.1.6-0
+- Update to 0.1.6 pre-release (fix for client timeouts).
+
 * Mon Nov 14 2005 Matthias Saou <http://freshrpms.net/> 0.1.5-2
 - Split off the python bindings.
 - Remove redundant CFLAGS export.

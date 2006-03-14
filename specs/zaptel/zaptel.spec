@@ -101,7 +101,7 @@ ${MAKEDEV} \
 
 # Move kernel modules in the "kernel" subdirectory
 %{__mkdir_p} %{buildroot}/lib/modules/%{kernel}/kernel
-%{__mv} %{buildroot}/lib/modules/%{kernel}/misc \
+%{__mv} %{buildroot}/lib/modules/%{kernel}/extra \
         %{buildroot}/lib/modules/%{kernel}/kernel/extra
 
 # Move the modules config file back in order to put it in docs instead

@@ -1,10 +1,11 @@
 # $Id$
 # Authority: matthias
+# ExcludeDist: fc5
 
 Summary: Library to access the contents of an iPod
 Name: libgpod
-Version: 0.3.0
-Release: 1
+Version: 0.3.2
+Release: 0
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gtkpod.org/libgpod.html
@@ -64,6 +65,9 @@ libgpod.
 
 
 %changelog
+* Tue Mar 14 2006 Matthias Saou <http://freshrpms.net/> 0.3.2-0
+- Update to 0.3.2.
+
 * Mon Dec 19 2005 Matthias Saou <http://freshrpms.net/> 0.3.0-1
 - Initial RPM release.
 

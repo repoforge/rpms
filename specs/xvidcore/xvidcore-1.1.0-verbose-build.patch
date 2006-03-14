@@ -1,0 +1,115 @@
+diff -Naupr xvidcore-1.1.0.orig/build/generic/Makefile xvidcore-1.1.0/build/generic/Makefile
+--- xvidcore-1.1.0.orig/build/generic/Makefile	2005-12-30 15:45:30.000000000 +0100
++++ xvidcore-1.1.0/build/generic/Makefile	2006-03-09 18:01:54.000000000 +0100
+@@ -82,34 +82,30 @@ all: $(STATIC_LIB) $(SHARED_LIB)
+ $(OBJECTS): platform.inc
+ 
+ $(BUILD_DIR):
+-	@echo "  D: $(BUILD_DIR)"
+-	@$(INSTALL) -d $(BUILD_DIR)
++	$(INSTALL) -d $(BUILD_DIR)
+ 
+ #-----------------------------------------------------------------------------
+ # Generic assembly rule
+ #-----------------------------------------------------------------------------
+ 
+ .$(ASSEMBLY_EXTENSION).$(OBJECT_EXTENSION):
+-	@echo "  A: $(@D)/$(<F)"
+-	@$(INSTALL) -d $(BUILD_DIR)/$(@D)
+-	@$(AS) $(AFLAGS) $< -o $(BUILD_DIR)/$@
++	$(INSTALL) -d $(BUILD_DIR)/$(@D)
++	$(AS) $(AFLAGS) $< -o $(BUILD_DIR)/$@
+ 
+ #-----------------------------------------------------------------------------
+ # Generic C rule
+ #-----------------------------------------------------------------------------
+ 
+ .c.$(OBJECT_EXTENSION):
+-	@echo "  C: $(@D)/$(<F)"
+-	@$(INSTALL) -d $(BUILD_DIR)/$(@D)
+-	@$(CC) -c $(ARCHITECTURE) $(BUS) $(ENDIANNESS) $(FEATURES) $(SPECIFIC_CFLAGS) $(CFLAGS) $< -o $(BUILD_DIR)/$@
++	$(INSTALL) -d $(BUILD_DIR)/$(@D)
++	$(CC) -c $(ARCHITECTURE) $(BUS) $(ENDIANNESS) $(FEATURES) $(SPECIFIC_CFLAGS) $(CFLAGS) $< -o $(BUILD_DIR)/$@
+ 
+ #-----------------------------------------------------------------------------
+ # Static Library
+ #-----------------------------------------------------------------------------
+ 
+ $(STATIC_LIB): $(BUILD_DIR) $(OBJECTS)
+-	@echo "  L: $(@F)"
+-	@cd $(BUILD_DIR) && ar rc $(@F) $(OBJECTS) && $(RANLIB) $(@F)
++	cd $(BUILD_DIR) && ar rc $(@F) $(OBJECTS) && $(RANLIB) $(@F)
+ 
+ #-----------------------------------------------------------------------------
+ # Shared Library
+@@ -127,26 +123,20 @@ $(STATIC_LIB): $(BUILD_DIR) $(OBJECTS)
+ #-----------------------------------------------------------------------------
+ 
+ $(SHARED_LIB): $(BUILD_DIR) $(OBJECTS)
+-	@echo "  L: $(@F)"
+-	@$(INSTALL) -m 644 libxvidcore.def $(BUILD_DIR)/libxvidcore.def
+-	@$(INSTALL) -m 644 libxvidcore.ld $(BUILD_DIR)/libxvidcore.ld
+-	@cd $(BUILD_DIR) && $(CC) $(LDFLAGS) $(OBJECTS) -o $(PRE_SHARED_LIB) $(SPECIFIC_LDFLAGS)
++	$(INSTALL) -m 644 libxvidcore.def $(BUILD_DIR)/libxvidcore.def
++	$(INSTALL) -m 644 libxvidcore.ld $(BUILD_DIR)/libxvidcore.ld
++	cd $(BUILD_DIR) && $(CC) $(LDFLAGS) $(OBJECTS) -o $(PRE_SHARED_LIB) $(SPECIFIC_LDFLAGS)
+ 
+ #-----------------------------------------------------------------------------
+ # Installation
+ #-----------------------------------------------------------------------------
+ 
+ install: $(BUILD_DIR)/$(STATIC_LIB) $(BUILD_DIR)/$(SHARED_LIB)
+-	@echo "  D: $(libdir)"
+-	@$(INSTALL) -d $(DESTDIR)$(libdir)
+-	@echo "  I: $(libdir)/$(SHARED_LIB)"
+-	@$(INSTALL) -m 644 $(BUILD_DIR)/$(SHARED_LIB) $(DESTDIR)$(libdir)/$(SHARED_LIB)
+-	@echo "  I: $(libdir)/$(STATIC_LIB)"
+-	@$(INSTALL) -m 644 $(BUILD_DIR)/$(STATIC_LIB) $(DESTDIR)$(libdir)/$(STATIC_LIB)
+-	@echo "  D: $(includedir)"
+-	@$(INSTALL) -d $(DESTDIR)$(includedir)
+-	@echo "  I: $(includedir)/xvid.h"
+-	@$(INSTALL) -m 644 $(SRC_DIR)/xvid.h $(DESTDIR)$(includedir)/xvid.h
++	$(INSTALL) -d $(DESTDIR)$(libdir)
++	$(INSTALL) -m 644 $(BUILD_DIR)/$(SHARED_LIB) $(DESTDIR)$(libdir)/$(SHARED_LIB)
++	$(INSTALL) -m 644 $(BUILD_DIR)/$(STATIC_LIB) $(DESTDIR)$(libdir)/$(STATIC_LIB)
++	$(INSTALL) -d $(DESTDIR)$(includedir)
++	$(INSTALL) -m 644 $(SRC_DIR)/xvid.h $(DESTDIR)$(includedir)/xvid.h
+ 
+ #-----------------------------------------------------------------------------
+ # Platorm specific file -- dumb rules for people executing make before
+@@ -167,24 +157,21 @@ configure:
+ 	list-objects list-targets list-install-path list-cflags
+ 
+ clean:
+-	@echo "  Cl: Build directory"
+-	@$(RM) $(BUILD_DIR)
++	$(RM) $(BUILD_DIR)
+ 
+ distclean: clean
+-	@echo "  Cl: Generated build files"
+-	@$(RM) platform.inc
+-	@$(RM) config.log
+-	@$(RM) config.status
+-	@$(RM) autom4te.cache
++	$(RM) platform.inc
++	$(RM) config.log
++	$(RM) config.status
++	$(RM) autom4te.cache
+ 
+ mrproper: distclean
+-	@echo "  Cl: Bootstrapped build files"
+-	@$(RM) configure
+-	@$(RM) install-sh
+-	@$(RM) missing
+-	@$(RM) config.guess
+-	@$(RM) mkinstalldirs
+-	@$(RM) config.sub
++	$(RM) configure
++	$(RM) install-sh
++	$(RM) missing
++	$(RM) config.guess
++	$(RM) mkinstalldirs
++	$(RM) config.sub
+ 
+ list-objects:
+ 	@echo
