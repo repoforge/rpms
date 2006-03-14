@@ -51,13 +51,13 @@
 %{?yd3:%define _without_theora 1}
 
 # Is this a daily build? If so, put the date like "20020808" otherwise put 0
-%define date      20060223
+%define date      20060314
 #define rcver     pre7
 
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.24%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.25%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -72,7 +72,7 @@ Source0: http://www.mplayerhq.hu/MPlayer/cvs/MPlayer-%{date}.tar.bz2
 %else
 Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{version}%{?rcver}.tar.bz2
 %endif
-Source1: http://www.live555.com/liveMedia/public/live.2006.02.15.tar.gz
+Source1: http://www.live555.com/liveMedia/public/live.2006.03.03.tar.gz
 Source2: http://www.mplayerhq.hu/MPlayer/Skin/Blue-1.5.tar.bz2
 # Only for reference, required on YDL4 at least
 Source10: uio.h-ppc.patch
@@ -321,6 +321,10 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Tue Mar 14 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.25.20060314
+- Update to current CVS which fixes the heap overflow in demuxer.h issue.
+- Update live555 library to 2006.03.03.
+
 * Thu Feb 23 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.24.20060223
 - Update to current CVS.
 - Update live555 library to 2006.02.15.
