@@ -4,7 +4,7 @@
 
 Summary: Beesoft Commander file manager
 Name: bsc
-Version: 2.14
+Version: 2.15
 Release: 1
 License: GPL
 Group: Applications/Utilities
@@ -55,6 +55,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Tue Mar 14 2006 Dries Verachtert <dries@ulyssis.org> - 2.15.-1
+- Updated to release 2.15.
+
 * Sun Mar 12 2006 Dries Verachtert <dries@ulyssis.org> - 2.14.-1
 - Updated to release 2.14.
 
