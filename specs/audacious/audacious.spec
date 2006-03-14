@@ -9,13 +9,14 @@
 
 Summary: Media player which uses a skinned interface
 Name: audacious
-Version: 0.2
-Release: 2
+Version: 0.2.2
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://audacious-media-player.org/
 Source: http://audacious-media-player.org/release/audacious-%{version}.tgz
-Patch: audacious-0.1.2-default-alsa.patch
+Patch0: audacious-0.1.2-default-alsa.patch
+Patch1: audacious-0.2.2-installfix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): /sbin/ldconfig, desktop-file-utils
 Requires(postun): /sbin/ldconfig, desktop-file-utils
@@ -27,6 +28,7 @@ BuildRequires: alsa-lib-devel, esound-devel, libmpcdec-devel, taglib-devel
 %{!?_without_gconf:BuildRequires: GConf2-devel}
 %{!?_without_lirc:BuildRequires: lirc-devel}
 BuildRequires: libsndfile-devel, libsamplerate-devel, libsidplay-devel
+Buildrequires: libmusicbrainz-devel, curl-devel, bc
 BuildRequires: ImageMagick
 %{?_with_modxorg:BuildRequires: libXext-devel, libXt-devel}
 
@@ -51,7 +53,8 @@ Development files required to develop plugins for audacious.
 
 %prep
 %setup
-%patch -p1 -b .default-alsa
+%patch0 -p1 -b .default-alsa
+%patch1 -p1 -b .installfix
 
 
 %build
@@ -92,7 +95,6 @@ update-desktop-database -q || :
 %doc AUTHORS ChangeLog COPYING NEWS README
 %{_bindir}/audacious
 %{_libdir}/audacious/
-%exclude %{_libdir}/audacious/*/*.la
 %{_libdir}/libaudacious.so.*
 %{_datadir}/applications/audacious.desktop
 %{_datadir}/audacious/
@@ -102,13 +104,17 @@ update-desktop-database -q || :
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/audacious/
-%exclude %{_includedir}/mp4.h
 %{_libdir}/pkgconfig/audacious.pc
-%exclude %{_libdir}/libaudacious.la
 %{_libdir}/libaudacious.so
 
 
 %changelog
+* Mon Mar 13 2006 Matthias Saou <http://freshrpms.net/> 0.2.2-1
+- Update to 0.2.2... the main .so isn't versionned anymore, something wrong :-(
+- Add libmusicbrainz and curl build requirements (for the Scrobbler).
+- No longer exclude .la files and mp4.h, they're not installed anymore (good!).
+- Add install fix to prevent absolute symlinks with buildroot in them.
+
 * Mon Feb 13 2006 Matthias Saou <http://freshrpms.net/> 0.2-2
 - Rebuild against proper FC4 gtk2 to fix unexisting dependencies.
 
