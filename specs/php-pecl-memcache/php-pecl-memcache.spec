@@ -5,15 +5,15 @@
 
 Summary: PECL package to use the memcached distributed caching system
 Name: php-pecl-memcache
-Version: 2.0.0
+Version: 2.0.1
 Release: 1
 License: PHP
 Group: Development/Languages
-URL: http://pecl.php.net/package/memecache
+URL: http://pecl.php.net/package/memcache
 Source: http://pecl.php.net/get/memcache-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: php
-BuildRequires: php, php-devel, zlib-devel
+BuildRequires: php, php-devel, zlib-devel, openssl-devel
 # Required by phpize
 BuildRequires: autoconf, automake, libtool, gcc-c++
 
@@ -60,6 +60,10 @@ EOF
 
 
 %changelog
+* Thu Feb 16 2006 Matthias Saou <http://freshrpms.net/> 2.0.1-1
+- Update to 2.0.1.
+- Add openssl-devel build requirement, as it's needed at least on RHEL4.
+
 * Wed Jan 11 2006 Matthias Saou <http://freshrpms.net/> 2.0.0-1
 - Initial RPM package.
 
