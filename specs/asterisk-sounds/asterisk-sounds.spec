@@ -5,13 +5,13 @@
 Summary: Sound files for the Asterisk PBX and telephony application and toolkit
 Name: asterisk-sounds
 Version: 1.2.1
-Release: 2
+Release: 3
 License: BSD
 Group: Applications/Internet
 URL: http://www.asterisk.org/
 Source: http://ftp.digium.com/pub/asterisk/asterisk-sounds-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: asterisk
+Requires: asterisk >= 1.2.5
 BuildArch: noarch
 
 %description
@@ -51,12 +51,20 @@ used with Asterisk.
 %{_var}/lib/asterisk/sounds/
 # Exclude files already present in the main asterisk package (conflict)
 %exclude %{_var}/lib/asterisk/sounds/conf-hasleft.gsm
+%exclude %{_var}/lib/asterisk/sounds/conf-leaderhasleft.gsm
+%exclude %{_var}/lib/asterisk/sounds/conf-placeintoconf.gsm
 %exclude %{_var}/lib/asterisk/sounds/conf-thereare.gsm
+%exclude %{_var}/lib/asterisk/sounds/conf-userswilljoin.gsm
+%exclude %{_var}/lib/asterisk/sounds/conf-userwilljoin.gsm
+%exclude %{_var}/lib/asterisk/sounds/conf-waitforleader.gsm
 %exclude %{_var}/lib/asterisk/sounds/invalid.gsm
 %exclude %{_var}/lib/asterisk/sounds/letters/
 
 
 %changelog
+* Thu Mar  9 2006 Matthias Saou <http://freshrpms.net> 1.2.1-3
+- Exclude some more sounds that are part of asterisk 1.2.5, so require that.
+
 * Fri Jan 27 2006 Matthias Saou <http://freshrpms.net> 1.2.1-2
 - Update to 1.2.1.
 - Exclude letters from sounds (they're also in the main asterisk package).
