@@ -17,7 +17,7 @@
 
 Summary: Library for encoding and decoding H264/AVC video streams
 Name: x264
-Version: 0.0.439
+Version: 0.0.0.468
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -68,9 +68,6 @@ mv -f AUTHORS.utf8 AUTHORS
     --enable-pthread \
     --enable-debug \
     --enable-pic
-# Remains from when --enable-pic wasn't yet available
-#   --extra-cflags="%{optflags} -fPIC" \
-#   --extra-asflags="-D__PIC__"
 %{__make} %{?_smp_mflags}
 
 
@@ -102,6 +99,13 @@ mv -f AUTHORS.utf8 AUTHORS
 
 
 %changelog
+* Thu Mar 16 2006 Matthias Saou <http://freshrpms.net/> 0.0.0.468-1
+- Update to svn 468.
+- Lower version from 0.0.svn to 0.0.0.svn since one day 0.0.1 might come out,
+  this shouldn't be much of a problem since the lib is only statically linked,
+  thus few people should have it installed, and build systems which aren't
+  concerned about upgrade paths should get the latest available package.
+
 * Thu Feb 23 2006 Matthias Saou <http://freshrpms.net/> 0.0.439-1
 - Update to svn 439.
 
