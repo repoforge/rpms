@@ -4,7 +4,7 @@
 
 Summary: Display expanded Source/Patch macros from SPEC files
 Name: spectool
-Version: 1.0.3
+Version: 1.0.7
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -38,6 +38,9 @@ spectool is a tool to display expanded Source/Patch macros from a SPEC file.
 %{_bindir}/spectool
 
 %changelog
+* Thu Mar 16 2006 Dag Wieers <dag@wieers.com> - 1.0.7-1
+- Updated to release 1.0.7.
+
 * Wed Mar 16 2004 Dag Wieers <dag@wieers.com> - 1.0.3-1
 - Updated to release 1.0.3.
 

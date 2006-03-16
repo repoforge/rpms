@@ -7,7 +7,7 @@
 
 Summary: Creates a common metadata repository
 Name: createrepo
-Version: 0.4.3
+Version: 0.4.4
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -45,12 +45,14 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog README
+%doc %{_mandir}/man8/createrepo.8*
 %{_bindir}/createrepo
 %{_datadir}/createrepo/
-%{_mandir}/man8/createrepo.8*
-
 
 %changelog
+* Thu Mar 16 2006 Dag Wieers <dag@wieers.com> - 0.4.4-1
+- Updated to release 0.4.4.
+
 * Mon Aug 22 2005 Dag Wieers <dag@wieers.com> - 0.4.3-1
 - Updated to release 0.4.3.
 

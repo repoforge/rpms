@@ -4,7 +4,7 @@
 
 Summary: Versatile desktop calculator library
 Name: qalculate
-Version: 0.9.2
+Version: 0.9.3
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -58,6 +58,9 @@ GUI packages.
 %{_datadir}/locale/*/LC_MESSAGES/libqalculate.mo
 
 %changelog
+* Thu Mar 16 2006 Dag Wieers <dag@wieers.com> - 0.9.3-1
+- Updated to release 0.9.3.
+
 * Sun Dec 25 2005 Dries Verachtert <dries@ulyssis.org> - 0.9.2-1
 - Updated to release 0.9.2.
 

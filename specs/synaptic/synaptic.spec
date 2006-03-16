@@ -4,18 +4,19 @@
 
 Summary: Graphical package management program using apt
 Name: synaptic
-Version: 0.55.3
+Version: 0.57.2
 Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/synaptic/
 Source: http://savannah.nongnu.org/download/synaptic/synaptic-%{version}.tar.gz
+Patch: http://laiskiainen.org/apt/testing/synaptic-0.57.2-repomd.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: apt >= 0.5.4, usermode
 Requires(pre): scrollkeeper
 Requires(postun): scrollkeeper
 BuildRequires: apt-devel >= 0.5.4, rpm-devel >= 4.0
-BuildRequires: gtk2-devel, libglade2-devel >= 2.0
+BuildRequires: gtk2-devel >= 2.4, libglade2-devel >= 2.0
 BuildRequires: gcc-c++, docbook-utils, gettext, xmlto, scrollkeeper
 BuildRequires: perl(XML::Parser)
 
@@ -27,6 +28,7 @@ utility with a GUI front-end based on Gtk+
 
 %prep
 %setup
+%patch -p0
 
 %{__cat} <<EOF >synaptic.apps
 USER=root
@@ -103,6 +105,7 @@ EOF
 %{_bindir}/synaptic
 %{_sbindir}/synaptic
 %{_datadir}/applications/synaptic.desktop
+%{_datadir}/applications/synaptic-kde.desktop
 %{_datadir}/gnome/help/synaptic/
 %{_datadir}/omf/synaptic/
 %{_datadir}/pixmaps/synaptic.png
@@ -112,6 +115,10 @@ EOF
 
 
 %changelog
+* Thu Mar 16 2006 Dag Wieers <dag@wieers.com> - 0.57.2-1
+- Updated to release 0.57.2.
+- Added repomd support.
+
 * Tue Jan 11 2005 Dag Wieers <dag@wieers.com> - 0.55.3-1
 - Updated to release 0.55.3.
 

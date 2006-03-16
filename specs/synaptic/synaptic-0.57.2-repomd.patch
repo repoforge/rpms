@@ -1,0 +1,89 @@
+--- gtk/rgrepositorywin.cc.orig	2006-03-16 16:17:37.157385224 +0100
++++ gtk/rgrepositorywin.cc	2006-03-16 16:19:07.866595328 +0100
+@@ -39,6 +39,8 @@
+    ITEM_TYPE_RPMSRC,
+    ITEM_TYPE_RPMDIR,
+    ITEM_TYPE_RPMSRCDIR,
++   ITEM_TYPE_REPOMD,
++   ITEM_TYPE_REPOMDSRC,
+    ITEM_TYPE_DEB,
+    ITEM_TYPE_DEBSRC
+ };
+@@ -48,7 +50,9 @@
+    ITEM_TYPE_RPM,
+    ITEM_TYPE_RPMSRC,
+    ITEM_TYPE_RPMDIR,
+-   ITEM_TYPE_RPMSRCDIR
++   ITEM_TYPE_RPMSRCDIR,
++   ITEM_TYPE_REPOMD,
++   ITEM_TYPE_REPOMDSRC
+ };
+ #endif
+ 
+@@ -235,6 +239,16 @@
+    gtk_menu_append(GTK_MENU(_optTypeMenu), item);
+    gtk_widget_show(item);
+    gtk_object_set_data(GTK_OBJECT(item), "id", (gpointer) ITEM_TYPE_RPMSRCDIR);
++
++   item = gtk_menu_item_new_with_label("repomd");
++   gtk_menu_append(GTK_MENU(_optTypeMenu), item);
++   gtk_widget_show(item);
++   gtk_object_set_data(GTK_OBJECT(item), "id", (gpointer) ITEM_TYPE_REPOMD);
++
++   item = gtk_menu_item_new_with_label("repomd-src");
++   gtk_menu_append(GTK_MENU(_optTypeMenu), item);
++   gtk_widget_show(item);
++   gtk_object_set_data(GTK_OBJECT(item), "id", (gpointer) ITEM_TYPE_REPOMDSRC);
+ #else
+    item = gtk_menu_item_new_with_label(_("Binary (deb)"));
+    gtk_menu_append(GTK_MENU(_optTypeMenu), item);
+--- common/rpackagelister.h.orig	2006-03-16 16:19:20.652651552 +0100
++++ common/rpackagelister.h	2006-03-16 16:20:32.220771544 +0100
+@@ -281,6 +281,10 @@
+    bool updateCache(pkgAcquireStatus *status, string &error);
+    bool commitChanges(pkgAcquireStatus *status, RInstallProgress *iprog);
+ 
++#ifndef HAVE_RPM
++    bool addArchiveToCache(string archiveDir, string &pkgname);
++#endif
++
+    void setProgressMeter(OpProgress *progMeter) {
+       if(_progMeter != NULL)
+ 	 delete _progMeter;
+--- common/rsources.cc.orig	2006-03-16 16:20:39.685636712 +0100
++++ common/rsources.cc	2006-03-16 16:21:28.456222456 +0100
+@@ -352,6 +352,10 @@
+       Type |= RpmDir;
+    else if (S == "rpm-src-dir")
+       Type |= RpmSrcDir;
++   else if (S == "repomd")
++      Type |= Repomd;
++   else if (S == "repomd-src")
++      Type |= RepomdSrc;
+    else
+       return false;
+    return true;
+@@ -371,6 +375,10 @@
+       return "rpm-dir";
+    else if ((Type & RpmSrcDir) != 0)
+       return "rpm-src-dir";
++   else if ((Type & Repomd) != 0)
++      return "repomd";
++   else if ((Type & RepomdSrc) != 0)
++      return "repomd-src";
+    return "unknown";
+ }
+ 
+--- common/rsources.h.orig	2006-03-16 16:21:33.875398616 +0100
++++ common/rsources.h	2006-03-16 16:21:51.998643464 +0100
+@@ -41,7 +41,9 @@
+       Disabled = 1 << 4,
+       Comment = 1 << 5,
+       RpmDir = 1 << 6,
+-      RpmSrcDir = 1 << 7
++      RpmSrcDir = 1 << 7,
++      Repomd = 1 << 8,
++      RepomdSrc = 1 << 9
+    };
+ 
+    struct SourceRecord {
