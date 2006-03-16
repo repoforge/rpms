@@ -34,6 +34,8 @@ BuildRequires: %{gstreamer}-devel >= %{gst_minver}
 BuildRequires: gcc-c++
 # so gst-libs can build
 BuildRequires: libXt-devel
+# so glimagesink can build
+Buildrequires: libGL-devel, libGLU-devel
 # so configure passes
 BuildRequires: GConf2-devel
 # because we patch configure.in
