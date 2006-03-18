@@ -12,7 +12,7 @@ URL: http://gaim-encryption.sourceforge.net/
 Source: http://dl.sf.net/gaim-encryption/gaim-encryption-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Buildrequires: gtk2-devel, mozilla-nss-devel, mozilla-nspr-devel, gaim, gcc-c++
+Buildrequires: gtk2-devel, mozilla-nss-devel, mozilla-nspr-devel, gaim-devel, gcc-c++
 Requires: gaim, mozilla-nss
 
 %description

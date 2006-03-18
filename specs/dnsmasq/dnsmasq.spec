@@ -4,8 +4,8 @@
 
 Summary: Lightweight caching nameserver with integrated DHCP server
 Name: dnsmasq
-Version: 2.26
-Release: 2
+Version: 2.27
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.thekelleys.org.uk/dnsmasq/
@@ -155,6 +155,9 @@ fi
 %{_localstatedir}/lib/misc/
 
 %changelog
+* Thu Jan 26 2006 Dag Wieers <dag@wieers.com> - 2.27-1
+- Updated to release 2.27.
+
 * Thu Jan 26 2006 Dag Wieers <dag@wieers.com> - 2.26-2
 - Enable DBUS support.
 

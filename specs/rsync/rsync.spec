@@ -7,12 +7,14 @@
 Summary: Program for synchronizing files over a network
 Name: rsync
 Version: 2.6.7
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://rsync.samba.org/
 
 Source: http://rsync.samba.org/ftp/rsync/rsync-%{version}.tar.gz
+Patch0: rsync-2.6.7-stunnel.patch
+Patch1: rsync-2.6.7-exclude.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -26,6 +28,8 @@ package.
 
 %prep
 %setup
+%patch0 -p0 -b .orig
+%patch1 -p0 -b .orig
 
 %{__cat} <<EOF >rsync.xinet
 # default: off
@@ -64,6 +68,9 @@ EOF
 %{_bindir}/rsync
 
 %changelog
+* Fri Mar 17 2006 Dag Wieers <dag@wieers.com> - 2.6.7-2
+- Added stunnel and exclude patch from upstream.
+
 * Sat Mar 11 2006 Dag Wieers <dag@wieers.com> - 2.6.7-1
 - Updated to release 2.6.7.
 

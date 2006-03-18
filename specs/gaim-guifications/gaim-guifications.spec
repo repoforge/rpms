@@ -1,17 +1,17 @@
 # $Id$
 # Authority: dag
 
-%define real_name guifications
 
 Summary: Guifications Plugin for Gaim
 Name: gaim-guifications
-Version: 2.12
-Release: 1
+%define real_version 2.13beta2
+Version: 2.13
+Release: 0.beta2
 License: GPL
 Group: Applications/Internet
 URL: http://guifications.sourceforge.net/Guifications/
 
-Source: http://dl.sf.net/guifications/guifications-%{version}.tar.gz
+Source: http://dl.sf.net/guifications/gaim-guifications-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig, libtool, gettext, gaim-devel, gtk2-devel
@@ -21,7 +21,7 @@ Guifications is a graphical notification plugin for the open source
 instant messaging client Gaim
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{name}-%{real_version}
 
 %build
 %configure
@@ -30,12 +30,12 @@ instant messaging client Gaim
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-%find_lang %{real_name}
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{real_name}.lang
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README doc/*.dia doc/*.png
 %{_datadir}/pixmaps/gaim/guifications/
@@ -45,5 +45,8 @@ instant messaging client Gaim
 %{_libdir}/gaim/guifications.so
 
 %changelog
+* Mon Mar 17 2006 Dag Wieers <dag@wieers.com> - 2.13-0.beta2
+- Updated to release 2.13beta2.
+
 * Mon Mar 13 2006 Dag Wieers <dag@wieers.com> - 2.12-1
 - Initial package. (using DAR)

@@ -18,7 +18,7 @@
 Summary: Multiprotocol instant messaging client
 Name: gaim
 Version: 1.5.0
-Release: 0.1
+Release: 0.2
 Epoch: 1
 License: GPL
 Group: Applications/Internet
@@ -40,6 +40,7 @@ BuildRequires: audiofile-devel
 %{?_with_arts:BuildRequires: arts-devel}
 %{!?_without_perl:BuildRequires: perl}
 %{!?_without_krb4:BuildRequires: krb5-devel >= 1.3}
+Provides: gaim-devel = %{version}-%{release}
 %{?_with_tcltk:Requires: tcl, tk}
 %{!?_without_perl:Requires: perl}
 
@@ -131,6 +132,9 @@ Available rpmbuild rebuild options :
 %endif
 
 %changelog
+* Fri Mar 17 2006 Dag Wieers <dag@wieers.com> - 1.5.0-0.2
+- Provide gaim-devel as well.
+
 * Tue Sep 06 2005 Dag Wieers <dag@wieers.com> - 1.5.0-0.1
 - Updated to release 1.5.0.
 
