@@ -8,7 +8,7 @@
 
 Summary: Viewer for DICOM compatible imaging devices
 Name: kradview
-Version: 0.5.3
+Version: 0.6
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -53,5 +53,8 @@ platform for medical imaging and image processing.
 %{_datadir}/icons/*/*/apps/kradview.png
 
 %changelog
+* Sun Mar 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1
+- Updated to release 0.6.
+
 * Tue Sep 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.3-1
 - Initial package.
