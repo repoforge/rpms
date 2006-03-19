@@ -5,7 +5,7 @@
 Summary: Punching holes in HTTP(S) proxy's
 Name: proxytunnel
 Version: 1.6.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://proxytunnel.sourceforge.net/
@@ -39,7 +39,8 @@ proxy authentication
 %{__perl} -pi.orig -e 's|\)\)|\)/man1|' Makefile
 
 %build
-%{__make} %{?_smp_mflags} CFLAGS="%{optflags} -I/usr/kerberos/include"
+%{__make} %{?_smp_mflags} \
+	CFLAGS="%{optflags} -DHAVE_GETOPT_LONG -DUSE_SSL -DSETPROCTITLE -DSPT_TYPE=1 -I/usr/kerberos/include"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -55,6 +56,9 @@ proxy authentication
 %{_bindir}/proxytunnel
 
 %changelog
+* Sun Mar 19 2006 Dag Wieers <dag@wieers.com> - 1.6.0-2
+- Added SSL and setproctitle support.
+
 * Fri Mar 03 2006 Dag Wieers <dag@wieers.com> - 1.6.0-1
 - Updated to release 1.6.0.
 
