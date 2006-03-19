@@ -23,7 +23,7 @@
 Summary: 3D modeling, animation, rendering and post-production
 Name: blender
 Version: 2.41
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.blender.org/
@@ -35,7 +35,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel, libjpeg-devel, libpng-devel, glut, python-devel
 BuildRequires: openssl-devel, SDL-devel, libvorbis-devel
 BuildRequires: libogg-devel, esound-devel, openal-devel, libtool, gettext
-BuildRequires: scons, gcc-c++, libtiff-devel
+BuildRequires: scons, gcc-c++, libtiff-devel, freealut-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
@@ -112,6 +112,9 @@ scons
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-blender.desktop}
 
 %changelog
+* Sun Mar 05 2006 Dries Verachtert <dries@ulyssis.org> - 2.41-2
+- Freealut buildrequirement added.
+
 * Tue Jan 31 2006 Dries Verachtert <dries@ulyssis.org> - 2.41-1
 - Updated to release 2.41.
 

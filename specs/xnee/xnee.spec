@@ -15,7 +15,8 @@ URL: http://www.gnu.org/software/xnee/
 Source: ftp://ftp.gnu.org/gnu/xnee/Xnee-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk2-devel, desktop-file-utils
+BuildRequires: gtk2-devel, desktop-file-utils, ghostscript, tetex, ImageMagick
+BuildRequires: texinfo
 
 %description
 Xnee can record, distribute, and replay X (X11) protocol data. This is 
@@ -65,6 +66,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/applications/%{desktop_vendor}-xnee.desktop
 
 %changelog
+* Sun Mar 19 2006 Dries Verachtert <dries@ulyssis.org> - 2.04-2
+- Some missing buildrequirements added.
+
 * Tue Feb 28 2006 Dries Verachtert <dries@ulyssis.org> - 2.04-1
 - Updated to release 2.04.
 
