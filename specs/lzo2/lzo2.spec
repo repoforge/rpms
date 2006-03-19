@@ -7,7 +7,7 @@
 Summary: Portable lossless data compression library
 Name: lzo2
 Version: 2.02
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.oberhumer.com/opensource/lzo/
@@ -15,7 +15,7 @@ URL: http://www.oberhumer.com/opensource/lzo/
 Source: http://www.oberhumer.com/opensource/lzo/download/lzo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: zlib-devel, autoconf
+BuildRequires: zlib-devel, autoconf, gcc-c++
 Requires: zlib >= 1.0.0
 
 %description
@@ -67,6 +67,9 @@ you will need to install %{name}-devel.
 %{_libdir}/liblzo2.so
 
 %changelog
+* Sun Mar 19 2006 Dries Verachtert <dries@ulyssis.org> - 2.02-2
+- gcc-c++ buildrequirement added.
+
 * Mon Mar 13 2006 Dag Wieers <dag@wieers.com> - 2.02-1
 - Updated to release 2.02.
 

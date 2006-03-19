@@ -5,7 +5,7 @@
 Summary: Graphical FM-Tuner program
 Name: gnomeradio
 Version: 1.5
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://mfcn.ilo.de/gnomeradio/
@@ -15,7 +15,7 @@ Patch: gnomeradio-1.4-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig, intltool, libgnomeui-devel
-BuildRequires: scrollkeeper, gnome-libs-devel
+BuildRequires: scrollkeeper, gnome-libs-devel, gcc-c++
 
 Requires(post): scrollkeeper
 
@@ -61,6 +61,9 @@ scrollkeeper-update -q || :
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Sun Mar 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.6-2
+- gcc-c++ buildrequirement added.
+
 * Wed Mar 08 2006 Dag Wieers <dag@wieers.com> - 1.6-1
 - Updated to release 1.6.
 

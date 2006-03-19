@@ -4,7 +4,7 @@
 Summary: Off-The-Record Messaging plugin for GAIM
 Name: gaim-otr
 Version: 3.0.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.cypherpunks.ca/otr/
@@ -13,7 +13,7 @@ Source: http://www.cypherpunks.ca/otr/gaim-otr-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel, gtk2-devel, libgcrypt-devel >= 1.2.0, libgpg-error-devel
-BuildRequires: libotr-devel >= 3.0.0, gaim-devel >= 1.0.0
+BuildRequires: libotr-devel >= 3.0.0, gaim-devel >= 1.0.0, gcc-c++
 Requires: gaim-devel >= 1.0.0, libotr >= 3.0.0
 
 Provides: otr-plugin = %{version}
@@ -44,5 +44,8 @@ This is a gaim plugin which implements Off-the-Record (OTR) Messaging.
 %{_libdir}/gaim/gaim-otr.so
 
 %changelog
+* Sun Mar 19 2006 Dries Verachtert <dries@ulyssis.org> - 3.0.0-2
+- gcc-c++ buildrequirement added.
+
 * Tue Mar 14 2006 Dag Wieers <dag@wieers.com> - 3.0.0-1
 - Initial package. (using DAR)

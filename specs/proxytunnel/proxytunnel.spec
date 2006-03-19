@@ -5,12 +5,12 @@
 Summary: Punching holes in HTTP(S) proxy's
 Name: proxytunnel
 Version: 1.6.0
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Internet
 URL: http://proxytunnel.sourceforge.net/
 
-Source: http://proxytunnel.sf.net/files/proxytunnel-%{version}.tgz
+Source: http://proxytunnel.sf.net/files/proxytunnel-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel
@@ -56,6 +56,9 @@ proxy authentication
 %{_bindir}/proxytunnel
 
 %changelog
+* Sun Mar 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.0-3
+- Source url fixed.
+
 * Sun Mar 19 2006 Dag Wieers <dag@wieers.com> - 1.6.0-2
 - Added SSL and setproctitle support.
 

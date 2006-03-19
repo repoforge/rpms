@@ -4,7 +4,7 @@
 Summary: Off-The-Record Messaging library and toolkit
 Name: libotr
 Version: 3.0.0
-Release: 1
+Release: 2
 License: GPL, LGPL
 Group: System Environment/Libraries
 URL: http://www.cypherpunks.ca/otr/
@@ -14,7 +14,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Provides: libotr-toolkit = %{version}
 Obsoletes: libotr-toolkit < %{version}
-BuildRequires: libgcrypt-devel >= 1.2.0, libgpg-error-devel 
+BuildRequires: libgcrypt-devel >= 1.2.0, libgpg-error-devel, gcc-c++
 
 %description
 Off-the-Record Messaging Library and Toolkit
@@ -78,5 +78,8 @@ you will need to install %{name}-devel.
 %{_libdir}/libotr.so
 
 %changelog
+* Sun Mar 19 2006 Dries Verachtert <dries@ulyssis.org> - 3.0.0-2
+- gcc-c++ buildrequirement added.
+
 * Tue Mar 14 2006 Dag Wieers <dag@wieers.com> - 3.0.0-1
 - Initial package. (using DAR)

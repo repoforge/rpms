@@ -4,7 +4,7 @@
 Summary: Gaim Extended Preferences Plugin
 Name: gaim-extprefs
 Version: 0.5
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://gaim-extprefs.sourceforge.net/
@@ -12,7 +12,7 @@ URL: http://gaim-extprefs.sourceforge.net/
 Source: http://dl.sf.net/gaim-extprefs/gaim-extprefs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gaim-devel
+BuildRequires: gaim-devel, pkgconfig
 
 %description
 The Extended Preferences Plugin provides additional options within Gaim
@@ -46,5 +46,8 @@ very small fonts in conversations.
 %{_libdir}/gaim/libextprefs.so
 
 %changelog
+* Sun Mar 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-2
+- pkgconfig buildrequirement added.
+
 * Mon Mar 13 2006 Dag Wieers <dag@wieers.com> - 0.5-1
 - Initial package. (using DAR)
