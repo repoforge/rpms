@@ -10,7 +10,7 @@ License: GPL
 Group: Applications/Internet
 URL: http://proxytunnel.sourceforge.net/
 
-Source: http://proxytunnel.sf.net/files/proxytunnel-%{version}.tar.gz
+Source: http://dl.sf.net/proxytunnel/proxytunnel-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel
