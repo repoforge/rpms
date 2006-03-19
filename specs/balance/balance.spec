@@ -4,7 +4,7 @@
 
 Summary: TCP load-balancing proxy server
 Name: balance
-Version: 3.32
+Version: 3.34
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -47,6 +47,9 @@ at runtime using a simple command line syntax.
 %{_localstatedir}/run/balance/
 
 %changelog
+* Sun Mar 19 2006 Dries Verachtert <dries@ulyssis.org> - 3.34-1
+- Updated to release 3.34.
+
 * Thu Nov 17 2005 Dries Verachtert <dries@ulyssis.org> - 3.32-1
 - Updated to release 3.32.
 
