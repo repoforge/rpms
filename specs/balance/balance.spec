@@ -24,8 +24,7 @@ at runtime using a simple command line syntax.
 %setup 
 
 %build
-%{__make} %{?_smp_mflags} \
-	CFLAGS="%{optflags}"
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
 	
 %install
 %{__rm} -rf %{buildroot}
@@ -47,7 +46,7 @@ at runtime using a simple command line syntax.
 %{_localstatedir}/run/balance/
 
 %changelog
-* Sun Mar 19 2006 Dries Verachtert <dries@ulyssis.org> - 3.34-1
+* Sun Mar 19 2006 Dag Wieers <dag@wieers.com> - 3.34-1
 - Updated to release 3.34.
 
 * Thu Nov 17 2005 Dries Verachtert <dries@ulyssis.org> - 3.32-1

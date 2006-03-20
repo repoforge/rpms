@@ -3,7 +3,7 @@
 
 Summary: Utilities to limit user accounts to specific files using chroot()
 Name: jailkit
-Version: 1.3
+Version: 2.0
 Release: 1
 License: Open Source
 Group: System Environment/Base
@@ -63,5 +63,8 @@ are in a chroot.
 %{_datadir}/jailkit/
 
 %changelog
+* Sun Mar 19 2006 Dag Wieers <dag@wieers.com> - 2.0-1
+- Updated to release 2.0.
+
 * Fri May 20 2005 Dag Wieers <dag@wieers.com> - 1.3-1
 - Initial package. (using DAR)
