@@ -4,7 +4,7 @@
 Summary: Change video bios resolutions on laptops with Intel graphic chipsets
 Name: 855resolution
 Version: 0.4
-Release: 2
+Release: 3
 License: Public Domain
 Group: Applications/System
 URL: http://perso.wanadoo.fr/apoirier/
@@ -77,6 +77,9 @@ fi
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.4-3
+- Release bump to drop the disttag number in FC5 build.
+
 * Tue Jul  5 2005 Matthias Saou <http://freshrpms.net/> 0.4-2
 - Make package ExclusiveArch i386, it doesn't make sense on other archs.
 - Fix init script (add subsys lock) to not have it run on each runlevel change.

@@ -27,7 +27,7 @@
 Summary: DVD video player
 Name: ogle
 Version: 0.9.2
-Release: 5
+Release: 6
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.dtek.chalmers.se/groups/dvd/
@@ -71,6 +71,7 @@ to build programs that use it (like GUIs).
 
 %build
 %configure \
+    --disable-static \
     %{?_without_altivec:--disable-altivec} \
     %{?_without_mmx:--disable-mmx}
 %{__make} %{?_smp_mflags}
@@ -141,10 +142,12 @@ test -e /dev/dvd || test -L /dev/dvd || ln -s cdrom /dev/dvd || :
 %dir %{_libdir}/ogle/
 %{_libdir}/ogle/*.so
 %exclude %{_libdir}/ogle/*.la
-%{_libdir}/ogle/*.a
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.9.2-6
+- Disable/remove static libraries, as they are not used.
+
 * Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 0.9.2-5
 - Add modular xorg build conditional.
 - Remove hacks no longer needed (lib vs. lib64 for dvdread and the

@@ -14,7 +14,7 @@
 Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore
 Version: 1.1.0
-Release: 1%{?prever:.%{prever}}
+Release: 2%{?prever:.%{prever}}
 License: XviD
 Group: System Environment/Libraries
 URL: http://www.xvid.org/
@@ -107,6 +107,10 @@ popd
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.1.0-2
+- Release bump to drop the disttag number in FC5 build.
+- Note that the execshield/selinux seems to still not be fixed. Help welcome.
+
 * Thu Mar  9 2006 Matthias Saou <http://freshrpms.net/> 1.1.0-1
 - Update to 1.1.0 final.
 - Increase somin from 0 to 1 (we now have libxvidcore.so.4.1).

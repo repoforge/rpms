@@ -7,7 +7,7 @@
 Summary: Library for reading DVD video disks
 Name: libdvdread
 Version: 0.9.5
-Release: 1%{?cvs:cvs}
+Release: 2%{?cvs:cvs}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.dtek.chalmers.se/groups/dvd/
@@ -43,7 +43,8 @@ programs that use this library.
 
 
 %build
-%configure
+%configure \
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 
@@ -69,12 +70,14 @@ programs that use this library.
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/*
-%{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.9.5-2
+- Disable/remove static library, nothing seems to use it.
+
 * Mon Jan 23 2006 Matthias Saou <http://freshrpms.net/> 0.9.5-1
 - Update to 0.9.5.
 - Remove no longer needed "autoreconf --force --install --symlink" call.

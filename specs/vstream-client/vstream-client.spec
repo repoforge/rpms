@@ -4,7 +4,7 @@
 Summary: Client library for TiVo vserver stream support
 Name: vstream-client
 Version: 1.2
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://armory.nicewarrior.org/projects/vstream-client/
@@ -73,6 +73,9 @@ export CFLAGS="%{optflags}"
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.2-2
+- Release bump to drop the disttag number in FC5 build.
+
 * Mon Dec 19 2005 Matthias Saou <http://freshrpms.net/> 1.2-1
 - Initial RPM release.
 

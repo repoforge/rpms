@@ -5,7 +5,7 @@
 Summary: LAME Ain't an MP3 Encoder... but it's the best of all
 Name: lame
 Version: 3.96.1
-Release: 3
+Release: 4
 License: LGPL
 Group: Applications/Multimedia
 URL: http://lame.sourceforge.net/
@@ -46,6 +46,7 @@ these libraries.
 %build
 %configure \
     --program-prefix=%{?_program_prefix} \
+    --disable-static \
 %ifarch %{ix86} x86_64
     --enable-nasm \
 %endif
@@ -87,12 +88,15 @@ find doc/html -name "Makefile*" | xargs rm -f
 %defattr(-, root, root, 0755)
 %doc API HACKING STYLEGUIDE
 %{_includedir}/*
-%{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 3.96.1-4
+- Release bump to drop the disttag number in FC5 build.
+- Disable/remove static lib.
+
 * Thu Dec 15 2005 Matthias Saou <http://freshrpms.net/> 3.96.1-3
 - Remove the use off _smp_mflags, as build fails on i386 with -j4 (but didn't
   on x86_64, strange).

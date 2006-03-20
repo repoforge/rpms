@@ -6,7 +6,7 @@
 Summary: Graphical song management program for Apple's iPod
 Name: gtkpod
 Version: 0.99.4
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.gtkpod.org/
@@ -83,37 +83,40 @@ desktop-file-install \
 
 
 %changelog
-* Tue Mar 14 2006 Matthias Saou <http://freshrpms.net> 0.99.4-1
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.99.4-2
+- Release bump to drop the disttag number in FC5 build.
+
+* Tue Mar 14 2006 Matthias Saou <http://freshrpms.net/> 0.99.4-1
 - Update to 0.99.4.
 
-* Mon Dec 19 2005 Matthias Saou <http://freshrpms.net> 0.99.2-1
+* Mon Dec 19 2005 Matthias Saou <http://freshrpms.net/> 0.99.2-1
 - Update to 0.99.2.
 - Now depend on split-off libgpod.
 - Remove no longer needed gcc4 patch.
 - Remove no longer needed workaround for the absolute symlinks.
 
-* Mon Jul 18 2005 Matthias Saou <http://freshrpms.net> 0.94.0-1
+* Mon Jul 18 2005 Matthias Saou <http://freshrpms.net/> 0.94.0-1
 - Update to 0.94.0.
 
-* Mon Jun 27 2005 Matthias Saou <http://freshrpms.net> 0.93.1-1
+* Mon Jun 27 2005 Matthias Saou <http://freshrpms.net/> 0.93.1-1
 - Update to 0.93.1.
 - Add libglade2-devel build dependency.
 - Remove gtk2.4-gtk2.0.diff patch.
 - Add workaround for absolute symlinks of glade files.
 
-* Wed Apr 20 2005 Matthias Saou <http://freshrpms.net> 0.88.2-2
+* Wed Apr 20 2005 Matthias Saou <http://freshrpms.net/> 0.88.2-2
 - Add patch to fix building with gcc4.
 
-* Fri Apr  1 2005 Matthias Saou <http://freshrpms.net> 0.88.2-1
+* Fri Apr  1 2005 Matthias Saou <http://freshrpms.net/> 0.88.2-1
 - Update to 0.88.2.
 
 * Fri Mar 11 2005 Dag Wieers <dag@wieers.com> - 0.88-1
 - Updated to release 0.88.0.
 
-* Mon Nov 22 2004 Matthias Saou <http://freshrpms.net> 0.85.0-1
+* Mon Nov 22 2004 Matthias Saou <http://freshrpms.net/> 0.85.0-1
 - Update to 0.85.0.
 
-* Fri Aug 27 2004 Matthias Saou <http://freshrpms.net> 0.80-0
+* Fri Aug 27 2004 Matthias Saou <http://freshrpms.net/> 0.80-0
 - Update to 0.80-2.
 - Added AAC support through faad2.
 - Spec file cleanup, use included pixmap, use find_lang macro, fix files.

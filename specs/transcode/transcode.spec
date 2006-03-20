@@ -28,7 +28,7 @@
 Summary: Linux video stream processing utility
 Name: transcode
 Version: 1.0.2
-Release: 3%{?prever:.%{prever}}
+Release: 4%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
@@ -128,6 +128,9 @@ export CFLAGS="%{optflags} -I%{_includedir}/postproc"
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.0.2-4
+- Release bump to drop the disttag number in FC5 build.
+
 * Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 1.0.2-3
 - Add modular xorg build conditional.
 - No longer override pkgdir and MOD_PATH, it's not needed anymore.

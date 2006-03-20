@@ -12,7 +12,7 @@
 Summary: Clone of the Rick Dangerous classic game
 Name: xrick
 Version: 0.0.%{real_version}
-Release: 1
+Release: 2
 License: GPL/Proprietary
 Group: Amusements/Games
 URL: http://www.bigorno.net/xrick/
@@ -96,7 +96,10 @@ convert src/xrickST.ico %{buildroot}%{_datadir}/pixmaps/xrick.png
 
 
 %changelog
-* Tue Jun  8 2004 Matthias Saou <http://freshrpms.net> 0.0.021212-1
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.0.021212-2
+- Release bump to drop the disttag number in FC5 build.
+
+* Tue Jun  8 2004 Matthias Saou <http://freshrpms.net/> 0.0.021212-1
 - Spec file cleanup.
 
 * Tue Aug  5 2003 Dams <anvil[AT]livna.org> 0:0.0-0.fdr.4.021212

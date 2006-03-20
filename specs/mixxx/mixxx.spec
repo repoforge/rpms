@@ -19,7 +19,7 @@
 Summary: DJ software emulating an analog mixer with two playback devices
 Name: mixxx
 Version: 1.4.2
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Multimedia
 URL: http://mixxx.sourceforge.net/
@@ -110,6 +110,9 @@ popd
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.4.2-4
+- Release bump to drop the disttag number in FC5 build.
+
 * Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 1.4.2-3
 - Add modular xorg build conditional.
 

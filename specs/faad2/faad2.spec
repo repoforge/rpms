@@ -8,7 +8,7 @@
 Summary: Library and frontend for decoding MPEG2/4 AAC
 Name: faad2
 Version: 2.0
-Release: 5%{?prever:.%{prever}}%{?date:.%{date}}
+Release: 6%{?prever:.%{prever}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.audiocoding.com/
@@ -62,7 +62,6 @@ This package contains development files and documentation for libfaad.
 
 %prep
 %if %{?date:1}0
-#setup -c %{name}
 %setup -n %{name}-%{date}
 %else
 %setup -n %{name}
@@ -86,7 +85,6 @@ test -x configure || sh bootstrap
     --with-drm \
     --with-mp4v2
 %{__make} %{?_smp_mflags}
-# CFLAGS="%{optflags} -fPIC"
 
 
 %install
@@ -102,11 +100,9 @@ test -x configure || sh bootstrap
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files
@@ -132,6 +128,9 @@ test -x configure || sh bootstrap
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 2.0-6
+- Release bump to drop the disttag number in FC5 build.
+
 * Mon Jan  2 2006 Dries Verachtert <dries@ulyssis.org> 2.0-5
 - Also install mp4ff_int_types.h because it is needed by mp4ff.h, thanks to 
   Ramses Smeyers.

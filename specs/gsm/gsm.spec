@@ -7,7 +7,7 @@
 Summary: Shared libraries for GSM speech compressor
 Name: gsm
 Version: 1.0.10
-Release: 5
+Release: 6
 License: MIT
 Group: System Environment/Libraries
 URL: http://kbs.cs.tu-berlin.de/~jutta/toast.html
@@ -47,11 +47,9 @@ you will need to install %{name}-devel.
 %{__ln_s} -f toast %{buildroot}%{_bindir}/untoast
 %{__ln_s} -f toast %{buildroot}%{_bindir}/tcat
 
-%post
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -71,6 +69,9 @@ you will need to install %{name}-devel.
 %{_includedir}/gsm/
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.0.10-6
+- Release bump to drop the disttag number in FC5 build.
+
 * Fri Jul 23 2004 Matthias Saou <http://freshrpms.net/> 1.0.10-5
 - Update patch and spec to fix x86_64 build (-fPIC).
 

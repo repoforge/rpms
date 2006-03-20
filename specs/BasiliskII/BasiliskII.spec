@@ -21,7 +21,7 @@
 Summary: 68k Macintosh emulator
 Name: BasiliskII
 Version: 1.0
-Release: 0.%{date}.3
+Release: 0.%{date}.4
 License: GPL
 Group: Applications/Emulators
 URL: http://www.gibix.net/projects/basilisk2/
@@ -108,6 +108,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.20051122.4
+- Release bump to drop the disttag number in FC5 build.
+
 * Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.20051122.3
 - Add modular xorg build switch, and make it the default.
 

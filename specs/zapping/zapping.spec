@@ -7,12 +7,12 @@
 %{!?dist:%define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
-%define prever cvs
+%define prever cvs4
 
 Summary: TV viewer for GNOME
 Name: zapping
 Version: 0.10
-Release: 0.1%{?prever:.%{prever}}
+Release: 0.2%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
@@ -84,6 +84,9 @@ scrollkeeper-update -q || :
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.10-0.2.cvs4
+- Update to 0.10cvs4.
+
 * Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 0.10-0.1.cvs
 - Update to 0.10cvs.
 - Add modular xorg build conditional.

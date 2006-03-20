@@ -4,7 +4,7 @@
 Summary: Reference encoder and encoding library for MPEG2/4 AAC
 Name: faac
 Version: 1.24
-Release: 1
+Release: 2
 License: LGPL
 Group: Applications/Multimedia
 URL: http://www.audiocoding.com/
@@ -37,7 +37,8 @@ This package contains development files and documentation for libfaac.
 
 %build
 sh bootstrap
-%configure
+%configure \
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 
@@ -50,11 +51,9 @@ sh bootstrap
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%postun -p /sbin/ldconfig
 
 
 %files
@@ -66,12 +65,15 @@ sh bootstrap
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/*.h
-%{_libdir}/*.a
-%{_libdir}/*.so
 %exclude %{_libdir}/*.la
+%{_libdir}/*.so
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.24-2
+- Release bump to drop the disttag number in FC5 build.
+- Disable/remove static library.
+
 * Tue Aug 24 2004 Matthias Saou <http://freshrpms.net/> 1.24-1
 - Fix license tag, it's LGPL not GPL.
 

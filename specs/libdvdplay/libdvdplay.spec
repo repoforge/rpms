@@ -5,7 +5,7 @@
 Summary: Library designed for DVD navigation
 Name: libdvdplay
 Version: 1.0.1
-Release: 4
+Release: 5
 License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/libdvdplay/
@@ -37,7 +37,8 @@ programs that use libdvdplay.
 
 
 %build
-%configure
+%configure \
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 
@@ -50,11 +51,9 @@ programs that use libdvdplay.
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files
@@ -65,12 +64,14 @@ programs that use libdvdplay.
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/*
-%{_libdir}/%{name}.a
 %exclude %{_libdir}/%{name}.la
 %{_libdir}/%{name}.so
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.0.1-5
+- Disable/remove static library, nothing seems to use it.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.0.1-4
 - Rebuild for Fedora Core 2.
 

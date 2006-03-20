@@ -65,7 +65,7 @@
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
 Version: 0.8.4a
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -77,7 +77,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, libpng-devel, libxml2-devel
 BuildRequires: libgcrypt-devel, gnutls-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-#{?_with_modxorg:BuildRequires: libXt-devel}
+%{?_with_modxorg:BuildRequires: libGLU-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_dvdread:BuildRequires: libdvdread-devel}
 %{!?_without_dvdnav:BuildRequires: libdvdnav-devel}
@@ -299,6 +299,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.8.4a-3
+- Fix modular X build requirement : libGLU-devel was missing.
+
 * Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 0.8.4a-2
 - Add modular xorg build conditional.
 - Include extraqualif patch to fix FC5 / gcc 4.1 errors.

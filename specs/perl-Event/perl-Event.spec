@@ -10,7 +10,7 @@
 Summary: Generic Perl Event Loop
 Name: perl-Event
 Version: 1.06
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Event/
@@ -48,6 +48,9 @@ a broad class of applications.
 %{perl_vendorarch}/auto/Event
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.0.6-2
+- Release bump to drop the disttag number in FC5 build.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.06-1
 - Updated to release 1.06.
 

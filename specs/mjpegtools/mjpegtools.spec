@@ -23,12 +23,13 @@
 Summary: Tools for recording, editing, playing and encoding mpeg video
 Name: mjpegtools
 Version: 1.8.0
-Release: 1
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/
 Source0: http://dl.sf.net/mjpeg/mjpegtools-%{version}.tar.gz
 Source1: http://dl.sf.net/mjpeg/jpeg-mmx-%{jpegmmx_version}.tar.gz
+Patch0: jpeg-mmx-0.1.6-gcc41.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, SDL-devel, libjpeg-devel, libpng-devel, gtk2-devel
 BuildRequires: libquicktime-devel, libdv-devel
@@ -68,6 +69,7 @@ of the mjpegtools package.
 
 %prep
 %setup -a 1
+%patch0 -p0 -b .gcc41
 
 
 %build
@@ -130,6 +132,9 @@ fi
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.8.0-3
+- Include jpeg-mmx patch to fix build on FC5.
+
 * Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 1.8.0-2
 - Add -fpermissive to CFLAGS for now, as otherwise the build fails on FC5.
 - Fix mmx conditional to actually get jpeg-mmx used.

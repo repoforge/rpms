@@ -12,7 +12,7 @@
 Summary: GNU/Linux Audio MEchanics, the GIMP of audio processing
 Name: glame
 Version: 2.0.1
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 Source0: http://dl.sf.net/glame/glame-%{version}.tar.gz
@@ -58,7 +58,7 @@ libraries.
 
 %build
 %configure
-%{__make}
+%{__make} %{?_smp_mflags}
 
 
 %install
@@ -129,6 +129,9 @@ fi
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 2.0.1-3
+- Release bump to drop the disttag number in FC5 build.
+
 * Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 2.0.1-2
 - Add modular xorg build conditional.
 

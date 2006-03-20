@@ -43,6 +43,9 @@ pear install -R %{buildroot} -n %{SOURCE0}
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.5-4
+- Release bump to drop the disttag number in FC5 build.
+
 * Fri Apr 15 2005 Matthias Saou <http://freshrpms.net/> 0.5-3
 - Change single source from 1 to 0.
 - Use %%{_datadir}/pear instead of the eval method, as it's triggering a

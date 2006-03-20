@@ -13,7 +13,7 @@
 Summary: MPEG-2 and MPEG-1 decoding library and test program
 Name: mpeg2dec
 Version: 0.4.0
-Release: %{?date:0.%{date}.}6b
+Release: 7b%{?date:.%{date}}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libmpeg2.sourceforge.net/
@@ -54,7 +54,8 @@ CFLAGS="%{optflags}" \
 %ifnarch %{ix86}
     --disable-accel-detect \
 %endif
-    --enable-shared 
+    --enable-shared \
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 
@@ -84,13 +85,15 @@ CFLAGS="%{optflags}" \
 %defattr(-, root, root, 0755)
 %doc doc/*.c doc/*.txt
 %{_includedir}/mpeg2dec/
-%{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.4.0-7b
+- Disable/remove static library, nothing seems to use it.
+
 * Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 0.4.0-6b
 - Add modular xorg build conditional.
 

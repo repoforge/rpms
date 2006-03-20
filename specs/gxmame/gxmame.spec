@@ -15,7 +15,7 @@
 Summary: Complete GTK frontend for xmame
 Name: gxmame
 Version: 0.35
-Release: 0.3%{?date:.%{date}}%{?prever:.%{prever}}
+Release: 0.4%{?date:.%{date}}%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Emulators
 URL: http://gxmame.sourceforge.net/
@@ -71,6 +71,9 @@ times played, last game selected, gui preference...) under windows and Linux.
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.35-0.4.beta2
+- Release bump to drop the disttag number in FC5 build.
+
 * Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 0.35-0.3.beta2
 - Add FC5 to the build conditionals.
 

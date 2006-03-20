@@ -6,7 +6,7 @@
 Summary: Game of skill with falling blocks
 Name: ltris
 Version: 1.0.11
-Release: 1
+Release: 2
 License: GPL
 Group: Amusements/Games
 URL: http://lgames.sourceforge.net/
@@ -82,6 +82,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.0.11-2
+- Release bump to drop the disttag number in FC5 build.
+
 * Fri Oct  7 2005 Matthias Saou <http://freshrpms.net/> 1.0.11-1
 - Update to 1.0.11.
 - Include new translation.

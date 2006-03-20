@@ -7,7 +7,7 @@
 Summary: Library for decoding and generating MPEG TS and DVB PSI tables
 Name: libdvbpsi
 Version: 0.1.5
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/libdvbpsi/
@@ -45,7 +45,9 @@ programs with libdvbpsi support.
 
 
 %build
-%configure --enable-release
+%configure \
+    --enable-release \
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 
@@ -71,12 +73,14 @@ programs with libdvbpsi support.
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/dvbpsi/
-%{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.1.5-2
+- Disable/remove static library, nothing seems to use it.
+
 * Thu Dec  8 2005 Matthias Saou <http://freshrpms.net/> 0.1.5-1
 - Update to 0.1.5 (soname change from .3 to .4).
 

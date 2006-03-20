@@ -4,7 +4,7 @@
 Summary: Rewrite in C++ of the hardlink utility
 Name: hardlink++
 Version: 0.02
-Release: 2
+Release: 3
 License: GPL
 Group: System Environment/Base
 Source: http://www.sodarock.com/hardlink/hardlink++-%{version}.tgz
@@ -13,7 +13,7 @@ Patch1: hardlink++-0.02-sane-makefile.patch
 Patch2: hardlink++-0.02-gcc34-optimize-help.patch
 URL: http://www.sodarock.com/hardlink/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, libstdc++-devel
+BuildRequires: gcc-c++
 
 %description
 A rewrite in C++ of the hardlink utility, which recursively parses directory
@@ -33,7 +33,7 @@ structures and creates hard links for identical files found.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -p -m 0755 hardlink++ %{buildroot}%{_bindir}/hardlink++
+%{__install} -D -m 0755 hardlink++ %{buildroot}%{_bindir}/hardlink++
 
 
 %clean
@@ -47,6 +47,9 @@ structures and creates hard links for identical files found.
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.02-3
+- Release bump to drop the disttag number in FC5 build.
+
 * Mon Nov 14 2004 Matthias Saou <http://freshrpms.net/> 0.02-2
 - Include sane-makefile and gcc43-optimize-help patches from Gentoo.
 - Pass CXXFLAGS to the build.

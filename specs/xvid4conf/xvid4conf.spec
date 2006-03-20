@@ -6,7 +6,7 @@
 Summary: Tool to create XviD configuration files
 Name: xvid4conf
 Version: 1.12
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.exit1.org/archive/dvdrip-users/2005-07/msg00007.html
@@ -69,6 +69,9 @@ desktop-file-install \
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.12-2
+- Release bump to drop the disttag number in FC5 build.
+
 * Mon Jan  9 2006 Matthias Saou <http://freshrpms.net/> 1.12-1
 - Initial RPM release.
 

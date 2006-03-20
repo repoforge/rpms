@@ -4,7 +4,7 @@
 Summary: MPEG library for SDL
 Name: smpeg
 Version: 0.4.4
-Release: 1
+Release: 2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://icculus.org/smpeg/
@@ -88,6 +88,9 @@ you will need to install %{name}-devel.
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.4.4-2
+- Release bump to drop the disttag number in FC5 build.
+
 * Wed Jan 18 2006 Matthias Saou <http://freshrpms.net/> 0.4.4-1
 - Include patch from Gentoo to fix compilation with gcc 4.1 (FC5).
 - Also include nice PIC, gnu stack and m4 patches from Gentoo.

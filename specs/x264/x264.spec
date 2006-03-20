@@ -15,16 +15,18 @@
 %{?el2:%define _without_xorg 1}
 %{?rh6:%define _without_xorg 1}
 
+%define svn svn468
+
 Summary: Library for encoding and decoding H264/AVC video streams
 Name: x264
-Version: 0.0.0.468
-Release: 1
+Version: 0.0.0
+Release: 0.1.%{svn}
 License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/x264.html
 # Available through "svn co svn://svn.videolan.org/x264/trunk x264"
 # find x264 -name .svn | xargs rm -rf
-Source: %{name}-%{version}.tar.bz2
+Source: %{name}-%{svn}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: nasm, yasm
 %if 0%{?_with_modxorg:1}
@@ -54,7 +56,7 @@ scratch.
 
 
 %prep
-%setup
+%setup -n %{name}-%{svn}
 # AUTHORS file is in iso-8859-1
 iconv -f iso-8859-1 -t utf-8 -o AUTHORS.utf8 AUTHORS
 mv -f AUTHORS.utf8 AUTHORS
@@ -87,21 +89,21 @@ mv -f AUTHORS.utf8 AUTHORS
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING TODO
+%doc AUTHORS COPYING
 %{_bindir}/x264
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING TODO
+%doc AUTHORS COPYING
 %{_includedir}/x264.h
 %{_libdir}/pkgconfig/x264.pc
 %{_libdir}/libx264.a
 
 
 %changelog
-* Thu Mar 16 2006 Matthias Saou <http://freshrpms.net/> 0.0.0.468-1
+* Thu Mar 16 2006 Matthias Saou <http://freshrpms.net/> 0.0.0-0.1.svn468
 - Update to svn 468.
-- Lower version from 0.0.svn to 0.0.0.svn since one day 0.0.1 might come out,
+- Lower version from 0.0.svn to 0.0.0 since one day 0.0.1 might come out,
   this shouldn't be much of a problem since the lib is only statically linked,
   thus few people should have it installed, and build systems which aren't
   concerned about upgrade paths should get the latest available package.

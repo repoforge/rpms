@@ -4,7 +4,7 @@
 Summary: MPEG audio decoding library
 Name: libmad
 Version: 0.15.1b
-Release: 3
+Release: 4
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.underbit.com/products/mad/
@@ -68,18 +68,16 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -Dp -m 0644 mad.pc %{buildroot}%{_libdir}/pkgconfig/mad.pc
+%{__install} -D -p -m 0644 mad.pc %{buildroot}%{_libdir}/pkgconfig/mad.pc
 
 
 %clean
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files 
@@ -97,6 +95,9 @@ EOF
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.15.1b-4
+- Release bump to drop the disttag number in FC5 build.
+
 * Mon Aug 30 2004 Matthias Saou <http://freshrpms.net/> 0.15.1b-3
 - Added missing /sbin/ldconfig calls.
 

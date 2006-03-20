@@ -1,0 +1,73 @@
+diff -Naupr quake3-1.34-rc1_SVN649.orig/code/tools/asm/Makefile quake3-1.34-rc1_SVN649/code/tools/asm/Makefile
+--- quake3-1.34-rc1_SVN649.orig/code/tools/asm/Makefile	2005-12-29 01:04:41.000000000 +0100
++++ quake3-1.34-rc1_SVN649/code/tools/asm/Makefile	2006-03-18 01:35:58.000000000 +0100
+@@ -37,7 +37,7 @@ clean:
+ 	rm -f q3asm *~ *.o
+ 
+ install: default
+-	$(INSTALL) -s -m 0755 q3asm$(BINEXT) ../
++	$(INSTALL) -m 0755 q3asm$(BINEXT) ../
+ 
+ uninstall:
+ 	rm -f ../q3asm$(BINEXT)
+diff -Naupr quake3-1.34-rc1_SVN649.orig/code/tools/lcc/Makefile quake3-1.34-rc1_SVN649/code/tools/lcc/Makefile
+--- quake3-1.34-rc1_SVN649.orig/code/tools/lcc/Makefile	2005-12-29 01:04:41.000000000 +0100
++++ quake3-1.34-rc1_SVN649/code/tools/lcc/Makefile	2006-03-18 01:35:40.000000000 +0100
+@@ -140,9 +140,9 @@ $(BD)etc/%$(O): etc/%.c
+ 
+ 
+ install: q3lcc q3cpp q3rcc
+-	$(INSTALL) -s -m 0755 $(BD)q3lcc$(E) ../
+-	$(INSTALL) -s -m 0755 $(BD)q3cpp$(E) ../
+-	$(INSTALL) -s -m 0755 $(BD)q3rcc$(E) ../
++	$(INSTALL) -m 0755 $(BD)q3lcc$(E) ../
++	$(INSTALL) -m 0755 $(BD)q3cpp$(E) ../
++	$(INSTALL) -m 0755 $(BD)q3rcc$(E) ../
+ 
+ uninstall:
+ 	-$(RM) ../q3lcc$(E)
+diff -Naupr quake3-1.34-rc1_SVN649.orig/Makefile quake3-1.34-rc1_SVN649/Makefile
+--- quake3-1.34-rc1_SVN649.orig/Makefile	2006-03-05 20:10:49.000000000 +0100
++++ quake3-1.34-rc1_SVN649/Makefile	2006-03-18 01:43:18.000000000 +0100
+@@ -167,7 +167,7 @@ ifeq ($(PLATFORM),linux)
+   endif
+   endif
+ 
+-  BASE_CFLAGS = -Wall -fno-strict-aliasing -Wimplicit -Wstrict-prototypes -pipe
++  BASE_CFLAGS = -Wall -fno-strict-aliasing -Wimplicit -Wstrict-prototypes -pipe $(OPTFLAGS)
+ 
+   ifeq ($(USE_OPENAL),1)
+     BASE_CFLAGS += -DUSE_OPENAL=1
+@@ -1664,24 +1664,24 @@ $(B)/missionpack/qcommon/%.asm: $(CMDIR)
+ copyfiles: build_release
+ 	@if [ ! -d $(COPYDIR)/baseq3 ]; then echo "You need to set COPYDIR to where your Quake3 data is!"; fi
+ 	-$(MKDIR) -p -m 0755 $(COPYDIR)/baseq3
+-	$(INSTALL) -s -m 0755 $(BR)/ioquake3.$(ARCH)$(BINEXT) $(COPYDIR)/ioquake3.$(ARCH)$(BINEXT)
++	$(INSTALL) -m 0755 $(BR)/ioquake3.$(ARCH)$(BINEXT) $(COPYDIR)/ioquake3.$(ARCH)$(BINEXT)
+ 
+ 	@if [ -f $(BR)/ioq3ded.$(ARCH)$(BINEXT) ]; then \
+-		$(INSTALL) -s -m 0755 $(BR)/ioq3ded.$(ARCH)$(BINEXT) $(COPYDIR)/ioq3ded.$(ARCH)$(BINEXT); \
++		$(INSTALL) -m 0755 $(BR)/ioq3ded.$(ARCH)$(BINEXT) $(COPYDIR)/ioq3ded.$(ARCH)$(BINEXT); \
+ 	fi 
+ 	
+-	$(INSTALL) -s -m 0755 $(BR)/baseq3/cgame$(ARCH).$(SHLIBEXT) \
++	$(INSTALL) -m 0755 $(BR)/baseq3/cgame$(ARCH).$(SHLIBEXT) \
+ 					$(COPYDIR)/baseq3/.
+-	$(INSTALL) -s -m 0755 $(BR)/baseq3/qagame$(ARCH).$(SHLIBEXT) \
++	$(INSTALL) -m 0755 $(BR)/baseq3/qagame$(ARCH).$(SHLIBEXT) \
+ 					$(COPYDIR)/baseq3/.
+-	$(INSTALL) -s -m 0755 $(BR)/baseq3/ui$(ARCH).$(SHLIBEXT) \
++	$(INSTALL) -m 0755 $(BR)/baseq3/ui$(ARCH).$(SHLIBEXT) \
+ 					$(COPYDIR)/baseq3/.
+ 	-$(MKDIR) -p -m 0755 $(COPYDIR)/missionpack
+-	$(INSTALL) -s -m 0755 $(BR)/missionpack/cgame$(ARCH).$(SHLIBEXT) \
++	$(INSTALL) -m 0755 $(BR)/missionpack/cgame$(ARCH).$(SHLIBEXT) \
+ 					$(COPYDIR)/missionpack/.
+-	$(INSTALL) -s -m 0755 $(BR)/missionpack/qagame$(ARCH).$(SHLIBEXT) \
++	$(INSTALL) -m 0755 $(BR)/missionpack/qagame$(ARCH).$(SHLIBEXT) \
+ 					$(COPYDIR)/missionpack/.
+-	$(INSTALL) -s -m 0755 $(BR)/missionpack/ui$(ARCH).$(SHLIBEXT) \
++	$(INSTALL) -m 0755 $(BR)/missionpack/ui$(ARCH).$(SHLIBEXT) \
+ 					$(COPYDIR)/missionpack/.
+ 
+ clean:clean-debug clean-release

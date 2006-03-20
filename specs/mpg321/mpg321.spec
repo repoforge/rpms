@@ -4,7 +4,7 @@
 Summary: MPEG audio player
 Name: mpg321
 Version: 0.2.10
-Release: 7
+Release: 8
 License: GPL
 Group: Applications/Multimedia
 URL: http://mpg321.sourceforge.net/
@@ -21,6 +21,7 @@ player. mpg123 is used for frontends, as an mp3 player and as an mp3 to
 wave file decoder (primarily for use with CD-recording software.) In all
 of these capacities, mpg321 can be used as a drop-in replacement for
 mpg123.
+
 
 %prep
 %setup
@@ -49,6 +50,9 @@ mpg123.
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.2.10-8
+- Release bump to drop the disttag number in FC5 build.
+
 * Mon Sep 19 2005 Matthias Saou <http://freshrpms.net/> 0.2.10-7
 - Change default audio from esd to alsa.
 

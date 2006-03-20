@@ -5,7 +5,7 @@
 Summary: GNOME version of a tetris game playable on the net
 Name: gtetrinet
 Version: 0.7.9
-Release: 1
+Release: 2
 License: GPL
 Group: Amusements/Games
 URL: http://gtetrinet.sourceforge.net/
@@ -60,6 +60,9 @@ is, check out tetrinet.org)
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.7.9-2
+- Release bump to drop the disttag number in FC5 build.
+
 * Thu May 26 2005 Matthias Saou <http://freshrpms.net/> 0.7.9-1
 - Update to 0.7.9.
 

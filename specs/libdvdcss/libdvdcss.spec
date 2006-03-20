@@ -5,7 +5,7 @@
 Summary: Portable abstraction library for DVD decryption
 Name: libdvdcss
 Version: 1.2.9
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/libdvdcss/
@@ -41,7 +41,8 @@ any of the above programs.
 
 
 %build
-%configure
+%configure \
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 
@@ -54,11 +55,9 @@ any of the above programs.
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files
@@ -71,12 +70,14 @@ any of the above programs.
 %defattr(-, root, root, 0755)
 %doc doc/html/
 %{_includedir}/dvdcss/
-%{_libdir}/libdvdcss.a
 %exclude %{_libdir}/libdvdcss.la
 %{_libdir}/libdvdcss.so
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.2.9-2
+- Disable/remove static library, nothing seems to require it.
+
 * Mon Jul 11 2005 Matthias Saou <http://freshrpms.net/> 1.2.9-1
 - Update to 1.2.9.
 - Include doxygen generated html doc. Don't include refman, it's too big.

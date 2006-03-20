@@ -7,26 +7,26 @@
 %{!?dist:%define _with_modxorg 1}
 %{?fc5:%define _with_modxorg 1}
 
-%define prever 20051210
+%define prever 20060317
 
 Summary: Advanced audio and video capturing, compositing, and editing
 Name: cinelerra
 Version: 2.0
-Release: 0.5%{?prever:.%{prever}}
+Release: 0.6%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://cvs.cinelerra.org/
 # Obtained from :
 # svn checkout svn://cvs.cinelerra.org/repos/cinelerra/trunk/hvirtual
 # cd hvirtual; find . -name .svn | xargs rm -rf
-# ./autogen.sh && configure && make dist
-# mv cinelerra-2.0.tar.gz cinelerra-2.0-svn20051118.tar.gz
+# ./autogen.sh && ./configure && make dist
+# mv cinelerra-2.0.tar.gz cinelerra-2.0-svn20060317.tar.gz
 Source0: cinelerra-2.0%{?prever:-svn%{prever}}.tar.gz
 Patch0: cinelerra-2.0-ffmpeg.patch
-Patch1: cinelerra-2.0-extraqualif.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel, libXxf86vm-devel, libXext-devel}
 %{!?_with_modxorg:BuildRequires: xorg-x11-devel}
+BuildRequires: gettext-devel
 Buildrequires: esound-devel
 BuildRequires: alsa-lib-devel >= 1.0.2
 BuildRequires: mjpegtools-devel
@@ -60,9 +60,6 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
 %prep
 %setup
 %patch0 -p1 -b .ffmpeg
-%patch1 -p1 -b .extraqualif
-# We don't want to use the included version, so just to be sure
-%{__rm} -rf libsndfile/
 # Add category "AudioVideo", as it ends up in "Others" otherwise
 %{__perl} -pi -e 's|^(Categories=.*)|$1AudioVideo;|g' image/cinelerra.desktop
 
@@ -77,7 +74,8 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
     --enable-altivec \
 %endif
     --disable-rpath
-%{__make} %{?_smp_mflags}
+# Using %{?_smp_mflags} makes the libmpeg3 part fail (20060317 SVN)
+%{__make}
 
 
 %install
@@ -114,6 +112,12 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 2.0-0.6.20060317
+- Update to today's SVN code.
+- Remove no longer needed extraqualif patch.
+- Add gettext-devel build requirement since "make dist" requires it.
+- Remove _smp_mflags since the build fails with it.
+
 * Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 2.0-0.5.20051210
 - Add modular xorg conditional build.
 - Include extraqualif patch to fix build with gcc 4.1.

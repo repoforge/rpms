@@ -17,12 +17,12 @@
 %{?yd3:%define _without_xorg 1}
 
 %define desktop_vendor rpmforge
-%define prever beta4
+%define prever rc4
 
 Summary: Multiplayer 'Tron' 3D racing game
 Name: armagetronad
-Version: 0.2.8
-Release: 0.1%{?prever:.%{prever}}
+Version: 0.2.8.0
+Release: 0.3%{?prever:.%{prever}}
 License: GPL
 Group: Amusements/Games
 URL: http://www.armagetronad.net/
@@ -134,6 +134,9 @@ gtk-update-icon-cache || :
 
 
 %changelog
+* Fri May 17 2006 Matthias Saou <http://freshrpms.net/> 0.2.8.0-0.3.rc4
+- Update to 0.2.8.0_rc4.
+
 * Tue Jan 17 2006 Matthias Saou <http://freshrpms.net/> 0.2.8-0.2.beta4
 - Update to 0.2.8_beta4.
 - Add modular xorg build conditional.

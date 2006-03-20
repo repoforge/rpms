@@ -7,7 +7,7 @@
 Summary: Breakout and Arkanoid style arcade game
 Name: lbreakout2
 Version: 2.6
-Release: 0.5%{?prever:.%{prever}}
+Release: 0.6%{?prever:.%{prever}}
 License: GPL
 Group: Amusements/Games
 URL: http://lgames.sourceforge.net/
@@ -94,6 +94,9 @@ desktop-file-install \
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 2.6-0.6.beta
+- Release bump to drop the disttag number in FC5 build.
+
 * Wed Nov 30 2005 Matthias Saou <http://freshrpms.net/> 2.6-0.5.beta
 - Update to 2.6beta-5.
 

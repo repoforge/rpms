@@ -5,7 +5,7 @@
 
 Summary: PEAR package for generating Excel spreadsheets
 Name: php-pear-excel
-Version: 0.8
+Version: 0.9.0
 Release: 1
 License: LGPL
 Group: Development/Languages
@@ -45,6 +45,9 @@ pear install -R %{buildroot} -n %{SOURCE0}
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.9.0-1
+- Update to 0.9.0.
+
 * Fri Apr 15 2005 Matthias Saou <http://freshrpms.net/> 0.8-1
 - Update to 0.8.
 - Change single source from 1 to 0.

@@ -10,10 +10,10 @@
 Summary: MP3 playback plugin for the Beep Media Player
 Name: bmp-mp3
 Version: 0.9.7.1
-Release: 1
+Release: 3
 License: GPL
 Group: Applications/Multimedia
-URL: http://beepmp.sourceforge.net/
+URL: http://www.beep-media-player.org/
 Source: http://dl.sf.net/beepmp/bmp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: bmp >= %{version}
@@ -53,6 +53,9 @@ and is based on ("forked off") XMMS.
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.9.7.1-2
+- Update URL.
+
 * Thu Jan 12 2006 Matthias Saou <http://freshrpms.net/> 0.9.7.1-1
 - Update to 0.9.7.1.
 - Simplify some build requirements to "bmp-devel", which does look like a

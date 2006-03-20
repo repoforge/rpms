@@ -5,7 +5,7 @@
 Summary: DVD menu navigation library
 Name: libdvdnav
 Version: 0.1.10
-Release: 2
+Release: 3
 Group: System Environment/Libraries
 License: GPL
 URL: http://dvd.sourceforge.net/
@@ -50,11 +50,9 @@ applications which will use libdvdnav.
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files
@@ -73,6 +71,9 @@ applications which will use libdvdnav.
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.1.10-3
+- Release bump to drop the disttag number in FC5 build.
+
 * Mon Aug 30 2004 Matthias Saou <http://freshrpms.net/> 0.1.10-2
 - Added missing /sbin/ldconfig calls.
 

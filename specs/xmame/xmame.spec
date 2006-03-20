@@ -28,7 +28,7 @@
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
 Version: 0.104
-Release: 1%{?rcver:.%{rcver}}
+Release: 2%{?rcver:.%{rcver}}
 Source0: http://x.mame.net/download/xmame-%{version}.tar.bz2
 # http://cheat.retrogames.com/ 0.81 - 21/04/2004
 Source20: http://cheat.retrogames.com/cheat.zip
@@ -267,6 +267,9 @@ popd
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.104-2
+- Release bump to drop the disttag number in FC5 build.
+
 * Fri Feb 17 2006 Matthias Saou <http://freshrpms.net/> 0.104-1
 - Update to 1.104.
 

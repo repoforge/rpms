@@ -5,7 +5,7 @@
 Summary: Command line rom manager for MAME, MESS and Raine
 Name: advancescan
 Version: 1.13
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Emulators
 URL: http://advancemame.sourceforge.net/
@@ -54,6 +54,9 @@ AdvanceMESS and Raine. The main features are :
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.13-2
+- Release bump to drop the disttag number in FC5 build.
+
 * Thu Dec  9 2004 Matthias Saou <http://freshrpms.net/> 1.13-1
 - Update to 1.13.
 

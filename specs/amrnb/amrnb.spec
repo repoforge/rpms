@@ -4,7 +4,7 @@
 Summary: AMR NarrowBand speech codec
 Name: amrnb
 Version: 0.0.1
-Release: 1
+Release: 2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.3gpp.org/
@@ -62,6 +62,9 @@ AMR-NB is a narrowband speech codec used in mobile phones development files.
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.0.1-2
+- Release bump to drop the disttag number in FC5 build.
+
 * Fri Dec 16 2005 Matthias Saou <http://freshrpms.net/> 0.0.1-1
 - Spec file inclusion in rpmforge.
 

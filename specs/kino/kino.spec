@@ -13,7 +13,7 @@
 Summary: Simple non-linear video editor
 Name: kino
 Version: 0.8.0
-Release: 1%{?cvs:.%{cvs}}
+Release: 3%{?cvs:.%{cvs}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.kinodv.org/
@@ -99,10 +99,13 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.8.0-3
+- Release bump to drop the disttag number in FC5 build.
+
 * Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 0.8.0-2
 - Add modular xorg build conditional.
 
-* Wed Dec  7 2005 Matthias Saou <http://freshrpms.net> 0.8.0-1
+* Wed Dec  7 2005 Matthias Saou <http://freshrpms.net/> 0.8.0-1
 - Update to 0.8.0.
 - Change libgnomeui-devel dependency to new gtk2-devel only.
 - Add explicit gtk2 >= 2.6 requirement.
@@ -110,33 +113,33 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 - Include new libdvtitler and libtimfx shared libraries.
 - Obsolete kino-dvtitler <= 0.2.0-2.
 
-* Mon Jun  6 2005 Matthias Saou <http://freshrpms.net> 0.7.6-1
+* Mon Jun  6 2005 Matthias Saou <http://freshrpms.net/> 0.7.6-1
 - Update to 0.7.6.
 - Add update-mime-database calls.
 
-* Fri Apr 29 2005 Matthias Saou <http://freshrpms.net> 0.7.5-1
+* Fri Apr 29 2005 Matthias Saou <http://freshrpms.net/> 0.7.5-1
 - Disable ffmpeg on FC4 for now.
 
-* Mon Nov 22 2004 Matthias Saou <http://freshrpms.net> 0.7.5-1
+* Mon Nov 22 2004 Matthias Saou <http://freshrpms.net/> 0.7.5-1
 - Update to 0.7.5.
 
 * Tue Oct 05 2004 Dag Wieers <dag@wieers.com> - 0.7.4-1
 - Update to 0.7.4.
 
-* Mon Aug 16 2004 Matthias Saou <http://freshrpms.net> 0.7.3-1
+* Mon Aug 16 2004 Matthias Saou <http://freshrpms.net/> 0.7.3-1
 - Update to 0.7.3.
 
-* Mon Aug  2 2004 Matthias Saou <http://freshrpms.net> 0.7.2-1.20040802
+* Mon Aug  2 2004 Matthias Saou <http://freshrpms.net/> 0.7.2-1.20040802
 - Update to today's CVS tree to fix various bugs.
 
-* Tue Jul 27 2004 Matthias Saou <http://freshrpms.net> 0.7.2-1
+* Tue Jul 27 2004 Matthias Saou <http://freshrpms.net/> 0.7.2-1
 - Update to 0.7.2.
 - Spec file changes to match upstream build fixes.
 
 * Tue Jul 20 2004 Dag Wieers <dag@wieers.com> - 0.7.1-3
 - Rebuild for x86_64 with quicktime support.
 
-* Mon Jun 14 2004 Matthias Saou <http://freshrpms.net> 0.7.1-2
+* Mon Jun 14 2004 Matthias Saou <http://freshrpms.net/> 0.7.1-2
 - Updated the desktop entry creation to the new current method.
 - Fixed build requirements.
 - Added custom icon for the menu entry (taken from the logo).

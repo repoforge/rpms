@@ -4,7 +4,7 @@
 Summary: Monkey's Audio Codec (MAC) utility and library
 Name: mac
 Version: 3.99
-Release: 1.u4b4
+Release: 2.u4b4
 License: See License.htm
 Group: System Environment/Libraries
 URL: http://supermmx.org/linux/mac/
@@ -79,6 +79,9 @@ library.
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 3.99-2.u4b4
+- Release bump to drop the disttag number in FC5 build.
+
 * Thu Jan 19 2006 Matthias Saou <http://freshrpms.net/> 3.99-1.u4b4
 - Update to 3.99-u4-b4.
 - Port over 64bit patch from the gstreamer-monkeysaudio package.

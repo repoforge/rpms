@@ -18,13 +18,13 @@
 %{?el2:%define _without_vorbis 1}
 %{?el2:%define _without_x264 1}
 
-%define date   20051207
+%define date   20060317
 #define prever pre1
 
 Summary: Record, convert and stream audio and video
 Name: ffmpeg
 Version: 0.4.9
-Release: 0.3%{?date:.%{date}}%{?prever:.%{prever}}
+Release: 0.4%{?date:.%{date}}%{?prever:.%{prever}}
 License: GPL
 Group: System Environment/Libraries
 URL: http://ffmpeg.sourceforge.net/
@@ -32,7 +32,7 @@ URL: http://ffmpeg.sourceforge.net/
 Source: http://dl.sf.net/ffmpeg/ffmpeg-%{version}%{?prever:-%{prever}}.tar.gz
 %else
 # cvs -z9 -d:pserver:anonymous@mplayerhq.hu:/cvsroot/ffmpeg co ffmpeg
-# the rename the directory and compress
+# then rename the directory and compress
 Source: ffmpeg-%{date}.tar.bz2
 %endif
 Patch0: ffmpeg-0.4.9-20051207-a52link.patch
@@ -51,17 +51,6 @@ BuildRequires: texi2html
 %{!?_without_a52dec:BuildRequires: a52dec-devel}
 %{!?_without_dts:BuildRequires: libdca-devel}
 %{?_with_dc1394:BuildRequires: libdc1394-devel}
-# We need those as autoreqprov adds them as a requirement to the package
-# (0.4.8, still true in 0.4.9-pre1)
-%if %{_lib} == lib64
-Provides: libavcodec.so()(64bit)
-Provides: libavformat.so()(64bit)
-Provides: libavutil.so()(64bit)
-%else
-Provides: libavcodec.so
-Provides: libavformat.so
-Provides: libavutil.so
-%endif
 
 %description
 FFmpeg is a very fast video and audio converter. It can also grab from a
@@ -137,6 +126,7 @@ export CFLAGS="%{optflags}"
     --prefix=%{_prefix} \
     --libdir=%{_libdir} \
     --mandir=%{_mandir} \
+    --incdir=%{_includedir}/ffmpeg \
 %ifarch x86_64
     --extra-cflags="-fPIC" \
 %endif
@@ -151,7 +141,6 @@ export CFLAGS="%{optflags}"
     %{!?_without_a52:    --enable-a52 --enable-a52bin} \
     %{!?_without_dts:    --enable-dts} \
     --enable-pp \
-    --enable-shared-pp \
     --enable-shared \
     --enable-pthreads \
     %{?_with_dc1394: --enable-dc1394} \
@@ -163,7 +152,8 @@ export CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot} _docs
-%makeinstall
+%makeinstall \
+    incdir=%{buildroot}%{_includedir}/ffmpeg
 
 # Make installlib is broken in 0.4.6-8 (20050502 too), so we do it by hand
 # in order to get the static libraries installed too.
@@ -172,6 +162,12 @@ export CFLAGS="%{optflags}"
 # Remove unwanted files from the included docs
 %{__cp} -a doc _docs
 %{__rm} -rf _docs/{CVS,Makefile,*.1,*.texi,*.pl}
+
+# The <postproc/postprocess.h> is now at <ffmpeg/postprocess.h>, so provide
+# a compatibility copy
+%{__mkdir_p} %{buildroot}%{_includedir}/postproc/
+%{__cp} -a   %{buildroot}%{_includedir}/ffmpeg/postprocess.h \
+             %{buildroot}%{_includedir}/postproc/postprocess.h
 
 
 %clean
@@ -191,7 +187,7 @@ export CFLAGS="%{optflags}"
 %defattr(-, root, root, 0755)
 %doc Changelog COPYING CREDITS README
 %{_bindir}/*
-%{_libdir}/*.so
+%{_libdir}/*.so.*
 %exclude %{_libdir}/libpostproc.so*
 %{_libdir}/vhook/
 %{_mandir}/man1/*
@@ -201,6 +197,7 @@ export CFLAGS="%{optflags}"
 %doc _docs/*
 %{_includedir}/ffmpeg/
 %{_libdir}/*.a
+%{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
 %exclude %{_libdir}/pkgconfig/libpostproc.pc
 
@@ -212,6 +209,12 @@ export CFLAGS="%{optflags}"
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.4.9-0.4.20060317
+- Update to CVS snapshot.
+- The libraries are versionned at last, so no longer use the autoreqprov hack.
+- Override incdir to get install to work properly.
+- Provide a postprocess.h compatibility copy.
+
 * Wed Dec  7 2005 Matthias Saou <http://freshrpms.net/> 0.4.9-0.3.20051207
 - Update to CVS snapshot.
 - Added theora, gsm, x264, dts and dc1394 rebuild options, all on by default.

@@ -7,23 +7,23 @@
 %{!?dist:%define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
-%define svn 470
+%define svn 649
 
 Summary: Quake 3 Arena tournament 3D shooter game
 Name: quake3
-Version: 1.33
-Release: 0.2%{?svn:.svn%{svn}}
+Version: 1.34
+Release: 0.1.rc1%{?svn:.svn%{svn}}
 Group: Amusements/Games
 License: GPL
 URL: http://www.icculus.org/quake3/
 # SVN checkout, then "make dist"
 # svn co svn://svn.icculus.org/quake3/trunk quake3
-Source0: %{name}-%{version}%{?svn:_SVN%{svn}}.tar.bz2
+Source0: %{name}-%{version}%{?svn:-rc1_SVN%{svn}}.tar.bz2
 Source1: quake3.png
-Patch0: quake3-1.33-nostrip.patch
+Patch0: quake3-1.34-nostrip.patch
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: SDL-devel, openal-devel, nasm
-%{?_with_modxorg:BuildRequires: libXt-devel, mesa-libGL-devel}
+BuildRequires: SDL-devel, openal-devel, nasm, subversion
+%{?_with_modxorg:BuildRequires: libXt-devel, libGL-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 
 %description
@@ -34,14 +34,14 @@ original CD-ROM to %{_prefix}/games/quake3/.
 
 
 %prep
-%setup -n %{name}-%{version}%{?svn:_SVN%{svn}}
+%setup -n %{name}-%{version}%{?svn:-rc1_SVN%{svn}}
 %patch0 -p1 -b .nostrip
 
 
 %build
 # Note that using %{optflags} instead of the flags in the Makefiles screw up
 # the binary badly! So... don't :-(
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} OPTFLAGS="%{optflags}"
 
 
 %install
@@ -93,6 +93,11 @@ EOF
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.34-0.1.rc1.svn649
+- Update to today's svn code (rev. 649).
+- Update nostrip patch, now pass OPTFLAGS to the build too.
+- Build requires subversion (required for make dist).
+
 * Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 1.33-0.2.svn470
 - Update to today's svn sode (rev. 470).
 - Add modular xorg build conditional.

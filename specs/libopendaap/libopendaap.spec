@@ -4,7 +4,7 @@
 Summary: Library for connection to iTunes music shares
 Name: libopendaap
 Version: 0.4.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://crazney.net/programs/itunes/libopendaap.html
@@ -32,18 +32,17 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure
+%configure \
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%post
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -56,13 +55,15 @@ you will need to install %{name}-devel.
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/daap/
-%{_libdir}/libopendaap.a
 %exclude %{_libdir}/libopendaap.la
 %{_libdir}/libopendaap.so
 %{_libdir}/pkgconfig/opendaap.pc
 %{_mandir}/man?/*
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.4.0-2
+- Disable/remove static library, nothing seems to use it.
+
 * Mon May 16 2005 Dag Wieers <dag@wieers.com> - 0.4.0-1
 - Updated to release 0.4.0.
 

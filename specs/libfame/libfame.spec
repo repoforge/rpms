@@ -4,7 +4,7 @@
 Summary: Fast Assembly MPEG Encoding library
 Name: libfame
 Version: 0.9.1
-Release: 8
+Release: 9
 License: LGPL
 Group: System Environment/Libraries
 URL: http://fame.sourceforge.net/
@@ -14,6 +14,7 @@ Patch1: http://www.linuxfromscratch.org/blfs/downloads/svn/libfame-0.9.1-gcc34-1
 Patch2: libfame-0.9.1-underquoted.patch
 Patch3: libfame-0.9.1-x86_64.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: autoconf, automake, libtool
 
 %description
 A library for fast (real-time) MPEG video encoding, written in C and assembly.
@@ -25,7 +26,6 @@ compatible) rectangular and arbitrary shaped video.
 Summary: Development files and static libraries for libfame
 Group: Development/Libraries
 Requires: %{name} = %{version}
-BuildRequires: autoconf, automake, libtool
 
 %description devel
 A library for fast (real-time) MPEG video encoding, written in C and assembly.
@@ -106,6 +106,9 @@ libfame library.
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.9.1-9
+- Release bump to drop the disttag number in FC5 build.
+
 * Fri Sep 30 2005 Matthias Saou <http://freshrpms.net/> 0.9.1-8
 - Include x86_64 patch from Andy Loening, fixes some segfaults.
 - Update underquoted patch to also remove warnings at libfame build time.

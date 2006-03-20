@@ -5,14 +5,14 @@
 Summary: Extract, test and view RAR archives
 Name: unrar
 Version: 3.5.4
-Release: 1
+Release: 2
 License: Freeware
 Group: Applications/Archiving
 URL: http://www.rarlab.com/
 Source0: http://www.rarlab.com/rar/unrarsrc-%{version}.tar.gz
 Source1: unrar.1
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, libstdc++-devel
+BuildRequires: gcc-c++
 
 %description
 The unRAR utility is a freeware program, distributed with source code
@@ -32,8 +32,8 @@ archives created with the RAR archiver version 1.50 and above.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m755 unrar %{buildroot}%{_bindir}/unrar
-%{__install} -Dp -m644 %{SOURCE1} %{buildroot}%{_mandir}/man1/unrar.1
+%{__install} -D -m755 unrar %{buildroot}%{_bindir}/unrar
+%{__install} -D -p -m644 %{SOURCE1} %{buildroot}%{_mandir}/man1/unrar.1
 
 
 %clean
@@ -48,6 +48,9 @@ archives created with the RAR archiver version 1.50 and above.
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 3.5.4-2
+- Release bump to drop the disttag number in FC5 build.
+
 * Fri Oct 14 2005 Matthias Saou <http://freshrpms.net/> 3.5.4-1
 - Update to 3.5.4.
 

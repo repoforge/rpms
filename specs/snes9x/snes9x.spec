@@ -12,7 +12,7 @@
 Summary: Portable, freeware Super Nintendo Entertainment System (TM) emulator
 Name: snes9x
 Version: 1.43
-Release: 5
+Release: 6
 License: Other
 Group: Applications/Emulators
 URL: http://www.snes9x.com/
@@ -70,6 +70,9 @@ popd
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.43-6
+- Release bump to drop the disttag number in FC5 build.
+
 * Tue Jan 24 2006 Matthias Saou <http://freshrpms.net/> 1.43-5
 - Add wmclass patch from Bryan Moffit.
 

@@ -5,7 +5,7 @@
 Summary: Tools for Ogg media streams
 Name: ogmtools
 Version: 1.5
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.bunkus.org/videotools/ogmtools/
@@ -45,6 +45,9 @@ streams".
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.5-2
+- Release bump to drop the disttag number in FC5 build.
+
 * Mon Nov  8 2004 Matthias Saou <http://freshrpms.net/> 1.5-1
 - Update to 1.5.
 

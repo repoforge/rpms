@@ -12,7 +12,7 @@
 Summary: Graphical DVD ripping and encoding tool based on transcode
 Name: perl-Video-DVDRip
 Version: 0.97.6
-Release: 1
+Release: 2
 License: Artistic or GPL
 Group: Applications/Multimedia
 URL: http://www.exit1.org/dvdrip/
@@ -35,7 +35,8 @@ DVD Ripping API, which uses the Linux Video Stream Processing Tool transcode.
 
 %build
 %{__perl} Makefile.PL
-%{__make} %{?_smp_mflags}
+#Remove %{?_smp_mflags}, as it makes the build fail (0.97.6)
+%{__make}
 
 
 %install
@@ -101,6 +102,9 @@ EOF
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.97.6-2
+- Remove _smp_mflags as it makes the build fail.
+
 * Mon Jan  9 2006 Matthias Saou <http://freshrpms.net/> 0.97.6-1
 - Update to gtk2 branch at last, 0.97.6.
 - Include doc.

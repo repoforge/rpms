@@ -4,7 +4,7 @@
 Summary: Real Time software audio/video Encoder library
 Name: rte
 Version: 0.5.6
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
@@ -42,11 +42,11 @@ needed to develop programs that will use RTE.
 
 %build
 %configure \
-    --with-pic \
 %ifnarch %{ix86}
     --without-mp1e \
-    --without-ffmpeg
+    --without-ffmpeg \
 %endif
+    --with-pic
 %{__make} %{?_smp_mflags}
 
 
@@ -80,6 +80,9 @@ needed to develop programs that will use RTE.
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.5.6-3
+- Release bump to drop the disttag number in FC5 build.
+
 * Thu Jan 19 2006 Matthias Saou <http://freshrpms.net/> 0.5.6-2
 - Disable mp1e and ffmpeg backends on non-x86 archs (they require x86 mmx).
 

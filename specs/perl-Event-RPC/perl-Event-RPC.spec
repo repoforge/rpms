@@ -10,7 +10,7 @@
 Summary: Event based transparent Client/Server RPC framework
 Name: perl-Event-RPC
 Version: 0.88
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Event-RPC/
@@ -56,6 +56,9 @@ Event based transparent Client/Server RPC framework.
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.88-2
+- Release bump to drop the disttag number in FC5 build.
+
 * Mon Jan  9 2006 Matthias Saou <http://freshrpms.net/> 0.88-1
 - Initial RPM package.
 

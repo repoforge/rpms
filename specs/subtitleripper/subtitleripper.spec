@@ -6,7 +6,7 @@
 Summary: DVD subtitle ripper
 Name: subtitleripper
 Version: 0.3.4
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://subtitleripper.sourceforge.net/
@@ -51,6 +51,9 @@ Converts DVD subtitles into text format (e.g. subrip) or VobSub.
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.3.4-3
+- Release bump to drop the disttag number in FC5 build.
+
 * Fri Apr 22 2005 Matthias Saou <http://freshrpms.net/> 0.3.4-2
 - Update to 20041108 CVS (with a patch).
 - Set COPT to use optflags.

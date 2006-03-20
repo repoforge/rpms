@@ -7,7 +7,7 @@
 Summary: X MultiMedia System input plugin to play mpegplus (mpc) files
 Name: xmms-musepack
 Version: 1.2
-Release: 1%{?prever:.%{prever}}
+Release: 2%{?prever:.%{prever}}
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.musepack.net/
@@ -46,6 +46,9 @@ X MultiMedia System input plugin to play mpegplus, aka mpc files.
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.2-2
+- Release bump to drop the disttag number in FC5 build.
+
 * Mon Jan 23 2006 Matthias Saou <http://freshrpms.net/> 1.2-1
 - Update to 1.2 final.
 

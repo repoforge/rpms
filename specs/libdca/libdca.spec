@@ -4,7 +4,7 @@
 Summary: DTS Coherent Acoustics decoder
 Name: libdca
 Version: 0.0.2
-Release: 2
+Release: 3
 License: GPL
 Group: System/Library
 URL: http://www.videolan.org/libdca.html
@@ -53,6 +53,9 @@ export CFLAGS="%{optflags} -fPIC"
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.0.2-3
+- Release bump to drop the disttag number in FC5 build.
+
 * Fri Dec  9 2005 Matthias Saou <http://freshrpms.net/> 0.0.2-2
 - Force -fPIC, as applications fail to recompile against the lib on x86_64
   without.

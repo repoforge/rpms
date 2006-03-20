@@ -23,7 +23,7 @@
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
 Version: 0.9.8
-Release: 1%{?prever:.%{prever}}
+Release: 2%{?prever:.%{prever}}
 License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sourceforge.net/
@@ -120,6 +120,9 @@ programs that need to access quicktime files using libquicktime.
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.9.8-2
+- Release bump to drop the disttag number in FC5 build.
+
 * Mon Jan 30 2006 Matthias Saou <http://freshrpms.net/> 0.9.8-1
 - Update to 0.9.8.
 - Remove static libraries, as nothing actually uses them.

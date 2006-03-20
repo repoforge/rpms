@@ -5,7 +5,7 @@
 Summary: Decoder of various derivatives of MPEG standards
 Name: libmpeg3
 Version: 1.6
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://heroinewarrior.com/libmpeg3.php3
@@ -57,7 +57,7 @@ libmpeg3.
 
 %build
 export OBJDIR=%{_arch}
-export CFLAGS="%{optflags}"
+export CFLAGS="%{optflags} -fPIC"
 # Enable USE_MMX for archs that support it, not by default on i386
 %ifarch i686 athlon
 %{__perl} -pi -e 's|^USE_MMX = 0|USE_MMX = 1|g' Makefile
@@ -95,6 +95,9 @@ export OBJDIR=%{_arch}
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.6-2
+- Add -fPIC to the CFLAGS to fix transcode build on x86_64.
+
 * Thu Jan 19 2006 Matthias Saou <http://freshrpms.net/> 1.6-1
 - Update to 1.6.
 - Split "main" into "utils" (bin) and "devel" (the static lib).

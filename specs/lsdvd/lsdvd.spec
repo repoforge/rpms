@@ -4,7 +4,7 @@
 Summary: Small application for displaying the contents of a DVD
 Name: lsdvd
 Version: 0.15
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://untrepid.com/acidrip/lsdvd.html
@@ -49,6 +49,9 @@ reading library for *nix
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.15-2
+- Release bump to drop the disttag number in FC5 build.
+
 * Mon Jan  9 2006 Matthias Saou <http://freshrpms.net/> 0.15-1
 - Initial RPM release.
 

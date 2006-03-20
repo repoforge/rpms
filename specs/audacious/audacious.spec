@@ -10,7 +10,7 @@
 Summary: Media player which uses a skinned interface
 Name: audacious
 Version: 0.2.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://audacious-media-player.org/
@@ -109,6 +109,9 @@ update-desktop-database -q || :
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.2.2-2
+- Release bump to drop the disttag number in FC5 build.
+
 * Mon Mar 13 2006 Matthias Saou <http://freshrpms.net/> 0.2.2-1
 - Update to 0.2.2... the main .so isn't versionned anymore, something wrong :-(
 - Add libmusicbrainz and curl build requirements (for the Scrobbler).

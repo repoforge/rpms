@@ -7,7 +7,7 @@
 Summary: AAC/MP4 playback plugin for the Beep Media Player
 Name: bmp-aac
 Version: 0
-Release: 1.%{date}
+Release: 2.%{date}
 License: GPL
 Group: Applications/Multimedia
 URL: http://fondriest.frederic.free.fr/realisations/
@@ -51,6 +51,9 @@ autoreconf -vifs
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0-2.20041215
+- Release bump to drop the disttag number in FC5 build.
+
 * Thu May 26 2005 Matthias Saou <http://freshrpms.net/> 0-1.20041215
 - Initial rpm package.
 

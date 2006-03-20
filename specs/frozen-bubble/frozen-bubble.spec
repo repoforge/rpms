@@ -7,7 +7,7 @@
 Summary: Frozen Bubble arcade game
 Name: frozen-bubble
 Version: 1.0.0
-Release: 8
+Release: 9
 License: GPL
 Group: Amusements/Games
 URL: http://www.frozen-bubble.org/
@@ -104,6 +104,9 @@ desktop-file-install \
 
 
 %changelog
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.0.0-9
+- Release bump to drop the disttag number in FC5 build.
+
 * Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-8
 - Replaced patch from one found on the sdl.perl list :
   http://www.nntp.perl.org/group/perl.sdl.devel/972
