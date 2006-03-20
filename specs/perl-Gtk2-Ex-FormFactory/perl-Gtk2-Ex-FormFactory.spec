@@ -12,7 +12,7 @@ Name: perl-Gtk2-Ex-FormFactory
 Version: 0.59
 Release: 2
 License: GPL
-Group: Applications/CPAN
+Group: Development/Libraries
 URL: http://www.exit1.org/Gtk2-Ex-FormFactory/
 Source: http://search.cpan.org/CPAN/authors/id/J/JR/JRED/Gtk2-Ex-FormFactory-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

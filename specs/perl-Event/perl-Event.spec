@@ -12,7 +12,7 @@ Name: perl-Event
 Version: 1.06
 Release: 2
 License: Artistic/GPL
-Group: Applications/CPAN
+Group: Development/Libraries
 URL: http://search.cpan.org/dist/Event/
 
 Source: http://search.cpan.org/CPAN/authors/id/J/JP/JPRIT/Event-%{version}.tar.gz

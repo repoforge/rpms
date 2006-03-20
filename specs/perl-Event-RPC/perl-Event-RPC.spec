@@ -12,7 +12,7 @@ Name: perl-Event-RPC
 Version: 0.88
 Release: 2
 License: Artistic/GPL
-Group: Applications/CPAN
+Group: Development/Libraries
 URL: http://search.cpan.org/dist/Event-RPC/
 Source: http://search.cpan.org/CPAN/authors/id/J/JR/JRED/Event-RPC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
