@@ -8,7 +8,7 @@
 Summary: PBX and telephony application and toolkit
 Name: asterisk
 Version: 1.2.5
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.asterisk.org/
@@ -17,8 +17,8 @@ Source1: asterisk.init
 Patch0: asterisk-1.0.9-agi_streamfile_video_raw_special.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: perl, zaptel
-BuildRequires: openssl-devel, zlib-devel, perl, bison, speex-devel
-BuildRequires: zaptel-devel, gtk+-devel, newt-devel, ncurses-devel, doxygen
+BuildRequires: openssl-devel, zlib-devel, perl, bison, speex-devel, doxygen
+BuildRequires: zaptel-devel, gtk+-devel, newt-devel, ncurses-devel, libpri-devel
 %{!?_without_postgresql:BuildRequires: postgresql-devel}
 %{!?_without_sqlite:BuildRequires: sqlite2-devel}
 
@@ -130,6 +130,9 @@ fi
 
 
 %changelog
+* Mon Mar 20 2006 Matthias Saou <http://freshrpms.net> 1.2.5-2
+- Add libpri-devel build requirement to enable libpri support.
+
 * Tue Mar  7 2006 Matthias Saou <http://freshrpms.net> 1.2.5-1
 - Update to 1.2.5.
 
