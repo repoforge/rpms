@@ -6,7 +6,7 @@ Name: libdca
 Version: 0.0.2
 Release: 3
 License: GPL
-Group: System/Library
+Group: System Environment/Libraries
 URL: http://www.videolan.org/libdca.html
 Source: http://debian.unnet.nl/pub/videolan/libdts/%{version}/libdts-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
