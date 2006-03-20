@@ -5,8 +5,8 @@
 
 Summary: Fast Fourier Transform library
 Name: fftw3
-Version: 3.0.1
-Release: 0
+Version: 3.1.1
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.fftw.org/
@@ -53,11 +53,8 @@ you will need to install %{name}-devel.
 %{__rm} -f %{buildroot}%{_libdir}/*.la \
 		%{buildroot}%{_infodir}/dir
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %post devel
 /sbin/install-info %{_infodir}/%{name}.info.gz %{_infodir}/dir
@@ -87,6 +84,9 @@ you will need to install %{name}-devel.
 #exclude %{_libdir}/*.la
 
 %changelog
+* Sun Mar 19 2006 Dag Wieers <dag@wieers.com> - 3.1.1-1
+- Updated to release 3.1.1.
+
 * Sat Sep 13 2003 Dag Wieers <dag@wieers.com> - 3.0.1-0
 - Updated to release 3.0.1.
 

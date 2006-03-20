@@ -7,7 +7,7 @@
 
 Summary: Metronome application
 Name: gtick
-Version: 0.3.8
+Version: 0.3.9
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -66,6 +66,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/applications/%{desktop_vendor}-gtick.desktop
 
 %changelog
+* Sun Mar 19 2006 Dag Wieers <dag@wieers.com> - 0.3.9-1
+- Updated to release 0.3.9.
+
 * Tue Mar 07 2006 Dag Wieers <dag@wieers.com> - 0.3.8-1
 - Updated to release 0.3.8.
 
