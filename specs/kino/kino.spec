@@ -8,17 +8,16 @@
 %{!?dist:%define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
-#define cvs 20040802
+%define cvs 20060320
 
 Summary: Simple non-linear video editor
 Name: kino
-Version: 0.8.0
-Release: 3%{?cvs:.%{cvs}}
+Version: 0.8.1
+Release: 0.1%{?cvs:.%{cvs}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.kinodv.org/
 Source: http://dl.sf.net/kino/kino-%{version}.tar.gz
-Patch: kino-0.8.0-libquicktime.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.6
 BuildRequires: libdv-devel >= 0.102, libavc1394-devel, libraw1394-devel
@@ -30,9 +29,6 @@ BuildRequires: libxml2-devel, libsamplerate-devel, intltool
 BuildRequires: gcc-c++
 %{!?_without_quicktime:BuildRequires: libquicktime-devel}
 %{!?_without_ffmpeg:BuildRequires: ffmpeg-devel}
-#if %{?cvs:1}0
-BuildRequires: automake, autoconf, libtool
-#endif
 Obsoletes: kino-devel <= %{version}
 Obsoletes: kino-dvtitler <= 0.2.0-2
 
@@ -42,14 +38,12 @@ format. Kino allows you to record, create, edit, and play movies recorded
 with DV camcorders. Unlike other editors, this program uses many keyboard
 commands for fast navigating and editing inside the movie.
 
+
 %prep
 %setup
-%patch -p1 -b .libquicktime
 
 
 %build
-%{?cvs:./autogen.sh}
-./autogen.sh
 %configure \
     --with-hotplug-script-dir=%{_sysconfdir}/hotplug/usb \
     --with-hotplug-usermap-dir=%{_libdir}/hotplug/kino \
@@ -99,8 +93,8 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 
 
 %changelog
-* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.8.0-3
-- Release bump to drop the disttag number in FC5 build.
+* Mon Mar 20 2006 Matthias Saou <http://freshrpms.net/> 0.8.1-0.1.20060320
+- Update to today's CVS to fix rebuild against latest libquicktime.
 
 * Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 0.8.0-2
 - Add modular xorg build conditional.
