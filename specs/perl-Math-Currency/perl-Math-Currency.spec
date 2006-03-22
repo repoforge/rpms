@@ -10,7 +10,7 @@
 Summary: Exact Currency Math with Formatting and Rounding
 Name: perl-Math-Currency
 Version: 0.43
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Currency/
@@ -47,6 +47,9 @@ Exact Currency Math with Formatting and Rounding.
 %{perl_vendorlib}/Math/Currency/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.43-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.43-1
 - Updated to release 0.43.
 

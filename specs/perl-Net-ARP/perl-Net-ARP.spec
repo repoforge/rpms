@@ -10,7 +10,7 @@
 Summary: Create and send ARP packets
 Name: perl-Net-ARP
 Version: 0.6
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-ARP/
@@ -48,5 +48,8 @@ this extension. It uses kernel header files to create the packets.
 %{perl_vendorarch}/auto/Net/ARP/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.6-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Interface to the GraphViz graphing tool
 Name: perl-GraphViz
 Version: 2.02
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GraphViz/
@@ -57,6 +57,9 @@ http://www.research.att.com/sw/tools/graphviz/).
 %{perl_vendorlib}/GraphViz/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.02-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 2.02-1
 - Updated to release 2.02.
 

@@ -10,7 +10,7 @@
 Summary: Interface to the Guile Scheme interpreter
 Name: perl-Guile
 Version: 0.002
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Guile/
@@ -47,5 +47,8 @@ This module provides an interface to the Gnu Guile system.
 %{perl_vendorarch}/auto/Guile
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.002-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.002-1
 - Initial package.

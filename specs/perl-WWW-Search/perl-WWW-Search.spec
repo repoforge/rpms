@@ -10,7 +10,7 @@
 Summary: Perl module for WWW searches.
 Name: perl-WWW-Search
 Version: 2.484
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Search/
@@ -57,6 +57,9 @@ This module contains functions for WWW searches.
 %{perl_vendorlib}/WWW/Search/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.484-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.484-1
 - Updated to release 2.484.
 

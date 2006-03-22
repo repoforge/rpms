@@ -10,7 +10,7 @@
 Summary: Trie data structure
 Name: perl-Tree-Trie
 Version: 1.1
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tree-Trie/
@@ -46,5 +46,8 @@ Tree::Trie is an implementation of a Trie data structure in Perl.
 %{perl_vendorlib}/Tree/Trie.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.1-1
 - Initial package.

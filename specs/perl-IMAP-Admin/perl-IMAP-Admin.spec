@@ -10,7 +10,7 @@
 Summary: Basic IMAP server administration
 Name: perl-IMAP-Admin
 Version: 1.6.4
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IMAP-Admin/
@@ -46,5 +46,8 @@ Perl module for basic IMAP server administration.
 %{perl_vendorlib}/IMAP/Admin.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.6.4-1
 - Initial package.

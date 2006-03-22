@@ -10,7 +10,7 @@
 Summary: Extract words from strings
 Name: perl-Text-ExtractWords
 Version: 0.08
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-ExtractWords/
@@ -46,5 +46,8 @@ With this module, you can extract words from strings.
 %{perl_vendorarch}/auto/Text/ExtractWords/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Initial package.

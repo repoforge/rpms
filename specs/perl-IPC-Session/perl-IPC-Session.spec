@@ -10,7 +10,7 @@
 Summary: Drive ssh or other interactive shell, local or remote
 Name: perl-IPC-Session
 Version: 0.05
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPC-Session/
@@ -46,5 +46,8 @@ Drive ssh or other interactive shell, local or remote (like 'expect').
 %{perl_vendorlib}/IPC/Session.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Initial package.

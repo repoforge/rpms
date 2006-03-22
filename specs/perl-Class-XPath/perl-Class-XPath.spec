@@ -10,7 +10,7 @@
 Summary: Adds xpath matching to object trees
 Name: perl-Class-XPath
 Version: 1.4
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-XPath/
@@ -53,5 +53,8 @@ to a given node which can be used as an identifier.
 %{perl_vendorlib}/Class/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 1.4-1
 - Initial package.

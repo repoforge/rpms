@@ -12,7 +12,7 @@
 Summary: Strips the attachments from a mail
 Name: perl-Email-MIME-Attachment-Stripper
 Version: 1.31
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-MIME-Attachment-Stripper/
@@ -49,6 +49,9 @@ With this perl module, you can strip attachments from a mail.
 %{perl_vendorlib}/Email/MIME/Attachment/Stripper.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.31-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.31-1
 - Updated to release 1.31.
 

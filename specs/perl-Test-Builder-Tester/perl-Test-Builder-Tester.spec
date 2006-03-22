@@ -12,7 +12,7 @@
 Summary: Test testsuites that have been built with Test::Builder
 Name: perl-Test-Builder-Tester
 Version: 1.01
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Builder-Tester/
@@ -50,6 +50,9 @@ Test testsuites that have been built with Test::Builder.
 %{perl_vendorlib}/Test/Builder/Tester/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Updated to release 1.01.
 

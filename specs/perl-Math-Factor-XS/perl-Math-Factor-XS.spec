@@ -10,7 +10,7 @@
 Summary: Factorise numbers and calculate matching multiplications
 Name: perl-Math-Factor-XS
 Version: 0.32
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Factor-XS/
@@ -46,5 +46,8 @@ Math::Factor::XS factorises numbers by applying modulo operator divisons.
 %{perl_vendorarch}/auto/Math/Factor/XS/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.32-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.32-1
 - Initial package.

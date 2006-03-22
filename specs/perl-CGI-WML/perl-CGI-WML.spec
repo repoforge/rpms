@@ -10,7 +10,7 @@
 Summary: Subclass of CGI.pm for WML output and WML methods
 Name: perl-CGI-WML
 Version: 0.09
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-WML/
@@ -49,5 +49,8 @@ existing skills when creating WAP applications.
 %{perl_vendorlib}/CGI/WML.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.09-1
 - Initial package.

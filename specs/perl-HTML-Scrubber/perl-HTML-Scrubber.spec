@@ -10,7 +10,7 @@
 Summary: Scrub or sanitize html
 Name: perl-HTML-Scrubber
 Version: 0.08
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Scrubber/
@@ -46,5 +46,8 @@ Perl extension for scrubbing/sanitizing html.
 %{perl_vendorlib}/HTML/Scrubber.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Dec 31 2005 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Initial package.

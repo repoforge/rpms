@@ -13,7 +13,7 @@
 Summary: Nilsimsa algorithm
 Name: perl-Digest-Nilsimsa
 Version: 0.06
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-Nilsimsa/
@@ -51,5 +51,8 @@ This module contains a perl version of the Nilsimsa code.
 %{perl_vendorarch}/auto/Digest/Nilsimsa/Nilsimsa.so
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.

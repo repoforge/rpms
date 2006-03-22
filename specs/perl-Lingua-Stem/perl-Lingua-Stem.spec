@@ -10,7 +10,7 @@
 Summary: Stemming of words
 Name: perl-Lingua-Stem
 Version: 0.81
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-Stem/
@@ -51,5 +51,8 @@ Provides word stemming algorithms localized by language.
 %{perl_vendorlib}/Lingua/Stem/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.81-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec 10 2004 Dries Verachtert <dries@ulyssis.org> - 0.81-1
 - Initial package.

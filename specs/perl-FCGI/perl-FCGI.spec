@@ -13,7 +13,7 @@
 Summary: Fast CGI module
 Name: perl-FCGI
 Version: 0.67
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/FCGI/
@@ -53,5 +53,8 @@ not require you to recompile perl.
 %{perl_vendorarch}/auto/FCGI/FCGI.so
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.67-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.67-1
 - Initial package.

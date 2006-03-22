@@ -10,7 +10,7 @@
 Summary: Parse system logs
 Name: perl-SyslogScan
 Version: 0.32
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SyslogScan/
@@ -50,5 +50,8 @@ various statistics about mail sent and received.
 %{perl_vendorlib}/read_mail_log.pl
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.32-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.32-1
 - Initial package.

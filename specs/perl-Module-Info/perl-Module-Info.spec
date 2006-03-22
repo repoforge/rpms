@@ -10,7 +10,7 @@
 Summary: Information about Perl modules
 Name: perl-Module-Info
 Version: 0.30
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Info/
@@ -49,6 +49,9 @@ Information about Perl modules.
 %{perl_vendorlib}/B
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.30-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.30-1
 - Updated to release 0.30.
 

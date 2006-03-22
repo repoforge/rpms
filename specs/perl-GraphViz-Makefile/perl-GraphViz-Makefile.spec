@@ -10,7 +10,7 @@
 Summary: Visualize Makefile dependencies
 Name: perl-GraphViz-Makefile
 Version: 1.15
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GraphViz-Makefile/
@@ -49,5 +49,8 @@ dependencies. A sample program for generating Tk output
 %{perl_vendorlib}/GraphViz/Makefile.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.15-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.15-1
 - Initial package.

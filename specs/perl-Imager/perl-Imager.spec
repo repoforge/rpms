@@ -10,7 +10,7 @@
 Summary: Extension for generating 24 bit images
 Name: perl-Imager
 Version: 0.47
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Imager/
@@ -48,5 +48,8 @@ echo y | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefi
 %{perl_vendorarch}/auto/Imager/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.47-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jan  4 2006 Dries Verachtert <dries@ulyssis.org> - 0.47-1
 - Initial package.

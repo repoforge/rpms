@@ -10,7 +10,7 @@
 Summary: Black-Scholes option price model functions
 Name: perl-Math-Business-BlackScholes
 Version: 0.06
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Business-BlackScholes/
@@ -47,6 +47,9 @@ the Black-Scholes model.
 %{perl_vendorlib}/Math/Business/BlackScholes.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Apr 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.
 

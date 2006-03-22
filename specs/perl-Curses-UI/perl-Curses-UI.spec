@@ -10,7 +10,7 @@
 Summary: Curses based OO user interface framework
 Name: perl-Curses-UI
 Version: 0.95
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Curses-UI/
@@ -53,5 +53,8 @@ several widgets which can be used to build a user interface.
 # perl_privlib: /usr/lib/perl5/5.8.0
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.95-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.95-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Extension for easy creation of multi screen CGI scripts
 Name: perl-CGI-Screen
 Version: 0.119
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Screen/
@@ -49,5 +49,8 @@ parameters. This is the common case for scripts linking to themselves.
 %{perl_vendorlib}/CGI/Screen.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.119-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.119-1
 - Initial package.
