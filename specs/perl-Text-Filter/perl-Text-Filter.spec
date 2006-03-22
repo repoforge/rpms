@@ -10,7 +10,7 @@
 Summary: Base class for objects that can read and write text lines
 Name: perl-Text-Filter
 Version: 1.7
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Filter/
@@ -49,5 +49,8 @@ destination (usually some other file).
 %{perl_vendorlib}/Text/Filter.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.7-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Push Repository to Remote Subversion Repository
 Name: perl-SVN-Push
 Version: 0.02
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Push/
@@ -72,5 +72,8 @@ have the same uuid.
 %{perl_vendorlib}/SVN/Push.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

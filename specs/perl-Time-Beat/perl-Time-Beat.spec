@@ -10,7 +10,7 @@
 Summary: Module to convert between standard time and Swatch ".beat" time
 Name: perl-Time-Beat
 Version: 1.21
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Time-Beat/
@@ -49,5 +49,8 @@ normal time.
 %{perl_vendorlib}/Time/Beat.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.21-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.21-1
 - Initial package.

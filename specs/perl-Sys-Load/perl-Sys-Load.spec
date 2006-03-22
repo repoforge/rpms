@@ -10,7 +10,7 @@
 Summary: Perl module for getting the current system load and uptime
 Name: perl-Sys-Load
 Version: 0.2
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-Load/
@@ -46,5 +46,8 @@ Sys::Load is a module that is used to get the current system load and uptime.
 %{perl_vendorarch}/auto/Sys/Load
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.2-1
 - Initial package.

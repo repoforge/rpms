@@ -10,7 +10,7 @@
 Summary: Shorten urls with KUSO
 Name: perl-WWW-Shorten-KUSO
 Version: 0.3
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Shorten-KUSO/
@@ -45,5 +45,8 @@ Shorten URL using http://KUSO.CC/ .
 %{perl_vendorlib}/WWW/Shorten/KUSO.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.3-1
 - Initial package.

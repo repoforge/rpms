@@ -10,7 +10,7 @@
 Summary: Per-processor information
 Name: perl-Unix-Processors
 Version: 2.033
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unix-Processors/
@@ -47,6 +47,9 @@ This package provides access to per-processor information from Perl.
 %{perl_vendorarch}/auto/Unix/Processors
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.033-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.033-1
 - Updated to release 2.033.
 

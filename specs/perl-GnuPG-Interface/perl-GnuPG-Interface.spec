@@ -10,7 +10,7 @@
 Summary: Perl interface to GnuPG
 Name: perl-GnuPG-Interface
 Version: 0.33
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GnuPG-Interface/
@@ -50,5 +50,8 @@ verification, and key-listing parsing.
 %{perl_vendorlib}/auto/GnuPG
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.33-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.33-1
 - Initial package.

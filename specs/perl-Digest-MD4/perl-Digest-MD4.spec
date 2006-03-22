@@ -10,7 +10,7 @@
 Summary: Perl interface to the MD4 Algorithm
 Name: perl-Digest-MD4
 Version: 1.5
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-MD4/
@@ -50,5 +50,8 @@ MD5 is described in RFC 1321.
 %{perl_vendorarch}/auto/Digest/MD4
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.5-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: General purpose text/data merging methods
 Name: perl-Text-Merge
 Version: 0.36
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Merge/
@@ -50,5 +50,8 @@ list of items of various types, displayed individually in context.
 %{perl_vendorlib}/auto/Text/Merge
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.36-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.36-1
 - Initial package.

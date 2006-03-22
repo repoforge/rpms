@@ -10,7 +10,7 @@
 Summary: Process procmail logfiles
 Name: perl-Log-Procmail
 Version: 0.11
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Procmail/
@@ -51,5 +51,8 @@ Log::Procmail::Abstract object.
 %{perl_vendorlib}/Log/Procmail.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.11-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.11-1
 - Initial package.

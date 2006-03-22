@@ -10,7 +10,7 @@
 Summary: Persistent counter class
 Name: perl-File-CounterFile
 Version: 1.04
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-CounterFile/
@@ -49,5 +49,8 @@ the same time without risk of counter destruction.
 %{perl_vendorlib}/File/CounterFile.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.04-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.04-1
 - Initial package.

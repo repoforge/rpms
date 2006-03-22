@@ -10,7 +10,7 @@
 Summary: Get the full hostname
 Name: perl-Sys-Hostname-Long
 Version: 1.4
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-Hostname-Long/
@@ -49,5 +49,8 @@ This module uses different ways to get the full hostname.
 %{perl_vendorlib}/Sys/Hostname/testall.pl
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Mar  3 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Additional output formats for GD
 Name: perl-GD-Convert
 Version: 2.12
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GD-Convert/
@@ -52,6 +52,9 @@ is for you.
 %{perl_vendorlib}/GD/Convert.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.12-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 2.12-1
 - Updated to release 2.12.
 

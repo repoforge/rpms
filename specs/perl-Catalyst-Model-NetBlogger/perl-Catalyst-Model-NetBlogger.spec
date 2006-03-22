@@ -10,7 +10,7 @@
 Summary: Post and retrieve blog entries
 Name: perl-Catalyst-Model-NetBlogger
 Version: 0.04
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Model-NetBlogger/
@@ -55,6 +55,9 @@ various web log engines XMLRPC API.
 %{perl_vendorlib}/Catalyst/Helper/Model/NetBlogger.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.
 

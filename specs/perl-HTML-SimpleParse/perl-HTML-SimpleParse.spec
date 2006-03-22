@@ -13,7 +13,7 @@
 Summary: HTML parser
 Name: perl-HTML-SimpleParse
 Version: 0.12
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-SimpleParse/
@@ -50,5 +50,8 @@ This package contains a HTML parser for perl.
 %{perl_vendorlib}/HTML/SimpleParse.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Initial package.

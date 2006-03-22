@@ -10,7 +10,7 @@
 Summary: Triple DES encyption
 Name: perl-Crypt-TripleDES
 Version: 0.24
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-TripleDES/
@@ -47,5 +47,8 @@ This module provides Triple DES encyption.
 %{perl_vendorlib}/Crypt/PPDES.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.24-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.24-1
 - Initial package.

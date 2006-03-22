@@ -10,7 +10,7 @@
 Summary: More sensible way to change directories
 Name: perl-File-chdir
 Version: 0.06
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-chdir/
@@ -50,5 +50,8 @@ A more sensible way to change directories.
 %{perl_vendorlib}/File/chdir.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec 10 2004 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.

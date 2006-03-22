@@ -10,7 +10,7 @@
 Summary: Creates a Latex file from an HTML file
 Name: perl-HTML-Latex
 Version: 1.0
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Latex/
@@ -49,5 +49,8 @@ also much easier to extend than any other html2latex converter.
 %{perl_vendorlib}/HTML/Latex.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Initial package.

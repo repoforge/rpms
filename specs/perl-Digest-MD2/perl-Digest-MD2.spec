@@ -13,7 +13,7 @@
 Summary: Interface to the MD2 algorithm
 Name: perl-Digest-MD2
 Version: 2.03
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-MD2/
@@ -54,5 +54,8 @@ output a 128-bit "fingerprint" or "message digest" of the input.
 %{perl_vendorarch}/auto/Digest/MD2/MD2.so
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 2.03-1
 - Initial package.

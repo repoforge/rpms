@@ -10,7 +10,7 @@
 Summary: Text graphics rendering toolkit
 Name: perl-Text-Graphics
 Version: 1.0001
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Graphics/
@@ -50,5 +50,8 @@ complex forms for email and fax, and so on.
 %{perl_vendorlib}/Text/Graphics.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.0001-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.0001-1
 - Initial package.

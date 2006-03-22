@@ -10,7 +10,7 @@
 Summary: Manipulate DATR .dtr, XML, HTML, XML
 Name: perl-Language-DATR-DATR2XML
 Version: 0.901
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Language-DATR-DATR2XML/
@@ -46,5 +46,8 @@ Manipulate DATR .dtr, XML, HTML, XML.
 %{perl_vendorlib}/Language/DATR/DATR2XML.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.901-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.901-1
 - Initial package.

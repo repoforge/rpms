@@ -11,7 +11,7 @@
 Summary: Report errors which match a pattern
 Name: perl-Carp-Clan
 Version: 5.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Carp-Clan/
@@ -53,5 +53,8 @@ which shall never be blamed for any error.
 %{perl_vendorlib}/Carp/Clan.pod
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 5.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 5.3-1
 - Initial package.

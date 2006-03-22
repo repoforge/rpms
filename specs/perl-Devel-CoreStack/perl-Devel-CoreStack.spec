@@ -10,7 +10,7 @@
 Summary: Try to generate a stack dump from a core file
 Name: perl-Devel-CoreStack
 Version: 1.3
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-CoreStack/
@@ -46,5 +46,8 @@ try to generate a stack dump from a core file.
 %{perl_vendorlib}/Devel/CoreStack.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.3-1
 - Initial package.

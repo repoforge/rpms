@@ -12,7 +12,7 @@
 Summary: Perl extension for Net::WhoisNG::Person
 Name: perl-Net-WhoisNG-Person
 Version: 0.03
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-WhoisNG-Person/
@@ -50,5 +50,8 @@ Perl extension for Net::WhoisNG::Person.
 %{perl_vendorlib}/Net/WhoisNG/Person.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.

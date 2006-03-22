@@ -10,7 +10,7 @@
 Summary: Extremely leight-weight Lev-Zimpel-Vogt compression
 Name: perl-Compress-LZV1
 Version: 0.04
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Compress-LZV1/
@@ -50,5 +50,8 @@ large library to be pulled in).
 %{perl_vendorarch}/auto/Compress/LZV1
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.

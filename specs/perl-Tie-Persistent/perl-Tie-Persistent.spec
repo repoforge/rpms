@@ -10,7 +10,7 @@
 Summary: Persistent data structures via tie made easy
 Name: perl-Tie-Persistent
 Version: 1.00
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-Persistent/
@@ -57,5 +57,8 @@ course, that you can use arbitrary data structures inside the variable
 %{perl_vendorlib}/Tie/Persistent.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.00-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 1.00-1
 - Initial package.
