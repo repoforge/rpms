@@ -10,7 +10,7 @@
 Summary: Cubic Spline Interpolation of data
 Name: perl-Math-Spline
 Version: 0.01
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Spline/
@@ -49,5 +49,8 @@ class module.
 %{perl_vendorlib}/Math/Spline.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Apr 04 2005 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

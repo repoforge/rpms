@@ -10,7 +10,7 @@
 Summary: Cross-platform path specification manipulation
 Name: perl-Path-Class
 Version: 0.15
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Path-Class/
@@ -51,6 +51,9 @@ Unix, Windows, Mac, VMS, Epoc, Cygwin, OS/2, and NetWare.
 %{perl_vendorlib}/Path/Class/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.15-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.15-1
 - Updated to release 0.15.
 

@@ -11,7 +11,7 @@
 Summary: Find regexp delimited strings with proper nesting
 Name: perl-DelimMatch
 Version: 1.06a
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DelimMatch/
@@ -52,5 +52,8 @@ returned.
 %{perl_vendorlib}/auto/Text/DelimMatch
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.06a-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.06a-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: The utility tools of Chinese character(HanZi)
 Name: perl-Lingua-Han-Utils
 Version: 0.05
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-Han-Utils/
@@ -46,6 +46,9 @@ The utility tools of Chinese character(HanZi).
 %{perl_vendorlib}/Lingua/Han/Utils.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Updated to release 0.05.
 

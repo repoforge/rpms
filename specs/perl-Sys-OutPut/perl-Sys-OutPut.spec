@@ -10,7 +10,7 @@
 Summary: Perl module to help make output easier
 Name: perl-Sys-OutPut
 Version: 2.1
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-OutPut/
@@ -50,5 +50,8 @@ depending upon the $quiet or $debug variables.
 %{perl_vendorlib}/Sys/OutPut.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.1-1
 - Initial package.

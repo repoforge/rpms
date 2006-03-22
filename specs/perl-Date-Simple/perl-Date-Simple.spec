@@ -10,7 +10,7 @@
 Summary: Simple date object
 Name: perl-Date-Simple
 Version: 3.02
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Simple/
@@ -48,5 +48,8 @@ used to create simple date objects.
 %{perl_vendorarch}/auto/Date/Simple/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 3.02-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 3.02-1
 - Initial package.

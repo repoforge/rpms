@@ -13,7 +13,7 @@
 Summary: Read the dimensions of images
 Name: perl-Image-Size
 Version: 2.992
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Size/
@@ -52,5 +52,8 @@ This module contains functions for reading the dimensions of images in several p
 %{perl_vendorlib}/auto/Image/Size/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.992-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 2.992
 - Initial package.

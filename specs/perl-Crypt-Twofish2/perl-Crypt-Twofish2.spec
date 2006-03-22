@@ -11,7 +11,7 @@
 Summary: Twofish encryption module
 Name: perl-Crypt-Twofish2
 Version: 1.01
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Twofish2/
@@ -53,6 +53,9 @@ that module (except generality, which is often a good thing), since
 %{perl_vendorarch}/auto/Crypt/Twofish2/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Updated to release 1.01.
 

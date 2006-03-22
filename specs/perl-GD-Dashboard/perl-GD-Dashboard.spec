@@ -10,7 +10,7 @@
 Summary: Create JPEG graphics of meters and dials
 Name: perl-GD-Dashboard
 Version: 0.04
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GD-Dashboard/
@@ -46,5 +46,8 @@ Perl module to create JPEG graphics of meters and dials.
 %{perl_vendorlib}/GD/Dashboard.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.

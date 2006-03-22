@@ -10,7 +10,7 @@
 Summary: Implementation of Atom
 Name: perl-XML-Atom
 Version: 0.16
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Atom/
@@ -48,5 +48,8 @@ This module implements the API and feed format of Atom.
 %{perl_vendorlib}/XML/Atom/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.16-1
 - Initial package.

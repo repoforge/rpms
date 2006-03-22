@@ -10,7 +10,7 @@
 Summary: Assists in working with salted hashes
 Name: perl-Crypt-SaltedHash
 Version: 0.03
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-SaltedHash/
@@ -46,5 +46,8 @@ Perl interface to functions that assist in working with salted hashes.
 %{perl_vendorlib}/Crypt/SaltedHash.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.

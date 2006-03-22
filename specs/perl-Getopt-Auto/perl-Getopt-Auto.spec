@@ -10,7 +10,7 @@
 Summary: Framework for command-line applications
 Name: perl-Getopt-Auto
 Version: 1.00
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Getopt-Auto/
@@ -46,5 +46,8 @@ Framework for command-line applications.
 %{perl_vendorlib}/Getopt/Auto.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.00-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.00-1
 - Initial package.

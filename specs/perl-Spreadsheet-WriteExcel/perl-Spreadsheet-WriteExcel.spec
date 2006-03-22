@@ -10,7 +10,7 @@
 Summary: Write formatted text and numbers to a cross-platform Excel binary file
 Name: perl-Spreadsheet-WriteExcel
 Version: 2.16
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Spreadsheet-WriteExcel/
@@ -54,6 +54,9 @@ TThe Excel file produced by this module is compatible with 97,
 %{perl_vendorlib}/Spreadsheet/WriteExcel
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.16-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.16-1
 - Updated to release 2.16.
 

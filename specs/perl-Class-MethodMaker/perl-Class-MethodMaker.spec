@@ -10,7 +10,7 @@
 Summary: Create generic methods for OO Perl
 Name: perl-Class-MethodMaker
 Version: 2.08
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-MethodMaker/
@@ -58,6 +58,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" DESTDIR="%{build
 %{perl_vendorarch}/auto/Class/MethodMaker/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.08-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.08-1
 - Updated to release 2.08.
 

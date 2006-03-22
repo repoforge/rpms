@@ -10,7 +10,7 @@
 Summary: Twofish Encryption Algorithm
 Name: perl-Crypt-Twofish
 Version: 2.12
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Twofish/
@@ -49,5 +49,8 @@ URL:http://www.counterpane.com/twofish.html.
 %{perl_vendorarch}/auto/Crypt/Twofish
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.12-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.12-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: RC4 encryption algorithm
 Name: perl-Crypt-RC4
 Version: 2.02
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-RC4/
@@ -46,5 +46,8 @@ Perl implementation of the RC4 encryption algorithm.
 %{perl_vendorlib}/Crypt/RC4.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.02-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.02-1
 - Initial package.

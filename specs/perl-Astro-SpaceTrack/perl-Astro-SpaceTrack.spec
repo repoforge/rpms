@@ -10,7 +10,7 @@
 Summary: Downloads orbital elements from the Space Track web site
 Name: perl-Astro-SpaceTrack
 Version: 0.013
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Astro-SpaceTrack/
@@ -58,5 +58,8 @@ TO THIRD PARTIES WITHOUT PRIOR PERMISSION.
 %{perl_vendorlib}/Astro/SpaceTrack
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.013-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.013-1
 - Initial package.

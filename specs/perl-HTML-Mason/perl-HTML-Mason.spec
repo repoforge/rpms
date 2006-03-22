@@ -10,7 +10,7 @@
 Summary: Web site development and delivery system
 Name: perl-HTML-Mason
 Version: 1.32
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Mason/
@@ -56,6 +56,9 @@ need be changed only once to affect the whole site.
 %{perl_vendorlib}/HTML/Mason/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.32-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.32-1
 - Updated to release 1.32.
 

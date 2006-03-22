@@ -10,7 +10,7 @@
 Summary: Runtime require of both modules and files
 Name: perl-Module-Load
 Version: 0.10
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Load/
@@ -50,5 +50,8 @@ Runtime require of both modules and files.
 %{perl_vendorlib}/Module/Load.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec 10 2004 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Initial package.

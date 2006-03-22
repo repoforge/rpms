@@ -10,7 +10,7 @@
 Summary: DBI driver abstraction for Rendering Charts and Graphs
 Name: perl-DBD-Chart
 Version: 0.81
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBD-Chart/
@@ -49,5 +49,8 @@ and line, point, and area graphs.
 %{perl_vendorlib}/DBD/Chart
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.81-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.81-1
 - Initial package.

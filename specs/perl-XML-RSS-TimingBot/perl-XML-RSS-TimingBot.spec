@@ -12,7 +12,7 @@
 Summary: Efficiently fetching RSS feeds
 Name: perl-XML-RSS-TimingBot
 Version: 2.03
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-RSS-TimingBot/
@@ -69,5 +69,8 @@ error response.
 %{perl_vendorlib}/XML/RSS/TimingBot.*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 2.03-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Simple lexical text/html/etc template parser
 Name: perl-Text-BasicTemplate
 Version: 2.006.1
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-BasicTemplate/
@@ -49,5 +49,8 @@ many kinds of printable-character file parsing.
 %{perl_vendorlib}/auto/Text/BasicTemplate
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.006.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.006.1-1
 - Initial package.

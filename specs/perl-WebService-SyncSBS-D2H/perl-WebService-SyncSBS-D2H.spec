@@ -10,7 +10,7 @@
 Summary: Del.icio.us and hatena bookmark sync
 Name: perl-WebService-SyncSBS-D2H
 Version: 0.03
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WebService-SyncSBS-D2H/
@@ -46,5 +46,8 @@ This module implements a del.icio.us and hatena bookmark sync.
 %{perl_vendorlib}/WebService/SyncSBS/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.

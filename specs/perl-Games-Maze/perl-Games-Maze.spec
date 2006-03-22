@@ -10,7 +10,7 @@
 Summary: Create Mazes as Objects
 Name: perl-Games-Maze
 Version: 1.02
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Games-Maze/
@@ -46,5 +46,8 @@ With this module, you can create mazes.
 %{perl_vendorlib}/Games/Maze.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.02-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 1.02-1
 - Initial package.

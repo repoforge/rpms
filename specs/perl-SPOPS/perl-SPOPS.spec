@@ -10,7 +10,7 @@
 Summary: Simple Perl Object Persistence with Security
 Name: perl-SPOPS
 Version: 0.87
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SPOPS/
@@ -50,5 +50,8 @@ groups. (You can, of course, turn off security if you want.)
 %{perl_vendorlib}/SPOPS
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.87-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.87-1
 - Initial package.

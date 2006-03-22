@@ -10,7 +10,7 @@
 Summary: Extension for NTLM related computations
 Name: perl-Authen-NTLM
 Version: 0.31
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Authen-NTLM/
@@ -60,5 +60,8 @@ responses.
 %{perl_vendorlib}/Authen/NTLM
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.31-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.31-1
 - Initial package.

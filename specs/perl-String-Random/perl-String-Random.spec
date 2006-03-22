@@ -10,7 +10,7 @@
 Summary: Perl module to generate random strings based on a pattern
 Name: perl-String-Random
 Version: 0.20
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-Random/
@@ -48,6 +48,9 @@ documentation in pod format in the module for more information.
 %{perl_vendorlib}/String/Random.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.20-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.20-1
 - Initial package.
 

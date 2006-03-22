@@ -10,7 +10,7 @@
 Summary: Module::Install extension for specifying the location of other programs
 Name: perl-Module-Install-GetProgramLocations
 Version: 0.3001
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Install-GetProgramLocations/
@@ -49,5 +49,8 @@ is supplied, the version number of the program will also be checked.
 %{perl_vendorlib}/Module/Install/GetProgramLocations.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.3001-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.3001-1
 - Initial package.

@@ -12,7 +12,7 @@
 Summary: Simple starterkit for any module
 Name: perl-Module-Starter
 Version: 1.42
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Starter/
@@ -52,6 +52,9 @@ A simple starterkit for any module.
 %{perl_vendorlib}/Module/Starter
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.42-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.42-1
 - Updated to release 1.42.
 

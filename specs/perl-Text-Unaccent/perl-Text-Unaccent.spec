@@ -10,7 +10,7 @@
 Summary: Remove accents from a string
 Name: perl-Text-Unaccent
 Version: 1.08
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Unaccent/
@@ -51,5 +51,8 @@ command on GNU/Linux will show all charset supported.
 %{perl_vendorarch}/auto/Text/Unaccent
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.08-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.08-1
 - Initial package.
