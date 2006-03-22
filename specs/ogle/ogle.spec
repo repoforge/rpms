@@ -27,7 +27,7 @@
 Summary: DVD video player
 Name: ogle
 Version: 0.9.2
-Release: 6
+Release: 7
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.dtek.chalmers.se/groups/dvd/
@@ -38,7 +38,7 @@ BuildRequires: libdvdread-devel >= 0.9.4, libjpeg-devel, a52dec-devel >= 0.7.3
 BuildRequires: libxml2-devel >= 2.4.19, libmad-devel, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
-%{?_with_modxorg:BuildRequires: libXt-devel, libXext-devel}
+%{?_with_modxorg:BuildRequires: libXt-devel, libXext-devel, libXv-devel, libXxf86vm-devel, libXinerama-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 
 %description
@@ -145,6 +145,9 @@ test -e /dev/dvd || test -L /dev/dvd || ln -s cdrom /dev/dvd || :
 
 
 %changelog
+* Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 0.9.2-7
+- Add missing build requirements for modular X.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.9.2-6
 - Disable/remove static libraries, as they are not used.
 
