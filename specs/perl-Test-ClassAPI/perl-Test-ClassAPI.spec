@@ -10,7 +10,7 @@
 Summary: Provides basic first-pass API testing for large class trees
 Name: perl-Test-ClassAPI
 Version: 1.02
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-ClassAPI/
@@ -55,6 +55,9 @@ module aims to provide such a capability.
 %{perl_vendorlib}/Test/ClassAPI.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.02-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan 16 2005 Dries Verachtert <dries@ulyssis.org> - 1.02-1
 - Initial package.
 

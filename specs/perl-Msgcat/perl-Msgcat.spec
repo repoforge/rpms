@@ -13,7 +13,7 @@
 Summary: Support for XPG4 message catalog functions
 Name: perl-Msgcat
 Version: 1.03
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Msgcat/
@@ -51,5 +51,8 @@ This module contains support for XPG4 message catalog functions  : catopen(3), c
 %{perl_vendorarch}/auto/Locale/Msgcat
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 1.03-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Table data types
 Name: perl-Data-Table
 Version: 1.43
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Table/
@@ -48,5 +48,8 @@ HTML table displays, etc.
 %{perl_vendorlib}/auto/Data/Table
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.43-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.43-1
 - Initial package.

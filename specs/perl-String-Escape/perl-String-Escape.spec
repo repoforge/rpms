@@ -10,7 +10,7 @@
 Summary: Registry of string functions, including backslash escapes
 Name: perl-String-Escape
 Version: 2002.001
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-Escape/
@@ -58,5 +58,8 @@ functions here for later general use.
 %{perl_vendorlib}/String/Escape.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2002.001-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Mar  6 2005 Dries Verachtert <dries@ulyssis.org> - 2002.001-1
 - Initial package.

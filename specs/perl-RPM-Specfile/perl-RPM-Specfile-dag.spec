@@ -7,7 +7,7 @@
 Summary: Perl module for creating rpm packages of other perl modules
 Name: perl-RPM-Specfile
 Version: 1.12
-Release: 1
+Release: 1.2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RPM-Specfile/
@@ -53,6 +53,9 @@ CFLAGS="%{optflags}" perl Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.12-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Aug 24 2003 Dag Wieers <dag@wieers.com> - 1.12-1
 - Fixed site -> vendor. (Matthew Mastracci)
 

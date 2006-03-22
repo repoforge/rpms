@@ -10,7 +10,7 @@
 Summary:  Skeleton for writing "t/*.t" test files
 Name: perl-ExtUtils-TBone
 Version: 1.124
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-TBone/
@@ -50,6 +50,9 @@ easier for you to investigate.
 %{perl_vendorlib}/ExtUtils/TBone.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.124-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.124-1
 - Initial package.
 

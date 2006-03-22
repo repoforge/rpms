@@ -12,7 +12,7 @@
 Summary: Support for RSS skipHours, skipDays and sy:update
 Name: perl-XML-RSS-Timing
 Version: 1.07
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-RSS-Timing/
@@ -56,5 +56,8 @@ content might be available.
 %{perl_vendorlib}/XML/RSS/Timing.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.07-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.07-1
 - Initial package.

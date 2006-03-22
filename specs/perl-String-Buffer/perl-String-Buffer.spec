@@ -10,7 +10,7 @@
 Summary: Simple string buffer class
 Name: perl-String-Buffer
 Version: 0.05
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-Buffer/
@@ -46,5 +46,8 @@ String::Buffer provides a simple string buffer class.
 %{perl_vendorlib}/String/Buffer.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  2 2005 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Initial package.

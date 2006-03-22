@@ -10,7 +10,7 @@
 Summary: Extract distribution name and version from a distribution filename
 Name: perl-CPAN-DistnameInfo
 Version: 0.06
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CPAN-DistnameInfo/
@@ -55,5 +55,8 @@ way.
 %{perl_vendorlib}/CPAN/DistnameInfo.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.

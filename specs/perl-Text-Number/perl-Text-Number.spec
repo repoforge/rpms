@@ -10,7 +10,7 @@
 Summary: Overloaded class for printing numbers
 Name: perl-Text-Number
 Version: 0.80
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Number/
@@ -50,5 +50,8 @@ choosing.
 %{perl_vendorlib}/Text/Number.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.80-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.80-1
 - Initial package.

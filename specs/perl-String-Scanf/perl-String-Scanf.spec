@@ -10,7 +10,7 @@
 Summary: Emulate sscanf() of the C library
 Name: perl-String-Scanf
 Version: 2.1
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-Scanf/
@@ -48,5 +48,8 @@ sscanf() operations.
 %{perl_vendorlib}/String/Scanf.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  2 2005 Dries Verachtert <dries@ulyssis.org> - 2.1-1
 - Initial package.

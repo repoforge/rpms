@@ -10,7 +10,7 @@
 Summary: Write Perl subroutines in assembler
 Name: perl-Inline-ASM
 Version: 0.03
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Inline-ASM/
@@ -46,5 +46,8 @@ echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}
 %{perl_vendorlib}/Inline/ASM.p*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.

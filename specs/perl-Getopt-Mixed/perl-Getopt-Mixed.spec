@@ -10,7 +10,7 @@
 Summary: Getopt processing with both long and short options
 Name: perl-Getopt-Mixed
 Version: 1.008
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Getopt-Mixed/
@@ -49,5 +49,8 @@ restrictions.
 %{perl_vendorlib}/Getopt/Mixed.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.008-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.008-1
 - Initial package.

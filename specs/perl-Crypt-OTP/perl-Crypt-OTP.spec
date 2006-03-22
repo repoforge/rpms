@@ -10,7 +10,7 @@
 Summary: Perl implementation of the One Time Pad (hence, OTP) encryption method
 Name: perl-Crypt-OTP
 Version: 2.00
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-OTP/
@@ -48,5 +48,8 @@ regarding usage and best practices.
 %{perl_vendorlib}/Crypt/OTP.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.00-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.00-1
 - Initial package.

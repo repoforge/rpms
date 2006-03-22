@@ -10,7 +10,7 @@
 Summary: Converts mazes to SVG
 Name: perl-Games-Maze-SVG
 Version: 0.71
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Games-Maze-SVG/
@@ -49,5 +49,8 @@ output. As an option, the SVG version of the maze can be made playable.
 %{perl_vendorlib}/Games/Maze/SVG/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.71-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.71-1
 - Initial package.

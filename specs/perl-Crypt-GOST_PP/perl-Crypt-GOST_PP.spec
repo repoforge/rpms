@@ -10,7 +10,7 @@
 Summary: Pure Perl implementation of the GOST encryption algorithm
 Name: perl-Crypt-GOST_PP
 Version: 1.10
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-GOST_PP/
@@ -48,5 +48,8 @@ Union.
 %{perl_vendorlib}/Crypt/GOST_PP.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.10-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.10-1
 - Initial package.

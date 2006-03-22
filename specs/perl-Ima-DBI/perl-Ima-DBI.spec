@@ -10,7 +10,7 @@
 Summary: Database connection caching and organization
 Name: perl-Ima-DBI
 Version: 0.34
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Ima-DBI/
@@ -46,6 +46,9 @@ Database connection caching and organization.
 %{perl_vendorlib}/Ima/DBI.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.34-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.34-1
 - Updated to release 0.34.
 

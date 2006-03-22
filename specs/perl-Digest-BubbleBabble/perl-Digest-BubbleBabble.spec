@@ -13,7 +13,7 @@
 Summary: Create bubble-babble fingerprints
 Name: perl-Digest-BubbleBabble
 Version: 0.01
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-BubbleBabble/
@@ -50,5 +50,8 @@ This module allows you to create bubble-babble fingerprints.
 %{perl_vendorlib}/Digest/BubbleBabble.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

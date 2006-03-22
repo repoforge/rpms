@@ -10,7 +10,7 @@
 Summary: Calculates figures relating to loans and annuities
 Name: perl-Math-Financial
 Version: 0.76
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Financial/
@@ -48,5 +48,8 @@ and the like.
 %{perl_vendorlib}/Math/Financial.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.76-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.76-1
 - Initial package.

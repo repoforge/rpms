@@ -10,7 +10,7 @@
 Summary: Fine-grained html-filter, xss-blocker and mailto-obfuscator
 Name: perl-HTML-TagFilter
 Version: 1.03
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-TagFilter/
@@ -50,6 +50,9 @@ values for each attribute in as much detail as you like.
 %{perl_vendorlib}/HTML/TagFilter.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.03-1
 - Updated to release 1.03.
 

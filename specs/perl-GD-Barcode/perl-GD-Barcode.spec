@@ -10,7 +10,7 @@
 Summary: Create barcode image with GD
 Name: perl-GD-Barcode
 Version: 1.15
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GD-Barcode/
@@ -47,5 +47,8 @@ GD::Barcode is a subclass of GD and allows you to create barcode image with GD.
 %{perl_vendorlib}/GD/Barcode
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.15-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.15-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Macro pre-processor with embedded perl capability
 Name: perl-Text-MacroScript
 Version: 1.38
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-MacroScript/
@@ -55,5 +55,8 @@ additional methods which have no command equivalents.
 %{perl_vendorlib}/Text/macroutil.pl
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.38-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  2 2005 Dries Verachtert <dries@ulyssis.org> - 1.38-1
 - Initial package.

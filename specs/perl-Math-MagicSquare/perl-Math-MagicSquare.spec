@@ -10,7 +10,7 @@
 Summary: Magic Square Checker and Designer
 Name: perl-Math-MagicSquare
 Version: 2.04
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-MagicSquare/
@@ -46,5 +46,8 @@ Magic Square Checker and Designer.
 %{perl_vendorlib}/Math/MagicSquare.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.04-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.04-1
 - Initial package.

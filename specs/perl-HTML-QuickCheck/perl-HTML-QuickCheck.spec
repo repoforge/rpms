@@ -10,7 +10,7 @@
 Summary: Fast simple validation of HMTL text
 Name: perl-HTML-QuickCheck
 Version: 1.0b1
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-QuickCheck/
@@ -46,5 +46,8 @@ Fast simple validation of HMTL text.
 %{perl_vendorlib}/HTML/QuickCheck.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.0b1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.0b1-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Simple interface for delta editors
 Name: perl-SVN-Simple
 Version: 0.27
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Simple/
@@ -49,6 +49,9 @@ SVN::Simple is a simple interface to subversion's editor interface.
 %{perl_vendorlib}/SVN/Simple/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.27-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.27-1
 - Updated to release 0.27.
 

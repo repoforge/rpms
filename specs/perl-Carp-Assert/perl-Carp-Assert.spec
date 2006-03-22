@@ -10,7 +10,7 @@
 Summary: Executable commments
 Name: perl-Carp-Assert
 Version: 0.18
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Carp-Assert/
@@ -49,5 +49,8 @@ Carp::Assert is intended for a purpose like the ANSI C library assert.h.
 %{perl_vendorlib}/Carp/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.18-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 0.18-1
 - Initial package.

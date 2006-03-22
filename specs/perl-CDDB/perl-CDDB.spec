@@ -10,7 +10,7 @@
 Summary: High-level interface to cddb protocol servers (freedb and CDDB)
 Name: perl-CDDB
 Version: 1.16
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CDDB/
@@ -47,6 +47,9 @@ Database protocol.
 %{perl_vendorlib}/CDDB.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.16-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.16-1
 - Updated to release 1.16.
 

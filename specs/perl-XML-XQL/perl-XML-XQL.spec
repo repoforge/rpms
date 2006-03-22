@@ -12,7 +12,7 @@
 Summary: Query XML tree structures with XQL
 Name: perl-XML-XQL
 Version: 0.68
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-XQL/
@@ -53,5 +53,8 @@ other implementations, like XML::Grove, may soon follow.
 %{perl_vendorlib}/XML/XQL/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.68-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.68-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Generic sockets interface handling
 Name: perl-Net-ext
 Version: 1.011
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-ext/
@@ -47,5 +47,8 @@ Net::TCP::Server, and Net::UNIX::Server.
 %{perl_vendorarch}/auto/Net
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.011-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.011-1
 - Initial package.

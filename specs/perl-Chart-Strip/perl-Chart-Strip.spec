@@ -10,7 +10,7 @@
 Summary: Draw strip chart type graphs
 Name: perl-Chart-Strip
 Version: 1.01
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Chart-Strip/
@@ -52,5 +52,8 @@ With this module you can draw strip chart type graphs.
 %{perl_vendorlib}/Chart/Strip.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Initial package.
