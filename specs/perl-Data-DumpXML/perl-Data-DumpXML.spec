@@ -13,7 +13,7 @@
 Summary: Dump data structures as XML
 Name: perl-Data-DumpXML
 Version: 1.06
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-DumpXML/
@@ -52,5 +52,8 @@ Dump arbitrary perl data structures as XML and restore them.
 %{perl_vendorlib}/Data/DumpXML.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.06-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jun 15 2004 Dries Verachtert <dries@ulyssis.org> - 1.06-1
 - Initial package.

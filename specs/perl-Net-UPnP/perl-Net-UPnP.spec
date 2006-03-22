@@ -10,7 +10,7 @@
 Summary: Extension for UPnP
 Name: perl-Net-UPnP
 Version: 1.1.2
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-UPnP/
@@ -47,6 +47,9 @@ Perl extension for UPnP.
 %{perl_vendorlib}/Net/UPnP/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.2-1
 - Updated to release 1.1.2.
 

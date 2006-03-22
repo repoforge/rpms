@@ -13,7 +13,7 @@
 Summary: Whois Client Interface
 Name: perl-Net-XWhois
 Version: 0.90
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-XWhois/
@@ -51,5 +51,8 @@ This module contains a Whois Client Interface for Perl.
 %{perl_vendorlib}/Net/XWhois.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.90-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.90-1
 - Initial package.

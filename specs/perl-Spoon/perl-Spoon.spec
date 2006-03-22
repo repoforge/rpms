@@ -10,7 +10,7 @@
 Summary: Spiffy Application Building Framework
 Name: perl-Spoon
 Version: 0.23
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Spoon/
@@ -52,6 +52,9 @@ built on top of Spoon.
 %{perl_vendorlib}/Spoon/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.23-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.23-1
 - Updated to release 0.23.
 

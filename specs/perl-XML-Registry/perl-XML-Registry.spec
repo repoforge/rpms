@@ -10,7 +10,7 @@
 Summary: Perl module for loading and saving an XML registry
 Name: perl-XML-Registry
 Version: 0.02
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Registry/
@@ -47,5 +47,8 @@ a specific XML syntax; in this case, a kind of registry.
 %{perl_vendorlib}/XML/Registry.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Mar  6 2005 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Subversion repository mirroring tool
 Name: perl-SVN-Mirror
 Version: 0.68
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Mirror/
@@ -54,6 +54,9 @@ echo "n" | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_pre
 %{perl_vendorlib}/SVN/Mirror/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.68-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.68-1
 - Updated to release 0.68.
 

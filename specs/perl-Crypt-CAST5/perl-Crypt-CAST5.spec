@@ -11,7 +11,7 @@
 Summary: CAST5 block cipher
 Name: perl-Crypt-CAST5
 Version: 0.04
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-CAST5/
@@ -50,5 +50,8 @@ increased speed. See RFC 2114.
 %{perl_vendorarch}/auto/Crypt/CAST5
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Tools for gatewaying messages between news and mail
 Name: perl-Gateway
 Version: 0.42
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gateway/
@@ -47,5 +47,8 @@ Tools for gatewaying messages between news and mail.
 %{perl_vendorlib}/auto/News/Gateway
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.42-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.42-1
 - Initial package.

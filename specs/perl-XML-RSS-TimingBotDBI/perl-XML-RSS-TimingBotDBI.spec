@@ -12,7 +12,7 @@
 Summary: XML::RSS::TimingBot-subclass that saves state with DBI
 Name: perl-XML-RSS-TimingBotDBI
 Version: 2.01
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-RSS-TimingBotDBI/
@@ -65,5 +65,8 @@ object, to request RSS feeds.
 %{perl_vendorlib}/XML/RSS/*.pl
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.01-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 2.01-1
 - Initial package.

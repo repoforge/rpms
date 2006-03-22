@@ -12,7 +12,7 @@
 Summary: Client for Apple iTunes DAAP service
 Name: perl-Net-DAAP-Client
 Version: 0.42
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DAAP-Client/
@@ -54,6 +54,9 @@ See the TODO file for future plans.
 %{perl_vendorlib}/Net/DAAP/Client/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.42-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.42-1
 - Updated to release 0.42.
 

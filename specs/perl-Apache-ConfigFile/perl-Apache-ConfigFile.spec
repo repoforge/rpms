@@ -10,7 +10,7 @@
 Summary: Parse an Apache style httpd.conf configuration file
 Name: perl-Apache-ConfigFile
 Version: 1.18
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-ConfigFile/
@@ -55,5 +55,8 @@ function (see below).
 %{perl_vendorlib}/Apache/ConfigFile.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.18-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.18-1
 - Initial package.

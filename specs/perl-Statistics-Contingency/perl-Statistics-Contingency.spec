@@ -10,7 +10,7 @@
 Summary: Calculate precision, recall, F1, accuracy, etc
 Name: perl-Statistics-Contingency
 Version: 0.06
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Statistics-Contingency/
@@ -55,5 +55,8 @@ macro-averaging and micro-averaging over categories.
 %{perl_vendorlib}/Statistics/Contingency.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.

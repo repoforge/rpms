@@ -10,7 +10,7 @@
 Summary: Declaratively Expressed Command-Line Arguments via Regular Expressions
 Name: perl-Getopt-Declare
 Version: 1.11
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Getopt-Declare/
@@ -47,5 +47,8 @@ is specifically designed to be powerful but exceptionally easy to use.
 %{perl_vendorlib}/Getopt/Declare.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.11-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Talk to a POP3 (RFC1939) server
 Name: perl-Mail-POP3Client
 Version: 2.17
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-POP3Client/
@@ -48,6 +48,9 @@ perl-based biff clients, mail readers, or whatever.
 %{perl_vendorlib}/Mail/POP3Client.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.17-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.17-1
 - Updated to release 2.17.
 

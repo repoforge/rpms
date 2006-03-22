@@ -10,7 +10,7 @@
 Summary: Virtual browser that retries errors
 Name: perl-LWP-UserAgent-Determined
 Version: 1.03
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/LWP-UserAgent-Determined/
@@ -59,5 +59,8 @@ settings are relatively sane.
 %{perl_vendorlib}/LWP/UserAgent/Determined.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec 10 2004 Dries Verachtert <dries@ulyssis.org> - 1.03-1
 - Initial package.

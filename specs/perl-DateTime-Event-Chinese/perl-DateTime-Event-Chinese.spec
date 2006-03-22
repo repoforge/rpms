@@ -10,7 +10,7 @@
 Summary: DateTime Extension for Calculating Important Chinese Dates 
 Name: perl-DateTime-Event-Chinese
 Version: 0.04
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Event-Chinese/
@@ -51,6 +51,9 @@ DateTime Extension for Calculating Important Chinese Dates.
 %{perl_vendorlib}/DateTime/Event/Chinese.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Updated to release 0.04.
 

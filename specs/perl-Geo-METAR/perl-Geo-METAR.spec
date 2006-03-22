@@ -10,7 +10,7 @@
 Summary: Accesses Aviation Weather Information
 Name: perl-Geo-METAR
 Version: 1.14
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-METAR/
@@ -46,5 +46,8 @@ With this module, you can access Aviation Weather Information.
 %{perl_vendorlib}/Geo/METAR.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.14-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.14-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Determine if a file was modified
 Name: perl-File-Modified
 Version: 0.07
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Modified/
@@ -49,5 +49,8 @@ allows you to use it as a more general caching mechanism.
 %{perl_vendorlib}/File/Modified.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Dec 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Initial package.

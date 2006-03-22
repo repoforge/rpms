@@ -10,7 +10,7 @@
 Summary: Create common page elements
 Name: perl-CGI-Widget
 Version: 0.15
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Widget/
@@ -49,6 +49,9 @@ to create common, although perhaps complex, page elements.
 %{perl_vendorlib}/CGI/Widget
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.15-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.15-1
 - Initial package.
 
