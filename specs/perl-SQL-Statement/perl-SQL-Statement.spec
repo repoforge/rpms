@@ -10,7 +10,7 @@
 Summary: SQL parsing and processing engine
 Name: perl-SQL-Statement
 Version: 1.14
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SQL-Statement/
@@ -52,6 +52,9 @@ XML, CSV, Fixed Length, Excel Spreadsheets and many others.
 %{perl_vendorlib}/SQL
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.14-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.14-1
 - Updated to release 1.14.
 

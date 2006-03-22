@@ -10,7 +10,7 @@
 Summary: Interface to the bzip2 compression library
 Name: perl-Compress-Bzip2
 Version: 2.09
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Compress-Bzip2/
@@ -47,6 +47,9 @@ library from your Perl scripts to compress ordinary Perl strings.
 %{perl_vendorarch}/auto/Compress/Bzip2
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.09-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.09-1
 - Updated to release 2.09.
 

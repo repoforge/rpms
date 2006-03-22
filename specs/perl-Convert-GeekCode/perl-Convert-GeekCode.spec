@@ -10,7 +10,7 @@
 Summary: Convert and generate geek code sequences
 Name: perl-Convert-GeekCode
 Version: 0.51
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-GeekCode/
@@ -49,5 +49,8 @@ Utility module to convert and generate geek code sequences.
 %{perl_vendorlib}/Convert/GeekCode
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.51-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.51-1
 - Initial package.

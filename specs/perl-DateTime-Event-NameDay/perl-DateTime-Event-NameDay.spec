@@ -10,7 +10,7 @@
 Summary: Perl DateTime extension to work with namedays from various countries
 Name: perl-DateTime-Event-NameDay
 Version: 0.02
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Event-NameDay/
@@ -53,5 +53,8 @@ This module handles generating name days from dates and vice versa.
 %{perl_vendorlib}/DateTime/Event/NameDay/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

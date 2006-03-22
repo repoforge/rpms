@@ -10,7 +10,7 @@
 Summary: Extension for DBI recordsets
 Name: perl-DBIx-Recordset
 Version: 0.26
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-Recordset/
@@ -57,5 +57,8 @@ limited to web applications.
 %{perl_vendorlib}/DBIx/Intrors.pod
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.26-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.26-1
 - Initial package.

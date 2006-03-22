@@ -10,7 +10,7 @@
 Summary: Include external EPSF files
 Name: perl-PostScript-EPSF
 Version: 0.01
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PostScript-EPSF/
@@ -48,5 +48,8 @@ output.
 %{perl_vendorlib}/PostScript/EPSF.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

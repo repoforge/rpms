@@ -10,7 +10,7 @@
 Summary: Module inlining and other Perl source manipulations
 Name: perl-Devel-PreProcessor
 Version: 2003.1128
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-PreProcessor/
@@ -47,5 +47,8 @@ version acording to several user-setable options.
 %{perl_vendorlib}/Devel/PreProcessor.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2003.1128-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2003.1128-1
 - Initial package.

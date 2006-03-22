@@ -10,7 +10,7 @@
 Summary: Utility methods for factory classes
 Name: perl-Class-Factory-Util
 Version: 1.6
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Factory-Util/
@@ -46,5 +46,8 @@ This module contains utility methods for factory classes.
 %{perl_vendorlib}/Class/Factory/Util.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 1.6-1
 - Initial package.

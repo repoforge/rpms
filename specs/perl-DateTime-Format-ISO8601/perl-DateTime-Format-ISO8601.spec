@@ -10,7 +10,7 @@
 Summary: Parses almost all ISO8601 date and time formats
 Name: perl-DateTime-Format-ISO8601
 Version: 0.0403
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Format-ISO8601/
@@ -47,5 +47,8 @@ ISO8601 time-intervals will be supported in a later release.
 %{perl_vendorlib}/DateTime/Format/ISO8601.p*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.0403-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 25 2005 Dries Verachtert <dries@ulyssis.org> - 0.0403-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Manage DNS black lists
 Name: perl-DNS-BL
 Version: 0.03
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DNS-BL/
@@ -59,6 +59,9 @@ servers.
 %{perl_vendorlib}/DNS/BL/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 27 2004 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.
 

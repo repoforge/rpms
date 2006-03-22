@@ -10,7 +10,7 @@
 Summary: Convert arbitrary objects to/from strings
 Name: perl-Data-PropertyList
 Version: 1998.1217
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-PropertyList/
@@ -49,5 +49,8 @@ files, or perhaps for generating error messages while debugging.
 %{perl_vendorlib}/Data/PropertyList.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1998.1217-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1998.1217-1
 - Initial package.

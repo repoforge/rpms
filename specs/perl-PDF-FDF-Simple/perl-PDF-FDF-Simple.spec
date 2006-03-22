@@ -10,7 +10,7 @@
 Summary: Read and write (Acrobat) FDF files
 Name: perl-PDF-FDF-Simple
 Version: 0.10
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PDF-FDF-Simple/
@@ -48,6 +48,9 @@ just want to read or create fdf files.
 %{perl_vendorlib}/PDF/FDF/Simple.p*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Updated to release 0.10.
 

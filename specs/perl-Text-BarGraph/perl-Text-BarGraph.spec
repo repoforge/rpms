@@ -9,7 +9,7 @@
 Summary: Generate ASCII bar graphs
 Name: perl-Text-BarGraph
 Version: 1.0
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://www.robobunny.com/projects/bargraph
@@ -53,5 +53,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorlib}/Text/BarGraph.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 04 2005 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Initial package.

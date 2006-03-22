@@ -13,7 +13,7 @@
 Summary: Module for processing XSLT
 Name: perl-XML-XSLT
 Version: 0.48
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-XSLT/
@@ -54,5 +54,8 @@ XML::XPath.
 %{perl_vendorlib}/XML/XSLT.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.48-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.48-1
 - Initial package.

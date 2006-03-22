@@ -10,7 +10,7 @@
 Summary: Perl module for the X Window System Protocol
 Name: perl-X11-Protocol
 Version: 0.54
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/X11-Protocol/
@@ -51,6 +51,9 @@ This is a module for the X Window System Protocol.
 %{perl_vendorlib}/X11/Protocol/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.54-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.54-1
 - Updated to release 0.54.
 

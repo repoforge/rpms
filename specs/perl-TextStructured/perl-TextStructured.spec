@@ -10,7 +10,7 @@
 Summary: Manipulate fixed-format pages
 Name: perl-TextStructured
 Version: 0.02
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/TextStructured/
@@ -48,5 +48,8 @@ text.  It contains methods for extracting text from the page.
 %{perl_vendorlib}/Text/StructuredBase.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  2 2005 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

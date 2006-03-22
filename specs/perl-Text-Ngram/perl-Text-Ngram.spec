@@ -12,7 +12,7 @@
 Summary: Ngram analysis of text
 Name: perl-Text-Ngram
 Version: 0.08
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Ngram/
@@ -48,5 +48,8 @@ Ngram analysis of text.
 %{perl_vendorarch}/auto/Text/Ngram/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Initial package.

@@ -11,7 +11,7 @@
 Summary: Scalar numerical integration
 Name: perl-Math-Integral-Romberg
 Version: 0.02
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Integral-Romberg/
@@ -49,5 +49,8 @@ Simpson's method and the trapezoid method.
 %{perl_vendorlib}/Math/Integral/Romberg.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Apr 05 2005 Dries Verachtert <dries@ulyssis.org> - 0_02-1
 - Initial package.

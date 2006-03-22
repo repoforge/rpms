@@ -10,7 +10,7 @@
 Summary: Strings as objects with lots of handy methods
 Name: perl-Set-String
 Version: 0.03
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Set-String/
@@ -57,5 +57,8 @@ single statement.
 %{perl_vendorlib}/Set/String.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.

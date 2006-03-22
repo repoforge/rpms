@@ -10,7 +10,7 @@
 Summary: Easy to Use DBI interface
 Name: perl-DBIx-Easy
 Version: 0.16
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-Easy/
@@ -49,6 +49,9 @@ Easy to Use DBI interface.
 %{perl_vendorlib}/DBIx/Easy/Import.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.16-1
 - Updated to release 0.16.
 

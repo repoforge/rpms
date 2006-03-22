@@ -10,7 +10,7 @@
 Summary: Use the GMP library for Math::BigInt routines
 Name: perl-Math-BigInt-GMP
 Version: 1.18
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-BigInt-GMP/
@@ -52,6 +52,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Math/BigInt/GMP/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.18-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.18-1
 - Updated to release 1.18.
 

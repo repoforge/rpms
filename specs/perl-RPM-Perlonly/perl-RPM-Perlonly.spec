@@ -10,7 +10,7 @@
 Summary: Perl only implementaion of a RPM header reader
 Name: perl-RPM-Perlonly
 Version: 1.0.1
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RPM-Perlonly/
@@ -50,5 +50,8 @@ around.
 %{perl_vendorlib}/RPM/Tagtable.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1
 - Initial package.

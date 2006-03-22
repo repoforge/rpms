@@ -10,7 +10,7 @@
 Summary: Impact analysis in a clearmake build environment
 Name: perl-ClearCase-CRDB
 Version: 0.12
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ClearCase-CRDB/
@@ -52,5 +52,8 @@ elements.
 %{perl_vendorlib}/ClearCase/CRDB/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Initial package.

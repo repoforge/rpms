@@ -10,7 +10,7 @@
 Summary: Extension for creating XML from existing DBI datasources
 Name: perl-DBIx-XML_RDB
 Version: 0.05
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-XML_RDB/
@@ -52,5 +52,8 @@ data from one database to another.
 %{perl_vendorlib}/DBIx/xml2sql.pl
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Initial package.

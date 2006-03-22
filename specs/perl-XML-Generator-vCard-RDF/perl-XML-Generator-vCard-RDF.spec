@@ -9,7 +9,7 @@
 Summary: Generate RDF/XML SAX2 events for vCard 3.0
 Name: perl-XML-Generator-vCard-RDF
 Version: 1.4
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Generator-vCard-RDF/
@@ -45,6 +45,9 @@ Generate RDF/XML SAX2 events for vCard 3.0.
 %{perl_vendorlib}/XML/Generator/vCard/RDF.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.4-1
 - Updated to release 1.4.
 

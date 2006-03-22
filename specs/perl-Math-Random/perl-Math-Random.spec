@@ -10,7 +10,7 @@
 Summary: Random number generators
 Name: perl-Math-Random
 Version: 0.67
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Random/
@@ -51,5 +51,8 @@ of wide interest include the generation of:
 %{perl_vendorarch}/auto/Math/Random/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.67-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.67-1
 - Initial package.

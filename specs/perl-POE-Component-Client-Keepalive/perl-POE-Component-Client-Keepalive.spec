@@ -10,7 +10,7 @@
 Summary: Manage connections, with keep-alive
 Name: perl-POE-Component-Client-Keepalive
 Version: 0.06
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Client-Keepalive/
@@ -51,5 +51,8 @@ shot connections would probably be silly.
 %{perl_vendorlib}/POE/Component/Connection/Keepalive.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.

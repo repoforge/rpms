@@ -10,7 +10,7 @@
 Summary: Base class for classes that need to do error handling
 Name: perl-Class-ErrorHandler
 Version: 0.01
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-ErrorHandler/
@@ -46,6 +46,9 @@ Base class for classes that need to do error handling.
 %{perl_vendorlib}/Class/ErrorHandler.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Dec 22 2005 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.
 

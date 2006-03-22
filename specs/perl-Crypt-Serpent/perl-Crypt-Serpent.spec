@@ -11,7 +11,7 @@
 Summary: Crypt::CBC compliant Serpent block cipher encryption module
 Name: perl-Crypt-Serpent
 Version: 1.01
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Serpent/
@@ -72,5 +72,8 @@ main algorithm."
 %{perl_vendorarch}/auto/Crypt/Serpent
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Initial package.
