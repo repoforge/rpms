@@ -19,9 +19,9 @@
 %{?rh6:%define _without_alsa 1}
 %{?yd3:%define _without_alsa 1}
 
-# MMX on x86_64 gets enabled otherwise, but fails to compile (still in 0.9.2cvs)
-%ifarch x86_64
-%define _without_mmx 1
+# Altivec on PPC fails (starting with gcc 4.1 / FC5 it seems)
+%ifarch ppc
+%define _without_altivec 1
 %endif
 
 Summary: DVD video player
