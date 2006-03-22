@@ -10,7 +10,7 @@
 Summary: Configuration file access
 Name: perl-Config-Record
 Version: 1.1.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-Record/
@@ -53,6 +53,9 @@ to an arbitrary depth.
 %{perl_vendorlib}/Config/Record.pod
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.1.0-1
 - Updated to release 1.1.0.
 

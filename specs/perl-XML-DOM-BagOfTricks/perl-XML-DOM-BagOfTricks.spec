@@ -10,7 +10,7 @@
 Summary: Functions for dealing with DOM trees
 Name: perl-XML-DOM-BagOfTricks
 Version: 0.05
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-DOM-BagOfTricks/
@@ -47,5 +47,8 @@ dealing with and creating DOM objects easier.
 %{perl_vendorlib}/auto/XML/DOM/BagOfTricks/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Initial package.

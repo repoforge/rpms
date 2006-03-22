@@ -10,7 +10,7 @@
 Summary: Module for processing makefiles
 Name: perl-Make
 Version: 1.00
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Make/
@@ -47,5 +47,8 @@ This package implements 'make' in perl.
 %{perl_vendorlib}/Make.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.00-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.00-1
 - Initial package.

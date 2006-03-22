@@ -10,7 +10,7 @@
 Summary: Authentication and Authorization via cookie
 Name: perl-Apache-AuthCookie
 Version: 3.08
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-AuthCookie/
@@ -60,6 +60,9 @@ AuthCookie will verify the session key and re-authenticate the user.
 %{perl_vendorlib}/Apache/AuthCookie/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 3.08-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 3.08-1
 - Updated to release 3.08.
 

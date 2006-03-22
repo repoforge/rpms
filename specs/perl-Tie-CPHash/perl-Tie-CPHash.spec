@@ -10,7 +10,7 @@
 Summary: Case preserving but case insensitive hash table
 Name: perl-Tie-CPHash
 Version: 1.001
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-CPHash/
@@ -46,5 +46,8 @@ This module provides a case preserving but case insensitive hash.
 %{perl_vendorlib}/Tie/CPHash.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.001-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.001-1
 - Initial package.

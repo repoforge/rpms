@@ -10,7 +10,7 @@
 Summary: HTML output stream class
 Name: perl-HTML-Stream
 Version: 1.55
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Stream/
@@ -50,5 +50,8 @@ ordinary-print-output, if you like.
 %{perl_vendorlib}/HTML/Stream.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.55-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.55-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Convert numbers between various bases
 Name: perl-Math-BaseCalc
 Version: 1.011
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-BaseCalc/
@@ -48,5 +48,8 @@ predefined digit sets.
 %{perl_vendorlib}/Math/BaseCalc.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.011-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Apr 05 2005 Dries Verachtert <dries@ulyssis.org> - 1.011-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: File locking with flock
 Name: perl-File-BasicFlock
 Version: 98.1202
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-BasicFlock/
@@ -46,5 +46,8 @@ File::BasicFlock is a wrapper around the flock() call.
 %{perl_vendorlib}/File/BasicFlock.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 98.1202-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 98.1202-1
 - Initial package.

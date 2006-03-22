@@ -10,7 +10,7 @@
 Summary: Common source code filters for Inline Modules
 Name: perl-Inline-Filters
 Version: 0.12
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Inline-Filters/
@@ -47,5 +47,8 @@ Modules like Inline::C and Inline::CPP.
 %{perl_vendorlib}/Inline/Filters.p*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Initial package.

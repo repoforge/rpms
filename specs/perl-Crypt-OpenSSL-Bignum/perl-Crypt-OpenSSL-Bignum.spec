@@ -11,7 +11,7 @@
 Summary: OpenSSL's multiprecision integer arithmetic
 Name: perl-Crypt-OpenSSL-Bignum
 Version: 0.03
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-OpenSSL-Bignum/
@@ -55,5 +55,8 @@ requires that the OpenSSL libraries and header files be installed.
 %{perl_vendorarch}/auto/Crypt/OpenSSL/Bignum
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.

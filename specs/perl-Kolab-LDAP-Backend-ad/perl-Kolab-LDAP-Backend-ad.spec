@@ -10,7 +10,7 @@
 Summary: Perl extension for kolab for an Active Directory backend
 Name: perl-Kolab-LDAP-Backend-ad
 Version: 1.01
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Kolab-LDAP-Backend-ad/
@@ -49,6 +49,9 @@ Perl extension for kolab for an Active Directory backend.
 %{perl_vendorlib}/Kolab/LDAP/Backend/ad.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jul 31 2005 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Initial package.
 

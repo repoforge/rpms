@@ -10,7 +10,7 @@
 Summary: Sort lines containing delimited fields
 Name: perl-Sort-Fields
 Version: 0.90
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sort-Fields/
@@ -46,5 +46,8 @@ Sort lines containing delimited fields.
 %{perl_vendorlib}/Sort/Fields.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.90-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.90-1
 - Initial package.

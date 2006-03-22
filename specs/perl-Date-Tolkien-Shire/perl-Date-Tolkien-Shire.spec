@@ -10,7 +10,7 @@
 Summary: Tolkien dates
 Name: perl-Date-Tolkien-Shire
 Version: 1.12
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Tolkien-Shire/
@@ -60,5 +60,8 @@ used that is).
 %{perl_vendorlib}/Date/Tolkien/Shire.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.12-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.12-1
 - Initial package.

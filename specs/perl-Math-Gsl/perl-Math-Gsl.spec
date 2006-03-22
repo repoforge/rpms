@@ -10,7 +10,7 @@
 Summary: Interface to The GNU Scientific Library
 Name: perl-Math-Gsl
 Version: 0.08
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Gsl/
@@ -55,5 +55,8 @@ single GSL function poly_complex_solve.
 # perl_privlib: /usr/lib/perl5/5.8.0
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Apr 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Initial package.

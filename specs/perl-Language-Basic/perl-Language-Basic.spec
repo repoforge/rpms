@@ -10,7 +10,7 @@
 Summary: Interpret BASIC
 Name: perl-Language-Basic
 Version: 1.44
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Language-Basic/
@@ -52,5 +52,8 @@ Note that it implements 80's-era BASIC. Think Applesoft or GW-BASIC.
 %{perl_vendorlib}/Language/Basic
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.44-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.44-1
 - Initial package.

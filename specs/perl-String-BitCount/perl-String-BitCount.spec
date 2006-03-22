@@ -10,7 +10,7 @@
 Summary: Count number of "1" bits in strings
 Name: perl-String-BitCount
 Version: 1.13
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-BitCount/
@@ -48,5 +48,8 @@ string. Only code points in the range 0x00 .. 0xFF are allowed.
 %{perl_vendorlib}/String/BitCount.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.13-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  2 2005 Dries Verachtert <dries@ulyssis.org> - 1.13-1
 - Initial package.

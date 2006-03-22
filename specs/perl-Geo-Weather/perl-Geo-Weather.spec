@@ -10,7 +10,7 @@
 Summary: Weather retrieval module
 Name: perl-Geo-Weather
 Version: 1.41
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-Weather/
@@ -49,5 +49,8 @@ you must be using a recent version of libwww-perl and IO::Socket.
 %{perl_vendorlib}/Geo/Weather.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.41-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.41-1
 - Initial package.

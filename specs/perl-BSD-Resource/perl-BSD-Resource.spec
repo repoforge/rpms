@@ -12,7 +12,7 @@
 Summary: BSD process resource limit and priority functions
 Name: perl-BSD-Resource
 Version: 1.24
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/BSD-Resource/
@@ -61,5 +61,8 @@ with better time resolution.
 %{perl_vendorarch}/auto/BSD/Resource/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.24-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 19 2004 Dries Verachtert <dries@ulyssis.org> - 1.24-1
 - Initial package.

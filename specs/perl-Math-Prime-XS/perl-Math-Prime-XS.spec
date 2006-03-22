@@ -10,7 +10,7 @@
 Summary: Calculate/detect prime numbers with deterministic tests
 Name: perl-Math-Prime-XS
 Version: 0.16
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Prime-XS/
@@ -48,5 +48,8 @@ Summing calculation.
 %{perl_vendorarch}/auto/Math/Prime/XS/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.16-1
 - Initial package.

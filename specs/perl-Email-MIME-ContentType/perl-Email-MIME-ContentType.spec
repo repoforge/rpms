@@ -10,7 +10,7 @@
 Summary: Parse a MIME Content-Type Header
 Name: perl-Email-MIME-ContentType
 Version: 1.01
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-MIME-ContentType/
@@ -53,6 +53,9 @@ Parse a MIME Content-Type Header.
 %{perl_vendorlib}/Email/MIME/ContentType.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Updated to release 1.01.
 

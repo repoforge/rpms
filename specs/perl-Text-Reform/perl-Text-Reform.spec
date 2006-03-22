@@ -11,7 +11,7 @@
 Summary: Manual text wrapping and reformatting
 Name: perl-Text-Reform
 Version: 1.11
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Reform/
@@ -55,5 +55,8 @@ for the built-in Perl format() mechanism.
 %{perl_vendorlib}/Text/demo*.pl
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 19 2004 Dries Verachtert <dries@ulyssis.org> - 1.11
 - Initial package.

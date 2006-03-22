@@ -10,7 +10,7 @@
 Summary: Interpolate values
 Name: perl-Math-Interpolate
 Version: 1.05
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Interpolate/
@@ -48,5 +48,8 @@ sets and finding where a given value lies in a sorted list.
 %{perl_vendorlib}/Math/IntervalSearch.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.05-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Apr 05 2005 Dries Verachtert <dries@ulyssis.org> - 1.05-1
 - Initial package.

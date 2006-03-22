@@ -13,7 +13,7 @@
 Summary: Jabber protocol interface
 Name: perl-Net-Jabber
 Version: 2.0
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Jabber/
@@ -63,6 +63,9 @@ tester.
 %{perl_vendorlib}/Net/Jabber/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 2.0-1
 - Updated to release 2.0.
 

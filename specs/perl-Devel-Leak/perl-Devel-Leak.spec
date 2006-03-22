@@ -10,7 +10,7 @@
 Summary: Utility for looking for perl objects that are not reclaimed
 Name: perl-Devel-Leak
 Version: 0.03
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-Leak/
@@ -47,5 +47,8 @@ is allocating perl data and not releasing them again.
 %{perl_vendorarch}/auto/Devel/Leak
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.

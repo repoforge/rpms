@@ -10,7 +10,7 @@
 Summary: Generic file fetching mechanism
 Name: perl-File-Fetch
 Version: 0.07
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Fetch/
@@ -48,5 +48,8 @@ A generic file fetching mechanism.
 %{perl_vendorlib}/File/Fetch/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Mar 31 2005 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Initial package.
