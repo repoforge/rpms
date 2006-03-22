@@ -141,9 +141,8 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %files -f xine-ui.lang
 %defattr(-, root, root, 0755)
 %doc xine-ui-doc/*
-#{!?_without_aalib:%{_bindir}/aaxine}
-%{_bindir}/aaxine
-%{_bindir}/cacaxine
+%{!?_without_aalib:%{_bindir}/aaxine}
+%{!?_without_caca:%{_bindir}/cacaxine}
 %{_bindir}/fbxine
 %{_bindir}/xine
 %{_bindir}/xine-bugreport
@@ -162,6 +161,10 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 0.99.4-4
+- Make the aaxine and cacaxine %%files entries conditional too (thanks to
+  John Robinson for spotting this).
+
 * Mon Mar  6 2006 Matthias Saou <http://freshrpms.net/> 0.99.4-4
 - Remove setting of the X libs location, as it breaks with modular X.
 
