@@ -10,7 +10,7 @@
 Summary: Eternal root to handle persistent objects
 Name: perl-Class-Eroot
 Version: 2.1
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Eroot/
@@ -46,5 +46,8 @@ An eternal root to handle persistent objects.
 %{perl_vendorlib}/Class/Eroot.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.1-1
 - Initial package.

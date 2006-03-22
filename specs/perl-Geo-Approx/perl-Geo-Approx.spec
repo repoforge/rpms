@@ -10,7 +10,7 @@
 Summary: Represents an approximate global position by a signle number
 Name: perl-Geo-Approx
 Version: 0.8
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-Approx/
@@ -46,5 +46,8 @@ With this module you can represent an approximate global position by a single nu
 %{perl_vendorlib}/Geo/Approx.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.8-1
 - Initial package.

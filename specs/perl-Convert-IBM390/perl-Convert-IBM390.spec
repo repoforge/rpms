@@ -10,7 +10,7 @@
 Summary: Functions for manipulating mainframe data
 Name: perl-Convert-IBM390
 Version: 0.21
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-IBM390/
@@ -54,6 +54,9 @@ hexdump:  dump memory in an MVS-like format
 %{perl_vendorarch}/auto/Convert/IBM390/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.21-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.21-1
 - Updated to release 0.21.
 

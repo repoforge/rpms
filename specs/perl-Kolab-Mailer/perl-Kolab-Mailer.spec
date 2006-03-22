@@ -10,7 +10,7 @@
 Summary: Perl extension for sending out email
 Name: perl-Kolab-Mailer
 Version: 1.01
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Kolab-Mailer/
@@ -46,6 +46,9 @@ Perl extension for sending out email.
 %{perl_vendorlib}/Kolab/Mailer.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jul 31 2005 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Initial package.
 

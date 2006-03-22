@@ -10,7 +10,7 @@
 Summary: Automatically give your module the ability to have plugins
 Name: perl-Module-Pluggable
 Version: 2.96
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Pluggable/
@@ -47,5 +47,8 @@ your module.
 %{perl_vendorlib}/Module/Pluggable.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.96-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jan  4 2006 Dries Verachtert <dries@ulyssis.org> - 2.96-1
 - Initial package.

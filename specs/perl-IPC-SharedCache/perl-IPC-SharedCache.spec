@@ -10,7 +10,7 @@
 Summary: Manage a cache in SysV IPC shared memory
 Name: perl-IPC-SharedCache
 Version: 1.3
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPC-SharedCache/
@@ -46,5 +46,8 @@ This module provides a shared memory cache accessed as a tied hash.
 %{perl_vendorlib}/IPC/SharedCache.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.3-1
 - Initial package.

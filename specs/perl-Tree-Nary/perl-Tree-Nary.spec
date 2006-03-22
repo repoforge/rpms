@@ -10,7 +10,7 @@
 Summary: Perl implementation of N-ary search trees
 Name: perl-Tree-Nary
 Version: 1.3
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tree-Nary/
@@ -52,5 +52,8 @@ can support multiple child nodes.
 %{perl_vendorlib}/Tree/Nary.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.3-1
 - Initial package.

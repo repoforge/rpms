@@ -10,7 +10,7 @@
 Summary: CGI class for handling browser file uploads
 Name: perl-CGI-Upload
 Version: 1.10
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Upload/
@@ -50,6 +50,9 @@ often required information regarding files uploaded in this manner.
 %{perl_vendorlib}/CGI/Upload.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.10-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.10-1
 - Initial package.
 

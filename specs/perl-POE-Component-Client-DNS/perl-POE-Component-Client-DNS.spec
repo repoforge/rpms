@@ -10,7 +10,7 @@
 Summary: Event driven wrapper for Net::DNS::Resolver
 Name: perl-POE-Component-Client-DNS
 Version: 0.9803
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Client-DNS/
@@ -48,5 +48,8 @@ questions, and it emits events carrying Net::DNS::Packet responses.
 %{perl_vendorlib}/POE/Component/Client/DNS.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.9803-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.9803-1
 - Initial package.

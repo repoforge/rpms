@@ -13,7 +13,7 @@
 Summary: Interface to the MD5 Message-Digest Algorithm
 Name: perl-MD5
 Version: 2.03
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MD5/
@@ -50,5 +50,8 @@ This package contains a Perl interface to the MD5 Message-Digest Algorithm.
 %{perl_vendorlib}/MD5.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 2.03-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Encapsulates access to the Ispell program
 Name: perl-Lingua-Ispell
 Version: 0.07
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-Ispell/
@@ -51,5 +51,8 @@ according to the language-specific rules in effect.
 %{perl_vendorlib}/Lingua/Ispell.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Initial package.

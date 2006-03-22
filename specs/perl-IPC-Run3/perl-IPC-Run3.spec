@@ -10,7 +10,7 @@
 Summary: Run a subprocess in batch mode
 Name: perl-IPC-Run3
 Version: 0.034
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPC-Run3/
@@ -51,6 +51,9 @@ Run a subprocess in batch mode.
 %{perl_vendorlib}/IPC/Run3/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.034-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.034-1
 - Updated to release 0.034.
 

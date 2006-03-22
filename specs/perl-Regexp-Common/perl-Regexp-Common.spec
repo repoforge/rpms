@@ -10,7 +10,7 @@
 Summary: Provide commonly requested regular expressions
 Name: perl-Regexp-Common
 Version: 2.120
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Regexp-Common/
@@ -47,5 +47,8 @@ Provide commonly requested regular expressions.
 %{perl_vendorlib}/Regexp/Common
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.120-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.120-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Term::ReadLine UI made easy
 Name: perl-Term-UI
 Version: 0.12
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Term-UI/
@@ -51,6 +51,9 @@ template. It can also parse options per unix style.
 %{perl_vendorlib}/Term/UI/History.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Updated to release 0.12.
 

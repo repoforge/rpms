@@ -10,7 +10,7 @@
 Summary: Simple word wrapping routine
 Name: perl-Text-Wrapper
 Version: 1.000
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Wrapper/
@@ -49,5 +49,8 @@ Text::Format module.
 %{perl_vendorlib}/Text/Wrapper.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.000-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.000-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Dates in the Christian calendar
 Name: perl-DateTime-Calendar-Christian
 Version: 0.04
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Calendar-Christian/
@@ -52,5 +52,8 @@ the Julian and the Gregorian calendars.
 %{perl_vendorlib}/DateTime/Calendar/Christian.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.

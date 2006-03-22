@@ -13,7 +13,7 @@
 Summary: Cleans HTML
 Name: perl-HTML-Clean
 Version: 0.8
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Clean/
@@ -55,5 +55,8 @@ translates HTML input into optimized machine readable code.
 %{perl_vendorlib}/HTML/Clean.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.8-1
 - Initial package.

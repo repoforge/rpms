@@ -12,7 +12,7 @@
 Summary: Interface to the Google SOAP API
 Name: perl-Net-Google
 Version: 1.0
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Google/
@@ -50,6 +50,9 @@ A simple OOP interface to the Google SOAP API.
 %{perl_vendorlib}/Net/Google/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Updated to release 1.0.
 

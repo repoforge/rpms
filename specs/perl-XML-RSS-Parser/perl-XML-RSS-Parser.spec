@@ -12,7 +12,7 @@
 Summary: Parser for RSS formats
 Name: perl-XML-RSS-Parser
 Version: 4.0
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-RSS-Parser/
@@ -51,6 +51,9 @@ the morass of RSS formats in use.
 %{perl_vendorlib}/XML/RSS/Parser/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 4.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 4.0-1
 - Updated to release 4.0.
 

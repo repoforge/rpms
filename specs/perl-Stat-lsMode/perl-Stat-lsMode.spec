@@ -10,7 +10,7 @@
 Summary: Format file modes like the ls -l command does
 Name: perl-Stat-lsMode
 Version: 0.50
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Stat-lsMode/
@@ -47,5 +47,8 @@ ls -l does.
 %{perl_vendorlib}/Stat/lsMode.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.50-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.50-1
 - Initial package.

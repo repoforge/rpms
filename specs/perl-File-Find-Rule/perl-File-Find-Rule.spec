@@ -10,7 +10,7 @@
 Summary: Alternative interface to File::Find
 Name: perl-File-Find-Rule
 Version: 0.28
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Find-Rule/
@@ -54,5 +54,8 @@ This module contains an alternative interface to File::Find.
 %{perl_vendorlib}/File/Find/Rule/*.pod
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.28-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 0.28-1
 - Initial package.

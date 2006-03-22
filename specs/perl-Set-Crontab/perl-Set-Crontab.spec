@@ -10,7 +10,7 @@
 Summary: Expand crontab(5)-style integer lists
 Name: perl-Set-Crontab
 Version: 1.00
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Set-Crontab/
@@ -51,5 +51,8 @@ some utility functions to make it easier to deal with them.
 %{perl_vendorlib}/Set/Crontab.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.00-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 06 2004 Dries Verachtert <dries@ulyssis.org> - 1.00-1
 - Initial package.

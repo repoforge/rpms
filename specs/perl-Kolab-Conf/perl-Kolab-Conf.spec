@@ -10,7 +10,7 @@
 Summary: Perl extension for Kolab template generation
 Name: perl-Kolab-Conf
 Version: 1.03
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Kolab-Conf/
@@ -46,5 +46,8 @@ Perl extension for Kolab template generation.
 %{perl_vendorlib}/Kolab/Conf.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jul 31 2005 Dries Verachtert <dries@ulyssis.org> - 1.03-1
 - Initial package.

@@ -12,7 +12,7 @@
 Summary: Caching capabilities for YAML::LoadFile
 Name: perl-YAML-LoadFileCached
 Version: 0.21
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-LoadFileCached/
@@ -49,5 +49,8 @@ A wrapper around YAML::LoadFile with caching capabilities.
 %{perl_vendorlib}/YAML/LoadFileCached.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.21-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.21-1
 - Initial package.

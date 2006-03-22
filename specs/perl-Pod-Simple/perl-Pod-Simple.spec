@@ -12,7 +12,7 @@
 Summary: Framework for parsing Pod
 Name: perl-Pod-Simple
 Version: 3.03
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Pod-Simple/
@@ -51,6 +51,9 @@ This module contains a framework for parsing Pod.
 %{perl_vendorlib}/Pod/Simple/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 3.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 3.03-1
 - Updated to release 3.03.
 

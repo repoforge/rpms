@@ -10,7 +10,7 @@
 Summary: RADIUS dictionary parser and interface to RADIUS packets
 Name: perl-RADIUS
 Version: 1.0
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RADIUS/
@@ -47,5 +47,8 @@ RADIUS dictionary parser and interface to RADIUS packets.
 %{perl_vendorlib}/RADIUS/Packet.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Initial package.

@@ -13,7 +13,7 @@
 Summary: Simple platform independent mailer
 Name: perl-Mail-Sendmail
 Version: 0.79
-Release: 1
+Release: 1.2
 License: Unknown
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Dispatch/
@@ -51,5 +51,8 @@ Perl 5 and a network connection.
 %{perl_vendorlib}/Mail/Sendmail.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.79-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jun 5 2004 Dries Verachtert <dries@ulyssis.org> - 0.79-1
 - Initial package.
