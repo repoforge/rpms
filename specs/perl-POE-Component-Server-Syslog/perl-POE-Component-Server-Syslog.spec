@@ -10,7 +10,7 @@
 Summary: Syslog services for POE
 Name: perl-POE-Component-Server-Syslog
 Version: 1.03
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Server-Syslog/
@@ -47,5 +47,8 @@ This module provides syslog services for POE.
 %{perl_vendorlib}/POE/Filter/Syslog.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.03-1
 - Initial package.

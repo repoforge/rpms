@@ -10,7 +10,7 @@
 Summary: Scalar variables that time out
 Name: perl-Tie-Scalar-Timeout
 Version: 1.3.2
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-Scalar-Timeout/
@@ -49,5 +49,8 @@ be to time out session variables in mod_perl programs.
 %{perl_vendorlib}/Tie/Scalar/Timeout.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.2-1
 - Initial package.

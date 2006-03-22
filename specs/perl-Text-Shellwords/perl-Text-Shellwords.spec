@@ -10,7 +10,7 @@
 Summary: Wrapper around shellwords.pl
 Name: perl-Text-Shellwords
 Version: 1.08
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Shellwords/
@@ -52,6 +52,9 @@ respects backslash escapes.
 %{perl_vendorlib}/Text/Shellwords.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.08-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.08-1
 - Updated to release 1.08.
 

@@ -10,7 +10,7 @@
 Summary: Calculates the distance between two postal codes
 Name: perl-Geo-PostalCode
 Version: 0.06
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-PostalCode/
@@ -50,5 +50,8 @@ postal code.
 %{perl_vendorlib}/Geo/load.pl
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.

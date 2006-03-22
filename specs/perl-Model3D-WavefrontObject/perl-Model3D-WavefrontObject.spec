@@ -10,7 +10,7 @@
 Summary: Read, Write and manipulate Alias Wavefront Objects
 Name: perl-Model3D-WavefrontObject
 Version: 1.00
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Model3D-WavefrontObject/
@@ -48,5 +48,8 @@ programmatically.
 %{perl_vendorlib}/Model3D/WavefrontObject.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.00-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.00-1
 - Initial package.

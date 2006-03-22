@@ -10,7 +10,7 @@
 Summary: Performs aliasing services
 Name: perl-Alias
 Version: 2.32
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Alias/
@@ -54,5 +54,8 @@ You may find this module useful if you:
 %{perl_vendorarch}/auto/Alias
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.32-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.32-1
 - Initial package.

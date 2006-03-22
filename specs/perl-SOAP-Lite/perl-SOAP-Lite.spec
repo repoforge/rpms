@@ -10,7 +10,7 @@
 Summary: Interface to SOAP
 Name: perl-SOAP-Lite
 Version: 0.67
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SOAP-Lite/
@@ -62,6 +62,9 @@ on client and server side.
 %{perl_vendorlib}/OldDocs/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.67-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jan 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.67-1
 - Updated to release 0.67.
 

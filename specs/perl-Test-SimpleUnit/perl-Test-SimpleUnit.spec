@@ -10,7 +10,7 @@
 Summary: Simplified unit testing framework
 Name: perl-Test-SimpleUnit
 Version: 1.21
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-SimpleUnit/
@@ -47,5 +47,8 @@ run either standalone or under Test::Harness.
 %{perl_vendorlib}/Test/SimpleUnit.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.21-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.21-1
 - Initial package.

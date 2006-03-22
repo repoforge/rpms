@@ -12,7 +12,7 @@
 Summary: Perl DateTime extension for computing rfc2445 recurrences
 Name: perl-DateTime-Event-ICal
 Version: 0.09
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Event-ICal/
@@ -50,6 +50,9 @@ Perl DateTime extension for computing rfc2445 recurrences like
 %{perl_vendorlib}/DateTime/Event/ICal.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.09-1
 - Updated to release 0.09.
 

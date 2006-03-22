@@ -10,7 +10,7 @@
 Summary: Module to handle 3D Vector Mathematics
 Name: perl-Math-VectorReal
 Version: 1.02
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-VectorReal/
@@ -56,5 +56,8 @@ in perl programs using this package.
 %{perl_vendorlib}/Math/*.pl
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.02-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 06 2004 Dries Verachtert <dries@ulyssis.org> - 1.02-1
 - Initial package.

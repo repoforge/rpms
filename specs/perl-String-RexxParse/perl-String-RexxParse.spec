@@ -10,7 +10,7 @@
 Summary: Perl implementation of REXX parse command
 Name: perl-String-RexxParse
 Version: 1.08
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-RexxParse/
@@ -49,5 +49,8 @@ a familiarity with REXX parse statements.
 %{perl_vendorlib}/String/RexxParse.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.08-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.08-1
 - Initial package.

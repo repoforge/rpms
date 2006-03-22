@@ -10,7 +10,7 @@
 Summary: Delimited-key access to complex data structures
 Name: perl-Data-DRef
 Version: 1999.0206
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-DRef/
@@ -46,5 +46,8 @@ This module provides delimited-key access to complex data structures.
 %{perl_vendorlib}/Data/DRef.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1999.0206-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1999.0206-1
 - Initial package.

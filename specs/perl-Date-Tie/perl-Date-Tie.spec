@@ -10,7 +10,7 @@
 Summary: Perlish interface to dates
 Name: perl-Date-Tie
 Version: 0.17
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Tie/
@@ -53,5 +53,8 @@ the other keys following the common (ISO) date rules.
 %{perl_vendorlib}/Date/Tie.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.17-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.17-1
 - Initial package.

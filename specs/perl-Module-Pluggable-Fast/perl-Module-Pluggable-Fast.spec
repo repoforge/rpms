@@ -10,7 +10,7 @@
 Summary: Fast plugins with instantiation
 Name: perl-Module-Pluggable-Fast
 Version: 0.18
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Pluggable-Fast/
@@ -47,6 +47,9 @@ they're found, useful for code generators like "Class::DBI::Loader".
 %{perl_vendorlib}/Module/Pluggable/Fast.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.18-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.18-1
 - Updated to release 0.18.
 

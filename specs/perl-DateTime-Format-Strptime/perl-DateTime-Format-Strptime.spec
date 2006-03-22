@@ -10,7 +10,7 @@
 Summary: Strptime functionality for DateTime
 Name: perl-DateTime-Format-Strptime
 Version: 1.0700
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Format-Strptime/
@@ -49,5 +49,8 @@ a format and returns the DateTime object associated.
 %{perl_vendorlib}/DateTime/Format/Strptime.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.0700-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 25 2005 Dries Verachtert <dries@ulyssis.org> - 1.0700-1
 - Initial package.

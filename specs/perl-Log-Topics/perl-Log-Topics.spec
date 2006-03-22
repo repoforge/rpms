@@ -10,7 +10,7 @@
 Summary: Control flow of logging messages
 Name: perl-Log-Topics
 Version: 0.02
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Topics/
@@ -46,5 +46,8 @@ Control flow of logging messages.
 %{perl_vendorlib}/Log/Topics.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

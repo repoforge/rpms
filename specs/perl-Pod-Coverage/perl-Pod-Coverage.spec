@@ -10,7 +10,7 @@
 Summary: Checks if the documentation of a module is comprehensive
 Name: perl-Pod-Coverage
 Version: 0.17
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Pod-Coverage/
@@ -50,6 +50,9 @@ Checks if the documentation of a module is comprehensive.
 %{perl_vendorarch}/auto/Pod/Coverage/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.17-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.17-1
 - Updated to release 0.17.
 

@@ -10,7 +10,7 @@
 Summary: String conversion between EBCDIC and ASCII
 Name: perl-Convert-EBCDIC
 Version: 0.06
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-EBCDIC/
@@ -48,6 +48,9 @@ ccsid819 and ccsid1047.
 %{perl_vendorlib}/Convert/EBCDIC.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.
 

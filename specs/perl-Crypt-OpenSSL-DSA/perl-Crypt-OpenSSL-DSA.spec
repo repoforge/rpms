@@ -12,7 +12,7 @@
 Summary: DSA encryption
 Name: perl-Crypt-OpenSSL-DSA
 Version: 0.13
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-OpenSSL-DSA/
@@ -56,6 +56,9 @@ OpenSSL crypto library, located at http://www.openssl.org.
 %{perl_vendorarch}/auto/Crypt/OpenSSL/DSA/DSA.so
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.13-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.13-1
 - Updated to release 0.13.
 

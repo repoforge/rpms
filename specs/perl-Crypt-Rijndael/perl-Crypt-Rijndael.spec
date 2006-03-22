@@ -11,7 +11,7 @@
 Summary: Crypt::CBC compliant Rijndael encryption module
 Name: perl-Crypt-Rijndael
 Version: 0.05
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Rijndael/
@@ -50,5 +50,8 @@ and Vincent Rijmen.
 %{perl_vendorarch}/auto/Crypt/Rijndael
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Initial package.

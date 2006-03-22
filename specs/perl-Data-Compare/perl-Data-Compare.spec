@@ -10,7 +10,7 @@
 Summary: Compare perl data structures
 Name: perl-Data-Compare
 Version: 0.13
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Compare/
@@ -48,6 +48,9 @@ of each other.
 %{perl_vendorlib}/Data/Compare
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.13-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.13-1
 - Initial package.
 

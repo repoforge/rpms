@@ -10,7 +10,7 @@
 Summary: Speed up perl scripts by running them persistently
 Name: perl-CGI-SpeedyCGI
 Version: 2.22
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-SpeedyCGI/
@@ -48,5 +48,8 @@ echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}
 %{perl_vendorlib}/CGI/SpeedyCGI.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.22-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.22-1
 - Initial package.

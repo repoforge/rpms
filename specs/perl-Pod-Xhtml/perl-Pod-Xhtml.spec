@@ -10,7 +10,7 @@
 Summary: Generate well-formed XHTML documents from POD format documentation
 Name: perl-Pod-Xhtml
 Version: 1.44
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Pod-Xhtml/
@@ -48,5 +48,8 @@ Generate well-formed XHTML documents from POD format documentation.
 %{perl_vendorlib}/Pod/Xhtml.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.44-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.44-1
 - Initial package.

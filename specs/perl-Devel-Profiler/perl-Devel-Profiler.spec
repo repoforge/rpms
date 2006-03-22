@@ -10,7 +10,7 @@
 Summary: Perl profiler compatible with dprofpp
 Name: perl-Devel-Profiler
 Version: 0.04
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-Profiler/
@@ -49,5 +49,8 @@ tool.  It is meant to be a drop-in replacement for Devel::DProf.
 %{perl_vendorlib}/Devel/Profiler
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.

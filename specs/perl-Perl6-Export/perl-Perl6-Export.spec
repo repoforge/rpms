@@ -10,7 +10,7 @@
 Summary: Implements the Perl 6 is export trait
 Name: perl-Perl6-Export
 Version: 0.07
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Perl6-Export/
@@ -49,5 +49,8 @@ BuildRequires: perl
 %{perl_vendorlib}/Perl6/Export.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Initial package.

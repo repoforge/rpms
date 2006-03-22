@@ -10,7 +10,7 @@
 Summary: Produce many types of charts
 Name: perl-Chart
 Version: 2.3
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Chart/
@@ -51,6 +51,9 @@ With this module you can produce many types of charts.
 %{perl_vendorlib}/Chart/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jan 19 2005 Dag Wieers <dag@wieers.com> - 2.3-1
 - Updated to release 2.3.
 

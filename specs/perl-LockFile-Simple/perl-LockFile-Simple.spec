@@ -10,7 +10,7 @@
 Summary: Simple file locking
 Name: perl-LockFile-Simple
 Version: 0.2.5
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/LockFile-Simple/
@@ -48,5 +48,8 @@ wishing to lock the same files.
 %{perl_vendorlib}/LockFile
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.5-1
 - Initial package.

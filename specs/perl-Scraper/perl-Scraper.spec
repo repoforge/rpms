@@ -12,7 +12,7 @@
 Summary: Framework for scraping results from search engines
 Name: perl-Scraper
 Version: 3.05
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Scraper/
@@ -50,5 +50,8 @@ These modules scrape data from search engines on the WWW.
 %{perl_vendorlib}/WWW/Scraper*.pm
 %{perl_vendorlib}/WWW/Scraper/*
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 3.05-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 3.05-1
 - Initial package.
