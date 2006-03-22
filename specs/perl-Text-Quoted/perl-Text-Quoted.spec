@@ -10,7 +10,7 @@
 Summary: Extract the structure of a quoted mail message
 Name: perl-Text-Quoted
 Version: 1.8
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Quoted/
@@ -46,5 +46,8 @@ Extract the structure of a quoted mail message.
 %{perl_vendorlib}/Text/Quoted.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Dec 31 2005 Dries Verachtert <dries@ulyssis.org> - 1.8-1
 - Initial package.

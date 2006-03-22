@@ -10,7 +10,7 @@
 Summary: Read and write Syntrillium CoolEdit Pro .ses files
 Name: perl-Audio-CoolEdit
 Version: 0.01
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Audio-CoolEdit/
@@ -55,5 +55,8 @@ been developed to be used with Audio::Mix.
 %{perl_vendorlib}/Audio/makewavs.pl
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Setup a CGI enviroment from a HTTP::Request
 Name: perl-HTTP-Request-AsCGI
 Version: 0.3
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-Request-AsCGI/
@@ -46,6 +46,9 @@ Provides a convinient way of setting up an CGI enviroment from a HTTP::Request.
 %{perl_vendorlib}/HTTP/Request/AsCGI.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-1
 - Updated to release 0.3.
 

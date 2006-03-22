@@ -10,7 +10,7 @@
 Summary: Convert numbers with scientific postfixes
 Name: perl-Convert-SciEng
 Version: 0.91
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-SciEng/
@@ -51,5 +51,8 @@ real numbers and back, i.e.
 %{perl_vendorlib}/Convert/demo.pl
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.91-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.91-1
 - Initial package.

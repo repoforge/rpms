@@ -10,7 +10,7 @@
 Summary: Database which maps IP blocks on countries
 Name: perl-Geo-IP
 Version: 1.27
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-IP/
@@ -51,5 +51,8 @@ complete and accurate than reverse DNS lookups.
 %{perl_vendorarch}/auto/Geo/IP/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.27-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.27-1
 - Initial package.

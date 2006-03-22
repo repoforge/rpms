@@ -11,7 +11,7 @@
 Summary: Crypt License module
 Name: perl-Crypt-License
 Version: 2.03
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-License/
@@ -57,6 +57,9 @@ Apache-AuthCookie while not in user space.
 %{perl_vendorlib}/Crypt/License/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 2.03-1
 - Updated to release 2.03.
 

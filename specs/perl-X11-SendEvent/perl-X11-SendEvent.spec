@@ -12,7 +12,7 @@
 Summary: Module for sending events to X windows
 Name: perl-X11-SendEvent
 Version: 1.3
-Release: 1
+Release: 1.2
 License: MIT
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/X11-SendEvent/
@@ -50,5 +50,8 @@ an X window.  It also provides methods for finding windows.
 %{perl_vendorlib}/X11/SendEvent.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.3-1
 - Initial package.

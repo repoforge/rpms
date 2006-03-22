@@ -10,7 +10,7 @@
 Summary: Perl extension for generating reports from logfiles
 Name: perl-Logfile
 Version: 0.302
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Logfile/
@@ -50,5 +50,8 @@ information you extract from the logfiles.
 %{perl_vendorlib}/Net/Country.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.302-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.302-1
 - Initial package.

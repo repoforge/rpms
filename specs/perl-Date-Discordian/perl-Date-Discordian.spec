@@ -10,7 +10,7 @@
 Summary: Calculate the Discordian date of a particular day
 Name: perl-Date-Discordian
 Version: 1.36
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Discordian/
@@ -53,5 +53,8 @@ about time format. Pity.
 %{perl_vendorlib}/Date/Discordian.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.36-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.36-1
 - Initial package.

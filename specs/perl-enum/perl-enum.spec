@@ -10,7 +10,7 @@
 Summary: C style enumerated types and bitmask flags
 Name: perl-enum
 Version: 1.016
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/enum/
@@ -47,5 +47,8 @@ enum types.
 %{perl_vendorlib}/enum.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.016-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.016-1
 - Initial package.

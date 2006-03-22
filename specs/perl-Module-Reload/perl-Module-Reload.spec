@@ -10,7 +10,7 @@
 Summary: Reload %INC files when updated on disk
 Name: perl-Module-Reload
 Version: 1.07
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Reload/
@@ -46,5 +46,8 @@ Reload %INC files when updated on disk.
 %{perl_vendorlib}/Module/Reload.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.07-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.07-1
 - Initial package.

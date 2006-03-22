@@ -10,7 +10,7 @@
 Summary: Bindings for LZO
 Name: perl-Compress-LZO
 Version: 1.08
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Compress-LZO/
@@ -48,5 +48,8 @@ Perl strings.
 %{perl_vendorarch}/auto/Compress/LZO
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.08-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.08-1
 - Initial package.

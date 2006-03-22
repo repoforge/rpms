@@ -10,7 +10,7 @@
 Summary: Wrapper to canonicalization functions
 Name: perl-XML-CanonicalizeXML
 Version: 0.03
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-CanonicalizeXML/
@@ -50,6 +50,9 @@ canonicalization (http://www.w3.org/TR/2002/REC-xml-exc-c14n-20020718/)
 %{perl_vendorarch}/auto/XML/CanonicalizeXML/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Updated to release 0.03.
 

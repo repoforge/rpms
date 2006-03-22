@@ -10,7 +10,7 @@
 Summary: full-text searching in SQL databases
 Name: perl-DBIx-TextIndex
 Version: 0.25
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-TextIndex/
@@ -50,5 +50,8 @@ module. MySQL, PostgreSQL, and SQLite are currently supported.
 %{perl_vendorarch}/auto/DBIx/TextIndex
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.25-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.25-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Report test results of a package retrieved from CPAN
 Name: perl-Test-Reporter
 Version: 1.27
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Reporter/
@@ -55,6 +55,9 @@ Test::Reporter has wide support for various perl5's and platforms.
 %{perl_vendorlib}/Test/Reporter/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.27-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 1.27-1
 - Updated to release 1.27.
 

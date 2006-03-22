@@ -10,7 +10,7 @@
 Summary: Class implementing a fill-in template
 Name: perl-Text-FillIn
 Version: 0.05
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-FillIn/
@@ -48,5 +48,8 @@ text templates.  It is designed to be flexible and sub-classible.
 %{perl_vendorlib}/Text/FillIn.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  2 2005 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Initial package.

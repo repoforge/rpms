@@ -10,7 +10,7 @@
 Summary: Module for working with logical and visual hebrew
 Name: perl-Lingua-IW-Logical
 Version: 0.5
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-IW-Logical/
@@ -55,5 +55,8 @@ available while converting.
 %{perl_vendorlib}/Lingua/IW/Logical.p*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.5-1
 - Initial package.

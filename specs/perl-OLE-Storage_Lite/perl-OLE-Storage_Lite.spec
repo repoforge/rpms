@@ -10,7 +10,7 @@
 Summary: Simple Class for OLE document interface
 Name: perl-OLE-Storage_Lite
 Version: 0.14
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/OLE-Storage_Lite/
@@ -46,5 +46,8 @@ This module allows you to read and write an OLE-Structured file.
 %{perl_vendorlib}/OLE/Storage_Lite.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.14-1
 - Initial package.

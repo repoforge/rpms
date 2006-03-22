@@ -10,7 +10,7 @@
 Summary: Layout Manager for cgi-based web applications
 Name: perl-HTML-TableLayout
 Version: 1.001008
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-TableLayout/
@@ -47,5 +47,8 @@ Layout Manager for cgi-based web applications.
 %{perl_vendorlib}/HTML/TableLayout
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.001008-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.001008-1
 - Initial package.

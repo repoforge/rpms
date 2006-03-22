@@ -10,7 +10,7 @@
 Summary: Identify the dependencies of a distribution
 Name: perl-Module-Depends
 Version: 0.10
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Depends/
@@ -51,6 +51,9 @@ Identify the dependencies of a distribution.
 %{perl_vendorlib}/Module/Depends/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Updated to release 0.10.
 

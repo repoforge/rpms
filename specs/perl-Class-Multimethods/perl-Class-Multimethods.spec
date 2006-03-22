@@ -10,7 +10,7 @@
 Summary: Support multimethods and subroutine overloading in Perl
 Name: perl-Class-Multimethods
 Version: 1.70
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Multimethods/
@@ -46,5 +46,8 @@ Support multimethods and subroutine overloading in Perl.
 %{perl_vendorlib}/Class/Multimethods.p*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.70-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.70-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Easy creation of test scripts
 Name: perl-Test-Helper
 Version: 0.002
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Helper/
@@ -46,5 +46,8 @@ Easy creation of test scripts.
 %{perl_vendorlib}/Test/Helper.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.002-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.002-1
 - Initial package.

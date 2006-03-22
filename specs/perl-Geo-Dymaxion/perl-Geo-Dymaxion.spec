@@ -10,7 +10,7 @@
 Summary: Plot latitude/longitude on a Fuller Dymaxion(tm) map
 Name: perl-Geo-Dymaxion
 Version: 0.12
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-Dymaxion/
@@ -56,5 +56,8 @@ http://www.bfi.org/map.htm for more details.
 %{perl_vendorarch}/auto/Geo/Dymaxion/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Initial package.

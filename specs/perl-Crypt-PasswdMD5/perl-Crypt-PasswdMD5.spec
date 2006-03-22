@@ -10,7 +10,7 @@
 Summary: Provides interoperable MD5-based crypt() functions
 Name: perl-Crypt-PasswdMD5
 Version: 1.3
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-PasswdMD5/
@@ -47,5 +47,8 @@ MD5-based crypt() function found in  various *nixes.
 %{perl_vendorlib}/Crypt/PasswdMD5.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.3-1
 - Initial package.

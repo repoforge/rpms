@@ -9,7 +9,7 @@
 Summary: Perl extension for manipulating IPv4 addresses
 Name: perl-Net-IPv4Addr
 Version: 0.10
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-IPv4Addr/
@@ -47,5 +47,8 @@ This package contains a Perl extension for manipulating IPv4 addresses.
 %{perl_vendorlib}/auto/Net
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Initial package.

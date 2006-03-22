@@ -10,7 +10,7 @@
 Summary: Launch and control background processes
 Name: perl-Proc-Simple
 Version: 1.21
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Proc-Simple/
@@ -52,5 +52,8 @@ from a user's point of view.
 %{perl_vendorlib}/auto/Proc/Simple
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.21-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 08 2004 Dries Verachtert <dries@ulyssis.org> - 1.21-1
 - Initial package.

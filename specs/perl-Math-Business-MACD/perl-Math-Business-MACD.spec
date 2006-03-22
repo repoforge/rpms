@@ -10,7 +10,7 @@
 Summary: Calculate MACDs
 Name: perl-Math-Business-MACD
 Version: 1.10
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Business-MACD/
@@ -46,5 +46,8 @@ Perl extension for calculating MACDs.
 %{perl_vendorlib}/Math/Business/MACD.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.10-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Apr 05 2005 Dries Verachtert <dries@ulyssis.org> - 1.10-1
 - Initial package.

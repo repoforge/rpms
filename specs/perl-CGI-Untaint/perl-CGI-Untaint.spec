@@ -10,7 +10,7 @@
 Summary: Process CGI input parameters
 Name: perl-CGI-Untaint
 Version: 1.26
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Untaint/
@@ -51,6 +51,9 @@ Process CGI input parameters.
 %{perl_vendorlib}/CGI/Untaint/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.26-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.26-1
 - Updated to release 1.26.
 

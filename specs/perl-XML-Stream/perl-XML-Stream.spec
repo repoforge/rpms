@@ -13,7 +13,7 @@
 Summary: XML Stream connection support
 Name: perl-XML-Stream
 Version: 1.22
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Stream/
@@ -51,6 +51,9 @@ This module contains support for XML stream connections.
 %{perl_vendorlib}/XML/Stream/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.22-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.22-1
 - Updated to release 1.22.
 
