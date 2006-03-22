@@ -10,7 +10,7 @@
 Summary: Font dialog widget for perl/Tk
 Name: perl-Tk-FontDialog
 Version: 0.11
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tk-FontDialog/
@@ -46,6 +46,9 @@ Tk::FontDialog is a font chooser for perl/Tk.
 %{perl_vendorlib}/Tk/FontDialog.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.11-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.11-1
 - Updated to release 0.11.
 

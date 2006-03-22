@@ -10,7 +10,7 @@
 Summary: DBI driver for CSV files
 Name: perl-DBD-CSV
 Version: 0.22
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBD-CSV/
@@ -55,6 +55,9 @@ MS Excel data.
 %{perl_vendorlib}/Bundle/DBD/CSV.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.22-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.22-1
 - Updated to release 0.22.
 

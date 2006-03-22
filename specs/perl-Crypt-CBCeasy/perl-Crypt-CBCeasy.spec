@@ -10,7 +10,7 @@
 Summary: Easy things made really easy with Crypt::CBC
 Name: perl-Crypt-CBCeasy
 Version: 0.24
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-CBCeasy/
@@ -46,5 +46,8 @@ Easy things made really easy with Crypt::CBC.
 %{perl_vendorlib}/Crypt/CBCeasy.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.24-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.24-1
 - Initial package.

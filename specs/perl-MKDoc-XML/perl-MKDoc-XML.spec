@@ -12,7 +12,7 @@
 Summary: MKDoc XML Toolkit
 Name: perl-MKDoc-XML
 Version: 0.75
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MKDoc-XML/
@@ -52,6 +52,9 @@ hyperlinks expressions so that MKDoc users don't have to know about a tag syntax
 %{perl_vendorlib}/MKDoc/XML/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.75-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.75-1
 - Updated to release 0.75.
 

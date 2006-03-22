@@ -10,7 +10,7 @@
 Summary: Platform independent mailing list module
 Name: perl-Mail-Bulkmail
 Version: 3.12
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-Bulkmail/
@@ -47,5 +47,8 @@ Platform independent mailing list module.
 %{perl_vendorlib}/Mail/Bulkmail
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 3.12-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 3.12-1
 - Initial package.

@@ -12,7 +12,7 @@
 Summary: Disassemble and investigate Python bytecode  
 Name: perl-Python-Bytecode
 Version: 2.7
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Python-Bytecode/
@@ -50,5 +50,8 @@ With this module, you can disassemble and investigate Python bytecode.
 %{perl_vendorlib}/Python/Bytecode/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 2.7-1
 - Initial package.

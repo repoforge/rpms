@@ -10,7 +10,7 @@
 Summary: Read, compose, modify, and write MIDI files
 Name: perl-MIDI-Perl
 Version: 0.81
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIDI-Perl/
@@ -49,5 +49,8 @@ you follow the example code, you should be able to get along fine.
 %{perl_vendorlib}/MIDI
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.81-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.81-1
 - Initial package.

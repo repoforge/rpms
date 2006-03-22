@@ -12,7 +12,7 @@
 Summary: DateTime::Set extension for computing basic recurrences
 Name: perl-DateTime-Event-Recurrence
 Version: 0.16
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Event-Recurrence/
@@ -49,6 +49,9 @@ This module aims to support basic recurrences, such as 'daily'.
 %{perl_vendorlib}/DateTime/Event/Recurrence.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.16-1
 - Updated to release 0.16.
 

@@ -10,7 +10,7 @@
 Summary: Term::Cap based screen positioning module
 Name: perl-Term-Screen
 Version: 1.03
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Term-Screen/
@@ -46,5 +46,8 @@ A Simple all perl Term::Cap based screen positioning module.
 %{perl_vendorlib}/Term/Screen.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Dec 06 2005 Dries Verachtert <dries@ulyssis.org> - 1.03-1
 - Initial package.

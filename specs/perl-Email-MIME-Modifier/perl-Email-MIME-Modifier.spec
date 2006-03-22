@@ -10,7 +10,7 @@
 Summary: Modify Email::MIME Objects Easily
 Name: perl-Email-MIME-Modifier
 Version: 1.42
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-MIME-Modifier/
@@ -54,6 +54,9 @@ with "Email::MIME" objects.
 %{perl_vendorlib}/Email/MIME/Modifier.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.42-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.42-1
 - Initial package.
 

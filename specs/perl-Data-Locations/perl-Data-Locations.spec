@@ -10,7 +10,7 @@
 Summary: Magic insertion points in your data
 Name: perl-Data-Locations
 Version: 5.4
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Locations/
@@ -46,5 +46,8 @@ Magic insertion points in your data.
 %{perl_vendorarch}/auto/Data/Locations
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 5.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 5.4-1
 - Initial package.

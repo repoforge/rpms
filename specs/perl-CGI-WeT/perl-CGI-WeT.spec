@@ -10,7 +10,7 @@
 Summary: Suite of modules to themeify a website
 Name: perl-CGI-WeT
 Version: 0.71
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-WeT/
@@ -49,5 +49,8 @@ be made to work without mod_perl with a little more effort.
 %{perl_vendorlib}/CGI/WeT/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.71-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.71-1
 - Initial package.

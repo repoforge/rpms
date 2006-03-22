@@ -10,7 +10,7 @@
 Summary: Wrapper for fork
 Name: perl-Proc-Forkfunc
 Version: 96.042201
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Proc-Forkfunc/
@@ -47,5 +47,8 @@ to be a process available.  It will fork off a perl function.
 %{perl_vendorlib}/Proc/Forkfunc.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 96.042201-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 96.042201-1
 - Initial package.

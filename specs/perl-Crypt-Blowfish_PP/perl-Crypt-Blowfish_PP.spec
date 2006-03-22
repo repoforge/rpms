@@ -10,7 +10,7 @@
 Summary: Blowfish encryption algorithm implemented purely in Perl
 Name: perl-Crypt-Blowfish_PP
 Version: 1.12
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Blowfish_PP/
@@ -55,6 +55,9 @@ will not have any compatibility problems.
 %{perl_vendorlib}/Crypt/Blowfish_PP.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.12-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.12-1
 - Initial package.
 

@@ -10,7 +10,7 @@
 Summary: Pivot (cross-tabulate) a table of data
 Name: perl-Data-Xtab
 Version: 1.01
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Xtab/
@@ -47,6 +47,9 @@ that they can be easily used in a report or graph.
 %{perl_vendorlib}/Data/Xtab.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  2 2005 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Initial package.
 

@@ -10,7 +10,7 @@
 Summary: TrackBack element mappings for XML::RAI
 Name: perl-XML-RAI-TrackBack
 Version: 0.1
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-RAI-TrackBack/
@@ -46,5 +46,8 @@ XML::RAI::TrackBack adds TrackBack element mappings for XML::RAI elements.
 %{perl_vendorlib}/XML/RAI/TrackBack.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.1-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Parses and beautifies perl source
 Name: perl-Tidy
 Version: 20031021
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Perl-Tidy/
@@ -53,5 +53,8 @@ write scripts in html format.
 %{perl_vendorlib}/Perl/Tidy.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 20031021-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 20031021-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Extension for manipulating a RADIUS users file
 Name: perl-RADIUS-UserFile
 Version: 1.01
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RADIUS-UserFile/
@@ -46,5 +46,8 @@ Perl extension for manipulating a RADIUS users file.
 %{perl_vendorlib}/RADIUS/UserFile.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Initial package.

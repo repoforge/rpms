@@ -10,7 +10,7 @@
 Summary: Simple, reversible encryption
 Name: perl-Crypt-Rot13
 Version: 0.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Rot13/
@@ -46,5 +46,8 @@ Simple, reversible encryption.
 %{perl_vendorlib}/Crypt/Rot13.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.6-1
 - Initial package.

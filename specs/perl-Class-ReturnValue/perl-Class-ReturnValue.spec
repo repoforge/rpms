@@ -10,7 +10,7 @@
 Summary: Return-value object
 Name: perl-Class-ReturnValue
 Version: 0.53
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-ReturnValue/
@@ -46,6 +46,9 @@ A return-value object that lets you treat it as as a boolean, array or object.
 %{perl_vendorlib}/Class/ReturnValue.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.53-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.53-1
 - Updated to release 0.53.
 

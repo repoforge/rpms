@@ -10,7 +10,7 @@
 Summary: Module for random selecting of a file
 Name: perl-File-Random
 Version: 0.17
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Random/
@@ -46,5 +46,8 @@ This module simplifies the routine job of selecting a random file.
 %{perl_vendorlib}/File/Random.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.17-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.17-1
 - Initial package.

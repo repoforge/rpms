@@ -10,7 +10,7 @@
 Summary: Comma-separated values manipulation routines
 Name: perl-Text-CSV_XS
 Version: 0.23
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-CSV_XS/
@@ -53,5 +53,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Text/CSV_XS/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.23-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar  1 2005 Dries Verachtert <dries@ulyssis.org> - 0.23-1
 - Initial package.

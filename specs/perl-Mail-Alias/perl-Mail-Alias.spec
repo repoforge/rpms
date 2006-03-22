@@ -12,7 +12,7 @@
 Summary: Direct manipulation of email alias files
 Name: perl-Mail-Alias
 Version: 1.12
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-Alias/
@@ -65,5 +65,8 @@ command).
 %{perl_vendorlib}/Mail/Alias.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.12-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.12-1
 - Initial package.

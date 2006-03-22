@@ -10,7 +10,7 @@
 Summary: Inline module for the GNU Guile Scheme interpreter
 Name: perl-Inline-Guile
 Version: 0.001
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Inline-Guile/
@@ -48,5 +48,8 @@ will be available in Perl.
 %{perl_vendorlib}/Inline/Guile.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.001-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.001-1
 - Initial package.

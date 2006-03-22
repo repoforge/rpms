@@ -10,7 +10,7 @@
 Summary: Multi node unordered tree objects
 Name: perl-Tree-MultiNode
 Version: 1.0.10
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tree-MultiNode/
@@ -53,5 +53,8 @@ enforcement would be inappropriate in these cases (at least for me).
 %{perl_vendorlib}/Tree/MultiNode.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.10-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.10-1
 - Initial package.

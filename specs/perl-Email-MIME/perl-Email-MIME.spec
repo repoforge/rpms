@@ -10,7 +10,7 @@
 Summary: Easy MIME message parsing
 Name: perl-Email-MIME
 Version: 1.82
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-MIME/
@@ -55,6 +55,9 @@ message. Headers are decoded from MIME encoding.
 %{perl_vendorlib}/Email/MIME.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.82-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.82-1
 - Initial package.
 

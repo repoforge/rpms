@@ -10,7 +10,7 @@
 Summary: Tied interface to multi-dimensional (Two-Level) hash files
 Name: perl-Tie-TwoLevelHash
 Version: 1.2
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-TwoLevelHash/
@@ -47,5 +47,8 @@ tie to a text file which is a multi-dimensional (two level) hash.
 %{perl_vendorlib}/Tie/TwoLevelHash.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.2-1
 - Initial package.
