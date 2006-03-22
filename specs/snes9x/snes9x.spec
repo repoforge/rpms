@@ -12,7 +12,7 @@
 Summary: Portable, freeware Super Nintendo Entertainment System (TM) emulator
 Name: snes9x
 Version: 1.43
-Release: 6
+Release: 7
 License: Other
 Group: Applications/Emulators
 URL: http://www.snes9x.com/
@@ -23,11 +23,12 @@ Patch2: snes9x-1.43-wmclass.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, zlib-devel, libpng-devel
 %{?_with_opengl:BuildRequires: %{_libdir}/libGL.so}
-%{?_with_modxorg:BuildRequires: libXt-devel, libXext-devel}
+%{?_with_modxorg:BuildRequires: libXt-devel, libXext-devel, libXxf86dga-devel, libXxf86vm-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 %ifarch %{ix86} x86_64
 BuildRequires: nasm
 %endif
+BuildRequires: autoconf, automake, libtool
 
 %description
 Snes9x is a portable, freeware Super Nintendo Entertainment System (SNES)
@@ -44,6 +45,7 @@ and Super Famicom Nintendo game systems on your computer.
 
 %build
 pushd snes9x
+autoreconf
 %configure \
     --without-assembler \
     %{?_with_opengl}
@@ -70,6 +72,10 @@ popd
 
 
 %changelog
+* Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 1.43-7
+- Add missing modular X build requirement.
+- Add autoreconf call to fix configure's X detection.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.43-6
 - Release bump to drop the disttag number in FC5 build.
 

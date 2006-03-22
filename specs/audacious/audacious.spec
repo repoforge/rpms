@@ -10,7 +10,7 @@
 Summary: Media player which uses a skinned interface
 Name: audacious
 Version: 0.2.2
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://audacious-media-player.org/
@@ -43,6 +43,7 @@ Group: Development/Libraries
 Requires: %{name} = %{version}, gtk2-devel, pkgconfig
 %{?_with_vfs:Requires: gnome-vfs2-devel}
 %{!?_without_gconf:Requires: GConf2-devel}
+%{?_with_modxorg:Requires: libXext-devel, libXt-devel}
 
 %description devel
 Audacious is a media player forked from BMP (Beep Media Player) which uses a
@@ -109,6 +110,9 @@ update-desktop-database -q || :
 
 
 %changelog
+* Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 0.2.2-3
+- Add modular X requirements to the devel sub-package to fix plugins build.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.2.2-2
 - Release bump to drop the disttag number in FC5 build.
 

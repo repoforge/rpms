@@ -6,7 +6,10 @@
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{!?dist:%define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{!?dist:%define _with_avahi 1}
+
+%{?fc5:%define _with_modxorg 1}
+%{?fc5:%define _with_avahi 1}
 
 %{?el4:%define _without_wxwidgets 1}
 
@@ -65,7 +68,7 @@
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
 Version: 0.8.4a
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -74,10 +77,10 @@ Source1: http://downloads.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpe
 Source2: http://www.live555.com/liveMedia/public/live.2006.01.05.tar.gz
 Patch0: vlc-0.8.4a-extraqualif.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, libpng-devel, libxml2-devel
+BuildRequires: gcc-c++, libpng-devel, libxml2-devel, libtiff-devel
 BuildRequires: libgcrypt-devel, gnutls-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{?_with_modxorg:BuildRequires: libGLU-devel}
+%{?_with_modxorg:BuildRequires: libGLU-devel, libXv-devel, libXinerama-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_dvdread:BuildRequires: libdvdread-devel}
 %{!?_without_dvdnav:BuildRequires: libdvdnav-devel}
@@ -118,6 +121,7 @@ BuildRequires: libgcrypt-devel, gnutls-devel
 %{!?_without_vcd:BuildRequires: vcdimager-devel}
 %{?_with_avahi:BuildRequires: avahi-devel}
 %{!?_without_daap:BuildRequires: libopendaap-devel}
+%{?_with_avahi:BuildRequires: avahi-devel}
 Conflicts: vlc
 
 %description
@@ -299,6 +303,11 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 0.8.4a-4
+- Add missing modular X build requirements.
+- Add libtiff-devel build requirement.
+- Add avahi (bonjour) support.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.8.4a-3
 - Fix modular X build requirement : libGLU-devel was missing.
 

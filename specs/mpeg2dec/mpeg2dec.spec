@@ -13,7 +13,7 @@
 Summary: MPEG-2 and MPEG-1 decoding library and test program
 Name: mpeg2dec
 Version: 0.4.0
-Release: 7b%{?date:.%{date}}
+Release: 8b%{?date:.%{date}}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libmpeg2.sourceforge.net/
@@ -21,7 +21,7 @@ Source: http://libmpeg2.sourceforge.net/files/mpeg2dec-%{?date:snapshot}%{!?date
 Patch: mpeg2dec-0.4.0b-pic.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, pkgconfig, gcc-c++
-%{?_with_modxorg:BuildRequires: libX11-devel}
+%{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 # Required for ./bootstrap
 BuildRequires: autoconf, automake, libtool
@@ -91,6 +91,9 @@ CFLAGS="%{optflags}" \
 
 
 %changelog
+* Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 0.4.0-8b
+- Fix modular X build requirement.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.4.0-7b
 - Disable/remove static library, nothing seems to use it.
 

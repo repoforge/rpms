@@ -12,7 +12,7 @@
 Summary: TV viewer for GNOME
 Name: zapping
 Version: 0.10
-Release: 0.2%{?prever:.%{prever}}
+Release: 0.3%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
@@ -22,10 +22,8 @@ BuildRequires: libgnomeui-devel, libglade2-devel, gtk2-devel >= 2.4
 BuildRequires: scrollkeeper, gettext, libjpeg-devel, libpng-devel
 BuildRequires: zvbi-devel, arts-devel, lirc-devel
 BuildRequires: python-devel, desktop-file-utils, gcc-c++
-%{?_with_modxorg:BuildRequires: libXmu-devel}
-%ifarch %{ix86}
+%{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel, libXmu-devel, libXxf86dga-devel, libXxf86vm-devel}
 %{!?_without_rte:BuildRequires: rte-devel >= 0.5}
-%endif
 # This one is to get /usr/bin/consolehelper
 BuildRequires: usermode
 
@@ -84,6 +82,10 @@ scrollkeeper-update -q || :
 
 
 %changelog
+* Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 0.10-0.3.cvs4
+- Add missing modular X build requirements.
+- Re-enable rte on all archs since it builds on x86_64 and ppc again.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.10-0.2.cvs4
 - Update to 0.10cvs4.
 

@@ -10,14 +10,14 @@
 Summary: Raw VBI, Teletext and Closed Caption decoding library
 Name: zvbi
 Version: 0.2.19
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
 Source: http://dl.sf.net/zapping/zvbi-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libpng-devel, gcc-c++, doxygen, gettext
-#{?_with_modxorg:BuildRequires: libXt-devel}
+%{?_with_modxorg:BuildRequires: libXt-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 Obsoletes: libzvbi <= 0.2.4
 
@@ -46,7 +46,8 @@ the zvbi library.
 
 
 %build
-%configure --disable-gtk-doc
+%configure \
+    --disable-gtk-doc
 %{__make} %{?_smp_mflags}
 
 
@@ -79,13 +80,17 @@ the zvbi library.
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/*
-%{_libdir}/*.a
+%exclude %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
 
 
 %changelog
+* Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 0.2.19-2
+- Add missing modular X build requirement.
+- Try to disable static library, but the build fails, so exclude in %%files.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.2.19-1
 - Update to 0.2.19.
 

@@ -21,7 +21,7 @@
 Summary: 68k Macintosh emulator
 Name: BasiliskII
 Version: 1.0
-Release: 0.%{date}.4
+Release: 0.%{date}.5
 License: GPL
 Group: Applications/Emulators
 URL: http://www.gibix.net/projects/basilisk2/
@@ -32,7 +32,7 @@ Patch: BasiliskII-1.0-nostrip.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gtk2-devel, esound-devel >= 0.2.8
 BuildRequires: desktop-file-utils, readline-devel
-%{?_with_modxorg:BuildRequires: libXt-devel}
+%{?_with_modxorg:BuildRequires: libXt-devel, libXxf86dga-devel, libXxf86vm-devel}
 %{?_with_sdl:BuildRequires: SDL-devel}
 
 %description
@@ -108,6 +108,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.20051122.5
+- Add missing modular X build requirements.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.20051122.4
 - Release bump to drop the disttag number in FC5 build.
 

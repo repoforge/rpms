@@ -9,7 +9,6 @@
 
 %{!?dist:%define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
-%{?_with_modxorg: %define _without_xvmc 1}
 
 %{?fc1:%define _without_alsa 1}
 %{?fc1:%define _without_theora 1}
@@ -57,7 +56,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.25%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.26%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -111,8 +110,9 @@ BuildRequires: ImageMagick
 %{!?_without_mpc:BuildRequires: libmpcdec-devel}
 %{!?_without_vstream:BuildRequires: vstream-client-devel}
 %{!?_without_amrnb:BuildRequires: amrnb-devel}
-%{?_with_modxorg:BuildRequires: libXv-devel, mesa-libGL-devel, libXvMC-devel}
+%{?_with_modxorg:BuildRequires: libXv-devel, libXxf86vm-devel, libGL-devel}
 %{!?_with_modxorg:%{!?_without_xvmc:BuildRequires: libXvMCW-devel}}
+%{?_with_modxorg:%{!?_without_xvmc:BuildRequires: libXvMC-devel}}
 
 %description
 MPlayer is a multimedia player. It plays most video formats as well as DVDs.
@@ -228,7 +228,8 @@ echo | ./configure \
     %{!?_without_osdmenu:--enable-menu} \
     %{?_with_samba:--enable-smb} \
     %{!?_without_fribidi:--enable-fribidi} \
-    %{!?_without_xvmc:--enable-xvmc --with-xvmclib=XvMCW} \
+    %{!?_with_modxorg:%{!?_without_xvmc:--enable-xvmc --with-xvmclib=XvMCW}} \
+    %{?_with_modxorg:%{!?_without_xvmc:--enable-xvmc}} \
     %{!?_without_live:--with-livelibdir=`pwd`/live} \
     --enable-debug
 
@@ -321,6 +322,10 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.26.20060314
+- Add missing modular X build requirements.
+- Re-enable libXvMC with modular X.
+
 * Tue Mar 14 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.25.20060314
 - Update to current CVS which fixes the heap overflow in demuxer.h issue.
 - Update live555 library to 2006.03.03.

@@ -28,7 +28,7 @@
 Summary: Linux video stream processing utility
 Name: transcode
 Version: 1.0.2
-Release: 4%{?prever:.%{prever}}
+Release: 5%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
@@ -40,7 +40,7 @@ BuildRequires: libdv-devel, bzip2-devel, ed, lzo-devel, libpng-devel
 BuildRequires: mpeg2dec-devel, ffmpeg-devel
 # Seems like ImageMagick-devel should require this! (FC2 and higher)
 BuildRequires: libexif-devel
-%{?_with_modxorg:BuildRequires: libXv-devel}
+%{?_with_modxorg:BuildRequires: libXv-devel, libXaw-devel, libXpm-devel}
 %{!?_without_postproc:BuildRequires: ffmpeg-libpostproc-devel}
 %{!?_without_lame:BuildRequires: lame-devel >= 3.89}
 %{!?_without_theora:BuildRequires: libtheora-devel}
@@ -128,6 +128,9 @@ export CFLAGS="%{optflags} -I%{_includedir}/postproc"
 
 
 %changelog
+* Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 1.0.2-5
+- Add missing modular X build requirements.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.0.2-4
 - Release bump to drop the disttag number in FC5 build.
 

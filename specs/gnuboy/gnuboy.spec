@@ -10,7 +10,7 @@
 Summary: Nintendo GameBoy Color emulator
 Name: gnuboy
 Version: 1.0.3
-Release: 9
+Release: 10
 License: GPL
 Group: Applications/Emulators
 Source: http://gnuboy.unix-fu.org/src/%{name}-%{version}.tar.gz
@@ -18,7 +18,7 @@ URL: http://gnuboy.unix-fu.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL >= 1.2.0
 BuildRequires: SDL-devel >= 1.2.0
-%{?_with_modxorg:BuildRequires: libX11-devel}
+%{?_with_modxorg:BuildRequires: libXt-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 
 %description
@@ -51,6 +51,9 @@ Nintendo GameBoy Color software platform.
 
 
 %changelog
+* Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 1.0.3-10
+- Fix modular X build requirement.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.0.3-9
 - Release bump to drop the disttag number in FC5 build.
 

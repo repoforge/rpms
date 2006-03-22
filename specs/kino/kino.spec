@@ -13,7 +13,7 @@
 Summary: Simple non-linear video editor
 Name: kino
 Version: 0.8.1
-Release: 0.1%{?cvs:.%{cvs}}
+Release: 0.2%{?cvs:.%{cvs}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.kinodv.org/
@@ -24,7 +24,7 @@ BuildRequires: libdv-devel >= 0.102, libavc1394-devel, libraw1394-devel
 BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel
 BuildRequires: gtk2-devel >= 2.6, libglade2-devel, gettext
 BuildRequires: libxml2-devel, libsamplerate-devel, intltool
-%{?_with_modxorg:BuildRequires: libXv-devel}
+%{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel}
 # libtool *sigh*
 BuildRequires: gcc-c++
 %{!?_without_quicktime:BuildRequires: libquicktime-devel}
@@ -93,6 +93,9 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 
 
 %changelog
+* Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 0.8.1-0.2.20060320
+- Add missing modular X build requirement.
+
 * Mon Mar 20 2006 Matthias Saou <http://freshrpms.net/> 0.8.1-0.1.20060320
 - Update to today's CVS to fix rebuild against latest libquicktime.
 
