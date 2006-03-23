@@ -1,0 +1,14 @@
+/var/log/asterisk/debug /var/log/asterisk/messages /var/log/asterisk/*log {
+    missingok
+    compress
+    sharedscripts
+    postrotate
+        /usr/sbin/asterisk -rx 'logger reload' &>/dev/null
+    endscript 
+}
+
+/var/log/asterisk/cdr-csv/*csv {
+    missingok
+    compress
+}
+
