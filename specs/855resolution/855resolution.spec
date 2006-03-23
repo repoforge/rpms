@@ -4,12 +4,13 @@
 Summary: Change video bios resolutions on laptops with Intel graphic chipsets
 Name: 855resolution
 Version: 0.4
-Release: 3
+Release: 4
 License: Public Domain
 Group: Applications/System
 URL: http://perso.wanadoo.fr/apoirier/
 Source0: http://perso.wanadoo.fr/apoirier/855resolution-%{version}.tgz
 Source1: 855resolution.init
+Source2: 855resolution.pm-hook
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # This utility doesn't make sense on other archs, those chipsets are i386 only
 ExclusiveArch: i386
@@ -44,6 +45,10 @@ boot, then you need to edit %{_sysconfdir}/sysconfig/855resolution.
 %{__install} -D -m 0755 %{SOURCE1} \
     %{buildroot}%{_sysconfdir}/rc.d/init.d/855resolution
 
+# Power Management hook, as 15 since video is 20 (for suspend to disk)
+%{__install} -D -m 0755 %{SOURCE2} \
+    %{buildroot}%{_sysconfdir}/pm/hooks/15resolution
+
 # Default sysconfig entry.
 %{__mkdir_p} %{buildroot}%{_sysconfdir}/sysconfig/
 %{__cat} > %{buildroot}%{_sysconfdir}/sysconfig/855resolution << EOF
@@ -71,12 +76,18 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES.txt LICENSE.txt README.txt
+%config %{_sysconfdir}/pm/hooks/15resolution
 %config %{_sysconfdir}/rc.d/init.d/855resolution
 %config(noreplace) %{_sysconfdir}/sysconfig/855resolution
 %{_sbindir}/855resolution
 
 
 %changelog
+* Thu Mar 23 2006 Matthias Saou <http://freshrpms.net/> 0.4-4
+- Add pm hook script in order to fix suspend to disk resume, as the video BIOS
+  resolution needs to be overwritten before video is started upon resume too.
+  Thanks to Luke Hutchison for the script and the testing.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.4-3
 - Release bump to drop the disttag number in FC5 build.
 

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+case "$1" in
+	suspend)
+		;;
+	resume)
+		service 855resolution start &>/dev/null
+		;;
+	*)
+		;;
+esac
+
+exit $?
