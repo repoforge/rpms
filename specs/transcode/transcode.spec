@@ -28,7 +28,7 @@
 Summary: Linux video stream processing utility
 Name: transcode
 Version: 1.0.2
-Release: 5%{?prever:.%{prever}}
+Release: 6%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
@@ -128,6 +128,11 @@ export CFLAGS="%{optflags} -I%{_includedir}/postproc"
 
 
 %changelog
+* Thu Mar 23 2006 Matthias Saou <http://freshrpms.net/> 1.0.2-6
+- Rebuild against mjpegtools 1.8 and not 1.9, although 1.9 seems like it will
+  have to be introduced at some point to fix compatibility with the latest
+  libquicktime 0.9.8, and fix the ppc build.
+
 * Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 1.0.2-5
 - Add missing modular X build requirements.
 
