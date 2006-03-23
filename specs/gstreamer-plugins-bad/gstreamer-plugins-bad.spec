@@ -14,7 +14,7 @@
 Summary: GStreamer streaming media framework "bad" plug-ins
 Name: %{gstreamer}-plugins-bad
 Version: 0.10.1
-Release: 1
+Release: 2
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
@@ -25,6 +25,7 @@ BuildRequires: %{gstreamer}-devel >= %{gst_minver}
 BuildRequires: %{gstreamer}-plugins-base-devel >= %{gstpb_minver}
 
 BuildRequires: gcc-c++
+BuildRequires: gettext-devel
 BuildRequires: gtk-doc
 BuildRequires: PyXML
 Buildrequires: libXt-devel
@@ -43,6 +44,7 @@ BuildRequires: xvidcore-devel
 BuildRequires: bzip2-devel
 BuildRequires: mesa-libGLU-devel
 BuildRequires: neon-devel
+BuildRequires: libmms-devel
 
 %description
 GStreamer is a streaming media framework, based on graphs of elements which
@@ -112,6 +114,7 @@ This package contains development files and documentation.
 %{_libdir}/gstreamer-%{majorminor}/libgstfaad.so
 %{_libdir}/gstreamer-%{majorminor}/libgstglimagesink.so
 %{_libdir}/gstreamer-%{majorminor}/libgstgsm.so
+%{_libdir}/gstreamer-%{majorminor}/libgstmms.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmusepack.so
 %{_libdir}/gstreamer-%{majorminor}/libgstneonhttpsrc.so
 %{_libdir}/gstreamer-%{majorminor}/libgstsdlvideosink.so
@@ -126,6 +129,9 @@ This package contains development files and documentation.
 
 
 %changelog
+* Thu Mar 23 2006 Matthias Saou <http://freshrpms.net/> 0.10.1-2
+- Add libmms support, thanks to Daniel S. Rogers.
+
 * Wed Feb 22 2006 Matthias Saou <http://freshrpms.net/> 0.10.1-1
 - Update to 0.10.1.
 - Add libgstcdxaparse.so and libgstfreeze.so.
