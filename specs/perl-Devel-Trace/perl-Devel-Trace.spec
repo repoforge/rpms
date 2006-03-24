@@ -13,7 +13,7 @@
 Summary: Trace perl programs
 Name: perl-Devel-Trace
 Version: 0.10
-Release: 1
+Release: 1.2
 License: Unknown
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-Trace/
@@ -52,5 +52,8 @@ the "-x" option of bash.
 %{perl_vendorlib}/Devel/Trace.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jun 12 2004 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Initial package.

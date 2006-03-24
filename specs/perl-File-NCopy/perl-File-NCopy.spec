@@ -13,7 +13,7 @@
 Summary: Copy files
 Name: perl-File-NCopy
 Version: 0.34
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-NCopy/
@@ -50,5 +50,8 @@ Easy functions for copying files.
 %{perl_vendorlib}/File/NCopy.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.34-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.34-1
 - Initial package.

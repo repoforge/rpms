@@ -10,7 +10,7 @@
 Summary: Specifications of paper stock, labels and other print media
 Name: perl-Paper-Specs
 Version: 0.07
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Paper-Specs/
@@ -48,6 +48,9 @@ well known print media.
 %{perl_vendorlib}/Paper/Specs/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Initial package.
 

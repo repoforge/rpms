@@ -11,7 +11,7 @@
 Summary: Perl interface to PARI
 Name: perl-Math-Pari
 Version: 2.010702
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Pari/
@@ -56,6 +56,9 @@ More info can be found at http://www.parigp-home.de/
 %{perl_vendorarch}/auto/Math/Pari/Pari.*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.010702-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.010702-1
 - Updated to release 2.010702.
 

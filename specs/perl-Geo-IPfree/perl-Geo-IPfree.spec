@@ -10,7 +10,7 @@
 Summary: Look up the country of an ipaddress.
 Name: perl-Geo-IPfree
 Version: 0.2
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-IPfree/
@@ -48,5 +48,8 @@ With this module, you can lookup the country of an ipaddress.
 %{perl_vendorlib}/Geo/ipscountry.dat
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.2-1
 - Initial package.

@@ -13,7 +13,7 @@
 Summary: Text templates functions
 Name: perl-Text-Template
 Version: 1.44
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Template/
@@ -55,5 +55,8 @@ them with their values.
 %{perl_vendorlib}/Text/Template/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.44-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 1.44-1
 - Initial package.

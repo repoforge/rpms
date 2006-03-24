@@ -10,7 +10,7 @@
 Summary: Work with the cross product of two or more sets
 Name: perl-Set-CrossProduct
 Version: 1.6
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Set-CrossProduct/
@@ -46,5 +46,8 @@ Work with the cross product of two or more sets.
 %{perl_vendorlib}/Set/CrossProduct.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.6-1
 - Initial package.

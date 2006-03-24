@@ -10,7 +10,7 @@
 Summary: Parse and create fixed length field records
 Name: perl-Text-FixedLength
 Version: 0.12
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-FixedLength/
@@ -47,5 +47,8 @@ fields, write out files, and read in files to convert
 %{perl_vendorlib}/Text/FixedLength.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Initial package.

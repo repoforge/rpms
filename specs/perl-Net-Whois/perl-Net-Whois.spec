@@ -10,7 +10,7 @@
 Summary: Get and parse whois domain data from InterNIC
 Name: perl-Net-Whois
 Version: 1.9
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Whois/
@@ -51,5 +51,8 @@ the RIPE and others as well.
 %{perl_vendorlib}/Net/Whois.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.9-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.9-1
 - Initial package.

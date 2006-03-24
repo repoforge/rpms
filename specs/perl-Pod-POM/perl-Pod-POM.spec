@@ -10,7 +10,7 @@
 Summary: POD Object Model
 Name: perl-Pod-POM
 Version: 0.17
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Pod-POM/
@@ -61,5 +61,8 @@ generate an output representation in one form or another.
 %{perl_vendorlib}/Pod/POM/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.17-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 20 2004 Dries Verachtert <dries@ulyssis.org> - 0.17-1
 - Initial package.

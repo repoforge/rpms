@@ -10,7 +10,7 @@
 Summary: Interface to SASL
 Name: perl-Authen-SASL
 Version: 2.09
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Authen-SASL/
@@ -53,6 +53,9 @@ This module permits authentication with SASL.
 %{perl_vendorlib}/Authen/SASL/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.09-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 2.09-1
 - Updated to release 2.09.
 

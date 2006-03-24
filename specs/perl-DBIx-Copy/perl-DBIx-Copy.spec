@@ -10,7 +10,7 @@
 Summary: For copying database content from one db to another
 Name: perl-DBIx-Copy
 Version: 0.03_1
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-Copy/
@@ -47,5 +47,8 @@ be copied, future versions will handle the DD (data definitons) as well.
 %{perl_vendorlib}/DBIx/Copy.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03_1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.03_1-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Advanced CGI form parser and type validation
 Name: perl-CGI-Validate
 Version: 2.000
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Validate/
@@ -54,5 +54,8 @@ clean try/catch style block.
 %{perl_vendorlib}/CGI/Validate.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.000-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.000-1
 - Initial package.

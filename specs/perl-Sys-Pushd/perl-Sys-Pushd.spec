@@ -10,7 +10,7 @@
 Summary: Change directory temporarily
 Name: perl-Sys-Pushd
 Version: 0.001
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-Pushd/
@@ -46,5 +46,8 @@ A micro-module permitting you to change directory, lexically.
 %{perl_vendorlib}/Sys/Pushd.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.001-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.001-1
 - Initial package.

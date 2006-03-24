@@ -9,7 +9,7 @@
 Summary: IO-Stringy - I/O on in-core objects like strings and arrays
 Name: perl-IO-stringy
 Version: 2.110
-Release: 1
+Release: 1.2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-stringy/
@@ -56,6 +56,9 @@ may be used to painlessly create files which are updated atomically.
 %{perl_vendorlib}/IO/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.110-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.110-1
 - Updated to release 2.110.
 

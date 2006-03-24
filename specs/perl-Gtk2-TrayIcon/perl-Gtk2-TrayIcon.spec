@@ -13,7 +13,7 @@
 Summary: Interface to the EggTrayIcon library
 Name: perl-Gtk2-TrayIcon
 Version: 0.03
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gtk2-TrayIcon/
@@ -52,5 +52,8 @@ This module contains a perl interface to the EggTrayIcon library.
 %{perl_vendorarch}/auto/Gtk2/TrayIcon/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.

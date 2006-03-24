@@ -10,7 +10,7 @@
 Summary: Generates usage message for CGI scripts
 Name: perl-Pod-Usage-CGI
 Version: 1.010
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Pod-Usage-CGI/
@@ -46,6 +46,9 @@ This package generates usage information for CGI scripts.
 %{perl_vendorlib}/Pod/Usage/CGI.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.010-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.010-1
 - Initial package.
 

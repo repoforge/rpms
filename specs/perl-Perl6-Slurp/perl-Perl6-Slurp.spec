@@ -10,7 +10,7 @@
 Summary: Implements the Perl 6 'slurp' built-in
 Name: perl-Perl6-Slurp
 Version: 0.03
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Perl6-Slurp/
@@ -50,5 +50,8 @@ This package implements the Perl 6 'slurp' built-in.
 %{perl_vendorlib}/Perl6/Slurp.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.

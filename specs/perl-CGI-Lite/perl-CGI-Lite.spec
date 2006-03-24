@@ -10,7 +10,7 @@
 Summary: Process and decode WWW forms and cookies
 Name: perl-CGI-Lite
 Version: 2.02
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Lite/
@@ -48,5 +48,8 @@ yourself with the actual details behind the decoding process.
 %{perl_vendorlib}/CGI/Lite.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.02-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.02-1
 - Initial package.

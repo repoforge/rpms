@@ -10,7 +10,7 @@
 Summary: Peek into the internals of a running POE environment
 Name: perl-POE-API-Peek
 Version: 1.06
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-API-Peek/
@@ -48,6 +48,9 @@ calculated data is also available.
 %{perl_vendorlib}/POE/API/Peek.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.06-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.06-1
 - Initial package.
 

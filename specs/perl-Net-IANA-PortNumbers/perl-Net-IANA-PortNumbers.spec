@@ -12,7 +12,7 @@
 Summary: Translate ports to services and vice versa
 Name: perl-Net-IANA-PortNumbers
 Version: 1.16
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-IANA-PortNumbers/
@@ -51,5 +51,8 @@ With this module, you can translate ports to services and vice versa.
 %{perl_vendorlib}/Net/IANA
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.16-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.16-1
 - Initial package.

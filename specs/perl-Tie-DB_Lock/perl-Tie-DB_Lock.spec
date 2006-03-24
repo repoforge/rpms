@@ -10,7 +10,7 @@
 Summary: Ties hashes to databases using shared and exclusive locks
 Name: perl-Tie-DB_Lock
 Version: 0.07
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-DB_Lock/
@@ -47,5 +47,8 @@ a specific locking scheme when opening Berkeley (DB_File) databases.
 %{perl_vendorlib}/Tie/DB_Lock.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Initial package.

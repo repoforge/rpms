@@ -12,7 +12,7 @@
 Summary: Regular expressions for XML tokens
 Name: perl-XML-RegExp
 Version: 0.03
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-RegExp/
@@ -51,5 +51,8 @@ EntityRef, CharRef, Reference, Name, NmToken, and AttValue.
 %{perl_vendorlib}/XML/RegExp.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.

@@ -13,7 +13,7 @@
 Summary: Module for sending mails with attachments
 Name: perl-Mail-Sender
 Version: 0.8.10
-Release: 1
+Release: 1.2
 License: Other
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-Sender/
@@ -54,5 +54,8 @@ echo "N" | %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 %{perl_vendorlib}/Mail/Sender
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.10-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jun 5 2004 Dries Verachtert <dries@ulyssis.org> - 0.8.10-1
 - Initial package.

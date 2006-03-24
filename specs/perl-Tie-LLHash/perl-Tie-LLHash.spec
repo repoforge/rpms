@@ -10,7 +10,7 @@
 Summary: Ordered hashes
 Name: perl-Tie-LLHash
 Version: 1.003
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-LLHash/
@@ -47,5 +47,8 @@ ordered Perl hashes.  It is designed to be flexible and sub-classible.
 %{perl_vendorlib}/Tie/LLHash.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.003-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.003-1
 - Initial package.

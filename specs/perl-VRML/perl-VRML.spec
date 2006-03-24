@@ -10,7 +10,7 @@
 Summary: Specification independent VRML methods
 Name: perl-VRML
 Version: 1.04
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/VRML/
@@ -47,5 +47,8 @@ Specification independent VRML methods (1.0, 2.0, 97).
 %{perl_vendorlib}/VRML
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.04-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.04-1
 - Initial package.
