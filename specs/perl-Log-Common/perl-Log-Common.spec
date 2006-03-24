@@ -10,7 +10,7 @@
 Summary: Log messages in the httpd access and error log styles
 Name: perl-Log-Common
 Version: 1.00
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Common/
@@ -46,5 +46,8 @@ Log messages in the httpd access and error log styles
 %{perl_vendorlib}/Log/Common.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.00-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.00-1
 - Initial package.

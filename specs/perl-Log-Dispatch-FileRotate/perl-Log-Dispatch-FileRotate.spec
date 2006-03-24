@@ -13,7 +13,7 @@
 Summary: Automatically archive and rotate logfiles
 Name: perl-Log-Dispatch-FileRotate
 Version: 1.13
-Release: 1
+Release: 1.2
 License: Unknown
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Dispatch-FileRotate/
@@ -54,6 +54,9 @@ with additions.
 %{perl_vendorlib}/Log/Dispatch/FileRotate.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.13-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 1.13-1
 - Updated to release 1.13.
 

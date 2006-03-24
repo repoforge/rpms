@@ -10,7 +10,7 @@
 Summary: Solution of Bezier Curves
 Name: perl-Math-Bezier
 Version: 0.01
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Bezier/
@@ -52,5 +52,8 @@ curves as presented by Robert D. Miller in Graphics Gems V,
 %{perl_vendorlib}/Math/Bezier.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec 10 2004 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

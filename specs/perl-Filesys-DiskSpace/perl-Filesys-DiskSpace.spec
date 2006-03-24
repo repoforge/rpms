@@ -10,7 +10,7 @@
 Summary: Perl df
 Name: perl-Filesys-DiskSpace
 Version: 0.05
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Filesys-DiskSpace/
@@ -48,5 +48,8 @@ of inodes.
 %{perl_vendorlib}/Filesys/DiskSpace.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Initial package.

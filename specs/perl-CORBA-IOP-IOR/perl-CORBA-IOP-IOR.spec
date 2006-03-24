@@ -10,7 +10,7 @@
 Summary: Decode, munge, and re-encode CORBA IORs
 Name: perl-CORBA-IOP-IOR
 Version: 0.1
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CORBA-IOP-IOR/
@@ -47,5 +47,8 @@ it very useful for debugging CORBA interoperability.
 %{perl_vendorlib}/CORBA/IOP
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.1-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: CipherSaber encryption
 Name: perl-Crypt-CipherSaber
 Version: 1.00
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-CipherSaber/
@@ -47,6 +47,9 @@ CipherSaber-1 and CipherSaber-2 encryption.
 %{perl_vendorlib}/Crypt/CipherSaber.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.00-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.00-1
 - Updated to release 1.00.
 

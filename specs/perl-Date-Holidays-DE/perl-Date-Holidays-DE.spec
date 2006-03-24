@@ -10,7 +10,7 @@
 Summary: Creates a list of german holidays in a given year
 Name: perl-Date-Holidays-DE
 Version: 0.6
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Holidays-DE/
@@ -55,5 +55,8 @@ definitions.
 %{perl_vendorlib}/Date/Holidays/DE.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.6-1
 - Initial package.

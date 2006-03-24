@@ -10,7 +10,7 @@
 Summary: Interface to LDAP for Perl
 Name: perl-ldap
 Version: 0.31
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ldap/
@@ -55,5 +55,8 @@ This package contains a perl module with an interface to LDAP.
 %{perl_vendorlib}/Net/LDAP*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.31-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.31-1
 - Initial package.

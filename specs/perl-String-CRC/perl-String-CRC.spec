@@ -10,7 +10,7 @@
 Summary: Cyclic redundency check generation
 Name: perl-String-CRC
 Version: 1.0
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-CRC/
@@ -50,5 +50,8 @@ in list context and as a packed binary string if called in scalar context.
 %{perl_vendorarch}/auto/String/CRC/CRC.*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  2 2005 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Interface for developing internet servers
 Name: perl-NetServer-Generic
 Version: 1.03
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/NetServer-Generic/
@@ -48,5 +48,8 @@ interface for developing internet servers.
 %{perl_vendorlib}/NetServer/testguts-*.pl
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.03-1
 - Initial package.

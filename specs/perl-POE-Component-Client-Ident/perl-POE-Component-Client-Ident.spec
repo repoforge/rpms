@@ -10,7 +10,7 @@
 Summary: Non-blocking Ident
 Name: perl-POE-Component-Client-Ident
 Version: 0.8
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Client-Ident/
@@ -50,5 +50,8 @@ protocol remote username lookups.
 %{perl_vendorlib}/POE/Filter/Ident.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Dec 22 2005 Dries Verachtert <dries@ulyssis.org> - 0.8-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Sorted array
 Name: perl-Tie-Array-Sorted
 Version: 1.4
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-Array-Sorted/
@@ -52,6 +52,9 @@ An array which is kept sorted.
 %{perl_vendorlib}/Tie/Array/Sorted
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.4-1
 - Updated to release 1.4.
 

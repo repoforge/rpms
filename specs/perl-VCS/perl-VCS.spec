@@ -10,7 +10,7 @@
 Summary: Library for generic Version Control System access in Perl
 Name: perl-VCS
 Version: 0.14
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/VCS/
@@ -54,5 +54,8 @@ respective "container" classes.
 %{perl_vendorlib}/VCS_dev.pod
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.14-1
 - Initial package.

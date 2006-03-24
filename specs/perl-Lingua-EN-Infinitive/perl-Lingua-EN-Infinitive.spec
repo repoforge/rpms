@@ -10,7 +10,7 @@
 Summary: Determine the infinitive form of a conjugated word
 Name: perl-Lingua-EN-Infinitive
 Version: 1.09
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-EN-Infinitive/
@@ -46,6 +46,9 @@ Determine the infinitive form of a conjugated word.
 %{perl_vendorlib}/Lingua/EN/Infinitive.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.09-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.09-1
 - Updated to release 1.09.
 

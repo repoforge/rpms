@@ -10,7 +10,7 @@
 Summary: Bag (multiset) class
 Name: perl-Set-Bag
 Version: 1.009
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Set-Bag/
@@ -46,5 +46,8 @@ This module implements a bag (aka multiset) Perl class.
 %{perl_vendorlib}/Set/Bag.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.009-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.009-1
 - Initial package.

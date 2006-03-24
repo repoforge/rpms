@@ -10,7 +10,7 @@
 Summary: Structured Tags datastructures
 Name: perl-Data-Stag
 Version: 0.10
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Stag/
@@ -52,6 +52,9 @@ native to perl.
 %{perl_vendorlib}/Data/Stag/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Updated to release 0.10.
 

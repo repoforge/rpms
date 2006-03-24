@@ -10,7 +10,7 @@
 Summary: Find the memory usage of perl variables
 Name: perl-Devel-Size
 Version: 0.64
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-Size/
@@ -47,5 +47,8 @@ Perl extension for finding the memory usage of Perl variables.
 %{perl_vendorarch}/auto/Devel/Size/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.64-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jan  4 2006 Dries Verachtert <dries@ulyssis.org> - 0.64-1
 - Initial package.

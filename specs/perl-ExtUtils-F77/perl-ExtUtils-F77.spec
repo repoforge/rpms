@@ -10,7 +10,7 @@
 Summary: Simple interface to F77 libs
 Name: perl-ExtUtils-F77
 Version: 1.15
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-F77/
@@ -49,6 +49,9 @@ and name varies with each OS/compiler combination!
 %{perl_vendorlib}/ExtUtils/F77.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.15-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.15-1
 - Updated to release 1.15.
 

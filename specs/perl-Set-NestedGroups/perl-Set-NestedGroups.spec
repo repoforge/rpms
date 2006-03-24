@@ -10,7 +10,7 @@
 Summary: Grouped data
 Name: perl-Set-NestedGroups
 Version: 0.01
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Set-NestedGroups/
@@ -49,5 +49,8 @@ control lists (ACLs) would be one example of nested groups.
 %{perl_vendorlib}/Set/NestedGroups
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

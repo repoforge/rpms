@@ -12,7 +12,7 @@
 Summary: Defines RGB values for common color names
 Name: perl-Graphics-ColorNames
 Version: 1.06
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graphics-ColorNames/
@@ -56,6 +56,9 @@ specifying a color by name rather than RGB value.
 %{perl_vendorlib}/Graphics/ColourNames.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.06-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jun 18 2005 Dries Verachtert <dries@ulyssis.org> - 1.06
 - Update
 

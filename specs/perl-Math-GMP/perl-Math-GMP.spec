@@ -10,7 +10,7 @@
 Summary: High speed arbitrary size integer math
 Name: perl-Math-GMP
 Version: 2.04
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-GMP/
@@ -47,5 +47,8 @@ big integer math.
 %{perl_vendorarch}/auto/Math/GMP
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.04-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.04-1
 - Initial package.

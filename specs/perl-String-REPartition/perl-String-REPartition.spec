@@ -10,7 +10,7 @@
 Summary: Generating regular expressions used to partition data sets
 Name: perl-String-REPartition
 Version: 1.1
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-REPartition/
@@ -47,5 +47,8 @@ used to partition data sets.
 %{perl_vendorlib}/String/REPartition.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.1-1
 - Initial package.

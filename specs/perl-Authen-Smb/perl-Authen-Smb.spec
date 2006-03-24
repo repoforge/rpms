@@ -10,7 +10,7 @@
 Summary: Authenticate against an SMB server
 Name: perl-Authen-Smb
 Version: 0.91
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Authen-Smb/
@@ -47,6 +47,9 @@ Authen::Smb allows you to authenticate users against an NT server.
 %{perl_vendorarch}/auto/Authen/Smb
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.91-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.91-1
 - Initial package.
 
