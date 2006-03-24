@@ -10,7 +10,7 @@
 Summary: Extension for Sound Mixer control
 Name: perl-Audio-Mixer
 Version: 0.7
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Audio-Mixer/
@@ -47,5 +47,8 @@ Library to query / set various sound mixer parameters.
 %{perl_vendorarch}/auto/Audio/Mixer
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.7-1
 - Initial package.

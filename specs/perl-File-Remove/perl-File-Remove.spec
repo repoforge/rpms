@@ -10,7 +10,7 @@
 Summary: Remove files and directories
 Name: perl-File-Remove
 Version: 0.31
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Remove/
@@ -46,6 +46,9 @@ Remove files and directories.
 %{perl_vendorlib}/File/Remove.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.31-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.31-1
 - Updated to release 0.31.
 

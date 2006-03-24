@@ -12,7 +12,7 @@
 Summary: Provide a DPAP Server
 Name: perl-Net-DPAP-Server
 Version: 0.02
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DPAP-Server/
@@ -49,6 +49,9 @@ With this module, you can provide a DPAP Server.
 %{perl_vendorlib}/Net/DPAP/Server/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Updated to release 0.02.
 

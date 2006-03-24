@@ -10,7 +10,7 @@
 Summary: Class for easy date and time manipulation
 Name: perl-Class-Date
 Version: 1.1.8
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Date/
@@ -49,6 +49,9 @@ datetime, and have a Class::Date::Rel class for relative dates.
 %{perl_vendorarch}/auto/Class/Date
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Nov  7 2005 Dries Verachtert <dries@ulyssis.org> - 1.1.8-1
 - Updated to release 1.1.8.
 

@@ -10,7 +10,7 @@
 Summary: Evolution search optimisation
 Name: perl-Math-Evol
 Version: 1.06
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Evol/
@@ -59,6 +59,9 @@ each step will choose the better of two (or several) possibilities.
 %{perl_vendorlib}/Math/Evol.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.06-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.06-1
 - Updated to release 1.06.
 

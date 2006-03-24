@@ -10,7 +10,7 @@
 Summary: Tie a hash to a mysql table + SQL utils
 Name: perl-DBIx-TableHash
 Version: 1.05
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-TableHash/
@@ -48,5 +48,8 @@ current version, but expected to work with any vendor).
 %{perl_vendorlib}/DBIx/TableHash.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.05-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.05-1
 - Initial package.

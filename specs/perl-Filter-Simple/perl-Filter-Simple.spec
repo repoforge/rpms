@@ -10,7 +10,7 @@
 Summary: Simplified source filtering
 Name: perl-Filter-Simple
 Version: 0.82
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Filter-Simple/
@@ -50,6 +50,9 @@ This module permits simplified source filtering.
 %{perl_vendorlib}/Filter/Simple.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.82-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.82-1
 - Updated to release 0.82.
 

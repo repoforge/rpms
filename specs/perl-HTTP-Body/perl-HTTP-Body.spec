@@ -10,7 +10,7 @@
 Summary: HTTP Body parser
 Name: perl-HTTP-Body
 Version: 0.6
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-Body/
@@ -47,6 +47,9 @@ This module contains a HTTP body parser.
 %{perl_vendorlib}/HTTP/Body/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1
 - Updated to release 0.6.
 

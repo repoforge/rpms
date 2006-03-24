@@ -10,7 +10,7 @@
 Summary: File::Find::Rule adapted to Filesys::Virtual
 Name: perl-File-Find-Rule-Filesys-Virtual
 Version: 1.21
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Find-Rule-Filesys-Virtual/
@@ -51,5 +51,8 @@ File::Find::Rule adapted to Filesys::Virtual.
 %{perl_vendorlib}/File/Find/Rule/Filesys/Virtual.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.21-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 1.21-1
 - Initial package.

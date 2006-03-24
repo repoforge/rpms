@@ -10,7 +10,7 @@
 Summary: Implements the SHA-256/384/512 hash algorithm
 Name: perl-SHA256
 Version: 0.01b
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SHA256/
@@ -49,5 +49,8 @@ NIST.
 %{perl_vendorarch}/auto/Digest/SHA256/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.01b-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.01b-1
 - Initial package.

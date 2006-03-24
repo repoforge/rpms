@@ -10,7 +10,7 @@
 Summary: Crypt a file and mask it behind another file
 Name: perl-Crypt-Mimetic
 Version: 0.02
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Mimetic/
@@ -52,5 +52,8 @@ attracting attention.
 %{perl_vendorlib}/Error/Mimetic.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

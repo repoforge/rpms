@@ -9,7 +9,7 @@
 Summary: Perform diffs on files and record sets
 Name: perl-Text-Diff
 Version: 0.35
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Diff/
@@ -51,6 +51,9 @@ Perform diffs on files and record sets.
 %{perl_vendorlib}/Text/Diff
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.35-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jan  7 2005 Dries Verachtert <dries@ulyssis.org> - 0.35-1
 - Initial package.
 

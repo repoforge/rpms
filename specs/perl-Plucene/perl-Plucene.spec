@@ -10,7 +10,7 @@
 Summary: Perl port of the Lucene search engine
 Name: perl-Plucene
 Version: 1.24
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Plucene/
@@ -50,6 +50,9 @@ and search for things in them later.
 %{perl_vendorlib}/Plucene/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.24-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.24-1
 - Updated to release 1.24.
 

@@ -12,7 +12,7 @@
 Summary: RSA encoding and decoding
 Name: perl-Crypt-OpenSSL-RSA
 Version: 0.22
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-OpenSSL-RSA/
@@ -52,6 +52,9 @@ in the OpenSSL library.
 %{perl_vendorarch}/auto/Crypt/OpenSSL/RSA/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.22-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.22-1
 - Updated to release 0.22.
 

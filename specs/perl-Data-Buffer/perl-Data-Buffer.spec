@@ -10,7 +10,7 @@
 Summary: Read/write buffer class
 Name: perl-Data-Buffer
 Version: 0.04
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Buffer/
@@ -49,5 +49,8 @@ those built-in functions.
 %{perl_vendorlib}/Data/Buffer.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  2 2005 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.

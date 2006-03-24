@@ -10,7 +10,7 @@
 Summary: Installer for perl modules
 Name: perl-Module-Install
 Version: 0.52
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Install/
@@ -53,6 +53,9 @@ descendent of CPAN::MakeMaker.
 %{perl_vendorlib}/inc/Module/Install.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.52-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.52-1
 - Updated to release 0.52.
 

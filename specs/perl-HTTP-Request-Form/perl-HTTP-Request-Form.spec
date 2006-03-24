@@ -10,7 +10,7 @@
 Summary: Construct HTTP::Request objects for form processing
 Name: perl-HTTP-Request-Form
 Version: 0.952
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-Request-Form/
@@ -53,5 +53,8 @@ application.
 %{perl_vendorlib}/HTTP/Request/Form.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.952-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.952-1
 - Initial package.

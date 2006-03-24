@@ -12,7 +12,7 @@
 Summary: Perl extension for writing PlRPC servers and clients
 Name: perl-PlRPC
 Version: 0.2018
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PlRPC/
@@ -54,6 +54,9 @@ OO framework in a very simple manner.
 %{perl_vendorlib}/RPC
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.2018-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.2018-1
 - Updated to release 0.2018.
 

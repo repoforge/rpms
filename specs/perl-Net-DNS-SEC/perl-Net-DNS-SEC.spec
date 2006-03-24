@@ -13,7 +13,7 @@
 Summary: Support for DNS Resource Record
 Name: perl-Net-DNS-SEC
 Version: 0.13
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DNS-SEC/
@@ -52,6 +52,9 @@ document set.
 %{perl_vendorlib}/Net/DNS
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.13-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.13-1
 - Updated to release 0.13.
 

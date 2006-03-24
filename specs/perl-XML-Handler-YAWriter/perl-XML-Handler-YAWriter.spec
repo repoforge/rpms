@@ -10,7 +10,7 @@
 Summary: Yet another Perl SAX XML Writer
 Name: perl-XML-Handler-YAWriter
 Version: 0.23
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Handler-YAWriter/
@@ -49,5 +49,8 @@ technique, and want some kind of pretty printing.
 %{perl_vendorlib}/XML/Handler/YAWriter.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.23-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.23-1
 - Initial package.

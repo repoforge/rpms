@@ -10,7 +10,7 @@
 Summary: Calculates Easter for any given year
 Name: perl-Date-Easter
 Version: 1.14
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Easter/
@@ -46,5 +46,8 @@ Calculates Easter for a given year.
 %{perl_vendorlib}/Date/Easter.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.14-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 1.14-1
 - Initial package.

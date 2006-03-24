@@ -10,7 +10,7 @@
 Summary: Object-oriented wrapper around vec()
 Name: perl-Bit-Vector-Minimal
 Version: 1.3
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Bit-Vector-Minimal/
@@ -51,6 +51,9 @@ abstraction.
 %{perl_vendorlib}/Bit/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.3-1
 - Updated to release 1.3.
 

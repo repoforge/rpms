@@ -10,7 +10,7 @@
 Summary: Read and write CSS files
 Name: perl-CSS-Tiny
 Version: 1.11
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CSS-Tiny/
@@ -60,6 +60,9 @@ still live with simple CSS files.
 %{perl_vendorlib}/CSS/Tiny.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.11-1
 - Updated to release 1.11.
 

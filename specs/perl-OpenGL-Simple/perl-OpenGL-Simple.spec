@@ -21,7 +21,7 @@
 Summary: Interface to OpenGL
 Name: perl-OpenGL-Simple
 Version: 0.03
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/OpenGL-Simple/
@@ -61,6 +61,9 @@ polymorphic interface.
 %{perl_vendorarch}/auto/OpenGL/Simple/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.
 

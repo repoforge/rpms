@@ -12,7 +12,7 @@
 Summary: Converts Perl XS code into C code
 Name: perl-ExtUtils-ParseXS
 Version: 2.15
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-ParseXS/
@@ -50,6 +50,9 @@ With this module, you can Convert Perl XS code into C code.
 %{perl_vendorlib}/ExtUtils/xsubpp
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.15-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.15-1
 - Updated to release 2.15.
 

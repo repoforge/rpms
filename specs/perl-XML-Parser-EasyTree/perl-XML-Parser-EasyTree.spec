@@ -10,7 +10,7 @@
 Summary: Easier tree style for XML::Parser
 Name: perl-XML-Parser-EasyTree
 Version: 0.01
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Parser-EasyTree/
@@ -46,5 +46,8 @@ This module implements an easier tree style for XML::Parser.
 %{perl_vendorlib}/XML/Parser/EasyTree.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

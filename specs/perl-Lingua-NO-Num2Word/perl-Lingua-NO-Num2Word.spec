@@ -10,7 +10,7 @@
 Summary: Convert numbers to norwegian textual representation
 Name: perl-Lingua-NO-Num2Word
 Version: 0.011
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-NO-Num2Word/
@@ -47,5 +47,8 @@ norwegian textual representation.
 %{perl_vendorlib}/Lingua/NO/Num2Word.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.011-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.011-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Shell-like regular expressions
 Name: perl-Regexp-Shellish
 Version: 0.93
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Regexp-Shellish/
@@ -46,5 +46,8 @@ Shell-like regular expressions.
 %{perl_vendorlib}/Regexp/Shellish.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.93-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.93-1
 - Initial package.

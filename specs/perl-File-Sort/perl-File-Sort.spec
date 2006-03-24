@@ -10,7 +10,7 @@
 Summary: Sort a file or merge sort multiple files
 Name: perl-File-Sort
 Version: 1.01
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Sort/
@@ -50,5 +50,8 @@ doesn't have a sort(1) and is virtual-memory-deprived (including Windows).
 %{perl_vendorlib}/File/Sort.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Initial package.

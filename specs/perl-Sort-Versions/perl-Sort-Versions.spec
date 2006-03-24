@@ -10,7 +10,7 @@
 Summary: Module for sorting of revision-like numbers
 Name: perl-Sort-Versions
 Version: 1.5
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sort-Versions/
@@ -48,6 +48,9 @@ packages and shared library systems use.
 %{perl_vendorlib}/Sort/Versions.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.5-1
 - Updated to release 1.5.
 

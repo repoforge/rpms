@@ -6,7 +6,7 @@
 Summary: HTML-Tree module for perl
 Name: perl-HTML-Tree
 Version: 3.18
-Release: 1
+Release: 1.2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Tree/
@@ -48,6 +48,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 3.18-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 3.18-0
 - Updated to release 3.18.
 

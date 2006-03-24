@@ -10,7 +10,7 @@
 Summary: TFTP Client class
 Name: perl-Net-TFTP
 Version: 0.16
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-TFTP/
@@ -47,5 +47,8 @@ been separated out to a distribution of its own.
 %{perl_vendorlib}/Net/TFTP.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.16-1
 - Initial package.

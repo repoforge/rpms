@@ -10,7 +10,7 @@
 Summary: MUMPS Implementation in Perl
 Name: perl-Language-Mumps
 Version: 1.07
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Language-Mumps/
@@ -48,5 +48,8 @@ A script for interpreting and running MUMPS programs is now supplied.
 %{perl_vendorlib}/Language/Mumps.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.07-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.07-1
 - Initial package.

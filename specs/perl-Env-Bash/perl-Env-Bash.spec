@@ -10,7 +10,7 @@
 Summary: Perl extension for accessing all bash environment variables
 Name: perl-Env-Bash
 Version: 0.04
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Env-Bash/
@@ -51,6 +51,9 @@ This is a Perl extension for accessing _all_ bash environment variables.
 %{perl_vendorlib}/Env/README-sorcerer.pod
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 27 2004 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.
 

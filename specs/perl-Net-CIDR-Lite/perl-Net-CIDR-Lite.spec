@@ -10,7 +10,7 @@
 Summary: Merge IPv4 or IPv6 CIDR addresses
 Name: perl-Net-CIDR-Lite
 Version: 0.20
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-CIDR-Lite/
@@ -46,6 +46,9 @@ Perl extension for merging IPv4 or IPv6 CIDR addresses.
 %{perl_vendorlib}/Net/CIDR/Lite.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.20-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Mar  3 2006 Dries Verachtert <dries@ulyssis.org> - 0.20-1
 - Initial package.
 

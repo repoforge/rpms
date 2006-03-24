@@ -10,7 +10,7 @@
 Summary: String conversion among numerous character sets
 Name: perl-Convert-Translit
 Version: 1.03
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-Translit/
@@ -53,5 +53,8 @@ also read by the module when creating transliteration maps).
 %{perl_vendorlib}/Convert/substitutes
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.03-1
 - Initial package.
