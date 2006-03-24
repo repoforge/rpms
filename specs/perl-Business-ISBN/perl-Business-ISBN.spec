@@ -10,7 +10,7 @@
 Summary: Work with International Standard Book Numbers
 Name: perl-Business-ISBN
 Version: 1.82
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Business-ISBN/
@@ -46,6 +46,9 @@ With this module you can work with ISBN numbers.
 %{perl_vendorlib}/Business/ISBN.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.82-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.82-1
 - Updated to release 1.82.
 

@@ -10,7 +10,7 @@
 Summary: Clone of PHP's phpinfo function for Perl
 Name: perl-PHP-Perlinfo
 Version: 0.08
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PHP-Perlinfo/
@@ -54,6 +54,9 @@ environment, OS version information, Perl modules, and the Perl License.
 %{perl_vendorlib}/PHP/Perlinfo/
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Updated to release 0.08.
 

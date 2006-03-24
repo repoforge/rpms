@@ -10,7 +10,7 @@
 Summary: Memoized functions
 Name: perl-Devel-Memo
 Version: 0.004
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-Memo/
@@ -50,5 +50,8 @@ avoided. Internally, the FreezeThaw module is used to assist in the caching.
 %{perl_vendorlib}/Devel/Memo.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.004-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.004-1
 - Initial package.

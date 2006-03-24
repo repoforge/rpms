@@ -12,7 +12,7 @@
 Summary: Perl module for reading and writing DAAP structures
 Name: perl-Net-DAAP-DMAP
 Version: 1.26
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DAAP-DMAP/
@@ -50,6 +50,9 @@ Perl module for reading and writing DAAP structures.
 %{perl_vendorlib}/Net/DAAP/DMAP.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.26-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.26-1
 - Updated to release 1.26.
 

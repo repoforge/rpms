@@ -10,7 +10,7 @@
 Summary: Object for handling Usenet articles in mail or news form
 Name: perl-News-Article
 Version: 1.27
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/News-Article/
@@ -54,5 +54,8 @@ forward, reply to, mail and post articles of various forms.
 %{perl_vendorlib}/News/FormArticle.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.27-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.27-1
 - Initial package.

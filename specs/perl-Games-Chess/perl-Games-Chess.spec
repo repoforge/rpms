@@ -10,7 +10,7 @@
 Summary: Represent chess positions and games
 Name: perl-Games-Chess
 Version: 0.003
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Games-Chess/
@@ -51,5 +51,8 @@ and exported to these formats.
 %{perl_vendorlib}/Games/Chess
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.003-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.003-1
 - Initial package.

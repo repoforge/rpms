@@ -10,7 +10,7 @@
 Summary: Algorithms for numerical integration
 Name: perl-Math-RungeKutta
 Version: 1.02
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-RungeKutta/
@@ -49,5 +49,8 @@ known, and F is a function known from the dynamics of the problem.
 %{perl_vendorlib}/Math/RungeKutta.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.02-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.02-1
 - Initial package.

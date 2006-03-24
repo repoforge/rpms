@@ -10,7 +10,7 @@
 Summary: Perl Blowfish encryption module
 Name: perl-Crypt-Blowfish
 Version: 2.10
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Blowfish/
@@ -49,6 +49,9 @@ up to 448 bits (56 bytes) long.
 %{perl_vendorarch}/auto/Crypt/Blowfish
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.10-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.10-1
 - Updated to release 2.10.
 

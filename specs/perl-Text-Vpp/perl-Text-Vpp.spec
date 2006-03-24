@@ -10,7 +10,7 @@
 Summary: Versatile text pre-processor
 Name: perl-Text-Vpp
 Version: 1.17
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Vpp/
@@ -50,6 +50,9 @@ subroutines in the text.
 %{perl_vendorlib}/auto/Text/Vpp
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.17-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.17-1
 - Updated to release 1.17.
 

@@ -10,7 +10,7 @@
 Summary: Calculate EMAs
 Name: perl-Math-Business-EMA
 Version: 1.08
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Business-EMA/
@@ -46,5 +46,8 @@ Perl extension for calculating EMAs.
 %{perl_vendorlib}/Math/Business/EMA.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.08-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Apr 05 2005 Dries Verachtert <dries@ulyssis.org> - 1.08-1
 - Initial package.

@@ -10,7 +10,7 @@
 Summary: Module for CGI programs debugging
 Name: perl-CGI-Debug
 Version: 1.0
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Debug/
@@ -48,5 +48,8 @@ echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}
 %{perl_vendorlib}/CGI/Debug.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Initial package.

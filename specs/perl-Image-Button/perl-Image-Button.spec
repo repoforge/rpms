@@ -12,7 +12,7 @@
 Summary: Base class for building PNG buttons using GD
 Name: perl-Image-Button
 Version: 0.53
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Button/
@@ -50,5 +50,8 @@ This module contains a base class for building PNG buttons using GD.
 %{perl_vendorlib}/Image/Button/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.53-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.53-1
 - Initial package.

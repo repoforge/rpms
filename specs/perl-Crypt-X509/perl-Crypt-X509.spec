@@ -10,7 +10,7 @@
 Summary: Object oriented X.509 certificate parser
 Name: perl-Crypt-X509
 Version: 0.21
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-X509/
@@ -46,6 +46,9 @@ methods for directly extracting information from certificates.
 %{perl_vendorlib}/Crypt/X509.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.21-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.21-1
 - Initial package.
 

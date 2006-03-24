@@ -10,7 +10,7 @@
 Summary: Reads the CDDB entry for an audio CD in your drive
 Name: perl-CDDB_get
 Version: 2.27
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CDDB_get/
@@ -53,6 +53,9 @@ in order to do that.
 %{perl_vendorlib}/CDDB_cache.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.27-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.27-1
 - Updated to release 2.27.
 

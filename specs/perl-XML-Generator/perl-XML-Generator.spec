@@ -10,7 +10,7 @@
 Summary: Perl extension for generating XML
 Name: perl-XML-Generator
 Version: 0.99_02
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Generator/
@@ -47,6 +47,9 @@ This module allows you to generate XML documents.
 %{perl_vendorlib}/XML/Generator
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.99_02-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.99_02-1
 - Updated to release 0.99_02.
 

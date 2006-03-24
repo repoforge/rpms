@@ -12,7 +12,7 @@
 Summary: Access the IP statistics of a MIB-II host
 Name: perl-Net-SNMP-HostInfo
 Version: 0.04
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SNMP-HostInfo/
@@ -60,5 +60,8 @@ Browse the list of available methods to see what values are available.
 %{perl_vendorlib}/Net/SNMP/HostInfo/*
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.

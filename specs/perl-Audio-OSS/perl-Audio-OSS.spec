@@ -10,7 +10,7 @@
 Summary: Interface to OSS (open sound system) audio devices
 Name: perl-Audio-OSS
 Version: 0.0501
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Audio-OSS/
@@ -48,5 +48,8 @@ interface to the Open Sound System.
 %{perl_vendorlib}/Audio/OSS
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.0501-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.0501-1
 - Initial package.

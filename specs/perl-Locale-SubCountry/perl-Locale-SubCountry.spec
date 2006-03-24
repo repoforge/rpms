@@ -10,7 +10,7 @@
 Summary: Convert state, county, province etc names to/from code
 Name: perl-Locale-SubCountry
 Version: 1.36
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Locale-SubCountry/
@@ -49,6 +49,9 @@ Codes for the representation of names of countries and their subdivisions".
 %{perl_vendorlib}/Locale/SubCountry.pm
 
 %changelog
+* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.36-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.36-1
 - Updated to release 1.36.
 
