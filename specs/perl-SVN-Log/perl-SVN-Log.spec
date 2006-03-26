@@ -9,8 +9,8 @@
 
 Summary: Extract change logs from a Subversion server
 Name: perl-SVN-Log
-Version: 0.02
-Release: 1.2
+Version: 0.03
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Log/
@@ -51,6 +51,9 @@ repositories.
 %{perl_vendorlib}/SVN/Log.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1
+- Updated to release 0.03.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1.2
 - Rebuild for Fedora Core 5.
 

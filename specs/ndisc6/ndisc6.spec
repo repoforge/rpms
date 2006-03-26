@@ -10,7 +10,7 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.remlab.net/files/ndisc6/
 
-Source: http://people.via.ecp.fr/~rem/ndisc6/ndisc6-%{version}.tar.bz2
+Source: http://www.remlab.net/files/ndisc6/ndisc6-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description

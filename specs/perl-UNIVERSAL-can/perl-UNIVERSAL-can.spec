@@ -9,8 +9,8 @@
 
 Summary: Hack around people calling UNIVERSAL::can() as a function
 Name: perl-UNIVERSAL-can
-Version: 1.01
-Release: 1.2
+Version: 1.11
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/UNIVERSAL-can/
@@ -46,6 +46,9 @@ Hack around people calling UNIVERSAL::can() as a function.
 %{perl_vendorlib}/UNIVERSAL/can.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1
+- Updated to release 1.11.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1.2
 - Rebuild for Fedora Core 5.
 

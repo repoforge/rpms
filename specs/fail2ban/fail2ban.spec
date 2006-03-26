@@ -15,7 +15,7 @@ URL: http://fail2ban.sourceforge.net/
 Source: http://dl.sf.net/fail2ban/fail2ban-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python
+BuildRequires: python, dos2unix
 Requires: python
 
 %description

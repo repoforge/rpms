@@ -9,8 +9,8 @@
 
 Summary: Interface to RRDTool
 Name: perl-RRD-Simple
-Version: 1.29
-Release: 1.2
+Version: 1.32
+Release: 1
 License: Apache 2.0
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RRD-Simple/
@@ -56,6 +56,9 @@ RRA definitions.
 %{perl_vendorlib}/RRD/Simple.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.32-1
+- Updated to release 1.32.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.29-1.2
 - Rebuild for Fedora Core 5.
 

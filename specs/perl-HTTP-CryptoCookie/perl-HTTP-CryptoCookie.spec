@@ -9,8 +9,8 @@
 
 Summary: Encrypted cookies
 Name: perl-HTTP-CryptoCookie
-Version: 1.10
-Release: 1.2
+Version: 1.11
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-CryptoCookie/
@@ -52,6 +52,9 @@ a cookie is read.
 %{perl_vendorlib}/HTTP/CryptoCookie.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1
+- Updated to release 1.11.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.10-1.2
 - Rebuild for Fedora Core 5.
 
