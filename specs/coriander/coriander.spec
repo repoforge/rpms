@@ -2,12 +2,12 @@
 # Authority: dries
 # Upstream: Damien Douxchamps <ddouxchamps$users,sourceforge,net>
 
-%define real_version 2.0.0-pre3
+%define real_version 2.0.0-pre5
 
 Summary: Control a 1394 digital camera interactively
 Name: coriander
 Version: 2.0.0
-Release: 0.pre3
+Release: 0.pre5
 License: GPL
 Group: Applications/Multimedia
 URL: http://damien.douxchamps.net/ieee1394/coriander/
@@ -28,7 +28,7 @@ and Real streaming. It is for IIDC cameras, not for consumer grade DV cameras.
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
-Name=Name Thingy Tool
+Name=Coriander
 Comment=Control a 1394 digital video camera
 Exec=coriander
 Terminal=false
@@ -62,5 +62,8 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*-coriander.desktop
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.0-0.pre5
+- Updated to release 2.0.0pre5.
+
 * Mon Aug 29 2005 Dries Verachtert <dries@ulyssis.org> - 2.0.0-0.pre3
 - Initial package.
