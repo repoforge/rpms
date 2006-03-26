@@ -9,8 +9,8 @@
 
 Summary: Show excel-files on the web
 Name: perl-Spreadsheet-SimpleExcel
-Version: 0.8
-Release: 1.2
+Version: 1.1
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Spreadsheet-SimpleExcel/
@@ -48,6 +48,9 @@ cell-formats yet, but the module will be extended within the next weeks.
 %{perl_vendorlib}/Spreadsheet/SimpleExcel.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-1
+- Updated to release 1.1.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-1.2
 - Rebuild for Fedora Core 5.
 

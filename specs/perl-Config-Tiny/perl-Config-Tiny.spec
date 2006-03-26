@@ -9,8 +9,8 @@
 
 Summary: Read and write ini style files
 Name: perl-Config-Tiny
-Version: 2.04
-Release: 1.2
+Version: 2.05
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-Tiny/
@@ -59,6 +59,9 @@ file.
 %{perl_vendorlib}/Config/Tiny.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.05-1
+- Updated to release 2.05.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.04-1.2
 - Rebuild for Fedora Core 5.
 

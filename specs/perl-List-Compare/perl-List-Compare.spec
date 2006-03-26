@@ -9,8 +9,8 @@
 
 Summary: Compare elements of two or more lists
 Name: perl-List-Compare
-Version: 0.32
-Release: 1.2
+Version: 0.33
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/List-Compare/
@@ -47,6 +47,9 @@ Compare elements of two or more lists.
 %{perl_vendorlib}/List/Compare
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.33-1
+- Updated to release 0.33.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.32-1.2
 - Rebuild for Fedora Core 5.
 

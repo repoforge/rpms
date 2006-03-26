@@ -9,8 +9,8 @@
 
 Summary: Extracts the text contained in tables within an HTML document
 Name: perl-HTML-TableExtract
-Version: 2.06
-Release: 1.2
+Version: 2.07
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-TableExtract/
@@ -50,6 +50,9 @@ or some combination of the three.
 %{perl_vendorlib}/HTML/TableExtract.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.07-1
+- Updated to release 2.07.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.06-1.2
 - Rebuild for Fedora Core 5.
 

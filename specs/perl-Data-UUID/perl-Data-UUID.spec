@@ -9,8 +9,8 @@
 
 Summary: Generates Globally/Universally Unique Identifiers
 Name: perl-Data-UUID
-Version: 0.11
-Release: 1.2
+Version: 0.14
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-UUID/
@@ -60,6 +60,9 @@ systems.
 %{perl_vendorarch}/auto/Data/UUID/
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1
+- Updated to release 0.14.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.11-1.2
 - Rebuild for Fedora Core 5.
 

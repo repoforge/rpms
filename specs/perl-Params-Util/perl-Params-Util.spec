@@ -9,8 +9,8 @@
 
 Summary: Param checking functions
 Name: perl-Params-Util
-Version: 0.09
-Release: 1.2
+Version: 0.10
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Params-Util/
@@ -46,6 +46,9 @@ Simple standalone param-checking functions.
 %{perl_vendorlib}/Params/Util.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1
+- Updated to release 0.10.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1.2
 - Rebuild for Fedora Core 5.
 

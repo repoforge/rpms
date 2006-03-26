@@ -9,8 +9,8 @@
 
 Summary: Fetch Google video information
 Name: perl-WWW-Google-Video
-Version: 0.1
-Release: 1.2
+Version: 0.2
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Google-Video/
@@ -45,6 +45,9 @@ You can fetch information about videos with this module.
 %{perl_vendorlib}/WWW/Google/Video.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-1
+- Updated to release 0.2.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.1-1.2
 - Rebuild for Fedora Core 5.
 

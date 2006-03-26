@@ -11,8 +11,8 @@
 
 Summary: Create and manipulate PAR distributions
 Name: perl-PAR-Dist
-Version: 0.07
-Release: 1.2
+Version: 0.08
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PAR-Dist/
@@ -50,6 +50,9 @@ With this module, you can create and manipulate PAR distributions.
 %{perl_vendorlib}/PAR/Dist.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1
+- Updated to release 0.08.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1.2
 - Rebuild for Fedora Core 5.
 

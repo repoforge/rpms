@@ -9,8 +9,8 @@
 
 Summary: Perl client interface to SSH
 Name: perl-Net-SSH-Perl
-Version: 1.29
-Release: 1.2
+Version: 1.30
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SSH-Perl/
@@ -54,6 +54,9 @@ echo "3" | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_pre
 %{perl_vendorlib}/Net/SSH/Perl/
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.30-1
+- Updated to release 1.30.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.29-1.2
 - Rebuild for Fedora Core 5.
 

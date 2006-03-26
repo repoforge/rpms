@@ -9,8 +9,8 @@
 
 Summary: Generic config module
 Name: perl-Config-General
-Version: 2.30
-Release: 2
+Version: 2.31
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-General/
@@ -69,6 +69,9 @@ configuration.
 %{perl_vendorlib}/Config/Extended.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.31-1
+- Updated to release 2.31.
+
 * Sun Dec 04 2005 Dries Verachtert <dries@ulyssis.org> - 2.30-2
 - Applied a patch made by Ralph Angenendt which removes the 
   dependency on Carp::Heavy.

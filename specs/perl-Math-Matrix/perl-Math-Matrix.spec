@@ -9,8 +9,8 @@
 
 Summary: Multiply and invert Matrices
 Name: perl-Math-Matrix
-Version: 0.4
-Release: 1.2
+Version: 0.5
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Matrix/
@@ -46,6 +46,9 @@ This module allows you to multiply and invert Matrices.
 %{perl_vendorlib}/Math/Matrix.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-1
+- Updated to release 0.5.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.4-1.2
 - Rebuild for Fedora Core 5.
 

@@ -9,8 +9,8 @@
 
 Summary: Recursively copy Perl datatypes
 Name: perl-Clone
-Version: 0.18
-Release: 1.2
+Version: 0.20
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Clone/
@@ -49,6 +49,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Clone/
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.20-1
+- Updated to release 0.20.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.18-1.2
 - Rebuild for Fedora Core 5.
 

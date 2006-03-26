@@ -9,8 +9,8 @@
 
 Summary: Performs paradigm-free evolutionary algorithms
 Name: perl-Algorithm-Evolutionary
-Version: 0.53
-Release: 1.2
+Version: 0.54
+Release: 1
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Algorithm-Evolutionary/
@@ -47,6 +47,9 @@ Perl extension for performing paradigm-free evolutionary algorithms.
 %{perl_vendorlib}/Algorithm/Evolutionary/*
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.54-1
+- Updated to release 0.54.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.53-1.2
 - Rebuild for Fedora Core 5.
 

@@ -9,8 +9,8 @@
 
 Summary: Dissociated Press algorithm and filter
 Name: perl-Games-Dissociate
-Version: 0.15
-Release: 1.2
+Version: 0.16
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Games-Dissociate/
@@ -49,6 +49,9 @@ Emacs's 'dissociate.el', but is instead merely inspired by it.
 %{perl_vendorlib}/Games/Dissociate.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1
+- Updated to release 0.16.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.15-1.2
 - Rebuild for Fedora Core 5.
 

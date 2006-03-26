@@ -11,8 +11,8 @@
 
 Summary: Base class for D[A-Z]AP servers
 Name: perl-Net-DMAP-Server
-Version: 0.04
-Release: 1.2
+Version: 0.05
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DMAP-Server/
@@ -50,6 +50,9 @@ A base class for D[A-Z]AP servers.
 %{perl_vendorlib}/Net/DMAP/Server
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1
+- Updated to release 0.05.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
 - Rebuild for Fedora Core 5.
 

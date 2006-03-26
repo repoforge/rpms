@@ -9,8 +9,8 @@
 
 Summary: Interface to database schemas
 Name: perl-DBIx-DBSchema
-Version: 0.28
-Release: 1.2
+Version: 0.30
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-DBSchema/
@@ -51,6 +51,9 @@ CREATE statements for different databases from a single source.
 %{perl_vendorlib}/DBIx/DBSchema/
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.30-1
+- Updated to release 0.30.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.28-1.2
 - Rebuild for Fedora Core 5.
 

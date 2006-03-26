@@ -9,8 +9,8 @@
 
 Summary: Interface to the Imlib2 image library
 Name: perl-Image-Imlib2
-Version: 1.07
-Release: 1.2
+Version: 1.08
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Imlib2/
@@ -51,6 +51,9 @@ output the images in a range of formats.
 %{perl_vendorarch}/auto/Image/Imlib2
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.08-1
+- Updated to release 1.08.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.07-1.2
 - Rebuild for Fedora Core 5.
 

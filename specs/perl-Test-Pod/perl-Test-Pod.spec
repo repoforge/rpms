@@ -11,8 +11,8 @@
 
 Summary: Checks for POD errors in files
 Name: perl-Test-Pod
-Version: 1.22
-Release: 1.2
+Version: 1.24
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Pod/
@@ -49,6 +49,9 @@ This module allows you to check for POD errors in files.
 %{perl_vendorlib}/Test/Pod.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.24-1
+- Updated to release 1.24.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.22-1.2
 - Rebuild for Fedora Core 5.
 

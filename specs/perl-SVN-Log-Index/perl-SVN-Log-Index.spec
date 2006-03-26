@@ -9,8 +9,8 @@
 
 Summary: Index and search over Subversion commit logs
 Name: perl-SVN-Log-Index
-Version: 0.30
-Release: 1.2
+Version: 0.41
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Log-Index/
@@ -54,6 +54,9 @@ searches over them.
 %{perl_vendorlib}/SVN/Log/Index.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.41-1
+- Updated to release 0.41.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.30-1.2
 - Rebuild for Fedora Core 5.
 

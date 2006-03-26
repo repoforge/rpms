@@ -9,8 +9,8 @@
 
 Summary: Creates and updates RSS files
 Name: perl-XML-RSS
-Version: 1.05
-Release: 1.2
+Version: 1.10
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-RSS/
@@ -52,6 +52,9 @@ creating, updating, and saving RSS files.
 %{perl_vendorlib}/XML/RSS.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.10-1
+- Updated to release 1.10.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.05-1.2
 - Rebuild for Fedora Core 5.
 

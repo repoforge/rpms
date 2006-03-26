@@ -9,8 +9,8 @@
 
 Summary: Simple Eyecandy ASCII Tables
 Name: perl-Text-SimpleTable
-Version: 0.02
-Release: 1.2
+Version: 0.03
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-SimpleTable/
@@ -46,6 +46,9 @@ Simple eyecandy ASCII tables, as seen in Catalyst.
 %{perl_vendorlib}/Text/SimpleTable.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1
+- Updated to release 0.03.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1.2
 - Rebuild for Fedora Core 5.
 

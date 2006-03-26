@@ -9,8 +9,8 @@
 
 Summary: Generic archive extracting mechanism
 Name: perl-Archive-Extract
-Version: 0.07
-Release: 1.2
+Version: 0.08
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Archive-Extract/
@@ -46,6 +46,9 @@ A generic archive extracting mechanism.
 %{perl_vendorlib}/Archive/Extract.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1
+- Updated to release 0.08.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1.2
 - Rebuild for Fedora Core 5.
 

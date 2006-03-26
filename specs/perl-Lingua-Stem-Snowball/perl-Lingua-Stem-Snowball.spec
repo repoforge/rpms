@@ -9,8 +9,8 @@
 
 Summary: Perl interface to Snowball stemmers
 Name: perl-Lingua-Stem-Snowball
-Version: 0.93
-Release: 1.2
+Version: 0.94
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-Stem-Snowball/
@@ -53,6 +53,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Lingua/Stem/Snowball/
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.94-1
+- Updated to release 0.94.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.93-1.2
 - Rebuild for Fedora Core 5.
 

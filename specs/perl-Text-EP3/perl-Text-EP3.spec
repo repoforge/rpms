@@ -9,8 +9,8 @@
 
 Summary: The Extensible Perl PreProcessor
 Name: perl-Text-EP3
-Version: 1.00
-Release: 1.2
+Version: 1.10
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-EP3/
@@ -62,6 +62,9 @@ added, thus extending the preprocessor.
 %{perl_vendorlib}/auto/Text/EP3
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.10-1
+- Updated to release 1.10.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.00-1.2
 - Rebuild for Fedora Core 5.
 

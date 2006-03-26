@@ -9,8 +9,8 @@
 
 Summary: Access network interfaces
 Name: perl-Net-Interface
-Version: 0.04_2
-Release: 1.2
+Version: 0.06
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Interface/
@@ -49,6 +49,9 @@ physical interfaces (if your O/S supports it).
 %{perl_vendorarch}/auto/Net/Interface
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1
+- Updated to release 0.06.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04_2-1.2
 - Rebuild for Fedora Core 5.
 

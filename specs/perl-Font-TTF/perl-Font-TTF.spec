@@ -9,8 +9,8 @@
 
 Summary: TTF Fonts
 Name: perl-Font-TTF
-Version: 0.37
-Release: 1.2
+Version: 0.38.1
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Font-TTF/
@@ -57,6 +57,9 @@ Use TTF fonts with Perl.
 %{perl_vendorlib}/ttfmod.pl
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.38.1-1
+- Updated to release 0.38.1.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.37-1.2
 - Rebuild for Fedora Core 5.
 

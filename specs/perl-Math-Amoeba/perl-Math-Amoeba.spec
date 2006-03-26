@@ -9,8 +9,8 @@
 
 Summary: Multidimensional Function Minimisation
 Name: perl-Math-Amoeba
-Version: 0.03
-Release: 1.2
+Version: 0.04
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Amoeba/
@@ -46,6 +46,9 @@ Multidimensional Function Minimisation.
 %{perl_vendorlib}/Math/Amoeba.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1
+- Updated to release 0.04.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1.2
 - Rebuild for Fedora Core 5.
 

@@ -12,8 +12,8 @@
 
 Summary: Perl extension for portable daemons
 Name: perl-Net-Daemon
-Version: 0.38
-Release: 1.2
+Version: 0.39
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Daemon/
@@ -51,6 +51,9 @@ This package contains a perl extension for portable daemons.
 %{perl_vendorlib}/Net/Daemon/*
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.39-1
+- Updated to release 0.39.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.38-1.2
 - Rebuild for Fedora Core 5.
 

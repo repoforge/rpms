@@ -8,8 +8,8 @@
 
 Summary: Machine parseable data serialization format
 Name: perl-YAML
-Version: 0.39
-Release: 1.2
+Version: 0.58
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML/
@@ -50,6 +50,9 @@ echo y | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefi
 %{perl_vendorlib}/YAML/*
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.58-1
+- Updated to release 0.58.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.39-1.2
 - Rebuild for Fedora Core 5.
 

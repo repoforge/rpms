@@ -9,8 +9,8 @@
 
 Summary: Additions to List::Util
 Name: perl-List-MoreUtils
-Version: 0.17
-Release: 1.2
+Version: 0.19
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/List-MoreUtils/
@@ -52,6 +52,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/List/MoreUtils/
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.19-1
+- Updated to release 0.19.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.17-1.2
 - Rebuild for Fedora Core 5.
 

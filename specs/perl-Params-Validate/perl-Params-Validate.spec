@@ -12,8 +12,8 @@
 
 Summary: Validation of method parameters
 Name: perl-Params-Validate
-Version: 0.78
-Release: 1.2
+Version: 0.80
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Dispatch/
@@ -62,6 +62,9 @@ implementation that it can fall back on.
 %{perl_vendorarch}/auto/Params/Validate/Validate.*
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.80-1
+- Updated to release 0.80.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.78-1.2
 - Rebuild for Fedora Core 5.
 

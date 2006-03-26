@@ -9,8 +9,8 @@
 
 Summary: Create graphs
 Name: perl-Graph-Easy
-Version: 0.38
-Release: 1.2
+Version: 0.43
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graph-Easy/
@@ -55,6 +55,9 @@ that is human readable and maintainable.
 %{perl_vendorlib}/Graph/Easy/
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.43-1
+- Updated to release 0.43.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.38-1.2
 - Rebuild for Fedora Core 5.
 

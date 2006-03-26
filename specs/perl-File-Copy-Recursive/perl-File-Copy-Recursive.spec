@@ -9,8 +9,8 @@
 
 Summary: Copy files recusively
 Name: perl-File-Copy-Recursive
-Version: 0.16
-Release: 1.2
+Version: 0.19
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Copy-Recursive/
@@ -47,6 +47,9 @@ only and one to do either depending on the argument's type.
 %{perl_vendorlib}/File/Copy/Recursive.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.19-1
+- Updated to release 0.19.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1.2
 - Rebuild for Fedora Core 5.
 

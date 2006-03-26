@@ -9,8 +9,8 @@
 
 Summary: Recursively scan Perl programs for dependencies
 Name: perl-Module-ScanDeps
-Version: 0.52
-Release: 1.2
+Version: 0.57
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-ScanDeps/
@@ -55,6 +55,9 @@ for further information.
 %{perl_vendorlib}/Module/ScanDeps/
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.57-1
+- Updated to release 0.57.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.52-1.2
 - Rebuild for Fedora Core 5.
 

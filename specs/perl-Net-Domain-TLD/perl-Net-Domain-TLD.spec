@@ -11,8 +11,8 @@
 
 Summary: Retrieve currently available tld names and descriptions
 Name: perl-Net-Domain-TLD
-Version: 1.62
-Release: 1.2
+Version: 1.65
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Domain-TLD/
@@ -51,6 +51,9 @@ ccTLDs
 %{perl_vendorlib}/Net/Domain/TLD.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.65-1
+- Updated to release 1.65.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.62-1.2
 - Rebuild for Fedora Core 5.
 

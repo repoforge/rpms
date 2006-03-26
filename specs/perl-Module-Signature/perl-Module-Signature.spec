@@ -9,8 +9,8 @@
 
 Summary: Check and create SIGNATURE files for CPAN distributions
 Name: perl-Module-Signature
-Version: 0.51
-Release: 1.2
+Version: 0.53
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Signature/
@@ -49,6 +49,9 @@ echo n | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefi
 %{perl_vendorlib}/Module/Signature.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.53-1
+- Updated to release 0.53.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.51-1.2
 - Rebuild for Fedora Core 5.
 

@@ -9,8 +9,8 @@
 
 Summary: Simple standalone HTTP daemon
 Name: perl-HTTP-Server-Simple
-Version: 0.16
-Release: 1.2
+Version: 0.18
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-Server-Simple/
@@ -49,6 +49,9 @@ your existing tools.
 %{perl_vendorlib}/HTTP/Server/Simple/
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.18-1
+- Updated to release 0.18.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1.2
 - Rebuild for Fedora Core 5.
 

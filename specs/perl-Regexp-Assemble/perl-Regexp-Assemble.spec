@@ -9,8 +9,8 @@
 
 Summary: Create Regular expressions
 Name: perl-Regexp-Assemble
-Version: 0.23
-Release: 1.2
+Version: 0.24
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Regexp-Assemble/
@@ -46,6 +46,9 @@ You can create regular expressions with this module.
 %{perl_vendorlib}/Regexp/Assemble.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.24-1
+- Updated to release 0.24.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.23-1.2
 - Rebuild for Fedora Core 5.
 

@@ -9,8 +9,8 @@
 
 Summary: Dump symbol names or the symbol table
 Name: perl-Devel-Symdump
-Version: 2.05
-Release: 1.2
+Version: 2.06
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-Symdump/
@@ -48,6 +48,9 @@ Dump symbol names or the symbol table.
 %{perl_vendorlib}/Devel/Symdump/Export.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.06-1
+- Updated to release 2.06.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.05-1.2
 - Rebuild for Fedora Core 5.
 

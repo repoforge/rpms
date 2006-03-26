@@ -9,8 +9,8 @@
 
 Summary: SMTP Multipart messages
 Name: perl-Net-SMTP-Multipart
-Version: 1.5
-Release: 1.2
+Version: 1.5.4
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SMTP-Multipart/
@@ -46,6 +46,9 @@ SMTP Multipart messages.
 %{perl_vendorlib}/Net/SMTP/Multipart.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.5.4-1
+- Updated to release 1.5.4.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.5-1.2
 - Rebuild for Fedora Core 5.
 

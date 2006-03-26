@@ -9,8 +9,8 @@
 
 Summary: Mechanism for AJAX or DHTML based web applications
 Name: perl-CGI-Ajax
-Version: 0.681
-Release: 1.2
+Version: 0.692
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Ajax/
@@ -61,6 +61,9 @@ of a Content Management System, or some other larger project.
 %{perl_vendorlib}/CGI/Ajax.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.692-1
+- Updated to release 0.692.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.681-1.2
 - Rebuild for Fedora Core 5.
 

@@ -9,8 +9,8 @@
 
 Summary: Run-time class loading on first method call
 Name: perl-Class-Autouse
-Version: 1.23
-Release: 1.2
+Version: 1.24
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Autouse/
@@ -57,6 +57,9 @@ echo n | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefi
 %{perl_vendorlib}/Class/Autouse/
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.24-1
+- Updated to release 1.24.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.23-1.2
 - Rebuild for Fedora Core 5.
 

@@ -9,8 +9,8 @@
 
 Summary: Interface to filesystem names and their properties
 Name: perl-Sys-Filesystem
-Version: 1.18
-Release: 1.2
+Version: 1.21
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-Filesystem/
@@ -48,6 +48,9 @@ query filesystem names and their properties.
 %{perl_vendorlib}/Sys/Filesystem/
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.21-1
+- Updated to release 1.21.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.18-1.2
 - Rebuild for Fedora Core 5.
 

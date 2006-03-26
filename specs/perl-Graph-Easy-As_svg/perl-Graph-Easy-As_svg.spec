@@ -9,8 +9,8 @@
 
 Summary: Render Graph-Easy as SVG
 Name: perl-Graph-Easy-As_svg
-Version: 0.16
-Release: 1.2
+Version: 0.17
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graph-Easy-As_svg/
@@ -49,6 +49,9 @@ that is human readable and maintainable.
 %{perl_vendorlib}/Graph/Easy/As_svg.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.17-1
+- Updated to release 0.17.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1.2
 - Rebuild for Fedora Core 5.
 

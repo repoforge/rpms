@@ -9,8 +9,8 @@
 
 Summary: OOP for the del.icio.us API
 Name: perl-Net-Delicious
-Version: 0.95
-Release: 1.2
+Version: 0.96
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Delicious/
@@ -47,6 +47,9 @@ OOP for the del.icio.us API.
 %{perl_vendorlib}/Net/Delicious/
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.96-1
+- Updated to release 0.96.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.95-1.2
 - Rebuild for Fedora Core 5.
 

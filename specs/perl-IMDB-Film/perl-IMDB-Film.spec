@@ -9,8 +9,8 @@
 
 Summary: Interface to IMDB
 Name: perl-IMDB-Film
-Version: 0.18
-Release: 1.2
+Version: 0.20
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IMDB-Film/
@@ -50,6 +50,9 @@ echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}
 %{perl_vendorlib}/IMDB/
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.20-1
+- Updated to release 0.20.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.18-1.2
 - Rebuild for Fedora Core 5.
 

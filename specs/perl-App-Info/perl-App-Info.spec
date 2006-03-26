@@ -9,8 +9,8 @@
 
 Summary: Provides metadata about installed software packages
 Name: perl-App-Info
-Version: 0.47
-Release: 1.2
+Version: 0.48
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/App-Info/
@@ -69,6 +69,9 @@ added as needed.
 %{perl_vendorlib}/App/Info/
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.48-1
+- Updated to release 0.48.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.47-1.2
 - Rebuild for Fedora Core 5.
 

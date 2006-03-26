@@ -9,8 +9,8 @@
 
 Summary: Compile and link C code
 Name: perl-ExtUtils-CBuilder
-Version: 0.15
-Release: 1.2
+Version: 0.18
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-CBuilder/
@@ -53,6 +53,9 @@ With this perl module, you can compile and link C code for perl modules
 %{perl_vendorlib}/ExtUtils/CBuilder/
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.18-1
+- Updated to release 0.18.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.15-1.2
 - Rebuild for Fedora Core 5.
 

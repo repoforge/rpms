@@ -9,8 +9,8 @@
 
 Summary: Time zone object base class and factory 
 Name: perl-DateTime-TimeZone
-Version: 0.40
-Release: 1.2
+Version: 0.42
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-TimeZone/
@@ -57,6 +57,9 @@ tools/parse_olson.
 %{perl_vendorlib}/DateTime/TimeZoneCatalog.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.42-1
+- Updated to release 0.42.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.40-1.2
 - Rebuild for Fedora Core 5.
 

@@ -9,8 +9,8 @@
 
 Summary: Hack around people using UNIVERSAL::isa
 Name: perl-UNIVERSAL-isa
-Version: 0.05
-Release: 1.2
+Version: 0.06
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/UNIVERSAL-isa/
@@ -45,6 +45,9 @@ Hack around module authors using UNIVERSAL::isa as a function when they shouldn'
 %{perl_vendorlib}/UNIVERSAL/isa.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1
+- Updated to release 0.06.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1.2
 - Rebuild for Fedora Core 5.
 

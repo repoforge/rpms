@@ -9,8 +9,8 @@
 
 Summary: Use TT BLOCK as your Perl sub
 Name: perl-Inline-TT
-Version: 0.06
-Release: 1.2
+Version: 0.07
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Inline-TT/
@@ -47,6 +47,9 @@ Inline::TT is a Inline plugin to allow you to code your Perl subs in TT.
 %{perl_vendorlib}/Inline/TT.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1
+- Updated to release 0.07.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1.2
 - Rebuild for Fedora Core 5.
 

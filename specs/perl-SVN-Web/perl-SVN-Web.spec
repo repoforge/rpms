@@ -9,8 +9,8 @@
 
 Summary: Subversion repository web frontend
 Name: perl-SVN-Web
-Version: 0.42
-Release: 1.2
+Version: 0.46
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Web/
@@ -58,6 +58,9 @@ SVN::Web is a subversion repository web frontend.
 %{perl_vendorlib}/SVN/Web/
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.46-1
+- Updated to release 0.46.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.42-1.2
 - Rebuild for Fedora Core 5.
 

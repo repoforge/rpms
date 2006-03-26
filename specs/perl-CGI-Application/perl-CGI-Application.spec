@@ -9,8 +9,8 @@
 
 Summary: Framework for building reusable web-applications
 Name: perl-CGI-Application
-Version: 4.04
-Release: 1.2
+Version: 4.05
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Application/
@@ -51,6 +51,9 @@ document, easier to write, and easier to evolve.
 %{perl_vendorlib}/CGI/Application
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 4.05-1
+- Updated to release 4.05.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 4.04-1.2
 - Rebuild for Fedora Core 5.
 

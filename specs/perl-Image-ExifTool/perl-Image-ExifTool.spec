@@ -9,8 +9,8 @@
 
 Summary: Read and write meta information in images
 Name: perl-Image-ExifTool
-Version: 5.87
-Release: 1.2
+Version: 6.00
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-ExifTool/
@@ -51,6 +51,9 @@ information in images.
 %{perl_vendorlib}/Image/ExifTool/
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 6.00-1
+- Updated to release 6.00.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 5.87-1.2
 - Rebuild for Fedora Core 5.
 

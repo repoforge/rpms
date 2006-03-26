@@ -11,8 +11,8 @@
 
 Summary: Backend for searching www.ebay.com
 Name: perl-WWW-Search-Ebay
-Version: 2.218
-Release: 1.2
+Version: 2.222
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Search-Ebay/
@@ -51,6 +51,9 @@ This is a backend for use with the WWW::Search module for searching on Ebay.
 %{perl_vendorlib}/WWW/Search/Ebay/*
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.222-1
+- Updated to release 2.222.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.218-1.2
 - Rebuild for Fedora Core 5.
 

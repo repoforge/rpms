@@ -9,8 +9,8 @@
 
 Summary: Parse and manipulate perl code non-destructively
 Name: perl-PPI
-Version: 1.109
-Release: 1.2
+Version: 1.110
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PPI/
@@ -66,6 +66,9 @@ echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}
 %{perl_vendorlib}/PPI/
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.110-1
+- Updated to release 1.110.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.109-1.2
 - Rebuild for Fedora Core 5.
 

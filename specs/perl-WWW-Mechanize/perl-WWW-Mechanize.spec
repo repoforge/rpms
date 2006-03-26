@@ -9,8 +9,8 @@
 
 Summary: Web browsing in a Perl object
 Name: perl-WWW-Mechanize
-Version: 1.16
-Release: 1.2
+Version: 1.18
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Mechanize/
@@ -53,6 +53,9 @@ echo y | %{__perl} Makefile.PL --nolive INSTALLDIRS="vendor" PREFIX="%{buildroot
 %{perl_vendorlib}/WWW/Mechanize/
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.18-1
+- Updated to release 1.18.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.16-1.2
 - Rebuild for Fedora Core 5.
 

@@ -9,8 +9,8 @@
 
 Summary: Get the list of modules shipped with versions of perl
 Name: perl-Module-CoreList
-Version: 2.02
-Release: 1.2
+Version: 2.04
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-CoreList/
@@ -52,6 +52,9 @@ This module gets the list of modules shipped with versions of perl.
 %{perl_vendorlib}/Module/CoreList.pm
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.04-1
+- Updated to release 2.04.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.02-1.2
 - Rebuild for Fedora Core 5.
 
