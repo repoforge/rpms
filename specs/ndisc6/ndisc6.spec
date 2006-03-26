@@ -2,13 +2,13 @@
 # Authority: dries
 # Upstream: Remi Denis-Courmont <rdenis$simphalempin,com>
 
-Summary: Tools for ICMPv7 Neighbor&Router Discovery and TCP/IPv6 traceroute
+Summary: Tools for ICMPv6 Neighbor&Router Discovery and TCP/IPv6 traceroute
 Name: ndisc6
 Version: 0.5.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
-URL: http://people.via.ecp.fr/~rem/ndisc6/
+URL: http://www.remlab.net/files/ndisc6/
 
 Source: http://people.via.ecp.fr/~rem/ndisc6/ndisc6-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -48,6 +48,9 @@ This package consists of two programs:
 %{_bindir}/tcptraceroute6
 
 %changelog
+* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.1-2
+- Fix in the summary and the url, thanks to Hugo van der Kooij.
+
 * Thu Dec 01 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.1-1
 - Updated to release 0.5.1.
 
