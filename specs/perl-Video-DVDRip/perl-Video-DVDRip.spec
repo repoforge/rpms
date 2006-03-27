@@ -12,14 +12,15 @@
 Summary: Graphical DVD ripping and encoding tool based on transcode
 Name: perl-Video-DVDRip
 Version: 0.97.6
-Release: 2
+Release: 3
 License: Artistic or GPL
 Group: Applications/Multimedia
 URL: http://www.exit1.org/dvdrip/
 Source: http://www.exit1.org/dvdrip/dist/Video-DVDRip-%{version}.tar.gz
+Patch0: Video-DVDRip-0.97.6-nontplworkaround.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: transcode >= 0.6.13
-Requires: ImageMagick, ogmtools, subtitleripper, vcdimager
+Requires: ImageMagick, ogmtools, subtitleripper, vcdimager, lsdvd
 BuildRequires: perl(Gtk2) >= 1.081, perl(Gtk2::Ex::FormFactory) >= 0.58
 BuildRequires: perl(Locale::TextDomain)
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
@@ -31,6 +32,7 @@ DVD Ripping API, which uses the Linux Video Stream Processing Tool transcode.
 
 %prep
 %setup -n Video-DVDRip-%{version}
+%patch0 -p1 -b .nontplworkaround
 
 
 %build
@@ -102,6 +104,11 @@ EOF
 
 
 %changelog
+* Thu Mar 23 2006 Matthias Saou <http://freshrpms.net/> 0.97.6-3
+- Add patch to default to NPTL workaround disabled, since it's causing dvd::rip
+  to not work properly on FC5.
+- Add lsdvd requirement, since it's used for faster DVD TOC reading.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.97.6-2
 - Remove _smp_mflags as it makes the build fail.
 
