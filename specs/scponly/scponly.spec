@@ -5,15 +5,17 @@
 Summary: Limited shell for secure file transfers
 Name: scponly
 Version: 4.6
-Release: 2
+Release: 3
 License: GPL
 Group: System Environment/Shells
 URL: http://sublimation.org/scponly/
 
 Source: http://sublimation.org/scponly/scponly-%{version}.tgz
+Patch0: scponly-4.6-rsync.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: openssh >= 3.4, perl, openssh-server, openssh-clients
+Requires: openssh >= 3.4, openssh-server, openssh-clients, rsync
+BuildRequires: openssh >= 3.4, openssh-server, openssh-clients, rsync
 
 %description
 scponly is an alternative 'shell' for system administrators 
@@ -24,12 +26,17 @@ as a wrapper to the "tried and true" ssh suite of applications.
 
 %prep
 %setup
-
+%patch0 -p1 -b .rsync
 ### FIXME: Remove ownership changes from Makefile
 %{__perl} -pi.orig -e 's|-o 0 -g 0||g' Makefile*
+# Change /usr/local from the docs to /usr.
+%{__perl} -pi -e 's|%{_prefix}/local/|%{_prefix}/|g' scponly.8* INSTALL README
 
 %build
-%configure
+%configure \
+    --enable-scp-compat \
+    --enable-winscp-compat \
+    --enable-rsync-compat
 %{__make} %{?_smp_mflags} OPTS="%{optflags}"
 
 %install
@@ -43,11 +50,16 @@ as a wrapper to the "tried and true" ssh suite of applications.
 %defattr(-, root, root, 0755)
 %doc AUTHOR CHANGELOG CONTRIB COPYING INSTALL README TODO
 %doc setup_chroot.sh build_extras/setup_chroot.sh*
-%doc %{_mandir}/man8/scponly.8*
 %config(noreplace) %{_sysconfdir}/scponly/
 %{_bindir}/scponly
+%{_mandir}/man8/scponly.8*
 
 %changelog
+* Mon Mar 27 2006 Matthias Saou <http://freshrpms.net/> 4.6-3
+- Enable rsync and scp/winscp compatibility.
+- Add change from Extras to fix /usr/local in docs.
+- Include (ugly) patch to fix long rsync options (may be missing options).
+
 * Thu Mar 09 2006 Dag Wieers <dag@wieers.com> - 4.6-2
 - Use make install and added %%{_sysconfdir}/scponly/debuglevel.
 - Added setup_chroot helper scripts as documentation.
