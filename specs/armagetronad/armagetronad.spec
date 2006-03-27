@@ -17,12 +17,12 @@
 %{?yd3:%define _without_xorg 1}
 
 %define desktop_vendor rpmforge
-%define prever rc4
+#define prever rc4
 
 Summary: Multiplayer 'Tron' 3D racing game
 Name: armagetronad
-Version: 0.2.8.0
-Release: 0.3%{?prever:.%{prever}}
+Version: 0.2.8.1
+Release: 1%{?prever:.%{prever}}
 License: GPL
 Group: Amusements/Games
 URL: http://www.armagetronad.net/
@@ -31,8 +31,8 @@ Patch0: armagetronad-0.2.8_beta3-gcc4.patch
 Patch1: armagetronad-0.2.8_beta4-desktop.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libstdc++-devel, zlib-devel, libpng-devel, libjpeg-devel
-BuildRequires: SDL_image-devel, SDL-devel, esound-devel, libxml2-devel
-BuildRequires: /usr/bin/find, unzip, gcc-c++
+BuildRequires: SDL_image-devel, SDL_mixer-devel, SDL-devel, esound-devel
+BuildRequires: libxml2-devel, /usr/bin/find, unzip, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %if 0%{!?_with_modxorg:1}
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
@@ -134,7 +134,10 @@ gtk-update-icon-cache || :
 
 
 %changelog
-* Fri May 17 2006 Matthias Saou <http://freshrpms.net/> 0.2.8.0-0.3.rc4
+* Mon Mar 27 2006 Matthias Saou <http://freshrpms.net/> 0.2.8.1-1
+- Update to 0.2.8.1.
+
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.2.8.0-0.3.rc4
 - Update to 0.2.8.0_rc4.
 
 * Tue Jan 17 2006 Matthias Saou <http://freshrpms.net/> 0.2.8-0.2.beta4
