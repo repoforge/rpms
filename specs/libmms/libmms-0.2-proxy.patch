@@ -1,0 +1,273 @@
+Index: src/mmsh.c
+===================================================================
+RCS file: /cvsroot/libmms/libmms/src/mmsh.c,v
+retrieving revision 1.3
+diff -u -p -r1.3 mmsh.c
+--- src/mmsh.c	12 Dec 2005 15:08:07 -0000	1.3
++++ src/mmsh.c	23 Mar 2006 21:33:49 -0000
+@@ -36,6 +36,7 @@
+ 
+ #include <unistd.h>
+ #include <stdio.h>
++#include <stdlib.h>
+ #include <sys/socket.h>
+ #include <netinet/in.h>
+ #include <netdb.h>
+@@ -155,11 +156,16 @@ struct mmsh_s {
+ 
+   /* url parsing */
+   char         *url;
++  char         *proxy_url;
+   char         *proto;
+-  char         *host;
+-  int           port;
+-  char         *user;
+-  char         *password;
++  char         *connect_host;
++  int           connect_port;
++  char         *http_host;
++  int           http_port;
++  char         *proxy_user;
++  char         *proxy_password;
++  char         *host_user;
++  char         *host_password;
+   char         *uri;
+ 
+   char          str[SCRATCH_SIZE]; /* scratch buffer to built strings */
+@@ -711,17 +717,17 @@ static int mmsh_valid_proto (char *proto
+ static int mmsh_tcp_connect(mms_io_t *io, mmsh_t *this) {
+   int progress, res;
+   
+-  if (!this->port) this->port = MMSH_PORT;
++  if (!this->connect_port) this->connect_port = MMSH_PORT;
+   
+   /* 
+    * try to connect 
+    */
+-  lprintf("try to connect to %s on port %d \n", this->host, this->port);
++  lprintf("try to connect to %s on port %d \n", this->connect_host, this->connect_port);
+ 
+-  this->s = io_connect (io, this->host, this->port);
++  this->s = io_connect (io, this->connect_host, this->connect_port);
+ 
+   if (this->s == -1) {
+-    lprintf ("mmsh: failed to connect '%s'\n", this->host);
++    lprintf ("mmsh: failed to connect '%s'\n", this->connect_host);
+     return 1;
+   }
+ 
+@@ -761,7 +767,7 @@ static int mmsh_connect_int (mms_io_t *i
+   lprintf("first http request\n");
+   
+   snprintf (this->str, SCRATCH_SIZE, mmsh_FirstRequest, this->uri,
+-            this->host, this->port, 1);
++            this->http_host, this->http_port, 1);
+ 
+   if (!send_command (io, this, this->str))
+     goto fail;
+@@ -867,12 +873,12 @@ static int mmsh_connect_int (mms_io_t *i
+   switch (this->stream_type) {
+     case MMSH_SEEKABLE:
+       snprintf (this->str, SCRATCH_SIZE, mmsh_SeekableRequest, this->uri,
+-                this->host, this->port, 0, 0, 0, 2, 0,
++                this->http_host, this->http_port, 0, 0, 0, 2, 0,
+                 this->num_stream_ids, stream_selection);
+       break;
+     case MMSH_LIVE:
+       snprintf (this->str, SCRATCH_SIZE, mmsh_LiveRequest, this->uri,
+-                this->host, this->port, 2,
++                this->http_host, this->http_port, 2,
+                 this->num_stream_ids, stream_selection);
+       break;
+   }
+@@ -910,17 +916,36 @@ fail:
+ 
+ mmsh_t *mmsh_connect (mms_io_t *io, void *data, const char *url, int bandwidth) {
+   mmsh_t *this;
+-  GURI  *uri;
+- 
++  GURI  *uri = NULL;
++  GURI  *proxy_uri = NULL;
++  char  *proxy_env;
+   if (!url)
+     return NULL;
+ 
+ //  report_progress (stream, 0);
+-
++  /*
++   * initializatoin is essential here.  the fail: label depends
++   * on the various char * in our this structure to be
++   * NULL if they haven't been assigned yet.
++   */
+   this = (mmsh_t*) malloc (sizeof (mmsh_t));
++  this->url=NULL;
++  this->proxy_url = NULL;
++  this->proto = NULL;
++  this->connect_host = NULL;
++  this->http_host = NULL;
++  this->proxy_user = NULL;
++  this->proxy_password = NULL;
++  this->host_user = NULL;
++  this->host_password = NULL;
++  this->uri = NULL;
+ 
+   this->custom_data     = data;
+   this->url             = strdup(url);
++  if ((proxy_env = getenv("http_proxy")) != NULL)
++    this->proxy_url = strdup(proxy_env);
++  else
++    this->proxy_url = NULL;
+   this->s               = -1;
+   this->asf_header_len  = 0;
+   this->asf_header_read = 0;
+@@ -935,18 +960,59 @@ mmsh_t *mmsh_connect (mms_io_t *io, void
+ 
+ //  report_progress (stream, 0);
+ 
++  if (this->proxy_url) {
++    proxy_uri = gnet_uri_new(this->proxy_url);
++    if (!proxy_uri) {
++      lprintf("invalid proxy url\n");
++      goto fail;
++    }
++    if (! proxy_uri->port ) {
++      proxy_uri->port = 3128; //default squid port
++    }
++  }
+   uri = gnet_uri_new(this->url);
+   if (!uri) {
+     lprintf ("invalid url\n");
+     goto fail;
+   }
+-  this->proto = uri->scheme;
+-  this->user = uri->user;
+-  this->host = uri->hostname;
+-  this->port = uri->port;
+-  this->password = uri->passwd;
+-  this->uri = uri->path;
+-  
++  if (! uri->port ) {
++    //checked in tcp_connect, but it's better to initialize it here
++    uri->port = MMSH_PORT;
++  }
++  if (this->proxy_url) {
++    this->proto = (uri->scheme) ? strdup(uri->scheme) : NULL;
++    this->connect_host = (proxy_uri->hostname) ? strdup(proxy_uri->hostname) : NULL;
++    this->connect_port = proxy_uri->port;
++    this->http_host = (uri->scheme) ? strdup(uri->hostname) : NULL;
++    this->http_port = uri->port;
++    this->proxy_user = (proxy_uri->user) ? strdup(proxy_uri->user) : NULL;
++    this->proxy_password = (proxy_uri->passwd) ? strdup(proxy_uri->passwd) : NULL;
++    this->host_user = (uri->user) ? strdup(uri->user) : NULL;
++    this->host_password = (uri->passwd) ? strdup(uri->passwd) : NULL;
++    gnet_uri_set_scheme(uri,"http");
++    char * uri_string = gnet_uri_get_string(uri);
++    this->uri = strdup(uri_string);
++    g_free(uri_string);
++  } else {
++    this->proto = (uri->scheme) ? strdup(uri->scheme) : NULL;
++    this->connect_host = (uri->hostname) ? strdup(uri->hostname) : NULL;
++    this->connect_port = uri->port;
++    this->http_host = (uri->hostname) ? strdup(uri->hostname) : NULL;
++    this->http_port = uri->port;
++    this->proxy_user = NULL;
++    this->proxy_password = NULL;
++    this->host_user =(uri->user) ?  strdup(uri->user) : NULL;
++    this->host_password = (uri->passwd) ? strdup(uri->passwd) : NULL;
++    this->uri = (uri->path) ? strdup(uri->path) : NULL;
++  }
++  if (proxy_uri) {
++    gnet_uri_delete(proxy_uri);
++    proxy_uri = NULL;
++  }
++  if (uri) {
++    gnet_uri_delete(uri);
++    uri = NULL;
++  }
+   if (!mmsh_valid_proto(this->proto)) {
+     lprintf ("unsupported protocol\n");
+     goto fail;
+@@ -968,18 +1034,30 @@ mmsh_t *mmsh_connect (mms_io_t *io, void
+ 
+ fail:
+   lprintf("mmsh_connect: failed\n" );
++  if (proxy_uri)
++    gnet_uri_delete(proxy_uri);
++  if (uri)
++    gnet_uri_delete(uri);
+   if (this->s != -1)
+     close(this->s);
+   if (this->url)
+     free(this->url);
++  if (this->proxy_url)
++    free(this->proxy_url);
+   if (this->proto)
+     free(this->proto);
+-  if (this->host)
+-    free(this->host);
+-  if (this->user)
+-    free(this->user);
+-  if (this->password)
+-    free(this->password);
++  if (this->connect_host)
++    free(this->connect_host);
++  if (this->http_host)
++    free(this->http_host);
++  if (this->proxy_user)
++    free(this->proxy_user);
++  if (this->proxy_password)
++    free(this->proxy_password);
++  if (this->host_user)
++    free(this->host_user);
++  if (this->host_password)
++    free(this->host_password);
+   if (this->uri)
+     free(this->uri);
+ 
+@@ -1146,15 +1224,23 @@ void mmsh_close (mmsh_t *this) {
+   if (this->s != -1)
+     close(this->s);
+   if (this->url)
+-    free (this->url);
++    free(this->url);
++  if (this->proxy_url)
++    free(this->proxy_url);
+   if (this->proto)
+     free(this->proto);
+-  if (this->host)
+-    free(this->host);
+-  if (this->user)
+-    free(this->user);
+-  if (this->password)
+-    free(this->password);
++  if (this->connect_host)
++    free(this->connect_host);
++  if (this->http_host)
++    free(this->http_host);
++  if (this->proxy_user)
++    free(this->proxy_user);
++  if (this->proxy_password)
++    free(this->proxy_password);
++  if (this->host_user)
++    free(this->host_user);
++  if (this->host_password)
++    free(this->host_password);
+   if (this->uri)
+     free(this->uri);
+   if (this)
+Index: src/mmsh.h
+===================================================================
+RCS file: /cvsroot/libmms/libmms/src/mmsh.h,v
+retrieving revision 1.2
+diff -u -p -r1.2 mmsh.h
+--- src/mmsh.h	12 Dec 2005 09:24:20 -0000	1.2
++++ src/mmsh.h	23 Mar 2006 21:33:49 -0000
+@@ -26,6 +26,8 @@
+ #define HAVE_MMSH_H
+ 
+ #include <inttypes.h>
++#include <stdio.h>
++#include <sys/types.h>
+ #include "mmsio.h"
+ 
+ typedef struct mmsh_s mmsh_t;

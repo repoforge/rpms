@@ -14,11 +14,12 @@
 Summary: GStreamer streaming media framework "ugly" plug-ins
 Name: %{gstreamer}-plugins-ugly
 Version: 0.10.2
-Release: 1
+Release: 2
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
 Source: http://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-%{version}.tar.bz2
+Patch0: gst-plugins-ugly-0.10.2-asfdemux-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: %{gstreamer} >= %{gst_minver}
 BuildRequires: %{gstreamer}-devel >= %{gst_minver}
@@ -79,6 +80,7 @@ This package contains development files and documentation.
 
 %prep
 %setup -n gst-plugins-ugly-%{version}
+%patch0 -p0 -b .asfdemux-fixes
 
 
 %build
@@ -132,6 +134,9 @@ This package contains development files and documentation.
 
 
 %changelog
+* Tue Mar 28 2006 Matthias Saou <http://freshrpms.net/> 0.10.2-2
+- Include backported asfdemux fixes patch from Daniel S. Rogers.
+
 * Wed Feb 22 2006 Matthias Saou <http://freshrpms.net/> 0.10.2-1
 - Update to 0.10.2.
 - Add libgstasf.so.

@@ -4,11 +4,12 @@
 Summary: MMS stream protocol library
 Name: libmms
 Version: 0.2
-Release: 1
+Release: 2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libmms.sourceforge.net/
 Source: http://dl.sf.net/libmms/libmms-%{version}.tar.gz
+Patch0: libmms-0.2-proxy.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: glib2-devel
 
@@ -28,6 +29,7 @@ protocol using libmms.
 
 %prep
 %setup
+%patch0 -p0 -b .proxy
 
 
 %build
@@ -64,6 +66,9 @@ protocol using libmms.
 
 
 %changelog
+* Tue Mar 28 2006 Matthias Saou <http://freshrpms.net/> 0.2-2
+- Add HTTP_PROXY support patch from Daniel S. Rogers.
+
 * Thu Mar 23 2006 Matthias Saou <http://freshrpms.net/> 0.2-1
 - Initial RPM release.
 
