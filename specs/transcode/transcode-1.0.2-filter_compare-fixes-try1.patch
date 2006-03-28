@@ -1,0 +1,144 @@
+--- filter/filter_compare.c.old	2006-01-24 17:25:53.000000000 +0100
++++ filter/filter_compare.c	2006-01-24 17:46:39.000000000 +0100
+@@ -23,7 +23,7 @@
+  */
+ 
+ #define MOD_NAME    "filter_compare.so"
+-#define MOD_VERSION "v0.1.2 (2003-08-29)"
++#define MOD_VERSION "v0.1.3 (2006-01-24)"
+ #define MOD_CAP     "compare with other image to find a pattern"
+ #define MOD_AUTHOR  "Antonio Beamud"
+ 
+@@ -97,6 +97,8 @@
+ 	
+ }
+ 
++#define RESULTS_FILE    "/tmp/compare.dat"
++#define PATTERN_FILE    "/dev/null"
+ 
+ int tc_filter(vframe_list_t *ptr, char *options)
+ {
+@@ -114,9 +116,9 @@
+ 		optstr_filter_desc(options, MOD_NAME, MOD_CAP, MOD_VERSION,
+ 				   MOD_AUTHOR, "VRYMO", "1");
+ 		
+-		snprintf(buf, 128, "/dev/null");
++        snprintf(buf, 128, PATTERN_FILE);
+ 		optstr_param(options, "pattern", "Pattern image file path", "%s", buf);
+-		snprintf(buf, 128, "results.dat");
++        snprintf(buf, 128, RESULTS_FILE);
+ 		optstr_param(options, "results", "Results file path" , "%s", buf);
+ 		snprintf(buf, 128, "%f", compare[instance]->delta);
+ 		optstr_param(options, "delta", "Delta error", "%f",buf,"0.0", "100.0");
+@@ -132,16 +134,20 @@
+ 
+ 	if(ptr->tag & TC_FILTER_INIT) 
+ 	{
+-
++        char pattern_name[PATH_MAX];
++        char results_name[PATH_MAX];
+ 		unsigned int t,r,index;
+ 		pixelsMask *temp;
+ 
+-		if((compare[instance] = (compareData *)malloc(sizeof(compareData))) == NULL)
++        /* defaults */
++        strlcpy(results_name, RESULTS_FILE, sizeof(results_name));
++        strlcpy(pattern_name, PATTERN_FILE, sizeof(pattern_name));
++        
++        if((compare[instance] = malloc(sizeof(compareData))) == NULL)
+ 			return (-1);
+ 		
+ 		if((compare[instance]->vob = tc_get_vob())==NULL) return(-1);
+ 		
+-
+ 		compare[instance]->delta=DELTA_COLOR;
+ 		compare[instance]->step=1;
+ 		compare[instance]->width=0;
+@@ -154,13 +160,13 @@
+ 		compare[instance]->height = compare[instance]->vob->ex_v_height;
+ 
+ 		if (options != NULL) {
+-			char pattern_name[PATH_MAX];
+-			char results_name[PATH_MAX];
+-			memset(pattern_name,0,PATH_MAX);
+-			memset(results_name,0,PATH_MAX);
+-
+ 			if(verbose) printf("[%s] options=%s\n", MOD_NAME, options);
+ 	
++            if (optstr_lookup (options, "help")) {
++                help_optstr();
++                return(0);
++            }
++            
+ 			optstr_get(options, "pattern", "%[^:]", &pattern_name);
+ 			optstr_get(options, "results", "%[^:]", &results_name);
+ 			optstr_get(options, "delta", "%f", &compare[instance]->delta);
+@@ -172,47 +178,45 @@
+ 			printf("        delta = %f\n", compare[instance]->delta);
+ 			}		
+ 			
+-			if (strlen(results_name) == 0) {
+-				// Ponemos el nombre del fichero al original con extension dat
+-				strlcpy(results_name, "/tmp/compare.dat", sizeof(results_name));
+-				
++            if (!pattern_name || !strlen(pattern_name)) {
++                /* restore default */
++                fprintf(stderr, "[%s] missing image file, using fake "
++                                "source\n", MOD_NAME);
++                strlcpy(pattern_name, PATTERN_FILE, sizeof(pattern_name));
+ 			}
+-			if (!(compare[instance]->results = fopen(results_name, "w")))
+-			{
++            if (!results_name || !strlen(results_name)) {
++                /* restore default */
++                fprintf(stderr, "[%s] using default results file '%s'\n",
++                                MOD_NAME, RESULTS_FILE);
++                strlcpy(results_name, RESULTS_FILE, sizeof(results_name));
++            }
++        }
++            
++        if (!(compare[instance]->results = fopen(results_name, "w"))) {
+ 				perror("could not open file for writing");
++            return(-1);
+ 			}
+ 			
+ 			InitializeMagick("");
+ 			if (verbose > 1) printf("[%s] Magick Initialized successfully\n", MOD_NAME);
+ 				
+ 			GetExceptionInfo(&exception_info);
+-			image_info = CloneImageInfo ((ImageInfo *) NULL);
++        image_info = CloneImageInfo(NULL);
+ 			strlcpy(image_info->filename, pattern_name, MaxTextExtent);
+ 			if (verbose > 1)
+ 			     printf("Trying to open image\n");
+-			orig = ReadImage(image_info,
+-					 &exception_info);
++        orig = ReadImage(image_info, &exception_info);
+ 			
+-			if (orig == (Image *) NULL) {
++        if (!orig) {
+ 				MagickWarning(exception_info.severity,
+ 					      exception_info.reason,
+ 					      exception_info.description);
+-				strlcpy(pattern_name, "/dev/null", sizeof(pattern_name));
+-			}else{
++                fprintf(stderr, "[%s] Can't open image\n", MOD_NAME);
++                return(-1);
++        } else {
+ 			       if (verbose > 1)
+ 			       		printf("[%s] Image loaded successfully\n", MOD_NAME);
+ 			     }
+-		}
+-		
+-		else{
+-			perror("Not image provided");
+-		}
+- 		
+-		if (options != NULL)
+-			if (optstr_lookup (options, "help")) {
+-				help_optstr();
+-			}
+-		
+ 		
+ 		fprintf(compare[instance]->results,"#fps:%f\n",compare[instance]->vob->fps);
+ 		

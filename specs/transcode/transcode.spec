@@ -28,11 +28,13 @@
 Summary: Linux video stream processing utility
 Name: transcode
 Version: 1.0.2
-Release: 6%{?prever:.%{prever}}
+Release: 7%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
 Source: http://www.jakemsr.com/transcode/transcode-%{version}%{?prever}.tar.gz
+Patch0: transcode-1.0.2-filter_compare-fixes-try1.patch
+Patch1: transcode-1.0.2-filter_logo-hangup-try1.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gtk+-devel, SDL-devel, libxml2-devel, libjpeg-devel
 BuildRequires: freetype-devel >= 2.0, libogg-devel, libvorbis-devel
@@ -72,6 +74,8 @@ Available rpmbuild rebuild options :
 
 %prep
 %setup -n %{name}-%{version}%{?prever}
+%patch0 -p0 -b .filter_compare-fixes-try1
+%patch1 -p0 -b .filter_logo-hangup-try1
 
 
 %build
@@ -128,6 +132,10 @@ export CFLAGS="%{optflags} -I%{_includedir}/postproc"
 
 
 %changelog
+* Tue Mar 28 2006 Matthias Saou <http://freshrpms.net/> 1.0.2-7
+- Include transcode-1.0.2-filter_compare-fixes-try1.patch and
+  transcode-1.0.2-filter_logo-hangup-try1.patch to fix hang.
+
 * Thu Mar 23 2006 Matthias Saou <http://freshrpms.net/> 1.0.2-6
 - Rebuild against mjpegtools 1.8 and not 1.9, although 1.9 seems like it will
   have to be introduced at some point to fix compatibility with the latest

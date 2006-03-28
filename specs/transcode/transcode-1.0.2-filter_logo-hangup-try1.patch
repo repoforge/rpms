@@ -1,0 +1,32 @@
+--- filter/filter_logo.c.old	2006-03-28 14:08:26.000000000 +0200
++++ filter/filter_logo.c	2006-03-28 14:15:43.000000000 +0200
+@@ -146,6 +146,7 @@
+   }
+ 
+   if(ptr->tag & TC_FILTER_INIT) {
++    int dry_run = 0;
+ 
+     if((vob = tc_get_vob())==NULL) return(-1);
+ 
+@@ -181,8 +182,10 @@
+ 	if (optstr_get (options, "rgbswap", "") >= 0) mfd->rgbswap=!mfd->rgbswap;
+ 	if (optstr_get (options, "grayout", "") >= 0) mfd->grayout=!mfd->grayout;
+ 
+-	if (optstr_get (options, "help", "") >= 0)
++	if (optstr_get (options, "help", "") >= 0) {
+ 	    help_optstr();
++	    dry_run = 1;
++	}
+     }
+ 
+     if (verbose > 1) {
+@@ -195,6 +198,9 @@
+ 	printf ("       ignoredelay = %d\n", mfd->ignoredelay);
+ 	printf ("           rgbswap = %d\n", mfd->rgbswap);
+     }
++    if (dry_run) {
++	return(0);
++    }
+ 
+     InitializeMagick("");
+ 
