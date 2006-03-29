@@ -1,0 +1,111 @@
+#!/bin/sh
+#
+# kannel	This script takes care of starting and stopping the kannel \
+#		WAP gateway services (bearer/wap/smsbox).
+# chkconfig: - 97 03
+# description:  The Kannel WAP and SMS gateway services
+# config: /etc/kannel.conf
+
+# Use start-stop-kannel
+prog="/usr/sbin/start-stop-kannel"
+args="--start --background --chuid kannel:kannel --exec "
+config="/etc/kannel.conf"
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ "${NETWORKING}" = "no" ] && exit 0
+
+[ -f $config ] || exit 1
+
+RETVAL=0
+RETVAL_BEARER=0
+RETVAL_WAP=0
+RETVAL_SMS=0
+
+start() {
+        # Start daemons.
+        echo -n "Starting kannel bearer box: "
+	daemon $prog $args /usr/sbin/bearerbox $config
+	RETVAL_BEARER=$?
+	echo
+
+	# Starting wap and sms only makes sense if bearerbox is running
+	if [ $RETVAL_BEARER -eq 0 ]; then
+	  if grep "^group = wapbox" $config &>/dev/null; then
+	    echo -n "Starting kannel wap box: "
+	    daemon $prog $args /usr/sbin/wapbox $config
+	    RETVAL_WAP=$?
+	    echo
+	  fi
+	  if grep "^group = smsbox" $config &>/dev/null; then
+	    echo -n "Starting kannel sms box: "
+	    daemon $prog $args /usr/sbin/smsbox $config
+	    RETVAL_SMS=$?
+	    echo
+	  fi
+	fi
+ 	[ $RETVAL_BEARER -eq 0 -a $RETVAL_WAP -eq 0 -a $RETVAL_SMS -eq 0 ] \
+	  && touch /var/lock/subsys/kannel || RETVAL=1
+}
+
+stop() {
+        # Stop daemons.
+	if grep "^group = smsbox" $config &>/dev/null; then
+	  echo -n "Shutting down kannel sms box: "
+	  killproc /usr/sbin/smsbox
+	  RETVAL_SMS=$?
+	  echo
+	fi
+	if grep "^group = wapbox" $config &>/dev/null; then
+	  echo -n "Shutting down kannel wap box: "
+	  killproc /usr/sbin/wapbox
+	  RETVAL_WAP=$?
+	  echo
+	fi
+	echo -n "Shutting down kannel bearer box: "
+        killproc /usr/sbin/bearerbox
+	RETVAL_BEARER=$?
+	echo
+	[ $RETVAL_BEARER -eq 0 -a $RETVAL_WAP -eq 0 -a $RETVAL_SMS -eq 0 ] \
+	  || RETVAL=1
+	rm -f /var/lock/subsys/kannel
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+        ;;
+  stop)
+	stop
+        ;;
+  status)
+	status /usr/sbin/bearerbox
+	RETVAL_BEARER=$?
+	if grep "^group = wapbox" $config &>/dev/null; then
+	  status /usr/sbin/wapbox
+	  RETVAL_WAP=$?
+	fi
+	if grep "^group = smsbox" $config &>/dev/null; then
+	  status /usr/sbin/smsbox
+	  RETVAL_SMS=$?
+	fi
+	[ $RETVAL_BEARER -eq 0 -a $RETVAL_WAP -eq 0 -a $RETVAL_SMS -eq 0 ] \
+	  || RETVAL=1
+	;;
+  restart)
+	stop
+	start
+	;;  
+  *)
+        echo $"Usage: $0 {start|stop|restart|status}"
+        RETVAL=1
+esac
+
+exit $RETVAL
+

@@ -4,18 +4,21 @@
 Summary: WAP and SMS gateway
 Name: kannel
 Version: 1.4.0
-Release: 3
+Release: 4
 License: Kannel
 Group: System Environment/Daemons
 URL: http://www.kannel.org/
-Source: http://www.kannel.org/download/%{version}/gateway-%{version}.tar.bz2
-Patch: kannel-1.4.0-depend.patch
+Source0: http://www.kannel.org/download/%{version}/gateway-%{version}.tar.bz2
+Source1: kannel.logrotate
+Source2: kannel.init
+Source3: kannel.conf
+Patch0: kannel-1.4.0-depend.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: bison, byacc, flex, ImageMagick
 BuildRequires: libxml2-devel, openssl-devel, zlib-devel
 BuildRequires: pcre-devel
 # DB backends
-BuildRequires: sqlite-devel
+BuildRequires: sqlite2-devel
 # For the docs... I think we need transfig too, so disable for now.
 #BuildRequires: jadetex, tetex-dvips, docbook-dtds, docbook-style-dsssl
 
@@ -47,7 +50,7 @@ use the kannel WAP and SMS gateway.
 
 %prep
 %setup -n gateway-%{version}
-%patch -p0 -b .depend
+%{!?rh73:%patch0 -p0 -b .depend}
 
 %{?el3:%{__perl} -pi.orig -e 's|^(CFLAGS)=|$1=-I/usr/kerberos/include |' Makefile.in}
 %{?rh9:%{__perl} -pi.orig -e 's|^(CFLAGS)=|$1=-I/usr/kerberos/include |' Makefile.in}
@@ -56,6 +59,7 @@ use the kannel WAP and SMS gateway.
 %build
 %configure \
     --enable-start-stop-daemon \
+    --enable-pcre \
     --with-sqlite
 %{__make} %{?_smp_mflags}
 
@@ -63,45 +67,70 @@ use the kannel WAP and SMS gateway.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+# Install fakesmsc and fakewap, useful for monitoring
+%{__install} -m 0755 test/{fakesmsc,fakewap} %{buildroot}%{_bindir}/
+# Logrotate entry
+%{__install} -D -m 0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/logrotate.d/kannel
+# Init script
+%{__install} -D -m 0755 %{SOURCE2} %{buildroot}%{_sysconfdir}/rc.d/init.d/kannel
+# Default configuration file
+%{__install} -D -m 0640 %{SOURCE3} %{buildroot}%{_sysconfdir}/kannel.conf
+# Empty log directory
+%{__mkdir_p} %{buildroot}%{_var}/log/kannel/
+# Rename start-stop-daemon to start-stop-kannel
+%{__mv} %{buildroot}%{_sbindir}/start-stop-daemon \
+        %{buildroot}%{_sbindir}/start-stop-kannel
 
 
 %clean
 %{__rm} -rf %{buildroot}
 
 
-#post
-#if [ $1 -eq 1 ]; then
-#   /sbin/chkconfig --add foobar
-#fi
+%pre
+# Create system account
+/usr/sbin/useradd -c "Kannel WAP and SMS gateway" -r -M -s '' \
+    -d %{_var}/lib/kannel kannel &>/dev/null || :
 
-#preun
-#if [ $1 -eq 0 ]; then
-#   /sbin/service foobar stop >/dev/null 2>&1 || :
-#   /sbin/chkconfig --del foobar
-#fi
+%post
+/sbin/chkconfig --add kannel
 
-#postun
-#if [ $1 -ge 1 ]; then
-#   /sbin/service foobar condrestart >/dev/null 2>&1 || :
-#fi
+%preun
+if [ $1 -eq 0 ]; then
+    # Last removal, stop service and remove it
+    /sbin/service kannel stop &>/dev/null || :
+    /sbin/chkconfig --del kannel
+fi
+
+%postun
+if [ $1 -ge 1 ]; then
+    /sbin/service kannel condrestart &>/dev/null || :
+fi
 
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README STATUS
+%attr(0640, kannel, kannel) %config(noreplace) %{_sysconfdir}/kannel.conf
+%config(noreplace) %{_sysconfdir}/logrotate.d/kannel
+%config %{_sysconfdir}/rc.d/init.d/kannel
 %{_bindir}/*
 %{_sbindir}/*
 %{_mandir}/man?/*
-
+%attr(0750, kannel, kannel) %dir %{_var}/log/kannel/
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/kannel/
-%dir %{_libdir}/kannel/
-%{_libdir}/kannel/*.a
+%exclude %{_libdir}/kannel/*.a
 
 
 %changelog
+* Mon Jul  4 2005 Matthias Saou <http://freshrpms.net/> 1.4.0-4
+- Include (at last!) user creation, logrotate entry and init script.
+- Include default configuration file (do nothing, access only from 127.0.0.1).
+- Include empty log directory.
+- Include fakesmsc and fakewap programs, useful for monitoring purposes.
+
 * Mon Jan 17 2005 Matthias Saou <http://freshrpms.net/> 1.4.0-3
 - Added Stefan Radman's patch for kannel bug #173 to fix .depend problem.
 

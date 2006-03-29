@@ -1,0 +1,10 @@
+/var/log/kannel/*.log {
+    compress
+    missingok
+    notifempty
+    create 640 kannel kannel
+    sharedscripts
+    postrotate
+        /usr/bin/killall -HUP bearerbox smsbox wapbox 2>/dev/null || true
+    endscript
+}
