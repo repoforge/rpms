@@ -109,30 +109,19 @@ with different major/minor versions of GStreamer.
 %{__rm} -f %{buildroot}%{_libdir}/gstreamer-%{majmin}/*.{a,la}
 %{__rm} -f %{buildroot}%{_libdir}/*.{a,la}
 # Create empty cache directory
-mkdir -p %{buildroot}%{_localstatedir}/cache/gstreamer-%{majmin}
+%{__mkdir_p} %{buildroot}%{_localstatedir}/cache/gstreamer-%{majmin}
 
 
 %clean
 %{__rm} -rf %{buildroot}
 
-<<<<<<< gstreamer.spec
-%post 
-/sbin/ldconfig 2>/dev/null
-DISPLAY="" %{_bindir}/gst-register --gst-mask="0" &>/dev/null
-=======
 
 %post
 /sbin/ldconfig
-%{_bindir}/gst-register-%{majmin} >/dev/null 2>&1 || :
+%{_bindir}/gst-register-%{majmin} &>/dev/null || :
 
 %postun -p /sbin/ldconfig
->>>>>>> 1.3
 
-<<<<<<< gstreamer.spec
-%postun
-/sbin/ldconfig 2>/dev/null
-=======
->>>>>>> 1.3
 
 %files -f gstreamer-%{majmin}.lang
 %defattr(-, root, root, 0755)
