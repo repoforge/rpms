@@ -72,6 +72,7 @@ This version has been compiled with X11, XV, OpenGL and Glide3 displays.
 Available rpmbuild rebuild options :
 --without mame mess mips3drc ppcdrc effmmx opengl glide3
           alsa esound arts lirc opts quietbuild
+--with dga
 
 
 %package -n xmess
@@ -134,6 +135,7 @@ export LIGHTGUN_ABS_EVENT=1
 %{!?_without_arts:   export SOUND_ARTS_SMOTEK=1}
 %{!?_without_arts:   export SOUND_ARTS_TEIRA=1}
 %{!?_without_lirc:   export LIRC=1}
+%{?_with_dga:        export X11_DGA=1}
 
 # Optimization flags, CPU type and defaults for the makefile
 %ifarch %{ix86}
@@ -238,7 +240,11 @@ popd
 %doc _docs/catver.ini
 %{_bindir}/chdman
 %{_bindir}/romcmp
+%if 0%{?_with_dga:1}
+%attr(6755, root, games) %{_bindir}/xmame
+%else
 %attr(2755, root, games) %{_bindir}/xmame
+%endif
 %{_bindir}/xml2info
 %dir %attr(2775, root, games) %{_datadir}/xmame/
 %dir %attr(2775, root, games) %{_datadir}/xmame/artwork/
@@ -254,7 +260,11 @@ popd
 %files -n xmess
 %defattr(-, root, root, 0755)
 %doc README _docs/xmess/*
+%if 0%{?_with_dga:1}
+%attr(6755, root, games) %{_bindir}/xmess
+%else
 %attr(2755, root, games) %{_bindir}/xmess
+%endif
 %dir %attr(2775, root, games) %{_datadir}/xmess/
 %dir %attr(2775, root, games) %{_datadir}/xmess/artwork/
 %dir %attr(2775, root, games) %{_datadir}/xmess/bios/
@@ -267,6 +277,9 @@ popd
 
 
 %changelog
+* Fri Mar 24 2006 Mike Crawford <mike@tuxnami.org> 0.104-2
+- Added DGA build conditional.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.104-2
 - Release bump to drop the disttag number in FC5 build.
 
