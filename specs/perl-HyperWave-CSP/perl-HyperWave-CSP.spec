@@ -22,8 +22,8 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-This module is not finished. However, some of it -does- work.  Everything in 
-the examples directory works more or less, and should give you an idea of how 
+This module is not finished. However, some of it -does- work.  Everything in
+the examples directory works more or less, and should give you an idea of how
 it can be used.
 
 CSP stands for Client-Server-Protocol which is the official name

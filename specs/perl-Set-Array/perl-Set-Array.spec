@@ -34,7 +34,7 @@ Ruby. This should (hopefully) improve code readability and/or
 maintainability. The other advantage to this module is method-chaining
 by which any number of methods may be called on a single object in a
 single statement.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

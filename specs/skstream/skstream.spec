@@ -15,10 +15,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 
 %description
-skstream is a network transport library written in C++ using the iostream 
-interface. It provides classes for handling TCP socket connections. It is 
-derived from the FreeSockets library by Rafael Guterres Jeffman. Its 
-primary use to the WorldForge project, who maintain this version, is as a 
+skstream is a network transport library written in C++ using the iostream
+interface. It provides classes for handling TCP socket connections. It is
+derived from the FreeSockets library by Rafael Guterres Jeffman. Its
+primary use to the WorldForge project, who maintain this version, is as a
 transport for Atlas-C++, the standard Atlas protocol implementation.
 
 %package devel

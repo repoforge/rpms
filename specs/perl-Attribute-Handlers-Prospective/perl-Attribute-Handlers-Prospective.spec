@@ -28,7 +28,7 @@ and subroutines subsequently defined in that package, or in packages
 derived from that package may be given attributes with the same names as
 the attribute handler subroutines, which will then be called at the end
 of the compilation phase (i.e. in an INIT block).
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

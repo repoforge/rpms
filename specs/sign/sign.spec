@@ -18,13 +18,13 @@ BuildRequires: openssl-devel
 %description
 sign is a file processing tool. sign reads from the files
 (including stdin) and writes to the files (including stdout). It can be used
-to append signatures to the files or to verify and/or strip them. 
+to append signatures to the files or to verify and/or strip them.
 
 Between signing and verifying latter will account for a bulk of usage. When
 checking the signature, sign will check for both intergrity and authenticity
 of the file. An integrity check is done by validating SHA-1 hash embedded
 into the signature, and an authenticity is ensured by checking signer's
-credentials against a trusted list. 
+credentials against a trusted list.
 
 sign adopts OpenSSH-style authentication model, where the trust hierarchy
 is flat (no certificates), an authentication is done with public keys and

@@ -6,7 +6,7 @@
 
 %define desktop_vendor rpmforge
 %{?dist: %{expand: %%define %dist 1}}
-                                                                                
+
 %{?el2:%define _without_freedesktop 1}
 %{?rh7:%define _without_freedesktop 1}
 
@@ -41,7 +41,7 @@ Available rpmbuild rebuild options :
 %prep
 %setup -q -n %{name}-%{version}
 
-# FIXME upstream 
+# FIXME upstream
 %{__mv} %{name} %{name}.py
 %{__mv} data/COPYRIGHT .
 # These should not be shipped with the source tar
@@ -132,7 +132,7 @@ if [ -x %{_bindir}/gtk-update-icon-cache ]; then
 #    %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/pixmaps/ || :
     echo " " &> /dev/null ||:
 fi
-      
+
 %files
 %defattr(-, root, root, 0755)
 %doc COPYRIGHT

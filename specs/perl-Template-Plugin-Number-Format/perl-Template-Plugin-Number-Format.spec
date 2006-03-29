@@ -7,7 +7,7 @@
 
 %define real_name Template-Plugin-Number-Format
 
-Summary: Plugin/filter interface to Number::Format 
+Summary: Plugin/filter interface to Number::Format
 Name: perl-Template-Plugin-Number-Format
 Version: 1.01
 Release: 1.2

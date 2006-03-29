@@ -28,7 +28,7 @@ source in the leftmost column of each line, followed by one or more
 columns of data from the source in hexadecimal. The rightmost column
 of each line shows the printable characters (all others are shown
 as single dots)
-  
+
 %prep
 %setup -n %{real_name}-%{version}
 

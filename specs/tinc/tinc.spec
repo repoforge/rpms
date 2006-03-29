@@ -26,7 +26,7 @@ information with each other over the Internet without exposing any
 information to others.
 
 %prep
-%setup 
+%setup
 
 %build
 %configure

@@ -25,11 +25,11 @@ BuildRequires: perl
 %description
 This modules allows you to recreate the workings of the cryptographic
 cipher invented several hundred years ago by a French cryptographer,
-Blaise de Vigenère. 
+Blaise de Vigenère.
 
 The Crypt::Vigenere module accepts only alpha characters in the keyword
 and will return an undefined object if any other characters are entered.
-The module also only encrypts/decrypts alpha characters, any other 
+The module also only encrypts/decrypts alpha characters, any other
 characters will be stripped out of the resulting encrption/decryption.
 
 %prep

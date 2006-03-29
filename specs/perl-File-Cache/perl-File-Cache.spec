@@ -23,13 +23,13 @@ BuildRequires: perl
 
 %description
 File::Cache implements an object store where data is persisted
-across processes in the filesystem.  It was written to compliment 
+across processes in the filesystem.  It was written to compliment
 IPC::Cache.
 
 Where IPC::Cache is faster for small numbers of simple objects,
 File::Cache tends toward being more performant when caching large
 numbers of complex objects.
-  
+
 %prep
 %setup -n %{real_name}-%{version}
 

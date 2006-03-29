@@ -18,7 +18,7 @@ ExclusiveArch: i386
 A compression tool that crunches the last free bit from your data, but takes
 twice to ten times longer for compressing and - even worse - for extracting
 your data probably will not work for you - or your customers.
- 
+
 On the other hand, a compression tool that deflates your files as quick as
 lightning but leaves a lot of "air" in the compressed file will not take you
 far either.

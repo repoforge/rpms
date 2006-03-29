@@ -29,7 +29,7 @@ formulas, hyperlinks and images can be written to the cells.
 
 TThe Excel file produced by this module is compatible with 97,
 2000, 2002 and 2003.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

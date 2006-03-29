@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 vnstat is a network traffic monitor that keeps a log of daily network
-traffic for the selected interface(s). vnstat is not a packet sniffer. 
+traffic for the selected interface(s). vnstat is not a packet sniffer.
 
 %prep
 %setup

@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-A module providing compatibility interfaces for Encode.pm on Perl versions 
+A module providing compatibility interfaces for Encode.pm on Perl versions
 earlier than 5.7.1.
 
 %prep

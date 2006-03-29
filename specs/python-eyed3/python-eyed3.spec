@@ -31,7 +31,7 @@ from an MP3 file.
 %setup -n %{real_name}-%{version}
 
 %build
-export CFLAGS="%{optflags}" 
+export CFLAGS="%{optflags}"
 %configure
 %{__python} setup.py build
 

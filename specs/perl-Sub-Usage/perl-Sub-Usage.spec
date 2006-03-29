@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 Sub::Usage provides functions to display usage of subroutines or methods
 from inside the stub.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

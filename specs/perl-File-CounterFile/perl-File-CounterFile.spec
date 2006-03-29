@@ -26,7 +26,7 @@ This module implements a persistent counter class. Each counter is
 represented by a separate file in the file system. File locking is
 applied, so multiple processes might try to access the same counters at
 the same time without risk of counter destruction.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

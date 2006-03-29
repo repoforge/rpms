@@ -30,7 +30,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xscreensaver
 
 %description
-rollercoaster is a module for xscreensaver that renders a rollercoaster 
+rollercoaster is a module for xscreensaver that renders a rollercoaster
 animation using OpenGL.
 
 %prep

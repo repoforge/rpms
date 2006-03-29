@@ -25,7 +25,7 @@ BuildRequires: perl
 Test::Unit::* is a sophisticated unit testing framework for Perl
 that is derived from the JUnit testing framework for Java by Kent
 Beck and Erich Gamma.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

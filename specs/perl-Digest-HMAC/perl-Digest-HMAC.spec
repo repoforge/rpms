@@ -39,7 +39,7 @@ HMAC follow the common Digest:: interface, but the constructor takes
 the secret key and the name of some other simple Digest:: as argument.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"

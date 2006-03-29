@@ -35,7 +35,7 @@ ao_include_dir = %{_includedir}
 EOF
 
 %build
-export CFLAGS="%{optflags}" 
+export CFLAGS="%{optflags}"
 %{__python} setup.py build
 
 %install

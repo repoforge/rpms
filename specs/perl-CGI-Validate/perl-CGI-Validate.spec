@@ -31,7 +31,7 @@ Getopt::Long module is vary good at doing. So, basicly this module is a
 layer that collects the data using the CGI module and passes it to
 routines to do type validation and name consistency checks all in one
 clean try/catch style block.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

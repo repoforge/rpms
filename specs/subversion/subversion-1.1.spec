@@ -90,7 +90,7 @@ export CC=gcc CXX=g++
 %configure --with-apr=%{_prefix} --with-apr-util=%{_prefix} \
 	--with-swig --with-neon=%{_prefix} \
         --with-apxs=%{_sbindir}/apxs --disable-mod-activation
-make %{?_smp_mflags} all swig-py %{swigdirs} 
+make %{?_smp_mflags} all swig-py %{swigdirs}
 make swig-pl
 
 %install

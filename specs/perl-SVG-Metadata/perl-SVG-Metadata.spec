@@ -29,7 +29,7 @@ Perl module.
 
 The script svg_validate is provided as an example.  It demonstrates an
 example of using SVG::Metadata to extract SVG files that have valid
-metadata into a separate directory structure for packaging.  See 
+metadata into a separate directory structure for packaging.  See
 `man svg_validate` after installation for more details on it.
 
 %prep

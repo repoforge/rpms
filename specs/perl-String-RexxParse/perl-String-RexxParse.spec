@@ -22,9 +22,9 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-Some long-time REXX programmers switching to Perl find it difficult 
-to give up REXX's template-based parsing abilities.  This module is 
-my attempt to provide such parsing in Perl.  The documentation assumes 
+Some long-time REXX programmers switching to Perl find it difficult
+to give up REXX's template-based parsing abilities.  This module is
+my attempt to provide such parsing in Perl.  The documentation assumes
 a familiarity with REXX parse statements.
 
 %prep

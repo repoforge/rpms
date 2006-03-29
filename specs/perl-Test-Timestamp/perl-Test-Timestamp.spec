@@ -29,7 +29,7 @@ calls, which is usually a good enough resolution for profiling your code
 and finding slow parts, but sometimes you need to examine a routine in
 finer detail - hence the idea of timestamps. This routine uses
 Time::HiRes
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

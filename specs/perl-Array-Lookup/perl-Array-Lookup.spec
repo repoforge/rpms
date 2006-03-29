@@ -22,12 +22,12 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-This is a perl module which performs a search through an array of strings, 
+This is a perl module which performs a search through an array of strings,
 allowing for abbreviation of the search key.
 
 The Lookup subroutine is especially handy for doing keyword lookups in
 an array or hash table, where the keyword may be abbreviated.  Exact
-matches are give priority over abbreviated matches. 
+matches are give priority over abbreviated matches.
 
 %prep
 %setup -n %{real_name}-%{version}

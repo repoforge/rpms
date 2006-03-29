@@ -24,7 +24,7 @@ BuildRequires: perl
 This module is intended to provide a general-purpose date and datetime
 type for perl. You have a Class::Date class for absolute date and
 datetime, and have a Class::Date::Rel class for relative dates.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

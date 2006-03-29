@@ -8,7 +8,7 @@
 
 %define real_name MailTools
 
-Summary: MailTools module for perl 
+Summary: MailTools module for perl
 Name: perl-MailTools
 Version: 1.67
 Release: 2
@@ -32,7 +32,7 @@ Requires: perl >= 0:5.00503
 MailTools module for perl.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL \

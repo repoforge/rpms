@@ -9,7 +9,7 @@
 %{!?_with_xine: %{expand: %%define xine 0}}
 
 Name: rhythmbox
-Summary: Music Management Application 
+Summary: Music Management Application
 Version: 0.6.10
 Release: 0.1%{?_with_xine:xine}
 License: GPL
@@ -72,11 +72,11 @@ touch %{buildroot}%{_datadir}/rhythmbox/iradio-initial.pls
 %{__rm} -rf %{buildroot}
 
 
-%post 
+%post
 /sbin/ldconfig
 export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
 SCHEMAS="rhythmbox.schemas"
-for S in $SCHEMAS; do 
+for S in $SCHEMAS; do
   gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/$S >/dev/null
 done
 

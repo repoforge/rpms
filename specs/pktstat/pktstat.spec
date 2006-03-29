@@ -32,7 +32,7 @@ accepts filter expressions like tcpdump.
 %{__make} install DESTDIR="%{buildroot}"
 #%{__install} -D -m0755 pktstat %{buildroot}%{_bindir}/pktstat
 #%{__install} -D -m0644 pktstat.1 %{buildroot}%{_mandir}/man1/pktstat.1
-						
+
 %clean
 %{__rm} -rf %{buildroot}
 

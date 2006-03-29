@@ -22,7 +22,7 @@ BuildRequires: perl
 
 %description
 Digest::Elf provides an XS based implimentation of the ElfHash algorithm.
-What's that get ya? ElfHash generates resonably 32 bit integer value 
+What's that get ya? ElfHash generates resonably 32 bit integer value
 from a string in a reasonably short period of time. The actual algorith
 was culled from a Dr. Dobbs Journal article and they culled it, I think,
 from the source for the GNU c complier. If you know better, please let

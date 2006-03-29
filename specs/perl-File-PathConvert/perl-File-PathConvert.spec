@@ -22,8 +22,8 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-This module provides multiplatform routines to convert paths and URLs from 
-absolute to relative and vice versa and to split paths into volume, 
+This module provides multiplatform routines to convert paths and URLs from
+absolute to relative and vice versa and to split paths into volume,
 directory, and filename portions.
 
 %prep

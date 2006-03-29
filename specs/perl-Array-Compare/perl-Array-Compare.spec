@@ -33,7 +33,7 @@ arrays are compared:
 Additionally you can get a simple true/false return value or the number
 of columns which differ or an array containing the indexes of the
 differing columns.
-   
+
 %prep
 %setup -n %{real_name}-%{version}
 

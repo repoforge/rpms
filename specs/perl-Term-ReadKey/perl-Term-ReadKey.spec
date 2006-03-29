@@ -7,7 +7,7 @@
 
 %define real_name TermReadKey
 
-Summary: Module for simple terminal control 
+Summary: Module for simple terminal control
 Name: perl-Term-ReadKey
 Version: 2.30
 Release: 2

@@ -7,7 +7,7 @@
 
 %define real_name TeX-Hyphen
 
-Summary: Hyphenate words using TeX's patterns 
+Summary: Hyphenate words using TeX's patterns
 Name: perl-TeX-Hyphen
 Version: 0.140
 Release: 1.2

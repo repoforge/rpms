@@ -24,13 +24,13 @@ BuildRequires: perl
 This module performs aliasing services.
 You may find this module useful if you:
    * are tired of dereferencing hash-based object attributes
-   * wish perl could make-do with fewer $, -> and {} things 
+   * wish perl could make-do with fewer $, -> and {} things
    * are a little scared of using typeglobs
    * want the freedom to put what you want, when you want in
      the symbol table without having to deal with wierd syntax
    * need to use scalar constants in your program since you don't
-     trust yourself from changing $PI 
-	 
+     trust yourself from changing $PI
+
 %prep
 %setup -n %{real_name}-%{version}
 

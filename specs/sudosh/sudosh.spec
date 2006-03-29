@@ -21,7 +21,7 @@ users may use to obtain full root access. Unlike providing a team of system
 administrators full root access through sudo, it guarantees that detailed
 logs are kept. It uses the script command in conjunction with a secure FIFO
 and comes with a utility to view sessions and drill down deeper and see the
-actual session output. 
+actual session output.
 
 %prep
 %setup

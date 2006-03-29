@@ -25,7 +25,7 @@ BuildRequires: perl
 This module provides a few convenience methods for testing exception
 based code. It is built with Test::Builder and plays happily with
 Test::More and friends.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

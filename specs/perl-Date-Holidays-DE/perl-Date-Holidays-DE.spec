@@ -24,8 +24,8 @@ BuildRequires: perl
 %description
 This module creates a list of German holidays in a given year.
 
-It knows about special holiday regulations for all of Germany's federal 
-states and also about "semi-holidays" that will be treated as holidays on 
+It knows about special holiday regulations for all of Germany's federal
+states and also about "semi-holidays" that will be treated as holidays on
 request.
 
 Holidays that occur on weekends can be excluded from the generated list.

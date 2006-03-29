@@ -18,7 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 ripOLE is a small program/library designed to pull out attachments
 from OLE2 data files (ie, MS Office documents).  ripOLE is BSD
 licenced meaning that commercial projects can also use the code
-without worry of licence costs or legal liabilities. 
+without worry of licence costs or legal liabilities.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.

@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Danny Davids <daniel,davids$cern,ch>
 
-Summary: tool to do memory to memory performance measurements with TCP/IP. 
+Summary: tool to do memory to memory performance measurements with TCP/IP.
 Name: ttcp
 Version: 3.7
 Release: 1

@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 CORBA::IOP::IOR is a handy module for processing IORs. I've found
 it very useful for debugging CORBA interoperability.
-	 
+
 %prep
 %setup -n %{real_name}-%{version}
 

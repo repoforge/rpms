@@ -23,7 +23,7 @@ Prereq: /sbin/chkconfig
 p0f performs passive OS fingerprinting technique bases on information coming
 from a remote host when it establishes a connection to our system. Captured
 packets contains enough information to determine OS - and, unlike
-active scanners (nmap, queSO) - it is done without sending anything to 
+active scanners (nmap, queSO) - it is done without sending anything to
 this host.
 
 %prep
@@ -146,7 +146,7 @@ EOF
 %{__install} -Dp -m0755 p0f.sysv %{buildroot}%{_initrddir}/p0f
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/arpwatch/
-						
+
 %clean
 %{__rm} -rf %{buildroot}
 

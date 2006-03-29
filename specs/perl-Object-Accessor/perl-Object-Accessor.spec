@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-Object::Accessor provides an interface to create per object 
+Object::Accessor provides an interface to create per object
 accessors (as opposed to per Class accessors, as, for example,
 Class::Accessor> provides.
 

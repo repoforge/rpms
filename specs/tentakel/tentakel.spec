@@ -21,8 +21,8 @@ Requires: python
 BuildRequires: python
 
 %description
-Tentakel is a program that executes the same command on many hosts in parallel 
-using SSH. It is designed to be easily extendable. The output of the remote 
+Tentakel is a program that executes the same command on many hosts in parallel
+using SSH. It is designed to be easily extendable. The output of the remote
 command can be controlled by means of format strings.
 
 %prep

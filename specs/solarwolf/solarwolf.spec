@@ -7,7 +7,7 @@
 
 %define desktop_vendor rpmforge
 %{?dist: %{expand: %%define %dist 1}}
-                                                                                
+
 %{?el2:%define _without_freedesktop 1}
 %{?rh7:%define _without_freedesktop 1}
 
@@ -34,7 +34,7 @@ Requires: python, python-game
 %description
 In SolarWolf you play a pilot collecting energy cubes from the defending
 guardians. Avoid the deadly bullets, which become ever more popular as you
-race through 48 levels. Good Luck. 
+race through 48 levels. Good Luck.
 
 Available rpmbuild rebuild options :
 --without : freedesktop
@@ -137,7 +137,7 @@ if [ -x %{_bindir}/gtk-update-icon-cache ]; then
 #    %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/pixmaps/ || :
     echo " " &> /dev/null ||:
 fi
-      
+
 %files
 %defattr(-, root, root, 0755)
 %doc lgpl.txt readme.txt

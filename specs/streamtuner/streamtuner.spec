@@ -62,7 +62,7 @@ desktop-file-install --delete-original             \
 
 %post
 scrollkeeper-update -q || :
-		
+
 %postun
 scrollkeeper-update -q || :
 

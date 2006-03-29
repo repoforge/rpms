@@ -34,7 +34,7 @@ lookups by Van Jacobsen.  Patricia Trie performance
 characteristics are well-known as it has been employed for
 routing table lookups within the BSD kernel since the 4.3
 Reno release.
-	 
+
 %prep
 %setup -n %{real_name}-%{version}
 

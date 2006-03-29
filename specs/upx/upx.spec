@@ -27,7 +27,7 @@ of the supported formats.
 
 UPX supports a number of different executable formats, including
 Win95/98/ME/NT/2000 programs and DLLs, DOS programs, and Linux executables.
-    
+
 %prep
 %setup
 

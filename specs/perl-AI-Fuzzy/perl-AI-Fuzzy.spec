@@ -36,7 +36,7 @@ appropriate. For example, it can decide whether to call water at 60
 degrees Farenheight "cold", "cool", or "warm". A fuzzy label might be
 one of these labels, or a fuzzy set describing to what degree each of
 the labels describes the particular value in question.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

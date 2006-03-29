@@ -29,7 +29,7 @@ that make reading audio data from an MPEG stream simple.
 %setup -n %{real_name}-%{version}
 
 %build
-export CFLAGS="%{optflags}" 
+export CFLAGS="%{optflags}"
 %{__python} config_unix.py --prefix="%{_prefix}"
 %{__python} setup.py build
 

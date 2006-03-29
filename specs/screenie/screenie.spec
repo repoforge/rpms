@@ -18,9 +18,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Buildarch: noarch
 
 %description
-Screenie is a small and lightweight screen frontend that is 
-designed to be a session handler that simplifies the process 
-of administrating detached jobs by providing an interactive 
+Screenie is a small and lightweight screen frontend that is
+designed to be a session handler that simplifies the process
+of administrating detached jobs by providing an interactive
 menu.
 
 %prep

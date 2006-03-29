@@ -30,14 +30,14 @@ Obsoletes: vppp
 
 %description
 VTun provides the method for creating Virtual Tunnels over TCP/IP networks
-and allows to shape, compress, encrypt traffic in that tunnels. 
-Supported type of tunnels are: PPP, IP, Ethernet and most of other serial 
+and allows to shape, compress, encrypt traffic in that tunnels.
+Supported type of tunnels are: PPP, IP, Ethernet and most of other serial
 protocols and programs.
 
 VTun is easily and highly configurable, it can be used for various network
 tasks like VPN, Mobil IP, Shaped Internet access, IP address saving, etc.
 It is completely user space implementation and does not require modification
-to any kernel parts. 
+to any kernel parts.
 
 %prep
 %setup -n %{name}
@@ -47,7 +47,7 @@ to any kernel parts.
 #
 # Init script for starting and stoping vtund.
 #
-# Writen by Dag Wieers <dag@wieers.com>. 
+# Writen by Dag Wieers <dag@wieers.com>.
 #
 # chkconfig: - 55 45
 # description: Virtual Tunnel Daemon. (vtund)
@@ -191,16 +191,16 @@ fi
 - Allow compressed manpages
 - Added cleanup of old $RPM_BUILD_ROOT at beginning of %install stage
 
-* Sat Mar 04 2000 Dag Wieers <dag@wieers.com> 
+* Sat Mar 04 2000 Dag Wieers <dag@wieers.com>
 - Added USE_SOCKS compile option.
 - Added Prefix-header
 
-* Sat Jan 29 2000 Dag Wieers <dag@wieers.com> 
+* Sat Jan 29 2000 Dag Wieers <dag@wieers.com>
 - Replaced SSLeay-dependency by openssl-dependency
 - Replaced README.Config by README.Setup
 - Added TODO
 
-* Tue Nov 23 1999 Dag Wieers <dag@wieers.com> 
+* Tue Nov 23 1999 Dag Wieers <dag@wieers.com>
 - Added Url and Obsoletes-headers
 - Added ChangeLog ;)
 - Changed summary

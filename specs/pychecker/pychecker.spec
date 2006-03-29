@@ -20,10 +20,10 @@ Obsoletes: python-checker <= %{version}
 BuildRequires: python
 
 %description
-PyChecker is a tool for finding common bugs in Python source code. It finds 
-problems that are typically caught by a compiler (or lint) for less dynamic 
-languages, like C and C++. Common errors that can be found include forgetting 
-to import a module, misspelling a variable, passing the wrong number of 
+PyChecker is a tool for finding common bugs in Python source code. It finds
+problems that are typically caught by a compiler (or lint) for less dynamic
+languages, like C and C++. Common errors that can be found include forgetting
+to import a module, misspelling a variable, passing the wrong number of
 parameters to a function/method, and not using a module/variable.
 
 %prep

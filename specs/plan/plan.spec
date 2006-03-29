@@ -37,7 +37,7 @@ LessTif in order to use Plan.
 %package server
 Summary: The network server for the plan scheduling program
 Group: System Environment/Daemons
-PreReq: /sbin/chkconfig , /sbin/service 
+PreReq: /sbin/chkconfig , /sbin/service
 
 %description server
 Provides interactivity between individual plan client programs. The

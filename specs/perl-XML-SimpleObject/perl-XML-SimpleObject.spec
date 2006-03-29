@@ -23,9 +23,9 @@ BuildRequires: perl, perl-XML-Parser, perl-XML-LibXML
 
 %description
 This is a small and simple package that takes the output of an XML parser
-and gives simple methods for accessing the structure of an XML document. It 
-is very lightweight, but provides the simplest access to an XML document 
-possible. It does not subclass XML::Parser or XML::LibXML; rather, it is meant 
+and gives simple methods for accessing the structure of an XML document. It
+is very lightweight, but provides the simplest access to an XML document
+possible. It does not subclass XML::Parser or XML::LibXML; rather, it is meant
 to serve purely as an object struct for an outgoing tree.
 
 %prep

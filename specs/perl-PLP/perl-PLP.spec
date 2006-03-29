@@ -27,7 +27,7 @@ with other Perl embedders, there is no need to learn a meta-syntax or
 object model: one can just use the normal Perl constructs. PLP runs
 under mod_perl for speeds comparable to those of PHP, but can also be
 run as a CGI script.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

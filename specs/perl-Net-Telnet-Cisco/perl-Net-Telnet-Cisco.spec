@@ -22,10 +22,10 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-Net::Telnet::Cisco adds additional functionality to 
+Net::Telnet::Cisco adds additional functionality to
 Net::Telnet that helps you automate Cisco router management
 and statistic gathering.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

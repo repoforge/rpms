@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 Class::Trigger is a mixin class to add / call triggers (or hooks) that
 get called at some points you specify.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

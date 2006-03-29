@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 This module is an EP3 extension for the Verilog Hardware
 Description Language.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

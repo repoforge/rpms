@@ -14,7 +14,7 @@ Source: http://wizard.ae.krakow.pl/~mike/download/whowatch-%{version}.tar.gz
 Patch: gcc4-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ncurses-devel 
+BuildRequires: ncurses-devel
 
 %description
 Whowatch is an interactive console utility that displays informations about
@@ -41,7 +41,7 @@ INT or KILL signal to selected process.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING KEYS README TODO
 %doc %{_mandir}/man1/whowatch.1*

@@ -28,7 +28,7 @@ comments, indentation, or truncated lines.
 
 You can easily extract informations from the apache configuration, or
 manage htaccess files.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

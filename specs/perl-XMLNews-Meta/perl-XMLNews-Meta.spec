@@ -25,7 +25,7 @@ BuildRequires: perl
 This distribution contains a Perl module designed to read and write an
 XML-based news metadata format defined at
   http://www.xmlnews.org/
-  
+
 %prep
 %setup -n %{real_name}-%{version}
 

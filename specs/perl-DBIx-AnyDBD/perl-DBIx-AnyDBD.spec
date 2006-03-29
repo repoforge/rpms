@@ -23,7 +23,7 @@ BuildRequires: perl
 
 %description
 This class is an alternative approach to developing database independant
-code, which differs from modules that write SQL for you (such as 
+code, which differs from modules that write SQL for you (such as
 DBIx::Recordset). Instead this module provides an OO inheritance
 hierarchy for putting methods that do your SQL.
 

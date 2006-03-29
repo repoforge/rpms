@@ -2,7 +2,7 @@
 # Authority: dag
 
 Summary: Audio Meta-Data Library
-Name: taglib	
+Name: taglib
 Version: 1.4
 Release: 1
 License: LGPL

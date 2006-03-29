@@ -27,7 +27,7 @@ Requires: perl >= 0:5.00503
 Perl extension for interfacing with AOL's AIM service.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

@@ -36,7 +36,7 @@ case sensitive.
 
 As a side effect the module does not allow undef as a value in the
 array.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

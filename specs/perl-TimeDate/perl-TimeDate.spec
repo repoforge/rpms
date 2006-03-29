@@ -26,7 +26,7 @@ Requires: perl >= 0:5.00503
 TimeDate module for perl
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL \

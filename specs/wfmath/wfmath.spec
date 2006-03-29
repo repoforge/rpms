@@ -15,8 +15,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 
 %description
-The primary focus of WFMath is geometric objects. Thus, it includes several 
-shapes (boxes, balls, lines), in addition to the basic math objects that 
+The primary focus of WFMath is geometric objects. Thus, it includes several
+shapes (boxes, balls, lines), in addition to the basic math objects that
 are used to build these shapes (points, vectors, and matrices).
 
 %package devel

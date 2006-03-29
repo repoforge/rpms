@@ -16,12 +16,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: python, python-devel
 
 %description
-uni2ascii and ascii2uni convert between UTF-8 Unicode and more than a 
-dozen 7-bit ASCII equivalents including: hexadecimal and decimal HTML 
-numeric character references, \u-escapes, standard hexadecimal, raw 
-hexadecimal, and RFC2396 URI format. Such ASCII equivalents are 
-encountered in a variety of circumstances, such as when Unicode text is 
-included in program source, when entering text into Web programs that can 
+uni2ascii and ascii2uni convert between UTF-8 Unicode and more than a
+dozen 7-bit ASCII equivalents including: hexadecimal and decimal HTML
+numeric character references, \u-escapes, standard hexadecimal, raw
+hexadecimal, and RFC2396 URI format. Such ASCII equivalents are
+encountered in a variety of circumstances, such as when Unicode text is
+included in program source, when entering text into Web programs that can
 handle the Unicode character set but are not 8-bit safe, and when debugging.
 
 %prep

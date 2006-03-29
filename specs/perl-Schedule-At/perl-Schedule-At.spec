@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 This module privides an OS independent interface to the Unix 'at' command
  and it will map the calls to real (and OS dependent) commands.
- 
+
 %prep
 %setup -n %{real_name}-%{version}
 

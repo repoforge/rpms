@@ -20,12 +20,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl >= 0:5.006
 
 %description
-This module strips HTML-like markup from text.  It is written in XS, 
-and thus about five times quicker than using regular expressions for 
+This module strips HTML-like markup from text.  It is written in XS,
+and thus about five times quicker than using regular expressions for
 the same task.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

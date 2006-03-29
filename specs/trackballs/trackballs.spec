@@ -33,11 +33,11 @@ BuildRequires: zlib-devel, SDL_mixer-devel, SDL_image-devel
 Trackballs is a game for linux in which you steer a marble ball through
 tracks of varying difficulty. The game is loosely based on Marable Madness
 and features 3D graphics, an integerated level editor and highquality
-soundeffects and background music. 
+soundeffects and background music.
 
 %prep
 %setup
-# the install script does a chgrp to 'games', this doesn't work while 
+# the install script does a chgrp to 'games', this doesn't work while
 # building as a user. Is group=games required?
 sed -i "s/chgrp/#chgrp/g;" share/Makefile*
 %configure

@@ -23,7 +23,7 @@ Requires: perl >= 0:5.00503
 %description
 The gettext module permits access from perl to the gettext() family of
 functions for retrieving message strings from databases constructed to
-internationalize software. 
+internationalize software.
 
 It provides gettext(), dgettext(), dcgettext(), textdomain() and
 bindtextdomain().

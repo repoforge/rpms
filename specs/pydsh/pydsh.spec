@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: 
+# Upstream:
 
 Summary: Simple remote administration tool, pydsh and pydcp
 Name: pydsh

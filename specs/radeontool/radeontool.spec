@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: 
+# Upstream:
 
 Summary: Turn backlight and external video output on and off on ATI Radeon Mobility
 Name: radeontool

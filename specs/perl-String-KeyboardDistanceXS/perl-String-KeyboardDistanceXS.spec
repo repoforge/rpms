@@ -30,7 +30,7 @@ Since these functions are implemented as XS, in C, they are
 significantly faster than the Perl based functions in
 String::KeyboardDistance. That is the primary reason for this module,
 performance.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

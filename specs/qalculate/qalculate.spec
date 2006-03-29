@@ -22,7 +22,7 @@ Requires: gnuplot, wget
 Qalculate! is a modern multi-purpose desktop calculator for GNU/Linux. It is
 small and simple to use but with much power and versatility underneath.
 Features include customizable functions, units, arbitrary precision and plotting.
-This package contains the qulculate library which is used by the KDE and GTK+ 
+This package contains the qulculate library which is used by the KDE and GTK+
 GUI packages.
 
 %prep
@@ -31,7 +31,7 @@ GUI packages.
 %build
 %configure
 %{__make} %{?_smp_mflags}
-										
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall

@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel >= 1.2.4, gcc-c++
 
 %description
-SDL_net is a thin API layer over sockets which is meant to be a simple 
+SDL_net is a thin API layer over sockets which is meant to be a simple
 cross-platform network API.
 
 %package devel

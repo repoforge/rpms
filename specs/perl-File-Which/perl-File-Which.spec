@@ -6,7 +6,7 @@
 
 %define real_name File-Which
 
-Summary: Portable implementation of the `which' utility 
+Summary: Portable implementation of the `which' utility
 Name: perl-File-Which
 Version: 0.05
 Release: 1
@@ -25,7 +25,7 @@ Requires: perl >= 0:5.00503
 Portable implementation of the `which' utility.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTALLDIRS="vendor"

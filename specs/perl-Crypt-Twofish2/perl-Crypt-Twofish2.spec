@@ -28,7 +28,7 @@ slow and ugly) way than the existing "Crypt::Twofish" module.
 Although it is "Crypt::CBC" compliant you usually gain nothing by using
 that module (except generality, which is often a good thing), since
 "Crypt::Twofish2" can work in either ECB or CBC mode itself.
-    
+
 %prep
 %setup -n %{real_name}-%{version}
 

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream: 
+# Upstream:
 
 Summary: Tool to secretly embed text in an audio file
 Name: publimark
@@ -23,7 +23,7 @@ Publimark is a command line tool to secretly embed text in an audio file.
 Like cryptography, it uses a pair of keys: the public one can be shared,
 whereas the private one must be kept secret. Anybody can send a
 steganographic message, but only the private key owner will be able read it.
-Marked audio files are still playable. 
+Marked audio files are still playable.
 
 %prep
 %setup

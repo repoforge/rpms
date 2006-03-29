@@ -30,7 +30,7 @@ offers partial functionality as described in the specification,
 and even some of that has been changed for ease of use. This
 documentation will describe the fuctionality of this module as
 well as differences from the XML-QL specification.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

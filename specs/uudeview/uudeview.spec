@@ -29,10 +29,10 @@ BuildRequires: tetex-dvips, tetex-latex, transfig
 %description
 The uudeview package contains an encoder and a decoder, for
 transmitting and receiving binary files over electronic lines.
-UUDeview can handle uuencode, xxencode, BinHex, yEnc and MIME 
-Base64 encoding. The decoder automatically detects the type of 
-encoding used. The uudeview package is a must for anyone who 
-does serious encoding and decoding. 
+UUDeview can handle uuencode, xxencode, BinHex, yEnc and MIME
+Base64 encoding. The decoder automatically detects the type of
+encoding used. The uudeview package is a must for anyone who
+does serious encoding and decoding.
 
 %package gui
 Summary: xdeview - uudeview with a GUI

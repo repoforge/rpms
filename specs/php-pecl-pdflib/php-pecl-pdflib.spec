@@ -23,7 +23,7 @@ This PHP extension wraps the PDFlib programming library for processing PDF
 on the fly.
 
 
-%prep 
+%prep
 %setup -n pdflib-%{version}
 
 

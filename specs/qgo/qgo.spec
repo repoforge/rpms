@@ -16,9 +16,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: kdelibs-devel, gettext, gcc-c++
 
 %description
-qGo is a Go board, SGF editor, and client for the Internet Go Server. You can 
-review and edit games, connect to IGS, and play against a computer program 
-supporting GTP (like GnuGo). Go is an ancient board game which is very common 
+qGo is a Go board, SGF editor, and client for the Internet Go Server. You can
+review and edit games, connect to IGS, and play against a computer program
+supporting GTP (like GnuGo). Go is an ancient board game which is very common
 in Japan, China, and Korea.
 
 %prep

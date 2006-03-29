@@ -29,7 +29,7 @@ This saves you from writing them by hand, which tends to result in
 reduce the ammount of unwanted *direct-variable access* that may creep
 into your codebase when you're feeling lazy. accessors was designed with
 laziness in mind.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

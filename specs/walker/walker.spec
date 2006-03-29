@@ -14,12 +14,12 @@ Source: http://josefsson.org/walker/releases/walker-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-#BuildRequires: 
+#BuildRequires:
 
 %description
-DNSSEC Walker is a tool to recover DNS zonefiles using the DNS protocol. 
-The server does not have to support zonetransfer, but the zone must contain 
-DNSSEC "NXT" or "NSEC" records. Optionally, it can also verify DNSSEC 
+DNSSEC Walker is a tool to recover DNS zonefiles using the DNS protocol.
+The server does not have to support zonetransfer, but the zone must contain
+DNSSEC "NXT" or "NSEC" records. Optionally, it can also verify DNSSEC
 signatures on the RRsets within the zone.
 
 %prep

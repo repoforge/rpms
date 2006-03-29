@@ -21,7 +21,7 @@ BuildRequires: python, python-devel
 Requires: python
 
 %description
-This is a set of three modules to access the CDDB and FreeDB online 
+This is a set of three modules to access the CDDB and FreeDB online
 databases of audio CD track titles and information.
 
 %prep

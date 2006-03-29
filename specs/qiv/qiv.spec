@@ -21,9 +21,9 @@ viewer designed to replace the classic image viewers like xv or
 xloadimage. It features setting an image as an x11 background with a
 user-definable background color, fullscreen viewing, a screensaver mode,
 brightness/contrast/gamma correction, real transparency, zoom, slideshow,
-and more. 
+and more.
 
-%prep 
+%prep
 %setup
 
 %build
@@ -44,7 +44,7 @@ and more.
 %doc README* intro.jpg qiv-command.example
 %doc %{_mandir}/man?/*
 %{_bindir}/*
-     
+
 %changelog
 * Sat May 22 2004 Dag Wieers <dag@wieers.com> - 2.0-1
 - Updated to release 2.0.

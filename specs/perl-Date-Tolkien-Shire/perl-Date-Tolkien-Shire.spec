@@ -37,7 +37,7 @@ otherwise boring app that includes a date.  If you have
 any other ideas/suggestions/uses, etc., please let me
 know.  I am curious to see how this gets used (if it gets
 used that is).
-	   
+
 %prep
 %setup -n %{real_name}-%{version}
 

@@ -24,7 +24,7 @@ BuildRequires: perl
 This module generalises the mechanism of the wantarray
 function, allowing a function to determine in some detail
 how its return value is going to be immediately used.
-	   
+
 %prep
 %setup -n %{real_name}-%{version}
 

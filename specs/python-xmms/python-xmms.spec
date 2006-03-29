@@ -33,7 +33,7 @@ program.
 %{__rm} setup.cfg
 
 %build
-export CFLAGS="%{optflags}" 
+export CFLAGS="%{optflags}"
 %{__python} setup.py build
 
 %install

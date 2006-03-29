@@ -15,9 +15,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, pkgconfig, libsigc++20-devel
 
 %description
-Varconf is configuration handling library required by many WorldForge 
-components. It supports the loading and saving of config files, handling 
-of complex command line arguments, and signals to notify the application 
+Varconf is configuration handling library required by many WorldForge
+components. It supports the loading and saving of config files, handling
+of complex command line arguments, and signals to notify the application
 of configuration changes.
 
 %package devel

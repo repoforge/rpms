@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 This module provides an easy way for long running processes
 (like daemons) to determine whether a file was changed since
-the last time it was checked. Also, some persistence now 
+the last time it was checked. Also, some persistence now
 allows you to use it as a more general caching mechanism.
 
 %prep

@@ -25,7 +25,7 @@ There's a global variable in the perl source, called sawampersand. It
 gets set to true in that moment in which the parser sees one of $`, $',
 and $&. It never can be set to false again. Trying to set it to false
 breaks the handling of the $`, $&, and $' completely.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

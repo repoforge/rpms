@@ -30,8 +30,8 @@ you want to release a SOAP server for them
    1/ that's very kind of you
    2/ you need to generate a wsdl file
    3/ this module can help
-Because Perl is dynamically typed, it is a fantastic language to write SOAP 
-clients, but that makes perl not-so-easy to use as SOAP server queried by 
+Because Perl is dynamically typed, it is a fantastic language to write SOAP
+clients, but that makes perl not-so-easy to use as SOAP server queried by
 statically typed languages such as Delphi, Java, C++, VB...
 These languages need a WSDL file to communicate with your server.
 The WSDL file contains all the data structure definition necessary to interact

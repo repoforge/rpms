@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 This module applies the Porter Stemming Algorithm to its parameters,
 returning the stemmed words.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

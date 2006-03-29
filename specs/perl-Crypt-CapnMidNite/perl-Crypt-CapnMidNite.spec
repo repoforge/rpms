@@ -21,9 +21,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl
 
 %description
-Perl interface to MD5, RC4, and modified asymetric RC4 
-encryption/decryption methods. The module is named for its 
-functionality as a swiss army knife of encode/decode, hash 
+Perl interface to MD5, RC4, and modified asymetric RC4
+encryption/decryption methods. The module is named for its
+functionality as a swiss army knife of encode/decode, hash
 methods or... in the old days, the Captain Midnight Decoder Ring.
 
 %prep
@@ -44,7 +44,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %makeinstall -f Makefile.CapnMidNite
 %makeinstall
 
-### Clean up buildroot  
+### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \
 		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 

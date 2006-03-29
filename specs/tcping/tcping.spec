@@ -20,7 +20,7 @@ running in firewalled environments. Often SYNs are just being dropped
 by firewalls, thus connection establishment will be retried several
 times (for minutes) until a TCP timeout is reached. With tcping it
 is possible to check first if the desired port is reachable and then
-start connection establishment. 
+start connection establishment.
 
 %prep
 %setup

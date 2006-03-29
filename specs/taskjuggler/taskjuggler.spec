@@ -16,13 +16,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: kdelibs-devel, gcc-c++, kdepim-devel, docbook-dtds
 
 %description
-TaskJuggler is a modern and powerful project management tool. Its new approach 
-to project planning and tracking is far superior to the commonly used Gantt 
-chart editing tools. It has already been successfully used in many projects 
-and scales easily to projects with hundreds of resources and thousands of 
-tasks. It covers the complete spectrum of project management tasks from the 
-first idea to the completion of the project. It assists you during project 
-scoping, resource assignment, cost and revenue planing, and risk and 
+TaskJuggler is a modern and powerful project management tool. Its new approach
+to project planning and tracking is far superior to the commonly used Gantt
+chart editing tools. It has already been successfully used in many projects
+and scales easily to projects with hundreds of resources and thousands of
+tasks. It covers the complete spectrum of project management tasks from the
+first idea to the completion of the project. It assists you during project
+scoping, resource assignment, cost and revenue planing, and risk and
 communication management.
 
 %prep

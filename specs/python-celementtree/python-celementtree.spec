@@ -41,7 +41,7 @@ between a Python list and a Python dictionary.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc CHANGES README samples/
 %{python_sitearch}/cElementTree.so

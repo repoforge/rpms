@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-This module contains several useful routines for interpolating data 
+This module contains several useful routines for interpolating data
 sets and finding where a given value lies in a sorted list.
 
 %prep

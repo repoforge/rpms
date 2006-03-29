@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 This package sends wake-on-lan (AKA magic) packets to turn on machines
 that are wake-on-lan capable.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

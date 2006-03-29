@@ -24,9 +24,9 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-This is a little utility module that converts dates into the 
+This is a little utility module that converts dates into the
 format required by the SOAP 'xsd:dateTime' type.  It's just a
-dumb little wrapper around Date::Manip, because that's the 
+dumb little wrapper around Date::Manip, because that's the
 lazy way to make sure that we are forgiving in what we accept.
 
 %prep

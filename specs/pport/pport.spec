@@ -14,9 +14,9 @@ Source: http://dl.sf.net/pport/pport-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
-PPort is a simple yet handy program for accessing the output pins of a 
-parallel port. Using this bundle, one can successfully control any 
-household appliance or electronic device with minimal hassle and 
+PPort is a simple yet handy program for accessing the output pins of a
+parallel port. Using this bundle, one can successfully control any
+household appliance or electronic device with minimal hassle and
 practically no changes.
 
 %prep

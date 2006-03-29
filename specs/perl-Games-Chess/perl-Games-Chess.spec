@@ -27,7 +27,7 @@ The `Games::Chess' package provides the class
 `Games::Chess::Position' to represent a position in a chess
 game. Objects can be instantiated from data in standard formats
 and exported to these formats.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

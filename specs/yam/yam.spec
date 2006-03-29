@@ -23,7 +23,7 @@ downloaded updates and extra packages from RHN and 3rd party
 repositories.
 
 It can download all updates and extras automatically, creates
-the repository structure and meta-data, enables HTTP access to 
+the repository structure and meta-data, enables HTTP access to
 the repository and creates a directory-structure for remote
 network installations using PXE/TFTP.
 

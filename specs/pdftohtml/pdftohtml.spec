@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream: 
+# Upstream:
 
 Summary: Converts PDF files into HTML and XML formats
 Name: pdftohtml

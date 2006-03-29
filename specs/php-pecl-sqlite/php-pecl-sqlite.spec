@@ -26,7 +26,7 @@ without running a separate RDBMS process.
 This extension allows you to access SQLite databases from within PHP.
 
 
-%prep 
+%prep
 %setup -n SQLite-%{version}
 
 

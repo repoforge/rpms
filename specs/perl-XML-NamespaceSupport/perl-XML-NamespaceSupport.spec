@@ -59,4 +59,4 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 - Fixed site -> vendor. (Matthew Mastracci)
 
 * Wed May 28 2003 Dag Wieers <dag@wieers.com> - 1.08-0
-- Initial package. (using DAR) 
+- Initial package. (using DAR)

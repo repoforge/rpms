@@ -12,7 +12,7 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.theether.org/pssh/
 
-Source: http://www.theether.org/pssh/pssh-%{version}.tar.gz 
+Source: http://www.theether.org/pssh/pssh-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python
@@ -21,7 +21,7 @@ Requires: openssh, python >= 2.0
 %description
 This package provides various parallel tools based on ssh and scp.
 
-%prep 
+%prep
 %setup
 
 %build

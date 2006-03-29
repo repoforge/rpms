@@ -24,7 +24,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-Parses M3U mp3 playlists and if wanted, exports the parsed data to 
+Parses M3U mp3 playlists and if wanted, exports the parsed data to
 formats like xml and html.
 
 %prep

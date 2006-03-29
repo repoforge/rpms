@@ -35,7 +35,7 @@ sophisticated data structures (including lists, polynomials, rational
 functions, and linear systems), an interpreter, and a high-level programming
 language. Scilab has been designed to be an open system where the user can
 define new data types and operations on these data types by using
-overloading. A number of toolboxes are available with the system. 
+overloading. A number of toolboxes are available with the system.
 
 %prep
 %setup

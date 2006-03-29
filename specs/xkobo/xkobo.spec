@@ -95,12 +95,12 @@ xmkmf -a
 - Added documentation and license.
 
 * Fri May 03 2002 Kenneth 'Redhead' Nielsen <kn@redhead.dk> - 1.11
-- Found that Wolfgang J�rling <wolfgang@pro-linux.de> had added some 
-  more levels and enemies to xkobo. 
+- Found that Wolfgang J�rling <wolfgang@pro-linux.de> had added some
+  more levels and enemies to xkobo.
 
 * Wed May 01 2002 Kenneth 'Redhead' Nielsen <kn@redhead.dk>
 - Added a patch to accommodate the new strong type checking in todays
-  compilers. 
+  compilers.
 - Changed the source location, since Akira seems to have gone of the net.
 
 * Tue Sep 22 1998 Kjetil Wiekhorst Jrgensen <jorgens@pvv.org> [1.11-1]

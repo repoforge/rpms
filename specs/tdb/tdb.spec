@@ -17,9 +17,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gdbm-devel, libtool, gettext, sed, grep
 
 %description
-TDB is a trivial database. In concept, it is very much like GDBM, 
-and BSD's DB except that it allows multiple simultaneous writers 
-and uses locking internally to keep writers from trampling on 
+TDB is a trivial database. In concept, it is very much like GDBM,
+and BSD's DB except that it allows multiple simultaneous writers
+and uses locking internally to keep writers from trampling on
 each other. TDB is also extremely small.
 
 %package devel
@@ -71,7 +71,7 @@ you will need to install %{name}-devel.
 %{_libdir}/libtdb.a
 %exclude %{_libdir}/libtdb.la
 %{_libdir}/libtdb.so
-%{_includedir}/*.h 
+%{_includedir}/*.h
 
 %changelog
 * Wed Dec 01 2004 Dag Wieers <dag@wieers.com> - 1.0.6-4

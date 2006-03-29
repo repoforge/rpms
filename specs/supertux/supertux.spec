@@ -16,8 +16,8 @@ BuildRequires: gcc-c++, SDL-devel, SDL_image-devel, SDL_mixer-devel
 BuildRequires: zlib-devel
 
 %description
-Super Tux is a jump-and-run scrolling platform game starring Tux the 
-Penguin (and his girlfriend, Gown). It is similar to games like 
+Super Tux is a jump-and-run scrolling platform game starring Tux the
+Penguin (and his girlfriend, Gown). It is similar to games like
 Nintendo's Super Mario Bros
 
 %prep

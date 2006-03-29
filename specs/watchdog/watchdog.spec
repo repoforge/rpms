@@ -156,7 +156,7 @@ EOF
 %{__install} -Dp -m0644 %{name}.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/watchdog
 %{__install} -Dp -m0755 %{name}.sysv %{buildroot}%{_initrddir}/watchdog
 
-%post 
+%post
 /sbin/chkconfig --add watchdog
 
 %preun
@@ -165,7 +165,7 @@ if [ $1 -eq 0 ]; then
         /sbin/chkconfig --del watchdog
 fi
 
-%postun 
+%postun
 /sbin/service watchdog condrestart &>/dev/null || :
 
 %clean

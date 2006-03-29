@@ -27,7 +27,7 @@ This binding exposes a low-level TDB interface class, as well as a dictionary
 (mapping) class.
 
 %prep
-%setup 
+%setup
 
 %build
 %{__python} setup.py --build

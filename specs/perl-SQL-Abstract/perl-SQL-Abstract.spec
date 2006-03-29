@@ -36,7 +36,7 @@ you don't have to modify your code every time your data changes,
 as this module figures it out.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 #chmod -R u+w %{_builddir}/%{pkgname}-%{version}
 
 %build

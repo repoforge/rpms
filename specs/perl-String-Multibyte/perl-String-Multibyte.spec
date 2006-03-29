@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-This module provides some functions which emulate the corresponding 
+This module provides some functions which emulate the corresponding
 CORE:: functions to manipulate multiple-byte character strings.
 
 %prep

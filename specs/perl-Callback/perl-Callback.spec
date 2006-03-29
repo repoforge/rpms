@@ -25,7 +25,7 @@ BuildRequires: perl
 Callback provides a standard interface to register callbacks. Those
 callbacks can be either purely functional (i.e. a function call with
 arguments) or object-oriented (a method call on an object).
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

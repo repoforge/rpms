@@ -22,14 +22,14 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-This module is a simple perl module to allow folks to easily run 
-those oh, so popular polls one sees nowadays.  It requires only 
-that you create a world-writable (or server-writable) directory 
-called "data" with a few files to seed the poll.  I also have a 
+This module is a simple perl module to allow folks to easily run
+those oh, so popular polls one sees nowadays.  It requires only
+that you create a world-writable (or server-writable) directory
+called "data" with a few files to seed the poll.  I also have a
 couple of example files included (poll.pl & poll_admin.pl).  If
- you run the script and get an error just run poll_admin.pl 
- first to get it going.  
-  
+ you run the script and get an error just run poll_admin.pl
+ first to get it going.
+
 
 %prep
 %setup -n %{real_name}-%{version}

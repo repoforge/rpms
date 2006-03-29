@@ -35,7 +35,7 @@ favorite WYSIWYG HTML editor, include place-holder strings in it like
 "Customer's name here", and then turn those place holders into a
 substitution field by making the text a link to a special 'subtext:'
 URI.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

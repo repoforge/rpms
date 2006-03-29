@@ -26,7 +26,7 @@ This module provides the function `dissociate', which implements a
 Dissociated Press algorithm, well known to Emacs users as "meta-x
 dissociate". The algorithm here is by no means a straight port of
 Emacs's 'dissociate.el', but is instead merely inspired by it.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

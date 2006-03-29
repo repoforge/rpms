@@ -25,7 +25,7 @@ BuildRequires: perl
 This module contains a simple S/Key calculator (as described in RFC 1760)
 implemented in Perl. It exports the function "key" by default, and may
 optionally export the function "compute".
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

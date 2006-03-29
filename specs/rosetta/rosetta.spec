@@ -28,7 +28,7 @@ same structure as the original, but with translated texts.
 Rosetta also keeps a dictionary of previously translated sentences. When
 an slightly changed version of the original document is read, unchanged
 texts is translated directly from the dictionary, greatly reducing the
-work to keep the translation up to date with regards to the original. 
+work to keep the translation up to date with regards to the original.
 
 %prep
 %setup

@@ -37,7 +37,7 @@ BuildRequires: libxml2-devel, libtiff-devel
 
 %description
 The goal of Stardust is to create a 3D-Space Fight Simulator Open Source,
-portable and expandable simulating, at best, the kinematics of space flight. 
+portable and expandable simulating, at best, the kinematics of space flight.
 Stardust will feature small dozens of starfighters, intelligent computer
 enemies and network mode.
 

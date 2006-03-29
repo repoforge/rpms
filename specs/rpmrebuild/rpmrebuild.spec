@@ -18,7 +18,7 @@ Requires: rpm
 
 %description
 you have an installed package on a computer, want to install on other
-one, and do not find the rpm file anymore. 
+one, and do not find the rpm file anymore.
 Or you want to distribute your customization in an rpm format
 this tool is for you.
 

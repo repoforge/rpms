@@ -29,7 +29,7 @@ BuildRequires: perl, httpd-devel, mod_perl, perl-ExtUtils-XSBuilder
 This package contains modules for manipulating client request data via
 the Apache API with Perl and C.  Functionality includes:
  - parsing of application/x-www-form-urlencoded data
- - parsing of multipart/form-data 
+ - parsing of multipart/form-data
  - parsing of HTTP Cookies
 
 %prep

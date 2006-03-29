@@ -13,7 +13,7 @@ URL: http://matteocorti.ch/software/roll.html
 Source: http://matteocorti.ch/software/roll/roll-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: 
+#BuildRequires:
 
 %description
 roll is a command-line program that rolls a user-defined dice sequence

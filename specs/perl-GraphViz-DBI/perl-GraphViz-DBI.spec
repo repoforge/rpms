@@ -27,7 +27,7 @@ connecting them if they are related. While or after constructing the
 object, pass an open database handle, then call `graph_tables' to
 determine database metadata and construct a GraphViz graph from the
 table and field information.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

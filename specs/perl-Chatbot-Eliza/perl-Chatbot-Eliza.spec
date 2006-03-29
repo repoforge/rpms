@@ -29,7 +29,7 @@ psychotherapist. It prompts for user input, and uses a simple
 transformation algorithm to change user input into a follow-up
 question. The program is designed to give the appearance of
 understanding.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

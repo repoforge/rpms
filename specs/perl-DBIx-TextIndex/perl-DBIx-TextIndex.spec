@@ -25,7 +25,7 @@ DBIx::TextIndex was developed for doing full-text searches on BLOB
 columns stored in a database. Almost any database with BLOB and DBI
 support should work with minor adjustments to SQL statements in the
 module. MySQL, PostgreSQL, and SQLite are currently supported.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

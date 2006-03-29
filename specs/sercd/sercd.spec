@@ -29,7 +29,7 @@ service sredir
 	disable = yes
 	type            = UNLISTED
 	flags           = REUSE
-	socket_type     = stream 
+	socket_type     = stream
 	protocol        = tcp
 	wait            = no
 	user            = root

@@ -39,7 +39,7 @@ not giving you any content, because it hasn't changed").
 * When you request a feed, this class remembers any data that might be
 in the RSS that says how often this feed updates. See XML::RSS::Timing
 for the full story; but as a common example if there's a
-ttl tag with value 180 in the feed, that means that the feed will rebuild 
+ttl tag with value 180 in the feed, that means that the feed will rebuild
 only once every three hours (180 minutes). When this class sees that in the
 received RSS data, it remembers this so that if you go to get the feed
 more often than that, it will stop you and give a "304" (Not Modified)

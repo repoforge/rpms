@@ -32,7 +32,7 @@ input and/or standard ouput.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc COPYING INSTALL README.txt
 %doc %{_mandir}/man1/tpipe.1*

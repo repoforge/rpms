@@ -28,7 +28,7 @@ One allowable exception is a terminal newline, which will be
 chomped off anyway.  The line is fed to a coprocess running
 ispell for analysis.  ispell parses the line into "terms"
 according to the language-specific rules in effect.
-	 
+
 %prep
 %setup -n %{real_name}-%{version}
 

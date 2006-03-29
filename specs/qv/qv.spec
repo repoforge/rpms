@@ -18,7 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: qt-devel
 
 %description
-QV is an image viewer with the following features: 
+QV is an image viewer with the following features:
  * Thumbnails Viewing.
  * Thumbnails Caching.
  * Converting image formats.

@@ -24,7 +24,7 @@ Requires: perl >= 0:5.00503
 Perl interface to a truly random number generator function.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 ### FIXME: Change to real perl. (Please fix upstream)
 %{__perl} -pi -e 's|^#!\s+/.*bin/perl|#!%{__perl}|i' *.pm

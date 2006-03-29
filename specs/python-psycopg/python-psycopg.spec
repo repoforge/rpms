@@ -19,11 +19,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: python >= 2.2, python-devel, postgresql-devel, mx
 
 %description
-psycopg is a PostgreSQL database adapter for the Python programming 
-language. Its main advantages are that it supports the full Python 
-DBAPI 2.0 and it is thread safe at level 2. It was designed for heavily 
-multi-threaded applications that create and destroy lots of cursors and 
-make a conspicuous number of concurrent INSERTs or UPDATEs. The psycopg 
+psycopg is a PostgreSQL database adapter for the Python programming
+language. Its main advantages are that it supports the full Python
+DBAPI 2.0 and it is thread safe at level 2. It was designed for heavily
+multi-threaded applications that create and destroy lots of cursors and
+make a conspicuous number of concurrent INSERTs or UPDATEs. The psycopg
 distribution includes ZPsycopgDA, a Zope Database Adapter.
 
 %prep

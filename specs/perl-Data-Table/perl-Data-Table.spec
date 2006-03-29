@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-Data type related to database tables, spreadsheets, CSV/TSV files, 
+Data type related to database tables, spreadsheets, CSV/TSV files,
 HTML table displays, etc.
 
 %prep

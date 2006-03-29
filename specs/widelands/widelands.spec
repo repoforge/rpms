@@ -27,7 +27,7 @@ more resources - wood, food, iron, gold and more - to further this growth.
 But you are not alone in the world, and you will meet other tribes sooner or
 later. Some of them may be friendly and trade with you. However, if you want
 to rule the world, you will have to train soldiers and fight.
- 
+
 %prep
 %setup -b 1 -n widelands
 

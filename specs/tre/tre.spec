@@ -16,12 +16,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext
 
 %description
-TRE is a lightweight, robust, efficient, portable, and POSIX compliant 
-regexp matching library. Key features include the agrep command line tool 
-for approximate regexp matching in the style of grep, an approximate 
-matching library API, portability, wide character and multibyte character 
-support, binary pattern and data support, complete thread safety, 
-consistently efficient matching, low memory consumption and small 
+TRE is a lightweight, robust, efficient, portable, and POSIX compliant
+regexp matching library. Key features include the agrep command line tool
+for approximate regexp matching in the style of grep, an approximate
+matching library API, portability, wide character and multibyte character
+support, binary pattern and data support, complete thread safety,
+consistently efficient matching, low memory consumption and small
 footprint, and strict standards conformance.
 
 %package devel

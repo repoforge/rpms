@@ -12,13 +12,13 @@ URL: http://shapelib.maptools.org/
 Source: http://dl.maptools.org/dl/shapelib/shapelib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: 
+#BuildRequires:
 
 %description
-Shapefile C Library is a C library for reading and writing ESRI Shapefiles 
-and their related DBF files. All geometry types are supported, with robust 
-DBF support. Shapelib is widely used for commercial and free projects. 
-Shapelib includes command line utilities for dumping, subsetting, clipping, 
+Shapefile C Library is a C library for reading and writing ESRI Shapefiles
+and their related DBF files. All geometry types are supported, with robust
+DBF support. Shapelib is widely used for commercial and free projects.
+Shapelib includes command line utilities for dumping, subsetting, clipping,
 shifting, scaling, and reprojecting shapefiles.
 
 %package devel

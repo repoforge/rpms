@@ -20,9 +20,9 @@ BuildRequires: pygtk2, python2, rpm-python, rhpl, libxml2-python
 Requires: pygtk2, python2, rpm-python, rhpl, libxml2-python
 
 %description
-rpm-analyzer  provides  a  graphical  interface  that  allows 
-the user to view a RPM dependencies according to the local rpm 
-configuration or a user-defined rpm configuration. This tool is 
+rpm-analyzer  provides  a  graphical  interface  that  allows
+the user to view a RPM dependencies according to the local rpm
+configuration or a user-defined rpm configuration. This tool is
 hdlist based and may require a comps.xml file for some features
 so please consider installing comps.
 

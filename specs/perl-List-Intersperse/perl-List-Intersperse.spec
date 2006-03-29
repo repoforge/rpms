@@ -22,8 +22,8 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-This module provides functions that evenly distribute elements of a list. 
-Elements that are considered equal are spaced as far apart from each other 
+This module provides functions that evenly distribute elements of a list.
+Elements that are considered equal are spaced as far apart from each other
 as possible.
 
 %prep

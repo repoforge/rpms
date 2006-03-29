@@ -29,7 +29,7 @@ roo}". A wrongly typed kanagaroo has the trigrams "{kan ana nag aga gar
 aro roo}". To compute the similarity we divide the number of matching
 trigrams (tokens not types) by the number of all trigrams (types not
 tokens). For our example this means dividing 4 / 9 resulting in 0.44.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

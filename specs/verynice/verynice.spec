@@ -16,10 +16,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 VeryNice is a tool for dynamically adjusting the nice-level of processes
-under UNIX-like operating systems. It can also be used to kill off 
-runaway processes and increase the priority of multimedia applications, 
-while properly handling both batch computation jobs and interactive 
-applications with long periods of high CPU usage. 
+under UNIX-like operating systems. It can also be used to kill off
+runaway processes and increase the priority of multimedia applications,
+while properly handling both batch computation jobs and interactive
+applications with long periods of high CPU usage.
 
 %prep
 %setup -n %{name}
@@ -94,7 +94,7 @@ case "\$1" in
 	RETVAL=\$?
 	echo
 	;;
-  reconfig) ### reread configuration file 
+  reconfig) ### reread configuration file
 	echo -n \$"Rereading \$prog configuration: "
 	killproc \$prog -USR2
 	RETVAL=\$?
@@ -129,7 +129,7 @@ immuneuser xfs
 ### Declare immune program, matlab in this case. If the line is uncommented,
 ### any program with "matlab" in it's path will be immune to renicing.
 ### The quoted quantity must match a substring of the symbolic link in
-### /proc/{pid}/exe 
+### /proc/{pid}/exe
 ### if there is a leading slash, the match must be precise
 #immuneexe "matlab"
 
@@ -148,7 +148,7 @@ immuneuser xfs
 hungryexe "/usr/bin/make"
 hungryexe "/usr/bin/gmake"
 
-### Declare "good" program -- automatically negatively reniced to 
+### Declare "good" program -- automatically negatively reniced to
 ### multimedia job level. goodexe "xmms" reduces the chances of skipping when
 ### playing mp3's
 goodexe "cdrecord"
@@ -162,11 +162,11 @@ goodexe "vlc"
 goodexe "xanim"
 goodexe "xcdroast"
 goodexe "xine"
-goodexe "xmms" 
+goodexe "xmms"
 
 ### Making the X server a "good" program is usually a good idea too
-###   -- X is essentially a multimedia app. These next few lines will 
-###   work even if root is declared an "immune" user and X is run as root, 
+###   -- X is essentially a multimedia app. These next few lines will
+###   work even if root is declared an "immune" user and X is run as root,
 ###   because "goodexe"'s specified in verynice.conf are exceptions to
 ###   the "immuneuser" rule
 goodexe "/etc/X11/X"
@@ -176,7 +176,7 @@ goodexe "/usr/X11R6/bin/X"
 
 ### Declare "potential runaway" program. They can go to a lower priority
 ### (reniced all the way to +20), and if they exceed that they will be
-### killed. Other processes are never killed. This is good for netscape and 
+### killed. Other processes are never killed. This is good for netscape and
 ### any other programs with a tendency to start eating the CPU for no reason.
 runawayexe "Fvwm"
 runawayexe "galeon"

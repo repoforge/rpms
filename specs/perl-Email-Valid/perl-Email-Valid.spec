@@ -6,7 +6,7 @@
 
 %define real_name Email-Valid
 
-Summary: Check validity of Internet email addresses 
+Summary: Check validity of Internet email addresses
 Name: perl-Email-Valid
 Version: 0.15
 Release: 1
@@ -22,10 +22,10 @@ BuildRequires: perl
 Requires: perl
 
 %description
-Check validity of Internet email addresses 
+Check validity of Internet email addresses
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

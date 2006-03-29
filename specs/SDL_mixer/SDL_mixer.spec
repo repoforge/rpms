@@ -18,8 +18,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, SDL-devel, libvorbis-devel, smpeg-devel, mikmod-devel
 
 %description
-SDL_mixer is a simple multi-channel audio mixer. It supports 8 channels of 16 
-bit stereo audio, plus a single channel of music, mixed by the popular MikMod 
+SDL_mixer is a simple multi-channel audio mixer. It supports 8 channels of 16
+bit stereo audio, plus a single channel of music, mixed by the popular MikMod
 MOD, Timidity MIDI, Ogg Vorbis, and SMPEG MP3 libraries.
 
 %package devel

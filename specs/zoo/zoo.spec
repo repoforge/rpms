@@ -16,9 +16,9 @@ Patch2: zoo-2.10-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
-zoo is a file archiving utility for maintaining collections of files. 
-It uses Lempel-Ziv compression to provide space savings in the 
-range of 20 to 80 percent depending on the type of data. Written by 
+zoo is a file archiving utility for maintaining collections of files.
+It uses Lempel-Ziv compression to provide space savings in the
+range of 20 to 80 percent depending on the type of data. Written by
 Rahul Dhesi, and posted to the USENET newsgroup comp.sources.misc.
 
 %prep

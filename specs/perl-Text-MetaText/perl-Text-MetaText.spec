@@ -27,7 +27,7 @@ be used for processing "template" files. This module is a Perl 5
 extension implementing a MetaText object class which processes
 text files, interpreting and acting on the embedded MetaText
 directives within.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

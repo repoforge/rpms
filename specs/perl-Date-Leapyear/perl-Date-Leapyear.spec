@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 Date::Leapyear exports one function - isleap - which returns 1 or 0 if a
 year is leap, or not, respectively.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

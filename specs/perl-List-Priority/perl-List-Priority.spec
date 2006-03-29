@@ -29,7 +29,7 @@ Logic: Precedence to highest priority object. If more than one object
 hold the highest priority - FIFO is king.
 
 Duplicate objects are currently not allowed.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

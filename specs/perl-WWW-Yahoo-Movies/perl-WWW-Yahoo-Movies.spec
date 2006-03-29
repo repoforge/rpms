@@ -22,9 +22,9 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-WWW-Yahoo-Movies is OO Perl interface to the Yahoo! Movies. 
-It allows to retrieve information about movies by its ID Yahoo! 
-Movies or title. 
+WWW-Yahoo-Movies is OO Perl interface to the Yahoo! Movies.
+It allows to retrieve information about movies by its ID Yahoo!
+Movies or title.
 
 %prep
 %setup -n %{real_name}-%{version}

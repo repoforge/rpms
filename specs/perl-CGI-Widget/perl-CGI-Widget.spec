@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-Modules under the CGI::Widget namespace serve the purpose of allowing 
+Modules under the CGI::Widget namespace serve the purpose of allowing
 authors of CGI or other dynamically generated HTML documents an easy way
 to create common, although perhaps complex, page elements.
 

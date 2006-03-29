@@ -23,11 +23,11 @@ BuildRequires: gettext
 Requires: SDL, SDL_net, SDL_mixer, SDL_image, SDL_ttf, SDL_net
 
 %description
-Battle for Wesnoth is a fantasy turn-based strategy game. Battle 
-for control of villages, using variety of units which have advantages 
+Battle for Wesnoth is a fantasy turn-based strategy game. Battle
+for control of villages, using variety of units which have advantages
 and disadvantages in different types of terrains and against
-different types of attacks. Units gain experience and advance levels, 
-and are carried over from one scenario to the next campaign. 
+different types of attacks. Units gain experience and advance levels,
+and are carried over from one scenario to the next campaign.
 
 %prep
 %setup

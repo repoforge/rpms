@@ -22,14 +22,14 @@ Prereq: /sbin/chkconfig, /sbin/service
 
 %description
 Yum is a utility that can check for and automatically download and
-install updated RPM packages. Dependencies are obtained and downloaded 
+install updated RPM packages. Dependencies are obtained and downloaded
 automatically prompting the user as necessary.
 
 %prep
 %setup
 
 %build
-%configure 
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
@@ -49,7 +49,7 @@ if [ $1 -eq 0 ]; then
 	/sbin/service yum stop &>/dev/null || :
 fi
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO
 %doc %{_mandir}/man5/yum.conf.5*

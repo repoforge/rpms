@@ -26,7 +26,7 @@ Prereq: /sbin/chkconfig, /sbin/service, coreutils
 
 %description
 Yum is a utility that can check for and automatically download and
-install updated RPM packages. Dependencies are obtained and downloaded 
+install updated RPM packages. Dependencies are obtained and downloaded
 automatically prompting the user as necessary.
 
 %prep
@@ -90,7 +90,7 @@ fi
 - 2.4.1
 
 * Sun Sep  4 2005 Johnny Hughes <johnny@centos.org>
-- upgraded CentOS-4 to 2.4.0 (rerolled in the 
+- upgraded CentOS-4 to 2.4.0 (rerolled in the
   below CentOS changes into this version)
 
 * Sun Aug 14 2005 Seth Vidal <skvidal@phy.duke.edu>

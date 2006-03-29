@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-This module is intended to support the using of ISO thesaurus files 
+This module is intended to support the using of ISO thesaurus files
 from Perl scripts.  It allows rapid access to individual thesaurus
 records based on the terms that they cover and also provides routines
 to allow individual items in the thesaurus record to be retrieved.  This

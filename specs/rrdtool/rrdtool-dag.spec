@@ -23,12 +23,12 @@ BuildRequires: php-devel, tcl, perl
 %{?el3:BuildRequires: tcl-devel}
 
 %description
-RRD is the Acronym for Round Robin Database. RRD is a system to store and 
-display time-series data (i.e. network bandwidth, machine-room temperature, 
-server load average). It stores the data in a very compact way that will not 
-expand over time, and it presents useful graphs by processing the data to 
-enforce a certain data density. It can be used either via simple wrapper 
-scripts (from shell or Perl) or via frontends that poll network devices and 
+RRD is the Acronym for Round Robin Database. RRD is a system to store and
+display time-series data (i.e. network bandwidth, machine-room temperature,
+server load average). It stores the data in a very compact way that will not
+expand over time, and it presents useful graphs by processing the data to
+enforce a certain data density. It can be used either via simple wrapper
+scripts (from shell or Perl) or via frontends that poll network devices and
 put a friendly user interface on it.
 
 %package devel
@@ -105,7 +105,7 @@ cd -
 
 %clean
 %{__rm} -rf %{buildroot}
- 
+
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES CONTRIBUTORS COPYING COPYRIGHT README TODO

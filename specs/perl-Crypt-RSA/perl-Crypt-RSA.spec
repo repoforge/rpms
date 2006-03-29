@@ -6,7 +6,7 @@
 
 %define rname Crypt-RSA
 
-Summary: Crypt-RSA module for perl 
+Summary: Crypt-RSA module for perl
 Name: perl-Crypt-RSA
 Version: 1.57
 Release: 1
@@ -25,7 +25,7 @@ Requires: perl >= 0:5.00503
 Crypt-RSA module for perl
 
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{rname}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"

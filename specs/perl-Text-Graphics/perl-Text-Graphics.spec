@@ -27,7 +27,7 @@ that used for graphics rendering in GUI toolkits.  This
 package might be used when you want to do sophisticated
 rendering of plain text, e.g., for graphing, creating of
 complex forms for email and fax, and so on.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 Template-Toolkit is not just a Templating Engine. It's a language. Yep,
 Inline::TT is a Inline plugin to allow you to code your Perl subs in TT.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

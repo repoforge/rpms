@@ -10,7 +10,7 @@
 %define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
 %define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
-Summary: Format data in columns 
+Summary: Format data in columns
 Name: perl-Data-ShowTable
 Version: 3.3
 Release: 1.2

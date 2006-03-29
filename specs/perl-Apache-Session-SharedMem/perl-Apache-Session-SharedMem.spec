@@ -22,8 +22,8 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-This is an Apache::Session extension module that stores the 
-session data in Shared memory (so, does exactly what it says 
+This is an Apache::Session extension module that stores the
+session data in Shared memory (so, does exactly what it says
 on the tin then) using IPC::Cache (and hence IPC::ShareLite).
 
 %prep

@@ -6,7 +6,7 @@
 
 %define rname Crypt-DES
 
-Summary: Crypt-DES module for perl 
+Summary: Crypt-DES module for perl
 Name: perl-Crypt-DES
 Version: 2.05
 Release: 3
@@ -24,7 +24,7 @@ Requires: perl >= 0:5.00503
 Crypt-DES module for perl
 
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{rname}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

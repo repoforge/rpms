@@ -24,7 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 This package contain the Wireless tools, used to manipulate
 the Wireless Extensions. The Wireless Extension is an interface
 allowing you to set Wireless LAN specific parameters and get the
-specific stats for wireless networking equipment. 
+specific stats for wireless networking equipment.
 
 %prep
 %setup -n %{real_name}.%{version}

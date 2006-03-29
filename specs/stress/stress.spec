@@ -35,7 +35,7 @@ great number of UNIX-like operating systems.
 Stress is not a benchmark, it is rather a tool which puts the system under
 a repeatable, defined amount of load so that a systems programmer or system
 administrator can analyze the performance characteristics of the system or
-specific components thereof. 
+specific components thereof.
 
 %prep
 %setup

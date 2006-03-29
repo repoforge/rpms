@@ -26,7 +26,7 @@ String::Format lets you define arbitrary printf-like format
 sequences to be expanded. This module would be most useful in
 configuration files and reporting tools, where the results of a
 query need to be formatted in a particular way.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

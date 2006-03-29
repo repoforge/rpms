@@ -39,7 +39,7 @@ vorbis_lib_dir = %{_libdir}
 EOF
 
 %build
-export CFLAGS="%{optflags}" 
+export CFLAGS="%{optflags}"
 %{__python} setup.py build
 
 %install

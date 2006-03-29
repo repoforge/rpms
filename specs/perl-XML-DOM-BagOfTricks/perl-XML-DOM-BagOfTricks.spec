@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl
 
 %description
-XML::DOM::BagOfTricks provides a bundle, or bag, of functions that make 
+XML::DOM::BagOfTricks provides a bundle, or bag, of functions that make
 dealing with and creating DOM objects easier.
 
 %prep

@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 Modules to create unique strings for use as file/directory
 names etc.
-					  
+
 %prep
 %setup -n %{real_name}-%{version}
 

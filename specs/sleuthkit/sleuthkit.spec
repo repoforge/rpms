@@ -24,7 +24,7 @@ file system structures. Because the tools do not rely on the operating
 system to process the file systems, deleted and hidden content is shown.
 
 %prep
-%setup 
+%setup
 
 %build
 %{__make} %{?_smp_mflags}  \

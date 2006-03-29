@@ -25,7 +25,7 @@ BuildRequires: perl
 Date::ICal talks the ICal date format, and is intended to be a base
 class for other date/calendar modules that know about ICal time format
 also.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

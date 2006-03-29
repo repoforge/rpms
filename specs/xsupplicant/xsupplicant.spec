@@ -56,7 +56,7 @@ you will need to install %{name}-devel.
 %postun
 /sbin/ldconfig 2>/dev/null
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING doc/html/ doc/README* doc/txt/ etc/*.conf README README.wireless_cards
 %config(noreplace) %{_sysconfdir}/xsupplicant.conf

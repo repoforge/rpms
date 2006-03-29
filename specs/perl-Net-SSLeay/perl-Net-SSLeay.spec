@@ -24,7 +24,7 @@ Requires: perl >= 0:5.00503
 Net-SSLeay module for perl.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %{__perl} -pi -e 's|^\s*#!/.*bin/perl|#!%{__perl}|;' SSLeay.pm examples/*.pl
 

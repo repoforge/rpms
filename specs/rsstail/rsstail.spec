@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libmrss-devel
 
 %description
-RSSTail is more or less an RSS reader. It monitors an RSS feed, and if it 
+RSSTail is more or less an RSS reader. It monitors an RSS feed, and if it
 detects a new entry, it will emit only that new entry.
 
 %prep

@@ -26,7 +26,7 @@ pdumpfs constructs the snapshot YYYY/MM/DD in the destination directory.
 All source files are copied to the snapshot directory for the first time.
 On and after the second time, pdumpfs copies only updated or newly created
 files and stores unchanged files as hard links to the files of the previous
-day's snapshot for saving a disk space. 
+day's snapshot for saving a disk space.
 
 %prep
 %setup

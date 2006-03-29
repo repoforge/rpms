@@ -24,7 +24,7 @@ BuildRequires: perl
 SpeedyCGI is a way to run perl scripts persistently, which can make them
 run much more quickly. A script can be made to to run persistently by
 changing the interpreter line at the top of the script.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

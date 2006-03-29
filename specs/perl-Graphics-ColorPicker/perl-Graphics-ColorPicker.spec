@@ -29,7 +29,7 @@ number via a web browser. make_page() can be called by "javascript" from
 your web page and will set the HEX value in a variable in the calling
 page and scope. The selector page can be created for 24 million or web
 safe colors only.
-    
+
 %prep
 %setup -n %{real_name}-%{version}
 

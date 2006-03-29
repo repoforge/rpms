@@ -25,7 +25,7 @@ You can add spaces between applications, they can be used to group
 together applications with similar tasks.
 
 %prep
-%setup 
+%setup
 
 ### FIXME: Fix the localedir to use $(datadir). (Please fix upstream)
 %{__perl} -pi.orig -e 's|^(localedir =) \$\(libdir\)/locale|$1 \$(datadir)/locale|' po/Makefile.in.in

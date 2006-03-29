@@ -25,7 +25,7 @@ URL: http://www.windowmaker.org/
 Source: ftp://windowmaker.org/pub/source/release/WindowMaker-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpng-devel, libjpeg-devel, libungif-devel 
+BuildRequires: libpng-devel, libjpeg-devel, libungif-devel
 BuildRequires: libtiff-devel, zlib-devel, gettext, gcc-c++
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
@@ -56,7 +56,7 @@ you will need to install %{name}-devel.
 %prep
 %setup -n %{real_name}-%{version}
 
-### FIXME: Replace fixed /usr/lib by $(libdir). (Please fix upstream)                                          
+### FIXME: Replace fixed /usr/lib by $(libdir). (Please fix upstream)
 %{__perl} -pi.orig -e 's|/usr/lib\b|\$(libdir)|g' WPrefs.app/Makefile.in
 
 %{__cat} <<EOF >windowmaker.xsession

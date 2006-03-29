@@ -33,7 +33,7 @@ There are also many powerful extensions, including XML taglibs, XSLT
 rendering, and new events not originally part of the ASP API!
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTALLDIRS="vendor" \

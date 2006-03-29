@@ -24,7 +24,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-Perl DateTime extension for computing rfc2445 recurrences like 
+Perl DateTime extension for computing rfc2445 recurrences like
 'last friday of march'.
 
 %prep

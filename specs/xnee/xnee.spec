@@ -19,8 +19,8 @@ BuildRequires: gtk2-devel, desktop-file-utils, ghostscript, tetex, ImageMagick
 BuildRequires: texinfo
 
 %description
-Xnee can record, distribute, and replay X (X11) protocol data. This is 
-useful for automated tests of applications or benchmarking of applications. 
+Xnee can record, distribute, and replay X (X11) protocol data. This is
+useful for automated tests of applications or benchmarking of applications.
 Think of it as a robot.
 
 %prep

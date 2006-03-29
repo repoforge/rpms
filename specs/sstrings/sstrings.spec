@@ -16,9 +16,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: automake, autoconf, gcc-c++
 
 %description
-Safe Strings is a small C library that handles C strings in a safe way. 
-The functions of this library look at the necessary space for the operations 
-and try to reserve that space (with malloc or realloc). The functions only 
+Safe Strings is a small C library that handles C strings in a safe way.
+The functions of this library look at the necessary space for the operations
+and try to reserve that space (with malloc or realloc). The functions only
 begin working with their tasks when the memory allocation is successful.
 
 %package devel

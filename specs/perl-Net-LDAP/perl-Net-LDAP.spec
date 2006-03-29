@@ -35,7 +35,7 @@ the perl-ldap project is to implement a very portable LDAP client in perl
 by relying on as little compiled code as possible.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL \

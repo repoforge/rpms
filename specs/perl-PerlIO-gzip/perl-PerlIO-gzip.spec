@@ -24,8 +24,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl, zlib-devel
 
 %description
-This module contains a layer for the PerlIO system to 
-transparently gzip/gunzip files. 
+This module contains a layer for the PerlIO system to
+transparently gzip/gunzip files.
 
 %prep
 %setup -n %{real_name}-%{version}

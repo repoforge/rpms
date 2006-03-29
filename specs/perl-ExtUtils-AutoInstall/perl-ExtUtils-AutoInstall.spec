@@ -24,7 +24,7 @@ BuildArch: noarch
 BuildRequires: perl, perl-CPANPLUS, perl-Sort-Versions
 
 %description
-ExtUtils::AutoInstall is a module to let Makefile.PL automatically 
+ExtUtils::AutoInstall is a module to let Makefile.PL automatically
 install dependencies via CPAN or CPANPLUS.
 
 %prep

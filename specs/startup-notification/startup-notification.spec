@@ -26,7 +26,7 @@ Summary: Libraries and include files for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}
 
-%description devel	
+%description devel
 Development files for %{name}
 
 %prep

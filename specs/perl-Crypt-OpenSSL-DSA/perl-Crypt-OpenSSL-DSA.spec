@@ -23,10 +23,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl, openssl-devel, krb5-devel
 
 %description
-Crypt::OpenSSL::DSA implements the DSA (Digital Signature Algorithm) 
+Crypt::OpenSSL::DSA implements the DSA (Digital Signature Algorithm)
 signature verification system.
 
-It is a thin XS wrapper to the DSA functions contained in the 
+It is a thin XS wrapper to the DSA functions contained in the
 OpenSSL crypto library, located at http://www.openssl.org.
 
 %prep

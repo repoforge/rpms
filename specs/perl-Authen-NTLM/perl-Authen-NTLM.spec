@@ -36,7 +36,7 @@ As of this version, NTLM module only provides the client side functions
 to calculate NT response and LM response. The next revision will provide
 the server side functions that computes the nonce and verify the NTLM
 responses.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

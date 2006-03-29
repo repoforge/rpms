@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 Filesys::DiskFree does about what the unix command df(1) does, listing
 the mounted disks, and the amount of free space used and available.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

@@ -18,8 +18,8 @@ BuildRequires: libtiff-devel, zlib-devel, libjpeg-devel, ImageMagick-devel
 BuildRequires: fftw-devel, intltool, perl(XML::Parser)
 
 %description
-VIPS is an image processing suite designed for extremely large images and 
-colorimetry. It consists of a powerful re-usable library and a graphical 
+VIPS is an image processing suite designed for extremely large images and
+colorimetry. It consists of a powerful re-usable library and a graphical
 user interface.
 
 %package devel

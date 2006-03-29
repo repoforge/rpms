@@ -26,7 +26,7 @@ Perl already contains some functional-like functions, such as
 `map' and `grep'. The purpose of this module is to add other
 functional-like functions to Perl, such as foldl and foldr, as
 well as the use of infinite lists.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

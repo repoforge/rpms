@@ -22,8 +22,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl
 
 %description
-This is Crypt::Rijndael, an XS-based implementation of the newly-selected 
-Advanced Encryption Standard algorithm Rijndael, designed by Joan Daemen 
+This is Crypt::Rijndael, an XS-based implementation of the newly-selected
+Advanced Encryption Standard algorithm Rijndael, designed by Joan Daemen
 and Vincent Rijmen.
 
 %prep

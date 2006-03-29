@@ -8,7 +8,7 @@ Release: 11
 License: Freely Distributable
 Group: Applications/System
 URL: http://www.psionic.com/products/portsentry.html
-Source0: http://dl.sf.net/sentrytools/%{name}-%{version}.tar.gz  
+Source0: http://dl.sf.net/sentrytools/%{name}-%{version}.tar.gz
 Source1: portsentry.init
 Source2: portsentry.modes
 Source3: portsentry.cron
@@ -17,10 +17,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: sentry
 
 %description
-PortSentry is part of the Abacus Project suite of tools. The Abacus 
+PortSentry is part of the Abacus Project suite of tools. The Abacus
 Project is an initiative to release low-maintenance, generic, and reliable
 host based intrusion detection software to the Internet community. More
-information can be obtained from http://www.psionic.com. 
+information can be obtained from http://www.psionic.com.
 
 PortSentry has a number of options to detect port scans, the purpose of this
 is to give an admin a heads up that their host is being probed. There are
@@ -28,10 +28,10 @@ similar programs that do this already (klaxon, etc.) We have added a little
 twist to the whole idea (auto-blocking), plus extensive support for
 stealth scan detection.
 
-PortSentry has four "stealth" scan detection modes. Method one uses a 
+PortSentry has four "stealth" scan detection modes. Method one uses a
 pre-defined list of ports to watch over. If someone pokes at them
-it activates. The second method is what is called "inverse" port binding, 
-where every port under a range is watched *except* for those that the 
+it activates. The second method is what is called "inverse" port binding,
+where every port under a range is watched *except* for those that the
 system has bound for network daemons when the PortSentry starts or ones that
 you've manually excluded. This is a very sensitive way for looking for
 port probes, but also the most prone to false alarms.

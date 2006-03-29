@@ -48,7 +48,7 @@ subclasses for any of these objects.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc Changes README
 %doc %{_mandir}/man3/*

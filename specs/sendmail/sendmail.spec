@@ -830,7 +830,7 @@ exit 0
 * Tue Jan 23 2001 Florian La Roche <Florian.LaRoche@redhat.de>
 - enable daemon mode again, but only listen to the loopback device
   instead of all devices.
-- do not include check.tar with old anti-spam rules 
+- do not include check.tar with old anti-spam rules
 
 * Fri Jan 12 2001 Florian La Roche <Florian.LaRoche@redhat.de>
 - fix configuration of /etc/aliases
@@ -996,7 +996,7 @@ exit 0
 - correxct dangling symlinks.
 - check for map file existence in %post.
 
-* Sun Mar 21 1999 Cristian Gafton <gafton@redhat.com> 
+* Sun Mar 21 1999 Cristian Gafton <gafton@redhat.com>
 - auto rebuild in the new build environment (release 3)
 
 * Fri Mar 19 1999 Jeff Johnson <jbj@redhat.com>

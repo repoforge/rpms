@@ -23,10 +23,10 @@ Requires: perl >= 0:5.00503
 
 %description
 Perl module for calculating critical values and upper probabilities of
-common statistical distributions 
+common statistical distributions
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTALLDIRS="vendor"

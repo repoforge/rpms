@@ -22,8 +22,8 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-This module facilitates the conversion of numbers between various number 
-bases. You may define your own digit sets, or use any of several 
+This module facilitates the conversion of numbers between various number
+bases. You may define your own digit sets, or use any of several
 predefined digit sets.
 
 %prep

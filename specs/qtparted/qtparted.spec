@@ -5,7 +5,7 @@
 # ScreenshotURL: http://qtparted.sourceforge.net/screenshots.en.html
 
 %{?dist: %{expand: %%define %dist 1}}
-  
+
 %{?el4:%define _without_jfs 1}
 
 %{?fc1:%define _without_xfs 1}

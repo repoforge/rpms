@@ -6,7 +6,7 @@
 
 %define real_name Mail-Mbox-MessageParser
 
-Summary: Fast and simple mbox folder reader 
+Summary: Fast and simple mbox folder reader
 Name: perl-Mail-Mbox-MessageParser
 Version: 1.4002
 Release: 1

@@ -23,10 +23,10 @@ BuildRequires: perl
 
 %description
 This package allows the propagation of errors on the variables through
-various simple mathematical operations to automatically compute the error of 
-the function. Use it to define  data each with a central (mean) value and 
-either the variance or standard deviation (square root of the variance), 
-then apply perl's mathematical operators to them to calculate your function 
+various simple mathematical operations to automatically compute the error of
+the function. Use it to define  data each with a central (mean) value and
+either the variance or standard deviation (square root of the variance),
+then apply perl's mathematical operators to them to calculate your function
 f. These operators are overloaded so that f automatically has the correct
 variance.
 

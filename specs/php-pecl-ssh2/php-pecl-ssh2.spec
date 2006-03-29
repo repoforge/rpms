@@ -24,7 +24,7 @@ Provides bindings to the functions of libssh2 which implements the SSH2 protocol
 libssh2 is available from http://www.sourceforge.net/projects/libssh2
 
 
-%prep 
+%prep
 %setup -n ssh2-%{version}
 
 

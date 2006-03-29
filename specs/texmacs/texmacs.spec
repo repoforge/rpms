@@ -39,18 +39,18 @@ and GNU Emacs. The editor allows you to write structured documents via a
 wysiwyg (what-you-see-is-what-you-get) and user friendly interface. New
 styles may be created by the user. The program implements high-quality
 typesetting algorithms and TeX fonts, which help you to produce
-professionally looking documents. 
+professionally looking documents.
 
 
 The high typesetting quality still goes through for automatically generated
 formulas, which makes TeXmacs suitable as an interface for computer algebra
 systems. TeXmacs also supports the Guile/Scheme extension language, so that
-you may customize the interface and write your own extensions to the editor. 
+you may customize the interface and write your own extensions to the editor.
 
 Converters exist for TeX/LaTeX and they are under development for
 Html/MathML/Xml. In the future, TeXmacs is planned to evolve towards a
 complete scientific office suite, with spreadsheet capacities, a technical
-drawing editor and a presentation mode. 
+drawing editor and a presentation mode.
 
 %prep
 %setup -n TeXmacs-%{version}-src

@@ -32,7 +32,7 @@ WEEKDAY_COLOR=$GREEN
 AFTERHOURS_COLOR=$BLUE
 WEEKEND_COLOR=$WHITE
 
-ZONES=" 
+ZONES="
         US/Pacific
         US/Eastern
         UTC

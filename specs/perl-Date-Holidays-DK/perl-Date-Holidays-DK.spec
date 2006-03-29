@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-Date::Holidays::DK Determines whether a given date is a Danish public holiday 
+Date::Holidays::DK Determines whether a given date is a Danish public holiday
 or not.
 
 %prep

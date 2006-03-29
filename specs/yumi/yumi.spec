@@ -53,7 +53,7 @@ Graphical user interface for the yum package manager.
 %{__rm} -rf %{buildroot}
 
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %config %{_sysconfdir}/pam.d/yumi
 %config %{_sysconfdir}/security/console.apps/yumi

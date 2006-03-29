@@ -22,10 +22,10 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-Allows you to query the state of modules on your system. It can 
-tell you if you have certain modules installed without attempting 
+Allows you to query the state of modules on your system. It can
+tell you if you have certain modules installed without attempting
 to C<use> them and can do smart loading of modules.
-Also it can tell you what *other* modules a certain module 
+Also it can tell you what *other* modules a certain module
 requires.
 
 %prep

@@ -1,6 +1,6 @@
 Name:           python-forward-compat
 
-%if %{?rh7:1}%{!?rh7:0} || %{?rh9:1}%{!?rh9:0} || %{?fc1:1}%{!?fc1:0} 
+%if %{?rh7:1}%{!?rh7:0} || %{?rh9:1}%{!?rh9:0} || %{?fc1:1}%{!?fc1:0}
 Version:        2.2
 %endif
 
@@ -47,7 +47,7 @@ This package provides virtual capabilities and directories for Python
 * Sun Mar 27 2005 Jeff Pitman <symbiont+pyvault@berlios.de> 2.x-1
 - import into rpmforge
 - add python(abi)
-- build for py 2.2 and 2.3 
+- build for py 2.2 and 2.3
 
 * Mon May 31 2004 Ville Skyttä <ville.skytta at iki.fi> - 0:2.2-0.fdr.1
 - First build.

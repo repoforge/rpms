@@ -22,9 +22,9 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-Data::Propertylist provides functions that turn data structures with nested 
-references into NeXT's Property List text format and back again. You may 
-find this useful for saving and loading application information in text 
+Data::Propertylist provides functions that turn data structures with nested
+references into NeXT's Property List text format and back again. You may
+find this useful for saving and loading application information in text
 files, or perhaps for generating error messages while debugging.
 
 %prep

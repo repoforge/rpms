@@ -23,7 +23,7 @@ Requires: perl >= 0:5.00503
 ASN.1 Basic Encoding Rules perl module.
 
 %prep
-%setup -n %{real_name}-%{real_version} 
+%setup -n %{real_name}-%{real_version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

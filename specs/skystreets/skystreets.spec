@@ -38,7 +38,7 @@ Requires: SDL, SDL_image, libtiff, imlib
 A modernised remake of the popular old game, Skyroads, by Bluemoon software.
 The objective is to go along the tracks, and try to reach the objective
 before either your fuel or oxygen run out, whilst trying to get as fast a
-time as possible. Some obstacles require more thought or tact. 
+time as possible. Some obstacles require more thought or tact.
 
 %prep
 %setup

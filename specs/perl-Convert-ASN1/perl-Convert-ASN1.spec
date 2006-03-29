@@ -30,7 +30,7 @@ Convert-ASN1 is a set of Perl classes implementing conversion routines for
 encoding and decoding ASN.1 data structures using BER/DER rules.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL \

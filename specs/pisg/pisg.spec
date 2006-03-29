@@ -1,6 +1,6 @@
 # $Id: $
 # Authority: dries
-# Upstream: 
+# Upstream:
 
 Summary: Perl script which generates statistics from IRC logfiles
 Name: pisg
@@ -13,7 +13,7 @@ URL: http://pisg.sourceforge.net/
 Source: http://dl.sf.net/pisg/pisg-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-# BuildRequires: 
+# BuildRequires:
 
 %description
 pisg is an IRC channel statics generator written in Perl, it creates

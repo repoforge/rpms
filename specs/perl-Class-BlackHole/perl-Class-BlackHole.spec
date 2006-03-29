@@ -29,7 +29,7 @@ handler for, you get an error:
 
 But for classes that inherit from Class::BlackHole,
 unhandled methods become just no-operations.
-	 
+
 %prep
 %setup -n %{real_name}-%{version}
 

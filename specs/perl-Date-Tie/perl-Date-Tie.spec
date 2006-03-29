@@ -24,11 +24,11 @@ BuildRequires: perl
 %description
 Date::Tie is an attempt to simplify date operations syntax.
 
-Date::Tie manages a hash containing the keys: 
+Date::Tie manages a hash containing the keys:
 epoch, utc_epoch, year, month, day, hour, minute, second,
 yearday, week, weekday, weekyear, tz, tzhour, tzminute.
 
-Whenever a new value is stored in a key, it will change 
+Whenever a new value is stored in a key, it will change
 the other keys following the common (ISO) date rules.
 
 %prep

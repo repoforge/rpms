@@ -23,7 +23,7 @@ BuildRequires: perl
 
 %description
 This module takes as input a person or persons name in
-free format text and attempts to parse it. If successful, 
+free format text and attempts to parse it. If successful,
 the name is broken down into components.
 
 %prep

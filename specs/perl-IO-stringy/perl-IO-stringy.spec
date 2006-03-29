@@ -33,7 +33,7 @@ In the more-traditional IO::Handle front, we have IO::AtomicFile which
 may be used to painlessly create files which are updated atomically.
 
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{rname}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"

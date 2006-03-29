@@ -17,12 +17,12 @@ BuildRequires: avifile-devel
 Requires: avifile
 
 %description
-VCR is a program which enables you to record a program using a video 
-grabber card that's supported by the video4linux drivers. It doesn't 
-require a graphical environment, and you can use all popupular windows 
-codecs (like DivX, Indeo Video 5, etc) because VCR is built around the 
-avifile library. Now, you can finally record your favourite program from a 
-remote place, because Murphy's law dictates that you remember to record it 
+VCR is a program which enables you to record a program using a video
+grabber card that's supported by the video4linux drivers. It doesn't
+require a graphical environment, and you can use all popupular windows
+codecs (like DivX, Indeo Video 5, etc) because VCR is built around the
+avifile library. Now, you can finally record your favourite program from a
+remote place, because Murphy's law dictates that you remember to record it
 when you're as far away from your home as possible...
 
 %prep

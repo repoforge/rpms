@@ -40,7 +40,7 @@ standard format.
 %description -l nl
 Umbrello UML Modeller is een KDE programma om Unified Modelling Language
 schema's te maken. UML laat u toe om schema's te maken van software in een
-standaard formaat. 
+standaard formaat.
 
 %prep
 %setup

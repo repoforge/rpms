@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 Whouses provides a limited form of "impact analysis" in a clearmake
 build environment. This is different from traditional impact analysis
-In particular, it operates at the granularity of files rather than language 
+In particular, it operates at the granularity of files rather than language
 elements.
 
 %prep

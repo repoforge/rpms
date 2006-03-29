@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: 
+# Upstream:
 
 %define real_name SING
 
@@ -38,7 +38,7 @@ the ping command but adding certain enhancements (Fragmentation, spoofing,
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README THANKS
 %doc %{_mandir}/man?/*

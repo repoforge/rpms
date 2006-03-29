@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 These modules provide a method of reading & writing uncompressed
 Microsoft WAV files.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

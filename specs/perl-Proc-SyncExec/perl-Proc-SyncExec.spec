@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-This distribution contains the Proc::SyncExec module. 
+This distribution contains the Proc::SyncExec module.
 Spawn processes but report exec() errors.
 
 %prep

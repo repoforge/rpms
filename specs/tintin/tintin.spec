@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: readline-devel
 
 %description
-TinTin++ is a MUD client that runs in console mode. A MUD is a 
+TinTin++ is a MUD client that runs in console mode. A MUD is a
 text based multi user dungeon.
 
 %prep

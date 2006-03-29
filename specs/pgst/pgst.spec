@@ -1,7 +1,7 @@
-# $Id: $
+# $Id$
 
 # Authority: dries
-# Upstream: 
+# Upstream:
 
 Summary: Intuitive GUI for PostgreSQL management
 Name: pgst

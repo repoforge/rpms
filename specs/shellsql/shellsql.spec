@@ -1,7 +1,7 @@
-# $Id: $
+# $Id$
 
 # Authority: dries
-# Upstream: 
+# Upstream:
 
 # sqlite3 not yet added
 

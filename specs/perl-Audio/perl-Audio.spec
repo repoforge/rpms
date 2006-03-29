@@ -22,9 +22,9 @@ BuildRequires: perl
 
 %description
 This is the beginings of Audio manipulation routines for perl.
-Currently can load or save Sun/Next .au/.snd files and play them 
+Currently can load or save Sun/Next .au/.snd files and play them
 via Network Audio Server (from ftp.x.org) or native /dev/audio
-on Suns. 
+on Suns.
 
 %prep
 %setup -n %{real_name}-%{version}

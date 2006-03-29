@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 GnuPG is a perl module that interface with the Gnu Privacy Guard using
 the coprocess hooks provided by gpg. The communication mechanism uses
-is shared memory and a status file descriptor. 
+is shared memory and a status file descriptor.
 
 %prep
 %setup -n %{real_name}-%{version}

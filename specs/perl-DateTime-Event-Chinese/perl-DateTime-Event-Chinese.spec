@@ -7,7 +7,7 @@
 
 %define real_name DateTime-Event-Chinese
 
-Summary: DateTime Extension for Calculating Important Chinese Dates 
+Summary: DateTime Extension for Calculating Important Chinese Dates
 Name: perl-DateTime-Event-Chinese
 Version: 0.04
 Release: 1.2

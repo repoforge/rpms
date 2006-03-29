@@ -26,7 +26,7 @@ CGI::Screen is a subclass of `CGI' which allows the esay(TM) creation of
 simple multi screen CGI scripts. By 'multi screen' I mean scripts which
 present different screens to the user when called with different
 parameters. This is the common case for scripts linking to themselves.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

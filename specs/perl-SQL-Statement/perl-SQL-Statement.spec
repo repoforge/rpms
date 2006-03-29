@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-These modules can be used stand-alone to parse SQL statements 
+These modules can be used stand-alone to parse SQL statements
 or used with DBI and DBD::CSV, DBD::AnyData or other drivers to
 create, modify, and query data in many kinds of formats including
 XML, CSV, Fixed Length, Excel Spreadsheets and many others.

@@ -25,7 +25,7 @@ BuildRequires: perl
 The HTTP::BrowserDetect object does a number of tests on an HTTP user
 agent string. The results of these tests are available via methods of
 the object.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

@@ -22,9 +22,9 @@ BuildRequires: qt-devel, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
-tgif is a vector-based drawing tool, with the additional benefit of being 
-sort of a web-browser. That is, you can fetch drawings from a web server 
-with it, and you can make objects in your picture into hotlinks to other 
+tgif is a vector-based drawing tool, with the additional benefit of being
+sort of a web-browser. That is, you can fetch drawings from a web server
+with it, and you can make objects in your picture into hotlinks to other
 parts of the drawing, or to other drawings accessible via HTTP.
 
 %prep

@@ -6,7 +6,7 @@
 
 %define rname Crypt-DSA
 
-Summary: Crypt-DSA module for perl 
+Summary: Crypt-DSA module for perl
 Name: perl-Crypt-DSA
 Version: 0.13
 Release: 1
@@ -26,7 +26,7 @@ Requires: perl >= 0:5.00503
 Crypt-DSA module for perl
 
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{rname}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"

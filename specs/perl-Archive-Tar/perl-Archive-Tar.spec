@@ -27,7 +27,7 @@ Module for manipulations of tar archives.
 
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 
 %build

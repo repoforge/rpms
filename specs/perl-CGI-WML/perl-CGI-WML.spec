@@ -26,7 +26,7 @@ CGI::WML provides WML output and WML methods for CGI programming.
 The purpose of the module is to retain the familiar CGI.pm way of
 programming to enable experienced CGI programmers to use their
 existing skills when creating WAP applications.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

@@ -25,7 +25,7 @@ Twofish is a 128-bit symmetric block cipher with a variable
 length (128, 192, or 256-bit) key, developed by Counterpane
 Labs. It is unpatented and free for all uses, as described at
 URL:http://www.counterpane.com/twofish.html.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

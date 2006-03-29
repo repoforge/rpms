@@ -2,7 +2,7 @@
 
 # Authority: dries
 # Upstream: koen muylkens <koen,muylkens$esat,kuleuven,ac,be>
-# Screenshot: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/screenshot1.jpg 
+# Screenshot: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/screenshot1.jpg
 # ScreenshotURL: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/
 
 %{?dist: %{expand: %%define %dist 1}}

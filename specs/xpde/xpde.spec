@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 XPde is a desktop window Enviroment and a window manager thinking
-to make easy to use people who begin in Linux with a familiar look 
+to make easy to use people who begin in Linux with a familiar look
 desktop. It tries to recreate the Window Xp interface nothing more.
 
 %prep

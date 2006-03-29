@@ -7,7 +7,7 @@
 
 %define real_name DateTime-Util-Calc
 
-Summary: DateTime calculation utilities 
+Summary: DateTime calculation utilities
 Name: perl-DateTime-Util-Calc
 Version: 0.10
 Release: 1.2

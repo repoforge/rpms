@@ -30,14 +30,14 @@ BuildRequires: pcre-devel, perl
 %{!?_without_mysql:BuildRequires: mysql-devel}
 
 %description
-Snort is a libpcap-based packet sniffer/logger which 
-can be used as a lightweight network intrusion detection system. 
-It features rules based logging and can perform protocol analysis, 
-content searching/matching and can be used to detect a variety of 
-attacks and probes, such as buffer overflows, stealth port scans, 
-CGI attacks, SMB probes, OS fingerprinting attempts, and much more. 
+Snort is a libpcap-based packet sniffer/logger which
+can be used as a lightweight network intrusion detection system.
+It features rules based logging and can perform protocol analysis,
+content searching/matching and can be used to detect a variety of
+attacks and probes, such as buffer overflows, stealth port scans,
+CGI attacks, SMB probes, OS fingerprinting attempts, and much more.
 
-Snort has a real-time alerting capabilty, with alerts being sent to syslog, 
+Snort has a real-time alerting capabilty, with alerts being sent to syslog,
 a seperate "alert" file, or as a WinPopup message via Samba's smbclient
 
 This package has no database support.
@@ -58,7 +58,7 @@ Requires: snort = %{version}-%{release}
 Conflicts: snort-mysql, snort-odbc, snort-bloat
 
 %description postgresql
-Snort compiled with PostgreSQL support. 
+Snort compiled with PostgreSQL support.
 
 %package odbc
 Summary: Snort with ODBC support
@@ -67,7 +67,7 @@ Requires: snort = %{version}-%{release}
 Conflicts: snort-mysql, snort-postgresql, snort-bloat
 
 %description odbc
-Snort compiled with ODBC support. 
+Snort compiled with ODBC support.
 
 %package bloat
 Summary: Snort with MySQL, PostgreSQL and ODBC support
@@ -216,7 +216,7 @@ fi
 
 %clean
 %{__rm} -rf %{buildroot}
-						
+
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog contrib/ COPYING LICENSE RELEASE.NOTES

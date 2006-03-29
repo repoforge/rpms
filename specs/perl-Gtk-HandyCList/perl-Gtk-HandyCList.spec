@@ -3,7 +3,7 @@
 
 %define real_name Gtk-HandyCList
 
-Summary: Gtk-HandyCList module for perl 
+Summary: Gtk-HandyCList module for perl
 Name: perl-Gtk-HandyCList
 Version: 0.031
 Release: 1

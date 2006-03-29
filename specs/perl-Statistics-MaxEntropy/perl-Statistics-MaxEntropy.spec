@@ -33,7 +33,7 @@ algorithm may be applied to find and add the candidate
 feature(s) that give the largest `gain' in terms of Kullback
 Leibler divergence when it is added to the current set of
 features.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

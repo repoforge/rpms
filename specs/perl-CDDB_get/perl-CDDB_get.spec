@@ -25,7 +25,7 @@ BuildRequires: perl
 This module/script gets the CDDB info for an audio cd. You need
 LINUX, SUNOS or *BSD, a cdrom drive and an active internet connection
 in order to do that.
-  
+
 %prep
 %setup -n %{real_name}-%{version}
 

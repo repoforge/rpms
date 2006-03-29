@@ -69,10 +69,10 @@ sed -i 's/DIRECTORY=\.\//DIRECTORY=\/usr\/share\/uox3\//g;' %{buildroot}/usr/sha
 cat  > %{buildroot}/usr/bin/uox3-wrapper <<EOF
 echo All the datafiles are owned by user uox3
 echo and can be found in /usr/share/uox3
-echo You need to copy the *.mul and *.idx files  
+echo You need to copy the *.mul and *.idx files
 echo from UO to /usr/share/uox3/muldata/
 echo The configfile is /usr/share/uox3/uox.ini
-echo Do not forget to change the password of 
+echo Do not forget to change the password of
 echo you admin character.
 cd /usr/share/uox3
 su -c "uox3" - uox

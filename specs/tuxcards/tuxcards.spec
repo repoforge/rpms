@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: kdelibs-devel, gcc-c++, gettext
 
 %description
-TuxCards provides a hierarical notebook similar to CueCards under Windows. 
+TuxCards provides a hierarical notebook similar to CueCards under Windows.
 Every kind of note and idea may be managed and sorted within a tree structure.
 
 %prep

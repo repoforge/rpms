@@ -38,7 +38,7 @@ enabled unless it is expressly needed.  The TFTP server is run from
 /etc/xinetd.d/tftp, and is disabled by default on Red Hat Linux systems.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 %patch -p1 -b .malta
 
 %{__cat} <<EOF >tftp.xinetd
@@ -75,7 +75,7 @@ EOF
 %makeinstall \
 	BINDIR="%{buildroot}%{_bindir}" \
 	SBINDIR="%{buildroot}%{_sbindir}" \
-	MANDIR="%{buildroot}%{_mandir}" 
+	MANDIR="%{buildroot}%{_mandir}"
 %{__install} -Dp -m644 tftp.xinetd %{buildroot}%{_sysconfdir}/xinetd.d/tftp
 
 %post server

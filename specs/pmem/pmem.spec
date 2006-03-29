@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream: 
+# Upstream:
 
 Summary: Process Memory Information
 Name: pmem
@@ -19,7 +19,7 @@ pmem is a small command line utility for all Linux und Unix operating
 systems to display memory information of running processes. To do this, pmem
 reads the memory information that are provided by the /proc file systems.
 Therefore, pmem does not work on operating systems that do not maintain this
-files system. 
+files system.
 
 %prep
 %setup

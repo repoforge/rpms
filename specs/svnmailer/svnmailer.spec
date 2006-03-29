@@ -19,11 +19,11 @@ BuildRequires: python
 Requires: python
 
 %description
-The svnmailer is a tool that is usually called by a subversion hook to 
-submit commit notifications in various ways (at the moment: mail via SMTP 
-or a pipe to a sendmail like program, news via NNTP, or CIA live tracker 
-notification via XML-RPC). It is derived from the original mailer.py 
-distributed with subversion, but should be much more consistent, more 
+The svnmailer is a tool that is usually called by a subversion hook to
+submit commit notifications in various ways (at the moment: mail via SMTP
+or a pipe to a sendmail like program, news via NNTP, or CIA live tracker
+notification via XML-RPC). It is derived from the original mailer.py
+distributed with subversion, but should be much more consistent, more
 extensible, and have many more features.
 
 %package devel

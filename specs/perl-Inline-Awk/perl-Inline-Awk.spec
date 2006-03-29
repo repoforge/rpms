@@ -28,7 +28,7 @@ Perl program. You can call awk functions or entire programs.
 Inline::Awk works by converting the awk code into Perl code
 using the a2p utility which comes as standard with Perl. This
 means that you don't require awk to use the Inline::Awk module.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

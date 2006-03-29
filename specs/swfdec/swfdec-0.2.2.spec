@@ -79,7 +79,7 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
         %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING README TODO
 %exclude %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders

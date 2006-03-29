@@ -22,7 +22,7 @@ BuildRequires: perl
 
 %description
 This module is a Perl extension to create and send ARP packets.
-You do not need to install any additionally libraries like Libnet to compile 
+You do not need to install any additionally libraries like Libnet to compile
 this extension. It uses kernel header files to create the packets.
 
 %prep

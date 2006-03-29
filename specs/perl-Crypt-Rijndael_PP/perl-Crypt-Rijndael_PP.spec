@@ -25,7 +25,7 @@ BuildRequires: perl
 This is a pure perl implementation of the new AES Rijndael. You want to
 use "Crypt::Rijndael" where available. This implementation is really
 slow, but I am working on it.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

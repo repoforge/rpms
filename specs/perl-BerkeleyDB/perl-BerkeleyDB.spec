@@ -30,7 +30,7 @@ Requires: perl >= 0:5.00503
 Perl extension for Berkeley DB version 2, 3 or 4.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 FLAGS="%{optflags}" %{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTALLDIRS="vendor"

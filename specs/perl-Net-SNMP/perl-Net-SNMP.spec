@@ -26,7 +26,7 @@ The Net::SNMP module implements an object oriented interface to the
 Simple Network Management Protocol.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL \

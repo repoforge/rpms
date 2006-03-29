@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 This is the README file for Locale::Maketext::Fuzzy, a subclass of
 Locale::Maketext with additional support for localizing messages that
-already contains interpolated variables. 
+already contains interpolated variables.
 
 %prep
 %setup -n %{real_name}-%{version}

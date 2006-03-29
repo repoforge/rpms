@@ -55,4 +55,4 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %changelog
 * Sun Aug 24 2003 Dag Wieers <dag@wieers.com> - 1.04-0
-- Initial package. (using DAR) 
+- Initial package. (using DAR)

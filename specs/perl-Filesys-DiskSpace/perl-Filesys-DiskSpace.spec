@@ -25,7 +25,7 @@ BuildRequires: perl
 This routine displays information on a file system such as its type,
 the amount of disk space occupied, the total disk space and the number
 of inodes.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

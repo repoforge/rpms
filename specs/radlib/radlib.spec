@@ -14,14 +14,14 @@ Source: http://dl.sf.net/radlib/radlib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
-radlib is a C language library developed to abstract details of interprocess 
-communications and common Linux/Unix system facilities so that application 
-developers can concentrate on application solutions. It encourages 
-developers to use a proven paradigm of event-driven, asynchronous design. 
-By abstracting interprocess messaging, events, timers, and any I/O device 
-that can be represented as a file descriptor, radlib simplifies the 
-implementation of multi-purpose processes, as well as multi-process 
-applications. In short, radlib is a sincere attempt to provide real-time 
+radlib is a C language library developed to abstract details of interprocess
+communications and common Linux/Unix system facilities so that application
+developers can concentrate on application solutions. It encourages
+developers to use a proven paradigm of event-driven, asynchronous design.
+By abstracting interprocess messaging, events, timers, and any I/O device
+that can be represented as a file descriptor, radlib simplifies the
+implementation of multi-purpose processes, as well as multi-process
+applications. In short, radlib is a sincere attempt to provide real-time
 OS capability on a non-real-time OS.
 
 %package devel

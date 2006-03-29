@@ -24,7 +24,7 @@ Requires(post): scrollkeeper
 zenity is a rewrite of gdialog, the GNOME port of dialog which allows
 you to display dialog boxes from the commandline and shell scripts.
 
-If you understand, things are just as they are. 
+If you understand, things are just as they are.
 If you don't understand, things are just as they are.
 
 %prep

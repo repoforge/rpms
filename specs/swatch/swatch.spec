@@ -20,9 +20,9 @@ BuildRequires: perl, perl(Date::Calc), perl(Date::Format)
 BuildRequires: perl(File::Tail), perl(Time::HiRes)
 
 %description
-The Simple WATCHer is an automated monitoring tool that is capable 
-of alerting system administrators of anything that matches the 
-patterns described in the configuration file, whilst constantly 
+The Simple WATCHer is an automated monitoring tool that is capable
+of alerting system administrators of anything that matches the
+patterns described in the configuration file, whilst constantly
 searching logfiles using perl.
 
 %prep

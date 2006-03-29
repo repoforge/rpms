@@ -21,11 +21,11 @@ tnftp is a port of the NetBSD FTP client to other systems.
 tnftp was formerly known as `lukemftp' and was renamed by Luke Mewburn
 in February 2003.
 
-%prep 
+%prep
 %setup -n %{name}-%{real_version}
 
-%build 
-%configure 
+%build
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
@@ -36,8 +36,8 @@ in February 2003.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
-%defattr(-, root, root, 0755) 
+%files
+%defattr(-, root, root, 0755)
 %doc ChangeLog COPYING README THANKS todo
 %doc %{_mandir}/man1/tnftp.1*
 %{_bindir}/tnftp

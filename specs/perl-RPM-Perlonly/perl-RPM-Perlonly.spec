@@ -24,9 +24,9 @@ BuildRequires: perl
 %description
 Perl-RPM-Perlonly is a clone of RPM::Header written in only perl, so it provides
 a way to read a rpm package on systems where rpm is installed. Perl-RPM-Perlonly
-can used as a drop in replacement for RPM::Header, if needed also the other way 
+can used as a drop in replacement for RPM::Header, if needed also the other way
 around.
-  
+
 %prep
 %setup -n %{real_name}-%{version}
 

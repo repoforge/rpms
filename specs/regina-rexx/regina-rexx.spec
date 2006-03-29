@@ -24,7 +24,7 @@ Provides: Regina-REXX
 %description
 Regina is an implementation of a Rexx interpreter, compliant with the
 ANSI Standard for Rexx (1996). It is also available on several other
-operating systems. 
+operating systems.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}
@@ -127,17 +127,17 @@ EOF
 ### FIXME: Fix broken REXX scripts
 %{__perl} -pi -e 's|%{buildroot}||g' %{buildroot}%{_datadir}/regina/*.rexx
 
-%post 
+%post
 /sbin/chkconfig --add rxstack
 /sbin/ldconfig 2>/dev/null
 
-%preun 
+%preun
 if [ $1 -eq 0 ]; then
 	/sbin/service rxstack stop &>/dev/null || :
 	/sbin/chkconfig --del rxstack
 fi
 
-%postun 
+%postun
 /sbin/service rxstack condrestart &>/dev/null || :
 /sbin/ldconfig 2>/dev/null
 

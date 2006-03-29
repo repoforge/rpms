@@ -18,7 +18,7 @@ BuildRequires: perl >= 0:5.8.0
 %description
 IPC::ShareLite provides a simple interface to shared memory, allowing data to
 be efficiently communicated between processes.  Your operating system must
-support SysV IPC (shared memory and semaphores) in order to use this module.   
+support SysV IPC (shared memory and semaphores) in order to use this module.
 
 
 %prep

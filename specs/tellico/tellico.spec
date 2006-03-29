@@ -44,7 +44,7 @@ fields are allowed. Filters are available to limit the visible entries by
 definable criteria. Full customization for printing is possible through
 editing the default XSLT file. It can import CSV, Bibtex, and Bibtexml and
 export CSV, HTML, Bibtex, Bibtexml, and PilotDB. Entries may be imported
-directly from Amazon.com. 
+directly from Amazon.com.
 
 %prep
 %setup
@@ -118,7 +118,7 @@ source /etc/profile.d/qt.sh
 - Updated to release 0.13.4.
 
 * Sat Jan 29 2005 Dries Verachtert <dries@ulyssis.org> - 0.13.1-2
-- kdemultimedia-devel added to the buildrequirements so it picks up 
+- kdemultimedia-devel added to the buildrequirements so it picks up
   kcddb support (Thanks to Vic Gedris)
 
 * Sun Dec 12 2004 Dries Verachtert <dries@ulyssis.org> - 0.13.1-1

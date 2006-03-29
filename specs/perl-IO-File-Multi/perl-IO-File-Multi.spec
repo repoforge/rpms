@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-IO::File::Multi is a simple module to handle printing to multiple (output) 
+IO::File::Multi is a simple module to handle printing to multiple (output)
 filehandles, with single print() or printf() calls.
 
 %prep

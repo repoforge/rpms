@@ -24,7 +24,7 @@ BuildRequires: perl, perl-GraphViz, graphviz
 %description
 GraphViz::Data::Structure produces simple and elegant visualizations
 of Perl data structures using Leon Brocard's GraphViz module.
-   
+
 %prep
 %setup -n %{real_name}-%{version}
 

@@ -23,7 +23,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-With this module, you can parse, manipulate and 
+With this module, you can parse, manipulate and
 lookup IP network blocks.
 
 %prep

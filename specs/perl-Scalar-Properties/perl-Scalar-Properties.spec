@@ -25,7 +25,7 @@ BuildRequires: perl
 Scalar::Properties attempts to make Perl more object-oriented by taking
 an idea from Ruby: Everything you manipulate is an object, and the
 results of those manipulations are objects themselves.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

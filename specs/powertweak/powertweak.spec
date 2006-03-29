@@ -67,7 +67,7 @@ this if you don't have X installed.
 %{__install} -d -m0755 %{buildroot}%{_initrddir} \
 			%{buildroot}%{_localstatedir}/adm/fillup-templates \
 			%{buildroot}%{_sysconfdir}/powertweak
-			
+
 #%{__install} -p -m0755 distro/SuSE/rc.powertweakd %{buildroot}%{_initrddir}/powertweakd
 #ln -s %{_initrddir}/powertweakd $RPM_BUILD_ROOT%{_sbindir}/rcpowertweakd
 #install -m 644 distro/SuSE/rc.config.powertweakd $RPM_BUILD_ROOT/var/adm/fillup-templates/rc.config.powertweakd

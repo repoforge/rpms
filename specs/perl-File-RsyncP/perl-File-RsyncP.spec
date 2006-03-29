@@ -27,7 +27,7 @@ or receive files, either by running rsync on the remote machine,
 or connecting to an rsyncd deamon on the remote machine.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

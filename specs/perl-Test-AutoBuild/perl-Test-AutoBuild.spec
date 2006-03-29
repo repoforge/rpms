@@ -26,25 +26,25 @@ continuous, unattended, automated software builds.
 
   http://home.gna.org/testautobuild/
 
-Pristine sources are checked out from a version control 
-repository (currently has support for CVS, normal filesystem, 
+Pristine sources are checked out from a version control
+repository (currently has support for CVS, normal filesystem,
 Perforce & GNU Arch). A shell script (typically provided by
-the application developer) is invoked to build the software 
-and install it in a virtual root. Snapshots of the virtual 
-root are taken before and after build to identify which 
-files were installed. Snapshots of any designated 'package' 
-directories are also taken to identify any RPM, Debian PKG, 
-Tar, ZIP files which were built. Finally a set of output 
-modules are run to generate HTML status page, copy packages 
-and build logs to a Web / FTP server, send email notifications 
+the application developer) is invoked to build the software
+and install it in a virtual root. Snapshots of the virtual
+root are taken before and after build to identify which
+files were installed. Snapshots of any designated 'package'
+directories are also taken to identify any RPM, Debian PKG,
+Tar, ZIP files which were built. Finally a set of output
+modules are run to generate HTML status page, copy packages
+and build logs to a Web / FTP server, send email notifications
 of build status, create ISO images.
- 
-The software is highly modularized and written in PERL to 
-make it easily extendable to add new version control 
-repositories, and output actions. It has no requirements 
-around what build process an application uses (Make, 
-autoconf, ANT, IMake), nor any requirements around the 
-programming language used for the software. 
+
+The software is highly modularized and written in PERL to
+make it easily extendable to add new version control
+repositories, and output actions. It has no requirements
+around what build process an application uses (Make,
+autoconf, ANT, IMake), nor any requirements around the
+programming language used for the software.
 
 
 %prep

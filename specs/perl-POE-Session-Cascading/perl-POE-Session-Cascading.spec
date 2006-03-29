@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 POE::Session::Cascading provides a stack-like session for POE. Another
 way of saying it is that a Cascading session is like a big switch
-statement. 
+statement.
 
 %prep
 %setup -n %{real_name}-%{version}

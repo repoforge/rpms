@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 This module allows C & XS-code creation "on-the-fly", i.e. while your
 script is running.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

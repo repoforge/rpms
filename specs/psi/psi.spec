@@ -151,7 +151,7 @@ popd
 #%{__install} -Dp -m0644 psi.desktop \
 #    %{buildroot}%{_sysconfdir}/X11/applnk/Internet/psi.desktop
 #%endif
- 
+
 # Install the languagepack files
 %{__install} -p -m0644 \
     %{SOURCE21} %{SOURCE22} %{SOURCE23} %{SOURCE24} \

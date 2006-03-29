@@ -26,7 +26,7 @@ BuildRequires: perl
 This module opens a config file and parses it's contents
 for you. After parsing the module returns a hash structure
 which contains the representation of the config file.
-       
+
 The format of config files supported by Config::General is
 inspired by the well known apache config format, in fact,
 this module is 100% read-compatible to apache configs, but
@@ -73,7 +73,7 @@ configuration.
 - Updated to release 2.31.
 
 * Sun Dec 04 2005 Dries Verachtert <dries@ulyssis.org> - 2.30-2
-- Applied a patch made by Ralph Angenendt which removes the 
+- Applied a patch made by Ralph Angenendt which removes the
   dependency on Carp::Heavy.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.30-1

@@ -41,7 +41,7 @@ Peacock is an HTML Editor for Gnome. Its is distributed under the GNU GPL Licens
 #%patch -p1 -b .rh
 
 %build
-%configure 
+%configure
 #		--prefix=%{_prefix} \
 #		--bindir=%{_bindir} \
 #		--datadir=%{_datadir}/%{name} \
@@ -51,7 +51,7 @@ Peacock is an HTML Editor for Gnome. Its is distributed under the GNU GPL Licens
 make
 
 %install
-%{__rm} -rf %{buildroot}  
+%{__rm} -rf %{buildroot}
 mkdir -p $RPM_BUILD_ROOT/
 
 %makeinstall

@@ -41,9 +41,9 @@ The white_dune program is a graphical VRML97 editor and animation tool.
 VRML97 (Virtual Reality Modelling Language) is the ISO standard for
 displaying 3D data over the web. It has support for animation, realtime
 interaction and multimedia (image, movie, sound). VRML97 can be written
-by popular programs like maya, catia, 3D Studio MAX, cinema4D and others. 
-Dune can read VRML97 files, display and let the user change the 
-scenegraph/fields. 
+by popular programs like maya, catia, 3D Studio MAX, cinema4D and others.
+Dune can read VRML97 files, display and let the user change the
+scenegraph/fields.
 Some documentation how to use dune is included.
 
 %description -l nl
@@ -69,7 +69,7 @@ Documentatie over het gebruik van dune is ook beschikbaar.
   --with-nurbscurveprotourl="%{_datadir}/misc/white_dune/NurbsCurvePROTO.wrl" \
   --with-nurbsgroupprotourl="%{_datadir}/misc/white_dune/NurbsGroupPROTO.wrl" \
   --with-nurbssurfaceprotourl="%{_datadir}/misc/white_dune/NurbsSurfacePROTO.wrl"
-%{__make} %{?_smp_mflags} 
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}

@@ -25,7 +25,7 @@ BuildRequires: perl
 This module is based on the caesar program from the bsdgames package,
 made by Stan King and John Eldridge, based on the algorithm suggested by
 Bob Morris.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

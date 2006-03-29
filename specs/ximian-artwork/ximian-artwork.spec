@@ -66,5 +66,5 @@ done
 * Sat Feb 12 2005 Dag Wieers <dag@wieers.com> - 0.2.32-1
 - Updated to release 0.2.32.
 
-* Sun Jun 15 2003 Che 
+* Sun Jun 15 2003 Che
 - initial rpm release

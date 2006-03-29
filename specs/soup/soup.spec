@@ -14,7 +14,7 @@ BuildRequires: libxml2-devel, glib2-devel, openssl-devel, popt, zlib-devel
 BuildRequires: gtk-doc
 
 %description
-Soup is a SOAP (Simple Object Access Protocol) implementation in C. 
+Soup is a SOAP (Simple Object Access Protocol) implementation in C.
 
 It provides an queued asynchronous callback-based mechanism for sending and
 servicing SOAP requests, and a WSDL (Web Service Definition Language) to C
@@ -28,7 +28,7 @@ Group: Development/Libraries
 Requires: %{name} = %{version}, libxml2-devel, glib2-devel
 
 %description devel
-Soup is a SOAP (Simple Object Access Protocol) implementation in C. 
+Soup is a SOAP (Simple Object Access Protocol) implementation in C.
 
 It provides an queued asynchronous callback-based mechanism for sending and
 servicing SOAP requests, and a WSDL (Web Service Definition Language) to C

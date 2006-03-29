@@ -14,8 +14,8 @@ Source: ftp://metalab.unc.edu/pub/Linux/system/network/file-transfer/pftp-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
-pftp is released under the terms of the GNU General Public License. 
-It transfers files, directories and data from standard input to any 
+pftp is released under the terms of the GNU General Public License.
+It transfers files, directories and data from standard input to any
 host on the net running pftp.
 
 %prep
@@ -42,7 +42,7 @@ host on the net running pftp.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc Changes COPYING INSTALL README TODO
 %doc %{_mandir}/man?/*

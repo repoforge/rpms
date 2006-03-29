@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: 
+# Upstream:
 
 %define real_version 2.6a
 
@@ -15,7 +15,7 @@ URL: ftp://jaguar.ncsl.nist.gov/pub/sphere_2.6a.README
 Source: ftp://jaguar.ncsl.nist.gov/pub/sphere_%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: 
+#BuildRequires:
 
 %description
 The NIST SPeech HEader REsources (SPHERE) Package

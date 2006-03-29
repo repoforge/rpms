@@ -25,7 +25,7 @@ The "AI::DecisionTree" module automatically creates so-called "decision
 trees" to explain a set of training data. A decision tree is a kind of
 categorizer that use a flowchart-like process for categorizing new
 instances.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

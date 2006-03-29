@@ -26,7 +26,7 @@ This package provides one function 'memfrob.' This is equivalent to the
 memfrob function included in glibc. With this library, you can generate
 glibc-compatible frobnicated (encrypted) strings, and defrobnicate
 glibc-generated strings, in Perl.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

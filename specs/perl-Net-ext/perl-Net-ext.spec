@@ -21,9 +21,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl
 
 %description
-Modules Net::Gen, Net::Inet, Net::TCP, Net::UDP, Net::UNIX, 
+Modules Net::Gen, Net::Inet, Net::TCP, Net::UDP, Net::UNIX,
 Net::TCP::Server, and Net::UNIX::Server.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream: 
+# Upstream:
 
 # The source isn't available yet :(
 # will be available in a few weeks
@@ -18,7 +18,7 @@ URL: http://www.povray.org/
 Source: %{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-# BuildRequires: 
+# BuildRequires:
 
 %description
 The Persistence of Vision Raytracer is a high-quality, totally free tool for

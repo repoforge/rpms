@@ -71,7 +71,7 @@ your machine.
 # Uncomment the line below to start a VNC server on display :1
 # as my 'myusername' (adjust this to your own).  You will also
 # need to set a VNC password; run 'man vncpasswd' to see how
-# to do that.  
+# to do that.
 #
 # DO NOT RUN THIS SERVICE if your local area network is
 # untrusted!  For a secure way of using VNC, see

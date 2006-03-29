@@ -25,7 +25,7 @@ BuildRequires: perl
 The inspiration for this module is a pair of functions in the APL
 programming language called encode (a.k.a. "representation") and decode
 (a.k.a. base-value). Their principal use is to convert numbers from one
-number base to another. Mixed number bases are permitted. 
+number base to another. Mixed number bases are permitted.
 
 %prep
 %setup -n %{real_name}-%{version}

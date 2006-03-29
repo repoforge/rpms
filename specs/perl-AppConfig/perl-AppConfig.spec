@@ -23,11 +23,11 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-AppConfig is a bundle of Perl5 modules for reading configuration files 
-and parsing command line arguments.  This is a descendant of, and 
+AppConfig is a bundle of Perl5 modules for reading configuration files
+and parsing command line arguments.  This is a descendant of, and
 supercedes the App::Config module.  Functionality is extended over the
 final version of App::Config (1.09) and includes many new features.  This
-module has been developed and in the process, renamed, as part of an 
+module has been developed and in the process, renamed, as part of an
 effort to unify the various Perl modules for parsing configuration files
 and command line arguments.
 
@@ -36,9 +36,9 @@ files.  It also has a simple and efficient module for parsing command line
 arguments.  For fully-featured command line parsing, a module is provided
 for interfacing AppConfig to Johan Vromans' extensive Getopt::Long module.
 Johan will continue to develop the functionality of this package and its
-features will automatically become available through AppConfig.  
+features will automatically become available through AppConfig.
 
-All of the modules and features of the AppConfig bundle are easily 
+All of the modules and features of the AppConfig bundle are easily
 accessible through the AppConfig.pm module.
 
 %prep

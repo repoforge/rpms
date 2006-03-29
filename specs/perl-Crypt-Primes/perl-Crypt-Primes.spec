@@ -6,7 +6,7 @@
 
 %define rname Crypt-Primes
 
-Summary: Crypt-Primes module for perl 
+Summary: Crypt-Primes module for perl
 Name: perl-Crypt-Primes
 Version: 0.50
 Release: 1
@@ -24,7 +24,7 @@ Requires: perl >= 0:5.00503
 Crypt-Primes module for perl
 
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{rname}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"

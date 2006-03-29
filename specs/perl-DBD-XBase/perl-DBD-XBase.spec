@@ -31,7 +31,7 @@ two ways of accessing your beloved data in dbf files: XBase.pm
 and DBD::XBase. I recommend using DBD::XBase and only resort
 to XBase.pm if you need something special which is not
 supported by the DBI interface.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

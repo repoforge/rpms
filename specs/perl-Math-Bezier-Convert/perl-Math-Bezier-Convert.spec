@@ -22,8 +22,8 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-Math::Bezier::Convert provides functions to convert quadratic bezier to 
-cubic, to approximate cubic bezier to quadratic, and to approximate cubic 
+Math::Bezier::Convert provides functions to convert quadratic bezier to
+cubic, to approximate cubic bezier to quadratic, and to approximate cubic
 and quadratic bezier to polyline.
 
 %prep

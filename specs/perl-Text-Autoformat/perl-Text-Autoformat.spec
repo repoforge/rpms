@@ -30,7 +30,7 @@ recognizes Internet quoting conventions, a wide range of bulleting and
 number schemes, centred text, and block quotations, and reformats each
 appropriately. Other options allow the user to adjust inter-word
 and inter-paragraph spacing, justify text, and impose various
-capitalization schemes. 
+capitalization schemes.
 
 %prep
 %setup -n %{real_name}-%{version}

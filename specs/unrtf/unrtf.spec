@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 UnRTF is a command-line program which converts documents in Rich Text (.rtf)
 format to HTML, LaTeX, PostScript, and other formats. Converting to HTML, it
 supports font attributes, tables, embedded images (stored to separate
-files), paragraph alignment, and more. 
+files), paragraph alignment, and more.
 
 %prep
 %setup

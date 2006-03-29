@@ -25,7 +25,7 @@ Audio::DSP is built around the OSS (Open Sound System) API and allows
 perl to interface with a digital audio device. The Audio::DSP object
 stores I/O parameters and also supplies temporary storage for raw
 audio data.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

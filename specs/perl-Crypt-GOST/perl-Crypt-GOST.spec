@@ -24,7 +24,7 @@ BuildRequires: perl
 GOST 28147-89 is a 64-bit symmetric block cipher with a 256-bit
 key developed in the former Soviet Union. Some information on it
 is available at <URL:http://vipul.net/gost/>.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

@@ -29,7 +29,7 @@ a web server.
 The passwords file is a flat-file with login name and their associated
 crypted password. You can use this for non-Apache files if you wish, but
 it was written specifically for .htaccess style files.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

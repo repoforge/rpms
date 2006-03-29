@@ -43,7 +43,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS CHANGELOG COPYING INSTALL README
 %doc DOCS/*.htm DOCS/*.png

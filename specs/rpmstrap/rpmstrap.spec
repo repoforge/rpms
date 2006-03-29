@@ -16,8 +16,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 #Buildarch: noarch
 
 %description
-rpmstrap is a tool for bootstrapping a basic RPM-based system. It is inspired 
-by debootstrap, and allows you to build chroots and basic systems from RPM 
+rpmstrap is a tool for bootstrapping a basic RPM-based system. It is inspired
+by debootstrap, and allows you to build chroots and basic systems from RPM
 sources.
 
 %prep

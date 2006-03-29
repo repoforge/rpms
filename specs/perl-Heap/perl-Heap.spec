@@ -21,9 +21,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl
 
 %description
-This is a collection of routines for managing a heap data structure. There are 
-two major components: a heap component, and an element component. A heap 
-package basically keeps a collection of elements and is able to return the 
+This is a collection of routines for managing a heap data structure. There are
+two major components: a heap component, and an element component. A heap
+package basically keeps a collection of elements and is able to return the
 smallest one. The heap component interface is defined in Heap(3) and must be
 supported by all heap packages.
 

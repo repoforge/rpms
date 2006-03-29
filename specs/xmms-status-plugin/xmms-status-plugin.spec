@@ -19,7 +19,7 @@ BuildRequires: xmms-devel
 
 
 %description
-A status docklet for XMMS, docks into the GNOME Status dock. 
+A status docklet for XMMS, docks into the GNOME Status dock.
 
 
 %prep

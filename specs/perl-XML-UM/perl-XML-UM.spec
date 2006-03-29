@@ -25,11 +25,11 @@ BuildRequires: perl
 
 %description
 This module provides methods to convert UTF-8 strings to any XML encoding that
-XML::Encoding supports. It creates mapping routines from the .xml files that 
-can be found in the maps/ directory in the XML::Encoding distribution. Note 
-that the XML::Encoding distribution does install the .enc files in your perl 
-directory, but not the.xml files they were created from. That's why you have 
-to specify $ENCDIR as in the SYNOPSIS. 
+XML::Encoding supports. It creates mapping routines from the .xml files that
+can be found in the maps/ directory in the XML::Encoding distribution. Note
+that the XML::Encoding distribution does install the .enc files in your perl
+directory, but not the.xml files they were created from. That's why you have
+to specify $ENCDIR as in the SYNOPSIS.
 
 %prep
 %setup -n %{real_name}-%{version}

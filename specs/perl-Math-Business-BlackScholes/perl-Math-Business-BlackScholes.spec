@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-Estimates the fair market price of a European stock option according to 
+Estimates the fair market price of a European stock option according to
 the Black-Scholes model.
 
 %prep

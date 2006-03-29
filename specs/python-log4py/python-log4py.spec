@@ -25,7 +25,7 @@ Requires: python
 %description
 Log4Py is a python logging module similar to log4j. It supports logging to
 files (including logfile rotation) or to stdout/stderr, variable log-levels,
-configurable output formats and configuration via configuration files. 
+configurable output formats and configuration via configuration files.
 
 %prep
 %setup -n %{real_name}-%{version}

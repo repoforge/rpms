@@ -24,9 +24,9 @@ BuildRequires: perl
 %description
 AsciiDB::Tag allows you to access a simple ASCII database using a
 perl hash variable. The database format is straightforward so you can edit
-it by hand if you need so. Each record is stored into a file, and a 
+it by hand if you need so. Each record is stored into a file, and a
 record is just a set of values tagged by the field name.
- 
+
 %prep
 %setup -n %{real_name}-%{version}
 

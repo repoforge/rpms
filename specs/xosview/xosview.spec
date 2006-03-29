@@ -4,7 +4,7 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?rh7:%define _without_freedesktop 1}
-%{?el2:%define _without_freedesktop 1} 
+%{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
 %{?fc1:%define _without_xorg 1}

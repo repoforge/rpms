@@ -6,7 +6,7 @@ Summary: Library to provide abstract access to various archives
 Name: physfs
 Version: 1.0.0
 Release: 0
-License: zlib License 
+License: zlib License
 Group: System Environment/Libraries
 URL: http://www.icculus.org/physfs/
 
@@ -16,9 +16,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: ncurses-devel, readline-devel, zlib-devel
 
 %description
-A library to provide abstract access to various archives. 
-It is intended for use in video games. 
-The programmer defines a "write directory" on the physical filesystem. 
+A library to provide abstract access to various archives.
+It is intended for use in video games.
+The programmer defines a "write directory" on the physical filesystem.
 No file writing done through the PhysicsFS API can leave that write directory.
 
 %package devel
@@ -63,10 +63,10 @@ applications which will use physfs
 %{_libdir}/libphysfs.a
 %exclude %{_libdir}/libphysfs.la
 %{_libdir}/libphysfs.so
- 
+
 %changelog
 * Wed Dec 29 2004 Dag Wieers <dag@wieers.com> - 1.0.0-0
 - Added x86_64 fix.
 
 * Sun Oct 12 2003 Che
-- initial rpm release 
+- initial rpm release

@@ -20,10 +20,10 @@ Pydar2 is a distributed build system for rpm packages. It allows you to
 build spec files from multiple spec repositories (spec files in svn, cvs, ..)
 for multiple distribution/architectures on multiple computers with one
 central queue. It's possible to automatically queue new builds and you can
-alter most of the behaviour with scripts. 
+alter most of the behaviour with scripts.
 
 Pydar2 is not yet finished. It can be used but it's far from userfriendly.
-The slave-buildserver uses sudo and the network communication between the 
+The slave-buildserver uses sudo and the network communication between the
 programs is not encrypted, so i suggest you only use it on a private network
 with only users which you trust.
 

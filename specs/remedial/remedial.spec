@@ -40,7 +40,7 @@ CFLAGS="%{optflags}" ./am_edit --no-final
 %post
 /sbin/ldconfig 2>/dev/null
 
-%postun 
+%postun
 /sbin/ldconfig 2>/dev/null
 
 %clean

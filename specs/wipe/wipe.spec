@@ -31,7 +31,7 @@ erased from a hard drive is unrecoverable.
 #%{__perl} -pi.orig -e 's|(#include <sys/stat.h>)|$1\n#include <errno.h>|g' rand.h
 
 %build
-%configure 
+%configure
 %{__make} %{?_smp_mflags}
 
 %install

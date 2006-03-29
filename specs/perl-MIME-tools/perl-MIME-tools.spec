@@ -43,7 +43,7 @@ parser and tool for building your own MIME parser, and utilities.
 #patch1 -p1
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" 
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 #{__make} test
 

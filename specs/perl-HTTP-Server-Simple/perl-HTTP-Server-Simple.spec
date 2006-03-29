@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 HTTP::Server::Simple is a very simple standalone HTTP daemon with no non-core
 module dependencies.  It's ideal for building a standalone http-based UI to
-your existing tools.  
+your existing tools.
 
 %prep
 %setup -n %{real_name}-%{version}

@@ -35,7 +35,7 @@ programmer to perform nearly any type of DNS query from a Perl
 script.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

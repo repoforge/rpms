@@ -23,8 +23,8 @@ BuildRequires: perl, perl-Module-ScanDeps, perl-Module-CoreList, perl-CPANPLUS
 BuildRequires: perl-YAML, perl-PAR-Dist, perl-Archive-Tar, perl-ExtUtils-ParseXS
 
 %description
-Module::Install is a standalone, extensible installer for Perl modules.  It is 
-designed to be a drop-in replacement for ExtUtils::MakeMaker, and is a 
+Module::Install is a standalone, extensible installer for Perl modules.  It is
+designed to be a drop-in replacement for ExtUtils::MakeMaker, and is a
 descendent of CPAN::MakeMaker.
 
 %prep

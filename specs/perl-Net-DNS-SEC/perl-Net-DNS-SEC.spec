@@ -26,7 +26,7 @@ BuildRequires: perl
 
 %description
 This module implements DNS Resource Record types that are relevant
-for DNSSEC operations. The implementation is based on the DNSSEC-bis 
+for DNSSEC operations. The implementation is based on the DNSSEC-bis
 document set.
 
 %prep

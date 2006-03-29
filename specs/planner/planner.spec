@@ -4,7 +4,7 @@
 # ExcludeDist: el4
 
 %{?dist: %{expand: %%define %dist 1}}
- 
+
 %{?fc1:%define _without_shared_mime 1}
 %{?el3:%define _without_shared_mime 1}
 %{?rh9:%define _without_shared_mime 1}
@@ -91,7 +91,7 @@ intltoolize
 /sbin/ldconfig &>/dev/null
 scrollkeeper-update -q || :
 /usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
- 
+
 %postun
 /sbin/ldconfig &>/dev/null
 scrollkeeper-update -q || :

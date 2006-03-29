@@ -26,7 +26,7 @@ Obsoletes: perl-XML-RPC
 %description
 The RPC::XML package is an implementation of XML-RPC. The module provides
 classes for sample client and server implementations, a server designed as
-an Apache location-handler, and a suite of data-manipulation classes that 
+an Apache location-handler, and a suite of data-manipulation classes that
 are used by them.
 
 %prep

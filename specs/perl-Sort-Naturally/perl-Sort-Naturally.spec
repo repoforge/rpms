@@ -27,7 +27,7 @@ used in implementing my idea of a "natural sorting"
 algorithm.  Under natural sorting, numeric substrings are
 compared numerically, and other word-characters are compared
 lexically.
-	 
+
 %prep
 %setup -n %{real_name}-%{version}
 

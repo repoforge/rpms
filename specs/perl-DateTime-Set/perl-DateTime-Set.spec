@@ -22,10 +22,10 @@ Buildarch: noarch
 BuildRequires: perl
 
 %description
-The DateTime::Set module provides a date/time sets implementation.  
+The DateTime::Set module provides a date/time sets implementation.
 
-It allows, for example, the generation of groups of dates, 
-like "every wednesday", and then find all the dates matching that 
+It allows, for example, the generation of groups of dates,
+like "every wednesday", and then find all the dates matching that
 pattern, within a time range.
 
 %prep

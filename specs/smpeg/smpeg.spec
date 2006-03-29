@@ -22,8 +22,8 @@ BuildRequires: autoconf, automake, automake14
 %description
 SMPEG is based on UC Berkeley's mpeg_play software MPEG decoder
 and SPLAY, an mpeg audio decoder created by Woo-jae Jung. SMPEG has
-completed the initial work to wed these two projects in order to 
-create a general purpose MPEG video/audio player for the Linux OS. 
+completed the initial work to wed these two projects in order to
+create a general purpose MPEG video/audio player for the Linux OS.
 
 
 %package devel

@@ -27,7 +27,7 @@ low setup time, and depends on a large number of rounds for
 security, rather than a complex algorithm. It was developed
 by David J. Wheeler and Roger M. Needham, and is described at
 http://www.ftp.cl.cam.ac.uk/ftp/papers/djw-rmn/djw-rmn-tea.html.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

@@ -26,7 +26,7 @@ IANA Character Set Registry names and Unicode::MapUTF8 (et al.)
 conversion scheme names .
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL \

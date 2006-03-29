@@ -16,11 +16,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
 
 %description
-pngcheck is the official PNG tester and debugger. Originally designed simply 
-to test the CRCs within a PNG image file (e.g., to check for ASCII rather 
-than binary transfer), it has since been extended to check and optionally 
-print almost all the information about a PNG image and to verify that it 
-conforms to the PNG specification. It also includes partial support for MNG 
+pngcheck is the official PNG tester and debugger. Originally designed simply
+to test the CRCs within a PNG image file (e.g., to check for ASCII rather
+than binary transfer), it has since been extended to check and optionally
+print almost all the information about a PNG image and to verify that it
+conforms to the PNG specification. It also includes partial support for MNG
 animations.
 
 %prep

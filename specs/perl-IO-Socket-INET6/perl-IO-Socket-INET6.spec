@@ -6,7 +6,7 @@
 
 %define real_name IO-Socket-INET6
 
-Summary: Object interface for AF_INET|AF_INET6 domain sockets 
+Summary: Object interface for AF_INET|AF_INET6 domain sockets
 Name: perl-IO-Socket-INET6
 Version: 2.51
 Release: 1
@@ -27,7 +27,7 @@ in both AF_INET|AF_INET6 domain. It is built upon the IO::Socket interface and
 inherits all the methods defined by IO::Socket.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"

@@ -18,7 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 #BuildArch: i386
 
 %description
-A Linux replacement for phdisk.exe that allows you to create a save2dsk.bin 
+A Linux replacement for phdisk.exe that allows you to create a save2dsk.bin
 hibernation file for phoenix notebios laptops. Run tphdisk -h for instructions.
 
 %prep
@@ -33,7 +33,7 @@ ${CC:-%{__cc}} %{optflags} -o tphdisk %{SOURCE0}
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %{_sbindir}/*
 

@@ -17,9 +17,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: python, python-devel
 
 %description
-Translate is a project to aid in localization of software. It deals with 
-conversion between different translation formats (such as gettext-based 
-.po formats, OpenOffice.org formats, and Mozilla formats). It also contains 
+Translate is a project to aid in localization of software. It deals with
+conversion between different translation formats (such as gettext-based
+.po formats, OpenOffice.org formats, and Mozilla formats). It also contains
 tools to help process localizations etc.
 
 %prep

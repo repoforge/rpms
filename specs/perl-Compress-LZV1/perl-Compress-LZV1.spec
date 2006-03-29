@@ -26,7 +26,7 @@ compression algorithm. It is ideal for applications where you want to
 save *some* space but not at the cost of speed. It is ideal for
 repetitive data as well. The module is self-contained and very small (no
 large library to be pulled in).
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

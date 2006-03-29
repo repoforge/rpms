@@ -26,7 +26,7 @@ collection of objects without duplication.
 
 The term *objects* is applied loosely - for the sake of Set::Object,
 anything that is a reference is considered an object.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

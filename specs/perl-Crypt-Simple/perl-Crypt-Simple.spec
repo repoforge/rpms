@@ -32,7 +32,7 @@ This little module will convert all your data into nice base64 text that
 you can save in a text file, send in an email, store in a cookie or web
 page, or bounce around the Net. The data you encrypt can be as simple or
 as complicated as you like.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

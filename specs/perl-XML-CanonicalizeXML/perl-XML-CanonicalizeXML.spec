@@ -23,7 +23,7 @@ BuildRequires: perl, libxml2-devel
 %description
 This module provides a wrapper to the XML Canonicalization functions
 provided by libxml2 (http://www.xmlsoft.org/) to give Perl support to
-the the W3C defined algorithms c14n canonicalization 
+the the W3C defined algorithms c14n canonicalization
 (http://www.w3.org/TR/2001/REC-xml-c14n-20010315) and c14n exclusive
 canonicalization (http://www.w3.org/TR/2002/REC-xml-exc-c14n-20020718/)
 

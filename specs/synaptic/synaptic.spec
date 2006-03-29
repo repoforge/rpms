@@ -22,7 +22,7 @@ BuildRequires: perl(XML::Parser)
 
 %description
 Synaptic (previously known as raptor) is a graphical package management
-program for apt. It provides the same features as the apt-get command line 
+program for apt. It provides the same features as the apt-get command line
 utility with a GUI front-end based on Gtk+
 
 
@@ -63,7 +63,7 @@ EOF
 
 
 %build
-%configure 
+%configure
 %{__make} %{?_smp_mflags}
 
 
@@ -266,7 +266,7 @@ EOF
 - s/Scratch Filter/Search Filter/ (closes: #1283)
 - recompiled (closes: #1559)
 - recompiled against new wmaker (closes: #1309, #1428, #3031)
-- fixed bug when listing too many packages 
+- fixed bug when listing too many packages
 - did some magick (closes: #2818)
 - fixed filter button bug (closes: #1332)
 

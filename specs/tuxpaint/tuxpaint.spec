@@ -35,7 +35,7 @@ BuildRequires: SDL_image-devel, SDL_mixer-devel, gnome-libs-devel
 %description
 Tux Paint is a free drawing program designed for young children (kids ages 3
 and up). It has a simple, easy-to-use interface, fun sound effects, and an
-encouraging cartoon mascot who helps guide children as they use the program. 
+encouraging cartoon mascot who helps guide children as they use the program.
 
 %prep
 %setup

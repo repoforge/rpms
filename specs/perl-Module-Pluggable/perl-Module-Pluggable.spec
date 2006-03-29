@@ -23,7 +23,7 @@ BuildRequires: perl
 
 %description
 Provides a simple but, hopefully, extensible way of having 'plugins' for
-your module. 
+your module.
 
 %prep
 %setup -n %{real_name}-%{version}

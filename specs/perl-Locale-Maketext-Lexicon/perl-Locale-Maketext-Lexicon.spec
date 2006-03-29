@@ -22,8 +22,8 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-Locale::Maketext::Lexicon is a module providing lexicon-handling backends, 
-for "Locale::Maketext" to read from other localization formats, such as 
+Locale::Maketext::Lexicon is a module providing lexicon-handling backends,
+for "Locale::Maketext" to read from other localization formats, such as
 PO files, MO files, or from databases via the "Tie" interface.
 
 %prep

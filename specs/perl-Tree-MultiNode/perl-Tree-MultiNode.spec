@@ -25,7 +25,7 @@ BuildRequires: perl
 This is an implementation of a multi node tree.  The uniqueness of
 keys is not enforced, nor is there enforcement of ordering of nodes.
 
-Tree::MultiNode was created to aid in modeling heriarchical 
+Tree::MultiNode was created to aid in modeling heriarchical
 relationships, like the relationships inherent in the records from
 a RDBMS.  Where multi-to-multi relationships could produce multiple
 child nodes with the same types or basic attributes.  Unique key

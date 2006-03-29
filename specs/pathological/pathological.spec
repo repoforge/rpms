@@ -22,7 +22,7 @@ Pathological is an enriched clone of the game "Logical" by Rainbow Arts. To
 solve a level, fill each wheel with four marbles of matching color. Various
 board elements such as teleporters, switches, filters, etc., make the game
 interesting and challenging. New levels can be created using your favorite
-text editor. 
+text editor.
 
 %description -l nl
 Pathological is een kloon van het spel "Logical" met extra uitbreidingen. Om

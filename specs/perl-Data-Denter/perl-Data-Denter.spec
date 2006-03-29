@@ -22,8 +22,8 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-Data::Denter is yet another Perl data serializer/deserializer. It formats 
-nested data structures in an indented fashion. It is optimized for human 
+Data::Denter is yet another Perl data serializer/deserializer. It formats
+nested data structures in an indented fashion. It is optimized for human
 readability/editability, safe deserialization, and (eventually) speed.
 
 %prep

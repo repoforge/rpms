@@ -27,7 +27,7 @@ Inline::Python lets you write Perl subroutines and classes in
 Python. You don't have to use any funky techniques for sharing most
 types of data between the two languages, either. Inline::Python comes
 with its own data translation service. It converts any Python structures
-it knows about into Perl structures, and vice versa. 
+it knows about into Perl structures, and vice versa.
 
 %prep
 %setup -n %{real_name}-%{version}

@@ -38,7 +38,7 @@ extends from IO::Handle and IO::Selectable. It wraps DBI's
 blob_read method. By making LOB's available as a file han-
 dle to read from we can process the data in a familiar
 (perly) way.
-	   
+
 %prep
 %setup -n %{real_name}-%{version}
 

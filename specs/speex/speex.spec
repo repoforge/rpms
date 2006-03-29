@@ -17,8 +17,8 @@ Obsoletes: libspeex <= 1.0.0
 BuildRequires: libogg-devel, gcc-c++
 
 %description
-Speex is a patent-free audio codec designed especially for voice (unlike 
-Vorbis which targets general audio) signals and providing good narrowband 
+Speex is a patent-free audio codec designed especially for voice (unlike
+Vorbis which targets general audio) signals and providing good narrowband
 and wideband quality. This project aims to be complementary to the Vorbis
 codec.
 
@@ -114,7 +114,7 @@ export CFLAGS='%{optflags} -DRELEASE'
 - Spec file cleanup.
 - Now exclude .la file.
 
-* Thu Oct 03 2002 Jean-Marc Valin 
+* Thu Oct 03 2002 Jean-Marc Valin
 - Added devel package inspired from PLD spec file
 
 * Tue Jul 30 2002 Fredrik Rambris <boost@users.sourceforge.net> 0.5.2

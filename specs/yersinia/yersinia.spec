@@ -15,14 +15,14 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libnet, libpcap, ncurses-devel
 
 %description
-Yersinia implements several attacks for the following protocols: 
-Spanning Tree (STP), Cisco Discovery (CDP), Dynamic Host Configuration 
-(DHCP), Hot Standby Router (HSRP), Dynamic Trunking (DTP), 802.1q, 
-Inter-Switch Link Protocol (ISL), and VLAN Trunking (VTP). It helps 
-the pen-tester in different tasks, such as becoming the root role in 
-the Spanning Tree, creating virtual CDP neighbors, setting up rogue 
-DHCP servers, becoming the active router in a HSRP scenario, enabling 
-trunk, performing ARP spoofing over VLAN hopping, adding or deleting 
+Yersinia implements several attacks for the following protocols:
+Spanning Tree (STP), Cisco Discovery (CDP), Dynamic Host Configuration
+(DHCP), Hot Standby Router (HSRP), Dynamic Trunking (DTP), 802.1q,
+Inter-Switch Link Protocol (ISL), and VLAN Trunking (VTP). It helps
+the pen-tester in different tasks, such as becoming the root role in
+the Spanning Tree, creating virtual CDP neighbors, setting up rogue
+DHCP servers, becoming the active router in a HSRP scenario, enabling
+trunk, performing ARP spoofing over VLAN hopping, adding or deleting
 VLANs (via VTP), and more.
 
 %prep

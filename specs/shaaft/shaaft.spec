@@ -33,7 +33,7 @@ Shaaft is an OpenGL 3D falling block game similar to Blockout. It currently
 runs on Linux and Windows. There is still a lot missing. No menu system,
 forgets highscore, some of the sound effects need work (Clearing a single
 plane sounds like a f*rt. Try clearing >1 plane, though...), etc. That said,
-I find it is very playable. Enjoy! 
+I find it is very playable. Enjoy!
 
 %prep
 %setup -n Shaaft-%{version}
@@ -76,5 +76,5 @@ desktop-file-install --vendor net                  \
 %{_datadir}/Shaaft/resource.dat
 
 %changelog
-* Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> 
+* Mon May 24 2004 Dries Verachtert <dries@ulyssis.org>
 - Initial package.

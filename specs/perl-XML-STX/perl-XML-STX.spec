@@ -22,9 +22,9 @@ BuildArch: noarch
 BuildRequires: perl, perl-XML-SAX, perl-Clone, perl-XML-NamespaceSupport
 
 %description
-XML::STX is a pure Perl implementation of STX processor. Streaming 
-Transformations for XML (STX) is a one-pass transformation language for 
-XML documents that builds on the Simple API for XML (SAX). See 
+XML::STX is a pure Perl implementation of STX processor. Streaming
+Transformations for XML (STX) is a one-pass transformation language for
+XML documents that builds on the Simple API for XML (SAX). See
 http://stx.sourceforge.net/ for more details.
 
 %prep

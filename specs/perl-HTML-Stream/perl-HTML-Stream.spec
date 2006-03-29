@@ -27,7 +27,7 @@ subclassable) way of outputting HTML. Basically, you open up an "HTML
 stream" on an existing filehandle, and then do all of your output to the
 HTML stream. You can intermix HTML-stream-output and
 ordinary-print-output, if you like.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

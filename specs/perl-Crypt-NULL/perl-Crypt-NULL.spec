@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 The NULL Encryption Algorithm is a symmetric block cipher described
 in RFC 2410 by Rob Glenn and Stephen Kent.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

@@ -15,8 +15,8 @@ BuildRequires: SDL-devel, gcc-c++, automake, autoconf, perl, libjpeg-devel
 BuildRequires: libpng-devel, zlib-devel
 
 %description
-SDL_image is an image file loading library. It loads images as SDL surfaces, 
-and supports the following formats: BMP, PNM, XPM, LBM, PCX, GIF, JPEG, PNG, 
+SDL_image is an image file loading library. It loads images as SDL surfaces,
+and supports the following formats: BMP, PNM, XPM, LBM, PCX, GIF, JPEG, PNG,
 TGA.
 
 %package devel

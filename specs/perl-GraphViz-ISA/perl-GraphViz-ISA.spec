@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 This class constructs a graph showing the `@ISA' hierarchy (note: not
 object hierarchies) from a package name or a blessed scalar.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

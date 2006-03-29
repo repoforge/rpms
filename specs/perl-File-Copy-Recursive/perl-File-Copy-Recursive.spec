@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-This module has 3 functions, one to copy files only, one to copy directories 
+This module has 3 functions, one to copy files only, one to copy directories
 only and one to do either depending on the argument's type.
 
 %prep

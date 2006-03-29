@@ -16,8 +16,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, bzip2-devel
 
 %description
-PBZIP2 is a parallel implementation of the bzip2 block- sorting file 
-compressor that uses pthreads and achieves near-linear speedup on SMP 
+PBZIP2 is a parallel implementation of the bzip2 block- sorting file
+compressor that uses pthreads and achieves near-linear speedup on SMP
 machines.
 
 %prep

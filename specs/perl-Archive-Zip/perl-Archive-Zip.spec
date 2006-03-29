@@ -30,7 +30,7 @@ Once created, they can be written to files, streams, or strings.
 
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 
 %build

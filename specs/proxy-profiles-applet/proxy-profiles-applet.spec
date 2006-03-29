@@ -18,7 +18,7 @@ BuildRequires: pkgconfig, libgnomeui-devel, gnome-panel-devel
 %description
 Proxy Profiles Applet allows you to switch between preset profiles of the GNOME
 network proxy setings
- 
+
 %prep
 %setup
 

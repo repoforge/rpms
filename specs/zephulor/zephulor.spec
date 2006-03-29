@@ -5,7 +5,7 @@
 
 #%define desktop_vendor freshrpms
 %{?dist: %{expand: %%define %dist 1}}
-                                                                                
+
 %{?el2:%define _without_freedesktop 1}
 %{?rh7:%define _without_freedesktop 1}
 
@@ -114,7 +114,7 @@ desktop-file-install \
 %{__install} -D -m 0644 %{name}.desktop \
     %{buildroot}%{_sysconfdir}/X11/applnk/Games/%{name}.desktop
 %endif
-	
+
 # Convert the ICO file to png to be used as the menu entry icon
 #%{__install} -d -m 0755 %{buildroot}%{_datadir}/pixmaps
 %{__install} -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/%{name}.png
@@ -149,13 +149,13 @@ desktop-file-install \
 %{_datadir}/games/%{name}/scnloadtool.py
 
 %changelog
-* Thu Jun 09 2005 C.Lee Taylor <leet@leenx.co.za> (20041026) 0.9b-1 
+* Thu Jun 09 2005 C.Lee Taylor <leet@leenx.co.za> (20041026) 0.9b-1
 - fix rpmlint warning
 - Made some updates for Fedora Extra
 
-* Fri Jan 14 2005 C.Lee Taylor <leet@leenx.co.za> (20041026) 0.9b-0 
+* Fri Jan 14 2005 C.Lee Taylor <leet@leenx.co.za> (20041026) 0.9b-0
 - Add icon and change version to what the aurther explained
 
-* Tue Jan 11 2005 C.Lee Taylor <leet@leenx.co.za> (20041026) 0.1-0 
+* Tue Jan 11 2005 C.Lee Taylor <leet@leenx.co.za> (20041026) 0.1-0
 - first packaging for Fedora Core
-    
+

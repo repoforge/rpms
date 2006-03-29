@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-These modules do basic disassembly of network packets of various Internet 
+These modules do basic disassembly of network packets of various Internet
 protocols.
 
 %prep

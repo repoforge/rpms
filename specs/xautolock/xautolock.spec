@@ -26,7 +26,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
-A program that launches a given program when 
+A program that launches a given program when
 your X session has been idle for a given time.
 
 %prep

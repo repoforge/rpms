@@ -65,7 +65,7 @@ with SpamAssassin. See /usr/share/doc/SpamAssassin-tools-*/.
 #patch3 -p0
 
 %{__cat} <<EOF >local.cf		### SOURCE2
-# These values can be overridden by editing ~/.spamassassin/user_prefs.cf 
+# These values can be overridden by editing ~/.spamassassin/user_prefs.cf
 # (see spamassassin(1) for details)
 
 # These should be safe assumptions and allow for simple visual sifting
@@ -164,7 +164,7 @@ fi
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc BUGS Changes CREDITS LICENSE NOTICE PACKAGING README STATUS TRADEMARK
 %doc *.txt spamc/README.qmail UPGRADE USAGE

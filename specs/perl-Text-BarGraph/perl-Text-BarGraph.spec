@@ -20,10 +20,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 %description
-Text::BarGraph is a simple Perl module for generating ASCII bar graphs based 
-on data in a hash, where the keys are labels and the values are magnitudes. 
-It automatically scales the graph to fit on your terminal screen. It is very 
-useful in making data more meaningful. For example, it can be used with 
+Text::BarGraph is a simple Perl module for generating ASCII bar graphs based
+on data in a hash, where the keys are labels and the values are magnitudes.
+It automatically scales the graph to fit on your terminal screen. It is very
+useful in making data more meaningful. For example, it can be used with
 statistics gathered from a log file.
 
 %prep
@@ -43,7 +43,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod \
                 %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 %files

@@ -33,7 +33,7 @@ The Python wrappers allow you to store Python string objects of any
 length, keyed either by strings or integers depending on the database
 access method. With the use of another module in the package standard
 shelve-like functionality is provided allowing you to store any picklable
-Python object! 
+Python object!
 
 %prep
 %setup -n %{real_name}-%{version}

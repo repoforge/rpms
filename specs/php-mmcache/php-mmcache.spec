@@ -28,10 +28,10 @@ dynamic content cache for PHP. It increases performance of PHP scripts by
 caching them in compiled state, so that the overhead of compiling is almost
 completely eliminated. Also it uses some optimizations to speed up execution
 of PHP scripts. Turck MMCache typically reduces server load and increases the
-speed of your PHP code by 1-10 times. 
+speed of your PHP code by 1-10 times.
 
 
-%prep 
+%prep
 %setup -n turck-mmcache-%{module_version}
 
 

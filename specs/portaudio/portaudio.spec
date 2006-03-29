@@ -22,7 +22,7 @@ Audio can be generated in various formats, including 32 bit floating point,
 and will be converted to the native format internally.
 
 %prep
-%setup -n %{name}_%{rversion} 
+%setup -n %{name}_%{rversion}
 
 %{__perl} -pi.orig -e 's|^(LIBINST) = /usr/local/lib|$1 = %{_libdir}|' \
     Makefile.linux

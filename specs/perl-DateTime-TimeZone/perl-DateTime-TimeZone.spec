@@ -7,7 +7,7 @@
 
 %define real_name DateTime-TimeZone
 
-Summary: Time zone object base class and factory 
+Summary: Time zone object base class and factory
 Name: perl-DateTime-TimeZone
 Version: 0.42
 Release: 1

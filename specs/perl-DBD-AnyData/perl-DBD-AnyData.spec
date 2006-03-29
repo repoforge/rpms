@@ -23,14 +23,14 @@ BuildRequires: perl
 
 %description
 The DBD::AnyData module provides a DBI (Perl Database Interface)
-and SQL (Structured Query Language) interface to data in many 
+and SQL (Structured Query Language) interface to data in many
 formats and from many sources.
 
 There are actually two modules DBD::AnyData and AnyData.  The AnyData
 module provides most of the same features as DBD::AnyData
 through a tied hash interface which does not require or support
-DBI and SQL.  
-  
+DBI and SQL.
+
 %prep
 %setup -n %{real_name}-%{version}
 

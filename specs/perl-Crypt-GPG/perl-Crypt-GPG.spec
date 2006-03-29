@@ -27,7 +27,7 @@ The Crypt::GPG module provides access to the functionality of the GnuPG
 
 It provides methods for encryption, decryption, signing, signature
 verification, key generation, key certification, export and import.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

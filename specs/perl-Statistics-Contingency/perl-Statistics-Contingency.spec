@@ -32,7 +32,7 @@ The general usage flow is to tally a whole bunch of results in the
 measures you are interested in. When all results have been collected, you
 can get a report on accuracy, precision, recall, F1, and so on, with both
 macro-averaging and micro-averaging over categories.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

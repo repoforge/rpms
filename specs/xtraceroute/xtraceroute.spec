@@ -38,7 +38,7 @@ BuildRequires: gdk-pixbuf-devel
 Xtraceroute is a graphical version of the traceroute program, which traces
 the route your IP packets travel to their destination. It displays the
 routes on a rotating globe, as a series of yellow lines between 'sites',
-shown as small balls of different colors. 
+shown as small balls of different colors.
 
 %prep
 %setup

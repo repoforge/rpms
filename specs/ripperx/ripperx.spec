@@ -19,10 +19,10 @@ Requires: cdparanoia
 BuildRequires: desktop-file-utils, glib-devel, gtk+-devel
 
 %description
-GTK program to rip CD audio and encode to mp3, ogg, and flac. 
-Supports parallel ripping/encoding, has plugins for cdparanoia, 
-BladeEnc, Lame, GoGo, FHG (l3enc and mp3enc), XingMp3enc, 8hz-mp3, 
-FLAC, and the ISO encoder.  Also has support for CDDB and ID3 tags.  
+GTK program to rip CD audio and encode to mp3, ogg, and flac.
+Supports parallel ripping/encoding, has plugins for cdparanoia,
+BladeEnc, Lame, GoGo, FHG (l3enc and mp3enc), XingMp3enc, 8hz-mp3,
+FLAC, and the ISO encoder.  Also has support for CDDB and ID3 tags.
 
 %prep
 %setup -n %{real_name}-%{version}

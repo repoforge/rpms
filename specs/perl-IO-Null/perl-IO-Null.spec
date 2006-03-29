@@ -33,7 +33,7 @@ operation, and returns true.
 Reading from any object of this class is always no-
 operation, and returns empty-string or empty-list, as
 appropriate.
-	 
+
 %prep
 %setup -n %{real_name}-%{version}
 

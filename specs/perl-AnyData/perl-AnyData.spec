@@ -26,7 +26,7 @@ The AnyData modules provide simple and uniform access to data from
 many sources -- perl arrays, local files, remote files retrievable via
 http or ftp -- and in many formats including flat files (CSV, Fixed
 Length, Tab Delimited, etc), standard format files (Web Logs,
-Passwd files, etc.),  structured files (XML, HTML Tables) and binary 
+Passwd files, etc.),  structured files (XML, HTML Tables) and binary
 files with parseable headers (mp3s, jpgs, pngs, etc).
 
 %prep

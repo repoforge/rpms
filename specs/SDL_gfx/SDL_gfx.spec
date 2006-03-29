@@ -75,14 +75,14 @@ you will need to install %{name}-devel.
 - Fixed the project and source urls.
 
 * Tue Dec 21 2004 Dries Verachtert <dries@ulyssis.org> 2.0.13-1
-- Updated to release 2.0.13 and removed the patch (has been 
+- Updated to release 2.0.13 and removed the patch (has been
   applied upstream)
 
 * Thu Nov 11 2004 Matthias Saou <http://freshrpms.net/> 2.0.12-3
 - Explicitly disable mmx for non-ix86 to fix build on x86_64.
 
 * Fri Oct 22 2004 Dries Verachtert <dries@ulyssis.org> 2.0.12-3
-- fixed some buildrequirements so the correct version of libSDL_gfx.so 
+- fixed some buildrequirements so the correct version of libSDL_gfx.so
   can be found in the list of provides.
 
 * Fri Oct 22 2004 Dries Verachtert <dries@ulyssis.org> 2.0.12-2

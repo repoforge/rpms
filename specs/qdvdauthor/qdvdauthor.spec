@@ -20,7 +20,7 @@ BuildRequires: netpbm-devel, kdelibs-devel, gcc-c++, gettext, xine-lib-devel
 Requires: dvdauthor, mjpegtools
 
 %description
-'Q' DVD-Author is a GUI frontent for dvdauthor and related tools. The goal is 
+'Q' DVD-Author is a GUI frontent for dvdauthor and related tools. The goal is
 to provide an easy-to-use, yet powerful and complete interface to generate DVD
 menus, slideshows, and videos to burn on a DVD under Linux.
 

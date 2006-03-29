@@ -99,7 +99,7 @@ OPTIONS=""
 
 ### Read configuration
 [ -r "$SYSCONFIG" ] && source "$SYSCONFIG"
-  
+
 RETVAL=0
 prog="partimaged"
 desc="Partition imaging daemon"
@@ -180,7 +180,7 @@ EOF
 	--disable-ssl \
 	--enable-gui-text \
 	--enable-gui-newt \
-	--enable-all-static 
+	--enable-all-static
 %{__make} %{?_smp_mflags}
 %{__mv} -f src/client/partimage partimage-static
 %{__rm} -f src/server/partimaged

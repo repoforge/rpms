@@ -36,7 +36,7 @@ A binary digest will be 20 bytes long. A hex digest will be 40
 characters long. A base64 digest will be 27 characters long.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"

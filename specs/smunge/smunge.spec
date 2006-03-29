@@ -26,9 +26,9 @@ clusters for pop services.
 
 It was initially designed to smooth over the transition of pop services
 from one machine to another, without users losing mail (by keeping the
-old server active whilst the new one was being installed). 
+old server active whilst the new one was being installed).
 
-It supports DRAC for pop-before-smtp authentication, and LDAP based 
+It supports DRAC for pop-before-smtp authentication, and LDAP based
 authentication and lookups for mapping users to sets of pop servers.
 The DRAC feature is not compiled by default in this package.
 
@@ -143,11 +143,11 @@ if [ $1 -eq 0 ]; then
 	/sbin/chkconfig --del smunged
 fi
 
-%postun 
+%postun
 /sbin/service smunged condrestart &>/dev/null || :
 
 %clean
-%{__rm} -rf %{buildroot} 
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)

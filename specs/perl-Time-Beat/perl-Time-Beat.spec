@@ -23,10 +23,10 @@ BuildRequires: perl
 
 %description
 "Time::Beat" is a module to convert normal time to and from .beats,
-of which there are a thousand in a day. It can change normal time in 
-time() format to .beats, and .beats into either 24-hour or 12-hour 
+of which there are a thousand in a day. It can change normal time in
+time() format to .beats, and .beats into either 24-hour or 12-hour
 normal time.
-	   
+
 %prep
 %setup -n %{real_name}-%{version}
 

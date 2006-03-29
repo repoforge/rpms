@@ -22,7 +22,7 @@ BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503
 
 %description
-Perl interface to the iconv() codeset conversion function, as 
+Perl interface to the iconv() codeset conversion function, as
 defined by the Single UNIX Specification.
 
 %prep

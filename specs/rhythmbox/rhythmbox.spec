@@ -6,7 +6,7 @@
 %define majmin 0.8
 
 Name: rhythmbox
-Summary: Music Management Application 
+Summary: Music Management Application
 Version: %{majmin}.8
 Release: 2
 License: GPL
@@ -62,7 +62,7 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 scrollkeeper-update
 export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
 SCHEMAS="rhythmbox.schemas"
-for S in $SCHEMAS; do 
+for S in $SCHEMAS; do
   gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/$S >/dev/null
 done
 

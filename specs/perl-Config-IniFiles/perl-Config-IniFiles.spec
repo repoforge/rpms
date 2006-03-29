@@ -25,7 +25,7 @@ Requires: perl >= 0:5.00503
 Module for reading .ini-style configuration files.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTALLDIRS="vendor"

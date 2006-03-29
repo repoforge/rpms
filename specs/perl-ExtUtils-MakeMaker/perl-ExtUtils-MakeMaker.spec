@@ -8,7 +8,7 @@
 
 %define real_name ExtUtils-MakeMaker
 
-Summary: Create a module Makefile 
+Summary: Create a module Makefile
 Name: perl-ExtUtils-MakeMaker
 Version: 6.30
 Release: 1

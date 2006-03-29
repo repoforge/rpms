@@ -21,7 +21,7 @@ BuildArch: noarch
 
 %description
 This is a Perl extension to XML::Parser. It adds a new 'Style' to XML::Parser,
-called 'Dom', that allows XML::Parser to build an Object Oriented datastructure 
+called 'Dom', that allows XML::Parser to build an Object Oriented datastructure
 with a DOM Level 1 compliant interface.
 For a description of the DOM (Document Object Model), see :
 http://www.w3.org/DOM/

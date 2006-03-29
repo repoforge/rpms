@@ -26,7 +26,7 @@ This module allows you to hide a file by encrypting it and then attaching
 it to another file of your choice.  This mimetic file then looks and
 behaves like a normal file, and can be stored, used or emailed without
 attracting attention.
-  
+
 %prep
 %setup -n %{real_name}-%{version}
 

@@ -22,8 +22,8 @@ BuildRequires: perl
 
 %description
 he Digest::MD5 module is cloned from the Digest::MD5 module to support a
-variant  Apple iTunes implementation of the MD5 algorithm. If you don't know 
-why this is so, don't bother with this module! It is incompatible with RSA 
+variant  Apple iTunes implementation of the MD5 algorithm. If you don't know
+why this is so, don't bother with this module! It is incompatible with RSA
 and RFC standards!
 
 
@@ -38,7 +38,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-### Clean up buildroot  
+### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \
                 %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 

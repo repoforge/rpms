@@ -63,7 +63,7 @@ RRA definitions.
 - Rebuild for Fedora Core 5.
 
 * Sun Jan 29 2006 Dries Verachtert <dries@ulyssis.org> - 1.29-2
-- Fixed the license (Apache 2.0) and added the LICENSE and 
+- Fixed the license (Apache 2.0) and added the LICENSE and
   NOTICE files, thanks to Nicola Worthington.
 
 * Fri Jan 06 2006 Dries Verachtert <dries@ulyssis.org> - 1.29-1

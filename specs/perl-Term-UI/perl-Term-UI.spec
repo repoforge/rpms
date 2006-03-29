@@ -22,8 +22,8 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-Term::UI provides methods to ask both elaborate questions as well 
-as simple yes/no questions via a Term::ReadLine interface using a 
+Term::UI provides methods to ask both elaborate questions as well
+as simple yes/no questions via a Term::ReadLine interface using a
 template. It can also parse options per unix style.
 
 %prep

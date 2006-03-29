@@ -23,7 +23,7 @@ BuildRequires: perl
 
 %description
 A Perl Module that handles Address book synchronisation between Kolab
-servers. 
+servers.
 
 %prep
 %setup -n %{real_name}-%{version}

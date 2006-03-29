@@ -23,15 +23,15 @@ BuildRequires: perl
 
 %description
 This code implements a method for constructing nonparametric confidence
-for ROC curves described in     
-  R.A. Hilgers, Distribution-Free Confidence Bounds for ROC Curves, 
+for ROC curves described in
+  R.A. Hilgers, Distribution-Free Confidence Bounds for ROC Curves,
   Meth Inform Med 1991; 30:96-101
-Additionally some auxilliary functions were ported (and corrected) from 
+Additionally some auxilliary functions were ported (and corrected) from
 Fortran (Applied Statistics, ACM).
 
-A graphical userinterface for drawing and printing these ROC curves is 
+A graphical userinterface for drawing and printing these ROC curves is
 supplied with the module (roc_ui.pl).
-  
+
 %prep
 %setup -n %{real_name}-%{version}
 %{__perl} -pi -e 's|/usr/local/bin/perl|/usr/bin/perl|g;' *.pl

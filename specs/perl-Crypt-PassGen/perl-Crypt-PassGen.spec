@@ -24,7 +24,7 @@ BuildRequires: perl, words
 %description
 This module provides a single command for generating random password
 that is close enough to a real word that it is easy to remember.
-It does this by using the frequency of letter combinations in 
+It does this by using the frequency of letter combinations in
 a language (the frequency table is generated during installation
 although multiple tables can be generated and used for different
 languages).

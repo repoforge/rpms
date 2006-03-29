@@ -24,7 +24,7 @@ Requires: perl >= 0:5.00503
 Easy to use symmetric data encryption and decryption
 
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{rname}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"

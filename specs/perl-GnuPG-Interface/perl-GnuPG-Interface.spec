@@ -26,7 +26,7 @@ GnuPG::Interface and its associated modules are designed to provide an
 object-oriented method for interacting with GnuPG, being able to perform
 functions such as but not limited to encrypting, signing, decryption,
 verification, and key-listing parsing.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

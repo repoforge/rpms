@@ -4,7 +4,7 @@
 # "uname -r" output of the kernel to build for, the running one
 # if none was specified with "--define 'kernel <uname -r>'"
 %{!?kernel: %{expand: %%define kernel %(uname -r)}}
- 
+
 %define kversion %(echo %{kernel} | sed -e s/smp// -)
 %define krelver  %(echo %{kversion} | tr -s '-' '_')
 %if %(echo %{kernel} | grep -c smp)
@@ -45,7 +45,7 @@ will use Zaptel, such as Asterisk.
 
 %package -n kernel%{?ksmp}-module-zaptel
 Summary: Kernel modules required for some hardware to operate with Zaptel
-Release: %{release}_%{krelver}
+#Release: %{release}_%{krelver}
 Group: System Environment/Kernel
 Requires: kernel%{?ksmp} = %{kversion}, /sbin/depmod
 Provides: kernel-modules
@@ -85,7 +85,7 @@ touch %{buildroot}%{_sysconfdir}/modprobe.conf
 # Install and generate all the device stuff
 %{__install} -D -p -m 0644 %{SOURCE1} \
     %{buildroot}%{_sysconfdir}/makedev.d/zaptel
- 
+
 # Create entry list
 [ -x /sbin/MAKEDEV ] && MAKEDEV=/sbin/MAKEDEV || MAKEDEV=/dev/MAKEDEV
 ${MAKEDEV} \
@@ -156,6 +156,10 @@ ${MAKEDEV} \
 
 
 %changelog
+* Wed Mar 15 2006 Matthias Saou <http://freshrpms.net/> 1.2.4-1
+- Rebuild fails on RHEL4 up U3 (included), because of a typo :
+  https://bugzilla.redhat.com/180568
+
 * Tue Mar  7 2006 Matthias Saou <http://freshrpms.net/> 1.2.4-1
 - Update to 1.2.4.
 

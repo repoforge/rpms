@@ -47,8 +47,8 @@ URL: http://passwordmanager.sourceforge.net/
 Source: http://dl.sf.net/passwordmanager/pwmanager-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++,
-BuildRequires: gettext, zlib-devel, qt-devel, 
+BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++
+BuildRequires: gettext, zlib-devel, qt-devel
 BuildRequires: libjpeg-devel, kdelibs-devel, bzip2-devel, fam-devel
 %{!?_without_selinux:BuildRequires: libselinux-devel}
 %{?_without_xorg:BuildRequires: XFree86-devel}

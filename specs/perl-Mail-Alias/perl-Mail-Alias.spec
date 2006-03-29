@@ -24,7 +24,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-ail::Alias allows you to directly access the contents of E-Mail alias files. 
+ail::Alias allows you to directly access the contents of E-Mail alias files.
 You can perform the following actions:
 	Set the name of the current aliases file being accessed
 	Verify the presence of aliases

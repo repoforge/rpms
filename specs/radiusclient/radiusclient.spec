@@ -21,7 +21,7 @@ a command line program to send RADIUS accounting records and a utility
 to query the status of a (Merit) RADIUS server. All these programs
 are based on a library which lets you develop your own RADIUS aware
 application in less than 50 lines of C code. It is highly portable
-and runs at least under Linux, a lot of BSD variants and Solaris. 
+and runs at least under Linux, a lot of BSD variants and Solaris.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}

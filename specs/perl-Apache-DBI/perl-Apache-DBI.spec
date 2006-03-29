@@ -22,9 +22,9 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-This module is supposed to be used with the Apache server together with 
-an embedded perl interpreter like mod_perl. It provides support for basic 
-authentication and authorization as well as support for persistent database 
+This module is supposed to be used with the Apache server together with
+an embedded perl interpreter like mod_perl. It provides support for basic
+authentication and authorization as well as support for persistent database
 connections via Perl's Database Independent Interface (DBI).
 
 %prep

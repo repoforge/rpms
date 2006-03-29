@@ -25,7 +25,7 @@ BuildRequires: perl
 
 %description
 This is Net::Rendezvous, a set of perl modules to utilize mDNS for service
-discovery.  This method of service discovery is branded as Rendezvous by 
+discovery.  This method of service discovery is branded as Rendezvous by
 Apple Computer.
 
 %prep

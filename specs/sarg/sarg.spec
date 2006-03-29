@@ -22,7 +22,7 @@ Obsoletes: sqmgrlog
 %description
 Squid Analysis Report Generator is a tool that allows you to view "where"
 your users are going to on the Internet. Sarg generate reports in html
-showing users, IP Addresses, bytes, sites and times. 
+showing users, IP Addresses, bytes, sites and times.
 
 %prep
 %setup

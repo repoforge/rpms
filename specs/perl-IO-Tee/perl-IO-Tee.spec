@@ -29,7 +29,7 @@ handles originally passed to the constructor. As a shortcut, you can
 also directly pass a string or an array reference to the constructor, in
 which case `IO::File::new' is called for you with the specified argument
 or arguments.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

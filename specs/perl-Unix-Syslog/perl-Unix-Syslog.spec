@@ -6,7 +6,7 @@
 
 %define real_name Unix-Syslog
 
-Summary: Syslog module for perl 
+Summary: Syslog module for perl
 Name: perl-Unix-Syslog
 Version: 0.100
 Release: 1

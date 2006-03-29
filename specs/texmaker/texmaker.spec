@@ -25,30 +25,30 @@ BuildRequires: qt-devel >= 3.3, kdelibs-devel, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
-Texmaker is a program, that integrates many tools needed 
-to develop documents with LaTeX, in just one application. 
+Texmaker is a program, that integrates many tools needed
+to develop documents with LaTeX, in just one application.
 
 It have thoses features:
-- an editor to write your LaTeX source files 
+- an editor to write your LaTeX source files
   (syntax highlighting, undo-redo, search-replace, ...)
-- the principal LaTex tags can be inserted directly with the "LaTeX", 
-  "Math" and "Greek" menus 
-- 370 mathematical symbols can be inserted in just one click 
+- the principal LaTex tags can be inserted directly with the "LaTeX",
+  "Math" and "Greek" menus
+- 370 mathematical symbols can be inserted in just one click
 - wizards to generate code ('Quick document', 'Quick letter', tabular,
-  tabbing and array environments) 
-- LaTeX-related programs can be launched via the "Tools" menu 
+  tabbing and array environments)
+- LaTeX-related programs can be launched via the "Tools" menu
 - the standard Bibtex entry types can be inserted in the ".bib" file
-  with the "Bibliography" menu 
-- a "structure view" of the document for easier navigation of a document 
-  (by clicking on an item in the "Structure" frame, you can jump directly 
-  to the corresponding part of your document 
-- extensive LaTeX documentation 
-- in the "Messages / Log File" frame, you can see information about processes 
-  and the logfile after a LaTeX compilation 
+  with the "Bibliography" menu
+- a "structure view" of the document for easier navigation of a document
+  (by clicking on an item in the "Structure" frame, you can jump directly
+  to the corresponding part of your document
+- extensive LaTeX documentation
+- in the "Messages / Log File" frame, you can see information about processes
+  and the logfile after a LaTeX compilation
 - the "Next Latex Error" and "Previous Latex Error" commands let you reach the
-  LaTeX errors detected by Kile in the log file 
-- by clicking on the number of a line in the log file, the cursor jumps to the 
-  corresponding line in the editor 
+  LaTeX errors detected by Kile in the log file
+- by clicking on the number of a line in the log file, the cursor jumps to the
+  corresponding line in the editor
 
 %prep
 %setup

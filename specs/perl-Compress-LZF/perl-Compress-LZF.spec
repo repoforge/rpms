@@ -27,7 +27,7 @@ save *some* space but not at the cost of speed. It is ideal for
 repetitive data as well. The module is self-contained and very small (no
 large library to be pulled in). It is also free, so there should be no
 problems incoporating this module into commercial programs.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

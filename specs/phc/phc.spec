@@ -16,9 +16,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: flex, bison, gcc-c++
 
 %description
-phc is a compiler for PHP that will translate PHP code directly into Linux 
-assembly code. It can be used as a (C++) framework for developing 
-refactoring tools, aspect weavers, script obfuscators, and any other tools 
+phc is a compiler for PHP that will translate PHP code directly into Linux
+assembly code. It can be used as a (C++) framework for developing
+refactoring tools, aspect weavers, script obfuscators, and any other tools
 that operate on PHP scripts.
 
 %prep

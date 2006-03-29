@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 Attribute::Protected implements something like public / private /
 protected methods in C++ or Java.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

@@ -25,7 +25,7 @@ Provides: perl(Set::NestedGroups::Member)
 %description
 Set::NestedGroups gives an implementation of nested groups, access
 control lists (ACLs) would be one example of nested groups.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

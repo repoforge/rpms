@@ -22,8 +22,8 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-First intended to be a quick tool for writing an IRC script in Perl, 
-Net::IRC has grown into a comprehensive Perl implementation of the IRC 
+First intended to be a quick tool for writing an IRC script in Perl,
+Net::IRC has grown into a comprehensive Perl implementation of the IRC
 protocol (RFC 1459).
 
 %prep

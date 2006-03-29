@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 This module provides a few convenience methods for testing warning based
 code.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

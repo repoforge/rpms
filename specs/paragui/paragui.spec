@@ -13,7 +13,7 @@ Source: http://savannah.nongnu.org/download/paragui/paragui-%{version}.tar.gz
 #Patch: gcc34-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: SDL-devel, libpng-devel, SDL_image-devel, libtiff-devel, freetype-devel, 
+BuildRequires: SDL-devel, libpng-devel, SDL_image-devel, libtiff-devel, freetype-devel
 BuildRequires: gcc-c++, expat-devel, physfs-devel, readline-devel, libsigc++-devel
 
 %description

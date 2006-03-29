@@ -33,7 +33,7 @@ next to get one line at a time with Unix-timestamp, host,
 program, pid and text returned in a hash-reference.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTALLDIRS="vendor"

@@ -32,7 +32,7 @@ By default, the config file is parsed more or less "verbatim", meaning
 that directives are case-sensitive, variables are not interpolated, and
 so forth. These features can be changed by options given to the "read()"
 function (see below).
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

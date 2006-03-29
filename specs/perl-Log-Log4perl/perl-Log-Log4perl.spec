@@ -28,7 +28,7 @@ effectively. You can bump up the logging level of certain components in your
 software, using powerful inheritance techniques. You can redirect the
 additional logging messages to an entirely different output (append to a
 file, send by email etc.) -- and everything without modifying a single line
-of source code. 
+of source code.
 
 %package RRDs
 Summary: Rrdtool support
@@ -43,7 +43,7 @@ effectively. You can bump up the logging level of certain components in your
 software, using powerful inheritance techniques. You can redirect the
 additional logging messages to an entirely different output (append to a
 file, send by email etc.) -- and everything without modifying a single line
-of source code. 
+of source code.
 This package contains the perl module and manpage for rrdtool support for
 perl-Log-Log4perl.
 

@@ -27,7 +27,7 @@ tests. It makes it easy for you to output syntactically correct test-
 output while at the same time logging all test activity to a log file.
 Hopefully, bug reports which include the contents of this file will be
 easier for you to investigate.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

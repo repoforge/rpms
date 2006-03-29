@@ -17,14 +17,14 @@ BuildRequires: curl-devel, libxml2-devel, SDL_image-devel
 BuildRequires: SDL_mixer-devel, SDL_net-devel, libpng-devel
 
 %description
-The Mana World (TMW) is a serious effort to create an innovative free and 
-open source MMORPG. It uses 2D graphics and aims to create a large and 
-diverse interactive world. The game aims to be a unique place for people to 
-interact not only by fighting each other but to play life, form a community 
-within the community, or just simply chat. Although the game is never-ending 
-and a linear story cannot be applied, it should have enough background to 
-describe and predefine tribes, kingdoms, and the environment overall. 
-Fullfilled quests should lead to certain events depending on them being 
+The Mana World (TMW) is a serious effort to create an innovative free and
+open source MMORPG. It uses 2D graphics and aims to create a large and
+diverse interactive world. The game aims to be a unique place for people to
+interact not only by fighting each other but to play life, form a community
+within the community, or just simply chat. Although the game is never-ending
+and a linear story cannot be applied, it should have enough background to
+describe and predefine tribes, kingdoms, and the environment overall.
+Fullfilled quests should lead to certain events depending on them being
 solved. Quests should also encourage teamwork.
 
 %prep

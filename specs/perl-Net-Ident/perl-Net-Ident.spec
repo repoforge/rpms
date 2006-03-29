@@ -29,7 +29,7 @@ RFC931). Note that this requires the remote site to run a
 daemon (often called identd) to provide the requested
 information, so it is not always available for all TCP/IP
 connections.
-	   
+
 %prep
 %setup -n %{real_name}-%{version}
 

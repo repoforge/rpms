@@ -31,7 +31,7 @@ emulation speed. QEMU has two operating modes:
 	User mode emulation (Linux host only). In this mode, QEMU can launch
 	Linux processes compiled for one CPU on another CPU. It can be used to
 	launch the Wine Windows API emulator or to ease cross-compilation and
-	cross-debugging. 
+	cross-debugging.
 
 As QEMU requires no host kernel patches to run, it is very safe and easy to use.
 QEMU is a FAST! processor emulator. By using dynamic translation it achieves a
@@ -88,7 +88,7 @@ start() {
 
 stop() {
 	echo -n $"Unregistering non-native binary handler for Qemu"
-	for cpu in i386 i486 ppc arm sparc; do 
+	for cpu in i386 i486 ppc arm sparc; do
 		if [ -r "/proc/sys/fs/binfmt_misc/qemu-$cpu" ]; then
 			echo "-1" >/proc/sys/fs/binfmt_misc/qemu-$cpu
 		fi
@@ -102,7 +102,7 @@ restart() {
 }
 
 status() {
-	if ls /proc/sys/fs/binfmt_misc/qemu-* &>/dev/null; then 
+	if ls /proc/sys/fs/binfmt_misc/qemu-* &>/dev/null; then
 		echo $"Qemu non-native binary format handlers registered."
 		return 0
 	else

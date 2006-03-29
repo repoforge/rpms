@@ -52,7 +52,7 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README doc/html
-%config(noreplace) %{_sysconfdir}/wifidog.conf 
+%config(noreplace) %{_sysconfdir}/wifidog.conf
 %config %{_initrddir}/wifidog
 %{_bindir}/wdctl
 %{_bindir}/wifidog

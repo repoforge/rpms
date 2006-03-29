@@ -16,8 +16,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: qt-devel, gcc-c++, db4-devel
 
 %description
-Stock market, commodity and technical analysis charting app based on the 
-Qt toolkit. Extendible plugin system for quotes and indicators. Portfolio, 
+Stock market, commodity and technical analysis charting app based on the
+Qt toolkit. Extendible plugin system for quotes and indicators. Portfolio,
 back testing, chart objects and many more features included.
 
 %prep

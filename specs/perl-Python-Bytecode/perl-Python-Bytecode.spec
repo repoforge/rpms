@@ -9,7 +9,7 @@
 %define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
 %define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
-Summary: Disassemble and investigate Python bytecode  
+Summary: Disassemble and investigate Python bytecode
 Name: perl-Python-Bytecode
 Version: 2.7
 Release: 1.2

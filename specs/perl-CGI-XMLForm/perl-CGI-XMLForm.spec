@@ -26,7 +26,7 @@ This module can either create form field values from XML based
 on XQL style queries (full XQL is _not_ supported - this module
 is designed for speed), or it can create XML from form values.
 There are 2 key functions: toXML and readXML.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

@@ -26,7 +26,7 @@ Scapy uses the python interpreter as a command board. That means that you
 can use directly python language (assign variables, use loops, define
 functions, etc.) If you give a file as parameter when you run scapy, your
 session (variables, functions, intances, ...) will be saved when you leave
-the interpretor, and restored the next time you launch scapy. 
+the interpretor, and restored the next time you launch scapy.
 
 %prep
 %setup

@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-With this module you can scan C language files for easily recognized 
+With this module you can scan C language files for easily recognized
 constructs.
 
 %prep

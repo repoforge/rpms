@@ -34,7 +34,7 @@ configuration commands for it.
 %build
 %configure
 %{__make} %{?_smp_mflags}
-										
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall

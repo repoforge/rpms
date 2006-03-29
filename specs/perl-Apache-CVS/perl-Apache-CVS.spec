@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-This module contains a method handler which provides a web interface to CVS 
+This module contains a method handler which provides a web interface to CVS
 repositories.
 
 %prep

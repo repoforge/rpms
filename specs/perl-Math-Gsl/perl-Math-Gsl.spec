@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 Currently this module implements the GSL Special function library and the
 single GSL function poly_complex_solve.
-  
+
 %prep
 %setup -n %{real_name}-%{version}
 

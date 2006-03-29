@@ -31,7 +31,7 @@ Trac allows wiki markup in issue descriptions and commit messages,
 to create links and seamless references between bugs, tasks,
 changesets, files and wiki pages. A timeline shows all project
 events in order, making getting an overview of the project and
-tracking progress very easy. 
+tracking progress very easy.
 
 %prep
 %setup

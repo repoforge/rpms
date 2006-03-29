@@ -30,7 +30,7 @@ uses HTML::TreeBuilder generated parse trees of documents
 generates it's own internal representation of forms from which
 it then generates the request objects to process the form
 application.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

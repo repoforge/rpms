@@ -29,7 +29,7 @@ are written in Perl entirely. The name is borrowed from Sun's RPC
 (Remote Procedure Call), but it could as well be RMI like Java's "Remote
 Method Interface), because PlRPC gives you the complete power of Perl's
 OO framework in a very simple manner.
-    
+
 %prep
 %setup -n %{real_name}-%{version}
 

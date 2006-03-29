@@ -22,13 +22,13 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-Tired of using eval as a straightjacket on modules that have as 
-much interest in life as chronically depressed lemmings? Now 
-there's a 24 hour suicide watch in L<No::Die>. Only modules you 
+Tired of using eval as a straightjacket on modules that have as
+much interest in life as chronically depressed lemmings? Now
+there's a 24 hour suicide watch in L<No::Die>. Only modules you
 permit to die may - the rest will just have to live with it. Their
-distress wil be noted in an error variable and undef will be 
-returned. The ultimate decision of life and death will be left to 
-your application.  
+distress wil be noted in an error variable and undef will be
+returned. The ultimate decision of life and death will be left to
+your application.
 
 %prep
 %setup -n %{real_name}-%{version}

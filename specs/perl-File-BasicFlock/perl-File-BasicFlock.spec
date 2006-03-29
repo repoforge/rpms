@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-File::BasicFlock is a wrapper around the flock() call.  
+File::BasicFlock is a wrapper around the flock() call.
 
 %prep
 %setup -n %{real_name}-%{version}

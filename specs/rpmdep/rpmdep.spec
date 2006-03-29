@@ -14,10 +14,10 @@ URL: none
 Source: rpmdep-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-# BuildRequires:  
+# BuildRequires:
 
 %description
-This checks the dependencies of source and binary rpms. 
+This checks the dependencies of source and binary rpms.
 This program is still in development and far from finished.
 
 %prep

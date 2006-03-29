@@ -24,7 +24,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-XML::RSS::Parser is an objected-oriented liberal parser for handling 
+XML::RSS::Parser is an objected-oriented liberal parser for handling
 the morass of RSS formats in use.
 
 %prep

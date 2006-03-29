@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 Extended Parameters, Getopt::ExPar, is written as a possible alternative
 to current getopt packages.  Based, for the most part, on Stephen Lidie's
-Getopt::EvaP package, this has several features that go beyond EvaP's 
+Getopt::EvaP package, this has several features that go beyond EvaP's
 capabilities.
 
 %prep

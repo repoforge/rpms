@@ -23,10 +23,10 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-Net::DRI is a Perl library which offers a uniform API to access services 
-from domain name registries, registrars, and resellers. It is an 
-object-oriented framework that can be easily extended to handle various 
-protocols (such as RRP, EPP, or custom protocols) and various transports 
+Net::DRI is a Perl library which offers a uniform API to access services
+from domain name registries, registrars, and resellers. It is an
+object-oriented framework that can be easily extended to handle various
+protocols (such as RRP, EPP, or custom protocols) and various transports
 methods (such as TCP, TLS, SOAP, or email).
 
 %prep

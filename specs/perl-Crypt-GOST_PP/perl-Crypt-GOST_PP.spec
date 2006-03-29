@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-Crypt::GOST_PP is a pure perl implementation of GOST, a 64-bit 
+Crypt::GOST_PP is a pure perl implementation of GOST, a 64-bit
 symmetrical block cipher with a 256-bit key from the former Soviet
 Union.
 

@@ -38,7 +38,7 @@ shared-secret IPSec authentication, 3DES, MD5, and IP tunneling.
 #IPSec secret mysecret
 
 ### Put your username here
-#Xauth username 
+#Xauth username
 EOF
 
 %build

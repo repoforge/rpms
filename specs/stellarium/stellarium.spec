@@ -54,7 +54,7 @@ telescope.
 * Ecliptic and celestrial equator lines.
 * Smooth real time navigation.
 * Windowed and fullscreen modes.
- 
+
 %prep
 %setup
 #%patch -p1
@@ -127,7 +127,7 @@ EOF
 - Update to version 0.6.0.
 
 * Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> 0.5.2-5
-- renamed the original program to run-stellarium 
+- renamed the original program to run-stellarium
 - renamed the wrapper to stellarium
 
 * Tue Feb 24 2004 Dries Verachtert <dries@ulyssis.org> 0.5.2-4

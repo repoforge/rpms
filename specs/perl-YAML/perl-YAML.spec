@@ -21,7 +21,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-YAML is an abbreviation of YAML Ain't Markup Language. It's a straightforward 
+YAML is an abbreviation of YAML Ain't Markup Language. It's a straightforward
 machine-parseable data serialization format.
 
 %prep

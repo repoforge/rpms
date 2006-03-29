@@ -24,7 +24,7 @@ BuildRequires: perl(XML::Parser), intltool, gcc-c++
 Conflicts: expat = 1.95.6
 
 %description
-Sablotron is an XML (XSLT 1.0, XPath 1.0, DOM Level2) processor. 
+Sablotron is an XML (XSLT 1.0, XPath 1.0, DOM Level2) processor.
 It is written in C++ by Ginger Alliance.
 
 %package devel

@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-The two perl items in this package are an stty shell script and a 
+The two perl items in this package are an stty shell script and a
 module for setting terminal parameters.
 
 %prep

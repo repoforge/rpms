@@ -18,7 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %description
 A command line tool to send arbitrary IP packets. It has a large number of
 command line options to specify the content of every header of a NTP, BGP,
-RIP, RIPng, TCP, UDP, ICMP, or raw IPv4 or IPv6 packet.  It also allows any 
+RIP, RIPng, TCP, UDP, ICMP, or raw IPv4 or IPv6 packet.  It also allows any
 data to be added to the packet.
 
 %prep

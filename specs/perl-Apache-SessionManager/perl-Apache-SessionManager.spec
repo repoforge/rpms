@@ -23,11 +23,11 @@ BuildRequires: perl
 
 %description
 This package is an HTTP session manager.
-Apache::SessionManager is a mod_perl module that helps 
-session management of a web application. This simple module is a 
+Apache::SessionManager is a mod_perl module that helps
+session management of a web application. This simple module is a
 wrapper around Apache::Session persistence framework for session data.
-It creates a session object and makes it available to all other handlers 
-transparenlty by putting it in pnotes. 
+It creates a session object and makes it available to all other handlers
+transparenlty by putting it in pnotes.
 
 %prep
 %setup -n %{real_name}-%{version}

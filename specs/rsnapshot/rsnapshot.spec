@@ -24,7 +24,7 @@ rsnapshot is a remote backup program that uses rsync to take backup snapshots
 of filesystems. rnsapshot uses hard links to save space on disk.
 
 %prep
-%setup 
+%setup
 %patch
 
 %build

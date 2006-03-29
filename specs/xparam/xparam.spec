@@ -15,12 +15,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, automake, autoconf, libtool
 
 %description
-XParam is a general-purpose tool for parameter handling in C++. 
+XParam is a general-purpose tool for parameter handling in C++.
 It allows object serialization and deserialization in a format that is
 human-readable and -writeable, and is unaffected by issues of word-size and
 endianity. The XParam format is also not confused by objects containing
 pointers: it saves the objects in such a manner that their conceptual
-contents can be restored perfectly. 
+contents can be restored perfectly.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.

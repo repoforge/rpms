@@ -22,31 +22,31 @@ with multi-angle-dvd's. But since these are rather sparse this shouldn't
 matter much.
 
 
-%prep 
+%prep
 %setup -q
 %patch0 -p1 -b .Makefile
 
 
-%build 
+%build
 %{__make} \
     CFLAGS="%{optflags}" \
     BINDIR="%{_bindir}" \
     MANDIR="%{_mandir}"
 
 
-%install 
+%install
 %{__rm} -rf %{buildroot}
 %{__make} install \
     BINDIR="%{buildroot}%{_bindir}" \
     MANDIR="%{buildroot}%{_mandir}"
 
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 
-%files 
-%defattr(-, root, root, 0755) 
+%files
+%defattr(-, root, root, 0755)
 %doc Changelog COPYING README Release-Notes TODO
 %doc alternative_programs.txt
 %{_bindir}/vobcopy
@@ -62,7 +62,7 @@ matter much.
 - 0.5.16: -see changelog
 
 * Fri Jul 29 2005 Robos  <robos@muon.de>
-- 0.5.15: -option to skip already present files with -m. 
+- 0.5.15: -option to skip already present files with -m.
   	  copying of dvd's with files ending in ";?" should work now.
 
 * Sun Oct 24 2004 Robos  <robos@muon.de>
@@ -72,7 +72,7 @@ matter much.
 - 0.5.12-1: -m off-by-one error fixed
 
 * Mon Jan 19 2004 Robos <robos@muon.de>
-- 0.5.10-1: -O now works 
+- 0.5.10-1: -O now works
   	    cleanup
 
 

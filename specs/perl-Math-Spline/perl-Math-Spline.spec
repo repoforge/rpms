@@ -22,9 +22,9 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-This package provides cubic spline interpolation of numeric data. The data 
-is passed as references to two arrays containing the x and y ordinates. It 
-may be used as an exporter of the numerical functions or, more easily as a 
+This package provides cubic spline interpolation of numeric data. The data
+is passed as references to two arrays containing the x and y ordinates. It
+may be used as an exporter of the numerical functions or, more easily as a
 class module.
 
 %prep

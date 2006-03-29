@@ -28,7 +28,7 @@ The requirement to centralise, and fully automate, the process of
 group creation and the detection of defunct groups led to a large
 number of cases where the software would be required to read, parse,
 forward, reply to, mail and post articles of various forms.
-  
+
 %prep
 %setup -n %{real_name}-%{version}
 

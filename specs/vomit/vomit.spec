@@ -36,7 +36,7 @@ sniffer also it could be but the naming is probably related to H.323.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc README
 %doc %{_mandir}/man1/vomit.1*

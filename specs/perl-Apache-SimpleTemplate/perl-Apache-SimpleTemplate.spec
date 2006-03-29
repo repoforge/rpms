@@ -25,7 +25,7 @@ BuildRequires: perl
 Apache::SimpleTemplate is *another* Template-with-embedded-Perl package
 for mod_perl. It allows you to embed blocks of Perl code into text
 documents, such as HTML files, and have this code executed upon HTTP
-request. It should take moments to set-up and learn; very little knowledge 
+request. It should take moments to set-up and learn; very little knowledge
 of mod_perl is necessary, though some knowledge of Apache and perl is
 assumed.
 

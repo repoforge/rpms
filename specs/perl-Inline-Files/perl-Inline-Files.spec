@@ -25,7 +25,7 @@ BuildRequires: perl
 Inline::Files generalizes the notion of the __DATA__ marker and the
 associated DATA filehandle, to an arbitrary number of markers and
 associated filehandles.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

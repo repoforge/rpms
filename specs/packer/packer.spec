@@ -16,11 +16,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Buildarch: noarch
 
 %description
-Packer is a tool that helps in the creation of packages. It works by asking 
-the user for information about a program, and then by generating files 
-needed to create Debian, RPM, Slackware, and Autopackage (distribution 
-independent installers) packages based off of that information. Unlike 
-similar tools, it generates files that are of comparable quality to those 
+Packer is a tool that helps in the creation of packages. It works by asking
+the user for information about a program, and then by generating files
+needed to create Debian, RPM, Slackware, and Autopackage (distribution
+independent installers) packages based off of that information. Unlike
+similar tools, it generates files that are of comparable quality to those
 that are hand-crafted.
 
 %prep

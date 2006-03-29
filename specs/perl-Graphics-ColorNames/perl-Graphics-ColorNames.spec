@@ -30,7 +30,7 @@ to (1) provide a common module that authors can use with other modules
 to specify colors; and (2) free module authors from having to "re-invent
 the wheel" whenever they decide to give the users the option of
 specifying a color by name rather than RGB value.
-    
+
 %prep
 %setup -n %{real_name}-%{version}
 

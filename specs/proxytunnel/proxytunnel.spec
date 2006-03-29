@@ -25,12 +25,12 @@ Proxytunnel can create tunnels using HTTP and HTTPS proxies, can work as a
 back-end driver for an OpenSSH client, and create SSH connections through
 HTTP(S) proxies and can work as a stand-alone application, listening on a
 port for connections, and then tunneling these connections to a specified
-destination. 
+destination.
 
 If you want to make effective use of ProxyTunnel, the proxy server you are
 going to be tunneling through must support HTTP CONNECT command and must
 allow you to connect to destination machine and host, with or without HTTP
-proxy authentication 
+proxy authentication
 
 %prep
 %setup

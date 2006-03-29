@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 New York State Identification and Intelligence System (NYSIIS) algorithm
 for phonetic encoding of names.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

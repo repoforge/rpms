@@ -6,7 +6,7 @@
 
 %define real_name Net-Server
 
-Summary: Net-Server module for perl 
+Summary: Net-Server module for perl
 Name: perl-Net-Server
 Version: 0.90
 Release: 1
@@ -25,7 +25,7 @@ Requires: perl >= 0:5.00503
 Net-Server module for perl
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"

@@ -29,7 +29,7 @@ Obsoletes: PIL <= %{version}
 Provides: PIL = %{version}-%{release}
 
 %description
-The Python Imaging Library (PIL) adds image processing capabilities 
+The Python Imaging Library (PIL) adds image processing capabilities
 to your Python interpreter.
 
 This library provides extensive file format support, an efficient

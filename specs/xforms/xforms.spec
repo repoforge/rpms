@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: 
+# Upstream:
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -33,7 +33,7 @@ XForms is a GUI toolkit based on Xlib for X Window Systems. It features a
 rich set of objects, such as buttons, scrollbars, and menus etc. integrated
 into an easy and efficient object/event callback execution model that allows
 fast and easy construction of X-applications. In addition, the library is
-extensible and new objects can easily be created and added to the library. 
+extensible and new objects can easily be created and added to the library.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.

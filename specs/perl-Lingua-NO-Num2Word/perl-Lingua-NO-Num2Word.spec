@@ -23,7 +23,7 @@ BuildRequires: perl
 
 %description
 OO module for converting positiv whole numbers into its
-norwegian textual representation. 
+norwegian textual representation.
 
 %prep
 %setup -n %{real_name}-%{version}

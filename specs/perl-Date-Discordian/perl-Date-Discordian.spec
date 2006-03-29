@@ -30,7 +30,7 @@ string, giving the Discordian date for the given day.
 *inverse_discordian()*, given a Discordian date in the same format that
 "discordian()" emits, returns an epoch time value. It is pretty picky
 about time format. Pity.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

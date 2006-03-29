@@ -6,7 +6,7 @@
 
 %define rname Crypt-SmbHash
 
-Summary: Crypt-SmbHash module for perl 
+Summary: Crypt-SmbHash module for perl
 Name: perl-Crypt-SmbHash
 Version: 0.12
 Release: 1
@@ -25,7 +25,7 @@ Requires: perl >= 0:5.00503
 Crypt-SmbHash module for perl
 
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{rname}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

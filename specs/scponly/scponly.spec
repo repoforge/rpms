@@ -18,11 +18,11 @@ Requires: openssh >= 3.4, openssh-server, openssh-clients, rsync
 BuildRequires: openssh >= 3.4, openssh-server, openssh-clients, rsync
 
 %description
-scponly is an alternative 'shell' for system administrators 
-who would like to provide access to remote users to both 
-read and write local files without providing any remote 
-execution priviledges. Functionally, it is best described 
-as a wrapper to the "tried and true" ssh suite of applications. 
+scponly is an alternative 'shell' for system administrators
+who would like to provide access to remote users to both
+read and write local files without providing any remote
+execution priviledges. Functionally, it is best described
+as a wrapper to the "tried and true" ssh suite of applications.
 
 %prep
 %setup
@@ -46,7 +46,7 @@ as a wrapper to the "tried and true" ssh suite of applications.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHOR CHANGELOG CONTRIB COPYING INSTALL README TODO
 %doc setup_chroot.sh build_extras/setup_chroot.sh*

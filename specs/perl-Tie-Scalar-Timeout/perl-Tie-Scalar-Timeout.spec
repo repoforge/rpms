@@ -26,7 +26,7 @@ This module allows you to tie a scalar variable whose value will be
 reset (subject to an expiry policy) after a certain time and/or a
 certain number of uses. One possible application for this module might
 be to time out session variables in mod_perl programs.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

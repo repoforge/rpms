@@ -31,7 +31,7 @@ BuildRequires: id3lib-devel > 3.8.0
 The Zinf audio player is a simple, but powerful audio player for Linux
 and Win32. It supports MP3, Ogg/Vorbis, WAV and Audio CD playback,
 SHOUTcast/Icecast HTTP streaming, RTP streaming, a powerful music browser,
-theme support and a download manager. 
+theme support and a download manager.
 
 %prep
 %setup

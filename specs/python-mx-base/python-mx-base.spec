@@ -11,7 +11,7 @@ Summary: mx-base libraries for Python
 Name: python-mx-base
 Version: 2.0.4
 Release: 0
-License: Egenix.com Public License 
+License: Egenix.com Public License
 Group: Development/Libraries
 URL: http://www.lemburg.com/files/python/eGenix-mx-Extensions.html
 

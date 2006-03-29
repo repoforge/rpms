@@ -22,10 +22,10 @@ BuildArch: noarch
 BuildRequires: perl, perl-DBI
 
 %description
-DBD::LDAP - A DBI driver for LDAP databases.  LDAP stands for the 
-"Lightweight Directory Access Protocol".  For more information, 
+DBD::LDAP - A DBI driver for LDAP databases.  LDAP stands for the
+"Lightweight Directory Access Protocol".  For more information,
 see:  http://www.ogre.com/ldap/docs.html
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 %{__perl} -pi -e 's|/usr/local/bin/perl5|/usr/bin/perl|g;' */*.pm

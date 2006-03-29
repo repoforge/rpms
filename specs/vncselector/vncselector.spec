@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream: 
+# Upstream:
 # Screenshot: http://www.dooglio.net/VncSelector/screenshot.png
 
 # ExcludeDist: el3
@@ -37,7 +37,7 @@ Requires: fltk
 %description
 VncSelector allows a user to manage his/her list of currently active VNC
 server sessions. This can be useful in a thin client situation (run from
-.Xsession, for example). 
+.Xsession, for example).
 
 %prep
 %{__rm} -rf %{buildroot}

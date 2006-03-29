@@ -26,7 +26,7 @@ Requires: perl >= 0:5.00503
 FileHandle::Unget implements a filehandle which supports multi-byte unget.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL \

@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 his toolkit includes basic objects and methods to describe molecules. It
 consists of several modules: Chemistry::Mol, Chemistry::Atom,
-Chemistry::Bond, and Chemistry::File. These are the core modules of the 
+Chemistry::Bond, and Chemistry::File. These are the core modules of the
 PerlMol toolkit; see http://www.perlmol.org/.
 
 %prep

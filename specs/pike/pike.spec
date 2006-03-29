@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: 
+# Upstream:
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -43,7 +43,7 @@ Pike is a general purpose programming language, which means that you can put
 it to use for almost any task. Its application domain spans anything from
 the world of the Net to the world of multimedia applications, or
 environments where your shell could use some spicy text processing or system
-administration tools. 
+administration tools.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.

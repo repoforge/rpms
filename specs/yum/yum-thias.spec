@@ -47,7 +47,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Yum is a utility that can check for and automatically download and
-install updated RPM packages. Dependencies are obtained and downloaded 
+install updated RPM packages. Dependencies are obtained and downloaded
 automatically prompting the user as necessary.
 
 Available rpmbuild rebuild options :
@@ -67,7 +67,7 @@ if [ "%{python}" != "python" ]; then
 fi
 # Change the defaut debug level of the cron entry
 %{__perl} -pi -e 's|-d 0|-d 1|g' etc/yum.cron
-%configure 
+%configure
 %{__make}
 
 

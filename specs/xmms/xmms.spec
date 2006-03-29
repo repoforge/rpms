@@ -152,7 +152,7 @@ ln -snf ../libxmms/configfile.h xmms/configfile.h
 %if %{!?_without_arts:1}0
 export XMMS_CONFIG=`pwd`/xmms-config
 cd arts_output-%{artsplugin_ver}
-CFLAGS="$RPM_OPT_FLAGS -I.." %configure 
+CFLAGS="$RPM_OPT_FLAGS -I.." %configure
 make
 cd ..
 %endif
@@ -195,11 +195,11 @@ rm -f %{buildroot}/%{_datadir}/xmms/*/lib*.{a,la} \
 
 
 %post
-/sbin/ldconfig  
+/sbin/ldconfig
 update-desktop-database %{_datadir}/desktop-menu-patches &>/dev/null || :
 
 %postun
-/sbin/ldconfig 
+/sbin/ldconfig
 update-desktop-database %{_datadir}/desktop-menu-patches &>/dev/null || :
 
 %clean
@@ -351,7 +351,7 @@ update-desktop-database %{_datadir}/desktop-menu-patches &>/dev/null || :
 - rebuilt
 
 * Tue Jan 14 2003 Owen Taylor <otaylor@redhat.com> 1.2.7-17.p
-- Add patch from havardk@netcom.no to fix problem with file browser not 
+- Add patch from havardk@netcom.no to fix problem with file browser not
   updating in CDROM directories (#65173)
 
 * Tue Nov 12 2002 Bill Nottingham <notting@redhat.com> 1.2.7-16.p
@@ -397,7 +397,7 @@ update-desktop-database %{_datadir}/desktop-menu-patches &>/dev/null || :
 
 * Wed Jun 27 2002 Karsten Hopp <karsten@redhat.de> 1.2.7-4
 - fix buildprereq (arts-devel instead of kdelibs-sound-devel)
-- added patch to avoid dynamic linkage against libarts (static libarts is no 
+- added patch to avoid dynamic linkage against libarts (static libarts is no
   longer available), use dlopen instead
 
 * Sun May 26 2002 Tim Powers <timp@redhat.com>
@@ -447,7 +447,7 @@ update-desktop-database %{_datadir}/desktop-menu-patches &>/dev/null || :
 
 * Mon May 21 2001 Tim Powers <timp@redhat.com>
 - added skins subpackage
- 
+
 * Mon May 14 2001 Bill Nottingham <notting@redhat.com>
 - remove extraneous printf in tmpdir patch
 - add prototype for mpg123_munge_sample in downsample_vis patch
@@ -617,7 +617,7 @@ update-desktop-database %{_datadir}/desktop-menu-patches &>/dev/null || :
 - added desktop entry.
 
 * Mon Mar 22 1999 Michael Maher <mike@redhat.com>
-- made some changes to the spec file. 
+- made some changes to the spec file.
 - has 'esd' support now.
 - stripped executables.
 

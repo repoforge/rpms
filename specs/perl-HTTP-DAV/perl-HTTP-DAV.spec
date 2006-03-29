@@ -18,7 +18,7 @@ Source: http://www.cpan.org/modules/by-module/HTTP/HTTP-DAV-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-libwww-perl, perl-libxml-enno 
+BuildRequires: perl, perl-libwww-perl, perl-libxml-enno
 Requires: perl, perl-libwww-perl
 
 %description
@@ -27,7 +27,7 @@ on webservers using the WebDAV protocol. Now you can LOCK, DELETE
 and PUT files and much more on a DAV-enabled webserver.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL \
@@ -55,5 +55,5 @@ and PUT files and much more on a DAV-enabled webserver.
 %{perl_vendorlib}/HTTP/DAV.pm
 
 %changelog
-* Sat Feb 12 2005 Dag Wieers <dag@wieers.com> - 
+* Sat Feb 12 2005 Dag Wieers <dag@wieers.com> -
 - Initial package. (using DAR)

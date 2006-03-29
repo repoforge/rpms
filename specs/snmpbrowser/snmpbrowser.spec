@@ -1,7 +1,6 @@
 # $Id$
-
 # Authority: dries
-# Upstream: 
+# Upstream:
 # Screenshot: http://snmpbrowser.sourceforge.net/screenshot.png
 
 %{?dist: %{expand: %%define %dist 1}}

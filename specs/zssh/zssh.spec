@@ -21,13 +21,13 @@ BuildRequires: readline-devel
 zssh (Zmodem SSH) is a program for interactively transferring files to a
 remote machine while using the secure  shell (ssh).  It  is intended to be a
 convenient alternative to scp , allowing to transfer files without  having
-to  open another session and re-authenticate oneself. 
+to  open another session and re-authenticate oneself.
 
 zssh  is an interactive wrapper for ssh used to switch the ssh connection
 between the remote shell  and  file  transfers.  This  is  achieved  by
 using  another tty/pty pair between the user and the local ssh process to
 plug  either the  user's  tty  (remote  shell  mode) or another process
-(file transfer mode) on the ssh connection. 
+(file transfer mode) on the ssh connection.
 
 %prep
 %setup -n zssh-%{real_version}

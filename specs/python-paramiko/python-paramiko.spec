@@ -30,7 +30,7 @@ flow-controled "channels" to the server, which are returned as socket-like
 objects. you are responsible for verifying that the server's host key is the
 one you expected to see, and you have control over which kinds of encryption
 or hashing you prefer (if you care), but all of the heavy lifting is done by
-the paramiko module. 
+the paramiko module.
 
 %prep
 %setup -n %{real_name}-%{version}

@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-This package implements 'make' in perl. 
+This package implements 'make' in perl.
 
 %prep
 %setup -n %{real_name}-%{version}

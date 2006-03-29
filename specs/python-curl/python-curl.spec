@@ -22,7 +22,7 @@ BuildRequires: python-devel, curl-devel
 %description
 PycURL is a Python interface to libcurl. PycURL can be used to fetch
 objects identified by a URL from a Python program, similar to the
-urllib Python module. 
+urllib Python module.
 
 %prep
 %setup -n %{real_name}-%{version}

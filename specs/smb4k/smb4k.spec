@@ -38,7 +38,7 @@ Requires: kdelibs, fam
 
 %description
 Smb4K is an SMB share browser for KDE. It uses the Samba software suite for
-an easy access to the SMB shares of your local network neighborhood. 
+an easy access to the SMB shares of your local network neighborhood.
 
 %prep
 %setup

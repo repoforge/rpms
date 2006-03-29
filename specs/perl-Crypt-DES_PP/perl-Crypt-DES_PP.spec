@@ -28,7 +28,7 @@ decryption algorithm.
 
 The module is 100 % compatible to Crypt::DES but is implemented
 entirely in Perl.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

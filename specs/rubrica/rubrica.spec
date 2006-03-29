@@ -17,7 +17,7 @@ BuildRequires: libgnomeui-devel >= 2.0, libxslt-devel >= 1.0
 BuildRequires: libmcrypt-devel, gettext, gcc-c++, libral-devel
 
 %description
-An address book for GNOME. 
+An address book for GNOME.
 
 %prep
 %setup
@@ -27,7 +27,7 @@ An address book for GNOME.
 Name=Rubrica Addressbook
 Comment=Manage contacts and addresses
 Icon=rubrica.png
-Exec=rubrica 
+Exec=rubrica
 Terminal=false
 Type=Application
 Categories=GNOME;Application;Office;

@@ -126,5 +126,5 @@ convert src/xrickST.ico %{buildroot}%{_datadir}/pixmaps/xrick.png
 - buildroot -> RPM_BUILD_ROOT
 - Modified Source0
 
-* Wed Apr 23 2003 Dams <anvil[AT]livna.org> 
+* Wed Apr 23 2003 Dams <anvil[AT]livna.org>
 - Initial build.

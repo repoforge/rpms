@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-Tk::FontDialog is a font chooser for perl/Tk. 
+Tk::FontDialog is a font chooser for perl/Tk.
 
 %prep
 %setup -n %{real_name}-%{version}

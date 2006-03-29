@@ -73,4 +73,4 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 * Wed May 28 2003 Dag Wieers <dag@wieers.com> - 1.54-0
 - Updated to release 1.54.
-- Initial package. (using DAR) 
+- Initial package. (using DAR)

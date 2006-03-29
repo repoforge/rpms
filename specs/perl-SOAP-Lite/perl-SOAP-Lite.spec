@@ -22,8 +22,8 @@ BuildArch: noarch
 BuildRequires: perl, perl-XML-Parser, perl-Crypt-SSLeay, perl-Compress-Zlib
 
 %description
-SOAP::Lite for Perl is a collection of Perl modules which provides a simple 
-and lightweight interface to the Simple Object Access Protocol (SOAP) both 
+SOAP::Lite for Perl is a collection of Perl modules which provides a simple
+and lightweight interface to the Simple Object Access Protocol (SOAP) both
 on client and server side.
 
 %prep

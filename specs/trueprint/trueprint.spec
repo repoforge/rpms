@@ -18,7 +18,7 @@ BuildRequires: cups
 GNU Trueprint takes C source files and other text files and prints them on
 PostScript printers. It is intended to be used by programmers; therefore, it
 includes features like diff-marking, indentation count, function and file
-indices, and many others that are useful when printing source code. 
+indices, and many others that are useful when printing source code.
 
 It currently supports C and has more limited support for other languages,
 including C++, Java, and Perl.

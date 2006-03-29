@@ -30,7 +30,7 @@ It provides an easy, object-oriented interface for manipulating XML
 documents and their elements. It is currently being used to send
 requests and understand responses from remote servers in Perl or PHP
 applications.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

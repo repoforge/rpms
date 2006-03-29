@@ -22,8 +22,8 @@ BuildRequires: perl
 
 %description
 This package provides a perl interface to DCDFLIB, a set of C functions
-written by Barry W. Brown, James Lovato and Kathy Russell of the 
-Department of Biomathematics at The University of Texas M.D. Anderson 
+written by Barry W. Brown, James Lovato and Kathy Russell of the
+Department of Biomathematics at The University of Texas M.D. Anderson
 Cancer Center in Houston, Texas. DCDFLIB code is included in this module
 distribution with permission of its authors.
 

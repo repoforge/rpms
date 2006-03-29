@@ -26,7 +26,7 @@ This module implements a chaining block cipher using a one
 way hash.  This method of encryption is the same that is
 used by radius (RFC2138) and is also described in Applied
 Cryptography.
-	 
+
 %prep
 %setup -n %{real_name}-%{version}
 

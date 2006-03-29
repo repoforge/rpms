@@ -24,7 +24,7 @@ BuildRequires: perl
 %description
 Sort::ArrayOfArrays was written to sort an arbitrary array of arrays, in
 powerful, different ways.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

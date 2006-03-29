@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-This module provides perl routines that simplify a sockets connection 
+This module provides perl routines that simplify a sockets connection
 to and an IMAP conversation with an IMAP server.
 
 %prep

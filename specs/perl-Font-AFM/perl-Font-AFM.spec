@@ -26,7 +26,7 @@ This module implements the Font::AFM class. Objects of this
 class are initialised from an AFM-file and allows you to obtain
 information about the font and the metrics of the various glyphs
 in the font.
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

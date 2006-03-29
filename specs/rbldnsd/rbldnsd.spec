@@ -33,7 +33,7 @@ TXT values which are stored only once.
 %setup
 
 %build
-CFLAGS="%{optflags}" CC="${CC:-%__cc}" ./configure 
+CFLAGS="%{optflags}" CC="${CC:-%__cc}" ./configure
 %{__make} %{_smp_mflags}
 
 %install
@@ -72,7 +72,7 @@ fi
 %doc CHANGES-0.81 debian/changelog NEWS README.user TODO
 %doc %{_mandir}/man8/rbldnsd.8*
 %config(noreplace) %{_sysconfdir}/sysconfig/rbldnsd
-%config %{_initrddir}/rbldnsd                  
+%config %{_initrddir}/rbldnsd
 %{_sbindir}/rbldnsd
 %dir %{_localstatedir}/lib/rbldns/
 

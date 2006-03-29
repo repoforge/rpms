@@ -24,8 +24,8 @@ Provides: perl(PHP::Perlinfo::HTML) = %{version}-%{release}
 
 %description
 This module outputs a large amount of information (only in HTML in this
-release) about the current state of Perl. So far, this includes information 
-about Perl compilation options, the Perl version, server information and 
+release) about the current state of Perl. So far, this includes information
+about Perl compilation options, the Perl version, server information and
 environment, OS version information, Perl modules, and the Perl License.
 
 %prep

@@ -24,8 +24,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk2-devel, SDL-devel
 
 %description
-This is a port of the classic computer game "Sopwith" to run on modern 
-computers and operating systems. 
+This is a port of the classic computer game "Sopwith" to run on modern
+computers and operating systems.
 
 %prep
 %setup -n %{real_version}-%{version}
@@ -66,7 +66,7 @@ EOF
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING doc/*.txt FAQ NEWS README TODO
 %doc %{_mandir}/man?/*

@@ -55,4 +55,4 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 - Workaround directory-conflicts bug in up2date. (RHbz #106123)
 
 * Sat Dec 20 2003 Dag Wieers <dag@wieers.com> - 2.34-0
-- Initial package. (using DAR) 
+- Initial package. (using DAR)

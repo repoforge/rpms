@@ -22,7 +22,7 @@ PyKDE is a set of Python bindings for the KDE desktop environment. The
 bindings are implemented as a set of Python modules: dcop, kdecore, kdesu,
 kdefx, kdeui, kio, kfile, kparts, khtml, kjs, kspell and kdeprint. The
 modules correspond to libraries in the kdelibs package. PyKDE supports
-nearly all classes and methods in these libraries. 
+nearly all classes and methods in these libraries.
 
 %package devel
 Summary: PyKDE development files

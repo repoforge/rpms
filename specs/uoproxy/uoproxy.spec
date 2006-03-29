@@ -16,8 +16,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: which
 
 %description
-uoproxy is a proxy server for Ultima Online. It adds features like 
-disconnected operation, automatic reconnection, multi-headed gameplay, 
+uoproxy is a proxy server for Ultima Online. It adds features like
+disconnected operation, automatic reconnection, multi-headed gameplay,
 and much more.
 
 %prep

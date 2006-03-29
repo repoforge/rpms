@@ -25,7 +25,7 @@ BuildRequires: perl
 The DBHash object is designed to tie a hash to a table or a subset of
 records in a table in a DBI database (only tested with mysql in the
 current version, but expected to work with any vendor).
-	
+
 %prep
 %setup -n %{real_name}-%{version}
 

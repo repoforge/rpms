@@ -25,7 +25,7 @@ BuildRequires: perl
 YAWriter implements Yet Another XML::Handler::Writer. The
 reasons for this one are that I needed a flexible escaping
 technique, and want some kind of pretty printing.
-	   
+
 %prep
 %setup -n %{real_name}-%{version}
 

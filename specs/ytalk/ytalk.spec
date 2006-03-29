@@ -24,13 +24,13 @@ time.
 
 You may also spawn a command shell in your talk window and let other users
 watch. YTalk supports a basic set of VT100 control codes, as well as job
-control (BSD support added in 3.1.3) 
+control (BSD support added in 3.1.3)
 
 %prep
 %setup
 
 %build
-%configure 
+%configure
 %{__make} %{_smp_mflags}
 
 %install

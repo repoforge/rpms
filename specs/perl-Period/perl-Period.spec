@@ -6,7 +6,7 @@
 
 %define real_name Period
 
-Summary: Perl module to deal with time periods. 
+Summary: Perl module to deal with time periods.
 Name: perl-Period
 Version: 1.20
 Release: 1
@@ -26,7 +26,7 @@ Requires: perl >= 0:5.00503
 Perl module to deal with time periods.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

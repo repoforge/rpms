@@ -26,7 +26,7 @@ Convert-BinHex is a set of Perl classes to extract data from Macintosh
 BinHex files.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
