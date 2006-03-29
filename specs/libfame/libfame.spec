@@ -4,7 +4,7 @@
 Summary: Fast Assembly MPEG Encoding library
 Name: libfame
 Version: 0.9.1
-Release: 9
+Release: 11
 License: LGPL
 Group: System Environment/Libraries
 URL: http://fame.sourceforge.net/
@@ -42,7 +42,12 @@ libfame library.
 %patch1 -p1 -b .mmxone
 %patch2 -p1 -b .m4
 %patch3 -p1 -b .x86_64
-./autogen.sh
+# This is required since the included libtool stuff is too old and breaks
+# linking (-lm and -lc functions not found!) on FC5 x86_64.
+%{__rm} -f acinclude.m4 aclocal.m4
+%{__cp} -f /usr/share/aclocal/libtool.m4 libtool.m4
+touch NEWS ChangeLog
+autoreconf --force --install
 
 # Fix lib stuff for lib64
 %{__perl} -pi.orig -e 's|/lib"|/%{_lib}"|g' configure.in
@@ -56,10 +61,13 @@ libfame library.
     %{__mkdir} sse2/
     %{__mv} src/.libs/libfame*.so.* sse2/
     %{__make} clean
-%endif
 
 # Now, the normal build
-%configure --disable-mmx
+    %configure --disable-mmx
+%else
+    %configure
+%endif
+
 %{__make} %{?_smp_mflags}
 
 
@@ -106,6 +114,9 @@ libfame library.
 
 
 %changelog
+* Mon Mar 20 2006 Matthias Saou <http://freshrpms.net/> 0.9.1-11
+- Remove old libtool/m4 files to fix x86_64 FC5 linking.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.9.1-9
 - Release bump to drop the disttag number in FC5 build.
 
