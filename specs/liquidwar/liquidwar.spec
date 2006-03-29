@@ -20,7 +20,7 @@ Requires: allegro
 Liquid War is a unique multiplayer wargame. You control an army of liquid
 and have to try and eat your opponents. A single player mode is available,
 but the game is definitely designed to be multiplayer, and has network
-support. 
+support.
 
 %package doc
 Summary: Documentation for the LiquidWar game

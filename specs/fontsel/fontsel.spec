@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %description
 A font selection widget for Gtk+ toolkit
 
-%package devel 
+%package devel
 Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}

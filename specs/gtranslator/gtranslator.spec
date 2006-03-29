@@ -48,7 +48,7 @@ files imminently.
 %makeinstall
 %find_lang %{name}
 
-%post 
+%post
 scrollkeeper-update -q || :
 
 %postun

@@ -18,7 +18,7 @@ Jailkit is a set of utilities to limit user accounts to specific files
 using chroot() and or specific commands. Setting up a chroot shell,
 a shell limited to some specific command, or a daemon inside a chroot
 jail is a lot easier using these utilities.
- 
+
 Jailkit has been in use for a while on CVS servers (in a chroot and
 limited to cvs), sftp/scp servers (both in a chroot and limited to
 sftp/scp as well as not in a chroot but only limited to sftp/scp),
@@ -45,7 +45,7 @@ are in a chroot.
 
 #%post
 #cat /etc/shells | grep -v jk_chrootsh >/etc/shells
-#echo "/usr/bin/jk_chrootsh" >> /etc/shells 
+#echo "/usr/bin/jk_chrootsh" >> /etc/shells
 #/sbin/chkconfig --add jailkit
 
 #%postun

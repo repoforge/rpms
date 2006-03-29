@@ -4,7 +4,7 @@
 # Screenshot: Screenshot:http://www.luolamies.org/software/luola/screens/screen6.png
 # ScreenshotURL:http://www.luolamies.org/software/luola/#screenshots
 
-Summary: Multiplayer 2D arcade game 
+Summary: Multiplayer 2D arcade game
 Name: luola
 Version: 1.3.2
 Release: 1

@@ -26,7 +26,7 @@ up2date or autorpm. It can be used to automatically download and upgrade rpms
 from different ftp sites. Moreover, it can also be used to keep a server with
 a customized (RedHat) distribution plus all clients up to date.
 
-%prep            
+%prep
 %setup
 
 %install

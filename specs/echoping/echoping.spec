@@ -33,7 +33,7 @@ a remote host by sending it TCP "echo" (or other protocol) packets.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING DETAILS INSTALL NEWS README TODO
 %doc %{_mandir}/man?/*

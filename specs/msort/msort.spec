@@ -16,13 +16,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: tre-devel
 
 %description
-Msort is a program for sorting files in sophisticated ways. Records need not 
-be single lines. Key fields may be selected by position, tag, or character 
-range. For each key, distinct exclusions, multigraphs, substitutions. and a 
-sort order may be defined. Comparisons may be lexicographic, numeric, by 
-string length, date, or time. Optional keys are supported. Msort uses the 
-Unicode character set and provides full Unicode case-folding. The basic 
-program has a somewhat complex command line interface, but may be driven 
+Msort is a program for sorting files in sophisticated ways. Records need not
+be single lines. Key fields may be selected by position, tag, or character
+range. For each key, distinct exclusions, multigraphs, substitutions. and a
+sort order may be defined. Comparisons may be lexicographic, numeric, by
+string length, date, or time. Optional keys are supported. Msort uses the
+Unicode character set and provides full Unicode case-folding. The basic
+program has a somewhat complex command line interface, but may be driven
 by an optional GUI.
 
 %prep

@@ -1,6 +1,5 @@
 # $Id$
 # Authority: dag
-# Upstream: 
 
 Summary: C++ Class Library for Numbers
 Name: cln

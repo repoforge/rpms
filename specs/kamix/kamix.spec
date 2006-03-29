@@ -16,9 +16,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: kdelibs-devel, gcc-c++, gettext, autoconf, automake
 
 %description
-kamix is a mixer for KDE and ALSA, with more features than kmix (or at least 
-with more features than kmix had when kamix was started). It supports 
-channel splitting, levels storing/restoring, sync with external ALSA events, 
+kamix is a mixer for KDE and ALSA, with more features than kmix (or at least
+with more features than kmix had when kamix was started). It supports
+channel splitting, levels storing/restoring, sync with external ALSA events,
 correct handling of "enumerated" elements, and selective item hiding/showing.
 
 %prep

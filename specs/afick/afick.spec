@@ -113,7 +113,7 @@ EOF
 %{_localstatedir}/lib/afick/
 %{_localstatedir}/log/afick/
 
-%files gui 
+%files gui
 %defattr(-, root, root, 0755)
 %doc Changelog-gui
 %doc %{_mandir}/man?/afick-tk.*

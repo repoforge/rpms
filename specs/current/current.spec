@@ -25,7 +25,7 @@ designed for small to medium departments to be able to set up and run their
 own up2date server, feeding new applications and security patches to
 workstations/servers.
 
-%prep 
+%prep
 %setup
 
 %build

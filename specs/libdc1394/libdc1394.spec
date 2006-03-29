@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: 
+# Upstream:
 
 %define real_version 2.0.0-pre5
 

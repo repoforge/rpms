@@ -38,7 +38,7 @@ checker and intrusion detection program.
 	--with-config_file="%{_sysconfdir}/aide.conf" \
 	--with-zlib \
 	--with-mhash \
-	--enable-mhash 
+	--enable-mhash
 %{__make} %{?_smp_mflags}
 
 %install

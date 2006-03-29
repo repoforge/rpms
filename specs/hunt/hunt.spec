@@ -20,14 +20,14 @@ and resetting it.
 hunt is operating on Ethernet and is best used for connections
 which can be watched through it. However, it is possible to do
 something even for hosts on another segments or hosts that are
-on switched ports. 
+on switched ports.
 
 hunt doesn't distinguish between local network connections and
 connections going to/from Internet. It can handle all
 connections it sees.
 
 %prep
-%setup 
+%setup
 
 %{__perl} -pi.orig -e 's|egcs|%{__cc}|' tpserv/Makefile
 

@@ -38,7 +38,7 @@ write visualisation plugins. By writing an audio visualisation plugin for
 libvisual, the developer allows every application that uses libvisual to use
 their plugin. The application handles the actual drawing of the graphics,
 allowing rendering done by plugins to be drawn anywhere... as ASCII art, in
-SDL, as a surface on an OpenGL object, etc. 
+SDL, as a surface on an OpenGL object, etc.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.

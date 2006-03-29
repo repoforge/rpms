@@ -15,9 +15,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libjpeg-devel
 
 %description
-Jpegpixi interpolates pixels in JPEG images (single pixels, dots, 
-stripes). This is useful to correct images from a digital camera with 
-CCD defects. For example, if one pixel is always bright green, this 
+Jpegpixi interpolates pixels in JPEG images (single pixels, dots,
+stripes). This is useful to correct images from a digital camera with
+CCD defects. For example, if one pixel is always bright green, this
 pixel can be interpolated with jpegpixi.
 
 %prep

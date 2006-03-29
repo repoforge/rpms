@@ -4,7 +4,7 @@
 
 # Upstream: Elmar Bartel <bartel$informatik,tu-muenchen,de>
 
-Summary: tool to do memory to memory performance measurements with TCP/IP. 
+Summary: tool to do memory to memory performance measurements with TCP/IP.
 Name: nttcp
 Version: 1.47
 Release: 0

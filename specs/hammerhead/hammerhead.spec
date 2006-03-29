@@ -21,7 +21,7 @@ simulated numerous (256+) users at any given time. The rate at which
 Hammerhead 2 attempts to pound your site is fully configurable, there
 are numerous other options for trying to create problems with a web site
 (so you can fix them). It can be used to test the behaviour of the port
-under load, or the ability of the port to service a set of requests. 
+under load, or the ability of the port to service a set of requests.
 
 %prep
 %setup

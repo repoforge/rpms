@@ -63,4 +63,4 @@ portions of EXIF format JPEG image files, as produced by most digital cameras.
 - Finally wrote a nice man page for jhead
 - Using jhead 1.9 RPM from connectiva linux as starting point (left in the
   portugese tags)
-  
+

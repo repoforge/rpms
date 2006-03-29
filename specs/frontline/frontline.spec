@@ -33,7 +33,7 @@ BuildRequires: libjpeg-devel, libpng-devel, bzip2-devel, libxml2-devel, zlib-dev
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
-Frontline provides a Gtk+/GNOME based GUI frontend for 
+Frontline provides a Gtk+/GNOME based GUI frontend for
 autotrace.
 
 %prep

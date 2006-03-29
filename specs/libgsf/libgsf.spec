@@ -26,7 +26,7 @@ BuildRequires: gtk-doc >= 0.9
 %description
 The GNOME Structured file library.  At its root it is a replacement
 and generalization of libole2.  It can read & write MS OLE2 file, and
-Zip files. 
+Zip files.
 
 %package devel
 Summary: Development files for the GNOME Structured File format

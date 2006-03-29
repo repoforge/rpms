@@ -16,7 +16,7 @@ Source: http://www.feyrer.de/g4u/%{name}-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-#BuildRequires: 
+#BuildRequires:
 
 %description
 g4u ("ghost for unix") is a NetBSD-based bootfloppy/CD-ROM that allows

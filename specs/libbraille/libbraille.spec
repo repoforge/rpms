@@ -2,7 +2,7 @@
 # Authority: dries
 # Upstream: Sébastien Sablé <sable$users,sf,net>
 
-Summary: Easy access to Braille displays and terminals 
+Summary: Easy access to Braille displays and terminals
 Name: libbraille
 Version: 0.19.0
 Release: 1
@@ -30,7 +30,7 @@ The features contain:
 * easy to incorporate in any application wanting to use braille displays
 (simple shared library)
 * uses autoconf, automake and libtool for easier installation and portability
-* contains a virtual graphical terminal made with Gtk+ for developers testing 
+* contains a virtual graphical terminal made with Gtk+ for developers testing
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.

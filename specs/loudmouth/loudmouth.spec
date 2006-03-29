@@ -19,7 +19,7 @@ BuildRequires: gtk-doc >= 0.10, gcc-c++
 %description
 Loudmouth is a lightweight and easy-to-use C library for programming with
 the Jabber protocol. It's designed to be easy to get started with and yet
-extensible to let you do anything the Jabber protocol allows. 
+extensible to let you do anything the Jabber protocol allows.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.
@@ -42,7 +42,7 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall 
+%makeinstall
 
 %clean
 %{__rm} -rf %{buildroot}

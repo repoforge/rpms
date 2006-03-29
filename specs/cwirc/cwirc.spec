@@ -26,7 +26,7 @@ morse over virtual channels, and it can listen to multiple senders
 transmitting on the same channel. Morse code is keyed locally using a
 straight or iambic key connected to a serial port, or using the mouse
 buttons, and the sound is played through the soundcard, or through an
-external sounder. 
+external sounder.
 
 Note that CWirc doesn't do any morse decoding : it simply transmits and
 receives morse code timing events. A standard IRC user on the same IRC
@@ -88,5 +88,5 @@ code is transmitted. Only other CWirc users can receive what you send.
 * Sat Jun 19 2004 Dries Verachtert <dries@ulyssis.org> 1.8.3-1
 - Update to version 1.8.3.
 
-* Sun May 2 2004 Dries Verachtert <dries@ulyssis.org> 1.8.1-1 
+* Sun May 2 2004 Dries Verachtert <dries@ulyssis.org> 1.8.1-1
 - Initial package.

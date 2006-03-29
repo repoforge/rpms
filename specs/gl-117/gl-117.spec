@@ -29,9 +29,9 @@ BuildRequires: SDL-devel, SDL_mixer-devel, gcc-c++
 %{?rh9:BuildRequires: glut-devel, XFree86-devel}
 
 %description
-GL-117 is an action flight simulator. Enter the Eagle Squadron and succeed 
-in several challanging missions leading though different landscapes. Five 
-predefined levels of video quality and an amount of viewing ranges let you 
+GL-117 is an action flight simulator. Enter the Eagle Squadron and succeed
+in several challanging missions leading though different landscapes. Five
+predefined levels of video quality and an amount of viewing ranges let you
 perfectly adjust the game to the performance of your system.
 
 %prep

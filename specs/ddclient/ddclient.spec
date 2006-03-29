@@ -78,7 +78,7 @@ fi
 - Update to release 3.6.5.
 
 * Sun Dec 05 2004 Dries Verachtert <dries@ulyssis.org> - 3.6.4-2
-- Install additional files fix (Thanks to Thilo Pfennig 
+- Install additional files fix (Thanks to Thilo Pfennig
   and Jorge I Bartos)
 
 * Wed Nov 03 2004 Dries Verachtert <dries@ulyssis.org> - 3.6.4-1

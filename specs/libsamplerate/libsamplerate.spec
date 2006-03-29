@@ -39,7 +39,7 @@ documentation for %{name}. If you like to develop programs using
 
 %build
 %configure
-%{__make} %{?_smp_mflags} 
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}

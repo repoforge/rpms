@@ -20,7 +20,7 @@ BuildRequires: gcc-c++, automake, autoconf
 %description
 Colortail is a log colorizer that makes log checking easier. It works
 like tail but can read one or more configuration files. In which it's
-specified which patterns result in which colors. 
+specified which patterns result in which colors.
 
 %prep
 %setup

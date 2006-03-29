@@ -24,7 +24,7 @@ playlist.
 It is meant for those who have converted all of their CD's into mp3's
 and want to use their PC as a jukebox. Instead of turning on the
 radio, they just start winamp, enqueue their entire music directory
-and put the whole thing on random play. 
+and put the whole thing on random play.
 
 %prep
 %setup

@@ -40,12 +40,12 @@ Obsoletes: bluez-sdp <= %{version}-%{release}
 Bluetooth utilities (bluez-utils):
 
 hcitool, hciattach, hciconfig, hcid
-l2ping, start scripts (Red Hat), 
+l2ping, start scripts (Red Hat),
 pcmcia configuration files
 
 The BLUETOOTH trademarks are owned by Bluetooth SIG, Inc., U.S.A.
 
-%package cups 
+%package cups
 Summary: CUPS printer backend for Bluetooth printers
 Group: System Environment/Daemons
 Requires: bluez-libs >= %{version}

@@ -21,10 +21,10 @@ BuildRequires: gettext, gcc-c++, desktop-file-utils, gtk2 >= 2.4, mozilla-devel
 Requires: GConf2
 
 %description
-Liferea (Linux Feed Reader) is an RSS/RDF feed reader. 
-It's intended to be a clone of the Windows-only FeedReader. 
-It can be used to maintain a list of subscribed feeds, 
-browse through their items, and show their contents 
+Liferea (Linux Feed Reader) is an RSS/RDF feed reader.
+It's intended to be a clone of the Windows-only FeedReader.
+It can be used to maintain a list of subscribed feeds,
+browse through their items, and show their contents
 using GtkHTML.
 
 %prep

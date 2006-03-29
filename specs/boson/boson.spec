@@ -81,6 +81,6 @@ source "/etc/profile.d/qt.sh"
 * Fri Sep 09 2005 Dries Verachtert <dries@ulyssis.org> - 0.11-1
 - Updated to release 0.11.
 
-* Mon May 3 2004 Dries Verachtert <dries@ulyssis.org> 0.10-1 
+* Mon May 3 2004 Dries Verachtert <dries@ulyssis.org> 0.10-1
 - Initial package.
 

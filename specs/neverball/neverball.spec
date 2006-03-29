@@ -35,7 +35,7 @@ Tilt the floor to roll a ball through an obstacle course before time runs out.
 Neverball is part puzzle game, part action game, and entirely a test of skill.
 
 Also included is Neverputt, a hot-seat multiplayer miniature golf game using
-the physics and graphics of Neverball. 
+the physics and graphics of Neverball.
 
 
 %prep

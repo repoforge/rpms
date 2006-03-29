@@ -58,7 +58,7 @@ SPEEDSTEP_MODULE=""
 [ -r %{_sysconfdir}/sysconfig/cpufreqd ] && source %{_sysconfdir}/sysconfig/cpufreqd
 
 RETVAL=0
-prog="cpufreqd" 
+prog="cpufreqd"
 desc="CPU frequency scaling deamon"
 
 start() {

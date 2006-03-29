@@ -21,7 +21,7 @@ Botan is a library, written in C++. It's main purpose it to provide an easy
 to use, high level interface to various cryptographic primitives, such as
 block ciphers, hash functions, and public key algorithms. In addition, the
 intent is that Botan is as general purpose as possible, and for this reason,
-it supports many standards and de-facto standards. 
+it supports many standards and de-facto standards.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.

@@ -24,7 +24,7 @@ The command line utility allow you to:
 or the plain data for each tag (here is a sample)
 * print the Iptc metadata of Jpeg images
 * print the Jpeg comment of Jpeg images
-* set, add and delete Exif and Iptc metadata of Jpeg images 
+* set, add and delete Exif and Iptc metadata of Jpeg images
 * adjust the Exif timestamp (that's how it all started...)
 * rename Exif image files according to the Exif timestamp
 * extract, insert and delete Exif metadata, Iptc metadata and Jpeg comments

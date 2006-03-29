@@ -47,7 +47,7 @@ EOF
 ### Extremely basic mon.cf file
 
 ### global options
-cfbasedir   = %{_sysconfdir}/mon 
+cfbasedir   = %{_sysconfdir}/mon
 pidfile     = %{_localstatedir}/run/mon.pid
 statedir    = %{_localstatedir}/lib/mon/state.d
 logdir      = %{_localstatedir}/lib/mon/log.d
@@ -71,7 +71,7 @@ watch servers
 	    alert mail.alert root@localhost
 	    alertevery 1h
 	period wd {Sat-Sun}
-	    alert mail.alert root@localhost 
+	    alert mail.alert root@localhost
     service telnet
 	interval 10m
 	monitor telnet.monitor
@@ -79,20 +79,20 @@ watch servers
 	    alertevery 1h
 	    alertafter 2 30m
 	    alert mail.alert root@localhost
-   service http 
-        interval 4m 
-        monitor http.monitor 
-        allow_empty_group 
-        period wd {Sun-Sat} 
-            upalert mail.alert -S "web server is back up" mis 
-            alertevery 45m 
-    service smtp 
-        interval 10m 
-        monitor smtp.monitor 
-        period wd {Mon-Fri} hr {7am-10pm} 
-            alertevery 1h 
-            alertafter 2 30m 
-            alert qpage.alert mis-pagers@domain.com 
+   service http
+        interval 4m
+        monitor http.monitor
+        allow_empty_group
+        period wd {Sun-Sat}
+            upalert mail.alert -S "web server is back up" mis
+            alertevery 45m
+    service smtp
+        interval 10m
+        monitor smtp.monitor
+        period wd {Mon-Fri} hr {7am-10pm}
+            alertevery 1h
+            alertafter 2 30m
+            alert qpage.alert mis-pagers@domain.com
 
 ### See /usr/doc for the original example...
 EOF
@@ -239,7 +239,7 @@ fi
 %doc clients/{skymon,batch-example} etc/*.cf etc/example.m4 etc/example.monshowrc
 %config(noreplace) %{_sysconfdir}/mon/
 %config %{_initrddir}/*
-%{_mandir}/man?/* 
+%{_mandir}/man?/*
 %{_localstatedir}/www/cgi-bin/mon.cgi
 %{_bindir}/*
 %{_localstatedir}/lib/mon/

@@ -36,7 +36,7 @@ program streams ("PS"), including VOB format. The cutting engine is based on
 a frame server (demuxer), which guarantees exact and fast seeking to every
 frame. The GUI is based on libSDL. Video scenes are handled as thumbnails
 movable by drag and drop. Final videos can be build with or without
-re-encoding. Tools for shrinking and DVD authoring are also available. 
+re-encoding. Tools for shrinking and DVD authoring are also available.
 
 %prep
 %setup -n lve

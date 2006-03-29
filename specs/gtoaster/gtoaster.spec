@@ -141,12 +141,12 @@ EOF
 * Wed Sep 27 2000 Eric Sandeen <eric_sandeen@bigfoot.com>
 - gtoaster2000092620
 
-* Wed Aug 30 2000 Georges Seguin «okki@wanadoo.fr» 
+* Wed Aug 30 2000 Georges Seguin «okki@wanadoo.fr»
 - gtoaster 0.4.2000082921
 
-* Sun Aug 13 2000 Georges Seguin «okki@wanadoo.fr» 
+* Sun Aug 13 2000 Georges Seguin «okki@wanadoo.fr»
 - gtoaster 0.4.2000081318
 - RPM specification file has been improved
 
-* Thu May 26 2000 Georges Seguin «crow@planete.net» 
+* Thu May 26 2000 Georges Seguin «crow@planete.net»
 - First RPM

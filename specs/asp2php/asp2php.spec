@@ -38,7 +38,7 @@ Requires: %{name} = %{version}-%{release}
 Graphical frontend to asp2php.
 
 %prep
-%setup 
+%setup
 
 %{__cat} <<EOF >gtkasp2php.desktop
 [Desktop Entry]

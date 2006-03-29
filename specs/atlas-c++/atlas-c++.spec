@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, zlib-devel, bzip2-devel
 
 %description
-Atlas-C++ is the standard implementation of the WorldForge Atlas protocol. 
+Atlas-C++ is the standard implementation of the WorldForge Atlas protocol.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.

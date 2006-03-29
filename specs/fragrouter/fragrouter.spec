@@ -23,7 +23,7 @@ Detection" paper of January 1998.
 
 This program was written in the hopes that a more precise testing
 methodology might be applied to the area of network intrusion
-detection, which is still a black art at best. 
+detection, which is still a black art at best.
 
 Conceptually, fragrouter is just a one-way fragmenting router - IP
 packets get sent from the attacker to the fragrouter, which transforms

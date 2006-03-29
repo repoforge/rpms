@@ -40,7 +40,7 @@ Requires: kdelibs
 Kile is a user friendly TeX/LaTeX editor. The main features are:
 * Compile, convert and view your document with one click.
 * Templates and wizards makes starting a new document very little work.
-* Easy insertion of many standard tags and symbols and the option 
+* Easy insertion of many standard tags and symbols and the option
 to define (an arbitrary number of) user defined tags
 * Inverse and forward search: click in the DVI viewer and jump to the
 corresponding LaTeX line in the editor, or jump from the editor to the
@@ -53,7 +53,7 @@ corresponding section.
 Kile is een gebruiksvriendelijke TeX/LaTeX editor met ondersteuning voor:
 * Het compileren, transformeren en bekijken van uw document met 1 klik.
 * Een nieuw document starten is eenvoudig met templates en wizards.
-* U kan eenvoudig vele standaard tags en symbolen toevoegen en ook uw eigen 
+* U kan eenvoudig vele standaard tags en symbolen toevoegen en ook uw eigen
 tags toevoegen.
 * Zoeken: klikken in de DVI viewer opent de overeenkomstige LaTeX lijn in
 de editor en andersom.

@@ -1,11 +1,9 @@
 # $Id$
-
 # Authority: dag
-# Upstream: 
 
 %define real_version 20031202
 
-Summary: Standard netcat enhanced with twofish encryption. 
+Summary: Standard netcat enhanced with twofish encryption.
 Name: cryptcat
 Version: 0.0.20031202
 Release: 1

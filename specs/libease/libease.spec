@@ -13,12 +13,12 @@ URL: http://libease.sourceforge.net/
 Source: http://dl.sf.net/libease/libease-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: 
+#BuildRequires:
 
 %description
-libease is a shared library containing easing algorithms that can be used 
-for graphical effects or mathematical calculations. The main goal of this 
-project is to try and create a centralised library for easing effects within 
+libease is a shared library containing easing algorithms that can be used
+for graphical effects or mathematical calculations. The main goal of this
+project is to try and create a centralised library for easing effects within
 the window manager environment.
 
 %package devel

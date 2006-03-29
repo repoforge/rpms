@@ -179,12 +179,12 @@ EOF
 #rpm-src http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc1 newrpms
 
 ### Red Hat Linux 9
-%{!?rh9:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/9.0 newrpms 
-#rpm-src http://newrpms.sunsite.dk/apt/ redhat/en/i386/9.0 newrpms 
+%{!?rh9:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/9.0 newrpms
+#rpm-src http://newrpms.sunsite.dk/apt/ redhat/en/i386/9.0 newrpms
 
 ### Red Hat Linux 8.0
-%{!?rh8:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/8.0 newrpms 
-#rpm-src http://newrpms.sunsite.dk/apt/ redhat/en/i386/8.0 newrpms 
+%{!?rh8:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/8.0 newrpms
+#rpm-src http://newrpms.sunsite.dk/apt/ redhat/en/i386/8.0 newrpms
 EOF
 
 %{__cat} <<EOF >atrpms.list

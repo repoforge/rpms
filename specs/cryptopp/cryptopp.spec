@@ -17,12 +17,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Buildrequires: unzip, dos2unix, gcc-c++
 
 %description
-Crypto++ Library is a free C++ class library of cryptographic schemes. 
-Currently the library consists of the following, some of which are other 
+Crypto++ Library is a free C++ class library of cryptographic schemes.
+Currently the library consists of the following, some of which are other
 people's code, repackaged into classes.
 
-One purpose of Crypto++ is to act as a repository of public domain 
-(not copyrighted) source code. Although the library is copyrighted as a 
+One purpose of Crypto++ is to act as a repository of public domain
+(not copyrighted) source code. Although the library is copyrighted as a
 compilation, the individual files in it (except for a few exceptions listed
 in the license) are in the public domain.
 

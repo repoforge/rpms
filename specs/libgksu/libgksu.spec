@@ -16,8 +16,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gettext, bison, pkgconfig, glib2-devel, gtk-doc
 
 %description
-LibGKSu is a library from the gksu program that provides a simple API for 
-using su and sudo in programs that need to execute tasks as other users. 
+LibGKSu is a library from the gksu program that provides a simple API for
+using su and sudo in programs that need to execute tasks as other users.
 It provides X authentication facilities for running programs in a X session.
 
 %package devel

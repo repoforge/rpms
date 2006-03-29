@@ -16,14 +16,14 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, ncurses-devel
 
 %description
-COID is an object-oriented networking library with a tool that automatically 
-generates a lightweight communication layer directly from a C++ class 
-declaration. The coidgen tool automatically extracts designated classes 
-and methods from specified header files and generates a corresponding 
-client class and host dispatcher. The server library manages networked 
-and local connections and provides various services to running objects. 
-The communication layer establishes either remote connection through TCP 
-or direct (vtable) connection between the client and the server (if they 
+COID is an object-oriented networking library with a tool that automatically
+generates a lightweight communication layer directly from a C++ class
+declaration. The coidgen tool automatically extracts designated classes
+and methods from specified header files and generates a corresponding
+client class and host dispatcher. The server library manages networked
+and local connections and provides various services to running objects.
+The communication layer establishes either remote connection through TCP
+or direct (vtable) connection between the client and the server (if they
 reside in the same process).
 
 %prep

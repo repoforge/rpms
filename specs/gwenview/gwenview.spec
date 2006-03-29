@@ -37,9 +37,9 @@ BuildRequires: qt-devel, libexif-devel
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
-Gwenview can load and save all image formats supported by KDE and 
+Gwenview can load and save all image formats supported by KDE and
 also browse GIMP files (*.xcf). It can also show meta-information and zoom
-images to any size. 
+images to any size.
 
 %prep
 %setup

@@ -58,7 +58,7 @@ scrollkeeper-update -q
 %{_datadir}/gnome/apps/Applications/*.desktop
 %{_datadir}/omf/gramps/
 %{_datadir}/pixmaps/*
- 
+
 %changelog
 * Sun Feb 16 2003 Dag Wieers <dag@wieers.com> - 0.8.1-0
 - Initial package. (using DAR)

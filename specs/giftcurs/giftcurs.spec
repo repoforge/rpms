@@ -22,7 +22,7 @@ BuildRequires: gift-devel, ncurses-devel, gettext, glib2-devel, bison
 %description
 giFTcurs is a cursed frontend to the giFT daemon and has been described as
 “seriously slick”. It won’t work that well without giFT, which you should
-have already. 
+have already.
 
 %prep
 %setup -n %{real_name}-%{version}

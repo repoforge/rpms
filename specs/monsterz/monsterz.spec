@@ -6,7 +6,7 @@
 
 %define desktop_vendor rpmforge
 %{?dist: %{expand: %%define %dist 1}}
-                                                                                
+
 %{?el2:%define _without_freedesktop 1}
 %{?rh7:%define _without_freedesktop 1}
 
@@ -128,7 +128,7 @@ if [ -x %{_bindir}/gtk-update-icon-cache ]; then
 #    %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/pixmaps/ || :
     echo " " &> /dev/null ||:
 fi
-      
+
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING INSTALL README TODO

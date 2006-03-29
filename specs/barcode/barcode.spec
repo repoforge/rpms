@@ -14,12 +14,12 @@ Source: ftp://ftp.gnu.org/pub/gnu/barcode/barcode-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
-GNU-barcode is meant to solve most needs in barcode creation with a 
-conventional printer. It can create printouts for the conventional 
-product-tagging standards: UPC-A, UPC-E, EAN-13, EAN-8, ISBN, and 
-several others. Output is generated as either Postscript, Encapsulated 
-Postscript, or PCL (other back-ends may be added if needed). The 
-package is released as both a library and a command-line frontend, so 
+GNU-barcode is meant to solve most needs in barcode creation with a
+conventional printer. It can create printouts for the conventional
+product-tagging standards: UPC-A, UPC-E, EAN-13, EAN-8, ISBN, and
+several others. Output is generated as either Postscript, Encapsulated
+Postscript, or PCL (other back-ends may be added if needed). The
+package is released as both a library and a command-line frontend, so
 that you can include barcode-generation into your application.
 
 %package devel

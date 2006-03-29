@@ -16,9 +16,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: kdelibs-devel, gettext, gcc-c++, scons, rpm-devel
 
 %description
-KleanSweep allows you to reclaim disk space by finding unneeded files. It 
-can search for files based on several criteria: you can seek for empty 
-files, backup files, broken symbolic links, dead menu entries, duplicated 
+KleanSweep allows you to reclaim disk space by finding unneeded files. It
+can search for files based on several criteria: you can seek for empty
+files, backup files, broken symbolic links, dead menu entries, duplicated
 files, orphaned files (files not found in the RPM database), and more.
 
 %prep

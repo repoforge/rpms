@@ -62,7 +62,7 @@ Available rpmbuild rebuild options :
 
 
 %package devel-%{krel}
-Summary: Headers and symbol versions for hostap 
+Summary: Headers and symbol versions for hostap
 Group: Development/System
 Provides: %{name} = %{version}-%{release}
 %if %{post26}
@@ -128,7 +128,7 @@ echo "Post 2.6 build, devel package"
 # Build and install as many times as necessary to get all development files
 sh autogen.sh || true
 for type in %{types}
-do 
+do
     for target in %{targets}
     do
         %define develdir %{basedeveldir}/kernel${type}-%{krel}.${target}.rpm

@@ -22,7 +22,7 @@ BuildRequires: SDL-devel >= 1.2.0
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 
 %description
-gnuboy (all lowercase) is a portable program for emulating the 
+gnuboy (all lowercase) is a portable program for emulating the
 Nintendo GameBoy Color software platform.
 
 

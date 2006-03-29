@@ -38,7 +38,7 @@ like iptables. There are no incompatibility issues.
 # chkconfig: - 15 85
 # description: Ethernet Bridge filtering tables
 #
-# config: /etc/sysconfig/ebtables.filter 
+# config: /etc/sysconfig/ebtables.filter
 # config: /etc/sysconfig/ebtables.nat
 # config: /etc/sysconfig/ebtables.route
 

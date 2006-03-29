@@ -17,8 +17,8 @@ BuildRequires: paragui-devel, gcc-c++, SDL-devel, gettext, pkgconfig
 BuildRequires: SDL_image-devel, libsigc++-devel, SDL_mixer-devel
 
 %description
-Freelords is a rewrite of the well-known Warlords II. It mainly resembles 
-Warlords, but also extends the game, e.g. units have hit points and the 
+Freelords is a rewrite of the well-known Warlords II. It mainly resembles
+Warlords, but also extends the game, e.g. units have hit points and the
 save, and configuration files have an easy-to-read XML format.
 
 %prep

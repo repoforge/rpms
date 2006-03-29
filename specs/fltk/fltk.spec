@@ -34,7 +34,7 @@ BuildRequires: libjpeg-devel, libpng-devel
 %description
 FLTK (pronounced "fulltick") is a cross-platform C++ GUI toolkit for
 UNIX/Linux (X11), Microsoft Windows and MacOS X. FLTK provides modern GUI
-functionality and supports 3D graphics via OpenGL and its built-in GLUT 
+functionality and supports 3D graphics via OpenGL and its built-in GLUT
 emulation.
 
 %package devel

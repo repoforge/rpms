@@ -25,8 +25,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
-The IP Subnet Calculator is a tool that allows network administrators 
-to make calculations that will assist in subnetting a network.  It also 
+The IP Subnet Calculator is a tool that allows network administrators
+to make calculations that will assist in subnetting a network.  It also
 has a number of other useful functions.
 
 %prep
@@ -75,7 +75,7 @@ EOF
 
 %changelog
 * Mon Aug 25 2003 Dag Wieers <dag@wieers.com> - 0.4.3-1
-- Patch to build with gcc-3.3. 
+- Patch to build with gcc-3.3.
 
 * Thu Apr 24 2003 Dag Wieers <dag@wieers.com> - 0.4.3-0
 - Initial package. (using DAR)

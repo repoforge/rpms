@@ -36,7 +36,7 @@ using Cut, Copy and Paste (with unlimited Undo), mix tracks together, or
 apply effects to your recordings. It also has a built-in amplitude envelope
 editor, a customizable spectrogram mode and a frequency analysis window for
 audio analysis applications. Built-in effects include Bass Boost, Wahwah,
-and Noise Removal, and it also supports VST plug-in effects. 
+and Noise Removal, and it also supports VST plug-in effects.
 
 
 %prep

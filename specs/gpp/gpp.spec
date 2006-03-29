@@ -14,8 +14,8 @@ URL: http://www.fogman.de/gpp/
 Source: http://www.fogman.de/gpp/gpp-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libgnomeui-devel libgnomeprintui-devel libglade-devel 
-Requires: libgnomeui libgnomeprintui libglade 
+BuildRequires: libgnomeui-devel libgnomeprintui-devel libglade-devel
+Requires: libgnomeui libgnomeprintui libglade
 
 %description
 Gnome Photo Printer is intended for printing photos in an easy way.

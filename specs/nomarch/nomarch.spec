@@ -4,7 +4,7 @@
 ##Archs: i386 i686
 
 Name: nomarch
-Summary: GPLed Arc de-archiver 
+Summary: GPLed Arc de-archiver
 Version: 1.3
 Release: 1
 License: GPL

@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: kdelibs-devel, gcc-c++, gettext, scons
 
 %description
-A simple KDE network monitor that show rx/tx LEDs or numeric information about 
+A simple KDE network monitor that show rx/tx LEDs or numeric information about
 the transfer rate of any network interface in a system tray icon.
 
 %prep

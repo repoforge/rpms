@@ -45,7 +45,7 @@ program.
 
 %build
 %configure \
-	--disable-dependency-tracking 
+	--disable-dependency-tracking
 %{__make} %{?_smp_mflags}
 
 %install

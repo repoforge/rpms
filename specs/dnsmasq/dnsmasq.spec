@@ -103,7 +103,7 @@ case "$1" in
 	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
 	RETVAL=$?
 	;;
-  status) 
+  status)
 	status $prog
 	RETVAL=$?
 	;;

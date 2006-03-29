@@ -51,7 +51,7 @@ you will need to install %{name}-devel.
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* NEWS README
 %doc %{_mandir}/man1/otr_mackey.1*

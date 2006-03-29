@@ -40,7 +40,7 @@ BuildRequires: python-devel, python
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
-knoda is a database frontend for KDE. It is based on hk_classes. 
+knoda is a database frontend for KDE. It is based on hk_classes.
 Knoda allows you to:
 * define and delete databases
 * create, alter and delete tables and indices

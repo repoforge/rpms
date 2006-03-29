@@ -23,7 +23,7 @@ BuildRequires: libpng-devel
 dvdauthor is a program that will generate a DVD movie from a valid
 mpeg2 stream that should play when you put it in a DVD player.
 
-%prep 
+%prep
 %setup
 #%patch0
 #%patch1

@@ -25,7 +25,7 @@ rampart-like game (old arcade classic) set in space.
 Kajaani Kombat is playable with two to four players, over the internet or
 alternatively two players sharing one computer. It is also possible to play
 over the internet with, for example, 4 players of which two are sharing the
-same computer. Enjoy it with your friends! 
+same computer. Enjoy it with your friends!
 
 %prep
 %setup

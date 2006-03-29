@@ -17,7 +17,7 @@ Requires: gaim >= 0.82
 
 %description
 GAIM Assistant is a plugin to GAIM that will allow you to forward messages
-to a different screen name should you become away. It's quite handy for 
+to a different screen name should you become away. It's quite handy for
 those of you out there that use AIM over mobile devices as well as at home.
 
 %prep
@@ -34,7 +34,7 @@ those of you out there that use AIM over mobile devices as well as at home.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS CHANGELOG COPYING README TODO
 %{_libdir}/gaim/gaim-assistant.so

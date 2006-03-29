@@ -14,11 +14,11 @@ Source: http://thomas.apestaart.org/download/columbus/src/columbus-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
-Columbus automatically detects your location from a set of pre-defined 
-locations (identified by a known host, it's IP address and it's MAC 
-address) and symlinks specific system files accordingly.  It also hooks 
-this up to apmd and together with viking, a link monitor, it can 
-automatically re-sync your network each time your network cable has been 
+Columbus automatically detects your location from a set of pre-defined
+locations (identified by a known host, it's IP address and it's MAC
+address) and symlinks specific system files accordingly.  It also hooks
+this up to apmd and together with viking, a link monitor, it can
+automatically re-sync your network each time your network cable has been
 unplugged.
 
 %prep
@@ -38,7 +38,7 @@ unplugged.
 
 %post
 chkconfig --add columbus
-#if test -e /etc/sysconfig/apm-scripts/apmscript; then           
+#if test -e /etc/sysconfig/apm-scripts/apmscript; then
 #  cp /etc/sysconfig/apm-scripts/apmscript /etc/sysconfig/apm-scripts/apmscript.bak
 #fi
 #patch /etc/sysconfig/apm-scripts/apmscript < /usr/share/columbus/apmscript.patch

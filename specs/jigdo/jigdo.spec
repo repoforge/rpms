@@ -15,7 +15,7 @@ URL: http://atterer.net/jigdo/
 Source: http://atterer.net/jigdo/jigdo-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: w3c-libwww-devel, gtk2-devel, pkgconfig, db4-devel 
+BuildRequires: w3c-libwww-devel, gtk2-devel, pkgconfig, db4-devel
 BuildRequires: gcc-c++, openssl-devel, desktop-file-utils, wget
 Requires: wget
 %{?fc4:BuildRequires: compat-gcc-32, compat-gcc-32-c++}
@@ -52,7 +52,7 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{_datadir}/jigdo/COPYING 
+%{__rm} -f %{buildroot}%{_datadir}/jigdo/COPYING
 %find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/

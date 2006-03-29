@@ -43,4 +43,4 @@ cd src/
 
 %changelog
 * Tue Aug 05 2003 Dag Wieers <dag@wieers.com> - 0.5.5-0
-- Initial package. (using DAR) 
+- Initial package. (using DAR)

@@ -18,10 +18,10 @@ BuildRequires: libungif-devel, libjpeg-devel, libtiff-devel
 BuildRequires: desktop-file-utils, gettext
 
 %description
-mtPaint is a simple GTK+1/2 painting program designed for creating icons 
-and pixel-based artwork. It can edit indexed palette or 24 bit RGB images 
-and offers basic painting and palette manipulation tools. Its main file 
-format is PNG, although it can also handle JPEG, GIF, TIFF, BMP, XPM, and 
+mtPaint is a simple GTK+1/2 painting program designed for creating icons
+and pixel-based artwork. It can edit indexed palette or 24 bit RGB images
+and offers basic painting and palette manipulation tools. Its main file
+format is PNG, although it can also handle JPEG, GIF, TIFF, BMP, XPM, and
 XBM files.
 
 %prep

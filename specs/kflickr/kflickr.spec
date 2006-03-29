@@ -17,8 +17,8 @@ BuildRequires: gcc-c++, gettext, kdelibs-devel
 BuildRequires: automake, autoconf
 
 %description
-kFlickr is a standalone Flickr uploader for KDE. It allows for easy 
-upload with drag and drop. Common attributes can be edited before 
+kFlickr is a standalone Flickr uploader for KDE. It allows for easy
+upload with drag and drop. Common attributes can be edited before
 sending the photo. Multiple users are supported.
 
 %prep

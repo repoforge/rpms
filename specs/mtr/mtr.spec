@@ -267,8 +267,8 @@ autoconf
 
 * Thu Aug 19 1999 Ryan Weaver <ryanw@infohwy.com>
   [mtr-0.41-1]
-- Added afr's patch to allow disabeling of gtk without Robn's hack. 
-- Made report mode report the newly added extra resolution. 
+- Added afr's patch to allow disabeling of gtk without Robn's hack.
+- Made report mode report the newly added extra resolution.
 
 * Wed Aug 18 1999 Ryan Weaver <ryanw@infohwy.com>
 - renamed mtr-gtk to xmtr
@@ -294,12 +294,12 @@ autoconf
 * Mon Apr 12 1999 Ryan Weaver <ryanw@infohwy.com>
   [mtr-0.37-1]
 - v0.37
-- Added Bill Bogstad's "show the local host & time" patch. 
+- Added Bill Bogstad's "show the local host & time" patch.
 - Added R. Sparks' show-last-ping patch, submitted by Philip Kizer.
 
 - v0.36
 - Added Craigs change-the-interval-on-the-fly patch.
-- Added Moritz Barsnick's "do something sensible if host not found" 
+- Added Moritz Barsnick's "do something sensible if host not found"
   patch.
 - Some cleanup of both Craigs and Moritz' patches.
 

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream: 
+# Upstream:
 # Screenshot: http://kgeography.berlios.de/screen1.png
 # ScreenshotURL: http://kgeography.berlios.de/screenshots.html
 
@@ -40,7 +40,7 @@ BuildRequires: desktop-file-utils, flex
 %{!?fc4:BuildRequires: gcc-g77}
 
 %description
-KGeography is a geography learning tool. Right now it has three usage modes: 
+KGeography is a geography learning tool. Right now it has three usage modes:
 * Browse the maps clicking in a map division to see it's name
 * The game tells you a map division name and you have to click on it
 * The game shows you a map division flag and you have to guess its name
@@ -79,5 +79,5 @@ source /etc/profile.d/qt.sh
 * Sun Dec 26 2004 Dries Verachtert <dries@ulyssis.org> - 0.3-1
 - Updated to release 0.3.
 
-* Tue May 4 2004 Dries Verachtert <dries@ulyssis.org> - 0.1-1 
+* Tue May 4 2004 Dries Verachtert <dries@ulyssis.org> - 0.1-1
 - Initial package.

@@ -18,7 +18,7 @@ BuildRequires: python >= 2.0, pygtk2-devel, gnome-python2
 Requires: python >= 2.0, pygtk2, gnome-python2
 
 %description
-Gnome Bloxsom is a GUI based program to post entries to a Blosxom 
+Gnome Bloxsom is a GUI based program to post entries to a Blosxom
 based weblog.
 
 %prep

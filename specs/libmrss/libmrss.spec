@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: curl-devel, libnxml-devel
 
 %description
-mRss is a C library for parsing, writing and creating RSS files or streams. 
+mRss is a C library for parsing, writing and creating RSS files or streams.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.

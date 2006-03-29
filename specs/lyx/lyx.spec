@@ -98,10 +98,10 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 ### Make TeX understand where LyX-specific packages are
 texhash &>/dev/null
 
-### Before configuring lyx for the local system PATH needs to be imported 
-if [ -r /etc/profile ]; then 
+### Before configuring lyx for the local system PATH needs to be imported
+if [ -r /etc/profile ]; then
     . /etc/profile
-fi 
+fi
 
 ### Now configure LyX
 cd %{_datadir}/lyx/

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream: 
+# Upstream:
 
 Summary: Cryptographic library
 Name: nettle
@@ -32,7 +32,7 @@ stuff, and providing a simple but general interface to it. In particular,
 Nettle doesn't do algorithm selection. It doesn't do memory allocation. It
 doesn't do any I/O. The idea is that one can build several application- and
 context-specific interfaces on top of Nettle and share the code, testcases,
-benchmarks, documentation, etc. 
+benchmarks, documentation, etc.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.

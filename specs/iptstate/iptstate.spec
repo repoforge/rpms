@@ -19,7 +19,7 @@ BuildRequires: ncurses-devel, gcc-c++
 %description
 IP Tables State (iptstate) was originally written to
 impliment the "state top" feature of IP Filter.
-"State top" displays the states held by your stateful 
+"State top" displays the states held by your stateful
 firewall in a "top"-like manner.
 
 %prep

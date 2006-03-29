@@ -19,8 +19,8 @@ BuildRequires: gcc-c++, stlport-devel, pkgconfig
 %{!?_with_gamin:BuildRequires: fam-devel}
 
 %description
-Fam++ is a C++ wrapper for fam from sgi. Fam uses imon to inform it when 
-inodes change, the net effect being that applications can register interest 
+Fam++ is a C++ wrapper for fam from sgi. Fam uses imon to inform it when
+inodes change, the net effect being that applications can register interest
 in a file and be informed when that file changes.
 
 %package devel

@@ -46,7 +46,7 @@ fields in combined) and generates human-parsable output in realtime.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog LICENSE NEWS README TODO
 %doc %{_mandir}/man1/apachetop.1*

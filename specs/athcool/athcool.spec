@@ -21,7 +21,7 @@ ExclusiveArch: %{ix86} x86_64
 Athcool is a small utility, enabling/disabling Powersaving mode
 for AMD Athlon/Duron processors.
 
-Since enabling Powersaving mode, you can save power consumption, 
+Since enabling Powersaving mode, you can save power consumption,
 lower CPU temprature when CPU is idle.
 
 Powersaving works if your kernel support ACPI (APM not work),

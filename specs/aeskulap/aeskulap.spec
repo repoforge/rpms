@@ -19,13 +19,13 @@ BuildRequires: gcc-c++, gtkmm24-devel, libglademm24-devel, gconfmm26-devel
 BuildRequires: zlib-devel, libpng-devel, libtiff-devel, gettext
 
 %description
-Aeskulap is a medical image viewer. It is able to load a series of special 
-images stored in the DICOM format for review. It is able to query and fetch 
-DICOM images from archive nodes (also called PACS) over the network. The 
-goal of this project is to create a full open source replacement for 
-commercially available DICOM viewers. It is based on gtkmm, glademm, and 
-gconfmm and designed to run under Linux. Ports of these packages are 
-available for different platforms. It should be quite easy to port It to 
+Aeskulap is a medical image viewer. It is able to load a series of special
+images stored in the DICOM format for review. It is able to query and fetch
+DICOM images from archive nodes (also called PACS) over the network. The
+goal of this project is to create a full open source replacement for
+commercially available DICOM viewers. It is based on gtkmm, glademm, and
+gconfmm and designed to run under Linux. Ports of these packages are
+available for different platforms. It should be quite easy to port It to
 any platform were these packages are available.
 
 %prep

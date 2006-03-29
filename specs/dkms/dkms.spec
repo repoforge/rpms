@@ -14,7 +14,7 @@ Source: http://www.lerhaupt.com/dkms/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-#BuildRequires: 
+#BuildRequires:
 
 %description
 DKMS stands for Dynamic Kernel Module Support. It is designed to create
@@ -22,7 +22,7 @@ a framework where kernel dependant module source can reside so that it
 is very easy to rebuild modules as you upgrade kernels. This will allow
 Linux vendors to provide driver drops without having to wait for new
 kernel releases while also taking out the guesswork for customers
-attempting to recompile modules for new kernels. 
+attempting to recompile modules for new kernels.
 
 %prep
 %setup

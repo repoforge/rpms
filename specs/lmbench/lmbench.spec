@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-Summary: Suite of simple, portable benchmarks 
+Summary: Suite of simple, portable benchmarks
 Name: lmbench
 Version: 3.0
 Release: 0.a5

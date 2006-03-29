@@ -4,7 +4,7 @@
 
 %define po_version 0.32
 
-Summary: Display the current phase of the Moon as an applet for the gnome panel. 
+Summary: Display the current phase of the Moon as an applet for the gnome panel
 Name: glunarclock
 Version: 0.32.4
 Release: 1
@@ -22,7 +22,7 @@ Requires(post): scrollkeeper
 
 %description
 GNOME Lunar Clock displays the current phase of the Moon as an applet
-for the gnome panel. 
+for the gnome panel.
 
 %prep
 %setup

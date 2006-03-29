@@ -23,7 +23,7 @@ dates (e.g., 10 days ago).
 
 FTPL can be used for running legacy software with y2k bugs, testing software
 for year-2038 compliance, debugging time-related issues or run software which
-ceases to run outside a certain timeframe 
+ceases to run outside a certain timeframe
 
 %prep
 %setup

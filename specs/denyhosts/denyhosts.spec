@@ -23,10 +23,10 @@ BuildRequires: python-devel >= 2.3
 Requires: python >= 2.3
 
 %description
-DenyHosts is a script intended to help Linux system administrators thwart 
-ssh server attacks. DenyHosts scans an ssh server log, updates 
-/etc/hosts.deny after a configurable number of failed attempts from a 
-rogue host is determined, and alerts the administrator of any suspicious 
+DenyHosts is a script intended to help Linux system administrators thwart
+ssh server attacks. DenyHosts scans an ssh server log, updates
+/etc/hosts.deny after a configurable number of failed attempts from a
+rogue host is determined, and alerts the administrator of any suspicious
 logins.
 
 %prep

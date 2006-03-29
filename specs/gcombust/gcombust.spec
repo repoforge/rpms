@@ -30,7 +30,7 @@ hinting which directories and files to use.
 %{__perl} -pi -e 's|^static GtkWidget \*rip_path_entry|GtkWidget *rip_path_entry|g;' src/rip_audio.c
 
 %build
-%configure 
+%configure
 %{__make} %{?_smp_mflags}
 
 

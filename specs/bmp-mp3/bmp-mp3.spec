@@ -24,7 +24,7 @@ BuildRequires: id3lib-devel, gcc-c++
 %description
 This package contains an MP3 playback plugin for BMP (Beep Media Player),
 a media player that uses a skinned user interface based on Winamp 2.x skins,
-and is based on ("forked off") XMMS. 
+and is based on ("forked off") XMMS.
 
 
 %prep

@@ -46,7 +46,7 @@ Categories=GNOME;Application;Office;
 StartupNotify=true
 EOF
 
-%build 
+%build
 %configure \
 	--enable-nls
 %{__make} %{?_smp_mflags}

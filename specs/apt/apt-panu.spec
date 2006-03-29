@@ -190,7 +190,7 @@ touch %{buildroot}%{_sysconfdir}/apt/preferences \
 - Experimental version from Panu with repomd and multilib support.
 
 * Mon Jan 02 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.15cnc7-1
-- Added libtoolize and autoreconf fix for Fedora Core 5, thanks 
+- Added libtoolize and autoreconf fix for Fedora Core 5, thanks
   to Stephen Clement.
 - Updated to release 0.5.15cnc7.
 

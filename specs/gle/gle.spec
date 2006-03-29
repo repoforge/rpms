@@ -29,13 +29,13 @@ BuildRequires: gcc-c++, libpng-devel, libtiff-devel
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
-GLE (Graphics Layout Engine) is a high-quality graphics package for 
-scientists, combining a user-friendly scripting language with a full 
-range of facilities for producing publication-quality graphs, diagrams, 
-posters and slides. GLE provides LaTeX quality fonts together with a 
-flexible graphics module which allows the user to specify any feature of 
-a graph. Complex pictures can be drawn with user-defined subroutines and 
-simple looping structures. Current output formats include EPS, PS, PDF, 
+GLE (Graphics Layout Engine) is a high-quality graphics package for
+scientists, combining a user-friendly scripting language with a full
+range of facilities for producing publication-quality graphs, diagrams,
+posters and slides. GLE provides LaTeX quality fonts together with a
+flexible graphics module which allows the user to specify any feature of
+a graph. Complex pictures can be drawn with user-defined subroutines and
+simple looping structures. Current output formats include EPS, PS, PDF,
 JPEG, and PNG.
 
 %prep

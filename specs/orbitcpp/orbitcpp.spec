@@ -29,7 +29,7 @@ Primary Objectives
  * Allow C programmers to use C++ objects without having to deal with
    any of that 'horrible C++ syntax'
 
-In short, to C++ programmers, all ORBit objects look like C++ 
+In short, to C++ programmers, all ORBit objects look like C++
 objects, and to C programmers, all ORBit objects should look like C
  objects.
 

@@ -22,10 +22,10 @@ BuildArch: noarch
 %description
 The LDAP Browser/Editor allows users to view the items stored in a LDAP
 directory in an hierarchical manner. It also allows modifications of the
-LDAP contents if the user is logged in as the Directory Manager. 
+LDAP contents if the user is logged in as the Directory Manager.
 
 The LDAP objects are displayed in the form of a tree and all attributes
-of the entries in the form of a table. 
+of the entries in the form of a table.
 
 %prep
 %setup -n ldapbrowser

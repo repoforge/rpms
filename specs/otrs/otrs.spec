@@ -46,7 +46,7 @@ OTRS is an Open source Ticket Request System with many features to manage
 customer telephone calls and e-mails.
 
 This package includes the documentation for %{name}.
-  
+
 %prep
 %setup -n %{name}
 

@@ -38,13 +38,13 @@ Requires: kdelibs
 #BuildRequires:	boost-python-devel
 
 %description
-Kig is an application meant to allow high school 
+Kig is an application meant to allow high school
 students to interactively explore mathematical
 concepts, much like Dr.Geo, KGeo, KSeg and Cabri.
 
 %description -l nl
-Kig is een programma bedoeld om studenten op een 
-interactieve manier kennis te laten maken met 
+Kig is een programma bedoeld om studenten op een
+interactieve manier kennis te laten maken met
 wiskundige concepten.
 
 %prep

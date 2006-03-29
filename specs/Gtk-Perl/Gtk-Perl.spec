@@ -84,7 +84,7 @@ done
 %{__rm} -rf %{buildroot}
 
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc ChangeLog NOTES README VERSIONS
 %{_libdir}/perl5/vendor_perl/*/*-linux*/Gnome/

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: 
+# Upstream:
 
 Summary: Enlightenment database access library.
 Name: edb

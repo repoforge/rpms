@@ -21,8 +21,8 @@ BuildRequires: gcc-c++, kdelibs-devel, gettext
 %{?fc4:BuildRequires: compat-gcc-32-c++}
 
 %description
-kradview is a viewer for images obtained from various sources: X-ray, NMR, 
-and all DICOM-compatible imaging devices. Its aim is to be a complete 
+kradview is a viewer for images obtained from various sources: X-ray, NMR,
+and all DICOM-compatible imaging devices. Its aim is to be a complete
 platform for medical imaging and image processing.
 
 %prep

@@ -15,8 +15,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, openssl-devel
 
 %description
-C++ Sockets is a C++ wrapper for BSD-style sockets. Its features include 
-transparent SOCKS4 client support and asynchronous DNS. It implements the TCP, 
+C++ Sockets is a C++ wrapper for BSD-style sockets. Its features include
+transparent SOCKS4 client support and asynchronous DNS. It implements the TCP,
 UDP, ICMP, HTTP (GET, PUT, and POST), and HTTPS (using OpenSSL) protocols.
 
 %package devel

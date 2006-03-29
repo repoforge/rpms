@@ -20,7 +20,7 @@ BuildRequires: gcc-c++
 libdvdread provides a simple foundation for reading DVD video disks.
 It provides the functionality that is required to access many DVDs.
 It parses IFO files, reads NAV-blocks, and performs CSS authentication
-and descrambling. 
+and descrambling.
 
 
 %package devel
@@ -32,7 +32,7 @@ Requires: %{name} = %{version}
 libdvdread provides a simple foundation for reading DVD video disks.
 It provides the functionality that is required to access many DVDs.
 It parses IFO files, reads NAV-blocks, and performs CSS authentication
-and descrambling. 
+and descrambling.
 
 You will need to install these development files if you intend to rebuild
 programs that use this library.
@@ -87,7 +87,7 @@ programs that use this library.
 - Remove udffindfile patch, projects shouldn't need it.
 
 * Tue Apr 19 2005 Dries Verachtert <dries@ulyssis.org> 0.9.4-7
-- Added a patch provided by Ralf Ertzinger so certain symbols 
+- Added a patch provided by Ralf Ertzinger so certain symbols
   are exported again.
 
 * Fri Feb  4 2005 Matthias Saou <http://freshrpms.net/> 0.9.4-6

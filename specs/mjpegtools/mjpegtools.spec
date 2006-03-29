@@ -8,8 +8,11 @@
 %{?dist: %{expand: %%define %dist 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dist:%define _without_mmx 1}
-%{?fc5:  %define _without_mmx 1}
+#{!?dist:%define _without_mmx 1}
+#{?fc5:  %define _without_mmx 1}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
 
 %{?fc1:%define _without_alsa 1}
 %{?el3:%define _without_alsa 1}
@@ -22,8 +25,8 @@
 
 Summary: Tools for recording, editing, playing and encoding mpeg video
 Name: mjpegtools
-Version: 1.8.0
-Release: 3
+Version: 1.8.0.1
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/
@@ -32,17 +35,18 @@ Source1: http://dl.sf.net/mjpeg/jpeg-mmx-%{jpegmmx_version}.tar.gz
 Patch0: jpeg-mmx-0.1.6-gcc41.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, SDL-devel, libjpeg-devel, libpng-devel, gtk2-devel
-BuildRequires: libquicktime-devel, libdv-devel
+BuildRequires: libquicktime-devel, libdv-devel, SDL_gfx-devel
+%{?_with_modxorg:BuildRequires: libXt-devel, libXxf86dga-devel}
 # Some other -devel package surely forgot this as a dependency
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 # Required by some other package, it seems... (SDL-devel is a good guess)
 BuildRequires: arts-devel
-%ifarch %{ix86}
 # Optimisations are automatically turned on when detected
 # as we build on i686, this will be an i686 only package
+%ifarch %{ix86}
 %{!?_without_mmx:BuildArch: i686}
-BuildRequires: nasm
 %endif
+BuildRequires: nasm
 Requires(post): /sbin/install-info, /sbin/ldconfig
 Requires(preun): /sbin/install-info
 
@@ -132,6 +136,11 @@ fi
 
 
 %changelog
+* Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 1.8.0.1-1
+- Update to today's CVS to fix libquicktime 0.9.8 compatibility and ppc build.
+- Add missing modular X build requirements.
+- Add SDL_gfx support.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.8.0-3
 - Include jpeg-mmx patch to fix build on FC5.
 

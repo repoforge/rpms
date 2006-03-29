@@ -18,8 +18,8 @@ BuildRequires: SDL-devel >= 1.2.0, SDL_mixer-devel, SDL_image-devel
 BuildRequires: gcc-c++, desktop-file-utils
 
 %description
-CannonSmash is a 3D tabletennis game. The goal of this project is to 
-represent various strategy of tabletennis on computer game. 
+CannonSmash is a 3D tabletennis game. The goal of this project is to
+represent various strategy of tabletennis on computer game.
 This program requires OpenGL and SDL. If your machine doesn't have 3D
 accelaration video card, this program runs very slowly.
 

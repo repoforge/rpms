@@ -40,7 +40,7 @@ Group: Applications/Internet
 Requires: pygtk2 >= 2.6
 Requires: %{name} = %{version}-%{release}
 
-%description gui 
+%description gui
 This package contains the GUI versions of the BitTorrent file transfer tool.
 
 %package -n python-khashmir

@@ -22,7 +22,7 @@ high-level language firewalling rules into usable rules for IPChains,
 NetFilter, IPFilter, Cisco, and many others.
 
 %prep
-%setup 
+%setup
 
 %build
 %configure

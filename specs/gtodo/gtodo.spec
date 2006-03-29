@@ -6,7 +6,7 @@ Summary: Graphical todo list tool
 Name: gtodo
 Version: 0.14
 Release: 1
-License: GPL 
+License: GPL
 Group: Applications/Productivity
 URL: http://qball.no-ip.com/test/index.php?s=4
 

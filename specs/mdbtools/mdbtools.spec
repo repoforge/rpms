@@ -22,11 +22,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: unixODBC-devel >= 2.0.0, libgnomeui-devel >= 2.0, bison, flex
 BuildRequires: glib-devel, glib2-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
- 
+
 %description
 MDB Tools is a suite of libraries and program for accessing data stored
 in Microsoft Access databases.
- 
+
 %package devel
 Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
@@ -41,14 +41,14 @@ you will need to install %{name}-devel.
 Summary: gmdb2 graphical interface for MDB Tools
 Group: Applications/Databases
 Requires: %{name} = %{version}-%{release}
- 
+
 %description gui
 The mdbtools-gui package contains the gmdb2 graphical user interface
 for MDB Tools
 
 %prep
-%setup 
- 
+%setup
+
 %{__cat} <<EOF >gmdb2.desktop
 [Desktop Entry]
 Name=MDB database explorer
@@ -60,11 +60,11 @@ Type=Application
 Category=Application;Development;
 EOF
 
-%build 
+%build
 %configure \
 	--with-unixodbc="%{_prefix}"
 %{__make} %{?_smp_mflags}
- 
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
@@ -84,12 +84,12 @@ EOF
 
 %postun
 /sbin/ldconfig 2>/dev/null
- 
+
 %clean
 %{__rm} -rf %{buildroot}
- 
-%files 
-%defattr(-, root, root, 0755) 
+
+%files
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* INSTALL NEWS README TODO
 %doc doc/*.html doc/*.txt
 %doc %{_mandir}/man?/*
@@ -98,9 +98,9 @@ EOF
 %{_bindir}/unittest
 %{_bindir}/updrow
 %{_libdir}/*.so.*
- 
-%files devel 
-%defattr(-, root, root, 0755) 
+
+%files devel
+%defattr(-, root, root, 0755)
 %doc HACKING
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la

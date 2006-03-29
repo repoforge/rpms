@@ -22,9 +22,9 @@ BuildRequires: zlib-devel, python-devel, python
 #BuildRequires: perl-devel, ruby >= 1.4.5
 
 %description
-ClearSilver is a fast, powerful, and language-neutral HTML template system. 
-In both static content sites and dynamic HTML applications, it provides a 
-separation between presentation code and application logic which makes 
+ClearSilver is a fast, powerful, and language-neutral HTML template system.
+In both static content sites and dynamic HTML applications, it provides a
+separation between presentation code and application logic which makes
 working with your project easier.
 
 %package devel
@@ -107,7 +107,7 @@ export PYTHON=python
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc contrib/cs-mode.el CS_LICENSE INSTALL LICENSE README scripts/cs_lint.py
 %doc %{_mandir}/man3/*.3.*

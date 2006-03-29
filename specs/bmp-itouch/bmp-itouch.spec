@@ -25,7 +25,7 @@ volume control) keys on your Logitech iTouch keyboard. When the plugin is
 used you can use the keys regardless of the current input focus. The plugin
 won't work if some other application (eg. xscreensaver) has grabbed the
 keyboard.
-	
+
 %prep
 %setup
 

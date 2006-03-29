@@ -16,10 +16,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: kdelibs-devel, gcc-c++
 
 %description
-KABC Client is a command line tool that provides access to the KDE address 
-book, which is also used by applications like KAddressBook. It can take its 
-input from either the command line or through standard input, allowing its 
-use in Unix shell pipe and filter constructs. Input and output text is 
+KABC Client is a command line tool that provides access to the KDE address
+book, which is also used by applications like KAddressBook. It can take its
+input from either the command line or through standard input, allowing its
+use in Unix shell pipe and filter constructs. Input and output text is
 interpreted and formatted by filters.
 
 %prep

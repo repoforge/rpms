@@ -25,7 +25,7 @@ BuildRequires: libid3tag-devel, zlib-devel, gcc-c++, howl-devel
 Daapd scans a directory for music files (mp3, aac, uncompressed) and makes
 them available via the Apple proprietary protocol DAAP. DAAP clients can
 browse the directory and retrieve individual files, either by streaming or
-by downloading them. 
+by downloading them.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.

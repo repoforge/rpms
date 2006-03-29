@@ -30,8 +30,8 @@ BuildRequires: SDL_image-devel, libtool
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
-Guichan is a small, efficient C++ GUI library designed for games. It comes 
-with a standard set of widgets and can use several different backends for 
+Guichan is a small, efficient C++ GUI library designed for games. It comes
+with a standard set of widgets and can use several different backends for
 displaying graphics and grabbing user input.
 
 %package devel

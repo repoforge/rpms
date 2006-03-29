@@ -22,7 +22,7 @@ URL: http://moagg.sourceforge.net/
 Source: http://dl.sf.net/moagg/moagg-%{version}-src.tar.bz2
 #Source1: http://dl.sf.net/moagg/moagg-%{version}-data.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: expat-devel, SDL-devel, SDL_gfx-devel, SDL_mixer-devel 
+BuildRequires: expat-devel, SDL-devel, SDL_gfx-devel, SDL_mixer-devel
 BuildRequires: paragui-devel, freetype-devel, gcc-c++, SDL_image-devel
 BuildRequires: desktop-file-utils, zlib-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}

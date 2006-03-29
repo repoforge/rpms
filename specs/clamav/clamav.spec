@@ -282,7 +282,7 @@ fi
 
 %pre db
 /usr/sbin/groupadd -r clamav 2>/dev/null || :
-/usr/sbin/useradd -r -d /var/clamav -s /sbin/nologin -c "Clam Anti Virus Checker" -g clamav clamav 2>/dev/null || : 
+/usr/sbin/useradd -r -d /var/clamav -s /sbin/nologin -c "Clam Anti Virus Checker" -g clamav clamav 2>/dev/null || :
 
 %clean
 %{__rm} -rf %{buildroot}

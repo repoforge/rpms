@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 lphdisk is a linux reimplementation of the PHDISK.EXE (DOS) utility provided
 with most Phoenix NoteBIOS-equipped laptop models.  It will properly format a
 NoteBIOS hibernation partition (type A0) to make it usable by the BIOS for
-suspending to disk, avoiding the need to use buggy and outdated DOS utilities 
+suspending to disk, avoiding the need to use buggy and outdated DOS utilities
 to perform this configuration step.
 
 %prep

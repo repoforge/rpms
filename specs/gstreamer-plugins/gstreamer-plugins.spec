@@ -29,7 +29,7 @@ Requires: arts
 Requires: cdparanoia-libs >= alpha9.7
 BuildRequires: glib2-devel >= %_glib2
 BuildRequires: GConf2-devel
-BuildRequires: gstreamer-devel >= %{version} 
+BuildRequires: gstreamer-devel >= %{version}
 BuildRequires: arts-devel
 BuildRequires: audiofile-devel >= 0.2.1
 BuildRequires: cdparanoia-devel >= alpha9.7
@@ -78,7 +78,7 @@ GStreamer is a streaming-media framework, based on graphs of filters which
 operate on media data. Applications using this library can do anything
 from real-time sound processing to playing videos, and just about anything
 else media-related.  Its plugin-based architecture means that new data
-types or processing capabilities can be added simply by installing new   
+types or processing capabilities can be added simply by installing new
 plugins.
 
 This package contains the libraries and includes files necessary to develop
@@ -158,7 +158,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
 env DISPLAY= %{_bindir}/gst-register-%{majmin} >/dev/null 2>&1
 export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
 SCHEMAS="gstreamer-%{majmin}.schemas"
-for S in $SCHEMAS; do 
+for S in $SCHEMAS; do
   gconftool-2 --makefile-install-rule /etc/gconf/schemas/$S > /dev/null
 done
 

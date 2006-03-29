@@ -20,7 +20,7 @@ BuildRequires: autoconf >= 2.57, pkgconfig, gtk2-devel, glib2-devel
 BuildRequires: desktop-file-utils
 
 %description
-gtick is a small metronome application written for Linux and UN*X supporting 
+gtick is a small metronome application written for Linux and UN*X supporting
 different meters (2/4, 3/4, 4/4) and speeds ranging from 30 to 250 bpm. It
 utilizes GTK+ and OSS (ALSA compatible).
 

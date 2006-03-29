@@ -15,10 +15,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, pkgconfig, openssl-devel, libsigc++20-devel
 
 %description
-LibTorrent is a BitTorrent library written in C++ for Unix. It is designed to 
-avoid the redundant buffers and data copying that most (all?) other BitTorrent 
-implementations suffer from. The library is single-threaded and the client 
-handles the select loop. An interactive ncurses client is included as an 
+LibTorrent is a BitTorrent library written in C++ for Unix. It is designed to
+avoid the redundant buffers and data copying that most (all?) other BitTorrent
+implementations suffer from. The library is single-threaded and the client
+handles the select loop. An interactive ncurses client is included as an
 example.
 
 %package devel

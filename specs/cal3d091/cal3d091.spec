@@ -18,7 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, autoconf, automake, doxygen, docbook-utils
 
 %description
-Cal3D is a skeletal based 3d character animation library written in C++ in a 
+Cal3D is a skeletal based 3d character animation library written in C++ in a
 platform-/graphic API-independent way.
 
 %package devel

@@ -146,7 +146,7 @@ export CXXFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing"
              --with-locale-dir=%{_datadir}/locale
   make X11_LIB=/usr/X11R6/%{_lib}
 
-  # Absolute symlinks in the debug output break debuginfo, 
+  # Absolute symlinks in the debug output break debuginfo,
   # so use 'symlinks' to relativize and shorten; takes
   # two passes because 'symlinks' is stupid.
   symlinks -r -c . > /dev/null
@@ -319,7 +319,7 @@ mv $RPM_BUILD_ROOT/%{_includedir}/freetype $RPM_BUILD_ROOT/%{_includedir}/freety
 - Version 2.1.4
 - Relibtoolize to get deplibs right for x86_64
 - Use autoconf-2.5x for freetype-1.4 to fix libtool-1.5 compat problem (#91781)
-- Relativize absolute symlinks to fix the -debuginfo package 
+- Relativize absolute symlinks to fix the -debuginfo package
   (#83521, Mike Harris)
 
 * Wed Jun 04 2003 Elliot Lee <sopwith@redhat.com>
@@ -332,7 +332,7 @@ mv $RPM_BUILD_ROOT/%{_includedir}/freetype $RPM_BUILD_ROOT/%{_includedir}/freety
 - Add a memleak fix for the gzip backend from Federic Crozat
 
 * Thu Feb 13 2003 Elliot Lee <sopwith@redhat.com> 2.1.3-7
-- Run libtoolize/aclocal/autoconf so that libtool knows to generate shared libraries 
+- Run libtoolize/aclocal/autoconf so that libtool knows to generate shared libraries
   on ppc64.
 - Use _smp_mflags (for freetype 2.x only)
 
@@ -343,12 +343,12 @@ mv $RPM_BUILD_ROOT/%{_includedir}/freetype $RPM_BUILD_ROOT/%{_includedir}/freety
 - rebuilt
 
 * Mon Jan  6 2003 Owen Taylor <otaylor@redhat.com> 2.1.3-4
-- Make FreeType robust against corrupt fonts with recursive composite 
+- Make FreeType robust against corrupt fonts with recursive composite
   glyphs (#74782, James Antill)
 
 * Thu Jan  2 2003 Owen Taylor <otaylor@redhat.com> 2.1.3-3
 - Add a patch to implement FT_LOAD_TARGET_LIGHT
-- Fix up freetype-1.4-libtool.patch 
+- Fix up freetype-1.4-libtool.patch
 
 * Sat Dec 12 2002 Mike A. Harris <mharris@redhat.com> 2.1.3-2
 - Update to freetype 2.1.3
@@ -388,7 +388,7 @@ mv $RPM_BUILD_ROOT/%{_includedir}/freetype $RPM_BUILD_ROOT/%{_includedir}/freety
 - Add another bugfix for the postscript hinter
 
 * Mon Jul  8 2002 Owen Taylor <otaylor@redhat.com>
-- Add support for BlueFuzz private dict value, fixing rendering 
+- Add support for BlueFuzz private dict value, fixing rendering
   glitch for Luxi Mono.
 
 * Wed Jul  3 2002 Owen Taylor <otaylor@redhat.com>
@@ -545,7 +545,7 @@ mv $RPM_BUILD_ROOT/%{_includedir}/freetype $RPM_BUILD_ROOT/%{_includedir}/freety
 * Mon Mar 22 1999 Preston Brown <pbrown@redhat.com>
 - strip binaries
 
-* Sun Mar 21 1999 Cristian Gafton <gafton@redhat.com> 
+* Sun Mar 21 1999 Cristian Gafton <gafton@redhat.com>
 - auto rebuild in the new build environment (release 5)
 
 * Thu Mar 18 1999 Cristian Gafton <gafton@redhat.com>

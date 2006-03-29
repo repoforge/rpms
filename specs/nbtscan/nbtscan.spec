@@ -14,7 +14,7 @@ URL: http://www.inetcat.org/software/nbtscan.html
 Source: http://www.inetcat.org/software/nbtscan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: 
+#BuildRequires:
 
 %description
 NBTscan is a program for scanning IP networks for NetBIOS name

@@ -18,7 +18,7 @@ BuildRequires: flex, openssl-devel, byacc
 %description
 Monit is an utility for monitoring daemons or similar programs running on
 a Unix system. It will start specified programs if they are not running
-and restart programs not responding. 
+and restart programs not responding.
 
 %prep
 %setup

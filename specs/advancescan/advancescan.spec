@@ -25,7 +25,7 @@ AdvanceMESS and Raine. The main features are :
 * It's safe. On all the zip operations any file removed or overwritten is
   saved in the `rom_unknown' `sample_unknown' directories and kept for
   future uses. This will prevent any unwanted remove operation.
-* Generate differential rom sets. 
+* Generate differential rom sets.
 
 
 %prep

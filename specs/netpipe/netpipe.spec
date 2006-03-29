@@ -26,7 +26,7 @@ whether across a network or within an SMP system. Message sizes are chosen
 at regular intervals, and with slight perturbations, to provide a complete
 test of the communication system. Each data point involves many ping-pong
 tests to provide an accurate timing. Latencies are calculated by dividing
-the round trip time in half for small messages ( < 64 Bytes ). 
+the round trip time in half for small messages ( < 64 Bytes ).
 
 %prep
 %setup -n %{real_name}_%{version}

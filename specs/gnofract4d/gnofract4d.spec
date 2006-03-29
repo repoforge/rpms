@@ -24,7 +24,7 @@ Requires(post): scrollkeeper
 Gnofract 4D is a GNOME-based program to draw fractals. What sets it
 apart from other fractal programs (and makes it "4D") is the way that
 it treats the Mandelbrot and Julia sets as different views of the
-same four-dimensional fractal object. 
+same four-dimensional fractal object.
 
 %prep
 %setup

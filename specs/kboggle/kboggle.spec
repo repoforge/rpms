@@ -15,8 +15,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: kdelibs-devel, gettext, gcc-c++
 
 %description
-KBoggle is a Boggle game for KDE. Boggle is a game in which the players must 
-make words out of the letters found in a randomly generated grid of letters. 
+KBoggle is a Boggle game for KDE. Boggle is a game in which the players must
+make words out of the letters found in a randomly generated grid of letters.
 The goal is to find as many words as possible in the given time.
 
 %prep

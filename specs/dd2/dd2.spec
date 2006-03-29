@@ -25,7 +25,7 @@ BuildRequires: SDL-devel, SDL_mixer-devel, desktop-file-utils
 This is a little shoot'em up arcade game for one or two players. It aims to
 be an 'old school' arcade game with low resolution graphics, top-down scroll
 action, energy based gameplay and different weapons with several levels of
-power. 
+power.
 
 %prep
 %setup

@@ -188,7 +188,7 @@ if [ -z "$URL" ]; then URL="about:blank"; fi
 
 if [ $RUNNING -eq 0 -a $REMOTE -ne 1 ]; then
         exec $MOZ_PROGRAM -a $MOZ_APP_NAME $MOZARGS -remote "openURL($URL,$METHOD)"
-fi      
+fi
 
 exec $MOZ_PROGRAM -a $MOZ_APP_NAME $MOZARGS $URL
 EOF

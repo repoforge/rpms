@@ -16,9 +16,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: pkgconfig, gtk2-devel, glib2-devel, gcc-c++
 
 %description
-Libg3d is a glib-based library for loading and manipulating 3D objects. 
-It supports a wide range of file formats for 3D objects and textures. 
-Its plugin interface makes it easily expandable. The code has been split 
+Libg3d is a glib-based library for loading and manipulating 3D objects.
+It supports a wide range of file formats for 3D objects and textures.
+Its plugin interface makes it easily expandable. The code has been split
 off from the g3dviewer project, which now depends on this library.
 
 %package devel

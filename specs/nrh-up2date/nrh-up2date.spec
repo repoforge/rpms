@@ -30,14 +30,14 @@ Requires: perl, perl-Frontier-RPC, perl(XML::Parser), perl-BerkeleyDB, python, p
 %{?rh6:Requires: apache, python-xmlrpc, db3, perl-Digest-MD5}
 
 %description
-NRH-up2date is a collection of utilities to use with RedHat's up2date 
-client without relying on the RedHat network servers. NRH-up2date is 
+NRH-up2date is a collection of utilities to use with RedHat's up2date
+client without relying on the RedHat network servers. NRH-up2date is
 implemented to provide an up2date server for a basic user, that wishes
-to cache RHN content locally in his LAN (or central server), so each 
+to cache RHN content locally in his LAN (or central server), so each
 client in that site wouldn't have to connect to RedHat network for
-updates, waisting your bandwidth. 
+updates, waisting your bandwidth.
 
-%prep 
+%prep
 %setup
 
 %{__perl} -pi.orig -e '

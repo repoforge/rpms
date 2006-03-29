@@ -19,8 +19,8 @@ Requires(preun): /sbin/chkconfig, /sbin/service
 Requires(postun): /sbin/service
 
 %description
-memcached is a high-performance, distributed memory object caching system, 
-generic in nature, but intended for use in speeding up dynamic web 
+memcached is a high-performance, distributed memory object caching system,
+generic in nature, but intended for use in speeding up dynamic web
 applications by alleviating database load.
 
 

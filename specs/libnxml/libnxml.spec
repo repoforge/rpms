@@ -16,8 +16,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, curl-devel
 
 %description
-nXML is a C library for parsing, writing, and creating XML 1.0 and 1.1 
-files or streams. It supports UTF-8, UTF-16be and UTF-16le, UCS-4 (1234, 
+nXML is a C library for parsing, writing, and creating XML 1.0 and 1.1
+files or streams. It supports UTF-8, UTF-16be and UTF-16le, UCS-4 (1234,
 4321, 2143, 2312).
 
 %package devel

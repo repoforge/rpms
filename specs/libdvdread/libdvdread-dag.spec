@@ -18,7 +18,7 @@ Requires: libdvdcss >= 1.2.0
 libdvdread provides a simple foundation for reading DVD video disks.
 It provides the functionality that is required to access many DVDs.
 It parses IFO files, reads NAV-blocks, and performs CSS authentication
-and descrambling. 
+and descrambling.
 
 %package devel
 Summary: Development files from the libdvdread library
@@ -29,7 +29,7 @@ Requires: %{name} = %{version}
 libdvdread provides a simple foundation for reading DVD video disks.
 It provides the functionality that is required to access many DVDs.
 It parses IFO files, reads NAV-blocks, and performs CSS authentication
-and descrambling. 
+and descrambling.
 
 You will need to install these development files if you intend to rebuild
 programs that use this library.

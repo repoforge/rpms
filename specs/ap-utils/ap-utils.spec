@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Buildrequires: ncurses-devel, gettext
 
 %description
-Wireless Access Point Utilities for Unix is a set of utilities 
+Wireless Access Point Utilities for Unix is a set of utilities
 to configure and monitor Wireless Access Points using SNMP.
 
 %prep

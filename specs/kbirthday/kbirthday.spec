@@ -37,7 +37,7 @@ Source: http://www.gfai.de/~jaham/download/kbirthday-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, libart_lgpl-devel
-BuildRequires: arts-devel, gcc-c++, gettext 
+BuildRequires: arts-devel, gcc-c++, gettext
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel, desktop-file-utils
 %{!?_without_selinux:BuildRequires: libselinux-devel}
@@ -46,9 +46,9 @@ BuildRequires: kdelibs-devel, desktop-file-utils
 
 %description
 Kbirthday is a kicker-applet that reminds you of birthdays and anniversaries
-from your KDE addressbook. It uses the KDE addressbook API to access the 
-addressbook data. So you can use your favourite addressbook frontend to manage 
-your friends addresses, birthdays and anniversaries. 
+from your KDE addressbook. It uses the KDE addressbook API to access the
+addressbook data. So you can use your favourite addressbook frontend to manage
+your friends addresses, birthdays and anniversaries.
 
 %prep
 %setup

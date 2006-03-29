@@ -8,7 +8,7 @@ Summary: IRC bouncer with IPV6-support
 Name: muh
 Version: 2.1
 Release: 0.rc1
-License: GPL 
+License: GPL
 Group: Applications/Internet
 URL: http://mind.riot.org/muh/
 

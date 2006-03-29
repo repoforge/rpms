@@ -7,7 +7,7 @@ Name: mirrordir
 Version: 0.10.49
 Release: 1
 License: GPL
-Group: Applications/Internet 
+Group: Applications/Internet
 URL: ftp://ftp.obsidian.co.za/pub/mirrordir/
 
 Source: ftp://ftp.obsidian.co.za/pub/mirrordir/mirrordir-%{version}.tar.bz2
@@ -49,7 +49,7 @@ you will need to install %{name}-devel.
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING NEWS README THANKS TODO
 %doc %{_mandir}/man1/copydir.1*

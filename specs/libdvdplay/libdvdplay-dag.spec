@@ -19,18 +19,18 @@ Buildrequires: libdvdread-devel
 libdvdplay is a portable abstraction library for DVD menus support, it
 provides a simple API to access a DVD device as a block device.
 
-This package contains the libdbdplay runtime library.   
+This package contains the libdbdplay runtime library.
 
 %package devel
 Summary: Development tools for programs which will use the %{name} library
 Group: Development/Libraries
 Requires: %{name} = %{version}
- 
+
 %description devel
 The %{name}-devel package includes the header files and static libraries
 necessary for developing programs which will manipulate DVDs files using
 the %{name} library.
- 
+
 If you are going to develop programs which will manipulate DVDs, you
 should install %{name}-devel.  You'll also need to have the %{name}
 package installed.
@@ -53,7 +53,7 @@ package installed.
 %{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
- 
+
 %postun -p /sbin/ldconfig
 
 %files

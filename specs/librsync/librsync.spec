@@ -41,7 +41,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup 
+%setup
 
 %build
 %configure \
@@ -91,4 +91,4 @@ you will need to install %{name}-devel.
 - Cosmetic changes.
 
 * Wed May 05 2004 Wim Vandersmissen <wim@bofh.be> - 0.9.6-0
-- Initial package. 
+- Initial package.

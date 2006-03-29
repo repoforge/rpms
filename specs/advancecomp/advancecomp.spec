@@ -17,7 +17,7 @@ BuildRequires: gcc-c++, zlib-devel
 AdvanceCOMP is a set of recompression utilities for .PNG, .MNG and .ZIP files.
 The main features are :
 * Recompress ZIP, PNG and MNG files using the Deflate 7-Zip implementation.
-* Recompress MNG files using Delta and Move optimization. 
+* Recompress MNG files using Delta and Move optimization.
 
 
 %prep

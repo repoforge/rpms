@@ -14,17 +14,17 @@ Source: http://ftp.gnome.org/pub/GNOME/sources/ximian-connector/1.4/ximian-conne
 Patch: evolution-connector-dynamic-ldap.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: evolution-devel >= 1.4.5 
+BuildRequires: evolution-devel >= 1.4.5
 BuildRequires: openldap-devel, gettext, perl-XML-Parser
 Requires: evolution >= 1.4.5
 Obsoletes: ximian-connector <= %{version}
 Provides: ximian-connector = %{version}-%{release}
 
 %description
-With the Connector for Microsoft Exchange installed, Evolution functions as 
+With the Connector for Microsoft Exchange installed, Evolution functions as
 an Exchange client, enabling users to become full participants in company-wide
 group scheduling and other collaborative tasks. Linux and Solaris users can
-access public folders, Global Address Lists, email, calendar, task lists, 
+access public folders, Global Address Lists, email, calendar, task lists,
 and group scheduling information.
 
 %prep

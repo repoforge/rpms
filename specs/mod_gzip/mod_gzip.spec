@@ -22,12 +22,12 @@ Requires: apache = %{aversion}, mm >= 1.0
 
 %description
 mod_gzip is an Internet Content Acceleration module for the popular Apache
-Web Server. 
+Web Server.
 
 If standard IETF Content Encoding is what you need to accelerate your Apache
 Web Server, reduce your CPU load, and deliver 75-80 percent less data with
 no loss of content to your users at all times then look no farther. HSC's
-mod_gzip is all that you need. 
+mod_gzip is all that you need.
 
 mod_gzip uses the well established and publicly available IETF ( Internet
 Engineering Task Force ) Content-Encoding standards in conjunction with

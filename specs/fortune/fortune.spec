@@ -30,7 +30,7 @@ Source8: http://www.splitbrain.org/Fortunes/hitchhiker/fortune-hitchhiker.tgz
 Source9: http://www.splitbrain.org/Fortunes/simpsons/fortune-simpsons-chalkboard.tgz
 # The Elements of Programming Style - fortune cookie is a fortune cookie
 # file containing the 69 tips from the "Elements of Programming Style" by
-# Kernighan & Plaugher. 
+# Kernighan & Plaugher.
 Source10: http://db.ilug-bom.org.in/lug-authors/philip/misc/fortune-mod-prog-style.tar.gz
 # http://www.splitbrain.org/./Fortunes/fgump/
 Source11: http://www.splitbrain.org/Fortunes/fgump/fortune-fgump.tgz
@@ -46,7 +46,7 @@ Source15: fortune-mod-dune-quotes.2.0.1.tar.gz
 Source16: http://pinkemostar.com:8008/files/cbg-quotes.tar.gz
 # Simpsons Ralph Wiggum Quotes is a 'fortune' quote file with quotes from
 # the one, the only, Ralph Wiggum. This was inspired by the Quotable Homer
-# fortune file. 
+# fortune file.
 Source17: http://www.pinkemostar.com:8008/files/ralph-quotes.tar.gz
 # http://eol.init1.nl/linux/index.php   (southpark quotes)
 #Source18: http://eol.init1.nl/linux/SP-0.1.tar.gz
@@ -155,7 +155,7 @@ util/strfile ralph
 %{__cp} ralph ralph.dat %{buildroot}%{_datadir}/games/fortune/
 %if %{DisableOffensiveFortunes}
 # southpark.. quite sure it's part of 'offensive'
-%else 
+%else
 %{__cp} -p SP/SP SP/SP.dat %{buildroot}%{_datadir}/games/fortune/
 %endif
 %{__cp} -p fortune-homer/homer fortune-homer/homer.dat %{buildroot}%{_datadir}/games/fortune/
@@ -211,7 +211,7 @@ Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
 %description starwars
-Some fortune quotes from the Starwars movies, downloaded from 
+Some fortune quotes from the Starwars movies, downloaded from
 http://www.splitbrain.org/./Fortunes/starwars/
 
 %description -l nl starwars
@@ -224,7 +224,7 @@ Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
 %description futurama
-Some fortune quotes from Futurama, downloaded from 
+Some fortune quotes from Futurama, downloaded from
 http://www.netmeister.org/misc.html
 
 %description -l nl futurama
@@ -237,11 +237,11 @@ Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
 %description calvin
-Some fortune quotes from Calvin and Hobbes, downloaded from 
+Some fortune quotes from Calvin and Hobbes, downloaded from
 http://www.netmeister.org/misc.html
 
 %description -l nl calvin
-Enkele fortune quotes van Calvin en Hobbes, gedownload van 
+Enkele fortune quotes van Calvin en Hobbes, gedownload van
 http://www.netmeister.org/misc.html
 
 %package zippy2
@@ -250,11 +250,11 @@ Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
 %description zippy2
-Some fortune quotes from Zippy the Pinhead, downloaded from 
+Some fortune quotes from Zippy the Pinhead, downloaded from
 http://www.aboleo.net/software/misc/
 
 %description -l nl zippy2
-Enkele fortune quotes van Zippy the Pinhead, gedownload van 
+Enkele fortune quotes van Zippy the Pinhead, gedownload van
 http://www.aboleo.net/software/misc/
 
 %package tao
@@ -263,11 +263,11 @@ Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
 %description tao
-Some fortune quotes from Tao Te Ching, downloaded from 
+Some fortune quotes from Tao Te Ching, downloaded from
 http://www.aboleo.net/software/misc/
 
 %description -l nl tao
-Enkele fortune quotes van Tao Te Ching, gedownload van 
+Enkele fortune quotes van Tao Te Ching, gedownload van
 http://www.aboleo.net/software/misc/
 
 %package hitchhiker
@@ -276,11 +276,11 @@ Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
 %description hitchhiker
-Some fortune quotes from Hitchhikers Guide to the Galaxy, downloaded from 
+Some fortune quotes from Hitchhikers Guide to the Galaxy, downloaded from
 http://www.splitbrain.org/./Fortunes/hitchhiker/
 
 %description -l nl hitchhiker
-Enkele fortune quotes van Hitchhikers Guide to the Galaxy, gedownload van 
+Enkele fortune quotes van Hitchhikers Guide to the Galaxy, gedownload van
 http://www.splitbrain.org/./Fortunes/hitchhiker/
 
 %package simpsons-chalkboard
@@ -289,11 +289,11 @@ Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
 %description simpsons-chalkboard
-Some fortune quotes from Bart Simpson's chalkboard-writings, downloaded from 
+Some fortune quotes from Bart Simpson's chalkboard-writings, downloaded from
 http://www.splitbrain.org/./Fortunes/simpsons/
 
 %description -l nl simpsons-chalkboard
-Enkele fortune quotes van Bart Simpson's chalkboard-writings, gedownload van 
+Enkele fortune quotes van Bart Simpson's chalkboard-writings, gedownload van
 http://www.splitbrain.org/./Fortunes/simpsons/
 
 %package prog-style
@@ -302,13 +302,13 @@ Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
 %description prog-style
-Some fortune quotes from the 69 tips from the 
-"Elements of Programming Style" by Kernighan and Plaugher, downloaded from 
+Some fortune quotes from the 69 tips from the
+"Elements of Programming Style" by Kernighan and Plaugher, downloaded from
 http://freshmeat.net/redir/fortune-mod-prog-style/19342/url_tgz/fortune-mod-prog-style.tar.gz
 
 %description -l nl prog-style
-Enkele fortune quotes met de 69 tips van 
-"Elements of Programming Style" by Kernighan and Plaugher, gedownload van 
+Enkele fortune quotes met de 69 tips van
+"Elements of Programming Style" by Kernighan and Plaugher, gedownload van
 http://freshmeat.net/redir/fortune-mod-prog-style/19342/url_tgz/fortune-mod-prog-style.tar.gz
 
 %package fgump
@@ -317,11 +317,11 @@ Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
 %description fgump
-Some fortune quotes from the movie Forrest Gump, downloaded from 
+Some fortune quotes from the movie Forrest Gump, downloaded from
 http://www.splitbrain.org/./Fortunes/fgump/
 
 %description -l nl fgump
-Enkele fortune quotes van de film Forrest gump, gedownload van 
+Enkele fortune quotes van de film Forrest gump, gedownload van
 http://www.splitbrain.org/./Fortunes/fgump/
 
 %package discworld
@@ -330,13 +330,13 @@ Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
 %description discworld
-Some fortune quotes from the novels of Discworld written 
-by Terry Pratchett, downloaded from 
+Some fortune quotes from the novels of Discworld written
+by Terry Pratchett, downloaded from
 http://www.splitbrain.org/./Fortunes/discworld/
 
 %description -l nl discworld
-Enkele fortune quotes van de Discworld boeken geschreven 
-door Terry Pratchett, gedownload van 
+Enkele fortune quotes van de Discworld boeken geschreven
+door Terry Pratchett, gedownload van
 http://www.splitbrain.org/./Fortunes/discworld/
 
 %package xfiles
@@ -345,11 +345,11 @@ Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
 %description xfiles
-Some fortune quotes from The X-Files, downloaded from 
+Some fortune quotes from The X-Files, downloaded from
 http://www.splitbrain.org/./Fortunes/xfiles/
 
 %description -l nl xfiles
-Enkele fortune quotes van The X-Files, gedownload van 
+Enkele fortune quotes van The X-Files, gedownload van
 http://www.splitbrain.org/./Fortunes/xfiles/
 
 %package kernelcookies
@@ -358,11 +358,11 @@ Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
 %description kernelcookies
-Some fortune quotes from kernelcookies, downloaded from 
+Some fortune quotes from kernelcookies, downloaded from
 http://unattached.i-no.de/software-misc.shtml
 
 %description -l nl kernelcookies
-Enkele fortune quotes van kernelcookies, gedownload van 
+Enkele fortune quotes van kernelcookies, gedownload van
 http://unattached.i-no.de/software-misc.shtml
 
 %package dune
@@ -371,11 +371,11 @@ Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
 %description dune
-Some fortune quotes from Dune, downloaded from 
+Some fortune quotes from Dune, downloaded from
 http://dune.s31.pl/
 
 %description -l nl dune
-Enkele fortune quotes van Dune, gedownload van 
+Enkele fortune quotes van Dune, gedownload van
 http://dune.s31.pl/
 
 %package cbg
@@ -384,11 +384,11 @@ Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
 %description cbg
-Some fortune quotes from Comic Book Guy, downloaded from 
+Some fortune quotes from Comic Book Guy, downloaded from
 http://freshmeat.net/redir/cbg-quotes/16138/url_tgz/cbg-quotes.tar.gz
 
 %description -l nl cbg
-Enkele fortune quotes van Comic Book Guy, gedownload van 
+Enkele fortune quotes van Comic Book Guy, gedownload van
 http://freshmeat.net/redir/cbg-quotes/16138/url_tgz/cbg-quotes.tar.gz
 
 %package simpsons-ralph
@@ -397,11 +397,11 @@ Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
 %description simpsons-ralph
-Some fortune quotes from Simpsons Ralph Wiggum, downloaded from 
+Some fortune quotes from Simpsons Ralph Wiggum, downloaded from
 http://freshmeat.net/redir/ralph-quotes/16139/url_tgz/ralph-quotes.tar.gz
 
 %description -l nl simpsons-ralph
-Enkele fortune quotes van Simpsons Ralph Wiggum, gedownload van 
+Enkele fortune quotes van Simpsons Ralph Wiggum, gedownload van
 http://freshmeat.net/redir/ralph-quotes/16139/url_tgz/ralph-quotes.tar.gz
 
 %if %{DisableOffensiveFortunes}
@@ -413,11 +413,11 @@ Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
 %description southpark
-Some fortune quotes from Southpark, downloaded from 
+Some fortune quotes from Southpark, downloaded from
 http://eol.init1.nl/linux/index.php
 
 %description -l nl southpark
-Enkele fortune quotes van Southpark, gedownload van 
+Enkele fortune quotes van Southpark, gedownload van
 http://eol.init1.nl/linux/index.php
 %endif
 
@@ -427,11 +427,11 @@ Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
 %description simpsons-homer
-Some fortune quotes from Homer Simpson, downloaded from 
+Some fortune quotes from Homer Simpson, downloaded from
 http://freshmeat.net/redir/quotablehomerquotes/8751/url_homepage/homer.html
 
 %description -l nl simpsons-homer
-Enkele fortune quotes van Homer Simpson, gedownload van 
+Enkele fortune quotes van Homer Simpson, gedownload van
 http://freshmeat.net/redir/quotablehomerquotes/8751/url_homepage/homer.html
 
 %package osho
@@ -477,7 +477,7 @@ Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
 %description taow
-Fortune files with quotes from Sun Tzu's "The Art of War", made by Elie De 
+Fortune files with quotes from Sun Tzu's "The Art of War", made by Elie De
 Brauwer.
 http://www.de-brauwer.be/wiki/wikka.php?wakka=TheArtOfWar
 
@@ -701,15 +701,15 @@ All fortune packages will be installed if you install this package.
 - Added oneliners & powerpuff
 
 * Mon Jun 21 2004 Dries Verachtert <dries@ulyssis.org> 1.0-30
-- Update of the kernelcookies to version 8 with 80 new 
+- Update of the kernelcookies to version 8 with 80 new
   cookies from the 2.6.6 kernel tree.
-- Added a subpackage 'all' which requires all the other 
+- Added a subpackage 'all' which requires all the other
   subpackages.
 - Osho quotes updated.
 
 * Sat May 1 2004 Dries Verachtert <dries@ulyssis.org> 1.0-29
-- added quotes found on freshmeat: quotes from the spiritual 
-  guru Osho. 
+- added quotes found on freshmeat: quotes from the spiritual
+  guru Osho.
 
 * Thu Apr 22 2004 Dries Verachtert <dries@ulyssis.org> 1.0-28
 - spec cleanup, fix file ownerships
@@ -771,7 +771,7 @@ All fortune packages will be installed if you install this package.
 * Fri Jun 25 1999 Guido Flohr <gufl0000@stud.uni-sb.de>
 - create fortune manpage without buildroot before installation
 
-* Sun Mar 21 1999 Cristian Gafton <gafton@redhat.com> 
+* Sun Mar 21 1999 Cristian Gafton <gafton@redhat.com>
 - auto rebuild in the new build environment (release 9)
 
 * Thu Dec 17 1998 Michael Maher <mike@redhat.com>

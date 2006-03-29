@@ -17,7 +17,7 @@ BuildRequires: avifile-devel
 %description
 DVR is a tool to record movies on a computer equipped with a video
 capture card. It can record and compress data in real time, using
-recent codecs like DivX 5 or Indeo 5 for example. 
+recent codecs like DivX 5 or Indeo 5 for example.
 
 %prep
 %setup

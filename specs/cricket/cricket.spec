@@ -137,7 +137,7 @@ fi
 - Switched to a new, more standard layout.
 - Disable to automatic provides also, since the bundled Perl modules are in
   a non-standard place.
-- Added SNMP_Session; unfortunately, must hard-code package name due to 
+- Added SNMP_Session; unfortunately, must hard-code package name due to
   package errors with smokeping.
 
 * Fri Sep 24 2004 Wil Cooley <wcooley@nakedape.cc> - 1.0.4-3.nac.0.0

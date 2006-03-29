@@ -233,15 +233,15 @@ if [ ! -d /afs ]; then
 fi
 
 #echo
-#echo The AFS cache is configured for 100 MB. Edit the 
+#echo The AFS cache is configured for 100 MB. Edit the
 #echo %{_prefix}/vice/etc/cacheinfo file to change this before
 #echo running AFS for the first time. You should also
 #echo set your home cell in %{_prefix}/vice/etc/ThisCell.
 #echo
-#echo Also, you may want to edit /etc/pam.d/login and 
+#echo Also, you may want to edit /etc/pam.d/login and
 #echo possibly others there to get an AFS token on login.
 #echo Put the line:
-#echo 
+#echo
 #echo    auth	   sufficient   /lib/security/pam_afs.so try_first_pass ignore_root
 #echo
 #echo before the one for pwdb.

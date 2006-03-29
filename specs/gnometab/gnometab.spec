@@ -21,17 +21,17 @@ BuildRequires: libgnomecanvas-devel >= 2.0.0, libgnomeprintui-devel >= 1.0
 BuildRequires: libgnomeprint22-devel, libgnomeprintui22-devel
 
 %description
-Gnometab aims to be a WYSIWYG tablature editor.  
+Gnometab aims to be a WYSIWYG tablature editor.
 
-Gnometab's features include copying and pasting of tablature passages, a chord 
-library (which the user must fill with chords), professional-looking rhythm 
-notation (not perfect yet), the ability to create a variety of tablature symbols 
-specific to the guitar -- bends, slurs (hammer-ons, pull-offs, etc.), etc. -- 
-and, of course, clean-looking printed output, given any postscript-compatible 
+Gnometab's features include copying and pasting of tablature passages, a chord
+library (which the user must fill with chords), professional-looking rhythm
+notation (not perfect yet), the ability to create a variety of tablature symbols
+specific to the guitar -- bends, slurs (hammer-ons, pull-offs, etc.), etc. --
+and, of course, clean-looking printed output, given any postscript-compatible
 printer.
 
 Gnometab does not attempt to be "smart", i.e., it does not know how many
-beats are in a measure, nor does it know an E chord from an Am chord.  
+beats are in a measure, nor does it know an E chord from an Am chord.
 Instead, the emphasis has been on the appearance of the output.
 
 %prep

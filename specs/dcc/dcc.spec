@@ -130,8 +130,8 @@ export FFLAGS
     --with-uid=dcc \
     --with-cgibin=/var/www/dcc-bin \
     --with-rundir=/var/run/dcc \
-    --with-db-memory=32 
-			  
+    --with-db-memory=32
+
 perl -p -i -e "s:\".*\":\"%{_sbindir}\": if m/define\s+DCC_LIBEXECDIR/ ;" include/dcc_config.h
 
 make
@@ -379,7 +379,7 @@ rm -f %{buildroot}%{_sbindir}/updatedcc
 - major spec file rework
 
 * Wed May 28 2003 Lenny Cartier <lenny@mandrakesoft.com> 1.1.36-1mdk
-- from Michael A Nachbaur <mike@nachbaur.com> :	
+- from Michael A Nachbaur <mike@nachbaur.com> :
 	- Version 1.1.36
 	- Changed spec file to only install proc code
 	- Changed to accomodate Mandrake RPM requirements
@@ -389,45 +389,45 @@ rm -f %{buildroot}%{_sbindir}/updatedcc
 - Checkpoint against changes and patches
 - Add sub-package for the cgi-management tools
 - Delete  hooks to pre-build databases, this is now done in makeinstall.
-- 
+
 * Sat May 25 2002 Andrew Macpherson <andrew@oa5.com>
 - Version 1.1.2.a
 - Patch free version that assumes Vernon will make
 - changes to Man page autoconf, and homedir/Makefile.in
-- 
+
 * Sat May 25 2002 Andrew Macpherson <andrew@oa5.com>
 - Version 1.1.2
 - Big changes to the sources by Vernon Schryver mean that
 - patches can be largely eliminated.  Still need to
 - replace the man page installation code in the original
-- tar, but the reworked FreBSD autoconf code works for me, and 
+- tar, but the reworked FreBSD autoconf code works for me, and
 - the homedir/Makefile patch is a preview of code proposed
 - by Vernon for the next release
-- 
+
 - Moving installation location of 3 scripts into the doc
 - directory, as they are not really common-use.
-- 
+
 - Setup as client-only using the publicly-listed anonymous
 - servers, and include the OA5 servers as well, though they
 - are not for public listing
-- 
+
 - Do not start dccd/dccm on install
-- 
+
 - Moved messing with dcc_conf settings to pre-packaging vs install script
-- 
+
 - Created skeleton userdirs for per recipient logging
-- 
+
 - rpm -e , droped deleting databases in favour of removing
 - Home directory on complete remove vs upgrade
-- 
+
 * Mon May 15 2002 Andrew Macpherson <andrew@oa5.com>
 - Version 1.0.47
 - Basic setup, fighting the appalling autoconf (I hate that package)
 - to try to get things to install in sensible places
 - gave up and overwrote makefiles
-- 
-- Make an initial setup that will let people run 
-- stand alone.  Considered and rejected configuring to use 
+
+- Make an initial setup that will let people run
+- stand alone.  Considered and rejected configuring to use
 - anonymous clients against publicly available servers
-- 
+
 - Patch the rc script so that chkconfig will operate

@@ -36,7 +36,7 @@ filtering to ensure authenticity of packets even from member nodes.
 VPE can also be used to tunnel into some vpn network using a variety of
 protocols (https-proxy, tcp, udp, rawip, icmp-tunneling). It is, however,
 primarily designed to sit on the gateway machines of company branches to
-connect them together. 
+connect them together.
 
 %prep
 %setup

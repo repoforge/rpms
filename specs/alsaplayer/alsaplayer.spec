@@ -28,10 +28,10 @@ Operating Systems (mostly Unix variants). AlsaPlayer was written in the first
 place to excercise the new ALSA (Advanced Linux Sound Architecture) driver and
 library system.
 
-It has now developed into a versitile audio player with rich plugin system. 
-The  Input Plugins plugins include: OGG, MPEG, MAD, CDDA, MikMod, and 
-Audiofile. The Output Plugins include: ALSA, OSS and OSS/Lite, Esound, 
-Sparc (tested on UltraSparc), SGI, and JACK. There are also a few scope 
+It has now developed into a versitile audio player with rich plugin system.
+The  Input Plugins plugins include: OGG, MPEG, MAD, CDDA, MikMod, and
+Audiofile. The Output Plugins include: ALSA, OSS and OSS/Lite, Esound,
+Sparc (tested on UltraSparc), SGI, and JACK. There are also a few scope
 plugins included.
 
 Install AlsaPlayer if you want a versatile audio player.

@@ -16,11 +16,11 @@ BuildRequires: qt-devel, desktop-file-utils, gcc-c++
 Requires: /usr/bin/rpcclient
 
 %description
-LinScope is GUI, port scanner with enumerating windows network shares (SMB). 
-LinScope can save favorites list. You can add different ip address ranges 
+LinScope is GUI, port scanner with enumerating windows network shares (SMB).
+LinScope can save favorites list. You can add different ip address ranges
 and scan them apart or together. Linscope searches FTP and HTTP services too.
 It works in large networks and internet, where broadcast traffic is disabled
-(uses direct ip address and rpcclient from samba). User could manually assign 
+(uses direct ip address and rpcclient from samba). User could manually assign
 command s for opening shares, apart for ftp,http and smb.
 
 %prep

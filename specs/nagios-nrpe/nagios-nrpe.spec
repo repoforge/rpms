@@ -190,7 +190,7 @@ if [ $1 -eq 0 ]; then
 	/sbin/chkconfig --del nrpe
 fi
 
-%postun 
+%postun
 if [ $1 -eq 0 ]; then
 	/usr/sbin/userdel nagios || %logmsg "User \"nagios\" could not be deleted."
 	/usr/sbin/groupdel nagios || %logmsg "Group \"nagios\" could not be deleted."

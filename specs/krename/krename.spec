@@ -16,13 +16,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: kdelibs-devel, gcc-c++, gettext
 
 %description
-Krename is a very powerful batch file renamer for KDE3 which can rename a 
-list of files based on a set of expressions. It can copy/move the files to 
-another directory or simply rename the input files. Krename supports many 
-conversion operations, including conversion of a filename to lowercase or 
-to uppercase, conversion of the first letter of every word to uppercase, 
-adding numbers to filenames, finding and replacing parts of the filename, 
-and many more. It can also change access and modification dates, 
+Krename is a very powerful batch file renamer for KDE3 which can rename a
+list of files based on a set of expressions. It can copy/move the files to
+another directory or simply rename the input files. Krename supports many
+conversion operations, including conversion of a filename to lowercase or
+to uppercase, conversion of the first letter of every word to uppercase,
+adding numbers to filenames, finding and replacing parts of the filename,
+and many more. It can also change access and modification dates,
 permissions, and file ownership.
 
 %prep

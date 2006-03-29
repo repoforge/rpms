@@ -26,7 +26,7 @@ DBMix is a software DJ mixing system for digital audio. DBMix allows a user
 to output multiple simultaneous audio streams on a single sound device, and
 to transform/modify each stream independently.
 
-%prep 
+%prep
 %setup -n %{real_name}-%{version}
 
 ### FIXME: Fix the errno problem on RH9
@@ -57,7 +57,7 @@ to transform/modify each stream independently.
 %{_libdir}/libdbaudiolib.*
 %{plugindir}/*
 %exclude %{plugindir}/*.la
-     
+
 %changelog
 * Tue Feb 24 2004 Dag Wieers <dag@wieers.com> - 0.9.8-3
 - Renamed package to lowercase 'dbmix'.

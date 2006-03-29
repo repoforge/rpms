@@ -114,10 +114,10 @@ cd -
 #%{__install} -d -m0755 %{buildroot}%{_libdir}/hotplug/firmware/
 #%{__install} -m0644 ksrc/isl3877 ksrc/isl3890 %{buildroot}%{_libdir}/hotplug/firmware/
 
-%post 
+%post
 /sbin/depmod -ae %{kversion}-%{krelease} || :
 
-%postun 
+%postun
 /sbin/depmod -ae %{kversion}-%{krelease} || :
 
 %post -n kernel-smp-module-prism54

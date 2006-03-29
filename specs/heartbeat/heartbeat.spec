@@ -23,7 +23,7 @@ Group: Applications/Internet
 Requires: perl, perl-libwww-perl perl-Net-SSLeay, ipvsadm, perl-HTML-Parser, perl-ldap, perl-Mail-IMAPClient
 
 %package stonith
-Summary: Provides an interface to Shoot The Other Node In The Head 
+Summary: Provides an interface to Shoot The Other Node In The Head
 Group: Applications/Internet
 Requires: telnet
 
@@ -46,16 +46,16 @@ It implements the following kinds of heartbeats:
 	   (to be used for breaking ties in 2-node systems)
 
 %description ldirectord
-ldirectord is a stand-alone daemon to monitor services of real 
+ldirectord is a stand-alone daemon to monitor services of real
 for virtual services provided by The Linux Virtual Server
-(http://www.linuxvirtualserver.org/). It is simple to install 
+(http://www.linuxvirtualserver.org/). It is simple to install
 and works with the heartbeat code (http://www.linux-ha.org/).
 
 %description stonith
 The STONITH module (a.k.a. STOMITH) provides an extensible interface
 for remotely powering down a node in the cluster.  The idea is quite simple:
 When the software running on one machine wants to make sure another
-machine in the cluster is not using a resource, pull the plug on the other 
+machine in the cluster is not using a resource, pull the plug on the other
 machine. It's simple and reliable, albeit admittedly brutal.
 
 %description pils
@@ -213,11 +213,11 @@ then
   for d in etc/init.d/rc[235].d
   do
     rm -f $d/[SK]*[0-9]heartbeat
-    ln -s ../heartbeat $d/S${start}heartbeat 
+    ln -s ../heartbeat $d/S${start}heartbeat
     ln -s ../heartbeat $d/K${stop}heartbeat
   done
   FILLUP=/bin/fillup
-  if 
+  if
     $FILLUP -q -d = etc/rc.config var/adm/fillup-templates/rc.config.heartbeat
   then
     : $FILLUP returned OK
@@ -263,6 +263,6 @@ fi
 true
 
 %changelog
-* Son Jan 19 2003 Dag Wieers <dag@wieers.com> - 
+* Sun Jan 19 2003 Dag Wieers <dag@wieers.com>
 - Initial package. (using DAR)
 

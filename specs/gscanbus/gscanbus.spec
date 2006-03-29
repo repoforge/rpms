@@ -18,11 +18,11 @@ BuildRequires: libraw1394-devel, gtk+-devel, desktop-file-utils
 %{?fc4:BuildRequires: compat-gcc-32}
 
 %description
-Gscanbus is a little tool for testing and visualising the firewire IEEE-1394 
-bus. Using the Linux ieee1394 subsystem, it displays a graphical tree of all 
-connected firewire devices and allows basic control of camcorders and other 
-devices. It is designed as development and debugging tool and can be used 
-for testing the basic firewire setup of a Linux machine. 
+Gscanbus is a little tool for testing and visualising the firewire IEEE-1394
+bus. Using the Linux ieee1394 subsystem, it displays a graphical tree of all
+connected firewire devices and allows basic control of camcorders and other
+devices. It is designed as development and debugging tool and can be used
+for testing the basic firewire setup of a Linux machine.
 
 %prep
 %setup

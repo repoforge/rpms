@@ -16,11 +16,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: kdelibs-devel, gcc-c++, gettext, flex
 
 %description
-Kalva is a KDE video recorder that is simple to use and easy to setup. You 
-can use it to schedule a single movie recording by choosing the date from a 
-calendar. A serial recording may be scheduled by choosing the days of the 
-week. You can store recording options in various profiles for different 
-hardware and quality levels. Kalva can import channellists from programs 
+Kalva is a KDE video recorder that is simple to use and easy to setup. You
+can use it to schedule a single movie recording by choosing the date from a
+calendar. A serial recording may be scheduled by choosing the days of the
+week. You can store recording options in various profiles for different
+hardware and quality levels. Kalva can import channellists from programs
 like xawtv or xawtv4, and can generate a new one using scantv.
 
 %package devel

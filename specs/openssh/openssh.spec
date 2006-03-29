@@ -542,7 +542,7 @@ fi
 - pull patch from CVS to avoid printing error messages when some of the
   default keys aren't available when running ssh-add
 - refresh to current revisions of Simon's patches
- 
+
 * Thu Mar 21 2002 Nalin Dahyabhai <nalin@redhat.com> 3.1p1-2gss
 - reintroduce Simon's gssapi patches
 - add buildprereq for autoconf253, which is needed to regenerate configure
@@ -688,7 +688,7 @@ fi
 
 * Sun Apr  8 2001 Preston Brown <pbrown@redhat.com>
 - remove explicit openssl requirement, fixes builddistro issue
-- make initscript stop() function wait until sshd really dead to avoid 
+- make initscript stop() function wait until sshd really dead to avoid
   races in condrestart
 
 * Mon Apr  2 2001 Nalin Dahyabhai <nalin@redhat.com>

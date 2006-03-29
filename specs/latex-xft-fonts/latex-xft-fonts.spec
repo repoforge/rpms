@@ -13,12 +13,12 @@ BuildArch: noarch
 Group: User Interface/X
 Summary: xft-compatible versions of some LaTeX fonts
 Prereq: fontconfig chkfontpath
- 
+
 %description
-Latex-xft-fonts contains xft-compatible versions of 
-LaTeX fonts for use with visual math symbol display 
-in LyX. You will need to install this package if 
-your version of Qt is using Xft for displaying 
+Latex-xft-fonts contains xft-compatible versions of
+LaTeX fonts for use with visual math symbol display
+in LyX. You will need to install this package if
+your version of Qt is using Xft for displaying
 fonts.
 
 %prep
@@ -48,7 +48,7 @@ fc-cache
 
 %changelog
 * Fri Jun 04 2004  Bert de Bruijn  <bert@debruijn.be>
-- some minor fixes (macro's, other standards) for inclusion 
+- some minor fixes (macro's, other standards) for inclusion
   in rpm repositories.
 
 * Fri Dec 20 2002  John Levon  <levon@movementarian.org>

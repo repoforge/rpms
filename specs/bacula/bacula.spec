@@ -77,12 +77,12 @@ BuildRequires: mysql-devel >= 3.23
 %description
 Bacula - It comes by night and sucks the vital essence from your computers.
 
-Bacula is a set of computer programs that permit you (or the system 
-administrator) to manage backup, recovery, and verification of computer 
-data across a network of computers of different kinds. In technical terms, 
-it is a network client/server based backup program. Bacula is relatively 
-easy to use and efficient, while offering many advanced storage management 
-features that make it easy to find and recover lost or damaged files. 
+Bacula is a set of computer programs that permit you (or the system
+administrator) to manage backup, recovery, and verification of computer
+data across a network of computers of different kinds. In technical terms,
+it is a network client/server based backup program. Bacula is relatively
+easy to use and efficient, while offering many advanced storage management
+features that make it easy to find and recover lost or damaged files.
 Bacula source code has been released under the GPL version 2 license.
 
 %if %{mysql}
@@ -138,12 +138,12 @@ Requires: mysql-client >= 3.23
 
 Bacula - It comes by night and sucks the vital essence from your computers.
 
-Bacula is a set of computer programs that permit you (or the system 
-administrator) to manage backup, recovery, and verification of computer 
-data across a network of computers of different kinds. In technical terms, 
-it is a network client/server based backup program. Bacula is relatively 
-easy to use and efficient, while offering many advanced storage management 
-features that make it easy to find and recover lost or damaged files. 
+Bacula is a set of computer programs that permit you (or the system
+administrator) to manage backup, recovery, and verification of computer
+data across a network of computers of different kinds. In technical terms,
+it is a network client/server based backup program. Bacula is relatively
+easy to use and efficient, while offering many advanced storage management
+features that make it easy to find and recover lost or damaged files.
 Bacula source code has been released under the GPL version 2 license.
 
 %if %{mysql}
@@ -171,15 +171,15 @@ Requires: libtermcap
 %description client
 Bacula - It comes by night and sucks the vital essence from your computers.
 
-Bacula is a set of computer programs that permit you (or the system 
-administrator) to manage backup, recovery, and verification of computer 
-data across a network of computers of different kinds. In technical terms, 
-it is a network client/server based backup program. Bacula is relatively 
-easy to use and efficient, while offering many advanced storage management 
-features that make it easy to find and recover lost or damaged files. 
+Bacula is a set of computer programs that permit you (or the system
+administrator) to manage backup, recovery, and verification of computer
+data across a network of computers of different kinds. In technical terms,
+it is a network client/server based backup program. Bacula is relatively
+easy to use and efficient, while offering many advanced storage management
+features that make it easy to find and recover lost or damaged files.
 Bacula source code has been released under the GPL version 2 license.
 
-This is the File daemon (Client) only package. It includes the command line 
+This is the File daemon (Client) only package. It includes the command line
 console program.
 
 %package rescue
@@ -191,25 +191,25 @@ Requires: coreutils, util-linux, libc5, bacula-fd
 %description rescue
 Bacula - It comes by night and sucks the vital essence from your computers.
 
-Bacula is a set of computer programs that permit you (or the system 
-administrator) to manage backup, recovery, and verification of computer 
-data across a network of computers of different kinds. In technical terms, 
-it is a network client/server based backup program. Bacula is relatively 
-easy to use and efficient, while offering many advanced storage management 
-features that make it easy to find and recover lost or damaged files. 
+Bacula is a set of computer programs that permit you (or the system
+administrator) to manage backup, recovery, and verification of computer
+data across a network of computers of different kinds. In technical terms,
+it is a network client/server based backup program. Bacula is relatively
+easy to use and efficient, while offering many advanced storage management
+features that make it easy to find and recover lost or damaged files.
 Bacula source code has been released under the GPL version 2 license.
 
-This package installs scripts for disaster recovery and builds rescue 
+This package installs scripts for disaster recovery and builds rescue
 floppy disks for bare metal recovery. This package includes tomsrtbt
 (http://www.toms.net/rb/, by Tom Oehser, Tom@Toms.NET) to provide a tool
 to build a boot floppy disk.
 
-You need to have the bacula-sqlite, bacula-mysql, bacula-postgresql or 
-bacula-client package for your platform installed and configured before 
+You need to have the bacula-sqlite, bacula-mysql, bacula-postgresql or
+bacula-client package for your platform installed and configured before
 installing this package.
 
 To create a boot disk run "./getdiskinfo" from the /etc/bacula/rescue
-directory (this is done when the package is first installed), 
+directory (this is done when the package is first installed),
 then run "./install.s" from the /etc/bacula/rescue/tomsrtbt/
 directory. To make the bacula rescue disk run
 "./make_rescue_disk --copy-static-bacula --copy-etc-files"
@@ -234,12 +234,12 @@ Requires: GConf
 %description gconsole
 Bacula - It comes by night and sucks the vital essence from your computers.
 
-Bacula is a set of computer programs that permit you (or the system 
-administrator) to manage backup, recovery, and verification of computer 
-data across a network of computers of different kinds. In technical terms, 
-it is a network client/server based backup program. Bacula is relatively 
-easy to use and efficient, while offering many advanced storage management 
-features that make it easy to find and recover lost or damaged files. 
+Bacula is a set of computer programs that permit you (or the system
+administrator) to manage backup, recovery, and verification of computer
+data across a network of computers of different kinds. In technical terms,
+it is a network client/server based backup program. Bacula is relatively
+easy to use and efficient, while offering many advanced storage management
+features that make it easy to find and recover lost or damaged files.
 Bacula source code has been released under the GPL version 2 license.
 
 This is the Gnome Console package. It is an add-on to the client package.

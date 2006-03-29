@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: 
+# Upstream:
 
 Summary: Quick network topology scanner
 Name: nttlscan
@@ -13,7 +13,7 @@ URL: http://www.honeyd.org/
 Source: http://www.honeyd.org/data/nttlscan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpcap, libdnet-devel, libevent-devel 
+BuildRequires: libpcap, libdnet-devel, libevent-devel
 
 %description
 Nttlscan is a quick network topology scanner and functions as a highly

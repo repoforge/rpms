@@ -31,10 +31,10 @@ BuildRequires: gcc-c++, fltk-devel
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
-OpenEXR is a high dynamic range (HDR) image file format developed by 
-Industrial Light & Magic for use in computer imaging applications. It 
-includes support for 16-bit floating-point pixels (compatible with 
-NVIDIA's Cg shader language "half" datatype), several lossless compression 
+OpenEXR is a high dynamic range (HDR) image file format developed by
+Industrial Light & Magic for use in computer imaging applications. It
+includes support for 16-bit floating-point pixels (compatible with
+NVIDIA's Cg shader language "half" datatype), several lossless compression
 algorithms, and extensible image metadata attributes.
 
 %package devel

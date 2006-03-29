@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: 
+# Upstream:
 
 %define real_name lice
 %define real_version 420pre7
@@ -17,7 +17,7 @@ Source: http://lice.codehack.com/files/lice/scripts/%{real_name}%{real_version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-#BuildRequires: 
+#BuildRequires:
 Requires: epic
 
 %description
@@ -28,7 +28,7 @@ continues to be used by many people in different countries.
 It is distributed under the GNU Public License.
 
 %prep
-%setup -c 
+%setup -c
 
 %build
 

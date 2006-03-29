@@ -22,7 +22,7 @@ BuildRequires: libpcap, ncurses-devel
 dnstop is a libpcap application (ala tcpdump) that displays various
 tables of DNS traffic on your network, including tables of source and
 destination IP addresses, query types, top level domains and second
-level domains. 
+level domains.
 
 %prep
 %setup -c
@@ -34,7 +34,7 @@ level domains.
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 dnstop %{buildroot}%{_sbindir}/dnstop
 %{__install} -Dp -m0644 dnstop.8 %{buildroot}%{_mandir}/man8/dnstop.8
-						
+
 %clean
 %{__rm} -rf %{buildroot}
 

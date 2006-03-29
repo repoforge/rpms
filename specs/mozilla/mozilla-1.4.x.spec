@@ -262,7 +262,7 @@ export MOZILLA_OFFICIAL="1"
 
 %install
 %{__rm} -rf %{buildroot}
-export BUILD_OFFICIAL="1" 
+export BUILD_OFFICIAL="1"
 export MOZILLA_OFFICIAL="1"
 %makeinstall \
 	includedir="%{buildroot}%{_includedir}/%{name}-%{real_version}"

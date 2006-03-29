@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream: 
+# Upstream:
 # Screenshot: http://krusader.sourceforge.net/scr/thumbs/krusader-150cvs_01.png
 # ScreenshotURL: http://krusader.sourceforge.net/scr.php
 
@@ -55,7 +55,7 @@ comparisons, powerful batch renaming and much much more.
  It supports the following archive formats: tar, zip, bzip2, gzip, rar, ace,
 arj and rpm and can handle other KIOSlaves such as smb:// or fish://
  It is (almost) completely customizable, very user friendly, fast and looks
-great on your desktop! :-) 
+great on your desktop! :-)
 
 %prep
 %setup

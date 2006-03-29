@@ -264,7 +264,7 @@ export NATIVE_THEME_SUPPORT="1"
 
 %install
 %{__rm} -rf %{buildroot}
-export BUILD_OFFICIAL="1" 
+export BUILD_OFFICIAL="1"
 export MOZILLA_OFFICIAL="1"
 export NATIVE_THEME_SUPPORT="1"
 %makeinstall \

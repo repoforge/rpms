@@ -16,10 +16,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 
 %description
-GNU libsigsegv is a library for handling page faults. A page fault occurs 
-when a program tries to access a region of memory that is currently not 
-available. Catching and handling a page fault is a useful technique for 
-implementing garbage collectors, stack overflow handlers, persistent 
+GNU libsigsegv is a library for handling page faults. A page fault occurs
+when a program tries to access a region of memory that is currently not
+available. Catching and handling a page fault is a useful technique for
+implementing garbage collectors, stack overflow handlers, persistent
 databases, and distributed shared memory.
 
 %package devel

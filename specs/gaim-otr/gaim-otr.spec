@@ -19,14 +19,14 @@ Requires: gaim-devel >= 1.0.0, libotr >= 3.0.0
 Provides: otr-plugin = %{version}
 Obsoletes: otr-plugin
 
-%description 
+%description
 This is a gaim plugin which implements Off-the-Record (OTR) Messaging.
 
 %prep
 %setup
 
 %build
-%configure 
+%configure
 %{__make} %{?_smp_mflags} all
 
 %install

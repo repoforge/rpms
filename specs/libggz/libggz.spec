@@ -16,8 +16,8 @@ BuildRequires: gcc-c++
 #Requires:
 
 %description
-GGZ (which is a recursive acronym for GGZ Gaming Zone) develops libraries, 
-games and game-related applications for client-server online gaming. Player 
+GGZ (which is a recursive acronym for GGZ Gaming Zone) develops libraries,
+games and game-related applications for client-server online gaming. Player
 rankings, game spectators, AI players and a chat bot are part of this effort.
 
 %package devel

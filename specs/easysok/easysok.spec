@@ -19,7 +19,7 @@ License: GPL
 Group: Amusements/Games
 URL: http://easysok.sourceforge.net/
 
-Source: http://dl.sf.net/easysok/%{name}-%{version}-kde3.tar.bz2 
+Source: http://dl.sf.net/easysok/%{name}-%{version}-kde3.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Patch: assert-include.patch
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel

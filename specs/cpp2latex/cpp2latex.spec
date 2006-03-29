@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dries
 
-Summary: Convert C++ code to latex 
+Summary: Convert C++ code to latex
 Name: cpp2latex
 Version: 2.3
 Release: 1
@@ -16,7 +16,7 @@ BuildRequires: gcc-c++
 
 %description
 Cpp2latex can convert C++ code listings to a file you can input in a
-LaTeX-document. 
+LaTeX-document.
 
 %prep
 %setup

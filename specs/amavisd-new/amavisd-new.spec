@@ -41,7 +41,7 @@ AMaViS is a program that interfaces a mail transfer agent (MTA) with
 one or more virus scanners.
 
 Amavisd-new is a branch created by Mark Martinec that adds serveral
-performance and robustness features. It's partly based on 
+performance and robustness features. It's partly based on
 work being done on the official amavisd branch. Please see the
 README.amavisd-new-RELNOTES file for a detailed description.
 

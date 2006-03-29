@@ -1,7 +1,6 @@
 # $Id$
-
 # Authority: dries
-# Upstream: 
+# Upstream:
 # Screenshot: http://giftoxic.sourceforge.net/data/images/screenie-transfer.png
 # ScreenshotURL: http://giftoxic.sourceforge.net/index.php?screenshots
 
@@ -15,7 +14,7 @@
 %{?el2:%define _without_xorg 1}
 %{?rh6:%define _without_xorg 1}
 
- 
+
 %define real_name giFToxic
 
 Summary: GUI for the peer2peer tool gift

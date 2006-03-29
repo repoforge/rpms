@@ -21,12 +21,12 @@ BuildRequires: fltk-devel, libpng-devel, desktop-file-utils
 BuildRequires: python-devel, python
 
 %description
-CinePaint is an application primarily used for motion picture frame-by-frame 
-retouching and dust-busting. It has been used on many feature films, 
-including The Last Samurai. It is different from other painting tools 
-because in addition to common 8-bit per channel formats like JPEG, it 
-supports deep color image formats such as Cineon, DPX, OpenEXR, and 
-32-bit TIFF, which are standard in motion picture visual effects and 
+CinePaint is an application primarily used for motion picture frame-by-frame
+retouching and dust-busting. It has been used on many feature films,
+including The Last Samurai. It is different from other painting tools
+because in addition to common 8-bit per channel formats like JPEG, it
+supports deep color image formats such as Cineon, DPX, OpenEXR, and
+32-bit TIFF, which are standard in motion picture visual effects and
 animation.
 
 %package devel
@@ -61,7 +61,7 @@ EOF
 %{__rm} -rf %{buildroot}
 %{__perl} -pi -e 's|programplugindir = /usr|programplugindir = %{buildroot}/usr|g;' $(find . -type f | egrep 'Makefile$')
 %{__perl} -pi -e 's|programdatadir = /usr|programdatadir = %{buildroot}/usr|g;' $(find . -type f | egrep 'Makefile$')
-%makeinstall 
+%makeinstall
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor rpmforge             \

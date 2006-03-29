@@ -19,7 +19,7 @@ default, its standard input, looking for a JPEG APP1 section containing Exif
 (Exchangeable Image File) image metadata. The properties contained in these
 data are then printed to the standard output. Digital cameras typically add
 Exif data to the image files they produce, containing information about the
-camera and digitized image. 
+camera and digitized image.
 
 %prep
 %setup

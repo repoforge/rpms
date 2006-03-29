@@ -16,13 +16,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libnet, libpcap
 
 %description
-Netwib provides most functions needed by network programs. Its objective is 
-to let programmers easily create network programs. This library provides 
-features for Ethernet, IPv4, IPv6, UDP, TCP, ICMP, ARP, and RARP protocols. 
-It supports spoofing, sniffing, client, and server creation. Furthermore, 
+Netwib provides most functions needed by network programs. Its objective is
+to let programmers easily create network programs. This library provides
+features for Ethernet, IPv4, IPv6, UDP, TCP, ICMP, ARP, and RARP protocols.
+It supports spoofing, sniffing, client, and server creation. Furthermore,
 netwib contains high level functions dealing with data handling.
 
-This package contains the header files, the static library and development 
+This package contains the header files, the static library and development
 documentation.
 
 %prep

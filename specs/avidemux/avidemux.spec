@@ -33,7 +33,7 @@ Avidemux is a graphical tool to edit AVI. It allows you to multiplex and
 demultiplex audio to/from video.
 
 It is able to cut video, import BMP, MJPEG and MPEG video, and encode them.
-You can also process video with included filters. It requires a DivX 
+You can also process video with included filters. It requires a DivX
 compatible encoder and the Gimp Toolkit (GTK) libraries.
 
 %prep

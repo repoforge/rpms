@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream: 
+# Upstream:
 # Screenshot: http://www.cs.aau.dk/~olau/monster-masher/level-23.jpg
 # ScreenshotURL: http://www.cs.aau.dk/~olau/monster-masher/screenshots.html
 

@@ -48,7 +48,7 @@ export CFLAGS=-lm
 %configure
 %{__perl} -pi -e 's|^LDFLAGS=|LDFLAGS=-lm |g;' Makefile */Makefile
 %{__make} %{?_smp_mflags}
-  
+
 cd frontend/gnome
 %configure
 %{__make} %{?_smp_mflags}

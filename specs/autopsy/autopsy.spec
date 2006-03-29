@@ -29,7 +29,7 @@ deleted material.  It also allows one to create a detailed time line of
 the Modified, Access, and Changed times of files.
 
 %prep
-%setup 
+%setup
 
 %{__cat} <<'EOF' >autopsy
 #!%{__perl} -wT
@@ -42,7 +42,7 @@ EOF
 EOF
 #%{__cat} base/autopsyfunc.pm.base >>autopsyfunc.pm
 
-%{__perl} -pi.orig -e 's|\$INSTALLDIR/|%{_datadir}/autopsy/|' autopsy 
+%{__perl} -pi.orig -e 's|\$INSTALLDIR/|%{_datadir}/autopsy/|' autopsy
 %{__perl} -pi.orig -e 's|\$INSTALLDIR|%{_datadir}/autopsy|' define.pl
 
 %patch0 -p1

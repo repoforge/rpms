@@ -19,7 +19,7 @@ BuildRequires: gcc-c++
 The libdvbpsi is part of the VideoLAN project, a full MPEG2 client/server
 solution. The libdvbpsi can also be used with extra programs that need DVB
 and PSI decoders and generators.
- 
+
 The VideoLAN team decided to write the libdvbpsi to make the VideoLAN Client
 and the VideoLAN Server capable of demultiplexing a satellite DVB stream.
 The library aims at making it easy to decode PSI tables (such as PAT, PMT

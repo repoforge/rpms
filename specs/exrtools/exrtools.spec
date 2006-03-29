@@ -17,10 +17,10 @@ BuildRequires: openexr-devel, gcc-c++, libpng-devel, zlib-devel, libjpeg-devel
 BuildRequires: pkgconfig
 
 %description
-exrtools is a set of simple command line utilities for manipulating high 
-dynamic range images in OpenEXR format. It was developed to help experiment 
-with batch processing of HDR images for tone mapping. Each application is 
-small and reasonably self-contained so that the source code may be of most 
+exrtools is a set of simple command line utilities for manipulating high
+dynamic range images in OpenEXR format. It was developed to help experiment
+with batch processing of HDR images for tone mapping. Each application is
+small and reasonably self-contained so that the source code may be of most
 value to others.
 
 %prep

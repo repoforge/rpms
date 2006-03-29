@@ -61,7 +61,7 @@ A few popular features are Buddy Pounces, which give the ability to notify
 you, send a message, play a sound, or run a program when a specific buddy
 goes away, signs online, or returns from idle; and plugins, consisting of
 text replacement, a buddy ticker, extended message notification, iconify on
-away, and more. 
+away, and more.
 
 Available rpmbuild rebuild options :
 --with : tcltk arts

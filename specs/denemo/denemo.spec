@@ -20,7 +20,7 @@ BuildRequires: gtk2-devel
 Denemo is a graphical music notation program written in C with
 gtk+. It is intended to be used in conjunction with GNU Lilypond
 (http://www.cs.uu.nl/hanwen/lilypond/), but is adaptable to other
-computer-music-related purposes as well. 
+computer-music-related purposes as well.
 
 %prep
 %setup -n %{name}-%{real_version}

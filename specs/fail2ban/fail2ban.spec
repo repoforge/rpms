@@ -19,8 +19,8 @@ BuildRequires: python, dos2unix
 Requires: python
 
 %description
-Fail2Ban monitors log files like /var/log/pwdfail or /var/log/apache/error_log 
-and bans failure-prone addresses. It updates firewall rules to reject the IP 
+Fail2Ban monitors log files like /var/log/pwdfail or /var/log/apache/error_log
+and bans failure-prone addresses. It updates firewall rules to reject the IP
 address or executes user defined commands.
 
 %prep

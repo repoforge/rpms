@@ -18,7 +18,7 @@ agrep is similar to egrep (or grep or fgrep), but it is
 much more general and usually faster.
 
 %prep
-%setup 
+%setup
 
 %build
 %{__make} %{?_smp_mflags} \

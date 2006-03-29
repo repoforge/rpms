@@ -84,7 +84,7 @@ EOF
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYRIGHT README* TODO manual.html
 %doc %{_mandir}/man1/nxtvepg.1*

@@ -17,7 +17,7 @@ URL: http://linux.schottelius.org/gpm/
 Source: http://ftp.linux.it/pub/People/rubini/gpm/%{name}-%{version}.tar.bz2
 Source1: gpm.init
 Patch5: gpm-1.20.1-secenhance.patch
-Patch6: gpm-1.20.1-limits.patch 
+Patch6: gpm-1.20.1-limits.patch
 Patch7: gpm-1.20.1-serialconsole.patch
 Patch10: gpm-1.20.1-norepeater.patch
 Patch11: gpm-1.20.1-weak-wgetch.patch
@@ -215,7 +215,7 @@ lispdir="%{buildroot}%{_datadir}/emacs/site-lisp" \
 %preun
 if [ $1 -eq 0 ]; then
     /sbin/install-info %{_infodir}/gpm.info.gz --delete %{_infodir}/dir
-%ifnarch s390 s390x   
+%ifnarch s390 s390x
     service gpm stop &>/dev/null
     /sbin/chkconfig --del gpm
 %endif
@@ -263,7 +263,7 @@ fi
 * Wed Jul 02 2003 Adrian Havill <havill@redhat.com> 1.20.1-35
 - remove debug output from gpm_report() to prevent spurious
   debugging msgs even when not in debug mode (#98210)
-  
+
 * Thu Jun 26 2003 Adrian Havill <havill@redhat.com> 1.20.1-33
 - reversed -t and -m params in init script, removed $OPTION
 - add doc blurb regarding no auto-repeat with multiple mice
@@ -301,7 +301,7 @@ fi
 * Thu May 23 2002 Tim Powers <timp@redhat.com>
 - automated rebuild
 
-* Tue Apr  9 2002 Bernhard Rosenkraenzer <bero@redhat.com> 
+* Tue Apr  9 2002 Bernhard Rosenkraenzer <bero@redhat.com>
 - Revert to the version from 7.2 because later versions have some grave
   issues I can't {reproduce,debug} with my hardware, such as
   #62540 and #61691
@@ -462,7 +462,7 @@ fi
 - bumped libver to 1.17.5
 - fixed texinfo source
 
-* Sun Mar 21 1999 Cristian Gafton <gafton@redhat.com> 
+* Sun Mar 21 1999 Cristian Gafton <gafton@redhat.com>
 - auto rebuild in the new build environment (release 2)
 
 * Thu Mar  4 1999 Matt Wilson <msw@redhat.com>

@@ -49,7 +49,7 @@ Source9: http://www.geocities.com/m_muthukumar/gkrellaclock-%{aclockver}.tar.gz
 Source10: http://download.sf.net/gkrellkam/gkrellkam_%{kamver}.tar.gz
 Source11: http://web.wt.net/~billw/gkrellm/Plugins/gkrellm-reminder-%{reminderver}.tar.gz
 Source12: http://download.sf.net/gkrellmoon/gkrellmoon-%{moonver}.tar.gz
-#Source13: 
+#Source13:
 Source14: http://kmlinux.fjfi.cvut.cz/~makovick/gkrellm/gkrellm-multiping-%{multipingver}.tgz
 #Source15: http://sperion.vuse.vanderbilt.edu/kirk/gkrellmwho2.tgz
 Source16: http://anchois.free.fr/gkx86info2-%{x86ver}.tar.gz

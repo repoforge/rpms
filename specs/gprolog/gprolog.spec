@@ -34,7 +34,7 @@ Requires: gprolog = %{version}-%{release}
 This package contains the examples of gprolog.
 
 %prep
-%setup 
+%setup
 
 %build
 pushd src

@@ -178,7 +178,7 @@ fi
 
 %attr(-,named,named) %dir /var/named
 %attr(-,named,named) %dir /var/run/named
- 
+
 %files utils
 %defattr(-, root, root, 0755)
 /usr/bin/dig
@@ -494,7 +494,7 @@ fi
 - add probing information in the init file to keep linuxconf happy
 - dont strip libbind
 
-* Sun Mar 21 1999 Cristian Gafton <gafton@redhat.com> 
+* Sun Mar 21 1999 Cristian Gafton <gafton@redhat.com>
 - auto rebuild in the new build environment (release 3)
 
 * Wed Mar 17 1999 Preston Brown <pbrown@redhat.com>

@@ -21,9 +21,9 @@ BuildRequires: bison, gtk-doc, libgksuui-devel, gtk2-devel, gnome-keyring-devel
 BuildRequires: GConf2-devel
 
 %description
-Gtk+ frontend to /bin/su. It supports login shells and preserving environment 
-when acting as a su frontend. It is useful to menu items or other graphical 
-programs that need to ask a user's password to run another program as another 
+Gtk+ frontend to /bin/su. It supports login shells and preserving environment
+when acting as a su frontend. It is useful to menu items or other graphical
+programs that need to ask a user's password to run another program as another
 user.
 
 %prep

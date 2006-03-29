@@ -118,7 +118,7 @@ fi
 /sbin/chkconfig --add nagios
 
 if /usr/bin/id apache &>/dev/null; then
-	if ! /usr/bin/id -Gn apache 2>/dev/null | grep -q nagios ; then 
+	if ! /usr/bin/id -Gn apache 2>/dev/null | grep -q nagios ; then
 		/usr/sbin/usermod -G nagios,nagiocmd apache &>/dev/null
 	fi
 else

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: 
+# Upstream:
 
 %define real_name ipaqleap
 
@@ -29,7 +29,7 @@ leapauth is a utility for doing LEAP authentication on WLAN.
 	AR="%{__ar}" \
 	RANLIB="%{__ranlib}" \
 	PATH="$PATH"
-	
+
 %{__make} %{?_smp_mflags} \
 	CC="%{__cc}" \
 	PATH="$PATH"

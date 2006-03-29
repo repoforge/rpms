@@ -70,7 +70,7 @@ scrollkeeper-update -q || :
 * Wed Mar 08 2006 Dag Wieers <dag@wieers.com> - 1.5-1
 - Updated to release 1.5.
 
-* Sat Nov 06 2004 Dag Wieers <dag@wieers.com> - 1.4-1                                        
+* Sat Nov 06 2004 Dag Wieers <dag@wieers.com> - 1.4-1
 - Fixed build problem with gnome 2.6+. (Alan Cox)
 
 * Fri Jan 31 2003 Dag Wieers <dag@wieers.com> - 1.4-0

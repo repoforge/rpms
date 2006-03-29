@@ -7,7 +7,7 @@ Summary: MySQL Control Center to administer MySQL databases
 Name: mysqlcc
 Version: 0.9.4
 Release: 0
-License: GPL 	
+License: GPL
 Group: Applications/Databases
 URL: http://www.mysql.com/products/mysqlcc/
 

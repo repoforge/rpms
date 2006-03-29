@@ -80,7 +80,7 @@ desktop-file-install \
 %{__rm} -rf %{buildroot}
 
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc CHANGELOG COPYING* HACKING docs/*.txt docs/*.xml docs/README
 %{_bindir}/nmap
@@ -208,7 +208,7 @@ desktop-file-install \
 - buildprereq for nmap-frontend (#49644)
 
 * Sun Jul 22 2001 Heikki Korpela <heko@iki.fi>
-- buildrequire gtk+ 
+- buildrequire gtk+
 
 * Tue Jul 10 2001 Tim Powers <timp@redhat.com>
 - fix bugs in desktop file (#48341)
@@ -263,7 +263,7 @@ desktop-file-install \
 - gzip man pages
 - strip after files have been installed into buildroot
 - created separate package for the frontend so that Gtk+ isn't needed for the
-	CLI nmap 
+	CLI nmap
 - not using -f in files section anymore, no need for it since there aren't that
 	many files/dirs
 - added desktop entry for gnome

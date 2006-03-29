@@ -110,7 +110,7 @@ The gambas-examples package contains some examples for gambas.
 %{_libdir}/gambas
 # %{_libdir}/info
 %{_bindir}/*
-# strange.. 
+# strange..
 # %{_includedir}/gambas.h
 %exclude %{_libdir}/gambas/lib.*.la
 

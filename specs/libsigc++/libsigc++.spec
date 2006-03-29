@@ -191,7 +191,7 @@ find doc -name "Makefile*" | xargs rm -f
 - Added autoconf macro for sigc.
 
 * Fri Jun 11 1999 Karl Nelson <kenelson@ece.ucdavis.edu>
-- Made into a .in to keep version field up to date 
+- Made into a .in to keep version field up to date
 - Still need to do release by hand
 
 * Mon Jun  7 1999 Dmitry V. Levin <ldv@fandra.org>

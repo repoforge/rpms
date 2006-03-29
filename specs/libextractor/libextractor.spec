@@ -4,7 +4,7 @@
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
-Summary: Meta-data extraction library 
+Summary: Meta-data extraction library
 Name: libextractor
 Version: 0.5.11
 Release: 1
@@ -26,11 +26,11 @@ libextractor is a simple library for meta-data extraction.
 libextractor uses a plugin-mechanism that makes it easy to add support
 for more file formats, allowing anybody to add new extractors quickly.
 
-libextractor currently features meta-data extractors for  HTML, PDF, PS, 
-MP3, OGG, JPEG, GIF, PNG, TIFF, RPM, ZIP, REAL, RIFF (AVI), MPEG, QT 
-and ASF. It also detects many more MIME-types in a fashion similar to 
-the well-known "file" tool.  Furthermore, a generic extractor that 
-extracts dictionary words from binaries is included.  Supported 
+libextractor currently features meta-data extractors for  HTML, PDF, PS,
+MP3, OGG, JPEG, GIF, PNG, TIFF, RPM, ZIP, REAL, RIFF (AVI), MPEG, QT
+and ASF. It also detects many more MIME-types in a fashion similar to
+the well-known "file" tool.  Furthermore, a generic extractor that
+extracts dictionary words from binaries is included.  Supported
 dictionaries are currently da, en, de, it and no.
 
 %package devel

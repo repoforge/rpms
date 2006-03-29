@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: mozilla-devel >= 1.3, gtk+-devel >= 1.2.9, libxml-devel >= 1.8.14
-BuildRequires: gnome-libs-devel >= 1.2.11, libglade-devel >= 0.13, glib-devel, 
+BuildRequires: gnome-libs-devel >= 1.2.11, libglade-devel >= 0.13, glib-devel
 BuildRequires: gnome-vfs-devel >= 1.0.1, GConf-devel >= 1.0.4
 BuildRequires: oaf-devel >= 0.6.5, gdk-pixbuf-devel >= 0.14.0, ORBit-devel >= 0.5.7
 BuildRequires: scrollkeeper
@@ -23,9 +23,9 @@ BuildRequires: scrollkeeper
 Requires(post): scrollkeeper
 
 %description
-Galeon is a web browser built around Gecko (Mozilla 's rendering engine) 
-and Necko (Mozilla's networking engine). It's a GNOME web browser, 
-designed to take advantage of as many GNOME technologies as makes sense. 
+Galeon is a web browser built around Gecko (Mozilla 's rendering engine)
+and Necko (Mozilla's networking engine). It's a GNOME web browser,
+designed to take advantage of as many GNOME technologies as makes sense.
 Galeon was written to do just one thing - browse the web.
 
 %prep

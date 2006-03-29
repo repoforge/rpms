@@ -16,10 +16,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, pkgconfig, glib2-devel >= 2.4
 
 %description
-LibCMT (Composable Memory Transactions Library) implements a transactional 
-model of concurrency, where deadlock is not possible and transactions are 
-composable (small transactions can be glued together to form larger 
-transactions without extra effort). It is written as a Glib extension but 
+LibCMT (Composable Memory Transactions Library) implements a transactional
+model of concurrency, where deadlock is not possible and transactions are
+composable (small transactions can be glued together to form larger
+transactions without extra effort). It is written as a Glib extension but
 can be used with any thread library, not just GThread.
 
 %package devel

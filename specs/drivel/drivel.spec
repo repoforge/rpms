@@ -18,8 +18,8 @@ BuildRequires: libgnome-devel, libgnomeui-devel
 Requires: gtk2 >= 2.0.0, curl >= 7.10.0
 
 %description
-Drivel is an advanced LiveJournal client for the GNOME desktop.  While 
-maintaining a full set of features, it had been designed with usability 
+Drivel is an advanced LiveJournal client for the GNOME desktop.  While
+maintaining a full set of features, it had been designed with usability
 in mind, and presents an elegant user interface.
 
 %prep

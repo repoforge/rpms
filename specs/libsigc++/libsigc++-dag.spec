@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: libsigc++-examples
 ### This doesn't work ;-(
 #Obsoletes: libsigc++ = 1:1.2.4-0, libsigc++ = 1:1.2.5-0
-#Obsoletes: libsigc++ = 1:1.0.3, 
+#Obsoletes: libsigc++ = 1:1.0.3,
 
 %description
 This library implements a full callback system for use in widget
@@ -37,7 +37,7 @@ Requires: %{name} = %{epoch}:%{version}-%{release}
 
 ### This doesn't work ;-(
 #Obsoletes: libsigc++-devel = 1:1.2.4, libsigc++-devel = 1:1.2.5
-#Obsoletes: libsigc++-devel = 1:1.0.3, 
+#Obsoletes: libsigc++-devel = 1:1.0.3,
 
 %description devel
 This package contains the header files, static libraries and development

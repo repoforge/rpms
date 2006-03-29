@@ -17,13 +17,13 @@ BuildRequires: libxml2-devel, pkgconfig, gcc-c++
 BuildRequires: glib2-devel
 
 %description
-Libral is an address book engine. It allows you to create your address books 
-and to add personal and company cards to them. Data managed in a personal 
-card include personal data (name, surname, address, etc.), Web links, email 
-addresses, irc uris, telephone numbers, job information (company where the 
-contact works, manager, collaborator, etc.), and notes. In a company card 
-you can manage Web links, email addresses, telephone numbers, and notes. 
-XML is used to store data. Libral can import addressbooks from GnomeCard, 
+Libral is an address book engine. It allows you to create your address books
+and to add personal and company cards to them. Data managed in a personal
+card include personal data (name, surname, address, etc.), Web links, email
+addresses, irc uris, telephone numbers, job information (company where the
+contact works, manager, collaborator, etc.), and notes. In a company card
+you can manage Web links, email addresses, telephone numbers, and notes.
+XML is used to store data. Libral can import addressbooks from GnomeCard,
 Kaddressbook, VCard, Evolution, and CSV.
 
 %package devel

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: 
+# Upstream:
 
 Summary: Recipe manager
 Name: krecipes
@@ -16,9 +16,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, kdelibs-devel, gettext, sqlite-devel
 
 %description
-Krecipes is a KDE cooking book that works with either SQLite, MySQL, or 
-PostgreSQL database backends, and is designed to be highly configurable. 
-It features configurable ingredients, creation of shopping lists, daily 
+Krecipes is a KDE cooking book that works with either SQLite, MySQL, or
+PostgreSQL database backends, and is designed to be highly configurable.
+It features configurable ingredients, creation of shopping lists, daily
 recipe suggestions based on calories/diets, and much more.
 
 %prep

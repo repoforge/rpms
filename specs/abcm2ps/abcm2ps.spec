@@ -13,14 +13,14 @@ URL: http://moinejf.free.fr/
 Source: http://moinejf.free.fr/abcm2ps-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: 
+#BuildRequires:
 
 %description
-abcm2ps is a package that converts music tunes from ABC format to 
-PostScript. Based on abc2ps version 1.2.5, it was developed mainly 
-to print baroque organ scores that have independant voices played 
-on one or more keyboards, and a pedal-board. It introduces many 
-extensions to the ABC language that make it suitable for classical 
+abcm2ps is a package that converts music tunes from ABC format to
+PostScript. Based on abc2ps version 1.2.5, it was developed mainly
+to print baroque organ scores that have independant voices played
+on one or more keyboards, and a pedal-board. It introduces many
+extensions to the ABC language that make it suitable for classical
 music.
 
 %prep

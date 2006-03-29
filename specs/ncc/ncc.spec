@@ -16,10 +16,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, ncurses-devel
 
 %description
-ncc is a C source code analyzer which generates program flow and variable 
-usage information. Using it should be as easy as changing CC=gcc to CC=ncc 
-in makefiles, and effort has been made to support most common gcc 
-extensions. ncc has been tested with the sources of the Linux kernel, gtk, 
+ncc is a C source code analyzer which generates program flow and variable
+usage information. Using it should be as easy as changing CC=gcc to CC=ncc
+in makefiles, and effort has been made to support most common gcc
+extensions. ncc has been tested with the sources of the Linux kernel, gtk,
 gcc, gdb, bind, mpg123, ncftp, and many other famous projects.
 
 %prep

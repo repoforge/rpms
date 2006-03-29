@@ -18,10 +18,10 @@ BuildRequires: libmad-devel, id3lib-devel
 Requires: ImageMagick
 
 %description
-Kwave is a 24-bit sound editor that allows simple operations, such as cut, 
-copy, and paste. Some more effect functions with little complexity (Simple 
-Filtering, Delay) are also implemented. More sophisticated analysis 
-functions (spectrograms, sonagrams, pitch determination) are underway or 
+Kwave is a 24-bit sound editor that allows simple operations, such as cut,
+copy, and paste. Some more effect functions with little complexity (Simple
+Filtering, Delay) are also implemented. More sophisticated analysis
+functions (spectrograms, sonagrams, pitch determination) are underway or
 partially done.
 
 %package devel

@@ -17,7 +17,7 @@ BuildRequires: gcc-c++, gettext, python, intltool, perl-XML-Parser
 BuildRequires: pygtk2-devel, gnome-python2, pygtk2-libglade, scrollkeeper
 
 %description
-browser-history-viewer allows you to examine the contents of Web browser 
+browser-history-viewer allows you to examine the contents of Web browser
 history. It is meant to be a forensics tool.
 
 %prep

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream: 
+# Upstream:
 # Screenshot: http://kxmleditor.sourceforge.net/screenshot.png
 # ScreenshotURL: http://kxmleditor.sourceforge.net/screenshots.htm
 
@@ -47,12 +47,12 @@ BuildRequires: libjpeg-devel, kdelibs-devel, fam-devel
 
 %description
 KXML Editor is program, that display and edit contents of XML file. Main
-features: 
-* Drag and drop editing, clipboard support 
-* Use DOM level 2 Qt library parser 
-* KParts technology support 
-* DCOP technology support 
-* Editing KOffice compressed files 
+features:
+* Drag and drop editing, clipboard support
+* Use DOM level 2 Qt library parser
+* KParts technology support
+* DCOP technology support
+* Editing KOffice compressed files
 
 %prep
 %setup

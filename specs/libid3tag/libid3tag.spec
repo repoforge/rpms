@@ -72,7 +72,7 @@ EOF
 /sbin/ldconfig
 
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYING COPYRIGHT CREDITS README TODO
 %{_libdir}/*.so.*

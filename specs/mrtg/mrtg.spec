@@ -29,7 +29,7 @@ Requires: vixie-cron, /sbin/service
 %description
 The Multi Router Traffic Grapher (MRTG) is a tool to monitor the traffic
 load on network-links. MRTG generates HTML pages containing PNG
-images which provide a LIVE visual representation of this traffic. 
+images which provide a LIVE visual representation of this traffic.
 
 %prep
 %setup
@@ -45,7 +45,7 @@ images which provide a LIVE visual representation of this traffic.
 #
 # * Keywords must start at the begin of a line.
 #
-# * Lines which follow a keyword line which do start 
+# * Lines which follow a keyword line which do start
 #   with a blank are appended to the keyword line
 #
 # * Empty Lines are ignored
@@ -122,7 +122,7 @@ done
 %{__install} -dp -m0755 %{buildroot}%{_mandir}/man1/
 for i in doc/*.1; do
 	%{__install} -p -m0644 $i %{buildroot}%{_mandir}/man1/
-done 
+done
 %{__perl} -pi -e 's|\@\@lib\@\@|%{_lib}|g' %{buildroot}%{_mandir}/man1/*.1
 
 %clean

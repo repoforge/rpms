@@ -16,8 +16,8 @@ Requires: perl
 
 %description
 fm-submit is a tool to submit project release announcements to freshmeat.net
-via XML-RPC, from the command line. Release information is accepted from 
-binary packages (RPMs) named in the command line, or from an email-like data 
+via XML-RPC, from the command line. Release information is accepted from
+binary packages (RPMs) named in the command line, or from an email-like data
 block on standard input, or from command-line flags.
 
 

@@ -57,7 +57,7 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-#makeinstall 
+#makeinstall
 %{__make} DESTDIR="%{buildroot}" install \
 	THEME_DIR="%{buildroot}%{_datadir}/beatforce"
 

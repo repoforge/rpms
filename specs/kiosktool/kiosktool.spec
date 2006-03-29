@@ -49,7 +49,7 @@ BuildRequires: gcc-c++, qt-devel >= 3.2
 
 %description
 A Point and Click tool for system administrators to enable KDE's KIOSK features
-or otherwise preconfigure KDE for groups of users. 
+or otherwise preconfigure KDE for groups of users.
 
 %prep
 %setup

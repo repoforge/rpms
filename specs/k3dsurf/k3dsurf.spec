@@ -18,12 +18,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: kdelibs-devel, gcc-c++, desktop-file-utils
 
 %description
-K3DSurf is a program for visualizing and manipulating multidimensional 
+K3DSurf is a program for visualizing and manipulating multidimensional
 surfaces by using Mathematical equations. It's also a "modeler" for
-POV-Ray in the area of parametric surfaces. It features 3D, 4D, 5D, 
+POV-Ray in the area of parametric surfaces. It features 3D, 4D, 5D,
 and 6D HyperObjects visualization, full support for all functions
-(like the C language), support for mouse events in the drawing area, 
-animation and morph effects, Povscript and mesh file generation, and 
+(like the C language), support for mouse events in the drawing area,
+animation and morph effects, Povscript and mesh file generation, and
 support for VRML2 and OBJ files. More than 100 examples are provided.
 
 %prep

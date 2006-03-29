@@ -35,7 +35,7 @@ Source: http://dl.sf.net/kmymoney2/kmymoney2-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel
-BuildRequires: arts-devel, gcc-c++, gettext 
+BuildRequires: arts-devel, gcc-c++, gettext
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel, kdelibs-devel
 %{!?_without_selinux:BuildRequires: libselinux-devel}
 %{?_without_xorg:BuildRequires: XFree86-devel}

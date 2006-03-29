@@ -32,7 +32,7 @@ EPIC (Enhanced Programmable ircII Client) is an advanced ircII chat
 client.  Chat clients connect to servers around the world, enabling
 you to chat with other people.
 
-%prep 
+%prep
 %setup -n epic4-%{version} -a 1
 %patch -p0 -b .default
 %patch1 -p1 -b .gcc33
@@ -86,7 +86,7 @@ find %{buildroot} -type f -name Makefile -exec %{__rm} -f {} \; || :
 - Clean up SPEC file.
 
 * Tue Nov 11 2003 Jeremy Katz <katzj@redhat.com> 4:1.0.1-16
-- add patch for buffer overflow (CAN-2003-0328) from 
+- add patch for buffer overflow (CAN-2003-0328) from
   ftp://ftp.prbh.org/pub/epic/patches/alloca_underrun-patch-1
 
 * Wed Jun 04 2003 Elliot Lee <sopwith@redhat.com>
@@ -127,7 +127,7 @@ find %{buildroot} -type f -name Makefile -exec %{__rm} -f {} \; || :
 - rebuild
 - desktop entries for console apps are silly, kill it
 
-* Wed Jan 09 2002 Tim Powers <timp@redhat.com> 1.0.1-3 
+* Wed Jan 09 2002 Tim Powers <timp@redhat.com> 1.0.1-3
 - automated rebuild
 
 * Wed Jan  2 2002 Jeremy Katz <katzj@redhat.com> 1.0.1-2
@@ -165,7 +165,7 @@ find %{buildroot} -type f -name Makefile -exec %{__rm} -f {} \; || :
 	dropped
 - patched so that epic no longer looks for help files in /usr/lib/irc, instead
 	looks in the correct place, /usr/share/epic/help
-	
+
 * Tue Jul 13 1999 Tim Powers <timp@redhat.com>
 - rebuilt for 6.1
 

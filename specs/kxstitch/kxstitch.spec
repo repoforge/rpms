@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream: 
+# Upstream:
 # Screenshot: http://kxstitch.sourceforge.net/image/mainview.png
 # ScreenshotURL: http://kxstitch.sourceforge.net/screenshots.shtml
 
@@ -36,7 +36,7 @@ URL: http://kxstitch.sourceforge.net/index.shtml
 Source: http://dl.sf.net/kxstitch/kxstitch-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel 
+BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel
 BuildRequires: gcc-c++, gettext, zlib-devel
 BuildRequires: qt-devel, libjpeg-devel, kdelibs-devel
 BuildRequires: ImageMagick-c++-devel
@@ -47,7 +47,7 @@ BuildRequires: libexif-devel, libexif
 BuildRequires: libexif-devel, libexif
 
 %description
-KXStitch allows the creation and editing of cross stitch patterns. 
+KXStitch allows the creation and editing of cross stitch patterns.
 
 %prep
 %setup

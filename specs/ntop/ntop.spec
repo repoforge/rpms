@@ -21,8 +21,8 @@ Prereq: /sbin/chkconfig, /sbin/ldconfig
 
 %description
 ntop is a network and traffic analyzer that provides a wealth of information on
-various networking hosts and protocols. ntop is primarily accessed via a built-in 
-web interface. Optionally, data may be stored into a database for analysis or 
+various networking hosts and protocols. ntop is primarily accessed via a built-in
+web interface. Optionally, data may be stored into a database for analysis or
 extracted from the web server in formats suitable for manipulation in perl or php.
 
 %prep
@@ -90,7 +90,7 @@ stop () {
 	echo -n $"Stopping $prog: "
 	killproc $prog
 	RETVAL=$?
-	echo 
+	echo
 	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
 	return $RETVAL
 }
@@ -146,7 +146,7 @@ EOF
 ###       ntop @%{_sysconfdir}/ntop.conf -i none
 ###  Overrides the -i in the file.
 
-### Sets the user that ntop runs as.  
+### Sets the user that ntop runs as.
 ###  NOTE: This should not be root unless you really understand the security risks.
 --user ntop
 
@@ -174,7 +174,7 @@ EOF
 ### Sets the port that the optional HTTPS webserver listens on
 #--https-server 3001
 
-### Sets the networks that ntop should consider as local.  
+### Sets the networks that ntop should consider as local.
 ###  NOTE: Uses dotted decimal and CIDR notation. Example: 192.168.0.0/24
 ###        The addresses of the interfaces are always local and don't need to be specified.
 #--local-subnets xx.xx.xx.xx/yy

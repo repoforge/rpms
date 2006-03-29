@@ -17,9 +17,9 @@ BuildRequires: gnome-libs-devel, libxml-devel, gettext
 
 %description
 Fidelio is a Hotline compatible client that supports most of the features of
-Hotline. Public chat, tranfsers, flat and threaded news, icons, sounds, and 
-messages are supported. Banners, private chat, and the administrative 
-functions are not. 
+Hotline. Public chat, tranfsers, flat and threaded news, icons, sounds, and
+messages are supported. Banners, private chat, and the administrative
+functions are not.
 
 %prep
 %setup -n %{name}-%{real_version}

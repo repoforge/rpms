@@ -54,7 +54,7 @@ EOF
 
 %if %{?_without_freedesktop:1}0
 	%{__install} -Dp -m0644 clamtk.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/clamtk.desktop
-%else 
+%else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --delete-original \
 		--vendor %{desktop_vendor}                 \

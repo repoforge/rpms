@@ -34,7 +34,7 @@ passwords you use on the web.  Features include:
   characters (lower case, upper case, numbers and symbols) should be used.
   You can even have it avoid ambiguous characters such as a capital O or the
   number zero.
-         
+
 %prep
 %setup
 

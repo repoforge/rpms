@@ -18,7 +18,7 @@ BuildRequires: openssl-devel, postgresql-devel, postgresql-libs, gcc-c++
 C++ client API for PostgreSQL. The standard front-end (in the sense of
 "language binding") for writing C++ programs that use PostgreSQL. Supersedes
 older libpq++ interface. Requires an up-to-date C++ compiler, like gcc 2.95
-or better. 
+or better.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.

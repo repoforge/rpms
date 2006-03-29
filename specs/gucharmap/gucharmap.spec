@@ -54,7 +54,7 @@ you will need to install %{name}-devel.
 		%{buildroot}%{_libdir}/gtk-2.0/2.2.0/immodules/*.a \
 		%{buildroot}%{_libdir}/gtk-2.0/2.2.0/immodules/*.la
 
-%post 
+%post
 gtk-query-immodules-2.0 >%{_sysconfdir}/gtk-2.0/gtk.immodules
 scrollkeeper-update -q || :
 

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream: 
+# Upstream:
 # Screenshot: http://www.koffice.org/kexi/pics/relations.png
 # ScreenshotURL: http://www.koffice.org/kexi/screenshots.php
 
@@ -51,8 +51,8 @@ Source: http://ftp.belnet.be/packages/kde/stable/apps/KDE3.x/database/kexi-%{ver
 Patch: gcc4-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpng-devel, libart_lgpl-devel 
-BuildRequires: arts-devel, gcc-c++, gettext 
+BuildRequires: libpng-devel, libart_lgpl-devel
+BuildRequires: arts-devel, gcc-c++, gettext
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel, desktop-file-utils
 BuildRequires: postgresql-devel, mysql-devel
@@ -67,7 +67,7 @@ Kexi is an integrated environment for managing data. It helps in creating
 database schemas, inserting, querying and processing data. As Kexi is a real
 member of the KDE and KOffice projects, it integrates fluently into both. It
 is designed to be fully usable also without KDE on Unix, MS Windows and Mac
-OS X platforms. 
+OS X platforms.
 
 %prep
 %setup -n kexi-%{version}

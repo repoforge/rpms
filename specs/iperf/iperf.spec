@@ -22,7 +22,7 @@ of various parameters and UDP characteristics. Iperf reports bandwidth,
 delay jitter, datagram loss.
 
 %prep
-%setup 
+%setup
 
 %build
 %configure

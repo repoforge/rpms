@@ -22,7 +22,7 @@ BuildRequires: qt-devel
 Ipe is a drawing editor for creating figures in PDF or (encapsulated)
 Postscript format. It supports making small figures for inclusion into
 LaTeX-documents as well as making multi-page PDF presentations that
-can be shown on-line with Acrobat Reader. 
+can be shown on-line with Acrobat Reader.
 
 %prep
 %setup -n %{name}-%{real_version}

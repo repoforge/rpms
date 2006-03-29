@@ -36,7 +36,7 @@ of desktop resolution and refresh rate.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING INSTALL NEWS README
 %{_bindir}/multires-applet-2

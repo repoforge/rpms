@@ -16,8 +16,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel, libpng-devel, db4-devel, gd-devel, pcre-devel
 
 %description
-AWFFull is a Web server log analysis program, forked from Webalizer. It 
-adds a number of new features and improvements, such as extended frontpage 
+AWFFull is a Web server log analysis program, forked from Webalizer. It
+adds a number of new features and improvements, such as extended frontpage
 history, resizable graphs, and a few more pie charts.
 
 %prep

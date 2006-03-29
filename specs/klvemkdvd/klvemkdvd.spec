@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream: 
+# Upstream:
 
 # ExcludeDist: el3 fc1
 
@@ -46,12 +46,12 @@ BuildRequires: kdelibs-devel
 Requires: lve, dvd+rw-tools, dvdauthor
 
 %description
-klvemkdvd is able to build (and burn) DVD filesystems from 
-various mpeg media files using lve tools and some other 
-programs. 
+klvemkdvd is able to build (and burn) DVD filesystems from
+various mpeg media files using lve tools and some other
+programs.
 
-the main intention of klvemkdvd is to build DVDs from 
-project files (edit lists) created with lve editor. 
+the main intention of klvemkdvd is to build DVDs from
+project files (edit lists) created with lve editor.
 But it can use other kind of mpegs (VOB, TS, PS, PVA, ...)
 as input also.
 

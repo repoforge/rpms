@@ -47,7 +47,7 @@ EOF
 #
 # chkconfig: 2345 05 95
 # description: CPU frequency and power consumption control daemon.
-# 
+#
 # processname: cpudynd
 # config: %{_sysconfdir}/sysconfig/cpudynd
 # pidfile: %{_localstatedir}/run/cpudynd.pid

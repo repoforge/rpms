@@ -31,7 +31,7 @@ fails to connect, fails to maintain the desired bandwidth, or the limit
 specified by the -n option is reached. It runs the simulated users until
 the amount of time specified by the -t option has elapsed since the last
 simulated user birth or death; the final score is the number of users
-still alive at the end. 
+still alive at the end.
 
 %prep
 %setup

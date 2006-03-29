@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Netscape Navigator is a Web browser which supports HTML
 standards, Java, JavaScript and some style sheets.
 
-%prep 
+%prep
 %setup -c
 
 %build
@@ -39,7 +39,7 @@ standards, Java, JavaScript and some style sheets.
 %doc LICENSE README
 %{_bindir}/*
 %{_libdir}/netscape-%{version}/
-     
+
 %changelog
 * Thu Jan 02 2002 Dag Wieers <dag@wieers.com> - 3.04
 - Initial package.

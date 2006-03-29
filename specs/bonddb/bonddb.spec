@@ -21,9 +21,9 @@ BuildRequires: glib2-devel, pkgconfig, bison, flex
 %{?fc4:BuildRequires: compat-gcc-32}
 
 %description
-bonddb is an object orientated wrapper for PostgreSQL. It's a fast data 
-abstraction layer written in C for C/C++ applications, to allow easy 
-access to class objects. You can use existing PostgreSQL databases without 
+bonddb is an object orientated wrapper for PostgreSQL. It's a fast data
+abstraction layer written in C for C/C++ applications, to allow easy
+access to class objects. You can use existing PostgreSQL databases without
 any modification or additional tables needed in the backend.
 
 %package devel

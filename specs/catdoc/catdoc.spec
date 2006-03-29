@@ -16,10 +16,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: tcl, tk
 
 %description
-Catdoc is a MS Word file decoding tool that doesn't attempt to 
-analyze file formatting (it just extracts readable text), but 
-is able to handle all versions of Word and convert character 
-encodings. A Tcl/Tk graphical viewer is also included. It can 
+Catdoc is a MS Word file decoding tool that doesn't attempt to
+analyze file formatting (it just extracts readable text), but
+is able to handle all versions of Word and convert character
+encodings. A Tcl/Tk graphical viewer is also included. It can
 also read RTF files and convert Excel and PowerPoint files.
 
 %prep

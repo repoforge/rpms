@@ -14,9 +14,9 @@ BuildRequires: gcc-c++, zlib-devel
 
 %description
 This package provides a software library for manipulating ID3v1 and ID3v2 tags.
-It provides a convenient interface for software developers to include 
-standards-compliant ID3v1/2 tagging capabilities in their applications.  
-Features include identification of valid tags, automatic size conversions, 
+It provides a convenient interface for software developers to include
+standards-compliant ID3v1/2 tagging capabilities in their applications.
+Features include identification of valid tags, automatic size conversions,
 (re)synchronisation of tag frames, seamless tag (de)compression, and optional
 padding facilities.
 

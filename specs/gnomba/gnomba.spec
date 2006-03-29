@@ -42,7 +42,7 @@ EOF
 %configure
 %{__make} %{?_smp_mflags} \
 	LIBDIR="%{_sysconfdir}"
-     
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
@@ -50,7 +50,7 @@ EOF
 %find_lang %{name}
 
 %if %{dfi}
-%else  
+%else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor gnome --delete-original \
 		--add-category X-Red-Hat-Base                 \
@@ -69,7 +69,7 @@ EOF
 %{_datadir}/pixmaps/*.png
 %if %{dfi}
         %{_datadir}/gnome/apps/Internet/*.desktop
-%else   
+%else
         %{_datadir}/applications/*.desktop
 %endif
 

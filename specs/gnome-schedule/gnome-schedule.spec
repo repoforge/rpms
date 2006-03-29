@@ -24,7 +24,7 @@ Requires: python, pygtk2 >= 2.3, gnome-python2, vixie-cron, at
 %description
 Gnome-schedule is a GNOME GUI for configuring a users crontab. It was made
 for Vixie cron whom comes with Fedora Linux, but should work with other
-cron servers as well if the format of the config file is similar. 
+cron servers as well if the format of the config file is similar.
 
 %prep
 %setup

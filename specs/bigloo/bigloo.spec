@@ -70,7 +70,7 @@ done
 - Update to release 2.6e.
 
 * Wed Jun 2 2004 Dries Verachtert <dries@ulyssis.org> 2.6d-2
-- renamed the file /usr/bin/afile to afile-bigloo to avoid a 
+- renamed the file /usr/bin/afile to afile-bigloo to avoid a
   conflict with afile from the package netatalk
 
 * Sat Mar 20 2004 Dries Verachtert <dries@ulyssis.org> 2.6d-1

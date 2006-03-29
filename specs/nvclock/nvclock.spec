@@ -18,8 +18,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: kdelibs-devel, gcc-c++, gtk2-devel
 
 %description
-Nvclock allows you to tweak your Nvidia card under Linux and FreeBSD. 
-It features overclocking, hardware monitoring, tweaking of OpenGL 
+Nvclock allows you to tweak your Nvidia card under Linux and FreeBSD.
+It features overclocking, hardware monitoring, tweaking of OpenGL
 settings, and much more.
 
 Use this program at your own risk!

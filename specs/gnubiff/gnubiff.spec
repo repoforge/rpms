@@ -16,7 +16,7 @@ URL: http://gnubiff.sourceforge.net/
 Source: http://dl.sf.net/gnubiff/gnubiff-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libgnomeui-devel, gnome-panel, gcc-c++
-BuildRequires: openssl-devel, libglade-devel, gdk-pixbuf-devel 
+BuildRequires: openssl-devel, libglade-devel, gdk-pixbuf-devel
 BuildRequires: glib2-devel, libglade2-devel, gamin-devel
 BuildRequires: texinfo
 %{!?dist:BuildRequires: gnome-panel-devel}

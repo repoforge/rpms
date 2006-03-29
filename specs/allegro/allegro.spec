@@ -30,10 +30,10 @@ BuildRequires: gcc-c++, esound-devel, arts-devel, pkgconfig, texinfo
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
-Allegro is a multi-platform game library for C/C++ developers that provides 
-many functions for graphics, sounds, player input (keyboard, mouse, and 
-joystick), and timers. It also provides fixed and floating point mathematical 
-functions, 3D functions, file management functions, compressed datafile, and 
+Allegro is a multi-platform game library for C/C++ developers that provides
+many functions for graphics, sounds, player input (keyboard, mouse, and
+joystick), and timers. It also provides fixed and floating point mathematical
+functions, 3D functions, file management functions, compressed datafile, and
 a GUI.
 
 %package devel

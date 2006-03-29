@@ -24,7 +24,7 @@ License: GPL
 Group: Applications/Internet
 URL: http://kasablanca.berlios.de/
 
-Source: http://download.berlios.de/kasablanca/kasablanca-%{version}.tar.gz 
+Source: http://download.berlios.de/kasablanca/kasablanca-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel
 BuildRequires: libjpeg-devel, libpng-devel
@@ -37,7 +37,7 @@ BuildRequires: automake, autoconf
 
 %description
 Kasablanca is an ftp client, written in c++, using the kde libraries. among
-its features are currently encryption (auth tls) support, fxp, site 
+its features are currently encryption (auth tls) support, fxp, site
 bookmarks, and queued transfers.
 
 %prep

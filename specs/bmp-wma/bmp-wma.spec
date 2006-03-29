@@ -10,7 +10,7 @@ Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://bmp-plugins.berlios.de/
-Source: http://download.berlios.de/bmp-plugins/bmp-wma-%{version}.tar.gz 
+Source: http://download.berlios.de/bmp-plugins/bmp-wma-%{version}.tar.gz
 Patch: bmp-wma-0.1.1-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: bmp-devel, gcc-c++

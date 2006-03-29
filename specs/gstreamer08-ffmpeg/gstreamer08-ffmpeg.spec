@@ -37,7 +37,7 @@ GStreamer is a streaming-media framework, based on graphs of filters which
 operate on media data. Applications using this library can do anything
 from real-time sound processing to playing videos, and just about anything
 else media-related.  Its plugin-based architecture means that new data
-types or processing capabilities can be added simply by installing new 
+types or processing capabilities can be added simply by installing new
 plugins.
 
 

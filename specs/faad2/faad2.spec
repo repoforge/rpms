@@ -132,7 +132,7 @@ test -x configure || sh bootstrap
 - Release bump to drop the disttag number in FC5 build.
 
 * Mon Jan  2 2006 Dries Verachtert <dries@ulyssis.org> 2.0-5
-- Also install mp4ff_int_types.h because it is needed by mp4ff.h, thanks to 
+- Also install mp4ff_int_types.h because it is needed by mp4ff.h, thanks to
   Ramses Smeyers.
 
 * Thu May  5 2005 Matthias Saou <http://freshrpms.net/> 2.0-4

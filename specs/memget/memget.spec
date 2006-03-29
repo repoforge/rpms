@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %description
 memget is used to save the contents of memory from a Linux server under
 investigation, and mempeek is used to examine that memory on a separate
-workstation. 
+workstation.
 
 %prep
 %setup -c

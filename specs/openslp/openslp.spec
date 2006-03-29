@@ -3,7 +3,7 @@
 # Authority: dag
 
 Name: openslp
-Summary: OpenSLP implementation of Service Location Protocol V2 
+Summary: OpenSLP implementation of Service Location Protocol V2
 Version: 1.2.1
 Release: 0
 License: BSD
@@ -23,8 +23,8 @@ provides a framework to allow networking applications to discover the
 existence, location, and configuration of networked services in
 enterprise networks.
 
-OpenSLP is an open source implementation of the SLPv2 protocol as defined 
-by RFC 2608 and RFC 2614.  This package includes the daemon, libraries, header 
+OpenSLP is an open source implementation of the SLPv2 protocol as defined
+by RFC 2608 and RFC 2614.  This package includes the daemon, libraries, header
 files and documentation.
 
 %package devel
@@ -67,7 +67,7 @@ prog="slpd"
 
 #///////////// multicast_route_set() //////////////#
 #                                                  #
-# Does nothing if a route exists that supports     # 
+# Does nothing if a route exists that supports     #
 # multicast traffic. If no routes supporting       #
 # multicast traffic exists, the function tries to  #
 # add one.  A 0 is returned on success and a 1     #
@@ -76,7 +76,7 @@ prog="slpd"
 # is non-zero debugging will appear                #
 #                                                  #
 #//////////////////////////////////////////////////#
-multicast_route_set() 
+multicast_route_set()
 {
 	PING_OPTIONS_1='-c1 -w1'
 	PING_OPTIONS_2='-c1 -i1'
@@ -103,11 +103,11 @@ multicast_route_set()
 	err_unreachable_found=\$?
 
 	#If errors, add route. Otherwise, do nothing
-	if [ -s \$TMP_FILE ] && [ \$err_unreachable_found = 0 ]; then 
+	if [ -s \$TMP_FILE ] && [ \$err_unreachable_found = 0 ]; then
 
 		if [ \$1 != 0 ]; then
-			echo \$MSG_FAILED_TO_FIND 
-			echo \$MSG_ADDING_ROUTE 
+			echo \$MSG_FAILED_TO_FIND
+			echo \$MSG_ADDING_ROUTE
 		fi
 
 		\$CMD_ADD_ROUTE `eval \$CMD_GET_INTERFACE` > /dev/null 2>&1
@@ -156,7 +156,7 @@ stop() {
         [ \$RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/crond
 	echo
         return \$RETVAL
-}       
+}
 
 restart() {
 	stop
@@ -204,7 +204,7 @@ EOF
 /sbin/chkconfig --add slpd
 /sbin/ldconfig 2>/dev/null
 
-%preun 
+%preun
 if [ $1 -eq 0 ]; then
         /sbin/chkconfig --del slpd
 fi

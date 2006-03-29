@@ -52,7 +52,7 @@ which provides several graphical clients on Mac and Windows as well.
 [Desktop Entry]
 Name=Gcvs CVS Browser
 Comment=Browse and use CVS graphically
-Icon=gnome-util.png 
+Icon=gnome-util.png
 Exec=gcvs
 Type=Application
 Terminal=false

@@ -19,9 +19,9 @@ ExclusiveArch: i386
 ExclusiveOS: Linux
 
 %description
-Memtest86 is a thorough, stand alone memory test for 386, 486 and Pentium 
+Memtest86 is a thorough, stand alone memory test for 386, 486 and Pentium
 systems. Memtest86 is a stand alone program and can be loaded from either
-a disk partition via lilo or a floppy disk. Memtest86 uses a "moving 
+a disk partition via lilo or a floppy disk. Memtest86 uses a "moving
 inversions" algorithm that is proven to be effective in finding memory
 errors.  The BIOS based memory test is just a quick check that will often
 miss many of the failures that are detected by Memtest86.

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: 
+# Upstream:
 # Screenshot: http://gemhun.sourceforge.net/images/screenshots/20031016/jungle.jpg
 
 Summary: Group gems together
@@ -86,6 +86,6 @@ desktop-file-install --vendor net                  \
 %{_includedir}/GemHunters/*.h
 
 %changelog
-* Sun May 30 2004 Dries Verachtert <dries@ulyssis.org> - 
+* Sun May 30 2004 Dries Verachtert <dries@ulyssis.org>
 - Initial package.
 

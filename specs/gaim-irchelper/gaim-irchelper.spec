@@ -3,7 +3,7 @@
 
 Summary: Gaim plugin to assist with IRC networks
 Name: gaim-irchelper
-Version: 0.12 
+Version: 0.12
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -16,7 +16,7 @@ BuildRequires: pkgconfig, glib2-devel, gaim-devel
 Requires: gaim >= 1:1.2.0, gaim < 1:2.0.0
 
 %description
-IRC Helper is a plugin for Gaim which seeks to handle the rough 
+IRC Helper is a plugin for Gaim which seeks to handle the rough
 edges of the IRC protocol through network-specific code.
 
 %prep

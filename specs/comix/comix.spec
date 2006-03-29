@@ -18,7 +18,7 @@ BuildRequires: python
 Requires: python, python-imaging
 
 %description
-Comix is a comic book viewer. It reads zip, rar, tar, tar.gz, and tar.bz2 
+Comix is a comic book viewer. It reads zip, rar, tar, tar.gz, and tar.bz2
 archives (often called .cbz, .cbr and .cbt) as well as normal image files.
 
 %prep

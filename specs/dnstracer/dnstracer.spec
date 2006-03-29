@@ -28,11 +28,11 @@ servers which know the data.
 %{__make} %{?_smp_mflags}
 
 %install
-%{__rm} -rf %{buildroot} 
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %clean
-%{__rm} -rf %{buildroot} 
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)

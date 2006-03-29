@@ -35,9 +35,9 @@ BuildRequires: qt-devel, fam-devel
 Requires: kdelibs
 
 %description
-Kssh is a KDE front-end to ssh. It can work as a standard KDE application 
-that launches ssh connections in a terminal or as a konsole session. This 
-means that you can press in any konsole "New Session" and then select 
+Kssh is a KDE front-end to ssh. It can work as a standard KDE application
+that launches ssh connections in a terminal or as a konsole session. This
+means that you can press in any konsole "New Session" and then select
 "Secure Shell".
 
 %prep

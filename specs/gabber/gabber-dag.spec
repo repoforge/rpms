@@ -19,10 +19,10 @@ BuildRequires: gtkmm2-devel, libgnomemm2-devel, gconfmm2-devel, libglademm2-deve
 BuildRequires: gal >= 0.7, gal-devel, openssl-devel
 
 %description
-Gabber is a Gnome client for the distributed Open Source instant messaging 
-system called Jabber. Gabber is one of the most complete Jabber clients, 
-while still remaining one of the easiest to use. Jabber allows communication 
-with a multitude of other instant messaging systems, such as AIM, ICQ, 
+Gabber is a Gnome client for the distributed Open Source instant messaging
+system called Jabber. Gabber is one of the most complete Jabber clients,
+while still remaining one of the easiest to use. Jabber allows communication
+with a multitude of other instant messaging systems, such as AIM, ICQ,
 Yahoo!, MSN, and even IRC.
 
 %prep

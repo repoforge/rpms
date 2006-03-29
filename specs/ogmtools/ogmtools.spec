@@ -16,7 +16,7 @@ BuildRequires: gcc-c++, libdvdread-devel, libogg-devel, libvorbis-devel
 %description
 These tools allow information about (ogminfo) or extraction from (ogmdemux) or
 creation of (ogmmerge) OGG media streams. Note that OGM is used for "OGG media
-streams". 
+streams".
 
 
 %prep

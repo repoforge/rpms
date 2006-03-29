@@ -10,7 +10,7 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.giftproject.org/
 
-Source: http://dl.sf.net/gift/gift-%{version}.tar.bz2 
+Source: http://dl.sf.net/gift/gift-%{version}.tar.bz2
 %{?fc4:BuildRequires: libtool-ltdl-devel, libtool-ltdl}
 BuildRequires: libtool, gcc-c++, libvorbis-devel, libogg-devel
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig, cairo-devel >= 0.1.17, glib2-devel >= 2.2.3
 BuildRequires: mono-devel, zlib-devel, freetype-devel, libungif-devel,
-BuildRequires: libjpeg-devel, 
+BuildRequires: libjpeg-devel,
 
 %description
 libgdiplus is an Open Source implementation of the GDI+ API, it is part

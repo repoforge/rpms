@@ -21,7 +21,7 @@ The software enables real-time viewing of network activity.
 Network usage is tracked on a per host basis. Packet
 and byte counts are available for all host communication.
 Router statistics and summary charts are available.
- 
+
 %prep
 %setup -n %{name}-%{real_version}
 

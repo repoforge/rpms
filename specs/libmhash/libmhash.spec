@@ -21,9 +21,9 @@ Obsoletes: %{real_name}
 %description
 mhash is a thread-safe hash library, implemented in C, and provides a
 uniform interface to a large number of hash algorithms (MD5, SHA-1,
-HAVAL, RIPEMD128, RIPEMD160, TIGER, GOST). These algorithms can be 
+HAVAL, RIPEMD128, RIPEMD160, TIGER, GOST). These algorithms can be
 used to compute checksums, message digests, and other signatures.
-The HMAC support implements the basics for message authentication, 
+The HMAC support implements the basics for message authentication,
 following RFC 2104.
 
 %package devel

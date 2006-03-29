@@ -21,7 +21,7 @@ URL: http://freehackers.org/~tnagy/kdissert/
 Source: http://freehackers.org/~tnagy/kdissert/kdissert-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: kdelibs-devel 
+BuildRequires: kdelibs-devel
 
 %description
 Kdissert is a mind-mapping tool for helping students to create texts

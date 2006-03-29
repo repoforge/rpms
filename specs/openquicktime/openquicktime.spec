@@ -41,7 +41,7 @@ done
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_libdir}/*.so

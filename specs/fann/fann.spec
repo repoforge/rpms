@@ -15,7 +15,7 @@ BuildRequires: gcc, make, gcc-c++
 
 %description
 Fann is a fast artificial neural network library. More information and a lot
-of documentation is available at http://fann.sourceforge.net/ 
+of documentation is available at http://fann.sourceforge.net/
 
 %prep
 %setup

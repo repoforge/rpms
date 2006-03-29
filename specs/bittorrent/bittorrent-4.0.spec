@@ -38,7 +38,7 @@ Group: Applications/Internet
 Requires: pygtk2 >= 2.4.0
 Requires: %{name} = %{version}-%{release}
 
-%description gui 
+%description gui
 This package contains the GUI versions of the BitTorrent file transfer tool.
 
 %prep

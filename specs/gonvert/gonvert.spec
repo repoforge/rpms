@@ -24,15 +24,15 @@ Requires: python >= 1.5, pygtk2 >= 2.0, libglade >= 0.13, gnome-libs >= 1.2.4
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
-gonvert is a conversion utility that allows conversion between many units 
-like CGS, Ancient, Imperial with many categories like length, mass, numbers, 
-etc. All units converted values shown at once as you type. Easy to add/change 
+gonvert is a conversion utility that allows conversion between many units
+like CGS, Ancient, Imperial with many categories like length, mass, numbers,
+etc. All units converted values shown at once as you type. Easy to add/change
 your own units.
 
-%prep 
+%prep
 %setup
 
-%build 
+%build
 %{__make} %{?_smp_mflags}
 
 %install
@@ -50,8 +50,8 @@ your own units.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
-%defattr(-, root, root, 0755) 
+%files
+%defattr(-, root, root, 0755)
 %doc doc/*
 %{_bindir}/gonvert
 %{_datadir}/gonvert/

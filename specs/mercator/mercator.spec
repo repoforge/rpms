@@ -16,8 +16,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: wfmath-devel, gcc-c++, pkgconfig
 
 %description
-Mercator is a terrain generation and management library that handles the 
-data required to handle terrain rendering and physics, including classes 
+Mercator is a terrain generation and management library that handles the
+data required to handle terrain rendering and physics, including classes
 to handle vegetation.
 
 %package devel

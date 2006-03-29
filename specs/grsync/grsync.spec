@@ -16,8 +16,8 @@ BuildRequires: gettext, gtk2-devel
 Requires: rsync
 
 %description
-Grsync is a GUI for rsync, the command line directory synchronization tool. 
-It supports only a limited set of rsync features, but can be effectively 
+Grsync is a GUI for rsync, the command line directory synchronization tool.
+It supports only a limited set of rsync features, but can be effectively
 used to synchronize local directories.
 
 %prep

@@ -46,7 +46,7 @@ Provides: armagetron = %{version}-%{release}
 %description
 There is not much to be said about the game: you ride a lightcycle,
 a kind of motorbike that can't be stoppen and leaves a wall where
-it goes. You can make turns of 90 degrees and can accelerate by 
+it goes. You can make turns of 90 degrees and can accelerate by
 driving close to walls. Make your enemies hit a wall while avoiding
 the same fate.
 

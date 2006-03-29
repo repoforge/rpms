@@ -25,7 +25,7 @@ of predefined labels, database managment tools, and translations in
 many languages. Even printing more than 10,000 labels in one go is no
 problem for KBarcode. Additionally, it is a simple xbarcode
 replacement for the creation of barcodes. All major types of barcodes
-like EAN, UPC, CODE39, and ISBN are supported. 
+like EAN, UPC, CODE39, and ISBN are supported.
 
 %prep
 %setup

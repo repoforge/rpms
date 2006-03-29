@@ -27,7 +27,7 @@ you run it on the same output file, it tries to fill in the gaps.
 
 The basic operation of ddrescue is fully automatic. That is, you don't have
 to wait for an error, stop the program, read the log, run it in reverse mode,
-etc. 
+etc.
 
 %prep
 %setup

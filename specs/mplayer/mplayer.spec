@@ -134,7 +134,7 @@ Group: Applications/Multimedia
 Requires: %{name} = %{version}
 
 %description -n mencoder
-MPlayer’s Movie Encoder is a simple movie encoder, designed to encode 
+MPlayer’s Movie Encoder is a simple movie encoder, designed to encode
 MPlayer-playable movies to other MPlayer-playable formats. It encodes to
 MPEG-4 (DivX/XviD), one of the libavcodec codecs and PCM/MP3/VBRMP3 audio
 in 1, 2 or 3 passes.  Furthermore  it has stream copying abilities, a

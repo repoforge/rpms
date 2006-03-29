@@ -31,8 +31,8 @@ BuildRequires: libpng-devel, libjpeg-devel
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
-KLeds is a little program for the KDE Desktop Environment. It shows 
-up in the KDE Panel and displays the current state of the keyboard 
+KLeds is a little program for the KDE Desktop Environment. It shows
+up in the KDE Panel and displays the current state of the keyboard
 indicator LED's (NumLock, ScrollLock and CapsLock).
 
 %prep

@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, ncurses-devel, glib2-devel, openssl-devel, pkgconfig
 
 %description
-Mcabber is a small jabber console client which supports SSL support, history 
+Mcabber is a small jabber console client which supports SSL support, history
 logging, external actions and more.
 
 %prep

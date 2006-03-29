@@ -26,7 +26,7 @@ microcontrollers distributed under the GNU General Public License
 gpsim has been designed to be as accurate as possible. Accuracy includes the
 entire PIC - from the core to the I/O pins and including ALL of the internal
 peripherals. Thus it's possible to create stimuli and tie them to the I/O
-pins and test the PIC the same PIC the same way you would in the real world. 
+pins and test the PIC the same PIC the same way you would in the real world.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.

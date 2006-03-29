@@ -26,10 +26,10 @@ BuildRequires: gettext
 %description
 Etherape is a graphical network monitor for Unix modeled after
 etherman. Featuring ether, ip and tcp modes, it displays network
-activity graphically. Hosts and links change in size with traffic. 
-Color coded protocols display. It supports ethernet, ppp and slip 
-devices. It can filter traffic to be shown, and can read traffic 
-from a file as well as live from the network. 
+activity graphically. Hosts and links change in size with traffic.
+Color coded protocols display. It supports ethernet, ppp and slip
+devices. It can filter traffic to be shown, and can read traffic
+from a file as well as live from the network.
 
 %prep
 %setup
@@ -47,7 +47,7 @@ SESSION=true
 EOF
 
 %{__cat} <<EOF >etherape.pam
-#%PAM-1.0  
+#%PAM-1.0
 auth       sufficient   /lib/security/pam_rootok.so
 auth       sufficient   /lib/security/pam_timestamp.so
 auth       required     /lib/security/pam_stack.so service=system-auth

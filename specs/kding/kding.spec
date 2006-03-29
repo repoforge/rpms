@@ -17,11 +17,11 @@ BuildRequires: kdelibs-devel, gcc-c++, gettext
 Requires: ding
 
 %description
-KDing is a KDE frontend for Ding, a dictionary lookup program. It sits 
-in KDE's system tray and can translate the current clipboard content. 
-Users can also enter single words or phrases for translation. It is 
-intended to be used for translating between German and English, but 
-can be used with every language for which a word list is available for 
+KDing is a KDE frontend for Ding, a dictionary lookup program. It sits
+in KDE's system tray and can translate the current clipboard content.
+Users can also enter single words or phrases for translation. It is
+intended to be used for translating between German and English, but
+can be used with every language for which a word list is available for
 Ding.
 
 %prep

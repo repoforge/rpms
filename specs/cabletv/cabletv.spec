@@ -25,17 +25,17 @@ Source: http://sector17.tvand.net/cabletv/download/cabletv-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: nasm
-#BuildRequires: liblirc-devel 
+#BuildRequires: liblirc-devel
 Requires: xawtv
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
-CableTV is a CableCrypt decoder for Linux. It has been tested with BT878 cards 
-under kernel 2.2.x and 2.4.0-testx, and provides full decryption of Wiener 
-Telekabel Telekino (Austria), but reported to work with many stations over 
-europe. It works yet only with PAL. Chroma and polarity inversion is supported. 
+CableTV is a CableCrypt decoder for Linux. It has been tested with BT878 cards
+under kernel 2.2.x and 2.4.0-testx, and provides full decryption of Wiener
+Telekabel Telekino (Austria), but reported to work with many stations over
+europe. It works yet only with PAL. Chroma and polarity inversion is supported.
 Supports color MMX decoding and b/w x86 assembler decoding.
 
 %prep

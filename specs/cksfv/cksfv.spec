@@ -41,5 +41,5 @@ CRC32 checksums.
 * Sun Aug 14 2005 Dag Wieers <dag@wieers.com> - 1.3-1
 - Rebuild.
 
-* Thu Oct 09 2003 Dag Wieers <dag@wieers.com> - 1.3-0                                                                                         
+* Thu Oct 09 2003 Dag Wieers <dag@wieers.com> - 1.3-0
 - Initial package. (using DAR)

@@ -28,7 +28,7 @@ The purpose of this addon is to allow you to execute NetSaint/Nagios
 plugins on a remote host in as transparent a manner as possible.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 #%{__perl} -pi.orig -e '
 #		s|^(command_file)=\@localstatedir\@/rw/nagios.cmd|$1=%{_localstatedir}/spool/nagios/nagios.cmd|;

@@ -16,9 +16,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 
 %description
-Open Babel is a project designed to pick up where Babel left off, 
-as a cross-platform program and library designed to interconvert 
-between many file formats used in molecular modeling and computational 
+Open Babel is a project designed to pick up where Babel left off,
+as a cross-platform program and library designed to interconvert
+between many file formats used in molecular modeling and computational
 chemistry.
 
 %package devel

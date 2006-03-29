@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: kdelibs-devel, gcc-c++, gettext
 
 %description
-KBibTeX is a BibTeX editor for KDE. It supports network transparent access 
+KBibTeX is a BibTeX editor for KDE. It supports network transparent access
 to .bib files, and export to both .pdf and .ps thru (pdf)latex.
 
 %prep

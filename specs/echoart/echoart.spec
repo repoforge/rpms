@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream:  Dennis Opacki <dopacki$adotout,com> 
+# Upstream:  Dennis Opacki <dopacki$adotout,com>
 
 Summary: Responds to or drops ICMP echo requests packets
 Name: echoart
@@ -22,7 +22,7 @@ pre-defined sequence, and could be used to return crude ASCII art in
 response to pings from a Cisco router. It works by intercepting ICMP echo
 request packets and consulting a pattern template to determine whether or
 not to respond to a specific echo request. It then uses libnet to inject
-responses back into the network as necessary. 
+responses back into the network as necessary.
 
 %prep
 %setup -n %{name}

@@ -16,9 +16,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: ncurses-devel, gcc-c++
 
 %description
-GANDI (Gathering of Additional Ncurses Development Implements) is a 
-collection of widgets written in C for ncurses. It's designed to ease 
-writing new ncurses software with a user-friendly interface. GANDI is 
+GANDI (Gathering of Additional Ncurses Development Implements) is a
+collection of widgets written in C for ncurses. It's designed to ease
+writing new ncurses software with a user-friendly interface. GANDI is
 a library for developers and not an application for end-users.
 
 %package devel

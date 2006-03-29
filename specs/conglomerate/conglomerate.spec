@@ -70,7 +70,7 @@ scrollkeeper-update -q || :
 %{_datadir}/omf/conglomerate/
 %{_datadir}/pixmaps/conglomerate-icon-16.png
 %{_datadir}/pixmaps/conglomerate/
-%exclude %{_localstatedir}/scrollkeeper/ 
+%exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
 * Wed Jul 13 2005 Dag Wieers <dag@wieers.com> - 0.9.1-1

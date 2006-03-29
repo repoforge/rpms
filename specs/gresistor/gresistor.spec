@@ -18,12 +18,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: python
 
 %description
-To allow for identification, resistors are usually marked with colored bands. 
-Often referred to as color codes, these markings are indicative of their 
-resistance, tolerance, and temperature coefficient. gResistror is a great 
-program that will help you translate resistor color codes into a readable 
-value. All you have to do is watch the colors on the resistor and then 
-enter them in the program. As you enter, you'll see that the resistor 
+To allow for identification, resistors are usually marked with colored bands.
+Often referred to as color codes, these markings are indicative of their
+resistance, tolerance, and temperature coefficient. gResistror is a great
+program that will help you translate resistor color codes into a readable
+value. All you have to do is watch the colors on the resistor and then
+enter them in the program. As you enter, you'll see that the resistor
 value is changing according to the selected color.
 
 %prep

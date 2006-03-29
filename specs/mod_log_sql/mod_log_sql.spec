@@ -54,7 +54,7 @@ to a database.
 
 ### Now we need to tell apache where to send the logs.
 
-### For remote logging, use this line. 
+### For remote logging, use this line.
 #LogSQLLoginInfo mysql://loguser:l0gg3r@dbmachine.foo.com/apachelogs
 #LogSQLDBParam port 3306
 

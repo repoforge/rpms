@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Herve Commowick <hervec$sports,fr>
 
-Summary: Provides a simple, uniform password-checking interface using an LDAP database. 
+Summary: Provides a simple, uniform password-checking interface using an LDAP database.
 Name: checkpassword-ldap
 Version: 0.01
 Release: 1

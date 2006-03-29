@@ -11,7 +11,7 @@ URL: http://www.gtkmm.org/
 Source: http://ftp.gnome.org/pub/GNOME/sources/gtkmm/2.2/gtkmm-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.2.0, libsigc++ >= 1.2.0
-BuildRequires: gcc-c++, gtk2-devel >= 2.2.0, libsigc++-devel >= 1.2.0, 
+BuildRequires: gcc-c++, gtk2-devel >= 2.2.0, libsigc++-devel >= 1.2.0,
 
 %description
 gtkmm (previously known as Gtk--) is the official C++ interface for the

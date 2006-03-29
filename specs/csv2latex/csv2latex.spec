@@ -13,7 +13,7 @@ URL: http://brouits.free.fr/csv2latex/
 Source: http://brouits.free.fr/csv2latex/csv2latex_%{version}-1.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: 
+#BuildRequires:
 
 %description
 csv2latex is a file format converter that converts a well formed CSV file

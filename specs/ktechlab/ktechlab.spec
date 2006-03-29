@@ -41,9 +41,9 @@ Requires: gputils, gpsim
 KTechlab is a development and simulation environment for microcontrollers
 and electronic circuits, distributed under the GNU General Public License.
 
-KTechlab consists of several well-integrated components: 
+KTechlab consists of several well-integrated components:
 A circuit simulator, capable of simulating logic, linear devices and some
-nonlinear devices. 
+nonlinear devices.
 * Integration with gpsim, allowing PICs to be simulated in circuit.
 * A schematic editor, which provides a rich real-time feedback of the
 simulation.

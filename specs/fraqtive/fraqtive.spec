@@ -16,10 +16,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: kdelibs-devel, gcc-c++, gettext
 
 %description
-Fraqtive is a program for drawing Mandelbrot and Julia fractals. It uses a 
-very fast algorithm and generates high quality, smooth images. It is fully 
-interactive, allowing for real-time mouse navigation and dynamic generation 
-of the Julia fractal preview. OpenGL-rendered 3D view of the fractals is 
+Fraqtive is a program for drawing Mandelbrot and Julia fractals. It uses a
+very fast algorithm and generates high quality, smooth images. It is fully
+interactive, allowing for real-time mouse navigation and dynamic generation
+of the Julia fractal preview. OpenGL-rendered 3D view of the fractals is
 also supported.
 
 %prep

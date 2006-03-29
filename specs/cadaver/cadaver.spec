@@ -21,12 +21,12 @@ URL: http://www.webdav.org/cadaver/
 Source: http://www.webdav.org/cadaver/cadaver-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: neon-devel >= 0.24.0-1 
+BuildRequires: neon-devel >= 0.24.0-1
 
 %description
-cadaver is a command-line WebDAV client, with support for file upload, 
+cadaver is a command-line WebDAV client, with support for file upload,
 download, on-screen display, in-place editing, namespace operations
-(move/copy), collection creation and deletion, property manipulation, 
+(move/copy), collection creation and deletion, property manipulation,
 and resource locking.
 
 %prep

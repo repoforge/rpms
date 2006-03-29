@@ -27,12 +27,12 @@ missing.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall 
+%makeinstall
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
 %doc %{_mandir}/man1/chrpath.1*

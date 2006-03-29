@@ -16,11 +16,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: ncurses-devel
 
 %description
-CLEX is a file manager with a full-screen user interface written in C with 
-the curses library. It displays directory contents (including file status 
-details) and provides features like command history, filename insertion, or 
-name completion in order to help the user to construct commands to be 
-executed by the shell (there are no built-in commands). CLEX is easily 
+CLEX is a file manager with a full-screen user interface written in C with
+the curses library. It displays directory contents (including file status
+details) and provides features like command history, filename insertion, or
+name completion in order to help the user to construct commands to be
+executed by the shell (there are no built-in commands). CLEX is easily
 configurable and all its features are explained in the on-line help.
 
 %prep

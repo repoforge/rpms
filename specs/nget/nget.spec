@@ -29,7 +29,7 @@ succesfully downloaded.
 	--with-pcre \
 	--with-popt
 %{__make} %{?_smp_mflags}
-	        
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall

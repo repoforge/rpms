@@ -65,14 +65,14 @@ Information can be output in plain text, XML or HTML.
 	DESTDIR="%{buildroot}" \
 	PREFIX="%{_prefix}" \
 	SBINDIR="%{_sbindir}" \
-	MANDIR="%{_mandir}" 
+	MANDIR="%{_mandir}"
 
 %if %{!?_without_gtk24:1}0
 %{__make} install-gui\
 	DESTDIR="%{buildroot}" \
 	PREFIX="%{_prefix}" \
 	SBINDIR="%{_sbindir}" \
-	MANDIR="%{_mandir}" 
+	MANDIR="%{_mandir}"
 %{__ln_s} -f gtk-lshw %{buildroot}%{_sbindir}/lshw-gui
 %endif
 

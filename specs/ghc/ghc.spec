@@ -25,7 +25,7 @@ Source: http://www.haskell.org/ghc/dist/%{version}/ghc-%{version}-src.tar.bz2
 Source1: http://www.haskell.org/ghc/dist/%{version}/ghc-%{version}-i386-unknown-linux.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: readline-devel, readline
-BuildRequires: m4, python, perl 
+BuildRequires: m4, python, perl
 BuildRequires: python-devel, docbook-dtds
 BuildRequires: openjade, jadetex
 %{?fc4:BuildRequires:compat-readline43}
@@ -40,7 +40,7 @@ Haskell to either native code or C. It implements numerous experimental
 language extensions to Haskell for example concurrency, a foreign language
 interface, several type-system extensions, exceptions, and so on. GHC comes
 with a generational garbage collector, a space and time profiler, and a
-comprehensive set of libraries. 
+comprehensive set of libraries.
 
 %prep
 %setup -a 1

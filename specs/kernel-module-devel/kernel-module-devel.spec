@@ -9,7 +9,7 @@
 # We really don't need debug packages for this
 %define debug_package %{nil}
 
-Summary: Build files for all kernel arch/types for %{krel} 
+Summary: Build files for all kernel arch/types for %{krel}
 Name: kernel-module-devel-%{krel}
 Version: 0.5
 Release: 1

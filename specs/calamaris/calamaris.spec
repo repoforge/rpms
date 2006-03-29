@@ -21,7 +21,7 @@ Calamaris parses the Squid Native Log and genereates reports
 about Peak-usage, Request-Methods, Status-reports of incoming
 and outgoing requests, second and Top-level destinations,
 content-types and performance.
- 
+
 %prep
 %setup
 

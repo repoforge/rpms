@@ -19,7 +19,7 @@ BuildRequires: readline-devel
 %description
 elf is an ELF header (e_header) analysis tool. It allows you to gather
 various information from a binary's ELF header. An intuitive interactive
-and command-line mode is available. 
+and command-line mode is available.
 
 %prep
 %setup -n %{name}-%{real_version}

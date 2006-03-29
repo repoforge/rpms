@@ -50,7 +50,7 @@ has full support for objects and classes combined with ML-style type
 reconstruction, a powerful module calculus in the style of Standard ML (but
 retaining separate compilation), a high-performance native code compiler (in
 addition to a Caml Light-style bytecode compiler), and labeled arguments
-with possible default value. 
+with possible default value.
 
 %package labltk
 Summary: Tk bindings for Objective Caml
@@ -183,7 +183,7 @@ Emacs mode for Objective Caml.
 - Update to release 3.08.3.
 
 * Thu Mar 03 2005 Dries Verachtert <dries@ulyssis.org> - 3.08.2-2
-- Added the documentation, thanks to David Aspinall for informing me 
+- Added the documentation, thanks to David Aspinall for informing me
   about the missing documentation.
 
 * Thu Dec 09 2004 Dries Verachtert <dries@ulyssis.org> - 3.08.2

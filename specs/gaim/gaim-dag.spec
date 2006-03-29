@@ -18,10 +18,10 @@ BuildRequires: gtk2 >= 2.0, gtkspell-devel, libao-devel
 BuildRequires: mozilla-nss, mozilla-nss-devel
 
 %description
-Gaim allows you to talk to anyone using a variety of messaging 
-protocols, including AIM (Oscar and TOC), ICQ, IRC, Yahoo!, 
-MSN Messenger, Jabber, Gadu-Gadu, Napster, and Zephyr.  These 
-protocols are implemented using a modular, easy to use design.  
+Gaim allows you to talk to anyone using a variety of messaging
+protocols, including AIM (Oscar and TOC), ICQ, IRC, Yahoo!,
+MSN Messenger, Jabber, Gadu-Gadu, Napster, and Zephyr.  These
+protocols are implemented using a modular, easy to use design.
 To use a protocol, just load the plugin for it.
 
 %prep

@@ -18,7 +18,7 @@ BuildRequires: libgnomeui-devel librsvg2-devel libcroco-devel
 Gweled is a Gnome version of a popular PalmOS/Windows/Java game called
 "Bejeweled" or "Diamond Mine". The aim of the game is to make alignment of 3
 or more gems, both vertically or horizontally by swapping adjacent gems. The
-game ends when there are no possible moves left. 
+game ends when there are no possible moves left.
 
 %description -l nl
 Gweled is een Gnome versie van het populaire PalmOS/Windows/Java spel

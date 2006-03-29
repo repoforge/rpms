@@ -20,7 +20,7 @@ BuildRequires: glib-devel, gtk+-devel
 %description
 GtkExtra is a useful set of widgets for creating GUI's for the Xwindows
 system using GTK+. You can use it complementary to GTK+ and it is written in
-C. It is also Free Software and released under the LGPL license. 
+C. It is also Free Software and released under the LGPL license.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.

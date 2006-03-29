@@ -17,11 +17,11 @@ Source: http://www.aimsniff.com/releases/aimsniff-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
-AIM Sniff is a utility for monitoring and archiving AOL Instant Messenger 
+AIM Sniff is a utility for monitoring and archiving AOL Instant Messenger
 messages across a network. Aim Sniff can either do a live dump (actively
 sniff the network) or read a PCAP file and parse the file for IM messages.
 Aim Sniff also has the option of dumping the information to a MySQL
-database or STDOUT. 
+database or STDOUT.
 
 %prep
 %setup -n %{name}-%{real_version}

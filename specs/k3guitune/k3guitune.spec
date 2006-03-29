@@ -16,8 +16,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, kdelibs-devel, gettext
 
 %description
-KGuitune is a guitar-and-other-instruments tuner. It takes a signal from the 
-microphone, calculates its frequency, and displays it on a note scale 
+KGuitune is a guitar-and-other-instruments tuner. It takes a signal from the
+microphone, calculates its frequency, and displays it on a note scale
 graphic and an oscilloscope. It supports normal, Wien, and physical tuning.
 
 %prep

@@ -25,10 +25,10 @@ Using libnids, one has got a convenient access to data carried by a
 TCP stream, no matter how artfully obscured by an attacker.
 
 %prep
-%setup 
+%setup
 
 %build
-%configure 
+%configure
 %{__make} %{?_smp_mflags}
 
 %install

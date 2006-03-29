@@ -30,7 +30,7 @@ multiple servers). If this is not good enough for you, try the ntpd package.
 %{__cat} <<EOF >htpdate.sysconfig
 ### Uncomment and change this if you want to change the default htpdate options.
 ### See manual htpdate(8) for details.
- 
+
 #OPTIONS="-a -l -s"
 #SERVERS="www.linux.org www.freebsd.org"
 EOF

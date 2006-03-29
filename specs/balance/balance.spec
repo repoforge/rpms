@@ -18,14 +18,14 @@ BuildRequires: groff, ghostscript
 %description
 Balance is a simple but powerful generic tcp proxy with round robin
 load balancing and failover mechanisms. Its behaviour can be controlled
-at runtime using a simple command line syntax. 
+at runtime using a simple command line syntax.
 
 %prep
-%setup 
+%setup
 
 %build
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
-	
+
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 balance %{buildroot}%{_sbindir}/balance

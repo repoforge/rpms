@@ -18,12 +18,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 
 %description
-DUMA (Detect Unintended Memory Access) stops your program on the exact 
-instruction that overruns (or underruns) a malloc() memory buffer. GDB 
-will then display the source-code line that causes the bug. It works by 
-using the virtual-memory hardware to create a red-zone at the border of 
-each buffer: touch that, and your program stops. It can catch formerly 
-impossible-to-catch overrun bugs. DUMA is a fork of Bruce Perens' 
+DUMA (Detect Unintended Memory Access) stops your program on the exact
+instruction that overruns (or underruns) a malloc() memory buffer. GDB
+will then display the source-code line that causes the bug. It works by
+using the virtual-memory hardware to create a red-zone at the border of
+each buffer: touch that, and your program stops. It can catch formerly
+impossible-to-catch overrun bugs. DUMA is a fork of Bruce Perens'
 Electric Fence library.
 
 %package devel

@@ -15,7 +15,7 @@ Source: http://www.mavetju.org/download/dhcping-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
-Dhcping allows the system administrator to check if a remote DHCP 
+Dhcping allows the system administrator to check if a remote DHCP
 server is still functioning.
 
 %prep

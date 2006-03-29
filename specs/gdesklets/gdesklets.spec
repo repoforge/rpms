@@ -24,11 +24,11 @@ Requires: gnome-python2-gnomevfs
 
 %description
 gDesklets provides an advanced architecture for desktop applets - tiny
-displays sitting on your desktop in a symbiotic relationship of eye candy 
+displays sitting on your desktop in a symbiotic relationship of eye candy
 and usefulness.
 
 Populate your desktop with status meters, icon bars, weather sensors,
-news tickers... whatever you can imagine! Virtually anything is possible 
+news tickers... whatever you can imagine! Virtually anything is possible
 and maybe even available some day.
 
 %prep

@@ -19,8 +19,8 @@ BuildRequires: libgnomeui-devel, gettext, libraw1394-devel, libdc1394-devel >= 2
 BuildRequires: desktop-file-utils, SDL-devel, automake, autoconf, ffmpeg-devel
 
 %description
-Coriander is a GUI that let you control your 1394 digital video camera 
-interactively. It features SDL display, FTP image posting, file saving, 
+Coriander is a GUI that let you control your 1394 digital video camera
+interactively. It features SDL display, FTP image posting, file saving,
 and Real streaming. It is for IIDC cameras, not for consumer grade DV cameras.
 
 %prep

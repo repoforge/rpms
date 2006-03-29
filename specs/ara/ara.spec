@@ -24,7 +24,7 @@ regular expressions. It includes a simple syntax and line-editing. A
 graphical interface, xara, is also provided.
 
 This program can only be used for querying Debian packages, not for querying
-for example Fedora Core, Red Hat or Aurora packages! You also need a file 
+for example Fedora Core, Red Hat or Aurora packages! You also need a file
 /var/lib/dpkg/available which contains the list of all Debian packages.
 
 %prep

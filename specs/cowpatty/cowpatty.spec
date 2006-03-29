@@ -33,7 +33,7 @@ wordlist.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS CHANGELOG COPYING FAQ README TODO WISHLIST dict
 %{_bindir}/cowpatty

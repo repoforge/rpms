@@ -46,7 +46,7 @@ Obsoletes: icewm-themes <= %{version}
 A lightweight window manager for the X Window System. Optimized for
 "feel" and speed, not looks. Features multiple workspaces, opaque
 move/resize, task bar, window list, clock, mailbox, CPU, Network, APM
-status. 
+status.
 
 %prep
 %setup

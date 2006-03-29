@@ -22,7 +22,7 @@ Requires: apt, rpm-build
 DAR is a framework for building packages in clean build environments
 (distributions). It consists of tools to create and manage these build
 environments, to build packages for each build environment and to update
-multiple Apt repositories. 
+multiple Apt repositories.
 
 %prep
 %setup

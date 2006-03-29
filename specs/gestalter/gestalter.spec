@@ -24,7 +24,7 @@ BuildRequires: expat-devel >= 1.95.0, freetype-devel >= 2.0.0, libxml-devel
 
 %description
 Gestalter is a free vector drawing program. The user interface is loosly
-modelled after the famous Illustrator (tm) by Adobe. The central 
+modelled after the famous Illustrator (tm) by Adobe. The central
 element is the Bezier curve used as a base part for almost every other
 object. Complex paths are possible, compound paths can be constructed,
 grouping of elements is enabled and everything can be screened by a mask.

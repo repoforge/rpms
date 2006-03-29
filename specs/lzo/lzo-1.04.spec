@@ -22,10 +22,10 @@ Requires: zlib >= 1.0.0
 LZO is a portable lossless data compression library written in ANSI C. It
 offers pretty fast compression and *very* fast decompression.
 
-Decompression requires no memory. 
+Decompression requires no memory.
 
 In addition there are slower compression levels achieving a quite competitive
-compression ratio while still decompressing at this very high speed. 
+compression ratio while still decompressing at this very high speed.
 
 %package devel
 Summary: Includes and static lib for lzo data compression library
@@ -56,7 +56,7 @@ Includes and static lib for lzo data compression library.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog NEWS README THANKS doc
 %{_libdir}/*.so.*

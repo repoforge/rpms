@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 The emu-tools are used to control emu10k1 based (SBLive) and
-Audigy based soundcards from Creative Labs. 
+Audigy based soundcards from Creative Labs.
 
 The emu-config program is used to configure such things as output
 speaker mode (digital/analog), spdif sample rate, etc.

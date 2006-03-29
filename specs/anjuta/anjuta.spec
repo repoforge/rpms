@@ -27,10 +27,10 @@ BuildRequires: scrollkeeper, ncurses-devel
 BuildRequires: gettext
 
 %description
-Anjuta is a versatile Integrated Development Environment (IDE) for C and C++ 
-on GNU/Linux. It has been written for GTK/GNOME, and features a number of 
-advanced programming features. It is basically a GUI interface for the 
-collection of command line programming utilities and tools available for Linux. 
+Anjuta is a versatile Integrated Development Environment (IDE) for C and C++
+on GNU/Linux. It has been written for GTK/GNOME, and features a number of
+advanced programming features. It is basically a GUI interface for the
+collection of command line programming utilities and tools available for Linux.
 These are usually run via a text console, and can be unfriendly to use.
 
 

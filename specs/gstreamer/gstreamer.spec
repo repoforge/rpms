@@ -29,7 +29,7 @@ BuildRequires: zlib-devel
 BuildRequires: popt > 1.6
 BuildRequires: gettext
 # for autopoint, should be depended on by gettext-devel
-BuildRequires: cvs 
+BuildRequires: cvs
 BuildRequires: flex
 BuildRequires: ghostscript
 Prereq: /sbin/ldconfig
@@ -40,7 +40,7 @@ BuildRequires: python2
 BuildRequires: docbook-style-dsssl
 BuildRequires: docbook-style-xsl
 BuildRequires: docbook-dtds
-BuildRequires: docbook-utils 
+BuildRequires: docbook-utils
 BuildRequires: transfig xfig
 BuildRequires: netpbm-progs
 
@@ -51,7 +51,7 @@ GStreamer is a streaming-media framework, based on graphs of filters which
 operate on media data. Applications using this library can do anything
 from real-time sound processing to playing videos, and just about anything
 else media-related.  Its plugin-based architecture means that new data
-types or processing capabilities can be added simply by installing new 
+types or processing capabilities can be added simply by installing new
 plugins.
 
 %package devel
@@ -66,7 +66,7 @@ GStreamer is a streaming-media framework, based on graphs of filters which
 operate on media data. Applications using this library can do anything
 from real-time sound processing to playing videos, and just about anything
 else media-related.  Its plugin-based architecture means that new data
-types or processing capabilities can be added simply by installing new   
+types or processing capabilities can be added simply by installing new
 plugins.
 
 This package contains the libraries and includes files necessary to develop
@@ -108,7 +108,7 @@ NOCONFIGURE=1 ./autogen.sh
 
 make %{?_smp_mflags}
 
-%install  
+%install
 [ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf $RPM_BUILD_ROOT
 
 # build documentation to a different location so it doesn't end up in
@@ -408,7 +408,7 @@ env DISPLAY= %{_bindir}/gst-register-%{majmin} > /dev/null 2> /dev/null
 - Moved files sections up close to their respective descriptions
 
 * Sat Jun 02 2001 Christian Schaller <Uraeus@linuxrising.org>
-- Split the package into separate RPMS, 
+- Split the package into separate RPMS,
   putting most plugins out by themselves.
 
 * Fri Jun 01 2001 Christian Schaller <Uraeus@linuxrising.org>

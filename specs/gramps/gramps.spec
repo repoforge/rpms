@@ -83,7 +83,7 @@ scrollkeeper-update -q || :
 %{_datadir}/mime-info/gramps.*
 %{_datadir}/mime/packages/gramps.xml
 %{_datadir}/omf/gramps/
- 
+
 %changelog
 * Sun Mar 12 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.10-1
 - Updated to release 2.0.10.

@@ -1,7 +1,6 @@
 # $Id$
-
 # Authority: dries
-# Upstream: 
+# Upstream:
 
 Summary: Display the HTTP headers returned by webservers
 Name: furl
@@ -14,7 +13,7 @@ URL: http://www.gumbynet.org.uk/software/furl.html
 Source: http://www.gumbynet.org.uk/software/furl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-# BuildRequires: 
+# BuildRequires:
 
 %description
 A small utility designed to display the HTTP headers returned by web-servers

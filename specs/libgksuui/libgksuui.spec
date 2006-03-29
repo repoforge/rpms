@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, bison, gcc-c++, gtk-doc, pkgconfig, gtk2-devel
 
 %description
-Libgksuui uses the Gtk+2 library to show the dialog asking for the target 
+Libgksuui uses the Gtk+2 library to show the dialog asking for the target
 user's password when needed. It is used by gksu.
 
 %package devel

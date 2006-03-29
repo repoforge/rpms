@@ -19,15 +19,15 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, automake, autoconf, readline-devel, libao-devel
 
 %description
-Aldo is a morse tutor released under GPL. 
-At this moment Aldo has four kinds of exercises: 
-* Classic exercise: With this exercise you must guess some random 
-strings of characters that Aldo plays in morse code. 
+Aldo is a morse tutor released under GPL.
+At this moment Aldo has four kinds of exercises:
+* Classic exercise: With this exercise you must guess some random
+strings of characters that Aldo plays in morse code.
 * Koch method
-* Read from file: with this exercise you can write something in a text 
-file and read this file with Aldo. 
-Callsign exercise: with this exercise you can training yourself reciving 
-random generated callsigns 
+* Read from file: with this exercise you can write something in a text
+file and read this file with Aldo.
+Callsign exercise: with this exercise you can training yourself reciving
+random generated callsigns
 
 %prep
 %setup

@@ -26,8 +26,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %description
 The purpose of Gemu is to control sound cards based on the EMU10K1
 platform. It is meant to allow control to all aspects of EMU10K1 based
-sound cards. Features include route creation, effect/patch control, misc. 
-card settings, route volume mixer, source and destination mixers, and OSS 
+sound cards. Features include route creation, effect/patch control, misc.
+card settings, route volume mixer, source and destination mixers, and OSS
 Mixer binding.
 
 %prep
@@ -40,7 +40,7 @@ Mixer binding.
 #%{__make}
 #%{__make} tools
 #cd -
-%configure 
+%configure
 %{__make} %{?_smp_mflags}
 
 %install

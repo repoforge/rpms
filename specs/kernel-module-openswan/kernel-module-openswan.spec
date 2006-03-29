@@ -260,7 +260,7 @@ cd -
 
 %install
 ### Install utilities.
-#makeinstall 
+#makeinstall
 %{__make} install \
 	DESTDIR="%{buildroot}" \
 	INC_USRLOCAL="%{_prefix}" \

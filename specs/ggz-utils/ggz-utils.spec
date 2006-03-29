@@ -15,8 +15,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libggz-devel, gcc-c++, gettext, ggz-client-libs-devel
 
 %description
-GGZ (which is a recursive acronym for GGZ Gaming Zone) develops libraries, 
-games and game-related applications for client-server online gaming. Player 
+GGZ (which is a recursive acronym for GGZ Gaming Zone) develops libraries,
+games and game-related applications for client-server online gaming. Player
 rankings, game spectators, AI players and a chat bot are part of this effort.
 
 This pacakge contains some utilities for GGZ gaming zone.

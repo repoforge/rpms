@@ -94,7 +94,7 @@ if [ -f %{_sysconfdir}/httpd/conf/httpd.conf ]; then
 fi
 
 %preun
-if [ $1 -eq 0 ]; then 
+if [ $1 -eq 0 ]; then
         /sbin/service apcuspd stop &>/dev/null || :
         /sbin/chkconfig --del apcupsd
 fi

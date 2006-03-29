@@ -28,7 +28,7 @@ The client library includes the following features:
     * Lookup Audio CD metadata using CD Index Discids
     * Calculate Relatable TRM acoustic fingerprints
     * Search for artist/album/track titles
-    * Lookup metadata by name, TRM ids or MusicBrainz Ids 
+    * Lookup metadata by name, TRM ids or MusicBrainz Ids
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}

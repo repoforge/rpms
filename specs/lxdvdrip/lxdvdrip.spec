@@ -16,7 +16,7 @@ Requires: dvdauthor, dvdbackup, dvd+rw-tools, mplayer, streamdvd, transcode
 
 %description
 lxdvdrip is a tool to make a copy from a Video DVD for private use.  It
-automates the process of ripping, authoring, preview and burning a DVD. 
+automates the process of ripping, authoring, preview and burning a DVD.
 
 %prep
 %setup -n %{name}

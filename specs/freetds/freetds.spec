@@ -3,12 +3,12 @@
 # Upstream: <freetds$lists,ibiblio,org>
 
 %define _includedir %{_prefix}/include/freetds
- 
+
 Summary: Implementation of the Sybase/Microsoft TDS (Tabular DataStream) protocol
 Name: freetds
 Version: 0.63
 Release: 1
-License: LGPL 
+License: LGPL
 Group: System Environment/Libraries
 URL: http://www.freetds.org/
 
@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: unixODBC-devel, gcc-c++
 Obsoletes: freetds-unixodbc <= %{version}, freetds-doc <= %{version}
- 
+
 %description
 FreeTDS is a project to document and implement the TDS (Tabular
 DataStream) protocol. TDS is used by Sybase and Microsoft for
@@ -34,10 +34,10 @@ This package contains the header files, static libraries and development
 documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
-%prep 
-%setup 
- 
-%build 
+%prep
+%setup
+
+%build
 %configure \
 	--disable-dependency-tracking \
 	--with-tdsver="4.2" \
@@ -45,7 +45,7 @@ you will need to install %{name}-devel.
 	--enable-msdblib \
 	--enable-sybase-compat
 %{__make} %{?_smp_mflags}
- 
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
@@ -55,12 +55,12 @@ you will need to install %{name}-devel.
 
 %postun
 /sbin/ldconfig 2>/dev/null
- 
+
 %clean
 %{__rm} -rf %{buildroot}
- 
-%files 
-%defattr(-, root, root, 0755) 
+
+%files
+%defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING* NEWS README TODO
 %doc doc/*.html doc/*.sgml doc/*.txt
 #%doc doc/doc/freetds-*/reference/ doc/doc/freetds-*/userguide/ doc/images/
@@ -68,16 +68,16 @@ you will need to install %{name}-devel.
 %config %{_sysconfdir}/*.conf
 %{_bindir}/*
 %{_libdir}/*.so.*
- 
-%files devel 
-%defattr(-, root, root, 0755) 
+
+%files devel
+%defattr(-, root, root, 0755)
 %doc samples/
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
 ### Redefined _includedir to be %{_includedir}/freetds/
 %{_includedir}/
- 
+
 %changelog
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 0.63-1
 - Updated to release 0.63.

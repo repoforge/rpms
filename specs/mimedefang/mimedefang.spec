@@ -71,12 +71,12 @@ useradd -M -r -d %{_localstatedir}/spool/MIMEDefang -s /bin/false -c "MIMEDefang
 %post
 #%{__cat} << EOF
 #
-#In order to complete the installation of mimedefang, you will need to add the 
+#In order to complete the installation of mimedefang, you will need to add the
 #following line to your sendmail mc file:
 #
 #   INPUT_MAIL_FILTER(\`mimedefang', \`S=unix:/var/spool/MIMEDefang/mimedefang.sock, F=T, T=S:1m;R:1m;E:5m')
 #
-#Use the sendmail-cf package to rebuild your /etc/mail/sendmail.cf file and 
+#Use the sendmail-cf package to rebuild your /etc/mail/sendmail.cf file and
 #restart your sendmail daemon.
 #
 #EOF

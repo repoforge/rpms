@@ -51,7 +51,7 @@ using AA-lib, you'll need to install aalib-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall 
+%makeinstall
 %{__rm} -f %{buildroot}%{_infodir}/dir || :
 
 

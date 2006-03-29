@@ -17,13 +17,13 @@ Buildarch: noarch
 Requires: tk
 
 %description
-Ding is a dictionary lookup program for the X Window system on Linux/Unix. It 
-comes with a German-English Dictionary with about 180,000 entries. It is 
-based on Tk version >= 8.3 and uses the agrep or egrep tools for searching. 
-In addition ding can also search in English dictionaries using dict(1) and 
-check spelling using ispell(1). It has many configuration options, such as 
-search preferences, interface language (English or German), and colors. It 
-has history and help functions and comes with useful key and mouse bindings 
+Ding is a dictionary lookup program for the X Window system on Linux/Unix. It
+comes with a German-English Dictionary with about 180,000 entries. It is
+based on Tk version >= 8.3 and uses the agrep or egrep tools for searching.
+In addition ding can also search in English dictionaries using dict(1) and
+check spelling using ispell(1). It has many configuration options, such as
+search preferences, interface language (English or German), and colors. It
+has history and help functions and comes with useful key and mouse bindings
 for quick and easy lookups.
 
 %prep

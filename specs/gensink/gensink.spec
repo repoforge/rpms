@@ -17,8 +17,8 @@ gensink consists of a pair of utilities that measure the performance of
 a TCP connection between two hosts.
 
 %prep
-%setup 
- 
+%setup
+
 %build
 %{__make} %{?_smp_mflags}
 

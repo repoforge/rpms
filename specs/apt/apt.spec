@@ -143,8 +143,8 @@ EOF
 %{!?fc1:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc1 newrpms
 
 ### Red Hat Linux
-%{!?rh9:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/9.0 newrpms 
-%{!?rh8:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/8.0 newrpms 
+%{!?rh9:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/9.0 newrpms
+%{!?rh8:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/8.0 newrpms
 EOF
 
 %{__cat} <<EOF >dries.list
@@ -290,7 +290,7 @@ touch %{buildroot}%{_sysconfdir}/apt/preferences \
 
 %changelog
 * Mon Jan 02 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.15cnc7-1
-- Added libtoolize and autoreconf fix for Fedora Core 5, thanks 
+- Added libtoolize and autoreconf fix for Fedora Core 5, thanks
   to Stephen Clement.
 - Updated to release 0.5.15cnc7.
 

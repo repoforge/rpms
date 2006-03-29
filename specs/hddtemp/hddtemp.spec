@@ -16,12 +16,12 @@ Source: http://www.guzu.net/linux/hddtemp-%{real_version}.tar.bz2
 Source1: http://www.guzu.net/linux/hddtemp.db
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-# BuildRequires: 
+# BuildRequires:
 
 %description
 hddtemp is a small utility that gives you the temperature of your hard drive
 by reading S.M.A.R.T. informations (for drives that support this feature).
-Note: only recent hard drives have a temperature sensor. 
+Note: only recent hard drives have a temperature sensor.
 
 %prep
 %setup -n hddtemp-%{real_version}

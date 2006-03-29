@@ -20,7 +20,7 @@ can both replace a conventional PBX and act as a platform for developing
 custom telephony applications for delivering dynamic content over a
 telephone similarly to how one can deliver dynamic content through a
 web browser using CGI and a web server.
- 
+
 Asterisk talks to a variety of telephony hardware including BRI, PRI,
 POTS, and IP telephony clients using the Inter-Asterisk eXchange
 protocol (e.g. gnophone or miniphone).

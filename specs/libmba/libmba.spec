@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream: 
+# Upstream:
 
 Summary: Library of generic C modules
 Name: libmba
@@ -14,7 +14,7 @@ URL: http://www.ioplex.com/~miallen/libmba/
 Source: http://www.ioplex.com/~miallen/libmba/dl/libmba-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-# BuildRequires: 
+# BuildRequires:
 
 %description
 The libmba package is a collection of mostly independent C modules
@@ -25,7 +25,7 @@ configuration file module, portible semaphores, condition variables and
 more. The code is designed so that individual modules can be integrated into
 existing codebases rather than requiring the user to commit to the entire
 library. The code has no typedefs, few comments, and extensive man pages and
-HTML documentation. 
+HTML documentation.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.

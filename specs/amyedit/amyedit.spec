@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dries
-# Upstream: 
 
 Summary: LaTeX Editor
 Name: amyedit
@@ -21,13 +19,13 @@ BuildRequires: desktop-file-utils
 
 %description
 AmyEdit is a gtkmm LaTeX Editor designed to allow easier creation of LaTeX
-documents for users new to linux. See TODO for information on lacking 
+documents for users new to linux. See TODO for information on lacking
 features and Changelog for an up to date list of new features.
 
 AmyEdit currently features tabbed-editing, word count, new document templates
-preview your document using pdflatex and xpdf (configurable in preferences) 
-as well as an export feature. Output from these commands is displayed in a 
-paned view. 
+preview your document using pdflatex and xpdf (configurable in preferences)
+as well as an export feature. Output from these commands is displayed in a
+paned view.
 
 %prep
 %setup

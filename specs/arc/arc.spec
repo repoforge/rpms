@@ -1,11 +1,11 @@
 # $Id$
 # Authority: dag
 
-Summary: Arc archiver 
+Summary: Arc archiver
 Name: arc
 Version: 5.21j
 Release: 0
-License: distributable 
+License: distributable
 Group: Applications/Archiving
 URL: ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/
 

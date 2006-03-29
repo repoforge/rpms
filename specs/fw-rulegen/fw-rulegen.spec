@@ -23,11 +23,11 @@ BuildRequires: iptables
 config. The config is located in /etc/fw/, using three files: rules.conf,
 global.conf and interfaces.conf. This config is read by fw-rulegen.pl. It
 then outputs the result on STDOUT, it just suffices to pipe it through
-iptables-restore and presto. 
+iptables-restore and presto.
 
 I have an init.d alike script for it to start/stop the firewall. You can
 find it here. Beware though, I use a homedeveloped init.d-alike system, so
-you will need to modify the script to make it work. 
+you will need to modify the script to make it work.
 
 %prep
 %setup

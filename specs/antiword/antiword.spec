@@ -13,11 +13,11 @@ URL: http://www.winfield.demon.nl/
 Source: http://www.winfield.demon.nl/linux/antiword-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: 
+#BuildRequires:
 
 %description
-Antiword is a free MS-Word reader. It converts the documents from Word 2, 
-6, 7, 97, 2000, 2002, and 2003 to text, Postscript, and XML/DocBook. 
+Antiword is a free MS-Word reader. It converts the documents from Word 2,
+6, 7, 97, 2000, 2002, and 2003 to text, Postscript, and XML/DocBook.
 Antiword tries to keep the layout of the document intact.
 
 %prep

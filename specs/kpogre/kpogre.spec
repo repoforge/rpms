@@ -38,7 +38,7 @@ BuildRequires: postgresql-devel, libpqxx, libpqxx-devel, libacl-devel
 
 %description
 KPoGre is a graphical client for PostgreSQL databases. All important
-information such as users, databases, types, domains, functions, sequences, 
+information such as users, databases, types, domains, functions, sequences,
 tables and views is easily accessible in a tree view.
 
 %prep

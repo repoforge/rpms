@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: kdelibs-devel, gcc-c++, gettext, autoconf, automake, dos2unix
 
 %description
-KCheckGmail is a system tray application to notify you about how many email 
+KCheckGmail is a system tray application to notify you about how many email
 messages you have in your Gmail account.
 
 %prep

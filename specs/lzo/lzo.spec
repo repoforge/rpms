@@ -22,7 +22,7 @@ LZO is a portable lossless data compression library written in ANSI C.
 It offers pretty fast compression and *very* fast decompression.
 Decompression requires no memory. In addition there are slower
 compression levels achieving a quite competitive compression ratio
-while still decompressing at this very high speed. 
+while still decompressing at this very high speed.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}
@@ -57,7 +57,7 @@ you will need to install %{name}-devel.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog NEWS README THANKS doc/
 %{_libdir}/*.so.*

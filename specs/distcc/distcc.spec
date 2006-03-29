@@ -182,7 +182,7 @@ EOF
 service distccd
 {
 	disable         = yes
-	socket_type     = stream        
+	socket_type     = stream
 	protocol        = tcp
 	port            = 3632
 	type		= UNLISTED

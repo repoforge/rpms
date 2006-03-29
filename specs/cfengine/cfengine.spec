@@ -86,7 +86,7 @@ stop() {
 restart() {
   	stop
 	start
-}	
+}
 
 case "$1" in
   start)
@@ -158,7 +158,7 @@ stop() {
 restart() {
   	stop
 	start
-}	
+}
 
 case "$1" in
   start)
@@ -229,12 +229,12 @@ stop() {
 	echo
 	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
 	return $RETVAL
-}	
+}
 
 restart() {
   	stop
 	start
-}	
+}
 
 case "$1" in
   start)

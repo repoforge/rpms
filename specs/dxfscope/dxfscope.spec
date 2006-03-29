@@ -73,4 +73,4 @@ entities of the DXF specification.
 
 * Sat Dec 20 2003 Dries Verachtert <dries@ulyssis.org> 0.2-1
 - first packaging for Fedora Core 1
- 
+

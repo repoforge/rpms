@@ -3,7 +3,7 @@
 
 %define desktop_vendor rpmforge
 
-Summary: Graphical editor for creating man pages. 
+Summary: Graphical editor for creating man pages.
 Name: manedit
 Version: 0.6.1
 Release: 1
@@ -49,7 +49,7 @@ EOF
 	--disable="arch-i586" \
 	--disable="arch-i686" \
 	--disable="arch-pentiumpro"
-%{__make} %{?_smp_mflags} 
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -68,7 +68,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS LICENSE README
 %doc %{_mandir}/man?/*
@@ -77,7 +77,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/icons/*
 %{_datadir}/pixmaps/*.xpm
 %{_datadir}/applications/%{desktop_vendor}-manedit.desktop
- 
+
 %changelog
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.6.1-1
 - Updated to release 0.6.1.

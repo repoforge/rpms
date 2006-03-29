@@ -131,7 +131,7 @@ rm -f `find %{buildroot} -path "*dynMotif*"`
 
 install -m 644 $RPM_SOURCE_DIR/bookmark.htm %{buildroot}%{_libdir}/netscape
 
-( 
+(
  cd %{buildroot}%{_libdir}/netscape/movemail-src
  gcc $RPM_OPT_FLAGS -o ../movemail -DMAIL_USE_LOCKF -DNETSCAPE movemail.c
 )
@@ -287,7 +287,7 @@ exit 0
 - 4.77
 
 * Tue Mar 13 2001 Bill Nottingham <notting@redhat.com>
-- look explicitly for a window-id to send remote commands to; this fixes 
+- look explicitly for a window-id to send remote commands to; this fixes
   -remote on KDE (#30574)
 - show language-dependent index.html if it exists (#26721)
 - add a symlink for the flash plugin in %{_libdir}/mozilla/plugins (#26102)
@@ -342,7 +342,7 @@ exit 0
 - fix movemail so it might work right
 
 * Thu Aug 17 2000 Bill Nottingham <notting@redhat.com>
-- 4.75 
+- 4.75
 
 * Wed Aug 16 2000 Bill Nottingham <notting@redhat.com>
 - fix trigger
@@ -426,7 +426,7 @@ exit 0
 - integrate some l10n stuff
 
 * Fri Nov  5 1999 Bill Nottingham <notting@redhat.com>
-- remove sparc binaries - in different package now. 
+- remove sparc binaries - in different package now.
 
 * Wed Sep 29 1999 Bill Nottingham <notting@redhat.com>
 - update to 4.7
@@ -479,7 +479,7 @@ exit 0
 - update to 4.51
 - build on sparc. Wheee.
 
-* Sun Mar 21 1999 Cristian Gafton <gafton@redhat.com> 
+* Sun Mar 21 1999 Cristian Gafton <gafton@redhat.com>
 - auto rebuild in the new build environment (release 8)
 
 * Tue Mar 16 1999 Bill Nottingham <notting@redhat.com>

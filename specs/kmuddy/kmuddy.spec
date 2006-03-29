@@ -37,7 +37,7 @@ BuildRequires: gcc-c++, qt-devel >= 3.2
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
-Kmuddy is a MUD client for KDE. A MUD is a multi user dungeon, a 
+Kmuddy is a MUD client for KDE. A MUD is a multi user dungeon, a
 text-based online multi-player role-playing game.
 
 %prep

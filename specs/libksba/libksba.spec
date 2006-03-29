@@ -61,7 +61,7 @@ if [ $1 -eq 0 ]; then
   install-info --delete %{_infodir}/ksba.info.gz %{_infodir}/dir
 fi
 
-%files 
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README* THANKS TODO VERSION
 %{_libdir}/*.so.*

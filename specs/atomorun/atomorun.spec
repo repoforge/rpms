@@ -2,7 +2,7 @@
 # Authority: dries
 
 # problem: the game plays the oggs as a wav with sdl -> doesn't work
-# i've send a description of the problem to the author but he didn't respond 
+# i've send a description of the problem to the author but he didn't respond
 # to the last mail
 
 # ExcludeDist: fc1

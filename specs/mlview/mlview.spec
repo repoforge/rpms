@@ -59,7 +59,7 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
-%makeinstall 
+%makeinstall
 %find_lang %{name}
 
 %{__install} -Dp -m0644 pixmaps/mlview-app-icon.png %{buildroot}%{_datadir}/pixmaps/mlview.png

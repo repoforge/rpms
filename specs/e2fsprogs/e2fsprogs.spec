@@ -338,8 +338,8 @@ exit 0
 - update to e2fsprogs-1.20-WIP-0514.tar.gz
 
 * Sun Apr 15 2001 Alan Eldridge <alane@geeksrus.net>
-- Added 16K buffer for reading /proc/partitions in 
-  get_label_by_device.c to correct problems with LABEL= in fsck 
+- Added 16K buffer for reading /proc/partitions in
+  get_label_by_device.c to correct problems with LABEL= in fsck
   caused by not reading /proc/partitions in a single read() call;
   if somebody has a "partitions" > 16K, it may still fail ...
 * Fri Apr 06 2001 Florian La Roche <Florian.LaRoche@redhat.de>
@@ -417,7 +417,7 @@ exit 0
 * Thu Jul 29 1999 Jeff Johnson <jbj@redhat.com>
 - update to 1.15.
 
-* Sun Mar 21 1999 Cristian Gafton <gafton@redhat.com> 
+* Sun Mar 21 1999 Cristian Gafton <gafton@redhat.com>
 - auto rebuild in the new build environment (release 4)
 
 * Tue Mar 16 1999 Cristian Gafton <gafton@redhat.com>
@@ -453,7 +453,7 @@ exit 0
 - spec file cleanups
 
 * Wed Oct 01 1997 Erik Troan <ewt@redhat.com>
-- fixed broken llseek() prototype 
+- fixed broken llseek() prototype
 
 * Wed Aug 20 1997 Erik Troan <ewt@redhat.com>
 - added patch to prototype llseek
