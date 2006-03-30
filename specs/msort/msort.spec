@@ -5,12 +5,12 @@
 Summary: Sort files in sophisticated ways
 Name: msort
 Version: 8.19
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Publishing
-URL: http://www.billposer.org/Software/msort.html
+URL: http://billposer.org/Software/msort.html
 
-Source: http://www.billposer.org/Software/Downloads/msort-%{version}.tgz
+Source: http://billposer.org/Software/Downloads/msort-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: tre-devel
@@ -47,6 +47,9 @@ by an optional GUI.
 %{_bindir}/msort
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 8.19-2
+- URL & Source fixed.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 8.19-1
 - Updated to release 8.19.
 
