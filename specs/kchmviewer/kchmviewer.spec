@@ -3,21 +3,12 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
-
 %define desktop_vendor rpmforge
 
 Summary: CHM file viewer
 Name: kchmviewer
 Version: 2.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Publishing
 URL: http://kchmviewer.sourceforge.net/
@@ -25,12 +16,10 @@ URL: http://kchmviewer.sourceforge.net/
 Source: http://dl.sf.net/kchmviewer/kchmviewer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel
+BuildRequires: gcc, make, libpng-devel
 BuildRequires: arts-devel, gcc-c++, gettext
 BuildRequires: zlib-devel, qt-devel >= 3.2, libjpeg-devel
 BuildRequires: kdelibs-devel, desktop-file-utils
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 %{?el4:BuildRequires: libselinux-devel}
 %{?fc4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
@@ -64,6 +53,9 @@ source  /etc/profile.d/qt.sh
 %{_datadir}/services/msits.protocol
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 2.0-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Mon Feb 06 2006 Dries Verachtert <dries@ulyssis.org>  2.0-1
 - Updated to release 2.0.
 

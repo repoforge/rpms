@@ -3,15 +3,6 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
-
 %{?fc1:%define _without_selinux 1}
 %{?el3:%define _without_selinux 1}
 %{?rh9:%define _without_selinux 1}
@@ -26,7 +17,7 @@
 Summary: Double-entry accounting software package
 Name: kmymoney
 Version: 0.8.3
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Productivity
 URL: http://kmymoney2.sourceforge.net/
@@ -38,8 +29,6 @@ BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel
 BuildRequires: arts-devel, gcc-c++, gettext
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel, kdelibs-devel
 %{!?_without_selinux:BuildRequires: libselinux-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 KMyMoney is striving to be a full-featured replacement for your
@@ -85,6 +74,9 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_datadir}/servicetypes/kmymoney*.desktop
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.3-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Wed Jan 01 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.3-1
 - Updated to release 0.8.3.
 

@@ -8,20 +8,12 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 %define real_version 1.0
 
 Summary: IDE based on a basic interpreter with object extensions
 Name: gambas
 Version: 1.0
-Release: 0
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://gambas.sourceforge.net/
@@ -32,12 +24,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Patch0: dont-make-links.patch
 Patch1: automake.patch
 BuildRequires: kdelibs-devel, libjpeg-devel, automake, autoconf
-BuildRequires: gcc, make, qt-devel, SDL-devel, mysql-devel
+BuildRequires: SDL-devel, mysql-devel
 BuildRequires: postgresql-devel, zlib-devel
 BuildRequires: glibc-headers, sqlite-devel, gcc-c++, automake15
 BuildRequires: libtool
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Gambas is a free development environment based on a Basic interpreter
@@ -125,6 +115,9 @@ The gambas-examples package contains some examples for gambas.
 %{_datadir}/gambas/examples
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Sat Jan 01 2005 Dries Verachtert <dries@ulyssis.org> 1.0-0
 - Updated to release 1.0.
 

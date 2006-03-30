@@ -7,18 +7,10 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 Summary: collection manager
 Name: tellico
 Version: 1.1.3
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.periapsis.org/tellico/
@@ -33,8 +25,6 @@ BuildRequires: kdelibs-devel, desktop-file-utils, libxml2-devel
 BuildRequires: kdemultimedia-devel
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Tellico is a collection manager for KDE. It includes default collections for
@@ -84,6 +74,9 @@ source /etc/profile.d/qt.sh
 %{_datadir}/mimelnk/application/x-tellico.desktop
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.3-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Tue Mar 14 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.3-1
 - Updated to release 1.1.3.
 

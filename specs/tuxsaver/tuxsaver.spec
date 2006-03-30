@@ -7,18 +7,10 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 Summary: KDE screensaver showing the adventures of Tux, living at the SouthPole
 Name: tuxsaver
 Version: 1.0
-Release: 3
+Release: 4
 License: GPL
 Group: Amusements/Graphics
 URL: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/
@@ -31,9 +23,6 @@ BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make
 BuildRequires: gcc-c++, qt-devel
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
-Requires: kdelibs
 
 %description
 A screensaver for KDE which shows the adventures of Tux, living at the
@@ -70,6 +59,9 @@ SouthPole.
 %{_datadir}/doc/HTML/en/tuxsaver
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-4
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Fri Oct 29 2004 Dries Verachtert <dries@ulyssis.org> 1.0-3
 - Fix: screensaver desktop file now in two directories.
 

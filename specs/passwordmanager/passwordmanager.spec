@@ -7,15 +7,6 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
-
 %{?fc1:%define _without_selinux 1}
 %{?el3:%define _without_selinux 1}
 %{?rh9:%define _without_selinux 1}
@@ -39,7 +30,7 @@
 Summary: Personal password manager
 Name: passwordmanager
 Version: 1.2.4
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Productivity
 URL: http://passwordmanager.sourceforge.net/
@@ -51,8 +42,6 @@ BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++
 BuildRequires: gettext, zlib-devel, qt-devel
 BuildRequires: libjpeg-devel, kdelibs-devel, bzip2-devel, fam-devel
 %{!?_without_selinux:BuildRequires: libselinux-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 PwManager saves your passwords blowfish-encrypted in one file, so you have
@@ -89,6 +78,9 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{!?_without_kwallet:%{_libdir}/kde3/kded_pwmanager_kwalletemu.*}
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.4-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Sun Nov  6 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.4-1
 - Update to release 1.2.4.
 

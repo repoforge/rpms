@@ -8,32 +8,22 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 Summary: User friendly TeX/LaTeX editor
 Name: kile
 Version: 1.8
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Publishing
 URL: http://kile.sourceforge.net/
 
 Source: http://dl.sf.net/kile/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
+BuildRequires: gettext, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++
 BuildRequires: qt-devel
 %{?el4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 Requires: kdelibs
 
 %description
@@ -99,6 +89,9 @@ sed -i "s/Categories=.*/Categories=Qt;KDE;Application;Office;/g;" %{buildroot}%{
 
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.8-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Thu Jun 09 2005 Dries Verachtert <dries@ulyssis.org> 1.8-1
 - Update to release 1.8.
 

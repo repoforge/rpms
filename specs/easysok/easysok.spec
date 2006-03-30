@@ -3,18 +3,10 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 Summary: sokoban game
 Name: easysok
 Version: 0.3.5
-Release: 1
+Release: 2
 License: GPL
 Group: Amusements/Games
 URL: http://easysok.sourceforge.net/
@@ -22,12 +14,10 @@ URL: http://easysok.sourceforge.net/
 Source: http://dl.sf.net/easysok/%{name}-%{version}-kde3.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Patch: assert-include.patch
-BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel
-BuildRequires: libpng-devel, arts-devel, zlib-devel
-BuildRequires: kdelibs-devel, gcc, make, gcc-c++
-BuildRequires: qt-devel, fam-devel
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+BuildRequires: gettext, libjpeg-devel
+BuildRequires: libpng-devel, zlib-devel
+BuildRequires: kdelibs-devel, gcc-c++
+BuildRequires: fam-devel
 %{?el4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
@@ -85,6 +75,9 @@ Thinking Rabbit, Inc.
 
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.5-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Sat Jun 25 2005 Dries Verachtert <dries@ulyssis.org> - 0.3.5-1
 - Update to release 0.3.5.
 

@@ -7,19 +7,10 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
-
 Summary: unified modelling language (UML) diagrams modeller
 Name: umbrello
 Version: 1.5.1
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Tools
 URL: http://uml.sourceforge.net/
@@ -29,8 +20,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++
 BuildRequires: qt-devel, flex
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Umbrello UML Modeller is a Unified Modelling Language diagram programme for
@@ -88,6 +77,9 @@ EOF
 %{_datadir}/doc/HTML/*/umbrello
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.5.1-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Sun Feb 12 2006 Dries Verachtert <dries@ulyssis.org> 1.5.1-1
 - Updated to release 1.5.1.
 

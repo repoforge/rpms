@@ -6,15 +6,6 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
-
 %{?fc1:%define _without_selinux 1}
 %{?el3:%define _without_selinux 1}
 %{?rh9:%define _without_selinux 1}
@@ -27,7 +18,7 @@
 Summary: IRC client
 Name: kvirc
 Version: 3.2.0
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Internet
 URL: http://www.kvirc.net/
@@ -40,8 +31,6 @@ BuildRequires: libjpeg-devel, libpng-devel, arts-devel, zlib-devel
 BuildRequires: kdelibs-devel, gcc, make, gcc-c++, qt-devel >= 3.2
 BuildRequires: audiofile-devel, fam-devel
 %{!?_without_selinux:BuildRequires: libselinux-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Kvirc is an irc client with the following features:
@@ -110,6 +99,9 @@ echo "Categories=Application;Network;X-Red-Hat-Extra" >> %{buildroot}/usr/share/
 %{_includedir}/kvirc
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 3.2.0-3
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Sun Apr 03 2005 Dries Verachtert <dries@ulyssis.org> 3.2.0-2
 - Avoid conflict with kdenetwork (thanks to Spetiam).
 

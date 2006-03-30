@@ -10,15 +10,6 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
-
 %{?fc1:%define _without_selinux 1}
 %{?el3:%define _without_selinux 1}
 %{?rh9:%define _without_selinux 1}
@@ -42,7 +33,7 @@
 Summary: Integrated environment for managing data.
 Name: kexi
 Version: 0.9
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Databases
 URL: http://www.koffice.org/kexi/
@@ -51,15 +42,13 @@ Source: http://ftp.belnet.be/packages/kde/stable/apps/KDE3.x/database/kexi-%{ver
 Patch: gcc4-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpng-devel, libart_lgpl-devel
-BuildRequires: arts-devel, gcc-c++, gettext
+BuildRequires: libpng-devel
+BuildRequires: gcc-c++, gettext
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel, desktop-file-utils
 BuildRequires: postgresql-devel, mysql-devel
 BuildRequires: sqlite-devel, libpqxx-devel
 %{!?_without_selinux:BuildRequires: libselinux-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 %{!?_without_qt_config:BuildRequires: qt-config}
 
 %description
@@ -118,6 +107,9 @@ source /etc/profile.d/qt.sh
 %{_includedir}/kexidb
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.9-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Mon Aug 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.9-1
 - Update to release 0.9.
 

@@ -6,18 +6,10 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 Summary: Graphical disk usage utility
 Name: kdirstat
 Version: 2.5.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/File
 URL: http://kdirstat.sourceforge.net/
@@ -25,17 +17,13 @@ URL: http://kdirstat.sourceforge.net/
 Source: http://kdirstat.sourceforge.net/download/kdirstat-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc, make, libpng-devel
-BuildRequires: libart_lgpl-devel, arts-devel
 BuildRequires: gcc-c++, gettext
 BuildRequires: zlib-devel, qt-devel
 BuildRequires: libjpeg-devel, kdelibs-devel
 %{?el4:BuildRequires:libselinux-devel}
 %{?fc3:BuildRequires:libselinux-devel}
 %{?fc2:BuildRequires:libselinux-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 Requires: kdelibs, qt
-
 
 %description
 KDirStat is a graphical disk usage utility, very much like the Unix "du"
@@ -81,6 +69,9 @@ echo "Categories=Application;System;X-Red-Hat-Extra" >> %{buildroot}/usr/share/a
 %{_datadir}/icons/*/*/apps/kdirstat.png
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 2.5.2-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Sat Jan 14 2006 Dries Verachtert <dries@ulyssis.org> - 2.5.2-1
 - Updated to release 2.5.2.
 

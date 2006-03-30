@@ -8,18 +8,10 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 Summary: MUD (multi user dungeon) client
 Name: kmuddy
 Version: 0.7.1
-Release: 1
+Release: 2
 License: GPL
 Group: Amusements/Games
 URL: http://www.kmuddy.org/
@@ -33,8 +25,6 @@ BuildRequires: gcc-c++, qt-devel >= 3.2
 %{?el4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Kmuddy is a MUD client for KDE. A MUD is a multi user dungeon, a
@@ -71,6 +61,9 @@ text-based online multi-player role-playing game.
 %{_datadir}/kmuddy
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.1-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Thu Mar 31 2005 Dries Verachtert <dries@ulyssis.org> - 0.7.1-1
 - Update to release 0.7.1.
 

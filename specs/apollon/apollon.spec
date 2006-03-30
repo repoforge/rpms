@@ -8,21 +8,12 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-# %{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
-
 %define desktop_vendor rpmforge
 
 Summary: KDE filesharing client which uses gift
 Name: apollon
 Version: 1.0.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://apollon.sourceforge.net/
@@ -34,8 +25,6 @@ BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel
 BuildRequires: arts-devel, gcc-c++, gettext
 BuildRequires: zlib-devel, qt-devel >= 3.2, libjpeg-devel
 BuildRequires: kdelibs-devel, gift-devel, desktop-file-utils
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 %{?el4:BuildRequires: libselinux-devel}
 %{?fc4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
@@ -104,6 +93,9 @@ desktop-file-install --vendor %{desktop_vendor}   \
 %{_datadir}/icons/*/*/apps/*.png
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.1-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Fri Nov 26 2004 Dries Verachtert <dries@ulyssis.org> 1.0.1-1
 - Update to version 1.0.1.
 

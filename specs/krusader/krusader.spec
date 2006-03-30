@@ -9,15 +9,6 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
-
 %{?fc1:%define _without_selinux 1}
 %{?el3:%define _without_selinux 1}
 %{?rh9:%define _without_selinux 1}
@@ -30,7 +21,7 @@
 Summary: File manager
 Name: krusader
 Version: 1.70.0
-Release: 1
+Release: 2
 License: GPL
 Group: User Interface/Desktops
 URL: http://krusader.sourceforge.net/
@@ -42,8 +33,6 @@ BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++, gettext
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel, autoconf, automake
 %{!?_without_selinux:BuildRequires: libselinux-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Krusader is an advanced twin-panel (commander-style) file-manager for KDE
@@ -104,6 +93,9 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_datadir}/services/iso.protocol
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.70.0-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Wed Feb 15 2006 Dries Verachtert <dries@ulyssis.org> - 1.70.0-1
 - Update to release 1.70.0.
 

@@ -10,14 +10,6 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 %define desktop_vendor rpmforge
 %define qca            qca-1.0
 %define tls_plugin     qca-tls-1.0
@@ -27,7 +19,7 @@
 Summary: Client application for the Jabber network
 Name: psi
 Version: 0.10
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Communications
 URL: http://psi-im.org/
@@ -53,8 +45,6 @@ Source34: psi_vi.qm
 Source35: psi_ru.qm
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: kdelibs-devel, openssl-devel, gcc-c++
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Obsoletes: psi-iconsets < 0.9.1
 
@@ -199,6 +189,9 @@ popd
 %lang(ru) %{_datadir}/psi/psi_ru.qm
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-3
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Sat Jan 29 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-2
 - Fixed the url, thanks to Hal Rottenberg.
 

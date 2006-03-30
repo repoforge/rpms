@@ -5,36 +5,26 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 ### Temporary exclude as it loops endlessly in configure on x86_64
 # ExcludeDist: el4
 
 Summary: Image viewer for KDE
 Name: gwenview
 Version: 1.3.1
-Release: 1
+Release: 2
 License: GPL
 Group: Amusements/Graphics
 URL: http://gwenview.sourceforge.net/
 
 Source: http://dl.sf.net/gwenview/gwenview-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel
-BuildRequires: libpng-devel, arts-devel, zlib-devel
-BuildRequires: kdelibs-devel, gcc, make, gcc-c++
+BuildRequires: gettext, libjpeg-devel
+BuildRequires: libpng-devel, zlib-devel
+BuildRequires: kdelibs-devel, gcc-c++
 BuildRequires: qt-devel, libexif-devel
 %{?el4:BuildRequires:libselinux-devel}
 %{?fc3:BuildRequires:libselinux-devel}
 %{?fc2:BuildRequires:libselinux-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Gwenview can load and save all image formats supported by KDE and
@@ -80,6 +70,9 @@ source /etc/profile.d/qt.sh
 %{_datadir}/man/man1/gwenview*
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.1-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Mon Nov 21 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.1-1
 - Updated to release 1.3.1.
 

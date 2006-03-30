@@ -7,15 +7,6 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
-
 %{?fc1:%define _without_selinux 1}
 %{?el3:%define _without_selinux 1}
 %{?rh9:%define _without_selinux 1}
@@ -28,7 +19,7 @@
 Summary: Kicker-applet which reminds you of birthdays
 Name: kbirthday
 Version: 0.7.3
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Communications
 URL: http://www.gfai.de/~jaham/projects/kbirthday/kbirthday.html
@@ -36,13 +27,11 @@ URL: http://www.gfai.de/~jaham/projects/kbirthday/kbirthday.html
 Source: http://www.gfai.de/~jaham/download/kbirthday-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpng-devel, libart_lgpl-devel
+BuildRequires: libpng-devel
 BuildRequires: arts-devel, gcc-c++, gettext
-BuildRequires: zlib-devel, qt-devel, libjpeg-devel
+BuildRequires: zlib-devel, libjpeg-devel
 BuildRequires: kdelibs-devel, desktop-file-utils
 %{!?_without_selinux:BuildRequires: libselinux-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Kbirthday is a kicker-applet that reminds you of birthdays and anniversaries
@@ -82,5 +71,8 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_datadir}/icons/*/*/apps/kbirthday.png
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.3-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Mon Nov 01 2004 Dries Verachtert <dries@ulyssis.org> - 0.7.3-1
 - Initial package.

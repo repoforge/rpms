@@ -9,15 +9,6 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
-
 %{?fc1:%define _without_selinux 1}
 %{?el3:%define _without_selinux 1}
 %{?rh9:%define _without_selinux 1}
@@ -30,7 +21,7 @@
 Summary: KIOSK administration admin tool
 Name: kiosktool
 Version: 0.9
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Base
 URL: http://extragear.kde.org/apps/kiosktool.php
@@ -44,8 +35,6 @@ BuildRequires: arts-devel, zlib-devel
 BuildRequires: kdelibs-devel, gcc, make
 BuildRequires: gcc-c++, qt-devel >= 3.2
 %{!?_without_selinux:BuildRequires: libselinux-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 A Point and Click tool for system administrators to enable KDE's KIOSK features
@@ -83,6 +72,9 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_datadir}/icons/crystalsvg/*/apps/kiosktool.png
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.9-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Thu Jan 27 2005 Dag Wieers <dag@wieers.com> - 0.9-1
 - Update to version 0.9.
 

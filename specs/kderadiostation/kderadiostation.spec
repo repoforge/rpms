@@ -9,32 +9,22 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 Summary: Tool which presents you a list of internet streaming radio stations
 Name: kderadiostation
 Version: 0.6
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://kderadiostation.coolprojects.org/
 
 Source: http://kderadiostation.coolprojects.org/source/kderadiostation-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
+BuildRequires: gcc-c++, gettext, libjpeg-devel, libpng-devel
 BuildRequires: zlib-devel
 BuildRequires: arts-devel, qt-devel, kdelibs-devel
 %{?el4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 This tool presents you a list of internet streaming radio stations. Just
@@ -76,6 +66,9 @@ source /etc/profile.d/qt.sh
 %{_libdir}/kde3/*.so
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Sat Jun 5 2004 Dries Verachtert <dries@ulyssis.org> 0.6-1
 - update to version 0.6
 

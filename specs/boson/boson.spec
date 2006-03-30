@@ -3,18 +3,10 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 Summary: Real-time strategy game
 Name: boson
 Version: 0.11
-Release: 1
+Release: 2
 License: GPL
 Group: Amusements/Games
 URL: http://boson.eu.org/
@@ -23,12 +15,10 @@ Source: http://dl.sf.net/boson/boson-all-%{version}.tar.bz2
 #Patch: python2.4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python-devel, gcc-c++, zlib-devel, qt-devel
-BuildRequires: kdelibs-devel, gettext, libart_lgpl-devel, libjpeg-devel
-BuildRequires: libpng-devel, arts-devel, lib3ds, python
+BuildRequires: python-devel, gcc-c++, zlib-devel
+BuildRequires: kdelibs-devel, gettext, libjpeg-devel
+BuildRequires: libpng-devel, lib3ds, python
 BuildRequires: automake, autoconf, m4, automake15
-%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
 
 %description
 Boson is an OpenGL real-time strategy game, with the feeling of
@@ -78,6 +68,9 @@ source "/etc/profile.d/qt.sh"
 %{_libdir}/kde3/plugins/boson/libbogroundrendererplugin.la
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.11-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Fri Sep 09 2005 Dries Verachtert <dries@ulyssis.org> - 0.11-1
 - Updated to release 0.11.
 

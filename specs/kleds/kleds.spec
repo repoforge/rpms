@@ -6,18 +6,10 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 Summary: Shows the status of the keyboard indicator LEDs in the KDE panel
 Name: kleds
 Version: 0.8.0
-Release: 2
+Release: 3
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.hansmatzen.de/english/kleds.html
@@ -27,8 +19,6 @@ Source: http://www.hansmatzen.de/software/kleds/kleds-%{version}.tar.bz2
 BuildRequires: gcc, gcc-c++, qt-devel, kdelibs-devel
 BuildRequires: zlib-devel, libart_lgpl-devel, make, arts-devel, gettext
 BuildRequires: libpng-devel, libjpeg-devel
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 KLeds is a little program for the KDE Desktop Environment. It shows
@@ -59,6 +49,9 @@ indicator LED's (NumLock, ScrollLock and CapsLock).
 %{_bindir}/kledsd
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.0-3
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Fri Jul 16 2004 Matthias Saou <http://freshrpms.net/> 0.8.0-2
 - Spec file cleanup, added %%find_lang.
 

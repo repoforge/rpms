@@ -7,15 +7,6 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
-
 %{?fc1:%define _without_selinux 1}
 %{?el3:%define _without_selinux 1}
 %{?rh9:%define _without_selinux 1}
@@ -28,7 +19,7 @@
 Summary: Cross stitch patterns editor
 Name: kxstitch
 Version: 0.5
-Release: 1
+Release: 2
 License: GPL
 Group: Amusements/Graphics
 URL: http://kxstitch.sourceforge.net/index.shtml
@@ -42,8 +33,6 @@ BuildRequires: qt-devel, libjpeg-devel, kdelibs-devel
 BuildRequires: ImageMagick-c++-devel
 BuildRequires: libexif-devel, libexif
 %{!?_without_selinux:BuildRequires: libselinux-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 BuildRequires: libexif-devel, libexif
 
 %description
@@ -82,5 +71,8 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_datadir}/doc/HTML/en/kxstitch
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Fri Jun 11 2004 Dries Verachtert <dries@ulyssis.org> - 0.5-1
 - Initial package.

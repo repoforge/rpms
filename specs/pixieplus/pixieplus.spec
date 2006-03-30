@@ -5,18 +5,10 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 Summary: Image and photo viewer, browser, manager and simple editor
 Name: pixieplus
 Version: 0.5.4.2
-Release: 1
+Release: 2
 License: BSD
 Group: Amusements/Graphics
 URL: http://www.mosfet.org
@@ -28,8 +20,6 @@ BuildRequires: libpng-devel, arts-devel, zlib-devel
 BuildRequires: kdelibs-devel, make, gcc-c++
 %{?fc3:BuildRequires:libselinux-devel, libexif-devel, libexif}
 %{?fc2:BuildRequires:libselinux-devel, libexif-devel, libexif}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 Source: http://http.us.debian.org/debian/pool/main/p/pixieplus/pixieplus_%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -96,6 +86,9 @@ EOF
 %{_datadir}/applications/pixieplus.desktop
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.4.2-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Fri Jun 11 2004 Dries Verachtert <dries@ulyssis.org> 0.5.4.2-1
 - update to version 0.5.4.2
 

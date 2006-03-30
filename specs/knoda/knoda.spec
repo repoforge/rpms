@@ -9,18 +9,10 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 Summary: Database frontend
 Name: knoda
 Version: 0.8
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Databases
 URL: http://www.knoda.org/
@@ -36,8 +28,6 @@ BuildRequires: python-devel, python
 %{?el4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 knoda is a database frontend for KDE. It is based on hk_classes.
@@ -113,6 +103,9 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_includedir}/hk_*.h
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Wed Nov 02 2005 Dries Verachtert <dries@ulyssis.org> - 0.8-1
 - Update to release 0.8.
 

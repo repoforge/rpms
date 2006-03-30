@@ -8,18 +8,10 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 Summary: Development and simulation of microcontrollers and electronic circuits
 Name: ktechlab
 Version: 0.3
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Engineering
 URL: http://ktechlab.org/
@@ -33,8 +25,6 @@ BuildRequires: zlib-devel, qt-devel, libjpeg-devel, readline-devel
 BuildRequires: kdelibs-devel, desktop-file-utils
 %{?el4:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 Requires: gputils, gpsim
 
 %description
@@ -88,6 +78,9 @@ to KTechlab.
 #%{_libdir}/libktechlab_gpsim.*
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Thu Jan 05 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-1
 - Update to release 0.3.
 

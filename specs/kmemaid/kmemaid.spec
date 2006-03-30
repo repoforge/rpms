@@ -1,24 +1,15 @@
 # $Id$
 # Authority: dries
-# Upstream:
 
 # Screenshot: http://memaid.sourceforge.net/screenshoots/kmemaid_screenshots/thumbs/edit_elements_correct.png
 # ScreenshotURL: http://memaid.sourceforge.net/screenshoots/kmemaid_screenshots/
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 Summary: Helps you to memorise question/answer pairs
 Name: kmemaid
 Version: 0.4.7.0
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Text
 URL: http://memaid.sourceforge.net/
@@ -31,8 +22,6 @@ BuildRequires: gcc-c++, qt-devel
 %{?el4:BuildRequires:libselinux-devel}
 %{?fc3:BuildRequires:libselinux-devel}
 %{?fc2:BuildRequires:libselinux-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 Requires: kdelibs
 
 %description
@@ -69,6 +58,9 @@ vraag te stellen.
 %{_datadir}/icons/locolor/*/apps/kmemaid.png
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.7.0-4
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Wed Apr 21 2004 Dries Verachtert <dries@ulyssis.org> 0.4.7.0-3
 - spec cleanup
 

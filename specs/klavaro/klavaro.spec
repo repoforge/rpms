@@ -4,19 +4,10 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
-
 Summary: Typing tutor
 Name: klavaro
 Version: 0.9.6
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://klavaro.sourceforge.net/en/
@@ -24,13 +15,11 @@ URL: http://klavaro.sourceforge.net/en/
 Source: http://dl.sf.net/klavaro/klavaro-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: make, libpng-devel, libart_lgpl-devel
+BuildRequires: make, libpng-devel
 BuildRequires: arts-devel, gcc-c++, gettext, bison
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel, desktop-file-utils
 BuildRequires: gtk+-devel, gtkextra-devel, gtk2-devel >= 2.6
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Klavaro  is a touch typing tutor that is very
@@ -85,6 +74,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.6-3
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Wed Jan 11 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.6-2
 - Changed optflags so it doesn't crash immediately, thanks to Andrew Ziem!
 

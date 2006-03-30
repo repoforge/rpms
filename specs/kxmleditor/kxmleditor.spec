@@ -9,15 +9,6 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
-
 %{?fc1:%define _without_selinux 1}
 %{?el3:%define _without_selinux 1}
 %{?rh9:%define _without_selinux 1}
@@ -30,7 +21,7 @@
 Summary: XML Editor
 Name: kxmleditor
 Version: 1.1.3
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Editors
 URL: http://kxmleditor.sourceforge.net/
@@ -42,8 +33,6 @@ BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel, arts-devel
 BuildRequires: gcc-c++, gettext, zlib-devel, qt-devel
 BuildRequires: libjpeg-devel, kdelibs-devel, fam-devel
 %{!?_without_selinux:BuildRequires: libselinux-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 KXML Editor is program, that display and edit contents of XML file. Main
@@ -93,6 +82,9 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_datadir}/services/kxmleditorpart.desktop
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.3-3
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Wed Nov 10 2004 Dries Verachtert <dries@ulyssis.org> - 1.1.3-1
 - Update to release 1.1.3.
 

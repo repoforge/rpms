@@ -11,21 +11,13 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 %define real_version 1.4-1
 %define dir_name shalVideo-1.4-pre1
 
 Summary: TV record sheduling program
 Name: shalvideo
 Version: 1.4.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://shalvideo.sourceforge.net/
@@ -38,8 +30,6 @@ BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc-c++
 BuildRequires: qt-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 BuildRequires: automake15
 Requires: mplayer, at
 
@@ -113,6 +103,9 @@ moc shalvideo/kvideodlg2.h > shalvideo/kvideodlg2.moc
 
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.1-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Wed Jul 28 2004 Dries Verachtert <dries@ulyssis.org> - 1.4.1-1
 - Update to version 1.4.1.
 

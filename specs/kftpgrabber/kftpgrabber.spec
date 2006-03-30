@@ -3,20 +3,12 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 %define desktop_vendor rpmforge
 
 Summary: Graphical FTP client for the K Desktop Environment.
 Name: kftpgrabber
 Version: 0.5.0
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Internet
 URL: http://kftpgrabber.sourceforge.net/
@@ -27,8 +19,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: qt-devel >= 3.3.2, kdelibs-devel >= 3.2.0, openssl-devel >= 0.9.7
 BuildRequires: libpng-devel, libart_lgpl-devel, desktop-file-utils, gcc-c++
 BuildRequires: arts-devel, libjpeg-devel, gettext, zlib-devel
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 %{?el4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
@@ -74,6 +64,9 @@ source  /etc/profile.d/qt.sh
 %{_libdir}/kde3/kftpimportplugin_gftp.so
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.0-4
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Fri Nov 26 2004 Dries Verachtert <dries@ulyssis.org - 0.5.0-3
 - Update to release 0.5.0.
 

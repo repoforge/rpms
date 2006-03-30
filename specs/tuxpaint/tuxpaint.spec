@@ -7,18 +7,10 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 Summary: Drawing program designed for young children
 Name: tuxpaint
 Version: 0.9.14
-Release: 1
+Release: 2
 License: GPL
 Group: Amusements/Games
 URL: http://www.newbreedsoftware.com/tuxpaint/
@@ -29,8 +21,6 @@ BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make
 BuildRequires: gcc-c++, qt-devel, SDL-devel, SDL_ttf-devel
 BuildRequires: SDL_image-devel, SDL_mixer-devel, gnome-libs-devel
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Tux Paint is a free drawing program designed for young children (kids ages 3
@@ -79,6 +69,9 @@ source /etc/profile.d/qt.sh
 %{_datadir}/tuxpaint
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.14-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Sun Oct 31 2004 Dries Verachtert <dries@ulyssis.org> 0.9.14-1
 - Update to release 0.9.14.
 

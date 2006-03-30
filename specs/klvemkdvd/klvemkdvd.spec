@@ -7,15 +7,6 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
-
 %{?fc1:%define _without_selinux 1}
 %{?el3:%define _without_selinux 1}
 %{?rh9:%define _without_selinux 1}
@@ -28,7 +19,7 @@
 Summary: Gui for lvemkdvd
 Name: klvemkdvd
 Version: 0.4
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://lvempeg.sourceforge.net/klvemkdvd.html
@@ -41,8 +32,6 @@ BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++, gettext
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel
 %{!?_without_selinux:BuildRequires: libselinux-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 Requires: lve, dvd+rw-tools, dvdauthor
 
 %description
@@ -87,5 +76,8 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_datadir}/icons/*/*/apps/klvemkdvd.png
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.4-2
+- Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
+
 * Tue Jun 1 2004 Dries Verachtert <dries@ulyssis.org> - 0.4-1
 - Initial package.
