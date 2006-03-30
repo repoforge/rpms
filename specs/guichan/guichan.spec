@@ -4,19 +4,10 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
-
 Summary: Small efficient C++ GUI library
 Name: guichan
 Version: 0.4.0
-Release: 1
+Release: 2
 License: BSD
 Group: Development/Libraries
 URL: http://guichan.sourceforge.net
@@ -26,8 +17,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, autoconf, automake, allegro-devel, SDL-devel
 BuildRequires: SDL_image-devel, libtool
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Guichan is a small, efficient C++ GUI library designed for games. It comes
@@ -88,5 +77,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.0-2
+- Simplify buildequirements: SDL-devel already requires xorg-x11-devel/XFree86-devel
+
 * Tue Oct 18 2005 Dries Verachtert <dries@ulyssis.org> - 0.4.0-1
 - Initial package.

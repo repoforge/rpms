@@ -10,7 +10,7 @@
 Summary: Action flight simulator
 Name: gl-117
 Version: 1.3.2
-Release: 1
+Release: 2
 License: GPL
 Group: Amusements/Games
 URL: http://www.heptargon.de/gl-117/gl-117.html
@@ -19,14 +19,15 @@ Source: http://dl.sf.net/gl-117/gl-117-%{version}-src.tar.bz2
 #Patch: gcc-fc3-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, SDL_mixer-devel, gcc-c++
-%{!?dist:BuildRequires: freeglut-devel, xorg-x11-devel}
-%{?el4:BuildRequires: freeglut-devel, xorg-x11-devel}
-%{?fc4:BuildRequires: freeglut-devel, xorg-x11-devel}
-%{?fc3:BuildRequires: freeglut-devel, xorg-x11-devel}
-%{?fc2:BuildRequires: freeglut-devel, xorg-x11-devel}
-%{?fc1:BuildRequires: freeglut-devel, XFree86-devel}
-%{?el3:BuildRequires: glut-devel, XFree86-devel}
-%{?rh9:BuildRequires: glut-devel, XFree86-devel}
+%{!?dist:BuildRequires: freeglut-devel}
+%{?fc5:BuildRequires: freeglut-devel}
+%{?el4:BuildRequires: freeglut-devel}
+%{?fc4:BuildRequires: freeglut-devel}
+%{?fc3:BuildRequires: freeglut-devel}
+%{?fc2:BuildRequires: freeglut-devel}
+%{?fc1:BuildRequires: freeglut-devel}
+%{?el3:BuildRequires: glut-devel}
+%{?rh9:BuildRequires: glut-devel}
 
 %description
 GL-117 is an action flight simulator. Enter the Eagle Squadron and succeed
@@ -57,6 +58,9 @@ export LDFLAGS=" -lXmu -lXi -lSDL -lSDL_mixer "
 %{_datadir}/gl-117/
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.2-2
+- Simplify buildequirements: SDL-devel already requires xorg-x11-devel/XFree86-devel
+
 * Mon Sep 05 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.2-1
 - Update to release 1.3.2.
 

@@ -30,8 +30,8 @@ Source: http://skystreets.kaosfusion.com/skystreets-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: imlib-devel, imlib, gcc-c++, SDL-devel, SDL_image-devel
 BuildRequires: libtiff-devel, libtiff, libjpeg, zlib
-%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU, XFree86-Mesa-libGL }
-%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU, xorg-x11-Mesa-libGL}
+%{?_without_xorg:BuildRequires: XFree86-Mesa-libGLU, XFree86-Mesa-libGL }
+%{!?_without_xorg:BuildRequires: xorg-x11-Mesa-libGLU, xorg-x11-Mesa-libGL}
 Requires: SDL, SDL_image, libtiff, imlib
 
 %description
@@ -72,6 +72,9 @@ EOF
 %{_datadir}/applications/skystreets.desktop
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.4-2
+- Simplify buildequirements: SDL-devel already requires xorg-x11-devel/XFree86-devel
+
 * Fri Jun 24 2005 Dries Verachtert <dries@ulyssis.org> 0.2.4-1
 - Update to release 0.2.4.
 

@@ -5,18 +5,10 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 Summary: Linux Video Editor
 Name: lve
 Version: 0.%{real_version}
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://lvempeg.sourceforge.net/
@@ -27,8 +19,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ffmpeg-devel, mpeg2dec-devel, SDL-devel, gcc-c++, qt-devel
 BuildRequires: a52dec-devel
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 LVE provides frame and GOP accurate editing of MPEG1/2 elementary ("ES") and
@@ -85,5 +75,8 @@ sed -i "s/\/usr\/local\/lve\/bin/\/usr\/bin/g;" src/lve.h
 %{_datadir}/lve/
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.040322-2
+- Simplify buildequirements: SDL-devel already requires xorg-x11-devel/XFree86-devel
+
 * Tue Jun 1 2004 Dries Verachtert <dries@ulyssis.org> - 0.040322-1
 - Initial package.

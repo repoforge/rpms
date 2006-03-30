@@ -7,15 +7,6 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
-
 %define desktop_vendor rpmforge
 
 %define real_version 2.41
@@ -23,7 +14,7 @@
 Summary: 3D modeling, animation, rendering and post-production
 Name: blender
 Version: 2.41
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.blender.org/
@@ -37,8 +28,6 @@ BuildRequires: openssl-devel, SDL-devel, libvorbis-devel
 BuildRequires: libogg-devel, esound-devel, openal-devel, libtool, gettext
 BuildRequires: scons, gcc-c++, libtiff-devel, freealut-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Blender is the essential software solution you need for 3D, from modeling,
@@ -112,6 +101,9 @@ scons
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-blender.desktop}
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 2.42-3
+- Simplify buildequirements: SDL-devel already requires xorg-x11-devel/XFree86-devel
+
 * Sun Mar 05 2006 Dries Verachtert <dries@ulyssis.org> - 2.41-2
 - Freealut buildrequirement added.
 

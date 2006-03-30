@@ -8,7 +8,7 @@
 Summary: Free MMORPG in beta stage
 Name: eternallands
 Version: 1.0.1
-Release: 1
+Release: 2
 License: Other
 Group: Amusements/Games
 URL: http://www.eternal-lands.com/
@@ -20,10 +20,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel, openal-devel, SDL_net-devel, libxml2-devel
 BuildRequires: libogg-devel, libvorbis-devel
-%{?el4:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGL, xorg-x11-Mesa-libGLU}
-%{?fc3:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGL, xorg-x11-Mesa-libGLU}
-%{?fc2:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGL, xorg-x11-Mesa-libGLU}
-%{?fc1:BuildRequires: XFree86-devel, XFree86-Mesa-libGL, XFree86-Mesa-libGLU}
+%{?el4:BuildRequires: xorg-x11-Mesa-libGL, xorg-x11-Mesa-libGLU}
+%{?fc3:BuildRequires: xorg-x11-Mesa-libGL, xorg-x11-Mesa-libGLU}
+%{?fc2:BuildRequires: xorg-x11-Mesa-libGL, xorg-x11-Mesa-libGLU}
+%{?fc1:BuildRequires: XFree86-Mesa-libGL, XFree86-Mesa-libGLU}
 
 
 %description
@@ -67,6 +67,9 @@ EOF
 %{_datadir}/games/eternallands/
 
 %changelog
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.1-2
+- Simplify buildequirements: SDL-devel already requires xorg-x11-devel/XFree86-devel
+
 * Thu Jun 09 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1
 - Update to release 1.0.1.
 
