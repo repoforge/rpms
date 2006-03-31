@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# Dist: nodist
 
 # We have only executables with no debugging symbols, so no need for an empty
 # debuginfo package.
