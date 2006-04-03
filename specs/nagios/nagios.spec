@@ -12,8 +12,8 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: nagios
-Version: 2.0
-Release: 2
+Version: 2.1
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
@@ -180,6 +180,9 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Tue Mar 28 2006 Dag Wieers <dag@wieers.com> - 2.1-1
+- Updated to release 2.1.
+
 * Wed Feb 08 2006 Dag Wieers <dag@wieers.com> - 2.0-2
 - Fixed the nagiocmd group creation. (Rick Johnson)
 - Added _without_perlcache macro. (Rick Johnson)

@@ -4,7 +4,7 @@
 
 Summary: Graphical scientific calculator
 Name: galculator
-Version: 1.2.5
+Version: 1.2.5.2
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -48,6 +48,9 @@ Reverse Polish Notation.
 %{_datadir}/galculator/
 
 %changelog
+* Mon Apr 03 2006 Dag Wieers <dag@wieers.com> - 1.2.5.2-1
+- Updated to release 1.2.5.2.
+
 * Sun May 08 2005 Dag Wieers <dag@wieers.com> - 1.2.5-1
 - Updated to release 1.2.5.
 

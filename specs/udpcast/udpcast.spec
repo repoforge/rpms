@@ -2,17 +2,16 @@
 # Authority: dag
 # Upstream: <udpcast$udpcast,linux,lu>
 
-%define real_version 20050307
-
 Summary: UDP broadcast installation
 Name: udpcast
-Version: 0.0.20050307
+%define real_version 20060325
+Version: 0.0.20060325
 Release: 1
 License: GPL or BSD
 Group: Applications/System
 URL: http://udpcast.linux.lu/
 
-Source: http://udpcast.linux.lu/current/udpcast-%{real_version}.tar.gz
+Source: http://udpcast.linux.lu/download/udpcast-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #Requires: netcfg
@@ -21,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Allows easy installation of client machines via UDP broadcast
 
 %prep
-%setup -n %{name}
+%setup -n %{name}-%{real_version}
 
 %build
 #%{__make} %{?_smp_mflags}
@@ -39,13 +38,17 @@ Allows easy installation of client machines via UDP broadcast
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changelog.txt cmd.html COPYING README*
+%doc Changelog.txt cmd.html COPYING
+#%doc Changelog.txt cmd.html COPYING README*
 #%doc %{_mandir}/man1/udp-receiver.1*
 #%doc %{_mandir}/man1/udp-sender.1*
 %{_bindir}/udp-receiver
 %{_bindir}/udp-sender
 
 %changelog
+* Tue Mar 28 2006 Dag Wieers <dag@wieers.com> - 0.0.20060325-1
+- Updated to release 20060325.
+
 * Tue Mar 08 2005 Dag Wieers <dag@wieers.com> - 0.0.20050307-1
 - Updated to release 20050307.
 

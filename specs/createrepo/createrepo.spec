@@ -8,14 +8,17 @@
 Summary: Creates a common metadata repository
 Name: createrepo
 Version: 0.4.4
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Base
 URL: http://linux.duke.edu/projects/metadata/
+
 Source: http://linux.duke.edu/projects/metadata/generate/createrepo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: rpm-python, %{python} >= %{pyminver}, rpm >= 4.1.1, libxml2-python
+
 BuildArch: noarch
+Requires: rpm-python, %{python} >= %{pyminver}, rpm >= 4.1.1, libxml2-python
+Requires: python-urlgrabber
 
 %description
 This utility will generate a common metadata repository from a directory of
@@ -50,6 +53,9 @@ fi
 %{_datadir}/createrepo/
 
 %changelog
+* Fri Mar 24 2006 Dag Wieers <dag@wieers.com> - 0.4.4-2
+- Added python-urlgrabber as a dependency. (Robert Hardy)
+
 * Thu Mar 16 2006 Dag Wieers <dag@wieers.com> - 0.4.4-1
 - Updated to release 0.4.4.
 

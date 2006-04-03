@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Authen/Authen-SASL-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(Digest::HMAC_MD5)
 
 %description
 This module permits authentication with SASL.

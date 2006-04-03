@@ -4,7 +4,7 @@
 
 Summary: Robust and highly flexible VPN daemon
 Name: openvpn
-Version: 2.0.2
+Version: 2.0.5
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -95,6 +95,9 @@ fi
 
 
 %changelog
+* Thu Mar 23 2006 Dag Wieers <dag@wieers.com> - 2.0.5-1
+- Updated to release 2.0.5.
+
 * Thu Sep 08 2005 Dag Wieers <dag@wieers.com> - 2.0.2-1
 - Updated to release 2.0.2.
 
