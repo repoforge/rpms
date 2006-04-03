@@ -4,9 +4,9 @@
 
 Summary: Guifications Plugin for Gaim
 Name: gaim-guifications
-%define real_version 2.13beta2
+%define real_version 2.13beta3
 Version: 2.13
-Release: 0.beta2
+Release: 0.beta3
 License: GPL
 Group: Applications/Internet
 URL: http://guifications.sourceforge.net/Guifications/
@@ -45,6 +45,9 @@ instant messaging client Gaim
 %{_libdir}/gaim/guifications.so
 
 %changelog
+* Mon Apr 03 2006 Dag Wieers <dag@wieers.com> - 2.13-0.beta3
+- Updated to release 2.13beta3.
+
 * Mon Mar 17 2006 Dag Wieers <dag@wieers.com> - 2.13-0.beta2
 - Updated to release 2.13beta2.
 

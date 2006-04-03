@@ -55,6 +55,7 @@ this API.
 %doc %{_mandir}/man3/*
 %{_bindir}/cpan2dist
 %{_bindir}/cpanp
+%{_bindir}/cpanp-boxed
 %{perl_vendorlib}/CPANPLUS.pm
 %{perl_vendorlib}/CPANPLUS/
 

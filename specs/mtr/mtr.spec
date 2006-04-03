@@ -2,7 +2,8 @@
 # Authority: dag
 # Upstream: Roger Wolff <R.E.Wolff$BitWizard,nl>
 
-# ExcludeDist: el4
+# Rationale: EL3 and EL4 include a real old mtr version.
+##ExcludeDist: el4
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
@@ -12,7 +13,7 @@
 
 Summary: Network diagnostic tool
 Name: mtr
-Version: 0.69
+Version: 0.71
 Release: 1
 Epoch: 2
 License: GPL
@@ -51,7 +52,7 @@ diagnostic tool.
 
 %prep
 %setup
-%patch0 -p1 -b .s390x
+#%patch0 -p1 -b .s390x
 #%patch1 -p1 -b .ipv6-kame
 #%patch2 -p1 -b .nogtk
 #%patch3 -p1 -b .SA_LEN
@@ -64,7 +65,7 @@ diagnostic tool.
 [Desktop Entry]
 Name=Traceroute
 Type=Application
-Comment=Traces packets between two network hosts
+Comment=Trace packets between two network hosts
 Exec=xmtr
 Terminal=false
 Icon=xmtr.xpm
@@ -147,6 +148,9 @@ autoconf
 %{_sysconfdir}/security/console.apps/xmtr
 
 %changelog
+* Mon Apr 03 2006 Dag Wieers <dag@wieers.com> - 2:0.71-1
+- Updated to release 0.71.
+
 * Mon Feb 07 2005 Dag Wieers <dag@wieers.com> - 2:0.69-1
 - Updated to release 0.69.
 

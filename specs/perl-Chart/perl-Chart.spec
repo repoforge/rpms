@@ -47,8 +47,10 @@ With this module you can produce many types of charts.
 %files
 %defattr(-, root, root, 0755)
 %doc README rgb.txt TODO
+%doc %{_mandir}/man3/Chart.3pm*
 %dir %{perl_vendorlib}/Chart/
 %{perl_vendorlib}/Chart/*
+%{perl_vendorlib}/Chart.pod
 
 %changelog
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.4.1-1
