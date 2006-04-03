@@ -4,7 +4,7 @@
 
 Summary: Logged root shell that can be used for auditing
 Name: sudosh
-Version: 1.8.2
+Version: 2.0.0
 Release: 1
 License: Open Software License
 Group: Applications/System
@@ -49,6 +49,9 @@ actual session output.
 %config(noreplace) %{_sysconfdir}/sudosh.conf
 
 %changelog
+* Mon Apr 03 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.0-1
+- Updated to release 2.0.0.
+
 * Mon Jun 13 2005 Dries Verachtert <dries@ulyssis.org> - 1.8.2-1
 - Update to release 1.8.2.
 

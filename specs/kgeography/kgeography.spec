@@ -26,8 +26,10 @@ BuildRequires: arts-devel, zlib-devel, gcc
 BuildRequires: kdelibs-devel, make, gcc-c++
 BuildRequires: qt-devel
 BuildRequires: desktop-file-utils, flex
+%{?fc5:BuildRequires: gcc-gfortran}
 %{?fc4:BuildRequires: gcc-gfortran}
-%{!?fc4:BuildRequires: gcc-g77}
+%{?fc3:BuildRequires: gcc-g77}
+%{?el4:BuildRequires: gcc-g77}
 
 %description
 KGeography is a geography learning tool. Right now it has three usage modes:

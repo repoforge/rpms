@@ -4,7 +4,7 @@
 
 Summary: Video recorder
 Name: kalva
-Version: 0.8.50
+Version: 0.8.75
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -81,6 +81,9 @@ you will need to install %{name}-devel.
 %{_libdir}/libkchlstfilterplugininterfaces.so
 
 %changelog
+* Mon Apr 03 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.75-1
+- Updated to release 0.8.75.
+
 * Sat Dec 10 2005 Dries Verachtert <dries@ulyssis.org> - 0.8.50-1
 - Updated to release 0.8.50.
 

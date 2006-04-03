@@ -44,7 +44,7 @@ your friends addresses, birthdays and anniversaries.
 
 %build
 source %{_sysconfdir}/profile.d/qt.sh
-%configure
+%configure --with-pic
 %{__make} %{?_smp_mflags}
 
 %install

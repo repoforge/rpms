@@ -9,8 +9,8 @@
 
 Summary: unified modelling language (UML) diagrams modeller
 Name: umbrello
-Version: 1.5.1
-Release: 2
+Version: 1.5.2
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://uml.sourceforge.net/
@@ -77,6 +77,9 @@ EOF
 %{_datadir}/doc/HTML/*/umbrello
 
 %changelog
+* Mon Apr 03 2006 Dries Verachtert <dries@ulyssis.org> - 1.5.2-1
+- Updated to release 1.5.2.
+
 * Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.5.1-2
 - Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
 

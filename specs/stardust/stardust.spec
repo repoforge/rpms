@@ -11,13 +11,13 @@
 
 Summary: 3D Space Flight Simulator
 Name: stardust
-Version: 0.1.9
-Release: 2
+Version: 0.1.10
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://startracker.free.fr/stardust/stardust_en.html
 
-Source: http://startracker.free.fr/dstardust/stardust-%{version}.tar.gz
+Source: http://startracker.free.fr/stardust/stardust-%{version}.tar.gz
 Patch: gcc-fc3-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{?!_without_freedesktop:BuildRequires: desktop-file-utils}
@@ -71,9 +71,11 @@ desktop-file-install --vendor net                  \
 %{_datadir}/games/stardust
 
 %changelog
+* Mon Apr 03 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.10-1
+- Updated to release 0.1.10.
+
 * Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.9-2
 - Simplify buildequirements: SDL-devel already requires xorg-x11-devel/XFree86-devel
 
 * Mon Aug 09 2004 Dries Verachtert <dries@ulyssis.org> - 0.1.9-1
 - Initial package.
-

@@ -9,8 +9,8 @@
 
 Summary: collection manager
 Name: tellico
-Version: 1.1.3
-Release: 2
+Version: 1.1.4
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.periapsis.org/tellico/
@@ -74,6 +74,9 @@ source /etc/profile.d/qt.sh
 %{_datadir}/mimelnk/application/x-tellico.desktop
 
 %changelog
+* Mon Apr 03 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.4-1
+- Updated to release 1.1.4.
+
 * Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.3-2
 - Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
 
