@@ -1,0 +1,47 @@
+# $Id$
+# Authority: dag
+
+Summary: RPM implementation in python
+Name: pyrpm
+Version: 0.45
+Release: 1
+License: GPL
+Group: System Environment/Base
+URL: http://people.redhat.com/laroche/pyrpm/
+
+Source: pyrpm-%{version}.tar.bz2
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildArch: noarch
+BuildRequires: python >= 2.3
+Requires: python >= 2.3, python-urlgrabber, libxml2-python
+
+%description
+PyRPM is a RPM implementation in Python. It can be used to study how rpm based
+software management happens. Also tools can build upon it to handle rpm
+packages in general e.g. to extract information, check dependancies or even
+install packages.
+
+%prep
+%setup
+
+%build
+%configure
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc AUTHORS COPYING INSTALL NEWS README doc/*.html doc/*.txt
+%{_bindir}/*
+%{_datadir}/pyrpm/
+
+%changelog
+* Mon Apr 03 2006 Dag Wieers <dag@wieers.com> - 0.45-1
+- Initial package (using DAR)
