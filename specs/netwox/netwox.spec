@@ -4,7 +4,7 @@
 
 Summary: Toolbox for solving network problems
 Name: netwox
-Version: 5.32.0
+Version: 5.34.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -42,6 +42,9 @@ cd src
 %{_bindir}/netwox*
 
 %changelog
+* Fri Apr 07 2006 Dries Verachtert <dries@ulyssis.org> - 5.34.0-1
+- Updated to release 5.34.0.
+
 * Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 5.33.0-1
 - Updated to release 5.33.0.
 
