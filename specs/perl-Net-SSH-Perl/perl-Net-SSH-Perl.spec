@@ -10,7 +10,7 @@
 Summary: Perl client interface to SSH
 Name: perl-Net-SSH-Perl
 Version: 1.30
-Release: 1
+Release: 2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SSH-Perl/
@@ -28,6 +28,7 @@ both the SSH1 and SSH2 protocols.
 
 %prep
 %setup -n %{real_name}-%{version}
+%{__perl} -pi -e "s|use Socket;|use IO::Socket;\nuse Socket;|g;" lib/Net/SSH/Perl.pm
 
 %build
 echo "3" | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -54,6 +55,9 @@ echo "3" | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_pre
 %{perl_vendorlib}/Net/SSH/Perl/
 
 %changelog
+* Fri Apr 07 2006 Dries Verachtert <dries@ulyssis.org> - 1.30-2
+- Fix for error about missing object method 'blocking', thanks to Igor Bujna.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.30-1
 - Updated to release 1.30.
 
