@@ -7,8 +7,8 @@
 
 Summary: CHM file viewer
 Name: kchmviewer
-Version: 2.0
-Release: 2
+Version: 2.5
+Release: 1
 License: GPL
 Group: Applications/Publishing
 URL: http://kchmviewer.sourceforge.net/
@@ -53,6 +53,9 @@ source  /etc/profile.d/qt.sh
 %{_datadir}/services/msits.protocol
 
 %changelog
+* Fri Apr 07 2006 Dries Verachtert <dries@ulyssis.org> - 2.5-1
+- Updated to release 2.5.
+
 * Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 2.0-2
 - Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
 
