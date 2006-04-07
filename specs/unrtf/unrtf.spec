@@ -4,7 +4,7 @@
 
 Summary: Converts from RTF to other formats
 Name: unrtf
-Version: 0.19.3
+Version: 0.20.1
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -41,5 +41,8 @@ files), paragraph alignment, and more.
 %{_bindir}/unrtf
 
 %changelog
+* Fri Apr 07 2006 Dries Verachtert <dries@ulyssis.org> - 0.20.1-1
+- Updated to release 0.20.1.
+
 * Wed Jan 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.19.3
 - Initial package.

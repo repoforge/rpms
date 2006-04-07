@@ -8,13 +8,13 @@
 
 Summary: IANA Character Set Registry names and Unicode::MapUTF8 (et al.) conversion scheme names
 Name: perl-I18N-Charset
-Version: 1.375
+Version: 1.379
 Release: 1
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/I18N-Charset/
 
-Source: http://www.cpan.org/modules/by-module/I18N/I18N-Charset-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MT/MTHURN/I18N-Charset-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -53,5 +53,8 @@ conversion scheme names .
 %{perl_vendorlib}/I18N/Charset.pm
 
 %changelog
+* Fri Apr 07 2006 Dries Verachtert <dries@ulyssis.org> - 1.379-1
+- Updated to release 1.379.
+
 * Fri Mar 18 2005 Dag Wieers <dag@wieers.com> - 1.375-1
 - Initial package. (using DAR)

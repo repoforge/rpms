@@ -12,7 +12,7 @@ License: GPL
 Group: Applications/Internet
 URL: http://sf.net/projects/sing/
 
-Source: http://prdownloads.sourceforge.net/sing/SING-%{version}.tgz
+Source: http://dl.sf.net/sing/SING-%{version}.tgz
 Patch: sing-1.1-libnet-gcc32.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -16,13 +16,13 @@
 
 Summary: Fast, feature rich Window manager
 Name: windowmaker
-Version: 0.91.0
+Version: 0.92.0
 Release: 1
 License: GPL
 Group: User Interface/Desktops
-URL: http://www.windowmaker.org/
+URL: http://www.windowmaker.info/
 
-Source: ftp://windowmaker.org/pub/source/release/WindowMaker-%{version}.tar.bz2
+Source: ftp://windowmaker.info/pub/source/release/WindowMaker-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, libjpeg-devel, libungif-devel
@@ -130,6 +130,9 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Fri Apr 07 2006 Dries Verachtert <dries@ulyssis.org> - 0.92.0-1
+- Updated to release 0.92.0.
+
 * Thu Nov 25 2004 Juergen Moellenhoff <jm@tp1.rub.de> - 0.91.0-1
 - New package for version 0.91.0.
 - Fixed $(libdir) for correct wprefspath. (Vamsi K Kambhampati)

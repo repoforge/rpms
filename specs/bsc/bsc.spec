@@ -50,7 +50,7 @@ desktop-file-install --vendor rpmforge             \
 
 %files
 %defattr(-, root, root, 0755)
-%doc readme.txt
+#doc readme.txt
 %{_bindir}/bsc
 %{_datadir}/applications/*.desktop
 

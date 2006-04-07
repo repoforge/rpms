@@ -13,6 +13,8 @@ URL: http://www.pftp.de/
 Source: ftp://metalab.unc.edu/pub/Linux/system/network/file-transfer/pftp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: which
+
 %description
 pftp is released under the terms of the GNU General Public License.
 It transfers files, directories and data from standard input to any

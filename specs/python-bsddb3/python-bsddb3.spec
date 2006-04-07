@@ -8,7 +8,7 @@
 
 Summary: Python interface for BerkeleyDB 3.x and 4.x
 Name: python-bsddb3
-Version: 4.2.4
+Version: 4.4.2
 Release: 1
 License: Unknown
 Group: Development/Libraries
@@ -58,6 +58,9 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{python_sitearch}/bsddb3/
 
 %changelog
+* Fri Apr 07 2006 Dries Verachtert <dries@ulyssis.org> - 4.4.2-1
+- Updated to release 4.4.2.
+
 * Wed May 19 2004 Dag Wieers <dag@wieers.com> - 4.2.4-1
 - Updated to release 4.2.4.
 

@@ -39,6 +39,7 @@ accross HTTP requests. CGI::Session does that and many more.
 %{__rm} -rf %{buildroot}
 %makeinstall
 %{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__rm} -f %{buildroot}%{perl_vendorlib}/CGI/Session.pm.mine %{buildroot}%{perl_vendorlib}/CGI/Session.pm.r24[29]
 
 %clean
 %{__rm} -rf %{buildroot}

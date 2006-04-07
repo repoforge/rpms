@@ -10,7 +10,7 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://developer.berlios.de/projects/kalva
 
-Source: http://download.berlios.de/kalva/kalva-%{version}.tar.bz2
+Source: http://download.berlios.de/kalva/kalva-%{version}-no-i18n.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: kdelibs-devel, gcc-c++, gettext, flex

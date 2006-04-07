@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/N/NI/NICOLAW/RRD-Simple-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl-Module-Build
 
 %description
 RRD::Simple provides a simple interface to RRDTool's RRDs module.

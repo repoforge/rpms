@@ -48,6 +48,7 @@ echo y | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefi
 %{_bindir}/*
 %{perl_vendorlib}/YAML.*
 %{perl_vendorlib}/YAML/*
+%{perl_vendorlib}/Test/YAML.pm
 
 %changelog
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.58-1

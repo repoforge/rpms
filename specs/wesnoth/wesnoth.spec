@@ -19,7 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, make, SDL-devel >= 1.2.7
 BuildRequires: SDL_image-devel, SDL_ttf-devel, SDL_net-devel
 BuildRequires: SDL_mixer-devel, desktop-file-utils
-BuildRequires: gettext
+BuildRequires: gettext, kdelibs-devel
 Requires: SDL, SDL_net, SDL_mixer, SDL_image, SDL_ttf, SDL_net
 
 %description

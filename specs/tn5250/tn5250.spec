@@ -6,8 +6,8 @@
 
 Summary: 5250 Telnet protocol and terminal program
 Name: tn5250
-Version: 0.16.5
-Release: 0
+Version: 0.17.3
+Release: 1
 License: GPL
 Group: Applications/Communications
 URL: http://tn5250.sourceforge.net/
@@ -89,6 +89,9 @@ export TERMINFO="%{buildroot}%{_datadir}/terminfo/"
 #exclude %{_libdir}/*.la
 
 %changelog
+* Fri Apr 07 2006 Dries Verachtert <dries@ulyssis.org> - 0.17.3-1
+- Updated to release 0.17.3.
+
 * Thu Apr 17 2003 Dag Wieers <dag@wieers.com> - 0.16.5-0
 - Updated to release 0.16.5.
 

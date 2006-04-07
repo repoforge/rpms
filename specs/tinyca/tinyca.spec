@@ -18,7 +18,7 @@ License: GPL
 Group: Applications/Internet
 URL: http://tinyca.sm-zone.net/
 
-Source:	http://tinyca.sm-zone.net/tinyca-%{version}.tar.bz2
+Source:	http://tinyca.sm-zone.net/tinyca2-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
