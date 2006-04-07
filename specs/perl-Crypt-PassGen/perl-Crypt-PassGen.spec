@@ -10,7 +10,7 @@
 Summary: Generate a random password that looks like a real word
 Name: perl-Crypt-PassGen
 Version: 0.04
-Release: 1.2
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-PassGen/
@@ -40,7 +40,8 @@ languages).
 %{__rm} -rf %{buildroot}
 %makeinstall
 %{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
-
+%{__install} -d %{buildroot}%{perl_sitelib}/Crypt/PassGenWordFreq.dat
+%{__mv} %{buildroot}%{perl_vendorlib}/Crypt/PassGenWordFreq.dat %{buildroot}%{perl_sitelib}/Crypt/PassGenWordFreq.dat
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -49,9 +50,13 @@ languages).
 %doc ChangeLog README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Crypt/PassGen.pm
-%{perl_vendorlib}/Crypt/PassGenWordFreq.dat
+#%{perl_vendorlib}/Crypt/PassGenWordFreq.dat
+%{perl_sitelib}/Crypt/PassGenWordFreq.dat
 
 %changelog
+* Fri Apr 07 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-2
+- Fix so the dat file is found, thanks to Chris Croome.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
 - Rebuild for Fedora Core 5.
 
