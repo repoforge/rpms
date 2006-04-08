@@ -4,8 +4,8 @@
 
 Summary: Sort files in sophisticated ways
 Name: msort
-Version: 8.19
-Release: 2
+Version: 8.20
+Release: 1
 License: GPL
 Group: Applications/Publishing
 URL: http://billposer.org/Software/msort.html
@@ -47,6 +47,9 @@ by an optional GUI.
 %{_bindir}/msort
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 8.20-1
+- Updated to release 8.20.
+
 * Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 8.19-2
 - URL & Source fixed.
 
