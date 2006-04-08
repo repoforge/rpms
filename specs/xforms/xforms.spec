@@ -16,7 +16,7 @@
 Summary: GUI toolkit based on Xlib
 Name: xforms
 Version: 1.0.90
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: http://world.std.com/~xforms/
@@ -80,5 +80,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.90-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jul 31 2004 Dries Verachtert <dries@ulyssis.org> - 1.0.90-1
 - Initial package.

@@ -12,7 +12,7 @@
 Summary: Read configuration files in YAML format
 Name: perl-YAML-ConfigFile
 Version: 0.10
-Release: 2
+Release: 2.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-ConfigFile/
@@ -49,6 +49,9 @@ With this module, you can read configuration files in YAML format.
 %{perl_vendorlib}/YAML/ConfigFile.pm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-2.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 08 2004 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Requirements fixes.
 

@@ -18,7 +18,7 @@
 Summary: Abstraction library between applications and visualisation plugins
 Name: libvisual
 Version: 0.2.0
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Development/Libraries
 URL: http://libvisual.sourceforge.net/v2/
@@ -86,6 +86,9 @@ export CFLAGS="%{optflags} -mmmx"
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Aug 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.0-1
 - Update to release 0.2.0.
 

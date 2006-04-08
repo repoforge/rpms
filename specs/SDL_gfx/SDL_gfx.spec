@@ -8,7 +8,7 @@
 Summary: Graphic primitives, rotozoomer, framerate control and image filters
 Name: SDL_gfx
 Version: 2.0.13
-Release: 2
+Release: 2.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.ferzkopp.net/mambo/index.php?option=com_content&task=view&id=14&Itemid=29
@@ -71,6 +71,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.13-2.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org - 2.0.13-2
 - Fixed the project and source urls.
 

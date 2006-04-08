@@ -6,7 +6,7 @@
 Summary: The W3C Web browser and editor
 Name: amaya
 Version: 9.1
-Release: 1
+Release: 1.2
 License: W3C
 Group: Applications/Internet
 URL: http://www.w3.org/Amaya/
@@ -75,6 +75,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/applications/%{desktop_vendor}-amaya.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 9.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 08 2005 Dries Verachtert <dries@ulyssis.org> - 9.1-1
 - Update to release 9.1.
 

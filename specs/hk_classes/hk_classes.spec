@@ -5,7 +5,7 @@
 Summary: C++ library for rapid development of database applications
 Name: hk_classes
 Version: 0.8
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: http://hk-classes.sourceforge.net/
@@ -48,6 +48,9 @@ like forms an reports. hk_classes is database and GUI independent.
 %{_datadir}/man/man1/hk_*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.8-1
 - Update to release 0.8.
 

@@ -31,7 +31,7 @@
 Summary: Object Oriented Tk extension for Perl
 Name: perl-Tk
 Version: 804.027
-Release: 3
+Release: 3.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tk/
@@ -90,6 +90,9 @@ This module contains an object oriented Tk extension for Perl.
 %{perl_vendorarch}/fix_4_os2.pl
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 804.027-3.2
+- Rebuild for Fedora Core 5.
+
 * Sun Aug 14 2005 Dries Verachtert <dries@ulyssis.org> - 804.027-3
 - Enable XFT support (thanks to Void Main).
 

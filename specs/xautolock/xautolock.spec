@@ -14,7 +14,7 @@
 Summary: Launches a program when your X session has been idle for some time
 Name: xautolock
 Version: 2.1
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.ibiblio.org/pub/Linux/X11/screensavers/
@@ -50,6 +50,9 @@ xmkmf
 %{_prefix}/X11R6/bin/xautolock
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.1-2.2
+- Rebuild for Fedora Core 5.
+
 * Thu Feb 26 2004 Dries Verachtert <dries@ulyssis.org> 2.1-2
 - fixed: man page not installed.
   bug found by Matt Thompson, thanks Matt!

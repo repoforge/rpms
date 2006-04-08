@@ -4,7 +4,7 @@
 Summary: Create deltas between rpms
 Name: deltarpm
 Version: 3.3
-Release: 1
+Release: 1.2
 License: BSD
 Group: Applications/Utilities
 URL: http://www.novell.com/products/linuxpackages/professional/deltarpm.html
@@ -47,5 +47,8 @@ deltarpms can also work with installed rpms.
 %{_bindir}/rpmdumpheader
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Dec 03 2005 Dries Verachtert <dries@ulyssis.org> - 3.3-1
 - Initial package.

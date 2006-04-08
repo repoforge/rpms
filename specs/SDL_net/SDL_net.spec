@@ -4,7 +4,7 @@
 Summary: Cross-platform network API
 Name: SDL_net
 Version: 1.2.5
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.libsdl.org/projects/SDL_net/
@@ -59,5 +59,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Feb 01 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.5-1
 - Initial package.

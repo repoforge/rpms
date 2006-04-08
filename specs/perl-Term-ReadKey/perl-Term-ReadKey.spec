@@ -10,7 +10,7 @@
 Summary: Module for simple terminal control
 Name: perl-Term-ReadKey
 Version: 2.30
-Release: 2
+Release: 2.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/TermReadKey/
@@ -56,6 +56,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Term/ReadKey/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.30-2.2
+- Rebuild for Fedora Core 5.
+
 * Sun Mar 05 2006 Dag Wieers <dag@wieers.com> - 2.30-2
 - Obsolete wrongly named perl-TermReadKey.
 

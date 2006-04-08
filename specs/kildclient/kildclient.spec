@@ -5,7 +5,7 @@
 Summary: MUD client
 Name: kildclient
 Version: 2.4.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://kildclient.sourceforge.net/
@@ -76,6 +76,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*kildclient.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.4.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Feb 19 2006 Dries Verachtert <dries@ulyssis.org> - 2.4.0-1
 - Updated to release 2.4.0.
 

@@ -8,7 +8,7 @@
 Summary: C++ STL library compatible with the latest ANSI/ISO C++ specification
 Name: stlport
 Version: 5.0.0125
-Release: 1
+Release: 1.2
 License: Freeware
 Group: System Environment/Libraries
 URL: http://www.stlport.org
@@ -67,6 +67,9 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 5.0.0125-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Nov 03 2004 Dries Verachtert <dries@ulyssis.org> 5.0-0125-1
 - Update to 5.0-0125
 - Some fixes

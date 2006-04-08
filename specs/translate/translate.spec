@@ -6,7 +6,7 @@
 Summary: Aids with localization of software
 Name: translate
 Version: 0.8b1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Tools
 URL: http://translate.sourceforge.net/
@@ -42,5 +42,8 @@ tools to help process localizations etc.
 %{python_sitearch}/translate/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8b1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat May 23 2004 Dries Verachtert <dries@ulyssis.org> 0.8b1-1
 - Initial package.

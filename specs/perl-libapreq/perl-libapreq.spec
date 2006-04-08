@@ -13,7 +13,7 @@
 Summary: Apache Request C Library
 Name: perl-libapreq
 Version: 2.04
-Release: 0.03.1
+Release: 0.03.1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/libapreq/
@@ -58,6 +58,9 @@ the Apache API with Perl and C.  Functionality includes:
 #%{perl_vendorlib}/libapreq/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.04-0.03.1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Apr 18 2005 Dries Verachtert <dries@ulyssis.org> - 2.04-0.03.1
 - Update.
 

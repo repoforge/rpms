@@ -10,7 +10,7 @@
 Summary: Persistent database connections and basic authentication support
 Name: perl-Apache-DBI
 Version: 0.9901
-Release: 2
+Release: 2.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-DBI/
@@ -50,6 +50,9 @@ connections via Perl's Database Independent Interface (DBI).
 %{perl_vendorlib}/Apache/AuthDBI.pm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9901-2.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.9901-2
 - Fixed the source url.
 

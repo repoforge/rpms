@@ -5,7 +5,7 @@
 Summary: rpm build system
 Name: pydar2
 Version: 0.041
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Tools
 URL: http://dries.ulyssis.org/rpm/pydar2/
@@ -147,6 +147,9 @@ which can be used to customize pydar2 so it builds rpmforge packages.
 /usr/sbin/useradd -M -g pydar2slave pydar2slave || :
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.041-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jul 22 2005 Dries Verachtert <dries@ulyssis.org> 0.033-1
 - Update to release 0.033.
 

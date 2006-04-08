@@ -5,7 +5,7 @@
 Summary: Python bindings for the KDE desktop environment
 Name: PyKDE
 Version: 3.11rc1
-Release: 1
+Release: 1.2
 License: MIT
 Group: Development/Languages
 URL: http://www.riverbankcomputing.co.uk/pykde/
@@ -68,6 +68,9 @@ sed -i "s/-lDCOP -lkdecore/-lDCOP -lkdeui -lkdecore/g;" kdecore/Makefile
 %{_libdir}/python*/site-packages/*.pyc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.11rc1-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed May 26 2004 Dries Verachtert <dries@ulyssis.org> 3.11rc1-1
 - update to 3.11rc1
 

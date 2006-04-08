@@ -25,7 +25,7 @@
 Summary: Graphical frontend for parted
 Name: qtparted
 Version: 0.4.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://qtparted.sourceforge.net/
@@ -121,6 +121,9 @@ source /etc/profile.d/qt.sh
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-qtparted.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Aug 13 2005 Dag Wieers <dag@wieers.com> - 0.4.5-1
 - Updated to release 0.4.5.
 

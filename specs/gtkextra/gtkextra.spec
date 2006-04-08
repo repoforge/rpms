@@ -7,7 +7,7 @@
 Summary: Useful set of widgets for GTK+
 Name: gtkextra
 Version: 0.99.17
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Development/Libraries
 URL: http://gtkextra.sourceforge.net/
@@ -64,5 +64,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.99.17-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jan 10 2005 Dries Verachtert <dries@ulyssis.org> - 0.99.17-1
 - Initial package.

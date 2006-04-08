@@ -4,7 +4,7 @@
 Summary: Updates dynamic DNS entries
 Name: ddclient
 Version: 3.6.7
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://ddclient.sourceforge.net/
@@ -65,6 +65,9 @@ fi
 
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.6.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 18 2005 Dries Verachtert <dries@ulyssis.org> - 3.6.7-1
 - Updated to release 3.6.7.
 

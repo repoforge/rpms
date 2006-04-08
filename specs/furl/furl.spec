@@ -5,7 +5,7 @@
 Summary: Display the HTTP headers returned by webservers
 Name: furl
 Version: 2.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.gumbynet.org.uk/software/furl.html
@@ -39,6 +39,9 @@ in response to client requests.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jun 11 2004 Dries Verachtert <dries@ulyssis.org> - 2.1-1
 - Update to version 2.1.
 

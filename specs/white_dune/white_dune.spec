@@ -22,7 +22,7 @@
 Summary: Graphical VRML97 editor and animation tool
 Name: white_dune
 Version: 0.29
-Release: 0.beta255
+Release: 0.beta255.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.csv.ica.uni-stuttgart.de/vrml/dune/
@@ -100,6 +100,9 @@ Documentatie over het gebruik van dune is ook beschikbaar.
 
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.29-0.beta255.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan 14 2006 Dries Verachtert <dries@ulyssis.org> 0.29-0.beta255
 - Updated to release 0.29-0.beta255.
 

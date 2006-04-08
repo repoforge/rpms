@@ -7,7 +7,7 @@
 Summary: Software simulator for Microchip PIC microcontrollers
 Name: gpsim
 Version: 0.21.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Engineering
 URL: http://www.dattalo.com/gnupic/gpsim.html
@@ -92,5 +92,8 @@ desktop-file-install --vendor rpmforge             \
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.21.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jan 10 2005 Dries Verachtert <dries@ulyssis.org> - 0.21.2-1
 - Initial package.

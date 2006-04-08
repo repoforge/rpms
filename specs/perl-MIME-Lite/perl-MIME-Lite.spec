@@ -9,7 +9,7 @@
 Summary: Simple standalone module for generating MIME messages
 Name: perl-MIME-Lite
 Version: 3.01
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-Types/
@@ -57,6 +57,9 @@ genereren.
 %{perl_vendorlib}/MIME/changes.pod
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.01-2.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> 3.01-2
 - URL changed to cpan.
 

@@ -6,7 +6,7 @@
 Summary: Generates an iptables-restoreable config
 Name: fw-rulegen
 Version: 1.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.b0rken.net/fw-rulegen/
@@ -87,5 +87,8 @@ EOF
 %{_bindir}/fw-rulegen.pl
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri May 7 2004 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Initial package.

@@ -4,7 +4,7 @@
 Summary: XML-parsing library
 Name: iksemel
 Version: 1.2
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Development/Libraries
 URL: http://iksemel.jabberstudio.org/
@@ -68,5 +68,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Dec 08 2005 Dries Verachtert <dries@ulyssis.org> - 1.2-1
 - Initial package.

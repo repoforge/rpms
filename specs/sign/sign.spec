@@ -5,7 +5,7 @@
 Summary: File signing and signature verification utility
 Name: sign
 Version: 1.0.7
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/File
 URL: http://swapped.cc/sign/
@@ -54,6 +54,9 @@ the list of trusted keys is grown gradually on as-needed basis.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Aug 07 2004 Dag Wieers <dag@wieers.com> - 1.0.7-1
 - Updated to release 1.0.7.
 

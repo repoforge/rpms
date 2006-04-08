@@ -4,7 +4,7 @@
 Summary: Gift plugin to access the openft network
 Name: gift-openft
 Version: 0.2.1.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: http://www.giftproject.org/
@@ -49,6 +49,9 @@ packages provides the plugin to access the openft network.
 %{_libdir}/giFT/libOpenFT.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.1.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Nov 03 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.1.6-1
 - Update to release 0.2.1.6.
 

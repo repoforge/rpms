@@ -5,7 +5,7 @@
 Summary: BitTorrent client for KDE
 Name: ktorrent
 Version: 1.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://ktorrent.pwsp.net/
@@ -55,6 +55,9 @@ KTorrent is a BitTorrent program for KDE.
 %{_datadir}/applnk/Internet/ktorrent.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Mar 01 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1
 - Updated to release 1.2.
 

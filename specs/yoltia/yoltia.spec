@@ -7,7 +7,7 @@
 Summary: Program for editing image files
 Name: yoltia
 Version: 0.21.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://people.freenet.de/yoltia
@@ -79,6 +79,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/rpmforge-yoltia.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.21.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Mar 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.21.0-1
 - Updated to release 0.21.0.
 

@@ -4,7 +4,7 @@
 Summary: OpenAL Utility Toolkit
 Name: freealut
 Version: 1.0.1
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Development/Libraries
 URL: http://openal.org/
@@ -63,5 +63,8 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/freealut.pc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Feb 04 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1
 - Initial package.

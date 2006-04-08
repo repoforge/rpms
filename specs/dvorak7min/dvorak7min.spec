@@ -4,7 +4,7 @@
 Summary: Dvorak typing tutor
 Name: dvorak7min
 Version: 1.6.1
-Release: 3
+Release: 3.2
 License: GPL
 Group: Applications/System
 URL: http://www.linalco.com/comunidad.html
@@ -40,6 +40,9 @@ written in 7 min.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.1-3.2
+- Rebuild for Fedora Core 5.
+
 * Wed Apr 21 2004 Dries Verachtert <dries@ulyssis.org> 1.6.1-3
 - rebuild
 

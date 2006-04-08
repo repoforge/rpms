@@ -6,7 +6,7 @@
 Summary: Library of generic C modules
 Name: libmba
 Version: 0.8.10
-Release: 1
+Release: 1.2
 License: MIT
 Group: System Environment/Libraries
 URL: http://www.ioplex.com/~miallen/libmba/
@@ -68,6 +68,9 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.10-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Sep 1 2004 Dries Verachtert <dries@ulyssis.org> 0.8.10-1
 - Updated to version 0.8.10.
 

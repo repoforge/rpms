@@ -5,7 +5,7 @@
 Summary: Project management tool
 Name: taskjuggler
 Version: 2.2.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Utilities
 URL: http://www.taskjuggler.org/
@@ -64,5 +64,8 @@ communication management.
 %{_bindir}/TaskJugglerUI
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Dec 27 2005 Dries Verachtert <dries@ulyssis.org> - 2.2.0-1
 - Initial package.

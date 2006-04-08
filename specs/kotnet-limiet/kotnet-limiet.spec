@@ -6,7 +6,7 @@
 Summary: Superkaramba theme which displays your kotnet stats
 Name: kotnet-limiet
 Version: 0.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://cernunos.studentenweb.org/kotnet-limiet.html
@@ -45,6 +45,9 @@ download and upload stats, made by Stijn Opheide
 %{_datadir}/apps/kotnet-limiet
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Nov 30 2003 Dries Verachtert <dries@ulyssis.org> 0.1-1
 - first packaging for Fedora Core 1
 

@@ -5,7 +5,7 @@
 Summary: Dictionary lookup program
 Name: ding
 Version: 1.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www-user.tu-chemnitz.de/~fri/ding/
@@ -47,5 +47,8 @@ for quick and easy lookups.
 %{_datadir}/dict/de-en.txt
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Oct 14 2005 Dries Verachtert <dries@ulyssis.org> - 1.4-1
 - Initial package.

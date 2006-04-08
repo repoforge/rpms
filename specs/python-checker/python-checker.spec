@@ -7,7 +7,7 @@
 Summary: Find common bugs in Python source code
 Name: pychecker
 Version: 0.8.17
-Release: 2
+Release: 2.2
 License: BSD
 Group: Development/Tools
 URL: http://pychecker.sourceforge.net/
@@ -57,6 +57,9 @@ parameters to a function/method, and not using a module/variable.
 %exclude %{python_sitelib}/pychecker/VERSION
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.17-2.2
+- Rebuild for Fedora Core 5.
+
 * Fri Mar 10 2006 Dag Wieers <dag@wieers.com> - 0.8.17-2
 - Added .pyo ghost files.
 

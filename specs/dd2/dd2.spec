@@ -11,7 +11,7 @@
 Summary: Shoot'em up arcade game
 Name: dd2
 Version: 0.2.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://www.usebox.net/jjm/dd2/
@@ -75,6 +75,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/net-dd2.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jul 12 2004 Dag Wieers <dag@wieers.com> - 0.2.1-1
 - Updated to release 0.2.1.
 

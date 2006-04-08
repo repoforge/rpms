@@ -4,7 +4,7 @@
 Summary: Network monitor
 Name: knetstats
 Version: 1.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://knetstats.sourceforge.net/
@@ -42,5 +42,8 @@ scons install DESTDIR=%{buildroot}
 %{_datadir}/icons/*/*/apps/knetstats.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Mar 01 2006 Dries Verachtert <dries@ulyssis.org> - 1.5-1
 - Initial package.

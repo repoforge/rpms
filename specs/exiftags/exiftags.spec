@@ -5,7 +5,7 @@
 Summary: Shows Exif (Exchangeable Image File) image metadata
 Name: exiftags
 Version: 1.00
-Release: 1
+Release: 1.2
 License: BSD
 Group: Applications/Multimedia
 URL: http://johnst.org/sw/exiftags/
@@ -53,6 +53,9 @@ camera and digitized image.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.00-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jun 09 2005 Dries Verachtert <dries@ulyssis.org> - 1.00
 - Update to release 1.00.
 

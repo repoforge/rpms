@@ -5,7 +5,7 @@
 Summary: Flickr uploader
 Name: kflickr
 Version: 0.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://kflickr.sourceforge.net/
@@ -46,6 +46,9 @@ sending the photo. Multiple users are supported.
 %{_datadir}/icons/hicolor/*/apps/kflickr.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Nov 27 2005 Dries Verachtert <dries@ulyssis.org> - 0.5-1
 - Updated to release 0.5.
 

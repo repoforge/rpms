@@ -23,7 +23,7 @@
 Summary: OpenGL Jump&Run game where you have to flee an exploding nuclear bomb
 Name: atomorun
 Version: 1.1
-Release: %{?prever:0.%{prever}.}2
+Release: %{?prever:0.%{prever}.}2.2
 License: GPL
 Group: Amusements/Games
 URL: http://atomorun.whosme.de/index.php
@@ -72,6 +72,9 @@ EOF
 %exclude %{_prefix}/doc/atomorun/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-%{?prever:0.%{prever}.}2.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jul 16 2004 Matthias Saou <http://freshrpms.net/> 1.1-0.pre2.1
 - Further cleanups.
 

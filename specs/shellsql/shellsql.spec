@@ -8,7 +8,7 @@
 Summary: Faciliates the use of SQL commands in shell scripts
 Name: shellsql
 Version: 0.7.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Databases
 URL: http://www.edlsystems.com/shellsql/
@@ -52,6 +52,9 @@ way enabling intergration with the rest of the script.
 %{_bindir}/shsqlstart
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jun 25 2005 Dries Verachtert <dries@ulyssis.org> - 0.7.3-1
 - Update to release 0.7.3.
 

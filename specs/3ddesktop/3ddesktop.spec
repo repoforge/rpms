@@ -19,7 +19,7 @@
 Summary: OpenGL program for switching virtual desktops in 3D
 Name: 3ddesktop
 Version: 0.2.8
-Release: 1
+Release: 1.2
 License: GPL
 Group: User Interface/Desktops
 URL: http://desk3d.sourceforge.net/
@@ -66,6 +66,9 @@ source /etc/profile.d/qt.sh
 %{_datadir}/3ddesktop/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Mar 24 2005 Dag Wieers <dag@wieers.com> - 0.2.8-1
 - Updated to release 0.2.8.
 

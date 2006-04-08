@@ -5,7 +5,7 @@
 Summary: Snort reporting tool
 Name: snort-rep
 Version: 1.10
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/Internet
 URL: http://people.ee.ethz.ch/~dws/software/snort-rep/
@@ -38,6 +38,9 @@ from a syslog file.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.10-2.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan 11 2004 Dries Verachtert <dries@ulyssis.org> 1.10-2
 - cleanup of spec file
 

@@ -10,7 +10,7 @@
 Summary: Routines for manipulating a person's name
 Name: perl-Lingua-EN-NameParse
 Version: 1.22
-Release: 2
+Release: 2.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-EN-NameParse/
@@ -51,6 +51,9 @@ the name is broken down into components.
 %{perl_vendorlib}/Lingua/EN/demo.pl
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.22-2.2
+- Rebuild for Fedora Core 5.
+
 * Mon Nov  7 2005 Dries Verachtert <dries@ulyssis.org> - 1.22-2
 - Fix the script which tries to use perl in /usr/local.
 

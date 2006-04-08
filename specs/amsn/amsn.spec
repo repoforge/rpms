@@ -29,7 +29,7 @@
 Summary: Full featured MSN Messenger clone
 Name: amsn
 Version: 0.95
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/Internet
 URL: http://amsn.sourceforge.net/
@@ -97,6 +97,9 @@ groups, and many more features.
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-amsn.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.95-2.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jan 11 2006 Dag Wieers <dag@wieers.com> - 0.95-2
 - Really include release 0.95. (Jaime Ventura)
 

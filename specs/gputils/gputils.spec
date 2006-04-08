@@ -5,7 +5,7 @@
 Summary: GNU PIC Utilities
 Name: gputils
 Version: 0.13.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Engineering
 URL: http://gputils.sourceforge.net/
@@ -53,5 +53,8 @@ microcontrollers. It includes gpasm, gplink, and gplib.
 %{_datadir}/gputils
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.13.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jan 10 2005 Dries Verachtert <dries@ulyssis.org> - 0.13.0-1
 - Initial package.

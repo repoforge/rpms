@@ -5,7 +5,7 @@
 Summary: Recover DNS zonefiles using the DNS protocol
 Name: walker
 Version: 3.8
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://josefsson.org/walker/
@@ -44,6 +44,9 @@ signatures on the RRsets within the zone.
 %{_bindir}/walker
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Sep 21 2005 Dries Verachtert <dries@ulyssis.org> - 3.8-1
 - Updated to release 3.8.
 

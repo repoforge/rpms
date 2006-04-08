@@ -20,7 +20,7 @@
 Summary: GUI for the peer2peer tool gift
 Name: giftoxic
 Version: 0.0.10
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://giftoxic.sourceforge.net/
@@ -68,5 +68,8 @@ development.
 %{_datadir}/giFToxic/logo.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.10-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jun 07 2004 Dries Verachtert <dries@ulyssis.org> - 0.0.10-1
 - Initial package.

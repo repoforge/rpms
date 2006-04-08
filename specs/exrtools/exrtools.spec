@@ -5,7 +5,7 @@
 Summary: Command line utilities for manipulating high dynamic range images
 Name: exrtools
 Version: 0.4
-Release: 1
+Release: 1.2
 License: MIT/X Consortium License
 Group: Applications/Multimedia
 URL: http://scanline.ca/exrtools/
@@ -54,5 +54,8 @@ value to others.
 %{_bindir}/ppmtoexr
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Nov 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.4-1
 - Initial package.

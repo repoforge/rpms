@@ -7,7 +7,7 @@
 Summary: C++ wrapper for fam, the file alteration monitor
 Name: fampp
 Version: 3.5.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Daemons
 URL: http://fampp.sourceforge.net/
@@ -66,6 +66,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.5.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Nov 03 2004 Dries Verachtert <dries@ulyssis.org> 3.5.2-1
 - Update to release 3.5.2.
 

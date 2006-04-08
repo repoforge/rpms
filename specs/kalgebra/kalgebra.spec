@@ -6,7 +6,7 @@
 Summary: MathML-based graph calculator
 Name: kalgebra
 Version: 0.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Engineering
 URL: http://kalgebra.berlios.de
@@ -47,5 +47,8 @@ cd src
 %{_datadir}/apps/kalgebra/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Nov 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.4-1
 - Initial package.

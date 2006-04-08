@@ -8,7 +8,7 @@
 Summary: File editor, viewer and analyzer for text, binary and executables
 Name: ht
 Version: 0.8.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Editors
 URL: http://hte.sourceforge.net/
@@ -46,6 +46,9 @@ portable executables (PE32, PE64), java class files (CLASS).
 %{_bindir}/ht
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Aug 09 2004 Dries Verachtert <dries@ulyssis.org> 0.8.0-1
 - Update to version 0.8.0.
 

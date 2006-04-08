@@ -7,7 +7,7 @@
 Summary: Motion picture frame-by-frame retouching and dust-busting
 Name: cinepaint
 Version: 0.20.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://sourceforge.net/projects/cinepaint
@@ -104,5 +104,8 @@ desktop-file-install --vendor rpmforge             \
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.20.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Nov 10 2005 Dries Verachtert <dries@ulyssis.org> - 0.20.1-1
 - Initial package.

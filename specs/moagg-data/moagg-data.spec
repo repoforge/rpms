@@ -10,7 +10,7 @@
 Summary: The data of the game Mother of all Gravity Games
 Name: moagg-data
 Version: 0.16
-Release: 2
+Release: 2.2
 License: GPL
 Group: Amusements/Games
 URL: http://moagg.sourceforge.net/
@@ -50,6 +50,9 @@ This package contains all the data of this game.
 %{_datadir}/moagg
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-2.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 20 2004 Dries Verachtert <dries@ulyssis.org> 0.16-2
 - Moved the data to a separate package.
 

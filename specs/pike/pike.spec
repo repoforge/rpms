@@ -18,7 +18,7 @@
 Summary: General purpose programming language
 Name: pike
 Version: 7.6.24
-Release: 1
+Release: 1.2
 License: GPL/LGPL/MPL
 Group: Development/Languages
 URL: http://pike.ida.liu.se/
@@ -107,6 +107,9 @@ find . -type f | xargs perl -pi -e "s|/usr/local/bin/pike|%{_bindir}/pike|g"
 ### FIXME : some libs needs to be moved from the main to here?
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 7.6.24-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Aug 15 2005 Dries Verachtert <dries@ulyssis.org> - 7.6.24-1
 - Update to release 7.6.24.
 

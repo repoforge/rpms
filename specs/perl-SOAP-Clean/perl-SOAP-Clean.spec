@@ -12,7 +12,7 @@
 Summary: Simply deploy SOAP clients and servers
 Name: perl-SOAP-Clean
 Version: 0.02
-Release: 2
+Release: 2.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SOAP-Clean/
@@ -71,6 +71,9 @@ recommend SOAP::Lite.
 %{perl_vendorlib}/SOAP/Clean/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-2.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 08 2004 Dries Verachtert <dries@ulyssis.org> - 0.02-2
 - Fix requires/provides.
 

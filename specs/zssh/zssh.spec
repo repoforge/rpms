@@ -7,7 +7,7 @@
 Summary: Zmodem SSH
 Name: zssh
 Version: 1.5
-Release: 0.c
+Release: 0.c.2
 License: GPL
 Group: Applications/Internet
 URL: http://zssh.sourceforge.net/
@@ -55,5 +55,8 @@ plug  either the  user's  tty  (remote  shell  mode) or another process
 %{_bindir}/ztelnet
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.5-0.c.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jan 07 2005 Dries Verachtert <dries@ulyssis.org> - 1.5-0.c
 - Initial package.

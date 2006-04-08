@@ -7,7 +7,7 @@
 Summary: Display the temperature of harddisks
 Name: hddtemp
 Version: 0.3
-Release: 0.beta14.1
+Release: 0.beta14.1.2
 License: GPL
 Group: Applications/System
 URL: http://coredump.free.fr/linux/hddtemp.php
@@ -47,6 +47,9 @@ Note: only recent hard drives have a temperature sensor.
 %{_datadir}/hddtemp
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-0.beta14.1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Oct 09 2005 Dries Verachtert <dries@ulyssis.org> - 0.3-0.beta14.1
 - Update to release 0.3-0.beta14.
 

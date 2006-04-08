@@ -5,7 +5,7 @@
 Summary: Clone of 'bjeweled' or 'diamond mine'
 Name: gweled
 Version: 0.7
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://sebdelestaing.free.fr/gweled/
@@ -60,6 +60,9 @@ zet nog mogelijk is.
 
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Oct 03 2005 Dries Verachtert <dries@ulyssis.org> - 0.7-1
 - Updated to release 0.7.
 

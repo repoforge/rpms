@@ -5,7 +5,7 @@
 Summary: Recipe manager
 Name: krecipes
 Version: 0.9.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Utilities
 URL: http://krecipes.sourceforge.net
@@ -47,5 +47,8 @@ recipe suggestions based on calories/diets, and much more.
 %{_datadir}/mimelnk/application/x-krecipes*.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1
 - Initial package.

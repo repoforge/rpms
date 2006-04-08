@@ -5,7 +5,7 @@
 Summary: C library for manipulating POSIX tar files.
 Name: libtar
 Version: 1.2.11
-Release: 2
+Release: 2.2
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.feep.net/libtar/
@@ -58,6 +58,9 @@ you will need to install %{name}-devel.
 %{_libdir}/libtar.a
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.11-2.2
+- Rebuild for Fedora Core 5.
+
 * Sat Mar 05 2005 Dag Wieers <dag@wieers.com> - 1.2.11-2
 - Compiled with -fPIC for x86_64.
 

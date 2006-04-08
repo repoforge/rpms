@@ -5,7 +5,7 @@
 Summary: Creates a log with timestamps of every install of an rpm
 Name: logrpminstalls
 Version: 1.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://dries.ulyssis.org/projects/logrpminstalls/
@@ -37,5 +37,8 @@ timestamp name-version-release
 %config %{_sysconfdir}/cron.daily/logrpminstalls
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Mar 19 2004 Dries Verachtert <dries@ulyssis.org> 1.0-1
 - first packaging for Fedora Core 1

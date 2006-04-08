@@ -7,7 +7,7 @@
 Summary: Change settings of a Nvidia card
 Name: nvclock
 Version: 0.8
-Release: 0.b
+Release: 0.b.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.linuxhardware.org/nvclock/
@@ -68,5 +68,8 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-0.b.2
+- Rebuild for Fedora Core 5.
+
 * Wed Aug 31 2005 Dries Verachtert <dries@ulyssis.org> - 0.8-0.b
 - Initial package.

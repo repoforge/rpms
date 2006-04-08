@@ -5,7 +5,7 @@
 Summary: Load images as SDL surfaces
 Name: SDL_image
 Version: 1.2.4
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.libsdl.org/projects/SDL_image/
@@ -60,5 +60,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 04 2005 Dries Verachtert <dries@ulyssis.org - 1.2.4-1
 - Initial package

@@ -18,7 +18,7 @@
 Summary: Cross-platform C++ GUI toolkit
 Name: fltk
 Version: 1.1.7
-Release: 1
+Release: 1.2
 License: FLTK
 Group: System Environment/Libraries
 URL: http://www.fltk.org/
@@ -90,6 +90,9 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jan 26 2006 Dries Verachtert <dries@ulyssis.org> 1.1.7-1
 - Update to release 1.1.7.
 

@@ -7,7 +7,7 @@
 Summary: Simple multi-channel audio mixer
 Name: SDL_mixer
 Version: 1.2.6
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.libsdl.org/projects/SDL_mixer/
@@ -67,5 +67,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jan 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.6-1
 - Initial package, based on the spec file provided by the PLD Linux Distribution.

@@ -9,7 +9,7 @@
 Summary: Console frontend to giFT.
 Name: giftcurs
 Version: 0.6.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.nongnu.org/giftcurs/
@@ -52,5 +52,8 @@ have already.
 %{_bindir}/giFTcurs
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Feb 03 2005 Dries Verachtert <dries@ulyssis.org> - 0.6.2-1
 - Initial package.

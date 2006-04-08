@@ -12,7 +12,7 @@
 Summary: Quote a string for passing through a shell
 Name: perl-String-ShellQuote
 Version: 1.03
-Release: 2
+Release: 2.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-ShellQuote/
@@ -53,6 +53,9 @@ which are going to pass through the shell or a shell-like object.
 %{perl_vendorlib}/String/ShellQuote.pm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.03-2.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jan 11 2006 Dag Wieers <dag@wieers.com> - 1.03-2
 - Rebuild due to problematic 1.03-1 builds. (Dean Takemori)
 

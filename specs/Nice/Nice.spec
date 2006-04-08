@@ -5,7 +5,7 @@
 Summary: Advanced object-oriented programming language
 Name: Nice
 Version: 0.9.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Languages
 URL: http://nice.sourceforge.net
@@ -46,6 +46,9 @@ compilation (null pointers, casts).
 %{_datadir}/doc/nice/nicec.html
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Feb 25 2004 Dries Verachtert <dries@ulyssis.org> 0.9.6-1
 - updated to version 0.9.6
 

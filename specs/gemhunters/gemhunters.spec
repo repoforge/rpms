@@ -7,7 +7,7 @@ Summary: Group gems together
 Name: gemhunters
 %define real_version 20040529
 Version: 0.20040529
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://gemhun.sourceforge.net/
@@ -86,6 +86,9 @@ desktop-file-install --vendor net                  \
 %{_includedir}/GemHunters/*.h
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.20040529-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun May 30 2004 Dries Verachtert <dries@ulyssis.org>
 - Initial package.
 

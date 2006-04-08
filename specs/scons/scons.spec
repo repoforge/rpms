@@ -4,7 +4,7 @@
 Summary: Software CONStruction tool, next-generation build tool
 Name: scons
 Version: 0.96.1
-Release: 2
+Release: 2.2
 License: MIT
 Group: Development/Tools
 URL: http://www.scons.org/
@@ -51,6 +51,9 @@ SCons is an easier, more reliable and faster way to build software.
 
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.96.1-2.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 0.96.1-2
 - Make the package noarch as it always should have been.
 

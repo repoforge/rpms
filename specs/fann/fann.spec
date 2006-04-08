@@ -4,7 +4,7 @@
 Summary: Fast artificial neural network library
 Name: fann
 Version: 2.0.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Libraries
 URL: http://fann.sourceforge.net/
@@ -76,6 +76,9 @@ Development headers of fann: fast artificial neural network library
 %{_libdir}/libfloatfann.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.0-1
 - Updated to release 2.0.0.
 

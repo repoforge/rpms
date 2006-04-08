@@ -5,7 +5,7 @@
 Summary: Charset and encoding analyser
 Name: enca
 Version: 1.9
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Text
 URL: http://trific.ath.cx/software/enca/
@@ -52,6 +52,9 @@ encoding of text files and can also convert them to other encodings.
 
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.9-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 18 2005 Dries Verachtert <dries@ulyssis.org> 1.9-1
 - Update to release 1.9.
 

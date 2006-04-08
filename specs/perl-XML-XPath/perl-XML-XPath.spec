@@ -13,7 +13,7 @@
 Summary: Parse and evaluate XPath statements
 Name: perl-XML-XPath
 Version: 1.13
-Release: 2
+Release: 2.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-XPath/
@@ -55,6 +55,9 @@ need to do this as they support functionality beyond XPath.
 %{perl_vendorlib}/XML/XPath/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.13-2.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan 01 2005 Dries Verachtert <dries@ulyssis.org> - 1.13-2
 - Fixed the license tag (Thanks to David Necas !)
 

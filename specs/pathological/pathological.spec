@@ -7,7 +7,7 @@
 Summary: an enriched clone of the game "Logical" by Rainbow Arts
 Name: pathological
 Version: 1.1.3
-Release: 4
+Release: 4.2
 License: GPL
 Group: Amusements/Games
 URL: http://pathological.sourceforge.net/
@@ -70,6 +70,9 @@ EOF
 %{_datadir}/applications/pathological.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.3-4.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan 11 2004 Dries Verachtert <dries@ulyssis.org> 1.1.3-4
 - cleanup of spec file
 

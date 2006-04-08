@@ -5,7 +5,7 @@
 Summary: Parallel implementation of bzip2
 Name: pbzip2
 Version: 0.9.6
-Release: 1
+Release: 1.2
 License: BSD
 Group: Applications/File
 URL: http://compression.ca/pbzip2/
@@ -41,6 +41,9 @@ machines.
 %{_bindir}/pbzip2
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Feb 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.6-1
 - Updated to release 0.9.6.
 

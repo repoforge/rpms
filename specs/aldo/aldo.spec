@@ -8,7 +8,7 @@
 Summary: Morse tutor
 Name: aldo
 Version: 0.7.0
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.nongnu.org/aldo/
@@ -55,6 +55,9 @@ random generated callsigns
 %{_bindir}/aldo
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.0-2.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.7.0-2
 - Libao-devel added to buildrequirements.
 

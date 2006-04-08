@@ -4,7 +4,7 @@
 Summary: BitTorrent library
 Name: libtorrent
 Version: 0.8.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: http://libtorrent.rakshasa.no
@@ -65,6 +65,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libtorrent.pc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Mar 02 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.5-1
 - Updated to release 0.8.5.
 

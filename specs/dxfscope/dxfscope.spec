@@ -18,7 +18,7 @@
 Summary: Viewer for DXF drawings
 Name: dxfscope
 Version: 0.2
-Release: 3
+Release: 3.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://wildspark.com/dxfscope/
@@ -60,6 +60,9 @@ entities of the DXF specification.
 %{_datadir}/dxfscope/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-3.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jun 25 2004 Dag Wieers <dag@wieers.com> - 0.2-3
 - Cosmetic cleanup.
 - Fixes for x86_64.

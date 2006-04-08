@@ -6,7 +6,7 @@
 Summary: Update dndns hosts
 Name: dyndnsupdate
 Version: 0.8
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://lillesvin.linux.dk/dyndnsupdate/
@@ -42,5 +42,8 @@ processes the URLs in dyndns.hosts.
 %config(noreplace) %{_sysconfdir}/dyndns.hosts
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.8-1
 - Initial package.

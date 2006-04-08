@@ -4,7 +4,7 @@
 Summary: Shows dialogs for asking passwords
 Name: libgksuui
 Version: 1.0.7
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Utilities
 URL: http://savannah.nongnu.org/projects/gksu/
@@ -65,5 +65,8 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libgksuui*.pc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jan 05 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.7-1
 - Initial package.

@@ -5,7 +5,7 @@
 Summary: Create printouts of barcodes
 Name: barcode
 Version: 0.98
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Publishing
 URL: http://www.gnu.org/software/barcode/barcode.html
@@ -64,5 +64,8 @@ you will need to install %{name}-devel.
 %{_libdir}/libbarcode.a
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.98-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.98-1
 - Initial package.

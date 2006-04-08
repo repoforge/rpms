@@ -4,7 +4,7 @@
 Summary: PARI/GP Number Theory-oriented Computer Algebra System
 Name: pari
 Version: 2.1.7
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Engineering
 URL: http://pari.math.u-bordeaux.fr/
@@ -68,6 +68,9 @@ you will need to install %{name}-devel.
 %{_libdir}/libpari.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.1.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jan 12 2006 Dag Wieers <dag@wieers.com> - 2.1.7-1
 - Updated to release 2.1.7.
 

@@ -7,7 +7,7 @@
 Summary: Identify resistors
 Name: gresistor
 Version: 0.0.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Engineering
 URL: http://www.minipop.org/index.php?file=progs/gresistor/gresistor.tpl
@@ -48,5 +48,8 @@ value is changing according to the selected color.
 %{python_sitearch}/SimpleGladeApp.py*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Nov 07 2005 Dries Verachtert <dries@ulyssis.org> - 0.0.1-1
 - Initial package.

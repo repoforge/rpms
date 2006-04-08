@@ -6,7 +6,7 @@ Summary: Ultima online server
 Name: uox
 Version: 0.97.06.9r
 %define mozilla_version 1.6
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.uox3.org/
@@ -124,6 +124,9 @@ userdel uox &>/dev/null || :
 %{_datadir}/uox3/js32.dll
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.97.06.9r-2.2
+- Rebuild for Fedora Core 5.
+
 * Sun May 2 2004 Dries Verachtert <dries@ulyssis.org> 0.97.6.9r-2
 - use a seperate user
 

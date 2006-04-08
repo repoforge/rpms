@@ -14,7 +14,7 @@
 Summary: Mother of all Gravity Games
 Name: moagg
 Version: 0.16
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://moagg.sourceforge.net/
@@ -98,6 +98,9 @@ EOF
 %{_mandir}/man6/moagg*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 20 2004 Dries Verachtert <dries@ulyssis.org> 0.16-2
 - Moved the data to a separate package.
 

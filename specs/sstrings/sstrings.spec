@@ -5,7 +5,7 @@
 Summary: Handle C strings in a safe way
 Name: sstrings
 Version: 1.0.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: http://pcpool.mathematik.uni-freiburg.de/~pabloy/projects/sstrings/
@@ -65,6 +65,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 21 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.4-1
 - Update to release 1.0.4.
 

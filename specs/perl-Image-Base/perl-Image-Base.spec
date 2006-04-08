@@ -12,7 +12,7 @@
 Summary: Base class for loading, manipulating and saving images
 Name: perl-Image-Base
 Version: 1.07
-Release: 2
+Release: 2.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Base/
@@ -49,6 +49,9 @@ This module contains a base class for loading, manipulating and saving images.
 %{perl_vendorlib}/Image/Base.pm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.07-2.2
+- Rebuild for Fedora Core 5.
+
 * Tue Oct 05 2004 Dries Verachtert <dries@ulyssis.org> - 1.07-2
 - Rebuild.
 

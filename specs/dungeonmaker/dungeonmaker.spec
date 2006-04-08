@@ -5,7 +5,7 @@
 Summary: Library which grows dungeons
 Name: dungeonmaker
 Version: 2.03
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: http://dungeonmaker.sourceforge.net/
@@ -40,6 +40,9 @@ Dungeonmaker creates labyrinths and dungeons using artificial life methods.
 %{_datadir}/dungeonmaker/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.03-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 04 2005 Dries Verachtert <dries@ulyssis.org> - 2.03-1
 - Updated to release 2.03.
 

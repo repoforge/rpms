@@ -6,7 +6,7 @@
 Summary: Process Memory Information
 Name: pmem
 Version: 1.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://www.pmem.net/
@@ -41,5 +41,8 @@ files system.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> 1.1-1
 - Initial package.

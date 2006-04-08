@@ -16,7 +16,7 @@
 Summary: Game library
 Name: allegro
 Version: 4.2.0
-Release: 1
+Release: 1.2
 License: Distributable
 Group: Development/Libraries
 URL: http://alleg.sourceforge.net/
@@ -98,5 +98,8 @@ you will need to install %{name}-devel.
 %{_datadir}/aclocal/allegro.m4
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.2.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 04 2005 Dries Verachtert <dries@ulyssis.org> - 4.2.0-1
 - Initial package.

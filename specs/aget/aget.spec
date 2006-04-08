@@ -7,7 +7,7 @@
 Summary: Console download accelerator
 Name: aget
 Version: 0.4
-Release: 5
+Release: 5.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.enderunix.org/aget/
@@ -40,6 +40,9 @@ and can be run from the console.
 %{_bindir}/aget
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4-5.2
+- Rebuild for Fedora Core 5.
+
 * Thu Mar  4 2004 Matthias Saou <http://freshrpms.net> 0.4-4
 - More cleanups.
 - uncompress the patch (plays better with CVS/SVN).

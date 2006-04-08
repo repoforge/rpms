@@ -6,7 +6,7 @@
 Summary: Converts PDF files into HTML and XML formats
 Name: pdftohtml
 Version: 0.36
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Text
 URL: http://pdftohtml.sourceforge.net/
@@ -39,5 +39,8 @@ into html format.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.36-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jul 30 2004 Dries Verachtert <dries@ulyssis.org> - 0.36-1
 - Initial package.

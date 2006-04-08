@@ -7,7 +7,7 @@
 Summary: Plugin for x-chat for transmitting raw morse code
 Name: cwirc
 Version: 1.8.8
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://users.skynet.be/ppc/cwirc/
@@ -70,6 +70,9 @@ code is transmitted. Only other CWirc users can receive what you send.
 %{_libdir}/xchat/plugins/cwirc.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.8.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jun 09 2005 Dries Verachtert <dries@ulyssis.org> - 1.8.8-1
 - Update to release 1.8.8.
 

@@ -7,7 +7,7 @@
 Summary: Visualize and manipulate multidimensional surfaces
 Name: k3dsurf
 Version: 0.5.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Engineering
 URL: http://k3dsurf.sourceforge.net/
@@ -64,6 +64,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*-k3dsurf.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 12 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.4-1
 - Updated to release 0.5.4.
 

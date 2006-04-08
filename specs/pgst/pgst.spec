@@ -6,7 +6,7 @@
 Summary: Intuitive GUI for PostgreSQL management
 Name: pgst
 Version: 1.3
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/Databases
 URL: http://sourceforge.net/projects/pgst/
@@ -74,6 +74,9 @@ cd           %{buildroot}%{_bindir}
 %{_bindir}/pgst
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jan 25 2005 Petr Klima <qaxi@seznam.cz> - 1.3-1
 - Update to 1.3.
 - Added a link in /usr/bin to pgst.sh

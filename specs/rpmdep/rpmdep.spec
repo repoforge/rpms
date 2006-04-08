@@ -6,7 +6,7 @@
 Summary: Check the dependencies of source and binary rpms
 Name: rpmdep
 Version: 1.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: none
@@ -39,5 +39,8 @@ This program is still in development and far from finished.
 %{_datadir}/rpmdep
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Aug 16 2004 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Initial package.

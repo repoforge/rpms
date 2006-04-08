@@ -5,7 +5,7 @@
 Summary: Perl script which generates statistics from IRC logfiles
 Name: pisg
 Version: 0.68
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Communications
 URL: http://pisg.sourceforge.net/
@@ -49,6 +49,9 @@ echo '%{_datadir}/pisg/pisg $@' > %{buildroot}%{_bindir}/pisg
 %{_datadir}/pisg
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.68-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.68-1
 - Update to release 0.68.
 

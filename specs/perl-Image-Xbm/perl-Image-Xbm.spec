@@ -10,7 +10,7 @@
 Summary: Load, create, manipulate and save xbm image files
 Name: perl-Image-Xbm
 Version: 1.08
-Release: 2
+Release: 2.2
 License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Xbm/
@@ -51,6 +51,9 @@ With this module, you can load, create, manipulate and save xbm image files.
 %{perl_vendorlib}/Image/Xbm.pm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.08-2.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan 01 2005 Dries Verachtert <dries@ulyssis.org> - 1.08-1
 - Fixed the license (Thanks to David Necas !)
 

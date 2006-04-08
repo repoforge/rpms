@@ -5,7 +5,7 @@
 Summary: Programs and libs needed for manipulating reiserfs partitions
 Name: progsreiserfs
 Version: 0.3.0.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://www.namesys.com
@@ -85,5 +85,8 @@ the package reiserfs-utils.
 %{_sbindir}/mkfs.reiserfs
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.0.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Mar 3 2004 Dries Verachtert 0.3.0.4-1
 - first packaging for Fedora Core 1

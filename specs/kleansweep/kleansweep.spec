@@ -5,7 +5,7 @@
 Summary: Reclaim disk space by finding unneeded files
 Name: kleansweep
 Version: 0.2.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Utilities
 URL: http://linux.bydg.org/~yogin/
@@ -43,6 +43,9 @@ scons install prefix=%{buildroot}%{_prefix}
 %{_bindir}/kleansweep*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Mar 02 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.6-1
 - Updated to release 0.2.6.
 

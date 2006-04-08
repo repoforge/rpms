@@ -14,7 +14,7 @@
 Summary: Python SDL game where you have to collect energy cubes
 Name: solarwolf
 Version: 1.5
-Release: 2
+Release: 2.2
 License: LGPL
 Group: Amusements/Games
 URL: http://www.pygame.org/shredwheat/solarwolf/
@@ -149,6 +149,9 @@ fi
 %{?_without_freedesktop:%{_sysconfdir}/X11/applnk/Games/%{name}.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.5-2.2
+- Rebuild for Fedora Core 5.
+
 * Mon Oct 31 2005 C.Lee Taylor <leet@leenx.co.za> 1.5-2
 - Add icon for menu and update Desktop cache.
 - Remove Make patch

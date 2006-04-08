@@ -8,7 +8,7 @@
 Summary: iTouch keyboard control plugin for bmp
 Name: bmp-itouch
 Version: 1.0.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://bmp-itouch.sourceforge.net/
@@ -48,6 +48,9 @@ keyboard.
 %exclude %{bmp_generalplugindir}/libitouch.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Oct 08 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1
 - Spec file provided by Saikat Guha added to rpmforge.
 - Updated to 1.0.1.

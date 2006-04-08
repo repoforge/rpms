@@ -10,7 +10,7 @@
 Summary: Perl in HTML pages
 Name: perl-PLP
 Version: 3.19
-Release: 2
+Release: 2.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PLP/
@@ -51,6 +51,9 @@ run as a CGI script.
 %{perl_vendorlib}/PLP
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.19-2.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 3.19-2
 - Fixed the source url.
 

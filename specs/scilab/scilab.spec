@@ -10,7 +10,7 @@
 Summary: Scientific software package
 Name: scilab
 Version: 3.1.1
-Release: 2
+Release: 2.2
 License: Other
 Group: Applications/Engineering
 URL: http://scilabsoft.inria.fr/
@@ -88,6 +88,9 @@ overloading. A number of toolboxes are available with the system.
 %exclude %{_libdir}/scilab-%{version}/examples/mex-examples/mexglx
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.1.1-2.2
+- Rebuild for Fedora Core 5.
+
 * Mon Aug 01 2005 Dries Verachtert <dries@ulyssis.org> - 3.1.1-2
 - Rebuild.
 

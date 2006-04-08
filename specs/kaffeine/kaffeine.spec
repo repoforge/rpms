@@ -11,7 +11,7 @@
 Summary: Media player based on xine-lib
 Name: kaffeine
 Version: 0.7.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://kaffeine.sourceforge.net
@@ -90,6 +90,9 @@ source /etc/profile.d/qt.sh
 %{_libdir}/kde3/libkaffeinepart.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Sep 09 2005 Dries Verachtert <dries@ulyssis.org> - 0.7.1-1
 - Updated to release 0.7.1.
 

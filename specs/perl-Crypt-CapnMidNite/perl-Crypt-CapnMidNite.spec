@@ -10,7 +10,7 @@
 Summary: Perl interface to MD5, RC4, encrypt/decrypt
 Name: perl-Crypt-CapnMidNite
 Version: 1.00
-Release: 2
+Release: 2.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-CapnMidNite/
@@ -63,6 +63,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Crypt/C_LockTite/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.00-2.2
+- Rebuild for Fedora Core 5.
+
 * Sat Dec 11 2004 Dries Verachtert <dries@ulyssis.org> - 1.00-2
 - Figured out how to build the Crypt::C_LockTite module
 

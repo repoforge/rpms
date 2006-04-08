@@ -4,7 +4,7 @@
 Summary: General-purpose tool for parameter handling in C++
 Name: xparam
 Version: 1.22
-Release: 1
+Release: 1.2
 License: GPL+Other
 Group: System Environment/Libraries
 URL: http://xparam.sourceforge.net/
@@ -78,5 +78,8 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.22-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue May 11 2004 Dries Verachtert <dries@ulyssis.org> - 1.22-1
 - Initial package.

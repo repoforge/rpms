@@ -5,7 +5,7 @@
 Summary: Objective Caml interface to gtk+
 Name: lablgtk
 Version: 2.4.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/lablgtk.html
@@ -65,6 +65,9 @@ done
 %{_libdir}/ocaml/site-lib/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.4.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Dec 09 2004 Dries Verachtert <dries@ulyssis.org> - 2.4.0-1
 - Initial package.
   The shellcode which creates the meta information is based on the spec file

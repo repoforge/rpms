@@ -7,7 +7,7 @@
 Summary: Medial image viewer for DICOM images
 Name: aeskulap
 Version: 0.2.1
-Release: 1
+Release: 1.2
 License: GPL/LGPL
 Group: Applications/Multimedia
 URL: http://aeskulap.nongnu.org
@@ -56,6 +56,9 @@ any platform were these packages are available.
 %{_datadir}/gconf/schemas/aeskulap.schema
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Mar 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.1-1
 - Updated to release 0.2.1.
 

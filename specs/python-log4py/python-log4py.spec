@@ -11,7 +11,7 @@
 Summary: Python logging module similar to log4j
 Name: python-log4py
 Version: 1.3
-Release: 1
+Release: 1.2
 License: MIT
 Group: Development/Libraries
 URL: http://www.its4you.at/english/log4py.html
@@ -46,5 +46,8 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{python_sitearch}/log4py.py*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jun 5 2004 Dries Verachtert <dries@ulyssis.org> - 1.3-1
 - Initial package.

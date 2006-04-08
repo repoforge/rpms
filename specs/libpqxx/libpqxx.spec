@@ -4,7 +4,7 @@
 Summary: C++ client API for PostgreSQL
 Name: libpqxx
 Version: 2.2.3
-Release: 1
+Release: 1.2
 License: BSD
 Group: System Environment/Libraries
 URL: http://pqxx.tk/
@@ -70,5 +70,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> - 2.2.3-1
 - Initial package.

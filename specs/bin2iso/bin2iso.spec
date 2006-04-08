@@ -7,7 +7,7 @@
 Summary: Convert bin/cue images to iso images or wav files
 Name: bin2iso
 Version: 1.9
-Release: 0.b
+Release: 0.b.2
 License: Unknown, Freely distributable
 Group: Applications/File
 URL: http://users.andara.com/~doiron/bin2iso/
@@ -36,5 +36,8 @@ Bin2iso converts bin/cue images to iso images.or wav files.
 %{_bindir}/bin2iso
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.9-0.b.2
+- Rebuild for Fedora Core 5.
+
 * Tue Sep 13 2005 Dries Verachtert <dries@ulyssis.org> - 1.9-0.b
 - Initial package.

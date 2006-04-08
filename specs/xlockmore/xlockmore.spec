@@ -16,7 +16,7 @@
 Summary: Screen lock and screen saver.
 Name: xlockmore
 Version: 5.18
-Release: 2
+Release: 2.2
 License: BSD
 Group: Amusements/Graphics
 URL: http://www.tux.org/~bagleyd/xlockmore.html
@@ -99,6 +99,9 @@ desktop-file-install \
 %{_datadir}/applications/%{desktop_vendor}-xlockmore.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 5.18-2.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 28 2005 Dries Verachtert <dries@ulyssis.org> - 5.18-2
 - Fixed the name of the desktop file (thanks to Erik Williamson)
 

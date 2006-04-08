@@ -5,7 +5,7 @@
 Summary: Stock market, commodity and technical analysis charting application
 Name: qtstalker
 Version: 0.32
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://qtstalker.sourceforge.net/
@@ -65,5 +65,8 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.32-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Dec 24 2005 Dries Verachtert <dries@ulyssis.org> - 0.32-1
 - Initial package.

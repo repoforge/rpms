@@ -6,7 +6,7 @@
 Summary: Multiplayer wargame with liquid armies
 Name: liquidwar
 Version: 5.6.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://www.ufoot.org/liquidwar/
@@ -80,6 +80,9 @@ and info format.
 %{_mandir}/man6/liquidwar.6.gz
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 5.6.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Nov 29 2005 Dries Verachtert <dries@ulyssis.org> 5.6.3-1
 - Updated to release 5.6.3.
 

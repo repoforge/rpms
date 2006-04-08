@@ -19,7 +19,7 @@
 Summary: Libvisual port of the G-Force visualisation plugin
 Name: libvisual-gforce
 Version: 0.1.1
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Development/Libraries
 URL: http://libvisual.sourceforge.net/v2/
@@ -74,5 +74,8 @@ SDL, as a surface on an OpenGL object, etc.
 %{_datadir}/libvisual/actor/actor_gforce
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 05 2004 Dries Verachtert <dries@ulyssis.org> - 0.1.1-1
 - Initial package.

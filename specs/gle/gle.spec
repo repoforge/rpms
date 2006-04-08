@@ -16,7 +16,7 @@
 Summary: Graphics Layout Engine
 Name: gle
 Version: 4.0.11
-Release: 2
+Release: 2.2
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.gle-graphics.org/
@@ -59,6 +59,9 @@ export GLE_TOP=%{builddir}/%{name}-%{version}/src/fonts
 %{_datadir}/gle
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.0.11-2.2
+- Rebuild for Fedora Core 5.
+
 * Sat Dec 17 2005 Dries Verachtert <dries@ulyssis.org> - 4.0.11-1
 - Updated to release 4.0.11.
 

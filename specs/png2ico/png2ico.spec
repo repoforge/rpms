@@ -6,7 +6,7 @@
 Summary: PNG to icon converter
 Name: png2ico
 Version: 0.0.20021218
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.winterdrache.de/freeware/png2ico/index.html
@@ -40,5 +40,8 @@ Png2ico is a utility which converts PNG files to Windows icon resource files.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.20021218-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jun 25 2004 Dries Verachtert <dries@ulyssis.org> - 0.0.20021218-1
 - Initial package.

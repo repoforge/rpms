@@ -5,7 +5,7 @@
 Summary: File manager with an ncurses interface
 Name: clex
 Version: 3.14
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Shells
 URL: http://www.clex.sk/
@@ -45,6 +45,9 @@ configurable and all its features are explained in the on-line help.
 
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.14-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 04 2005 Dries Verachtert <dries@ulyssis.org> - 3.14-1
 - Updated to release 3.14.
 

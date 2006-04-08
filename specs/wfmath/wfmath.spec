@@ -4,7 +4,7 @@
 Summary: Geometric objects and math objects
 Name: wfmath
 Version: 0.3.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: http://www.worldforge.org/dev/eng/libraries/wfmath
@@ -62,5 +62,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 04 2005 Dries Verachtert <dries@ulyssis.org> - 0.3.4-1
 - Initial package.

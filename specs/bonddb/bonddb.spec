@@ -7,7 +7,7 @@
 Summary: Object oriented wrapper for PostgreSQL
 Name: bonddb
 Version: 2.2.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Tools
 URL: http://www.treshna.com/bonddb/
@@ -85,6 +85,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libbond*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Feb 12 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.3-1
 - Updated to release 2.2.3.
 

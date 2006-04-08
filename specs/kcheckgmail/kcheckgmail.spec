@@ -4,7 +4,7 @@
 Summary: System tray application with information about your gmail account
 Name: kcheckgmail
 Version: 0.5.5
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/Internet
 URL: http://kcheckgmail.sf.net/
@@ -44,6 +44,9 @@ dos2unix src/kcheckgmail.desktop
 %{_datadir}/doc/HTML/*/kcheckgmail/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.5-2.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec 23 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.5-2
 - Fix the desktop file, thanks to Stephen Biggs.
 

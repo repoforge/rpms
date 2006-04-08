@@ -7,7 +7,7 @@
 Summary: Generates fuzzy clock output
 Name: fuzzyclock
 Version: 0.3
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/System
 URL: http://home.gna.org/fuzzyclock/
@@ -43,6 +43,9 @@ Fuzzy Clock is a Python class and command line utility to generate
 %{python_sitearch}/fuzzyclock/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-2.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 07 2005 Dag Wieers <dag@wieers.com> - 0.3-2
 - Fixed RPM Group.
 

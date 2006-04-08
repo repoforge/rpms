@@ -5,7 +5,7 @@
 Summary: Go board, SGF editor and client for the Internet Go Server
 Name: qgo
 Version: 1.0.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://qgo.sourceforge.net/
@@ -45,5 +45,8 @@ in Japan, China, and Korea.
 %{_datadir}/qGo/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan 14 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.4-1
 - Initial package.

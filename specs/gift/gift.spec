@@ -5,7 +5,7 @@
 Summary: Deamon for communicating with filesharing protocols
 Name: gift
 Version: 0.11.8.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.giftproject.org/
@@ -68,6 +68,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libgift.pc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.11.8.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Feb 02 2005 Dries Verachtert <dries@ulyssis.org> 0.11.8.1-1
 - Update to release 0.11.8.1.
 

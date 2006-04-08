@@ -8,7 +8,7 @@
 Summary: Text mode SMB (Samba) commander
 Name: smbc
 Version: 1.2.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://smbc.airm.net/
@@ -50,6 +50,9 @@ directories. Smbc has a resume function and supports UTF-8 characters.
 #exclude %{_datadir}/smbc/sample.smbcrc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jul 03 2005 Dries Verachtert <dries@ulyssis.org> 1.2.2-1
 - Updated to release 1.2.2.
 

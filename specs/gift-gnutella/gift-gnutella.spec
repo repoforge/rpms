@@ -4,7 +4,7 @@
 Summary: Gift plugin to access the Gnutella network
 Name: gift-gnutella
 Version: 0.0.10.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.giftproject.org/
@@ -50,6 +50,9 @@ packages provides the plugin to access the Gnutella network.
 %{_datadir}/giFT/Gnutella/hostiles.txt
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.10.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Nov 03 2005 Dries Verachtert <dries@ulyssis.org> - 0.0.10.1-1
 - Update to version 0.0.10.1.
 

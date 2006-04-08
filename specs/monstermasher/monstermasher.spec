@@ -8,7 +8,7 @@
 Summary: Mash the monsters with stone blocks
 Name: monstermasher
 Version: 1.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://www.cs.aau.dk/~olau/monster-masher/
@@ -49,6 +49,9 @@ monsters with stone blocks.
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.6-1
 - Initial package.
 

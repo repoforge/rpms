@@ -5,7 +5,7 @@
 Summary: Frontend for ding, a dictionary lookup program
 Name: kding
 Version: 0.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.rexi.org/software/kding/
@@ -49,5 +49,8 @@ Ding.
 %{_datadir}/icons/*/*/apps/kding.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Sep 20 2005 Dries Verachtert <dries@ulyssis.org> - 0.3-1
 - Initial package.

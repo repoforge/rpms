@@ -10,7 +10,7 @@
 Summary: Perl interface to the Internet Relay Chat protocol
 Name: perl-Net-IRC
 Version: 0.75
-Release: 2
+Release: 2.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-IRC/
@@ -50,6 +50,9 @@ protocol (RFC 1459).
 %{perl_vendorlib}/Net/IRC
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.75-2.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jul 26 2005 Jima <jima@devel.mintygreen.net> - 0.75-2
 - IO::Socket::INET calls changed to IO::Socket::INET6 so IPV6 can be used.
 

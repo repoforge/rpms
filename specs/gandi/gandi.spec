@@ -5,7 +5,7 @@
 Summary: Collection of widgets written in C for ncurses
 Name: gandi
 Version: 0.5.3
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Development/Libraries
 URL: http://y.unlit.org/gandi/
@@ -65,6 +65,9 @@ you will need to install %{name}-devel.
 %{_libdir}/GANDI/libgandi*.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Mar 02 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.3-1
 - Updated to release 0.5.3.
 

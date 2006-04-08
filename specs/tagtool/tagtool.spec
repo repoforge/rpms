@@ -9,7 +9,7 @@
 Summary: Manage the information fields in MP3 and Ogg Vorbis files
 Name: tagtool
 Version: 0.12.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://pwp.netcabo.pt/paol/tagtool/
@@ -58,6 +58,9 @@ desktop-file-install --delete-original             \
 %{_datadir}/tagtool/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.12.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 08 2005 Dag Wieers <dag@wieers.com> - 0.12.1-1
 - Updated to release 0.12.1.
 

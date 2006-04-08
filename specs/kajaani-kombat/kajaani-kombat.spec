@@ -7,7 +7,7 @@
 Summary: Multiplayer game in space
 Name: kajaani-kombat
 Version: 0.7
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://kombat.kajaani.net/
@@ -53,6 +53,9 @@ same computer. Enjoy it with your friends!
 %{_datadir}/games/kajaanikombat/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jul 18 2005 Dries Verachtert <dries@ulyssis.org> 0.7-1
 - Updated to release 0.7.
 

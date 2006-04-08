@@ -5,7 +5,7 @@
 Summary: PNG tester and debugger
 Name: pngcheck
 Version: 2.0.0
-Release: 1
+Release: 1.2
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.libpng.org/pub/png/apps/pngcheck.html
@@ -42,5 +42,8 @@ animations.
 %{_bindir}/pngcheck
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jul 18 2005 Dries Verachtert <dries@ulyssis.org> - 2.0.0-1
 - Initial package.

@@ -16,7 +16,7 @@
 Summary: Steer a marble ball through a labyrinth
 Name: trackballs
 Version: 1.1.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://trackballs.sourceforge.net/
@@ -61,6 +61,9 @@ sed -i "s/chgrp/#chgrp/g;" share/Makefile*
 %{_datadir}/trackballs
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Nov 17 2005 Dries Verachtert <dries@ulyssis.org> 1.1.1-1
 - Update to release 1.1.1.
 

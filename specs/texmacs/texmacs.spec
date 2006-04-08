@@ -18,7 +18,7 @@
 Summary: Structured WYSIWYG scientific text editor
 Name: texmacs
 Version: 1.0.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Text
 URL: http://www.texmacs.org/
@@ -81,6 +81,9 @@ drawing editor and a presentation mode.
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 06 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.6-1
 - Update to release 1.0.6.
 

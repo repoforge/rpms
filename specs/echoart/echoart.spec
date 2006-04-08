@@ -6,7 +6,7 @@
 Summary: Responds to or drops ICMP echo requests packets
 Name: echoart
 Version: 0.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://mirror1.internap.com/echoart/
@@ -44,6 +44,9 @@ responses back into the network as necessary.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Oct 31 2004 Dries Verachtert <dries@ulyssis.org> - 0.1-1
 - Initial package.
 

@@ -18,7 +18,7 @@
 Summary: High dynamic range image file format
 Name: openexr
 Version: 1.2.2
-Release: 1
+Release: 1.2
 License: BSD
 Group: Development/Libraries
 URL: http://www.openexr.com
@@ -98,5 +98,8 @@ perl -pi -e 's|include .map.|include <map>\nclass Image;|g;' exrmaketiled/Image.
 
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Nov 15 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.2-1
 - Initial package.

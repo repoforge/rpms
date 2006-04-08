@@ -5,7 +5,7 @@
 Summary: DHCP daemon ping program
 Name: dhcping
 Version: 1.2
-Release: 2
+Release: 2.2
 License: BSD
 Group: Applications/Internet
 URL: http://sourceforge.net/projects/mavetju/
@@ -40,6 +40,9 @@ server is still functioning.
 %{_bindir}/dhcping
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-2.2
+- Rebuild for Fedora Core 5.
+
 * Sun May 02 2004 Dag Wieers <dag@wieers.com> - 1.2-2
 - Cosmetic changes.
 - Fix program-prefix for RH73 and older.

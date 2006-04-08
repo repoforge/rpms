@@ -7,7 +7,7 @@
 Summary: Feature rich highly configurable console mail client
 Name: elmo
 Version: 1.3.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://elmo.sourceforge.net/
@@ -49,6 +49,9 @@ mailers and competes with Mutt.
 %{_datadir}/elmo
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jun 09 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.2-1
 - Update to release 1.3.2.
 

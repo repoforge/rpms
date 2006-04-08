@@ -9,7 +9,7 @@
 Summary: Fetch information about audio cd's
 Name: python-cddb
 Version: 1.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://cddb-py.sourceforge.net/
@@ -47,5 +47,8 @@ databases of audio CD track titles and information.
 %{python_sitearch}/cdrom.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Mar 03 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1
 - Initial package.

@@ -5,7 +5,7 @@
 Summary: Rolls dices
 Name: roll
 Version: 1.0.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://matteocorti.ch/software/roll.html
@@ -43,5 +43,8 @@ expressions (e.g., 2d8+4).
 %{_bindir}/roll
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 12 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1
 - Initial package.

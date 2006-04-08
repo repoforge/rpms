@@ -7,7 +7,7 @@
 Summary: Python bindings for wxWindows
 Name: wxpython
 Version: 2.6.1.0
-Release: 2
+Release: 2.2
 License: GPL
 Group: Development/Tools
 URL: http://www.wxpython.org/
@@ -65,6 +65,9 @@ python setup.py install --root %{buildroot}
 
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.6.1.0-2.2
+- Rebuild for Fedora Core 5.
+
 * Thu Dec 01 2005 Dries Verachtert <dries@ulyssis.org> - 2.7.1.0-2
 - Rebuild.
 

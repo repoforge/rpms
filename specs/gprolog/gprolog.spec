@@ -4,7 +4,7 @@
 Summary: Free implementation of the logic programming language PROLOG
 Name: gprolog
 Version: 1.2.16
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Languages
 URL: http://gnu-prolog.inria.fr/
@@ -101,6 +101,9 @@ popd
 %{_datadir}/gprolog/examples/ExamplesC
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.16-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Mar 20 2004 Dries Verachtert <dries@ulyssis.org> 1.2.16-1
 - update to version 1.2.16
 

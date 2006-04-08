@@ -10,7 +10,7 @@
 Summary: Server for DAAP, the digital audio access protocol
 Name: daapd
 Version: 0.2.4
-Release: 0.a
+Release: 0.a.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.deleet.de/projekte/daap/daapd/
@@ -81,5 +81,8 @@ cd ../..
 #%{_libdir}/*.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.4-0.a.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jan 06 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.4-0.a
 - Initial package.

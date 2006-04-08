@@ -18,7 +18,7 @@
 Summary: 1394-based digital camera control library
 Name: libdc1394
 Version: 2.0.0
-Release: 0.1.pre5
+Release: 0.1.pre5.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://sourceforge.net/projects/libdc1394/
@@ -79,6 +79,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.0-0.1.pre5.2
+- Rebuild for Fedora Core 5.
+
 * Thu Dec  8 2005 Matthias Saou <http://freshrpms.net/> 2.0.0-0.1.pre5
 - Update to 2.0.0-pre5.
 - Add missing libraw1394-devel dependency to the devel package.

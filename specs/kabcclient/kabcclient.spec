@@ -5,7 +5,7 @@
 Summary: Command line access to the KDE address book
 Name: kabcclient
 Version: 0.8.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Productivity
 URL: http://www.sbox.tugraz.at/home/v/voyager/kabcclient/index.html
@@ -42,6 +42,9 @@ qmake
 %{_bindir}/kabcclient
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Aug 31 2005 Dries Verachtert <dries@ulyssis.org> - 0.8.1-1
 - Update to release 0.8.1.
 

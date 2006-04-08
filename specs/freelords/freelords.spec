@@ -5,7 +5,7 @@
 Summary: Turn-based strategy game
 Name: freelords
 Version: 0.3.7
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://freelords.sourceforge.net/
@@ -46,6 +46,9 @@ save, and configuration files have an easy-to-read XML format.
 %{_datadir}/freelords/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Mar 02 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.7-1
 - Updated to release 0.3.7.
 

@@ -9,7 +9,7 @@
 Summary: Crypt-DES module for perl
 Name: perl-Crypt-DES
 Version: 2.05
-Release: 3
+Release: 3.2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-DES/
@@ -54,6 +54,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorarch}/auto/Crypt/DES/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.05-3.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.05-1
 - Updated to release 2.05.
 

@@ -5,7 +5,7 @@
 Summary: Library for parsing, writing and creating XML
 Name: libnxml
 Version: 0.9
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: http://autistici.org/bakunin/codes.php
@@ -61,6 +61,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/nxml.pc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 07 2006 Dag Wieers <dag@wieers.com> - 0.9-1
 - Updated to release 0.9.
 

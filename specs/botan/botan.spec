@@ -4,7 +4,7 @@
 Summary: Library implementing a variety of cryptographic algorithms and formats
 Name: botan
 Version: 1.4.12
-Release: 1
+Release: 1.2
 License: Other
 Group: System Environment/Libraries
 URL: http://botan.randombit.net/
@@ -69,6 +69,9 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.12-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jan 16 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.12-1
 - Updated to release 1.4.12.
 

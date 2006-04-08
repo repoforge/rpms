@@ -6,7 +6,7 @@
 Summary: program which will display a fortune
 Name: fortune
 Version: 1.0
-Release: 37
+Release: 37.2
 License: BSD
 Group: Amusements/Games
 # no URL found
@@ -671,6 +671,9 @@ All fortune packages will be installed if you install this package.
 %defattr(-, root, root, 0755)
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-37.2
+- Rebuild for Fedora Core 5.
+
 * Wed Aug 31 2005 Dries Verachtert <dries@ulyssis.org> 1.0-37
 - Quotes from Sun Tzu's "The Art of War" added, made by Elie De Brauwer.
 

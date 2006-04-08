@@ -10,7 +10,7 @@
 Summary: Persistence of Vision Raytracer
 Name: povray
 Version: 3.6.0
-Release: 1
+Release: 1.2
 License: Other
 Group: Amusements/Graphics
 URL: http://www.povray.org/
@@ -77,6 +77,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.6.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jun 14 2004 Dries Verachtert <dries@ulyssis.org> - 3.6.0-1
 - Initial package.
 

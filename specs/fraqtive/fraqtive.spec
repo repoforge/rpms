@@ -5,7 +5,7 @@
 Summary: Draws Mandelbrot and Julia fractals
 Name: fraqtive
 Version: 0.3.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://zeus.polsl.gliwice.pl/~mimec/index.php?id=fraqtive
@@ -48,5 +48,8 @@ also supported.
 %{_datadir}/icons/*/*/apps/fraqtive.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Oct 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.3.1-1
 - Initial package.

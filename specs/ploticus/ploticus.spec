@@ -18,7 +18,7 @@
 Summary: Command line utility for creating charts and plots
 Name: ploticus
 Version: 2.32
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Publishing
 URL: http://ploticus.sourceforge.net/
@@ -63,6 +63,9 @@ cd src
 %{_datadir}/ploticus
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.32-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Oct 14 2005 Dries Verachtert <dries@ulyssis.org> - 2.32-2
 - xorg/XFree86 buildreqs added.
 

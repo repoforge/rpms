@@ -5,7 +5,7 @@
 Summary: Console MUD client
 Name: tintin
 Version: 1.95.8
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://tintin.sourceforge.net/
@@ -43,6 +43,9 @@ cd src
 %{_bindir}/tt++
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.95.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Mar 12 2006 Dries Verachtert <dries@ulyssis.org> - 1.95.8-1
 - Updated to release 1.95.8.
 

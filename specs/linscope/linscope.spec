@@ -4,7 +4,7 @@
 Summary: Network scanner for network shares
 Name: linscope
 Version: 0.3.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://sourceforge.net/projects/linscope/
@@ -65,6 +65,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*linscope.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.2-1
 - Updated to release 0.3.2.
 

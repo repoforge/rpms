@@ -5,7 +5,7 @@
 Summary: Object-oriented networking library
 Name: coid
 Version: 0.8.5
-Release: 1
+Release: 1.2
 License: GPL/LGPL/MPL
 Group: Development/Libraries
 URL: http://coid.sourceforge.net/
@@ -53,5 +53,8 @@ reside in the same process).
 %{_libdir}/coid/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Sep 22 2005 Dries Verachtert <dries@ulyssis.org> - 0.8.5-1
 - Initial package.

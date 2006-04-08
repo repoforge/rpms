@@ -5,7 +5,7 @@
 Summary: Convert between file formats used in molecular modeling chemistry
 Name: openbabel
 Version: 1.100.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: http://openbabel.sourceforge.net/
@@ -71,5 +71,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libopenbabel.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.100.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Aug 30 2005 Dries Verachtert <dries@ulyssis.org> - 1.100.2-1
 - Initial package.

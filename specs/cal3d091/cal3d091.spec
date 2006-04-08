@@ -7,7 +7,7 @@
 Summary: Skeletal based character animation library
 Name: cal3d091
 Version: 0.9.1
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://cal3d.sourceforge.net/
@@ -65,5 +65,8 @@ bash autogen.sh
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Oct 06 2005 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1
 - Initial package.

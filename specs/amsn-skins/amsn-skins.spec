@@ -9,7 +9,7 @@
 Summary: Collection of skins for aMSN
 Name: amsn-skins
 Version: 0.91
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://amsn.sourceforge.net/
@@ -60,6 +60,9 @@ This package contains a collection of skins.
 %{_datadir}/amsn/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.91-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun May 30 2004 Dag Wieers <dag@wieers.com> - 0.91-1
 - Update to newest available aMSN skins.
 

@@ -4,7 +4,7 @@
 Summary: Tests and attacks for network protocols
 Name: yersinia
 Version: 0.5.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://yersinia.sourceforge.net/
@@ -46,5 +46,8 @@ VLANs (via VTP), and more.
 %{_bindir}/yersinia
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Sep 20 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.6
 - Initial package.

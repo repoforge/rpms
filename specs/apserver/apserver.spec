@@ -8,7 +8,7 @@
 Summary: NTLM authorization proxy server
 Name: apserver
 Version: 0.9.8
-Release: 2
+Release: 2.2
 License: GPL
 Group: System Environment/Daemons
 URL: http://apserver.sourceforge.net/
@@ -55,6 +55,9 @@ EOF
 %{_datadir}/apserver/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.8-2.2
+- Rebuild for Fedora Core 5.
+
 * Sun May 02 2004 Dag Wieers <dag@wieers.com> - 0.9.8-3
 - Cosmetic cleanup.
 - Use exec in startup script.

@@ -23,7 +23,7 @@
 Summary: Interactive tool for scientific grade Celestial Mechanics computations
 Name: orsa
 Version: 0.6.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://orsa.sourceforge.net/
@@ -94,5 +94,8 @@ desktop-file-install --vendor net                  \
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Oct 02 2004 Dries Verachtert <dries@ulyssis.org> - 0.6.2-1
 - Initial package.

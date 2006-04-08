@@ -8,7 +8,7 @@
 Summary: Game like Settlers II
 Name: widelands
 Version: b9
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://widelands.sourceforge.net/
@@ -68,6 +68,9 @@ export DESTDIR=%{buildroot}
 %{_datadir}/applications/widelands.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - b9-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jan 11 2005 Dries Verachtert <dries@ulyssis.org> b9-1
 - Updated to release b9.
 

@@ -7,7 +7,7 @@
 Summary: Reliably tunnel TCP connections over ICMP packets
 Name: ptunnel
 Version: 0.61
-Release: 1
+Release: 1.2
 License: BSD
 Group: Applications/Internet
 URL: http://www.cs.uit.no/~daniels/PingTunnel/index.html
@@ -46,6 +46,9 @@ is required.
 %{_bindir}/ptunnel
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.61-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri May 27 2005 Dag Wieers <dag@wieers.com> - 0.61-1
 - Updated to release 0.61.
 

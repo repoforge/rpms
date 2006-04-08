@@ -7,7 +7,7 @@
 Summary: Small frontend for screen
 Name: screenie
 Version: 1.30.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://pubwww.fhzh.ch/~mgloor/screenie.html
@@ -41,6 +41,9 @@ menu.
 %{_bindir}/screenie
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.30.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Dec 20 2005 Dries Verachtert <dries@ulyssis.org> - 1.30.0-1
 - Updated to release 1.30.0.
 

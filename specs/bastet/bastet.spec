@@ -5,7 +5,7 @@
 Summary: Very nasty tetris game
 Name: bastet
 Version: 0.41
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://fph.altervista.org/prog/bastet.shtml
@@ -51,6 +51,9 @@ touch %{buildroot}%{_localstatedir}/games/bastet.scores
 %{_localstatedir}/games/bastet.scores
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.41-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Oct 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.41-1
 - Update to release 0.41.
 

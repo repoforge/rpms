@@ -5,7 +5,7 @@
 Summary: Multiplex all your databases to one point of origin
 Name: postgresql-relay
 Version: 1.3
-Release: 2
+Release: 2.2
 License: BSD
 Group: Applications/Databases
 URL: http://www.mavetju.org/unix/general.php
@@ -72,6 +72,9 @@ EOF
 %{_bindir}/postgresql-relay
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-2.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jun 05 2004 Dag Wieers <dag@wieers.com> - 1.3-2
 - Cosmetic cleanup.
 

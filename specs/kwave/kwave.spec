@@ -5,7 +5,7 @@
 Summary: Sound editor
 Name: kwave
 Version: 0.7.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://kwave.sourceforge.net/
@@ -81,5 +81,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.5-1
 - Initial package.

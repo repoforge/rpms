@@ -4,7 +4,7 @@
 Summary: Boggle game
 Name: kboggle
 Version: 0.3.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://www.kde-apps.org/content/show.php?content=26195
@@ -43,5 +43,8 @@ The goal is to find as many words as possible in the given time.
 %{_datadir}/icons/*/*/apps/kboggle.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.3.1-1
 - Initial package.

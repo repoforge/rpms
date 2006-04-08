@@ -5,7 +5,7 @@
 Summary: Simple API for su and sudo
 Name: libgksu
 Version: 1.3.7
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: http://www.nongnu.org/gksu/
@@ -67,5 +67,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libgksu*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Dec 06 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.7-1
 - Initial package.

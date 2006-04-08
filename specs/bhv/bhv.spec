@@ -5,7 +5,7 @@
 Summary: Examine the contents of a web browser history
 Name: bhv
 Version: 0.0.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://people.mmgsecurity.com/~lorenb/bhv/
@@ -47,5 +47,8 @@ history. It is meant to be a forensics tool.
 %exclude %{_var}/scrollkeeper
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Oct 14 2005 Dries Verachtert <dries@ulyssis.org> - 0.0.2-1
 - Initial package.

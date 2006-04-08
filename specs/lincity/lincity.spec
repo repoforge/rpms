@@ -22,7 +22,7 @@
 Summary: City simulation game
 Name: lincity
 Version: 1.13.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://lincity.sourceforge.net/
@@ -86,6 +86,9 @@ EOF
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Games/lincity.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.13.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jul 13 2004 Dries Verachtert <dries@ulyssis.org> 1.13.1-1
 - Update to version 1.13.1.
 

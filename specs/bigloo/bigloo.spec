@@ -4,7 +4,7 @@
 Summary: Compiler for the Scheme programming language
 Name: bigloo
 Version: 2.7a
-Release: 1
+Release: 1.2
 License: LGPL/GPL
 Group: Development/Languages
 URL: http://www-sop.inria.fr/mimosa/fp/Bigloo/
@@ -60,6 +60,9 @@ done
 %{_libdir}/libbigloo*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.7a-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Dec 01 2005 Dries Verachtert <dries@ulyssis.org> 2.7a-1
 - Updated to release 2.7a.
 

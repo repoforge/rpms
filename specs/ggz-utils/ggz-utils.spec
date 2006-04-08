@@ -4,7 +4,7 @@
 Summary: Utilities for GGZ gamingzone
 Name: ggz-utils
 Version: 0.0.12
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://www.ggzgamingzone.org/
@@ -47,5 +47,8 @@ This pacakge contains some utilities for GGZ gaming zone.
 %config(noreplace) %{_datadir}/metaserv/metaservconf.xml
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.12-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Dec 03 2005 Dries Verachtert <dries@ulyssis.org> - 0.0.12-1
 - Initial package.

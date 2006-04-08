@@ -4,7 +4,7 @@
 Summary: Print source code in a variety of languages to postscript
 Name: trueprint
 Version: 5.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Text
 URL: http://www.gnu.org/software/trueprint/trueprint.html
@@ -45,5 +45,8 @@ including C++, Java, and Perl.
 %{_bindir}/trueprint
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 5.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Apr 22 2004 Dries Verachtert <dries@ulyssis.org> 5.3-1
 - Initial package

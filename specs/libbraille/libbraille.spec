@@ -5,7 +5,7 @@
 Summary: Easy access to Braille displays and terminals
 Name: libbraille
 Version: 0.19.0
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Development/Libraries
 URL: http://libbraille.sourceforge.net/
@@ -82,6 +82,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libbraille/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.19.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 14 2006 Dries Verachtert <dries@ulyssis.org> 0.19.0-1
 - Update to release 0.19.0.
 

@@ -11,7 +11,7 @@
 Summary: Extension for the GNU Readline/History library
 Name: perl-Term-ReadLine-Gnu
 Version: 1.15
-Release: 2
+Release: 2.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Term-ReadLine-Gnu/
@@ -62,6 +62,9 @@ a program which uses the GNU Readline Library.
 %{perl_vendorarch}/auto/Term/ReadLine/Gnu/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.15-2.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan 01 2005 Dries Verachtert <dries@ulyssis.org> - 1.15-2
 - Fixed the license tag (Thanks to David Necas !)
 

@@ -5,7 +5,7 @@
 Summary: Library for loading and manipulating 3D objects
 Name: libg3d
 Version: 0.0.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://automagically.de/index.shtml?g3dviewer
@@ -66,5 +66,8 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libg3d.pc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Dec 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.0.2-1
 - Initial package.

@@ -4,7 +4,7 @@
 Summary: Gift plugin to access the fasttrack network
 Name: gift-fasttrack
 Version: 0.8.7
-Release: 2
+Release: 2.2
 License: GPL
 Group: Development/Libraries
 URL: http://developer.berlios.de/projects/gift-fasttrack
@@ -50,6 +50,9 @@ packages provides the plugin to access the fasttrack network.
 %dir %{_datadir}/giFT/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.7-2.2
+- Rebuild for Fedora Core 5.
+
 * Sat Aug 21 2004 Dries Verachtert <dries@ulyssis.org> 0.8.7-1
 - Update to version 0.8.7.
 

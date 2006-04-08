@@ -6,7 +6,7 @@
 Summary: Ultima Online emulator
 Name: lonewolf
 Version: 1.0
-Release: 0.%{real_version}
+Release: 0.%{real_version}.2
 License: GPL
 Group: Amusements/Games
 URL: http://home1.tiscalinet.de/aduke/main2/news2.htm
@@ -75,5 +75,8 @@ userdel lonewolf &>/dev/null || :
 
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-0.%{real_version}.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 30 2004 Dries Verachtert 13.0.9-1
 - initial packaging

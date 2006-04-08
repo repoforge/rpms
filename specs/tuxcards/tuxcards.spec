@@ -5,7 +5,7 @@
 Summary: Manage notes and ideas in tree structures
 Name: tuxcards
 Version: 1.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Productivity
 URL: http://www.tuxcards.de/
@@ -66,5 +66,8 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/icons/tuxcards.xpm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Feb 13 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1
 - Initial package.

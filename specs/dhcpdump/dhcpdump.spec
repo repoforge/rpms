@@ -5,7 +5,7 @@
 Summary: Parse tcpdump DHCP packets
 Name: dhcpdump
 Version: 1.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://sourceforge.net/projects/mavetju/
@@ -38,5 +38,8 @@ A post-processor of tcpdump output to analyze sniffed DHCP packets.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed May 26 2004 Dries Verachtert <dries@ulyssis.org> - 1.6-1
 - Initial package.

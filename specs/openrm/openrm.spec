@@ -22,7 +22,7 @@
 Summary: OpenRM Scene Graph
 Name: openrm
 Version: 1.5.2.3
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Development/Libraries
 URL: http://www.openrm.org/
@@ -91,5 +91,8 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.5.2.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Aug 09 2004 Dries Verachtert <dries@ulyssis.org> - 1.5.2.3-1
 - Initial package.

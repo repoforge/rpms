@@ -7,7 +7,7 @@
 Summary: Detect Unintended Memory Access
 Name: duma
 Version: 2.4.26
-Release: 2
+Release: 2.2
 License: GPL
 Group: Development/Tools
 URL: http://duma.sourceforge.net/
@@ -69,6 +69,9 @@ you will need to install %{name}-devel.
 %{_libdir}/libduma.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.4.26-2.2
+- Rebuild for Fedora Core 5.
+
 * Thu Nov 10 2005 Dries Verachtert <dries@ulyssis.org> - 2.4.26-2
 - Fixed the project url and source url.
 

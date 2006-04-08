@@ -4,7 +4,7 @@
 Summary: Single master,query based,synchronous replication server
 Name: pgpool
 Version: 2.0
-Release: 1
+Release: 1.2
 License: BSD
 Group: Applications/Databases
 URL: http://www2b.biglobe.ne.jp/~caco/pgpool/
@@ -60,6 +60,9 @@ pgpool can work with PostgreSQL 7.0 to 7.4.
 %{_bindir}/pgpool
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jun 26 2004 Dries Verachtert <dries@ulyssis.org> 2.0-1
 - Updated to release 2.0.
 

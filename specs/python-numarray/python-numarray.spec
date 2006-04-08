@@ -8,7 +8,7 @@
 Summary: Numerical Extension to Python
 Name: python-numarray
 Version: 1.3.3
-Release: 1
+Release: 1.2
 License: UNKNOWN
 Group: Development/Libraries
 URL: http://sourceforge.net/projects/numpy
@@ -40,5 +40,8 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{_includedir}/python*/numarray/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Sep 24 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.3-1
 - changelog added.

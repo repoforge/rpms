@@ -8,7 +8,7 @@
 Summary: PostgreSQL database adapter for Python
 Name: python-psycopg
 Version: 1.1.21
-Release: 1
+Release: 1.2
 License: GPL/ZPL
 Group: Development/Libraries
 URL: http://initd.org/projects/psycopg1
@@ -47,6 +47,9 @@ distribution includes ZPsycopgDA, a Zope Database Adapter.
 %{python_sitearch}/psycopg*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.21-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jan 06 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.21-1
 - Updated to release 1.1.21.
 

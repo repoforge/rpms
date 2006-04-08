@@ -5,7 +5,7 @@
 Summary: Dhcp/omapi tool for operating on a running dhcp server
 Name: omcmd
 Version: 0.4.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: ftp://dist.taolinux.org/pub/projects/omcmd
@@ -39,6 +39,9 @@ hosts and leases.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Oct 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.4.6-1
 - Updated to release 0.4.6.
 

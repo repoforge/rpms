@@ -4,7 +4,7 @@
 Summary: PHP compiler
 Name: phc
 Version: 0.1.5.1
-Release: 1
+Release: 1.2
 # versions below 0.1.5.1 were GPL
 License: BSD
 Group: Development/Languages
@@ -40,6 +40,9 @@ that operate on PHP scripts.
 %{_bindir}/phc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.5.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan 28 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.5.1-1
 - Updated to release 0.1.5.1.
 

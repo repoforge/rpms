@@ -5,7 +5,7 @@
 Summary: Address book engine
 Name: libral
 Version: 0.70
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: http://digilander.libero.it/nfragale/
@@ -73,6 +73,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libral.pc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.70-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jan 16 2006 Dries Verachtert <dries@ulyssis.org> - 0.70-1
 - Updated to release 0.70.
 

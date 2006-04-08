@@ -20,7 +20,7 @@
 Summary: Extensible Perl toolkit for multi-platform GUI development
 Name: prima
 Version: 1.20
-Release: 1
+Release: 1.2
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.prima.eu.org/
@@ -77,6 +77,9 @@ identically on X, Win32 and OS/2 PM.
 %{_bindir}/VB
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.20-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jan 25 2006 Dries Verachtert <dries@ulyssis.org> - 1.20-1
 - Updated to release 1.20.
 

@@ -8,7 +8,7 @@
 Summary: Browser plugin for mplayer
 Name: mplayerplug-in
 Version: 3.21
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerplug-in.sourceforge.net/
@@ -60,6 +60,9 @@ in your browser.
 %{_libdir}/mozilla/plugins/mplayerplug-in-wmp.xpt
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.21-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Feb 13 2006 Dag Wieers <dag@wieers.com> - 3.21-1
 - Updated to release 3.21.
 

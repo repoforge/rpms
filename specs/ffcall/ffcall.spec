@@ -5,7 +5,7 @@
 Summary: Foreign function call libraries
 Name: ffcall
 Version: 1.10
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: http://www.haible.de/bruno/packages-ffcall.html
@@ -65,6 +65,9 @@ you will need to install %{name}-devel.
 %exclude %{_datadir}/html/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.10-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jun 11 2004 Dries Verachtert <dries@ulyssis.org> - 1.10-1
 - Updated to release 1.10.
 

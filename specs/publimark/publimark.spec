@@ -6,7 +6,7 @@
 Summary: Tool to secretly embed text in an audio file
 Name: publimark
 Version: 0.1.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://perso.wanadoo.fr/gleguelv/soft/
@@ -51,5 +51,8 @@ autoreconf --force --install --symlink
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri May 28 2004 Dries Verachtert <dries@ulyssis.org> - 0.1.2-1
 - Initial package.

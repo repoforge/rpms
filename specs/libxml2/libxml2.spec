@@ -8,7 +8,7 @@
 Summary: Library providing XML and HTML support
 Name: libxml2
 Version: 2.6.16
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://xmlsoft.org/
@@ -114,6 +114,9 @@ at parse time or later once the document has been modified.
 %{_libdir}/python%{python_version}/site-packages/*.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.6.16-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 2.6.16-1
 - Updated to release 2.6.16.
 

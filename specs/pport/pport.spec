@@ -5,7 +5,7 @@
 Summary: Utility for accessing the output pins of a parallel port
 Name: pport
 Version: 0.6.8
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://sourceforge.net/projects/pport/
@@ -44,6 +44,9 @@ practically no changes.
 #%exclude %{_prefix}/doc/pport/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Nov 04 2004 Dries Verachtert <dries@ulyssis.org> 0.6.8-1
 - Updated to release 0.6.8.
 

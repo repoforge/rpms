@@ -8,7 +8,7 @@
 Summary: Sulk, the hackable Space Hulk
 Name: sulk
 Version: 0.29
-Release: 3
+Release: 3.2
 License: LGPL
 Group: Amusements/Games
 URL: http://sulk.sourceforge.net/
@@ -46,6 +46,9 @@ made in Python with Pygame.
 %{_bindir}/sulk
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.29-3.2
+- Rebuild for Fedora Core 5.
+
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 0.29-3
 - Moved the shell script to /usr/bin/
 - Shell script executable (Thanks to C.Lee Taylor)

@@ -17,7 +17,7 @@
 Summary: Graphical picture indexing tool
 Name: spit
 Version: 0.3.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Graphics
 URL: http://spit.sourceforge.net/
@@ -85,6 +85,9 @@ desktop-file-install --vendor kde                  \
 %{_datadir}/spit/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Apr 01 2004 Dag Wieers <dag@wieers.com> - 0.3.1-1
 - Updated to release 0.3.1.
 

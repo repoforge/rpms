@@ -20,7 +20,7 @@
 Summary: Graphical version of the traceroute program
 Name: xtraceroute
 Version: 0.9.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.dtek.chalmers.se/~d3august/xt/index.html
@@ -70,5 +70,8 @@ shown as small balls of different colors.
 # %{_datadir}/applications/*.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Sep 14 2004 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1
 - Initial package.

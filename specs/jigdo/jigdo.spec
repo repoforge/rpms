@@ -7,7 +7,7 @@
 Summary: Tool for distributing large files
 Name: jigdo
 Version: 0.7.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://atterer.net/jigdo/
@@ -73,5 +73,8 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 13 2004 Dries Verachtert <dries@ulyssis.org> - 0.7.1-1
 - Initial package.

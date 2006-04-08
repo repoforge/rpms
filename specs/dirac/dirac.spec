@@ -5,7 +5,7 @@
 Summary: General-purpose video codec
 Name: dirac
 Version: 0.5.4
-Release: 1
+Release: 1.2
 License: MPL 1.1
 Group: System Environment/Libraries
 URL: http://sourceforge.net/projects/dirac
@@ -70,6 +70,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/dirac.pc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.4-1
 - Updated to release 0.5.4.
 

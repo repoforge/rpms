@@ -7,7 +7,7 @@
 Summary: Graphical frontend to su
 Name: gksu
 Version: 1.3.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/gksu/
@@ -52,6 +52,9 @@ user.
 %{_datadir}/applications/gksu*.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 1.3.4-2
 - Fixed group.
 

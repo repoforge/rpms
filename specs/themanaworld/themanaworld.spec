@@ -4,7 +4,7 @@
 Summary: Innovative free MMORPG with 2D graphics
 Name: themanaworld
 Version: 0.0.18
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://themanaworld.org/
@@ -50,6 +50,9 @@ solved. Quests should also encourage teamwork.
 %{_datadir}/tmw/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.18-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 25 2005 Dries Verachtert <dries@ulyssis.org> - 0.0.18-1
 - Updated to release 0.0.18.
 

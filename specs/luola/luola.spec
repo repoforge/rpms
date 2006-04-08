@@ -7,7 +7,7 @@
 Summary: Multiplayer 2D arcade game
 Name: luola
 Version: 1.3.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://www.luolamies.org/software/luola/
@@ -71,6 +71,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/pixmaps/%{name}.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jan 06 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.2-1
 - Updated to release 1.3.2.
 

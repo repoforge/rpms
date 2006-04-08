@@ -19,7 +19,7 @@
 Summary: Manage a list of currently active VNC server sessions
 Name: vncselector
 Version: 1.6.1
-Release: 2
+Release: 2.2
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.dooglio.net/VncSelector/
@@ -62,6 +62,9 @@ server sessions. This can be useful in a thin client situation (run from
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.1-2.2
+- Rebuild for Fedora Core 5.
+
 * Tue Nov 08 2005 Dries Verachtert <dries@ulyssis.org> 1.6.1-2
 - Source url fixed.
 
