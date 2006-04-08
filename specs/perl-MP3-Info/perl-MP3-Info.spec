@@ -48,7 +48,7 @@ With this module, you can read and edit information within MP3 files.
 %doc Changes README
 %{_mandir}/man3/*
 %{perl_vendorlib}/MP3/Info.pm
-%{perl_vendorlib}/MPEG/MP3Info.pm
+#%{perl_vendorlib}/MPEG/MP3Info.pm
 
 %changelog
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.20-1

@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-ScanDeps/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AU/AUTRIJUS/Module-ScanDeps-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SM/SMUELLER/Module-ScanDeps-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

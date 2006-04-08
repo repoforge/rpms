@@ -41,7 +41,7 @@ Perl interface to functions that assist in working with salted hashes.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes readme
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Crypt/SaltedHash.pm
 

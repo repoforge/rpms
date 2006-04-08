@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SMTP-Multipart/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROBERTS/Net-SMTP-Multipart-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/O/OR/ORIEN/Net-SMTP-Multipart-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

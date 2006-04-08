@@ -47,7 +47,7 @@ conversion scheme names .
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog MANIFEST README
+%doc Changes MANIFEST README
 %doc %{_mandir}/man?/*
 %dir %{perl_vendorlib}/I18N/
 %{perl_vendorlib}/I18N/Charset.pm

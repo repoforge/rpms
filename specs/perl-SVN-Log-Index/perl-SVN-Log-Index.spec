@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Log-Index/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RO/ROONEG/SVN-Log-Index-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/N/NI/NIKC/SVN-Log-Index-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

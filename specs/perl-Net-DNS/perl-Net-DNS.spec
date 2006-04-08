@@ -13,13 +13,13 @@
 
 Summary: Net-DNS Perl module
 Name: perl-Net-DNS
-Version: 0.53
+Version: 0.57
 Release: 1
 License: Artistic and GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DNS/
 
-Source: http://www.cpan.org/authors/id/C/CR/CREIN/Net-DNS-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/O/OL/OLAF/Net-DNS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.00503, perl(Digest::HMAC)
@@ -67,6 +67,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorarch}/auto/Net/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.57-1
+- Update to release 0.57.
+
 * Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.53-1
 - Update to release 0.53.
 

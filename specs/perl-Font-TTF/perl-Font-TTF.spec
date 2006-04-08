@@ -7,6 +7,8 @@
 
 %define real_name Font-TTF
 
+%define short_version 0.38
+
 Summary: TTF Fonts
 Name: perl-Font-TTF
 Version: 0.38.1
@@ -26,7 +28,7 @@ Provides: perl(ttfmod.pl)
 Use TTF fonts with Perl.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{short_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"

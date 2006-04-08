@@ -49,6 +49,8 @@ This module is an interface to pcap(3) LBL packet capture library.
 %{perl_vendorarch}/Net/Pcap.pm
 %dir %{perl_vendorarch}/auto/Net/
 %{perl_vendorarch}/auto/Net/Pcap/
+%{_bindir}/pcapinfo
+%doc %{_mandir}/man1/pcapinfo*
 
 %changelog
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1
