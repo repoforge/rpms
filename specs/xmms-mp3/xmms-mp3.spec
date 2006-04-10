@@ -4,7 +4,7 @@
 Summary: XMMS plugin for mp3 playback.
 Name: xmms-mp3
 Version: 1.2.10
-Release: 15
+Release: 16
 Epoch: 1
 License: GPL
 Group: Applications/Multimedia
