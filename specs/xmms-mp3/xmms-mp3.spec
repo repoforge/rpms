@@ -11,7 +11,6 @@ Group: Applications/Multimedia
 URL: http://www.xmms.org/
 Source: http://www.xmms.org/files/1.2.x/xmms-%{version}.tar.bz2
 Patch: xmms-1.2.10-gcc4.patch
-Requires: xmms = 1:1.2.10
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel
 
@@ -53,6 +52,9 @@ done
 
 
 %changelog
+* Mon Apr 10 2006 Matthias Saou <http://freshrpms.net/> 1:1.2.10-16
+- Remove explicit xmms requirement, since we really only require the libs.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1:1.2.10-15
 - Include the hack from Extras to fix x86_64 build.
 

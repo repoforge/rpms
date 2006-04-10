@@ -6,14 +6,13 @@
 Summary: X MultiMedia System input plugin to play Windows Media Audio files
 Name: xmms-wma
 Version: 1.0.5
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://mcmcc.bat.ru/xmms-wma/
 Source: http://mcmcc.bat.ru/xmms-wma/xmms-wma-%{version}.tar.bz2
 Patch: xmms-wma-1.0.5-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: xmms >= 1.0.1, glib >= 1.2.7, gtk+ >= 1.2.7
 BuildRequires: xmms-devel, gtk+-devel
 
 %description
@@ -50,6 +49,9 @@ Tag informations are converted from unicode to your system locale.
 
 
 %changelog
+* Mon Apr 10 2006 Matthias Saou <http://freshrpms.net/> 1.0.5-3
+- Remove explicit xmms requirement, since we really only require the libs.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.0.5-2
 - Release bump to drop the disttag number in FC5 build.
 

@@ -8,7 +8,7 @@
 Summary: Library and frontend for decoding MPEG2/4 AAC
 Name: faad2
 Version: 2.0
-Release: 6%{?prever:.%{prever}}%{?date:.%{date}}
+Release: 7%{?prever:.%{prever}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.audiocoding.com/
@@ -39,7 +39,7 @@ written from scratch.
 %package -n xmms-aac
 Summary: X MultiMedia System input plugin to play AAC files
 Group: Applications/Multimedia
-Requires: %{name} = %{version}, xmms, id3lib
+Requires: %{name} = %{version}
 Provides: xmms-%{name} = %{version}-%{release}
 
 %description -n xmms-aac
@@ -128,6 +128,9 @@ test -x configure || sh bootstrap
 
 
 %changelog
+* Mon Apr 10 2006 Matthias Saou <http://freshrpms.net/> 2.0-7
+- Remove explicit xmms requirement, since we really only require the libs.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 2.0-6
 - Release bump to drop the disttag number in FC5 build.
 
