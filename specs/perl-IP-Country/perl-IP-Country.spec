@@ -10,7 +10,7 @@
 Summary: Classes for fast lookup of country codes from IP addresses for Perl
 Name: perl-IP-Country
 Version: 2.20
-Release: 1
+Release: 1.2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IP-Country/
@@ -60,9 +60,12 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %doc CHANGES MANIFEST README
 %doc %{_mandir}/man?/*
 %{_bindir}/ip2cc
-%{_libdir}/perl5/vendor_perl/*/IP/
+%{perl_vendorlib}/IP/
 
 %changelog
+* Mon Apr 10 2006 Dries Verachtert <dries@ulyssis.org> - 2.20-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jun 18 2005 Dries Verachtert <dries@ulyssis.org> - 2.20-1
 - Updated to release 2.20.
 
