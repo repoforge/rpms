@@ -6,12 +6,14 @@
 Summary: Media player with the WinAmp GUI
 Name: bmpx
 Version: 0.14.3
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.beep-media-player.org/
 Source: http://dl.sf.net/beepmp/bmpx-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Requires(post): desktop-file-utils
+Requires(postun): desktop-file-utils
 BuildRequires: gettext-devel, libXt-devel
 BuildRequires: gstreamer-devel >= 0.10.4
 BuildRequires: gstreamer-plugins-base-devel >= 0.10.4
@@ -59,16 +61,24 @@ Development files required for compiling BMPx media player plugins.
 
 %post
 /sbin/ldconfig
-gtk-update-icon-cache -q -f /usr/share/icons/hicolor || :
+touch --no-create %{_datadir}/icons/hicolor || :
+if [ -x %{_bindir}/gtk-update-icon-cache ]; then
+   %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+fi
+update-desktop-database &>/dev/null ||:
 
 %postun
 /sbin/ldconfig
-gtk-update-icon-cache -q -f /usr/share/icons/hicolor || :
+touch --no-create %{_datadir}/icons/hicolor || :
+if [ -x %{_bindir}/gtk-update-icon-cache ]; then
+   %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+fi
+update-desktop-database &>/dev/null ||:
 
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog NEWS README
+%doc AUTHORS ChangeLog COPYING NEWS README
 %{_bindir}/beep-media-player-2
 %{_bindir}/bmp-enqueue-files-2.0
 %{_bindir}/bmp-enqueue-uris-2.0
@@ -99,6 +109,10 @@ gtk-update-icon-cache -q -f /usr/share/icons/hicolor || :
 
 
 %changelog
+* Tue Apr 11 2006 Matthias Saou <http://freshrpms.net/> 0.14.3-2
+- Include COPYING file.
+- Add update-desktop-database scriplet calls and post/postun deps.
+
 * Wed Mar 29 2006 Matthias Saou <http://freshrpms.net/> 0.14.3-1
 - Update to 0.14.3.
 
