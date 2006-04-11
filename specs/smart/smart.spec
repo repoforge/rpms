@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Gustavo Niemeyer <niemeyer$conectiva,com>
 
-# ExclusiveDist: fc3 fc4 el4
+# ExclusiveDist: fc3 fc4 fc5 el4
 
 %{?dist: %{expand: %%define %dist 1}}
 %{!?dist: %define fc4 1}
@@ -20,7 +20,7 @@
 Summary: Next generation package handling tool
 Name: smart
 Version: 0.41
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/System
 URL: http://www.smartpm.org/
@@ -83,6 +83,7 @@ exec %{_bindir}/smart --gui $@
 EOF
 
 %if %{!?_without_channels:1}0
+%{?fc5:name='Fedora Core'; version='5'}
 %{?fc4:name='Fedora Core'; version='4'}
 %{?fc3:name='Fedora Core'; version='3'}
 
@@ -238,6 +239,9 @@ cd -
 %endif
 
 %changelog
+* Tue Apr 11 2006 Dries Verachtert <dries@ulyssis.org> - 0.41-2.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec 23 2005 Dag Wieers <dag@wieers.com> - 0.41-2
 - Removed standard rpm-sys channel.
 

@@ -7,7 +7,7 @@
 Summary: RPMforge release file and package configuration
 Name: rpmforge-release
 Version: 0.2
-Release: 2
+Release: 2.2
 License: GPL
 Group: System Environment/Base
 URL: http://rpmforge.net/
@@ -27,6 +27,7 @@ GPG keys used to sign them.
 %{?el4:name='Red Hat Enterprise'; version='4'; url="redhat/el$version/en"; builder='dag'}
 %{?el3:name='Red Hat Enterprise'; version='3'; url="redhat/el$version/en"; builder='dag'}
 %{?el2:name='Red Hat Enterprise'; version='2'; url="redhat/el$version/en"; builder='dag'}
+%{?fc5:name='Fedora Core'; version='5'; url="dries/fedora/fc$version"; builder='dries'; yumsuffix='RPMS'}
 %{?fc4:name='Fedora Core'; version='4'; url="dries/fedora/fc$version"; builder='dries'; yumsuffix='RPMS'}
 %{?fc3:name='Fedora Core'; version='3'; url="fedora/$version/en"; builder='dag'}
 %{?fc2:name='Fedora Core'; version='2'; url="fedora/$version/en"; builder='dag'}
@@ -121,6 +122,9 @@ exit 0
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-*
 
 %changelog
+* Tue Apr 11 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-2.2
+- Rebuild for Fedora Core 5.
+
 * Tue Aug 23 2005 Dag Wieers <dag@wieers.com> - 0.2-2
 - Included directories too.
 

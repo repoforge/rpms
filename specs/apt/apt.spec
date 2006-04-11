@@ -8,7 +8,7 @@
 Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
 Version: 0.5.15cnc7
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: https://moin.conectiva.com.br/AptRpm
@@ -31,6 +31,7 @@ BuildRequires: pkg-config >= 0.9
 %{!?rh6:BuildRequires: bzip2-devel, libstdc++-devel, docbook-utils}
 
 %{!?dist:BuildRequires: beecrypt-devel, elfutils-devel}
+%{?fc5:BuildRequires: beecrypt-devel, elfutils-devel}
 %{?fc4:BuildRequires: beecrypt-devel, elfutils-devel}
 %{?el4:BuildRequires: beecrypt-devel, elfutils-devel}
 %{?fc3:BuildRequires: beecrypt-devel, elfutils-devel}
@@ -289,6 +290,9 @@ touch %{buildroot}%{_sysconfdir}/apt/preferences \
 #exclude %{_libdir}/*.la
 
 %changelog
+* Tue Apr 11 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.15cnc7-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jan 02 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.15cnc7-1
 - Added libtoolize and autoreconf fix for Fedora Core 5, thanks
   to Stephen Clement.
