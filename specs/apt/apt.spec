@@ -27,7 +27,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: rpm-devel >= 4.0, zlib-devel, gettext
 BuildRequires: readline-devel, bison, gcc-c++, libtool
-BuildRequires: pkg-config >= 0.9
+BuildRequires: pkgconfig >= 0.9
 %{!?rh6:BuildRequires: bzip2-devel, libstdc++-devel, docbook-utils}
 
 %{!?dist:BuildRequires: beecrypt-devel, elfutils-devel}
