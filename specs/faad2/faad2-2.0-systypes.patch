@@ -1,0 +1,13 @@
+diff -Naupr faad2.orig/common/mp4v2/mp4.h faad2/common/mp4v2/mp4.h
+--- faad2.orig/common/mp4v2/mp4.h	2004-02-06 13:47:04.000000000 +0100
++++ faad2/common/mp4v2/mp4.h	2006-04-12 13:22:16.000000000 +0200
+@@ -23,6 +23,9 @@
+ #ifndef __MP4_INCLUDED__
+ #define __MP4_INCLUDED__
+ 
++/* to define u_intX_t used here */
++#include <sys/types.h>
++
+ /* include system and project specific headers */
+ #include <mpeg4ip.h>
+ 

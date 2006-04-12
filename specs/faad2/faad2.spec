@@ -8,7 +8,7 @@
 Summary: Library and frontend for decoding MPEG2/4 AAC
 Name: faad2
 Version: 2.0
-Release: 7%{?prever:.%{prever}}%{?date:.%{date}}
+Release: 8%{?prever:.%{prever}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.audiocoding.com/
@@ -26,6 +26,7 @@ Patch4: faad2-2.0-configure-mpeg4ip.patch
 Patch5: faad2-2.0-64bit.patch
 Patch6: faad2-2.0-symbol.patch
 Patch7: faad2-2.0-mp4ff_int_types.patch
+Patch8: faad2-2.0-systypes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf, automake, libtool
 BuildRequires: gcc-c++, zlib-devel, libsndfile-devel >= 1.0.0
@@ -74,6 +75,7 @@ This package contains development files and documentation for libfaad.
 %patch5 -p1 -b .64bit
 %patch6 -p1 -b .symbol
 %patch7 -p1 -b .mp4ff_int_types
+%patch8 -p1 -b .systypes
 
 
 %build
@@ -128,6 +130,10 @@ test -x configure || sh bootstrap
 
 
 %changelog
+* Wed Apr 12 2006 Matthias Saou <http://freshrpms.net/> 2.0-8
+- Include patch to #include <sys/types.h> in mp4.h to fix building against
+  the included libmp4v2 (faac, maybe others).
+
 * Mon Apr 10 2006 Matthias Saou <http://freshrpms.net/> 2.0-7
 - Remove explicit xmms requirement, since we really only require the libs.
 

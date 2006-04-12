@@ -4,13 +4,15 @@
 Summary: Reference encoder and encoding library for MPEG2/4 AAC
 Name: faac
 Version: 1.24
-Release: 2
+Release: 3
 License: LGPL
 Group: Applications/Multimedia
 URL: http://www.audiocoding.com/
 Source: http://dl.sf.net/faac/faac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: autoconf, automake, libtool, gcc-c++
+BuildRequires: faad2-devel
+# Required for bootstrap
+BuildRequires: autoconf, automake, libtool
 
 %description
 FAAC is an AAC audio encoder. It currently supports MPEG-4 LTP, MAIN and LOW
@@ -70,6 +72,10 @@ sh bootstrap
 
 
 %changelog
+* Wed Apr 12 2006 Matthias Saou <http://freshrpms.net/> 1.24-3
+- Add faad2-devel build requirement to build with MP4 support (Chris Petersen),
+  faad2 had to be fixed before it worked, though.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.24-2
 - Release bump to drop the disttag number in FC5 build.
 - Disable/remove static library.
