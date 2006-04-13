@@ -2,18 +2,18 @@
 # Authority: dag
 # Upstream: <webadmin-devel$lists,sf,net>
 
-# BuildAsRoot: 1
+##BuildAsRoot: 1
 
 ### FIXME: The official webmin RPM package is broken. Please back up all configuration files before upgrading.
 
 %{?dist: %{expand: %%define %dist 1}}
 
 %define logmsg logger -t %{name}/rpm
-#define __spec_install_post %{nil}
+#define __spec_install_post #{nil}
 
 Summary: Web-based administration interface
 Name: webmin
-Version: 1.260
+Version: 1.270
 Release: 1
 License: BSD
 Group: System Environment/Base
@@ -70,6 +70,7 @@ os_type="redhat-linux"
 %{?el4:os_version="12.0"; real_os_type="Red Hat Enterprise Linux"; real_os_version="4"}
 %{?el3:os_version="9.0";  real_os_type="Red Hat Enterprise Linux"; real_os_version="3"}
 %{?el2:os_version="7.2";  real_os_type="Red Hat Enterprise Linux"; real_os_version="2.1"}
+%{?fc5:os_version="14.0"; real_os_type="Fedora Core";      real_os_version="5"}
 %{?fc4:os_version="13.0"; real_os_type="Fedora Core";      real_os_version="4"}
 %{?fc3:os_version="12.0"; real_os_type="Fedora Core";      real_os_version="3"}
 %{?fc2:os_version="11.0"; real_os_type="Fedora Core";      real_os_version="2"}
@@ -149,6 +150,9 @@ fi
 %{_libexecdir}/webmin
 
 %changelog
+* Tue Apr 11 2006 Dag Wieers <dag@wieers.com> - 1.270-1
+- Updated to release 1.270.
+
 * Thu Feb 02 2006 Dag Wieers <dag@wieers.com> - 1.260-1
 - Updated to release 1.260.
 

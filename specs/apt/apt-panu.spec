@@ -9,19 +9,18 @@
 
 Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
-%define real_version 01032006
-Version: 0.5.15lorg2
-Release: 0.20060301
+Version: 0.5.15lorg3
+Release: 0.rc1
 License: GPL
 Group: System Environment/Base
 URL: https://moin.conectiva.com.br/AptRpm
 
-Source: http://laiskiainen.org/apt/testing/apt-repomd-%{real_version}.tar.bz2
+Source: http://laiskiainen.org/apt/testing/apt-%{version}-rc1.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: rpm-devel >= 3.0.5, zlib-devel, gettext
 BuildRequires: readline-devel, bison, gcc-c++, libtool
-BuildRequires: pkg-config >= 0.9
+BuildRequires: pkgconfig >= 0.9
 %{!?rh6:BuildRequires: bzip2-devel, libstdc++-devel, docbook-utils}
 
 %{!?dist:BuildRequires: beecrypt-devel, elfutils-devel}
@@ -57,7 +56,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{name}-repomd-%{real_version}
+%setup -n %{name}-%{version}-rc1
 
 %{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|RPMforge RPM Repository %{dist}/%{_arch} APT-HTTP/1.3|' methods/http.cc
 
@@ -186,6 +185,9 @@ touch %{buildroot}%{_sysconfdir}/apt/preferences \
 #exclude %{_libdir}/*.la
 
 %changelog
+* Tue Apr 11 2006 Dag Wieers <dag@wieers.com> - 0.5.15lorg3-0.rc1
+- Updated to 0.5.15lorg3-rc1.
+
 * Sun Mar 05 2006 Dag Wieers <dag@wieers.com> - 0.5.15lorg2-0.20060301
 - Experimental version from Panu with repomd and multilib support.
 

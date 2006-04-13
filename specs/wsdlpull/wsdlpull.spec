@@ -1,8 +1,6 @@
 # $Id$
 # Authority: dries
 
-%define real_version 1.10
-
 Summary: C++  web services client library
 Name: wsdlpull
 Version: 1.10
@@ -11,7 +9,7 @@ License: LGPL
 Group: Applications/Internet
 URL: http://wsdlpull.sourceforge.net/
 
-Source: http://dl.sf.net/wsdlpull/wsdlpull-%{real_version}.tar.gz
+Source: http://dl.sf.net/wsdlpull/wsdlpull-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
@@ -37,7 +35,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{name}-1.9
+%setup
 
 %build
 %configure
@@ -47,11 +45,8 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -61,21 +56,22 @@ you will need to install %{name}-devel.
 %doc AUTHORS.txt CHANGES.txt COPYING.txt INSTALL.txt README.txt TODO.txt
 %{_bindir}/schema
 %{_bindir}/wsdl
-%exclude %{_prefix}/docs/*
+%{_datadir}/wsdlpull/
 %{_libdir}/libschema.so.*
 %{_libdir}/libwsdl.so.*
 %{_libdir}/libxmlpull.so.*
-%{_datadir}/wsdlpull/
+%exclude %{_prefix}/docs/*
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/schemaparser/
 %{_includedir}/wsdlparser/
 %{_includedir}/xmlpull/
 %{_libdir}/libschema.a
-%{_libdir}/libwsdl.a
-%{_libdir}/libxmlpull.a
 %{_libdir}/libschema.so
+%{_libdir}/libwsdl.a
 %{_libdir}/libwsdl.so
+%{_libdir}/libxmlpull.a
 %{_libdir}/libxmlpull.so
 %exclude %{_libdir}/*.la
 

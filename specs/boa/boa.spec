@@ -1,6 +1,9 @@
 # $Id$
 # Authority: matthias
 
+### FIXME: Fails to build on FC1 because of tetex (! Undefined control sequence.)
+# ExcludeDist: fc1
+
 %define rcver rc20
 %define webroot /var/www/boa
 

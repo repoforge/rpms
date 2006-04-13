@@ -3,6 +3,7 @@
 # Upstream: Tim Jenness <t,jenness$jach,hawaii,edu>
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_sitelib %(eval "`perl -V:installsitelib`"; echo $installsitelib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Crypt-PassGen

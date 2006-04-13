@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Mike Ricketts <mike$earth,li>
 
 Summary: Command line tool to allow sending arbitrary IP packets
 Name: sendip
 Version: 2.5
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.earth.li/projectpurple/progs/sendip.html
