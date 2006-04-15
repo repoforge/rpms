@@ -16,13 +16,13 @@
 
 Summary: Differential X protocol compressor
 Name: dxpc
-Version: 3.8.2
-Release: 0
+Version: 3.9.0
+Release: 1
 License: BSD
 Group: User Interface/X
 URL: http://www.vigor.nu/dxpc/
 
-Source: http://www.vigor.nu/dxpc/%{version}/dxpc-%{version}.tar.gz
+Source: http://www.vigor.nu/dxpc/%{version}/dxpc-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: lzo-devel, gcc-c++
@@ -52,9 +52,12 @@ speed of X11 applications run over low-bandwidth links
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES README* TODO
-%doc %{_mandir}/man1/*
-%{_bindir}/*
+%doc %{_mandir}/man1/dxpc.1*
+%{_bindir}/dxpc
 
 %changelog
+* Sat Apr 15 2006 Dag Wieers <dag@wieers.com> - 3.9.0-1
+- Initial package. (using DAR)
+
 * Thu Oct 09 2003 Dag Wieers <dag@wieers.com> - 3.8.2-0
 - Initial package. (using DAR)
