@@ -11,22 +11,22 @@
 %define desktop_vendor rpmforge
 
 Summary: Graphical Tool for Managing a Certification Authority
-Name: tinyca
-Version: 0.6.8
+Name: tinyca2
+Version: 0.7.2
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://tinyca.sm-zone.net/
 
-Source:	http://tinyca.sm-zone.net/tinyca-%{version}.tar.bz2
+Source:	http://tinyca.sm-zone.net/tinyca2-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: gettext
+BuildRequires: gettext, perl-Gtk2
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-Requires: openssl, Gtk-Perl
+Requires: perl, perl-Gtk2, perl-MIME-tools
 
-Obsoletes: TinyCA < %{version}
+Obsoletes: TinyCA <= %{version}
 
 %description
 TinyCA is a graphical tool written in Perl/Gtk to manage a small
@@ -39,12 +39,12 @@ certificates.
 %setup
 
 %{__perl} -pi.orig -e '
-		s|./lib|%{_datadir}/tinyca|g;
-		s|./locale|%{_datadir}/locale|g;
-		s|./templates|%{_sysconfdir}/tinyca|g;
-	' tinyca
+		s|./lib|%{_datadir}/TinyCA2/lib|g;
+		s|./locale|%{_datadir}/TinyCA2/locale|g;
+		s|./templates|%{_datadir}/TinyCA2/templates|g;
+	' tinyca2
 
-%{__cat} <<EOF >tinyca.desktop
+%{__cat} <<EOF >tinyca2.desktop
 [Desktop Entry]
 Name=TinyCA Certification Authority
 Comment=Work with various certificates
@@ -60,40 +60,40 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0644 templates/openssl.cnf %{buildroot}%{_sysconfdir}/tinyca/openssl.cnf
-%{__install} -Dp -m0755 tinyca %{buildroot}%{_bindir}/tinyca
+%{__install} -Dp -m0644 templates/openssl.cnf %{buildroot}%{_datadir}/TinyCA2/templates/openssl.cnf
+%{__install} -Dp -m0755 tinyca2 %{buildroot}%{_bindir}/tinyca2
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/locale/
-%{__cp} -apv locale/* %{buildroot}%{_datadir}/locale/
+%{__install} -d -m0755 %{buildroot}%{_datadir}/TinyCA2/locale/
+%{__cp} -apv locale/* %{buildroot}%{_datadir}/TinyCA2/locale/
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/tinyca/
-%{__cp} -apv lib/* %{buildroot}%{_datadir}/tinyca/
-
-%find_lang %{name}
+%{__install} -d -m0755 %{buildroot}%{_datadir}/TinyCA2/lib/
+%{__cp} -apv lib/* %{buildroot}%{_datadir}/TinyCA2/lib/
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -Dp -m0644 tinyca.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/tinyca.desktop
+	%{__install} -Dp -m0644 tinyca2.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/tinyca.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
-		tinyca.desktop
+		tinyca2.desktop
 %endif
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
 %doc CHANGES INSTALL
-%config %{_sysconfdir}/tinyca/
-%{_bindir}/tinyca
-%{_datadir}/tinyca/
-%{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/tinyca.desktop}
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-tinyca.desktop}
+%{_bindir}/tinyca2
+%{_datadir}/TinyCA2/
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/tinyca2.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-tinyca2.desktop}
 
 %changelog
+* Sat Apr 15 2006 Dag Wieers <dag@wieers.com> - 0.7.2-1
+- Updated to release 0.7.2.
+
 * Mon Feb 21 2005 Dag Wieers <dag@wieers.com> - 0.6.8-1
 - Updated to release 0.6.8.
 

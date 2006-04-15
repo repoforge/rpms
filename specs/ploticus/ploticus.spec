@@ -18,7 +18,7 @@
 Summary: Command line utility for creating charts and plots
 Name: ploticus
 Version: 2.32
-Release: 1.2
+Release: 2
 License: GPL
 Group: Applications/Publishing
 URL: http://ploticus.sourceforge.net/
@@ -42,16 +42,17 @@ or create complex scripts with rich and detailed color and style operations.
 %prep
 %setup -n pl%{real_version}src
 
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' src/Makefile
+
 %build
-cd src
-%{__make} %{?_smp_mflags}
+%{__make} -C src %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} %{buildroot}%{_datadir}/ploticus
-cd src
-%makeinstall BIN=%{buildroot}%{_bindir}
-%{__install} -D ../prefabs/* %{buildroot}%{_datadir}/ploticus
+%{__install} -d -m0755 %{buildroot}%{_bindir} %{buildroot}%{_datadir}/ploticus/pltestsuite/
+%makeinstall -C src BIN=%{buildroot}%{_bindir}
+%{__install} -D prefabs/* %{buildroot}%{_datadir}/ploticus
+%{__install} -D pltestsuite/* %{buildroot}%{_datadir}/ploticus/pltestsuite
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -60,9 +61,12 @@ cd src
 %defattr(-, root, root, 0755)
 %doc README
 %{_bindir}/pl
-%{_datadir}/ploticus
+%{_datadir}/ploticus/
 
 %changelog
+* Sat Apr 15 2006 Dag Wieers <dag@wieers.com> - 2.32-2
+- Added x86_64 patch and included pltestsuite (Phil Schaffner)
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.32-1.2
 - Rebuild for Fedora Core 5.
 

@@ -87,11 +87,15 @@ fi
 %doc README-* TESTFORM.txt doc-rpm/* docs-html/*
 #doc dlxlinux/*.txt
 %doc %{_mandir}/man?/*
+%exclude %{_mandir}/man1/bochs-dlx.1*
 %{_bindir}/*
 #%{_libdir}/bochs/
 %{_datadir}/bochs/
 
 %changelog
+* Sat Apr 15 2006 Dag Wieers <dag@wieers.com> - 2.2.1-2
+- Excluded bochs-dlx manpage.
+
 * Sun Dec 11 2005 Dag Wieers <dag@wieers.com> - 2.2.1-1
 - Updated to release 2.2.1.
 

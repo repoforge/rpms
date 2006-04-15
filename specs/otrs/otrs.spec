@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 #Autoreqprov: no
 BuildArch: noarch
 Requires: perl, perl-DBI, perl-DBD-MySQL, perl-URI, mod_perl
+Requires: perl-Apache-DBI
 Requires: mysql, mysql-server, fetchmail, procmail, smtpdaemon
 %{?fc4:BuildRequires: httpd}
 %{?fc3:BuildRequires: httpd}
@@ -82,9 +83,9 @@ EOF
 %{__rm} -rf %{buildroot}
 
 ### Copy with permissions.
-%{__install} -Dp -m0710 .fetchmailrc %{buildroot}/opt/otrs/.fetchmailrc
-%{__install} -Dp -m0600 .mailfilter %{buildroot}/opt/otrs/.mailfilter
-%{__install} -Dp -m0644 .procmailrc %{buildroot}/opt/otrs/.procmailrc
+%{__install} -Dp -m0710 .fetchmailrc.dist %{buildroot}/opt/otrs/.fetchmailrc
+%{__install} -Dp -m0600 .mailfilter.dist %{buildroot}/opt/otrs/.mailfilter
+%{__install} -Dp -m0644 .procmailrc.dist %{buildroot}/opt/otrs/.procmailrc
 
 ### Copy everything.
 %{__cp} -afpv Kernel/ bin/ scripts/ var/ %{buildroot}/opt/otrs/
@@ -122,14 +123,14 @@ fi
 %config %{_initrddir}/otrs
 %config(noreplace) /opt/otrs/Kernel/Config.pm
 %config(noreplace) /opt/otrs/Kernel/Config/GenericAgent.pm*
-%config(noreplace) /opt/otrs/Kernel/Config/ModulesCusto*.pm
+#%config(noreplace) /opt/otrs/Kernel/Config/ModulesCusto*.pm
 %config(noreplace) /opt/otrs/Kernel/Output/HTML/Standard/
 %config(noreplace) /opt/otrs/Kernel/Output/HTML/Lite/
 %config(noreplace) /opt/otrs/Kernel/Language/
 %dir /opt/otrs/Kernel/Config/
 %dir /opt/otrs/Kernel/Output/HTML/
 %exclude /opt/otrs/Kernel/cpan-lib*
-/opt/otrs/Kernel/Config/Modules.pm
+#/opt/otrs/Kernel/Config/Modules.pm
 /opt/otrs/Kernel/Config/Defaults.pm
 /opt/otrs/Kernel/Language.pm
 /opt/otrs/Kernel/Modules/
@@ -161,6 +162,9 @@ fi
 %doc doc/
 
 %changelog
+* Sat Apr 15 2006 Dag Wieers <dag@wieers.com> - 2.0.4-2
+- Added missing perl-Apache-DBI dependency. (Grant McChesney)
+
 * Sun Nov 27 2005 Dries Verachtert <dries@ulyssis.org> - 2.0.4-1
 - Updated to release 2.0.4.
 

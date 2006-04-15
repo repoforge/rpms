@@ -4,7 +4,7 @@
 
 Summary: Email filtering application using sendmail's milter interface
 Name: mimedefang
-Version: 2.54
+Version: 2.56
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -116,6 +116,9 @@ fi
 %dir %{_localstatedir}/spool/MD-Quarantine
 
 %changelog
+* Sat Apr 15 2006 Dag Wieers <dag@wieers.com> - 2.56-1
+- Updated to release 2.56.
+
 * Fri Dec 02 2005 Dag Wieers <dag@wieers.com> - 2.54-1
 - Added --with-pthread-flag configure option. (Nathan Hruby)
 - Updated to release 2.54.

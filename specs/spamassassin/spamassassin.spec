@@ -99,7 +99,7 @@ EOF
 EOF
 
 %build
-export CFLAGS="%{optflags} -fPIC"
+export CFLAGS="-I/usr/kerberos/include %{optflags} -fPIC"
 %{__perl} Makefile.PL \
 %{!?_with_perl_5_6:DESTDIR="%{buildroot}"} \
 		SYSCONFDIR="%{_sysconfdir}" \
@@ -186,6 +186,7 @@ fi
 
 %changelog
 * Sun Mar 12 2006 Dag Wieers <dag@wieers.com> - 3.1.1-1
+- Added -I/usr/kerberos/include to CFLAGS to build on RH9 and EL3. (Michael Schout)
 - Updated to release 3.1.1.
 
 * Wed Jan 11 2006 Dag Wieers <dag@wieers.com> - 3.1.0-1

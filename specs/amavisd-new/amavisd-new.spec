@@ -11,8 +11,8 @@
 
 Summary: Mail virus-scanner
 Name: amavisd-new
-Version: 2.3.3
-Release: 3
+Version: 2.4.0
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ijs.si/software/amavisd/
@@ -29,11 +29,9 @@ Requires: perl(Convert::TNEF), perl(Convert::UUlib), perl(IO::Stringy)
 Requires: perl(MIME::Base64), perl(MIME::Tools), perl(Unix::Syslog)
 Requires: perl(Time::HiRes) >= 1.49, perl(Digest::MD5), perl(Digest::SHA1)
 Requires: perl(Digest::HMAC), perl(Net::DNS), perl(Mail::SpamAssassin)
-Requires: perl-MailTools, perl(Net::Server) >= 0.86, perl-HTML-Parser >= 3.24
-Requires: perl(DB_File)
+Requires: perl-MailTools, perl(Net::Server) >= 0.93, perl-HTML-Parser >= 3.24
+Requires: perl(DB_File), perl(Digest::MD5) >= 2.22
 
-### No longer required with new amavisd-new
-#Requires: perl(Digest::MD5) >= 2.22, perl-HTML-Parser >= 3.24
 Obsoletes: amavisd
 
 %description
@@ -314,6 +312,9 @@ fi
 %{_sbindir}/amavis-milter
 
 %changelog
+* Sat Apr 15 2006 Dag Wieers <dag@wieers.com> - 2.4.0-1
+- Updated to release 2.4.0.
+
 * Wed Jan 11 2006 Dag Wieers <dag@wieers.com> - 2.3.2-3
 - Added perl(Time::HiRes) >= 1.49 requirement.
 

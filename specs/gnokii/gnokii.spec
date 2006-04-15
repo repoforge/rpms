@@ -9,7 +9,7 @@
 
 Summary: Linux/UNIX tool suite for various mobile phones
 Name: gnokii
-Version: 0.6.11
+Version: 0.6.12
 Release: 1
 License: GPL
 Group: Applications/Communications
@@ -29,7 +29,7 @@ Nokia's mobile phones, released under the GPL.
 %package gui
 Summary: Graphical Linux/UNIX tool suite for Nokia mobile phones
 Group: Applications/Internet
-Obsoletes: gnokii-xgnokii, gnokii-gtk
+Obsoletes: gnokii-xgnokii, gnokii-gtk, xgnokii
 
 %description gui
 Xgnokii is a graphical Linux/UNIX tool suite for Nokia's mobile phones. It
@@ -128,6 +128,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 15 2006 Dag Wieers <dag@wieers.com> - 0.6.12-1
+- Updated to release 0.6.12.
+
 * Tue Feb 28 2006 Dag Wieers <dag@wieers.com> - 0.6.11-1
 - Updated to release 0.6.11.
 
