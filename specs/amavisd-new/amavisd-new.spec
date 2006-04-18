@@ -12,7 +12,7 @@
 Summary: Mail virus-scanner
 Name: amavisd-new
 Version: 2.4.0
-Release: 1
+Release: 3
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ijs.si/software/amavisd/
@@ -26,11 +26,11 @@ Requires: bzip2, cpio, file, freeze, lha, lzop, ncompress, unarj
 Requires: cabextract, ripole, perl(BerkeleyDB)
 Requires: perl(Archive::Tar), perl(Archive::Zip) >= 1.14, perl(Compress::Zlib) >= 1.35
 Requires: perl(Convert::TNEF), perl(Convert::UUlib), perl(IO::Stringy)
-Requires: perl(MIME::Base64), perl(MIME::Tools), perl(Unix::Syslog)
+Requires: perl(MIME::Base64), perl(MIME::Tools) >= 5.420, perl(Unix::Syslog)
 Requires: perl(Time::HiRes) >= 1.49, perl(Digest::MD5), perl(Digest::SHA1)
 Requires: perl(Digest::HMAC), perl(Net::DNS), perl(Mail::SpamAssassin)
 Requires: perl-MailTools, perl(Net::Server) >= 0.93, perl-HTML-Parser >= 3.24
-Requires: perl(DB_File), perl(Digest::MD5) >= 2.22
+Requires: perl(DB_File), perl(Digest::MD5) >= 2.22, perl(DBI) >= 1.43
 
 Obsoletes: amavisd
 
@@ -312,6 +312,12 @@ fi
 %{_sbindir}/amavis-milter
 
 %changelog
+* Tue Apr 18 2006 Dag Wieers <dag@wieers.com> - 2.4.0-3
+- Added perl-DBI >= 1.43 as a new dependency. (Jim)
+
+* Mon Apr 17 2006 Dag Wieers <dag@wieers.com> - 2.4.0-2
+- perl-MIME-tools dependency raised to >= 5.420. (Michael Kratz)
+
 * Sat Apr 15 2006 Dag Wieers <dag@wieers.com> - 2.4.0-1
 - Updated to release 2.4.0.
 

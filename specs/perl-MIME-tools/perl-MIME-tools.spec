@@ -13,7 +13,7 @@
 
 Summary: Perl modules for parsing (and creating!) MIME entities
 Name: perl-MIME-tools
-Version: 5.419
+Version: 5.420
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -59,11 +59,14 @@ parser and tool for building your own MIME parser, and utilities.
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING INSTALLING MANIFEST README* examples/
+%doc ChangeLog COPYING INSTALLING MANIFEST README* examples/
 %doc %{_mandir}/man3/*.3pm*
 %{perl_vendorlib}/MIME/
 
 %changelog
+* Mon Apr 17 2006 Dag Wieers <dag@wieers.com> - 5.420-1
+- Updated to release 5.420.
+
 * Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 5.419-1
 - Updated to release 5.419.
 

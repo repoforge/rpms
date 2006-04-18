@@ -15,14 +15,13 @@
 %{?rh6:%define _without_xorg 1}
 %{?yd3:%define _without_xorg 1}
 
-
 %{?rh7:%define _without_gnome2 1}
 %{?el2:%define _without_gnome2 1}
 %{?rh6:%define _without_gnome2 1}
 
 Summary: Fast and small X11 window manager
 Name: icewm
-Version: 1.2.25
+Version: 1.2.26
 Release: 1
 License: LGPL
 Group: User Interface/Desktops
@@ -58,7 +57,7 @@ EOF
 
 %{__cat} <<EOF >icewm.gdm
 #!/bin/sh
-exec /etc/X11/xdm/Xsession icewm
+exec %{_sysconfdir}/X11/xdm/Xsession icewm
 EOF
 
 %build
@@ -96,6 +95,9 @@ EOF
 %{_datadir}/icewm/
 
 %changelog
+* Mon Apr 17 2006 Dag Wieers <dag@wieers.com> - 1.2.26-1
+- Updated to release 1.2.26.
+
 * Thu Feb 09 2006 Dag Wieers <dag@wieers.com> - 1.2.25-1
 - Updated to release 1.2.25.
 
