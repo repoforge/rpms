@@ -10,7 +10,7 @@
 Summary: Tool for editing and converting DivX ;-) subtitles
 Name: gsubedit
 Version: 0.4
-Release: 0.pre1
+Release: 0.pre1.2
 Group: Applications/Multimedia
 License: GPL
 URL: http://gsubedit.sourceforge.net/
@@ -77,6 +77,9 @@ EOF
 %exclude %{_prefix}/doc/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4-0.pre1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jun 07 2004 Dag Wieers <dag@wieers.com> - 0.4-0.pre1
 - Added improved desktop file.
 

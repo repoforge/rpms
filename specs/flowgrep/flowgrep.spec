@@ -5,7 +5,7 @@
 Summary: Basic IDS/IPS tool to help you investigate and manage your network
 Name: flowgrep
 Version: 0.8
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.monkey.org/~jose/software/flowgrep/
@@ -49,5 +49,8 @@ python setup.py build
 %{_sbindir}/flowgrep
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Feb 11 2005 Dag Wieers <dag@wieers.com> - 0.8-1
 - Initial package. (using DAR)

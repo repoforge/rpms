@@ -5,7 +5,7 @@
 Summary: Abstract asynchronous event notification library
 Name: libevent
 Version: 1.1a
-Release: 1
+Release: 1.2
 License: BSD
 Group: System Environment/Libraries
 URL: http://monkey.org/~provos/libevent/
@@ -72,6 +72,9 @@ you will need to install %{name}-devel.
 
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1a-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jan 11 2006 Matthias Saou <http://freshrpms.net/> 1.1a-1
 - Update to 1.1a.
 - Clean up spec file, as make install now works properly, and PIC too.

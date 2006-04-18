@@ -4,7 +4,7 @@
 Summary: Simple TCP benchmarking utility
 Name: gensink
 Version: 4.1
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Internet
 URL: http://jes.home.cern.ch/jes/gensink/
@@ -39,5 +39,8 @@ a TCP connection between two hosts.
 %{_sbindir}/tub4
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.1-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon Aug 04 2003 Dag Wieers <dag@wieers.com> - 4.1-0
 - Initial package. (using DAR)

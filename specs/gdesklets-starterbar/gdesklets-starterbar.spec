@@ -6,7 +6,7 @@
 Summary: Starterbar sensor and display for gdesklets
 Name: gdesklets-starterbar
 Version: 0.31.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: User Interface/Desktops
 URL: http://gdesklets.gnomedesktop.org/
@@ -51,6 +51,9 @@ To add the display, use :
 #%{_datadir}/gdesklets/Sensors/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.31.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 0.31.2-1
 - Updated to release 0.31.2.
 

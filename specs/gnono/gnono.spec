@@ -9,7 +9,7 @@
 Summary: UNO card game
 Name: gnono
 Version: 0.0.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://www.paw.co.za/projects/gnono/
@@ -73,6 +73,9 @@ EOF
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Games/gnono.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jun 06 2004 Dag Wieers <dag@wieers.com> - 0.0.3-1
 - Add improved desktop file.
 

@@ -10,7 +10,7 @@
 Summary: Music Jukebox with a Curses Based GUI
 Name: pytone
 Version: 2.3.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.luga.de/pytone/
@@ -65,6 +65,9 @@ export CFLAGS="%{optflags}"
 %{python_sitearch}/pytone/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.3.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Sep 14 2005 Dag Wieers <dag@wieers.com> - 2.3.0-1
 - Updated to release 2.3.0.
 

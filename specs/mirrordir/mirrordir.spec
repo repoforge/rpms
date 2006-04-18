@@ -5,7 +5,7 @@
 Summary: Easy to use ftp mirroring package
 Name: mirrordir
 Version: 0.10.49
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: ftp://ftp.obsidian.co.za/pub/mirrordir/
@@ -80,5 +80,8 @@ you will need to install %{name}-devel.
 %{_libdir}/libmirrordirz.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.10.49-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Feb 09 2006 Dag Wieers <dag@wieers.com> - 0.10.49-1
 - Initial package. (using DAR)

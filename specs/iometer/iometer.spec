@@ -6,7 +6,7 @@
 Summary: I/O subsystem measurement and characterization tool
 Name: iometer
 Version: 0.0.20040730
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://www.iometer.org/
@@ -40,5 +40,8 @@ single and clustered systems.
 %{_bindir}/dynamo
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.20040730-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Aug 28 2004 Dag Wieers <dag@wieers.com> - 0.0.20040730-1
 - Initial package. (using DAR)

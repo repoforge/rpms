@@ -15,7 +15,7 @@
 Summary: Snack Sound Toolkit
 Name: libsnack
 Version: 2.2.9
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: http://www.speech.kth.se/snack/
@@ -75,6 +75,9 @@ cd unix
 %{_lib32dir}/snack%{version}/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.9-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 2.2.9-1
 - Updated to release 2.2.9.
 

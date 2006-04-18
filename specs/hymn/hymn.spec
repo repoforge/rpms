@@ -6,7 +6,7 @@
 Summary: Hymn allows you to free your iTunes purchases
 Name: hymn
 Version: 0.9.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://hymn-project.org/
@@ -40,6 +40,9 @@ operating systems not supported by iTunes.
 %{_bindir}/hymn
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1
 - Updated to release 0.9.1.
 

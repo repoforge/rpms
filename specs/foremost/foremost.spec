@@ -4,7 +4,7 @@
 Summary: Recover files based on their headers and footers
 Name: foremost
 Version: 0.69
-Release: 0
+Release: 0.2
 License: freeware
 Group: Applications/Archiving
 URL: http://foremost.sourceforge.net/
@@ -43,6 +43,9 @@ headers you want to look for.
 %{_sbindir}/foremost
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.69-0.2
+- Rebuild for Fedora Core 5.
+
 * Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 0.69-0
 - Updated to release 0.69.
 

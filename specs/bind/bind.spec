@@ -7,7 +7,7 @@ BuildRequires: bind < 9.1.3
 Summary: DNS (Domain Name System) server
 Name: bind
 Version: 9.1.3
-Release: 2
+Release: 2.2
 License: BSD-like
 Group: System Environment/Daemons
 URL: http://www.isc.org/products/BIND/
@@ -200,6 +200,9 @@ fi
 /usr/include/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 9.1.3-2.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jul 16 2001 Bernhard Rosenkraenzer <bero@redhat.com> 9.1.3-2
 - Don't use rndc status, it's not yet implemented (#48839)
 

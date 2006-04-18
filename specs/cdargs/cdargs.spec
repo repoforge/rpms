@@ -4,7 +4,7 @@
 Summary: Navigate cd
 Name: cdargs
 Version: 1.35
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/File
 URL: http://www.skamphausen.de/software/cdargs/
@@ -39,6 +39,9 @@ Navigate cd Arguments/expand the shell built-in cd with bookmarks and browser
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.35-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 07 2006 Dag Wieers <dag@wieers.com> - 1.35-1
 - Updated to release 1.35.
 

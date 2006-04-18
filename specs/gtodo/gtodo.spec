@@ -5,7 +5,7 @@
 Summary: Graphical todo list tool
 Name: gtodo
 Version: 0.14
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Productivity
 URL: http://qball.no-ip.com/test/index.php?s=4
@@ -51,5 +51,8 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 09 2004 Dag Wieers <dag@wieers.com> - 0.14-1
 - Initial package. (using DAR)

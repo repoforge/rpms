@@ -4,7 +4,7 @@
 Summary: Create connections through HTTP-proxy's and SOCKS-servers
 Name: connect
 Version: 1.95
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://zippo.taiyo.co.jp/~gotoh/ssh/connect.html
@@ -40,6 +40,9 @@ and SOCKS-servers.
 %{_bindir}/connect
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.95-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec 23 2005 Dag Wieers <dag@wieers.com> - 1.95-1
 - Updated to release 1.95.
 

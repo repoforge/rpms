@@ -7,7 +7,7 @@
 Summary: Network interface status applet
 Name: gnome-netstatus
 Version: 2.6.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://ftp.gnome.org/pub/GNOME/sources/gnome-netstatus/
@@ -68,6 +68,9 @@ scrollkeeper-update -q
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.6.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jun 26 2004 Dag Wieers <dag@wieers.com> -  2.6.2-1
 - Updated to release 2.6.2.
 

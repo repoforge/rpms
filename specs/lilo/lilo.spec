@@ -8,7 +8,7 @@
 Summary: The boot loader for Linux and other operating systems
 Name: lilo
 Version: 22.7
-Release: 1
+Release: 1.2
 License: MIT
 Group: System Environment/Base
 URL: http://home.san.rr.com/johninsd/
@@ -89,6 +89,9 @@ fi
 %exclude %{_sbindir}/keytab-lilo.pl
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 22.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Apr 29 2005 Dag Wieers <dag@wieers.com> - 21.7-1
 - Updated to release 21.7.
 

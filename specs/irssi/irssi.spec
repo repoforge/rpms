@@ -12,7 +12,7 @@
 Summary: Modular text-mode IRC client
 Name: irssi
 Version: 0.8.10
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Communications
 URL: http://irssi.org/
@@ -85,6 +85,9 @@ Support for other protocols like ICQ could be created some day too.
 #%exclude %{perl_vendorarch}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.10-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 11 2005 Dag Wieers <dag@wieers.com> - 0.8.10-1
 - Updated to release 0.8.10.
 

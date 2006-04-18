@@ -8,7 +8,7 @@
 Summary: SSH2 protocol for Python
 Name: python-pyrss2gen
 Version: 1.0.0
-Release: 2
+Release: 2.2
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.dalkescientific.com/Python/PyRSS2Gen.html
@@ -45,6 +45,9 @@ A Python RSS2 generator.
 %ghost %{python_sitelib}/PyRSS2Gen.pyo
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.0-2.2
+- Rebuild for Fedora Core 5.
+
 * Fri Mar 10 2006 Dag Wieers <dag@wieers.com> - 1.0.0-2
 - Added .pyo ghost files.
 

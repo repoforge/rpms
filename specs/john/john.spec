@@ -4,7 +4,7 @@
 Summary: John the Ripper password cracker
 Name: john
 Version: 1.6
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/System
 URL: http://www.openwall.com/john/
@@ -59,5 +59,8 @@ supported as well.
 %{_datadir}/john/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.6-0.2
+- Rebuild for Fedora Core 5.
+
 * Sun Aug 17 2003 Dag Wieers <dag@wieers.com> - 1.6-0
 - Initial package. (using DAR)

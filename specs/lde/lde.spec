@@ -7,7 +7,7 @@
 Summary: Console-based disk editor
 Name: lde
 Version: 2.6.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://lde.sourceforge.net/
@@ -54,6 +54,9 @@ old version of Norton Disk Edit for DOS.
 %{_sbindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.6.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 2.6.1-1
 - Updated to release 2.6.1.
 

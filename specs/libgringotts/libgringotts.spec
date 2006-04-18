@@ -7,7 +7,7 @@
 Summary: libGringotts, a strongbox library
 Name: libgringotts
 Version: 1.2.1
-Release: 0
+Release: 0.2
 License: GPL
 Group: System Environment/Libraries
 URL: http://devel.pluto.linux.it/projects/Gringotts/
@@ -74,6 +74,9 @@ These are the files needed to develop applications with libGringotts
 #exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.1-0.2
+- Rebuild for Fedora Core 5.
+
 * Fri Apr 25 2003 Dag Wieers <dag@wieers.com> - 1.2.1-0
 - Updated to release 1.2.1.
 

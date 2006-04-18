@@ -12,7 +12,7 @@
 Summary: gimp script to implement Red-Eye removal technique
 Name: gimp-script-red-eye
 Version: 0.95
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.linuxjournal.com/article.php?sid=6567
@@ -46,6 +46,9 @@ A gimp script to implement Red-Eye removal technique.
 %{?_without_gimp2:%{_libdir}/gimp/1.2/scripts/red-eye.scm}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.95-2.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jan 19 2005 Dag Wieers <dag@wieers.com> - 0.95-2
 - Fixed location for gimp2 plugin. (Chris Weyl)
 

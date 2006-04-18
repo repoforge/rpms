@@ -12,7 +12,7 @@
 Summary: IP Subnet Calculator
 Name: ipsc
 Version: 0.4.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://ipsc.sourceforge.net/software.html
@@ -74,6 +74,9 @@ EOF
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Network/ipsc.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Aug 25 2003 Dag Wieers <dag@wieers.com> - 0.4.3-1
 - Patch to build with gcc-3.3.
 

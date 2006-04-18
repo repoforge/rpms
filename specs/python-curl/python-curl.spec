@@ -9,7 +9,7 @@
 Summary: Python interface to libcurl
 Name: python-curl
 Version: %{curl_version}
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: http://pycurl.sourceforge.net/
@@ -45,5 +45,8 @@ urllib Python module.
 %exclude %{_docdir}/pycurl/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - %{curl_version}-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Nov 27 2005 Dag Wieers <dag@wieers.com> - %{curl_version}-1
 - Initial package. (using DAR)

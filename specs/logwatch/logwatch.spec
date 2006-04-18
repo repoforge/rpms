@@ -9,7 +9,7 @@
 Summary: Log file analysis program
 Name: logwatch
 Version: 5.2.2
-Release: 0.1
+Release: 0.1.2
 License: MIT
 Group: Applications/System
 URL: http://www.logwatch.org/
@@ -92,6 +92,9 @@ done
 %{_sbindir}/logwatch
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 5.2.2-0.1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jun 26 2004 Dag Wieers <dag@wieers.com> - 5.2.2-1
 - Updated to release 5.2.2.
 

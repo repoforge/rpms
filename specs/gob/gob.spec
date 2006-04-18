@@ -4,7 +4,7 @@
 Summary: GOB, The GTK+ Object Builder
 Name: gob
 Version: 1.0.12
-Release: 0
+Release: 0.2
 License: GPL
 Group: Development/Tools
 URL: http://www.5z.com/jirka/gob.html
@@ -43,5 +43,8 @@ generated files.  Syntax is somewhat inspired by java and yacc.
 %{_datadir}/aclocal/gob.m4
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.12-0.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jan 07 2003 Dag Wieers <dag@wieers.com> - 1.0.12
 - Initial package. (using DAR)

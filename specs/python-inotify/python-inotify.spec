@@ -7,7 +7,7 @@
 Summary: Python module implementing Linux inotify support
 Name: python-inotify
 Version: 0.1.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: http://rudd-o.com/projects/python-inotify/
@@ -48,6 +48,9 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %ghost %{python_sitearch}/inotify.pyo
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Feb 08 2006 Dag Wieers <dag@wieers.com> - 0.1.0-1
 - Updated to release 0.1.0.
 

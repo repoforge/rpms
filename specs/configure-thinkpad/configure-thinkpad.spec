@@ -5,7 +5,7 @@
 Summary: Graphical ThinkPad configuration utility
 Name: configure-thinkpad
 Version: 0.9
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://tpctl.sourceforge.net/configure-thinkpad.html
@@ -88,6 +88,9 @@ desktop-file-install --vendor gnome --delete-original \
 %{_datadir}/pixmaps/configure-thinkpad/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Sep 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.9-1
 - Updated to release 0.9.
 

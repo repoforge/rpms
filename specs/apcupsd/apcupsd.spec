@@ -8,7 +8,7 @@
 Summary: APC UPS power control daemon
 Name: apcupsd
 Version: 3.10.18
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.sibbald.com/apcupsd/
@@ -115,6 +115,9 @@ fi
 %exclude %{_initrddir}/halt*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.10.18-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Sep 05 2005 Dries Verachtert <dries@ulyssis.org> - 3.10.18-1
 - Updated to new release 3.10.18.
 

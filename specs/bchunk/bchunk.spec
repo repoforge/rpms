@@ -5,7 +5,7 @@
 Summary: Tool to convert from bin/cue CD image format to iso/cdr
 Name: bchunk
 Version: 1.2.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/File
 URL: http://he.fi/bchunk/
@@ -40,5 +40,8 @@ supported on most other CD burning programs.
 %{_bindir}/bchunk
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Aug 11 2005 Dag Wieers <dag@wieers.com> - 1.2.0-1
 - Initial package. (using DAR)

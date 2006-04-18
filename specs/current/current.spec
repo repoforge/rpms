@@ -4,7 +4,7 @@
 Summary: Server for Red Hat's up2date tools
 Name: current
 Version: 1.6.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Daemons
 URL: http://current.tigris.org/
@@ -49,6 +49,9 @@ workstations/servers.
 %{_datadir}/current/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jan 16 2006 Dag Wieers <dag@wieers.com> - 1.6.1-1
 - Updated to release 1.6.1.
 

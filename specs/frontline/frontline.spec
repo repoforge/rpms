@@ -17,7 +17,7 @@
 Summary: GUI frontend program and library for autotrace
 Name: frontline
 Version: 0.5.4
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://autotrace.sourceforge.net/frontline/
@@ -75,6 +75,9 @@ autotrace.
 %endif
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.4-2.2
+- Rebuild for Fedora Core 5.
+
 * Tue Nov 26 2002 Dag Wieers <dag@wieers.com> - 0.5.4
 - Updated to 0.5.4
 

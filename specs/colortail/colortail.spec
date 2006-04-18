@@ -7,7 +7,7 @@
 Summary: Log colorizer that makes log checking easier
 Name: colortail
 Version: 0.3.0
-Release: 2
+Release: 2.2
 Group: Applications/File
 License: GPL
 URL: http://www.student.hk-r.se/~pt98jan/colortail.html
@@ -43,6 +43,9 @@ specified which patterns result in which colors.
 %{_bindir}/colortail
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.0-2.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.3.0-2
 - Modified the source url. Project page doesn't exist anymore.
 

@@ -5,7 +5,7 @@
 Summary: Measures bandwidth between two point-to-point connections
 Name: bing
 Version: 1.0.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://web.cnam.fr/reseau/bing.html
@@ -41,6 +41,9 @@ for different packet sizes for each end of the link.
 %{_bindir}/bing
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 16 2004 Dag Wieers <dag@wieers.com> - 1.0.4-1
 - Initial package. (using DAR)
 

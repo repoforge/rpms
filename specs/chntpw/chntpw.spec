@@ -8,7 +8,7 @@
 Summary: Offline NT password and registry editor
 Name: chntpw
 Version: 0.0.20040818
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://home.eunet.no/~pnordahl/ntpasswd/
@@ -50,6 +50,9 @@ and scripts to glue the whole thing together.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.20040818-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Aug 19 2004 Bert de Bruijn <bert@debruijn.be> - 0.0.20040818-1
 - update.
 

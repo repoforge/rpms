@@ -7,7 +7,7 @@
 Summary: Guesses and recovers a damaged MBR (Master Boot Record)
 Name: gpart
 Version: 0.1
-Release: 1.h
+Release: 1.h.2
 License: GPL
 Group: Applications/System
 URL: http://home.pages.de/~michab/gpart/
@@ -50,6 +50,9 @@ type harddisk in case the primary partition table was damaged.
 %{_sbindir}/gpart
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1-1.h.2
+- Rebuild for Fedora Core 5.
+
 * Tue Aug 24 2004 Dag Wieers <dag@wieers.com> - 0.1-1.h
 - Added reiserfs patch.
 

@@ -17,7 +17,7 @@
 Summary: GNOME browser based on Gecko (Mozilla rendering engine)
 Name: galeon
 Version: 2.0.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://galeon.sourceforge.net/
@@ -89,6 +89,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Feb 28 2006 Dag Wieers <dag@wieers.com> - 2.0.1-1
 - Updated to release 2.0.1.
 

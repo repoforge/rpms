@@ -7,7 +7,7 @@
 Summary: Programmable completion for Bash
 Name: bash-completion
 Version: 20050721
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Shells
 URL: http://www.caliban.org/bash/
@@ -67,6 +67,9 @@ EOF
 %config %{_sysconfdir}/bash_completion.d/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 20050721-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jul 23 2005 Dag Wieers <dag@wieers.com> - 20050721-1
 - Updated to release 20050721.
 

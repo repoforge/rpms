@@ -14,7 +14,7 @@
 Name: gtoaster
 Summary: Versatile CD recording package for both sound and data
 Version: 1.0
-Release: 2.beta6
+Release: 2.beta6.2
 License: GPL
 Group: Applications/Archiving
 URL: http://gnometoaster.rulez.org/
@@ -110,6 +110,9 @@ EOF
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-2.beta6.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jun 08 2004 Dag Wieers <dag@wieers.com> - 1.0-2.beta6
 - Added improved desktop file.
 - Cosmetic cleanup.

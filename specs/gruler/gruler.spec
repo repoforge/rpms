@@ -9,7 +9,7 @@
 Summary: Customizable screen ruler
 Name: gruler
 Version: 0.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: User Interface/Desktops
 URL: http://linuxadvocate.org/projects/gruler/
@@ -71,6 +71,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/gruler/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Feb 10 2005 Dan Allen <dan.allen@mojavelinux.com> - 0.6
 - Updated to release 0.6.
 - Improved desktop file.

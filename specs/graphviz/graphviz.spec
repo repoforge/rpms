@@ -19,7 +19,7 @@
 Summary: Graph Visualization Tools
 Name: graphviz
 Version: 2.6
-Release: 2
+Release: 2.2
 License: CPL
 Group: Applications/Multimedia
 URL: http://www.graphviz.org/
@@ -139,6 +139,9 @@ Some demo graphs for %{name}.
 %doc rpmdoc/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.6-2.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov 12 2005 Dries Verachtert <dries@ulyssis.org> - 2.6-2
 - Changes in files section: dotneato* removed, static libs added.
 

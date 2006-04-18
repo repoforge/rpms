@@ -6,7 +6,7 @@
 Summary: Class library for High Energy Physics
 Name: clhep
 Version: 1.8.2.1
-Release: 1
+Release: 1.2
 License: distributable
 Group: Development/Libraries
 URL: http://proj-clhep.web.cern.ch/proj-clhep/
@@ -53,5 +53,8 @@ done
 %{_libdir}/*.a
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.8.2.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jun 13 2005 Wei-Lun <chaoweilun@pcmail.com.tw> - 1.8.2.1-1
 - Initial spec file created.

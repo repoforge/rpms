@@ -8,7 +8,7 @@
 Summary: Monitor and archive AOL Instant Messenger messages
 Name: aimsniff
 Version: 0.9
-Release: 0.d
+Release: 0.d.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.aimsniff.com/
@@ -45,5 +45,8 @@ database or STDOUT.
 %{_bindir}/aimsniff
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9-0.d.2
+- Rebuild for Fedora Core 5.
+
 * Fri Apr 09 2004 Dag Wieers <dag@wieers.com> - 0.9-0.d
 - Initial package. (using DAR)

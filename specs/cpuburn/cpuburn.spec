@@ -9,7 +9,7 @@
 Summary: CPU maximum load (heat) stability test
 Name: cpuburn
 Version: 1.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://users.ev1.net/~redelm/
@@ -52,5 +52,8 @@ Use it at your own risk!!
 %{_sbindir}/burn*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Sep 24 2004 Dag Wieers <dag@wieers.com> - 1.4-1
 - Initial package. (using DAR)

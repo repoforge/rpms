@@ -5,7 +5,7 @@
 Summary: Rush Hour game
 Name: pytraffic
 Version: 2.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://alpha.uhasselt.be/Research/Algebra/Members/pytraffic/
@@ -52,5 +52,8 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{_datadir}/applications/pytraffic.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Aug 09 2005 Dag Wieers <dag@wieers.com> - 2.5-1
 - Initial package. (using DAR)

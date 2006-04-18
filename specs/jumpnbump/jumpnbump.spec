@@ -5,7 +5,7 @@
 Summary: Cute multiplayer network game with bunnies
 Name: jumpnbump
 Version: 1.50
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://www.jumpbump.mine.nu/
@@ -47,6 +47,9 @@ alone. It has network support.
 %{_datadir}/jumpnbump/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.50-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 16 2004 Dag Wieers <dag@wieers.com> - 1.50-1
 - Updated to release 1.50.
 

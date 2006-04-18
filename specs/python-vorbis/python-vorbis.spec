@@ -11,7 +11,7 @@
 Summary: Python bindings for libvorbis
 Name: python-vorbis
 Version: 1.3
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Development/Libraries
 URL: http://www.andrewchatham.com/pyogg/
@@ -56,6 +56,9 @@ export CFLAGS="%{optflags}"
 %{python_sitearch}/ogg/vorbis.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun May 08 2005 Dag Wieers <dag@wieers.com> - 1.3-1
 - Downgraded from 1.4 to 1.3.
 - Initial package. (using DAR)

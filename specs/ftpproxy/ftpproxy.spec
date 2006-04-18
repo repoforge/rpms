@@ -4,7 +4,7 @@
 Summary: FTP proxy server
 Name: ftpproxy
 Version: 1.2.3
-Release: 2
+Release: 2.2
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ftpproxy.org/
@@ -70,6 +70,9 @@ EOF
 %{_sbindir}/ftp.proxy
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.3-2.2
+- Rebuild for Fedora Core 5.
+
 * Tue Aug 17 2004 Dag Wieers <dag@wieers.com> - 1.2.3-2
 - Get rid of dependency on akanga. (Jeremy A. Rosengren)
 

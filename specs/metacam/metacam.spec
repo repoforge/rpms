@@ -4,7 +4,7 @@
 
 Name: metacam
 Version: 1.2
-Release: 0
+Release: 0.2
 Summary: Utility to read Exif data from digital camera files
 Group: Applications/Multimedia
 License: GPL
@@ -42,6 +42,9 @@ from a Nikon D1, but it supports other cameras too.
 %{_bindir}/metacam
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-0.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jan 04 2005 Bert de Bruijn <bert@debruijn.be> 1.2-0
 - Update
 

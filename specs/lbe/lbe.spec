@@ -8,7 +8,7 @@
 Summary: Excellent LDAP browser and editor
 Name: lbe
 Version: 2.8.1
-Release: 2
+Release: 2.2
 License: Free to use
 Group: Applications/System
 URL: http://www-unix.mcs.anl.gov/~gawor/ldap/
@@ -81,6 +81,9 @@ EOF
 %{_datadir}/lbe/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.8.1-2.2
+- Rebuild for Fedora Core 5.
+
 * Tue Aug 09 2005 Dag Wieers <dag@wieers.com> - 2.8.1-2
 - Changed into a noach package. (C.Lee Taylor)
 

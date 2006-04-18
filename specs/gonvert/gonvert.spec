@@ -10,7 +10,7 @@
 Summary: Units conversion utility
 Name: gonvert
 Version: 0.2.14
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Engineering
 URL: http://unihedron.com/projects/gonvert/gonvert.php
@@ -61,6 +61,9 @@ your own units.
 %exclude %{_docdir}/gonvert/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.14-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Dec 24 2005 Dag Wieers <dag@wieers.com> - 0.2.14-1
 - Updated to release 0.2.14.
 

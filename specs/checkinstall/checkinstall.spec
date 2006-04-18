@@ -4,7 +4,7 @@
 Summary: CheckInstall installations tracker
 Name: checkinstall
 Version: 1.6.0
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/System
 URL: http://asic-linux.com.mx/~izto/checkinstall/
@@ -63,6 +63,9 @@ standard package management  utilities.
 %{_libdir}/*.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.0-2.2
+- Rebuild for Fedora Core 5.
+
 * Sun Feb 12 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.0-2
 - Fixed the path to installwatch, thanks to Renato Ramonda. (atrpms bugzilla bug 723)
 

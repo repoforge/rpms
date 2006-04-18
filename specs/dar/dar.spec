@@ -5,7 +5,7 @@
 Summary: Dag Apt Repository builder
 Name: dar
 Version: 0.6.0
-Release: 0
+Release: 0.2
 License: GPL
 Group: Development/Tools
 URL: http://dag.wieers.com/home-made/dar/
@@ -46,6 +46,9 @@ multiple Apt repositories.
 %{_datadir}/dar/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.0-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon Mar 01 2004 Dag Wieers <dag@wieers.com> - 0.6.0-0
 - Updated to release 0.6.0.
 

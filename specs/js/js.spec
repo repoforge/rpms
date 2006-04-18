@@ -4,7 +4,7 @@
 Summary: JavaScript interpreter
 Name: js
 Version: 1.5
-Release: 1
+Release: 1.2
 License: MPL
 Group: Development/Languages
 URL: http://www.mozilla.org/js/
@@ -75,6 +75,9 @@ BUILD_OPT="1" %{__make} -C src -f Makefile.ref \
 %{_includedir}/js/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.5-1.
 - Updated to final release of 1.5.
 

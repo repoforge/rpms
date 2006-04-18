@@ -5,7 +5,7 @@
 Summary: Graphical configuration tool for cron
 Name: gnome-schedule
 Version: 1.0.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Productivity
 URL: http://gnome-schedule.sourceforge.net/
@@ -50,6 +50,9 @@ cron servers as well if the format of the config file is similar.
 %{_datadir}/pixmaps/gnome-schedule.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jan 04 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.0-1
 - Updated to release 1.0.0.
 

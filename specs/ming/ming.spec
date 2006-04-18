@@ -18,7 +18,7 @@
 Summary: SWF output library
 Name: ming
 Version: 0.2a
-Release: 2
+Release: 2.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.opaque.net/ming/
@@ -175,6 +175,9 @@ cd -
 %endif
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2a-2.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 15 2005 Dag Wieers <dag@wieers.com> - 0.2a-2
 - Made libming libraries executable.
 

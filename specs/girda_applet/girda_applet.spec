@@ -4,7 +4,7 @@
 Summary: GNOME IRDA applet
 Name: girda_applet
 Version: 2.0.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: User Interface/Desktops
 URL: http://girda.sourceforge.net/
@@ -62,5 +62,8 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Oct 22 2003 Dag Wieers <dag@wieers.com> - 2.0.3-0
 - Initial package. (using DAR)

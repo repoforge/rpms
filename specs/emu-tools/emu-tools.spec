@@ -6,7 +6,7 @@
 Summary: Tools for configuring and controlling emu10k1 based soundcards
 Name: emu-tools
 Version: 0.9.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://opensource.creative.com/
@@ -55,6 +55,9 @@ They will not work with the Alsa driver.
 %{_datadir}/emu10k1/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Nov 02 2003 Dag Wieers <dag@wieers.com> - 0.9.4-1
 - Added %%{optflags} buildflags.
 

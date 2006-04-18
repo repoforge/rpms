@@ -6,7 +6,7 @@
 Summary: C++ wrappers for GConf
 Name: gconfmm2
 Version: 2.0.1
-Release: 0
+Release: 0.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://gtkmm.sourceforge.net/
@@ -69,5 +69,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.1-0.2
+- Rebuild for Fedora Core 5.
+
 * Sat Mar 29 2003 Dag Wieers <dag@wieers.com> - 2.0.1-0
 - Initial package. (using DAR)

@@ -12,7 +12,7 @@
 Summary: Easy to use front-end for ClamAV
 Name: clamtk
 Version: 2.13
-Release: 1
+Release: 1.2
 License: Perl
 Group: Applications/File
 URL: http://clamtk.sourceforge.net/
@@ -75,6 +75,9 @@ EOF
 %{_datadir}/pixmaps/clam.xpm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.13-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan 01 2006 Dag Wieers <dag@wieers.com> - 2.13-1
 - Updated to release 2.13.
 

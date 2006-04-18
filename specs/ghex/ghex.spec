@@ -4,7 +4,7 @@
 Summary: GNOME binary editor
 Name: ghex
 Version: 2.8.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Editors
 URL: http://pluton.ijs.si/~jaka/gnome.html#GHEX
@@ -70,6 +70,9 @@ scrollkeeper-update -q || :
 
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.8.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 19 2004 Dag Wieers <dag@wieers.com> - 2.8.1-1
 - Updated to release 2.8.1.
 

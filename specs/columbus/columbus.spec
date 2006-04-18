@@ -5,7 +5,7 @@
 Summary: Automatically detect and configure network settings
 Name: columbus
 Version: 0.1.1
-Release: 0
+Release: 0.2
 License: GPL
 Group: System Environment/Base
 URL: http://columbus.sourceforge.net/
@@ -64,5 +64,8 @@ fi
 %{_datadir}/columbus
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.1-0.2
+- Rebuild for Fedora Core 5.
+
 * Sun Oct 12 2003 Dag Wieers <dag@wieers.com> - 0.1.1-0
 - Initial package. (using DAR)

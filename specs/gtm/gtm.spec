@@ -5,7 +5,7 @@
 Summary: GNOME Transfer Manager
 Name: gtm
 Version: 0.4.12
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Internet
 URL: http://gtm.sourceforge.net/
@@ -58,5 +58,8 @@ these tasks using wget as its back-end.
 %{_datadir}/sounds/gtm/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.12-0.2
+- Rebuild for Fedora Core 5.
+
 * Fri May 02 2003 Dag Wieers <dag@wieers.com> - 0.4.12-0
 - Initial package. (using DAR)

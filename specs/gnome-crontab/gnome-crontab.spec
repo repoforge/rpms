@@ -13,7 +13,7 @@
 Summary: graphical interface to the crontab program
 Name: gnome-crontab
 Version: 0.0.5
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/System
 URL: http://jodrell.net/projects/gnome-crontab/
@@ -89,5 +89,8 @@ desktop-file-install --vendor gnome --delete-original \
 %{_datadir}/pixmaps/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.5-0.2
+- Rebuild for Fedora Core 5.
+
 * Sun Oct 12 2003 Dag Wieers <dag@wieers.com> - 0.0.5-0
 - Initial package. (using DAR)

@@ -6,7 +6,7 @@
 Summary: Non-blocking DNS resolver library
 Name: libdnsres
 Version: 0.1a
-Release: 1
+Release: 1.2
 License: BSD-like
 Group: System Environment/Libraries
 URL: http://www.monkey.org/~provos/libdnsres/
@@ -61,6 +61,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libdnsres.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1a-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Feb 21 2006 Dag Wieers <dag@wieers.com> - 1.11-1
 - Updated to release 1.11.
 

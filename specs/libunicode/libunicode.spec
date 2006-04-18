@@ -4,7 +4,7 @@
 Summary: Unicode manipulation library
 Name: libunicode
 Version: 0.7
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.pango.org/
@@ -72,6 +72,9 @@ you will need to install %{name}-devel.
 %{_includedir}/*.h
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.7-2
 - Some fixes.
 

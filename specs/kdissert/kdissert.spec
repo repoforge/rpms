@@ -13,7 +13,7 @@
 Summary: Mindmapping tool for creating texts
 Name: kdissert
 Version: 0.2.7
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Productivity
 URL: http://freehackers.org/~tnagy/kdissert/
@@ -99,6 +99,9 @@ source "/etc/profile.d/qt.sh"
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Applications/kdissert.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Nov 02 2004 Dag Wieers <dag@wieers.com> - 0.2.7-1
 - Updated to release 0.2.7.
 

@@ -5,7 +5,7 @@
 Summary: Tool to remind you to take wrist breaks
 Name: drwright
 Version: 0.18
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://www.imendio.com/projects/drwright/
@@ -71,6 +71,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/drwright/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.18-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Oct 02 2004 Dag Wieers <dag@wieers.com> - 0.18-1
 - Updated to release 0.18.
 

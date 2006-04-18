@@ -4,7 +4,7 @@
 Summary: Utility for converting bitmaps to vector graphics
 Name: autotrace
 Version: 0.31.1
-Release: 2
+Release: 2.2
 License: GPL and LGPL
 Group: Applications/Multimedia
 URL: http://autotrace.sourceforge.net/
@@ -64,6 +64,9 @@ documentation for %{name}.
 %{_datadir}/aclocal/*.m4
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.31.1-2.2
+- Rebuild for Fedora Core 5.
+
 * Mon Nov 25 2002  Dag Wieers <dag@wieers.com> - 0.31.1-0
 - Updated to release 0.31.1.
 

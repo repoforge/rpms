@@ -5,7 +5,7 @@
 Summary: Full featured IRC bouncer
 Name: miau
 Version: 0.6.0.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://miau.sourceforge.net/
@@ -76,6 +76,9 @@ export OPTIONS="
 %exclude %{_datadir}/miaurc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.0.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan 01 2006 Dag Wieers <dag@wieers.com> - 0.6.0.2-1
 - Updated to release 0.6.0.2.
 

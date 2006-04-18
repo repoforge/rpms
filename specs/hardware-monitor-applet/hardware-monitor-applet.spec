@@ -7,7 +7,7 @@
 Summary: GNOME Applet for hardware monitoring
 Name: hardware-monitor-applet
 Version: 1.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.cs.auc.dk/~olau/hardware-monitor/
@@ -51,6 +51,9 @@ pleasantly with the rest of your GNOME desktop.
 %{_datadir}/pixmaps/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jul 10 2004 Dag Wieers <dag@wieers.com> - 1.1-1
 - Updated to release 1.1.
 

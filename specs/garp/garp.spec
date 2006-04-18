@@ -5,7 +5,7 @@
 Summary: Check unused IP addresses and automagically assign them
 Name: garp
 Version: 0.7.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://garp.3va.net/
@@ -40,6 +40,9 @@ unused IP addresses (from a given IP range).
 %{_sbindir}/garp
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu May 01 2003 Dag Wieers <dag@wieers.com> - 0.7.2-1
 - Changed URL: and Source: to http://garp.3va.net/
 

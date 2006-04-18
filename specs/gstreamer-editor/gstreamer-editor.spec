@@ -6,7 +6,7 @@
 Summary: GStreamer streaming media editor and GUI tools
 Name: gstreamer-editor
 Version: 0.7.0
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.net/apps/gst-editor/
@@ -83,6 +83,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu May 20 2004 Dag Wieers <dag@wieers.com> - 0.7.0-1
 - Updated to release 0.7.0.
 

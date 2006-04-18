@@ -6,7 +6,7 @@
 Summary: GNOME Photo Printer
 Name: gpp
 Version: 0.6.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Publishing
 URL: http://www.fogman.de/gpp/
@@ -44,6 +44,9 @@ or  Print , and see your pictures printed.
 %{_datadir}/gnome-photo-printer/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Feb 11 2005 Dag Wieers <dag@wieers.com> - 0.6.5-1
 - Updated to release 0.6.5.
 

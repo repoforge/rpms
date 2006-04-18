@@ -5,7 +5,7 @@
 Summary: Simple network library
 Name: gnet2
 Version: 2.0.7
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gnetlibrary.org/
@@ -85,6 +85,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/gnet-2.0.pc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Mar 31 2005 Dag Wieers <dag@wieers.com> - 2.0.7-1
 - Updated to release 2.0.7.
 

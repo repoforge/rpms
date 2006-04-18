@@ -8,7 +8,7 @@
 Summary: WYSIWIG guitar tablature editor
 Name: gnometab
 Version: 0.7.4
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Productivity
 URL: http://www.solutionm.com/gnometab/gnometab.html
@@ -87,5 +87,8 @@ scrollkeeper-update -q
 %endif
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.4-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon Apr 28 2003 Dag Wieers <dag@wieers.com> - 0.7.4-0
 - Initial package. (using DAR)

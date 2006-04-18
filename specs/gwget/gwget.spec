@@ -8,7 +8,7 @@
 Summary: Graphical Download manager using wget
 Name: gwget
 Version: 0.14
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://gwget.sourceforge.net/
@@ -77,5 +77,8 @@ EOF
 %exclude %{_includedir}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Aug 25 2004 Dag Wieers <dag@wieers.com> - 0.14-1
 - Initial package. (using DAR)

@@ -7,7 +7,7 @@
 Summary: Extensible drawing editor
 Name: ipe
 Version: 6.0
-Release: 0.pre23
+Release: 0.pre23.2
 License: GPL
 Group: Applications/Editors
 URL: http://ipe.compgeom.org/
@@ -49,6 +49,9 @@ qmake main.pro
 %{_libdir}/ipe/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 6.0-0.pre23.2
+- Rebuild for Fedora Core 5.
+
 * Sun Aug 14 2005 Dries Verachtert <dries@ulyssis.org> 6.0-0.pre23
 - Update to release 6.0pre23.
 

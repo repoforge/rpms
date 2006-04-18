@@ -7,7 +7,7 @@
 Summary: Diagram drawing program
 Name: dia
 Version: 0.94
-Release: 1
+Release: 1.2
 epoch: 1
 License: GPL
 Group: Applications/Multimedia
@@ -78,6 +78,9 @@ format, and can export to PostScript(TM).
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.94-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Aug 25 2004 Dag Wieers <dag@wieers.com> - 0.94-1.
 - Updated to release 0.94.
 

@@ -6,7 +6,7 @@
 Summary: Library that implements the rsync remote-delta algorithm
 Name: librsync
 Version: 0.9.7
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://librsync.sourceforge.net/
@@ -81,6 +81,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/librsync.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Sep 11 2005 Dag Wieers <dag@wieers.com> - 0.9.7-1
 - Updated to release 0.9.7.
 

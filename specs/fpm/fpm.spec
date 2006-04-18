@@ -5,7 +5,7 @@
 Summary: Figaro's password manager
 Name: fpm
 Version: 0.59
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/System
 URL: http://fpm.sourceforge.net/
@@ -59,5 +59,8 @@ passwords you use on the web.  Features include:
 %{_datadir}/pixmaps/fpm/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.59-0.2
+- Rebuild for Fedora Core 5.
+
 * Sun Nov 23 2003 Dag Wieers <dag@wieers.com> - 0.59-0
 - Initial package. (using DAR)

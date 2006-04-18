@@ -5,7 +5,7 @@
 Summary: Graphical regular expression explorer
 Name: gregexp
 Version: 0.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Tools
 URL: http://dentrassi.de/download/gregexp
@@ -50,5 +50,8 @@ desktop-file-install --vendor gnome --delete-original \
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Apr 23 2004 Dag Wieers <dag@wieers.com> - 0.3-1
 - Initial package. (using DAR)

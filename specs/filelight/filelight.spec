@@ -5,7 +5,7 @@
 Summary: Graphical disk usage statistics
 Name: filelight
 Version: 0.6.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://www.methylblue.com/filelight/
@@ -49,5 +49,8 @@ source "/etc/profile.d/qt.sh"
 %{_datadir}/icons/crystalsvg/*/apps/filelight.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Aug 22 2005 Dag Wieers <dag@wieers.com> - 0.6.4-1
 - Initial package. (using DAR)

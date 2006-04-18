@@ -5,7 +5,7 @@
 Summary: HTTP based time synchronization tool
 Name: htpdate
 Version: 0.9.1
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.clevervest.com/htp/
@@ -161,6 +161,9 @@ fi
 %{_bindir}/htpdate
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.1-2.2
+- Rebuild for Fedora Core 5.
+
 * Sun Feb 12 2006 Dag Wieers <dag@wieers.com> - 0.9.1-2
 - Fixed sysv script. (Alain Rykaert)
 

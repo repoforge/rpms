@@ -6,7 +6,7 @@
 Summary: MusicBrainz client library
 Name: libmusicbrainz
 Version: 2.0.1
-Release: 0
+Release: 0.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.musicbrainz.org/
@@ -84,5 +84,8 @@ you will need to install %{name}-devel.
 %{_includedir}/musicbrainz/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.1-0.2
+- Rebuild for Fedora Core 5.
+
 * Fri May 09 2003 Dag Wieers <dag@wieers.com> - 2.0.1-0
 - Initial package. (using DAR)

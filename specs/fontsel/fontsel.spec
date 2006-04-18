@@ -5,7 +5,7 @@
 Summary: Font selection widget
 Name: fontsel
 Version: 0.5.0
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Multimedia
 URL: ???
@@ -61,5 +61,8 @@ you will need to install %{name}-devel.
 %{_includedir}/*.h
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.0-0.2
+- Rebuild for Fedora Core 5.
+
 * Wed Feb 25 2004 Dag Wieers <dag@wieers.com> - 0.5.0-0
 - initial package. (using DAR)

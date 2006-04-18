@@ -5,7 +5,7 @@
 Summary: LiveJournal client for GNOME
 Name: drivel
 Version: 1.2.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.dropline.net/drivel/
@@ -72,6 +72,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jan 28 2005 Dag Wieers <dag@wieers.com> - 1.2.4-1
 - Updated to release 1.2.4.
 

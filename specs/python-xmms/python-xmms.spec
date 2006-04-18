@@ -11,7 +11,7 @@
 Name: python-xmms
 Summary: Python Interface to XMMS
 Version: 2.04
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: http://www.via.ecp.fr/~flo/
@@ -49,5 +49,8 @@ export CFLAGS="%{optflags}"
 %{python_sitearch}/xmms/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.04-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun May 08 2005 Dag Wieers <dag@wieers.com> - 2.0.4-1
 - Initial package. (using DAR)

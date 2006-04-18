@@ -5,7 +5,7 @@
 Summary: Lightweight caching nameserver with integrated DHCP server
 Name: dnsmasq
 Version: 2.27
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.thekelleys.org.uk/dnsmasq/
@@ -155,6 +155,9 @@ fi
 %{_localstatedir}/lib/misc/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.27-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jan 26 2006 Dag Wieers <dag@wieers.com> - 2.27-1
 - Updated to release 2.27.
 

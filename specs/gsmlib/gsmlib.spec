@@ -5,7 +5,7 @@
 Summary: Library to access GSM mobile phones through GSM modems
 Name: gsmlib
 Version: 1.10
-Release: 0
+Release: 0.2
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.pxh.de/fs/gsmlib/
@@ -77,5 +77,8 @@ you will need to install %{name}-devel.
 %{_includedir}/gsmlib/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.10-0.2
+- Rebuild for Fedora Core 5.
+
 * Wed Feb 04 2004 Dag Wieers <dag@wieers.com> - 1.10-0
 - Initial package. (using DAR)

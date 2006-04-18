@@ -6,7 +6,7 @@
 Summary: free vector drawing application
 Name: gestalter
 Version: 0.7.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Editors
 URL: http://www.linotux.ch/gestalter/
@@ -50,6 +50,9 @@ The object model is multi-layered.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.7.6-1
 - Updated to release 0.7.6.
 

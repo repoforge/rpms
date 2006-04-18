@@ -16,7 +16,7 @@
 Summary: Anti-aliased vector-based rendering for X
 Name: cairo
 Version: 0.2.0
-Release: 1
+Release: 1.2
 License: MIT
 Group: System Environment/Libraries
 URL: http://cairo.freedesktop.org/
@@ -83,6 +83,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/cairo.pc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Feb 25 2004 Dag Wieers <dag@wieers.com> - 0.1.23-1
 - Updated to release 0.1.23.
 

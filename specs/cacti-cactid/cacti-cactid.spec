@@ -10,7 +10,7 @@
 Summary: Fast c-based poller for the cacti graphing solution
 Name: cacti-cactid
 Version: 0.8.6g
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Applications/System
 URL: http://www.cacti.net/
@@ -56,6 +56,9 @@ to achieve excellent performance.
 %config(noreplace) %{_sysconfdir}/cactid.conf
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.6g-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jan 30 2006 Dag Wieers <dag@wieers.com> - 0.8.6g-1
 - Updated to release 0.8.6g.
 

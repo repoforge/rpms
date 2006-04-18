@@ -5,7 +5,7 @@
 Name: lbdb
 Summary: Address database for mutt
 Version: 0.29
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.spinnaker.de/lbdb/
@@ -48,5 +48,8 @@ reader.
 %{_libdir}/lbdb/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.29-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Apr 29 2004 Dag Wieers <dag@wieers.com> - 0.26.2-1
 - Initial package. (using DAR)

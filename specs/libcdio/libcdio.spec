@@ -4,7 +4,7 @@
 Summary: CD-ROM input and control library
 Name: libcdio
 Version: 0.76
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.gnu.org/software/libcdio/
@@ -81,6 +81,9 @@ fi
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.76-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Dec 10 2005 Dag Wieers <dag@wieers.com> - 0.76-1
 - Initial package. (using DAR)
 

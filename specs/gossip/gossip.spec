@@ -7,7 +7,7 @@
 Summary: Jabber instant messaging client
 Name: gossip
 Version: 0.7.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://gossip.imendio.org/
@@ -61,6 +61,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Apr 29 2004 Dag Wieers <dag@wieers.com> - 0.7.5-1
 - Updated to release 0.7.5.
 

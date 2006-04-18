@@ -4,7 +4,7 @@
 Summary: This is the ASN.1 library used in GNUTLS
 Name: libtasn1
 Version: 0.3.0
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gnu.org/software/gnutls/download.html
@@ -69,6 +69,9 @@ you will need to install %{name}-devel.
 %{_mandir}/man3/*asn1*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Mar 03 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.0-1
 - Updated to release 0.3.0.
 

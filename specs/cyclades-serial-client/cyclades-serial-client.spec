@@ -6,7 +6,7 @@
 Summary: Serial Port Interface for Cyclades Terminal Servers
 Name: cyclades-serial-client
 Version: 0.93
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Communications
 URL: http://www.lysator.liu.se/~astrand/projects/cyclades-serial-client/
@@ -50,5 +50,8 @@ servers such as sercd.
 %{_sbindir}/cyclades-serial-client
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.93-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Mar 18 2005 Dag Wieers <dag@wieers.com> - 0.93-1
 - Initial package. (using DAR)

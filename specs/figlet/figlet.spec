@@ -7,7 +7,7 @@
 Summary: program for making large letters out of ordinary text
 Name: figlet
 Version: 2.2.1
-Release: 1
+Release: 1.2
 Group: Applications/Text
 License: GPL
 URL: http://www.figlet.org/
@@ -48,6 +48,9 @@ FIGlet is a program for making large letters out of ordinary text.
 %{_datadir}/figlet/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jun 10 2003 Dag Wieers <dag@wieers.com> - 2.2.1-1
 - Change executable permission of binaries. (Koenraad Heijlen)
 

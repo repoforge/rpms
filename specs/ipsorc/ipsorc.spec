@@ -4,7 +4,7 @@
 Summary: Packet generator
 Name: ipsorc
 Version: 1.7.5
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.informony.com/ipsorcery.html
@@ -37,5 +37,8 @@ A console and gtk based packet generator allowing the custom building of IP, TCP
 %{_sbindir}/magic
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.7.5-0.2
+- Rebuild for Fedora Core 5.
+
 * Thu May 01 2003 Dag Wieers <dag@wieers.com> - 1.7.5-0
 - Initial package. (using DAR)

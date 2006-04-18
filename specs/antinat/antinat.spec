@@ -9,7 +9,7 @@
 Summary: SOCKS4 and SOCKS5 compliant SOCKS server
 Name: antinat
 Version: 0.90
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://yallara.cs.rmit.edu.au/~malsmith/products/antinat/
@@ -73,6 +73,9 @@ export CFLAGS="%{optflags} -fPIC"
 #%exclude %{_libdir}/antinat-%{version}/*/*/*/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.90-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jan 12 2005 Dag Wieers <dag@wieers.com> - 0.90-1
 - Updated to release 0.90.
 

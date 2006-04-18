@@ -5,7 +5,7 @@
 Summary: Trace a chain of DNS servers to the source
 Name: dnstracer
 Version: 1.8
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.mavetju.org/unix/general.php
@@ -41,6 +41,9 @@ servers which know the data.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 08 2004 Dag Wieers <dag@wieers.com> - 1.8-1
 - Updated to release 1.8.
 

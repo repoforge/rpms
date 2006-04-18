@@ -7,7 +7,7 @@
 Summary: Utility for doing LEAP authentication on WLAN
 Name: leapauth
 Version: 0.0
-Release: 0.20050322
+Release: 0.20050322.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.noomore.org/leap/
@@ -49,5 +49,8 @@ leapauth is a utility for doing LEAP authentication on WLAN.
 %{_sbindir}/leapauth
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0-0.20050322.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 22 2005 Dag Wieers <dag@wieers.com> - 0.0-0.20050322
 - Initial package. (using DAR)

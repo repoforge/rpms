@@ -4,7 +4,7 @@
 Summary: Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
 Name: asciidoc
 Version: 7.1.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Text
 URL: http://www.methods.co.nz/asciidoc/
@@ -54,6 +54,9 @@ books and UNIX man pages.
 %{_datadir}/asciidoc/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 7.1.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Mar 09 2006 Dag Wieers <dag@wieers.com> - 7.1.2-1
 - Updated to release 7.1.2.
 

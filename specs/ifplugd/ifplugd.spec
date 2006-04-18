@@ -8,7 +8,7 @@
 Summary: Activates network interfaces on cable plug
 Name: ifplugd
 Version: 0.28
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://0pointer.de/lennart/projects/ifplugd/
@@ -66,6 +66,9 @@ fi
 %{_sbindir}/ifplug*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.28-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jun 04 2005 Dag Wieers <dag@wieers.com> - 0.28-1
 - Updated to release 0.28.
 

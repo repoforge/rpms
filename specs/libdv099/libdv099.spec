@@ -7,7 +7,7 @@
 Summary: Software codec for DV video, used by most digital camcorders
 Name: libdv099
 Version: 0.99
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Libraries
 URL: http://libdv.sourceforge.net/
@@ -56,6 +56,9 @@ according to the official standards for DV video: IEC 61834 and SMPTE 314M.
 %exclude %{_libdir}/pkgconfig/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.99-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Apr 14 2004 Dag Wieers <dag@wieers.com> - 0.99-1
 - Renamed to libdv099 as compat package.
 

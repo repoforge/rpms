@@ -5,7 +5,7 @@
 Summary: Dock any application into the system tray
 Name: alltray
 Version: 0.60
-Release: 1
+Release: 1.2
 License: GPL
 Group: User Interface/Desktops
 URL: http://alltray.sourceforge.net/
@@ -53,6 +53,9 @@ done
 %{_libdir}/liballtraynomap.so.*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.60-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 0.60-1
 - Updated to release 0.60.
 

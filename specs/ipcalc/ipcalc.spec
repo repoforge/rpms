@@ -5,7 +5,7 @@
 Summary: IP subnet calculator
 Name: ipcalc
 Version: 0.37
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://jodies.de/ipcalc/
@@ -38,6 +38,9 @@ as easy-to-understand binary values.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.37-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri May 14 2003 Dag Wieers <dag@wieers.com> - 0.37-1
 - updated to release 0.37.
 

@@ -7,7 +7,7 @@
 Summary: Content filtering web proxy
 Name: dansguardian
 Version: 2.8.0.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.dansguardian.org/
@@ -200,6 +200,9 @@ fi
 %{_localstatedir}/log/dansguardian/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.8.0.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Aug 15 2005 Dries Verachtert <dries@ulyssis.org> - 2.8.0.6-1
 - Updated to release 2.8.0.6.
 

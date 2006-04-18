@@ -6,7 +6,7 @@
 Summary: Graphical front-end for cdrtools
 Name: graveman
 Version: 0.3.12
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://graveman.tuxfamily.org/
@@ -63,6 +63,9 @@ desktop-file-install --delete-original             \
 %{_datadir}/pixmaps/graveman48.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.12-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue May 17 2005 Dag Wieers <dag@wieers.com> - 0.3.12-1
 - Updated to release 0.3.12.
 

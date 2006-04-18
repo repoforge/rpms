@@ -5,7 +5,7 @@
 Summary: Reliable 802.11 (wireless) sniffer and WEP key cracker
 Name: aircrack
 Version: 2.41
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.cr0.net:8040/code/network/
@@ -45,6 +45,9 @@ Reliable 802.11 (wireless) sniffer and WEP key cracker
 %{_bindir}/pcap2ivs
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.41-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov 26 2005 Dag Wieers <dag@wieers.com> - 2.41-1
 - Updated to release 2.41.
 

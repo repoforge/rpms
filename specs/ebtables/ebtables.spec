@@ -7,7 +7,7 @@
 Summary: Ethernet Bridge frame table administration tool
 Name: ebtables
 Version: 2.0.6
-Release: 3
+Release: 3.2
 License: GPL
 Group: System Environment/Base
 URL: http://ebtables.sourceforge.net/
@@ -179,6 +179,9 @@ fi
 %{_sbindir}/ebtables
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.6-3.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 19 2005 Dag Wieers <dag@wieers.com> - 2.0.6-3
 - Fixed typo in sysv script that prevented saving ruleset. (Neil McCalden)
 

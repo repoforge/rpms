@@ -4,7 +4,7 @@
 Summary: Graphical frontend for subversion
 Name: esvn
 Version: 0.6.11
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Editors
 URL: http://esvn.umputun.com/
@@ -43,6 +43,9 @@ eSvn is a graphical frontend for the subversion revision system.
 %{_datadir}/applications/esvn.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.11-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jul 08 2005 Dries Verachtert <dries@ulyssis.org> - 0.6.11-1
 - Update to release 0.6.11.
 

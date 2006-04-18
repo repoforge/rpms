@@ -8,7 +8,7 @@
 Summary: Imprisons processes to a jail
 Name: imprison
 Version: 0.2
-Release: 0
+Release: 0.2
 Group: System Environment/Base
 License: GPL
 URL: http://js.hu/package/imprison.html
@@ -41,5 +41,8 @@ capabilities, userid, and groups.
 %{_sbindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-0.2
+- Rebuild for Fedora Core 5.
+
 * Thu Mar 20 2003 Dag Wieers <dag@wieers.com> - 0.2-0
 - Initial package. (using DAR)

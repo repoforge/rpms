@@ -7,7 +7,7 @@
 Summary: Utility to ping multiple hosts at once
 Name: fping
 Version: 2.4
-Release: 1.b2
+Release: 1.b2.2
 License: distributable
 Group: Applications/Internet
 URL: http://www.fping.com/
@@ -72,6 +72,9 @@ will be considered unreachable.
 %attr(4750, root, adm) %{_sbindir}/fping6
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.4-1.b2.2
+- Rebuild for Fedora Core 5.
+
 * Tue Feb 15 2005 Ken Tsukahara <ken.tsukahara@tmt-d.co.jp> 2.4-1.b2
 - Flush stdout for each line.
 - Fix stdout/stderr confusion in Patch1.

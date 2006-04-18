@@ -13,7 +13,7 @@
 Summary: Graphical address book
 Name: dlume
 Version: 0.2.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Productivity
 URL: http://clay.ll.pl/dlume.html
@@ -75,6 +75,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jul 18 2004 Dag Wieers <dag@wieers.com> - 0.2.4-1
 - Updated to release 0.2.4.
 

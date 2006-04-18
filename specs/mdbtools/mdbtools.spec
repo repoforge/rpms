@@ -11,7 +11,7 @@
 Summary: Access data stored in Microsoft Access databases
 Name: mdbtools
 Version: 0.5
-Release: 0
+Release: 0.2
 License: LGPL/GPL
 Group: System Environment/Libraries
 URL: http://mdbtools.sourceforge.net/
@@ -116,5 +116,8 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/gnome-gmdb2.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-0.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jun 13 2003 Dag Wieers <dag@wieers.com> - 0.5-0
 - Initial package. (using DAR)

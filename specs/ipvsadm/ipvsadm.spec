@@ -6,7 +6,7 @@
 Summary: Utility to administer the Linux Virtual Server
 Name: ipvsadm
 Version: 1.21
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/System
 URL: http://www.LinuxVirtualServer.org/
@@ -53,5 +53,8 @@ fi
 %{_sbindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.21-0.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jun 07 2003 Dag Wieers <dag@wieers.com> - 1.21-0
 - Initial package. (using DAR)

@@ -7,7 +7,7 @@
 Summary: GNOME Clipboard Manager
 Name: gcm
 Version: 2.0.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://gcm.sourceforge.net/
@@ -104,6 +104,9 @@ scrollkeeper-update -q
 #exclude %{_libdir}/gcm/Plugins/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Feb 03 2003 Dag Wieers <dag@wieers.com> - 2.0.4-0
 - Updated to release 2.0.4.
 

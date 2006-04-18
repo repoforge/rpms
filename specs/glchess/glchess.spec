@@ -7,7 +7,7 @@
 Summary: 3D chess interface
 Name: glchess
 Version: 0.4.7
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://glchess.sourceforge.net/
@@ -83,5 +83,8 @@ EOF
 %endif
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Feb 19 2003 Dag Wieers <dag@wieers.com> - 0.4.7-0
 - Initial package. (using DAR)

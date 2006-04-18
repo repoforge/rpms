@@ -7,7 +7,7 @@
 Summary: Library of Unicode annotation data
 Name: libuninameslist
 Version: 0.20030713
-Release: 0
+Release: 0.2
 License: BSD
 Group: System Environment/Libraries
 URL: http://libuninameslist.sourceforge.net/
@@ -68,5 +68,8 @@ you will need to install %{name}-devel.
 #%exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.20030713-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jul 28 2003 Dag Wieers <dag@wieers.com> - 0.20030713-0
 - Initial package. (using DAR)

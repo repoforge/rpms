@@ -4,7 +4,7 @@
 Summary: Database logging module for Apache
 Name: mod_log_sql
 Version: 1.100
-Release: 1
+Release: 1.2
 License: Other
 Group: System Environment/Daemons
 URL: http://www.outoforder.cc/projects/apache/mod_log_sql/
@@ -110,5 +110,8 @@ EOF
 %{_libdir}/httpd/modules/mod_log_sql_ssl.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.100-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Mar 03 2005 Jim Perrin <jperrin@gmail.com> - 1.100-1
 - Initial Package.

@@ -5,7 +5,7 @@
 Summary: Web server stress testing tool
 Name: hammerhead
 Version: 2.1.3
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Internet
 URL: http://hammerhead.sourceforge.net/
@@ -53,5 +53,8 @@ under load, or the ability of the port to service a set of requests.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.1.3-0.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jun 10 2003 Dag Wieers <dag@wieers.com> - 2.1.3-0
 - Initial package. (using DAR)

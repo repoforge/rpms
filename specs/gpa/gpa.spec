@@ -8,7 +8,7 @@
 Summary: Graphical user interface for the GnuPG
 Name: gpa
 Version: 0.7.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://www.gnupg.org/gpa.html
@@ -77,6 +77,9 @@ EOF
 %endif
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 0.7.0-1
 - Updated to release 0.7.0.
 

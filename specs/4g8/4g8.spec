@@ -7,7 +7,7 @@
 Summary: Packet redirection tool for interception on switched networks 
 Name: 4g8
 Version: 1.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://forgate.sourceforge.net/
@@ -48,6 +48,9 @@ should work with nearly all TCP, ICMP and UDP IPv4 traffic.
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 1.0-1
 - Updated to release 1.0.
 

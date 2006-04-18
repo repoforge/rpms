@@ -6,7 +6,7 @@
 Summary: SysInfo sensor and display for gdesklets
 Name: gdesklets-sysinfo
 Version: 0.26
-Release: 1
+Release: 1.2
 License: GPL
 Group: User Interface/Desktops
 URL: http://gdesklets.gnomedesktop.org/
@@ -49,6 +49,9 @@ To add the display, use :
 %{_datadir}/gdesklets/Sensors/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.26-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu May 27 2004 Dag Wieers <dag@wieers.com> - 0.26.2-1
 - Updated to release 0.26.2.
 

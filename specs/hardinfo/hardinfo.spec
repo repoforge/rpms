@@ -12,7 +12,7 @@
 Summary: Displays information about your hardware and operating system
 Name: hardinfo
 Version: 0.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://alpha.linuxmag.com.br/~leandro/hardinfo/
@@ -85,6 +85,9 @@ EOF
 %endif
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Feb 02 2006 Dag Wieers <dag@wieers.com> - 0.4-0
 - Updated to release 0.4.
 

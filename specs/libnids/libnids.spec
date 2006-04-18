@@ -5,7 +5,7 @@
 Summary: Implementation of an E-component of Network Intrusion Detection System
 Name: libnids
 Version: 1.20
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Libraries
 URL: http://libnids.sourceforge.net/
@@ -46,6 +46,9 @@ TCP stream, no matter how artfully obscured by an attacker.
 %{_includedir}/nids.h
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.20-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Feb 11 2005 Dag Wieers <dag@wieers.com> - 1.20-1
 - Updated to release 1.20.
 

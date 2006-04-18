@@ -5,7 +5,7 @@
 Summary: Honeypot daemon
 Name: honeyd
 Version: 1.5a
-Release: 1
+Release: 1.2
 License: BSD
 Group: Applications/Internet
 URL: http://www.citi.umich.edu/u/provos/honeyd/
@@ -55,6 +55,9 @@ host to claim multiple addresses on a LAN for network simulation.
 %{_libdir}/honeyd/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.5a-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Feb 21 2006 Dag Wieers <dag@wieers.com> - 1.5a-1
 - Updated to release 1.5a.
 

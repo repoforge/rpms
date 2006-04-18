@@ -7,7 +7,7 @@
 Summary: API document browser
 Name: devhelp
 Version: 0.9.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Tools
 URL: http://www.imendio.com/projects/devhelp/
@@ -91,6 +91,9 @@ intltoolize
 %{_libdir}/pkgconfig/libdevhelp-1.0.pc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Sep 27 2004 Dag Wieers <dag@wieers.com> - 0.9.2-1
 - Updated to release 0.9.2.
 

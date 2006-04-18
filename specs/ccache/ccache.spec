@@ -5,7 +5,7 @@
 Summary: Compiler cache
 Name: ccache
 Version: 2.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Tools
 URL: http://ccache.samba.org/
@@ -65,6 +65,9 @@ done
 %{_libdir}/ccache/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 2.4-1
 - Updated to release 2.4.
 

@@ -15,7 +15,7 @@
 Summary: Wireless LAN (WLAN) tool which recovers encryption keys
 Name: airsnort
 Version: 0.2.7
-Release: 0.e
+Release: 0.e.2
 License: GPL
 Group: System Environment/Base
 URL: http://airsnort.shmoo.com/
@@ -81,6 +81,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-airsnort.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.7-0.e.2
+- Rebuild for Fedora Core 5.
+
 * Fri Feb 11 2005 Dag Wieers <dag@wieers.com> - 0.2.7-0.e
 - Updated to release 0.2.7e.
 

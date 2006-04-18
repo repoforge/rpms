@@ -16,7 +16,7 @@
 Summary: CableCrypt Decoder for Linux
 Name: cabletv
 Version: 1.3.9
-Release: 0
+Release: 0.2
 Group: Applications/Multimedia
 License: Freeware
 URL: http://sector17.tvand.net/cabletv/
@@ -66,5 +66,8 @@ Supports color MMX decoding and b/w x86 assembler decoding.
 %{_prefix}/X11R6/lib/X11/app-defaults/CableTV
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.9-0.2
+- Rebuild for Fedora Core 5.
+
 * Sat Feb 08 2003 Dag Wieers <dag@wieers.com> - 1.3.9-0
 - Initial package. (using DAR)

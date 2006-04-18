@@ -4,7 +4,7 @@
 Summary: Commodore 64 music player and SID chip emulator library
 Name: libsidplay
 Version: 1.36.59
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.geocities.com/SiliconValley/Lakes/5147/
@@ -65,6 +65,9 @@ you will need to install %{name}-devel.
 #exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.36.59-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 1.36.59-1
 - Updated to release 1.36.59.
 

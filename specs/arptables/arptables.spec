@@ -10,7 +10,7 @@
 Summary: Userspace control program for the arptables network filter
 Name: arptables
 Version: 0.0.3.2
-Release: 1
+Release: 1.2
 Group: System Environment/Base
 License: GPL
 URL: http://ebtables.sourceforge.net/
@@ -49,5 +49,8 @@ you should install this package.
 %{_sbindir}/arptables
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.3.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 22 2004 Dag Wieers <dag@wieers.com> - 0.0.3.2-1
 - Initial package. (using DAR)

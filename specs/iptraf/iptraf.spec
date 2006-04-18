@@ -6,7 +6,7 @@
 Summary: Console-based network monitoring utility
 Name: iptraf
 Version: 3.0.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://iptraf.seul.org/
@@ -88,6 +88,9 @@ touch %{buildroot}%{_localstatedir}/log/iptraf/rvnamed.log \
 %{_localstatedir}/lock/iptraf/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.0.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Sep 20 2005 Dag Wieers <dag@wieers.com> - 3.0.0-1
 - Updated to release 3.0.0.
 

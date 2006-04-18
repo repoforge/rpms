@@ -5,7 +5,7 @@
 Summary: Alternative traceroute tool for network (reverse) engineers
 Name: lft
 Version: 2.3
-Release: 1
+Release: 1.2
 License: MainNerve Public License
 Group: Applications/Internet
 URL: http://oppleman.com/lft/
@@ -46,6 +46,9 @@ lookups, loose source routing, netblock name lookups, et al.
 %attr(4755, -, -) %{_bindir}/lft
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jan 14 2005 Dag Wieers <dag@wieers.com> - 2.3-1
 - Updated to release 2.3.
 

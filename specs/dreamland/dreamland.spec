@@ -5,7 +5,7 @@
 Summary: Execute programs chrooted, with dropped privileges and as another user/group
 Name: dreamland
 Version: 0.1
-Release: 0
+Release: 0.2
 Group: System Environment/Daemons
 License: GPL
 URL: http://www.7ka.mipt.ru/~szh/dreamland/
@@ -36,5 +36,8 @@ ${CC:-%{__cc}} %{optflags} -o dreamland %{SOURCE0}
 %{_bindir}/dreamland
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1-0.2
+- Rebuild for Fedora Core 5.
+
 * Sun May 04 2003 Dag Wieers <dag@wieers.com> - 0.1-0
 - Initial package. (using DAR)

@@ -7,7 +7,7 @@
 Summary: Data encryption library
 Name: libmcrypt
 Version: 2.5.7
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://mcrypt.sourceforge.net/
@@ -75,6 +75,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.5.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Apr 16 2004 ---
 - Updated URL and Source tags. (Russ Herrold)
 

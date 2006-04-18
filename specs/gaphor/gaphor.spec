@@ -5,7 +5,7 @@
 Summary: Graphical UML modeling environment
 Name: gaphor
 Version: 0.3.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Tools
 URL: http://gaphor.sourceforge.net/
@@ -51,6 +51,9 @@ python setup.py install \
 %{_libdir}/python*/site-packages/gaphor/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Apr 19 2004 Dag Wieers <dag@wieers.com> - 0.3.1-1
 - Updated to release 0.3.1.
 

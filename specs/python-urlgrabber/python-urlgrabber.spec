@@ -8,7 +8,7 @@
 Summary: High-level cross-protocol url-grabber
 Name: python-urlgrabber
 Version: 2.9.7
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Development/Libraries
 URL: http://linux.duke.edu/projects/urlgrabber/
@@ -51,6 +51,9 @@ ranges, throttling, authentication, proxies and more.
 %ghost %{python_sitelib}/urlgrabber/*.pyo
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.9.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jan 05 2006 Dag Wieers <dag@wieers.com> - 2.9.7-1
 - Initial package. (using DAR)
 

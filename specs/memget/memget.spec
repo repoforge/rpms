@@ -5,7 +5,7 @@
 Summary: Save memory content for forensic analysis
 Name: memget
 Version: 0.1.0
-Release: 2
+Release: 2.2
 License: distributable
 Group: Applications/System
 URL: http://www.rndsoftware.com/products.shtml
@@ -38,6 +38,9 @@ workstation.
 %{_sbindir}/mempeek
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.0-2.2
+- Rebuild for Fedora Core 5.
+
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 0.1.0-2
 - Cosmetic rebuild for Group-tag.
 

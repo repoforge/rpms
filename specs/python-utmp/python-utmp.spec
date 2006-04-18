@@ -7,7 +7,7 @@
 Summary: Python module for working with utmp
 Name: python-utmp
 Version: 0.7
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: http://melkor.dnp.fmph.uniba.sk/~garabik/python-utmp/
@@ -47,5 +47,8 @@ of utmpaccess module, providing object oriented interface.
 %{python_sitearch}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jan 05 2005 Dag Wieers <dag@wieers.com> - 0.7-1
 - Initial package. (using DAR)

@@ -8,7 +8,7 @@
 Summary: Log analyzer and parser
 Name: epylog
 Version: 1.0.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://linux.duke.edu/projects/epylog/
@@ -78,5 +78,8 @@ external perl modules, or intend to write some of your own.
 %{perl_vendorlib}/epylog.pm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Apr 1 2005 Dag Wieers <dag@wieers.com> - 1.0.3-1
 - Initial package. (Using DAR)

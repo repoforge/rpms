@@ -7,7 +7,7 @@
 Summary: Graphical Type1 font editor
 Name: gribouy
 Version: 0.0.8
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/gribouy/
@@ -70,6 +70,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/gribouy/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jun 06 2004 Dag Wieers <dag@wieers.com> - 0.0.8-1
 - Add improved desktop file.
 

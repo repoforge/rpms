@@ -10,7 +10,7 @@
 Summary: mx-base libraries for Python
 Name: python-mx-base
 Version: 2.0.4
-Release: 0
+Release: 0.2
 License: Egenix.com Public License
 Group: Development/Libraries
 URL: http://www.lemburg.com/files/python/eGenix-mx-Extensions.html
@@ -53,5 +53,8 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{python_sitearch}/mx/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.4-0.2
+- Rebuild for Fedora Core 5.
+
 * Sat Aug 02 2003 Dag Wieers <dag@wieers.com> - 2.0.4-0
 - Initial package. (using DAR)

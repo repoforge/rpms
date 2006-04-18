@@ -5,7 +5,7 @@
 Summary: Remote control for text mode virtual consoles
 Name: conspy
 Version: 1.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://ace-host.stuart.id.au/russell/files/conspy/
@@ -44,6 +44,9 @@ used.
 %{_bindir}/conspy
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jan 25 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1
 - Updated to release 1.4.
 

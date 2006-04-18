@@ -8,7 +8,7 @@
 Summary: Hercules S/370, ESA/390, and z/Architecture emulator
 Name: hercules
 Version: 3.02
-Release: %{?date:0.%{date}.}1
+Release: %{?date:0.%{date}.}1.2
 License: QPL
 Group: Applications/Emulators
 URL: http://www.conmicro.cx/hercules/
@@ -183,6 +183,9 @@ EOF
 %exclude %{_libdir}/hercules/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.02-%{?date:0.%{date}.}1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jan 25 2005 Dag Wieers <dag@wieers.com> - 3.02-1
 - Updated to release 3.02.
 

@@ -4,7 +4,7 @@
 Summary: Merge of libpixregion and libic
 Name: libpixman
 Version: 0.1.2
-Release: 1
+Release: 1.2
 License: MIT
 Group: System Environment/Libraries
 URL: http://www.cairographics.org/
@@ -63,6 +63,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libpixman.pc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 0.1.2-1
 - Updated to release 0.1.1.
 

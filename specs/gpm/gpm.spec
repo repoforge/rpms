@@ -9,7 +9,7 @@
 Summary: Mouse server for the Linux console
 Name: gpm
 Version: 1.20.1
-Release: 35.1
+Release: 35.1.2
 License: GPL
 Group: System Environment/Daemons
 URL: http://linux.schottelius.org/gpm/
@@ -253,6 +253,9 @@ fi
 %{_libdir}/*.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.20.1-35.1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Oct 20 2003 Dag Wieers <dag@wieers.com> - 1.20.1-35.1
 - Fixed sysconfig and %%config.
 

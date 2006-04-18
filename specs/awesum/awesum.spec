@@ -12,7 +12,7 @@
 Summary: Graphical checksum verifier
 Name: awesum
 Version: 0.6.0
-Release: 1
+Release: 1.2
 License: BSD
 Group: Applications/File
 URL: http://awesum.sourceforge.net/
@@ -73,5 +73,8 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %exclude %{_docdir}/awesum/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue May 04 2004 Dag Wieers <dag@wieers.com> - 0.6.0-1
 - Initial package. (using DAR)

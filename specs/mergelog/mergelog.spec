@@ -5,7 +5,7 @@
 Summary: Merges httpd log files by date
 Name: mergelog
 Version: 4.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/File
 URL: http://mergelog.sourceforge.net/
@@ -41,5 +41,8 @@ gzipped log files
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue May 11 2004 Dag Wieers <dag@wieers.com> - 4.5-1
 - Initial package. (using DAR)

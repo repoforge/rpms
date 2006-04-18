@@ -7,7 +7,7 @@
 Summary: GNOME frontend to mplayer, the great movie player for *nix
 Name: lumiere
 Version: 0.4
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://brain.shacknet.nu/lumiere.html
@@ -51,6 +51,9 @@ scrollkeeper-update -q
 %{_libdir}/lib/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon Aug 25 2003 Dag Wieers <dag@wieers.com> - 0.4.0-0
 - Updated to release 0.4.0.
 

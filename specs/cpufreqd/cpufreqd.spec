@@ -5,7 +5,7 @@
 Summary: CPU frequency scaling daemon
 Name: cpufreqd
 Version: 1.2.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Kernel
 URL: http://cpufreqd.sourceforge.net/
@@ -152,6 +152,9 @@ fi
 %{_libdir}/libsys_*.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jul 24 2004 Dag Wieers <dag@wieers.com> - 1.2.0-1
 - Updated to release 1.2.0.
 

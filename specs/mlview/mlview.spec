@@ -7,7 +7,7 @@
 Summary: Graphical XML Editor
 Name: mlview
 Version: 0.8
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Editors
 URL: http://www.mlview.org/
@@ -102,6 +102,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %exclude %{_libdir}/libmlviewdbusclient.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jul 13 2005 Dag Wieers <dag@wieers.com> - 0.8-1
 - Updated to release 0.8.
 

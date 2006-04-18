@@ -5,7 +5,7 @@
 Summary: Offline mail server with pop3 client support
 Name: masqmail
 Version: 0.2.20
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://innominate.org/kurth/masqmail/
@@ -206,5 +206,8 @@ fi
 %{_localstatedir}/spool/masqmail/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.20-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Apr 29 2004 Dag Wieers <dag@wieers.com> - 0.2.20-1
 - Initial package. (using DAR)

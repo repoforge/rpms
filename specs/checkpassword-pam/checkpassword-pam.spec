@@ -4,7 +4,7 @@
 Summary: Provides a simple, uniform password-checking interface using PAM
 Name: checkpassword-pam
 Version: 0.99
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://checkpasswd-pam.sourceforge.net/
@@ -48,6 +48,9 @@ support POP toasters.
 %{_bindir}/checkpassword-pam
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.99-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 0.99-1
 - Updated to release 0.99.
 

@@ -4,7 +4,7 @@
 Summary: MOD music file playing library
 Name: libmodplug
 Version: 0.7
-Release: 1
+Release: 1.2
 License: Public Domain
 Group: System Environment/Libraries
 URL: http://modplug-xmms.sourceforge.net/
@@ -61,5 +61,8 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libmodplug.pc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Apr 06 2005 Dag Wieers <dag@wieers.com> - 0.7-1
 - Initial package. (using DAR)

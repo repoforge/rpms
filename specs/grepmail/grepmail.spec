@@ -5,7 +5,7 @@
 Summary: Search for emails in a mailbox using regular expressions
 Name: grepmail
 Version: 5.3032
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://grepmail.sourceforge.net/
@@ -41,6 +41,9 @@ using a regular expression or date constraint.
 %{_bindir}/grepmail
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 5.3032-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Aug 05 2005 Dag Wieers <dag@wieers.com> - 5.3032-1
 - Updated to release 5.3032.
 - Added missing perl(Date::Parse) dependency. (Ed Wilts)

@@ -13,7 +13,7 @@
 Summary: Graphical front-end for gcov
 Name: ggcov
 Version: 0.2.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Tools
 URL: http://www.alphalink.com.au/~gnb/ggcov/
@@ -87,6 +87,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-ggcov.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Apr 05 2004 Dag Wieers <dag@wieers.com> - 0.2.2-1
 - Updated to release 0.2.2.
 

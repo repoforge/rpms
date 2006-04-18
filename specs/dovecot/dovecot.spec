@@ -10,7 +10,7 @@
 Summary: Secure IMAP server
 Name: dovecot
 Version: 0.99.14
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Daemons
 URL: http://dovecot.org/
@@ -223,6 +223,9 @@ fi
 %{_localstatedir}/run/dovecot-login/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.99.14-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan 09 2005 Dag Wieers <dag@wieers.com> - 0.99.13-1
 - Updated to release 0.99.13.
 

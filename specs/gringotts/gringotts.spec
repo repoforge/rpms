@@ -9,7 +9,7 @@
 Summary: Electronic strongbox
 Name: gringotts
 Version: 1.2.8
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Productivity
 URL: http://devel.pluto.linux.it/projects/Gringotts/
@@ -78,6 +78,9 @@ EOF
 %{_bindir}/gringotts
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 29 2004 Dag Wieers <dag@wieers.com> - 1.2.8-1
 - Fix for gtk 2.4. (Rok Mandeljc)
 

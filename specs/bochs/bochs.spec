@@ -20,7 +20,7 @@
 Summary: IA-32 (x86) PC emulator
 Name: bochs
 Version: 2.2.1
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Applications/Emulators
 URL: http://bochs.sf.net/
@@ -93,6 +93,9 @@ fi
 %{_datadir}/bochs/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr 15 2006 Dag Wieers <dag@wieers.com> - 2.2.1-2
 - Excluded bochs-dlx manpage.
 

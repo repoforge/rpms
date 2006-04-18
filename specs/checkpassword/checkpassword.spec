@@ -6,7 +6,7 @@
 Summary: Provides a simple, uniform password-checking interface
 Name: checkpassword
 Version: 0.90
-Release: 2
+Release: 2.2
 License: GPL
 Group: System Environment/Base
 URL: http://cr.yp.to/checkpwd.html
@@ -49,6 +49,9 @@ support POP toasters.
 %{_bindir}/checkpassword
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.90-2.2
+- Rebuild for Fedora Core 5.
+
 * Mon Feb 24 2003 Dag Wieers <dag@wieers.com> - 0.90-2
 - Fixed a problem with _bindir.
 

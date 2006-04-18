@@ -10,7 +10,7 @@
 Summary: Expect module for Python
 Name: python-expect
 Version: 0.99999b
-Release: 2
+Release: 2.2
 License: PSFL
 Group: Development/Languages
 URL: http://pexpect.sourceforge.net/
@@ -67,6 +67,9 @@ standard Python pty module.
 %ghost %{python_sitelib}/pexpect.pyo
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.99999b-2.2
+- Rebuild for Fedora Core 5.
+
 * Mon Sep 12 2005 Dag Wieers <dag@wieers.com> - 0.99999b-2
 - Added python-pexpect as obsoletes.
 

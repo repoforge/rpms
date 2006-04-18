@@ -6,7 +6,7 @@
 Summary:  LDAP Account Manager
 Name: ldap-account-manager
 Version: 0.4.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://lam.sourceforge.net/
@@ -75,5 +75,8 @@ find %{buildroot} -name "*.pl" -exec chmod a+x {} \;
 %{_localstatedir}/www/lam/tmp/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jun 29 2004 Dag Wieers <dag@wieers.com> - 0.4.6-1
 - Initial package. (using DAR)

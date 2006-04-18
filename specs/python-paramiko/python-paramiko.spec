@@ -8,7 +8,7 @@
 Summary: SSH2 protocol for Python
 Name: python-paramiko
 Version: 1.5.3
-Release: 2
+Release: 2.2
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.lag.net/~robey/paramiko/
@@ -52,6 +52,9 @@ the paramiko module.
 %ghost %{python_sitelib}/paramiko/*.pyo
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.5.3-2.2
+- Rebuild for Fedora Core 5.
+
 * Fri Mar 10 2006 Dag Wieers <dag@wieers.com> - 1.5.3-2
 - Added .pyo ghost files.
 

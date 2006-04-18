@@ -10,7 +10,7 @@
 Summary: GNOME Chess game
 Name: gnome-chess
 Version: 0.3.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://www.gnome.org/
@@ -96,6 +96,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jun 24 2004 Dag Wieers <dag@wieers.com> - 0.3.3-1
 - Added improved desktop file.
 

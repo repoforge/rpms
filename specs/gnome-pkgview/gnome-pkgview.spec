@@ -5,7 +5,7 @@
 Summary: Tool for determining versions of installed GNOME packages
 Name: gnome-pkgview
 Version: 1.0.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://www.greatnorthern.demon.co.uk/gnome-pkgview.html
@@ -57,6 +57,9 @@ scrollkeeper-update -q
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat May 22 2004 Dag Wieers <dag@wieers.com> - 1.0.6-1
 - Updated to release 1.0.6.
 

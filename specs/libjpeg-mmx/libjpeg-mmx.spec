@@ -6,7 +6,7 @@
 Summary: Tools for the movtar MJPEG video format
 Name: libjpeg-mmx
 Version: 0.1.4
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/
@@ -51,6 +51,9 @@ of the libjpeg-mmx package.
 %{_libdir}/*.a
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.4-0.2
+- Rebuild for Fedora Core 5.
+
 * Tue Apr 08 2003 Dag Wieers <dag@wieers.com> - 0.1.4-0
 - Split from earlier "mjpegtools" package.
 - Initial package. (using DAR)

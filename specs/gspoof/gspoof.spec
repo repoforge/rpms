@@ -8,7 +8,7 @@
 Summary: Network tool to build and send TCP/IP packets
 Name: gspoof
 Version: 3.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://gspoof.sourceforge.net/
@@ -89,5 +89,8 @@ EOF
 %exclude %{_datadir}/gspoof/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Apr 11 2004 Dag Wieers <dag@wieers.com> - 3.2-1
 - Initial package. (using DAR)

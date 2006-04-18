@@ -11,7 +11,7 @@
 Summary: Outline and bitmap font editor
 Name: fontforge
 Version: 0.0
-Release: 0.cvs20050502
+Release: 0.cvs20050502.2
 License: BSD
 Group: Applications/Publishing
 URL: http://fontforge.sourceforge.net/
@@ -99,5 +99,8 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %exclude %{_libdir}/*.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0-0.cvs20050502.2
+- Rebuild for Fedora Core 5.
+
 * Mon May 30 2005 Dag Wieers <dag@wieers.com> - 0.0-0.20050502
 - Initial package. (using DAR)

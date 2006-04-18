@@ -9,7 +9,7 @@
 Name: python-mad
 Summary: Python Wrapper for the MPEG Audio Decoder Library
 Version: 0.5.4
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Development/Libraries
 URL: http://spacepants.org/src/pymad/
@@ -46,6 +46,9 @@ export CFLAGS="%{optflags}"
 %{python_sitearch}/madmodule.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jul 22 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.4-1
 - Update to release 0.5.4.
 

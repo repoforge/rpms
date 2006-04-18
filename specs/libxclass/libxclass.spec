@@ -17,7 +17,7 @@
 Summary: C++ X11 widget set providing win95 look and feel
 Name: libxclass
 Version: 0.9.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Libraries
 URL: http://xclass.sourceforge.net/
@@ -96,6 +96,9 @@ against.
 %{_libdir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1
 - Updated to release 0.9.1.
 

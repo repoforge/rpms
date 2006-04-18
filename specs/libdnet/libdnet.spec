@@ -6,7 +6,7 @@
 Summary: Simple portable interface to lowlevel networking routines
 Name: libdnet
 Version: 1.11
-Release: 1
+Release: 1.2
 License: BSD-like
 Group: System Environment/Libraries
 URL: http://libdnet.sourceforge.net/
@@ -68,6 +68,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libdnet.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Feb 21 2006 Dag Wieers <dag@wieers.com> - 1.11-1
 - Updated to release 1.11.
 

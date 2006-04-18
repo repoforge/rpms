@@ -22,7 +22,7 @@
 Summary: Vector drawing application
 Name: inkscape
 Version: 0.43
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://inkscape.sourceforge.net/
@@ -99,6 +99,9 @@ EOF
 %{_datadir}/pixmaps/inkscape.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.43-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.43-1
 - Updated to release 0.43.
 

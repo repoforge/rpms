@@ -9,7 +9,7 @@
 Summary: Tools for network auditing and penetration testing
 Name: dsniff
 Version: 2.4
-Release: 0.b1
+Release: 0.b1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.monkey.org/~dugsong/dsniff/
@@ -52,6 +52,9 @@ dsniff is a collection of tools for network auditing and penetration testing.
 %{_sbindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.4-0.b1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 26 2004 Dag Wieers <dag@wieers.com> - 2.4-0.b1
 - Updated to release 2.4b1.
 

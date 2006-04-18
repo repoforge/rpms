@@ -4,7 +4,7 @@
 Summary: Jabber client library.
 Name: loudmouth
 Version: 0.16
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://projects.imendio.com/loudmouth/
@@ -62,6 +62,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Apr 29 2004 Dag Wieers <dag@wieers.com> - 0.16-1
 - Updated to release 0.16.
 

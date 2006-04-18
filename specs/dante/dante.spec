@@ -8,7 +8,7 @@
 Summary: Free Socks v4/v5 client implementation
 Name: dante
 Version: 1.1.18
-Release: 1
+Release: 1.2
 License: BSD-type
 Group: Applications/Internet
 URL: http://www.inet.no/dante/
@@ -308,6 +308,9 @@ fi
 %{_includedir}/socks.h
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.18-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Sep 09 2005 Dag Wieers <dag@wieers.com> - 1.1.18-1
 - Updated to release 1.1.18.
 

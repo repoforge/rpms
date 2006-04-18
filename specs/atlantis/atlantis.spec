@@ -7,7 +7,7 @@
 Summary: Light-weight GNOME web browser
 Name: atlantis
 Version: 0.1.3
-Release: 1
+Release: 1.2
 License: Proprietary/Binary Only
 Group: Applications/Internet
 URL: http://www.akcaagac.com/index_atlantis.html
@@ -49,6 +49,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/pixmaps/atlantis.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon May 02 2005 Dag Wieers <dag@wieers.com> - 0.1.3-1
 - Updated to release 0.1.3.
 

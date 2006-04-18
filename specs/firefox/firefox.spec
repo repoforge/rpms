@@ -13,7 +13,7 @@
 Summary: Mozilla Firefox web browser
 Name: firefox
 Version: 0.10.1
-Release: 0.1
+Release: 0.1.2
 License: MPL/LGPL
 Group: Applications/Internet
 URL: http://www.mozilla.org/projects/firefox/
@@ -271,6 +271,9 @@ fi
 %{!?_without_freedesktop:%{_datadir}/applications/net-firefox.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.10.1-0.1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Oct 04 2004 Dag Wieers <dag@wieers.com> - 0.10.1-0.1
 - Disable typeaheadfind as it breaks things. (Matthias Hensler)
 - Added more patches from rawhide.

@@ -9,7 +9,7 @@
 Summary: Python wrapper for libnids (Network Intrusion Detection System)
 Name: python-nids
 Version: 0.5
-Release: 2
+Release: 2.2
 License: GPL
 Group: Development/Libraries
 URL: http://pilcrow.madison.wi.us/pynids/
@@ -45,6 +45,9 @@ CFLAGS="%{optflags} -fPIC -fomit-frame-pointer -DPIC" %{__python} setup.py build
 %{python_sitearch}/nidsmodule.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-2.2
+- Rebuild for Fedora Core 5.
+
 * Sat Mar 19 2005 Dag Wieers <dag@wieers.com> - 0.5-2
 - Fixed left-over stuff from python-adns. (Jeff Pitman)
 

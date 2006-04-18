@@ -5,7 +5,7 @@
 Summary: AutoUpdate, a simple perl script to keep your system up2date
 Name: autoupdate
 Version: 5.3.12
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://www.mat.univie.ac.at/~gerald/ftp/autoupdate/
@@ -67,6 +67,9 @@ done
 %{_libdir}/perl5/site_perl/autoupdate/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 5.3.12-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 5.3.12-1
 - Updated to release 5.3.12.
 

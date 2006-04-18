@@ -6,7 +6,7 @@
 Summary: Linux Audio Developer's Simple Plugin API
 Name: ladspa
 Version: 1.12
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.ladspa.org/
@@ -77,6 +77,9 @@ you will need to install %{name}-devel.
 %{_includedir}/*.h
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.12-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Feb 19 2004 Dag Wieers <dag@wieers.com> - 1.12-1
 - Obsoletes ladspa-sdk. (Rudolf Kastl, #15)
 

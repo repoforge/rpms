@@ -15,7 +15,7 @@
 Summary: Python's own image processing library
 Name: python-imaging
 Version: 1.1.4
-Release: 2
+Release: 2.2
 License: Distributable
 Group: Development/Libraries
 URL: http://www.pythonware.com/products/pil/
@@ -69,6 +69,9 @@ popd
 
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.4-2.2
+- Rebuild for Fedora Core 5.
+
 * Thu Oct 21 2004 Matthias Saou <http://freshrpms.net/> 1.1.4-2
 - Further spec file updates.
 - Build without tcl/tk... which shouldn't harm for a python/gtk module!

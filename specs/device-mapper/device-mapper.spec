@@ -9,7 +9,7 @@
 Summary: Device mapper library
 Name: device-mapper
 Version: 1.00.07
-Release: 0
+Release: 0.2
 License: GPL
 Group: System Environment/Base
 URL: http://www.sistina.com/
@@ -55,5 +55,8 @@ dmsetup) for the device-mapper.
 %{_includedir}/*.h
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.00.07-0.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jan 27 2004 Dag Wieers <dag@wieers.com> - 1.00.07-0
 - Initial package. (using DAR)

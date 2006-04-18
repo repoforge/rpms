@@ -5,7 +5,7 @@
 Summary: Userspace utility for testing the memory subsystem for faults
 Name: memtester
 Version: 4.0.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://pyropus.ca/software/memtester/
@@ -37,6 +37,9 @@ memtester is a userspace utility for testing the memory subsystem for faults.
 %{_bindir}/memtester
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.0.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 15 2005 Dag Wieers <dag@wieers.com> - 4.0.5-1
 - Updated to release 4.0.5.
 

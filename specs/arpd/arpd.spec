@@ -4,7 +4,7 @@
 Summary: ARP reply daemon
 Name: arpd
 Version: 0.2
-Release: 1
+Release: 1.2
 License: OpenSource
 Group: Applications/Internet
 URL: http://www.citi.umich.edu/u/provos/arpd/
@@ -45,6 +45,9 @@ but only after determining if another host already claims it.
 %{_sbindir}/arpd
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Sep 03 2005 Dag Wieers <dag@wieers.com> - 0.2-2
 - Fixed a problem with gcc4. (Francisco Monserrat)
 

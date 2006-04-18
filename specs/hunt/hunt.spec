@@ -5,7 +5,7 @@
 Summary: TCP hijacking tool
 Name: hunt
 Version: 1.5
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Internet
 URL: http://lin.fsid.cvut.cz/~kra/#HUNT
@@ -54,5 +54,8 @@ connections it sees.
 %{_sbindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.5-0.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jul 13 2003 Dag Wieers <dag@wieers.com> - 1.5-0
 - Initial package. (using DAR)

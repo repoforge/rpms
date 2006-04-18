@@ -4,7 +4,7 @@
 Summary: Generate thousands of counterfeit 802.11b access points
 Name: fakeap
 Version: 0.3.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.blackalchemy.to/project/fakeap/
@@ -40,5 +40,8 @@ Wardrivers, NetStumblers, Script Kiddies, and other undesirables.
 %{_bindir}/fakeap
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Aug 22 2005 Dag Wieers <dag@wieers.com> - 0.3.2-1
 - Initial package. (using DAR)

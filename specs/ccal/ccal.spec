@@ -7,7 +7,7 @@
 Summary: Curses-based calendar/journal/diary & todo list program
 Name: ccal
 Version: 0.6
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/Productivity
 URL: http://www.jamiehillman.co.uk/ccal/
@@ -42,6 +42,9 @@ Ccal is a curses-based calendar/journal/diary & todo list program.
 %{_bindir}/ccal
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-2.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec 10 2004 Dag Wieers <dag@wieers.com> - 0.6-2
 - Fixed Group tag.
 

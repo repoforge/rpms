@@ -6,7 +6,7 @@
 Summary: Graphical editor for creating man pages.
 Name: manedit
 Version: 0.6.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Tools
 URL: http://wolfpack.twu.net/ManEdit/
@@ -79,6 +79,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/applications/%{desktop_vendor}-manedit.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.6.1-1
 - Updated to release 0.6.1.
 

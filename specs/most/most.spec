@@ -5,7 +5,7 @@
 Summary: text viewer similar to more or less, but with additional capabilities
 Name: most
 Version: 4.10.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Text
 URL: ftp://space.mit.edu/pub/davis/most/
@@ -44,6 +44,9 @@ number, and the percentage of the file so far displayed.
 %{_bindir}/most
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.10.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Oct 13 2005 Dries Verachtert <dries@ulyssis.org> - 4.10.2-1
 - Updated to release 4.10.2.
 

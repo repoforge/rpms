@@ -6,7 +6,7 @@
 Summary: Simple ELF header analyzer
 Name: elf
 Version: 0.5.4
-Release: 0.p1
+Release: 0.p1.2
 License: GPL
 Group: Applications/System
 URL: http://www.kerneled.com/projects/elf/
@@ -51,6 +51,9 @@ and command-line mode is available.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.4-0.p1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Oct 19 2003 Dag Wieers <dag@wieers.com> - 0.5.4-0.p1
 - Updated to release 0.5.4p1.
 

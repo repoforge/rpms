@@ -8,7 +8,7 @@
 Summary: Genealogical Research and Analysis Management Programming System
 Name: gramps
 Version: 2.0.10
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Editors
 URL: http://gramps.sourceforge.net/
@@ -85,6 +85,9 @@ scrollkeeper-update -q || :
 %{_datadir}/omf/gramps/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.10-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Mar 12 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.10-1
 - Updated to release 2.0.10.
 

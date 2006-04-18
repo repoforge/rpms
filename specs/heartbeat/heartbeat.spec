@@ -4,7 +4,7 @@
 Summary: Heartbeat subsystem for High-Availability Linux
 Name: heartbeat
 Version: 1.0.2
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Internet
 URL: http://linux-ha.org/
@@ -263,6 +263,9 @@ fi
 true
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.2-0.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan 19 2003 Dag Wieers <dag@wieers.com>
 - Initial package. (using DAR)
 

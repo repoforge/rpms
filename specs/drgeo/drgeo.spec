@@ -13,7 +13,7 @@
 Summary: Interactive educational geometry software
 Name: drgeo
 Version: 1.1.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Engineering
 URL: http://ofset.sourceforge.net/drgeo/
@@ -86,6 +86,9 @@ EOF
 %{?_without_freedesktop:%{_datadir}/applications/drgeo.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Mar 06 2005 Dag Wieers <dag@wieers.com> - 1.0.0-1
 - Updated to release 1.0.0.
 

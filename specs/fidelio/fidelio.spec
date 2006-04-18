@@ -6,7 +6,7 @@
 Summary: Graphical Hotline client with almost full 1.5 compatibility
 Name: fidelio
 Version: 1.0
-Release: 0.b1
+Release: 0.b1.2
 License: GPL
 Group: Applications/Internet
 URL: http://fidelio.sourceforge.net/
@@ -43,5 +43,8 @@ functions are not.
 %{_datadir}/fidelio.default
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-0.b1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Feb 10 2003 Dag Wieers <dag@wieers.com> - 1.0-0.b1
 - Initial package. (using DAR)

@@ -6,7 +6,7 @@
 Summary: Library for writing pagers and taskslists
 Name: libwnck
 Version: 0.18
-Release: 0
+Release: 0.2
 License: GPL
 Group: System Environment/Libraries
 URL: ftp://ftp.gnome.org/
@@ -66,5 +66,8 @@ developing applications using libwnck.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.18-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon Feb 03 2003 Dag Wieers <dag@wieers.com>
 - Initial package. (using DAR)

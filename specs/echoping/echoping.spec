@@ -5,7 +5,7 @@
 Summary: Test performances of a remote host by sending it TCP "echo" packets
 Name: echoping
 Version: 5.2.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://echoping.sourceforge.net/
@@ -40,5 +40,8 @@ a remote host by sending it TCP "echo" (or other protocol) packets.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 5.2.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 5.2.0-1
 - Initial package. (using DAR)

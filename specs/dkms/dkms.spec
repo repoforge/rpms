@@ -5,7 +5,7 @@
 Summary: Dynamic Kernel Module Support
 Name: dkms
 Version: 0.31.04
-Release: 0
+Release: 0.2
 Group: System Environment/Kernel
 License: GPL
 URL: http://www.lerhaupt.com/linux.html
@@ -49,5 +49,8 @@ attempting to recompile modules for new kernels.
 %{_localstatedir}/dkms/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.31.04-0.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jun 24 2003 Dag Wieers <dag@wieers.com> - 0.31.04-0
 - Initial package. (using DAR)

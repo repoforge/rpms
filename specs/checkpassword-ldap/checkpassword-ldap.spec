@@ -5,7 +5,7 @@
 Summary: Provides a simple, uniform password-checking interface using an LDAP database.
 Name: checkpassword-ldap
 Version: 0.01
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://chkpasswd-ldap.sourceforge.net/
@@ -35,5 +35,8 @@ ${CC:-%{__cc}} %{optflags} -o checkpassword-ldap checkpassword-ldap.o -lldap -ld
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 16 2004 Dag Wieers <dag@wieers.com> - 0.01-1
 - Initial package. (using DAR)

@@ -14,7 +14,7 @@
 Summary: Top-like display of Apache logs
 Name: apachetop
 Version: 0.12.5
-Release: 1
+Release: 1.2
 License: BSD
 Group: Applications/Internet
 URL: http://clueful.shagged.org/apachetop/
@@ -53,6 +53,9 @@ fields in combined) and generates human-parsable output in realtime.
 %{_bindir}/apachetop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.12.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Aug 12 2005 Dag Wieers <dag@wieers.com> - 0.12.5-1
 - Updated to release 0.12.5.
 

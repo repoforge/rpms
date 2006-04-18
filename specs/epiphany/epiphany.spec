@@ -7,7 +7,7 @@
 Summary: Web browser based on the mozilla rendering engine
 Name: epiphany
 Version: 1.2.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.gnome.org/projects/epiphany/
@@ -87,6 +87,9 @@ scrollkeeper-update -q || :
 %{_includedir}/epiphany-1.0/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu May 20 2004 Dag Wieers <dag@wieers.com> - 1.2.5-1
 - Updated to release 1.2.5.
 

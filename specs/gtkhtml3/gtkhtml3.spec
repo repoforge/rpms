@@ -8,7 +8,7 @@
 Summary: The Gtk+ HTML viewing widget version 3
 Name: gtkhtml3
 Version: 3.0.8
-Release: 0
+Release: 0.2
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.gnome.org/
@@ -79,5 +79,8 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.0.8-0.2
+- Rebuild for Fedora Core 5.
+
 * Thu Aug 14 2003 Dag Wieers <dag@wieers.com> - 3.1.0-2
 - Initial package. (using DAR)

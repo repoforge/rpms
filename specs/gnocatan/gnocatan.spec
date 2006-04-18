@@ -13,7 +13,7 @@
 Summary: Addictive game based on "The Settlers of Catan"
 Name: gnocatan
 Version: 0.8.1.43
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://gnocatan.sourceforge.net/
@@ -110,6 +110,9 @@ scrollkeeper-update -q || :
 %{_datadir}/applications/%{desktop_vendor}-gnocatan-server.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.1.43-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Nov 23 2004 Dag Wieers <dag@wieers.com> - 0.8.1.43-1
 - Updated to release 0.8.1.43.
 

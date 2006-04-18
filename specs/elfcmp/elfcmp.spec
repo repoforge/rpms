@@ -4,7 +4,7 @@
 Summary: ELF binary-to-process comparison tool
 Name: elfcmp
 Version: 1.0.0
-Release: 0
+Release: 0.2
 License: GPL
 Group: System Environment/Base
 URL: http://www.hick.org/code/skape/elfcmp/
@@ -38,5 +38,8 @@ ELF binary-to-process comparison tool.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.0-0.2
+- Rebuild for Fedora Core 5.
+
 * Thu Oct 23 2003 Dag Wieers <dag@wieers.com> - 1.0.0-0
 - Initial package. (using DAR)

@@ -5,7 +5,7 @@
 Summary: Library for dealing with Microsoft ITSS/CHM format files
 Name: chmlib
 Version: 0.37.4
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://66.93.236.84/~jedwin/projects/chmlib/
@@ -81,6 +81,9 @@ you will need to install %{name}-devel.
 %{_includedir}/chm_lib.h
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.37.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Nov 17 2005 Dries Verachtert <dries@ulyssis.org> - 0.37.4-1
 - Updated to release 0.37.4.
 

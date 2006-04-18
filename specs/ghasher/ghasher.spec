@@ -7,7 +7,7 @@
 Summary: Grapical MD5 hash tool
 Name: ghasher
 Version: 1.2.0
-Release: 1
+Release: 1.2
 License: BSD
 Group: Applications/File
 URL: http://asgaard.homelinux.org/code/ghasher/
@@ -61,5 +61,8 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/ghasher.xpm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Mar 05 2005 Dag Wieers <dag@wieers.com> - 1.2.0-1
 - Initial package. (using DAR)

@@ -8,7 +8,7 @@
 Summary: Library and Mail Delivery Agent for Bayesian spam filtering
 Name: dspam
 Version: 2.10.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Daemons
 URL: http://dspam.nuclearelephant.com/
@@ -258,6 +258,9 @@ fi
 %{_includedir}/*.h
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.10.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 2.10.1-1
 - Updated to release 2.10.1.
 

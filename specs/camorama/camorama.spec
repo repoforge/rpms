@@ -4,7 +4,7 @@
 Summary: Graphical webcam application featuring various image filters
 Name: camorama
 Version: 0.17
-Release: 0
+Release: 0.2
 Group: Applications/Multimedia
 License: GPL
 URL: http://camorama.fixedgear.org/
@@ -60,6 +60,9 @@ scrollkeeper-update -q
 %{_datadir}/applications/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.17-0.2
+- Rebuild for Fedora Core 5.
+
 * Thu Aug 21 2003 Dag Wieers <dag@wieers.com> - 0.17-0
 - Updated to release 0.17.
 

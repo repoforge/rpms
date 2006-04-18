@@ -4,7 +4,7 @@
 Summary: Suite of simple, portable benchmarks
 Name: lmbench
 Version: 3.0
-Release: 0.a5
+Release: 0.a5.2
 License: GPL
 Group: Utilities
 URL: http://www.bitmover.com/lmbench
@@ -66,5 +66,8 @@ cd -
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.0-0.a5.2
+- Rebuild for Fedora Core 5.
+
 * Tue Sep 13 2005 Dag Wieers <dag@wieers.com> - 3.0-0.a5
 Initial package. (using DAR)

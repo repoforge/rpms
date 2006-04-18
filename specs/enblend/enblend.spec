@@ -5,7 +5,7 @@
 Summary: Image Blending with Multiresolution Splines
 Name: enblend
 Version: 2.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://enblend.sourceforge.net/
@@ -51,6 +51,9 @@ does not line up the images for you. Use a tool like Hugin to do that.
 %{_bindir}/enblend
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 12 2005 Dries Verachtert <dries@ulyssis.org> - 2.5-1
 - Updated to release 2.5.
 

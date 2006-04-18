@@ -9,7 +9,7 @@
 Summary: Python bindings for GNU adns library
 Name: python-adns
 Version: 1.1.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: http://dustman.net/andy/python/adns-python/
@@ -43,6 +43,9 @@ CFLAGS="%{optflags} -fPIC -fomit-frame-pointer -DPIC" %{__python} setup.py build
 %{python_sitearch}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.1.0-1
 - Updated to release 1.1.0.
 

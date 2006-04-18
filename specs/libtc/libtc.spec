@@ -5,7 +5,7 @@
 Summary: Collection of useful functions for C programming
 Name: libtc
 Version: 1.1.0
-Release: 1
+Release: 1.2
 License: MIT/X11
 Group: System Environment/Libraries
 URL: http://libtc.sourceforge.net/
@@ -68,6 +68,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr 17 2004 Dag Wieers <dag@wieers.com> - 1.1.0-1
 - Fixed problem with installing the info files. (Laurent Papier)
 

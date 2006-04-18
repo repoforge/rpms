@@ -5,7 +5,7 @@
 Summary: Library for writing gnome database programs
 Name: libgnomedb
 Version: 1.2.2
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gnome-db.org/
@@ -98,6 +98,9 @@ scrollkeeper-update -q || :
 %{_includedir}/libgnomedb-*/libgnomedb/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jul 22 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.2-1
 - Updated to release 1.2.2.
 

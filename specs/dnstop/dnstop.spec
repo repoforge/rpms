@@ -7,7 +7,7 @@
 Summary: Displays various tables of DNS traffic on your network
 Name: dnstop
 Version: 0.0.%{real_version}
-Release: 0
+Release: 0.2
 License: BSD
 Group: Applications/Internet
 URL: http://dnstop.measurement-factory.com/
@@ -45,5 +45,8 @@ level domains.
 %{_sbindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.%{real_version}-0.2
+- Rebuild for Fedora Core 5.
+
 * Wed Sep 03 2003 Dag Wieers <dag@wieers.com> - 0.0.20030228-0
 - Initial package. (using DAR)

@@ -7,7 +7,7 @@
 Summary: Internationalized string processing library
 Name: libidn
 Version: 0.4.6
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://josefsson.org/libidn/releases/
@@ -90,6 +90,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed May 26 2004 Dag Wieers <dag@wieers.com> - 0.4.6-1
 - Updated to release 0.4.6.
 

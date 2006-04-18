@@ -13,7 +13,7 @@
 Summary: GNOME EMU10K1 configuration tool
 Name: gemu
 Version: 0.8
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.roadfeldt.com/
@@ -57,5 +57,8 @@ Mixer binding.
 %{_datadir}/gnome/apps/Multimedia/*.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-0.2
+- Rebuild for Fedora Core 5.
+
 * Wed May 28 2003 Dag Wieers <dag@wieers.com> - 0.8-0
 - Initial package. (using DAR)

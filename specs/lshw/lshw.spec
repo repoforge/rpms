@@ -14,7 +14,7 @@
 Summary: Hardware lister
 Name: lshw
 Version: 2.07
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://www.ezix.org/software/lshw.html
@@ -95,6 +95,9 @@ Information can be output in plain text, XML or HTML.
 %endif
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.07-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Mar 05 2006 Dag Wieers <dag@wieers.com> - 2.07-1
 - Updated to release B.02.07.
 

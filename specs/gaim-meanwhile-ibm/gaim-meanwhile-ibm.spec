@@ -5,7 +5,7 @@
 Summary: Lotus Sametime Community Client plugin for Gaim for Persona support
 Name: gaim-meanwhile-ibm
 Version: 1.0.1
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/Internet
 URL: http://w3.opensource.ibm.com/~meanwhile/
@@ -44,6 +44,9 @@ Lotus Sametime Community Client plugin for Gaim for Persona support.
 %{_libdir}/gaim/libpersona.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.1-2.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 22 2005 Dag Wieers <dag@wieers.com> - 1.0.1-2
 - Rebuild against gaim 1.2.0-0.
 

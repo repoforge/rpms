@@ -4,7 +4,7 @@
 Summary: Monitors hardware sensors
 Name: gnome-sensors
 Version: 0.9a
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/System
 URL: http://vkcorp.org/
@@ -37,6 +37,9 @@ Monitors hardware sensors.
 %{_libdir}/bonobo/servers/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9a-0.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jan 28 2003 Dag Wieers <dag@wieers.com> - 0.9a
 - Initial package. (using DAR)
 

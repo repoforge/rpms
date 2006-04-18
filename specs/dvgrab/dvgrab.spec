@@ -5,7 +5,7 @@
 Summary: DV grabber through the FireWire interface
 Name: dvgrab
 Version: 1.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://kino.schirmacher.de/
@@ -46,6 +46,9 @@ generation.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jul 27 2004 Matthias Saou <http://freshrpms.net> 1.6-1
 - Update to 1.6.
 

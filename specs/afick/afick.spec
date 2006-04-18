@@ -14,7 +14,7 @@
 Summary: File integrity checker
 Name: afick
 Version: 2.2
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/System
 URL: http://afick.sourceforge.net/
@@ -124,6 +124,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-afick.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2-2.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jun 15 2004 Dag Wieers <dag@wieers.com> - 2.2-2
 - Fixed afick cron script. (Charles)
 - Added improved desktop file.

@@ -6,7 +6,7 @@
 Summary: Dump the memory of a running process.
 Name: memfetch
 Version: 0.05
-Release: 0.b
+Release: 0.b.2
 License: GPL
 Group: Applications/System
 URL: http://lcamtuf.coredump.cx/
@@ -45,5 +45,8 @@ in any way you like.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-0.b.2
+- Rebuild for Fedora Core 5.
+
 * Mon Mar 29 2004 Dag Wieers <dag@wieers.com> - 0.05-0.b
 - Initial package. (using DAR)

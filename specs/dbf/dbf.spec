@@ -7,7 +7,7 @@
 Summary: Fast convert for dBase, Clipper, FoxBase and Visual FoxPro databases
 Name: dbf
 Version: 0.8.3.1
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Applications/Databases
 URL: http://dbf.berlios.de/
@@ -46,6 +46,9 @@ sheets. It can also be used to show some statistics about the content.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.3.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Apr 21 2004 Dag Wieers <dag@wieers.com> - 0.8.3.1-1
 - Updated to release 0.8.3.1.
 

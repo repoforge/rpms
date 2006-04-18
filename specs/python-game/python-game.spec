@@ -8,7 +8,7 @@
 Summary: Python module for interfacing with the SDL multimedia library
 Name: python-game
 Version: 1.7.1
-Release: 0
+Release: 0.2
 License: LGPL style
 Group: Development/Libraries
 URL: http://pygame.org/
@@ -70,6 +70,9 @@ Install pygame-doc if you need the API documentation and example programs.
 %doc docs/ examples/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.7.1-0.2
+- Rebuild for Fedora Core 5.
+
 * Wed Aug 17 2005 C.Lee Taylor <leet@leenx.co.za> - 1.7.1-0
 - Updated to release 1.7.1.
 - Fix url for new site

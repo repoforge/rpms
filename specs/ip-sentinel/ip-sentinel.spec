@@ -5,7 +5,7 @@
 Summary: tool to prevent unauthorized usage of IPs
 Name: ip-sentinel
 Version: 0.11
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.tu-chemnitz.de/~ensc/ip-sentinel/
@@ -79,6 +79,9 @@ service ip-sentinel condrestart &>/dev/null || :
 %{_var}/lib/ip-sentinel/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.11-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 20 2004 Dag Wieers <dag@wieers.com> - 0.11-1
 - Updated to release 0.11.
 

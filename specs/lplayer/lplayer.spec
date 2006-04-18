@@ -7,7 +7,7 @@
 Summary: Playlist manager for XMMS with voting support
 Name: lplayer
 Version: 0.99.1
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://lplayer.sourceforge.net/
@@ -88,6 +88,9 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %endif
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.99.1-0.2
+- Rebuild for Fedora Core 5.
+
 * Thu Oct 30 2003 Dag Wieers <dag@wieers.com> - 0.99.1-0
 - Updated to release 0.99.1.
 

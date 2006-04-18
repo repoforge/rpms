@@ -12,7 +12,7 @@
 Summary: WYSIWYM (What You See Is What You Mean) frontend to LaTeX
 Name: lyx
 Version: 1.3.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Publishing
 URL: http://www.lyx.org/
@@ -129,6 +129,9 @@ texhash &>/dev/null
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-lyx.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 05 2004 Dag Wieers <dag@wieers.com> - 1.3.5-1
 - Updated to release 1.3.5.
 

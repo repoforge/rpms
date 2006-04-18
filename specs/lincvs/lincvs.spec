@@ -5,7 +5,7 @@
 Summary: Graphical frontend to CVS.
 Name: lincvs
 Version: 1.4.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Tools
 URL: http://www.lincvs.org/
@@ -86,6 +86,9 @@ desktop-file-install --vendor net                  \
 %{_datadir}/pixmaps/*.xpm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Sep 05 2005 Dries Verachtert <dries@ulyssis.org> - 1.4.3-1
 - Updated to release 1.4.3.
 

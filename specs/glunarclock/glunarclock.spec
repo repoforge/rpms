@@ -7,7 +7,7 @@
 Summary: Display the current phase of the Moon as an applet for the gnome panel
 Name: glunarclock
 Version: 0.32.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://glunarclock.sourceforge.net/
@@ -63,6 +63,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.32.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Apr 29 2005 Dag Wieers <dag@wieers.com> - 0.32.4-0
 - Updated to release 0.32.4.
 

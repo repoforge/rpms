@@ -4,7 +4,7 @@
 Summary: DVD backup tool
 Name: lxdvdrip
 Version: 1.40
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://lxdvdrip.berlios.de/
@@ -48,5 +48,8 @@ automates the process of ripping, authoring, preview and burning a DVD.
 %{_bindir}/vamps
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.40-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec 03 2004 Dag Wieers <dag@wieers.com> - 1.40-1
 - Initial package. (using DAR)

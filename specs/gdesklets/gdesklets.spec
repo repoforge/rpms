@@ -6,7 +6,7 @@
 Summary: Advanced architecture for desktop applets
 Name: gdesklets
 Version: 0.35.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.gdesklets.org/
@@ -84,6 +84,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/gdesklets-displ
 %{_datadir}/mime/packages/gdesklets.xml
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.35.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Oct  1 2005 Martin Ebourne <martin@zepler.org> - 0.35.2-2
 - Fix build deps and mime install for FC4
 

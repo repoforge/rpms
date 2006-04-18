@@ -12,7 +12,7 @@
 Summary: Small and fast GUI web browser
 Name: dillo
 Version: 0.8.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.dillo.org/
@@ -89,6 +89,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-dillo.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 0.8.5-1
 - Updated to release 0.8.5.
 

@@ -8,7 +8,7 @@
 Summary: Voice plugin for gaim
 Name: gaim-festival
 Version: 1.00
-Release: 3
+Release: 3.2
 License: GPL
 Group: Applications/Internet
 URL: http://festival-gaim.sourceforge.net/
@@ -52,6 +52,9 @@ It use festival and is configurable.
 %{_libdir}/gaim/festival.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.00-3.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 22 2005 Dag Wieers <dag@wieers.com> - 1.00-3
 - Rebuild against gaim 1.2.0-0.
 

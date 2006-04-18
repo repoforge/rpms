@@ -6,7 +6,7 @@
 Summary: Accessibility implementation for GTK+ and GNOME libraries
 Name: gail
 Version: 1.8.2
-Release: 0
+Release: 0.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://developer.gnome.org/projects/gap/
@@ -72,6 +72,9 @@ you will need to install %{name}-devel.
 %{_datadir}/gtk-doc/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.8.2-0.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jul 01 2005 Dries Verachtert <dries@ulyssis.org> - 1.8.2-1
 - Update to release 1.8.2.
 

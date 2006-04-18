@@ -7,7 +7,7 @@
 Summary: Tray applet for displaying phonetic alphabets
 Name: alphapplet
 Version: 0.2
-Release: 0
+Release: 0.2
 Group: Applications/System
 License: GPL
 URL: http://dag.wieers.com/home-made/gnome-applets/#alphapplet
@@ -60,6 +60,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/alphapplet/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-0.2
+- Rebuild for Fedora Core 5.
+
 * Fri Sep 05 2003 Dag Wieers <dag@wieers.com> - 0.2-0
 - Updated to release 0.2.
 

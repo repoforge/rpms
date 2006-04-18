@@ -6,7 +6,7 @@
 Summary: Grpahical PDF viewer
 Name: gpdf
 Version: 0.103
-Release: 0
+Release: 0.2
 Group: Applications/Publishing
 License: GPL
 URL: http://www.inf.tu-dresden.de/~mk793652/gpdf/
@@ -50,6 +50,9 @@ gpdf is a GNOME PDF viewer, based on Xpdf.
 %{_datadir}/pixmaps/gpdf/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.103-0.2
+- Rebuild for Fedora Core 5.
+
 * Fri May 23 2003 Dag Wieers <dag@wieers.com> - 0.102-0
 - Updated to release 0.102.
 

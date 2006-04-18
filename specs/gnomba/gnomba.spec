@@ -10,7 +10,7 @@
 Summary: GNOME Samba Browser
 Name: gnomba
 Version: 0.6.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://gnomba.sourceforge.net/
@@ -74,6 +74,9 @@ EOF
 %endif
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 15 2003 Dag Wieers <dag@wieers.com> - 0.6.2-1
 - Improved desktop file.
 

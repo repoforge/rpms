@@ -4,7 +4,7 @@
 Summary: Advanced calculator
 Name: genius
 Version: 0.5.6
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Engineering
 URL: http://www.5z.com/jirka/genius.html
@@ -47,5 +47,8 @@ integers, complex numbers and matrixes.
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.6-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon Nov 24 2003 Dag Wieers <dag@wieers.com> - 0.5.6-0
 - Initial package. (using DAR)

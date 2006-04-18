@@ -10,7 +10,7 @@
 Summary: Fast XML parser and writer (written in C)
 Name: python-celementtree
 Version: 1.0.5
-Release: 1
+Release: 1.2
 License: MIT
 Group: Development/Libraries
 URL: http://effbot.org/zone/celementtree.htm
@@ -47,6 +47,9 @@ between a Python list and a Python dictionary.
 %{python_sitearch}/cElementTree.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jan 05 2006 Dag Wieers <dag@wieers.com> - 1.0.5-1
 - Updated to release 1.0.5.
 

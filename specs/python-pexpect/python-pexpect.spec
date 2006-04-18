@@ -8,7 +8,7 @@
 Summary: Python Expect-like module
 Name: python-pexpect
 Version: 2.0
-Release: 1
+Release: 1.2
 License: Python Software Foundation License
 Group: Development/Libraries
 URL: http://pexpect.sourceforge.net/
@@ -51,5 +51,8 @@ automated software testing.
 %ghost %{python_sitelib}/pexpect.pyo
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Nov 27 2005 Dag Wieers <dag@wieers.com> - 2.0-1
 - Initial package. (using DAR)

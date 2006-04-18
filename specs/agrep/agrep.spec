@@ -5,7 +5,7 @@
 Summary: Search with approximate matching capabilities
 Name: agrep
 Version: 2.04
-Release: 1
+Release: 1.2
 Group: Applications/Text
 License: Redistributable for non-profit use
 URL: http://www.tgries.de/agrep/
@@ -39,5 +39,8 @@ much more general and usually faster.
 %{_bindir}/agrep
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.04-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jan 28 2005 Dag Wieers <dag@wieers.com> - 2.04-1
 - Initial package. (using DAR)

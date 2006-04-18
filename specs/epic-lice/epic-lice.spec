@@ -8,7 +8,7 @@
 Summary: LiCe IRC scripts for epic
 Name: epic-lice
 Version: 4.2.0
-Release: 0.pre7
+Release: 0.pre7.2
 Group: Applications/Communications
 License: GPL
 URL: http://lice.codehack.com/
@@ -49,5 +49,8 @@ It is distributed under the GNU Public License.
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.2.0-0.pre7.2
+- Rebuild for Fedora Core 5.
+
 * Tue May 13 2003 Dag Wieers <dag@wieers.com> - 4.2.0-0.pre7
 - Initial package. (using DAR)

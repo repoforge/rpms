@@ -5,7 +5,7 @@
 Summary: Very simple ARP scanner
 Name: arpscan
 Version: 0.2
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Internet
 URL: http://ish.cx/~jason/arpscan/
@@ -42,5 +42,8 @@ given IP addresses and displays a list of the found hosts.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-0.2
+- Rebuild for Fedora Core 5.
+
 * Wed Oct 22 2003 Dag Wieers <dag@wieers.com> - 0.2-0
 - Initial package. (using DAR)

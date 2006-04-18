@@ -9,7 +9,7 @@
 Summary: Search/replace/dump memory from running processes and core files
 Name: memgrep
 Version: 0.8.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://www.hick.org/code/skape/memgrep/
@@ -73,6 +73,9 @@ chmod +x %{memgrep_find_requires}
 %{_includedir}/*.h
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon May 17 2004 Dag Wieers <dag@wieers.com> - 0.8.0-1
 - Fixes find_provides and find_requires.
 

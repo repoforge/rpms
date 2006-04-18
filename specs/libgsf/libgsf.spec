@@ -8,7 +8,7 @@
 Summary: The GNOME Structure file library
 Name: libgsf
 Version: 1.6.0
-Release: 0
+Release: 0.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://ftp.acc.umu.se/pub/GNOME/sources/libgsf/1.6/
@@ -66,5 +66,8 @@ Headers and static libraries for libgsf.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.0-0.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jan 22 2003 Dag Wieers <dag@wieers.com> - 1.4.0
 - Initial package.

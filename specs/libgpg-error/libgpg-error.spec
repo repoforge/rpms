@@ -7,7 +7,7 @@
 Summary: Library with GPG related error codes and descriptions
 Name: libgpg-error
 Version: 0.7
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://www.gnupg.org/gpgme.html
@@ -61,5 +61,8 @@ you will need to install %{name}-devel.
 %{_datadir}/aclocal/*.m4
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 0.7-1
 - Initial package. (using DAR)

@@ -7,7 +7,7 @@
 Summary: "Sticky" Honeypot and IDS
 Name: labrea
 Version: 2.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://labrea.sourceforge.net/
@@ -45,5 +45,8 @@ at the other end gets "stuck", sometimes for a very long time.
 %{_sbindir}/labrea
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jul 02 2004 Dag Wieers <dag@wieers.com> - 2.5-1
 - Initial package. (using DAR)

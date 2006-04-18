@@ -7,7 +7,7 @@
 Summary: Thread-safe hash library
 Name: libmhash
 Version: 0.9.1
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://mhash.sourceforge.net/
@@ -79,6 +79,9 @@ will use the mhash library.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Apr 18 2004 Dag Wieers <dag@wieers.com> - 0.9.1-1
 - Updated to release 0.9.1.
 

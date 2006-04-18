@@ -20,7 +20,7 @@
 Summary: Graphical VT102 emulator
 Name: aterm
 Version: 0.4.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: User Interface/X
 URL: http://aterm.sourceforge.net/
@@ -99,5 +99,8 @@ EOF
 %{?_without_freedesktop:%{_datadir}/gnome/apps/System/aterm.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Mar 20 2005 Dag Wieers <dag@wieers.com> - 0.4.2-1
 - Initial package. (using DAR)

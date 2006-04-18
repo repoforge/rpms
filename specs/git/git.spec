@@ -15,7 +15,7 @@
 Summary: Git core and tools
 Name: git
 Version: 0.99.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Tools
 URL: http://git.or.cz/
@@ -56,6 +56,9 @@ similar to other SCM tools (like CVS, BitKeeper or Monotone).
 %{_datadir}/git-core
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.99.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Aug 14 2005 Dries Verachtert <dries@ulyssis.org> - 0.99.4-1
 - Update to release 0.99.4.
 

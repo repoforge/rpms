@@ -9,7 +9,7 @@
 Summary: POSIX.1e ACLs for python
 Name: python-libacl
 Version: 0.2.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: http://pylibacl.sourceforge.net/
@@ -46,5 +46,8 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %exclude %{_docdir}/pylibacl-%{version}/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Sep 11 2005 Dag Wieers <dag@wieers.com> - 0.2.1-1
 - Initial package. (using DAR)

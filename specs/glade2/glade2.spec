@@ -11,7 +11,7 @@
 Summary: GTK+ GUI builder
 Name: glade2
 Version: 2.0.1
-Release: 0
+Release: 0.2
 License: GPL
 Group: Development/Tools
 URL: http://glade.gnome.org/
@@ -87,6 +87,9 @@ scrollkeeper-update -q || :
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.1-0.2
+- Rebuild for Fedora Core 5.
+
 * Thu Nov 23 2003 Dag Wieers <dag@wieers.com> - 2.0.1-0
 - Updated to release 2.0.1.
 

@@ -5,7 +5,7 @@
 Summary: Graphical secure password generator
 Name: gnome-password-generator
 Version: 1.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://gnome-password.sourceforge.net/
@@ -44,6 +44,9 @@ passwords of a specified length.
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jun 08 2004 Dag Wieers <dag@wieers.com> - 1.4-1
 - Updated to release 1.4.
 

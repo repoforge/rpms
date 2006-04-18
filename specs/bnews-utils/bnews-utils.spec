@@ -6,7 +6,7 @@ Summary: Download, upload, decode and/or encode "Bommanews"-encoded files
 Name: bnews-utils
 %define real_version 20020930
 Version: 0.0.20020930
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.iguana.be/~stef/
@@ -44,5 +44,8 @@ For more technical information about this encoding, visit the bnews site.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.20020930-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Mar 12 2004 Dag Wieers <dag@wieers.com> - 0.0.20020930-1
 - Initial package. (using DAR)

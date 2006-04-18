@@ -8,7 +8,7 @@
 Summary: Neat little maze game
 Name: arrows
 Version: 0.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Games
 URL: http://noreason.ca/?file=software
@@ -60,6 +60,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/applications/%{desktop_vendor}-arrows.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jan 14 2004 Dag Wieers <dag@wieers.com> - 0.6-1
 - Fixed %{_bindir} for games.
 

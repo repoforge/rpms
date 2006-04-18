@@ -4,7 +4,7 @@
 Summary: Tool to hardlink duplicate files in a directory tree
 Name: hardlink
 Version: 1.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: ftp://ftp.redhat.com/pub/redhat/mirror-tools/
@@ -34,6 +34,9 @@ ${CC:-%{__cc}} %{optflags} -o hardlink hardlink.c
 %{_bindir}/hardlink
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Apr 29 2003 Dag Wieers <dag@wieers.com> - 1.2-1
 - Build happens in its own buildsubdir.
 

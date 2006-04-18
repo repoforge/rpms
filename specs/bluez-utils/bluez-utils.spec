@@ -19,7 +19,7 @@
 Summary: Bluetooth utilities
 Name: bluez-utils
 Version: 2.10
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://bluez.sourceforge.net/
@@ -275,6 +275,9 @@ fi
 %{_libdir}/cups/backend/bluetooth
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.10-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jan 30 2006 Dag Wieers <dag@wieers.com> - 2.10-1
 - Updated to new release 2.10.
 

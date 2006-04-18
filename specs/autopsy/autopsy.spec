@@ -5,7 +5,7 @@
 Summary: Forensic browser for use with Sleuth Kit
 Name: autopsy
 Version: 2.00
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.sleuthkit.org/autopsy/
@@ -78,6 +78,9 @@ EOF
 %{_datadir}/autopsy/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.00-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 2.00-1
 - Fix installation.
 

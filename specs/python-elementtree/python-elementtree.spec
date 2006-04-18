@@ -12,7 +12,7 @@ Name: python-elementtree
 %define real_version 1.2.6-20050316
 %define real_version_celementtree 1.0.2-20050302
 Version: 1.2.6
-Release: 6
+Release: 6.2
 License: PSF
 Group: Development/Libraries
 URL: http://effbot.org/zone/element-index.htm
@@ -67,6 +67,9 @@ popd
 %{python_sitearch}/*.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.6-6.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jan 27 2006 Dag Wieers <dag@wieers.com> - 1.2.6-6
 - Removed python-abi since older releases do not provide it.
 

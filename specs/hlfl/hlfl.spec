@@ -7,7 +7,7 @@
 Summary: High-Level Firewall Language
 Name: hlfl
 Version: 0.60.1
-Release: 0
+Release: 0.2
 License: GPL
 Group: System Environment/Base
 URL: http://www.hlfl.org/
@@ -43,6 +43,9 @@ NetFilter, IPFilter, Cisco, and many others.
 %{_datadir}/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.60.1-0.2
+- Rebuild for Fedora Core 5.
+
 * Thu Oct 23 2003 Dag Wieers <dag@wieers.com> - 0.6.1-0
 - Updated to release 0.6.1.
 

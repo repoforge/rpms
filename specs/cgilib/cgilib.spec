@@ -6,7 +6,7 @@
 Summary: C interface to CGI (common gateway interface)
 Name: cgilib
 Version: 0.5
-Release: 2
+Release: 2.2
 License: GPL
 Group: Development/Libraries
 URL: http://www.infodrom.north.de/cgilib/
@@ -59,6 +59,9 @@ done
 %{_includedir}/cgi.h
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-2.2
+- Rebuild for Fedora Core 5.
+
 * Thu May 19 2005 Matthias Saou <http://freshrpms.net/> 0.5-2
 - Disable debuginfo package, as it ends up empty because there is only a
   static library.

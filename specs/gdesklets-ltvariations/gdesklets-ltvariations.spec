@@ -7,7 +7,7 @@
 Summary: set of different sensors and displays for gdesklets
 Name: gdesklets-ltvariations
 Version: 0.21
-Release: 0
+Release: 0.2
 License: GPL
 Group: User Interface/Desktops
 URL: http://gdesklets.gnomedesktop.org/
@@ -51,5 +51,8 @@ To add the display, use :
 %{_datadir}/gdesklets/Sensors/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.21-0.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec 05 2003 Dag Wieers <dag@wieers.com> - 0.21-0
 - Initial package. (using DAR)

@@ -7,7 +7,7 @@
 Summary: Benchmark suite for hard drive and file system performance
 Name: bonnie++
 Version: 1.03
-Release: 1.a
+Release: 1.a.2
 License: GPL
 Group: Applications/System
 URL: http://www.coker.com.au/bonnie++/
@@ -54,5 +54,8 @@ when comparing such things.
 %{_sbindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.03-1.a.2
+- Rebuild for Fedora Core 5.
+
 * Fri Apr 16 2004 Dag Wieers <dag@wieers.com> - 1.03-1.a
 - Initial package. (using DAR)

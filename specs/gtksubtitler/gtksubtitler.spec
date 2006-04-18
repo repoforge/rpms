@@ -4,7 +4,7 @@
 Summary: Tool for editing and converting subtitles for DivX films
 Name: GTKsubtitler
 Version: 0.2.4
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.gtksubtitler.prv.pl/
@@ -61,6 +61,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/GTKsubtitler
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.4-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon Sep 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.4-0
 - Update to release 0.2.4-0.
 

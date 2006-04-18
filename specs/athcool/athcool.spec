@@ -4,7 +4,7 @@
 Summary: Enabling/disabling Powersaving mode for AMD processors
 Name: athcool
 Version: 0.3.7
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://members.jcom.home.ne.jp/jacobi/linux/softwares.html
@@ -167,5 +167,8 @@ fi
 %{_sbindir}/athcool
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Aug 02 2004 Dag Wieers <dag@wieers.com> - 0.3.7-1
 - Initial package. (using DAR)

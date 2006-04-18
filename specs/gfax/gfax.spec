@@ -7,7 +7,7 @@
 Summary: The GNOME Fax Application
 Name: gfax
 Version: 0.7.3.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Communications
 URL: http://gfax.cowlug.org/
@@ -96,6 +96,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_localstatedir}/spool/gfax/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.3.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.7.3.1-1
 - Updated to release 0.7.3.1.
 

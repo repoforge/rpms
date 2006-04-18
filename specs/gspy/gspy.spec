@@ -4,7 +4,7 @@
 Summary: GNOME security camera
 Name: gspy
 Version: 0.1.7
-Release: 0
+Release: 0.2
 Group: Applications/Multimedia
 License: GPL
 URL: http://gspy.sourceforge.net/
@@ -50,5 +50,8 @@ normal compression obtained via the mpeg process.
 %{_datadir}/pixmaps/gv4l/gv4l.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.7-0.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan 19 2003 Dag Wieers <dag@wieers.com> - 1.91
 - Initial package. (using DAR)

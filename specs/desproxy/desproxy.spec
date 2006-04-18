@@ -7,7 +7,7 @@
 Summary: TCP tunnel for HTTP proxies
 Name: desproxy
 Version: 0.1.0
-Release: 0.pre2
+Release: 0.pre2.2
 License: GPL
 Group: Applications/Internet
 URL: http://desproxy.sourceforge.net/
@@ -54,6 +54,9 @@ having to worry whether they have HTTP support or not.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.0-0.pre2.2
+- Rebuild for Fedora Core 5.
+
 * Wed Sep 24 2003 Dag Wieers <dag@wieers.com> - 0.1.0-0.pre2
 - Initial package. (using DAR)
 

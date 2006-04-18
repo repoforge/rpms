@@ -5,7 +5,7 @@
 Summary: Configure and monitor Wireless Access Points
 Name: ap-utils
 Version: 1.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://ap-utils.polesye.net/
@@ -54,6 +54,9 @@ to configure and monitor Wireless Access Points using SNMP.
 %{_sbindir}/ap-trapd
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Mar 07 2005 Dag Wieers <dag@wieers.com> - 1.5-1
 - Updated to release 1.5.
 

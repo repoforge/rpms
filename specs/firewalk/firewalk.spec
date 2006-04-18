@@ -5,7 +5,7 @@
 Summary: Active reconnaissance network security tool
 Name: firewalk
 Version: 5.0
-Release: 1
+Release: 1.2
 License: BSD
 Group: Applications/Internet
 URL: http://www.packetfactory.net/projects/firewalk/
@@ -56,5 +56,8 @@ response.
 %{_sbindir}/firewalk
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 5.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr 10 2004 Dag Wieers <dag@wieers.com> - 5.0-1
 - Initial package. (using DAR)

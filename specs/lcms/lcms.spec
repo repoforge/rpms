@@ -12,7 +12,7 @@
 Summary: Open Source color management engine
 Name: lcms
 Version: 1.15
-Release: 1
+Release: 1.2
 License: MIT
 Group: System Environment/Libraries
 URL: http://www.littlecms.com/
@@ -109,6 +109,9 @@ engine.
 %endif
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.15-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Nov 28 2005 Dries Verachtert <dries@ulyssis.org> - 1.15-1
 - Updated to release 1.15.
 

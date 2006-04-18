@@ -5,7 +5,7 @@
 Summary: Real-time file compressor
 Name: lzop
 Version: 1.01
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Archiving
 URL: http://www.lzop.org/
@@ -46,5 +46,8 @@ reasonable drop-in compatiblity to gzip.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 09 2004 Dag Wieers <dag@wieers.com> - 1.01-1
 - Initial package. (using DAR)

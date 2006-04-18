@@ -5,7 +5,7 @@
 Summary: Advanced GNOME configuration editor
 Name: cog
 Version: 0.7.1
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/System
 URL: http://www.krakoa.dk/linux-software.html#COG
@@ -68,6 +68,9 @@ desktop-file-install --vendor gnome --delete-original \
 %{_datadir}/applications/gnome-cog.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.1-2.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 09 2004 Dag Wieers <dag@wieers.com> - 0.7.1-2
 - Added improved desktop file.
 

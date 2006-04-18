@@ -4,7 +4,7 @@
 Summary: SIFT Feature Detection implementation
 Name: autopano-sift
 Version: 2.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://user.cs.tu-berlin.de/~nowozin/autopano-sift/
@@ -67,6 +67,9 @@ available at http://hugin.sf.net/
 %{_libdir}/libsift.dll
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan 16 2005 Dag Wieers <dag@wieers.com> - 2.2-1
 - Updated to release 2.2.
 

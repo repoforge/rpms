@@ -5,7 +5,7 @@
 Summary: Linux Capability Remover
 Name: lcap
 Version: 0.0.6
-Release: 6
+Release: 6.2
 License: GPL
 Group: System Environment/Base
 URL: http://pweb.netcom.com/~spoon/lcap/
@@ -53,6 +53,9 @@ sysctl file /proc/sys/kernel/cap-bound.
 %{_sbindir}/lcap
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.6-6.2
+- Rebuild for Fedora Core 5.
+
 * Fri Aug 20 2004 Dag Wieers <dag@wieers.com> - 0.0.6-6
 - Package contributed by Troels Arvin.
 

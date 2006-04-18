@@ -4,7 +4,7 @@
 Summary: Archiver and compressor
 Name: freeze
 Version: 2.5.0
-Release: 1
+Release: 1.2
 License: distributable
 Group: Applications/Archiving
 URL: ftp://ftp.std.com/src/util/
@@ -51,6 +51,9 @@ done
 %{_mandir}/man?/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.5.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Sep 14 2005 Dries Verachtert <dries@ulyssis.org> - 2.5.0-1
 - Update to latest found version 2.5.0.
 

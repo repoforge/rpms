@@ -5,7 +5,7 @@
 Summary: Advanced intrusion detection environment
 Name: aide
 Version: 0.11
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://www.cs.tut.fi/~rammer/aide.html
@@ -68,6 +68,9 @@ checker and intrusion detection program.
 %{_localstatedir}/lib/aide/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.11-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Feb 20 2006 Dag Wieers <dag@wieers.com> - 0.11-1
 - Updated to release 0.11.
 

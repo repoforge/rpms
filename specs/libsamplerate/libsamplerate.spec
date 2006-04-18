@@ -8,7 +8,7 @@
 Summary: Library for performing sample rate conversion on audio
 Name: libsamplerate
 Version: 0.1.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.mega-nerd.com/SRC/
@@ -70,6 +70,9 @@ documentation for %{name}. If you like to develop programs using
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Sep 17 2004 Matthias Saou <http://freshrpms.net/> 0.1.2-1
 - Update to 0.1.2.
 

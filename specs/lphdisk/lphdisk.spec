@@ -4,7 +4,7 @@
 Summary: Utility for formatting Phoenix NoteBIOS hibernation partitions under Linux
 Name: lphdisk
 Version: 0.9.1
-Release: 0
+Release: 0.2
 License: Artistic License
 Group: System Environment/Base
 URL: http://www.procyon.com/~pda/lphdisk/
@@ -42,6 +42,9 @@ to perform this configuration step.
 %{_sbindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.1-0.2
+- Rebuild for Fedora Core 5.
+
 * Fri Apr 11 2003 Dag Wieers <dag@wieers.com> - 0.9.1-0
 - Patch to build with gcc-3.3.
 - Initial package. (using DAR)

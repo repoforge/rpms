@@ -5,7 +5,7 @@
 Summary: Recover weak LEAP and PPTP passwords
 Name: asleap
 Version: 1.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://asleap.sourceforge.net/
@@ -45,5 +45,8 @@ perform channel hopping.
 %{_sbindir}/genkeys
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Dec 21 2004 Dag Wieers <dag@wieers.com> - 1.4-1
 - Initial package. (using DAR)

@@ -5,7 +5,7 @@
 Summary: Switches in redundant servers using arp spoofing
 Name: fake
 Version: 1.1.8
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.vergenet.net/linux/fake/
@@ -46,5 +46,8 @@ on a LAN.
 %{_libdir}/heartbeat/fake
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Apr 30 2003 Dag Wieers <dag@wieers.com> - 1.1.8-0
 - Initial package. (using DAR)

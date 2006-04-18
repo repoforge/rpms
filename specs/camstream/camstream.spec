@@ -5,7 +5,7 @@
 Summary: collection of tools for webcams and other video-devices
 Name: camstream
 Version: 0.26.3
-Release: 0
+Release: 0.2
 Group: Applications/Multimedia
 License: GPL
 URL: http://www.smcc.demon.nl/camstream/
@@ -47,6 +47,9 @@ framework.
 %{_datadir}/icons/*.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.26.3-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon Sep 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.26.3-0
 - Update to release 0.26.3.
 

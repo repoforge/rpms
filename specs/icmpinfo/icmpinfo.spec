@@ -5,7 +5,7 @@
 Summary: Tool for looking at the ICMP messages
 Name: icmpinfo
 Version: 1.11
-Release: 1
+Release: 1.2
 License: BSD
 Group: Applications/Internet
 URL: http://www.demailly.com/~dl/softs.html
@@ -40,5 +40,8 @@ the running host.
 %{_sbindir}/icmpinfo
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun May 08 2005 Dag Wieers <dag@wieers.com> - 1.11-1
 - Initial package. (using DAR)

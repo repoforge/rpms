@@ -13,7 +13,7 @@
 Summary: CHM file viewer
 Name: gnochm
 Version: 0.9.7
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Publishing
 URL: http://gnochm.sourceforge.net/
@@ -91,6 +91,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jan 25 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.7-1
 - Updated to release 0.9.7.
 

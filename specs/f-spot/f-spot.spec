@@ -7,7 +7,7 @@
 Summary: Personal photo management application
 Name: f-spot
 Version: 0.0.12
-Release: 1
+Release: 1.2
 License: GPL
 Group: Amusements/Graphics
 URL: http://www.gnome.org/projects/f-spot/
@@ -65,6 +65,9 @@ EOF
 %exclude %{_libdir}/f-spot/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.12-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Mar 20 2005 Dag Wieers <dag@wieers.com> - 0.0.12-1
 - Updated to release 0.0.12.
 

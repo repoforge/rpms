@@ -6,7 +6,7 @@
 Summary: GoodWeather sensor and display for gdesklets
 Name: gdesklets-goodweather
 Version: 0.4.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: User Interface/Desktops
 URL: http://gdesklets.gnomedesktop.org/
@@ -52,6 +52,9 @@ To add the display, use :
 #%{_datadir}/gdesklets/Sensors/GoodWeather/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 0.4.1-1
 - Updated to release 0.4.1.
 

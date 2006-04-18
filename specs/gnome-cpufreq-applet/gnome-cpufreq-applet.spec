@@ -5,7 +5,7 @@
 Summary: CPU frequency scaling monitor applet
 Name: gnome-cpufreq-applet
 Version: 0.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: User Interface/Desktops
 URL: http://linups.org/~kal/gnome-cpufreq-applet/
@@ -61,6 +61,9 @@ scrollkeeper-update -q || :
 %{_libdir}/bonobo/servers/GNOME_CPUFreqApplet.server
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Oct 06 2004 Dag Wieers <dag@wieers.com> - 0.3-1
 - Updated to release 0.3.
 

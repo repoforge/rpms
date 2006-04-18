@@ -20,7 +20,7 @@
 Summary: SMB network neighborhood
 Name: linneighborhood
 Version: 0.6.5
-Release: 3
+Release: 3.2
 License: GPL
 Group: Applications/Communications
 URL: http://www.bnro.de/~schmidjo/
@@ -91,6 +91,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-linneighborhood.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.5-3.2
+- Rebuild for Fedora Core 5.
+
 * Sun Oct 10 2004 Dag Wieers <dag@wieers.com> - 0.6.5-3
 - Rebuild with cosmetic changes.
 

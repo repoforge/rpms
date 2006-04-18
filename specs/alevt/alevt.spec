@@ -13,7 +13,7 @@
 Summary: Teletext/videotext decoder and browser for the bttv driver and X
 Name: alevt
 Version: 1.6.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.goron.de/~froese/
@@ -85,5 +85,8 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-alevt.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jun 06 2004 Dag Wieers <dag@wieers.com> - 1.6.1-1
 - Initial package. (using DAR)

@@ -7,7 +7,7 @@
 Summary: Standalone viewer for OpenOffice presentations
 Name: imposter
 Version: 0.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Productivity
 URL: http://imposter.sourceforge.net/
@@ -74,6 +74,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{_datadir}/applications/%{desktop_vendor}-imposter.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Apr 04 2005 Dag Wieers <dag@wieers.com> - 0.3-1
 - Updated to release 0.3.
 

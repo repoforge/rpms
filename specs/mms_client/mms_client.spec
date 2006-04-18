@@ -6,7 +6,7 @@
 Summary: MMS stream downloader
 Name: mms_client
 Version: 0.0.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.geocities.com/majormms/
@@ -38,5 +38,8 @@ This can be useful for eg. watching a 300k stream on a 56k connection.
 %{_bindir}/mmsclient
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jun 10 2005 Wei-Lun <chaoweilun@pcmail.com.tw> - 0.0.3-1
 - Initial spec file created.

@@ -5,7 +5,7 @@
 Summary: Distributed shell. Allows running of a single command on multiple hosts
 Name: dsh
 Version: 0.23.7
-Release: 0
+Release: 0.2
 Group: System Environment/Shells
 License: GPL
 URL: http://www.netfort.gr.jp/~dancer/software/dsh.html
@@ -40,5 +40,8 @@ A distributed shell. Allows running of a single command on multiple hosts.
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.23.7-0.2
+- Rebuild for Fedora Core 5.
+
 * Thu May 29 2003 Dag Wieers <dag@wieers.com> - 0.23.7-0
 - Initial package. (using DAR)

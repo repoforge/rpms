@@ -7,7 +7,7 @@
 Summary: Distributed Checksum Clearinghouse anti-spam tool
 Name: dcc
 Version: 1.2.39
-Release: 1
+Release: 1.2
 License: BSD-like
 Group: Applications/Internet
 URL: http://www.rhyolite.com/anti-spam/dcc/
@@ -341,6 +341,9 @@ rm -f %{buildroot}%{_sbindir}/updatedcc
 %attr(0755,root,root) %{_libdir}/*.a
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.39-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Apr 08 2004 Dag Wieers <dag@wieers.com> - 1.2.39-1
 - Cosmetic cleanup.
 

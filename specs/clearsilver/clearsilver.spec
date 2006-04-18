@@ -10,7 +10,7 @@
 Summary: ClearSilver HTML template system
 Name: clearsilver
 Version: 0.10.1
-Release: 1
+Release: 1.2
 License: Apache License style
 Group: Development/Libraries
 URL: http://www.clearsilver.net/
@@ -138,6 +138,9 @@ export PYTHON=python
 #{apache_libexec}/mod_ecs.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.10.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.10.1-1
 - Updated to release 0.10.1.
 

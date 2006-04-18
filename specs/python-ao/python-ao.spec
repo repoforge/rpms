@@ -11,7 +11,7 @@
 Summary: Python bindings for libao
 Name: python-ao
 Version: 0.82
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Development/Libraries
 URL: http://www.andrewchatham.com/pyogg/
@@ -51,5 +51,8 @@ export CFLAGS="%{optflags}"
 %{python_sitearch}/aomodule.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.82-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun May 08 2005 Dag Wieers <dag@wieers.com> - 0.82-1
 - Initial package. (using DAR)

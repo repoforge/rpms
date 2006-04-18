@@ -5,7 +5,7 @@
 Summary: Gettext po file editor
 Name: gtranslator
 Version: 1.1.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Tools
 URL: http://gtranslator.sourceforge.net/
@@ -74,6 +74,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Feb 06 2005 Dag Wieers <dag@wieers.com> - 1.1.6-1
 - Updated to release 1.1.6.
 

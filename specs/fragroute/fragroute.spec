@@ -6,7 +6,7 @@
 Summary: Intercepts, modifies, and rewrites egress traffic
 Name: fragroute
 Version: 1.2
-Release: 1
+Release: 1.2
 License: BSD
 Group: Applications/Internet
 URL: http://www.monkey.org/~dugsong/fragroute/
@@ -44,6 +44,9 @@ Eluding Network Intrusion Detection" paper of January 1998.
 %{_sbindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 1.2-1
 - Cosmetic rebuild for Group-tag.
 

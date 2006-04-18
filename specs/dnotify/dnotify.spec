@@ -5,7 +5,7 @@
 Summary: Execute a command when the content of a directory changes
 Name: dnotify
 Version: 0.18.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/File
 URL: http://www.student.lu.se/~nbi98oli/dnotify.html
@@ -43,5 +43,8 @@ when one was created, deleted and so on.
 %{_bindir}/dnotify
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.18.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 06 2004 Dag Wieers <dag@wieers.com> - 0.18.0-1
 - Initial package. (using DAR)

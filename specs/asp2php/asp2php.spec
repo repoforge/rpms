@@ -13,7 +13,7 @@
 Summary: Converts WWW Active Server Pages to PHP pages
 Name: asp2php
 Version: 0.76.23
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Tools
 URL: http://asp2php.naken.cc/
@@ -86,6 +86,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-gtkasp2php.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.76.23-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Oct 10 2004 Dag Wieers <dag@wieers.com> - 0.76.23-1
 - Updated to release 0.76.23.
 

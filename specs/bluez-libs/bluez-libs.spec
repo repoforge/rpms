@@ -7,7 +7,7 @@
 Summary: Bluetooth libraries
 Name: bluez-libs
 Version: 2.10
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.bluez.org/
@@ -66,6 +66,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/bluez.pc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.10-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jan 30 2006 Dag Wieers <dag@wieers.com> - 2.10-1
 - Updated to release 2.10.
 

@@ -9,7 +9,7 @@
 Summary: Gzip compression module for apache
 Name: mod_gzip
 Version: 1.3.26
-Release: 0.1a
+Release: 0.1a.2
 License: Apache License
 Group: System Environment/Daemons
 URL: http://www.schroepl.net/projekte/mod_gzip/
@@ -94,5 +94,8 @@ EOF
 %{_libdir}/apache/mod_gzip.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.26-0.1a.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 17 2003 Dag Wieers <dag@wieers.com> - 1.3.26-0.1a
 - Initial package. (using DAR)

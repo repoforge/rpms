@@ -13,7 +13,7 @@
 Summary: Small cd player for GNOME
 Name: apolos
 Version: 0.1.7
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.nongnu.org/apolos/
@@ -78,6 +78,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-apolos.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov 20 2004 Dag Wieers <dag@wieers.com> - 0.1.8-1
 - Updated to release 0.1.8.
 

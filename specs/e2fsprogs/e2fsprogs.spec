@@ -10,7 +10,7 @@
 Summary: Utilities for managing the second extended (ext2) filesystem
 Name: e2fsprogs
 Version: 1.34
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://e2fsprogs.sourceforge.net/
@@ -205,6 +205,9 @@ exit 0
 %{_mandir}/man3/libblkid.3*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.34-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Aug 01 2003 Florian La Roche <Florian.LaRoche@redhat.de>
 - update to 1.34
 - do not strip some more apps, should probably just change $(STRIP)...

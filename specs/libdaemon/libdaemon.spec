@@ -10,7 +10,7 @@
 Summary: Lightweight C library which eases the writing of UNIX daemons
 Name: libdaemon
 Version: 0.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://www.stud.uni-hamburg.de/users/lennart/projects/libdaemon/
@@ -88,5 +88,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Apr 18 2004 Dag Wieers <dag@wieers.com> - 0.6-1
 - Initial package. (using DAR)

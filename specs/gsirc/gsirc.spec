@@ -7,7 +7,7 @@
 Summary: lightweight and flexible IRC client for the .NET framework
 Name: gsirc
 Version: 0.1.1
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.atoker.com/gsirc/
@@ -49,5 +49,8 @@ gsirc that now lies abandoned in GNOME CVS.
 %{_libdir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.1-0.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jan 21 2003 Dag Wieers <dag@wieers.com> - 0.1.1
 - Initial package. (using DAR)

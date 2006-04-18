@@ -5,7 +5,7 @@
 Summary: Useful things common to building gnome packages
 Name: gnome-common
 Version: 1.2.4
-Release: 0
+Release: 0.2
 License: GPL
 Group: Development/Tools
 URL: http://developer.gnome.org/
@@ -44,5 +44,8 @@ every GNOME application.
 %{_datadir}/aclocal/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.4-0.2
+- Rebuild for Fedora Core 5.
+
 * Tue Feb 25 2003 Dag Wieers <dag@wieers.com> - 1.2.4-0
 - Initial package. (using DAR)

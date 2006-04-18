@@ -4,7 +4,7 @@
 Summary: Commandline network inquiry/formatting tool
 Name: ifinfo
 Version: 0.90
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://scalableinformatics.com/ifinfo.html
@@ -41,6 +41,9 @@ want to know, hopefully in the format you wish to see it.
 %{_bindir}/ifinfo
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.90-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Apr 06 2005 Dag Wieers <dag@wieers.com> - 0.90-1
 - Updates to release 0.90.
 

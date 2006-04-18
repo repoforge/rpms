@@ -4,7 +4,7 @@
 Summary: Video4Linux Digital Video Recorder
 Name: dvr
 Version: 3.2
-Release: 1
+Release: 1.2
 Group: Applications/Multimedia
 License: GPL
 URL: http://dvr.sourceforge.net/
@@ -48,6 +48,9 @@ recent codecs like DivX 5 or Indeo 5 for example.
 %{_libdir}/*.so.*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun May 16 2004 Dag Wieers <dag@wieers.com> - 3.2-1
 - Updated to release 3.2.
 

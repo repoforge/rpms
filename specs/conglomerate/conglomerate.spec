@@ -5,7 +5,7 @@
 Summary: Information authoring, management, and transformation system
 Name: conglomerate
 Version: 0.9.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Text
 URL: http://www.conglomerate.org/
@@ -73,6 +73,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jul 13 2005 Dag Wieers <dag@wieers.com> - 0.9.1-1
 - Updated to release 0.9.1.
 

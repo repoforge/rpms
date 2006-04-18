@@ -9,7 +9,7 @@
 Summary: Bluetooth firmware loader
 Name: bluez-bluefw
 Version: 1.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://bluez.sourceforge.net/
@@ -54,6 +54,9 @@ The BLUETOOTH trademarks are owned by Bluetooth SIG, Inc., U.S.A.
 %{_sbindir}/bluefw
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 1.0-1
 - Changed %%{_sbindir} to /sbin. (Soós Péter, RHbz #120881)
 

@@ -8,7 +8,7 @@
 Summary: Numerical Extension to Python
 Name: python-numeric
 Version: 23.1
-Release: 0
+Release: 0.2
 License: UNKNOWN
 Group: Development/Libraries
 URL: http://www.pfdubois.com/numpy/
@@ -43,5 +43,8 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{_includedir}/python*/Numeric/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 23.1-0.2
+- Rebuild for Fedora Core 5.
+
 * Sat Sep 24 2005 Dries Verachtert <dries@ulyssis.org> - 23.1-1
 - changelog added.

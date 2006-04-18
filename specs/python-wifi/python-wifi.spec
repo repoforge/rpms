@@ -6,7 +6,7 @@
 Summary: Python binding for the wireless (wifi) extensions
 Name: python-wifi
 Version: 0.2
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Development/Libraries
 URL: http://www.romanofski.de/downloads/pywifi
@@ -46,5 +46,8 @@ extensions written in C.
 %{_bindir}/pyiwlist
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue May 24 2005 Dag Wieers <dag@wieers.com> - 0.2.0-1
 - Initial package. (using DAR)

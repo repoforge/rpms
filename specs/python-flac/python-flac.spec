@@ -8,7 +8,7 @@
 Summary: Flac support for Python
 Name: python-flac
 Version: 0.0.3
-Release: 1
+Release: 1.2
 License: UNKNOWN
 Group: Development/Libraries
 URL: http://www.sacredchao.net/quodlibet/browser/trunk/pyflac/
@@ -42,5 +42,8 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{python_sitearch}/flac/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jul 19 2005 Dag Wieers <dag@wieers.com> - 0.0.3-1
 - Initial package. (using DAR)

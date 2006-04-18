@@ -4,7 +4,7 @@
 Summary: Arc archiver
 Name: arc
 Version: 5.21j
-Release: 0
+Release: 0.2
 License: distributable
 Group: Applications/Archiving
 URL: ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/
@@ -41,6 +41,9 @@ but useful if you have old .arc files you need to unpack.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 5.21j-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jun 20 2005 Dries Verachtert <dries@ulyssis.org> - 5.21j-0
 - Update to release 5.21j.
 

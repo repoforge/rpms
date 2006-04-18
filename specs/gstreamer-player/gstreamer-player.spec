@@ -8,7 +8,7 @@
 Summary: GStreamer Streaming media framework player
 Name: gstreamer-player
 Version: 0.8.0
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.net/apps/gst-player/
@@ -127,6 +127,9 @@ scrollkeeper-update -q
 %{_datadir}/gnome-2.0/ui/gst-player-view-ui.xml
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu May 20 2004 Dag Wieers <dag@wieers.com> - 0.8.0-1
 - Updated to release 0.8.0.
 

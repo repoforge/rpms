@@ -6,7 +6,7 @@
 Summary: Display IP Tables state table information in a "top"-like interface
 Name: iptstate
 Version: 1.4
-Release: 1
+Release: 1.2
 License: zlib License
 Group: Applications/System
 URL: http://www.phildev.net/iptstate/
@@ -46,6 +46,9 @@ firewall in a "top"-like manner.
 %{_sbindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Sep 14 2005 Dries Verachtert <dries@ulyssis.org> - 1.4-1
 - Updated to release 1.4.
 

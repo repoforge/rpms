@@ -7,7 +7,7 @@
 Summary: Full featured diagramming canvas for GNOME
 Name: diacanvas2
 Version: 0.9.2
-Release: 0
+Release: 0.2
 License: GPL
 Group: System Environment/Libraries
 URL: http://diacanvas.sourceforge.net/
@@ -68,5 +68,8 @@ Static library and API documentation of DiaCanvas.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.2-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon Apr 07 2003 Dag Wieers <dag@wieers.com> - 0.9.2-0
 - Initial package. (using DAR)

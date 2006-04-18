@@ -10,7 +10,7 @@
 Summary: IBM USB Advanced System Management (ASM II) Device Drivers
 Name: ibmusbasm
 Version: 1.10.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://www.pc.ibm.com/support/
@@ -157,5 +157,8 @@ fi
 %{_libdir}/libsysSp.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.10.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 15 2004 Dag Wieers <dag@wieers.com> - 1.10.2-1
 - Initial package. (using DAR)

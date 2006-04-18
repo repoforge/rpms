@@ -5,7 +5,7 @@
 Summary: Window matching tool inspired by the Matched Window options in Sawfish
 Name: devilspie
 Version: 0.17.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.burtonini.com/blog/computers/devilspie/
@@ -52,6 +52,9 @@ in the pager or task list.
 %{_bindir}/devilspie
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.17.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Mar 18 2006 Dag Wieers <dag@wieers.com> - 0.17.1-1
 - Updated to release 0.17.1.
 

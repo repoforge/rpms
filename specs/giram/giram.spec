@@ -7,7 +7,7 @@
 Summary: POV-Ray oriented modeller
 Name: giram
 Version: 0.3.5
-Release: 0
+Release: 0.2
 Group: Applications/Multimedia
 License: GPL
 URL: http://www.giram.org/
@@ -62,5 +62,8 @@ Giram is a Persistance Of Vision (POV-Ray) oriented modeller.
 %{_datadir}/giram/%{major}/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.5-0.2
+- Rebuild for Fedora Core 5.
+
 * Sun May 11 2003 Dag Wieers <dag@wieers.com> - 0.3.5-0
 - Initial package. (using DAR)

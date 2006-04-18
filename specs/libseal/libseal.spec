@@ -8,7 +8,7 @@
 Summary: Synthetic Audio Library software development kit
 Name: libseal
 Version: 1.07
-Release: 0
+Release: 0.2
 Group: System Environment/Libraries
 License: LGPL
 URL: http://linux.tlk.fr/
@@ -58,5 +58,8 @@ source code files and HTML documentation.
 %{_libdir}/*.so.*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.07-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon Apr 21 2003 Dag Wieers <dag@wieers.com> - 1.07-0
 - Initial package. (using DAR)

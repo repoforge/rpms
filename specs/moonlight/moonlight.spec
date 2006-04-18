@@ -5,7 +5,7 @@
 Summary: OpenGL 3D modeller and renderer
 Name: moonlight
 Version: 0.5.5
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.moonlight3d.org/
@@ -42,5 +42,8 @@ cd src/
 %{_datadir}/moonlight/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.5-0.2
+- Rebuild for Fedora Core 5.
+
 * Tue Aug 05 2003 Dag Wieers <dag@wieers.com> - 0.5.5-0
 - Initial package. (using DAR)

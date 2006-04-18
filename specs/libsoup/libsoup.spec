@@ -6,7 +6,7 @@
 Summary: HTTP library implementation
 Name: libsoup
 Version: 1.99.26
-Release: 0
+Release: 0.2
 License: LGPL
 Group: System Environment/Libraries
 URL: ftp://ftp.gnome.org/pub/gnome/sources/libsoup/
@@ -83,5 +83,8 @@ fi
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.99.26-0.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 31 2003 Dag Wieers <dag@wieers.com> - 1.99.26-0
 - Initial package. (using DAR)

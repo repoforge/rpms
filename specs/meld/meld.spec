@@ -7,7 +7,7 @@
 Summary: Graphical visual diff and merge tool
 Name: meld
 Version: 1.1.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Text
 URL: http://meld.sourceforge.net/
@@ -94,6 +94,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/meld.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Feb 28 2006 Dag Wieers <dag@wieers.com> - 1.1.3-1
 - Updated to release 1.1.3.
 

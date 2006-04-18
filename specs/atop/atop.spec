@@ -6,7 +6,7 @@
 Summary: AT Computing System and Process Monitor
 Name: atop
 Version: 1.15
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: ftp://ftp.atcomputing.nl/pub/tools/linux/
@@ -88,6 +88,9 @@ fi
 %{_bindir}/atop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.15-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Nov 30 2005 Dag Wieers <dag@wieers.com> - 1.15-1
 - Updated to release 1.15.
 

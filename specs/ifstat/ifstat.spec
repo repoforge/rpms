@@ -11,7 +11,7 @@
 Summary: Interface statistics
 Name: ifstat
 Version: 1.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://gael.roualland.free.fr/ifstat/
@@ -50,6 +50,9 @@ need to have snmpd running for this though).
 %{_bindir}/ifstat
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Nov 14 2004 Dag Wieers <dag@wieers.com> - 1.1-1
 - Updated to release 1.1.
 

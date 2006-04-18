@@ -4,7 +4,7 @@
 Summary: Powerful and fullfeatured server logfile analyzer
 Name: awstats
 Version: 6.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://awstats.sourceforge.net/
@@ -108,6 +108,9 @@ EOF
 %{_localstatedir}/www/awstats/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 6.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 6.5-1
 - Updated to release 6.5.
 

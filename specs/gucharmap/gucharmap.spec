@@ -7,7 +7,7 @@
 Summary: Unicode/ISO10646 character map and font viewer
 Name: gucharmap
 Version: 1.2.0
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/System
 URL: http://gucharmap.sourceforge.net/
@@ -85,6 +85,9 @@ scrollkeeper-update -q || :
 #exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.0-0.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov 22 2003 Dag Wieers <dag@wieers.com> - 1.2.0-0
 - Updated to release 1.2.0.
 

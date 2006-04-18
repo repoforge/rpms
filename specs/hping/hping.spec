@@ -6,7 +6,7 @@
 Summary: Command-line oriented TCP/IP packet assembler/analyzer
 Name: hping
 Version: 2.0.0
-Release: 1.rc3
+Release: 1.rc3.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.hping.org/
@@ -51,6 +51,9 @@ send files between a covered channel, and many other features.
 %{_sbindir}/hping2
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.0-1.rc3.2
+- Rebuild for Fedora Core 5.
+
 * Sun Feb 13 2005 Dag Wieers <dag@wieers.com> - 2.0.0-1.rc3
 - Added patch for x86_64.
 
