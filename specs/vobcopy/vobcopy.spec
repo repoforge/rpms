@@ -3,13 +3,13 @@
 
 Summary: Utility to copy DVD .vob files to disk
 Name: vobcopy
-Version: 0.5.16
+Version: 1.0.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://vobcopy.org/projects/c/c.shtml
 Source: http://vobcopy.org/download/vobcopy-%{version}.tar.bz2
-Patch0: vobcopy-0.5.16-Makefile.patch
+Patch0: vobcopy-1.0.0-Makefile.patch
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libdvdread
 BuildRequires: libdvdread-devel
@@ -55,6 +55,10 @@ matter much.
 
 
 %changelog
+* Tue Apr 18 2006 Matthias Saou <http://freshrpms.net/> 1.0.0-1
+- Update to 1.0.0.
+- Add s/gcc-3.4/gcc/ to the Makefile patch.
+
 * Mon Mar 27 2006 Matthias Saou <http://freshrpms.net/> 0.5.16-1
 - Major spec file cleanup.
 

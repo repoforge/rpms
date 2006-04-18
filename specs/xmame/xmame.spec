@@ -27,17 +27,17 @@
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.104
-Release: 2%{?rcver:.%{rcver}}
+Version: 0.105
+Release: 1%{?rcver:.%{rcver}}
 Source0: http://x.mame.net/download/xmame-%{version}.tar.bz2
-# http://cheat.retrogames.com/ 0.81 - 21/04/2004
+# http://cheat.retrogames.com/ 0.105 - 14/04/2006
 Source20: http://cheat.retrogames.com/cheat.zip
-# http://www.mameworld.net/highscore/ 0.103 - 04/01/2006
-Source21: http://www.mameworld.net/highscore/uhsdat0103.zip
-# http://www.arcade-history.com/ 1.06 - 20/01/2006
-Source22: http://www.arcade-history.com/download/history1_06.zip
-# http://www.mameworld.net/mameinfo/ 0.103 - 30/12/2005
-Source23: http://www.mameworld.net/mameinfo/update/Mameinfo0103.zip
+# http://www.mameworld.net/highscore/ 0.105 - 10/04/2006
+Source21: http://www.mameworld.net/highscore/uhsdat0105.zip
+# http://www.arcade-history.com/ 1.06j - 15/04/2006
+Source22: http://www.arcade-history.com/download/history1_06j.zip
+# http://www.mameworld.net/mameinfo/ 0.105 - 05/04/2006
+Source23: http://www.mameworld.net/mameinfo/update/Mameinfo0105.exe
 # http://www.mameworld.net/catlist/ 0.99u2 - 12/09/2005
 Source30: http://www.mameworld.net/catlist/files/catver.zip
 Patch0: xmame-0.100-libgl.patch
@@ -47,7 +47,7 @@ Group: Applications/Emulators
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: %{name}-x11 <= 0.87
 Obsoletes: %{name}-xgl <= 0.87
-BuildRequires: unzip, zlib-devel, expat-devel
+BuildRequires: unzip, p7zip, zlib-devel, expat-devel
 %{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel, libXext-devel}
 %{?_with_modxorg:%{?opengl:BuildRequires: mesa-libGLU-devel, libjpeg-devel}}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
@@ -182,8 +182,11 @@ done
 
 # Prepare all the extra .dat files
 %{__mkdir} _datfiles
-for file in %{SOURCE20} %{SOURCE21} %{SOURCE22} %{SOURCE23}; do
+for file in %{SOURCE20} %{SOURCE21} %{SOURCE22}; do
     %{__unzip} -o -d _datfiles/ ${file}
+done
+for file in %{SOURCE23}; do
+    7za x -o_datfiles/ ${file}
 done
 
 for target in %{targets}; do
@@ -277,6 +280,11 @@ popd
 
 
 %changelog
+* Tue Apr 18 2006 Mike Crawford <mike@tuxnami.org> 0.105-1
+- Update to 0.105.
+- Update all related files.
+- Fix mameinfo.dat inclusion, which is now an exe/7zip file.
+
 * Fri Mar 24 2006 Mike Crawford <mike@tuxnami.org> 0.104-2
 - Added DGA build conditional.
 

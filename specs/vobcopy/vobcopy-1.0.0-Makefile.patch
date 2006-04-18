@@ -1,7 +1,12 @@
-diff -Naupr vobcopy-0.5.16.orig/Makefile vobcopy-0.5.16/Makefile
---- vobcopy-0.5.16.orig/Makefile	2005-12-08 00:26:24.000000000 +0100
-+++ vobcopy-0.5.16/Makefile	2006-03-27 16:01:59.000000000 +0200
-@@ -6,12 +6,11 @@ CC     ?= gcc
+diff -Naupr vobcopy-1.0.0.orig/Makefile vobcopy-1.0.0/Makefile
+--- vobcopy-1.0.0.orig/Makefile	2006-04-02 18:50:41.000000000 +0200
++++ vobcopy-1.0.0/Makefile	2006-04-18 11:51:33.000000000 +0200
+@@ -2,16 +2,15 @@
+ #This is the makefile for vobcopy, mainly written by rosenauer. These things 
+ #below here are variable definitions. They get substituted in the (CC) and 
+ #stuff places.
+-CC     = gcc-3.4
++CC     = gcc
  #PREFIX += /usr/local
  #BINDIR = ${PREFIX}/bin
  #MANDIR = ${PREFIX}/man
