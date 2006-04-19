@@ -4,8 +4,8 @@
 
 Summary: ARP traffic monitoring/logging tool
 Name: arphound
-Version: 1.3
-Release: 1.2
+Version: 1.3.1
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.nottale.net/index.php?project=arphound
@@ -132,6 +132,9 @@ fi
 %{_sbindir}/arphound
 
 %changelog
+* Wed Apr 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.1-1
+- Updated to release 1.3.1.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-1.2
 - Rebuild for Fedora Core 5.
 

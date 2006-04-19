@@ -13,13 +13,13 @@
 
 Summary: Top-like display of Apache logs
 Name: apachetop
-Version: 0.12.5
-Release: 1.2
+Version: 0.12.6
+Release: 1
 License: BSD
 Group: Applications/Internet
-URL: http://clueful.shagged.org/apachetop/
+URL: http://www.webta.org/projects/apachetop/wiki/Download
 
-Source: http://clueful.shagged.org/apachetop/files/apachetop-%{version}.tar.gz
+Source: http://www.webta.org/apachetop/apachetop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, m4, readline-devel, gcc-c++, pcre-devel
@@ -53,6 +53,9 @@ fields in combined) and generates human-parsable output in realtime.
 %{_bindir}/apachetop
 
 %changelog
+* Wed Apr 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.12.6-1
+- Updated to release 0.12.6.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.12.5-1.2
 - Rebuild for Fedora Core 5.
 

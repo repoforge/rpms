@@ -10,7 +10,7 @@ License: GPL
 Group: Development/Tools
 URL: http://ccache.samba.org/
 
-Source: http://ccache.samba.org/ftp/ccache/ccache-%{version}.tar.gz
+Source: http://samba.org/ftp/ccache/ccache-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: gcc, gcc-c++

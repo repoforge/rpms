@@ -4,13 +4,13 @@
 
 Summary: tool to prevent unauthorized usage of IPs
 Name: ip-sentinel
-Version: 0.11
-Release: 1.2
+Version: 0.12
+Release: 1
 License: GPL
 Group: System Environment/Daemons
-URL: http://www.tu-chemnitz.de/~ensc/ip-sentinel/
+URL: http://www.nongnu.org/ip-sentinel/
 
-Source: http://www.tu-chemnitz.de/~ensc/ip-sentinel/files/ip-sentinel-%{version}.tar.bz2
+Source: http://download.savannah.gnu.org/releases/ip-sentinel/ip-sentinel-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildRequires: dietlibc
@@ -79,6 +79,9 @@ service ip-sentinel condrestart &>/dev/null || :
 %{_var}/lib/ip-sentinel/
 
 %changelog
+* Wed Apr 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1
+- Updated to release 0.12.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.11-1.2
 - Rebuild for Fedora Core 5.
 
