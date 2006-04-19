@@ -4,8 +4,8 @@
 
 Summary: Extract, test and view RAR archives
 Name: unrar
-Version: 3.5.4
-Release: 2
+Version: 3.6.2
+Release: 1
 License: Freeware
 Group: Applications/Archiving
 URL: http://www.rarlab.com/
@@ -48,6 +48,9 @@ archives created with the RAR archiver version 1.50 and above.
 
 
 %changelog
+* Wed Apr 19 2006 Matthias Saou <http://freshrpms.net/> 3.6.2-1
+- Update to 3.6.2.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 3.5.4-2
 - Release bump to drop the disttag number in FC5 build.
 

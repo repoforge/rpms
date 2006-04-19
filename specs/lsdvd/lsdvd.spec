@@ -3,13 +3,13 @@
 
 Summary: Small application for displaying the contents of a DVD
 Name: lsdvd
-Version: 0.15
-Release: 2
+Version: 0.16
+Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://untrepid.com/acidrip/lsdvd.html
+URL: http://untrepid.com/lsdvd/
 Source: http://dl.sf.net/acidrip/lsdvd-%{version}.tar.gz
-Patch: lsdvd-0.15-build.patch
+Patch: lsdvd-0.16-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf, automake
 BuildRequires: libdvdread-devel
@@ -46,9 +46,16 @@ reading library for *nix
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README
 %{_bindir}/lsdvd
+%{_mandir}/man1/lsdvd.1*
 
 
 %changelog
+* Wed Apr 19 2006 Matthias Saou <http://freshrpms.net/> 0.16-1
+- Update to 0.16.
+- Update URL.
+- Update build patch, keep fixed libdvdread include detection.
+- Include newly added man page.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.15-2
 - Release bump to drop the disttag number in FC5 build.
 

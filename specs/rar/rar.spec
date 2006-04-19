@@ -8,13 +8,15 @@
 
 Summary: RAR archiver to create and manage RAR archives
 Name: rar
-Version: 3.5.1
-Release: 1
+Version: 3.6.0
+Release: 0.1.beta2
 License: Shareware
 Group: Applications/Archiving
 URL: http://www.rarlabs.com/
-Source: http://www.rarlabs.com/rar/rarlinux-%{version}.tar.gz
+#Source: http://www.rarlabs.com/rar/rarlinux-%{version}.tar.gz
+Source: http://www.rarlabs.com/rar/rarlinux-3.6.b2.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+ExclusiveArch: %{ix86}
 
 %description
 RAR is a powerful tool allowing you to manage and control archive files.
@@ -46,6 +48,10 @@ a ".rar" extension. ZIP and other formats are not supported.
 
 
 %changelog
+* Wed Apr 19 2006 Matthias Saou <http://freshrpms.net/> 3.6.0-0.1.beta2
+- Update to 3.6.0 beta2 (aka 3.6.b2).
+- Put exclusive arch back, not removed on purpose.
+
 * Fri Oct 14 2005 Matthias Saou <http://freshrpms.net/> 3.5.1-1
 - Update to 3.5.1 (aka 3.51).
 

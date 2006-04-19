@@ -12,7 +12,7 @@
 
 Summary: GStreamer streaming media framework FFmpeg-based plugin
 Name: %{gstreamer}-ffmpeg
-Version: 0.10.0
+Version: 0.10.1
 Release: 1
 License: LGPL
 Group: Applications/Multimedia
@@ -75,6 +75,9 @@ This package provides FFmpeg-based GStreamer plug-ins.
 
 
 %changelog
+* Wed Apr 19 2006 Matthias Saou <http://freshrpms.net/> 0.10.1-1
+- Update to 0.10.1.
+
 * Thu Jan 19 2006 Matthias Saou <http://freshrpms.net/> 0.10.0-1
 - Update to 0.10.0.
 - Update plugins dependencies to plugins-base.

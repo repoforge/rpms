@@ -13,13 +13,12 @@
 
 Summary: GStreamer streaming media framework "ugly" plug-ins
 Name: %{gstreamer}-plugins-ugly
-Version: 0.10.2
-Release: 2
+Version: 0.10.3
+Release: 1
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
 Source: http://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-%{version}.tar.bz2
-Patch0: gst-plugins-ugly-0.10.2-asfdemux-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: %{gstreamer} >= %{gst_minver}
 BuildRequires: %{gstreamer}-devel >= %{gst_minver}
@@ -80,7 +79,6 @@ This package contains development files and documentation.
 
 %prep
 %setup -n gst-plugins-ugly-%{version}
-%patch0 -p0 -b .asfdemux-fixes
 
 
 %build
@@ -112,6 +110,7 @@ This package contains development files and documentation.
 # Plugins without external dependencies
 %{_libdir}/gstreamer-%{majorminor}/libgstasf.so
 %{_libdir}/gstreamer-%{majorminor}/libgstdvdlpcmdec.so
+%{_libdir}/gstreamer-%{majorminor}/libgstdvdsub.so
 %{_libdir}/gstreamer-%{majorminor}/libgstiec958.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmpegaudioparse.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmpegstream.so
@@ -120,7 +119,7 @@ This package contains development files and documentation.
 # Plugins with external dependencies
 %{_libdir}/gstreamer-%{majorminor}/libgsta52dec.so
 %{_libdir}/gstreamer-%{majorminor}/libgstamrnb.so
-#{_libdir}/gstreamer-%{majorminor}/libgstdvdnav.so
+#%{_libdir}/gstreamer-%{majorminor}/libgstdvdnav.so
 %{_libdir}/gstreamer-%{majorminor}/libgstdvdread.so
 %{_libdir}/gstreamer-%{majorminor}/libgstlame.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmad.so
@@ -134,6 +133,12 @@ This package contains development files and documentation.
 
 
 %changelog
+* Wed Apr 19 2006 Matthias Saou <http://freshrpms.net/> 0.10.3-1
+- Update to 0.10.3.
+- Remove no longer needed asfdemux fixes patch.
+- Include new dvdsub plugin.
+- Still don't add and include dvdnav plugin, "not stable yet".
+
 * Tue Mar 28 2006 Matthias Saou <http://freshrpms.net/> 0.10.2-2
 - Include backported asfdemux fixes patch from Daniel S. Rogers.
 

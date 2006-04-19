@@ -9,14 +9,13 @@
 
 Summary: Media player which uses a skinned interface
 Name: audacious
-Version: 0.2.2
-Release: 3
+Version: 1.0.0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://audacious-media-player.org/
 Source: http://audacious-media-player.org/release/audacious-%{version}.tgz
 Patch0: audacious-0.1.2-default-alsa.patch
-Patch1: audacious-0.2.2-installfix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): /sbin/ldconfig, desktop-file-utils
 Requires(postun): /sbin/ldconfig, desktop-file-utils
@@ -55,7 +54,6 @@ Development files required to develop plugins for audacious.
 %prep
 %setup
 %patch0 -p1 -b .default-alsa
-%patch1 -p1 -b .installfix
 
 
 %build
@@ -110,6 +108,10 @@ update-desktop-database -q || :
 
 
 %changelog
+* Wed Apr 19 2006 Matthias Saou <http://freshrpms.net/> 1.0.0-1
+- Update to 1.0.0.
+- Remove the install fix, but the new Makefile still symlinks in absolute :-/
+
 * Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 0.2.2-3
 - Add modular X requirements to the devel sub-package to fix plugins build.
 
