@@ -1,27 +1,25 @@
 # $Id$
 # Authority: matthias
 
-%define gst_minver 0.8.0
-%define gstp_minver 0.8.0
-%define majorminor 0.8
+%define gst_minver 0.10.0
+%define gstpb_minver 0.10.0
+%define majorminor 0.10
 %define gstreamer gstreamer
-%define register %{_bindir}/gst-register-%{majorminor}
 
 Summary: GStreamer streaming media framework DLL loader plugin
 Name: %{gstreamer}-pitfdll
-Version: 0.8.2
+Version: 0.9.1.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://ronald.bitfreak.net/pitfdll
-Source: http://dl.sf.net/pitfdll/pitfdll-%{version}.tar.bz2
+#Source: http://dl.sf.net/pitfdll/pitfdll-%{version}.tar.bz2
+Source: pitfdll-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires(pre): %{register}
-Requires(post): %{register}
 Requires: %{gstreamer} >= %{gst_minver}
-Requires: %{gstreamer}-plugins >= %{gstp_minver}
+Requires: %{gstreamer}-plugins-base >= %{gstpb_minver}
 BuildRequires: %{gstreamer}-devel >= %{gst_minver}
-BuildRequires: %{gstreamer}-plugins-devel >= %{gstp_minver}
+BuildRequires: %{gstreamer}-plugins-base-devel >= %{gstpb_minver}
 # libtool needs this, sigh
 BuildRequires: gcc-c++
 # at least for now, this is i386 only, sorry
@@ -59,13 +57,6 @@ proprietary formats.
 %{__rm} -rf %{buildroot}
 
 
-%post
-%{register} &>/dev/null || :
-
-%postun
-%{register} &>/dev/null || :
-
-
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING README RELEASE TODO
@@ -75,6 +66,9 @@ proprietary formats.
 
 
 %changelog
+* Thu Apr 20 2006 Matthias Saou <http://freshrpms.net/> 0.9.1.1-1
+- Update to gst 0.10 compatible CVS snapshot.
+
 * Fri Dec  2 2005 Matthias Saou <http://freshrpms.net/> 0.8.2-1
 - Update to 0.8.2.
 - Drop gcc4 patch.
