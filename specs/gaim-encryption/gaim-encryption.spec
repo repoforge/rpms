@@ -4,7 +4,7 @@
 Summary: RSA encryption support for Gaim
 Name: gaim-encryption
 Version: 2.38
-Release: 1.2
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://gaim-encryption.sourceforge.net/
@@ -12,8 +12,8 @@ URL: http://gaim-encryption.sourceforge.net/
 Source: http://dl.sf.net/gaim-encryption/gaim-encryption-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Buildrequires: gtk2-devel, mozilla-nss-devel, mozilla-nspr-devel, gaim-devel, gcc-c++
-Requires: gaim, mozilla-nss
+BuildRequires: gaim-devel, gtk2-devel, nss-devel, nspr-devel
+Requires: gaim
 
 %description
 RSA encryption support for Gaim.
@@ -22,7 +22,11 @@ RSA encryption support for Gaim.
 %setup
 
 %build
-%configure
+%configure \
+    --with-nspr-includes="`nspr-config --includedir`" \
+    --with-nspr-libs="`nspr-config --libdir`" \
+    --with-nss-includes="`nss-config --includedir`" \
+    --with-nss-libs="`nss-config --libdir`"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -35,12 +39,19 @@ RSA encryption support for Gaim.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
+%doc CHANGELOG COPYING NOTES README TODO WISHLIST
 %dir %{_libdir}/gaim/
 %exclude %{_libdir}/gaim/encrypt.a
 %exclude %{_libdir}/gaim/encrypt.la
 %{_libdir}/gaim/encrypt.so
 
 %changelog
+* Thu Apr 20 2006 Matthias Saou <http://freshrpms.net/> 2.38-2
+- Fix FC5 build by passing configure arguments and requiring correct package
+  names (this might break for older distros, but gaim 1.5.0 probably doesn't
+  build there anyway).
+- Add docs to the package (including license).
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.38-1.2
 - Rebuild for Fedora Core 5.
 
