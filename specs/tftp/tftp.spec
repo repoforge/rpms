@@ -6,7 +6,7 @@
 Summary: The client for the Trivial File Transfer Protocol (TFTP)
 Name: tftp
 Version: 0.34
-Release: 0
+Release: 0.2
 License: BSD
 Group: Applications/Internet
 URL: http://www.kernel.org/pub/software/network/tftp/
@@ -101,6 +101,9 @@ fi
 %{_mandir}/man8/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.34-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jul 07 2003 Dag Wieers <dag@wieers.com> - 0.34-0
 - Updated to release 0.34.
 

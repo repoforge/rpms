@@ -4,7 +4,7 @@
 Summary: GNOME gnupg interface
 Name: seahorse
 Version: 0.8
-Release: 1
+Release: 1.2
 License: GPL
 Group: User Interface/Desktops
 URL: http://seahorse.sourceforge.net/
@@ -81,6 +81,9 @@ scrollkeeper-update -q || :
 %{_libdir}/nautilus/extensions-1.0/libnautilus-seahorse.*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Nov 09 2005 Dries Verachtert <dries@ulyssis.org> - 0.8-1
 - Updated to release 0.8.
 

@@ -10,7 +10,7 @@
 Summary: Manages IPv4 and IPv6 addresses and subnets
 Name: perl-NetAddr-IP
 Version: 3.028
-Release: 1
+Release: 1.2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/NetAddr-IP/
@@ -52,6 +52,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorlib}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.028-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 3.028-1
 - Updated to release 3.028.
 

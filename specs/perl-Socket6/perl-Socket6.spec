@@ -9,7 +9,7 @@
 Summary: IPv6 related part of the C socket.h defines and structure manipulators
 Name: perl-Socket6
 Version: 0.19
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Socket6/
@@ -52,6 +52,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Socket6/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.19-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.19-1
 - Updated to release 0.19.
 

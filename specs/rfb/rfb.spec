@@ -11,7 +11,7 @@
 Summary: heXoNet RFB (remote control for the X Window System)
 Name: rfb
 Version: 0.6.1
-Release: 5
+Release: 5.2
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.hexonet.de/software/rfb/
@@ -112,6 +112,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/*.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.1-5.2
+- Rebuild for Fedora Core 5.
+
 * Sun Nov  6 2005 Matthias Saou <http://freshrpms.net/> 0.6.1-5
 - Remove /usr/X11R6/bin bindir, it's obsoleted with the newest X.org server.
 - Don't strip binaries upon install to get useful debuginfo packages.

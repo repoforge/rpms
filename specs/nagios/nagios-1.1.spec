@@ -11,7 +11,7 @@
 Summary: Open Source host, service and network monitoring program
 Name: nagios
 Version: 1.1
-Release: 6
+Release: 6.2
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
@@ -183,6 +183,9 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-6.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jan 28 2004 Dag Wieers <dag@wieers.com> - 1.1-6
 - Fixed the longstanding nagios.cmd problem. (Magnus Stenman)
 

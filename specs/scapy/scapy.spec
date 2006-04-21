@@ -5,7 +5,7 @@
 Summary: Interactive packet manipulation tool and network scanner
 Name: scapy
 Version: 1.0.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.secdev.org/projects/scapy/
@@ -48,6 +48,9 @@ the interpretor, and restored the next time you launch scapy.
 %{_bindir}/scapy
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Mar 17 2006 Dag Wieers <dag@wieers.com> - 1.0.4-1
 - Updated to release 1.0.4.
 

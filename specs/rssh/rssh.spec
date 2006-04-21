@@ -6,7 +6,7 @@
 Summary: Restricted shell for use with OpenSSH, allowing only scp and/or sftp
 Name: rssh
 Version: 2.3.2
-Release: 1
+Release: 1.2
 License: BSD
 Group: Applications/Internet
 URL: http://www.pizzashack.org/rssh/
@@ -47,6 +47,9 @@ access, you can use rssh to do that.
 %attr(4755, root, root) %{_libexecdir}/rssh_chroot_helper
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.3.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 07 2006 Dag Wieers <dag@wieers.com> - 2.3.2-1
 - Updated to release 2.3.2.
 

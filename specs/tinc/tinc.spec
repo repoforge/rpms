@@ -6,7 +6,7 @@
 Summary: Virtual private network daemon
 Name: tinc
 Version: 1.0.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://tinc.nl.linux.org/
@@ -50,6 +50,9 @@ information to others.
 %{_sbindir}/tincd
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed May 04 2005 Dag Wieers <dag@wieers.com> - 1.0.4-1
 - Updated to release 1.0.4.
 

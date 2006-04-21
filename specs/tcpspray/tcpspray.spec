@@ -6,7 +6,7 @@ Summary: Print average throughput for a tcp connection
 Name: tcpspray
 %define real_version 1.1a
 Version: 1.1
-Release: 0.a
+Release: 0.a.2
 License: Unknown
 Group: Applications/Internet
 URL: http://ftp.linux.org.uk/pub/linux/Networking/attic/Other/tcpspray/
@@ -37,6 +37,9 @@ Print average throughput for a tcp connection.
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-0.a.2
+- Rebuild for Fedora Core 5.
+
 * Wed Nov 26 2003 Dag Wieers <dag@wieers.com> - 1.1-0.a
 - Repackaged using DAR.
 

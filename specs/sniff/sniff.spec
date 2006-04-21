@@ -4,7 +4,7 @@
 Summary: Makes output from tcpdump easier to read and parse
 Name: sniff
 Version: 2.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.thedumbterminal.co.uk/software/sniff.shtml
@@ -37,5 +37,8 @@ sniff makes output from the tcpdump program easier to read and parse.
 %{_bindir}/sniff
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun May 08 2005 Dag Wieers <dag@wieers.com> - 2.3-1
 - Initial package. (using DAR)

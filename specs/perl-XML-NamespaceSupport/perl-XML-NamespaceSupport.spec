@@ -11,7 +11,7 @@
 Summary: XML-NamespaceSupport Perl module
 Name: perl-XML-NamespaceSupport
 Version: 1.09
-Release: 1
+Release: 1.2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-NamespaceSupport/
@@ -52,6 +52,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorlib}/XML/NamespaceSupport.pm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.09-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.09-1
 - Updated to release 1.09.
 

@@ -6,7 +6,7 @@
 Summary: Secure file deletion utility
 Name: wipe
 Version: 2.2.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://wipe.sourceforge.net/
@@ -51,6 +51,9 @@ erased from a hard drive is unrecoverable.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 2.2.0-1
 - Cosmetic rebuild for Group-tag.
 

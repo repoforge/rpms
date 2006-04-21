@@ -21,7 +21,7 @@
 Summary: X Window System utility for monitoring system resources
 Name: xosview
 Version: 1.8.2
-Release: 1
+Release: 1.2
 License: GPL/BSD
 Group: Applications/System
 URL: http://xosview.sourceforge.net/
@@ -100,6 +100,9 @@ strip %{buildroot}%{_prefix}/X11R6/bin/xosview
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-xosview.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.8.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Mar 28 2005 Dag Wieers <dag@wieers.com> - 1.8.2-1
 - Updated to release 1.8.2.
 

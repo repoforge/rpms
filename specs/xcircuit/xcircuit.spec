@@ -12,7 +12,7 @@
 Summary: Electronic circuit schematic drawing program
 Name: xcircuit
 Version: 3.3.1
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/Engineering
 URL: http://xcircuit.ece.jhu.edu/
@@ -58,6 +58,9 @@ CAD program for circuit schematic drawing and schematic capture.
 %{_libdir}/xcircuit-3.3/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.3.1-2.2
+- Rebuild for Fedora Core 5.
+
 * Sat Dec 04 2004 Dag Wieers <dag@wieers.com> - 3.3.1-2
 - Fixed problem with incorrect %%datadir. (Michael D. Setzer)
 

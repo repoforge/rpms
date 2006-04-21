@@ -8,7 +8,7 @@
 Summary: Perl interface to the 2.x series of the GNOME libraries
 Name: perl-Gnome2
 Version: 1.023
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gnome2/
@@ -55,6 +55,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.023-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Oct 15 2005 Dries Verachtert <dries@ulyssis.org> - 1.023-1
 - Updated to release 1.023.
 

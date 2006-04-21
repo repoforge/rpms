@@ -5,7 +5,7 @@
 Summary: Countdown timer applet for GNOME
 Name: timer-applet
 Version: 1.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Productivity
 URL: http://timerapplet.sourceforge.net/
@@ -55,6 +55,9 @@ gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/timer-applet.
 %{_datadir}/omf/timer-applet/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan 01 2006 Dag Wieers <dag@wieers.com> - 1.2-1
 - Updated to release 1.2.
 

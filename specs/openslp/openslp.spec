@@ -5,7 +5,7 @@
 Name: openslp
 Summary: OpenSLP implementation of Service Location Protocol V2
 Version: 1.2.1
-Release: 0
+Release: 0.2
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.openslp.org/
@@ -234,6 +234,9 @@ fi
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.1-0.2
+- Rebuild for Fedora Core 5.
+
 * Wed Sep 14 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.1-1
 - Updated to release 1.2.1.
 

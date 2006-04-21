@@ -5,7 +5,7 @@
 Summary: Extracts attachments out of mailpack format emails
 Name: ripole
 Version: 0.2.0
-Release: 1
+Release: 1.2
 License: BSD
 Group: Applications/File
 URL: http://www.pldaniels.com/ripole/
@@ -76,6 +76,9 @@ you will need to install %{name}-devel.
 %{_libdir}/libripole.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 12 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.0-1
 - Updated to release 0.2.0.
 

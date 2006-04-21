@@ -14,7 +14,7 @@
 Summary: Space arcade game
 Name: xkobo
 Version: 1.11
-Release: 3
+Release: 3.2
 License: GPL
 Group: Amusements/Games
 URL: http://seki.math.hokudai.ac.jp:20080/xkobo-current.html
@@ -87,6 +87,9 @@ xmkmf -a
 %{_localstatedir}/lib/games/xkobo/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-3.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jan 02 2004 Dag Wieers <dag@wieers.com> - 1.11-3
 - Added desktop-file.
 - Fixed group ownership/permissions of highscoredir. (Konrad Kosmowski)

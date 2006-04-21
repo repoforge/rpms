@@ -7,7 +7,7 @@
 Summary: Secure programming lint
 Name: splint
 Version: 3.1.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Tools
 URL: http://www.splint.org/
@@ -50,6 +50,9 @@ checking than can be done by any standard lint.
 %{_datadir}/splint/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.1.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Mar 08 2004 Dag Wieers <dag@wieers.com> - 3.1.1-1
 - Added --program-prefix to %%configure.
 

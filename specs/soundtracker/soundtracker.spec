@@ -12,7 +12,7 @@
 Summary: Sound module player and composer
 Name: soundtracker
 Version: 0.6.8
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.soundtracker.org/
@@ -83,6 +83,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/gnome-soundtracker.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Feb 28 2006 Dag Wieers <dag@wieers.com> - 0.6.8-1
 - Updated to release 0.6.8.
 

@@ -5,7 +5,7 @@
 Summary: Temporary project to work on GnuPG extensions
 Name: newpg
 Version: 0.9.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.gnupg.org/
@@ -57,5 +57,8 @@ fi
 %{_libdir}/newpg/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 0.9.4-1
 - Initial package. (using DAR)

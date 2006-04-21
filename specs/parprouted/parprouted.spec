@@ -5,7 +5,7 @@
 Summary: Proxy ARP IP bridging daemon
 Name: parprouted
 Version: 0.63
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.hazard.maks.net/
@@ -43,5 +43,8 @@ transparent firewalls.
 %{_bindir}/parprouted
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.63-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Nov 27 2005 Dag Wieers <dag@wieers.com> - 0.63-1
 - Initial package. (using DAR)

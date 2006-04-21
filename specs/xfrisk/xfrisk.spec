@@ -8,7 +8,7 @@
 Summary: Multi-user network version of the classic "Risk"
 Name: xfrisk
 Version: 1.2
-Release: 0
+Release: 0.2
 License: GPL
 Group: Amusements/Games
 URL: http://tuxick.net/xfrisk/
@@ -56,6 +56,9 @@ system for graphics and runs on most UNIX and UNIX-like platforms.
 %{_libdir}/xfrisk/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-0.2
+- Rebuild for Fedora Core 5.
+
 #- Updated URL and Source-tag. (Anthony Joseph Seward)
 
 * Sat Feb 15 2003 Dag Wieers <dag@wieers.com> - 1.2-0

@@ -24,7 +24,7 @@ Summary: Modern Version Control System designed to replace CVS
 Name: subversion
 Version: 1.2.1
 ### FC3 comes with release 1.1
-Release: 0.1
+Release: 0.1.2
 License: BSD
 Group: Development/Tools
 URL: http://subversion.tigris.org/
@@ -242,6 +242,9 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.1-0.1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jul 13 2005 Dag Wieers <dag@wieers.com> - 1.2.1-0.1
 - Updated to release 1.2.1
 

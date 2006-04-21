@@ -15,7 +15,7 @@
 Summary: Cute little penguins that walk along the tops of your windows
 Name: xpenguins
 Version: 2.2
-Release: 0
+Release: 0.2
 License: GPL
 Group: Amusements/Graphics
 URL: http://xpenguins.seul.org/
@@ -87,5 +87,8 @@ Themes for xpenguins, includes:
 %{_datadir}/xpenguins/themes/Worms/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2-0.2
+- Rebuild for Fedora Core 5.
+
 * Thu Apr 17 2003 Dag Wieers <dag@wieers.com> - 2.2-0
 - Initial package. (using DAR)

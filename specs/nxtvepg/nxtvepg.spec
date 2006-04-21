@@ -16,7 +16,7 @@
 Summary: NexTView EPG decoder and browser
 Name: nxtvepg
 Version: 2.7.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://nxtvepg.sourceforge.net/
@@ -95,6 +95,9 @@ EOF
 %{_datadir}/pixmaps/nxtvepg.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.7.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr 04 2005 Dag Wieers <dag@wieers.com> - 2.7.5-1
 - Updated to release 2.7.5.
 

@@ -15,7 +15,7 @@
 Summary: Displays a given file anywhere on your X root window
 Name: root-tail
 Version: 1.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://root-tail.plan9.de/
@@ -55,6 +55,9 @@ xmkmf -a
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Apr 08 2004 Dag Wieers <dag@wieers.com> - 1.1-1
 - Updated to release 1.1.
 

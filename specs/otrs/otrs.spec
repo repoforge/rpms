@@ -10,7 +10,7 @@
 Summary: Open Ticket Request System
 Name: otrs
 Version: 2.0.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://otrs.org/
@@ -162,6 +162,9 @@ fi
 %doc doc/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr 15 2006 Dag Wieers <dag@wieers.com> - 2.0.4-2
 - Added missing perl-Apache-DBI dependency. (Grant McChesney)
 

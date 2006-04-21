@@ -5,7 +5,7 @@
 Summary: Graphical search/replace tool featuring Perl-style regular expressions
 Name: regexxer
 Version: 0.8
-Release: 3
+Release: 3.2
 License: GPL
 Group: Applications/Text
 URL: http://regexxer.sourceforge.net/
@@ -54,6 +54,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/regexxer/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-3.2
+- Rebuild for Fedora Core 5.
+
 * Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.8-3
 - Fixed files section.
 

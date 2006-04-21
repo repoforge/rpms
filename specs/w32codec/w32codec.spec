@@ -8,7 +8,7 @@
 Summary: W32 Codec package for MPlayer on x86 UNIX systems
 Name: w32codec
 Version: 1.0
-Release: 0.%{real_version}
+Release: 0.%{real_version}.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/homepage/design7/dload.html
@@ -41,6 +41,9 @@ W32 Codec package for MPlayer on x86 UNIX systems.
 %{_libdir}/win32/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-0.%{real_version}.2
+- Rebuild for Fedora Core 5.
+
 * Sat Mar 19 2005 Dag Wieers <dag@wieers.com> - 1.0-0.20050216
 - Transformed into nosrc package.
 

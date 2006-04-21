@@ -10,7 +10,7 @@
 Summary: Simple DirectMedia Layer - Sample TrueType Font Library
 Name: SDL_ttf
 Version: 2.0.7
-Release: 0
+Release: 0.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.libsdl.org/projects/SDL_ttf/
@@ -74,6 +74,9 @@ you will need to install %{name}-devel.
 #exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.7-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon Sep 05 2005 Dries Verachtert <dries@ulyssis.org> - 2.0.7-0
 - Update to release 2.0.7.
 

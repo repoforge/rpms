@@ -10,7 +10,7 @@
 Summary: Combined filter, redirector and access controller plugin for squid
 Name: squidguard
 Version: 1.2.0
-Release: 2
+Release: 2.2
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.squidguard.org/
@@ -98,6 +98,9 @@ EOF
 %{_localstatedir}/log/squidguard/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.0-2.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 09 2004 Dag Wieers <dag@wieers.com> - 1.2.0-2
 - Added patch for db4 (RHEL3 and RHFC1). (Tom Gordon)
 

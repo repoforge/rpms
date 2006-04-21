@@ -5,7 +5,7 @@
 Summary: Multi-zone time display utility
 Name: rktime
 Version: 0.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Productivity
 URL: http://people.redhat.com/rkeech/
@@ -71,6 +71,9 @@ EOF
 %{_bindir}/rktime
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Nov 14 2004 Dag Wieers <dag@wieers.com> - 0.6-1
 - Cosmetic changes to SPEC file.
 

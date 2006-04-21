@@ -13,7 +13,7 @@
 Summary: LaTeX editor
 Name: texmaker
 Version: 1.2.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Publishing
 URL: http://www.xm1math.net/texmaker/
@@ -112,6 +112,9 @@ $QTDIR/bin/qmake -makefile -unix texmaker.pro
 %{_datadir}/texmaker/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jul 23 2005 Dag Wieers <dag@weers.com> - 1.2.1-1
 - Updated to release 1.2.1.
 

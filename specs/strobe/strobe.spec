@@ -4,7 +4,7 @@
 Summary: Super optimized TCP port surveyor
 Name: strobe
 Version: 1.06
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://ftp.cerias.purdue.edu/pub/tools/unix/scanners/strobe/
@@ -40,5 +40,8 @@ utilisation maximising, and process resource minimizing manner.
 %{_bindir}/strobe
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.06-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Feb 13 2005 Dag Wieers <dag@wieers.com> - 1.06-1
 - Initial package. (using DAR)

@@ -5,7 +5,7 @@
 Summary: Simple music player
 Name: muine
 Version: 0.6.3
-Release: 3
+Release: 3.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://muine.gooeylinux.org/
@@ -59,6 +59,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/applications/muine.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.3-3.2
+- Rebuild for Fedora Core 5.
+
 * Tue Feb 08 2005 Dag Wieers <dag@wieers.com> - 0.6.3-3
 - Added mono-data dependency too. (Hassan Aurag)
 

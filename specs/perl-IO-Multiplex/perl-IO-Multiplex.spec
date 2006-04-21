@@ -9,7 +9,7 @@
 Summary: IO-Multiplex module for perl
 Name: perl-IO-Multiplex
 Version: 1.08
-Release: 2
+Release: 2.2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Multiplex/
@@ -51,6 +51,9 @@ IO-Multiplex module for perl.
 %{perl_vendorlib}/IO/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.08-2.2
+- Rebuild for Fedora Core 5.
+
 * Sun Feb 20 2005 Dag Wieers <dag@wieers.com> - 1.08-2
 - Cosmetic changes.
 

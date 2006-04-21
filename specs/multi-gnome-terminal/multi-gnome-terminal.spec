@@ -5,7 +5,7 @@
 Summary: Extended version of the GNOME terminal
 Name: multi-gnome-terminal
 Version: 1.6.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: User Interface/Desktops
 URL: http://multignometerm.sourceforge.net/
@@ -79,6 +79,9 @@ desktop-file-install --vendor gnome           \
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Apr 22 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
 - Update to 1.6.2.
 

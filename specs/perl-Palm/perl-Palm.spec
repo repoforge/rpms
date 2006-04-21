@@ -11,7 +11,7 @@
 Summary: Perl Palm classes
 Name: perl-Palm
 Version: 1.3.0
-Release: 2
+Release: 2.2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/p5-Palm/
@@ -54,6 +54,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorlib}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.0-2.2
+- Rebuild for Fedora Core 5.
+
 * Sat Oct 15 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.0-2
 - Fixed the source url.
 

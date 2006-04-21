@@ -5,7 +5,7 @@
 Summary: X Render Extension
 Name: render
 Version: 0.8
-Release: 0
+Release: 0.2
 License: Free Software
 Group: System Environment/Libraries
 URL: http://freedesktop.org/
@@ -43,5 +43,8 @@ extension. Library and server implementations are separate.
 #%{_includedir}/X11/extensions/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-0.2
+- Rebuild for Fedora Core 5.
+
 * Fri Feb 27 2004 Dag Wieers <dag@wieers.com> - 0.8-0
 - Initial package. (using DAR)

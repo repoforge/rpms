@@ -13,7 +13,7 @@
 Summary: Television application for video4linux compliant devices
 Name: xawtv
 Version: 3.94
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://bytesex.org/xawtv/
@@ -92,6 +92,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-xawtv.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.94-2.2
+- Rebuild for Fedora Core 5.
+
 * Wed Feb 09 2005 Dag Wieers <dag@wieers.com> - 3.94-2
 - Added zvbi-devel build requirement. (Klaus-Peter Schrage)
 - Rebuild with zvbi-support.

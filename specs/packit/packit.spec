@@ -7,7 +7,7 @@
 Summary: Network injection and capturing tool
 Name: packit
 Version: 1.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://packit.sourceforge.net/
@@ -50,6 +50,9 @@ learning TCP/IP.
 %{_sbindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 1.0-1
 - Updated to release 1.0.
 

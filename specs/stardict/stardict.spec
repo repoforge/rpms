@@ -4,7 +4,7 @@
 Summary: Versatile online dictionary
 Name: stardict
 Version: 2.4.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://stardict.sourceforge.net/
@@ -65,6 +65,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.4.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Feb 26 2005 Dag Wieers <dag@wieers.com> - 2.4.4-1
 - Updated to release 2.4.4.
 

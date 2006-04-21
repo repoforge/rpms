@@ -5,7 +5,7 @@
 Summary: Programs for dealing with numbers
 Name: num-utils
 Version: 0.5
-Release: 2
+Release: 2.2
 License: GPL
 Group: System Environment/Base
 URL: http://suso.suso.org/programs/num-utils/
@@ -48,6 +48,9 @@ and aim to help complete the Unix shell vocabulary.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-2.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 05 2004 Dag Wieers <dag@wieers.com> - 0.5-2
 - Workaround the idiotic perl-find-requires.
 

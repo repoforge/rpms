@@ -7,7 +7,7 @@
 Summary: VNC server which acts as a proxy for a number of VNC clients
 Name: vncreflector
 Version: 1.2.4
-Release: 0
+Release: 0.2
 Group: User Interface/Desktops
 License: GPL
 URL: http://sf.net/projects/vnc-reflector/
@@ -42,5 +42,8 @@ designed to work efficiently with large number of clients.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.4-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jun 30 2003 Dag Wieers <dag@wieers.com> - 1.2.4-0
 - Initial package. (using DAR)

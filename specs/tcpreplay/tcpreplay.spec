@@ -5,7 +5,7 @@
 Summary: Replay captured network traffic
 Name: tcpreplay
 Version: 2.3.5
-Release: 1
+Release: 1.2
 License: BSD
 Group: Applications/Internet
 URL: http://tcpreplay.sourceforge.net/
@@ -55,6 +55,9 @@ capture files.
 %{_sbindir}/tcpreplay
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.3.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 2.3.5-1
 - Updated to release 2.3.5.
 

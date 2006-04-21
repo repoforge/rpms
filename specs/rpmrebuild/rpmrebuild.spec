@@ -4,7 +4,7 @@
 Summary: Build new RPM packages from an old installed package
 Name: rpmrebuild
 Version: 1.4.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://rpmrebuild.sourceforge.net/
@@ -146,6 +146,9 @@ this tool is for you.
 /a
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 1.4.6-1
 - Updated to release 1.4.6.
 

@@ -5,7 +5,7 @@
 Summary: Another cron daemon
 Name: tcron
 Version: 0.4.8
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Daemons
 URL: http://tcron.sourceforge.net/
@@ -78,6 +78,9 @@ you will need to install %{name}-devel.
 %{_includedir}/tcron.h
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Feb 17 2005 Dag Wieers <dag@wieers.com> - 0.4.8-1
 - Updated to release 0.4.8.
 

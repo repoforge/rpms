@@ -5,7 +5,7 @@
 Summary: Tray applet for changing network proxy configuration
 Name: proxy-applet
 Version: 0.2.4
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/System
 URL: http://dag.wieers.com/home-made/gnome-applets/
@@ -56,6 +56,9 @@ desktop-file-install --vendor gnome --delete-original \
 %{_datadir}/proxy-applet/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.4-0.2
+- Rebuild for Fedora Core 5.
+
 * Sat Feb 28 2004 Dag Wieers <dag@wieers.com> - 0.2.4-0
 - Updated to release 0.2.4.
 

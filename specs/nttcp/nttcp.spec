@@ -7,7 +7,7 @@
 Summary: tool to do memory to memory performance measurements with TCP/IP.
 Name: nttcp
 Version: 1.47
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.leo.org/~elmar/nttcp/
@@ -47,5 +47,8 @@ been adapted and modified by several persons.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.47-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon Aug 04 2003 Dag Wieers <dag@wieers.com> - 1.47-0
 - Initial package. (using DAR)

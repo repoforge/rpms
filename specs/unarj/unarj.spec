@@ -6,7 +6,7 @@
 Summary: Uncompressor for .arj format archive files
 Name: unarj
 Version: 2.63
-Release: 0.a
+Release: 0.a.2
 Group: Applications/Archiving
 License: distributable
 
@@ -39,5 +39,8 @@ The UNARJ program is used to uncompress .arj format archives.  The
 %{_bindir}/unarj
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.63-0.a.2
+- Rebuild for Fedora Core 5.
+
 * Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 2.43-1
 - Initial package. (using DAR)

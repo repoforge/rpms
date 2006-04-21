@@ -6,7 +6,7 @@
 Summary: Simple sticky notes applet for the GNOME desktop
 Name: stickynotes_applet
 Version: 1.2.3
-Release: 0
+Release: 0.2
 License: GPL
 Group: User Interface/Desktops
 URL: http://loban.caltech.edu/stickynotes/
@@ -67,6 +67,9 @@ scrollkeeper-update -q || :
 %{_datadir}/stickynotes/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.3-0.2
+- Rebuild for Fedora Core 5.
+
 * Thu Aug 21 2003 Dag Wieers <dag@wieers.com> - 1.2.3-0
 - Updated to release 1.2.3.
 

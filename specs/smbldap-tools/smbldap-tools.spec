@@ -5,7 +5,7 @@
 Summary: User and group administration tools for Samba-OpenLDAP
 Name: smbldap-tools
 Version: 0.9.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://samba.idealx.org/index.en.html
@@ -54,6 +54,9 @@ tools to manage users, groups and passwords.
 %exclude %{_sbindir}/smbldap-tools.spec
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Aug 12 2005 Dag Wieers <dag@wieers.com> - 0.9.1-2
 - Excluded smbldap-tools.spec. (Simon Perreault)
 

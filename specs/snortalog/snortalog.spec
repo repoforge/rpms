@@ -11,7 +11,7 @@
 Summary: Snort log analyzer
 Name: snortalog
 Version: 2.4.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://jeremy.chartier.free.fr/snortalog/
@@ -83,6 +83,9 @@ EOF
 %dir %{_localstatedir}/www/snortalog/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.4.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 05 2004 Dag Wieers <dag@wieers.com> - 2.3.0-1
 - Updated to release 2.3.0.
 

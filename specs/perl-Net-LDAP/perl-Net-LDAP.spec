@@ -9,7 +9,7 @@
 Summary: set of Perl classes implementing an LDAP client
 Name: perl-Net-LDAP
 Version: 0.3202
-Release: 1
+Release: 1.2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-LDAP/
@@ -72,6 +72,9 @@ by relying on as little compiled code as possible.
 %{perl_vendorlib}/Net/LDAPS.pm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3202-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jan 27 2005 Dag Wieers <dag@wieers.com> - 0.3202-1
 - Updated to release 0.3202.
 

@@ -5,7 +5,7 @@
 Summary: Utility for testing pluggable authentication modules (PAM) facility
 Name: pamtester
 Version: 0.1.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://pamtester.sourceforge.net/
@@ -48,5 +48,8 @@ SASL and LDAP.
 %{_bindir}/pamtester
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Apr 05 2005 Dag Wieers <dag@wieers.com> - 0.1.0-1
 - Initial package. (using DAR)

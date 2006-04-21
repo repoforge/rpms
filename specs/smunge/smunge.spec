@@ -5,7 +5,7 @@
 Summary: Funneling POP proxy
 Name: smunge
 Version: 1.3.7
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.i2pi.com/smunge/
@@ -157,6 +157,9 @@ fi
 %{_sbindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Apr 21 2004 Bert de Bruijn <bert@debruijn.be> - 1.3.7-1
 - Updated to release 1.3.7.
 

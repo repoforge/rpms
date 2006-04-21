@@ -4,7 +4,7 @@
 Summary: framework and library for writing RADIUS clients
 Name: radiusclient
 Version: 0.3.2
-Release: 0
+Release: 0.2
 License: Free
 Group: Applications/Internet
 URL: http://www.cityline.net/~lf/radius/
@@ -69,5 +69,8 @@ you will need to install %{name}-devel.
 %{_includedir}/*.h
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.2-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon Aug 18 2003 Dag Wieers <dag@wieers.com> - 0.3.2-0
 - Initial package. (using DAR)

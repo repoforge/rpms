@@ -7,7 +7,7 @@
 Summary: Send ICMP nasty garbage
 Name: sing
 Version: 1.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://sf.net/projects/sing/
@@ -45,5 +45,8 @@ the ping command but adding certain enhancements (Fragmentation, spoofing,
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Apr 25 2004 Dag Wieers <dag@wieers.com> - 1.1-1
 - Initial package. (using DAR)

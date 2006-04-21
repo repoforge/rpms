@@ -6,7 +6,7 @@
 Summary: Utilities based on Openobex
 Name: openobex-utils
 Version: 1.0.0
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Base
 URL: http://openobex.sourceforge.net/
@@ -52,6 +52,9 @@ ${CC:-%{__cc}} %{optflags} -o obexserver %{SOURCE1} libmisc.a $(openobex-config 
 %{_bindir}/obex_test
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jan 30 2006 Dag Wieers <dag@wieers.com> - 1.0.0-1
 - Added patch for gcc 3.4+.
 

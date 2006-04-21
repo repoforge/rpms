@@ -8,7 +8,7 @@
 Summary: Alarm clock
 Name: pyalarm
 Version: 0.1.6
-Release: 1
+Release: 1.2
 License: UNKNOWN
 Group: Development/Libraries
 URL: http://pyalarm.sourceforge.net/
@@ -48,5 +48,8 @@ python setup.py install --root="%{buildroot}"
 %{_datadir}/pyAlarm/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Mar 13 2005 Dag Wieers <dag@wieers.com> - 0.1.6-1
 - Initial package. (using DAR)

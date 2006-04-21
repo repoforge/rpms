@@ -4,7 +4,7 @@
 Summary: Lossless volume-adjusting utility for Ogg Vorbis files
 Name: vorbisgain
 Version: 0.36
-Release: 2
+Release: 2.2
 License: LGPL
 Group: Applications/Multimedia
 URL: http://sjeng.org/vorbisgain.html
@@ -52,6 +52,9 @@ technology.
 %{_bindir}/vorbisgain
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.36-2.2
+- Rebuild for Fedora Core 5.
+
 * Sat Sep 03 2005 Dag Wieers <dag@wieers.com> - 0.3.6-2
 - Added patch fo a double free condition. (Noa Resare)
 

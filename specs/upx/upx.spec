@@ -4,7 +4,7 @@
 Summary: The Ultimate Packer for eXecutables
 Name: upx
 Version: 1.25
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/File
 URL: http://upx.sourceforge.net/
@@ -61,6 +61,9 @@ export LDFLAGS="%{optflags}"
 %{_bindir}/upx
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.25-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 01 2004 Dag Wieers <dag@wieers.com> - 1.25-1
 - Updated to release 1.25.
 

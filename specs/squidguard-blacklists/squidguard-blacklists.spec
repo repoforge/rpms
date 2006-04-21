@@ -12,7 +12,7 @@
 Summary: Regularly updated blacklists for use with squidguard
 Name: squidguard-blacklists
 Version: 20050528
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Libraries
 URL: http://dag.wieers.com/home-made/squidguard/
@@ -137,6 +137,9 @@ echo '\.(mpe?g?|wmv|mov|movie|qt|avi|dvd?|divx)($|\?)' >>%{buildroot}%{_sysconfd
 %ghost %{_localstatedir}/log/squidguard/*.log
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 20050528-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue May 31 2005 Dag Wieers <dag@wieers.com> - 20050528-1
 - Updated to release 20050528.
 

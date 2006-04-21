@@ -9,7 +9,7 @@
 Summary: Text utilities for use with GD
 Name: perl-GD-Text-Util
 Version: 0.86
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GDTextUtil/
@@ -51,6 +51,9 @@ Text utilities for use with GD.
 %{perl_vendorlib}/GD/Text.pm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.86-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr 02 2005 Dag Wieers <dag@wieers.com> - 0.86-1
 - Cosmetic cleanup.
 - Fixed BuildArch, now noarch.

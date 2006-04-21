@@ -6,7 +6,7 @@
 Summary: SIP implementation
 Name: libosip2
 Version: 2.2.0
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gnu.org/software/osip/osip.html
@@ -76,5 +76,8 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libosip2.pc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Mar 23 2005 Dag Wieers <dag@wieers.com> - 2.2.0-1
 - Initial package. (using DAR)

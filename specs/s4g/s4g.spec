@@ -7,7 +7,7 @@
 Summary: User level sandbox designed for grid technologies
 Name: s4g
 Version: 0.8.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://www.lri.fr/~tmorlier/S4G/
@@ -43,5 +43,8 @@ to insert a specific module nor to have special administrator rights.
 %{_bindir}/sandbox
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Sep 24 2004 Dag Wieers <dag@wieers.com> - 0.8.1-1
 - Initial package. (using DAR)

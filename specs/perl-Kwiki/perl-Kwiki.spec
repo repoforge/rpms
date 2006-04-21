@@ -9,7 +9,7 @@
 Summary: Kwiki module for perl
 Name: perl-Kwiki
 Version: 0.38
-Release: 1
+Release: 1.2
 License: GPL or Artistic
 Group: Applications/CPAN
 #URL: http://search.cpan.org/dist/Kwiki/
@@ -50,6 +50,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.38-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.38-1
 - Updated to release 0.38.
 

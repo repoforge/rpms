@@ -21,7 +21,7 @@
 Summary: Graphical remote administration system
 Name: tightvnc
 Version: 1.2.9
-Release: 3
+Release: 3.2
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.tightvnc.com/
@@ -259,6 +259,9 @@ fi
 %{_datadir}/vnc/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.9-3.2
+- Rebuild for Fedora Core 5.
+
 * Sun May 23 2004 Dag Wieers <dag@wieers.com> - 1.2.9-3
 - Fixed dependency on xorg-x11 instead of XFree86 on fc2. (Christopher V. Browne)
 

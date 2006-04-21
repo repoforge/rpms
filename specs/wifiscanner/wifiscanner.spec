@@ -6,7 +6,7 @@
 Summary: Discover wireless clients and access points
 Name: wifiscanner
 Version: 1.0.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://wifiscanner.sourceforge.net/
@@ -47,6 +47,9 @@ WifiScanner is a tool to discover wireless clients and access points.
 %exclude %{_libdir}/libwiretap.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Nov 04 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1
 - Updated to release 1.0.1.
 

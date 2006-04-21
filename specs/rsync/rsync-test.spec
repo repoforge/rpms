@@ -13,7 +13,7 @@ Summary: Program for synchronizing files over a network
 Name: rsync
 Version: 2.6.4
 #Release: 0.pre2
-Release: 0.pre2.cvs20050315
+Release: 0.pre2.cvs20050315.2
 License: GPL
 Group: Applications/Internet
 URL: http://rsync.samba.org/
@@ -73,6 +73,9 @@ EOF
 %{_bindir}/rsync
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.6.4-0.pre2.cvs20050315.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 15 2005 Dag Wieers <dag@wieers.com> - 2.6.4-0.pre2.cvs20050315
 - Updated to release 2.6.4pre2-cvsHEAD-20050315-1733GMT.
 

@@ -10,7 +10,7 @@
 Summary: framework for localization and inheritance-based lexicons for Perl
 Name: perl-Locale-Maketext
 Version: 1.09
-Release: 1
+Release: 1.2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Locale-Maketext/
@@ -54,6 +54,9 @@ in this dist).
 %{perl_vendorlib}/Locale/Maketext.pod
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.09-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr 02 2005 Dag Wieers <dag@wieers.com> - 1.06-1
 - Cosmetic cleanup.
 

@@ -5,7 +5,7 @@
 Summary: Tune system to optimal performance
 Name: powertweak
 Version: 0.99.5
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/System
 URL: http://powertweak.sourceforge.net/
@@ -115,5 +115,8 @@ find %{buildroot}%{_libdir}/powertweak/plugins/ -type f -name "\*.so.\*" -exec s
 %{_bindir}/powertweak
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.99.5-0.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 10 2003 Dag Wieers <dag@wieers.com> - 0.99.5-0
 - Initial package. (using DAR)

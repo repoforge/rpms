@@ -4,7 +4,7 @@
 Summary: Audio Meta-Data Library
 Name: taglib
 Version: 1.4
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://ktown.kde.org/~wheeler/taglib/
@@ -73,5 +73,8 @@ popd
 %{_libdir}/pkgconfig/taglib.pc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Feb 14 2006 Dag Wieers <dag@wieers.com> - 1.4-1
 - Initial package. (using DAR)

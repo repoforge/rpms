@@ -6,7 +6,7 @@
 Summary: RFC 2217-compliant serial port redirector
 Name: sercd
 Version: 2.3.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Communications
 URL: http://www.lysator.liu.se/~astrand/projects/sercd/
@@ -62,5 +62,8 @@ EOF
 %{_sbindir}/sercd
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.3.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Mar 18 2005 Dag Wieers <dag@wieers.com> - 2.3.1-1
 - Initial package. (using DAR)

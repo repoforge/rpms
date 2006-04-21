@@ -9,7 +9,7 @@
 Summary: Utilities to read and manipulate patches and CVS
 Name: perl-PatchReader
 Version: 0.9.5
-Release: 2
+Release: 2.2
 License: MPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PatchReader/
@@ -54,6 +54,9 @@ output a patch as HTML).
 %{perl_vendorlib}/PatchReader/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.5-2.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 0.9.5-2
 - Fixed group.
 

@@ -4,7 +4,7 @@
 Summary: The Netscape standalone navigator
 Name: netscape3
 Version: 3.04
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.netscape.com/
@@ -41,5 +41,8 @@ standards, Java, JavaScript and some style sheets.
 %{_libdir}/netscape-%{version}/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.04-0.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jan 02 2002 Dag Wieers <dag@wieers.com> - 3.04
 - Initial package.

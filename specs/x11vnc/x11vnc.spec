@@ -15,7 +15,7 @@
 Summary: VNC server for the current X11 session
 Name: x11vnc
 Version: 0.8
-Release: 1
+Release: 1.2
 License: GPL
 Group: User Interface/X
 URL: http://www.karlrunge.com/x11vnc/
@@ -58,6 +58,9 @@ into a versatile and performant while still easy to use program.
 %{_datadir}/x11vnc/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Feb 14 2006 Dag Wieers <dag@wieers.com> - 0.8-1
 - Updated to release 0.8.
 

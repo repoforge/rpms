@@ -12,7 +12,7 @@
 Summary: Smart decoder for uuencode, xxencode, Base64 and BinHex
 Name: uudeview
 Version: 0.5.20
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/File
 URL: http://www.fpx.de/fp/Software/UUDeview/
@@ -100,6 +100,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.20-0.2
+- Rebuild for Fedora Core 5.
+
 * Wed Mar 03 2004 Bert de Bruijn <bert édebruijn.be> - 0.5.20-0
 - Updated to release 0.5.20.
 

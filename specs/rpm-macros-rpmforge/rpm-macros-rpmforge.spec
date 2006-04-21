@@ -6,7 +6,7 @@
 Summary: RPM macros used by the RPMForge project
 Name: rpm-macros-rpmforge
 Version: 0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Tools
 URL: http://rpmforge.net/
@@ -132,5 +132,8 @@ EOF
 %config %{_sysconfdir}/rpm/macros.rpmforge
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jun 08 2004 Dag Wieers <dag@wieers.com> - 0-1
 - Initial package. (using DAR)

@@ -7,7 +7,7 @@
 Summary: Remedial AVI player
 Name: remedial
 Version: 0.2.22
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://leapster.org/remedial/
@@ -55,5 +55,8 @@ CFLAGS="%{optflags}" ./am_edit --no-final
 %{_libdir}/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.22-0.2
+- Rebuild for Fedora Core 5.
+
 * Sat Dec 20 2003 Dag Wieers <dag@wieers.com> - 0.2.22-0
 - Initial package. (using DAR)

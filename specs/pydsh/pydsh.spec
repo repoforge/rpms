@@ -5,7 +5,7 @@
 Summary: Simple remote administration tool, pydsh and pydcp
 Name: pydsh
 Version: 0.5.4
-Release: 2
+Release: 2.2
 License: GPL
 Group: System Environment/Base
 URL: http://pydsh.sourceforge.net/
@@ -51,6 +51,9 @@ two tools: pydsh and pydcp.
 %{_bindir}/pydsh
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.4-2.2
+- Rebuild for Fedora Core 5.
+
 * Tue Sep 13 2005 Dag Wieers <dag@wieers.com> - 0.5.4-2
 - Changed requirement to python-expect.
 

@@ -6,7 +6,7 @@
 Summary: Net-SMTP Perl module
 Name: perl-Net-SMTP
 Version: 4.1.2
-Release: 0
+Release: 0.2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SMTP/
@@ -48,5 +48,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.1.2-0.2
+- Rebuild for Fedora Core 5.
+
 * Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 4.1.2-0
 - Initial package. (using DAR)

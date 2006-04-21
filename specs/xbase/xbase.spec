@@ -6,7 +6,7 @@
 Summary: Xbase dBase database file library
 Name: xbase
 Version: 2.0.0
-Release: 0
+Release: 0.2
 License: LGPL
 Group: Development/Libraries
 URL: http://linux.techass.com/projects/xdb/
@@ -77,5 +77,8 @@ you will need to install %{name}-devel.
 #%{_includedir}/xdb/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.0-0.2
+- Rebuild for Fedora Core 5.
+
 * Fri Sep 12 2003 Dag Wieers <dag@wieers.com> - 2.0.0-0
 - Initial package. (using DAR)

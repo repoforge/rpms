@@ -17,7 +17,7 @@
 Summary: Bond an X display and a VNC session together
 Name: x2vnc
 Version: 1.6.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: User Interface/Desktops
 URL: http://fredrik.hubbe.net/x2vnc.html
@@ -58,6 +58,9 @@ devices on two or more machines.
 %{_bindir}/x2vnc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Aug 28 2004 Dag Wieers <dag@wieers.com> - 1.6.1-1
 - Updated to release 1.6.1.
 

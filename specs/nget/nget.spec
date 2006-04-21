@@ -5,7 +5,7 @@
 Summary: Command line NNTP file grabber
 Name: nget
 Version: 0.27.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://nget.sourceforge.net/
@@ -52,6 +52,9 @@ succesfully downloaded.
 %{_bindir}/ngetlite
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.27.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Dec 21 2004 Dag Wieers <dag@wieers.com> - 0.27.1-1
 - Updated to release 0.27.1.
 

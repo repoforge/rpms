@@ -15,7 +15,7 @@
 Summary: Link two X displays together, simulating a multiheaded display
 Name: x2x
 Version: 1.27
-Release: 0
+Release: 0.2
 License: BSD
 Group: User Interface/Desktops
 URL: http://ftp.digital.com/pub/Digital/SRC/x2x/
@@ -60,5 +60,8 @@ xmkmf
 %{_bindir}/x2x
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.27-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon May 05 2003 Dag Wieers <dag@wieers.com> - 1.27-0
 - Initial package. (using DAR)

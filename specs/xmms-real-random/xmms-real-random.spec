@@ -8,7 +8,7 @@
 Summary: Plugin for XMMS providing better shuffling
 Name: xmms-real-random
 Version: 0.3
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://home.pages.at/kingleo/index.php?show=/development/stuff
@@ -52,6 +52,9 @@ A plugin for XMMS providing better shuffling.
 
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-0.2
+- Rebuild for Fedora Core 5.
+
 * Thu Oct 09 2003 Dag Wieers <dag@wieers.com> - 0.3-0
 - Updated to release 0.3.
 

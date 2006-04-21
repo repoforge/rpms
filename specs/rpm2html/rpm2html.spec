@@ -4,7 +4,7 @@
 Summary: Translates an RPM database and dependency information into HTML
 Name: rpm2html
 Version: 1.8.2
-Release: 0
+Release: 0.2
 License: MIT
 Group: Applications/System
 URL: http://rpmfind.net/linux/rpm2html/
@@ -52,6 +52,9 @@ standard RDF files.
 %{_datadir}/rpm2html/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.8.2-0.2
+- Rebuild for Fedora Core 5.
+
 * Thu Feb 26 2004 Dag Wieers <dag@wieers.com> - 1.8.2-0
 - Updated to release 1.8.2.
 

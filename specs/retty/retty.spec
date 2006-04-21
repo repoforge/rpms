@@ -5,7 +5,7 @@
 Summary: Remote tty
 Name: retty
 Version: 0.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://www.net-track.ch/opensource/retty/
@@ -42,5 +42,8 @@ Utility, but on GNU/Linux instead of Windows.
 %{_bindir}/retty
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 0.1-1
 - Initial package. (using DAR)

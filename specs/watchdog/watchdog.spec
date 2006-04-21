@@ -6,7 +6,7 @@
 Summary: Software watchdog
 Name: watchdog
 Version: 5.2
-Release: 7
+Release: 7.2
 License: GPL
 Group: System Environment/Daemons
 URL: http://oss.digirati.com.br/watchcatd/watchdog.html
@@ -181,6 +181,9 @@ fi
 %{_sbindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 5.2-7.2
+- Rebuild for Fedora Core 5.
+
 * Mon Mar 29 2004 Dag Wieers <dag@wieers.com> - 5.2-7
 - Fixed missing statement in %preun. (Matthew Lenz)
 

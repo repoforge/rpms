@@ -7,7 +7,7 @@
 Summary: General plugin for using xmms as an alarm clock
 Name: xmms-alarm
 Version: 0.3.7
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.snika.uklinux.net/?p=xmms-alarm
@@ -42,6 +42,9 @@ xmms plugin for using xmms as an alarm clock.
 %exclude %{xmms_generaldir}/libalarm.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Apr 09 2005 Dag Wieers <dag@wieers.com> - 0.3.7-1
 - Updated to release 0.3.7.
 

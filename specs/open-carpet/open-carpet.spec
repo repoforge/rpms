@@ -7,7 +7,7 @@
 Summary: Open Carpet server generation tool
 Name: open-carpet
 Version: 0.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Daemons
 URL: http://open-carpet.org/
@@ -48,5 +48,8 @@ Carpet servers.
 %{_datadir}/open-carpet/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Aug 20 2004 Dag Wieers <dag@wieers.com> - 0.3-1
 - Initial package. (using DAR)

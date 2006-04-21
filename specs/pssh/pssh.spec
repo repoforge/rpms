@@ -7,7 +7,7 @@
 Summary: Parallel SSH tools
 Name: pssh
 Version: 1.2.0
-Release: 1.dag
+Release: 1.dag.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.theether.org/pssh/
@@ -52,5 +52,8 @@ This package provides various parallel tools based on ssh and scp.
 %{_libdir}/python%{python_version}/basethread.py
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.0-1.dag.2
+- Rebuild for Fedora Core 5.
+
 * Wed Nov 10 2004 Dag Wieers <dag@wieers.com> - 1.2.0-1
 - Initial package. (using DAR)

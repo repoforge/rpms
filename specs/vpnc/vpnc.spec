@@ -6,7 +6,7 @@
 Summary: IPSec VPN client compatible with Cisco equipment
 Name: vpnc
 Version: 0.3.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.unix-ag.uni-kl.de/~massar/vpnc/
@@ -62,6 +62,9 @@ EOF
 %dev(c, 10, 200) /dev/tun
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jun 24 2005 Dries Verachtert <dries@ulyssis.org> - 0.3.3-1
 - Update to release 0.3.3.
 

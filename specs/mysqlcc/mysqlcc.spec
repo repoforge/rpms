@@ -6,7 +6,7 @@
 Summary: MySQL Control Center to administer MySQL databases
 Name: mysqlcc
 Version: 0.9.4
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Databases
 URL: http://www.mysql.com/products/mysqlcc/
@@ -82,5 +82,8 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %endif
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.4-0.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jan 08 2004 Dag Wieers <dag@wieers.com> - 0.9.4-0
 - Initial package. (using DAR)

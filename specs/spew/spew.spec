@@ -5,7 +5,7 @@
 Summary: I/O performance measurement and load generation tool
 Name: spew
 Version: 1.0.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://spew.berlios.de/
@@ -51,5 +51,8 @@ problems.
 %{_bindir}/regorge
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun May 08 2005 Dag Wieers <dag@wieers.com> - 1.0.4-1
 - Initial package. (using DAR)

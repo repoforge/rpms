@@ -5,7 +5,7 @@
 Summary: Network traffic recorder
 Name: tcpflow
 Version: 0.21
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.circlemud.org/~jelson/software/tcpflow/
@@ -44,6 +44,9 @@ separate file for later analysis.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.21-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Apr 21 2004 Dag Wieers <dag@wieers.com> - 0.21-1
 - updated to release 0.21.
 

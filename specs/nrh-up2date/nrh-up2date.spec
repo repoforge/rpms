@@ -7,7 +7,7 @@
 Summary: Open Source server for Redhat's up2date suite
 Name: nrh-up2date
 Version: 1.3
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/System
 URL: http://www.nrh-up2date.org/
@@ -67,5 +67,8 @@ updates, waisting your bandwidth.
 %{_localstatedir}/spool/nrh-up2date/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-0.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 02 2004 Dag Wieers <dag@wieers.com> - 1.3-0
 - Initial package. (using DAR)

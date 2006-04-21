@@ -9,7 +9,7 @@
 Summary: XML-SAX-PurePerl Perl module
 Name: perl-XML-SAX-PurePerl
 Version: 0.80
-Release: 0
+Release: 0.2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-SAX-PurePerl/
@@ -52,5 +52,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorlib}/XML/SAX/PurePerl
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.80-0.2
+- Rebuild for Fedora Core 5.
+
 * Sun Aug 24 2003 Dag Wieers <dag@wieers.com> - 0.80-0
 - Initial package. (using DAR)

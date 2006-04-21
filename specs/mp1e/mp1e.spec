@@ -5,7 +5,7 @@
 Summary: Real-time software MPEG-1 video/audio encoder
 Name: mp1e
 Version: 1.9.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 
@@ -73,5 +73,8 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.9.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Mar 13 2004 Dag Wieers <dag@wieers.com> - 1.9.3-1
 - Initial package. (using DAR)

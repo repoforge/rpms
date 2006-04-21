@@ -6,7 +6,7 @@
 Summary: Realtime Video4Linux recording software
 Name: v4lgrab
 Version: 0.2.2
-Release: 0
+Release: 0.2
 Group: Applications/Multimedia
 License: GPL
 URL: http://v4lgrab.sourceforge.net/
@@ -44,5 +44,8 @@ possible to record AVI DivX files in realtime from any Video4Linux device.
 %{_libdir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.2-0.2
+- Rebuild for Fedora Core 5.
+
 * Sat Feb 01 2003 Dag Wieers <dag@wieers.com> - 0.2.2
 - Initial package. (using DAR)

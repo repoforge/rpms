@@ -11,7 +11,7 @@
 Summary: Classic sopwith game
 Name: sopwith
 Version: 1.7.1
-Release: 1
+Release: 1.2
 Group: Amusements/Games
 License: GPL
 URL: http://sdl-sopwith.sourceforge.net/
@@ -78,5 +78,8 @@ EOF
 %exclude %{_docdir}/sopwith/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.7.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Apr 29 2004 Dag Wieers <dag@wieers.com> - 1.7.1-1
 - Initial package. (using DAR)

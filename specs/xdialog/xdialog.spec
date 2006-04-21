@@ -7,7 +7,7 @@
 Name: xdialog
 Summary: X11 drop in replacement for cdialog
 Version: 2.1.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://xdialog.dyns.net/
@@ -56,6 +56,9 @@ range box, and much more).
 %exclude %{_docdir}/%{real_name}-%{version}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.1.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Feb 22 2005 Dag Wieers <dag@wieers.com> - 2.1.2-1
 - Updated to release 2.1.2.
 

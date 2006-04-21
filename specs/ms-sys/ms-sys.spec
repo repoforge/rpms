@@ -5,7 +5,7 @@
 Summary: Create DOS/MS-compatible boot records
 Name: ms-sys
 Version: 2.1.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://ms-sys.sourceforge.net/
@@ -51,6 +51,9 @@ written.
 %{_bindir}/ms-sys
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.1.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov 26 2005 Dag Wieers <dag@wieers.com> - 2.1.2-1
 - Updated to release 2.1.2.
 

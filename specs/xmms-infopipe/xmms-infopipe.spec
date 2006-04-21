@@ -6,7 +6,7 @@
 Summary: Reports XMMS status via named pipe
 Name: xmms-infopipe
 Version: 1.3
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.beastwithin.org/users/wwwwolf/code/xmms/infopipe.html
@@ -51,6 +51,9 @@ chmod 0644 applications/*
 %exclude %{xmms_generaldir}/libinfopipe-?.?.so.*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-2.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 06 2004 Dag Wieers <dag@wieers.com> - 1.3-2
 - Exclude docs from find-requires.
 

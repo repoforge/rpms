@@ -9,7 +9,7 @@
 Summary: Active Server Pages for Apache with mod_perl
 Name: perl-Apache-ASP
 Version: 2.59
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-ASP/
@@ -64,6 +64,9 @@ rendering, and new events not originally part of the ASP API!
 %{_bindir}/asp-perl
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.59-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.59-1
 - Updated to release 2.59.
 

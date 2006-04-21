@@ -7,7 +7,7 @@
 Summary: Create hibernation file for phoenix notebios laptops
 Name: tphdisk
 Version: 1.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://samba.org/junkcode/#tphdisk
@@ -38,5 +38,8 @@ ${CC:-%{__cc}} %{optflags} -o tphdisk %{SOURCE0}
 %{_sbindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Apr 18 2004 Dag Wieers <dag@wieers.com> - 1.0-1
 - Initial package. (using DAR)

@@ -4,7 +4,7 @@
 Summary: IBM ThinkPad configuration tools
 Name: tpctl
 Version: 4.17
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://tpctl.sourceforge.net/
@@ -59,6 +59,9 @@ tpctl is a package of IBM ThinkPad configuration tools for Linux.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.17-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 4.17-1
 - Updated to release 4.17.
 

@@ -4,7 +4,7 @@
 Summary: Python-based vector drawing program
 Name: sketch
 Version: 0.6.14
-Release: 1
+Release: 1.2
 License: LGPL, Python style
 Group: Applications/Multimedia
 URL: http://sketch.sourceforge.net/
@@ -54,6 +54,9 @@ strip -S Sketch/Modules/*.so
 %{_bindir}/skshow
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.14-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan 04 2003 Dag Wieers <dag@wieers.com> - 0.6.14-1
 - Updated to 0.6.14.
 

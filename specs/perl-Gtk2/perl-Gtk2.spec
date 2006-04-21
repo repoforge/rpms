@@ -10,7 +10,7 @@
 Summary: Perl interface to the 2.x series of the Gimp Toolkit library
 Name: perl-Gtk2
 Version: 1.102
-Release: 1
+Release: 1.2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gtk2/
@@ -58,6 +58,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorarch}/auto/Gtk2/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.102-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Dec 27 2005 Dries Verachtert <dries@ulyssis.org> - 1.102-1
 - Updated to release 1.102.
 

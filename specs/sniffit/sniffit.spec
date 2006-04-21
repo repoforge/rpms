@@ -7,7 +7,7 @@
 Summary: network protocol analyzer
 Name: sniffit
 Version: 0.3.7
-Release: 0.beta
+Release: 0.beta.2
 License: Freely distributable
 Group: Applications/Internet
 URL: http://reptile.rug.ac.be/~coder/sniffit/sniffit.html
@@ -48,5 +48,8 @@ some level of human readable form.
 %{_sbindir}/sniffit
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.7-0.beta.2
+- Rebuild for Fedora Core 5.
+
 * Wed Oct 08 2003 Dag Wieers <dag@wieers.com> - 0.3.7-0.beta
 - Initial package. (using DAR)

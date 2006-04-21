@@ -12,7 +12,7 @@
 Summary: Video4Linux stream capture viewer
 Name: xawdecode
 Version: 1.9.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://xawdecode.sourceforge.net/
@@ -113,6 +113,9 @@ xset fp rehash || :
 %{_includedir}/xawdecode/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.9.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 1.9.3-1
 - Updated to release 1.9.3.
 

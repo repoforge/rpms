@@ -8,7 +8,7 @@
 Summary: SSLSSLv3/TLS network protocol analyzer
 Name: ssldump
 Version: 0.9
-Release: 0.beta3.1
+Release: 0.beta3.1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.rtfm.com/ssldump/
@@ -62,5 +62,8 @@ autoreconf
 %{_sbindir}/ssldump
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9-0.beta3.1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Apr 10 2005 Dag Wieers <dag@wieers.com> - 0.9-0.beta3.1
 - Initial package. (using DAR)

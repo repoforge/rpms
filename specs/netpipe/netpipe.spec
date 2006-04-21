@@ -8,7 +8,7 @@
 Summary: Protocol independent performance tool
 Name: netpipe
 Version: 3.6.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.scl.ameslab.gov/netpipe/
@@ -53,5 +53,8 @@ the round trip time in half for small messages ( < 64 Bytes ).
 %{_bindir}/NPtcp
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.6.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Aug 02 2004 Dag Wieers <dag@wieers.com> - 3.6.2-1
 - Initial package. (using DAR)

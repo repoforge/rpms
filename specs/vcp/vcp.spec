@@ -5,7 +5,7 @@
 Summary: Enhanced files copying tool
 Name: vcp
 Version: 1.7.2
-Release: 1
+Release: 1.2
 License: BSD
 Group: Applications/File
 URL: http://members.optusnet.com.au/~dbbryan/vcp/
@@ -44,5 +44,8 @@ adding some new features.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.7.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon May 17 2004 Dag Wieers <dag@wieers.com> - 0.7.2-1
 - Initial package. (using DAR)

@@ -14,7 +14,7 @@
 Summary: Versatile music player
 Name: snackamp
 Version: 3.1.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://snackamp.sourceforge.net/
@@ -94,6 +94,9 @@ find %{buildroot}%{_libdir}/tcl/snackAmp/ -type d -exec chmod 0755 {} \;
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-snackamp.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.1.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Aug 12 2005 Dag Wieers <dag@wieers.com> - 3.1.2-2
 - This is NOT a noarch package.
 

@@ -9,7 +9,7 @@
 Summary: Perl module to strip HTML-like markup from text.
 Name: perl-HTML-Strip
 Version: 1.04
-Release: 1
+Release: 1.2
 License: Artistic (perl) license
 Group: Development/Libraries
 URL: http://search.cpan.org/dist/HTML-Strip/
@@ -52,5 +52,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorarch}/auto/HTML/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.04-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Feb 12 2005 Dag Wieers <dag@wieers.com> - 1.04-1
 - Initial package. (using DAR)

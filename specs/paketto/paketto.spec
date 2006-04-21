@@ -8,7 +8,7 @@ Summary: Unusual TCP/IP testing tools
 Name: paketto
 %define real_version 2.00pre5
 Version: 2.00
-Release: 1.pre5
+Release: 1.pre5.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.doxpara.com/
@@ -52,6 +52,9 @@ and	phentropy (plots a large data source onto a 3D matrix)
 %{_libdir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.00-1.pre5.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jan 06 2006 Dag Wieers <dag@wieers.com> - 2.00-1.pre5
 - Updated to release 2.00pre5.
 

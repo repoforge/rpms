@@ -6,7 +6,7 @@
 Summary: Local and remote filesystem snapshot utility
 Name: rsnapshot
 Version: 1.2.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://www.rsnapshot.org/
@@ -70,6 +70,9 @@ fi
 %{_bindir}/rsnapshot
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Sep 03 2005 Dag Wieers <dag@wieers.com> - 1.2.3-1
 - Updated to release 1.2.3.
 

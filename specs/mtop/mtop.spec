@@ -7,7 +7,7 @@
 Summary: Tool to monitor a MySQL database
 Name: mtop
 Version: 0.6.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://mtop.sourceforge.net/
@@ -51,5 +51,8 @@ and 'explaining' the query optimizer information.
 %{_bindir}/mtop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan 21 2006 Dag Wieers <dag@wieers.com> - 0.6.6-1
 - Initial package. (using DAR)

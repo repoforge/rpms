@@ -6,7 +6,7 @@
 Summary: Markup-language based presentation tool
 Name: pointless
 Version: 0.5
-Release: 3
+Release: 3.2
 License: GPL
 Group: Applications/Productivity
 URL: http://pointless.dk/
@@ -64,6 +64,9 @@ recommended but not required in order to run pointless.
 %{_datadir}/pointless/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-3.2
+- Rebuild for Fedora Core 5.
+
 * Sun Feb 29 2004 Dag Wieers <dag@wieers.com> - 0.5-3
 - Fixed the libdir problem. (Jacob Weismann Poulsen)
 

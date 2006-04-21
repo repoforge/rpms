@@ -5,7 +5,7 @@
 Summary: Utility for searching and alternatively displaying RFC's
 Name: rfc
 Version: 3.21
-Release: 1
+Release: 1.2
 License: distributable
 Group: Applications/Internet
 URL: http://www.dewn.com/rfc/
@@ -63,5 +63,8 @@ throw in the -l switch and have it spawn lynx to view the RFC.
 %verify(not md5 mtime size) %{_localstatedir}/lib/rfc/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.21-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jul 31 2004 Dag Wieers <dag@wieers.com> - 3.21-1
 - Initial package. (using DAR)

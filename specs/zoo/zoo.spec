@@ -4,7 +4,7 @@
 Summary: File archiving utility with compression
 Name: zoo
 Version: 2.10
-Release: 2
+Release: 2.2
 License: Distributable
 Group: Applications/Archiving
 URL: ftp://sunsite.unc.edu/pub/Linux/utils/compress/
@@ -49,6 +49,9 @@ Rahul Dhesi, and posted to the USENET newsgroup comp.sources.misc.
 %{_bindir}/zoo
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.10-2.2
+- Rebuild for Fedora Core 5.
+
 * Tue Apr 05 2005 Dag Wieers <dag@wieers.com> - 2.10-2
 - Added gcc4 patch. (Adrian Reber)
 

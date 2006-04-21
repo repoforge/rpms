@@ -16,7 +16,7 @@
 Summary: Wireless LAN (WLAN) accesspoint discovery tool
 Name: prismstumbler
 Version: 0.7.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://prismstumbler.sourceforge.net/
@@ -89,6 +89,9 @@ cd -
 %{_datadir}/applications/prismstumbler.desktop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Oct 02 2004 Dag Wieers <dag@wieers.com> - 0.7.3-1
 - Updated to release 0.7.3.
 

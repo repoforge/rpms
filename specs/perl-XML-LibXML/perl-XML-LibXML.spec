@@ -11,7 +11,7 @@
 Summary: XML-LibXML Perl module
 Name: perl-XML-LibXML
 Version: 1.58
-Release: 1
+Release: 1.2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-LibXML/
@@ -58,6 +58,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorarch}/auto/XML/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.58-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Mar 05 2005 Dag Wieers <dag@wieers.com> - 1.58-1
 - Changed to binary package, removed noarch.
 

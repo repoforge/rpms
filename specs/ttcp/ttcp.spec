@@ -5,7 +5,7 @@
 Summary: tool to do memory to memory performance measurements with TCP/IP.
 Name: ttcp
 Version: 3.7
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://it-div-cs.web.cern.ch/it-div-cs/public/projects/atm/ttcp.html
@@ -42,6 +42,9 @@ ${CC:-%{__cc}} %{optflags} -o ttcp ttcp.c
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Aug 17 2003 Dag Wieers <dag@wieers.com> - 3.7-1
 - Added manpage and README. (Matthew Bogosian)
 

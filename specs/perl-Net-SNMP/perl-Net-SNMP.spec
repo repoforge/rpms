@@ -9,7 +9,7 @@
 Summary: Net-SNMP Perl module
 Name: perl-Net-SNMP
 Version: 5.2.0
-Release: 1
+Release: 1.2
 License: distributable
 Group: Development/Libraries
 URL: http://search.cpan.org/dist/Net-SNMP/
@@ -55,6 +55,9 @@ Simple Network Management Protocol.
 %{perl_vendorlib}/Net/SNMP.pm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 5.2.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 5.2.0-1
 - Updated to release 5.2.0.
 

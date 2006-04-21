@@ -7,7 +7,7 @@ Summary: libnet module for perl
 Name: perl-libnet
 Version: 1.19
 Epoch: 2
-Release: 1
+Release: 1.2
 License: distributable
 Group: Applications/CPAN
 Source0: http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/libnet-%{version}.tar.gz
@@ -55,6 +55,9 @@ fi
 %defattr(-, root, root, 0755)
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.19-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.19-1
 - Updated to release 1.19.
 

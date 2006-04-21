@@ -6,7 +6,7 @@
 Summary: Perform consistency checks on DNS zones
 Name: zonecheck
 Version: 2.0.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.zonecheck.fr/
@@ -59,6 +59,9 @@ ruby ./installer.rb common cli cgi \
 %{_libdir}/zonecheck/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jan 03 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.4-1
 - Updated to release 2.0.4.
 - RUBY parameter added so installer.rb doesn't search for the interpreter,

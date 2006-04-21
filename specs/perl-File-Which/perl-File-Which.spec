@@ -9,7 +9,7 @@
 Summary: Portable implementation of the `which' utility
 Name: perl-File-Which
 Version: 0.05
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Which/
@@ -51,5 +51,8 @@ Portable implementation of the `which' utility.
 %{_bindir}/pwhich
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Mar 31 2005 Dag Wieers <dag@wieers.com> - 0.05-1
 - Initial package. (using DAR)

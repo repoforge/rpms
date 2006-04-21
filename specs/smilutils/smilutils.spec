@@ -5,7 +5,7 @@
 Summary: Collection of command line tools for SMIL manipulation
 Name: smilutils
 Version: 0.3.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://users.pandora.be/acp/kino/smilutils.html
@@ -61,6 +61,9 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec 19 2003 Dag Wieers <dag@wieers.com> - 0.3.0-1
 - Fixed a problem with the shared libraries. (Miguel Lemos)
 

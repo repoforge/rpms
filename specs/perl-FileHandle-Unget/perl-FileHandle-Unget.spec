@@ -9,7 +9,7 @@
 Summary: FileHandle which supports multi-byte unget
 Name: perl-FileHandle-Unget
 Version: 0.1621
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/FileHandle-Unget/
@@ -52,5 +52,8 @@ FileHandle::Unget implements a filehandle which supports multi-byte unget.
 %{perl_vendorlib}/FileHandle/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1621-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Feb 21 2005 Dag Wieers <dag@wieers.com> - 0.1621-1
 - Initial package. (using DAR)

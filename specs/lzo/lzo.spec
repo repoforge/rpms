@@ -5,7 +5,7 @@
 Summary: Portable lossless data compression library
 Name: lzo
 Version: 1.08
-Release: 4
+Release: 4.2
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.oberhumer.com/opensource/lzo/
@@ -70,6 +70,9 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.08-4.2
+- Rebuild for Fedora Core 5.
+
 * Tue Feb  1 2005 Matthias Saou <http://freshrpms.net/> 1.08-4
 - Add lzo-1.08-asm.patch to fix asm detection on i386.
 - Remove unneeded nasm build dep as build uses only gcc for asm... not sure

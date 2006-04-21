@@ -9,7 +9,7 @@
 Summary: Perl module for terminal screen handling and optimization
 Name: perl-Curses
 Version: 1.13
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Curses/
@@ -51,6 +51,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTA
 %{perl_vendorarch}/auto/Curses/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.13-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.13-1
 - Updated to release 1.13.
 

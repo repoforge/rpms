@@ -9,7 +9,7 @@
 Summary: Virtual tunnel over TCP/IP networks
 Name: vtun
 Version: 2.6
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Internet
 URL: http://vtun.sourceforge.net/
@@ -176,6 +176,9 @@ fi
 %{_localstatedir}/log/vtund/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.6-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon May 26 2003 Dag Wieers <dag@wieers.com> - 2.6-0
 - Updated to release 2.6.
 - Embedded improved sysv script.

@@ -15,7 +15,7 @@
 Summary: Spam filter for email which can be invoked from mail delivery agents
 Name: spamassassin
 Version: 3.1.1
-Release: 1
+Release: 1.2
 License: Apache License
 Group: Applications/Internet
 URL: http://spamassassin.apache.org/
@@ -185,6 +185,9 @@ fi
 %doc contrib/ masses/ sql/ tools/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.1.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Mar 12 2006 Dag Wieers <dag@wieers.com> - 3.1.1-1
 - Added -I/usr/kerberos/include to CFLAGS to build on RH9 and EL3. (Michael Schout)
 - Updated to release 3.1.1.

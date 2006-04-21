@@ -7,7 +7,7 @@
 Summary: Enhanced playlist plugin for the Linux XMMS music player
 Name: xmms-gtk-playlist
 Version: 2.0
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://web.mit.edu/chrisk/www/
@@ -57,5 +57,8 @@ playlists.
 
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0-0.2
+- Rebuild for Fedora Core 5.
+
 * Sun Feb 16 2003 Dag Wieers <dag@wieers.com> - 2.0-0
 - Initial package. (using DAR)

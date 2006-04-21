@@ -4,7 +4,7 @@
 Summary: Eartaining program for GNOME
 Name: solfege
 Version: 2.2.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://solfege.sourceforge.net/
@@ -47,6 +47,9 @@ software useful.
 %config %{_sysconfdir}/solfege1.4/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 22 2005 Dag Wieers <dag@wieers.com> - 2.2.2-1
 - Updated to release 2.2.2.
 

@@ -13,7 +13,7 @@
 Summary: Graphical SSH, Telnet and Rlogin client
 Name: putty
 Version: 0.58
-Release: 1
+Release: 1.2
 License: MIT
 Group: Applications/Internet
 URL: http://www.chiark.greenend.org.uk/~sgtatham/putty/
@@ -84,6 +84,9 @@ convert windows/putty.ico putty.png
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Network/putty.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.58-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Apr 08 2005 Dag Wieers <dag@wieers.com> - 0.58-1
 - Updated to release 0.58.
 

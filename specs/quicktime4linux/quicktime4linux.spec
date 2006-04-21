@@ -5,7 +5,7 @@
 Summary: Quicktime for Linux
 Name: quicktime4linux
 Version: 2.0.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Libraries
 URL: http://heroinewarrior.com/quicktime.php3
@@ -48,6 +48,9 @@ for a consumer library should use OpenQuicktime or FFMPEG.
 %{_includedir}/quicktime/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Aug 13 2004 Dag Wieers <dag@wieers.com> - 2.0.4-1
 - Updated to release 2.0.4.
 

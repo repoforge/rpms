@@ -9,7 +9,7 @@
 Summary: MLDBM module for perl
 Name: perl-MLDBM
 Version: 2.01
-Release: 2
+Release: 2.2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MLDBM/
@@ -49,6 +49,9 @@ MLDBM module for perl.
 %{perl_vendorlib}/MLDBM.pm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.01-2.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 2.01-2
 - Cosmetic cleanup.
 

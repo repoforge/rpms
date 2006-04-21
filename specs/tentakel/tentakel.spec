@@ -7,7 +7,7 @@
 Summary: program that executes the same command on many hosts in parallel
 Name: tentakel
 Version: 2.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://tentakel.biskalar.de/
@@ -52,6 +52,9 @@ command can be controlled by means of format strings.
 %{python_sitelib}/lekatnet/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 22 2005 Dag Wieers <dag@wieers.com> - 2.2-1
 - Updated to release 2.2.
 

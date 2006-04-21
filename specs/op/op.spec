@@ -5,7 +5,7 @@
 Summary: Allows restricted root access for specified users
 Name: op
 Version: 1.32
-Release: 1
+Release: 1.2
 License: BSD
 Group: Applications/System
 URL: https://svn.swapoff.org/op/
@@ -116,6 +116,9 @@ EOF
 %{_bindir}/op
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.32-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Dec 08 2005 Dries Verachtert <dries@ulyssis.org> - 1.32-1
 - Updated to release 1.32.
 

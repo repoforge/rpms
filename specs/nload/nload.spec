@@ -4,7 +4,7 @@
 Summary: Console application which monitors network traffic and bandwidth usage in real time
 Name: nload
 Version: 0.6.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://www.roland-riegel.de/nload/
@@ -41,5 +41,8 @@ network usage.
 %{_bindir}/nload
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jan 27 2006 Dag Wieers <dag@wieers.com> - 0.6.0-1
 - Initial package. (using DAR)

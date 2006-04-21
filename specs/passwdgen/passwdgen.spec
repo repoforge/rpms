@@ -6,7 +6,7 @@
 Summary: Random Password Generator
 Name: passwdgen
 Version: 2.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://directory.fsf.org/security/auth/pwdgen.html
@@ -63,5 +63,8 @@ passwdGen and have a Palm OS based PDA I would greatly appreciate your support.
 %{_includedir}/passwdgen/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 30 2002 Dag Wieers <dag@wieers.com> - 2.2-0
 - Initial package. (using DAR)

@@ -6,7 +6,7 @@
 Summary: Interactive tool to help translate documents in the DocBook format
 Name: rosetta
 Version: 0.01
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/Editors
 URL: http://www.irule.be/bvh/c++/rosetta/
@@ -57,6 +57,9 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-2.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jan  3 2003 Ivo Clarysse <soggie@soti.org> - 0.01-2
 - Patched to build on rh8
 

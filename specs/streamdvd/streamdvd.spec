@@ -6,7 +6,7 @@
 Summary: Tool to backup DVDs
 Name: streamdvd
 Version: 0.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.badabum.de/streamdvd.html
@@ -46,5 +46,8 @@ factor and StreamDVD will write a 'ready to author' vob file to stdout.
 %{_bindir}/streamdvd
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec 03 2004 Dag Wieers <dag@wieers.com> - 0.4-1
 - Initial package. (using DAR)

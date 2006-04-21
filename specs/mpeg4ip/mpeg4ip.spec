@@ -5,7 +5,7 @@
 Summary: MPEG-4 streaming tools
 Name: mpeg4ip
 Version: 1.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://mpeg4ip.sourceforge.net/
@@ -82,5 +82,8 @@ rm -f libtool && cp -a `which libtool` . || :
 %{_includedir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan 01 2004 Dag Wieers <dag@wieers.com> - 1.2-1
 - Initial package. (using DAR)

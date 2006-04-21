@@ -8,7 +8,7 @@
 Summary: Multi Router Traffic Grapher
 Name: mrtg
 Version: 2.12.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://ee-staff.ethz.ch/~oetiker/webtools/mrtg/mrtg.html
@@ -140,5 +140,8 @@ done
 %{_libdir}/mrtg2/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.12.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed May 18 2005 Dag Wieers <dag@wieers.com> - 2.12.1-1
 - Initial package. (using DAR)

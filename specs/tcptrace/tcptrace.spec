@@ -5,7 +5,7 @@
 Summary: Performs analysis of tcp flows from packet dumps
 Name: tcptrace
 Version: 6.6.7
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://tcptrace.org/
@@ -46,6 +46,9 @@ several types of graphs.
 %{_bindir}/xpl2gpl
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 6.6.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov 13 2004 Dag Wieers <dag@wieers.com> - 6.6.7-1
 - Updated to release 6.6.7.
 

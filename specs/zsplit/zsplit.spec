@@ -5,7 +5,7 @@
 Summary: Split, compress and backup devices and files to zsplit images
 Name: zsplit
 Version: 1.2.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://www.device-image.de/
@@ -39,6 +39,9 @@ zsplit splits, compresses and backups devices and files to zsplit images.
 %{_bindir}/zsplit
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jun 18 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.0-1
 - Updated to release 1.2.0.
 

@@ -4,7 +4,7 @@
 Summary: Scan for wireless access points and save captured traffic
 Name: ssidsniff
 Version: 0.36
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.bastard.net/~kos/wifi/
@@ -42,5 +42,8 @@ prism2 based cards.
 %{_bindir}/pcapdump
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.36-0.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jul 12 2003 Dag Wieers <dag@wieers.com> - 0.36-0
 - Initial package. (using DAR)

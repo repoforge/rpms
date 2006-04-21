@@ -6,7 +6,7 @@
 Summary: SIP implementation
 Name: libosip
 Version: 0.9.7
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gnu.org/software/osip/osip.html
@@ -71,5 +71,8 @@ you will need to install %{name}-devel.
 %{_libdir}/libosip.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Mar 13 2005 Dag Wieers <dag@wieers.com> - 0.9.7-1
 - Initial package. (using DAR)

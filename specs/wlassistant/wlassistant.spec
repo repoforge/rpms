@@ -6,7 +6,7 @@
 Summary: Wireless network sssistant
 Name: wlassistant
 Version: 0.5.4a
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://wlassistant.sourceforge.net/
@@ -57,5 +57,8 @@ source /etc/profile.d/qt.sh
 %{_datadir}/icons/*/*x*/apps/wlassistant.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.4a-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec 02 2005 Dag Wieers <dag@wieers.com> - 0.5.4a-1
 - Initial package. (using DAR)

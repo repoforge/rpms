@@ -9,7 +9,7 @@
 Summary: Check validity of Internet email addresses
 Name: perl-Email-Valid
 Version: 0.15
-Release: 1
+Release: 1.2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Valid/
@@ -51,5 +51,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorlib}/Email/Valid.pm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.15-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Aug 07 2004 Dag Wieers <dag@wieers.com> - 1.2-1
 - Initial package. (using DAR)

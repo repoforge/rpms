@@ -9,7 +9,7 @@
 Summary: Python bindings for sqlite
 Name: python-sqlite
 Version: 2.0.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Libraries
 URL: http://pysqlite.org/
@@ -47,6 +47,9 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %exclude %{python_sitearch}/sqlite/*.pyo
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Feb 10 2006 Dag Wieers <dag@wieers.com> - 2.0.6-1
 - Updated to release 2.0.6.
 

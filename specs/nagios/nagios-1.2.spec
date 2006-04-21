@@ -8,7 +8,7 @@
 Summary: Open Source host, service and network monitoring program
 Name: nagios
 Version: 1.2
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
@@ -181,6 +181,9 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-2.2
+- Rebuild for Fedora Core 5.
+
 * Sun Apr 10 2005 Dag Wieers <dag@wieers.com> - 1.2-2
 * Enabled --with-perlcache in configure. (Michael Donovan)
 

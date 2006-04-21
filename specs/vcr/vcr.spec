@@ -5,7 +5,7 @@
 Summary: Record a program using a video grabber card
 Name: vcr
 Version: 1.10
-Release: 0
+Release: 0.2
 Group: Applications/Multimedia
 License: GPL
 URL: http://www.stack.nl/~brama/vcr/
@@ -47,6 +47,9 @@ when you're as far away from your home as possible...
 %{_datadir}/vcr/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.10-0.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 16 2004 Dag Wieers <dag@wieers.com> - 1.10
 - Updated to release 1.10.
 

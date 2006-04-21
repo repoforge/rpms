@@ -12,7 +12,7 @@
 Summary: The Pan Newsreader
 Name: pan
 Version: 0.14.2.91
-Release: 2
+Release: 2.2
 Epoch: 1
 License: GPL
 Group: Applications/Internet
@@ -71,6 +71,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/pan.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.14.2.91-2.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 30 2004 Dag Wieers <dag@wieers.com> - 0.14.2.91-2
 - Fixed missing categories in desktop-file. (Neil Bird)
 

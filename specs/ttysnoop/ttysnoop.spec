@@ -4,7 +4,7 @@
 Summary: Program to snoop on a TTY through another
 Name: ttysnoop
 Version: 0.12c
-Release: 1
+Release: 1.2
 License: distributable
 Group: System Environment/Base
 URL: http://sunsite.unc.edu/pub/Linux/utils/terminal/
@@ -45,5 +45,8 @@ redirecting both input and output from/to it.
 %{_sbindir}/ttysnoops
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.12c-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Aug 22 2005 Dag Wieers <dag@wieers.com> - 0.12c-1
 - Initial package. (using DAR)

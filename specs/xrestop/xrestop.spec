@@ -14,7 +14,7 @@
 Summary: X resource monitor
 Name: xrestop
 Version: 0.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://www.freedesktop.org/Software/xrestop/
@@ -52,6 +52,9 @@ display them in a manner similar to top.
 %{_bindir}/xrestop
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Aug 18 2004 Dag Wieers <dag@wieers.com> - 0.3-1
 - Updated to release 0.3.
 

@@ -5,7 +5,7 @@
 Summary: Unix command pipeline plumbing tool
 Name: tpipe
 Version: 1.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://www.eurogaran.com/downloads/tpipe/
@@ -39,5 +39,8 @@ input and/or standard ouput.
 %{_bindir}/tpipe
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan 25 2004 Dag Wieers <dag@wieers.com> - 1.6-1
 - Initial package. (using DAR)

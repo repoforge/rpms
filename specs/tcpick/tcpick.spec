@@ -5,7 +5,7 @@
 Summary: TCP stream sniffer and connection tracker
 Name: tcpick
 Version: 0.2.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://tcpick.sourceforge.net/
@@ -45,6 +45,9 @@ are doing, and is usable with textmode tools like grep, sed, awk.
 %{_bindir}/tcpick
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jan 19 2005 Dag Wieers <dag@wieers.com> - 0.2.1-1
 - Updated to release 0.2.1.
 

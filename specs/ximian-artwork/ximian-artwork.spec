@@ -4,7 +4,7 @@
 Summary: Default Style for Ximian Desktop
 Name: ximian-artwork
 Version: 0.2.32
-Release: 1
+Release: 1.2
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.ximian.com/
@@ -63,6 +63,9 @@ done
 %{_libdir}/gtk/themes/engines/libindustrial.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.32-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Feb 12 2005 Dag Wieers <dag@wieers.com> - 0.2.32-1
 - Updated to release 0.2.32.
 

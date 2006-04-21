@@ -6,7 +6,7 @@
 Summary: Analysis Console for Intrusion Databases
 Name: php-acid
 Version: 0.9.6b22
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://acidlab.sourceforge.net/
@@ -53,5 +53,8 @@ touch %{buildroot}%{_localstatedir}/www/acid-users
 %{_localstatedir}/www/acid-users
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.6b22-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Feb 16 2003 Dag Wieers <dag@wieers.com> - 0.9.6b22-0
 - Initial package. (using DAR)

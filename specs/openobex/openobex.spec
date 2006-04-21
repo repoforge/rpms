@@ -9,7 +9,7 @@
 Summary: Library for using OBEX
 Name: openobex
 Version: 1.0.1
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Libraries
 #URL: http://openobex.sourceforge.net/
@@ -66,6 +66,9 @@ you will need to install %{name}-devel.
 %{_datadir}/aclocal/*.m4
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Feb 04 2004 Dag Wieers <dag@wieers.com> - 1.0.1-1
 - Rebuild against bluez-libs-devel (bluetooth support).
 

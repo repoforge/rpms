@@ -9,7 +9,7 @@
 Summary: library to allow transparent SOCKS proxying
 Name: tsocks
 Version: 1.8
-Release: 6.beta5
+Release: 6.beta5.2
 License: GPL
 Group: Applications/Internet
 URL: http://tsocks.sourceforge.net/
@@ -231,6 +231,9 @@ fi
 %{_libdir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.8-6.beta5.2
+- Rebuild for Fedora Core 5.
+
 * Mon Dec 16 2002 Dag Wieers <dag@wieers.com> - 1.8-6.beta5
 - Rewrote tsocks/tsocksify script.
 - Don't replace config files.

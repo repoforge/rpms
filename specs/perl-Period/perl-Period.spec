@@ -9,7 +9,7 @@
 Summary: Perl module to deal with time periods.
 Name: perl-Period
 Version: 1.20
-Release: 1
+Release: 1.2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Period/
@@ -53,5 +53,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorlib}/Time/Period.pm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.20-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 1.20-1
 - Initial package. (using DAR)

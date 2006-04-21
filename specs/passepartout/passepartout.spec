@@ -7,7 +7,7 @@
 Summary: Open Source desktop publishing application
 Name: passepartout
 Version: 0.6
-Release: 1
+Release: 1.2
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.stacken.kth.se/project/pptout/
@@ -73,6 +73,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %exclude %{_docdir}/passepartout/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 12 2004 Dag Wieers <dag@wieers.com> - 0.6-1
 - Updated to release 0.6.
 

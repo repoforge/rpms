@@ -5,7 +5,7 @@ Summary: Lossless MP3 volume adjustment tool
 Name: mp3gain
 %define real_version 1_4_4
 Version: 1.4.4
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Applications/Multimedia
 URL: http://mp3gain.sourceforge.net
@@ -41,5 +41,8 @@ and re-encoding.
 %{_bindir}/mp3gain
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jul 20 2005 Dag Wieers <dag@wieers.com> - 1.4.4-1
 - Initial package. (using DAR)

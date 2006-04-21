@@ -4,7 +4,7 @@
 Summary: Unpack Microsoft MS-TNEF MIME attachements
 Name: tnef
 Version: 1.3.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/File
 URL: http://sourceforge.net/projects/tnef/
@@ -41,6 +41,9 @@ being attached seperately.
 %{_bindir}/tnef
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan 01 2006 Dag Wieers <dag@wieers.com> - 1.3.4-1
 - Updated to release 1.3.4.
 

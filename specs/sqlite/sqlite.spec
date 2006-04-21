@@ -12,7 +12,7 @@
 Summary: Library that implements an embeddable SQL database engine
 Name: sqlite
 Version: 2.8.16
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Applications/Databases
 URL: http://www.sqlite.org/
@@ -100,6 +100,9 @@ CXXFLAGS="%{optflags} -DNDEBUG=1" \
 %{_libdir}/pkgconfig/sqlite.pc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.8.16-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Feb 15 2005 Dag Wieers <dag@wieers.com> - 2.8.15-1
 - Updated to release 2.8.16.
 

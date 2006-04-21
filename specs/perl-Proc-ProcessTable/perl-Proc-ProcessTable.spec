@@ -9,7 +9,7 @@
 Summary: Perl interface to the UNIX process table
 Name: perl-Proc-ProcessTable
 Version: 0.40
-Release: 1
+Release: 1.2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Proc-ProcessTable/
@@ -62,6 +62,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Proc/ProcessTable/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.40-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.40-1
 - Updated to release 0.40.
 

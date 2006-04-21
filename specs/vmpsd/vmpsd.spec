@@ -5,7 +5,7 @@
 Summary: VLAN Management Policy Server
 Name: vmpsd
 Version: 1.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://vmps.sourceforge.net/
@@ -138,6 +138,9 @@ EOF
 %{_bindir}/vmpsd
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Nov 15 2004 Dag Wieers <dag@wieers.com> - 1.3-1
 - Updated to release 1.3.
 

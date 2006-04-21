@@ -7,7 +7,7 @@
 Summary: Display GNOME dialogs from the command line
 Name: zenity
 Version: 1.7
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/System
 URL: http://archive.progeny.com/GNOME/sources/zenity/
@@ -66,6 +66,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.7-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon Nov 17 2003 Dag Wieers <dag@wieers.com> - 1.7-0
 - Updated to release 1.7.
 

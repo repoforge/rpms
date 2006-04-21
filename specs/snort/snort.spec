@@ -13,7 +13,7 @@
 Summary: Open Source network intrusion detection system (NIDS)
 Name: snort
 Version: 2.4.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.snort.org/
@@ -256,6 +256,9 @@ fi
 %{_sbindir}/snort-bloat
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.4.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 2.4.3-1
 - Updated to release 2.4.3.
 

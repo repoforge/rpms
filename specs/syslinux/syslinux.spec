@@ -9,7 +9,7 @@
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
 Version: 3.11
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://syslinux.zytor.com/
@@ -67,6 +67,9 @@ ISO 9660 CD-ROMs (ISOLINUX).
 #%{_includedir}/syslinux.h
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.11-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Sep 04 2005 Dag Wieers <dag@wieers.com> - 3.11-1
 - Updated to release 3.11.
 

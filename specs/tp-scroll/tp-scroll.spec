@@ -6,7 +6,7 @@
 Summary: IBM Trackpoint scroll-wheel emulation
 Name: tp-scroll
 Version: 1.0
-Release: 1
+Release: 1.2
 License: BSD
 Group: Applications/System
 URL: http://rsim.cs.uiuc.edu/~sachs/tp-scroll/
@@ -132,6 +132,9 @@ fi
 %ghost /dev/imouse
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jun 03 2003 Dag Wieers <dag@wieers.com> - 1.0-1
 - Embedded my own sysv script.
 

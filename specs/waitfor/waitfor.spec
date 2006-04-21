@@ -4,7 +4,7 @@
 Summary: waits until specified network resource is available or event has occured
 Name: waitfor
 Version: 0.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://www.hennessynet.com/waitfor/
@@ -42,5 +42,8 @@ shutdown of services.
 %{_bindir}/waitfor
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 0.5-1
 - Initial package. (using DAR)

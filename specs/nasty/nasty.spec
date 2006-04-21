@@ -5,7 +5,7 @@
 Summary: Recover the passphrase of a PGP or GPG key
 Name: nasty
 Version: 0.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://www.vanheusden.com/nasty/
@@ -39,6 +39,9 @@ Nasty is a program that helps to recover the passphrase of a PGP or GPG key.
 %{_bindir}/nasty
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Apr 29 2005 Dag Wieers <dag@wieers.com> - 0.6-1
 - Updated to release 0.6.
 

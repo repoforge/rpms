@@ -8,7 +8,7 @@
 Summary: Perl interface to the 2.x series of the GNOME Canvas library
 Name: perl-Gnome2-Canvas
 Version: 1.002
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/CPAN
 URL: http://gtk2-perl.sourceforge.net/
@@ -57,6 +57,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.002-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jun 18 2005 Dries Verachtert <dries@ulyssis.org> - 1.002-1
 - Update.
 

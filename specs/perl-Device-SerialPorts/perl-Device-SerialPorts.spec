@@ -6,7 +6,7 @@
 Summary: Device-SerialPort - Linux/POSIX emulation of Win32::SerialPort functions
 Name: perl-Device-SerialPorts
 Version: 0.22
-Release: 1
+Release: 1.2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Device-SerialPorts/
@@ -52,6 +52,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.22-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jul 21 2003 Dag Wieers <dag@wieers.com> - 0.22-1
 - Disabled examples.
 

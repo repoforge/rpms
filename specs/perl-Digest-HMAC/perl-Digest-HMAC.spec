@@ -13,7 +13,7 @@
 Summary: Digest-HMAC Perl module
 Name: perl-Digest-HMAC
 Version: 1.01
-Release: 2
+Release: 2.2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-HMAC/
@@ -65,6 +65,9 @@ the secret key and the name of some other simple Digest:: as argument.
 %{perl_vendorlib}/Digest/HMAC_*.pm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-2.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 1.01-2
 - Cosmetic cleanup.
 

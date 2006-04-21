@@ -7,7 +7,7 @@
 Summary: Use the Razor catalog server to filter spam messages
 Name: razor-agents
 Version: 2.40
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/Internet
 URL: http://razor.sourceforge.net/
@@ -86,5 +86,8 @@ done
 %{perl_vendorlib}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.40-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan 26 2003 Dag Wieers <dag@wieers.com> - 1.20-0
 - Initial package. (using DAR)

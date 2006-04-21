@@ -7,7 +7,7 @@
 Summary: Ncurses-based monitoring application for wireless network devices
 Name: wavemon
 Version: 0.4.0
-Release: 0.b
+Release: 0.b.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.janmorgenstern.de/projects-software.html
@@ -53,5 +53,8 @@ devices supported by the wireless kernel extensions by Jean Tourrilhes.
 %{_bindir}/wavemon
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.0-0.b.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jul 12 2004 Dag Wieers <dag@wieers.com> - 0.4.0-0.b
 - Initial package. (using DAR)

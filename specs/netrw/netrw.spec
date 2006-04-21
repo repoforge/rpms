@@ -5,7 +5,7 @@
 Summary: Tool for transporting data over the internet
 Name: netrw
 Version: 1.3.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.fi.muni.cz/~xdenemar/netrw/
@@ -49,5 +49,8 @@ it sums up the transfer.
 %{_bindir}/nw
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Feb 07 2006 Dag Wieers <dag@wieers.com> - 1.3-1
 - Initial package. (using DAR)

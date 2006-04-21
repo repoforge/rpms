@@ -4,7 +4,7 @@
 Summary: SquirrelMail webmail client
 Name: squirrelmail
 Version: 1.2.10
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.squirrelmail.org/
@@ -153,5 +153,8 @@ install -m 644 contrib/RPM/squirrelmail.conf \
 %{_localstatedir}/lib/squirrelmail/prefs/default_pref
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.10-0.2
+- Rebuild for Fedora Core 5.
+
 * Tue Feb 11 2003 Dag Wieers <dag@wieers.com> - 1.2.10-0
 - Initial package.

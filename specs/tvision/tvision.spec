@@ -5,7 +5,7 @@
 Summary: Unix port of Borland TurboVision library
 Name: tvision
 Version: 0.8
-Release: 1
+Release: 1.2
 License: BSD-like
 Group: Development/Libraries
 URL: http://tvision.sourceforge.net/
@@ -107,5 +107,8 @@ EOF
 #%{_examplesdir}/%{name}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 02 2004 Dag Wieers <dag@wieers.com> - 0.8-1
 - Initial package. (using DAR)

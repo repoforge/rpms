@@ -7,7 +7,7 @@
 Summary: WYSIWYG HTML Editor for Gnome
 Name: peacock
 Version: 1.9.1
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Internet
 URL: http://peacock.sourceforge.net/
@@ -93,5 +93,8 @@ EOF
 #%{_prefix}/src/debug/%{name}-%{version}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.9.1-0.2
+- Rebuild for Fedora Core 5.
+
 * Tue Sep 09 2003 Gawain Lynch <gawain_lynch@yahoo.com> 1.9.1-1
 - inital spec

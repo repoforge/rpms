@@ -8,7 +8,7 @@
 Summary: XML-Parser Perl module
 Name: perl-XML-Parser
 Version: 2.34
-Release: 1
+Release: 1.2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Parser/
@@ -51,6 +51,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*/auto/XML/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.34-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 12 2004 Dag Wieers <dag@wieers.com> - 2.34-1
 - Workaround directory-conflicts bug in up2date. (RHbz #106123)
 

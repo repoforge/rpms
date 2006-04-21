@@ -9,7 +9,7 @@
 Summary: Simple parallel processing fork manager
 Name: perl-Parallel-ForkManager
 Version: 0.7.5
-Release: 2
+Release: 2.2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Parallel-ForkManager/
@@ -52,6 +52,9 @@ Share Perl variables between processes.
 %{perl_vendorlib}/Parallel/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.5-2.2
+- Rebuild for Fedora Core 5.
+
 * Mon Feb 21 2005 Dag Wieers <dag@wieers.com> - 0.7.5-2
 - Cosmetic cleanup.
 

@@ -9,7 +9,7 @@
 Summary: Intelligent Multimedia Management System plugin for XMMS.
 Name: xmms-imms
 Version: 1.1
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.luminal.org/phpwiki/index.php/IMMS
@@ -60,6 +60,9 @@ Some of the key features include:
 %{xmms_generaldir}/libimms.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-2.2
+- Rebuild for Fedora Core 5.
+
 * Thu Oct 07 2004 Dag Wieers <dag@wieers.com> - 1.1-2
 - Fix permissions of library to include missing dependencies. (Mike Traum)
 

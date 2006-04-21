@@ -7,7 +7,7 @@
 Summary: Console monitor for Nagios
 Name: nsc
 Version: 0.80.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://nsc-gothix.sourceforge.net/
@@ -46,6 +46,9 @@ Nagios services without the expense or availability of a GUI.
 %{_sbindir}/nsc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.80.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.80.2-1
 - Updated to release 0.80.2.
 - Updated the source and project urls.

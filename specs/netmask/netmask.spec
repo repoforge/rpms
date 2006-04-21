@@ -4,7 +4,7 @@
 Summary: tool for figuring out network masks
 Name: netmask
 Version: 2.3.7
-Release: 3
+Release: 3.2
 License: GPL
 Group: Applications/Internet
 URL: http://packages.qa.debian.org/n/netmask.html
@@ -53,6 +53,9 @@ fi
 %{_bindir}/netmask
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.3.7-3.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov 12 2005 Dries Verachtert <dries@ulyssis.org> - 2.3.7-3
 - Cleanup of spec file.
 

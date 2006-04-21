@@ -5,7 +5,7 @@
 Summary: Tool to find strings in a set of files
 Name: sagasu
 Version: 2.0.8
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Text
 URL: http://sarrazip.com/dev/sagasu.html
@@ -53,6 +53,9 @@ CVS directories.
 %exclude %{_docdir}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jan 25 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.8-1
 - Updated to release 2.0.8.
 

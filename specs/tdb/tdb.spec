@@ -5,7 +5,7 @@
 Summary: Trivial database
 Name: tdb
 Version: 1.0.6
-Release: 4
+Release: 4.2
 License: GPL
 Group: System Environment/Libraries
 URL: http://sf.net/projects/tdb/
@@ -74,6 +74,9 @@ you will need to install %{name}-devel.
 %{_includedir}/*.h
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.6-4.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 01 2004 Dag Wieers <dag@wieers.com> - 1.0.6-4
 - Move tdbdump and tdbtool to resp. tdb-dump and tdb-tool. (Matthew Miller)
 

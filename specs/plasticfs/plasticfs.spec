@@ -4,7 +4,7 @@
 Summary: The Plastic File System
 Name: plasticfs
 Version: 1.9
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Tools
 URL: http://plasticfs.sourceforge.net/
@@ -41,6 +41,9 @@ to exist in user space, without kernel hacks or modules.
 
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.9-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jul 07 2004 Dag Wieers <dag@wieers.com> - 1.9-1
 - Updated to release 1.9.
 

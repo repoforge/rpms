@@ -10,7 +10,7 @@
 Summary: AOL-TOC module for perl
 Name: perl-AOL-TOC
 Version: 0.34
-Release: 1
+Release: 1.2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AOL-TOC/
@@ -53,5 +53,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorlib}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.34-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 0.340-1
 - Initial package. (using DAR)

@@ -9,7 +9,7 @@
 Summary: Perl extension for generating Scalable Vector Graphics (SVG) documents
 Name: perl-SVG
 Version: 2.33
-Release: 1
+Release: 1.2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVG/
@@ -55,6 +55,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorlib}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.33-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.33-1
 - Updated to release 2.33.
 

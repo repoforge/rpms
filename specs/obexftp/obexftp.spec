@@ -9,7 +9,7 @@
 Summary: Tool to access devices via the OBEX protocol
 Name: obexftp
 Version: 0.18
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Communication
 URL: http://openobex.triq.net/
@@ -110,5 +110,8 @@ pictures and alike
 %endif
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.18-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan 29 2006 Dag Wieers <dag@wieers.com> - 0.18-1
 - Initial package. (using DAR)

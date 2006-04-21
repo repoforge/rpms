@@ -15,7 +15,7 @@
 Summary: Mozilla Thunderbird mail/news client
 Name: thunderbird
 Version: 0.7.2
-Release: 0
+Release: 0.2
 License: MPL/GPL
 Group: Applications/Internet
 URL: http://www.mozilla.org/projects/thunderbird/
@@ -227,6 +227,9 @@ fi
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-thunderbird.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.2-0.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jul 27 2004 Matthias Saou <http://freshrpms.net/> 0.7.2-0
 - Update to 0.7.2, major spec changes and updates.
 - Copy all of Dag's changes to the latest Firefox package.

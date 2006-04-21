@@ -8,7 +8,7 @@
 Summary: MOD music file plugin for XMMS
 Name: xmms-modplug
 Version: 2.05
-Release: 1
+Release: 1.2
 License: Public Domain
 Group: Applications/Multimedia
 URL: http://modplug-xmms.sourceforge.net/
@@ -56,5 +56,8 @@ A command line mod player.
 %{_bindir}/modplugplay
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.05-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Apr 06 2005 Dag Wieers <dag@wieers.com> - 2.05-1
 - Initial package. (using DAR)

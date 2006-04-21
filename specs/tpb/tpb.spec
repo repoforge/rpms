@@ -5,7 +5,7 @@
 Summary: Utility to enable the IBM ThinkPad(tm) special keys
 Name: tpb
 Version: 0.6.3
-Release: 3
+Release: 3.2
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/tpb/
@@ -81,6 +81,9 @@ fi
 %ghost %{_sysconfdir}/udev/devices/nvram
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.3-3.2
+- Rebuild for Fedora Core 5.
+
 * Sun Mar 06 2005 Manfred Paul <manfred.paul@de.ibm.com> - 0.6.3-3
 - Repair udev support.
 

@@ -5,7 +5,7 @@
 Summary: Implementation of /dev/speech
 Name: speechd
 Version: 0.56
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.speechio.org/
@@ -52,5 +52,8 @@ written to it.
 /dev/speech
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.56-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Mar 17 2004 Dag Wieers <dag@wieers.com> - 0.56-1
 - Initial package. (using DAR)

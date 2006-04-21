@@ -9,7 +9,7 @@
 Summary: Net-SSLeay module for perl
 Name: perl-Net-SSLeay
 Version: 1.25
-Release: 3
+Release: 3.2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SSLeay.pm/
@@ -55,6 +55,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL %{_prefix} INSTALLDIRS="vendor" PREFI
 %{perl_vendorarch}/auto/Net/SSLeay/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.25-3.2
+- Rebuild for Fedora Core 5.
+
 * Mon Nov 14 2005 Matthias Saou <http://freshrpms.net/> 1.25-3
 - Add missing openssl-devel build requirement.
 

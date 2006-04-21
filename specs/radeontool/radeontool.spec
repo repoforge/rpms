@@ -5,7 +5,7 @@
 Summary: Turn backlight and external video output on and off on ATI Radeon Mobility
 Name: radeontool
 Version: 1.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://fdd.com/software/radeon/
@@ -40,5 +40,8 @@ external video output. Radeontool requires lspci.
 %{_bindir}/radeontool
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Aug 05 2004 Dag Wieers <dag@wieers.com> - 1.5-1
 - Initial package. (using DAR)

@@ -5,7 +5,7 @@
 Summary: Versatile desktop calculator library
 Name: qalculate
 Version: 0.9.3
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Engineering
 URL: http://qalculate.sourceforge.net/
@@ -58,6 +58,9 @@ GUI packages.
 %{_datadir}/locale/*/LC_MESSAGES/libqalculate.mo
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.3-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Mar 16 2006 Dag Wieers <dag@wieers.com> - 0.9.3-1
 - Updated to release 0.9.3.
 

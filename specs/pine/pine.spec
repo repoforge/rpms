@@ -15,7 +15,7 @@
 Summary: Commonly used, MIME compliant mail and news reader
 Name: pine
 Version: 4.64
-Release: 1
+Release: 1.2
 License: Freely Distributable
 Group: Applications/Internet
 URL: http://www.washington.edu/pine/
@@ -173,6 +173,9 @@ cd pinepgp-%{pgpver}
 %{_sbindir}/mlock
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.64-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jan 05 2006 Dag Wieers <dag@wieers.com> - 4.64-1
 - Updated to release 4.64.
 

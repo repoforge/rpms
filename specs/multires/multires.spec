@@ -5,7 +5,7 @@
 Summary: Allows changing of desktop resolution and refresh rate
 Name: multires
 Version: 0.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://multires.sourceforge.net/
@@ -45,6 +45,9 @@ of desktop resolution and refresh rate.
 %{_datadir}/pixmaps/gnome-multires.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Aug 29 2004 Dag Wieers <dag@wieers.com> - 0.4-1
 - Updated to release 0.4.
 - Fix for x86_64.

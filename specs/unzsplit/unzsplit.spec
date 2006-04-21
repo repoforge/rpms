@@ -5,7 +5,7 @@
 Summary: Glue, decompress and restore zsplit images
 Name: unzsplit
 Version: 1.2.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://www.device-image.de/
@@ -39,6 +39,9 @@ zunsplit decompresses, glues and restores zsplit images to its original form.
 %{_bindir}/unzsplit
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jun 24 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.0-1
 - Update to release 1.2.0.
 

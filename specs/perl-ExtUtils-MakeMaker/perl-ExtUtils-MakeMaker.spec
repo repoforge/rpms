@@ -11,7 +11,7 @@
 Summary: Create a module Makefile
 Name: perl-ExtUtils-MakeMaker
 Version: 6.30
-Release: 1
+Release: 1.2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-MakeMaker/
@@ -55,6 +55,9 @@ This is a CPAN distribution of the venerable MakeMaker module.
 %{perl_vendorlib}/ExtUtils/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 6.30-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 6.30-1
 - Updated to release 6.30.
 

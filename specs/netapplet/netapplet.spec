@@ -7,7 +7,7 @@
 Summary: Network switching and control applet.
 Name: netapplet
 Version: 1.0.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://primates.ximian.com/~rml/netapplet/
@@ -150,6 +150,9 @@ fi
 %{_datadir}/pixmaps/netapplet.png
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Dec 07 2004 Dag Wieers <dag@wieers.com> - 1.0.0-1
 - Updated to release 1.0.0.
 

@@ -5,7 +5,7 @@
 Summary: Quick network topology scanner
 Name: nttlscan
 Version: 0.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.honeyd.org/
@@ -42,6 +42,9 @@ Nttlscan can be used to construct virtual routing topologies for Honeyd.
 %{_bindir}/nttlscan
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Sep 03 2004 Dag Wieers <dag@wieers.com> - 0.1-1
 - Added missing BuildRequires. (Robert Hardy)
 

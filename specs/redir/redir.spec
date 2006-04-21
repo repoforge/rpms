@@ -5,7 +5,7 @@
 Summary:  TCP port redirector
 Name: redir
 Version: 2.2.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://sammy.net/~sammy/hacks/
@@ -50,5 +50,8 @@ someone else liked it enough to fix it.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Apr 25 2004 Dag Wieers <dag@wieers.com> - 2.2.1-1
 - Initial package. (using DAR)

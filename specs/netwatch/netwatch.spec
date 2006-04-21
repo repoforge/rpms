@@ -7,7 +7,7 @@
 Summary: Ethernet/PPP IP Packet Monitor
 Name: netwatch
 Version: 1.0
-Release: 0.a
+Release: 0.a.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.slctech.org/~mackay/netwatch.html
@@ -51,5 +51,8 @@ Router statistics and summary charts are available.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-0.a.2
+- Rebuild for Fedora Core 5.
+
 * Sun Apr 25 2004 Dag Wieers <dag@wieers.com> - 1.0-0.a
 - Initial package. (using DAR)

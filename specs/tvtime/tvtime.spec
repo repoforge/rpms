@@ -13,7 +13,7 @@
 Summary: High quality TV viewer
 Name: tvtime
 Version: 1.0.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://tvtime.sourceforge.net/
@@ -77,6 +77,9 @@ videophiles.
 %{_bindir}/tvtime
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Nov 10 2005 Dries Verachtert <dries$ulyssis,org> - 1.0.2-1
 - Updated to release 1.0.2.
 

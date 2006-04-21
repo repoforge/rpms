@@ -5,7 +5,7 @@
 Summary: Address book application
 Name: rubrica
 Version: 1.1.60
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Productivity
 URL: http://rubrica.berlios.de/
@@ -71,6 +71,9 @@ scrollkeeper-update -q
 %{_datadir}/rubrica/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.60-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.1.60-1
 - Updated to release 1.1.60.
 

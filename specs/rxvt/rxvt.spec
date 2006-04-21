@@ -8,7 +8,7 @@
 Summary: Color VT102 terminal emulator for the X Window System
 Name: rxvt
 Version: 2.7.10
-Release: 1
+Release: 1.2
 Epoch: 18
 License: GPL
 Group: User Interface/Desktops
@@ -106,6 +106,9 @@ EOF
 %{_libdir}/*.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.7.10-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jun 06 2004 Dag Wieers <dag@wieers.com> - 2.7.10-1
 - Addded improved desktop file.
 

@@ -4,7 +4,7 @@
 Summary: Queue manager for the Postfix mail transport agent
 Name: pfqueue
 Version: 0.5.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://pfqueue.sourceforge.net/
@@ -44,6 +44,9 @@ Postfix mail transport agent.
 %{_libdir}/libpfq*.so*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Feb 06 2006 Dag Wieers <dag@wieers.com> - 0.5.2-1
 - Updated to release 0.5.2.
 

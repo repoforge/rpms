@@ -9,7 +9,7 @@
 Summary: Object interface for AF_INET|AF_INET6 domain sockets
 Name: perl-IO-Socket-INET6
 Version: 2.51
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Socket-INET6/
@@ -53,5 +53,8 @@ inherits all the methods defined by IO::Socket.
 %{perl_vendorlib}/IO/Socket/INET6.pm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.51-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Mar 30 2005 Dag Wieers <dag@wieers.com> - 2.51-1
 - Initial package. (using DAR)

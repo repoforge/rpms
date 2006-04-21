@@ -9,7 +9,7 @@
 Summary: Perl interface to a truly random number generator function
 Name: perl-Math-TrulyRandom
 Version: 1.0
-Release: 1
+Release: 1.2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-TrulyRandom/
@@ -55,5 +55,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Math/TrulyRandom/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 1.0-1
 - Initial package. (using DAR)

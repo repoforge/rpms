@@ -9,7 +9,7 @@
 Summary: FreezeThaw module for perl
 Name: perl-FreezeThaw
 Version: 0.43
-Release: 1
+Release: 1.2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/FreezeThaw/
@@ -48,6 +48,9 @@ FreezeThaw module for perl.
 %{perl_vendorlib}/FreezeThaw.pm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.43-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 0.43-1
 - Cosmetic cleanup.
 

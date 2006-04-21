@@ -7,7 +7,7 @@
 Summary: The virtual ring buffer library
 Name: vrb
 Version: 0.4.0
-Release: 0
+Release: 0.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://vrb.slashusr.org/
@@ -75,5 +75,8 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.0-0.2
+- Rebuild for Fedora Core 5.
+
 * Tue Sep 02 2003 Dag Wieers <dag@wieers.com> - 0.4.0-0
 - Initial package. (using DAR)

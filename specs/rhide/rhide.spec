@@ -8,7 +8,7 @@ ExcludeArch: x86_64
 Summary: IDE for developing like the old known Borland 3.1 IDE
 Name: rhide
 Version: 1.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: Development/Debuggers
 URL: http://www.rhide.com/
@@ -53,5 +53,8 @@ tic /usr/share/rhide/eterm-rhide
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jun 02 2004 Dag Wieers <dag@wieers.com> - 1.5-1
 - Initial package. (using DAR)

@@ -9,7 +9,7 @@
 Summary: Convenient and transparent local/remote incremental mirror/backup
 Name: rdiff-backup
 Version: 1.0.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Archiving
 URL: http://www.nongnu.org/rdiff-backup/
@@ -62,6 +62,9 @@ differences from the previous backup will be transmitted.
 %{python_sitearch}/rdiff_backup/*.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jan 26 2006 Dag Wieers <dag@wieers.com> - 1.0.4-1
 - Updated to release 1.0.4.
 

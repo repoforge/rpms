@@ -5,7 +5,7 @@
 Summary: X/Motif based schedule planner
 Name: plan
 Version: 1.8.6
-Release: 0
+Release: 0.2
 License: Freely distributable with attribution
 Group: Applications/Productivity
 URL: http://www.bitrot.de/plan.html
@@ -135,5 +135,8 @@ fi
 #/var/catman/cat1/netplan.1*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.8.6-0.2
+- Rebuild for Fedora Core 5.
+
 * Tue May 06 2003 Dag Wieers <dag@wieers.com> - 1.8.6-0
 - Initial package. (using DAR)

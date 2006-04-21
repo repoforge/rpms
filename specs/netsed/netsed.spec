@@ -5,7 +5,7 @@
 Summary: Realtime packet payload mangling
 Name: netsed
 Version: 0.0.1
-Release: 0.b
+Release: 0.b.2
 License: GPL
 Group: Applications/Internet
 URL: http://freshmeat.net/projects/netsed/
@@ -40,5 +40,8 @@ proxy rules to pick specific packets.
 %{_bindir}/netsed
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.1-0.b.2
+- Rebuild for Fedora Core 5.
+
 * Fri Apr 09 2004 Dag Wieers <dag@wieers.com> - 0.0.1-0.b
 - Initial package. (using DAR)

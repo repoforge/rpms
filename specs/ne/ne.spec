@@ -5,7 +5,7 @@
 Summary: Nice editor
 Name: ne
 Version: 1.42
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Editors
 URL: http://ne.dsi.unimi.it/
@@ -70,6 +70,9 @@ This package includes the documentation for package %{name}.
 %doc doc/*.html doc/*.pdf doc/*.ps doc/ne.txt
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.42-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jan 26 2006 Dag Wieers <dag@wieers.com> - 1.42-1
 - Updated to release 1.42.
 

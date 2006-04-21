@@ -5,7 +5,7 @@
 Summary: Finds acronyms and filename suffixes information
 Name: wtf
 Version: 0.0.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://cronus.comp.utas.edu.au/~thsutton/computing/wtf.html
@@ -49,6 +49,9 @@ the filename suffixes database.
 %{_datadir}/wtf/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Mon Aug 25 2003 Dag Wieers <dag@wieers.com> - 0.0.4-0
 - Updated to release 0.0.4.
 

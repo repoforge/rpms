@@ -8,7 +8,7 @@
 Summary: Passive OS fingerprinting tool
 Name: p0f
 Version: 2.0.6
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Applications/Internet
 URL: http://lcamtuf.coredump.cx/p0f.shtml
@@ -185,6 +185,9 @@ fi
 %{_localstatedir}/arpwatch/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Mar 12 2006 Dag Wieers <dag@wieers.com> - 2.0.6-1
 - Updated to release 2.0.6.
 

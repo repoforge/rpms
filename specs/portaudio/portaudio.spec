@@ -7,7 +7,7 @@
 Summary: Free, cross platform, open-source, audio I/O library
 Name: portaudio
 Version: 18.1
-Release: 2
+Release: 2.2
 License: BSD-like
 Group: System Environment/Libraries
 URL: http://www.portaudio.com/
@@ -48,6 +48,9 @@ and will be converted to the native format internally.
 %{_includedir}/*.h
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 18.1-2.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 1.18-2
 - Add -devel provides.
 - Fix .so 644 mode (overidden in defattr).

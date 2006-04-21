@@ -7,7 +7,7 @@
 Summary: tool to impose stress on a POSIX-compliant operating system
 Name: stress
 Version: 0.18.8
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://weather.ou.edu/~apw/projects/stress/
@@ -67,6 +67,9 @@ specific components thereof.
 #exclude %{_infodir}/dir
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.18.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec 09 2005 Dag Wieers <dag@wieers.com> - 0.18.8-1
 - Updated to release 0.18.8.
 

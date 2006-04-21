@@ -6,7 +6,7 @@
 Summary: Unicode-Map8 (Mapping table between 8-bit chars and Unicode) module for perl
 Name: perl-Unicode-Map8
 Version: 0.12
-Release: 0
+Release: 0.2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-Map8/
@@ -49,5 +49,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-0.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jan 21 2004 Dag Wieers <dag@wieers.com> - 0.12-0
 - Initial package. (using DAR)

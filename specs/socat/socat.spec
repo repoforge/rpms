@@ -5,7 +5,7 @@
 Summary: Relay for bidirectional data transfer between 2 channels
 Name: socat
 Version: 1.4.3.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.dest-unreach.org/socat/
@@ -58,6 +58,9 @@ line editor, a program, or a combination of two of these.
 %{_bindir}/socat
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.3.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jan 31 2006 Dag Wieers <dag@wieers.com> - 1.4.3.1-1
 - Updated to release 1.4.3.1.
 

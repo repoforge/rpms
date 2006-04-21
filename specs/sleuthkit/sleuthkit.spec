@@ -5,7 +5,7 @@
 Summary: Open Source forensic toolkit
 Name: sleuthkit
 Version: 1.69
-Release: 1
+Release: 1.2
 License: GPL/IBM
 Group: Applications/Internet
 URL: http://www.sleuthkit.org/sleuthkit/
@@ -58,6 +58,9 @@ cd src/file
 #%{_datadir}/sleuthkit/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.69-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun May 30 2004 Dag Wieers <dag@wieers.com> - 1.69-1
 - Updated to release 1.69.
 

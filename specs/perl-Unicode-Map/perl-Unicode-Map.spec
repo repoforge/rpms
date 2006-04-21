@@ -6,7 +6,7 @@
 Summary: Unicode-Map (Maps charsets from and to UTF16 unicode) module for perl
 Name: perl-Unicode-Map
 Version: 0.112
-Release: 0
+Release: 0.2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-Map/
@@ -49,5 +49,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.112-0.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jan 21 2004 Dag Wieers <dag@wieers.com> - 0.112-0
 - Initial package. (using DAR)

@@ -12,7 +12,7 @@
 Summary: Routines and Constants common for XML::LibXML and XML::GDOME
 Name: perl-XML-LibXML-Common
 Version: 0.13
-Release: 3
+Release: 3.2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-LibXML-Common/
@@ -55,6 +55,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/XML/LibXML/Common/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.13-3.2
+- Rebuild for Fedora Core 5.
+
 * Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 0.13-3
 - Cosmetic fixes.
 

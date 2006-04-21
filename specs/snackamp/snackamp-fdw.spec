@@ -10,7 +10,7 @@
 Summary: Versatile music player
 Name: snackamp
 Version: 2.2
-Release: 4.fdw
+Release: 4.fdw.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://snackamp.sourceforge.net/
@@ -96,6 +96,9 @@ EOF
 %endif
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2-4.fdw.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jun 24 2003 Dag Wieers <dag@wieers.com> - 2.2-0.fdw
 - Updated to release 2.2_FDW.
 

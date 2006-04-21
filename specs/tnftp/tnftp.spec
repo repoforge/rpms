@@ -6,7 +6,7 @@
 Summary: Enhanced NetBSD ftp client
 Name: tnftp
 Version: 0.0.20050625
-Release: 1
+Release: 1.2
 License: BSD
 Group: Applications/Internet
 URL: ftp://ftp.netbsd.org/pub/NetBSD/misc/lukemftp/
@@ -43,6 +43,9 @@ in February 2003.
 %{_bindir}/tnftp
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.20050625-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Sep 18 2005 Dries Verachtert <dries@ulyssis.org> - 0.0.20050625-2
 - Rebuild with corrected real_version.
 

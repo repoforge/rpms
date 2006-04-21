@@ -6,7 +6,7 @@
 Summary: Internationalization for Perl
 Name: perl-Locale-gettext
 Version: 1.05
-Release: 1
+Release: 1.2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/gettext/
@@ -60,6 +60,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.05-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> - 1.05-1
 - Updated to release 1.05.
 

@@ -4,7 +4,7 @@
 Summary: Control process scheduler attributres and CPU affinity
 Name: run
 Version: 3.0
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/System
 URL: http://www.ccur.com/id_oss.asp
@@ -53,6 +53,9 @@ list of existing processes/threads.
 %{_includedir}/proc_stat.h
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.0-2.2
+- Rebuild for Fedora Core 5.
+
 * Thu Sep 30 2004 Dag Wieers <dag@wieers.com> - 3.0-2
 - Fixed misplaced %Mdefattr. (Truls Gulbrandsen)
 

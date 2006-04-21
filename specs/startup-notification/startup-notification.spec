@@ -6,7 +6,7 @@
 Summary: Library for tracking application startup
 Name: startup-notification
 Version: 0.5
-Release: 0
+Release: 0.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.freedesktop.org/software/startup-notification/
@@ -63,5 +63,8 @@ Development files for %{name}
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-0.2
+- Rebuild for Fedora Core 5.
+
 * Tue Feb 11 2003 Dag Wieers <dag@wieers.com> - 0.5-0
 - Initial package. (using DAR)

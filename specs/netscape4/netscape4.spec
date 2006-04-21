@@ -4,7 +4,7 @@
 Summary: The Netscape Communicator suite of tools.
 Name: netscape4
 Version: 4.8
-Release: 3
+Release: 3.2
 Epoch: 4
 License: Proprietary
 Group: Applications/Internet
@@ -263,6 +263,9 @@ exit 0
 
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.8-3.2
+- Rebuild for Fedora Core 5.
+
 * Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 4.8-4
 - Fixed epoch problem for RH9, RHEL3 and RHFC1. (Erik Williamson)
 

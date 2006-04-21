@@ -5,7 +5,7 @@
 Summary: Monitor the progress of data through a pipe
 Name: pv
 Version: 0.9.2
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Development/Tools
 URL: http://www.ivarch.com/programs/pv.shtml
@@ -53,6 +53,9 @@ will be until completion.
 %{_bindir}/pv
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Sep 03 2005 Dag Wieers <dag@wieers.com> - 0.9.2-1
 - Updated to release 0.9.2.
 

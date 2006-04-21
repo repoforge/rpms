@@ -10,7 +10,7 @@
 Summary: Perl wrappers for the GLib utility and object libraries
 Name: perl-Glib
 Version: 1.101
-Release: 1
+Release: 1.2
 License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Glib/
@@ -59,6 +59,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorarch}/auto/Glib/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.101-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.101-1
 - Updated to release 1.101.
 

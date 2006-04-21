@@ -7,7 +7,7 @@
 Summary: Vector drawing application
 Name: sodipodi
 Version: 0.34
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://sodipodi.sourceforge.net/
@@ -58,6 +58,9 @@ with anti-aliased display, alpha transparency, and vector fonts.
 %{_datadir}/sodipodi/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.34-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Dec 21 2004 Richard Koerber <shred@despammed.com> - 0.34-1
 - Added a patch to fix a segfault on x86_64 startup.
 

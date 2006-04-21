@@ -5,7 +5,7 @@
 Summary: The Wake On Lan client
 Name: wol
 Version: 0.7.1
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/Internet
 URL: http://ahh.sourceforge.net/wol/
@@ -48,6 +48,9 @@ provided by wol.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.1-2.2
+- Rebuild for Fedora Core 5.
+
 * Mon May 03 2004 Dag Wieers <dag@wieers.com> - 0.7.1-2
 - Fixed ownership by adding missing defattr(). (Alain Rykaert)
 

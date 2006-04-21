@@ -7,7 +7,7 @@
 Summary: Neat visual plugin for XMMS
 Name: xmms-goom
 Version: 1.99.4
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://goom.sourceforge.net/
@@ -53,5 +53,8 @@ A great visual plugins for XMMS.
 
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.99.4-0.2
+- Rebuild for Fedora Core 5.
+
 * Thu Feb 20 2003 Dag Wieers <dag@wieers.com> - 1.99.4-0
 - Initial package. (using DAR)

@@ -9,7 +9,7 @@
 Summary: IO-Socket-SSL module for perl
 Name: perl-IO-Socket-SSL
 Version: 0.97
-Release: 1
+Release: 1.2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Socket-SSL/
@@ -53,6 +53,9 @@ IO-Socket-SSL module for perl.
 %{perl_vendorlib}/IO/Socket/SSL.pm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.97-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.97-1
 - Updated to release 0.97.
 

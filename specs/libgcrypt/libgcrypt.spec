@@ -7,7 +7,7 @@
 Summary: GNU cryptographic library
 Name: libgcrypt
 Version: 1.1.12
-Release: 1
+Release: 1.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gnupg.org/
@@ -79,5 +79,8 @@ you will need to install %{name}-devel.
 #%exclude %{_infodir}/dir
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.12-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Dec 31 2003 Dag Wieers <dag@wieers.com> - 1.1.12-0
 - Initial package. (using DAR)

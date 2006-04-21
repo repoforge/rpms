@@ -9,7 +9,7 @@
 Summary: Syslog module for perl
 Name: perl-Unix-Syslog
 Version: 0.100
-Release: 1
+Release: 1.2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unix-Syslog/
@@ -51,6 +51,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTA
 %{perl_vendorarch}/auto/Unix/Syslog/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.100-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 29 2005 Dag Wieers <dag@wieers.com> - 0.100-1
 - Cosmetic changes.
 

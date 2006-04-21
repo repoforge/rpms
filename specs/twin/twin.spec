@@ -20,7 +20,7 @@
 Summary: Textmode windowing environment
 Name: twin
 Version: 0.5.1
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/System
 URL: http://linuz.sns.it/~max/twin/
@@ -101,6 +101,9 @@ you will need to install %{name}-devel.
 %{_includedir}/Tw/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.1-0.2
+- Rebuild for Fedora Core 5.
+
 * Sun Sep 07 2003 Dag Wieers <dag@wieers.com> - 0.5.1-0
 - Updated to release 0.5.1.
 

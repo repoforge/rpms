@@ -4,7 +4,7 @@
 Summary: Lightweight multi-tabbed X terminal
 Name: mrxvt
 Version: 0.4.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: User Interface/X
 URL: http://materm.sourceforge.net/
@@ -48,5 +48,8 @@ and independent from the GNOME and KDE desktop environment.
 %exclude %{_docdir}/mrxvt/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Aug 11 2005 Dag Wieers <dag@wieers.com> - 0.4.1-1
 - Initial package. (using DAR)

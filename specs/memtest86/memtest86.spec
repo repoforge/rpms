@@ -7,7 +7,7 @@
 Summary: Thorough, stand alone memory test
 Name: memtest86
 Version: 3.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.memtest86.com/
@@ -57,6 +57,9 @@ fi
 /boot/%{name}-%{version}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Dec 31 2004 Dag Wieers <dag@wieers.com> - 3.2-1
 - Updated to release 3.2.
 

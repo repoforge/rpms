@@ -6,7 +6,7 @@
 Summary: Library for communicating with and sending data to an icecast server
 Name: libshout109
 Version: 1.0.9
-Release: 3
+Release: 3.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://developer.icecast.org/libshout/
@@ -54,6 +54,9 @@ test -d %{buildroot}/usr/doc && rm -rf %{buildroot}/usr/doc
 %exclude %{_libdir}/*.so
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.9-3.2
+- Rebuild for Fedora Core 5.
+
 * Mon May 17 2004 Dag Wieers <dag@wieers.com> - 1.0.9-1
 - Forked to libshout109.
 

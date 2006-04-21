@@ -17,7 +17,7 @@
 Summary: Host/service/network monitoring program plugins for Nagios
 Name: nagios-plugins
 Version: 1.4.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://nagiosplug.sourceforge.net/
@@ -103,6 +103,9 @@ done
 %{perl_vendorlib}/utils.pm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Mar 07 2006 Dag Wieers <dag@wieers.com> - 1.4.2-1
 - Updated to release 1.4.2.
 

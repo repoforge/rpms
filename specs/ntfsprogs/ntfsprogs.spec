@@ -11,7 +11,7 @@
 Summary: NTFS filesystem libraries and utilities
 Name: ntfsprogs
 Version: 1.9.4
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://linux-ntfs.sourceforge.net/
@@ -100,6 +100,9 @@ you will need to install %{name}-devel.
 %{_libdir}/*.a
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.9.4-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 1.9.4-1
 - Updated to release 1.9.4.
 

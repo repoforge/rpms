@@ -7,7 +7,7 @@
 Summary: Stream directory browser
 Name: streamtuner
 Version: 0.99.99
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.nongnu.org/streamtuner/
@@ -91,6 +91,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.99.99-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 17 2003 Che
 - new fixes thanks to matthias haase for submitting his nice work
 - new version out

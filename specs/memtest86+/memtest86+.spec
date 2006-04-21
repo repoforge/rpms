@@ -12,7 +12,7 @@
 Summary: Thorough, stand-alone memory tester
 Name: memtest86+
 Version: 1.65
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.memtest.org/
@@ -60,6 +60,9 @@ fi
 %{_prefix}/%{name}-%{version}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.65-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Nov 30 2005 Dag Wieers <dag@wieers.com> - 1.65-1
 - Updated to release 1.65.
 

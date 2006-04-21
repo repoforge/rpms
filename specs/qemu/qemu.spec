@@ -5,7 +5,7 @@
 Summary: CPU emulator
 Name: qemu
 Version: 0.8.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Emulators
 URL: http://fabrice.bellard.free.fr/qemu/
@@ -186,6 +186,9 @@ fi
 %exclude %{_datadir}/qemu/doc/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Dec 29 2005 Dag Wieers <dag@wieers.com> - 0.8.0-1
 - Updated to release 0.8.0.
 

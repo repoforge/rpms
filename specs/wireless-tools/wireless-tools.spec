@@ -10,7 +10,7 @@
 Summary: Wireless ethernet configuration tools
 Name: wireless-tools
 Version: 26
-Release: 0
+Release: 0.2
 License: GPL
 Group: System Environment/Base
 URL: http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html
@@ -67,5 +67,8 @@ specific stats for wireless networking equipment.
 %{_includedir}/*.h
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 26-0.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jul 12 2003 Dag Wieers <dag@wieers.com> - 26-0
 - Initial package. (using DAR)

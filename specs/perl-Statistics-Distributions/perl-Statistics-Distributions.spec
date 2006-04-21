@@ -9,7 +9,7 @@
 Summary: Calculate critical values and upper probabilities of statistics
 Name: perl-Statistics-Distributions
 Version: 1.02
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Statistics-Distributions/
@@ -54,5 +54,8 @@ common statistical distributions
 %{perl_vendorlib}/auto/Statistics/Distributions/autosplit.ix
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.02-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Mar 31 2005 Dag Wieers <dag@wieers.com> - 1.02-1
 - Initial package. (using DAR)

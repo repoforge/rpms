@@ -7,7 +7,7 @@
 Summary: Library to restrict processes from tampering with directories/files
 Name: soapbox
 Version: 0.3.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Libraries
 URL: http://dag.wieers.com/home-made/soapbox/
@@ -43,6 +43,9 @@ still be safe that they don't mess up your system.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 31 2003 Dag Wieers <dag@wieers.com> - 0.3.1-0
 - Updated to release 0.3.1.
 

@@ -6,7 +6,7 @@
 Summary: DVD RPC (Region Playback Control) tool
 Name: rpcmgr
 Version: 1.2
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/System
 URL: http://perso.club-internet.fr/farzeno/dvds/rpcmgr11.c
@@ -48,5 +48,8 @@ ${CC:-%{__cc}} %{optflags} -o rpcmgr rpcmgr.c
 %{_sbindir}/rpcmgr
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-0.2
+- Rebuild for Fedora Core 5.
+
 * Sun Dec 01 2003 Dag Wieers <dag@wieers.com> - 1.2-0
 - Initial package. (using DAR)

@@ -7,7 +7,7 @@
 Summary: Multilingual web based tool to manage SQLite database
 Name: sqlitemanager
 Version: 0.9.6
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Databases
 URL: http://sqlitemanager.sourceforge.net/
@@ -75,6 +75,9 @@ fi
 %{_localstatedir}/www/sqlitemanager/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.6-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Apr 29 2004 Dag Wieers <dag@wieers.com> - 0.9.6-1
 - Updated to release 0.9.6.
 

@@ -5,7 +5,7 @@
 Summary: Daily backup system similar to Plan9's dumpfs
 Name: pdumpfs
 Version: 1.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Archiving
 URL: http://namazu.org/~satoru/pdumpfs/
@@ -49,6 +49,9 @@ day's snapshot for saving a disk space.
 %{_bindir}/pdumpfs
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Aug 11 2004 Dag Wieers <dag@wieers.com> - 1.2-1
 - Updated to release 1.2.
 

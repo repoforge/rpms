@@ -9,7 +9,7 @@
 Summary: WebDAV client library for Perl
 Name: perl-HTTP-DAV
 Version: 0.31
-Release: 1
+Release: 1.2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-DAV/
@@ -55,5 +55,8 @@ and PUT files and much more on a DAV-enabled webserver.
 %{perl_vendorlib}/HTTP/DAV.pm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.31-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Feb 12 2005 Dag Wieers <dag@wieers.com> -
 - Initial package. (using DAR)

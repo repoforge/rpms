@@ -12,7 +12,7 @@
 Summary: PostScript font editor
 Name: pfaedit
 Version: 0.0.20040301
-Release: 0
+Release: 0.2
 License: BSD
 Group: Applications/Publishing
 URL: http://pfaedit.sourceforge.net/
@@ -67,6 +67,9 @@ some Type 0s), TrueType, OpenType (Type2) and CID-keyed fonts.
 %{_datadir}/pfaedit/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.20040301-0.2
+- Rebuild for Fedora Core 5.
+
 * Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 0.0.20040301-0
 - Updated to release 040301.
 

@@ -31,7 +31,7 @@
 Summary: Media player for X which resembles Winamp
 Name: xmms
 Version: 1.2.10
-Release: 11.1
+Release: 11.1.2
 Epoch: 1
 License: GPL
 Group: Applications/Multimedia
@@ -248,6 +248,9 @@ update-desktop-database %{_datadir}/desktop-menu-patches &>/dev/null || :
 %{_datadir}/xmms/Skins/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.10-11.1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jan 11 2005 Dag Wieers <dag@wieers.com> - 1:1.2.10-9.2
 - Disable arts for el3.
 

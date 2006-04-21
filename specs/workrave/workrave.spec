@@ -7,7 +7,7 @@
 Summary: Tool to recover from or prevent Repetitive Strain Injury
 Name: workrave
 Version: 1.8.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://workrave.sourceforge.net/
@@ -71,6 +71,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 #%{_datadir}/locale/*/LC_MESSAGES/workrave.*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.8.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Feb 12 2006 Dries Verachtert <dries@ulyssis.org> - 1.8.2-1
 - Updated to release 1.8.2.
 

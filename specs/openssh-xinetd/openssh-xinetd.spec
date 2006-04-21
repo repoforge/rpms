@@ -5,7 +5,7 @@
 Summary: OpenSSH backup xinetd entry
 Name: openssh-xinetd
 Version: 0.2
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/Internet
 URL: http://dag.wieers.com/packages/openssh-xinetd/
@@ -77,6 +77,9 @@ fi
 %config(noreplace) %{_sysconfdir}/xinetd.d/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-2.2
+- Rebuild for Fedora Core 5.
+
 * Tue Dec 28 2004 Dag Wieers <dag@wieers.com> - 0.2-2
 - Change to noarch (Doncho Gunchev)
 

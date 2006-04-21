@@ -11,7 +11,7 @@
 Summary: Sound wave editor
 Name: sweep
 Version: 0.9.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://sweep.sourceforge.net/
@@ -75,6 +75,9 @@ you will need to install %{name}-devel.
 %{_libdir}/sweep/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Jan 31 2006 Dag Wieers <dag@wieers.com> - 0.9.1-1
 - Updated to release 0.9.1.
 

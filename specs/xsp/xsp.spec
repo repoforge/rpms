@@ -4,7 +4,7 @@
 Summary: Small web server that hosts ASP.NET
 Name: xsp
 Version: 1.0.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.go-mono.com/
@@ -57,6 +57,9 @@ classes for running what is commonly known as ASP.NET.
 %{_libdir}/*.dll
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 1.0.5-1
 - Updated to release 1.0.5.
 - Updated to release 1.0.4.

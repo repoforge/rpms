@@ -9,7 +9,7 @@
 Summary: Share Perl variables between processes
 Name: perl-IPC-Shareable
 Version: 0.60
-Release: 1
+Release: 1.2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPC-Shareable/
@@ -54,5 +54,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorlib}/IPC/Shareable/SharedMem.pm
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.60-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Mar 07 2004 Dag Wieers <dag@wieers.com> - 0.60-1
 - Initial package. (using DAR)

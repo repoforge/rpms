@@ -5,7 +5,7 @@
 Summary: Set up a Yum/Apt mirror from various sources (ISO, RHN, rsync, http, ftp, ...)
 Name: yam
 Version: 0.8.0
-Release: 2
+Release: 2.2
 License: GPL
 Group: System Environment/Base
 URL: http://dag.wieers.com/home-made/yam/
@@ -73,6 +73,9 @@ fi
 %{_localstatedir}/yam/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.0-2.2
+- Rebuild for Fedora Core 5.
+
 * Fri Mar 10 2006 Dag Wieers <dag@wieers.com> - 0.8.0-2
 - Added gensystemid to installation. (Ian Forde)
 

@@ -5,7 +5,7 @@
 Summary: Text-mode player for CDs and MP3 files
 Name: orpheus
 Version: 1.2
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://konst.org.ua/orpheus/
@@ -39,5 +39,8 @@ playlists. Nice interface to modify MP3 ID tags is provided.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon Jul 28 2003 Dag Wieers <dag@wieers.com> - 1.2-0
 - Initial package. (using DAR)

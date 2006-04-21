@@ -7,7 +7,7 @@
 Summary: Network traffic probe that shows the network usage
 Name: ntop
 Version: 3.2
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://www.ntop.org/
@@ -269,6 +269,9 @@ fi
 #%exclude %{_libdir}/plugins/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.2-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Nov 03 2005 Dries Verachtert <dries@ulyssis.org> - 3.2-1
 - Updated to release 3.2.
 

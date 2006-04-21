@@ -5,7 +5,7 @@
 Summary: GNOME applet that shows traffic on a network device
 Name: netspeed_applet
 Version: 0.11
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://mfcn.ilo.de/netspeed_applet/
@@ -54,6 +54,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.11-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun May 01 2005 Dag Wieers <dag@wieers.com> - 0.11-1
 - Updated to release 0.11.
 

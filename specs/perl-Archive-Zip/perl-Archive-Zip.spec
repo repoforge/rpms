@@ -9,7 +9,7 @@
 Summary: Archive-Zip module for perl
 Name: perl-Archive-Zip
 Version: 1.16
-Release: 1
+Release: 1.2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Archive-Zip/
@@ -66,6 +66,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorlib}/Archive/Zip/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.16-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jul 13 2005 Dag Wieers <dag@wieers.com> - 1.16-1
 - Updated to release 1.16.
 

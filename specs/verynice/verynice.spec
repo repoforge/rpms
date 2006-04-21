@@ -5,7 +5,7 @@
 Summary: Dynamic process renicer and killer
 Name: verynice
 Version: 1.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.tam.cornell.edu/~sdh4/verynice/
@@ -233,6 +233,9 @@ fi
 %{_sbindir}/verynice
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sat Jan 21 2006 Dag Wieers <dag@wieers.com> - 1.1-1
 - Fixed a prefix-bug in the binary. (Fred Tam)
 

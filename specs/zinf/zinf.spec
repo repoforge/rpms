@@ -12,7 +12,7 @@
 Summary: Zinf Audio Player
 Name: zinf
 Version: 2.2.5
-Release: 0
+Release: 0.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.zinf.org/
@@ -89,6 +89,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-zinf.desktop}
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.5-0.2
+- Rebuild for Fedora Core 5.
+
 * Mon Feb 16 2004 Dag Wieers <dag@wieers.com> - 2.2.5-0
 - Updated to release 2.2.5.
 

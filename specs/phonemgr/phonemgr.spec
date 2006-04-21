@@ -9,7 +9,7 @@
 Summary: Phone manager
 Name: phonemgr
 Version: 0.2.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Communications
 URL: http://usefulinc.com/software/phonemgr/
@@ -59,6 +59,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_libexecdir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 0.2.1-1
 - Cosmetic rebuild for Group-tag.
 

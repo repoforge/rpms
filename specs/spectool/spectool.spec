@@ -5,7 +5,7 @@
 Summary: Display expanded Source/Patch macros from SPEC files
 Name: spectool
 Version: 1.0.7
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://people.redhat.com/nphilipp/spectool/
@@ -38,6 +38,9 @@ spectool is a tool to display expanded Source/Patch macros from a SPEC file.
 %{_bindir}/spectool
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.7-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Mar 16 2006 Dag Wieers <dag@wieers.com> - 1.0.7-1
 - Updated to release 1.0.7.
 

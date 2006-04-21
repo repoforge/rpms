@@ -5,7 +5,7 @@
 Summary: PIN or passphrase entry dialog
 Name: pinentry
 Version: 0.6.8
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/System
 URL: http://www.gnupg.org/aegypten/
@@ -65,5 +65,8 @@ fi
 %ghost %{_bindir}/pinentry
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.8-1.2
+- Rebuild for Fedora Core 5.
+
 * Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 0.6.8-1
 - Initial package. (using DAR)

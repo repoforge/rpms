@@ -7,7 +7,7 @@
 Summary: C++ wrappers for libbonobo, for use with gtkmm
 Name: libbonobomm2
 Version: 1.3.8
-Release: 0
+Release: 0.2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://gtkmm.sourceforge.net/
@@ -74,6 +74,9 @@ you will need to install %{name}-devel.
 #exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.8-0.2
+- Rebuild for Fedora Core 5.
+
 * Tue Nov 23 2003 Dag Wieers <dag@wieers.com> - 1.3.8-0
 - Updated to release 1.3.8.
 

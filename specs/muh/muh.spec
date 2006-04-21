@@ -7,7 +7,7 @@
 Summary: IRC bouncer with IPV6-support
 Name: muh
 Version: 2.1
-Release: 0.rc1
+Release: 0.rc1.2
 License: GPL
 Group: Applications/Internet
 URL: http://mind.riot.org/muh/
@@ -58,5 +58,8 @@ If you have no idea what this is good for you probably don't need it.
 %exclude %{_datadir}/muhrc
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.1-0.rc1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Apr 07 2004 Dag Wieers <dag@wieers.com> - 2.1-0.rc1
 - Initial package. (using DAR)

@@ -4,7 +4,7 @@
 Summary: Low complexity and fast waveform coder
 Name: shorten
 Version: 3.6.0
-Release: 1
+Release: 1.2
 License: Distributable
 Group: Applications/Multimedia
 URL: http://www.etree.org/shnutils/shorten/
@@ -38,5 +38,8 @@ operate in both lossy and lossless modes.
 %{_bindir}/shorten
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.6.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Jul 14 2004 Dag Wieers <dag@wieers.com> - 3.6.0-1
 - Initial package. (using DAR)

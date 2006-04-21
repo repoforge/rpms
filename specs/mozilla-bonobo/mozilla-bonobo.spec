@@ -5,7 +5,7 @@
 Summary: Mozilla plugin for using bonobo components
 Name: mozilla-bonobo
 Version: 0.4.1
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/Internet
 URL: http://www.nongnu.org/moz-bonobo/
@@ -60,6 +60,9 @@ scrollkeeper-update -q
 %exclude %{_prefix}/doc/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.1-2.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 19 2004 Dag Wieers <dag@wieers.com> - 0.4.1-2
 - Removed %%{_libdir}/mozilla/plugins/
 

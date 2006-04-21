@@ -5,7 +5,7 @@
 Summary: Analyzing WEP encryption security on wireless networks
 Name: weplab
 Version: 0.1.5
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Internet
 URL: http://weplab.sourceforge.net/
@@ -44,6 +44,9 @@ that would obfuscate it.
 %{_bindir}/weplab
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.5-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.1.5-1
 - Update to release 0.1.5.
 

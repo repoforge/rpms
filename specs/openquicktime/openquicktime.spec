@@ -4,7 +4,7 @@
 Summary: Portable library for handling Apples QuickTime(tm) format
 Name: openquicktime
 Version: 1.0
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.openquicktime.org/
@@ -49,6 +49,9 @@ done
 %{_includedir}/openquicktime/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
+- Rebuild for Fedora Core 5.
+
 * Thu Jul 08 2004 Dag Wieers <dag@wieers.com> - 1.0-1
 - Added provides for libopenquicktime.so. (Fridrich Strba)
 

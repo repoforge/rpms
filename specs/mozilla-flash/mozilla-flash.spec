@@ -4,7 +4,7 @@
 Summary: Macromedia Flash Player
 Name: mozilla-flash
 Version: 7.0.63
-Release: 1
+Release: 1.2
 License: Commercial
 Group: Applications/Internet
 URL: http://www.macromedia.com/downloads/
@@ -46,6 +46,9 @@ By downloading and installing this package you agree to the included LICENSE:
 %{_libdir}/mozilla/plugins/
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 7.0.63-1.2
+- Rebuild for Fedora Core 5.
+
 * Wed Mar 15 2006 Dag Wieers <dag@wieers.com> - 7.0.63-1
 - Updated to release 7.0.63.
 

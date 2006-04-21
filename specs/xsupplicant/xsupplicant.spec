@@ -5,7 +5,7 @@
 Summary: Open source implement of IEEE 802.1x
 Name: xsupplicant
 Version: 1.0.1
-Release: 1
+Release: 1.2
 License: GPL
 Group: System Environment/Base
 URL: http://www.open1x.org/
@@ -70,6 +70,9 @@ you will need to install %{name}-devel.
 %{_libdir}/libcardif.a
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1.2
+- Rebuild for Fedora Core 5.
+
 * Sun Feb 13 2005 Dag Wieers <dag@wieers.com> - 1.0.1-2
 - Added default xsupplicant.conf.
 

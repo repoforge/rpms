@@ -5,7 +5,7 @@
 Summary: High quality, generic capture core
 Name: nvrec
 Version: 20030316
-Release: 2
+Release: 2.2
 Group: Applications/Multimedia
 License: GPL
 URL: http://nvrec.sourceforge.net/
@@ -77,6 +77,9 @@ with existing applications, or add your own output formats.
 %{_bindir}/*
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 20030316-2.2
+- Rebuild for Fedora Core 5.
+
 * Mon Apr 07 2003 Dag Wieers <dag@wieers.com> - 20030316-2
 - Build against new (renamed) libxvidcore package.
 

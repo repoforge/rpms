@@ -16,7 +16,7 @@
 Summary: The X2 text editor
 Name: x2
 Version: 2.05.1
-Release: 2
+Release: 2.2
 License: GPL
 Group: Applications/Editors
 URL: http://www.tangbu.com/
@@ -99,6 +99,9 @@ EOF
 %{_datadir}/x2/X.HLP
 
 %changelog
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.05.1-2.2
+- Rebuild for Fedora Core 5.
+
 * Mon May 09 2005 Dag Wieers <dag@wieers.com> - 2.05.1-2
 - Added missing syntax files. (Alain Rykaert)
 
