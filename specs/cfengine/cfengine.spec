@@ -10,8 +10,8 @@
 
 Summary: System administration tool for networks
 Name: cfengine
-Version: 2.1.18
-Release: 1.2
+Version: 2.1.20
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://www.cfengine.org/
@@ -327,6 +327,9 @@ fi
 %exclude %{_datadir}/cfengine/
 
 %changelog
+* Fri Apr 21 2006 Dries Verachtert <dries@ulyssis.org> - 2.1.20-1
+- Updated to release 2.1.20.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.1.18-1.2
 - Rebuild for Fedora Core 5.
 

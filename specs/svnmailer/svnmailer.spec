@@ -6,8 +6,8 @@
 
 Summary: Notification script which can be used as subversion hook
 Name: svnmailer
-Version: 1.0.7
-Release: 1.2
+Version: 1.0.8
+Release: 1
 License: Apache License 2.0
 Group: Development/Tools
 URL: http://opensource.perlig.de/svnmailer/
@@ -55,6 +55,9 @@ python setup.py install --root=%{buildroot}
 %{python_sitelib}/svnmailer
 
 %changelog
+* Fri Apr 21 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.8-1
+- Updated to release 1.0.8.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.7-1.2
 - Rebuild for Fedora Core 5.
 

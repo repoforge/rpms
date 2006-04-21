@@ -3,8 +3,8 @@
 
 Summary: C++ wrapper for sockets
 Name: csockets
-Version: 1.9.9
-Release: 1.2
+Version: 2.0.4
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.alhem.net/Sockets/index.html
@@ -56,6 +56,9 @@ you will need to install %{name}-devel.
 %{_libdir}/*.a
 
 %changelog
+* Fri Apr 21 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.4-1
+- Updated to release 2.0.4.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.9.9-1.2
 - Rebuild for Fedora Core 5.
 
