@@ -1,0 +1,13 @@
+diff -uNr jhead-2.5-orig/exif.c jhead-2.5/exif.c
+--- jhead-2.5-orig/exif.c	2006-01-08 18:13:16.000000000 +0100
++++ jhead-2.5/exif.c	2006-04-22 22:52:23.000000000 +0200
+@@ -329,7 +329,8 @@
+         ByteCount -= s;
+         if (ByteCount <= 0) break;
+         printf(", ");
+-        ((char *)ValuePtr) += s;
++        //((char *)ValuePtr) += s;
++        ValuePtr = ValuePtr + s;
+     }
+     if (n >= 16) printf("...");
+ }
