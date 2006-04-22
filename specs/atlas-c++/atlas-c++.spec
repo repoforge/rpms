@@ -3,8 +3,8 @@
 
 Summary: Implements the WorldForge Atlas protocol
 Name: atlas-c++
-Version: 0.5.98
-Release: 1.2
+Version: 0.6.0
+Release: 1
 License: LGPL
 Group: Development/Libraries
 URL: https://sourceforge.net/projects/worldforge/
@@ -62,6 +62,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Fri Apr 21 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.0-1
+- Updated to release 0.6.0.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.98-1.2
 - Rebuild for Fedora Core 5.
 
