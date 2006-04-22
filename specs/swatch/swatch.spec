@@ -6,8 +6,8 @@
 
 Summary: Tool for actively monitoring log files.
 Name: swatch
-Version: 3.1
-Release: 1.2
+Version: 3.1.1
+Release: 1
 License: GPL
 Group: Applications/File
 URL: http://swatch.sourceforge.net/
@@ -56,6 +56,9 @@ chmod 644 tools/*
 %exclude %{perl_vendorarch}
 
 %changelog
+* Sat Apr 22 2006 Dries Verachtert <dries@ulyssis.org> - 3.1.1-1
+- Updated to release 3.1.1.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.1-1.2
 - Rebuild for Fedora Core 5.
 

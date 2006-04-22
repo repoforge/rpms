@@ -5,8 +5,8 @@
 
 Summary: GNOME sample editor
 Name: marlin
-Version: 0.1
-Release: 0.2
+Version: 0.9
+Release: 1
 Group: Applications/Multimedia
 License: GPL
 URL: http://marlin.sourceforge.net/
@@ -65,6 +65,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sat Apr 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.9-1
+- Updated to release 0.9.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1-0.2
 - Rebuild for Fedora Core 5.
 
