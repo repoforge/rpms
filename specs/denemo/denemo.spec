@@ -1,12 +1,12 @@
 # $Id$
 # Authority: dag
 
-%define real_version 0.7.4
+%define real_version 0.7.5
 
 Summary: Graphical music notation program
 Name: denemo
-Version: 0.7.4
-Release: 1.2
+Version: 0.7.5
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://denemo.sourceforge.net/
@@ -48,6 +48,9 @@ computer-music-related purposes as well.
 %{_includedir}/denemo/
 
 %changelog
+* Sat Apr 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.5-1
+- Updated to release 0.7.5.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.4-1.2
 - Rebuild for Fedora Core 5.
 
