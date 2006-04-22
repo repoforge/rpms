@@ -6,13 +6,13 @@
 
 Summary: Use the Razor catalog server to filter spam messages
 Name: razor-agents
-Version: 2.40
-Release: 1.2
+Version: 2.81
+Release: 1
 License: Artistic
 Group: Applications/Internet
 URL: http://razor.sourceforge.net/
 
-Source: http://dl.sf.net/razor/razor-agents-%{version}.tar.gz
+Source: http://dl.sf.net/razor/razor-agents-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, perl(Net::DNS), perl(Digest::SHA1), perl(Time::HiRes), perl(MIME::Base64), perl-URI
@@ -86,6 +86,9 @@ done
 %{perl_vendorlib}
 
 %changelog
+* Sat Apr 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.81-1
+- Updated to release 2.81.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.40-1.2
 - Rebuild for Fedora Core 5.
 

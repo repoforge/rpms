@@ -6,8 +6,8 @@
 
 Summary: Restores ESD volume, song time, and playing/paused status
 Name: xmms-morestate
-Version: 1.1
-Release: 0.2
+Version: 1.2
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://xmms-morestate.sourceforge.net/
@@ -50,6 +50,9 @@ XMMS Morestate restores ESD volume, song time, and playing/paused status.
 
 
 %changelog
+* Sat Apr 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1
+- Updated to release 1.2.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-0.2
 - Rebuild for Fedora Core 5.
 
