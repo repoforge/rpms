@@ -9,23 +9,21 @@
 
 Summary: Scientific software package
 Name: scilab
-Version: 3.1.1
-Release: 2.2
+Version: 4.0
+Release: 1
 License: Other
 Group: Applications/Engineering
 URL: http://scilabsoft.inria.fr/
 
 Source: http://scilabsoft.inria.fr/download/stable/scilab-%{version}-src.tar.gz
+Patch: scilab-4.0.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: tcl, tk, Xaw3d-devel, libpng10-devel, tcl-devel, tk-devel
-BuildRequires: perl, gtkhtml2-devel, gcc-c++, gtk+-devel, gtk2-devel
-BuildRequires: gnome-libs-devel, libxslt, gnome-libs-devel, vte-devel
+BuildRequires: perl, gtkhtml2-devel, gcc-c++, gtk2-devel
+BuildRequires: libxslt, vte-devel
 BuildRequires: readline-devel
-Requires: libpng10
-%{?fc4:BuildRequires: gcc-gfortran, compat-gcc-32-g77}
-%{!?fc4:BuildRequires: gcc-g77}
-
+BuildRequires: gcc-gfortran
 
 %description
 Scilab a numerical computation system similiar to matlab or simulink. Scilab
@@ -39,21 +37,19 @@ overloading. A number of toolboxes are available with the system.
 
 %prep
 %setup
+%patch -p1
 
 %build
 %{__perl} -pi.orig -e 's|-fwritable-strings||g;' configure
 %configure \
 	--with-gcc \
-	--with-g77 \
-	--with-gnu \
-	--with-xaw3d \
+	--with-gfortran \
 	--with-gtk2 \
-	--with-x \
 	--without-java \
 	--with-tcl-library="%{_libdir}"
 # ../include/pvmtev.h nodig in pvm3/src/global.h
-(echo '#include "../include/pvmtev.h"'; cat pvm3/src/global.h) > pvm3/src/global.h.temp
-%{__mv} pvm3/src/global.h.temp pvm3/src/global.h
+#(echo '#include "../include/pvmtev.h"'; cat pvm3/src/global.h) > pvm3/src/global.h.temp
+#%{__mv} pvm3/src/global.h.temp pvm3/src/global.h
 %{__make} %{?_smp_mflags} all
 
 %install
@@ -88,6 +84,12 @@ overloading. A number of toolboxes are available with the system.
 %exclude %{_libdir}/scilab-%{version}/examples/mex-examples/mexglx
 
 %changelog
+* Fri Apr 14 2006 Rene van Paassen <repa@lrcslap2.lr.tudelft.nl> - 4.0-2
+- Updated to release 4.0.
+- Using gtk2 instead of athena widgets.
+- Created a patch for periGtk.c; sent patch upstream too.
+- Removed gtk+ / gnome build dependencies. 
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.1.1-2.2
 - Rebuild for Fedora Core 5.
 

@@ -1,0 +1,23 @@
+--- scilab-4.0/routines/graphics/periGtk.c	2006-02-08 17:33:40.000000000 +0100
++++ scilab-4.0.new/routines/graphics/periGtk.c	2006-04-14 13:22:23.000000000 +0200
+@@ -396,15 +396,15 @@
+ 				       BCG *gc)
+ {
+   static GdkDisplay *display=NULL;
++  int display_double_click_distance=5;
++
++  display=gdk_display_get_default();
+ 
+ /* to compile with gdk<2.4 */
+-#if GTK_MAJOR_VERSION==2 &&  GTK_MINOR_VERSION>=4
+-  int display_double_click_distance = display->double_click_distance;
+-#else
+-  int display_double_click_distance=5;
++#if GTK_MAJOR_VERSION==2 && GTK_MINOR_VERSION>=4
++  display_double_click_distance = display->double_click_distance;
+ #endif
+ 
+-  if ( display == NULL) display=gdk_display_get_default();
+   if ((event->time < (last_press.time + 2*display->double_click_time)) &&
+       (event->window == last_press.window) &&
+       (event->button == last_press.button) &&
