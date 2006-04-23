@@ -3,8 +3,8 @@
 
 Summary: GUI for rsync
 Name: grsync
-Version: 0.3
-Release: 1.2
+Version: 0.3.2
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.opbyte.it/grsync/
@@ -44,6 +44,9 @@ used to synchronize local directories.
 %{_datadir}/applications/grsync.desktop
 
 %changelog
+* Sun Apr 23 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.2-1
+- Updated to release 0.3.2.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-1.2
 - Rebuild for Fedora Core 5.
 
