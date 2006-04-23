@@ -6,8 +6,8 @@
 
 Summary: Harddisk image cloning tool
 Name: g4u
-Version: 1.12
-Release: 0.2
+Version: 2.1
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.feyrer.de/g4u/
@@ -52,6 +52,9 @@ is also supported.
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sun Apr 23 2006 Dries Verachtert <dries@ulyssis.org> - 2.1-1
+- Updated to release 2.1.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.12-0.2
 - Rebuild for Fedora Core 5.
 

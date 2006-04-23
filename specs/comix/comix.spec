@@ -43,7 +43,7 @@ archives (often called .cbz, .cbr and .cbt) as well as normal image files.
 %{_bindir}/comicthumb
 %{_bindir}/comix
 %{_datadir}/applications/*comix.desktop
-%{_datadir}/icons/hicolor/48x48/apps/comix.png
+%{_datadir}/icons/hicolor/*/apps/comix.png
 %{_datadir}/pixmaps/comix.png
 %{_datadir}/pixmaps/comix/
 

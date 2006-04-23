@@ -51,6 +51,7 @@ conversion scheme names .
 %doc %{_mandir}/man?/*
 %dir %{perl_vendorlib}/I18N/
 %{perl_vendorlib}/I18N/Charset.pm
+%{perl_vendorlib}/I18N/Charset/
 
 %changelog
 * Fri Apr 07 2006 Dries Verachtert <dries@ulyssis.org> - 1.379-1

@@ -10,7 +10,7 @@ License: GPL
 Group: Applications/Publishing
 URL: http://www.gnu.org/software/unrtf/unrtf.html
 
-Source: http://www.gnu.org/software/unrtf/unrtf-%{version}.tar.gz
+Source: http://www.gnu.org/software/unrtf/unrtf_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description

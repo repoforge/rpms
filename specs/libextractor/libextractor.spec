@@ -6,8 +6,8 @@
 
 Summary: Meta-data extraction library
 Name: libextractor
-Version: 0.5.11
-Release: 1.2
+Version: 0.5.12
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://gnunet.org/libextractor/
@@ -93,6 +93,9 @@ export LDFLAGS=-L%{buildroot}%{_libdir}
 #%{python_sitearch}/extractor.so
 
 %changelog
+* Sat Apr 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.12-1
+- Updated to release 0.5.12.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.11-1.2
 - Rebuild for Fedora Core 5.
 

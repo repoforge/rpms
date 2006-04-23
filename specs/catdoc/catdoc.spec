@@ -4,8 +4,8 @@
 
 Summary: Decodes MS Word files into plain text or TeX format
 Name: catdoc
-Version: 0.94
-Release: 1.2
+Version: 0.94.2
+Release: 1
 License: GPL
 Group: Applications/Publishing
 URL: http://www.45.free.net/~vitus/software/catdoc/
@@ -51,6 +51,9 @@ also read RTF files and convert Excel and PowerPoint files.
 %{_datadir}/catdoc/*.*chars
 
 %changelog
+* Sun Apr 23 2006 Dries Verachtert <dries@ulyssis.org> - 0.94.2-1
+- Updated to release 0.94.2.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.94-1.2
 - Rebuild for Fedora Core 5.
 
