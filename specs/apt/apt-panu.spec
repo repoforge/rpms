@@ -2,20 +2,18 @@
 # Authority: dag
 # Upstream: Panu Matilainen <pmatilai$laiskiainen,org>
 
-# Tag: test
-
 %{?dist: %{expand: %%define %dist 1}}
 %define LIBVER 3.3
 
 Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
 Version: 0.5.15lorg3
-Release: 0.rc1
+Release: 1
 License: GPL
 Group: System Environment/Base
-URL: https://moin.conectiva.com.br/AptRpm
+URL: http://apt-rpm.laiskiainen.org/
 
-Source: http://laiskiainen.org/apt/testing/apt-%{version}-rc1.tar.bz2
+Source: http://apt-rpm.laiskiainen.org/releases/apt-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: rpm-devel >= 3.0.5, zlib-devel, gettext
@@ -56,7 +54,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{name}-%{version}-rc1
+%setup -n %{name}-%{version}
 
 %{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|RPMforge RPM Repository %{dist}/%{_arch} APT-HTTP/1.3|' methods/http.cc
 
@@ -69,7 +67,7 @@ you will need to install %{name}-devel.
 %{!?fc4:#}rpm http://ayo.freshrpms.net fedora/linux/4/%{_arch} core updates
 %{!?fc3:#}rpm http://ayo.freshrpms.net fedora/linux/3/%{_arch} core updates
 %{!?fc2:#}rpm http://ayo.freshrpms.net fedora/linux/2/%{_arch} core updates
-%{!?fc1:#}rpm http://ayo.freshrpms.net fedora/linux/1/%{_arch} core updates
+%{!?fc1:#}rpm http://ayo.freshrpms.net fedora/linux/1/i386 core updates
 
 ### Red Hat Linux
 %{!?rh9:#}rpm http://ayo.freshrpms.net redhat/9/i386 os updates
@@ -117,9 +115,6 @@ RPM {
 EOF
 
 %build
-%{?fc5:libtoolize -f && autoreconf}
-%{?fc4:libtoolize -f && autoreconf}
-#{__autoconf}
 %configure \
 	--program-prefix="%{?_program_prefix}" \
 	--includedir="%{_includedir}/apt-pkg"
