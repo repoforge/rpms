@@ -6,15 +6,13 @@
 
 Summary: Program for synchronizing files over a network
 Name: rsync
-Version: 2.6.7
-Release: 2.2
+Version: 2.6.8
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://rsync.samba.org/
 
 Source: http://rsync.samba.org/ftp/rsync/rsync-%{version}.tar.gz
-Patch0: rsync-2.6.7-stunnel.patch
-Patch1: rsync-2.6.7-exclude.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -28,8 +26,6 @@ package.
 
 %prep
 %setup
-%patch0 -p0 -b .orig
-%patch1 -p0 -b .orig
 
 %{__cat} <<EOF >rsync.xinet
 # default: off
@@ -68,8 +64,8 @@ EOF
 %{_bindir}/rsync
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.6.7-2.2
-- Rebuild for Fedora Core 5.
+* Sun Apr 23 2006 Dag Wieers <dag@wieers.com> - 2.6.8-1
+- Updated to release 2.6.8-1
 
 * Fri Mar 17 2006 Dag Wieers <dag@wieers.com> - 2.6.7-2
 - Added stunnel and exclude patch from upstream.

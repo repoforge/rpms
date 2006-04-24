@@ -5,20 +5,21 @@
 
 Summary: Software watchdog
 Name: watchdog
-Version: 5.2
-Release: 7.2
+Version: 5.2.5
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://oss.digirati.com.br/watchcatd/watchdog.html
 
-Source: http://www.ibiblio.org/pub/Linux/system/daemons/watchdog/watchdog-%{version}.tar.gz
+Source: http://ftp.debian.org/debian/pool/main/w/watchdog/watchdog_%{version}.orig.tar.gz
+#Source: http://www.ibiblio.org/pub/Linux/system/daemons/watchdog/watchdog-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 A software watchdog.
 
 %prep
-%setup
+%setup -n %{name}-%{version}.orig
 
 ### FIXME: Make it compile on RH80, RH9, RHEL3 and RHFC1. (Fix upstream please)
 %{?fc1:%{__perl} -pi.orig -e 's| __GNUC__ == 2 && __GNUC_MINOR__ >= 5| __GNUC__ >= 2|' include/sundries.h}
@@ -181,8 +182,8 @@ fi
 %{_sbindir}/*
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 5.2-7.2
-- Rebuild for Fedora Core 5.
+* Mon Apr 24 2006 Dag Wieers <dag@wieers.com> - 5.2.5-1
+- Updated to release 5.2.5.
 
 * Mon Mar 29 2004 Dag Wieers <dag@wieers.com> - 5.2-7
 - Fixed missing statement in %preun. (Matthew Lenz)

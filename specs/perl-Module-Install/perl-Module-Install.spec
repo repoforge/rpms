@@ -46,10 +46,12 @@ descendent of CPAN::MakeMaker.
 %defattr(-, root, root, 0755)
 %doc Changes README
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Module/
 %{perl_vendorlib}/Module/AutoInstall.pm
-%{perl_vendorlib}/Module/Install-Philosophy.pod
 %{perl_vendorlib}/Module/Install/
 %{perl_vendorlib}/Module/Install.p*
+%dir %{perl_vendorlib}/inc/
+%dir %{perl_vendorlib}/inc/Module/
 %{perl_vendorlib}/inc/Module/Install.pm
 
 %changelog

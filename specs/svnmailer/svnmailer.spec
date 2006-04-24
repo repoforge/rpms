@@ -15,8 +15,8 @@ URL: http://opensource.perlig.de/svnmailer/
 Source: http://storage.perlig.de/svnmailer/svnmailer-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python
-Requires: python
+BuildRequires: python >= 2.3
+Requires: python >= 2.3
 
 %description
 The svnmailer is a tool that is usually called by a subversion hook to

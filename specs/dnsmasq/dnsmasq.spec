@@ -4,8 +4,8 @@
 
 Summary: Lightweight caching nameserver with integrated DHCP server
 Name: dnsmasq
-Version: 2.27
-Release: 1.2
+Version: 2.30
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.thekelleys.org.uk/dnsmasq/
@@ -117,7 +117,8 @@ EOF
 
 %build
 %{__make} %{?_smp_mflags} \
-	CFLAGS="%{optflags} -DHAVE_DBUS"
+	CFLAGS="%{optflags}"
+#	CFLAGS="%{optflags} -DHAVE_DBUS -I%{_libdir}/dbus-1.0/include/ -I%{_includedir}/dbus-1.0/"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -155,14 +156,15 @@ fi
 %{_localstatedir}/lib/misc/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.27-1.2
-- Rebuild for Fedora Core 5.
+* Mon Apr 24 2006 Dag Wieers <dag@wieers.com> - 2.30-1
+- Updated to release 2.30.
+- Disabled dbus support because of compile issues.
 
 * Thu Jan 26 2006 Dag Wieers <dag@wieers.com> - 2.27-1
 - Updated to release 2.27.
 
 * Thu Jan 26 2006 Dag Wieers <dag@wieers.com> - 2.26-2
-- Enable DBUS support.
+- Enable dbus support.
 
 * Thu Jan 26 2006 Dag Wieers <dag@wieers.com> - 2.26-1
 - Updated to release 2.26.
