@@ -18,8 +18,8 @@
 
 Summary: Network exploration tool and security scanner
 Name: nmap
-Version: 4.01
-Release: 2
+Version: 4.03
+Release: 1
 Epoch: 2
 License: GPL
 Group: Applications/System
@@ -99,6 +99,9 @@ desktop-file-install \
 
 
 %changelog
+* Mon Apr 24 2006 Matthias Saou <http://freshrpms.net/> 4.03-1
+- Update to 4.03.
+
 * Sun Feb 12 2006 Dag Wieers <dag@wieers.com> - 4.01-2
 - Updated release to fix the checksum problems (how lame).
 
