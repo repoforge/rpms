@@ -20,7 +20,7 @@ Patch: scilab-4.0.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: tcl, tk, Xaw3d-devel, libpng10-devel, tcl-devel, tk-devel
-BuildRequires: perl, gtkhtml2-devel, gcc-c++, gtk2-devel
+BuildRequires: gtkhtml2-devel, gcc-c++, gtk2-devel
 BuildRequires: libxslt, vte-devel
 BuildRequires: readline-devel
 BuildRequires: gcc-gfortran

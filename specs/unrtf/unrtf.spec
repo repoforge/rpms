@@ -20,7 +20,7 @@ supports font attributes, tables, embedded images (stored to separate
 files), paragraph alignment, and more.
 
 %prep
-%setup
+%setup -n %{name}_%{version}
 
 %{__perl} -pi.orig -e 's|/usr/local/bin|%{buildroot}%{_bindir}|g;' Makefile
 

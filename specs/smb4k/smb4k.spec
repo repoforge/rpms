@@ -15,7 +15,7 @@ License: GPL
 Group: Applications/Internet
 URL: http://smb4k.berlios.de/
 
-Source: http://download.berlios.de/smb4k/%{name}-%{version}.tar.gz
+Source: http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel

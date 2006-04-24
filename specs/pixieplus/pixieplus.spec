@@ -17,7 +17,7 @@ BuildRequires: ImageMagick-devel, ImageMagick-c++-devel
 BuildRequires: libungif-devel, libtiff-devel, qt-devel
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel
 BuildRequires: libpng-devel, arts-devel, zlib-devel
-BuildRequires: kdelibs-devel, make, gcc-c++
+BuildRequires: kdelibs-devel, make, gcc-c++, automake, autoconf
 %{?fc3:BuildRequires:libselinux-devel, libexif-devel, libexif}
 %{?fc2:BuildRequires:libselinux-devel, libexif-devel, libexif}
 
