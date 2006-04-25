@@ -11,18 +11,19 @@
 
 Summary: Graphical DVD ripping and encoding tool based on transcode
 Name: perl-Video-DVDRip
-Version: 0.97.6
-Release: 3
+Version: 0.97.10
+Release: 1
 License: Artistic or GPL
 Group: Applications/Multimedia
 URL: http://www.exit1.org/dvdrip/
-Source: http://www.exit1.org/dvdrip/dist/Video-DVDRip-%{version}.tar.gz
-Patch0: Video-DVDRip-0.97.6-nontplworkaround.patch
+Source: http://www.exit1.org/dvdrip/dist/pre/Video-DVDRip-%{version}.tar.gz
+Patch0: Video-DVDRip-0.97.8-nontplworkaround.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: transcode >= 0.6.13
 Requires: ImageMagick, ogmtools, subtitleripper, vcdimager, lsdvd
-BuildRequires: perl(Gtk2) >= 1.081, perl(Gtk2::Ex::FormFactory) >= 0.58
-BuildRequires: perl(Locale::TextDomain)
+Requires: perl(Gtk2) >= 1.081, perl(Gtk2::Ex::FormFactory) >= 0.63
+BuildRequires: perl(Gtk2) >= 1.081, perl(Gtk2::Ex::FormFactory) >= 0.63
+BuildRequires: perl(Locale::TextDomain), perl(Event::ExecFlow)
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
@@ -104,6 +105,15 @@ EOF
 
 
 %changelog
+* Tue Apr 25 2006 Matthias Saou <http://freshrpms.net/> 0.97.10-1
+- Update to 0.97.10.
+
+* Wed Apr 19 2006 Matthias Saou <http://freshrpms.net/> 0.97.8-1
+- Update to 0.97.8.
+- Update NPTL workaround disabling patch.
+- Require Gtk2-Ex-FormFactory >= 0.62.
+- Fix Source URL to point to valid location (was missing "/pre").
+
 * Thu Mar 23 2006 Matthias Saou <http://freshrpms.net/> 0.97.6-3
 - Add patch to default to NPTL workaround disabled, since it's causing dvd::rip
   to not work properly on FC5.

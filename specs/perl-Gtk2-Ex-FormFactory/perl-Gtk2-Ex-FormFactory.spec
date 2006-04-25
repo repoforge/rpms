@@ -9,12 +9,12 @@
 
 Summary: Framework for Gtk2 perl applications
 Name: perl-Gtk2-Ex-FormFactory
-Version: 0.59
-Release: 2
+Version: 0.63
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://www.exit1.org/Gtk2-Ex-FormFactory/
-Source: http://search.cpan.org/CPAN/authors/id/J/JR/JRED/Gtk2-Ex-FormFactory-%{version}.tar.gz
+Source: http://www.exit1.org/packages/Gtk2-Ex-FormFactory/dist/Gtk2-Ex-FormFactory-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl(Gtk2)
 BuildArch: noarch
@@ -56,6 +56,13 @@ Gtk2::Ex::FormFactory is a framework for Perl Gtk2 developers.
 
 
 %changelog
+* Tue Apr 25 2006 Matthias Saou <http://freshrpms.net/> 0.63-1
+- Update to 0.63.
+
+* Wed Apr 19 2006 Matthias Saou <http://freshrpms.net/> 0.62-1
+- Update to 0.62.
+- Change Source URL to point to exit1 instead of CPAN.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.59-2
 - Release bump to drop the disttag number in FC5 build.
 
