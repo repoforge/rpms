@@ -1,0 +1,116 @@
+--- synaptic-0.57.2/common/rcdscanner.h.gcc41	2006-04-24 22:40:52.000000000 +0300
++++ synaptic-0.57.2/common/rcdscanner.h	2006-04-24 22:41:13.000000000 +0300
+@@ -48,6 +48,7 @@
+    };
+ 
+    virtual void update(string text, int current) = 0;
++   virtual ~RCDScanProgress() {};
+ };
+ 
+ class RCDScanner {
+--- synaptic-0.57.2/common/rinstallprogress.h.gcc41	2006-04-24 22:35:50.000000000 +0300
++++ synaptic-0.57.2/common/rinstallprogress.h	2006-04-24 22:37:36.000000000 +0300
+@@ -63,6 +63,7 @@
+ 
+ 
+    RInstallProgress():_donePackagesTotal(0), _numPackagesTotal(0),_updateFinished(false) {};
++   virtual ~RInstallProgress() {};
+ };
+ 
+ 
+--- synaptic-0.57.2/common/indexcopy.h.gcc41	2006-04-24 22:41:24.000000000 +0300
++++ synaptic-0.57.2/common/indexcopy.h	2006-04-24 22:42:20.000000000 +0300
+@@ -39,6 +39,7 @@
+  public:
+ 
+    bool CopyPackages(string CDROM, string Name, vector<string> &List);
++   virtual ~IndexCopy() {};
+ };
+ 
+ class PackageCopy:public IndexCopy {
+@@ -54,6 +55,7 @@
+    };
+ 
+  public:
++   virtual ~PackageCopy() {};
+ };
+ 
+ class SourceCopy:public IndexCopy {
+@@ -69,6 +71,7 @@
+    };
+ 
+  public:
++   virtual ~SourceCopy() {};
+ };
+ 
+ #endif
+--- synaptic-0.57.2/common/rpackagelister.h.gcc41	2006-04-24 22:32:36.000000000 +0300
++++ synaptic-0.57.2/common/rpackagelister.h	2006-04-24 22:34:49.000000000 +0300
+@@ -64,6 +64,7 @@
+    virtual void notifyChange(RPackage *pkg) = 0;
+    virtual void notifyPreFilteredChange() = 0;
+    virtual void notifyPostFilteredChange() = 0;
++   virtual ~RPackageObserver() {};
+ };
+ 
+ class RCacheObserver {
+@@ -71,6 +72,7 @@
+    virtual void notifyCacheOpen() = 0;
+    virtual void notifyCachePreChange() = 0;
+    virtual void notifyCachePostChange() = 0;
++   virtual ~RCacheObserver() {};
+ };
+ 
+ // base sort class
+--- synaptic-0.57.2/common/rpackagefilter.h.gcc41	2006-04-24 22:31:01.000000000 +0300
++++ synaptic-0.57.2/common/rpackagefilter.h	2006-04-24 22:31:18.000000000 +0300
+@@ -130,7 +130,7 @@
+    bool and_mode; // patterns are applied in "AND" mode if true, "OR" if false
+ 
+    inline bool filterName(Pattern pat, RPackage *pkg);
+-   inline bool RPatternPackageFilter::filterVersion(Pattern pat, RPackage *pkg);
++   inline bool filterVersion(Pattern pat, RPackage *pkg);
+    inline bool filterDescription(Pattern pat, RPackage *pkg);
+    inline bool filterMaintainer(Pattern pat, RPackage *pkg);
+    inline bool filterDepends(Pattern pat, RPackage *pkg, 
+--- synaptic-0.57.2/common/rpackage.cc.gcc41	2006-04-24 22:33:53.000000000 +0300
++++ synaptic-0.57.2/common/rpackage.cc	2006-04-24 22:34:15.000000000 +0300
+@@ -848,7 +848,6 @@
+ 
+ void RPackage::setPinned(bool flag)
+ {
+-   FILE *out;
+    struct stat stat_buf;
+ 
+    string File =RStateDir() + "/preferences";
+@@ -945,8 +944,8 @@
+       }
+    }
+ 
+-   return true;
+ #endif
++   return true;
+ }
+ 
+ // format: first version, second archives
+--- synaptic-0.57.2/common/rpackagelister.cc.gcc41	2006-04-24 22:36:29.000000000 +0300
++++ synaptic-0.57.2/common/rpackagelister.cc	2006-04-24 22:36:44.000000000 +0300
+@@ -607,7 +607,7 @@
+    bool _ascent;
+    RPackageStatus _status;
+  public:
+-   supportedSortFunc::supportedSortFunc(bool ascent, RPackageStatus &s) 
++   supportedSortFunc(bool ascent, RPackageStatus &s) 
+       : _ascent(ascent), _status(s) {};
+    bool operator() (RPackage *x, RPackage *y) {
+       if(_ascent)
+--- synaptic-0.57.2/common/ruserdialog.h.gcc41	2006-04-24 22:31:27.000000000 +0300
++++ synaptic-0.57.2/common/ruserdialog.h	2006-04-24 22:35:00.000000000 +0300
+@@ -64,6 +64,7 @@
+ 
+    virtual bool showErrors();
+ 
++   virtual ~RUserDialog() {};
+ };
+ 
+ #endif

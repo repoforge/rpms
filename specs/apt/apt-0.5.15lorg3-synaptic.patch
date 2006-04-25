@@ -1,0 +1,17 @@
+Index: apt-pkg/clean.h
+===================================================================
+--- apt-pkg/clean.h	(revision 131)
++++ apt-pkg/clean.h	(revision 132)
+@@ -21,11 +21,11 @@
+    protected:
+    
+    virtual void Erase(const char * /*File*/,string /*Pkg*/,string /*Ver*/,struct stat & /*St*/) {};
+-   virtual ~pkgArchiveCleaner() {};
+ 
+    public:   
+    
+    bool Go(string Dir,pkgCache &Cache);
++   virtual ~pkgArchiveCleaner() {};
+ };
+ 
+ #endif
