@@ -5,12 +5,13 @@
 Summary: Graphical package management program using apt
 Name: synaptic
 Version: 0.57.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/synaptic/
 Source: http://savannah.nongnu.org/download/synaptic/synaptic-%{version}.tar.gz
-Patch: http://laiskiainen.org/apt/testing/synaptic-0.57.2-repomd.patch
+Patch0: http://apt-rpm.laiskiainen.org/patches/synaptic-0.57.2-gcc41.patch
+Patch1: http://apt-rpm.laiskiainen.org/patches/synaptic-0.57.2-repomd-0.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: apt >= 0.5.4, usermode
 Requires(pre): scrollkeeper
@@ -28,7 +29,8 @@ utility with a GUI front-end based on Gtk+
 
 %prep
 %setup
-%patch -p0
+%patch0 -p1
+%patch1 -p1
 
 %{__cat} <<EOF >synaptic.apps
 USER=root
@@ -115,6 +117,9 @@ EOF
 
 
 %changelog
+* Sun Apr 23 2006 Dag Wieers <dag@wieers.com> - 0.57.2-2
+- Build against apt-0.5.15lorg3.
+
 * Thu Mar 16 2006 Dag Wieers <dag@wieers.com> - 0.57.2-1
 - Updated to release 0.57.2.
 - Added repomd support.
