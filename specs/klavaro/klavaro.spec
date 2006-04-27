@@ -6,8 +6,8 @@
 
 Summary: Typing tutor
 Name: klavaro
-Version: 0.9.6
-Release: 3
+Version: 0.9.7
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://klavaro.sourceforge.net/en/
@@ -74,6 +74,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Thu Apr 27 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.7-1
+- Updated to release 0.9.7.
+
 * Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.6-3
 - Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
 

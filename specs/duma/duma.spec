@@ -2,12 +2,12 @@
 # Authority: dries
 # Upstream:  Hayati Ayguen <h_ayguen$web,de>
 
-%define real_version 2_4_26
+%define real_version 2_4_27
 
 Summary: Detect Unintended Memory Access
 Name: duma
-Version: 2.4.26
-Release: 2.2
+Version: 2.4.27
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://duma.sourceforge.net/
@@ -69,6 +69,9 @@ you will need to install %{name}-devel.
 %{_libdir}/libduma.so
 
 %changelog
+* Thu Apr 27 2006 Dries Verachtert <dries@ulyssis.org> - 2.4.27-1
+- Updated to release 2.4.27.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.4.26-2.2
 - Rebuild for Fedora Core 5.
 
