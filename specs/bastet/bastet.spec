@@ -5,7 +5,7 @@
 Summary: Very nasty tetris game
 Name: bastet
 Version: 0.41
-Release: 1.2
+Release: 2
 License: GPL
 Group: Amusements/Games
 URL: http://fph.altervista.org/prog/bastet.shtml
@@ -23,9 +23,7 @@ you the worst, the most bastard it can find. Playing bastet can be a painful
 experience, especially if you usually make "canyons" and wait for the long
 I-shaped block.
 
-With the following command, you can make the binary setuid games, so normal
-users can save their highscores. This can be security hole!
-chmod u+s /usr/bin/bastet
+Users can save their highscores if you add them to the 'games' group.
 
 %prep
 %setup
@@ -47,10 +45,14 @@ touch %{buildroot}%{_localstatedir}/games/bastet.scores
 %doc AUTHORS BUGS COPYING NEWS README* TODO
 %{_bindir}/bastet
 
-%defattr(-, games, root, 0755)
+%defattr(0775, root, games, 0755)
 %{_localstatedir}/games/bastet.scores
 
 %changelog
+* Fri Apr 28 2006 Dries Verachtert <dries@ulyssis.org> - 0.41-2
+- Changed the ownership of bastet.scores to root.games so users just 
+  need to add themselves to the games group, thanks to Edward Rudd.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.41-1.2
 - Rebuild for Fedora Core 5.
 

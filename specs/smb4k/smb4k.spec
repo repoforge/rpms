@@ -56,6 +56,8 @@ source "/etc/profile.d/qt.sh"
 %{_bindir}/smb4k_kill
 %{_bindir}/smb4k_mount
 %{_bindir}/smb4k_umount
+%{_bindir}/smb4k_cat
+%{_bindir}/smb4k_mv
 %{_libdir}/kde3/konqsidebar*
 %{_libdir}/libsmb4k*
 %{_datadir}/applications/kde/smb4k.desktop

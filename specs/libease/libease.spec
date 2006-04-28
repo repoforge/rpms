@@ -4,8 +4,8 @@
 
 Summary: Easing algorithms for graphical effects and mathematical calculations
 Name: libease
-Version: 0.0.1
-Release: 1.2
+Version: 0.0.2
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://libease.sourceforge.net/
@@ -32,7 +32,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup
+%setup -n libease
 %{__perl} -pi -e "s|.*ldconfig.*||g;" Makefile
 %{__perl} -pi -e "s|ln -s (.*)/libease(.*) (.*)/libease.so|ln -s %{_libdir}/libease\$2 \${3}/libease.so|g;" Makefile
 
@@ -41,7 +41,7 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d %{buildroot}%{_includedir} %{buildroot}%{_bindir} %{buildroot}%{_libdir}
+%{__install} -d %{buildroot}%{_includedir} %{buildroot}%{_bindir} %{buildroot}%{_libdir} %{buildroot}%{_mandir}/man3
 %{__make} all install PREFIX=%{buildroot}%{_prefix}
 
 %post
@@ -57,6 +57,7 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %doc COPYING INSTALL
 %{_libdir}/libease.so.*
+%doc %{_mandir}/man3/libease*
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -64,6 +65,9 @@ you will need to install %{name}-devel.
 %{_libdir}/libease.so
 
 %changelog
+* Fri Apr 28 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.2-1
+- Updated to release 0.0.2.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.1-1.2
 - Rebuild for Fedora Core 5.
 
