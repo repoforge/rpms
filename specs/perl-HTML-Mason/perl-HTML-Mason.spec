@@ -6,16 +6,17 @@
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name HTML-Mason
+%define real_version 1.32
 
 Summary: Web site development and delivery system
 Name: perl-HTML-Mason
-Version: 1.32
-Release: 1.2
+Version: 1.3200
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Mason/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/HTML-Mason-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/HTML-Mason-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -32,7 +33,7 @@ menus, logos) can be extracted into their own components where they
 need be changed only once to affect the whole site.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{real_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
@@ -56,6 +57,10 @@ need be changed only once to affect the whole site.
 %{perl_vendorlib}/HTML/Mason/
 
 %changelog
+* Fri Apr 28 2006 Dries Verachtert <dries@ulyssis.org> - 1.3200-1
+- Changed the version so it's greater as the previous version 1.3101, 
+  informed the author about the problem with these versions for rpms.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.32-1.2
 - Rebuild for Fedora Core 5.
 
