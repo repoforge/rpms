@@ -1,6 +1,13 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+%{?fc1:%define _with_static_rar 1}
+%{?el3:%define _with_static_rar 1}
+%{?rh9:%define _with_static_rar 1}
+%{?rh7:%define _with_static_rar 1}
+%{?el2:%define _with_static_rar 1}
+
 # The source contains only binaries...
 %define _use_internal_dependency_generator 0
 # Disable stripping or the default.sfx will get trashed
@@ -9,7 +16,7 @@
 Summary: RAR archiver to create and manage RAR archives
 Name: rar
 Version: 3.6.0
-Release: 0.1.beta2
+Release: 0.2.beta2
 License: Shareware
 Group: Applications/Archiving
 URL: http://www.rarlabs.com/
@@ -30,9 +37,13 @@ a ".rar" extension. ZIP and other formats are not supported.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -p -m 0755 rar %{buildroot}%{_bindir}/rar
-%{__install} -D -p -m 0644 rarfiles.lst %{buildroot}%{_sysconfdir}/rarfiles.lst
-%{__install} -D -p -m 0755 default.sfx %{buildroot}%{_libdir}/default.sfx
+%if %{?_with_static_rar:1}0
+%{__install} -D -p -m0755 rar_static %{buildroot}%{_bindir}/rar
+%else
+%{__install} -D -p -m0755 rar %{buildroot}%{_bindir}/rar
+%endif
+%{__install} -D -p -m0644 rarfiles.lst %{buildroot}%{_sysconfdir}/rarfiles.lst
+%{__install} -D -p -m0755 default.sfx %{buildroot}%{_libdir}/default.sfx
 
 
 %clean
@@ -48,6 +59,9 @@ a ".rar" extension. ZIP and other formats are not supported.
 
 
 %changelog
+* Fri Apr 28 2006 Dag Wieers <dag@wieers.com> - 3.6.0-0.2.beta2
+- Added _with_static_rar for older distributions (<= FC1).
+
 * Wed Apr 19 2006 Matthias Saou <http://freshrpms.net/> 3.6.0-0.1.beta2
 - Update to 3.6.0 beta2 (aka 3.6.b2).
 - Put exclusive arch back, not removed on purpose.
