@@ -34,7 +34,7 @@ minimize to system tray.
 %makeinstall
 
 ### Fix library symlinks
-for lib in $(ls %{buildroot}%{_libdir}/ooRexx/*.so.?.?.?); do
+for lib in $(ls %{buildroot}%{_libdir}/liballtray.so.?.?.?); do
 	%{__ln_s} -f $(basename $lib) ${lib//%\.?}
 	%{__ln_s} -f $(basename $lib) ${lib//%\.?\.?}
 #	%{__ln_s} -f $(basename $lib) ${lib//%\.?\.?\.?}
@@ -48,9 +48,12 @@ done
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %doc %{_mandir}/man1/alltray.1*
 %{_bindir}/alltray
-#%exclude %{_libdir}/liballtraynomap.a
-#%exclude %{_libdir}/liballtraynomap.la
-#%{_libdir}/liballtraynomap.so.*
+%{_datadir}/applications/alltray.desktop
+%{_datadir}/pixmaps/alltray.png
+#%exclude %{_libdir}/liballtray.a
+%exclude %{_libdir}/liballtray.la
+%{_libdir}/liballtray.so.*
+
 
 %changelog
 * Thu Apr 27 2006 Dag Wieers <dag@wieers.com> - 0.66-1
