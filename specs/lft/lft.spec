@@ -4,13 +4,13 @@
 
 Summary: Alternative traceroute tool for network (reverse) engineers
 Name: lft
-Version: 2.3
-Release: 1.2
+Version: 2.5
+Release: 1
 License: MainNerve Public License
 Group: Applications/Internet
 URL: http://oppleman.com/lft/
 
-Source: http://oppleman.com/dl/?file=lft-%{version}.tar.gz
+Source: http://pwhois.org/dl/index.who?file=lft-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap
@@ -41,13 +41,16 @@ lookups, loose source routing, netblock name lookups, et al.
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG COPYING README TODO lft-manpage.html
+%doc CHANGELOG COPYING README TODO
 %doc %{_mandir}/man8/lft.8*
-%attr(4755, -, -) %{_bindir}/lft
+%doc %{_mandir}/man8/whob.8*
+%{_bindir}/whob
+%defattr(4755, root, root, 0755)
+%{_bindir}/lft
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.3-1.2
-- Rebuild for Fedora Core 5.
+* Sat Apr 29 2006 Dag Wieers <dag@wieers.com> - 2.5-1
+- Updated to release 2.5.
 
 * Fri Jan 14 2005 Dag Wieers <dag@wieers.com> - 2.3-1
 - Updated to release 2.3.
