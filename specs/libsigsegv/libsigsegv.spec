@@ -4,8 +4,8 @@
 
 Summary: Library which handles page faults
 Name: libsigsegv
-Version: 2.2
-Release: 1.2
+Version: 2.3
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://sourceforge.net/projects/libsigsegv/
@@ -65,6 +65,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 29 2006 Dries Verachtert <dries@ulyssis.org> - 2.3-1
+- Updated to release 2.3.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2-1.2
 - Rebuild for Fedora Core 5.
 

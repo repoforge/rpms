@@ -1,0 +1,52 @@
+diff -ur tcptrack-1.1.5/src/IPv4Address.h tcptrack-1.1.5-fix/src/IPv4Address.h
+--- tcptrack-1.1.5/src/IPv4Address.h	2004-10-06 01:29:00.000000000 +0200
++++ tcptrack-1.1.5-fix/src/IPv4Address.h	2006-04-29 20:46:39.000000000 +0200
+@@ -13,7 +13,7 @@
+ 	IPv4Address(IPv4Address &na) { a=na.toStruct(); }
+ 	bool operator==( const IPv4Address & ) const;
+ 	bool operator!=( const IPv4Address & ) const;
+-	char * IPv4Address::ptr() const;
++	char * ptr() const;
+ 	friend ostream & operator<<( ostream &, const IPv4Address &);
+ 	struct in_addr toStruct() const;
+ private:
+diff -ur tcptrack-1.1.5/src/TCPPacket.h tcptrack-1.1.5-fix/src/TCPPacket.h
+--- tcptrack-1.1.5/src/TCPPacket.h	2004-10-06 01:29:00.000000000 +0200
++++ tcptrack-1.1.5-fix/src/TCPPacket.h	2006-04-29 20:46:38.000000000 +0200
+@@ -29,24 +29,24 @@
+ class TCPPacket
+ {
+ public:
+-	TCPPacket::TCPPacket( const u_char *data, unsigned int data_len );
+-	TCPPacket::TCPPacket( TCPPacket & orig );
+-	seq_t TCPPacket::getSeq() const;
+-	seq_t TCPPacket::getAck() const;
++	TCPPacket( const u_char *data, unsigned int data_len );
++	TCPPacket( TCPPacket & orig );
++	seq_t getSeq() const;
++	seq_t getAck() const;
+ 	bool isFlagSet(unsigned int);
+ 	unsigned short headerLen() const { return header_len; };
+ 
+ 	portnum_t srcPort() const;
+ 	portnum_t dstPort() const;
+ 
+-	bool TCPPacket::fin() const;
+-	bool TCPPacket::syn() const;
+-	bool TCPPacket::rst() const;
+-	bool TCPPacket::psh() const;
+-	bool TCPPacket::ack() const;
+-	bool TCPPacket::urg() const;
+-	bool TCPPacket::ece() const;
+-	bool TCPPacket::cwr() const;
++	bool fin() const;
++	bool syn() const;
++	bool rst() const;
++	bool psh() const;
++	bool ack() const;
++	bool urg() const;
++	bool ece() const;
++	bool cwr() const;
+ 
+ 	friend ostream & operator<<( ostream &, const TCPPacket &);
+ private:

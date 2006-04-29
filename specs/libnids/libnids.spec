@@ -28,6 +28,7 @@ TCP stream, no matter how artfully obscured by an attacker.
 %setup
 
 %build
+%{expand: %%define optflags -O2}
 %configure
 %{__make} %{?_smp_mflags}
 

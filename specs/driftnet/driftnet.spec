@@ -2,6 +2,15 @@
 # Authority: dag
 # Upstream: Chris Lightfoot <chris$ex-parrot,com>
 
+%{?dist: %{expand: %%define %dist 1}}
+%{!?dist:%define _with_modxorg 1}
+%{?fc4:%define _with_modxorg 0}
+%{?el4:%define _with_modxorg 0}
+%{?fc3:%define _with_modxorg 0}
+%{?fc2:%define _with_modxorg 0}
+%{?el3:%define _with_modxorg 0}
+
+
 Summary: Sniff the network for images and movies and displays them
 Name: driftnet
 Version: 0.1.6
@@ -14,6 +23,7 @@ Source: http://www.ex-parrot.com/~chris/driftnet/driftnet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap, gtk+-devel, libungif-devel, libjpeg-devel
+%{?_with_modxorg:BuildRequires: imake}
 
 %description
 Driftnet is a program which listens to network traffic and picks out images

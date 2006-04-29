@@ -4,8 +4,8 @@
 
 Summary: BibTex editor
 Name: kbibtex
-Version: 0.1.3
-Release: 1.2
+Version: 0.1.4
+Release: 1
 License: GPL
 Group: Applications/Publishing
 URL: http://www.unix-ag.uni-kl.de/~fischer/kbibtex/
@@ -47,6 +47,9 @@ to .bib files, and export to both .pdf and .ps thru (pdf)latex.
 %{_datadir}/services/kbibtex_part.desktop
 
 %changelog
+* Sat Apr 29 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.4-1
+- Updated to release 0.1.4.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.3-1.2
 - Rebuild for Fedora Core 5.
 
