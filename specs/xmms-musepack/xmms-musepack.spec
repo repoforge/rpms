@@ -1,32 +1,31 @@
 # $Id$
 # Authority: matthias
 
-#define prever RC1
 %define xmms_inputdir %(xmms-config --input-plugin-dir 2>/dev/null || echo %{_libdir}/xmms/Input)
 
-Summary: X MultiMedia System input plugin to play mpegplus (mpc) files
+Summary: X MultiMedia System input plugin to play musepack (mpc) files
 Name: xmms-musepack
 Version: 1.2
-Release: 2%{?prever:.%{prever}}
+Release: 2.1
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.musepack.net/
-Source: http://musepack.origean.net/files/linux/plugins/xmms-musepack-%{version}%{?prever:-%{prever}}.tar.bz2
+Source: http://files2.musepack.net/linux/plugins/xmms-musepack-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: xmms-devel, pkgconfig, libmpcdec-devel, taglib-devel, gcc-c++
+BuildRequires: xmms-devel, pkgconfig, libmpcdec-devel, taglib-devel
 
 
 %description
-X MultiMedia System input plugin to play mpegplus, aka mpc files.
+X MultiMedia System input plugin to play musepack, aka mpc files.
 
 
 %prep
-%setup -n %{name}-%{version}%{?prever:-%{prever}}
+%setup
 
 
 %build
 %configure
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} CXXFLAGS="%{optflags}"
 
 
 %install
@@ -46,6 +45,10 @@ X MultiMedia System input plugin to play mpegplus, aka mpc files.
 
 
 %changelog
+* Wed May  3 2006 Matthias Saou <http://freshrpms.net/> 1.2-2.1
+- Spec file cleanup.
+- Override CXXFLAGS to get our optflags used.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.2-2
 - Release bump to drop the disttag number in FC5 build.
 
