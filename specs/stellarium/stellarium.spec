@@ -3,27 +3,33 @@
 # Screenshot: http://stellarium.free.fr/gfx/pleiades.jpg
 # ScreenshotURL: http://stellarium.free.fr/
 
-# TODO: mail author about template problems with gcc 4
-# also warnings about non virtual constructors in the classes in orbit.h
-
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+
 Summary: Stellarium renders 3D photo-realistic skies in real time
 Name: stellarium
-Version: 0.7.1
-Release: 2
+Version: 0.8.0
+Release: 1
 License: GPL
 Group: Amusements/Graphics
 URL: http://stellarium.free.fr/
 
 Source: http://dl.sf.net/stellarium/%{name}-%{version}.tar.gz
-#Patch: gcc4-fix.patch
+Patch: gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: dos2unix, gcc-c++, SDL-devel, libpng-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%{!?_without_modxorg:BuildRequires: mesa-libGL-devel, mesa-libGLU-devel}
 
 %description
 Stellarium renders 3D photo-realistic skies in real time. Most important
@@ -47,7 +53,7 @@ telescope.
 
 %prep
 %setup
-#%patch -p1
+%patch -p1
 %{__cat} > stellarium.desktop <<EOF
 [Desktop Entry]
 Version=1.0
@@ -101,6 +107,9 @@ EOF
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sat May 06 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.0-1
+- Updated to release 0.8.0.
+
 * Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.1-2
 - Simplify buildequirements: SDL-devel already requires xorg-x11-devel/XFree86-devel
 

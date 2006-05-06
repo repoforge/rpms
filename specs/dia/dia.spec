@@ -6,8 +6,8 @@
 
 Summary: Diagram drawing program
 Name: dia
-Version: 0.94
-Release: 1.2
+Version: 0.95
+Release: 1
 epoch: 1
 License: GPL
 Group: Applications/Multimedia
@@ -21,8 +21,10 @@ BuildRequires: libgnome-devel >= 2.0, libgnomeui-devel >= 2.0, pango-devel >= 1.
 BuildRequires: libart_lgpl-devel >= 2.3.10, libxslt-devel, libpng-devel
 BuildRequires: python-devel >= 2.2.1, pygtk2-devel, gcc-c++
 BuildRequires: intltool, perl-XML-Parser
+%{?el4:BuildRequires: gcc-g77}
+%{?fc5:BuildRequires: gcc-gfortran}
 %{?fc4:BuildRequires: gcc-gfortran}
-%{!?fc4:BuildRequires: gcc-g77}
+%{?fc3:BuildRequires: gcc-g77}
 
 %description
 The Dia drawing program is designed to be like the Microsoft(R) Visio
@@ -78,6 +80,9 @@ format, and can export to PostScript(TM).
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat May 06 2006 Dries Verachtert <dries@ulyssis.org> - 0.95-1
+- Updated to release 0.95.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.94-1.2
 - Rebuild for Fedora Core 5.
 

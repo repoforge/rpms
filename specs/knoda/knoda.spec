@@ -11,8 +11,8 @@
 
 Summary: Database frontend
 Name: knoda
-Version: 0.8
-Release: 2
+Version: 0.8.1
+Release: 1
 License: GPL
 Group: Applications/Databases
 URL: http://www.knoda.org/
@@ -103,6 +103,9 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_includedir}/hk_*.h
 
 %changelog
+* Sat May 06 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.1-1
+- Updated to release 0.8.1.
+
 * Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-2
 - Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
 

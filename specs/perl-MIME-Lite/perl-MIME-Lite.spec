@@ -12,7 +12,7 @@ Version: 3.01
 Release: 2.2
 License: GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/MIME-Types/
+URL: http://search.cpan.org/dist/MIME-Lite/
 
 Source: http://search.cpan.org/CPAN/authors/id/Y/YV/YVES/MIME-Lite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
