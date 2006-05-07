@@ -19,12 +19,9 @@ URL: http://www.knoda.org/
 
 Source: http://dl.sf.net/knoda/knoda-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc, make, libpng-devel
-BuildRequires: libart_lgpl-devel, arts-devel
 BuildRequires: gcc-c++, gettext
-BuildRequires: zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel, hk_classes
-BuildRequires: python-devel, python
+BuildRequires: python-devel
 %{?el4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}

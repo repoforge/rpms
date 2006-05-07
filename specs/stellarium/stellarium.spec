@@ -29,7 +29,7 @@ Patch: gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: dos2unix, gcc-c++, SDL-devel, libpng-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{!?_without_modxorg:BuildRequires: mesa-libGL-devel, mesa-libGLU-devel}
+%{!?_without_modxorg:BuildRequires: mesa-libGL-devel, mesa-libGLU-devel, freetype-devel}
 
 %description
 Stellarium renders 3D photo-realistic skies in real time. Most important
