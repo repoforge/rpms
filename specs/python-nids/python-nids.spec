@@ -30,6 +30,7 @@ conversations.
 %setup -n %{real_name}-%{version}
 
 %build
+%{expand: %%define optflags -O2}
 CFLAGS="%{optflags} -fPIC -fomit-frame-pointer -DPIC" %{__python} setup.py build
 
 %install
