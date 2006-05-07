@@ -5,7 +5,7 @@
 Summary: Set of tools to author a DVD
 Name: dvdauthor
 Version: 0.6.11
-Release: 1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://dvdauthor.sourceforge.net/
@@ -50,6 +50,9 @@ mpeg2 stream that should play when you put it in a DVD player.
 %{_bindir}/*
 
 %changelog
+* Sun May 07 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.11-1.2
+- Rebuild for Fedora Core 5.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.6.11-1
 - Updated to release 0.6.11.
 
