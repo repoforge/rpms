@@ -6,14 +6,13 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
 
 Summary: Cross-platform C++ GUI toolkit
 Name: fltk
@@ -23,13 +22,13 @@ License: FLTK
 Group: System Environment/Libraries
 URL: http://www.fltk.org/
 
-Source: http://dl.sf.net/fltk/fltk-%{version}-source.tar.bz2
+Source: http://ftp.easysw.com/pub/fltk/1.1.7/fltk-%{version}-source.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc, gcc-c++, zlib-devel
 BuildRequires: libjpeg-devel, libpng-devel
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
 FLTK (pronounced "fulltick") is a cross-platform C++ GUI toolkit for
@@ -58,7 +57,7 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-	--enable-shared="yes"
+	--enable-shared="yes" --enable-threads
 %{__make} %{?_smp_mflags}
 
 %install
@@ -70,7 +69,7 @@ you will need to install %{name}-devel.
 
 %makeinstall
 
-%{__mv} -f %{buildroot}%{_docdir} rpm-doc/
+%{__mv} -f %{buildroot}%{_docdir} rpm-doc
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -90,6 +89,9 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
+* Mon May 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.7-2
+- Added --enable-threads, thanks to Pekka Vuorela.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.7-1.2
 - Rebuild for Fedora Core 5.
 
