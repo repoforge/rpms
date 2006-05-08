@@ -2,11 +2,11 @@
 # Authority: dries
 # Upstream: Bill Poser <billposer$alum,mit,edu>
 
-%define real_version 8.23.2
+%define real_version 8.24
 
 Summary: Sort files in sophisticated ways
 Name: msort
-Version: 8.23
+Version: 8.24
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -49,6 +49,9 @@ by an optional GUI.
 %{_bindir}/msort
 
 %changelog
+* Mon May 08 2006 Dries Verachtert <dries@ulyssis.org> - 8.24-1
+- Updated to release 8.24.
+
 * Sat Apr 29 2006 Dries Verachtert <dries@ulyssis.org> - 8.23-1
 - Updated to release 8.23.
 
