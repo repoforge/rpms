@@ -5,20 +5,32 @@
 
 #define date 20030417
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+
 Summary: Powerful image loading and rendering library
 Name: imlib2
-Version: 1.2.0
+Version: 1.2.2
 Release: %{?date:0.%{date}.}1
 License: BSD
 Group: System Environment/Libraries
 URL: http://enlightenment.org/pages/imlib2.html
 Source: http://dl.sf.net/enlightenment/imlib2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: XFree86-devel, freetype-devel >= 1.2
+BuildRequires: freetype-devel >= 1.2
 BuildRequires: zlib-devel, bzip2-devel
 BuildRequires: libpng-devel, libjpeg-devel, libungif-devel, libtiff-devel
 # The ltdl.h file is required...
 BuildRequires: libtool, gcc-c++
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libXext-devel}
 
 %description
 Imlib2 is an advanced replacement library for libraries like libXpm that
@@ -31,7 +43,9 @@ rendering and blending, dynamic binary filters, scripting, and more.
 Summary: Imlib2 header, static libraries and documentation
 Group: Development/Libraries
 Requires: %{name} = %{version}
-Requires: XFree86-devel, pkgconfig
+%{?_without_modxorg:Requires: XFree86-devel}
+%{!?_without_modxorg:Requires: libX11-devel}
+Requires: pkgconfig
 
 %description devel
 Header, static libraries and documentation for Imlib2.
@@ -93,6 +107,9 @@ Header, static libraries and documentation for Imlib2.
 
 
 %changelog
+* Mon May 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.2-1
+- Updated to release 1.2.2.
+
 * Mon Jan 17 2005 Dag Wieers <dag@wieers.com> - 1.2.0-1
 - Added --x-libraries and improved x86_64 perl oneliner.
 - Updated to release 1.2.0.

@@ -2,23 +2,22 @@
 # Authority: dries
 # Upstream:
 
-%define real_version 2.0.0-pre5
+%define real_version 2.0.0-pre7
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
 
 Summary: 1394-based digital camera control library
 Name: libdc1394
 Version: 2.0.0
-Release: 0.1.pre5.2
+Release: 0.1.pre7
 License: LGPL
 Group: System Environment/Libraries
 URL: http://sourceforge.net/projects/libdc1394/
@@ -27,8 +26,8 @@ Source: http://dl.sf.net/libdc1394/libdc1394-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libraw1394-devel, gcc-c++
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: libX11-devel}
 
 %description
 Libdc1394 is a library that is intended to provide a high level programming
@@ -73,12 +72,15 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/libdc1394/
+%{_includedir}/dc1394/
 %{_libdir}/libdc1394*.a
 %{_libdir}/libdc1394*.so
 %exclude %{_libdir}/*.la
 
 %changelog
+* Mon May 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.0-0.1.pre7
+- Updated to release 2.0.0-0.1.pre7.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.0-0.1.pre5.2
 - Rebuild for Fedora Core 5.
 
@@ -91,4 +93,3 @@ you will need to install %{name}-devel.
 
 * Thu Aug 25 2005 Dries Verachtert <dries@ulyssis.org> - 1.1.0-1
 - Initial package.
-

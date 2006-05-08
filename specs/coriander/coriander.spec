@@ -2,12 +2,22 @@
 # Authority: dries
 # Upstream: Damien Douxchamps <ddouxchamps$users,sourceforge,net>
 
-%define real_version 2.0.0-pre5
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+
+%define real_version 2.0.0-pre6
 
 Summary: Control a 1394 digital camera interactively
 Name: coriander
 Version: 2.0.0
-Release: 0.pre5
+Release: 0.pre6
 License: GPL
 Group: Applications/Multimedia
 URL: http://damien.douxchamps.net/ieee1394/coriander/
@@ -17,6 +27,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgnomeui-devel, gettext, libraw1394-devel, libdc1394-devel >= 2.0.0
 BuildRequires: desktop-file-utils, SDL-devel, automake, autoconf, ffmpeg-devel
+%{!?_without_modxorg:BuildRequires: libXv-devel}
 
 %description
 Coriander is a GUI that let you control your 1394 digital video camera
@@ -62,6 +73,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*-coriander.desktop
 
 %changelog
+* Mon May 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.0-0.pre6
+- Updated to release 2.0.0pre6.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.0-0.pre5
 - Updated to release 2.0.0pre5.
 
