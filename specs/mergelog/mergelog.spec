@@ -12,6 +12,7 @@ URL: http://mergelog.sourceforge.net/
 
 Source: http://dl.sf.net/mergelog/mergelog-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: zlib-devel
 
 %description
 mergelog is a small and fast C program which merges by date httpd log
@@ -36,11 +37,15 @@ gzipped log files
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README
+%doc AUTHORS ChangeLog COPYING NEWS README
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 
 %changelog
+* Mon May  8 2006 Matthias Saou <http://freshrpms.net/> 4.5-2
+- Add missing zlib-devel build requirement.
+- Remove generic INSTALL file from docs.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.5-1.2
 - Rebuild for Fedora Core 5.
 
