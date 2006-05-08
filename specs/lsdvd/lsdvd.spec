@@ -4,7 +4,7 @@
 Summary: Small application for displaying the contents of a DVD
 Name: lsdvd
 Version: 0.16
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://untrepid.com/lsdvd/
@@ -50,6 +50,10 @@ reading library for *nix
 
 
 %changelog
+* Mon May  8 2006 Matthias Saou <http://freshrpms.net/> 0.16-2
+- Rebuild with latest tarball from sf.net, as apparently the original 0.16
+  source was replaced after 3 days by a "fixed" source with the same file name.
+
 * Wed Apr 19 2006 Matthias Saou <http://freshrpms.net/> 0.16-1
 - Update to 0.16.
 - Update URL.
