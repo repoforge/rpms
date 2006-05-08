@@ -4,8 +4,8 @@
 
 Summary: Process monitor and restart utility
 Name: monit
-Version: 4.7
-Release: 1.2
+Version: 4.8
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.tildeslash.com/monit/
@@ -147,8 +147,8 @@ fi
 %{_bindir}/monit
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.7-1.2
-- Rebuild for Fedora Core 5.
+* Mon May 08 2006 Dag Wieers <dag@wieers.com> - 4.8-1
+- Updated to release 4.8.
 
 * Thu Jan 12 2006 Dag Wieers <dag@wieers.com> - 4.7-1
 - Updated to release 4.7.

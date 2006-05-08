@@ -47,11 +47,11 @@ used to synchronize local directories.
 * Sat May 06 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.1
 - Updated to release 0.4.1.
 
+* Sun Apr 30 2006 Dag Wieers <dag@wieers.com> - 0.4-1
+- Updated to release 0.4.
+
 * Sun Apr 23 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.2-1
 - Updated to release 0.3.2.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Mar 01 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-1
 - Updated to release 0.3.

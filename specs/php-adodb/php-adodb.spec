@@ -2,12 +2,12 @@
 # Authority: dag
 
 %define real_name adodb
-%define real_version 465
 
 Summary: Portable Database Library for PHP
 Name: php-adodb
-Version: 4.65
-Release: 1.2
+%define real_version 481
+Version: 4.81
+Release: 1
 License: BSD or LGPL
 Group: Development/Languages
 URL: http://adodb.sourceforge.net/
@@ -53,8 +53,8 @@ Sybase, DB2 and generic ODBC.
 %{_localstatedir}/www/adodb/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.65-1.2
-- Rebuild for Fedora Core 5.
+* Mon May 08 2006 Dag Wieers <dag@wieers.com> - 4.81-1
+- Updated to release 4.81.
 
 * Fri Aug 12 2005 Dag Wieers <dag@wieers.com> - 4.65-1
 - Updated to release 4.65. (Richard Cochius)

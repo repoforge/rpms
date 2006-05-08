@@ -17,14 +17,13 @@
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
-Version: 1.2.12
+Version: 1.2.13
 Release: 1
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
 
 Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/rrdtool-%{version}.tar.gz
-Patch: rrdtool-1.2.12-tclrrd.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, openssl-devel, libart_lgpl-devel >= 2.0, cgilib-devel
@@ -92,7 +91,6 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 
 %prep
 %setup
-%patch0 -p0
 
 ### FIXME: Fixes to /usr/lib(64) for x86_64. (Fix upstream)
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure Makefile.in
@@ -177,6 +175,9 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 %endif
 
 %changelog
+* Fri May 05 2006 Dag Wieers <dag@wieers.com> - 1.2.13-1
+- Updated to release 1.2.13.
+
 * Mon Dec 19 2005 Dag Wieers <dag@wieers.com> - 1.2.12-1
 - Updated to release 1.2.12.
 

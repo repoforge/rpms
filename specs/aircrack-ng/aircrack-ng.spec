@@ -60,7 +60,7 @@ and some tools to handle capture files (merge, convert,etc.).
 %{_sbindir}/airodump-ng
 
 %changelog
-* Sat May 06 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-1
+* Fri May 05 2006 Dag Wieers <dag@wieers.com> - 0.5-1
 - Updated to release 0.5.
 
 * Tue Apr 25 2006 Dag Wieers <dag@wieers.com> - 0.4.4-1

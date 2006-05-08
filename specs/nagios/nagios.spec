@@ -12,7 +12,7 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: nagios
-Version: 2.2
+Version: 2.3
 Release: 1
 License: GPL
 Group: Applications/System
@@ -62,15 +62,14 @@ you will need to install %{name}-devel.
 	--with-command-group="apache" \
 	--with-gd-lib="%{_libdir}" \
 	--with-gd-inc="%{_includedir}" \
-	--with-init-dir="%{_initrddir}" \
 	--with-htmurl="/nagios" \
+	--with-init-dir="%{_initrddir}" \
 	--with-lockfile="%{_localstatedir}/run/nagios.pid" \
 	--with-mail="/bin/mail" \
 	--with-nagios-user="nagios" \
 	--with-nagios-group="nagios" \
 %{!?_without_embedperl:--enable-embedded-perl} \
 %{!?_without_perlcache:--with-perlcache} \
-	--with-perlcache \
 	--with-template-objects \
 	--with-template-extinfo \
 	--enable-event-broker
@@ -180,6 +179,9 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Wed May 03 2006 Dag Wieers <dag@wieers.com> - 2.3-1
+- Updated to release 2.3.
+
 * Sat Apr 08 2006 Dag Wieers <dag@wieers.com> - 2.2-1
 - Updated to release 2.2.
 

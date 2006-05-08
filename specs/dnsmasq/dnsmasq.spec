@@ -4,7 +4,7 @@
 
 Summary: Lightweight caching nameserver with integrated DHCP server
 Name: dnsmasq
-Version: 2.30
+Version: 2.31
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -148,7 +148,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG contrib/* COPYING DBus-interface dnsmasq.conf.example FAQ UPGRADING_to_2.0 *.html
+%doc CHANGELOG contrib/* COPYING dnsmasq.conf.example FAQ UPGRADING_to_2.0 *.html dbus/
 %doc %{_mandir}/man8/dnsmasq.8*
 %config(noreplace) %{_sysconfdir}/dnsmasq.conf
 %config %{_initrddir}/dnsmasq
@@ -156,6 +156,9 @@ fi
 %{_localstatedir}/lib/misc/
 
 %changelog
+* Mon May 08 2006 Dag Wieers <dag@wieers.com> - 2.31-1
+- Updated to release 2.31.
+
 * Mon Apr 24 2006 Dag Wieers <dag@wieers.com> - 2.30-1
 - Updated to release 2.30.
 - Disabled dbus support because of compile issues.

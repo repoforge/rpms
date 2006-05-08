@@ -3,12 +3,11 @@
 # Upstream: Michael C. Toren <mct$toren,net>
 # Upstream: <tcptraceroute-dev$netisland,net>
 
-%define real_version 1.5beta6
-
 Summary: Traceroute implementation using TCP packets
 Name: tcptraceroute
 Version: 1.5
-Release: 0.beta6.2
+%define real_version 1.5beta7
+Release: 0.beta7
 License: GPL
 Group: Applications/Internet
 URL: http://michael.toren.net/code/tcptraceroute/
@@ -59,8 +58,8 @@ firewall filters.
 %exclude %{_docdir}/tcptraceroute/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.5-0.beta6.2
-- Rebuild for Fedora Core 5.
+* Thu May 04 2006 Dag Wieers <dag@wieers.com> - 1.5-0.beta7
+- Updated to release 1.5beta7.
 
 * Wed Feb 23 2005 Dag Wieers <dag@wieers.com> - 1.5-0.beta6
 - Updated to release 1.5beta6.

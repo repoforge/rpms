@@ -8,13 +8,14 @@
 Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
 Version: 0.5.15lorg3
-Release: 2
+Release: 3
 License: GPL
 Group: System Environment/Base
 URL: http://apt-rpm.laiskiainen.org/
 
 Source: http://apt-rpm.laiskiainen.org/releases/apt-%{version}.tar.bz2
 Patch0: apt-0.5.15lorg3-synaptic.patch
+Patch1: apt-0.5.15lorg3-die-epoch-die.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: rpm-devel >= 3.0.5, zlib-devel, gettext
@@ -58,6 +59,7 @@ you will need to install %{name}-devel.
 %prep
 %setup -n %{name}-%{version}
 %patch0
+%patch1
 
 %{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|RPMforge RPM Repository %{dist}/%{_arch} APT-HTTP/1.3|' methods/http.cc
 
@@ -183,6 +185,9 @@ touch %{buildroot}%{_sysconfdir}/apt/preferences \
 #exclude %{_libdir}/*.la
 
 %changelog
+* Thu Apr 27 2006 Dag Wieers <dag@wieers.com> - 0.5.15lorg3-3
+- Added patch to handle no-epoch on <= RH9.
+
 * Tue Apr 25 2006 Dag Wieers <dag@wieers.com> - 0.5.15lorg3-2
 - Added patch to allow synaptic to build.
 

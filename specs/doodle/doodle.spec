@@ -10,8 +10,8 @@
 
 Summary: Searches your hard drive for files using pattern matching on meta-data
 Name: doodle
-Version: 0.6.4
-Release: 1.2
+Version: 0.6.5
+Release: 1
 License: GPL
 Group: Applications/File
 URL: http://gnunet.org/doodle/
@@ -73,8 +73,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libdoodle.la
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.4-1.2
-- Rebuild for Fedora Core 5.
+* Fri May 05 2006 Dag Wieers <dag@wieers.com> - 0.6.5-1
+- Updated to release 0.6.5.
 
 * Thu Dec 08 2005 Dag Wieers <dag@wieers.com> - 0.6.4-1
 - Updated to release 0.6.4.

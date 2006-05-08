@@ -3,23 +3,23 @@
 # Upstream: Ethan Galstad <nagios$nagios,org>
 
 ### FIXME: TODO: Add sysv script based on template. (remove cmd-file on start-up)
+### FIXME: TODO: Bring in sync with 2.4 spec file.
 %define logmsg logger -t %{name}/rpm
 
 Summary: Open Source host, service and network monitoring program
 Name: nagios
-Version: 1.2
-Release: 2.2
+Version: 1.4
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
 
 Source: http://dl.sf.net/nagios/nagios-%{version}.tar.gz
 Source1: http://dl.sf.net/nagios/imagepak-base.tar.gz
-Patch0: nagios-1.2-embedperl.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gd-devel, zlib-devel, libpng-devel, libjpeg-devel
-Obsoletes: %{name}-www
+Obsoletes: nagios-www <= %{version}
 
 %description
 Nagios is an application, system and network monitoring application.
@@ -45,7 +45,6 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch0
 
 %{__perl} -pi.orig -e '
 		s|^(command_file)=\@localstatedir\@/rw/nagios.cmd|$1=%{_localstatedir}/log/nagios/rw/nagios.cmd|;
@@ -67,7 +66,7 @@ you will need to install %{name}-devel.
 	--sysconfdir="%{_sysconfdir}/nagios" \
 	--with-cgiurl="/nagios/cgi-bin" \
 	--with-command-user="apache" \
-	--with-command-grp="apache" \
+	--with-command-group="apache" \
 	--with-gd-lib="%{_libdir}" \
 	--with-gd-inc="%{_includedir}" \
 	--with-htmurl="/nagios" \
@@ -75,11 +74,12 @@ you will need to install %{name}-devel.
 	--with-lockfile="%{_localstatedir}/run/nagios.pid" \
 	--with-mail="/bin/mail" \
 	--with-nagios-user="nagios" \
-	--with-nagios-grp="nagios" \
-	--enable-embedded-perl \
-	--with-perlcache \
+	--with-nagios-group="nagios" \
+%{!?_without_embedperl:--enable-embedded-perl} \
+%{!?_without_perlcache:--with-perlcache} \
 	--with-template-objects \
-	--with-template-extinfo
+	--with-template-extinfo \
+	--enable-event-broker
 %{__make} %{?_smp_mflags} all
 %{__make} %{?_smp_mflags} -C contrib
 
@@ -121,13 +121,17 @@ if ! /usr/bin/id nagios &>/dev/null; then
 	/usr/sbin/useradd -r -d %{_localstatedir}/log/nagios -s /bin/sh -c "nagios" nagios || \
 		%logmsg "Unexpected error adding user \"nagios\". Aborting installation."
 fi
+if ! /usr/bin/getent group nagiocmd &>/dev/null; then
+	/usr/sbin/groupadd nagiocmd &>/dev/null || \
+		%logmsg "Unexpected error adding group \"nagiocmd\". Aborting installation."
+fi
 
 %post
 /sbin/chkconfig --add nagios
 
 if /usr/bin/id apache &>/dev/null; then
 	if ! /usr/bin/id -Gn apache 2>/dev/null | grep -q nagios ; then
-		/usr/sbin/usermod -G nagios apache &>/dev/null
+		/usr/sbin/usermod -G nagios,nagiocmd apache &>/dev/null
 	fi
 else
 	%logmsg "User \"apache\" does not exist and is not added to group \"nagios\". Sending commands to Nagios from the command CGI is not possible."
@@ -163,7 +167,9 @@ fi
 %config(noreplace) %{_sysconfdir}/nagios/*.cfg
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/nagios.conf
 %config %{_initrddir}/nagios
-%{_bindir}/*
+%{_bindir}/nagios
+%{!?_without_perlcache:%{_bindir}/p1.pl}
+%{_bindir}/mini_epn
 %{_libdir}/nagios/
 %{_datadir}/nagios/
 
@@ -181,8 +187,8 @@ fi
 %{_includedir}/nagios/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-2.2
-- Rebuild for Fedora Core 5.
+* Wed May 03 2006 Dag Wieers <dag@wieers.com> - 1.4-1
+* Updated to release 1.4.
 
 * Sun Apr 10 2005 Dag Wieers <dag@wieers.com> - 1.2-2
 * Enabled --with-perlcache in configure. (Michael Donovan)
