@@ -21,7 +21,7 @@ Source: http://www.dillo.org/download/dillo-%{version}.tar.bz2
 Source1: dillo48.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk+-devel, zlib-devel, libjpeg-devel, fltk-devel
+BuildRequires: gtk+-devel, zlib-devel, libjpeg-devel, fltk-devel, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Provides: webclient
 

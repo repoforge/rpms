@@ -18,9 +18,7 @@ URL: http://www.periapsis.org/tellico/
 Source: http://www.periapsis.org/tellico/download/tellico-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel, libgcrypt-devel
-BuildRequires: arts-devel, gcc-c++, gettext
-BuildRequires: zlib-devel, qt-devel, libjpeg-devel, libxslt-devel
+BuildRequires: libgcrypt-devel, gcc-c++, gettext, libxslt-devel
 BuildRequires: kdelibs-devel, desktop-file-utils, libxml2-devel
 BuildRequires: kdemultimedia-devel
 %{?fc3:BuildRequires: libselinux-devel}

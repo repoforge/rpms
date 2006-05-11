@@ -3,6 +3,17 @@
 
 %define desktop_vendor rpmforge
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+
+
 Summary: The GNOME disk catalog
 Name: gtktalog
 Version: 1.0.4
@@ -14,6 +25,7 @@ Source: ftp://ftp.gnu.org/savannah/files/gtktalog/gtktalog.pkg/%{version}/gtktal
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gnome-libs >= 1.2, zlib, eject, bzip2, /usr/bin/file
 BuildRequires: gnome-libs-devel, gtk+-devel, desktop-file-utils, gcc-c++
+%{!?_without_modxorg:BuildRequires: libSM-devel}
 
 %description
 GTKtalog is a disk catalog, it means you can use it to create a really small

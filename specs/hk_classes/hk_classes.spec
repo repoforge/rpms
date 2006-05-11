@@ -16,6 +16,7 @@ BuildRequires: gcc-c++
 BuildRequires: postgresql-devel, mysql-devel
 BuildRequires: unixODBC-devel, python
 BuildRequires: python-devel, sqlite-devel, pkgconfig
+BuildRequires: fontconfig-devel
 
 %description
 hk_classes is C++ library which allows rapid development of database

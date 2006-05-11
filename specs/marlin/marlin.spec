@@ -16,6 +16,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gstreamer-devel >= 0.7
 BuildRequires: gtk2-devel, libgnomeui-devel
+BuildRequires: intltool, perl-XML-Parser, gettext
+
 
 %description
 Marlin is a sample editor for GNOME 2. It uses GStreamer for file

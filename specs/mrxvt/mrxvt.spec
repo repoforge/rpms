@@ -1,6 +1,16 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+
 Summary: Lightweight multi-tabbed X terminal
 Name: mrxvt
 Version: 0.5.0
@@ -12,9 +22,11 @@ URL: http://materm.sourceforge.net/
 Source: http://dl.sf.net/materm/mrxvt-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, freetype-devel
+BuildRequires: freetype-devel
 #Requires:  qt >= 2.3.0
 Obsoletes: materm
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
 Mrxvt (previously named as materm) is a lightweight and powerful
