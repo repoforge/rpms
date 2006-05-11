@@ -5,8 +5,8 @@
 
 Summary: Interactive process viewer
 Name: htop
-Version: 0.6
-Release: 1.2
+Version: 0.6.1
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://htop.sourceforge.net/
@@ -35,15 +35,17 @@ htop is an interactive process viewer for Linux.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %doc %{_mandir}/man1/htop.1*
 %{_bindir}/htop
+%{_datadir}/applications/htop.desktop
+%{_datadir}/pixmaps/htop.png
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1.2
-- Rebuild for Fedora Core 5.
+* Thu May 11 2006 Dag Wieers <dag@wieers.com> - 0.6.1-1
+- Updated to release 0.6.1
 
-* Thu Dec 29 2005 Dag Wieers <dag@wieers.com> - 0.6-2
+* Thu Dec 29 2005 Dag Wieers <dag@wieers.com> - 0.6-1
 - Updated to release 0.6.
 
 * Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.4-2

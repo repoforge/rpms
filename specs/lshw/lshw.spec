@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Lyonel Vincent <lyonel$ezix,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %{?fc1:%define _without_gtk24 1}
 %{?el3:%define _without_gtk24 1}
 %{?rh9:%define _without_gtk24 1}
@@ -9,12 +11,11 @@
 %{?rh7:%define _without_gtk24 1}
 %{?el2:%define _without_gtk24 1}
 
-%define real_version B.02.07
-
 Summary: Hardware lister
 Name: lshw
-Version: 2.07
-Release: 1.2
+%define real_version B.02.08
+Version: 2.08
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.ezix.org/software/lshw.html
@@ -95,8 +96,8 @@ Information can be output in plain text, XML or HTML.
 %endif
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.07-1.2
-- Rebuild for Fedora Core 5.
+* Thu May 11 2006 Dag Wieers <dag@wieers.com> - 2.08-1
+- Updated to release B.02.08.
 
 * Sun Mar 05 2006 Dag Wieers <dag@wieers.com> - 2.07-1
 - Updated to release B.02.07.

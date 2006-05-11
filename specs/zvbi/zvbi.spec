@@ -9,8 +9,8 @@
 
 Summary: Raw VBI, Teletext and Closed Caption decoding library
 Name: zvbi
-Version: 0.2.19
-Release: 2
+Version: 0.2.21
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
@@ -79,7 +79,7 @@ the zvbi library.
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*
+%{_includedir}/libzvbi.h
 %exclude %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
@@ -87,6 +87,9 @@ the zvbi library.
 
 
 %changelog
+* Thu May 11 2006 Dag Wieers <dag@wieers.com> - 0.2.21-1
+- Updated to release 0.2.21.
+
 * Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 0.2.19-2
 - Add missing modular X build requirement.
 - Try to disable static library, but the build fails, so exclude in %%files.
