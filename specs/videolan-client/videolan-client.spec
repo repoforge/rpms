@@ -67,20 +67,19 @@
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
-Version: 0.8.4a
-Release: 4
+Version: 0.8.5
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
 Source0: http://downloads.videolan.org/pub/videolan/vlc/%{version}/vlc-%{version}.tar.bz2
 Source1: http://downloads.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
-Source2: http://www.live555.com/liveMedia/public/live.2006.01.05.tar.gz
-Patch0: vlc-0.8.4a-extraqualif.patch
+Source2: http://www.live555.com/liveMedia/public/live.2006.05.11.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, libpng-devel, libxml2-devel, libtiff-devel
 BuildRequires: libgcrypt-devel, gnutls-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{?_with_modxorg:BuildRequires: libGLU-devel, libXv-devel, libXinerama-devel}
+%{?_with_modxorg:BuildRequires: libGLU-devel, libXt-devel, libXv-devel, libXinerama-devel, libXxf86vm-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_dvdread:BuildRequires: libdvdread-devel}
 %{!?_without_dvdnav:BuildRequires: libdvdnav-devel}
@@ -122,6 +121,11 @@ BuildRequires: libgcrypt-devel, gnutls-devel
 %{?_with_avahi:BuildRequires: avahi-devel}
 %{!?_without_daap:BuildRequires: libopendaap-devel}
 %{?_with_avahi:BuildRequires: avahi-devel}
+# Added in 0.8.5
+%{!?_without_hal:BuildRequires: hal-devel}
+%{!?_without_mpcdec:BuildRequires: libmpcdec-devel}
+%{!?_without_cddb:BuildRequires: libcddb-devel}
+%{!?_without_dca:BuildRequires: libdca-devel}
 Conflicts: vlc
 
 %description
@@ -156,7 +160,6 @@ to link statically to it.
 
 %prep
 %setup -n %{real_name}-%{version} -a 1 -a 2
-%patch0 -p1 -b .extraqualif
 # Fix PLUGIN_PATH path for lib64
 %{__perl} -pi -e 's|/lib/vlc|/%{_lib}/vlc|g' vlc-config.in.in configure*
 
@@ -303,6 +306,13 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Fri May 12 2006 Matthias Saou <http://freshrpms.net/> 0.8.5-1
+- Update to 0.8.5.
+- Update live lib to 2006.05.11.
+- Remove no longer needed extraqualif patch.
+- Added libXt-devel and libXxf86vm-devel to the modular X buil requirements.
+- Added hal, mpcdec, cddb and dca support.
+
 * Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 0.8.4a-4
 - Add missing modular X build requirements.
 - Add libtiff-devel build requirement.
