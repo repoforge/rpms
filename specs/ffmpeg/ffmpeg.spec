@@ -24,7 +24,7 @@
 Summary: Record, convert and stream audio and video
 Name: ffmpeg
 Version: 0.4.9
-Release: 0.4%{?date:.%{date}}%{?prever:.%{prever}}
+Release: 0.5%{?date:.%{date}}%{?prever:.%{prever}}
 License: GPL
 Group: System Environment/Libraries
 URL: http://ffmpeg.sourceforge.net/
@@ -174,7 +174,10 @@ export CFLAGS="%{optflags}"
 %{__rm} -rf %{buildroot}
 
 
-%post -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+chcon -t textrel_shlib_t %{_libdir}/libav{codec,format,util}.so.*.*.* \
+    &>/dev/null || :
 
 %postun -p /sbin/ldconfig
 
@@ -209,6 +212,9 @@ export CFLAGS="%{optflags}"
 
 
 %changelog
+* Fri May 12 2006 Matthias Saou <http://freshrpms.net/> 0.4.9-0.5.20060317
+- Change selinux library context in %%post to allow text relocation.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.4.9-0.4.20060317
 - Update to CVS snapshot.
 - The libraries are versionned at last, so no longer use the autoreqprov hack.
