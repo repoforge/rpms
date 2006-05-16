@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Dave M <dave,nerd$gmail,com>
 
+### FIXME: do something with clamtk.xml (shared-mime-info)
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?rh7:%define _without_freedesktop 1}
@@ -11,7 +13,7 @@
 
 Summary: Easy to use front-end for ClamAV
 Name: clamtk
-Version: 2.14
+Version: 2.19
 Release: 1
 License: Perl
 Group: Applications/File
@@ -49,7 +51,9 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
+#%{__make} install DESTDIR="%{buildroot}"
 %{__install} -Dp -m0755 clamtk %{buildroot}%{_bindir}/clamtk
+%{__install} -Dp -m0644 clamtk.1.gz %{buildroot}%{_mandir}/man1/clamtk.1
 %{__install} -Dp -m0644 clam.xpm %{buildroot}%{_datadir}/pixmaps/clam.xpm
 
 %if %{?_without_freedesktop:1}0
@@ -68,13 +72,17 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES clamtk clamtk.pl DISCLAIMER LICENSE README
+%doc CHANGES DISCLAIMER LICENSE README clamtk.xml
+%doc %{_mandir}/man1/clamtk.1*
 %{_bindir}/clamtk
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-clamtk.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/clamtk.desktop}
 %{_datadir}/pixmaps/clam.xpm
 
 %changelog
+* Wed May 17 2006 Dag Wieers <dag@wieers.com> - 2.19-1
+- Updated to release 2.19.
+
 * Mon May 08 2006 Dag Wieers <dag@wieers.com> - 2.14-1
 - Updated to release 2.14.
 

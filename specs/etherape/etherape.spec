@@ -10,7 +10,7 @@
 
 Summary: Graphical network viewer modeled after etherman
 Name: etherape
-Version: 0.9.5
+Version: 0.9.6
 Release: 1
 License: GPL
 Group: Applications/System
@@ -82,7 +82,7 @@ export LDFLAGS="-L%{_libdir} -L/%{_lib}"
                 --add-category Application                 \
                 --add-category Network                     \
                 --dir %{buildroot}%{_datadir}/applications \
-                %{buildroot}%{_datadir}/gnome/apps/Applications/etherape.desktop
+		%{buildroot}%{_datadir}/applications/etherape.desktop
 %endif
 
 %clean
@@ -106,6 +106,9 @@ export LDFLAGS="-L%{_libdir} -L/%{_lib}"
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Wed May 17 2006 Dag Wieers <dag@wieers.com> - 0.9.6-1
+- Updated to release 0.9.6.
+
 * Sat May 06 2006 Dag Wieers <dag@wieers.com> - 0.9.5-1
 - Updated to release 0.9.5.
 

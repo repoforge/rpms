@@ -8,7 +8,7 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: nagios
-Version: 1.4
+Version: 1.4.1
 Release: 1
 License: GPL
 Group: Applications/System
@@ -187,6 +187,9 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Wed May 17 2006 Dag Wieers <dag@wieers.com> - 1.4.1-1
+* Updated to release 1.4.1.
+
 * Wed May 03 2006 Dag Wieers <dag@wieers.com> - 1.4-1
 * Updated to release 1.4.
 
