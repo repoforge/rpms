@@ -14,7 +14,7 @@
 Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore
 Version: 1.1.0
-Release: 2%{?prever:.%{prever}}
+Release: 3%{?prever:.%{prever}}
 License: XviD
 Group: System Environment/Libraries
 URL: http://www.xvid.org/
@@ -22,6 +22,7 @@ Source: http://downloads.xvid.org/downloads/xvidcore-%{version}%{?prever:-%{prev
 Patch0: xvidcore-1.1.0-verbose-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: yasm
+%{!?_without_selinux:BuildRequires: prelink}
 Provides: lib%{name} = %{version}-%{release}
 
 %description
@@ -81,6 +82,8 @@ pushd %{buildroot}%{_libdir}
 popd
 # Remove unwanted files from the docs
 %{__rm} -f doc/Makefile
+# Clear executable stack flag bit (should not be needed)
+execstack -c %{buildroot}%{_libdir}/*.so.*.* || :
 
 
 %clean
@@ -107,6 +110,9 @@ popd
 
 
 %changelog
+* Wed May 17 2006 Matthias Saou <http://freshrpms.net/> 1.1.0-3
+- Clear executable stack flag bit from the library (should not be needed).
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.1.0-2
 - Release bump to drop the disttag number in FC5 build.
 - Note that the execshield/selinux seems to still not be fixed. Help welcome.

@@ -5,13 +5,13 @@
 Summary: LAME Ain't an MP3 Encoder... but it's the best of all
 Name: lame
 Version: 3.96.1
-Release: 4
+Release: 5
 License: LGPL
 Group: Applications/Multimedia
 URL: http://lame.sourceforge.net/
 Source: http://dl.sf.net/lame/lame-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: ncurses-devel, gcc-c++
+BuildRequires: ncurses-devel, gcc-c++, prelink
 %ifarch %{ix86} x86_64
 BuildRequires: nasm
 %endif
@@ -64,8 +64,12 @@ these libraries.
 ### Some apps still expect to find <lame.h>
 %{__ln_s} -f lame/lame.h %{buildroot}%{_includedir}/lame.h
 
+### Clean up documentation to be included
 find doc/html -name "Makefile*" | xargs rm -f
 %{__rm} -rf %{buildroot}%{_docdir}/lame/
+
+### Clear not needed executable stack flag bit
+execstack -c %{buildroot}%{_libdir}/*.so.*.*.* || :
 
 
 %post -p /sbin/ldconfig
@@ -93,6 +97,10 @@ find doc/html -name "Makefile*" | xargs rm -f
 
 
 %changelog
+* Wed May 17 2006 Matthias Saou <http://freshrpms.net/> 3.96.1-5
+- Clear not needed executable stack flag bit from the library to make it work
+  with selinux, add prelink build requirement (need to remove for old distros).
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 3.96.1-4
 - Release bump to drop the disttag number in FC5 build.
 - Disable/remove static lib.
