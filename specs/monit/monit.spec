@@ -2,9 +2,11 @@
 # Authority: dag
 # Upstream: <monitgroup$tildeslash,com>
 
+%define logmsg logger -t %{name}/rpm
+
 Summary: Process monitor and restart utility
 Name: monit
-Version: 4.8
+Version: 4.8.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -123,6 +125,15 @@ EOF
 %{__install} -Dp -m0755 monit.sysv %{buildroot}%{_initrddir}/monit
 %{__install} -Dp -m0600 monitrc %{buildroot}%{_sysconfdir}/monit.conf
 
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/monit.d/
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/monit/
+
+%pre
+if ! /usr/bin/id monit &>/dev/null; then
+	/usr/sbin/useradd -M -o -r -d %{_localstatedir}/lib/monit -s /bin/sh -c "monit daemon" nagios || \
+                %logmsg "Unexpected error adding user \"monit\". Aborting installation."
+fi
+
 %post
 /sbin/chkconfig --add monit
 
@@ -134,19 +145,31 @@ fi
 
 %postun
 /sbin/service monit condrestart &>/dev/null || :
+if [ $1 -eq 0 ]; then
+	/usr/sbin/userdel monit || %logmsg "User \"nagios\" could not be deleted."
+fi
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES.txt CONTRIBUTORS COPYING FAQ.txt LICENSE README README.SSL STATUS
+%doc CHANGES.txt CONTRIBUTORS COPYING FAQ.txt LICENSE PACKAGES README* STATUS UPGRADE.txt
 %doc %{_mandir}/man1/monit.1*
 %config(noreplace) %{_sysconfdir}/monit.conf
 %config %{_initrddir}/monit
+%config %{_sysconfdir}/monit.d/
 %{_bindir}/monit
 
+%defattr(-, monit, monit, 0755)
+%{_localstatedir}/lib/monit/
+
 %changelog
+* Wed May 17 2006 Dag Wieers <dag@wieers.com> - 4.8.1-1
+- Updated to release 4.8.1.
+- Added %{_sysconfdir}/monit.d/ and %{_localstatedir}/lib/monit/. (Michael C. Hoffman)
+- Creation/removal of user monit. (Michael C. Hoffman)
+
 * Mon May 08 2006 Dag Wieers <dag@wieers.com> - 4.8-1
 - Updated to release 4.8.
 
