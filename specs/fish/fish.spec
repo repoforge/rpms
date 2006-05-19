@@ -14,7 +14,7 @@
 
 Summary: Friendly interactive shell
 Name: fish
-Version: 1.21.6
+Version: 1.21.7
 Release: 1
 License: GPL
 Group: System Environment/Shells
@@ -25,7 +25,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, doxygen, groff, gettext
 %{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-proto-devel}
 
 %description
 fish is a shell geared towards interactive use. It's features are
@@ -75,6 +75,9 @@ is simple but incompatible with other shell languages.
 %exclude %{_docdir}/fish/
 
 %changelog
+* Fri May 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.21.7-1
+- Updated to release 1.21.7.
+
 * Sat Apr 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.21.6-1
 - Updated to release 1.21.6.
 

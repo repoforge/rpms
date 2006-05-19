@@ -4,14 +4,14 @@
 
 Summary: Load images as SDL surfaces
 Name: SDL_image
-Version: 1.2.4
-Release: 1.2
+Version: 1.2.5
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.libsdl.org/projects/SDL_image/
 Source: http://www.libsdl.org/projects/SDL_image/release/SDL_image-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: SDL-devel, gcc-c++, automake, autoconf, perl, libjpeg-devel
+BuildRequires: SDL-devel >= 1.2.10, gcc-c++, automake, autoconf, perl, libjpeg-devel
 BuildRequires: libpng-devel, zlib-devel
 
 %description
@@ -60,6 +60,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Fri May 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.5-1
+- Updated to release 1.2.5.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.4-1.2
 - Rebuild for Fedora Core 5.
 
