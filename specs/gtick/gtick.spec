@@ -7,13 +7,13 @@
 
 Summary: Metronome application
 Name: gtick
-Version: 0.3.9
+Version: 0.3.10
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.antcom.de/gtick/
 
-Source: http://www.antcom.de/gtick/download/gtick-%{version}.tar.bz2
+Source: http://www.antcom.de/gtick/download/gtick-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf >= 2.57, pkgconfig, gtk2-devel, glib2-devel
@@ -66,6 +66,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/applications/%{desktop_vendor}-gtick.desktop
 
 %changelog
+* Fri May 19 2006 Dag Wieers <dag@wieers.com> - 0.3.10-1
+- Updated to release 0.3.10.
+
 * Sun Mar 19 2006 Dag Wieers <dag@wieers.com> - 0.3.9-1
 - Updated to release 0.3.9.
 
