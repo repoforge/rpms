@@ -2,6 +2,14 @@
 # Authority: matthias
 # Upstream: <mp3encoder$minnie,tuhs,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_selinux 1}
+%{?el3:%define _without_selinux 1}
+%{?rh9:%define _without_selinux 1}
+%{?rh7:%define _without_selinux 1}
+%{?el2:%define _without_selinux 1}
+
 Summary: LAME Ain't an MP3 Encoder... but it's the best of all
 Name: lame
 Version: 3.96.1
@@ -11,7 +19,8 @@ Group: Applications/Multimedia
 URL: http://lame.sourceforge.net/
 Source: http://dl.sf.net/lame/lame-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: ncurses-devel, gcc-c++, prelink
+BuildRequires: ncurses-devel, gcc-c++
+%{?!_without_selinux:BuildRequires: prelink}
 %ifarch %{ix86} x86_64
 BuildRequires: nasm
 %endif

@@ -7,7 +7,7 @@
 Summary: Process monitor and restart utility
 Name: monit
 Version: 4.8.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.tildeslash.com/monit/
@@ -130,7 +130,7 @@ EOF
 
 %pre
 if ! /usr/bin/id monit &>/dev/null; then
-	/usr/sbin/useradd -M -o -r -d %{_localstatedir}/lib/monit -s /bin/sh -c "monit daemon" nagios || \
+	/usr/sbin/useradd -M -r -d %{_localstatedir}/lib/monit -s /bin/sh -c "monit daemon" monit || \
                 %logmsg "Unexpected error adding user \"monit\". Aborting installation."
 fi
 
@@ -146,7 +146,7 @@ fi
 %postun
 /sbin/service monit condrestart &>/dev/null || :
 if [ $1 -eq 0 ]; then
-	/usr/sbin/userdel monit || %logmsg "User \"nagios\" could not be deleted."
+	/usr/sbin/userdel monit || %logmsg "User \"monit\" could not be deleted."
 fi
 
 %clean
@@ -165,6 +165,10 @@ fi
 %{_localstatedir}/lib/monit/
 
 %changelog
+* Thu May 18 2006 Dag Wieers <dag@wieers.com> - 4.8.1-2
+- Fixed the nagios references in the monit user creation. (Tim Jackson)
+- Removed the -o option to useradd. (Tim Jackson)
+
 * Wed May 17 2006 Dag Wieers <dag@wieers.com> - 4.8.1-1
 - Updated to release 4.8.1.
 - Added %{_sysconfdir}/monit.d/ and %{_localstatedir}/lib/monit/. (Michael C. Hoffman)

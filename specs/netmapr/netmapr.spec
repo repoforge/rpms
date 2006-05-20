@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dries
 
+%define desktop_vendor rpmforge
+
 Summary: Shows network diagrams
 Name: netmapr
 Version: 1.8
@@ -36,17 +38,19 @@ StartupNotify=true
 Categories=Application;AudioVideo;
 EOF
 
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' Makefile.linux
+
 %build
 %{__mv} Makefile.linux Makefile
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__perl} -pi -e 's| /usr| %{buildroot}%{_prefix}|g;' Makefile
+%{__perl} -pi -e 's| %{_prefix}| %{buildroot}%{_prefix}|g;' Makefile
 %makeinstall
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor rpmforge             \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
 	%{name}.desktop

@@ -5,6 +5,8 @@
 %define somaj  4
 %define somin  1
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %{?fc1:%define _without_selinux 1}
 %{?el3:%define _without_selinux 1}
 %{?rh9:%define _without_selinux 1}

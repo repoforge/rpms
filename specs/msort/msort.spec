@@ -2,10 +2,9 @@
 # Authority: dries
 # Upstream: Bill Poser <billposer$alum,mit,edu>
 
-%define real_version 8.25
-
 Summary: Sort files in sophisticated ways
 Name: msort
+%define real_version 8.25.2
 Version: 8.25
 Release: 1
 License: GPL
