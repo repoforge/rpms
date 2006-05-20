@@ -1,0 +1,14 @@
+--- SQLiteManager-1.2.0/include/config.inc.php.orig	2006-04-18 07:25:53.000000000 -0400
++++ SQLiteManager-1.2.0/include/config.inc.php	2006-05-13 19:08:41.000000000 -0400
+@@ -60,9 +60,9 @@
+ 	}
+ 	if(!defined('SQLiteDb')) {
+ 		if(isset($sqliteVersionAvailable)) {
+-			define ("SQLiteDb", dirname(__FILE__) . "/config".(($sqliteVersionAvailable[0] == 2)? '' : $sqliteVersionAvailable[0] ).".db");
++			define ("SQLiteDb", dirname(__FILE__) . "/../config/config".(($sqliteVersionAvailable[0] == 2)? '' : $sqliteVersionAvailable[0] ).".db");
+ 		} else {
+-			define("SQLiteDb", dirname(__FILE__) . "/config.db");
++			define("SQLiteDb", dirname(__FILE__) . "/../config/config.db");
+ 		}
+ 	}
+ 	

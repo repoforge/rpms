@@ -6,13 +6,14 @@
 
 Summary: Multilingual web based tool to manage SQLite database
 Name: sqlitemanager
-Version: 0.9.6
-Release: 1.2
+Version: 1.2.0
+Release: 1
 License: GPL
 Group: Applications/Databases
 URL: http://sqlitemanager.sourceforge.net/
 
-Source: http://dl.sf.net/sqlitemanager/SQLiteManager-%{version}.tar.gz
+Patch0: config.patch
+Source: http://dl.sf.net/sqlitemanager/SQLiteManager-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -24,6 +25,7 @@ The programming language used is: PHP4, but work fine with PHP5.
 
 %prep
 %setup -n %{real_name}-%{version}
+%patch -p1
 
 ### FIXME: Add a default sqlitemanager.conf for Apache. (Please fix upstream)
 %{__cat} <<EOF >sqlitemanager.httpd
@@ -36,30 +38,32 @@ Alias /sqlitemanager/ %{_localstatedir}/www/sqlitemanager/
 	order deny,allow
 	deny from all
 	allow from 127.0.0.1
+	<FilesMatch "(\.inc\.php|\.db)$">
+		order deny,allow
+		deny from all
+	</FilesMatch>
 </Directory>
 
-<FilesMatch "\.inc\.php$">
-	order deny,allow
-	deny from all
-</FilesMatch>
 EOF
 
 %build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/sqlitemanager/{include,lang,theme/default,pics}/
-%{__install} -p -m0644 *.php *.sqlite %{buildroot}%{_localstatedir}/www/sqlitemanager/
-%{__install} -p -m0644 include/*.{db,js,php} %{buildroot}%{_localstatedir}/www/sqlitemanager/include/
-%{__install} -p -m0644 lang/*.inc.php %{buildroot}%{_localstatedir}/www/sqlitemanager/lang/
-%{__install} -p -m0644 theme/default/*.{css,php} %{buildroot}%{_localstatedir}/www/sqlitemanager/theme/default/
-%{__install} -p -m0644 pics/*.{gif,png} %{buildroot}%{_localstatedir}/www/sqlitemanager/pics/
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/sqlitemanager/
+%{__install} -p -m0644 *.php *.ico *.sqlite *.sqlite3 %{buildroot}%{_localstatedir}/www/sqlitemanager/
+%{__cp} -R include jscalendar lang plugins spaw theme  %{buildroot}%{_localstatedir}/www/sqlitemanager/
+
+find %{buildroot}%{_localstatedir}/www/sqlitemanager -type f -exec chmod -x {} \;
+
+%{__install} -d %{buildroot}%{_localstatedir}/www/sqlitemanager/config
+%{__mv} %{buildroot}%{_localstatedir}/www/sqlitemanager/include/*.db %{buildroot}%{_localstatedir}/www/sqlitemanager/config/
 
 %{__install} -Dp -m0644 sqlitemanager.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/sqlitemanager.conf
 
 %post
 if [ -f %{_sysconfdir}/httpd/conf/httpd.conf ]; then
-	if ! grep -q "Include .*/apcupsd.conf" %{_sysconfdir}/httpd/conf/httpd.conf; then
+	if ! grep -q "Include .*/sqlitemanager.conf" %{_sysconfdir}/httpd/conf/httpd.conf; then
 		echo -e "\n# Include %{_sysconfdir}/httpd/conf.d/sqlitemanager.conf" >> %{_sysconfdir}/httpd/conf/httpd.conf
 #		/sbin/service httpd restart
 	fi
@@ -70,11 +74,17 @@ fi
 
 %files
 %defattr(-, apache, apache, 0755)
-%doc CHANGES LICENCE TODO
+%doc CHANGES LICENCE TODO INSTALL
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/*.conf
+%config(noreplace) %{_localstatedir}/www/sqlitemanager/config/*.db
 %{_localstatedir}/www/sqlitemanager/
 
 %changelog
+* Sat May 13 2006 Edward Rudd <rpms@outoforder.cc> 1.2.0-1
+- updated to 1.2.0
+- moved config*.db files to different directory and tagged them as config
+- patched config.inc.php to reflect new config*.db location
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.6-1.2
 - Rebuild for Fedora Core 5.
 
