@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Remi Denis-Courmont <remi-freshmeat$simphalempin,com>
+# Upstream: Rémi Denis-Courmont <rdenis$simphalempin,com>
 
 Summary: Tunneling of Ipv6 over UDP through NATs
 Name: miredo
@@ -16,12 +16,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 
 %description
-iredo is an implementation of the "Teredo: Tunneling IPv6 over UDP
+Miredo is an implementation of the "Teredo: Tunneling IPv6 over UDP
 through NATs" proposed Internet standard (RFC4380). It can serve
 either as a Teredo client, a stand-alone Teredo relay, or a Teredo
 server. It is meant to provide IPv6 connectivity to hosts behind NAT
 devices, most of which do not support IPv6, and not even
-IPv6-over-IPv4 (including 6to4).  
+IPv6-over-IPv4 (including 6to4).
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.
