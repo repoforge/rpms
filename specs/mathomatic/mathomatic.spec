@@ -1,7 +1,7 @@
 # $Id$
 # Upstream: George J. Gesslein II <gesslein$panix,com>
 # Authority: dries
-# Screenshot: http://images.freshmeat.net/screenshots/37777.gif
+# Screenshot: http://mathomatic.orgserve.de/math/png/mathomatic_snapshot.png
 
 Summary: Small, portable symbolic math program
 Name: mathomatic
