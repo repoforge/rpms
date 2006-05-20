@@ -6,8 +6,8 @@
 
 Summary: Check HTML documents for broken links
 Name: linkchecker
-Version: 3.3
-Release: 1.2
+Version: 4.0
+Release: 1
 License: GPL
 Group: Applications/Publishing
 URL: http://linkchecker.sourceforge.net/
@@ -38,7 +38,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 
 %files
 %defattr(-, root, root, 0775)
-%doc ChangeLog INSTALL LICENSE README TODO test/
+%doc ChangeLog INSTALL LICENSE README TODO
 %doc %{_mandir}/man1/linkchecker*
 %doc %{_mandir}/*/man1/linkchecker*
 %{_bindir}/linkchecker
@@ -48,6 +48,9 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 
 
 %changelog
+* Sat May 20 2006 Dries Verachtert <dries@ulyssis.org> - 4.0-1
+- Updated to release 4.0.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.3-1.2
 - Rebuild for Fedora Core 5.
 
