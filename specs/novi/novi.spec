@@ -12,7 +12,7 @@ URL: http://www.exmachinatech.net/01/novi/
 Source: http://downloads.exmachinatech.net/novi/%{version}/novi-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: rpm-devel
+BuildRequires: rpm-devel, gcc-c++
 
 %description
 novi is a tool for finding the latest-version RPMs in a tree. It can be used 

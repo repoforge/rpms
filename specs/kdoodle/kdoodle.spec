@@ -12,7 +12,7 @@ URL: http://www.c2root.be/kdoodle/
 Source: http://www.c2root.be/kdoodle/KDoodle-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: kdelibs-devel, gcc-c++, gettext
+BuildRequires: kdelibs-devel, gcc-c++, gettext, doodle-devel
 
 %description
 KDoodle is a graphical frontend to doodle. It provides indexed lookups and 
