@@ -17,18 +17,19 @@
 
 Summary: Structured WYSIWYG scientific text editor
 Name: texmacs
-Version: 1.0.6
-Release: 1.2
+Version: 1.0.6.1
+Release: 1
 License: GPL
 Group: Applications/Text
 URL: http://www.texmacs.org/
 
 Source: ftp://ftp.texmacs.org/pub/TeXmacs/targz/TeXmacs-%{version}-src.tar.gz
+Patch: texmacs-gcc-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: tetex-latex, guile-devel, gcc-c++, python
 %{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-proto-devel}
 
 ### Fedora Extras introduced them differently :(
 Obsoletes: TeXmacs < %{version}-%{release}
@@ -54,6 +55,7 @@ drawing editor and a presentation mode.
 
 %prep
 %setup -n TeXmacs-%{version}-src
+%patch -p1
 
 %build
 %configure
@@ -81,6 +83,9 @@ drawing editor and a presentation mode.
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sat May 20 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.6.1-1
+- Update to release 1.0.6.1.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.6-1.2
 - Rebuild for Fedora Core 5.
 

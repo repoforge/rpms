@@ -1,0 +1,133 @@
+diff -ur TeXmacs-1.0.6.1-src-orig/src/Classes/Atomic/parse_string.hpp TeXmacs-1.0.6.1-src/src/Classes/Atomic/parse_string.hpp
+--- TeXmacs-1.0.6.1-src-orig/src/Classes/Atomic/parse_string.hpp	2006-05-11 17:47:28.000000000 +0200
++++ TeXmacs-1.0.6.1-src/src/Classes/Atomic/parse_string.hpp	2006-05-20 23:18:21.000000000 +0200
+@@ -37,6 +37,7 @@
+   friend ostream& operator << (ostream& out, parse_string s);
+   friend bool test (parse_string s, string what);
+ };
++bool test (parse_string s, string what);
+ 
+ class parse_string {
+   CONCRETE(parse_string);
+Only in TeXmacs-1.0.6.1-src/src/Classes/Atomic: parse_string.hpp~
+diff -ur TeXmacs-1.0.6.1-src-orig/src/System/Classes/url.hpp TeXmacs-1.0.6.1-src/src/System/Classes/url.hpp
+--- TeXmacs-1.0.6.1-src-orig/src/System/Classes/url.hpp	2006-05-11 17:47:28.000000000 +0200
++++ TeXmacs-1.0.6.1-src/src/System/Classes/url.hpp	2006-05-21 10:20:30.000000000 +0200
+@@ -27,6 +27,7 @@
+   inline url_rep (tree t2): t (t2) {}
+ };
+ 
++
+ class url {
+   CONCRETE(url);
+ private:
+@@ -37,10 +38,11 @@
+   url (string dir, string name);
+   inline bool operator == (url u) { return rep->t == u->t; }
+   inline bool operator != (url u) { return rep->t != u->t; }
+-  inline url  operator [] (int i) { return url (rep->t[i]); }
+-  inline friend url as_url (tree t) { return url (t); }
++  inline url operator [] (int i) { return url (rep->t[i]); }
++  friend url as_url (tree t); // { return url (t); }
+ };
+ CONCRETE_CODE(url);
++inline url as_url(tree t) { return url(t); }
+ 
+ ostream& operator << (ostream& out, url u);
+ string as_string (url u, int type= URL_SYSTEM);
+Only in TeXmacs-1.0.6.1-src/src/System/Classes: url.hpp~
+diff -ur TeXmacs-1.0.6.1-src-orig/src/Typeset/Boxes/Modifier/change_boxes.cpp TeXmacs-1.0.6.1-src/src/Typeset/Boxes/Modifier/change_boxes.cpp
+--- TeXmacs-1.0.6.1-src-orig/src/Typeset/Boxes/Modifier/change_boxes.cpp	2006-05-11 17:47:28.000000000 +0200
++++ TeXmacs-1.0.6.1-src/src/Typeset/Boxes/Modifier/change_boxes.cpp	2006-05-20 17:25:51.000000000 +0200
+@@ -326,7 +326,7 @@
+ struct textat_box_rep: public move_box_rep {
+   textat_box_rep (path ip, box b, SI x, SI y):
+     move_box_rep (ip, b, x, y, false, false) {}
+-  gr_selections textat_box_rep::graphical_select (SI x, SI y, SI dist);
++  gr_selections graphical_select (SI x, SI y, SI dist);
+   operator tree () { return tree (TUPLE, "textat", (tree) bs[0]); }
+ };
+ 
+Only in TeXmacs-1.0.6.1-src/src/Typeset/Boxes/Modifier: change_boxes.cpp~
+diff -ur TeXmacs-1.0.6.1-src-orig/src/Typeset/boxes.hpp TeXmacs-1.0.6.1-src/src/Typeset/boxes.hpp
+--- TeXmacs-1.0.6.1-src-orig/src/Typeset/boxes.hpp	2006-05-11 17:47:28.000000000 +0200
++++ TeXmacs-1.0.6.1-src/src/Typeset/boxes.hpp	2006-05-20 22:29:38.000000000 +0200
+@@ -253,6 +253,7 @@
+   friend void make_eps (url dest, ::display dis, box b, int dpi= 600);
+ };
+ ABSTRACT_NULL_CODE(box);
++void make_eps (url dest, ::display dis, box b, int dpi);
+ 
+ extern int box_count;
+ inline box_rep::box_rep (path ip2):
+Only in TeXmacs-1.0.6.1-src/src/Typeset: boxes.hpp~
+diff -ur TeXmacs-1.0.6.1-src-orig/src/Typeset/Bridge/bridge.hpp TeXmacs-1.0.6.1-src/src/Typeset/Bridge/bridge.hpp
+--- TeXmacs-1.0.6.1-src-orig/src/Typeset/Bridge/bridge.hpp	2006-05-11 17:47:28.000000000 +0200
++++ TeXmacs-1.0.6.1-src/src/Typeset/Bridge/bridge.hpp	2006-05-20 15:53:59.000000000 +0200
+@@ -72,7 +72,7 @@
+   friend void   replace_bridge (bridge& br, tree st, path ip);
+ };
+ ABSTRACT_NULL_CODE(bridge);
+-
++bridge make_bridge (typesetter t, tree t2, path p);
+ ostream& operator << (ostream& out, bridge br);
+ extern bridge nil_bridge;
+ tree substitute (tree t, path p, tree u);
+Only in TeXmacs-1.0.6.1-src/src/Typeset/Bridge: bridge.hpp~
+diff -ur TeXmacs-1.0.6.1-src-orig/src/Typeset/Concat/concater.hpp TeXmacs-1.0.6.1-src/src/Typeset/Concat/concater.hpp
+--- TeXmacs-1.0.6.1-src-orig/src/Typeset/Concat/concater.hpp	2006-05-11 17:47:28.000000000 +0200
++++ TeXmacs-1.0.6.1-src/src/Typeset/Concat/concater.hpp	2006-05-20 23:57:12.000000000 +0200
+@@ -169,7 +169,8 @@
+ 						int i1, int i2);
+   friend array<line_item> typeset_marker (edit_env env, path ip);
+ };
+-
++array<line_item> typeset_marker (edit_env env, path ip);
+ typedef concater_rep* concater;
++array<line_item> typeset_concat (edit_env env, tree t, path ip);
+ 
+ #endif // defined CONCATER_H
+Only in TeXmacs-1.0.6.1-src/src/Typeset/Concat: concater.hpp~
+diff -ur TeXmacs-1.0.6.1-src-orig/src/Typeset/env.hpp TeXmacs-1.0.6.1-src/src/Typeset/env.hpp
+--- TeXmacs-1.0.6.1-src-orig/src/Typeset/env.hpp	2006-05-11 17:47:28.000000000 +0200
++++ TeXmacs-1.0.6.1-src/src/Typeset/env.hpp	2006-05-20 19:22:03.000000000 +0200
+@@ -416,6 +416,7 @@
+   friend class edit_env;
+   friend ostream& operator << (ostream& out, edit_env env);
+ };
++ostream& operator << (ostream& out, edit_env env);
+ 
+ class edit_env {
+   CONCRETE_NULL(edit_env);
+Only in TeXmacs-1.0.6.1-src/src/Typeset: env.hpp~
+diff -ur TeXmacs-1.0.6.1-src-orig/src/Window/event.hpp TeXmacs-1.0.6.1-src/src/Window/event.hpp
+--- TeXmacs-1.0.6.1-src-orig/src/Window/event.hpp	2006-05-11 17:47:28.000000000 +0200
++++ TeXmacs-1.0.6.1-src/src/Window/event.hpp	2006-05-21 12:41:30.000000000 +0200
+@@ -49,6 +49,11 @@
+ };
+ ABSTRACT_CODE(event);
+ 
++// todo: print something usefull
++inline ostream& operator << (ostream& out, event e) {
++  return out << "event";
++}
++
+ /******************************************************************************
+ * User interface
+ ******************************************************************************/
+Only in TeXmacs-1.0.6.1-src/src/Window: event.hpp~
+diff -ur TeXmacs-1.0.6.1-src-orig/src/Window/ps_device.hpp TeXmacs-1.0.6.1-src/src/Window/ps_device.hpp
+--- TeXmacs-1.0.6.1-src-orig/src/Window/ps_device.hpp	2006-05-11 17:47:28.000000000 +0200
++++ TeXmacs-1.0.6.1-src/src/Window/ps_device.hpp	2006-05-20 16:30:04.000000000 +0200
+@@ -101,5 +101,9 @@
+   virtual void put_shadow (ps_device dev, SI x1, SI y1, SI x2, SI y2) = 0;
+   virtual void apply_shadow (SI x1, SI y1, SI x2, SI y2) = 0;
+ };
+-
++void abs_round (SI& l);
++void abs_round (SI& x, SI& y);
++void abs_inner_round (SI& x1, SI& y1, SI& x2, SI& y2);
++void abs_outer_round (SI& x1, SI& y1, SI& x2, SI& y2);
++    
+ #endif // defined PS_DEVICE_H
+Only in TeXmacs-1.0.6.1-src/src/Window: ps_device.hpp~
