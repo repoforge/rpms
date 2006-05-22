@@ -15,7 +15,7 @@
 Summary: Free multimedia player
 Name: xine
 Version: 0.99.4
-Release: 4
+Release: 5
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -26,11 +26,14 @@ Source3: http://www.bluebeamentertainment.com/xine/smokeyglass_logo.m1v
 Patch0: xine-ui-0.99.3-sprintf.patch
 Patch1: xine-ui-0.99.3-xftfontsize.patch
 Patch2: xine-ui-0.99.3-uifixups.patch
+Patch3: xine-ui-0.99.3-shared-lirc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xine-lib >= 1.0.0
 BuildRequires: gcc-c++, libpng-devel, xine-lib-devel >= 1.0.0
 BuildRequires: curl-devel, libidn-devel, libtermcap-devel, readline-devel
 BuildRequires: pkgconfig, /usr/bin/find
+# Required by autogen.sh
+Buildrequires: autoconf, automake, libtool
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel, libXinerama-devel, libXtst-devel, libXxf86vm-devel, libXext-devel, libXft-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
@@ -56,9 +59,10 @@ Available rpmbuild rebuild options :
 %patch0 -p1 -b .strintf
 %patch1 -p1 -b .xftfontsize
 %patch2 -p1 -b .uifixups
-# Fix for lirc needed to be searched for in lib64
-%{__perl} -pi.orig -e 's|(lirc_libprefix /lib) /usr/lib|$1 %{_libdir}|g' \
-    configure
+%patch3 -p0 -b .shared-lirc
+
+# Required by the shared-lirc patch
+./autogen.sh
 
 # Replace the default Christmas splash screen, it's nearly May already!
 %{__cp} -a -f %{SOURCE2} misc/xine_splash.png
@@ -161,6 +165,10 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Mon May 22 2006 Matthias Saou <http://freshrpms.net/> 0.99.4-5
+- Replace old lirc workaround with patch from Ville to use the shared library,
+  since the static library has been removed from the Extras lirc packages.
+
 * Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 0.99.4-4
 - Make the aaxine and cacaxine %%files entries conditional too (thanks to
   John Robinson for spotting this).
