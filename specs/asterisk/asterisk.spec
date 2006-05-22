@@ -7,8 +7,8 @@
 
 Summary: PBX and telephony application and toolkit
 Name: asterisk
-Version: 1.2.5
-Release: 4
+Version: 1.2.7.1
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.asterisk.org/
@@ -141,6 +141,9 @@ fi
 
 
 %changelog
+* Thu May  4 2006 Matthias Saou <http://freshrpms.net> 1.2.7.1-1
+- Update to 1.2.7.1.
+
 * Thu Mar 23 2006 Matthias Saou <http://freshrpms.net> 1.2.5-4
 - Add missing log directories, cdr-csv and cdr-custom.
 - Add logrotate entry.

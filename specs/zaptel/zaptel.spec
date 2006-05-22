@@ -13,7 +13,7 @@
 
 Summary: Telephony interface support
 Name: zaptel
-Version: 1.2.4
+Version: 1.2.5
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -156,6 +156,9 @@ ${MAKEDEV} \
 
 
 %changelog
+* Thu May  4 2006 Matthias Saou <http://freshrpms.net/> 1.2.5-1
+- Update to 1.2.5.
+
 * Wed Mar 15 2006 Matthias Saou <http://freshrpms.net/> 1.2.4-1
 - Rebuild fails on RHEL4 up U3 (included), because of a typo :
   https://bugzilla.redhat.com/180568
