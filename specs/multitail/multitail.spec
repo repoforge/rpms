@@ -7,7 +7,7 @@
 
 Summary: View one or multiple files like tail but with multiple windows
 Name: multitail
-Version: 3.8.10
+Version: 4.0.4
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -41,6 +41,7 @@ given regular expressions and deleting and adding windows.
 			%{buildroot}%{_mandir}/man1/ \
 			%{buildroot}%{_sysconfdir}
 %{__make} install DESTDIR="%{buildroot}"
+%{__mv} %{buildroot}%{_sysconfdir}/multitail.conf.new %{buildroot}%{_sysconfdir}/multitail.conf
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -53,6 +54,9 @@ given regular expressions and deleting and adding windows.
 %{_bindir}/multitail
 
 %changelog
+* Tue May 24 2006 Dries Verachtert <dries@ulyssis.org> - 4.0.4-1
+- Updated to release 4.0.4.
+
 * Tue Mar 28 2006 Dag Wieers <dag@wieers.com> - 3.8.10-1
 - Updated to release 3.8.10.
 
