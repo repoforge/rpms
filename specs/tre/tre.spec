@@ -4,7 +4,7 @@
 
 Summary: Regexp matching library
 Name: tre
-Version: 0.7.3
+Version: 0.7.4
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -58,7 +58,7 @@ you will need to install %{name}-devel.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL LICENSE NEWS README THANKS TODO
+%doc AUTHORS ChangeLog INSTALL LICENSE NEWS README THANKS TODO
 %doc %{_mandir}/man1/agrep*
 %{_bindir}/agrep
 %{_libdir}/libtre.so.*
@@ -70,6 +70,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libtre.la
 
 %changelog
+* Tue May 24 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.4-1
+- Updated to release 0.7.4.
+
 * Mon Apr 03 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.3-1
 - Updated to release 0.7.3.
 
