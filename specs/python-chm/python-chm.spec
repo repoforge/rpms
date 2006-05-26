@@ -7,8 +7,8 @@
 
 Summary: Python package to handle CHM files
 Name: python-chm
-Version: 0.8.2
-Release: 1.2
+Version: 0.8.3
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://gnochm.sourceforge.net/
@@ -44,6 +44,9 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{python_sitearch}/chm/
 
 %changelog
+* Fri May 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.3-1
+- Updated to release 0.8.3.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.2-1.2
 - Rebuild for Fedora Core 5.
 
