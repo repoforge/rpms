@@ -13,7 +13,7 @@ URL: http://libnids.sourceforge.net/
 Source: http://dl.sf.net/libnids/libnids-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libnet, libpcap, pkgconfig
+BuildRequires: libnet, libpcap, pkgconfig, glib2-devel
 
 %description
 Libnids is an implementation of an E-component of Network Intrusion

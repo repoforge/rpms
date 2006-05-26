@@ -12,7 +12,7 @@ URL: http://libtorrent.rakshasa.no
 Source: http://libtorrent.rakshasa.no/downloads/rtorrent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libtorrent-devel, gcc-c++, curl-devel
+BuildRequires: libtorrent-devel, gcc-c++, curl-devel, libsigc++20-devel
 
 %description
 rTorrent is a console-based BitTorrent client. It aims to be a 

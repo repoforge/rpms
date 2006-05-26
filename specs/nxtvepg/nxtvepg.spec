@@ -38,7 +38,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3, tk-devel}
 %{?_without_tcltk_devel:BuildRequires: tcl >= 8.3, tk}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
-%{!?_without_modxorg:BuildRequires: xorg-x11-proto-devel}
+%{!?_without_modxorg:BuildRequires: xorg-x11-proto-devel, libXmu-devel}
 
 %description
 nxtvepg is a decoder and browser for nexTView - an Electronic TV Programme
