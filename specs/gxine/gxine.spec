@@ -6,6 +6,14 @@
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+
 %define desktop_vendor rpmforge
 
 Summary: Frontend for the xine multimedia library
@@ -23,6 +31,7 @@ BuildRequires: gtk2-devel >= 2.0, xine-lib-devel >= 1.0.0
 BuildRequires: glib2-devel >= 2.6, mozilla-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Requires: gtk2 >= 2.0, xine-lib >= 1.0.0
+%{!?_without_modxorg:BuildRequires: libXaw-devel}
 
 %description
 xine is a fully-featured free audio/video player for unix-like systems which

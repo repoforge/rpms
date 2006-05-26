@@ -20,7 +20,7 @@ BuildRequires: glib2-devel >= 2.0.6, gtk2-devel >= 2.0.6, libxml2-devel >= 2.3.9
 BuildRequires: libgnome-devel >= 2.0, libgnomeui-devel >= 2.0, pango-devel >= 1.1.5
 BuildRequires: libart_lgpl-devel >= 2.3.10, libxslt-devel, libpng-devel
 BuildRequires: python-devel >= 2.2.1, pygtk2-devel, gcc-c++
-BuildRequires: intltool, perl-XML-Parser, gettext, PyXML
+BuildRequires: intltool, perl-XML-Parser, gettext, PyXML, docbook-style-xsl
 %{?el4:BuildRequires: gcc-g77}
 %{?fc5:BuildRequires: gcc-gfortran}
 %{?fc4:BuildRequires: gcc-gfortran}

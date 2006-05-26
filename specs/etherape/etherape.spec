@@ -20,7 +20,7 @@ Source: http://dl.sf.net/etherape/etherape-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap, gcc-c++, pkgconfig, libglade2-devel, libgnomeui-devel
-BuildRequires: gettext
+BuildRequires: gettext, scrollkeeper
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description

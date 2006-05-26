@@ -25,7 +25,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: freetype-devel
 #Requires:  qt >= 2.3.0
 Obsoletes: materm
-%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel, libXt-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description

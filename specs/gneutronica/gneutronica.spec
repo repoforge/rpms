@@ -13,7 +13,7 @@ URL: http://sourceforge.net/projects/gneutronica/
 Source: http://dl.sf.net/gneutronica/gneutronica-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk2-devel
+BuildRequires: gtk2-devel, desktop-file-utils
 
 %description
 Gneutronica is a MIDI drum machine for Linux with a Gnome/GTK user interface 
