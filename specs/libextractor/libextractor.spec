@@ -6,7 +6,7 @@
 
 Summary: Meta-data extraction library
 Name: libextractor
-Version: 0.5.13
+Version: 0.5.14
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -20,6 +20,7 @@ BuildRequires: ImageMagick, python-devel, gettext, pkgconfig, bzip2-devel
 BuildRequires: intltool, glib2-devel, libvorbis-devel, gtk2-devel
 BuildRequires: ImageMagick-devel, ImageMagick-c++-devel, exiv2
 %{?fc4:BuildRequires: libtool-ltdl-devel}
+%{?fc5:BuildRequires: libtool-ltdl-devel}
 
 %description
 libextractor is a simple library for meta-data extraction.
@@ -93,6 +94,9 @@ export LDFLAGS=-L%{buildroot}%{_libdir}
 #%{python_sitearch}/extractor.so
 
 %changelog
+* Fri May 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.14-1
+- Updated to release 0.5.14.
+
 * Sat May 06 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.13-1
 - Updated to release 0.5.13.
 

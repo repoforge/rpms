@@ -51,6 +51,8 @@ need be changed only once to affect the whole site.
 %defattr(-, root, root, 0755)
 %doc Changes README
 %doc %{_mandir}/man3/*
+%{_bindir}/mason.pl
+%{_bindir}/convert0.*
 %{perl_vendorlib}/HTML/Mason.pm
 %{perl_vendorlib}/Apache/Mason.pm
 %{perl_vendorlib}/Bundle/HTML/Mason.pm

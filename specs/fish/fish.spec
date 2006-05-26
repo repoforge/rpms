@@ -19,7 +19,7 @@ Source: http://roo.no-ip.org/fish/files/%{version}/fish-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, doxygen, groff, gettext
-%{?_with_modxorg:BuildRequires: xorg-x11-proto-devel}
+%{?_with_modxorg:BuildRequires: xorg-x11-proto-devel, libXt-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 
 %description

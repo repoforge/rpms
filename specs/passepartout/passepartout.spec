@@ -15,7 +15,7 @@ URL: http://www.stacken.kth.se/project/pptout/
 Source: http://www.stacken.kth.se/project/pptout/files/passepartout-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtkmm2
+BuildRequires: gtkmm2, gcc-c++
 BuildRequires: libxml++ >= 1.0
 
 %description

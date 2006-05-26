@@ -27,7 +27,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, automake, autoconf, zlib-devel, bzip2-devel
 BuildRequires: libpng-devel, libjpeg-devel, libtiff-devel
 %{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-proto-devel}
 
 %description
 FOX is a C++-based toolkit for GUI development. It includes a rich set

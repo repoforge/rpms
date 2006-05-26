@@ -22,6 +22,7 @@ Source1: dillo48.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel, zlib-devel, libjpeg-devel, fltk-devel, gcc-c++
+BuildRequires: fltk-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Provides: webclient
 

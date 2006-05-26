@@ -37,7 +37,7 @@ headers you want to look for.
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README TODO
+%doc CHANGES README
 %doc %{_mandir}/man?/*
 %config %{_sysconfdir}/foremost.conf
 %{_sbindir}/foremost

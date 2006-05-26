@@ -2,12 +2,22 @@
 # Authority: dag
 # Upstream: Rob Caelers <robc$krandor,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+
 %define desktop_vendor rpmforge
 
 Summary: Tool to recover from or prevent Repetitive Strain Injury
 Name: workrave
-Version: 1.8.2
-Release: 1.2
+Version: 1.8.3
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://workrave.sourceforge.net/
@@ -18,6 +28,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libsigc++-devel, gnet2-devel, glib2-devel, gcc-c++
 BuildRequires: gtkmm2-devel, libgnomeuimm26-devel, gettext
 BuildRequires: gnome-panel-devel
+
+%{!?_without_modxorg:BuildRequires: libXmu-devel, libXt-devel}
 
 %description
 Workrave is a program that assists in the recovery and prevention of
@@ -71,6 +83,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 #%{_datadir}/locale/*/LC_MESSAGES/workrave.*
 
 %changelog
+* Fri May 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.8.3-1
+- Updated to release 1.8.3.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.8.2-1.2
 - Rebuild for Fedora Core 5.
 
