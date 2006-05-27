@@ -5,6 +5,7 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %define _without_shmime 1
+%{?fc5:%undefine _without_shmime}
 %{?fc4:%undefine _without_shmime}
 %{?el4:%undefine _without_shmime}
 %{?fc3:%undefine _without_shmime}
@@ -12,8 +13,8 @@
 
 Summary: CHM file viewer
 Name: gnochm
-Version: 0.9.7
-Release: 1.2
+Version: 0.9.8
+Release: 1
 License: GPL
 Group: Applications/Publishing
 URL: http://gnochm.sourceforge.net/
@@ -83,14 +84,18 @@ scrollkeeper-update -q || :
 %{!?_without_shmime:%exclude %{_datadir}/mime/XMLnamespaces}
 %{!?_without_shmime:%exclude %{_datadir}/mime/globs}
 %{!?_without_shmime:%exclude %{_datadir}/mime/magic}
-#{!?_without_shmime:%exclude %{_datadir}/mime/aliases}
-#{!?_without_shmime:%exclude %{_datadir}/mime/subclasses}
+%{!?_without_shmime:%exclude %{_datadir}/mime/aliases}
+%{!?_without_shmime:%exclude %{_datadir}/mime/subclasses}
+%{!?_without_shmime:%exclude %{_datadir}/mime/mime.cache}
 %{_datadir}/mime-info/gnochm.*
 %{_datadir}/omf/gnochm/
 %{_datadir}/pixmaps/*.png
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat May 27 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.8-1
+- Updated to release 0.9.8.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.7-1.2
 - Rebuild for Fedora Core 5.
 
