@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Buildarch: noarch
 
 BuildRequires: python
-Requires: python, python-expect
+Requires: python, ipython, python-expect
 
 %description
 PyDSH is a simple remote administration toolkit, consisting of
@@ -51,8 +51,8 @@ two tools: pydsh and pydcp.
 %{_bindir}/pydsh
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.4-2.2
-- Rebuild for Fedora Core 5.
+* Mon May 29 2006 Dag Wieers <dag@wieers.com> - 0.5.4-3
+- Added ipython as a dependency.
 
 * Tue Sep 13 2005 Dag Wieers <dag@wieers.com> - 0.5.4-2
 - Changed requirement to python-expect.
