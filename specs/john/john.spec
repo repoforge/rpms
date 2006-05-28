@@ -27,7 +27,6 @@ supported as well.
 %{__perl} -pi.orig -e 's|ile = ~/|ile = /usr/share/john/|' run/john.conf
 
 %build
-%{__make} %{?_smp_mflags} -C src
 %{__make} %{?_smp_mflags} -C src clean \
 %ifarch %{ix86}
 				linux-x86-mmx
