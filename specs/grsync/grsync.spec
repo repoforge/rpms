@@ -12,7 +12,7 @@ URL: http://www.opbyte.it/grsync/
 Source: http://www.opbyte.it/release/grsync-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gettext, gtk2-devel
+BuildRequires: gettext, glib2-devel >= 2.6, gtk2-devel
 Requires: rsync
 
 %description

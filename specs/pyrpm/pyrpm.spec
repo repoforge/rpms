@@ -3,16 +3,16 @@
 
 Summary: RPM implementation in python
 Name: pyrpm
-Version: 0.45
-Release: 2
+Version: 0.48
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://people.redhat.com/laroche/pyrpm/
 
 Source: pyrpm-%{version}.tar.bz2
+#Source: http://people.redhat.com/laroche/pyrpm/download/pyrpm-%{version}-1.src.rpm
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildArch: noarch
 BuildRequires: python >= 2.3
 Requires: python >= 2.3, python-urlgrabber, libxml2-python
 
@@ -41,7 +41,16 @@ install packages.
 %doc AUTHORS COPYING INSTALL NEWS README doc/*.html doc/*.txt
 %{_bindir}/*
 %{_datadir}/pyrpm/
+%ghost %{_datadir}/pyrpm/*.pyo
+%ghost %{_datadir}/pyrpm/*/*.pyo
+
 
 %changelog
+* Sun May 28 2006 Dag Wieers <dag@wieers.com> - 0.48-1
+- Updated to release 0.48.
+
+* Tue May 23 2006 Dag Wieers <dag@wieers.com> - 0.47-1
+- Updated to release 0.47.
+
 * Mon Apr 03 2006 Dag Wieers <dag@wieers.com> - 0.45-1
 - Initial package (using DAR)

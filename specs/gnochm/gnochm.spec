@@ -84,9 +84,6 @@ scrollkeeper-update -q || :
 %{!?_without_shmime:%exclude %{_datadir}/mime/XMLnamespaces}
 %{!?_without_shmime:%exclude %{_datadir}/mime/globs}
 %{!?_without_shmime:%exclude %{_datadir}/mime/magic}
-%{!?_without_shmime:%exclude %{_datadir}/mime/aliases}
-%{!?_without_shmime:%exclude %{_datadir}/mime/subclasses}
-%{!?_without_shmime:%exclude %{_datadir}/mime/mime.cache}
 %{_datadir}/mime-info/gnochm.*
 %{_datadir}/omf/gnochm/
 %{_datadir}/pixmaps/*.png
@@ -95,9 +92,6 @@ scrollkeeper-update -q || :
 %changelog
 * Sat May 27 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.8-1
 - Updated to release 0.9.8.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.7-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Jan 25 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.7-1
 - Updated to release 0.9.7.
