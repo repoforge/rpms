@@ -18,6 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libxml-devel, libpng-devel, libglade-devel, gcc-c++
 BuildRequires: gettext
+%{?fc5:BuildRequires: libgnomeprint22-devel, libgnomeprintui22-devel, freetype-devel}
 %{?fc4:BuildRequires: libgnomeprint22-devel, libgnomeprintui22-devel}
 %{?fc3:BuildRequires: libgnomeprint22-devel, libgnomeprintui22-devel}
 %{?fc2:BuildRequires: libgnomeprint22-devel, libgnomeprintui22-devel}

@@ -48,8 +48,8 @@ This package provides various parallel tools based on ssh and scp.
 %{_bindir}/pnuke
 %{_bindir}/prsync
 %{_bindir}/pslurp
-%{_libdir}/python%{python_version}/psshutil.py
-%{_libdir}/python%{python_version}/basethread.py
+%{_libdir}/python%{python_version}/psshutil.py*
+%{_libdir}/python%{python_version}/basethread.py*
 
 %changelog
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.0-1.dag.2
