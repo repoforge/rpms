@@ -5,8 +5,8 @@
 
 Summary: Simple sound converter application
 Name: soundconverter
-Version: 0.8.1
-Release: 1.2
+Version: 0.8.5
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://soundconverter.berlios.de/
@@ -65,8 +65,8 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/soundconverter.png
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.1-1.2
-- Rebuild for Fedora Core 5.
+* Sun May 28 2006 Dag Wieers <dag@wieers.com> - 0.8.5-1
+- Updated to release 0.8.5.
 
 * Sat Jan 07 2006 Dag Wieers <dag@wieers.com> - 0.8.1-1
 - Initial package. (using DAR)
