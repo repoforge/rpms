@@ -25,7 +25,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ming-devel, libdnet-devel, libstdc++-devel, zlib-devel, gcc-c++
 %{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{!?_without_xorg:BuildRequires: libXt-devel, libXext, libXaw-devel}
 
 %description
 vnc2swf is a recoding tool for Flash.
