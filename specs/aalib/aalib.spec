@@ -1,7 +1,17 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %define real_version 1.4rc5
+
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
 
 Summary: ASCII art library
 Name: aalib
@@ -15,7 +25,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): /sbin/ldconfig, /sbin/install-info
 Requires(preun): /sbin/install-info
 Requires(postun): /sbin/ldconfig
-BuildRequires: XFree86-devel, ncurses-devel, gpm-devel
+%{!?_without_modxorg:BuildRequires: libXt-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+BuildRequires: ncurses-devel, gpm-devel
 
 %description
 AA-lib is a low level graphics library that doesn't require a graphics

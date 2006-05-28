@@ -31,7 +31,7 @@ BuildRequires: autoconf, ncurses-devel, automake, gtk+-devel
 BuildRequires: libtermcap-devel
 %{?fc4:BuildRequires: libtool-ltdl-devel}
 %{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{!?_without_xorg:BuildRequires: libX11-devel}
 
 %description
 Twin is a windowing environment with mouse support, window manager,

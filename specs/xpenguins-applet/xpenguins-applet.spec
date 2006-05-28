@@ -12,23 +12,21 @@
 %{?rh6:%define _without_xorg 1}
 %{?yd3:%define _without_xorg 1}
 
-%define real_name xpenguins_applet
-
 Summary: Cute little penguins that walk along the top of your windows
 Name: xpenguins-applet
-Version: 1.0
-Release: 0.2
+Version: 2.0.1
+Release: 1
 License: GPL
 Group: Amusements/Graphics
 URL: http://xpenguins.seul.org/
 
-Source: http://xpenguins.seul.org/xpenguins_applet-%{version}.tar.gz
+Source: http://xpenguins.seul.org/xpenguins-applet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: xpenguins >= 1.9
 BuildRequires: gnome-libs-devel, automake, autoconf
 %{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{!?_without_xorg:BuildRequires: libXpm-devel}
 
 %description
 This program is a GNOME panel applet that animates a friendly family
@@ -39,7 +37,7 @@ things. XPenguins is now themeable so if you're bored of penguins, try
 something else.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup
 
 %build
 %configure
@@ -55,13 +53,18 @@ something else.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc %{_datadir}/gnome/help/xpenguins_applet/
-%{_sysconfdir}/CORBA/servers/*.gnorba
-%{_bindir}/xpenguins_applet
-%{_datadir}/applets/Amusements/*.desktop
-%{_datadir}/pixmaps/*
+%doc %{_datadir}/gnome/help/xpenguins-applet/
+%{_sysconfdir}/gconf/schemas/xpenguins-applet.schemas
+%{_prefix}/libexec/xpenguins-applet
+%{_datadir}/gnome-2.0/ui/xpenguins-applet.xml
+%{_datadir}/omf/xpenguins-applet/
+%{_datadir}/pixmaps/gnome-xpenguins.png
+%{_libdir}/bonobo/servers/xpenguins-applet.server
 
 %changelog
+* Sat May 27 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.1-1
+- Updated to release 2.0.1.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-0.2
 - Rebuild for Fedora Core 5.
 
