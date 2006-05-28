@@ -33,7 +33,7 @@ developing programs using lib5250.
 
 %prep
 %setup
-%patch0 -b .gcc33
+#patch0 -b .gcc33
 
 %build
 %{?fc1:perl -pi.orig -e 's|^INCLUDES = |INCLUDES = -I/usr/kerberos/include |' src/Makefile.in}
@@ -58,9 +58,6 @@ export TERMINFO="%{buildroot}%{_datadir}/terminfo/"
 ### Clean up docs
 %{__rm} -f doc/Makefile*
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
-
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -70,9 +67,9 @@ export TERMINFO="%{buildroot}%{_datadir}/terminfo/"
 %doc %{_mandir}/man?/*
 %{_bindir}/lp5250d
 %{_bindir}/scs2*
-%{_bindir}/tn3270d
+#%{_bindir}/tn3270d
 %{_bindir}/tn5250
-%{_bindir}/tn5250d
+#%{_bindir}/tn5250d
 %{_bindir}/xt5250
 %{_libdir}/*.so.*
 %{_datadir}/%{name}/
@@ -83,10 +80,11 @@ export TERMINFO="%{buildroot}%{_datadir}/terminfo/"
 %defattr(-, root, root, 0755)
 %{_bindir}/*-config
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_includedir}/*
 %{_datadir}/aclocal/*.m4
-#exclude %{_libdir}/*.la
+%{_libdir}/pkgconfig/tn5250.pc
 
 %changelog
 * Fri Apr 07 2006 Dries Verachtert <dries@ulyssis.org> - 0.17.3-1

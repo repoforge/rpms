@@ -2,12 +2,12 @@
 # Authority: dag
 # Upstream: Christophe Kalt <shmux$taranis,org>
 
-%define real_version 1.0b6
 
 Summary: Program for executing the same command on many hosts in parallel
 Name: shmux
 Version: 1.0
-Release: 0.b6.1.2
+%define real_version 1.0b7
+Release: 0.b7.1
 License: BSD-like
 Group: System Environment/Shells
 URL: http://web.taranis.org/shmux/
@@ -49,8 +49,8 @@ the user, or written to files for later processing.
 %{_datadir}/shmux/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-0.b6.1.2
-- Rebuild for Fedora Core 5.
+* Tue May 23 2006 Dag Wieers <dag@wieers.com> - 1.0-0.b7.1
+- Updated to release 1.0b7 (for real now).
 
 * Mon Mar 07 2005 Dag Wieers <dag@wieers.com> - 1.0-0.b6.1
 - Updated to release 1.0b6 (for real now).

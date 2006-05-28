@@ -12,7 +12,7 @@
 
 Summary: Graphical Tool for Managing a Certification Authority
 Name: tinyca2
-Version: 0.7.2
+Version: 0.7.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -91,6 +91,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-tinyca2.desktop}
 
 %changelog
+* Sun May 28 2006 Dag Wieers <dag@wieers.com> - 0.7.3-1
+- Updated to release 0.7.3.
+
 * Sat Apr 15 2006 Dag Wieers <dag@wieers.com> - 0.7.2-1
 - Updated to release 0.7.2.
 

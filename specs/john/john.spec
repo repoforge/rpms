@@ -3,15 +3,14 @@
 
 Summary: John the Ripper password cracker
 Name: john
-Version: 1.6
-Release: 0.2
+Version: 1.7.0.2
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.openwall.com/john/
 
-Source: http://www.openwall.com/john/dl/%{name}-%{version}.tar.gz
+Source: http://www.openwall.com/john/f/john-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 John the Ripper is a fast password cracker. Its primary purpose is to
@@ -22,23 +21,36 @@ supported as well.
 %setup
 
 %{__perl} -pi.orig -e '
-		s|^#define CFG_NAME .*$|#define CFG_NAME "/etc/john.ini"|;
+		s|^#define CFG_NAME .*$|#define CFG_NAME "/etc/john.conf"|;
 		s|^#define WORDLIST_NAME .*$|#define WORDLIST_NAME "/usr/share/john/password.lst"|;
 	' src/params.h
-%{__perl} -pi.orig -e 's| -m486||' src/Makefile
-%{__perl} -pi.orig -e 's|ile = ~/|ile = /usr/share/john/|' run/john.ini
+%{__perl} -pi.orig -e 's|ile = ~/|ile = /usr/share/john/|' run/john.conf
 
 %build
+%{__make} %{?_smp_mflags} -C src
+%{__make} %{?_smp_mflags} -C src clean \
 %ifarch %{ix86}
-%{__make} %{?_smp_mflags} -C src linux-x86-any-elf
+				linux-x86-mmx
+%endif
+%ifarch x86_64
+				linux-x86-64
 %endif
 %ifarch alpha
-%{__make} %{?_smp_mflags} -C src alpha
+				linux-alpha
+%endif
+%ifarch sparc
+				linux-alpha
+%endif
+%ifarch ppc
+				linux-ppc32
+%endif
+%ifarch ppc64
+				linux-ppc64
 %endif
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0644 run/john.ini %{buildroot}%{_sysconfdir}/john.ini
+%{__install} -Dp -m0644 run/john.conf %{buildroot}%{_sysconfdir}/john.ini
 %{__install} -Dp -m0755 run/john %{buildroot}%{_bindir}/john
 %{__install} -Dp -m0755 run/mailer %{buildroot}%{_bindir}/mailer
 
@@ -59,8 +71,8 @@ supported as well.
 %{_datadir}/john/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.6-0.2
-- Rebuild for Fedora Core 5.
+* Sun May 28 2006 Dag Wieers <dag@wieers.com> - 1.7.0.2-1
+- Updated to release 1.7.0.2.
 
 * Sun Aug 17 2003 Dag Wieers <dag@wieers.com> - 1.6-0
 - Initial package. (using DAR)
