@@ -2,6 +2,8 @@
 # Authority: dries
 # Upstream: Nikolay Pultsin <geometer$mawhrin,net>
 
+%define desktop_vendor rpmforge
+
 Summary: E-book reader
 Name: fbreader
 Version: 0.7.4
@@ -14,7 +16,7 @@ Source: http://only.mawhrin.net/fbreader/fbreader-sources-%{version}.tgz
 Patch: gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: kdelibs-devel
+BuildRequires: enca, qt-devel >= 3.2 kdelibs-devel
 
 %description
 FBReader is an e-book reader for Linux PDAs and desktop computers.
@@ -25,10 +27,10 @@ HTML, fb2, and plain text.  
 %setup
 %patch -p1
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >fbreader.desktop
 [Desktop Entry]
 Name=FBReader
-Comment=e-book reader
+Comment=Read various ebook formats
 Exec=FBReader
 Terminal=false
 Type=Application
@@ -44,10 +46,10 @@ EOF
 %makeinstall EXTERNALINCLUDE=-I${QTDIR}/include MOC=moc UILIBS="-L${QTDIR}/lib -lqt-mt" INSTALLDIR=%{_prefix} DESTDIR=%{buildroot}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor rpmforge             \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+	fbreader.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -56,7 +58,7 @@ desktop-file-install --vendor rpmforge             \
 %defattr(-, root, root, 0755)
 %{_bindir}/FBReader
 %{_datadir}/FBReader/
-%{_datadir}/applications/*-fbreader.desktop
+%{_datadir}/applications/%{desktop_vendor}-fbreader.desktop
 
 %changelog
 * Fri May 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.4-1

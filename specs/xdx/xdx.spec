@@ -13,7 +13,7 @@ URL: http://www.qsl.net/pg4i/linux/xdx.html
 Source: http://www.qsl.net/pg4i/download/xdx-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: 
+BuildRequires: gtk2-devel >= 2.6
 #Requires:
 
 %description

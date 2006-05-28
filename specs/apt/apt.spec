@@ -3,39 +3,41 @@
 # Upstream: Panu Matilainen <pmatilai$laiskiainen,org>
 
 %{?dist: %{expand: %%define %dist 1}}
+
+%{?rh8:%define _without_elfutils 1}
+%{?rh7:%define _without_elfutils 1}
+
+%{?el2:%define _without_elfutils 1}
+%{?el2:%define _without_pkgconfig 1}
+
+%{?rh6:%define _without_elfutils 1}
+%{?rh6:%define _without_pkgconfig 1}
+
 %define LIBVER 3.3
 
 Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
-Version: 0.5.15lorg3
-Release: 3
+Version: 0.5.15lorg3.1
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://apt-rpm.laiskiainen.org/
 
 Source: http://apt-rpm.laiskiainen.org/releases/apt-%{version}.tar.bz2
-Patch0: apt-0.5.15lorg3-synaptic.patch
-Patch1: apt-0.5.15lorg3-die-epoch-die.patch
+Patch0: apt-0.5.15lorg3.1-algorithm.patch
+Patch1: apt-0.5.15lorg3.1-pkgconfig.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: rpm-devel >= 3.0.5, zlib-devel, gettext
 BuildRequires: readline-devel, bison, gcc-c++, libtool
-BuildRequires: pkgconfig >= 0.9
-%{!?rh6:BuildRequires: bzip2-devel, libstdc++-devel, docbook-utils}
+%{!?_without_pkgconfig:BuildRequires: pkgconfig >= 0.9}
 
-%{!?dist:BuildRequires: beecrypt-devel, elfutils-devel}
-%{?fc5:BuildRequires: beecrypt-devel, elfutils-devel}
-%{?fc4:BuildRequires: beecrypt-devel, elfutils-devel}
-%{?el4:BuildRequires: beecrypt-devel, elfutils-devel}
-%{?fc3:BuildRequires: beecrypt-devel, elfutils-devel}
-%{?fc2:BuildRequires: beecrypt-devel, elfutils-devel}
-%{?fc1:BuildRequires: beecrypt-devel, elfutils-devel}
-%{?el3:BuildRequires: beecrypt-devel, elfutils-devel}
-%{?rh9:BuildRequires: beecrypt-devel, elfutils-devel}
+
+%{!?_without_elfutils:BuildRequires: beecrypt-devel, elfutils-devel}
+%{?_without_elfutils:BuildRequires: libelf}
+
+%{!?rh6:BuildRequires: bzip2-devel, libstdc++-devel, docbook-utils}
 %{?rh8:BuildRequires: libelf-devel}
-%{?rh7:BuildRequires: libelf}
-%{?el2:BuildRequires: libelf}
-%{?rh6:BuildRequires: libelf}
 
 Requires: rpm >= 3.0.5, zlib, bzip2-libs, libstdc++
 
@@ -63,22 +65,19 @@ you will need to install %{name}-devel.
 
 %{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|RPMforge RPM Repository %{dist}/%{_arch} APT-HTTP/1.3|' methods/http.cc
 
-%{__cat} <<EOF >os.list
+%{__cat} <<'EOF' >os.list
 # Name: FreshRPMS OS/updates
 # URL: http://ayo.freshrpms.net/
 
+### Red Hat Enterprise Linux
+#rpm http://yam rhel$(VERSION)as-$(ARCH) os updates
+#rpm http://mirror.centos.org centos/$(VERSION)/apt os updates
+
 ### Fedora Core
-%{!?fc5:#}rpm http://ayo.freshrpms.net fedora/linux/5/%{_arch} core updates
-%{!?fc4:#}rpm http://ayo.freshrpms.net fedora/linux/4/%{_arch} core updates
-%{!?fc3:#}rpm http://ayo.freshrpms.net fedora/linux/3/%{_arch} core updates
-%{!?fc2:#}rpm http://ayo.freshrpms.net fedora/linux/2/%{_arch} core updates
-%{!?fc1:#}rpm http://ayo.freshrpms.net fedora/linux/1/i386 core updates
+%{!?fedora:#}rpm http://ayo.freshrpms.net fedora/linux/$(VERSION)/$(ARCH) core updates
 
 ### Red Hat Linux
-%{!?rh9:#}rpm http://ayo.freshrpms.net redhat/9/i386 os updates
-%{!?rh8:#}rpm http://ayo.freshrpms.net redhat/8.0/i386 os updates
-%{!?rh7:#}rpm http://ayo.freshrpms.net redhat/7.3/i386 os updates
-%{!?rh6:#}rpm http://ayo.freshrpms.net redhat/6.2/i386 os powertools updates
+%{!?rhl:#}rpm http://ayo.freshrpms.net redhat/$(VERSION)/$(ARCH) os updates
 EOF
 
 %{__cat} <<'EOF' >apt.conf
@@ -120,6 +119,8 @@ RPM {
 EOF
 
 %build
+%{?_without_pkgconfig:export LIBXML2_CFLAGS="$(xml2-config --cflags)"}
+%{?_without_pkgconfig:export LIBXML2_LIBS="$(xml2-config --libs)"}
 %configure \
 	--program-prefix="%{?_program_prefix}" \
 	--includedir="%{_includedir}/apt-pkg"
@@ -185,6 +186,9 @@ touch %{buildroot}%{_sysconfdir}/apt/preferences \
 #exclude %{_libdir}/*.la
 
 %changelog
+* Tue May 23 2006 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.1
+- Updated to 0.5.15lorg3.1
+
 * Thu Apr 27 2006 Dag Wieers <dag@wieers.com> - 0.5.15lorg3-3
 - Added patch to handle no-epoch on <= RH9.
 

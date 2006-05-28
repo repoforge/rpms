@@ -12,7 +12,7 @@ URL: http://home.gna.org/kvpnc/
 Source: http://download.gna.org/kvpnc/kvpnc-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: kdelibs-devel, gettext, gcc-c++
+BuildRequires: gcc-c++, gettext, kdelibs-devel >= 3.4
 
 %description
 KVpnc is a KDE frontend for various VPN clients. It supports Cisco VPN (vpnc) 
