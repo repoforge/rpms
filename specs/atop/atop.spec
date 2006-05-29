@@ -5,13 +5,13 @@
 
 Summary: AT Computing System and Process Monitor
 Name: atop
-Version: 1.15
-Release: 2
+Version: 1.16
+Release: 1
 License: GPL
 Group: Applications/System
 URL: ftp://ftp.atcomputing.nl/pub/tools/linux/
 
-Source: ftp://ftp.atcomputing.nl/pub/tools/linux/atop-%{version}.tar.gz
+Source: http://www.atconsultancy.nl/atop/packages/atop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: zlib-devel, ncurses-devel
@@ -80,7 +80,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
+%doc COPYING README
 %doc %{_mandir}/man1/atop.1*
 %config(noreplace) %{_sysconfdir}/atop/
 %config(noreplace) %{_sysconfdir}/cron.d/atop
@@ -89,6 +89,9 @@ fi
 %dir %{_localstatedir}/log/atop/
 
 %changelog
+* Mon May 29 2006 Dag Wieers <dag@wieers.com> - 1.16-1
+- Updated to release 1.16.
+
 * Sat May 20 2006 Dag Wieers <dag@wieers.com> - 1.15-2
 - Added missing %%{_localstatedir}/log/atop/. (Jose J. Garcia)
 

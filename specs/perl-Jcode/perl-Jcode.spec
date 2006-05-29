@@ -8,8 +8,8 @@
 
 Summary: Jcode (Japanese Charset Handler) module for perl
 Name: perl-Jcode
-Version: 2.03
-Release: 1.2
+Version: 2.05
+Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Jcode/
@@ -27,18 +27,15 @@ Jcode (Japanese Charset Handler) module for perl.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags} \
-	OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" 
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -46,13 +43,13 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST README
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man3/*.3*
 %{perl_vendorlib}/Jcode.pm
 %{perl_vendorlib}/Jcode/
 
 %changelog
-* Mon Apr 10 2006 Dries Verachtert <dries@ulyssis.org> - 2.03-1.2
-- Rebuild for Fedora Core 5.
+* Mon May 29 2006 Dag Wieers <dag@wieers.com> - 2.05-1
+- Updated to release 2.05.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.03-1
 - Updated to release 2.03.

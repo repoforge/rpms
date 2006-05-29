@@ -1,0 +1,66 @@
+--- eggdrop1.6.17/src/mod/channels.mod/channels.c.64bit-fixes	2004-06-27 19:26:51.000000000 +0200
++++ eggdrop1.6.17/src/mod/channels.mod/channels.c	2004-11-11 16:12:55.913895590 +0100
+@@ -26,6 +26,7 @@
+ #define MODULE_NAME "channels"
+ #define MAKING_CHANNELS
+ 
++#include <stdint.h>
+ #include <sys/stat.h>
+ #include "src/mod/module.h"
+ 
+--- eggdrop1.6.17/src/mod/channels.mod/channels.h.64bit-fixes	2004-01-09 06:56:37.000000000 +0100
++++ eggdrop1.6.17/src/mod/channels.mod/channels.h	2004-11-11 16:11:37.333719885 +0100
+@@ -42,7 +42,7 @@
+ struct udef_chans {
+   struct udef_chans *next;     /* Ptr to next value.                   */
+   char *chan;                  /* Dname of channel name.               */
+-  int value;                   /* Actual value.                        */
++  intptr_t value;              /* Actual value.                        */
+ };
+ 
+ /* Structure for user defined channel settings.
+@@ -105,9 +105,9 @@ static int expmem_udef(struct udef_struc
+ static int expmem_udef_chans (int, struct udef_chans *);
+ static void free_udef(struct udef_struct *);
+ static void free_udef_chans(struct udef_chans *, int);
+-static int getudef(struct udef_chans *, char *);
++static intptr_t getudef(struct udef_chans *, char *);
+ static void initudef(int type, char *, int);
+-static void setudef(struct udef_struct *, char *, int);
++static void setudef(struct udef_struct *, char *, intptr_t);
+ static void remove_channel(struct chanset_t *);
+ static int ngetudef(char *, char *);
+ static int expired_mask(struct chanset_t *chan, char *who);
+--- eggdrop1.6.17/src/mod/channels.mod/udefchan.c.64bit-fixes	2004-01-09 06:56:37.000000000 +0100
++++ eggdrop1.6.17/src/mod/channels.mod/udefchan.c	2004-11-11 16:11:37.333719885 +0100
+@@ -47,9 +47,9 @@ static int expmem_udef_chans(int type, s
+   return i;
+ }
+ 
+-static int getudef(struct udef_chans *ul, char *name)
++static intptr_t getudef(struct udef_chans *ul, char *name)
+ {
+-  int val = 0;
++  intptr_t val = 0;
+ 
+   for (; ul; ul = ul->next)
+     if (!egg_strcasecmp(ul->chan, name)) {
+@@ -74,7 +74,7 @@ static int ngetudef(char *name, char *ch
+   return 0;
+ }
+ 
+-static void setudef(struct udef_struct *us, char *name, int value)
++static void setudef(struct udef_struct *us, char *name, intptr_t value)
+ {
+   struct udef_chans *ul, *ul_last = NULL;
+ 
+--- eggdrop1.6.17/src/chanprog.c.64bit-fixes	2004-07-25 13:17:34.000000000 +0200
++++ eggdrop1.6.17/src/chanprog.c	2004-11-11 16:11:37.334719901 +0100
+@@ -28,6 +28,7 @@
+  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+  */
+ 
++#include <stdint.h>
+ #include "main.h"
+ 
+ #ifdef HAVE_GETRUSAGE

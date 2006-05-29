@@ -1,0 +1,45 @@
+--- eggdrop1.6.17/configure.ac.lib64	2004-07-26 00:15:12.000000000 +0200
++++ eggdrop1.6.17/configure.ac	2004-11-11 16:09:21.555617655 +0100
+@@ -96,6 +96,33 @@ EGG_CHECK_LIBSAFE_SSCANF
+ # Check for executable extension.
+ EGG_EXEEXT
+ 
++# Detect native libdir name
++host_os=`uname -o`
++host_cpu=`uname -m`
++case $host_os in
++*Linux)
++  # Test if the compiler is 64bit
++  echo 'int i;' > conftest.$ac_ext
++  eggdrop_cv_cc_64bit_output=no
++  if AC_TRY_EVAL(ac_compile); then
++    case `/usr/bin/file conftest.$ac_objext` in
++    *"ELF 64"*)
++      eggdrop_cv_cc_64bit_output=yes
++      ;;
++    esac
++  fi
++  rm -rf conftest*
++  ;;
++esac
++
++case $host_cpu:$eggdrop_cv_cc_64bit_output in
++powerpc64:yes | s390x:yes | sparc64:yes | x86_64:yes)
++  eggdrop_libname="lib64"
++  ;;
++*:*)
++  eggdrop_libname="lib"
++  ;;
++esac
+ 
+ # Tcl version to recomend if no Tcl is found, and the site where it can be
+ # found for download.
+@@ -108,7 +135,7 @@ tcllibnames="tcl8.4 tcl84 tcl8.3 tcl83 t
+              tcl8.0 tcl80 tcl tcl7.6 tcl76 tcl7.5 tcl75 tcl7.4 tcl74 tcl7.3 \
+              tcl73 tcl7.2 tcl72 tcl7.1 tcl71 tcl7.0 tcl70 tcl8.5 tcl85"
+ tcllibextensions=".so .so.1 .so.1.0 .so.1.2 .dll .dylib .a .sl"
+-tcllibpaths="$HOME/lib $HOME/tcl/lib /usr/local/lib /usr/lib /lib \
++tcllibpaths="$HOME/lib $HOME/tcl/lib /usr/local/$eggdrop_libname /usr/$eggdrop_libname /$eggdrop_libname \
+              /usr/local/lib/tcl8.4 /usr/local/lib/tcl8.3 \
+              /usr/lib/tcl8.4 /usr/lib/tcl8.3 \
+              /usr/local/lib/tcl8.5 /usr/lib/tcl8.5 \
