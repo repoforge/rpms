@@ -8,8 +8,8 @@
 
 Summary: Nagios Remote Plug-ins Execution daemon
 Name: nagios-nrpe
-Version: 2.3
-Release: 2.2
+Version: 2.5.1
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.nagios.org/
@@ -21,7 +21,7 @@ BuildRequires: openssl-devel, krb5-devel
 Provides: nrpe
 Obsoletes: nrpe, netsaint-nrpe
 Requires: bash, grep, nagios-plugins
-Conflicts: nagios
+#Conflicts: nagios
 
 %description
 The nagios-nrpe packages contains the Nagios Remote Plug-ins Executor
@@ -217,8 +217,8 @@ fi
 %{_libdir}/nagios/plugins/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.3-2.2
-- Rebuild for Fedora Core 5.
+* Mon May 29 2006 Dag Wieers <dag@wieers.com> - 2.5.1-1
+- Updated to release 2.5.1.
 
 * Wed Feb 08 2006 Dag Wieers <dag@wieers.com> - 2.3-2
 - Fixed wrong -s option and sysv problem on some dists. (Rick Johnson)

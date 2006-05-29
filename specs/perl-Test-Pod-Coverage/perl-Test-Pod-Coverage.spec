@@ -1,28 +1,27 @@
 # $Id$
-# Authority: dries
-# Upstream: Andy Lester <andy$petdance,com>
+# Authority: dag
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Test-Pod
+%define real_name Test-Pod-Coverage
 
-Summary: Checks for POD errors in files
-Name: perl-Test-Pod
-Version: 1.24
+Summary: Checks for POD Coverage in your distribution
+Name: perl-Test-Pod-Coverage
+Version: 1.08
 Release: 1
 License: Artistic
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Test-Pod/
+URL: http://search.cpan.org/dist/Test-Pod-Coverage/
 
-Source: http://www.cpan.org/modules/by-module/Test/Test-Pod-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Test/Test-Pod-Coverage-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 
 %description
-This module allows you to check for POD errors in files.
+This module allows you to check for pod coverage in your distribution.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -43,17 +42,12 @@ This module allows you to check for POD errors in files.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIIFEST
+%doc Changes MANIFEST
 %doc %{_mandir}/man3/*.3*
 %dir %{perl_vendorlib}/Test/
-%{perl_vendorlib}/Test/Pod.pm
+%dir %{perl_vendorlib}/Test/Pod/
+%{perl_vendorlib}/Test/Pod/Coverage.pm
 
 %changelog
-* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.24-1
-- Updated to release 1.24.
-
-* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.22-1
-- Updated to release 1.22.
-
-* Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.20-1
+* Mon May 29 2006 Dag Wieers <dag@wieers.com> - 1.08-1
 - Initial package.

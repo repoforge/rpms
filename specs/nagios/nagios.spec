@@ -13,7 +13,7 @@
 Summary: Open Source host, service and network monitoring program
 Name: nagios
 Version: 2.3.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
@@ -70,6 +70,7 @@ you will need to install %{name}-devel.
 	--with-nagios-group="nagios" \
 %{!?_without_embedperl:--enable-embedded-perl} \
 %{!?_without_perlcache:--with-perlcache} \
+%{?_without_perlcache:--without-perlcache} \
 	--with-template-objects \
 	--with-template-extinfo \
 	--enable-event-broker
@@ -150,8 +151,6 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc Changelog INSTALLING LICENSE README UPGRADING
-%dir %{_sysconfdir}/nagios/
-%config(noreplace) %{_sysconfdir}/nagios/*.cfg
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/nagios.conf
 %config %{_initrddir}/nagios
 %{_bindir}/convertcfg
@@ -167,6 +166,8 @@ fi
 #%config(noreplace) %{_sysconfdir}/nagios/private/
 
 %defattr(-, nagios, nagios, 0755)
+%dir %{_sysconfdir}/nagios/
+%config(noreplace) %{_sysconfdir}/nagios/*.cfg
 %{_localstatedir}/log/nagios/
 
 %defattr(-, nagios, apache, 2755)
@@ -179,6 +180,9 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Mon May 29 2006 Dag Wieers <dag@wieers.com> - 2.3.1-2
+- Make nagios owner of /etc/nagios. (Christop Maser)
+
 * Wed May 17 2006 Dag Wieers <dag@wieers.com> - 2.3.1-1
 - Updated to release 2.3.1.
 

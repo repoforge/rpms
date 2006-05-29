@@ -16,8 +16,8 @@
 
 Summary: Host/service/network monitoring program plugins for Nagios
 Name: nagios-plugins
-Version: 1.4.2
-Release: 1.2
+Version: 1.4.3
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://nagiosplug.sourceforge.net/
@@ -69,7 +69,9 @@ PATH="/sbin:/bin:/usr/sbin:/usr/sbin:$PATH" \
 %configure \
 	--with-cgiurl="/nagios/cgi-bin" \
 	--with-nagios-user="nagios" \
-	--with-nagios-group="nagios"
+	--with-nagios-group="nagios" \
+	--with-mysql \
+	--with-pgsql
 %{__make} %{?_smp_mflags}
 
 ### Build some contrib plugins
@@ -103,8 +105,8 @@ done
 %{perl_vendorlib}/utils.pm
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.2-1.2
-- Rebuild for Fedora Core 5.
+* Mon May 29 2006 Dag Wieers <dag@wieers.com> - 1.4.3-1
+- Updated to release 1.4.3.
 
 * Tue Mar 07 2006 Dag Wieers <dag@wieers.com> - 1.4.2-1
 - Updated to release 1.4.2.

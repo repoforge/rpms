@@ -7,7 +7,7 @@
 Summary: Process monitor and restart utility
 Name: monit
 Version: 4.8.1
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Internet
 URL: http://www.tildeslash.com/monit/
@@ -36,7 +36,7 @@ and restart programs not responding.
 # description: Monit Process Monitor
 #
 # processname: monit
-# config: %{_sysconfdir}/monitrc
+# config: %{_sysconfdir}/monit.conf
 # pidfile: %{_localstatedir}/run/monit
 
 source %{_initrddir}/functions
@@ -111,6 +111,8 @@ esac
 exit $RETVAL
 EOF
 
+%{__perl} -pi.orig -e 's|\bmonitrc\b|monit.conf|' monitor.h
+
 %build
 %configure \
 	--with-ssl-lib-dir="%{_libdir}"
@@ -165,6 +167,9 @@ fi
 %{_localstatedir}/lib/monit/
 
 %changelog
+* Mon May 29 2006 Dag Wieers <dag@wieers.com> - 4.8.1-3
+- Fixed reference to monitrc from monitor.h. (Tim Jackson)
+
 * Thu May 18 2006 Dag Wieers <dag@wieers.com> - 4.8.1-2
 - Fixed the nagios references in the monit user creation. (Tim Jackson)
 - Removed the -o option to useradd. (Tim Jackson)

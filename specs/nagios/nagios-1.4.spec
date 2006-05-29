@@ -77,6 +77,7 @@ you will need to install %{name}-devel.
 	--with-nagios-group="nagios" \
 %{!?_without_embedperl:--enable-embedded-perl} \
 %{!?_without_perlcache:--with-perlcache} \
+%{?_without_perlcache:--without-perlcache} \
 	--with-template-objects \
 	--with-template-extinfo \
 	--enable-event-broker
