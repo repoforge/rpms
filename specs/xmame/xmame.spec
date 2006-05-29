@@ -27,17 +27,17 @@
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.105
+Version: 0.106
 Release: 1%{?rcver:.%{rcver}}
 Source0: http://x.mame.net/download/xmame-%{version}.tar.bz2
-# http://cheat.retrogames.com/ 0.105 - 14/04/2006
+# http://cheat.retrogames.com/ 0.106 - 14/05/2006
 Source20: http://cheat.retrogames.com/cheat.zip
 # http://www.mameworld.net/highscore/ 0.105 - 10/04/2006
 Source21: http://www.mameworld.net/highscore/uhsdat0105.zip
-# http://www.arcade-history.com/ 1.06j - 15/04/2006
-Source22: http://www.arcade-history.com/download/history1_06j.zip
-# http://www.mameworld.net/mameinfo/ 0.105 - 05/04/2006
-Source23: http://www.mameworld.net/mameinfo/update/Mameinfo0105.exe
+# http://www.arcade-history.com/ 1.06q - 26/05/2006
+Source22: http://www.arcade-history.com/download/history1_06q.zip
+# http://www.mameworld.net/mameinfo/ 0.106 - 14/05/2006
+Source23: http://www.mameworld.net/mameinfo/update/Mameinfo0106.zip
 # http://www.mameworld.net/catlist/ 0.99u2 - 12/09/2005
 Source30: http://www.mameworld.net/catlist/files/catver.zip
 Patch0: xmame-0.100-libgl.patch
@@ -178,15 +178,16 @@ done
 
 
 %install
-%{__rm} -rf %{buildroot} _docs _datfiles
+%{__rm} -rf %{buildroot} _docs _datfiles _tmp
 
 # Prepare all the extra .dat files
-%{__mkdir} _datfiles
+%{__mkdir} _datfiles _tmp
 for file in %{SOURCE20} %{SOURCE21} %{SOURCE22}; do
     %{__unzip} -o -d _datfiles/ ${file}
 done
 for file in %{SOURCE23}; do
-    7za x -o_datfiles/ ${file}
+    %{__unzip} -o -d _tmp ${file}
+    7za x -o_datfiles/ _tmp/*.exe
 done
 
 for target in %{targets}; do
@@ -280,7 +281,12 @@ popd
 
 
 %changelog
-* Tue Apr 18 2006 Mike Crawford <mike@tuxnami.org> 0.105-1
+* Mon May 29 2006 Matthias Saou <http://freshrpms.net/> 0.106-1
+- Update to 0.106.
+- Update all related files.
+- Fix mameinfo.dat inclusion again, which is now an exe/7zip file in a zip.
+
+* Tue Apr 18 2006 Matthias Saou <http://freshrpms.net/> 0.105-1
 - Update to 0.105.
 - Update all related files.
 - Fix mameinfo.dat inclusion, which is now an exe/7zip file.

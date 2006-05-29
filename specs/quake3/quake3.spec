@@ -7,7 +7,7 @@
 %{!?dist:%define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
-%define svn 649
+%define svn 792
 
 Summary: Quake 3 Arena tournament 3D shooter game
 Name: quake3
@@ -74,7 +74,7 @@ EOF
 # Run Quake III with some default arguments
 
 cd %{_prefix}/games/quake3
-./quake3 "$@"
+./ioquake3 "$@"
 exit $?
 EOF
 
@@ -85,7 +85,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS ChangeLog COPYING.txt id-readme.txt README TODO
+%doc BUGS ChangeLog COPYING.txt id-readme.txt md4-readme.txt NOTTODO README TODO
 %attr(0755, root, root) %{_bindir}/quake3
 %{_prefix}/games/quake3/
 %{_datadir}/applications/quake3.desktop
@@ -93,6 +93,13 @@ EOF
 
 
 %changelog
+* Mon May 29 2006 Matthias Saou <http://freshrpms.net/> 1.34-0.1.rc1.svn792
+- Update to today's svn code (rev. 792).
+- Update the nostrip patch.
+- Fix wrapper script since the binary has been renamed from quake3 to
+  ioquake3.<arch>, which we rename to plain ioquake3 (in the patch).
+- Include new documentation.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.34-0.1.rc1.svn649
 - Update to today's svn code (rev. 649).
 - Update nostrip patch, now pass OPTFLAGS to the build too.
