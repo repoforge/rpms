@@ -1,0 +1,32 @@
+--- configure.orig	2006-05-28 18:01:19.027948176 +0200
++++ configure	2006-05-28 18:03:58.558695816 +0200
+@@ -21421,7 +21421,6 @@
+ echo "$as_me:$LINENO: checking for LIBXML2" >&5
+ echo $ECHO_N "checking for LIBXML2... $ECHO_C" >&6
+ 
+-if test -n "$PKG_CONFIG"; then
+     if test -n "$LIBXML2_CFLAGS"; then
+         pkg_cv_LIBXML2_CFLAGS="$LIBXML2_CFLAGS"
+     else
+@@ -21436,10 +21435,7 @@
+   pkg_failed=yes
+ fi
+     fi
+-else
+-	pkg_failed=untried
+-fi
+-if test -n "$PKG_CONFIG"; then
++
+     if test -n "$LIBXML2_LIBS"; then
+         pkg_cv_LIBXML2_LIBS="$LIBXML2_LIBS"
+     else
+@@ -21454,9 +21450,6 @@
+   pkg_failed=yes
+ fi
+     fi
+-else
+-	pkg_failed=untried
+-fi
+ 
+ 
+ 

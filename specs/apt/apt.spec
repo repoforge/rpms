@@ -18,7 +18,7 @@
 Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
 Version: 0.5.15lorg3.1
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Base
 URL: http://apt-rpm.laiskiainen.org/
@@ -26,6 +26,7 @@ URL: http://apt-rpm.laiskiainen.org/
 Source: http://apt-rpm.laiskiainen.org/releases/apt-%{version}.tar.bz2
 Patch0: apt-0.5.15lorg3.1-algorithm.patch
 Patch1: apt-0.5.15lorg3.1-pkgconfig.patch
+Patch2: apt-0.5.15lorg3.1-safeguard.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: rpm-devel >= 3.0.5, zlib-devel, gettext
@@ -62,6 +63,7 @@ you will need to install %{name}-devel.
 %setup -n %{name}-%{version}
 %patch0
 %patch1
+%patch2
 
 %{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|RPMforge RPM Repository %{dist}/%{_arch} APT-HTTP/1.3|' methods/http.cc
 
@@ -186,8 +188,11 @@ touch %{buildroot}%{_sysconfdir}/apt/preferences \
 #exclude %{_libdir}/*.la
 
 %changelog
-* Tue May 23 2006 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.1
-- Updated to 0.5.15lorg3.1
+* Mon May 29 2006 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.1-2
+- Fixed a segfault with the new createrepo -n output.
+
+* Tue May 23 2006 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.1-1
+- Updated to 0.5.15lorg3.1.
 
 * Thu Apr 27 2006 Dag Wieers <dag@wieers.com> - 0.5.15lorg3-3
 - Added patch to handle no-epoch on <= RH9.

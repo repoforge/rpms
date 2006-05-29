@@ -9,18 +9,21 @@
 
 Summary: Installer for perl modules
 Name: perl-Module-Install
-Version: 0.61
+Version: 0.62
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Install/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AU/AUTRIJUS/Module-Install-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Module/Module-Install-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Module-ScanDeps, perl-Module-CoreList, perl-CPANPLUS
-BuildRequires: perl-YAML, perl-PAR-Dist, perl-Archive-Tar, perl-ExtUtils-ParseXS
+BuildRequires: perl, perl(File::Spec) >= 0.87, perl(Test::Harness) >= 2.03
+BuildRequires: perl(Test::More) >= 0.42, perl(Module::ScanDeps) >= 0.28
+BuildRequires: perl-Module-CoreList, perl(PAR::Dist) >= 0.03
+BuildRequires: perl(Archive::Tar), perl(ExtUtils::Install) >= 0.3
+BuildRequires: perl-ExtUtils-ParseXS, perl(Module::Build)
 
 %description
 Module::Install is a standalone, extensible installer for Perl modules.  It is
@@ -55,11 +58,11 @@ descendent of CPAN::MakeMaker.
 %{perl_vendorlib}/inc/Module/Install.pm
 
 %changelog
+* Mon May 29 2006 Dag Wieers <dag@wieers.com> - 0.62-1
+- Updated to release 0.62.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.61-1
 - Updated to release 0.61.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.52-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.52-1
 - Updated to release 0.52.

@@ -1,0 +1,43 @@
+Index: apt-pkg/rpm/rpmhandler.cc
+===================================================================
+--- apt-pkg/rpm/rpmhandler.cc	(revision 195)
++++ apt-pkg/rpm/rpmhandler.cc	(revision 196)
+@@ -1033,8 +1033,10 @@
+    string str = "";
+    if (n) {
+       xmlChar *content = xmlNodeGetContent(n);
+-      str = (char*)content;
+-      xmlFree(content);
++      if (content) {
++	 str = (char*)content;
++	 xmlFree(content);
++      }
+    }
+    return str;
+ }
+@@ -1044,8 +1046,10 @@
+    string str = "";
+    if (Node) {
+       xmlChar *prop = xmlGetProp(Node, (xmlChar*)Prop);
+-      str = (char*)prop;
+-      xmlFree(prop);
++      if (prop) {
++	 str = (char*)prop;
++	 xmlFree(prop);
++      }
+    }
+    return str;
+ }
+@@ -1104,8 +1108,10 @@
+    string str = "";
+    if ((n = FindNode("location"))) {
+       xmlChar *prop = xmlGetProp(n, (xmlChar*)"href");
+-      str = dirname((char*)prop);
+-      xmlFree(prop);
++      if (prop) {
++	 str = dirname((char*)prop);
++	 xmlFree(prop);
++      }
+    }
+    return str;
+ }

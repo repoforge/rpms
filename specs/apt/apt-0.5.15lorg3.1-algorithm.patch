@@ -1,0 +1,13 @@
+Index: apt-pkg/rpm/rpmlistparser.cc
+===================================================================
+--- apt-pkg/rpm/rpmlistparser.cc	(revision 168)
++++ apt-pkg/rpm/rpmlistparser.cc	(revision 169)
+@@ -28,6 +28,8 @@
+ 
+ #include <apti18n.h>
+ 
++#include <algorithm>
++
+ #define WITH_VERSION_CACHING 1
+ 
+ string MultilibArchs[] = {"x86_64", "ia64", "ppc64", "sparc64"};
