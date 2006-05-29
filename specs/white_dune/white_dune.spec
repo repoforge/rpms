@@ -5,24 +5,25 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh8:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
 
-%{?el3:%define _without_lesstif 1}
-%{?fc4:%define _without_lesstif 1}
-
-%define real_version 0.29beta255
+%define real_version 0.29beta345
 
 Summary: Graphical VRML97 editor and animation tool
 Name: white_dune
 Version: 0.29
-Release: 0.beta255.2
+Release: 0.beta345
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.csv.ica.uni-stuttgart.de/vrml/dune/
@@ -31,10 +32,9 @@ Source: http://www.csv.ica.uni-stuttgart.de/vrml/dune/%{name}-%{real_version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, flex, byacc, zlib-devel
 BuildRequires: libjpeg-devel, libpng-devel, ImageMagick, freeglut-devel
-%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Xvfb}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Xvfb}
-%{?_without_lesstif:BuildRequires: openmotif-devel}
-%{!?_without_lesstif:BuildRequires: lesstif-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel, XFree86-Xvfb}
+%{!?_without_modxorg:BuildRequires: libX11-devel, xorg-x11-server-Xvfb}
+BuildRequires: openmotif-devel
 
 %description
 The white_dune program is a graphical VRML97 editor and animation tool.
@@ -100,6 +100,9 @@ Documentatie over het gebruik van dune is ook beschikbaar.
 
 
 %changelog
+* Mon May 29 2006 Dries Verachtert <dries@ulyssis.org> - 0.29-0.beta345
+- Updated to release 0.29-0.beta345.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.29-0.beta255.2
 - Rebuild for Fedora Core 5.
 
