@@ -17,14 +17,13 @@
 
 Summary: Structured WYSIWYG scientific text editor
 Name: texmacs
-Version: 1.0.6.1
+Version: 1.0.6.2
 Release: 1
 License: GPL
 Group: Applications/Text
 URL: http://www.texmacs.org/
 
 Source: ftp://ftp.texmacs.org/pub/TeXmacs/targz/TeXmacs-%{version}-src.tar.gz
-Patch: texmacs-gcc-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: tetex-latex, guile-devel, gcc-c++, python
@@ -55,7 +54,6 @@ drawing editor and a presentation mode.
 
 %prep
 %setup -n TeXmacs-%{version}-src
-%patch -p1
 
 %build
 %configure
@@ -83,6 +81,10 @@ drawing editor and a presentation mode.
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Mon May 29 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.6.2-1
+- Updated to release 1.0.6.2.
+- Patch removed, all changes have been applied upstream.
+
 * Sat May 20 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.6.1-1
 - Update to release 1.0.6.1.
 
