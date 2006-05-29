@@ -19,12 +19,13 @@
 Summary: GUI SNMP MIB browser
 Name: mbrowse
 Version: 0.3.1
-Release: 0.2
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.kill-9.org/mbrowse/
 
 Source: http://www.kill-9.org/mbrowse/mbrowse-%{version}.tar.gz
+Patch: gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel >= 1.2
@@ -37,6 +38,7 @@ Mbrowse is an SNMP MIB browser based on GTK and net-snmp.
 
 %prep
 %setup
+%patch -p1
 
 %{__cat} <<EOF >mbrowse.desktop
 [Desktop Entry]
@@ -47,7 +49,7 @@ Exec=mbrowse
 Terminal=false
 Type=Application
 Encoding=UTF-8
-Categories=GNOME;Application;Internet;
+Categories=Application;Internet;
 EOF
 
 %build
@@ -77,9 +79,12 @@ EOF
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_bindir}/*
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/mbrowse.desktop}
-%{!?_without_freedesktop:%{_datadir}/applications/gnome-mbrowse.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/rpmforge-mbrowse.desktop}
 
 %changelog
+* Mon May 29 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.1-2
+- Fixes for gcc 4.1 by Thomas C. Knoeller.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.1-0.2
 - Rebuild for Fedora Core 5.
 
