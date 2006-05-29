@@ -1,0 +1,133 @@
+? createrepo-0.4.4-noepoch.patch
+Index: dumpMetadata.py
+===================================================================
+RCS file: /cvsroot/metadata/cvs-root/generate/dumpMetadata.py,v
+retrieving revision 1.36
+diff -u -r1.36 dumpMetadata.py
+--- dumpMetadata.py	21 Feb 2006 20:10:08 -0000	1.36
++++ dumpMetadata.py	17 May 2006 18:29:18 -0000
+@@ -225,6 +225,10 @@
+             raise MDError, "Error Stat'ing file %s %s" % (basedir, filename)
+         self.options = options
+         self.localurl = options['baseurl']
++        if options['noepoch']:
++           self.noepoch = ""
++        else:
++           self.noepoch = 0
+         self.relativepath = filename
+         fd = returnFD(os.path.join(basedir, filename))
+         self.hdr = returnHdr(ts, fd)
+@@ -323,7 +327,7 @@
+         if i != -1:
+             epoch = strng[:i]
+         else:
+-            epoch = '0'
++            epoch = self.noepoch
+         j = strng.find('-')
+         if j != -1:
+             if strng[i + 1:j] == '':
+@@ -438,7 +442,7 @@
+         
+     def epoch(self):
+         if self.hdr['epoch'] is None:
+-            return 0
++            return self.noepoch
+         else:
+             return self.tagByName('epoch')
+             
+@@ -592,7 +596,8 @@
+     pkgNode.newChild(None, 'name', rpmObj.tagByName('name'))
+     pkgNode.newChild(None, 'arch', rpmObj.arch())
+     version = pkgNode.newChild(None, 'version', None)
+-    version.newProp('epoch', str(rpmObj.epoch()))
++    if str(rpmObj.epoch()):
++        version.newProp('epoch', str(rpmObj.epoch()))
+     version.newProp('ver', str(rpmObj.tagByName('version')))
+     version.newProp('rel', str(rpmObj.tagByName('release')))
+     csum = pkgNode.newChild(None, 'checksum', rpmObj.pkgid)
+@@ -643,7 +648,7 @@
+                     if flags == 12: arg = 'GE'
+                     entry.newProp('flags', arg)
+                     # if we've got a flag we've got a version, I hope :)
+-                    if e:
++                    if str(e):
+                         entry.newProp('epoch', str(e))
+                     if v:
+                         entry.newProp('ver', str(v))
+@@ -664,7 +669,7 @@
+                 if flags == 12: arg = 'GE'
+                 entry.newProp('flags', arg)
+                 # if we've got a flag we've got a version, I hope :)
+-                if e:
++                if str(e):
+                     entry.newProp('epoch', str(e))
+                 if v:
+                     entry.newProp('ver', str(v))
+@@ -696,7 +701,8 @@
+     pkg.newProp('name', rpmObj.tagByName('name'))
+     pkg.newProp('arch', rpmObj.arch())
+     version = pkg.newChild(None, 'version', None)
+-    version.newProp('epoch', str(rpmObj.epoch()))
++    if str(rpmObj.epoch()):
++        version.newProp('epoch', str(rpmObj.epoch()))
+     version.newProp('ver', str(rpmObj.tagByName('version')))
+     version.newProp('rel', str(rpmObj.tagByName('release')))
+     for file in rpmObj.filenames:
+@@ -721,7 +727,8 @@
+     pkg.newProp('name', rpmObj.tagByName('name'))
+     pkg.newProp('arch', rpmObj.arch())
+     version = pkg.newChild(None, 'version', None)
+-    version.newProp('epoch', str(rpmObj.epoch()))
++    if str(rpmObj.epoch()):
++        version.newProp('epoch', str(rpmObj.epoch()))
+     version.newProp('ver', str(rpmObj.tagByName('version')))
+     version.newProp('rel', str(rpmObj.tagByName('release')))
+     clogs = rpmObj.changelogLists()
+Index: genpkgmetadata.py
+===================================================================
+RCS file: /cvsroot/metadata/cvs-root/generate/genpkgmetadata.py,v
+retrieving revision 1.51
+diff -u -r1.51 genpkgmetadata.py
+--- genpkgmetadata.py	21 Feb 2006 23:30:26 -0000	1.51
++++ genpkgmetadata.py	17 May 2006 18:29:18 -0000
+@@ -49,6 +49,9 @@
+      -o, --outputdir <dir> = optional directory to output to
+      -x, --exclude = files globs to exclude, can be specified multiple times
+      -q, --quiet = run quietly
++     -n, --noepoch = don't add zero epochs for non-existent epochs
++                    (incompatible with yum and smart but required for
++                     systems with rpm < 4.2.1)
+      -g, --groupfile <filename> to point to for group information (precreated)
+                     (<filename> relative to directory-of-packages)
+      -v, --verbose = run verbosely
+@@ -364,6 +367,7 @@
+     cmds['baseurl'] = None
+     cmds['groupfile'] = None
+     cmds['sumtype'] = 'sha'
++    cmds['noepoch'] = False
+     cmds['pretty'] = 0
+ #    cmds['updategroupsonly'] = 0
+     cmds['cachedir'] = None
+@@ -375,11 +379,11 @@
+     cmds['dir-pattern-match'] = ['.*bin\/.*', '^\/etc\/.*']
+ 
+     try:
+-        gopts, argsleft = getopt.getopt(args, 'phqVvg:s:x:u:c:U:o:', ['help', 'exclude=',
++        gopts, argsleft = getopt.getopt(args, 'phqVvng:s:x:u:c:U:o:', ['help', 'exclude=',
+                                                                   'quiet', 'verbose', 'cachedir=', 'basedir=',
+                                                                   'baseurl=', 'groupfile=', 'checksum=',
+                                                                   'version', 'pretty', 'split', 'outputdir=',
+-                                                                  'update-info-location='])
++                                                                  'update-info-location=', 'noepoch'])
+     except getopt.error, e:
+         errorprint(_('Options Error: %s.') % e)
+         usage()
+@@ -443,6 +447,8 @@
+                 cmds['basedir'] = a
+             elif arg in ['-o','--outputdir']:
+                 cmds['outputdir'] = a
++            elif arg in ['-n', '--noepoch']:
++                cmds['noepoch'] = True
+                     
+     except ValueError, e:
+         errorprint(_('Options Error: %s') % e)

@@ -9,8 +9,8 @@
 
 Summary: Classes for fast lookup of country codes from IP addresses for Perl
 Name: perl-IP-Country
-Version: 2.20
-Release: 1.2
+Version: 2.21
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IP-Country/
@@ -39,9 +39,7 @@ to be as accurate as reverse-DNS and WHOIS lookup.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -49,8 +47,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-                %{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -58,13 +55,14 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES MANIFEST README
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/ip2cc.1*
+%doc %{_mandir}/man3/*.3*
 %{_bindir}/ip2cc
 %{perl_vendorlib}/IP/
 
 %changelog
-* Mon Apr 10 2006 Dries Verachtert <dries@ulyssis.org> - 2.20-1.2
-- Rebuild for Fedora Core 5.
+* Mon May 29 2006 Dag Wieers <dag@wieers.com> - 2.21-1
+- Updated to release 2.21.
 
 * Sat Jun 18 2005 Dries Verachtert <dries@ulyssis.org> - 2.20-1
 - Updated to release 2.20.

@@ -1,0 +1,464 @@
+--- genpkgmetadata.py.orig	2006-05-29 04:38:51.562156888 +0200
++++ genpkgmetadata.py	2006-05-29 04:46:10.592414144 +0200
+@@ -30,6 +30,7 @@
+ import urlgrabber
+ 
+ import dumpMetadata
++import readMetadata
+ from dumpMetadata import _gzipOpen
+ __version__ = '0.4.3'
+ 
+@@ -60,6 +61,7 @@
+      -h, --help = show this help
+      -V, --version = output version
+      -p, --pretty = output xml files in pretty format.
++     --update = update existing metadata (if present)
+     """)
+ 
+     sys.exit(retval)
+@@ -115,6 +117,15 @@
+         """all the heavy lifting for the package metadata"""
+ 
+         # rpms we're going to be dealing with
++        if self.cmds['update']:
++            #build the paths
++            basefile = os.path.join(self.cmds['outputdir'], self.cmds['finaldir'], self.cmds['primaryfile'])
++            flfile = os.path.join(self.cmds['outputdir'], self.cmds['finaldir'], self.cmds['filelistsfile'])
++            otherfile = os.path.join(self.cmds['outputdir'], self.cmds['finaldir'], self.cmds['otherfile'])
++            opts = {'verbose' : self.cmds['verbose']}
++            #and scan the old repo
++            self.oldData = readMetadata.MetadataIndex(self.cmds['outputdir'],
++                                                      basefile, flfile, otherfile, opts)
+         files = self.getFileList(self.cmds['basedir'], directory, '.rpm', [])
+         files = self.trimRpms(files)
+         self.pkgcount = len(files)
+@@ -122,7 +133,6 @@
+         self.writeMetadataDocs(files)
+         self.closeMetadataDocs()
+ 
+-
+     def openMetadataDocs(self):
+         self._setupBase()
+         self._setupFilelists()
+@@ -165,85 +175,103 @@
+         self.otherfile.write('<otherdata xmlns="http://linux.duke.edu/metadata/other" packages="%s">\n' %
+                        self.pkgcount)
+ 
++    def _getNodes(self,file,current):
++        basenode = None
++        filesnode = None
++        othernode = None
++        try:
++            mdobj = dumpMetadata.RpmMetaData(self.ts, self.cmds['basedir'], file, self.cmds)
++        except dumpMetadata.MDError, e:
++            errorprint('\n%s - %s' % (e, file))
++            return None
++        try:
++            basenode = dumpMetadata.generateXML(self.basedoc, self.baseroot, self.formatns, mdobj, self.cmds['sumtype'])
++        except dumpMetadata.MDError, e:
++            errorprint(_('\nAn error occurred creating primary metadata: %s') % e)
++            return None
++        try:
++            filesnode = dumpMetadata.fileListXML(self.filesdoc, self.filesroot, mdobj)
++        except dumpMetadata.MDError, e:
++            errorprint(_('\nAn error occurred creating filelists: %s') % e)
++            return None
++        try:
++            othernode = dumpMetadata.otherXML(self.otherdoc, self.otherroot, mdobj)
++        except dumpMetadata.MDError, e:
++            errorprint(_('\nAn error occurred: %s') % e)
++            return None
++        return basenode,filesnode,othernode
++
+     def writeMetadataDocs(self, files, current=0):
+         for file in files:
+             current+=1
+-            try:
+-                mdobj = dumpMetadata.RpmMetaData(self.ts, self.cmds['basedir'], file, self.cmds)
+-                if not self.cmds['quiet']:
+-                    if self.cmds['verbose']:
+-                        print '%d/%d - %s' % (current, len(files), file)
+-                    else:
+-                        sys.stdout.write('\r' + ' ' * 80)
+-                        sys.stdout.write("\r%d/%d - %s" % (current, self.pkgcount, file))
+-                        sys.stdout.flush()
+-            except dumpMetadata.MDError, e:
+-                errorprint('\n%s - %s' % (e, file))
+-                continue
+-            else:
+-                try:
+-                    node = dumpMetadata.generateXML(self.basedoc, self.baseroot, self.formatns, mdobj, self.cmds['sumtype'])
+-                except dumpMetadata.MDError, e:
+-                    errorprint(_('\nAn error occurred creating primary metadata: %s') % e)
+-                    continue
+-                else:
+-                    try:
+-                        # Fetch the update metadata for this package
+-                        if self.cmds['update-info-location']:
+-                            metadata = urlgrabber.urlopen(
+-                                    self.cmds['update-info-location'] +
+-                                    '?pkg=%s' % file)
+-                            filename = file.replace('.rpm', '.xml')
+-                            metadata.filename = os.path.join(
+-                                    self.cmds['basedir'], self.cmds['tempdir'],
+-                                    self.cmds['update-info-dir'], filename)
+-                            metadata._do_grab()
+-                            metadata.close()
+-
+-                            # Get the update ID from the metadata
+-                            md = libxml2.parseFile(metadata.filename)
+-                            update_root = md.children
+-                            update = node.newChild(None, 'update', None)
+-                            update.newProp('id', update_root.prop('id'))
+-                            update.newProp('location', os.path.join(
+-                                    self.cmds['update-info-dir'], filename))
+-                            del md, metadata
+-                    except Exception, e:
+-                        pass
+-                    output = node.serialize('UTF-8', self.cmds['pretty'])
+-                    self.basefile.write(output)
+-                    self.basefile.write('\n')
+-                    node.unlinkNode()
+-                    node.freeNode()
+-                    del node
+-
+-                try:
+-                    node = dumpMetadata.fileListXML(self.filesdoc, self.filesroot, mdobj)
+-                except dumpMetadata.MDError, e:
+-                    errorprint(_('\nAn error occurred creating filelists: %s') % e)
+-                    continue
++            recycled = False
++            sep = '-'
++            if self.cmds['update']:
++                #see if we can pull the nodes from the old repo
++                nodes = self.oldData.getNodes(file)
++                if nodes is not None:
++                    recycled = True
++                    sep = '*'
++            if not recycled:
++                #scan rpm files
++                nodes = self._getNodes(file,current)
++            if nodes is None:
++                return
++            basenode, filenode, othernode = nodes
++            del nodes
++            if not self.cmds['quiet']:
++                if self.cmds['verbose']:
++                    print '%d/%d %s %s' % (current, self.pkgcount, sep, file)
+                 else:
+-                    output = node.serialize('UTF-8', self.cmds['pretty'])
+-                    self.flfile.write(output)
+-                    self.flfile.write('\n')
++                    sys.stdout.write('\r' + ' ' * 80)
++                    sys.stdout.write("\r%d/%d %s %s" % (current, self.pkgcount, sep, file))
++                    sys.stdout.flush()
++            if basenode is None:
++                continue
++            # Fetch the update metadata for this package
++            if not recycled and self.cmds.get('update-info-location'):
++                _fetchUpdateMetadata(file, basenode)
++
++            for node, outfile in ((basenode,self.basefile),
++                                  (filenode,self.flfile),
++                                  (othernode,self.otherfile)):
++                if node is None:
++                    break
++                output = node.serialize('UTF-8', self.cmds['pretty'])
++                outfile.write(output)
++                outfile.write('\n')
++                if not recycled:
++                    #recycled nodes can be multiply referenced
+                     node.unlinkNode()
+                     node.freeNode()
+-                    del node
++            if recycled:
++                self.oldData.freeNodes(file)
+ 
+-                try:
+-                    node = dumpMetadata.otherXML(self.otherdoc, self.otherroot, mdobj)
+-                except dumpMetadata.MDError, e:
+-                    errorprint(_('\nAn error occurred: %s') % e)
+-                    continue
+-                else:
+-                    output = node.serialize('UTF-8', self.cmds['pretty'])
+-                    self.otherfile.write(output)
+-                    self.otherfile.write('\n')
+-                    node.unlinkNode()
+-                    node.freeNode()
+-                    del node
+         return current
+ 
++    def _fetchUpdateMetadata(file, node):
++        try:
++            # Fetch the update metadata for this package
++            metadata = urlgrabber.urlopen(
++                    self.cmds['update-info-location'] +
++                    '?pkg=%s' % file)
++            filename = file.replace('.rpm', '.xml')
++            metadata.filename = os.path.join(
++                    self.cmds['basedir'], self.cmds['tempdir'],
++                    self.cmds['update-info-dir'], filename)
++            metadata._do_grab()
++            metadata.close()
++
++            # Get the update ID from the metadata
++            md = libxml2.parseFile(metadata.filename)
++            update_root = md.children
++            update = node.newChild(None, 'update', None)
++            update.newProp('id', update_root.prop('id'))
++            update.newProp('location', os.path.join(
++                    self.cmds['update-info-dir'], filename))
++            del md, metadata
++        except Exception, e:
++            pass
+ 
+     def closeMetadataDocs(self):
+         if not self.cmds['quiet']:
+@@ -374,6 +402,7 @@
+     cmds['basedir'] = os.getcwd()
+     cmds['cache'] = False
+     cmds['split'] = False
++    cmds['update'] = False
+     cmds['outputdir'] = ""
+     cmds['file-pattern-match'] = ['.*bin\/.*', '^\/etc\/.*', '^\/usr\/lib\/sendmail$']
+     cmds['dir-pattern-match'] = ['.*bin\/.*', '^\/etc\/.*']
+@@ -383,7 +412,7 @@
+                                                                   'quiet', 'verbose', 'cachedir=', 'basedir=',
+                                                                   'baseurl=', 'groupfile=', 'checksum=',
+                                                                   'version', 'pretty', 'split', 'outputdir=',
+-                                                                  'update-info-location=', 'noepoch'])
++                                                                  'update-info-location=', 'noepoch', 'update'])
+     except getopt.error, e:
+         errorprint(_('Options Error: %s.') % e)
+         usage()
+@@ -443,6 +472,8 @@
+                 cmds['cachedir'] = a
+             elif arg in ['-U', '--update-info-location']:
+                 cmds['update-info-location'] = a
++            elif arg == '--update':
++                cmds['update'] = True
+             elif arg == '--basedir':
+                 cmds['basedir'] = a
+             elif arg in ['-o','--outputdir']:
+@@ -465,6 +496,7 @@
+     else:
+         cmds['basedir'] = os.path.realpath(os.path.join(cmds['basedir'], directory))
+         directory = '.'
++    directories[0] = directory
+     if not cmds['outputdir']:
+         cmds['outputdir'] = cmds['basedir']
+     if cmds['groupfile']:
+--- Makefile.orig	2006-05-29 04:50:49.680986232 +0200
++++ Makefile	2006-05-29 04:46:36.476479168 +0200
+@@ -40,7 +40,8 @@
+ SUBDIRS = bin docs
+ 
+ MODULES = $(srcdir)/genpkgmetadata.py \
+-    	  $(srcdir)/dumpMetadata.py 
++    	  $(srcdir)/dumpMetadata.py \
++          $(srcdir)/readMetadata.py
+ 
+ .SUFFIXES: .py .pyc
+ .py.pyc: 
+--- readMetadata.py.orig	1970-01-01 01:00:00.000000000 +0100
++++ readMetadata.py	2006-05-29 04:48:22.684333120 +0200
+@@ -0,0 +1,199 @@
++#!/usr/bin/python -t
++
++# This program is free software; you can redistribute it and/or modify
++# it under the terms of the GNU General Public License as published by
++# the Free Software Foundation; either version 2 of the License, or
++# (at your option) any later version.
++#
++# This program is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++# GNU Library General Public License for more details.
++#
++# You should have received a copy of the GNU General Public License
++# along with this program; if not, write to the Free Software
++# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
++# Copyright 2006 Red Hat
++
++import os
++import sys
++import libxml2
++import pprint
++import stat
++
++def errorprint(stuff):
++    print >> sys.stderr, stuff
++
++def _(args):
++    """Stub function for translation"""
++    return args
++
++class MetadataIndex(object):
++
++    def __init__(self, outputdir, basefile, filelistfile, otherfile, opts=None):
++        if opts is None:
++            opts = {}
++        self.opts = opts
++        self.outputdir = outputdir
++        self.files = {'base' : basefile,
++                      'filelist' : filelistfile,
++                      'other' : otherfile}
++        self.scan()
++
++    def scan(self):
++        """Read in and index old repo data"""
++        self.basenodes = {}
++        self.filesnodes = {}
++        self.othernodes = {}
++        self.pkg_ids = {}
++        if self.opts.get('verbose'):
++            print _("Scanning old repo data")
++        for file in self.files.values():
++            if not os.path.exists(file):
++                #cannot scan
++                errorprint(_("Previous repo file missing: %s") % file)
++                return
++        root = libxml2.parseFile(self.files['base']).getRootElement()
++        self._scanPackageNodes(root, self._handleBase)
++        if self.opts.get('verbose'):
++            print _("Indexed %i base nodes" % len(self.basenodes))
++        root = libxml2.parseFile(self.files['filelist']).getRootElement()
++        self._scanPackageNodes(root, self._handleFiles)
++        if self.opts.get('verbose'):
++            print _("Indexed %i filelist nodes" % len(self.filesnodes))
++        root = libxml2.parseFile(self.files['other']).getRootElement()
++        self._scanPackageNodes(root, self._handleOther)
++        if self.opts.get('verbose'):
++            print _("Indexed %i other nodes" % len(self.othernodes))
++        #reverse index pkg ids to track references
++        self.pkgrefs = {}
++        for relpath, pkgid in self.pkg_ids.iteritems():
++            self.pkgrefs.setdefault(pkgid,[]).append(relpath)
++
++    def _scanPackageNodes(self, root, handler):
++        node = root.children
++        while node is not None:
++            if node.type != "element":
++                node = node.next
++                continue
++            if node.name == "package":
++                handler(node)
++            node = node.next
++
++    def _handleBase(self, node):
++        top = node
++        node = node.children
++        pkgid = None
++        mtime = None
++        size = None
++        relpath = None
++        while node is not None:
++            if node.type != "element":
++                node = node.next
++                continue
++            if node.name == "checksum":
++                pkgid = node.content
++            elif node.name == "time":
++                mtime = int(node.prop('file'))
++            elif node.name == "size":
++                size = int(node.prop('package'))
++            elif node.name == "location":
++                relpath = node.prop('href')
++            node = node.next
++        if relpath is None:
++            print _("Incomplete data for node")
++            return
++        if pkgid is None:
++            print _("pkgid missing for %s") % relpath
++            return
++        if mtime is None:
++            print _("mtime missing for %s") % relpath
++            return
++        if size is None:
++            print _("size missing for %s") % relpath
++            return
++        filepath = os.path.join(self.outputdir, relpath)
++        try:
++            st = os.stat(filepath)
++        except OSError:
++            #file missing -- ignore
++            return
++        if not stat.S_ISREG(st.st_mode):
++            #ignore non files
++            return
++        #check size and mtime
++        if st.st_size != size:
++            if self.opts.get('verbose'):
++                print _("Size (%i -> %i) changed for file %s") % (size,st.st_size,filepath)
++            return
++        if st.st_mtime != mtime:
++            if self.opts.get('verbose'):
++                print _("Modification time changed for %s") % filepath
++            return
++        #otherwise we index
++        self.basenodes[relpath] = top
++        self.pkg_ids[relpath] = pkgid
++
++    def _handleFiles(self, node):
++        pkgid = node.prop('pkgid')
++        if pkgid:
++            self.filesnodes[pkgid] = node
++
++    def _handleOther(self, node):
++        pkgid = node.prop('pkgid')
++        if pkgid:
++            self.othernodes[pkgid] = node
++
++    def getNodes(self, relpath):
++        """Return base, filelist, and other nodes for file, if they exist
++
++        Returns a tuple of nodes, or None if not found
++        """
++        bnode = self.basenodes.get(relpath,None)
++        if bnode is None:
++            return None
++        pkgid = self.pkg_ids.get(relpath,None)
++        if pkgid is None:
++            print _("No pkgid found for: %s") % relpath
++            return None
++        fnode = self.filesnodes.get(pkgid,None)
++        if fnode is None:
++            return None
++        onode = self.othernodes.get(pkgid,None)
++        if onode is None:
++            return None
++        return bnode, fnode, onode
++
++    def freeNodes(self,relpath):
++        #causing problems
++        """Free up nodes corresponding to file, if possible"""
++        bnode = self.basenodes.get(relpath,None)
++        if bnode is None:
++            print "Missing node for %s" % relpath
++            return
++        bnode.unlinkNode()
++        bnode.freeNode()
++        del self.basenodes[relpath]
++        pkgid = self.pkg_ids.get(relpath,None)
++        if pkgid is None:
++            print _("No pkgid found for: %s") % relpath
++            return None
++        del self.pkg_ids[relpath]
++        dups = self.pkgrefs.get(pkgid)
++        dups.remove(relpath)
++        if len(dups):
++            #still referenced
++            return
++        del self.pkgrefs[pkgid]
++        for nodes in self.filesnodes, self.othernodes:
++            node = nodes.get(pkgid)
++            if node is not None:
++                node.unlinkNode()
++                node.freeNode()
++                del nodes[pkgid]
++
++
++if __name__ == "__main__":
++    #test code - attempts to read a repo in working directory
++    idx = MetadataIndex(".", "repodata/primary.xml.gz", "repodata/filelists.xml.gz",
++                        "repodata/other.xml.gz", {'verbose':1})

@@ -27,14 +27,9 @@ distribution from MIT.
 
 %prep
 %setup -n GSSAPI-%{version}
-chmod a-x examples/*.pl
+%{__chmod} a-x examples/*.pl
 
 %build
-if pkg-config openssl; then
-        export CFLAGS="%{optflags} $(pkg-config --cflags openssl)"
-        export CPPFLAGS="%{optflags} $(pkg-config --cflags openssl)"
-        export LDFLAGS="$(pkg-config --libs-only-L openssl)"
-fi
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 

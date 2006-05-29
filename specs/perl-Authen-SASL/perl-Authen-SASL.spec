@@ -2,6 +2,11 @@
 # Authority: dries
 # Upstream: Graham Barr <gbarr$pobox,com>
 
+%{?el3:%define _without_gssapi 1}
+%{?rh9:%define _without_gssapi 1}
+%{?rh7:%define _without_gssapi 1}
+%{?el2:%define _without_gssapi 1}
+
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
@@ -19,7 +24,8 @@ Source: http://www.cpan.org/modules/by-module/Authen/Authen-SASL-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Digest::HMAC_MD5), perl(GSSAPI)
+BuildRequires: perl, perl(Digest::HMAC_MD5)
+%{!?_without_gssapi:BuildRequires: perl(GSSAPI)}
 
 %description
 This module permits authentication with SASL.
@@ -28,9 +34,7 @@ This module permits authentication with SASL.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	INSTALLDIRS="vendor" \
-	PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -38,8 +42,7 @@ This module permits authentication with SASL.
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-                %{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,7 +50,8 @@ This module permits authentication with SASL.
 %files
 %defattr(-, root, root, 0755)
 %doc api.txt Changes example_pl
-%{_mandir}/man3/*
+%{_mandir}/man3/*.3*
+%dir %{perl_vendorlib}/Authen/
 %{perl_vendorlib}/Authen/SASL.pm
 %{perl_vendorlib}/Authen/SASL.pod
 %{perl_vendorlib}/Authen/SASL/
@@ -55,9 +59,6 @@ This module permits authentication with SASL.
 %changelog
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.10-1
 - Updated to release 2.10.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.09-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 2.09-1
 - Updated to release 2.09.

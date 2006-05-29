@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-SimpleUnit/
 
-Source: http://search.cpan.org/CPAN/authors/id/G/GE/GED/Test-SimpleUnit-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Test/Test-SimpleUnit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -43,12 +43,10 @@ run either standalone or under Test::Harness.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3*
+%dir %{perl_vendorlib}/Test/
 %{perl_vendorlib}/Test/SimpleUnit.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.21-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.21-1
 - Initial package.
