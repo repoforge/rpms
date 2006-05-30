@@ -16,8 +16,8 @@
 
 Summary: Double-entry accounting software package
 Name: kmymoney
-Version: 0.8.3
-Release: 2
+Version: 0.8.4
+Release: 1
 License: GPL
 Group: Applications/Productivity
 URL: http://kmymoney2.sourceforge.net/
@@ -74,6 +74,9 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_datadir}/servicetypes/kmymoney*.desktop
 
 %changelog
+* Tue May 29 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.4-1
+- Updated to release 0.8.4.
+
 * Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.3-2
 - Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
 
