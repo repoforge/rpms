@@ -33,7 +33,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, flex, byacc, zlib-devel
 BuildRequires: libjpeg-devel, libpng-devel, ImageMagick, freeglut-devel
 %{?_without_modxorg:BuildRequires: XFree86-devel, XFree86-Xvfb}
-%{!?_without_modxorg:BuildRequires: libX11-devel, xorg-x11-server-Xvfb}
+%{!?_without_modxorg:BuildRequires: libX11-devel, xorg-x11-server-Xvfb, xorg-x11-proto-devel}
 BuildRequires: openmotif-devel
 
 %description

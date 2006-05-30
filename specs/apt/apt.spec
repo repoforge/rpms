@@ -30,7 +30,7 @@ Patch2: apt-0.5.15lorg3.1-safeguard.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: rpm-devel >= 3.0.5, zlib-devel, gettext
-BuildRequires: readline-devel, bison, gcc-c++, libtool
+BuildRequires: readline-devel, bison, gcc-c++, libtool, libxml2-devel
 %{!?_without_pkgconfig:BuildRequires: pkgconfig >= 0.9}
 
 

@@ -43,7 +43,7 @@ This module allows you to check for POD errors in files.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIIFEST
+%doc Changes MANIFEST
 %doc %{_mandir}/man3/*.3*
 %dir %{perl_vendorlib}/Test/
 %{perl_vendorlib}/Test/Pod.pm
