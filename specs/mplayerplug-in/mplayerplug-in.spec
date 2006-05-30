@@ -5,24 +5,43 @@
 
 #%define mversion %(rpm -q mozilla-devel --qf "%%{epoch}:%%{version}")
 
-Summary: Browser plugin for mplayer
+%define _use_internal_dependency_generator 0
+
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+
+Summary: Browser plugin for MPlayer
 Name: mplayerplug-in
 Version: 3.25
-Release: 1.2
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerplug-in.sourceforge.net/
 
 Source: http://dl.sf.net/mplayerplug-in/mplayerplug-in-%{version}.tar.gz
+Source10: filter-depends.sh
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, mozilla-devel, glib2-devel, gtk2-devel >= 2.2.1, mozilla-devel
+BuildRequires: mozilla-devel, gtk2-devel >= 2.2.1
 BuildRequires: gcc-c++, gettext
+%{!?_without_modxorg:BuildRequires: libXt-devel, libXpm-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
-Obsoletes: mozilla-mplayer <= %{version}-%{release}
+Obsoletes: mozilla-mplayer < 3.25-2
 #Requires: mplayer, mozilla = %{mversion}
 #Requires: %{_libdir}/mozilla/plugins/
 Requires: mplayer
+
+# We filter out the libxpcom.so requirement since firefox has it too although
+# it doesn't provide it (i.e. we let users have only firefox installed)
+%define __find_requires %{SOURCE10}
 
 %description
 mplayerplug-in is a browser plugin that uses mplayer to play videos
@@ -60,6 +79,13 @@ in your browser.
 %{_libdir}/mozilla/plugins/mplayerplug-in-wmp.xpt
 
 %changelog
+* Tue May 30 2006 Matthias Saou <http://freshrpms.net/> 3.25-2
+- Add modular X build requirements and conditional.
+- Clean up build requirements.
+- Filter out libxpcom.so from the requirements since it would pull in mozilla
+  to satisfy it, although firefox alone works fine since it includes it too,
+  although it doesn't provide it (why?...).
+
 * Tue Apr 11 2006 Dag Wieers <dag@wieers.com> - 3.25-1
 - Updated to release 3.25.
 
