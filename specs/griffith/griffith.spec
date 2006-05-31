@@ -13,7 +13,7 @@ Source: http://download.berlios.de/griffith/griffith-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildRequires: 
-Requires: python-imaging, python-reportlab, python-gnome-extras
+Requires: python-imaging, python-reportlab, gnome-python2-gtkspell
 
 %description
 Griffith is a film collection manager application. Adding items to the
