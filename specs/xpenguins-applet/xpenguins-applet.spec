@@ -24,7 +24,7 @@ Source: http://xpenguins.seul.org/xpenguins-applet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: xpenguins >= 1.9
-BuildRequires: gnome-libs-devel, automake, autoconf, libgnomeui-devel
+BuildRequires: gnome-libs-devel, automake, autoconf, gnome-panel-devel
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: libXpm-devel}
 

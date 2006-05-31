@@ -44,7 +44,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{_bindir}/linkchecker
 %{_datadir}/linkchecker/
 %{python_dir}/linkcheck/
-%{python_dir}/_linkchecker_configdata.py
+%{python_dir}/_linkchecker_configdata.py*
 
 
 %changelog

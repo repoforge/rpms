@@ -4,6 +4,16 @@
 
 %define xmms_visualdir %(xmms-config --visualization-plugin-dir 2>/dev/null || echo %{_libdir}/xmms/Visualization)
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+
 Summary: OpenGL visual plugin for XMMS
 Name: xmms-nebulus
 Version: 0.7.0
@@ -16,7 +26,7 @@ Source: http://nebulus.tuxfamily.org/xmms-nebulus-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: xmms-devel, SDL-devel, SDL_ttf-devel, gcc-c++
-
+%{!?_without_modxorg:BuildRequires: mesa-libGL-devel, mesa-libGLU-devel}
 
 %description
 Nebulus is an OpenGL visual plugin for XMMS.

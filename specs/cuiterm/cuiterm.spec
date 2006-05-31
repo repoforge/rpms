@@ -14,6 +14,7 @@ Source: ftp://linux.pte.hu/pub/CUI/cuiterm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig, pango-devel, libgnomeui-devel, scrollkeeper, gettext
+BuildRequires: desktop-file-utils
 
 %description
 Cuiterm is a CUI (Composite User Interface) terminal, a compound type of 
