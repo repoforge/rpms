@@ -4,8 +4,8 @@
 
 Summary: Painting program for creating icons and pixel-based artwork
 Name: mtpaint
-Version: 2.30
-Release: 1.2
+Version: 2.31
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://mtpaint.sourceforge.net/
@@ -63,6 +63,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Wed May 31 2006 Dries Verachtert <dries@ulyssis.org> - 2.31-1
+- Updated to release 2.31.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.30-1.2
 - Rebuild for Fedora Core 5.
 
