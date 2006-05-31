@@ -4,7 +4,7 @@
 Summary: Film collection manager application
 Name: griffith
 Version: 0.6.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://griffith.vasconunes.net/
@@ -13,7 +13,7 @@ Source: http://download.berlios.de/griffith/griffith-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildRequires: 
-#Requires:
+Requires: python-imaging, python-reportlab, python-gnome-extras
 
 %description
 Griffith is a film collection manager application. Adding items to the
@@ -50,5 +50,8 @@ related information from the Web.
 %{_datadir}/applications/griffith.desktop
 
 %changelog
+* Wed May 31 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.1-2
+- Added missing requirements, thanks to Malte Tiedje.
+
 * Sat Apr 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.1-1
 - Initial package.
