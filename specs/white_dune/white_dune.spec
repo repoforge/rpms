@@ -65,7 +65,7 @@ Documentatie over het gebruik van dune is ook beschikbaar.
   --with-buginlesstif \
   --without-devil \
   --with-vrmlbrowser=mozilla \
-  --with-helpurl="%{_datadir}/doc/white_dune-0.26pl2/docs/" \
+  --with-helpurl="%{_datadir}/doc/white_dune-%{real_version}/docs/index.html" \
   --with-nurbscurveprotourl="%{_datadir}/misc/white_dune/NurbsCurvePROTO.wrl" \
   --with-nurbsgroupprotourl="%{_datadir}/misc/white_dune/NurbsGroupPROTO.wrl" \
   --with-nurbssurfaceprotourl="%{_datadir}/misc/white_dune/NurbsSurfacePROTO.wrl"
