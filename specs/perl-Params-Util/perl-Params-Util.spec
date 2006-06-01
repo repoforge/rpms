@@ -9,17 +9,17 @@
 
 Summary: Param checking functions
 Name: perl-Params-Util
-Version: 0.10
+Version: 0.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Params-Util/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AD/ADAMK/Params-Util-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Params/Params-Util-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-ExtUtils-AutoInstall
+BuildRequires: perl, perl(Scalar::Util)
 
 %description
 Simple standalone param-checking functions.
@@ -43,9 +43,13 @@ Simple standalone param-checking functions.
 %defattr(-, root, root, 0755)
 %doc Changes README
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Params/
 %{perl_vendorlib}/Params/Util.pm
 
 %changelog
+* Thu Jun 01 2006 Dag Wieers <dag@wieers.com> - 0.14-1
+- Updated to release 0.14.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Updated to release 0.10.
 
