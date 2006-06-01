@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: <autrijus$autrijus,org>
 
+### This package is dangerous, we don't want it to be available as-is
+# Tag: test
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)

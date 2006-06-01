@@ -5,17 +5,20 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?el4:%define _without_modxorg 1}
-%{?el3:%define _without_modxorg 1}
 %{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
 %{?fc3:%define _without_modxorg 1}
 %{?fc2:%define _without_modxorg 1}
 %{?fc1:%define _without_modxorg 1}
+
+%{?el3:%define _without_freeglut 1}
+%{?el3:%define _without_modxorg 1}
+
+%{?rh9:%define _without_freeglut 1}
 %{?rh9:%define _without_modxorg 1}
-%{?rh8:%define _without_modxorg 1}
+
 %{?rh7:%define _without_modxorg 1}
 %{?el2:%define _without_modxorg 1}
-%{?rh6:%define _without_modxorg 1}
 %{?yd3:%define _without_modxorg 1}
 
 %define real_version 0.29beta345
@@ -31,10 +34,11 @@ URL: http://www.csv.ica.uni-stuttgart.de/vrml/dune/
 Source: http://www.csv.ica.uni-stuttgart.de/vrml/dune/%{name}-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, flex, byacc, zlib-devel
-BuildRequires: libjpeg-devel, libpng-devel, ImageMagick, freeglut-devel
-%{?_without_modxorg:BuildRequires: XFree86-devel, XFree86-Xvfb}
+BuildRequires: libjpeg-devel, libpng-devel, ImageMagick, openmotif-devel
 %{!?_without_modxorg:BuildRequires: libX11-devel, xorg-x11-server-Xvfb, xorg-x11-proto-devel, libXi-devel}
-BuildRequires: openmotif-devel
+%{?_without_modxorg:BuildRequires: XFree86-devel, /usr/X11R6/bin/Xvfb}
+%{!?_without_freeglut:BuildRequires: freeglut-devel}
+%{?_without_freeglut:BuildRequires: glut-devel}
 
 %description
 The white_dune program is a graphical VRML97 editor and animation tool.

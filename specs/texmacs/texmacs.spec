@@ -6,14 +6,8 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
 
 Summary: Structured WYSIWYG scientific text editor
 Name: texmacs
@@ -27,8 +21,8 @@ Source: ftp://ftp.texmacs.org/pub/TeXmacs/targz/TeXmacs-%{version}-src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: tetex-latex, guile-devel, gcc-c++, python
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-proto-devel, libXext-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{?_wit_modxorg:BuildRequires: xorg-x11-proto-devel, libXext-devel}
 
 ### Fedora Extras introduced them differently :(
 Obsoletes: TeXmacs < %{version}-%{release}
@@ -73,12 +67,14 @@ drawing editor and a presentation mode.
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING LICENSE
-%doc %{_mandir}/man?/*
-%{_datadir}/TeXmacs
-%{_libexecdir}/TeXmacs
-%{_bindir}/*
+%doc %{_mandir}/man1/fig2ps.1*
+%doc %{_mandir}/man1/texmacs.1*
+%{_bindir}/fig2ps
+%{_bindir}/texmacs
+%{_datadir}/TeXmacs/
+%{_datadir}/applications/texmacs.desktop
 %{_includedir}/*.h
-%{_datadir}/applications/*.desktop
+%{_libexecdir}/TeXmacs/
 
 %changelog
 * Mon May 29 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.6.2-1

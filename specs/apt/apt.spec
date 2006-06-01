@@ -30,9 +30,8 @@ Patch2: apt-0.5.15lorg3.1-safeguard.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: rpm-devel >= 3.0.5, zlib-devel, gettext
-BuildRequires: readline-devel, bison, gcc-c++, libtool, libxml2-devel
+BuildRequires: readline-devel, bison, gcc-c++, libtool, libxml2-devel >= 2.6.16
 %{!?_without_pkgconfig:BuildRequires: pkgconfig >= 0.9}
-
 
 %{!?_without_elfutils:BuildRequires: beecrypt-devel, elfutils-devel}
 %{?_without_elfutils:BuildRequires: libelf}
@@ -41,6 +40,7 @@ BuildRequires: readline-devel, bison, gcc-c++, libtool, libxml2-devel
 %{?rh8:BuildRequires: libelf-devel}
 
 Requires: rpm >= 3.0.5, zlib, bzip2-libs, libstdc++
+Requires: libxml2 >= 2.6.16
 
 %description
 A port of Debian's apt tools for RPM based distributions, or at least
