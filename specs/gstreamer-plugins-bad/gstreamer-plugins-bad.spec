@@ -13,8 +13,8 @@
 
 Summary: GStreamer streaming media framework "bad" plug-ins
 Name: %{gstreamer}-plugins-bad
-Version: 0.10.1
-Release: 2
+Version: 0.10.3
+Release: 1
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
@@ -45,6 +45,7 @@ BuildRequires: bzip2-devel
 BuildRequires: mesa-libGLU-devel
 BuildRequires: neon-devel
 BuildRequires: libmms-devel
+BuildRequires: libmusicbrainz-devel
 
 %description
 GStreamer is a streaming media framework, based on graphs of elements which
@@ -85,6 +86,7 @@ This package contains development files and documentation.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%find_lang gst-plugins-bad-%{majorminor}
 
 # Clean out files that should not be part of the rpm.
 %{__rm} -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.{a,la}
@@ -95,16 +97,19 @@ This package contains development files and documentation.
 %{__rm} -rf %{buildroot}
 
 
-%files
+%files -f gst-plugins-bad-%{majorminor}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING README REQUIREMENTS
 
 # Plugins without external dependencies
 %{_libdir}/gstreamer-%{majorminor}/libgstcdxaparse.so
 %{_libdir}/gstreamer-%{majorminor}/libgstfreeze.so
+%{_libdir}/gstreamer-%{majorminor}/libgstmodplug.so
 %{_libdir}/gstreamer-%{majorminor}/libgstqtdemux.so
 %{_libdir}/gstreamer-%{majorminor}/libgstspeed.so
+%{_libdir}/gstreamer-%{majorminor}/libgsttrm.so
 %{_libdir}/gstreamer-%{majorminor}/libgsttta.so
+%{_libdir}/gstreamer-%{majorminor}/libgstxingheader.so
 
 # Plugins with external dependencies
 %{_libdir}/gstreamer-%{majorminor}/libgstbz2.so
@@ -119,6 +124,7 @@ This package contains development files and documentation.
 %{_libdir}/gstreamer-%{majorminor}/libgstneonhttpsrc.so
 %{_libdir}/gstreamer-%{majorminor}/libgstsdlvideosink.so
 %{_libdir}/gstreamer-%{majorminor}/libgstswfdec.so
+%{_libdir}/gstreamer-%{majorminor}/libgstvideo4linux2.so
 %{_libdir}/gstreamer-%{majorminor}/libgstwavpack.so
 %{_libdir}/gstreamer-%{majorminor}/libgstxvid.so
 
@@ -129,6 +135,12 @@ This package contains development files and documentation.
 
 
 %changelog
+* Thu Jun  1 2006 Matthias Saou <http://freshrpms.net/> 0.10.3-1
+- Update to 0.10.3.
+- Add new translations.
+- Add libgstmodplug.so, libgstvideo4linux2.so and libgstxingheader.so.
+- Add new libmusicbrainz support.
+
 * Thu Mar 23 2006 Matthias Saou <http://freshrpms.net/> 0.10.1-2
 - Add libmms support, thanks to Daniel S. Rogers.
 
