@@ -9,7 +9,7 @@
 
 Summary: Event based transparent Client/Server RPC framework
 Name: perl-Event-RPC
-Version: 0.89
+Version: 0.90
 Release: 1
 License: Artistic/GPL
 Group: Development/Libraries
@@ -56,6 +56,9 @@ Event based transparent Client/Server RPC framework.
 
 
 %changelog
+* Thu Jun  1 2006 Dries Verachtert <dries@ulyssis.org> - 0.90-1
+- Updated to release 0.90.
+
 * Wed Apr 19 2006 Matthias Saou <http://freshrpms.net/> 0.89-1
 - Update to 0.89.
 
