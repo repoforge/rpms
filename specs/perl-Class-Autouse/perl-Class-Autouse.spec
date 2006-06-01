@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Class/Class-Autouse-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-ExtUtils-AutoInstall
+BuildRequires: perl
 BuildRequires: perl(Test::More) >= 0.47, perl(Carp) >= 1.01, perl(File::Spec) >= 0.80, perl(List::Util) >= 1.18
 
 #Test-Simple and Scalar-List-Utils is already included in the perl package on fedora core

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/CSS/CSS-Tiny-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-ExtUtils-AutoInstall, perl(File::Spec) >= 0.82, perl(Test::More) >= 0.47
+BuildRequires: perl, perl(File::Spec) >= 0.82, perl(Test::More) >= 0.47
 
 %description
 CSS::Tiny is a perl class to read and write .css stylesheets with as

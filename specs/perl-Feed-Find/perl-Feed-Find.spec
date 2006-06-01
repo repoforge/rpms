@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BT/BTROTT/Feed-Find-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Class-ErrorHandler, perl-ExtUtils-AutoInstall
+BuildRequires: perl, perl-Class-ErrorHandler
 BuildRequires: perl-libwww-perl, perl-URI, perl-HTML-Parser
 
 %description

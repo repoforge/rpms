@@ -19,8 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AU/AUTRIJUS/Module-Signature-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, gnupg, perl-ExtUtils-AutoInstall, perl-PAR-Dist
-BuildRequires: perl-Digest-SHA
+BuildRequires: perl, gnupg, perl-PAR-Dist, perl-Digest-SHA
 
 %description
 A module to check and create SIGNATURE files for CPAN distributions.
