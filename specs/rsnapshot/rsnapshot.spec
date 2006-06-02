@@ -5,14 +5,13 @@
 
 Summary: Local and remote filesystem snapshot utility
 Name: rsnapshot
-Version: 1.2.3
-Release: 1.2
+Version: 1.2.9
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.rsnapshot.org/
 
 Source: http://www.rsnapshot.org/downloads/rsnapshot-%{version}.tar.gz
-Patch: rsnapshot-1.2.1.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -25,7 +24,13 @@ of filesystems. rnsapshot uses hard links to save space on disk.
 
 %prep
 %setup
-%patch
+
+%{__perl} -pi.orig -e '
+		s|^#\@CMD_CP\@|\@CMD_CP\@|g;
+		s|^#\@CMD_DU\@|\@CMD_DU\@|g;
+		s|^#logfile\s+.+$|logfile /var/log/rsnapshot|g;
+		s|^#lockfile\s+.+$|lockfile /var/run/rsnapshot.pid|g;
+	' rsnapshot.conf.default.in
 
 %build
 %configure \
@@ -68,10 +73,11 @@ fi
 %config %{_sysconfdir}/rsnapshot.conf
 %exclude %{_sysconfdir}/rsnapshot.conf.default
 %{_bindir}/rsnapshot
+%{_bindir}/rsnapshot-diff
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.3-1.2
-- Rebuild for Fedora Core 5.
+* Fri Jun 02 2006 Dag Wieers <dag@wieers.com> - 1.2.9-1
+- Updated to release 1.2.9.
 
 * Sat Sep 03 2005 Dag Wieers <dag@wieers.com> - 1.2.3-1
 - Updated to release 1.2.3.

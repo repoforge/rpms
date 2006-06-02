@@ -10,7 +10,7 @@
 Summary: Simplified unit testing framework
 Name: perl-Test-SimpleUnit
 Version: 1.21
-Release: 1.2
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-SimpleUnit/
@@ -19,7 +19,9 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-SimpleUnit-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Data::Compare)
+BuildRequires: perl, perl(Data::Compare) >= 0.02, perl(Data::Dumper)
+BuildRequires: perl(Scalar::Util), perl(Carp), perl(IO::Handle)
+BuildRequires: perl(IO::File)
 
 %description
 This is a simplified Perl unit-testing framework for creating unit tests to be
@@ -29,7 +31,7 @@ run either standalone or under Test::Harness.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -48,5 +50,8 @@ run either standalone or under Test::Harness.
 %{perl_vendorlib}/Test/SimpleUnit.pm
 
 %changelog
+* Fri Jun 02 2006 Dag Wieers <dag@wieers.com> - 1.21-2
+- Got rid of perl-ExtUtils-AutoInstall
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.21-1
 - Initial package.
