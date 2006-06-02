@@ -25,7 +25,7 @@ URL: http://nebulus.tuxfamily.org/
 Source: http://nebulus.tuxfamily.org/xmms-nebulus-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: xmms-devel, SDL-devel, SDL_ttf-devel, gcc-c++
+BuildRequires: xmms-devel, SDL-devel, SDL_ttf-devel, gcc-c++, gettext
 %{!?_without_modxorg:BuildRequires: mesa-libGL-devel, mesa-libGLU-devel}
 
 %description
