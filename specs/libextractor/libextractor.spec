@@ -18,7 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libvorbis-devel, libogg-devel, gcc-c++
 BuildRequires: ImageMagick, python-devel, gettext, pkgconfig, bzip2-devel
 BuildRequires: intltool, glib2-devel, libvorbis-devel, gtk2-devel
-BuildRequires: ImageMagick-devel, ImageMagick-c++-devel, exiv2
+BuildRequires: ImageMagick-devel, ImageMagick-c++-devel, exiv2, mpeg2dec-devel
 %{?fc4:BuildRequires: libtool-ltdl-devel}
 %{?fc5:BuildRequires: libtool-ltdl-devel}
 
