@@ -5,7 +5,7 @@
 
 Summary: Simple sound converter application
 Name: soundconverter
-Version: 0.8.5
+Version: 0.8.6
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -16,7 +16,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: desktop-file-utils
-Requires: pygtk2, gstreamer-plugins, gstreamer-python, gnome-python2-gconf
+Requires: pygtk2, gstreamer-python, gnome-python2-gconf
+
 
 %description
 A simple sound converter application. It can convert from and to all
@@ -65,6 +66,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/soundconverter.png
 
 %changelog
+* Fri Jun 02 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.6-1
+- Updated to release 0.8.6.
+
 * Sun May 28 2006 Dag Wieers <dag@wieers.com> - 0.8.5-1
 - Updated to release 0.8.5.
 

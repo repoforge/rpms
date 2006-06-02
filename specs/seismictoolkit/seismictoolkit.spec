@@ -13,7 +13,7 @@ URL: http://chez.mana.pf/dominique.reymond/
 Source: http://chez.mana.pf/dominique.reymond/stk_%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk+-devel
+BuildRequires: gtk+-devel, automake
 
 %description
 Seismic Toolkit is a tool for processing and displaying seismic signal data 
@@ -38,6 +38,8 @@ Encoding=UTF-8
 EOF
 
 %build
+automake --add-missing
+(cd Utilities/POLAR_0_05/; automake --add-missing)
 %configure
 %{__make} %{?_smp_mflags}
 
