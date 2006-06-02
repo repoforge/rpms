@@ -11,8 +11,8 @@
 
 Summary: Perl extension for manipulating IPv4/IPv6 addresses
 Name: perl-Net-IP
-Version: 1.24
-Release: 1.2
+Version: 1.25
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-IP/
@@ -50,6 +50,9 @@ Perl extension for manipulating IPv4/IPv6 addresses.
 %{perl_vendorlib}/Net/IP.pm
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.25-1
+- Updated to release 1.25.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.24-1.2
 - Rebuild for Fedora Core 5.
 

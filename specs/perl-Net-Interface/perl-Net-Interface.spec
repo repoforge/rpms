@@ -9,7 +9,7 @@
 
 Summary: Access network interfaces
 Name: perl-Net-Interface
-Version: 0.06
+Version: 0.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,6 +49,9 @@ physical interfaces (if your O/S supports it).
 %{perl_vendorarch}/auto/Net/Interface
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1
+- Updated to release 0.08.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Updated to release 0.06.
 

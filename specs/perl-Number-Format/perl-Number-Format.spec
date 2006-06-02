@@ -9,8 +9,8 @@
 
 Summary: Convert numbers to strings with pretty formatting
 Name: perl-Number-Format
-Version: 1.45
-Release: 1.2
+Version: 1.51
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Number-Format/
@@ -53,6 +53,9 @@ user.
 %{perl_vendorlib}/Number/Format.pm
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.51-1
+- Updated to release 1.51.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.45-1.2
 - Rebuild for Fedora Core 5.
 

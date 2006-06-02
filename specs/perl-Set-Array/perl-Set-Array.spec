@@ -9,8 +9,8 @@
 
 Summary: Arrays as objects with lots of handy methods
 Name: perl-Set-Array
-Version: 0.12
-Release: 1.2
+Version: 0.14
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Set-Array/
@@ -57,6 +57,9 @@ single statement.
 %{perl_vendorlib}/Set/Array.pm
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1
+- Updated to release 0.14.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1.2
 - Rebuild for Fedora Core 5.
 

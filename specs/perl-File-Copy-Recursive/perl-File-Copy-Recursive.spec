@@ -9,7 +9,7 @@
 
 Summary: Copy files recusively
 Name: perl-File-Copy-Recursive
-Version: 0.19
+Version: 0.23
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,6 +47,9 @@ only and one to do either depending on the argument's type.
 %{perl_vendorlib}/File/Copy/Recursive.pm
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.23-1
+- Updated to release 0.23.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.19-1
 - Updated to release 0.19.
 

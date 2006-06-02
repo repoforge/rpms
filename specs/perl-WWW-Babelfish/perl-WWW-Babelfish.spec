@@ -9,8 +9,8 @@
 
 Summary: Perl extension for translation via babelfish
 Name: perl-WWW-Babelfish
-Version: 0.13
-Release: 1.2
+Version: 0.14
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Babelfish/
@@ -52,6 +52,9 @@ echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}
 %{perl_vendorlib}/auto/WWW/Babelfish
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1
+- Updated to release 0.14.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.13-1.2
 - Rebuild for Fedora Core 5.
 

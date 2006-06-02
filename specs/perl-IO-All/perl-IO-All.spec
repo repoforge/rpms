@@ -9,8 +9,8 @@
 
 Summary: Object oriented interface for the Perl IO modules
 Name: perl-IO-All
-Version: 0.33
-Release: 1.2
+Version: 0.35
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-All/
@@ -67,6 +67,9 @@ readline, getc, print, printf, syswrite, sysread, close.
 %{perl_vendorlib}/IO/All/
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.35-1
+- Updated to release 0.35.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.33-1.2
 - Rebuild for Fedora Core 5.
 

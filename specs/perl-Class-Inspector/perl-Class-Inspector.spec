@@ -9,8 +9,8 @@
 
 Summary: Provides information about Classes
 Name: perl-Class-Inspector
-Version: 1.13
-Release: 1.2
+Version: 1.16
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Inspector/
@@ -54,6 +54,9 @@ information.
 %{perl_vendorlib}/Class/Inspector.pm
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.16-1
+- Updated to release 1.16.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.13-1.2
 - Rebuild for Fedora Core 5.
 

@@ -9,8 +9,8 @@
 
 Summary: IPC functions
 Name: perl-IPC-Run
-Version: 0.79
-Release: 1.2
+Version: 0.80
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPC-Run/
@@ -49,6 +49,9 @@ This module provides various IPC functionalities.
 %{perl_vendorlib}/IPC/Run/*
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.80-1
+- Updated to release 0.80.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.79-1.2
 - Rebuild for Fedora Core 5.
 

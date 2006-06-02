@@ -9,8 +9,8 @@
 
 Summary: Non-blocking RFC812 Whois query
 Name: perl-POE-Component-Client-Whois
-Version: 1.02
-Release: 1.2
+Version: 1.04
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Client-Whois/
@@ -47,6 +47,9 @@ This module implements a non-blocking RFC812 whois query.
 %{perl_vendorlib}/POE/Component/Client/Whois/
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.04-1
+- Updated to release 1.04.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.02-1.2
 - Rebuild for Fedora Core 5.
 

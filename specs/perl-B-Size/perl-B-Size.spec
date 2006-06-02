@@ -9,8 +9,8 @@
 
 Summary: Measure size of Perl OPs and SVs
 Name: perl-B-Size
-Version: 0.06
-Release: 1.2
+Version: 0.08
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/B-Size/
@@ -46,6 +46,9 @@ Tools to measure size of Perl OPs and [SAV]Vs.
 %{perl_vendorarch}/auto/B/Size
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1
+- Updated to release 0.08.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1.2
 - Rebuild for Fedora Core 5.
 

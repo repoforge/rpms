@@ -9,8 +9,8 @@
 
 Summary: Perl extension for approximate matching (fuzzy matching)
 Name: perl-String-Approx
-Version: 3.25
-Release: 1.2
+Version: 3.26
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-Approx/
@@ -50,6 +50,9 @@ have used the agrep utility or the Glimpse indexing system.
 %{perl_vendorarch}/auto/String/Approx
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 3.26-1
+- Updated to release 3.26.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 3.25-1.2
 - Rebuild for Fedora Core 5.
 

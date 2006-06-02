@@ -9,7 +9,7 @@
 
 Summary: Read and write ini style files
 Name: perl-Config-Tiny
-Version: 2.05
+Version: 2.07
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ file.
 %{perl_vendorlib}/Config/Tiny.pm
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 2.07-1
+- Updated to release 2.07.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.05-1
 - Updated to release 2.05.
 

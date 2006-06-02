@@ -9,8 +9,8 @@
 
 Summary: Data pack for Business::ISBN
 Name: perl-Business-ISBN-Data
-Version: 1.10
-Release: 1.2
+Version: 1.11
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Business-ISBN-Data/
@@ -48,6 +48,9 @@ Most of the interesting stuff is in Business::ISBN.
 %{perl_vendorlib}/Business/ISBN/Data.pm
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1
+- Updated to release 1.11.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.10-1.2
 - Rebuild for Fedora Core 5.
 

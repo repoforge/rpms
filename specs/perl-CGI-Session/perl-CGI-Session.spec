@@ -9,13 +9,13 @@
 
 Summary: Persistent session data in CGI applications
 Name: perl-CGI-Session
-Version: 4.09
+Version: 4.13
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Session/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SH/SHERZODR/CGI-Session-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MA/MARKSTOS/CGI-Session-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -52,6 +52,9 @@ accross HTTP requests. CGI::Session does that and many more.
 %{perl_vendorlib}/CGI/Session
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 4.13-1
+- Updated to release 4.13.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 4.09-1
 - Updated to release 4.09.
 

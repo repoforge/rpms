@@ -9,8 +9,8 @@
 
 Summary: Check International Standard Book Numbers
 Name: perl-Test-ISBN
-Version: 1.06
-Release: 1.2
+Version: 1.07
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-ISBN/
@@ -46,6 +46,9 @@ This module allows you to check International Standard Book Numbers.
 %{perl_vendorlib}/Test/ISBN.pm
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.07-1
+- Updated to release 1.07.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.06-1.2
 - Rebuild for Fedora Core 5.
 

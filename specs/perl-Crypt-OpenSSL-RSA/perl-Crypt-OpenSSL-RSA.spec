@@ -11,13 +11,13 @@
 
 Summary: RSA encoding and decoding
 Name: perl-Crypt-OpenSSL-RSA
-Version: 0.22
-Release: 1.2
+Version: 0.23
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-OpenSSL-RSA/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CD/CDRAKE/Crypt-OpenSSL-RSA-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/I/IR/IROBERTS/Crypt-OpenSSL-RSA-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, openssl-devel, krb5-devel
@@ -52,6 +52,9 @@ in the OpenSSL library.
 %{perl_vendorarch}/auto/Crypt/OpenSSL/RSA/*
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.23-1
+- Updated to release 0.23.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.22-1.2
 - Rebuild for Fedora Core 5.
 

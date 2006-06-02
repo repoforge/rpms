@@ -9,8 +9,8 @@
 
 Summary: Read and write Vixie compatible crontab files
 Name: perl-Config-Crontab
-Version: 1.11
-Release: 1.2
+Version: 1.20
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-Crontab/
@@ -67,6 +67,9 @@ crontab program.
 %{perl_vendorlib}/Config/Crontab.pm
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.20-1
+- Updated to release 1.20.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1.2
 - Rebuild for Fedora Core 5.
 

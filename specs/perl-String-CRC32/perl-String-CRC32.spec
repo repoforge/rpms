@@ -9,8 +9,8 @@
 
 Summary: Cyclic redundency check generation
 Name: perl-String-CRC32
-Version: 1.3
-Release: 1.2
+Version: 1.4
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-CRC32/
@@ -47,6 +47,9 @@ and from files.
 %{perl_vendorarch}/auto/String/CRC32
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1
+- Updated to release 1.4.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-1.2
 - Rebuild for Fedora Core 5.
 

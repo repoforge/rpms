@@ -9,8 +9,8 @@
 
 Summary: Implement the 'want' command
 Name: perl-Want
-Version: 0.09
-Release: 1.2
+Version: 0.10
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Want/
@@ -48,6 +48,9 @@ how its return value is going to be immediately used.
 %{perl_vendorarch}/auto/Want
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1
+- Updated to release 0.10.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1.2
 - Rebuild for Fedora Core 5.
 

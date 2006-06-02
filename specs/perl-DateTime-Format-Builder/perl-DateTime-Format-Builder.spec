@@ -9,8 +9,8 @@
 
 Summary: Create DateTime parser classes and objects
 Name: perl-DateTime-Format-Builder
-Version: 0.7806
-Release: 1.2
+Version: 0.7807
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Format-Builder/
@@ -47,6 +47,9 @@ With this module, you can create DateTime parser classes and objects.
 %{perl_vendorlib}/DateTime/Format/Builder/
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.7807-1
+- Updated to release 0.7807.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.7806-1.2
 - Rebuild for Fedora Core 5.
 

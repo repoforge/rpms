@@ -9,8 +9,8 @@
 
 Summary: Date and time object
 Name: perl-DateTime
-Version: 0.30
-Release: 1.2
+Version: 0.31
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime/
@@ -63,6 +63,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/DateTime/DateTime.*
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.31-1
+- Updated to release 0.31.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.30-1.2
 - Rebuild for Fedora Core 5.
 

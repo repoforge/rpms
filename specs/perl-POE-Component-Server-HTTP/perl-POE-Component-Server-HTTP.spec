@@ -9,8 +9,8 @@
 
 Summary: Foundation of a POE HTTP Daemon
 Name: perl-POE-Component-Server-HTTP
-Version: 0.08
-Release: 1.2
+Version: 0.09
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Server-HTTP/
@@ -53,6 +53,9 @@ This module is a foundation of a POE HTTP Daemon.
 %{perl_vendorlib}/POE/Component/Server/HTTP/
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1
+- Updated to release 0.09.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1.2
 - Rebuild for Fedora Core 5.
 

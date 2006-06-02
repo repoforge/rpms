@@ -9,7 +9,7 @@
 
 Summary: Encrypted cookies
 Name: perl-HTTP-CryptoCookie
-Version: 1.11
+Version: 1.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ a cookie is read.
 %{perl_vendorlib}/HTTP/CryptoCookie.pm
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.12-1
+- Updated to release 1.12.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1
 - Updated to release 1.11.
 

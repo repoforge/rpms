@@ -9,8 +9,8 @@
 
 Summary: Test functions for particular variable types
 Name: perl-Test-Data
-Version: 1.18
-Release: 1.2
+Version: 1.19
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Data/
@@ -47,6 +47,9 @@ Test functions for particular variable types.
 %{perl_vendorlib}/Test/Data
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.19-1
+- Updated to release 1.19.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.18-1.2
 - Rebuild for Fedora Core 5.
 

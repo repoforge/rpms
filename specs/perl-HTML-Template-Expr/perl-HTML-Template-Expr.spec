@@ -9,7 +9,7 @@
 
 Summary: HTML::Template extension adding expression support
 Name: perl-HTML-Template-Expr
-Version: 0.06
+Version: 0.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,6 +49,9 @@ work.
 %{perl_vendorlib}/HTML/Template/Expr.pm
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1
+- Updated to release 0.07.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Updated to release 0.06.
 

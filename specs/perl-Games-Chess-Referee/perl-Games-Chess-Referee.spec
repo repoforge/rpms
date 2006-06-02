@@ -9,8 +9,8 @@
 
 Summary: Work with chess positions and games, according to the rules of chess
 Name: perl-Games-Chess-Referee
-Version: 0.002
-Release: 1.2
+Version: 0.003
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Games-Chess-Referee/
@@ -50,10 +50,17 @@ cases of standard chess move notation.
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%doc %{_mandir}/man3/*
+%{_bindir}/mkbd
+%{_bindir}/tryme
+#%doc %{_mandir}/man3/*
 %{perl_vendorlib}/Games/Chess/Referee.p*
+%{perl_vendorlib}/Games/Chess/Piece/
+%{perl_vendorlib}/Games/Chess/Rules.pm
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.003-1
+- Updated to release 0.003.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.002-1.2
 - Rebuild for Fedora Core 5.
 

@@ -9,7 +9,7 @@
 
 Summary: Create graphs
 Name: perl-Graph-Easy
-Version: 0.43
+Version: 0.44
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ that is human readable and maintainable.
 %{perl_vendorlib}/Graph/Easy/
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.44-1
+- Updated to release 0.44.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.43-1
 - Updated to release 0.43.
 

@@ -9,7 +9,7 @@
 
 Summary: Systems management command volley
 Name: perl-Sys-Manage
-Version: 0.52
+Version: 0.53
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,6 +47,9 @@ Systems management command volley.
 %{perl_vendorlib}/Sys/Manage/
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.53-1
+- Updated to release 0.53.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.52-1
 - Updated to release 0.52.
 

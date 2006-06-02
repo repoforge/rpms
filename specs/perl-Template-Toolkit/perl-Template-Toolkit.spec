@@ -10,8 +10,8 @@
 
 Summary: Template processing system
 Name: perl-Template-Toolkit
-Version: 2.14
-Release: 1.2
+Version: 2.15
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Template-Toolkit/
@@ -66,6 +66,9 @@ LaTeX, and so on.
 %{perl_vendorarch}/auto/Template/
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 2.15-1
+- Updated to release 2.15.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.14-1.2
 - Rebuild for Fedora Core 5.
 

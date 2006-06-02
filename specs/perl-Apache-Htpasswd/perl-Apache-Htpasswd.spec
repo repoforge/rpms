@@ -9,8 +9,8 @@
 
 Summary: Manage Unix crypt-style password file
 Name: perl-Apache-Htpasswd
-Version: 1.7
-Release: 1.2
+Version: 1.8
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-Htpasswd/
@@ -52,6 +52,9 @@ it was written specifically for .htaccess style files.
 %{perl_vendorlib}/Apache/Htpasswd.pm
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.8-1
+- Updated to release 1.8.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.7-1.2
 - Rebuild for Fedora Core 5.
 

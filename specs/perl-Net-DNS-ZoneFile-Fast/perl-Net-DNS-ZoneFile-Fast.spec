@@ -9,8 +9,8 @@
 
 Summary: Parse BIND zone files
 Name: perl-Net-DNS-ZoneFile-Fast
-Version: 0.6
-Release: 1.2
+Version: 0.7
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DNS-ZoneFile-Fast/
@@ -50,6 +50,9 @@ learned in order to manipulate zone records.
 %{perl_vendorlib}/Net/DNS/ZoneFile/Fast.pm
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.7-1
+- Updated to release 0.7.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1.2
 - Rebuild for Fedora Core 5.
 

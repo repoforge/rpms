@@ -12,8 +12,8 @@
 
 Summary: Expect for perl
 Name: perl-Expect
-Version: 1.15
-Release: 2.2
+Version: 1.17
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Expect/
@@ -51,6 +51,9 @@ This module contains a version of expect written in perl.
 %{perl_vendorlib}/Expect.pod
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.17-1
+- Updated to release 1.17.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.15-2.2
 - Rebuild for Fedora Core 5.
 

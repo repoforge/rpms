@@ -9,8 +9,8 @@
 
 Summary: API wrapper around the tar utility
 Name: perl-Archive-Tar-Wrapper
-Version: 0.06
-Release: 1.2
+Version: 0.07
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Archive-Tar-Wrapper/
@@ -50,6 +50,9 @@ directory on disk.
 %{perl_vendorlib}/Archive/Tar/Wrapper.pm
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1
+- Updated to release 0.07.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1.2
 - Rebuild for Fedora Core 5.
 

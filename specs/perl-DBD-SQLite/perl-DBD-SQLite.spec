@@ -9,8 +9,8 @@
 
 Summary: Small fast embedded SQL database engine
 Name: perl-DBD-SQLite
-Version: 1.11
-Release: 1.2
+Version: 1.12
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBD-SQLite/
@@ -51,6 +51,9 @@ then DBD::SQLite may be just what you need.
 %{perl_vendorarch}/auto/DBD/SQLite
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.12-1
+- Updated to release 1.12.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1.2
 - Rebuild for Fedora Core 5.
 

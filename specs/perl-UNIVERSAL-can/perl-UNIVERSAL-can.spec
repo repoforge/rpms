@@ -9,7 +9,7 @@
 
 Summary: Hack around people calling UNIVERSAL::can() as a function
 Name: perl-UNIVERSAL-can
-Version: 1.11
+Version: 1.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,6 +46,9 @@ Hack around people calling UNIVERSAL::can() as a function.
 %{perl_vendorlib}/UNIVERSAL/can.pm
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.12-1
+- Updated to release 1.12.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1
 - Updated to release 1.11.
 

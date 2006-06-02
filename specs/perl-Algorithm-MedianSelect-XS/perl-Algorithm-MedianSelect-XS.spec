@@ -9,8 +9,8 @@
 
 Summary: Median finding algorithm
 Name: perl-Algorithm-MedianSelect-XS
-Version: 0.14
-Release: 1.2
+Version: 0.16
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Algorithm-MedianSelect-XS/
@@ -47,6 +47,9 @@ the integers and bigger than half of the integers.
 %{perl_vendorarch}/auto/Algorithm/MedianSelect/XS/
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1
+- Updated to release 0.16.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1.2
 - Rebuild for Fedora Core 5.
 

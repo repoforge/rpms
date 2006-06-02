@@ -9,13 +9,13 @@
 
 Summary: Apparently run a function in a higher stack frame
 Name: perl-Sub-Uplevel
-Version: 0.09
-Release: 1.2
+Version: 0.12
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sub-Uplevel/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHWERN/Sub-Uplevel-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DA/DAGOLDEN/Sub-Uplevel-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -46,6 +46,9 @@ Apparently run a function in a higher stack frame.
 %{perl_vendorlib}/Sub/Uplevel.pm
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1
+- Updated to release 0.12.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1.2
 - Rebuild for Fedora Core 5.
 

@@ -9,8 +9,8 @@
 
 Summary: Covert text in a simple Wiki markut language to other tag languages
 Name: perl-Text-WikiFormat
-Version: 0.77
-Release: 1.2
+Version: 0.78
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-WikiFormat/
@@ -49,6 +49,9 @@ semi-regular tag language.
 %{perl_vendorlib}/Text/WikiFormat/
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.78-1
+- Updated to release 0.78.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.77-1.2
 - Rebuild for Fedora Core 5.
 

@@ -9,8 +9,8 @@
 
 Summary: Session data persistence
 Name: perl-Apache-Session
-Version: 1.80
-Release: 1.2
+Version: 1.81
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-Session/
@@ -52,6 +52,9 @@ interacts with a tied hash.
 %{perl_vendorlib}/Apache/Session/*
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.81-1
+- Updated to release 1.81.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.80-1.2
 - Rebuild for Fedora Core 5.
 

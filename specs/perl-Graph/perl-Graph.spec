@@ -9,8 +9,8 @@
 
 Summary: Graph operations
 Name: perl-Graph
-Version: 0.69
-Release: 1.2
+Version: 0.74
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graph/
@@ -51,6 +51,9 @@ This modules contains functions for manipulating graphics.
 %{perl_vendorlib}/Graph/
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.74-1
+- Updated to release 0.74.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.69-1.2
 - Rebuild for Fedora Core 5.
 

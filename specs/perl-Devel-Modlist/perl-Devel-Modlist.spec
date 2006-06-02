@@ -9,8 +9,8 @@
 
 Summary: Collect module use information
 Name: perl-Devel-Modlist
-Version: 0.5
-Release: 1.2
+Version: 0.6
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-Modlist/
@@ -52,6 +52,9 @@ the Perl core library area not be listed (see the manual page).
 %{perl_vendorlib}/Devel/Modlist.pm
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1
+- Updated to release 0.6.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-1.2
 - Rebuild for Fedora Core 5.
 

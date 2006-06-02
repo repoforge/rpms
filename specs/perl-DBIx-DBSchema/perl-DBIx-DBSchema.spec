@@ -9,7 +9,7 @@
 
 Summary: Interface to database schemas
 Name: perl-DBIx-DBSchema
-Version: 0.30
+Version: 0.31
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ CREATE statements for different databases from a single source.
 %{perl_vendorlib}/DBIx/DBSchema/
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.31-1
+- Updated to release 0.31.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.30-1
 - Updated to release 0.30.
 

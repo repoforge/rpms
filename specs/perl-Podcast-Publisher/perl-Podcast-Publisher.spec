@@ -9,8 +9,8 @@
 
 Summary: Manages RSS files and podcasts
 Name: perl-Podcast-Publisher
-Version: 0.44
-Release: 1.2
+Version: 0.45
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Podcast-Publisher/
@@ -46,6 +46,9 @@ With this module, you can manage rss feeds and podcasts.
 %{perl_vendorlib}/Podcast/
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.45-1
+- Updated to release 0.45.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.44-1.2
 - Rebuild for Fedora Core 5.
 

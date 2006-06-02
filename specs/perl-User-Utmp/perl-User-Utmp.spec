@@ -9,8 +9,8 @@
 
 Summary: Perl access to utmp- and utmpx-style databases
 Name: perl-User-Utmp
-Version: 1.6
-Release: 1.2
+Version: 1.8
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/User-Utmp/
@@ -53,6 +53,9 @@ installed as User::Utmp(3) manpage, and the example.pl script.
 %{perl_vendorarch}/auto/User/Utmp
 
 %changelog
+* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.8-1
+- Updated to release 1.8.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.6-1.2
 - Rebuild for Fedora Core 5.
 
