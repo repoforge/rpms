@@ -6,13 +6,13 @@
 
 Summary: RPMforge release file and package configuration
 Name: rpmforge-release
-Version: 0.2
-Release: 2.2
+Version: 0.3
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://rpmforge.net/
 
-Source0: mirrors-dag
+Source0: mirrors-rpmforge
 Source1: RPM-GPG-KEY-rpmforge-dag
 Source2: RPM-GPG-KEY-rpmforge-dries
 Source3: RPM-GPG-KEY-rpmforge-matthias
@@ -27,37 +27,38 @@ GPG keys used to sign them.
 %{?el4:name='Red Hat Enterprise'; version='4'; url="redhat/el$version/en"; builder='dag'}
 %{?el3:name='Red Hat Enterprise'; version='3'; url="redhat/el$version/en"; builder='dag'}
 %{?el2:name='Red Hat Enterprise'; version='2'; url="redhat/el$version/en"; builder='dag'}
-%{?fc5:name='Fedora Core'; version='5'; url="dries/fedora/fc$version"; builder='dries'; yumsuffix='RPMS'}
-%{?fc4:name='Fedora Core'; version='4'; url="dries/fedora/fc$version"; builder='dries'; yumsuffix='RPMS'}
+%{?fc5:name='Fedora Core'; version='5'; url="fedora/$version/en"; builder='dries'}
+%{?fc4:name='Fedora Core'; version='4'; url="fedora/$version/en"; builder='dries'}
 %{?fc3:name='Fedora Core'; version='3'; url="fedora/$version/en"; builder='dag'}
 %{?fc2:name='Fedora Core'; version='2'; url="fedora/$version/en"; builder='dag'}
 %{?fc1:name='Fedora Core'; version='1'; url="fedora/$version/en"; builder='dag'}
-%{?rh9:name='Red Hat'; version='9'; url="redhat/$version/en"; builder='dag'}
+%{?rh9:name='Red Hat'; version='9';   url="redhat/$version/en"; builder='dag'}
 %{?rh8:name='Red Hat'; version='8.0'; url="redhat/$version/en"; builder='dag'}
 %{?rh7:name='Red Hat'; version='7.3'; url="redhat/$version/en"; builder='dag'}
 %{?rh6:name='Red Hat'; version='6.2'; url="redhat/$version/en"; builder='dag'}
 
 %{__cat} <<EOF >rpmforge.apt
-# Name: RPMforge RPM Repository for $name $version - %{_arch}
+# Name: RPMforge RPM Repository for $name $version - $builder
 # URL: http://rpmforge.net/
-rpm http://apt.sw.be $url/%{_arch} $builder
+#rpm http://apt.sw.be $url/\$(ARCH) $builder
+repomd http://apt.sw.be $url/\$(ARCH)/$builder
 EOF
 
 %{__cat} <<EOF >rpmforge.smart
-# Name: RPMforge RPM Repository for $name $version - %{_arch}
+# Name: RPMforge RPM Repository for $name $version - %{_arch} - $builder
 # URL: http://rpmforge.net/
 [rpmforge]
 name = Extra packages from RPMforge.net for $name $version - %{_arch} - $builder
-baseurl = http://apt.sw.be/$url/%{_arch}/$builder/$yumsuffix
+baseurl = http://apt.sw.be/$url/%{_arch}/$builder
 type = rpm-md
 EOF
 
 %{__cat} <<EOF >rpmforge.yum
-# Name: RPMforge RPM Repository for $name $version - %{_arch}
+# Name: RPMforge RPM Repository for $name $version - $builder
 # URL: http://rpmforge.net/
 [rpmforge]
-name = $name $version - %{_arch} - RPMforge.net - $builder
-#baseurl = http://apt.sw.be/$url/\$basearch/$builder/$yumsuffix
+name = $name \$releasever - RPMforge.net - $builder
+#baseurl = http://apt.sw.be/$url/\$basearch/$builder
 mirrorlist = http://apt.sw.be/$url/mirrors-rpmforge
 #mirrorlist = file:///etc/yum.repos.d/mirrors-rpmforge
 enabled = 1
@@ -66,16 +67,19 @@ gpgcheck = 1
 EOF
 
 %{__cat} <<EOF >rpmforge.up2date
-# Name: RPMforge RPM Repository for $name $version - %{_arch}
+# Name: RPMforge RPM Repository for $name $version - %{_arch} - $builder
 # URL: http://rpmforge.net/
 #
 # Add the following line to /etc/sysconfig/rhn/sources
 #
-#	yum rpmforge http://apt.sw.be/$url/%{_arch}/$builder/$yumsuffix
+#	yum rpmforge http://apt.sw.be/$url/%{_arch}/$builder
+# or
+#	apt rpmforge http://apt.sw.be $url/%{_arch} $builder
+
 EOF
 
 for mirror in $(%{__cat} %{SOURCE0}); do
-	echo "$mirror/$url/\$ARCH/$builder/$yumsuffix"
+	echo "$mirror/$url/\$ARCH/$builder"
 done >mirrors-rpmforge.yum
 
 %build
@@ -122,8 +126,8 @@ exit 0
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-*
 
 %changelog
-* Tue Apr 11 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-2.2
-- Rebuild for Fedora Core 5.
+* Fri Jun 02 2006 Dag Wieers <dag@wieers.com> - 0.3-1
+- Default to repomd metadata for Apt.
 
 * Tue Aug 23 2005 Dag Wieers <dag@wieers.com> - 0.2-2
 - Included directories too.
