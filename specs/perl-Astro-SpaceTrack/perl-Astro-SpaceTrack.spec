@@ -50,12 +50,13 @@ TO THIRD PARTIES WITHOUT PRIOR PERMISSION.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
-%doc %{_mandir}/man1/*
+%doc %{_mandir}/man1/*.1*
+%doc %{_mandir}/man3/*.3*
 %{_bindir}/SpaceTrack
 %{_bindir}/SpaceTrackTk
+%dir %{perl_vendorlib}/Astro/
 %{perl_vendorlib}/Astro/SpaceTrack.pm
-%{perl_vendorlib}/Astro/SpaceTrack
+%{perl_vendorlib}/Astro/SpaceTrack/
 
 %changelog
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.018-1

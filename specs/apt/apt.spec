@@ -18,7 +18,7 @@
 Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
 Version: 0.5.15lorg3.1
-Release: 3
+Release: 4
 License: GPL
 Group: System Environment/Base
 URL: http://apt-rpm.laiskiainen.org/
@@ -113,7 +113,7 @@ APT {
 		Ignore-Missing "false";
 		Compile "false";
 	};
-	DistroVersion=$version;
+	DistroVersion "$version";
 };
 
 Acquire {
@@ -210,6 +210,9 @@ touch %{buildroot}%{_sysconfdir}/apt/preferences \
 #exclude %{_libdir}/*.la
 
 %changelog
+* Sun Jun 04 2006 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.1-4
+- Fixed APT::DistroVersion.
+
 * Sun Jun 04 2006 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.1-3
 - Added APT::DistroVersion and RPM::Order to apt.conf.
 

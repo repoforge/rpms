@@ -2,6 +2,8 @@
 # Authority: dries
 # Upstream: &#9786;&#21776;&#40179;&#9787; <autrijus$autrijus,org>
 
+# Tag: test
+
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
@@ -21,11 +23,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl, perl(File::Spec) >= 0.87, perl(Test::Harness) >= 2.03
 BuildRequires: perl(Test::More) >= 0.42, perl(Module::ScanDeps) >= 0.28
-BuildRequires: perl-Module-CoreList, perl(PAR::Dist) >= 0.03
+BuildRequires: perl(Module::CoreList), perl(PAR::Dist) >= 0.03
 BuildRequires: perl(Archive::Tar), perl(ExtUtils::Install) >= 0.3
-BuildRequires: perl-ExtUtils-ParseXS, perl(Module::Build)
+BuildRequires: perl(ExtUtils::ParseXS), perl(Module::Build)
 # needed for certain older versions of perl-Module-Build
-BuildRequires: perl-YAML-Syck
+BuildRequires: perl(YAML::Syck)
 
 %description
 Module::Install is a standalone, extensible installer for Perl modules.  It is

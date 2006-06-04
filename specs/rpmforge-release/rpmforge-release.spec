@@ -33,8 +33,8 @@ GPG keys used to sign them.
 %{?el4:name='Red Hat Enterprise'; version='4'; path="redhat/el"; builder='dag'}
 %{?el3:name='Red Hat Enterprise'; version='3'; path="redhat/el"; builder='dag'}
 %{?el2:name='Red Hat Enterprise'; version='2'; path="redhat/el"; builder='dag'}
-%{?fc5:name='Fedora Core'; version='5'; path="fedora/"; builder='dries'}
-%{?fc4:name='Fedora Core'; version='4'; path="fedora/"; builder='dries'}
+%{?fc5:name='Fedora Core'; version='5'; path="fedora/"; builder='dries'; driesrepomdsuffix='/RPMS'}
+%{?fc4:name='Fedora Core'; version='4'; path="fedora/"; builder='dries'; driesrepomdsuffix='/RPMS'}
 %{?fc3:name='Fedora Core'; version='3'; path="fedora/"; builder='dag'}
 %{?fc2:name='Fedora Core'; version='2'; path="fedora/"; builder='dag'}
 %{?fc1:name='Fedora Core'; version='1'; path="fedora/"; builder='dag'}
@@ -47,7 +47,7 @@ GPG keys used to sign them.
 # Name: RPMforge RPM Repository for $name $version - $builder
 # URL: http://rpmforge.net/
 #rpm http://apt.sw.be $path\$(VERSION)/en/\$(ARCH) $builder
-repomd http://apt.sw.be $path\$(VERSION)/en/\$(ARCH)/$builder
+repomd http://apt.sw.be $path\$(VERSION)/en/\$(ARCH)/$builder$driesrepomdsuffix
 EOF
 
 %{__cat} <<EOF >rpmforge.smart
@@ -55,7 +55,7 @@ EOF
 # URL: http://rpmforge.net/
 [rpmforge]
 name = Extra packages from RPMforge.net for $name $version - %{_arch} - $builder
-baseurl = http://apt.sw.be/$path$version/en/%{_arch}/$builder
+baseurl = http://apt.sw.be/$path$version/en/%{_arch}/$builder$driesrepomdsuffix
 type = rpm-md
 EOF
 
@@ -64,7 +64,7 @@ EOF
 # URL: http://rpmforge.net/
 [rpmforge]
 name = $name \$releasever - RPMforge.net - $builder
-#baseurl = http://apt.sw.be/$path\$releasever/en/\$basearch/$builder
+#baseurl = http://apt.sw.be/$path\$releasever/en/\$basearch/$builder$driesrepomdsuffix
 mirrorlist = http://apt.sw.be/$path\$releasever/en/mirrors-rpmforge
 #mirrorlist = file:///etc/yum.repos.d/mirrors-rpmforge
 enabled = 1
@@ -85,7 +85,7 @@ EOF
 EOF
 
 for mirror in $(%{__cat} %{SOURCE0}); do
-	echo "$mirror/$path$version/en/\$ARCH/$builder"
+	echo "$mirror/$path$version/en/\$ARCH/$builder$driesrepomdsuffix"
 done >mirrors-rpmforge.yum
 
 %build
@@ -106,9 +106,9 @@ done >mirrors-rpmforge.yum
 %{__rm} -rf %{buildroot}
 
 %post
-rpm -q gpg-pubkey-6b8d79e6-3f49313d >/dev/null 2>&1 || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag
-rpm -q gpg-pubkey-1aa78495-3eb24301 >/dev/null 2>&1 || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dries
-rpm -q gpg-pubkey-e42d547b-3960bdf1 >/dev/null 2>&1 || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-matthias
+rpm -q gpg-pubkey-6b8d79e6-3f49313d &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag
+rpm -q gpg-pubkey-1aa78495-3eb24301 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dries
+rpm -q gpg-pubkey-e42d547b-3960bdf1 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-matthias
 exit 0
 
 %files
@@ -140,6 +140,7 @@ exit 0
 %changelog
 * Sun Jun 04 2006 Dag Wieers <dag@wieers.com> - 0.3.2-1
 - Improved multi-distro support.
+- Added Dries his useless $driesrepomdsuffix. :(
 
 * Sat Jun 03 2006 Dag Wieers <dag@wieers.com> - 0.3.1-1
 - Added support for EL2 and RH7.
