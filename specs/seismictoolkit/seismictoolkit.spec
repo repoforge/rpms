@@ -13,7 +13,7 @@ URL: http://chez.mana.pf/dominique.reymond/
 Source: http://chez.mana.pf/dominique.reymond/stk_%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk+-devel, automake, gtk2-devel
+BuildRequires: gtk+-devel, automake, gtk2-devel, desktop-file-utils
 
 %description
 Seismic Toolkit is a tool for processing and displaying seismic signal data 

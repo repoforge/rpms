@@ -28,7 +28,7 @@ Source1: http://dl.sf.net/ming/ming-perl-%{version}.tar.gz
 Source2: http://dl.sf.net/ming/ming-py-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: zlib-devel, perl, bison
+BuildRequires: zlib-devel, perl, bison, flex
 %{!?_without_python:BuildRequires: python-devel}
 
 %description

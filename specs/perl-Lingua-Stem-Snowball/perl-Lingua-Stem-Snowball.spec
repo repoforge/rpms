@@ -37,6 +37,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{build
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \
 		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+# remove test scripts
+%{__rm} -f %{buildroot}%{_bindir}/*.plx
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -51,8 +53,13 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{build
 #%{_bindir}/add_stemmer.pl
 %dir %{perl_vendorarch}/auto/Lingua/Stem/
 %{perl_vendorarch}/auto/Lingua/Stem/Snowball/
+#{_bindir}/benchmark_stemmers.plx
+#{_bindir}/generate_tests.plx
 
 %changelog
+* Sun Jun 04 2006 Dries Verachtert <dries@ulyssis.org> - 0.94-2
+- Fix: don't package the test scripts, thanks to Andreas de Pretis.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.94-1
 - Updated to release 0.94.
 

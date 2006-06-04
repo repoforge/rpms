@@ -4,7 +4,7 @@
 
 Summary: Web server log analysis program
 Name: awffull
-Version: 3.4.1
+Version: 3.4.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -41,6 +41,9 @@ history, resizable graphs, and a few more pie charts.
 %{_bindir}/awffull
 
 %changelog
+* Sun Jun 04 2006 Dries Verachtert <dries@ulyssis.org> - 3.4.3-1
+- Updated to release 3.4.3.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 3.4.1-1
 - Updated to release 3.4.1.
 

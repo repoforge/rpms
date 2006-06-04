@@ -24,7 +24,7 @@ Source: http://xpenguins.seul.org/xpenguins-%{version}.tar.gz
 Source1: http://xpenguins.seul.org/xpenguins_themes-1.0.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: libXpm-devel, libXext-devel}
+%{!?_without_xorg:BuildRequires: libXpm-devel, libXext-devel, libXt-devel}
 
 %description
 XPenguins animates a friendly family of penguins in your root window.
