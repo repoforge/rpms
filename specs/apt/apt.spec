@@ -18,7 +18,7 @@
 Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
 Version: 0.5.15lorg3.1
-Release: 2
+Release: 3
 License: GPL
 Group: System Environment/Base
 URL: http://apt-rpm.laiskiainen.org/
@@ -67,7 +67,7 @@ you will need to install %{name}-devel.
 
 %{?el4:name='Red Hat Enterprise'; version='4'}
 %{?el3:name='Red Hat Enterprise'; version='3'}
-%{?el2:name='Red Hat Enterprise'; version='2'}
+%{?el2:name='Red Hat Enterprise'; version='2.1'}
 %{?fc5:name='Fedora Core'; version='5'}
 %{?fc4:name='Fedora Core'; version='4'}
 %{?fc3:name='Fedora Core'; version='3'}
@@ -210,6 +210,9 @@ touch %{buildroot}%{_sysconfdir}/apt/preferences \
 #exclude %{_libdir}/*.la
 
 %changelog
+* Sun Jun 04 2006 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.1-3
+- Added APT::DistroVersion and RPM::Order to apt.conf.
+
 * Mon May 29 2006 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.1-2
 - Fixed a segfault with the new createrepo -n output.
 

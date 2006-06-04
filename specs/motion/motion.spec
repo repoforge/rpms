@@ -1,3 +1,6 @@
+# $Id$
+# Authority: dag
+
 Summary: Video-surveilance system
 Name: motion
 Version: 3.2.4

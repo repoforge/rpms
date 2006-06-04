@@ -2,6 +2,13 @@
 # Authority: dag
 # Upstream: Ethan Galstad <nagios$nagios,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_embedperl 1}
+%{?rh7:%define _without_perlcache 1}
+%{?el2:%define _without_embedperl 1}
+%{?el2:%define _without_perlcache 1}
+
 ### FIXME: TODO: Add sysv script based on template. (remove cmd-file on start-up)
 ### FIXME: TODO: Bring in sync with 2.4 spec file.
 %define logmsg logger -t %{name}/rpm
@@ -76,6 +83,7 @@ you will need to install %{name}-devel.
 	--with-nagios-user="nagios" \
 	--with-nagios-group="nagios" \
 %{!?_without_embedperl:--enable-embedded-perl} \
+%{?_without_embedperl:--disable-embedded-perl} \
 %{!?_without_perlcache:--with-perlcache} \
 %{?_without_perlcache:--without-perlcache} \
 	--with-template-objects \

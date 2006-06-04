@@ -4,9 +4,13 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?rh7:%define _without_rpmpubkey 1}
+%{?el2:%define _without_rpmpubkey 1}
+%{?rh6:%define _without_rpmpubkey 1}
+
 Summary: RPMforge release file and package configuration
 Name: rpmforge-release
-Version: 0.3
+Version: 0.3.2
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -24,24 +28,26 @@ configuration for the RPMforge RPM Repository, as well as the public
 GPG keys used to sign them.
 
 %prep
-%{?el4:name='Red Hat Enterprise'; version='4'; url="redhat/el$version/en"; builder='dag'}
-%{?el3:name='Red Hat Enterprise'; version='3'; url="redhat/el$version/en"; builder='dag'}
-%{?el2:name='Red Hat Enterprise'; version='2'; url="redhat/el$version/en"; builder='dag'}
-%{?fc5:name='Fedora Core'; version='5'; url="fedora/$version/en"; builder='dries'}
-%{?fc4:name='Fedora Core'; version='4'; url="fedora/$version/en"; builder='dries'}
-%{?fc3:name='Fedora Core'; version='3'; url="fedora/$version/en"; builder='dag'}
-%{?fc2:name='Fedora Core'; version='2'; url="fedora/$version/en"; builder='dag'}
-%{?fc1:name='Fedora Core'; version='1'; url="fedora/$version/en"; builder='dag'}
-%{?rh9:name='Red Hat'; version='9';   url="redhat/$version/en"; builder='dag'}
-%{?rh8:name='Red Hat'; version='8.0'; url="redhat/$version/en"; builder='dag'}
-%{?rh7:name='Red Hat'; version='7.3'; url="redhat/$version/en"; builder='dag'}
-%{?rh6:name='Red Hat'; version='6.2'; url="redhat/$version/en"; builder='dag'}
+%setup -c
+
+%{?el4:name='Red Hat Enterprise'; version='4'; path="redhat/el"; builder='dag'}
+%{?el3:name='Red Hat Enterprise'; version='3'; path="redhat/el"; builder='dag'}
+%{?el2:name='Red Hat Enterprise'; version='2'; path="redhat/el"; builder='dag'}
+%{?fc5:name='Fedora Core'; version='5'; path="fedora/"; builder='dries'}
+%{?fc4:name='Fedora Core'; version='4'; path="fedora/"; builder='dries'}
+%{?fc3:name='Fedora Core'; version='3'; path="fedora/"; builder='dag'}
+%{?fc2:name='Fedora Core'; version='2'; path="fedora/"; builder='dag'}
+%{?fc1:name='Fedora Core'; version='1'; path="fedora/"; builder='dag'}
+%{?rh9:name='Red Hat'; version='9';   path="redhat/"; builder='dag'}
+%{?rh8:name='Red Hat'; version='8.0'; path="redhat/"; builder='dag'}
+%{?rh7:name='Red Hat'; version='7.3'; path="redhat/"; builder='dag'}
+%{?rh6:name='Red Hat'; version='6.2'; path="redhat/"; builder='dag'}
 
 %{__cat} <<EOF >rpmforge.apt
 # Name: RPMforge RPM Repository for $name $version - $builder
 # URL: http://rpmforge.net/
-#rpm http://apt.sw.be $url/\$(ARCH) $builder
-repomd http://apt.sw.be $url/\$(ARCH)/$builder
+#rpm http://apt.sw.be $path\$(VERSION)/en/\$(ARCH) $builder
+repomd http://apt.sw.be $path\$(VERSION)/en/\$(ARCH)/$builder
 EOF
 
 %{__cat} <<EOF >rpmforge.smart
@@ -49,7 +55,7 @@ EOF
 # URL: http://rpmforge.net/
 [rpmforge]
 name = Extra packages from RPMforge.net for $name $version - %{_arch} - $builder
-baseurl = http://apt.sw.be/$url/%{_arch}/$builder
+baseurl = http://apt.sw.be/$path$version/en/%{_arch}/$builder
 type = rpm-md
 EOF
 
@@ -58,8 +64,8 @@ EOF
 # URL: http://rpmforge.net/
 [rpmforge]
 name = $name \$releasever - RPMforge.net - $builder
-#baseurl = http://apt.sw.be/$url/\$basearch/$builder
-mirrorlist = http://apt.sw.be/$url/mirrors-rpmforge
+#baseurl = http://apt.sw.be/$path\$releasever/en/\$basearch/$builder
+mirrorlist = http://apt.sw.be/$path\$releasever/en/mirrors-rpmforge
 #mirrorlist = file:///etc/yum.repos.d/mirrors-rpmforge
 enabled = 1
 gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-$builder
@@ -72,14 +78,14 @@ EOF
 #
 # Add the following line to /etc/sysconfig/rhn/sources
 #
-#	yum rpmforge http://apt.sw.be/$url/%{_arch}/$builder
+#	yum rpmforge http://apt.sw.be/$path$version/en/%{_arch}/$builder
 # or
-#	apt rpmforge http://apt.sw.be $url/%{_arch} $builder
+#	apt rpmforge http://apt.sw.be $path$version/en/%{_arch} $builder
 
 EOF
 
 for mirror in $(%{__cat} %{SOURCE0}); do
-	echo "$mirror/$url/\$ARCH/$builder"
+	echo "$mirror/$path$version/en/\$ARCH/$builder"
 done >mirrors-rpmforge.yum
 
 %build
@@ -108,6 +114,15 @@ exit 0
 %files
 %defattr(-, root, root, 0755)
 %doc mirrors-rpmforge.yum RPM-GPG-KEY-rpmforge-* rpmforge.*
+%if %{!?_without_rpmpubkey:1}0
+%pubkey RPM-GPG-KEY-rpmforge-dag
+%pubkey RPM-GPG-KEY-rpmforge-dries
+%pubkey RPM-GPG-KEY-rpmforge-matthias
+%else
+%doc RPM-GPG-KEY-rpmforge-dag
+%doc RPM-GPG-KEY-rpmforge-dries
+%doc RPM-GPG-KEY-rpmforge-matthias
+%endif
 %dir %{_sysconfdir}/apt/
 %dir %{_sysconfdir}/apt/sources.list.d/
 %config(noreplace) %{_sysconfdir}/apt/sources.list.d/rpmforge.list
@@ -119,13 +134,16 @@ exit 0
 %dir %{_sysconfdir}/yum.repos.d/
 %config(noreplace) %{_sysconfdir}/yum.repos.d/rpmforge.repo
 %config %{_sysconfdir}/yum.repos.d/mirrors-rpmforge
-%pubkey RPM-GPG-KEY-rpmforge-dag
-%pubkey RPM-GPG-KEY-rpmforge-dries
-%pubkey RPM-GPG-KEY-rpmforge-matthias
 %dir %{_sysconfdir}/pki/rpm-gpg/
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-*
 
 %changelog
+* Sun Jun 04 2006 Dag Wieers <dag@wieers.com> - 0.3.2-1
+- Improved multi-distro support.
+
+* Sat Jun 03 2006 Dag Wieers <dag@wieers.com> - 0.3.1-1
+- Added support for EL2 and RH7.
+
 * Fri Jun 02 2006 Dag Wieers <dag@wieers.com> - 0.3-1
 - Default to repomd metadata for Apt.
 

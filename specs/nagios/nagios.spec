@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Ethan Galstad <nagios$nagios,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %{?rh7:%define _without_embedperl 1}
 %{?rh7:%define _without_perlcache 1}
 %{?el2:%define _without_embedperl 1}
@@ -12,8 +14,8 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: nagios
-Version: 2.3.1
-Release: 2
+Version: 2.4
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
@@ -69,8 +71,11 @@ you will need to install %{name}-devel.
 	--with-nagios-user="nagios" \
 	--with-nagios-group="nagios" \
 %{!?_without_embedperl:--enable-embedded-perl} \
+%{?_without_embedperl:--disable-embedded-perl} \
+%{?_without_embedperl:--without-embedded-perl} \
 %{!?_without_perlcache:--with-perlcache} \
 %{?_without_perlcache:--without-perlcache} \
+%{?_without_perlcache:--disable-perlcache} \
 	--with-template-objects \
 	--with-template-extinfo \
 	--enable-event-broker
@@ -180,6 +185,9 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Fri Jun 02 2006 Dag Wieers <dag@wieers.com> - 2.4-2
+- Make nagios owner of /etc/nagios. (Christop Maser)
+
 * Mon May 29 2006 Dag Wieers <dag@wieers.com> - 2.3.1-2
 - Make nagios owner of /etc/nagios. (Christop Maser)
 

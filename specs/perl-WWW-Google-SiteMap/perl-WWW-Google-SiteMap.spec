@@ -46,7 +46,9 @@ they change, etc.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3*
+%dir %{perl_vendorlib}/WWW/
+%dir %{perl_vendorlib}/WWW/Google/
 %{perl_vendorlib}/WWW/Google/SiteMap.pm
 %{perl_vendorlib}/WWW/Google/SiteMap/
 
