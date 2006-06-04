@@ -3,14 +3,16 @@
 
 Summary: Compiler for the Scheme programming language
 Name: bigloo
-Version: 2.7a
-Release: 1.2
+Version: 2.8a
+Release: 1
 License: LGPL/GPL
 Group: Development/Languages
 URL: http://www-sop.inria.fr/mimosa/fp/Bigloo/
 
 Source: ftp://ftp-sop.inria.fr/mimosa/fp/Bigloo/bigloo%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: sqlite-devel
 
 %description
 Bigloo is a Scheme implementation devoted to one goal: enabling Scheme based
@@ -40,7 +42,7 @@ programs.
 %{__rm} -rf %{buildroot}
 %makeinstall DESTDIR=%{buildroot}
 %{__mv} -f %{buildroot}%{_prefix}/doc/bigloo-%{version} rpm-doc
-%{__mv} -f %{buildroot}%{_bindir}/afile %{buildroot}%{_bindir}/afile-bigloo
+# {__mv} -f %{buildroot}%{_bindir}/afile %{buildroot}%{_bindir}/afile-bigloo
 %{__rm} -f %{buildroot}%{_libdir}/libbigloo*.so
 for i in _s _u fth_s fth_u gc gc_fth ; do \
   ln -s %{_libdir}/bigloo/libbigloo${i}-%{version}.so %{buildroot}%{_libdir}/libbigloo${i}-%{version}.so
@@ -52,7 +54,19 @@ done
 %files
 %defattr(-, root, root, 0755)
 %doc README rpm-doc/*
-%{_bindir}/*
+%{_bindir}/bglafile
+%{_bindir}/bgldepend
+%{_bindir}/bgljas
+%{_bindir}/bgljfile
+%{_bindir}/bglmake
+%{_bindir}/bglmco
+%{_bindir}/bglmem
+%{_bindir}/bglmemrun
+%{_bindir}/bglpp
+%{_bindir}/bglprof
+%{_bindir}/bgltags
+%{_bindir}/bigloo
+%{_bindir}/bigloo2.8a
 %{_libdir}/bigloo
 %{_datadir}/info/bigloo*
 %exclude %{_datadir}/info/dir
@@ -60,6 +74,9 @@ done
 %{_libdir}/libbigloo*
 
 %changelog
+* Fri Jun 02 2006 Dries Verachtert <dries@ulyssis.org> 2.8a-1
+- Updated to release 2.8a.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.7a-1.2
 - Rebuild for Fedora Core 5.
 
