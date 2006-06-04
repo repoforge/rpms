@@ -28,7 +28,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 AutoReq: no
 #BuildRequires: nagios-devel
 #BuildRequires: bind-devel (not needed for check_dns)
-BuildRequires: radiusclient-devel
+BuildRequires: radiusclient-devel, gcc-c++
 BuildRequires: fping, bind-utils, ntp, samba-client, openssh-clients, qstat
 BuildRequires: openldap-devel, mysql-devel, postgresql-devel
 BuildRequires: perl(Net::SNMP)

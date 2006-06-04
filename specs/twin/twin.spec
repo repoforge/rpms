@@ -25,10 +25,12 @@ License: GPL
 Group: Applications/System
 URL: http://linuz.sns.it/~max/twin/
 
-Source: http://dl.sf.net/twin/twin-%{version}.tar.gz
+#Source: http://dl.sf.net/twin/twin-%{version}.tar.gz
+Source: http://linuz.sns.it/~max/twin/twin-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf, ncurses-devel, automake, gtk+-devel
 BuildRequires: libtermcap-devel
+%{?fc5:BuildRequires: libtool-ltdl-devel}
 %{?fc4:BuildRequires: libtool-ltdl-devel}
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: libX11-devel}

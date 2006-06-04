@@ -26,7 +26,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xpenguins >= 1.9
 BuildRequires: gnome-libs-devel, automake, autoconf, gnome-panel-devel
 # configure checks if the themes are available
-BuildRequires: xpenguins-themes
+BuildRequires: xpenguins
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: libXpm-devel}
 

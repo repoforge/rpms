@@ -21,6 +21,7 @@ BuildRequires: gnome-keyring-devel, pygtk2-devel >= 2.4, gnome-python2
 BuildRequires: gnome-vfs2-devel, libgnomeui-devel, gnome-python2-bonobo
 BuildRequires: GConf2-devel, gnome-python2-gconf, gnome-python2-desktop
 %{?fc4:BuildRequires: gnome-python2-extras, gnome-panel-devel}
+%{?fc5:BuildRequires: gnome-python2-extras, gnome-panel-devel}
 Requires: python >= 2.3, pygtk2 >= 2.4, python-crypto >= 1.9
 Requires: gnome-python2-canvas, gnome-python2-gconf, gnome-python2-gnomevfs
 Requires: gnome-python2-bonobo, cracklib, gnome-python2-applet

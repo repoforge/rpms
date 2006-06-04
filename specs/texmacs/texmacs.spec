@@ -22,7 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: tetex-latex, guile-devel, gcc-c++, python
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
-%{?_wit_modxorg:BuildRequires: xorg-x11-proto-devel, libXext-devel}
+%{?_with_modxorg:BuildRequires: xorg-x11-proto-devel, libXext-devel}
 
 ### Fedora Extras introduced them differently :(
 Obsoletes: TeXmacs < %{version}-%{release}

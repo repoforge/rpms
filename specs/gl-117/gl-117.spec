@@ -10,6 +10,14 @@
 %{?el3:%define _without_freeglut 1}
 %{?rh9:%define _without_freeglut 1}
 
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+
 Summary: Action flight simulator
 Name: gl-117
 Version: 1.3.2
@@ -24,6 +32,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, SDL_mixer-devel, gcc-c++
 %{!?_without_freeglut:BuildRequires: freeglut-devel}
 %{?_without_freeglut:BuildRequires: glut-devel}
+%{!?_without_modxorg:BuildRequires: libXmu-devel}
 
 %description
 GL-117 is an action flight simulator. Enter the Eagle Squadron and succeed
