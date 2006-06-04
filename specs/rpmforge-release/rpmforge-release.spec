@@ -10,7 +10,7 @@
 
 Summary: RPMforge release file and package configuration
 Name: rpmforge-release
-Version: 0.3.2
+Version: 0.3.3
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -138,9 +138,11 @@ exit 0
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-*
 
 %changelog
+* Sun Jun 04 2006 Dag Wieers <dag@wieers.com> - 0.3.3-1
+- Added Dries his useless $driesrepomdsuffix. :(
+
 * Sun Jun 04 2006 Dag Wieers <dag@wieers.com> - 0.3.2-1
 - Improved multi-distro support.
-- Added Dries his useless $driesrepomdsuffix. :(
 
 * Sat Jun 03 2006 Dag Wieers <dag@wieers.com> - 0.3.1-1
 - Added support for EL2 and RH7.
