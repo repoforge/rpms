@@ -65,24 +65,44 @@ you will need to install %{name}-devel.
 %patch1
 %patch2
 
+%{?el4:name='Red Hat Enterprise'; version='4'}
+%{?el3:name='Red Hat Enterprise'; version='3'}
+%{?el2:name='Red Hat Enterprise'; version='2'}
+%{?fc5:name='Fedora Core'; version='5'}
+%{?fc4:name='Fedora Core'; version='4'}
+%{?fc3:name='Fedora Core'; version='3'}
+%{?fc2:name='Fedora Core'; version='2'}
+%{?fc1:name='Fedora Core'; version='1'}
+%{?rh9:name='Red Hat'; version='9'}
+%{?rh8:name='Red Hat'; version='8.0'}
+%{?rh7:name='Red Hat'; version='7.3'}
+%{?rh6:name='Red Hat'; version='6.2'}
+
 %{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|RPMforge RPM Repository %{dist}/%{_arch} APT-HTTP/1.3|' methods/http.cc
 
 %{__cat} <<'EOF' >os.list
-# Name: FreshRPMS OS/updates
-# URL: http://ayo.freshrpms.net/
+# Name: Operating system and updates
 
 ### Red Hat Enterprise Linux
+#repomd http://yam rhel$(VERSION)as-$(ARCH)/os
+#repomd http://yam rhel$(VERSION)as-$(ARCH)/updates
+#repomd http://mirror.centos.org centos/$(VERSION)/apt/os
+#repomd http://mirror.centos.org centos/$(VERSION)/apt/updates
 #rpm http://yam rhel$(VERSION)as-$(ARCH) os updates
 #rpm http://mirror.centos.org centos/$(VERSION)/apt os updates
 
-### Fedora Core
-%{!?fedora:#}rpm http://ayo.freshrpms.net fedora/linux/$(VERSION)/$(ARCH) core updates
+### Fedora Core Linux
+%{!?fedora:#}repomd http://ayo.freshrpms.net fedora/linux/$(VERSION)/$(ARCH)/core
+%{!?fedora:#}repomd http://ayo.freshrpms.net fedora/linux/$(VERSION)/$(ARCH)/updates
+#rpm http://ayo.freshrpms.net fedora/linux/$(VERSION)/$(ARCH) core updates
 
 ### Red Hat Linux
-%{!?rhl:#}rpm http://ayo.freshrpms.net redhat/$(VERSION)/$(ARCH) os updates
+%{!?rhl:#}repomd http://ayo.freshrpms.net redhat/$(VERSION)/$(ARCH)/os
+%{!?rhl:#}repomd http://ayo.freshrpms.net redhat/$(VERSION)/$(ARCH)/updates
+#rpm http://ayo.freshrpms.net redhat/$(VERSION)/$(ARCH) os updates
 EOF
 
-%{__cat} <<'EOF' >apt.conf
+%{__cat} <<EOF >apt.conf
 APT {
 	Clean-Installed "false";
 	Get {
@@ -93,6 +113,7 @@ APT {
 		Ignore-Missing "false";
 		Compile "false";
 	};
+	DistroVersion=$version;
 };
 
 Acquire {
@@ -117,6 +138,7 @@ RPM {
 		"^kernel-";
 		"^gpg-pubkey$";
 	};
+	Order "true";
 };
 EOF
 
