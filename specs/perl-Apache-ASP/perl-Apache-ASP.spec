@@ -53,7 +53,7 @@ rendering, and new events not originally part of the ASP API!
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES LICENSE MANIFEST README
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man3/*.3*
 %dir %{perl_vendorlib}/Apache/
 %{perl_vendorlib}/Apache/ASP/
 %{perl_vendorlib}/Apache/ASP.pm
@@ -64,9 +64,6 @@ rendering, and new events not originally part of the ASP API!
 %{_bindir}/asp-perl
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.59-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.59-1
 - Updated to release 2.59.
 

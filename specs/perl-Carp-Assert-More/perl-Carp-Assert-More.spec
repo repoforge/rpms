@@ -1,28 +1,27 @@
 # $Id$
-# Authority: dries
-# Upstream: Michael G Schwern <mschwern$cpan,org>
+# Authority: dag
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Carp-Assert
+%define real_name Carp-Assert-More
 
-Summary: Executable commments
-Name: perl-Carp-Assert
-Version: 0.18
-Release: 1.2
+Summary: Convenience wrappers around Carp::Assert 
+Name: perl-Carp-Assert-More
+Version: 1.12
+Release: 1
 License: Artistic
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Carp-Assert/
+URL: http://search.cpan.org/dist/Carp-Assert-More/
 
-Source: http://www.cpan.org/modules/by-module/Carp/Carp-Assert-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Carp/Carp-Assert-More-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 
 %description
-Carp::Assert is intended for a purpose like the ANSI C library assert.h.
+Convenience wrappers around Carp::Assert.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -36,8 +35,7 @@ Carp::Assert is intended for a purpose like the ANSI C library assert.h.
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -45,9 +43,11 @@ Carp::Assert is intended for a purpose like the ANSI C library assert.h.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/Carp/
+%doc %{_mandir}/man3/*.3*
+%dir %{perl_vendorlib}/Carp/
+%dir %{perl_vendorlib}/Carp/Assert/
+%{perl_vendorlib}/Carp/Assert/More.pm
 
 %changelog
-* Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 0.18-1
-- Initial package.
+* Mon Jun 05 2006 Dag Wieers <dag@wieers.com> - 1.12-1
+- Initial package. (using DAR)

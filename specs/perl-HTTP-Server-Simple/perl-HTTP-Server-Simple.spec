@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-Server-Simple/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JE/JESSE/HTTP-Server-Simple-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/HTTP/HTTP-Server-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -36,6 +36,8 @@ your existing tools.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 
 %clean
@@ -44,16 +46,15 @@ your existing tools.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3*
+%dir %{perl_vendorlib}/HTTP/
+%dir %{perl_vendorlib}/HTTP/Server/
 %{perl_vendorlib}/HTTP/Server/Simple.pm
 %{perl_vendorlib}/HTTP/Server/Simple/
 
 %changelog
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.18-1
 - Updated to release 0.18.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Dec 31 2005 Dries Verachtert <dries@ulyssis.org> - 0.16-1
 - Initial package.
