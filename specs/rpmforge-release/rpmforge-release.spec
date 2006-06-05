@@ -10,7 +10,7 @@
 
 Summary: RPMforge release file and package configuration
 Name: rpmforge-release
-Version: 0.3.3
+Version: 0.3.4
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -59,13 +59,14 @@ baseurl = http://apt.sw.be/$path$version/en/%{_arch}/$builder$driesrepomdsuffix
 type = rpm-md
 EOF
 
+### Yum needs hardcoded version as on RHEL4AS releasever translates to 4AS :(
 %{__cat} <<EOF >rpmforge.yum
 # Name: RPMforge RPM Repository for $name $version - $builder
 # URL: http://rpmforge.net/
 [rpmforge]
 name = $name \$releasever - RPMforge.net - $builder
-#baseurl = http://apt.sw.be/$path\$releasever/en/\$basearch/$builder$driesrepomdsuffix
-mirrorlist = http://apt.sw.be/$path\$releasever/en/mirrors-rpmforge
+#baseurl = http://apt.sw.be/$path$version/en/\$basearch/$builder$driesrepomdsuffix
+mirrorlist = http://apt.sw.be/$path$version/en/mirrors-rpmforge
 #mirrorlist = file:///etc/yum.repos.d/mirrors-rpmforge
 enabled = 1
 gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-$builder
@@ -138,6 +139,9 @@ exit 0
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-*
 
 %changelog
+* Mon Jun 05 2006 Dag Wieers <dag@wieers.com> - 0.3.4-1
+- Fix for Yum repmforge.repo on Red Hat Enterprise Linux.
+
 * Sun Jun 04 2006 Dag Wieers <dag@wieers.com> - 0.3.3-1
 - Added Dries his useless $driesrepomdsuffix. :(
 
