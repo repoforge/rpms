@@ -43,14 +43,11 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %files
 %defattr(-, root, root, 0755)
 %doc ANNOUNCE README
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man3/*.3*
 %{perl_vendorarch}/Compress/
 %{perl_vendorarch}/auto/Compress/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.41-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.41-1
 - Updated to release 1.41.
 
