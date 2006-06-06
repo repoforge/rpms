@@ -4,14 +4,13 @@
 Summary: CheckInstall installations tracker
 Name: checkinstall
 Version: 1.6.0
-Release: 2.2
+Release: 3
 License: GPL
 Group: Applications/System
 URL: http://asic-linux.com.mx/~izto/checkinstall/
 
 Source: http://checkinstall.izto.org/files/source/checkinstall-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 CheckInstall keeps track of all the files created or modified by your
@@ -29,8 +28,11 @@ standard package management  utilities.
 		s|/usr/local/bin|\$(bindir)|g;
 		s|/usr/local/lib|\$(libdir)|g;
 	' Makefile
-%{__perl} -pi.orig -e 's|/usr/local|%{_prefix}|g' checkinstall checkinstallrc*
-%{__perl} -pi.orig -e 's|#PREFIX#|%{_prefix}|g' installwatch
+%{__perl} -pi.orig -e '
+		s|/usr/local|%{_prefix}|g;
+		s|/lib\b|/%{_lib}|g;
+		s|#PREFIX#|%{_prefix}|g;
+	' checkinstall checkinstallrc* installwatch-*/installwatch
 
 %build
 %{__make} %{?_smp_mflags} \
@@ -44,7 +46,8 @@ standard package management  utilities.
 %makeinstall \
 	PREFIX="%{_prefix}" \
 	BINDIR="%{buildroot}%{_bindir}" \
-	LIBDIR="%{buildroot}%{_libdir}" INSTALLWATCH_PREFIX=%{_prefix}
+	LIBDIR="%{buildroot}%{_libdir}" \
+	INSTALLWATCH_PREFIX=%{_prefix}
 #%{__install} -p -m0755 installwatch-*/installwatch %{buildroot}%{_bindir}
 #%{__install} -p -m0755 checkinstall makepak %{buildroot}%{_sbindir}
 #%{__install} -p -m0755 installwatch-*/installwatch.so %{buildroot}%{_libdir}
@@ -63,8 +66,8 @@ standard package management  utilities.
 %{_libdir}/*.so
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.0-2.2
-- Rebuild for Fedora Core 5.
+* Tue Jun 06 2006 Dag Wieers <dag@wieers.com> - 1.6.0-3
+- Fixed a stale reference to /usr/lib on x86_64. (Stefan.Neufeind)
 
 * Sun Feb 12 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.0-2
 - Fixed the path to installwatch, thanks to Renato Ramonda. (atrpms bugzilla bug 723)

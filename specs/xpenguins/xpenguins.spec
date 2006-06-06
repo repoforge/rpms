@@ -3,14 +3,8 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
 
 Summary: Cute little penguins that walk along the tops of your windows
 Name: xpenguins
@@ -23,8 +17,8 @@ URL: http://xpenguins.seul.org/
 Source: http://xpenguins.seul.org/xpenguins-%{version}.tar.gz
 Source1: http://xpenguins.seul.org/xpenguins_themes-1.0.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: libXpm-devel, libXext-devel, libXt-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{?_with_modxorg:BuildRequires: libXpm-devel, libXext-devel, libXt-devel}
 
 %description
 XPenguins animates a friendly family of penguins in your root window.
@@ -88,8 +82,5 @@ Themes for xpenguins, includes:
 %{_datadir}/xpenguins/themes/Worms/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2-0.2
-- Rebuild for Fedora Core 5.
-
 * Thu Apr 17 2003 Dag Wieers <dag@wieers.com> - 2.2-0
 - Initial package. (using DAR)
