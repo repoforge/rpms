@@ -23,11 +23,12 @@
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
 Version: 0.9.8
-Release: 2%{?prever:.%{prever}}
+Release: 3%{?prever:.%{prever}}
 License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sourceforge.net/
 Source: http://dl.sf.net/libquicktime/libquicktime-%{version}%{?prever}.tar.gz
+Patch0: libquicktime-0.9.8-plugin_dir.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk2-devel, libdv-devel, libvorbis-devel, lame-devel
 BuildRequires: libpng-devel >= 1.0.8, libjpeg-devel, gcc-c++
@@ -69,6 +70,7 @@ programs that need to access quicktime files using libquicktime.
 
 %prep
 %setup -n %{name}-%{version}%{?prever}
+%patch0 -p1 -b .plugin_dir
 
 
 %build
@@ -120,6 +122,9 @@ programs that need to access quicktime files using libquicktime.
 
 
 %changelog
+* Thu Jun  8 2006 Matthias Saou <http://freshrpms.net/> 0.9.8-3
+- Add patch to fix plugin_dir on 64bit.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.9.8-2
 - Release bump to drop the disttag number in FC5 build.
 

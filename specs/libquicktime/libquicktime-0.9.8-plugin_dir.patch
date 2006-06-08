@@ -1,0 +1,40 @@
+diff -Naupr libquicktime-0.9.8.orig/configure libquicktime-0.9.8/configure
+--- libquicktime-0.9.8.orig/configure	2006-01-27 23:03:08.000000000 +0100
++++ libquicktime-0.9.8/configure	2006-01-27 23:03:08.000000000 +0100
+@@ -26431,13 +26431,10 @@ fi
+ 
+ 
+ 
+-if test "x$prefix" = xNONE; then
+-   prefix="${ac_default_prefix}"
++if test "x$libdir" = xNONE; then
++   libdir="${ac_default_libdir}"
+ fi
+-if test "x$exec_prefix" = xNONE; then
+-   exec_prefix="${prefix}"
+-fi
+-plugin_dir="$exec_prefix/lib/$PACKAGE"
++plugin_dir="$libdir/$PACKAGE"
+ 
+ 
+ 
+diff -Naupr libquicktime-0.9.8.orig/configure.ac libquicktime-0.9.8/configure.ac
+--- libquicktime-0.9.8.orig/configure.ac	2006-01-27 23:02:35.000000000 +0100
++++ libquicktime-0.9.8/configure.ac	2006-01-27 23:02:35.000000000 +0100
+@@ -555,13 +555,10 @@ fi
+ 
+ AC_SUBST(RTJPEG_CFLAGS)
+ 
+-if test "x$prefix" = xNONE; then
+-   prefix="${ac_default_prefix}"
++if test "x$libdir" = xNONE; then
++   libdir="${ac_default_libdir}"
+ fi
+-if test "x$exec_prefix" = xNONE; then
+-   exec_prefix="${prefix}"
+-fi
+-plugin_dir="$exec_prefix/lib/$PACKAGE"
++plugin_dir="$libdir/$PACKAGE"
+ 
+ 
+ AH_TEMPLATE([PLUGIN_DIR], [Directory for plugins])
