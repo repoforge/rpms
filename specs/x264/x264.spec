@@ -7,33 +7,23 @@
 %{!?dist:%define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
-%define svn svn468
+%define date 20060607
 
 Summary: Library for encoding and decoding H264/AVC video streams
 Name: x264
 Version: 0.0.0
-Release: 0.1.%{svn}
+Release: 0.2.%{date}
 License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/x264.html
-# Available through "svn co svn://svn.videolan.org/x264/trunk x264"
-# find x264 -name .svn | xargs rm -rf
-Source: %{name}-%{svn}.tar.bz2
+Source: ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{date}-2245.tar.bz2
+Patch0: x264-snapshot-20060607-2245-shared-lib.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: nasm, yasm
 %if 0%{?_with_modxorg:1}
 BuildRequires: libXt-devel
 %else
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+BuildRequires: XFree86-devel
 %endif
 # version.sh requires svnversion
 BuildRequires: subversion
@@ -56,20 +46,24 @@ scratch.
 
 
 %prep
-%setup -n %{name}-%{svn}
-# AUTHORS file is in iso-8859-1
-iconv -f iso-8859-1 -t utf-8 -o AUTHORS.utf8 AUTHORS
-mv -f AUTHORS.utf8 AUTHORS
+%setup -n %{name}-snapshot-%{date}-2245
+%patch0 -p1 -b .shared-lib
 # configure hardcodes X11 lib path
 %{__perl} -pi -e 's|/usr/X11R6/lib |/usr/X11R6/%{_lib} |g' configure
 
 
 %build
 # Force PIC as applications fail to recompile against the lib on x86_64 without
-%configure \
+./configure \
+    --prefix=%{_prefix} \
+    --bindir=%{_bindir} \
+    --includedir=%{_includedir} \
+    --libdir=%{_libdir} \
     --enable-pthread \
     --enable-debug \
-    --enable-pic
+    --enable-pic \
+    --enable-shared \
+    --extra-cflags="%{optflags}"
 %{__make} %{?_smp_mflags}
 
 
@@ -82,15 +76,16 @@ mv -f AUTHORS.utf8 AUTHORS
 %{__rm} -rf %{buildroot}
 
 
-#post -p /sbin/ldconfig
+%post -p /sbin/ldconfig
 
-#postun -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING
 %{_bindir}/x264
+%{_libdir}/libx264.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -98,9 +93,19 @@ mv -f AUTHORS.utf8 AUTHORS
 %{_includedir}/x264.h
 %{_libdir}/pkgconfig/x264.pc
 %{_libdir}/libx264.a
+%{_libdir}/libx264.so
 
 
 %changelog
+* Thu Jun  8 2006 Matthias Saou <http://freshrpms.net/> 0.0.0-0.2.20060607
+- Switch to using the official snapshots.
+- Remove no longer needed UTF-8 AUTHORS file conversion.
+- Simplify xorg build requirement.
+- Switch from full %%configure to ./configure with options since no autotools.
+- Enable shared library at last.
+- Add our %%{optflags} to the build.
+- Include patch to make the *.so symlink relative.
+
 * Thu Mar 16 2006 Matthias Saou <http://freshrpms.net/> 0.0.0-0.1.svn468
 - Update to svn 468.
 - Lower version from 0.0.svn to 0.0.0 since one day 0.0.1 might come out,
