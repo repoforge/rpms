@@ -7,7 +7,7 @@
 Summary: Graphical interface for RPM analyze
 Name: rpm-analyzer
 Version: 1.0
-Release: 0.r17.2
+Release: 0.r19
 License: GPL
 Group: Applications/System
 URL: http://www.maisondubonheur.com/rpm-analyzer/
@@ -53,13 +53,13 @@ so please consider installing comps.
 %files
 %defattr(-, root, root, 0755)
 %doc Changelog COPYING
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/rpm-analyzer.1*
+%{_bindir}/rpm-analyzer
 %{_datadir}/rpm-analyzer/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-0.r17.2
-- Rebuild for Fedora Core 5.
+* Fri Jun 09 2006 Dag Wieers <dag@wieers.com> - 1.0-0.r19
+- Updated to release 1.0-19.
 
 * Wed Feb 22 2006 Dag Wieers <dag@wieers.com> - 1.0-0.r17
 - Updated to release 1.0-17.

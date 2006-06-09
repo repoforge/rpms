@@ -4,8 +4,8 @@
 
 Summary: Automatically restart SSH sessions and tunnels
 Name: autossh
-Version: 1.3
-Release: 2.2
+Version: 1.4
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.harding.motd.ca/autossh/
@@ -27,13 +27,13 @@ such as connection refused.
 %prep
 %setup
 
-%{__perl} -pi.orig -e 's|-Wall |%{optflags} |g' Makefile.linux
-
 %build
-%{__make} %{?_smp_mflags} -f Makefile.linux
+%configure
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+#%{__make} install DESTDIR="%{buildroot}"
 %{__install} -Dp -m0755 autossh %{buildroot}%{_bindir}/autossh
 %{__install} -Dp -m0644 autossh.1 %{buildroot}%{_mandir}/man1/autossh.1
 
@@ -47,8 +47,8 @@ such as connection refused.
 %{_bindir}/autossh
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-2.2
-- Rebuild for Fedora Core 5.
+* Fri Jun 09 2006 Dag Wieers <dag@wieers.com> - 1.4-1
+- Updated to release 1.4.
 
 * Thu Mar 24 2005 Dag Wieers <dag@wieers.com> - 1.3-2
 - Added openssh-clients dependency. (Adrian Reber)

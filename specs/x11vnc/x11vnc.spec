@@ -4,29 +4,31 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh8:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
 
 Summary: VNC server for the current X11 session
 Name: x11vnc
-Version: 0.8
-Release: 1.2
+Version: 0.8.1
+Release: 1
 License: GPL
 Group: User Interface/X
 URL: http://www.karlrunge.com/x11vnc/
 
 Source:	http://dl.sf.net/libvncserver/x11vnc-%{version}.tar.gz
-# Source0-md5: b03ba2f34355a4e3c2e0420af2065703
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libjpeg-devel, zlib-devel
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: xorg-x11-devel}
 
 %description
 x11vnc is to X Window System what WinVNC is to Windows, i.e. a server
@@ -45,7 +47,7 @@ into a versatile and performant while still easy to use program.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -58,8 +60,8 @@ into a versatile and performant while still easy to use program.
 %{_datadir}/x11vnc/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-1.2
-- Rebuild for Fedora Core 5.
+* Fri Jun 09 2006 Dag Wieers <dag@wieers.com> - 0.8.1-1
+- Updated to release 0.8.1.
 
 * Tue Feb 14 2006 Dag Wieers <dag@wieers.com> - 0.8-1
 - Updated to release 0.8.

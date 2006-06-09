@@ -33,6 +33,8 @@ Checks if the documentation of a module is comprehensive.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
@@ -41,18 +43,15 @@ Checks if the documentation of a module is comprehensive.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
-%{_bindir}/*
+%doc %{_mandir}/man3/*.3*
+%{_bindir}/pod_cover
 %dir %{perl_vendorarch}/Pod/
 %{perl_vendorarch}/Pod/Coverage.pm
-%{perl_vendorarch}/Pod/Coverage/*
+%{perl_vendorarch}/Pod/Coverage/
 %dir %{perl_vendorarch}/auto/Pod/
-%{perl_vendorarch}/auto/Pod/Coverage/*
+%{perl_vendorarch}/auto/Pod/Coverage/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.17-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.17-1
 - Updated to release 0.17.
 
