@@ -1,10 +1,10 @@
 # $Id$
 # Authority: dag
 
-Summary: Queue manager for the Postfix mail transport agent
+Summary: Queue manager for the Postfix and Exim mail transport agents
 Name: pfqueue
 Version: 0.5.2
-Release: 1.2
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://pfqueue.sourceforge.net/
@@ -13,11 +13,12 @@ Source: http://dl.sf.net/pfqueue/pfqueue-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, gcc-c++
-Requires: postfix
+### Work with both postfix and Exim
+#Requires: postfix
 
 %description
 pfqueue is a console application for managing mail queues used by the
-Postfix mail transport agent.
+Postfix and Exim mail transport agents.
 
 %prep
 %setup
@@ -28,7 +29,7 @@ Postfix mail transport agent.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -44,8 +45,8 @@ Postfix mail transport agent.
 %{_libdir}/libpfq*.so*
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.2-1.2
-- Rebuild for Fedora Core 5.
+* Fri Jun 09 2006 Dag Wieers <dag@wieers.com> - 0.5.2-2
+- Removed postfix dependency as it can be used with exim. (Bryan Muthig)
 
 * Mon Feb 06 2006 Dag Wieers <dag@wieers.com> - 0.5.2-1
 - Updated to release 0.5.2.
