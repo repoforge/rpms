@@ -7,7 +7,7 @@
 
 Summary: View one or multiple files like tail but with multiple windows
 Name: multitail
-Version: 4.0.4
+Version: 4.0.5
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -37,24 +37,27 @@ given regular expressions and deleting and adding windows.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1/ \
-			%{buildroot}%{_sysconfdir}
+%{__install} -d -m0755 %{buildroot}%{_bindir}
+%{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}
 %{__make} install DESTDIR="%{buildroot}"
-%{__mv} %{buildroot}%{_sysconfdir}/multitail.conf.new %{buildroot}%{_sysconfdir}/multitail.conf
+%{__mv} -f %{buildroot}%{_sysconfdir}/multitail.conf.new %{buildroot}%{_sysconfdir}/multitail.conf
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc *.conf *.html Changes INSTALL license.txt readme.txt
+%doc Changes INSTALL *.conf *.html *.txt
 %doc %{_mandir}/man1/multitail.1*
 %config(noreplace) %{_sysconfdir}/multitail.conf
 %{_bindir}/multitail
 
 %changelog
-* Tue May 24 2006 Dries Verachtert <dries@ulyssis.org> - 4.0.4-1
+* Fri Jun 09 2006 Dag Wieers <dag@wieers.com> - 4.0.5-1
+- Updated to release 4.0.5.
+
+* Tue May 23 2006 Dag Wieers <dag@wieers.com> - 4.0.4-1
 - Updated to release 4.0.4.
 
 * Tue Mar 28 2006 Dag Wieers <dag@wieers.com> - 3.8.10-1
