@@ -10,16 +10,16 @@
 Summary: Provides a general framework for access to a hierarchical data structure
 Name: perl-File-System
 Version: 1.16
-Release: 1.2
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-System/
 
-Source: http://search.cpan.org/CPAN/authors/id/H/HA/HANENKAMP/File-System-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/File/File-System-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildArch: noarch
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build), perl(Parse::RecDescent)
 
 %description
 The goal of the File::System module is to provide a very general framework for
@@ -55,13 +55,13 @@ more sense.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
 %{perl_vendorlib}/File/System.pm
 %{perl_vendorlib}/File/System/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.16-1.2
-- Rebuild for Fedora Core 5.
+* Fri Jun 09 2006 Dag Wieers <dag@wieers.com> - 1.16-2
+- Added perl(Parse::RecDescent) dependency. (Silviu Mocanu)
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.16-1
 - Initial package.
