@@ -5,7 +5,7 @@
 
 Summary: Client for ED2K Peer-to-Peer Networks based on eMule
 Name: amule
-Version: 2.1.2
+Version: 2.1.3
 Release: 1%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Internet
@@ -79,6 +79,9 @@ update-desktop-database -q 2>/dev/null || :
 
 
 %changelog
+* Mon Jun 12 2006 Matthias Saou <http://freshrpms.net/> 2.1.3-1
+- Update to 2.1.3.
+
 * Mon May 29 2006 Matthias Saou <http://freshrpms.net/> 2.1.2-1
 - Update to 2.1.2.
 
