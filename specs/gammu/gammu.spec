@@ -6,7 +6,7 @@
 
 Summary: Mobile phone tools
 Name: gammu
-Version: 1.06.00
+Version: 1.07.00
 Release: 1
 License: GPL
 Group: Applications/Communications
@@ -81,11 +81,11 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Mon Jun 12 2006 Dag Wieers <dag@wieers.com> - 1.07.00-1
+- Updated to release 1.07.00.
+
 * Fri Apr 21 2006 Dries Verachtert <dries@ulyssis.org> - 1.06.00-1
 - Updated to release 1.06.00.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.05.00-1.2
-- Rebuild for Fedora Core 5.
 
 * Mon Mar 13 2006 Dag Wieers <dag@wieers.com> - 1.05.00-1
 - Updated to release 1.05.00.

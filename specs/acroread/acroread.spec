@@ -17,8 +17,8 @@
 
 Summary: Adobe Reader for viewing PDF files
 Name: acroread
-Version: 7.0.5
-Release: 2.2
+Version: 7.0.8
+Release: 1
 License: Commercial, Freely Distributable
 Group: Applications/Publishing
 URL: http://www.adobe.com/products/acrobat/readermain.html
@@ -124,8 +124,8 @@ ln -f %{buildroot}%{_libdir}/acroread/Browser/intellinux/nppdf.so %{buildroot}%{
 %{_libdir}/netscape/plugins/nppdf.so
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 7.0.5-2.2
-- Rebuild for Fedora Core 5.
+* Mon Jun 12 2006 Dag Wieers <dag@wieers.com> - 7.0.8-1
+- Updated to release 7.0.8.
 
 * Sat Mar 04 2006 Dries Verachtert <dries@ulyssis.org> - 7.0.5-2
 - Disabled creation of a debuginfo package.

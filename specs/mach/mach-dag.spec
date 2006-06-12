@@ -2,47 +2,65 @@
 # Authority: dag
 # Upstream: Thomas Vander Stichele <thomas$apestaart,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+%{?fc1:%define _without_selinux 1}
+%{?el3:%define _without_selinux 1}
+%{?el3:%define _without_selinux 1}
+%{?rh9:%define _without_selinux 1}
+%{?rh7:%define _without_selinux 1}
+%{?el2:%define _without_selinux 1}
+
+%{!?builduser:  %define builduser  machbuild}
+%{!?buildgroup: %define buildgroup machbuild}
+
 %define logmsg logger -t mach/rpm
 
 Summary: Make a chroot
 Name: mach
-Version: 0.4.5
+Version: 0.9.0
 Release: 1
-License: GPL
 Group: Applications/System
+License: GPL
 URL: http://thomas.apestaart.org/projects/mach/
-
-Source: http://thomas.apestaart.org/download/mach/mach-%{version}.tar.gz
+Source: http://thomas.apestaart.org/download/mach/mach-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-BuildRequires: python >= 2.0.0
-Requires: rpm, python, rpm-python, apt, sed, cpio
+BuildRequires: python >= 2.0, autoconf, automake, libtool
+%{!?_without_selinux:BuildRequires: libselinux-devel}
+Requires: createrepo, rpm-build, sed, cpio
+ExclusiveArch: %{ix86} x86_64 ppc
 
 %description
-mach makes a chroot.
-Using apt-get and a suid binary, it manages to install clean chroot
-environments based on the original packages for that distribution.
+mach allows you to set up clean build roots from scratch for any distribution
+or distribution variation supported. In this clean build root you can then
+easily generate pristine packages.
 
-The clean root can be used to run jail roots, to create image files, or
-to build clean packages.
 
 %prep
 %setup
 
+
 %build
 %configure \
-	--enable-builduser="mach" \
-	--enable-buildgroup="mach"
+	--enable-builduser="%{builduser}" \
+	--enable-buildgroup="%{buildgroup}" \
+%{?_without_selinux:--disable-selinux}
+%{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/cache/mach/{archives,packages}
-%{__install} -d -m2755 %{buildroot}%{_localstatedir}/lib/mach/{roots,states} \
+%{__install} -d -m0775 %{buildroot}%{_localstatedir}/cache/mach/
+%{__install} -d -m2775 %{buildroot}%{_localstatedir}/lib/mach/
+%{__install} -d -m2775 %{buildroot}%{_localstatedir}/lib/mach/states/
+%{__install} -d -m2775 %{buildroot}%{_localstatedir}/lib/mach/roots/
+%{__install} -d -m0775 %{buildroot}%{_localstatedir}/tmp/mach/
+
 
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %pre
 if ! /usr/bin/id mach &>/dev/null; then
@@ -50,12 +68,14 @@ if ! /usr/bin/id mach &>/dev/null; then
 		%logmsg "Unexpected error adding user \"mach\". Aborting installation."
 fi
 
+
 %preun
 if [ $1 -eq 0 ]; then
 	umount %{_localstatedir}/lib/mach/roots/*/proc &>/dev/null || :
-	rm -rf %{_localstatedir}/cache/mach/* &>/dev/null || :
-	rmdir %{_localstatedir}/cache/mach &>/dev/null || :
-	rm -rf %{_localstatedir}/tmp/mach/ &>/dev/null || :
+	rm -rf %{_localstatedir}/cache/mach/ &>/dev/null || :
+	#rm -rf %{_localstatedir}/lib/mach/states/ &>/dev/null || :
+	#rm -rf %{_localstatedir}/lib/mach/roots/ &>/dev/null || :
+	rm -rf %{_localstatedir}/tmp/mach &>/dev/null || :
 fi
 
 %postun
@@ -66,38 +86,84 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS ChangeLog COPYING FORGETMENOT README RELEASE TODO
+%doc AUTHORS BUGS ChangeLog COPYING FORGETMENOT README RELEASE TODO mach.doap
 %dir %{_sysconfdir}/mach/
 %config %{_sysconfdir}/mach/conf
+%config(noreplace) %{_sysconfdir}/mach/location
 %config %{_sysconfdir}/mach/dist.d/
-%config %{_sysconfdir}/mach/location
 %{_bindir}/mach
 
-%defattr(4750, root, mach, 0755)
+%if %{!?_without_selinux:1}0
+%exclude %{_libdir}/*.la
+%{_libdir}/*.so*
+%endif
+
+%defattr(4750, root, mach)
 %{_sbindir}/mach-helper
 
-%defattr(-, mach, mach, 0755)
+%defattr(-, mach, mach, 2755)
 %dir %{_localstatedir}/cache/mach/
-%dir %{_localstatedir}/cache/mach/packages/
-%dir %{_localstatedir}/cache/mach/archives/
-
-#%defattr(-, mach, mach, 2755)
 %dir %{_localstatedir}/lib/mach/
-%dir %{_localstatedir}/lib/mach/roots/
 %dir %{_localstatedir}/lib/mach/states/
+%dir %{_localstatedir}/lib/mach/roots/
+%dir %{_localstatedir}/tmp/mach
+
 
 %changelog
-* Thu May 27 2004 Dag Wieers <dag@wieers.com> - 0.4.5-1
-- Updated to release 0.4.5.
+* Mon Jun 12 2006 Dag Wieers <dag@wieers.com> - 0.9.0-1
+- Updated to release 0.9.0.
 
-* Wed Dec 17 2003 Dag Wieers <dag@wieers.com> - 0.4.3-0
-- Updated to release 0.4.3.
+* Tue Jan 24 2006 Matthias Saou <http://freshrpms.net> 0.4.8.2-1
+- Update to 0.4.8.2 pre-release.
 
-* Tue Nov 18 2003 Dag Wieers <dag@wieers.com> - 0.4.2-1
-- Added missing mach-directories from filelist. (Rudolf Kastl)
+* Thu Jan 19 2006 Matthias Saou <http://freshrpms.net> 0.4.8-0.2
+- Add freshrpms to FC development dist.d files.
 
-* Sat Oct 25 2003 Dag Wieers <dag@wieers.com> - 0.4.2-0
-- Updated to release 0.4.2.
+* Wed Dec 21 2005 Matthias Saou <http://freshrpms.net> 0.4.8-0.2
+- Fix fedora development core location (remove trailing "os").
 
-* Thu Sep 11 2003 Dag Wieers <dag@wieers.com> - 0.4.0-0
-- Initial package. (using DAR)
+* Mon Dec 12 2005 Matthias Saou <http://freshrpms.net> 0.4.8-0.1
+- Update to 0.4.8 (and only support yum, not apt).
+- Include only relevant dist.d files for given archs.
+- Include configuration patch (heavy!).
+- Include script patch to fix non-uid 500 user problems, and rip out apt.
+
+* Fri Nov  5 2004 Matthias Saou <http://freshrpms.net> 0.4.6-2
+- Added Fedora Core 3 files for i386 and x86_64.
+
+* Sun Jul 11 2004 Matthias Saou <http://freshrpms.net> 0.4.6-1
+- Update to 0.4.6.
+
+* Thu May 20 2004 Matthias Saou <http://freshrpms.net> 0.4.5-3
+- Rebuild for Fedora Core 2.
+- Don't remove the roots and states upon last removal.
+
+* Thu May  6 2004 Matthias Saou <http://freshrpms.net> 0.4.5-2
+- Added %%{python} macro to allow python2 dependency.
+
+* Fri Mar 19 2004 Matthias Saou <http://freshrpms.net> 0.4.5-1
+- Update to 0.4.5.
+
+* Mon Mar  1 2004 Matthias Saou <http://freshrpms.net> 0.4.3.1-1
+- Update to 0.4.3.1.
+
+* Wed Dec 17 2003 Matthias Saou <http://freshrpms.net> 0.4.3-1
+- Cosmetic spec file changes.
+- Update to 0.4.3.
+
+* Wed Sep 17 2003 Thomas Vander Stichele <thomas at apestaart dot org>
+- add Requires: cpio
+- change home dir to /var/lib/mach
+
+* Mon Sep 08 2003 Thomas Vander Stichele <thomas at apestaart dot org>
+- 0.4.0-0.fdr.1: first public release.
+
+* Sat Aug 16 2003 Ville Skyttä <ville.skytta at iki.fi>
+- Add COPYING to docs.
+
+* Wed May 21 2003 Thomas Vander Stichele <thomas at apestaart dot org>
+- added mach-helper
+
+* Wed Apr 30 2003 Thomas Vander Stichele <thomas at apestaart dot org>
+- initial creation
+

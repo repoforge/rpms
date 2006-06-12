@@ -58,7 +58,7 @@ autoreconf --force --install --symlink
 %install
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
@@ -94,5 +94,5 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %exclude %{_libdir}/*.la
 
 %changelog
-* Son Jan 19 2005 Dag Wieers <dag@wieers.com> - 
+* Son Jun 20 2006 Dag Wieers <dag@wieers.com> - 
 - Initial package. (using DAR)
