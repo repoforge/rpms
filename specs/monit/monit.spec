@@ -7,7 +7,7 @@
 Summary: Process monitor and restart utility
 Name: monit
 Version: 4.8.1
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Internet
 URL: http://www.tildeslash.com/monit/
@@ -141,7 +141,7 @@ fi
 
 %preun
 if [ $1 -eq 0 ]; then
-	service monit start &>/dev/null || :
+	service monit stop &>/dev/null || :
 	/sbin/chkconfig --del monit
 fi
 
@@ -167,6 +167,9 @@ fi
 %{_localstatedir}/lib/monit/
 
 %changelog
+* Tue Jun 13 2006 Dag Wieers <dag@wieers.com> - 4.8.1-4
+- Fixed type in %%preun that failed to stop monit. (Jim Robinson)
+
 * Mon May 29 2006 Dag Wieers <dag@wieers.com> - 4.8.1-3
 - Fixed reference to monitrc from monitor.h. (Tim Jackson)
 

@@ -54,8 +54,8 @@ Summary: Adobe Reader plug-in for viewing PDF files with the mozilla browser
 Group: Applications/Internet
 Requires: %{name} = %{version}
 #Requires: %{_libdir}/mozilla/plugins/
-Provides: %{name}-plugin = %{version}-%{release}
-Obsoletes: %{name}-plugin < %{version}
+Provides: acroread-plugin = %{version}-%{release}
+Obsoletes: acroread-plugin < %{version}
 
 %description -n mozilla-acroread
 This package provides the Adobe Reader plugin for mozilla.

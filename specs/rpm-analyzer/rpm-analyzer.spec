@@ -1,13 +1,13 @@
 # $Id$
 # Authority: dag
-# Upstream: <ra$maisondubonheur,com>
+# Upstream: Alain Tauch <ra$maisondubonheur,com>
 
 %define pyver %(python2 -c 'import sys; print sys.version[:3]')
 
 Summary: Graphical interface for RPM analyze
 Name: rpm-analyzer
 Version: 1.0
-Release: 0.r19
+Release: 0.1.r19
 License: GPL
 Group: Applications/System
 URL: http://www.maisondubonheur.com/rpm-analyzer/
@@ -20,32 +20,31 @@ BuildRequires: pygtk2, python2, rpm-python, rhpl, libxml2-python
 Requires: pygtk2, python2, rpm-python, rhpl, libxml2-python
 
 %description
-rpm-analyzer  provides  a  graphical  interface  that  allows
-the user to view a RPM dependencies according to the local rpm
-configuration or a user-defined rpm configuration. This tool is
-hdlist based and may require a comps.xml file for some features
-so please consider installing comps.
+rpm-analyzer provides a graphical interface that allows the user to view
+RPM dependencies according to the local rpm configuration or the
+user-defined rpm configuration. This tool is hdlist based and may require
+a comps.xml file for some features so please consider installing comps.
 
 %prep
 %setup
-
-### FIXME: Make Makefile obey the autotools rules. (Please fix upstream)
-%{__perl} -pi.orig -e '
-		s|\@if|#\@if|;
-		s|/usr/local/bin|\$(bindir)|;
-		s|\$\(MANDIR\)|\$(mandir)|;
-		s|\$\(RADATADIR\)|\$(datadir)/rpm-analyzer|;
-	' Makefile
 
 %build
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall install-man
 
-### FIXME: Fix the link to the binary. (Please fix upstream)
+%{__install} -Dp -m0755 src/rpm-analyzer.py %{buildroot}%{_datadir}/rpm-analyzer/rpm-analyzer.py
+
+%{__install} -dp -m0755 %{buildroot}%{_datadir}/rpm-analyzer/package_mgr/
+%{__install} -p -m0644 src/*.py %{buildroot}%{_datadir}/rpm-analyzer/
+%{__install} -p -m0644 src/package_mgr/*.py %{buildroot}%{_datadir}/rpm-analyzer/package_mgr/
+
+%{__install} -Dp -m0644 man/rpm-analyzer.1 %{buildroot}%{_mandir}/man1/rpm-analyzer.1
+
+%{__install} -dp -m0755 %{buildroot}%{_bindir}
 %{__ln_s} -f %{_datadir}/rpm-analyzer/rpm-analyzer.py %{buildroot}%{_bindir}/rpm-analyzer
+
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -58,6 +57,9 @@ so please consider installing comps.
 %{_datadir}/rpm-analyzer/
 
 %changelog
+* Mon Jun 12 2006 Dag Wieers <dag@wieers.com> - 1.0-0.1.r19
+- Use the actual 1.0r19 tarball (was missed because unversioned).
+
 * Fri Jun 09 2006 Dag Wieers <dag@wieers.com> - 1.0-0.r19
 - Updated to release 1.0-19.
 
