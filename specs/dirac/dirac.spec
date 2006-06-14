@@ -4,8 +4,8 @@
 
 Summary: General-purpose video codec
 Name: dirac
-Version: 0.5.4
-Release: 1.2
+Version: 0.6.0
+Release: 1
 License: MPL 1.1
 Group: System Environment/Libraries
 URL: http://sourceforge.net/projects/dirac
@@ -44,11 +44,8 @@ you will need to install %{name}-devel.
 
 %{__mv} -f %{buildroot}%{_docdir}/ rpm-doc/
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -70,8 +67,8 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/dirac.pc
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.4-1.2
-- Rebuild for Fedora Core 5.
+* Wed Jun 14 2006 Dag Wieers <dag@wieers.com> - 0.6.0-1
+- Updated to release 0.6.0.
 
 * Mon Dec 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.4-1
 - Updated to release 0.5.4.
