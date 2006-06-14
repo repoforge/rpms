@@ -3,13 +3,13 @@
 
 Summary: Tool to create and check SFV files
 Name: cksfv
-Version: 1.3
-Release: 1.2
+Version: 1.3.9
+Release: 1
 License: GPL
 Group: Applications/File
-URL: http://www.fodder.org/cksfv/
+URL: http://zakalwe.fi/~shd/foss/cksfv/
 
-Source: http://www.fodder.org/cksfv/cksfv-%{version}.tar.gz
+Source: http://zakalwe.fi/~shd/foss/cksfv/files/cksfv-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -19,27 +19,31 @@ CRC32 checksums.
 
 %prep
 %setup
-%{__perl} -pi.orig -e 's|/usr/local/bin|\$(bindir)|' src/Makefile
+#%{__perl} -pi.orig -e 's|/usr/local/bin|\$(bindir)|' src/Makefile
 
 %build
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%makeinstall
+#%{__install} -d -m0755 %{buildroot}%{_bindir}
+#%{__make} install DESTDIR="%{buildroot}"
+%{__install} -Dp -m0755 src/cksfv %{buildroot}%{_bindir}/cksfv
+%{__install} -Dp -m0644 cksfv.1 %{buildroot}%{_mandir}/man1/cksfv.1
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING README TODO
+%doc AUTHORS ChangeLog COPYING README TODO
+%{_mandir}/man1/cksfv.1*
 %{_bindir}/cksfv
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-1.2
-- Rebuild for Fedora Core 5.
+* Wed Jun 14 2006 Dag Wieers <dag@wieers.com> - 1.3.9-1
+- Updated to release 1.3.9.
 
 * Sun Aug 14 2005 Dag Wieers <dag@wieers.com> - 1.3-1
 - Rebuild.

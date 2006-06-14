@@ -13,6 +13,7 @@ Source: pyrpm-%{version}.tar.bz2
 #Source: http://people.redhat.com/laroche/pyrpm/download/pyrpm-%{version}-1.src.rpm
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: python >= 2.3
 Requires: python >= 2.3, python-urlgrabber, libxml2-python
 

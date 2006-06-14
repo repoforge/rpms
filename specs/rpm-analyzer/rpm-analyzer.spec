@@ -6,8 +6,8 @@
 
 Summary: Graphical interface for RPM analyze
 Name: rpm-analyzer
-Version: 1.0
-Release: 0.1.r19
+Version: 1.22
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.maisondubonheur.com/rpm-analyzer/
@@ -33,18 +33,7 @@ a comps.xml file for some features so please consider installing comps.
 
 %install
 %{__rm} -rf %{buildroot}
-
-%{__install} -Dp -m0755 src/rpm-analyzer.py %{buildroot}%{_datadir}/rpm-analyzer/rpm-analyzer.py
-
-%{__install} -dp -m0755 %{buildroot}%{_datadir}/rpm-analyzer/package_mgr/
-%{__install} -p -m0644 src/*.py %{buildroot}%{_datadir}/rpm-analyzer/
-%{__install} -p -m0644 src/package_mgr/*.py %{buildroot}%{_datadir}/rpm-analyzer/package_mgr/
-
-%{__install} -Dp -m0644 man/rpm-analyzer.1 %{buildroot}%{_mandir}/man1/rpm-analyzer.1
-
-%{__install} -dp -m0755 %{buildroot}%{_bindir}
-%{__ln_s} -f %{_datadir}/rpm-analyzer/rpm-analyzer.py %{buildroot}%{_bindir}/rpm-analyzer
-
+%{__make} install DESTDIR="%{buildroot}" prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -57,6 +46,11 @@ a comps.xml file for some features so please consider installing comps.
 %{_datadir}/rpm-analyzer/
 
 %changelog
+* Wed Jun 14 2006 Dag Wieers <dag@wieers.com> - 1.22-1
+- Improved installation procedure. (Alain Tauch)
+- Better versioning scheme. (Alain Tauch)
+- Updated to release 1.22.
+
 * Mon Jun 12 2006 Dag Wieers <dag@wieers.com> - 1.0-0.1.r19
 - Use the actual 1.0r19 tarball (was missed because unversioned).
 
