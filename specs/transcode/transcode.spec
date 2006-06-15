@@ -8,6 +8,7 @@
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{!?dist:%define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
 %{?fc1:%define _without_theora 1}
@@ -28,7 +29,7 @@
 Summary: Linux video stream processing utility
 Name: transcode
 Version: 1.0.2
-Release: 7%{?prever:.%{prever}}
+Release: 8%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
@@ -80,7 +81,7 @@ Available rpmbuild rebuild options :
 
 %build
 # This is required to get "#include <postprocess.h>" to work
-export CFLAGS="%{optflags} -I%{_includedir}/postproc"
+export CFLAGS="%{optflags} -I%{_includedir}/postproc -DSDL_VIDEO_DRIVER_X11"
 %configure \
     --enable-netstream \
     --enable-v4l \
@@ -132,6 +133,10 @@ export CFLAGS="%{optflags} -I%{_includedir}/postproc"
 
 
 %changelog
+* Thu Jun 15 2006 Matthias Saou <http://freshrpms.net/> 1.0.2-8
+- Rebuild on FC development for the ImageMagick update (.so.10).
+- Add -DSDL_VIDEO_DRIVER_X11 to the CFLAGS to fix building on FC development.
+
 * Tue Mar 28 2006 Matthias Saou <http://freshrpms.net/> 1.0.2-7
 - Include transcode-1.0.2-filter_compare-fixes-try1.patch and
   transcode-1.0.2-filter_logo-hangup-try1.patch to fix hang.
