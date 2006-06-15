@@ -8,6 +8,9 @@
 %{!?dist:%define _with_modxorg 1}
 %{!?dist:%define _with_avahi 1}
 
+%{?fc6:%define _with_modxorg 1}
+%{?fc6:%define _with_avahi 1}
+
 %{?fc5:%define _with_modxorg 1}
 %{?fc5:%define _with_avahi 1}
 
@@ -68,7 +71,7 @@
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
 Version: 0.8.5
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -169,6 +172,7 @@ export CFLAGS="%{optflags}"
 # Build bundeled ffmpeg first
 pushd ffmpeg-%{ffmpeg_date}
     ./configure \
+        --extra-libs="-lX11" \
         --enable-mp3lame \
         --enable-faac \
         --enable-pp \
@@ -306,6 +310,10 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Thu Jun 15 2006 Matthias Saou <http://freshrpms.net/> 0.8.5-2
+- Rebuild for FC development (gnutls update).
+- Add -lX11 extra libs for ffmpeg to build with the latest xorg.
+
 * Fri May 12 2006 Matthias Saou <http://freshrpms.net/> 0.8.5-1
 - Update to 0.8.5.
 - Update live lib to 2006.05.11.
