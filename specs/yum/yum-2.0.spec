@@ -7,7 +7,7 @@ Summary: RPM installer/updater
 Name: yum
 Version: 2.0.8
 ### Do not update release > 1 as we do not want to replace CentOS yum
-Release: 0
+Release: 0.1
 License: GPL
 Group: System Environment/Base
 URL: http://www.dulug.duke.edu/yum/
@@ -27,6 +27,18 @@ automatically prompting the user as necessary.
 
 %prep
 %setup
+
+### Clean up default yum configuration file
+%{__cat} <<EOF >etc/yum.conf
+[main]
+cachedir=/var/cache/yum
+debuglevel=2
+logfile=/var/log/yum.log
+pkgpolicy=newest
+distroverpkg=redhat-release
+tolerant=1
+exactarch=1
+EOF
 
 %build
 %configure
@@ -67,6 +79,9 @@ fi
 %{_localstatedir}/cache/yum/
 
 %changelog
+* Fri Jun 16 2006 Dag Wieers <dag@wieers.com> - 2.0.8-0.1
+- Cleaned up default yum.conf file. (Steve Glines)
+
 * Mon Feb 20 2006 Dag Wieers <dag@wieers.com> - 2.0.8-0
 - Imported SPEC file from CentOS 3.
 

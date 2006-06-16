@@ -1,0 +1,17 @@
+--- src/libcli/Makefile.orig	2003-08-27 04:50:58.000000000 +0200
++++ src/libcli/Makefile	2006-06-16 12:40:01.000000000 +0200
+@@ -1,4 +1,4 @@
+-CFLAGS = -Wall
++CFLAGS = -Wall $(RPM_OPT_FLAGS)
+ 
+ OBJS = cli.o cli_history.o cli_tokenize.o
+ 
+--- src/Makefile.orig	2003-08-27 04:50:58.000000000 +0200
++++ src/Makefile	2006-06-16 12:41:12.000000000 +0200
+@@ -1,5 +1,5 @@
+ LIBS=-lncurses libcli/libcli.a
+-CFLAGS=-I.. -Ilibcli -DHAVE_CONFIG_H -Wall -pedantic -g
++CFLAGS=-I.. -Ilibcli -DHAVE_CONFIG_H -Wall -pedantic $(RPM_OPT_FLAGS)
+ 
+ CFILES=$(wildcard *.c)
+ OBJS=$(patsubst %.c,%.o,$(CFILES))

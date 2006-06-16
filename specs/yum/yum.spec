@@ -9,7 +9,7 @@ Summary: RPM installer/updater
 Name: yum
 Version: 2.4.2
 ### Do not update release > 1 as we do not want to replace CentOS yum
-Release: 0.3
+Release: 0.4
 License: GPL
 Group: System Environment/Base
 Source: http://linux.duke.edu/projects/yum/download/2.4/yum-%{version}.tar.gz
@@ -31,6 +31,19 @@ automatically prompting the user as necessary.
 
 %prep
 %setup
+
+### Clean up default yum configuration file
+%{__cat} <<EOF >etc/yum.conf
+[main]
+cachedir=/var/cache/yum
+debuglevel=2
+logfile=/var/log/yum.log
+pkgpolicy=newest
+distroverpkg=redhat-release
+tolerant=1
+exactarch=1
+obsoletes=1
+EOF
 
 %build
 %{__make} %{?_smp_mflags}
@@ -74,6 +87,9 @@ fi
 %{_localstatedir}/cache/yum/
 
 %changelog
+* Fri Jun 16 2006 Dag Wieers <dag@wieers.com> - 2.4.2-0.4
+- Cleaned up default yum.conf file. (Steve Glines)
+
 * Tue Feb 21 2006 Dag Wieers <dag@wieers.com> - 2.4.2-0.3
 - Removed (CentOS) yumconf from requirements.
 
