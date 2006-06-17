@@ -1,8 +1,6 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: fc3 el4
-
 %{?rh8:%define _with_perl_5_6 1}
 %{?rh7:%define _with_perl_5_6 1}
 %{?el2:%define _with_perl_5_6 1}
@@ -14,7 +12,7 @@
 
 Summary: Spam filter for email which can be invoked from mail delivery agents
 Name: spamassassin
-Version: 3.1.2
+Version: 3.1.3
 Release: 1
 License: Apache License
 Group: Applications/Internet
@@ -25,7 +23,7 @@ Source99: filter-requires-spamassassin.sh
 #Patch3: spamassassin-3.0.2-krb5-backcompat.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl(HTML::Parser), perl(Net::DNS), perl(Time::HiRes), openssl-devel
+BuildRequires: perl(HTML::Parser) >= 3.24, perl(Net::DNS), perl(Time::HiRes), openssl-devel
 Requires: procmail, perl(Net::DNS), perl(Time::HiRes)
 Requires: /sbin/chkconfig, /sbin/service
 #Requires: perl(Mail::SpamAssassin) = %{version}-%{release}
@@ -185,6 +183,9 @@ fi
 %doc contrib/ masses/ sql/ tools/
 
 %changelog
+* Fri Jun 16 2006 Dag Wieers <dag@wieers.com> - 3.1.3-1
+- Updated to release 3.1.3.
+
 * Sun May 28 2006 Dag Wieers <dag@wieers.com> - 3.1.2-1
 - Updated to release 3.1.2.
 

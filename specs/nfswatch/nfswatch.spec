@@ -3,8 +3,8 @@
 
 Summary: Command line tool to monitor NFS traffic
 Name: nfswatch
-Version: 4.99.5
-Release: 1.2
+Version: 4.99.6
+Release: 1
 License: BSD
 Group: Applications/Internet
 URL: http://nfswatch.sourceforge.net/
@@ -45,8 +45,8 @@ interface or on all interfaces.
 %{_sbindir}/nfswatch
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.99.5-1.2
-- Rebuild for Fedora Core 5.
+* Fri Jun 16 2006 Dag Wieers <dag@wieers.com> - 4.99.6-1
+- Updated to release 4.99.6.
 
 * Wed Nov 30 2005 Dag Wieers <dag@wieers.com> - 4.99.5-1
 - Updated to release 4.99.5.
