@@ -2,37 +2,32 @@
 # authority: matthias
 # ExclusiveDist: fc4 fc5
 
-%define snapshot 20060215
+%define snapshot 20060521
 
 # Stuff to be implemented externally :
 Source10: kmodtool
-%define   kmodtool sh %{SOURCE10}
+%define   kmodtool bash %{SOURCE10}
 # End stuff to be ...
 
-# Temporarily hardcoded :
-%{!?kver: %define kver 2.6.16-1.2080_FC5}
-%ifnarch i686 x86_64 ppc
-%define kvariants ""
-%else
-%ifarch i686
-%define kvariants "" smp xen0 xenU
-%endif
-%ifarch x86_64
-%define kvariants "" xen0 xenU
-%endif
-%ifarch ppc
-%define kvariants "" smp
-%endif
-%endif
+%{!?kversion: %define kversion 2.6.16-1.2122_FC5}
 
 %define kmod_name acx
-%define kverrel %(%{kmodtool} verrel  %{?kver} 2>/dev/null)
-%{!?kvariants: %global kvariants %(%{kmodtool} variant %{?kver} 2>/dev/null)}
+%define kverrel %(%{kmodtool} verrel  %{?kversion} 2>/dev/null)
+
+%define upvar ""
+%ifarch i586 i686 ppc
+%define smpvar smp
+%endif
+%ifarch i686 x86_64
+%define xenvar xen0 xenU
+%define kdumpvar kdump
+%endif
+%{!?kvariants: %define kvariants %{?upvar} %{?smpvar} %{?xenvar} %{?kdumpvar}}
 
 Summary: Kernel module for Texas Instruments ACX100/ACX111 based network adapters
 Name: %{kmod_name}-kmod
-Version: 0.0.0
-Release: 1.%{snapshot}.%(echo %{kverrel} | tr - _)
+Version: 0.0.0.%{snapshot}
+Release: 1.%(echo %{kverrel} | tr - _)
 Group: System Environment/Kernel
 License: GPL
 URL: http://acx100.sourceforge.net/
@@ -46,14 +41,10 @@ This RPM contains a binary Linux kernel module built for %{kernel}. It
 provides a driver for Texas Instruments ACX100/ACX111 based wireless network
 adapters.
 
-# magic hidden here:
 %{expand:%(%{kmodtool} rpmtemplate %{kmod_name} %{kverrel} %{kvariants} 2>/dev/null)}
 
 
 %prep
-# To understand the magic better or to debug it, uncomment this :
-#{kmodtool} rpmtemplate %{kmod_name} %{kverrel} %{kvariants} 2>/dev/null
-#sleep 5
 %setup -c -T
 # Can't think of any better way to do this since we basically need -c twice
 for kvariant in %{kvariants}; do
@@ -88,6 +79,13 @@ done
 
 
 %changelog
+* Mon Jun 19 2006 Matthias Saou <http://freshrpms.net/> 0.0.0-1.20060521
+- Enable i586 SMP since the kernel is available.
+
+* Wed May 31 2006 Matthias Saou <http://freshrpms.net/> 0.0.0-1.20060521
+- Update to 20060521.
+- Update kmodtool to 0.10.10.
+
 * Fri Mar 31 2006 Matthias Saou <http://freshrpms.net/> 0.0.0-1.20060215
 - Initial RPM release, based on the new Extras kernel module template.
 

@@ -2,11 +2,13 @@
 # authority: matthias
 # Dist: nodist
 
+%define snapshot 20060521
+
 %define kmod_name acx
 
 Summary: Common files for the ACX kernel module
 Name: %{kmod_name}-kmod-common
-Version: 0.0.0
+Version: 0.0.0.%{snapshot}
 Release: 1
 Group: System Environment/Kernel
 License: GPL
@@ -40,6 +42,9 @@ Common files for the ACX kernel module.
 
 
 %changelog
-* Fri Mar 31 2006 Matthias Saou <http://freshrpms.net/> 0.0.0-1
+* Wed May 31 2006 Matthias Saou <http://freshrpms.net/> 0.0.0.20060521-1
+- Update to 20060521.
+
+* Fri Mar 31 2006 Matthias Saou <http://freshrpms.net/> 0.0.0.20060215-1
 - Initial RPM release, based on the new Extras kernel module template.
 
