@@ -1,0 +1,37 @@
+*** src/filter.c.orig	2006-05-28 11:18:22.000000000 +0200
+--- src/filter.c	2006-05-28 11:18:51.000000000 +0200
+***************
+*** 150,153 ****
+--- 150,156 ----
+      }
+    }
++   if (strlen(filter[id].name) > MAX_FILTER_NAME_LEN) {
++     return -1;
++   }
+  
+    filter_unquote_options(filter[id].options);
+***************
+*** 346,357 ****
+    int id = filter_next_free_id()+1;
+    vob_t *vob = tc_get_vob();
+-   long sret;
+  
+    fprintf(stderr, "[%s] Loading (%s) ..\n", __FILE__, mfilter_string);
+  
+    filter[id].namelen = strlen(mfilter_string);
+!   filter[id].name    = (char *) malloc (filter[id].namelen+1);
+!   sret = strlcpy(filter[id].name, mfilter_string, MAX_FILTER_NAME_LEN);
+!   if (tc_test_string(__FILE__, __LINE__, MAX_FILTER_NAME_LEN, sret, errno))
+      return(1);
+  
+--- 349,358 ----
+    int id = filter_next_free_id()+1;
+    vob_t *vob = tc_get_vob();
+  
+    fprintf(stderr, "[%s] Loading (%s) ..\n", __FILE__, mfilter_string);
+  
+    filter[id].namelen = strlen(mfilter_string);
+!   filter[id].name    = strdup(mfilter_string);
+!   if (!filter[id].name)
+      return(1);
+  

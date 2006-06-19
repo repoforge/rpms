@@ -29,13 +29,14 @@
 Summary: Linux video stream processing utility
 Name: transcode
 Version: 1.0.2
-Release: 8%{?prever:.%{prever}}
+Release: 9%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
 Source: http://www.jakemsr.com/transcode/transcode-%{version}%{?prever}.tar.gz
 Patch0: transcode-1.0.2-filter_compare-fixes-try1.patch
 Patch1: transcode-1.0.2-filter_logo-hangup-try1.patch
+Patch2: transcode-1.0.x-filter-patch.txt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gtk+-devel, SDL-devel, libxml2-devel, libjpeg-devel
 BuildRequires: freetype-devel >= 2.0, libogg-devel, libvorbis-devel
@@ -77,6 +78,7 @@ Available rpmbuild rebuild options :
 %setup -n %{name}-%{version}%{?prever}
 %patch0 -p0 -b .filter_compare-fixes-try1
 %patch1 -p0 -b .filter_logo-hangup-try1
+%patch2 -p0 -b .filter-patch
 
 
 %build
@@ -133,6 +135,10 @@ export CFLAGS="%{optflags} -I%{_includedir}/postproc -DSDL_VIDEO_DRIVER_X11"
 
 
 %changelog
+* Mon Jun 19 2006 Matthias Saou <http://freshrpms.net/> 1.0.2-9
+- Include transcode-1.0.x-filter-patch.txt from dvd::rip to fix filters and
+  previews in dvd::rip.
+
 * Thu Jun 15 2006 Matthias Saou <http://freshrpms.net/> 1.0.2-8
 - Rebuild on FC development for the ImageMagick update (.so.10).
 - Add -DSDL_VIDEO_DRIVER_X11 to the CFLAGS to fix building on FC development.

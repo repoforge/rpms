@@ -11,7 +11,7 @@
 
 Summary: Graphical DVD ripping and encoding tool based on transcode
 Name: perl-Video-DVDRip
-Version: 0.97.10
+Version: 0.97.11
 Release: 1
 License: Artistic or GPL
 Group: Applications/Multimedia
@@ -21,9 +21,10 @@ Patch0: Video-DVDRip-0.97.8-nontplworkaround.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: transcode >= 0.6.13
 Requires: ImageMagick, ogmtools, subtitleripper, vcdimager, lsdvd
-Requires: perl(Gtk2) >= 1.081, perl(Gtk2::Ex::FormFactory) >= 0.63
-BuildRequires: perl(Gtk2) >= 1.081, perl(Gtk2::Ex::FormFactory) >= 0.63
-BuildRequires: perl(Locale::TextDomain), perl(Event::ExecFlow)
+Requires: perl(Gtk2) >= 1.081, perl(Gtk2::Ex::FormFactory) >= 0.64
+Requires: perl(Locale::TextDomain) >= 1.16, perl(Event::ExecFlow) >= 0.62
+BuildRequires: perl(Gtk2) >= 1.081, perl(Gtk2::Ex::FormFactory) >= 0.64
+BuildRequires: perl(Locale::TextDomain) >= 1.16, perl(Event::ExecFlow) >= 0.62
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
@@ -105,6 +106,9 @@ EOF
 
 
 %changelog
+* Mon Jun 19 2006 Matthias Saou <http://freshrpms.net/> 0.97.11-1
+- Update to 0.97.11.
+
 * Tue Apr 25 2006 Matthias Saou <http://freshrpms.net/> 0.97.10-1
 - Update to 0.97.10.
 
