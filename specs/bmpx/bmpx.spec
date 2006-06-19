@@ -3,14 +3,16 @@
 
 # ExclusiveDist: fc5
 
+%define prever pre1
+
 Summary: Media player with the WinAmp GUI
 Name: bmpx
-Version: 0.14.3
-Release: 2
+Version: 0.20
+Release: 0.1.%{prever}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.beep-media-player.org/
-Source: http://dl.sf.net/beepmp/bmpx-%{version}.tar.bz2
+Source: http://dl.sf.net/beepmp/bmpx-%{version}%{?prever}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
@@ -18,8 +20,9 @@ BuildRequires: gettext-devel, libXt-devel
 BuildRequires: gstreamer-devel >= 0.10.4
 BuildRequires: gstreamer-plugins-base-devel >= 0.10.4
 BuildRequires: dbus-devel, hal-devel, gamin-devel, libmusicbrainz-devel
-BuildRequires: taglib-devel, neon-devel, gtk2-devel, libglade2-devel
-BuildRequires: startup-notification-devel, alsa-lib-devel
+BuildRequires: taglib-devel, neon-devel
+BuildRequires: boost-devel, glibmm24-devel, gtkmm24-devel, libglademm24-devel
+BuildRequires: startup-notification-devel, sqlite-devel, alsa-lib-devel
 # Needed for libhrel
 BuildRequires: flex, bison
 
@@ -39,7 +42,7 @@ Development files required for compiling BMPx media player plugins.
 
 
 %prep
-%setup
+%setup -n %{name}-%{version}%{?prever}
 
 
 %build
@@ -78,14 +81,13 @@ update-desktop-database &>/dev/null ||:
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README
+%doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_bindir}/beep-media-player-2
 %{_bindir}/bmp-enqueue-files-2.0
 %{_bindir}/bmp-enqueue-uris-2.0
 %{_bindir}/bmp-play-files-2.0
-%{_libdir}/bmp-2.0/
-%exclude %{_libdir}/bmp-2.0/plugins/*/*.la
-%{_libdir}/*.so.*
+%{_libdir}/bmpx/
+%exclude %{_libdir}/bmpx/plugins/*/*.la
 %{_libexecdir}/beep-media-player-2-bin
 %{_datadir}/applications/bmp-2.0.desktop
 %{_datadir}/applications/bmp-enqueue-2.0.desktop
@@ -98,17 +100,18 @@ update-desktop-database &>/dev/null ||:
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/bmp-2.0/
-%{_includedir}/libchroma/
-%{_includedir}/libhrel/
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
 %{_libdir}/pkgconfig/bmp-2.0.pc
-%{_libdir}/pkgconfig/hrel.pc
-# This is only an example
-%exclude %{_datadir}/libhrel/
 
 
 %changelog
+* Mon Jun 19 2006 Matthias Saou <http://freshrpms.net/> 0.20-0.1.pre1
+- Update to 0.20pre1.
+- Update all build requirements for new c++ deps : boost and gtkmm stuff.
+- Update %%files sections, notably for the removal of libs, hrel and chroma.
+
+* Thu May  4 2006 Matthias Saou <http://freshrpms.net/> 0.14.4-1
+- Update to 0.14.4.
+
 * Tue Apr 11 2006 Matthias Saou <http://freshrpms.net/> 0.14.3-2
 - Include COPYING file.
 - Add update-desktop-database scriplet calls and post/postun deps.
