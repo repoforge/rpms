@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
 Summary: Top clone for MySQL
 Name: mytop
 Version: 1.4
@@ -13,8 +16,8 @@ Source: http://jeremy.zawodny.com/mysql/mytop/mytop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl-Time-HiRes, perl-Term-ReadKey, perl => 5.6.0, perl-Class-DBI-mysql
-Requires: perl-Time-HiRes, perl-Term-ReadKey, perl => 5.6.0, perl-Class-DBI-mysql
+BuildRequires: perl(Time::HiRes), perl(Term::ReadKey), perl(Term::ANSIColor), perl >= 0:5.005
+Requires: perl >= 0:5.005
 
 %description
 mytop is a console-based (non-gui) tool for monitoring the threads and 
@@ -29,20 +32,23 @@ queries/second stats. As of version 0.7, it even runs on Windows
 %setup
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL
+%{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTALLDIRS="vendor"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
+%makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc MANIFEST README
-%{_mandir}/man1/mytop.1*
+%doc Changes INSTALL MANIFEST README
+%doc %{_mandir}/man1/mytop.1*
 %{_bindir}/mytop
 
 %changelog
