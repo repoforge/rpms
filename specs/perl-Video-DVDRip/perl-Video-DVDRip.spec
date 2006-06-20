@@ -12,7 +12,7 @@
 Summary: Graphical DVD ripping and encoding tool based on transcode
 Name: perl-Video-DVDRip
 Version: 0.97.11
-Release: 1
+Release: 2
 License: Artistic or GPL
 Group: Applications/Multimedia
 URL: http://www.exit1.org/dvdrip/
@@ -93,6 +93,7 @@ EOF
 %defattr(-, root, root, 0755)
 %doc Changes COPYRIGHT Credits README TODO
 %attr(0755, root, root) %{_bindir}/*
+%exclude %{_bindir}/dvdrip-tet
 %lang(cs) %{perl_sitelib}/LocaleData/cs/LC_MESSAGES/video.dvdrip.mo
 %lang(de) %{perl_sitelib}/LocaleData/de/LC_MESSAGES/video.dvdrip.mo
 %lang(es) %{perl_sitelib}/LocaleData/es/LC_MESSAGES/video.dvdrip.mo
@@ -106,6 +107,11 @@ EOF
 
 
 %changelog
+* Tue Jun 20 2006 Matthias Saou <http://freshrpms.net/> 0.97.11-2
+- Exclude experimental dvdrip-tet binary, since it also had a leftover
+  reference to FixLocaleTextDomainUTF8 that broke the automatically
+  generated dependencies.
+
 * Mon Jun 19 2006 Matthias Saou <http://freshrpms.net/> 0.97.11-1
 - Update to 0.97.11.
 
