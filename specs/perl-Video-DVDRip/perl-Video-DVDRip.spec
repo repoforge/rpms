@@ -18,6 +18,7 @@ Group: Applications/Multimedia
 URL: http://www.exit1.org/dvdrip/
 Source: http://www.exit1.org/dvdrip/dist/pre/Video-DVDRip-%{version}.tar.gz
 Patch0: Video-DVDRip-0.97.8-nontplworkaround.patch
+Patch1: Video-DVDRip-0.97.11-no-dvdrip-tet.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: transcode >= 0.6.13
 Requires: ImageMagick, ogmtools, subtitleripper, vcdimager, lsdvd
@@ -35,6 +36,7 @@ DVD Ripping API, which uses the Linux Video Stream Processing Tool transcode.
 %prep
 %setup -n Video-DVDRip-%{version}
 %patch0 -p1 -b .nontplworkaround
+%patch1 -p1 -b .no-dvdrip-tet
 
 
 %build
@@ -93,7 +95,6 @@ EOF
 %defattr(-, root, root, 0755)
 %doc Changes COPYRIGHT Credits README TODO
 %attr(0755, root, root) %{_bindir}/*
-%exclude %{_bindir}/dvdrip-tet
 %lang(cs) %{perl_sitelib}/LocaleData/cs/LC_MESSAGES/video.dvdrip.mo
 %lang(de) %{perl_sitelib}/LocaleData/de/LC_MESSAGES/video.dvdrip.mo
 %lang(es) %{perl_sitelib}/LocaleData/es/LC_MESSAGES/video.dvdrip.mo
