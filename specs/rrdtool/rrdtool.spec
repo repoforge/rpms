@@ -2,8 +2,6 @@
 # Authority: matthias
 # Upstream: Tobi Oetiker <oetiker$ee,ethz,ch>
 
-# Tag: test
-
 %{?fc1:%define _without_python 1}
 %{?el3:%define _without_python 1}
 

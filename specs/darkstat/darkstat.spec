@@ -1,17 +1,16 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Emil Mikulic <www-28ab$dmr,ath,cx>
 
 Summary: Network traffic analyzer
 Name: darkstat
-Version: 2.6
-Release: 1.2
+Version: 3.0.471
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://dmr.ath.cx/net/darkstat/
 
-Source: http://dmr.ath.cx/net/darkstat/darkstat-%{version}.tar.gz
+Source: http://dmr.ath.cx/net/darkstat/darkstat-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap
@@ -31,21 +30,21 @@ all sorts of useless but interesting statistics.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%find_lang %{name}
+%{__make} install DESTDIR="%{buildroot}"
+#%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL ISSUES NEWS README
-%doc %{_mandir}/man?/*
-%{_sbindir}/*
+%doc AUTHORS COPYING* LICENSE INSTALL README
+%doc %{_mandir}/man1/darkstat.1*
+%{_sbindir}/darkstat
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.6-1.2
-- Rebuild for Fedora Core 5.
+* Tue Jun 20 2006 Dag Wieers <dag@wieers.com> - 3.0.471-1
+- Updated to release 3.0.471.
 
 * Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 2.6-1
 - Initial package. (using DAR)

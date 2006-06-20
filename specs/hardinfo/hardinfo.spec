@@ -11,8 +11,8 @@
 
 Summary: Displays information about your hardware and operating system
 Name: hardinfo
-Version: 0.4
-Release: 1.2
+Version: 0.4.1
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://alpha.linuxmag.com.br/~leandro/hardinfo/
@@ -31,12 +31,6 @@ USB, IDE, SCSI, Serial and parallel port devices.
 
 %prep
 %setup
-
-### FIXME: Use standard autotool paths.
-#%{__perl} -pi.orig -e '
-#		s|/usr/bin/|\$(bindir)/|;
-#		s|/usr/share/|\$(datadir)/|;
-#	' Makefile.in
 
 %{__cat} <<EOF >hardinfo.desktop
 [Desktop Entry]
@@ -85,10 +79,10 @@ EOF
 %endif
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4-1.2
-- Rebuild for Fedora Core 5.
+* Tue Jun 20 2006 Dag Wieers <dag@wieers.com> - 0.4.1-1
+- Updated to release 0.4.1.
 
-* Thu Feb 02 2006 Dag Wieers <dag@wieers.com> - 0.4-0
+* Thu Feb 02 2006 Dag Wieers <dag@wieers.com> - 0.4-1
 - Updated to release 0.4.
 
 * Fri Oct 31 2003 Dag Wieers <dag@wieers.com> - 0.3.6-0
