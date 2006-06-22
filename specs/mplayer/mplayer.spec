@@ -2,12 +2,13 @@
 # Authority: matthias
 
 # Overridable kernel version, needed for the DVB includes
-%{!?kernel: %define kernel %(uname -r)}
+%{!?kversion: %define kversion %(uname -r)}
 
 %{?dist: %{expand: %%define %dist 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{!?dist:%define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
 %{?fc1:%define _without_alsa 1}
@@ -50,13 +51,13 @@
 %{?yd3:%define _without_theora 1}
 
 # Is this a daily build? If so, put the date like "20020808" otherwise put 0
-%define date      20060314
-#define rcver     pre7
+#define date      20060314
+%define rcver     pre8
 
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.26%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.27%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -71,8 +72,9 @@ Source0: http://www.mplayerhq.hu/MPlayer/cvs/MPlayer-%{date}.tar.bz2
 %else
 Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{version}%{?rcver}.tar.bz2
 %endif
-Source1: http://www.live555.com/liveMedia/public/live.2006.03.03.tar.gz
+Source1: http://www.live555.com/liveMedia/public/live.2006.06.22.tar.gz
 Source2: http://www.mplayerhq.hu/MPlayer/Skin/Blue-1.5.tar.bz2
+Source3: mplayer.png
 # Only for reference, required on YDL4 at least
 Source10: uio.h-ppc.patch
 Patch0: MPlayer-0.90pre9-runtimemsg.patch
@@ -87,9 +89,8 @@ BuildRequires: libpng-devel, libjpeg-devel, libungif-devel
 BuildRequires: lame-devel, libmad-devel, flac-devel
 BuildRequires: libmatroska-devel
 BuildRequires: ImageMagick
-%{?_with_samba:BuildRequires: samba-common}
 %{?_with_dvdread:BuildRequires: libdvdread-devel}
-%{!?_without_dvb:BuildRequires: kernel-devel = %{kernel}}
+%{!?_without_dvb:BuildRequires: kernel = %{kversion}, kernel-devel = %{kversion}}
 %{!?_without_dv:BuildRequires: libdv-devel}
 %{!?_without_ladspa:BuildRequires: ladspa-devel}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
@@ -110,6 +111,8 @@ BuildRequires: ImageMagick
 %{!?_without_mpc:BuildRequires: libmpcdec-devel}
 %{!?_without_vstream:BuildRequires: vstream-client-devel}
 %{!?_without_amrnb:BuildRequires: amrnb-devel}
+%{!?_without_samba:BuildRequires: samba-common}
+%{!?_without_speex:BuildRequires: speex-devel}
 %{?_with_modxorg:BuildRequires: libXv-devel, libXxf86vm-devel, libGL-devel}
 %{!?_with_modxorg:%{!?_without_xvmc:BuildRequires: libXvMCW-devel}}
 %{?_with_modxorg:%{!?_without_xvmc:BuildRequires: libXvMC-devel}}
@@ -122,10 +125,10 @@ nice antialiased shaded subtitles and OSD.
 On x86, additional Win32 binary codecs should be added to %{_libdir}/win32/.
 
 Available rpmbuild rebuild options :
---with : samba dvdread
+--with : dvdread
 --without : aalib lirc cdparanoia arts xvid esd lzo fame caca dvb vstream
             theora osdmenu gcccheck fribidi xvmc x264 faac mpc live ladspa
-            amrnb
+            amrnb samba speex
 
 
 %package -n mencoder
@@ -171,7 +174,8 @@ find . -name "CVS" | xargs %{__rm} -rf
 
 # Overwrite some of the details of the provided system menu entry
 %{__perl} -pi -e 's|^Exec=gmplayer$|Exec=gmplayer %f|g;
-                  s|^Categories=.*|Categories=Application;AudioVideo;|g' \
+                  s|^Categories=.*|Categories=Application;AudioVideo;|g;
+                  s|^Icon=.*|Icon=mplayer.png|g' \
     etc/mplayer.desktop
 echo "MimeType=video/dv;video/mpeg;video/x-mpeg;video/msvideo;video/quicktime;video/x-anim;video/x-avi;video/x-ms-asf;video/x-ms-wmv;video/x-msvideo;video/x-nsv;video/x-flc;video/x-fli;application/ogg;application/x-ogg;application/x-matroska;audio/x-mp3;audio/x-mpeg;audio/mpeg;audio/x-wav;audio/x-mpegurl;audio/x-scpls;audio/x-m4a;audio/x-ms-asf;audio/x-ms-asx;audio/x-ms-wax;application/vnd.rn-realmedia;audio/x-real-audio;audio/x-pn-realaudio;misc/ultravox;audio/vnd.rn-realaudio;audio/x-pn-aiff;audio/x-pn-au;audio/x-pn-wav;audio/x-pn-windows-acm;image/vnd.rn-realpix;video/vnd.rn-realvideo;audio/x-pn-realaudio-plugin;" >> etc/mplayer.desktop
 
@@ -197,41 +201,26 @@ echo | ./configure \
     --libdir=%{_libdir} \
     --enable-gui \
     --enable-largefiles \
-    --enable-dynamic-plugins \
+    --enable-joystick \
+    %{!?_with_dvdread:--disable-dvdread} \
+    %{!?_without_osdmenu:--enable-menu} \
+    %{!?_with_modxorg:%{!?_without_xvmc:--enable-xvmc --with-xvmclib=XvMCW}} \
+    %{?_with_modxorg:%{!?_without_xvmc:--enable-xvmc}} \
 %ifarch %{ix86}
     --enable-runtime-cpudetection \
     --enable-win32 \
     --with-win32libdir=%{_libdir}/win32 \
+    --with-xanimlibdir=%{_libdir}/win32 \
     --with-reallibdir=%{_libdir}/win32 \
 %else
     --with-reallibdir=%{_libdir}/real \
 %endif
-    --enable-joystick \
-    %{?_without_gcccheck:--disable-gcc-checking} \
-    %{?_without_alsa:--disable-alsa} \
-    %{?_without_aalib:--disable-aa} \
-    %{?_without_lirc:--disable-lirc} \
-    %{?_without_cdparanoia:--disable-cdparanoia} \
-    %{!?_without_cdparanoia:--with-cdparanoiaincdir=%{_includedir}/cdda} \
-    %{?_without_libdv:--disable-libdv} \
-    %{?_without_arts:--disable-arts} \
-    %{?_without_esd:--disable-esd} \
-    %{!?_with_dvdread:--disable-dvdread} \
-    %{?_without_fame:--disable-libfame} \
-    %{?_without_caca:--disable-caca} \
-    %{?_without_theora:--disable-theora} \
-    %{!?_without_dvb:--enable-dvbhead} \
-    %{!?_without_dvb:--with-dvbincdir=/lib/modules/%{kernel}/build/include} \
-    --disable-fastmemcpy \
-    --enable-i18n \
     --language=all \
-    %{!?_without_osdmenu:--enable-menu} \
-    %{?_with_samba:--enable-smb} \
-    %{!?_without_fribidi:--enable-fribidi} \
-    %{!?_with_modxorg:%{!?_without_xvmc:--enable-xvmc --with-xvmclib=XvMCW}} \
-    %{?_with_modxorg:%{!?_without_xvmc:--enable-xvmc}} \
-    %{!?_without_live:--with-livelibdir=`pwd`/live} \
-    --enable-debug
+    --enable-debug \
+    --enable-dynamic-plugins \
+    %{?_without_gcccheck:--disable-gcc-checking} \
+    %{!?_without_dvb:--with-dvbincdir=/lib/modules/%{kversion}/build/include} \
+    %{!?_without_live:--with-livelibdir=`pwd`/live}
 
 %{__make} %{?_smp_mflags}
 
@@ -262,6 +251,11 @@ echo | ./configure \
 %{__mkdir_p} %{buildroot}%{_libdir}/real
 %endif
 
+# Install our own nicer icon
+%{__rm} -f %{buildroot}%{_datadir}/pixmaps/mplayer.xpm
+%{__install} -p -m 0644 %{SOURCE3} \
+           %{buildroot}%{_datadir}/pixmaps/mplayer.png
+
 
 %post
 /sbin/ldconfig
@@ -280,7 +274,10 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog Copyright LICENSE README etc/*.conf
 %dir %{_sysconfdir}/mplayer/
-#config %{_sysconfdir}/mplayer/mplayer.conf
+#ghost %config %{_sysconfdir}/mplayer/codecs.conf
+#ghost %config %{_sysconfdir}/mplayer/input.conf
+#ghost %config %{_sysconfdir}/mplayer/menu.conf
+#ghost %config %{_sysconfdir}/mplayer/mplayer.conf
 %{_bindir}/gmplayer
 %{_bindir}/mplayer
 %ifarch %{ix86}
@@ -292,7 +289,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{_libdir}/mplayer/
 %{!?_without_freedesktop:%{_datadir}/applications/mplayer.desktop}
 %{_datadir}/mplayer/
-%{_datadir}/pixmaps/mplayer-desktop.xpm
+%{_datadir}/pixmaps/mplayer.png
 %{_mandir}/man1/mplayer.1*
 %lang(cs) %{_mandir}/cs/man1/mplayer.1*
 %lang(de) %{_mandir}/de/man1/mplayer.1*
@@ -322,6 +319,26 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Thu Jun 22 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.27.pre8
+- Update to 1.0pre8.
+- Update live555 to 2006.06.22.
+- Use our own nicer png icon for the desktop file (created from the original
+  xcf file from the MPlayer FTP archive).
+- Remove old --enable-i18n parameter.
+- Update mplayer-desktop.xpm that got renamed to mplayer.xpm.
+- Clean up autodetected configure options, let us assume we build on minimal
+  systems when we poke around --with and --without build options.
+- Remove --disable-fastmemcpy, assuming runtime cpudetection takes care of
+  support for < i686 CPUs...
+- Enable samba support by default.
+- Remove no longer needed explicit path to cdparanoia includes.
+- Add speex support, enabled by default (but >= 1.1 is required).
+- Pass --with-xanimlibdir= for x86 to find xanim libs in /usr/lib/win32.
+- Rename the kernel macro to kversion to keep more consistent with Extras.
+- Seems like amr_nb support is disabled because of the included libavcodec.
+- Seems like libfame support is disabled because there are none of dxr2, dxr3
+  and dvb enabled.
+
 * Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.26.20060314
 - Add missing modular X build requirements.
 - Re-enable libXvMC with modular X.
