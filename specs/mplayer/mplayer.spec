@@ -57,7 +57,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.27%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.28%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -122,7 +122,7 @@ MPlayer is a multimedia player. It plays most video formats as well as DVDs.
 Its big feature is the wide range of supported output drivers. There are also
 nice antialiased shaded subtitles and OSD.
 
-On x86, additional Win32 binary codecs should be added to %{_libdir}/win32/.
+On x86, additional Win32 binary codecs should be added to %{_libdir}/codecs/.
 
 Available rpmbuild rebuild options :
 --with : dvdread
@@ -209,12 +209,10 @@ echo | ./configure \
 %ifarch %{ix86}
     --enable-runtime-cpudetection \
     --enable-win32 \
-    --with-win32libdir=%{_libdir}/win32 \
-    --with-xanimlibdir=%{_libdir}/win32 \
-    --with-reallibdir=%{_libdir}/win32 \
-%else
-    --with-reallibdir=%{_libdir}/real \
+    --with-win32libdir=%{_libdir}/codecs \
+    --with-xanimlibdir=%{_libdir}/codecs \
 %endif
+    --with-reallibdir=%{_libdir}/codecs \
     --language=all \
     --enable-debug \
     --enable-dynamic-plugins \
@@ -244,12 +242,8 @@ echo | ./configure \
 # Remove unwanted stuff from the docs to be included
 %{__rm} -rf DOCS/{man,xml}
 
-# Create empty Win32 binary codec directory
-%ifarch %{ix86}
-%{__mkdir_p} %{buildroot}%{_libdir}/win32
-%else
-%{__mkdir_p} %{buildroot}%{_libdir}/real
-%endif
+# Create empty binary codecs directory
+%{__mkdir_p} %{buildroot}%{_libdir}/codecs
 
 # Install our own nicer icon
 %{__rm} -f %{buildroot}%{_datadir}/pixmaps/mplayer.xpm
@@ -280,11 +274,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 #ghost %config %{_sysconfdir}/mplayer/mplayer.conf
 %{_bindir}/gmplayer
 %{_bindir}/mplayer
-%ifarch %{ix86}
-%dir %{_libdir}/win32/
-%else
-%dir %{_libdir}/real/
-%endif
+%dir %{_libdir}/codecs/
 %{_libdir}/libdha.so*
 %{_libdir}/mplayer/
 %{!?_without_freedesktop:%{_datadir}/applications/mplayer.desktop}
@@ -319,6 +309,11 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Fri Jun 23 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.28.pre8
+- Move location where binary codecs are searched for from %{_libdir}/win32/ to
+  %{_libdir}/codecs/ since "win32" is considered obsolete by MPlayer. Looks
+  like codecs in the old location are still picked up automatically!
+
 * Thu Jun 22 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.27.pre8
 - Update to 1.0pre8.
 - Update live555 to 2006.06.22.
