@@ -17,16 +17,13 @@
 
 Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
-Version: 0.5.15lorg3.1
-Release: 4
+Version: 0.5.15lorg3.2
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://apt-rpm.laiskiainen.org/
 
 Source: http://apt-rpm.laiskiainen.org/releases/apt-%{version}.tar.bz2
-Patch0: apt-0.5.15lorg3.1-algorithm.patch
-Patch1: apt-0.5.15lorg3.1-pkgconfig.patch
-Patch2: apt-0.5.15lorg3.1-safeguard.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: rpm-devel >= 3.0.5, zlib-devel, gettext
@@ -61,9 +58,6 @@ you will need to install %{name}-devel.
 
 %prep
 %setup -n %{name}-%{version}
-%patch0
-%patch1
-%patch2
 
 %{?el4:name='Red Hat Enterprise'; version='4'}
 %{?el3:name='Red Hat Enterprise'; version='3'}
@@ -210,6 +204,9 @@ touch %{buildroot}%{_sysconfdir}/apt/preferences \
 #exclude %{_libdir}/*.la
 
 %changelog
+* Fri Jun 23 2006 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.2-1
+- Updated to release 0.5.15lorg3.2.
+
 * Sun Jun 04 2006 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.1-4
 - Fixed APT::DistroVersion.
 

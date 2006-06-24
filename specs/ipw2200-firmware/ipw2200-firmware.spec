@@ -4,26 +4,27 @@
 
 Summary: Firmware for Intel® PRO/Wireless 2200 network adaptors
 Name: ipw2200-firmware
-Version: 2.4
-Release: 2
+Version: 3.0
+Release: 1
 License: Distributable
 Group: System Environment/Kernel
 URL: http://ipw2200.sourceforge.net/firmware.php
 # License agreement is displayed before download (referer protection)
 Source0: ipw2200-fw-%{version}.tgz
-Source1: ipw2200-fw-2.3.tgz
-Source2: ipw2200-fw-2.2.tgz
+Source1: ipw2200-fw-2.4.tgz
+Source2: ipw2200-fw-2.3.tgz
+Source3: ipw2200-fw-2.2.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 %description
-This package contains the firmware files required by the ipw-2200 driver for
+This package contains the firmware files required by the ipw2200 driver for
 Linux. Usage of the firmware is subject to the terms contained in :
 %{_defaultdocdir}/%{name}-%{version}/LICENSE. Please read it carefully.
 
 
 %prep
-%setup -c -a 1 -a 2
+%setup -c -a 1 -a 2 -a3
 
 
 %build
@@ -32,7 +33,7 @@ Linux. Usage of the firmware is subject to the terms contained in :
 %install
 %{__rm} -rf %{buildroot}
 %{__mkdir_p} %{buildroot}/lib/firmware
-%{__install} -p -m 0644 *.fw %{buildroot}/lib/firmware/
+%{__install} -p -m0644 *.fw %{buildroot}/lib/firmware/
 
 
 %clean
@@ -46,6 +47,9 @@ Linux. Usage of the firmware is subject to the terms contained in :
 
 
 %changelog
+* Sat Jun 24 2006 Dag Wieers <dag@wieers.com> - 3.0-1
+- Updated to release 3.0.
+
 * Mon Jan  2 2006 Matthias Saou <http://freshrpms.net> 2.4-2
 - Convert spec file to UTF-8.
 
