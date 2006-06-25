@@ -5,24 +5,24 @@
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{!?dist:%define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
-%define date 20051130
+%define date 20060514
 %define mon_version 3.1
 %define desktop_vendor rpmforge
 
 Summary: Power Macintosh emulator
 Name: SheepShaver
 Version: 2.3
-Release: 0.2.%{date}
+Release: 0.3.%{date}
 License: GPL
 Group: Applications/Emulators
 URL: http://www.gibix.net/projects/sheepshaver/
-Source0: http://www.gibix.net/projects/sheepshaver/files/SheepShaver-%{version}-%{date}.tar.bz2
+Source0: http://www.gibix.net/projects/sheepshaver/files/SheepShaver-%{version}-0.%{date}.1.tar.bz2
 Source1: http://wwwthep.physik.uni-mainz.de/~cbauer/cxmon-%{mon_version}.tar.gz
 Source2: SheepShaver.png
-Patch0: SheepShaver-2.2-stats.patch
-Patch1: SheepShaver-2.2-nostrip.patch
+Patch0: SheepShaver-2.2-nostrip.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gtk2-devel, esound-devel >= 0.2.8
 BuildRequires: desktop-file-utils, readline-devel
@@ -49,8 +49,7 @@ Available rebuild options :
 
 %prep
 %setup -a 1
-%patch0 -p1 -b .stats
-%patch1 -p1 -b .nostrip
+%patch0 -p1 -b .nostrip
 
 
 %build
@@ -107,6 +106,10 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Sun Jun 25 2006 Matthias Saou <http://freshrpms.net/> 2.3-0.3.20060514
+- Update to 2.3-0.20060514.1.
+- Remove no longer needed stats patch.
+
 * Fri Jan 13 2006 Matthias Saou <http://freshrpms.net/> 2.3-0.2.20051130
 - Add modular xorg build conditional.
 
