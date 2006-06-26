@@ -8,19 +8,20 @@
 %{!?dist:%define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
-%define cvs 20060320
+#define cvs 20060320
 
 Summary: Simple non-linear video editor
 Name: kino
-Version: 0.8.1
-Release: 0.2%{?cvs:.%{cvs}}
+Version: 0.9.0
+Release: 1%{?cvs:.%{cvs}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.kinodv.org/
 Source: http://dl.sf.net/kino/kino-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.6
-BuildRequires: libdv-devel >= 0.102, libavc1394-devel, libraw1394-devel
+BuildRequires: libdv-devel >= 0.102
+BuildRequires: libavc1394-devel, libraw1394-devel, libiec61883-devel
 BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel
 BuildRequires: gtk2-devel >= 2.6, libglade2-devel, gettext
 BuildRequires: libxml2-devel, libsamplerate-devel, intltool
@@ -45,9 +46,10 @@ commands for fast navigating and editing inside the movie.
 
 %build
 %configure \
+    --disable-static \
     --with-hotplug-script-dir=%{_sysconfdir}/hotplug/usb \
     --with-hotplug-usermap-dir=%{_libdir}/hotplug/kino \
-    %{!?_without_quicktime:--with-quicktime} \
+    %{!?_without_quicktime:--enable-quicktime} \
     %{!?_without_ffmpeg:--with-avcodec}
 %{__make} %{?_smp_mflags}
 
@@ -83,7 +85,6 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 %{_libdir}/hotplug/kino/
 %dir %{_libdir}/kino-gtk2/
 %{_libdir}/kino-gtk2/*.so*
-%exclude %{_libdir}/kino-gtk2/*.a
 %exclude %{_libdir}/kino-gtk2/*.la
 %{_datadir}/applications/Kino.desktop
 %{_datadir}/kino/
@@ -93,6 +94,11 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 
 
 %changelog
+* Sun Jun 25 2006 Matthias Saou <http://freshrpms.net/> 0.9.0-1
+- Update to 0.9.0.
+- Add libiec61883-devel build requirement.
+- Change --with-quicktime to --enable-quicktime for it to work...
+
 * Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 0.8.1-0.2.20060320
 - Add missing modular X build requirement.
 
