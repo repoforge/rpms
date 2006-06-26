@@ -5,8 +5,8 @@
 
 Summary: Display bandwidth usage on an interface
 Name: iftop
-Version: 0.16
-Release: 0.2
+Version: 0.17
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.ex-parrot.com/~pdw/iftop/
@@ -39,12 +39,13 @@ bandwidth usage by pairs of hosts. Handy for answering the question
 
 %files
 %defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %doc %{_mandir}/man8/iftop.8*
 %{_sbindir}/iftop
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-0.2
-- Rebuild for Fedora Core 5.
+* Mon Jun 26 2006 Dag Wieers <dag@wieers.com> - 0.17-1
+- Updated to release 0.17.
 
 * Sun Feb 29 2004 Dag Wieers <dag@wieers.com> - 0.16-0
 - Initial package. (using DAR)

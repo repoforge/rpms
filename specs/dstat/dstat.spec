@@ -9,8 +9,8 @@
 
 Summary: Versatile resource statistics tool
 Name: dstat
-Version: 0.6.2
-Release: 1.2
+Version: 0.6.3
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://dag.wieers.com/home-made/dstat/
@@ -53,15 +53,15 @@ confusion, less mistakes.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README* TODO *.conf *.html examples/
+%doc AUTHORS ChangeLog COPYING README TODO *.conf docs/*.html docs/*.txt examples/
 %doc %{_mandir}/man1/dstat.1*
 #%config(noreplace) %{_sysconfdir}/dstat.conf
 %{_bindir}/dstat
 %{_datadir}/dstat/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.2-1.2
-- Rebuild for Fedora Core 5.
+* Mon Jun 26 2006 Dag Wieers <dag@wieers.com> - 0.6.3-1
+- Updated to release 0.6.3.
 
 * Thu Mar 09 2006 Dag Wieers <dag@wieers.com> - 0.6.2-1
 - Updated to release 0.6.2.
