@@ -1,0 +1,12 @@
+diff -Naupr armagetronad-0.2.8.2.orig/Makefile.in armagetronad-0.2.8.2/Makefile.in
+--- armagetronad-0.2.8.2.orig/Makefile.in	2006-06-03 00:04:24.000000000 +0200
++++ armagetronad-0.2.8.2/Makefile.in	2006-06-28 11:39:58.000000000 +0200
+@@ -1130,7 +1130,7 @@ uninstall-first:
+ 
+ install-first:
+ #	uninstall previous version (if it exists), ignoring errors
+-	test -x $(uninstall_location) && $(uninstall_location) || true
++@USE_UNINSTALL_TRUE@	test -x $(uninstall_location) && $(uninstall_location) || true
+ 
+ distclean-local:
+ 	rm -f uninstall.sh batch/relocate.in universal_variable* extrapaths src/tUniversalVariables.h*

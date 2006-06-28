@@ -21,7 +21,7 @@
 
 Summary: Multiplayer 'Tron' 3D racing game
 Name: armagetronad
-Version: 0.2.8.1
+Version: 0.2.8.2
 Release: 1%{?prever:.%{prever}}
 License: GPL
 Group: Amusements/Games
@@ -29,10 +29,11 @@ URL: http://www.armagetronad.net/
 Source: http://dl.sf.net/armagetronad/armagetronad-%{version}%{?prever:_%{prever}}.src.tar.bz2
 Patch0: armagetronad-0.2.8_beta3-gcc4.patch
 Patch1: armagetronad-0.2.8_beta4-desktop.patch
+Patch2: armagetronad-0.2.8.2-uninstall.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libstdc++-devel, zlib-devel, libpng-devel, libjpeg-devel
 BuildRequires: SDL_image-devel, SDL_mixer-devel, SDL-devel, esound-devel
-BuildRequires: libxml2-devel, /usr/bin/find, unzip, gcc-c++
+BuildRequires: libxml2-devel, /usr/bin/find, unzip, gcc-c++, which
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %if 0%{!?_with_modxorg:1}
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
@@ -58,11 +59,13 @@ Available rpmbuild rebuild options :
 %setup -n armagetronad-%{version}%{?prever:_%{prever}}
 %patch0 -p1 -b .gcc4
 %patch1 -p1 -b .desktop
+%patch2 -p1 -b .uninstall
 
 
 %build
 %configure \
     --enable-music \
+    --disable-sysinstall \
     --disable-uninstall \
     --disable-games
 %{__make} %{?_smp_mflags}
@@ -134,6 +137,11 @@ gtk-update-icon-cache || :
 
 
 %changelog
+* Wed Jun 28 2006 Matthias Saou <http://freshrpms.net/> 0.2.8.2-1
+- Update to 0.2.8.2.
+- Include patch to fix the uninstall lines in Makefile.in.
+- Add "which" build requirement.
+
 * Mon Mar 27 2006 Matthias Saou <http://freshrpms.net/> 0.2.8.1-1
 - Update to 0.2.8.1.
 
