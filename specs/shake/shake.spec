@@ -3,7 +3,7 @@
 
 Summary: Userspace filesystem defragmenter
 Name: shake
-Version: 0.20
+Version: 0.22
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -11,9 +11,6 @@ URL: http://vleu.net/shake/
 
 Source: http://vleu.net/shake/shake-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-#BuildRequires: 
-#Requires:
 
 %description
  Shake is a defragmenter that runs in userspace, without the need of patching
@@ -44,5 +41,8 @@ xfs_fsr.
 %{_bindir}/shake
 
 %changelog
+* Tue Jun 27 2006 Dag Wieers <dag@wieers.com> - 0.22-1
+- Updated to release 0.22.
+
 * Mon Jun 12 2006 Dag Wieers <dag@wieers.com> - 0.20-1
 - Initial package. (using DAR)

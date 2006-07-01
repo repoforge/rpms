@@ -3,7 +3,7 @@
 
 Summary: GUI for rsync
 Name: grsync
-Version: 0.4.2
+Version: 0.4.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -29,7 +29,7 @@ used to synchronize local directories.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %clean
@@ -44,10 +44,13 @@ used to synchronize local directories.
 %{_datadir}/applications/grsync.desktop
 
 %changelog
-* Fri May 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.2
+* Thu Jun 29 2006 Dag Wieers <dag@wieers.com> 0.4.3-1
+- Updated to release 0.4.3.
+
+* Fri May 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.2-1
 - Updated to release 0.4.2.
 
-* Sat May 06 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.1
+* Sat May 06 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.1-1
 - Updated to release 0.4.1.
 
 * Sun Apr 30 2006 Dag Wieers <dag@wieers.com> - 0.4-1

@@ -4,8 +4,8 @@
 
 Summary: Load balancer for "simple" tcp based protocols
 Name: pen
-Version: 0.17.0
-Release: 1.2
+Version: 0.17.1
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://siag.nu/pen/
@@ -66,8 +66,8 @@ fi
 %exclude %{_prefix}/doc/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.17.0-1.2
-- Rebuild for Fedora Core 5.
+* Tue Jun 27 2006 Dag Wieers <dag@wieers.com> - 0.17.1-1
+- Updated to release 0.17.1.
 
 * Tue Jan 10 2006 Dag Wieers <dag@wieers.com> - 0.17.0-1
 - Updated to release 0.17.0.

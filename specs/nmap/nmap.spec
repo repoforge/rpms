@@ -18,7 +18,7 @@
 
 Summary: Network exploration tool and security scanner
 Name: nmap
-Version: 4.10
+Version: 4.11
 Release: 1
 Epoch: 2
 License: GPL
@@ -99,6 +99,9 @@ desktop-file-install \
 
 
 %changelog
+* Thu Jun 29 2006 Dag Wieers <dag@wieers.com> - 4.11-1
+- Updated to release 4.11.
+
 * Wed Jun 14 2006 Dag Wieers <dag@wieers.com> - 4.10-1
 - Updated to release 4.10.
 

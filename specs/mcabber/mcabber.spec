@@ -5,7 +5,7 @@
 
 Summary: Console jabber client
 Name: mcabber
-Version: 0.7.6
+Version: 0.7.8
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -29,7 +29,7 @@ logging, external actions and more.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -39,8 +39,12 @@ logging, external actions and more.
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %doc %{_mandir}/man1/mcabber.1*
 %{_bindir}/mcabber
+%{_datadir}/mcabber/
 
 %changelog
+* Thu Jun 29 2006 Dag Wieers <dag@wieers.com> - 0.7.8-1
+- Updated to release 0.7.8.
+
 * Sat Apr 15 2006 Dag Wieers <dag@wieers.com> - 0.7.6-1
 - Updated to release 0.7.6.
 

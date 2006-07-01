@@ -11,8 +11,8 @@
 
 Summary: Mail virus-scanner
 Name: amavisd-new
-Version: 2.4.1
-Release: 2
+Version: 2.4.2
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ijs.si/software/amavisd/
@@ -313,6 +313,9 @@ fi
 %{_sbindir}/amavis-milter
 
 %changelog
+* Thu Jun 29 2006 Dag Wieers <dag@wieers.com> - 2.4.2-2
+- Updated to release 2.4.2.
+
 * Mon May 29 2006 Dag Wieers <dag@wieers.com> - 2.4.1-2
 - Added perl-Net-Cmd >= 2.24 as a new dependency. (Peter Bieringer)
 
