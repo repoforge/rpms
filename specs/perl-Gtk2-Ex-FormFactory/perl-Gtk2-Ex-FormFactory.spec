@@ -9,7 +9,7 @@
 
 Summary: Framework for Gtk2 perl applications
 Name: perl-Gtk2-Ex-FormFactory
-Version: 0.64
+Version: 0.65
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -56,6 +56,9 @@ Gtk2::Ex::FormFactory is a framework for Perl Gtk2 developers.
 
 
 %changelog
+* Sun Jul  2 2006 Matthias Saou <http://freshrpms.net/> 0.65-1
+- Update to 0.65.
+
 * Mon Jun 19 2006 Matthias Saou <http://freshrpms.net/> 0.64-1
 - Update to 0.64.
 

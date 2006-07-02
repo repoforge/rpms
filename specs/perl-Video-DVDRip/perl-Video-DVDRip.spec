@@ -11,20 +11,19 @@
 
 Summary: Graphical DVD ripping and encoding tool based on transcode
 Name: perl-Video-DVDRip
-Version: 0.97.11
-Release: 2
+Version: 0.97.12
+Release: 1
 License: Artistic or GPL
 Group: Applications/Multimedia
 URL: http://www.exit1.org/dvdrip/
 Source: http://www.exit1.org/dvdrip/dist/pre/Video-DVDRip-%{version}.tar.gz
 Patch0: Video-DVDRip-0.97.8-nontplworkaround.patch
-Patch1: Video-DVDRip-0.97.11-no-dvdrip-tet.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: transcode >= 0.6.13
 Requires: ImageMagick, ogmtools, subtitleripper, vcdimager, lsdvd
-Requires: perl(Gtk2) >= 1.081, perl(Gtk2::Ex::FormFactory) >= 0.64
+Requires: perl(Gtk2) >= 1.081, perl(Gtk2::Ex::FormFactory) >= 0.65
 Requires: perl(Locale::TextDomain) >= 1.16, perl(Event::ExecFlow) >= 0.62
-BuildRequires: perl(Gtk2) >= 1.081, perl(Gtk2::Ex::FormFactory) >= 0.64
+BuildRequires: perl(Gtk2) >= 1.081, perl(Gtk2::Ex::FormFactory) >= 0.65
 BuildRequires: perl(Locale::TextDomain) >= 1.16, perl(Event::ExecFlow) >= 0.62
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
@@ -36,7 +35,6 @@ DVD Ripping API, which uses the Linux Video Stream Processing Tool transcode.
 %prep
 %setup -n Video-DVDRip-%{version}
 %patch0 -p1 -b .nontplworkaround
-%patch1 -p1 -b .no-dvdrip-tet
 
 
 %build
@@ -108,6 +106,11 @@ EOF
 
 
 %changelog
+* Sun Jul  2 2006 Matthias Saou <http://freshrpms.net/> 0.97.12-1
+- Update to 0.97.12.
+- Remove no longer needed tet patch, since we use the "fixed" source.
+- Now require Gtk2::Ex::FormFactory >= 0.65.
+
 * Tue Jun 20 2006 Matthias Saou <http://freshrpms.net/> 0.97.11-2
 - Exclude experimental dvdrip-tet binary, since it also had a leftover
   reference to FixLocaleTextDomainUTF8 that broke the automatically
