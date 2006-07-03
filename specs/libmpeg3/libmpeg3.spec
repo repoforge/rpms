@@ -4,8 +4,8 @@
 
 Summary: Decoder of various derivatives of MPEG standards
 Name: libmpeg3
-Version: 1.6
-Release: 2
+Version: 1.7
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://heroinewarrior.com/libmpeg3.php3
@@ -95,6 +95,9 @@ export OBJDIR=%{_arch}
 
 
 %changelog
+* Mon Jul  3 2006 Matthias Saou <http://freshrpms.net/> 1.7-1
+- Update to 1.7.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.6-2
 - Add -fPIC to the CFLAGS to fix transcode build on x86_64.
 
