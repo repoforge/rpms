@@ -13,11 +13,12 @@
 Summary: Simple non-linear video editor
 Name: kino
 Version: 0.9.0
-Release: 1%{?cvs:.%{cvs}}
+Release: 2%{?cvs:.%{cvs}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.kinodv.org/
 Source: http://dl.sf.net/kino/kino-%{version}.tar.gz
+Patch0: kino-0.9.0-ppc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.6
 BuildRequires: libdv-devel >= 0.102
@@ -42,6 +43,7 @@ commands for fast navigating and editing inside the movie.
 
 %prep
 %setup
+%patch0 -p0 -b .ppc
 
 
 %build
@@ -94,6 +96,9 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 
 
 %changelog
+* Tue Jun 27 2006 Matthias Saou <http://freshrpms.net/> 0.9.0-2
+- Include patch to fix PPC build.
+
 * Sun Jun 25 2006 Matthias Saou <http://freshrpms.net/> 0.9.0-1
 - Update to 0.9.0.
 - Add libiec61883-devel build requirement.
