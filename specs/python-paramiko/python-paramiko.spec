@@ -7,7 +7,7 @@
 
 Summary: SSH2 protocol for Python
 Name: python-paramiko
-Version: 1.6
+Version: 1.6.1
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -52,6 +52,9 @@ the paramiko module.
 %ghost %{python_sitelib}/paramiko/*.pyo
 
 %changelog
+* Mon Jul 10 2006 Dag Wieers <dag@wieers.com> - 1.6.1-1
+- Updated to release 1.6.1.
+
 * Fri May 12 2006 Dag Wieers <dag@wieers.com> - 1.6-1
 - Updated to release 1.6.
 

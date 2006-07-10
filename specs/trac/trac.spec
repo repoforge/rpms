@@ -6,7 +6,7 @@
 
 Name: trac
 Summary: Integrated SCM and project management tool
-Version: 0.9.5
+Version: 0.9.6
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -78,11 +78,11 @@ EOF
 %{_localstatedir}/lib/trac/
 
 %changelog
+* Sun Jul 09 2006 Dag Wieers <dag@wieers.com> - 0.9.6-1
+- Updated to release 0.9.6.
+
 * Sat Apr 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.5-1
 - Updated to release 0.9.5.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.4-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Feb 18 2006 Dag Wieers <dag@wieers.com> - 0.9.4-1
 - Updated to release 0.9.4.

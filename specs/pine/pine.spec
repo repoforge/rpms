@@ -15,7 +15,7 @@
 Summary: Commonly used, MIME compliant mail and news reader
 Name: pine
 Version: 4.64
-Release: 1.2
+Release: 2
 License: Freely Distributable
 Group: Applications/Internet
 URL: http://www.washington.edu/pine/
@@ -28,10 +28,11 @@ Source5: flock.c
 Source6: pine.conf.fixed
 
 Patch0: pine-4.58-makefile.patch
+Patch1: http://www.suse.de/~bk/pine/4.64/2006-02-23/bigpatch.diff
 Patch2: pine-4.04-noflock.patch
 Patch3: pine-4.21-passwd.patch
 Patch4: pine-4.21-fixhome.patch
-Patch8: pine-4.60-imap-4.7c2-flock.patch
+Patch8: pine-4.64-imap-4.7c2-flock.patch
 Patch9: pine-4.30-ldap.patch
 Patch14: pine-4.55-bogus-lock-warning.patch
 
@@ -69,6 +70,7 @@ mail, and MH style folders.
 %setup -n %{name}%{version} -a 1
 
 #%patch0 -p1 -b .makefile
+%patch1 -p1 -b .unicode
 %{__perl} -pi.makefile -e 's|(BASECFLAGS)="-g (.*)"|$1="$2 %{optflags}"|g' imap/src/osdep/unix/Makefile
 
 %{__perl} -pi.redhat-dag -e '
@@ -173,8 +175,8 @@ cd pinepgp-%{pgpver}
 %{_sbindir}/mlock
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.64-1.2
-- Rebuild for Fedora Core 5.
+* Sun Jul 09 2006 Dag Wieers <dag@wieers.com> - 4.64-2
+- Added unicode patch.
 
 * Thu Jan 05 2006 Dag Wieers <dag@wieers.com> - 4.64-1
 - Updated to release 4.64.
