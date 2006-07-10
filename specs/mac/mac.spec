@@ -4,12 +4,11 @@
 Summary: Monkey's Audio Codec (MAC) utility and library
 Name: mac
 Version: 3.99
-Release: 2.u4b4
+Release: 2.u4b5
 License: See License.htm
 Group: System Environment/Libraries
 URL: http://supermmx.org/linux/mac/
-Source: http://dl.sf.net/mac-port/mac-%{version}-u4-b4.tar.gz
-Patch0: mac-3.99-u4-b4-64bit.patch
+Source: http://dl.sf.net/mac-port/mac-%{version}-u4-b5.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, nasm
 
@@ -40,8 +39,7 @@ library.
 
 
 %prep
-%setup -n %{name}-%{version}-u4-b4
-%patch0 -p1 -b .64bit
+%setup -n %{name}-%{version}-u4-b5
 
 
 %build
@@ -79,6 +77,10 @@ library.
 
 
 %changelog
+* Mon Jul 10 2006 Matthias Saou <http://freshrpms.net/> 3.99-2.u4b5
+- Update to 3.99-u4-b5.
+- Remove no longer needed 64bit patch.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 3.99-2.u4b4
 - Release bump to drop the disttag number in FC5 build.
 
