@@ -6,6 +6,7 @@
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{!?dist:%define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
 %{?fc1:%define _without_alsa 1}
@@ -16,44 +17,51 @@
 %{?el3:%define _without_fribidi 1}
 %{?el3:%define _without_theora 1}
 %{?el3:%define _without_xvmc 1}
+%{?el3:%define _without_gettextdevel 1}
 
 %{?rh9:%define _without_alsa 1}
 %{?rh9:%define _without_fribidi 1}
 %{?rh9:%define _without_theora 1}
 %{?rh9:%define _without_xvmc 1}
+%{?rh9:%define _without_gettextdevel 1}
 
 %{?rh8:%define _without_alsa 1}
 %{?rh8:%define _without_fribidi 1}
 %{?rh8:%define _without_theora 1}
 %{?rh8:%define _without_xvmc 1}
+%{?rh8:%define _without_gettextdevel 1}
 
 %{?rh7:%define _without_alsa 1}
 %{?rh7:%define _without_fribidi 1}
 %{?rh7:%define _without_theora 1}
 %{?rh7:%define _without_gnomevfs2 1}
 %{?rh7:%define _without_xvmc 1}
+%{?rh7:%define _without_gettextdevel 1}
 
 %{?yd3:%define _without_alsa 1}
 %{?yd3:%define _without_fribidi 1}
 %{?yd3:%define _without_theora 1}
 %{?yd3:%define _without_xvmc 1}
+%{?yd3:%define _without_gettextdevel 1}
 
 %define libname libxine1
 
 Summary: Core library of the xine multimedia player
 Name: xine-lib
-Version: 1.1.1
-Release: 2
+Version: 1.1.2
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
-Source: http://dl.sf.net/xine/xine-lib-%{version}.tar.gz
+Source: http://dl.sf.net/xine/xine-lib-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libdvdcss
 BuildRequires: gcc-c++, pkgconfig, zlib-devel
 BuildRequires: libvorbis-devel, SDL-devel
 # BUG : libmng-devel should apparently require libjpeg-devel for includes
 BuildRequires: libpng-devel, libmng-devel, libjpeg-devel, freetype-devel
+BuildRequires: gtk2-devel
+BuildRequires: libcdio-devel, vcdimager-devel, a52dec-devel, libmad-devel
 %{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel, libGL-devel, libGLU-devel, libXinerama-devel, libXvMC-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{!?_with_modxorg:%{!?_without_xvmc:BuildRequires: libXvMCW-devel}}
@@ -70,7 +78,13 @@ BuildRequires: libpng-devel, libmng-devel, libjpeg-devel, freetype-devel
 %{!?_without_speex:BuildRequires: speex-devel}
 %{!?_without_caca:BuildRequires: libcaca-devel}
 %{!?_without_theora:BuildRequires: libtheora-devel}
+%{!?_without_samba:BuildRequires: samba-common}
+%{!?_without_modplug:BuildRequires: libmodplug-devel}
+%{!?_without_magick:BuildRequires: ImageMagick-devel}
+%{!?_without_gettextdevel:BuildRequires: gettext-devel}
+%{?_without_gettextdevel:BuildRequires: gettext}
 %{!?dist:BuildRequires: freeglut-devel}
+%{?fc6:BuildRequires: freeglut-devel}
 %{?fc5:BuildRequires: freeglut-devel}
 %{?fc4:BuildRequires: freeglut-devel}
 %{?fc3:BuildRequires: freeglut-devel}
@@ -91,7 +105,8 @@ This package contains the backend files for the Xine multimedia player.
 
 Available rpmbuild rebuild options :
 --with : rte extdvdnav extffmpeg
---without : alsa aalib libfame flac esound arts gnomevfs2 speex caca xvmc
+--without : alsa aalib libfame flac esound arts gnomevfs2 speex caca xvmc samba
+            modplug magick
 (only alsa can be really disabled, others only remove explicit package
  dependency which won't make much difference if devel files are found)
 
@@ -125,7 +140,9 @@ use the Xine library.
     --enable-ipv6 \
     %{?_with_extffmpeg:--with-external-ffmpeg} \
     %{?_without_alsa:--disable-alsa} \
-    %{!?_with_extdvdnav:--with-included-dvdnav}
+    %{!?_with_extdvdnav:--with-included-dvdnav} \
+    --with-external-a52dec \
+    --with-external-libmad
 %{__make} %{?_smp_mflags}
 
 
@@ -170,6 +187,18 @@ use the Xine library.
 
 
 %changelog
+* Tue Jul 11 2006 Matthias Saou <http://freshrpms.net/> 1.1.2-1
+- Update to 1.1.2.
+- Source is now a .bz2 file.
+- Build require gettext-devel.
+- Build require gtk2-devel (for gdk-pixbuf-2.0).
+- Enable samba support by default.
+- Enable modplug support by default.
+- Enable ImageMagick support by default.
+- Switch to external libcdio, vcdimager, a52dec and libmad. Keep internal
+  dvdnav and libdts since those have extrnal development (mostly) stopped.
+  (note that a52dec-devel seems to be missing a52_internal.h for now)
+
 * Mon Mar  6 2006 Matthias Saou <http://freshrpms.net/> 1.1.1-2
 - Add freetype support.
 - Add many missing modular X build requirements.
