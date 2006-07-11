@@ -1,18 +1,17 @@
 # $Id$
 # Authority: matthias
 
-# ExclusiveDist: fc5
-
-%define prever pre1
+# ExclusiveDist: fc6
 
 Summary: Media player with the WinAmp GUI
 Name: bmpx
-Version: 0.20
-Release: 0.1.%{prever}
+Version: 0.20.2
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.beep-media-player.org/
-Source: http://dl.sf.net/beepmp/bmpx-%{version}%{?prever}.tar.bz2
+Source: http://files.beep-media-player.org/releases/0.20/bmpx-%{version}.tar.bz2
+Patch: bmpx-0.20.0-binpath.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
@@ -20,9 +19,10 @@ BuildRequires: gettext-devel, libXt-devel
 BuildRequires: gstreamer-devel >= 0.10.4
 BuildRequires: gstreamer-plugins-base-devel >= 0.10.4
 BuildRequires: dbus-devel, hal-devel, gamin-devel, libmusicbrainz-devel
-BuildRequires: taglib-devel, neon-devel
+BuildRequires: taglib-devel, neon-devel, faad2-devel, libsidplay-devel
 BuildRequires: boost-devel, glibmm24-devel, gtkmm24-devel, libglademm24-devel
 BuildRequires: startup-notification-devel, sqlite-devel, alsa-lib-devel
+BuildRequires: libnotify-devel
 # Needed for libhrel
 BuildRequires: flex, bison
 
@@ -42,13 +42,16 @@ Development files required for compiling BMPx media player plugins.
 
 
 %prep
-%setup -n %{name}-%{version}%{?prever}
+%setup
+%patch0 -p1 -b .binpath
 
 
 %build
 %configure \
+    --disable-rpath \
     --enable-hal \
-    --enable-amazon
+    --enable-mp4v2 \
+    --enable-sid
 %{__make} %{?_smp_mflags}
 
 
@@ -56,6 +59,9 @@ Development files required for compiling BMPx media player plugins.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
+
+# Don't include this file as it's part of glibc-common
+%{__rm} -f %{buildroot}%{_datadir}/locale/locale.alias
 
 
 %clean
@@ -68,7 +74,8 @@ touch --no-create %{_datadir}/icons/hicolor || :
 if [ -x %{_bindir}/gtk-update-icon-cache ]; then
    %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 fi
-update-desktop-database &>/dev/null ||:
+update-desktop-database &>/dev/null || :
+update-mime-database  %{_datadir}/mime &>/dev/null || :
 
 %postun
 /sbin/ldconfig
@@ -76,7 +83,8 @@ touch --no-create %{_datadir}/icons/hicolor || :
 if [ -x %{_bindir}/gtk-update-icon-cache ]; then
    %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 fi
-update-desktop-database &>/dev/null ||:
+update-desktop-database &>/dev/null || :
+update-mime-database  %{_datadir}/mime &>/dev/null || :
 
 
 %files -f %{name}.lang
@@ -86,6 +94,7 @@ update-desktop-database &>/dev/null ||:
 %{_bindir}/bmp-enqueue-files-2.0
 %{_bindir}/bmp-enqueue-uris-2.0
 %{_bindir}/bmp-play-files-2.0
+%{_bindir}/bmp2
 %{_libdir}/bmpx/
 %exclude %{_libdir}/bmpx/plugins/*/*.la
 %{_libexecdir}/beep-media-player-2-bin
@@ -95,6 +104,8 @@ update-desktop-database &>/dev/null ||:
 %{_datadir}/bmpx/
 %{_datadir}/dbus-1/services/org.beepmediaplayer.bmp.service
 %{_datadir}/icons/hicolor/48x48/apps/bmpx.png
+%{_datadir}/icons/hicolor/48x48/mimetypes/gnome-mime-application-x-media-library-query.png
+%{_datadir}/mime/packages/bmp-2.0.xml
 %{_mandir}/man1/beep-media-player-2.1*
 
 %files devel
@@ -104,6 +115,30 @@ update-desktop-database &>/dev/null ||:
 
 
 %changelog
+* Tue Jul 11 2006 Matthias Saou <http://freshrpms.net/> 0.20.2-1
+- Update to 0.20.2.
+- Enable M4A/AAC tag support with faad2.
+- Enable SID/PSID taglib support with libsidplay.
+
+* Sun Jul  9 2006 Matthias Saou <http://freshrpms.net/> 0.20.0-1
+- Update to 0.20.0 final.
+- Include patch to fix "bmp2" symlink to the build root.
+
+* Tue Jul  4 2006 Matthias Saou <http://freshrpms.net/> 0.20-0.2.beta1.
+- Update to 0.20beta1... first time I see "beta" _after_ "pre" releases...
+
+* Mon Jun 26 2006 Matthias Saou <http://freshrpms.net/> 0.20-0.1.pre7
+- Update to 0.20pre7.
+- Add update-mime-database scriplet calls now that there is a mime types file.
+- Remove installed locale.alias file (it's part of glibc-common).
+
+* Sun Jun 25 2006 Matthias Saou <http://freshrpms.net/> 0.20-0.1.pre6
+- Update to 0.20pre6.
+
+* Thu Jun 22 2006 Matthias Saou <http://freshrpms.net/> 0.20-0.1.pre2
+- Update to 0.20pre2.
+- Add new libnotify-devel build requirement, but as 0.4.2 is required...
+
 * Mon Jun 19 2006 Matthias Saou <http://freshrpms.net/> 0.20-0.1.pre1
 - Update to 0.20pre1.
 - Update all build requirements for new c++ deps : boost and gtkmm stuff.
