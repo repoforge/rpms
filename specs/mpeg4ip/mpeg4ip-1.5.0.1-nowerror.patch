@@ -1,0 +1,115 @@
+diff -Naupr mpeg4ip-1.5.0.1.orig/common/video/iso-mpeg4/src/Makefile.am mpeg4ip-1.5.0.1/common/video/iso-mpeg4/src/Makefile.am
+--- mpeg4ip-1.5.0.1.orig/common/video/iso-mpeg4/src/Makefile.am	2006-01-03 23:24:07.000000000 +0100
++++ mpeg4ip-1.5.0.1/common/video/iso-mpeg4/src/Makefile.am	2006-07-12 11:08:03.000000000 +0200
+@@ -1,5 +1,5 @@
+ 
+-AM_CXXFLAGS = -D__TRACE_AND_STATS_ -D__DOUBLE_PRECISION_ -D_REENTRANT -DNOCONTROLS -fexceptions -Wall -Werror -D_OBSS_ @BILLS_CPPWARNINGS@
++AM_CXXFLAGS = -D__TRACE_AND_STATS_ -D__DOUBLE_PRECISION_ -D_REENTRANT -DNOCONTROLS -fexceptions -Wall -D_OBSS_ @BILLS_CPPWARNINGS@
+ 
+ INCLUDES = -I$(srcdir)/../include
+ 
+diff -Naupr mpeg4ip-1.5.0.1.orig/common/video/iso-mpeg4/src/Makefile.in mpeg4ip-1.5.0.1/common/video/iso-mpeg4/src/Makefile.in
+--- mpeg4ip-1.5.0.1.orig/common/video/iso-mpeg4/src/Makefile.in	2006-06-08 21:17:07.000000000 +0200
++++ mpeg4ip-1.5.0.1/common/video/iso-mpeg4/src/Makefile.in	2006-07-12 11:08:10.000000000 +0200
+@@ -255,7 +255,7 @@ target_alias = @target_alias@
+ target_cpu = @target_cpu@
+ target_os = @target_os@
+ target_vendor = @target_vendor@
+-AM_CXXFLAGS = -D__TRACE_AND_STATS_ -D__DOUBLE_PRECISION_ -D_REENTRANT -DNOCONTROLS -fexceptions -Wall -Werror -D_OBSS_ @BILLS_CPPWARNINGS@
++AM_CXXFLAGS = -D__TRACE_AND_STATS_ -D__DOUBLE_PRECISION_ -D_REENTRANT -DNOCONTROLS -fexceptions -Wall -D_OBSS_ @BILLS_CPPWARNINGS@
+ INCLUDES = -I$(srcdir)/../include
+ lib_LTLIBRARIES = libmpeg4ip_mpeg4_iso.la
+ mp4vdec_SOURCES = \
+diff -Naupr mpeg4ip-1.5.0.1.orig/lib/gnu/Makefile.am mpeg4ip-1.5.0.1/lib/gnu/Makefile.am
+--- mpeg4ip-1.5.0.1.orig/lib/gnu/Makefile.am	2005-08-12 19:17:17.000000000 +0200
++++ mpeg4ip-1.5.0.1/lib/gnu/Makefile.am	2006-07-11 20:00:10.000000000 +0200
+@@ -12,5 +12,5 @@ libmpeg4ip_gnu_la_SOURCES = \
+ EXTRA_DIST = libmissing60.dsp \
+ 	need_for_win32.c 
+ 
+-AM_CFLAGS = -D_REENTRANT -Werror -Wall -Wcast-align -Wstrict-prototypes -Wmissing-prototypes
++AM_CFLAGS = -D_REENTRANT -Wall -Wcast-align -Wstrict-prototypes -Wmissing-prototypes
+ 
+diff -Naupr mpeg4ip-1.5.0.1.orig/lib/gnu/Makefile.in mpeg4ip-1.5.0.1/lib/gnu/Makefile.in
+--- mpeg4ip-1.5.0.1.orig/lib/gnu/Makefile.in	2006-06-08 21:17:28.000000000 +0200
++++ mpeg4ip-1.5.0.1/lib/gnu/Makefile.in	2006-07-11 20:00:16.000000000 +0200
+@@ -264,7 +264,7 @@ libmpeg4ip_gnu_la_SOURCES = \
+ EXTRA_DIST = libmissing60.dsp \
+ 	need_for_win32.c 
+ 
+-AM_CFLAGS = -D_REENTRANT -Werror -Wall -Wcast-align -Wstrict-prototypes -Wmissing-prototypes
++AM_CFLAGS = -D_REENTRANT -Wall -Wcast-align -Wstrict-prototypes -Wmissing-prototypes
+ all: all-am
+ 
+ .SUFFIXES:
+diff -Naupr mpeg4ip-1.5.0.1.orig/lib/rtp/configure mpeg4ip-1.5.0.1/lib/rtp/configure
+--- mpeg4ip-1.5.0.1.orig/lib/rtp/configure	2006-06-08 21:16:55.000000000 +0200
++++ mpeg4ip-1.5.0.1/lib/rtp/configure	2006-07-12 10:37:59.000000000 +0200
+@@ -22566,7 +22566,7 @@ echo "$as_me: compiler warnings will not
+ fi;
+ 
+ BILLS_CWARNINGS="$BASE_ERR"
+-CFLAGS="$CFLAGS -Wall -Werror"
++CFLAGS="$CFLAGS -Wall"
+ 
+ 
+ save_CFLAG="$CFLAGS"
+diff -Naupr mpeg4ip-1.5.0.1.orig/lib/rtp/configure.in mpeg4ip-1.5.0.1/lib/rtp/configure.in
+--- mpeg4ip-1.5.0.1.orig/lib/rtp/configure.in	2006-03-10 01:55:49.000000000 +0100
++++ mpeg4ip-1.5.0.1/lib/rtp/configure.in	2006-07-12 10:37:34.000000000 +0200
+@@ -275,7 +275,7 @@ AC_ARG_ENABLE(warns-as-err,
+ 	 [AC_MSG_NOTICE([compiler warnings will not be errs])]) 
+ 
+ BILLS_CWARNINGS="$BASE_ERR"
+-CFLAGS="$CFLAGS -Wall -Werror"
++CFLAGS="$CFLAGS -Wall"
+ MY_CHECK_CC_OPT_SET([-Wmissing-prototypes], BILLS_CWARNINGS, [c compiler])
+ MY_CHECK_CC_OPT_SET([-Wmissing-declarations], BILLS_CWARNINGS, [c compiler])
+ MY_CHECK_CC_OPT_SET([-Wbad-function-cast], BILLS_CWARNINGS, [c compiler])
+diff -Naupr mpeg4ip-1.5.0.1.orig/lib/rtp/Makefile.am mpeg4ip-1.5.0.1/lib/rtp/Makefile.am
+--- mpeg4ip-1.5.0.1.orig/lib/rtp/Makefile.am	2006-05-11 20:11:52.000000000 +0200
++++ mpeg4ip-1.5.0.1/lib/rtp/Makefile.am	2006-07-12 10:30:49.000000000 +0200
+@@ -77,7 +77,7 @@ EXTRA_DIST = \
+ 
+ check_PROGRAMS = test_rtp_client test_rtp_server
+ 
+-AM_CFLAGS = -DDEBUG -Wall -Werror
++AM_CFLAGS = -DDEBUG -Wall
+ test_rtp_client_SOURCES = test_rtp_client.c
+ test_rtp_client_LDADD = libuclmmbase.la -lsrtp
+ test_rtp_server_SOURCES = test_rtp_server.c
+diff -Naupr mpeg4ip-1.5.0.1.orig/lib/rtp/Makefile.in mpeg4ip-1.5.0.1/lib/rtp/Makefile.in
+--- mpeg4ip-1.5.0.1.orig/lib/rtp/Makefile.in	2006-06-08 21:16:54.000000000 +0200
++++ mpeg4ip-1.5.0.1/lib/rtp/Makefile.in	2006-07-12 10:30:55.000000000 +0200
+@@ -276,7 +276,7 @@ EXTRA_DIST = \
+ 	test_rtp_encrypt.txt \
+ 	test-libcommon 
+ 
+-AM_CFLAGS = -DDEBUG -Wall -Werror
++AM_CFLAGS = -DDEBUG -Wall
+ test_rtp_client_SOURCES = test_rtp_client.c
+ test_rtp_client_LDADD = libuclmmbase.la -lsrtp
+ test_rtp_server_SOURCES = test_rtp_server.c
+diff -Naupr mpeg4ip-1.5.0.1.orig/player/lib/audio/faad/Makefile.am mpeg4ip-1.5.0.1/player/lib/audio/faad/Makefile.am
+--- mpeg4ip-1.5.0.1.orig/player/lib/audio/faad/Makefile.am	2005-05-04 22:01:36.000000000 +0200
++++ mpeg4ip-1.5.0.1/player/lib/audio/faad/Makefile.am	2006-07-12 11:27:28.000000000 +0200
+@@ -33,6 +33,6 @@ libmpeg4ip_faad_la_SOURCES = \
+ 	transfo.h\
+ 	util.h
+ INCLUDES = -I$(top_srcdir)/include
+-AM_CFLAGS = -O2 -Werror -Wall -fexceptions -fno-strict-aliasing
++AM_CFLAGS = -O2 -Wall -fexceptions -fno-strict-aliasing
+ 
+ EXTRA_DIST = COPYING libfaad60.dsp README
+diff -Naupr mpeg4ip-1.5.0.1.orig/player/lib/audio/faad/Makefile.in mpeg4ip-1.5.0.1/player/lib/audio/faad/Makefile.in
+--- mpeg4ip-1.5.0.1.orig/player/lib/audio/faad/Makefile.in	2006-06-08 21:17:34.000000000 +0200
++++ mpeg4ip-1.5.0.1/player/lib/audio/faad/Makefile.in	2006-07-12 11:27:34.000000000 +0200
+@@ -291,7 +291,7 @@ libmpeg4ip_faad_la_SOURCES = \
+ 	util.h
+ 
+ INCLUDES = -I$(top_srcdir)/include
+-AM_CFLAGS = -O2 -Werror -Wall -fexceptions -fno-strict-aliasing
++AM_CFLAGS = -O2 -Wall -fexceptions -fno-strict-aliasing
+ EXTRA_DIST = COPYING libfaad60.dsp README
+ all: all-am
+ 
