@@ -5,13 +5,12 @@
 
 Summary: Media player with the WinAmp GUI
 Name: bmpx
-Version: 0.20.2
+Version: 0.20.3
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.beep-media-player.org/
 Source: http://files.beep-media-player.org/releases/0.20/bmpx-%{version}.tar.bz2
-Patch: bmpx-0.20.0-binpath.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
@@ -43,7 +42,6 @@ Development files required for compiling BMPx media player plugins.
 
 %prep
 %setup
-%patch0 -p1 -b .binpath
 
 
 %build
@@ -94,7 +92,6 @@ update-mime-database  %{_datadir}/mime &>/dev/null || :
 %{_bindir}/bmp-enqueue-files-2.0
 %{_bindir}/bmp-enqueue-uris-2.0
 %{_bindir}/bmp-play-files-2.0
-%{_bindir}/bmp2
 %{_libdir}/bmpx/
 %exclude %{_libdir}/bmpx/plugins/*/*.la
 %{_libexecdir}/beep-media-player-2-bin
@@ -115,6 +112,11 @@ update-mime-database  %{_datadir}/mime &>/dev/null || :
 
 
 %changelog
+* Fri Jul 21 2006 Matthias Saou <http://freshrpms.net/> 0.20.3-1
+- Update to 0.20.3.
+- Drop no longer needed binpath patch.
+- Remove no longer included bmp2 from bindir.
+
 * Tue Jul 11 2006 Matthias Saou <http://freshrpms.net/> 0.20.2-1
 - Update to 0.20.2.
 - Enable M4A/AAC tag support with faad2.
