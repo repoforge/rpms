@@ -4,8 +4,8 @@
 
 Summary: Ping alike tool for http requests
 Name: httping
-Version: 1.0.9
-Release: 1.2
+Version: 1.2.1
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.vanheusden.com/httping/
@@ -41,12 +41,12 @@ that the transmission across the network also takes time!
 %files
 %defattr(-, root, root, 0755)
 %doc license.txt readme.txt
+%doc %{_mandir}/man1/httping.1*
 %{_bindir}/httping
-%{_mandir}/man1/httping.1*
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.9-1.2
-- Rebuild for Fedora Core 5.
+* Tue Jul 25 2006 Dag Wieers <dag@wieers.com> - 1.2.1-1
+- Updated to release 1.2.1.
 
 * Sun Jan 01 2006 Dag Wieers <dag@wieers.com> - 1.0.9-1
 - Updated to release 1.0.9.

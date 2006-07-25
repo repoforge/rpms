@@ -4,8 +4,8 @@
 
 Summary: Relay for bidirectional data transfer between 2 channels
 Name: socat
-Version: 1.4.3.1
-Release: 1.2
+Version: 1.5.0.0
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.dest-unreach.org/socat/
@@ -24,7 +24,7 @@ SSL socket, proxy CONNECT connection, a file descriptor (stdin etc.), the GNU
 line editor, a program, or a combination of two of these.
 
 %prep
-%setup -n %{name}-1.4
+%setup
 
 ### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
 %{__perl} -pi.orig -e '
@@ -58,8 +58,8 @@ line editor, a program, or a combination of two of these.
 %{_bindir}/socat
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.3.1-1.2
-- Rebuild for Fedora Core 5.
+* Wed Jul 19 2006 Dag Wieers <dag@wieers.com> - 1.5.0.0-1
+- Updated to release 1.5.0.0.
 
 * Tue Jan 31 2006 Dag Wieers <dag@wieers.com> - 1.4.3.1-1
 - Updated to release 1.4.3.1.

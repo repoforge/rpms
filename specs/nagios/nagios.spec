@@ -14,7 +14,7 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: nagios
-Version: 2.4
+Version: 2.5
 Release: 1
 License: GPL
 Group: Applications/System
@@ -185,8 +185,12 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Wed Jul 19 2006 Dag Wieers <dag@wieers.com> - 2.5-1
+- Updated to release 2.5.
+
 * Fri Jun 02 2006 Dag Wieers <dag@wieers.com> - 2.4-2
 - Make nagios owner of /etc/nagios. (Christop Maser)
+- Updated to release 2.4.
 
 * Mon May 29 2006 Dag Wieers <dag@wieers.com> - 2.3.1-2
 - Make nagios owner of /etc/nagios. (Christop Maser)

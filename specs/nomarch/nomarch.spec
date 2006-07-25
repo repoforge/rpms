@@ -5,13 +5,13 @@
 
 Name: nomarch
 Summary: GPLed Arc de-archiver
-Version: 1.3
-Release: 1.2
+Version: 1.4
+Release: 1
 License: GPL
 Group: Applications/Archiving
 URL: http://rus.members.beeb.net/nomarch.html
 
-Source: ftp://ftp.ibiblio.org/pub/Linux/utils/compress/%{name}-%{version}.tar.gz
+Source: ftp://ftp.ibiblio.org/pub/Linux/utils/compress/nomarch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -42,8 +42,8 @@ you can still run into it every so often.
 %{_bindir}/nomarch
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-1.2
-- Rebuild for Fedora Core 5.
+* Tue Jul 25 2006 Dag Wieers <dag@wieers.com> - 1.4-1
+- Updated to release 1.4.
 
 * Sun Jan 26 2003 Dag Wieers <dag@wieers.com> - 1.3-0
 - Initial package. (using DAR)

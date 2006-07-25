@@ -7,7 +7,7 @@
 
 Summary: RSS/RDF feed reader
 Name: liferea
-Version: 1.0.15
+Version: 1.0.18
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -72,6 +72,12 @@ gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/%{name}.schem
 %{_libdir}/liferea/*.so*
 
 %changelog
+* Tue Jul 25 2006 Dag Wieers <dag@wieers.com> - 1.0.18-1
+- Updated to release 1.0.18.
+
+* Wed Jul 19 2006 Dag Wieers <dag@wieers.com> - 1.0.17-1
+- Updated to release 1.0.17.
+
 * Tue Jun 20 2006 Dag Wieers <dag@wieers.com> - 1.0.15-1
 - Updated to release 1.0.15.
 

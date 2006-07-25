@@ -8,7 +8,7 @@ Version: 2.3.5
 Release: 1.2
 License: BSD
 Group: Applications/Internet
-URL: http://tcpreplay.sourceforge.net/
+URL: http://tcpreplay.synfin.net/trac/
 
 Source: http://dl.sf.net/tcpreplay/tcpreplay-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -55,9 +55,6 @@ capture files.
 %{_sbindir}/tcpreplay
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.3.5-1.2
-- Rebuild for Fedora Core 5.
-
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 2.3.5-1
 - Updated to release 2.3.5.
 

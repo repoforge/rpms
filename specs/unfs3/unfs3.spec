@@ -5,8 +5,8 @@
 
 Summary: UNFS3 user-space NFSv3 server
 Name: unfs3
-Version: 0.9.13
-Release: 1.2
+Version: 0.9.14
+Release: 1
 License: BSD
 Group: Applications/System
 URL: http://unfs3.sourceforge.net/
@@ -44,8 +44,8 @@ the MOUNT and NFS protocol.
 %{_sbindir}/unfsd
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.13-1.2
-- Rebuild for Fedora Core 5.
+* Mon Jul 10 2006 Dag Wieers <dag@wieers.com> - 0.9.14-1
+- Updated to release 0.9.14.
 
 * Fri Sep 09 2005 Dag Wieers <dag@wieers.com> - 0.9.13-1
 - Updated to release 0.9.13.

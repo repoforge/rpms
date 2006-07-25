@@ -6,7 +6,7 @@
 
 Summary: Crossfade output plugin for XMMS
 Name: xmms-crossfade
-Version: 0.3.10
+Version: 0.3.11
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -44,12 +44,15 @@ between songs and a gap-killer.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README TODO
+%doc AUTHORS ChangeLog COPYING README
 %{xmms_outputdir}/libcrossfade.so
 %exclude %{xmms_outputdir}/libcrossfade.la
 
 
 %changelog
+* Wed Jul 19 2006 Dag Wieers <dag@wieers.com> - 0.3.11-1
+- Updated to release 0.3.11.
+
 * Wed Dec  7 2004 Matthias Saou <http://freshrpms.net/> 0.3.10-1
 - Update to 0.3.10.
 
