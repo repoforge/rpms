@@ -13,7 +13,7 @@
 
 Summary: Lightweight multi-tabbed X terminal
 Name: mrxvt
-Version: 0.5.0
+Version: 0.5.1
 Release: 1
 License: GPL
 Group: User Interface/X
@@ -39,7 +39,7 @@ and independent from the GNOME and KDE desktop environment.
 %setup
 
 %build
-%configure --enable-everything
+%configure --enable-everything --disable-debug
 %{__make} %{?_smp_mflags}
 
 %install
@@ -60,6 +60,10 @@ and independent from the GNOME and KDE desktop environment.
 %exclude %{_docdir}/mrxvt/
 
 %changelog
+* Sun Apr 23 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.1-1
+- Updated to release 0.5.1.
+- Disabled debugging output (Davide Cesari).
+
 * Sun Apr 23 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.0-1
 - Updated to release 0.5.0.
 
