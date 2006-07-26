@@ -6,11 +6,11 @@
 
 Summary: XSLT, XPath and DOM processor
 Name: sablotron
-Version: 1.0.2
-Release: 1.2
+Version: 1.0.3
+Release: 1
 License: GPL
 Group: Applications/Text
-URL: http://www.gingerall.com/charlie/ga/xml/p_sab.xml
+URL: http://www.gingerall.org/sablotron.html
 
 Source: http://download-1.gingerall.cz/download/sablot/Sablot-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -79,6 +79,10 @@ export SABLOT_GPL="1"
 %{_includedir}/*.h
 
 %changelog
+* Wed Jul 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.3-1
+- Updated to release 1.0.3.
+- Fixed the urls.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.2-1.2
 - Rebuild for Fedora Core 5.
 
