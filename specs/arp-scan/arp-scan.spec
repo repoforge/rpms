@@ -13,7 +13,8 @@ URL: http://www.nta-monitor.com/tools/arp-scan/
 Source: http://www.nta-monitor.com/tools/arp-scan/download/arp-scan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: libdnet-devel, libpcap
+#libdnet-devel, 
+BuildRequires: libpcap
 
 %description
 arp-scan sends ARP (Address Resolution Protocol) queries to the specified
