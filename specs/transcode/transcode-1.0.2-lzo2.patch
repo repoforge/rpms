@@ -1,0 +1,116 @@
+diff -Naupr transcode-1.0.2.orig/configure transcode-1.0.2/configure
+--- transcode-1.0.2.orig/configure	2005-11-06 07:04:59.000000000 +0100
++++ transcode-1.0.2/configure	2006-07-31 13:16:19.000000000 +0200
+@@ -38069,7 +38069,7 @@ echo "${ECHO_T}default" >&6
+   for l in $lzo_ll ; do
+     case $l in
+       -L*) lpaths="$lpaths $l" ;;
+-      -l*) test x"$l" != x"-llzo" && xlibs="$xlibs $l" ;;
++      -l*) test x"$l" != x"-llzo2" && xlibs="$xlibs $l" ;;
+         *) xlf="$xlf $l" ;;
+     esac
+   done
+@@ -38085,13 +38085,13 @@ echo "${ECHO_T}default" >&6
+   if test x"lzo" != x"none" ; then
+     save_LDFLAGS="$LDFLAGS"
+     LDFLAGS="$LDFLAGS $lzo_ll"
+-    echo "$as_me:$LINENO: checking for lzo_version in -llzo" >&5
+-echo $ECHO_N "checking for lzo_version in -llzo... $ECHO_C" >&6
++    echo "$as_me:$LINENO: checking for lzo_version in -llzo2" >&5
++echo $ECHO_N "checking for lzo_version in -llzo2... $ECHO_C" >&6
+ if test "${ac_cv_lib_lzo_lzo_version+set}" = set; then
+   echo $ECHO_N "(cached) $ECHO_C" >&6
+ else
+   ac_check_lib_save_LIBS=$LIBS
+-LIBS="-llzo $LZO_EXTRA_LIBS $LIBS"
++LIBS="-llzo2 $LZO_EXTRA_LIBS $LIBS"
+ cat >conftest.$ac_ext <<_ACEOF
+ /* confdefs.h.  */
+ _ACEOF
+@@ -38150,7 +38150,7 @@ fi
+ echo "$as_me:$LINENO: result: $ac_cv_lib_lzo_lzo_version" >&5
+ echo "${ECHO_T}$ac_cv_lib_lzo_lzo_version" >&6
+ if test $ac_cv_lib_lzo_lzo_version = yes; then
+-  LZO_LIBS="$lzo_ll -llzo $LZO_EXTRA_LIBS"
++  LZO_LIBS="$lzo_ll -llzo2 $LZO_EXTRA_LIBS"
+ else
+ 
+ tc_pkg_err="yes"
+diff -Naupr transcode-1.0.2.orig/configure.in transcode-1.0.2/configure.in
+--- transcode-1.0.2.orig/configure.in	2005-10-30 05:57:45.000000000 +0100
++++ transcode-1.0.2/configure.in	2006-07-31 13:14:12.000000000 +0200
+@@ -1018,7 +1018,7 @@ TC_PKG_HAVE(libquicktime, LIBQUICKTIME)
+ dnl
+ dnl LZO
+ dnl
+-TC_PKG_CHECK(lzo, no, LZO, no, [lzo1x.h], lzo, lzo_version, lzo,
++TC_PKG_CHECK(lzo, no, LZO, no, [lzo1x.h], lzo2, lzo_version, lzo2,
+  [http://www.oberhumer.com/opensource/lzo/])
+ TC_PKG_HAVE(lzo, LZO)
+ 
+diff -Naupr transcode-1.0.2.orig/export/export_lzo.c transcode-1.0.2/export/export_lzo.c
+--- transcode-1.0.2.orig/export/export_lzo.c	2005-07-04 09:09:31.000000000 +0200
++++ transcode-1.0.2/export/export_lzo.c	2006-07-31 13:14:12.000000000 +0200
+@@ -84,8 +84,8 @@ MOD_init
+ 	return(TC_EXPORT_ERROR); 
+       }
+ 
+-      wrkmem = (lzo_bytep) lzo_malloc(LZO1X_1_MEM_COMPRESS);
+-      out = (lzo_bytep) lzo_malloc(vob->ex_v_height*vob->ex_v_width*3*2);
++      wrkmem = (lzo_bytep) malloc(LZO1X_1_MEM_COMPRESS);
++      out = (lzo_bytep) malloc(vob->ex_v_height*vob->ex_v_width*3*2);
+ 
+       if (wrkmem == NULL || out == NULL) {
+ 	printf("[%s] out of memory\n", MOD_NAME);
+@@ -270,8 +270,8 @@ MOD_stop 
+   
+   if(param->flag == TC_VIDEO) {
+ 
+-    lzo_free(wrkmem);
+-    lzo_free(out);
++    free(wrkmem);
++    free(out);
+     
+     return(0);
+   }
+diff -Naupr transcode-1.0.2.orig/import/decode_lzo.c transcode-1.0.2/import/decode_lzo.c
+--- transcode-1.0.2.orig/import/decode_lzo.c	2005-07-04 09:09:33.000000000 +0200
++++ transcode-1.0.2/import/decode_lzo.c	2006-07-31 13:14:12.000000000 +0200
+@@ -65,9 +65,9 @@ void decode_lzo(decode_t *decode)
+       goto decoder_error;
+     }
+ 
+-    wrkmem = (lzo_bytep) lzo_malloc(LZO1X_1_MEM_COMPRESS);
+-    out = (lzo_bytep) lzo_malloc(BUFFER_SIZE);
+-    inbuf = (lzo_bytep) lzo_malloc(BUFFER_SIZE);
++    wrkmem = (lzo_bytep) malloc(LZO1X_1_MEM_COMPRESS);
++    out = (lzo_bytep) malloc(BUFFER_SIZE);
++    inbuf = (lzo_bytep) malloc(BUFFER_SIZE);
+     
+     if (wrkmem == NULL || out == NULL) {
+       fprintf(stderr, "[%s] out of memory\n", MOD_NAME);
+diff -Naupr transcode-1.0.2.orig/import/import_lzo.c transcode-1.0.2/import/import_lzo.c
+--- transcode-1.0.2.orig/import/import_lzo.c	2005-07-04 09:09:33.000000000 +0200
++++ transcode-1.0.2/import/import_lzo.c	2006-07-31 13:14:12.000000000 +0200
+@@ -117,8 +117,8 @@ MOD_open
+       return(TC_IMPORT_ERROR); 
+     }
+ 
+-    wrkmem = (lzo_bytep) lzo_malloc(LZO1X_1_MEM_COMPRESS);
+-    out = (lzo_bytep) lzo_malloc(BUFFER_SIZE);
++    wrkmem = (lzo_bytep) malloc(LZO1X_1_MEM_COMPRESS);
++    out = (lzo_bytep) malloc(BUFFER_SIZE);
+ 
+     if (wrkmem == NULL || out == NULL) {
+       printf("[%s] out of memory\n", MOD_NAME);
+@@ -236,8 +236,8 @@ MOD_close
+ 
+   if(param->flag == TC_VIDEO) {
+ 
+-    lzo_free(wrkmem);
+-    lzo_free(out);
++    free(wrkmem);
++    free(out);
+ 
+     if(avifile2!=NULL) {
+       AVI_close(avifile2);

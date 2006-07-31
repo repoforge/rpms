@@ -29,7 +29,7 @@
 Summary: Linux video stream processing utility
 Name: transcode
 Version: 1.0.2
-Release: 9%{?prever:.%{prever}}
+Release: 10%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
@@ -37,6 +37,8 @@ Source: http://www.jakemsr.com/transcode/transcode-%{version}%{?prever}.tar.gz
 Patch0: transcode-1.0.2-filter_compare-fixes-try1.patch
 Patch1: transcode-1.0.2-filter_logo-hangup-try1.patch
 Patch2: transcode-1.0.x-filter-patch.txt
+Patch3: transcode-1.0.2-lzo2.patch
+Patch4: transcode-1.0.2-libmpeg3.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gtk+-devel, SDL-devel, libxml2-devel, libjpeg-devel
 BuildRequires: freetype-devel >= 2.0, libogg-devel, libvorbis-devel
@@ -79,6 +81,8 @@ Available rpmbuild rebuild options :
 %patch0 -p0 -b .filter_compare-fixes-try1
 %patch1 -p0 -b .filter_logo-hangup-try1
 %patch2 -p0 -b .filter-patch
+%patch3 -p1 -b .lzo2
+%patch4 -p1 -b .libmpeg3
 
 
 %build
@@ -97,6 +101,7 @@ export CFLAGS="%{optflags} -I%{_includedir}/postproc -DSDL_VIDEO_DRIVER_X11"
     --enable-libdv \
     %{!?_without_quicktime:--enable-libquicktime} \
     --enable-lzo \
+    --with-lzo-includes=%{_includedir}/lzo \
     %{!?_without_a52:--enable-a52 --enable-a52-default-decoder} \
     %{!?_without_mpeg3:--enable-libmpeg3} \
     --enable-libxml2 \
@@ -135,6 +140,10 @@ export CFLAGS="%{optflags} -I%{_includedir}/postproc -DSDL_VIDEO_DRIVER_X11"
 
 
 %changelog
+* Mon Jul 31 2006 Matthias Saou <http://freshrpms.net/> 1.0.2-10
+- Add lzo2 patch from Gentoo.
+- Add patch to compile against libmpeg3 1.7 (mpeg3_open error_return change).
+
 * Mon Jun 19 2006 Matthias Saou <http://freshrpms.net/> 1.0.2-9
 - Include transcode-1.0.x-filter-patch.txt from dvd::rip to fix filters and
   previews in dvd::rip.
