@@ -57,7 +57,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.28%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.29%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -72,8 +72,8 @@ Source0: http://www.mplayerhq.hu/MPlayer/cvs/MPlayer-%{date}.tar.bz2
 %else
 Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{version}%{?rcver}.tar.bz2
 %endif
-Source1: http://www.live555.com/liveMedia/public/live.2006.06.22.tar.gz
-Source2: http://www.mplayerhq.hu/MPlayer/Skin/Blue-1.5.tar.bz2
+Source1: http://www.live555.com/liveMedia/public/live.2006.07.04.tar.gz
+Source2: http://www.mplayerhq.hu/MPlayer/Skin/Blue-1.6.tar.bz2
 Source3: mplayer.png
 # Only for reference, required on YDL4 at least
 Source10: uio.h-ppc.patch
@@ -309,6 +309,10 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Mon Jul 31 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.29.pre8
+- Update Blue skin to 1.6.
+- Update live library to 2006.07.04.
+
 * Fri Jun 23 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.28.pre8
 - Move location where binary codecs are searched for from %{_libdir}/win32/ to
   %{_libdir}/codecs/ since "win32" is considered obsolete by MPlayer. Looks
