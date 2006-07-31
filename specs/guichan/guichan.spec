@@ -6,8 +6,8 @@
 
 Summary: Small efficient C++ GUI library
 Name: guichan
-Version: 0.4.0
-Release: 2
+Version: 0.5.0
+Release: 1
 License: BSD
 Group: Development/Libraries
 URL: http://guichan.sourceforge.net
@@ -34,7 +34,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup
+%setup -n guichan-%{version}-src
 %{__perl} -pi -e 's|-Werror||g;' configure*
 
 %build
@@ -61,6 +61,7 @@ you will need to install %{name}-devel.
 %{_libdir}/libguichan_allegro.so.*
 %{_libdir}/libguichan_opengl.so.*
 %{_libdir}/libguichan_sdl.so.*
+%{_libdir}/libguichan_glut.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -74,9 +75,14 @@ you will need to install %{name}-devel.
 %{_libdir}/libguichan_opengl.so
 %{_libdir}/libguichan_sdl.a
 %{_libdir}/libguichan_sdl.so
+%{_libdir}/libguichan_glut.a
+%{_libdir}/libguichan_glut.so
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sun Jul 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.0-1
+- Updated to release 0.5.0.
+
 * Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.0-2
 - Simplify buildequirements: SDL-devel already requires xorg-x11-devel/XFree86-devel
 
