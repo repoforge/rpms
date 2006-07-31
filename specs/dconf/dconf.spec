@@ -4,8 +4,8 @@
 
 Summary: Collect a system's hardware and software configuration
 Name: dconf
-Version: 0.5.0
-Release: 1.2
+Version: 0.5.1
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://dag.wieers.com/home-made/dconf/
@@ -50,7 +50,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog config/ COPYING README scripts/ TODO
+%doc AUTHORS ChangeLog COPYING README THANKS TODO config/ scripts/
 %doc %{_mandir}/man1/dconf.1*
 %config %{_sysconfdir}/dconf.conf
 %config(noreplace) %{_sysconfdir}/dconf-custom.conf
@@ -58,8 +58,8 @@ fi
 %{_localstatedir}/log/dconf/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.0-1.2
-- Rebuild for Fedora Core 5.
+* Sun Jul 30 2006 Dag Wieers <dag@wieers.com> - 0.5.1-1
+- Updated to release 0.5.1.
 
 * Fri Sep 09 2005 Dag Wieers <dag@wieers.com> - 0.5.0-1
 - Remove cron entry on removal. (David M. Dowdle)
