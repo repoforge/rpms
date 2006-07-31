@@ -9,7 +9,7 @@ Version: 0.0
 Release: 20060730.1
 License: BSD
 Group: System Environment/Base
-URL: http://www.etallen.com
+URL: http://www.etallen.com/cpuid.html
 
 Source: http://www.etallen.com/cpuid/cpuid-%{real_version}.src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}

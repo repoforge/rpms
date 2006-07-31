@@ -13,7 +13,7 @@
 Summary: Graphical Tool for Managing a Certification Authority
 Name: tinyca2
 Version: 0.7.5
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://tinyca.sm-zone.net/
@@ -43,17 +43,6 @@ certificates.
 		s|./locale|%{_datadir}/TinyCA2/locale|g;
 		s|./templates|%{_datadir}/TinyCA2/templates|g;
 	' tinyca2
-
-%{__cat} <<EOF >tinyca2.desktop
-[Desktop Entry]
-Name=TinyCA Certification Authority
-Comment=Work with various certificates
-Exec=tinyca
-Type=Application
-Encoding=UTF-8
-Icon=redhat-accessories.png
-Categories=GNOME;Application;Utility;
-EOF
 
 %build
 %{__make} -C po
@@ -91,6 +80,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-tinyca2.desktop}
 
 %changelog
+* Mon Jul 31 2006 Dag Wieers <dag@wieers.com> - 0.7.5-2
+- Use desktop file from upstream. (David Hrbac)
+
 * Thu Jul 27 2006 Dag Wieers <dag@wieers.com> - 0.7.5-1
 - Updated to release 0.7.5.
 
