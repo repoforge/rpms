@@ -7,7 +7,7 @@
 
 Summary: Sophisticated file transfer program
 Name: lftp
-Version: 3.5.1
+Version: 3.5.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -27,6 +27,9 @@ reliability in mind.
 
 %prep
 %setup
+
+### FIXME: Remove syntax error in Makefile v3.5.2
+%{__perl} -pi.orig -e 's|esac; else rmdir|esac; rmdir|' Makefile.in */Makefile.in
 
 %build
 ### Workaround for broken openssl on RH9 and EL3
@@ -61,6 +64,9 @@ export CPPFLAGS="-I/usr/kerberos/include"
 %{_libdir}/liblftp-tasks.so.*
 
 %changelog
+* Mon Jul 31 2006 Dag Wieers <dag@wieers.com> - 3.5.2-1
+- Updated to release 3.5.2.
+
 * Fri Jul 07 2006 Dag Wieers <dag@wieers.com> - 3.5.1-1
 - Updated to release 3.5.1.
 

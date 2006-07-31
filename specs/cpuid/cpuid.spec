@@ -26,7 +26,7 @@ instruction, and also determines the exact model of CPU(s).
 
 %install
 %{__rm} -rf %{buildroot}
-### FIXME: Default install target makes setuid and root/root
+### FIXME: Default install target changes owner/group to root/root
 #%{__make} install BUILDROOT="%{buildroot}"
 %{__install} -D -m0755 cpuid %{buildroot}%{_sbindir}/cpuid
 %{__install} -D -m0644 cpuid.man %{buildroot}%{_mandir}/man1/cpuid.1
