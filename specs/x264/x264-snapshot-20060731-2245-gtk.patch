@@ -1,0 +1,52 @@
+diff -Naupr x264-snapshot-20060731-2245.orig/gtk/Makefile x264-snapshot-20060731-2245/gtk/Makefile
+--- x264-snapshot-20060731-2245.orig/gtk/Makefile	2006-07-31 22:45:02.000000000 +0200
++++ x264-snapshot-20060731-2245/gtk/Makefile	2006-08-01 12:43:29.000000000 +0200
+@@ -99,7 +99,7 @@ $(SONAMEGTK): $(OBJECTS_LIB)
+ $(TEST_BIN): $(OBJECTS_LIB) $(OBJECTS_TEST)
+ 	@echo "  B: $(@F)"
+ #Needs iconv/intl
+-	@$(CC) -o $(TEST_BIN) $(OBJECTS_LIB) $(OBJECTS_TEST) $(LDFLAGS) $(ICONV_LIB) -lintl
++	@$(CC) -o $(TEST_BIN) $(OBJECTS_LIB) $(OBJECTS_TEST) $(LDFLAGS) $(ICONV_LIB)
+ 
+ # Program : x264_gtk_encode
+ $(ENCODE_BIN): x264_icon.h libx264gtk.a $(SONAMEGTK) $(OBJECTS_ENCODE) $(EXTERNAL_DEPS) $(X264GTK_O)
+@@ -132,20 +132,26 @@ distclean:
+ 
+ # Install rule
+ install: x264_gtk_encode
++	@echo "  D: $(DESTDIR)$(includedir)"
++	@install -d "$(DESTDIR)$(includedir)"
+ 	@echo "  I: $(DESTDIR)$(includedir)/x264_gtk.h"
+ 	@install -m 644 x264_gtk.h "$(DESTDIR)$(includedir)"
+ 	@echo "  I: $(DESTDIR)$(includedir)/x264_gtk_enum.h"
+ 	@install -m 644 x264_gtk_enum.h "$(DESTDIR)$(includedir)"
++	@echo "  D: $(DESTDIR)$(libdir)"
++	@install -d "$(DESTDIR)$(libdir)"
+ 	@echo "  I: $(DESTDIR)$(libdir)/libx264gtk.a"
+ 	@install -m 644 libx264gtk.a "$(DESTDIR)$(libdir)"
+ 	@echo "  I: $(DESTDIR)$(libdir)/libx264gtk.so"
+ 	@$(if $(SONAMEGTK), ln -sf $(SONAMEGTK) $(DESTDIR)$(libdir)/libx264gtk.so)
+ 	@$(if $(SONAMEGTK), install -m 755 $(SONAMEGTK) $(DESTDIR)$(libdir))
++	@echo "  D: $(DESTDIR)$(bindir)"
++	@install -d "$(DESTDIR)$(bindir)"
+ 	@echo "  I: $(DESTDIR)$(bindir)/x264_gtk_encode"
+ 	@install x264_gtk_encode "$(DESTDIR)$(bindir)"
+-	@echo "  D: ${prefix}/share/x264"
++	@echo "  D: $(DESTDIR)${prefix}/share/x264"
+ 	@install -d "$(DESTDIR)${prefix}/share/x264"
+-	@echo "  I: ${prefix}/share/x264.png"
++	@echo "  I: $(DESTDIR)${prefix}/share/x264.png"
+ 	@install -m 644 x264.png "$(DESTDIR)${prefix}/share/x264"
+ 	@for L in $(ALL_LINGUAS); do \
+ 	  echo "  D: $(DESTDIR)${prefix}/share/locale/$$L/LC_MESSAGES"; \
+@@ -153,7 +159,9 @@ install: x264_gtk_encode
+ 	  echo "  I: $(DESTDIR)${prefix}/share/locale/$$L/LC_MESSAGES/x264_gtk.mo"; \
+ 	  install -m 644 $$L.mo "$(DESTDIR)${prefix}/share/locale/$$L/LC_MESSAGES/x264_gtk.mo"; \
+ 	done
+-	@echo "  I: ${libdir}/pkgconfig/$(X264GTK_PC)"
++	@echo "  D: $(DESTDIR)${libdir}/pkgconfig"
++	@install -d "$(DESTDIR)${libdir}/pkgconfig"
++	@echo "  I: $(DESTDIR)${libdir}/pkgconfig/$(X264GTK_PC)"
+ 	@install -m 644 $(X264GTK_PC) "$(DESTDIR)${libdir}/pkgconfig"
+ 
+ # Uninstall rule
