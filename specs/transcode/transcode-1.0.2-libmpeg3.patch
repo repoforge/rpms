@@ -15,8 +15,8 @@ diff -Naupr transcode-1.0.2.orig/import/import_mpeg3.c transcode-1.0.2/import/im
  	  if (!file_a) {
 -	      if((file = mpeg3_open(vob->video_in_file))==NULL) {
 -		  fprintf(stderr, "open file failed\n");
-+	      if((file = mpeg3_open(vob->video_in_file, mpeg3_open_error_code))==NULL) {
-+		  fprintf(stderr, "open file failed with error code %s\n", mpeg3_open_error_code);
++	      if((file = mpeg3_open(vob->video_in_file, &mpeg3_open_error_code))==NULL) {
++		  fprintf(stderr, "open file failed with error code %i\n", mpeg3_open_error_code);
  		  return(TC_IMPORT_ERROR);
  	      }
  	      if (verbose & TC_DEBUG)
@@ -24,8 +24,8 @@ diff -Naupr transcode-1.0.2.orig/import/import_mpeg3.c transcode-1.0.2/import/im
  	  } else if (file_a) {
 -	      if((file = mpeg3_open_copy(vob->video_in_file, file_a))==NULL) {
 -		  fprintf(stderr, "open file failed\n");
-+	      if((file = mpeg3_open_copy(vob->video_in_file, file_a, mpeg3_open_error_code))==NULL) {
-+		  fprintf(stderr, "open file failed with error code %s\n", mpeg3_open_error_code);
++	      if((file = mpeg3_open_copy(vob->video_in_file, file_a, &mpeg3_open_error_code))==NULL) {
++		  fprintf(stderr, "open file failed with error code %i\n", mpeg3_open_error_code);
  		  return(TC_IMPORT_ERROR);
  	      }
  	      if (verbose & TC_DEBUG)
@@ -35,8 +35,8 @@ diff -Naupr transcode-1.0.2.orig/import/import_mpeg3.c transcode-1.0.2/import/im
  	  if (!file) {
 -	      if((file_a = mpeg3_open(vob->audio_in_file))==NULL) {
 -		  fprintf(stderr, "open audio file failed\n");
-+	      if((file_a = mpeg3_open(vob->audio_in_file, mpeg3_open_error_code))==NULL) {
-+		  fprintf(stderr, "open audio file failed with error code %s\n", mpeg3_open_error_code);
++	      if((file_a = mpeg3_open(vob->audio_in_file, &mpeg3_open_error_code))==NULL) {
++		  fprintf(stderr, "open audio file failed with error code %i\n", mpeg3_open_error_code);
  		  return(TC_IMPORT_ERROR);
  	      }
  	      if (verbose & TC_DEBUG)
@@ -44,8 +44,8 @@ diff -Naupr transcode-1.0.2.orig/import/import_mpeg3.c transcode-1.0.2/import/im
  	  } else if (file) {
 -	      if((file_a = mpeg3_open_copy(vob->audio_in_file, file))==NULL) {
 -		  fprintf(stderr, "open_copy audio file failed\n");
-+	      if((file_a = mpeg3_open_copy(vob->audio_in_file, file, mpeg3_open_error_code))==NULL) {
-+		  fprintf(stderr, "open_copy audio file failed with error code %s\n", mpeg3_open_error_code);
++	      if((file_a = mpeg3_open_copy(vob->audio_in_file, file, &mpeg3_open_error_code))==NULL) {
++		  fprintf(stderr, "open_copy audio file failed with error code %i\n", mpeg3_open_error_code);
  		  return(TC_IMPORT_ERROR);
  	      }
  	      if (verbose & TC_DEBUG)
