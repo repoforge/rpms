@@ -6,13 +6,15 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?el3:%define _without_swig 1}
+#{?el3:#define _without_swig 1}
 %{?rh9:%define _without_pie 1}
 %{?rh9:%define _without_swig 1}
 %{?rh7:%define _without_pie 1}
 %{?rh7:%define _without_swig 1}
 %{?el2:%define _without_pie 1}
 %{?el2:%define _without_swig 1}
+
+%define swig_version 1.3.25
 
 # set to zero to avoid running test suite
 %define make_check 0
@@ -22,9 +24,9 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.2.1
+Version: 1.3.2
 ### FC3 comes with release 1.1
-Release: 0.1.2
+Release: 0.1
 License: BSD
 Group: Development/Tools
 URL: http://subversion.tigris.org/
@@ -33,19 +35,20 @@ Source0: http://subversion.tigris.org/tarballs/subversion-%{version}.tar.bz2
 Source1: subversion.conf
 Source3: filter-requires.sh
 Source4: http://www.xsteve.at/prg/emacs/psvn.el
-Patch1: subversion-0.24.2-swig.patch
+Source10: http://dl.sf.net/swig/swig-%{swig_version}.tar.gz
+#Patch1: subversion-0.24.2-swig.patch
 Patch2: subversion-0.20.1-deplibs.patch
 Patch3: subversion-0.31.0-rpath.patch
-Patch6: subversion-1.0.3-pie.patch
+Patch6: subversion-1.3.0-pie.patch
 Patch7: subversion-1.1.3-java.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: autoconf, libtool, python, python-devel, texinfo
+BuildRequires: autoconf, libtool, python, python-devel, texinfo, which
 BuildRequires: expat-devel, docbook-style-xsl
 BuildRequires: apr-devel >= 0.9.3-2, apr-util-devel >= 0.9.3-2, openssl-devel
 BuildRequires: neon-devel >= 0.24.7-1
 #%{!?_without_swig:BuildRequires: swig >= 1.3.21-5}
-%{!?_without_swig:BuildRequires: swig}
+#%{!?_without_swig:BuildRequires: swig}
 
 %define __perl_requires %{SOURCE3}
 
@@ -92,19 +95,28 @@ Requires: subversion = %{version}-%{release}
 This package includes the Perl bindings to the Subversion libraries.
 
 %prep
-%setup
-%patch1 -p1 -b .swig
+%setup -a 10
+#patch1 -p1 -b .swig
 %patch2 -p1 -b .deplibs
 %patch3 -p1 -b .rpath
 %{!?_without_pie:%patch6 -p1 -b .pie}
 
 %{__rm} -rf neon apr apr-util
 
-echo _without_swig: %{_without_swig}
-echo _without_pie: %{_without_pie}
-echo dist: %{dist}
+echo _without_swig: %_without_swig
+echo _without_pie: %_without_pie
+echo dist: %dist
 
 %build
+%if %{!?_without_swig:1}0
+cd swig-%{swig_version}
+[ ! -r configure ] && ./autogen.sh
+%configure --prefix="$(pwd)/install" --exec-prefix="$(pwd)/install" --bindir="$(pwd)/install/bin" --datadir="$(pwd)/install/share"
+%{__make}
+%{__make} install
+cd -
+%endif
+
 ./autogen.sh
 
 # requirement for apr 0.9.5 seems to be bogus
@@ -119,16 +131,16 @@ export CC=gcc CXX=g++
 	--with-apr-util="%{_prefix}" \
         --with-apxs="%{_sbindir}/apxs" \
 	--disable-mod-activation \
-	--with-neon="%{_prefix}" \
-%{!?_without_swig:--with-swig} \
+%{!?_without_swig:--with-swig=swig-%{swig_version}/install} \
 	--with-expat \
 	--with-ssl
+#	--with-neon="%{_prefix}" \
+# 1.3.0 tarball ships with generated swig sources
+#make extraclean-swig-headers swig-headers
 %{__make} %{?_smp_mflags} all
 
 %if %{!?_without_swig:1}0
-%{__make} %{?_smp_mflags} swig-py %{swigdirs}
-
-%{__make} %{?_smp_mflags} swig-pl %{swigdirs}
+%{__make} %{?_smp_mflags} swig-pl swig-py %{swigdirs}
 
 # build the perl modules
 #pushd subversion/bindings/swig/perl
@@ -143,16 +155,14 @@ export CC=gcc CXX=g++
 	DESTDIR="%{buildroot}"
 
 %if %{!?_without_swig:1}0
-%{__make} install-swig-py %{swigdirs} \
-        DESTDIR="%{buildroot}"
-%{__make} install-swig-pl-lib %{swigdirs} \
+%{__make} install-swig-py install-swig-pl-lib %{swigdirs} \
         DESTDIR="%{buildroot}"
 
 %{__make} pure_vendor_install -C subversion/bindings/swig/perl/native \
         PERL_INSTALL_ROOT="%{buildroot}"
 %endif
 
-%find_lang %{name}
+%{__install} -d -m0755 ${RPM_BUILD_ROOT}%{_sysconfdir}/subversion
 
 # Add subversion.conf configuration file into httpd/conf.d directory.
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/httpd/conf.d/subversion.conf
@@ -186,6 +196,8 @@ find %{buildroot}%{_libdir}/perl5 -type f -perm 555 -print0 |
 # Rename authz_svn INSTALL doc for docdir
 ln -f subversion/mod_authz_svn/INSTALL mod_authz_svn-INSTALL
 
+%find_lang %{name}
+
 %if %{make_check}
 %check
 export LANG=C LC_ALL=C
@@ -206,11 +218,10 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %defattr(-, root, root, 0755)
 %doc BUGS CHANGES COMMITTERS COPYING HACKING INSTALL README
 %doc mod_authz_svn-INSTALL subversion/LICENSE tools/
-%doc doc/book/svn-book.html
 %doc contrib/client-side/svn_load_dirs{.pl,_*,.README}
-%{_bindir}/*
+%{_bindir}/svn*
 %{_libdir}/libsvn_*.so.*
-%{_mandir}/man*/*
+%{_mandir}/man?/svn*
 %{_datadir}/emacs/site-lisp/
 %{_datadir}/xemacs/site-packages/lisp/
 %{!?_without_swig:%exclude %{_libdir}/libsvn_swig_perl*}
@@ -221,9 +232,9 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/subversion-1/
-%{_libdir}/libsvn*.a
-%{_libdir}/libsvn*.la
-%{_libdir}/libsvn*.so
+%{_libdir}/libsvn_*.a
+%{_libdir}/libsvn_*.la
+%{_libdir}/libsvn_*.so
 %{!?_without_swig:%exclude %{_libdir}/libsvn_swig_perl*}
 
 %files -n mod_dav_svn
@@ -242,8 +253,8 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.1-0.1.2
-- Rebuild for Fedora Core 5.
+* Tue Aug 01 2006 Dag Wieers <dag@wieers.com> - 1.3.2-0.1
+- Updated to release 1.3.2
 
 * Wed Jul 13 2005 Dag Wieers <dag@wieers.com> - 1.2.1-0.1
 - Updated to release 1.2.1
