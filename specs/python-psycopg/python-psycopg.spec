@@ -3,17 +3,17 @@
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
-%define real_name psycopg
+%define real_name psycopg2
 
 Summary: PostgreSQL database adapter for Python
 Name: python-psycopg
-Version: 1.1.21
-Release: 1.2
+Version: 2.0.4
+Release: 1
 License: GPL/ZPL
 Group: Development/Libraries
-URL: http://initd.org/projects/psycopg1
+URL: http://initd.org/tracker/psycopg
 
-Source: http://initd.org/pub/software/psycopg/psycopg-%{version}.tar.gz
+Source: http://initd.org/pub/software/psycopg/psycopg2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python >= 2.2, python-devel, postgresql-devel, mx
@@ -30,23 +30,31 @@ distribution includes ZPsycopgDA, a Zope Database Adapter.
 %setup -n %{real_name}-%{version}
 
 %build
-%configure --with-postgres-includes="%{_includedir}/pgsql/"
-%{__make}
+CFLAGS="%{optflags}" %{__python} setup.py build
+#configure --with-postgres-includes="%{_includedir}/pgsql/"
+#{__make}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d %{buildroot}%{python_sitearch}
-%makeinstall
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
+#{__install} -d %{buildroot}%{python_sitearch}
+#makeinstall
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS FAQ INSTALL NEWS README RELEASE* SUCCESS TODO VERSION* doc/examples doc/python*.txt
+%doc AUTHORS ChangeLog INSTALL README  doc/*
 %{python_sitearch}/psycopg*
 
 %changelog
+* Thu Aug 03 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.4-1
+- Updated to release 2.0.4.
+
+* Mon Jul 31 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.3-1
+- Updated to release 2.0.3.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.21-1.2
 - Rebuild for Fedora Core 5.
 
