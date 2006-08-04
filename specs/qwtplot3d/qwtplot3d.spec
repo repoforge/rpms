@@ -12,7 +12,7 @@ URL: http://qwtplot3d.sourceforge.net/
 Source: http://dl.sf.net/qwtplot3d/qwtplot3d-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: qt-devel
+BuildRequires: qt-devel, gcc-c++
 
 %description
 qwtplot3d is a graphics extension to the Qt GUI application framework that 

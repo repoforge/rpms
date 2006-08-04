@@ -87,7 +87,7 @@ Requires: mplayer-fonts
 BuildRequires: gtk2-devel, SDL-devel
 BuildRequires: libpng-devel, libjpeg-devel, libungif-devel
 BuildRequires: lame-devel, libmad-devel, flac-devel
-BuildRequires: libmatroska-devel
+BuildRequires: libmatroska-devel, gcc-c++
 BuildRequires: ImageMagick
 %{?_with_dvdread:BuildRequires: libdvdread-devel}
 %{!?_without_dvb:BuildRequires: kernel = %{kversion}, kernel-devel = %{kversion}}

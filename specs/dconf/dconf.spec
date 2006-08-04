@@ -14,7 +14,7 @@ Source: http://dag.wieers.com/home-made/dconf/dconf-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: python
+BuildRequires: python, asciidoc
 Requires: python
 
 %description

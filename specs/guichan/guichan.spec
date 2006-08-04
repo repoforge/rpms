@@ -16,7 +16,7 @@ Source: http://dl.sf.net/guichan/guichan-%{version}-src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, autoconf, automake, allegro-devel, SDL-devel
-BuildRequires: SDL_image-devel, libtool
+BuildRequires: SDL_image-devel, libtool, freeglut-devel
 
 %description
 Guichan is a small, efficient C++ GUI library designed for games. It comes
