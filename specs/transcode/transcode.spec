@@ -33,7 +33,7 @@ Release: 10%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
-Source: http://www.jakemsr.com/transcode/transcode-%{version}%{?prever}.tar.gz
+Source: http://www.kraymer.mynetcologne.de/transcode-%{version}%{?prever}.tar.gz
 Patch0: transcode-1.0.2-filter_compare-fixes-try1.patch
 Patch1: transcode-1.0.2-filter_logo-hangup-try1.patch
 Patch2: transcode-1.0.x-filter-patch.txt
