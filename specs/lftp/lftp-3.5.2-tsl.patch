@@ -1,0 +1,21 @@
+Index: src/ftpclass.cc
+===================================================================
+RCS file: /home/lav/cvsroot/lftp/src/ftpclass.cc,v
+retrieving revision 1.393
+diff -u -p -r1.393 ftpclass.cc
+--- src/ftpclass.cc 6 Jul 2006 13:52:01 -0000       1.393
++++ src/ftpclass.cc 4 Aug 2006 05:50:36 -0000
+@@ -3056,7 +3056,12 @@ int  Ftp::FlushSendQueue(bool all)
+    {
+       DebugPrint("**** ",conn->control_send->ErrorText(),0);
+       if(conn->control_send->ErrorFatal())
+-	 SetError(FATAL,conn->control_send->ErrorText());
++	{
++	 if(conn->ssl_is_activated() && !ftps && !QueryBool("ssl-force",hostname))
++	  ResMgr::Set("ftp:ssl-allow",hostname,"no");
++	 else
++	  SetError(FATAL,conn->control_send->ErrorText());
++	}
+       DisconnectNow();
+       return MOVED;
+    }

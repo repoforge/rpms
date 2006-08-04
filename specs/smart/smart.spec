@@ -8,6 +8,7 @@
 %{!?dist: %define fc4 1}
 
 %{?el4:%define _without_channels 1}
+%{?el3:%define _without_channels 1}
 %{?el3:%define _without_gui 1}
 
 %define desktop_vendor rpmforge
@@ -19,8 +20,8 @@
 
 Summary: Next generation package handling tool
 Name: smart
-Version: 0.41
-Release: 2.2
+Version: 0.42
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.smartpm.org/
@@ -174,7 +175,7 @@ cd -
 #%{__install} -Dp -m0755 %{SOURCE1} %{buildroot}%{python_dir}/smart/plugins/channelsync.py
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/smart/channels/
-%{__cp} -apv *.channel %{buildroot}%{_sysconfdir}/smart/channels/
+%{!?_without_channels:%{__cp} -apvf *.channel %{buildroot}%{_sysconfdir}/smart/channels/}
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/smart/
 
@@ -201,6 +202,7 @@ cd -
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc HACKING IDEAS LICENSE README TODO doc/*
+%doc %{_mandir}/man8/smart.8*
 %config %{_prefix}/lib/smart/distro.py
 %dir %{_prefix}/lib/smart/
 %config(noreplace) %{_sysconfdir}/smart/channels/
@@ -239,8 +241,8 @@ cd -
 %endif
 
 %changelog
-* Tue Apr 11 2006 Dries Verachtert <dries@ulyssis.org> - 0.41-2.2
-- Rebuild for Fedora Core 5.
+* Fri Dec 23 2005 Dag Wieers <dag@wieers.com> - 0.42-1
+- Updated to release 0.42.
 
 * Fri Dec 23 2005 Dag Wieers <dag@wieers.com> - 0.41-2
 - Removed standard rpm-sys channel.

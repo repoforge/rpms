@@ -1,0 +1,23 @@
+--- src/Makefile.am.orig        2006-07-27 08:14:13.000000000 +0200
++++ src/Makefile.am     2006-07-31 23:54:36.000000000 +0200
+@@ -117,5 +117,7 @@
+	case " $(LDFLAGS) " in *" -s "*) \
+		echo $(STRIP) $(DESTDIR)$(pkgverlibdir)/*.so; \
+		$(STRIP) $(DESTDIR)$(pkgverlibdir)/*.so;; \
+-	esac; else rmdir $(DESTDIR)$(pkgverlibdir) 2>/dev/null || true;
++	esac
++else
++	rmdir $(DESTDIR)$(pkgverlibdir) 2>/dev/null || true;
+ endif
+--- src/Makefile.in.orig        2006-07-31 23:54:41.000000000 +0200
++++ src/Makefile.in     2006-07-31 23:55:08.000000000 +0200
+@@ -1027,7 +1027,8 @@
+ @WITH_MODULES_TRUE@	case " $(LDFLAGS) " in *" -s "*) \
+ @WITH_MODULES_TRUE@		echo $(STRIP) $(DESTDIR)$(pkgverlibdir)/*.so; \
+ @WITH_MODULES_TRUE@		$(STRIP) $(DESTDIR)$(pkgverlibdir)/*.so;; \
+-@WITH_MODULES_TRUE@	esac; else rmdir $(DESTDIR)$(pkgverlibdir) 2>/dev/null || true;
++@WITH_MODULES_TRUE@	esac
++@WITH_MODULES_TRUE@	rmdir $(DESTDIR)$(pkgverlibdir) 2>/dev/null || true;
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
+ # Otherwise a system limit (for SysV at least) may be exceeded.
+ .NOEXPORT:
