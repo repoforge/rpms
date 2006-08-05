@@ -111,4 +111,4 @@ find %{buildroot}%{_datadir}/viewvc/lib -type f -name "*.pyc" | xargs %{__rm} -f
 - Provide a better default httpd setup using Alias and ScriptALias /viewvc-static.
 
 * Tue Aug 01 2006 Dag Wieers <dag@wieers.com> - 1.0.1-1
-- Initial package based on Mandrake.
+- Initial package based on Mandrake package.
