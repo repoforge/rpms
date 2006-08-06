@@ -4,8 +4,8 @@
 
 Summary: Punching holes in HTTP(S) proxy's
 Name: proxytunnel
-Version: 1.6.0
-Release: 3
+Version: 1.6.3
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://proxytunnel.sourceforge.net/
@@ -40,11 +40,12 @@ proxy authentication
 
 %build
 %{__make} %{?_smp_mflags} \
-	CFLAGS="%{optflags} -DHAVE_GETOPT_LONG -DUSE_SSL -DSETPROCTITLE -DSPT_TYPE=1 -I/usr/kerberos/include"
+	CFLAGS="%{optflags} -DHAVE_GETOPT_LONG -DUSE_SSL -DSETPROCTITLE -DSPT_TYPE=2 -I/usr/kerberos/include"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}" PREFIX="%{_prefix}"
+#%{__make} install DESTDIR="%{buildroot}" PREFIX="%{_prefix}"
+%{__make} install PREFIX="%{buildroot}%{_prefix}" MANDIR="%{buildroot}%{_mandir}/man1"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -56,6 +57,9 @@ proxy authentication
 %{_bindir}/proxytunnel
 
 %changelog
+* Sun Aug 06 2006 Dag Wieers <dag@wieers.com> - 1.6.3-1
+- Updated to release 1.6.3.
+
 * Sun Mar 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.0-3
 - Source url fixed.
 

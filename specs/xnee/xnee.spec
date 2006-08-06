@@ -6,8 +6,8 @@
 
 Summary: Record, distribute and replay X protocol data
 Name: xnee
-Version: 2.04
-Release: 1.2
+Version: 2.05
+Release: 1
 License: GPL
 Group: User Interface/X
 URL: http://www.gnu.org/software/xnee/
@@ -57,17 +57,17 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING FAQ INSTALL NEWS README TODO
-%doc %{_infodir}/cnee.info*
+#%doc %{_infodir}/cnee.info*
 %doc %{_mandir}/man1/cnee.1*
 %{_bindir}/cnee
 %{_bindir}/gnee
-%{_libdir}/libxnee*
+#%{_libdir}/libxnee*
 %{_datadir}/Xnee/
 %{_datadir}/applications/%{desktop_vendor}-xnee.desktop
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.04-1.2
-- Rebuild for Fedora Core 5.
+* Sun Aug 06 2006 Dag Wieers <dag@wieers.com> - 2.05-1
+- Updated to release 2.05.
 
 * Sun Mar 19 2006 Dries Verachtert <dries@ulyssis.org> - 2.04-2
 - Some missing buildrequirements added.
