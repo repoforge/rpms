@@ -3,8 +3,8 @@
 
 Summary: Create static HTML pages of a yum repository
 Name: repoview
-Version: 0.5
-Release: 3.2
+Version: 0.5.2
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://linux.duke.edu/projects/mini/repoview/
@@ -24,10 +24,10 @@ customizeable.
 %prep
 %setup
 
-%{__perl} -pi.orig -e '
-		s|^(VERSION) = .*$|$1 = "%{version}"|g;
-		s|^(DEFAULT_TEMPLATEDIR) =.*$|$1 = "%{_datadir}/repoview/templates"|g;
-	' repoview.py
+%{__perl} -pi.orig \
+	-e 's|^(VERSION) = .*$|$1 = "%{version}"|g;' \
+	-e 's|^(DEFAULT_TEMPLATEDIR) =.*$|$1 = "%{_datadir}/repoview/templates"|g;' \
+	repoview.py
 
 %install
 %{__rm} -rf %{buildroot}
@@ -43,13 +43,13 @@ customizeable.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING README
-%{_mandir}/man8/repoview.8*
+%doc %{_mandir}/man8/repoview.8*
 %{_bindir}/repoview
 %{_datadir}/repoview/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-3.2
-- Rebuild for Fedora Core 5.
+* Sun Aug 06 2006 Dag Wieers <dag@wieers.com> - 0.5.2-1
+- Updated to release 0.5.2.
 
 * Fri Feb 17 2006 Dag Wieers <dag@wieers.com> - 0.5-3
 - Changed python-celementtree dependency to python-elementtree. (Douglas E. Warner)
