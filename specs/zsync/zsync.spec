@@ -4,13 +4,13 @@
 
 Summary: Partial/differential file transfer client over HTTP
 Name: zsync
-Version: 0.4.3
+Version: 0.5
 Release: 1
 License: Artistic License v2
 Group: Applications/Internet
 URL: http://zsync.moria.org.uk/
 
-Source: http://dl.sf.net/zsync/zsync-%{version}.tar.gz
+Source: http://zsync.moria.org.uk/download/zsync-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -34,7 +34,7 @@ the server, making it ideal for large scale file distribution.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -49,6 +49,9 @@ the server, making it ideal for large scale file distribution.
 %exclude %{_docdir}/zsync/
 
 %changelog
+* Sun Aug 06 2006 Dag Wieers <dag@wieers.com> - 0.5-1
+- Updated to release 0.5.
+
 * Sun Jul 09 2006 Dag Wieers <dag@wieers.com> - 0.4.3-1
 - Updated to release 0.4.3.
 

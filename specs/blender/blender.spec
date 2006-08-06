@@ -9,17 +9,15 @@
 
 %define desktop_vendor rpmforge
 
-%define real_version 2.41
-
 Summary: 3D modeling, animation, rendering and post-production
 Name: blender
-Version: 2.41
-Release: 3
+Version: 2.42
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.blender.org/
 
-Source: http://download.blender.org/source/blender-%{real_version}.tar.gz
+Source: http://download.blender.org/source/blender-%{version}.tar.gz
 Source1: blender.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -39,7 +37,7 @@ secure, multi-platform content to the web, CD-ROMs, and other media, whether
 they are users of Windows, Linux, Irix, Sun Solaris, FreeBSD or OSX.
 
 %prep
-%setup -n blender
+%setup -n blender%{version}
 
 %{__cat} <<EOF >blender.desktop
 [Desktop Entry]
@@ -81,11 +79,8 @@ scons
 		blender.desktop
 %endif
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -101,7 +96,10 @@ scons
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-blender.desktop}
 
 %changelog
-* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 2.42-3
+* Sun Aug 06 2006 Dag Wieers <dag@wieers.com> - 2.42-1
+- Updated to release 2.42.
+
+* Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 2.41-3
 - Simplify buildequirements: SDL-devel already requires xorg-x11-devel/XFree86-devel
 
 * Sun Mar 05 2006 Dries Verachtert <dries@ulyssis.org> - 2.41-2

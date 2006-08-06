@@ -16,7 +16,7 @@ URL: http://www.maxmind.com/download/geoip/api/python/
 Source: http://www.maxmind.com/download/geoip/api/python/GeoIP-Python-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python-devel geoip-devel
+BuildRequires: python-devel, geoip-devel
 Obsoletes: python-GeoIP < %{version}-%{release}
 Provides: python-GeoIP = %{version}-%{release}
 
