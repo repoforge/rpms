@@ -2,9 +2,13 @@
 # Authority: dries
 # Upstream: EFF
 
+# added so it also works with the upstream el4 tor package
+%define toruser _tor
+%define torgroup _tor
+
 Summary: Send network traffic through virtual tunnels to improve your privacy
 Name: tor
-Version: 0.1.0.14
+Version: 0.1.1.23
 Release: 1
 License: BSD
 Group: Applications/Internet
@@ -31,27 +35,73 @@ that are blocked by their local Internet service providers (ISPs).
 
 %build
 export CPPFLAGS=-I/usr/include/kerberos
-%configure
+%configure --with-tor-user=%{toruser} --with-tor-group=%{torgroup}
 %{__make} %{?_smp_mflags}
+%{__perl} -pi -e "s|# chkconfig: 2345|# chkconfig: -|g;" contrib/tor.sh
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__install} -D -m755 contrib/torctl %{buildroot}%{_bindir}/torctl
+%{__install} -D -m755 contrib/tor.sh %{buildroot}%{_initrddir}/tor
+%{__install} -D -m644 contrib/tor.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/tor
+%{__mv} %{buildroot}%{_sysconfdir}/tor/torrc.sample %{buildroot}%{_sysconfdir}/tor/torrc
+%{__install} -d %{buildroot}%{_localstatedir}/lib/tor %{buildroot}%{_localstatedir}/run/tor %{buildroot}%{_localstatedir}/log/tor
 
 %clean
 %{__rm} -rf %{buildroot}
+
+%pre
+/usr/sbin/groupadd %{torgroup} 2> /dev/null || :
+/usr/sbin/useradd -c "Tor user" -g %{torgroup} -s /bin/false -r -d %{_localstatedir}/lib/tor %{toruser} 2>/dev/null || :
+
+%post
+if [ $1 -eq 1 ]; then
+    /sbin/chkconfig --add tor
+fi
+%{__chown} -R %{toruser}.%{torgroup} %{_localstatedir}/lib/tor %{_localstatedir}/run/tor %{_localstatedir}/log/tor || :
+
+%preun
+if [ $1 -eq 0 ]; then
+   /sbin/service tor stop || :
+   /sbin/chkconfig --del tor
+fi
+
+%postun
+/sbin/service tor condrestart > /dev/null 2>&1 || :
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog INSTALL LICENSE README
 %doc %{_mandir}/man1/tor*
-%config(noreplace) %{_sysconfdir}/tor/tor-tsocks.conf
-%config(noreplace) %{_sysconfdir}/tor/torrc.sample
 %{_bindir}/tor-resolve
 %{_bindir}/tor
+%{_bindir}/torctl
 %{_bindir}/torify
+%{_sysconfdir}/logrotate.d/tor
+%{_initrddir}/tor
+%defattr(-, root, %{torgroup}, 0750)
+%dir %{_sysconfdir}/tor/
+%defattr(-, root, %{torgroup}, 0640)
+%config(noreplace) %{_sysconfdir}/tor/tor-tsocks.conf
+%config(noreplace) %{_sysconfdir}/tor/torrc
+%defattr(-, %{toruser}, %{torgroup}, 0700)
+%dir %{_localstatedir}/lib/tor
+%defattr(-, %{toruser}, %{torgroup}, 0750)
+%dir %{_localstatedir}/run/tor
+%dir %{_localstatedir}/log/tor
 
 %changelog
+* Mon Aug 07 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.1.23-1
+- Updated to release 0.1.1.23.
+
+* Sun Jun 04 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.1.20-1
+- Updated to release 0.1.1.20.
+- Use a _tor user and _tor group.
+
+* Wed Jan 04 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.0.16-1
+- Update to release 0.1.0.16.
+
 * Sun Aug 14 2005 Dries Verachtert <dries@ulyssis.org> - 0.1.0.14-1
 - Update to release 0.1.0.14.
 
