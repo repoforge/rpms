@@ -19,6 +19,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: python-devel >= 2.1
 Requires: python >= 2.1
+Obsoletes: urwid < %{version}-%{release}
+Provides: urwid = %{version}-%{release}
 
 %description
 Urwid is a Python library for making text console applications. It has
@@ -37,18 +39,23 @@ widget types. It is flexible, modular, and leaves the developer in control.
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 
+%{__install} -d -m0755 examples/
+%{__install} -p -m0755 {browse,calc,dialog,edit,fib,graph,tour}.py examples/
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc reference.html tutorial.html
+%doc reference.html tutorial.html examples/
 %{python_sitelib}/urwid/
 %ghost %{python_sitelib}/urwid/*.pyo
 
 %changelog
 * Mon Aug 07 2006 Dag Wieers <dag@wieers.com> - 0.9.5-2
 - Removed the erroneous python-curses dependency.
+- Added urwid examples.
+- Added urwid obsoletes and provides.
 
 * Sun Aug 06 2006 Dag Wieers <dag@wieers.com> - 0.9.5-1
 - Initial package. (using DAR)
