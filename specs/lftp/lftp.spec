@@ -7,15 +7,13 @@
 
 Summary: Sophisticated file transfer program
 Name: lftp
-Version: 3.5.2
-Release: 2
+Version: 3.5.3
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://lftp.yar.ru/
 
 Source: http://ftp.yars.free.net/pub/source/lftp/lftp-%{version}.tar.bz2
-Patch0: lftp-3.5.2-tsl.patch
-Patch1: lftp-3.5.2-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, openssl-devel, pkgconfig, readline-devel, gcc-c++
@@ -29,8 +27,6 @@ reliability in mind.
 
 %prep
 %setup
-%patch0
-%patch1
 
 %build
 ### Workaround for broken openssl on RH9 and EL3
@@ -65,6 +61,9 @@ export CPPFLAGS="-I/usr/kerberos/include"
 %{_libdir}/liblftp-tasks.so.*
 
 %changelog
+* Mon Aug 07 2006 Dag Wieers <dag@wieers.com> - 3.5.3-1
+- Updated to release 3.5.3.
+
 * Fri Aug 04 2006 Dag Wieers <dag@wieers.com> - 3.5.2-2
 - Added patch to handle SSL errors gracefully.
 

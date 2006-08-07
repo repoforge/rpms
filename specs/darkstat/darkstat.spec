@@ -4,7 +4,7 @@
 
 Summary: Network traffic analyzer
 Name: darkstat
-Version: 3.0.471
+Version: 3.0.540
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -24,14 +24,12 @@ all sorts of useless but interesting statistics.
 %setup
 
 %build
-%configure \
-	--disable-schemas-install
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-#%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -43,6 +41,9 @@ all sorts of useless but interesting statistics.
 %{_sbindir}/darkstat
 
 %changelog
+* Mon Aug 07 2006 Dag Wieers <dag@wieers.com> - 3.0.540-1
+- Updated to release 3.0.540.
+
 * Tue Jun 20 2006 Dag Wieers <dag@wieers.com> - 3.0.471-1
 - Updated to release 3.0.471.
 
