@@ -6,7 +6,7 @@
 Summary: Python binding for the wireless (wifi) extensions
 Name: python-wifi
 Version: 0.3
-Release: 1
+Release: 2
 License: LGPL
 Group: Development/Libraries
 URL: http://www.romanofski.de/downloads/pywifi
@@ -27,20 +27,41 @@ extensions written in C.
 %prep
 %setup -n %{name}
 
+%{__cat} <<'EOF' >setup.py
+import os, string, sys
+from distutils.core import setup
+
+def main():
+	setup(
+		name="%{name}",
+		version="%{version}",
+		description="%{summary}",
+		author="Dag Wieers",
+		author_email="dag@wieers.com, http://dag.wieers.com/, dag.wieers@gmail.com",
+		maintainer="Dag Wieers",
+		maintainer_email="dag@wieers.com",
+		url="%{url}",
+		license="%{license}",
+		platforms="UNIX",
+		long_description="""%{description}""",
+		keywords=["wireless extensions", "wifi", "iwlibs"],
+		packages=['pythonwifi'],
+		package_dir={'pythonwifi': 'pythonwifi'},
+#		py_modules=["pythonwifi"],
+	)
+
+if __name__ == "__main__": main()
+EOF
+
 ### Fix permissions on examples and tests
 %{__chmod} a+x docs/*.py examples/*.py tests/*.py
 
 %build
-#%{__python} setup.py build
+%{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-#%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
-#%{__install} -Dp -m0644 iwlibs.py %{buildroot}%{python_sitelib}/iwlibs.py
-#%{__install} -Dp -m0755 pyiwconfig %{buildroot}%{_bindir}/pyiwconfig
-#%{__install} -Dp -m0755 pyiwlist %{buildroot}%{_bindir}/pyiwlist
-%{__install} -d -m0755 %{buildroot}%{python_sitelib}/pythonwifi/
-%{__install} -Dp -m0755 pythonwifi/*.py %{buildroot}%{python_sitelib}/pythonwifi/
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -49,8 +70,12 @@ extensions written in C.
 %defattr(-, root, root, 0755)
 %doc ChangeLog LICENSE README docs/ examples/ tests/
 %{python_sitelib}/pythonwifi/
+%ghost %{python_sitelib}/pythonwifi/*.pyo
 
 %changelog
+* Tue Aug 08 2006 Dag Wieers <dag@wieers.com> - 0.3-2
+- Added own setup.py.
+
 * Sun Jul 09 2006 Dag Wieers <dag@wieers.com> - 0.3-1
 - Updated to release 0.3.
 
