@@ -4,8 +4,8 @@
 
 Summary: C source code analyzer
 Name: ncc
-Version: 2.3
-Release: 1.2
+Version: 2.4
+Release: 1
 License: Artistic
 Group: Development/Languages
 URL: http://students.ceid.upatras.gr/~sxanth/ncc/index.html
@@ -54,6 +54,9 @@ gcc, gdb, bind, mpg123, ncftp, and many other famous projects.
 %{_bindir}/nccnavi
 
 %changelog
+* Tue Aug 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.4-1
+- Updated to release 2.4.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.3-1.2
 - Rebuild for Fedora Core 5.
 

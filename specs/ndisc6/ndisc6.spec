@@ -4,7 +4,7 @@
 
 Summary: Tools for ICMPv6 Neighbor&Router Discovery and TCP/IPv6 traceroute
 Name: ndisc6
-Version: 0.6.2
+Version: 0.6.6
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -35,6 +35,8 @@ This package consists of two programs:
 %makeinstall #DESTDIR=%{buildroot}
 %{__rm} -f %{buildroot}%{_mandir}/man8/tcptraceroute6.8
 %{__ln_s} %{_mandir}/man8/traceroute6.8 %{buildroot}%{_mandir}/man8/tcptraceroute6.8
+%{__rm} -f %{buildroot}%{_mandir}/man8/tracert6.8
+%{__ln_s} %{_mandir}/man8/rltraceroute6.8 %{buildroot}%{_mandir}/man8/tracert6.8
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -44,16 +46,21 @@ This package consists of two programs:
 %doc ChangeLog COPYING INSTALL NEWS README
 %doc %{_mandir}/man8/ndisc6.8*
 %doc %{_mandir}/man8/rdisc6.8*
-%doc %{_mandir}/man8/traceroute6.8*
+%doc %{_mandir}/man8/tracert6.8*
 %doc %{_mandir}/man8/tcptraceroute6.8*
+%doc %{_mandir}/man8/rltraceroute6.8*
 %doc %{_mandir}/man1/tcpspray6.1*
 %{_bindir}/ndisc6
 %{_bindir}/rdisc6
 %{_bindir}/tcpspray6
-%{_bindir}/traceroute6
+%{_bindir}/tracert6
+%{_bindir}/rltraceroute6
 %{_bindir}/tcptraceroute6
 
 %changelog
+* Tue Aug 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.6-1
+- Updated to release 0.6.6.
+
 * Sat May 06 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.2-1
 - Updated to release 0.6.2.
 
