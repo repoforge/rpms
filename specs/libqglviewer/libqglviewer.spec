@@ -15,7 +15,7 @@ URL: http://artis.imag.fr/Members/Gilles.Debunne/QGLViewer
 Source: http://artis.imag.fr/Members/Gilles.Debunne/QGLViewer/src/libQGLViewer-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: qt-devel
+BuildRequires: qt-devel, gcc-c++
 
 %description
 libQGLViewer is a C++ library based on Qt that enables the quick
