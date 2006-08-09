@@ -11,13 +11,13 @@
 
 Summary: Graphical desktop publishing (DTP) application
 Name: scribus
-Version: 1.3.2
-Release: 0.2
+Version: 1.3.3.3
+Release: 1
 License: GPL
 Group: Applications/Productivity
 URL: http://web2.altmuehlnet.de/fschmid/
 
-Source: http://www.scribus.org.uk/downloads/%{version}/scribus-%{version}.tar.bz2
+Source: http://dl.sf.net/scribus/scribus-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, python-devel >= 2.3, python >= 2.3
@@ -88,6 +88,9 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %{!?_without_freedesktop:%{_datadir}/applications/*.desktop}
 
 %changelog
+* Mon Aug 09 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.3.3-1
+- Updated to release 1.3.3.3.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.2-0.2
 - Rebuild for Fedora Core 5.
 
