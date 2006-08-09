@@ -4,8 +4,8 @@
 
 Summary: BitTorrent client for KDE
 Name: ktorrent
-Version: 1.2
-Release: 1.2
+Version: 2.0
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://ktorrent.pwsp.net/
@@ -13,7 +13,7 @@ URL: http://ktorrent.pwsp.net/
 Source: http://ktorrent.org/downloads/%{version}/ktorrent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: kdelibs-devel, gettext, gcc-c++
+BuildRequires: kdelibs-devel, gettext, gcc-c++, gmp-devel
 
 %description
 KTorrent is a BitTorrent program for KDE.
@@ -28,6 +28,7 @@ KTorrent is a BitTorrent program for KDE.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%find_lang %{name}
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -38,10 +39,12 @@ KTorrent is a BitTorrent program for KDE.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %{_bindir}/ktcachecheck
+%{_bindir}/ktshell
+%{_bindir}/ktupnptest
 %{_bindir}/ktorrent
 %{_bindir}/kttorinfo
 %{_libdir}/kde3/kt*
@@ -49,12 +52,17 @@ KTorrent is a BitTorrent program for KDE.
 %{_datadir}/apps/ktorrent/
 %{_datadir}/config.kcfg/
 %{_datadir}/icons/*/*/apps/ktorrent.*
+%{_datadir}/icons/*/*/mimetypes/torrent.*
 %{_datadir}/services/kt*.desktop
 %{_datadir}/servicetypes/kt*.desktop
 %{_datadir}/applications/kde/ktorrent.desktop
 %{_datadir}/applnk/Internet/ktorrent.desktop
+%{_datadir}/mimelnk/application/x-bittorrent.desktop
 
 %changelog
+* Wed Aug 09 2006 Dries Verachtert <dries@ulyssis.org> - 2.0-1
+- Updated to release 2.0.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1.2
 - Rebuild for Fedora Core 5.
 

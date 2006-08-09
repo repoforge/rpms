@@ -20,7 +20,7 @@
 
 Summary: Toolkit for GUI development
 Name: fox
-Version: 1.6.10
+Version: 1.6.13
 Release: 1
 License: LGPL
 Group: Development/Libraries
@@ -105,6 +105,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Wed Aug 09 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.13-1
+- Updated to release 1.6.13.
+
 * Sat Jul 29 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.10-1
 - Updated to release 1.6.10.
 

@@ -7,7 +7,7 @@
 
 Summary: CHM file viewer
 Name: kchmviewer
-Version: 2.5
+Version: 2.6
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -16,9 +16,8 @@ URL: http://kchmviewer.sourceforge.net/
 Source: http://dl.sf.net/kchmviewer/kchmviewer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc, make, libpng-devel
-BuildRequires: arts-devel, gcc-c++, gettext
-BuildRequires: zlib-devel, qt-devel >= 3.2, libjpeg-devel
+BuildRequires: gcc-c++, gettext
+BuildRequires: qt-devel >= 3.2
 BuildRequires: kdelibs-devel, desktop-file-utils
 %{?el4:BuildRequires: libselinux-devel}
 %{?fc4:BuildRequires: libselinux-devel}
@@ -51,8 +50,12 @@ source  /etc/profile.d/qt.sh
 %{_datadir}/applnk/kchmviewer.desktop
 %{_libdir}/kde3/kio_msits*
 %{_datadir}/services/msits.protocol
+%{_datadir}/icons/crystalsvg/*/apps/kchmviewer.png
 
 %changelog
+* Mon Aug 09 2006 Dries Verachtert <dries@ulyssis.org> - 2.6-1
+- Updated to release 2.6.
+
 * Fri Apr 07 2006 Dries Verachtert <dries@ulyssis.org> - 2.5-1
 - Updated to release 2.5.
 
