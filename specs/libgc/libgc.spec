@@ -5,7 +5,7 @@
 
 Summary: Conservative garbage collector for C
 Name: libgc
-Version: 6.7
+Version: 6.8
 Release: 1
 Epoch: 1
 License: BSD
@@ -77,6 +77,9 @@ you will need to install %{name}-devel.
 #exclude %{_libdir}/*.la
 
 %changelog
+* Wed Aug 09 2006 Dries Verachtert <dries@ulyssis.org> - 6.8-1
+- Updated to release 6.8.
+
 * Mon Apr 03 2006 Dries Verachtert <dries@ulyssis.org> - 6.7-1
 - Updated to release 6.7.
 

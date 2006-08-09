@@ -2,15 +2,20 @@
 # Authority: dries
 # Upstream: Nicola Fragale <nicolafragale$libero,it>
 
+# versions: 0.70 -> 0.81 -> 0.9.5
+# changed to 0.95 until a 1.?? is released
+
+%define real_version 0.9.5
+
 Summary: Address book engine
 Name: libral
-Version: 0.70
-Release: 1.2
+Version: 0.95
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://digilander.libero.it/nfragale/
 
-Source: http://download.berlios.de/libral/libral-%{version}.tar.gz
+Source: http://download.berlios.de/libral/libral-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libxml2-devel, pkgconfig, gcc-c++
@@ -37,7 +42,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup
+%setup -n libral-%{real_version}
 
 %build
 %configure
@@ -61,18 +66,22 @@ you will need to install %{name}-devel.
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %{_libdir}/libral.so.*
 %{_datadir}/gtk-doc/html/libRAL/
+%{_libdir}/libral/
 #exclude %{_datadir}/doc/libral/libRAL.svg
 #exclude %{_datadir}/doc/libral/libRAL.vpp
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/libral-%{version}/
+%{_includedir}/libral-%{real_version}/
 %{_libdir}/libral.a
 %{_libdir}/libral.so
 %exclude %{_libdir}/*.la
 %{_libdir}/pkgconfig/libral.pc
 
 %changelog
+* Wed Aug 09 2006 Dries Verachtert <dries@ulyssis.org> - 0.95-1
+- Updated to release 0.9.5.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.70-1.2
 - Rebuild for Fedora Core 5.
 
