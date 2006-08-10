@@ -27,7 +27,7 @@ animations.
 %setup
 
 %build
-%{__make} %{?_smp_mflags} -f Makefile.unx ZINC=-I/usr/include ZPATH=/usr/lib
+%{__make} %{?_smp_mflags} -f Makefile.unx ZINC="-I%{_includedir}" ZPATH="%{_libdir}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -44,9 +44,6 @@ animations.
 %changelog
 * Tue Aug 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.1.0-1
 - Updated to release 2.1.0.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.0-1.2
-- Rebuild for Fedora Core 5.
 
 * Mon Jul 18 2005 Dries Verachtert <dries@ulyssis.org> - 2.0.0-1
 - Initial package.
