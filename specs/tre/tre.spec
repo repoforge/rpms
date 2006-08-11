@@ -5,7 +5,7 @@
 Summary: Regexp matching library
 Name: tre
 Version: 0.7.4
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Libraries
 URL: http://laurikari.net/tre/
@@ -39,7 +39,7 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-	--program-prefix="%{?_program_prefix}"
+	--program-prefix="%{?_program_prefix}" --enable-static
 %{__make} %{?_smp_mflags}
 
 %install
@@ -70,6 +70,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libtre.la
 
 %changelog
+* Wed Aug 09 2006 Nico Kadel-Garcia <nkadel@comcast.net> - 0.7.4-2
+- Include static libraries in -devel package.
+
 * Tue May 24 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.4-1
 - Updated to release 0.7.4.
 
