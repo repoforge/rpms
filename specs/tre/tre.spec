@@ -39,7 +39,8 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-	--program-prefix="%{?_program_prefix}" --enable-static
+	--program-prefix="%{?_program_prefix}" \
+	--enable-static
 %{__make} %{?_smp_mflags}
 
 %install
@@ -47,11 +48,8 @@ you will need to install %{name}-devel.
 %makeinstall
 %find_lang %{name}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -65,9 +63,10 @@ you will need to install %{name}-devel.
 
 %files devel
 %{_includedir}/tre/
+%{_libdir}/libtre.a
+%exclude %{_libdir}/libtre.la
 %{_libdir}/libtre.so
 %{_libdir}/pkgconfig/tre.pc
-%exclude %{_libdir}/libtre.la
 
 %changelog
 * Wed Aug 09 2006 Nico Kadel-Garcia <nkadel@comcast.net> - 0.7.4-2
