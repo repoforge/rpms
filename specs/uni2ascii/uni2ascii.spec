@@ -2,15 +2,18 @@
 # Authority: dries
 # Upstream: Bill Poser <billposer$alum,mit,edu>
 
+# version is announced as 3.9.5, but the .tar.bz2 uses '3.9'
+%define real_version 3.9
+
 Summary: Convert between UTF-8 Unicode and 7-bit ASCII equivalents
 Name: uni2ascii
-Version: 3.9.3
+Version: 3.9.5
 Release: 1
 License: GPL
 Group: Applications/Text
-URL: http://billposer.org/Software/uni2ascii.html
+URL: http://www.billposer.org/Software/uni2ascii.html
 
-Source: http://billposer.org/Software/Downloads/uni2ascii-%{version}.tgz
+Source: http://billposer.org/Software/Downloads/uni2ascii-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python, python-devel
@@ -49,6 +52,9 @@ handle the Unicode character set but are not 8-bit safe, and when debugging.
 %{_bindir}/uni2ascii
 
 %changelog
+* Sat Aug 12 2006 Dries Verachtert <dries@ulyssis.org> - 3.9.5-1
+- Updated to release 3.9.5.
+
 * Fri Jun 09 2006 Dag Wieers <dag@wieers.com> - 3.9.3-1
 - Updated to release 3.9.3.
 

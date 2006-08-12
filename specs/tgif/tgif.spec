@@ -9,8 +9,8 @@
 
 Summary: Vector-based drawing tool
 Name: tgif
-Version: 4.1.44
-Release: 1.2
+Version: 4.1.45
+Release: 1
 License: QPL
 Group: Applications/Multimedia
 URL: http://bourbon.usc.edu:8001/tgif/
@@ -72,6 +72,9 @@ xmkmf
 %{?_without_freedesktop:/etc/X11/applnk/Multimedia/tgif.desktop}
 
 %changelog
+* Sat Aug 12 2006 Dries Verachtert <dries@ulyssis.org> - 4.1.45-1
+- Updated to release 4.1.45.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.1.44-1.2
 - Rebuild for Fedora Core 5.
 

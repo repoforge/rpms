@@ -4,8 +4,8 @@
 
 Summary: Flickr uploader
 Name: kflickr
-Version: 0.5
-Release: 1.2
+Version: 0.6
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://kflickr.sourceforge.net/
@@ -39,13 +39,21 @@ sending the photo. Multiple users are supported.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
+%doc %{_mandir}/man1/kflickr*
 %{_bindir}/kflickr
 %{_datadir}/applnk/Graphics/kflickr.desktop
 %{_datadir}/apps/kflickr/
+%{_datadir}/apps/kflickrpart/
+%{_datadir}/apps/konqueror/servicemenus/kflickr_servicemenu.desktop
+%{_datadir}/services/kflickrpart.desktop
 %{_datadir}/doc/HTML/en/kflickr/
 %{_datadir}/icons/hicolor/*/apps/kflickr.png
+%{_libdir}/kde3/libkflickrpart.*
 
 %changelog
+* Sat Aug 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1
+- Updated to release 0.6.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-1.2
 - Rebuild for Fedora Core 5.
 

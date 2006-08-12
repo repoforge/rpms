@@ -2,33 +2,30 @@
 # Authority: dries
 # Upstream: Drew Hess <dhess$yahoo,com>
 
-%define real_name OpenEXR
-
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
 
 Summary: High dynamic range image file format
 Name: openexr
-Version: 1.2.2
-Release: 1.2
+Version: 1.3.0
+Release: 1
 License: BSD
 Group: Development/Libraries
 URL: http://www.openexr.com
 
-Source: http://savannah.nongnu.org/download/openexr/OpenEXR-%{version}.tar.gz
+Source: http://savannah.nongnu.org/download/openexr/openexr-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, fltk-devel
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libXext-devel}
 
 %description
 OpenEXR is a high dynamic range (HDR) image file format developed by
@@ -48,7 +45,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup
 perl -pi -e 's|include .map.|include <map>\nclass Image;|g;' exrmaketiled/Image.h
 
 %build
@@ -83,6 +80,7 @@ perl -pi -e 's|include .map.|include <map>\nclass Image;|g;' exrmaketiled/Image.
 %{_libdir}/libIex.so.*
 %{_libdir}/libImath.so.*
 %{_libdir}/libIlmImf.so.*
+%{_libdir}/libIlmThread.so.*
 
 %files devel
 %doc rpmdocs/*
@@ -91,6 +89,7 @@ perl -pi -e 's|include .map.|include <map>\nclass Image;|g;' exrmaketiled/Image.
 %{_libdir}/libIex.a
 %{_libdir}/libImath.a
 %{_libdir}/libIlmImf.a
+%{_libdir}/libIlmThread.a
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/OpenEXR.pc
 %{_datadir}/aclocal/openexr.m4
@@ -98,6 +97,9 @@ perl -pi -e 's|include .map.|include <map>\nclass Image;|g;' exrmaketiled/Image.
 
 
 %changelog
+* Sat Aug 12 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.0-1
+- Updated to release 1.3.0.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.2-1.2
 - Rebuild for Fedora Core 5.
 

@@ -4,31 +4,30 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
 
-%define real_version 232
+%define real_version 233
 
 Summary: Command line utility for creating charts and plots
 Name: ploticus
-Version: 2.32
-Release: 2
+Version: 2.33
+Release: 1
 License: GPL
 Group: Applications/Publishing
 URL: http://ploticus.sourceforge.net/
 
-Source: http://ploticus.sourceforge.net/download/pl%{real_version}src.tar.gz
+Source: http://dl.sf.net/ploticus/pl%{real_version}src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, zlib-devel
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libXext-devel}
 
 %description
 PLOTICUS is a command line utility for creating bar, line, pie, boxplot,
@@ -64,6 +63,9 @@ or create complex scripts with rich and detailed color and style operations.
 %{_datadir}/ploticus/
 
 %changelog
+* Sat Aug 12 2006 Dries Verachtert <dries@ulyssis.org> - 2.33-1
+- Updated to release 2.33.
+
 * Sat Apr 15 2006 Dag Wieers <dag@wieers.com> - 2.32-2
 - Added x86_64 patch and included pltestsuite (Phil Schaffner)
 
