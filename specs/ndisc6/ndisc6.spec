@@ -4,7 +4,7 @@
 
 Summary: Tools for ICMPv6 Neighbor&Router Discovery and TCP/IPv6 traceroute
 Name: ndisc6
-Version: 0.6.6
+Version: 0.6.7
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -58,6 +58,9 @@ This package consists of two programs:
 %{_bindir}/tcptraceroute6
 
 %changelog
+* Sun Aug 13 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.7-1
+- Updated to release 0.6.7.
+
 * Tue Aug 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.6-1
 - Updated to release 0.6.6.
 
