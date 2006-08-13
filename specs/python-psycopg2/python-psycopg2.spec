@@ -3,17 +3,17 @@
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
-%define real_name psycopg
+%define real_name psycopg2
 
 Summary: PostgreSQL database adapter for Python
-Name: python-psycopg
-Version: 1.1.21
-Release: 2
+Name: python-psycopg2
+Version: 2.0.4
+Release: 1
 License: GPL/ZPL
 Group: Development/Libraries
 URL: http://initd.org/tracker/psycopg
 
-Source: http://initd.org/pub/software/psycopg/psycopg-%{version}.tar.gz
+Source: http://initd.org/pub/software/psycopg/psycopg2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python >= 2.2, python-devel, postgresql-devel, mx
@@ -28,30 +28,25 @@ distribution includes ZPsycopgDA, a Zope Database Adapter.
 
 %prep
 %setup -n %{real_name}-%{version}
-# configure tries to read the version of postgresql from the pg_config.h file.. which doesn't contain 
-# this info anymore.
-%{__perl} -pi -e "s|/pg_config.h|/pg_config_%{_arch}.h|g;" configure
 
 %build
-%configure --with-postgres-includes="%{_includedir}/pgsql/server/"
-%{__make}
+CFLAGS="%{optflags}" %{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d %{buildroot}%{python_sitearch}
-%makeinstall
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog INSTALL doc/*
+%doc AUTHORS ChangeLog INSTALL README  doc/*
 %{python_sitearch}/psycopg*
 
 %changelog
-* Sat Aug 13 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.21-2
-- Reversed to psycopg1, made a second spec file for psycopg2.
+* Sun Aug 13 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.4-2
+- Renamed to python-psycopg2.
 
 * Thu Aug 03 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.4-1
 - Updated to release 2.0.4.
