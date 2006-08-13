@@ -12,7 +12,7 @@ URL: http://ktown.kde.org/~wheeler/taglib/
 Source: http://developer.kde.org/~wheeler/files/src/taglib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: doxygen, graphviz
+BuildRequires: doxygen, graphviz, gcc-c++
 
 %description
 TagLib is a library for reading and editing the meta-data of several
