@@ -4,6 +4,16 @@
 
 %define desktop_vendor rpmforge
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+
 Summary: Record, distribute and replay X protocol data
 Name: xnee
 Version: 2.05
@@ -17,6 +27,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel, desktop-file-utils, ghostscript, tetex, ImageMagick
 BuildRequires: texinfo
+%{!?_without_modxorg:BuildRequires: libXtst-devel}
 
 %description
 Xnee can record, distribute, and replay X (X11) protocol data. This is

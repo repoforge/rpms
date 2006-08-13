@@ -7,6 +7,14 @@
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+
 Summary: Vector-based drawing tool
 Name: tgif
 Version: 4.1.45
@@ -20,6 +28,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: qt-devel, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%{!?_without_modxorg:BuildRequires: imake}
 
 %description
 tgif is a vector-based drawing tool, with the additional benefit of being
