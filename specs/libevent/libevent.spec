@@ -4,8 +4,8 @@
 
 Summary: Abstract asynchronous event notification library
 Name: libevent
-Version: 1.1a
-Release: 1.2
+Version: 1.1b
+Release: 1
 License: BSD
 Group: System Environment/Libraries
 URL: http://monkey.org/~provos/libevent/
@@ -21,7 +21,6 @@ loop found in event driven network servers. An application just needs
 to call event_dispatch() and can then add or remove events dynamically
 without having to change the event loop.
 
-
 %package devel
 Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
@@ -32,29 +31,22 @@ This package contains the header files, static libraries and development
 documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
-
 %prep
 %setup
-
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
-
 
 %files
 %defattr(-, root, root, 0755)
@@ -70,10 +62,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libevent.la
 %{_mandir}/man3/event.3*
 
-
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1a-1.2
-- Rebuild for Fedora Core 5.
+* Sat Aug 12 2006 Dag Wieers <dag@wieers.com> - 1.1b-1
+- Updated to release 1.1b.
 
 * Wed Jan 11 2006 Matthias Saou <http://freshrpms.net/> 1.1a-1
 - Update to 1.1a.
