@@ -4,8 +4,8 @@
 
 Summary: Asynchronous-capable resolver library
 Name: adns
-Version: 1.1
-Release: 1.2
+Version: 1.2
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.chiark.greenend.org.uk/~ian/adns/
@@ -47,12 +47,10 @@ you will need to install %{name}-devel.
 		%{buildroot}%{_bindir} \
 		%{buildroot}%{_includedir}
 %makeinstall
+#%{__make} install DESTDIR="%{buildroot}"
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -69,8 +67,8 @@ you will need to install %{name}-devel.
 %{_libdir}/libadns.a
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-1.2
-- Rebuild for Fedora Core 5.
+* Mon Aug 14 2006 Dag Wieers <dag@wieers.com> - 1.2-1
+- Updated to release 1.2.
 
 * Tue Nov 10 2004 Dag Wieers <dag@wieers.com> - 1.1-1
 - Updated to release 1.1.

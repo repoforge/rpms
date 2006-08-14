@@ -13,7 +13,7 @@ URL: http://geany.uvena.de/
 Source: http://dl.sf.net/geany/geany-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, gtk2-devel, gettext
+BuildRequires: gcc-c++, gettext, gtk2-devel >= 2.6
 
 %description
 Geany is a small C editor using GTK2 with basic features of an integrated 

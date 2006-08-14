@@ -4,7 +4,7 @@
 
 Summary: Fault tolerant "dd" utility for rescueing data from bad media
 Name: dd_rescue
-Version: 1.11
+Version: 1.12
 Release: 1
 License: GPL
 Group: Applications/System
@@ -45,6 +45,9 @@ rescuing data from media with errors, e.g. a disk with bad sectors.
 %{_bindir}/dd_rescue
 
 %changelog
+* Sun Aug 13 2006 Dag Wieers <dag@wieers.com> - 1.12-1
+- Updated to release 1.12.
+
 * Fri Mar 04 2005 Dag Wieers <dag@wieers.com> - 1.11-1
 - Updated to release 1.11.
 

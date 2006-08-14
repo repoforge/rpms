@@ -3,28 +3,23 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{!?dist: %define ft2build 1}
-%{?el4: %define ft2build 1}
-%{?fc3: %define ft2build 1}
-%{?fc2: %define ft2build 1}
-%{?yd4: %define ft2build 1}
-
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 %define pyver %(%{__python} -c 'import sys; print sys.version[:3]' || echo 2.0)
 
 Summary: Python's own image processing library
 Name: python-imaging
-Version: 1.1.4
-Release: 2.2
+Version: 1.1.5
+Release: 1
 License: Distributable
 Group: Development/Libraries
 URL: http://www.pythonware.com/products/pil/
+
 Source: http://effbot.org/downloads/Imaging-%{version}.tar.gz
-Patch: python-imaging-1.1.4-setup.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: python >= %{pyver}
+
 BuildRequires: python, python-devel, gtk+-devel
 BuildRequires: libjpeg-devel, libpng-devel, freetype-devel, zlib-devel
+Requires: python >= %{pyver}
 Obsoletes: PIL <= %{version}
 Provides: PIL = %{version}-%{release}
 
@@ -35,42 +30,33 @@ to your Python interpreter.
 This library provides extensive file format support, an efficient
 internal representation, and powerful image processing capabilities.
 
-
 %prep
 %setup -n Imaging-%{version}
-%patch -p1 -b .setup
-%{__perl} -pi -e 's|/usr/local|%{_prefix}|' \
-    Setup.in Scripts/*.py libImaging/Makefile.in libImaging/configure
-%{?ft2build:%{__perl} -pi.orig -e 's|^(#include <freetype/freetype.h>)$|#include <ft2build.h>\n$1|' _imagingft.c}
-
 
 %build
-pushd libImaging
-    %configure
-    %{__make} OPT="%{optflags} -fPIC"
-popd
-%{__python} setup.py build
-
+CFLAGS="%{optflags}" %{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 
-
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES* CONTENTS Images/ README Sane/ Scripts/
+%{_bindir}/pilconvert.py
+%{_bindir}/pildriver.py
+%{_bindir}/pilfile.py
+%{_bindir}/pilfont.py
+%{_bindir}/pilprint.py
 %{python_sitearch}/PIL.pth
 %{python_sitearch}/PIL/
 
-
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.4-2.2
-- Rebuild for Fedora Core 5.
+* Mon Aug 14 2006 Dag Wieers <dag@wieers.com> - 1.1.5-1
+- Updated to release 1.1.5.
 
 * Thu Oct 21 2004 Matthias Saou <http://freshrpms.net/> 1.1.4-2
 - Further spec file updates.

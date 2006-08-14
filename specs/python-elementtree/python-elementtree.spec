@@ -12,7 +12,7 @@ Name: python-elementtree
 %define real_version 1.2.6-20050316
 %define real_version_celementtree 1.0.2-20050302
 Version: 1.2.6
-Release: 6.2
+Release: 7
 License: PSF
 Group: Development/Libraries
 URL: http://effbot.org/zone/element-index.htm
@@ -25,6 +25,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: expat-devel, python-devel
 #Requires: python-abi = %{python_abi}
 Obsoletes: python-celementtree
+Provides: cElementTree.so
 
 %description
 The Element type is a simple but flexible container object, designed
@@ -67,8 +68,8 @@ popd
 %{python_sitearch}/*.so
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.6-6.2
-- Rebuild for Fedora Core 5.
+* Sun Aug 13 2006 Dag Wieers <dag@wieers.com> - 1.2.6-7
+- Provide cElementtree.so because external packages (vzyum) require it.
 
 * Fri Jan 27 2006 Dag Wieers <dag@wieers.com> - 1.2.6-6
 - Removed python-abi since older releases do not provide it.
