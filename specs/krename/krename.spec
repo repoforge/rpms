@@ -4,8 +4,8 @@
 
 Summary: Batch file renamer
 Name: krename
-Version: 3.0.11
-Release: 1.2
+Version: 3.0.12
+Release: 1
 License: GPL
 Group: Applications/Utilities
 URL: http://www.krename.net/
@@ -47,10 +47,13 @@ permissions, and file ownership.
 %{_datadir}/icons/*/*/apps/krename.png
 %{_datadir}/doc/HTML/en/krename/
 %{_datadir}/apps/krename/
-%{_datadir}/services/krename*.desktop
+%{_datadir}/apps/konqueror/servicemenus/krename*.desktop
 %{_datadir}/applications/kde/krename.desktop
 
 %changelog
+* Tue Aug 15 2006 Dries Verachtert <dries@ulyssis.org> - 3.0.12-1
+- Updated to release 3.0.12.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.0.11-1.2
 - Rebuild for Fedora Core 5.
 
