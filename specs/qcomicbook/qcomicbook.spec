@@ -4,8 +4,8 @@
 
 Summary: Viewer for comic book archives
 Name: qcomicbook
-Version: 0.2.7
-Release: 1.2
+Version: 0.3.0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://linux.bydg.org/~yogin/
@@ -63,6 +63,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/qcomicbook/
 
 %changelog
+* Tue Aug 15 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.0-1
+- Updated to release 0.3.0.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.7-1.2
 - Rebuild for Fedora Core 5.
 
