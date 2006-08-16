@@ -8,8 +8,8 @@
 
 Summary: IO-Socket-SSL module for perl
 Name: perl-IO-Socket-SSL
-Version: 0.97
-Release: 1.2
+Version: 0.999
+Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Socket-SSL/
@@ -28,9 +28,7 @@ IO-Socket-SSL module for perl.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
+%{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTALLDIRS="vendor"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -38,23 +36,22 @@ IO-Socket-SSL module for perl.
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-                %{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS Changes MANIFEST README docs/* example/*
-%doc %{_mandir}/man?/*
+%doc BUGS Changes MANIFEST README docs/* example/
+%doc %{_mandir}/man3/*.3*
 %dir %{perl_vendorlib}/IO/
 %dir %{perl_vendorlib}/IO/Socket/
 %{perl_vendorlib}/IO/Socket/SSL.pm
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.97-1.2
-- Rebuild for Fedora Core 5.
+* Wed Aug 16 2006 Dag Wieers <dag@wieers.com> - 0.999-1
+- Updated to release 0.999.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.97-1
 - Updated to release 0.97.

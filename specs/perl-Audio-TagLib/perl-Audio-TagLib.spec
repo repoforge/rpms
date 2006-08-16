@@ -17,7 +17,7 @@ URL: http://search.cpan.org/dist/Audio-TagLib/
 Source: http://www.cpan.org/modules/by-module/Audio/Audio-TagLib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 5.8.3, taglib-devel, gcc-c++
+BuildRequires: perl >= 3:5.8.3, taglib-devel, gcc-c++
 
 %description
 Perl library for reading and editing audio meta data, commonly known as tags.
