@@ -3,7 +3,7 @@
 
 Summary: Userspace filesystem defragmenter
 Name: shake
-Version: 0.22
+Version: 0.23
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -29,7 +29,9 @@ xfs_fsr.
 %{__rm} -rf %{buildroot}
 #%{__make} install DESTDIR="%{buildroot}"
 %{__install} -D -m0755 shake %{buildroot}%{_bindir}/shake
+%{__install} -D -m0755 unattr %{buildroot}%{_bindir}/unattr
 %{__install} -D -m0644 doc/shake.8 %{buildroot}%{_mandir}/man8/shake.8
+%{__install} -D -m0644 doc/unattr.8 %{buildroot}%{_mandir}/man8/unattr.8
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -38,9 +40,14 @@ xfs_fsr.
 %defattr(-, root, root, 0755)
 %doc Changelog COPYING
 %doc %{_mandir}/man8/shake.8*
+%doc %{_mandir}/man8/unattr.8*
 %{_bindir}/shake
+%{_bindir}/unattr
 
 %changelog
+* Wed Aug 16 2006 Dag Wieers <dag@wieers.com> - 0.23-1
+- Updated to release 0.23.
+
 * Tue Jun 27 2006 Dag Wieers <dag@wieers.com> - 0.22-1
 - Updated to release 0.22.
 
