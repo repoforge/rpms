@@ -13,7 +13,7 @@ URL: http://www.nongnu.org/castget/
 Source: http://savannah.nongnu.org/download/castget/castget-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: curl-devel, libxml2-devel
+BuildRequires: curl-devel, libxml2-devel, id3lib-devel, glib2-devel
 
 %description
 castget is a simple, command line-based RSS enclosure downloader. It is 

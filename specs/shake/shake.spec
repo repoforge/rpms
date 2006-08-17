@@ -12,6 +12,8 @@ URL: http://vleu.net/shake/
 Source: http://vleu.net/shake/shake-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: libattr-devel
+
 %description
  Shake is a defragmenter that runs in userspace, without the need of patching
 the kernel and while the systems is used. There is nothing magic in that:
