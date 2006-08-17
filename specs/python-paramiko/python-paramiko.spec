@@ -7,7 +7,7 @@
 
 Summary: SSH2 protocol for Python
 Name: python-paramiko
-Version: 1.6.1
+Version: 1.6.2
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -20,6 +20,7 @@ BuildArch: noarch
 BuildRequires: python-devel >= 2.2
 
 Provides: paramiko
+Obsoletes: paramiko <= %{version}-%{release}
 
 %description
 Paramiko is a module for python that implements the SSH2 protocol for secure
@@ -52,6 +53,9 @@ the paramiko module.
 %ghost %{python_sitelib}/paramiko/*.pyo
 
 %changelog
+* Thu Aug 17 2006 Dag Wieers <dag@wieers.com> - 1.6.2-1
+- Updated to release 1.6.2.
+
 * Mon Jul 10 2006 Dag Wieers <dag@wieers.com> - 1.6.1-1
 - Updated to release 1.6.1.
 
