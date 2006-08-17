@@ -53,7 +53,7 @@ van alle hoofdstukken en dergelijke.
 
 %build
 . /etc/profile.d/qt.sh
-%configure
+%configure LDFLAGS=-L$QTDIR/lib
 %{__make} %{?_smp_mflags}
 
 %install
