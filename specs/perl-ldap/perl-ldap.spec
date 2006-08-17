@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/LWP/perl-ldap-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Authen::SASL) >= 2.0
+BuildRequires: perl, perl(Authen::SASL) >= 2.0, perl(Convert::ASN1)
 Requires: perl(Convert::ASN1), perl(XML::SAX::Base),  perl(IO::Socket::SSL)
 
 %description
