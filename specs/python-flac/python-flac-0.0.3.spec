@@ -1,4 +1,4 @@
-# $Id$
+# $Id: python-flac.spec 4303 2006-04-18 22:05:03Z dries $
 # Authority: dag
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
@@ -7,8 +7,8 @@
 
 Summary: Flac support for Python
 Name: python-flac
-Version: 0.0.4
-Release: 1
+Version: 0.0.3
+Release: 1.2
 License: UNKNOWN
 Group: Development/Libraries
 URL: http://www.sacredchao.net/quodlibet/browser/trunk/pyflac/
@@ -28,8 +28,7 @@ Flac support for Python.
 %setup -n %{real_name}-%{version}
 
 %build
-#CFLAGS="%{optflags}" %{__python} setup.py build
-%{__make}
+CFLAGS="%{optflags}" %{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
@@ -44,8 +43,5 @@ Flac support for Python.
 %{python_sitearch}/flac/
 
 %changelog
-* Thu Aug 17 2006 Dag Wieers <dag@wieers.com> - 0.0.4-1
-- Updated to release 0.0.4.
-
 * Tue Jul 19 2005 Dag Wieers <dag@wieers.com> - 0.0.3-1
 - Initial package. (using DAR)
