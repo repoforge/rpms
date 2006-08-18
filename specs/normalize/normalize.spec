@@ -1,10 +1,13 @@
 # $Id$
 # Authority: dag
 
+%{!?dist:%define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
+
 Summary: Audio file volume normalizer
 Name: normalize
 Version: 0.7.7
-Release: 1
+Release: 2
 License: GPL
 Group: Application/Multimedia
 URL: http://www.cs.columbia.edu/~cvaill/normalize/
@@ -13,7 +16,9 @@ Source: http://savannah.nongnu.org/download/normalize/normalize-%{version}.tar.b
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib-devel, gtk2-devel, libmad-devel,
-BuildRequires: xorg-x11-devel, xmms-devel, audiofile-devel
+BuildRequires: xmms-devel, audiofile-devel
+%{?_with_modxorg:BuildRequires: libXi-devel, libX11-devel, libXext-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 
 %description
 Normalize is a tool for adjusting the volume of audio files to a
@@ -21,12 +26,12 @@ standard level. This is useful for things like creating mix CDs and MP3
 collections, where different recording levels on different albums can
 cause the volume to vary greatly from song to song.
 
-%package -n xmms-plugins-normalize
+%package -n xmms-normalize
 Summary: xmms normalize plugin
 Group: Application/Multimedia
 Requires: xmms
 
-%description -n xmms-plugins-normalize
+%description -n xmms-normalize
 A normalize plugin for the XMMS media player
 
 %prep
@@ -54,7 +59,7 @@ export CFLAGS="%{optflags}"
 %{_bindir}/normalize-mp3
 %{_bindir}/normalize-ogg
 
-%files -n xmms-plugins-normalize
+%files -n xmms-normalize
 %defattr(-, root, root, 0755)
 %dir %{_libdir}/xmms/
 %dir %{_libdir}/xmms/Effect/
@@ -62,5 +67,8 @@ export CFLAGS="%{optflags}"
 %{_libdir}/xmms/Effect/librva.so
 
 %changelog
+* Fri Aug 18 2006 Dag Wieers <dag@wieers.com> - 0.7.7-2
+- Fixed xmms plugin package name to match FE.
+
 * Thu Aug 17 2006 Dag Wieers <dag@wieers.com> - 0.7.7-1
 - Initial package. (using DAR)
