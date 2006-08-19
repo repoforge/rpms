@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 %{?rh7:%define _without_python2 1}
@@ -8,14 +9,14 @@
 
 Summary: Tool to access devices via the OBEX protocol
 Name: obexftp
-Version: 0.18
-Release: 1.2
+Version: 0.19
+Release: 1
 License: GPL
 Group: Applications/Communication
 URL: http://openobex.triq.net/
 
-#Source: http://dl.sf.net/openobex/obexftp-%{version}.tar.gz
-Source: http://triq.net/obexftp/obexftp-%{version}.tar.gz
+Source: http://dl.sf.net/openobex/obexftp-%{version}.tar.gz
+#Source: http://triq.net/obexftp/obexftp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openobex-devel, bluez-libs-devel
@@ -103,15 +104,16 @@ pictures and alike
 %if %{!?_without_python2:1}0
 %files -n python-obexftp
 %defattr(-, root, root, 0755)
-%{python_sitearch}/obexftp/
+%{python_sitelib}/obexftp/
+%ghost %{python_sitelib}/obexftp/*.pyo
 %exclude %{python_sitearch}/obexftp/*.a
 %exclude %{python_sitearch}/obexftp/*.la
 %exclude %{python_sitearch}/obexftp/*.so.*
 %endif
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.18-1.2
-- Rebuild for Fedora Core 5.
+* Sat Aug 19 2006 Dag Wieers <dag@wieers.com> - 0.19-1
+- Updated to release 0.19.
 
 * Sun Jan 29 2006 Dag Wieers <dag@wieers.com> - 0.18-1
 - Initial package. (using DAR)

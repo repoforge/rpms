@@ -1,20 +1,14 @@
-# $Id$
+# $Id: openobex.spec 4308 2006-04-21 22:20:20Z dries $
 # Authority: dag
 
+##ExcludeDist: fc1 fc2 fc3
 #ExclusiveDist: el2 rh7 rh9 el3 el4
 
 %{?dist: %{expand: %%define %dist 1}}
 
-### undefined reference to `usb_get_string_simple' in obexftp linking
-%{?el3:%define _without_libusb018 1}
-%{?rh9:%define _without_libusb018 1}
-%{?rh7:%define _without_libusb018 1}
-%{?el2:%define _without_libusb018 1}
-
 Summary: Library for using OBEX
 Name: openobex
-### FC5 comes with openobex 1.1, we hope that RHEL5 will come with 1.3 so we can upgrade
-Version: 1.1
+Version: 1.3
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -25,7 +19,6 @@ Source: http://dl.sf.net/openobex/openobex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib-devel >= 1.2.0, bluez-libs-devel
-%{?!_without_libusb018:BuildRequires: libusb-devel >= 0.1.8}
 
 %description
 Open OBEX shared c-library.
@@ -44,8 +37,7 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure \
-%{?_without_libusb18:--disable-usb}
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
@@ -61,22 +53,19 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING* NEWS README
+%doc AUTHORS ChangeLog COPYING NEWS README
 %{_libdir}/libopenobex.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_datadir}/aclocal/openobex.m4
-%{_includedir}/openobex/
+%{_bindir}/openobex-config
 %{_libdir}/libopenobex.a
 %exclude %{_libdir}/libopenobex.la
 %{_libdir}/libopenobex.so
-%{_libdir}/pkgconfig/openobex.pc
+%{_includedir}/openobex/
+%{_datadir}/aclocal/openobex.m4
 
 %changelog
-* Sat Aug 19 2006 Dag Wieers <dag@wieers.com> - 1.1-1
-- Updated to release 1.1.
-
 * Wed Feb 04 2004 Dag Wieers <dag@wieers.com> - 1.0.1-1
 - Rebuild against bluez-libs-devel (bluetooth support).
 
