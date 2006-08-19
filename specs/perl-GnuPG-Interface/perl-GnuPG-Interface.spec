@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+Requires: perl(Class::MethodMaker)
 
 %description
 GnuPG::Interface and its associated modules are designed to provide an
@@ -45,13 +46,10 @@ verification, and key-listing parsing.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/GnuPG
-%{perl_vendorlib}/auto/GnuPG
+%doc %{_mandir}/man3/*.3*
+%{perl_vendorlib}/GnuPG/
+%{perl_vendorlib}/auto/GnuPG/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.33-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.33-1
 - Initial package.
