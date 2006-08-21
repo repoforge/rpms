@@ -3,7 +3,7 @@
 
 Summary: Userspace filesystem defragmenter
 Name: shake
-Version: 0.23
+Version: 0.24
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -47,6 +47,9 @@ xfs_fsr.
 %{_bindir}/unattr
 
 %changelog
+* Sun Aug 20 2006 Dag Wieers <dag@wieers.com> - 0.24-1
+- Updated to release 0.24.
+
 * Wed Aug 16 2006 Dag Wieers <dag@wieers.com> - 0.23-1
 - Updated to release 0.23.
 
