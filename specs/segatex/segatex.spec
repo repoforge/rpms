@@ -1,0 +1,70 @@
+# $Id$
+# Authority: dries
+# Upstream: Shintaro Fujiwara <shin216$xf7,so-net,ne,jp>
+
+Summary: Create SELinux policies
+Name: segatex
+Version: 2.09
+Release: 1
+License: GPL
+Group: Applications/System
+URL: http://sourceforge.net/projects/segatex/
+
+Source: http://dl.sf.net/segatex/segatex%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: qt-devel, gcc-c++, gettext, boost-devel
+
+%description
+Segatex is a tool to configure SELinux policy with the help of GUI.
+Just push a button and it will generate a .te file in the same
+directory. You can then edit your .te file, make a module, and
+install.
+
+%prep
+%setup -n segatex%{version}
+
+%{__cat} <<EOF >%{name}.desktop
+[Desktop Entry]
+Name=Segatex
+Comment=Create SELinux policies
+Exec=segatex
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Application;Development;
+Encoding=UTF-8
+EOF
+
+%build
+qmake segatex.pro
+%{__make} %{?_smp_mflags} SUBLIBS=-lboost_regex
+
+%install
+%{__rm} -rf %{buildroot}
+%{__install} -D segatex %{buildroot}%{_bindir}/segatex
+
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+desktop-file-install --vendor rpmforge             \
+	--add-category X-Red-Hat-Base              \
+	--dir %{buildroot}%{_datadir}/applications \
+	%{name}.desktop
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc README
+%{_bindir}/segatex
+%{_datadir}/applications/*-segatex.desktop
+
+%changelog
+* Mon Aug 21 2006 Dries Verachtert <dries@ulyssis.org> - 2.09-1
+- Updated to release 2.09.
+
+* Mon Aug 21 2006 Dries Verachtert <dries@ulyssis.org> - 2.08-1
+- Updated to release 2.08.
+
+* Fri Aug 11 2006 Dries Verachtert <dries@ulyssis.org> - 2.03-1
+- Initial package.
