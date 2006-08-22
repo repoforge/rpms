@@ -43,7 +43,8 @@ transcode and many other Open Source tools.
 
 %build
 %{__perl} Makefile.PL
-%{__make} %{?_smp_mflags}
+# Disable %{?_smp_mflags}, it makes build fail (0.98.0)
+%{__make}
 
 
 %install
@@ -114,7 +115,6 @@ EOF
 - Upstream changed the tarball name to "dvdrip" now, the package will probably
   change soon. Provide dvdrip with same V-R for now.
 - Add perl(Event::RPC) build requirement, otherwise the bundled gets installed.
-- Re-add %%{?_smp_mflags} as it seems to work again now.
 - Update source URL and description.
 
 * Sun Jul  2 2006 Matthias Saou <http://freshrpms.net/> 0.97.12-1
