@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: tujikawa$rednoah,com
+# Upstream: <tujikawa$rednoah,com>
 
 Summary: Download utility with BitTorrent and Metalink support
 Name: aria2
@@ -23,7 +23,10 @@ Supported protocols are HTTP/HTTPS/FTP/BitTorrent/Metalink.
 %setup
  
 %build
-%configure --enable-metalink --disable-xmltest CPPFLAGS=-I/usr/include/libxml2
+export CPPFLAGS="-I/usr/include/libxml2 $(pkg-config --cflags openssl)"
+%configure \
+	--enable-metalink \
+	--disable-xmltest
 %{__make} %{?_smp_mflags}
 
 %install
@@ -31,8 +34,8 @@ Supported protocols are HTTP/HTTPS/FTP/BitTorrent/Metalink.
 %makeinstall
 %find_lang aria2c
 
-#%clean
-#%{__rm} -rf %{buildroot}
+%clean
+%{__rm} -rf %{buildroot}
   
 %files -f aria2c.lang
 %defattr(-, root, root, 0755)

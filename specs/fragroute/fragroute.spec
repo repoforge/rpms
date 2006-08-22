@@ -1,12 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Dug Song <dugsong$monkey,org>
 
 Summary: Intercepts, modifies, and rewrites egress traffic
 Name: fragroute
 Version: 1.2
-Release: 1.2
+Release: 1
 License: BSD
 Group: Applications/Internet
 URL: http://www.monkey.org/~dugsong/fragroute/
@@ -31,7 +30,7 @@ Eluding Network Intrusion Detection" paper of January 1998.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -39,14 +38,13 @@ Eluding Network Intrusion Detection" paper of January 1998.
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE README TODO scripts/
-%doc %{_mandir}/man?/*
-%config(noreplace) %{_sysconfdir}/*.conf
-%{_sbindir}/*
+%doc %{_mandir}/man8/fragroute.8*
+%doc %{_mandir}/man8/fragtest.8*
+%config(noreplace) %{_sysconfdir}/fragroute.conf
+%{_sbindir}/fragroute
+%{_sbindir}/fragtest
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 1.2-1
 - Cosmetic rebuild for Group-tag.
 

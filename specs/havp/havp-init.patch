@@ -1,0 +1,17 @@
+--- etc/init.d/havp	2006-03-24 14:23:00.000000000 +0100
++++ etc/init.d/havp	2006-05-31 14:21:46.000000000 +0200
+@@ -8,9 +8,12 @@
+ # HAVP_BIN HAVP_CONFIG PIDFILE
+ # Any configuration of HAVP is done in havp.config
+ # Type havp --help for help and read havp.config you should have received.
++# chkconfig: 2345 11 89
++# description: starts HAVP the High Availability Antivirus Proxy
++#
+ 
+-HAVP_BIN=/usr/local/sbin/havp
+-HAVP_CONFIG=/usr/local/etc/havp/havp.config
++HAVP_BIN=/usr/sbin/havp
++HAVP_CONFIG=/etc/havp/havp.config
+ PIDFILE=/var/run/havp/havp.pid
+ 
+ # Return values acc. to LSB for all commands but status:

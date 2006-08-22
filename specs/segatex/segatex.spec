@@ -13,7 +13,7 @@ URL: http://sourceforge.net/projects/segatex/
 Source: http://dl.sf.net/segatex/segatex%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: qt-devel, gcc-c++, gettext, boost-devel
+BuildRequires: gcc-c++, gettext, boost-devel, qt-devel >= 1:3.3
 
 %description
 Segatex is a tool to configure SELinux policy with the help of GUI.
