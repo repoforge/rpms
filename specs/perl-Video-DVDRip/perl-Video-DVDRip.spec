@@ -11,12 +11,12 @@
 
 Summary: Graphical DVD ripping and encoding tool based on transcode
 Name: perl-Video-DVDRip
-Version: 0.97.12
+Version: 0.98.0
 Release: 1
 License: Artistic or GPL
 Group: Applications/Multimedia
 URL: http://www.exit1.org/dvdrip/
-Source: http://www.exit1.org/dvdrip/dist/pre/Video-DVDRip-%{version}.tar.gz
+Source: http://www.exit1.org/dvdrip/dist/dvdrip-%{version}.tar.gz
 Patch0: Video-DVDRip-0.97.8-nontplworkaround.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: transcode >= 0.6.13
@@ -25,22 +25,25 @@ Requires: perl(Gtk2) >= 1.081, perl(Gtk2::Ex::FormFactory) >= 0.65
 Requires: perl(Locale::TextDomain) >= 1.16, perl(Event::ExecFlow) >= 0.62
 BuildRequires: perl(Gtk2) >= 1.081, perl(Gtk2::Ex::FormFactory) >= 0.65
 BuildRequires: perl(Locale::TextDomain) >= 1.16, perl(Event::ExecFlow) >= 0.62
+BuildRequires: perl(Event::RPC)
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+Provides: dvdrip = %{version}-%{release}
 
 %description
-dvd::rip is a Perl Gtk+ based DVD copy program built on top of a low level
-DVD Ripping API, which uses the Linux Video Stream Processing Tool transcode.
+dvd::rip is a full featured DVD copy program. It provides an easy to use but
+feature-rich Gtk+ GUI to control almost all aspects of the ripping and
+transcoding process. It uses the widely known video processing swissknife
+transcode and many other Open Source tools.
 
 
 %prep
-%setup -n Video-DVDRip-%{version}
+%setup -n dvdrip-%{version}
 %patch0 -p1 -b .nontplworkaround
 
 
 %build
 %{__perl} Makefile.PL
-#Remove %{?_smp_mflags}, as it makes the build fail (0.97.6)
-%{__make}
+%{__make} %{?_smp_mflags}
 
 
 %install
@@ -106,6 +109,14 @@ EOF
 
 
 %changelog
+* Tue Aug 22 2006 Matthias Saou <http://freshrpms.net/> 0.98.0-1
+- Update to 0.98.0.
+- Upstream changed the tarball name to "dvdrip" now, the package will probably
+  change soon. Provide dvdrip with same V-R for now.
+- Add perl(Event::RPC) build requirement, otherwise the bundled gets installed.
+- Re-add %%{?_smp_mflags} as it seems to work again now.
+- Update source URL and description.
+
 * Sun Jul  2 2006 Matthias Saou <http://freshrpms.net/> 0.97.12-1
 - Update to 0.97.12.
 - Remove no longer needed tet patch, since we use the "fixed" source.

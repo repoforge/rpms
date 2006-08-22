@@ -21,7 +21,7 @@
 
 Summary: Multiplayer 'Tron' 3D racing game
 Name: armagetronad
-Version: 0.2.8.2
+Version: 0.2.8.2.1
 Release: 1%{?prever:.%{prever}}
 License: GPL
 Group: Amusements/Games
@@ -137,6 +137,9 @@ gtk-update-icon-cache || :
 
 
 %changelog
+* Tue Aug 22 2006 Matthias Saou <http://freshrpms.net/> 0.2.8.2.1-1
+- Update to 0.2.8.2.1.
+
 * Wed Jun 28 2006 Matthias Saou <http://freshrpms.net/> 0.2.8.2-1
 - Update to 0.2.8.2.
 - Include patch to fix the uninstall lines in Makefile.in.
