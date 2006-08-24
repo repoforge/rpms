@@ -4,7 +4,7 @@
 
 Summary: BitTorrent client for KDE
 Name: ktorrent
-Version: 2.0
+Version: 2.0.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -57,9 +57,12 @@ KTorrent is a BitTorrent program for KDE.
 %{_datadir}/servicetypes/kt*.desktop
 %{_datadir}/applications/kde/ktorrent.desktop
 %{_datadir}/applnk/Internet/ktorrent.desktop
-%{_datadir}/mimelnk/application/x-bittorrent.desktop
+#%{_datadir}/mimelnk/application/x-bittorrent.desktop
 
 %changelog
+* Thu Aug 24 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.1-1
+- Updated to release 2.0.1.
+
 * Wed Aug 09 2006 Dries Verachtert <dries@ulyssis.org> - 2.0-1
 - Updated to release 2.0.
 
