@@ -8,7 +8,7 @@
 
 Summary: Fast anti-spam filtering by Bayesian statistical analysis
 Name: bogofilter
-Version: 1.0.3
+Version: 1.1.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -19,6 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: flex
 %{!?_without_tdb:BuildRequires: tdb-devel}
+%{?fc3:BuildRequires: db4-devel}
 %{?fc4:BuildRequires: db4-devel}
 %{?fc5:BuildRequires: db4-devel}
 Conflicts: bogofilter-static
@@ -85,6 +86,12 @@ done
 %{_datadir}/bogofilter/
 
 %changelog
+* Thu Aug 24 2006 Jim Richardson <devel@aidant.net> - 1.1.1-1
+- Updated to release 1.1.1
+
+* Thu Aug 10 2006 Jim Richardson <devel@aidant.net> - 1.1.0-1
+- Updated to release 1.1.0
+
 * Sun Jul 30 2006 Dag Wieers <dag@wieers.com> - 1.0.3-1
 - Updated to release 1.0.3. (Jim Richardson)
 
