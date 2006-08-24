@@ -4,8 +4,8 @@
 
 Summary: Terrain generation and management library
 Name: mercator
-Version: 0.2.4
-Release: 1.2
+Version: 0.2.5
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://www.worldforge.org/dev/eng/libraries/mercator
@@ -63,6 +63,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/mercator*.pc
 
 %changelog
+* Thu Aug 24 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.5-1
+- Updated to release 0.2.5.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.4-1.2
 - Rebuild for Fedora Core 5.
 

@@ -4,7 +4,7 @@
 
 Summary: Tunneling of Ipv6 over UDP through NATs
 Name: miredo
-Version: 0.9.9
+Version: 1.0.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -83,6 +83,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libtun6.la
 
 %changelog
+* Thu Aug 24 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.0-1
+- Updated to release 1.0.0.
+
 * Wed Aug 16 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.9-1
 - Updated to release 0.9.9.
 
