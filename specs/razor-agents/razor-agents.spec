@@ -7,7 +7,7 @@
 Summary: Use the Razor catalog server to filter spam messages
 Name: razor-agents
 Version: 2.81
-Release: 1
+Release: 2
 License: Artistic
 Group: Applications/Internet
 URL: http://razor.sourceforge.net/
@@ -65,9 +65,10 @@ pod2text Changes.pod > Changes
 	INSTALLMAN5DIR="%{_mandir}/man5"
 
 %{__install} -d -m0755 %{buildroot}%{_bindir}
-for bin in razor-check razor-report razor-admin razor-revoke; do
-    %{__ln_s} -f razor-client %{buildroot}%{_bindir}/$bin
-done
+#for bin in razor-check razor-report razor-admin razor-revoke; do
+#    %{__ln_s} -f razor-client %{buildroot}%{_bindir}/$bin
+#done
+%{__rm} -Rf %{buildroot}%{perl_vendorarch}/auto/*/.packlist %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -75,17 +76,27 @@ done
 %files
 %defattr(-, root, root, 0755)
 %doc BUGS Changes CREDITS docs/ FAQ INSTALL README
-%doc %{_mandir}/man1/*
-%doc %{_mandir}/man5/*
-%{_bindir}/*
+%doc %{_mandir}/man1/razor-*
+%doc %{_mandir}/man5/razor-*
+%{_bindir}/razor-admin
+%{_bindir}/razor-check
+%{_bindir}/razor-client
+%{_bindir}/razor-report
+%{_bindir}/razor-revoke
 
 %files -n perl-Razor-Agent
 %defattr(-, root, root, 0755)
 %doc Changes
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}
+%doc %{_mandir}/man3/Razor2::*
+%{perl_vendorlib}/Razor2/
+%{perl_vendorlib}/auto/Razor2/
+%{perl_vendorarch}/Razor2/
+%{perl_vendorarch}/auto/Razor2/
 
 %changelog
+* Thu Aug 24 2006 Dries Verachtert <dries@ulyssis.org> - 2.81-2
+- Fix: the commands aren't links to razor-client anymore, thanks to subs at jake8us org.
+
 * Sat Apr 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.81-1
 - Updated to release 2.81.
 
