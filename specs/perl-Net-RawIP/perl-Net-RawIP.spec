@@ -10,12 +10,13 @@
 Summary: Manipulate raw ip packets with interface to libpcap
 Name: perl-Net-RawIP
 Version: 0.2
-Release: 1.2
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-RawIP/
 
 Source: http://search.cpan.org/CPAN/authors/id/S/SK/SKOLYCHEV/Net-RawIP-%{version}.tar.gz
+Patch: gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, libpcap
@@ -26,10 +27,12 @@ with an optional feature for manipulating Ethernet headers.
 
 %prep
 %setup -n %{real_name}-%{version}
+%patch -p1
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__make} 
+#%{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -48,6 +51,9 @@ with an optional feature for manipulating Ethernet headers.
 %{perl_vendorarch}/auto/Net/RawIP
 
 %changelog
+* Thu Aug 24 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-2
+- Gcc fixes: patch added.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-1.2
 - Rebuild for Fedora Core 5.
 

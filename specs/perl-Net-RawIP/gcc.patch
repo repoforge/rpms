@@ -1,0 +1,66 @@
+diff -ur Net-RawIP-0.2-orig/RawIP.xs Net-RawIP-0.2/RawIP.xs
+--- Net-RawIP-0.2-orig/RawIP.xs	2005-02-10 02:10:51.000000000 +0100
++++ Net-RawIP-0.2/RawIP.xs	2006-08-24 20:44:28.000000000 +0200
+@@ -759,7 +759,7 @@
+   if(ihl > 5){
+     av_store(RETVAL,28,
+     ip_opts_parse(sv_2mortal(newSVpv((u_char*)pktr + 20,ihl*4 - 20))));  
+-    (u_char*)pktr = (u_char*)pktr + (ihl*4 - 20);  
++    /*(u_char*)*/pktr = (u_char*)pktr + (ihl*4 - 20);  
+     ipo = 1;
+   }
+   doff = pktr->th.doff;
+@@ -785,7 +785,7 @@
+    }
+    av_store(RETVAL,29,
+     tcp_opts_parse(sv_2mortal(newSVpv((u_char*)pktr+40,doff*4-20))));
+-           (u_char*)pktr = (u_char*)pktr + (doff*4 - 20);
++           /*(u_char*)*/pktr = (u_char*)pktr + (doff*4 - 20);
+   } 
+   av_store(RETVAL,27,newSVpv(((u_char*)&pktr->th.urg_ptr+2),
+   tot_len - (4*ihl + doff*4))); 
+@@ -818,7 +818,7 @@
+   if(ihl > 5){
+     av_store(RETVAL,20,
+     ip_opts_parse(sv_2mortal(newSVpv((u_char*)pktr + 20,ihl*4 - 20))));  
+-    (u_char*)pktr = (u_char*)pktr + (ihl*4 - 20);  
++    /*(u_char*)*/pktr = (u_char*)pktr + (ihl*4 - 20);  
+   }
+   av_store(RETVAL,11,newSViv(pktr->ich.type));
+   av_store(RETVAL,12,newSViv(pktr->ich.code));
+@@ -858,7 +858,7 @@
+   if(ihl > 5){
+     av_store(RETVAL,12,
+     ip_opts_parse(sv_2mortal(newSVpv((u_char*)pktr + 20,ihl*4 - 20))));  
+-    (u_char*)pktr = (u_char*)pktr + (ihl*4 - 20);  
++    /*(u_char*)*/pktr = (u_char*)pktr + (ihl*4 - 20);  
+   }
+   av_store(RETVAL,11,newSVpv(((u_char*)pktr+20),
+   tot_len - 4*ihl));
+@@ -892,7 +892,7 @@
+   if(ihl > 5){
+     av_store(RETVAL,16,
+     ip_opts_parse(sv_2mortal(newSVpv((u_char*)pktr + 20,ihl*4 - 20))));  
+-    (u_char*)pktr = (u_char*)pktr + (ihl*4 - 20);  
++    /*(u_char*)*/pktr = (u_char*)pktr + (ihl*4 - 20);  
+   }
+   av_store(RETVAL,11,newSViv(ntohs(pktr->uh.source)));
+   av_store(RETVAL,12,newSViv(ntohs(pktr->uh.dest)));
+@@ -1284,7 +1284,7 @@
+ CODE:
+     printer = print;
+     if(!SvROK(user) && SvOK(user)){
+-    (u_char *)user = SvIV(user); 
++    /*(u_char *)*/user = SvIV(user); 
+     ptr = &handler;
+     }
+     else {
+@@ -1306,7 +1306,7 @@
+ CODE:
+     printer = print;
+     if(!SvROK(user) && SvOK(user)){
+-    (u_char *)user = SvIV(user); 
++    /*(u_char *)*/user = SvIV(user); 
+     ptr = &handler;
+     }
+     else {
