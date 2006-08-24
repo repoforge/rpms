@@ -8,7 +8,8 @@ Release: 2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.3gpp.org/
-Source: ftp://ftp.freebsd.org/pub/FreeBSD/ports/local-distfiles/kwm/amrnb-%{version}.tar.gz
+#Source: ftp://ftp.freebsd.org/pub/FreeBSD/ports/local-distfiles/kwm/amrnb-%{version}.tar.gz
+Source: http://distfiles.opendarwin.org/amrnb-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 
