@@ -22,7 +22,7 @@
 
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
-Version: 0.9.9
+Version: 0.9.10
 Release: 1%{?prever:.%{prever}}
 License: GPL
 Group: System Environment/Libraries
@@ -122,6 +122,9 @@ programs that need to access quicktime files using libquicktime.
 
 
 %changelog
+* Mon Aug 28 2006 Matthias Saou <http://freshrpms.net/> 0.9.10-1
+- Update to 0.9.10.
+
 * Fri Jun 30 2006 Dag Wieers <dag@wieers.com> - 0.9.9-1
 - Updated to release 0.9.9.
 

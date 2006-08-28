@@ -11,7 +11,7 @@
 
 Summary: Graphical DVD ripping and encoding tool based on transcode
 Name: perl-Video-DVDRip
-Version: 0.98.0
+Version: 0.98.1
 Release: 1
 License: Artistic or GPL
 Group: Applications/Multimedia
@@ -110,6 +110,9 @@ EOF
 
 
 %changelog
+* Mon Aug 28 2006 Matthias Saou <http://freshrpms.net/> 0.98.1-1
+- Update to 0.98.1.
+
 * Tue Aug 22 2006 Matthias Saou <http://freshrpms.net/> 0.98.0-1
 - Update to 0.98.0.
 - Upstream changed the tarball name to "dvdrip" now, the package will probably
