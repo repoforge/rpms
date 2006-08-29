@@ -7,11 +7,11 @@
 Summary: Breakout and Arkanoid style arcade game
 Name: lbreakout2
 Version: 2.6
-Release: 0.7%{?prever:.%{prever}}
+Release: 0.8%{?prever:.%{prever}}
 License: GPL
 Group: Amusements/Games
 URL: http://lgames.sourceforge.net/
-Source: http://dl.sf.net/lgames/lbreakout2-%{version}%{?prever}-6.tar.gz
+Source: http://dl.sf.net/lgames/lbreakout2-%{version}%{?prever}-7.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, SDL_mixer-devel, zlib-devel, libpng-devel
 BuildRequires: ImageMagick
@@ -27,7 +27,7 @@ the integrated level editor.
 
 
 %prep
-%setup -n %{name}-%{version}%{?prever}-6
+%setup -n %{name}-%{version}%{?prever}-7
 
 
 %build
@@ -94,6 +94,9 @@ desktop-file-install \
 
 
 %changelog
+* Tue Aug 28 2006 Matthias Saou <http://freshrpms.net/> 2.6-0.8.beta
+- Update to 2.6beta-7.
+
 * Mon May 29 2006 Matthias Saou <http://freshrpms.net/> 2.6-0.7.beta
 - Update to 2.6beta-6.
 
