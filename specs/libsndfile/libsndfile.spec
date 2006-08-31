@@ -4,9 +4,11 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?fc1: %define _without_alsa 1}
+%{?el3: %define _without_alsa 1}
 %{?rh9: %define _without_alsa 1}
 %{?rh8: %define _without_alsa 1}
 %{?rh7: %define _without_alsa 1}
+%{?el2: %define _without_alsa 1}
 %{?yd3: %define _without_alsa 1}
 
 Summary: Library for reading and writing files containing sampled sound
