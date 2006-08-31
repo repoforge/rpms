@@ -7,29 +7,26 @@
 
 Summary: Creates a common metadata repository
 Name: createrepo
-Version: 0.4.4
-Release: 3
+Version: 0.4.6
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://linux.duke.edu/projects/metadata/
 
 Source: http://linux.duke.edu/projects/metadata/generate/createrepo-%{version}.tar.gz
-Patch0: createrepo-0.4.4-noepoch.patch
-Patch1: http://people.redhat.com/mikem/software/createrepo-0.4.4-update2.1.patch
+Patch0: http://people.redhat.com/mikem/software/createrepo-0.4.4-update2.1.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 Requires: rpm-python, %{python} >= %{pyminver}, rpm >= 4.1.1, libxml2-python
-Requires: python-urlgrabber
 
 %description
 This utility will generate a common metadata repository from a directory of
-rpm packages
+rpm packages.
 
 %prep
 %setup
-%patch0
-%patch1
+#%patch0
 
 # Replace interpreter's name if it's not "python"
 if [ "%{python}" != "python" ]; then
@@ -40,7 +37,7 @@ fi
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -53,6 +50,9 @@ fi
 %{_datadir}/createrepo/
 
 %changelog
+* Wed Aug 23 2006 Dag Wieers <dag@wieers.com> - 0.4.6-1
+- Updated to release 0.4.6.
+
 * Mon May 29 2006 Dag Wieers <dag@wieers.com> - 0.4.4-3
 - Added noepoch an update2 patches.
 

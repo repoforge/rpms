@@ -3,7 +3,7 @@
 
 Summary: Reliable 802.11 (wireless) sniffer and WEP/WPA-PSK key cracker
 Name: aircrack-ng
-Version: 0.6
+Version: 0.6.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -55,12 +55,16 @@ and some tools to handle capture files (merge, convert,etc.).
 %{_bindir}/arpforge-ng
 %{_bindir}/ivstools
 %{_bindir}/kstats
+%{_bindir}/makeivs
 #%{_bindir}/makeivs
 %{_sbindir}/airmon-ng
 %{_sbindir}/aireplay-ng
 %{_sbindir}/airodump-ng
 
 %changelog
+* Tue Aug 29 2006 Dag Wieers <dag@wieers.com> - 0.6.1-1
+- Updated to release 0.6.1.
+
 * Tue Jun 27 2006 Dag Wieers <dag@wieers.com> - 0.6-1
 - Updated to release 0.6.
 

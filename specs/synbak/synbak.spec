@@ -1,9 +1,10 @@
 # $Id$
 # Authority: dag
+# Upstream Ugo Viti <ugo,viti$initzero,it>
 
 Summary: Universal backup system
 Name: synbak
-Version: 1.0.7
+Version: 1.0.8
 Release: 1
 License: GPL
 Group: Applications/File
@@ -14,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl-XML-Parser
-Requires: bash >= 2.0, bc, gawk, mktemp >= 1.5, netcat, rsync, sed, tar
+Requires: bash >= 2.0, bc, gawk, mktemp >= 1.5, nc, rsync, sed, tar
 
 %description
 Synbak is an application designed to unify several backup methods. Synbak
@@ -47,12 +48,17 @@ Synbak can make reports using email, html, rss-feeds and more...
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_docdir}
 
-### FIXME: Installer puts x86_64 in /usr/lib64 despite being a noarch package !
 %files -f %{name}.lang
 %doc AUTHORS BUGS ChangeLog COPYING INSTALL NEWS README THANKS TODO examples/
 %{_bindir}/synbak
-%{_libdir}/synbak/
+%{_datadir}/synbak/
 
 %changelog
+* Wed Aug 23 2006 Dag Wieers <dag@wieers.com> - 1.0.8-1
+- Updated to release 1.0.8.
+
+* Sun Aug 20 2006 Dag Wieers <dag@wieers.com> - 1.0.7-2
+- Changed netcat dependency to nc. (Ugo Viti)
+
 * Sun Aug 20 2006 Dag Wieers <dag@wieers.com> - 1.0.7-1
 - Initial package. (using DAR)

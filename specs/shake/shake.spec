@@ -3,13 +3,13 @@
 
 Summary: Userspace filesystem defragmenter
 Name: shake
-Version: 0.24
+Version: 0.26
 Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://vleu.net/shake/
 
-Source: http://vleu.net/shake/shake-%{version}.tar.bz2
+Source: http://download.savannah.nongnu.org/releases/shake/shake-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libattr-devel
@@ -47,6 +47,9 @@ xfs_fsr.
 %{_bindir}/unattr
 
 %changelog
+* Tue Aug 29 2006 Dag Wieers <dag@wieers.com> - 0.26-1
+- Updated to release 0.26.
+
 * Sun Aug 20 2006 Dag Wieers <dag@wieers.com> - 0.24-1
 - Updated to release 0.24.
 

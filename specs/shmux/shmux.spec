@@ -2,17 +2,15 @@
 # Authority: dag
 # Upstream: Christophe Kalt <shmux$taranis,org>
 
-
 Summary: Program for executing the same command on many hosts in parallel
 Name: shmux
 Version: 1.0
-%define real_version 1.0b10
-Release: 0.b10
+Release: 1
 License: BSD-like
 Group: System Environment/Shells
 URL: http://web.taranis.org/shmux/
 
-Source: http://web.taranis.org/shmux/dist/shmux-%{real_version}.tgz
+Source: http://web.taranis.org/shmux/dist/shmux-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: fping
@@ -25,7 +23,7 @@ produced by the children is received by shmux and either output in turn to
 the user, or written to files for later processing.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
 
 ### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
 %{__perl} -pi.orig -e 's|\$\(sharedir\)|\$(DESTDIR)\$(datadir)/shmux|' Makefile.in
@@ -49,6 +47,9 @@ the user, or written to files for later processing.
 %{_datadir}/shmux/
 
 %changelog
+* Thu Aug 31 2006 Dag Wieers <dag@wieers.com> - 1.0-1
+- Updated to release 1.0.
+
 * Fri Aug 11 2006 Dag Wieers <dag@wieers.com> - 1.0-0.b10
 - Updated to release 1.0b10.
 

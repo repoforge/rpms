@@ -9,8 +9,9 @@
 
 Summary: Object Oriented time objects
 Name: perl-Time-Piece
-Version: 2.00_01
-Release: 1.2
+Version: 1.09
+Release: 1
+Epoch: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Time-Piece/
@@ -35,8 +36,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -44,7 +44,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3*
 %dir %{perl_vendorarch}/Time/
 %{perl_vendorarch}/Time/Piece.pm
 %{perl_vendorarch}/Time/Seconds.pm
@@ -52,8 +52,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Time/Piece/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.00_01-1.2
-- Rebuild for Fedora Core 5.
+* Tue Aug 22 2006 Dag Wieers <dag@wieers.com> - 1:1.09-1
+- Revert back to non-developer release 1.09. (Aaron Scamehorn)
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.00_01-1
 - Updated to release 2.00_01.

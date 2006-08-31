@@ -28,11 +28,7 @@ Python interface to the memcached memory cache daemon.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__python} setup.py install --root=%{buildroot}
-# On RHEL4, the .pyo doesn't get created
-pushd %{buildroot}%{_prefix}/lib/python*/site-packages/
-    touch memcache.pyo
-popd
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 
 
 %clean

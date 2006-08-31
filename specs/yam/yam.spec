@@ -4,8 +4,8 @@
 
 Summary: Set up a Yum/Apt mirror from various sources (ISO, RHN, rsync, http, ftp, ...)
 Name: yam
-Version: 0.8.0
-Release: 2.2
+Version: 0.8.1
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://dag.wieers.com/home-made/yam/
@@ -27,6 +27,8 @@ the repository structure and meta-data, enables HTTP access to
 the repository and creates a directory-structure for remote
 network installations using PXE/TFTP.
 
+Yam supports ftp, http, sftp, rsync, rhn and other download methods.
+
 With Yam, you can enable your laptop or a local server to provide
 updates for the whole network and provide the proper files to
 allow installations via the network.
@@ -36,13 +38,34 @@ allow installations via the network.
 
 %{__perl} -pi.orig -e 's|^(VERSION)\s*=\s*.+$|$1 = "%{version}"|' yam
 
+%{__cat} <<EOF >config/yam.cron
+### Enable this if you want Yam to daily synchronize
+### your distributions and repositories at 2:30am.
+#30 2 * * * root /usr/bin/yam -q -ug
+EOF
+
+%{__cat} <<EOF >config/yam.conf
+### Configuration file for Yam
+
+### The [main] section allows to override Yam's default settings
+### The yam-example.conf gives an overview of all the possible settings
+[main]
+srcdir = /var/yam
+wwwdir = /var/www/yam
+arch = i386
+#rhnlogin = username:password
+
+### Any other section is considered a definition for a distribution
+### You can put distribution sections in /etc/yam.conf.d/
+### Examples can be found in the documentation at:
+###     %{_docdir}/%{name}-%{version}/dists/.
+EOF
+
 %build
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-
-%{__install} -D -m0755 gensystemid %{buildroot}%{_bindir}/gensystemid
 
 %preun
 if [ $1 -eq 0 ]; then
@@ -61,9 +84,11 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README* THANKS TODO WISHLIST *.conf
+%doc AUTHORS ChangeLog COPYING README THANKS TODO WISHLIST config/* docs/
 %config(noreplace) %{_sysconfdir}/yam.conf
+%config(noreplace) %{_sysconfdir}/yam.conf.d/
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/yam.conf
+%config(noreplace) %{_sysconfdir}/cron.d/yam
 %config %{_initrddir}/yam
 %{_bindir}/gensystemid
 %{_bindir}/yam
@@ -73,8 +98,8 @@ fi
 %{_localstatedir}/yam/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.0-2.2
-- Rebuild for Fedora Core 5.
+* Tue Aug 22 2006 Dag Wieers <dag@wieers.com> - 0.8.1-1
+- Updated to release 0.8.1.
 
 * Fri Mar 10 2006 Dag Wieers <dag@wieers.com> - 0.8.0-2
 - Added gensystemid to installation. (Ian Forde)

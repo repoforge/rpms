@@ -55,6 +55,9 @@ host to claim multiple addresses on a LAN for network simulation.
 %{_libdir}/honeyd/
 
 %changelog
+* Sun Aug 20 2006 Dag Wieers <dag@wieers.com> - 0.2-3
+- Rebuild against libevent-1.1b.
+
 * Sat Aug 19 2006 Dag Wieers <dag@wieers.com> - 1.5b-1
 - Updated to release 1.5b.
 

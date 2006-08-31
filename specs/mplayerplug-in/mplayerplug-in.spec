@@ -19,8 +19,8 @@
 
 Summary: Browser plugin for MPlayer
 Name: mplayerplug-in
-Version: 3.25
-Release: 2
+Version: 3.31
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerplug-in.sourceforge.net/
@@ -69,8 +69,8 @@ in your browser.
 %config(noreplace) %{_sysconfdir}/mplayerplug-in.types
 %{_libdir}/mozilla/plugins/mplayerplug-in.so
 %{_libdir}/mozilla/plugins/mplayerplug-in.xpt
-%{_libdir}/mozilla/plugins/mplayerplug-in-gmp.so
-%{_libdir}/mozilla/plugins/mplayerplug-in-gmp.xpt
+%{_libdir}/mozilla/plugins/mplayerplug-in-dvx.so
+%{_libdir}/mozilla/plugins/mplayerplug-in-dvx.xpt
 %{_libdir}/mozilla/plugins/mplayerplug-in-qt.so
 %{_libdir}/mozilla/plugins/mplayerplug-in-qt.xpt
 %{_libdir}/mozilla/plugins/mplayerplug-in-rm.so
@@ -79,6 +79,9 @@ in your browser.
 %{_libdir}/mozilla/plugins/mplayerplug-in-wmp.xpt
 
 %changelog
+* Tue Aug 29 2006 Dag Wieers <dag@wieers.com> - 3.31-1
+- Updated to release 3.31.
+
 * Tue May 30 2006 Matthias Saou <http://freshrpms.net/> 3.25-2
 - Add modular X build requirements and conditional.
 - Clean up build requirements.
