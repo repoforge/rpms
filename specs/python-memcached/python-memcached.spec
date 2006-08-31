@@ -10,6 +10,7 @@ Group: Development/Libraries
 URL: ftp://ftp.tummy.com/pub/python-memcached/
 Source: ftp://ftp.tummy.com/pub/python-memcached/python-memcached-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: python
 BuildArch: noarch
 
 
@@ -28,6 +29,10 @@ Python interface to the memcached memory cache daemon.
 %install
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install --root=%{buildroot}
+# On RHEL4, the .pyo doesn't get created
+pushd %{buildroot}%{_prefix}/lib/python*/site-packages/
+    touch memcache.pyo
+popd
 
 
 %clean
