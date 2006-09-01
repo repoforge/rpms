@@ -44,7 +44,7 @@ compatible with version 3.5 of the LizardTech DjVu software suite.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%find_lang %{name}
+#find_lang %{name}
 
 %{__mkdir_p} %{buildroot}%{_libdir}/mozilla/plugins
 %{__ln_s} ../../netscape/plugins/nsdejavu.so \
@@ -67,7 +67,8 @@ update-desktop-database /usr/share/applications || :
 update-desktop-database /usr/share/applications || :
 
 
-%files -f %{name}.lang
+#%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
 %doc COPYING COPYRIGHT doc NEWS README TODO
 %{_bindir}/*
@@ -81,7 +82,9 @@ update-desktop-database /usr/share/applications || :
 %{_datadir}/mime-info/djvu.*
 %{_datadir}/djvu/
 %{_datadir}/pixmaps/djvu.png
-%{_mandir}/man1/*
+%{_mandir}/man1/*.1*
+# Does not seem to be available for any distribution ? Is this FC5 specific ?
+#%{_mandir}/man/ja/man1/*.1*
 %{_datadir}/mimelnk/image/x-djvu.desktop
 
 

@@ -2,11 +2,16 @@
 # Authority: dag
 # Upstream: <glchess-devel$lists,sf,net>
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+
+%define desktop_vendor rpmforge
 
 Summary: 3D chess interface
 Name: glchess
-Version: 0.9.0
+Version: 0.9.6
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -41,7 +46,6 @@ Categories=Application;Game;
 EOF
 
 %build
-./autogen.sh
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -55,11 +59,11 @@ EOF
 %{__install} -d -m0755 %{buildroot}%{_datadir}/games/glchess/textures/
 %{__install} -p -m0644 textures/* %{buildroot}%{_datadir}/games/glchess/textures/
 
-%if %{dfi}
+%if %{?_without_freedesktop:1}0
 	%{__install} -Dp -m0644 glchess.desktop %{buildroot}%{_datadir}/gnome/apps/Games/glchess.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor "net"                \
+	desktop-file-install --vendor "%{desktop_vendor}"  \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		glchess.desktop
@@ -71,23 +75,22 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING INSTALL NEWS README TODO
-%doc %{_mandir}/man6/*
+%doc %{_mandir}/man6/glchess.6*
 %config %{_sysconfdir}/glchessrc
-%config %{_sysconfdir}/X11/wmconfig/*
-%{_bindir}/*
+%dir %{_sysconfdir}/X11/
+%dir %{_sysconfdir}/X11/wmconfig/
+%config %{_sysconfdir}/X11/wmconfig/glchess.menu
+%{_bindir}/glchess
 %{_datadir}/games/glchess/
-%if %{dfi}
-        %{_datadir}/gnome/apps/Games/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Games/glchess.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-glchess.desktop}
 
 %changelog
+* Sat Apr 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.6-1
+- Updated to release 0.9.6.
+
 * Sat Apr 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.0-1
 - Updated to release 0.9.0.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.7-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Feb 19 2003 Dag Wieers <dag@wieers.com> - 0.4.7-0
 - Initial package. (using DAR)
