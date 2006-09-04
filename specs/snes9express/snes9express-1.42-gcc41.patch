@@ -1,0 +1,12 @@
+--- s9xskin.h.old	2006-05-03 23:45:10.000000000 +0200
++++ s9xskin.h	2006-05-03 23:51:25.000000000 +0200
+@@ -23,8 +23,8 @@
+ 
+ class s9x_SkinFileBase
+ {
+- typedef std::map<std::string,s9x_SkinFileIndexRecord*> index;
+  protected:
++ typedef std::map<std::string,s9x_SkinFileIndexRecord*> index;
+ 	index idx;
+ 	FILE*skinfptr;
+  public:
