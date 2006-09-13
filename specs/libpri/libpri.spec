@@ -3,13 +3,13 @@
 
 Summary: Implementation of the Primary Rate ISDN specification
 Name: libpri
-Version: 1.2.2
+Version: 1.2.3
 Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.asterisk.org/
 Source: http://ftp.digium.com/pub/libpri/libpri-%{version}.tar.gz
-Patch: libpri-1.2.0-cflags.patch
+Patch: libpri-1.2.3-cflags.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -67,6 +67,9 @@ export CFLAGS="%{optflags}"
 
 
 %changelog
+* Thu Sep  7 2006 Matthias Saou <http://freshrpms.net/> 1.2.3-1
+- Update to 1.2.3.
+
 * Fri Jan 27 2006 Matthias Saou <http://freshrpms.net/> 1.2.2-1
 - Update to 1.2.2.
 

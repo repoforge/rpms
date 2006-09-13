@@ -7,7 +7,7 @@
 
 Summary: PBX and telephony application and toolkit
 Name: asterisk
-Version: 1.2.7.1
+Version: 1.2.11
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -141,6 +141,9 @@ fi
 
 
 %changelog
+* Thu Sep  7 2006 Matthias Saou <http://freshrpms.net> 1.2.11-1
+- Update to 1.2.11.
+
 * Thu May  4 2006 Matthias Saou <http://freshrpms.net> 1.2.7.1-1
 - Update to 1.2.7.1.
 
