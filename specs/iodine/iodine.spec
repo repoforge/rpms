@@ -4,7 +4,7 @@
 
 Summary: Tunnel IPv4 data through a DNS server
 Name: iodine
-Version: 0.3.1
+Version: 0.3.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -12,9 +12,6 @@ URL: http://code.kryo.se/iodine/
 
 Source: http://code.kryo.se/iodine/iodine-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-#BuildRequires:
-#Requires:
 
 %description
 iodine lets you tunnel IPv4 data through a DNS server. This can be useful
@@ -42,5 +39,8 @@ queries are allowed.
 %{_bindir}/iodined
 
 %changelog
+* Tue Sep 12 2006 Dag Wieers <dag@wieers.com> - 0.3.2-1
+- Updated to release 0.3.2.
+
 * Thu Aug 03 2006 Dag Wieers <dag@wieers.com> - 0.3.1-1
 - Initial package. (using DAR)

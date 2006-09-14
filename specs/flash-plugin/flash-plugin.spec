@@ -16,6 +16,7 @@ Source1: http://macromedia.rediris.es/rpmsource/LICENSE
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: i386
+Obsoletes: mozilla-flash <= %{version}-%{release}
 #Requires: %{_libdir}/mozilla/plugins/
 
 %description

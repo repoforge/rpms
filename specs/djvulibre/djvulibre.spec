@@ -83,8 +83,7 @@ update-desktop-database /usr/share/applications || :
 %{_datadir}/djvu/
 %{_datadir}/pixmaps/djvu.png
 %{_mandir}/man1/*.1*
-# Does not seem to be available for any distribution ? Is this FC5 specific ?
-#%{_mandir}/man/ja/man1/*.1*
+%{_mandir}/ja/man1/*.1*
 %{_datadir}/mimelnk/image/x-djvu.desktop
 
 

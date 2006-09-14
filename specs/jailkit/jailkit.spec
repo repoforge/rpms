@@ -3,7 +3,7 @@
 
 Summary: Utilities to limit user accounts to specific files using chroot()
 Name: jailkit
-Version: 2.0
+Version: 2.1
 Release: 1
 License: Open Source
 Group: System Environment/Base
@@ -26,7 +26,7 @@ and also on general servers with accounts where the shell accounts
 are in a chroot.
 
 %prep
-%setup
+%setup -n %{name}
 
 ### Disable broken Makefile :(
 %{__perl} -pi.orig -e 's|>>||g' Makefile.in
@@ -63,6 +63,9 @@ are in a chroot.
 %{_datadir}/jailkit/
 
 %changelog
+* Tue Sep 12 2006 Dag Wieers <dag@wieers.com> - 2.1-1
+- Updated to release 2.1.
+
 * Sun Mar 19 2006 Dag Wieers <dag@wieers.com> - 2.0-1
 - Updated to release 2.0.
 
