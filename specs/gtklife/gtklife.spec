@@ -11,8 +11,8 @@
 
 Summary: Conway's game of life.
 Name: gtklife
-Version: 4.2
-Release: 1.2
+Version: 5.0
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://ironphoenix.org/tril/gtklife/
@@ -85,8 +85,8 @@ EOF
 %{_datadir}/pixmaps/gtklife.png
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.2-1.2
-- Rebuild for Fedora Core 5.
+* Tue Sep 12 2006 Dag Wieers <dag@wieers.com> - 5.0-1
+- Updated to release 5.0.
 
 * Sat Jun 04 2005 Dag Wieers <dag@wieers.com> - 4.2-1
 - Updated to release 4.2.

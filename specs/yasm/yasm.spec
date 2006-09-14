@@ -10,7 +10,7 @@
 
 Summary: Complete rewrite of the NASM assembler
 Name: yasm
-Version: 0.4.0
+Version: 0.5.0
 Release: 1
 License: BSD
 Group: Development/Languages
@@ -65,36 +65,37 @@ Install this package if you need to rebuild applications that use yasm.
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files
 %defattr(-, root, root, 0755)
 %doc Artistic.txt AUTHORS BSD.txt ChangeLog COPYING GNU* NEWS README
 %{_bindir}/yasm
-%{_libdir}/*.so.*
-%dir %{_libdir}/yasm/
-%{_libdir}/yasm/*.so
+#%{_libdir}/*.so.*
+#%dir %{_libdir}/yasm/
+#%{_libdir}/yasm/*.so
 %{_mandir}/man1/yasm.1*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/libyasm.h
 %{_includedir}/libyasm/
-%{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
-%dir %{_libdir}/yasm/
-%{_libdir}/yasm/*.a
-%exclude %{_libdir}/yasm/*.la
+%{_libdir}/libyasm.a
+#%exclude %{_libdir}/*.la
+#%{_libdir}/*.so
+#%dir %{_libdir}/yasm/
+#%{_libdir}/yasm/*.a
+#%exclude %{_libdir}/yasm/*.la
 %{_mandir}/man7/yasm_arch.7*
 
 
 %changelog
+* Fri Jul 14 2006 Dag Wieers <dag@wieers.com> - 0.5.0-1
+- Updated to release 0.5.0.
+
 * Fri Jan 28 2005 Matthias Saou <http://freshrpms.net/> 0.4.0-1
 - Initial RPM release.
 

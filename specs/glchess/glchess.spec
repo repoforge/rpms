@@ -2,16 +2,13 @@
 # Authority: dag
 # Upstream: <glchess-devel$lists,sf,net>
 
-%{?dist: %{expand: %%define %dist 1}}
-
-%{?rh7:%define _without_freedesktop 1}
-%{?el2:%define _without_freedesktop 1}
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
 %define desktop_vendor rpmforge
 
 Summary: 3D chess interface
 Name: glchess
-Version: 0.9.6
+Version: 0.9.8
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -20,7 +17,8 @@ URL: http://glchess.sourceforge.net/
 Source: http://dl.sf.net/glchess/glchess-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk+-devel >= 1.2.0, automake, autoconf
+BuildArch: noarch
+BuildRequires: gtk+-devel >= 1.2.0
 #BuildRequires: gtkglarea
 
 %description
@@ -32,60 +30,67 @@ not over a netwerk (see TODO).
 %prep
 %setup
 
-%{__perl} -pi.orig -e 's|/usr/local/share/games/glchess|%{_datadir}/games/glchess|' glchessrc
+#%{__perl} -pi.orig -e 's|/usr/local/share/games/glchess|%{_datadir}/games/glchess|' glchessrc
 
-%{__cat} <<EOF >glchess.desktop
-[Desktop Entry]
-Name=GLChess
-Comment=Play chess in 3D
-Exec=glchess
-Icon=chess.png
-Terminal=false
-Type=Application
-Categories=Application;Game;
-EOF
+#%{__cat} <<EOF >glchess.desktop
+#[Desktop Entry]
+#Name=GLChess
+#Comment=Play chess in 3D
+#Exec=glchess
+#Icon=chess.png
+#Terminal=false
+#Type=Application
+#Categories=Application;Game;
+#EOF
 
 %build
-%configure
-%{__make} %{?_smp_mflags}
+#configure
+#%{__make} %{?_smp_mflags}
+%{__make} translations
+python setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 src/glchess %{buildroot}%{_bindir}/glchess
-%{__install} -Dp -m0644 man/glchess.6 %{buildroot}%{_mandir}/man6/glchess.6
-%{__install} -Dp -m0644 glchessrc %{buildroot}%{_sysconfdir}/glchessrc
-%{__install} -Dp -m0644 glchess.menu %{buildroot}%{_sysconfdir}/X11/wmconfig/glchess.menu
+#%{__install} -Dp -m0755 src/glchess %{buildroot}%{_bindir}/glchess
+#%{__install} -Dp -m0644 man/glchess.6 %{buildroot}%{_mandir}/man6/glchess.6
+#%{__install} -Dp -m0644 glchessrc %{buildroot}%{_sysconfdir}/glchessrc
+#%{__install} -Dp -m0644 glchess.menu %{buildroot}%{_sysconfdir}/X11/wmconfig/glchess.menu
+#
+#%{__install} -d -m0755 %{buildroot}%{_datadir}/games/glchess/textures/
+#%{__install} -p -m0644 textures/* %{buildroot}%{_datadir}/games/glchess/textures/
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/games/glchess/textures/
-%{__install} -p -m0644 textures/* %{buildroot}%{_datadir}/games/glchess/textures/
-
-%if %{?_without_freedesktop:1}0
-	%{__install} -Dp -m0644 glchess.desktop %{buildroot}%{_datadir}/gnome/apps/Games/glchess.desktop
-%else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor "%{desktop_vendor}"  \
-		--add-category X-Red-Hat-Base              \
-		--dir %{buildroot}%{_datadir}/applications \
-		glchess.desktop
-%endif
+#%if %{?_without_freedesktop:1}0
+#	%{__install} -Dp -m0644 glchess.desktop %{buildroot}%{_datadir}/gnome/apps/Games/glchess.desktop
+#%else
+#	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+#	desktop-file-install --vendor "%{desktop_vendor}"  \
+#		--add-category X-Red-Hat-Base              \
+#		--dir %{buildroot}%{_datadir}/applications \
+#		glchess.desktop
+#%endif
+%{__make} install DESTDIR="%{buildroot}"
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS ChangeLog COPYING INSTALL NEWS README TODO
-%doc %{_mandir}/man6/glchess.6*
-%config %{_sysconfdir}/glchessrc
-%dir %{_sysconfdir}/X11/
-%dir %{_sysconfdir}/X11/wmconfig/
-%config %{_sysconfdir}/X11/wmconfig/glchess.menu
+%doc BUGS ChangeLog COPYING INSTALL README TODO
 %{_bindir}/glchess
+%{_datadir}/applications/glchess.desktop
 %{_datadir}/games/glchess/
-%{?_without_freedesktop:%{_datadir}/gnome/apps/Games/glchess.desktop}
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-glchess.desktop}
+%{_datadir}/pixmaps/glchess.svg
+%{python_sitelib}/glchess/
+%ghost %{python_sitelib}/glchess/*.pyo
+%ghost %{python_sitelib}/glchess/*/*.pyo
 
 %changelog
+* Thu Sep 14 2006 Dag Wieers <dag@wieers.com> - 0.9.8-1
+- Updated to release 0.9.8.
+- Converted to python installation. (Andrew Ziem)
+
 * Sat Apr 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.6-1
 - Updated to release 0.9.6.
 
