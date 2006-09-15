@@ -19,6 +19,9 @@ BuildRequires: gtk2-devel, libglade2-devel, gettext-devel
 BuildRequires: taglib-devel, libvorbis-devel
 # To get the pkgconfig file for the Input directory location
 BuildRequires: audacious-devel
+Provides: audacious-aac = %{version}-%{release}
+Provides: audacious-mp3 = %{version}-%{release}
+Provides: audacious-wma = %{version}-%{release}
 
 %description
 Audacious is a media player forked from BMP (Beep Media Player) which uses a
