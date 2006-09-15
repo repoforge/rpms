@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# ExcludeDist: fc6
 
 %{?dist: %{expand: %%define %dist 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
@@ -9,13 +10,17 @@
 
 Summary: Media player which uses a skinned interface
 Name: audacious
-Version: 1.0.0
+Version: 1.1.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://audacious-media-player.org/
 Source: http://audacious-media-player.org/release/audacious-%{version}.tgz
 Patch0: audacious-0.1.2-default-alsa.patch
+Patch1: audacious-1.1.0-xmms-skins.patch
+Patch2: audacious-1.1.0-default-skin.patch
+Patch3: audacious-1.1.0-no-rpath.patch
+Patch4: audacious-1.1.0-quoting.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): /sbin/ldconfig, desktop-file-utils
 Requires(postun): /sbin/ldconfig, desktop-file-utils
@@ -23,12 +28,12 @@ BuildRequires: gtk2-devel, libglade2-devel, gettext-devel
 BuildRequires: libvisual-devel, SDL-devel
 BuildRequires: libogg-devel, libvorbis-devel, flac-devel, id3lib-devel
 BuildRequires: alsa-lib-devel, esound-devel, libmpcdec-devel, taglib-devel
-%{?_with_vfs:BuildRequires: gnome-vfs2-devel}
+%{!?_without_vfs:BuildRequires: gnome-vfs2-devel}
 %{!?_without_gconf:BuildRequires: GConf2-devel}
 %{!?_without_lirc:BuildRequires: lirc-devel}
 BuildRequires: libsndfile-devel, libsamplerate-devel, libsidplay-devel
-Buildrequires: libmusicbrainz-devel, curl-devel, bc
-BuildRequires: ImageMagick
+Buildrequires: libmusicbrainz-devel, curl-devel, bc, libcdio-devel
+BuildRequires: jack-audio-connection-kit-devel, arts-devel, libmodplug-devel
 %{?_with_modxorg:BuildRequires: libXext-devel, libXt-devel}
 
 %description
@@ -39,8 +44,8 @@ skinned interface based on Winamp 2.x skins, and in turn based on XMMS.
 %package devel
 Summary: Development files for the audacious media player
 Group: Development/Libraries
-Requires: %{name} = %{version}, gtk2-devel, pkgconfig
-%{?_with_vfs:Requires: gnome-vfs2-devel}
+Requires: %{name} = %{version}-%{release}, gtk2-devel, pkgconfig
+%{!?_without_vfs:Requires: gnome-vfs2-devel}
 %{!?_without_gconf:Requires: GConf2-devel}
 %{?_with_modxorg:Requires: libXext-devel, libXt-devel}
 
@@ -51,16 +56,50 @@ skinned interface based on Winamp 2.x skins, and in turn based on XMMS.
 Development files required to develop plugins for audacious.
 
 
+%package arts
+Summary: Audacious output plugin for the analog realtime synthesizer
+Group: Applications/Multimedia
+Requires: %{name} = %{version}-%{release}
+
+%description arts
+This package provides an Audacious output plugin that uses aRts (analog
+realtime synthesizer) sound system that KDE uses.
+
+
+%package esd
+Summary: Audacious output plugin for the Enlightened Sound Daemon
+Group: Applications/Multimedia
+Requires: %{name} = %{version}-%{release}
+
+%description esd
+This package provides an Audacious output plugin that uses the Enlightened
+Sound Daemon.
+
+
+%package jack
+Summary: Audacious output plugin for the JACK sound service
+Group: Applications/Multimedia
+Requires: %{name} = %{version}-%{release}
+
+%description jack
+This package provides an Audacious output plugin that uses the JACK sound
+service.
+
+
 %prep
 %setup
 %patch0 -p1 -b .default-alsa
+%patch1 -p1 -b .xmms-skins
+%patch2 -p1 -b .default-skin
+%patch3 -p1 -b .no-rpath
+%patch4 -p1 -b .quoting
 
 
 %build
 %configure \
     --disable-rpath \
     %{!?_without_gconf:--enable-gconf} \
-    %{?_with_vfs:--enable-gnome-vfs} \
+    %{!?_without_vfs:--enable-gnome-vfs} \
     --with-xmms-eq \
     --enable-sid \
     --enable-amidiplug
@@ -71,9 +110,6 @@ Development files required to develop plugins for audacious.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
-%{__mkdir_p} %{buildroot}%{_datadir}/pixmaps
-convert audacious/images/audacious_player.xpm \
-    %{buildroot}%{_datadir}/pixmaps/audacious.png
 
 
 %clean
@@ -93,7 +129,15 @@ update-desktop-database -q || :
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
 %{_bindir}/audacious
+%{_bindir}/audtool
 %{_libdir}/audacious/
+%dir %{_libdir}/amidi-plug/
+%dir %{_libdir}/amidi-plug/backends/
+%{_libdir}/amidi-plug/backends/ap-alsa.so
+%{_libdir}/amidi-plug/backends/ap-dummy.so
+%exclude %{_libdir}/audacious/Output/libarts.so
+%exclude %{_libdir}/audacious/Output/libESD.so
+%exclude %{_libdir}/audacious/Output/libjackout.so
 %{_libdir}/libaudacious.so.*
 %{_datadir}/applications/audacious.desktop
 %{_datadir}/audacious/
@@ -106,8 +150,35 @@ update-desktop-database -q || :
 %{_libdir}/pkgconfig/audacious.pc
 %{_libdir}/libaudacious.so
 
+%files arts
+%defattr(-, root, root, 0755)
+%{_bindir}/audacious-arts-helper
+%{_libdir}/audacious/Output/libarts.so
+
+%files esd
+%defattr(-, root, root, 0755)
+%{_libdir}/audacious/Output/libESD.so
+
+%files jack
+%defattr(-, root, root, 0755)
+%{_libdir}/audacious/Output/libjackout.so
+
 
 %changelog
+* Fri Sep 15 2006 Matthias Saou <http://freshrpms.net/> 1.1.2-1
+- Update to 1.1.2.
+- ExcludeDist fc6 since it's in Extras.
+- Remove no longer present amidi files.
+
+* Wed Jul 19 2006 Matthias Saou <http://freshrpms.net/> 1.1.0-1
+- Update to 1.1.0.
+- No longer convert the xpm icon as a png is installed by default.
+- Add modplug, jack and arts support.
+- Enable gnome-vfs by default now.
+- Add new audtool and amidi-plug libraries.
+- Include all patches from Fedora Extras, update rpath and quoting patches.
+- Split off jack, esd and arts sub-packages for compatibility with Extras.
+
 * Wed Apr 19 2006 Matthias Saou <http://freshrpms.net/> 1.0.0-1
 - Update to 1.0.0.
 - Remove the install fix, but the new Makefile still symlinks in absolute :-/

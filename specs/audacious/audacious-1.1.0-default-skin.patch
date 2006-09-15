@@ -1,0 +1,12 @@
+diff -uNr audacious-fedora-1.1.0-dr2-orig/audacious/main.c audacious-fedora-1.1.0-dr2/audacious/main.c
+--- audacious-fedora-1.1.0-dr2-orig/audacious/main.c	2006-06-24 18:20:48.000000000 +0200
++++ audacious-fedora-1.1.0-dr2/audacious/main.c	2006-06-24 22:20:36.167814910 +0200
+@@ -159,7 +159,7 @@
+     0.0,                        /* equalizer preamp */
+     {0, 0, 0, 0, 0,             /* equalizer bands */
+      0, 0, 0, 0, 0},
+-    NULL,                       /* skin */
++    "/usr/share/xmms/Skins/Bluecurve-xmms.zip",  /* skin */
+     NULL,                       /* output plugin */
+     NULL,                       /* file selector path */
+     NULL,                       /* playlist path */

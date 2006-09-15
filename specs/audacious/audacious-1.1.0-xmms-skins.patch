@@ -1,0 +1,19 @@
+diff -uNr audacious-fedora-1.1.0-dr2-orig/audacious/skinwin.c audacious-fedora-1.1.0-dr2/audacious/skinwin.c
+--- audacious-fedora-1.1.0-dr2-orig/audacious/skinwin.c	2006-06-24 18:20:48.000000000 +0200
++++ audacious-fedora-1.1.0-dr2/audacious/skinwin.c	2006-06-24 22:21:57.186381768 +0200
+@@ -251,11 +251,15 @@
+ skinlist_update(void)
+ {
+     gchar *skinsdir;
++    gchar xmmsskinsdir[] = "/usr/share/xmms/Skins";
+ 
+     skinlist_clear();
+ 
+     scan_skindir(bmp_paths[BMP_PATH_USER_SKIN_DIR]);
+     scan_skindir(DATA_DIR G_DIR_SEPARATOR_S BMP_SKIN_DIR_BASENAME);
++    if (g_file_test(xmmsskinsdir, G_FILE_TEST_IS_DIR)) {
++        scan_skindir( xmmsskinsdir );
++    }
+ 
+     skinsdir = getenv("SKINSDIR");
+     if (skinsdir) {
