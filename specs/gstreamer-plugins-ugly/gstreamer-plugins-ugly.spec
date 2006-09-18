@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-# ExclusiveDist: fc5
+# ExclusiveDist: fc5 fc6
 
 %define desktop_vendor rpmforge
 
@@ -13,7 +13,7 @@
 
 Summary: GStreamer streaming media framework "ugly" plug-ins
 Name: %{gstreamer}-plugins-ugly
-Version: 0.10.3
+Version: 0.10.4
 Release: 1
 License: LGPL
 Group: Applications/Multimedia
@@ -133,6 +133,9 @@ This package contains development files and documentation.
 
 
 %changelog
+* Sun Sep 17 2006 Matthias Saou <http://freshrpms.net/> 0.10.4-1
+- Update to 0.10.4.
+
 * Wed Apr 19 2006 Matthias Saou <http://freshrpms.net/> 0.10.3-1
 - Update to 0.10.3.
 - Remove no longer needed asfdemux fixes patch.
