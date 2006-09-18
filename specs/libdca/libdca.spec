@@ -4,11 +4,11 @@
 Summary: DTS Coherent Acoustics decoder
 Name: libdca
 Version: 0.0.2
-Release: 3
+Release: 4
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.videolan.org/libdca.html
-Source: http://debian.unnet.nl/pub/videolan/libdts/%{version}/libdts-%{version}.tar.gz
+Source: http://download.videolan.org/pub/videolan/libdca/%{version}/libdca-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Only a static lib, but two binaries too, so provide devel in the main
 Provides: %{name}-devel = %{version}-%{release}
@@ -53,6 +53,9 @@ export CFLAGS="%{optflags} -fPIC"
 
 
 %changelog
+* Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 0.0.2-4
+- Use the source from videolan.org as it is available again.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.0.2-3
 - Release bump to drop the disttag number in FC5 build.
 
