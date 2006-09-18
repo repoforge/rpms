@@ -1,0 +1,79 @@
+diff -Naupr audacious-itouch-0.1.orig/src/itouch.c audacious-itouch-0.1/src/itouch.c
+--- audacious-itouch-0.1.orig/src/itouch.c	2005-10-30 23:58:54.000000000 +0100
++++ audacious-itouch-0.1/src/itouch.c	2006-09-18 16:16:48.000000000 +0200
+@@ -33,7 +33,6 @@
+ #include <gtk/gtk.h>
+ #include <audacious/plugin.h>
+ #include <audacious/beepctrl.h>
+-#include <audacious/configfile.h>
+ #include <audacious/configdb.h>
+ 
+ typedef struct {
+@@ -1053,48 +1052,48 @@ void config_ok_cb(GtkWidget * w, gpointe
+ 
+ static void load_kbdcfgs(void)
+ {
+-	ConfigFile *cfgfile;
++	ConfigDb *db;
+ 	gint i;
+ 	
+-	if (cfgfile = xmms_cfg_open_file(BEEP_DATA_DIR "/audacious-itouch.config")) {
+-		xmms_cfg_read_int(cfgfile, "Global", "config_count",
++	if (db = bmp_cfg_db_open()) {
++		bmp_cfg_db_get_int(db, "Global", "config_count",
+ 					  &kbdcount);
+ 		kbdcfgs = calloc(kbdcount, sizeof(KeyboardConfig));
+ 		for (i = 0; i < kbdcount; i++) {
+ 			gchar *cfgname = g_strdup_printf("config_%d", i);
+-			xmms_cfg_read_string(cfgfile, cfgname, "name",
++			bmp_cfg_db_get_string(db, cfgname, "name",
+ 					     &kbdcfgs[i].name);
+-			xmms_cfg_read_int(cfgfile, cfgname, "suspend",
++			bmp_cfg_db_get_int(db, cfgname, "suspend",
+ 					  &kbdcfgs[i].suspend);
+-			xmms_cfg_read_int(cfgfile, cfgname, "my_home",
++			bmp_cfg_db_get_int(db, cfgname, "my_home",
+ 					  &kbdcfgs[i].my_home);
+-			xmms_cfg_read_int(cfgfile, cfgname, "email",
++			bmp_cfg_db_get_int(db, cfgname, "email",
+ 					  &kbdcfgs[i].email);
+-			xmms_cfg_read_int(cfgfile, cfgname, "search",
++			bmp_cfg_db_get_int(db, cfgname, "search",
+ 					  &kbdcfgs[i].search);
+-			xmms_cfg_read_int(cfgfile, cfgname, "go",
++			bmp_cfg_db_get_int(db, cfgname, "go",
+ 					  &kbdcfgs[i].go);
+-			xmms_cfg_read_int(cfgfile, cfgname, "mute",
++			bmp_cfg_db_get_int(db, cfgname, "mute",
+ 					  &kbdcfgs[i].mute);
+-			xmms_cfg_read_int(cfgfile, cfgname, "vol_down",
++			bmp_cfg_db_get_int(db, cfgname, "vol_down",
+ 					  &kbdcfgs[i].vol_down);
+-			xmms_cfg_read_int(cfgfile, cfgname, "vol_up",
++			bmp_cfg_db_get_int(db, cfgname, "vol_up",
+ 					  &kbdcfgs[i].vol_up);
+-			xmms_cfg_read_int(cfgfile, cfgname, "play",
++			bmp_cfg_db_get_int(db, cfgname, "play",
+ 					  &kbdcfgs[i].play);
+-			xmms_cfg_read_int(cfgfile, cfgname, "stop",
++			bmp_cfg_db_get_int(db, cfgname, "stop",
+ 					  &kbdcfgs[i].stop);
+-			xmms_cfg_read_int(cfgfile, cfgname, "prev_track",
++			bmp_cfg_db_get_int(db, cfgname, "prev_track",
+ 					  &kbdcfgs[i].prev_track);
+-			xmms_cfg_read_int(cfgfile, cfgname, "next_track",
++			bmp_cfg_db_get_int(db, cfgname, "next_track",
+ 					  &kbdcfgs[i].next_track);
+-			xmms_cfg_read_int(cfgfile, cfgname, "calculator",
++			bmp_cfg_db_get_int(db, cfgname, "calculator",
+ 					  &kbdcfgs[i].calculator);
+-			xmms_cfg_read_int(cfgfile, cfgname, "misc",
++			bmp_cfg_db_get_int(db, cfgname, "misc",
+ 					  &kbdcfgs[i].misc);
+ 			g_free(cfgname);
+ 		}
+-		xmms_cfg_free(cfgfile);
++		bmp_cfg_db_close(db);
+ 
+ 	}
+ }

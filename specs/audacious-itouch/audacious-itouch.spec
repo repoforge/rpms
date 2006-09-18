@@ -7,11 +7,12 @@
 Summary: iTouch keyboard control plugin for the Audacious media player
 Name: audacious-itouch
 Version: 0.1
-Release: 4
+Release: 5
 License: GPL
 Group: Applications/Multimedia
 URL: http://nedudu.hu/?page_id=11
 Source: http://nedudu.hu/downloads/audacious-itouch-%{version}.tar.bz2
+Patch0: audacious-itouch-0.1-configdb.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: audacious
 BuildRequires: audacious-devel, gettext-devel, bison
@@ -26,6 +27,7 @@ the keyboard.
 
 %prep
 %setup
+%patch0 -p1 -b .configdb
 # Workaround... but is this even correct?
 %{__cp} -a po/Makefile.in.in po/Makefile.in
 
@@ -59,6 +61,9 @@ the keyboard.
 
 
 %changelog
+* Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 0.2-5
+- Add configdb patch to make it build with the latest audacious.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.2-4
 - Release bump to drop the disttag number in FC5 build.
 
