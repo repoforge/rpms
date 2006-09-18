@@ -41,7 +41,7 @@ GStreamer is a streaming-media framework, based on graphs of filters which
 operate on media data. Applications using this library can do anything
 from real-time sound processing to playing videos, and just about anything
 else media-related.  Its plugin-based architecture means that new data
-types or processing capabilities can be added simply by installing new 
+types or processing capabilities can be added simply by installing new
 plugins.
 
 
@@ -59,7 +59,7 @@ GStreamer is a streaming-media framework, based on graphs of filters which
 operate on media data. Applications using this library can do anything
 from real-time sound processing to playing videos, and just about anything
 else media-related.  Its plugin-based architecture means that new data
-types or processing capabilities can be added simply by installing new   
+types or processing capabilities can be added simply by installing new
 plugins.
 
 This package contains the libraries and includes files necessary to develop
@@ -333,7 +333,7 @@ with different major/minor versions of GStreamer.
 - Moved files sections up close to their respective descriptions
 
 * Sat Jun 02 2001 Christian Schaller <Uraeus@linuxrising.org>
-- Split the package into separate RPMS, 
+- Split the package into separate RPMS,
   putting most plugins out by themselves.
 
 * Fri Jun 01 2001 Christian Schaller <Uraeus@linuxrising.org>

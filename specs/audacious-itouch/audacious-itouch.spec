@@ -61,17 +61,17 @@ the keyboard.
 
 
 %changelog
-* Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 0.2-5
+* Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 0.1-5
 - Add configdb patch to make it build with the latest audacious.
 
-* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.2-4
+* Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.1-4
 - Release bump to drop the disttag number in FC5 build.
 
-* Mon Feb 13 2006 Matthias Saou <http://freshrpms.net/> 0.2-3
+* Mon Feb 13 2006 Matthias Saou <http://freshrpms.net/> 0.1-3
 - Rebuild against audacious 0.2.2 since the main .so lib isn't versionned
   anymore (thus the requirement here has broke).
 
-* Mon Feb 13 2006 Matthias Saou <http://freshrpms.net/> 0.2-2
+* Mon Feb 13 2006 Matthias Saou <http://freshrpms.net/> 0.1-2
 - Rebuild against proper FC4 gtk2 to fix unexisting dependencies.
 
 * Thu Feb  9 2006 Matthias Saou <http://freshrpms.net/> 0.1-1

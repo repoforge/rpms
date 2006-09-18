@@ -4,7 +4,7 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-Summary: Packet redirection tool for interception on switched networks 
+Summary: Packet redirection tool for interception on switched networks
 Name: 4g8
 Version: 1.0
 Release: 1.2
@@ -19,10 +19,10 @@ Obsoletes: forgate
 BuildRequires: libnet >= 1.1, libpcap
 
 %description
-Forgate was written as a proof of concept in one method of capturing 
-traffic flows from a 3rd party on a switched network. Forgate uses ARP cache 
-poisoning, packet capture and packet reconstruction to perform it's task. It 
-should work with nearly all TCP, ICMP and UDP IPv4 traffic. 
+Forgate was written as a proof of concept in one method of capturing
+traffic flows from a 3rd party on a switched network. Forgate uses ARP cache
+poisoning, packet capture and packet reconstruction to perform it's task. It
+should work with nearly all TCP, ICMP and UDP IPv4 traffic.
 
 %prep
 %setup
@@ -55,4 +55,4 @@ should work with nearly all TCP, ICMP and UDP IPv4 traffic.
 - Updated to release 1.0.
 
 * Mon Jan 26 2004 Dag Wieers <dag@wieers.com> - 0.9-0.b
-- Initial package. (using DAR) 
+- Initial package. (using DAR)
