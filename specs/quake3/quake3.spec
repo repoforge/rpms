@@ -8,18 +8,19 @@
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
-%define svn 792
+%define svn 908
 
 Summary: Quake 3 Arena tournament 3D shooter game
 Name: quake3
 Version: 1.34
-Release: 0.1.rc1%{?svn:.svn%{svn}}
+Release: 0.1.rc2%{?svn:.svn%{svn}}
 Group: Amusements/Games
 License: GPL
 URL: http://www.icculus.org/quake3/
-# SVN checkout, then "make dist"
-# svn co svn://svn.icculus.org/quake3/trunk quake3
-Source0: %{name}-%{version}%{?svn:-rc1_SVN%{svn}}.tar.bz2
+# SVN checkout then "make dist"
+## svn co svn://svn.icculus.org/quake3/trunk quake3
+# svn co svn://svn.icculus.org/quake3/branches/1.34 quake3
+Source0: %{name}-%{version}-rc2.tar.bz2
 Source1: quake3.png
 Patch0: quake3-1.34-nostrip.patch
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -35,7 +36,7 @@ original CD-ROM to %{_prefix}/games/quake3/.
 
 
 %prep
-%setup -n %{name}-%{version}%{?svn:-rc1_SVN%{svn}}
+%setup -n %{name}-%{version}-rc2
 %patch0 -p1 -b .nostrip
 
 
@@ -94,6 +95,9 @@ EOF
 
 
 %changelog
+* Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 1.34-0.1.rc2.svn908
+- Update to today's svn code (rev. 908), rc2 from the 1.34 branch.
+
 * Mon May 29 2006 Matthias Saou <http://freshrpms.net/> 1.34-0.1.rc1.svn792
 - Update to today's svn code (rev. 792).
 - Update the nostrip patch.
