@@ -4,7 +4,7 @@
 Summary: Fast Assembly MPEG Encoding library
 Name: libfame
 Version: 0.9.1
-Release: 11
+Release: 12
 License: LGPL
 Group: System Environment/Libraries
 URL: http://fame.sourceforge.net/
@@ -114,6 +114,9 @@ autoreconf --force --install
 
 
 %changelog
+* Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 0.9.1-12
+- Update underquoted patch, which stopped applying cleanly for some reason.
+
 * Mon Mar 20 2006 Matthias Saou <http://freshrpms.net/> 0.9.1-11
 - Remove old libtool/m4 files to fix x86_64 FC5 linking.
 
