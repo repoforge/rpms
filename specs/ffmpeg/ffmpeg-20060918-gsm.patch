@@ -1,0 +1,24 @@
+diff -Naupr ffmpeg-20060918.orig/configure ffmpeg-20060918/configure
+--- ffmpeg-20060918.orig/configure	2006-09-17 00:07:20.000000000 +0200
++++ ffmpeg-20060918/configure	2006-09-18 17:42:59.000000000 +0200
+@@ -1281,7 +1281,7 @@ fi
+ 
+ # these are off by default, so fail if requested and not available
+ enabled dts     && require libdts dts.h dts_init -ldts
+-enabled libgsm  && require libgsm gsm.h gsm_create -lgsm
++enabled libgsm  && require libgsm gsm/gsm.h gsm_create -lgsm
+ enabled mp3lame && require LAME lame/lame.h lame_init -lmp3lame
+ enabled vorbis  && require libvorbis vorbis/vorbisenc.h vorbis_info_init -lvorbis -lvorbisenc -logg
+ enabled libogg  && require libogg ogg/ogg.h ogg_sync_init -logg
+diff -Naupr ffmpeg-20060918.orig/libavcodec/libgsm.c ffmpeg-20060918/libavcodec/libgsm.c
+--- ffmpeg-20060918.orig/libavcodec/libgsm.c	2006-01-12 23:43:26.000000000 +0100
++++ ffmpeg-20060918/libavcodec/libgsm.c	2006-09-18 17:42:48.000000000 +0200
+@@ -23,7 +23,7 @@
+  */
+ 
+ #include "avcodec.h"
+-#include <gsm.h>
++#include <gsm/gsm.h>
+ 
+ // gsm.h miss some essential constants
+ #define GSM_BLOCK_SIZE 33

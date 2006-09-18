@@ -8,7 +8,7 @@
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
-%define date 20060731
+%define date 20060917
 
 Summary: Library for encoding and decoding H264/AVC video streams
 Name: x264
@@ -129,6 +129,9 @@ H264/AVC video streams using the x264 graphical utility.
 
 
 %changelog
+* Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 0.0.0-0.2.20060731
+- Update to 20060917 snapshot.
+
 * Tue Aug  1 2006 Matthias Saou <http://freshrpms.net/> 0.0.0-0.2.20060731
 - Update to 20060731 snapshot.
 - Require the main package from the devel since we have a shared lib now.

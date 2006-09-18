@@ -18,36 +18,35 @@
 %{?el2:%define _without_vorbis 1}
 %{?el2:%define _without_x264 1}
 
-%define date   20060317
-#define prever pre1
+%define date   20060918
 
 Summary: Record, convert and stream audio and video
 Name: ffmpeg
 Version: 0.4.9
-Release: 0.5%{?date:.%{date}}%{?prever:.%{prever}}
+Release: 0.6%{?date:.%{date}}
 License: GPL
 Group: System Environment/Libraries
 URL: http://ffmpeg.sourceforge.net/
 %if 0%{!?date:1}
-Source: http://dl.sf.net/ffmpeg/ffmpeg-%{version}%{?prever:-%{prever}}.tar.gz
+Source: http://dl.sf.net/ffmpeg/ffmpeg-%{version}.tar.gz
 %else
-# cvs -z9 -d:pserver:anonymous@mplayerhq.hu:/cvsroot/ffmpeg co ffmpeg
+# svn checkout svn://svn.mplayerhq.hu/ffmpeg/trunk ffmpeg
 # then rename the directory and compress
 Source: ffmpeg-%{date}.tar.bz2
 %endif
-Patch0: ffmpeg-0.4.9-20051207-a52link.patch
-Patch1: ffmpeg-0.4.9-20051207-gsm.patch
+Patch0: ffmpeg-20060918-gsm.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel
 BuildRequires: texi2html
 %{!?_without_lame:BuildRequires: lame-devel}
 %{!?_without_vorbis:BuildRequires: libogg-devel, libvorbis-devel}
-%{!?_without_theora:BuildRequires: libogg-devel, libtheora-devel}
+#{!?_without_theora:BuildRequires: libogg-devel, libtheora-devel}
 %{!?_without_faad:BuildRequires: faad2-devel}
 %{!?_without_faac:BuildRequires: faac-devel}
 %{!?_without_gsm:BuildRequires: gsm-devel}
 %{!?_without_xvid:BuildRequires: xvidcore-devel}
 %{!?_without_x264:BuildRequires: x264-devel}
+%{!?_without_a52dec:Requires: a52dec}
 %{!?_without_a52dec:BuildRequires: a52dec-devel}
 %{!?_without_dts:BuildRequires: libdca-devel}
 %{?_with_dc1394:BuildRequires: libdc1394-devel}
@@ -62,7 +61,7 @@ from any sample rate to any other, and resize video on the fly with a high
 quality polyphase filter.
 
 Available rpmbuild rebuild options :
---without : lame vorbis theora faad faac gsm xvid x264 a52dec dts altivec
+--without : lame vorbis faad faac gsm xvid x264 a52dec dts altivec
 --with    : dc1394
 
 
@@ -73,7 +72,7 @@ Requires: %{name} = %{version}
 Requires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel, pkgconfig
 %{!?_without_lame:Requires: lame-devel}
 %{!?_without_vorbis:Requires: libogg-devel, libvorbis-devel}
-%{!?_without_theora:Requires: libogg-devel, libtheora-devel}
+#{!?_without_theora:Requires: libogg-devel, libtheora-devel}
 %{!?_without_faad:Requires: faad2-devel}
 %{!?_without_faac:Requires: faac-devel}
 %{!?_without_gsm:Requires: gsm-devel}
@@ -115,9 +114,8 @@ to use MPlayer, transcode or other similar programs.
 
 
 %prep
-%setup -n %{?date:ffmpeg-%{date}}%{!?date:%{name}-%{version}%{?prever:-%{prever}}}
-%patch0 -p1 -b .a52link
-%patch1 -p1 -b .gsm
+%setup -n ffmpeg-%{?date}%{!?date:%{version}}
+%patch0 -p1 -b .gsm
 
 
 %build
@@ -132,7 +130,6 @@ export CFLAGS="%{optflags}"
 %endif
     %{!?_without_lame:   --enable-mp3lame} \
     %{!?_without_vorbis: --enable-libogg --enable-vorbis} \
-    %{!?_without_theora: --enable-theora} \
     %{!?_without_faad:   --enable-faad} \
     %{!?_without_faac:   --enable-faac} \
     %{!?_without_gsm:    --enable-libgsm} \
@@ -153,20 +150,18 @@ export CFLAGS="%{optflags}"
 %install
 %{__rm} -rf %{buildroot} _docs
 %makeinstall \
-    incdir=%{buildroot}%{_includedir}/ffmpeg
-
-# Make installlib is broken in 0.4.6-8 (20050502 too), so we do it by hand
-# in order to get the static libraries installed too.
-%{__install} -m 0644 libav*/libav*.a %{buildroot}%{_libdir}/
+    incdir=%{buildroot}%{_includedir}/ffmpeg \
+    shlibdir=%{buildroot}%{_libdir} \
+    libdir=%{buildroot}%{_libdir}
 
 # Remove unwanted files from the included docs
 %{__cp} -a doc _docs
-%{__rm} -rf _docs/{CVS,Makefile,*.1,*.texi,*.pl}
+%{__rm} -rf _docs/{Makefile,*.texi,*.pl}
 
 # The <postproc/postprocess.h> is now at <ffmpeg/postprocess.h>, so provide
-# a compatibility copy
+# a compatibility symlink
 %{__mkdir_p} %{buildroot}%{_includedir}/postproc/
-%{__cp} -a   %{buildroot}%{_includedir}/ffmpeg/postprocess.h \
+%{__ln_s}    ../ffmpeg/postprocess.h \
              %{buildroot}%{_includedir}/postproc/postprocess.h
 
 
@@ -180,6 +175,7 @@ chcon -t textrel_shlib_t %{_libdir}/libav{codec,format,util}.so.*.*.* \
     &>/dev/null || :
 
 %postun -p /sbin/ldconfig
+
 
 %post libpostproc -p /sbin/ldconfig
 
@@ -212,6 +208,14 @@ chcon -t textrel_shlib_t %{_libdir}/libav{codec,format,util}.so.*.*.* \
 
 
 %changelog
+* Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 0.4.9-0.5.20060918
+- Update to today's SVN codebase.
+- Remove theora support, it seems to be gone...
+- Remove a52 patch as ffmpeg doesn't link against it anyway.
+- Make installlib works again, so don't manually install anymore.
+- Remove all prever stuff that hasn't been useful in ages.
+- Change postproc/postprocess.h to be a symlink.
+
 * Fri May 12 2006 Matthias Saou <http://freshrpms.net/> 0.4.9-0.5.20060317
 - Change selinux library context in %%post to allow text relocation.
 
