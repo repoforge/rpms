@@ -5,6 +5,7 @@
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{!?dist:%define _with_modxorg 1}
+%{?fc6:%define _with_modxorg 1}
 %{?fc5:%define _with_modxorg 1}
 
 %define desktop_vendor rpmforge
@@ -21,7 +22,7 @@ URL: http://glame.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): info
 Requires(preun): info
-BuildRequires: gcc-c++, libgnomeui-devel, libglade-devel, guile-devel
+BuildRequires: gcc-c++, libgnomeui-devel, guile-devel
 BuildRequires: libgnomecanvas-devel, gtk2-devel >= 2.6.0
 BuildRequires: fftw-devel, audiofile-devel, esound-devel
 BuildRequires: lame-devel, libmad-devel, libvorbis-devel, ladspa-devel
@@ -58,7 +59,8 @@ libraries.
 
 %build
 %configure
-%{__make} %{?_smp_mflags}
+%{__make}
+# %{?_smp_mflags}
 
 
 %install
@@ -129,6 +131,9 @@ fi
 
 
 %changelog
+* Thu Jun 15 2006 Matthias Saou <http://freshrpms.net/> 2.0.1-3
+- Remove old leftover libglade-devel build requirement.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 2.0.1-3
 - Release bump to drop the disttag number in FC5 build.
 

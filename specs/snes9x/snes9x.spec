@@ -5,6 +5,7 @@
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{!?dist:%define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
 #define prever -WIP1

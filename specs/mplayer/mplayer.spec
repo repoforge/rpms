@@ -57,7 +57,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.29%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.30%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -87,7 +87,7 @@ Requires: mplayer-fonts
 BuildRequires: gtk2-devel, SDL-devel
 BuildRequires: libpng-devel, libjpeg-devel, libungif-devel
 BuildRequires: lame-devel, libmad-devel, flac-devel
-BuildRequires: libmatroska-devel, gcc-c++
+BuildRequires: libmatroska-devel
 BuildRequires: ImageMagick
 %{?_with_dvdread:BuildRequires: libdvdread-devel}
 %{!?_without_dvb:BuildRequires: kernel = %{kversion}, kernel-devel = %{kversion}}
@@ -113,7 +113,8 @@ BuildRequires: ImageMagick
 %{!?_without_amrnb:BuildRequires: amrnb-devel}
 %{!?_without_samba:BuildRequires: samba-common}
 %{!?_without_speex:BuildRequires: speex-devel}
-%{?_with_modxorg:BuildRequires: libXv-devel, libXxf86vm-devel, libGL-devel}
+%{!?_without_nas:BuildRequires: nas-devel}
+%{?_with_modxorg:BuildRequires: libXv-devel, libXxf86vm-devel, libGL-devel, libXt-devel}
 %{!?_with_modxorg:%{!?_without_xvmc:BuildRequires: libXvMCW-devel}}
 %{?_with_modxorg:%{!?_without_xvmc:BuildRequires: libXvMC-devel}}
 
@@ -309,6 +310,10 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Mon Sep  4 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.30.pre8
+- Add nas support by default.
+- Add libXt-devel build requirement if modxorg since the nas check requires it.
+
 * Mon Jul 31 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.29.pre8
 - Update Blue skin to 1.6.
 - Update live library to 2006.07.04.

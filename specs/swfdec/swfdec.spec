@@ -5,10 +5,13 @@
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{!?dist: %define _without_gstreamer 1}
+%{?fc6:   %define _without_gstreamer 1}
 %{?fc5:   %define _without_gstreamer 1}
 %{!?dist: %define _with_modxorg 1}
+%{?fc6:   %define _with_modxorg 1}
 %{?fc5:   %define _with_modxorg 1}
 %{!?dist: %define gimp_plugin 1}
+%{?fc6:   %define gimp_plugin 1}
 %{?fc5:   %define gimp_plugin 1}
 %{?el4:   %define gimp_plugin 1}
 %{?fc4:   %define gimp_plugin 1}
@@ -16,6 +19,7 @@
 %{?fc2:   %define gimp_plugin 1}
 %{?yd4:   %define gimp_plugin 1}
 %{!?dist: %define _without_mozilla 1}
+%{?fc6:   %define _without_mozilla 1}
 %{?fc5:   %define _without_mozilla 1}
 %{?fc1:   %define _without_mozilla 1}
 %{?el3:   %define _without_mozilla 1}

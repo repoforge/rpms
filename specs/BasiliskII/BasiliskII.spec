@@ -10,12 +10,14 @@
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{!?dist:%define _with_banks 1}
+%{?fc6:  %define _with_banks 1}
 %{?fc5:  %define _with_banks 1}
 %{?fc4:  %define _with_banks 1}
 %{?el4:  %define _with_banks 1}
 %{?fc3:  %define _with_banks 1}
 
 %{!?dist:%define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
 Summary: 68k Macintosh emulator

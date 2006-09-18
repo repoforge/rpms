@@ -50,7 +50,8 @@ Development files required for compiling BMPx media player plugins.
     --enable-hal \
     --enable-mp4v2 \
     --enable-sid
-%{__make} %{?_smp_mflags}
+# Remove %{?_smp_mflags} as the build takes up 2GB RAM with -j4 (Dual HT)
+%{__make}
 
 
 %install

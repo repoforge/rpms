@@ -8,6 +8,7 @@
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{!?dist:%define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
 %{?fc1:%define _without_alsa 1}
