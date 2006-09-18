@@ -5,9 +5,10 @@
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{!?dist:%define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
-%define prever cvs4
+%define prever cvs6
 
 Summary: TV viewer for GNOME
 Name: zapping
@@ -82,6 +83,9 @@ scrollkeeper-update -q || :
 
 
 %changelog
+* Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 0.10-0.3.cvs6
+- Update to 0.10cvs6.
+
 * Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 0.10-0.3.cvs4
 - Add missing modular X build requirements.
 - Re-enable rte on all archs since it builds on x86_64 and ppc again.
