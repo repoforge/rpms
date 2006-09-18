@@ -10,7 +10,7 @@
 %define perl_sitelib    %(eval "`perl -V:installsitelib`"; echo $installsitelib)
 
 Summary: Graphical DVD ripping and encoding tool based on transcode
-Name: perl-Video-DVDRip
+Name: dvdrip
 Version: 0.98.1
 Release: 1
 License: Artistic or GPL
@@ -27,7 +27,7 @@ BuildRequires: perl(Gtk2) >= 1.081, perl(Gtk2::Ex::FormFactory) >= 0.65
 BuildRequires: perl(Locale::TextDomain) >= 1.16, perl(Event::ExecFlow) >= 0.62
 BuildRequires: perl(Event::RPC)
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-Provides: dvdrip = %{version}-%{release}
+Obsoletes: perl-Video-DVDRip <= 0.98.1-2
 
 %description
 dvd::rip is a full featured DVD copy program. It provides an easy to use but
@@ -37,7 +37,7 @@ transcode and many other Open Source tools.
 
 
 %prep
-%setup -n dvdrip-%{version}
+%setup
 %patch0 -p1 -b .nontplworkaround
 
 
@@ -110,6 +110,10 @@ EOF
 
 
 %changelog
+* Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 0.98.1-1
+- Rename to dvdrip, like upstream did.
+- Obsolete up to last know version of perl-Video-DVDRip (<= 0.98.1-2).
+
 * Mon Aug 28 2006 Matthias Saou <http://freshrpms.net/> 0.98.1-1
 - Update to 0.98.1.
 
