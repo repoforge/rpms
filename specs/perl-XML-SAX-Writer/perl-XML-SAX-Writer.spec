@@ -9,13 +9,13 @@
 
 Summary: SAX2 XML Writer
 Name: perl-XML-SAX-Writer
-Version: 0.44
-Release: 1.2
+Version: 0.50
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-SAX-Writer/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RB/RBERJON/XML-SAX-Writer-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DA/DAHUT/XML-SAX-Writer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -47,6 +47,9 @@ SAX2 XML Writer.
 %{perl_vendorlib}/XML/SAX/Writer
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.50-1
+- Updated to release 0.50.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.44-1.2
 - Rebuild for Fedora Core 5.
 

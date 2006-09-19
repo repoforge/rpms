@@ -11,7 +11,7 @@
 
 Summary: Ngram analysis of text
 Name: perl-Text-Ngram
-Version: 0.09
+Version: 0.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,6 +48,9 @@ Ngram analysis of text.
 %{perl_vendorarch}/auto/Text/Ngram/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1
+- Updated to release 0.10.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1
 - Updated to release 0.09.
 

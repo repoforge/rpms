@@ -8,8 +8,8 @@
 
 Summary: Implementation of an Rsync client
 Name: perl-File-RsyncP
-Version: 0.52
-Release: 1.2
+Version: 0.64
+Release: 1
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-RsyncP/
@@ -54,6 +54,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorarch}/*
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.64-1
+- Updated to release 0.64.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.52-1.2
 - Rebuild for Fedora Core 5.
 

@@ -10,8 +10,8 @@
 
 Summary: Perl extension for Berkeley DB version 2, 3 or 4
 Name: perl-BerkeleyDB
-Version: 0.27
-Release: 1.2
+Version: 0.30
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/BerkeleyDB/
@@ -57,6 +57,9 @@ FLAGS="%{optflags}" %{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTAL
 %{perl_vendorarch}/auto/BerkeleyDB/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.30-1
+- Updated to release 0.30.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.27-1.2
 - Rebuild for Fedora Core 5.
 

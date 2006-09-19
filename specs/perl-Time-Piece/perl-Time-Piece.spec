@@ -9,7 +9,7 @@
 
 Summary: Object Oriented time objects
 Name: perl-Time-Piece
-Version: 1.09
+Version: 1.11
 Release: 1
 Epoch: 1
 License: Artistic
@@ -52,6 +52,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Time/Piece/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1
+- Updated to release 1.11.
+
 * Tue Aug 22 2006 Dag Wieers <dag@wieers.com> - 1:1.09-1
 - Revert back to non-developer release 1.09. (Aaron Scamehorn)
 

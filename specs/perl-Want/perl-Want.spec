@@ -9,7 +9,7 @@
 
 Summary: Implement the 'want' command
 Name: perl-Want
-Version: 0.10
+Version: 0.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,6 +48,9 @@ how its return value is going to be immediately used.
 %{perl_vendorarch}/auto/Want
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1
+- Updated to release 0.12.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Updated to release 0.10.
 

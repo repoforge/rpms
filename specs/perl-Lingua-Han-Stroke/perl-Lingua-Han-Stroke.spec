@@ -9,8 +9,8 @@
 
 Summary: Retrieve the stroke count of a Chinese character
 Name: perl-Lingua-Han-Stroke
-Version: 0.03
-Release: 1.2
+Version: 0.05
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-Han-Stroke/
@@ -47,6 +47,9 @@ Retrieve the stroke count of a Chinese character.
 %{perl_vendorlib}/Lingua/Han/Stroke/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1
+- Updated to release 0.05.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1.2
 - Rebuild for Fedora Core 5.
 

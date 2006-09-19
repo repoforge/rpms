@@ -10,8 +10,8 @@
 
 Summary: Digest-SHA1 Perl module
 Name: perl-Digest-SHA1
-Version: 2.10
-Release: 1.2
+Version: 2.11
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-SHA1/
@@ -62,6 +62,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Digest/SHA1/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 2.11-1
+- Updated to release 2.11.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.10-1.2
 - Rebuild for Fedora Core 5.
 

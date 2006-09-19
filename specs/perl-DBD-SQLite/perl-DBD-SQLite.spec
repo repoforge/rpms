@@ -9,7 +9,7 @@
 
 Summary: Small fast embedded SQL database engine
 Name: perl-DBD-SQLite
-Version: 1.12
+Version: 1.13
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ then DBD::SQLite may be just what you need.
 %{perl_vendorarch}/auto/DBD/SQLite
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.13-1
+- Updated to release 1.13.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.12-1
 - Updated to release 1.12.
 

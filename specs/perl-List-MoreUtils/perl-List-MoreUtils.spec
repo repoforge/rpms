@@ -9,13 +9,13 @@
 
 Summary: Additions to List::Util
 Name: perl-List-MoreUtils
-Version: 0.19
+Version: 0.22
 Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/List-MoreUtils/
 
-Source: http://www.cpan.org/modules/by-module/List/List-MoreUtils-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/V/VP/VPARSEVAL/List-MoreUtils-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -52,6 +52,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/List/MoreUtils/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.22-1
+- Updated to release 0.22.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.19-1
 - Updated to release 0.19.
 

@@ -9,7 +9,7 @@
 
 Summary: Interface to pseudo Tty
 Name: perl-IO-Tty
-Version: 1.04
+Version: 1.07
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/IO/Tty/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.07-1
+- Updated to release 1.07.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.04-1
 - Updated to release 1.04.
 

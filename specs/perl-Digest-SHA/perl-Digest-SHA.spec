@@ -8,8 +8,8 @@
 
 Summary: Digest-SHA Perl module
 Name: perl-Digest-SHA
-Version: 5.32
-Release: 1.2
+Version: 5.43
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-SHA/
@@ -52,6 +52,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Digest/SHA/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 5.43-1
+- Updated to release 5.43.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 5.32-1.2
 - Rebuild for Fedora Core 5.
 

@@ -9,8 +9,8 @@
 
 Summary: Extension for access to cdb databases
 Name: perl-CDB_File
-Version: 0.94
-Release: 1.2
+Version: 0.95
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CDB_File/
@@ -48,6 +48,9 @@ cdb package.
 %{perl_vendorarch}/bun-x.pl
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.95-1
+- Updated to release 0.95.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.94-1.2
 - Rebuild for Fedora Core 5.
 

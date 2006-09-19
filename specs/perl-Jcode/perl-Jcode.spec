@@ -8,7 +8,7 @@
 
 Summary: Jcode (Japanese Charset Handler) module for perl
 Name: perl-Jcode
-Version: 2.05
+Version: 2.06
 Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
@@ -48,6 +48,9 @@ Jcode (Japanese Charset Handler) module for perl.
 %{perl_vendorlib}/Jcode/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 2.06-1
+- Updated to release 2.06.
+
 * Mon May 29 2006 Dag Wieers <dag@wieers.com> - 2.05-1
 - Updated to release 2.05.
 
