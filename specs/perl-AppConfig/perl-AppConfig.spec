@@ -10,8 +10,8 @@
 
 Summary: Module for reading configuration files and parsing command line args
 Name: perl-AppConfig
-Version: 1.56
-Release: 2.2
+Version: 1.63
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AppConfig/
@@ -65,6 +65,9 @@ accessible through the AppConfig.pm module.
 %{perl_vendorlib}/AppConfig/*
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.63-1
+- Updated to release 1.63.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.56-2.2
 - Rebuild for Fedora Core 5.
 

@@ -9,7 +9,7 @@
 
 Summary: Get the list of modules shipped with versions of perl
 Name: perl-Module-CoreList
-Version: 2.04
+Version: 2.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ This module gets the list of modules shipped with versions of perl.
 %{perl_vendorlib}/Module/CoreList.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 2.08-1
+- Updated to release 2.08.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.04-1
 - Updated to release 2.04.
 

@@ -9,7 +9,7 @@
 
 Summary: Parse and manipulate perl code non-destructively
 Name: perl-PPI
-Version: 1.114
+Version: 1.117
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl, perl-File-Slurp
 BuildRequires: perl-List-MoreUtils, perl-Clone, perl-Class-Autouse
-BuildRequires: perl-Test-ClassAPI, perl-Storable, perl-Params-Util
+BuildRequires: perl-Test-ClassAPI, perl(Storable), perl-Params-Util
 BuildRequires: perl-IO-stringy
 #perl(List::Util) > 1.18
 
@@ -67,6 +67,9 @@ echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}
 %{perl_vendorlib}/PPI/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.117-1
+- Updated to release 1.117.
+
 * Thu Jun 01 2006 Dries Verachtert <dries@ulyssis.org> - 1.114-1
 - Updated to release 1.114.
 

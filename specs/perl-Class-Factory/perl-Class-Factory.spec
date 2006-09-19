@@ -9,13 +9,13 @@
 
 Summary: Base class for dynamic factory classes
 Name: perl-Class-Factory
-Version: 1.03
-Release: 1.2
+Version: 1.04
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Factory/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CW/CWINTERS/Class-Factory-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/P/PH/PHRED/Class-Factory-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -46,6 +46,9 @@ A base class for dynamic factory classes.
 %{perl_vendorlib}/Class/Factory.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.04-1
+- Updated to release 1.04.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.03-1.2
 - Rebuild for Fedora Core 5.
 

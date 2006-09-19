@@ -9,8 +9,8 @@
 
 Summary: Lightweight, universal exporting of variables
 Name: perl-UNIVERSAL-exports
-Version: 0.03
-Release: 1.2
+Version: 0.05
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/UNIVERSAL-exports/
@@ -44,9 +44,12 @@ Lightweight, universal exporting of variables.
 %doc Changes
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/UNIVERSAL/exports.pm
-%{perl_vendorlib}/UNIVERSAL/require.pm
+#%{perl_vendorlib}/UNIVERSAL/require.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1
+- Updated to release 0.05.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1.2
 - Rebuild for Fedora Core 5.
 

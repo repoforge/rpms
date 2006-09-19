@@ -8,8 +8,8 @@
 
 Summary: Exception-Class module for perl
 Name: perl-Exception-Class
-Version: 1.22
-Release: 1.2
+Version: 1.23
+Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Exception-Class/
@@ -51,6 +51,9 @@ default base class for all other exceptions.
 %{perl_vendorlib}/Exception/Class.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.23-1
+- Updated to release 1.23.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.22-1.2
 - Rebuild for Fedora Core 5.
 

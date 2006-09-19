@@ -11,7 +11,7 @@
 
 Summary: Portable multitasking and networking framework for Perl
 Name: perl-POE
-Version: 0.34
+Version: 0.37
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ framework for Perl.
 %{perl_vendorlib}/POE.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.37-1
+- Updated to release 0.37.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.34-1
 - Updated to release 0.34.
 
