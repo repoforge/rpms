@@ -9,8 +9,8 @@
 
 Summary: Combinatorial counting operations
 Name: perl-Math-Counting
-Version: 0.05
-Release: 1.2
+Version: 0.06
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Counting/
@@ -46,6 +46,9 @@ This module contains functions for combinatorial counting operations.
 %{perl_vendorlib}/Math/Counting.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1
+- Updated to release 0.06.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1.2
 - Rebuild for Fedora Core 5.
 

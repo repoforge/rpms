@@ -9,8 +9,8 @@
 
 Summary: Read/write Apache like configuration files
 Name: perl-Apache-Admin-Config
-Version: 0.92
-Release: 1.2
+Version: 0.94
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-Admin-Config/
@@ -51,6 +51,9 @@ manage htaccess files.
 %{perl_vendorlib}/Apache/Admin/Config.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.94-1
+- Updated to release 0.94.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.92-1.2
 - Rebuild for Fedora Core 5.
 

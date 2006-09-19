@@ -9,8 +9,8 @@
 
 Summary: Simple interface to Locale::Maketext::Lexicon
 Name: perl-Locale-Maketext-Simple
-Version: 0.12
-Release: 1.2
+Version: 0.18
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Locale-Maketext-Simple/
@@ -51,6 +51,9 @@ Simple interface to Locale::Maketext::Lexicon.
 %{perl_vendorlib}/Locale/Maketext/Simple.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.18-1
+- Updated to release 0.18.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1.2
 - Rebuild for Fedora Core 5.
 

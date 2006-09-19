@@ -11,7 +11,7 @@
 
 Summary: Installer for perl modules
 Name: perl-Module-Install
-Version: 0.62
+Version: 0.64
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -62,6 +62,9 @@ descendent of CPAN::MakeMaker.
 %{perl_vendorlib}/inc/Module/Install.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.64-1
+- Updated to release 0.64.
+
 * Mon May 29 2006 Dag Wieers <dag@wieers.com> - 0.62-1
 - Updated to release 0.62.
 

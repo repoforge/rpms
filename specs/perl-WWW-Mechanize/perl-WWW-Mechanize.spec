@@ -9,7 +9,7 @@
 
 Summary: Web browsing in a Perl object
 Name: perl-WWW-Mechanize
-Version: 1.18
+Version: 1.20
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ echo y | %{__perl} Makefile.PL --nolive INSTALLDIRS="vendor" PREFIX="%{buildroot
 %{perl_vendorlib}/WWW/Mechanize/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.20-1
+- Updated to release 1.20.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.18-1
 - Updated to release 1.18.
 

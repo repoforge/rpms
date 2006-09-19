@@ -9,8 +9,8 @@
 
 Summary: DateTime calculation utilities
 Name: perl-DateTime-Util-Calc
-Version: 0.10
-Release: 1.2
+Version: 0.11
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Util-Calc/
@@ -52,6 +52,9 @@ A perl module with additional DateTime calculation utilities.
 %{perl_vendorlib}/DateTime/Util/Calc.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.11-1
+- Updated to release 0.11.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1.2
 - Rebuild for Fedora Core 5.
 

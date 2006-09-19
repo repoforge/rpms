@@ -8,8 +8,8 @@
 
 Summary: Crypt-DSA module for perl
 Name: perl-Crypt-DSA
-Version: 0.13
-Release: 1.2
+Version: 0.14
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-DSA/
@@ -51,6 +51,9 @@ Crypt-DSA module for perl
 %{perl_vendorlib}/Crypt/DSA/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1
+- Updated to release 0.14.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.13-1.2
 - Rebuild for Fedora Core 5.
 

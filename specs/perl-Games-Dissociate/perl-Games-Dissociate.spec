@@ -9,7 +9,7 @@
 
 Summary: Dissociated Press algorithm and filter
 Name: perl-Games-Dissociate
-Version: 0.16
+Version: 0.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,6 +49,9 @@ Emacs's 'dissociate.el', but is instead merely inspired by it.
 %{perl_vendorlib}/Games/Dissociate.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.18-1
+- Updated to release 0.18.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1
 - Updated to release 0.16.
 

@@ -9,8 +9,8 @@
 
 Summary: Set of classes for core data, message and XML handling
 Name: perl-RPC-XML
-Version: 0.58
-Release: 1.2
+Version: 0.59
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RPC-XML/
@@ -61,6 +61,9 @@ are used by them.
 %{perl_vendorlib}/auto/RPC/XML/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.59-1
+- Updated to release 0.59.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.58-1.2
 - Rebuild for Fedora Core 5.
 

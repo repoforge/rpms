@@ -9,7 +9,7 @@
 
 Summary: Downloads orbital elements from the Space Track web site
 Name: perl-Astro-SpaceTrack
-Version: 0.018
+Version: 0.024
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ TO THIRD PARTIES WITHOUT PRIOR PERMISSION.
 %{perl_vendorlib}/Astro/SpaceTrack/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.024-1
+- Updated to release 0.024.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.018-1
 - Updated to release 0.018.
 

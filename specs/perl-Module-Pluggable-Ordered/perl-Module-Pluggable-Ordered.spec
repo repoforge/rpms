@@ -9,8 +9,8 @@
 
 Summary: Call module plugins in a specified order
 Name: perl-Module-Pluggable-Ordered
-Version: 1.4
-Release: 1.2
+Version: 1.5
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Pluggable-Ordered/
@@ -49,6 +49,9 @@ name of a method, and some parameters.
 %{perl_vendorlib}/Module/Pluggable/Ordered.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.5-1
+- Updated to release 1.5.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1.2
 - Rebuild for Fedora Core 5.
 

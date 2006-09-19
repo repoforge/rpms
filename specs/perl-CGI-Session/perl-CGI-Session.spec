@@ -9,7 +9,7 @@
 
 Summary: Persistent session data in CGI applications
 Name: perl-CGI-Session
-Version: 4.13
+Version: 4.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ accross HTTP requests. CGI::Session does that and many more.
 %{perl_vendorlib}/CGI/Session
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 4.14-1
+- Updated to release 4.14.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 4.13-1
 - Updated to release 4.13.
 

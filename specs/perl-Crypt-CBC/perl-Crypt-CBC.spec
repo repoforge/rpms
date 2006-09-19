@@ -9,7 +9,7 @@
 
 Summary: Encrypt Data with Cipher Block Chaining Mode
 Name: perl-Crypt-CBC
-Version: 2.17
+Version: 2.19
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ compatible with the encryption format used by B<SSLeay>.
 %{perl_vendorlib}/Crypt/CBC.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 2.19-1
+- Updated to release 2.19.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.17-1
 - Updated to release 2.17.
 

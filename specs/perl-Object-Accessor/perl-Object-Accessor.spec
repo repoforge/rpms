@@ -9,8 +9,8 @@
 
 Summary: Interface to create per object accessors
 Name: perl-Object-Accessor
-Version: 0.12
-Release: 1.2
+Version: 0.21
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Object-Accessor/
@@ -49,6 +49,9 @@ Class::Accessor> provides.
 %{perl_vendorlib}/Object/Accessor.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.21-1
+- Updated to release 0.21.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1.2
 - Rebuild for Fedora Core 5.
 

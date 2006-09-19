@@ -9,8 +9,8 @@
 
 Summary: Generate world unique message-ids
 Name: perl-Email-MessageID
-Version: 1.31
-Release: 1.2
+Version: 1.35
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-MessageID/
@@ -54,6 +54,9 @@ module generates world unique message-ids.
 %{perl_vendorlib}/Email/MessageID.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.35-1
+- Updated to release 1.35.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.31-1.2
 - Rebuild for Fedora Core 5.
 

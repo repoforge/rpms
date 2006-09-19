@@ -9,7 +9,7 @@
 
 Summary: Run-time class loading on first method call
 Name: perl-Class-Autouse
-Version: 1.26
+Version: 1.27
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ echo n | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefi
 %{perl_vendorlib}/Class/Autouse/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.27-1
+- Updated to release 1.27.
+
 * Thu Jun 01 2006 Dries Verachtert <dries@ulyssis.org> - 1.26-1
 - Updated to release 1.26.
 

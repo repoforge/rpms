@@ -9,7 +9,7 @@
 
 Summary: Param checking functions
 Name: perl-Params-Util
-Version: 0.14
+Version: 0.19
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,6 +47,9 @@ Simple standalone param-checking functions.
 %{perl_vendorlib}/Params/Util.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.19-1
+- Updated to release 0.19.
+
 * Thu Jun 01 2006 Dag Wieers <dag@wieers.com> - 0.14-1
 - Updated to release 0.14.
 

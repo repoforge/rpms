@@ -12,7 +12,7 @@
 
 Summary: Expect for perl
 Name: perl-Expect
-Version: 1.17
+Version: 1.20
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ This module contains a version of expect written in perl.
 %{perl_vendorlib}/Expect.pod
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.20-1
+- Updated to release 1.20.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.17-1
 - Updated to release 1.17.
 

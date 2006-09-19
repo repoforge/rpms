@@ -9,8 +9,8 @@
 
 Summary: Human-readable unit-aware calculator
 Name: perl-Math-Calc-Units
-Version: 1.05
-Release: 1.2
+Version: 1.06
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Calc-Units/
@@ -48,6 +48,9 @@ Human-readable unit-aware calculator.
 %{perl_vendorlib}/Math/Calc/Units
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.06-1
+- Updated to release 1.06.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.05-1.2
 - Rebuild for Fedora Core 5.
 

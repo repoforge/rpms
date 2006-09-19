@@ -9,8 +9,8 @@
 
 Summary: Finding and running system commands made easy
 Name: perl-IPC-Cmd
-Version: 0.24
-Release: 1.2
+Version: 0.25
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPC-Cmd/
@@ -49,6 +49,9 @@ also has an option to capture output/error buffers.
 %{perl_vendorlib}/IPC/Cmd.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.25-1
+- Updated to release 0.25.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.24-1.2
 - Rebuild for Fedora Core 5.
 

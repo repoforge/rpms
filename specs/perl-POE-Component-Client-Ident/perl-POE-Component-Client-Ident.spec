@@ -9,7 +9,7 @@
 
 Summary: Non-blocking Ident
 Name: perl-POE-Component-Client-Ident
-Version: 1.01
+Version: 1.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ protocol remote username lookups.
 %{perl_vendorlib}/POE/Filter/Ident.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.02-1
+- Updated to release 1.02.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Updated to release 1.01.
 

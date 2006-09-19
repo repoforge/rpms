@@ -9,7 +9,7 @@
 
 Summary: Apparently run a function in a higher stack frame
 Name: perl-Sub-Uplevel
-Version: 0.12
+Version: 0.13
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,6 +46,9 @@ Apparently run a function in a higher stack frame.
 %{perl_vendorlib}/Sub/Uplevel.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.13-1
+- Updated to release 0.13.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Updated to release 0.12.
 

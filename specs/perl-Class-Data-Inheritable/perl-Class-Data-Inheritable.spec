@@ -8,8 +8,8 @@
 
 Summary: Class-Data-Inheritable module for perl
 Name: perl-Class-Data-Inheritable
-Version: 0.04
-Release: 1.2
+Version: 0.05
+Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Data-Inheritable/
@@ -49,6 +49,9 @@ Class-Data-Inheritable module for perl
 %dir %{perl_vendorlib}/Class/Data/Inheritable.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1
+- Updated to release 0.05.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
 - Rebuild for Fedora Core 5.
 

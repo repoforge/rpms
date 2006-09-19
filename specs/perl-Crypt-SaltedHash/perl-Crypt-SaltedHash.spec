@@ -9,7 +9,7 @@
 
 Summary: Assists in working with salted hashes
 Name: perl-Crypt-SaltedHash
-Version: 0.04
+Version: 0.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,6 +46,9 @@ Perl interface to functions that assist in working with salted hashes.
 %{perl_vendorlib}/Crypt/SaltedHash.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1
+- Updated to release 0.05.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Updated to release 0.04.
 

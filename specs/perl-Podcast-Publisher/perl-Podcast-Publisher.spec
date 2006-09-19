@@ -9,7 +9,7 @@
 
 Summary: Manages RSS files and podcasts
 Name: perl-Podcast-Publisher
-Version: 0.45
+Version: 0.50
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,6 +46,9 @@ With this module, you can manage rss feeds and podcasts.
 %{perl_vendorlib}/Podcast/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.50-1
+- Updated to release 0.50.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.45-1
 - Updated to release 0.45.
 

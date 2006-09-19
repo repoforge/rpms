@@ -9,8 +9,8 @@
 
 Summary: Tie-able array that allows only unique values
 Name: perl-Array-Unique
-Version: 0.06
-Release: 1.2
+Version: 0.07
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Array-Unique/
@@ -59,6 +59,9 @@ array.
 %{perl_vendorlib}/Array/Unique.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1
+- Updated to release 0.07.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1.2
 - Rebuild for Fedora Core 5.
 

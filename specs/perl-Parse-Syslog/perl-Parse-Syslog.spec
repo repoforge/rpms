@@ -8,8 +8,8 @@
 
 Summary: Parse Unix syslog files
 Name: perl-Parse-Syslog
-Version: 1.03
-Release: 1.2
+Version: 1.09
+Release: 1
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Parse-Syslog/
@@ -58,6 +58,9 @@ program, pid and text returned in a hash-reference.
 %{perl_vendorlib}/Parse/Syslog.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.09-1
+- Updated to release 1.09.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.03-1.2
 - Rebuild for Fedora Core 5.
 

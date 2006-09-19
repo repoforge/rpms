@@ -8,8 +8,8 @@
 
 Summary: Devel-StackTrace module for perl
 Name: perl-Devel-StackTrace
-Version: 1.12
-Release: 1.2
+Version: 1.13
+Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/perl-Devel-StackTrace/
@@ -53,6 +53,9 @@ and backwards as you want or retrieve specific frames.
 %{perl_vendorlib}/Devel/StackTrace.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.13-1
+- Updated to release 1.13.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.12-1.2
 - Rebuild for Fedora Core 5.
 

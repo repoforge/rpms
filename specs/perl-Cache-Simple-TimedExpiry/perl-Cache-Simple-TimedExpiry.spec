@@ -9,8 +9,8 @@
 
 Summary: Cache with simple timed expiry
 Name: perl-Cache-Simple-TimedExpiry
-Version: 0.23
-Release: 1.2
+Version: 0.26
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Cache-Simple-TimedExpiry/
@@ -46,6 +46,9 @@ This module provides a cache with a simple timed expiry.
 %{perl_vendorlib}/Cache/Simple/TimedExpiry.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.26-1
+- Updated to release 0.26.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.23-1.2
 - Rebuild for Fedora Core 5.
 

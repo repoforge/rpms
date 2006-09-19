@@ -8,8 +8,8 @@
 
 Summary: The Tiny Encryption Algorithm in Perl and JavaScript
 Name: perl-Crypt-Tea
-Version: 2.09
-Release: 1.2
+Version: 2.12
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Tea/
@@ -57,6 +57,9 @@ a browser. A wrapper executable 'tea' is included for command-line use.
 %{perl_vendorlib}/Crypt/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 2.12-1
+- Updated to release 2.12.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.09-1.2
 - Rebuild for Fedora Core 5.
 

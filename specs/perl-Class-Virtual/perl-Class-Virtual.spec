@@ -9,8 +9,8 @@
 
 Summary: Base class for virtual base classes
 Name: perl-Class-Virtual
-Version: 0.05
-Release: 1.2
+Version: 0.06
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Virtual/
@@ -47,6 +47,9 @@ This module contains a base class for virtual base classes.
 %{perl_vendorlib}/Class/Virtually
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1
+- Updated to release 0.06.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1.2
 - Rebuild for Fedora Core 5.
 

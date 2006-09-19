@@ -9,8 +9,8 @@
 
 Summary: Simple configuration file class
 Name: perl-Config-Simple
-Version: 4.58
-Release: 1.2
+Version: 4.59
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-Simple/
@@ -50,6 +50,9 @@ updating and creating configuration files.
 %{perl_vendorlib}/auto/Config/Simple
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 4.59-1
+- Updated to release 4.59.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 4.58-1.2
 - Rebuild for Fedora Core 5.
 

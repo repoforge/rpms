@@ -9,7 +9,7 @@
 
 Summary: Fetch Google video information
 Name: perl-WWW-Google-Video
-Version: 0.2
+Version: 0.4
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -45,6 +45,9 @@ You can fetch information about videos with this module.
 %{perl_vendorlib}/WWW/Google/Video.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.4-1
+- Updated to release 0.4.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-1
 - Updated to release 0.2.
 

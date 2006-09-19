@@ -9,7 +9,7 @@
 
 Summary: Read and write meta information in images
 Name: perl-Image-ExifTool
-Version: 6.17
+Version: 6.36
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ information in images.
 %{perl_vendorlib}/Image/ExifTool/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 6.36-1
+- Updated to release 6.36.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 6.17-1
 - Updated to release 6.17.
 

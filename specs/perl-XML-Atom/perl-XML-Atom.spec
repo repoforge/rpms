@@ -9,7 +9,7 @@
 
 Summary: Implementation of Atom
 Name: perl-XML-Atom
-Version: 0.19
+Version: 0.23
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,6 +48,9 @@ This module implements the API and feed format of Atom.
 %{perl_vendorlib}/XML/Atom/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.23-1
+- Updated to release 0.23.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.19-1
 - Updated to release 0.19.
 

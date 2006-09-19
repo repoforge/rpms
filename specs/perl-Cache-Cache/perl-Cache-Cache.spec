@@ -5,8 +5,8 @@
 
 Summary: Cache-Cache module for perl
 Name: perl-Cache-Cache
-Version: 1.02
-Release: 3
+Version: 1.05
+Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Cache-Cache/
@@ -59,6 +59,9 @@ of the filesystem or shared memory.
 
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.05-1
+- Updated to release 1.05.
+
 * Wed May 26 2004 Matthias Saou <http://freshrpms.net/> 1.02-3
 - Rebuilt for Fedora Core 2.
 

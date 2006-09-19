@@ -9,8 +9,8 @@
 
 Summary: Perl extension for simple IMAP account handling
 Name: perl-Net-IMAP-Simple
-Version: 1.14
-Release: 1.2
+Version: 1.16
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-IMAP-Simple/
@@ -47,6 +47,9 @@ This module is a simple way to access IMAP accounts.
 %{perl_vendorlib}/Net/IMAP/imap.pl
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.16-1
+- Updated to release 1.16.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.14-1.2
 - Rebuild for Fedora Core 5.
 

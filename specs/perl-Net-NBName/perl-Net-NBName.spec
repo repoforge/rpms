@@ -11,8 +11,8 @@
 
 Summary: NetBIOS Name Service Requests
 Name: perl-Net-NBName
-Version: 0.25
-Release: 1.2
+Version: 0.26
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-NBName/
@@ -53,6 +53,9 @@ TCP/IP using Perl's built-in socket support.
 %{perl_vendorlib}/Net/NBName/*
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.26-1
+- Updated to release 0.26.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.25-1.2
 - Rebuild for Fedora Core 5.
 

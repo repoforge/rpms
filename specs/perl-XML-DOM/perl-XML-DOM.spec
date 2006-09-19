@@ -9,7 +9,7 @@
 
 Summary: Perl module for building DOM Level 1 compliant document structures
 Name: perl-XML-DOM
-Version: 1.43
+Version: 1.44
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ http://www.w3.org/DOM/
 
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.44-1
+- Updated to release 1.44.
+
 * Fri Dec 17 2004 Matthias Saou <http://freshrpms.net/> 1.43-1
 - Initial package based on Dries' perl-XML-RegExp spec file.
 

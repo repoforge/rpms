@@ -10,8 +10,8 @@
 
 Summary: MailTools module for perl
 Name: perl-MailTools
-Version: 1.67
-Release: 2.2
+Version: 1.74
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MailTools/
@@ -59,6 +59,9 @@ MailTools module for perl.
 %{perl_vendorlib}/auto/Mail/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.74-1
+- Updated to release 1.74.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.67-2.2
 - Rebuild for Fedora Core 5.
 

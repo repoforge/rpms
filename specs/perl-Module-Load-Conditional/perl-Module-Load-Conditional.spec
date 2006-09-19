@@ -9,8 +9,8 @@
 
 Summary: Looking up module information / loading at runtime
 Name: perl-Module-Load-Conditional
-Version: 0.08
-Release: 1.2
+Version: 0.12
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Load-Conditional/
@@ -52,6 +52,9 @@ requires.
 %{perl_vendorlib}/Module/Load/Conditional.pm
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1
+- Updated to release 0.12.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1.2
 - Rebuild for Fedora Core 5.
 
