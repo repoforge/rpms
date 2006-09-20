@@ -3,13 +3,12 @@
 
 Summary: Library of Optimized Inner Loops, CPU optimized functions
 Name: liboil
-Version: 0.3.6
-Release: 1
+Version: 0.3.9
+Release: 0
 License: LGPL
 Group: System Environment/Libraries
 URL: http://liboil.freedesktop.org/
 Source: http://liboil.freedesktop.org/download/liboil-%{version}.tar.gz
-Patch0: liboil-0.3.3-gccoptfixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: glib2-devel, gcc-c++
 
@@ -38,16 +37,11 @@ extended instructions provided by modern CPUs (Altivec, MMX, SSE, etc.).
 
 %prep
 %setup
-%patch0 -p1 -b .gccoptfixes
 
 
 %build
 %configure
-# multi-jobbed make makes the build fail:
-# ./build_prototypes_doc >liboilfuncs-doc.h
-# /bin/sh: ./build_prototypes_doc: No such file or directory
-# %{__make} %{?_smp_mflags}
-%{__make}
+%{__make} %{?_smp_mflags}
 
 
 %install
@@ -67,6 +61,7 @@ extended instructions provided by modern CPUs (Altivec, MMX, SSE, etc.).
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog
+%{_bindir}/oil-bugreport
 %{_libdir}/*.so.*
 
 %files devel
@@ -80,6 +75,14 @@ extended instructions provided by modern CPUs (Altivec, MMX, SSE, etc.).
 
 
 %changelog
+* Wed Sep 20 2006 Matthias Saou <http://freshrpms.net/> 0.3.9-1
+- Update to 0.3.9.
+- Remove no longer gcc opt patch.
+- Enable _smp_mflags as they work again.
+
+* Fri Feb  3 2006 Matthias Saou <http://freshrpms.net/> 0.3.7-1
+- Update to 0.3.7.
+
 * Wed Dec 14 2005 Matthias Saou <http://freshrpms.net/> 0.3.6-1
 - Update to 0.3.6.
 
