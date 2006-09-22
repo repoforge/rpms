@@ -1,0 +1,51 @@
+# $Id$
+# Authority: dries
+# Upstream: Mattia Barbon <mbarbon$users,sourceforge,net>
+
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name ExtUtils-FakeConfig
+
+Summary: Allows overriding some config values
+Name: perl-ExtUtils-FakeConfig
+Version: 0.08
+Release: 1
+License: Artistic/GPL
+Group: Applications/CPAN
+URL: http://search.cpan.org/dist/ExtUtils-FakeConfig/
+
+Source: http://search.cpan.org//CPAN/authors/id/M/MB/MBARBON/ExtUtils-FakeConfig-%{version}.zip
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildArch: noarch
+BuildRequires: perl
+
+%description
+Allows you to override some config values.
+
+%prep
+%setup -n %{real_name}-%{version}
+
+%build
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc Changes README.txt
+%doc %{_mandir}/man3/*
+%{perl_vendorlib}/ExtUtils/FakeConfig.pm
+%{perl_vendorlib}/Config_m.pod
+
+%changelog
+* Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1
+- Initial package.
