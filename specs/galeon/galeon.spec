@@ -3,20 +3,36 @@
 # Upstream: <galeon-devel$lists,sourceforge,net>
 
 %{?el4:%define _without_gnome212 1}
+
 %{?fc3:%define _without_gnome212 1}
+%{?fc3:%define _without_seamonkey 1}
+
 %{?fc2:%define _without_gnome212 1}
+%{?fc2:%define _without_seamonkey 1}
+
 %{?fc1:%define _without_gnome212 1}
+%{?fc1:%define _without_seamonkey 1}
+
 %{?el3:%define _without_gnome212 1}
+
 %{?rh9:%define _without_gnome212 1}
+%{?rh9:%define _without_seamonkey 1}
+
 %{?rh7:%define _without_gnome212 1}
+%{?rh7:%define _without_seamonkey 1}
+
 %{?el2:%define _without_gnome212 1}
 
+%if %{?_without_seamonkey:1}0
 %define mversion %(rpm -q mozilla-devel --qf '%{RPMTAG_EPOCH}:%{RPMTAG_VERSION}' | tail -1)
 %define lversion %(rpm -q mozilla-devel --qf '%{RPMTAG_VERSION}' | tail -1)
+%else
+%define lversion %(rpm -q seamonkey-devel --qf '%{RPMTAG_VERSION}' | tail -1)
+%endif
 
 Summary: GNOME browser based on Gecko (Mozilla rendering engine)
 Name: galeon
-Version: 2.0.1
+Version: 2.0.2
 Release: 2
 License: GPL
 Group: Applications/Internet
@@ -25,14 +41,18 @@ URL: http://galeon.sourceforge.net/
 Source: http://dl.sf.net/galeon/galeon-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: mozilla-devel = %{mversion}, gtk2-devel >= 2.4, libxml2-devel >= 2.6.6
+BuildRequires: libxml2-devel >= 2.6.6
+#BuildRequires: gtk2-devel >= 2.4
 BuildRequires: libgnomeui-devel >= 2.0.5, libbonoboui-devel >= 2.1.1, libglade2-devel >= 2.0.0
 BuildRequires: gnome-vfs2-devel >= 2.0, GConf2-devel >= 2.0, bonobo-activation-devel >= 2.0.0
 BuildRequires: scrollkeeper
 %{!?_without_gnome212:BuildRequires: gnome-devel >= 2.12}
+%{!?_without_seamonkey:BuildRequires: seamonkey-devel = %{lversion}}
+%{?_without_seamonkey:BuildRequires: mozilla-devel = %{mversion}}
 
-Requires: mozilla = %{mversion}
 Requires(post): scrollkeeper
+%{!?_without_seamonkey:Requires: seamonkey = %{lversion}}
+%{?_without_seamonkey:Requires: mozilla = %{mversion}}
 
 %description
 Galeon is a browser written in GTK+ which uses Gecko, the Mozilla rendering
@@ -45,14 +65,15 @@ engine, for rendering Web pages. It is developed to be fast and lightweight.
 %configure \
 	--disable-werror \
 	--disable-schemas-install \
-%{!?_without_gnome212:--enable-nautilus-view}
+%{?_without_gnome212:--enable-nautilus-view="no"} \
+%{!?_without_gnome212:--enable-nautilus-view="auto"}
 
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}-2.0
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/mozilla/plugins/
@@ -86,9 +107,12 @@ scrollkeeper-update -q || :
 %{_datadir}/sounds/galeon/
 %dir %{_libdir}/mozilla/
 %dir %{_libdir}/mozilla/plugins/
-%exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sun Sep 17 2006 Dag Wieers <dag@wieers.com> - 2.0.2-2
+- Updated to release 2.0.2.
+- Added support for seamonkey.
+
 * Sat Apr 29 2006 Dag Wieers <dag@wieers.com> - 2.0.1-2
 - Rebuild against mozilla 1.7.13-1.4.1. (el4)
 

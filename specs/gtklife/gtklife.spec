@@ -1,18 +1,19 @@
 # $Id$
 # Authority: dag
-# Upstream: <tril$igs,net>
+# Upstream: Suzanne Britton <gtklife$ironphoenix,org>
 
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
+%{?el2:%define _without_gtk2 1}
 
 %define desktop_vendor rpmforge
 
 Summary: Conway's game of life.
 Name: gtklife
-Version: 5.0
-Release: 1
+Version: 5.1
+Release: 2
 License: GPL
 Group: Amusements/Games
 URL: http://ironphoenix.org/tril/gtklife/
@@ -32,13 +33,6 @@ environment.
 %prep
 %setup
 
-### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
-%{__perl} -pi.orig -e '
-		s|\$\(BINDIR\)|\$(bindir)|g;
-		s|\$\(DATADIR\)|\$(datadir)/gtklife|g;
-		s|\$\(DOCDIR\)|\$(datadir)/doc/%{name}-%{version}|g;
-	' Makefile
-
 %{__cat} <<EOF >gtklife.desktop
 [Desktop Entry]
 Name=Conway's Game Of Life
@@ -52,13 +46,13 @@ Categories=GNOME;Application;Game;
 EOF
 
 %build
-%{__make} %{?_smp_mflags} \
-	CFLAGS="%{optflags}" \
-	datadir="%{_datadir}"
+%configure \
+%{!?_without_gtk2:--with-gtk2}
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %{__install} -Dp -m0644 icon_48x48.png %{buildroot}%{_datadir}/pixmaps/gtklife.png
 
@@ -83,8 +77,15 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-gtklife.desktop}
 %{_datadir}/gtklife/
 %{_datadir}/pixmaps/gtklife.png
+%exclude %{_prefix}/doc/gtklife/
 
 %changelog
+* Sat Sep 16 2006 Dag Wieers <dag@wieers.com> - 5.1-2
+- Use configure and --with-gtk2 if applicable.
+
+* Fri Sep 15 2006 Dag Wieers <dag@wieers.com> - 5.1-1
+- Updated to release 5.1.
+
 * Tue Sep 12 2006 Dag Wieers <dag@wieers.com> - 5.0-1
 - Updated to release 5.0.
 

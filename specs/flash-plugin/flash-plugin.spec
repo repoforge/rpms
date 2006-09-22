@@ -49,6 +49,7 @@ By downloading and installing this package you agree to the included LICENSE:
 %changelog
 * Tue Sep 12 2006 Dag Wieers <dag@wieers.com> - 7.0.68-1
 - Updated to release 7.0.68.
+- Renamed package from mozilla-flash to flash-plugin.
 
 * Wed Mar 15 2006 Dag Wieers <dag@wieers.com> - 7.0.63-1
 - Updated to release 7.0.63.

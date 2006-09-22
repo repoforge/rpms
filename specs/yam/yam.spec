@@ -2,9 +2,9 @@
 # Authority: dag
 # Upstream: Dag Wieers <dag$wieers,com>
 
-Summary: Set up a Yum/Apt mirror from various sources (ISO, RHN, rsync, http, ftp, ...)
+Summary: Tool to set up a Yum/Apt mirror from various sources (ISO, RHN, rsync, http, ftp, ...)
 Name: yam
-Version: 0.8.1
+Version: 0.8.2
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: /usr/bin/python2
-Requires: python >= 2.0, createrepo >= 0.4.3
+Requires: python >= 2.0, createrepo >= 0.4.6
 
 %description
 Yam builds a local Apt/Yum RPM repository from local ISO files,
@@ -98,8 +98,8 @@ fi
 %{_localstatedir}/yam/
 
 %changelog
-* Tue Aug 22 2006 Dag Wieers <dag@wieers.com> - 0.8.1-1
-- Updated to release 0.8.1.
+* Wed Sep 20 2006 Dag Wieers <dag@wieers.com> - 0.8.2-1
+- Updated to release 0.8.2.
 
 * Fri Mar 10 2006 Dag Wieers <dag@wieers.com> - 0.8.0-2
 - Added gensystemid to installation. (Ian Forde)
