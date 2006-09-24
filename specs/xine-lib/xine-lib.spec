@@ -49,7 +49,7 @@
 Summary: Core library of the xine multimedia player
 Name: xine-lib
 Version: 1.1.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -187,6 +187,9 @@ use the Xine library.
 
 
 %changelog
+* Sun Sep 24 2006 Matthias Saou <http://freshrpms.net/> 1.1.2-2
+- Rebuild against new libcdio.
+
 * Tue Jul 11 2006 Matthias Saou <http://freshrpms.net/> 1.1.2-1
 - Update to 1.1.2.
 - Source is now a .bz2 file.

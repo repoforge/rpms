@@ -4,7 +4,7 @@
 Summary: VideoCD (pre-)mastering and ripping tool
 Name: vcdimager
 Version: 0.7.23
-Release: 4
+Release: 5
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.vcdimager.org/
@@ -92,6 +92,9 @@ fi
 
 
 %changelog
+* Sun Sep 24 2006 Matthias Saou <http://freshrpms.net/> 0.7.23-5
+- Rebuild against new libcdio.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.7.23-4
 - Release bump to drop the disttag number in FC5 build.
 
