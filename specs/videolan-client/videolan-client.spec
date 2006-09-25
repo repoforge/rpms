@@ -71,7 +71,7 @@
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
 Version: 0.8.5
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -310,6 +310,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Mon Sep 25 2006 Matthias Saou <http://freshrpms.net/> 0.8.5-3
+- Rebuild against new libcdio.
+
 * Thu Jun 15 2006 Matthias Saou <http://freshrpms.net/> 0.8.5-2
 - Rebuild for FC development (gnutls update).
 - Add -lX11 extra libs for ffmpeg to build with the latest xorg.
