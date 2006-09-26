@@ -7,8 +7,8 @@
 
 Summary: Console UI Library for Python
 Name: python-urwid
-Version: 0.9.5
-Release: 2
+Version: 0.9.6
+Release: 1
 License: LGPL
 Group: Development/Libraries
 URL: http://excess.org/urwid/
@@ -52,6 +52,9 @@ widget types. It is flexible, modular, and leaves the developer in control.
 %ghost %{python_sitelib}/urwid/*.pyo
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.6-1
+- Updated to release 0.9.6.
+
 * Mon Aug 07 2006 Dag Wieers <dag@wieers.com> - 0.9.5-2
 - Removed the erroneous python-curses dependency.
 - Added urwid examples.

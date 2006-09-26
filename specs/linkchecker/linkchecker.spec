@@ -6,7 +6,7 @@
 
 Summary: Check HTML documents for broken links
 Name: linkchecker
-Version: 4.2
+Version: 4.4
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -48,6 +48,9 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 4.4-1
+- Updated to release 4.4.
+
 * Mon Aug 07 2006 Dries Verachtert <dries@ulyssis.org> - 4.2-1
 - Updated to release 4.2.
 

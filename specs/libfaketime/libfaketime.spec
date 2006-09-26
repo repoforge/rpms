@@ -3,8 +3,8 @@
 
 Summary: Pre-loadable library for faking the system date
 Name: libfaketime
-Version: 0.3
-Release: 1.0
+Version: 0.5
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.code-wizards.com/projects/libfaketime/
@@ -46,5 +46,8 @@ ceases to run outside a certain timeframe
 %{_bindir}/faketimetest
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-1
+- Updated to release 0.5.
+
 * Wed Jul 27 2005 Wil Cooley <wcooley@nakedape.cc> - 0.3-1.0
 - Initial package creation.

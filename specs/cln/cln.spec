@@ -3,8 +3,8 @@
 
 Summary: C++ Class Library for Numbers
 Name: cln
-Version: 1.1.11
-Release: 1.2
+Version: 1.1.13
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.ginac.de/CLN/
@@ -85,6 +85,9 @@ fi
 %{_libdir}/pkgconfig/cln.pc
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.13-1
+- Updated to release 1.1.13.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.11-1.2
 - Rebuild for Fedora Core 5.
 

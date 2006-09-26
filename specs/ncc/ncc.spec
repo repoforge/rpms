@@ -4,7 +4,7 @@
 
 Summary: C source code analyzer
 Name: ncc
-Version: 2.4
+Version: 2.5
 Release: 1
 License: Artistic
 Group: Development/Languages
@@ -25,9 +25,9 @@ gcc, gdb, bind, mpg123, ncftp, and many other famous projects.
 %prep
 %setup
 # fix install
-%{__perl} -pi -e "s|ln (.*) /usr/bin/(.*) /usr/bin/(.*)|ln \$1 %{_bindir}/\$2 %{buildroot}%{_bindir}/\$3|g;" Makefile
-%{__perl} -pi -e "s|cp (.*) /usr/bin/(.*)|cp \$1 %{buildroot}%{_bindir}/\$2|g;" Makefile
-%{__perl} -pi -e "s|cp (.*) /usr/share/man/(.*)|cp \$1 %{buildroot}%{_mandir}/man1/|g;" Makefile
+%{__perl} -pi -e "s|ln (.*) ..BINDIR..(.*) ..BINDIR./(.*)|ln \$1 %{_bindir}/\$2 %{buildroot}%{_bindir}/\$3|g;" Makefile
+#%{__perl} -pi -e "s|cp (.*) /usr/bin/(.*)|cp \$1 %{buildroot}%{_bindir}/\$2|g;" Makefile
+#%{__perl} -pi -e "s|cp (.*) /usr/share/man/(.*)|cp \$1 %{buildroot}%{_mandir}/man1/|g;" Makefile
 %{__perl} -pi -e "s|cp doc/nognu|#|g;" Makefile
 
 %build
@@ -36,7 +36,7 @@ gcc, gdb, bind, mpg123, ncftp, and many other famous projects.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{_bindir} %{buildroot}%{_mandir}/man1
-%makeinstall
+%makeinstall DESTDIR=%{buildroot}%{_prefix}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -54,6 +54,9 @@ gcc, gdb, bind, mpg123, ncftp, and many other famous projects.
 %{_bindir}/nccnavi
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.5-1
+- Updated to release 2.5.
+
 * Tue Aug 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.4-1
 - Updated to release 2.4.
 

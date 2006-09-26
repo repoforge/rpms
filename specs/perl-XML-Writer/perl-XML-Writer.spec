@@ -9,8 +9,8 @@
 
 Summary: Extension for writing XML documents
 Name: perl-XML-Writer
-Version: 0.600
-Release: 1.2
+Version: 0.601
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Writer/
@@ -52,6 +52,9 @@ This module contains a perl extension for writing XML documents.
 %{perl_vendorlib}/XML/Writer.pm
 
 %changelog
+* Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.601-1
+Updated to release 0.601.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.600-1.2
 - Rebuild for Fedora Core 5.
 

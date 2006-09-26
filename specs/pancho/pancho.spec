@@ -8,8 +8,8 @@
 
 Summary: Archive and manage remote nodes using SNMP and TFTP
 Name: pancho
-Version: 9.3.7
-Release: 1.2
+Version: 9.3.9
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.pancho.org/
@@ -65,6 +65,9 @@ and shared with the community via the Pancho Project website.
 %{perl_sitelib}/*
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 9.3.9-1
+- Updated to release 9.3.9.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 9.3.7-1.2
 - Rebuild for Fedora Core 5.
 

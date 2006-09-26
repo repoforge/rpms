@@ -6,8 +6,8 @@
 
 Summary: PoEdit is a cross-platform gettext catalogs (.po files) editor
 Name: poedit
-Version: 1.3.4
-Release: 1.2
+Version: 1.3.5
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://poedit.sourceforge.net/
@@ -33,16 +33,16 @@ with wxWindows.
 %{__rm} -rf %{buildroot}
 %{__make} install-strip DESTDIR=%{buildroot}
 %find_lang %{name}
-mkdir -p %{buildroot}%{_datadir}/applications
-cat > %{buildroot}%{_datadir}/applications/poedit.desktop <<EOF
-[Desktop Entry]
-Version=1.0
-Type=Application
-Encoding=UTF-8
-Name=PoEdit
-Exec=/usr/bin/poedit
-Categories=Application;Development;X-Red-Hat-Extra;
-EOF
+#mkdir -p %{buildroot}%{_datadir}/applications
+#cat > %{buildroot}%{_datadir}/applications/poedit.desktop <<EOF
+#[Desktop Entry]
+#Version=1.0
+#Type=Application
+#Encoding=UTF-8
+#Name=PoEdit
+#Exec=/usr/bin/poedit
+#Categories=Application;Development;X-Red-Hat-Extra;
+#EOF
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -54,8 +54,14 @@ EOF
 %{_mandir}/man1/poedit*
 %{_datadir}/poedit
 %{_datadir}/applications/poedit.desktop
+%{_datadir}/icons/hicolor/*/apps/poedit.png
+%{_datadir}/icons/hicolor/scalable/apps/poedit.svg*
+%{_datadir}/pixmaps/poedit.png
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.5-1
+- Updated to release 1.3.5.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.4-1.2
 - Rebuild for Fedora Core 5.
 

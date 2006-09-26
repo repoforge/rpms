@@ -4,7 +4,7 @@
 
 Summary: MIDI drum machine
 Name: gneutronica
-Version: 0.31
+Version: 0.33
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -65,5 +65,8 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*-gneutronica.desktop
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.33-1
+- Updated to release 0.33.
+
 * Tue May 24 2006 Dries Verachtert <dries@ulyssis.org> - 0.31-1
 - Initial package.

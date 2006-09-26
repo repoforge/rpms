@@ -4,8 +4,8 @@
 
 Summary: Sort files in sophisticated ways
 Name: msort
-%define real_version 8.27
-Version: 8.27
+%define real_version 8.28.1
+Version: 8.28
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -48,6 +48,9 @@ by an optional GUI.
 %{_bindir}/msort
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 8.28-1
+- Updated to release 8.28.
+
 * Fri Aug 11 2006 Dries Verachtert <dries@ulyssis.org> - 8.27-1
 - Updated to release 8.27.
 

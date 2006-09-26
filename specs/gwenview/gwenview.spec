@@ -10,8 +10,8 @@
 
 Summary: Image viewer for KDE
 Name: gwenview
-Version: 1.3.1
-Release: 2
+Version: 1.4.0
+Release: 1
 License: GPL
 Group: Amusements/Graphics
 URL: http://gwenview.sourceforge.net/
@@ -43,12 +43,13 @@ source /etc/profile.d/qt.sh
 %{__rm} -rf %{buildroot}
 source /etc/profile.d/qt.sh
 %{__make} install DESTDIR="%{buildroot}"
-%find_lang %{name}
+#%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
+# -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING NEWS README TODO
 %{_bindir}/gwenview
@@ -68,8 +69,12 @@ source /etc/profile.d/qt.sh
 #%{_datadir}/icons/*/*/apps/imagegallery.png
 %{_datadir}/services/gv*.desktop
 %{_datadir}/man/man1/gwenview*
+%{_datadir}/config.kcfg/*.kcfg
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.0-1
+- Updated to release 1.4.0.
+
 * Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.1-2
 - Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
 

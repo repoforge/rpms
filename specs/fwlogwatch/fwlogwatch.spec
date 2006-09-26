@@ -4,8 +4,8 @@
 
 Summary: Firewall log analyzer, report generator and realtime response agent
 Name: fwlogwatch
-Version: 1.0
-Release: 1.2
+Version: 1.1
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://cert.uni-stuttgart.de/projects/fwlogwatch/
@@ -68,6 +68,9 @@ reporting anomalies or starting attack countermeasures.
 %{_sbindir}/f*
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-1
+- Updated to release 1.1.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
 - Rebuild for Fedora Core 5.
 

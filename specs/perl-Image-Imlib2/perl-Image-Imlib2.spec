@@ -9,7 +9,7 @@
 
 Summary: Interface to the Imlib2 image library
 Name: perl-Image-Imlib2
-Version: 1.08
+Version: 1.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ output the images in a range of formats.
 %{perl_vendorarch}/auto/Image/Imlib2
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.12-1
+- Updated to release 1.12.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.08-1
 - Updated to release 1.08.
 

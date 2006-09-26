@@ -13,8 +13,8 @@
 
 Summary: Graphical weblogging client
 Name: blogtk
-Version: 1.0
-Release: 1.2
+Version: 1.1
+Release: 1
 License: BSD
 Group: Applications/Internet
 URL: http://blogtk.sourceforge.net/
@@ -85,10 +85,13 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_bindir}/*
 %{_libdir}/blogtk/
 %{_datadir}/blogtk/
-%{_datadir}/pixmaps/*.svgz
+%{_datadir}/pixmaps/blogtk-icon.*
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-1
+- Updated to release 1.1.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
 - Rebuild for Fedora Core 5.
 

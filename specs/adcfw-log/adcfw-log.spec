@@ -5,8 +5,8 @@
 
 Summary: Tool for analyzing firewall logs
 Name: adcfw-log
-Version: 0.9.1
-Release: 1.2
+Version: 0.10.0
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://adcfw-log.sourceforge.net/
@@ -49,6 +49,9 @@ Only netfilter log format (linux kernel 2.4.x) is supported at this time.
 %{_bindir}/*
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.10.0-1
+- Updated to release 0.10.0.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1.2
 - Rebuild for Fedora Core 5.
 

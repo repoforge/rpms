@@ -5,7 +5,7 @@
 
 Summary: Console jabber client
 Name: mcabber
-Version: 0.8.1
+Version: 0.8.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -42,6 +42,9 @@ logging, external actions and more.
 %{_datadir}/mcabber/
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.2-1
+- Updated to release 0.8.2.
+
 * Thu Aug 24 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.1-1
 - Updated to release 0.8.1.
 

@@ -6,8 +6,8 @@
 
 Summary: Read/write/list/format DOS disks
 Name: mtools
-Version: 3.9.9
-Release: 2.2
+Version: 3.9.10
+Release: 1
 License: GPL/Lilux
 Group: System Environment/Base
 URL: http://mtools.linux.lu/
@@ -53,6 +53,9 @@ groupadd floppy 2>/dev/null || :
 %{_bindir}/*
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 3.9.10-1
+- Updated to release 3.9.10.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.9.9-2.2
 - Rebuild for Fedora Core 5.
 

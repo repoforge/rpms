@@ -12,7 +12,7 @@
 
 Summary: Little arcade puzzle game, similar to the famous Bejeweled
 Name: monsterz
-Version: 0.6.1
+Version: 0.7.0
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -140,6 +140,9 @@ fi
 %ghost %{prefix}/*.pyc
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.0-1
+- Updated to release 0.7.0.
+
 * Fri Nov 4 2005 C.Lee Taylor <leet@leenx.co.za> 0.6.1-1
 - Ghost section and changes by Dries
 

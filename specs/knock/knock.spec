@@ -4,8 +4,8 @@
 
 Summary: Port-knocking server
 Name: knock
-Version: 0.4
-Release: 1.2
+Version: 0.5
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.zeroflux.org/knock/
@@ -50,6 +50,9 @@ holes in a firewall for quick access.
 %{_sbindir}/knockd
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-1
+- Updated to release 0.5.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4-1.2
 - Rebuild for Fedora Core 5.
 

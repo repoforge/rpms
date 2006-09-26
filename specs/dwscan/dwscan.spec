@@ -4,7 +4,7 @@
 
 Summary: Displays access point information in a useful manner
 Name: dwscan
-Version: 0.1
+Version: 0.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -41,5 +41,8 @@ Dwscan displays access point information in a useful manner.
 %{_sbindir}/dwscan
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-1
+- Updated to release 0.2.
+
 * Mon Jul 10 2006 Dag Wieers <dag@wieers.com> - 0.1-1
 - Initial package. (using DAR)

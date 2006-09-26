@@ -7,8 +7,8 @@
 
 Summary: Perl interface to the 2.x series of the GNOME libraries
 Name: perl-Gnome2
-Version: 1.023
-Release: 1.2
+Version: 1.040
+Release: 1
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gnome2/
@@ -17,7 +17,7 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TS/TSCH/Gnome2-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.8.0, perl(ExtUtils::Depends), perl(ExtUtils::PkgConfig),
-BuildRequires: perl(Glib), perl(Gtk2), perl(Gnome2::VFS)
+BuildRequires: perl(Glib), perl(Gtk2), perl(Gnome2::VFS), perl(Gnome2::Canvas)
 BuildRequires: libgnomeui-devel >= 2.0.0
 Requires: perl >= 0:5.8.0
 
@@ -55,6 +55,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.040-1
+Updated to release 1.040.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.023-1.2
 - Rebuild for Fedora Core 5.
 

@@ -11,8 +11,8 @@
 
 Summary: WYSIWYM (What You See Is What You Mean) frontend to LaTeX
 Name: lyx
-Version: 1.3.5
-Release: 1.2
+Version: 1.4.1
+Release: 1
 License: GPL
 Group: Applications/Publishing
 URL: http://www.lyx.org/
@@ -81,7 +81,7 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 ### Miscellaneous files
 %{__install} -Dp -m0644 lib/images/lyx.xpm %{buildroot}%{_datadir}/lyx/images/lyx.xpm
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/lyx.png
-%{__install} -p -m0644 lib/reLyX/README README.reLyX
+#%{__install} -p -m0644 lib/reLyX/README README.reLyX
 
 ### Install desktop file and icon
 %if %{?_without_freedesktop:1}0
@@ -129,6 +129,9 @@ texhash &>/dev/null
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-lyx.desktop}
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.1-1
+- Updated to release 1.4.1.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.5-1.2
 - Rebuild for Fedora Core 5.
 

@@ -9,7 +9,7 @@
 
 Summary: Convert numbers to strings with pretty formatting
 Name: perl-Number-Format
-Version: 1.51
+Version: 1.52
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ user.
 %{perl_vendorlib}/Number/Format.pm
 
 %changelog
+* Sat Sep 23 2006 Dries Verachtert <dries@ulyssis.org> - 1.52-1
+- Updated to release 1.52.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.51-1
 - Updated to release 1.51.
 

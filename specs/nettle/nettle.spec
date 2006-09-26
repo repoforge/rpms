@@ -5,8 +5,8 @@
 
 Summary: Cryptographic library
 Name: nettle
-Version: 1.10
-Release: 2.2
+Version: 1.12
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://www.lysator.liu.se/~nisse/nettle/
@@ -78,6 +78,9 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.12-1
+- Updated to release 1.12.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.10-2.2
 - Rebuild for Fedora Core 5.
 

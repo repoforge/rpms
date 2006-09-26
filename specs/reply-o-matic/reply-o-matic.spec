@@ -4,7 +4,7 @@
 
 Summary: E-Mail auto-response software
 Name: reply-o-matic
-Version: 1.4.0
+Version: 1.4.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -54,5 +54,8 @@ touch %{buildroot}%{_sysconfdir}/rom/paranoid
 %dir %{_sysconfdir}/rom/.rates/
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.1-1
+- Updated to release 1.4.1.
+
 * Sun Aug 20 2006 Dag Wieers <dag@wieers.com> - 1.4.0-1
 - Initial package based on RPM from Rodrigo Barbosa.

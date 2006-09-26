@@ -3,7 +3,7 @@
 
 Summary: Portable mail access library
 Name: libetpan
-Version: 0.42
+Version: 0.46
 Release: 1
 License: BSD
 Group: System Environment/Libraries
@@ -75,6 +75,9 @@ the libetpan library.
 
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.46-1
+- Updated to release 0.46.
+
 * Tue Jan 31 2006 Matthias Saou <http://freshrpms.net/> 0.42-1
 - Update to 0.42.
 - Add autoconf build requirement (autoheader is needed now apparently).

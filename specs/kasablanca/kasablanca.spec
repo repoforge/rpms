@@ -9,8 +9,8 @@
 
 Summary: Ftp/fxp client
 Name: kasablanca
-Version: 0.4.0.1
-Release: 2
+Version: 0.4.0.2
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://kasablanca.berlios.de/
@@ -56,6 +56,9 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_datadir}/config.kcfg/kbconfig.kcfg
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.0.2-1
+- Updated to release 0.4.0.2.
+
 * Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.0.1-2
 - Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
 

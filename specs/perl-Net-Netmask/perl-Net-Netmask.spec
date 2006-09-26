@@ -10,8 +10,8 @@
 
 Summary: Parse, manipulate and lookup IP network blocks
 Name: perl-Net-Netmask
-Version: 1.9012
-Release: 1.2
+Version: 1.9013
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Netmask/
@@ -49,6 +49,9 @@ lookup IP network blocks.
 %{perl_vendorlib}/Net/Netmask.pod
 
 %changelog
+* Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.9013-1
+Updated to release 1.9013.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.9012-1.2
 - Rebuild for Fedora Core 5.
 

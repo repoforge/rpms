@@ -9,8 +9,8 @@
 
 Summary: Checks if the documentation of a module is comprehensive
 Name: perl-Pod-Coverage
-Version: 0.17
-Release: 1.2
+Version: 0.18
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Pod-Coverage/
@@ -35,7 +35,7 @@ Checks if the documentation of a module is comprehensive.
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__rm} -rf %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist %{buildroot}%{perl_archlib}/perllocal.pod
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -45,13 +45,16 @@ Checks if the documentation of a module is comprehensive.
 %doc Changes README
 %doc %{_mandir}/man3/*.3*
 %{_bindir}/pod_cover
-%dir %{perl_vendorarch}/Pod/
-%{perl_vendorarch}/Pod/Coverage.pm
-%{perl_vendorarch}/Pod/Coverage/
+%dir %{perl_vendorlib}/Pod/
+%{perl_vendorlib}/Pod/Coverage.pm
+%{perl_vendorlib}/Pod/Coverage/
 %dir %{perl_vendorarch}/auto/Pod/
 %{perl_vendorarch}/auto/Pod/Coverage/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.18-1
+- Updated to release 0.18.
+
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.17-1
 - Updated to release 0.17.
 

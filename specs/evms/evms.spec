@@ -7,8 +7,8 @@
 
 Summary: Enterprise Volume Management System utilities
 Name: evms
-Version: 2.5.2
-Release: 1.2
+Version: 2.5.3
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://evms.sourceforge.net/
@@ -61,6 +61,9 @@ with EVMS and using the tools after installation.
 %exclude %{_libdir}/libevms.a
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.5.3-1
+- Updated to release 2.5.3.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.5.2-1.2
 - Rebuild for Fedora Core 5.
 

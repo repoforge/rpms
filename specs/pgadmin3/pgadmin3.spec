@@ -6,8 +6,8 @@
 
 Summary: Graphical client for PostgreSQL
 Name: pgadmin3
-Version: 1.4.2
-Release: 1.2
+Version: 1.4.3
+Release: 1
 License: Artistic
 Group: Applications/Databases
 URL: http://www.pgadmin.org/
@@ -61,6 +61,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pgadmin3/
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.3-1
+- Updated to release 1.4.3.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.2-1.2
 - Rebuild for Fedora Core 5.
 

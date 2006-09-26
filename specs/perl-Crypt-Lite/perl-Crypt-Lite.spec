@@ -8,8 +8,8 @@
 
 Summary: Easy to use symmetric data encryption and decryption
 Name: perl-Crypt-Lite
-Version: 0.82.06
-Release: 1.2
+Version: 0.82.11
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Lite/
@@ -44,12 +44,15 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %defattr(-, root, root, 0755)
 %doc MANIFEST README
 %doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorarch}/Crypt/
-%{perl_vendorarch}/Crypt/Lite.pm
+%dir %{perl_vendorlib}/Crypt/
+%{perl_vendorlib}/Crypt/Lite.pm
 %dir %{perl_vendorarch}/auto/Crypt/
 %{perl_vendorarch}/auto/Crypt/Lite/
 
 %changelog
+* Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.82.11-1
+Updated to release 0.82.11.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.82.06-1.2
 - Rebuild for Fedora Core 5.
 

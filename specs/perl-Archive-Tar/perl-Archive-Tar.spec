@@ -8,8 +8,8 @@
 
 Summary: Archive-Tar module for perl
 Name: perl-Archive-Tar
-Version: 1.26
-Release: 1.2
+Version: 1.30
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Archive-Tar/
@@ -58,6 +58,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_bindir}/ptar*
 
 %changelog
+* Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.30-1
+Updated to release 1.30.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.26-1.2
 - Rebuild for Fedora Core 5.
 

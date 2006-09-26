@@ -4,8 +4,8 @@
 
 Summary: Image processing suite for extremely large images and colorimetry
 Name: vips
-Version: 7.10.16
-Release: 1.2
+Version: 7.10.21
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.vips.ecs.soton.ac.uk/
@@ -97,6 +97,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 7.10.21-1
+- Updated to release 7.10.21.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 7.10.16-1.2
 - Rebuild for Fedora Core 5.
 

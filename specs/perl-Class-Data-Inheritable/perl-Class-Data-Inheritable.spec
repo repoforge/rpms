@@ -8,7 +8,7 @@
 
 Summary: Class-Data-Inheritable module for perl
 Name: perl-Class-Data-Inheritable
-Version: 0.05
+Version: 0.06
 Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
@@ -49,6 +49,9 @@ Class-Data-Inheritable module for perl
 %dir %{perl_vendorlib}/Class/Data/Inheritable.pm
 
 %changelog
+* Sat Sep 23 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1
+- Updated to release 0.06.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Updated to release 0.05.
 

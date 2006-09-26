@@ -6,8 +6,8 @@
 
 Summary: API document browser
 Name: devhelp
-Version: 0.9.2
-Release: 1.2
+Version: 0.9.3
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://www.imendio.com/projects/devhelp/
@@ -52,7 +52,7 @@ exec %{_bindir}/devhelp-bin $@
 EOF
 
 %build
-intltoolize
+#intltoolize
 %configure \
 	--disable-schemas-install \
 	--with-html-widget="gtkhtml2"
@@ -61,7 +61,7 @@ intltoolize
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%find_lang %{name}
+#%find_lang %{name}
 
 %{__install} -Dp -m0755 devhelp.sh %{buildroot}%{_bindir}/devhelp
 
@@ -71,7 +71,8 @@ intltoolize
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
+# -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %config %{_sysconfdir}/gconf/schemas/devhelp.schemas
@@ -91,6 +92,9 @@ intltoolize
 %{_libdir}/pkgconfig/libdevhelp-1.0.pc
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.3-1
+- Updated to release 0.9.3.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.2-1.2
 - Rebuild for Fedora Core 5.
 

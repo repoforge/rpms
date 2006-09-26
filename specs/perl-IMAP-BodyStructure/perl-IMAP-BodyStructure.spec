@@ -9,8 +9,8 @@
 
 Summary: Interface to parse the output of an IMAP4 MIME-parser
 Name: perl-IMAP-BodyStructure
-Version: 0.96
-Release: 1.2
+Version: 1.01
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IMAP-BodyStructure/
@@ -50,6 +50,9 @@ with parsing previous sentence.
 %{perl_vendorlib}/IMAP/BodyStructure.pm
 
 %changelog
+* Fri Sep 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1
+- Updated to release 1.01.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.96-1.2
 - Rebuild for Fedora Core 5.
 

@@ -9,8 +9,8 @@
 
 Summary: Drawing program designed for young children
 Name: tuxpaint
-Version: 0.9.14
-Release: 2
+Version: 0.9.15
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://www.newbreedsoftware.com/tuxpaint/
@@ -69,6 +69,9 @@ source /etc/profile.d/qt.sh
 %{_datadir}/tuxpaint
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.15-1
+- Updated to release 0.9.15.
+
 * Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.14-2
 - Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
 
