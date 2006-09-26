@@ -8,12 +8,12 @@
 %{?fc6:%define _with_modxorg 1}
 %{?fc5:%define _with_modxorg 1}
 
-%define prever 20060512
+%define prever 20060918
 
 Summary: Advanced audio and video capturing, compositing, and editing
 Name: cinelerra
-Version: 2.0
-Release: 0.7%{?prever:.%{prever}}
+Version: 2.1
+Release: 0.9%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://cvs.cinelerra.org/
@@ -21,9 +21,9 @@ URL: http://cvs.cinelerra.org/
 # svn checkout svn://cvs.cinelerra.org/repos/cinelerra/trunk/hvirtual
 # cd hvirtual; find . -name .svn | xargs rm -rf
 # ./autogen.sh && ./configure && make dist
-# mv cinelerra-2.0.tar.gz cinelerra-2.0-svn20060512.tar.gz
-Source0: cinelerra-2.0%{?prever:-svn%{prever}}.tar.gz
-#Patch0: cinelerra-2.0-ffmpeg.patch
+# mv cinelerra-2.1.tar.gz cinelerra-2.1-svn20060918.tar.gz
+Source0: cinelerra-%{version}%{?prever:-svn%{prever}}.tar.gz
+Source1: cinelerra-64x64.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel, libXxf86vm-devel, libXext-devel}
 %{!?_with_modxorg:BuildRequires: xorg-x11-devel}
@@ -60,9 +60,10 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
 
 %prep
 %setup
-#patch0 -p1 -b .ffmpeg
 # Add category "AudioVideo", as it ends up in "Others" otherwise
-%{__perl} -pi -e 's|^(Categories=.*)|$1AudioVideo;|g' image/cinelerra.desktop
+# Replace the ugly small xpm icon with a nicer png one
+%{__perl} -pi -e 's|^(Categories=.*)|$1AudioVideo;|g;
+                  s|^Icon=.*|Icon=cinelerra.png|g' image/cinelerra.desktop
 
 
 %build
@@ -84,6 +85,9 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
 %makeinstall \
     plugindir=%{buildroot}%{_libdir}/cinelerra
 %find_lang %{name}
+# Remove xpm icon and place png one
+%{__rm} -f %{buildroot}%{_datadir}/pixmaps/cinelerra.xpm
+%{__install} -m 0644 -p %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/cinelerra.png
 
 
 %clean
@@ -97,7 +101,7 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING LICENSE NEWS TODO
+%doc ChangeLog COPYING LICENSE NEWS TODO
 %{_bindir}/cinelerra
 %{_bindir}/mpeg3cat
 %{_bindir}/mpeg3dump
@@ -109,10 +113,17 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
 %exclude %{_libdir}/*.so
 %{_libdir}/*.so.*
 %{_datadir}/applications/*cinelerra.desktop
-%{_datadir}/pixmaps/cinelerra.xpm
+%{_datadir}/pixmaps/cinelerra.png
 
 
 %changelog
+* Tue Sep 26 2006 Matthias Saou <http://freshrpms.net/> 2.0-0.9.20060918
+- Replace xpm icon with a nicer png one.
+- Remove empty AUTHORS file.
+
+* Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 2.0-0.8.20060918
+- Update to today's SVN code.
+
 * Fri May 12 2006 Matthias Saou <http://freshrpms.net/> 2.0-0.7.20060512
 - Update to today's SVN code.
 - Remove no longer needed ffmpeg patch.
