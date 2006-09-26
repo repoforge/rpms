@@ -1,16 +1,16 @@
 # $Id$
 # Authority: matthias
-
 # ExclusiveDist: fc6
 
 Summary: Media player with the WinAmp GUI
 Name: bmpx
-Version: 0.20.3
+Version: 0.30.3
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.beep-media-player.org/
-Source: http://files.beep-media-player.org/releases/0.20/bmpx-%{version}.tar.bz2
+Source: http://files.beep-media-player.org/releases/0.30/bmpx-%{version}.tar.bz2
+Patch0: bmpx-0.30.3-install.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
@@ -42,15 +42,17 @@ Development files required for compiling BMPx media player plugins.
 
 %prep
 %setup
+%patch0 -p1 -b .install
 
 
 %build
+%define optflags -Os
 %configure \
     --disable-rpath \
     --enable-hal \
     --enable-mp4v2 \
     --enable-sid
-# Remove %{?_smp_mflags} as the build takes up 2GB RAM with -j4 (Dual HT)
+# Remove %{?_smp_mflags} as the build takes up 2GB RAM with -j4
 %{__make}
 
 
@@ -90,11 +92,13 @@ update-mime-database  %{_datadir}/mime &>/dev/null || :
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_bindir}/beep-media-player-2
+%{_bindir}/bmp2
 %{_bindir}/bmp-enqueue-files-2.0
 %{_bindir}/bmp-enqueue-uris-2.0
 %{_bindir}/bmp-play-files-2.0
+%{_bindir}/bmp-play-lastfm-2.0
 %{_libdir}/bmpx/
-%exclude %{_libdir}/bmpx/plugins/*/*.la
+%exclude %{_libdir}/bmpx/plugins/*/*/*.la
 %{_libexecdir}/beep-media-player-2-bin
 %{_datadir}/applications/bmp-2.0.desktop
 %{_datadir}/applications/bmp-enqueue-2.0.desktop
@@ -113,6 +117,12 @@ update-mime-database  %{_datadir}/mime &>/dev/null || :
 
 
 %changelog
+* Tue Sep 26 2006 Matthias Saou <http://freshrpms.net/> 0.30.3-1
+- Update to 0.30.3.
+
+* Mon Sep 25 2006 Matthias Saou <http://freshrpms.net/> 0.30.1-1
+- Update to 0.30.1.
+
 * Fri Jul 21 2006 Matthias Saou <http://freshrpms.net/> 0.20.3-1
 - Update to 0.20.3.
 - Drop no longer needed binpath patch.
