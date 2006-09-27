@@ -16,6 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: readline-devel, flex, bison, libdnet-devel, automake, autoconf
 BuildRequires: libpcap, libdnet-devel, libdnsres-devel, libevent-devel
 BuildRequires: python-devel >= 2.4
+BuildRequires: pcre-devel
 
 %description
 Honeyd is a small daemon that creates virtual hosts on a network.

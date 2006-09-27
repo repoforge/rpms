@@ -28,7 +28,7 @@ Source: http://goof.com/pcg/marc/data/root-tail-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{?_without_modxorg:BuildRequires: XFree86-devel}
-%{!?_without_modxorg:BuildRequires: xorg-x11-proto-devel, imake}
+%{!?_without_modxorg:BuildRequires: imake, libXext-devel}
 
 %description
 Displays a given file anywhere on your X11 root window with a transparent

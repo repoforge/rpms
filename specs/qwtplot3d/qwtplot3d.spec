@@ -1,6 +1,17 @@
 # $Id$
 # Authority: dries
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+
+
 Summary: 3D plotting widget for scientific data and mathematical expressions
 Name: qwtplot3d
 Version: 0.2.6
@@ -13,6 +24,7 @@ Source: http://dl.sf.net/qwtplot3d/qwtplot3d-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: qt-devel, gcc-c++
+%{!?_without_modxorg:BuildRequires: libXmu-devel}
 
 %description
 qwtplot3d is a graphics extension to the Qt GUI application framework that 

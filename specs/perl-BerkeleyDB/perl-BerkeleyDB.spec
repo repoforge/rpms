@@ -23,6 +23,9 @@ BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503
 %{!?dist:BuildRequires: db4-devel}
 %{?el4:BuildRequires: db4-devel}
+%{?fc6:BuildRequires: db4-devel}
+%{?fc5:BuildRequires: db4-devel}
+%{?fc4:BuildRequires: db4-devel}
 %{?fc3:BuildRequires: db4-devel}
 %{?fc2:BuildRequires: db4-devel}
 

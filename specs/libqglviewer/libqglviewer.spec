@@ -2,7 +2,17 @@
 # Authority: dries
 # Upstream: Gilles Debunne <gilles,debunne$laposte,net>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %define real_version 2.2.3-1
+
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
 
 Summary: Library for quick creation of OpenGL 3D viewers
 Name: libqglviewer
@@ -16,6 +26,7 @@ Source: http://artis.imag.fr/Members/Gilles.Debunne/QGLViewer/src/libQGLViewer-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: qt-devel, gcc-c++
+%{!?_without_modxorg:BuildRequires: libXmu-devel }
 
 %description
 libQGLViewer is a C++ library based on Qt that enables the quick

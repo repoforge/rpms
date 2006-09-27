@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl, perl-DateTime, perl-XML-LibXML, perl-URI, perl-XML-XPath
 BuildRequires: perl-libwww-perl, perl-LWP-Authen-Wsse, perl-Digest-SHA1
+BuildRequires: perl(Class::Data::Inheritable)
 
 %description
 This module implements the API and feed format of Atom.

@@ -2,10 +2,20 @@
 # Authority: dries
 # Upstream: Leon Brocard <leon$astray,com>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Image-Imlib2
+
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
 
 Summary: Interface to the Imlib2 image library
 Name: perl-Image-Imlib2
@@ -19,6 +29,7 @@ Source: http://www.cpan.org/modules/by-module/Image/Image-Imlib2-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, imlib2-devel, perl-Module-Build, zlib-devel
+%{!?_without_modxorg:BuildRequires: freetype-devel}
 
 %description
 Image::Imlib2 is a Perl port of Imlib2, a graphics library that does

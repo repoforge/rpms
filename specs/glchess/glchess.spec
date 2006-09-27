@@ -18,7 +18,7 @@ Source: http://dl.sf.net/glchess/glchess-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: gtk+-devel >= 1.2.0
+BuildRequires: gettext, gtk+-devel >= 1.2.0
 #BuildRequires: gtkglarea
 
 %description

@@ -25,7 +25,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): /sbin/ldconfig, desktop-file-utils
 Requires(postun): /sbin/ldconfig, desktop-file-utils
 BuildRequires: gtk2-devel, libglade2-devel, gettext-devel
-BuildRequires: libvisual-devel, SDL-devel
+BuildRequires: libvisual-devel, SDL-devel, gcc-c++
 BuildRequires: libogg-devel, libvorbis-devel, flac-devel, id3lib-devel
 BuildRequires: alsa-lib-devel, esound-devel, libmpcdec-devel, taglib-devel
 %{!?_without_vfs:BuildRequires: gnome-vfs2-devel}

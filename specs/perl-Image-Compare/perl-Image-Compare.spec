@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/A/AV/AVIF/Image-Compare-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Regexp::Common)
+BuildRequires: perl, perl(Regexp::Common), perl(Imager), perl(LWP)
 
 %description
 Image::Compare is a module for performing comparisons of images.

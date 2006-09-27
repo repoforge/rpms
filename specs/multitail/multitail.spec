@@ -16,7 +16,7 @@ URL: http://www.vanheusden.com/multitail/
 Source: http://www.vanheusden.com/multitail/multitail-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc, make, ncurses-devel
+BuildRequires: make, ncurses-devel
 Requires: ncurses
 
 %description
