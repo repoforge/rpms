@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl, perl(Authen::SASL) >= 2.0, perl(Convert::ASN1)
-BuildRequires: perl(URI::ldap) >= 1.1
+BuildRequires: perl(URI::ldap) >= 1.1, perl(IO::Socket::SSL) > 0.81
 Requires: perl(Convert::ASN1), perl(XML::SAX::Base),  perl(IO::Socket::SSL)
 
 %description

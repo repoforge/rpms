@@ -29,7 +29,7 @@ Source: http://www.cpan.org/modules/by-module/Image/Image-Imlib2-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, imlib2-devel, perl-Module-Build, zlib-devel
-%{!?_without_modxorg:BuildRequires: freetype-devel}
+%{!?_without_modxorg:BuildRequires: freetype-devel, libXext-devel}
 
 %description
 Image::Imlib2 is a Perl port of Imlib2, a graphics library that does

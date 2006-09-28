@@ -4,6 +4,7 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?fc5:%define _with_modxorg 1}
+%{?fc6:%define _with_modxorg 1}
 
 %{?fc1:%define _without_kde32 1}
 %{?el3:%define _without_kde32 1}
@@ -29,7 +30,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Buildrequires: SDL-devel, libxml2-devel, SDL_mixer-devel
 BuildRequires: libpng-devel, libmad-devel, libogg-devel, gcc-c++
 %{!?_without_kde32:BuildRequires: kdebase-devel >= 3.2}
-%{?_with_modxorg:BuildRequires: libGLU-devel libXmu-devel}
+%{?_with_modxorg:BuildRequires: libGLU-devel, libXmu-devel, libXi-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 
 %description

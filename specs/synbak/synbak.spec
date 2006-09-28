@@ -14,7 +14,7 @@ Source: http://www.initzero.it/products/opensource/synbak/download/synbak-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl-XML-Parser
+BuildRequires: perl-XML-Parser, gettext
 Requires: bash >= 2.0, bc, gawk, mktemp >= 1.5, nc, rsync, sed, tar
 
 %description
