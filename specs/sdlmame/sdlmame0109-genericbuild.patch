@@ -1,0 +1,12 @@
+diff -Naupr sdlmame0109.orig/makefile sdlmame0109/makefile
+--- sdlmame0109.orig/makefile	2006-09-26 03:38:10.000000000 +0200
++++ sdlmame0109/makefile	2006-09-29 15:30:01.000000000 +0200
+@@ -76,7 +76,7 @@ X86_PPC_DRC = 1
+ # ATHLON = 1
+ # I686 = 1
+ # P4 = 1
+-PM = 1
++# PM = 1
+ # AMD64 = 1
+ # G4 = 1
+ # G5 = 1
