@@ -3,8 +3,8 @@
 
 Summary: Web-interface for CVS and Subversion version control repositories
 Name: viewvc
-Version: 1.0.1
-Release: 2
+Version: 1.0.2
+Release: 1
 License: BSD
 Group: System/Servers
 URL: http://www.viewvc.org/
@@ -107,6 +107,9 @@ find %{buildroot}%{_datadir}/viewvc/lib -type f -name "*.pyc" | xargs %{__rm} -f
 %{_localstatedir}/www/viewvc/
 
 %changelog
+* Sat Sep 30 2006 Dag Wieers <dag@wieers.com> - 1.0.2-1
+- Updated to release 1.0.2.
+
 * Tue Aug 01 2006 Dag Wieers <dag@wieers.com> - 1.0.1-2
 - Provide a better default httpd setup using Alias and ScriptALias /viewvc-static.
 

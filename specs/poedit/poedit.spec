@@ -14,7 +14,7 @@ URL: http://poedit.sourceforge.net/
 
 Source: http://dl.sf.net/poedit/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc, gcc-c++, wxGTK-devel, db4-devel, gettext, zip
+BuildRequires: gcc, gcc-c++, wxGTK-devel >= 2.6, db4-devel, gettext, zip
 Requires: wxGTK, db4, gettext
 
 %description
