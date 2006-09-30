@@ -17,6 +17,7 @@ URL: http://search.cpan.org/dist/Crypt-Lite/
 Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-Lite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503
 
@@ -27,15 +28,15 @@ Easy to use symmetric data encryption and decryption
 %setup -n %{rname}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -46,8 +47,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Crypt/
 %{perl_vendorlib}/Crypt/Lite.pm
-%dir %{perl_vendorarch}/auto/Crypt/
-%{perl_vendorarch}/auto/Crypt/Lite/
+#%dir %{perl_vendorarch}/auto/Crypt/
+#%{perl_vendorarch}/auto/Crypt/Lite/
 
 %changelog
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.82.11-1

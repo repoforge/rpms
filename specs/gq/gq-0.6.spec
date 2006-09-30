@@ -11,8 +11,8 @@
 
 Summary: graphical LDAP directory browser and editor
 Name: gq
-Version: 1.2.0
-Release: 1
+Version: 0.6.0
+Release: 4
 License: GPL
 Group: Applications/Internet
 URL: http://biot.com/gq/
@@ -20,14 +20,14 @@ URL: http://biot.com/gq/
 Source: http://dl.sf.net/gqclient/gq-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glib2-devel >= 2.6, gtk+-devel >= 2.6, openldap-devel
-BuildRequires: krb5-devel, openssl-devel, libxml2-devel
+BuildRequires: gtk+-devel, openldap-devel, krb5-devel, openssl-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 GQ is a graphical browser for LDAP directories and schemas.  Using GQ,
 an administrator can search through a directory and modify objects stored
 in that directory.
+
 
 %prep
 %setup
@@ -63,6 +63,7 @@ EOF
 		%{buildroot}%{_datadir}/gnome/apps/Internet/gq.desktop
 %endif
 
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -76,17 +77,10 @@ EOF
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/gq.desktop}
 
 %changelog
-* Sat Sep 30 2006 Dag Wieers <dag@wieers.com> - 1.2.0-1
-- Updated to release 1.2.0.
-
 * Wed Jun 09 2004 Dag Wieers <dag@wieers.com> - 0.6.0-4
 - Merged SPEC file with my version.
 - Changes to build on older releases.
 - Added improved desktop file.
-
-* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.beta1.1
-- Update to 1.0beta1.
-- Rebuild for Fedora Core 2.
 
 * Thu Nov 13 2003 Matthias Saou <http://freshrpms.net/> 0.6.0-3
 - Rebuild for Fedora Core 1.

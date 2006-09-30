@@ -18,6 +18,7 @@ URL: http://search.cpan.org/dist/Pod-Coverage/
 Source: http://www.cpan.org/modules/by-module/Pod/Pod-Coverage-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl, perl-Module-Build
 
 %description
@@ -27,15 +28,15 @@ Checks if the documentation of a module is comprehensive.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist %{buildroot}%{perl_archlib}/perllocal.pod
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,8 +49,6 @@ Checks if the documentation of a module is comprehensive.
 %dir %{perl_vendorlib}/Pod/
 %{perl_vendorlib}/Pod/Coverage.pm
 %{perl_vendorlib}/Pod/Coverage/
-%dir %{perl_vendorarch}/auto/Pod/
-%{perl_vendorarch}/auto/Pod/Coverage/
 
 %changelog
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.18-1

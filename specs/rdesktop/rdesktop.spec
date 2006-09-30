@@ -6,8 +6,8 @@
 
 Summary: X client for remote desktop into Windows Terminal Server
 Name: rdesktop
-Version: 1.4.1
-Release: 0.2
+Version: 1.5.0
+Release: 0
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.rdesktop.org/
@@ -45,8 +45,8 @@ desktop. Unlike Citrix ICA, no server extensions are required.
 %{_datadir}/rdesktop/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.1-0.2
-- Rebuild for Fedora Core 5.
+* Sat Sep 30 2006 Dag Wieers <dag@wieers.com> - 1.5.0-0
+- Updated to release 1.5.0.
 
 * Fri May 27 2005 Dag Wieers <dag@wieers.com> - 1.4.1-0
 - Initial package. (using DAR)

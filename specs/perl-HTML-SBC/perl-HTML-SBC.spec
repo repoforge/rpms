@@ -19,7 +19,8 @@ Source: http://search.cpan.org//CPAN/authors/id/M/ME/MEMOWE/HTML-SBC-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Test::Exception)
+BuildRequires: perl, perl(Test::Exception), perl(Test::Simple) >= 0.62, perl(Test::More) >= 0.62
+BuildRequires: perl(Carp), perl(Scalar::Util), perl(Exporter) >= 5.562
 
 %description
 Simple blog code (SBC) is a simple markup language, You can use it for guest
