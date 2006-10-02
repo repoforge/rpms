@@ -75,6 +75,7 @@ fi
 %defattr(-, root, root, 0755)
 %doc example/
 %{_includedir}/cdio/
+%{_includedir}/cdio++/
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so

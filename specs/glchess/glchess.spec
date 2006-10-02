@@ -30,44 +30,12 @@ not over a netwerk (see TODO).
 %prep
 %setup
 
-#%{__perl} -pi.orig -e 's|/usr/local/share/games/glchess|%{_datadir}/games/glchess|' glchessrc
-
-#%{__cat} <<EOF >glchess.desktop
-#[Desktop Entry]
-#Name=GLChess
-#Comment=Play chess in 3D
-#Exec=glchess
-#Icon=chess.png
-#Terminal=false
-#Type=Application
-#Categories=Application;Game;
-#EOF
-
 %build
-#configure
-#%{__make} %{?_smp_mflags}
 %{__make} translations
 python setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-#%{__install} -Dp -m0755 src/glchess %{buildroot}%{_bindir}/glchess
-#%{__install} -Dp -m0644 man/glchess.6 %{buildroot}%{_mandir}/man6/glchess.6
-#%{__install} -Dp -m0644 glchessrc %{buildroot}%{_sysconfdir}/glchessrc
-#%{__install} -Dp -m0644 glchess.menu %{buildroot}%{_sysconfdir}/X11/wmconfig/glchess.menu
-#
-#%{__install} -d -m0755 %{buildroot}%{_datadir}/games/glchess/textures/
-#%{__install} -p -m0644 textures/* %{buildroot}%{_datadir}/games/glchess/textures/
-
-#%if %{?_without_freedesktop:1}0
-#	%{__install} -Dp -m0644 glchess.desktop %{buildroot}%{_datadir}/gnome/apps/Games/glchess.desktop
-#%else
-#	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-#	desktop-file-install --vendor "%{desktop_vendor}"  \
-#		--add-category X-Red-Hat-Base              \
-#		--dir %{buildroot}%{_datadir}/applications \
-#		glchess.desktop
-#%endif
 %{__make} install DESTDIR="%{buildroot}"
 %{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 %find_lang %{name}
@@ -87,8 +55,11 @@ python setup.py build
 %ghost %{python_sitelib}/glchess/*/*.pyo
 
 %changelog
-* Mon Oct 02 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.10-1
+* Mon Oct 02 2006 Dag Wieers <dag@wieers.com> - 0.9.10-1
 - Updated to release 0.9.10.
+
+* Sun Oct 01 2006 Dag Wieers <dag@wieers.com> - 0.9.9-1
+- Updated to release 0.9.9.
 
 * Thu Sep 14 2006 Dag Wieers <dag@wieers.com> - 0.9.8-1
 - Updated to release 0.9.8.
