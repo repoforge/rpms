@@ -9,8 +9,8 @@
 
 Summary: Extremely light-weight Lev-Zimpel-Free compression
 Name: perl-Compress-LZF
-Version: 1.6
-Release: 1.2
+Version: 1.7
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Compress-LZF/
@@ -51,6 +51,9 @@ problems incoporating this module into commercial programs.
 %{perl_vendorarch}/auto/Compress/LZF
 
 %changelog
+* Sat Sep 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.7-1
+- Updated to release 1.7.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.6-1.2
 - Rebuild for Fedora Core 5.
 

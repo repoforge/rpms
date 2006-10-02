@@ -9,7 +9,7 @@
 
 Summary: Interface to YouTube
 Name: perl-WebService-YouTube
-Version: 0.02
+Version: 0.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ An interface to YouTube.
 %{perl_vendorlib}/WebService/YouTube/
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1
+- Updated to release 0.04.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

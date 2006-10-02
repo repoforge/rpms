@@ -1,9 +1,19 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+
 Summary: Very small and fast Window Manager
 Name: blackbox
-Version: 0.70.0
+Version: 0.70.1
 Release: 1
 License: GPL
 Group: User Interface/Desktops
@@ -11,7 +21,9 @@ URL: http://blackboxwm.sourceforge.net/
 Source0: http://dl.sf.net/blackboxwm/blackbox-%{version}.tar.bz2
 Source1: blackbox.desktop
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: XFree86-devel, gcc-c++
+BuildRequires: gcc-c++
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel, libXext-devel}
 
 %description
 Blackbox is a window manager for the X Window environment, which is
@@ -79,6 +91,9 @@ EOF
 
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.70.1-1
+- Updated to release 0.70.1.
+
 * Sat Mar 12 2005 Mattthias Saou <http://freshrpms.net/> 0.70.0-1
 - Update to 0.70.0.
 - Use bz2 source instead of gz.

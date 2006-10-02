@@ -9,7 +9,7 @@
 
 Summary: Provides non-blocking ident services to your sessions
 Name: perl-POE-Component-Server-Ident
-Version: 1.05
+Version: 1.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ has a connection to a server daemon.
 %{perl_vendorlib}/POE/Component/Server/Ident.pm
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.06-1
+- Updated to release 1.06.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.05-1
 - Initial package.

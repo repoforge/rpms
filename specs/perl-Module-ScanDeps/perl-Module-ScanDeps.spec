@@ -9,7 +9,7 @@
 
 Summary: Recursively scan Perl programs for dependencies
 Name: perl-Module-ScanDeps
-Version: 0.63
+Version: 0.66
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ for further information.
 %{perl_vendorlib}/Module/ScanDeps/
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.66-1
+- Updated to release 0.66.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.63-1
 - Updated to release 0.63.
 

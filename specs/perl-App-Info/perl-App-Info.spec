@@ -9,7 +9,7 @@
 
 Summary: Provides metadata about installed software packages
 Name: perl-App-Info
-Version: 0.50
+Version: 0.51
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -69,6 +69,9 @@ added as needed.
 %{perl_vendorlib}/App/Info/
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.51-1
+- Updated to release 0.51.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.50-1
 - Updated to release 0.50.
 

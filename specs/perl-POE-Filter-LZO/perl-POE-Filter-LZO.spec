@@ -9,7 +9,7 @@
 
 Summary: POE filter wrapped around Compress::LZO
 Name: perl-POE-Filter-LZO
-Version: 1.4
+Version: 1.5
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,5 +48,8 @@ A POE filter wrapped around Compress::LZO.
 %{perl_vendorlib}/POE/Filter/LZO.pm
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.5-1
+- Updated to release 1.5.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1
 - Initial package.

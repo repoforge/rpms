@@ -9,7 +9,7 @@
 
 Summary: Wrapper around Apache::Session
 Name: perl-Apache-Session-Wrapper
-Version: 0.32
+Version: 0.33
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,5 +49,8 @@ the session id for you.  See the module documentation for details.
 %{perl_vendorlib}/Apache/Session/Wrapper.pm
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.33-1
+- Updated to release 0.33.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.32-1
 - Initial package.

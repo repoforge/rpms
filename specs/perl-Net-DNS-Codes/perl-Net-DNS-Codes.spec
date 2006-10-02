@@ -11,8 +11,8 @@
 
 Summary: Collection of C library DNS codes
 Name: perl-Net-DNS-Codes
-Version: 0.08
-Release: 1.2
+Version: 0.09
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DNS-Codes/
@@ -50,6 +50,9 @@ library DNS codes as well as all the codes for the DNS HEADER field.
 %{perl_vendorlib}/Net/DNS/Codes.pm
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1
+- Updated to release 0.09.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1.2
 - Rebuild for Fedora Core 5.
 

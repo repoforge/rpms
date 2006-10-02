@@ -1,9 +1,19 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+
 Summary: Planet image rendering into the X root window
 Name: xplanet
-Version: 1.1.1
+Version: 1.2.0
 Release: 1
 License: GPL
 Group: Amusements/Graphics
@@ -11,9 +21,11 @@ URL: http://xplanet.sourceforge.net/
 Source: http://dl.sf.net/xplanet/xplanet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xplanet-maps
-BuildRequires: XFree86-devel, gcc-c++, zlib-devel
+BuildRequires: gcc-c++, zlib-devel
 BuildRequires: libungif-devel, libjpeg-devel, libpng-devel
 BuildRequires: netpbm-devel, libtiff-devel, pango-devel
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
 
 %description
 Xplanet was inspired by Xearth, which renders an image of the earth into the
@@ -50,6 +62,9 @@ orthographic, and rectangular.
 
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.0-1
+- Updated to release 1.2.0.
+
 * Mon Jul 26 2004 Matthias Saou <http://freshrpms.net> 1.1.1-1
 - Update to 1.1.1.
 

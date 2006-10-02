@@ -8,13 +8,13 @@
 
 Summary: Compute intelligent differences between two files or lists
 Name: perl-Algorithm-Diff
-Version: 1.1901
-Release: 1.2
+Version: 1.1902
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Algorithm-Diff/
 
-Source: http://www.cpan.org/modules/by-module/Algorithm/Algorithm-Diff-%{version}.zip
+Source: http://search.cpan.org/CPAN/authors/id/T/TY/TYEMQ/Algorithm-Diff-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -53,6 +53,9 @@ differences.
 %{perl_vendorlib}/Algorithm/
 
 %changelog
+* Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.1902-1
+- Updated to release 1.1902.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.1901-1.2
 - Rebuild for Fedora Core 5.
 

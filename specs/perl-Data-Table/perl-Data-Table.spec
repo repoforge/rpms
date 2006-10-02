@@ -9,7 +9,7 @@
 
 Summary: Table data types
 Name: perl-Data-Table
-Version: 1.49
+Version: 1.50
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,6 +48,9 @@ HTML table displays, etc.
 %{perl_vendorlib}/auto/Data/Table
 
 %changelog
+* Sat Sep 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.50-1
+- Updated to release 1.50.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.49-1
 - Updated to release 1.49.
 

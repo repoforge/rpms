@@ -9,8 +9,8 @@
 
 Summary: OOP-ish interface for accessing a weblog via the Blogger XML-RPC API
 Name: perl-Net-Blogger
-Version: 1.01
-Release: 1.2
+Version: 1.02
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Blogger/
@@ -48,6 +48,9 @@ Blogger XML-RPC API.
 %{perl_vendorlib}/Net/Blogger/
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.02-1
+- Updated to release 1.02.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1.2
 - Rebuild for Fedora Core 5.
 

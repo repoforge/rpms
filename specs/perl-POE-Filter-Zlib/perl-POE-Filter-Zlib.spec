@@ -9,7 +9,7 @@
 
 Summary: POE filter wrapped around Compress::Zlib
 Name: perl-POE-Filter-Zlib
-Version: 1.6
+Version: 1.7
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,5 +48,8 @@ A POE filter wrapped around Compress::Zlib.
 %{perl_vendorlib}/POE/Filter/Zlib/
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.7-1
+- Updated to release 1.7.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.6-1
 - Initial package.

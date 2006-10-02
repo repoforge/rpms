@@ -9,7 +9,7 @@
 
 Summary: POE component that provides access to NNTP
 Name: perl-POE-Component-Client-NNTP
-Version: 1.02
+Version: 1.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,5 +49,8 @@ A component that provides access to NNTP.
 %{perl_vendorlib}/POE/Component/Client/NNTP.pm
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.04-1
+- Updated to release 1.04.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.02-1
 - Initial package.
