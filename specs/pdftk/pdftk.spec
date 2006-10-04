@@ -1,6 +1,11 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_gcj3 1}
+%{?el2:%define _without_gcj3 1}
+
 Summary: PDF Tool Kit
 Name: pdftk
 Version: 1.12
@@ -34,7 +39,8 @@ of your desktop and use it to:
 
 %build
 export -n CLASSPATH
-%{__perl} -pi -e 's/-I"\$\(java_libs_root\)"/--classpath="\$(java_libs_root)"/' java_libs/Makefile
+%{!?_without_gcj3:%{__perl} -pi -e 's|-I"\$\(java_libs_root\)"|--classpath="\$(java_libs_root)"|' java_libs/Makefile}
+%{?_without_gcj3:%{__perl} -pi -e 's|--encoding=UTF-8||' java_libs/Makefile}
 %{__make} -C pdftk -f Makefile.RedHat
 
 %install

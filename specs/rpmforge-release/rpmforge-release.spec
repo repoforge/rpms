@@ -30,6 +30,7 @@ GPG keys used to sign them.
 %prep
 %setup -c
 
+%{?el5:name='Red Hat Enterprise'; version='5'; path="redhat/el"; builder='dag'}
 %{?el4:name='Red Hat Enterprise'; version='4'; path="redhat/el"; builder='dag'}
 %{?el3:name='Red Hat Enterprise'; version='3'; path="redhat/el"; builder='dag'}
 %{?el2:name='Red Hat Enterprise'; version='2'; path="redhat/el"; builder='dag'}
@@ -107,9 +108,9 @@ done >mirrors-rpmforge.yum
 %{__rm} -rf %{buildroot}
 
 %post
-rpm -q gpg-pubkey-6b8d79e6-3f49313d &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag
-rpm -q gpg-pubkey-1aa78495-3eb24301 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dries
-rpm -q gpg-pubkey-e42d547b-3960bdf1 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-matthias
+rpm -q gpg-pubkey-6b8d79e6-3f49313d &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag || :
+rpm -q gpg-pubkey-1aa78495-3eb24301 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dries || :
+rpm -q gpg-pubkey-e42d547b-3960bdf1 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-matthias || :
 exit 0
 
 %files

@@ -35,7 +35,8 @@ dedicated help channel--#BitchX on EFNET).
 %configure \
     --enable-ipv6 \
     --with-ssl
-%{__make} %{?_smp_mflags}
+### Include /usr/kerberos/include to accomodate RH9 and EL3
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags} -I/usr/kerberos/include"
 
 
 %install

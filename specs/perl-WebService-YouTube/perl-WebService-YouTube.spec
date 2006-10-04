@@ -27,11 +27,13 @@ An interface to YouTube.
 %setup -n %{real_name}-%{version}
 
 %build
+export PERL_EXTUTILS_AUTOINSTALL="--skipdeps --skip"
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+export PERL_EXTUTILS_AUTOINSTALL="--skipdeps --skip"
 %makeinstall
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
