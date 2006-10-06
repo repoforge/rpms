@@ -1,0 +1,11 @@
+--- sdlmame0109/makefile.orig	2006-09-26 03:38:10.000000000 +0200
++++ sdlmame0109/makefile	2006-10-05 20:38:31.000000000 +0200
+@@ -263,7 +263,7 @@ CFLAGS = $(OPT_FLAGS) -std=gnu89 -Isrc -
+ 
+ ifdef SYMBOLS
+ ifdef PPC
+-CFLAGS += -Wall -Wno-unused -g3 -mlong-branch
++CFLAGS += -Wall -Wno-unused -g3
+ else
+ CFLAGS += -Wall -Wno-unused -g3
+ endif	# PPC
