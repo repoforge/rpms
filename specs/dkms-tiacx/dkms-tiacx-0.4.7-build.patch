@@ -1,6 +1,6 @@
 diff -Naupr drivers.orig/net/wireless/tiacx/common.c drivers/net/wireless/tiacx/common.c
 --- drivers.orig/net/wireless/tiacx/common.c	2006-06-29 15:33:30.000000000 +0200
-+++ drivers/net/wireless/tiacx/common.c	2006-10-09 13:12:03.000000000 +0200
++++ drivers/net/wireless/tiacx/common.c	2006-10-09 14:24:34.000000000 +0200
 @@ -30,7 +30,6 @@
  ** ---------------------------------------------------------------------
  */
@@ -11,7 +11,7 @@ diff -Naupr drivers.orig/net/wireless/tiacx/common.c drivers/net/wireless/tiacx/
  #include <linux/kernel.h>
 diff -Naupr drivers.orig/net/wireless/tiacx/ioctl.c drivers/net/wireless/tiacx/ioctl.c
 --- drivers.orig/net/wireless/tiacx/ioctl.c	2006-06-29 15:33:30.000000000 +0200
-+++ drivers/net/wireless/tiacx/ioctl.c	2006-10-09 13:12:09.000000000 +0200
++++ drivers/net/wireless/tiacx/ioctl.c	2006-10-09 14:24:34.000000000 +0200
 @@ -30,7 +30,6 @@
  ** ---------------------------------------------------------------------
  */
@@ -20,9 +20,26 @@ diff -Naupr drivers.orig/net/wireless/tiacx/ioctl.c drivers/net/wireless/tiacx/i
  #include <linux/version.h>
  #include <linux/kernel.h>
  #include <linux/types.h>
+diff -Naupr drivers.orig/net/wireless/tiacx/Makefile drivers/net/wireless/tiacx/Makefile
+--- drivers.orig/net/wireless/tiacx/Makefile	2006-06-29 15:33:04.000000000 +0200
++++ drivers/net/wireless/tiacx/Makefile	2006-10-09 14:27:54.000000000 +0200
+@@ -2,5 +2,13 @@ acx-common-y := wlan.o ioctl.o common.o
+ acx-usb-y := usb.o
+ acx-pci-y := pci.o
+ 
++ifndef CONFIG_ACX_PCI
++CONFIG_ACX_PCI=m
++endif
++
++ifndef CONFIG_ACX_USB
++CONFIG_ACX_USB=m
++endif
++
+ obj-$(CONFIG_ACX_PCI) += acx-common.o acx-pci.o
+ obj-$(CONFIG_ACX_USB) += acx-common.o acx-usb.o
 diff -Naupr drivers.orig/net/wireless/tiacx/pci.c drivers/net/wireless/tiacx/pci.c
 --- drivers.orig/net/wireless/tiacx/pci.c	2006-06-29 15:33:30.000000000 +0200
-+++ drivers/net/wireless/tiacx/pci.c	2006-10-09 13:12:54.000000000 +0200
++++ drivers/net/wireless/tiacx/pci.c	2006-10-09 14:24:34.000000000 +0200
 @@ -31,7 +31,6 @@
  */
  #define ACX_PCI 1
@@ -41,7 +58,7 @@ diff -Naupr drivers.orig/net/wireless/tiacx/pci.c drivers/net/wireless/tiacx/pci
  
 diff -Naupr drivers.orig/net/wireless/tiacx/usb.c drivers/net/wireless/tiacx/usb.c
 --- drivers.orig/net/wireless/tiacx/usb.c	2006-06-29 15:33:30.000000000 +0200
-+++ drivers/net/wireless/tiacx/usb.c	2006-10-09 13:13:01.000000000 +0200
++++ drivers/net/wireless/tiacx/usb.c	2006-10-09 14:24:34.000000000 +0200
 @@ -45,7 +45,6 @@
  #define ACX_USB 1
  
@@ -52,7 +69,7 @@ diff -Naupr drivers.orig/net/wireless/tiacx/usb.c drivers/net/wireless/tiacx/usb
  #include <linux/moduleparam.h>
 diff -Naupr drivers.orig/net/wireless/tiacx/wlan.c drivers/net/wireless/tiacx/wlan.c
 --- drivers.orig/net/wireless/tiacx/wlan.c	2006-06-29 15:33:04.000000000 +0200
-+++ drivers/net/wireless/tiacx/wlan.c	2006-10-09 13:13:08.000000000 +0200
++++ drivers/net/wireless/tiacx/wlan.c	2006-10-09 14:24:34.000000000 +0200
 @@ -37,7 +37,6 @@
  ** http://www.linux-wlan.com
  */
