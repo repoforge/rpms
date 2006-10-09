@@ -1,0 +1,58 @@
+# $Id$
+# Authority: matthias
+
+Summary: Music Player Daemon
+Name: mpd
+Version: 0.12.0
+Release: 1
+License: GPL
+Group: Applications/Multimedia
+URL: http://www.musicpd.org/
+Source: http://www.musicpd.org/uploads/files/mpd-%{version}.tar.bz2
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: zlib-devel
+BuildRequires: alsa-lib-devel, pulseaudio-devel, libshout-devel
+BuildRequires: libid3tag-devel, libmad-devel, libogg-devel, libvorbis-devel
+BuildRequires: flac-devel, audiofile-devel, faad2-devel, libmpcdec-devel
+BuildRequires: mikmod-devel
+
+%description
+Music Player Daemon (MPD) allows remote access for playing music and managing
+playlists. MPD is designed for integrating a computer into a stereo system
+that provides control for music playback over a local network. It also makes
+a great desktop music player, especially if you are a console junkie, like
+frontend options, or restart X often.
+
+
+%prep
+%setup
+
+
+%build
+%configure
+%{__make} %{?_smp_mflags}
+
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall
+%{__rm} -rf %{buildroot}%{_datadir}/doc/mpd/
+
+
+%clean
+%{__rm} -rf %{buildroot}
+
+
+%files
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING README TODO UPGRADING
+%doc doc/COMMANDS doc/mpdconf.example
+%{_bindir}/mpd
+%{_mandir}/man1/mpd.1*
+%{_mandir}/man5/mpd.conf.5*
+
+
+%changelog
+* Mon Oct  9 2006 Matthias Saou <http://freshrpms.net/> 0.12.0-1
+- Initial RPM release.
+
