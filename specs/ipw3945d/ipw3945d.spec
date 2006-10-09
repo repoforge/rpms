@@ -8,7 +8,7 @@
 
 Summary: Regulatory Daemon for Intel® PRO/Wireless 3945 network adaptors
 Name: ipw3945d
-Version: 1.7.18
+Version: 1.7.22
 Release: 1
 License: Distributable
 Group: System Environment/Kernel
@@ -53,6 +53,9 @@ to be transmitted on, and support for IEEE 802.11h (DFS and TPC).
 
 
 %changelog
+* Mon Oct  9 2006 Matthias Saou <http://freshrpms.net/> 1.7.22-1
+- Update to 1.7.22.
+
 * Thu Mar 30 2006 Matthias Saou <http://freshrpms.net/> 1.7.18-1
 - Initial RPM release.
 

@@ -6,7 +6,7 @@
 Summary: Multiband Atheros Driver for Wireless Fidelity
 Name: madwifi
 Version: 0.9.2
-Release: 1
+Release: 1.1
 License: GPL
 Group: System Environment/Kernel
 URL: http://madwifi.org/
@@ -16,6 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gcc
 Requires(pre): dkms
 Requires(post): dkms
+Provides: dkms-madwifi = %{version}-%{release}
 
 %description
 MadWifi is short for Multiband Atheros Driver for Wireless Fidelity. It
@@ -50,13 +51,13 @@ export CFLAGS="%{optflags}"
     MANDIR=%{_mandir}
 
 # Kernel module sources install for dkms
-%{__mkdir_p} %{buildroot}%{_usrsrc}/madwifi-%{version}/
+%{__mkdir_p} %{buildroot}%{_usrsrc}/%{dkms_name}-%{version}/
 %{__cp} -a ath/ ath_rate/ hal/ include/ net80211/ scripts/ \
     BuildCaps.inc kernelversion.c Makefile Makefile.inc release.h \
-    %{buildroot}%{_usrsrc}/madwifi-%{version}/
+    %{buildroot}%{_usrsrc}/%{dkms_name}-%{version}/
 
 # Configuration for dkms
-%{__cat} > %{buildroot}%{_usrsrc}/madwifi-%{version}/dkms.conf << 'EOF'
+%{__cat} > %{buildroot}%{_usrsrc}/%{dkms_name}-%{version}/dkms.conf << 'EOF'
 PACKAGE_NAME=%{dkms_name}
 PACKAGE_VERSION=%{version}
 MAKE[0]="make modules KERNELPATH=${kernel_source_dir}"
@@ -118,10 +119,14 @@ dkms remove -m %{dkms_name} -v %{version} --all -q --rpm_safe_upgrade
 %doc COPYRIGHT README THANKS docs/users-guide.pdf docs/WEP-HOWTO.txt
 %{_bindir}/*
 %{_mandir}/man8/*
-%{_usrsrc}/madwifi-%{version}/
+%{_usrsrc}/%{dkms_name}-%{version}/
 
 
 %changelog
+* Mon Oct  9 2006 Matthias Saou <http://freshrpms.net/> 0.9.2-1.1
+- Add dkms-madwifi provides.
+- Use %%{dkms_name} macro for the usr/src directory name.
+
 * Fri Oct  6 2006 Matthias Saou <http://freshrpms.net/> 0.9.2-1
 - Initial RPM release.
 

@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# Dist: nodist
 
 %define majmin          1.0
 %define relver          8774
@@ -12,7 +13,7 @@
 Summary: Proprietary NVIDIA hardware accelerated OpenGL driver
 Name: nvidia-x11-drv
 Version: %{majmin}.%{relver}
-Release: 2
+Release: 2.1
 License: Proprietary
 Group: User Interface/X Hardware Support
 URL: http://www.nvidia.com/object/unix.html
@@ -34,6 +35,7 @@ Buildrequires: tar
 # Required for our build
 BuildRequires: desktop-file-utils
 ExclusiveArch: i386 x86_64
+Provides: dkms-nvidia = %{version}-%{release}
 Conflicts: xorg-x11-drv-nvidia
 
 %description
@@ -63,8 +65,8 @@ sh %{SOURCE1} --extract-only --target pkg/
 %endif
 
 # Copy dkms conf file
-%{__mkdir_p} %{buildroot}%{_usrsrc}/nvidia-%{version}/
-%{__cat} > %{buildroot}%{_usrsrc}/nvidia-%{version}/dkms.conf << 'EOF'
+%{__mkdir_p} %{buildroot}%{_usrsrc}/%{dkms_name}-%{version}/
+%{__cat} > %{buildroot}%{_usrsrc}/%{dkms_name}-%{version}/dkms.conf << 'EOF'
 PACKAGE_NAME=%{dkms_name}
 PACKAGE_VERSION=%{version}
 MAKE[0]="make module KERNDIR=/lib/modules/$kernelver IGNORE_CC_MISMATCH=1"
@@ -75,11 +77,11 @@ EOF
 
 # Install all the files, even the binary ones. Ick.
 %{__install} -p -m 0644 pkg/usr/src/nv/{makefile,Makefile.kbuild} \
-    %{buildroot}%{_usrsrc}/nvidia-%{version}/
+    %{buildroot}%{_usrsrc}/%{dkms_name}-%{version}/
 %{__install} -p -m 0644 pkg/usr/src/nv/*.{c,h,o} \
-    %{buildroot}%{_usrsrc}/nvidia-%{version}/
+    %{buildroot}%{_usrsrc}/%{dkms_name}-%{version}/
 %{__install} -p -m 0755 pkg/usr/src/nv/*.sh \
-    %{buildroot}%{_usrsrc}/nvidia-%{version}/
+    %{buildroot}%{_usrsrc}/%{dkms_name}-%{version}/
 
 # Install libXvMCNVIDIA.*
 %{__mkdir_p} %{buildroot}/%{nvidialibdir}/
@@ -198,7 +200,7 @@ dkms remove -m %{dkms_name} -v %{version} --all -q --rpm_safe_upgrade
 %doc pkg/LICENSE pkg/usr/share/doc/*
 # Kernel and dkms related bits
 %config %{_sysconfdir}/modprobe.d/nvidia
-%{_usrsrc}/nvidia-%{version}/
+%{_usrsrc}/%{dkms_name}-%{version}/
 # fixme: use udev
 %attr(0600,root,root) %dev(c,195,0) /dev/nvidia0
 %attr(0600,root,root) %dev(c,195,1) /dev/nvidia1
@@ -241,6 +243,10 @@ dkms remove -m %{dkms_name} -v %{version} --all -q --rpm_safe_upgrade
 
 
 %changelog
+* Mon Oct  9 2006 Matthias Saou <http://freshrpms.net/> 1.0.8774-2.1
+- Add dkms-nvidia provides.
+- Use %%{dkms_name} macro for the usr/src directory name.
+
 * Sat Oct  7 2006 Matthias Saou <http://freshrpms.net/> 1.0.8774-2
 - Include both x86 and x86_64 pkg.run files in the source rpm, so that the
   same can be used for both i386 and x86_64.
