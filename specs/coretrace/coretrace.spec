@@ -4,9 +4,9 @@
 Summary: Tool for debugging of embedded Linux applications
 Name: coretrace
 Version: 0.71
-Release: 1.2
+Release: 2
 License: GPL
-Group: Development/Debuggers
+Group: Development/Tools
 URL: http://www.arbetsmyra.dyndns.org/coretrace/
 
 Source: http://www.arbetsmyra.dyndns.org/coretrace/download/coretrace_v%{version}.tar.gz
@@ -35,11 +35,11 @@ plain-text backtrace, suitable for putting into logfiles.
 %files
 %defattr(-, root, root, 0755)
 %doc Changelog COPYING
-%{_bindir}/*
+%{_bindir}/coretrace
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.71-1.2
-- Rebuild for Fedora Core 5.
+* Mon Oct 09 2006 Dag Wieers <dag@wieers.com> - 0.71-2
+- Fixed group name.
 
 * Fri Nov 05 2004 Dag Wieers <dag@wieers.com> - 0.71-1
 - Initial package. (using DAR)

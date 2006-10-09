@@ -4,7 +4,7 @@
 Summary: FTP server benchmarking tool
 Name: dkftpbench
 Version: 0.45
-Release: 1.2
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.kegel.com/dkftpbench/
@@ -60,8 +60,8 @@ still alive at the end.
 %exclude %{_libdir}/libPoller.a
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.45-1.2
-- Rebuild for Fedora Core 5.
+* Mon Oct 09 2006 Dag Wieers <dag@wieers.com> - 0.45-2
+- Fixed group name.
 
 * Sun May 08 2005 Dag Wieers <dag@wieers.com> - 0.45-1
 - Initial package. (using DAR)

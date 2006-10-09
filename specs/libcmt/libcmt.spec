@@ -5,9 +5,9 @@
 Summary: Composable Memory Transactions Library
 Name: libcmt
 Version: 0.1.0
-Release: 2
+Release: 3
 License: LGPL
-Group: Developments/Libraries
+Group: Development/Libraries
 URL: http://libcmt.sourceforge.net
 
 Source: http://dl.sf.net/libcmt/libcmt-%{version}.tar.bz2
@@ -63,6 +63,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libcmt-sharp.pc
 
 %changelog
+* Mon Oct 09 2006 Dag Wieers <dag@wieers.com> - 0.1.0-3
+- Fixed group name.
+
 * Sun Mar 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.0-2
 - Files section fixed.
 

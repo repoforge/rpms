@@ -4,9 +4,9 @@
 Summary: Jump-and-run scrolling game starring Tux the Penguin
 Name: supertux
 Version: 0.1.3
-Release: 1.2
+Release: 2
 License: GPL
-Group: Applications/
+Group: Amusements/Games
 URL: http://supertux.berlios.de/
 
 Source: http://download.berlios.de/supertux/supertux-%{version}.tar.bz2
@@ -29,7 +29,7 @@ Nintendo's Super Mario Bros
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -43,8 +43,8 @@ Nintendo's Super Mario Bros
 %{_datadir}/supertux/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.3-1.2
-- Rebuild for Fedora Core 5.
+* Mon Oct 09 2006 Dag Wieers <dag@wieers.com> - 0.1.3-2
+- Fixed group name.
 
 * Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.1.3-1
 - Initial package.

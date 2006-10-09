@@ -7,9 +7,9 @@
 Summary: Console hex viewer/editor with disassembler
 Name: biew
 Version: 5.6.2
-Release: 1.2
+Release: 2
 License: GPL
-Group: Development/Debuggers
+Group: Development/Tools
 URL: http://biew.sourceforge.net/
 
 Source: http://dl.sf.net/biew/biew%{real_version}.tar.bz2
@@ -54,8 +54,8 @@ other features, making it invaluable for examining binary code.
 %{_datadir}/biew/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 5.6.2-1.2
-- Rebuild for Fedora Core 5.
+* Mon Oct 09 2006 Dag Wieers <dag@wieers.com> - 5.6.2-2
+- Fixed group name.
 
 * Wed Sep 29 2004 Dag Wieers <dag@wieers.com> - 5.6.2-1
 - Updated to release 5.6.2.

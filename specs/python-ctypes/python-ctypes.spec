@@ -8,7 +8,7 @@
 Summary: Create and manipulate C data types from Python
 Name: python-ctypes
 Version: 1.0.0
-Release: 1
+Release: 2
 License: MIT
 Group: Development/Libraries
 URL: http://starship.python.net/crew/theller/ctypes/
@@ -44,6 +44,9 @@ It allows wrapping these libraries in pure Python.
 %{python_sitearch}/ctypes/
 
 %changelog
+* Mon Oct 09 2006 Dag Wieers <dag@wieers.com> - 1.0.0-2
+- Fixed group name.
+
 * Sun Aug 06 2006 Dag Wieers <dag@wieers.com> - 1.0.0-1
 - Updated to release 1.0.0.
 

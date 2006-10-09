@@ -5,9 +5,9 @@
 Summary: Bootstraps rpm-based systems
 Name: rpmstrap
 Version: 0.5.2
-Release: 1.2
+Release: 2
 License: GPL
-Group: Development/Utilities
+Group: Development/Tools
 URL: http://hackers.progeny.com/~sam/rpmstrap/
 
 Source: http://hackers.progeny.com/~sam/rpmstrap/releases/rpmstrap-%{version}.tar.bz2
@@ -55,8 +55,8 @@ DESTDIR=%{buildroot} bash install.sh
 %{_bindir}/suite_upgrader.py
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.2-1.2
-- Rebuild for Fedora Core 5.
+* Mon Oct 09 2006 Dag Wieers <dag@wieers.com> - 0.5.2-2
+- Fixed group name.
 
 * Sun Feb 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.2-1
 - Updated to release 0.5.2.

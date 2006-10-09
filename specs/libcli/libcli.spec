@@ -2,11 +2,11 @@
 # Authority: dag
 
 Summary: Cisco-like telnet command-line library
-Version: 1.8.6
 Name: libcli
-Release: 1
+Version: 1.8.6
+Release: 2
 License: LGPL
-Group: Library/Communication
+Group: Development/Libraries
 URL: http://www.sf.net/projects/libcli/
 
 Source: http://dl.sf.net/libcli/libcli-%{version}.tar.gz
@@ -58,5 +58,8 @@ you will need to install %{name}-devel.
 %{_libdir}/libcli.so
 
 %changelog
+* Mon Oct 09 2006 Dag Wieers <dag@wieers.com> - 1.8.6-2
+- Fixed group name.
+
 * Fri Aug 04 2006 Dag Wieers <dag@wieers.com> - 1.8.6-1
 - Initial package. (using DAR)

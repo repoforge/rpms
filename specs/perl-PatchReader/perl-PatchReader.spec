@@ -54,9 +54,6 @@ output a patch as HTML).
 %{perl_vendorlib}/PatchReader/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.5-2.2
-- Rebuild for Fedora Core 5.
-
 * Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 0.9.5-2
 - Fixed group.
 

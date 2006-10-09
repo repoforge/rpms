@@ -6,7 +6,7 @@
 Summary: Python binding for the Samba Trivial Database
 Name: python-tdb
 Version: 0.0.6
-Release: 1.2
+Release: 2
 License: LGPL
 Group: Development/Libraries
 URL: http://clarens.sourceforge.net/
@@ -45,8 +45,8 @@ This binding exposes a low-level TDB interface class, as well as a dictionary
 %{python_sitearch}/tdb.so
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.6-1.2
-- Rebuild for Fedora Core 5.
+* Mon Oct 09 2006 Dag Wieers <dag@wieers.com> - 0.0.6-2
+- Fixed group name.
 
 * Mon May 23 2005 Dag Wieers <dag@wieers.com> - 0.0.6-1
 - Initial package. (using DAR)

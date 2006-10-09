@@ -46,9 +46,6 @@ bmon is an interface bandwidth monitor.
 %{_bindir}/bmon
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.1.0-2.2
-- Rebuild for Fedora Core 5.
-
 * Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 2.1.0-2
 - Fixed group.
 

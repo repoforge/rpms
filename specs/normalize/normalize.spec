@@ -7,9 +7,9 @@
 Summary: Audio file volume normalizer
 Name: normalize
 Version: 0.7.7
-Release: 2
+Release: 3
 License: GPL
-Group: Application/Multimedia
+Group: Applications/Multimedia
 URL: http://www.cs.columbia.edu/~cvaill/normalize/
 
 Source: http://savannah.nongnu.org/download/normalize/normalize-%{version}.tar.bz2
@@ -67,6 +67,9 @@ export CFLAGS="%{optflags}"
 %{_libdir}/xmms/Effect/librva.so
 
 %changelog
+* Mon Oct 09 2006 Dag Wieers <dag@wieers.com> - 0.7.7-3
+- Fixed group name.
+
 * Fri Aug 18 2006 Dag Wieers <dag@wieers.com> - 0.7.7-2
 - Fixed xmms plugin package name to match FE.
 

@@ -4,7 +4,7 @@
 
 Summary: Tools to spin down hard disks automatically for power savings
 Name: laptop-mode-tools
-Version: 1.31
+Version: 1.32
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -75,8 +75,11 @@ fi
 %{_sbindir}/lm-syslog-setup
 
 %changelog
+* Sun Oct 08 2006 Dag Wieers <dag@wieers.com> - 1.32-1
+- Updated to release 1.32.
+
 * Sun Apr 16 2006 Dag Wieers <dag@wieers.com> - 1.31-1
-- Updated to release 1.30.
+- Updated to release 1.31.
 
 * Sat Apr 15 2006 Dag Wieers <dag@wieers.com> - 1.30-1
 - Updated to release 1.30.
