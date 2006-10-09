@@ -2,14 +2,14 @@
 # Authority: matthias
 # ExclusiveDist: fc6
 
-Summary: Media player with the WinAmp GUI
+Summary: Beep Media Player
 Name: bmpx
-Version: 0.30.3
+Version: 0.32.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.beep-media-player.org/
-Source: http://files.beep-media-player.org/releases/0.30/bmpx-%{version}.tar.bz2
+Source: http://files.beep-media-player.org/releases/0.32/bmpx-%{version}.tar.bz2
 Patch0: bmpx-0.30.3-install.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): desktop-file-utils
@@ -117,6 +117,9 @@ update-mime-database  %{_datadir}/mime &>/dev/null || :
 
 
 %changelog
+* Mon Oct  2 2006 Matthias Saou <http://freshrpms.net/> 0.32.0-1
+- Update to 0.32.0.
+
 * Tue Sep 26 2006 Matthias Saou <http://freshrpms.net/> 0.30.3-1
 - Update to 0.30.3.
 
