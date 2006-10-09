@@ -11,7 +11,7 @@
 
 Summary: graphical LDAP directory browser and editor
 Name: gq
-Version: 1.2.0
+Version: 1.2.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -21,7 +21,7 @@ Source: http://dl.sf.net/gqclient/gq-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel >= 2.6, gtk+-devel >= 2.6, openldap-devel
-BuildRequires: krb5-devel, openssl-devel, libxml2-devel
+BuildRequires: krb5-devel, openssl-devel, libxml2-devel, perl(XML::Parser)
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
@@ -47,35 +47,42 @@ EOF
 %build
 %configure \
 	--enable-cache \
-	--enable-browser-dnd
+	--enable-browser-dnd \
+	--disable-update-mimedb
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-%find_lang %{name}
+#find_lang %{name}
 
 %if %{!?_without_freedesktop:1}0
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor} --delete-original \
 		--add-category X-Red-Hat-Base                             \
 		--dir %{buildroot}%{_datadir}/applications                \
-		%{buildroot}%{_datadir}/gnome/apps/Internet/gq.desktop
+		%{buildroot}%{_datadir}/applications/gq.desktop
 %endif
 
 %clean
 %{__rm} -rf %{buildroot}
 
 
-%files -f %{name}.lang
+%files
+# -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README* TODO
 %{_bindir}/*
 %{_datadir}/pixmaps/%{name}/
+%{_datadir}/gq/
+%{_datadir}/mime/packages/gq-ldif.xml
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-gq.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/gq.desktop}
 
 %changelog
+* Mon Oct 09 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.1-1
+- Updated to release 1.2.1. 
+
 * Sat Sep 30 2006 Dag Wieers <dag@wieers.com> - 1.2.0-1
 - Updated to release 1.2.0.
 
