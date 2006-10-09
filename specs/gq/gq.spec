@@ -20,7 +20,7 @@ URL: http://biot.com/gq/
 Source: http://dl.sf.net/gqclient/gq-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glib2-devel >= 2.6, gtk+-devel >= 2.6, openldap-devel
+BuildRequires: glib2-devel >= 2.6, gtk2-devel >= 2.6, openldap-devel
 BuildRequires: krb5-devel, openssl-devel, libxml2-devel, perl(XML::Parser)
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
