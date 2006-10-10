@@ -1,6 +1,7 @@
 # $Id$
 # Authority: matthias
 
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 %{?dist: %{expand: %%define %dist 1}}
@@ -8,11 +9,11 @@
 
 Summary: Persistent SQL database connection library and daemon
 Name: squale
-Version: 0.1.6
-Release: 1
+Version: 0.1.10
+Release: 0.3
 License: GPL
 Group: System Environment/Daemons
-URL: http://squale.sourceforge.net/
+URL: http://sourceforge.net/projects/squale/
 Source0: http://dl.sf.net/squale/squale-%{version}.tar.gz
 Source1: squale_check.py
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -24,7 +25,7 @@ Requires(postun): /usr/sbin/userdel, /usr/sbin/groupdel, /sbin/ldconfig, /sbin/s
 # at runtime and make squale crash
 Requires: glib2 >= 2.2.0
 BuildRequires: glib2-devel >= 2.2.0, libxml2-devel, pkgconfig, gettext, popt
-BuildRequires: perl(XML::Parser), gcc-c++
+BuildRequires: perl(XML::Parser)
 %{?_with_oracle:BuildRequires: libsqlora8-devel >= 2.3.1}
 %{!?_without_mysql:BuildRequires: mysql-devel}
 %{!?_without_postgresql:BuildRequires: postgresql-devel}
@@ -145,10 +146,18 @@ fi
 %exclude %{python_sitearch}/squale.a
 %exclude %{python_sitearch}/squale.la
 %{python_sitearch}/squale.so
+%{python_sitelib}/SQuaLe.py*
 %endif
 
 
 %changelog
+* Wed Oct  4 2006 Matthias Saou <http://freshrpms.net/> 0.1.10-0.3
+- Update to 0.1.10 pre-version.
+
+* Tue Sep 26 2006 Matthias Saou <http://freshrpms.net/> 0.1.9-1
+- Update to 0.1.9.
+- Add new SQuaLe.py* files to the python sub-package.
+
 * Tue Mar 14 2006 Matthias Saou <http://freshrpms.net/> 0.1.6-1
 - Update to 0.1.6 final.
 

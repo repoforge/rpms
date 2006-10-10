@@ -1,17 +1,18 @@
 # $Id$
+# Authority: matthias
 
 %define php_extdir %(php-config --extension-dir 2>/dev/null || echo %{_libdir}/php4)
 
 Summary: A module for PHP applications that use SQuaLe
 Name: php-squale
-Version: 0.1.6
-Release: 1
+Version: 0.1.10
+Release: 0.1
 License: GPL
 Group: Development/Languages
 URL: http://squale.sourceforge.net/
 Source: http://dl.sf.net/squale/squale-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: php, squale >= %{version}
+Requires: php-common, squale >= %{version}
 BuildRequires: php-devel, squale-devel >= %{version}
 # We also need php for the eventual /etc/php.d directory
 BuildRequires: php
@@ -60,6 +61,13 @@ EOF
 
 
 %changelog
+* Tue Oct  3 2006 Matthias Saou <http://freshrpms.net/> 0.1.10-0.1
+- Update to 0.1.10 pre-version.
+- Don't require php but php-common instead, to work with fastcgi.
+
+* Tue Sep 26 2006 Matthias Saou <http://freshrpms.net/> 0.1.9-1
+- Update to 0.1.9.
+
 * Mon Apr 24 2006 Matthias Saou <http://freshrpms.net/> 0.1.6-1
 - Update to 0.1.6.
 - Now use the full original squale source, it's easier to update.
