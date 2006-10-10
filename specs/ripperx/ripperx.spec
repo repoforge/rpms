@@ -7,10 +7,10 @@
 Summary: GTK program to rip CD audio and encode to mp3, ogg, or flac
 Name: ripperx
 Version: 2.6.7
-Release: 1.2
+Release: 2
 License: GPL
-Group: X11/Applications
-URL: http://ripperx.sourceforge.net
+Group: Applications/Archiving
+URL: http://ripperx.sourceforge.net/
 
 Source:	http://dl.sf.net/ripperx/ripperX-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -80,8 +80,8 @@ desktop-file-install \
 %{_datadir}/applications/*ripperx.desktop
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.6.7-1.2
-- Rebuild for Fedora Core 5.
+* Tue Oct 10 2006 Dag Wieers <dag@wieers.com> - 2.6.7-2
+- Fixed group name.
 
 * Sat Jan 01 2006 Dries Verachtert <dries@ulyssis.org> - 2.6.7-1
 - Adapted for rpmforge, thanks to Mat Fletcher!

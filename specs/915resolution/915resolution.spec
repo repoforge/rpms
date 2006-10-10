@@ -4,9 +4,9 @@
 Summary: Intel video BIOS hack to support certain resolutions 
 Name: 915resolution
 Version: 0.5.2
-Release: 1
+Release: 2
 License: Public Domain 
-Group: User Interface/X Hardware Support 
+Group: Applications/System
 URL: http://www.geocities.com/stomljen/ 
 
 Source: http://www.geocities.com/stomljen/915resolution-%{version}.tar.gz
@@ -49,5 +49,8 @@ differs substantially. 915resolution's code base is much simpler.
 %{_sbindir}/915resolution
 
 %changelog
+* Tue Oct 10 2006 Dag Wieers <dag@wieers.com> - 0.5.2-2
+- Fixed group name.
+
 * Mon Aug 14 2006 Dag Wieers <dag@wieers.com> - 0.5.2-1
 - Initial package. (using DAR)

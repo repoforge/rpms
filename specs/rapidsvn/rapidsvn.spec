@@ -6,7 +6,7 @@
 Summary: Graphical front-end for the Subversion concurrent versioning system.
 Name: rapidsvn
 Version: 0.7.2
-Release: 1.2
+Release: 2
 License: BSD
 Group: Development/Tools
 URL: http://rapidsvn.tigris.org/
@@ -86,8 +86,8 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/rapidsvn.png
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.2-1.2
-- Rebuild for Fedora Core 5.
+* Tue Oct 10 2006 Dag Wieers <dag@wieers.com> - 0.7.2-2
+- Fixed group name.
 
 * Sat Apr 09 2005 Dag Wieers <dag@wieers.com> - 0.7.2-1
 - Fix for change in ImageMagick 6.2's convert. (Thomas Zehetbauer)
