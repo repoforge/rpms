@@ -1,12 +1,10 @@
 # $Id$
 # Authority: matthias
 
-%define dkms_name madwifi
-
 Summary: Multiband Atheros Driver for Wireless Fidelity
 Name: madwifi
 Version: 0.9.2
-Release: 1.1
+Release: 2
 License: GPL
 Group: System Environment/Kernel
 URL: http://madwifi.org/
@@ -14,8 +12,8 @@ Source: http://dl.sf.net/sourceforge/madwifi/madwifi-%{version}.tar.bz2
 Patch0: madwifi-2.6.18-config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gcc
-Requires(pre): dkms
 Requires(post): dkms
+Requires(preun): dkms
 Provides: dkms-madwifi = %{version}-%{release}
 
 %description
@@ -43,6 +41,10 @@ export CFLAGS="%{optflags}"
 %install
 %{__rm} -rf %{buildroot}
 
+%define dkms_name madwifi
+%define dkms_vers %{version}-%{release}
+%define quiet -q
+
 # Tools install
 %{__make} -C tools install \
     DESTDIR=%{buildroot} \
@@ -51,15 +53,15 @@ export CFLAGS="%{optflags}"
     MANDIR=%{_mandir}
 
 # Kernel module sources install for dkms
-%{__mkdir_p} %{buildroot}%{_usrsrc}/%{dkms_name}-%{version}/
+%{__mkdir_p} %{buildroot}%{_usrsrc}/%{dkms_name}-%{dkms_vers}/
 %{__cp} -a ath/ ath_rate/ hal/ include/ net80211/ scripts/ \
     BuildCaps.inc kernelversion.c Makefile Makefile.inc release.h \
-    %{buildroot}%{_usrsrc}/%{dkms_name}-%{version}/
+    %{buildroot}%{_usrsrc}/%{dkms_name}-%{dkms_vers}/
 
 # Configuration for dkms
-%{__cat} > %{buildroot}%{_usrsrc}/%{dkms_name}-%{version}/dkms.conf << 'EOF'
+%{__cat} > %{buildroot}%{_usrsrc}/%{dkms_name}-%{dkms_vers}/dkms.conf << 'EOF'
 PACKAGE_NAME=%{dkms_name}
-PACKAGE_VERSION=%{version}
+PACKAGE_VERSION=%{dkms_vers}
 MAKE[0]="make modules KERNELPATH=${kernel_source_dir}"
 BUILT_MODULE_NAME[0]=ath_pci
 BUILT_MODULE_LOCATION[0]=ath
@@ -104,14 +106,14 @@ EOF
 
 %post
 # Add to DKMS registry
-dkms add -m %{dkms_name} -v %{version} -q --rpm_safe_upgrade
-# Build now, so the current user can simply restart X
-dkms build -m %{dkms_name} -v %{version} -q
-dkms install -m %{dkms_name} -v %{version} -q
+dkms add -m %{dkms_name} -v %{dkms_vers} %{?quiet} || :
+# Rebuild and make available for the currenty running kernel
+dkms build -m %{dkms_name} -v %{dkms_vers} %{?quiet} || :
+dkms install -m %{dkms_name} -v %{dkms_vers} %{?quiet} --force || :
 
 %preun
 # Remove all versions from DKMS registry
-dkms remove -m %{dkms_name} -v %{version} --all -q --rpm_safe_upgrade
+dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
 
 %files
@@ -119,10 +121,17 @@ dkms remove -m %{dkms_name} -v %{version} --all -q --rpm_safe_upgrade
 %doc COPYRIGHT README THANKS docs/users-guide.pdf docs/WEP-HOWTO.txt
 %{_bindir}/*
 %{_mandir}/man8/*
-%{_usrsrc}/%{dkms_name}-%{version}/
+%{_usrsrc}/%{dkms_name}-%{dkms_vers}/
 
 
 %changelog
+* Tue Oct 10 2006 Matthias Saou <http://freshrpms.net/> 0.9.2-2
+- Add the rpm release to the dkms module version, to make updating the module
+  to a fixed same version work (--rpm_safe_upgrade doesn't work as advertised).
+- Force modules install so that the same version can be overwritten instead of
+  uninstalled by the old package's %%preun when updating.
+- Add build time quiet flag for the scriplets. Undefine to do verbose testing.
+
 * Mon Oct  9 2006 Matthias Saou <http://freshrpms.net/> 0.9.2-1.1
 - Add dkms-madwifi provides.
 - Use %%{dkms_name} macro for the usr/src directory name.

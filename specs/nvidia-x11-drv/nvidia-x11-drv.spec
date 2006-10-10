@@ -4,7 +4,6 @@
 
 %define majmin          1.0
 %define relver          8774
-%define dkms_name       nvidia
 %define nvidialibdir    %{_libdir}/nvidia
 %define nvidialib32dir  %{_prefix}/lib/nvidia
 
@@ -13,7 +12,7 @@
 Summary: Proprietary NVIDIA hardware accelerated OpenGL driver
 Name: nvidia-x11-drv
 Version: %{majmin}.%{relver}
-Release: 2.1
+Release: 3
 License: Proprietary
 Group: User Interface/X Hardware Support
 URL: http://www.nvidia.com/object/unix.html
@@ -28,8 +27,8 @@ Source5: nvidia.modprobe
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Required for proper dkms operation
 Requires: gcc
-Requires(pre): dkms
-Requires(post): dkms
+Requires(post): dkms, /sbin/ldconfig
+Requires(preun): dkms
 # Required by the NVIDIA run file
 Buildrequires: tar
 # Required for our build
@@ -64,11 +63,15 @@ sh %{SOURCE0} --extract-only --target pkg/
 sh %{SOURCE1} --extract-only --target pkg/
 %endif
 
+%define dkms_name nvidia
+%define dkms_vers %{version}-%{release}
+%define quiet -q
+
 # Copy dkms conf file
-%{__mkdir_p} %{buildroot}%{_usrsrc}/%{dkms_name}-%{version}/
-%{__cat} > %{buildroot}%{_usrsrc}/%{dkms_name}-%{version}/dkms.conf << 'EOF'
+%{__mkdir_p} %{buildroot}%{_usrsrc}/%{dkms_name}-%{dkms_vers}/
+%{__cat} > %{buildroot}%{_usrsrc}/%{dkms_name}-%{dkms_vers}/dkms.conf << 'EOF'
 PACKAGE_NAME=%{dkms_name}
-PACKAGE_VERSION=%{version}
+PACKAGE_VERSION=%{dkms_vers}
 MAKE[0]="make module KERNDIR=/lib/modules/$kernelver IGNORE_CC_MISMATCH=1"
 BUILT_MODULE_NAME[0]=nvidia
 DEST_MODULE_LOCATION[0]=/kernel/drivers/video/nvidia
@@ -76,12 +79,10 @@ AUTOINSTALL=YES
 EOF
 
 # Install all the files, even the binary ones. Ick.
-%{__install} -p -m 0644 pkg/usr/src/nv/{makefile,Makefile.kbuild} \
-    %{buildroot}%{_usrsrc}/%{dkms_name}-%{version}/
-%{__install} -p -m 0644 pkg/usr/src/nv/*.{c,h,o} \
-    %{buildroot}%{_usrsrc}/%{dkms_name}-%{version}/
+%{__install} -p -m 0644 pkg/usr/src/nv/{*.c,*.h,*.o,makefile,Makefile.kbuild} \
+    %{buildroot}%{_usrsrc}/%{dkms_name}-%{dkms_vers}/
 %{__install} -p -m 0755 pkg/usr/src/nv/*.sh \
-    %{buildroot}%{_usrsrc}/%{dkms_name}-%{version}/
+    %{buildroot}%{_usrsrc}/%{dkms_name}-%{dkms_vers}/
 
 # Install libXvMCNVIDIA.*
 %{__mkdir_p} %{buildroot}/%{nvidialibdir}/
@@ -183,14 +184,14 @@ echo %{nvidialibdir} > %{buildroot}%{_sysconfdir}/ld.so.conf.d/nvidia.conf
 %post
 /sbin/ldconfig
 # Add to DKMS registry
-dkms add -m %{dkms_name} -v %{version} -q --rpm_safe_upgrade
-# Build now, so the current user can simply restart X
-dkms build -m %{dkms_name} -v %{version} -q
-dkms install -m %{dkms_name} -v %{version} -q
+dkms add -m %{dkms_name} -v %{dkms_vers} %{?quiet} || :
+# Rebuild and make available for the currenty running kernel
+dkms build -m %{dkms_name} -v %{dkms_vers} %{?quiet} || :
+dkms install -m %{dkms_name} -v %{dkms_vers} %{?quiet} --force || :
 
 %preun
 # Remove all versions from DKMS registry
-dkms remove -m %{dkms_name} -v %{version} --all -q --rpm_safe_upgrade
+dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
 %postun -p /sbin/ldconfig
 
@@ -200,7 +201,7 @@ dkms remove -m %{dkms_name} -v %{version} --all -q --rpm_safe_upgrade
 %doc pkg/LICENSE pkg/usr/share/doc/*
 # Kernel and dkms related bits
 %config %{_sysconfdir}/modprobe.d/nvidia
-%{_usrsrc}/%{dkms_name}-%{version}/
+%{_usrsrc}/%{dkms_name}-%{dkms_vers}/
 # fixme: use udev
 %attr(0600,root,root) %dev(c,195,0) /dev/nvidia0
 %attr(0600,root,root) %dev(c,195,1) /dev/nvidia1
@@ -243,6 +244,13 @@ dkms remove -m %{dkms_name} -v %{version} --all -q --rpm_safe_upgrade
 
 
 %changelog
+* Tue Oct 10 2006 Matthias Saou <http://freshrpms.net/> 1.0.8774-3
+- Add the rpm release to the dkms module version, to make updating the module
+  to a fixed same version work (--rpm_safe_upgrade doesn't work as advertised).
+- Force modules install so that the same version can be overwritten instead of
+  uninstalled by the old package's %%preun when updating.
+- Add build time quiet flag for the scriplets. Undefine to do verbose testing.
+
 * Mon Oct  9 2006 Matthias Saou <http://freshrpms.net/> 1.0.8774-2.1
 - Add dkms-nvidia provides.
 - Use %%{dkms_name} macro for the usr/src directory name.
