@@ -2,16 +2,19 @@
 # Authority: matthias
 # ExcludeDist: fc5
 
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+
 Summary: Library to access the contents of an iPod
 Name: libgpod
-Version: 0.3.2
+Version: 0.4.0
 Release: 0
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gtkpod.org/libgpod.html
 Source: http://dl.sf.net/gtkpod/libgpod-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: glib2-devel >= 2.4, gettext, gcc-c++, intltool, perl(XML::Parser)
+BuildRequires: gtk2-devel, glib2-devel, gettext, intltool, perl(XML::Parser)
+BuildRequires: taglib-devel, python-devel, python-eyed3, swig
 
 %description
 Libgpod is a library to access the contents of an iPod. It supports playlists,
@@ -36,7 +39,7 @@ libgpod.
 
 
 %build
-%configure
+%configure --disable-static
 %{__make} %{?_smp_mflags}
 
 
@@ -54,17 +57,25 @@ libgpod.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README TODO
 %{_libdir}/*.so.*
+%{python_sitelib}/gpod/
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/gpod-1.0/
 %{_libdir}/pkgconfig/libgpod-1.0.pc
-%{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
+%{_datadir}/gtk-doc/html/libgpod/
 
 
 %changelog
+* Mon Sep 25 2006 Matthias Saou <http://freshrpms.net/> 0.4.0-0
+- Update to 0.4.0 since FC6 only contains 0.3.0.
+- Add taglib support.
+- Disable building static library.
+- Include new python bindings.
+- Add gtk2-devel build req. for gdk-pixbuf-2.0.pc and enable ArtworkDB.
+
 * Tue Mar 14 2006 Matthias Saou <http://freshrpms.net/> 0.3.2-0
 - Update to 0.3.2.
 
