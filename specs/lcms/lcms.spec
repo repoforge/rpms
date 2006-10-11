@@ -109,9 +109,6 @@ engine.
 %endif
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.15-1.2
-- Rebuild for Fedora Core 5.
-
 * Mon Nov 28 2005 Dries Verachtert <dries@ulyssis.org> - 1.15-1
 - Updated to release 1.15.
 

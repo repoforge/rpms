@@ -1,10 +1,10 @@
-# $Id: upx.spec 4308 2006-04-21 22:20:20Z dries $
+# $Id$
 # Authority: dag
 
 Summary: The Ultimate Packer for eXecutables
 Name: upx
-Version: 2.02
-Release: 1
+Version: 1.25
+Release: 1.2
 License: GPL
 Group: Applications/File
 URL: http://upx.sourceforge.net/
@@ -13,7 +13,7 @@ Source: http://upx.sf.net/download/upx-%{version}-src.tar.gz
 #Source: http://dl.sf.net/upx/upx-%{version}-src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ucl-devel, perl, gcc-c++, make >= 3.80
+BuildRequires: ucl-devel, perl, gcc-c++
 
 %description
 UPX is a free, portable, extendable, high-performance executable packer for
@@ -29,26 +29,25 @@ UPX supports a number of different executable formats, including
 Win95/98/ME/NT/2000 programs and DLLs, DOS programs, and Linux executables.
 
 %prep
-%setup -n %{name}-%{version}-src
+%setup
 
 %build
 # Makefile is very fucked up.. so, let hack it even more :(
-#%{__perl} -pi.orig -e '
-#		s|\s+-Werror||;
-#		s|CC \+= -march=i386 -mcpu=i586|CFLAGS = %{optflags} -fexceptions|;
-#	' src/Makefile
+%{__perl} -pi.orig -e '
+		s|\s+-Werror||;
+		s|CC \+= -march=i386 -mcpu=i586|CFLAGS = %{optflags} -fexceptions|;
+	' src/Makefile
 
-#export UCLDIR="%{_prefix}"
-#export CFLAGS="%{optflags}"
-#export LDFLAGS="%{optflags}"
+export UCLDIR="%{_prefix}"
+export CFLAGS="%{optflags}"
+export LDFLAGS="%{optflags}"
 
-#%{__make} %{?_smp_mflags} -C src target="linux"
-%{__make} %{?_smp_mflags} -C src
+%{__make} %{?_smp_mflags} -C src target="linux"
 %{__make} -C doc
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 src/upx.out %{buildroot}%{_bindir}/upx
+%{__install} -Dp -m0755 src/upx %{buildroot}%{_bindir}/upx
 %{__install} -Dp -m0444 doc/upx.1 %{buildroot}%{_mandir}/man1/upx.1
 
 %clean
@@ -62,9 +61,6 @@ Win95/98/ME/NT/2000 programs and DLLs, DOS programs, and Linux executables.
 %{_bindir}/upx
 
 %changelog
-* Wed Oct 11 2006 Dag Wieers <dag@wieers.com> - 2.02-1
-- Updated to release 2.02.
-
 * Thu Jul 01 2004 Dag Wieers <dag@wieers.com> - 1.25-1
 - Updated to release 1.25.
 

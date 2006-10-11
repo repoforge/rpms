@@ -11,8 +11,8 @@
 
 Summary: Complete network graphing solution designed on top of RRDTool
 Name: cacti
-Version: 0.8.6h
-Release: 1.2
+Version: 0.8.6i
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.cacti.net/
@@ -125,8 +125,8 @@ fi
 %doc docs/*
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.6h-1.2
-- Rebuild for Fedora Core 5.
+* Wed Oct 11 2006 Dag Wieers <dag@wieers.com> - 0.8.6i-1
+- Updated to release 0.8.6i.
 
 * Thu Jan 05 2006 Dag Wieers <dag@wieers.com> - 0.8.6h-1
 - Updated to release 0.8.6h.

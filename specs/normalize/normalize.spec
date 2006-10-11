@@ -7,7 +7,7 @@
 Summary: Audio file volume normalizer
 Name: normalize
 Version: 0.7.7
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.cs.columbia.edu/~cvaill/normalize/
@@ -28,7 +28,7 @@ cause the volume to vary greatly from song to song.
 
 %package -n xmms-normalize
 Summary: xmms normalize plugin
-Group: Application/Multimedia
+Group: Applications/Multimedia
 Requires: xmms
 
 %description -n xmms-normalize
@@ -67,7 +67,7 @@ export CFLAGS="%{optflags}"
 %{_libdir}/xmms/Effect/librva.so
 
 %changelog
-* Mon Oct 09 2006 Dag Wieers <dag@wieers.com> - 0.7.7-3
+* Mon Oct 09 2006 Dag Wieers <dag@wieers.com> - 0.7.7-4
 - Fixed group name.
 
 * Fri Aug 18 2006 Dag Wieers <dag@wieers.com> - 0.7.7-2

@@ -4,7 +4,7 @@
 Summary: UCL compression library
 Name: ucl
 Version: 1.03
-Release: 1.2
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.oberhumer.com/opensource/ucl/
@@ -39,14 +39,11 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall \
-	includedir="%{buildroot}%{_includedir}/ucl/"
+%makeinstall
 
-%post
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -64,8 +61,8 @@ you will need to install %{name}-devel.
 %{_libdir}/libucl.so
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.03-1.2
-- Rebuild for Fedora Core 5.
+* Wed Oct 11 2006 Dag Wieers <dag@wieers.com> - 1.03-2
+- Fix include directory location.
 
 * Fri Oct 01 2004 Dag Wieers <dag@wieers.com> - 1.03-1
 - Updated to release 1.03.
