@@ -76,26 +76,6 @@ def removeModulePath(files, modulePath):
     files.module = string.join(newModPath, ",")
 
 #
-# Adds a module to the Modules section.
-# The module will only be listed once.
-#
-def addModule(modules, moduleName):
-    m = ixf86config.XF86ConfLoad()
-    m.name = moduleName
-    removeModule(modules, moduleName)
-    modules.load.insert(m)
-
-#
-# Removes a module from the Modules section.
-#
-def removeModule(modules, moduleName):
-    i = 0
-    for m in modules.load:
-        if (m.name.lower() == moduleName.lower()):
-            modules.load.remove(i)
-        i += 1
-
-#
 # Set driver to newDriver where
 # if driver is oldDriver
 #
@@ -108,7 +88,7 @@ def printError(err):
     print "Error:", err
 
 def printUsage():
-    print "Usage: nvidia-config-display enable | disable"
+    print "Usage: nvidia-config-display [enable|disable]"
 
 # ------------
 # Main section
@@ -146,24 +126,18 @@ if output_file != None and os.access(output_file, os.F_OK):
         printError("Cannot write backup file")
         sys.exit(1)
 else:
-    printError("Cannot open X config file")
+    printError("Cannot open X config file (missing or malformed)")
     sys.exit(1)
 try:
     if (arg == "enable"):
         # Enable nvidia driver:
-        # Add nvidia module path, disable dri and GLcore modules
-        # make sure glx is enabled and change driver to 'nvidia'
+        # Add nvidia module path and change driver to 'nvidia'
         addModulePath(xconfig.files, "/extensions/nvidia")
-        removeModule(xconfig.modules, "dri")
-        removeModule(xconfig.modules, "GLcore")
-        addModule(xconfig.modules, "glx")
         toggleDriver(xconfig.device, "nv", "nvidia")
     elif (arg == "disable"):
         # Disable nvidia driver:
-        # Remove nvidia module path, enable dri module
-        # and change driver to 'nv'
+        # Remove nvidia module path and change driver to 'nv'
         removeModulePath(xconfig.files, "/extensions/nvidia")
-        addModule(xconfig.modules, "dri")
         toggleDriver(xconfig.device, "nvidia", "nv")
     else:
         # This shouldn't happen, but we handle it anyway
