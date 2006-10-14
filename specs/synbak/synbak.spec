@@ -4,7 +4,7 @@
 
 Summary: Universal backup system
 Name: synbak
-Version: 1.0.9
+Version: 1.0.10
 Release: 1
 License: GPL
 Group: Applications/File
@@ -54,6 +54,9 @@ Synbak can make reports using email, html, rss-feeds and more...
 %{_datadir}/synbak/
 
 %changelog
+* Sat Oct 14 2006 Dag Wieers <dag@wieers.com> - 1.0.10-1
+- Updated to release 1.0.10.
+
 * Sat Sep 16 2006 Dag Wieers <dag@wieers.com> - 1.0.9-1
 - Updated to release 1.0.9.
 
