@@ -4,29 +4,28 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
 
 Summary: Graphics Layout Engine
 Name: gle
-Version: 4.0.11
-Release: 2.2
+Version: 4.0.12
+Release: 1
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.gle-graphics.org/
 
-Source: http://dl.sf.net/glx/gle_%{version}_src.zip
+Source: http://dl.sf.net/glx/GLE-%{version}-src.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, libpng-devel, libtiff-devel
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+BuildRequires: gcc-c++, libpng-devel, libtiff-devel, ncurses-devel, zlib-devel
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: xorg-x11-proto-devel}
 
 %description
 GLE (Graphics Layout Engine) is a high-quality graphics package for
@@ -39,26 +38,30 @@ simple looping structures. Current output formats include EPS, PS, PDF,
 JPEG, and PNG.
 
 %prep
-%setup
+%setup -n gle4
 
 %build
-export GLE_TOP=%{builddir}/%{name}-%{version}/src/fonts
-%{__make} %{?_smp_mflags} -f Makefile.gcc
+%configure
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall -f Makefile.gcc GLE_RPM_ROOT=%{buildroot}
+%makeinstall DESTDIR=%{buildroot}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc readme
+%doc README.txt LICENSE.txt
 %{_bindir}/gle
+%{_bindir}/manip
 %{_datadir}/gle
 
 %changelog
+* Sun Oct 15 2006 Jonas Frantz <jonas.frantz@welho.com> - 4.0.12-1
+- Updated to release 4.0.12.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.0.11-2.2
 - Rebuild for Fedora Core 5.
 
