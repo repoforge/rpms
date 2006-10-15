@@ -22,6 +22,8 @@ This can be useful for eg. watching a 300k stream on a 56k connection.
 %setup
 
 %build
+# it builds with normal optflags, but it doesn't work..
+%{expand: %%define optflags -O2}
 %configure
 %{__make} %{?_smp_mflags}
 
