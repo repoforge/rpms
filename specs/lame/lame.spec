@@ -12,8 +12,8 @@
 
 Summary: LAME Ain't an MP3 Encoder... but it's the best of all
 Name: lame
-Version: 3.96.1
-Release: 5
+Version: 3.97
+Release: 1
 License: LGPL
 Group: Applications/Multimedia
 URL: http://lame.sourceforge.net/
@@ -106,6 +106,9 @@ execstack -c %{buildroot}%{_libdir}/*.so.*.*.* || :
 
 
 %changelog
+* Mon Oct 16 2006 Matthias Saou <http://freshrpms.net/> 3.97-1
+- Update to 3.97.
+
 * Wed May 17 2006 Matthias Saou <http://freshrpms.net/> 3.96.1-5
 - Clear not needed executable stack flag bit from the library to make it work
   with selinux, add prelink build requirement (need to remove for old distros).
