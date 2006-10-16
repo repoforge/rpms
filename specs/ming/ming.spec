@@ -18,7 +18,7 @@
 Summary: SWF output library
 Name: ming
 Version: 0.3.0
-Release: 2
+Release: 3
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.opaque.net/ming/
@@ -48,7 +48,7 @@ you will need to install %{name}-devel.
 
 %package -n perl-ming
 Summary: Ming perl module
-Group: Development/Languages/Perl
+Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: perl
 Obsoletes: ming-perl
@@ -58,7 +58,7 @@ Ming perl module - perl wrapper for Ming library.
 
 %package -n python-ming
 Summary: Ming Python module
-Group: Development/Languages/Perl
+Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: python = %{python_version}
 Obsoletes: ming-python
@@ -181,6 +181,9 @@ cd -
 %endif
 
 %changelog
+* Sat Oct 14 2006 Dag Wieers <dag@wieers.com> - 0.3.0-3
+- Fixed group name.
+
 * Mon May 29 2006 Dag Wieers <dag@wieers.com> - 0.3.0-2
 - Added perl and python bindings.
 

@@ -23,7 +23,7 @@ No file writing done through the PhysicsFS API can leave that write directory.
 
 %package devel
 Summary: Headers for developing programs that will use physfs
-Group:   Development/Libraries
+Group: Development/Libraries
 Requires: %{name} = %{version}, zlib-devel
 
 %description devel

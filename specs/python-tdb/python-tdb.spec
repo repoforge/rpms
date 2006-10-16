@@ -34,7 +34,8 @@ This binding exposes a low-level TDB interface class, as well as a dictionary
 
 %install
 %{__rm} -rf %{buildroot}
-%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
+#%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
+%{__install} -Dp -m0755 build/*/tdb.so %{buildroot}%{python_sitearch}/tdb.so
 
 %clean
 %{__rm} -rf %{buildroot}

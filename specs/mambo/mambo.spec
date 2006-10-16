@@ -3,10 +3,10 @@
 
 Summary: Mambo Open Source (CMS)
 Name: mambo
-Version: 4.5.4
-Release: 2
+Version: 4.6
+Release: 1
 License: GPL
-Group: System/Servers
+Group: System Environment/Daemons
 URL: http://www.mamboserver.com/
 
 Source0: http://mamboxchange.com/frs/download.php/7877/MamboV%{version}.tar.gz
@@ -25,7 +25,7 @@ multi language support, custom module support, and more.
 
 %package administrator
 Summary: Administrative web interface for Mambo Open Source
-Group: System/Servers
+Group: System Environment/Daemons
 Requires: %{name} = %{version}-%{release}
 
 %description administrator
@@ -72,6 +72,12 @@ find . -type f -name '*.html' -o -name '*.php' -o -name '*.xml' | xargs -n1 %{__
 %{_localstatedir}/www/mambo/administrator/
 
 %changelog
+* Sun Oct 15 2006 Dag Wieers <dag@wieers.com> - 4.6-1
+- Updated to release 4.6.
+
+* Sat Oct 14 2006 Dag Wieers <dag@wieers.com> - 4.5.4-3
+- Fixed group name.
+
 * Thu Jun 29 2006 Dag Wieers <dag@wieers.com> - 4.5.4-2
 - Change ownership to apache.
 

@@ -8,7 +8,7 @@ Name: geoip
 Version: 1.3.17
 Release: 1
 License: GPL
-Group: Development/Libraries         
+Group: Development/Libraries
 URL: http://www.maxmind.com/app/c            
 
 Source: http://www.maxmind.com/download/geoip/api/c/GeoIP-%{version}.tar.gz 

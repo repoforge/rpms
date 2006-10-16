@@ -4,7 +4,7 @@
 
 Summary: Tool to set up a Yum/Apt mirror from various sources (ISO, RHN, rsync, http, ftp, ...)
 Name: yam
-Version: 0.8.2
+Version: 0.8.3
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -52,7 +52,12 @@ EOF
 [main]
 srcdir = /var/yam
 wwwdir = /var/www/yam
+confdir = /etc/yam.conf.d
 arch = i386
+
+mailto = root@localhost
+smtp-server = localhost
+
 #rhnlogin = username:password
 
 ### Any other section is considered a definition for a distribution
@@ -85,12 +90,14 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README THANKS TODO WISHLIST config/* docs/
+%config(noreplace) %{_sysconfdir}/cron.d/yam
+%config(noreplace) %{_sysconfdir}/httpd/conf.d/yam.conf
+%config(noreplace) %{_sysconfdir}/logrotate.d/yam
 %config(noreplace) %{_sysconfdir}/yam.conf
 %config(noreplace) %{_sysconfdir}/yam.conf.d/
-%config(noreplace) %{_sysconfdir}/httpd/conf.d/yam.conf
-%config(noreplace) %{_sysconfdir}/cron.d/yam
 %config %{_initrddir}/yam
 %{_bindir}/gensystemid
+%{_bindir}/rhnget
 %{_bindir}/yam
 %{_datadir}/yam/
 %{_localstatedir}/cache/yam/
@@ -98,6 +105,9 @@ fi
 %{_localstatedir}/yam/
 
 %changelog
+* Sun Oct 15 2006 Dag Wieers <dag@wieers.com> - 0.8.3-1
+- Updated to release 0.8.3.
+
 * Wed Sep 20 2006 Dag Wieers <dag@wieers.com> - 0.8.2-1
 - Updated to release 0.8.2.
 

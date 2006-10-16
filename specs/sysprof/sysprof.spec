@@ -6,7 +6,7 @@ Name: sysprof
 Version: 0.91
 Release: 1.2
 License: GPL
-Group: Development/System
+Group: Development/Debuggers
 URL: http://cvs.gnome.org/viewcvs/sysprof/
 
 Source: http://www.daimi.au.dk/~sandmann/sysprof/sysprof-%{version}.tar.gz

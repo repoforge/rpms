@@ -48,7 +48,7 @@ plugins.
 
 %package audio
 Summary: Extra audio plugins for GStreamer
-Group:  Applications/Multimedia
+Group: Applications/Multimedia
 
 BuildRequires: a52dec-devel >= 0.7.3
 BuildRequires: faad2-devel >= 2.0

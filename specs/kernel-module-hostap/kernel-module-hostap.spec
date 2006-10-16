@@ -63,7 +63,7 @@ Available rpmbuild rebuild options :
 
 %package devel-%{krel}
 Summary: Headers and symbol versions for hostap
-Group: Development/System
+Group: Development/Libraries
 Provides: %{name} = %{version}-%{release}
 %if %{post26}
 Requires: kernel-module-devel-%{krel}
