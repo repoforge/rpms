@@ -5,7 +5,7 @@
 Summary: Decoder of various derivatives of MPEG standards
 Name: libmpeg3
 Version: 1.7
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://heroinewarrior.com/libmpeg3.php3
@@ -62,7 +62,8 @@ export CFLAGS="%{optflags} -fPIC"
 %ifarch i686 athlon
 %{__perl} -pi -e 's|^USE_MMX = 0|USE_MMX = 1|g' Makefile
 %endif
-%{__make} %{?_smp_mflags}
+# EOF error which requires a second make invocation. Needs to be investigated
+%{__make} %{?_smp_mflags} || %{__make} %{?_smp_mflags}
 
 
 %install
@@ -95,6 +96,9 @@ export OBJDIR=%{_arch}
 
 
 %changelog
+* Wed Sep 20 2006 Matthias Saou <http://freshrpms.net/> 1.7-2
+- Run make twice since there is an EOF error that makes the first run abort.
+
 * Mon Jul  3 2006 Matthias Saou <http://freshrpms.net/> 1.7-1
 - Update to 1.7.
 
