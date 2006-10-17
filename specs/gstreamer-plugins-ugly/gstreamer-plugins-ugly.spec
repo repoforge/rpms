@@ -14,7 +14,7 @@
 Summary: GStreamer streaming media framework "ugly" plug-ins
 Name: %{gstreamer}-plugins-ugly
 Version: 0.10.4
-Release: 1
+Release: 2
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
@@ -93,6 +93,7 @@ This package contains development files and documentation.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%find_lang gst-plugins-ugly-%{majorminor}
 
 # Clean out files that should not be part of the rpm.
 %{__rm} -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.{a,la}
@@ -103,7 +104,7 @@ This package contains development files and documentation.
 %{__rm} -rf %{buildroot}
 
 
-%files
+%files -f gst-plugins-ugly-%{majorminor}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING README REQUIREMENTS
 
@@ -133,6 +134,9 @@ This package contains development files and documentation.
 
 
 %changelog
+* Tue Oct 17 2006 Matthias Saou <http://freshrpms.net/> 0.10.4-2
+- Include translations which are now built.
+
 * Sun Sep 17 2006 Matthias Saou <http://freshrpms.net/> 0.10.4-1
 - Update to 0.10.4.
 
