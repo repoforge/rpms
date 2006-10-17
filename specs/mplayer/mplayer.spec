@@ -48,7 +48,7 @@
 %{?yd3:%define _without_theora 1}
 
 # Is this a daily build? If so, put the date like "20020808" otherwise put 0
-%define date      20061017
+%define date      20060919
 #define rcver     pre8
 
 %define livever   2006.10.12a
@@ -56,7 +56,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.31%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.32%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -305,6 +305,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Tue Oct 17 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.32.20060919
+- Revert to 20060919 snapshot since 20061017 doesn't build on i386.
+
 * Tue Oct 17 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.31.20061017
 - Update to today's SVN code.
 - Update live library to 2006.10.12a.
