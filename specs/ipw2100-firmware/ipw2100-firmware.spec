@@ -5,7 +5,7 @@
 Summary: Firmware for Intel® PRO/Wireless 2100 network adaptors
 Name: ipw2100-firmware
 Version: 1.3
-Release: 2
+Release: 3
 License: Distributable
 Group: System Environment/Kernel
 URL: http://ipw2100.sourceforge.net/firmware.php
@@ -15,9 +15,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 %description
-This package contains the firmware files required by the ipw-2100 driver for
-Linux. Usage of the firmware is subject to the terms contained in :
-%{_defaultdocdir}/%{name}-%{version}/LICENSE. Please read it carefully.
+This package contains the firmware files required by the ipw2100 driver for
+Linux. Usage of the firmware is subject to the terms and conditions contained
+in /lib/firmware/LICENSE.ipw2100. Please read it carefully.
 
 
 %prep
@@ -30,7 +30,9 @@ Linux. Usage of the firmware is subject to the terms contained in :
 %install
 %{__rm} -rf %{buildroot}
 %{__mkdir_p} %{buildroot}/lib/firmware
+# Terms state that the LICENSE *must* be in the same directory as the firmware
 %{__install} -p -m 0644 *.fw %{buildroot}/lib/firmware/
+%{__install} -p -m 0644 LICENSE %{buildroot}/lib/firmware/LICENSE.ipw2100
 
 
 %clean
@@ -39,11 +41,15 @@ Linux. Usage of the firmware is subject to the terms contained in :
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE
+%doc /lib/firmware/LICENSE.ipw2100
 /lib/firmware/*.fw
 
 
 %changelog
+* Tue Oct 17 2006 Matthias Saou <http://freshrpms.net> 1.3-3
+- Move the LICENSE as LICENSE.ipw2100 in the firmware directory to fully
+  comply to the Intel redistribution terms and conditions.
+
 * Mon Jan  2 2006 Matthias Saou <http://freshrpms.net> 1.3-2
 - Convert spec file to UTF-8.
 - Remove all symlinks to keep only /lib/firmware like in ipw2200-firmware.

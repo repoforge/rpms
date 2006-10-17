@@ -5,11 +5,11 @@
 Summary: Firmware for Intel® PRO/Wireless 2200 network adaptors
 Name: ipw2200-firmware
 Version: 3.0
-Release: 2
+Release: 3
 License: Distributable
 Group: System Environment/Kernel
 URL: http://ipw2200.sourceforge.net/firmware.php
-# License agreement is displayed before download (referer protection)
+# License agreement must be displayed before download (referer protection)
 Source0: ipw2200-fw-%{version}.tgz
 Source1: ipw2200-fw-2.4.tgz
 Source2: ipw2200-fw-2.3.tgz
@@ -19,8 +19,8 @@ BuildArch: noarch
 
 %description
 This package contains the firmware files required by the ipw2200 driver for
-Linux. Usage of the firmware is subject to the terms contained in :
-%{_defaultdocdir}/%{name}-%{version}/LICENSE. Please read it carefully.
+Linux. Usage of the firmware is subject to the terms and conditions contained
+in /lib/firmware/LICENSE.ipw2200. Please read it carefully.
 
 
 %prep
@@ -33,7 +33,9 @@ Linux. Usage of the firmware is subject to the terms contained in :
 %install
 %{__rm} -rf %{buildroot}
 %{__mkdir_p} %{buildroot}/lib/firmware
+# Terms state that the LICENSE *must* be in the same directory as the firmware
 %{__install} -p -m 0644 *.fw %{buildroot}/lib/firmware/
+%{__install} -p -m 0644 LICENSE %{buildroot}/lib/firmware/LICENSE.ipw2200
 
 
 %clean
@@ -42,11 +44,15 @@ Linux. Usage of the firmware is subject to the terms contained in :
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE
+%doc /lib/firmware/LICENSE.ipw2200
 /lib/firmware/*.fw
 
 
 %changelog
+* Tue Oct 17 2006 Matthias Saou <http://freshrpms.net> 3.0-3
+- Move the LICENSE as LICENSE.ipw2200 in the firmware directory to fully
+  comply to the Intel redistribution terms and conditions.
+
 * Sun Jun 25 2006 Matthias Saou <http://freshrpms.net> 3.0-2
 - Fix inclusion of the 3.0 firmware files.
 
