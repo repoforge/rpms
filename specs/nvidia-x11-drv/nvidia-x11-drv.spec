@@ -1,9 +1,10 @@
 # $Id$
 # Authority: matthias
 # Dist: nodist
+# ExclusiveDist: fc6
 
 %define majmin          1.0
-%define relver          9625
+%define relver          9626
 %define nvidialibdir    %{_libdir}/nvidia
 %define nvidialib32dir  %{_prefix}/lib/nvidia
 %define desktop_vendor  rpmforge
@@ -13,7 +14,7 @@
 Summary: Proprietary NVIDIA hardware accelerated OpenGL driver
 Name: nvidia-x11-drv
 Version: %{majmin}.%{relver}
-Release: 2
+Release: 1
 License: Proprietary
 Group: User Interface/X Hardware Support
 URL: http://www.nvidia.com/object/unix.html
@@ -267,6 +268,9 @@ fi
 
 
 %changelog
+* Mon Oct 16 2006 Matthias Saou <http://freshrpms.net/> 1.0.9626-1
+- Update to 1.0-9626.
+
 * Wed Oct 11 2006 Matthias Saou <http://freshrpms.net/> 1.0.9625-2
 - Fix desktop entry.
 - Remove static dev entries, let udev take care of copying them to /dev.
