@@ -9,27 +9,24 @@
 %{?fc5:  %define _with_modxorg 1}
 
 #define prever -WIP1
+%define real_version 1.5
 
 Summary: Portable, freeware Super Nintendo Entertainment System (TM) emulator
 Name: snes9x
-Version: 1.43
-Release: 7
+Version: 1.50
+Release: 1
 License: Other
 Group: Applications/Emulators
 URL: http://www.snes9x.com/
-Source: http://www.lysator.liu.se/snes9x/%{version}%{?prever}/snes9x-%{version}%{?prever}-src.tar.gz
-Patch0: snes9x-1.43-src-gcc4.patch
-Patch1: snes9x-1.43-usagemsg.patch
-Patch2: snes9x-1.43-wmclass.patch
+Source: http://files.ipherswipsite.com/snes9x/snes9x-%{real_version}%{?prever}-src.tar.bz2
+Patch0: snes9x-1.5-src-externc.patch
+Patch1: snes9x-1.43-wmclass.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, zlib-devel, libpng-devel
-%{?_with_opengl:BuildRequires: %{_libdir}/libGL.so}
+%{?_with_opengl:BuildRequires: libGL-devel}
 %{?_with_modxorg:BuildRequires: libXt-devel, libXext-devel, libXxf86dga-devel, libXxf86vm-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
-%ifarch %{ix86} x86_64
 BuildRequires: nasm
-%endif
-BuildRequires: autoconf, automake, libtool
 
 %description
 Snes9x is a portable, freeware Super Nintendo Entertainment System (SNES)
@@ -38,27 +35,21 @@ and Super Famicom Nintendo game systems on your computer.
 
 
 %prep
-%setup -n %{name}-%{version}%{?prever:-dev}-src
-%patch0 -p1 -b .gcc4
-%patch1 -p0 -b .usagemsg
-%patch2 -p1 -b .wmclass
+%setup -n %{name}-%{real_version}%{?prever:-dev}-src
+%patch0 -p1 -b .externc
+%patch1 -p2 -b .wmclass
 
 
 %build
-pushd snes9x
-autoreconf
-%configure \
-    --without-assembler \
-    %{?_with_opengl}
+%configure %{?_with_opengl}
 # Replace OPTIMISE here, it's the best I've found...
 %{__perl} -pi.orig -e 's|^OPTIMISE.*|OPTIMISE = %{optflags}|g' Makefile
 %{__make} %{?_smp_mflags}
-popd
 
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m 0755 snes9x/snes9x %{buildroot}%{_bindir}/snes9x
+%{__install} -D -m 0755 snes9x %{buildroot}%{_bindir}/snes9x
 
 
 %clean
@@ -67,12 +58,21 @@ popd
 
 %files
 %defattr(-, root, root, 0755)
-%doc faqs.txt license.txt readme.txt readme.unix
-%doc snes9x_default_config.cfg
+%doc doc/*
 %{_bindir}/snes9x
 
 
 %changelog
+* Tue Oct 17 2006 Matthias Saou <http://freshrpms.net/> 1.50-1
+- Update to 1.5... well, luckily it's also called 1.50 in some places, ugh.
+- Update source URL.
+- Include patch to fix C++ and C extern declarations.
+- Remove no longer needed gcc4 patch.
+- Remove no longer needed autoreconf and its build requirements.
+- Remove no longer needed usagemsg patch, all now fits fine in 80 columns.
+- Remove --without-assembler since build works again on i386 with it.
+- Note : --with opengl doesn't work... some error in unix/opengl.cpp.
+
 * Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 1.43-7
 - Add missing modular X build requirement.
 - Add autoreconf call to fix configure's X detection.
