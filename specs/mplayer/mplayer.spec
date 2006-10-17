@@ -1,9 +1,6 @@
 # $Id$
 # Authority: matthias
 
-# Overridable kernel version, needed for the DVB includes
-%{!?kversion: %define kversion %(uname -r)}
-
 %{?dist: %{expand: %%define %dist 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
@@ -51,28 +48,28 @@
 %{?yd3:%define _without_theora 1}
 
 # Is this a daily build? If so, put the date like "20020808" otherwise put 0
-#define date      20060314
-%define rcver     pre8
+%define date      20061017
+#define rcver     pre8
+
+%define livever   2006.10.12a
 
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.30%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.31%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
 %if %{?date:1}0
-# cvs -z3 -d:pserver:anonymous@mplayerhq.hu:/cvsroot/mplayer co -P
-# cvs -z3 -d:pserver:anonymous@mplayerhq.hu:/cvsroot/ffmpeg co -P
+# svn checkout svn://svn.mplayerhq.hu/mplayer/trunk mplayer
 # cp -a mplayer MPlayer-%{date}
-# cp -a ffmpeg/{libavcodec,libavformat,libavutil} MPlayer-%{date}/
-# find MPlayer-%{date} -name CVS -o -name .cvsignore | xargs rm -rf
+# find MPlayer-%{date} -name .svn -type d | xargs rm -rf
 # tar cjvf MPlayer-%{date}.tar.bz2 MPlayer-%{date}/
-Source0: http://www.mplayerhq.hu/MPlayer/cvs/MPlayer-%{date}.tar.bz2
+Source0: MPlayer-%{date}.tar.bz2
 %else
 Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{version}%{?rcver}.tar.bz2
 %endif
-Source1: http://www.live555.com/liveMedia/public/live.2006.07.04.tar.gz
+Source1: http://www.live555.com/liveMedia/public/live.%{livever}.tar.gz
 Source2: http://www.mplayerhq.hu/MPlayer/Skin/Blue-1.6.tar.bz2
 Source3: mplayer.png
 # Only for reference, required on YDL4 at least
@@ -90,7 +87,6 @@ BuildRequires: lame-devel, libmad-devel, flac-devel
 BuildRequires: libmatroska-devel
 BuildRequires: ImageMagick
 %{?_with_dvdread:BuildRequires: libdvdread-devel}
-%{!?_without_dvb:BuildRequires: kernel = %{kversion}, kernel-devel = %{kversion}}
 %{!?_without_dv:BuildRequires: libdv-devel}
 %{!?_without_ladspa:BuildRequires: ladspa-devel}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
@@ -218,7 +214,6 @@ echo | ./configure \
     --enable-debug \
     --enable-dynamic-plugins \
     %{?_without_gcccheck:--disable-gcc-checking} \
-    %{!?_without_dvb:--with-dvbincdir=/lib/modules/%{kversion}/build/include} \
     %{!?_without_live:--with-livelibdir=`pwd`/live}
 
 %{__make} %{?_smp_mflags}
@@ -310,6 +305,14 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Tue Oct 17 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.31.20061017
+- Update to today's SVN code.
+- Update live library to 2006.10.12a.
+
+* Tue Sep 19 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.31.20060919
+- Update to today's SVN code.
+- Remove kversion since it's not needed anymore (only dvbhead enabled).
+
 * Mon Sep  4 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.30.pre8
 - Add nas support by default.
 - Add libXt-devel build requirement if modxorg since the nas check requires it.
