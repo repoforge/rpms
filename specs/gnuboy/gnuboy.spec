@@ -11,11 +11,12 @@
 Summary: Nintendo GameBoy Color emulator
 Name: gnuboy
 Version: 1.0.3
-Release: 10
+Release: 11
 License: GPL
 Group: Applications/Emulators
-Source: http://gnuboy.unix-fu.org/src/%{name}-%{version}.tar.gz
 URL: http://gnuboy.unix-fu.org/
+Source: http://gnuboy.unix-fu.org/src/%{name}-%{version}.tar.gz
+Patch0: gnuboy-1.0.3-s64.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL >= 1.2.0
 BuildRequires: SDL-devel >= 1.2.0
@@ -29,6 +30,7 @@ Nintendo GameBoy Color software platform.
 
 %prep
 %setup
+%patch0 -p1 -b .s64
 
 
 %build
@@ -52,6 +54,10 @@ Nintendo GameBoy Color software platform.
 
 
 %changelog
+* Tue Oct 17 2006 Matthias Saou <http://freshrpms.net/> 1.0.3-11
+- Add patch to force definition of __s64 since when using -ansi on i386 it
+  doesn't get defined anymore.
+
 * Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 1.0.3-10
 - Fix modular X build requirement.
 

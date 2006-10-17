@@ -1,0 +1,12 @@
+diff -Naupr gnuboy-1.0.3.orig/sys/linux/joy.c gnuboy-1.0.3/sys/linux/joy.c
+--- gnuboy-1.0.3.orig/sys/linux/joy.c	2001-09-23 20:01:18.000000000 +0200
++++ gnuboy-1.0.3/sys/linux/joy.c	2006-10-17 16:13:53.000000000 +0200
+@@ -3,6 +3,8 @@
+ #include <stdlib.h>
+ #include <string.h>
+ char *strdup();
++typedef __signed__ long long __s64;
++typedef unsigned long long __u64;
+ #include <linux/joystick.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>
