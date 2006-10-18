@@ -27,12 +27,13 @@
 
 Summary: Tools for recording, editing, playing and encoding mpeg video
 Name: mjpegtools
-Version: 1.8.0.1
-Release: 1
+Version: 1.9.0
+Release: 0.1
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/
-Source0: http://dl.sf.net/mjpeg/mjpegtools-%{version}.tar.gz
+#Source0: http://dl.sf.net/mjpeg/mjpegtools-%{version}.tar.gz
+Source0: mjpegtools-%{version}cvs.tar.gz
 Source1: http://dl.sf.net/mjpeg/jpeg-mmx-%{jpegmmx_version}.tar.gz
 Patch0: jpeg-mmx-0.1.6-gcc41.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -138,6 +139,9 @@ fi
 
 
 %changelog
+* Wed Oct 18 2006 Matthias Saou <http://freshrpms.net/> 1.9.0-0.1
+- Update to today's CVS to fix ppc build.
+
 * Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 1.8.0.1-1
 - Update to today's CVS to fix libquicktime 0.9.8 compatibility and ppc build.
 - Add missing modular X build requirements.
