@@ -3,7 +3,7 @@
 
 Summary: Music Player Daemon
 Name: mpd
-Version: 0.12.0
+Version: 0.12.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -53,6 +53,9 @@ frontend options, or restart X often.
 
 
 %changelog
+* Wed Oct 18 2006 Matthias Saou <http://freshrpms.net/> 0.12.1-1
+- Update to 0.12.1.
+
 * Mon Oct  9 2006 Matthias Saou <http://freshrpms.net/> 0.12.0-1
 - Initial RPM release.
 
