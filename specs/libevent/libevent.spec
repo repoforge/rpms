@@ -4,7 +4,7 @@
 
 Summary: Abstract asynchronous event notification library
 Name: libevent
-Version: 1.1b
+Version: 1.2
 Release: 1
 License: BSD
 Group: System Environment/Libraries
@@ -51,18 +51,25 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc README
+%{_bindir}/event_rpcgen.py
 %{_libdir}/libevent-%{version}.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc sample/
+%doc %{_mandir}/man3/evdns.3*
+%doc %{_mandir}/man3/event.3*
+%{_includedir}/evdns.h
 %{_includedir}/event.h
+%{_includedir}/evhttp.h
 %{_libdir}/libevent.a
 %{_libdir}/libevent.so
 %exclude %{_libdir}/libevent.la
-%{_mandir}/man3/event.3*
 
 %changelog
+* Mon Oct 16 2006 Dag Wieers <dag@wieers.com> - 1.2-1
+- Updated to release 1.2.
+
 * Sat Aug 12 2006 Dag Wieers <dag@wieers.com> - 1.1b-1
 - Updated to release 1.1b.
 

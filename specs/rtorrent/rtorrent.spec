@@ -12,7 +12,8 @@ URL: http://libtorrent.rakshasa.no
 Source: http://libtorrent.rakshasa.no/downloads/rtorrent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libtorrent-devel, gcc-c++, curl-devel, libsigc++20-devel, ncurses-devel
+BuildRequires: gcc-c++, libsigc++20-devel, ncurses-devel
+BuildRequires: libtorrent-devel, curl-devel >= 7.12
 
 %description
 rTorrent is a console-based BitTorrent client. It aims to be a 
@@ -29,7 +30,7 @@ management.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -37,11 +38,11 @@ management.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-%doc %{_mandir}/man1/rtorrent*
+%doc %{_mandir}/man1/rtorrent.1*
 %{_bindir}/rtorrent
 
 %changelog
-* Mon Apr 10 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.0-1
+* Mon Apr 10 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.3-1
 - Updated to release 0.5.3.
 
 * Mon Apr 10 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.0-1

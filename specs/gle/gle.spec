@@ -4,13 +4,15 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?el4:%define _without_modxorg 1}
-%{?el3:%define _without_modxorg 1}
-%{?el2:%define _without_modxorg 1}
 %{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
 %{?fc3:%define _without_modxorg 1}
 %{?fc2:%define _without_modxorg 1}
 %{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
 
 Summary: Graphics Layout Engine
 Name: gle
@@ -24,6 +26,7 @@ Source: http://dl.sf.net/glx/GLE-%{version}-src.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, libpng-devel, libtiff-devel, ncurses-devel, zlib-devel
+BuildRequires: libstdc++-devel >= 3.0
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_modxorg:BuildRequires: xorg-x11-proto-devel}
 

@@ -3,17 +3,29 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_theora 1}
-%{?el3:%define _without_theora 1}
+%{?el4:%define _without_texi2html 1}
+%{?fc3:%define _without_texi2html 1}
+%{?fc2:%define _without_texi2html 1}
 
+%{?fc1:%define _without_texi2html 1}
+%{?fc1:%define _without_theora 1}
+%{?fc1:%define _without_x264 1}
+
+%{?el3:%define _without_texi2html 1}
+%{?el3:%define _without_theora 1}
+%{?el3:%define _without_x264 1}
+
+%{?rh9:%define _without_texi2html 1}
 %{?rh9:%define _without_theora 1}
 %{?rh9:%define _without_x264 1}
 
 %{?rh7:%define _without_faac 1}
+%{?rh7:%define _without_texi2html 1}
 %{?rh7:%define _without_theora 1}
 %{?rh7:%define _without_x264 1}
 
 %{?el2:%define _without_faac 1}
+%{?el2:%define _without_texi2html 1}
 %{?el2:%define _without_theora 1}
 %{?el2:%define _without_vorbis 1}
 %{?el2:%define _without_x264 1}
@@ -37,7 +49,7 @@ Source: ffmpeg-%{date}.tar.bz2
 Patch0: ffmpeg-20060918-gsm.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel
-BuildRequires: texi2html
+%{!?_without_texi2html:BuildRequires: texi2html}
 %{!?_without_lame:BuildRequires: lame-devel}
 %{!?_without_vorbis:BuildRequires: libogg-devel, libvorbis-devel}
 #{!?_without_theora:BuildRequires: libogg-devel, libtheora-devel}

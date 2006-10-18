@@ -8,6 +8,15 @@
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
+%{?el4:%define _without_gtk26 1}
+%{?fc3:%define _without_gtk26 1}
+%{?fc2:%define _without_gtk26 1}
+%{?fc1:%define _without_gtk26 1}
+%{?el3:%define _without_gtk26 1}
+%{?rh9:%define _without_gtk26 1}
+%{?rh7:%define _without_gtk26 1}
+%{?el2:%define _without_gtk26 1}
+
 %define date 20060917
 
 Summary: Library for encoding and decoding H264/AVC video streams
@@ -17,10 +26,11 @@ Release: 0.2.%{date}
 License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/x264.html
-Source: ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{date}-2245.tar.bz2
+Source: http://downloads.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{date}-2245.tar.bz2
 Patch0: x264-snapshot-20060731-2245-gtk.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: nasm, yasm, gtk2-devel, gettext
+BuildRequires: nasm, yasm, gettext
+%{?!_without_gtk26:BuildRequires: gtk2-devel >= 2.6}
 %{?_with_visualize:%{?_with_modxorg:BuildRequires: libXt-devel}}
 %{?_with_visualize:%{!?_with_modxorg:BuildRequires: XFree86-devel}}
 # version.sh requires svnversion
@@ -72,7 +82,7 @@ H264/AVC video streams using the x264 graphical utility.
     --bindir=%{_bindir} \
     --includedir=%{_includedir} \
     --libdir=%{_libdir} \
-    --enable-gtk \
+%{?!_without_gtk26:    --enable-gtk} \
     --enable-pthread \
     --enable-debug \
     %{?_with_visualize:--enable-visualize} \
@@ -85,7 +95,7 @@ H264/AVC video streams using the x264 graphical utility.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
-%find_lang x264_gtk
+%{?!_without_gtk26:%find_lang x264_gtk}
 
 
 %clean
@@ -111,6 +121,7 @@ H264/AVC video streams using the x264 graphical utility.
 %{_libdir}/libx264.a
 %{_libdir}/libx264.so
 
+%if %{!?_without_gtk26:1}0
 %files gtk -f x264_gtk.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING
@@ -126,7 +137,7 @@ H264/AVC video streams using the x264 graphical utility.
 %{_libdir}/pkgconfig/x264gtk.pc
 %{_libdir}/libx264gtk.a
 %{_libdir}/libx264gtk.so
-
+%endif
 
 %changelog
 * Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 0.0.0-0.2.20060731

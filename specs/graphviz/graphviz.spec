@@ -3,31 +3,39 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?el4:%define _without_modxorg 1}
-%{?el3:%define _without_modxorg 1}
-%{?el2:%define _without_modxorg 1}
+%{?fc6:%define _without_java 1}
+%{?fc5:%define _without_java 1}
+
+%{?fc4:%define _without_java 1}
 %{?fc4:%define _without_modxorg 1}
+
+%{?el4:%define _without_java 1}
+%{?el4:%define _without_modxorg 1}
+
+%{?fc3:%define _without_java 1}
 %{?fc3:%define _without_modxorg 1}
+
+%{?fc2:%define _without_java 1}
 %{?fc2:%define _without_modxorg 1}
+
+%{?fc1:%define _without_java 1}
 %{?fc1:%define _without_modxorg 1}
 
-%{?rh9:%define _without_tcltk_devel 1}
-%{?rh8:%define _without_tcltk_devel 1}
-%{?rh7:%define _without_tcltk_devel 1}
-%{?el2:%define _without_tcltk_devel 1}
+%{?el3:%define _without_java 1}
+%{?el3:%define _without_modxorg 1}
 
-%{?el4:%define _without_java 1)
-%{?el3:%define _without_java 1)
-%{?fc6:%define _without_java 1)
-%{?fc5:%define _without_java 1)
-%{?fc4:%define _without_java 1)
-%{?fc3:%define _without_java 1)
-%{?fc2:%define _without_java 1)
-%{?fc1:%define _without_java 1}
 %{?rh9:%define _without_java 1}
+%{?rh9:%define _without_tcltk_devel 1}
+
 %{?rh8:%define _without_java 1}
+%{?rh8:%define _without_tcltk_devel 1}
+
 %{?rh7:%define _without_java 1}
+%{?rh7:%define _without_tcltk_devel 1}
+
 %{?el2:%define _without_java 1}
+%{?el2:%define _without_modxorg 1}
+%{?el2:%define _without_tcltk_devel 1}
 
 Summary: Graph Visualization Tools
 Name: graphviz
@@ -110,7 +118,6 @@ Requires: %{name} = %{version}-%{release}
 The %{name}-guile package contains the various guile packages (extensions)
 for version %{version} of the %{name} tools.
 
-%if %{!?_without_java:1}0
 %package java
 Group: Applications/Multimedia
 Summary: Java extension tools for version %{version} of %{name}
@@ -119,7 +126,6 @@ Requires: %{name} = %{version}-%{release}
 %description java
 The %{name}-java package contains the various java packages (extensions)
 for version %{version} of the %{name} tools.
-%endif
 
 %package lua
 Group: Applications/Multimedia

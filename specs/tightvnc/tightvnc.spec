@@ -4,16 +4,33 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?rh7:%define _without_freedesktop 1}
-%{?el2:%define _without_freedesktop 1}
 
+%{?fc2:%define _without_fdsbits_patch 1}
+
+%{?fc1:%define _without_fdsbits_patch 1}
 %{?fc1:%define _without_xorg 1}
+
+%{?el3:%define _without_fdsbits_patch 1}
 %{?el3:%define _without_xorg 1}
+
+%{?rh9:%define _without_fdsbits_patch 1}
 %{?rh9:%define _without_xorg 1}
+
+%{?rh8:%define _without_fdsbits_patch 1}
 %{?rh8:%define _without_xorg 1}
+
+%{?rh7:%define _without_fdsbits_patch 1}
+%{?rh7:%define _without_freedesktop 1}
 %{?rh7:%define _without_xorg 1}
+
+%{?el2:%define _without_fdsbits_patch 1}
+%{?el2:%define _without_freedesktop 1}
 %{?el2:%define _without_xorg 1}
+
+%{?rh6:%define _without_fdsbits_patch 1}
 %{?rh6:%define _without_xorg 1}
+
+%{?yd3:%define _without_fdsbits_patch 1}
 %{?yd3:%define _without_xorg 1}
 
 %define desktop_vendor rpmforge
@@ -21,12 +38,19 @@
 Summary: Graphical remote administration system
 Name: tightvnc
 Version: 1.2.9
-Release: 3.2
+Release: 4
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.tightvnc.com/
 
 Source: http://dl.sf.net/vnc-tight/tightvnc-%{version}_unixsrc.tar.bz2
+Patch1: tightvnc-1.2.6-config-x86_64.patch
+Patch2: vncserver-vncpasswd-1.2.6.patch
+Patch3: vncserver-halfbaked.patch
+Patch4: vncviewer-fix-crash-when-lose-focus.patch
+Patch5: tightvnc-1.2.9-fix-build-when-fds_bits-not-defined.patch
+Patch6: tightvnc-1.2.9-use-stdlib-malloc.patch
+Patch7: tightvnc-1.2.9-includes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildPrereq: /usr/bin/perl, tcp_wrappers
@@ -63,7 +87,17 @@ your machine.
 
 %prep
 %setup -n vnc_unixsrc
-%{__perl} -pi -e 's|/usr/local/vnc/classes|%{_datadir}/vnc/classes|' vncserver
+#patch1 -p1 -b .orig
+%patch1 -p1 -b .config-x86_64
+%patch2 -p1
+%patch3 -p0 -b .halfbaked
+%patch4 -p1 -b .fix_crash
+%{!?_without_fdsbits_patch:%patch5 -p1 -b .fds_bits}
+%patch6 -p1 -b .stdlib_malloc
+%patch7 -p1 -b .includes
+
+%{__perl} -pi -e 's|/usr/local/vnc/classes|%{_datadir}/vnc/classes|;' vncserver
+%{__perl} -pi -e 's|unix/:7100|unix/:-1|;' vncserver
 
 %{__cat} <<EOF >vncservers.sysconfig
 # The VNCSERVERS variable is a list of display:user pairs.
@@ -190,12 +224,10 @@ EOF
 patch < vnc-xclients.patch
 
 xmkmf -a
-%{__make} %{?_smp_mflags} World \
-	CDEBUGFLAGS="%{optflags}"
+%{__make} World CDEBUGFLAGS="%{optflags}"
 cd Xvnc
 %configure
-%{__make} %{?_smp_mflags} \
-	CDEBUGFLAGS="%{optflags}" \
+%{__make} CDEBUGFLAGS="%{optflags}" \
 	EXTRA_DEFINES="-DUSE_LIBWRAP=1" \
 	EXTRA_LIBRARIES="-lwrap -lnss_nis"
 
@@ -259,8 +291,8 @@ fi
 %{_datadir}/vnc/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.9-3.2
-- Rebuild for Fedora Core 5.
+* Tue Oct 17 2006 Dag Wieers <dag@wieers.com> - 1.2.9-4
+- 
 
 * Sun May 23 2004 Dag Wieers <dag@wieers.com> - 1.2.9-3
 - Fixed dependency on xorg-x11 instead of XFree86 on fc2. (Christopher V. Browne)

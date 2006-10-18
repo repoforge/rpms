@@ -4,8 +4,8 @@
 
 Summary: Sendmail milter for spamassassin
 Name: spamass-milter
-Version: 0.3.0
-Release: 1.2
+Version: 0.3.1
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://savannah.gnu.org/projects/spamass-milt/
@@ -150,8 +150,8 @@ fi
 %{_sbindir}/spamass-milter
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.0-1.2
-- Rebuild for Fedora Core 5.
+* Tue Feb 08 2005 Dag Wieers <dag@wieers.com> - 0.3.1-1
+- Updated to release 0.3.1.
 
 * Tue Feb 08 2005 Dag Wieers <dag@wieers.com> - 0.3.0-1
 - Updated to release 0.3.0.

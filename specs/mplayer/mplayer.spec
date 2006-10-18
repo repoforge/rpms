@@ -8,28 +8,37 @@
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
+%{?el4:%define _without_nas 1}
+%{?fc3:%define _without_nas 1}
+%{?fc2:%define _without_nas 1}
+
 %{?fc1:%define _without_alsa 1}
+%{?fc1:%define _without_nas 1}
 %{?fc1:%define _without_theora 1}
 %{?fc1:%define _without_xvmc 1}
 
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_fribidi 1}
+%{?el3:%define _without_nas 1}
 %{?el3:%define _without_theora 1}
 %{?el3:%define _without_xvmc 1}
 
 %{?rh9:%define _without_alsa 1}
 %{?rh9:%define _without_fribidi 1}
+%{?rh9:%define _without_nas 1}
 %{?rh9:%define _without_theora 1}
 %{?rh9:%define _without_xvmc 1}
 
 %{?rh8:%define _without_alsa 1}
 %{?rh8:%define _without_fribidi 1}
+%{?rh8:%define _without_nas 1}
 %{?rh8:%define _without_theora 1}
 %{?rh8:%define _without_xvmc 1}
 
 %{?rh7:%define _without_alsa 1}
 %{?rh7:%define _without_fribidi 1}
 %{?rh7:%define _without_freedesktop 1}
+%{?rh7:%define _without_nas 1}
 %{?rh7:%define _without_theora 1}
 %{?rh7:%define _without_gcccheck 1}
 %{?rh7:%define _without_xvmc 1}
@@ -40,11 +49,13 @@
 %{?el2:%define _without_dv 1}
 %{?el2:%define _without_fribidi 1}
 %{?el2:%define _without_freedesktop 1}
+%{?el2:%define _without_nas 1}
 %{?el2:%define _without_theora 1}
 %{?el2:%define _without_xvmc 1}
 
 %{?yd3:%define _without_alsa 1}
 %{?yd3:%define _without_fribidi 1}
+%{?yd3:%define _without_nas 1}
 %{?yd3:%define _without_theora 1}
 
 # Is this a daily build? If so, put the date like "20020808" otherwise put 0
