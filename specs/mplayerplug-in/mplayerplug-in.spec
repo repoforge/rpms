@@ -28,7 +28,6 @@ Group: Applications/Multimedia
 URL: http://mplayerplug-in.sourceforge.net/
 
 Source: http://dl.sf.net/mplayerplug-in/mplayerplug-in-%{version}.tar.gz
-Source10: filter-depends.sh
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: %{mozilla}-devel, gtk2-devel >= 2.2.1
