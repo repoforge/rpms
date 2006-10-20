@@ -5,9 +5,11 @@
 
 #%define mversion %(rpm -q mozilla-devel --qf "%%{epoch}:%%{version}")
 
-%define _use_internal_dependency_generator 0
-
 %{?dist: %{expand: %%define %dist 1}}
+
+%define mozilla mozilla
+%{!?dist:%define mozilla firefox}
+%{?fc6:%define mozilla firefox}
 
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
@@ -20,7 +22,7 @@
 Summary: Browser plugin for MPlayer
 Name: mplayerplug-in
 Version: 3.31
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerplug-in.sourceforge.net/
@@ -29,7 +31,7 @@ Source: http://dl.sf.net/mplayerplug-in/mplayerplug-in-%{version}.tar.gz
 Source10: filter-depends.sh
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: mozilla-devel, gtk2-devel >= 2.2.1
+BuildRequires: %{mozilla}-devel, gtk2-devel >= 2.2.1
 BuildRequires: gcc-c++, gettext
 %{!?_without_modxorg:BuildRequires: libXt-devel, libXpm-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
@@ -38,10 +40,6 @@ Obsoletes: mozilla-mplayer < 3.25-2
 #Requires: mplayer, mozilla = %{mversion}
 #Requires: %{_libdir}/mozilla/plugins/
 Requires: mplayer
-
-# We filter out the libxpcom.so requirement since firefox has it too although
-# it doesn't provide it (i.e. we let users have only firefox installed)
-%define __find_requires %{SOURCE10}
 
 %description
 mplayerplug-in is a browser plugin that uses mplayer to play videos
@@ -79,6 +77,10 @@ in your browser.
 %{_libdir}/mozilla/plugins/mplayerplug-in-wmp.xpt
 
 %changelog
+* Fri Oct 20 2006 Matthias Saou <http://freshrpms.net/> 3.31-2
+- Pull in firefox instead of mozilla for FC6 and non-Fedora.
+- Remove the libxpcom.so filtering since firefox now provides it again.
+
 * Tue Aug 29 2006 Dag Wieers <dag@wieers.com> - 3.31-1
 - Updated to release 3.31.
 
