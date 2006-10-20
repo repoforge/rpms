@@ -24,7 +24,7 @@ Instruments' ACX100/ACX111 wireless network chips.
 
 
 %prep
-%setup -c %{name}-%{version}
+%setup -c
 %patch0 -p0 -b .build
 
 

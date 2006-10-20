@@ -1,0 +1,23 @@
+diff -Naupr pwc-v4l2-20061018-042701.orig/pwc.h pwc-v4l2-20061018-042701/pwc.h
+--- pwc-v4l2-20061018-042701.orig/pwc.h	2006-09-25 21:56:26.000000000 +0200
++++ pwc-v4l2-20061018-042701/pwc.h	2006-10-19 00:11:09.000000000 +0200
+@@ -25,7 +25,6 @@
+ #ifndef PWC_H
+ #define PWC_H
+ 
+-#include <linux/config.h>
+ #include <linux/module.h>
+ #include <linux/usb.h>
+ #include <linux/spinlock.h>
+diff -Naupr pwc-v4l2-20061018-042701.orig/pwc-uncompress.h pwc-v4l2-20061018-042701/pwc-uncompress.h
+--- pwc-v4l2-20061018-042701.orig/pwc-uncompress.h	2006-01-07 12:57:47.000000000 +0100
++++ pwc-v4l2-20061018-042701/pwc-uncompress.h	2006-10-19 00:11:20.000000000 +0200
+@@ -30,8 +30,6 @@
+ #ifndef PWC_UNCOMPRESS_H
+ #define PWC_UNCOMPRESS_H
+ 
+-#include <linux/config.h>
+-
+ #include "pwc-ioctl.h"
+ 
+ /* from pwc-dec.h */

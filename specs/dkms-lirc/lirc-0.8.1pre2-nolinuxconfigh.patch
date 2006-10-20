@@ -1,0 +1,171 @@
+diff -Naupr lirc-0.8.1pre2.orig/drivers/lirc_atiusb/lirc_atiusb.c lirc-0.8.1pre2/drivers/lirc_atiusb/lirc_atiusb.c
+--- lirc-0.8.1pre2.orig/drivers/lirc_atiusb/lirc_atiusb.c	2006-07-31 03:19:57.000000000 +0200
++++ lirc-0.8.1pre2/drivers/lirc_atiusb/lirc_atiusb.c	2006-10-18 16:42:55.000000000 +0200
+@@ -39,8 +39,6 @@
+ #error "*******************************************************"
+ #endif
+ 
+-#include <linux/config.h>
+-
+ #include <linux/kernel.h>
+ #include <linux/errno.h>
+ #include <linux/init.h>
+diff -Naupr lirc-0.8.1pre2.orig/drivers/lirc_bt829/lirc_bt829.c lirc-0.8.1pre2/drivers/lirc_bt829/lirc_bt829.c
+--- lirc-0.8.1pre2.orig/drivers/lirc_bt829/lirc_bt829.c	2005-11-27 12:03:01.000000000 +0100
++++ lirc-0.8.1pre2/drivers/lirc_bt829/lirc_bt829.c	2006-10-18 16:43:23.000000000 +0200
+@@ -23,7 +23,6 @@
+ #error "This driver needs kernel version 2.4.0 or higher"
+ #endif
+ 
+-#include <linux/config.h>
+ #include <linux/kernel.h>
+ #include <linux/module.h>
+ #include <linux/threads.h>
+diff -Naupr lirc-0.8.1pre2.orig/drivers/lirc_cmdir/lirc_cmdir.c lirc-0.8.1pre2/drivers/lirc_cmdir/lirc_cmdir.c
+--- lirc-0.8.1pre2.orig/drivers/lirc_cmdir/lirc_cmdir.c	2006-08-10 02:53:21.000000000 +0200
++++ lirc-0.8.1pre2/drivers/lirc_cmdir/lirc_cmdir.c	2006-10-18 16:43:31.000000000 +0200
+@@ -35,7 +35,6 @@
+ #error "**********************************************************"
+ #endif
+ 
+-#include <linux/config.h>
+ #include <linux/module.h>
+ #include <linux/errno.h>
+ #include <linux/signal.h>
+diff -Naupr lirc-0.8.1pre2.orig/drivers/lirc_dev/lirc_dev.c lirc-0.8.1pre2/drivers/lirc_dev/lirc_dev.c
+--- lirc-0.8.1pre2.orig/drivers/lirc_dev/lirc_dev.c	2006-09-22 05:18:22.000000000 +0200
++++ lirc-0.8.1pre2/drivers/lirc_dev/lirc_dev.c	2006-10-18 16:43:34.000000000 +0200
+@@ -32,7 +32,6 @@
+ #error "**********************************************************"
+ #endif
+ 
+-#include <linux/config.h>
+ #include <linux/module.h>
+ #include <linux/kernel.h>
+ #include <linux/sched.h>
+diff -Naupr lirc-0.8.1pre2.orig/drivers/lirc_igorplugusb/lirc_igorplugusb.c lirc-0.8.1pre2/drivers/lirc_igorplugusb/lirc_igorplugusb.c
+--- lirc-0.8.1pre2.orig/drivers/lirc_igorplugusb/lirc_igorplugusb.c	2006-03-04 23:36:38.000000000 +0100
++++ lirc-0.8.1pre2/drivers/lirc_igorplugusb/lirc_igorplugusb.c	2006-10-18 16:43:43.000000000 +0200
+@@ -47,7 +47,6 @@
+ #error "*******************************************************"
+ #endif
+ 
+-#include <linux/config.h>
+ #include <linux/module.h>
+ #include <linux/kernel.h>
+ #include <linux/kmod.h>
+diff -Naupr lirc-0.8.1pre2.orig/drivers/lirc_imon/lirc_imon.c lirc-0.8.1pre2/drivers/lirc_imon/lirc_imon.c
+--- lirc-0.8.1pre2.orig/drivers/lirc_imon/lirc_imon.c	2006-07-31 03:19:57.000000000 +0200
++++ lirc-0.8.1pre2/drivers/lirc_imon/lirc_imon.c	2006-10-18 16:43:46.000000000 +0200
+@@ -49,8 +49,6 @@
+ #error "*** Sorry, this driver requires kernel version 2.4.22 or higher"
+ #endif
+ 
+-#include <linux/config.h>
+-
+ #include <linux/errno.h>
+ #include <linux/init.h>
+ #include <linux/kernel.h>
+diff -Naupr lirc-0.8.1pre2.orig/drivers/lirc_it87/lirc_it87.c lirc-0.8.1pre2/drivers/lirc_it87/lirc_it87.c
+--- lirc-0.8.1pre2.orig/drivers/lirc_it87/lirc_it87.c	2006-01-21 18:43:36.000000000 +0100
++++ lirc-0.8.1pre2/drivers/lirc_it87/lirc_it87.c	2006-10-18 16:43:51.000000000 +0200
+@@ -38,9 +38,6 @@
+ # include <config.h>
+ #endif
+  
+-#include <linux/config.h>
+-
+-
+ #include <linux/sched.h>
+ #include <linux/errno.h>
+ #include <linux/signal.h>
+diff -Naupr lirc-0.8.1pre2.orig/drivers/lirc_mceusb/lirc_mceusb.c lirc-0.8.1pre2/drivers/lirc_mceusb/lirc_mceusb.c
+--- lirc-0.8.1pre2.orig/drivers/lirc_mceusb/lirc_mceusb.c	2006-07-31 03:19:57.000000000 +0200
++++ lirc-0.8.1pre2/drivers/lirc_mceusb/lirc_mceusb.c	2006-10-18 16:43:54.000000000 +0200
+@@ -88,7 +88,6 @@
+  *
+  */
+ 
+-#include <linux/config.h>
+ #include <linux/kernel.h>
+ #include <linux/errno.h>
+ #include <linux/init.h>
+diff -Naupr lirc-0.8.1pre2.orig/drivers/lirc_mceusb2/lirc_mceusb2.c lirc-0.8.1pre2/drivers/lirc_mceusb2/lirc_mceusb2.c
+--- lirc-0.8.1pre2.orig/drivers/lirc_mceusb2/lirc_mceusb2.c	2006-09-22 05:18:22.000000000 +0200
++++ lirc-0.8.1pre2/drivers/lirc_mceusb2/lirc_mceusb2.c	2006-10-18 16:43:57.000000000 +0200
+@@ -40,8 +40,6 @@
+ #error "*******************************************************"
+ #endif
+ 
+-#include <linux/config.h>
+-
+ #include <linux/kernel.h>
+ #include <linux/errno.h>
+ #include <linux/init.h>
+diff -Naupr lirc-0.8.1pre2.orig/drivers/lirc_parallel/lirc_parallel.c lirc-0.8.1pre2/drivers/lirc_parallel/lirc_parallel.c
+--- lirc-0.8.1pre2.orig/drivers/lirc_parallel/lirc_parallel.c	2005-09-22 22:10:37.000000000 +0200
++++ lirc-0.8.1pre2/drivers/lirc_parallel/lirc_parallel.c	2006-10-18 16:44:31.000000000 +0200
+@@ -40,8 +40,6 @@
+ #error "**********************************************************"
+ #endif
+ 
+-#include <linux/config.h>
+-
+ #ifdef CONFIG_SMP
+ #error "--- Sorry, this driver is not SMP safe. ---"
+ #endif
+@@ -50,7 +48,6 @@
+ #include <linux/sched.h>
+ #include <linux/errno.h>
+ #include <linux/signal.h>
+-#include <linux/config.h>
+ #include <linux/fs.h>
+ #include <linux/kernel.h>
+ #include <linux/ioport.h>
+diff -Naupr lirc-0.8.1pre2.orig/drivers/lirc_sasem/lirc_sasem.c lirc-0.8.1pre2/drivers/lirc_sasem/lirc_sasem.c
+--- lirc-0.8.1pre2.orig/drivers/lirc_sasem/lirc_sasem.c	2006-07-24 01:24:35.000000000 +0200
++++ lirc-0.8.1pre2/drivers/lirc_sasem/lirc_sasem.c	2006-10-18 16:44:09.000000000 +0200
+@@ -58,8 +58,6 @@
+ #error "*** Sorry, this driver requires kernel version 2.4.22 or higher"
+ #endif
+ 
+-#include <linux/config.h>
+-
+ #include <linux/errno.h>
+ #include <linux/init.h>
+ #include <linux/kernel.h>
+diff -Naupr lirc-0.8.1pre2.orig/drivers/lirc_serial/lirc_serial.c lirc-0.8.1pre2/drivers/lirc_serial/lirc_serial.c
+--- lirc-0.8.1pre2.orig/drivers/lirc_serial/lirc_serial.c	2006-01-21 18:43:36.000000000 +0100
++++ lirc-0.8.1pre2/drivers/lirc_serial/lirc_serial.c	2006-10-18 16:44:13.000000000 +0200
+@@ -61,8 +61,6 @@
+ #error "**********************************************************"
+ #endif
+ 
+-#include <linux/config.h>
+-
+ #if defined(CONFIG_SERIAL) || defined(CONFIG_SERIAL_8250)
+ #warning "******************************************"
+ #warning " Your serial port driver is compiled into "
+diff -Naupr lirc-0.8.1pre2.orig/drivers/lirc_sir/lirc_sir.c lirc-0.8.1pre2/drivers/lirc_sir/lirc_sir.c
+--- lirc-0.8.1pre2.orig/drivers/lirc_sir/lirc_sir.c	2006-01-21 18:43:36.000000000 +0100
++++ lirc-0.8.1pre2/drivers/lirc_sir/lirc_sir.c	2006-10-18 16:44:16.000000000 +0200
+@@ -46,8 +46,6 @@
+ # include <config.h>
+ #endif
+  
+-#include <linux/config.h>
+-
+ #if !defined(LIRC_ON_SA1100) && !defined(CONFIG_SERIAL_MODULE)
+ #warning "******************************************"
+ #warning " Your serial port driver is compiled into "
+diff -Naupr lirc-0.8.1pre2.orig/drivers/lirc_streamzap/lirc_streamzap.c lirc-0.8.1pre2/drivers/lirc_streamzap/lirc_streamzap.c
+--- lirc-0.8.1pre2.orig/drivers/lirc_streamzap/lirc_streamzap.c	2006-03-04 23:36:39.000000000 +0100
++++ lirc-0.8.1pre2/drivers/lirc_streamzap/lirc_streamzap.c	2006-10-18 16:44:18.000000000 +0200
+@@ -38,7 +38,6 @@
+ #error "*******************************************************"
+ #endif
+ 
+-#include <linux/config.h>
+ #include <linux/kernel.h>
+ #include <linux/errno.h>
+ #include <linux/init.h>
