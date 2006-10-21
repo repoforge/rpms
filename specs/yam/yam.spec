@@ -5,7 +5,7 @@
 Summary: Tool to set up a Yum/Apt mirror from various sources (ISO, RHN, rsync, http, ftp, ...)
 Name: yam
 Version: 0.8.3
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Base
 URL: http://dag.wieers.com/home-made/yam/
@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: /usr/bin/python2
-Requires: python >= 2.0, createrepo >= 0.4.6
+Requires: python >= 2.0, createrepo
 
 %description
 Yam builds a local Apt/Yum RPM repository from local ISO files,
@@ -89,7 +89,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README THANKS TODO WISHLIST config/* docs/
+%doc AUTHORS ChangeLog COPYING README THANKS TODO WISHLIST config/*.conf config/dists/ docs/
 %config(noreplace) %{_sysconfdir}/cron.d/yam
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/yam.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/yam
@@ -105,6 +105,9 @@ fi
 %{_localstatedir}/yam/
 
 %changelog
+* Sat Oct 21 2006 Dag Wieers <dag@wieers.com> - 0.8.3-2
+- Get rid of specific createrepo version now that Yam works with upstream.
+
 * Sun Oct 15 2006 Dag Wieers <dag@wieers.com> - 0.8.3-1
 - Updated to release 0.8.3.
 
