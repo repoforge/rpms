@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=MKV Merge
+Comment=Merge multimedia streams into Matroska files
+Exec=mkvmerge-gui
+Icon=mkvmerge-gui
+Terminal=false
+Type=Application
+Categories=Application;AudioVideo;
+Encoding=UTF-8
