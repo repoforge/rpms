@@ -3,7 +3,7 @@
 
 Summary: Video-surveilance system
 Name: motion
-Version: 3.2.4
+Version: 3.2.7
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -55,5 +55,8 @@ and http remote control.
 %{_bindir}/motion
 
 %changelog
+* Mon Oct 23 2006 Dag Wieers <dag@wieers.com> - 3.2.7-1
+- Updated to release 3.2.7.
+
 * Mon Feb 06 2006 Dag Wieers <dag@wieers.com> - 3.2.4-1
 - Initial package. (using DAR)
