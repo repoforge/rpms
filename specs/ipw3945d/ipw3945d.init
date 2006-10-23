@@ -1,0 +1,69 @@
+#!/bin/sh
+# $Id$
+#
+# Init file for IPW3945 regulatory daemon
+#
+# chkconfig: 345 13 87
+# description: Intel Pro Wireless 3945 regulatory daemon
+#
+# processname: ipw3945d
+# pidfile: /var/run/ipw3945d.pid
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 0
+
+RETVAL=0
+prog=ipw3945d
+OPTIONS="--quiet --timeout=-1"
+
+start()
+{
+	echo -n $"Starting $prog: "
+	daemon /sbin/ipw3945d $OPTIONS
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/$prog
+}
+
+stop()
+{
+	echo -n $"Stopping $prog: "
+	killproc /sbin/ipw3945d
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/$prog
+}
+
+case "$1" in
+	start)
+		start
+		;;
+	stop)
+		stop
+		;;
+	restart)
+		stop
+		start
+		;;
+	condrestart)
+		if [ -f /var/lock/subsys/$prog ]; then
+			stop
+			start
+		fi
+		;;
+	status)
+		status /sbin/ipw3945d
+		RETVAL=$?
+		;;
+	*)
+		echo $"Usage: $0 {start|stop|restart|condrestart|status}"
+		RETVAL=1
+esac
+exit $RETVAL
+
