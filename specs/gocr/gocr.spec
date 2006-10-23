@@ -1,16 +1,16 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Optical Character Recognition (OCR) program
 Name: gocr
-Version: 0.37
-Release: 0.2
+Version: 0.41
+Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://altmark.nat.uni-magdeburg.de/~jschulen/ocr/
+URL: http://jocr.sourceforge.net/
 
 Source: http://dl.sf.net/jocr/gocr-%{version}.tar.gz
+Patch0: http://www-e.uni-magdeburg.de/jschulen/ocr/gocr-0.41-pgm.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel >= 1.2.8, netpbm-devel
@@ -40,18 +40,21 @@ This package contains a gtk+ frontend to gocr.
 
 %prep
 %setup
+%patch0 -p0 -b .pgm
+# Create mkinstalldirs -> gnome/mkinstalldirs in frontend directory
 %{__ln_s} -f gnome/mkinstalldirs frontend/mkinstalldirs
 
 %build
 # needed for configure
-export CFLAGS=-lm
+#export CFLAGS=-lm
 %configure
-%{__perl} -pi -e 's|^LDFLAGS=|LDFLAGS=-lm |g;' Makefile */Makefile
+#%{__perl} -pi -e 's|^LDFLAGS=|LDFLAGS=-lm |g;' Makefile */Makefile
 %{__make} %{?_smp_mflags}
 
 cd frontend/gnome
 %configure
 %{__make} %{?_smp_mflags}
+cd ../..
 
 %install
 %{__rm} -rf %{buildroot}
@@ -64,14 +67,14 @@ cd frontend/gnome
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS CREDITS HISTORY README REMARK.txt REVIEW TODO
-%doc doc/*.html doc/*.txt
-%doc %{_mandir}/man?/*
+%doc doc/*.html
 %{_bindir}/gocr
+%{_bindir}/gocr.tcl
+%{_mandir}/man1/gocr.1*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc api/doc/*.tex api/doc/*.txt
-%doc AUTHORS
+%doc api/doc/*.txt
 %{_libdir}/*.a
 %{_includedir}/gocr.h
 
@@ -81,8 +84,14 @@ cd frontend/gnome
 %{_bindir}/gtk-ocr
 
 %changelog
+* Mon Oct 23 2006 Matthias Saou <http://freshrpms.net/> 0.41-1
+- Update to 0.41.
+- Remove (apparently) no longer needed libm hack.
+- Include user and devel docs only once, in one format.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.37-0.2
 - Rebuild for Fedora Core 5.
 
 * Sun May 11 2003 Dag Wieers <dag@wieers.com> - 0.37-0
 - Initial package. (using DAR)
+
