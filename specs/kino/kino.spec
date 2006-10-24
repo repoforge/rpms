@@ -14,13 +14,14 @@
 Summary: Simple non-linear video editor
 Name: kino
 Version: 0.9.2
-Release: 1%{?cvs:.%{cvs}}
+Release: 2%{?cvs:.%{cvs}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.kinodv.org/
 Source: http://dl.sf.net/kino/kino-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.6
+Requires: mjpegtools
 BuildRequires: libdv-devel >= 0.102
 BuildRequires: libavc1394-devel, libraw1394-devel, libiec61883-devel
 BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel
@@ -95,6 +96,11 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 
 
 %changelog
+* Tue Oct 24 2006 Matthias Saou <http://freshrpms.net/> 0.9.2-2
+- Rebuild against new ffmpeg build (for new shared x264).
+- Add explicit mjpegtools requirement, since it doesn't get pulled in and is
+  required to export to mpeg.
+
 * Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 0.9.2-1
 - Update to 0.9.2.
 

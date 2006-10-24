@@ -8,51 +8,43 @@
 %{?fc2:%define _without_texi2html 1}
 
 %{?fc1:%define _without_texi2html 1}
-%{?fc1:%define _without_theora 1}
 %{?fc1:%define _without_x264 1}
 
 %{?el3:%define _without_texi2html 1}
-%{?el3:%define _without_theora 1}
 %{?el3:%define _without_x264 1}
 
 %{?rh9:%define _without_texi2html 1}
-%{?rh9:%define _without_theora 1}
 %{?rh9:%define _without_x264 1}
 
 %{?rh7:%define _without_faac 1}
 %{?rh7:%define _without_texi2html 1}
-%{?rh7:%define _without_theora 1}
 %{?rh7:%define _without_x264 1}
 
 %{?el2:%define _without_faac 1}
 %{?el2:%define _without_texi2html 1}
-%{?el2:%define _without_theora 1}
 %{?el2:%define _without_vorbis 1}
 %{?el2:%define _without_x264 1}
 
 %define date   20060918
 
-Summary: Record, convert and stream audio and video
+Summary: Utilities and libraries to record, convert and stream audio and video
 Name: ffmpeg
 Version: 0.4.9
-Release: 0.6%{?date:.%{date}}
+Release: 0.7%{?date:.%{date}}
 License: GPL
-Group: System Environment/Libraries
-URL: http://ffmpeg.sourceforge.net/
-%if 0%{!?date:1}
-Source: http://dl.sf.net/ffmpeg/ffmpeg-%{version}.tar.gz
-%else
+Group: Applications/Multimedia
+URL: http://ffmpeg.org/
 # svn checkout svn://svn.mplayerhq.hu/ffmpeg/trunk ffmpeg
+# find ffmpeg -name .svn | xargs rm -rf
 # then rename the directory and compress
 Source: ffmpeg-%{date}.tar.bz2
-%endif
 Patch0: ffmpeg-20060918-gsm.patch
+Patch1: ffmpeg-20060918-x264.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel
 %{!?_without_texi2html:BuildRequires: texi2html}
 %{!?_without_lame:BuildRequires: lame-devel}
 %{!?_without_vorbis:BuildRequires: libogg-devel, libvorbis-devel}
-#{!?_without_theora:BuildRequires: libogg-devel, libtheora-devel}
 %{!?_without_faad:BuildRequires: faad2-devel}
 %{!?_without_faac:BuildRequires: faac-devel}
 %{!?_without_gsm:BuildRequires: gsm-devel}
@@ -61,7 +53,6 @@ BuildRequires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel
 %{!?_without_a52dec:Requires: a52dec}
 %{!?_without_a52dec:BuildRequires: a52dec-devel}
 %{!?_without_dts:BuildRequires: libdca-devel}
-%{?_with_dc1394:BuildRequires: libdc1394-devel}
 
 %description
 FFmpeg is a very fast video and audio converter. It can also grab from a
@@ -74,7 +65,6 @@ quality polyphase filter.
 
 Available rpmbuild rebuild options :
 --without : lame vorbis faad faac gsm xvid x264 a52dec dts altivec
---with    : dc1394
 
 
 %package devel
@@ -84,7 +74,6 @@ Requires: %{name} = %{version}
 Requires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel, pkgconfig
 %{!?_without_lame:Requires: lame-devel}
 %{!?_without_vorbis:Requires: libogg-devel, libvorbis-devel}
-#{!?_without_theora:Requires: libogg-devel, libtheora-devel}
 %{!?_without_faad:Requires: faad2-devel}
 %{!?_without_faac:Requires: faac-devel}
 %{!?_without_gsm:Requires: gsm-devel}
@@ -92,7 +81,6 @@ Requires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel, pkgconfig
 %{!?_without_x264:Requires: x264-devel}
 %{!?_without_a52dec:Requires: a52dec-devel}
 %{!?_without_dts:Requires: libdca-devel}
-%{?_with_dc1394:Requires: libdc1394-devel}
 
 %description devel
 FFmpeg is a very fast video and audio converter. It can also grab from a
@@ -126,8 +114,9 @@ to use MPlayer, transcode or other similar programs.
 
 
 %prep
-%setup -n ffmpeg-%{?date}%{!?date:%{version}}
+%setup -n ffmpeg-%{date}
 %patch0 -p1 -b .gsm
+%patch1 -p0 -b .x264
 
 
 %build
@@ -152,7 +141,6 @@ export CFLAGS="%{optflags}"
     --enable-pp \
     --enable-shared \
     --enable-pthreads \
-    %{?_with_dc1394: --enable-dc1394} \
     --enable-gpl \
     --disable-opts \
     --disable-strip
@@ -220,7 +208,15 @@ chcon -t textrel_shlib_t %{_libdir}/libav{codec,format,util}.so.*.*.* \
 
 
 %changelog
-* Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 0.4.9-0.5.20060918
+* Tue Oct 24 2006 Matthias Saou <http://freshrpms.net/> 0.4.9-0.7.20060918
+- Try to update, but stick with 20060918 as linking "as needed" is causing
+  too much trouble for now (libdca and libmp3lame with libm functions).
+- Include patch to work with latest x264.
+- Update URL and remove non-%%date stuff since there are no more releases.
+- Change group to Applications/Multimedia since ffmpeg is an application.
+- Remove dc1394 support since the lib isn't available anymore anyway.
+
+* Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 0.4.9-0.6.20060918
 - Update to today's SVN codebase.
 - Remove theora support, it seems to be gone...
 - Remove a52 patch as ffmpeg doesn't link against it anyway.

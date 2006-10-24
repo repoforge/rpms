@@ -8,12 +8,12 @@
 %{?fc6:%define _with_modxorg 1}
 %{?fc5:%define _with_modxorg 1}
 
-%define prever 20060918
+%define prever 20061024
 
 Summary: Advanced audio and video capturing, compositing, and editing
 Name: cinelerra
 Version: 2.1
-Release: 0.9%{?prever:.%{prever}}
+Release: 0.10%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://cvs.cinelerra.org/
@@ -45,6 +45,7 @@ BuildRequires: libiec61883-devel
 BuildRequires: libavc1394-devel >= 0.5.0
 BuildRequires: x264-devel
 BuildRequires: libogg-devel, libvorbis-devel, libtheora-devel
+%{?_with_opengl:BuildRequires: libGL-devel, libGLU-devel}
 # Stuff not checked by configure, but still required
 BuildRequires: nasm
 BuildRequires: libtool
@@ -76,8 +77,7 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
     --enable-altivec \
 %endif
     --disable-rpath
-# Using %{?_smp_mflags} makes the libmpeg3 part fail (20060317 SVN)
-%{__make}
+%{__make} %{?_smp_mflags}
 
 
 %install
@@ -85,6 +85,7 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
 %makeinstall \
     plugindir=%{buildroot}%{_libdir}/cinelerra
 %find_lang %{name}
+
 # Remove xpm icon and place png one
 %{__rm} -f %{buildroot}%{_datadir}/pixmaps/cinelerra.xpm
 %{__install} -m 0644 -p %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/cinelerra.png
@@ -117,6 +118,12 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
 
 
 %changelog
+* Tue Oct 24 2006 Matthias Saou <http://freshrpms.net/> 2.0-0.10.20061024
+- Update to today's SVN code.
+- Rebuild against new x264.
+- Re-enable _smp_mflags as they work again, yeah!
+- Add --with opengl build conditional, disabled for now, needs testing.
+
 * Tue Sep 26 2006 Matthias Saou <http://freshrpms.net/> 2.0-0.9.20060918
 - Replace xpm icon with a nicer png one.
 - Remove empty AUTHORS file.

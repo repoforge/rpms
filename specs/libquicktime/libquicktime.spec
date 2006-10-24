@@ -24,12 +24,13 @@
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
 Version: 0.9.10
-Release: 1%{?prever:.%{prever}}
+Release: 2%{?prever:.%{prever}}
 License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sourceforge.net/
 Source: http://dl.sf.net/libquicktime/libquicktime-%{version}%{?prever}.tar.gz
 Patch0: libquicktime-0.9.8-plugin_dir.patch
+Patch1: libquicktime-0.9.10-x264.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk2-devel, libdv-devel, libvorbis-devel, lame-devel
 BuildRequires: libpng-devel >= 1.0.8, libjpeg-devel, gcc-c++
@@ -72,6 +73,7 @@ programs that need to access quicktime files using libquicktime.
 %prep
 %setup -n %{name}-%{version}%{?prever}
 %patch0 -p1 -b .plugin_dir
+%patch1 -p1 -b .x264
 
 
 %build
@@ -123,6 +125,9 @@ programs that need to access quicktime files using libquicktime.
 
 
 %changelog
+* Tue Oct 24 2006 Matthias Saou <http://freshrpms.net/> 0.9.10-2
+- Include patch to rebuild against latest x264.
+
 * Mon Aug 28 2006 Matthias Saou <http://freshrpms.net/> 0.9.10-1
 - Update to 0.9.10.
 

@@ -66,12 +66,12 @@
 
 %define desktop_vendor rpmforge
 %define ffmpeg_date    20051207
-%define live_date      2006.09.20
+%define live_date      2006.10.18a
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
 Version: 0.8.5
-Release: 4
+Release: 5
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -165,7 +165,7 @@ to link statically to it.
 
 %prep
 %setup -a 1 -a 2
-%patch0 -p0 -b .x264
+%patch0 -p1 -b .x264
 # Fix PLUGIN_PATH path for lib64
 %{__perl} -pi -e 's|/lib/vlc|/%{_lib}/vlc|g' vlc-config.in.in configure*
 
@@ -313,6 +313,11 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Tue Oct 24 2006 Matthias Saou <http://freshrpms.net/> 0.8.5-5
+- Update live lib to 2006.10.18a.
+- Try to update fffmpeg... but... nope, way too hard :-(
+- Update x264 patch for it to work with latest x264.
+
 * Mon Sep 25 2006 Matthias Saou <http://freshrpms.net/> 0.8.5-4
 - Rename videolan-client to vlc to match upstream and what Ville asked before.
 - Rebuild against new libcdio.

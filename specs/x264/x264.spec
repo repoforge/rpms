@@ -17,17 +17,16 @@
 %{?rh7:%define _without_gtk26 1}
 %{?el2:%define _without_gtk26 1}
 
-%define date 20060917
+%define date 20061023
 
 Summary: Library for encoding and decoding H264/AVC video streams
 Name: x264
 Version: 0.0.0
-Release: 0.2.%{date}
+Release: 0.3.%{date}
 License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/x264.html
 Source: http://downloads.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{date}-2245.tar.bz2
-Patch0: x264-snapshot-20060731-2245-gtk.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: nasm, yasm, gettext
 %{?!_without_gtk26:BuildRequires: gtk2-devel >= 2.6}
@@ -70,7 +69,6 @@ H264/AVC video streams using the x264 graphical utility.
 
 %prep
 %setup -n %{name}-snapshot-%{date}-2245
-%patch0 -p1 -b .gtk
 # configure hardcodes X11 lib path
 %{__perl} -pi -e 's|/usr/X11R6/lib |/usr/X11R6/%{_lib} |g' configure
 
@@ -140,6 +138,10 @@ H264/AVC video streams using the x264 graphical utility.
 %endif
 
 %changelog
+* Tue Oct 24 2006 Matthias Saou <http://freshrpms.net/> 0.0.0-0.3.20061023
+- Update to 20061023 snapshot, the last was too old for MPlayer 1.0rc1.
+- Remove no longer needed gtk patch.
+
 * Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 0.0.0-0.2.20060731
 - Update to 20060917 snapshot.
 

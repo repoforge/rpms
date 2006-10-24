@@ -1,0 +1,30 @@
+diff -Naupr libquicktime-0.9.10.orig/plugins/x264/x264.c libquicktime-0.9.10/plugins/x264/x264.c
+--- libquicktime-0.9.10.orig/plugins/x264/x264.c	2006-07-25 13:35:15.000000000 +0200
++++ libquicktime-0.9.10/plugins/x264/x264.c	2006-10-24 13:40:41.000000000 +0200
+@@ -91,7 +91,7 @@ static void dump_params(x264_param_t * p
+   fprintf(stderr, "    i_qp_step:          %d\n", params->rc.i_qp_step);
+   fprintf(stderr, "    b_cbr:              %d\n", params->rc.b_cbr);
+   fprintf(stderr, "    i_bitrate:          %d\n", params->rc.i_bitrate);
+-  fprintf(stderr, "    i_rf_constant:      %d\n", params->rc.i_rf_constant);
++  fprintf(stderr, "    f_rf_constant:      %d\n", params->rc.f_rf_constant);
+   fprintf(stderr, "    f_rate_tolerance:   %f\n", params->rc.f_rate_tolerance);
+   fprintf(stderr, "    i_vbv_max_bitrate:  %d\n", params->rc.i_vbv_max_bitrate);
+   fprintf(stderr, "    i_vbv_buffer_size:  %d\n", params->rc.i_vbv_buffer_size);
+@@ -493,7 +493,7 @@ static int encode(quicktime_t *file, uns
+       {
+       /* Force ABR */
+       codec->params.rc.i_rc_method = X264_RC_ABR;
+-      codec->params.rc.i_rf_constant = 0;
++      codec->params.rc.f_rf_constant = 0;
+       if(codec->pass == 1)
+         {
+         /* Strings will be made private by x264 */
+@@ -655,7 +655,7 @@ static int set_parameter(quicktime_t *fi
+   INTPARAM("x264_i_bitrate", codec->params.rc.i_bitrate);
+   
+   INTPARAM("x264_i_qp_constant", codec->params.rc.i_qp_constant);
+-  INTPARAM("x264_i_rf_constant", codec->params.rc.i_rf_constant);
++  INTPARAM("x264_f_rf_constant", codec->params.rc.f_rf_constant);
+   INTPARAM("x264_i_qp_min", codec->params.rc.i_qp_min);
+   INTPARAM("x264_i_qp_max", codec->params.rc.i_qp_max);
+   INTPARAM("x264_i_qp_step", codec->params.rc.i_qp_step);

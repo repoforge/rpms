@@ -59,15 +59,15 @@
 %{?yd3:%define _without_theora 1}
 
 # Is this a daily build? If so, put the date like "20020808" otherwise put 0
-%define date      20060919
-#define rcver     pre8
+#define date      20060919
+%define rcver     rc1
 
-%define livever   2006.10.12a
+%define livever   2006.10.18a
 
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.32%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.33%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -89,7 +89,6 @@ Patch0: MPlayer-0.90pre9-runtimemsg.patch
 Patch1: MPlayer-0.90-playlist.patch
 Patch2: MPlayer-0.90pre10-redhat.patch
 Patch10: MPlayer-1.0pre6a-fribidi.patch
-Patch11: MPlayer-1.0pre8-udev.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: mplayer-fonts
 BuildRequires: gtk2-devel, SDL-devel
@@ -175,10 +174,6 @@ This package contains the end user documentation.
 %patch1 -p1 -b .playlist
 %patch2 -p0 -b .redhat
 %patch10 -p1 -b .fribidi
-%patch11 -p1 -b .udev
-
-# Clean up the tarball contents (useful for the included docs)
-find . -name "CVS" | xargs %{__rm} -rf
 
 # Overwrite some of the details of the provided system menu entry
 %{__perl} -pi -e 's|^Exec=gmplayer$|Exec=gmplayer %f|g;
@@ -199,7 +194,7 @@ pushd live
 popd
 %endif
 
-export CFLAGS="%{optflags}"
+export CFLAGS="%{optflags} -fomit-frame-pointer"
 echo | ./configure \
     --prefix=%{_prefix} \
     --bindir=%{_bindir} \
@@ -222,7 +217,6 @@ echo | ./configure \
 %endif
     --with-reallibdir=%{_libdir}/codecs \
     --language=all \
-    --enable-debug \
     --enable-dynamic-plugins \
     %{?_without_gcccheck:--disable-gcc-checking} \
     %{!?_without_live:--with-livelibdir=`pwd`/live}
@@ -268,7 +262,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %clean
-%{__rm} -rf %{buildroot}
+#{__rm} -rf %{buildroot}
 
 
 %files
@@ -316,6 +310,15 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Tue Oct 24 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.33.rc1
+- Update to 1.0rc1.
+- Update live library to 2006.10.18a.
+- Remove udev patch as lirc is now properly detected (lib, not the /dev entry).
+- Try to add patch for lzo, but it requires lzo1 while we only have lzo2 now.
+- No longer use --enable-debug since all it did was pass -g but it was now
+  forcing CFLAGS to something different from our optflags too.
+- Force use of -fomit-frame-pointer for now, as i386 build fails otherwise.
+
 * Tue Oct 17 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.32.20060919
 - Revert to 20060919 snapshot since 20061017 doesn't build on i386.
 
