@@ -9,7 +9,7 @@
 Summary: Regulatory Daemon for Intel® PRO/Wireless 3945 network adaptors
 Name: ipw3945d
 Version: 1.7.22
-Release: 2
+Release: 3
 License: Distributable
 Group: System Environment/Kernel
 URL: http://bughost.org/ipw3945/
@@ -54,6 +54,7 @@ to be transmitted on, and support for IEEE 802.11h (DFS and TPC).
 if [ $1 -eq 0 ]; then
     /sbin/service ipw3945d stop &>/dev/null || :
     /sbin/chkconfig --del ipw3945d
+fi
 
 %postun
 if [ $1 -ge 1 ]; then
@@ -73,6 +74,9 @@ fi
 
 
 %changelog
+* Tue Oct 24 2006 Matthias Saou <http://freshrpms.net/> 1.7.22-3
+- Fix preun scriplet (missing "fi", doh!).
+
 * Mon Oct 23 2006 Matthias Saou <http://freshrpms.net/> 1.7.22-2
 - Include init script, thanks to Stefan Becker.
 

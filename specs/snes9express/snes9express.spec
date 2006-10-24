@@ -12,7 +12,7 @@
 Summary: Graphical front-end to snes9x, the SNES emulator
 Name: snes9express
 Version: 1.42
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Emulators
 URL: http://www.linuxgames.com/snes9express/
@@ -21,6 +21,7 @@ Source1: snes.png
 Patch0: snes9express-1.42-errno.patch
 Patch1: snes9express-1.42-gcc41.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Requires: snes9x
 BuildRequires: gcc-c++, gtk2-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
@@ -93,6 +94,9 @@ desktop-file-install \
 
 
 %changelog
+* Sun Oct 22 2006 Matthias Saou <http://freshrpms.net/> 1.42-3
+- Explicitly require snes9x, since not having it doesn't really make sense...
+
 * Mon Sep  4 2006 Matthias Saou <http://freshrpms.net/> 1.42-2
 - Add gcc41 patch from Gentoo.
 

@@ -17,10 +17,10 @@ Buildrequires: libdvdread-devel, libtheora-devel, libvorbis-devel, gocr-devel
 Buildrequires: gettext-devel, intltool
 # Not technically build required, but configure checks for it...
 Buildrequires: mplayer, mencoder, ogmtools, vorbis-tools, theora-tools
-BuildRequires: mkvtoolnix
+BuildRequires: mkvtoolnix, lame
 # Now, all the same as runtime requirements
 Requires: mplayer, mencoder, ogmtools, vorbis-tools, theora-tools
-Requires: mkvtoolnix
+Requires: mkvtoolnix, lame
 # We should normally provide the built srttool program, but it conflicts
 Requires: subtitleripper
 Requires(post): GConf2
