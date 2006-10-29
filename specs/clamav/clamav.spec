@@ -11,7 +11,7 @@
 Summary: Anti-virus software
 Name: clamav
 Version: 0.88.5
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -64,6 +64,7 @@ The Clam AntiVirus sendmail-milter Daemon
 %package db
 Summary: Virus database for %{name}
 Group: Applications/Databases
+Requires: clamav = %{version}-%{release}
 
 ### Fedora Extras introduced them differently :(
 Obsoletes: clamav-update <= %{version}-%{release}
@@ -350,6 +351,9 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
+* Sat Oct 28 2006 Dag Wieers <dag@wieers.com> - 0.88.5-2
+- Added missing clamav dependency to clamav-db.
+
 * Sun Oct 15 2006 Dag Wieers <dag@wieers.com> - 0.88.5-1
 - Updated to release 0.88.5.
 
