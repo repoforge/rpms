@@ -1,0 +1,30 @@
+diff -Naupr scummvm-0.9.0.orig/common/array.h scummvm-0.9.0/common/array.h
+--- scummvm-0.9.0.orig/common/array.h	2006-06-21 23:16:01.000000000 +0200
++++ scummvm-0.9.0/common/array.h	2006-10-29 18:26:41.000000000 +0100
+@@ -48,11 +48,7 @@ public:
+ 			_data[i] = array._data[i];
+ 	}
+ 
+-#ifdef __SYMBIAN32__
+ 	~Array()
+-#else
+-	~Array<T>()
+-#endif
+ 	{
+ 		if (_data)
+ 			delete [] _data;
+diff -Naupr scummvm-0.9.0.orig/common/list.h scummvm-0.9.0/common/list.h
+--- scummvm-0.9.0.orig/common/list.h	2006-06-21 23:16:01.000000000 +0200
++++ scummvm-0.9.0/common/list.h	2006-10-29 18:28:48.000000000 +0100
+@@ -129,11 +129,7 @@ public:
+ 		insert(begin(), list.begin(), list.end());
+ 	}
+ 
+-#ifndef __SYMBIAN32__
+-	~List<T>()
+-#else
+ 	~List()
+-#endif
+ 	{
+ 		clear();
+ 		delete _anchor;
