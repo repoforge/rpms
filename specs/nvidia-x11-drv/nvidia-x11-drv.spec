@@ -11,10 +11,10 @@
 
 %define debug_package   %{nil}
 
-Summary: Proprietary NVIDIA hardware accelerated OpenGL driver
+Summary: Proprietary NVIDIA hardware accelerated OpenGL display driver
 Name: nvidia-x11-drv
 Version: %{majmin}.%{relver}
-Release: 1
+Release: 3
 License: Proprietary
 Group: User Interface/X Hardware Support
 URL: http://www.nvidia.com/object/unix.html
@@ -51,24 +51,27 @@ BUGS BEFORE YOU UNINSTALL THE PACKAGE AND REBOOT THE SYSTEM.
 
 %prep
 %setup -T -c
+# Extract the proper "sources" for the current architecture
+# We need to extract to a "not yet existing" directory first, so no "."
+%ifarch i386
+sh %{SOURCE0} --extract-only --target tmp/
+%endif
+%ifarch x86_64
+sh %{SOURCE1} --extract-only --target tmp/
+%endif
+# Move all the files back from tmp/ to the main directory
+%{__mv} tmp/* .
+%{__rm} -rf tmp/
 
 
 %build
 
 
 %install
-%{__rm} -rf %{buildroot} pkg
-
-# Extract the proper "sources" for the current architecture
-%ifarch i386
-sh %{SOURCE0} --extract-only --target pkg/
-%endif
-%ifarch x86_64
-sh %{SOURCE1} --extract-only --target pkg/
-%endif
+%{__rm} -rf %{buildroot}
 
 # Fix for FC6 kernels
-%{__perl} -pi -e 's|#include <linux/config.h>||g' pkg/usr/src/nv/nv-linux.h
+%{__perl} -pi -e 's|#include <linux/config.h>||g' usr/src/nv/nv-linux.h
 
 %define dkms_name nvidia
 %define dkms_vers %{version}-%{release}
@@ -86,39 +89,39 @@ AUTOINSTALL=YES
 EOF
 
 # Install all the files, even the binary ones. Ick.
-%{__install} -p -m 0644 pkg/usr/src/nv/{*.c,*.h,*.o,makefile,Makefile.kbuild} \
+%{__install} -p -m 0644 usr/src/nv/{*.c,*.h,*.o,makefile,Makefile.kbuild} \
     %{buildroot}%{_usrsrc}/%{dkms_name}-%{dkms_vers}/
-%{__install} -p -m 0755 pkg/usr/src/nv/*.sh \
+%{__install} -p -m 0755 usr/src/nv/*.sh \
     %{buildroot}%{_usrsrc}/%{dkms_name}-%{dkms_vers}/
 
 # Install libXvMCNVIDIA.*
 %{__mkdir_p} %{buildroot}/%{nvidialibdir}/
-%{__install} -p -m 0755 pkg/usr/X11R6/lib/libXvMCNVIDIA.so.* \
+%{__install} -p -m 0755 usr/X11R6/lib/libXvMCNVIDIA.so.* \
     %{buildroot}/%{nvidialibdir}/
-%{__install} -p -m 0644 pkg/usr/X11R6/lib/libXvMCNVIDIA.a \
+%{__install} -p -m 0644 usr/X11R6/lib/libXvMCNVIDIA.a \
     %{buildroot}/%{nvidialibdir}/
 
 # Install X driver and extension (is the nvidia_drv.o useful?)
 %{__mkdir_p} %{buildroot}%{_libdir}/xorg/modules/drivers/
-%{__install} -p -m 0755 pkg/usr/X11R6/lib/modules/drivers/nvidia_drv.so \
+%{__install} -p -m 0755 usr/X11R6/lib/modules/drivers/nvidia_drv.so \
     %{buildroot}%{_libdir}/xorg/modules/drivers/
 %{__mkdir_p} %{buildroot}%{_libdir}/xorg/modules/extensions/nvidia/
-%{__install} -p -m 0755 pkg/usr/X11R6/lib/modules/extensions/libglx.so.%{version} \
+%{__install} -p -m 0755 usr/X11R6/lib/modules/extensions/libglx.so.%{version} \
     %{buildroot}%{_libdir}/xorg/modules/extensions/nvidia/libglx.so
 
 # Install GL and tls libs
 %{__mkdir_p} %{buildroot}/%{nvidialibdir}/tls/
-%{__install} -p -m 0755 pkg/usr/lib/*.so.%{version} \
+%{__install} -p -m 0755 usr/lib/*.so.%{version} \
     %{buildroot}/%{nvidialibdir}/
-%{__install} -p -m 0755 pkg/usr/lib/tls/*.so.%{version} \
+%{__install} -p -m 0755 usr/lib/tls/*.so.%{version} \
     %{buildroot}/%{nvidialibdir}/tls/
 
 %ifarch x86_64
 # Install 32bit compat GL and tls libs
 %{__mkdir_p} %{buildroot}/%{nvidialib32dir}/tls/
-%{__install} -p -m 0755 pkg/usr/lib/*.so.%{version} \
+%{__install} -p -m 0755 usr/lib32/*.so.%{version} \
     %{buildroot}/%{nvidialib32dir}/
-%{__install} -p -m 0755 pkg/usr/lib/tls/*.so.%{version} \
+%{__install} -p -m 0755 usr/lib32/tls/*.so.%{version} \
     %{buildroot}/%{nvidialib32dir}/tls/
 %endif
 
@@ -140,24 +143,27 @@ done
 
 # Install useful nvidia tools
 %{__mkdir_p} %{buildroot}%{_bindir}/
-%{__install} -p -m 0755 pkg/usr/bin/{nvidia-bug-report.sh,nvidia-settings} \
+%{__install} -p -m 0755 usr/bin/{nvidia-bug-report.sh,nvidia-settings} \
     %{buildroot}%{_bindir}/
+%{__mkdir_p} %{buildroot}%{_sbindir}/
+%{__install} -p -m 0755 usr/bin/nvidia-xconfig \
+    %{buildroot}%{_sbindir}/
 
-# Install man page (the others aren't relevant)
+# Install man pages (the other, nvidia-installer, isn't relevant)
 %{__mkdir_p} %{buildroot}%{_mandir}/man1/
-%{__install} -p -m 0644 pkg/usr/share/man/man1/nvidia-settings* \
+%{__install} -p -m 0644 usr/share/man/man1/nvidia-{settings,xconfig}* \
     %{buildroot}%{_mandir}/man1/
 
 # Install pixmap for the desktop entry
 %{__mkdir_p} %{buildroot}%{_datadir}/pixmaps/
-%{__install} -p -m 0644 pkg/usr/share/pixmaps/nvidia-settings.png \
+%{__install} -p -m 0644 usr/share/pixmaps/nvidia-settings.png \
     %{buildroot}%{_datadir}/pixmaps/
 
 # Remove "__UTILS_PATH__/" before the Exec command name
 # Replace "__PIXMAP_PATH__/" with the proper pixmaps path
 %{__perl} -pi -e 's|(Exec=).*/(.*)|$1$2|g;
                   s|(Icon=).*/(.*)|$1%{_datadir}/pixmaps/$2|g' \
-    pkg/usr/share/applications/nvidia-settings.desktop
+    usr/share/applications/nvidia-settings.desktop
 
 # Desktop entry for nvidia-settings
 %{__mkdir_p} %{buildroot}%{_datadir}/applications/
@@ -166,7 +172,7 @@ desktop-file-install --vendor %{desktop_vendor} \
     --add-category System \
     --add-category Application \
     --add-category GNOME \
-    pkg/usr/share/applications/nvidia-settings.desktop
+    usr/share/applications/nvidia-settings.desktop
 
 # Install modprobe.d file
 %{__install} -D -p -m 0644 %{SOURCE5} \
@@ -221,7 +227,7 @@ fi
 
 %files
 %defattr(-,root,root,0755)
-%doc pkg/LICENSE pkg/usr/share/doc/*
+%doc LICENSE usr/share/doc/*
 # Kernel and dkms related bits
 %config %{_sysconfdir}/modprobe.d/nvidia
 %{_usrsrc}/%{dkms_name}-%{dkms_vers}/
@@ -248,6 +254,7 @@ fi
 %{nvidialib32dir}/tls/
 %endif
 %{_libdir}/xorg/modules/drivers/nvidia_drv.so
+%dir %{_libdir}/xorg/modules/extensions/nvidia/
 %{_libdir}/xorg/modules/extensions/nvidia/libglx.so
 # Tools and utilities
 %{_sysconfdir}/profile.d/*
@@ -268,6 +275,14 @@ fi
 
 
 %changelog
+* Mon Oct 30 2006 Matthias Saou <http://freshrpms.net/> 1.0.9626-3
+- 32bit libs weren't being included on x86_64, the 64bits were twice instead.
+
+* Tue Oct 24 2006 Matthias Saou <http://freshrpms.net/> 1.0.9626-2
+- Include nvidia-xconfig, Edward Rudd.
+- Move extracting the installer to the %%prep stage, Edward Rudd.
+- No longer do everything from the pkg/ directory.
+
 * Mon Oct 16 2006 Matthias Saou <http://freshrpms.net/> 1.0.9626-1
 - Update to 1.0-9626.
 
