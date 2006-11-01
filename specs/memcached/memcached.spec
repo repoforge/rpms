@@ -4,8 +4,8 @@
 
 Summary: Distributed memory object caching system
 Name: memcached
-Version: 1.1.12
-Release: 3
+Version: 1.1.13
+Release: 1
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.danga.com/memcached/
@@ -166,12 +166,16 @@ fi
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING doc/*.txt NEWS README TODO
 %config(noreplace) %{_sysconfdir}/sysconfig/memcached
-%{_sysconfdir}/rc.d/init.d/memcached
+%config %{_initrddir}/memcached
 %{_bindir}/memcached
+%{_bindir}/memcached-debug
 %{_mandir}/man1/memcached.1*
 
 
 %changelog
+* Wed Nov 01 2006 Dag Wieers <dag@wieers.com> - 1.1.13-1
+- Updated to release 1.1.13.
+
 * Sat Aug 19 2006 Dag Wieers <dag@wieers.com> - 1.1.12-3
 - Rebuild against libevent-1.1b.
 

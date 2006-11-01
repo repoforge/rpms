@@ -18,6 +18,7 @@ Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: python-devel >= 2.2
+Requires: python-crypto
 
 Provides: paramiko
 Obsoletes: paramiko <= %{version}-%{release}

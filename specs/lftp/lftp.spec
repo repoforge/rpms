@@ -8,7 +8,7 @@
 Summary: Sophisticated file transfer program
 Name: lftp
 Version: 3.5.6
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://lftp.yar.ru/
@@ -35,6 +35,7 @@ export CPPFLAGS="-I/usr/kerberos/include"
 	--with-modules \
 	--disable-static \
 	--with-openssl="/usr"
+%{__make} clean
 %{__make} %{?_smp_mflags}
 
 %install
@@ -61,6 +62,9 @@ export CPPFLAGS="-I/usr/kerberos/include"
 %{_libdir}/liblftp-tasks.so.*
 
 %changelog
+* Wed Nov 01 2006 Dag Wieers <dag@wieers.com> - 3.5.6-2
+- Fixed a problem with compiled objects in upstream source. (Tim Rupp)
+
 * Sat Oct 28 2006 Dag Wieers <dag@wieers.com> - 3.5.6-1
 - Updated to release 3.5.6.
 

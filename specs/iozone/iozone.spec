@@ -5,8 +5,8 @@
 
 Summary: IOzone Filesystem Benchmark
 Name: iozone
-%define real_version 3_263
-Version: 3.263
+%define real_version 3_267
+Version: 3.267
 Release: 1
 License: Freeware
 Group: Applications/System
@@ -51,6 +51,9 @@ fread, fwrite, random read, pread ,mmap, aio_read, aio_write.
 %{_datadir}/iozone/
 
 %changelog
+* Sun Oct 29 2006 Dag Wieers <dag@wieers.com> - 3.267-1
+- Updated to release 3.267.
+
 * Sat Apr 15 2006 Dag Wieers <dag@wieers.com> - 3.263-1
 - Updated to release 3.263.
 

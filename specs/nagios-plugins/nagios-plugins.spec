@@ -16,7 +16,7 @@
 
 Summary: Host/service/network monitoring program plugins for Nagios
 Name: nagios-plugins
-Version: 1.4.3
+Version: 1.4.4
 Release: 1
 License: GPL
 Group: Applications/System
@@ -28,7 +28,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 AutoReq: no
 #BuildRequires: nagios-devel
 #BuildRequires: bind-devel (not needed for check_dns)
-BuildRequires: radiusclient-devel, gcc-c++
+BuildRequires: gcc-c++, radiusclient-devel
 BuildRequires: fping, bind-utils, ntp, samba-client, openssh-clients, qstat
 BuildRequires: openldap-devel, mysql-devel, postgresql-devel
 BuildRequires: perl(Net::SNMP)
@@ -68,10 +68,10 @@ find contrib -type f -exec %{__perl} -pi -e '
 PATH="/sbin:/bin:/usr/sbin:/usr/sbin:$PATH" \
 %configure \
 	--with-cgiurl="/nagios/cgi-bin" \
-	--with-nagios-user="nagios" \
-	--with-nagios-group="nagios" \
-	--with-mysql \
-	--with-pgsql
+	--with-mysql="%{_prefix}" \
+	--with-pgsql="%{_prefix}"
+#	--with-nagios-user="nagios" \
+#	--with-nagios-group="nagios" \
 %{__make} %{?_smp_mflags}
 
 ### Build some contrib plugins
@@ -105,6 +105,10 @@ done
 %{perl_vendorlib}/utils.pm
 
 %changelog
+* Wed Nov 01 2006 Dag Wieers <dag@wieers.com> - 1.4.4-1
+- Updated to release 1.4.4.
+- Fixed the problem where --with-pgsql defaults to 'yes'. (Jason Kim)
+
 * Mon May 29 2006 Dag Wieers <dag@wieers.com> - 1.4.3-1
 - Updated to release 1.4.3.
 
