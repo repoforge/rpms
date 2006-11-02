@@ -4,6 +4,9 @@
 %{?dist: %{expand: %%define %dist 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
+%{!?dist:%define _with_extras 1}
+%{?fc6:  %define _with_extras 1}
+
 %{!?dist:%define _with_modxorg 1}
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
@@ -16,7 +19,7 @@
 Summary: Free multimedia player
 Name: xine
 Version: 0.99.4
-Release: 5
+Release: 6
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -29,7 +32,8 @@ Patch1: xine-ui-0.99.3-xftfontsize.patch
 Patch2: xine-ui-0.99.3-uifixups.patch
 Patch3: xine-ui-0.99.3-shared-lirc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: xine-lib >= 1.0.0
+%{!?_with_extras:Requires: xine-lib >= 1.1.2}
+%{?_with_extras:Requires: xine-lib-extras >= 1.1.2}
 BuildRequires: gcc-c++, libpng-devel, xine-lib-devel >= 1.0.0
 BuildRequires: curl-devel, libidn-devel, libtermcap-devel, readline-devel
 BuildRequires: pkgconfig, /usr/bin/find
@@ -166,6 +170,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Thu Nov  2 2006 Matthias Saou <http://freshrpms.net/> 0.99.4-6
+- Require xine-lib-extras on FC6 in order to get the spash animation to work.
+
 * Mon May 22 2006 Matthias Saou <http://freshrpms.net/> 0.99.4-5
 - Replace old lirc workaround with patch from Ville to use the shared library,
   since the static library has been removed from the Extras lirc packages.
