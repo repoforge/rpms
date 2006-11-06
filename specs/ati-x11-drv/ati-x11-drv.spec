@@ -17,8 +17,8 @@
 
 Summary: Proprietary ATI hardware accelerated OpenGL display driver
 Name: ati-x11-drv
-Version: 8.29.6
-Release: 3
+Version: 8.30.3
+Release: 1
 License: Proprietary
 Group: User Interface/X Hardware Support
 URL: http://www.ati.com/online/customercareportal/linux.html
@@ -71,7 +71,7 @@ sh %{SOURCE0} --extract .
 # Build the fireglcontrolpanel utility, nothing else needs to be built
 %{__mkdir_p} fireglcontrolpanel
 cd fireglcontrolpanel
-tar xzvf ../common/usr/src/ATI/fglrx_panel_sources.tgz
+tar xzvf ../common/usr/src/ati/fglrx_panel_sources.tgz
 . /etc/profile.d/qt.sh
 # Get most linking to work again
 %{__perl} -pi -e 's|/usr/X11R6|/usr|g' Makefile
@@ -286,6 +286,9 @@ fi
 
 
 %changelog
+* Mon Nov  6 2006 Matthias Saou <http://freshrpms.net/> 8.30.3-1
+- Update to 8.30.3.
+
 * Tue Oct 31 2006 Matthias Saou <http://freshrpms.net/> 8.29.6-3
 - Add /usr/X11R6 dri symlinks, required because of hardcoded paths inside the
   main libraries (Alexandre Silva Lopes).
