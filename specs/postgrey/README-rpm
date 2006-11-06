@@ -1,0 +1,19 @@
+Edit your configuration files:
+
+/etc/postfix/main.cf:
+
+  smtpd_recipient_restrictions = ...
+    check_policy_service unix:postgrey/socket, ...
+
+
+Or if you like to use inet sockets (modify the IP if needed):
+
+/etc/sysconfig/postgrey:
+
+  OPTIONS="--inet=127.0.0.1:10023"
+
+/etc/postfix/main.cf:
+
+  smtpd_recipient_restrictions = ...
+    check_policy_service inet:127.0.0.1:10023, ...
+

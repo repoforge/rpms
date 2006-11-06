@@ -1,0 +1,87 @@
+#!/bin/sh
+#
+# chkconfig: - 79 31
+# description: Postfix Greylisting Policy Server
+#
+# processname: postgrey
+#
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 0
+
+prog=postgrey
+postgrey=/usr/sbin/$prog
+DBPATH=/var/spool/postfix/postgrey
+SOCKET=$DBPATH/socket
+OPTIONS="--unix=$SOCKET"
+
+# Source an auxiliary options file if we have one, and pick up OPTIONS,
+if [ -r /etc/sysconfig/$prog ]; then
+    . /etc/sysconfig/$prog
+fi
+
+[ -x $postgrey -a -d $DBPATH ] || exit 0
+
+RETVAL=0
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $postgrey -d $OPTIONS
+    RETVAL=$?
+    echo
+    [ $RETVAL = 0 ] && touch /var/lock/subsys/$prog
+    return $RETVAL
+}
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $postgrey
+    RETVAL=$?
+    echo
+    [ $RETVAL = 0 ] && rm -f /var/lock/subsys/$prog
+}
+
+restart() {
+    stop
+    start
+}
+
+reload() {
+    echo -n $"Reloading $prog: "
+    killproc $postgrey -HUP
+    RETVAL=$?
+    echo
+    return $RETVAL
+}
+ 
+# See how we were called.
+case "$1" in
+    start)
+        start
+    ;;
+    stop)
+        stop
+    ;;
+    restart)
+        restart
+    ;;
+    reload)
+        reload
+    ;;
+    condrestart)
+        [ -f /var/lock/subsys/$prog ] && restart
+    ;;
+    status)
+        status $postgrey
+    ;;
+    *)
+        echo $"Usage: $0 {start|stop|restart|condrestart|reload|status}"
+        exit 1
+esac
+
+exit $?

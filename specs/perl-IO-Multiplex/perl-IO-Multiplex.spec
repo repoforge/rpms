@@ -9,7 +9,7 @@
 Summary: IO-Multiplex module for perl
 Name: perl-IO-Multiplex
 Version: 1.08
-Release: 2.2
+Release: 3
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Multiplex/
