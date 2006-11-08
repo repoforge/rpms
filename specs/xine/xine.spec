@@ -6,6 +6,7 @@
 
 %{!?dist:%define _with_extras 1}
 %{?fc6:  %define _with_extras 1}
+%{?fc5:  %define _with_extras 1}
 
 %{!?dist:%define _with_modxorg 1}
 %{?fc6:  %define _with_modxorg 1}
@@ -19,7 +20,7 @@
 Summary: Free multimedia player
 Name: xine
 Version: 0.99.4
-Release: 6
+Release: 7
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -170,6 +171,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Wed Nov  8 2006 Matthias Saou <http://freshrpms.net/> 0.99.4-7
+- Require xine-lib-extras on FC5 too.
+
 * Thu Nov  2 2006 Matthias Saou <http://freshrpms.net/> 0.99.4-6
 - Require xine-lib-extras on FC6 in order to get the spash animation to work.
 
