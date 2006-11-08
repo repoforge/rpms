@@ -4,7 +4,7 @@
 # ExclusiveDist: fc6
 
 %define majmin          1.0
-%define relver          9626
+%define relver          9629
 %define nvidialibdir    %{_libdir}/nvidia
 %define nvidialib32dir  %{_prefix}/lib/nvidia
 %define desktop_vendor  rpmforge
@@ -14,7 +14,7 @@
 Summary: Proprietary NVIDIA hardware accelerated OpenGL display driver
 Name: nvidia-x11-drv
 Version: %{majmin}.%{relver}
-Release: 3
+Release: 1
 License: Proprietary
 Group: User Interface/X Hardware Support
 URL: http://www.nvidia.com/object/unix.html
@@ -26,6 +26,8 @@ Source2: nvidia.sh
 Source3: nvidia.csh
 Source4: nvidia-config-display
 Source5: nvidia.modprobe
+# http://www.nvnews.net/vbulletin/attachment.php?attachmentid=20486&d=1158955681
+Patch0: NVIDIA_kernel-1.0-9625-NOSMBUS.diff.txt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Required for proper dkms operation
 Requires: gcc
@@ -62,6 +64,7 @@ sh %{SOURCE1} --extract-only --target tmp/
 # Move all the files back from tmp/ to the main directory
 %{__mv} tmp/* .
 %{__rm} -rf tmp/
+%patch0 -p0
 
 
 %build
@@ -95,11 +98,11 @@ EOF
     %{buildroot}%{_usrsrc}/%{dkms_name}-%{dkms_vers}/
 
 # Install libXvMCNVIDIA.*
-%{__mkdir_p} %{buildroot}/%{nvidialibdir}/
+%{__mkdir_p} %{buildroot}%{nvidialibdir}/
 %{__install} -p -m 0755 usr/X11R6/lib/libXvMCNVIDIA.so.* \
-    %{buildroot}/%{nvidialibdir}/
+    %{buildroot}%{nvidialibdir}/
 %{__install} -p -m 0644 usr/X11R6/lib/libXvMCNVIDIA.a \
-    %{buildroot}/%{nvidialibdir}/
+    %{buildroot}%{nvidialibdir}/
 
 # Install X driver and extension (is the nvidia_drv.o useful?)
 %{__mkdir_p} %{buildroot}%{_libdir}/xorg/modules/drivers/
@@ -110,34 +113,34 @@ EOF
     %{buildroot}%{_libdir}/xorg/modules/extensions/nvidia/libglx.so
 
 # Install GL and tls libs
-%{__mkdir_p} %{buildroot}/%{nvidialibdir}/tls/
+%{__mkdir_p} %{buildroot}%{nvidialibdir}/tls/
 %{__install} -p -m 0755 usr/lib/*.so.%{version} \
-    %{buildroot}/%{nvidialibdir}/
+    %{buildroot}%{nvidialibdir}/
 %{__install} -p -m 0755 usr/lib/tls/*.so.%{version} \
-    %{buildroot}/%{nvidialibdir}/tls/
+    %{buildroot}%{nvidialibdir}/tls/
 
 %ifarch x86_64
 # Install 32bit compat GL and tls libs
-%{__mkdir_p} %{buildroot}/%{nvidialib32dir}/tls/
+%{__mkdir_p} %{buildroot}%{nvidialib32dir}/tls/
 %{__install} -p -m 0755 usr/lib32/*.so.%{version} \
-    %{buildroot}/%{nvidialib32dir}/
+    %{buildroot}%{nvidialib32dir}/
 %{__install} -p -m 0755 usr/lib32/tls/*.so.%{version} \
-    %{buildroot}/%{nvidialib32dir}/tls/
+    %{buildroot}%{nvidialib32dir}/tls/
 %endif
 
 # Create .so symlinks
 for libname in libGLcore libGL libnvidia-cfg libnvidia-tls tls/libnvidia-tls; do
     %{__ln_s} `basename ${libname}`.so.%{version} \
-        %{buildroot}/%{nvidialibdir}/${libname}.so.1
+        %{buildroot}%{nvidialibdir}/${libname}.so.1
     %{__ln_s} `basename ${libname}`.so.%{version} \
-        %{buildroot}/%{nvidialibdir}/${libname}.so
+        %{buildroot}%{nvidialibdir}/${libname}.so
 done
 %ifarch x86_64
 for libname in libGLcore libGL libnvidia-cfg libnvidia-tls tls/libnvidia-tls; do
     %{__ln_s} `basename ${libname}`.so.%{version} \
-        %{buildroot}/%{nvidialib32dir}/${libname}.so.1
+        %{buildroot}%{nvidialib32dir}/${libname}.so.1
     %{__ln_s} `basename ${libname}`.so.%{version} \
-        %{buildroot}/%{nvidialib32dir}/${libname}.so
+        %{buildroot}%{nvidialib32dir}/${libname}.so
 done
 %endif
 
@@ -275,6 +278,12 @@ fi
 
 
 %changelog
+* Wed Nov  8 2006 Matthias Saou <http://freshrpms.net/> 1.0.9629-1
+- Update to 1.0-9629.
+
+* Tue Oct 31 2006 Matthias Saou <http://freshrpms.net/> 1.0.9626-4
+- Include patch to fix black X screen on startup (disables i2c, though).
+
 * Mon Oct 30 2006 Matthias Saou <http://freshrpms.net/> 1.0.9626-3
 - 32bit libs weren't being included on x86_64, the 64bits were twice instead.
 

@@ -1,7 +1,6 @@
 # $Id$
 # Authority: matthias
 
-#define prever beta2
 %define somaj  4
 %define somin  1
 
@@ -15,12 +14,12 @@
 
 Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore
-Version: 1.1.0
-Release: 3%{?prever:.%{prever}}
+Version: 1.1.2
+Release: 1
 License: XviD
 Group: System Environment/Libraries
 URL: http://www.xvid.org/
-Source: http://downloads.xvid.org/downloads/xvidcore-%{version}%{?prever:-%{prever}}.tar.bz2
+Source: http://downloads.xvid.org/downloads/xvidcore-%{version}.tar.bz2
 Patch0: xvidcore-1.1.0-verbose-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: yasm
@@ -48,7 +47,7 @@ needed to build applications that will use the XviD video codec.
 
 
 %prep
-%setup -n %{name}-%{version}%{?prever:-%{prever}}
+%setup
 %patch0 -p1 -b .verbose-build
 
 
@@ -77,10 +76,11 @@ popd
 pushd build/generic
     %makeinstall
 popd
-# Make .so and .so.x symlinks to the so.x.y file
+# Make .so and .so.x symlinks to the so.x.y file, +x to get proper stripping
 pushd %{buildroot}%{_libdir}
     %{__ln_s} lib%{name}.so.%{somaj}.%{somin} lib%{name}.so.%{somaj}
     %{__ln_s} lib%{name}.so.%{somaj}.%{somin} lib%{name}.so
+    %{__chmod} +x lib%{name}.so.%{somaj}.%{somin}
 popd
 # Remove unwanted files from the docs
 %{__rm} -f doc/Makefile
@@ -112,6 +112,10 @@ execstack -c %{buildroot}%{_libdir}/*.so.*.* || :
 
 
 %changelog
+* Wed Nov  8 2006 Matthias Saou <http://freshrpms.net/> 1.1.2-1
+- Update to 1.1.2.
+- Chmod +x the shared library to get it stripped and proper debuginfo created.
+
 * Wed May 17 2006 Matthias Saou <http://freshrpms.net/> 1.1.0-3
 - Clear executable stack flag bit from the library (should not be needed).
 
