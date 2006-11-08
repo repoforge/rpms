@@ -1,21 +1,21 @@
 # $Id$
 # Authority: matthias
 
-%define mamever 109
+%define mamever 110
 
 Summary: SDL port of the Multi Arcade Machine Emulator (MAME)
 Name: sdlmame
 Version: 0.%{mamever}
-Release: 2
+Release: 1
 License: MAME
 Group: Applications/Emulators
 URL: http://rbelmont.mameworld.info/
-# Get with wget --user-agent="" ...
+# Get with wget --user-agent="Mozilla" ...
 Source: http://rbelmont.mameworld.info/sdlmame0%{mamever}.zip
 Patch0: sdlmame0109-genericbuild.patch
 Patch1: sdlmame0109-ppc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: SDL-devel, expat-devel, zlib-devel
+BuildRequires: SDL-devel, expat-devel, zlib-devel, libXinerama-devel
 
 %description
 This is a simple SDL port of the almost legendary MAME. MAME is an arcade
@@ -56,7 +56,10 @@ export PPC=1
 %install
 %{__rm} -rf %{buildroot}
 %{__mkdir_p} %{buildroot}%{_bindir}
-%{__install} -m 0755 chdman romcmp sdlmame %{buildroot}%{_bindir}/
+%{__install} -m 0755 sdlmame %{buildroot}%{_bindir}/sdlmame
+# Rename these tools in order to not conflict with xmame
+%{__install} -m 0755 chdman %{buildroot}%{_bindir}/chdman-sdlmame
+%{__install} -m 0755 romcmp %{buildroot}%{_bindir}/romcmp-sdlmame
 
 
 %clean
@@ -66,12 +69,20 @@ export PPC=1
 %files
 %defattr(-, root, root, 0755)
 %doc docs/*.txt *.txt dirs/
-%{_bindir}/chdman
-%{_bindir}/romcmp
+%{_bindir}/chdman-sdlmame
+%{_bindir}/romcmp-sdlmame
 %{_bindir}/sdlmame
 
 
 %changelog
+* Wed Nov  8 2006 Matthias Saou <http://freshrpms.net/> 0.110-1
+- Update to 0.110.
+- Add new libXinerama-devel build requirement.
+- Rename chdman and romcmp to *-sdlmame in order to not conflict with xmame.
+
+* Tue Oct 17 2006 Matthias Saou <http://freshrpms.net/> 0.109u2-1
+- Update to 0.109u2.
+
 * Thu Oct  5 2006 Matthias Saou <http://freshrpms.net/> 0.109-2
 - Add ppc patch to remove -mlong-branch (it's an Apple specific gcc option...),
   but the build still fails later on.
