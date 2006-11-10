@@ -1,28 +1,26 @@
 # $Id$
 # Authority: dag
-# ExclusiveDist: fc6
-
-%define prever beta6
+# ExcludeDist: fc6
 
 Summary: RSA encryption support for Gaim
 Name: gaim-encryption
-Version: 3.0
-Release: 0.1.%{prever}
+Version: 2.38
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://gaim-encryption.sourceforge.net/
 
-Source: http://dl.sf.net/gaim-encryption/gaim-encryption-%{version}%{?prever}.tar.gz
+Source: http://dl.sf.net/gaim-encryption/gaim-encryption-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gaim-devel >= 2.0.0, gtk2-devel, nss-devel, nspr-devel
-Requires: gaim >= 2.0.0
+BuildRequires: gaim-devel, gtk2-devel, nss-devel, nspr-devel
+Requires: gaim
 
 %description
 RSA encryption support for Gaim.
 
 %prep
-%setup -n %{name}-%{version}%{?prever}
+%setup
 
 %build
 %configure \
@@ -47,16 +45,8 @@ RSA encryption support for Gaim.
 %exclude %{_libdir}/gaim/encrypt.a
 %exclude %{_libdir}/gaim/encrypt.la
 %{_libdir}/gaim/encrypt.so
-%{_datadir}/pixmaps/gaim/gaim-encryption/crypto.png
 
 %changelog
-* Fri Nov 10 2006 Matthias Saou <http://freshrpms.net/> 3.0-0.1.beta6
-- Update to 3.0beta6, compatible with gaim 2.0.0beta4 (FC6) release.
-
-* Wed Sep 20 2006 Matthias Saou <http://freshrpms.net/> 3.0-0.1.beta5
-- Update to 3.0beta5, compatible with gaim 2.0.0beta releases.
-- Include new crypto.png image.
-
 * Thu Apr 20 2006 Matthias Saou <http://freshrpms.net/> 2.38-2
 - Fix FC5 build by passing configure arguments and requiring correct package
   names (this might break for older distros, but gaim 1.5.0 probably doesn't
