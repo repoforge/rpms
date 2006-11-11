@@ -45,8 +45,12 @@ case "$1" in
 	$0 start
 	RETVAL=$?
 	;;
+  condrestart)
+	[ -e /var/lock/subsys/clamd ] && restart
+	RETVAL=$?
+	;;
   *)
-	echo "Usage: clamd {start|stop|status|restart|reload}"
+	echo "Usage: clamd {start|stop|status|restart|reload|condrestart}"
 	exit 1
 esac
 

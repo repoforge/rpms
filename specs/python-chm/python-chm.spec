@@ -7,7 +7,7 @@
 
 Summary: Python package to handle CHM files
 Name: python-chm
-Version: 0.8.3
+Version: 0.8.4
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -44,11 +44,11 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{python_sitearch}/chm/
 
 %changelog
+* Sat Nov 11 2006 Dag Wieers <dag@wieers.com> - 0.8.4-1
+- Updated to release 0.8.4.
+
 * Fri May 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.3-1
 - Updated to release 0.8.3.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.2-1.2
-- Rebuild for Fedora Core 5.
 
 * Sun Feb 13 2005 Dag Wieers <dag@wieers.com> - 0.8.2-1
 - Updated to release 0.8.2.

@@ -9,7 +9,7 @@
 
 Summary: Friendly interactive shell
 Name: fish
-Version: 1.21.12
+Version: 1.22.0
 Release: 1
 License: GPL
 Group: System Environment/Shells
@@ -57,8 +57,8 @@ is simple but incompatible with other shell languages.
 %doc %{_mandir}/man1/set_color.1*
 %doc %{_mandir}/man1/xsel.1x*
 %config(noreplace) %{_sysconfdir}/fish
-%config(noreplace) %{_sysconfdir}/fish_inputrc
-%config(noreplace) %{_sysconfdir}/fish.d/
+#%config(noreplace) %{_sysconfdir}/fish_inputrc
+#%config(noreplace) %{_sysconfdir}/fish.d/
 %{_bindir}/count
 %{_bindir}/fish
 %{_bindir}/fish_pager
@@ -70,6 +70,9 @@ is simple but incompatible with other shell languages.
 %exclude %{_docdir}/fish/
 
 %changelog
+* Tue Nov 07 2006 Dag Wieers <dag@wieers.com> - 1.22.0-1
+- Updated to release 1.22.0.
+
 * Tue Sep 12 2006 Dag Wieers <dag@wieers.com> - 1.21.12-1
 - Updated to release 1.21.12.
 

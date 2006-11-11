@@ -13,7 +13,7 @@
 
 Summary: CHM file viewer
 Name: gnochm
-Version: 0.9.8
+Version: 0.9.9
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -71,8 +71,8 @@ scrollkeeper-update -q || :
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
-%doc %{_mandir}/man?/*
-%doc %{_mandir}/it/man?/*
+#%doc %{_mandir}/man?/*
+#%doc %{_mandir}/it/man?/*
 %doc %{_datadir}/gnome/help/gnochm/
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/gnochm
@@ -90,6 +90,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat Nov 11 2006 Dag Wieers <dag@wieers.com> - 0.9.9-1
+- Updated to release 0.9.9.
+
 * Sat May 27 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.8-1
 - Updated to release 0.9.8.
 

@@ -5,7 +5,7 @@
 
 Summary: UNFS3 user-space NFSv3 server
 Name: unfs3
-Version: 0.9.15
+Version: 0.9.16
 Release: 1
 License: BSD
 Group: Applications/System
@@ -31,7 +31,7 @@ the MOUNT and NFS protocol.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -44,6 +44,9 @@ the MOUNT and NFS protocol.
 %{_sbindir}/unfsd
 
 %changelog
+* Tue Nov 07 2006 Dag Wieers <dag@wieers.com> - 0.9.16-1
+- Updated to release 0.9.16.
+
 * Sat Aug 19 2006 Dag Wieers <dag@wieers.com> - 0.9.15-1
 - Updated to release 0.9.15.
 

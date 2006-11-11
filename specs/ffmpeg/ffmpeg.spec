@@ -120,14 +120,16 @@ to use MPlayer, transcode or other similar programs.
 
 
 %build
-export CFLAGS="%{optflags}"
+#export CFLAGS="%{optflags}"
 ./configure \
     --prefix=%{_prefix} \
     --libdir=%{_libdir} \
     --mandir=%{_mandir} \
     --incdir=%{_includedir}/ffmpeg \
 %ifarch x86_64
-    --extra-cflags="-fPIC" \
+    --extra-cflags="-fPIC %{optflags}" \
+%else
+    --extra-cflags="%{optflags}" \
 %endif
     %{!?_without_lame:   --enable-mp3lame} \
     %{!?_without_vorbis: --enable-libogg --enable-vorbis} \

@@ -48,7 +48,6 @@ EOF
 # processname: memcached
 # config: /etc/sysconfig/memcached
 # config: /etc/memcached.conf
-# pidfile: /var/run/memcached.pid
 
 source %{_sysconfdir}/rc.d/init.d/functions
 

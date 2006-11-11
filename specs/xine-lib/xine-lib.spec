@@ -171,22 +171,22 @@ use the Xine library.
 %doc AUTHORS COPYING ChangeLog NEWS README TODO
 %doc doc/README.dvb doc/README.dxr3 doc/README.network_dvd doc/README.opengl
 %doc doc/README.syncfb doc/README_xxmc.html doc/faq/faq.html
-%{_libdir}/*.so.*
+%{_libdir}/libxine.so.*
 %{_libdir}/xine/
 %{_datadir}/xine/
-%{_mandir}/man5/*
+%{_mandir}/man5/xine.5*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/hackersguide/*.html doc/hackersguide/*.png
-%{_bindir}/*
+%{_bindir}/xine-config
 %{_includedir}/xine.h
 %{_includedir}/xine/
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
-%{_libdir}/pkgconfig/*
-%{_datadir}/aclocal/*.m4
-%{_mandir}/man1/*
+%exclude %{_libdir}/libxine.la
+%{_libdir}/libxine.so
+%{_libdir}/pkgconfig/libxine.pc
+%{_datadir}/aclocal/xine.m4
+%{_mandir}/man1/xine-config.1*
 
 
 %changelog

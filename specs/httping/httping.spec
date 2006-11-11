@@ -4,7 +4,7 @@
 
 Summary: Ping alike tool for http requests
 Name: httping
-Version: 1.2.1
+Version: 1.2.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -45,6 +45,9 @@ that the transmission across the network also takes time!
 %{_bindir}/httping
 
 %changelog
+* Sat Nov 11 2006 Dag Wieers <dag@wieers.com> - 1.2.2-1
+- Updated to release 1.2.2.
+
 * Tue Jul 25 2006 Dag Wieers <dag@wieers.com> - 1.2.1-1
 - Updated to release 1.2.1.
 

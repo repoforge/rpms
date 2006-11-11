@@ -3,7 +3,7 @@
 
 Summary: The Ultimate Packer for eXecutables
 Name: upx
-Version: 2.02
+Version: 2.03
 Release: 1
 License: GPL
 Group: Applications/File
@@ -62,6 +62,9 @@ Win95/98/ME/NT/2000 programs and DLLs, DOS programs, and Linux executables.
 %{_bindir}/upx
 
 %changelog
+* Sat Nov 11 2006 Dag Wieers <dag@wieers.com> - 2.03-1
+- Updated to release 2.03.
+
 * Wed Oct 11 2006 Dag Wieers <dag@wieers.com> - 2.02-1
 - Updated to release 2.02.
 

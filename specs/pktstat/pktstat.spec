@@ -3,8 +3,8 @@
 
 Summary: Displays a live list of active connections and what files are being transferred
 Name: pktstat
-Version: 1.8.1
-Release: 1.2
+Version: 1.8.2
+Release: 1
 License: BSD
 Group: Applications/Internet
 URL: http://www.adaptive-enterprises.com.au/~d/software/pktstat/
@@ -38,13 +38,13 @@ accepts filter expressions like tcpdump.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README
+%doc ChangeLog COPYING NEWS README TODO
 %doc %{_mandir}/man1/pktstat.1*
 %{_bindir}/pktstat
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.8.1-1.2
-- Rebuild for Fedora Core 5.
+* Sat Nov 11 2006 Dag Wieers <dag@wieers.com> - 1.8.2-1
+- Updated to release 1.8.2.
 
 * Sun Feb 12 2006 Dag Wieers <dag@wieers.com> - 1.8.1-1
 - Updated to release 1.8.1.

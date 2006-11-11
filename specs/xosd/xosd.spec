@@ -6,12 +6,12 @@
 
 Summary: Displays transparent text on your screen like the OSD of TVs
 Name: xosd
-Version: 2.2.12
+Version: 2.2.14
 Release: 1
 License: GPL
 Group: System Environment/Libraries
-URL: http://www.ignavus.net/software.html
-Source: http://www.ignavus.net/xosd-%{version}.tar.bz2
+URL: http://libxosd.sourceforge.net/
+Source: http://dl.sf.net/libxosd/xosd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gtk+-devel, gdk-pixbuf-devel, xmms-devel
 
@@ -62,11 +62,8 @@ XOSD library, similarly to TV OSD.
 %{__make} install DESTDIR=%{buildroot}
 
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %clean
@@ -77,20 +74,20 @@ XOSD library, similarly to TV OSD.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README
 %{_bindir}/osd_cat
-%{_libdir}/*.so.*
+%{_libdir}/libxosd.so.*
 %{_datadir}/xosd/
-%{_mandir}/man1/osd_cat*
+%{_mandir}/man1/osd_cat.1*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_bindir}/xosd-config
-%{_includedir}/*.h
-%{_libdir}/*.a
-%{_libdir}/*.so
+%{_includedir}/xosd.h
+%{_libdir}/libxosd.a
+%{_libdir}/libxosd.so
 %{_datadir}/aclocal/*.m4
-%exclude %{_libdir}/*.la
-%{_mandir}/man1/xosd-config*
-%{_mandir}/man3/*
+%exclude %{_libdir}/libxosd.la
+%{_mandir}/man1/xosd-config.1*
+%{_mandir}/man3/*.3*
 
 %files -n xmms-xosd
 %defattr(-, root, root, 0755)
@@ -99,6 +96,9 @@ XOSD library, similarly to TV OSD.
 
 
 %changelog
+* Tue Nov 07 2006 Dag Wieers <dag@wieers.com> - 2.2.14-1
+- Updated to release 2.2.14.
+
 * Tue Sep 14 2004 Matthias Saou <http://freshrpms.net/> 2.2.12-1
 - Update to 2.2.12.
 

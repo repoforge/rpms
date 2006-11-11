@@ -3,9 +3,9 @@
 
 %define _without_ntfs 1
 
-Summary: Tool to check and undelete partition
+Summary: Tools to check and undelete partition or recover deleted files
 Name: testdisk
-Version: 6.4
+Version: 6.5
 Release: 1
 License: GPL
 Group: Applications/System
@@ -17,15 +17,20 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: ncurses-devel >= 5.2, e2fsprogs-devel, libjpeg-devel
 
 %description
-Tool to check and undelete partition. Works with FAT12, FAT16, FAT32, EXT2,
+The testdisk package contains the testdisk tool. This tool can check and
+undelete partition information. It works with FAT12, FAT16, FAT32, EXT2,
 EXT3, BeFS, CramFS, HFS, JFS, Linux Raid, Linux Swap, LVM, LVM2, NSS,
-ReiserFS, UFS, XFS
+ReiserFS, UFS, XFS.
+
+It also includes the photorec tool. This tool allows to recover deleted
+files from filesystems.
 
 %prep
 %setup
 
 %build
 %configure \
+	--program-prefix="%{?_program_prefix}" \
 %{?_without_ntfs:--without-ntfs}
 %{__make} %{?_smp_mflags}
 
@@ -45,5 +50,8 @@ ReiserFS, UFS, XFS
 %{_sbindir}/testdisk
 
 %changelog
+* Wed Nov 08 2006 Dag Wieers <dag@wieers.com> - 6.5-1
+- Updated to release 6.5.
+
 * Mon Aug 14 2006 Dag Wieers <dag@wieers.com> - 6.4-1
 - Initial package. (using DAR)
