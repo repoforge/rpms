@@ -4,7 +4,7 @@
 
 Summary: Client to connect to a DX-cluster for amateur radio
 Name: xdx
-Version: 2.1
+Version: 2.2
 Release: 1
 License: GPL
 Group: Applications/Utilities
@@ -14,7 +14,6 @@ Source: http://www.qsl.net/pg4i/download/xdx-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.6
-#Requires:
 
 %description
 Xdx is a client to connect to a DX-cluster for amateur radio. DX messages 
@@ -47,5 +46,8 @@ control the radio and set the frequency simply by double clicking a DX-spot
 %{_datadir}/applications/Xdx.desktop
 
 %changelog
+* Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 2.2-1
+- Updated to release 2.2.
+
 * Sat May 27 2006 Dries Verachtert <dries@ulyssis.org> - 2.1-1
 - Initial package.
