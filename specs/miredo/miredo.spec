@@ -4,7 +4,7 @@
 
 Summary: Tunneling of Ipv6 over UDP through NATs
 Name: miredo
-Version: 1.0.0
+Version: 1.0.4
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -44,6 +44,8 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
+%{__mkdir} rpmdocs
+%{__mv} %{buildroot}%{_docdir}/miredo/examples rpmdocs/
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -56,15 +58,15 @@ you will need to install %{name}-devel.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README THANKS TODO
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README THANKS TODO rpmdocs/*
 %doc %{_mandir}/man?/miredo*
 %doc %{_mandir}/man1/teredo-mire*
 %doc %{_mandir}/man5/isatapd.conf*
 %doc %{_mandir}/man8/isatapd*
-%config(noreplace) %{_sysconfdir}/miredo-server.conf-dist
+#%config(noreplace) %{_sysconfdir}/miredo-server.conf-dist
 %config(noreplace) %{_sysconfdir}/miredo.conf
-%config(noreplace) %{_sysconfdir}/miredo.conf-dist
-%config(noreplace) %{_sysconfdir}/isatapd.conf-dist
+#%config(noreplace) %{_sysconfdir}/miredo.conf-dist
+#%config(noreplace) %{_sysconfdir}/isatapd.conf-dist
 %{_sbindir}/miredo
 %{_sbindir}/miredo-checkconf
 %{_sbindir}/miredo-server
@@ -79,10 +81,15 @@ you will need to install %{name}-devel.
 %{_includedir}/libtun6/
 %{_libdir}/libteredo.so
 %{_libdir}/libtun6.so
+%{_libdir}/libteredo.a
+%{_libdir}/libtun6.a
 %exclude %{_libdir}/libteredo.la
 %exclude %{_libdir}/libtun6.la
 
 %changelog
+* Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.4-1
+- Updated to release 1.0.4.
+
 * Thu Aug 24 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.0-1
 - Updated to release 1.0.0.
 

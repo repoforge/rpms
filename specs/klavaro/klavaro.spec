@@ -6,18 +6,17 @@
 
 Summary: Typing tutor
 Name: klavaro
-Version: 0.9.9
+Version: 1.0.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://klavaro.sourceforge.net/en/
 
-Source: http://dl.sf.net/klavaro/klavaro-%{version}.tar.gz
+Source: http://dl.sf.net/klavaro/klavaro-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: make, libpng-devel
-BuildRequires: arts-devel, gcc-c++, gettext, bison
-BuildRequires: zlib-devel, qt-devel, libjpeg-devel
+BuildRequires: libpng-devel
+BuildRequires: gcc-c++, gettext, bison
 BuildRequires: kdelibs-devel, desktop-file-utils
 BuildRequires: gtk+-devel, gtkextra-devel, gtk2-devel >= 2.6
 
@@ -74,6 +73,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.0-1
+- Updated to release 1.0.0.
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.9-1
 - Updated to release 0.9.9.
 

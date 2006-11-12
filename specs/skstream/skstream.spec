@@ -3,8 +3,8 @@
 
 Summary: Network transport library
 Name: skstream
-Version: 0.3.5
-Release: 1.2
+Version: 0.3.6
+Release: 1
 License: GPL/LGPL
 Group: Development/Libraries
 URL: ttp://www.worldforge.org/dev/eng/libraries/skstream
@@ -65,6 +65,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.6-1
+- Updated to release 0.3.6.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.5-1.2
 - Rebuild for Fedora Core 5.
 

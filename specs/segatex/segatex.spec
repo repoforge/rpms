@@ -4,17 +4,17 @@
 
 Summary: Create SELinux policies
 Name: segatex
-Version: 2.11
+Version: 3.02
 Release: 1
 License: GPL
 Group: Applications/System
 URL: http://sourceforge.net/projects/segatex/
 
-Source: http://dl.sf.net/segatex/segatex%{version}.tar.gz
+Source: http://dl.sf.net/segatex/segatex-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, gettext, boost-devel, qt-devel >= 1:3.3
-BuildRequires: desktop-file-utils
+BuildRequires: desktop-file-utils, libselinux-devel
 
 %description
 Segatex is a tool to configure SELinux policy with the help of GUI.
@@ -23,7 +23,7 @@ directory. You can then edit your .te file, make a module, and
 install.
 
 %prep
-%setup -n segatex%{version}
+%setup
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
@@ -39,7 +39,7 @@ EOF
 
 %build
 qmake segatex.pro
-%{__make} %{?_smp_mflags} SUBLIBS=-lboost_regex
+%{__make} %{?_smp_mflags} SUBLIBS="-lboost_regex -lselinux"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -61,6 +61,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*-segatex.desktop
 
 %changelog
+* Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 3.02-1
+- Updated to release 3.02.
+
 * Thu Aug 24 2006 Dries Verachtert <dries@ulyssis.org> - 2.11-1
 - Updated to release 2.11.
 

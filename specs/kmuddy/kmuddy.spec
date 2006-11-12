@@ -10,8 +10,8 @@
 
 Summary: MUD (multi user dungeon) client
 Name: kmuddy
-Version: 0.7.1
-Release: 2
+Version: 0.8
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://www.kmuddy.org/
@@ -19,9 +19,7 @@ URL: http://www.kmuddy.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Source: http://www.kmuddy.net/files/kmuddy-%{version}.tar.gz
 
-BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
-BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make
-BuildRequires: gcc-c++, qt-devel >= 3.2
+BuildRequires: gettext, kdelibs-devel, gcc-c++, qt-devel >= 3.2
 %{?el4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
@@ -59,8 +57,16 @@ text-based online multi-player role-playing game.
 %{_datadir}/icons/hicolor/16x16/actions/aliases.png
 %{_datadir}/icons/*/*/apps/kmuddy.png
 %{_datadir}/kmuddy
+%{_includedir}/kmuddy/
+%{_libdir}/kde3/kmuddy*.*
+%{_libdir}/libkmuddy.*
+%{_datadir}/services/kmuddy*plugin.desktop
+%{_datadir}/servicetypes/kmuddyplugin.desktop
 
 %changelog
+* Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-1
+- Update to release 0.8.
+
 * Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.1-2
 - Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
 
