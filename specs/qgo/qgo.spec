@@ -4,13 +4,13 @@
 
 Summary: Go board, SGF editor and client for the Internet Go Server
 Name: qgo
-Version: 1.5
+Version: 1.5.2
 Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://qgo.sourceforge.net/
 
-Source: http://dl.sf.net/qgo/qgo-%{version}-r1.tar.gz
+Source: http://dl.sf.net/qgo/qgo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: kdelibs-devel, gettext, gcc-c++
@@ -45,6 +45,9 @@ in Japan, China, and Korea.
 %{_datadir}/qGo/
 
 %changelog
+* Mon Nov 13 2006 Dries Verachtert <dries@ulyssis.org> - 1.5.2-1
+- Updated to release 1.5.2.
+
 * Sun Apr 23 2006 Dries Verachtert <dries@ulyssis.org> - 1.5-1
 - Updated to release 1.5.
 

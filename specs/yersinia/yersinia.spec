@@ -3,13 +3,13 @@
 
 Summary: Tests and attacks for network protocols
 Name: yersinia
-Version: 0.5.6
-Release: 1.2
+Version: 0.7
+Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://yersinia.sourceforge.net/
+URL: http://www.yersinia.net/
 
-Source: http://dl.sf.net/yersinia/yersinia-%{version}.tar.gz
+Source: http://www.yersinia.net/download/yersinia-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libnet, libpcap, ncurses-devel
@@ -46,6 +46,9 @@ VLANs (via VTP), and more.
 %{_bindir}/yersinia
 
 %changelog
+* Mon Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.7-1
+- Updated to release 0.7.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.6-1.2
 - Rebuild for Fedora Core 5.
 

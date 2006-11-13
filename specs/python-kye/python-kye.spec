@@ -8,7 +8,7 @@
 
 Summary: Puzzle game
 Name: python-kye
-Version: 0.9
+Version: 0.9.2
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -50,6 +50,9 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{_datadir}/kye/
 
 %changelog
+* Mon Nov 13 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.2-1
+- Updated to release 0.9.2.
+
 * Fri May 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.9-1
 - Updated to release 0.9.
 

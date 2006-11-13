@@ -4,8 +4,8 @@
 
 Summary: Sound editor
 Name: kwave
-Version: 0.7.5
-Release: 1.2
+Version: 0.7.7
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://kwave.sourceforge.net/
@@ -14,7 +14,7 @@ Source: http://dl.sf.net/kwave/kwave-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, libtool, gettext, recode, gsl-devel, kdelibs-devel, ImageMagick, kdesdk
-BuildRequires: libmad-devel, id3lib-devel
+BuildRequires: libmad-devel, id3lib-devel, flac-devel
 Requires: ImageMagick
 
 %description
@@ -73,6 +73,7 @@ you will need to install %{name}-devel.
 %{_datadir}/apps/kwave/
 %{_datadir}/icons/*/*/apps/kwave.png
 %{_datadir}/mimelnk/audio/*.desktop
+%{_libdir}/kde3/plugins/kwave/
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -81,6 +82,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.7-1
+- Updated to release 0.7.7.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.5-1.2
 - Rebuild for Fedora Core 5.
 

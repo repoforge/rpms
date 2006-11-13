@@ -3,8 +3,8 @@
 
 Summary: PHP compiler
 Name: phc
-Version: 0.1.5.1
-Release: 1.2
+Version: 0.1.7
+Release: 1
 # versions below 0.1.5.1 were GPL
 License: BSD
 Group: Development/Languages
@@ -23,23 +23,32 @@ that operate on PHP scripts.
 
 %prep
 %setup
+%configure
 
 %build
-%{__make} %{?_smp_mflags} -C src
+%{__make} %{?_smp_mflags}
+# -C src
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 src/phc %{buildroot}%{_bindir}/phc
+%makeinstall
+#{__install} -Dp -m0755 src/phc %{buildroot}%{_bindir}/phc
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README
+%doc ChangeLog README
 %{_bindir}/phc
+%{_bindir}/phc_compile_plugin
+%{_includedir}/phc/
+%{_datadir}/phc/
 
 %changelog
+* Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.7-1
+- Updated to release 0.1.7.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.5.1-1.2
 - Rebuild for Fedora Core 5.
 

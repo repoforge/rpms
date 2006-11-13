@@ -3,7 +3,7 @@
 
 Summary: C++ client API for PostgreSQL
 Name: libpqxx
-Version: 2.6.6
+Version: 2.6.7
 Release: 1
 License: BSD
 Group: System Environment/Libraries
@@ -70,6 +70,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Mon Nov 13 2006 Dries Verachtert <dries@ulyssis.org> - 2.6.7-1
+- Updated to release 2.6.7.
+
 * Sun May 28 2006 Dries Verachtert <dries@ulyssis.org> - 2.6.6-1
 - Updated to release 2.6.6.
 
