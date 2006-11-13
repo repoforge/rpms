@@ -4,7 +4,7 @@
 
 Summary: Composite User Interface terminal
 Name: cuiterm
-Version: 0.9.8
+Version: 0.9.9
 Release: 1
 License: GPL
 Group: User Interface/X
@@ -67,6 +67,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/omf/cuiterm/
 
 %changelog
+* Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.9-1
+- Updated to release 0.9.9.
+
 * Tue Aug 15 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.8-1
 - Updated to release 0.9.8.
 

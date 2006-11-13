@@ -4,8 +4,8 @@
 
 Summary: Download utility with BitTorrent and Metalink support
 Name: aria2
-Version: 0.8.1
-Release: 2
+Version: 0.9.0
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://aria2.sourceforge.net/
@@ -44,6 +44,9 @@ export CPPFLAGS="-I/usr/include/libxml2 $(pkg-config --cflags openssl)"
 %{_mandir}/man1/aria2c*
 
 %changelog
+* Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.0-1
+- Updated to release 0.9.0.
+
 * Mon Oct 09 2006 Dag Wieers <dag@wieers.com> - 0.8.1-2
 - Fixed group name.
 

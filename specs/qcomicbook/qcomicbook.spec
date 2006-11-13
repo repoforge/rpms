@@ -4,7 +4,7 @@
 
 Summary: Viewer for comic book archives
 Name: qcomicbook
-Version: 0.3.0
+Version: 0.3.3
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -13,7 +13,7 @@ URL: http://linux.bydg.org/~yogin/
 Source: http://linux.bydg.org/~yogin/qcomicbook-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: kdelibs-devel, gettext, gcc-c++
+BuildRequires: kdelibs-devel, gettext, gcc-c++, imlib2-devel
 
 %description
 QComicBook is a viewer for rar, zip, cbr, and cbz format comic book
@@ -63,6 +63,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/qcomicbook/
 
 %changelog
+* Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.3-1
+- Updated to release 0.3.3.
+
 * Tue Aug 15 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.0-1
 - Updated to release 0.3.0.
 

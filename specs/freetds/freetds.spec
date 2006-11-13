@@ -6,8 +6,8 @@
 
 Summary: Implementation of the Sybase/Microsoft TDS (Tabular DataStream) protocol
 Name: freetds
-Version: 0.63
-Release: 1.2
+Version: 0.64
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.freetds.org/
@@ -79,6 +79,9 @@ you will need to install %{name}-devel.
 %{_includedir}/
 
 %changelog
+* Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.64-1
+- Updated to release 0.64.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.63-1.2
 - Rebuild for Fedora Core 5.
 

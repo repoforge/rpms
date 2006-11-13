@@ -9,7 +9,7 @@
 
 Summary: Friendly interactive shell
 Name: fish
-Version: 1.22.0
+Version: 1.22.1
 Release: 1
 License: GPL
 Group: System Environment/Shells
@@ -70,6 +70,9 @@ is simple but incompatible with other shell languages.
 %exclude %{_docdir}/fish/
 
 %changelog
+* Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 1.22.1-1
+- Updated to release 1.22.1.
+
 * Tue Nov 07 2006 Dag Wieers <dag@wieers.com> - 1.22.0-1
 - Updated to release 1.22.0.
 

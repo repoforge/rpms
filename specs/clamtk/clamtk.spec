@@ -13,7 +13,7 @@
 
 Summary: Easy to use front-end for ClamAV
 Name: clamtk
-Version: 2.19
+Version: 2.26
 Release: 1
 License: Perl
 Group: Applications/File
@@ -72,7 +72,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES DISCLAIMER LICENSE README clamtk.xml
+%doc CHANGES DISCLAIMER LICENSE README
 %doc %{_mandir}/man1/clamtk.1*
 %{_bindir}/clamtk
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-clamtk.desktop}
@@ -80,6 +80,9 @@ EOF
 %{_datadir}/pixmaps/clam.xpm
 
 %changelog
+* Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 2.26-1
+- Updated to release 2.26.
+
 * Wed May 17 2006 Dag Wieers <dag@wieers.com> - 2.19-1
 - Updated to release 2.19.
 
