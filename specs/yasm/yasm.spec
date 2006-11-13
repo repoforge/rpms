@@ -7,6 +7,7 @@
 %{?rh9:%define _without_gettextdevel 1}
 %{?rh7:%define _without_gettextdevel 1}
 %{?el2:%define _without_gettextdevel 1}
+%{?el2:%define _without_xmlto 1}
 
 Summary: Complete rewrite of the NASM assembler
 Name: yasm
@@ -17,8 +18,9 @@ Group: Development/Languages
 URL: http://www.tortall.net/projects/yasm/
 Source: http://www.tortall.net/projects/yasm/releases/yasm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: bison, byacc, xmlto
+BuildRequires: bison, byacc
 
+%{!?_without_xmlto:BuildRequires:xmlto}
 %{!?_without_gettextdevel:BuildRequires: gettext-devel}
 %{?_without_gettextdevel:BuildRequires: gettext}
 
@@ -58,7 +60,7 @@ Install this package if you need to rebuild applications that use yasm.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 
 %clean

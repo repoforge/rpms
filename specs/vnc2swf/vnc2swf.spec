@@ -4,18 +4,14 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
+%{!?dist:%define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
 
 Summary: Recording tool for VNC
 Name: vnc2swf
 Version: 0.5.0
-Release: 1.2
+Release: 2
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.unixuser.org/~euske/vnc2swf/
@@ -23,9 +19,9 @@ URL: http://www.unixuser.org/~euske/vnc2swf/
 Source: http://www.unixuser.org/~euske/vnc2swf/vnc2swf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ming-devel, libdnet-devel, libstdc++-devel, zlib-devel, gcc-c++
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: libXt-devel, libXext, libXaw-devel}
+BuildRequires: libdnet-devel, libstdc++-devel, zlib-devel, gcc-c++
+%{?_with_modxorg:BuildRequires: libXt-devel, libXext, libXaw-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 
 %description
 vnc2swf is a recoding tool for Flash.
@@ -39,7 +35,7 @@ vnc2swf is a recoding tool for Flash.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}" prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -51,8 +47,8 @@ vnc2swf is a recoding tool for Flash.
 %{_bindir}/vnc2swf
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.0-1.2
-- Rebuild for Fedora Core 5.
+* Sun Nov 12 2006 Dag Wieers <dag@wieers.com> - 0.5.0-2
+- Removed ming requirement.
 
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.0-1
 - Updated to release 0.5.0.

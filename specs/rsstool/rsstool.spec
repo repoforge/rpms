@@ -4,7 +4,7 @@
 
 Summary: Read, parse, merge and write RSS (and Atom) feeds
 Name: rsstool
-Version: 0.9.8
+Version: 0.9.9
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -41,6 +41,9 @@ cd -
 %{_bindir}/rsstool
 
 %changelog
+* Sun Nov 12 2006 Dag Wieers <dag@wieers.com> - 0.9.9-1
+- Updated to release 0.9.9.
+
 * Tue Nov 07 2006 Dag Wieers <dag@wieers.com> - 0.9.8-1
 - Updated to release 0.9.8.
 

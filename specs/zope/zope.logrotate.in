@@ -1,10 +1,10 @@
-<<LOG_DIR>>/*.log {
+<<INSTANCE_HOME>>/log/*.log {
     missingok
     sharedscripts
     rotate 4
     weekly
     compress
     postrotate
-        <<ZOPECTL>> logreopen
+        <<INSTANCE_HOME>>/bin/zopectl logreopen >/dev/null 2>&1
     endscript
 }
