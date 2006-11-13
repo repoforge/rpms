@@ -24,17 +24,18 @@
 
 Summary: Vector drawing application
 Name: inkscape
-Version: 0.44
+Version: 0.44.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://inkscape.sourceforge.net/
 
-Source: http://dl.sf.net/inkscape/inkscape-%{version}.tar.bz2
+Source: http://dl.sf.net/inkscape/inkscape-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildRequires: libsigc++2-devel, gtkmm24-devel, glibmm-devel
-BuildRequires: gtkmm2 >= 2.4
+BuildRequires: gtkmm2
+# >= 2.4
 BuildRequires: libgc-devel,  perl(XML::Parser)
 BuildRequires: gcc-c++, pkgconfig
 BuildRequires: gettext, libpng-devel, freetype-devel, zlib-devel
@@ -42,7 +43,7 @@ BuildRequires: gtk2-devel, libxml2-devel, libxslt-devel
 BuildRequires: python-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{?_without_modxorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
-%{!?_without_modxorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
+%{!?_without_modxorg:BuildRequires: mesa-libGL-devel, mesa-libGLU-devel}
 
 %description
 Inkscape is a SVG based generic vector-drawing program.
@@ -102,6 +103,9 @@ EOF
 %{_datadir}/pixmaps/inkscape.png
 
 %changelog
+* Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.44.1-1
+- Updated to release 0.44.1.
+
 * Sat Jun 24 2006 Dag Wieers <dag@wieers.com> - 0.44-1
 - Updated to release 0.44.
 
