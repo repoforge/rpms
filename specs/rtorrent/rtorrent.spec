@@ -3,7 +3,7 @@
 
 Summary: Console based bittorrent client
 Name: rtorrent
-Version: 0.6.3
+Version: 0.6.4
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -42,6 +42,9 @@ management.
 %{_bindir}/rtorrent
 
 %changelog
+* Mon Nov 13 2006 Dag Wieers <dag@wieers.com> - 0.6.4-1
+- Updated to release 0.6.4.
+
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.3-1
 - Updated to release 0.6.3.
 

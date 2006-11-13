@@ -3,11 +3,11 @@
 
 Summary: BitTorrent library
 Name: libtorrent
-Version: 0.10.3
+Version: 0.10.4
 Release: 1
 License: GPL
 Group: Development/Libraries
-URL: http://libtorrent.rakshasa.no
+URL: http://libtorrent.rakshasa.no/
 
 Source: http://libtorrent.rakshasa.no/downloads/libtorrent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -40,20 +40,17 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %{_libdir}/libtorrent.so.*
 
 %files devel
@@ -65,6 +62,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libtorrent.pc
 
 %changelog
+* Mon Nov 13 2006 Dag Wieers <dag@wieers.com> - 0.10.4-1
+- Updated to release 0.10.4.
+
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.10.3-1
 - Updated to release 0.10.3.
 

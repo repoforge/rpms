@@ -6,7 +6,7 @@
 
 Summary: Meta-data extraction library
 Name: libextractor
-Version: 0.5.14
+Version: 0.5.16
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -62,8 +62,7 @@ Python bindings to libextractor.
 
 %install
 %{__rm} -rf %{buildroot}
-export LDFLAGS=-L%{buildroot}%{_libdir}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %post -p /sbin/ldconfig
@@ -94,17 +93,20 @@ export LDFLAGS=-L%{buildroot}%{_libdir}
 #%{python_sitearch}/extractor.so
 
 %changelog
+* Sun Nov 12 2006 Dag Wieers <dag@wieers.com> - 0.5.16-1
+- Updated to release 0.5.16.
+
+* Tue Sep 12 2006 Dag Wieers <dag@wieers.com> - 0.5.15-1
+- Updated to release 0.5.15.
+
 * Fri May 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.14-1
 - Updated to release 0.5.14.
 
-* Sat May 06 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.13-1
+* Sun Apr 30 2006 Dag Wieers <dag@wieers.com> - 0.5.13-1
 - Updated to release 0.5.13.
 
 * Sat Apr 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.12-1
 - Updated to release 0.5.12.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.11-1.2
-- Rebuild for Fedora Core 5.
 
 * Sun Mar 12 2006 Dag Wieers <dag@wieers.com> - 0.5.11-1
 - Updated to release 0.5.11.
