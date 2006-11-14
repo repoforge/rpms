@@ -3,7 +3,7 @@
 
 Summary: Displays a live list of active connections and what files are being transferred
 Name: pktstat
-Version: 1.8.2
+Version: 1.8.3
 Release: 1
 License: BSD
 Group: Applications/Internet
@@ -43,6 +43,9 @@ accepts filter expressions like tcpdump.
 %{_bindir}/pktstat
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 1.8.3-1
+- Updated to release 1.8.3.
+
 * Sat Nov 11 2006 Dag Wieers <dag@wieers.com> - 1.8.2-1
 - Updated to release 1.8.2.
 

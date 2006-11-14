@@ -4,13 +4,13 @@
 
 Summary: Handle C strings in a safe way
 Name: sstrings
-Version: 1.0.4
-Release: 1.2
+Version: 2.0.1
+Release: 1
 License: GPL
 Group: Development/Libraries
-URL: http://pcpool.mathematik.uni-freiburg.de/~pabloy/projects/sstrings/
+URL: http://klingsor.informatik.uni-freiburg.de/projects/sstrings/
 
-Source: http://pcpool.mathematik.uni-freiburg.de/~pabloy/projects/sstrings/sstrings-%{version}.tar.gz
+Source: http://klingsor.informatik.uni-freiburg.de/projects/sstrings/sstrings-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: automake, autoconf, gcc-c++
@@ -54,17 +54,23 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING INSTALL NEWS README TODO
-%doc %{_mandir}/man?/*
-%{_libdir}/*.so.*
+%doc %{_mandir}/man3/ss_string*
+%doc %{_mandir}/man3/strrstr*
+%doc %{_mandir}/man5/sstrings*
+%{_libdir}/libsstrings2.so.*
+%{_datadir}/sstrings/
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*.h
-%{_libdir}/*.a
-%{_libdir}/*.so
+%{_includedir}/sstrings2.h
+%{_libdir}/libsstrings2.a
+%{_libdir}/libsstrings2.so
 %exclude %{_libdir}/*.la
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.1-1
+- Update to release 2.0.1.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.4-1.2
 - Rebuild for Fedora Core 5.
 
