@@ -11,8 +11,8 @@
 
 Summary: Connect to iPhoto shares (DPAP)
 Name: perl-Net-DPAP-Client
-Version: 0.25
-Release: 1.2
+Version: 0.26
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DPAP-Client/
@@ -55,6 +55,9 @@ It currently doesn't support password-protected shares.
 %{perl_vendorlib}/Net/DPAP/Client/*
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.26-1
+- Updated to release 0.26.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.25-1.2
 - Rebuild for Fedora Core 5.
 

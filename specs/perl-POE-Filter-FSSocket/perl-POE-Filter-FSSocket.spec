@@ -9,7 +9,7 @@
 
 Summary: POE filter that parses FreeSWITCH events into hashes
 Name: perl-POE-Filter-FSSocket
-Version: 0.03
+Version: 0.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,6 +49,9 @@ event/log/etc... messages for you.  You must ask for events in plain mode.
 %{perl_vendorlib}/POE/Filter/FSSocket.pm
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1
+- Updated to release 0.07.
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Updated to release 0.03.
 

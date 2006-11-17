@@ -11,7 +11,7 @@
 
 Summary: Highly polymorphic testing object
 Name: perl-Test-MockObject
-Version: 1.06
+Version: 1.07
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ option is not to test difficult things.  Now you have no excuse.)
 %{perl_vendorlib}/Test/MockObject/*
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 1.07-1
+- Updated to release 1.07.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.06-1
 - Updated to release 1.06.
 

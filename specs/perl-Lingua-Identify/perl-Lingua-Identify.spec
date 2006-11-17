@@ -9,8 +9,8 @@
 
 Summary: Identify languages
 Name: perl-Lingua-Identify
-Version: 0.18
-Release: 1.2
+Version: 0.19
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-Identify/
@@ -50,6 +50,9 @@ A module which can identify languages.
 %{perl_vendorlib}/Lingua/Identify/
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.19-1
+- Updated to release 0.19.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.18-1.2
 - Rebuild for Fedora Core 5.
 
