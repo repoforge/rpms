@@ -11,7 +11,7 @@
 
 Summary: RSA encoding and decoding
 Name: perl-Crypt-OpenSSL-RSA
-Version: 0.23
+Version: 0.24
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ in the OpenSSL library.
 %{perl_vendorarch}/auto/Crypt/OpenSSL/RSA/*
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.24-1
+- Updated to release 0.24.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.23-1
 - Updated to release 0.23.
 

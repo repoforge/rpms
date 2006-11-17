@@ -12,8 +12,8 @@
 
 Summary: Easy API to XML files
 Name: perl-XML-Simple
-Version: 2.14
-Release: 2.2
+Version: 2.16
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Simple/
@@ -51,6 +51,9 @@ This module contains an easy API to XML files.
 %{perl_vendorlib}/XML/Simple/*
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 2.16-1
+- Updated to release 2.16.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.14-2.2
 - Rebuild for Fedora Core 5.
 

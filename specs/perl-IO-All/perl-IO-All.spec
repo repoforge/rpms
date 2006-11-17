@@ -9,7 +9,7 @@
 
 Summary: Object oriented interface for the Perl IO modules
 Name: perl-IO-All
-Version: 0.35
+Version: 0.36
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -67,6 +67,9 @@ readline, getc, print, printf, syswrite, sysread, close.
 %{perl_vendorlib}/IO/All/
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.36-1
+- Updated to release 0.36.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.35-1
 - Updated to release 0.35.
 

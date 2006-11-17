@@ -8,7 +8,7 @@
 
 Summary: Implementation of an Rsync client
 Name: perl-File-RsyncP
-Version: 0.64
+Version: 0.66
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorarch}/*
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.66-1
+- Updated to release 0.66.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.64-1
 - Updated to release 0.64.
 

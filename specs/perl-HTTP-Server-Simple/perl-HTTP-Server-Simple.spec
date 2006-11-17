@@ -9,7 +9,7 @@
 
 Summary: Simple standalone HTTP daemon
 Name: perl-HTTP-Server-Simple
-Version: 0.20
+Version: 0.23
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ your existing tools.
 %{perl_vendorlib}/HTTP/Server/Simple/
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.23-1
+- Updated to release 0.23.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.20-1
 - Updated to release 0.20.
 

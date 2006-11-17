@@ -9,7 +9,7 @@
 
 Summary: Access MySpace.com from perl
 Name: perl-WWW-Myspace
-Version: 0.58
+Version: 0.59
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -58,5 +58,8 @@ data, and post comments.
 %{perl_vendorlib}/WWW/Myspace/
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.59-1
+- Updated to release 0.59.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.58-1
 - Initial package.

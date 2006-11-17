@@ -9,7 +9,7 @@
 
 Summary: Retrieves UTV internet account information
 Name: perl-Business-UTV
-Version: 0.04
+Version: 0.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ echo n | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefi
 %{perl_vendorlib}/Business/UTV.pm
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1
+- Updated to release 0.05.
+
 * Fri Sep 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Updated to release 0.04.
 

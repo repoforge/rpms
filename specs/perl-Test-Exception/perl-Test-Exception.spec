@@ -9,7 +9,7 @@
 
 Summary: Test exception based code
 Name: perl-Test-Exception
-Version: 0.22
+Version: 0.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,6 +48,9 @@ Test::More and friends.
 %{perl_vendorlib}/Test/Exception.pm
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.24-1
+- Updated to release 0.24.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.22-1
 - Updated to release 0.22.
 

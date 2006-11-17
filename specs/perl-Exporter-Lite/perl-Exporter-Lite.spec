@@ -9,8 +9,8 @@
 
 Summary: Lightweight exporting of variables
 Name: perl-Exporter-Lite
-Version: 0.01
-Release: 1.2
+Version: 0.02
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Exporter-Lite/
@@ -46,6 +46,9 @@ Lightweight exporting of variables.
 %{perl_vendorlib}/Exporter/Lite.pm
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1
+- Updated to release 0.02.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-1.2
 - Rebuild for Fedora Core 5.
 

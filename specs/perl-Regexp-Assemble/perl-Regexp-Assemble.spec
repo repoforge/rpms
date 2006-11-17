@@ -9,7 +9,7 @@
 
 Summary: Create Regular expressions
 Name: perl-Regexp-Assemble
-Version: 0.26
+Version: 0.27
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,6 +46,9 @@ You can create regular expressions with this module.
 %{perl_vendorlib}/Regexp/Assemble.pm
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.27-1
+- Updated to release 0.27.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.26-1
 - Updated to release 0.26.
 

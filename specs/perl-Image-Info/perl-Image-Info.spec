@@ -9,7 +9,7 @@
 
 Summary: Extract meta information from image files
 Name: perl-Image-Info
-Version: 1.22
+Version: 1.23
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ various types of image files.
 %{perl_vendorlib}/Image/TIFF.pm
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 1.23-1
+- Updated to release 1.23.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.22-1
 - Updated to release 1.22.
 

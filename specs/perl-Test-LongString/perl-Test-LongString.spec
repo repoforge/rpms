@@ -8,7 +8,7 @@
 
 Summary: Tests strings for equality, with more helpful failures
 Name: perl-Test-LongString
-Version: 0.09
+Version: 0.11
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ specific items in binary data, this is the module for you.
 %{perl_vendorlib}/Test/LongString.pm
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.11-1
+- Updated to release 0.11.
+
 * Mon Jun 05 2006 Dag Wieers <dag@wieers.com> - 0.09-1
 - Initial package. (using DAR)

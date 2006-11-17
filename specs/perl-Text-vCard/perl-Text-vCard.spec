@@ -9,7 +9,7 @@
 
 Summary: Edit and create a single vCard (RFC 2426)
 Name: perl-Text-vCard
-Version: 1.99
+Version: 2.00
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,6 +47,9 @@ With this module you can create and edit a single vCard (RFC 2426).
 %{perl_vendorlib}/Text/vCard
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 2.00-1
+- Updated to release 2.00.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.99-1
 - Updated to release 1.99.
 

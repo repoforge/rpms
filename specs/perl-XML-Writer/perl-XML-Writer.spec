@@ -9,7 +9,7 @@
 
 Summary: Extension for writing XML documents
 Name: perl-XML-Writer
-Version: 0.601
+Version: 0.602
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ This module contains a perl extension for writing XML documents.
 %{perl_vendorlib}/XML/Writer.pm
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.602-1
+- Updated to release 0.602.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.601-1
 Updated to release 0.601.
 

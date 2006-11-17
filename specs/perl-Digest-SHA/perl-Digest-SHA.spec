@@ -8,7 +8,7 @@
 
 Summary: Digest-SHA Perl module
 Name: perl-Digest-SHA
-Version: 5.43
+Version: 5.44
 Release: 1
 License: distributable
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Digest/SHA/
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 5.44-1
+- Updated to release 5.44.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 5.43-1
 - Updated to release 5.43.
 

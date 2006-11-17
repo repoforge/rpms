@@ -9,7 +9,7 @@
 
 Summary: Simple tree object
 Name: perl-Tree-Simple
-Version: 1.16
+Version: 1.17
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,6 +47,9 @@ A simple tree object.
 %{perl_vendorlib}/Tree/Simple/
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 1.17-1
+- Updated to release 1.17.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.16-1
 - Updated to release 1.16.
 

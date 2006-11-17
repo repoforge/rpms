@@ -8,7 +8,7 @@
 
 Summary: Perl module for terminal screen handling and optimization
 Name: perl-Curses
-Version: 1.14
+Version: 1.15
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTA
 %{perl_vendorarch}/auto/Curses/
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 1.15-1
+- Updated to release 1.15.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.14-1
 - Updated to release 1.14.
 

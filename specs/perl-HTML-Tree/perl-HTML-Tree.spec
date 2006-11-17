@@ -8,7 +8,7 @@
 
 Summary: HTML-Tree module for perl
 Name: perl-HTML-Tree
-Version: 3.21
+Version: 3.23
 Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorlib}/HTML/
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 3.23-1
+- Updated to release 3.23.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 3.21-1
 - Updated to release 3.21.
 
