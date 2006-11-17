@@ -1,9 +1,9 @@
-# $Id$
+# $Id: rfdump.spec 4885 2006-11-16 19:47:21Z dries $
 # Authority: dries
 
 Summary: Edit RFID tags
 Name: rfdump
-Version: 1.4
+Version: 1.3
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -12,7 +12,7 @@ URL: http://www.rfdump.org
 Source: http://www.rfdump.org/dl/rfdump-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glib2-devel >= 2.6, gettext
+BuildRequires: gettext, expat-devel >= 1.95.8
 
 %description
 RFDUMP is a GUI to edit the "User Data Fields" on RFID tags and to test if 
@@ -40,8 +40,5 @@ cookie on RFID tags.
 %{_datadir}/rfdump/
 
 %changelog
-* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1
-- Updated to release 1.4.
-
 * Sun Dec 18 2005 Dries Verachtert <dries@ulyssis.org> - 1.3-1
 - Initial package.

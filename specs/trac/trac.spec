@@ -6,7 +6,7 @@
 
 Name: trac
 Summary: Integrated SCM and project management tool
-Version: 0.10.1
+Version: 0.10.2
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -16,8 +16,8 @@ Source: http://ftp.edgewall.com/pub/trac/trac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: python >= 2.1
-Requires: python >= 2.1, python-sqlite >= 0.4.3, subversion >= 1.0.0
+BuildRequires: python >= 2.3
+Requires: python >= 2.3, python-sqlite >= 0.4.3, subversion >= 1.0.0
 Requires: python-clearsilver >= 0.9.3, webserver
 #Requires: subversion-python >= 1.0.0
 
@@ -78,6 +78,9 @@ EOF
 %{_localstatedir}/lib/trac/
 
 %changelog
+* Wed Nov 15 2006 Dag Wieers <dag@wieers.com> - 0.10.2-1
+- Updated to release 0.10.2.
+
 * Thu Nov 09 2006 Dag Wieers <dag@wieers.com> - 0.10.1-1
 - Updated to release 0.10.1.
 
