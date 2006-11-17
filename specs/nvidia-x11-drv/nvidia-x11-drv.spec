@@ -14,7 +14,7 @@
 Summary: Proprietary NVIDIA hardware accelerated OpenGL display driver
 Name: nvidia-x11-drv
 Version: %{majmin}.%{relver}
-Release: 1
+Release: 2
 License: Proprietary
 Group: User Interface/X Hardware Support
 URL: http://www.nvidia.com/object/unix.html
@@ -28,6 +28,8 @@ Source4: nvidia-config-display
 Source5: nvidia.modprobe
 # http://www.nvnews.net/vbulletin/attachment.php?attachmentid=20486&d=1158955681
 Patch0: NVIDIA_kernel-1.0-9625-NOSMBUS.diff.txt
+# http://www.nvnews.net/vbulletin/showthread.php?t=77597
+Patch1: NVIDIA-Linux-1.0-9629-xenrt.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Required for proper dkms operation
 Requires: gcc
@@ -65,6 +67,7 @@ sh %{SOURCE1} --extract-only --target tmp/
 %{__mv} tmp/* .
 %{__rm} -rf tmp/
 %patch0 -p0
+%patch1 -p0
 
 
 %build
@@ -85,7 +88,7 @@ sh %{SOURCE1} --extract-only --target tmp/
 %{__cat} > %{buildroot}%{_usrsrc}/%{dkms_name}-%{dkms_vers}/dkms.conf << 'EOF'
 PACKAGE_NAME=%{dkms_name}
 PACKAGE_VERSION=%{dkms_vers}
-MAKE[0]="make module KERNDIR=/lib/modules/$kernelver IGNORE_CC_MISMATCH=1"
+MAKE[0]="make module KERNDIR=/lib/modules/$kernelver IGNORE_CC_MISMATCH=1 SYSSRC=$kernel_source_dir"
 BUILT_MODULE_NAME[0]=nvidia
 DEST_MODULE_LOCATION[0]=/kernel/drivers/video/nvidia
 AUTOINSTALL=YES
@@ -278,6 +281,9 @@ fi
 
 
 %changelog
+* Thu Nov 16 2006 Matthias Saou <http://freshrpms.net/> 1.0.9629-2
+- Include Xen patch and spec fixes from Juliano F. Ravasi.
+
 * Wed Nov  8 2006 Matthias Saou <http://freshrpms.net/> 1.0.9629-1
 - Update to 1.0-9629.
 
