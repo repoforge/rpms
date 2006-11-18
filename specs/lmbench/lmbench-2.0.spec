@@ -32,6 +32,10 @@ export PATCH_GET="0"
 %patch0 -p1
 %patch1 -p1
 
+%{__mv} -f src/TODO TODO.lmbench
+%{__mv} -f scripts/SHIT SHIT.scripts
+%{__mv} -f scripts/TODO TODO.scripts
+
 %build
 cd src
 CFLAGS="-O -DNO_SERVER_TIMEOUT" ../scripts/build all
@@ -44,26 +48,27 @@ find . -name 'SCCS' -type d | xargs %{__rm} -rf
 %install
 %{__rm} -rf %{buildroot}
 
-%{__install} -d -m0755 %{buildroot}%{_prefix}/%{_lib}/lmbench/{,results/}
-%{__cp} -avx bin/ scripts/ %{buildroot}%{_prefix}/%{_lib}/lmbench/
+%{__install} -d -m0755 %{buildroot}%{_prefix}/lib/lmbench/{,results/}
+%{__cp} -avx bin/ scripts/ %{buildroot}%{_prefix}/lib/lmbench/
 
 ### Clean up a bit
-find %{buildroot}%{_prefix}/%{_lib}/lmbench/ -name 'Makefile*' -or -name '*.[ao]' -exec %{__rm} -f {} \;
+find %{buildroot}%{_prefix}/lib/lmbench/ -name 'Makefile*' -or -name '*.[ao]' -exec %{__rm} -f {} \;
 
 ### This gets put in docs later
-%{__rm} -f %{buildroot}%{_prefix}/%{_lib}/lmbench/scripts/TODO
+%{__rm} -f %{buildroot}%{_prefix}/lib/lmbench/scripts/TODO
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING COPYING-2 hbench-REBUTTAL README scripts/TODO doc/
-%{_prefix}/%{_lib}/lmbench/
+%doc COPYING COPYING-2 hbench-REBUTTAL README SHIT.* TODO.* doc/
+%{_prefix}/lib/lmbench/
 
 %changelog
 * Fri Nov 17 2006 Dag Wieers <dag@wieers.com> - 2.0.4-0.1
 - Initial package. (based on RHEL4 version)
+- Thanks to Tuomo Soini for investigating and contributing fixes and patches..
 
 * Fri Jan 6 2006 - Will Woods <wwoods@redhat.com>
 - lmbench-2.0.4-lat_mem_rd-64-bit.patch: fix a crash when using a memory size

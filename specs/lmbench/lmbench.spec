@@ -4,13 +4,19 @@
 Summary: Suite of simple, portable benchmarks
 Name: lmbench
 Version: 3.0
-Release: 0.a5.3
+Release: 0.a7.1
 License: GPL
 Group: Applications/System
-URL: http://www.bitmover.com/lmbench
+URL: http://www.bitmover.com/lmbench/
 
-Source: http://dl.sf.net/lmbench/lmbench-%{version}-a5.tgz
+Source: http://dl.sf.net/lmbench/lmbench-%{version}-a7.tgz
+Source1: %{name}-3.0-a7-run.sh
+Patch0: %{name}-3.0-a7-clean_script_warnings.patch
+Patch1: %{name}-3.0-a7-man_pages.patch
+Patch2: %{name}-3.0-a7-bw_tcp.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+Requires: perl, make
 
 %description
 Bandwidth benchmarks: cached file read, memory copy (bcopy), memory read,
@@ -20,52 +26,48 @@ deletes, process creation, signal handling, system call overhead,  memory
 read latency; Miscellanious Processor clock rate calculation.
 
 %prep
-%setup -n %{name}-%{version}-a5
+%setup -n %{name}-%{version}-a7
+
+export PATCH_GET="0"
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
+
+%{__mv} -f src/TODO TODO.lmbench
+%{__mv} -f scripts/README README.scripts
+%{__mv} -f scripts/SHIT SHIT.scripts
+%{__mv} -f scripts/TODO TODO.scripts
 
 %build
 %{__make} %{?_smp_mflags}
+find . -name 'SCCS' -type d -exec %{__rm} -rf {} \;
 
 %install
 %{__rm} -rf %{buildroot}
-#%{__make} install DESTDIR="%{buildroot}"
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -d -m0755 %{buildroot}%{_mandir}/{man1,man3,man8}/ \
 
-cd bin/*-linux-gnu
-%{__install} -p -m0755 bw_* %{buildroot}%{_bindir}
-%{__install} -p -m0755 cache %{buildroot}%{_bindir}
-%{__install} -p -m0755 disk %{buildroot}%{_bindir}
-%{__install} -p -m0755 enough %{buildroot}%{_bindir}
-%{__install} -p -m0755 flushdisk %{buildroot}%{_bindir}
-%{__install} -p -m0755 hello %{buildroot}%{_bindir}
-%{__install} -p -m0755 lat_* %{buildroot}%{_bindir}
-%{__install} -p -m0755 line %{buildroot}%{_bindir}
-%{__install} -p -m0755 lmdd %{buildroot}%{_bindir}
-%{__install} -p -m0755 lmhttp %{buildroot}%{_bindir}
-%{__install} -p -m0755 loop_o %{buildroot}%{_bindir}
-%{__install} -p -m0755 memsize %{buildroot}%{_bindir}
-%{__install} -p -m0755 mhz %{buildroot}%{_bindir}
-%{__install} -p -m0755 msleep %{buildroot}%{_bindir}
-%{__install} -p -m0755 par_* %{buildroot}%{_bindir}
-%{__install} -p -m0755 stream %{buildroot}%{_bindir}
-%{__install} -p -m0755 timing_o %{buildroot}%{_bindir}
-%{__install} -p -m0755 tlb %{buildroot}%{_bindir}
-cd -
+%{__install} -Dp -m0755 %{SOURCE1} %{buildroot}%{_bindir}/lmbench
+%{__install} -Dp -m0644 results/Makefile %{buildroot}%{_prefix}/lib/lmbench/results/Makefile
+%{__install} -Dp -m0644 src/webpage-lm.tar %{buildroot}%{_prefix}/lib/lmbench/src/webpage-lm.tar
 
-%{__install} -p -m0644 doc/*.1 %{buildroot}%{_mandir}/man1/
-%{__install} -p -m0644 doc/*.3 %{buildroot}%{_mandir}/man3/
-%{__install} -p -m0644 doc/*.8 %{buildroot}%{_mandir}/man8/
+%{__cp} -avx bin/ scripts/ %{buildroot}%{_prefix}/lib/lmbench/
+find %{buildroot}%{_prefix}/lib/lmbench/ -name 'Makefile*' -or -name '*.[ao]' -exec %{__rm} -f {} \;
+
+%{__chmod} a-x %{buildroot}%{_prefix}/lib/lmbench/scripts/info-template
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ACKNOWLEDGEMENTS CHANGES COPYING COPYING-2 doc/*.ms hbench-REBUTTAL README
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc ACKNOWLEDGEMENTS CHANGES COPYING COPYING-2 hbench-REBUTTAL README.* TODO.* doc/
+%{_bindir}/lmbench
+%{_prefix}/lib/lmbench/
 
 %changelog
+* Fri Nov 17 2006 Dag Wieers <dag@wieers.com> - 3.0-0.a7.1
+- Updated to release 3.0-a7.
+- Thanks to Tuomo Soini for investigating.
+
 * Tue Oct 10 2006 Dag Wieers <dag@wieers.com> - 3.0-0.a5.3
 - Fixed group name.
 
