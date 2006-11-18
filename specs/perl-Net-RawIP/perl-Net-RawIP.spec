@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
@@ -22,7 +25,7 @@ Patch: gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 This is Net::RawIP, a perl module can to manipulate raw IP packets,
@@ -56,9 +59,6 @@ with an optional feature for manipulating Ethernet headers.
 %changelog
 * Thu Aug 24 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-2
 - Gcc fixes: patch added.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.2-1
 - Initial package.

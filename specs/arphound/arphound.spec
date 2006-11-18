@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: ARP traffic monitoring/logging tool
 Name: arphound
 Version: 1.3.1
@@ -15,7 +18,7 @@ URL: http://www.nottale.net/index.php?project=arphound
 Source: http://www.nottale.net/arphound/download/arphound-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 Arphound is a tool that listens to all traffic on an ethernet network
@@ -137,9 +140,6 @@ fi
 %changelog
 * Wed Apr 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.1-1
 - Updated to release 1.3.1.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-1.2
-- Rebuild for Fedora Core 5.
 
 * Thu Jul 22 2004 Dag Wieers <dag@wieers.com> - 1.3-1
 - Initial package. (using DAR)

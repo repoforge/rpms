@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Performs analysis of tcp flows from packet dumps
 Name: tcptrace
 Version: 6.6.7
@@ -15,7 +18,7 @@ URL: http://tcptrace.org/
 Source: http://tcptrace.org/download/tcptrace-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 tcptrace is a tool for performing analysis on network packet dumps and
@@ -49,9 +52,6 @@ several types of graphs.
 %{_bindir}/xpl2gpl
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 6.6.7-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Nov 13 2004 Dag Wieers <dag@wieers.com> - 6.6.7-1
 - Updated to release 6.6.7.
 

@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 %define real_name PingTunnel
 
 Summary: Reliably tunnel TCP connections over ICMP packets
@@ -18,7 +21,7 @@ Source: http://www.cs.uit.no/~daniels/PingTunnel/PingTunnel-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 Ping Tunnel is a tool for reliably tunneling TCP connections over ICMP echo
@@ -49,9 +52,6 @@ is required.
 %{_bindir}/ptunnel
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.61-1.2
-- Rebuild for Fedora Core 5.
-
 * Fri May 27 2005 Dag Wieers <dag@wieers.com> - 0.61-1
 - Updated to release 0.61.
 

@@ -3,21 +3,23 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%define real_version 20030228
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
 
 Summary: Displays various tables of DNS traffic on your network
 Name: dnstop
-Version: 0.0.%{real_version}
+%define real_version 20030228
+Version: 0.0.20030228
 Release: 0.2
 License: BSD
 Group: Applications/Internet
 URL: http://dnstop.measurement-factory.com/
 
-Source: http://dnstop.measurement-factory.com/src/%{name}-%{real_version}.tar.gz
+Source: http://dnstop.measurement-factory.com/src/dnstop-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap, ncurses-devel
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 dnstop is a libpcap application (ala tcpdump) that displays various
@@ -42,12 +44,9 @@ level domains.
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE
-%doc %{_mandir}/man?/*
-%{_sbindir}/*
+%doc %{_mandir}/man8/dnstop.8*
+%{_sbindir}/dnstop
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.%{real_version}-0.2
-- Rebuild for Fedora Core 5.
-
 * Wed Sep 03 2003 Dag Wieers <dag@wieers.com> - 0.0.20030228-0
 - Initial package. (using DAR)

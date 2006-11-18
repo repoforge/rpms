@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Toolbox for solving network problems
 Name: netwox
 Version: 5.35.0
@@ -16,7 +19,7 @@ Source: http://www.laurentconstantin.com/common/netw/netwox/download/v5/netwox-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: netwib, pkgconfig, libpcap, libnet
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 Netwox is a toolbox that helps to find and solve networks' problems.

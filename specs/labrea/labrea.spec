@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 %define real_version 2.5-stable-1
 
 Summary: "Sticky" Honeypot and IDS
@@ -18,7 +21,7 @@ Source: http://dl.sf.net/labrea/labrea-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap, libdnet-devel
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 LaBrea takes over unused IP addresses, and creates virtual servers that
@@ -48,8 +51,5 @@ at the other end gets "stuck", sometimes for a very long time.
 %{_sbindir}/labrea
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.5-1.2
-- Rebuild for Fedora Core 5.
-
 * Fri Jul 02 2004 Dag Wieers <dag@wieers.com> - 2.5-1
 - Initial package. (using DAR)

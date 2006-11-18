@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Recover weak LEAP and PPTP passwords
 Name: asleap
 Version: 1.4
@@ -16,7 +19,7 @@ Source: http://dl.sf.net/asleap/asleap-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap >= 14:0.8
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 asleap is a tool to recover weak LEAP and PPTP passwords. asleap is the
@@ -48,8 +51,5 @@ perform channel hopping.
 %{_sbindir}/genkeys
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1.2
-- Rebuild for Fedora Core 5.
-
 * Tue Dec 21 2004 Dag Wieers <dag@wieers.com> - 1.4-1
 - Initial package. (using DAR)

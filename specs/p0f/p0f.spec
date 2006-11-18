@@ -5,6 +5,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Passive OS fingerprinting tool
 Name: p0f
 Version: 2.0.8
@@ -17,7 +20,7 @@ Source: http://lcamtuf.coredump.cx/p0f/p0f-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 Prereq: /sbin/chkconfig
 
 %description

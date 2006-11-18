@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Realtime network grep tool
 Name: ngrep
 Version: 1.44
@@ -16,7 +19,7 @@ Source: http://dl.sf.net/ngrep/ngrep-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 ngrep is grep command that works on realtime network data.
@@ -50,9 +53,6 @@ more common packet sniffing tools, such as tcpdump and snoop.
 %{_bindir}/ngrep
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.44-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Jul 20 2005 Dag Wieers <dag@wieers.com> - 1.44-1
 - Updated to release 1.44.
 

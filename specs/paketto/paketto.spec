@@ -5,6 +5,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Unusual TCP/IP testing tools
 Name: paketto
 %define real_version 2.00pre5
@@ -18,7 +21,7 @@ Source: http://www.doxpara.com/paketto-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap, bison, flex
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 The Paketto Keiretsu is a collection of tools that use new and unusual
@@ -54,9 +57,6 @@ and	phentropy (plots a large data source onto a 3D matrix)
 %{_libdir}/*
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.00-1.pre5.2
-- Rebuild for Fedora Core 5.
-
 * Fri Jan 06 2006 Dag Wieers <dag@wieers.com> - 2.00-1.pre5
 - Updated to release 2.00pre5.
 

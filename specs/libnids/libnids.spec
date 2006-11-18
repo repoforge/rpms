@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Implementation of an E-component of Network Intrusion Detection System
 Name: libnids
 Version: 1.21
@@ -16,7 +19,7 @@ Source: http://dl.sf.net/libnids/libnids-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libnet, libpcap, pkgconfig, glib2-devel
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 Libnids is an implementation of an E-component of Network Intrusion

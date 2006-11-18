@@ -5,6 +5,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Multipurpose sniffer/interceptor/logger for switched LAN
 Name: ettercap
 Version: 0.7.3
@@ -18,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, ncurses-devel, gtk2-devel, gcc-c++, libpcap >= 14:0.8.1
 BuildRequires: libnet
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 Ettercap is a multipurpose sniffer/interceptor/logger for switched
@@ -55,9 +58,6 @@ analysis.
 %{_datadir}/ettercap/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.3-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun May 29 2005 Dag Wieers <dag@wieers.com> - 0.7.3-1
 - Updated to release 0.7.3.
 

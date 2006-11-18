@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Responds to or drops ICMP echo requests packets
 Name: echoart
 Version: 0.1
@@ -16,7 +19,7 @@ Source: http://mirror1.internap.com/echoart/echoart.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libnet, libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 Echoart responds to or drops ICMP echo request packets based on a
@@ -35,7 +38,7 @@ responses back into the network as necessary.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp echoart %{buildroot}%{_bindir}/echoart
+%{__install} -Dp -m0755 echoart %{buildroot}%{_bindir}/echoart
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -43,12 +46,9 @@ responses back into the network as necessary.
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%{_bindir}/*
+%{_bindir}/echoart
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Oct 31 2004 Dries Verachtert <dries@ulyssis.org> - 0.1-1
 - Initial package.
 

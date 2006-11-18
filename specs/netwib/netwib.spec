@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Functions for network programs
 Name: netwib
 Version: 5.35.0
@@ -16,7 +19,7 @@ Source: http://www.laurentconstantin.com/common/netw/netwib/download/v5/netwib-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libnet, libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 Netwib provides most functions needed by network programs. Its objective is

@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 %define logmsg logger -t %{name}/rpm
 
 Summary: Network traffic probe that shows the network usage
@@ -19,7 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, gdbm-devel, libpcap, rrdtool-devel, zlib-devel, glib-devel
 BuildRequires: gd-devel, gcc-c++, automake, autoconf, gettext
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 Prereq: /sbin/chkconfig, /sbin/ldconfig
 
 %description
@@ -272,9 +275,6 @@ fi
 #%exclude %{_libdir}/plugins/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.2-1.2
-- Rebuild for Fedora Core 5.
-
 * Thu Nov 03 2005 Dries Verachtert <dries@ulyssis.org> - 3.2-1
 - Updated to release 3.2.
 

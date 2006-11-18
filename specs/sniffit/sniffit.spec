@@ -1,8 +1,10 @@
 # $Id$
-
 # Authority: dag
 
 %{?dist: %{expand: %%define %dist 1}}
+
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
 
 %define real_version 0.3.7.beta
 
@@ -17,7 +19,7 @@ URL: http://reptile.rug.ac.be/~coder/sniffit/sniffit.html
 Source: http://reptile.rug.ac.be/~coder/sniffit/files/%{name}.%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 Excludearch: ia64
 
@@ -51,8 +53,5 @@ some level of human readable form.
 %{_sbindir}/sniffit
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.7-0.beta.2
-- Rebuild for Fedora Core 5.
-
 * Wed Oct 08 2003 Dag Wieers <dag@wieers.com> - 0.3.7-0.beta
 - Initial package. (using DAR)

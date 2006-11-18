@@ -3,6 +3,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
@@ -22,7 +25,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libpcap, gcc-c++, pkgconfig, libglade2-devel, libgnomeui-devel
 BuildRequires: gettext, scrollkeeper
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 Etherape is a graphical network monitor for Unix modeled after

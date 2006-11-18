@@ -3,8 +3,11 @@
 # Upstream: Chris Lightfoot <chris$ex-parrot,com>
 
 %{?dist: %{expand: %%define %dist 1}}
+
 %{!?dist:%define _with_modxorg 1}
-%{!?dist:%define _with_modxorg 1}
+%{!?dist:%define _with_libpcapdevel 1}
+
+%{?fc6:%define _with_libpcapdevel 1}
 %{?fc5:%define _with_modxorg 1}
 
 Summary: Sniff the network for images and movies and displays them
@@ -20,7 +23,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap, gtk+-devel, libungif-devel, libjpeg-devel
 %{?_with_modxorg:BuildRequires: imake}
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 Driftnet is a program which listens to network traffic and picks out images

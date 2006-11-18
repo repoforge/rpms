@@ -3,6 +3,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Brute-force dictionary attack against WPA-PSK
 Name: cowpatty
 Version: 2.0
@@ -15,7 +18,7 @@ Source: http://www.remote-exploit.org/images/5/5a/Cowpatty-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 
 BuildRequires: openssl-devel, libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 coWPAtty is designed to audit the pre-shared key (PSK) selection for WPA
@@ -42,8 +45,5 @@ wordlist.
 %{_bindir}/cowpatty
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0-1.2
-- Rebuild for Fedora Core 5.
-
 * Fri Dec 02 2005 Dag Wieers <dag@wieers.com> - 2.0-1
 - Initial package. (using DAR)

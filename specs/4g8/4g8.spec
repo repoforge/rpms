@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Packet redirection tool for interception on switched networks
 Name: 4g8
 Version: 1.0
@@ -17,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Obsoletes: forgate
 BuildRequires: libnet >= 1.1, libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 Forgate was written as a proof of concept in one method of capturing
@@ -43,16 +46,13 @@ should work with nearly all TCP, ICMP and UDP IPv4 traffic.
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE
-%{_sbindir}/*
+%{_sbindir}/4g8
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
-- Rebuild for Fedora Core 5.
-
-* Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 1.0-1
+p Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 1.0-1
 - Updated to release 1.0.
 
 * Mon Jan 26 2004 Dag Wieers <dag@wieers.com> - 0.9-0.b

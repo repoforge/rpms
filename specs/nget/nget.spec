@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Command line NNTP file grabber
 Name: nget
 Version: 0.27.1
@@ -16,7 +19,7 @@ Source: http://dl.sf.net/nget/nget-%{version}+uulib.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pcre-devel, popt, ncurses-devel, zlib-devel, gcc-c++, libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 nget is a command line nntp file grabber. It automatically pieces together

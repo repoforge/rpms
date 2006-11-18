@@ -3,6 +3,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: ARP reply daemon
 Name: arpd
 Version: 0.2
@@ -17,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libdnet-devel, libevent-devel, libpcap
 Provides: farpd = %{version}-%{release}
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 arpd replies to any ARP request for an IP address matching the specified

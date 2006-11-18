@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
@@ -26,7 +29,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel, libgnomeui-devel >= 2.0.0
 BuildRequires: autoconf, automake, libpcap
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 AirSnort is a wireless LAN (WLAN) tool which recovers encryption keys.
@@ -82,9 +85,6 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-airsnort.desktop}
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.7-0.e.2
-- Rebuild for Fedora Core 5.
-
 * Fri Feb 11 2005 Dag Wieers <dag@wieers.com> - 0.2.7-0.e
 - Updated to release 0.2.7e.
 

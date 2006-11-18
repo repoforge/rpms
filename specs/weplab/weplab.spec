@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Analyzing WEP encryption security on wireless networks
 Name: weplab
 Version: 0.1.5
@@ -15,7 +18,7 @@ URL: http://weplab.sourceforge.net/
 Source: http://dl.sf.net/weplab/weplab-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libpcap, autoconf, automake
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 WepLab is a tool designed to teach how WEP works, what different
@@ -47,9 +50,6 @@ that would obfuscate it.
 %{_bindir}/weplab
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.5-1.2
-- Rebuild for Fedora Core 5.
-
 * Thu Jul 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.1.5-1
 - Update to release 0.1.5.
 

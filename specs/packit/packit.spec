@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Network injection and capturing tool
 Name: packit
 Version: 1.0
@@ -16,7 +19,7 @@ Source: http://packit.sf.net/downloads/packit-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libnet >= 1.1, libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 Packit is a network auditing tool. It's value is derived from its
@@ -30,6 +33,7 @@ learning TCP/IP.
 %prep
 %setup
 
+%{?el4:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' src/*.c src/*.h}
 %{?fc3:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' src/*.c src/*.h}
 %{?fc2:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' src/*.c src/*.h}
 
@@ -39,7 +43,7 @@ learning TCP/IP.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,13 +51,10 @@ learning TCP/IP.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog LICENSE VERSION docs/ICMP.txt
-%doc %{_mandir}/man?/*
-%{_sbindir}/*
+%doc %{_mandir}/man8/packit.8*
+%{_sbindir}/packit
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
-- Rebuild for Fedora Core 5.
-
 * Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 1.0-1
 - Updated to release 1.0.
 

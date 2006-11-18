@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 #{?el3:#define _without_odbc 1}
 
 %{?rh7:%define _without_net_snmp 1}
@@ -28,7 +31,7 @@ BuildRequires: pcre-devel, perl
 %{!?_without_odbc:BuildRequires: unixODBC-devel}
 %{!?_without_postgresql:BuildRequires: postgresql-devel}
 %{!?_without_mysql:BuildRequires: mysql-devel}
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 Snort is a libpcap-based packet sniffer/logger which
@@ -257,9 +260,6 @@ fi
 %{_sbindir}/snort-bloat
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.4.3-1.2
-- Rebuild for Fedora Core 5.
-
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 2.4.3-1
 - Updated to release 2.4.3.
 

@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Inter-network routing protocol attack suite
 Name: irpas
 Version: 0.10
@@ -15,7 +18,7 @@ URL: http://www.phenoelit.de/irpas/
 Source: http://www.phenoelit.de/irpas/irpas_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 Routing protocols are by definition protocols, which are used by routers
@@ -56,8 +59,5 @@ attack.
 %{_bindir}/*
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Mar 28 2004 Dag Wieers <dag@wieers.com> - 0.10-1
 - Initial package. (using DAR)

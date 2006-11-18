@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: TCP stream sniffer and connection tracker
 Name: tcpick
 Version: 0.2.1
@@ -15,7 +18,7 @@ URL: http://tcpick.sourceforge.net/
 Source: http://dl.sf.net/tcpick/tcpick-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 tcpick is a textmode sniffer that can track tcp streams and saves the data
@@ -48,9 +51,6 @@ are doing, and is usable with textmode tools like grep, sed, awk.
 %{_bindir}/tcpick
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.1-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Jan 19 2005 Dag Wieers <dag@wieers.com> - 0.2.1-1
 - Updated to release 0.2.1.
 

@@ -3,6 +3,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 %define real_name WifiScanner
 
 Summary: Discover wireless clients and access points
@@ -18,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap, glib-devel, gcc-c++, bison, flex, glib2-devel
 BuildRequires: ncurses-devel
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 WifiScanner is a tool to discover wireless clients and access points.
@@ -50,9 +53,6 @@ WifiScanner is a tool to discover wireless clients and access points.
 %exclude %{_libdir}/libwiretap.la
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1.2
-- Rebuild for Fedora Core 5.
-
 * Thu Nov 04 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1
 - Updated to release 1.0.1.
 

@@ -47,7 +47,7 @@ echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES.txt GNU_GPL.txt README.txt
+%doc Artistic.txt Changes GNU_GPL.txt README
 %{_mandir}/man3/*
 %{perl_vendorlib}/Carp/Clan.pm
 %{perl_vendorlib}/Carp/Clan.pod

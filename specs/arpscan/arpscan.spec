@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Very simple ARP scanner
 Name: arpscan
 Version: 0.2
@@ -16,7 +19,7 @@ Source: http://ish.cx/~jason/arpscan/arpscan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libdnet-devel, libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 arpscan is a very simple scanner which sends out arp requests for the
@@ -45,8 +48,5 @@ given IP addresses and displays a list of the found hosts.
 %{_bindir}/*
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-0.2
-- Rebuild for Fedora Core 5.
-
 * Wed Oct 22 2003 Dag Wieers <dag@wieers.com> - 0.2-0
 - Initial package. (using DAR)

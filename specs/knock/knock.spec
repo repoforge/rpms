@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Port-knocking server
 Name: knock
 Version: 0.5
@@ -16,7 +19,7 @@ Source: http://www.zeroflux.org/knock/files/knock-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 knockd is a port-knock server. It listens to all traffic on an ethernet
@@ -33,13 +36,12 @@ holes in a firewall for quick access.
 %setup
 
 %build
-%configure \
-	--disable-schemas-install
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall DESTDIR=%{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -55,9 +57,6 @@ holes in a firewall for quick access.
 %changelog
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-1
 - Updated to release 0.5.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4-1.2
-- Rebuild for Fedora Core 5.
 
 * Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 0.1-1
 - Initial package. (using DAR)

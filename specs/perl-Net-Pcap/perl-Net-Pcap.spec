@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
@@ -21,7 +24,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SA/SAPER/Net-Pcap-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, libpcap
-%{?fc6:BuildRequires: libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 This module is an interface to pcap(3) LBL packet capture library.
@@ -58,9 +61,6 @@ This module is an interface to pcap(3) LBL packet capture library.
 %changelog
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Updated to release 0.12.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.11-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.11-1
 - Updated to release 0.11.

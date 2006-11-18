@@ -3,6 +3,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 %define real_version 0.9b3
 
 Summary: SSLSSLv3/TLS network protocol analyzer
@@ -17,7 +20,7 @@ Source: http://www.rtfm.com/ssldump/ssldump-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel >= 0.9.6, libpcap >= 0.4, libtool
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 ssldump is an SSLv3/TLS network protocol analyzer. It identifies TCP
@@ -63,8 +66,5 @@ autoreconf
 %{_sbindir}/ssldump
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9-0.beta3.1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Apr 10 2005 Dag Wieers <dag@wieers.com> - 0.9-0.beta3.1
 - Initial package. (using DAR)

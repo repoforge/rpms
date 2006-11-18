@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 %{?fc1:%define _without_xorg 1}
 %{?el3:%define _without_xorg 1}
 %{?rh9:%define _without_xorg 1}
@@ -30,7 +33,9 @@ BuildRequires: libpcap, gcc-c++
 %{!?_without_xorg:BuildRequires: libXt-devel}
 %{?fc4:BuildRequires: openmotif-devel}
 %{?fc5:BuildRequires: openmotif-devel}
-%{?fc6:BuildRequires: lesstif-devel, libpcap-devel}
+%{?fc6:BuildRequires: lesstif-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
+
 
 
 %description
@@ -92,9 +97,6 @@ cd -
 %{_datadir}/applications/prismstumbler.desktop
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.3-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Oct 02 2004 Dag Wieers <dag@wieers.com> - 0.7.3-1
 - Updated to release 0.7.3.
 

@@ -3,6 +3,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Flexible multiprotocol traceroute
 Name: traceproto
 Version: 1.1.1
@@ -16,7 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libnet >= 1.1.0, libpcap, ncurses-devel
 Requires: libnet >= 1.1.0, libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 Traceproto is an enhanced traceroute-like tool that can use protocols
@@ -45,8 +48,5 @@ are open.
 %{_bindir}/traceproto
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.1-1.2
-- Rebuild for Fedora Core 5.
-
 * Fri Mar 04 2005 Dag Wieers <dag@wieers.com> - 1.1.1-1
 - Initial package. (using DAR)

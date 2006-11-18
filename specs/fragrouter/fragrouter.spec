@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Fragrouter is a network intrusion detection evasion toolkit
 Name: fragrouter
 Version: 1.6
@@ -16,7 +19,7 @@ Source: fragrouter-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: byacc, flex, libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 Fragrouter is a network intrusion detection evasion toolkit. It
@@ -52,12 +55,9 @@ them into a fragmented data stream to forward to the victim.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES CREDITS LICENSE README TODO VERSION
-%doc %{_mandir}/man?/*
-%{_sbindir}/*
+%doc %{_mandir}/man8/fragrouter.8*
+%{_sbindir}/fragrouter
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.6-0.2
-- Rebuild for Fedora Core 5.
-
 * Wed Oct 22 2003 Dag Wieers <dag@wieers.com> - 1.6-0
 - Initial package. (using DAR)

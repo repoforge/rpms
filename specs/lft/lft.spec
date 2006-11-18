@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Alternative traceroute tool for network (reverse) engineers
 Name: lft
 Version: 2.5
@@ -16,7 +19,8 @@ Source: http://pwhois.org/dl/index.who?file=lft-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
+
 Obsoletes: fft
 
 %description

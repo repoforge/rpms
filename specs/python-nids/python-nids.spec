@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 %define real_name pynids
@@ -20,7 +23,8 @@ Source: http://pilcrow.madison.wi.us/pynids/pynids-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-devel >= 2.2, libnids, libpcap, libnet, libnids
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
+
 Requires: python >= 2.2, libpcap, libnet, libnids
 
 %description
@@ -49,9 +53,6 @@ CFLAGS="%{optflags} -fPIC -fomit-frame-pointer -DPIC" %{__python} setup.py build
 %{python_sitearch}/nidsmodule.so
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-2.2
-- Rebuild for Fedora Core 5.
-
 * Sat Mar 19 2005 Dag Wieers <dag@wieers.com> - 0.5-2
 - Fixed left-over stuff from python-adns. (Jeff Pitman)
 

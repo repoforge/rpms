@@ -5,6 +5,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Traceroute implementation using TCP packets
 Name: tcptraceroute
 Version: 1.5
@@ -18,7 +21,7 @@ Source: http://michael.toren.net/code/tcptraceroute/tcptraceroute-%{real_version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap, libnet
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 tcptraceroute is a traceroute implementation using TCP packets.

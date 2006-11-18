@@ -3,6 +3,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Scan for wireless access points and save captured traffic
 Name: ssidsniff
 Version: 0.36
@@ -15,7 +18,7 @@ Source: http://www.bastard.net/~kos/wifi/ssidsniff-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 ssidsniff is a nifty tool to use when looking to discover access points
@@ -45,8 +48,5 @@ prism2 based cards.
 %{_bindir}/pcapdump
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.36-0.2
-- Rebuild for Fedora Core 5.
-
 * Sat Jul 12 2003 Dag Wieers <dag@wieers.com> - 0.36-0
 - Initial package. (using DAR)

@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Network traffic recorder
 Name: tcpflow
 Version: 0.21
@@ -15,7 +18,7 @@ URL: http://www.circlemud.org/~jelson/software/tcpflow/
 Source: http://www.circlemud.org/pub/jelson/tcpflow/tcpflow-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libpcap
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 tcpflow is a program that captures data transmitted as part of TCP
@@ -43,13 +46,10 @@ separate file for later analysis.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/tcpflow.1*
+%{_bindir}/tcpflow
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.21-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Apr 21 2004 Dag Wieers <dag@wieers.com> - 0.21-1
 - updated to release 0.21.
 
