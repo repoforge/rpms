@@ -2,6 +2,8 @@
 # Authority: dries
 # Upstream: Laurent Constantin <laurent$constantin,aql,fr>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Functions for network programs
 Name: netwib
 Version: 5.35.0
@@ -14,6 +16,7 @@ Source: http://www.laurentconstantin.com/common/netw/netwib/download/v5/netwib-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libnet, libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 Netwib provides most functions needed by network programs. Its objective is

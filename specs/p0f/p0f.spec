@@ -17,6 +17,7 @@ Source: http://lcamtuf.coredump.cx/p0f/p0f-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 Prereq: /sbin/chkconfig
 
 %description

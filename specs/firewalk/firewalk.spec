@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Mike D. Schiffman <mike$infonexus,com>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Active reconnaissance network security tool
 Name: firewalk
 Version: 5.0
@@ -15,6 +17,7 @@ Patch: firewalk-5.0-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libnet >= 1.1.0, libpcap, libdnet-devel, libtool
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 Firewalk is an active reconnaissance network security tool that attempts

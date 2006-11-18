@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %define real_name WifiScanner
 
 Summary: Discover wireless clients and access points
@@ -16,6 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap, glib-devel, gcc-c++, bison, flex, glib2-devel
 BuildRequires: ncurses-devel
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 WifiScanner is a tool to discover wireless clients and access points.

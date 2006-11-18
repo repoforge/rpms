@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Emil Mikulic <www-28ab$dmr,ath,cx>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Network traffic analyzer
 Name: darkstat
 Version: 3.0.540
@@ -14,6 +16,7 @@ Source: http://dmr.ath.cx/net/darkstat/darkstat-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 darkstat is a network traffic analyzer. It's basically a packet sniffer

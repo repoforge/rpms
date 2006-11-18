@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Dug Song <dugsong$monkey,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Fragrouter is a network intrusion detection evasion toolkit
 Name: fragrouter
 Version: 1.6
@@ -14,6 +16,7 @@ Source: fragrouter-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: byacc, flex, libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 Fragrouter is a network intrusion detection evasion toolkit. It

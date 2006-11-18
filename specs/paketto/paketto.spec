@@ -3,6 +3,7 @@
 # Upstream: Dan Kaminsky <dan$doxpara,com>
 # Distcc: 0
 
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: Unusual TCP/IP testing tools
 Name: paketto
@@ -17,6 +18,7 @@ Source: http://www.doxpara.com/paketto-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap, bison, flex
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 The Paketto Keiretsu is a collection of tools that use new and unusual

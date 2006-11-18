@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: <tcpick-project$lists,sourceforge,net>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: TCP stream sniffer and connection tracker
 Name: tcpick
 Version: 0.2.1
@@ -13,6 +15,7 @@ URL: http://tcpick.sourceforge.net/
 Source: http://dl.sf.net/tcpick/tcpick-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 tcpick is a textmode sniffer that can track tcp streams and saves the data

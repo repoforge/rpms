@@ -1,7 +1,8 @@
 # $Id$
-
 # Authority: dag
 # Upstream: FX <fx$phenoelit,de>
+
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: Inter-network routing protocol attack suite
 Name: irpas
@@ -14,6 +15,7 @@ URL: http://www.phenoelit.de/irpas/
 Source: http://www.phenoelit.de/irpas/irpas_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 Routing protocols are by definition protocols, which are used by routers

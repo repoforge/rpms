@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: <tcptrace$tcptrace,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Performs analysis of tcp flows from packet dumps
 Name: tcptrace
 Version: 6.6.7
@@ -13,6 +15,7 @@ URL: http://tcptrace.org/
 Source: http://tcptrace.org/download/tcptrace-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 tcptrace is a tool for performing analysis on network packet dumps and

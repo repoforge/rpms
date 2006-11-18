@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: <mjp$pilcrow,madison,wi,us>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 %define real_name pynids
@@ -18,6 +20,7 @@ Source: http://pilcrow.madison.wi.us/pynids/pynids-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-devel >= 2.2, libnids, libpcap, libnet, libnids
+%{?fc6:BuildRequires:libpcap-devel}
 Requires: python >= 2.2, libpcap, libnet, libnids
 
 %description

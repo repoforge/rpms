@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: José Ignacio Sánchez Martín <topolb@users.sourceforge.net>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Analyzing WEP encryption security on wireless networks
 Name: weplab
 Version: 0.1.5
@@ -13,6 +15,7 @@ URL: http://weplab.sourceforge.net/
 Source: http://dl.sf.net/weplab/weplab-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libpcap, autoconf, automake
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 WepLab is a tool designed to teach how WEP works, what different

@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: lorgor <lorgor$users,sourceforge,net>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %define real_version 2.5-stable-1
 
 Summary: "Sticky" Honeypot and IDS
@@ -16,6 +18,7 @@ Source: http://dl.sf.net/labrea/labrea-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap, libdnet-devel
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 LaBrea takes over unused IP addresses, and creates virtual servers that

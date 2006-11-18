@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Roy Hills
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: ARP scanning and fingerprinting tool
 Name: arp-scan
 Version: 1.5
@@ -15,6 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #libdnet-devel, 
 BuildRequires: libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 arp-scan sends ARP (Address Resolution Protocol) queries to the specified

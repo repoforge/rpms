@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Luca Deri <deri$ntop,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %define logmsg logger -t %{name}/rpm
 
 Summary: Network traffic probe that shows the network usage
@@ -17,6 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, gdbm-devel, libpcap, rrdtool-devel, zlib-devel, glib-devel
 BuildRequires: gd-devel, gcc-c++, automake, autoconf, gettext
+%{?fc6:BuildRequires:libpcap-devel}
 Prereq: /sbin/chkconfig, /sbin/ldconfig
 
 %description

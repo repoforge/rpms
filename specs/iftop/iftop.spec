@@ -3,6 +3,8 @@
 # Upstream: Paul Warren <pdw$ex-parrot,com>
 # Upstream: Chris Lightfoot <chris$ex-parrot,com>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Display bandwidth usage on an interface
 Name: iftop
 Version: 0.17
@@ -15,6 +17,7 @@ Source: http://www.ex-parrot.com/~pdw/iftop/download/iftop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap, ncurses-devel
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 iftop does for network usage what top(1) does for CPU usage. It listens

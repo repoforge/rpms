@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Matthieu Nottale <matthieu@nottale.net>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: ARP traffic monitoring/logging tool
 Name: arphound
 Version: 1.3.1
@@ -13,6 +15,7 @@ URL: http://www.nottale.net/index.php?project=arphound
 Source: http://www.nottale.net/arphound/download/arphound-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 Arphound is a tool that listens to all traffic on an ethernet network

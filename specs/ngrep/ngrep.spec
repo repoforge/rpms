@@ -16,6 +16,7 @@ Source: http://dl.sf.net/ngrep/ngrep-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 ngrep is grep command that works on realtime network data.

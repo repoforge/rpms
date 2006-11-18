@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Judd Vinet <jvinet$zeroflux,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Port-knocking server
 Name: knock
 Version: 0.5
@@ -14,6 +16,7 @@ Source: http://www.zeroflux.org/knock/files/knock-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 knockd is a port-knock server. It listens to all traffic on an ethernet

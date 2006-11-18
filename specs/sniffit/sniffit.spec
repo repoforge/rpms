@@ -2,6 +2,8 @@
 
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %define real_version 0.3.7.beta
 
 Summary: network protocol analyzer
@@ -15,6 +17,7 @@ URL: http://reptile.rug.ac.be/~coder/sniffit/sniffit.html
 Source: http://reptile.rug.ac.be/~coder/sniffit/files/%{name}.%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 
 Excludearch: ia64
 

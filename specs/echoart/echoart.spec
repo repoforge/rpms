@@ -1,7 +1,8 @@
 # $Id$
-
 # Authority: dries
 # Upstream:  Dennis Opacki <dopacki$adotout,com>
+
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: Responds to or drops ICMP echo requests packets
 Name: echoart
@@ -15,6 +16,7 @@ Source: http://mirror1.internap.com/echoart/echoart.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libnet, libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 Echoart responds to or drops ICMP echo request packets based on a

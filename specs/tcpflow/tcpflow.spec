@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Jeremy Elson <jelson$circlemud,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Network traffic recorder
 Name: tcpflow
 Version: 0.21
@@ -13,6 +15,7 @@ URL: http://www.circlemud.org/~jelson/software/tcpflow/
 Source: http://www.circlemud.org/pub/jelson/tcpflow/tcpflow-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 tcpflow is a program that captures data transmitted as part of TCP

@@ -2,6 +2,8 @@
 # Authority: dries
 # Upstream: Daniel Stodle <daniels$stud,cs,uit,no>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %define real_name PingTunnel
 
 Summary: Reliably tunnel TCP connections over ICMP packets
@@ -16,6 +18,7 @@ Source: http://www.cs.uit.no/~daniels/PingTunnel/PingTunnel-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 Ping Tunnel is a tool for reliably tunneling TCP connections over ICMP echo

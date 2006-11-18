@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Steve Benson <steve$rhythm,cx>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Packet sniffer which displays TCP information like the 'top' command
 Name: tcptrack
 Version: 1.1.5
@@ -15,6 +17,7 @@ Patch: remove-extra-qualifications.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, ncurses-devel, libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 tcptrack is a sniffer which displays information about TCP connections it

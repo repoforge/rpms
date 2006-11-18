@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Joshua Wright <jwright$hasborg,com>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Recover weak LEAP and PPTP passwords
 Name: asleap
 Version: 1.4
@@ -14,6 +16,7 @@ Source: http://dl.sf.net/asleap/asleap-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap >= 14:0.8
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 asleap is a tool to recover weak LEAP and PPTP passwords. asleap is the

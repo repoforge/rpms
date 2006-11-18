@@ -2,6 +2,8 @@
 # Authority: dries
 # Upstream: Sergey V. Kolychev <ksv$al,lg,ua>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
@@ -20,6 +22,7 @@ Patch: gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 This is Net::RawIP, a perl module can to manipulate raw IP packets,

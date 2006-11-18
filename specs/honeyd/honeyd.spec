@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Niels Provos <provos$citi,umich,edu>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Honeypot daemon
 Name: honeyd
 Version: 1.5b
@@ -17,6 +19,7 @@ BuildRequires: readline-devel, flex, bison, libdnet-devel, automake, autoconf
 BuildRequires: libpcap, libdnet-devel, libdnsres-devel, libevent-devel
 BuildRequires: python-devel >= 2.4
 BuildRequires: pcre-devel
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 Honeyd is a small daemon that creates virtual hosts on a network.

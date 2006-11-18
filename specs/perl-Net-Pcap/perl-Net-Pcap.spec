@@ -2,6 +2,8 @@
 # Authority: dries
 # Upstream: Marco Carnut <kiko$tempest,com,br>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
@@ -19,6 +21,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SA/SAPER/Net-Pcap-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, libpcap
+%{?fc6:BuildRequires: libpcap-devel}
 
 %description
 This module is an interface to pcap(3) LBL packet capture library.

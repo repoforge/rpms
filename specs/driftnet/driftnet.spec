@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap, gtk+-devel, libungif-devel, libjpeg-devel
 %{?_with_modxorg:BuildRequires: imake}
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 Driftnet is a program which listens to network traffic and picks out images

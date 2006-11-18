@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Rafal Wojtczuk <nergal$icm,edu,pl>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Implementation of an E-component of Network Intrusion Detection System
 Name: libnids
 Version: 1.21
@@ -14,6 +16,7 @@ Source: http://dl.sf.net/libnids/libnids-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libnet, libpcap, pkgconfig, glib2-devel
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 Libnids is an implementation of an E-component of Network Intrusion

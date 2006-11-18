@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Jason Ish <jason$codemonkey,net>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Very simple ARP scanner
 Name: arpscan
 Version: 0.2
@@ -14,6 +16,7 @@ Source: http://ish.cx/~jason/arpscan/arpscan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libdnet-devel, libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 arpscan is a very simple scanner which sends out arp requests for the

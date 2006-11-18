@@ -3,6 +3,8 @@
 # Upstream: Marco Valleri <crwm$freemail,it>
 # Upstream: Alberto Ornaghi <alor$users,sourceforge,net>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Multipurpose sniffer/interceptor/logger for switched LAN
 Name: ettercap
 Version: 0.7.3
@@ -16,6 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, ncurses-devel, gtk2-devel, gcc-c++, libpcap >= 14:0.8.1
 BuildRequires: libnet
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 Ettercap is a multipurpose sniffer/interceptor/logger for switched

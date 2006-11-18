@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: <lft$oppleman,com>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Alternative traceroute tool for network (reverse) engineers
 Name: lft
 Version: 2.5
@@ -14,6 +16,7 @@ Source: http://pwhois.org/dl/index.who?file=lft-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 Obsoletes: fft
 
 %description

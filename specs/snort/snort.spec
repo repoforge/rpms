@@ -28,6 +28,7 @@ BuildRequires: pcre-devel, perl
 %{!?_without_odbc:BuildRequires: unixODBC-devel}
 %{!?_without_postgresql:BuildRequires: postgresql-devel}
 %{!?_without_mysql:BuildRequires: mysql-devel}
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 Snort is a libpcap-based packet sniffer/logger which

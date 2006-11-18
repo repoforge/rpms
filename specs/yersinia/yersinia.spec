@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dries
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Tests and attacks for network protocols
 Name: yersinia
 Version: 0.7
@@ -13,6 +15,7 @@ Source: http://www.yersinia.net/download/yersinia-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libnet, libpcap, ncurses-devel
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 Yersinia implements several attacks for the following protocols:

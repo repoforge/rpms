@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Scan for wireless access points and save captured traffic
 Name: ssidsniff
 Version: 0.36
@@ -13,6 +15,7 @@ Source: http://www.bastard.net/~kos/wifi/ssidsniff-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 ssidsniff is a nifty tool to use when looking to discover access points

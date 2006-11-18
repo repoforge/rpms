@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Dug Song <dugsong$monkey,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Intercepts, modifies, and rewrites egress traffic
 Name: fragroute
 Version: 1.2
@@ -14,6 +16,7 @@ Source: http://www.monkey.org/~dugsong/fragroute/fragroute-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libdnet-devel, libpcap, libevent-devel
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 Fragroute intercepts, modifies, and rewrites egress traffic destined

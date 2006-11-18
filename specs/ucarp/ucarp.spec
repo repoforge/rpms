@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Common Address Redundancy Protocol (CARP) for Unix
 Name: ucarp
 Version: 1.1
@@ -16,6 +18,7 @@ Requires(post): /sbin/chkconfig
 Requires(preun): /sbin/chkconfig, /sbin/service
 Requires(postun): /sbin/service
 BuildRequires: libpcap, gettext
+%{?fc6:BuildRequires:libpcap-devel}
 
 
 %description

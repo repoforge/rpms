@@ -39,6 +39,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap, gmp-devel, /usr/bin/man2html
 BuildRequires: kernel-source = %{kernel}
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 Linux drivers for OpenS/WAN IPsec support.

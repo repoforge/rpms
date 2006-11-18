@@ -10,6 +10,8 @@
 # Soapbox: 0
 # BuildAsRoot: 1
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %define _libmoddir /lib/modules
 
 %{!?kernel:%define kernel %(rpm -q kernel-source --qf '%{RPMTAG_VERSION}-%{RPMTAG_RELEASE}' | tail -1)}
@@ -39,6 +41,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: libpcap, gmp-devel
+%{?fc6:BuildRequires:libpcap-devel}
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}
 Requires: freeswan-utils

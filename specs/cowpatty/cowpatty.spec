@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Brute-force dictionary attack against WPA-PSK
 Name: cowpatty
 Version: 2.0
@@ -13,6 +15,7 @@ Source: http://www.remote-exploit.org/images/5/5a/Cowpatty-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 
 BuildRequires: openssl-devel, libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 coWPAtty is designed to audit the pre-shared key (PSK) selection for WPA

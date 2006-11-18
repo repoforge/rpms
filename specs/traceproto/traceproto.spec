@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Flexible multiprotocol traceroute
 Name: traceproto
 Version: 1.1.1
@@ -14,6 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libnet >= 1.1.0, libpcap, ncurses-devel
 Requires: libnet >= 1.1.0, libpcap
+%{?fc6:BuildRequires:libpcap-devel}
 
 %description
 Traceproto is an enhanced traceroute-like tool that can use protocols

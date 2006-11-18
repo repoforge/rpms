@@ -1,6 +1,8 @@
 # $Id$
-# Authority :dag
+# Authority: dag
 # Upstream: Niels Provos <provos$citi,umich,edu>
+
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: Decodes VoIP audio from tcpdump captures
 Name: vomit
@@ -14,6 +16,7 @@ Source: http://vomit.xtdnet.nl/vomit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libdnet-devel, libevent-devel, libpcap, automake >= 1.4
+%{?fc6:BuildRequires:libpcap-devel}
 Requires: libdnet, libevent, libpcap
 
 %description
