@@ -9,13 +9,13 @@
 
 Summary: Fast YAML loader and dumper
 Name: perl-YAML-Syck
-Version: 0.67
+Version: 0.71
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-Syck/
 
-Source: http://search.cpan.org/CPAN/authors/id/N/NU/NUFFIN/YAML-Syck-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/A/AU/AUDREYT/YAML-Syck-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -49,6 +49,9 @@ This package contains a YAML loader and dumper.
 %{perl_vendorarch}/auto/YAML/Syck/
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.71-1
+- Updated to release 0.71.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.67-1
 - Updated to release 0.67.
 

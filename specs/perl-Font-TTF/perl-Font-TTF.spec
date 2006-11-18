@@ -7,11 +7,11 @@
 
 %define real_name Font-TTF
 
-%define short_version 0.38
+%define short_version 0.40
 
 Summary: TTF Fonts
 Name: perl-Font-TTF
-Version: 0.38.1
+Version: 0.40
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,11 +54,14 @@ Use TTF fonts with Perl.
 #%{_bindir}/ttfbuilder.plx
 #%{_bindir}/ttfname.plx
 #%{_bindir}/ttfremap.plx
-#%{perl_vendorlib}/Font/TTF.pm
-%{perl_vendorlib}/Font/TTF
+%{perl_vendorlib}/Font/TTF.pm
+%{perl_vendorlib}/Font/TTF/
 %{perl_vendorlib}/ttfmod.pl
 
 %changelog
+* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.40-1
+- Updated to release 0.40.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.38.1-1
 - Updated to release 0.38.1.
 
