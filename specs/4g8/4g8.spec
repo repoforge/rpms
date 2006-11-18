@@ -52,7 +52,7 @@ should work with nearly all TCP, ICMP and UDP IPv4 traffic.
 %{__rm} -rf %{buildroot}
 
 %changelog
-p Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 1.0-1
+* Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 1.0-1
 - Updated to release 1.0.
 
 * Mon Jan 26 2004 Dag Wieers <dag@wieers.com> - 0.9-0.b

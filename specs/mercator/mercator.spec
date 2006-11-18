@@ -66,8 +66,5 @@ you will need to install %{name}-devel.
 * Thu Aug 24 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.5-1
 - Updated to release 0.2.5.
 
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.4-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Jan 04 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.4-1
 - Initial package.

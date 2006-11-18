@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 %{?fc1:%define _without_gtk24 1}
 %{?el3:%define _without_gtk24 1}
 %{?rh9:%define _without_gtk24 1}
@@ -27,7 +30,7 @@ URL: http://www.insecure.org/nmap/
 Source: http://download.insecure.org/nmap/dist/nmap-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, libpcap, pcre-devel, openssl-devel
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_gtk24:BuildRequires: gtk2-devel >= 2.4}
 
