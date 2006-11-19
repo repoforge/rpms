@@ -4,8 +4,8 @@
 
 Summary: Project management tool
 Name: taskjuggler
-Version: 2.2.0
-Release: 1.2
+Version: 2.3.0
+Release: 1
 License: GPL
 Group: Applications/Utilities
 URL: http://www.taskjuggler.org/
@@ -36,8 +36,9 @@ communication management.
 %install
 %{__rm} -rf %{buildroot}
 %{__perl} -pi -e "s|^docprefix = /usr|docprefix=\\$\(prefix\)|g;" docs/en/Makefile
-%makeinstall
+%{__make} install DESTDIR=%{buildroot}
 %{__mv} %{buildroot}%{_datadir}/doc/packages/taskjuggler rpmdocs
+%find_lang %{name}
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -48,7 +49,7 @@ communication management.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO rpmdocs/*
 %{_libdir}/libtaskjuggler.so*
@@ -64,6 +65,9 @@ communication management.
 %{_bindir}/TaskJugglerUI
 
 %changelog
+* Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 2.3.0-1
+- Updated to release 2.3.0.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.0-1.2
 - Rebuild for Fedora Core 5.
 

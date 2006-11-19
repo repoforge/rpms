@@ -4,7 +4,7 @@
 
 Summary: Comic book viewer
 Name: comix
-Version: 3.1.3
+Version: 3.6.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -14,7 +14,7 @@ Source: http://dl.sf.net/comix/comix-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
-BuildRequires: python
+BuildRequires: python, python-imaging, rar, pygtk2-devel
 Requires: python, python-imaging
 
 %description
@@ -29,7 +29,7 @@ archives (often called .cbz, .cbr and .cbt) as well as normal image files.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{_prefix}
-%{__python} install.py install --installdir %{buildroot}%{_prefix}
+%{__python} install.py install --no-mime --installdir %{buildroot}%{_prefix}
 %find_lang %{name}
 
 %clean
@@ -38,9 +38,9 @@ archives (often called .cbz, .cbr and .cbt) as well as normal image files.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING README
-%doc %{_mandir}/man1/comicthumb.1*
+#%doc %{_mandir}/man1/comicthumb.1*
 %doc %{_mandir}/man1/comix.1*
-%{_bindir}/comicthumb
+#%{_bindir}/comicthumb
 %{_bindir}/comix
 %{_datadir}/applications/*comix.desktop
 %{_datadir}/icons/hicolor/*/apps/comix.png
@@ -49,6 +49,9 @@ archives (often called .cbz, .cbr and .cbt) as well as normal image files.
 %{_datadir}/pixmaps/comix/
 
 %changelog
+* Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 3.6.1-1
+- Updated to release 3.6.1.
+
 * Sat May 20 2006 Dries Verachtert <dries@ulyssis.org> - 3.1.3-1
 - Updated to release 3.1.3.
 
