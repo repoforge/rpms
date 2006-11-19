@@ -2,23 +2,31 @@
 # Authority: dag
 # Upstream: Guillaume Chazarain <guichaz$yahoo,fr>
 
+%{?dist: %{expand: %%define %dist 1}}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+
 %define desktop_vendor rpmforge
 
 Summary: Image viewing utility
 Name: gliv
-Version: 1.9.5
+Version: 1.9.6
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://guichaz.free.fr/gliv/
 
-Source: http://guichaz.free.fr/gliv/gliv-%{version}.tar.bz2
+Source: http://guichaz.free.fr/gliv/files/gliv-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison, gtk2-devel >= 2.6.0, gtkglext-devel >= 0.7.0
 BuildRequires: gettext, desktop-file-utils
-# for mkdirhier
-BuildRequires: xorg-x11
+%{!?_without_modxorg:BuildRequires:imake}
 
 %description
 GLiv is an OpenGL image viewer. GLiv is very fast and smooth at rotating,
@@ -86,6 +94,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/applications/gnome-gliv.desktop
 
 %changelog
+* Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.9.6-1
+- Updated to release 1.9.6.
+
 * Mon Mar 20 2006 Dag Wieers <dag@wieers.com> - 1.9.5-1
 - Updated to release 1.9.5.
 
