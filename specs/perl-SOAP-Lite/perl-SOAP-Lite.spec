@@ -9,8 +9,8 @@
 
 Summary: Interface to SOAP
 Name: perl-SOAP-Lite
-Version: 0.67
-Release: 1.2
+Version: 0.69
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SOAP-Lite/
@@ -41,7 +41,7 @@ on client and server side.
 %{__rm} -f %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/perllocal.pod
 %{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*/*/.packlist
 # remove dependency on MQSeries
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/SOAP/Transport/MQ.pm
+%{__rm} -f %{buildroot}%{perl_vendorlib}/SOAP/Transport/MQ.pm
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -62,6 +62,9 @@ on client and server side.
 %{perl_vendorlib}/OldDocs/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.69-1
+- Updated to release 0.69.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.67-1.2
 - Rebuild for Fedora Core 5.
 
