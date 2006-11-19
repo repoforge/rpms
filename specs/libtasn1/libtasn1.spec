@@ -3,7 +3,7 @@
 
 Summary: This is the ASN.1 library used in GNUTLS
 Name: libtasn1
-Version: 0.3.5
+Version: 0.3.8
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -73,6 +73,9 @@ you will need to install %{name}-devel.
 %{_mandir}/man3/*asn1*
 
 %changelog
+* Sat Nov 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.8-1
+- Updated to release 0.3.8.
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.5-1
 - Updated to release 0.3.5.
 

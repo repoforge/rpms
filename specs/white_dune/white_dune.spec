@@ -21,17 +21,18 @@
 %{?el2:%define _without_modxorg 1}
 %{?yd3:%define _without_modxorg 1}
 
-%define real_version 0.29beta403
+%define real_version 0.29beta473
 
 Summary: Graphical VRML97 editor and animation tool
 Name: white_dune
 Version: 0.29
-Release: 0.beta403
+Release: 0.beta473
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.csv.ica.uni-stuttgart.de/vrml/dune/
 
 Source: http://www.csv.ica.uni-stuttgart.de/vrml/dune/%{name}-%{real_version}.tar.gz
+Patch: gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, flex, byacc, zlib-devel
 BuildRequires: libjpeg-devel, libpng-devel, ImageMagick, openmotif-devel
@@ -62,6 +63,7 @@ Documentatie over het gebruik van dune is ook beschikbaar.
 
 %prep
 %setup -n %{name}-%{real_version}
+%patch -p1
 
 %build
 %configure \
@@ -104,6 +106,9 @@ Documentatie over het gebruik van dune is ook beschikbaar.
 
 
 %changelog
+* Sat Nov 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.29-0.beta473
+- Updated to release 0.29-0.beta473.
+
 * Mon Aug 07 2006 Dries Verachtert <dries@ulyssis.org> - 0.29-0.beta403
 - Updated to release 0.29-0.beta403.
 

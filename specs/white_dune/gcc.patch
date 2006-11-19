@@ -1,0 +1,26 @@
+diff -ur white_dune-0.29beta473-orig/src/MFVec3d.h white_dune-0.29beta473/src/MFVec3d.h
+--- white_dune-0.29beta473-orig/src/MFVec3d.h	2006-11-09 22:49:18.000000000 +0100
++++ white_dune-0.29beta473/src/MFVec3d.h	2006-11-19 00:42:33.000000000 +0100
+@@ -34,7 +34,7 @@
+ 
+ class MFVec3d : public MFDouble {
+ public:
+-                        MFVec3d::MFVec3d() : MFDouble(3) {}
++                        MFVec3d() : MFDouble(3) {}
+ 			MFVec3d(const double *values, int len) :
+                               MFDouble(values, len) {}
+ 			MFVec3d(const float *values, int len) :
+Only in white_dune-0.29beta473/src: MFVec3d.h~
+diff -ur white_dune-0.29beta473-orig/src/MFVec3dItem.h white_dune-0.29beta473/src/MFVec3dItem.h
+--- white_dune-0.29beta473-orig/src/MFVec3dItem.h	2006-11-09 22:22:49.000000000 +0100
++++ white_dune-0.29beta473/src/MFVec3dItem.h	2006-11-19 00:46:57.000000000 +0100
+@@ -27,7 +27,7 @@
+ 
+ class MFVec3dItem : public MFDoubleItem {
+ public:			
+-                             MFVec3dItem::MFVec3dItem(FieldView *view) 
++                             MFVec3dItem(FieldView *view) 
+                                 : MFDoubleItem(view) {}
+ 
+     virtual FieldValue      *OnMouseMove(FieldValue *value, int index, 
+Only in white_dune-0.29beta473/src: MFVec3dItem.h~
