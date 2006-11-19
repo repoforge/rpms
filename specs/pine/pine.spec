@@ -15,7 +15,7 @@
 Summary: Commonly used, MIME compliant mail and news reader
 Name: pine
 Version: 4.64
-Release: 2
+Release: 3
 License: Freely Distributable
 Group: Applications/Internet
 URL: http://www.washington.edu/pine/
@@ -27,8 +27,8 @@ Source3: pine-spellcheck
 Source5: flock.c
 Source6: pine.conf.fixed
 
-Patch0: pine-4.58-makefile.patch
-Patch1: http://www.suse.de/~bk/pine/4.64/2006-02-23/bigpatch.diff
+#Patch0: pine-4.58-makefile.patch
+#Patch1: http://www.suse.de/~bk/pine/4.64/2006-02-23/bigpatch.diff
 Patch2: pine-4.04-noflock.patch
 Patch3: pine-4.21-passwd.patch
 Patch4: pine-4.21-fixhome.patch
@@ -42,14 +42,18 @@ Patch32: imap-2000-time.patch
 
 # Do not remove this patch without checking that bugs 23679 and 38399
 # _remain_ fixed.  [sic: or face the wrath of angry kernel hackers  ;o) ]
-Patch33: pine-4.33-whitespace.patch
+#Patch33: pine-4.33-whitespace.patch
 
 # Change PINE sendmail options to attempt to stop sendmail from logging -bs
 # errors
-Patch34: pine-4.33-sendmail-options.patch
+#Patch34: pine-4.33-sendmail-options.patch
 
 # Fix bug #60818
 Patch36: pine-4.44-overflow.patch
+
+### Patches from http://www.math.washington.edu/~chappa/pine/
+Patch100: pine-4.64-all.patch.gz
+Patch101: pinepgp-0.18.0-compile.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -70,7 +74,6 @@ mail, and MH style folders.
 %setup -n %{name}%{version} -a 1
 
 #%patch0 -p1 -b .makefile
-%patch1 -p1 -b .unicode
 %{__perl} -pi.makefile -e 's|(BASECFLAGS)="-g (.*)"|$1="$2 %{optflags}"|g' imap/src/osdep/unix/Makefile
 
 %{__perl} -pi.redhat-dag -e '
@@ -90,8 +93,6 @@ mail, and MH style folders.
 #{__perl} -pi.krb5-dag -e 's|GSSDIR=/usr/local|GSSDIR=/usr/kerberos|' imap/src/osdep/unix/Makefile.gss
 %patch4 -p1 -b .fixhome
 
-# imap flock patch
-%patch8 -p0 -b .flock-patch
 %{__cp} -p %{SOURCE5} imap/src/osdep/unix
 
 %{__perl} -pi.passwd-dag -e 's|/bin/passwd|%{_bindir}/passwd|;' pine/osdep/os-lnx.h
@@ -107,8 +108,14 @@ mail, and MH style folders.
 #%patch34 -p0 -b .sendmail-options
 %patch36 -p1 -b .overflow
 
+%patch100 -p1 -b .allpatches
+%patch101 -p0 -b .pinegp-compile
+
+# imap flock patch
+%patch8 -p0 -b .flock-patch
+
 # this wants /usr/local/bin/perl
-#d#chmod 644 contrib/utils/pwd2pine
+#chmod 644 contrib/utils/pwd2pine
 %{__perl} -pi -e 's|^#!/.*bin/perl|#!%{__perl}|i' contrib/utils/pwd2pine
 
 %{__rm} -rf krb5 ldap
@@ -124,6 +131,7 @@ find -name "*.orig" -or -name "*~" | xargs %{__rm} -f core
 
 %build
 ./build \
+	IP="6" \
 	OPTIMIZE="%{optflags}" \
 	EXTRACFLAGS="-DIGNORE_LOCK_EACCES_ERRORS" \
 	EXTRAAUTHENTICATORS="gss" \
@@ -171,10 +179,16 @@ cd pinepgp-%{pgpver}
 %doc %{_mandir}/man1/*.1*
 %config(noreplace) %{_sysconfdir}/pine.conf*
 %{_bindir}/*
+
 %defattr(2755, root, mail, 0755)
 %{_sbindir}/mlock
 
 %changelog
+* Sun Jul 09 2006 Dag Wieers <dag@wieers.com> - 4.64-3
+- Added set of patches from Eduardo Chappa.
+- Remove big unicode patch from SuSE.
+- Added pinegp compile patch for FC6. (Satish Balay)
+
 * Sun Jul 09 2006 Dag Wieers <dag@wieers.com> - 4.64-2
 - Added unicode patch.
 
