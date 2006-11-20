@@ -11,7 +11,7 @@
 Summary: Multipurpose sniffer/interceptor/logger for switched LAN
 Name: ettercap
 Version: 0.7.3
-Release: 1.2
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://ettercap.sourceforge.net/
@@ -20,7 +20,7 @@ Source: http://dl.sf.net/ettercap/ettercap-NG-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, ncurses-devel, gtk2-devel, gcc-c++, libpcap >= 14:0.8.1
-BuildRequires: libnet
+BuildRequires: libnet, libtool-ltdl-devel
 %{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
@@ -58,6 +58,9 @@ analysis.
 %{_datadir}/ettercap/
 
 %changelog
+* Mon Nov 20 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.3-2
+- libtool-ltdl-devel added as buildrequirement, thanks to Ahmed Kamal.
+
 * Sun May 29 2005 Dag Wieers <dag@wieers.com> - 0.7.3-1
 - Updated to release 0.7.3.
 

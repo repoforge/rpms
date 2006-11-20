@@ -4,7 +4,7 @@
 Summary: C++ client API for PostgreSQL
 Name: libpqxx
 Version: 2.6.7
-Release: 1
+Release: 2
 License: BSD
 Group: System Environment/Libraries
 URL: http://pqxx.org/
@@ -13,6 +13,7 @@ Source: http://thaiopensource.org/download/software/libpqxx/libpqxx-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, postgresql-devel, postgresql-libs, gcc-c++
+Requires: postgresql-devel, pkgconfig
 
 %description
 C++ client API for PostgreSQL. The standard front-end (in the sense of
@@ -32,6 +33,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
+%{__perl} -pi -e "s|.Werror||g;" configure*
 
 %build
 %configure \
@@ -70,6 +72,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Mon Nov 20 2006 Dries Verachtert <dries@ulyssis.org> - 2.6.7-2
+- Added openssl-devel and pkgconfig requires, thanks to Rex Dieter.
+
 * Mon Nov 13 2006 Dries Verachtert <dries@ulyssis.org> - 2.6.7-1
 - Updated to release 2.6.7.
 
