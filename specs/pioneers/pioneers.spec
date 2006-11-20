@@ -14,7 +14,7 @@ URL: http://pio.sourceforge.net/
 Source: http://dl.sf.net/pio/pioneers-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libxml2-devel, gtk2-devel, libgnome-devel, glib2-devel >= 2.4
+BuildRequires: libxml2-devel, gtk2-devel, libgnome-devel, glib2-devel >= 2.6
 BuildRequires: scrollkeeper, gcc-c++, libgnomeui-devel
 BuildRequires: gettext, desktop-file-utils
 Requires(post): scrollkeeper

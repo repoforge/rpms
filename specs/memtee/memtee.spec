@@ -33,9 +33,6 @@ that fsck-output onto disk by sending it a TERM signal.
 #%{__make} install DESTDIR="%{buildroot}"
 %{__install} -Dp -m0755 memtee %{buildroot}%{_bindir}/memtee
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
-
 %clean
 %{__rm} -rf %{buildroot}
 

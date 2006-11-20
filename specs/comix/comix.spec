@@ -13,9 +13,10 @@ URL: http://comix.sourceforge.net/
 Source: http://dl.sf.net/comix/comix-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+### FIXME: Package checks for requirements (not buildrequirements) during install (please fix upstream)
 Buildarch: noarch
-BuildRequires: python, python-imaging, rar, pygtk2-devel
-Requires: python, python-imaging
+BuildRequires: python, python-imaging, pygtk2-devel
+Requires: python, python-imaging, rar
 
 %description
 Comix is a comic book viewer. It reads zip, rar, tar, tar.gz, and tar.bz2

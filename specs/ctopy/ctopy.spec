@@ -7,7 +7,7 @@ Name: ctopy
 Version: 1.0
 Release: 1
 License: BSD
-Group: Development
+Group: Development/Tools
 URL: http://www.catb.org/~esr/ctopy/
 
 Source: http://www.catb.org/~esr/ctopy/ctopy-%{version}.tar.gz
