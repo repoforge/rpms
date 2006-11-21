@@ -43,9 +43,6 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__mkdir_p} %{buildroot}/pqxx
-%{__mv} %{buildroot}%{_includedir}/* %{buildroot}/pqxx/
-%{__mv} %{buildroot}/pqxx %{buildroot}%{_includedir}/
 
 %post
 /sbin/ldconfig 2>/dev/null
