@@ -184,7 +184,7 @@ cd pinepgp-%{pgpver}
 %{_sbindir}/mlock
 
 %changelog
-* Sun Jul 09 2006 Dag Wieers <dag@wieers.com> - 4.64-3
+* Sun Nov 19 2006 Dag Wieers <dag@wieers.com> - 4.64-3
 - Added set of patches from Eduardo Chappa.
 - Remove big unicode patch from SuSE.
 - Added pinegp compile patch for FC6. (Satish Balay)
