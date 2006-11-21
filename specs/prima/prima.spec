@@ -9,18 +9,18 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
 
 Summary: Extensible Perl toolkit for multi-platform GUI development
 Name: prima
-Version: 1.20
-Release: 1.2
+Version: 1.21
+Release: 1
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.prima.eu.org/
@@ -32,8 +32,8 @@ BuildRequires: libjpeg-devel, libungif-devel, libtiff-devel
 Provides: perl(Prima::Buttons), perl(Prima::Classes), perl(Prima::ExtLists)
 Provides: perl(Prima::Grids), perl(Prima::Notebooks), perl(Prima::Outlines)
 Provides: perl(Prima::Sliders), perl(Prima::StdDlg)
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
 
 %description
 Prima is an extensible Perl toolkit for multi-platform GUI development.
@@ -77,6 +77,9 @@ identically on X, Win32 and OS/2 PM.
 %{_bindir}/VB
 
 %changelog
+* Tue Nov 21 2006 Dries Verachtert <dries@ulyssis.org> - 1.21-1
+- Updated to release 1.21.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.20-1.2
 - Rebuild for Fedora Core 5.
 
