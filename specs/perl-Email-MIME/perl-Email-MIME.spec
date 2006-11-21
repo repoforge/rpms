@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+Requires: perl(Email::Simple)
 
 %description
 This is an extension of the Email::Simple module, to handle MIME encoded
@@ -57,6 +58,7 @@ message. Headers are decoded from MIME encoding.
 %changelog
 * Tue Nov 21 2006 Dries Verachtert <dries@ulyssis.org> - 1.854-1
 - Updated to release 1.854.
+- perl(Email::Simple) added to requirements, thanks to Max Kanat-Alexander.
 
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.82-1.2
 - Rebuild for Fedora Core 5.
