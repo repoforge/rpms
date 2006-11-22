@@ -4,7 +4,7 @@
 Summary: ANSI Common Lisp implementation
 Name: clisp
 Version: 2.41
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Languages
 URL: http://clisp.cons.org
@@ -32,7 +32,8 @@ cd src
 %install
 %{__rm} -rf %{buildroot}
 cd src
-%makeinstall
+%{__perl} -pi -e "s|destdir=..localedir.|destdir=%{buildroot}%{_datadir}/locale|g;" po/Makefile*
+%{__make} install DESTDIR=%{buildroot}
 cd -
 %{__mv} %{buildroot}%{_docdir}/clisp rpmdocs
 %find_lang clisp
@@ -52,6 +53,9 @@ cd -
 %{_datadir}/emacs/site-lisp/clisp-*
 
 %changelog
+* Wed Nov 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.41-2
+- Fix links to buildroot, thanks to Scott Dowdle.
+
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 2.41-1
 - Updated to release 2.41.
 
