@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Filter-FSSocket/
 
-Source: http://search.cpan.org//CPAN/authors/id/P/PT/PTINSLEY/POE-Filter-FSSocket-%{version}.tgz
+Source: http://search.cpan.org/CPAN/authors/id/P/PT/PTINSLEY/POE-Filter-FSSocket-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -26,7 +26,7 @@ A POE filter for FreeSWITCH (http://www.freeswitch.org) that parses
 event/log/etc... messages for you.  You must ask for events in plain mode.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"

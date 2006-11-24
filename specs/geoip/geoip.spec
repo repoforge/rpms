@@ -5,7 +5,7 @@
 
 Summary: C library for country/city/organization to IP address or hostname mapping
 Name: geoip
-Version: 1.3.17
+Version: 1.4.0
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -79,5 +79,8 @@ you will need to install %{name}-devel.
 %{_libdir}/libGeoIPUpdate.so
 
 %changelog
+* Fri Nov 24 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.0-1
+- Updated to release 1.4.0.
+
 * Sun Aug 06 2006 Dag Wieers <dag@wieers.com> - 1.3.17-1
 - Initial package. (using DAR)
