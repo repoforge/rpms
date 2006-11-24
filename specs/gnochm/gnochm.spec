@@ -5,6 +5,7 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %define _without_shmime 1
+%{?fc6:%undefine _without_shmime}
 %{?fc5:%undefine _without_shmime}
 %{?fc4:%undefine _without_shmime}
 %{?el4:%undefine _without_shmime}

@@ -36,7 +36,7 @@ Patch: gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, flex, byacc, zlib-devel
 BuildRequires: libjpeg-devel, libpng-devel, ImageMagick
-%{!?_without_modxorg:BuildRequires: libX11-devel, xorg-x11-server-Xvfb, xorg-x11-proto-devel, libXi-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel, xorg-x11-server-Xvfb, xorg-x11-proto-devel, libXi-devel, libXmu-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel, /usr/X11R6/bin/Xvfb}
 %{!?_without_freeglut:BuildRequires: freeglut-devel}
 %{?_without_freeglut:BuildRequires: glut-devel}

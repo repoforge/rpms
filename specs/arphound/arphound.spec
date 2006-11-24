@@ -16,6 +16,7 @@ Group: Applications/Internet
 URL: http://www.nottale.net/index.php?project=arphound
 
 Source: http://www.nottale.net/arphound/download/arphound-%{version}.tar.gz
+Patch: arphound-1.3.1-gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, libpcap
 %{?_with_libpcapdevel:BuildRequires:libpcap-devel}
@@ -30,6 +31,7 @@ can be easily parsed by scripts.
 
 %prep
 %setup
+%patch -p1
 
 %{__cat} <<'EOF' >arphound.sysv
 #!/bin/bash
