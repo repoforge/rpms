@@ -2,8 +2,8 @@
 # Authority: dag
 
 %{!?dist:%define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
 %{?fc6:  %define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
 
 Summary: Audio file volume normalizer
 Name: normalize

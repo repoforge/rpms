@@ -7,6 +7,9 @@
 
 %{!?dist:%define _with_libpcapdevel 1}
 %{?fc6:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libtoolltdl 1}
+%{?fc5:%define _with_libtoolltdl 1}
+%{?fc4:%define _with_libtoolltdl 1}
 
 Summary: Multipurpose sniffer/interceptor/logger for switched LAN
 Name: ettercap
@@ -20,7 +23,8 @@ Source: http://dl.sf.net/ettercap/ettercap-NG-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, ncurses-devel, gtk2-devel, gcc-c++, libpcap >= 14:0.8.1
-BuildRequires: libnet, libtool-ltdl-devel
+Buildrequires: libnet
+%{?_with_libtoolltdl:BuildRequires: libtool-ltdl-devel}
 %{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description

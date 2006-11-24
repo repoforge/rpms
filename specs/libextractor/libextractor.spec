@@ -2,6 +2,12 @@
 # Authority: dag
 # Upstream: Christian Grothoff <libextractor$cs,purdue,edu>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc6:%define _with_libtoolltdl 1}
+%{?fc5:%define _with_libtoolltdl 1}
+%{?fc4:%define _with_libtoolltdl 1}
+
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 Summary: Meta-data extraction library
@@ -19,9 +25,7 @@ BuildRequires: libvorbis-devel, libogg-devel, gcc-c++
 BuildRequires: ImageMagick, python-devel, gettext, pkgconfig, bzip2-devel
 BuildRequires: intltool, glib2-devel, libvorbis-devel, gtk2-devel
 BuildRequires: ImageMagick-devel, ImageMagick-c++-devel, exiv2, mpeg2dec-devel
-%{?fc4:BuildRequires: libtool-ltdl-devel}
-%{?fc5:BuildRequires: libtool-ltdl-devel}
-%{?fc6:BuildRequires: libtool-ltdl-devel}
+%{?_with_libtoolltdl:BuildRequires: libtool-ltdl-devel}
 
 %description
 libextractor is a simple library for meta-data extraction.
