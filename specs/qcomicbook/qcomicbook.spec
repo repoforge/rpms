@@ -2,6 +2,16 @@
 # Authority: dries
 # Upstream: Pawel Stolowski <yogin$linux,bydg,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+
 Summary: Viewer for comic book archives
 Name: qcomicbook
 Version: 0.3.3
@@ -14,6 +24,7 @@ Source: http://linux.bydg.org/~yogin/qcomicbook-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: kdelibs-devel, gettext, gcc-c++, imlib2-devel
+%{!?_without_modxorg:BuildRequires: libXmu-devel, libXi-devel}
 
 %description
 QComicBook is a viewer for rar, zip, cbr, and cbz format comic book

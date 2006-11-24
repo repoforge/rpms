@@ -27,7 +27,7 @@ BuildRequires: gcc-c++, zlib-devel
 BuildRequires: libungif-devel, libjpeg-devel, libpng-devel
 BuildRequires: netpbm-devel, libtiff-devel, pango-devel
 %{?_without_modxorg:BuildRequires: XFree86-devel}
-%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel, libXt-devel}
 
 %description
 Xplanet was inspired by Xearth, which renders an image of the earth into the

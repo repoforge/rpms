@@ -14,7 +14,7 @@ URL: http://www.opensaml.org/
 Source: http://shibboleth.internet2.edu/downloads/opensaml-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: xml-security-c-devel, gcc-c++, xerces-c-devel
+BuildRequires: xml-security-c-devel, gcc-c++, xerces-c-devel, curl-devel
 
 %description
 OpenSAML 1.1 is an open source toolkit for implementing solutions using the 

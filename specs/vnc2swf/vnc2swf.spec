@@ -20,7 +20,7 @@ Source: http://www.unixuser.org/~euske/vnc2swf/vnc2swf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libdnet-devel, libstdc++-devel, zlib-devel, gcc-c++
-%{?_with_modxorg:BuildRequires: libXt-devel, libXext, libXaw-devel}
+%{?_with_modxorg:BuildRequires: libXt-devel, libXext-devel, libXaw-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 
 %description

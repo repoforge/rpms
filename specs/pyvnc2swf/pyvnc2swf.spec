@@ -58,7 +58,7 @@ EOF
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root, 0775}
+%defattr(-, root, root, 0775)
 %doc *.txt *.html
 %{_bindir}/pyvnc2swf
 %{_bindir}/pyvnc2swf-edit

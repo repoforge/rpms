@@ -14,7 +14,7 @@ Requires: mplayer, mencoder
 BuildRequires: gtk2-devel, libglade2-devel, GConf2-devel, libxml2-devel
 Buildrequires: hal-devel, dbus-glib-devel, enchant-devel
 Buildrequires: libdvdread-devel, libtheora-devel, libvorbis-devel, gocr-devel
-Buildrequires: gettext-devel, intltool
+Buildrequires: gettext-devel, intltool, gcc-c++
 # Not technically build required, but configure checks for it...
 Buildrequires: mplayer, mencoder, ogmtools, vorbis-tools, theora-tools
 BuildRequires: mkvtoolnix, lame

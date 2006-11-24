@@ -25,7 +25,7 @@ Source1: blackbox.desktop
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 %{?_without_modxorg:BuildRequires: XFree86-devel}
-%{!?_without_modxorg:BuildRequires: libX11-devel, libXext-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel, libXext-devel, libXt-devel}
 
 %description
 Blackbox is a window manager for the X Window environment, which is

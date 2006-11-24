@@ -13,7 +13,7 @@ URL: http://www.taskjuggler.org/
 Source: http://www.taskjuggler.org/download/taskjuggler-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: kdelibs-devel, gcc-c++, kdepim-devel, docbook-dtds
+BuildRequires: kdelibs-devel, gcc-c++, kdepim-devel, docbook-dtds, gettext
 
 %description
 TaskJuggler is a modern and powerful project management tool. Its new approach

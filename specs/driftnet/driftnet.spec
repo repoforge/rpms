@@ -9,6 +9,7 @@
 
 %{?fc6:%define _with_libpcapdevel 1}
 %{?fc5:%define _with_modxorg 1}
+%{?fc6:%define _with_modxorg 1}
 
 Summary: Sniff the network for images and movies and displays them
 Name: driftnet

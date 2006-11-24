@@ -34,7 +34,7 @@ Source: http://dl.sf.net/inkscape/inkscape-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildRequires: libsigc++2-devel, gtkmm24-devel, glibmm-devel
-BuildRequires: gtkmm2
+BuildRequires: gtkmm2, lcms-devel
 # >= 2.4
 BuildRequires: libgc-devel,  perl(XML::Parser)
 BuildRequires: gcc-c++, pkgconfig

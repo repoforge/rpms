@@ -12,7 +12,8 @@ URL: http://www.arbetsmyra.dyndns.org/coretrace/
 Source: http://www.arbetsmyra.dyndns.org/coretrace/download/coretrace_v%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires:
+# for asm/string.h
+BuildRequires: glibc-kernheaders
 
 %description
 Coretrace is a tool for debugging of embedded Linux applications. It works

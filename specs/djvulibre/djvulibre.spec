@@ -1,16 +1,28 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+
 Summary: DjVu viewers, encoders and utilities
 Name: djvulibre
-Version: 3.5.14
-Release: 2
+Version: 3.5.17
+Release: 1
 License: GPL
 Group: Applications/Publishing
 URL: http://djvu.sourceforge.net/
 Source: http://dl.sf.net/djvu/djvulibre-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: XFree86-devel, qt-devel, libjpeg-devel
+%{!?_without_modxorg:BuildRequires: libXext-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+BuildRequires: qt-devel, libjpeg-devel
 BuildRequires: libstdc++-devel, gcc-c++, mozilla, gettext, libtiff-devel
 # Provide these here, they're so small, it's not worth splitting them out
 Provides: mozilla-djvulibre = %{version}-%{release}
@@ -84,10 +96,14 @@ update-desktop-database /usr/share/applications || :
 %{_datadir}/pixmaps/djvu.png
 %{_mandir}/man1/*.1*
 %{_mandir}/ja/man1/*.1*
-%{_datadir}/mimelnk/image/x-djvu.desktop
+%{_libdir}/pkgconfig/ddjvuapi.pc
+#%{_datadir}/mimelnk/image/x-djvu.desktop
 
 
 %changelog
+* Fri Nov 24 2006 Dries Verachtert <dries@ulyssis.org> - 3.5.17-1
+- Updated to release 3.5.17.
+
 * Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 3.5.14-2
 - Re-enable the lib/mozilla/ symlink to the plugin.
 - Add source of /etc/profile.d/qt.sh to fix weird detection problem on FC3...

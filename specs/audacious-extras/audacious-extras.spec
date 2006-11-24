@@ -14,7 +14,7 @@ URL: http://audacious-media-player.org/
 Source: http://audacious-media-player.org/release/audacious-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: audacious = %{version}
-BuildRequires: gtk2-devel, libglade2-devel, gettext-devel
+BuildRequires: gtk2-devel, libglade2-devel, gettext-devel, gcc-c++
 # The bare minimum required to get things to build for the plugins we want
 BuildRequires: taglib-devel, libvorbis-devel
 # To get the pkgconfig file for the Input directory location

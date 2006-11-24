@@ -18,6 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libgnomeui-devel, gnome-panel, gcc-c++
 BuildRequires: openssl-devel, libglade-devel, gdk-pixbuf-devel
 BuildRequires: glib2-devel, libglade2-devel, gamin-devel
+BuildRequires: perl(XML::Parser), intltool
 BuildRequires: texinfo
 %{!?dist:BuildRequires: gnome-panel-devel}
 %{?el4:BuildRequires: gnome-panel-devel}

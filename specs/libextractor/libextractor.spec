@@ -21,6 +21,7 @@ BuildRequires: intltool, glib2-devel, libvorbis-devel, gtk2-devel
 BuildRequires: ImageMagick-devel, ImageMagick-c++-devel, exiv2, mpeg2dec-devel
 %{?fc4:BuildRequires: libtool-ltdl-devel}
 %{?fc5:BuildRequires: libtool-ltdl-devel}
+%{?fc6:BuildRequires: libtool-ltdl-devel}
 
 %description
 libextractor is a simple library for meta-data extraction.

@@ -17,7 +17,7 @@ URL: http://www.yersinia.net/
 Source: http://www.yersinia.net/download/yersinia-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libnet, libpcap, ncurses-devel
+BuildRequires: libnet, libpcap, ncurses-devel, gtk2-devel
 %{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description

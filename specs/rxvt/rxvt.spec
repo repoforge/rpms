@@ -30,7 +30,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libtool
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
-%{!?_without_modxorg:BuildRequires: xorg-x11-proto-devel, libXt-devel}
+%{!?_without_modxorg:BuildRequires: xorg-x11-proto-devel, libXt-devel, libXpm-devel}
 
 Requires: utempter
 

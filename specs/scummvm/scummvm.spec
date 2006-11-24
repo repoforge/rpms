@@ -18,7 +18,7 @@ Patch3: scummvm-0.9.0-theme.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel >= 1.2.2
 BuildRequires: libmad-devel, libogg-devel, libvorbis-devel, flac-devel
-BuildRequires: mpeg2dec-devel, zlib-devel, nasm
+BuildRequires: mpeg2dec-devel, zlib-devel, nasm, gcc-c++
 BuildRequires: desktop-file-utils
 
 %description
