@@ -13,7 +13,7 @@
 
 Summary: Telephony interface support
 Name: zaptel
-Version: 1.2.8
+Version: 1.2.11
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -156,6 +156,9 @@ ${MAKEDEV} \
 
 
 %changelog
+* Fri Nov 24 2006 Matthias Saou <http://freshrpms.net/> 1.2.11-1
+- Update to 1.2.11.
+
 * Thu Sep  7 2006 Matthias Saou <http://freshrpms.net/> 1.2.8-1
 - Update to 1.2.8.
 

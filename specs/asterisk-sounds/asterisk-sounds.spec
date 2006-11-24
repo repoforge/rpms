@@ -5,13 +5,13 @@
 Summary: Sound files for the Asterisk PBX and telephony application and toolkit
 Name: asterisk-sounds
 Version: 1.2.1
-Release: 3
+Release: 4
 License: BSD
 Group: Applications/Internet
 URL: http://www.asterisk.org/
 Source: http://ftp.digium.com/pub/asterisk/asterisk-sounds-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: asterisk >= 1.2.5
+Requires: asterisk >= 1.2.13
 BuildArch: noarch
 
 %description
@@ -58,36 +58,41 @@ used with Asterisk.
 %exclude %{_var}/lib/asterisk/sounds/conf-userwilljoin.gsm
 %exclude %{_var}/lib/asterisk/sounds/conf-waitforleader.gsm
 %exclude %{_var}/lib/asterisk/sounds/invalid.gsm
+%exclude %{_var}/lib/asterisk/sounds/minutes.gsm
+%exclude %{_var}/lib/asterisk/sounds/seconds.gsm
 %exclude %{_var}/lib/asterisk/sounds/letters/
 
 
 %changelog
-* Thu Mar  9 2006 Matthias Saou <http://freshrpms.net> 1.2.1-3
+* Fri Nov 24 2006 Matthias Saou <http://freshrpms.net/> 1.2.1-4
+- Exclude seconds.gsm, minutes.gsm which are included in asterisk 1.2.13.
+
+* Thu Mar  9 2006 Matthias Saou <http://freshrpms.net/> 1.2.1-3
 - Exclude some more sounds that are part of asterisk 1.2.5, so require that.
 
-* Fri Jan 27 2006 Matthias Saou <http://freshrpms.net> 1.2.1-2
+* Fri Jan 27 2006 Matthias Saou <http://freshrpms.net/> 1.2.1-2
 - Update to 1.2.1.
 - Exclude letters from sounds (they're also in the main asterisk package).
 
-* Fri Nov 25 2005 Matthias Saou <http://freshrpms.net> 1.2.0-1
+* Fri Nov 25 2005 Matthias Saou <http://freshrpms.net/> 1.2.0-1
 - Update to 1.2.0.
 - Update list of excluded conflicting sounds (+conf-hasleft, +conf-thereare).
 
-* Tue Aug 23 2005 Matthias Saou <http://freshrpms.net> 1.0.9-1
+* Tue Aug 23 2005 Matthias Saou <http://freshrpms.net/> 1.0.9-1
 - Update to 1.0.9.
 
-* Tue Apr  5 2005 Matthias Saou <http://freshrpms.net> 1.0.7-1
+* Tue Apr  5 2005 Matthias Saou <http://freshrpms.net/> 1.0.7-1
 - Update to 1.0.7.
 
-* Wed Feb  2 2005 Matthias Saou <http://freshrpms.net> 1.0.1-1
+* Wed Feb  2 2005 Matthias Saou <http://freshrpms.net/> 1.0.1-1
 - Minor cleanups.
 
-* Mon Oct 18 2004 Matthias Saou <http://freshrpms.net> 1.0.1-0
+* Mon Oct 18 2004 Matthias Saou <http://freshrpms.net/> 1.0.1-0
 - Update to 1.0.1.
 
-* Thu Aug 26 2004 Matthias Saou <http://freshrpms.net> 1.0-0.RC2.0
+* Thu Aug 26 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.RC2.0
 - Update to 1.0-RC2.
 
-* Mon Jul 26 2004 Matthias Saou <http://freshrpms.net> 1.0-0.RC1.1
+* Mon Jul 26 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.RC1.1
 - Initial RPM release.
 

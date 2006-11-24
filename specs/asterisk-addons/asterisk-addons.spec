@@ -2,7 +2,7 @@
 
 Summary: Additional addons for Asterisk: the Open Source Linux PBX
 Name: asterisk-addons
-Version: 1.2.4
+Version: 1.2.5
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -59,6 +59,9 @@ cd ..
 
 
 %changelog
+* Fri Nov 24 2006 Matthias Saou <http://freshrpms.net/> 1.2.5-1
+- Update to 1.2.5.
+
 * Wed Sep 13 2006 Matthias Saou <http://freshrpms.net/> 1.2.4-2
 - Also build the asterisk-ooh323c module.
 
