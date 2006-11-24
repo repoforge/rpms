@@ -9,14 +9,13 @@
 
 Summary: ARP traffic monitoring/logging tool
 Name: arphound
-Version: 1.3.1
+Version: 1.3.2
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.nottale.net/index.php?project=arphound
 
 Source: http://www.nottale.net/arphound/download/arphound-%{version}.tar.gz
-Patch: arphound-1.3.1-gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, libpcap
 %{?_with_libpcapdevel:BuildRequires:libpcap-devel}
@@ -31,7 +30,6 @@ can be easily parsed by scripts.
 
 %prep
 %setup
-%patch -p1
 
 %{__cat} <<'EOF' >arphound.sysv
 #!/bin/bash
@@ -140,6 +138,9 @@ fi
 %{_sbindir}/arphound
 
 %changelog
+* Fri Nov 24 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.2-1
+- Updated to release 1.3.2.
+
 * Wed Apr 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.1-1
 - Updated to release 1.3.1.
 
