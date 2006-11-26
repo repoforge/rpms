@@ -59,7 +59,7 @@ URL: http://xinehq.de/
 Source: http://dl.sf.net/xine/xine-lib-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libdvdcss
-BuildRequires: gcc-c++, pkgconfig, zlib-devel
+BuildRequires: gcc-c++, pkgconfig, zlib-devel, libtiff-devel
 BuildRequires: libvorbis-devel, SDL-devel
 # BUG : libmng-devel should apparently require libjpeg-devel for includes
 BuildRequires: libpng-devel, libmng-devel, libjpeg-devel, freetype-devel
