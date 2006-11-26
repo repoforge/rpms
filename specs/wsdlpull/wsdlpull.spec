@@ -3,13 +3,14 @@
 
 Summary: C++  web services client library
 Name: wsdlpull
-Version: 1.11
+Version: 1.12
 Release: 1
 License: LGPL
 Group: Applications/Internet
 URL: http://wsdlpull.sourceforge.net/
 
 Source: http://dl.sf.net/wsdlpull/wsdlpull-%{version}.tar.gz
+Patch: wsdlpull-1.12-gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
@@ -36,6 +37,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
+%patch -p1
 
 %build
 %configure
@@ -76,6 +78,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sun Nov 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.12-1
+- Updated to release 1.12.
+
 * Sun Apr 23 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1
 - Updated to release 1.11.
 
