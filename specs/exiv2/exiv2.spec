@@ -4,7 +4,7 @@
 
 Summary: Exif and Iptc metadata manipulation library and tools
 Name: exiv2
-Version: 0.11
+Version: 0.12
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -73,6 +73,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libexiv2*.la
 
 %changelog
+* Mon Nov 27 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1
+- Updated to release 0.12.
+
 * Sat Sep 16 2006 Dag Wieers <dag@wieers.com> - 0.11-1
 - Updated to release 0.11.
 

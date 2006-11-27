@@ -10,7 +10,7 @@
 
 Summary: Image viewer for KDE
 Name: gwenview
-Version: 1.4.0
+Version: 1.4.1
 Release: 1
 License: GPL
 Group: Amusements/Graphics
@@ -72,6 +72,9 @@ source /etc/profile.d/qt.sh
 %{_datadir}/config.kcfg/*.kcfg
 
 %changelog
+* Mon Nov 27 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.1-1
+- Updated to release 1.4.1.
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.0-1
 - Updated to release 1.4.0.
 
