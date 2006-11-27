@@ -4,8 +4,8 @@
 
 Summary: Driver for Intel® PRO/Wirelss 3945 network adaptors
 Name: dkms-ipw3945
-Version: 1.1.0
-Release: 2
+Version: 1.1.2
+Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://ipw3945.sourceforge.net/
@@ -17,6 +17,7 @@ Requires: gcc
 Requires: ipw3945-firmware, ipw3945d
 Requires(post): dkms
 Requires(preun): dkms
+Provides: ipw3945 = %{version}-%{release}
 
 %description
 Driver (Linux kernel module) for Intel® PRO/Wirelss 3945 network adaptors.
@@ -75,6 +76,10 @@ dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
 
 %changelog
+* Mon Nov 27 2006 Matthias Saou <http://freshrpms.net/> 1.1.2-1
+- Update to 1.1.2.
+- Add versionned plain ipw3945 provides.
+
 * Tue Oct 10 2006 Matthias Saou <http://freshrpms.net/> 1.1.0-2
 - Add the rpm release to the dkms module version, to make updating the module
   to a fixed same version work (--rpm_safe_upgrade doesn't work as advertised).

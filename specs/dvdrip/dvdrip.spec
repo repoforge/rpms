@@ -11,7 +11,7 @@
 
 Summary: Graphical DVD ripping and encoding tool based on transcode
 Name: dvdrip
-Version: 0.98.1
+Version: 0.98.2
 Release: 1
 License: Artistic or GPL
 Group: Applications/Multimedia
@@ -102,7 +102,7 @@ EOF
 %lang(es) %{perl_sitelib}/LocaleData/es/LC_MESSAGES/video.dvdrip.mo
 %lang(fr) %{perl_sitelib}/LocaleData/fr/LC_MESSAGES/video.dvdrip.mo
 %lang(it) %{perl_sitelib}/LocaleData/it/LC_MESSAGES/video.dvdrip.mo
-%lang(sr) %{perl_sitelib}/LocaleData/sr/LC_MESSAGES/video.dvdrip.mo
+%lang(sr) %{perl_sitelib}/LocaleData/sr*/LC_MESSAGES/video.dvdrip.mo
 %{perl_sitelib}/Video/
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-dvdrip.desktop}
 %{?_without_freedesktop:/etc/X11/applnk/Multimedia/dvdrip.desktop}
@@ -110,6 +110,9 @@ EOF
 
 
 %changelog
+* Mon Nov 27 2006 Matthias Saou <http://freshrpms.net/> 0.98.2-1
+- Update to 0.98.2.
+
 * Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 0.98.1-1
 - Rename to dvdrip, like upstream did.
 - Obsolete up to last know version of perl-Video-DVDRip (<= 0.98.1-2).
