@@ -28,7 +28,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libjpeg-devel, zlib-devel
 %{?_without_modxorg:BuildRequires: XFree86-devel}
-%{!?_without_modxorg:BuildRequires: xorg-x11-devel}
+%{!?_without_modxorg:BuildRequires: xorg-x11-proto-devel, libXext-devel}
 
 %description
 x11vnc is to X Window System what WinVNC is to Windows, i.e. a server
