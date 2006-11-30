@@ -9,8 +9,8 @@
 
 Summary: Realtime network grep tool
 Name: ngrep
-Version: 1.44
-Release: 1.2
+Version: 1.45
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://ngrep.sourceforge.net/
@@ -53,6 +53,9 @@ more common packet sniffing tools, such as tcpdump and snoop.
 %{_bindir}/ngrep
 
 %changelog
+* Thu Nov 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.45-1
+ - Updated to release 1.45.
+
 * Wed Jul 20 2005 Dag Wieers <dag@wieers.com> - 1.44-1
 - Updated to release 1.44.
 

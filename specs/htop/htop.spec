@@ -5,7 +5,7 @@
 
 Summary: Interactive process viewer
 Name: htop
-Version: 0.6.4
+Version: 0.6.5
 Release: 1
 License: GPL
 Group: Applications/System
@@ -42,6 +42,9 @@ htop is an interactive process viewer for Linux.
 %{_datadir}/pixmaps/htop.png
 
 %changelog
+* Thu Nov 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.5-1
+- Updated to release 0.6.5.
+
 * Sun Oct 08 2006 Dag Wieers <dag@wieers.com> - 0.6.4-1
 - Updated to release 0.6.4.
 
