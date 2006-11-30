@@ -43,7 +43,7 @@ into a versatile and performant while still easy to use program.
 %setup
 
 %build
-%configure
+%configure %{?_without_modxorg:LDFLAGS=-L/usr/X11R6/lib}
 %{__make} %{?_smp_mflags}
 
 %install
