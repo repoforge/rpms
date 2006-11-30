@@ -5,6 +5,7 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?el4:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
 %{?fc3:%define _without_modxorg 1}
 %{?fc2:%define _without_modxorg 1}
 %{?fc1:%define _without_modxorg 1}
