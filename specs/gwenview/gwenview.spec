@@ -18,7 +18,7 @@ URL: http://gwenview.sourceforge.net/
 
 Source: http://dl.sf.net/gwenview/gwenview-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gettext, libjpeg-devel
+BuildRequires: gettext, libjpeg-devel, exiv2-devel
 BuildRequires: libpng-devel, zlib-devel
 BuildRequires: kdelibs-devel, gcc-c++
 BuildRequires: qt-devel, libexif-devel
