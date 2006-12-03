@@ -86,6 +86,9 @@ scrollkeeper-update -q || :
 %{!?_without_shmime:%exclude %{_datadir}/mime/XMLnamespaces}
 %{!?_without_shmime:%exclude %{_datadir}/mime/globs}
 %{!?_without_shmime:%exclude %{_datadir}/mime/magic}
+%{!?_without_shmime:%exclude %{_datadir}/mime/aliases}
+%{!?_without_shmime:%exclude %{_datadir}/mime/mime.cache}
+%{!?_without_shmime:%exclude %{_datadir}/mime/subclasses}
 %{_datadir}/mime-info/gnochm.*
 %{_datadir}/omf/gnochm/
 %{_datadir}/pixmaps/*.png
