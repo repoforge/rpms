@@ -4,8 +4,8 @@
 
 Summary: Console RSS reader
 Name: rsstail
-Version: 0.7
-Release: 1.2
+Version: 0.8
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.vanheusden.com/rsstail/
@@ -39,6 +39,9 @@ detects a new entry, it will emit only that new entry.
 %{_bindir}/rsstail
 
 %changelog
+* Sun Dec 03 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-1
+- Updated to release 0.8.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7-1.2
 - Rebuild for Fedora Core 5.
 

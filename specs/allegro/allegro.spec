@@ -4,19 +4,18 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
 
 Summary: Game library
 Name: allegro
-Version: 4.2.0
-Release: 1.2
+Version: 4.2.1
+Release: 1
 License: Distributable
 Group: Development/Libraries
 URL: http://alleg.sourceforge.net/
@@ -26,8 +25,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: allegro-tools
 
 BuildRequires: gcc-c++, esound-devel, arts-devel, pkgconfig, texinfo
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libXext-devel}
 
 %description
 Allegro is a multi-platform game library for C/C++ developers that provides
@@ -98,6 +97,9 @@ you will need to install %{name}-devel.
 %{_datadir}/aclocal/allegro.m4
 
 %changelog
+* Sun Dec 03 2006 Dries Verachtert <dries@ulyssis.org> - 4.2.1-1
+- Updated to release 4.2.1.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.2.0-1.2
 - Rebuild for Fedora Core 5.
 

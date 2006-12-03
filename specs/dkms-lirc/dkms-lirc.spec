@@ -20,7 +20,7 @@ BuildArch: noarch
 Requires: gcc, lirc
 Requires(post): dkms
 Requires(preun): dkms
-BuildRequires: autoconf
+BuildRequires: autoconf, gcc-c++
 # Kind of bogus since it's the configure check that requires it
 BuildRequires: kernel, kernel-devel
 
