@@ -13,6 +13,8 @@ URL: http://www.harding.motd.ca/autossh/
 Source: http://www.harding.motd.ca/autossh/autossh-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+# configure checks is the ssh client exists
+BuildRequires: openssh-clients
 Requires: openssh-clients
 
 %description
