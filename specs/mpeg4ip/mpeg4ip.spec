@@ -14,7 +14,7 @@ Source: http://dl.sf.net/mpeg4ip/mpeg4ip-%{version}.tar.gz
 Patch0: mpeg4ip-1.5.0.1-nowerror.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libtool, SDL-devel
+BuildRequires: libtool, SDL-devel, gcc-c++
 BuildRequires: id3lib-devel, xvidcore-devel, a52dec-devel,libmad-devel
 BuildRequires: mpeg2dec-devel, libvorbis-devel, ffmpeg-devel, lame-devel
 BuildRequires: faac-devel, x264-devel, gtk2-devel, nasm
