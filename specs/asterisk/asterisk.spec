@@ -20,6 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: perl, zaptel
 BuildRequires: openssl-devel, zlib-devel, perl, bison, speex-devel, doxygen
 BuildRequires: zaptel-devel, gtk+-devel, newt-devel, ncurses-devel, libpri-devel
+# for /usr/include/linux/compiler.h :
+BuildRequires: glibc-kernheaders
 %{!?_without_postgresql:BuildRequires: postgresql-devel}
 %{!?_without_sqlite:BuildRequires: sqlite2-devel}
 
