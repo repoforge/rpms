@@ -5,7 +5,7 @@
 Summary: Charset and encoding analyser
 Name: enca
 Version: 1.9
-Release: 1.2
+Release: 3
 License: GPL
 Group: Applications/Text
 URL: http://trific.ath.cx/software/enca/
@@ -18,6 +18,16 @@ Requires: recode
 %description
 Enca is an Extremely Naive Charset Analyser. It detects character set and
 encoding of text files and can also convert them to other encodings.
+
+%package devel
+Summary: Header files, libraries and development documentation for %{name}.
+Group: Development/Libraries
+Requires: %{name} = %{version}-%{release}
+
+%description devel
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
 %setup
@@ -39,9 +49,7 @@ encoding of text files and can also convert them to other encodings.
 %doc AUTHORS ChangeLog COPYING FAQ INSTALL NEWS README THANKS TODO
 %{_bindir}/enca
 %{_bindir}/enconv
-%{_includedir}/enca.h
-%{_libdir}/libenca.*
-%{_libdir}/pkgconfig/enca.pc
+%{_libdir}/libenca.so.*
 %{_libexecdir}/enca/extconv/cstocs
 %{_libexecdir}/enca/extconv/map
 %{_libexecdir}/enca/extconv/piconv
@@ -50,8 +58,17 @@ encoding of text files and can also convert them to other encodings.
 %{_datadir}/man/man1/enca.1*
 %{_datadir}/man/man1/enconv.1*
 
+%files devel
+%{_includedir}/enca.h
+%{_libdir}/libenca.so
+%{_libdir}/libenca.a
+%{_libdir}/pkgconfig/enca.pc
+%exclude %{_libdir}/libenca.la
 
 %changelog
+* Sun Dec 03 2006 Dries Verachtert <dries@ulyssis.org> - 1.9-3
+- Made a devel subpackage.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.9-1.2
 - Rebuild for Fedora Core 5.
 

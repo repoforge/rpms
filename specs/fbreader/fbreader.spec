@@ -16,7 +16,7 @@ Source: http://only.mawhrin.net/fbreader/fbreader-sources-%{version}.tgz
 Patch: gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: enca, qt-devel >= 3.2, kdelibs-devel, gcc-c++
+BuildRequires: enca-devel, qt-devel >= 3.2, kdelibs-devel, gcc-c++
 
 %description
 FBReader is an e-book reader for Linux PDAs and desktop computers.

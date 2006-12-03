@@ -30,7 +30,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk2-devel, sqlite-devel, autoconf, automake, libtool
 BuildRequires: libpcap, gcc-c++
 %{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: libXt-devel}
+%{!?_without_xorg:BuildRequires: libXt-devel, libXpm-devel, libXaw-devel}
 %{?fc4:BuildRequires: openmotif-devel}
 %{?fc5:BuildRequires: openmotif-devel}
 %{?fc6:BuildRequires: lesstif-devel}
