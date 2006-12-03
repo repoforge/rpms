@@ -26,7 +26,7 @@ URL: http://apt-rpm.laiskiainen.org/
 Source: http://apt-rpm.laiskiainen.org/releases/apt-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: rpm-devel >= 3.0.5, zlib-devel, gettext
+BuildRequires: rpm-devel >= 3.0.5, zlib-devel, gettext, ncurses-devel
 BuildRequires: readline-devel, bison, gcc-c++, libtool, libxml2-devel >= 2.6.16
 %{!?_without_pkgconfig:BuildRequires: pkgconfig >= 0.9}
 
