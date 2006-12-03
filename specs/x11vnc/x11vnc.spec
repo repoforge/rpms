@@ -19,7 +19,7 @@
 Summary: VNC server for the current X11 session
 Name: x11vnc
 Version: 0.8.3
-Release: 1
+Release: 2
 License: GPL
 Group: User Interface/X
 URL: http://www.karlrunge.com/x11vnc/
@@ -29,7 +29,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libjpeg-devel, zlib-devel
 %{?_without_modxorg:BuildRequires: XFree86-devel}
-%{!?_without_modxorg:BuildRequires: xorg-x11-proto-devel, libXext-devel}
+%{!?_without_modxorg:BuildRequires: xorg-x11-proto-devel, libXext-devel, libXtst-devel}
 
 %description
 x11vnc is to X Window System what WinVNC is to Windows, i.e. a server
@@ -61,6 +61,9 @@ into a versatile and performant while still easy to use program.
 %{_datadir}/x11vnc/
 
 %changelog
+* Sun Dec 03 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.3-2
+- libXtst-devel added, thanks to Walter Neumann.
+
 * Wed Nov 15 2006 Dag Wieers <dag@wieers.com> - 0.8.3-1
 - Updated to release 0.8.3.
 
