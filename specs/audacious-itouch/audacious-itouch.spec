@@ -2,20 +2,18 @@
 # Authority: matthias
 
 %define aud_general %(pkg-config --variable=general_plugin_dir audacious)
-%define aud_datadir %(pkg-config --variable=data_dir audacious)
 
 Summary: iTouch keyboard control plugin for the Audacious media player
 Name: audacious-itouch
-Version: 0.1
-Release: 5
+Version: 0.1.0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://nedudu.hu/?page_id=11
-Source: http://nedudu.hu/downloads/audacious-itouch-%{version}.tar.bz2
-Patch0: audacious-itouch-0.1-configdb.patch
+URL: http://sourceforge.net/projects/itouch-control
+Source: http://dl.sf.net/itouch-control/itouch-control-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: audacious
-BuildRequires: audacious-devel, gettext-devel, bison
+BuildRequires: audacious-devel
 
 %description
 With this Audacious plugin you can take advantage of the multimedia (playback
@@ -26,26 +24,19 @@ the keyboard.
 
 
 %prep
-%setup
-%patch0 -p1 -b .configdb
-# Workaround... but is this even correct?
-%{__cp} -a po/Makefile.in.in po/Makefile.in
+%setup -n itouch-control-%{version}
 
 
 %build
 %configure \
-    --libdir=%{aud_general} \
-    --datadir=%{aud_datadir}
-# Build "sometimes" fails, so remove %{?_smp_mflags}, although it seems like
-# that's not it.
-%{__make}
+    --libdir=%{aud_general}
+%{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install \
-    libdir=%{buildroot}%{aud_general} \
-    datadir=%{buildroot}%{aud_datadir}
+    libdir=%{buildroot}%{aud_general}
 
 
 %clean
@@ -55,12 +46,15 @@ the keyboard.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README
-%{aud_general}/libitouch.so
-%exclude %{aud_general}/libitouch.la
-%config %{aud_datadir}/audacious-itouch.config
+%{aud_general}/libitouchctrl.so
+%exclude %{aud_general}/libitouchctrl.a
+%exclude %{aud_general}/libitouchctrl.la
 
 
 %changelog
+* Mon Dec  4 2006 Matthias Saou <http://freshrpms.net/> 0.1.0-1
+- Switch from the obsolete plugin to a current itouch-control version.
+
 * Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 0.1-5
 - Add configdb patch to make it build with the latest audacious.
 
