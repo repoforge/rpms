@@ -28,7 +28,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: qt-devel, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{!?_without_modxorg:BuildRequires: imake}
+%{!?_without_modxorg:BuildRequires: imake, libXmu-devel}
 
 %description
 tgif is a vector-based drawing tool, with the additional benefit of being

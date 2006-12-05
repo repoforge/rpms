@@ -40,12 +40,12 @@ computer-music-related purposes as well.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING DESIGN GOALS NEWS README TODO
-%config(noreplace) %{_sysconfdir}/denemo.conf
-%config(noreplace) %{_sysconfdir}/denemo.keymaprc
 %dir %{_datadir}/denemo/
 %{_datadir}/denemo/
-%{_bindir}/*
+%{_bindir}/denemo
 %{_includedir}/denemo/
+%{_datadir}/icons/denemo.png
+%{_datadir}/applications/denemo.desktop
 
 %changelog
 * Sat Apr 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.5-1

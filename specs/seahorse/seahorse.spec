@@ -17,6 +17,7 @@ BuildRequires: scrollkeeper, pkgconfig, GConf2, gnupg, gcc-c++
 BuildRequires: libgnomeui-devel, libglade2-devel, gtk2-devel >= 2.4
 BuildRequires: libbonobo-devel, libbonoboui-devel, eel2-devel
 BuildRequires: gedit-devel, gettext, nautilus
+BuildRequires: intltool, perl(XML::Parser)
 
 Requires(post): scrollkeeper
 

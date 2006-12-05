@@ -54,6 +54,7 @@ BuildRequires: freetype-devel
 BuildRequires: faac-devel
 BuildRequires: libjpeg-devel, libpng-devel, libtiff-devel
 BuildRequires: libdv-devel
+BuildRequires: gcc-c++
 
 %description
 Heroine Virtual Ltd. presents an advanced content creation system for Linux.

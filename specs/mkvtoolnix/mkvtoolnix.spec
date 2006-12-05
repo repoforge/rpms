@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libebml-devel, libmatroska-devel
 BuildRequires: libogg-devel, libvorbis-devel, flac-devel
 BuildRequires: expat-devel, zlib-devel, lzo-devel, bzip2-devel
-BuildRequires: wxGTK-devel
+BuildRequires: wxGTK-devel, gcc-c++
 BuildRequires: desktop-file-utils, ImageMagick
 
 %description

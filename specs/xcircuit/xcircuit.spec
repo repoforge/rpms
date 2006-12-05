@@ -9,6 +9,14 @@
 %{?rh7:%define _without_tcltk_devel 1}
 %{?el2:%define _without_tcltk_devel 1}
 
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+
 Summary: Electronic circuit schematic drawing program
 Name: xcircuit
 Version: 3.3.1
@@ -23,6 +31,8 @@ BuildRequires: libtool
 
 %{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3, tk-devel}
 %{?_without_tcltk_devel:BuildRequires: tcl >= 8.3, tk}
+%{!?_without_modxorg:BuildRequires: libXt-devel, libXpm-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
 Xcircuit is a general-purpose drawing program and also a specific-purpose

@@ -21,7 +21,7 @@ Source: http://www.soundtracker.org/dl/v0.6/soundtracker-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel, gdk-pixbuf-devel, audiofile-devel, esound-devel
-BuildRequires: libsndfile-devel, gettext
+BuildRequires: libsndfile-devel, gettext, SDL-devel, gnome-libs-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description

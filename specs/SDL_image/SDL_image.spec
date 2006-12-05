@@ -12,7 +12,7 @@ URL: http://www.libsdl.org/projects/SDL_image/
 Source: http://www.libsdl.org/projects/SDL_image/release/SDL_image-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel >= 1.2.10, gcc-c++, automake, autoconf, perl, libjpeg-devel
-BuildRequires: libpng-devel, zlib-devel
+BuildRequires: libpng-devel, zlib-devel, libtiff-devel
 
 %description
 SDL_image is an image file loading library. It loads images as SDL surfaces,

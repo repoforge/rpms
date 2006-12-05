@@ -14,6 +14,7 @@ Source: http://dl.sf.net/timerapplet/timer-applet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext, gnome-panel-devel >= 2.6, gtk2 >= 2.6
+BuildRequires: intltool, perl(XML::Parser)
 Requires: gnome-panel >= 2.6
 
 %description
