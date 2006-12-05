@@ -1,0 +1,14 @@
+--- calife.auth-dist.orig	2006-02-07 00:03:44.000000000 +0100
++++ calife.auth-dist	2006-02-07 00:03:53.000000000 +0100
+@@ -1,10 +1,6 @@
+-# calife.auth-dist
++# calife.auth
+ #
+ # Format
+ #
+ # name[:shell_to_be_run][:user1,user2,...,usern]
+ #
+-# $Id: //depot/security/calife/main/calife.auth-dist#3 $
+-fcb
+-roberto:/bin/tcsh
+-pb::guest,blaireau

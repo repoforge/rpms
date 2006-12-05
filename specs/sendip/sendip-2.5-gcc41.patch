@@ -1,0 +1,98 @@
+diff -ur sendip-2.5/ipv4.c sendip-2.5.new/ipv4.c
+--- sendip-2.5/ipv4.c	2003-04-21 15:23:22.000000000 +0200
++++ sendip-2.5.new/ipv4.c	2006-05-28 16:44:53.508070750 +0200
+@@ -9,6 +9,7 @@
+  * ChangeLog since 2.3 release:
+  * 23/12/2002 fix bug with -iossr and -iolsr
+  * 20/01/2003 fix FreeBSD sendto(): invalid argument error.  Again.
++ * 28/05/2006 fix signedness stuff, Linux, j.schlick_at_web_de
+  */
+ 
+ #include <sys/types.h>
+@@ -209,8 +210,8 @@
+ 				fprintf(stderr,"Out of memory!\n");
+ 				return FALSE;
+ 			}
+-			sprintf(data,"0x%s",arg);
+-			len = compact_string(data);
++			sprintf((char*)(data),"0x%s",arg);
++			len = compact_string((char*)(data));
+ 			cp=(*data&0x80)>>7;
+ 			cls=(*data&0x60)>>5;
+ 			num=(*data&0x1F);
+@@ -237,7 +238,7 @@
+ 				free(data);
+ 				return FALSE;
+ 			} else {
+-				addoption(0,0,7,len+2,data,pack);
++                           addoption(0,0,7,len+2,(u_int8_t*)(data),pack);
+ 				free(data);
+ 			}
+ 		} else if(!strcmp(opt+2, "ts")) {
+@@ -352,7 +353,7 @@
+ 				data_in = next;
+ 			}
+ 
+-			addoption(0,2,4,data_out-data+2,data,pack);
++			addoption(0,2,4,data_out-data+2,(u_int8_t*)data,pack);
+ 			free(data);
+ 			/* End of timestamp parsing */
+ 
+@@ -377,7 +378,7 @@
+ 				free(data);
+ 				return FALSE;
+ 			} else {
+-				addoption(1,0,3,len+2,data,pack);
++                           addoption(1,0,3,len+2,(u_int8_t*)data,pack);
+ 				free(data);
+ 			}
+ 		} else if(!strcmp(opt+2, "sid")) {
+@@ -399,7 +400,7 @@
+ 				free(data);
+ 				return FALSE;
+ 			} else {
+-				addoption(1,0,9,len+2,data,pack);
++                           addoption(1,0,9,len+2,(u_int8_t*)data,pack);
+ 				free(data);
+ 			}
+ 		} else {
+diff -ur sendip-2.5/tcp.c sendip-2.5.new/tcp.c
+--- sendip-2.5/tcp.c	2003-06-10 22:15:43.000000000 +0200
++++ sendip-2.5.new/tcp.c	2006-05-28 17:00:13.029010500 +0200
+@@ -13,6 +13,7 @@
+  * ChangeLog since 2.4 release:
+  * 21/04/2003: fix errors found by valgrind
+  * 10/06/2003: fix -tonum (pointed out by Yaniv Kaul <ykaul@checkpoint.com>)
++ * 28/05/2006 fix signedness stuff, Linux, j.schlick_at_web_de
+  */
+ 
+ #include <sys/types.h>
+@@ -204,8 +205,8 @@
+ 				fprintf(stderr,"Out of memory!\n");
+ 				return FALSE;
+ 			}
+-			sprintf(data,"0x%s",arg);
+-			len = compact_string(data);
++			sprintf((char*)data,"0x%s",arg);
++			len = compact_string((char*)data);
+ 			if(len==1)
+ 				addoption(*data,1,NULL,pack);
+ 			else
+@@ -230,7 +231,7 @@
+ 			addoption(4,2,NULL,pack);
+ 		} else if (!strcmp(opt+2, "sack")) {
+ 		   /* Selective Acknowledge rfc1323 */
+-			unsigned char *next;
++			char *next;
+ 			u_int32_t le, re;
+ 			u_int8_t *comb, *c;
+ 			int count=0;
+@@ -238,7 +239,7 @@
+ 			/* count the options */
+ 			next=arg;
+ 			while(next) {
+-				next=strchr(next,',');
++                                next=strchr(next,',');
+ 				count++;
+ 				if(next) next++;
+ 			}
