@@ -1,0 +1,13 @@
+diff -ur xclass-0.9.1-orig/include/xclass/OXListTree.h xclass-0.9.1/include/xclass/OXListTree.h
+--- xclass-0.9.1-orig/include/xclass/OXListTree.h	2004-09-18 11:59:52.000000000 +0200
++++ xclass-0.9.1/include/xclass/OXListTree.h	2006-12-05 20:21:01.000000000 +0100
+@@ -140,7 +140,7 @@
+   void _InsertChildren(OListTreeItem *parent, OListTreeItem *item);
+   int  _SearchChildren(OListTreeItem *item, int y, int findy,
+                        OListTreeItem **finditem);
+-  OListTreeItem *OXListTree::_FindItem(int findy);
++  OListTreeItem *_FindItem(int findy);
+ 
+   OListTreeItem *_first, *_selected;
+   int _hspacing, _vspacing, _indent, _margin, _last_y;
+Only in xclass-0.9.1/include/xclass: OXListTree.h~

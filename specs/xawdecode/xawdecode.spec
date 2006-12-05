@@ -7,6 +7,14 @@
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+
 %define desktop_vendor rpmforge
 
 Summary: Video4Linux stream capture viewer
@@ -22,7 +30,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: lirc
 #BuildRequires: lirc-devel
-BuildRequires: XFree86-devel, xosd-devel
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+BuildRequires: xosd-devel
 BuildRequires: xvidcore-devel, divx4linux, lame-devel, ffmpeg-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 

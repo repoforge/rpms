@@ -1,6 +1,12 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc6:%define _with_modxorg 1}
+%{?fc5:%define _with_modxorg 1}
+
 %define gst_minver 0.8.9
 %define gstp_minver 0.8.8
 %define majorminor 0.8
@@ -31,7 +37,8 @@ BuildRequires: %{gstreamer}-devel >= %{gst_minver}
 # libtool needs this, sigh
 BuildRequires: gcc-c++
 # so gst-libs can build
-BuildRequires: XFree86-devel
+%{?_with_modxorg:BuildRequires: libXt-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 # so configure passes
 BuildRequires: GConf2-devel
 # because we patch configure.in

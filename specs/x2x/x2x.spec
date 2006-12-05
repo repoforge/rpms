@@ -4,13 +4,13 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
 
 Summary: Link two X displays together, simulating a multiheaded display
 Name: x2x
@@ -24,8 +24,8 @@ Source: http://ftp.digital.com/pub/Digital/SRC/x2x/x2x-1.27.tar.gz
 Patch: http://ftp.debian.org/debian/pool/main/x/x2x/x2x_1.27-8.diff.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel, libXext-devel, libXtst-devel}
 
 %description
 x2x joins a pair of X displays together, as if they were a single

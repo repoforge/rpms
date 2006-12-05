@@ -8,6 +8,14 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+
 %define desktop_vendor rpmforge
 
 Summary: Television application for video4linux compliant devices
@@ -21,7 +29,9 @@ URL: http://bytesex.org/xawtv/
 Source: http://dl.bytesex.org/releases/xawtv/xawtv-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, ncurses-devel, Xaw3d-devel, libjpeg-devel
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+BuildRequires: ncurses-devel, Xaw3d-devel, libjpeg-devel
 BuildRequires: zvbi-devel
 %{!?rh62:BuildRequires: openmotif-devel}
 %{?rh62:BuildRequires: Mesa-devel}

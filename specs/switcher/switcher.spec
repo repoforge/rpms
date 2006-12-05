@@ -2,7 +2,17 @@
 # Authority: dag
 # Upstream: Alp Toker <alp$atoker,com>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %define desktop_vendor rpmforge
+
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
 
 Summary: Tray applet for dynamically changing the XFree86 display mode
 Name: switcher
@@ -18,7 +28,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: mono, gtk-sharp
 ### Prevent building on systems with older XFree86 without Xrandr
-BuildRequires: XFree86 >= 4.2.0
+%{?_without_modxorg:BuildRequires: XFree86 >= 4.2.0}
+%{!?_without_modxorg:BuildRequires: libXrandr-devel, libX11-devel}
 ### FIXME: gtk-sharp needs gtk2 *.so files ;(
 Requires: mono, gtk-sharp >= 0.17, gtk2-devel
 
