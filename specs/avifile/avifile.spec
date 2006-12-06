@@ -33,7 +33,7 @@ BuildRequires: zlib-devel, xvidcore-devel, automake, autoconf
 
 %description
 Avifile is a library that allows you to read and write compressed AVI
-files in most common video & audio formats (Indeo® Video, DivX, etc.)
+files in most common video & audio formats (Indeo Video, DivX, etc.)
 under x86 Linux. Compression and decompression are performed with Win32
 DLLs. It includes a simple AVI player and a Video4Linux capture program
 
