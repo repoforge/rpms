@@ -16,7 +16,7 @@ Source: http://dl.sf.net/log4cpp/log4cpp-%{real_version}.tar.gz
 Patch: compilefixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, doxygen
 
 %description
 A library of C++ classes for flexible logging to files, syslog, IDSA and 
