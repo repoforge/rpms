@@ -7,7 +7,7 @@
 
 Summary: CHM file viewer
 Name: kchmviewer
-Version: 2.6
+Version: 2.7
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -53,6 +53,9 @@ source  /etc/profile.d/qt.sh
 %{_datadir}/icons/crystalsvg/*/apps/kchmviewer.png
 
 %changelog
+* Fri Dec 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.7-1
+- Updated to release 2.7.
+
 * Mon Aug 09 2006 Dries Verachtert <dries@ulyssis.org> - 2.6-1
 - Updated to release 2.6.
 
