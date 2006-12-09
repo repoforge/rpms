@@ -14,7 +14,7 @@
 
 Summary: Visualize and manipulate multidimensional surfaces
 Name: k3dsurf
-Version: 0.6.0
+Version: 0.6.1
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -24,7 +24,7 @@ Source: http://dl.sf.net/k3dsurf/k3dsurf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: kdelibs-devel, gcc-c++, desktop-file-utils
-%{!?_without_modxorg: BuildRequires: libXmu-devel, libXext-devel, mesa-libGL-devel, mesa-libGLU-devel}
+%{!?_without_modxorg:BuildRequires: libXmu-devel, libXext-devel, mesa-libGL-devel, mesa-libGLU-devel}
 
 %description
 K3DSurf is a program for visualizing and manipulating multidimensional
@@ -73,6 +73,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*-k3dsurf.desktop
 
 %changelog
+* Sat Dec 09 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.1-1
+- Updated to release 0.6.1.
+
 * Mon Nov 27 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.0-1
 - Updated to release 0.6.0.
 
