@@ -4,8 +4,8 @@
 
 Summary: Regexp matching library
 Name: tre
-Version: 0.7.4
-Release: 2
+Version: 0.7.5
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://laurikari.net/tre/
@@ -69,6 +69,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/tre.pc
 
 %changelog
+* Sun Dec 10 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.5-1
+- Updated to release 0.7.5.
+
 * Wed Aug 09 2006 Nico Kadel-Garcia <nkadel@comcast.net> - 0.7.4-2
 - Include static libraries in -devel package.
 
