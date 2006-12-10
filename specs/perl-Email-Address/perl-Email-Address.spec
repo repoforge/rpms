@@ -9,8 +9,8 @@
 
 Summary: RFC 2822 Address Parsing and Creation
 Name: perl-Email-Address
-Version: 1.80
-Release: 1.2
+Version: 1.884
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Address/
@@ -53,6 +53,9 @@ software is to be correct, and very very fast.
 %{perl_vendorlib}/Email/Address.pm
 
 %changelog
+* Sun Dec 10 2006 Dries Verachtert <dries@ulyssis.org> - 1.884-1
+- Updated to release 1.884.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.80-1.2
 - Rebuild for Fedora Core 5.
 
