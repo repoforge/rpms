@@ -4,22 +4,24 @@
 # ExclusiveDist: fc6
 
 %define majmin          1.0
-%define relver          9629
+%define relver          9631
 %define nvidialibdir    %{_libdir}/nvidia
 %define nvidialib32dir  %{_prefix}/lib/nvidia
 %define desktop_vendor  rpmforge
+
+#define beta .beta
 
 %define debug_package   %{nil}
 
 Summary: Proprietary NVIDIA hardware accelerated OpenGL display driver
 Name: nvidia-x11-drv
 Version: %{majmin}.%{relver}
-Release: 2
+Release: 1%{?beta}
 License: Proprietary
 Group: User Interface/X Hardware Support
 URL: http://www.nvidia.com/object/unix.html
 # i386
-Source0: http://download.nvidia.com/XFree86/Linux-x86/%{majmin}-%{relver}/NVIDIA-Linux-x86-%{majmin}-%{relver}-pkg1.run
+Source0: http://download.nvidia.com/XFree86/Linux-x86/%{majmin}-%{relver}/NVIDIA-Linux-x86-%{majmin}-%{relver}-pkg0.run
 # x86_64
 Source1: http://download.nvidia.com/XFree86/Linux-x86_64/%{majmin}-%{relver}/NVIDIA-Linux-x86_64-%{majmin}-%{relver}-pkg2.run
 Source2: nvidia.sh
@@ -281,6 +283,19 @@ fi
 
 
 %changelog
+* Mon Dec 11 2006 Matthias Saou <http://freshrpms.net/> 1.0.9631-1
+- Update to 1.0-9631 (stable).
+
+* Thu Nov 30 2006 Matthias Saou <http://freshrpms.net/> 1.0.9742-1.beta
+- Update to the latest 1.0-9742 beta driver.
+
+* Thu Nov 30 2006 Matthias Saou <http://freshrpms.net/> 1.0.9629-3
+- Use the pkg0 file for i386 since it's the same as the pkg1 but without all
+  of the precompiled kernel modules we don't use anyway. We save 6MB+ of SRPM.
+- For x86_64 there are no precompiled modules (ATM) so pkg0 and pkg1 are the
+  same, but pkg2 has the lib32 files in addition, so it makes sense to use
+  pkg2 there.
+
 * Thu Nov 16 2006 Matthias Saou <http://freshrpms.net/> 1.0.9629-2
 - Include Xen patch and spec fixes from Juliano F. Ravasi.
 

@@ -3,8 +3,8 @@
 
 Summary: Multiband Atheros Driver for Wireless Fidelity
 Name: madwifi
-Version: 0.9.2
-Release: 2
+Version: 0.9.2.1
+Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://madwifi.org/
@@ -125,6 +125,9 @@ dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
 
 %changelog
+* Mon Dec 11 2006 Matthias Saou <http://freshrpms.net/> 0.9.2.1-1
+- Update to 0.9.2.1 security fix release.
+
 * Tue Oct 10 2006 Matthias Saou <http://freshrpms.net/> 0.9.2-2
 - Add the rpm release to the dkms module version, to make updating the module
   to a fixed same version work (--rpm_safe_upgrade doesn't work as advertised).
