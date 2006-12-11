@@ -1,4 +1,4 @@
-# $Id$
+# $Id: nmap.spec 4900 2006-11-18 23:59:38Z dag $
 # Authority: matthias
 # Upstream: <nmap-dev$insecure,org>
 
@@ -21,7 +21,7 @@
 
 Summary: Network exploration tool and security scanner
 Name: nmap
-Version: 4.11
+Version: 4.20
 Release: 1
 Epoch: 2
 License: GPL
@@ -102,6 +102,9 @@ desktop-file-install \
 
 
 %changelog
+* Sun Dec 10 2006 Dag Wieers <dag@wieers.com> - 4.20-1
+- Updated to release 4.20.
+
 * Thu Jun 29 2006 Dag Wieers <dag@wieers.com> - 4.11-1
 - Updated to release 4.11.
 

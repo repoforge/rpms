@@ -10,7 +10,7 @@
 
 Summary: Clone of Mirabilis' popular ICQ
 Name: gnomeicu
-Version: 0.99.9
+Version: 0.99.10
 Release: 1
 Epoch: 1
 License: GPL
@@ -88,6 +88,9 @@ scrollkeeper-update -q || :
 %endif
 
 %changelog
+* Sat Feb 18 2006 Dag Wieers <dag@wieers.com> - 0.99.10-1
+- Updated to release 0.99.10.
+
 * Mon Feb 13 2006 Dag Wieers <dag@wieers.com> - 0.99.9-1
 - Updated to release 0.99.9.
 

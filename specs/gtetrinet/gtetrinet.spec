@@ -4,8 +4,8 @@
 
 Summary: GNOME version of a tetris game playable on the net
 Name: gtetrinet
-Version: 0.7.9
-Release: 2
+Version: 0.7.11
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://gtetrinet.sourceforge.net/
@@ -14,7 +14,7 @@ Source1: tetrinet.txt
 Source2: http://www.mavit.pwp.blueyonder.co.uk/mmr-sounds-1.0.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libgnome >= 2.0.0, libgnomeui >= 2.0.0
-BuildRequires: libgnome-devel >= 2.0.0, libgnomeui-devel >= 2.0.0, GConf2-devel
+BuildRequires: gtk2-devel >= 2.6.0, libgnome-devel >= 2.0.0, libgnomeui-devel >= 2.0.0, GConf2-devel
 BuildRequires: gettext, perl(XML::Parser)
 
 %description
@@ -60,6 +60,9 @@ is, check out tetrinet.org)
 
 
 %changelog
+* Sun Dec 10 2006 Dag Wieers <dag@wieers.com> - 0.7.11-1
+- Updated to release 0.7.11.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.7.9-2
 - Release bump to drop the disttag number in FC5 build.
 

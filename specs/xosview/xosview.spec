@@ -20,8 +20,8 @@
 
 Summary: X Window System utility for monitoring system resources
 Name: xosview
-Version: 1.8.2
-Release: 1.2
+Version: 1.8.3
+Release: 1
 License: GPL/BSD
 Group: Applications/System
 URL: http://xosview.sourceforge.net/
@@ -64,14 +64,13 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_prefix}/X11R6/bin/ \
-			%{buildroot}%{_prefix}/X11R6/man/man1/ \
-			%{buildroot}%{_prefix}/X11R6/lib/X11/app-defaults/
-%makeinstall \
-	PREFIX_TO_USE="%{buildroot}%{_prefix}/X11R6"
+%{__install} -d -m0755 %{buildroot}%{_bindir} \
+			%{buildroot}%{_mandir}/man1/ \
+			%{buildroot}%{_prefix}/lib/X11/app-defaults/
+%makeinstall PREFIX_TO_USE="%{buildroot}%{_prefix}"
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/icons/xosview.png
 
-%{__chmod} 0755 %{buildroot}%{_usr}/X11R6/bin/xosview
+%{__chmod} 0755 %{buildroot}%{_bindir}/xosview
 
 %if %{?_without_freedesktop:1}0
 	%{__install} -Dp -m0644 xosview.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/xosview.desktop
@@ -84,7 +83,7 @@ EOF
 %endif
 
 ### FIXME: Binary does not get stripped by brp-strip (RPM bug?)
-strip %{buildroot}%{_prefix}/X11R6/bin/xosview
+strip %{buildroot}%{_bindir}/xosview
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -92,16 +91,16 @@ strip %{buildroot}%{_prefix}/X11R6/bin/xosview
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYING* README README.linux TODO
-%doc %{_prefix}/X11R6/man/man1/xosview.1*
-%{_prefix}/X11R6/bin/xosview
-%{_prefix}/X11R6/lib/X11/app-defaults/XOsview
+%doc %{_mandir}/man1/xosview.1*
+%{_bindir}/xosview
+%{_prefix}/lib/X11/app-defaults/XOsview
 %{_datadir}/icons/xosview.png
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/xosview.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-xosview.desktop}
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.8.2-1.2
-- Rebuild for Fedora Core 5.
+* Sun Nov 26 2006 Dag Wieers <dag@wieers.com> - 1.8.3-1
+- Updated to release 1.8.3.
 
 * Mon Mar 28 2005 Dag Wieers <dag@wieers.com> - 1.8.2-1
 - Updated to release 1.8.2.

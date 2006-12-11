@@ -4,7 +4,7 @@
 
 Summary: Abstract asynchronous event notification library
 Name: libevent
-Version: 1.2
+Version: 1.2a
 Release: 1
 License: BSD
 Group: System Environment/Libraries
@@ -67,6 +67,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libevent.la
 
 %changelog
+* Sun Dec 10 2006 Dag Wieers <dag@wieers.com> - 1.2a-1
+- Updated to release 1.2a.
+
 * Mon Oct 16 2006 Dag Wieers <dag@wieers.com> - 1.2-1
 - Updated to release 1.2.
 

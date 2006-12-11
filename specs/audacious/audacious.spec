@@ -8,6 +8,10 @@
 %{!?dist:%define _with_modxorg 1}
 %{?fc5:%define _with_modxorg 1}
 
+%{?el4:%define _without_jack 1}
+%{?fc3:%define _without_jack 1}
+%{?fc2:%define _without_jack 1}
+
 Summary: Media player which uses a skinned interface
 Name: audacious
 Version: 1.1.2
@@ -24,16 +28,17 @@ Patch4: audacious-1.1.0-quoting.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): /sbin/ldconfig, desktop-file-utils
 Requires(postun): /sbin/ldconfig, desktop-file-utils
-BuildRequires: gtk2-devel, libglade2-devel, gettext-devel
+BuildRequires: gtk2-devel >= 2.6, libglade2-devel, gettext-devel
 BuildRequires: libvisual-devel, SDL-devel, gcc-c++
 BuildRequires: libogg-devel, libvorbis-devel, flac-devel, id3lib-devel
 BuildRequires: alsa-lib-devel, esound-devel, libmpcdec-devel, taglib-devel
 %{!?_without_vfs:BuildRequires: gnome-vfs2-devel}
 %{!?_without_gconf:BuildRequires: GConf2-devel}
 %{!?_without_lirc:BuildRequires: lirc-devel}
+%{!?_without_jack:BuildRequires: jack-audio-connection-kit-devel}
 BuildRequires: libsndfile-devel, libsamplerate-devel, libsidplay-devel
 Buildrequires: libmusicbrainz-devel, curl-devel, bc, libcdio-devel
-BuildRequires: jack-audio-connection-kit-devel, arts-devel, libmodplug-devel
+BuildRequires: arts-devel, libmodplug-devel
 %{?_with_modxorg:BuildRequires: libXext-devel, libXt-devel}
 
 %description
@@ -159,10 +164,11 @@ update-desktop-database -q || :
 %defattr(-, root, root, 0755)
 %{_libdir}/audacious/Output/libESD.so
 
+%if %{!?_without_jack:1}0
 %files jack
 %defattr(-, root, root, 0755)
 %{_libdir}/audacious/Output/libjackout.so
-
+%endif
 
 %changelog
 * Fri Sep 15 2006 Matthias Saou <http://freshrpms.net/> 1.1.2-1
