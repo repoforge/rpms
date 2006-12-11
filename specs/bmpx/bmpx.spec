@@ -4,13 +4,13 @@
 
 Summary: Beep Media Player
 Name: bmpx
-Version: 0.32.0
+Version: 0.36.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.beep-media-player.org/
-Source: http://files.beep-media-player.org/releases/0.32/bmpx-%{version}.tar.bz2
-Patch0: bmpx-0.30.3-install.patch
+Source: http://files.beep-media-player.org/releases/0.36/bmpx-%{version}.tar.bz2
+Patch0: bmpx-0.36.0-install.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
@@ -21,7 +21,7 @@ BuildRequires: dbus-devel, hal-devel, gamin-devel, libmusicbrainz-devel
 BuildRequires: taglib-devel, neon-devel, faad2-devel, libsidplay-devel
 BuildRequires: boost-devel, glibmm24-devel, gtkmm24-devel, libglademm24-devel
 BuildRequires: startup-notification-devel, sqlite-devel, alsa-lib-devel
-BuildRequires: libnotify-devel
+BuildRequires: libnotify-devel, librsvg2-devel, cdparanoia-devel
 # Needed for libhrel
 BuildRequires: flex, bison
 
@@ -100,14 +100,15 @@ update-mime-database  %{_datadir}/mime &>/dev/null || :
 %{_libdir}/bmpx/
 %exclude %{_libdir}/bmpx/plugins/*/*/*.la
 %{_libexecdir}/beep-media-player-2-bin
+%{_libexecdir}/beep-media-player-2-sentinel
 %{_datadir}/applications/bmp-2.0.desktop
+%{_datadir}/applications/bmp-2.0-offline.desktop
 %{_datadir}/applications/bmp-enqueue-2.0.desktop
 %{_datadir}/applications/bmp-play-2.0.desktop
 %{_datadir}/bmpx/
 %{_datadir}/dbus-1/services/org.beepmediaplayer.bmp.service
+%{_datadir}/dbus-1/services/org.beepmediaplayer.sentinel.service
 %{_datadir}/icons/hicolor/48x48/apps/bmpx.png
-%{_datadir}/icons/hicolor/48x48/mimetypes/gnome-mime-application-x-media-library-query.png
-%{_datadir}/mime/packages/bmp-2.0.xml
 %{_mandir}/man1/beep-media-player-2.1*
 
 %files devel
@@ -117,6 +118,12 @@ update-mime-database  %{_datadir}/mime &>/dev/null || :
 
 
 %changelog
+* Mon Dec 11 2006 Matthias Saou <http://freshrpms.net/> 0.36.0-1
+- Update to 0.36.0.
+- Update install patch so that it still applies.
+- Add new librsvg2-devel and cdparanoia-devel build requirements.
+- Add new sentinel related files and remove no longer installed icon and mime.
+
 * Mon Oct  2 2006 Matthias Saou <http://freshrpms.net/> 0.32.0-1
 - Update to 0.32.0.
 
