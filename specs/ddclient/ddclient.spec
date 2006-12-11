@@ -4,7 +4,7 @@
 Summary: Updates dynamic DNS entries
 Name: ddclient
 Version: 3.7.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://ddclient.sourceforge.net/
@@ -13,6 +13,7 @@ Source: http://dl.sf.net/ddclient/ddclient-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
+Requires: perl(IO::Socket::SSL)
 
 %description
 Ddclient is a Perl client used to update dynamic DNS entries for accounts on
@@ -34,7 +35,7 @@ updates, and sending update status to syslog and through e-mail.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 ddclient %{buildroot}%{_sbindir}/ddclient
-%{__install} -Dp -m0755 sample-etc_rc.d_init.d_ddclient.redhat %{buildroot}%{_sysconfdir}/rc.d/init.d/ddclient
+%{__install} -Dp -m0755 sample-etc_rc.d_init.d_ddclient.redhat %{buildroot}%{_initrddir}/ddclient
 %{__install} -Dp -m0600 sample-etc_ddclient.conf %{buildroot}%{_sysconfdir}/ddclient/ddclient.conf
 
 %clean
@@ -47,29 +48,28 @@ fi
 
 %preun
 if [ $1 -eq 0 ]; then
-    /sbin/service ddclient stop >/dev/null 2>&1 || :
+    /sbin/service ddclient stop &>/dev/null || :
     /sbin/chkconfig --del ddclient
 fi
 
 %postun
 if [ $1 -ge 1 ]; then
-    /sbin/service ddclient condrestart >/dev/null 2>&1 || :
+    /sbin/service ddclient condrestart &>/dev/null || :
 fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING COPYRIGHT README README.cisco sample-*
+%doc COPYING COPYRIGHT README* sample-*
+%config(noreplace) %{_sysconfdir}/ddclient/
+%config %{_initrddir}/ddclient
 %{_sbindir}/ddclient
-%config(noreplace) %{_sysconfdir}/ddclient/ddclient.conf
-%{_sysconfdir}/rc.d/init.d/ddclient
-
 
 %changelog
+* Mon Dec 11 2006 Dag Wieers <dag@wieers.com> - 3.7.0-2
+- Added perl(IO::Socket::SSL) dependency since ssl=yes is enabled by default. (Jim Richardson)
+
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 3.7.0-1
 - Updated to release 3.7.0.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.6.7-1.2
-- Rebuild for Fedora Core 5.
 
 * Sun Dec 18 2005 Dries Verachtert <dries@ulyssis.org> - 3.6.7-1
 - Updated to release 3.6.7.

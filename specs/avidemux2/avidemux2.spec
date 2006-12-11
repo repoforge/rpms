@@ -14,16 +14,17 @@
 
 Summary: Graphical video editing tool
 Name: avidemux2
-Version: 2.1.2
+Version: 2.3.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://fixounet.free.fr/avidemux/
 
-Source: http://download.berlios.de/avidemux/avidemux-%{version}.tar.gz
+Source: http://prdownload.berlios.de/avidemux/avidemux_%{version}.tar.gz
+#Source: http://download.berlios.de/avidemux/avidemux-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc >= 3.0, glib-devel, gtk2-devel >= 2.6.0
+BuildRequires: gcc >= 3.0, glib-devel, gtk2-devel >= 2.6
 BuildRequires: nasm >= 0.98.32, automake, gettext, autoconf
 BuildRequires: gcc-c++, libxml2-devel, xvidcore-devel, libmad-devel
 BuildRequires: alsa-lib-devel, arts-devel, faad2-devel, a52dec-devel
@@ -99,6 +100,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/avidemux2.desktop}
 
 %changelog
+* Tue Dec 12 2006 Dag Wieers <dag@wieers.com> - 2.3.0-1
+- Updated to release 2.3.0.
+
 * Wed Mar 08 2006 Dag Wieers <dag@wieers.com> - 2.1.2-1
 - Updated to release 2.1.2.
 

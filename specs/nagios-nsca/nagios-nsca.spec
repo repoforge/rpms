@@ -9,8 +9,8 @@
 
 Summary: Nagios Service Check Acceptor
 Name: nagios-nsca
-Version: 2.5
-Release: 2.2
+Version: 2.6
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.nagios.org/
@@ -191,8 +191,8 @@ fi
 %{_sbindir}/send_nsca
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.5-2.2
-- Rebuild for Fedora Core 5.
+* Mon Dec 11 2006 Dag Wieers <dag@wieers.com> - 2.6-1
+- Updated to release 2.6.
 
 * Wed Feb 08 2006 Dag Wieers <dag@wieers.com> - 2.5-2
 - Removed -s option in sysv script. (Rick Johnson)

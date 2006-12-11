@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: <webadmin-devel$lists,sf,net>
 
-##BuildAsRoot: 1
+# BuildAsRoot: 1
 
 ### FIXME: The official webmin RPM package is broken. Please back up all configuration files before upgrading.
 
@@ -13,7 +13,7 @@
 
 Summary: Web-based administration interface
 Name: webmin
-Version: 1.270
+Version: 1.310
 Release: 1
 License: BSD
 Group: System Environment/Base
@@ -150,6 +150,9 @@ fi
 %{_libexecdir}/webmin
 
 %changelog
+* Mon Dec 11 2006 Dag Wieers <dag@wieers.com> - 1.310-1
+- Updated to release 1.310.
+
 * Tue Apr 11 2006 Dag Wieers <dag@wieers.com> - 1.270-1
 - Updated to release 1.270.
 
