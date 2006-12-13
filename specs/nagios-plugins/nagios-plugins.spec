@@ -12,11 +12,11 @@
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 %define _libexecdir %{_libdir}/nagios/plugins
-%define extraplugins cluster cluster2 cpqarray hltherm ipxping logins rbl timeout uptime
+%define extraplugins cluster cluster2 cpqarray hltherm http-with-client-certificate ipxping logins rbl timeout uptime
 
 Summary: Host/service/network monitoring program plugins for Nagios
 Name: nagios-plugins
-Version: 1.4.4
+Version: 1.4.5
 Release: 1
 License: GPL
 Group: Applications/System
@@ -41,7 +41,7 @@ Requires: perl, perl(Net::SNMP), fping
 
 %description
 This package contains the basic plugins necessary for use with the
-Nagios package.  This package should install cleanly on almost any
+Nagios package. This package should install cleanly on almost any
 RPM-based system.
 
 But you may need additional packages. Depending on what plugins you
@@ -50,6 +50,17 @@ use, the following packages may be required:
     bind-utils, mysql, net-snmp-utils, ntp, openldap,
     openssh-clients, openssl, postgresql-libs
     qstat, radiusclient, samba-client, sendmail
+
+%package setuid
+Summary: Host/service/network monitoring program plugins for Nagios requiring setuid
+Group: Applications/System
+
+Obsoletes: nagios-plugins-icmp <= %{version}-%{release}
+Obsoletes: nagios-plugins-dhcp <= %{version}-%{release}
+
+%description setuid
+This package contains the setuid plugins necessary for use with the
+Nagios package.
 
 %prep
 %setup
@@ -88,6 +99,8 @@ done
 %{__install} -m0755 contrib/check* %{buildroot}%{_libdir}/nagios/plugins/contrib/
 %{__install} -m0755 check_* %{buildroot}%{_libdir}/nagios/plugins/
 
+%{__install} -m0755 plugins-root/check_{dhcp,icmp} %{buildroot}%{_libdir}/nagios/plugins/
+
 %{__install} -Dp -m0644 plugins-scripts/utils.pm %{buildroot}%{perl_vendorlib}/utils.pm
 %{__install} -Dp -m0644 command.cfg %{buildroot}%{_sysconfdir}/nagios/command-plugins.cfg
 
@@ -103,8 +116,21 @@ done
 %dir %{_libdir}/nagios/
 %{_libdir}/nagios/plugins/
 %{perl_vendorlib}/utils.pm
+%exclude %{_libdir}/nagios/plugins/check_dhcp
+%exclude %{_libdir}/nagios/plugins/check_icmp
+
+%files setuid
+%defattr(4755, root, root, 0755)
+%dir %{_libdir}/nagios/
+%dir %{_libdir}/nagios/plugins/
+%{_libdir}/nagios/plugins/check_dhcp
+%{_libdir}/nagios/plugins/check_icmp
 
 %changelog
+* Tue Dec 12 2006 Dag Wieers <dag@wieers.com> - 1.4.5-1
+- Updated to release 1.4.5.
+- Added setuid sub-package for setuid plugins. (Philip Chase)
+
 * Wed Nov 01 2006 Dag Wieers <dag@wieers.com> - 1.4.4-1
 - Updated to release 1.4.4.
 - Fixed the problem where --with-pgsql defaults to 'yes'. (Jason Kim)
