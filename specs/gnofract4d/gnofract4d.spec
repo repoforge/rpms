@@ -6,7 +6,7 @@
 
 Summary: Program to generate and view fractals
 Name: gnofract4d
-Version: 3.1
+Version: 3.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -37,13 +37,6 @@ python2 setup.py build
 python2 setup.py install \
         --root="%{buildroot}"
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --delete-original             \
-	--vendor %{desktop_vendor}                 \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	%{buildroot}%{_datadir}/gnofract4d/gnofract4d.desktop
-
 %post
 scrollkeeper-update -q || :
 
@@ -58,16 +51,17 @@ scrollkeeper-update -q || :
 %doc COPYING README
 %doc %{_datadir}/gnome/help/gnofract4d/
 %{_bindir}/gnofract4d
-%dir %{_datadir}/maps/
-%{_datadir}/maps/gnofract4d/
+%{_datadir}/gnofract4d/
 %{_datadir}/mime/packages/gnofract4d-mime.xml
-%{_datadir}/applications/%{desktop_vendor}-gnofract4d.desktop
+%{_datadir}/applications/gnofract4d.desktop
 %{_datadir}/pixmaps/gnofract4d/
 %{_datadir}/pixmaps/gnofract4d-logo.png
 %{_prefix}/lib/gnofract4d-%{version}/
-%{_datadir}/formulas/gnofract4d/
 
 %changelog
+* Fri Dec 15 2006 Dries Verachtert <dries@ulyssis.org> - 3.2-1
+- Updated to release 3.2.
+
 * Tue Sep 12 2006 Dag Wieers <dag@wieers.com> - 3.1-1
 - Updated to release 3.1.
 

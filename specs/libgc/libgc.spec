@@ -6,7 +6,7 @@
 Summary: Conservative garbage collector for C
 Name: libgc
 Version: 6.8
-Release: 1
+Release: 2
 Epoch: 1
 License: BSD
 Group: System Environment/Libraries
@@ -16,6 +16,7 @@ Source: http://www.hpl.hp.com/personal/Hans_Boehm/%{real_name}/gc_source/%{real_
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Obsoletes: libgc-6, libgc-6.1alpha5, gc
+BuildRequires: gcc-c++
 
 %description
 Boehm's GC is a garbage collecting storage allocator that is
@@ -37,7 +38,7 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-	--enable-threads="pthreads"
+	--enable-threads="pthreads" --enable-cplusplus
 %{__make} %{?_smp_mflags} LIBS="-ldl"
 
 %install
@@ -63,20 +64,26 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc README.QUICK
-%{_libdir}/*.so.*
+%{_libdir}/libgc.so.*
+%{_libdir}/libgccpp.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/*
 %doc %{_mandir}/man?/*
-%{_libdir}/*.a
-%{_libdir}/*.so
+%{_libdir}/libgc.a
+%{_libdir}/libgccpp.a
+%{_libdir}/libgc.so
+%{_libdir}/libgccpp.so
 %{_includedir}/*.h
-%{_includedir}/gc
+%{_includedir}/gc/
 %{_includedir}/libgc/
 #exclude %{_libdir}/*.la
 
 %changelog
+* Fri Dec 15 2006 Dries Verachtert <dries@ulyssis.org> - 6.8-2
+- Added --enable-cplusplus, thanks to Jens Hoelldampf.
+
 * Wed Aug 09 2006 Dries Verachtert <dries@ulyssis.org> - 6.8-1
 - Updated to release 6.8.
 

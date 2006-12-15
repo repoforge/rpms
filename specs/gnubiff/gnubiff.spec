@@ -7,7 +7,7 @@
 
 Summary: Mail notification program
 Name: gnubiff
-Version: 2.2.3
+Version: 2.2.4
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -71,6 +71,9 @@ mails. It supports pop3, apop, imap4, mh, qmail and mailfile.
 %{_datadir}/pixmaps
 
 %changelog
+* Fri Dec 15 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.4-1
+- Updated to release 2.2.4.
+
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.3-1
 - Updated to release 2.2.3.
 

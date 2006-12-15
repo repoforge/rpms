@@ -8,8 +8,8 @@
 
 Summary: Virtual tunnel over TCP/IP networks
 Name: vtun
-Version: 2.6
-Release: 0.2
+Version: 3.0.0
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://vtun.sourceforge.net/
@@ -19,9 +19,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: flex, bison, cyrus-sasl-devel, openssl-devel, lzo-devel
+%{?fc6:BuildRequires: glibc-kernheaders}
+%{?fc5:BuildRequires: glibc-kernheaders}
+%{?fc4:BuildRequires: glibc-kernheaders}
 %{?fc3:BuildRequires: glibc-kernheaders}
 %{?fc2:BuildRequires: glibc-kernheaders}
 %{?fc1:BuildRequires: glibc-kernheaders}
+%{?el4:BuildRequires: glibc-kernheaders}
 %{?el3:BuildRequires: glibc-kernheaders}
 %{?rh9:BuildRequires: glibc-kernheaders}
 %{?rh8:BuildRequires: glibc-kernheaders}
@@ -40,7 +44,7 @@ It is completely user space implementation and does not require modification
 to any kernel parts.
 
 %prep
-%setup -n %{name}
+%setup
 
 %{__cat} <<'EOF' >vtund.sysv
 #!/bin/sh
@@ -176,6 +180,9 @@ fi
 %{_localstatedir}/log/vtund/
 
 %changelog
+* Sun Dec 15 2006 Dries Verachtert <dries@ulyssis.org> - 3.0.0-1
+- Updated to release 3.0.0.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.6-0.2
 - Rebuild for Fedora Core 5.
 

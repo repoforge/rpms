@@ -12,7 +12,7 @@
 
 Summary: Structured WYSIWYG scientific text editor
 Name: texmacs
-Version: 1.0.6.6
+Version: 1.0.6.7
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -78,6 +78,9 @@ drawing editor and a presentation mode.
 %{_libexecdir}/TeXmacs/
 
 %changelog
+* Sun Dec 15 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.6.7-1
+- Update to release 1.0.6.7.
+
 * Mon Aug 21 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.6.6-1
 - Update to release 1.0.6.6.
 

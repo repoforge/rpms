@@ -3,7 +3,7 @@
 
 Summary: Console based bittorrent client
 Name: rtorrent
-Version: 0.6.4
+Version: 0.7.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -13,12 +13,12 @@ Source: http://libtorrent.rakshasa.no/downloads/rtorrent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, libsigc++20-devel, ncurses-devel
-BuildRequires: libtorrent-devel, curl-devel >= 7.12
+BuildRequires: libtorrent-devel >= 0.11.0, curl-devel >= 7.12
 
 %description
 rTorrent is a console-based BitTorrent client. It aims to be a 
 fully-featured and efficient client with the ability to run in the 
-background using screen. It supports fast-resume and  session
+background using screen. It supports fast-resume and session
 management.
 
 %prep
@@ -42,6 +42,9 @@ management.
 %{_bindir}/rtorrent
 
 %changelog
+* Fri Dec 15 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.0-1
+- Updated to release 0.7.0.
+
 * Mon Nov 13 2006 Dag Wieers <dag@wieers.com> - 0.6.4-1
 - Updated to release 0.6.4.
 

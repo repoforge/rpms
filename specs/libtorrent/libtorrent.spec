@@ -3,7 +3,7 @@
 
 Summary: BitTorrent library
 Name: libtorrent
-Version: 0.10.4
+Version: 0.11.0
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -12,7 +12,8 @@ URL: http://libtorrent.rakshasa.no/
 Source: http://libtorrent.rakshasa.no/downloads/libtorrent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, pkgconfig, openssl-devel, libsigc++20-devel
+BuildRequires: gcc-c++, pkgconfig, openssl-devel
+#libsigc++20-devel
 
 %description
 LibTorrent is a BitTorrent library written in C++ for Unix. It is designed to
@@ -62,6 +63,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libtorrent.pc
 
 %changelog
+* Fri Dec 15 2006 Dries Verachtert <dries@ulyssis.org> - 0.11.0-1
+- Updated to release 0.11.0.
+
 * Mon Nov 13 2006 Dag Wieers <dag@wieers.com> - 0.10.4-1
 - Updated to release 0.10.4.
 
