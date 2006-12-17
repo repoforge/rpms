@@ -8,7 +8,7 @@
 
 Summary: 3D chess interface
 Name: glchess
-Version: 0.9.12
+Version: 1.0
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -56,6 +56,9 @@ python setup.py build
 %ghost %{python_sitelib}/glchess/*/*.pyo
 
 %changelog
+* Sun Nov 12 2006 Dag Wieers <dag@wieers.com> - 1.0-1
+- Updated to release 1.0.
+
 * Sun Nov 12 2006 Dag Wieers <dag@wieers.com> - 0.9.12-1
 - Updated to release 0.9.12.
 
