@@ -1,0 +1,29 @@
+--- mdfour.h.orig	2004-09-17 23:35:50.000000000 +0200
++++ mdfour.h	2006-12-18 15:10:05.678987088 +0100
+@@ -24,7 +24,7 @@
+ #include "types.h"
+
+ struct rs_mdfour {
+-    int                 A, B, C, D;
++    unsigned int        A, B, C, D;
+ #if HAVE_UINT64
+     uint64_t            totalN;
+ #else
+--- patch.c.orig	2004-09-17 23:35:50.000000000 +0200
++++ patch.c	2006-12-18 15:10:05.678987088 +0100
+@@ -214,12 +214,12 @@
+     void            *buf, *ptr;
+     rs_buffers_t    *buffs = job->stream;
+ 
+-    len = job->basis_len;
+-    
+     /* copy only as much as will fit in the output buffer, so that we
+      * don't have to block or store the input. */
+-    if (len > buffs->avail_out)
++    if (job->basis_len > buffs->avail_out)
+         len = buffs->avail_out;
++    else
++        len = job->basis_len;
+ 
+     if (!len)
+         return RS_BLOCKED;

@@ -24,7 +24,8 @@ Source99: filter-requires-spamassassin.sh
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl(HTML::Parser) >= 3.24, perl(Net::DNS), perl(Time::HiRes), openssl-devel
-Requires: procmail, perl(Net::DNS), perl(Time::HiRes)
+Requires: procmail, perl(Net::DNS), perl(Time::HiRes), perl-libwww-perl
+Requires: perl(Archive::Tar), perl(IO::Zlib)
 Requires: /sbin/chkconfig, /sbin/service
 #Requires: perl(Mail::SpamAssassin) = %{version}-%{release}
 Provides: perl(Mail::SpamAssassin) = %{version}-%{release}
@@ -183,6 +184,9 @@ fi
 %doc contrib/ masses/ sql/ tools/
 
 %changelog
+* Mon Dec 18 2006 Dag Wieers <dag@wieers.com> - 3.1.7-2
+- Added missing perl dependencies for sa-update. (Pekka Savola)
+
 * Wed Oct 11 2006 Dag Wieers <dag@wieers.com> - 3.1.7-1
 - Updated to release 3.1.7.
 

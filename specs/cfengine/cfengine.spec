@@ -10,7 +10,7 @@
 
 Summary: System administration tool for networks
 Name: cfengine
-Version: 2.1.20
+Version: 2.1.21
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -327,6 +327,9 @@ fi
 %exclude %{_datadir}/cfengine/
 
 %changelog
+* Mon Dec 18 2006 Dag Wieers <dag@wieers.com> - 2.1.21-1
+- Updated to release 2.1.21.
+
 * Fri Apr 21 2006 Dries Verachtert <dries@ulyssis.org> - 2.1.20-1
 - Updated to release 2.1.20.
 

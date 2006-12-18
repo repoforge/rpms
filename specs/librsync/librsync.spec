@@ -6,12 +6,13 @@
 Summary: Library that implements the rsync remote-delta algorithm
 Name: librsync
 Version: 0.9.7
-Release: 1.2
+Release: 2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://librsync.sourceforge.net/
 
 Source: http://dl.sf.net/librsync/librsync-%{version}.tar.gz
+Patch0: librsync-0.9.7-largefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Obsoletes: libhsync <= %{version}
@@ -42,6 +43,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
+%patch0 -p0
 
 %build
 %configure \
@@ -53,18 +55,14 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-
+%{__make} install DESTDIR="%{buildroot}"
 %{__install} -Dp -m0755 rdiff %{buildroot}%{_bindir}/rdiff
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
@@ -81,8 +79,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/librsync.la
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.7-1.2
-- Rebuild for Fedora Core 5.
+* Mon Dec 18 2006 Dag Wieers <dag@wieers.com> - 0.9.7-2
+- Added largefile support patch.
 
 * Sun Sep 11 2005 Dag Wieers <dag@wieers.com> - 0.9.7-1
 - Updated to release 0.9.7.

@@ -3,7 +3,7 @@
 
 Summary: Optical Character Recognition (OCR) program
 Name: gocr
-Version: 0.41
+Version: 0.43
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -40,26 +40,25 @@ This package contains a gtk+ frontend to gocr.
 
 %prep
 %setup
-%patch0 -p0 -b .pgm
+#patch0 -p0 -b .pgm
 # Create mkinstalldirs -> gnome/mkinstalldirs in frontend directory
 %{__ln_s} -f gnome/mkinstalldirs frontend/mkinstalldirs
 
 %build
-# needed for configure
-#export CFLAGS=-lm
 %configure
-#%{__perl} -pi -e 's|^LDFLAGS=|LDFLAGS=-lm |g;' Makefile */Makefile
 %{__make} %{?_smp_mflags}
 
 cd frontend/gnome
 %configure
-%{__make} %{?_smp_mflags}
-cd ../..
+cd -
+%{__make} %{?_smp_mflags} -C frontend/gnome
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall DESTDIR=""
-%makeinstall DESTDIR="" -C frontend/gnome
+#%makeinstall DESTDIR=""
+#%makeinstall DESTDIR="" -C frontend/gnome
+%{__make} install DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}" -C frontend/gnome
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -68,9 +67,9 @@ cd ../..
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS CREDITS HISTORY README REMARK.txt REVIEW TODO
 %doc doc/*.html
+%doc %{_mandir}/man1/gocr.1*
 %{_bindir}/gocr
 %{_bindir}/gocr.tcl
-%{_mandir}/man1/gocr.1*
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -84,14 +83,13 @@ cd ../..
 %{_bindir}/gtk-ocr
 
 %changelog
+* Mon Dec 18 2006 Dag Wieers <dag@wieers.com> - 0.43-1
+- Updated to release 0.43.
+
 * Mon Oct 23 2006 Matthias Saou <http://freshrpms.net/> 0.41-1
 - Update to 0.41.
 - Remove (apparently) no longer needed libm hack.
 - Include user and devel docs only once, in one format.
 
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.37-0.2
-- Rebuild for Fedora Core 5.
-
 * Sun May 11 2003 Dag Wieers <dag@wieers.com> - 0.37-0
 - Initial package. (using DAR)
-

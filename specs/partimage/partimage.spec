@@ -4,8 +4,8 @@
 
 Summary: partition imaging utility, much like Ghost
 Name: partimage
-Version: 0.6.4
-Release: 1.2
+Version: 0.6.5
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.partimage.org/
@@ -58,7 +58,7 @@ This package contains the server daemon for remote imaging.
 %setup
 
 ### FIXME: Disable chowning of files
-%{__perl} -pi.orig -e 's|^\tchown partimag\.root.*$|\\|' Makefile.in
+%{__perl} -pi.orig -e 's|^\tchown partimag:root.*$|\\|' Makefile.in
 
 ### FIXME: Fix mkinstalldirs during 'make install' in po/
 %{__perl} -pi.orig -e 's|^(mkinstalldirs) = .+$|$1 = %{__mkdir_p}|' po/Makefile.in.in
@@ -68,6 +68,12 @@ This package contains the server daemon for remote imaging.
 ###
 
 #OPTIONS="--port=1234 --chroot %{_localstatedir}/partimaged --nologin"
+EOF
+
+%{__cat} <<EOF >partimaged.pam
+auth     required        pam_unix.so
+auth     required        pam.warn.so
+auth     required        pam_listfile.so onerr=fail item=user sense=allow file=/etc/partimaged/partimagedusers
 EOF
 
 %{__cat} <<'EOF' >partimaged.sysv
@@ -177,6 +183,7 @@ EOF
 %configure \
 	--program-prefix="%{?_program_prefix}" \
 	--with-log-dir="%{_localstatedir}/log" \
+	--enable-pam \
 	--disable-ssl \
 	--enable-gui-text \
 	--enable-gui-newt \
@@ -205,6 +212,7 @@ EOF
 %{__install} -Dp -m0755 partimaged.sysv %{buildroot}%{_initrddir}/partimaged
 %{__install} -Dp -m0644 partimaged.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/partimaged
 %{__install} -Dp -m0644 partimaged.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/partimaged
+%{__install} -Dp -m0644 partimaged.pam %{buildroot}%{_sysconfdir}/pam.d/partimaged
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/
 touch %{buildroot}%{_localstatedir}/log/partimaged.log
@@ -235,15 +243,16 @@ fi
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS BOOT* BUGS ChangeLog COPYING FUTURE README SURVEY THANKS TODO
+%doc AUTHORS BOOT* BUGS ChangeLog COPYING FUTURE README* THANKS TODO
 %{_sbindir}/partimage
 
 %files server
 %defattr(-, root, root, 0755)
-%doc README.partimaged
-%config(noreplace) %{_initrddir}/*
-%config(noreplace) %{_sysconfdir}/logrotate.d/*
-%config(noreplace) %{_sysconfdir}/sysconfig/*
+%doc AUTHORS BOOT* BUGS ChangeLog COPYING FUTURE README* THANKS TODO
+%config(noreplace) %{_initrddir}/partimaged
+%config(noreplace) %{_sysconfdir}/logrotate.d/partimaged
+%config(noreplace) %{_sysconfdir}/sysconfig/partimaged
+%config(noreplace) %{_sysconfdir}/pam.d/partimaged
 %{_sbindir}/partimaged
 %exclude %{_infodir}
 
@@ -252,14 +261,14 @@ fi
 %dir %{_localstatedir}/partimaged/
 %ghost %{_localstatedir}/log/partimaged.log
 
-
 %files static
 %defattr(-, root, root, 0755)
+%doc AUTHORS BOOT* BUGS ChangeLog COPYING FUTURE README* THANKS TODO
 %{_sbindir}/partimage-static
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.4-1.2
-- Rebuild for Fedora Core 5.
+* Mon Dec 18 2004 Dag Wieers <dag@wieers.com> - 0.6.5-1
+- Updated to release 0.6.5.
 
 * Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 0.6.4-1
 - Updated to release 0.6.4.
