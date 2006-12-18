@@ -17,7 +17,7 @@
 %{?rh7:%define _without_gtk26 1}
 %{?el2:%define _without_gtk26 1}
 
-%define date 20061023
+%define date 20061214
 
 Summary: Library for encoding and decoding H264/AVC video streams
 Name: x264
@@ -138,6 +138,9 @@ H264/AVC video streams using the x264 graphical utility.
 %endif
 
 %changelog
+* Fri Dec 15 2006 Matthias Saou <http://freshrpms.net/> 0.0.0-0.3.20061214
+- Update to 20061214 snapshot (same soname, no rebuilds required).
+
 * Tue Oct 24 2006 Matthias Saou <http://freshrpms.net/> 0.0.0-0.3.20061023
 - Update to 20061023 snapshot, the last was too old for MPlayer 1.0rc1.
 - Remove no longer needed gtk patch.

@@ -28,7 +28,7 @@
 Summary: DVD video player
 Name: ogle
 Version: 0.9.2
-Release: 7
+Release: 8
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.dtek.chalmers.se/groups/dvd/
@@ -146,6 +146,9 @@ test -e /dev/dvd || test -L /dev/dvd || ln -s cdrom /dev/dvd || :
 
 
 %changelog
+* Thu Dec 14 2006 Matthias Saou <http://freshrpms.net/> 0.9.2-8
+- Update to new 0.9.2-cvs, release candidate for 0.9.3.
+
 * Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 0.9.2-7
 - Add missing build requirements for modular X.
 

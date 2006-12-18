@@ -8,10 +8,6 @@
 %{?dist: %{expand: %%define %dist 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-#{!?dist:%define _without_mmx 1}
-#{?fc6:  %define _without_mmx 1}
-#{?fc5:  %define _without_mmx 1}
-
 %{!?dist:%define _with_modxorg 1}
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
@@ -23,19 +19,15 @@
 %{?rh7:%define _without_alsa 1}
 %{?el2:%define _without_alsa 1}
 
-%define jpegmmx_version 0.1.6
-
 Summary: Tools for recording, editing, playing and encoding mpeg video
 Name: mjpegtools
 Version: 1.9.0
-Release: 0.1
+Release: 0.2
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/
-#Source0: http://dl.sf.net/mjpeg/mjpegtools-%{version}.tar.gz
-Source0: mjpegtools-%{version}cvs.tar.gz
-Source1: http://dl.sf.net/mjpeg/jpeg-mmx-%{jpegmmx_version}.tar.gz
-Patch0: jpeg-mmx-0.1.6-gcc41.patch
+#Source: http://dl.sf.net/mjpeg/mjpegtools-%{version}.tar.gz
+Source: mjpegtools-%{version}cvs.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, SDL-devel, libjpeg-devel, libpng-devel, gtk2-devel
 BuildRequires: libquicktime-devel, libdv-devel, SDL_gfx-devel
@@ -44,15 +36,8 @@ BuildRequires: libquicktime-devel, libdv-devel, SDL_gfx-devel
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 # Required by some other package, it seems... (SDL-devel is a good guess)
 BuildRequires: arts-devel
-# Optimisations are automatically turned on when detected
-# as we build on i686, this will be an i686 only package
-%ifarch %{ix86}
-%{!?_without_mmx:BuildArch: i686}
-%endif
-BuildRequires: nasm
 Requires(post): /sbin/install-info, /sbin/ldconfig
 Requires(preun): /sbin/install-info
-
 
 %description
 The MJPEG-tools are a basic set of utilities for recording, editing,
@@ -75,28 +60,15 @@ of the mjpegtools package.
 
 
 %prep
-%setup -a 1
-%patch0 -p0 -b .gcc41
+%setup
 
 
 %build
-%ifarch %{ix86}
-%if 0%{!?_without_mmx:1}
-pushd jpeg-mmx
-    ./configure && %{__make} CFLAGS="%{optflags}"
-popd
-%endif
-%endif
-
-# Required for 1.8.0 with gcc 4.1 (FC5+)
-export CFLAGS="%{optflags} -fpermissive"
-export CXXFLAGS="%{optflags} -fpermissive"
-%configure \
-%ifarch %{ix86}
-    %{!?_without_mmx:--with-jpeg-mmx="`pwd`/jpeg-mmx-%{jpegmmx_version}"}
-%endif
+%configure
 # Don't use %{?_smp_mflags}, the build can fail! (1.8.0)
-%{__make}
+# Force CFLAGS in order to remove the custom ARCHFLAGS set for x86 and ppc
+# Since the pthread flags are added to CFLAGS and CXXFLAGS by configure, re-add
+%{__make} CFLAGS="%{optflags} -lpthread" CXXFLAGS="%{optflags} -lpthread"
 
 
 %install
@@ -139,6 +111,14 @@ fi
 
 
 %changelog
+* Mon Dec 11 2006 Matthias Saou <http://freshrpms.net/> 1.9.0-0.2
+- Update to today's CVS.
+- Remove jpeg-mmx as it's been officially discontinued (very little to no
+  speed improvement on modern x86 CPUs).
+- Remove nasm build requirement (was used by jpeg-mmx).
+- Make sure we use *only* our CFLAGS, thus make the package i386 again instead
+  of i686. I wonder how much this impacts performance, not much in theory.
+
 * Wed Oct 18 2006 Matthias Saou <http://freshrpms.net/> 1.9.0-0.1
 - Update to today's CVS to fix ppc build.
 

@@ -6,14 +6,13 @@
 Summary: Client for ED2K Peer-to-Peer Networks based on eMule
 Name: amule
 Version: 2.1.3
-Release: 1%{?prever:.%{prever}}
+Release: 2%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Internet
 URL: http://www.amule.org/
-Source: http://download.berlios.de/amule/aMule-%{version}%{?prever}.tar.bz2
+Source0: http://download.berlios.de/amule/aMule-%{version}%{?prever}.tar.bz2
+Source1: emule_logo.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires(post): /usr/sbin/alternatives
-Requires(preun): /usr/sbin/alternatives
 BuildRequires: gcc-c++, wxGTK-devel >= 2.6.0, zlib-devel, gettext-devel
 BuildRequires: flex, bison
 
@@ -37,7 +36,6 @@ same network.
 %install
 %{__rm} -rf %{buildroot} _docs
 %{__make} install DESTDIR=%{buildroot}
-%{__mv} %{buildroot}%{_bindir}/ed2k %{buildroot}%{_bindir}/ed2k.%{name}
 %find_lang %{name}
 # Move the docs back to be included with %%doc
 %{__mv} %{buildroot}%{_defaultdocdir}/aMule-* _docs
@@ -46,14 +44,15 @@ for file in %{buildroot}%{_datadir}/applications/*.desktop; do
     iconv -f ISO8859-1 -t UTF-8 -o tmp.desktop ${file}
     %{__mv} tmp.desktop ${file}
 done
+# Replace xpm icon with our png one
+%{__rm} -f %{buildroot}%{_datadir}/pixmaps/amule.xpm
+%{__install} -p -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/amule.png
+%{__perl} -pi -e 's|amule.xpm|amule.png|g' \
+    %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %post
 update-desktop-database -q 2>/dev/null || :
-/usr/sbin/alternatives --install %{_bindir}/ed2k ed2k %{_bindir}/ed2k.%{name} 60 || :
-
-%preun
-/usr/sbin/alternatives --remove ed2k %{_bindir}/ed2k.%{name} || :
 
 %postun
 update-desktop-database -q 2>/dev/null || :
@@ -70,7 +69,8 @@ update-desktop-database -q 2>/dev/null || :
 %{_libdir}/xchat/plugins/xas.pl
 %{_datadir}/applications/*.desktop
 #{_datadir}/cas/
-%{_datadir}/pixmaps/*.xpm
+%{_datadir}/pixmaps/alc.xpm
+%{_datadir}/pixmaps/amule.png
 %lang(de) %{_mandir}/de/man1/*.1*
 %lang(es) %{_mandir}/es/man1/*.1*
 %lang(fr) %{_mandir}/fr/man1/*.1*
@@ -79,6 +79,11 @@ update-desktop-database -q 2>/dev/null || :
 
 
 %changelog
+* Wed Nov 15 2006 Matthias Saou <http://freshrpms.net/> 2.1.3-2
+- Remove all of the alternatives stuff.
+- Replace the default (ugly) icon with a much nicer transparent png one.
+  Haven't found any nicer replacement for alc.xpm, though.
+
 * Mon Jun 12 2006 Matthias Saou <http://freshrpms.net/> 2.1.3-1
 - Update to 2.1.3.
 

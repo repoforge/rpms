@@ -6,18 +6,16 @@
 
 Summary: Frozen Bubble arcade game
 Name: frozen-bubble
-Version: 1.0.0
-Release: 9
+Version: 2.0.0
+Release: 0
 License: GPL
 Group: Amusements/Games
 URL: http://www.frozen-bubble.org/
-Source: http://zarb.org/~gc/fb/frozen-bubble-%{version}.tar.bz2
-Patch0: frozen-bubble-1.0.0-perl-SDL.patch
-Patch1: frozen-bubble-1.0.0-FBLE.pm.patch
+Source: http://zarb.org/~gc/fb/frozen-bubble-%{version}-9fdd84f56e5221e6c58c12eab72459d9.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: perl-SDL >= 1.19.0, SDL, SDL_mixer >= 1.2.2
-BuildRequires: perl-SDL >= 1.19.0, SDL-devel, SDL_mixer-devel >= 1.2.2
-BuildConflicts: gimp-perl, gsl, perl-PDL
+Requires: perl-SDL >= 2.1.3
+BuildRequires: perl-SDL >= 2.1.3, SDL_mixer-devel, SDL_Pango-devel, glib2-devel
+BuildRequires: gettext
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
@@ -27,29 +25,48 @@ stereo sound effects, 7 unique graphical transition effects and a level
 editor.
 
 
+%package server
+Summary: Frozen Bubble network game dedicated server
+Group: System Environment/Daemons
+
+%description server
+Frozen Bubble network game dedicated server. The server is already included
+with the game in order to be launched automatically for LAN games, so you
+only need to install this package if you want to run a full-time dedicated
+Frozen Bubble network game dedicated server.
+
+
 %prep
 %setup
-%patch0 -p0 -b .perlSDL
-%patch1 -p0
-# The "min 1.19.0" requirement check for perl-SDL is broken
-%{__perl} -pi.orig -e 's|\@if ! perl.*||g' Makefile
 
 
 %build
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}" PREFIX="%{_prefix}"
+%{__make} %{?_smp_mflags} \
+    OPTIMIZE="%{optflags}" \
+    CFLAGS="%{optflags} `pkg-config glib-2.0 --cflags`" \
+    LIBS="`pkg-config glib-2.0 --libs`" \
+    PREFIX=%{_prefix} \
+    LIBDIR=%{_libexecdir} \
+    DATADIR=%{_datadir}
 
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install \
-    PREFIX=%{buildroot}%{_prefix} \
-    INSTALLARCHLIB=%{buildroot}%{perl_sitearch} \
-    INSTALLSITEARCH=%{buildroot}%{perl_sitearch} \
-    INSTALLVENDORARCH=%{buildroot}%{perl_sitearch}
-%{__rm} -f %{buildroot}%{perl_sitearch}/{build_fbsyms,perllocal.pod}
-find %{buildroot} -name .xvpics | xargs rm -rf
+    PREFIX=%{_prefix} \
+    LIBDIR=%{_libexecdir} \
+    DATADIR=%{_datadir} \
+    DESTDIR=%{buildroot}
+%find_lang %{name}
 
-%{__install} -Dp -m644 icons/frozen-bubble-icon-48x48.png \
+# Install server init script and default configuration
+%{__install} -D -p -m 0755 server/init/fb-server \
+    %{buildroot}%{_sysconfdir}/rc.d/init.d/fb-server
+%{__install} -D -p -m 0755 server/init/fb-server.conf \
+    %{buildroot}%{_sysconfdir}/fb-server.conf
+
+# Instal meny entry icon
+%{__install} -D -p -m 0644 icons/frozen-bubble-icon-48x48.png \
     %{buildroot}%{_datadir}/pixmaps/frozen-bubble.png
 
 # Install menu entry
@@ -76,24 +93,41 @@ desktop-file-install \
     %{buildroot}%{_sysconfdir}/X11/applnk/Games/%{name}.desktop
 %endif
 
-# Quick fix in order to not have rpm pick up perl(Gimp) as a dependency
-%{__chmod} -x %{buildroot}%{_prefix}/share/%{name}/gfx/shoot/create.pl
-
 # Clean up the installed perl files
-%{__rm} -f `find %{buildroot} -name '*.bs' -o -name .packlist`
+find %{buildroot} -name '*.bs' -o -name .packlist -o -name 'perllocal.pod' \
+    | xargs %{__rm} -rf
+
+
+%post server
+/usr/sbin/useradd -r -s /bin/nologin -d %{_libexecdir}/frozen-bubble fbubble || :
+/sbin/chkconfig --add fb-server
+
+%preun server
+if [ $1 -eq 0 ]; then
+    /sbin/service fb-server stop
+    /sbin/chkconfig --del fb-server
+fi
+
+%postun server
+/usr/sbin/userdel fbubble || :
+if [ $1 -ge 1 ]; then
+    /sbin/service fb-server condrestart
+fi
 
 
 %clean
 %{__rm} -rf %{buildroot}
 
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS CHANGES COPYING README
-%{_prefix}/bin/*
-%{_prefix}/share/%{name}
-%{_prefix}/share/man/man6/*
-%{_datadir}/pixmaps/%{name}.png
+%doc AUTHORS COPYING NEWS README TIPS
+%{_bindir}/frozen-bubble
+%{_bindir}/frozen-bubble-editor
+%{_libexecdir}/frozen-bubble/
+%{_datadir}/frozen-bubble/
+%{_datadir}/pixmaps/frozen-bubble.png
+%{_mandir}/man6/*
 %{perl_sitearch}/auto/*
 %{perl_sitearch}/*.pm
 %if %{!?_without_freedesktop:1}0
@@ -102,8 +136,19 @@ desktop-file-install \
 %{_sysconfdir}/X11/applnk/Games/%{name}.desktop
 %endif
 
+%files server
+%defattr(-, root, root, 0755)
+%doc server/init/README
+%config(noreplace) %{_sysconfdir}/fb-server.conf
+%{_sysconfdir}/rc.d/init.d/fb-server
+%{_libexecdir}/frozen-bubble/
+
 
 %changelog
+* Thu Oct 26 2006 Matthias Saou <http://freshrpms.net/> 2.0.0-0
+- Update to 2.0.0 pre-release.
+- Split out the server in its own sub-package, which can be installed alone.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.0.0-9
 - Release bump to drop the disttag number in FC5 build.
 

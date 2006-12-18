@@ -1,0 +1,68 @@
+diff -Naupr gst-plugins-bad-0.10.3.orig/configure gst-plugins-bad-0.10.3/configure
+--- gst-plugins-bad-0.10.3.orig/configure	2006-05-04 17:20:18.000000000 +0200
++++ gst-plugins-bad-0.10.3/configure	2006-05-04 17:20:18.000000000 +0200
+@@ -30382,9 +30382,9 @@ if test x$USE_FAAD = xyes; then
+ 
+   HAVE_FAAD="yes"
+ 
+-  echo "$as_me:$LINENO: checking for faacDecOpen in -lfaad" >&5
+-echo $ECHO_N "checking for faacDecOpen in -lfaad... $ECHO_C" >&6
+-if test "${ac_cv_lib_faad_faacDecOpen+set}" = set; then
++  echo "$as_me:$LINENO: checking for NeAACDecOpen in -lfaad" >&5
++echo $ECHO_N "checking for NeAACDecOpen in -lfaad... $ECHO_C" >&6
++if test "${ac_cv_lib_faad_NeAACDecOpen+set}" = set; then
+   echo $ECHO_N "(cached) $ECHO_C" >&6
+ else
+   ac_check_lib_save_LIBS=$LIBS
+@@ -30402,11 +30402,11 @@ extern "C"
+ #endif
+ /* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+-char faacDecOpen ();
++char NeAACDecOpen ();
+ int
+ main ()
+ {
+-faacDecOpen ();
++NeAACDecOpen ();
+   ;
+   return 0;
+ }
+@@ -30432,20 +30432,20 @@ if { (eval echo "$as_me:$LINENO: \"$ac_l
+   ac_status=$?
+   echo "$as_me:$LINENO: \$? = $ac_status" >&5
+   (exit $ac_status); }; }; then
+-  ac_cv_lib_faad_faacDecOpen=yes
++  ac_cv_lib_faad_NeAACDecOpen=yes
+ else
+   echo "$as_me: failed program was:" >&5
+ sed 's/^/| /' conftest.$ac_ext >&5
+ 
+-ac_cv_lib_faad_faacDecOpen=no
++ac_cv_lib_faad_NeAACDecOpen=no
+ fi
+ rm -f conftest.err conftest.$ac_objext \
+       conftest$ac_exeext conftest.$ac_ext
+ LIBS=$ac_check_lib_save_LIBS
+ fi
+-echo "$as_me:$LINENO: result: $ac_cv_lib_faad_faacDecOpen" >&5
+-echo "${ECHO_T}$ac_cv_lib_faad_faacDecOpen" >&6
+-if test $ac_cv_lib_faad_faacDecOpen = yes; then
++echo "$as_me:$LINENO: result: $ac_cv_lib_faad_NeAACDecOpen" >&5
++echo "${ECHO_T}$ac_cv_lib_faad_NeAACDecOpen" >&6
++if test $ac_cv_lib_faad_NeAACDecOpen = yes; then
+   HAVE_FAAD=yes
+ else
+   HAVE_FAAD=no
+diff -Naupr gst-plugins-bad-0.10.3.orig/configure.ac gst-plugins-bad-0.10.3/configure.ac
+--- gst-plugins-bad-0.10.3.orig/configure.ac	2006-05-04 17:18:42.000000000 +0200
++++ gst-plugins-bad-0.10.3/configure.ac	2006-05-04 17:18:42.000000000 +0200
+@@ -397,7 +397,7 @@ dnl **** Free AAC Decoder (FAAD) ****
+ translit(dnm, m, l) AM_CONDITIONAL(USE_FAAD, true)
+ GST_CHECK_FEATURE(FAAD, [AAC decoder plug-in], faad, [
+   HAVE_FAAD="yes"
+-  GST_CHECK_LIBHEADER(FAAD, faad, faacDecOpen, -lm, faad.h,
++  GST_CHECK_LIBHEADER(FAAD, faad, NeAACDecOpen, -lm, faad.h,
+     FAAD_LIBS="-lfaad -lm", HAVE_FAAD="no")
+   if test $HAVE_FAAD = "yes"; then
+     AC_MSG_CHECKING([Checking for FAAD >= 2])

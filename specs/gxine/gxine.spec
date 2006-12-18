@@ -6,9 +6,17 @@
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
+%{?el3:%define _without_firefox 1}
+%{?el2:%define _without_firefox 1}
+%{?fc4:%define _without_firefox 1}
+%{?fc3:%define _without_firefox 1}
+%{?fc2:%define _without_firefox 1}
+%{?fc1:%define _without_firefox 1}
+
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
 %{?el2:%define _without_modxorg 1}
+%{?fc5:%define _without_modxorg 1}
 %{?fc4:%define _without_modxorg 1}
 %{?fc3:%define _without_modxorg 1}
 %{?fc2:%define _without_modxorg 1}
@@ -18,7 +26,7 @@
 
 Summary: Frontend for the xine multimedia library
 Name: gxine
-Version: 0.5.6
+Version: 0.5.9
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -27,11 +35,15 @@ URL: http://xinehq.de/
 Source: http://dl.sf.net/xine/gxine-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk2-devel >= 2.0, xine-lib-devel >= 1.0.0
-BuildRequires: glib2-devel >= 2.6, mozilla-devel
+BuildRequires: gtk2-devel >= 2.0, xine-lib-devel >= 1.0.0, lirc-devel
+BuildRequires: gettext, js-devel
+# This is checked at configure time :-( - Build fails as of 0.5.9
+# gtkvideo.c:2004: error: 'priv' undeclared (first use in this function)
+#Buildrequires: gnome-screensaver, dbus-glib-devel
+%{!?_without_firefox:BuildRequires: firefox-devel}
+%{?_without_firefox:BuildRequires: mozilla-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-Requires: gtk2 >= 2.0, xine-lib >= 1.0.0
-%{!?_without_modxorg:BuildRequires: libXaw-devel}
+%{!?_without_modxorg:BuildRequires: libXaw-devel, libXtst-devel, libXinerama-devel, libXrandr-devel}
 
 %description
 xine is a fully-featured free audio/video player for unix-like systems which
@@ -46,21 +58,10 @@ Available rpmbuild rebuild options :
 %setup
 
 %{__perl} -pi.orig -e 's|(\@XTEST_LIBS\@)|$1 \@X_LIBS\@|g' Makefile.in */Makefile.in
-
-### FIXME: Include improved desktop-file. (Please fix upstream)
-%{__cat} <<EOF >gxine.desktop
-[Desktop Entry]
-Name=GXine Movie Player
-Comment=Play movies and songs
-Icon=gxine.png
-Exec=gxine
-Terminal=false
-Type=Application
-StartupNotify=true
-Encoding=UTF-8
-Categories=GNOME;Application;AudioVideo;
-MimeType=video/mpeg;video/msvideo;video/quicktime;video/x-avi;video/x-ms-asf;video/x-ms-wmv;video/x-msvideo;application/x-ogg;application/ogg;audio/x-mp3;audio/x-mpeg;video/x-mpeg;video/x-fli;audio/x-wav;audio/x-mpegurl;audio/x-scpls;audio/x-ms-asx;application/vnd.rn-realmedia;audio/x-real-audio;audio/x-pn-realaudio;application/x-flac;audio/x-flac;application/x-shockwave-flash;audio/mpeg;audio/x-ms-asf;audio/x-m4a;audio/x-ms-wax;video/dv;video/x-anim;video/x-flc;misc/ultravox;application/x-matroska;audio/vnd.rn-realaudio;audio/x-pn-aiff;audio/x-pn-au;audio/x-pn-wav;audio/x-pn-windows-acm;image/vnd.rn-realpix;video/vnd.rn-realvideo
-EOF
+# The desktop file now includes all the proper mime types, only tweak it a bit
+%{__perl} -pi -e 's|^(Name=).*|$1GXine Video Player|g;
+                  s|^(Categories=).*|$1GNOME;Application;AudioVideo;|g' \
+    gxine.desktop        
 
 %{__cat} <<EOF >gxine.applications
 gxine
@@ -78,17 +79,19 @@ EOF
 
 %build
 %configure \
-	--x-libraries="%{_prefix}/X11R6/%{_lib}"
+    --with-dbus \
+    --with-logo-format="auto"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install \
-	DESTDIR="%{buildroot}"
-%find_lang %{name}
+%{__make} install DESTDIR="%{buildroot}"
+%find_lang gxine
+%find_lang gxine.theme
+# Have both translation sets of files included (is there a better way?)
+%{__cat} gxine.theme.lang >> gxine.lang
 
-%{__install} -Dp -m0644 pixmaps/gxine.png %{buildroot}%{_datadir}/pixmaps/gxine.png
-%{__install} -Dp -m0644 gxine.applications %{buildroot}%{_datadir}/application-registry/gxine.applications
+%{__install} -D -m0644 gxine.applications %{buildroot}%{_datadir}/application-registry/gxine.applications
 
 %if %{?_without_freedesktop:1}0
 	%{__install} -Dp -m0644 gxine.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/gxine.desktop
@@ -106,17 +109,13 @@ EOF
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files -f gxine.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README TODO
 %dir %{_sysconfdir}/gxine/
-%config(noreplace) %{_sysconfdir}/gxine/gtkrc
-%config(noreplace) %{_sysconfdir}/gxine/keypad.xml
-%config(noreplace) %{_sysconfdir}/gxine/startup
-%config(noreplace) %{_sysconfdir}/gxine/toolbar*.xml
+%config(noreplace) %{_sysconfdir}/gxine/*
 %{_bindir}/gxine*
 %{_libdir}/gxine/
-#%exclude %{_libdir}/gxine/*.a
 %exclude %{_libdir}/gxine/*.la
 %{_mandir}/man1/gxine*.1*
 %lang(de) %{_mandir}/de/man1/gxine*.1*
@@ -126,9 +125,11 @@ EOF
 %{_datadir}/gxine/
 %{_datadir}/pixmaps/gxine.png
 %{_datadir}/icons/*/*/apps/gxine.png
-%{_datadir}/locale/*/LC_MESSAGES/gxine.*
 
 %changelog
+* Mon Dec 18 2006 Matthias Saou <http://freshrpms.net/> 0.5.9-1
+- Update to 0.5.9.
+
 * Fri May 05 2006 Dag Wieers <dag@wieers.com> - 0.5.6-1
 - Updated to release 0.5.6.
 

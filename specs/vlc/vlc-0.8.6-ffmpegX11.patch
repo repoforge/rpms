@@ -1,0 +1,42 @@
+diff -Naupr vlc-0.8.6.orig/configure vlc-0.8.6/configure
+--- vlc-0.8.6.orig/configure	2006-12-09 02:33:49.000000000 +0100
++++ vlc-0.8.6/configure	2006-12-15 19:49:50.000000000 +0100
+@@ -43190,7 +43190,7 @@ if test "${with_ffmpeg_mp3lame+set}" = s
+      if test "$with_ffmpeg_mp3lame" = "yes";	then
+ 
+   for element in ffmpeg; do
+-    eval "LDFLAGS_${element}="'"'"-lmp3lame "'$'"{LDFLAGS_${element}} "'"'
++    eval "LDFLAGS_${element}="'"'"-lmp3lame -lX11 -lXext "'$'"{LDFLAGS_${element}} "'"'
+     am_modules_with_ldflags="${am_modules_with_ldflags} ${element}"
+   done
+ 
+@@ -43432,7 +43432,7 @@ echo "${ECHO_T}${real_ffmpeg_tree}/libav
+      if test "${with_ffmpeg_mp3lame}" != "yes"; then
+ 
+   for element in ffmpeg; do
+-    eval "LDFLAGS_${element}="'"'"-lmp3lame "'$'"{LDFLAGS_${element}} "'"'
++    eval "LDFLAGS_${element}="'"'"-lmp3lame -lX11 -lXext "'$'"{LDFLAGS_${element}} "'"'
+     am_modules_with_ldflags="${am_modules_with_ldflags} ${element}"
+   done
+ 
+diff -Naupr vlc-0.8.6.orig/configure.ac vlc-0.8.6/configure.ac
+--- vlc-0.8.6.orig/configure.ac	2006-12-09 02:32:53.000000000 +0100
++++ vlc-0.8.6/configure.ac	2006-12-15 19:49:17.000000000 +0100
+@@ -2512,7 +2512,7 @@ dnl Those options have to be here becaus
+    [    --with-ffmpeg-mp3lame specify if ffmpeg has been compiled with mp3lame support],
+    [
+      if test "$with_ffmpeg_mp3lame" = "yes";	then
+-     	VLC_ADD_LDFLAGS([ffmpeg],[-lmp3lame])
++     	VLC_ADD_LDFLAGS([ffmpeg],[-lmp3lame -lX11 -lXext])
+      fi])
+ 
+  AC_ARG_WITH(ffmpeg-faac,
+@@ -2602,7 +2602,7 @@ dnl Those options have to be here becaus
+    fi
+    if fgrep -s "CONFIG_MP3LAME=yes" "${real_ffmpeg_tree}/config.mak"; then
+      if test "${with_ffmpeg_mp3lame}" != "yes"; then
+-       VLC_ADD_LDFLAGS([ffmpeg],[-lmp3lame])
++       VLC_ADD_LDFLAGS([ffmpeg],[-lmp3lame -lX11 -lXext])
+      fi
+    fi
+    if fgrep -s "CONFIG_FAAC=yes" "${real_ffmpeg_tree}/config.mak"; then

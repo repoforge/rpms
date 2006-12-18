@@ -14,6 +14,7 @@ Requires: gcc
 Requires(post): dkms
 Requires(preun): dkms
 Provides: ndiswrapper = %{version}-%{release}
+ExclusiveArch: i386 x86_64
 
 %description
 This kernel module implements the Microsoft NDIS (Network Driver Interface

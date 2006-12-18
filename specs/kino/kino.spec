@@ -14,7 +14,7 @@
 Summary: Simple non-linear video editor
 Name: kino
 Version: 0.9.3
-Release: 1%{?cvs:.%{cvs}}
+Release: 2%{?cvs:.%{cvs}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.kinodv.org/
@@ -96,6 +96,9 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 
 
 %changelog
+* Mon Dec 18 2006 Matthias Saou <http://freshrpms.net/> 0.9.3-2
+- Rebuild against new ffmpeg snapshot (libavformat.so bump).
+
 * Tue Nov 21 2006 Matthias Saou <http://freshrpms.net/> 0.9.3-1
 - Update to 0.9.3.
 

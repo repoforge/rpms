@@ -15,9 +15,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 %description
-This package contains the firmware files required by the ipw2100 driver for
-Linux. Usage of the firmware is subject to the terms and conditions contained
-in /lib/firmware/LICENSE.ipw2100. Please read it carefully.
+This package contains the firmware files required by the Intel® PRO/Wireless
+2100 (ipw2100) driver for Linux.
+
+IMPORTANT NOTICE : This package is covered by the Intel® license found in the
+/lib/firmware/LICENSE.ipw2100 file. Usage of this package requires agreeing
+to the terms of the Intel® license.
 
 
 %prep

@@ -4,8 +4,8 @@
 
 Summary: Beep Media Player
 Name: bmpx
-Version: 0.36.0
-Release: 1
+Version: 0.36.1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.beep-media-player.org/
@@ -18,7 +18,7 @@ BuildRequires: gettext-devel, libXt-devel
 BuildRequires: gstreamer-devel >= 0.10.4
 BuildRequires: gstreamer-plugins-base-devel >= 0.10.4
 BuildRequires: dbus-devel, hal-devel, gamin-devel, libmusicbrainz-devel
-BuildRequires: taglib-devel, neon-devel, faad2-devel, libsidplay-devel
+BuildRequires: taglib-devel, neon-devel, libmp4v2-devel, libsidplay-devel
 BuildRequires: boost-devel, glibmm24-devel, gtkmm24-devel, libglademm24-devel
 BuildRequires: startup-notification-devel, sqlite-devel, alsa-lib-devel
 BuildRequires: libnotify-devel, librsvg2-devel, cdparanoia-devel
@@ -118,6 +118,12 @@ update-mime-database  %{_datadir}/mime &>/dev/null || :
 
 
 %changelog
+* Fri Dec 15 2006 Matthias Saou <http://freshrpms.net/> 0.36.1-2
+- Rebuild against plain libmp4v2 instead of full faad2.
+
+* Thu Dec 14 2006 Matthias Saou <http://freshrpms.net/> 0.36.1-1
+- Update to 0.36.1.
+
 * Mon Dec 11 2006 Matthias Saou <http://freshrpms.net/> 0.36.0-1
 - Update to 0.36.0.
 - Update install patch so that it still applies.

@@ -17,12 +17,12 @@
 
 Summary: Proprietary ATI hardware accelerated OpenGL display driver
 Name: ati-x11-drv
-Version: 8.30.3
+Version: 8.32.5
 Release: 1
 License: Proprietary
 Group: User Interface/X Hardware Support
 URL: http://www.ati.com/online/customercareportal/linux.html
-Source0: http://www2.ati.com/drivers/linux/ati-driver-installer-%{version}.run
+Source0: http://www2.ati.com/drivers/linux/ati-driver-installer-%{version}-x86.x86_64.run
 Source1: fireglcontrolpanel.desktop
 Source2: Makefile.fglrx
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -286,6 +286,12 @@ fi
 
 
 %changelog
+* Thu Dec 14 2006 Matthias Saou <http://freshrpms.net/> 8.32.5-1
+- Update to 8.32.5.
+
+* Tue Nov 28 2006 Matthias Saou <http://freshrpms.net/> 8.31.5-1
+- Update to 8.31.5.
+
 * Mon Nov  6 2006 Matthias Saou <http://freshrpms.net/> 8.30.3-1
 - Update to 8.30.3.
 

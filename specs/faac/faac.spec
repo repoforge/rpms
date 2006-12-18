@@ -3,16 +3,15 @@
 
 Summary: Reference encoder and encoding library for MPEG2/4 AAC
 Name: faac
-Version: 1.24
-Release: 3
+Version: 1.25
+Release: 1
 License: LGPL
 Group: Applications/Multimedia
 URL: http://www.audiocoding.com/
 Source: http://dl.sf.net/faac/faac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: faad2-devel
-# Required for bootstrap
-BuildRequires: autoconf, automake, libtool
+BuildRequires: libmp4v2-devel
+BuildRequires: autoconf, automake, libtool, dos2unix
 
 %description
 FAAC is an AAC audio encoder. It currently supports MPEG-4 LTP, MAIN and LOW
@@ -23,7 +22,7 @@ multichannel and gapless encoding.
 %package devel
 Summary: Development libraries of the FAAC AAC encoder
 Group: Development/Libraries
-Requires: %{name} = %{version}
+Requires: %{name} = %{version}-%{release}
 
 %description devel
 FAAC is an AAC audio encoder. It currently supports MPEG-4 LTP, MAIN and LOW
@@ -35,12 +34,17 @@ This package contains development files and documentation for libfaac.
 
 %prep
 %setup -n %{name}
+# Don't ask...
+find . -type f -exec dos2unix {} \;
+find . -type f -exec chmod 644 {} \;
+find . -type d -exec chmod 755 {} \;
 
 
 %build
 sh bootstrap
 %configure \
-    --disable-static
+    --disable-static \
+    --with-mp4v2
 %{__make} %{?_smp_mflags}
 
 
@@ -72,6 +76,10 @@ sh bootstrap
 
 
 %changelog
+* Fri Dec 15 2006 Matthias Saou <http://freshrpms.net/> 1.25-1
+- Update to 1.25.
+- Enable external libmp4v2... but the resulting package doesn't require it...
+
 * Wed Apr 12 2006 Matthias Saou <http://freshrpms.net/> 1.24-3
 - Add faad2-devel build requirement to build with MP4 support (Chris Petersen),
   faad2 had to be fixed before it worked, though.

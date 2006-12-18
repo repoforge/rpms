@@ -8,10 +8,12 @@
 %{!?dist:%define _with_modxorg 1}
 %{!?dist:%define _with_avahi 1}
 
+%{?fc7:%define _with_modxorg 1}
 %{?fc6:%define _with_modxorg 1}
-%{?fc6:%define _with_avahi 1}
-
 %{?fc5:%define _with_modxorg 1}
+
+%{?fc7:%define _with_avahi 1}
+%{?fc6:%define _with_avahi 1}
 %{?fc5:%define _with_avahi 1}
 
 %{?el4:%define _without_wxwidgets 1}
@@ -65,23 +67,25 @@
 %{?yd3:%define _without_fribidi 1}
 
 %define desktop_vendor rpmforge
-%define ffmpeg_date    20051207
-%define live_date      2006.10.18a
+%define ffmpeg_date    20061215
+%define live_date      2006.12.08
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
-Version: 0.8.5
-Release: 5
+Version: 0.8.6
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
 Source0: http://downloads.videolan.org/pub/videolan/vlc/%{version}/vlc-%{version}.tar.bz2
 Source1: http://downloads.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
 Source2: http://www.live555.com/liveMedia/public/live.%{live_date}.tar.gz
-Patch0: vlc-0.8.5-x264.patch
+Patch0: vlc-0.8.6-ffmpegX11.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, libpng-devel, libxml2-devel, libtiff-devel
-BuildRequires: libgcrypt-devel, gnutls-devel
+BuildRequires: libgcrypt-devel, gnutls-devel, libsysfs-devel, libtar-devel
+BuildRequires: libjpeg-devel
+Buildrequires: autoconf, automake, libtool
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{?_with_modxorg:BuildRequires: libGLU-devel, libXt-devel, libXv-devel, libXinerama-devel, libXxf86vm-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
@@ -95,7 +99,7 @@ BuildRequires: libgcrypt-devel, gnutls-devel
 %{!?_without_mad:BuildRequires: libmad-devel}
 %{!?_without_id3tag:BuildRequires: libid3tag-devel}
 %{!?_without_ffmpeg:BuildRequires: lame-devel, faac-devel}
-%{!?_without_faad2:BuildRequires: faad2-devel}
+%{!?_without_faad2:BuildRequires: faad2-devel >= 2.5}
 %{!?_without_a52:BuildRequires: a52dec-devel}
 %{!?_without_flac:BuildRequires: flac-devel}
 %{!?_without_mpeg2dec:BuildRequires: mpeg2dec-devel}
@@ -130,6 +134,10 @@ BuildRequires: libgcrypt-devel, gnutls-devel
 %{!?_without_mpcdec:BuildRequires: libmpcdec-devel}
 %{!?_without_cddb:BuildRequires: libcddb-devel}
 %{!?_without_dca:BuildRequires: libdca-devel}
+# Add in 0.8.6
+%{!?_without_upnp:BuildRequires: libupnp-devel}
+#{!?_without_goom:BuildRequires: goom-devel}
+%{!?_without_jack:BuildRequires: jack-audio-connection-kit-devel}
 Obsoletes: videolan-client < 0.8.5-4
 Provides: videolan-client = %{version}-%{release}
 
@@ -165,13 +173,14 @@ to link statically to it.
 
 %prep
 %setup -a 1 -a 2
-%patch0 -p1 -b .x264
+%patch0 -p1 -b .ffmpegX11
 # Fix PLUGIN_PATH path for lib64
 %{__perl} -pi -e 's|/lib/vlc|/%{_lib}/vlc|g' vlc-config.in.in configure*
 
 
 %build
 export CFLAGS="%{optflags}"
+
 # Build bundeled ffmpeg first
 pushd ffmpeg-%{ffmpeg_date}
     ./configure \
@@ -244,61 +253,35 @@ export CFLAGS="%{optflags} -maltivec -mabi=altivec"
     %{?_with_ncurses:--enable-ncurses} \
     %{?_without_slp:--disable-slp} \
     %{?_with_pth:--enable-pth} \
-    %{!?_without_live:--enable-livedotcom --with-livedotcom-tree="`pwd`/live"}
+    %{!?_without_live:--enable-live555 --with-live555-tree="`pwd`/live"} \
+    %{!?_without_jack:--enable-jack}
+    #{!?_without_goom:--enable-goom} \
 %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot} _docs
 %makeinstall
-%find_lang vlc
+%find_lang %{name}
 # Include the docs below, our way
 %{__mv} %{buildroot}%{_docdir}/vlc _docs
-# So that the icon gets themable
+# So that the icon gets themable (still required in 0.8.6)
 %{__mkdir_p} %{buildroot}%{_datadir}/pixmaps
 %{__cp} -ap %{buildroot}%{_datadir}/vlc/vlc48x48.png \
     %{buildroot}%{_datadir}/pixmaps/vlc.png
-
-%{__cat} <<EOF >videolan-client.desktop
-[Desktop Entry]
-Name=VideoLAN Client
-Comment=Play DVDs, other various video formats and network streamed videos
-Icon=vlc.png
-Exec=vlc
-Terminal=false
-Type=Application
-Encoding=UTF-8
-MimeType=video/mpeg;video/msvideo;video/quicktime;video/x-avi;video/x-ms-asf;video/x-ms-wmv;video/x-msvideo;application/x-ogg;application/ogg;audio/x-mp3;audio/x-mpeg;video/x-mpeg;video/x-fli;audio/x-wav;audio/x-mpegurl;audio/x-scpls;audio/x-ms-asx;application/vnd.rn-realmedia;audio/x-real-audio;audio/x-pn-realaudio;application/x-flac;audio/x-flac;application/x-shockwave-flash;audio/mpeg;audio/x-ms-asf;audio/x-m4a;audio/x-ms-wax;video/dv;video/x-anim;video/x-flc;misc/ultravox;application/x-matroska;audio/vnd.rn-realaudio;audio/x-pn-aiff;audio/x-pn-au;audio/x-pn-wav;audio/x-pn-windows-acm;image/vnd.rn-realpix;video/vnd.rn-realvideo
-EOF
-
-%if %{!?_without_freedesktop:1}0
-# Convert the menu entry
-%{__mkdir_p} %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} \
-  --dir %{buildroot}%{_datadir}/applications    \
-  --add-category Application                    \
-  --add-category AudioVideo                     \
-  videolan-client.desktop
-%else
-%{__install} -Dp -m644 videolan-client.desktop \
-    %{buildroot}%{_datadir}/gnome/apps/Multimedia/videolan-client.desktop
-%endif
-
-
 
 %clean
 %{__rm} -rf %{buildroot}
 
 
-%files -f vlc.lang
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog MAINTAINERS README THANKS
 %doc _docs/*
 %{_bindir}/*vlc
 %{_libdir}/vlc/
 %exclude %{_libdir}/vlc/*.a
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-videolan-client.desktop}
-%{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/videolan-client.desktop}
+%{_datadir}/applications/vlc.desktop
 %{_datadir}/pixmaps/vlc.png
 %{_datadir}/vlc/
 
@@ -307,12 +290,24 @@ desktop-file-install --vendor %{desktop_vendor} \
 %doc HACKING
 %{_bindir}/vlc-config
 %{_includedir}/vlc/
-#dir %{_libdir}/vlc/
-%exclude %{_libdir}/vlc/*.a
 %exclude %{_libdir}/libvlc.a
 
 
 %changelog
+* Fri Dec 15 2006 Matthias Saou <http://freshrpms.net/> 0.8.6-1
+- Update to 0.8.6.
+- Update ffmpeg to 20060710.
+- Update live to 2006.12.08.
+- Require faad2 >= 2.5 since vlc no longer builds with previous 2.0 release.
+- No longer create our own desktop file, it's taken care of now.
+- Rename deprecated livedotcom options to live555.
+- Add libjpeg, libsysfs and libtar build requirements.
+- Add libupnp support, enabled by default.
+- Add autotools build requirements to make build output more silent and run
+  configure only once :-/
+- Include patch to fix final binary linking, where -lX11 was missing.
+- Add jack support, and soon goom (lib required?).
+
 * Tue Oct 24 2006 Matthias Saou <http://freshrpms.net/> 0.8.5-5
 - Update live lib to 2006.10.18a.
 - Try to update fffmpeg... but... nope, way too hard :-(

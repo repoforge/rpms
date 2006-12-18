@@ -6,7 +6,7 @@
 Summary: Postfix Greylisting Policy Server
 Name: postgrey
 Version: 1.27
-Release: 1
+Release: 3
 License: GPL
 Group: System Environment/Daemons
 Source0: http://isg.ee.ethz.ch/tools/postgrey/pub/postgrey-%{version}.tar.gz
@@ -42,6 +42,11 @@ again later, as it is however required per RFC.
 
 
 %build
+# We only have perl scripts, so just "build" the man page
+pod2man \
+    --center="Postgrey Policy Server for Postfix" \
+    --section="8" \
+    postgrey > postgrey.8
 
 
 %install
@@ -62,6 +67,14 @@ touch %{buildroot}%{confdir}/postgrey_whitelist_clients.local
 # Init script
 %{__install} -D -p -m 0755 %{SOURCE1} \
     %{buildroot}%{_sysconfdir}/rc.d/init.d/postgrey
+
+# Man page
+%{__install} -D -p -m 0644 postgrey.8 \
+    %{buildroot}%{_mandir}/man8/postgrey.8
+
+# Optional report script
+%{__install} -D -p -m 0755 contrib/postgreyreport \
+    %{buildroot}%{_sbindir}/postgreyreport
 
 
 %clean
@@ -95,10 +108,18 @@ fi
 %config(noreplace) %{confdir}/postgrey_whitelist_recipients
 %config(noreplace) %{confdir}/postgrey_whitelist_clients.local
 %{_sbindir}/postgrey
+%{_sbindir}/postgreyreport
+%{_mandir}/man8/postgrey.8*
 %dir %attr(0751, postgrey, postfix) %{_var}/spool/postfix/postgrey/
 
 
 %changelog
+* Mon Dec  4 2006 Matthias Saou <http://freshrpms.net/> 1.27-3
+- Add man page generation (Mike Wohlgemuth).
+
+* Fri Dec  1 2006 Matthias Saou <http://freshrpms.net/> 1.27-2
+- Include postgreyreport script.
+
 * Mon Nov  6 2006 Matthias Saou <http://freshrpms.net/> 1.27-1
 - Spec file cleanup.
 

@@ -1,52 +1,22 @@
 # $Id$
 # Authority: matthias
 
-%define xmmsinputdir %(xmms-config --input-plugin-dir 2>/dev/null || echo %{_libdir}/xmms/Input)
-#define prever       rc3
-#define date         20040923
-
 Summary: Library and frontend for decoding MPEG2/4 AAC
 Name: faad2
-Version: 2.0
-Release: 8%{?prever:.%{prever}}%{?date:.%{date}}
+Version: 2.5
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.audiocoding.com/
-%if %{?date:1}0
-#Source: http://www.audiocoding.com/snapshot/faad2-%{date}.tar.bz2
-Source: http://download.videolan.org/pub/videolan/vlc/0.8.1/contrib/faad2-%{date}.tar.bz2
-%else
-Source: http://dl.sf.net/faac/%{name}-%{version}%{?prever:-%{prever}}.tar.gz
-%endif
-Patch0: faad2-2.0-Makefile-separator.patch
-Patch1: faad2-2.0-gcc34.patch
-Patch2: faad2-2.0-xmms-noext.patch
-Patch3: faad2-2.0-gcc4.patch
-Patch4: faad2-2.0-configure-mpeg4ip.patch
-Patch5: faad2-2.0-64bit.patch
-Patch6: faad2-2.0-symbol.patch
-Patch7: faad2-2.0-mp4ff_int_types.patch
-Patch8: faad2-2.0-systypes.patch
+Source: http://dl.sf.net/faac/faad2-%{version}.tar.gz
+Patch0: faad2-2.5-buildfix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf, automake, libtool
-BuildRequires: gcc-c++, zlib-devel, libsndfile-devel >= 1.0.0
-BuildRequires: xmms-devel, id3lib-devel, gtk+-devel
+BuildRequires: gcc-c++, zlib-devel, libsysfs-devel
 
 %description
 FAAD 2 is a LC, MAIN and LTP profile, MPEG2 and MPEG-4 AAC decoder, completely
 written from scratch.
-
-
-%package -n xmms-aac
-Summary: X MultiMedia System input plugin to play AAC files
-Group: Applications/Multimedia
-Requires: %{name} = %{version}
-Provides: xmms-%{name} = %{version}-%{release}
-
-%description -n xmms-aac
-This xmms plugin reads AAC files with and without ID3 tags (version 2.x).
-AAC files are MPEG2 or MPEG4 files that can be found in MPEG4 audio files
-(.mp4). MPEG4 files with AAC inside can be read by RealPlayer or Quicktime.
 
 
 %package devel
@@ -62,40 +32,22 @@ This package contains development files and documentation for libfaad.
 
 
 %prep
-%if %{?date:1}0
-%setup -n %{name}-%{date}
-%else
 %setup -n %{name}
-%endif
-%patch0 -p1 -b .makefilesep
-%patch1 -p1 -b .gcc34
-%patch2 -p1 -b .noext
-%patch3 -p1 -b .gcc4
-%patch4 -p0 -b .mpeg4ip
-%patch5 -p1 -b .64bit
-%patch6 -p1 -b .symbol
-%patch7 -p1 -b .mp4ff_int_types
-%patch8 -p1 -b .systypes
+%patch0 -p1 -b .buildfix
 
 
 %build
-test -x configure || sh bootstrap
+# This is what the README.linux file recommends
+autoreconf -vif
 %configure \
     --disable-static \
-    --with-xmms \
-    --with-mpeg4ip \
-    --with-drm \
-    --with-mp4v2
+    --with-drm
 %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
-
-# Remove this wrong include
-%{__perl} -pi -e 's|#include <systems.h>||g' \
-    %{buildroot}%{_includedir}/mpeg4ip.h
 
 
 %clean
@@ -109,27 +61,24 @@ test -x configure || sh bootstrap
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog NEWS README TODO
+%doc AUTHORS COPYING ChangeLog NEWS README* TODO
 %{_bindir}/*
 %{_libdir}/*.so.*
-
-%files -n xmms-aac
-%defattr(-, root, root, 0755)
-%doc plugins/xmms/AUTHORS plugins/xmms/NEWS
-%doc plugins/xmms/README plugins/xmms/TODO
-#exclude %{xmmsinputdir}/*.a
-%exclude %{xmmsinputdir}/*.la
-%{xmmsinputdir}/*.so
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/*
-#{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
 
 
 %changelog
+* Fri Dec 15 2006 Matthias Saou <http://freshrpms.net/> 2.5-1
+- Update to 2.5.
+- Completely remove xmms/bmp plugin, it's a real mess anyway. Use audacious.
+- Rip out libmp4v2 too, it's best as a separate package.
+- Add libsysfs-devel build requirement, as it seems configure checks for it.
+
 * Wed Apr 12 2006 Matthias Saou <http://freshrpms.net/> 2.0-8
 - Include patch to #include <sys/types.h> in mp4.h to fix building against
   the included libmp4v2 (faac, maybe others).

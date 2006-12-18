@@ -1,7 +1,6 @@
 # $Id$
 # Authority: matthias
-
-# ExclusiveDist: fc5
+# ExclusiveDist: fc5 fc6 fc7
 
 %define desktop_vendor rpmforge
 
@@ -14,11 +13,12 @@
 Summary: GStreamer streaming media framework "bad" plug-ins
 Name: %{gstreamer}-plugins-bad
 Version: 0.10.3
-Release: 1
+Release: 2
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
 Source: http://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-%{version}.tar.bz2
+Patch0: gst-plugins-bad-0.10.3-faad2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: %{gstreamer} >= %{gst_minver}
 BuildRequires: %{gstreamer}-devel >= %{gst_minver}
@@ -38,8 +38,9 @@ BuildRequires: faad2-devel
 BuildRequires: gsm-devel
 BuildRequires: libmpcdec-devel
 BuildRequires: SDL-devel
+BuildRequires: soundtouch-devel
 BuildRequires: swfdec-devel
-Buildrequires: wavpack-devel
+#Buildrequires: wavpack-devel
 BuildRequires: xvidcore-devel
 BuildRequires: bzip2-devel
 BuildRequires: mesa-libGLU-devel
@@ -72,6 +73,7 @@ This package contains development files and documentation.
 
 %prep
 %setup -q -n gst-plugins-bad-%{version}
+%patch0 -p1 -b .faad2
 
 
 %build
@@ -122,10 +124,11 @@ This package contains development files and documentation.
 %{_libdir}/gstreamer-%{majorminor}/libgstmms.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmusepack.so
 %{_libdir}/gstreamer-%{majorminor}/libgstneonhttpsrc.so
+%{_libdir}/gstreamer-%{majorminor}/libgstpitch.so
 %{_libdir}/gstreamer-%{majorminor}/libgstsdlvideosink.so
 %{_libdir}/gstreamer-%{majorminor}/libgstswfdec.so
 %{_libdir}/gstreamer-%{majorminor}/libgstvideo4linux2.so
-%{_libdir}/gstreamer-%{majorminor}/libgstwavpack.so
+#%{_libdir}/gstreamer-%{majorminor}/libgstwavpack.so
 %{_libdir}/gstreamer-%{majorminor}/libgstxvid.so
 
 
@@ -135,6 +138,15 @@ This package contains development files and documentation.
 
 
 %changelog
+* Mon Dec 18 2006 Matthias Saou <http://freshrpms.net/> 0.10.3-2
+- Try to rebuild against new wavpack 4.40 from Extras : Fails.
+- Try to update to 0.10.3.2 pre-release : Fails, it needs a more recent gst.
+- Try to include patch to update wavpack plugin source from 0.10.3.2
+  pre-release : Fails to find wavpack/md5.h.
+- Give up and disable wavpack support for now, sorry! Patches welcome.
+- Include patch to fix faad2 2.5 detection.
+- Add soundtouch support.
+
 * Thu Jun  1 2006 Matthias Saou <http://freshrpms.net/> 0.10.3-1
 - Update to 0.10.3.
 - Add new translations.

@@ -25,7 +25,7 @@
 %{?el2:%define _without_vorbis 1}
 %{?el2:%define _without_x264 1}
 
-%define date   20060918
+%define date   20061215
 
 Summary: Utilities and libraries to record, convert and stream audio and video
 Name: ffmpeg
@@ -38,8 +38,7 @@ URL: http://ffmpeg.org/
 # find ffmpeg -name .svn | xargs rm -rf
 # then rename the directory and compress
 Source: ffmpeg-%{date}.tar.bz2
-Patch0: ffmpeg-20060918-gsm.patch
-Patch1: ffmpeg-20060918-x264.patch
+Patch0: ffmpeg-20061215-gsm.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel
 %{!?_without_texi2html:BuildRequires: texi2html}
@@ -116,20 +115,19 @@ to use MPlayer, transcode or other similar programs.
 %prep
 %setup -n ffmpeg-%{date}
 %patch0 -p1 -b .gsm
-%patch1 -p0 -b .x264
 
 
 %build
-#export CFLAGS="%{optflags}"
+export CFLAGS="%{optflags}"
+# We should be using --disable-opts since configure is adding some default opts
+# to ours (-O3), but as of 20061215 the build fails on asm stuff when it's set
 ./configure \
     --prefix=%{_prefix} \
     --libdir=%{_libdir} \
     --mandir=%{_mandir} \
     --incdir=%{_includedir}/ffmpeg \
 %ifarch x86_64
-    --extra-cflags="-fPIC %{optflags}" \
-%else
-    --extra-cflags="%{optflags}" \
+    --extra-cflags="-fPIC" \
 %endif
     %{!?_without_lame:   --enable-mp3lame} \
     %{!?_without_vorbis: --enable-libogg --enable-vorbis} \
@@ -144,7 +142,6 @@ to use MPlayer, transcode or other similar programs.
     --enable-shared \
     --enable-pthreads \
     --enable-gpl \
-    --disable-opts \
     --disable-strip
 %{__make} %{?_smp_mflags}
 
@@ -210,6 +207,13 @@ chcon -t textrel_shlib_t %{_libdir}/libav{codec,format,util}.so.*.*.* \
 
 
 %changelog
+* Fri Dec 15 2006 Matthias Saou <http://freshrpms.net/> 0.4.9-0.7.20061215
+- Update to today's SVN codebase.
+- Update gsm patch so that it still applies.
+- Remove no longer needed x264 patch.
+- Remove --disable-opts option for now, as the build fails without. It seems
+  like an option from -O3 might be required for inline asm to work on x86.
+
 * Tue Oct 24 2006 Matthias Saou <http://freshrpms.net/> 0.4.9-0.7.20060918
 - Try to update, but stick with 20060918 as linking "as needed" is causing
   too much trouble for now (libdca and libmp3lame with libm functions).

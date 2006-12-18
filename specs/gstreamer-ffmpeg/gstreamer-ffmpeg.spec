@@ -12,7 +12,7 @@
 
 Summary: GStreamer streaming media framework FFmpeg-based plugin
 Name: %{gstreamer}-ffmpeg
-Version: 0.10.1
+Version: 0.10.2
 Release: 1
 License: LGPL
 Group: Applications/Multimedia
@@ -30,6 +30,7 @@ BuildRequires: freetype-devel
 BuildRequires: imlib2-devel
 BuildRequires: SDL-devel
 BuildRequires: alsa-lib-devel
+Buildrequires: liboil-devel
 
 %description
 GStreamer is a streaming-media framework, based on graphs of filters which
@@ -48,6 +49,7 @@ This package provides FFmpeg-based GStreamer plug-ins.
 
 %build
 %configure \
+    --disable-static \
 %ifarch ppc
     --disable-altivec \
 %endif
@@ -69,12 +71,17 @@ This package provides FFmpeg-based GStreamer plug-ins.
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING NEWS README TODO
 %{_libdir}/gstreamer-%{majorminor}/libgstffmpeg.so
-#{_libdir}/gstreamer-%{majorminor}/libgstpostproc.so
+%{_libdir}/gstreamer-%{majorminor}/libgstpostproc.so
 %exclude %{_libdir}/gstreamer-%{majorminor}/libgstffmpeg.la
-#exclude %{_libdir}/gstreamer-%{majorminor}/libgstpostproc.la
+%exclude %{_libdir}/gstreamer-%{majorminor}/libgstpostproc.la
 
 
 %changelog
+* Fri Dec 15 2006 Matthias Saou <http://freshrpms.net/> 0.10.2-1
+- Update to 0.10.2.
+- Add new liboil-devel build requirement.
+- libgstpostproc.so is back.
+
 * Wed Apr 19 2006 Matthias Saou <http://freshrpms.net/> 0.10.1-1
 - Update to 0.10.1.
 

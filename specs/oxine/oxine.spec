@@ -3,19 +3,18 @@
 
 Summary: Lightweight, purely OSD based xine frontend
 Name: oxine
-Version: 0.3.5
-Release: 0.1.cvs
+Version: 0.6
+Release: 1
 License: GPL
 Group: Applications/Multimedia
-Source: http://dl.sf.net/oxine/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/oxine/oxine-%{version}.tar.gz
+Patch0: oxine-0.6-install.patch
 URL: http://oxine.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: xine-lib >= 1.0.0
-Requires: util-linux, eject, netpbm-progs, mjpegtools, ImageMagick
-BuildRequires: xine-lib-devel >= 1.0.0, lirc-devel
-# configure checks for those
-BuildRequires: util-linux, eject, netpbm-progs, mjpegtools, ImageMagick
-BuildRequires: gettext-devel
+BuildRequires: eject
+BuildRequires: libX11-devel, libXtst-devel, libXinerama-devel
+BuildRequires: xine-lib-devel >= 1.0.1, gettext
+BuildRequires: curl-devel, ImageMagick-devel, lirc-devel
 
 %description
 oxine is a lightweight gui for the famous xine engine which uses the on screen
@@ -28,16 +27,23 @@ entertainment systems or kiosk systems.
 
 %prep
 %setup
+%patch0 -p1 -b .install
 
 
 %build
-%configure
+# --disable-weather until we get libmetar packaged
+# --without-jsw until we get libjsw packaged
+%configure \
+    --disable-rpath \
+    --disable-weather \
+    --enable-vdr \
+    --without-jsw
 %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
 
 
@@ -53,6 +59,12 @@ entertainment systems or kiosk systems.
 
 
 %changelog
+* Mon Dec 18 2006 Matthias Saou <http://freshrpms.net/> 0.6-1
+- Update to 0.6.
+- Include install patch.
+- Enable VDR.
+- Disable (at least for now) weather and jsw because of not-yet-packaged libs.
+
 * Wed Aug 31 2005 Matthias Saou <http://freshrpms.net/> 0.3.5-0.1.cvs
 - Update to CVS snapshot.
 

@@ -13,13 +13,12 @@
 
 Summary: GStreamer streaming media framework "ugly" plug-ins
 Name: %{gstreamer}-plugins-ugly
-Version: 0.10.4
-Release: 3
+Version: 0.10.5
+Release: 1
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
 Source: http://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-%{version}.tar.bz2
-Patch0: gst-plugins-ugly-0.10.4-ac3.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: %{gstreamer} >= %{gst_minver}
 BuildRequires: %{gstreamer}-devel >= %{gst_minver}
@@ -80,7 +79,6 @@ This package contains development files and documentation.
 
 %prep
 %setup -n gst-plugins-ugly-%{version}
-%patch0 -p1 -b .ac3
 
 
 %build
@@ -136,6 +134,10 @@ This package contains development files and documentation.
 
 
 %changelog
+* Fri Dec 15 2006 Matthias Saou <http://freshrpms.net/> 0.10.5-1
+- Update to 0.10.5.
+- Remove no longer needed AC3 sound patch.
+
 * Sun Nov 26 2006 Paulo Roma <roma@lcg.ufrj.br> 0.10.4-3
 - Patched to fix AC3 sound.
 
