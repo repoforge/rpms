@@ -4,15 +4,16 @@
 # ExclusiveDist: fc5 fc6
 
 Summary: Extra libraries for the Xine library
-Name: xine-lib-extras
-Version: 1.1.2
+Name: xine-lib-moles
+Version: 1.1.3
 Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://xinehq.de/
-Source0: http://dl.sf.net/xine/xine-lib-%{version}.tar.bz2
+Source0: http://dl.sf.net/xine/xine-lib-%{version}.tar.gz
 # WARNING : Needs to be from the i386 package in order to contain vidix files
 Source1: rpm_-ql_xine-lib.txt
+Source2: rpm_-ql_xine-lib-extras.txt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xine-lib = %{version}
 Requires: libdvdcss
@@ -53,9 +54,10 @@ Available rpmbuild rebuild options :
 %install
 %{__rm} -rf %{buildroot} tmp
 %{__make} install DESTDIR="`pwd`/tmp"
-# Only a small part of the libs are what we want
-# ...so clean up all the libraries from the ones already in xine-lib...
-for lib in `grep "^/usr/lib/.*\.so$" %{SOURCE1} | cut -d "/" -f 4-`; do
+# Only a small part of the libs are what we want, so clean up all the ones
+# from packages already in Extras
+EXCLUDE="`grep -h "plugins.*\.so$" %{SOURCE1} %{SOURCE2} | cut -d "/" -f 4-`"
+for lib in ${EXCLUDE}; do
     %{__rm} -f tmp%{_libdir}/${lib}
 done
 # ...then move all the remaining ones to be included.
@@ -70,10 +72,17 @@ done
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING doc/README.network_dvd
-%{_libdir}/xine/
+%{_libdir}/xine/plugins/%{version}/post/*.so
+%{_libdir}/xine/plugins/%{version}/*.so
 
 
 %changelog
+* Mon Dec 18 2006 Matthias Saou <http://freshrpms.net/> 1.1.3-1
+- Update to 1.1.3.
+- Rename xine-lib-moles as xine-lib-extras is now the package from Extras which
+  contains the not-commonly-used plugins with external dependencies. MOLES
+  stands for MPEG and Other Legally Encumbered Stuff... yeah, plain silly.
+
 * Wed Nov  1 2006 Matthias Saou <http://freshrpms.net/> 1.1.2-1
 - Severly castrated xine-lib as xine-lib-extras for FC6+...
 
