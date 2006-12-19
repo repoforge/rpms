@@ -23,11 +23,16 @@ even if the backend server(s) are HTTP/1.0, and sanitizes requests.
 
 %prep
 %setup -n Pound-%{version}
-%{__perl} -pi -e "s|-o \@I_OWNER\@ -g \@I_GRP\@| |g;" Makefile*
-%{__perl} -pi -e "s| -s | |g;" Makefile*
+%{__perl} -pi -e '
+		s|-o \@I_OWNER\@ -g \@I_GRP\@||g;
+		s| -s | |g;
+	' Makefile*
 
 %build
-%configure --disable-super
+### Add correct CFLAGS for EL3 and RH9
+%{expand: %%define optflags %{optflags} %(pkg-config --cflags openssl)}
+%configure \
+	--disable-super
 %{__make} %{?_smp_mflags}
 
 %install
@@ -40,8 +45,9 @@ even if the backend server(s) are HTTP/1.0, and sanitizes requests.
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG GPL.html FAQ README
-%doc %{_mandir}/man8/pound*
+%doc CHANGELOG FAQ GPL.html README
+%doc %{_mandir}/man8/pound.8*
+%doc %{_mandir}/man8/poundctl.8*
 %{_sbindir}/pound
 %{_sbindir}/poundctl
 

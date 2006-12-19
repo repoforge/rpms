@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Frozen Bubble
+Comment=Frozen Bubble arcade game
+Exec=frozen-bubble
+Icon=frozen-bubble.png
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=Application;Game;ArcadeGame;

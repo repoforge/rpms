@@ -16,6 +16,9 @@
 %{?fc6:%define _with_avahi 1}
 %{?fc5:%define _with_avahi 1}
 
+%{?el4:%define _without_jack 1}
+%{?el4:%define _without_sysfs 1}
+%{?el4:%define _without_upnp 1}
 %{?el4:%define _without_wxwidgets 1}
 
 %{?fc3:%define _without_wxwidgets 1}
@@ -83,7 +86,7 @@ Source2: http://www.live555.com/liveMedia/public/live.%{live_date}.tar.gz
 Patch0: vlc-0.8.6-ffmpegX11.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, libpng-devel, libxml2-devel, libtiff-devel
-BuildRequires: libgcrypt-devel, gnutls-devel, libsysfs-devel, libtar-devel
+BuildRequires: libgcrypt-devel, gnutls-devel, libtar-devel
 BuildRequires: libjpeg-devel
 Buildrequires: autoconf, automake, libtool
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
@@ -138,6 +141,7 @@ Buildrequires: autoconf, automake, libtool
 %{!?_without_upnp:BuildRequires: libupnp-devel}
 #{!?_without_goom:BuildRequires: goom-devel}
 %{!?_without_jack:BuildRequires: jack-audio-connection-kit-devel}
+%{!?_without_sysfs:BuildRequires: libsysfs-devel}
 Obsoletes: videolan-client < 0.8.5-4
 Provides: videolan-client = %{version}-%{release}
 

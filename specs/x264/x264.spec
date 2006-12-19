@@ -11,10 +11,20 @@
 %{?el4:%define _without_gtk26 1}
 %{?fc3:%define _without_gtk26 1}
 %{?fc2:%define _without_gtk26 1}
+
+%{?fc1:%define _without_glibc232 1}
 %{?fc1:%define _without_gtk26 1}
+
+%{?el3:%define _without_glibc232 1}
 %{?el3:%define _without_gtk26 1}
+
+%{?rh9:%define _without_glibc232 1}
 %{?rh9:%define _without_gtk26 1}
+
+%{?rh7:%define _without_glibc232 1}
 %{?rh7:%define _without_gtk26 1}
+
+%{?el2:%define _without_glibc232 1}
 %{?el2:%define _without_gtk26 1}
 
 %define date 20061214
@@ -27,6 +37,7 @@ License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/x264.html
 Source: http://downloads.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{date}-2245.tar.bz2
+Patch0: x264-snapshot-20061214-2245-glibc232.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: nasm, yasm, gettext
 %{?!_without_gtk26:BuildRequires: gtk2-devel >= 2.6}
@@ -72,6 +83,10 @@ H264/AVC video streams using the x264 graphical utility.
 # configure hardcodes X11 lib path
 %{__perl} -pi -e 's|/usr/X11R6/lib |/usr/X11R6/%{_lib} |g' configure
 
+### Required for glibc < 2.3.2 (http://article.gmane.org/gmane.comp.video.x264.devel/1696)
+%if %{?_without_glibc232:1}0
+%patch0 -p0
+%endif
 
 %build
 # Force PIC as applications fail to recompile against the lib on x86_64 without

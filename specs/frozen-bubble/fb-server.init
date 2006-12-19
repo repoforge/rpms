@@ -1,0 +1,80 @@
+#!/bin/sh
+#
+# fb-server      Frozen-Bubble server
+#
+# chkconfig: - 99 01
+# description: this is the Frozen-Bubble server; it allows people to play \
+#              Frozen-Bubble over the Internet.
+# processname: fb-server
+# pidfile: /var/run/fb-server.pid
+# config: /etc/fb-server*.conf
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+conffiles=/etc/fb-server*.conf
+servicename=fb-server
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 0
+
+start() {
+	echo -n $"Starting Frozen Bubble server(s): "
+        ATLEASTONE=-1
+        for file in $conffiles; do
+            daemon --user fbubble "fb-server -c $file &>/dev/null"
+            RETVAL=$?
+            if [ "$ATLEASTONE" -ne 0 ]; then
+                ATLEASTONE=$RETVAL
+            fi
+            echo
+        done
+	if [ $ATLEASTONE -eq 0 ]; then
+            touch /var/lock/subsys/$servicename
+        fi
+	return $ATLEASTONE
+}
+
+stop() {
+	echo -n $"Stopping Frozen Bubble server(s): "
+        killproc fb-server
+	RETVAL=$?
+	echo
+	if [ $RETVAL -eq 0 ]; then
+            rm -f /var/lock/subsys/$servicename
+        fi
+	return $RETVAL
+}
+
+restart() {
+	stop
+	start
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart)
+	restart
+	;;
+  status)
+        status fb-server
+        RETVAL=$?
+        ;;
+  condrestart)
+	[ -f /var/lock/subsys/$servicename ] && restart || :
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|restart|status|condrestart}"
+	exit 1
+esac
+
+exit $RETVAL

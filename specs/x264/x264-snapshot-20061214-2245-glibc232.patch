@@ -1,0 +1,11 @@
+--- common/cpu.c.orig	2006-12-19 00:11:05.523340680 +0100
++++ common/cpu.c	2006-12-19 00:11:59.993060024 +0100
+@@ -171,7 +171,7 @@
+ #else
+     cpu_set_t p_aff;
+     memset( &p_aff, 0, sizeof(p_aff) );
+-    sched_getaffinity( 0, sizeof(p_aff), &p_aff );
++    sched_getaffinity( 0, &p_aff );
+ #endif
+     for( np = 0, bit = 0; bit < sizeof(p_aff); bit++ )
+         np += (((uint8_t *)&p_aff)[bit / 8] >> (bit % 8)) & 1;

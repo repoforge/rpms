@@ -1,6 +1,15 @@
 # $Id$
 # Authority: matthias
 
+%{?el4:%define _without_sysfs 1}
+%{?fc3:%define _without_sysfs 1}
+%{?fc2:%define _without_sysfs 1}
+%{?fc1:%define _without_sysfs 1}
+%{?el3:%define _without_sysfs 1}
+%{?rh9:%define _without_sysfs 1}
+%{?rh7:%define _without_sysfs 1}
+%{?el2:%define _without_sysfs 1}
+
 Summary: Library and frontend for decoding MPEG2/4 AAC
 Name: faad2
 Version: 2.5
@@ -12,7 +21,8 @@ Source: http://dl.sf.net/faac/faad2-%{version}.tar.gz
 Patch0: faad2-2.5-buildfix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf, automake, libtool
-BuildRequires: gcc-c++, zlib-devel, libsysfs-devel
+BuildRequires: gcc-c++, zlib-devel
+%{!?_without_sysfs:BuildRequires: libsysfs-devel}
 
 %description
 FAAD 2 is a LC, MAIN and LTP profile, MPEG2 and MPEG-4 AAC decoder, completely
@@ -34,6 +44,9 @@ This package contains development files and documentation for libfaad.
 %prep
 %setup -n %{name}
 %patch0 -p1 -b .buildfix
+
+### Required to make automake < 1.7 work
+%{__perl} -pi -e 's|dnl AC_PROG_CXX|AC_PROG_CXX|' configure.in
 
 
 %build

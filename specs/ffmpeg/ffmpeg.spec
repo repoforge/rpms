@@ -41,6 +41,8 @@ Source: ffmpeg-%{date}.tar.bz2
 Patch0: ffmpeg-20061215-gsm.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel
+### configure needs sed -i option
+BuildRequires: sed >= 4.0.7
 %{!?_without_texi2html:BuildRequires: texi2html}
 %{!?_without_lame:BuildRequires: lame-devel}
 %{!?_without_vorbis:BuildRequires: libogg-devel, libvorbis-devel}

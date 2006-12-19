@@ -40,7 +40,6 @@ This package contains a gtk+ frontend to gocr.
 
 %prep
 %setup
-#patch0 -p0 -b .pgm
 # Create mkinstalldirs -> gnome/mkinstalldirs in frontend directory
 %{__ln_s} -f gnome/mkinstalldirs frontend/mkinstalldirs
 
@@ -55,8 +54,6 @@ cd -
 
 %install
 %{__rm} -rf %{buildroot}
-#%makeinstall DESTDIR=""
-#%makeinstall DESTDIR="" -C frontend/gnome
 %{__make} install DESTDIR="%{buildroot}"
 %{__make} install DESTDIR="%{buildroot}" -C frontend/gnome
 
@@ -74,7 +71,7 @@ cd -
 %files devel
 %defattr(-, root, root, 0755)
 %doc api/doc/*.txt
-%{_libdir}/*.a
+%{_libdir}/libPgm2asc.a
 %{_includedir}/gocr.h
 
 %files gtk
