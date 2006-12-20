@@ -1,0 +1,12 @@
+diff -Naupr faac.orig/configure.in faac/configure.in
+--- faac.orig/configure.in	2006-08-13 16:17:26.000000000 +0200
++++ faac/configure.in	2006-12-20 11:34:22.000000000 +0100
+@@ -35,6 +35,8 @@ AC_CHECK_DECLS([MP4Create, MP4MetadataDe
+ 
+ if test x$external_mp4v2 = xyes; then
+   AC_MSG_NOTICE([*** Building with external mp4v2 ***])
++  MY_DEFINE(HAVE_LIBMP4V2)
++  LIBS="-lmp4v2 $LIBS"
+ else
+   if test x$WITHMP4V2 = xyes; then
+      AC_MSG_NOTICE([*** Building with internal mp4v2 ***])

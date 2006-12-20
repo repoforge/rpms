@@ -4,11 +4,12 @@
 Summary: Reference encoder and encoding library for MPEG2/4 AAC
 Name: faac
 Version: 1.25
-Release: 1
+Release: 2
 License: LGPL
 Group: Applications/Multimedia
 URL: http://www.audiocoding.com/
 Source: http://dl.sf.net/faac/faac-%{version}.tar.gz
+Patch0: faac-1.25-libmp4v2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libmp4v2-devel
 BuildRequires: autoconf >= 2.50, automake, libtool, dos2unix
@@ -34,6 +35,7 @@ This package contains development files and documentation for libfaac.
 
 %prep
 %setup -n %{name}
+%patch0 -p1 -b .libmp4v2
 # Don't ask...
 find . -type f -exec dos2unix {} \;
 find . -type f -exec chmod 644 {} \;
@@ -76,6 +78,9 @@ sh bootstrap
 
 
 %changelog
+* Wed Dec 20 2006 Matthias Saou <http://freshrpms.net/> 1.25-2
+- Include patch to fix external libmp4v2 (Alexandre Silva Lopes).
+
 * Fri Dec 15 2006 Matthias Saou <http://freshrpms.net/> 1.25-1
 - Update to 1.25.
 - Enable external libmp4v2... but the resulting package doesn't require it...
