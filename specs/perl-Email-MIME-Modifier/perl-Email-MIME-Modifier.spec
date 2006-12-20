@@ -12,7 +12,7 @@ AutoProv:   0
 Summary: Modify Email::MIME Objects Easily
 Name: perl-Email-MIME-Modifier
 Version: 1.441
-Release: 1
+Release: 2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-MIME-Modifier/
@@ -22,7 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-Provides: perl(Email::MIME:Modifier)
+Provides: perl(Email::MIME::Modifier)
 
 %description
 Provides a number of useful methods for manipulating MIME messages.
@@ -57,6 +57,9 @@ with "Email::MIME" objects.
 %{perl_vendorlib}/Email/MIME/Modifier.pm
 
 %changelog
+* Wed Dec 20 2006 Dries Verachtert <dries@ulyssis.org> - 1.441-2
+- Correctly provide perl(Email::MIME::Modifier).
+
 * Sun Dec 10 2006 Dries Verachtert <dries@ulyssis.org> - 1.441-1
 - Updated to release 1.441.
 - Disabled automatic provides to make sure it doesn't provide perl(Email::MIME)
