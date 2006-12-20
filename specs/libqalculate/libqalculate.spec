@@ -25,6 +25,16 @@ Features include customizable functions, units, arbitrary precision and plotting
 This package contains the qulculate library which is used by the KDE and GTK+
 GUI packages.
 
+%package devel
+Summary: Header files, libraries and development documentation for %{name}.
+Group: Development/Libraries
+Requires: %{name} = %{version}-%{release}
+
+%description devel
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
+
 %prep
 %setup
 
@@ -46,16 +56,20 @@ GUI packages.
 %doc AUTHORS ChangeLog NEWS README TODO docs/reference/
 %{_bindir}/qalc
 %{_datadir}/qalculate/
+%{_libdir}/libqalculate.so.*
+%exclude %{_docdir}/libqalculate-%{version}/
+
+%files devel
 %{_includedir}/libqalculate/
 %{_libdir}/libqalculate.a
 %exclude %{_libdir}/libqalculate.la
-%{_libdir}/libqalculate.so*
+%{_libdir}/libqalculate.so
 %{_libdir}/pkgconfig/libqalculate.pc
-%exclude %{_docdir}/libqalculate-%{version}/
 
 %changelog
 * Wed Dec 20 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.5-2
 - Renamed to libqalculate.
+- Made a devel subpackage.
 
 * Tue Dec 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.5-1
 - Updated to release 0.9.5.

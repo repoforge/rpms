@@ -4,7 +4,7 @@
 
 Summary: Versatile desktop calculator
 Name: qalculate-kde
-Version: 0.9.4
+Version: 0.9.5
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: kdelibs-devel, gettext, gcc-c++, cln-devel
 BuildRequires: gmp-devel
-BuildRequires: qalculate
+BuildRequires: libqalculate-devel >= 0.9.5
 
 %description
 Qalculate! is a modern multi-purpose desktop calculator for GNU/Linux. It is
@@ -42,11 +42,14 @@ Features include customizable functions, units, arbitrary precision and plotting
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_bindir}/qalculate*
 %{_datadir}/icons/*/*/*/qalculate*.png
-%{_datadir}/applnk/Utilities/qalculate*.desktop
+%{_datadir}/applications/kde/qalculate_kde.desktop
 %{_datadir}/apps/qalculate_kde/
 %{_datadir}/doc/HTML/*/qalculate_kde/
 
 %changelog
+* Wed Dec 20 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.5-1
+- Updated to release 0.9.5.
+
 * Mon Nov 13 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.4-1
 - Updated to release 0.9.4.
 

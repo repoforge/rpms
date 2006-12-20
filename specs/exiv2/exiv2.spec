@@ -2,10 +2,20 @@
 # Authority: dries
 # Upstream: Andreas Huggel <ahuggel$gmx,net>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+# pkgconfig < 0.16.0 doesn't like 'URL:'
+%{?el4:%define _with_oldpkgconfig 1}
+%{?el3:%define _with_oldpkgconfig 1}
+%{?el2:%define _with_oldpkgconfig 1}
+%{?fc3:%define _with_oldpkgconfig 1}
+%{?fc2:%define _with_oldpkgconfig 1}
+%{?fc1:%define _with_oldpkgconfig 1}
+
 Summary: Exif and Iptc metadata manipulation library and tools
 Name: exiv2
 Version: 0.12
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://home.arcor.de/ahuggel/exiv2/index.html
@@ -42,6 +52,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
+%{?_with_oldpkgconfig:%{__perl} -pi -e "s|^URL:|#URL:|" config/exiv2.pc.in}
 
 %build
 %configure
@@ -73,6 +84,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libexiv2*.la
 
 %changelog
+* Wed Dec 20 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-2
+- Remove 'URL:' from pkgconfig file on older distro's, thanks to Rex Dieter.
+
 * Mon Nov 27 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Updated to release 0.12.
 
