@@ -1,0 +1,11 @@
+--- qalculate-gtk-0.6/src/calclib/Calculator.cc.orig	2004-06-25 16:55:11.670910456 +0200
++++ qalculate-gtk-0.6/src/calclib/Calculator.cc	2004-06-25 16:55:25.565670659 +0200
+@@ -32,6 +32,8 @@
+ #include <queue>
+ #include <stack>
+ 
++#include <errno.h>
++
+ #define WANT_OBFUSCATING_OPERATORS
+ #include <cln/cln.h>
+ using namespace cln;
