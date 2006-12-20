@@ -31,7 +31,7 @@ Features include customizable functions, units, arbitrary precision and plotting
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang qalculate_kde
 
 %clean
@@ -40,11 +40,11 @@ Features include customizable functions, units, arbitrary precision and plotting
 %files -f qalculate_kde.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
+%doc %{_datadir}/doc/HTML/*/qalculate_kde/
 %{_bindir}/qalculate*
-%{_datadir}/icons/*/*/*/qalculate*.png
 %{_datadir}/applications/kde/qalculate_kde.desktop
 %{_datadir}/apps/qalculate_kde/
-%{_datadir}/doc/HTML/*/qalculate_kde/
+%{_datadir}/icons/*/*/*/qalculate*.png
 
 %changelog
 * Wed Dec 20 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.5-1

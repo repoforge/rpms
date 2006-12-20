@@ -4,13 +4,13 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-# pkgconfig < 0.16.0 doesn't like 'URL:'
-%{?el4:%define _with_oldpkgconfig 1}
-%{?el3:%define _with_oldpkgconfig 1}
-%{?el2:%define _with_oldpkgconfig 1}
-%{?fc3:%define _with_oldpkgconfig 1}
-%{?fc2:%define _with_oldpkgconfig 1}
-%{?fc1:%define _with_oldpkgconfig 1}
+### pkgconfig < 0.16.0 doesn't like 'URL:'
+%{?el4:%define _without_pkgconfig16 1}
+%{?fc3:%define _without_pkgconfig16 1}
+%{?fc2:%define _without_pkgconfig16 1}
+%{?fc1:%define _without_pkgconfig16 1}
+%{?el3:%define _without_pkgconfig16 1}
+%{?el2:%define _without_pkgconfig16 1}
 
 Summary: Exif and Iptc metadata manipulation library and tools
 Name: exiv2
@@ -52,17 +52,16 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%{?_with_oldpkgconfig:%{__perl} -pi -e "s|^URL:|#URL:|" config/exiv2.pc.in}
+%{?_without_pkgconfig16:%{__perl} -pi -e 's|^URL:|#URL:|' config/exiv2.pc.in}
 
 %build
 %configure
-%{__make} %{?_smp_mflags} \
-	CFLAGS="%{optflags}"
+%{__make} %{?_smp_mflags}
 %{__make} doc
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall incdir=%{buildroot}%{_includedir}/exiv2 mandir=%{buildroot}%{_mandir} man1dir=%{buildroot}%{_mandir}/man1
+%{__make} install DESTDIR="%{buildroot}" prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -70,9 +69,9 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README
-%doc %{_mandir}/man1/exiv*
+%doc %{_mandir}/man1/exiv*.1*
 %{_bindir}/exiv2
-%{_libdir}/libexiv2*so
+%{_libdir}/libexiv2*.so
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -80,8 +79,8 @@ you will need to install %{name}-devel.
 %{_bindir}/exiv2-config
 %{_includedir}/exiv2/
 %{_libdir}/libexiv2*.a
-%{_libdir}/pkgconfig/exiv2.pc
 %exclude %{_libdir}/libexiv2*.la
+%{_libdir}/pkgconfig/exiv2.pc
 
 %changelog
 * Wed Dec 20 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-2

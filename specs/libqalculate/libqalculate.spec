@@ -2,12 +2,14 @@
 # Authority: dag
 # Upstream: Niklas Knutsson <nq$altern,org>
 
+%define desktop_vendor rpmforge
+
 Summary: Versatile desktop calculator library
 Name: libqalculate
 Version: 0.9.5
-Release: 2
+Release: 3
 License: GPL
-Group: Applications/Engineering
+Group: System Environment/Libraries
 URL: http://qalculate.sourceforge.net/
 
 Source: http://dl.sf.net/qalculate/libqalculate-%{version}.tar.gz
@@ -16,12 +18,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: pkgconfig, cln-devel, gcc-c++, gmp-devel
 BuildRequires: ImageMagick, gettext, glib2-devel >= 2.4
 BuildRequires: intltool, perl-XML-Parser, libxml2-devel
-Requires: gnuplot, wget
 
 %description
 Qalculate! is a modern multi-purpose desktop calculator for GNU/Linux. It is
 small and simple to use but with much power and versatility underneath.
 Features include customizable functions, units, arbitrary precision and plotting.
+
 This package contains the qulculate library which is used by the KDE and GTK+
 GUI packages.
 
@@ -35,8 +37,32 @@ This package contains the header files, static libraries and development
 documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
+%package -n qalculate
+Summary: Versatile desktop calculator
+Group: Applications/Engineering
+Requires: %{name} = %{version}-%{release}
+Requires: gnuplot, wget
+
+%description -n qalculate
+Qalculate! is a modern multi-purpose desktop calculator for GNU/Linux. It is
+small and simple to use but with much power and versatility underneath.
+Features include customizable functions, units, arbitrary precision and plotting.
+
 %prep
 %setup
+
+%{__cat} <<EOF >qalc.desktop
+[Desktop Entry]
+Name=Qalculate!
+Comment=Powerful and easy to use desktop calculator
+GenericName=Scientific Calculator
+Exec=qalc
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GNOME;Application;Utility;
+Encoding=UTF-8
+EOF
 
 %build
 %configure
@@ -45,19 +71,22 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-
 %find_lang libqalculate
+
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+desktop-file-install --vendor %{desktop_vendor}    \
+	--add-category X-Red-Hat-Base              \
+	--dir %{buildroot}%{_datadir}/applications \
+	qalc.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f libqalculate.lang
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog NEWS README TODO docs/reference/
-%{_bindir}/qalc
 %{_datadir}/qalculate/
 %{_libdir}/libqalculate.so.*
-%exclude %{_docdir}/libqalculate-%{version}/
 
 %files devel
 %{_includedir}/libqalculate/
@@ -66,7 +95,17 @@ you will need to install %{name}-devel.
 %{_libdir}/libqalculate.so
 %{_libdir}/pkgconfig/libqalculate.pc
 
+%files -n qalculate -f libqalculate.lang
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog NEWS README TODO docs/reference/
+%{_bindir}/qalc
+%{_datadir}/applications/%{desktop_vendor}-qalc.desktop
+%exclude %{_docdir}/libqalculate-%{version}/
+
 %changelog
+* Wed Dec 20 2006 Dag Wieers <dag@wieers.com> - 0.9.5-3
+- Added the qalculate sub-package (this allows upgrade path from qalculate).
+
 * Wed Dec 20 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.5-2
 - Renamed to libqalculate.
 - Made a devel subpackage.

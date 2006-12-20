@@ -6,8 +6,8 @@ Summary: Data recovery tool
 Name: ddrescue
 ### Epoch to override Fedora Extras stupid decision to NOT USE THEIR OWN NAMING CONVENTION
 Epoch: 1
-Version: 1.0
-Release: 2
+Version: 1.3
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.gnu.org/software/ddrescue/ddrescue.html
@@ -57,7 +57,6 @@ if [ -e %{_infodir}/ddrescue.info.gz ]; then
 	/sbin/install-info --delete %{_infodir}/ddrescue.info.gz %{_infodir}/dir
 fi
 
-
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -69,6 +68,9 @@ fi
 %{_bindir}/ddrescue
 
 %changelog
+* Tue Dec 19 2006 Dag Wieers <dag@wieers.com> - 1:1.3-1
+- Added epoch to override Fedora Extras ddrescue (which really is dd_rescue).
+
 * Thu Dec 08 2005 Dag Wieers <dag@wieers.com> - 1:1.0-2
 - Added epoch to override Fedora Extras ddrescue (which really is dd_rescue).
 
