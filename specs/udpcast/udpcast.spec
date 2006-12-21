@@ -4,8 +4,8 @@
 
 Summary: UDP broadcast installation
 Name: udpcast
-%define real_version 20060525
-Version: 0.0.20060525
+%define real_version 20060929
+Version: 0.0.20060929
 Release: 1
 License: GPL or BSD
 Group: Applications/System
@@ -23,29 +23,30 @@ Allows easy installation of client machines via UDP broadcast
 %setup -n %{name}-%{real_version}
 
 %build
-#%{__make} %{?_smp_mflags}
-%{__make} %{?_smp_mflags} udp-receiver udp-sender
+%configure \
+	--prefix="%{buildroot}%{_prefix}" \
+	--mandir="%{buildroot}%{_mandir}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 udp-receiver %{buildroot}%{_bindir}/udp-receiver
-%{__install} -Dp -m0755 udp-sender %{buildroot}%{_bindir}/udp-sender
-#%{__install} -Dp -m0644 udp-receiver.1 %{buildroot}%{_mandir}/man1/udp-receiver.1
-#%{__install} -Dp -m0644 udp-sender.1 %{buildroot}%{_mandir}/man1/udp-sender.1
+%{__make} install
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changelog.txt cmd.html COPYING
-#%doc Changelog.txt cmd.html COPYING README*
-#%doc %{_mandir}/man1/udp-receiver.1*
-#%doc %{_mandir}/man1/udp-sender.1*
-%{_bindir}/udp-receiver
-%{_bindir}/udp-sender
+%doc Changelog.txt cmd.html COPYING *.txt
+%doc %{_mandir}/man1/udp-receiver.1*
+%doc %{_mandir}/man1/udp-sender.1*
+%{_sbindir}/udp-receiver
+%{_sbindir}/udp-sender
 
 %changelog
+* Thu Dec 21 2006 Dag Wieers <dag@wieers.com> - 0.0.20060929-1
+- Updated to release 20060929.
+
 * Wed May 31 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.20060525-1
 - Updated to release 20060525.
 

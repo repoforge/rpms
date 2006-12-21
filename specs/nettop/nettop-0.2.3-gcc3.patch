@@ -1,0 +1,50 @@
+--- nettop.c.orig	2006-12-21 02:57:43.219866808 +0100
++++ nettop.c	2006-12-21 03:00:17.301442848 +0100
+@@ -216,22 +216,34 @@
+ 		}
+ 	}
+ 
+-	ether.count = ether.size = (int) ether.l = (int) ether.r = 0;
++	ether.count = 0;
++	ether.size = 0;
++	ether.l = 0;
++	ether.r = 0;
+ 	ether.type = -1;
+ 	for (i = 0; i < HISTORY_SIZE; i++)
+ 		ether.size_h[i] = 0;
+ 
+-	ip.count = ip.size = (int) ip.l = (int) ip.r = 0;
++	ip.count = 0;
++	ip.size = 0;
++	ip.l = 0;
++	ip.r = 0;
+ 	ip.type = -1;
+ 	for (i = 0; i < HISTORY_SIZE; i++)
+ 		ip.size_h[i] = 0;
+ 
+-	tcp.count = tcp.size = (int) tcp.l = (int) tcp.r = 0;
++	tcp.count = 0;
++	tcp.size = 0;
++	tcp.l = 0;
++	tcp.r = 0;
+ 	tcp.type = -1;
+ 	for (i = 0; i < HISTORY_SIZE; i++)
+ 		tcp.size_h[i] = 0;
+ 
+-	udp.count = udp.size = (int) udp.l = (int) udp.r = 0;
++	udp.count = 0;
++	udp.size = 0;
++	udp.l = 0;
++	udp.r = 0;
+ 	udp.type = -1;
+ 	for (i = 0; i < HISTORY_SIZE; i++)
+ 		udp.size_h[i] = 0;
+@@ -360,7 +372,7 @@
+ 					pthread_mutex_unlock(&mutex);
+ 				}
+ 				break;
+-			default:
++			default: ;
+ 			}
+ 		}
+ 	}

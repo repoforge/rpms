@@ -2,17 +2,15 @@
 # Authority: dag
 # Upstream: Gordon MacKay <mackay$uno,slctech,org>
 
-%define real_version 1.0a
-
 Summary: Ethernet/PPP IP Packet Monitor
 Name: netwatch
-Version: 1.0
-Release: 0.a.2
+Version: 1.0c
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.slctech.org/~mackay/netwatch.html
 
-Source: http://www.slctech.org/~mackay/netwatch-%{real_version}.src.tgz
+Source: http://www.slctech.org/~mackay/netwatch-%{version}.src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: ncurses-devel
 
@@ -23,7 +21,7 @@ and byte counts are available for all host communication.
 Router statistics and summary charts are available.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
 
 %{__perl} -pi.orig -e '
 		s|chown|#chown|;
@@ -32,7 +30,7 @@ Router statistics and summary charts are available.
 	' Makefile.in
 
 %build
-%configure
+./configure
 %{__make} %{?_smp_mflags}
 
 %install
@@ -47,12 +45,13 @@ Router statistics and summary charts are available.
 %files
 %defattr(-, root, root, 0755)
 %doc BUGS CHANGES COPYING README* TODO
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/netwatch.1*
+%{_bindir}/netresolv
+%{_bindir}/netwatch
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-0.a.2
-- Rebuild for Fedora Core 5.
+* Thu Dec 21 2006 Dag Wieers <dag@wieers.com> - 1.0c-1
+- Updated to release 1.0c.
 
 * Sun Apr 25 2004 Dag Wieers <dag@wieers.com> - 1.0-0.a
 - Initial package. (using DAR)

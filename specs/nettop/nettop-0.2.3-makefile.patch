@@ -1,0 +1,11 @@
+--- nettop-0.2.3/Makefile.in.orig	Thu Nov  8 23:13:59 2001
++++ nettop-0.2.3/Makefile.in	Thu Nov 22 17:16:27 2001
+@@ -4,7 +4,7 @@
+ top_srcdir = @top_srcdir@
+ 
+ CC = @CC@
+-INCLUDES = -I $(srcdir) -I $(top_scr_dir) 
++INCLUDES = -I- -I$(srcdir) -I$(top_scr_dir) -I/usr/include -I/usr/include/slang -I/usr/include/pcap
+ CFLAGS = @CFLAGS@ @SLANGFLAGS@ -DVERSION=\"$(VERSION)\"
+ LOCAL_C_FLAGS = @LOCAL_C_FLAGS@
+ LIBS = @LIBS@
