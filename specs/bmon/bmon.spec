@@ -4,16 +4,16 @@
 Summary: Console interface bandwidth usage monitor
 Name: bmon
 Version: 2.1.0
-Release: 2.2
+Release: 3
 License: Artistic
 Group: Applications/Internet
 URL: http://people.suug.ch/~tgr/bmon/
 
 Source: http://people.suug.ch/~tgr/bmon/files/bmon-%{version}.tar.gz
+Patch0: bmon-2.1.0-shutdown.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Conflicts: nstats
-#BuildRequires: gettext-devel
 BuildRequires: gettext, ncurses-devel, rrdtool-devel
 
 %description
@@ -21,20 +21,15 @@ bmon is an interface bandwidth monitor.
 
 %prep
 %setup
+%patch0 -p0
 
 %build
-#%{__gettextize}
-#%{__aclocal}
-#%{__autoconf}
-#%{__autoheader}
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-#%{__install} -Dp -m0755 bmon %{buildroot}%{_bindir}/bmon
-#%{__install} -Dp -m0644 bmon.1 %{buildroot}%{_mandir}/man1/bmon.1
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -46,6 +41,9 @@ bmon is an interface bandwidth monitor.
 %{_bindir}/bmon
 
 %changelog
+* Thu Dec 21 2006 Dag Wieers <dag@wieers.com> - 2.1.0-3
+- Build fixes for gcc on at least FC6.
+
 * Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 2.1.0-2
 - Fixed group.
 
