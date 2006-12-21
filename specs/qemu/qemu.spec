@@ -4,20 +4,20 @@
 
 Summary: CPU emulator
 Name: qemu
-Version: 0.8.0
-Release: 1.2
+Version: 0.8.2
+Release: 1
 License: GPL
 Group: Applications/Emulators
-URL: http://fabrice.bellard.free.fr/qemu/
+URL: http://qemu.org/
 
-Source: http://fabrice.bellard.free.fr/qemu/qemu-%{version}.tar.gz
-Patch0: qemu-0.7.0-build.patch
+Source: http://qemu.org/qemu-%{version}.tar.gz
+Patch0: qemu-0.8.2-build.patch
 Patch1: qemu-0.7.0-dyngen.patch
 Patch2: qemu-0.7.0-gcc4-x86.patch
 Patch3: qemu-0.7.0-gcc4-ppc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: SDL-devel
+BuildRequires: SDL-devel, texi2html
 
 %description
 QEMU is a FAST! processor emulator using dynamic translation to achieve good
@@ -181,11 +181,15 @@ fi
 %dir %{_datadir}/qemu/
 %{_datadir}/qemu/keymaps/
 %{_datadir}/qemu/*.bin
-%{_datadir}/qemu/*.elf
+#%{_datadir}/qemu/*.elf
+%{_datadir}/qemu/openbios-sparc32
 %{_datadir}/qemu/video.x
 %exclude %{_datadir}/qemu/doc/
 
 %changelog
+* Tue Dec 19 2006 Marc Abramowitz <marc@abramowitz.info> - 0.8.2-1
+- Updated to release 0.8.2.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.0-1.2
 - Rebuild for Fedora Core 5.
 
