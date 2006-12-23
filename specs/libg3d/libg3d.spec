@@ -4,7 +4,7 @@
 
 Summary: Library for loading and manipulating 3D objects
 Name: libg3d
-Version: 0.0.5
+Version: 0.0.6
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -66,6 +66,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libg3d.pc
 
 %changelog
+* Sat Dec 23 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.6-1
+- Updated to release 0.0.6.
+
 * Sat Nov 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.5-1
 - Updated to release 0.0.5.
 
