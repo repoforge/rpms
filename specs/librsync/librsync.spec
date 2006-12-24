@@ -19,6 +19,9 @@ Obsoletes: libhsync <= %{version}
 Provides: rdiff = %{version}-%{release}
 Obsoletes: rdiff <= %{version}-%{release}
 
+## FIXME: configure checks for gcc-c++ but doesn't seem to use it
+BuildRequires: gcc-c++
+
 %description
 librsync implements the "rsync" algorithm, which allows remote
 differencing of binary files.  librsync computes a delta relative to a

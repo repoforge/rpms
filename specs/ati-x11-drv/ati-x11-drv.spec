@@ -36,6 +36,7 @@ Buildrequires: tar
 BuildRequires: qt-devel, libXmu-devel, libXxf86vm-devel
 # Required for our build
 BuildRequires: desktop-file-utils
+BuildRequires: gcc-c++
 ExclusiveArch: i386 x86_64
 Provides: dkms-fglrx = %{version}-%{release}
 Provides: dkms-ati = %{version}-%{release}

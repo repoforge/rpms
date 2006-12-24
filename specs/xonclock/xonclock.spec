@@ -23,7 +23,7 @@ URL: http://xonclock.sourceforge.net/
 Source: http://dl.sf.net/xonclock/xonclock-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libtiff-devel, libjpeg-devel, libpng-devel
+BuildRequires: libtiff-devel, libjpeg-devel, libpng-devel, desktop-file-utils
 %{!?_without_modxorg:BuildRequires: freetype-devel, libX11-devel, libXext-devel, libXpm-devel, libXrender-devel, libXft-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 

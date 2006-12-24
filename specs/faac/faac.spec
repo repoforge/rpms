@@ -12,7 +12,7 @@ Source: http://dl.sf.net/faac/faac-%{version}.tar.gz
 Patch0: faac-1.25-libmp4v2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libmp4v2-devel
-BuildRequires: autoconf >= 2.50, automake, libtool, dos2unix
+BuildRequires: autoconf >= 2.50, automake, libtool, dos2unix, gcc-c++
 
 %description
 FAAC is an AAC audio encoder. It currently supports MPEG-4 LTP, MAIN and LOW
