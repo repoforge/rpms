@@ -8,8 +8,8 @@
 
 Summary: Scan ssh server logs and block hosts
 Name: denyhosts
-Version: 2.2
-Release: 1.2
+Version: 2.6
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://denyhosts.sourceforge.net/
@@ -50,6 +50,9 @@ logins.
 %{python_sitearch}/DenyHosts/
 
 %changelog
+* Sun Dec 24 2006 Dries Verachtert <dries@ulyssis.org> - 2.6-1
+- Updated to release 2.6.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2-1.2
 - Rebuild for Fedora Core 5.
 
