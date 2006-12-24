@@ -53,7 +53,7 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%{_bindir}/event_rpcgen.py
+%{_bindir}/event_rpcgen.py*
 %{_libdir}/libevent-%{version}.so.*
 
 %files devel
