@@ -13,6 +13,8 @@ URL: http://monkey.org/~provos/libevent/
 Source: http://monkey.org/~provos/libevent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gcc-c++
+
 %description
 The libevent API provides a mechanism to execute a callback function
 when a specific event occurs on a file descriptor or after a timeout
