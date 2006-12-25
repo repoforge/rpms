@@ -46,7 +46,7 @@ logins.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGELOG.txt daemon-control-dist denyhosts.cfg-dist LICENSE.txt README.txt
-%{_bindir}/denyhosts.py
+%{_bindir}/denyhosts.py*
 %{python_sitearch}/DenyHosts/
 
 %changelog

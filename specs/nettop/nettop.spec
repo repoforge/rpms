@@ -1,6 +1,11 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{!?dist:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Top like program for network activity
 Name: nettop
 Version: 0.2.3
@@ -14,7 +19,9 @@ Patch0: nettop-0.2.3-gcc3.patch
 Patch1: nettop-0.2.3-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Requires: slang libpcap
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
+BuildRequires: libpcap
+Requires: slang, libpcap
 
 %description
 This program was written as a top like program for

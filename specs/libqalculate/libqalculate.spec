@@ -18,6 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: pkgconfig, cln-devel, gcc-c++, gmp-devel
 BuildRequires: ImageMagick, gettext, glib2-devel >= 2.4
 BuildRequires: intltool, perl-XML-Parser, libxml2-devel
+BuildRequires: desktop-file-utils
 
 %description
 Qalculate! is a modern multi-purpose desktop calculator for GNU/Linux. It is

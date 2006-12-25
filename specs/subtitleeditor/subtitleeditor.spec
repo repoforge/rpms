@@ -13,7 +13,7 @@ URL: http://kitone.free.fr/subtitleeditor/
 Source: http://kitone.free.fr/subtitleeditor/files/subtitleeditor-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gstreamer-plugins-base-devel, gtk2-devel
+BuildRequires: gstreamer-plugins-base-devel, gtk2-devel, gtkmm24-devel
 
 %description
 Subtitle Editor is a tool to create subtitles or to transform, edit, correct 
