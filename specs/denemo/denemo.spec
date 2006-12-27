@@ -1,11 +1,11 @@
 # $Id$
 # Authority: dag
 
-%define real_version 0.7.5
+%define real_version 0.7.6
 
 Summary: Graphical music notation program
 Name: denemo
-Version: 0.7.5
+Version: 0.7.6
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -31,7 +31,7 @@ computer-music-related purposes as well.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
 
 %clean
@@ -48,6 +48,9 @@ computer-music-related purposes as well.
 %{_datadir}/applications/denemo.desktop
 
 %changelog
+* Wed Dec 27 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.6-1
+- Updated to release 0.7.6.
+
 * Sat Apr 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.5-1
 - Updated to release 0.7.5.
 

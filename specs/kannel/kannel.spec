@@ -3,8 +3,8 @@
 
 Summary: WAP and SMS gateway
 Name: kannel
-Version: 1.4.0
-Release: 4
+Version: 1.4.1
+Release: 1
 License: Kannel
 Group: System Environment/Daemons
 URL: http://www.kannel.org/
@@ -12,7 +12,7 @@ Source0: http://www.kannel.org/download/%{version}/gateway-%{version}.tar.bz2
 Source1: kannel.logrotate
 Source2: kannel.init
 Source3: kannel.conf
-Patch0: kannel-1.4.0-depend.patch
+Patch0: kannel-1.4.1-depend.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: bison, byacc, flex, ImageMagick
 BuildRequires: libxml2-devel, openssl-devel, zlib-devel
@@ -50,7 +50,7 @@ use the kannel WAP and SMS gateway.
 
 %prep
 %setup -n gateway-%{version}
-%{!?rh73:%patch0 -p0 -b .depend}
+%{!?rh73:%patch0 -p1 -b .depend}
 
 %{?el3:%{__perl} -pi.orig -e 's|^(CFLAGS)=|$1=-I/usr/kerberos/include |' Makefile.in}
 %{?rh9:%{__perl} -pi.orig -e 's|^(CFLAGS)=|$1=-I/usr/kerberos/include |' Makefile.in}
@@ -125,6 +125,9 @@ fi
 
 
 %changelog
+* Wed Dec 27 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.1-1
+- Updated to release 1.4.1.
+
 * Mon Jul  4 2005 Matthias Saou <http://freshrpms.net/> 1.4.0-4
 - Include (at last!) user creation, logrotate entry and init script.
 - Include default configuration file (do nothing, access only from 127.0.0.1).
