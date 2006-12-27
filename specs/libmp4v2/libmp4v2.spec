@@ -12,6 +12,7 @@ Source0: http://resare.com/libmp4v2/dist/libmp4v2-%{version}.tar.bz2
 # Only here to be in the source package, "just in case, and FYI"
 Source1: http://resare.com/libmp4v2/mklibmp4v2/mklibmp4v2-r51.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: gcc-c++
 
 %description
 The libmp4v2 library provides an abstraction layer for working with files

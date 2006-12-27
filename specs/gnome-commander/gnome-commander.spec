@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: scrollkeeper, gettext >= 0.10.36, intltool
 BuildRequires: gnome-vfs2-devel >= 2.0, libgnomeui-devel >= 2.0
 BuildRequires: gnome-doc-utils >= 0.3.2
-BuildRequires: glib2-devel >= 2.6
+BuildRequires: glib2-devel >= 2.6, gcc-c++
 
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils

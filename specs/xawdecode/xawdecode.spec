@@ -32,7 +32,7 @@ BuildRequires: lirc
 #BuildRequires: lirc-devel
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_modxorg:BuildRequires: libX11-devel}
-BuildRequires: xosd-devel
+BuildRequires: xosd-devel, Xaw3d-devel
 BuildRequires: xvidcore-devel, divx4linux, lame-devel, ffmpeg-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 

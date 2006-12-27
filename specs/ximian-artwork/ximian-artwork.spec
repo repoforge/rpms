@@ -13,7 +13,7 @@ Source: http://vortex.floppyhat.net/ximian-artwork-%{version}.tar.gz
 Patch: ximian-artwork-de.po.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk+-devel, gtk2-devel, pkgconfig, gettext
+BuildRequires: gtk+-devel, gtk2-devel, pkgconfig, gettext, intltool, perl(XML::Parser)
 Requires: gnome-themes-extras
 
 %description

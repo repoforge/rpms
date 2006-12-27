@@ -33,7 +33,14 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{!?_without_modxorg:BuildRequires: libX11-devel}
 BuildRequires: ncurses-devel, Xaw3d-devel, libjpeg-devel
 BuildRequires: zvbi-devel
-%{!?rh62:BuildRequires: openmotif-devel}
+%{?fc6:BuildRequires: lesstif-devel}
+%{?fc5:BuildRequires: openmotif-devel}
+%{?fc4:BuildRequires: openmotif-devel}
+%{?fc3:BuildRequires: lesstif-devel}
+%{?el4:BuildRequires: openmotif-devel}
+%{?el3:BuildRequires: openmotif-devel}
+%{?el2:BuildRequires: lesstif-devel}
+#%{!?rh62:BuildRequires: openmotif-devel}
 %{?rh62:BuildRequires: Mesa-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 #BuildRequires: libdv-devel, libquicktime-devel

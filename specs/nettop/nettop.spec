@@ -20,7 +20,7 @@ Patch1: nettop-0.2.3-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{?_with_libpcapdevel:BuildRequires:libpcap-devel}
-BuildRequires: libpcap
+BuildRequires: libpcap, slang-devel
 Requires: slang, libpcap
 
 %description

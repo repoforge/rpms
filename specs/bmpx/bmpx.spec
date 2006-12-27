@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 BuildRequires: gettext-devel, libXt-devel
-BuildRequires: gstreamer-devel >= 0.10.4
+BuildRequires: gstreamer-devel >= 0.10.4, gcc-c++
 BuildRequires: gstreamer-plugins-base-devel >= 0.10.4
 BuildRequires: dbus-devel, hal-devel, gamin-devel, libmusicbrainz-devel
 BuildRequires: taglib-devel, neon-devel, libmp4v2-devel, libsidplay-devel

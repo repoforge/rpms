@@ -4,6 +4,9 @@
 ### FIXME: configure has problems finding flex output using soapbox on RHEL3
 # Soapbox: 0
 
+# don't create debuginfo package
+%define debug_package %{nil}
+
 %{?dist: %{expand: %%define %dist 1}}
 
 Summary: Virtual tunnel over TCP/IP networks

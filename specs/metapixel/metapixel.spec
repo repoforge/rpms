@@ -13,7 +13,7 @@ Source: http://www.complang.tuwien.ac.at/~schani/metapixel/files/metapixel-%{ver
 Patch: metapixel-1.0.2-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libjpeg-devel, libpng-devel, zlib-devel
+BuildRequires: libjpeg-devel, libpng-devel, zlib-devel, giflib-devel
 
 %description
 Metapixel is a program for generating photomosaics. It can generate classical

@@ -25,7 +25,7 @@ Patch: http://ftp.debian.org/debian/pool/main/x/x2x/x2x_1.27-8.diff.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{?_without_modxorg:BuildRequires: XFree86-devel}
-%{!?_without_modxorg:BuildRequires: libX11-devel, libXext-devel, libXtst-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel, libXext-devel, libXtst-devel, imake}
 
 %description
 x2x joins a pair of X displays together, as if they were a single

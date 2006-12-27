@@ -14,7 +14,7 @@ URL: http://audacious-media-player.org/
 Source: http://audacious-media-player.org/release/audacious-plugins-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: audacious-libs >= 1.2.0
-Buildrequires: audacious-devel >= 1.2.0
+Buildrequires: audacious-devel >= 1.2.0, gcc-c++
 # Taglib is required, otherwise nothing will build
 BuildRequires: taglib-devel
 Obsoletes: audacious-extras < 1.1.2-2
