@@ -21,35 +21,50 @@
 %{?el4:%define _without_upnp 1}
 %{?el4:%define _without_wxwidgets 1}
 
+%{?fc3:%define _without_jack 1}
+%{?fc3:%define _without_sysfs 1}
+%{?fc3:%define _without_upnp 1}
 %{?fc3:%define _without_wxwidgets 1}
 
+%{?fc2:%define _without_jack 1}
+%{?fc2:%define _without_sysfs 1}
+%{?fc2:%define _without_upnp 1}
 %{?fc2:%define _without_wxwidgets 1}
 
 %{?fc1:%define _without_alsa 1}
+%{?fc1:%define _without_jack 1}
+%{?fc1:%define _without_sysfs 1}
 %{?fc1:%define _without_theora 1}
+%{?fc1:%define _without_upnp 1}
 %{?fc1:%define _without_wxwidgets 1}
 
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_fribidi 1}
+%{?el3:%define _without_hal 1}
+%{?el3:%define _without_jack 1}
+%{?el3:%define _without_sysfs 1}
 %{?el3:%define _without_theora 1}
+%{?el3:%define _without_upnp 1}
 %{?el3:%define _without_wxwidgets 1}
 
 %{?rh9:%define _without_alsa 1}
 %{?rh9:%define _without_fribidi 1}
+%{?rh9:%define _without_hal 1}
+%{?rh9:%define _without_jack 1}
+%{?rh9:%define _without_sysfs 1}
 %{?rh9:%define _without_theora 1}
+%{?rh9:%define _without_upnp 1}
 %{?rh9:%define _without_wxwidgets 1}
 %{?rh9:%define _without_x264 1}
-
-%{?rh8:%define _without_alsa 1}
-%{?rh8:%define _without_fribidi 1}
-%{?rh8:%define _without_theora 1}
-%{?rh8:%define _without_wxwidgets 1}
-%{?rh8:%define _without_x264 1}
 
 %{?rh7:%define _without_alsa 1}
 %{?rh7:%define _without_freedesktop 1}
 %{?rh7:%define _without_fribidi 1}
+%{?rh7:%define _without_hal 1}
+%{?rh7:%define _without_jack 1}
+%{?rh7:%define _without_sysfs 1}
 %{?rh7:%define _without_theora 1}
+%{?rh7:%define _without_upnp 1}
 %{?rh7:%define _without_vorbis 1}
 %{?rh7:%define _without_wxwidgets 1}
 %{?rh7:%define _without_x264 1}
@@ -60,7 +75,11 @@
 %{?el2:%define _without_freedesktop 1}
 %{?el2:%define _without_fribidi 1}
 %{?el2:%define _without_glx 1}
+%{?el2:%define _without_hal 1}
+%{?el2:%define _without_jack 1}
+%{?el2:%define _without_sysfs 1}
 %{?el2:%define _without_theora 1}
+%{?el2:%define _without_upnp 1}
 %{?el2:%define _without_vorbis 1}
 %{?el2:%define _without_wxwidgets 1}
 %{?el2:%define _without_x264 1}
@@ -187,12 +206,23 @@ export CFLAGS="%{optflags}"
 
 # Build bundeled ffmpeg first
 pushd ffmpeg-%{ffmpeg_date}
+    ### GSM needs patch to work, disable it for convenience.
     ./configure \
-        --extra-libs="-lX11" \
-        --enable-mp3lame \
-        --enable-faac \
+        --prefix=%{_prefix} \
+        --libdir=%{_libdir} \
+        --mandir=%{_mandir} \
+        --incdir=%{_includedir}/ffmpeg \
+%{!?_without_lame:   --enable-mp3lame} \
+%{!?_without_vorbis: --enable-libogg --enable-vorbis} \
+%{!?_without_faad:   --enable-faad} \
+%{!?_without_faac:   --enable-faac} \
+%{!?_without_xvid:   --enable-xvid} \
+%{!?_without_x264:   --enable-x264} \
+%{!?_without_a52:    --enable-a52 --enable-a52bin} \
+%{!?_without_dts:    --enable-dts} \
         --enable-pp \
         --enable-gpl
+#{!?_without_gsm:    --enable-libgsm} \
     %{__make} %{?_smp_mflags}
 popd
 

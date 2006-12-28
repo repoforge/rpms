@@ -4,7 +4,7 @@
 Summary: Console interface bandwidth usage monitor
 Name: bmon
 Version: 2.1.0
-Release: 3
+Release: 4
 License: Artistic
 Group: Applications/Internet
 URL: http://people.suug.ch/~tgr/bmon/
@@ -41,6 +41,9 @@ bmon is an interface bandwidth monitor.
 %{_bindir}/bmon
 
 %changelog
+* Wed Dec 27 2006 Dag Wieers <dag@wieers.com> - 2.1.0-4
+- Rebuild bmon against rrdtool 1.2.15 for RH9. (Paul Sedrez)
+
 * Thu Dec 21 2006 Dag Wieers <dag@wieers.com> - 2.1.0-3
 - Build fixes for gcc on at least FC6.
 

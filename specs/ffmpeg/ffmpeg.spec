@@ -6,12 +6,8 @@
 %{?el4:%define _without_texi2html 1}
 %{?fc3:%define _without_texi2html 1}
 %{?fc2:%define _without_texi2html 1}
-
 %{?fc1:%define _without_texi2html 1}
-%{?fc1:%define _without_x264 1}
-
 %{?el3:%define _without_texi2html 1}
-%{?el3:%define _without_x264 1}
 
 %{?rh9:%define _without_texi2html 1}
 %{?rh9:%define _without_x264 1}

@@ -77,9 +77,6 @@ you will need to install %{name}-devel.
 * Wed Dec 20 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.14-1
 - Updated to release 2.0.14.
 
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.13-2.2
-- Rebuild for Fedora Core 5.
-
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org - 2.0.13-2
 - Fixed the project and source urls.
 

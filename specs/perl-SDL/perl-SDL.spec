@@ -13,7 +13,7 @@
 Summary: Simple DirectMedia Layer - Bindings for the perl language
 Name: perl-SDL
 Version: 2.1.2
-Release: 5
+Release: 6
 License: GPL
 Group: System Environment/Libraries
 URL: http://sdl.perl.org/
@@ -80,6 +80,9 @@ export PERL_INSTALL_ROOT=%{buildroot}
 
 
 %changelog
+* Thu Dec 28 2006 Dag Wieers <dag@wieers.com> - 2.1.2-6
+- Rebuild against SDL_gfx 2.0.15.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 2.1.2-5
 - Release bump to drop the disttag number in FC5 build.
 

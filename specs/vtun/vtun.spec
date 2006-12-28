@@ -25,10 +25,10 @@ BuildRequires: flex, bison, cyrus-sasl-devel, openssl-devel, lzo-devel
 %{?fc6:BuildRequires: glibc-kernheaders}
 %{?fc5:BuildRequires: glibc-kernheaders}
 %{?fc4:BuildRequires: glibc-kernheaders}
+%{?el4:BuildRequires: glibc-kernheaders}
 %{?fc3:BuildRequires: glibc-kernheaders}
 %{?fc2:BuildRequires: glibc-kernheaders}
 %{?fc1:BuildRequires: glibc-kernheaders}
-%{?el4:BuildRequires: glibc-kernheaders}
 %{?el3:BuildRequires: glibc-kernheaders}
 %{?rh9:BuildRequires: glibc-kernheaders}
 %{?rh8:BuildRequires: glibc-kernheaders}
@@ -202,7 +202,7 @@ fi
 - Allow to build as non-root (using new INSTALL_OWNER option)
 - Added vtund.conf.5 manpage
 - Allow compressed manpages
-- Added cleanup of old $RPM_BUILD_ROOT at beginning of %install stage
+- Added cleanup of old $RPM_BUILD_ROOT at beginning of %%install stage
 
 * Sat Mar 04 2000 Dag Wieers <dag@wieers.com>
 - Added USE_SOCKS compile option.

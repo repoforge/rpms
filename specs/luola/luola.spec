@@ -4,16 +4,18 @@
 # Screenshot: Screenshot:http://www.luolamies.org/software/luola/screens/screen6.png
 # ScreenshotURL:http://www.luolamies.org/software/luola/#screenshots
 
+%define desktop_vendor rpmforge
+
 Summary: Multiplayer 2D arcade game
 Name: luola
 Version: 1.3.2
-Release: 1.2
+Release: 2
 License: GPL
 Group: Amusements/Games
 URL: http://www.luolamies.org/software/luola/
 
-Source: http://www.luolamies.org/software/luola/luola-%{version}.tar.gz
-Source1: %{name}.png
+Source0: http://www.luolamies.org/software/luola/luola-%{version}.tar.gz
+Source1: luola.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel, SDL_image-devel, SDL_mixer-devel, SDL_gfx-devel
@@ -29,7 +31,7 @@ Finnish, nowdays most of them are.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >luola.desktop
 [Desktop Entry]
 Name=Luola
 Comment=2D arcade game
@@ -45,19 +47,19 @@ EOF
 
 %build
 %configure --disable-sdltest
-%{__perl} -pi -e 's|PACKAGE_DATA_DIR .*|PACKAGE_DATA_DIR "%{_datadir}/luola"|g;' config.h
+%{__perl} -pi -e 's|PACKAGE_DATA_DIR .*$|PACKAGE_DATA_DIR "%{_datadir}/luola"|g;' config.h
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor rpmforge             \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
-%{__install} -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/%{name}.png
+	luola.desktop
+%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/luola.png
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -67,12 +69,12 @@ desktop-file-install --vendor rpmforge             \
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %{_bindir}/luola
 %{_datadir}/luola
-%{_datadir}/applications/*.desktop
-%{_datadir}/pixmaps/%{name}.png
+%{_datadir}/applications/%{desktop_vendor}-luola.desktop
+%{_datadir}/pixmaps/luola.png
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.2-1.2
-- Rebuild for Fedora Core 5.
+* Thu Dec 28 2006 Dag Wieers <dag@wieers.com> - 1.3.2-2
+- Rebuild against SDL_gfx 2.0.15.
 
 * Mon Jan 06 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.2-1
 - Updated to release 1.3.2.

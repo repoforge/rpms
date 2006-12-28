@@ -23,7 +23,7 @@
 Summary: Tools for recording, editing, playing and encoding mpeg video
 Name: mjpegtools
 Version: 1.9.0
-Release: 0.2
+Release: 0.3
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/
@@ -112,6 +112,9 @@ fi
 
 
 %changelog
+* Thu Dec 28 2006 Dag Wieers <dag@wieers.com> - 1.9.0-0.3
+- Rebuild against SDL_gfx 2.0.15.
+
 * Mon Dec 11 2006 Matthias Saou <http://freshrpms.net/> 1.9.0-0.2
 - Update to today's CVS.
 - Remove jpeg-mmx as it's been officially discontinued (very little to no

@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Pádraig Brady <P$draigBrady,com>
 
-# ExclusiveDist: fc1 el3 rh9 rh8
+##ExclusiveDist: fc1 el3 rh9 rh8
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -15,60 +15,68 @@
 
 Summary: Utility to find and clean "lint" on a filesystem
 Name: fslint
-Version: 2.12
-Release: 1.2
+Version: 2.18
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://www.pixelbeat.org/fslint/
 
-Source: http://www.pixelbeat.org/fslint/FSlint-%{version}.tar.gz
+Source: http://www.pixelbeat.org/fslint/fslint-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: gettext, pygtk2-devel
+BuildRequires: python-devel >= 2.0, gettext >= 0.13, pygtk2-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Requires: python >= 2.0, pygtk2, pygtk2-libglade, textutils >= 2.0.21, gettext >= 0.11.1, cpio
 
 %description
-FSlint is a utility to find and clean "lint" on a filesystem.
-It is written in Python, using pyGtk and libGlade.
+fslint is a toolkit to find all redundant disk usage (duplicate files
+for e.g.). It includes a GUI as well as a command line interface.
+
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup
 
-%{__perl} -pi.orig -e 's|^liblocation=.*$|liblocation="%{_datadir}/fslint"|' FSlint
+%{__perl} -pi.orig -e '
+		s|^liblocation=.*$|liblocation="%{_datadir}/fslint"|;
+		s|^locale_base=.*$|locale_base=None #RPM edit|;
+	' fslint-gui
 
-%{__cat} <<EOF >fslint.desktop
-[Desktop Entry]
-Name=Filesystem Lint
-Comment=Clean up your filesystems
-Exec=fslint
-Icon=fslint.png
-Terminal=false
-Type=Application
-Encoding=UTF-8
-Categories=GNOME;Application;Utility;System;
-EOF
+#%{__cat} <<EOF >fslint.desktop
+#[Desktop Entry]
+#Name=Filesystem Lint
+#Comment=Clean up your filesystems
+#Exec=fslint
+#Icon=fslint.png
+#Terminal=false
+#Type=Application
+#Encoding=UTF-8
+#Categories=GNOME;Application;Utility;System;
+#EOF
 
 %build
 
 %install
 %{__rm} -rf %{buildroot}
 
-%{__install} -Dp -m0755 FSlint %{buildroot}%{_bindir}/fslint
-%{__ln_s} -f fslint %{buildroot}%{_bindir}/FSlint
+%{__install} -Dp -m0755 fslint-gui %{buildroot}%{_bindir}/fslint-gui
+%{__ln_s} -f fslint-gui %{buildroot}%{_bindir}/fslint
 
-%{__install} -Dp -m0644 fslint_icon.png %{buildroot}%{_datadir}/pixmaps/fslint.png
+%{__install} -Dp -m0644 fslint_icon.png %{buildroot}%{_datadir}/pixmaps/fslint_icon.png
 %{__install} -Dp -m0644 fslint_icon.png %{buildroot}%{_datadir}/fslint/fslint_icon.png
 %{__install} -Dp -m0644 fslint.glade %{buildroot}%{_datadir}/fslint/fslint.glade
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/fslint/fslint/{fstool,rmlint}
-%{__install} -p -m0755 fslint/{find*,fsl*,get*,zipdir} %{buildroot}%{_datadir}/fslint/fslint/
+%{__install} -d -m0755 %{buildroot}%{_datadir}/fslint/fslint/{fstool,supprt/rmlint}
+%{__install} -p -m0755 fslint/{find*,fslint,zipdir} %{buildroot}%{_datadir}/fslint/fslint/
 %{__install} -p -m0755 fslint/fstool/* %{buildroot}%{_datadir}/fslint/fslint/fstool/
-%{__install} -p -m0755 fslint/rmlint/* %{buildroot}%{_datadir}/fslint/fslint/rmlint/
+%{__install} -p -m0644 fslint/supprt/fslver %{buildroot}%{_datadir}/fslint/fslint/supprt/
+%{__install} -p -m0755 fslint/supprt/get* %{buildroot}%{_datadir}/fslint/fslint/supprt/
+%{__install} -p -m0755 fslint/supprt/rmlint/* %{buildroot}%{_datadir}/fslint/fslint/supprt/rmlint/
 
-%makeinstall -C po \
-	DATADIR="%{buildroot}%{_datadir}"
+%{__install} -Dp -m0644 man/fslint-gui.1 %{buildroot}%{_mandir}/man1/fslint-gui.1
+%{__ln_s} -f fslint-gui.1 %{buildroot}%{_mandir}/man1/fslint.1
+
+%{__make} install -C po DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %if %{?_without_freedesktop:1}0
@@ -87,15 +95,16 @@ EOF
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc doc/*
-%{_bindir}/*
+%doc %{_mandir}/man1/fslint*
+%{_bindir}/fslint-gui
 %{_datadir}/fslint/
-%{_datadir}/pixmaps/*.png
+%{_datadir}/pixmaps/fslint_icon.png
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Applications/fslint.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-fslint.desktop}
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.12-1.2
-- Rebuild for Fedora Core 5.
+* Tue Dec 26 2006 Dag Wieers <dag@wieers.com> - 2.18-1
+- Updated to release 2.18.
 
 * Mon Sep 05 2005 Dries Verachtert <dries@ulyssis.org> - 2.12-1
 - Updated to release 2.12.

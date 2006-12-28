@@ -4,8 +4,8 @@
 
 Summary: Window matching tool inspired by the Matched Window options in Sawfish
 Name: devilspie
-Version: 0.17.1
-Release: 1.2
+Version: 0.19
+Release: 1
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.burtonini.com/blog/computers/devilspie/
@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gob2 >= 2.0.4, libwnck-devel, gtk2-devel, gettext
 BuildRequires: libglade2-devel, intltool, perl-XML-Parser, libxslt
-BuildRequires: glib2-devel >= 2.10
+BuildRequires: glib2-devel >= 2.9.1
 
 %description
 A window-matching utility, inspired by Sawfish's "Matched Windows" option and
@@ -39,7 +39,7 @@ in the pager or task list.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %clean
@@ -52,8 +52,8 @@ in the pager or task list.
 %{_bindir}/devilspie
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.17.1-1.2
-- Rebuild for Fedora Core 5.
+* Fri Dec 22 2006 Dag Wieers <dag@wieers.com> - 0.19-1
+- Updated to release 0.19.
 
 * Sat Mar 18 2006 Dag Wieers <dag@wieers.com> - 0.17.1-1
 - Updated to release 0.17.1.
