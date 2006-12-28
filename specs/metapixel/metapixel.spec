@@ -1,6 +1,15 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el4:%define _without_giflib 1}
+%{?el3:%define _without_giflib 1}
+%{?fc4:%define _without_giflib 1}
+%{?fc3:%define _without_giflib 1}
+%{?fc2:%define _without_giflib 1}
+%{?fc1:%define _without_giflib 1}
+
 Summary: Photo mosaic generator
 Name: metapixel
 Version: 1.0.2
@@ -13,7 +22,10 @@ Source: http://www.complang.tuwien.ac.at/~schani/metapixel/files/metapixel-%{ver
 Patch: metapixel-1.0.2-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libjpeg-devel, libpng-devel, zlib-devel, giflib-devel
+BuildRequires: libjpeg-devel, libpng-devel, zlib-devel
+# giflib-devel is needed for /usr/include/gif_lib.h
+%{?!_without_giflib:BuildRequires: giflib-devel}
+%{?_without_giflib:BuildRequires: libungif-devel}
 
 %description
 Metapixel is a program for generating photomosaics. It can generate classical
