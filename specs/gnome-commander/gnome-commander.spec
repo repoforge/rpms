@@ -62,6 +62,7 @@ scrollkeeper-update -q || :
 %{_datadir}/applications/gnome-commander.desktop
 %{_datadir}/omf/gnome-commander/
 %{_datadir}/pixmaps/gnome-commander/
+%{_datadir}/pixmaps/gnome-commander.png
 
 %changelog
 * Mon Dec 11 2006 Dag Wieers <dag@wieers.com> 1.2.2-1

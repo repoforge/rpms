@@ -31,7 +31,7 @@ Patch: xclass-0.9.1-gcc41.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 %{?_without_modxorg:BuildRequires: XFree86-devel}
-%{!?_without_modxorg:BuildRequires: libXt-devel, libXmu-devel, libXpm-devel}
+%{!?_without_modxorg:BuildRequires: libXt-devel, libXmu-devel, libXpm-devel, libXext-devel}
 %{?fc4:BuildRequires: compat-gcc-32-c++}
 %{?el4:BuildRequires: compat-gcc-c++}
 %{?fc3:BuildRequires: compat-gcc-c++}
