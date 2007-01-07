@@ -9,7 +9,7 @@
 
 Summary: Interface to filesystem names and their properties
 Name: perl-Sys-Filesystem
-Version: 1.21
+Version: 1.22
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -36,6 +36,7 @@ query filesystem names and their properties.
 %{__rm} -rf %{buildroot}
 %makeinstall
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__rm} -f %{buildroot}%{perl_vendorlib}/Sys/Filesystem/Mswin32.pm
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -43,11 +44,15 @@ query filesystem names and their properties.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/Sys::Filesystem*
 %{perl_vendorlib}/Sys/Filesystem.pm
 %{perl_vendorlib}/Sys/Filesystem/
 
 %changelog
+* Sun Dec 07 2007 Dries Verachtert <dries@ulyssis.org> - 1.22-1
+- Updated to release 1.22.
+- Fixed Win32::DriveInfo requirement, thanks to Noah Romer.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.21-1
 - Updated to release 1.21.
 

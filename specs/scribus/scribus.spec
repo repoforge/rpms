@@ -49,7 +49,8 @@ EOF
 source "%{_sysconfdir}/profile.d/qt.sh"
 %configure \
 	--disable-dependency-tracking \
-	--with-xinerama
+	--with-xinerama \
+	--with-extra-libs=%{_libdir}
 %{__make} %{?_smp_mflags}
 
 %install
@@ -89,6 +90,9 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %{!?_without_freedesktop:%{_datadir}/applications/*.desktop}
 
 %changelog
+* Sun Jan 07 2007 Dries Verachtert <dries@ulyssis.org> - 1.3.3.6-2
+- Also build th python scripts on amd64, thanks to Rohan Walsh.
+
 * Tue Dec 05 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.3.6-1
 - Updated to release 1.3.3.6.
 

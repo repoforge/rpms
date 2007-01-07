@@ -4,7 +4,7 @@
 
 Summary: Extract text from OpenDocument Text files
 Name: odt2txt
-Version: 0.1
+Version: 0.2
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -37,5 +37,8 @@ few external dependencies.
 %{_bindir}/odt2txt
 
 %changelog
+* Sun Jan 07 2007 Dries Verachtert <dries@ulyssis.org> - 0.2-1
+- Updated to release 0.2.
+
 * Sat Dec 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.1-1
 - Initial package.
