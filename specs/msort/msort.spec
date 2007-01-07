@@ -4,8 +4,8 @@
 
 Summary: Sort files in sophisticated ways
 Name: msort
-%define real_version 8.33
-Version: 8.33
+%define real_version 8.34
+Version: 8.34
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -14,7 +14,7 @@ URL: http://billposer.org/Software/msort.html
 Source: http://billposer.org/Software/Downloads/msort-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: tre-devel
+BuildRequires: tre-devel, libuninum-devel
 
 %description
 Msort is a program for sorting files in sophisticated ways. Records need not
@@ -48,6 +48,9 @@ by an optional GUI.
 %{_bindir}/msort
 
 %changelog
+* Sun Jan 07 2007 Dries Verachtert <dries@ulyssis.org> - 8.34-1
+- Updated to release 8.34.
+
 * Sat Dec 30 2006 Dries Verachtert <dries@ulyssis.org> - 8.33-1
 - Updated to release 8.33.
 
