@@ -9,8 +9,8 @@
 
 Summary: Get Yahoo Movies information
 Name: perl-WWW-Yahoo-Movies
-Version: 0.02
-Release: 1.2
+Version: 0.03
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Yahoo-Movies/
@@ -48,6 +48,9 @@ Movies or title.
 %{perl_vendorlib}/WWW/Yahoo/Movies.pm
 
 %changelog
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.03-1
+- Updated to release 0.03.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1.2
 - Rebuild for Fedora Core 5.
 

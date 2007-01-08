@@ -9,7 +9,7 @@
 
 Summary: XPath support for XML::DOM
 Name: perl-XML-DOM-XPath
-Version: 0.12
+Version: 0.13
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,5 +53,8 @@ power and speed.
 %{perl_vendorlib}/XML/DOM/XPath.pm
 
 %changelog
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.13-1
+- Updated to release 0.13.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Initial package.

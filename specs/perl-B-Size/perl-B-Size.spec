@@ -9,7 +9,7 @@
 
 Summary: Measure size of Perl OPs and SVs
 Name: perl-B-Size
-Version: 0.08
+Version: 0.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,6 +46,9 @@ Tools to measure size of Perl OPs and [SAV]Vs.
 %{perl_vendorarch}/auto/B/Size
 
 %changelog
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.09-1
+- Updated to release 0.09.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Updated to release 0.08.
 

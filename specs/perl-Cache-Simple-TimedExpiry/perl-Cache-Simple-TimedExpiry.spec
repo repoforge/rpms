@@ -9,7 +9,7 @@
 
 Summary: Cache with simple timed expiry
 Name: perl-Cache-Simple-TimedExpiry
-Version: 0.26
+Version: 0.27
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,6 +46,9 @@ This module provides a cache with a simple timed expiry.
 %{perl_vendorlib}/Cache/Simple/TimedExpiry.pm
 
 %changelog
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.27-1
+- Updated to release 0.27.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.26-1
 - Updated to release 0.26.
 

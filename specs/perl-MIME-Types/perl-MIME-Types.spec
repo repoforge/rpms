@@ -11,7 +11,7 @@
 
 Summary: Definition of MIME types
 Name: perl-MIME-Types
-Version: 1.17
+Version: 1.18
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ treatments with mime types are implemented.
 %{perl_vendorlib}/MIME/*
 
 %changelog
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.18-1
+- Updated to release 1.18.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.17-1
 - Updated to release 1.17.
 

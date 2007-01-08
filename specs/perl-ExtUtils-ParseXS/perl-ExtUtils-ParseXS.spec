@@ -11,7 +11,7 @@
 
 Summary: Converts Perl XS code into C code
 Name: perl-ExtUtils-ParseXS
-Version: 2.16
+Version: 2.17
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ With this module, you can Convert Perl XS code into C code.
 %{perl_vendorlib}/ExtUtils/xsubpp
 
 %changelog
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 2.17-1
+- Updated to release 2.17.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 2.16-1
 - Updated to release 2.16.
 

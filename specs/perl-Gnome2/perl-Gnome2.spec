@@ -7,7 +7,7 @@
 
 Summary: Perl interface to the 2.x series of the GNOME libraries
 Name: perl-Gnome2
-Version: 1.040
+Version: 1.041
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.041-1
+- Updated to release 1.041.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.040-1
 Updated to release 1.040.
 

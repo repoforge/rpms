@@ -9,7 +9,7 @@
 
 Summary: TAPx Parser
 Name: perl-TAPx-Parser
-Version: 0.33
+Version: 0.41
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,6 +48,9 @@ A parser for TAP output.
 %{perl_vendorlib}/TAPx/Parser/
 
 %changelog
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.41-1
+- Updated to release 0.41.
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.33-1
 - Updated to release 0.33.
 

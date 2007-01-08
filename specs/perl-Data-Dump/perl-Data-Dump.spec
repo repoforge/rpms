@@ -12,8 +12,8 @@
 
 Summary: Pretty print data
 Name: perl-Data-Dump
-Version: 1.06
-Release: 1.2
+Version: 1.08
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Dump/
@@ -51,6 +51,9 @@ printing data.
 %{perl_vendorlib}/Data/Dump.pm
 
 %changelog
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.08-1
+- Updated to release 1.08.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.06-1.2
 - Rebuild for Fedora Core 5.
 

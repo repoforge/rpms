@@ -9,7 +9,7 @@
 
 Summary: POE filter for the IRC protocol
 Name: perl-POE-Filter-IRCD
-Version: 2.1
+Version: 2.2
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,6 +46,9 @@ This module implements a POE filter for the IRC protocol.
 %{perl_vendorlib}/POE/Filter/IRCD.pm
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 2.2-1
+- Updated to release 2.2.
+
 * Fri Sep 29 2006 Dries Verachtert <dries@ulyssis.org> - 2.1-1
 - Updated to release 2.1.
 

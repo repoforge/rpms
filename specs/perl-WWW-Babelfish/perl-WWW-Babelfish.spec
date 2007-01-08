@@ -9,7 +9,7 @@
 
 Summary: Perl extension for translation via babelfish
 Name: perl-WWW-Babelfish
-Version: 0.15
+Version: 0.16
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}
 %{perl_vendorlib}/auto/WWW/Babelfish
 
 %changelog
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.16-1
+- Updated to release 0.16.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.15-1
 - Updated to release 0.15.
 

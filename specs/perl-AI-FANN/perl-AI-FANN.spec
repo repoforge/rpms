@@ -9,7 +9,7 @@
 
 Summary: Wapper for the Fast Artificial Neural Network library
 Name: perl-AI-FANN
-Version: 0.06
+Version: 0.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ This module provides a Perl wrapper for the FANN library
 %{perl_vendorarch}/auto/AI/FANN/
 
 %changelog
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.07-1
+- Updated to release 0.07.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.

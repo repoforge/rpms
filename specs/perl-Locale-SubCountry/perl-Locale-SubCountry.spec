@@ -9,7 +9,7 @@
 
 Summary: Convert state, county, province etc names to/from code
 Name: perl-Locale-SubCountry
-Version: 1.37
+Version: 1.38
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,6 +49,9 @@ Codes for the representation of names of countries and their subdivisions".
 %{perl_vendorlib}/Locale/SubCountry.pm
 
 %changelog
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.38-1
+- Updated to release 1.38.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.37-1
 - Updated to release 1.37.
 

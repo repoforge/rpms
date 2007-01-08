@@ -9,7 +9,7 @@
 
 Summary: Finding and running system commands made easy
 Name: perl-IPC-Cmd
-Version: 0.34
+Version: 0.36
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,6 +49,9 @@ also has an option to capture output/error buffers.
 %{perl_vendorlib}/IPC/Cmd.pm
 
 %changelog
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.36-1
+- Updated to release 0.36.
+
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.34-1
 - Updated to release 0.34.
 

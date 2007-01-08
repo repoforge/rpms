@@ -9,8 +9,8 @@
 
 Summary: Perl extension for rounding numbers
 Name: perl-Math-Round
-Version: 0.05
-Release: 1.2
+Version: 0.06
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Round/
@@ -54,6 +54,9 @@ a little tricky, so I thought some people might find this useful.
 %{perl_vendorlib}/auto/Math/Round/
 
 %changelog
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.06-1
+- Updated to release 0.06.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1.2
 - Rebuild for Fedora Core 5.
 

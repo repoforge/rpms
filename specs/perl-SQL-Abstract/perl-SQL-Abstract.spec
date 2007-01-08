@@ -8,13 +8,13 @@
 
 Name: perl-SQL-Abstract
 Summary: Generate SQL from Perl data structures
-Version: 1.21
+Version: 1.22
 Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SQL-Abstract/
 
-Source: http://www.cpan.org/modules/by-module/SQL/SQL-Abstract-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/N/NW/NWIGER/SQL-Abstract-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -61,6 +61,9 @@ as this module figures it out.
 %{perl_vendorlib}/SQL/Abstract.pm
 
 %changelog
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.22-1
+- Updated to release 1.22.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.21-1
 - Updated to release 1.21.
 
