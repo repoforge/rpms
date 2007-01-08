@@ -1,0 +1,27 @@
+diff -uNr xephem-3.7.2/GUI/xephem/Makefile xephem-3.7.2_fc6/GUI/xephem/Makefile
+--- xephem-3.7.2/GUI/xephem/Makefile	2006-05-13 16:06:06.000000000 -0700
++++ xephem-3.7.2_fc6/GUI/xephem/Makefile	2007-01-04 19:18:44.000000000 -0800
+@@ -23,18 +23,18 @@
+ MOTIFL = $(MOTIF)
+ endif
+ ifndef MOTIFI
+-MOTIFI = /usr/X11R6/include
++MOTIFI = /usr/include
+ endif
+ ifndef MOTIFL
+-MOTIFL = /usr/X11R6/lib
++MOTIFL = /usr/lib
+ endif
+ 
+ # for linux and pure ppc Apple OS X
+ CC = gcc
+ CLDFLAGS = -g
+-CFLAGS = $(LIBINC) $(CLDFLAGS) -O2 -Wall -I$(MOTIFI) -I/usr/X11R6/include
+-LDFLAGS = $(LIBLNK) $(CLDFLAGS) -L$(MOTIFL) -L/usr/X11R6/lib
+-XLIBS = $(MOTIFL)/libXm.a -lXp -lXt -lXext -lXmu -lX11
++CFLAGS = $(LIBINC) $(CLDFLAGS) -O2 -Wall 
++LDFLAGS = $(LIBLNK) $(CLDFLAGS) -L$(MOTIFL) -L/usr/lib
++XLIBS = -lXm -lXp -lXt -lXext -lSM -lICE -lXmu -lX11
+ LIBS = $(XLIBS) $(LIBLIB) -lm
+ 
+ # for ppc Apple OS X to make universal (i386 and ppc binary), requires

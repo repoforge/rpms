@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=XEphem
+Comment=A nifty astronomical ephemeris
+Exec=/usr/bin/xephem
+Icon=XEphem.png
+Terminal=false
+Type=Application
+Encoding=UTF-8
+X-Desktop-File-Install-Version=0.3
+Categories=Graphics;Application;X-Red-Hat-Extras;
