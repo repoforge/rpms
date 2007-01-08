@@ -283,7 +283,7 @@ fi
 
 
 %changelog
-* Mon Jan  8 2006 Matthias Saou <http://freshrpms.net/> 1.0.9631-1
+* Mon Jan  8 2007 Matthias Saou <http://freshrpms.net/> 1.0.9631-1
 - Fork 96xx legacy driver (required for older video cards).
 
 * Mon Dec 11 2006 Matthias Saou <http://freshrpms.net/> 1.0.9631-1
