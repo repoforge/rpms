@@ -4,7 +4,7 @@
 # ExclusiveDist: fc6
 
 %define majmin          1.0
-%define relver          9746
+%define relver          9631
 %define nvidialibdir    %{_libdir}/nvidia
 %define nvidialib32dir  %{_prefix}/lib/nvidia
 %define desktop_vendor  rpmforge
@@ -14,7 +14,7 @@
 %define debug_package   %{nil}
 
 Summary: Proprietary NVIDIA hardware accelerated OpenGL display driver
-Name: nvidia-x11-drv
+Name: nvidia-x11-drv-96xx
 Version: %{majmin}.%{relver}
 Release: 1%{?beta}
 License: Proprietary
@@ -283,8 +283,8 @@ fi
 
 
 %changelog
-* Fri Dec 22 2006 Matthias Saou <http://freshrpms.net/> 1.0.9746-1
-- Update to 1.0-9746 (stable).
+* Mon Jan  8 2006 Matthias Saou <http://freshrpms.net/> 1.0.9631-1
+- Fork 96xx legacy driver (required for older video cards).
 
 * Mon Dec 11 2006 Matthias Saou <http://freshrpms.net/> 1.0.9631-1
 - Update to 1.0-9631 (stable).
