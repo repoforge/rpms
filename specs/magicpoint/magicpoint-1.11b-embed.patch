@@ -1,0 +1,11 @@
+--- magicpoint-1.11b/draw.c~	2006-10-21 15:48:48.000000000 +0200
++++ magicpoint-1.11b/draw.c	2006-10-21 15:48:48.000000000 +0200
+@@ -3750,7 +3750,7 @@
+ 		target = parent;
+ 	}
+ 	XReparentWindow(display, child_window, window, x, y);
+-#if 0
++#if 1
+ 	XDestroyWindow(display, target);
+ #endif
+ }

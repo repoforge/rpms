@@ -1,0 +1,38 @@
+--- magicpoint-1.11b/draw.c.64bit	2006-10-21 13:29:24.000000000 +0200
++++ magicpoint-1.11b/draw.c	2006-10-21 13:27:28.000000000 +0200
+@@ -4884,8 +4884,8 @@
+ 	char *registry;
+ {
+ 	char *xfont;
+-	static XftFont *last_xftfont;
+-	static char lastfont[100];
++	static XftFont *last_xftfont = NULL;
++	static char lastfont[100] = "";
+ 	static int lastsize = 0;
+ 	XftFont *xftfont;
+ 	char *p, *p2;
+@@ -4934,12 +4934,12 @@
+ 		    XFT_FAMILY, XftTypeString, font,
+ 		    XFT_ENCODING, XftTypeString, registry,
+ 		    XFT_STYLE, XftTypeString, style,
+-		    XFT_PIXEL_SIZE, XftTypeDouble, (float)csize, 0);
++		    XFT_PIXEL_SIZE, XftTypeDouble, (double)csize, NULL);
+ 	} else {
+ 		xftfont = XftFontOpen(display, screen,
+ 		    XFT_FAMILY, XftTypeString, font,
+ 		    XFT_ENCODING, XftTypeString, registry,
+-		    XFT_PIXEL_SIZE, XftTypeDouble, (float)csize, 0);
++		    XFT_PIXEL_SIZE, XftTypeDouble, (double)csize, NULL);
+ 	}
+ 	if (xftfont == 0) {
+ 		free(xfont);
+@@ -4950,6 +4950,9 @@
+ 		fprintf(stderr, "using xftfont [%s] size: %d\n", lastfont,
+ 		    csize);
+ 	}
++	if (last_xftfont)
++		XftFontClose(display, last_xftfont);
++	
+ 	lastsize = csize;
+ 	last_xftfont = xftfont;
+ 	free(xfont);
