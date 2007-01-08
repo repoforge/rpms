@@ -1,0 +1,12 @@
+diff -Naupr vlc-0.8.6.orig/modules/gui/wxwidgets/dialogs.cpp vlc-0.8.6/modules/gui/wxwidgets/dialogs.cpp
+--- vlc-0.8.6.orig/modules/gui/wxwidgets/dialogs.cpp	2006-12-09 02:12:14.000000000 +0100
++++ vlc-0.8.6/modules/gui/wxwidgets/dialogs.cpp	2007-01-08 15:05:02.000000000 +0100
+@@ -376,7 +376,7 @@ void DialogsProvider::OnOpenFileGeneric(
+     {
+         p_file_generic_dialog->SetMessage( wxU(p_arg->psz_title) );
+         p_file_generic_dialog->SetWildcard( wxU(p_arg->psz_extensions) );
+-        p_file_generic_dialog->SetStyle( (p_arg->b_save ? wxSAVE : wxOPEN) |
++        p_file_generic_dialog->SetWindowStyle( (p_arg->b_save ? wxSAVE : wxOPEN) |
+                                          (p_arg->b_multiple ? wxMULTIPLE:0) );
+     }
+ 

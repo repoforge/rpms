@@ -95,7 +95,7 @@
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
 Version: 0.8.6
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -103,6 +103,7 @@ Source0: http://downloads.videolan.org/pub/videolan/vlc/%{version}/vlc-%{version
 Source1: http://downloads.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
 Source2: http://www.live555.com/liveMedia/public/live.%{live_date}.tar.gz
 Patch0: vlc-0.8.6-ffmpegX11.patch
+Patch1: vlc-0.8.6-wx28.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, libpng-devel, libxml2-devel, libtiff-devel
 BuildRequires: libgcrypt-devel, gnutls-devel, libtar-devel
@@ -197,6 +198,7 @@ to link statically to it.
 %prep
 %setup -a 1 -a 2
 %patch0 -p1 -b .ffmpegX11
+%patch1 -p1 -b .wx28
 # Fix PLUGIN_PATH path for lib64
 %{__perl} -pi -e 's|/lib/vlc|/%{_lib}/vlc|g' vlc-config.in.in configure*
 
@@ -205,26 +207,16 @@ to link statically to it.
 export CFLAGS="%{optflags}"
 
 # Build bundeled ffmpeg first
+%if 0%{!?_without_ffmpeg:1}
 pushd ffmpeg-%{ffmpeg_date}
-    ### GSM needs patch to work, disable it for convenience.
     ./configure \
-        --prefix=%{_prefix} \
-        --libdir=%{_libdir} \
-        --mandir=%{_mandir} \
-        --incdir=%{_includedir}/ffmpeg \
-%{!?_without_lame:   --enable-mp3lame} \
-%{!?_without_vorbis: --enable-libogg --enable-vorbis} \
-%{!?_without_faad:   --enable-faad} \
-%{!?_without_faac:   --enable-faac} \
-%{!?_without_xvid:   --enable-xvid} \
-%{!?_without_x264:   --enable-x264} \
-%{!?_without_a52:    --enable-a52 --enable-a52bin} \
-%{!?_without_dts:    --enable-dts} \
+        --enable-mp3lame \
+        --enable-faac \
         --enable-pp \
         --enable-gpl
-#{!?_without_gsm:    --enable-libgsm} \
     %{__make} %{?_smp_mflags}
 popd
+%endif
 
 # Then bundled live555
 %if 0%{!?_without_live:1}
@@ -264,7 +256,7 @@ export CFLAGS="%{optflags} -maltivec -mabi=altivec"
     %{?_without_vorbis:--disable-vorbis} \
     %{?_without_speex:--disable-speex} \
     %{!?_without_theora:--enable-theora} \
-    %{?_without_x264:--disable-theora} \
+    %{?_without_x264:--disable-x264} \
     %{?_without_sdl:--disable-sdl} \
     %{?_without_fribidi:--disable-fribidi} \
     %{!?_without_aa:--enable-aa} \
@@ -328,6 +320,11 @@ export CFLAGS="%{optflags} -maltivec -mabi=altivec"
 
 
 %changelog
+* Mon Jan  8 2007 Matthias Saou <http://freshrpms.net/> 0.8.6-2
+- Add patch to fix wxGTK 2.8 build (FC devel).
+- Revert many useless changes to the ffmpeg compilation since we use it as
+  a statically linked library and don't need nor want most of its features.
+
 * Fri Dec 15 2006 Matthias Saou <http://freshrpms.net/> 0.8.6-1
 - Update to 0.8.6.
 - Update ffmpeg to 20060710.
