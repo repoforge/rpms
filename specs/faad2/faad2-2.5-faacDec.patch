@@ -1,0 +1,32 @@
+diff -Naupr faad2.orig/include/neaacdec.h faad2/include/neaacdec.h
+--- faad2.orig/include/neaacdec.h	2006-08-13 16:13:31.000000000 +0200
++++ faad2/include/neaacdec.h	2007-01-08 18:12:11.000000000 +0100
+@@ -38,28 +38,6 @@ extern "C" {
+ #endif /* __cplusplus */
+ 
+ 
+-#if 1
+-/* MACROS FOR BACKWARDS COMPATIBILITY */
+-/* structs */
+-#define faacDecHandle                  NeAACDecHandle
+-#define faacDecConfiguration           NeAACDecConfiguration
+-#define faacDecConfigurationPtr        NeAACDecConfigurationPtr
+-#define faacDecFrameInfo               NeAACDecFrameInfo
+-/* functions */
+-#define faacDecGetErrorMessage         NeAACDecGetErrorMessage
+-#define faacDecSetConfiguration        NeAACDecSetConfiguration
+-#define faacDecGetCurrentConfiguration NeAACDecGetCurrentConfiguration
+-#define faacDecInit                    NeAACDecInit
+-#define faacDecInit2                   NeAACDecInit2
+-#define faacDecInitDRM                 NeAACDecInitDRM
+-#define faacDecPostSeekReset           NeAACDecPostSeekReset
+-#define faacDecOpen                    NeAACDecOpen
+-#define faacDecClose                   NeAACDecClose
+-#define faacDecDecode                  NeAACDecDecode
+-#define AudioSpecificConfig            NeAACDecAudioSpecificConfig
+-#endif
+-
+-
+ #ifdef _WIN32
+   #pragma pack(push, 8)
+   #ifndef NEAACDECAPI

@@ -1,0 +1,117 @@
+diff -Naupr libquicktime-0.9.10.orig/configure libquicktime-0.9.10/configure
+--- libquicktime-0.9.10.orig/configure	2006-08-03 01:02:25.000000000 +0200
++++ libquicktime-0.9.10/configure	2006-08-03 01:02:25.000000000 +0200
+@@ -26188,11 +26188,11 @@ cat >>conftest.$ac_ext <<_ACEOF
+     {
+     int faad_major;
+     int faad_minor;
+-    faacDecHandle dec;
++    NeAACDecHandle dec;
+ 
+     if(sscanf(FAAD2_VERSION, "%d.%d", &faad_major, &faad_minor) < 2)
+       return -1;
+-    dec = faacDecOpen();
++    dec = NeAACDecOpen();
+     if(!dec)
+       return -1;
+     return 0;
+diff -Naupr libquicktime-0.9.10.orig/configure.ac libquicktime-0.9.10/configure.ac
+--- libquicktime-0.9.10.orig/configure.ac	2006-08-03 00:53:54.000000000 +0200
++++ libquicktime-0.9.10/configure.ac	2006-08-03 00:53:54.000000000 +0200
+@@ -479,11 +479,11 @@ LIBS="$LIBS -lfaad -lm"
+     {
+     int faad_major;
+     int faad_minor;
+-    faacDecHandle dec;
++    NeAACDecHandle dec;
+ 
+     if(sscanf(FAAD2_VERSION, "%d.%d", &faad_major, &faad_minor) < 2)
+       return -1;
+-    dec = faacDecOpen();
++    dec = NeAACDecOpen();
+     if(!dec)
+       return -1;
+     return 0;
+diff -Naupr libquicktime-0.9.10.orig/plugins/faad2/faad2.c libquicktime-0.9.10/plugins/faad2/faad2.c
+--- libquicktime-0.9.10.orig/plugins/faad2/faad2.c	2006-07-30 14:06:06.000000000 +0200
++++ libquicktime-0.9.10/plugins/faad2/faad2.c	2007-01-08 18:03:30.000000000 +0100
+@@ -28,7 +28,7 @@
+ 
+ typedef struct
+   {
+-  faacDecHandle dec;
++  NeAACDecHandle dec;
+ 
+   /* Start and end positions of the sample buffer */
+   
+@@ -50,7 +50,7 @@ static int delete_codec(quicktime_audio_
+   quicktime_faad2_codec_t *codec = ((quicktime_codec_t*)atrack->codec)->priv;
+ 
+   if(codec->dec)
+-    faacDecClose(codec->dec);
++    NeAACDecClose(codec->dec);
+ 
+   if(codec->sample_buffer)
+     free(codec->sample_buffer);
+@@ -99,7 +99,7 @@ static int decode_chunk(quicktime_t *fil
+   {
+   int i, j, num_packets, num_samples, packet_size;
+   float * samples;
+-  faacDecFrameInfo frame_info;
++  NeAACDecFrameInfo frame_info;
+ 
+   quicktime_audio_map_t *track_map = &(file->atracks[track]);
+   
+@@ -137,12 +137,12 @@ static int decode_chunk(quicktime_t *fil
+             track_map->current_chunk, i, packet_size, num_samples);
+ #endif
+ 
+-    samples = faacDecDecode(codec->dec, &frame_info,
++    samples = NeAACDecDecode(codec->dec, &frame_info,
+                             codec->data, packet_size);
+     if(!samples)
+       {
+-      fprintf(stderr, "faad2: faacDecDecode failed %s\n",
+-                faacDecGetErrorMessage(frame_info.error));
++      fprintf(stderr, "faad2: NeAACDecDecode failed %s\n",
++                NeAACDecGetErrorMessage(frame_info.error));
+       
+       return 0;
+       }
+@@ -320,7 +320,7 @@ void quicktime_init_codec_faad2(quicktim
+   unsigned long samplerate;
+   unsigned char channels;
+ 
+-  faacDecConfigurationPtr cfg;
++  NeAACDecConfigurationPtr cfg;
+   
+   quicktime_codec_t *codec_base = (quicktime_codec_t*)atrack->codec;
+   quicktime_faad2_codec_t *codec;
+@@ -339,7 +339,7 @@ void quicktime_init_codec_faad2(quicktim
+      decode() call, but in this case, we might need to
+      set the correct samplerate, which should be known before */
+ 
+-  codec->dec = faacDecOpen();
++  codec->dec = NeAACDecOpen();
+ 
+   stsd = &(atrack->track->mdia.minf.stbl.stsd);
+   
+@@ -360,15 +360,15 @@ void quicktime_init_codec_faad2(quicktim
+     fprintf(stderr, "No extradata found, decoding is doomed to failure\n");
+     }
+ 
+-  cfg = faacDecGetCurrentConfiguration(codec->dec);
++  cfg = NeAACDecGetCurrentConfiguration(codec->dec);
+   cfg->outputFormat = FAAD_FMT_FLOAT;
+   
+-  faacDecSetConfiguration(codec->dec, cfg);
++  NeAACDecSetConfiguration(codec->dec, cfg);
+ 
+   //  fprintf(stderr, "faad2 init\n");
+   //  lqt_hexdump(extradata, extradata_size, 16);
+   
+-  faacDecInit2(codec->dec, extradata, extradata_size,
++  NeAACDecInit2(codec->dec, extradata, extradata_size,
+                &samplerate, &channels);
+ 
+   if(atrack->samplerate != samplerate)

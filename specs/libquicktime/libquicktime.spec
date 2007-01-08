@@ -24,27 +24,31 @@
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
 Version: 0.9.10
-Release: 2%{?prever:.%{prever}}
+Release: 3%{?prever:.%{prever}}
 License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sourceforge.net/
 Source: http://dl.sf.net/libquicktime/libquicktime-%{version}%{?prever}.tar.gz
 Patch0: libquicktime-0.9.8-plugin_dir.patch
 Patch1: libquicktime-0.9.10-x264.patch
+Patch2: libquicktime-0.9.10-faad2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk2-devel, libdv-devel, libvorbis-devel, lame-devel
 BuildRequires: libpng-devel >= 1.0.8, libjpeg-devel, gcc-c++
 %{?!_without_1394:BuildRequires: libraw1394-devel, libavc1394-devel}
 %{?!_without_alsa:BuildRequires: alsa-lib-devel}
 %{?!_without_ffmpeg:BuildRequires: ffmpeg-devel}
-%{?_with_modxorg:BuildRequires: libXt-devel, mesa-libGLU-devel, libXaw-devel, libXv-devel}
+%{?!_without_faac:BuildRequires: faac-devel}
+%{?!_without_faad2:BuildRequires: faad2-devel}
+%{?!_without_x264:BuildRequires: x264-devel}
+%{?_with_modxorg:BuildRequires: libXt-devel, libGLU-devel, libXaw-devel, libXv-devel}
 # A bug, the devel libs don't require the main ones :-(
 %{?yd3:BuildRequires: libraw1394, libavc1394}
 
 # The configure automatically adds MMX stuff if detected, so x86 becomes i586
-%ifarch %{ix86}
+#ifarch %{ix86}
 #BuildArch: i586
-%endif
+#endif
 
 %description
 Libquicktime is a library for reading and writing QuickTime files
@@ -74,6 +78,7 @@ programs that need to access quicktime files using libquicktime.
 %setup -n %{name}-%{version}%{?prever}
 %patch0 -p1 -b .plugin_dir
 %patch1 -p1 -b .x264
+%patch2 -p1 -b .faad2
 
 
 %build
@@ -125,6 +130,10 @@ programs that need to access quicktime files using libquicktime.
 
 
 %changelog
+* Mon Jan  8 2007 Matthias Saou <http://freshrpms.net/> 0.9.10-3
+- Include patch to fix runtime against latest faad2.
+- Add explicit faac, faad2, x264 buildreqs (ffmpeg was pulling them in anyway).
+
 * Tue Oct 24 2006 Matthias Saou <http://freshrpms.net/> 0.9.10-2
 - Include patch to rebuild against latest x264.
 

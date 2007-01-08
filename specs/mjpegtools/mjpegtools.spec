@@ -3,9 +3,6 @@
 # Upstream: Gernot Ziegler <gz$lysator,liu,se>
 # Upstream: <mjpeg-developer$lists,sourceforge,net>
 
-##Archs: i686 x86_64 ppc
-##Archs: i686
-
 %{?dist: %{expand: %%define %dist 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
