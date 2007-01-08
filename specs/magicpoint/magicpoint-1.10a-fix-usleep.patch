@@ -1,0 +1,11 @@
+diff -ruN magicpoint-1.10a.orig/image/Imakefile.in magicpoint-1.10a/image/Imakefile.in
+--- magicpoint-1.10a.orig/image/Imakefile.in	2001-01-18 18:07:14.000000000 +0900
++++ magicpoint-1.10a/image/Imakefile.in	2004-02-09 11:10:02.127523603 +0900
+@@ -32,6 +32,7 @@
+ SpecialObjectRule(imagetypes.o,imagetypes.c,$(DEFS))
+ #SpecialObjectRule(png.o,png.c,$(DEFS) $(OPTFLAGS))
+ SpecialObjectRule(imlib_loader.o,imlib_loader.c,$(DEFS))
++SpecialObjectRule(send.o,send.c,$(DEFS) $(OPTFLAGS))
+ 
+ #ifndef NullParameter
+ #define  NullParameter 

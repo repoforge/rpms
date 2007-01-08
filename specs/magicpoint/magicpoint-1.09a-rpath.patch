@@ -1,0 +1,12 @@
+diff -ruN magicpoint-1.09a.orig/configure.in magicpoint-1.09a/configure.in
+--- magicpoint-1.09a.orig/configure.in	2003-04-18 16:49:30.000000000 +0900
++++ magicpoint-1.09a/configure.in	2003-04-18 17:14:12.000000000 +0900
+@@ -277,7 +277,7 @@
+ 		LIBS="$LIBS -L$i/lib"
+ 		OPTFLAGS="$OPTFLAGS -I$i/include"
+ 		AC_CHECK_LIB(mng, mng_initialize, 
+-			[LIBS="$LIBS -Wl,-rpath,$i/lib -lmng"
++			[LIBS="$LIBS -lmng"
+ 			 AC_DEFINE(MNG)], 
+ 		[AC_CHECK_LIB(mng, mng_readdisplay,
+ 			[LIBS="$LIBS -lmng -ljpeg"

@@ -1,0 +1,63 @@
+diff -ruN magicpoint-1.10a.orig/draw.c magicpoint-1.10a/draw.c
+--- magicpoint-1.10a.orig/draw.c	2003-05-14 16:45:35.000000000 +0900
++++ magicpoint-1.10a/draw.c	2003-08-20 19:02:19.000000000 +0900
+@@ -4504,6 +4504,7 @@
+ 	char buf16[1024], *p16;
+ 	char out16[1024], *o16;
+ 	int ileft, oleft;
++	int forcefolding = 0;
+ #ifdef HAVE_ICONV
+ 	static iconv_t icv[3];
+ #endif
+@@ -4569,6 +4570,29 @@
+ 		if (isspace(*(p + len -1))) {
+ 		    XftTextExtents8(display, xft_font, (XftChar8 *)p, len -1, &extents);
+ 			if (state->width - state->leftfillpos / 2 - state->linewidth >= extents.xOff) goto nofolding;
++		} else {
++			/* the specified line might be too long. enforce to split the line in order to avoid the freeze. */
++			wchar_t *wcstr;
++			char *mbstr;
++			int wclength, mblength, i;
++
++			/* converting the strings to wchar to handle the multibyte characters correctly */
++			wcstr = (wchar_t *) malloc (sizeof (wchar_t) * (strlen (p) + 1));
++			wclength = mbstowcs (wcstr, p, len);
++			for (i = wclength - 1; i >= 1; i--) {
++				mbstr = (char *) malloc (sizeof (char) * (i + 1));
++				mblength = wcstombs (mbstr, wcstr, i);
++				XftTextExtents8 (display, xft_font, (XftChar8 *)p, mblength, &extents);
++				if (state->width - state->leftfillpos / 2 - state->linewidth < extents.xOff) {
++					free (mbstr);
++					free (wcstr);
++					len = mblength;
++					forcefolding = 1;
++					goto nofolding;
++				}
++				free (mbstr);
++			}
++			free (wcstr);
+ 		}
+ 
+ 		draw_line_end(state); 
+@@ -4588,9 +4612,20 @@
+ 	if (obj_new_xftfont(state, state->linewidth, 0, p, len, 
+ 				fontname, registry, char_size[caching], charset16, xft_font)){
+ 		state->linewidth += extents.xOff;
++		if (forcefolding == 1) {
++			draw_line_end (state);
++			draw_line_start (state);
++			state->linewidth = state->leftfillpos;
++		}
+ 		return p + len;
+-	} else
++	} else {
++		if (forcefolding == 1) {
++			draw_line_end (state);
++			draw_line_start (state);
++			state->linewidth = state->leftfillpos;
++		}
+ 		return NULL; 
++	}
+ }
+ static int
+ obj_new_xftfont(state, x, y, p, len, fontname, registry, size, charset16, xft_font)

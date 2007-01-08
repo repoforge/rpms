@@ -1,0 +1,98 @@
+diff -ruN magicpoint-1.11a.orig/contrib/xwintoppm/dsimple.c magicpoint-1.11a/contrib/xwintoppm/dsimple.c
+--- magicpoint-1.11a.orig/contrib/xwintoppm/dsimple.c	1998-02-13 16:48:29.000000000 +0900
++++ magicpoint-1.11a/contrib/xwintoppm/dsimple.c	2004-09-15 21:09:10.000000000 +0900
+@@ -495,6 +495,7 @@
+  *       printf with up to 7 arguments.
+  */
+ /* VARARGS1 */
++void
+ outl(msg, arg0,arg1,arg2,arg3,arg4,arg5,arg6)
+      char *msg;
+      char *arg0, *arg1, *arg2, *arg3, *arg4, *arg5, *arg6;
+diff -ruN magicpoint-1.11a.orig/contrib/xwintoppm/xwintoppm.c magicpoint-1.11a/contrib/xwintoppm/xwintoppm.c
+--- magicpoint-1.11a.orig/contrib/xwintoppm/xwintoppm.c	1998-08-26 14:30:16.000000000 +0900
++++ magicpoint-1.11a/contrib/xwintoppm/xwintoppm.c	2004-09-15 21:09:10.000000000 +0900
+@@ -281,6 +281,7 @@
+  *              writting.
+  */
+ 
++void
+ Window_Dump(window, out)
+      Window window;
+      FILE *out;
+@@ -716,9 +717,9 @@
+     return ncolors ;
+ }
+ 
+-_swapshort (bp, n)
+-    register char *bp;
+-    register unsigned n;
++void
++_swapshort (register char *bp,
++	    register unsigned n)
+ {
+     register char c;
+     register char *ep = bp + n;
+@@ -731,9 +732,9 @@
+     }
+ }
+ 
+-_swaplong (bp, n)
+-    register char *bp;
+-    register unsigned n;
++void
++_swaplong (register char *bp,
++	   register unsigned  n)
+ {
+     register char c;
+     register char *ep = bp + n;
+diff -ruN magicpoint-1.11a.orig/image/gif.c magicpoint-1.11a/image/gif.c
+--- magicpoint-1.11a.orig/image/gif.c	2000-03-07 15:59:56.000000000 +0900
++++ magicpoint-1.11a/image/gif.c	2004-09-15 21:09:11.000000000 +0900
+@@ -103,7 +103,7 @@
+ 			if (GifFile->Image.Left + GifFile->Image.Width > GifFile->SWidth ||
+ 			   GifFile->Image.Top + GifFile->Image.Height > GifFile->SHeight) {
+ 				fprintf(stderr,
+-"Image %d is not confined to screen dimension, aborted.\n");
++"Image %d is not confined to screen dimension, aborted.\n", GifFile->ImageCount);
+ 				exit(-2);
+ 			}
+ 			if (GifFile->Image.Interlace) {
+@@ -200,8 +200,8 @@
+ 	if (gifp == NULL)
+ 		ret = 0;
+ 	else {
++		tellAboutImage(name, gifp);
+ 		DGifCloseFile(gifp);
+-		tellAboutImage(name);
+ 		ret = 1;
+ 	}
+ 	return ret;
+diff -ruN magicpoint-1.11a.orig/image/pbm.c magicpoint-1.11a/image/pbm.c
+--- magicpoint-1.11a.orig/image/pbm.c	1998-12-28 17:23:14.000000000 +0900
++++ magicpoint-1.11a/image/pbm.c	2004-09-15 21:05:27.000000000 +0900
+@@ -359,8 +359,10 @@
+        */
+ 
+       destptr = image->data;
+-      for (y = 0; y < size; y++)
+-	*(destptr++) = PM_SCALE(*destptr, maxval, 0xff);
++      for (y = 0; y < size; y++) {
++	*destptr = PM_SCALE(*destptr, maxval, 0xff);
++	destptr++;
++      }
+       break;
+ 
+     case ITRUE:
+diff -ruN magicpoint-1.11a.orig/image/png.c magicpoint-1.11a/image/png.c
+--- magicpoint-1.11a.orig/image/png.c	2001-04-11 17:37:00.000000000 +0900
++++ magicpoint-1.11a/image/png.c	2004-09-15 21:09:11.000000000 +0900
+@@ -44,7 +44,7 @@
+ #define PNG_CHECK_BYTES 4
+ 
+ int 
+-pngIdent(char *fullname, char *name) {}
++pngIdent(char *fullname, char *name) {return 0;}
+     
+ Image *
+ pngLoad(fullname, name, verbose)

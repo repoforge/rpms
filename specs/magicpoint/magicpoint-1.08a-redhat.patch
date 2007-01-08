@@ -1,0 +1,11 @@
+--- magicpoint-1.08a/Imakefile.in.orig	Wed Jul 11 15:25:11 2001
++++ magicpoint-1.08a/Imakefile.in	Wed Jul 11 15:26:09 2001
+@@ -19,7 +19,7 @@
+ LEX=	@LEX@
+ # NOTE: we must not define CC here, since imake may assume other CC to be used.
+ 
+-OPTFLAGS=	@OPTFLAGS@
++OPTFLAGS=	@OPTFLAGS@ -I/usr/include/freetype1/freetype
+ DEFS=	@DEFS@ -DMGPLIBDIR=\"$(LIBDIR)/mgp\"
+ #DEFS+=	-DGLYPHEDGE
+ 
