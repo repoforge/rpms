@@ -3,8 +3,8 @@
 
 Summary: Fast, powerful, easy to use sound system
 Name: fmod
-Version: 3.74.1
-%define real_version 3741
+Version: 3.75
+%define real_version 375
 Release: 1
 License: FMOD Licence (free for non-commercial use)
 Group: Development/Libraries
@@ -38,7 +38,7 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 api/libfmod-3.74.1.so %{buildroot}%{_libdir}/libfmod-3.74.1.so
+%{__install} -Dp -m0755 api/libfmod-%{version}.so %{buildroot}%{_libdir}/libfmod-%{version}.so
 
 %{__install} -d %{buildroot}%{_includedir}/fmod/
 %{__cp} -auvx api/inc/*.h %{buildroot}%{_includedir}/fmod/
@@ -57,6 +57,9 @@ you will need to install %{name}-devel.
 %{_includedir}/fmod/
 
 %changelog
+* Mon Jan 08 2007 Dries Verachtert <dries@ulyssis.org> - 3.75-1
+- Updated to release 3.75.
+
 * Wed Oct 05 2005 Dag Wieers <dag@wieers.com> - 3.74.1-1
 - Mostly cosmetic changes.
 
