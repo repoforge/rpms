@@ -12,7 +12,7 @@
 
 Summary: Meta-data extraction library
 Name: libextractor
-Version: 0.5.16
+Version: 0.5.17
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -63,11 +63,11 @@ Python bindings to libextractor.
 %build
 %configure --enable-static \
 	--with-pic CFLAGS=-I/usr/include/exiv2
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} datadir=%{_datadir} pkgconfigdatadir=%{_libdir}/pkgconfig
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}" datadir=%{_datadir} pkgconfigdatadir=%{_libdir}/pkgconfig
 %find_lang %{name}
 
 %post -p /sbin/ldconfig
@@ -92,12 +92,16 @@ Python bindings to libextractor.
 %{_libdir}/libextractor.a
 %exclude %{_libdir}/libextractor.la
 %{_libdir}/libextractor.so
+%{_libdir}/pkgconfig/libextractor.pc
 
 #%files -n python-extractor
 #%defattr(-, root, root, 0755)
 #%{python_sitearch}/extractor.so
 
 %changelog
+* Mon Jan 08 2007 Dries Verachtert <dries@ulyssis.org> - 0.5.17-1
+- Updated to release 0.5.17.
+
 * Sun Nov 12 2006 Dag Wieers <dag@wieers.com> - 0.5.16-1
 - Updated to release 0.5.16.
 
