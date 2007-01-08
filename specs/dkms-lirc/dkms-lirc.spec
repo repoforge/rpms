@@ -8,7 +8,7 @@
 Summary: Drivers for lirc supported hardware
 Name: dkms-lirc
 Version: 0.8.1
-Release: 0.1.pre2
+Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.lirc.org/
@@ -17,7 +17,7 @@ Patch0: lirc-0.8.1pre2-alldrivers.patch
 Patch1: lirc-0.8.1pre2-nolinuxconfigh.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
-Requires: gcc, lirc
+Requires: gcc, make, lirc
 Requires(post): dkms
 Requires(preun): dkms
 BuildRequires: autoconf, gcc-c++
@@ -101,6 +101,9 @@ dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
 
 %changelog
+* Mon Jan  8 2007 Matthias Saou <http://freshrpms.net/> 0.8.1-1
+- Update to 0.8.1 final.
+
 * Wed Oct 18 2006 Matthias Saou <http://freshrpms.net/> 0.8.1-0.1.pre2
 - Initial RPM release.
 
