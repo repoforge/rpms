@@ -16,7 +16,7 @@
 
 Summary: OpenGL visual plugin for XMMS
 Name: xmms-nebulus
-Version: 0.7.0
+Version: 0.8.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -59,6 +59,9 @@ Nebulus is an OpenGL visual plugin for XMMS.
 %exclude %{xmms_visualdir}/*.la
 
 %changelog
+* Tue Jan 09 2007 Dries Verachtert <dries@ulyssis.org> - 0.8.0-1
+- Updated to release 0.8.0.
+
 * Sun May 28 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.0-1
 - Updated to release 0.7.0.
 

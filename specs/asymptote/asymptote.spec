@@ -4,7 +4,7 @@
 
 Summary: Descriptive vector graphics language
 Name: asymptote
-Version: 1.19
+Version: 1.20
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -76,6 +76,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*-asymptote.desktop
 
 %changelog
+* Tue Jan 09 2007 Dries Verachtert <dries@ulyssis.org> - 1.20-1
+- Updated to release 1.20.
+
 * Fri Dec 15 2006 Dries Verachtert <dries@ulyssis.org> - 1.19-1
 - Updated to release 1.19.
 
