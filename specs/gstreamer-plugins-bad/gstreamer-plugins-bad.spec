@@ -13,7 +13,7 @@
 Summary: GStreamer streaming media framework "bad" plug-ins
 Name: %{gstreamer}-plugins-bad
 Version: 0.10.3
-Release: 2
+Release: 3
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
@@ -138,6 +138,9 @@ This package contains development files and documentation.
 
 
 %changelog
+* Tue Jan  9 2007 Matthias Saou <http://freshrpms.net/> 0.10.3-3
+- Update faad2 patch to also update the plugin sources, not just configure.
+
 * Mon Dec 18 2006 Matthias Saou <http://freshrpms.net/> 0.10.3-2
 - Try to rebuild against new wavpack 4.40 from Extras : Fails.
 - Try to update to 0.10.3.2 pre-release : Fails, it needs a more recent gst.

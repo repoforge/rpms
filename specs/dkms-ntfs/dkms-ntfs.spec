@@ -2,12 +2,12 @@
 # Authority: matthias
 # Dist: nodist
 
-%define fromkernel 2.6.18
+%define fromkernel 2.6.19.1
 
 Summary: Driver for reading and writing on NTFS formatted volumes
 Name: dkms-ntfs
 Version: 2.1.27
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.linux-ntfs.org/
@@ -15,10 +15,9 @@ URL: http://www.linux-ntfs.org/
 # tar cjvf ntfs-%{version}-from-%{fromkernel}.tar.bz2 \
 # Documentation/filesystems/ntfs.txt COPYING fs/ntfs/
 Source: ntfs-%{version}-from-%{fromkernel}.tar.bz2
-Patch0: ntfs-2.1.27-from-2.6.18-noblksize.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
-Requires: gcc
+Requires: gcc, make
 Requires(post): dkms
 Requires(preun): dkms
 
@@ -28,7 +27,6 @@ Driver (Linux kernel module) for reading and writing on NTFS formatted volumes.
 
 %prep
 %setup -c
-%patch0 -p0 -b .noblksize
 # Move the file to not have it mixed with the sources but included as %doc
 %{__mv} fs/ntfs/ChangeLog .
 
@@ -82,6 +80,10 @@ dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
 
 %changelog
+* Tue Jan  9 2007 Matthias Saou <http://freshrpms.net/> 2.1.27-2
+- Update with module source from 2.6.19.1 to fix build on recent FC6 kernels.
+- Remove now included noblksize patch.
+
 * Fri Oct 20 2006 Matthias Saou <http://freshrpms.net/> 2.1.27-1
 - Initial RPM release.
 - Create source the same way as the rpm.livna.org package does.

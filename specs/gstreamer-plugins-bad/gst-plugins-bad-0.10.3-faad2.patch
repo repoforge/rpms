@@ -66,3 +66,201 @@ diff -Naupr gst-plugins-bad-0.10.3.orig/configure.ac gst-plugins-bad-0.10.3/conf
      FAAD_LIBS="-lfaad -lm", HAVE_FAAD="no")
    if test $HAVE_FAAD = "yes"; then
      AC_MSG_CHECKING([Checking for FAAD >= 2])
+diff -Naupr gst-plugins-bad-0.10.3.orig/ext/faad/gstfaad.c gst-plugins-bad-0.10.3/ext/faad/gstfaad.c
+--- gst-plugins-bad-0.10.3.orig/ext/faad/gstfaad.c	2006-05-03 13:10:12.000000000 +0200
++++ gst-plugins-bad-0.10.3/ext/faad/gstfaad.c	2007-01-09 12:36:05.000000000 +0100
+@@ -38,14 +38,14 @@
+  * but not all, hence this Truly Evil Hack. This hack will need updating if
+  * upstream ever releases something with the new API.
+  */
+-#define faacDecInit faacDecInit_no_definition
+-#define faacDecInit2 faacDecInit2_no_definition
++#define NeAACDecInit NeAACDecInit_no_definition
++#define NeAACDecInit2 NeAACDecInit2_no_definition
+ #include "gstfaad.h"
+-#undef faacDecInit
+-#undef faacDecInit2
++#undef NeAACDecInit
++#undef NeAACDecInit2
+ 
+-extern long faacDecInit (faacDecHandle, guint8 *, guint32, guint32 *, guint8 *);
+-extern int8_t faacDecInit2 (faacDecHandle, guint8 *, guint32,
++extern long NeAACDecInit (NeAACDecHandle, guint8 *, guint32, guint32 *, guint8 *);
++extern int8_t NeAACDecInit2 (NeAACDecHandle, guint8 *, guint32,
+     guint32 *, guint8 *);
+ 
+ GST_DEBUG_CATEGORY_STATIC (faad_debug);
+@@ -275,10 +275,10 @@ gst_faad_setcaps (GstPad * pad, GstCaps 
+     buf = GST_BUFFER (gst_value_get_mini_object (value));
+ 
+     /* someone forgot that char can be unsigned when writing the API */
+-    if ((gint8) faacDecInit2 (faad->handle,
++    if ((gint8) NeAACDecInit2 (faad->handle,
+             GST_BUFFER_DATA (buf), GST_BUFFER_SIZE (buf), &samplerate,
+             &channels) < 0) {
+-      GST_DEBUG ("faacDecInit2() failed");
++      GST_DEBUG ("NeAACDecInit2() failed");
+       return FALSE;
+     }
+ 
+@@ -666,11 +666,11 @@ gst_faad_srcconnect (GstPad * pad, const
+   }
+ 
+   if (fmt != -1) {
+-    faacDecConfiguration *conf;
++    NeAACDecConfiguration *conf;
+ 
+-    conf = faacDecGetCurrentConfiguration (faad->handle);
++    conf = NeAACDecGetCurrentConfiguration (faad->handle);
+     conf->outputFormat = fmt;
+-    if (faacDecSetConfiguration (faad->handle, conf) == 0)
++    if (NeAACDecSetConfiguration (faad->handle, conf) == 0)
+       return GST_PAD_LINK_REFUSED;
+ 
+     // FIXME: handle return value, how? 
+@@ -949,7 +949,7 @@ gst_faad_src_query (GstPad * pad, GstQue
+ 
+ 
+ static gboolean
+-gst_faad_update_caps (GstFaad * faad, faacDecFrameInfo * info,
++gst_faad_update_caps (GstFaad * faad, NeAACDecFrameInfo * info,
+     GstCaps ** p_caps)
+ {
+   GstAudioChannelPosition *pos;
+@@ -1086,7 +1086,7 @@ gst_faad_chain (GstPad * pad, GstBuffer 
+   GstFaad *faad;
+   GstBuffer *outbuf;
+   GstCaps *caps = NULL;
+-  faacDecFrameInfo info;
++  NeAACDecFrameInfo info;
+   void *out;
+   gboolean run_loop = TRUE;
+   guint sync_off;
+@@ -1136,17 +1136,17 @@ gst_faad_chain (GstPad * pad, GstBuffer 
+      * appropriate initialisation info... if not, we use our fake_codec_data
+      */
+     if (looks_like_valid_header (input_data, input_size) || !faad->packetised) {
+-      if (faacDecInit (faad->handle, input_data, input_size, &rate, &ch) < 0)
++      if (NeAACDecInit (faad->handle, input_data, input_size, &rate, &ch) < 0)
+         goto init_failed;
+ 
+-      GST_DEBUG_OBJECT (faad, "faacDecInit() ok: rate=%u,channels=%u", rate,
++      GST_DEBUG_OBJECT (faad, "NeAACDecInit() ok: rate=%u,channels=%u", rate,
+           ch);
+     } else {
+-      if ((gint8) faacDecInit2 (faad->handle, faad->fake_codec_data, 2,
++      if ((gint8) NeAACDecInit2 (faad->handle, faad->fake_codec_data, 2,
+               &rate, &ch) < 0) {
+         goto init2_failed;
+       }
+-      GST_DEBUG_OBJECT (faad, "faacDecInit2() ok: rate=%u,channels=%u", rate,
++      GST_DEBUG_OBJECT (faad, "NeAACDecInit2() ok: rate=%u,channels=%u", rate,
+           ch);
+     }
+ 
+@@ -1179,7 +1179,7 @@ gst_faad_chain (GstPad * pad, GstBuffer 
+       }
+     }
+ 
+-    out = faacDecDecode (faad->handle, &info, input_data + skip_bytes,
++    out = NeAACDecDecode (faad->handle, &info, input_data + skip_bytes,
+         input_size - skip_bytes);
+ 
+     if (info.error) {
+@@ -1189,23 +1189,23 @@ gst_faad_chain (GstPad * pad, GstBuffer 
+       if (!faad->packetised)
+         goto decode_error;
+ 
+-      /* decode error? try again using faacDecInit2 
++      /* decode error? try again using NeAACDecInit2 
+        * fabricated private codec data from sink caps */
+       gst_faad_close_decoder (faad);
+       if (!gst_faad_open_decoder (faad))
+         goto init2_failed;
+ 
+-      GST_DEBUG_OBJECT (faad, "decoding error, reopening with faacDecInit2()");
+-      if ((gint8) faacDecInit2 (faad->handle, faad->fake_codec_data, 2,
++      GST_DEBUG_OBJECT (faad, "decoding error, reopening with NeAACDecInit2()");
++      if ((gint8) NeAACDecInit2 (faad->handle, faad->fake_codec_data, 2,
+               &rate, &ch) < 0) {
+         goto init2_failed;
+       }
+ 
+-      GST_DEBUG_OBJECT (faad, "faacDecInit2(): rate=%d,channels=%d", rate, ch);
++      GST_DEBUG_OBJECT (faad, "NeAACDecInit2(): rate=%d,channels=%d", rate, ch);
+ 
+       /* let's try again */
+       info.error = 0;
+-      out = faacDecDecode (faad->handle, &info, input_data + skip_bytes,
++      out = NeAACDecDecode (faad->handle, &info, input_data + skip_bytes,
+           input_size - skip_bytes);
+ 
+       if (info.error)
+@@ -1311,7 +1311,7 @@ init_failed:
+ init2_failed:
+   {
+     GST_ELEMENT_ERROR (faad, STREAM, DECODE, (NULL),
+-        ("%s() failed", (faad->handle) ? "faacDecInit2" : "faacDecOpen"));
++        ("%s() failed", (faad->handle) ? "NeAACDecInit2" : "NeAACDecOpen"));
+     ret = GST_FLOW_ERROR;
+     goto out;
+   }
+@@ -1319,7 +1319,7 @@ init2_failed:
+ decode_error:
+   {
+     GST_ELEMENT_ERROR (faad, STREAM, DECODE, (NULL),
+-        ("Failed to decode buffer: %s", faacDecGetErrorMessage (info.error)));
++        ("Failed to decode buffer: %s", NeAACDecGetErrorMessage (info.error)));
+     ret = GST_FLOW_ERROR;
+     goto out;
+   }
+@@ -1328,22 +1328,22 @@ decode_error:
+ static gboolean
+ gst_faad_open_decoder (GstFaad * faad)
+ {
+-  faacDecConfiguration *conf;
++  NeAACDecConfiguration *conf;
+ 
+-  faad->handle = faacDecOpen ();
++  faad->handle = NeAACDecOpen ();
+ 
+   if (faad->handle == NULL) {
+-    GST_WARNING_OBJECT (faad, "faacDecOpen() failed");
++    GST_WARNING_OBJECT (faad, "NeAACDecOpen() failed");
+     return FALSE;
+   }
+ 
+-  conf = faacDecGetCurrentConfiguration (faad->handle);
++  conf = NeAACDecGetCurrentConfiguration (faad->handle);
+   conf->defObjectType = LC;
+   /* conf->dontUpSampleImplicitSBR = 1; */
+   conf->outputFormat = FAAD_FMT_16BIT;
+ 
+-  if (faacDecSetConfiguration (faad->handle, conf) == 0) {
+-    GST_WARNING_OBJECT (faad, "faacDecSetConfiguration() failed");
++  if (NeAACDecSetConfiguration (faad->handle, conf) == 0) {
++    GST_WARNING_OBJECT (faad, "NeAACDecSetConfiguration() failed");
+     return FALSE;
+   }
+ 
+@@ -1353,7 +1353,7 @@ gst_faad_open_decoder (GstFaad * faad)
+ static void
+ gst_faad_close_decoder (GstFaad * faad)
+ {
+-  faacDecClose (faad->handle);
++  NeAACDecClose (faad->handle);
+   faad->handle = NULL;
+ }
+ 
+diff -Naupr gst-plugins-bad-0.10.3.orig/ext/faad/gstfaad.h gst-plugins-bad-0.10.3/ext/faad/gstfaad.h
+--- gst-plugins-bad-0.10.3.orig/ext/faad/gstfaad.h	2006-05-02 18:16:31.000000000 +0200
++++ gst-plugins-bad-0.10.3/ext/faad/gstfaad.h	2007-01-09 12:36:34.000000000 +0100
+@@ -51,7 +51,7 @@ typedef struct _GstFaad {
+   GstBuffer *tempbuf;    /* used to keep input leftovers          */
+ 
+   /* FAAD object */
+-  faacDecHandle handle;
++  NeAACDecHandle handle;
+   gboolean init;
+ 
+   /* FAAD channel setup */

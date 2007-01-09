@@ -67,7 +67,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.33%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.34%{?rcver:.%{rcver}}%{?date:.%{date}}try2
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -89,6 +89,9 @@ Patch0: MPlayer-0.90pre9-runtimemsg.patch
 Patch1: MPlayer-0.90-playlist.patch
 Patch2: MPlayer-0.90pre10-redhat.patch
 Patch10: MPlayer-1.0pre6a-fribidi.patch
+# Fixes to 1.0rc1 which won't be needed anymore with 1.0rc2
+Patch50: MPlayer-1.0rc1-dct64_amd.patch
+Patch51: asmrules_fix_20061231.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: mplayer-fonts
 BuildRequires: gtk2-devel, SDL-devel
@@ -174,6 +177,8 @@ This package contains the end user documentation.
 %patch1 -p1 -b .playlist
 %patch2 -p0 -b .redhat
 %patch10 -p1 -b .fribidi
+%patch50 -p1 -b .dct64_amd
+%patch51 -p0 -b .asmrules_fix
 
 # Overwrite some of the details of the provided system menu entry
 %{__perl} -pi -e 's|^Exec=gmplayer$|Exec=gmplayer %f|g;
@@ -310,6 +315,10 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Tue Jan  9 2007 Matthias Saou <http://freshrpms.net/> 1.0-0.34.rc1try2
+- Include patch to fix mp3 playback on AMD CPUs.
+- Include patch to fix buffer overflow in asmrp.c.
+
 * Tue Oct 24 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.33.rc1
 - Update to 1.0rc1.
 - Update live library to 2006.10.18a.

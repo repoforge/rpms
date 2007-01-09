@@ -94,8 +94,8 @@
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
-Version: 0.8.6
-Release: 2
+Version: 0.8.6a
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -104,6 +104,7 @@ Source1: http://downloads.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpe
 Source2: http://www.live555.com/liveMedia/public/live.%{live_date}.tar.gz
 Patch0: vlc-0.8.6-ffmpegX11.patch
 Patch1: vlc-0.8.6-wx28.patch
+Patch2: vlc-0.8.6a-faad2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, libpng-devel, libxml2-devel, libtiff-devel
 BuildRequires: libgcrypt-devel, gnutls-devel, libtar-devel
@@ -199,6 +200,7 @@ to link statically to it.
 %setup -a 1 -a 2
 %patch0 -p1 -b .ffmpegX11
 %patch1 -p1 -b .wx28
+%patch2 -p1 -b .faad2
 # Fix PLUGIN_PATH path for lib64
 %{__perl} -pi -e 's|/lib/vlc|/%{_lib}/vlc|g' vlc-config.in.in configure*
 
@@ -320,6 +322,10 @@ export CFLAGS="%{optflags} -maltivec -mabi=altivec"
 
 
 %changelog
+* Mon Jan  8 2007 Matthias Saou <http://freshrpms.net/> 0.8.6a-1
+- Update to 0.8.6a.
+- Add faad2 patch.
+
 * Mon Jan  8 2007 Matthias Saou <http://freshrpms.net/> 0.8.6-2
 - Add patch to fix wxGTK 2.8 build (FC devel).
 - Revert many useless changes to the ffmpeg compilation since we use it as

@@ -1,0 +1,51 @@
+Index: stream/realrtsp/asmrp.c
+===================================================================
+--- stream/realrtsp/asmrp.c	(revision 20381)
++++ stream/realrtsp/asmrp.c	(working copy)
+@@ -40,6 +40,7 @@
+ #include <stdlib.h>
+ #include <stdio.h>
+ #include <string.h>
++#include "asmrp.h"
+ 
+ /*
+ #define LOG
+@@ -645,8 +646,10 @@
+ #ifdef LOG
+       printf ("rule #%d is true\n", rule_num);
+ #endif
+-      matches[num_matches] = rule_num;
+-      num_matches++;
++      if(num_matches < MAX_RULEMATCHES - 1)
++        matches[num_matches++] = rule_num;
++      else
++        printf("Ignoring matched asm rule %d, too many matched rules.\n", rule_num);
+     }
+ 
+     rule_num++;
+Index: stream/realrtsp/real.c
+===================================================================
+--- stream/realrtsp/real.c	(revision 20381)
++++ stream/realrtsp/real.c	(working copy)
+@@ -271,7 +271,7 @@
+     int j=0;
+     int n;
+     char b[64];
+-    int rulematches[16];
++    int rulematches[MAX_RULEMATCHES];
+ 
+ #ifdef LOG
+     printf("calling asmrp_match with:\n%s\n%u\n", desc->stream[i]->asm_rule_book, bandwidth);
+Index: stream/realrtsp/asmrp.h
+===================================================================
+--- stream/realrtsp/asmrp.h	(revision 20381)
++++ stream/realrtsp/asmrp.h	(working copy)
+@@ -40,6 +40,8 @@
+ #ifndef HAVE_ASMRP_H
+ #define HAVE_ASMRP_H
+ 
++#define MAX_RULEMATCHES 16
++
+ int asmrp_match (const char *rules, int bandwidth, int *matches) ;
+ 
+ #endif

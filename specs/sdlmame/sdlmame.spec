@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define mamever 110
+%define mamever 111
 
 Summary: SDL port of the Multi Arcade Machine Emulator (MAME)
 Name: sdlmame
@@ -75,6 +75,9 @@ export PPC=1
 
 
 %changelog
+* Thu Dec 21 2006 Matthias Saou <http://freshrpms.net/> 0.111-1
+- Update to 0.111.
+
 * Wed Nov  8 2006 Matthias Saou <http://freshrpms.net/> 0.110-1
 - Update to 0.110.
 - Add new libXinerama-devel build requirement.

@@ -4,14 +4,15 @@
 Summary: Multiband Atheros Driver for Wireless Fidelity
 Name: madwifi
 Version: 0.9.2.1
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Kernel
 URL: http://madwifi.org/
 Source: http://dl.sf.net/sourceforge/madwifi/madwifi-%{version}.tar.bz2
 Patch0: madwifi-2.6.18-config.patch
+Patch1: madwifi-0.9.2.1-noWerr.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: gcc
+Requires: gcc, make
 Requires(post): dkms
 Requires(preun): dkms
 Provides: dkms-madwifi = %{version}-%{release}
@@ -28,6 +29,7 @@ common wireless tools (ifconfig, iwconfig and friends).
 %prep
 %setup
 %patch0 -p1 -b .config
+%patch1 -p1 -b .noWerr
 
 
 %build
@@ -125,6 +127,9 @@ dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
 
 %changelog
+* Tue Jan  9 2007 Matthias Saou <http://freshrpms.net/> 0.9.2.1-2
+- Add patch to remove -Werr since warnings are printed with recent FC6 kernels.
+
 * Mon Dec 11 2006 Matthias Saou <http://freshrpms.net/> 0.9.2.1-1
 - Update to 0.9.2.1 security fix release.
 

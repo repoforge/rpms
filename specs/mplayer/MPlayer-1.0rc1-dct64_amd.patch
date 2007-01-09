@@ -1,0 +1,40 @@
+diff -Naupr MPlayer-1.0rc1.orig/mp3lib/dct64_3dnow.c MPlayer-1.0rc1/mp3lib/dct64_3dnow.c
+--- MPlayer-1.0rc1.orig/mp3lib/dct64_3dnow.c	2006-10-23 00:32:26.000000000 +0200
++++ MPlayer-1.0rc1/mp3lib/dct64_3dnow.c	2007-01-09 11:04:53.000000000 +0100
+@@ -617,6 +617,8 @@ void dct64_MMX_3dnow(real *a,real *b,rea
+ "	punpckldq %%mm1, %%mm0\n\t"
+ "	movq  %%mm0, 116(%%edx)\n\t"
+ 
++// this code is broken, there is nothing modifying the z flag above.
++#if 0
+ "	jnz .L01\n\t"
+ 
+ /* Phase 7*/
+@@ -738,6 +740,7 @@ void dct64_MMX_3dnow(real *a,real *b,rea
+ 
+ "	jmp	.L_bye\n\t"
+ ".L01:\n\t"
++#endif
+ /* Phase 9*/
+ 
+ "	movq	(%%ecx), %%mm0\n\t"
+diff -Naupr MPlayer-1.0rc1.orig/mp3lib/dct64_k7.c MPlayer-1.0rc1/mp3lib/dct64_k7.c
+--- MPlayer-1.0rc1.orig/mp3lib/dct64_k7.c	2006-10-23 00:32:26.000000000 +0200
++++ MPlayer-1.0rc1/mp3lib/dct64_k7.c	2007-01-09 11:04:57.000000000 +0100
+@@ -463,6 +463,8 @@ void dct64_MMX_3dnowex(real *a,real *b,r
+ "	punpckldq %%mm1, %%mm0\n\t"
+ "	movq  %%mm0, 116(%%edx)\n\t"
+ 
++// this code is broken, there is nothing modifying the z flag above.
++#if 0
+ "	jnz .L01\n\t"
+ 
+ /* Phase 7*/
+@@ -584,6 +586,7 @@ void dct64_MMX_3dnowex(real *a,real *b,r
+ 
+ "	jmp	.L_bye\n\t"
+ ".L01:	\n\t"
++#endif
+ /* Phase 9*/
+ 
+ "	movq	(%%ecx), %%mm0\n\t"
