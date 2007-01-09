@@ -4,7 +4,7 @@
 
 Summary: Go board, SGF editor and client for the Internet Go Server
 Name: qgo
-Version: 1.5.2
+Version: 1.5.3
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -45,6 +45,9 @@ in Japan, China, and Korea.
 %{_datadir}/qGo/
 
 %changelog
+* Tue Jan 09 2007 Dries Verachtert <dries@ulyssis.org> - 1.5.3-1
+- Updated to release 1.5.3.
+
 * Mon Nov 13 2006 Dries Verachtert <dries@ulyssis.org> - 1.5.2-1
 - Updated to release 1.5.2.
 
