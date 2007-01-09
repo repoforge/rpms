@@ -1,11 +1,11 @@
 # $Id$
 # Authority: dries
-# Upstream: 
+# Upstream: Ricardo Garcia Gonzalez <sarbalap$gmail,com>
 
 Summary: Download videos from YouTube.com
 Name: youtube-dl
 Version: 0
-Release: 0.2006.12.07
+Release: 0.2007.01.01
 License: GPL
 Group: Applications/Internet
 URL: http://www.arrakis.es/~rggi3/youtube-dl/
@@ -14,8 +14,7 @@ Source: http://www.arrakis.es/~rggi3/youtube-dl/youtube-dl
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
-BuildRequires: python
-Requires: python
+Requires: python >= 2.4
 
 %description
 youtube-dl is a small command-line program for downloading videos from 
@@ -28,7 +27,7 @@ YouTube.com.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -m0755 -D %{SOURCE0} %{buildroot}%{_bindir}/youtube-dl
+%{__install} -p -m0755 -D %{SOURCE0} %{buildroot}%{_bindir}/youtube-dl
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -38,6 +37,14 @@ YouTube.com.
 %{_bindir}/youtube-dl
 
 %changelog
+* Mon Jan 01 2007 Moritz Barsnick <moritz+rpm@barsnick.net> 2007.01.01-1
+- Updated to release 2007.01.01
+- Preserve mtime on install
+- don't BR python
+- require python >= 2.4 instead of just python (at least 2.3 required
+    for optparse, 2.4 required for cookielib; the program indeed checks
+    for >= 2.4 at runtime)
+
 * Sat Dec 09 2006 Dries Verachtert <dries@ulyssis.org> - 2006.12.07-1
 - Updated to release 2006.12.07.
 
