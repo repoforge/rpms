@@ -9,12 +9,13 @@
 Summary: Regulatory Daemon for Intel® PRO/Wireless 3945 network adaptors
 Name: ipw3945d
 Version: 1.7.22
-Release: 3
+Release: 4
 License: Distributable
 Group: System Environment/Kernel
 URL: http://bughost.org/ipw3945/
 Source0: http://bughost.org/ipw3945/daemon/ipw3945d-%{version}.tgz
-Source1: ipw3945d.init
+Source1: 11ipw3945
+Source2: ipw3945d.init
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 ExclusiveArch: i386 x86_64
 
@@ -42,8 +43,11 @@ to be transmitted on, and support for IEEE 802.11h (DFS and TPC).
 %ifarch x86_64
 %{__install} -D -p -m 0755 x86_64/ipw3945d %{buildroot}/sbin/ipw3945d
 %endif
-# Install init script
+# Install PM hook
 %{__install} -D -p -m 0755 %{SOURCE1} \
+    %{buildroot}%{_sysconfdir}/pm/hooks/11ipw3945
+# Install init script
+%{__install} -D -p -m 0755 %{SOURCE2} \
     %{buildroot}%{_sysconfdir}/rc.d/init.d/ipw3945d
 
 
@@ -69,11 +73,15 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE.ipw3945d README.ipw3945d
+%{_sysconfdir}/pm/hooks/11ipw3945
 %{_sysconfdir}/rc.d/init.d/ipw3945d
 /sbin/ipw3945d
 
 
 %changelog
+* Tue Jan  9 2007 Matthias Saou <http://freshrpms.net/> 1.7.22-4
+- Include PM hook from Ralf Ertzinger for suspend and hibernate to work.
+
 * Tue Oct 24 2006 Matthias Saou <http://freshrpms.net/> 1.7.22-3
 - Fix preun scriplet (missing "fi", doh!).
 

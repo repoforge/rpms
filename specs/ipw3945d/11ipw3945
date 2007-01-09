@@ -1,0 +1,15 @@
+#!/bin/sh
+
+case "$1" in
+	hibernate|suspend)
+		/sbin/lsmod | grep -q ipw3945 || exit 0
+		{ /sbin/service ipw3945d stop && /sbin/modprobe -r ipw3945 ; } 2>/dev/null
+		;;
+	thaw|resume) 
+		{ /sbin/modprobe ipw3945 && /sbin/service ipw3945d start ; } 2>/dev/null
+		;;
+	*)
+		;;
+esac
+
+exit $?
