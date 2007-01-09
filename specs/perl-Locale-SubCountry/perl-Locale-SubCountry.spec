@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KI/KIMRYAN/Locale-SubCountry-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 5.8.4
 
 %description
 This module allows you to convert the full name for a countries administrative
@@ -54,9 +54,6 @@ Codes for the representation of names of countries and their subdivisions".
 
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.37-1
 - Updated to release 1.37.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.36-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.36-1
 - Updated to release 1.36.

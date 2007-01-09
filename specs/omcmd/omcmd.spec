@@ -5,12 +5,12 @@
 Summary: Dhcp/omapi tool for operating on a running dhcp server
 Name: omcmd
 Version: 0.4.7
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
-URL: ftp://dist.taolinux.org/pub/projects/omcmd
+URL: http://peregrin.jmu.edu/~parsledl/
 
-Source: http://freshmeat.net/redir/omcmd/60926/url_tgz/omcmd-%{version}.tar.gz
+Source: http://peregrin.jmu.edu/~parsledl/omcmd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: dhcp-devel
@@ -29,21 +29,24 @@ hosts and leases.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 omcmd %{buildroot}%{_bindir}/omcmd
+%{__install} -Dp -m0644 omcmd.1 %{buildroot}%{_mandir}/man1/omcmd.1
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changelog COPYING README
-%{_bindir}/*
+%doc Changelog COPYING README TODO
+%doc %{_mandir}/man1/omcmd.1*
+%{_bindir}/omcmd
 
 %changelog
+* Mon Jan 09 2007 Dag Wieers <dag@wieers.com> - 0.4.7-2
+- Added TODO and man-page.
+- Fixed Source and URL.
+
 * Mon Jan 08 2007 Dries Verachtert <dries@ulyssis.org> - 0.4.7-1
 - Updated to release 0.4.7.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.6-1.2
-- Rebuild for Fedora Core 5.
 
 * Tue Oct 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.4.6-1
 - Updated to release 0.4.6.

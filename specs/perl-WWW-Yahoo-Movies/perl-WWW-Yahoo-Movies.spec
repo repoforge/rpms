@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/ST/STEPANOV/WWW-Yahoo-Movies-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 5.8.6
 
 %description
 WWW-Yahoo-Movies is OO Perl interface to the Yahoo! Movies.
