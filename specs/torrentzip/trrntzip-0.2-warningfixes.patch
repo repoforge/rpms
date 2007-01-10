@@ -1,0 +1,130 @@
+diff -Naupr trrntzip.orig/src/logging.c trrntzip/src/logging.c
+--- trrntzip.orig/src/logging.c	2005-05-01 19:25:54.000000000 +0200
++++ trrntzip/src/logging.c	2007-01-10 12:37:18.000000000 +0100
+@@ -18,6 +18,7 @@
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include <string.h>
++#include <stdlib.h>
+ #include <stdio.h>
+ #include <time.h>
+ #include <stdarg.h>
+diff -Naupr trrntzip.orig/src/trrntzip.c trrntzip/src/trrntzip.c
+--- trrntzip.orig/src/trrntzip.c	2005-05-02 15:38:40.000000000 +0200
++++ trrntzip/src/trrntzip.c	2007-01-10 12:42:47.000000000 +0100
+@@ -692,7 +692,7 @@ RecursiveMigrate (const char *pszPath, W
+     // We need to change to the dir of the zipfile if there is one.
+     // This is because the logging will pick up the current dir for
+     // the filename
+-    if (pDir = strrchr (pszPath, DIRSEP))
++    if ((pDir = strrchr (pszPath, DIRSEP)))
+     {
+       *pDir = 0;
+       chdir (pszPath);
+@@ -718,7 +718,7 @@ RecursiveMigrate (const char *pszPath, W
+     {
+       // First set all the files to read-only. This is so we can skip
+       // our new zipfiles if they are returned by readdir() a second time.
+-      while (direntp = readdir (dirp))
++      while ((direntp = readdir (dirp)))
+       {
+         // Quick fudge to make the code below work
+         if (qZipFile) strcpy (direntp->d_name, pszPath);
+@@ -889,7 +889,9 @@ main (int argc, char **argv)
+   int iCount = 0;
+   int iOptionsFound = 0;
+   int rc = 0;
++#ifdef WIN32
+   char *ptr = NULL;
++#endif
+ 
+   for (iCount = 1 ; iCount < argc ; iCount++)
+   { 
+diff -Naupr trrntzip.orig/src/unzip.c trrntzip/src/unzip.c
+--- trrntzip.orig/src/unzip.c	2005-04-21 08:27:42.000000000 +0200
++++ trrntzip/src/unzip.c	2007-01-10 12:49:52.000000000 +0100
+@@ -562,10 +562,12 @@ unzlocal_GetCurrentFileInfoInternal (fil
+ 
+   /* we check the magic */
+   if (err == UNZ_OK)
++  {
+     if (unzlocal_getLong (&s->z_filefunc, s->filestream, &uMagic) != UNZ_OK)
+       err = UNZ_ERRNO;
+     else if (uMagic != 0x02014b50)
+       err = UNZ_BADZIPFILE;
++  }
+ 
+   if (unzlocal_getShort (&s->z_filefunc, s->filestream, &file_info.version) !=
+       UNZ_OK)
+@@ -660,11 +662,13 @@ unzlocal_GetCurrentFileInfoInternal (fil
+       uSizeRead = extraFieldBufferSize;
+ 
+     if (lSeek != 0)
++    {
+       if (ZSEEK (s->z_filefunc, s->filestream, lSeek, ZLIB_FILEFUNC_SEEK_CUR)
+           == 0)
+         lSeek = 0;
+       else
+         err = UNZ_ERRNO;
++    }
+     if ((file_info.size_file_extra > 0) && (extraFieldBufferSize > 0))
+       if (ZREAD (s->z_filefunc, s->filestream, extraField, uSizeRead) !=
+           uSizeRead)
+@@ -687,11 +691,13 @@ unzlocal_GetCurrentFileInfoInternal (fil
+       uSizeRead = commentBufferSize;
+ 
+     if (lSeek != 0)
++    {
+       if (ZSEEK (s->z_filefunc, s->filestream, lSeek, ZLIB_FILEFUNC_SEEK_CUR)
+           == 0)
+         lSeek = 0;
+       else
+         err = UNZ_ERRNO;
++    }
+     if ((file_info.size_file_comment > 0) && (commentBufferSize > 0))
+       if (ZREAD (s->z_filefunc, s->filestream, szComment, uSizeRead) !=
+           uSizeRead)
+@@ -962,10 +968,12 @@ unzlocal_CheckCurrentFileCoherencyHeader
+ 
+ 
+   if (err == UNZ_OK)
++  {
+     if (unzlocal_getLong (&s->z_filefunc, s->filestream, &uMagic) != UNZ_OK)
+       err = UNZ_ERRNO;
+     else if (uMagic != 0x04034b50)
+       err = UNZ_BADZIPFILE;
++  }
+ 
+   if (unzlocal_getShort (&s->z_filefunc, s->filestream, &uData) != UNZ_OK)
+     err = UNZ_ERRNO;
+@@ -1550,7 +1558,10 @@ unzGetGlobalComment (file, szComment, uS
+      char *szComment;
+      uLong uSizeBuf;
+ {
++/* Not used as of 0.2 */
++/*
+   int err = UNZ_OK;
++*/
+   unz_s *s;
+   uLong uReadThis;
+   if (file == NULL)
+diff -Naupr trrntzip.orig/src/zip.c trrntzip/src/zip.c
+--- trrntzip.orig/src/zip.c	2005-04-17 10:36:15.000000000 +0200
++++ trrntzip/src/zip.c	2007-01-10 12:48:18.000000000 +0100
+@@ -117,6 +117,8 @@ init_linkedlist (ll)
+   ll->first_block = ll->last_block = NULL;
+ }
+ 
++/* Not used as of 0.2 */
++/*
+ local void
+ free_linkedlist (ll)
+      linkedlist_data *ll;
+@@ -124,6 +126,7 @@ free_linkedlist (ll)
+   free_datablock (ll->first_block);
+   ll->first_block = ll->last_block = NULL;
+ }
++*/
+ 
+ 
+ local int

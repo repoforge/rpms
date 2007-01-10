@@ -1,0 +1,36 @@
+diff -Naupr trrntzip.orig/src/trrntzip.c trrntzip/src/trrntzip.c
+--- trrntzip.orig/src/trrntzip.c	2005-05-02 15:38:40.000000000 +0200
++++ trrntzip/src/trrntzip.c	2007-01-10 13:41:47.000000000 +0100
+@@ -900,16 +900,17 @@ main (int argc, char **argv)
+ 
+       switch (argv[iCount][1])
+       {
+-      case '?':
+-        fprintf (stdout, "\nTorrentZip v%s\n\n", TZ_VERSION);
++      case 'h':
++        fprintf (stdout, "TorrentZip v%s\n", TZ_VERSION);
+         fprintf (stdout, "Copyright (C) 2005 TorrentZip Team :\n");
+-        fprintf (stdout, "StatMat, shindakun, Ultrasubmarine, r3nh03k and goosecreature\n");
++        fprintf (stdout, "StatMat, shindakun, Ultrasubmarine, r3nh03k and goosecreature.\n");
+         fprintf (stdout, "Homepage : http://sourceforge.net/projects/trrntzip\n\n");
+         fprintf (stdout, "Usage: trrntzip [OPTIONS] [PATH/ZIP FILE]\n\n");
+-        fprintf (stdout, "Options:\n\n");
++        fprintf (stdout, "Options:\n");
+         fprintf (stdout, "-d : strip sub-directories from zips\n");
+         fprintf (stdout, "-s : prevent sub-directory recursion\n");
+         fprintf (stdout, "-v : show version\n");
++        fprintf (stdout, "-h : show this help\n");
+         return TZ_OK;
+ 
+       case 'd':
+@@ -940,8 +941,9 @@ main (int argc, char **argv)
+ 
+   if (argc < 2 || iOptionsFound == (argc - 1))
+   {
+-    fprintf (stderr, "\ntrrntzip: missing path\n");
++    fprintf (stderr, "trrntzip: missing path\n");
+     fprintf (stderr, "Usage: trrntzip [OPTIONS] [PATH/ZIP FILE]\n");
++    fprintf (stderr, "Try `trrntzip -h' for help.\n");
+     return TZ_ERR;
+   }
+ 
