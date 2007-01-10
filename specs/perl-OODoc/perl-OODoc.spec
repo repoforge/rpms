@@ -41,8 +41,10 @@ Creates code related documentation in an object oriented way.
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README.examples LICENSE
+%doc ChangeLog README LICENSE
 %doc %{_mandir}/man3/*
+%doc %{_mandir}/man1/oodist*
+%{_bindir}/oodist
 %{perl_vendorlib}/OODoc.p*
 %{perl_vendorlib}/OODoc/
 
