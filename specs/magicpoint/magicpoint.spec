@@ -32,7 +32,7 @@ BuildRequires: autoconf, automake, libtool, byacc, flex
 BuildRequires: libungif-devel, libpng-devel, libmng-devel, imlib-devel
 BuildRequires: fontconfig-devel
 #Requires: VFlib2 >= 2.25.6-8, VFlib2-conf-ja >= 2.25.6-8
-%{?_with_modxorg:BuildRequires: libXt-devel, libXext-devel, libXft-devel}
+%{?_with_modxorg:BuildRequires: libXt-devel, libXext-devel, libXft-devel, libXmu-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 Requires: imlib
 Obsoletes: mgp <= %{version}-%{release}

@@ -13,7 +13,9 @@ URL: http://asymptote.sourceforge.net/
 Source: http://dl.sf.net/asymptote/asymptote-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libgc-devel >= 6.7, fftw-devel, ncurses-devel, readline-devel, gcc-c++, libsigsegv-devel, tetex-latex
+BuildRequires: libgc-devel >= 6.7, libgc >= 6.7, fftw-devel
+BuildRequires: ncurses-devel, readline-devel, gcc-c++
+BuildRequires: libsigsegv-devel, tetex-latex, ghostscript
 
 %description
 Asymptote is a powerful descriptive vector graphics language for

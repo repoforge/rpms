@@ -9,7 +9,7 @@
 
 Summary: Translates Pod to a table of contents
 Name: perl-Pod-Perldoc-ToToc
-Version: 1.05
+Version: 1.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,5 +48,8 @@ Translates Pod to a table of contents.
 %{perl_vendorlib}/Pod/TOC.pm
 
 %changelog
+* Wed Jan 10 2007 Dries Verachtert <dries@ulyssis.org> - 1.06-1
+- Updated to release 1.06.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.05-1
 - Initial package.

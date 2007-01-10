@@ -9,7 +9,7 @@
 
 Summary: Creates code related documentation
 Name: perl-OODoc
-Version: 0.94
+Version: 0.98
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ Creates code related documentation in an object oriented way.
 %{perl_vendorlib}/OODoc/
 
 %changelog
+* Wed Jan 10 2007 Dries Verachtert <dries@ulyssis.org> - 0.98-1
+- Updated to release 0.98.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.94-1
 - Initial package.

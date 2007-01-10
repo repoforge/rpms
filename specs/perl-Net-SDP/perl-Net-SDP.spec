@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/N/NJ/NJH/Net-SDP-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(Module::Build)
 
 %description
 Session Description Protocl (rfc2327)

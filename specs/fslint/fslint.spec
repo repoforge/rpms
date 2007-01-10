@@ -96,6 +96,7 @@ for e.g.). It includes a GUI as well as a command line interface.
 %defattr(-, root, root, 0755)
 %doc doc/*
 %doc %{_mandir}/man1/fslint*
+%{_bindir}/fslint
 %{_bindir}/fslint-gui
 %{_datadir}/fslint/
 %{_datadir}/pixmaps/fslint_icon.png

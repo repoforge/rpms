@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/M/MB/MBARBON/CGI-Session-Hidden-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(Module::Build)
 
 %description
 Persistent session using hidden fields.

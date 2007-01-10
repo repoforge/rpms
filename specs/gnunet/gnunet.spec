@@ -14,7 +14,7 @@ Source: http://gnunet.org/download/GNUnet-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, curl-devel, libextractor-devel, mysql-devel
-BuildRequires: libgcrypt-devel, gmp-devel
+BuildRequires: libgcrypt-devel, gmp-devel, libtool
 
 %description
 GNUnet is a peer-to-peer framework with focus on providing security. All 
