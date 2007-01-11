@@ -2,17 +2,15 @@
 # Authority: dries
 # Upstream: Bill Poser <billposer$alum,mit,edu>
 
-%define real_version 3.11
-
 Summary: Convert between UTF-8 Unicode and 7-bit ASCII equivalents
 Name: uni2ascii
-Version: 3.11
+Version: 3.12
 Release: 1
 License: GPL
 Group: Applications/Text
 URL: http://www.billposer.org/Software/uni2ascii.html
 
-Source: http://billposer.org/Software/Downloads/uni2ascii-%{real_version}.tgz
+Source: http://billposer.org/Software/Downloads/uni2ascii-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python, python-devel
@@ -51,6 +49,9 @@ handle the Unicode character set but are not 8-bit safe, and when debugging.
 %{_bindir}/uni2ascii
 
 %changelog
+* Thu Jan 11 2007 Dag Wieers <dag@wieers.com> - 3.12-1
+- Updated to release 3.12.
+
 * Thu Dec 21 2006 Dries Verachtert <dries@ulyssis.org> - 3.11-1
 - Updated to release 3.11.
 

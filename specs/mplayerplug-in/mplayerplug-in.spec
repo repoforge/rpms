@@ -7,22 +7,26 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%define mozilla mozilla
+%define mozilla seamonkey
 %{!?dist:%define mozilla firefox}
 %{?fc6:%define mozilla firefox}
 
-%{?el4:%define _without_modxorg 1}
-%{?el3:%define _without_modxorg 1}
-%{?el2:%define _without_modxorg 1}
 %{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
 %{?fc3:%define _without_modxorg 1}
 %{?fc2:%define _without_modxorg 1}
 %{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh9:%define mozilla mozilla}
+%{?rh7:%define _without_modxorg 1}
+%{?rh7:%define mozilla mozilla}
+%{?el2:%define _without_modxorg 1}
 
 Summary: Browser plugin for MPlayer
 Name: mplayerplug-in
-Version: 3.31
-Release: 2
+Version: 3.35
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerplug-in.sourceforge.net/
@@ -76,6 +80,9 @@ in your browser.
 %{_libdir}/mozilla/plugins/mplayerplug-in-wmp.xpt
 
 %changelog
+* Thu Jan 11 2007 Dag Wieers <dag@wieers.com> - 3.35-1
+- Updated to release 3.35.
+
 * Fri Oct 20 2006 Matthias Saou <http://freshrpms.net/> 3.31-2
 - Pull in firefox instead of mozilla for FC6 and non-Fedora.
 - Remove the libxpcom.so filtering since firefox now provides it again.

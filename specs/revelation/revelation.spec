@@ -7,8 +7,8 @@
 
 Summary: Graphical password manager
 Name: revelation
-Version: 0.4.7
-Release: 1.2
+Version: 0.4.8
+Release: 1
 License: GPL
 Group: Applications/Productivity
 URL: http://oss.codepoet.no/revelation/
@@ -20,8 +20,8 @@ BuildRequires: python >= 2.3, python-devel, python-crypto >= 1.9
 BuildRequires: gnome-keyring-devel, pygtk2-devel >= 2.4, gnome-python2
 BuildRequires: gnome-vfs2-devel, libgnomeui-devel, gnome-python2-bonobo
 BuildRequires: GConf2-devel, gnome-python2-gconf, gnome-python2-desktop
-%{?fc4:BuildRequires: gnome-python2-extras, gnome-panel-devel}
 %{?fc5:BuildRequires: gnome-python2-extras, gnome-panel-devel}
+%{?fc4:BuildRequires: gnome-python2-extras, gnome-panel-devel}
 Requires: python >= 2.3, pygtk2 >= 2.4, python-crypto >= 1.9
 Requires: gnome-python2-canvas, gnome-python2-gconf, gnome-python2-gnomevfs
 Requires: gnome-python2-bonobo, cracklib, gnome-python2-applet
@@ -78,8 +78,8 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/icons/hicolor/*/apps/revelation-locked.png
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.7-1.2
-- Rebuild for Fedora Core 5.
+* Wed Jan 10 2007 Dag Wieers <dag@wieers.com> - 0.4.8-1
+- Updated to release 0.4.8.
 
 * Tue Feb 07 2006 Dag Wieers <dag@wieers.com> - 0.4.7-1
 - Updated to release 0.4.7.

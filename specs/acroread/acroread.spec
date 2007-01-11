@@ -17,7 +17,7 @@
 
 Summary: Adobe Reader for viewing PDF files
 Name: acroread
-Version: 7.0.8
+Version: 7.0.9
 Release: 1
 License: Commercial, Freely Distributable
 Group: Applications/Publishing
@@ -124,6 +124,9 @@ ln -f %{buildroot}%{_libdir}/acroread/Browser/intellinux/nppdf.so %{buildroot}%{
 %{_libdir}/netscape/plugins/nppdf.so
 
 %changelog
+* Thu Jan 11 2007 Dag Wieers <dag@wieers.com> - 7.0.9-1
+- Updated to release 7.0.9.
+
 * Mon Jun 12 2006 Dag Wieers <dag@wieers.com> - 7.0.8-1
 - Updated to release 7.0.8.
 

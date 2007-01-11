@@ -5,7 +5,7 @@
 
 Summary: Local and remote filesystem snapshot utility
 Name: rsnapshot
-Version: 1.2.9
+Version: 1.3.0
 Release: 1
 License: GPL
 Group: Applications/System
@@ -76,6 +76,9 @@ fi
 %{_bindir}/rsnapshot-diff
 
 %changelog
+* Wed Jan 10 2007 Dag Wieers <dag@wieers.com> - 1.3.0-1
+- Updated to release 1.3.0.
+
 * Fri Jun 02 2006 Dag Wieers <dag@wieers.com> - 1.2.9-1
 - Updated to release 1.2.9.
 

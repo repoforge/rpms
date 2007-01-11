@@ -5,7 +5,7 @@
 
 Summary: Virtual private network daemon
 Name: tinc
-Version: 1.0.6
+Version: 1.0.7
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -50,6 +50,9 @@ information to others.
 %{_sbindir}/tincd
 
 %changelog
+* Wed Jan 10 2007 Dag Wieers <dag@wieers.com> - 1.0.7-1
+- Updated to release 1.0.7.
+
 * Tue Dec 19 2006 Dag Wieers <dag@wieers.com> - 1.0.6-1
 - Updated to release 1.0.6.
 

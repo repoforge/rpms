@@ -3,7 +3,7 @@
 
 Summary: Macromedia Flash Player
 Name: flash-plugin
-Version: 7.0.68
+Version: 7.0.69
 Release: 1
 License: Commercial
 Group: Applications/Internet
@@ -47,6 +47,9 @@ By downloading and installing this package you agree to the included LICENSE:
 %{_libdir}/mozilla/plugins/
 
 %changelog
+* Wed Jan 10 2007 Dag Wieers <dag@wieers.com> - 7.0.69-1
+- Updated to release 7.0.69.
+
 * Tue Sep 12 2006 Dag Wieers <dag@wieers.com> - 7.0.68-1
 - Updated to release 7.0.68.
 - Renamed package from mozilla-flash to flash-plugin.
