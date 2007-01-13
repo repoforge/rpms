@@ -18,8 +18,8 @@
 
 Summary: Cross stitch patterns editor
 Name: kxstitch
-Version: 0.5
-Release: 2
+Version: 0.8
+Release: 1
 License: GPL
 Group: Amusements/Graphics
 URL: http://kxstitch.sourceforge.net/index.shtml
@@ -40,6 +40,7 @@ KXStitch allows the creation and editing of cross stitch patterns.
 
 %prep
 %setup
+%{__perl} -pi -e "s|/usr/share/man|\\\$(mandir)|g;" kxstitch/Makefile*
 
 %build
 source %{_sysconfdir}/profile.d/qt.sh
@@ -49,14 +50,9 @@ source %{_sysconfdir}/profile.d/qt.sh
 %install
 %{__rm} -rf %{buildroot}
 source %{_sysconfdir}/profile.d/qt.sh
-%makeinstall
+# %{__perl} -pi -e "s|/usr/share/man|\\\$(mandir)|g;" kxstitch/Makefile*
+%makeinstall 
 %find_lang %{name}
-
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -64,13 +60,18 @@ source %{_sysconfdir}/profile.d/qt.sh
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO
-%{_bindir}/*
-%{_datadir}/apps/kxstitch
+%doc %{_mandir}/man1/kxstitch*
+%{_bindir}/kxstitch
+%{_datadir}/apps/kxstitch/
 %{_datadir}/applnk/Graphics/kxstitch.desktop
+%{_datadir}/mimelnk/application/kxstitch.desktop
 %{_datadir}/icons/*/*/apps/kxstitch.png
-%{_datadir}/doc/HTML/en/kxstitch
+%{_datadir}/doc/HTML/en/kxstitch/
 
 %changelog
+* Fri Jan 12 2007 Dries Verachtert <dries@ulyssis.org> - 0.8-1
+- Updated to release 0.8.
+
 * Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-2
 - Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
 
