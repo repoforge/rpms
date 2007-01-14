@@ -3,8 +3,8 @@
 
 Summary: Powerful and fullfeatured server logfile analyzer
 Name: awstats
-Version: 6.5
-Release: 1.2
+Version: 6.6
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://awstats.sourceforge.net/
@@ -13,6 +13,7 @@ Source: http://dl.sf.net/awstats/awstats-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
+BuildRequires: dos2unix
 
 %description
 Advanced Web Statistics is a powerful and featureful tool that generates
@@ -73,6 +74,8 @@ ScriptAlias /awstats/ %{_localstatedir}/www/awstats/
 #Alias /css/ %{_localstatedir}/www/awstats/css/
 #Alias /js/ %{_localstatedir}/www/awstats/js/
 EOF
+dos2unix tools/logresolvemerge.pl
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -108,6 +111,10 @@ EOF
 %{_localstatedir}/www/awstats/
 
 %changelog
+* Sun Jan 14 2007 Dries Verachtert <dries@ulyssis.org> - 6.6-1
+- Updated to release 6.6.
+- Convert logresolvemerge.pl to unix line endings, thanks to Christoph Maser.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 6.5-1.2
 - Rebuild for Fedora Core 5.
 
