@@ -235,6 +235,8 @@ popd
 export CFLAGS="%{optflags} -maltivec -mabi=altivec"
 %endif
 
+### Workaround to make -lX11 work on 64bit
+export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %configure \
     --enable-release \
     %{!?_without_dvdread:--enable-dvdread} \

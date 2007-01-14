@@ -4,10 +4,10 @@
 Summary: Video-surveilance system
 Name: motion
 Version: 3.2.7
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
-URL: http://motion.sourceforge.net/
+URL: http://www.lavrsen.dk/twiki/bin/view/Motion/WebHome
 
 Source: http://dl.sf.net/motion/motion-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -55,6 +55,9 @@ and http remote control.
 %{_bindir}/motion
 
 %changelog
+* Thu Jan 11 2007 Dag Wieers <dag@wieers.com> - 3.2.7-1
+- Rebuild against newer ffmpeg.
+
 * Mon Oct 23 2006 Dag Wieers <dag@wieers.com> - 3.2.7-1
 - Updated to release 3.2.7.
 

@@ -1,0 +1,50 @@
+--- Makefile.orig	2007-01-14 13:25:53.401972464 +0100
++++ Makefile	2007-01-14 13:29:22.765144424 +0100
+@@ -2,10 +2,15 @@
+ #	pam_shield	WJ106
+ #
+ 
+-bindir=/usr/sbin
+-confdir=/etc/security
+-pamdir=/lib/security
+-crondir=/etc/cron.daily
++prefix=/usr
++bindir=$(prefix)/sbin
++sysconfdir=/etc
++confdir=$(sysconfdir)/security
++libdir=/lib
++pamdir=$(libdir)/security
++crondir=$(sysconfdir)/cron.daily
++
++DESTDIR=
+ 
+ CC = gcc
+ LD = ld
+@@ -38,17 +43,17 @@
+ 	$(CC) -M pam_shield.c shield_purge.c > .depend
+ 
+ install: all
+-	$(INSTALL) -s -o root -g root -m 644 pam_shield.so ${pamdir}
+-	$(INSTALL) -o root -g root -m 755 -T pam_shield.cron ${crondir}/pam-shield
+-	$(INSTALL) -o root -g root -m 755 shield-trigger.sh ${bindir}
+-	$(INSTALL) -s -o root -g root -m 755 shield-purge ${bindir}
+-	$(INSTALL) -o root -g root -m 644 shield.conf ${confdir}
++	$(INSTALL) -Dp -m0644 pam_shield.so $(DESTDIR)$(pamdir)/pam_shield.so
++	$(INSTALL) -Dp -m0755 pam_shield.cron $(DESTDIR)$(crondir)/pam-shield
++	$(INSTALL) -Dp -m0755 shield-trigger.sh $(DESTDIR)$(bindir)/shield-trigger.sh
++	$(INSTALL) -Dp -m0755 shield-purge $(DESTDIR)$(bindir)/shield-purge
++	$(INSTALL) -Dp -m0644 shield.conf $(DESTDIR)$(confdir)/shield.conf
+ 
+ uninstall:
+-	$(RM) ${pamdir}/pam_shield.so
+-	$(RM) ${crondir}/pam-shield
+-	$(RM) ${bindir}/shield-trigger.sh
+-	$(RM) ${bindir}/shield-purge
+-	$(RM) ${confdir}/shield.conf
++	$(RM) $(pamdir)/pam_shield.so
++	$(RM) $(crondir)/pam-shield
++	$(RM) $(bindir)/shield-trigger.sh
++	$(RM) $(bindir)/shield-purge
++	$(RM) $(confdir)/shield.conf
+ 
+ # EOB

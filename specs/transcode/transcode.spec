@@ -29,7 +29,7 @@
 Summary: Linux video stream processing utility
 Name: transcode
 Version: 1.0.2
-Release: 11%{?prever:.%{prever}}
+Release: 12%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
@@ -142,6 +142,9 @@ export CFLAGS="%{optflags} -I%{_includedir}/postproc -DSDL_VIDEO_DRIVER_X11"
 
 
 %changelog
+* Thu Jan 11 2007 Dag Wieers <dag@wieers.com> - 1.0.2-12
+- Rebuild against newer ffmpeg and mjpegtools.
+
 * Tue Sep 19 2006 Matthias Saou <http://freshrpms.net/> 1.0.2-11
 - Add patch for recent ffmpeg (libavcodec) versions detection.
 

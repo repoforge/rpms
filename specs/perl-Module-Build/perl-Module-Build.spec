@@ -12,14 +12,15 @@
 Summary: System for building perl modules
 Name: perl-Module-Build
 Version: 0.2806
-Release: 1
+Release: 2
 License: Artistic or GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Build/
 
 Source: http://www.cpan.org/modules/by-module/Module/Module-Build-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: perl(Archive::Tar)
+
+BuildRequires: perl(Archive::Tar), perl(ExtUtils::CBuilder)
 BuildArch: noarch
 
 %description
@@ -58,11 +59,11 @@ pure-perl and written in a very cross-platform way.
 %{perl_vendorlib}/Module/Build.pm
 
 %changelog
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.2806-2
+- Rebuild against perl(ExtUtils::CBuilder).
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.2806-1
 - Updated to release 0.2806.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.2611-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.2611-1
 - Updated to release 0.2611.
