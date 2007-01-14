@@ -13,7 +13,7 @@
 
 Summary: Easy to use front-end for ClamAV
 Name: clamtk
-Version: 2.26
+Version: 2.27
 Release: 1
 License: Perl
 Group: Applications/File
@@ -40,7 +40,7 @@ It supports easy signature-updates.
 Name=ClamTk Virus Scanner
 Comment=Scan your system for viruses.
 Exec=clamtk
-Icon=clam.xpm
+Icon=clamtk.png
 Terminal=false
 Type=Application
 Categories=Application;Utility;
@@ -54,7 +54,8 @@ EOF
 #%{__make} install DESTDIR="%{buildroot}"
 %{__install} -Dp -m0755 clamtk %{buildroot}%{_bindir}/clamtk
 %{__install} -Dp -m0644 clamtk.1.gz %{buildroot}%{_mandir}/man1/clamtk.1
-%{__install} -Dp -m0644 clam.xpm %{buildroot}%{_datadir}/pixmaps/clam.xpm
+%{__install} -Dp -m0644 clamtk.xpm %{buildroot}%{_datadir}/pixmaps/clamtk.xpm
+%{__install} -Dp -m0644 clamtk.png %{buildroot}%{_datadir}/pixmaps/clamtk.png
 
 %if %{?_without_freedesktop:1}0
 	%{__install} -Dp -m0644 clamtk.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/clamtk.desktop
@@ -77,9 +78,13 @@ EOF
 %{_bindir}/clamtk
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-clamtk.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/clamtk.desktop}
-%{_datadir}/pixmaps/clam.xpm
+%{_datadir}/pixmaps/clamtk.xpm
+%{_datadir}/pixmaps/clamtk.png
 
 %changelog
+* Sun Jan 14 2007 Dries Verachtert <dries@ulyssis.org> - 2.27-1
+- Updated to release 2.27.
+
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 2.26-1
 - Updated to release 2.26.
 
