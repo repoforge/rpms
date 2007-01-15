@@ -86,13 +86,17 @@ export OBJDIR=%{_arch}
 %files utils
 %defattr(-, root, root, 0755)
 %doc COPYING
-%{_bindir}/*
+%{_bindir}/mpeg3cat
+%{_bindir}/mpeg3dump
+%{_bindir}/mpeg3peek
+%{_bindir}/mpeg3toc
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc docs/*
-%{_libdir}/*.a
-%{_includedir}/*.h
+%{_libdir}/libmpeg3.a
+%{_includedir}/libmpeg3.h
+%{_includedir}/mpeg3private.h
 
 
 %changelog

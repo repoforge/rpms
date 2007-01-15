@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Collection of command line tools for SMIL manipulation
@@ -12,7 +11,6 @@ URL: http://users.pandora.be/acp/kino/smilutils.html
 
 Source: http://kino.schirmacher.de/filemanager/download/14/smilutils-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libxml2-devel, gtk+-devel, gdk-pixbuf-devel, gcc-c++
 Buildrequires: libraw1394-devel, libavc1394-devel, libdv-devel
@@ -40,10 +38,7 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -51,19 +46,17 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog NEWS README*
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/*.1*
 %{_bindir}/*
 %{_libdir}/*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.0-1.2
-- Rebuild for Fedora Core 5.
-
 * Fri Dec 19 2003 Dag Wieers <dag@wieers.com> - 0.3.0-1
 - Fixed a problem with the shared libraries. (Miguel Lemos)
 

@@ -10,13 +10,23 @@
 %{?fc5:%define _with_modxorg 1}
 
 %{?fc1:%define _without_alsa 1}
+%{?fc1:%define _without_gtk24 1}
 %{?el3:%define _without_alsa 1}
+%{?el3:%define _without_gtk24 1}
 %{?rh9:%define _without_alsa 1}
+%{?rh9:%define _without_gtk24 1}
+%{?rh9:%define _without_x264 1}
 %{?rh8:%define _without_alsa 1}
-%{?rh7:%define _without_alsa 1}
+%{?rh8:%define _without_gtk24 1}
+%{?rh8:%define _without_x264 1}
 %{?rh7:%define _without_1394 1}
-%{?el2:%define _without_alsa 1}
+%{?rh7:%define _without_alsa 1}
+%{?rh7:%define _without_gtk24 1}
+%{?rh7:%define _without_x264 1}
 %{?el2:%define _without_1394 1}
+%{?el2:%define _without_alsa 1}
+%{?el2:%define _without_gtk24 1}
+%{?el2:%define _without_x264 1}
 %{?yd3:%define _without_alsa 1}
 
 #define prever pre1
@@ -33,8 +43,9 @@ Patch0: libquicktime-0.9.8-plugin_dir.patch
 Patch1: libquicktime-0.9.10-x264.patch
 Patch2: libquicktime-0.9.10-faad2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gtk2-devel, libdv-devel, libvorbis-devel, lame-devel
+BuildRequires: libdv-devel, libvorbis-devel, lame-devel
 BuildRequires: libpng-devel >= 1.0.8, libjpeg-devel, gcc-c++
+%{?!_without_gtk24:BuildRequires: gtk2-devel >= 2.4}
 %{?!_without_1394:BuildRequires: libraw1394-devel, libavc1394-devel}
 %{?!_without_alsa:BuildRequires: alsa-lib-devel}
 %{?!_without_ffmpeg:BuildRequires: ffmpeg-devel}
@@ -118,7 +129,7 @@ programs that need to access quicktime files using libquicktime.
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_bindir}/libquicktime_config
+%{?!_without_gtk24:%{_bindir}/libquicktime_config}
 %{_bindir}/lqt-config
 %{_includedir}/lqt/
 %{_includedir}/quicktime

@@ -90,6 +90,7 @@ Available rpmbuild rebuild options :
 %build
 # This is required to get "#include <postprocess.h>" to work
 export CFLAGS="%{optflags} -I%{_includedir}/postproc -DSDL_VIDEO_DRIVER_X11"
+export LDFLAGS="-L%{_usr}/X11R6/%{_lib}"
 %configure \
     --enable-netstream \
     --enable-v4l \
