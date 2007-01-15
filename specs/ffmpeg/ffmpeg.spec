@@ -21,12 +21,12 @@
 %{?el2:%define _without_vorbis 1}
 %{?el2:%define _without_x264 1}
 
-%define date   20061215
+%define date 20070109
 
 Summary: Utilities and libraries to record, convert and stream audio and video
 Name: ffmpeg
 Version: 0.4.9
-Release: 0.7%{?date:.%{date}}
+Release: 0.8%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://ffmpeg.org/
@@ -34,7 +34,8 @@ URL: http://ffmpeg.org/
 # find ffmpeg -name .svn | xargs rm -rf
 # then rename the directory and compress
 Source: ffmpeg-%{date}.tar.bz2
-Patch0: ffmpeg-20061215-gsm.patch
+Patch0: ffmpeg-20070109-gsm.patch
+Patch1: ffmpeg-20070109-faad2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel
 ### configure needs sed -i option
@@ -113,6 +114,7 @@ to use MPlayer, transcode or other similar programs.
 %prep
 %setup -n ffmpeg-%{date}
 %patch0 -p1 -b .gsm
+%patch1 -p1 -b .faad2
 
 
 %build
@@ -205,6 +207,10 @@ chcon -t textrel_shlib_t %{_libdir}/libav{codec,format,util}.so.*.*.* \
 
 
 %changelog
+* Tue Jan  9 2007 Matthias Saou <http://freshrpms.net/> 0.4.9-0.8.20070109
+- Update to today's SVN codebase, fixes the non existing ffmpeg.pc refrence.
+- Add faad2 patch.
+
 * Fri Dec 15 2006 Matthias Saou <http://freshrpms.net/> 0.4.9-0.7.20061215
 - Update to today's SVN codebase.
 - Update gsm patch so that it still applies.
