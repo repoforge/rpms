@@ -1,10 +1,15 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
+# kannel seems to need sqlite 2 and not 3
+%{?el4:%define _without_sqlite2 1}
+
 Summary: WAP and SMS gateway
 Name: kannel
 Version: 1.4.1
-Release: 1
+Release: 2
 License: Kannel
 Group: System Environment/Daemons
 URL: http://www.kannel.org/
@@ -18,7 +23,8 @@ BuildRequires: bison, byacc, flex, ImageMagick
 BuildRequires: libxml2-devel, openssl-devel, zlib-devel
 BuildRequires: pcre-devel
 # DB backends
-BuildRequires: sqlite2-devel
+%{!?_without_sqlite2:BuildRequires: sqlite2-devel}
+%{?_without_sqlite2:BuildRequires: sqlite-devel}
 # For the docs... I think we need transfig too, so disable for now.
 #BuildRequires: jadetex, tetex-dvips, docbook-dtds, docbook-style-dsssl
 
@@ -125,6 +131,9 @@ fi
 
 
 %changelog
+* Mon Jan 15 2007 Dries Verachtert <dries@ulyssis.org> - 1.4.1-2
+- Sqlite buildrequirement fix for el4.
+
 * Wed Dec 27 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.1-1
 - Updated to release 1.4.1.
 
@@ -157,4 +166,3 @@ fi
 
 * Wed Jul 14 2004 Matthias Saou <http://freshrpms.net/> 1.2.1-0
 - Initial RPM release, still need to add an init script I think.
-
