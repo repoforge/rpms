@@ -13,12 +13,13 @@
 Summary: Library and frontend for decoding MPEG2/4 AAC
 Name: faad2
 Version: 2.5
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.audiocoding.com/
 Source: http://dl.sf.net/faac/faad2-%{version}.tar.gz
 Patch0: faad2-2.5-buildfix.patch
+Patch1: faad2-2.5-faacDec.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf, automake, libtool
 BuildRequires: gcc-c++, zlib-devel
@@ -44,6 +45,7 @@ This package contains development files and documentation for libfaad.
 %prep
 %setup -n %{name}
 %patch0 -p1 -b .buildfix
+%patch1 -p1 -b .faacDec
 
 ### Required to make automake < 1.7 work
 %{__perl} -pi -e 's|dnl AC_PROG_CXX|AC_PROG_CXX|' configure.in
@@ -86,6 +88,10 @@ autoreconf -vif
 
 
 %changelog
+* Mon Jan  8 2007 Matthias Saou <http://freshrpms.net/> 2.5-2
+- Add patch to remove backwards compatibility in the header so that we can
+  easily identify and patch all programs requiring a rebuild.
+
 * Fri Dec 15 2006 Matthias Saou <http://freshrpms.net/> 2.5-1
 - Update to 2.5.
 - Completely remove xmms/bmp plugin, it's a real mess anyway. Use audacious.
