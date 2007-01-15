@@ -18,7 +18,7 @@
 
 Summary: Flash player
 Name: gnash
-Version: 0.7.1
+Version: 0.7.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -128,5 +128,8 @@ Firefox plugin for playing Flash movies
 %{_libdir}/mozilla/plugins/
 
 %changelog
+* Mon Jan 15 2007 Dag Wieers <dag@wieers.com> - 0.7.2-1
+- Updated to release 0.7.2.
+
 * Thu May 11 2006 Dag Wieers <dag@wieers.com> - 0.7.1-1
 - Initial package (using DAR)

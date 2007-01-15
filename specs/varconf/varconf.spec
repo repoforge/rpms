@@ -39,13 +39,10 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -53,21 +50,18 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README THANKS TODO
-%{_libdir}/libvarconf*.so.*
+%{_libdir}/libvarconf-1.0.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/varconf-*/
-%{_libdir}/libvarconf*.so
-%exclude %{_libdir}/*.la
-%{_libdir}/pkgconfig/varconf*.pc
+%{_includedir}/varconf-1.0/
+%{_libdir}/libvarconf-1.0.so
+%exclude %{_libdir}/libvarconf-1.0.la
+%{_libdir}/pkgconfig/varconf-1.0.pc
 
 %changelog
 * Sun Jan 14 2007 Dries Verachtert <dries@ulyssis.org> - 0.6.5-1
 - Updated to release 0.6.5.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.4-1.2
-- Rebuild for Fedora Core 5.
 
 * Mon Jan 16 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.4-1
 - Updated to release 0.6.4.

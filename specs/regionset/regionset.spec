@@ -35,8 +35,5 @@ regionset is a tool to read and set the region setting on a DVD drive.
 %{_sbindir}/regionset
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1-1.2
-- Rebuild for Fedora Core 5.
-
 * Fri Mar 11 2005 Dag Wieers <dag@wieers.com> - 0.1-1
 - Initial package. (using DAR)

@@ -78,9 +78,6 @@ EOF
 %{_localstatedir}/lib/vnstat/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-3.2
-- Rebuild for Fedora Core 5.
-
 * Sat Jul 23 2005 Dag Wieers <dag@wieers.com> - 1.4-3
 - Fixed permissions of /etc/cron.d/vnstat. (Alexander Dalloz)
 

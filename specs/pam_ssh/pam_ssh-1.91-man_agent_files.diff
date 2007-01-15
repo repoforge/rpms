@@ -1,0 +1,13 @@
+--- ./pam_ssh.8.old	2005-08-16 18:32:35.000000000 +0200
++++ pam_ssh.8	2005-08-17 09:13:19.000000000 +0200
+@@ -146,6 +146,10 @@
+ SSH2 RSA keys
+ .It Pa $HOME/.ssh2/id_dsa_*
+ SSH2 DSA keys
++.It Pa /var/run/pam_ssh/<user>*
++ssh-agent environment information. The files are owned by the superuser but 
++readable by the users. The location is Fedora specific, in the original package
++these files are in $HOME/.ssh/agent-*
+ .El
+ .Sh SEE ALSO
+ .Xr ssh-agent 1 ,

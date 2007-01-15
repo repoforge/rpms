@@ -1,0 +1,10 @@
+--- pam_ssh-1.91/pam_ssh.c	2004-04-12 15:55:08.000000000 +0200
++++ pam_ssh-1.91-pat/pam_ssh.c	2005-12-22 10:37:21.000000000 +0100
+@@ -63,6 +63,7 @@
+ #include <string.h>
+ #include <sysexits.h>
+ #include <unistd.h>
++#include <syslog.h>
+ 
+ #define PAM_SM_AUTH
+ #define PAM_SM_SESSION

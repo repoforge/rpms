@@ -1,0 +1,70 @@
+diff -Nrbu pam_ssh-1.91/pam_ssh.c pam_ssh-1.91-OK/pam_ssh.c
+--- pam_ssh-1.91/pam_ssh.c	2004-04-12 17:55:08.000000000 +0400
++++ pam_ssh-1.91-OK/pam_ssh.c	2004-10-04 18:45:43.000000000 +0400
+@@ -350,7 +350,6 @@
+ #endif
+ 	const char *pass;		/* passphrase */
+ 	const struct passwd *pwent;	/* user's passwd entry */
+-	struct passwd *pwent_keep;	/* our own copy */
+ 	int retval;			/* from calls */
+ 	const char *user;		/* username */
+ 
+@@ -461,22 +460,6 @@
+ 		return PAM_AUTH_ERR;
+ 	}
+ 
+-	/* copy the passwd entry (in case successive calls are made) and
+-           save it for the session phase */
+-
+-	if (!(pwent_keep = malloc(sizeof *pwent))) {
+-		pam_ssh_log(LOG_CRIT, "out of memory");
+-		openpam_restore_cred(pamh);
+-		return PAM_SERVICE_ERR;
+-	}
+-	memcpy(pwent_keep, pwent, sizeof *pwent_keep);
+-	if ((retval = pam_set_data(pamh, "ssh_passwd_entry", pwent_keep,
+-	    ssh_cleanup)) != PAM_SUCCESS) {
+-		free(pwent_keep);
+-		openpam_restore_cred(pamh);
+-		return retval;
+-	}
+-
+ 	openpam_restore_cred(pamh);
+ 	return PAM_SUCCESS;
+ }
+@@ -515,14 +498,16 @@
+ 	int start_agent;		/* start agent? */
+ 	const char *tty_raw;		/* raw tty or display name */
+ 	char *tty_nodir;		/* tty without / chars */
++	const char *user;		/* username */
+ 
+ 	log_init(MODULE_NAME, SYSLOG_LEVEL_ERROR, SYSLOG_FACILITY_AUTHPRIV, 0);
+ 
+ 	/* dump output of ssh-agent in ~/.ssh */
+-	if ((retval = pam_get_data(pamh, "ssh_passwd_entry",
+-	    (const void **)(void *)&pwent))
+-	    != PAM_SUCCESS)
++	if ((retval = pam_get_user(pamh, &user, NULL)) != PAM_SUCCESS)
+ 		return retval;
++	if (!(user && (pwent = getpwnam(user)) && pwent->pw_dir &&
++	    *pwent->pw_dir))
++		return PAM_AUTH_ERR;
+ 
+ 	retval = openpam_borrow_cred(pamh, pwent);
+ 	if (retval != PAM_SUCCESS && retval != PAM_PERM_DENIED) {
+@@ -842,10 +827,13 @@
+ 	const char *ssh_agent_pid;	/* ssh-agent pid string */
+ 	const struct passwd *pwent;	/* user's passwd entry */
+ 	struct stat sb;			/* to check st_nlink */
++	const char *user;		/* username */
+ 
+-	if ((retval = pam_get_data(pamh, "ssh_passwd_entry",
+-	    (const void **)(void *)&pwent)) != PAM_SUCCESS)
++	if ((retval = pam_get_user(pamh, &user, NULL)) != PAM_SUCCESS)
+ 		return retval;
++	if (!(user && (pwent = getpwnam(user)) && pwent->pw_dir &&
++	    *pwent->pw_dir))
++		return PAM_AUTH_ERR;
+ 
+ 	retval = openpam_borrow_cred(pamh, pwent);
+ 	if (retval != PAM_SUCCESS && retval != PAM_PERM_DENIED) {

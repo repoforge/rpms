@@ -1,0 +1,110 @@
+diff -Nrbu pam_ssh-1.91/pam_ssh.c pam_ssh-1.91-OK/pam_ssh.c
+--- pam_ssh-1.91/pam_ssh.c	2005-08-16 19:22:54.000000000 +0400
++++ pam_ssh-1.91-OK/pam_ssh.c	2005-08-16 19:22:03.000000000 +0400
+@@ -109,6 +109,7 @@
+ #define PAM_OPT_BLANK_PASSPHRASE_NAME	"allow_blank_passphrase"
+ #define SEP_KEYFILES			","
+ #define SSH_CLIENT_DIR			".ssh"
++#define STATE_DIR			"/var/run/" MODULE_NAME
+ 
+ enum {
+ #if HAVE_OPENPAM || HAVE_PAM_STRUCT_OPTIONS || !HAVE_PAM_STD_OPTION
+@@ -489,7 +490,6 @@
+ 	char env_string[BUFSIZ];	/* environment string */
+ 	char *env_value;		/* envariable value */
+ 	int env_write;			/* env file descriptor */
+-	char hname[MAXHOSTNAMELEN];	/* local hostname */
+ 	int no_link;			/* link per-agent file? */
+ 	char *per_agent;		/* to store env */
+ 	char *per_session;		/* per-session filename */
+@@ -502,7 +502,6 @@
+ 
+ 	log_init(MODULE_NAME, SYSLOG_LEVEL_ERROR, SYSLOG_FACILITY_AUTHPRIV, 0);
+ 
+-	/* dump output of ssh-agent in ~/.ssh */
+ 	if ((retval = pam_get_user(pamh, &user, NULL)) != PAM_SUCCESS)
+ 		return retval;
+ 	if (!(user && (pwent = getpwnam(user)) && pwent->pw_dir &&
+@@ -521,17 +520,16 @@
+ 	 * Technique: Create an environment file containing
+ 	 * information about the agent.  Only one file is created, but
+ 	 * it may be given many names.  One name is given for the
+-	 * agent itself, agent-<host>.  Another name is given for each
+-	 * session, agent-<host>-<display> or agent-<host>-<tty>.  We
++	 * agent itself, /var/run/pam_ssh/<user>. Another name is given
++	 * for each session, <user>-<display> or <user>-<tty>.  We
+ 	 * delete the per-session filename on session close, and when
+ 	 * the link count goes to unity on the per-agent file, we
+ 	 * delete the file and kill the agent.
+ 	 */
+ 
+-	/* the per-agent file contains just the hostname */
++	/* the per-agent file contains just the username */
+ 
+-	gethostname(hname, sizeof hname);
+-	if (asprintf(&per_agent, "%s/.ssh/agent-%s", pwent->pw_dir, hname)
++	if (asprintf(&per_agent, STATE_DIR "/%s", pwent->pw_name)
+ 	    == -1) {
+ 		pam_ssh_log(LOG_CRIT, "out of memory");
+ 		openpam_restore_cred(pamh);
+@@ -555,9 +553,14 @@
+ 
+ 	env_write = child_pid = no_link = start_agent = 0;
+ 	env_read = NULL;
+-	if ((env_write = open(per_agent, O_CREAT | O_EXCL | O_WRONLY, S_IRUSR))
+-	    < 0 && !(env_read = fopen(per_agent, "r")))
++
++	openpam_restore_cred(pamh);
++	if ((env_write = open(per_agent, O_CREAT | O_EXCL | O_WRONLY,
++	     S_IRUSR | S_IRGRP | S_IROTH)) < 0 &&
++	    !(env_read = fopen(per_agent, "r")))
+ 		no_link = 1;
++	openpam_borrow_cred(pamh, pwent);
++
+ 	if (!env_read) {
+ 		start_agent = 1;
+ 		if (pipe(child_pipe) < 0) {
+@@ -790,7 +793,7 @@
+ 	for (cp = tty_nodir; (cp = strchr(cp, '/')); )
+ 		*cp = '_';
+ 
+-	if (asprintf(&per_session, "%s/.ssh/agent-%s-%s", pwent->pw_dir, hname,
++	if (asprintf(&per_session, STATE_DIR "/%s-%s", pwent->pw_name,
+ 	    tty_nodir) == -1) {
+ 		pam_ssh_log(LOG_CRIT, "out of memory");
+ 		free(tty_nodir);
+@@ -809,10 +812,10 @@
+ 		return retval;
+ 	}
+ 
++	openpam_restore_cred(pamh);
+ 	unlink(per_session);	/* remove cruft */
+ 	link(per_agent, per_session);
+ 
+-	openpam_restore_cred(pamh);
+ 	return PAM_SUCCESS;
+ }
+ 
+@@ -842,8 +845,11 @@
+ 	}
+ 
+ 	if (pam_get_data(pamh, "ssh_agent_env_session",
+-	    (const void **)(void *)&env_file) == PAM_SUCCESS && env_file)
++	    (const void **)(void *)&env_file) == PAM_SUCCESS && env_file) {
++		openpam_restore_cred(pamh);
+ 		unlink(env_file);
++		openpam_borrow_cred(pamh, pwent);
++	}
+ 
+ 	/* Retrieve per-agent filename and check link count.  If it's
+            greater than unity, other sessions are still using this
+@@ -858,7 +864,9 @@
+ 				openpam_restore_cred(pamh);
+ 				return PAM_SUCCESS;
+ 			}
++			openpam_restore_cred(pamh);
+ 			unlink(env_file);
++			openpam_borrow_cred(pamh, pwent);
+ 		}
+ 	}
+ 

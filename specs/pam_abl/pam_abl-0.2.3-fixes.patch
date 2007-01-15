@@ -1,0 +1,540 @@
+Patch by Robert Scheck <robert@fedoraproject.org> for pam_abl 0.2.3, changes:
+
+* pam_abl/pam_abl.c
+  - Fixed compiler warning "dereferencing type-punned pointer will break
+    strict-aliasing rules"
+
+* pam_abl/Makefile
+  - Always honor $RPM_OPT_FLAGS when available
+  - Fixed the make warning "jobserver unavailable: using -j1.  Add `+' to
+    parent make rule"
+
+* pam_abl/tools/Makefile
+  - Always honor $RPM_OPT_FLAGS when available
+
+* pam_abl/doc/pam_abl.1
+  - Initial version of a pam_abl man page based on the current docs
+
+* pam_abl/CONFIGURATION
+  - Initial version of a pam_abl text documentation based on the HTML files
+
+* pam_abl/conf/system-auth
+  - Removed use of /lib/security/$ISA, because it will break on any 64 bit
+    system having /lib64 instead of /lib; should fix sf.net Bug ID #1325837
+
+* pam_abl/doc/index.html
+  - Never ever use /lib/security, will break any 64 bit compatibility
+
+* pam_abl/QUICKSTART
+  - Quickstart guide heavily based on README.fedora written by the Fedora
+    Extras maintainer Alexander Dalloz <alex {%} dalloz {*} de>
+
+Following patch was sent upstream at Sat, 17 Jun 2006 21:24:50 +0200 and it
+was confirmed by the upstream maintainer, that this patch will be added to
+the next pam_abl release - but unfortunately nothing happened, yet.
+
+--- pam_abl/pam_abl.c			2005-10-12 21:22:26.000000000 +0200
++++ pam_abl/pam_abl.c.rsc		2006-06-17 18:36:44.000000000 +0200
+@@ -168,7 +168,7 @@
+         const char *rhost;
+         int err;
+ 
+-        if (err = pam_get_item(args->pamh, PAM_RHOST, (const void **) &rhost), PAM_SUCCESS != err) {
++        if (err = pam_get_item(args->pamh, PAM_RHOST, (const void **)( const void*) &rhost), PAM_SUCCESS != err) {
+             log_pam_error(args, err, "getting PAM_RHOST");
+             return err;
+         }
+@@ -187,7 +187,7 @@
+     if (NULL != args->user_db) {
+         const char *user;
+         int err;
+-        if (err = pam_get_item(args->pamh, PAM_USER, (const void **) &user), PAM_SUCCESS != err) {
++        if (err = pam_get_item(args->pamh, PAM_USER, (const void **) (const void*) &user), PAM_SUCCESS != err) {
+             log_pam_error(args, err, "getting PAM_USER");
+             return err;
+         }
+@@ -285,7 +285,7 @@
+     if (NULL != args->host_db) {
+         const char *rhost;
+         int err;
+-        if (err = pam_get_item(args->pamh, PAM_RHOST, (const void **) &rhost), PAM_SUCCESS != err) {
++        if (err = pam_get_item(args->pamh, PAM_RHOST, (const void **) (const void*) &rhost), PAM_SUCCESS != err) {
+             log_pam_error(args, err, "getting PAM_RHOST");
+             return err;
+         }
+@@ -316,12 +316,12 @@
+     const char *user;
+     const char *service;
+ 
+-    if (err = pam_get_item(args->pamh, PAM_USER, (const void **) &user), PAM_SUCCESS != err) {
++    if (err = pam_get_item(args->pamh, PAM_USER, (const void **) (const void*) &user), PAM_SUCCESS != err) {
+         log_pam_error(args, err, "getting PAM_USER");
+         return err;
+     }
+ 
+-    if (err = pam_get_item(args->pamh, PAM_SERVICE, (const void **) &service), PAM_SUCCESS != err) {
++    if (err = pam_get_item(args->pamh, PAM_SERVICE, (const void **) (const void*) &service), PAM_SUCCESS != err) {
+         log_pam_error(args, err, "getting PAM_SERVICE");
+         return err;
+     }
+@@ -374,9 +374,9 @@
+         check_attempt(args, &rv);
+         if (rv) {
+             const char *rhost, *user, *service;
+-            if (PAM_SUCCESS == pam_get_item(args->pamh, PAM_RHOST,   (const void **) &rhost  ) &&
+-                PAM_SUCCESS == pam_get_item(args->pamh, PAM_USER,    (const void **) &user   ) &&
+-                PAM_SUCCESS == pam_get_item(args->pamh, PAM_SERVICE, (const void **) &service)) {
++            if (PAM_SUCCESS == pam_get_item(args->pamh, PAM_RHOST,   (const void **) (const void*) &rhost  ) &&
++                PAM_SUCCESS == pam_get_item(args->pamh, PAM_USER,    (const void **) (const void*) &user   ) &&
++                PAM_SUCCESS == pam_get_item(args->pamh, PAM_SERVICE, (const void **) (const void*) &service)) {
+                 log_info(args, "Blocking access from %s to service %s, user %s", rhost, service, user);
+             }
+             return PAM_AUTH_ERR;
+--- pam_abl/Makefile			2005-10-12 21:22:25.000000000 +0200
++++ pam_abl/Makefile.rsc		2006-06-17 18:45:43.000000000 +0200
+@@ -1,7 +1,7 @@
+ # Makefile
+ # $Id: Makefile,v 1.1.1.1 2005/10/12 19:22:25 tagishandy Exp $
+ 
+-CFLAGS=-Wall -fPIC
++CFLAGS=-Wall -fPIC $(RPM_OPT_FLAGS)
+ PAMDIR=/lib/security
+ CONFDIR=/etc/security
+ DBDIR=/var/lib/abl
+@@ -11,26 +11,26 @@
+ SUBDIRS=tools
+ 
+ all : $(MODULE)
+-	for d in $(SUBDIRS) ; do cd $$d && make $@ && cd .. ; done
++	for d in $(SUBDIRS) ; do cd $$d && $(MAKE) $@ && cd .. ; done
+ 
+ $(MODULE) : $(OBJ)
+ 	ld -x --shared $(LIBS) -o $@ $^
+ 
+ clean :
+ 	rm -f $(MODULE) $(OBJ)
+-	for d in $(SUBDIRS) ; do cd $$d && make $@ && cd .. ; done
++	for d in $(SUBDIRS) ; do cd $$d && $(MAKE) $@ && cd .. ; done
+ 
+ install : $(MODULE)
+ 	install --mode=755 --strip $(MODULE) $(PAMDIR)
+ 	#install --mode=644 conf/pam_abl.conf $(CONFDIR)
+ 	install -d --mode=755 $(DBDIR)
+-	for d in t $(SUBDIRS) ; do cd $$d && make $@ && cd .. ; done
++	for d in t $(SUBDIRS) ; do cd $$d && $(MAKE) $@ && cd .. ; done
+ 
+ depend :
+ 	cc -MM *.c > deps
+-	for d in $(SUBDIRS) ; do cd $$d && make $@ && cd .. ; done
++	for d in $(SUBDIRS) ; do cd $$d && $(MAKE) $@ && cd .. ; done
+ 
+ test :
+-	cd t && make && cd ..
++	cd t && $(MAKE) && cd ..
+ 
+ include deps
+--- pam_abl/tools/Makefile		2005-10-12 21:22:27.000000000 +0200
++++ pam_abl/tools/Makefile.rsc		2006-06-17 19:15:25.000000000 +0200
+@@ -1,6 +1,6 @@
+ # Makefile
+ 
+-CFLAGS=-Wall
++CFLAGS=-Wall -fPIC $(RPM_OPT_FLAGS)
+ LIBS=-ldb -lpthread
+ TARGET=pam_abl
+ OBJ=log.o config.o rule.o pam_abl.o
+--- pam_abl/doc/pam_abl.1		1970-01-01 01:00:00.000000000 +0100
++++ pam_abl/doc/pam_abl.1.rsc		2006-06-17 20:02:44.000000000 +0200
+@@ -0,0 +1,52 @@
++.TH pam_abl 1 "Oct 13, 2005"
++.LO 1
++.SH NAME
++pam_abl - query or purge the databases used by the pam_abl module
++.SH OVERVIEW
++\fBpam_abl\fR [ \fIOPTIONS \fR] [ \fICONFIG \fR]
++.SH DESCRIPTION
++Performs maintenance on the databases used by the pam_abl (auto blacklist) module. CONFIG is the name of the pam_abl config file (/etc/security/pam_abl.conf). The config file is read to discover the names of the pam_abl databases and the rules that control purging of old data from them.
++.SH OPTIONS
++.TP
++.B -h, --help
++See a help message
++.TP
++.B -p, --purge
++Purge databases according to purge rules in config
++.TP
++.B -r, --relative
++Display times relative to now otherwise absolute times will be displayed
++.TP
++.B -v, --verbose
++Verbose output
++.TP
++.B --okuser=USER
++Unblock USER
++.TP
++.B --okhost=HOST
++Unblock HOST
++.SH EXAMPLES
++.TP
++Obtain a list of failed hosts and users:
++$ pam_abl
++.TP
++Obtain a full list of failures listing times relative to now:
++$ pam_abl -rv
++.br
++$ pam_abl --relative --verbose
++.TP
++Purge old data:
++$ pam_abl -p
++.br
++$ pam_abl --purge
++.TP
++Unblock all example.com, somewhere.com hosts:
++$ pam_abl -v --okhost=*.example.com --okhost=*.somewhere.com
++.SH AUTHOR
++Andy Armstrong <andy@hexten.net>
++.SH SEE ALSO
++/usr/share/doc/pam_abl-*/CONFIGURATION
++.SH REPORT BUGS
++Please report bugs in English language to the author.
++.SH COPYRIGHT
++pam_abl is licensed under GNU General Public License, the complete license you can get at: http://www.gnu.org/copyleft/gpl.html
+--- pam_abl/CONFIGURATION		1970-01-01 01:00:00.000000000 +0100
++++ pam_abl/CONFIGURATION.rsc		2006-06-17 20:02:44.000000000 +0200
+@@ -0,0 +1,251 @@
++The Auto Blacklist Module: pam_abl
++
++Synopsis
++
++Module name:
++    pam_abl
++Author:
++    Andy Armstrong <andy@hexten.net>
++Maintainer:
++    Andy Armstrong <andy@hexten.net>
++Management groups provided:
++    auth
++Cryptographically sensitive:
++    No.
++Security rating:
++Clean code base:
++    Clean.
++System dependencies:
++    Requires Berkeley DB (tested with 4.3.21 and 4.2.50).
++    Requires a configuration file (by convention /etc/security/pam_abl.conf)
++Network aware:
++    No.
++
++Overview of module
++
++Provides auto blacklisting of hosts and users responsible for repeated failed
++authentication attempts. Generally configured so that blacklisted users still
++see normal login prompts but are guaranteed to fail to authenticate.
++
++This functionality is only available to services which call PAM as root. If
++pam_abl is called for uid != 0 it will silently succeed.
++
++Auth component
++
++Recognised arguments:
++
++         Name         Arguments                    Description
++    debug           None          Enable debug output to syslog.
++    expose_account  None          Ignored
++    no_warn         None          Disable warnings which are otherwise output
++                                  to syslog.
++    try_first_pass  None          Ignored
++    use_first_pass  None          Ignored
++    use_mapped_pass None          Ignored
++                                  The configuration file contains additional
++                                  arguments. In order for the pam_abl command
++                    Path to the   line tool to work correctly most of the
++    config          configuration configuration should be placed in the config
++                    file.         file rather than being provided by arguments.
++                                  The format of the config file is described
++                                  below.
++                    Path to host  Path to the Berkeley DB which is used to log
++    host_db         database      the host responsible for failed
++                    file.         authentication attempts.
++                    Purge time    Defines how long failed hosts are retained in
++    host_purge      for the host  the host database. Defaults to 1 day.
++                    database.
++                    Rule for host The rule (see below for format) which defines
++    host_rule       blacklisting. the conditions under which a failed hosts
++                                  will be blackisted.
++                    Path to user  Path to the Berkeley DB which is used to log
++    user_db         database      the user responsible for failed
++                    file.         authentication attempts.
++                    Purge time    Defines how long failed users are retained in
++    user_purge      for the user  the user database. Defaults to 1 day.
++                    database.
++                    Rule for user The rule (see below for format) which defines
++    user_rule       blacklisting. the conditions under which a failed users
++                                  will be blackisted.
++
++Description:
++
++    Brute force password discovery attacks involve repeated attempts to
++    authenticate against a service using a dictionary of common passwords.
++    While it is desirable to enforce strong passwords for users this is not
++    always possible and in cases where a weak password has been used brute
++    force attacks can be effective.
++
++    The pam_abl module monitors failed authentication attempts and
++    automatically blacklists those hosts (and accounts) that are responsible
++    for large numbers of failed attempts. Once a host is blacklisted it is
++    guaranteed to fail authentication even if the correct credentials are
++    provided.
++
++    Blacklisting is triggered when the number of failed authentication attempts
++    in a particular period of time exceeds a predefined limit. Hosts which stop
++    attempting to authenticate will, after a period of time, be un-blacklisted.
++
++    This functionality is only available to services which call PAM as root. If
++    pam_abl is called for uid != 0 it will silently succeed. If this was not
++    the case it would be possible for a malicious local user to poison the
++    pam_abl data by, for example, discovering the names of the hosts from which
++    root typically logs in and then constructing PAM authentication code to
++    lock out root login attempts from those hosts.
++
++Usage:
++
++    Typically pam_abl.so is added to the auth stack as a required module just
++    before whatever modules actually peform authentication. Here's a fragment
++    of the PAM config for a production server that is running pam_abl:
++
++    auth required   pam_env.so
++    auth required   pam_abl.so config=/etc/security/pam_abl.conf
++    auth sufficient pam_unix.so try_first_pass nullok
++    auth required   pam_deny.so
++
++    Although all of accepted arguments can be supplied here they will usually
++    be placed in a separate config file and linked to using the config argument
++    as in the above example. The pam_abl command line tool reads the external
++    config file (/etc/security/pam_abl.conf in this case) to find the databases
++    so in order for it work correctly an external config should be used.
++
++Config file syntax:
++
++    The config file can contain any arguments that would be supplied via PAM
++    config. In the config file arguments are placed on separate lines. Comments
++    may be included after a '#' and line continuation is possible by placing a
++    back slash at the end of the line to be continued. Here is a sample /etc/
++    security/pam_abl.conf:
++
++    # /etc/security/pam_abl.conf
++    debug
++    host_db=/var/lib/abl/hosts.db
++    host_purge=2d
++    host_rule=*:10/1h,30/1d
++    user_db=/var/lib/abl/users.db
++    user_purge=2d
++    user_rule=!root:10/1h,30/1d
++
++    All of the standard PAM arguments (debug, expose_account, no_warn,
++    try_first_pass, use_first_pass, use_mapped_pass) are accepted; with the
++    exception of debug and no_warn these are ignored.
++
++    The arguments that are specific to pam_abl are as follows:
++
++                Specify the name of the databases that will be used to log
++                failed authentication attempts. The host database is used to
++    host_db,    log the hostname responsible for a failed auth and the user
++    user_db     database is used to log the requested username. If host_db or
++                user_db is omitted the corresponding auto blacklisting will be
++                disabled.
++                Specify the length of time for which failed attempts should be
++                kept in the databases. For rules to work correctly this must be
++                at least as long as the longest period specified in a
++                corresponding rule. You may wish to retain information about
++                failed attempts for longer than this so that the pam_abl
++                command line tool can report information over a longer period
++    host_purge, of time. The format for this item is a number with an optional
++    user_purge  multiplier suffix, 's', 'm', 'h' or 'd' which correspond with
++                seconds, minutes, hours and days. To specify seven days for
++                example one would use '7d'. Note that in normal operation
++                pam_abl will only purge the logged data for a particular host
++                or user if it happens to be updating it, i.e. if that host or
++                user makes another failed attempt. To purge all old entries the
++                pam_abl command line tool should be used.
++                These are the rules which determine the circumstances under
++                which accounts are auto-blacklisted. The host_rule is used to
++    host_rule,  block access to hosts that are responsible for excessive
++    user_rule   authentication failures and the user_rule is used to disable
++                accounts for which there have been excessive authentication
++                failures. The rule syntax is described in full below.
++
++Rule syntax:
++
++    Each rule consists of a number of space separated 'user clauses'. A user
++    clause specifies the user (and service) names to match and a set of
++    triggers. A simple example would be
++
++    *:10/1h
++
++    which means 'block any user (*) if they are responsible for ten or more
++    failed authentication attempts in the last hour'. In place of the '*' which
++    matches any user a list of usernames can be supplied like this
++
++    root|dba|admin:10/1h
++
++    which means 'block the users root, dba and admin if they are responsible
++    for ten or more failed authentication attempts in the last hour'. You can
++    also specify a service name to match against like this
++
++    root/sshd|dba/*:3/1d
++
++    which means 'block the users root for service 'sshd' and dba for any
++    service if they are responsible for three or more failed authentication
++    attempts in the last day'. Finally you can specify multiple triggers like
++    this
++
++    root:10/1h,20/1d
++
++    which means 'block the user root if they are responsible for ten or more
++    failed attempts in the last hour or twenty or more failed attempts in the
++    last day.
++
++    Multiple rules can be provided separated by spaces like this
++
++    *:10/1h root:5/1h,10/1d
++
++    in which case all rules that match a particular user and service will be
++    checked. The user or host will be blocked if any of the rule triggers
++    matches. The sense of the user matching can be inverted by placing a '!' in
++    front of the rule so that
++
++    !root:20/1d
++
++    is a rule which would match for all users apart from root. It is important
++    to treat root as a special case in the user_rule otherwise excessive
++    attempts to authenticate as root will result in the root account being
++    locked out even for valid holders of root credentials.
++
++    Here is the full syntax for rules:
++
++    word        ::= /[^\s\|\/\*]+/
++    name        ::= word | '*'
++    username    ::= name
++    servicename ::= name
++    userservice ::= username
++                |   username '/' servicename
++    namelist    ::= userservice
++                |   userservice '|' namelist
++    userspec    ::= namelist
++                |   '!' namelist
++    multiplier  ::= 's' | 'm' | 'h' | 'd'
++    number      ::= /\d+/
++    period      ::= number
++                |   number multiplier
++    trigger     ::= number '/' period
++    triglist    ::= trigger
++                |   trigger ',' triglist
++    userclause  ::= userspec ':' triglist
++    rule        ::= userclause
++                |   userclause /\s+/ rule
++
++Examples/suggested usage:
++
++    Sample PAM config fragment:
++
++    auth required   pam_env.so
++    auth required   pam_abl.so config=/etc/security/pam_abl.conf
++    auth sufficient pam_unix.so try_first_pass nullok
++    auth required   pam_deny.so
++
++    Sample /etc/security/pam_abl.conf:
++
++    # /etc/security/pam_abl.conf
++    debug
++    host_db=/var/lib/abl/hosts.db
++    host_purge=2d
++    host_rule=*:10/1h,30/1d
++    user_db=/var/lib/abl/users.db
++    user_purge=2d
++    user_rule=!root:10/1h,30/1d
+--- pam_abl/conf/system-auth		2006-06-17 20:02:05.000000000 +0200
++++ pam_abl/conf/system-auth.rsc	2006-06-17 20:07:49.000000000 +0200
+@@ -1,15 +1,14 @@
+ #%PAM-1.0
+-auth        required      /lib/security/$ISA/pam_env.so
+-auth        required      /lib/security/$ISA/pam_abl.so config=/etc/security/pam_abl.conf
+-auth        sufficient    /lib/security/$ISA/pam_unix.so likeauth nullok
+-auth        required      /lib/security/$ISA/pam_deny.so
++auth        required      pam_env.so
++auth        required      pam_abl.so config=/etc/security/pam_abl.conf
++auth        sufficient    pam_unix.so try_first_pass nullok
++auth        required      pam_deny.so
+ 
+-account     required      /lib/security/$ISA/pam_unix.so
++account     required      pam_unix.so
+ 
+-password    required      /lib/security/$ISA/pam_cracklib.so retry=3 type=
+-password    sufficient    /lib/security/$ISA/pam_unix.so nullok use_authtok md5 shadow
+-password    required      /lib/security/$ISA/pam_deny.so
++password    required      pam_cracklib.so try_first_pass retry=3
++password    sufficient    pam_unix.so try_first_pass use_authtok nullok md5 shadow
++password    required      pam_deny.so
+ 
+-session     required      /lib/security/$ISA/pam_limits.so
+-session     required      /lib/security/$ISA/pam_abl.so
+-session     required      /lib/security/$ISA/pam_unix.so
++session     required      pam_limits.so
++session     required      pam_unix.so
+--- pam_abl/doc/index.html		2005-10-12 21:22:27.000000000 +0200
++++ pam_abl/doc/index.html.rsc		2006-06-17 20:23:22.000000000 +0200
+@@ -171,10 +171,10 @@
+ 				<p>Typically pam_abl.so is added to the auth stack as a required module just before whatever modules actually peform authentication. Here's a fragment of the PAM config for a production server that is running pam_abl:</p>
+ 
+ 				<table class="config">
+-					<tr><td>auth</td><td>required</td><td>/lib/security/pam_env.so</td></tr>
+-					<tr><td>auth</td><td>required</td><td>/lib/security/pam_abl.so config=/etc/security/pam_abl.conf</td></tr>
+-					<tr><td>auth</td><td>sufficient</td><td>/lib/security/pam_unix.so likeauth nullok</td></tr>
+-					<tr><td>auth</td><td>required</td><td>/lib/security/pam_deny.so</td></tr>
++					<tr><td>auth</td><td>required</td><td>pam_env.so</td></tr>
++					<tr><td>auth</td><td>required</td><td>pam_abl.so config=/etc/security/pam_abl.conf</td></tr>
++					<tr><td>auth</td><td>sufficient</td><td>pam_unix.so try_first_pass nullok</td></tr>
++					<tr><td>auth</td><td>required</td><td>pam_deny.so</td></tr>
+ 				</table>
+ 
+ 				<p>Although all of accepted arguments can be supplied here they will usually be placed in a separate config file and linked to using the config argument as in the above example. The <a href="pam_abl.html">pam_abl command line tool</a> reads the external config file (/etc/security/pam_abl.conf in this case) to find the databases so in order for it work correctly an external config should be used.</p>
+@@ -282,10 +282,10 @@
+ 				<p>Sample PAM config fragment:</p>
+ 
+ 				<table class="config">
+-					<tr><td>auth</td><td>required</td><td>/lib/security/pam_env.so</td></tr>
+-					<tr><td>auth</td><td>required</td><td>/lib/security/pam_abl.so config=/etc/security/pam_abl.conf</td></tr>
+-					<tr><td>auth</td><td>sufficient</td><td>/lib/security/pam_unix.so likeauth nullok</td></tr>
+-					<tr><td>auth</td><td>required</td><td>/lib/security/pam_deny.so</td></tr>
++					<tr><td>auth</td><td>required</td><td>pam_env.so</td></tr>
++					<tr><td>auth</td><td>required</td><td>pam_abl.so config=/etc/security/pam_abl.conf</td></tr>
++					<tr><td>auth</td><td>sufficient</td><td>pam_unix.so try_first_pass nullok</td></tr>
++					<tr><td>auth</td><td>required</td><td>pam_deny.so</td></tr>
+ 				</table>
+ 
+ 				<p>Sample /etc/security/pam_abl.conf:</p>
+--- pam_abl/QUICKSTART			1970-01-01 01:00:00.000000000 +0100
++++ pam_abl/QUICKSTART.rsc		2006-06-17 20:34:27.000000000 +0200
+@@ -0,0 +1,23 @@
++QUICKSTART GUIDE
++
++------------------------------------------------------------------------
++Any time changes to the PAM configuration are done by hand, they have
++to be done with great care to avoid disabling system access by accident.
++------------------------------------------------------------------------
++
++To activate the use of pam_abl.so you need to add a PAM rule like
++
++  auth required pam_abl.so config=/etc/security/pam_abl.conf
++
++i.e. in /etc/pam.d/system-auth. Doing so please be aware that
++/etc/pam.d/system-auth is auto-generated at e.g. Fedora Core and Red
++Hat Enterprise Linux systems and that user changes will be destroyed
++the next time authconfig is run, thus this step has to be redone.
++
++You are able to customize the pam_abl.so behaviour by editing
++/etc/security/pam_abl.conf. For detailed instructions please read
++the application's page online at
++
++  http://www.hexten.net/sw/pam_abl/doc/index.html
++
++or have a look to the index.html and pam_abl.html documentation.
