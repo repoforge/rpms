@@ -8,12 +8,12 @@
 %{?fc6:%define _with_modxorg 1}
 %{?fc5:%define _with_modxorg 1}
 
-%define prever 20061024
+%define prever 20070108
 
 Summary: Advanced audio and video capturing, compositing, and editing
 Name: cinelerra
 Version: 2.1
-Release: 0.10%{?prever:.%{prever}}
+Release: 0.12%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://cvs.cinelerra.org/
@@ -24,6 +24,7 @@ URL: http://cvs.cinelerra.org/
 # mv cinelerra-2.1.tar.gz cinelerra-2.1-svn20060918.tar.gz
 Source0: cinelerra-%{version}%{?prever:-svn%{prever}}.tar.gz
 Source1: cinelerra-64x64.png
+Patch0: cinelerra-2.1-faad2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel, libXxf86vm-devel, libXext-devel}
 %{!?_with_modxorg:BuildRequires: xorg-x11-devel}
@@ -45,15 +46,17 @@ BuildRequires: libiec61883-devel
 BuildRequires: libavc1394-devel >= 0.5.0
 BuildRequires: x264-devel
 BuildRequires: libogg-devel, libvorbis-devel, libtheora-devel
+# This seems to actually require OpenGL 2.0 (NVidia proprietary only?)
 %{?_with_opengl:BuildRequires: libGL-devel, libGLU-devel}
 # Stuff not checked by configure, but still required
 BuildRequires: nasm
 BuildRequires: libtool
 BuildRequires: freetype-devel
-# Included ffmpeg snapshot requires this
-BuildRequires: faac-devel
+# Included ffmpeg snapshot requires this - No longer needed with shared ffmpeg
+#BuildRequires: faac-devel
 BuildRequires: libjpeg-devel, libpng-devel, libtiff-devel
 BuildRequires: libdv-devel
+Buildrequires: ffmpeg-devel
 BuildRequires: gcc-c++
 
 %description
@@ -62,6 +65,7 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
 
 %prep
 %setup
+%patch0 -p1 -b .faad2
 # Add category "AudioVideo", as it ends up in "Others" otherwise
 # Replace the ugly small xpm icon with a nicer png one
 %{__perl} -pi -e 's|^(Categories=.*)|$1AudioVideo;|g;
@@ -71,6 +75,7 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
 %build
 %configure \
     --with-plugindir=%{_libdir}/cinelerra \
+    --with-external-ffmpeg \
 %ifarch %{ix86} x86_64
     --enable-mmx \
 %endif
@@ -119,6 +124,13 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
 
 
 %changelog
+* Mon Jan  8 2007 Matthias Saou <http://freshrpms.net/> 2.0-0.12.20070108
+- Update to today's SVN code.
+- Include faad2 patch.
+- Try to enable OpenGL, but it seems like only proprietary NVidia libraries
+  would work, and the configure detection would need some changes too. So no.
+- Switch to using external ffmpeg since the internal fails to build on i386.
+
 * Tue Oct 24 2006 Matthias Saou <http://freshrpms.net/> 2.0-0.10.20061024
 - Update to today's SVN code.
 - Rebuild against new x264.
