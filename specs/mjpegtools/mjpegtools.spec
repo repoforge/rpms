@@ -20,7 +20,7 @@
 Summary: Tools for recording, editing, playing and encoding mpeg video
 Name: mjpegtools
 Version: 1.9.0
-Release: 0.3
+Release: 0.4
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/
@@ -64,9 +64,7 @@ of the mjpegtools package.
 %build
 %configure
 # Don't use %{?_smp_mflags}, the build can fail! (1.8.0)
-# Force CFLAGS in order to remove the custom ARCHFLAGS set for x86 and ppc
-# Since the pthread flags are added to CFLAGS and CXXFLAGS by configure, re-add
-%{__make} CFLAGS="%{optflags} -lpthread" CXXFLAGS="%{optflags} -lpthread"
+%{__make}
 
 
 %install
@@ -109,6 +107,9 @@ fi
 
 
 %changelog
+* Tue Jan 16 2007 Matthias Saou <http://freshrpms.net/> 1.9.0-0.4
+- Disable forcing our optflags as they seem to work again "the simple way".
+
 * Thu Dec 28 2006 Dag Wieers <dag@wieers.com> - 1.9.0-0.3
 - Rebuild against SDL_gfx 2.0.15.
 
