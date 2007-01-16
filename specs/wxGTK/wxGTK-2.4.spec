@@ -1,128 +1,143 @@
-# $Id$
-# Authority: dag
+# $Id: wxGTK.spec 2396 2004-11-03 09:56:48Z dude $
+# Authority: matthias
 
 Summary: The GTK port of the wxWindows library
 Name: wxGTK
-Version: 2.8.0
-Release: 1
+Version: 2.4.2
+Release: 5
 License: Other
 Group: System Environment/Libraries
 URL: http://www.wxwindows.org/
-
 Source: http://dl.sf.net/wxwindows/wxGTK-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: gcc-c++, gtk+-devel >= 1.2.0, zlib-devel
 BuildRequires: libjpeg-devel, libpng-devel, libtiff-devel
 # all packages providing an implementation of wxWindows library (regardless of
 # the toolkit used) should provide the (virtual) wxwin package, this makes it
 # possible to require wxwin instead of requiring "wxgtk or wxmotif or wxqt..."
 Provides: wxwin
-Obsoletes: wxGTK-gl <= %{version}-%{release}
-Obsoletes: wxGTK-stc <= %{version}-%{release}
-Obsoletes: wxGTK-xrc <= %{version}-%{release}
-Provides: wxGTK-gl = %{version}-%{release}
-Provides: wxGTK-stc = %{version}-%{release}
-Provides: wxGTK-xrc = %{version}-%{release}
 
 %description
 wxWindows is a free C++ library for cross-platform GUI development.
 With wxWindows, you can create applications for different GUIs (GTK+,
 Motif/LessTif, MS Windows, Mac) from the same source code.
 
-%package devel
-Summary: Header files, libraries and development documentation for %{name}.
-Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
-Requires: %{name}-gl = %{version}-%{release}
-Requires: gtk+-devel, pkgconfig
-Requires: libpng-devel, libjpeg-devel, libtiff-devel
 
-%description devel
-This package contains the header files, static libraries and development
-documentation for %{name}. If you like to develop programs using %{name},
-you will need to install %{name}-devel.
+%package devel
+Summary: Develoment files of the GTK port of the wxWindows library
+Group: Development/Libraries
+Requires: %{name} = %{version}, gtk+-devel, pkgconfig
+Requires: libpng-devel, libjpeg-devel, libtiff-devel
 
 %description devel
 Header files for wxGTK, the GTK port of the wxWindows library.
 
+
+%package gl
+Summary: OpenGL add-on of the the GTK port of the wxWindows library
+Group: System Environment/Libraries
+Requires: %{name} = %{version}
+
+%description gl
+OpenGL add-on library for wxGTK, the GTK port of the wxWindows library.
+
+
+%package xrc
+Summary: The XML-based resource system for the wxWindows library
+Group: System Environment/Libraries
+Requires: %{name} = %{version}
+
+%description xrc
+The XML-based resource system, known as XRC, allows user interface
+elements such as dialogs, menu bars and toolbars, to be stored in
+text files and loaded into the application at run-time.
+
+
+%package stc
+Summary: Styled text control add-on for the wxWindows library
+Group: System Environment/Libraries
+Requires: %{name} = %{version}
+
+%description stc
+Styled text control add-on for wxGTK. Based on the Scintillia project.
+
+
 %prep
 %setup
-#%{__perl} -pi.orig -e 's| /usr/lib| %{_libdir} %{_prefix}/X11R6/%{_lib}|g' configure
+%{__perl} -pi.orig -e 's| /usr/lib| %{_libdir} %{_prefix}/X11R6/%{_lib}|g' \
+    configure
+
 
 %build
+# For the shared libs
 %configure \
-	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
-	--disable-optimise \
-	--disable-rpath \
-	--enable-compat24 \
-	--enable-display \
-	--enable-graphics_ctx \
-	--enable-mediactrl \
-	--enable-no_deps \
-	--enable-shared \
-	--enable-soname \
-	--enable-sound \
-	--enable-timer \
-	--enable-unicode \
-	--with-opengl \
-	--with-sdl
+    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
+    --enable-soname \
+    --enable-optimise \
+    --with-opengl
+#   --enable-gtk2 \
 %{__make} %{?_smp_mflags}
-%{__make} %{?_smp_mflags} -C contrib/src/gizmos
-%{__make} %{?_smp_mflags} -C contrib/src/ogl
-%{__make} %{?_smp_mflags} -C contrib/src/stc
-%{__make} %{?_smp_mflags} -C contrib/src/svg
+
+pushd contrib/src
+    make -C xrc %{?_smp_mflags}
+    make -C stc %{?_smp_mflags}
+popd
+
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
-%{__make} install DESTDIR="%{buildroot}" -C contrib/src/gizmos
-%{__make} install DESTDIR="%{buildroot}" -C contrib/src/ogl
-%{__make} install DESTDIR="%{buildroot}" -C contrib/src/stc
-%{__make} install DESTDIR="%{buildroot}" -C contrib/src/svg
+%makeinstall
 %find_lang wxstd
-%find_lang wxmsw
-%{__cat} wxstd.lang wxmsw.lang >>wx.lang
 
-### Overwrite wrong symlink (includes buildroot)
-%{__ln_s} -f ../../lib/wx/config/gtk2-ansi-release-2.6 %{buildroot}%{_bindir}/wx-config
+pushd contrib/src/
+    %makeinstall -C xrc
+    %makeinstall -C stc
+popd
+
 
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%files -f wx.lang
+%post gl -p /sbin/ldconfig
+%postun gl -p /sbin/ldconfig
+
+%post xrc -p /sbin/ldconfig
+%postun xrc -p /sbin/ldconfig
+
+%post stc -p /sbin/ldconfig
+%postun stc -p /sbin/ldconfig
+
+%files -f wxstd.lang
 %defattr(-, root, root, 0755)
-%doc *.txt COPYING.LIB
-%{_libdir}/libwx_*.so.*
+%doc COPYING.LIB *.txt
+%{_libdir}/libwx_gtk-*
+%{_datadir}/wx/
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_bindir}/wx-config
-%{_bindir}/wxrc-2.6
-%{_datadir}/aclocal/*.m4
-%dir %{_datadir}/bakefile/
-%dir %{_datadir}/bakefile/presets/
-%{_datadir}/bakefile/presets/wx*.bkl
-%{_includedir}/wx-2.6/
+%{_bindir}/*-config
+%{_includedir}/wx/
 %{_libdir}/wx/
-%{_libdir}/libwx_*.so
+%{_datadir}/aclocal/*.m4
+
+%files gl
+%defattr(-, root, root, 0755)
+%{_libdir}/libwx_gtk_gl-*
+
+%files xrc
+%defattr(-, root, root, 0755)
+%{_libdir}/libwx_gtk_xrc-*
+
+%files stc
+%defattr(-, root, root, 0755)
+%{_libdir}/libwx_gtk_stc-*
+
 
 %changelog
-* Tue Jan 16 2007 Dag Wieers <dag@wieers.com> - 2.8.0-1
-- Updated to release 2.8.0.
-
-* Mon Jan 15 2007 Dag Wieers <dag@wieers.com> - 2.6.3-1
-- Updated to release 2.6.3.
-
-* Sun Dec 18 2005 Dag Wieers <dag@wieers.com> - 2.6.2-1
-- Updated to release 2.6.2.
-
-* Fri Nov 5  2004 Matthias Saou <http://freshrpms.net/> 2.4.2-5
-- Moved .so symlinks to devel and require all other sub-libs.
-
 * Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 2.4.2-4
 - Rebuilt for Fedora Core 2.
 

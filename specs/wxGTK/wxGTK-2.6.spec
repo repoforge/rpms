@@ -1,9 +1,9 @@
-# $Id$
+# $Id: wxGTK.spec 3663 2005-10-20 04:38:29Z dries $
 # Authority: dag
 
 Summary: The GTK port of the wxWindows library
 Name: wxGTK
-Version: 2.8.0
+Version: 2.6.3
 Release: 1
 License: Other
 Group: System Environment/Libraries
@@ -111,9 +111,6 @@ Header files for wxGTK, the GTK port of the wxWindows library.
 %{_libdir}/libwx_*.so
 
 %changelog
-* Tue Jan 16 2007 Dag Wieers <dag@wieers.com> - 2.8.0-1
-- Updated to release 2.8.0.
-
 * Mon Jan 15 2007 Dag Wieers <dag@wieers.com> - 2.6.3-1
 - Updated to release 2.6.3.
 

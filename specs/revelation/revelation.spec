@@ -7,7 +7,7 @@
 
 Summary: Graphical password manager
 Name: revelation
-Version: 0.4.8
+Version: 0.4.11
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -17,7 +17,7 @@ Source: ftp://oss.codepoet.no/revelation/revelation-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python >= 2.3, python-devel, python-crypto >= 1.9
-BuildRequires: gnome-keyring-devel, pygtk2-devel >= 2.4, gnome-python2
+BuildRequires: gnome-keyring-devel, pygtk2-devel >= 2.8, gnome-python2
 BuildRequires: gnome-vfs2-devel, libgnomeui-devel, gnome-python2-bonobo
 BuildRequires: GConf2-devel, gnome-python2-gconf, gnome-python2-desktop
 %{?fc5:BuildRequires: gnome-python2-extras, gnome-panel-devel}
@@ -78,6 +78,12 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/icons/hicolor/*/apps/revelation-locked.png
 
 %changelog
+* Tue Jan 16 2007 Dag Wieers <dag@wieers.com> - 0.4.11-1
+- Updated to release 0.4.11.
+
+* Mon Jan 15 2007 Dag Wieers <dag@wieers.com> - 0.4.9-1
+- Updated to release 0.4.9.
+
 * Wed Jan 10 2007 Dag Wieers <dag@wieers.com> - 0.4.8-1
 - Updated to release 0.4.8.
 
