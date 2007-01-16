@@ -3,8 +3,12 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-# kannel seems to need sqlite 2 and not 3
-%{?el4:%define _without_sqlite2 1}
+### Kannel needs sqlite2, on older systems it is packaged as sqlite, not sqlite2
+%{?el4:%define _without_sqlite2_package 1}
+%{?el3:%define _without_sqlite2_package 1}
+%{?rh9:%define _without_sqlite2_package 1}
+%{?rh7:%define _without_sqlite2_package 1}
+%{?el2:%define _without_sqlite2_package 1}
 
 Summary: WAP and SMS gateway
 Name: kannel
@@ -23,8 +27,8 @@ BuildRequires: bison, byacc, flex, ImageMagick
 BuildRequires: libxml2-devel, openssl-devel, zlib-devel
 BuildRequires: pcre-devel
 # DB backends
-%{!?_without_sqlite2:BuildRequires: sqlite2-devel}
-%{?_without_sqlite2:BuildRequires: sqlite-devel}
+%{!?_without_sqlite2_package:BuildRequires: sqlite2-devel}
+%{?_without_sqlite2_package:BuildRequires: sqlite-devel >= 2.0}
 # For the docs... I think we need transfig too, so disable for now.
 #BuildRequires: jadetex, tetex-dvips, docbook-dtds, docbook-style-dsssl
 

@@ -74,8 +74,8 @@ ScriptAlias /awstats/ %{_localstatedir}/www/awstats/
 #Alias /css/ %{_localstatedir}/www/awstats/css/
 #Alias /js/ %{_localstatedir}/www/awstats/js/
 EOF
-dos2unix tools/logresolvemerge.pl
 
+dos2unix tools/logresolvemerge.pl
 
 %install
 %{__rm} -rf %{buildroot}
@@ -114,9 +114,6 @@ dos2unix tools/logresolvemerge.pl
 * Sun Jan 14 2007 Dries Verachtert <dries@ulyssis.org> - 6.6-1
 - Updated to release 6.6.
 - Convert logresolvemerge.pl to unix line endings, thanks to Christoph Maser.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 6.5-1.2
-- Rebuild for Fedora Core 5.
 
 * Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 6.5-1
 - Updated to release 6.5.

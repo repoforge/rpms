@@ -6,8 +6,8 @@
 
 Summary: Open Object Rexx
 Name: oorexx
-Version: 3.0.0
-Release: 1.2
+Version: 3.1.1
+Release: 1
 License: CPL
 Group: Development/Languages
 URL: http://www.oorexx.org/
@@ -16,7 +16,9 @@ Source: http://dl.sf.net/oorexx/ooRexx-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, ncurses-devel
 
-Obsoletes: ooRexx <= %{version}
+ExclusiveArch: i386
+Obsoletes: ooRexx <= %{version}-%{release}
+Obsoletes: oorexx-libs <= %{version}-%{release}
 
 %description
 Open Object Rexx is an object-oriented scripting language. The language
@@ -31,10 +33,8 @@ as you learn more about objects.
 %prep
 %setup -n %{real_name}-%{version}
 
-#%ifarch x86_64
-#%{__perl} -pi.orig -e 's|-m32|-m64|g;' configure
-#%endif
-%{__perl} -pi.orig -e 's|-m32||g;' configure
+### Fix shell interpreter path
+%{__perl} -pi.orig -e 's|^#!/usr/bin/sh|#!/bin/sh|g' samples/unix/trexx
 
 %build
 %configure \
@@ -45,21 +45,23 @@ as you learn more about objects.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-### Fix library symlinks
-for lib in $(ls %{buildroot}%{_libdir}/ooRexx/*.so.?.?.?); do
-	%{__ln_s} -f $(basename $lib) ${lib//%\.?}
-	%{__ln_s} -f $(basename $lib) ${lib//%\.?\.?}
-	%{__ln_s} -f $(basename $lib) ${lib//%\.?\.?\.?}
-done
+### Clean up docdir
+%{__find} samples/ -name 'Makefile*' | xargs %{__rm} -f
+
+%{__rm} -f %{buildroot}%{_datadir}/ooRexx/rexx.{csh,sh}
 
 %clean
 %{__rm} -rf %{buildroot}
+
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
 %doc CPLv1.0.txt INSTALL samples/
 %doc %{_mandir}/man1/rexx*.1*
 %doc %{_mandir}/man1/rx*.1*
+%{_bindir}/oorexx-config
 %{_bindir}/rexx*
 %{_bindir}/rx*
 %{_datadir}/ooRexx/
@@ -67,8 +69,8 @@ done
 %{_libdir}/ooRexx/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.0.0-1.2
-- Rebuild for Fedora Core 5.
+* Mon Jan 15 2007 Dag Wieers <dag@wieers.com> - 3.1.1-1
+- Updated to release 3.1.1.
 
 * Mon Mar 28 2005 Dag Wieers <dag@wieers.com> - 3.0.0-1
 - Initial package. (using DAR)
