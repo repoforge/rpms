@@ -1,7 +1,6 @@
-diff -Naupr faad2.orig/include/neaacdec.h faad2/include/neaacdec.h
---- faad2.orig/include/neaacdec.h	2006-08-13 16:13:31.000000000 +0200
-+++ faad2/include/neaacdec.h	2007-01-08 18:12:11.000000000 +0100
-@@ -38,28 +38,6 @@ extern "C" {
+--- faad2/include/neaacdec.h.orig	2007-01-16 12:51:49.000000000 +0100
++++ faad2/include/neaacdec.h	2007-01-16 12:52:14.000000000 +0100
+@@ -38,28 +38,6 @@
  #endif /* __cplusplus */
  
  
