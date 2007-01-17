@@ -10,7 +10,7 @@
 
 Summary: RPMforge release file and package configuration
 Name: rpmforge-release
-Version: 0.3.4
+Version: 0.3.5
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -34,6 +34,7 @@ GPG keys used to sign them.
 %{?el4:name='Red Hat Enterprise'; version='4'; path="redhat/el"; builder='dag'}
 %{?el3:name='Red Hat Enterprise'; version='3'; path="redhat/el"; builder='dag'}
 %{?el2:name='Red Hat Enterprise'; version='2'; path="redhat/el"; builder='dag'}
+%{?fc6:name='Fedora Core'; version='6'; path="fedora/"; builder='dries'; driesrepomdsuffix='/RPMS'}
 %{?fc5:name='Fedora Core'; version='5'; path="fedora/"; builder='dries'; driesrepomdsuffix='/RPMS'}
 %{?fc4:name='Fedora Core'; version='4'; path="fedora/"; builder='dries'; driesrepomdsuffix='/RPMS'}
 %{?fc3:name='Fedora Core'; version='3'; path="fedora/"; builder='dag'}
@@ -70,6 +71,7 @@ name = $name \$releasever - RPMforge.net - $builder
 mirrorlist = http://apt.sw.be/$path$version/en/mirrors-rpmforge
 #mirrorlist = file:///etc/yum.repos.d/mirrors-rpmforge
 enabled = 1
+protect = 0
 gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-$builder
 gpgcheck = 1
 EOF
@@ -83,7 +85,6 @@ EOF
 #	yum rpmforge http://apt.sw.be/$path$version/en/%{_arch}/$builder
 # or
 #	apt rpmforge http://apt.sw.be $path$version/en/%{_arch} $builder
-
 EOF
 
 for mirror in $(%{__cat} %{SOURCE0}); do
@@ -108,10 +109,11 @@ done >mirrors-rpmforge.yum
 %{__rm} -rf %{buildroot}
 
 %post
+%if %{!?_without_rpmpubkey:1}0
 rpm -q gpg-pubkey-6b8d79e6-3f49313d &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag || :
 rpm -q gpg-pubkey-1aa78495-3eb24301 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dries || :
 rpm -q gpg-pubkey-e42d547b-3960bdf1 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-matthias || :
-exit 0
+%endif
 
 %files
 %defattr(-, root, root, 0755)
@@ -120,10 +122,6 @@ exit 0
 %pubkey RPM-GPG-KEY-rpmforge-dag
 %pubkey RPM-GPG-KEY-rpmforge-dries
 %pubkey RPM-GPG-KEY-rpmforge-matthias
-%else
-%doc RPM-GPG-KEY-rpmforge-dag
-%doc RPM-GPG-KEY-rpmforge-dries
-%doc RPM-GPG-KEY-rpmforge-matthias
 %endif
 %dir %{_sysconfdir}/apt/
 %dir %{_sysconfdir}/apt/sources.list.d/
@@ -140,8 +138,12 @@ exit 0
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-*
 
 %changelog
+* Wed Jan 17 2007 Dag Wieers <dag@wieers.com> - 0.3.5-1
+- Add 'protect = 0' by default to yum configuration.
+- Don't import GPG key for older distributions.
+
 * Mon Jun 05 2006 Dag Wieers <dag@wieers.com> - 0.3.4-1
-- Fix for Yum repmforge.repo on Red Hat Enterprise Linux.
+- Fix for Yum rpmforge.repo on Red Hat Enterprise Linux.
 
 * Sun Jun 04 2006 Dag Wieers <dag@wieers.com> - 0.3.3-1
 - Added Dries his useless $driesrepomdsuffix. :(
