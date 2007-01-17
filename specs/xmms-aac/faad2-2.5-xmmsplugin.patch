@@ -1,0 +1,103 @@
+diff -Naupr faad2.orig/configure.in faad2/configure.in
+--- faad2.orig/configure.in	2006-08-13 16:13:31.000000000 +0200
++++ faad2/configure.in	2007-01-17 13:31:35.000000000 +0100
+@@ -29,9 +29,6 @@ AM_CONFIG_HEADER(config.h)
+ AC_ARG_WITH(xmms,[  --with-xmms             compile XMMS-1 plugin],
+ 	     WITHXMMS=$withval, WITHXMMS=no)
+ 
+-AC_ARG_WITH(bmp,[  --with-bmp              compile beep media player plugin],
+-	     [WITHBMP=$withval;WITHXMMS=$withval], [WITHBMP=no])
+-
+ AC_ARG_WITH(drm,[  --with-drm              compile libfaad with DRM support],
+ 	     WITHDRM=$withval, WITHDRM=no)
+ 
+@@ -114,12 +111,6 @@ else
+  AM_CONDITIONAL(HAVE_XMMS, false)
+ fi
+ 
+-if test x$WITHBMP = xyes; then
+-  AC_DEFINE([HAVE_BMP], 1, [User wants beep media player plugin built])
+-  AM_CONDITIONAL([HAVE_XMMS], true)
+-  AM_CONDITIONAL([HAVE_BMP], true)
+-fi
+-
+ if test x$WITHDRM = xyes; then
+   AC_DEFINE(DRM, 1, [Define if you want to use libfaad together with Digital Radio Mondiale (DRM)])
+   AC_DEFINE(DRM_PS, 1, [Define if you want support for Digital Radio Mondiale (DRM) parametric stereo])
+diff -Naupr faad2.orig/plugins/Makefile.am faad2/plugins/Makefile.am
+--- faad2.orig/plugins/Makefile.am	2006-08-07 20:47:45.000000000 +0200
++++ faad2/plugins/Makefile.am	2007-01-17 13:29:01.000000000 +0100
+@@ -1,17 +1 @@
+-if HAVE_MPEG4IP_PLUG
+-if HAVE_XMMS
+-SUBDIRS = xmms mpeg4ip
+-else
+-SUBDIRS = mpeg4ip
+-endif #HAVE_XMMS
+-else
+-if HAVE_XMMS
+ SUBDIRS = xmms
+-else
+-if HAVE_BMP
+-SUBDIRS = bmp
+-else
+-SUBDIRS =
+-endif #HAVE_BMP
+-endif #HAVE_XMMS
+-endif #HAVE_MPEG4IP_PLUG
+diff -Naupr faad2.orig/plugins/xmms/src/libmp4.c faad2/plugins/xmms/src/libmp4.c
+--- faad2.orig/plugins/xmms/src/libmp4.c	2006-08-07 20:47:45.000000000 +0200
++++ faad2/plugins/xmms/src/libmp4.c	2007-01-17 13:41:10.000000000 +0100
+@@ -343,7 +343,7 @@ static void *mp4Decode(void *args)
+ 
+       while(bPlaying){
+ 	void*			sampleBuffer;
+-	faacDecFrameInfo	frameInfo;
++	NeAACDecFrameInfo	frameInfo;
+ 	gint			rc;
+ 
+ 	if(seekPosition!=-1){
+@@ -376,7 +376,7 @@ static void *mp4Decode(void *args)
+ 	  sampleBuffer = NeAACDecDecode(decoder, &frameInfo, buffer, bufferSize);
+ 	  if(frameInfo.error > 0){
+ 	    g_print("MP4: %s\n",
+-		    faacDecGetErrorMessage(frameInfo.error));
++		    NeAACDecGetErrorMessage(frameInfo.error));
+ 	    goto end;
+ 	  }
+ 	  if(buffer){
+@@ -487,7 +487,7 @@ end:
+     if(mp4_ip.output->open_audio(FMT_S16_NE,samplerate,channels) == FALSE){
+       g_print("AAC: Output Error\n");
+       g_free(buffer); buffer=0;
+-      faacDecClose(decoder);
++      NeAACDecClose(decoder);
+       fclose(file);
+       mp4_ip.output->close_audio();
+       /*
+diff -Naupr faad2.orig/plugins/xmms/src/Makefile.am faad2/plugins/xmms/src/Makefile.am
+--- faad2.orig/plugins/xmms/src/Makefile.am	2006-08-07 20:47:45.000000000 +0200
++++ faad2/plugins/xmms/src/Makefile.am	2007-01-17 13:39:40.000000000 +0100
+@@ -1,19 +1,9 @@
+-if HAVE_BMP
+-libdir=$(shell pkg-config --variable=input-plugin-dir bmp)
+-local_CFLAGS=$(shell pkg-config --cflags bmp)
+-local_LDFLAGS=$(shell pkg-config --libs bmp)
+-else
+-local_CFLAGS=`$(XMMS_CONFIG) --cflags` -Wall
+-local_LDFLAGS=`$(XMMS_CONFIG) --libs`
++local_CFLAGS=`$(XMMS_CONFIG) --cflags` -I$(top_srcdir)/common/mp4ff
++local_LDFLAGS=`$(XMMS_CONFIG) --libs` -lfaad
+ libdir = `$(XMMS_CONFIG) --input-plugin-dir`
+-endif #HAVE_BMP
+ lib_LTLIBRARIES = libmp4.la
+ 
+-libmp4_la_CFLAGS = $(local_CFLAGS) -Wall \
+-       -I$(top_srcdir)/include -I$(top_srcdir)/common/mp4ff
+-
+-libmp4_la_LIBADD = $(top_builddir)/libfaad/libfaad.la \
+-       $(top_builddir)/common/mp4ff/libmp4ff.la
++libmp4_la_CFLAGS = $(local_CFLAGS)
+ 
+ libmp4_la_LDFLAGS = -module -avoid-version $(local_LDFLAGS) -lpthread
+ 
