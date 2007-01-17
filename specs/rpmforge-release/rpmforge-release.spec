@@ -10,7 +10,7 @@
 
 Summary: RPMforge release file and package configuration
 Name: rpmforge-release
-Version: 0.3.5
+Version: 0.3.6
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -33,7 +33,7 @@ GPG keys used to sign them.
 %{?el5:name='Red Hat Enterprise'; version='5'; path="redhat/el"; builder='dag'}
 %{?el4:name='Red Hat Enterprise'; version='4'; path="redhat/el"; builder='dag'}
 %{?el3:name='Red Hat Enterprise'; version='3'; path="redhat/el"; builder='dag'}
-%{?el2:name='Red Hat Enterprise'; version='2'; path="redhat/el"; builder='dag'}
+%{?el2:name='Red Hat Enterprise'; version='2.1'; path="redhat/el"; builder='dag'}
 %{?fc6:name='Fedora Core'; version='6'; path="fedora/"; builder='dries'; driesrepomdsuffix='/RPMS'}
 %{?fc5:name='Fedora Core'; version='5'; path="fedora/"; builder='dries'; driesrepomdsuffix='/RPMS'}
 %{?fc4:name='Fedora Core'; version='4'; path="fedora/"; builder='dries'; driesrepomdsuffix='/RPMS'}
@@ -138,6 +138,9 @@ rpm -q gpg-pubkey-e42d547b-3960bdf1 &>/dev/null || rpm --import %{_sysconfdir}/p
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-*
 
 %changelog
+* Thu Jan 18 2007 Dag Wieers <dag@wieers.com> - 0.3.6-1
+- Fixed the reference to the RHEL2.1 repository.
+
 * Wed Jan 17 2007 Dag Wieers <dag@wieers.com> - 0.3.5-1
 - Add 'protect = 0' by default to yum configuration.
 - Don't import GPG key for older distributions.
