@@ -19,24 +19,25 @@
 %{?el4:%define _without_jack 1}
 %{?el4:%define _without_sysfs 1}
 %{?el4:%define _without_upnp 1}
-%{?el4:%define _without_wxwidgets 1}
 
 %{?fc3:%define _without_jack 1}
 %{?fc3:%define _without_sysfs 1}
 %{?fc3:%define _without_upnp 1}
-%{?fc3:%define _without_wxwidgets 1}
+#{?fc3:#define _without_wxwidgets 1}
 
+%{?fc2:%define _without_hal 1}
 %{?fc2:%define _without_jack 1}
 %{?fc2:%define _without_sysfs 1}
 %{?fc2:%define _without_upnp 1}
-%{?fc2:%define _without_wxwidgets 1}
+#{?fc2:#define _without_wxwidgets 1}
 
 %{?fc1:%define _without_alsa 1}
+%{?fc1:%define _without_hal 1}
 %{?fc1:%define _without_jack 1}
 %{?fc1:%define _without_sysfs 1}
 %{?fc1:%define _without_theora 1}
 %{?fc1:%define _without_upnp 1}
-%{?fc1:%define _without_wxwidgets 1}
+#{?fc1:#define _without_wxwidgets 1}
 
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_fribidi 1}
@@ -45,7 +46,7 @@
 %{?el3:%define _without_sysfs 1}
 %{?el3:%define _without_theora 1}
 %{?el3:%define _without_upnp 1}
-%{?el3:%define _without_wxwidgets 1}
+#{?el3:#define _without_wxwidgets 1}
 
 %{?rh9:%define _without_alsa 1}
 %{?rh9:%define _without_fribidi 1}
@@ -54,7 +55,7 @@
 %{?rh9:%define _without_sysfs 1}
 %{?rh9:%define _without_theora 1}
 %{?rh9:%define _without_upnp 1}
-%{?rh9:%define _without_wxwidgets 1}
+#{?rh9:#define _without_wxwidgets 1}
 %{?rh9:%define _without_x264 1}
 
 %{?rh7:%define _without_alsa 1}
@@ -66,7 +67,7 @@
 %{?rh7:%define _without_theora 1}
 %{?rh7:%define _without_upnp 1}
 %{?rh7:%define _without_vorbis 1}
-%{?rh7:%define _without_wxwidgets 1}
+#{?rh7:#define _without_wxwidgets 1}
 %{?rh7:%define _without_x264 1}
 %{?rh7:%define _without_xosd 1}
 
@@ -81,7 +82,7 @@
 %{?el2:%define _without_theora 1}
 %{?el2:%define _without_upnp 1}
 %{?el2:%define _without_vorbis 1}
-%{?el2:%define _without_wxwidgets 1}
+#{?el2:#define _without_wxwidgets 1}
 %{?el2:%define _without_x264 1}
 %{?el2:%define _without_xosd 1}
 
@@ -95,7 +96,7 @@
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
 Version: 0.8.6a
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -269,7 +270,7 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
     %{?_with_portaudio:--enable-portaudio} \
     %{!?_without_arts:--enable-arts} \
     %{!?_without_alsa:--enable-alsa} \
-    %{?_without_wxwidgets:--disable-wxwidgets} \
+    %{?_without_wxwidgets:--disable-wxwidgets --disable-skins2} \
     %{!?_without_xosd:--enable-xosd} \
     %{!?_without_lirc:--enable-lirc} \
     %{?_with_mozilla:--enable-mozilla} \
@@ -324,6 +325,9 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 
 
 %changelog
+* Tue Jan 16 2007 Dag Wieers <dag@wieers.com> - 0.8.6a-2
+- Build against wxGTK 2.6.3.
+
 * Mon Jan  8 2007 Matthias Saou <http://freshrpms.net/> 0.8.6a-1
 - Update to 0.8.6a.
 - Add faad2 patch.

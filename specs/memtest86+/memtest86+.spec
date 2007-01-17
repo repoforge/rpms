@@ -4,15 +4,12 @@
 
 # Screenshot: http://www.memtest.org/pics/i875-big.gif
 
-# ExcludeDist: el4
-##ExcludeDist: fc2
-
 %define _prefix /boot
 
 Summary: Thorough, stand-alone memory tester
 Name: memtest86+
-Version: 1.65
-Release: 1.2
+Version: 1.70
+Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.memtest.org/
@@ -60,8 +57,8 @@ fi
 %{_prefix}/%{name}-%{version}
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.65-1.2
-- Rebuild for Fedora Core 5.
+* Wed Jan 17 2007 Dag Wieers <dag@wieers.com> - 1.70-1
+- Updated to release 1.70.
 
 * Wed Nov 30 2005 Dag Wieers <dag@wieers.com> - 1.65-1
 - Updated to release 1.65.

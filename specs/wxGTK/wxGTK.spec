@@ -48,7 +48,6 @@ Header files for wxGTK, the GTK port of the wxWindows library.
 
 %prep
 %setup
-#%{__perl} -pi.orig -e 's| /usr/lib| %{_libdir} %{_prefix}/X11R6/%{_lib}|g' configure
 
 %build
 %configure \
@@ -85,7 +84,7 @@ Header files for wxGTK, the GTK port of the wxWindows library.
 %{__cat} wxstd.lang wxmsw.lang >>wx.lang
 
 ### Overwrite wrong symlink (includes buildroot)
-%{__ln_s} -f ../../lib/wx/config/gtk2-ansi-release-2.6 %{buildroot}%{_bindir}/wx-config
+%{__ln_s} -f ../%{_lib}/wx/config/gtk2-ansi-release-2.6 %{buildroot}%{_bindir}/wx-config
 
 %clean
 %{__rm} -rf %{buildroot}
