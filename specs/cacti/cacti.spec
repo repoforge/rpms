@@ -19,6 +19,7 @@ URL: http://www.cacti.net/
 
 Source: http://www.cacti.net/downloads/cacti-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildArch: noarch
 
 BuildRequires: mysql-devel, openssl-devel
 
@@ -125,6 +126,9 @@ fi
 %doc docs/*
 
 %changelog
+* Thu Jan 18 2007 Matthias Saou <http://freshrpms.net/> 0.8.6j-1
+- Make package noarch, as it should be.
+
 * Thu Jan 18 2007 Dag Wieers <dag@wieers.com> - 0.8.6j-1
 - Updated to release 0.8.6j.
 
