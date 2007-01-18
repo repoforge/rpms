@@ -11,12 +11,13 @@
 Summary: Access data stored in Microsoft Access databases
 Name: mdbtools
 Version: 0.5
-Release: 0.2
+Release: 1
 License: LGPL/GPL
 Group: System Environment/Libraries
 URL: http://mdbtools.sourceforge.net/
 
 Source: http://dl.sf.net/mdbtools/mdbtools-%{version}.tar.gz
+Patch0: mdbtools-0.5-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: unixODBC-devel >= 2.0.0, libgnomeui-devel >= 2.0, bison, flex
@@ -48,6 +49,7 @@ for MDB Tools
 
 %prep
 %setup
+%patch0 -p1
 
 %{__cat} <<EOF >gmdb2.desktop
 [Desktop Entry]
@@ -62,12 +64,13 @@ EOF
 
 %build
 %configure \
+	--enable-sql \
 	--with-unixodbc="%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %if %{?_without_freedesktop:1}0
         %{__install} -Dp -m0644 gmdb2.desktop %{buildroot}%{_datadir}/gnome/apps/Development/gmdb2.desktop
@@ -79,11 +82,8 @@ EOF
 		gmdb2.desktop
 %endif
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -97,14 +97,14 @@ EOF
 %{_bindir}/pr*
 %{_bindir}/unittest
 %{_bindir}/updrow
-%{_libdir}/*.so.*
+%{_libdir}/libmdb*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc HACKING
-%{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
+%{_libdir}/libmdb*.a
+%exclude %{_libdir}/libmdb*.la
+%{_libdir}/libmdb*.so
 %{_includedir}/*.h
 
 %files gui
@@ -113,11 +113,11 @@ EOF
 %{_bindir}/gmdb2
 %{_datadir}/gmdb/
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Development/gmdb2.desktop}
-%{!?_without_freedesktop:%{_datadir}/applications/gnome-gmdb2.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-gmdb2.desktop}
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-0.2
-- Rebuild for Fedora Core 5.
+* Thu Jan 18 2007 Dag Wieers <dag@wieers.com> - 0.5-1
+- Fixed EL4 build.
 
 * Fri Jun 13 2003 Dag Wieers <dag@wieers.com> - 0.5-0
 - Initial package. (using DAR)
