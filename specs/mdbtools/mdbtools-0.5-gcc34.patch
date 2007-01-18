@@ -1,0 +1,54 @@
+--- mdbtools-0.5/src/odbc/odbc.c.gcc34	2004-08-27 15:22:45.695241173 +0200
++++ mdbtools-0.5/src/odbc/odbc.c	2004-08-27 15:23:44.753586201 +0200
+@@ -176,6 +176,8 @@
+ 	return SQL_SUCCESS;
+ }
+ 
++static void bind_columns(struct _hstmt *stmt);
++
+ SQLRETURN SQL_API SQLExtendedFetch(
+     SQLHSTMT           hstmt,
+     SQLUSMALLINT       fFetchType,
+@@ -1445,6 +1447,7 @@
+ 	case SQL_DECIMAL:
+ 	case SQL_NUMERIC:
+ 	case SQL_FLOAT:
++		;
+ 	}
+ }
+ static SQLSMALLINT _odbc_get_client_type(int srv_type)
+--- mdbtools-0.5/src/gmdb2/table_export.c.gcc34	2004-08-27 15:24:08.676723367 +0200
++++ mdbtools-0.5/src/gmdb2/table_export.c	2004-08-27 15:24:30.214845662 +0200
+@@ -219,6 +219,9 @@
+ 	sprintf(msg,"%d Rows exported successfully.\n", rows);
+ 	gnome_ok_dialog(msg);
+ }
++
++void gmdb_table_export_populate_dialog(GladeXML *xml);
++
+ void gmdb_table_export(MdbCatalogEntry *entry) 
+ {
+ GtkWidget *export_button;
+--- mdbtools-0.5/src/gmdb2/sql.c.gcc34	2004-08-27 15:24:40.193901954 +0200
++++ mdbtools-0.5/src/gmdb2/sql.c	2004-08-27 15:25:39.072229579 +0200
+@@ -132,6 +132,10 @@
+ 	sprintf(msg,"%d Rows exported successfully.\n", rows);
+ 	gnome_ok_dialog(msg);
+ }
++
++
++void gmdb_sql_save_query(GladeXML *xml, gchar *file_path);
++
+ void
+ gmdb_sql_write_cb(GtkWidget *w, GladeXML *xml)
+ {
+@@ -190,6 +194,9 @@
+ 
+ 	g_object_set_data(G_OBJECT(filesel), "sql_xml", xml);
+ }
++
++void gmdb_sql_save_as_cb(GtkWidget *w, GladeXML *xml);
++
+ void
+ gmdb_sql_save_cb(GtkWidget *w, GladeXML *xml)
+ {
