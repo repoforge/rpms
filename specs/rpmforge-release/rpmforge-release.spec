@@ -139,7 +139,7 @@ rpm -q gpg-pubkey-e42d547b-3960bdf1 &>/dev/null || rpm --import %{_sysconfdir}/p
 
 %changelog
 * Thu Jan 18 2007 Dag Wieers <dag@wieers.com> - 0.3.6-1
-- Fixed the reference to the RHEL2.1 repository.
+- Fixed the reference to the RHEL2.1 repository. (Thanassis)
 
 * Wed Jan 17 2007 Dag Wieers <dag@wieers.com> - 0.3.5-1
 - Add 'protect = 0' by default to yum configuration.

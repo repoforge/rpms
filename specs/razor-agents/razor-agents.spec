@@ -6,8 +6,8 @@
 
 Summary: Use the Razor catalog server to filter spam messages
 Name: razor-agents
-Version: 2.81
-Release: 2
+Version: 2.82
+Release: 1
 License: Artistic
 Group: Applications/Internet
 URL: http://razor.sourceforge.net/
@@ -45,11 +45,9 @@ Implements perl class Razor, a SPAM/UCE filtering agent.
 %setup
 
 %build
-CFLAGS="%{optflags}" perl Makefile.PL \
-	INSTALLDIRS="vendor"
+CFLAGS="%{optflags}" perl Makefile.PL INSTALLDIRS="vendor"
 cd Razor2-Preproc-deHTMLxs
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	INSTALLDIRS="vendor"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor"
 cd -
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 %{__mv} -f Changes Changes.pod
@@ -57,12 +55,11 @@ pod2text Changes.pod > Changes
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall -C Razor2-Preproc-deHTMLxs \
-	PERL_INSTALL_ROOT="%{buildroot}"
 %makeinstall \
 	PERL_INSTALL_ROOT="%{buildroot}" \
 	PERL5LIB="%{buildroot}%{perl_vendorarch}" \
 	INSTALLMAN5DIR="%{_mandir}/man5"
+%makeinstall -C Razor2-Preproc-deHTMLxs PERL_INSTALL_ROOT="%{buildroot}"
 
 %{__install} -d -m0755 %{buildroot}%{_bindir}
 #for bin in razor-check razor-report razor-admin razor-revoke; do
@@ -94,14 +91,14 @@ pod2text Changes.pod > Changes
 %{perl_vendorarch}/auto/Razor2/
 
 %changelog
+* Fri Jan 19 2007 Dag Wieers <dag@wieers.com> - 2.82-1
+- Updated to release 2.82.
+
 * Thu Aug 24 2006 Dries Verachtert <dries@ulyssis.org> - 2.81-2
 - Fix: the commands aren't links to razor-client anymore, thanks to subs at jake8us org.
 
 * Sat Apr 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.81-1
 - Updated to release 2.81.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.40-1.2
-- Rebuild for Fedora Core 5.
 
 * Sun Jan 26 2003 Dag Wieers <dag@wieers.com> - 1.20-0
 - Initial package. (using DAR)
