@@ -16,7 +16,7 @@ Source: ftp://ftp.postgresql.org/pub/pgadmin3/release/v%{version}/src/pgadmin3-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-BuildRequires: wxGTK-devel >= 2.4.2, postgresql-devel, wxGTK-stc, wxGTK-xrc
+BuildRequires: wxGTK-devel >= 2.6, postgresql-devel, wxGTK-stc, wxGTK-xrc
 BuildRequires: desktop-file-utils, gcc-c++
 
 %description
@@ -39,7 +39,7 @@ created, dropped and edited to the extent supported by the database.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %{__install} -Dp -m0644 src/include/images/elephant48.xpm %{buildroot}%{_datadir}/pgadmin3/pgadmin3.xpm
 
@@ -63,9 +63,6 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %changelog
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.3-1
 - Updated to release 1.4.3.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.2-1.2
-- Rebuild for Fedora Core 5.
 
 * Sun Mar 12 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.2-1
 - Updated to release 1.4.2.

@@ -5,13 +5,13 @@
 
 Summary: Graphical front-end for the Subversion concurrent versioning system.
 Name: rapidsvn
-Version: 0.7.2
-Release: 2
+Version: 0.9.4
+Release: 1
 License: BSD
 Group: Development/Tools
 URL: http://rapidsvn.tigris.org/
 
-Source: http://www.rapidsvn.org/download/rapidsvn-%{version}.tar.gz
+Source: http://www.rapidsvn.org/download/release/%{version}/rapidsvn-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: apr-devel, apr-util-devel, neon-devel, gcc-c++
@@ -76,7 +76,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
-%doc %{_mandir}/man1/rapidsvn.1*
+#doc %{_mandir}/man1/rapidsvn.1*
 %{_bindir}/rapidsvn
 %exclude %{_libdir}/libsvncpp.a
 %exclude %{_libdir}/libsvncpp.la
@@ -86,6 +86,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/rapidsvn.png
 
 %changelog
+* Mon Dec 11 2006 Dag Wieers <dag@wieers.com> - 0.9.4-1
+- Updated to release 0.9.4.
+
 * Tue Oct 10 2006 Dag Wieers <dag@wieers.com> - 0.7.2-2
 - Fixed group name.
 

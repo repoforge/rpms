@@ -6,7 +6,7 @@
 Summary: Set of tools to create, alter and inspect Matroska files
 Name: mkvtoolnix
 Version: 1.7.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.bunkus.org/videotools/mkvtoolnix/
@@ -105,6 +105,9 @@ fi
 
 
 %changelog
+* Sat Jan 20 2007 Dag Wieers <dag@wieers.com> - 1.7.0-2
+- Rebuild against wxGTK 2.6.3.
+
 * Mon Oct 23 2006 Matthias Saou <http://freshrpms.net/> 1.7.0-1
 - Spec file cleanup.
 - Split off GUI sub-package like the Extras package is likely to do (#177134).

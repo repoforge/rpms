@@ -3,7 +3,7 @@
 
 Summary: Test your typing speed and get your fingers' CPS
 Name: typespeed
-Version: 0.5.3
+Version: 0.6.0
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -32,7 +32,7 @@ echo "%{_datadir}/typespeed/" >typespeedrc
 %{__install} -Dp -m0644 typespeedrc %{buildroot}%{_sysconfdir}/typespeedrc
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/typespeed/
-%{__install} -p -m0644 words.* %{buildroot}%{_datadir}/typespeed/
+%{__install} -p -m0644 words/words.* %{buildroot}%{_datadir}/typespeed/
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/games/typespeed/
 
@@ -44,7 +44,7 @@ echo "%{_datadir}/typespeed/" >typespeedrc
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS Changes COPYING README TODO
+%doc AUTHORS BUGS ChangeLog COPYING NEWS README TODO
 %doc %{_mandir}/man6/typespeed.6*
 %config %{_sysconfdir}/typespeedrc
 %{_bindir}/typespeed
@@ -52,6 +52,9 @@ echo "%{_datadir}/typespeed/" >typespeedrc
 %dir %{_localstatedir}/games/typespeed/
 
 %changelog
+* Sat Jan 20 2007 Dag Wieers <dag@wieers.com> - 0.6.0-1
+- Updated to release 0.6.0.
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.3-1
 - Updated to release 0.5.3.
 

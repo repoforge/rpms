@@ -6,7 +6,7 @@
 Summary: Editor and environment for developing programs in python
 Name: drpython
 Version: 3.1.3
-Release: 1.2
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://drpython.sourceforge.net/
@@ -40,9 +40,6 @@ programming Language.
 %doc README
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.1.3-1.2
-- Rebuild for Fedora Core 5.
-
 * Fri Jul 16 2004 Matthias Saou <http://freshrpms.net/> 3.1.3-1
 - Update to 3.1.3.
 - Major spec file completing... but nothing near working.
