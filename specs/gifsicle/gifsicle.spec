@@ -3,20 +3,22 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?el4:%define _without_modxorg 1}
-%{?el3:%define _without_modxorg 1}
-%{?el2:%define _without_modxorg 1}
 %{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
 %{?fc3:%define _without_modxorg 1}
 %{?fc2:%define _without_modxorg 1}
 %{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
 
 Summary: Powerful program for manipulating GIF images and animations
 Name: gifsicle
-Version: 1.44
+Version: 1.46
 Release: 1
 License: GPL
-Group: Applications/Graphics
+Group: Applications/File
 URL: http://www.lcdf.org/gifsicle/
 
 Source: http://www.lcdf.org/gifsicle/gifsicle-%{version}.tar.gz
@@ -67,5 +69,8 @@ appearance.
 %{_bindir}/gifview
 
 %changelog
+* Sun Jan 21 2007 Dag Wieers <dag@wieers.com> - 1.46-1
+- Updated to release 1.46.
+
 * Mon Dec 11 2006 Dag Wieers <dag@wieers.com> - 1.44-1
 - Initial package. (using DAR)

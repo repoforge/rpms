@@ -5,7 +5,7 @@
 Summary: C to Python translator
 Name: ctopy
 Version: 1.0
-Release: 1
+Release: 2
 License: BSD
 Group: Development/Tools
 URL: http://www.catb.org/~esr/ctopy/
@@ -41,5 +41,8 @@ nontrivial parts of the translation.
 %{_bindir}/ctopy
 
 %changelog
+* Sun Jan 21 2007 Dag Wieers <dag@wieers.com> - 1.0-2
+- Fix group tag.
+
 * Sat Oct 21 2006 Dag Wieers <dag@wieers.com> - 1.0-1
 - Initial package. (using DAR)

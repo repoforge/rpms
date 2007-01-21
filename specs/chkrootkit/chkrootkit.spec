@@ -11,8 +11,8 @@
 
 Summary: Check locally for signs of a rootkit
 Name: chkrootkit
-Version: 0.46a
-Release: 2.2
+Version: 0.47
+Release: 1
 License: BSD-like
 Group: Applications/System
 URL: http://www.chkrootkit.org/
@@ -121,8 +121,8 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-chkrootkit.desktop}
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.46a-2.2
-- Rebuild for Fedora Core 5.
+* Sun Jan 21 2007 Dag Wieers <dag@wieers.com> - 0.47-1
+- Updated to release 0.47.
 
 * Thu Feb 02 2006 Dries Verachtert <dries@ulyssis.org> - 0.46a-2
 - Added desktop-file-utils buildrequirement, thanks to Dean Takemori!

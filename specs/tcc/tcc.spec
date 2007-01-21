@@ -5,9 +5,9 @@
 Summary: Tiny C Compiler
 Name: tcc
 Version: 0.9.23
-Release: 1
+Release: 2
 License: GPL
-Group: Development/Compilers
+Group: Development/Languages
 URL: http://fabrice.bellard.free.fr/tcc/
 
 Source: http://fabrice.bellard.free.fr/tcc/tcc-%{version}.tar.gz
@@ -60,5 +60,8 @@ you will need to install %{name}-devel.
 %{_libdir}/libtcc.a
 
 %changelog
+* Sun Jan 21 2007 Dag Wieers <dag@wieers.com> - 0.9.23-2
+- Fix group tag.
+
 * Sun Jan 14 2007 Dries Verachtert <dries@ulyssis.org> - 0.9.23-1
 - Initial package.
