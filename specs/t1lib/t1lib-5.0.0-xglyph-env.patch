@@ -1,0 +1,15 @@
+--- t1lib-5.0.0.orig/xglyph/xglyph.c
++++ t1lib-5.0.0/xglyph/xglyph.c
+@@ -526,9 +526,12 @@
+   
+   /* Check for environment entry. If not set, set it to current
+      directory so that configuration file is found there */
++  /* It violates the Debian Policy */
++#if 0
+   if (getenv("T1LIB_CONFIG")==NULL){
+     putenv( "T1LIB_CONFIG=./t1lib.config");
+   }
++#endif
+ 
+   
+   /* Set log-level: */

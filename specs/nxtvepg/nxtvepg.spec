@@ -6,26 +6,30 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?rh9:%define _without_tcltk_devel 1}
-%{?rh8:%define _without_tcltk_devel 1}
-%{?rh7:%define _without_freedesktop 1}
-%{?rh7:%define _without_tcltk_devel 1}
-%{?el2:%define _without_freedesktop 1}
-%{?el2:%define _without_tcltk_devel 1}
-
-%{?el4:%define _without_modxorg 1}
-%{?el3:%define _without_modxorg 1}
-%{?el2:%define _without_modxorg 1}
 %{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
 %{?fc3:%define _without_modxorg 1}
 %{?fc2:%define _without_modxorg 1}
 %{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
+%{?rh9:%define _without_modxorg 1}
+%{?rh9:%define _without_tcltk_devel 1}
+
+%{?rh8:%define _without_tcltk_devel 1}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?rh7:%define _without_modxorg 1}
+%{?rh7:%define _without_tcltk_devel 1}
+
+%{?el2:%define _without_freedesktop 1}
+%{?el2:%define _without_modxorg 1}
+%{?el2:%define _without_tcltk_devel 1}
 
 Summary: NexTView EPG decoder and browser
 Name: nxtvepg
-Version: 2.7.5
-Release: 1.2
+Version: 2.7.7
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://nxtvepg.sourceforge.net/
@@ -105,8 +109,8 @@ EOF
 %{_datadir}/pixmaps/nxtvepg.png
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.7.5-1.2
-- Rebuild for Fedora Core 5.
+* Mon Jan 22 2007 Dag Wieers <dag@wieers.com> - 2.7.7-1
+- Updated to release 2.7.7.
 
 * Sat Apr 04 2005 Dag Wieers <dag@wieers.com> - 2.7.5-1
 - Updated to release 2.7.5.

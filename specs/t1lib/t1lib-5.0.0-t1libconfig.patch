@@ -1,0 +1,221 @@
+--- t1lib-5.0.0.orig/debian/t1libconfig.8
++++ t1lib-5.0.0/debian/t1libconfig.8
+@@ -0,0 +1,57 @@
++.TH T1LIBCONFIG 8
++.SH NAME
++.B t1libconfig
++\- create the t1lib.config and FontDataBase files for t1lib
++.SH SYNOPSIS
++.B t1libconfig
++[
++.BR \-v\fP, \fB\-\-version
++]
++[
++.BR \-h\fP, \fB\-\-help
++]
++.B \-\-force
++]
++[
++.B fontdirectory...
++]
++.SH DESCRIPTION
++.B t1libconfig
++scans a list of directories for Type 1 fonts and font metric files,
++and generates a configuration file and font database file for the
++.B t1lib
++rasterizer library accordingly.  By default, it looks in all
++subdirectories of /usr/share/X11/fonts, and in
++/usr/lib/ghostscript.  Extra directories to search may be specified on 
++the command line.  The
++.B t1libconfig
++script tries not to scan the same directory twice (this is, however,
++not foolproof, since symbolic links may result in different paths
++pointing to the same directory on GNU/Linux systems).
++.SH OPTIONS
++.TP
++.BR \-v\fP, \fB\-\-version
++Print the version of
++.B t1libconfig
++and exit.
++.TP
++.BR \-h\fP, \fB\-\-help
++Print help about usage and exit.
++.TP
++.B \-\-force
++Force the generation of new configuration files even if these files
++already exist on the system.
++.SH FILES
++.TP 25
++.B /etc/t1lib/t1lib.config
++Contains configuration information for t1lib, including
++colon-separated lists of paths to Type 1 font files and font metrics
++files, and the location of the default font database file
++.TP 25
++.B /etc/t1lib/FontDataBase
++Contains a list of the names of Type 1 font files to be used by t1lib.
++.SH AUTHOR
++David Huggins-Daines <dhd@debian.org>
++.SH SEE ALSO
++.BR FontDataBase (5)
++
+--- t1lib-5.0.0.orig/debian/t1libconfig
++++ t1lib-5.0.0/debian/t1libconfig
+@@ -0,0 +1,158 @@
++#!/bin/sh -e
++
++# to test POSIX-correctness, change hash-bang to /bin/bash and uncomment
++# the following line:
++
++# set -o posix
++
++# Very simple configuration script for t1lib.  Checks a couple of
++# directories that might contain fonts, and if they exist, adds
++# anything ending in .pfa or pfb to the font database.  A few things
++# borrowed from paperconfig, (C) 1996, Yves Arrouye
++# <arrouye@debian.org>
++
++# note that this creates the "minimal" font database accepted by t1lib,
++# and doesn't look in every possible place for fonts.  It is mostly
++# provided so that xglyph will work out of the box...
++
++# Written by David Huggins-Daines <dhd@debian.org>
++
++usage() {
++    if [ "$1" = -h ]
++    then
++	exec 1>&2
++	echo -n U
++    else
++	echo -n u
++    fi
++
++    echo "sage: `basename $0` [ -v, --version ] [ -h, --help ] [ --force ]"
++    echo "                   [ fontdirs... ]"
++
++    if [ "$1" = -h ]
++    then
++	cat <<EOF
++
++Options: -v, --verbose          print version information and exit
++         -h, --help             print this help and exit
++         --force                force configuration
++EOF
++	exit 0
++    else
++	exit 1
++    fi
++}
++
++version=0.2
++x11fontdirs=$(find /usr/share/X11/fonts -type d -printf "%p " || true)
++fontdirs="/usr/lib/ghostscript/fonts $x11fontdirs"
++conffile=/etc/t1lib/t1lib.config
++confdir=/etc/t1lib/
++dbase=/etc/t1lib/FontDatabase
++temp=/etc/t1lib/FontDatabase.tmp
++
++force=0
++
++while [ $# -ne 0 ]
++do
++    case "$1" in
++	-v|--version)
++	    echo "`basename $0` version $version" \
++		"by David Huggins-Daines <dhd@debian.org>"
++	    exit 0
++	    ;;
++	-h|--help)
++	    usage -h
++	    ;;
++	--force)
++	    force=1
++	    ;;
++	*)
++	    # hairy way to remove a trailing backslash (should use perl)
++	    pat=`expr $1 : "\(.*\)\/\$" || echo $1`
++	    # hairier way to find a string anywhere in another string
++	    # should really use perl.
++	    if ! grep $pat <<EOF >/dev/null 2>&1
++$fontdirs
++EOF
++	    then
++		fontdirs="$fontdirs $1"
++	    fi
++	    ;;
++    esac
++    shift
++done
++
++# We presume that if the database exists, then so does the
++# configuration file.  Hopefully this won't break anything.
++
++if [ $force -eq 1 ] || [ ! -e $dbase ]; then
++    fontpath=""
++    afmpath=""
++
++    mkdir -p $confdir || true
++
++    echo -n "Searching for Type 1 fonts and AFM files..."
++
++    for i in $fontdirs
++    do
++	if [ -d $i ] && ls $i/*.pf[ab] > /dev/null 2>&1; then
++	    if [ -n "$fontpath" ]; then
++		fontpath="$fontpath:$i"
++	    else
++		fontpath="$i"
++	    fi
++	    
++	    if ls $i/*.afm > /dev/null 2>&1; then
++		if [ -n "$afmpath" ]; then
++		    afmpath="$afmpath:$i"
++		else
++		    afmpath="$i"
++		fi
++	    fi
++	    # get a listing of all the fonts in each dir
++	    find $i -name *.pf[ab] -maxdepth 1 -printf '%f\n' >> $temp
++	fi
++    done
++    if [ -z "$fontpath" ]; then
++	cat <<EOF
++
++No Type 1 fonts were found in the expected locations.
++If you want t1lib to be aware of your fonts, you should run
++/usr/sbin/t1libconfig with the names of your local font directories as
++arguments, or you should edit the /etc/t1lib/FontDatabase file manually.
++See the FontDatabase(5) manual page for more information.
++
++Press [return] to continue.
++EOF
++        read foo || true
++	rm -f $temp
++    else
++        echo "done."
++        echo -n "Building font database..."
++        fontcount=`wc -l $temp || true`
++        echo $fontcount > $dbase
++        cat $temp >> $dbase
++        rm -f $temp
++        echo "done."
++    fi
++
++    # now set the paths in the config file
++    cat <<EOF >$conffile
++t1lib.config - global configuration file for t1lib.
++It was created automatically on `date`
++by the t1libconfig script.
++
++Run /usr/sbin/t1libconfig --force to rebuild it.
++    
++ENCODING=.
++AFM=$afmpath
++TYPE1=$fontpath
++FONTDATABASE=$dbase
++EOF
++else
++    echo "Configuration and font database files already exist."
++    echo "Run /usr/sbin/t1libconfig --force to rebuild them."
++fi
++
++exit 0

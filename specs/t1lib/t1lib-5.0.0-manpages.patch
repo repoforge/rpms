@@ -1,0 +1,231 @@
+--- t1lib-5.0.0.orig/debian/type1afm.1
++++ t1lib-5.0.0/debian/type1afm.1
+@@ -0,0 +1,34 @@
++.TH TYPE1AFM 1
++.SH NAME
++.B type1afm
++\- create a font metrics file from a Type 1 font file
++.SH SYNOPSIS
++.B type1afm
++[
++.BR \-l
++]
++.B fontfile
++[
++.B fontfile...
++]
++.SH DESCRIPTION
++This manual page was written for the Debian GNU/Linux distribution
++because the original program does not have a manual page.
++.PP
++.B type1afm
++reads in Type 1 font files specified on the command line, rasterizes
++them to 1000bp, and writes AFM (font metrics) files based on the
++observed metrics information.
++.PP
++The AFM file is created in the same directory as the font file, so be
++sure that you have write access there before running this program.
++.SH OPTIONS
++.TP
++.BR \-l
++Write a log file
++.SH SEE ALSO
++.BR getafm (1)
++.SH AUTHOR
++This manual page was David Huggins-Daines <dhd@debian.org>
++for the Debian GNU/Linux distribution (but may be used by others)
++
+--- t1lib-5.0.0.orig/debian/xglyph.1
++++ t1lib-5.0.0/debian/xglyph.1
+@@ -0,0 +1,111 @@
++.TH XGLYPH 1
++.SH NAME
++xglyph \- demonstration program for the t1lib font rasterizer library.
++.SH SYNOPSIS
++.B xglyph
++[
++.B fontfile...
++]
++.SH "DESCRIPTION"
++This manual page documents briefly the
++.BR xglyph
++program.
++This manual page was written for the Debian GNU/Linux distribution
++because the original program does not have a manual page.
++.PP
++.B xglyph
++is a program which demonstrates the capabilities of the
++.B t1lib
++library.  It allows the user to view an arbitrary character or string
++rendered in the various ways pgossible with the library.  By default,
++it writes a log file named \fIt1lib.log\fR in the current directory.
++.PP
++If invoked with no arguments, it will attempt to read the global
++configuration file and font database.  It will also accept any number
++of filenames on the command line, in which case these are treated as
++font files to be loaded instead of the default font database.
++.SH "OPTIONS"
++.TP
++.BR \-\-help
++Shows a brief help text
++.TP
++.BR \-\-Help
++Shows a description of all options
++.TP
++.BR \-\-noGrid 
++Don't draw grid lines when displaying glyphs
++.TP
++.BR \-\-setPad 
++Set bitmap padding
++.TP
++.BR \-\-logError
++Log errors only
++.TP
++.BR \-\-logWarning
++Log errors and warnings
++.TP
++.BR \-\-logStatistic
++Log errors, warnings, and statistics
++.TP
++.BR \-\-logDebug
++Log just about everything
++.TP
++.BR \-\-ignoreForceBold
++Don't make pseudo-boldface glyphs
++.TP
++.BR \-\-ignoreFamilyAlignment
++.TP
++.BR \-\-ignoreHinting
++Ignore hints when scaling glyphs
++.TP
++.BR \-\-debugLine
++Show debugging info for line-drawing
++operations in the rasterizer
++.TP
++.BR \-\-debugRegion
++Show debugging info for region operations in
++the rasterizer
++.TP
++.BR \-\-debugPath
++Show debugging info for path operations in the
++rasterizer
++.TP
++.BR \-\-debugFont
++.TP
++.BR \-\-debugHint
++Show debugging info for hinting in the rasterizer.
++.TP
++.BR \-\-checkPerformance
++Do some simple performance tests while rasterizing.
++.TP
++.BR \-\-checkCopyFont
++Check that copying fonts works.
++.TP
++.BR \-\-checkConcatGlyphs
++Check that concatenating glyphs works.
++.TP
++.BR \-\-checkBadCharHandling
++.TP
++.BR \-\-checkDefaultEncoding
++Set a default encoding vector.
++.SH "ENVIRONMENT"
++In the Debian GNU/Linux version of this program, the environment
++variable
++.B T1LIB_CONFIG,
++if set, points to an alternate configuration
++file with which to initialize the library.
++.SH "SEE ALSO"
++.BR FontDataBase (5),
++.BR t1libconfig (8).
++.PP
++.B xglyph
++is much more fully documented in the LaTeX documentation that
++accompanies the upstream
++.B t1lib
++distribution.  This documentation is installed in PostScript and source
++formats with the t1lib-dev package in /usr/share/doc/t1lib-dev, and is
++also accessible through the dwww system.
++.SH AUTHOR
++This manual page was written by David Huggins-Daines
++<dhd@debian.org>, for the Debian GNU/Linux system (but may
++be used by others).
+--- t1lib-5.0.0.orig/debian/FontDatabase.5
++++ t1lib-5.0.0/debian/FontDatabase.5
+@@ -0,0 +1,77 @@
++.TH FONTDATABASE 5
++.SH NAME
++FontDataBase \- database of fonts accessible to t1lib.
++.SH DESCRIPTION
++This manual page has been written for the Debian GNU/Linux
++distribution.  It has been adapted from the documentation included in
++the upstream
++.B t1lib
++distribution.
++.PP
++.B /etc/t1lib/FontDataBase
++is a text file which contains, minimally, the basenames of Type 1 font 
++files to be made accessible to the
++.B t1lib
++font rasterizer library.  The format is intentionally similar to that
++of the
++.B fonts.dir
++and
++.B fonts.scale
++files used by X11.
++.PP
++Line 1 of this file contains a positive integer specifying the number
++of fonts declared in that file. This is as in the
++.B fonts.dir
++files of the X11 system.
++.PP
++All remaining lines contain declarations of one font each. The only
++thing taken from such a line is the last string (delimited by white
++space) in it. It is assumed to be a filename of the format
++\fIbasename\fR.\fIsomeextension\fR.
++.PP
++The \fIbasename\fR part is assumed to be the
++.BR basename (1)
++of a fontfile.  After the a string has been parsed, the
++.I extension
++is cut off and replaced in turn with
++.I .pfa
++and
++.I .pfb.
++The initialization routine tries to open a font file in
++its search path with one of the resulting filenames.
++.PP
++The remainder of the line, i.e., from beginning to the start of the
++filename string, is completely ignored and thus may contain
++information for other programs.
++.SH EXAMPLES
++Here is a minimal font database file for 4 fonts:
++.sp
++.nf
++4
++isvl.afm
++isvli.afm
++isvd.afm
++isvdi.afm
++.fi
++.PP
++This file is \fIminimal\fR, because it contains just the information
++needed, and nothing not needed by the library. 
++.PP
++Here is a more realistic example, which allows an application to match
++a fully qualified X11 fontname to a FontID in
++.B t1lib.
++This is also a valid font database file:
++.sp
++.nf
++4
++Souvenir Souvenir-Light       --- -itc-souvenir-light-r-normal--#-0-0-0-p-0-iso8859-1 isvl.afm
++Souvenir Souvenir-LightItalic -*- -itc-souvenir-light-i-normal--#-0-0-0-p-0-iso8859-1 isvli.afm
++          Souvenir-Demi       *-- -itc-souvenir-demi-r-normal--#-0-0-0-p-0-iso8859-1 isvd.afm
++          Souvenir-DemiItalic **- -itc-souvenir-demi-i-normal--#-0-0-0-p-0-iso8859-1 isvdi.afm
++.fi
++.PP
++.SH FILES
++.I /etc/t1lib/FontDataBase
++.SH "SEE ALSO"
++.BR mkfontdir (1x)
++

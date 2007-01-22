@@ -1,0 +1,63 @@
+--- Makefile.common.in.orig	2007-01-22 11:59:26.000000000 +0100
++++ Makefile.common.in	2007-01-22 11:59:57.000000000 +0100
+@@ -58,9 +58,9 @@
+ 
+ # ------------------- defines -------------------------
+ 
+-INSTALL_BIN = echo installing $$file to $(bindir);$(INSTALL_PROGRAM) $$file $(bindir)/`echo $$file|sed 's/$(EXEEXT)$$//'|sed '$(transform)'|sed 's/$$/$(EXEEXT)/'`
++INSTALL_BIN = echo installing $$file to $(DESTDIR)$(bindir);$(INSTALL_PROGRAM) $$file $(DESTDIR)$(bindir)/`echo $$file|sed 's/$(EXEEXT)$$//'|sed '$(transform)'|sed 's/$$/$(EXEEXT)/'`
+ UNINSTALL_BIN = ff=`echo $$file|sed 's/$(EXEEXT)$$//'|sed '$(transform)'|sed 's/$$/$(EXEEXT)/'`;echo rm -f $(bindir)/$$ff;rm -f $(bindir)/$$ff
+-INSTALL_MAN1 = ff=$(srcdir)/$$file.1; inst=`echo $$file | sed '$(transform)'`.1; echo "$(INSTALL_DATA) $$ff $(man1dir)/$$inst"; $(INSTALL_DATA) $$ff $(man1dir)/$$inst
++INSTALL_MAN1 = ff=$(srcdir)/$$file.1; inst=`echo $$file | sed '$(transform)'`.1; echo "$(INSTALL_DATA) $$ff $(DESTDIR)$(man1dir)/$$inst"; $(INSTALL_DATA) $$ff $(DESTDIR)$(man1dir)/$$inst
+ UNINSTALL_MAN1 = ff=$(srcdir)/$$file.1; inst=`echo $$file | sed '$(transform)'`.1; echo "rm -f $(man1dir)/$$inst"; rm -f $(man1dir)/$$inst
+ 
+ #%.o: %.c
+--- pdf2swf/Makefile.in.orig	2007-01-22 12:00:17.000000000 +0100
++++ pdf2swf/Makefile.in	2007-01-22 12:00:56.000000000 +0100
+@@ -38,11 +38,11 @@
+ 	cd ttf2pt1;$(MAKE)
+ 
+ install:
+-	$(mkinstalldirs) $(bindir)
+-	$(mkinstalldirs) $(man1dir)
++	$(mkinstalldirs) $(DESTDIR)$(bindir)
++	$(mkinstalldirs) $(DESTDIR)$(man1dir)
+ 	@file=pdf2swf;$(INSTALL_BIN);$(INSTALL_MAN1)
+-	$(mkinstalldirs) $(pkgdatadir)/fonts
+-	@echo installing fonts in $(pkgdatadir)/fonts;for file in $(fonts);do $(INSTALL_DATA) fonts/$$file $(pkgdatadir)/fonts/$$file;done
++	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/fonts
++	@echo installing fonts in $(DESTDIR)$(pkgdatadir)/fonts;for file in $(fonts);do $(INSTALL_DATA) fonts/$$file $(DESTDIR)$(pkgdatadir)/fonts/$$file;done
+ 	
+ uninstall:
+ 	@file=pdf2swf;$(UNINSTALL_BIN);$(UNINSTALL_MAN1)
+--- swfs/Makefile.in.orig	2007-01-22 11:57:39.000000000 +0100
++++ swfs/Makefile.in	2007-01-22 11:59:04.000000000 +0100
+@@ -34,17 +34,17 @@
+ 	./PreLoaderTemplate$(E) || true
+ 
+ install:
+-	$(mkinstalldirs) $(pkgdatadir)
+-	$(mkinstalldirs) $(pkgdatadir)/swfs
+-	$(INSTALL_DATA) ./simple_viewer.swf $(pkgdatadir)/swfs/simple_viewer.swf
+-	$(INSTALL_DATA) ./keyboard_viewer.swf $(pkgdatadir)/swfs/keyboard_viewer.swf
+-	$(INSTALL_DATA) ./PreLoaderTemplate.swf $(pkgdatadir)/swfs/PreLoaderTemplate.swf
+-	$(INSTALL_DATA) ./tessel_loader.swf $(pkgdatadir)/swfs/tessel_loader.swf
+-	$(INSTALL_DATA) ./swft_loader.swf $(pkgdatadir)/swfs/swft_loader.swf
+-	test -f $(pkgdatadir)/swfs/default_viewer.swf || \
+-	    $(LN_S) $(pkgdatadir)/swfs/simple_viewer.swf $(pkgdatadir)/swfs/default_viewer.swf;
+-	test -f $(pkgdatadir)/swfs/default_loader.swf || \
+-	    $(LN_S) $(pkgdatadir)/swfs/tessel_loader.swf $(pkgdatadir)/swfs/default_loader.swf;
++	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)
++	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/swfs
++	$(INSTALL_DATA) ./simple_viewer.swf $(DESTDIR)$(pkgdatadir)/swfs/simple_viewer.swf
++	$(INSTALL_DATA) ./keyboard_viewer.swf $(DESTDIR)$(pkgdatadir)/swfs/keyboard_viewer.swf
++	$(INSTALL_DATA) ./PreLoaderTemplate.swf $(DESTDIR)$(pkgdatadir)/swfs/PreLoaderTemplate.swf
++	$(INSTALL_DATA) ./tessel_loader.swf $(DESTDIR)$(pkgdatadir)/swfs/tessel_loader.swf
++	$(INSTALL_DATA) ./swft_loader.swf $(DESTDIR)$(pkgdatadir)/swfs/swft_loader.swf
++	test -f $(DESTDIR)$(pkgdatadir)/swfs/default_viewer.swf || \
++	    $(LN_S) simple_viewer.swf $(DESTDIR)$(pkgdatadir)/swfs/default_viewer.swf;
++	test -f $(DESTDIR)$(pkgdatadir)/swfs/default_loader.swf || \
++	    $(LN_S) tessel_loader.swf $(DESTDIR)$(pkgdatadir)/swfs/default_loader.swf;
+ 		
+ uninstall:
+ 	$(UNINSTALL_DATA) $(pkgdatadir)/swfs/simple_viewer.swf
