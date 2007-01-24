@@ -1,0 +1,86 @@
+diff -ru gtkpod-0.99.8/src/file.c gtkpod-0.99.8_libgpod-0.4.2/src/file.c
+--- gtkpod-0.99.8/src/file.c	2006-09-24 15:42:52.000000000 +0900
++++ gtkpod-0.99.8_libgpod-0.4.2/src/file.c	2007-01-16 01:06:52.000000000 +0900
+@@ -851,7 +851,7 @@
+     to->time_modified = from->time_modified;
+     to->year = from->year;
+     to->compilation = from->compilation;
+-    to->unk208 = from->unk208;
++    to->mediatype = from->mediatype;
+     to->lyrics_flag = from->lyrics_flag;
+     to->movie_flag = from->movie_flag;
+ }
+@@ -1069,25 +1069,25 @@
+     {
+     case FILE_TYPE_MP3:
+ 	nti = mp3_get_file_info (name);
+-	/* Set unk208 to audio */
+-	if (nti) nti->unk208 = 0x00000001;
++	/* Set mediatype to audio */
++	if (nti) nti->mediatype = 0x00000001;
+ 	break;
+     case FILE_TYPE_M4A:
+     case FILE_TYPE_M4P:
+     case FILE_TYPE_M4B:
+ 	nti = mp4_get_file_info (name);
+-	/* Set unk208 to audio */
++	/* Set mediatype to audio */
+ 	if (nti)
+ 	{
+-	    nti->unk208 = 0x00000001;
++	    nti->mediatype = 0x00000001;
+ 	}
+ 	break;
+     case FILE_TYPE_WAV:
+ 	nti = wav_get_file_info (name);
+-	/* Set unk208 to audio */
++	/* Set mediatype to audio */
+ 	if (nti)
+ 	{
+-	    nti->unk208 = 0x00000001;
++	    nti->mediatype = 0x00000001;
+ 	}
+ 	break;
+     case FILE_TYPE_M4V:
+@@ -1096,10 +1096,10 @@
+ 	   this. Let's see if someone complains. */
+ 	nti = mp4_get_file_info (name);
+ 	if (!nti) video_get_file_info (name);
+-	/* Set unk208 to video */
++	/* Set mediatype to video */
+ 	if (nti)
+ 	{
+-	    nti->unk208 = 0x00000002;
++	    nti->mediatype = 0x00000002;
+ 	    nti->movie_flag = 0x01;
+ 	}	
+ 	break;
+@@ -1107,10 +1107,10 @@
+     case FILE_TYPE_MPG:
+ 	/* for now treat all the same */
+ 	nti = video_get_file_info (name);
+-	/* Set unk208 to video */
++	/* Set mediatype to video */
+ 	if (nti)
+ 	{
+-	    nti->unk208 = 0x00000002;
++	    nti->mediatype = 0x00000002;
+ 	    nti->movie_flag = 0x01;
+ 	}
+ 	break;
+diff -ru gtkpod-0.99.8/src/file_itunesdb.c gtkpod-0.99.8_libgpod-0.4.2/src/file_itunesdb.c
+--- gtkpod-0.99.8/src/file_itunesdb.c	2006-06-26 01:08:22.000000000 +0900
++++ gtkpod-0.99.8_libgpod-0.4.2/src/file_itunesdb.c	2007-01-16 01:06:52.000000000 +0900
+@@ -589,9 +589,9 @@
+ 		track->has_artwork = 0x02;
+ 	}
+ 
+-	/* set unk208 to audio if unset (important only for iPod Video) */
+-	if (track->unk208 == 0)
+-	    track->unk208 = 0x00000001;
++	/* set mediatype to audio if unset (important only for iPod Video) */
++	if (track->mediatype == 0)
++	    track->mediatype = 0x00000001;
+ 	/* restore deleted thumbnails */
+ 	if ((track->artwork->thumbnails == NULL) &&
+ 	    (strlen (etr->thumb_path_locale) != 0))

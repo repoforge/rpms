@@ -6,11 +6,12 @@
 Summary: Graphical song management program for Apple's iPod
 Name: gtkpod
 Version: 0.99.8
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.gtkpod.org/
 Source: http://dl.sf.net/gtkpod/gtkpod-%{version}.tar.gz
+Patch0: http://heanet.dl.sf.net/gtkpod/gtkpod-0.99.8_libgpod-0.4.2.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libgpod-devel, gtk2-devel, libglade2-devel
 BuildRequires: libid3tag-devel, libmp4v2-devel, gettext, flex
@@ -24,6 +25,7 @@ mini, iPod Photo, iPod Shuffle, iPod nano, and iPod Video..
 
 %prep
 %setup
+%patch0 -p1 -b .libgpod-0.4.2
 # Create a desktop menu entry
 %{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
@@ -83,6 +85,9 @@ desktop-file-install \
 
 
 %changelog
+* Wed Jan 24 2007 Matthias Saou <http://freshrpms.net/> 0.99.8-3
+- Rebuild against new libgpod 0.4.2.
+
 * Fri Dec 15 2006 Matthias Saou <http://freshrpms.net/> 0.99.8-2
 - Rebuild against simple libmp4v2 instead of full faac2, it seems like this
   package could go into Extras now!
