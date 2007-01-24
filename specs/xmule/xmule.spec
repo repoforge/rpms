@@ -12,7 +12,7 @@ Source: http://dl.sf.net/xmule/xmule-%{version}.tar.bz2
 Patch: xmule-1.10.0-install.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: /usr/sbin/alternatives
-BuildRequires: gcc-c++, wxGTK2-devel >= 2.4.2, zlib-devel, gettext
+BuildRequires: gcc-c++, wxGTK-devel >= 2.4.2, zlib-devel, gettext
 BuildRequires: cryptopp-devel
 # Required by xrc
 BuildRequires: expat-devel

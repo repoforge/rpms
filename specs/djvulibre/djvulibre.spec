@@ -3,13 +3,15 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?el4:%define _without_modxorg 1}
-%{?el3:%define _without_modxorg 1}
-%{?el2:%define _without_modxorg 1}
 %{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
 %{?fc3:%define _without_modxorg 1}
 %{?fc2:%define _without_modxorg 1}
 %{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
 
 Summary: DjVu viewers, encoders and utilities
 Name: djvulibre
@@ -55,7 +57,7 @@ compatible with version 3.5 of the LizardTech DjVu software suite.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 #find_lang %{name}
 
 %{__mkdir_p} %{buildroot}%{_libdir}/mozilla/plugins
@@ -91,6 +93,7 @@ update-desktop-database /usr/share/applications || :
 %{_datadir}/application-registry/djvu.applications
 %{_datadir}/applications/djview.desktop
 %{_datadir}/icons/hicolor/??x??/mimetypes/djvu.png
+%{_datadir}/mimelnk/image/x-djvu.desktop
 %{_datadir}/mime-info/djvu.*
 %{_datadir}/djvu/
 %{_datadir}/pixmaps/djvu.png

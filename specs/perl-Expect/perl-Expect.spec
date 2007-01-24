@@ -1,14 +1,10 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Roland Giersig <RGiersig$cpan,org>
 
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 
 %define real_name Expect
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Expect for perl
 Name: perl-Expect

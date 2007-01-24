@@ -25,7 +25,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl(HTML::Parser) >= 3.24, perl(Net::DNS), perl(Time::HiRes), openssl-devel
 Requires: procmail, perl(Net::DNS), perl(Time::HiRes), perl-libwww-perl
-Requires: perl(Archive::Tar), perl(IO::Zlib)
+Requires: perl(Archive::Tar) >= 1.23, perl(IO::Zlib)
 Requires: /sbin/chkconfig, /sbin/service
 #Requires: perl(Mail::SpamAssassin) = %{version}-%{release}
 Provides: perl(Mail::SpamAssassin) = %{version}-%{release}

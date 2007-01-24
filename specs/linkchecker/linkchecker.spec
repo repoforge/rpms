@@ -15,8 +15,7 @@ URL: http://linkchecker.sourceforge.net/
 Source: http://dl.sf.net/linkchecker/linkchecker-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python, gettext
-BuildRequires: python-devel >= 2.4
+BuildRequires: python-devel >= 2.4, gettext
 Requires: python >= 2.4
 
 %description
@@ -30,8 +29,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__python} setup.py install \
-	--root="%{buildroot}"
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -45,7 +43,6 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{_datadir}/linkchecker/
 %{python_dir}/linkcheck/
 %{python_dir}/_linkchecker_configdata.py*
-
 
 %changelog
 * Mon Dec 18 2006 Dries Verachtert <dries@ulyssis.org> - 4.6-1
@@ -62,9 +59,6 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 
 * Sat May 20 2006 Dries Verachtert <dries@ulyssis.org> - 4.0-1
 - Updated to release 4.0.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.3-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Oct 15 2005 Dries Verachtert <dries@ulyssis.org> - 3.3-1
 - Updated to release 3.3.

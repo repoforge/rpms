@@ -12,8 +12,8 @@
 
 Summary: Command-line WebDAV client
 Name: cadaver
-Version: 0.22.2
-Release: 1.2
+Version: 0.22.5
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.webdav.org/cadaver/
@@ -42,19 +42,20 @@ and resource locking.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING FAQ NEWS README THANKS TODO
 %doc %{_mandir}/man1/cadaver.1*
 %{_bindir}/cadaver
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.22.2-1.2
-- Rebuild for Fedora Core 5.
+* Tue Jan 23 2007 Dag Wieers <dag@wieers.com> - 0.22.5-1
+- Updated to release 0.22.5.
 
 * Sat Dec 04 2004 Dag Wieers <dag@wieers.com> - 0.22.2-1
 - Updated to release 0.22.2.
