@@ -24,7 +24,7 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.4.2
+Version: 1.4.3
 ### FC3 comes with release 1.1
 Release: 0.1
 License: BSD
@@ -254,14 +254,17 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
+* Thu Jan 25 2007 Dag Wieers <dag@wieers.com> - 1.4.3-0.1
+- Updated to release 1.4.3.
+
 * Wed Nov 08 2006 Dag Wieers <dag@wieers.com> - 1.4.2-0.1
-- Updated to release 1.4.2
+- Updated to release 1.4.2.
 
 * Tue Aug 01 2006 Dag Wieers <dag@wieers.com> - 1.3.2-0.1
-- Updated to release 1.3.2
+- Updated to release 1.3.2.
 
 * Wed Jul 13 2005 Dag Wieers <dag@wieers.com> - 1.2.1-0.1
-- Updated to release 1.2.1
+- Updated to release 1.2.1.
 
 * Mon Jun 06 2005 Dag Wieers <dag@wieers.com> - 1.2.0-0.2
 - Moved perl examples to subversion-perl.

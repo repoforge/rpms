@@ -3,8 +3,8 @@
 
 Summary: Multi-purpose WAVE data processing and reporting utility
 Name: shntool
-Version: 2.0.3
-Release: 1.2
+Version: 3.0.1
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.etree.org/shnutils/shntool/
@@ -42,8 +42,8 @@ exists a format module to handle that particular file type.
 %{_bindir}/*
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.3-1.2
-- Rebuild for Fedora Core 5.
+* Thu Jan 25 2007 Dag Wieers <dag@wieers.com> - 3.0.1-1
+- Updated to release 3.0.1.
 
 * Wed Jul 14 2004 Dag Wieers <dag@wieers.com> - 2.0.3-1
 - Initial package. (using DAR)
