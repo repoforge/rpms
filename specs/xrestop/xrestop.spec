@@ -13,23 +13,27 @@
 
 Summary: X resource monitor
 Name: xrestop
-Version: 0.3
-Release: 1.2
+Version: 0.4
+Release: 1
 License: GPL
 Group: Applications/System
-URL: http://www.freedesktop.org/Software/xrestop/
+URL: http://www.freedesktop.org/wiki/Software_2fxrestop
 
-Source: http://freedesktop.org/Software/xrestop/xrestop-%{version}.tar.gz
+Source: http://projects.o-hand.com/sources/xrestop/xrestop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
-
 %description
-A utility to monitor the usage of resources within the X Server, and
-display them in a manner similar to top.
+xrestop is a utility to monitor the usage of resources within the X Server,
+and display them in a manner similar to top.
+
+Xrestop uses the X-Resource extension to provide 'top' like statistics of
+each connected X11 client's server side resource usage. It is intended as
+a developer tool to aid more efficient server resource usage and debug
+server side leakage.
 
 %prep
 %setup
@@ -40,7 +44,7 @@ display them in a manner similar to top.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -52,8 +56,8 @@ display them in a manner similar to top.
 %{_bindir}/xrestop
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-1.2
-- Rebuild for Fedora Core 5.
+* Fri Jan 26 2007 Dag Wieers <dag@wieers.com> - 0.4-1
+- Updated to release 0.4.
 
 * Wed Aug 18 2004 Dag Wieers <dag@wieers.com> - 0.3-1
 - Updated to release 0.3.

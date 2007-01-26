@@ -12,7 +12,7 @@
 Summary: "Sticky" Honeypot and IDS
 Name: labrea
 Version: 2.5
-Release: 1.2
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://labrea.sourceforge.net/
@@ -38,7 +38,7 @@ at the other end gets "stuck", sometimes for a very long time.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -46,10 +46,14 @@ at the other end gets "stuck", sometimes for a very long time.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/labrea.1*
+%doc %{_mandir}/man5/labrea.conf.5*
 %config(noreplace) %{_sysconfdir}/labrea.conf
 %{_sbindir}/labrea
 
 %changelog
+* Fri Jan 26 2007 Dag Wieers <dag@wieers.com> - 2.5-2
+- Rebuild for fixing group on older packages (<fc3).
+
 * Fri Jul 02 2004 Dag Wieers <dag@wieers.com> - 2.5-1
 - Initial package. (using DAR)

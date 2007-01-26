@@ -47,11 +47,8 @@ source %{_sysconfdir}/profile.d/qt.sh
 %makeinstall
 %find_lang %{real_name}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}

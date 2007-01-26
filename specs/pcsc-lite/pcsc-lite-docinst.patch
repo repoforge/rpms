@@ -1,0 +1,11 @@
+--- doc/Makefile.in	2003-05-31 00:24:32.000000000 +0300
++++ doc/Makefile.in	2003-06-01 15:43:17.000000000 +0300
+@@ -390,7 +390,7 @@
+ 
+ info-am:
+ 
+-install-data-am: install-dataDATA install-man
++install-data-am: install-man
+ 
+ install-exec-am:
+ 

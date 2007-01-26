@@ -4,7 +4,7 @@
 Summary: Convert C++ code to latex
 Name: cpp2latex
 Version: 2.3
-Release: 1.2
+Release: 2
 License: GPL
 Group: Applications/Publishing
 URL: http://www.arnoldarts.de/cpp2latex.html
@@ -22,12 +22,13 @@ LaTeX-document.
 %setup
 
 %build
-%configure
+%configure \
+	--program-prefix="%{?_program_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -35,11 +36,11 @@ LaTeX-document.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO
-%{_bindir}/*
+%{_bindir}/cpp2latex
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.3-1.2
-- Rebuild for Fedora Core 5.
+* Fri Jan 26 2007 Dag Wieers <dag@wieers.com> - 2.3-2
+- Rebuild for fixing group on older packages (<fc3).
 
 * Sat Jun 12 2004 Dries Verachtert <dries@ulyssis.org> - 2.3-1
 - Initial package.

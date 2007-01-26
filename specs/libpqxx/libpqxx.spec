@@ -42,13 +42,10 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -56,17 +53,17 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-%{_bindir}/*
-%{_libdir}/*.so
+%{_bindir}/pqxx-config
+%{_libdir}/libpqxx*.so
 %{_libdir}/pkgconfig/libpqxx.pc
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/html/*
 %{_includedir}/pqxx/*
-%{_libdir}/*.a
-%{_libdir}/*.so
+%{_libdir}/libpqxx.a
 %exclude %{_libdir}/*.la
+%{_libdir}/libpqxx*.so
 
 %changelog
 * Mon Nov 20 2006 Dries Verachtert <dries@ulyssis.org> - 2.6.7-2
@@ -77,9 +74,6 @@ you will need to install %{name}-devel.
 
 * Sun May 28 2006 Dries Verachtert <dries@ulyssis.org> - 2.6.6-1
 - Updated to release 2.6.6.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.3-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> - 2.2.3-1
 - Initial package.

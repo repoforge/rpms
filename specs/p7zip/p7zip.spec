@@ -3,7 +3,7 @@
 
 Summary: Very high compression ratio file archiver
 Name: p7zip
-Version: 4.43
+Version: 4.44
 Release: 1
 License: LGPL
 Group: Applications/Archiving
@@ -20,7 +20,7 @@ compression ratio. The original version can be found at http://www.7-zip.org/.
 %package plugins
 Summary: Additional plugins for p7zip
 Group: Applications/Archiving
-Requires: %{name} = %{version}
+Requires: %{name} = %{version}-%{release}
 
 %description plugins
 Additional plugins that can be used with 7z to extend its abilities.
@@ -64,8 +64,8 @@ EOF
 %{__cp} -a bin/* %{buildroot}%{_libexecdir}/p7zip/
 
 ### Install wrapper scripts
-%{__install} -D -m 0755 7z.sh  %{buildroot}%{_bindir}/7z
-%{__install} -D -m 0755 7za.sh %{buildroot}%{_bindir}/7za
+%{__install} -Dp -m0755 7z.sh  %{buildroot}%{_bindir}/7z
+%{__install} -Dp -m0755 7za.sh %{buildroot}%{_bindir}/7za
 
 
 %clean
@@ -84,12 +84,16 @@ EOF
 %defattr(-, root, root, 0755)
 %doc contrib/
 %{_bindir}/7z
+%dir %{_libexecdir}/p7zip/
 %{_libexecdir}/p7zip/7z
 %{_libexecdir}/p7zip/Codecs/
 %{_libexecdir}/p7zip/Formats/
 
 
 %changelog
+* Fri Jan 26 2007 Dag Wieers <dag@wieers.com> - 4.44-1
+- Updated to release 4.44.
+
 * Sat Sep 30 2006 Dag Wieers <dag@wieers.com> - 4.43-1
 - Updated to release 4.43.
 

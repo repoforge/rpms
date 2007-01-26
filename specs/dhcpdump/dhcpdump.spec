@@ -4,8 +4,8 @@
 
 Summary: Parse tcpdump DHCP packets
 Name: dhcpdump
-Version: 1.6
-Release: 1.2
+Version: 1.7
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://sourceforge.net/projects/mavetju/
@@ -14,7 +14,8 @@ Source: http://www.mavetju.org/download/dhcpdump-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
-A post-processor of tcpdump output to analyze sniffed DHCP packets.
+dhcpdump is a tool to post-process tcpdump output in order analyse
+sniffed DHCP packets.
 
 %prep
 %setup
@@ -26,20 +27,20 @@ A post-processor of tcpdump output to analyze sniffed DHCP packets.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc CHANGES CONTACT LICENSE
+%doc %{_mandir}/man1/dhcpdump.1*
+%{_bindir}/dhcpdump
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.6-1.2
-- Rebuild for Fedora Core 5.
+* Fri Jan 27 2007 Dag Wieers <dag@wieers.com> - 1.7-1
+- Updated to release 1.7.
 
 * Wed May 26 2004 Dries Verachtert <dries@ulyssis.org> - 1.6-1
 - Initial package.

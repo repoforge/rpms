@@ -1,0 +1,20 @@
+--- pcsc-lite-1.3.0/configure~	2006-03-03 15:48:59.000000000 +0200
++++ pcsc-lite-1.3.0/configure	2006-03-05 23:40:48.000000000 +0200
+@@ -9103,7 +9103,7 @@
+ shlibpath_overrides_runpath=unknown
+ version_type=none
+ dynamic_linker="$host_os ld.so"
+-sys_lib_dlsearch_path_spec="/lib /usr/lib"
++sys_lib_dlsearch_path_spec="/lib64 /usr/lib64 /lib /usr/lib"
+ if test "$GCC" = yes; then
+   sys_lib_search_path_spec=`$CC -print-search-dirs | grep "^libraries:" | $SED -e "s/^libraries://" -e "s,=/,/,g"`
+   if echo "$sys_lib_search_path_spec" | grep ';' >/dev/null ; then
+@@ -9480,7 +9480,7 @@
+   # Append ld.so.conf contents to the search path
+   if test -f /etc/ld.so.conf; then
+     lt_ld_extra=`awk '/^include / { system(sprintf("cd /etc; cat %s", \$2)); skip = 1; } { if (!skip) print \$0; skip = 0; }' < /etc/ld.so.conf | $SED -e 's/#.*//;s/[:,	]/ /g;s/=[^=]*$//;s/=[^= ]* / /g;/^$/d' | tr '\n' ' '`
+-    sys_lib_dlsearch_path_spec="/lib /usr/lib $lt_ld_extra"
++    sys_lib_dlsearch_path_spec="/lib64 /usr/lib64 /lib /usr/lib $lt_ld_extra"
+   fi
+ 
+   # We used to test for /lib/ld.so.1 and disable shared libraries on
