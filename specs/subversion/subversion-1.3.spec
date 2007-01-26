@@ -1,4 +1,4 @@
-# $Id: subversion.spec 4608 2006-08-02 15:32:29Z dag $
+# $Id$
 # Authority: dag
 
 ##ExcludeDist: fc3
@@ -24,7 +24,7 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.4.3
+Version: 1.3.2
 ### FC3 comes with release 1.1
 Release: 0.1
 License: BSD
@@ -39,14 +39,13 @@ Source10: http://dl.sf.net/swig/swig-%{swig_version}.tar.gz
 #Patch1: subversion-0.24.2-swig.patch
 Patch2: subversion-0.20.1-deplibs.patch
 Patch3: subversion-0.31.0-rpath.patch
-Patch6: subversion-1.4.2-pie.patch
+Patch6: subversion-1.3.0-pie.patch
 Patch7: subversion-1.1.3-java.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, libtool, python, python-devel, texinfo, which
 BuildRequires: expat-devel, docbook-style-xsl
-BuildRequires: apr-util-devel >= 0.9.3-2, openssl-devel
-BuildRequires: apr-devel >= 0.9.7
+BuildRequires: apr-devel >= 0.9.3-2, apr-util-devel >= 0.9.3-2, openssl-devel
 BuildRequires: neon-devel >= 0.24.7-1
 #%{!?_without_swig:BuildRequires: swig >= 1.3.21-5}
 #%{!?_without_swig:BuildRequires: swig}
@@ -180,7 +179,7 @@ find %{buildroot} -type f \
 
 # make Perl modules writable so they get stripped
 find %{buildroot}%{_libdir}/perl5 -type f -perm 555 -print0 |
-        xargs -0 chmod 0755
+        xargs -0 chmod 755
 %endif
 
 # unnecessary libraries for swig bindings
@@ -254,17 +253,11 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
-* Thu Jan 25 2007 Dag Wieers <dag@wieers.com> - 1.4.3-0.1
-- Updated to release 1.4.3.
-
-* Wed Nov 08 2006 Dag Wieers <dag@wieers.com> - 1.4.2-0.1
-- Updated to release 1.4.2.
-
 * Tue Aug 01 2006 Dag Wieers <dag@wieers.com> - 1.3.2-0.1
-- Updated to release 1.3.2.
+- Updated to release 1.3.2
 
 * Wed Jul 13 2005 Dag Wieers <dag@wieers.com> - 1.2.1-0.1
-- Updated to release 1.2.1.
+- Updated to release 1.2.1
 
 * Mon Jun 06 2005 Dag Wieers <dag@wieers.com> - 1.2.0-0.2
 - Moved perl examples to subversion-perl.
