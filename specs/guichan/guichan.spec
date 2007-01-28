@@ -6,13 +6,13 @@
 
 Summary: Small efficient C++ GUI library
 Name: guichan
-Version: 0.6.0
+Version: 0.6.1
 Release: 1
 License: BSD
 Group: Development/Libraries
 URL: http://guichan.sourceforge.net
 
-Source: http://dl.sf.net/guichan/guichan-%{version}-src.tar.gz
+Source: http://dl.sf.net/guichan/guichan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, autoconf, automake, allegro-devel, SDL-devel
@@ -34,7 +34,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n guichan-%{version}-src
+%setup
 %{__perl} -pi -e 's|-Werror||g;' configure*
 
 %build
@@ -80,6 +80,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Jan 27 2007 Dries Verachtert <dries@ulyssis.org> - 0.6.1-1
+- Updated to release 0.6.1.
+
 * Sun Jan 14 2007 Dries Verachtert <dries@ulyssis.org> - 0.6.0-1
 - Updated to release 0.6.0.
 

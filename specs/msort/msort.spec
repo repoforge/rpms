@@ -4,14 +4,14 @@
 
 Summary: Sort files in sophisticated ways
 Name: msort
-%define real_version 8.35
-Version: 8.35
+%define real_version 8.36.1
+Version: 8.36.1
 Release: 1
 License: GPL
 Group: Applications/Publishing
 URL: http://billposer.org/Software/msort.html
 
-Source: http://billposer.org/Software/Downloads/msort-%{version}.tgz
+Source: http://billposer.org/Software/Downloads/msort-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: tre-devel, libuninum-devel
@@ -48,6 +48,9 @@ by an optional GUI.
 %{_bindir}/msort
 
 %changelog
+* Sat Jan 27 2007 Dries Verachtert <dries@ulyssis.org> - 8.36.1-1
+- Updated to release 8.36.1.
+
 * Sun Jan 14 2007 Dries Verachtert <dries@ulyssis.org> - 8.35-1
 - Updated to release 8.35.
 

@@ -4,14 +4,14 @@
 
 Summary: Library for converting unicode strings to numbers
 Name: libuninum
-%define real_version 1.2
-Version: 1.2.2
+%define real_version 2.0.3
+Version: 2.0.3
 Release: 1
 License: LGPL
 Group: Development/Libraries
 URL: http://billposer.org/Software/libuninum.html
 
-Source: http://billposer.org/Software/Downloads/libuninum-%{real_version}.tgz
+Source: http://billposer.org/Software/Downloads/libuninum-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gmp-devel
@@ -71,6 +71,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Jan 27 2007 Dries Verachtert <dries@ulyssis.org> - 2.0.3-1
+- Updated to release 2.0.3.
+
 * Tue Jan 09 2007 Dag Wieers <dag@wieers.com> - 1.2.2-1
 - Updated to release 1.2.2.
 
