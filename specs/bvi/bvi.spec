@@ -2,8 +2,8 @@
 # Authority: dag
 
 Summary: Hex editor for binary files (binary vi)
-Name: bvi 
-Version: 1.3.2 
+Name: bvi
+Version: 1.3.2
 Release: 1
 License: GPL
 Group: Applications/Editors

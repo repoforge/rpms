@@ -9,7 +9,7 @@ Name: biew
 Version: 5.6.2
 Release: 2
 License: GPL
-Group: Development/Tools
+Group: Applications/Editors
 URL: http://biew.sourceforge.net/
 
 Source: http://dl.sf.net/biew/biew%{real_version}.tar.bz2
