@@ -8,7 +8,7 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-Version: 3.31
+Version: 3.35
 Release: 1
 License: GPL
 Group: Applications/System
@@ -17,7 +17,6 @@ URL: http://syslinux.zytor.com/
 Source: ftp://ftp.kernel.org/pub/linux/utils/boot/syslinux/syslinux-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#Autoreq: 0
 ExclusiveArch: i386 x86_64
 BuildRequires: nasm, perl, netpbm-progs
 Requires: mtools
@@ -38,9 +37,6 @@ ISO 9660 CD-ROMs (ISOLINUX).
 
 %install
 %{__rm} -rf %{buildroot}
-#%{__install} -d -m0755 %{buildroot}%{_bindir} \
-#			%{buildroot}%{_libdir}/syslinux/ \
-#			%{buildroot}%{_includedir}
 %makeinstall install-lib \
 	INSTALLROOT="%{buildroot}" \
 	BINDIR="%{_bindir}" \
@@ -58,12 +54,16 @@ ISO 9660 CD-ROMs (ISOLINUX).
 %defattr(-, root, root, 0755)
 %doc *.doc BUGS COPYING memdisk/memdisk.doc NEWS README* sample/ TODO
 %{_sbindir}/extlinux
-%{_bindir}/*
+%{_bindir}/gethostip
+%{_bindir}/lss16toppm
+%{_bindir}/ppmtolss16
+%{_bindir}/syslinux
 %{_libdir}/syslinux/
-#%{_libdir}/libsyslinux.*
-#%{_includedir}/syslinux.h
 
 %changelog
+* Mon Jan 29 2007 Dag Wieers <dag@wieers.com> - 3.35-1
+- Updated to release 3.35.
+
 * Sat Sep 30 2006 Dag Wieers <dag@wieers.com> - 3.31-1
 - Updated to release 3.31.
 
