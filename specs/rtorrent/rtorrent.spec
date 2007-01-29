@@ -3,7 +3,7 @@
 
 Summary: Console based bittorrent client
 Name: rtorrent
-Version: 0.7.0
+Version: 0.7.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -13,7 +13,7 @@ Source: http://libtorrent.rakshasa.no/downloads/rtorrent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, libsigc++20-devel, ncurses-devel
-BuildRequires: libtorrent-devel >= 0.11.0, curl-devel >= 7.12
+BuildRequires: libtorrent-devel >= 0.11.1, curl-devel >= 7.12
 
 %description
 rTorrent is a console-based BitTorrent client. It aims to be a 
@@ -42,6 +42,9 @@ management.
 %{_bindir}/rtorrent
 
 %changelog
+* Mon Jan 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.7.1-1
+- Updated to release 0.7.1.
+
 * Fri Dec 15 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.0-1
 - Updated to release 0.7.0.
 
