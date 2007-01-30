@@ -7,13 +7,13 @@
 
 Summary: Graphical FTP client for the K Desktop Environment.
 Name: kftpgrabber
-Version: 0.5.0
-Release: 4
+Version: 0.8.0
+Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://kftpgrabber.sourceforge.net/
+URL: http://www.kftp.org/
 
-Source: http://kftpgrabber.sf.net/releases/kftpgrabber-%{version}.tar.bz2
+Source: http://www.kftp.org/uploads/files/kftpgrabber-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: qt-devel >= 3.3.2, kdelibs-devel >= 3.2.0, openssl-devel >= 0.9.7
@@ -40,7 +40,7 @@ source  /etc/profile.d/qt.sh
 %install
 %{__rm} -rf %{buildroot}
 source  /etc/profile.d/qt.sh
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %clean
@@ -58,12 +58,15 @@ source  /etc/profile.d/qt.sh
 %{_includedir}/kftpgrabber/
 ### .la files are needed by kftpgrabber
 %{_libdir}/libkftpinterfaces.la
-%{_libdir}/libkftpinterfaces.so.*
 %{_libdir}/libkftpinterfaces.so
+%{_libdir}/libkftpinterfaces.so.*
 %{_libdir}/kde3/kftpimportplugin_gftp.la
 %{_libdir}/kde3/kftpimportplugin_gftp.so
 
 %changelog
+* Tue Jan 30 2007 Dag Wieers <dag@wieers.com> - 0.8.0-1
+- Updated to release 0.8.0.
+
 * Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.0-4
 - Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
 

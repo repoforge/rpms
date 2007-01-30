@@ -4,7 +4,7 @@
 
 Summary: Converts from RTF to other formats
 Name: unrtf
-Version: 0.20.1
+Version: 0.20.2
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -22,25 +22,27 @@ files), paragraph alignment, and more.
 %prep
 %setup -n %{name}_%{version}
 
-%{__perl} -pi.orig -e 's|/usr/local/bin|%{buildroot}%{_bindir}|g;' Makefile
-
 %build
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__mkdir_p} %{buildroot}%{_bindir}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING README TODO
+%doc AUTHORS ChangeLog COPYING NEWS README
+%doc %{_mandir}/man1/unrtf.1*
 %{_bindir}/unrtf
 
 %changelog
+* Tue Jan 30 2007 Dag Wieers <dag@wieers.com> - 0.20.2-1
+- Updated to release 0.20.2.
+
 * Fri Apr 07 2006 Dries Verachtert <dries@ulyssis.org> - 0.20.1-1
 - Updated to release 0.20.1.
 
