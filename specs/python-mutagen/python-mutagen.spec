@@ -7,7 +7,7 @@
 
 Summary: Python module to handle audio metadata
 Name: python-mutagen
-Version: 1.6
+Version: 1.9
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -61,5 +61,8 @@ level.
 %ghost %{python_sitelib}/mutagen/*.pyo
 
 %changelog
+* Tue Jan 30 2007 Dag Wieers <dag@wieers.com> - 1.9-1
+- Updated to release 1.9.
+
 * Thu Aug 17 2006 Dag Wieers <dag@wieers.com> - 1.6-1
 - Initial package. (using DAR)
