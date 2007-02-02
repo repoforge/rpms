@@ -30,8 +30,8 @@ most major OS platforms.
 
 %build
 if pkg-config openssl; then
-    CFLAGS="%{optflags} `pkg-config --cflags openssl`"
-    LDFLAGS="$LDFLAGS `pkg-config --libs-only-L openssl`"
+    export CFLAGS="%{optflags} $(pkg-config --cflags openssl)"
+    export LDFLAGS="$LDFLAGS $(pkg-config --libs-only-L openssl)"
 fi
 %configure \
 	--program-prefix="%{?_program_prefix}" \

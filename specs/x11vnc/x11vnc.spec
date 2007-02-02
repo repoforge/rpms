@@ -18,8 +18,8 @@
 
 Summary: VNC server for the current X11 session
 Name: x11vnc
-Version: 0.8.3
-Release: 2
+Version: 0.8.4
+Release: 1
 License: GPL
 Group: User Interface/X
 URL: http://www.karlrunge.com/x11vnc/
@@ -43,7 +43,12 @@ into a versatile and performant while still easy to use program.
 %setup
 
 %build
-%configure %{?_without_modxorg:LDFLAGS=-L/usr/X11R6/lib}
+if pkg-config openssl; then
+    export CFLAGS="%{optflags} $(pkg-config --cflags openssl)"
+    export LDFLAGS="$LDFLAGS $(pkg-config --libs-only-L openssl)"
+#%{?_without_modxorg:export LDFLAGS="$LDFLAGS -L/usr/X11R6/lib"}
+fi
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
@@ -61,6 +66,9 @@ into a versatile and performant while still easy to use program.
 %{_datadir}/x11vnc/
 
 %changelog
+* Fri Feb 02 2007 Dag Wieers <dag@wieers.com> - 0.8.4-1
+- Updated to release 0.8.4.
+
 * Sun Dec 03 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.3-2
 - libXtst-devel added, thanks to Walter Neumann.
 

@@ -26,7 +26,7 @@
 
 Summary: Frontend for the xine multimedia library
 Name: gxine
-Version: 0.5.10
+Version: 0.5.11
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -127,6 +127,9 @@ EOF
 %{_datadir}/icons/*/*/apps/gxine.png
 
 %changelog
+* Fri Feb 02 2007 Dag Wieers <dag@wieers.com> - 0.5.11-1
+- Updated to release 0.5.11.
+
 * Tue Jan  9 2007 Matthias Saou <http://freshrpms.net/> 0.5.10-1
 - Update to 0.5.10.
 
