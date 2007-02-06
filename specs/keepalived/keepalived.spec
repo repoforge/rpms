@@ -1,22 +1,28 @@
 # $Id$
 # Authority: dag
 
-### FIXME: FC3 and EL4 do not have kernel-source packages. No IPVS
-%{?dist: %{expand: %%define %dist 1}}
-%{!?kernel:%define kernel %(rpm --quiet -q kernel-source && rpm -q kernel-source --qf '%{RPMTAG_VERSION}-%{RPMTAG_RELEASE}\\n' | tail -1)}
+%define kernel %(rpm -q kernel-devel --qf '%{RPMTAG_VERSION}-%{RPMTAG_RELEASE}' 2>/dev/null || rpm -q kernel-source --qf '%{RPMTAG_VERSION}-%{RPMTAG_RELEASE}' 2>/dev/null| tail -1)
 
 Summary: HA monitor built upon LVS, VRRP and services poller
 Name: keepalived
-Version: 1.1.12
-Release: 1.2
+Version: 1.1.13
+Release: 2
 License: GPL
 Group: Applications/System
-URL: http://keepalived.sourceforge.net/
+URL: http://www.keepalived.org/
 
-Source: http://www.keepalived.org/software/keepalived-%{version}.tar.gz
+Source0: http://www.keepalived.org/software/keepalived-%{version}.tar.gz
+Source1: keepalived.init
+Source2: keepalived.sysconfig
+Patch0: keepalived-1.1.13-makefile.patch
+Patch1: keepalived-1.1.13-iflabel.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel
+# For recent distros where kernel-devel is available, we need both of these
+BuildRequires: kernel, kernel-devel
+# For older distros, this should probably be enough
+#BuildRequires: kernel-source
 
 %description
 The main goal of the keepalived project is to add a strong & robust
@@ -35,12 +41,8 @@ nodes healthchecks and LVS directors failover.
 
 %prep
 %setup
-
-### FIXME: Fix macros in buildtools (Please fix upstream)
-%{__perl} -pi.orig -e '
-		s|\$\(prefix\)(\@mandir\@)|$1|;
-		s|(\@mandir\@)/man|$1|;
-	' Makefile.in */Makefile.in
+%patch0 -p1 -b .makefile
+%patch1 -p0 -b .iflabel
 
 %build
 %{?el3:export CPPFLAGS="-I/usr/kerberos/include"}
@@ -48,42 +50,63 @@ nodes healthchecks and LVS directors failover.
 %configure \
 %{?el3:--includedir="/usr/kerberos/include"} \
 %{?rh9:--includedir="/usr/kerberos/include"} \
-	--with-kernel-dir="/lib/modules/%{kernel}/build"
+    --with-kernel-dir="/lib/modules/%{kernel}/build"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install \
-	DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}"
+# Remove "samples", as we include them in %%doc
+%{__rm} -rf %{buildroot}%{_sysconfdir}/keepalived/samples/
+# Init script (based on the included one, but enhanced)
+%{__install} -D -p -m 0755 %{SOURCE1} \
+    %{buildroot}%{_sysconfdir}/rc.d/init.d/keepalived
+# Sysconfig file (used by the init script)
+%{__install} -D -p -m 0755 %{SOURCE2} \
+    %{buildroot}%{_sysconfdir}/sysconfig/keepalived
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %post
 /sbin/chkconfig --add keepalived
 
 %preun
 if [ $1 -eq 0 ]; then
-	/sbin/service keepalived stop &>/dev/null || :
-	/sbin/chkconfig --del keepalived
+    /sbin/service keepalived stop &>/dev/null || :
+    /sbin/chkconfig --del keepalived
 fi
 
 %postun
-/sbin/service keepalived condrestart &>/dev/null || :
-
-%clean
-%{__rm} -rf %{buildroot}
+if [ $1 -ge 1 ]; then
+    /sbin/service keepalived condrestart &>/dev/null || :
+fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHOR ChangeLog CONTRIBUTORS COPYING doc/ README TODO
-%doc %{_mandir}/man1/genhash.1*
-%doc %{_mandir}/man5/keepalived.conf.5*
-%doc %{_mandir}/man8/keepalived.8*
-#%config %{_initrddir}/*
-%config(noreplace) %{_sysconfdir}/keepalived/
-%config %{_sysconfdir}/init.d/keepalived
+%doc AUTHOR ChangeLog CONTRIBUTORS COPYING README TODO
+%doc doc/keepalived.conf.SYNOPSIS doc/samples/
+%dir %{_sysconfdir}/keepalived/
+%attr(0600, root, root) %config(noreplace) %{_sysconfdir}/keepalived/keepalived.conf
+%attr(0600, root, root) %config(noreplace) %{_sysconfdir}/sysconfig/keepalived
+%{_sysconfdir}/rc.d/init.d/keepalived
 %{_bindir}/genhash
 %{_sbindir}/keepalived
+%{_mandir}/man1/genhash.1*
+%{_mandir}/man5/keepalived.conf.5*
+%{_mandir}/man8/keepalived.8*
 
 %changelog
+* Mon Feb  5 2007 Matthias Saou <http://freshrpms.net/> 1.1.13-2
+- Use our own init script, include a sysconfig entry used by it for options.
+
+* Thu Jan 25 2007 Matthias Saou <http://freshrpms.net/> 1.1.13-1
+- Update to 1.1.13.
+- Change mode of configuration file to 0600.
+- Don't include all of "doc" since it meant re-including all man pages.
+- Don't include samples in the main configuration path, they're in %%doc.
+- Include patch to add an optional label to interfaces.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.12-1.2
 - Rebuild for Fedora Core 5.
 

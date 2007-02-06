@@ -1,0 +1,153 @@
+Index: doc/keepalived.conf.SYNOPSIS
+===================================================================
+RCS file: /sourceforge/cvs/abrazo/base/os/packages/keepalived/doc/keepalived.conf.SYNOPSIS,v
+retrieving revision 1.1.1.2
+diff -u -r1.1.1.2 keepalived.conf.SYNOPSIS
+--- doc/keepalived.conf.SYNOPSIS	27 Nov 2006 15:27:50 -0000	1.1.1.2
++++ doc/keepalived.conf.SYNOPSIS	27 Nov 2006 16:50:00 -0000
+@@ -165,8 +165,8 @@
+         auth_pass <STRING>		# Password string
+     }
+     virtual_ipaddress {			# VRRP IP addres block
+-        <IP ADDRESS>/<MASK> brd <IP ADDRESS> dev <STRING> scope <SCOPE>
+-        <IP ADDRESS>/<MASK> brd <IP ADDRESS> dev <STRING> scope <SCOPE>
++        <IP ADDRESS>/<MASK> brd <IP ADDRESS> dev <STRING> scope <SCOPE> label <LABEL>
++        <IP ADDRESS>/<MASK> brd <IP ADDRESS> dev <STRING> scope <SCOPE> label <LABEL>
+         ...
+     }
+     virtual_ipaddress_excluded {       	# VRRP IP excluded from VRRP
+@@ -198,6 +198,10 @@
+ 	* nowhere
+ 	* global
+ 
++LABEL is optional and creates a name for the alias. For compatibility with
++"ifconfig", it should be of the form <realdev>:<anytext>, for example
++eth0:1 for an alias on eth0.
++
+ When a weight is specified in track_interface, instead of setting the vrrp
+ instance to the FAULT state in case of failure, its priority will be
+ increased by the weight when the interface is up (for positive weights),
+Index: doc/man/man5/keepalived.conf.5
+===================================================================
+RCS file: /sourceforge/cvs/abrazo/base/os/packages/keepalived/doc/man/man5/keepalived.conf.5,v
+retrieving revision 1.1.1.1
+diff -u -r1.1.1.1 keepalived.conf.5
+--- doc/man/man5/keepalived.conf.5	1 Aug 2006 15:49:31 -0000	1.1.1.1
++++ doc/man/man5/keepalived.conf.5	27 Nov 2006 16:50:00 -0000
+@@ -199,9 +199,9 @@
+     #With the same entries on other machines,
+     #the opposite transition will be occuring.
+     virtual_ipaddress {
+-        <IPADDR>/<MASK> brd <IPADDR> dev <STRING> scope <SCOPE>
++        <IPADDR>/<MASK> brd <IPADDR> dev <STRING> scope <SCOPE> label <LABEL>
+         192.168.200.17/24 dev eth1
+-        192.168.200.18/24 dev eth2
++        192.168.200.18/24 dev eth2 label eth2:1
+     }
+ 
+     #VRRP IP excluded from VRRP
+Index: doc/samples/keepalived.conf.vrrp
+===================================================================
+RCS file: /sourceforge/cvs/abrazo/base/os/packages/keepalived/doc/samples/keepalived.conf.vrrp,v
+retrieving revision 1.1.1.1
+diff -u -r1.1.1.1 keepalived.conf.vrrp
+--- doc/samples/keepalived.conf.vrrp	1 Aug 2006 15:49:31 -0000	1.1.1.1
++++ doc/samples/keepalived.conf.vrrp	27 Nov 2006 16:50:00 -0000
+@@ -26,7 +26,10 @@
+     virtual_ipaddress {
+         192.168.200.16
+         192.168.200.17
+-        192.168.200.18
++
++        # optional label. should be of the form "realdev:sometext" for
++        # compatibility with ifconfig.
++        192.168.200.18 label eth0:1
+     }
+ }
+ 
+Index: keepalived/etc/keepalived/keepalived.conf
+===================================================================
+RCS file: /sourceforge/cvs/abrazo/base/os/packages/keepalived/keepalived/etc/keepalived/keepalived.conf,v
+retrieving revision 1.1.1.1
+diff -u -r1.1.1.1 keepalived.conf
+--- keepalived/etc/keepalived/keepalived.conf	1 Aug 2006 15:49:31 -0000	1.1.1.1
++++ keepalived/etc/keepalived/keepalived.conf	27 Nov 2006 16:50:00 -0000
+@@ -25,7 +25,7 @@
+     virtual_ipaddress {
+         192.168.200.16
+         192.168.200.17
+-        192.168.200.18
++        192.168.200.18 label eth0:3
+     }
+ }
+ 
+Index: keepalived/include/vrrp_ipaddress.h
+===================================================================
+RCS file: /sourceforge/cvs/abrazo/base/os/packages/keepalived/keepalived/include/vrrp_ipaddress.h,v
+retrieving revision 1.1.1.2
+diff -u -r1.1.1.2 vrrp_ipaddress.h
+--- keepalived/include/vrrp_ipaddress.h	27 Nov 2006 15:27:50 -0000	1.1.1.2
++++ keepalived/include/vrrp_ipaddress.h	27 Nov 2006 16:50:00 -0000
+@@ -46,6 +46,7 @@
+ 	interface *ifp;		/* Interface owning IP address */
+ 	int scope;		/* the ip address scope */
+ 	int set;		/* TRUE if addr is set */
++	char *label;		/* Alias name, e.g. eth0:1 */
+ } ip_address;
+ 
+ #define IPADDRESS_DEL 0
+Index: keepalived/vrrp/vrrp_ipaddress.c
+===================================================================
+RCS file: /sourceforge/cvs/abrazo/base/os/packages/keepalived/keepalived/vrrp/vrrp_ipaddress.c,v
+retrieving revision 1.1.1.2
+diff -u -r1.1.1.2 vrrp_ipaddress.c
+--- keepalived/vrrp/vrrp_ipaddress.c	27 Nov 2006 15:27:50 -0000	1.1.1.2
++++ keepalived/vrrp/vrrp_ipaddress.c	27 Nov 2006 16:50:00 -0000
+@@ -53,6 +53,9 @@
+ 	if (ipaddr->broadcast)
+ 		addattr_l(&req.n, sizeof (req), IFA_BROADCAST,
+ 			  &ipaddr->broadcast, sizeof (ipaddr->broadcast));
++	if (ipaddr->label)
++		addattr_l(&req.n, sizeof (req), IFA_LABEL,
++                          ipaddr->label, strlen(ipaddr->label) + 1);
+ 
+ 	if (netlink_talk(&nl_cmd, &req.n) < 0)
+ 		status = -1;
+@@ -90,18 +93,23 @@
+ void
+ free_ipaddress(void *if_data_obj)
+ {
+-	FREE(if_data_obj);
++	ip_address *ip_addr = if_data_obj;
++
++	FREE_PTR(ip_addr->label);
++	FREE(ip_addr);
+ }
+ void
+ dump_ipaddress(void *if_data_obj)
+ {
+ 	ip_address *ip_addr = if_data_obj;
+-	syslog(LOG_INFO, "     %s/%d brd %s dev %s scope %s"
++	syslog(LOG_INFO, "     %s/%d brd %s dev %s scope %s%s%s"
+ 	       , inet_ntop2(ip_addr->addr)
+ 	       , ip_addr->mask
+ 	       , inet_ntop2(ip_addr->broadcast)
+ 	       , IF_NAME(if_get_by_ifindex(ip_addr->ifindex))
+-	       , netlink_scope_n2a(ip_addr->scope));
++	       , netlink_scope_n2a(ip_addr->scope)
++               , ip_addr->label ? " label " : ""
++               , ip_addr->label ? ip_addr->label : "");
+ }
+ void
+ alloc_ipaddress(list ip_list, vector strvec, interface *ifp)
+@@ -139,6 +147,10 @@
+ 			new->scope = netlink_scope_a2n(VECTOR_SLOT(strvec, ++i));
+ 		} else if (!strcmp(str, "broadcast") || !strcmp(str, "brd")) {
+ 			inet_ston(VECTOR_SLOT(strvec, ++i), &new->broadcast);
++		} else if (!strcmp(str, "label")) {
++			new->label = ALLOC(IFNAMSIZ);
++			strncpy(new->label, VECTOR_SLOT(strvec, ++i), IFNAMSIZ);
++			new->label[IFNAMSIZ-1] = '\0';
+ 		} else {
+ 			if (inet_ston(VECTOR_SLOT(strvec, i), &ipaddr)) {
+ 				inet_ston(VECTOR_SLOT(strvec, i), &new->addr);

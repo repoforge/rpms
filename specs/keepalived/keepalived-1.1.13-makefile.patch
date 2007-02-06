@@ -1,0 +1,76 @@
+diff -Naupr keepalived-1.1.13.orig/genhash/Makefile.in keepalived-1.1.13/genhash/Makefile.in
+--- keepalived-1.1.13.orig/genhash/Makefile.in	2006-10-11 11:46:49.000000000 +0200
++++ keepalived-1.1.13/genhash/Makefile.in	2007-01-25 19:27:44.000000000 +0100
+@@ -7,7 +7,8 @@ BIN  = ../bin
+ 
+ prefix      = @prefix@
+ exec_prefix = @exec_prefix@
+-bindir     = @bindir@
++bindir      = @bindir@
++mandir      = @mandir@
+ 
+ CC = @CC@
+ STRIP = @STRIP@
+@@ -39,13 +40,13 @@ distclean: clean
+ 
+ uninstall:
+ 	rm -f $(DESTDIR)$(bindir)/$(EXEC)
+-	rm -f $(DESTDIR)@mandir@/man/man1/genhash.1
++	rm -f $(DESTDIR)$(mandir)/man1/genhash.1
+ 
+ install:
+ 	install -d $(DESTDIR)$(bindir)
+ 	install -m 755 $(BIN)/$(EXEC) $(DESTDIR)$(bindir)/
+-	install -d $(DESTDIR)@mandir@/man/man1
+-	install -m 644 ../doc/man/man1/genhash.1 $(DESTDIR)@mandir@/man/man1
++	install -d $(DESTDIR)$(mandir)/man1
++	install -m 644 ../doc/man/man1/genhash.1 $(DESTDIR)$(mandir)/man1
+ 
+ mrproper: clean distclean
+ 	rm -f config.*
+diff -Naupr keepalived-1.1.13.orig/keepalived/Makefile.in keepalived-1.1.13/keepalived/Makefile.in
+--- keepalived-1.1.13.orig/keepalived/Makefile.in	2006-10-11 11:46:32.000000000 +0200
++++ keepalived-1.1.13/keepalived/Makefile.in	2007-01-25 19:35:07.000000000 +0100
+@@ -14,8 +14,9 @@ prefix      = @prefix@
+ exec_prefix = @exec_prefix@
+ sbindir     = @sbindir@
+ sysconfdir  = @sysconfdir@
+-init_script = etc/init.d/keepalived.init
+-conf_file   = etc/keepalived/keepalived.conf
++mandir      = @mandir@
++init_dir    = $(sysconfdir)/rc.d/init.d
++conf_dir    = $(sysconfdir)/keepalived
+ 
+ CC = @CC@
+ STRIP = @STRIP@
+@@ -89,20 +90,20 @@ mrproper: distclean
+ 
+ uninstall:
+ 	rm -f $(DESTDIR)$(sbindir)/$(EXEC)
++	rm -f $(DESTDIR)$(init_dir)/keepalived.init
+ 	rm -rf $(DESTDIR)$(sysconfdir)/keepalived
+-	rm -f $(DESTDIR)$(init_dir)/$(init_script)
+-	rm -f $(DESTDIR)@mandir@/man/man5/keepalived.conf.5
+-	rm -f $(DESTDIR)@mandir@/man/man8/keepalived.8
++	rm -f $(DESTDIR)$(mandir)/man/man5/keepalived.conf.5
++	rm -f $(DESTDIR)$(mandir)/man/man8/keepalived.8
+ 
+ install:
+ 	install -d $(DESTDIR)$(sbindir)
+ 	install -m 700 $(BIN)/$(EXEC) $(DESTDIR)$(sbindir)/
+-	install -d $(DESTDIR)$(sysconfdir)/init.d
+-	install -m 755 $(init_script) $(DESTDIR)$(sysconfdir)/init.d/keepalived
++	install -d $(DESTDIR)$(init_dir)
++	install -m 755 etc/init.d/keepalived.init $(DESTDIR)$(init_dir)/keepalived
+ 	install -d $(DESTDIR)$(sysconfdir)/keepalived/samples
+-	install -m 644 $(conf_file) $(DESTDIR)$(sysconfdir)/keepalived/
++	install -m 644 etc/keepalived/keepalived.conf $(DESTDIR)$(sysconfdir)/keepalived/
+ 	install -m 644 ../doc/samples/* $(DESTDIR)$(sysconfdir)/keepalived/samples/
+-	install -d $(DESTDIR)@mandir@/man/man5
+-	install -d $(DESTDIR)@mandir@/man/man8
+-	install -m 644 ../doc/man/man5/keepalived.conf.5 $(DESTDIR)@mandir@/man/man5
+-	install -m 644 ../doc/man/man8/keepalived.8 $(DESTDIR)@mandir@/man/man8
++	install -d $(DESTDIR)$(mandir)/man5
++	install -d $(DESTDIR)$(mandir)/man8
++	install -m 644 ../doc/man/man5/keepalived.conf.5 $(DESTDIR)$(mandir)/man5
++	install -m 644 ../doc/man/man8/keepalived.8 $(DESTDIR)$(mandir)/man8
