@@ -1,0 +1,20 @@
+--- src/gconf-property-editor.c.orig	2004-12-03 09:44:27.898443753 +0100
++++ src/gconf-property-editor.c	2004-12-03 09:44:57.576416271 +0100
+@@ -1111,7 +1111,7 @@
+ 	if (!peditor->p->inited) return;
+ 
+ 	/* We try to get the default type from the schemas.  if not, we default
+-	 * to a float.
++	 * to a int.
+ 	 */
+ 	default_value = gconf_client_get_default_from_schema (gconf_client_get_default (),
+ 							      peditor->p->key,
+@@ -1120,7 +1120,7 @@
+ 		value_wid = gconf_value_new (default_value->type);
+ 		gconf_value_free (default_value);
+ 	} else {
+-		value_wid = gconf_value_new (GCONF_VALUE_FLOAT);
++		value_wid = gconf_value_new (GCONF_VALUE_INT);
+ 	}
+ 
+ 	g_assert (value_wid);

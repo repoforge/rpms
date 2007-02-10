@@ -7,7 +7,7 @@ Summary: ACS ACR 38 USB (acr38u) Smartcard Reader driver for PCSC-lite
 Name: pcsc-lite-acr38u
 %define real_version 100709
 Version: 1.7.9
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.acs.com.hk/acr38_driversmanual.asp
@@ -50,11 +50,13 @@ you will need to install %{name}-devel.
 %{__make} install DESTDIR="%{buildroot}"
 
 %post
+/sbin/ldconfig
 if [ $1 -eq 1 ]; then
 	%{_initrddir}/pcscd try-restart &>/dev/null || :
 fi
 
 %postun
+/sbin/ldconfig
 %{_initrddir}/pcscd try-restart &>/dev/null || :
 
 %clean
@@ -65,7 +67,7 @@ fi
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README* doc/README*
 %dir %{usbdropdir}/
 %{usbdropdir}/ACR38UDriver.bundle/
-%{_libdir}/libacr38ucontrol.so.0.0.0
+%{_libdir}/libacr38ucontrol.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -76,5 +78,9 @@ fi
 %{_prefix}/lib/pkgconfig/libacr38ucontrol.pc
 
 %changelog
+* Fri Feb 09 2007 Dag Wieers <dag@wieers.com> - 1.7.9-2
+- Added missing so symlink.
+- Run ldconfig in %%post and %%postun.
+
 * Fri Jan 26 2007 Dag Wieers <dag@wieers.com> - 1.7.9-1
 - Initial package. (using DAR)

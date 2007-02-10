@@ -10,8 +10,8 @@
 
 Summary: Sound wave editor
 Name: sweep
-Version: 0.9.1
-Release: 1.2
+Version: 0.9.2
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://sweep.sourceforge.net/
@@ -19,9 +19,8 @@ URL: http://sweep.sourceforge.net/
 Source: http://dl.sf.net/sweep/sweep-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libsndfile-devel >= 1.0.1, libmad-devel
-BuildRequires: glib-devel >= 2.2, gtk+-devel >= 2.2, libvorbis-devel, speex-devel
-BuildRequires: gcc-c++, gtk2-devel, glib2-devel
+BuildRequires: gcc-c++, glib2-devel >= 2.2, gtk2-devel >= 2.4
+BuildRequires: libvorbis-devel, speex-devel, libsndfile-devel >= 1.0.1, libmad-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
@@ -71,12 +70,12 @@ you will need to install %{name}-devel.
 %doc doc/plugin_writers_guide.txt
 %{_includedir}/sweep/
 %dir %{_libdir}/sweep/
-%{_libdir}/sweep/*.a
-%{_libdir}/sweep/*.la
+#%{_libdir}/sweep/*.a
+#%{_libdir}/sweep/*.la
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1.2
-- Rebuild for Fedora Core 5.
+* Wed Feb 07 2007 Dag Wieers <dag@wieers.com> - 0.9.2-1
+- Updated to release 0.9.2.
 
 * Tue Jan 31 2006 Dag Wieers <dag@wieers.com> - 0.9.1-1
 - Updated to release 0.9.1.

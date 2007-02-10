@@ -9,7 +9,7 @@
 
 Summary: Classes for fast lookup of country codes from IP addresses for Perl
 Name: perl-IP-Country
-Version: 2.21
+Version: 2.23
 Release: 1
 License: distributable
 Group: Applications/CPAN
@@ -61,6 +61,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorlib}/IP/
 
 %changelog
+* Wed Feb 07 2007 Dag Wieers <dag@wieers.com> - 2.23-1
+- Updated to release 2.23.
+
 * Mon May 29 2006 Dag Wieers <dag@wieers.com> - 2.21-1
 - Updated to release 2.21.
 
