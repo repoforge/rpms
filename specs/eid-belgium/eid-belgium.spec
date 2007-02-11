@@ -20,7 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #Buildarch: noarch
 BuildRequires: scons, wxGTK-devel >= 2.4, openssl-devel >= 0.9.7, pcsc-lite-devel >= 1.2.9
-#BuildRequires: j2re, qt-devel >= 3.3.3
+BuildRequires: qt-devel >= 3.3.3
+#BuildRequires: j2re
 Provides: belpic = %{version}-%{release}
 Obsoletes: belpic <= %{version}-%{release}
 Provides: beid = %{version}-%{release}
@@ -65,13 +66,15 @@ EOF
 %{__perl} -pi.orig -e 's|/usr/local/share\b|%{_datadir}|g' src/eidviewer/beidgui.conf
 
 %build
-scons configure debug=full prefix="%{_prefix}"
-scons debug=full prefix="%{_prefix}"
+source "/etc/profile.d/qt.sh"
+scons configure prefix="%{_prefix}"
+scons prefix="%{_prefix}"
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_bindir}
-scons install debug=full prefix="%{buildroot}%{_prefix}" libdir="%{buildroot}%{_libdir}" || :
+source "/etc/profile.d/qt.sh"
+scons install prefix="%{buildroot}%{_prefix}" libdir="%{buildroot}%{_libdir}"
 
 #%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 #desktop-file-install --vendor net                  \
@@ -84,7 +87,7 @@ scons install debug=full prefix="%{buildroot}%{_prefix}" libdir="%{buildroot}%{_
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES INSTALL README VERSION doc/*.rtf
+%doc CHANGES INSTALL README VERSION doc/*.rtf doc/*.doc
 %doc %{_mandir}/man1/*.1*
 %config(noreplace) %{_sysconfdir}/beidbase.conf
 %config(noreplace) %{_sysconfdir}/beidgui.conf
@@ -95,18 +98,14 @@ scons install debug=full prefix="%{buildroot}%{_prefix}" libdir="%{buildroot}%{_
 %{_bindir}/beidcrld
 %{_bindir}/beidpcscd
 %{_bindir}/beidgui
-%{_libdir}/*.so.*
-%{_libdir}/pkcs11/
 %{_datadir}/beid/
 %{_datadir}/locale/beidgui_de.mo
 %{_datadir}/locale/beidgui_fr.mo
 %{_datadir}/locale/beidgui_nl.mo
-
-%files devel
-%defattr(-, root, root, 0755)
-%doc doc/*.doc
 %{_includedir}/beid/
 %{_libdir}/*.so
+%{_libdir}/*.so.*
+%{_libdir}/pkcs11/
 
 %changelog
 * Fri Feb 09 2007 Dag Wieers <dag@wieers.com> - 2.5.9-1
