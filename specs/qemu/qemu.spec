@@ -4,20 +4,21 @@
 
 Summary: CPU emulator
 Name: qemu
-Version: 0.8.2
+Version: 0.9.0
 Release: 1
 License: GPL
 Group: Applications/Emulators
 URL: http://qemu.org/
 
 Source: http://qemu.org/qemu-%{version}.tar.gz
-Patch0: qemu-0.8.2-build.patch
+#Patch0: qemu-0.8.2-build.patch
 Patch1: qemu-0.7.0-dyngen.patch
-Patch2: qemu-0.7.0-gcc4-x86.patch
-Patch3: qemu-0.7.0-gcc4-ppc.patch
+#Patch2: qemu-0.7.0-gcc4-x86.patch
+#Patch3: qemu-0.7.0-gcc4-ppc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: SDL-devel, texi2html
+BuildRequires: SDL-devel
+#BuildRequires: texi2html
 
 %description
 QEMU is a FAST! processor emulator using dynamic translation to achieve good
@@ -39,10 +40,10 @@ reasonnable speed while being easy to port on new host CPUs.
 
 %prep
 %setup
-%patch0 -b .build
+#patch0 -b .build
 %patch1 -b .dyngen
-%patch2
-%patch3
+#%patch2
+#%patch3
 
 %{__cat} <<'EOF' >qemu.sysv
 #!/bin/sh
@@ -187,11 +188,14 @@ fi
 %exclude %{_datadir}/qemu/doc/
 
 %changelog
+* Sun Feb 11 2007 Dag Wieers <dag@wieers.com> - 0.9.0-1
+- Updated to release 0.9.0.
+
 * Tue Dec 19 2006 Marc Abramowitz <marc@abramowitz.info> - 0.8.2-1
 - Updated to release 0.8.2.
 
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.0-1.2
-- Rebuild for Fedora Core 5.
+* Mon May 29 2006 Dag Wieers <dag@wieers.com> - 0.8.1-1
+- Updated to release 0.8.1.
 
 * Thu Dec 29 2005 Dag Wieers <dag@wieers.com> - 0.8.0-1
 - Updated to release 0.8.0.
