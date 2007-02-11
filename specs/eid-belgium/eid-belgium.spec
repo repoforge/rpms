@@ -3,7 +3,8 @@
 
 ### FIXME: Include the java plugin
 ### FIXME: Check initscripts
-### FIXME: Install desktop-file
+
+%define desktop_vendor rpmforge
 
 Summary: Belgium electronic identity card
 %define real_name Belgian_Identity_Card_Run-time
@@ -16,6 +17,7 @@ URL: http://eid.belgium.be/
 
 ### Since it needs a specific referer, download it from http://www.belgium.be/zip/eid_datacapture_nl.html
 Source: http://www.belgium.be/zip/Belgian_Identity_Card_Run-time%{version}.tar.bz2
+Patch: eid-belgium-2.5.9-openscreader.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #Buildarch: noarch
@@ -30,42 +32,37 @@ Obsoletes: beid <= %{version}-%{release}
 %description
 The application for using the Belgian electronic identity card.
 
-%package devel
-Summary: Header files, libraries and development documentation for %{name}.
-Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
-
-%description devel
-This package contains the header files, static libraries and development
-documentation for %{name}. If you like to develop programs using %{name},
-you will need to install %{name}-devel.
-
 %prep
 %setup -n beid-%{version}
 
-%{__cat} <<EOF >eid-belgium.desktop
-[Desktop Entry]
-Name=Name Thingy Tool
-Comment=Do things with things
-Icon=name.png
-Exec=name
-Terminal=false
-Type=Application
-StartupNotify=true
-Categories=GNOME;Application;AudioVideo;
-EOF
+%patch -p0
 
-### Fixing the references to /usr/local/etc in some files
-%{__perl} -pi.orig -e 's|/usr/local/etc\b|%{buildroot}%{_sysconfdir}|g' SConstruct
-%{__perl} -pi.orig -e 's|/usr/local/lib\b|%{buildroot}%{_libdir}|g' src/newpkcs11/SConscript
-%{__perl} -pi.orig -e 's|/etc/init.d\b|%{buildroot}%{_initrddir}|g' src/beidservicecrl/SConscript "src/Belpic PCSC Service/SConscript"
+### Fixing the references to /usr/local in some files
+%{__perl} -pi.orig -e 's|/usr/local/etc\b|%{buildroot}%{_sysconfdir}|g' \
+	SConstruct
+%{__perl} -pi.orig -e 's|/usr/local/lib\b|%{buildroot}%{_libdir}|g' \
+	src/newpkcs11/SConscript
+%{__perl} -pi.orig -e 's|/etc/init.d\b|%{buildroot}%{_initrddir}|g' \
+	src/beidservicecrl/SConscript \
+	"src/Belpic PCSC Service/SConscript"
 
-%{__perl} -pi.orig -e 's|/usr/local/etc\b|%{_sysconfdir}|g' src/beidcommon/config.cpp src/newpkcs11/config.h
-%{__perl} -pi.orig -e 's|/usr/local/lib\b|%{_libdir}|g' src/newpkcs11/etc/Belgian_eID_PKCS11_java.cfg
-%{__perl} -pi.orig -e 's|/usr/local/bin\b|%{_bindir}|g' src/beidservicecrl/belgium.be-beidcrld "src/Belpic PCSC Service/belgium.be-beidpcscd"
-%{__perl} -pi.orig -e 's|/usr/local/share\b|%{_datadir}|g' src/eidviewer/beidgui.conf
+%{__perl} -pi.orig -e 's|/usr/local/etc\b|%{_sysconfdir}|g' \
+	src/beidcommon/config.cpp \
+	src/newpkcs11/config.h
+%{__perl} -pi.orig -e 's|/usr/local/lib\b|%{_libdir}|g' \
+	src/newpkcs11/etc/Belgian_eID_PKCS11_java.cfg \
+	src/newpkcs11/etc/beid-pkcs11-register.html
+%{__perl} -pi.orig -e 's|/usr/local/bin/beidgui.png\b|%{_datadir}/icons/beidgui.png|g' \
+	src/eidviewer/beidgui.desktop
+%{__perl} -pi.orig -e 's|/usr/local/bin\b|%{_bindir}|g' \
+	src/beidservicecrl/belgium.be-beidcrld \
+	"src/Belpic PCSC Service/belgium.be-beidpcscd" \
+	src/eidviewer/beidgui.desktop
+%{__perl} -pi.orig -e 's|/usr/local/share\b|%{_datadir}|g' \
+	src/eidviewer/beidgui.conf
 
 %build
+export CCFLAGS="%{optflags}"
 source "/etc/profile.d/qt.sh"
 scons configure prefix="%{_prefix}"
 scons prefix="%{_prefix}"
@@ -73,19 +70,41 @@ scons prefix="%{_prefix}"
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_bindir}
+%{__install} -d -m0755 %{buildroot}%{_libdir}
 source "/etc/profile.d/qt.sh"
-scons install prefix="%{buildroot}%{_prefix}" libdir="%{buildroot}%{_libdir}"
+scons install --cache-disable prefix="%{buildroot}%{_prefix}" libdir="%{buildroot}%{_libdir}"
 
-#%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-#desktop-file-install --vendor net                  \
-#	--add-category X-Red-Hat-Base              \
-#	--dir %{buildroot}%{_datadir}/applications \
-#	%{name}.desktop
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+desktop-file-install --delete-original             \
+	--vendor %{desktop_vendor}                 \
+	--add-category X-Red-Hat-Base              \
+	--dir %{buildroot}%{_datadir}/applications \
+	%{buildroot}%{_bindir}/beidgui.desktop
+
+%{__install} -d -m0755 %{buildroot}%{_datadir}/icons/
+%{__mv} -vf %{buildroot}%{_bindir}/beidgui.png %{buildroot}%{_datadir}/icons/beidgui.png
+
+### Fix library symlinks
+for lib in $(ls %{buildroot}%{_libdir}/libbeid*.so.?.?.?); do
+	%{__ln_s} -f $(basename $lib) ${lib//%\.?\.?}
+done
+
+### Fix locale files
+for file in $(ls %{buildroot}%{_datadir}/locale/beidgui_*.mo); do
+	lang="${file%.mo}"
+	lang="${lang#%{buildroot}%{_datadir}/locale/beidgui_}"
+	%{__mkdir} -p %{buildroot}%{_datadir}/locale/$lang/LC_MESSAGES/
+	%{__mv} -f $file %{buildroot}%{_datadir}/locale/$lang/LC_MESSAGES/beidgui.mo
+done
+%find_lang beidgui
+
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f beidgui.lang
 %defattr(-, root, root, 0755)
 %doc CHANGES INSTALL README VERSION doc/*.rtf doc/*.doc
 %doc %{_mandir}/man1/*.1*
@@ -98,13 +117,13 @@ scons install prefix="%{buildroot}%{_prefix}" libdir="%{buildroot}%{_libdir}"
 %{_bindir}/beidcrld
 %{_bindir}/beidpcscd
 %{_bindir}/beidgui
+%{_datadir}/applications/%{desktop_vendor}-beidgui.desktop
 %{_datadir}/beid/
-%{_datadir}/locale/beidgui_de.mo
-%{_datadir}/locale/beidgui_fr.mo
-%{_datadir}/locale/beidgui_nl.mo
+%exclude %{_datadir}/beid/eID-toolkit_licensingtermsconditions*.rtf
+%exclude %{_datadir}/beid/DeveloperGuide.doc
+%{_datadir}/icons/beidgui.png
 %{_includedir}/beid/
-%{_libdir}/*.so
-%{_libdir}/*.so.*
+%{_libdir}/*.so*
 %{_libdir}/pkcs11/
 
 %changelog
