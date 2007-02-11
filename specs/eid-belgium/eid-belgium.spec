@@ -22,8 +22,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #Buildarch: noarch
 BuildRequires: scons, wxGTK-devel >= 2.4, openssl-devel >= 0.9.7, pcsc-lite-devel >= 1.2.9
-BuildRequires: qt-devel >= 3.3.3
-#BuildRequires: j2re
+BuildRequires: qt-devel >= 3.3.3, java-sdk
+#BuildRequires: java-sdk-1.4.2
 Provides: belpic = %{version}-%{release}
 Obsoletes: belpic <= %{version}-%{release}
 Provides: beid = %{version}-%{release}
@@ -63,6 +63,7 @@ The application for using the Belgian electronic identity card.
 
 %build
 export CCFLAGS="%{optflags}"
+export JAVA_HOME="$(readlink /etc/alternatives/java_sdk)"
 source "/etc/profile.d/qt.sh"
 scons configure prefix="%{_prefix}"
 scons prefix="%{_prefix}"
@@ -71,6 +72,7 @@ scons prefix="%{_prefix}"
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_bindir}
 %{__install} -d -m0755 %{buildroot}%{_libdir}
+export JAVA_HOME="$(readlink /etc/alternatives/java_sdk)"
 source "/etc/profile.d/qt.sh"
 scons install --cache-disable prefix="%{buildroot}%{_prefix}" libdir="%{buildroot}%{_libdir}"
 
@@ -78,6 +80,7 @@ scons install --cache-disable prefix="%{buildroot}%{_prefix}" libdir="%{buildroo
 desktop-file-install --delete-original             \
 	--vendor %{desktop_vendor}                 \
 	--add-category X-Red-Hat-Base              \
+	--add-category Utility                     \
 	--dir %{buildroot}%{_datadir}/applications \
 	%{buildroot}%{_bindir}/beidgui.desktop
 
@@ -98,8 +101,13 @@ for file in $(ls %{buildroot}%{_datadir}/locale/beidgui_*.mo); do
 done
 %find_lang beidgui
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+update-desktop-database %{_datadir}/applications &>/dev/null || :
+
+%postun
+/sbin/ldconfig
+update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 %clean
 %{__rm} -rf %{buildroot}
