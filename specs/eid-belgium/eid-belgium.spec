@@ -75,7 +75,7 @@ OPTIONS=""
 [ -r "$SYSCONFIG" ] && source "$SYSCONFIG"
 
 RETVAL=0
-prog="beidpcscd"
+prog="beidcrld"
 desc="Belgian eID CRL daemon"
 
 start() {
