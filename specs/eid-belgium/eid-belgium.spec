@@ -1,12 +1,9 @@
 # $Id$
 # Authority: dag
 
-### FIXME: Include the java plugin
-### FIXME: Check initscripts
-
 %define desktop_vendor rpmforge
 
-Summary: Belgium electronic identity card
+Summary: Application to read out information from the Belgian electronic ID card
 %define real_name Belgian_Identity_Card_Run-time
 Name: eid-belgium
 Version: 2.5.9
@@ -20,7 +17,8 @@ Source: http://www.belgium.be/zip/Belgian_Identity_Card_Run-time%{version}.tar.b
 Patch: eid-belgium-2.5.9-openscreader.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#Buildarch: noarch
+### SCons doesn't build when eid-belgium is already installed
+BuildConflicts: eid-belgium
 BuildRequires: scons, wxGTK-devel >= 2.4, openssl-devel >= 0.9.7, pcsc-lite-devel >= 1.2.9
 BuildRequires: qt-devel >= 3.3.3, java-sdk
 #BuildRequires: java-sdk-1.4.2
@@ -30,12 +28,207 @@ Provides: beid = %{version}-%{release}
 Obsoletes: beid <= %{version}-%{release}
 
 %description
-The application for using the Belgian electronic identity card.
+This application allows the user to read out any information from a
+Belgian electronic ID card, by using libbeid and libbeidlibopensc to
+read the data from the card and parse it. Both identity information and
+information about the stored cryptographic keys can be read in a
+user-friendly manner, and can easily be printed out or stored for later
+reviewal.
+
+The application verifies the signature of the identity information,
+checks whether it was signed by a government-issued key, and optionally
+checks the certificate against the government's Certificate Revocation List
+(CRL) and/or by using the Online Certificate Status Protocol (OCSP) against
+the government's servers.
 
 %prep
 %setup -n beid-%{version}
 
 %patch -p0
+
+%{__cat} <<EOF >beidcrld.sysconfig
+OPTIONS=""
+EOF
+
+%{__cat} <<'EOF' >beidcrld.sysv
+#!/bin/bash
+#
+# Init file for the Belgian electronic ID card CRL daemon
+#
+# Written by Dag Wieers <dag@wieers.com>
+#
+# chkconfig: - 90 10
+# description: Belgian electronic ID card CRL daemon
+#
+# processname: beidcrld
+# config: %{_sysconfdir}/sysconfig/beidcrld
+
+source %{_initrddir}/functions
+
+[ -x %{_bindir}/beidcrld ] || exit 1
+
+### Default variables
+SYSCONFIG="/etc/sysconfig/beidcrld"
+OPTIONS=""
+
+### Read configuration
+[ -r "$SYSCONFIG" ] && source "$SYSCONFIG"
+
+RETVAL=0
+prog="beidpcscd"
+desc="Belgian eID CRL daemon"
+
+start() {
+	echo -n $"Starting $desc ($prog): "
+	daemon $prog $OPTIONS
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
+	return $RETVAL
+}
+
+stop() {
+	echo -n $"Shutting down $desc ($prog): "
+	killproc $prog
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+	return $RETVAL
+}
+
+restart() {
+	stop
+	start
+}
+
+reload() {
+	echo -n $"Reloading $desc ($prog): "
+	killproc $prog -HUP
+	RETVAL=$?
+	echo
+	return $RETVAL
+}
+
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart)
+	restart
+	;;
+  reload)
+	reload
+	;;
+  condrestart)
+	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+	RETVAL=$?
+	;;
+  status)
+	status $prog
+	RETVAL=$?
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
+	RETVAL=1
+esac
+
+exit $RETVAL
+EOF
+
+%{__cat} <<EOF >beidpcscd.sysconfig
+OPTIONS=""
+EOF
+
+%{__cat} <<'EOF' >beidpcscd.sysv
+#!/bin/bash
+#
+# Init file for the Belgian electronic ID card PCSC daemon
+#
+# Written by Dag Wieers <dag@wieers.com>
+#
+# chkconfig: - 90 10
+# description: Belgian electronic ID card PCSC daemon
+#
+# processname: beidpcscd
+# config: %{_sysconfdir}/sysconfig/beidpcscd
+
+source %{_initrddir}/functions
+
+[ -x %{_bindir}/beidpcscd ] || exit 1
+
+### Default variables
+SYSCONFIG="/etc/sysconfig/beidpcscd"
+OPTIONS=""
+
+### Read configuration
+[ -r "$SYSCONFIG" ] && source "$SYSCONFIG"
+
+RETVAL=0
+prog="beidpcscd"
+desc="Belgian eID PCSC daemon"
+
+start() {
+	echo -n $"Starting $desc ($prog): "
+	daemon $prog $OPTIONS
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
+	return $RETVAL
+}
+
+stop() {
+	echo -n $"Shutting down $desc ($prog): "
+	killproc $prog
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+	return $RETVAL
+}
+
+restart() {
+	stop
+	start
+}
+
+reload() {
+	echo -n $"Reloading $desc ($prog): "
+	killproc $prog -HUP
+	RETVAL=$?
+	echo
+	return $RETVAL
+}
+
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart)
+	restart
+	;;
+  reload)
+	reload
+	;;
+  condrestart)
+	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+	RETVAL=$?
+	;;
+  status)
+	status $prog
+	RETVAL=$?
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
+	RETVAL=1
+esac
+
+exit $RETVAL
+EOF
 
 ### Fixing the references to /usr/local in some files
 %{__perl} -pi.orig -e 's|/usr/local/etc\b|%{buildroot}%{_sysconfdir}|g' \
@@ -62,7 +255,7 @@ The application for using the Belgian electronic identity card.
 	src/eidviewer/beidgui.conf
 
 %build
-export CCFLAGS="%{optflags}"
+export CFLAGS="%{optflags}"
 export JAVA_HOME="$(readlink /etc/alternatives/java_sdk)"
 source "/etc/profile.d/qt.sh"
 scons configure prefix="%{_prefix}"
@@ -72,9 +265,13 @@ scons prefix="%{_prefix}"
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_bindir}
 %{__install} -d -m0755 %{buildroot}%{_libdir}
-export JAVA_HOME="$(readlink /etc/alternatives/java_sdk)"
 source "/etc/profile.d/qt.sh"
 scons install --cache-disable prefix="%{buildroot}%{_prefix}" libdir="%{buildroot}%{_libdir}"
+
+%{__install} -Dp -m0755 beidcrld.sysv %{buildroot}%{_initrddir}/beidcrld
+%{__install} -Dp -m0755 beidpcscd.sysv %{buildroot}%{_initrddir}/beidpcscd
+%{__install} -Dp -m0644 beidcrld.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/beidcrld
+%{__install} -Dp -m0644 beidpcscd.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/beidpcscd
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --delete-original             \
@@ -103,10 +300,22 @@ done
 
 %post
 /sbin/ldconfig
+/sbin/chkconfig --add beidcrld
+/sbin/chkconfig --add beidpcscd
 update-desktop-database %{_datadir}/applications &>/dev/null || :
+
+%preun
+if [ $1 -eq 0 ]; then
+        /sbin/service beidcrld stop &>/dev/null || :
+        /sbin/chkconfig --del beidcrld
+        /sbin/service beidpcscd stop &>/dev/null || :
+        /sbin/chkconfig --del beidpcscd
+fi
 
 %postun
 /sbin/ldconfig
+/sbin/service beidcrld condrestart &>/dev/null || :
+/sbin/service beidpcscd condrestart &>/dev/null || :
 update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 %clean
@@ -118,8 +327,12 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %doc %{_mandir}/man1/*.1*
 %config(noreplace) %{_sysconfdir}/beidbase.conf
 %config(noreplace) %{_sysconfdir}/beidgui.conf
-%config %{_initrddir}/belgium.be-beidcrld
-%config %{_initrddir}/belgium.be-beidpcscd
+%config(noreplace) %{_sysconfdir}/sysconfig/beidcrld
+%config(noreplace) %{_sysconfdir}/sysconfig/beidpcscd
+%config %{_initrddir}/beidcrld
+%config %{_initrddir}/beidpcscd
+%exclude %{_initrddir}/belgium.be-beidcrld
+%exclude %{_initrddir}/belgium.be-beidpcscd
 %{_bindir}/beid-pkcs11-tool
 %{_bindir}/beid-tool
 %{_bindir}/beidcrld
