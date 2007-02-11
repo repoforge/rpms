@@ -1,0 +1,11 @@
+--- src/eidlib/OpenSCReader.cpp.orig	2007-02-11 13:53:58.000000000 +0100
++++ src/eidlib/OpenSCReader.cpp	2007-02-11 13:54:09.000000000 +0100
+@@ -183,7 +183,7 @@
+    		sc_append_path_id(&tPath, ucFile, iFileLen);
+         tPath.count = -1;
+         tPath.type = SC_PATH_TYPE_PATH;
+-        if(SC_NO_ERROR != (lRet = sc_pkcs15_read_file2(m_p15Card, &tPath, pucOutput, (unsigned int*)pulOutLen, NULL)))
++        if(SC_NO_ERROR != (lRet = sc_pkcs15_read_file2(m_p15Card, &tPath, pucOutput, (size_t*)pulOutLen, NULL)))
+         {
+             *pulOutLen = 0;
+         }
