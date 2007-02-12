@@ -3,12 +3,13 @@
 # Upstream: Colin Phipps <cph$moria,org,uk>
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
 %define real_name kye
 
 Summary: Puzzle game
 Name: python-kye
-Version: 0.9.2
+Version: 0.9.3
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -46,10 +47,13 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %doc COPYING README
 %{_bindir}/Kye
 %{_bindir}/Kye-edit
-%{python_sitearch}/kye/
+%{python_sitelib}/kye/
 %{_datadir}/kye/
 
 %changelog
+* Mon Feb 12 2007 Dries Verachtert <dries@ulyssis.org> - 0.9.3-1
+- Updated to release 0.9.3.
+
 * Mon Nov 13 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.2-1
 - Updated to release 0.9.2.
 
