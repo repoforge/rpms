@@ -5,13 +5,13 @@
 Summary: Sound files for the Asterisk PBX and telephony application and toolkit
 Name: asterisk-sounds
 Version: 1.2.1
-Release: 4
+Release: 5
 License: BSD
 Group: Applications/Internet
 URL: http://www.asterisk.org/
 Source: http://ftp.digium.com/pub/asterisk/asterisk-sounds-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: asterisk >= 1.2.13
+Requires: asterisk >= 1.2.15
 BuildArch: noarch
 
 %description
@@ -61,9 +61,13 @@ used with Asterisk.
 %exclude %{_var}/lib/asterisk/sounds/minutes.gsm
 %exclude %{_var}/lib/asterisk/sounds/seconds.gsm
 %exclude %{_var}/lib/asterisk/sounds/letters/
+%exclude %{_var}/lib/asterisk/sounds/silence/
 
 
 %changelog
+* Mon Feb 12 2007 Matthias Saou <http://freshrpms.net/> 1.2.1-5
+- Exclude "silence" (only numbers), which are included in asterisk 1.2.15.
+
 * Fri Nov 24 2006 Matthias Saou <http://freshrpms.net/> 1.2.1-4
 - Exclude seconds.gsm, minutes.gsm which are included in asterisk 1.2.13.
 
