@@ -3,8 +3,8 @@
 
 Summary: Updates dynamic DNS entries
 Name: ddclient
-Version: 3.7.0
-Release: 2
+Version: 3.7.1
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://ddclient.sourceforge.net/
@@ -65,6 +65,9 @@ fi
 %{_sbindir}/ddclient
 
 %changelog
+* Mon Feb 12 2007 Dries Verachtert <dries@ulyssis.org> - 3.7.1-1
+- Updated to release 3.7.1.
+
 * Mon Dec 11 2006 Dag Wieers <dag@wieers.com> - 3.7.0-2
 - Added perl(IO::Socket::SSL) dependency since ssl=yes is enabled by default. (Jim Richardson)
 
