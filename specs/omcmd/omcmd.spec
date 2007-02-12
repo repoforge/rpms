@@ -24,6 +24,7 @@ hosts and leases.
 %setup
 
 %build
+%{__make} clean
 %{__make} %{?_smp_mflags}
 
 %install
@@ -41,6 +42,9 @@ hosts and leases.
 %{_bindir}/omcmd
 
 %changelog
+* Mon Feb 12 2007 Dries Verachtert <dries@ulyssis.org> - 0.4.7-3
+- Fix: first remove the binaries, thanks to Sander Steffann.
+
 * Mon Jan 09 2007 Dag Wieers <dag@wieers.com> - 0.4.7-2
 - Added TODO and man-page.
 - Fixed Source and URL.
