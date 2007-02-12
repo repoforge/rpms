@@ -4,6 +4,7 @@
 # ExclusiveDist: el2 rh7
 
 %define python_version %(%{__python} -c 'import sys, string; print string.split(sys.version, " ")[0]')
+### We can't use this macro on python 1.5.2 without distutils
 #%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 %define real_name Distutils
@@ -14,7 +15,7 @@ Version: 1.0.2
 Release: 1
 Group: Development/Libraries
 License: Public Domain, BSD, Python License, GPL - see COPYING.txt
-URL: http://docutils.sourceforge.net/
+URL: http://www.python.org/community/sigs/current/distutils-sig/
 
 Source: http://www.python.org/community/sigs/current/distutils-sig/download/Distutils-1.0.2.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
