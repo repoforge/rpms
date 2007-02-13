@@ -1,0 +1,157 @@
+--- kobodeluxe-0.4pre10.orig/eel/e_getargs.c
++++ kobodeluxe-0.4pre10/eel/e_getargs.c
+@@ -19,6 +19,7 @@
+  * Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+  */
+ 
++#include "../config.h"
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <stdarg.h>
+--- kobodeluxe-0.4pre10.orig/graphics/window.cpp
++++ kobodeluxe-0.4pre10/graphics/window.cpp
+@@ -243,7 +243,7 @@
+ }
+ 
+ 
+-void window_t::center_token(int _x, int _y, const char *txt, char token)
++void window_t::center_token(int _x, int _y, const char *txt, signed char token)
+ {
+ 	center_token_fxp(PIXEL2CS(_x), PIXEL2CS(_y), txt, token);
+ }
+@@ -286,7 +286,7 @@
+ }
+ 
+ 
+-void window_t::center_token_fxp(int _x, int _y, const char *txt, char token)
++void window_t::center_token_fxp(int _x, int _y, const char *txt, signed char token)
+ {
+ 	_x = CS2PIXEL(_x*xsc);
+ 	_y = CS2PIXEL(_y*ysc);
+--- kobodeluxe-0.4pre10.orig/graphics/window.h
++++ kobodeluxe-0.4pre10/graphics/window.h
+@@ -202,10 +202,10 @@
+ 	void font(int fnt);
+ 	void string(int _x, int _y, const char *txt);
+ 	void center(int _y, const char *txt);
+-	void center_token(int _x, int _y, const char *txt, char token = 0);
++	void center_token(int _x, int _y, const char *txt, signed char token = 0);
+ 	void string_fxp(int _x, int _y, const char *txt);
+ 	void center_fxp(int _y, const char *txt);
+-	void center_token_fxp(int _x, int _y, const char *txt, char token = 0);
++	void center_token_fxp(int _x, int _y, const char *txt, signed char token = 0);
+ 	int textwidth(const char *txt, int min = 0, int max = 255);
+ 	int fontheight();
+ 
+--- kobodeluxe-0.4pre10.orig/sound/a_bus.c
++++ kobodeluxe-0.4pre10/sound/a_bus.c
+@@ -222,7 +222,9 @@
+ 		unsigned c = ctl;
+ 		if(ctl < ABC_FIRST || ctl > ABC_LAST)
+ 			c = (unsigned)(ABC_LAST + 1);
++#ifdef DEBUG
+ 		printf("Bus %u, slot %u %s set to %d\n", bus, slot, ctls[c], arg);
++#endif
+ 	}
+ 
+ 	switch(ctl)
+--- kobodeluxe-0.4pre10.orig/sound/a_events.c
++++ kobodeluxe-0.4pre10/sound/a_events.c
+@@ -196,8 +196,10 @@
+ 
+ void aev_close(void)
+ {
++#ifdef DEBUG
+ 	fprintf(stderr, "aev_close(): max events used: %d\n",
+ 				aev_event_counter_max);
++#endif
+ #ifdef	AEV_TRACKING
+ 	if(aev_event_counter)
+ 	{
+--- kobodeluxe-0.4pre10.orig/sound/audio.c
++++ kobodeluxe-0.4pre10/sound/audio.c
+@@ -857,7 +857,9 @@
+ {
+ 	if(_audio_running)
+ 	{
++#ifdef DEBUG
+ 		printf("Stopping audio engine... ");
++#endif
+ 		_audio_pause = 1;
+ 		_stop_output();
+ 	}
+--- kobodeluxe-0.4pre10.orig/aconfig.h.in
++++ kobodeluxe-0.4pre10/aconfig.h.in
+@@ -180,9 +180,11 @@
+ /* Define to empty if `const' does not conform to ANSI C. */
+ #undef const
+ 
+-/* Define as `__inline' if that's what the C compiler calls it, or to nothing
+-   if it is not supported. */
++/* Define to `__inline__' or `__inline' if that's what the C compiler
++   calls it, or to nothing if 'inline' is not supported under any name.  */
++#ifndef __cplusplus
+ #undef inline
++#endif
+ 
+ /* Define to rpl_malloc if the replacement function should be used. */
+ #undef malloc
+--- kobodeluxe-0.4pre10.orig/kobo.cpp
++++ kobodeluxe-0.4pre10/kobo.cpp
+@@ -323,21 +323,21 @@
+ 	 * Graphics data
+ 	 */
+ 	/* Current dir; from within the build tree */
+-	fmap.addpath("GFX", "./data");
++	//fmap.addpath("GFX", "./data");
+ 	/* Real data dir */
+ 	fmap.addpath("GFX", "DATA>>gfx");
+ 	/* Current dir */
+-	fmap.addpath("GFX", "./gfx");
++	//fmap.addpath("GFX", "./gfx");
+ 
+ 	/*
+ 	 * Sound data
+ 	 */
+ 	/* Current dir; from within the build tree */
+-	fmap.addpath("SFX", "./data");
++	//fmap.addpath("SFX", "./data");
+ 	/* Real data dir */
+ 	fmap.addpath("SFX", "DATA>>sfx");
+ 	/* Current dir */
+-	fmap.addpath("SFX", "./sfx");
++	//fmap.addpath("SFX", "./sfx");
+ 
+ 	/*
+ 	 * Score files (user and global)
+@@ -355,7 +355,7 @@
+ 	/* System local */
+ 	fmap.addpath("CONFIG", SYSCONF_DIR);
+ 	/* In current dir (last resort) */
+-	fmap.addpath("CONFIG", "./");
++	//fmap.addpath("CONFIG", "./");
+ }
+ 
+ 
+--- kobodeluxe-0.4pre10.orig/kobodl.6
++++ kobodeluxe-0.4pre10/kobodl.6
+@@ -67,7 +67,7 @@
+ Enable/disable motion interpolation filter.
+ .TP
+ .B \-[no]cheat
+-Enable/disable cheat mode, which allows any level to be played and does not
++Enable/disable cheat mode, which gives you infinite ships and does not
+ update high score file.
+ .TP
+ .B \-[no]indicator
+--- kobodeluxe-0.4pre10.orig/scenes.h
++++ kobodeluxe-0.4pre10/scenes.h
+@@ -39,7 +39,7 @@
+     int x, y, h, v;
+ } _base;
+ 
+-typedef const struct {
++typedef const struct _scene_struct { /* name added for gcc 4.0 -- JEH */
+     int ratio;
+     int startx;
+     int starty;

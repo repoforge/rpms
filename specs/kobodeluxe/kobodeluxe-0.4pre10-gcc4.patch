@@ -1,0 +1,11 @@
+--- gamestate.h.orig	2005-08-02 14:53:43.000000000 +0200
++++ gamestate.h	2005-08-02 14:54:22.000000000 +0200
+@@ -29,7 +29,7 @@
+ 	friend class gamestatemanager_t;
+   private:
+ 	gamestate_t		*next;		//LIFO stack
+-	gamestatemanager_t	*manager;
++	class gamestatemanager_t	*manager;
+   protected:
+ 	const char		*name;
+ 	int			unicode;	//for last press()/release()

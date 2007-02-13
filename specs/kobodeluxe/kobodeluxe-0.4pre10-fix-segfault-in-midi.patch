@@ -1,0 +1,32 @@
+--- KoboDeluxe-0.4pre10/eel/e_symtab.c.pix	2002-06-13 03:26:21.000000000 +0200
++++ KoboDeluxe-0.4pre10/eel/e_symtab.c	2006-07-07 13:15:05.000000000 +0200
+@@ -255,7 +255,7 @@
+ 		if(!sym)
+ 			sym = eel_s_table[scope];
+ 		for(; sym; sym = (eel_symbol_t *) sym->next)
+-			if(strcmp(sym->name, eel_s_name) == 0)
++			if(sym->name && strcmp(sym->name, eel_s_name) == 0)
+ 				return sym;
+ 		sym = NULL;
+ 		--scope;
+--- KoboDeluxe-0.4pre10/sound/a_midifile.c.pix	2002-10-13 12:43:01.000000000 +0200
++++ KoboDeluxe-0.4pre10/sound/a_midifile.c	2006-07-07 13:15:05.000000000 +0200
+@@ -111,7 +111,7 @@
+ 
+ static inline unsigned char datalook(midi_player_t *mp, unsigned pos)
+ {
+-	if(pos < 0 || pos > mp->mf->flen)
++	if(pos < 0 || !mp->mf || pos > mp->mf->flen)
+ 		return 0;
+ 	return mp->mf->data[pos];
+ }
+--- KoboDeluxe-0.4pre10/sound/a_patch.c.pix	2003-02-10 15:09:02.000000000 +0100
++++ KoboDeluxe-0.4pre10/sound/a_patch.c	2006-07-07 13:19:40.000000000 +0200
+@@ -549,6 +549,7 @@
+ 		int pitch, int velocity)
+ {
+ 	int wave = p->param[APP_WAVE];
++	return;
+ 	if((wave < 0) || (wave >= AUDIO_MAX_WAVES))
+ 		return;
+ 
