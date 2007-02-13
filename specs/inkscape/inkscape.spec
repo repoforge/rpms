@@ -5,6 +5,7 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
 %{?fc3:%define _without_modxorg 1}
 %{?fc2:%define _without_modxorg 1}
 %{?fc1:%define _without_modxorg 1}
@@ -24,7 +25,7 @@
 
 Summary: Vector drawing application
 Name: inkscape
-Version: 0.44.1
+Version: 0.45
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -42,7 +43,8 @@ BuildRequires: gettext, libpng-devel, freetype-devel, zlib-devel
 BuildRequires: gtk2-devel, libxml2-devel, libxslt-devel
 BuildRequires: python-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{?_without_modxorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
+#%{?_without_modxorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
+%{?_without_modxorg:BuildRequires: XFree86-devel, xorg-x11-Mesa-libGLU}
 %{!?_without_modxorg:BuildRequires: mesa-libGL-devel, mesa-libGLU-devel}
 
 %description
@@ -103,6 +105,9 @@ EOF
 %{_datadir}/pixmaps/inkscape.png
 
 %changelog
+* Tue Feb 13 2007 Dag Wieers <dag@wieers.com> - 0.45-1
+- Updated to release 0.45.
+
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.44.1-1
 - Updated to release 0.44.1.
 

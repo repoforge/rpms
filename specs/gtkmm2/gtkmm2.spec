@@ -3,12 +3,13 @@
 
 Summary: The C++ interface for the GIMP ToolKit (GTK+) GUI library
 Name: gtkmm2
-Version: 2.2.12
+Version: 2.10.7
 Release: 1
 Group: System Environment/Libraries
 License: LGPL
 URL: http://www.gtkmm.org/
-Source: http://ftp.gnome.org/pub/GNOME/sources/gtkmm/2.2/gtkmm-%{version}.tar.bz2
+
+Source: http://ftp.gnome.org/pub/GNOME/sources/gtkmm/2.10/gtkmm-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.2.0, libsigc++ >= 1.2.0
 BuildRequires: gcc-c++, gtk2-devel >= 2.2.0, libsigc++-devel >= 1.2.0,
@@ -83,6 +84,9 @@ needed for developing GTK+ (GIMP ToolKit) applications in C++.
 
 
 %changelog
+* Tue Feb 13 2007 Dag Wieers <dag@wieers.com> - 2.10.7-1
+- Updated to release 2.10.7.
+
 * Mon Jun  7 2004 Matthias Saou <http://freshrpms.net/> 2.2.12-1
 - Update to 2.2.12.
 

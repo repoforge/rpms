@@ -12,10 +12,13 @@ License: BSD
 Group: System Environment/Libraries
 URL: http://www.hpl.hp.com/personal/Hans_Boehm/gc/
 
-Source: http://www.hpl.hp.com/personal/Hans_Boehm/%{real_name}/gc_source/%{real_name}%{version}.tar.gz
+Source: http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/gc%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Obsoletes: libgc-6, libgc-6.1alpha5, gc
+Obsoletes: libgc6 <= %{epoch}:%{version}-%{release}
+Provides: libgc6 <= %{epoch}:%{version}-%{release}
+Obsoletes: gc <= %{epoch}:%{version}-%{release}
+Provides: gc = %{epoch}:%{version}-%{release}
 BuildRequires: gcc-c++
 
 %description
@@ -26,7 +29,10 @@ intended to be used as a plug-in replacement for C's malloc.
 Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{epoch}:%{version}-%{release}
-Obsoletes: libgc6-devel, gc-devel
+Obsoletes: libgc6-devel <= %{epoch}:%{version}-%{release}
+Provides: libgc6-devel = %{epoch}:%{version}-%{release}
+Obsoletes: gc-devel <= %{epoch}:%{version}-%{release}
+Provides: gc-devel = %{epoch}:%{version}-%{release}
 
 %description devel
 This package contains the header files, static libraries and development

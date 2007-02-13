@@ -10,7 +10,7 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.88.7
+Version: 0.90
 Release: 1
 License: GPL
 Group: Applications/System
@@ -306,12 +306,14 @@ fi
 %defattr(-, root, root, 0755)
 %doc contrib/clamdwatch/ etc/clamd.conf
 %doc %{_mandir}/man1/clamdscan.1*
+%doc %{_mandir}/man1/clamconf.1*
 %doc %{_mandir}/man5/clamd.conf.5*
 %doc %{_mandir}/man8/clamd.8*
 %config(noreplace) %{_sysconfdir}/clamd.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/clamav
 %config %{_initrddir}/clamd
 %{_sbindir}/clamd
+%{_bindir}/clamconf
 %{_bindir}/clamdscan
 
 %defattr(0644, clamav, clamav, 0755)
@@ -351,6 +353,9 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
+* Tue Dec 12 2006 Dag Wieers <dag@wieers.com> - 0.90-1
+- Updated to release 0.90.
+
 * Tue Dec 12 2006 Dag Wieers <dag@wieers.com> - 0.88.7-1
 - Updated to release 0.88.7.
 

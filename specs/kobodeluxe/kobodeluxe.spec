@@ -13,7 +13,7 @@ Name: kobodeluxe
 Version: 0.4
 Release: 0.pre10
 License: GPL
-Group: Amusement/Games
+Group: Amusements/Games
 URL: http://www.olofson.net/kobodl/
 
 Source0: http://olofson.net/kobodl/download/KoboDeluxe-%{version}pre10.tar.gz
@@ -101,7 +101,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %defattr(2755, root, games, 0755)
 %{_bindir}/kobodl
 
-%defattr(775, root, games, 0755)
+%defattr(0775, root, games, 0775)
 %{_localstatedir}/games/kobo-deluxe/
 
 %changelog
