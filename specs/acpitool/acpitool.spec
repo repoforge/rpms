@@ -4,7 +4,7 @@
 
 Summary: Command line ACPI client
 Name: acpitool
-Version: 0.4.6
+Version: 0.4.7
 Release: 1
 License: GPL
 Group: Applications/System
@@ -44,5 +44,8 @@ ACPI values.
 %{_bindir}/acpitool
 
 %changelog
+* Tue Feb 13 2007 Dries Verachtert <dries@ulyssis.org> - 0.4.7-1
+- Updated to release 0.4.7.
+
 * Thu Aug 10 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.6-1
 - Initial package.

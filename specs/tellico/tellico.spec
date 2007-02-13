@@ -9,7 +9,7 @@
 
 Summary: collection manager
 Name: tellico
-Version: 1.2.7
+Version: 1.2.8
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -73,6 +73,9 @@ source /etc/profile.d/qt.sh
 %{_datadir}/config.kcfg/tellico_config.kcfg
 
 %changelog
+* Tue Feb 13 2007 Dries Verachtert <dries@ulyssis.sorg> - 1.2.8-1
+- Updated to release 1.2.8.
+
 * Fri Dec 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.7-1
 - Updated to release 1.2.7.
 
