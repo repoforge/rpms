@@ -9,8 +9,8 @@
 
 Summary: Manages IPv4 and IPv6 addresses and subnets
 Name: perl-NetAddr-IP
-Version: 3.028
-Release: 1.2
+Version: 4.004
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/NetAddr-IP/
@@ -18,7 +18,6 @@ URL: http://search.cpan.org/dist/NetAddr-IP/
 Source: http://www.cpan.org/modules/by-module/NetAddr/NetAddr-IP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildArch: noarch
 BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503
 
@@ -39,8 +38,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod \
+		%{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,10 +47,17 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %files
 %defattr(-, root, root, 0755)
 %doc MANIFEST README TODO
-%doc %{_mandir}/man?/*
-%{perl_vendorlib}/*
+%doc %{_mandir}/man?/NetAddr::IP*
+%dir %{perl_vendorarch}/NetAddr/
+%{perl_vendorarch}/NetAddr/IP.pm
+%{perl_vendorarch}/NetAddr/IP/
+%{perl_vendorarch}/auto/NetAddr/
 
 %changelog
+* Tue Feb 13 2007 Dries Verachtert <dries@ulyssis.org> - 4.004-1
+- Updated to release 4.004.
+- Buildarch isn't noarch anymore (thanks to Peter Bieringer)
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.028-1.2
 - Rebuild for Fedora Core 5.
 
