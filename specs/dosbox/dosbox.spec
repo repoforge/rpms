@@ -1,6 +1,24 @@
 # $Id$
 # Authority: dag
 
+%{!?dist:%define _with_modxorg 1}
+%{!?dist:%define _with_avahi 1}
+   
+%{?fc7:%define _with_modxorg 1}
+%{?fc6:%define _with_modxorg 1}
+%{?fc5:%define _with_modxorg 1}
+
+%{?el3:%define _without_alsa 1}
+%{?rh9:%define _without_alsa 1}
+
+%{?rh7:%define _without_alsa 1}
+%{?rh7:%define _without_freedesktop 1}
+
+%{?el2:%define _without_alsa 1}
+%{?el2:%define _without_freedesktop 1}
+
+%define desktop_vendor rpmforge
+
 Summary: x86/DOS emulator with sound/graphics
 Name: dosbox
 Version: 0.65
@@ -13,8 +31,11 @@ Source0: http://dl.sf.net/dosbox/dosbox-%{version}.tar.gz
 Source1: dosbox.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpng-devel, SDL-devel, alsa-lib-devel, xorg-x11-devel
-BuildRequires: desktop-file-utils
+BuildRequires: libpng-devel, SDL-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%{?_with_modxorg:BuildRequires: xorg-x11-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_alsa:BuildRequires: alsa-lib-devel}
 
 %description
 DOSBox is a DOS-emulator using SDL for easy portability to different
@@ -43,6 +64,7 @@ EOF
 
 %build
 %configure \
+	--program-prefix="%{?_program_prefix}" \
 	--enable-shots
 %{__make} %{?_smp_mflags}
 
@@ -69,7 +91,8 @@ EOF
 %doc AUTHORS ChangeLog COPYING NEWS README THANKS
 %doc %{_mandir}/man1/dosbox.1*
 %{_bindir}/dosbox
-%{_datadir}/applications/%{desktop_vendor}-dosbox.desktop
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-dosbox.desktop}
+%{?_without_freedesktop:/etc/X11/applnk/Applications/dosbox.desktop}
 %{_datadir}/pixmaps/dosbox.png
 
 %changelog
