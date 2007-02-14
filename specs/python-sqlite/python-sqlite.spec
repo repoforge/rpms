@@ -2,23 +2,25 @@
 # Authority: dag
 # Upstream: <pysqlite-devel$lists,sf,net>
 
+# ExcludeDist: el4
+
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 %define real_name pysqlite
 
 Summary: Python bindings for sqlite
 Name: python-sqlite
-Version: 2.0.6
-Release: 1.2
+Version: 2.3.3
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://pysqlite.org/
 
-Source: http://initd.org/pub/software/pysqlite/releases/2.0/%{version}/pysqlite-%{version}.tar.gz
+Source: http://initd.org/pub/software/pysqlite/releases/2.3/%{version}/pysqlite-%{version}.tar.gz
 #Source: http://dl.sf.net/pysqlite/pysqlite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python-devel, sqlite-devel, python
+BuildRequires: python-devel >= 2.3, sqlite-devel
 
 %description
 This packages allows you to use sqlite with python.
@@ -41,14 +43,13 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE doc/
-%{_bindir}/test-pysqlite
-%{python_sitearch}/_sqlite.so
-%{python_sitearch}/sqlite/
-%exclude %{python_sitearch}/sqlite/*.pyo
+%{python_sitearch}/pysqlite2/
+%ghost %{python_sitearch}/pysqlite2/*.pyo
+%exclude %{_prefix}/pysqlite2-doc/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.6-1.2
-- Rebuild for Fedora Core 5.
+* Wed Feb 14 2007 Dag Wieers <dag@wieers.com> - 2.3.3-1
+- Updated to release 2.3.3.
 
 * Fri Feb 10 2006 Dag Wieers <dag@wieers.com> - 2.0.6-1
 - Updated to release 2.0.6.

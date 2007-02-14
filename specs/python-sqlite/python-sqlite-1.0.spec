@@ -15,10 +15,9 @@ Group: Development/Libraries
 URL: http://pysqlite.org/
 
 Source: http://initd.org/pub/software/pysqlite/releases/1.0/%{version}/pysqlite-%{version}.tar.gz
-#Source: http://dl.sf.net/pysqlite/pysqlite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python-devel, sqlite-devel, python
+BuildRequires: python-devel >= 2.2, sqlite-devel
 
 %description
 This packages allows you to use sqlite with python.
@@ -41,8 +40,9 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE README* doc/rest/manual.txt examples/
-%{python_sitearch}/*
-#%{_bindir}/test-pysqlite
+%{python_sitearch}/_sqlite.so
+%{python_sitearch}/sqlite/
+%ghost %{python_sitearch}/sqlite/*.pyo
 
 %changelog
 * Mon Jan 09 2006 Dag Wieers <dag@wieers.com> - 1.0.1-1

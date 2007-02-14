@@ -1,0 +1,13 @@
+--- yum-metadata-parser-1.0/xml-parser.c.locationbase	2006-06-15 13:38:12.000000000 -0400
++++ yum-metadata-parser-1.0/xml-parser.c	2006-06-15 13:38:22.000000000 -0400
+@@ -178,7 +178,9 @@
+             value = attrs[++i];
+ 
+             if (!strcmp (attr, "href"))
+-                p->location_href = g_string_chunk_insert (p->chunk, value);;
++                p->location_href = g_string_chunk_insert (p->chunk, value);
++            else if (!strcmp (attr, "xml:base"))
++                p->location_base = g_string_chunk_insert (p->chunk, value);
+         }
+     }
+ }

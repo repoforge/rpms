@@ -2,34 +2,28 @@
 # Authority: dag
 # Upstream: Richard Hipp <drh$hwaci,com>
 
-### Builds fine, but related python-sqlite needs python >= 2.3 and yum 2.4 needs sqlite2
-# ExcludeDist: el2 rh7 rh9 el3 el4
-
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?el3:%define _without_tcl 1}
-%{?rh9:%define _without_tcl 1}
 %{?rh9:%define _without_tcltk_devel 1}
-%{?rh7:%define _without_tcl 1}
+%{?rh8:%define _without_tcltk_devel 1}
 %{?rh7:%define _without_tcltk_devel 1}
-%{?el2:%define _without_tcl 1}
 %{?el2:%define _without_tcltk_devel 1}
 
 Summary: Library that implements an embeddable SQL database engine
 Name: sqlite
-Version: 3.3.13
+Version: 2.8.17
 Release: 1
 License: LGPL
 Group: Applications/Databases
 URL: http://www.sqlite.org/
-
 Source:	http://www.sqlite.org/sqlite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, libtool, readline-devel, ncurses-devel
+BuildRequires: gcc-c++, readline-devel
 %{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3}
 %{?_without_tcltk_devel:BuildRequires: tcl >= 8.3}
-Obsoletes: sqlite3 <= %{version}-%{release}
+Obsoletes: sqlite2 <= %{version}-%{release}
+Provides: sqlite2 = %{version}-%{release}
 
 %description
 SQLite is a C library that implements an SQL database engine. A large
@@ -49,45 +43,34 @@ databases and SQLite bindings for Tcl/Tk.
 Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
-Obsoletes: sqlite3-devel <= %{version}-%{release}
+Obsoletes: sqlite2-devel <= %{version}-%{release}
+Provides: sqlite2-devel = %{version}-%{release}
 
 %description devel
 This package contains the header files, static libraries and development
 documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
-%package tcl
-Summary: Tcl module for the sqlite3 embeddable SQL database engine.
-Group: Development/Languages
-Requires: %{name} = %{version}-%{release}
-
-%description tcl
-This package contains the tcl modules for %{name}.
-
 %prep
 %setup
 
 ### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
-%{__perl} -pi.orig -e '
-		s|\$\(exec_prefix\)/lib|\$(libdir)|g;
-		s|/usr/lib|\$(libdir)|g;
-	' Makefile.in */Makefile.in */*/Makefile.in
+%{__perl} -pi.orig -e 's|\$\(exec_prefix\)/lib|\$(libdir)|g' Makefile.in
 
 %build
-export CFLAGS="%{optflags} -DNDEBUG=1 -fno-strict-aliasing"
-export CXXFLAGS="%{optflags} -DNDEBUG=1 -fno-strict-aliasing" \
+CFLAGS="%{optflags} -DNDEBUG=1" \
+CXXFLAGS="%{optflags} -DNDEBUG=1" \
 %configure \
-	--enable-utf8 \
-%{?_without_tcl:--disable-tcl}
+    --enable-utf8
 %{__make} %{?_smp_mflags}
 %{__make} doc
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
 
+%makeinstall
 # Install the man page, it's not automatically (2.8.16)
-%{__install} -Dp -m0644 sqlite3.1 %{buildroot}%{_mandir}/man1/sqlite3.1
+%{__install} -Dp -m0644 sqlite.1 %{buildroot}%{_mandir}/man1/sqlite.1
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -98,31 +81,24 @@ export CXXFLAGS="%{optflags} -DNDEBUG=1 -fno-strict-aliasing" \
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%doc %{_mandir}/man1/sqlite3.1*
-%{_bindir}/sqlite3
-%{_libdir}/libsqlite3.so.*
+%{_bindir}/sqlite
+%{_libdir}/libsqlite.so.*
+%{_mandir}/man1/sqlite.1*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/*
-%{_includedir}/sqlite3.h
-%{_includedir}/sqlite3ext.h
-%{_libdir}/libsqlite3.a
-%exclude %{_libdir}/libsqlite3.la
-%{_libdir}/libsqlite3.so
-%{_libdir}/pkgconfig/sqlite3.pc
-
-%if {!?_without_tcl:1}0
-%files tcl
-%defattr(-, root, root, 0755)
-%{_datadir}/tcl*/sqlite3/
-%endif
+%{_includedir}/sqlite.h
+%{_libdir}/libsqlite.a
+%exclude %{_libdir}/libsqlite.la
+%{_libdir}/libsqlite.so
+%{_libdir}/pkgconfig/sqlite.pc
 
 %changelog
-* Wed Feb 14 2007 Dag Wieers <dag@wieers.com> - 3.3.13-1
-- Updated to release 3.3.13.
+* Wed Feb 14 2007 Dag Wieers <dag@wieers.com> - 2.8.17-1
+- Updated to release 2.8.17.
 
-* Tue Feb 15 2005 Dag Wieers <dag@wieers.com> - 2.8.15-1
+* Tue Feb 15 2005 Dag Wieers <dag@wieers.com> - 2.8.16-1
 - Updated to release 2.8.16.
 
 * Thu Aug 26 2004 Matthias Saou <http://freshrpms.net/> 2.8.15-1

@@ -1,0 +1,13 @@
+--- yum-metadata-parser-1.0/db.c.files	2006-06-14 16:25:01.000000000 -0400
++++ yum-metadata-parser-1.0/db.c	2006-06-14 16:25:55.000000000 -0400
+@@ -585,8 +585,8 @@
+ {
+     int rc;
+ 
+-    sqlite3_bind_text (handle, 1, file->type, -1, SQLITE_STATIC);
+-    sqlite3_bind_text (handle, 2, file->name, -1, SQLITE_STATIC);
++    sqlite3_bind_text (handle, 1, file->name, -1, SQLITE_STATIC);
++    sqlite3_bind_text (handle, 2, file->type, -1, SQLITE_STATIC);
+     sqlite3_bind_int  (handle, 3, pkgKey);
+ 
+     rc = sqlite3_step (handle);

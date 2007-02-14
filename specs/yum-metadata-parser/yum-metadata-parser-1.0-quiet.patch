@@ -1,0 +1,16 @@
+--- yum-metadata-parser-1.0/sqlitecache.c.quiet	2006-06-13 23:25:55.000000000 -0400
++++ yum-metadata-parser-1.0/sqlitecache.c	2006-06-13 23:31:23.000000000 -0400
+@@ -115,11 +115,11 @@
+         g_string_chunk_free (info->package_ids_chunk);
+ 
+     g_timer_stop (info->timer);
+-    if (!*err) {
++    /*    if (!*err) {
+         g_message ("Added %d new packages, deleted %d old in %.2f seconds",
+                    info->add_count, info->del_count,
+                    g_timer_elapsed (info->timer, NULL));
+-    }
++                   }*/
+ 
+     g_timer_destroy (info->timer);
+ }
