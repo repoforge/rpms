@@ -3,7 +3,7 @@
 
 Summary: DVD ripping and encoding graphical user interface
 Name: ogmrip
-Version: 0.10.0
+Version: 0.10.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -100,6 +100,9 @@ fi
 
 
 %changelog
+* Wed Feb 14 2007 Matthias Saou <http://freshrpms.net/> 0.10.2-1
+- Update to 0.10.2.
+
 * Mon Oct 23 2006 Matthias Saou <http://freshrpms.net/> 0.10.0-1
 - Initial RPM release.
 
