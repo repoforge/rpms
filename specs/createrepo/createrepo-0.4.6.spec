@@ -1,17 +1,11 @@
 # $Id$
 # Authority: matthias
 
-### Ironically yum 2.4 (sqlite2) cannot be installed with createrepo (sqlite3)
-# ExcludeDist: el2 rh7 rh9 el3 el4
-
-# Python name and version, use "--define 'python python2'"
-%{!?python: %{expand: %%define python python}}
-
 %{?dist: %{expand: %%define %dist 1}}
 
 Summary: Creates a common metadata repository
 Name: createrepo
-Version: 0.4.8
+Version: 0.4.6
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -22,9 +16,8 @@ Patch0: http://people.redhat.com/mikem/software/createrepo-0.4.4-update2.1.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: %{python} >= 2.1
-Requires: %{python} >= 2.1, rpm >= 4.1.1, rpm-python, libxml2-python
-Requires: yum-metadata-parser
+BuildRequires: python-devel >= 2.1
+Requires: python >= 2.1, rpm >= 4.1.1, rpm-python, libxml2-python
 
 %description
 This utility will generate a common metadata repository from a directory of
@@ -32,12 +25,6 @@ rpm packages.
 
 %prep
 %setup
-#%patch0
-
-# Replace interpreter's name if it's not "python"
-if [ "%{python}" != "python" ]; then
-    %{__perl} -pi -e 's|/usr/bin/python|/usr/bin/%{python}|g' *.py
-fi
 
 %build
 
@@ -57,9 +44,6 @@ fi
 %{_datadir}/createrepo/
 
 %changelog
-* Wed Feb 14 2007 Dag Wieers <dag@wieers.com> - 0.4.8-1
-- Updated to release 0.4.8.
-
 * Wed Aug 23 2006 Dag Wieers <dag@wieers.com> - 0.4.6-1
 - Updated to release 0.4.6.
 
