@@ -15,7 +15,7 @@
 Summary: Git core and tools
 Name: git
 Version: 0.99.4
-Release: 1.2
+Release: 3
 License: GPL
 Group: Development/Tools
 URL: http://git.or.cz/
@@ -36,9 +36,13 @@ similar to other SCM tools (like CVS, BitKeeper or Monotone).
 
 %prep
 %setup -n %{real_name}-%{version}
+# avoid warning about ../README:
+%{__perl} -pi -e "s|asciidoc |asciidoc --unsafe |g;" Documentation/Makefile
+# avoid asciidoc errors:
+%{__perl} -pi -e "s|\^|\\\^|g;" Documentation/git-rev-list.txt
 
 %build
-%{__make} %{?_smp_mflags} all %{!?_without_asciidoc:doc}
+%{__make} %{?_smp_mflags} all %{!?_without_asciidoc:doc} prefix="%{_prefix}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -56,6 +60,11 @@ similar to other SCM tools (like CVS, BitKeeper or Monotone).
 %{_datadir}/git-core
 
 %changelog
+* Wed Feb 14 2007 Dries Verachtert <dries@ulyssis.org> - 0.99.4-3
+- Fix location of templates (Dave Miller).
+- Option '--unsafe' added to call to asciidoc.
+- Fix asciidoc problem with '^'.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.99.4-1.2
 - Rebuild for Fedora Core 5.
 
