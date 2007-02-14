@@ -9,9 +9,9 @@
 
 Summary: Create graphs
 Name: perl-Graph-Easy
-Version: 0.49
+Version: 0.52
 Release: 1
-License: Artistic/GPL
+License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graph-Easy/
 
@@ -50,11 +50,20 @@ that is human readable and maintainable.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES README TODO
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/Graph::Easy*
+%doc %{_mandir}/man1/graph-easy*
+%{_bindir}/graph-easy
 %{perl_vendorlib}/Graph/Easy.pm
 %{perl_vendorlib}/Graph/Easy/
 
 %changelog
+* Wed Feb 14 2007 Dries Verachtert <dries@ulyssis.org> - 0.52-1
+- Fixed the license (thanks to Tels)
+- Updated to release 0.52.
+
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.50-1
+- Updated to release 0.50.
+
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.49-1
 - Updated to release 0.49.
 
