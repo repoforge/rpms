@@ -1,0 +1,12 @@
+diff -Naupr osslsigncode-1.2.orig/osslsigncode.c osslsigncode-1.2/osslsigncode.c
+--- osslsigncode-1.2.orig/osslsigncode.c	2005-01-21 13:23:44.000000000 +0100
++++ osslsigncode-1.2/osslsigncode.c	2007-01-30 19:26:44.000000000 +0100
+@@ -612,7 +612,7 @@ int main(int argc, char **argv) 
+ 
+ 	/* pad (with 0's) pe file to 8 byte boundary */
+ 	len = 8 - st.st_size % 8;
+-	if (len > 0) {
++	if (len > 0 && len != 8) {
+ 	  memset(buf, 0, len);
+ 	  BIO_write(hash, buf, len);
+ 	  st.st_size += len;
