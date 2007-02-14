@@ -1,0 +1,38 @@
+diff -Naru cdiff.orig/bin/cdiff cdiff/bin/cdiff
+--- cdiff.orig/bin/cdiff	2003-06-17 18:17:47.000000000 +0300
++++ cdiff/bin/cdiff	2003-10-03 23:21:07.000000000 +0300
+@@ -1,12 +1,32 @@
+ #!/bin/sh
+ (if [ "$1" != "" ]; then
+     while [ "$1" != "" ]; do
++        case $1 in
++        *.bz2)
++            cat="bzcat"
++            ;;
++        *)
++            cat="zcat -f"
++            ;;
++        esac
+     	case $1 in
+     	http:*|https:*|ftp:*|file:*)
+-            fetch -q -o - $1
++            if [ -z "$CDIFF_FETCH" ]; then
++                # Wget doesn't do file:// URLs... :(
++                if which curl >/dev/null 2>&1; then
++                    CDIFF_FETCH="curl -s"
++                elif which lwp-request >/dev/null 2>&1; then
++                    CDIFF_FETCH="lwp-request -m GET"
++                fi
++                if [ -z "$CDIFF_FETCH" ]; then
++                    echo "Error: no program to fetch from URLs found."
++                    exit 1
++                fi
++            fi
++            $CDIFF_FETCH $1 | $cat
+ 	    ;;
+     	*)
+-            zcat -f $1
++            $cat $1
+ 	    ;;
+         esac
+ 	shift;

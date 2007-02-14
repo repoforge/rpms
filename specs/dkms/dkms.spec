@@ -1,20 +1,22 @@
 # $Id$
-
 # Authority: dag
 
-Summary: Dynamic Kernel Module Support
+Summary: Dynamic Kernel Module Support Framework
 Name: dkms
-Version: 0.31.04
-Release: 0.2
-Group: System Environment/Kernel
+Version: 2.0.13
+Release: 1
 License: GPL
-URL: http://www.lerhaupt.com/linux.html
+Group: System Environment/Kernel
+URL: http://linux.dell.com/dkms/
 
-Source: http://www.lerhaupt.com/dkms/%{name}-%{version}.tar.gz
+Source0: http://linux.dell.com/dkms/dkms-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
+Requires: sed, gawk, findutils, modutils, tar, cpio, gzip, grep, mktemp
+Requires: bash > 1.99, kernel-devel
 
-#BuildRequires:
+Provides: dkms-minimal
 
 %description
 DKMS stands for Dynamic Kernel Module Support. It is designed to create
@@ -32,25 +34,37 @@ attempting to recompile modules for new kernels.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 dkms %{buildroot}%{_sbindir}/dkms
-%{__install} -Dp -m0644 dkms_framework.conf %{buildroot}%{_sysconfdir}/dkms_framework.conf
-%{__install} -Dp -m0644 dkms.8.gz %{buildroot}%{_mandir}/man8/dkms.8.gz
+%{__install} -Dp -m0755 dkms_mkkerneldoth %{buildroot}%{_sbindir}/dkms_mkkerneldoth
+%{__install} -Dp -m0644 dkms_framework.conf %{buildroot}%{_sysconfdir}/dkms/framework.conf
+%{__install} -Dp -m0644 template-dkms-mkrpm.spec %{buildroot}%{_sysconfdir}/dkms/template-dkms-mkrpm.spec
+%{__install} -Dp -m0755 dkms_autoinstaller %{buildroot}%{_initrddir}/dkms_autoinstaller
+%{__install} -Dp -m0644 dkms_dbversion %{buildroot}%{_localstatedir}/lib/dkms/dkms_dbversion
+%{__install} -Dp -m0644 dkms.8 %{buildroot}%{_mandir}/man8/dkms.8
 
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/dkms/
+%post
+/sbin/chkconfig --add dkms_autoinstaller
+
+%preun
+if [ $1 -eq 0 ]; then
+        /sbin/chkconfig --del dkms_autoinstaller
+fi
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING sample.spec
-%doc %{_mandir}/man?/*
-%config %{_sysconfdir}/*
-%{_sbindir}/*
-%{_localstatedir}/dkms/
+%doc AUTHORS COPYING README* sample.spec sample.conf
+%doc %{_mandir}/man8/dkms.8*
+%config(noreplace) %{_sysconfdir}/dkms/
+%config %{_initrddir}/dkms_autoinstaller
+%{_sbindir}/dkms
+%{_sbindir}/dkms_mkkerneldoth
+%{_localstatedir}/lib/dkms/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.31.04-0.2
-- Rebuild for Fedora Core 5.
+* Wed Feb 14 2007 Dag Wieers <dag@wieers.com> - 2.0.13-1
+- Updated to release 2.0.13.
 
 * Tue Jun 24 2003 Dag Wieers <dag@wieers.com> - 0.31.04-0
 - Initial package. (using DAR)

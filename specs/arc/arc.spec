@@ -3,14 +3,13 @@
 
 Summary: Arc archiver
 Name: arc
-Version: 5.21j
-Release: 0.2
-License: distributable
+Version: 5.21o
+Release: 1
+License: GPL
 Group: Applications/Archiving
-URL: ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/
+URL: http://arc.sourceforge.net/
 
-Source: ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/arc-%{version}.tar.gz
-#Patch: arc-5.21e-timeh.patch
+Source: http://downloads.sourceforge.net/arc/arc-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -19,7 +18,6 @@ but useful if you have old .arc files you need to unpack.
 
 %prep
 %setup
-#%patch -p1
 
 %build
 %{__make} %{?_smp_mflags}
@@ -36,16 +34,18 @@ but useful if you have old .arc files you need to unpack.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Arc521.doc Arcinfo Changes.521 Readme
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc Arc521.doc Arcinfo Changelog COPYING LICENSE Readme
+%doc %{_mandir}/man1/arc.1*
+%doc %{_mandir}/man1/marc.1*
+%{_bindir}/arc
+%{_bindir}/marc
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 5.21j-0.2
-- Rebuild for Fedora Core 5.
+* Wed Feb 14 2007 Dag Wieers <dag@wieers.com> - 5.21o-1
+- Updated to release 5.21o.
 
 * Mon Jun 20 2005 Dries Verachtert <dries@ulyssis.org> - 5.21j-0
-- Update to release 5.21j.
+- Updated to release 5.21j.
 
 * Sun Jan 26 2003 Dag Wieers <dag@wieers.com>
 - Initial package. (using DAR)
