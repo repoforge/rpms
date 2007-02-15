@@ -2,7 +2,7 @@
 # Authority: matthias
 # Dist: nodist
 
-%define pre pre10
+%define pre pre11
 
 Summary: QEMU accelerator kernel module
 Name: dkms-kqemu
@@ -74,6 +74,8 @@ dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
 
 %changelog
+* Thu Feb 15 2007 Matthias Saou <http://freshrpms.net/> 1.3.0-0.1.pre11
+- Updated to release 1.3.0pre11.
+
 * Tue Feb  6 2007 Matthias Saou <http://freshrpms.net/> 1.3.0-0.1.pre10
 - Initial RPM release.
-
