@@ -74,7 +74,7 @@ dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
 
 %changelog
-* Thu Feb 15 2007 Matthias Saou <http://freshrpms.net/> 1.3.0-0.1.pre11
+* Thu Feb 15 2007 Dag Wieers <dag@wieers.com> - 1.3.0-0.1.pre11
 - Updated to release 1.3.0pre11.
 
 * Tue Feb  6 2007 Matthias Saou <http://freshrpms.net/> 1.3.0-0.1.pre10
