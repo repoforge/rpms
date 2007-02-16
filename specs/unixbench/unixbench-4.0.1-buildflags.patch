@@ -1,0 +1,11 @@
+--- unixbench-4.0.1.orig/Makefile	1997-06-21 02:11:16 +0400
++++ unixbench-4.0.1/Makefile	2003-10-29 15:38:23 +0300
+@@ -35,7 +35,7 @@
+ #OPTON = -O2 -fomit-frame-pointer -fforce-addr -fforce-mem -ffast-math \
+ #	-m486 -malign-loops=2 -malign-jumps=2 -malign-functions=2
+ ## For Linux, GCC previous to 2.7.0
+-OPTON = -O2 -fomit-frame-pointer -fforce-addr -fforce-mem -ffast-math -m486
++OPTON = -O2 -fomit-frame-pointer -fforce-addr -fforce-mem -ffast-math $(RPM_OPT_FLAGS)
+ 
+ #OPTON = -O2 -fomit-frame-pointer -fforce-addr -fforce-mem -ffast-math \
+ #	-m386 -malign-loops=1 -malign-jumps=1 -malign-functions=1
