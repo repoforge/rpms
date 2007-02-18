@@ -1,0 +1,42 @@
+--- configure.orig	2006-09-17 14:55:39.000000000 +0200
++++ configure	2006-09-17 14:57:19.000000000 +0200
+@@ -15903,14 +15903,14 @@
+ fi
+ 
+ 
+-      as_ac_var=`echo "ac_cv_cflags_-fPIC -Wl,--rpath,\$ORIGIN/../lib" | $as_tr_sh`
+-{ echo "$as_me:$LINENO: checking whether the compiler supports -fPIC -Wl,--rpath,\$ORIGIN/../lib" >&5
+-echo $ECHO_N "checking whether the compiler supports -fPIC -Wl,--rpath,\$ORIGIN/../lib... $ECHO_C" >&6; }
++      as_ac_var=`echo "ac_cv_cflags_-fPIC" | $as_tr_sh`
++{ echo "$as_me:$LINENO: checking whether the compiler supports -fPIC" >&5
++echo $ECHO_N "checking whether the compiler supports -fPIC$ECHO_C" >&6; }
+ if { as_var=$as_ac_var; eval "test \"\${$as_var+set}\" = set"; }; then
+   echo $ECHO_N "(cached) $ECHO_C" >&6
+ else
+   ac_wine_try_cflags_saved=$CFLAGS
+-CFLAGS="$CFLAGS -fPIC -Wl,--rpath,\$ORIGIN/../lib"
++CFLAGS="$CFLAGS -fPIC"
+ cat >conftest.$ac_ext <<_ACEOF
+ /* confdefs.h.  */
+ _ACEOF
+@@ -15976,7 +15976,7 @@
+ 	       { echo "$as_me:$LINENO: result: $ac_res" >&5
+ echo "${ECHO_T}$ac_res" >&6; }
+ if test `eval echo '${'$as_ac_var'}'` = yes; then
+-  LIBWINE_LDFLAGS="-Wl,--rpath,\\\$\$ORIGIN/\`\$(RELPATH) \$(bindir) \$(libdir)\`"
++  LIBWINE_LDFLAGS=""
+ fi
+ 
+ 
+--- configure.ac.orig	2006-09-17 14:57:25.000000000 +0200
++++ configure.ac	2006-09-17 14:58:03.000000000 +0200
+@@ -1058,9 +1058,6 @@
+       WINE_TRY_CFLAGS([-fPIC -Wl,--export-dynamic],
+                       [AC_SUBST(LDEXECFLAGS,["-Wl,--export-dynamic"])])
+ 
+-      WINE_TRY_CFLAGS([-fPIC -Wl,--rpath,\$ORIGIN/../lib],
+-                      [LIBWINE_LDFLAGS="-Wl,--rpath,\\\$\$ORIGIN/\`\$(RELPATH) \$(bindir) \$(libdir)\`"])
+-
+       case $host_cpu in
+         *i[[3456789]]86* | x86_64)
+           WINE_TRY_CFLAGS([-Wl,--section-start,.interp=0x7bf00400],

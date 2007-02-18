@@ -1,0 +1,12 @@
+--- tools/wineprefixcreate.in.orig	2006-04-03 10:04:18.000000000 +0200
++++ tools/wineprefixcreate.in	2006-04-03 10:06:20.000000000 +0200
+@@ -170,6 +170,9 @@
+ export WINEPREFIX
+ "${WINELOADER:-wine}" rundll32.exe setupapi.dll,InstallHinfSection DefaultInstall 128 wine.inf
+ 
++# Copy the font files
++cp /usr/share/wine/fonts/* "$CROOT/windows/fonts/"
++
+ # Wait for the wineserver to finish
+ 
+ if [ $do_wait = 1 ]
