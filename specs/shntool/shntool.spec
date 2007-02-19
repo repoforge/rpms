@@ -3,13 +3,13 @@
 
 Summary: Multi-purpose WAVE data processing and reporting utility
 Name: shntool
-Version: 3.0.1
+Version: 3.0.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.etree.org/shnutils/shntool/
 
-Source: http://www.etree.org/shnutils/shntool/source/shntool-%{version}.tar.gz
+Source: http://www.etree.org/shnutils/shntool/dist/src/shntool-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: shorten, flac, sox
@@ -37,11 +37,26 @@ exists a format module to handle that particular file type.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING doc/ NEWS README
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc AUTHORS ChangeLog COPYING NEWS README doc/*
+%doc %{_mandir}/man1/shntool.1*
+%{_bindir}/shncat
+%{_bindir}/shncmp
+%{_bindir}/shnconv
+%{_bindir}/shncue
+%{_bindir}/shnfix
+%{_bindir}/shninfo
+%{_bindir}/shnjoin
+%{_bindir}/shnlen
+#%{_bindir}/shnmd5
+%{_bindir}/shnpad
+%{_bindir}/shnsplit
+%{_bindir}/shnstrip
+%{_bindir}/shntool
 
 %changelog
+* Mon Feb 19 2007 Dag Wieers <dag@wieers.com> - 3.0.2-1
+- Updated to release 3.0.2.
+
 * Thu Jan 25 2007 Dag Wieers <dag@wieers.com> - 3.0.1-1
 - Updated to release 3.0.1.
 
