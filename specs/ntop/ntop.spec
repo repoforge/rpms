@@ -1,10 +1,13 @@
-# $Id$
+# $Id: ntop.spec 4899 2006-11-18 23:37:30Z dag $
 # Authority: dag
 # Upstream: Luca Deri <deri$ntop,org>
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_tcpwrappersdevel 1}
 %{!?dist:%define _with_libpcapdevel 1}
+
+%{?fc7:%define _with_tcpwrappersdevel 1}
 %{?fc6:%define _with_libpcapdevel 1}
 
 %define logmsg logger -t %{name}/rpm
@@ -12,7 +15,7 @@
 Summary: Network traffic probe that shows the network usage
 Name: ntop
 Version: 3.2
-Release: 1.2
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.ntop.org/
@@ -22,7 +25,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, gdbm-devel, libpcap, rrdtool-devel, zlib-devel, glib-devel
 BuildRequires: gd-devel, gcc-c++, automake, autoconf, gettext
-%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires: libpcap-devel}
+%{?_with_tcpwrappersdevel:BuildRequires: tcp_wrappers-devel}
+%{!?_without_tcpwrappers:BuildRequires: tcp_wrappers}
 Prereq: /sbin/chkconfig, /sbin/ldconfig
 
 %description
@@ -196,11 +201,11 @@ EOF
 %build
 %configure \
 	--program-prefix="%{?_program_prefix}" \
-	--enable-optimize \
-	--enable-tcpwrap \
+	--enable-i18n \
 	--enable-largerrdpop \
+	--enable-optimize \
 	--enable-sslv3 \
-	--enable-i18n
+%{!?_without_tcpwrappers:--with-tcpwrap}
 #	--with-pcap-include="%{_includedir}/pcap" \
 #	--enable-xmldump \
 %{__make} %{?_smp_mflags} faq.html ntop.txt ntop.html all
@@ -275,6 +280,9 @@ fi
 #%exclude %{_libdir}/plugins/
 
 %changelog
+* Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 3.2-2
+- Enabled tcp_wrappers functionality.
+
 * Thu Nov 03 2005 Dries Verachtert <dries@ulyssis.org> - 3.2-1
 - Updated to release 3.2.
 
