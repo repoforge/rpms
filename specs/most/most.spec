@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: John E. Davis <davis$space,mit,edu>
 
-Summary: text viewer similar to more or less, but with additional capabilities
+Summary: Text viewer similar to more or less, but with additional capabilities
 Name: most
 Version: 4.10.2
 Release: 1.2
@@ -24,8 +24,9 @@ number, and the percentage of the file so far displayed.
 %prep
 %setup
 
-%build
 %{__perl} -pi.orig -e 's|/usr/lib|%{_libdir}|' configure
+
+%build
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -44,9 +45,6 @@ number, and the percentage of the file so far displayed.
 %{_bindir}/most
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.10.2-1.2
-- Rebuild for Fedora Core 5.
-
 * Thu Oct 13 2005 Dries Verachtert <dries@ulyssis.org> - 4.10.2-1
 - Updated to release 4.10.2.
 

@@ -1,20 +1,35 @@
 # $Id$
-# Authority: rudolf
+# Authority: dries
+
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el3:%define _without_alsa 1}
+%{?rh9:%define _without_alsa 1}
+%{?rh7:%define _without_alsa 1}
+
+%{?el2:%define _without_alsa 1}
+%{?el2:%define _without_arts 1}
 
 Summary: Open Audio Library
 Name: openal
 Version: 0.0.8
-Release: 1
+Release: 2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.openal.org/
 
 Source0: http://www.openal.org/openal_webstf/downloads/openal-%{version}.tar.gz
 Source1: openalrc
+Patch0: openal-0.0.8-arch.patch
+Patch1: openal-0.0.8-no-undefined.patch
+Patch2: openal-0.0.8-pkgconfig.patch
+Patch3: openal-0.0.8-pause.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: SDL-devel, arts-devel, esound-devel, libogg-devel, libvorbis-devel
-BuildRequires: texinfo, alsa-lib-devel
+BuildRequires: SDL-devel, esound-devel, libogg-devel, libvorbis-devel
+BuildRequires: texinfo
+%{!?_without_alsa:BuildRequires: alsa-lib-devel}
+%{!?_without_arts:BuildRequires: arts-devel}
 
 %description
 OpenAL is an audio library designed in the spirit of OpenGL--machine
@@ -33,31 +48,37 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
+#patch1
+%patch2
+%patch3 -p1
+#./autogen.sh
+%patch0 -p1
+
+### Fix reference to /usr/lib instead of %%{_libdir}
+%{__perl} -pi -e 's|/lib\b|/%{_lib}|g' admin/pkgconfig/Makefile.in
 
 %build
-%configure --enable-arts \
-           --enable-esd \
-           --enable-vorbis \
-           --enable-sdl \
-           --disable-smpeg \
-           --enable-capture \
-           --enable-alsa
+%configure \
+	--disable-smpeg \
+%{!?_without_alsa:--enable-alsa} \
+%{!?_without_arts:--enable-arts} \
+	--enable-capture \
+	--enable-esd \
+	--enable-sdl \
+	--enable-vorbis
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/openalrc
 
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
+
 %clean
 %{__rm} -rf %{buildroot}
-
-%post
-/sbin/ldconfig &>/dev/null
-
-%postun
-/sbin/ldconfig &>/dev/null
 
 %files
 %defattr(-, root, root, 0755)
@@ -67,14 +88,17 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_libdir}/libopenal.a
-%{_libdir}/libopenal.so
-%{_includedir}/AL/
-%{_libdir}/pkgconfig/openal.pc
 %{_bindir}/openal-config
+%{_includedir}/AL/
+%{_libdir}/libopenal.a
 %exclude %{_libdir}/libopenal.la
+%{_libdir}/libopenal.so
+%{_libdir}/pkgconfig/openal.pc
 
 %changelog
+* Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 0.0.8-2
+- Added patches to build on x86_64.
+
 * Sat Dec 31 2005 Dries Verachtert <dries@ulyssis.org> - 0.0.8-1
 - Updated to release 0.0.8.
 - Source doesn't contain an openal.info file anymore.

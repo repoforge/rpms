@@ -1,0 +1,14 @@
+--- src/Makefile.am.orig	2006-02-27 11:51:57.000000000 +0100
++++ src/Makefile.am	2006-02-27 11:53:13.000000000 +0100
+@@ -214,9 +214,9 @@
+ libopenal_la_CFLAGS = $(WARNINGCFLAGS) $(OPTIMIZATIONCFLAGS) $(FEATURECFLAGS)
+ 
+ # The -no-undefined flag is neccessary for building DLLs on Windows.
+-libopenal_la_LDFLAGS = -no-undefined $(PROFILINGLDFLAGS)
++libopenal_la_LDFLAGS = -no-undefined -Wl,--no-undefined $(PROFILINGLDFLAGS)
+ 
+ # We use sin and friends, so we might need -lm, autoconf takes care of this.
+-libopenal_la_LIBADD = $(LIBM) $(asm_ldadd)
++libopenal_la_LIBADD = $(LIBM) $(asm_ldadd) -lpthread
+ 
+ SUBDIRS = $(X86_SUBDIR)

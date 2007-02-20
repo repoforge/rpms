@@ -1,0 +1,11 @@
+--- openal-0.0.8/src/Makefile.in.org	2006-01-30 17:52:29.000000000 +0100
++++ openal-0.0.8/src/Makefile.in	2006-01-30 17:53:40.000000000 +0100
+@@ -327,7 +327,7 @@
+ 
+ 
+ # Add compiler flags.
+-libopenal_la_CFLAGS = $(WARNINGCFLAGS) $(OPTIMIZATIONCFLAGS) $(FEATURECFLAGS)
++libopenal_la_CFLAGS = $(WARNINGCFLAGS) $(OPTIMIZATIONCFLAGS) $(FEATURECFLAGS) $(ARCH_INCLUDES)
+ 
+ # The -no-undefined flag is neccessary for building DLLs on Windows.
+ libopenal_la_LDFLAGS = -no-undefined $(PROFILINGLDFLAGS)

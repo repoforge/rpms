@@ -3,16 +3,17 @@
 
 Summary: OpenAL Utility Toolkit
 Name: freealut
-Version: 1.0.1
-Release: 1.2
+Version: 1.1.0
+Release: 1
 License: LGPL
 Group: Development/Libraries
 URL: http://openal.org/
 
 Source: http://openal.org/openal_webstf/downloads/freealut-%{version}.tar.gz
+Patch0: freealut-1.1.0-openal.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, openal-devel
+BuildRequires: gcc-c++, automake >= 1.9, openal-devel
 
 %description
 Freealut is the OpenAL Utility Toolkit.
@@ -29,6 +30,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
+%patch0 -p0
 
 %build
 %configure
@@ -36,13 +38,10 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -50,21 +49,20 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
-%{_bindir}/freealut-config
 %{_libdir}/libalut.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%dir %{_includedir}/AL/
-%{_includedir}/AL/alut.h
+%{_bindir}/freealut-config
+%{_includedir}/AL/
 %{_libdir}/libalut.a
-%{_libdir}/libalut.so
 %exclude %{_libdir}/libalut.la
+%{_libdir}/libalut.so
 %{_libdir}/pkgconfig/freealut.pc
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1.2
-- Rebuild for Fedora Core 5.
+* Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 1.1.0-1
+- Updated to release 1.1.0.
 
 * Sat Feb 04 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1
 - Initial package.

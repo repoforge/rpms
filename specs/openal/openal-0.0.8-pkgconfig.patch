@@ -1,0 +1,38 @@
+--- admin/pkgconfig/openal-config.in.orig	2006-02-27 11:36:14.000000000 +0100
++++ admin/pkgconfig/openal-config.in	2006-02-27 11:36:55.000000000 +0100
+@@ -6,8 +6,6 @@
+ includedir="@includedir@"
+ libdir="@libdir@"
+ PACKAGE_VERSION="@PACKAGE_VERSION@"
+-PTHREAD_CFLAGS="@PTHREAD_CFLAGS@"
+-PTHREAD_LIBS="@PTHREAD_LIBS@"
+ 
+ openal_dynamic_ldflags="-lopenal"
+ # TODO: configure should provide the following...
+@@ -158,7 +156,7 @@
+   else
+     incpath="-I${includedir}"
+   fi
+-  echo "${PTHREAD_CFLAGS} ${incpath}"
++  echo "${incpath}"
+ fi
+ 
+ if test "$echo_libs" = "yes"; then
+@@ -172,5 +170,5 @@
+   else
+      ldflags="${openal_dynamic_ldflags}"
+   fi
+-  echo "${libpathflag} ${ldflags} ${PTHREAD_LIBS}"
++  echo "${libpathflag} ${ldflags}"
+ fi
+--- admin/pkgconfig/openal.pc.in.orig	2006-02-27 11:36:18.000000000 +0100
++++ admin/pkgconfig/openal.pc.in	2006-02-27 11:37:30.000000000 +0100
+@@ -5,7 +5,7 @@
+ 
+ Name: OpenAL
+ Description:  OpenAL is a cross-platform 3D audio API.
+-Requires: @requirements@
++Requires: 
+ Version: @PACKAGE_VERSION@
+ Libs: -L${libdir} -lopenal
+ Cflags: -I${includedir}

@@ -7,11 +7,13 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%define python_inc %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_inc()')
+
 %define desktop_vendor rpmforge
 
 Summary: 3D modeling, animation, rendering and post-production
 Name: blender
-Version: 2.42
+Version: 2.43
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -37,7 +39,7 @@ secure, multi-platform content to the web, CD-ROMs, and other media, whether
 they are users of Windows, Linux, Irix, Sun Solaris, FreeBSD or OSX.
 
 %prep
-%setup -n blender%{version}
+%setup
 
 %{__cat} <<EOF >blender.desktop
 [Desktop Entry]
@@ -51,11 +53,13 @@ Categories=Application;Graphics;
 Encoding=UTF-8
 EOF
 
+### blender now works with a new build system, named Scons
+%{__perl} -pi -e 's|use_openal =.*|use_openal = 'true'|g;' SConstruct
+
 %build
-# blender now works with a new build system, named Scons
-sed -i "s/use_openal =.*/use_openal = 'true'/g;" SConstruct
-scons clean
-scons
+#scons clean
+#export BF_PYTHON_INC="%{python_inc}"
+scons BF_PYTHON_INC="%{python_inc}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -96,6 +100,9 @@ scons
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-blender.desktop}
 
 %changelog
+* Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 2.43-1
+- Updated to release 2.43.
+
 * Sun Aug 06 2006 Dag Wieers <dag@wieers.com> - 2.42-1
 - Updated to release 2.42.
 

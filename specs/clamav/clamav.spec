@@ -11,7 +11,7 @@
 Summary: Anti-virus software
 Name: clamav
 Version: 0.90
-Release: 1
+Release: 3
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -353,7 +353,13 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
-* Tue Dec 12 2006 Dag Wieers <dag@wieers.com> - 0.90-1
+* Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 0.90-3
+- Do the right thing...
+
+* Mon Feb 19 2007 Dag Wieers <dag@wieers.com> - 0.90-2
+- The tarball was re-rolled before public release. Sigh.
+
+* Tue Feb 13 2007 Dag Wieers <dag@wieers.com> - 0.90-1
 - Updated to release 0.90.
 
 * Tue Dec 12 2006 Dag Wieers <dag@wieers.com> - 0.88.7-1

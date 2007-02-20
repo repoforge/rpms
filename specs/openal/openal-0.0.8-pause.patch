@@ -1,0 +1,66 @@
+--- portable/src/alc/alc_context.c.pause	2006-01-23 16:12:09.000000000 +0100
++++ portable/src/alc/alc_context.c	2006-08-11 11:30:23.000000000 +0200
+@@ -236,10 +236,17 @@
+ 		/* someone unpaused us */
+ 		ispaused = AL_FALSE;
+ 
+-		_alcDeviceResume( cc->write_device );
+-		_alcDeviceResume( cc->read_device );
++		if( cc->write_device )
++			_alcDeviceResume( cc->write_device );
++		if( cc->read_device )
++			_alcDeviceResume( cc->read_device );
+ 
+ 		_alcUnlockAllContexts();
++		/* If the last context got destroyed after pausing, then the
++		   mixer will have been destroyed too, causing it to be
++		   unlocked, so first try to lock it to make sure it is
++		   actually locked before unlocking it. */
++		_alTryLockMixerPause();
+ 		_alUnlockMixerPause();
+ 	} else {
+ 		/* just unlock contexts */
+--- portable/src/al_mixer.c.fixes	2006-08-11 12:38:47.000000000 +0200
++++ portable/src/al_mixer.c	2006-08-11 12:39:42.000000000 +0200
+@@ -155,14 +155,6 @@
+ static void _alAddBufferToStreamingList( ALuint bid );
+ 
+ /*
+- * _alTryLockMixerPause( void )
+- *
+- * Try to lock the mix_pause mutex.  Return AL_TRUE if lock suceeded, AL_FALSE
+- * otherwise.
+- */
+-static ALboolean _alTryLockMixerPause( void );
+-
+-/*
+  * _alMixSources
+  *
+  * This is the where most of the action is directed.
+@@ -1180,7 +1172,7 @@
+  * asynchronous mixers.  Return AL_TRUE if the pause mutex was locked,
+  * AL_FALSE otherwise.
+  */
+-static ALboolean _alTryLockMixerPause( void ) {
++ALboolean _alTryLockMixerPause( void ) {
+ 	if(_alTryLockMutex( pause_mutex ) == 0) {
+ 		return AL_TRUE;
+ 	}
+--- portable/src/al_mixer.h.fixes	2006-08-11 12:39:10.000000000 +0200
++++ portable/src/al_mixer.h	2006-08-11 12:39:44.000000000 +0200
+@@ -108,6 +108,14 @@
+  */
+ 
+ /*
++ * _alTryLockMixerPause( void )
++ *
++ * Try to lock the mix_pause mutex.  Return AL_TRUE if lock suceeded, AL_FALSE
++ * otherwise.
++ */
++ALboolean _alTryLockMixerPause( void );
++
++/*
+  * Lock the MixerPause mutex, which is use to "pause" the mixer.
+  */
+ void _alLockMixerPause( void );
+
