@@ -7,7 +7,9 @@
 %{!?dist:%define _with_tcpwrappersdevel 1}
 %{!?dist:%define _with_libpcapdevel 1}
 
+%{?fc7:%define _with_libpcapdevel 1}
 %{?fc7:%define _with_tcpwrappersdevel 1}
+
 %{?fc6:%define _with_libpcapdevel 1}
 
 %define logmsg logger -t %{name}/rpm
