@@ -6,8 +6,8 @@
 
 Summary: Process monitor and restart utility
 Name: monit
-Version: 4.8.1
-Release: 4
+Version: 4.9
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.tildeslash.com/monit/
@@ -167,6 +167,9 @@ fi
 %{_localstatedir}/lib/monit/
 
 %changelog
+* Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 4.9-1
+- Updated to release 4.9.
+
 * Tue Jun 13 2006 Dag Wieers <dag@wieers.com> - 4.8.1-4
 - Fixed type in %%preun that failed to stop monit. (Jim Robinson)
 
