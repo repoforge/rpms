@@ -14,7 +14,7 @@ URL: http://ushare.geexbox.org/
 Source: http://ushare.geexbox.org/releases/ushare-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libupnp-devel
+BuildRequires: pkgconfig >= 0.9.0, libupnp-devel
 Requires(post): /sbin/chkconfig
 Requires(preun): /sbin/service, /sbin/chkconfig
 Requires(postun): /sbin/service
