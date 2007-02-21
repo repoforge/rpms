@@ -5,12 +5,13 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %{!?dist:%define _with_libpcapdevel 1}
+%{?fc7:%define _with_libpcapdevel 1}
 %{?fc6:%define _with_libpcapdevel 1}
 
 Summary: Intercepts, modifies, and rewrites egress traffic
 Name: fragroute
 Version: 1.2
-Release: 1
+Release: 2
 License: BSD
 Group: Applications/Internet
 URL: http://www.monkey.org/~dugsong/fragroute/
@@ -51,6 +52,9 @@ Eluding Network Intrusion Detection" paper of January 1998.
 %{_sbindir}/fragtest
 
 %changelog
+* Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 1.2-2
+- Rebuild against libevent-1.3a.
+
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 1.2-1
 - Cosmetic rebuild for Group-tag.
 

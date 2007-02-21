@@ -1,19 +1,20 @@
-# $Id$
+# $Id: nttlscan.spec 4899 2006-11-18 23:37:30Z dag $
 # Authority: dag
 # Upstream:
 
 %{?dist: %{expand: %%define %dist 1}}
 
 %{!?dist:%define _with_libpcapdevel 1}
+%{?fc7:%define _with_libpcapdevel 1}
 %{?fc6:%define _with_libpcapdevel 1}
 
 Summary: Quick network topology scanner
 Name: nttlscan
 Version: 0.1
-Release: 1.2
+Release: 2
 License: GPL
 Group: Applications/Internet
-URL: http://www.honeyd.org/
+URL: http://www.honeyd.org/tools.php
 
 Source: http://www.honeyd.org/data/nttlscan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -37,7 +38,7 @@ Nttlscan can be used to construct virtual routing topologies for Honeyd.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,7 +49,8 @@ Nttlscan can be used to construct virtual routing topologies for Honeyd.
 %{_bindir}/nttlscan
 
 %changelog
-* Fri Sep 03 2004 Dag Wieers <dag@wieers.com> - 0.1-1
+* Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 0.1-2
+- Rebuild against libevent-1.3a.
 - Added missing BuildRequires. (Robert Hardy)
 
 * Sat Jul 10 2004 Dag Wieers <dag@wieers.com> - 0.1-1

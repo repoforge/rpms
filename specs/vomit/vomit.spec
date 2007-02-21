@@ -5,12 +5,13 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %{!?dist:%define _with_libpcapdevel 1}
+%{?fc7:%define _with_libpcapdevel 1}
 %{?fc6:%define _with_libpcapdevel 1}
 
 Summary: Decodes VoIP audio from tcpdump captures
 Name: vomit
 Version: 0.2c
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://vomit.xtdnet.nl/
@@ -50,5 +51,8 @@ sniffer also it could be but the naming is probably related to H.323.
 %{_bindir}/vomit
 
 %changelog
+* Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 0.2c-2
+- Rebuild against libevent-1.3a.
+
 * Sun Mar 05 2006 Dag Wieers <dag@wieers.com> - 0.2c-1
 - Initial package. (using DAR)

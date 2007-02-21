@@ -6,7 +6,7 @@
 Summary: Non-blocking DNS resolver library
 Name: libdnsres
 Version: 0.1a
-Release: 1.2
+Release: 2
 License: BSD-like
 Group: System Environment/Libraries
 URL: http://www.monkey.org/~provos/libdnsres/
@@ -37,9 +37,8 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure
-%{__make} %{?_smp_mflags} \
-	COPTFLAG="%{optflags}"
+%configure --with-pic
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -57,15 +56,12 @@ you will need to install %{name}-devel.
 %doc %{_mandir}/man3/dnsres.3*
 %{_includedir}/dnsres.h
 %{_libdir}/libdnsres.a
-%{_libdir}/libdnsres.so
 %exclude %{_libdir}/libdnsres.la
+%{_libdir}/libdnsres.so
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1a-1.2
-- Rebuild for Fedora Core 5.
+* Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 0.1a-2
+- Rebuild against libevent-1.3b.
 
-* Tue Feb 21 2006 Dag Wieers <dag@wieers.com> - 1.11-1
-- Updated to release 1.11.
-
-* Wed Oct 22 2003 Dag Wieers <dag@wieers.com> - 1.7-0
+* Tue Feb 21 2006 Dag Wieers <dag@wieers.com> - 0.1a-1
 - Initial package. (using DAR)

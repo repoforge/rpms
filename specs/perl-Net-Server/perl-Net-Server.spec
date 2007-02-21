@@ -8,7 +8,7 @@
 
 Summary: Net-Server module for perl
 Name: perl-Net-Server
-Version: 0.94
+Version: 0.95
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -49,8 +49,12 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %dir %{perl_vendorlib}/Net/
 %{perl_vendorlib}/Net/Server/
 %{perl_vendorlib}/Net/Server.pm
+%{perl_vendorlib}/Net/Server.pod
 
 %changelog
+* Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 0.95-1
+- Updated to release 0.95.
+
 * Thu Jul 13 2006 Dag Wieers <dag@wieers.com> - 0.94-1
 - Updated to release 0.94.
 

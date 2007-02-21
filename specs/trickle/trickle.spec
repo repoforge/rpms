@@ -1,25 +1,19 @@
 # $Id$
-
 # Authority: dag
-
-# Upstream: marius aamodt eriksen <marius$monkey,org>
-
-### FIXME: Makefiles don't allow -jX (parallel compilation) with -j5
-# Distcc: 0
+# Upstream: Marius Aamodt Eriksen <marius$monkey,org>
 
 ### FIXME: Create a proper sysv script for trickled based on the template.
 
 Summary: portable lightweight userspace bandwidth shaper
 Name: trickle
 Version: 1.06
-Release: 0.2
+Release: 1
 License: BSD
 Group: Applications/Internet
 URL: http://www.monkey.org/~marius/trickle/
 
-Source: http://www.monkey.org/~marius/trickle/%{name}-%{version}.tar.gz
+Source: http://www.monkey.org/~marius/trickle/trickle-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libevent-devel
 
@@ -43,7 +37,7 @@ require root privileges.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -51,13 +45,17 @@ require root privileges.
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE README TODO
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/trickle.1*
+%doc %{_mandir}/man5/trickled.conf.5*
+%doc %{_mandir}/man8/trickled.8*
+%{_bindir}/trickle
+%{_bindir}/tricklectl
+%{_bindir}/trickled
 %{_libdir}/trickle/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.06-0.2
-- Rebuild for Fedora Core 5.
+* Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 1.06-1
+- Rebuild against libevent-1.3a.
 
-* Tue Aug 05 2003 Dag Wieers <dag@wieers.com> - 1.06
+* Tue Aug 05 2003 Dag Wieers <dag@wieers.com> - 1.06-0
 - Initial package. (using DAR)

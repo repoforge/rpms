@@ -58,7 +58,6 @@ EOF
 
 %build
 #scons clean
-#export BF_PYTHON_INC="%{python_inc}"
 scons BF_PYTHON_INC="%{python_inc}"
 
 %install

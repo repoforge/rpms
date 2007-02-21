@@ -1,19 +1,20 @@
-# $Id$
+# $Id: honeyd.spec 4899 2006-11-18 23:37:30Z dag $
 # Authority: dag
 # Upstream: Niels Provos <provos$citi,umich,edu>
 
 %{?dist: %{expand: %%define %dist 1}}
 
 %{!?dist:%define _with_libpcapdevel 1}
+%{?fc7:%define _with_libpcapdevel 1}
 %{?fc6:%define _with_libpcapdevel 1}
 
 Summary: Honeypot daemon
 Name: honeyd
 Version: 1.5b
-Release: 1
+Release: 3
 License: BSD
 Group: Applications/Internet
-URL: http://www.citi.umich.edu/u/provos/honeyd/
+URL: http://www.honeyd.org/
 
 Source: http://www.citi.umich.edu/u/provos/honeyd/honeyd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -62,7 +63,10 @@ host to claim multiple addresses on a LAN for network simulation.
 %{_libdir}/honeyd/
 
 %changelog
-* Sun Aug 20 2006 Dag Wieers <dag@wieers.com> - 0.2-3
+* Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 1.5b-3
+- Rebuild against libevent-1.3b.
+
+* Sun Aug 20 2006 Dag Wieers <dag@wieers.com> - 1.5b-2
 - Rebuild against libevent-1.1b.
 
 * Sat Aug 19 2006 Dag Wieers <dag@wieers.com> - 1.5b-1

@@ -5,7 +5,7 @@
 Summary: Distributed memory object caching system
 Name: memcached
 Version: 1.1.13
-Release: 2
+Release: 3
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.danga.com/memcached/
@@ -22,7 +22,6 @@ Requires(postun): /sbin/service
 memcached is a high-performance, distributed memory object caching system,
 generic in nature, but intended for use in speeding up dynamic web
 applications by alleviating database load.
-
 
 %prep
 %setup
@@ -126,7 +125,6 @@ esac
 exit $RETVAL
 EOF
 
-
 %build
 %configure \
 	--program-prefix="%{?_program_prefix}" \
@@ -138,11 +136,8 @@ EOF
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-%{__install} -D -m0755 memcached.sysv \
-    %{buildroot}%{_sysconfdir}/rc.d/init.d/memcached
-%{__install} -D -m0644 memcached.sysconfig \
-    %{buildroot}%{_sysconfdir}/sysconfig/memcached
-
+%{__install} -D -m0755 memcached.sysv %{buildroot}%{_sysconfdir}/rc.d/init.d/memcached
+%{__install} -D -m0644 memcached.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/memcached
 
 %post
 /sbin/chkconfig --add memcached
@@ -160,19 +155,20 @@ fi
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING doc/*.txt NEWS README TODO
+%doc %{_mandir}/man1/memcached.1*
 %config(noreplace) %{_sysconfdir}/sysconfig/memcached
 %config %{_initrddir}/memcached
 %{_bindir}/memcached
 %{_bindir}/memcached-debug
-%{_mandir}/man1/memcached.1*
-
 
 %changelog
-* Wed Nov 01 2006 Dag Wieers <dag@wieers.com> - 1.1.13-2
+* Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 1.1.13-3
+- Rebuild against libevent-1.3a.
+
+* Mon Feb 19 2007 Dag Wieers <dag@wieers.com> - 1.1.13-2
 - Rebuild against libevent-1.2a.
 
 * Wed Nov 01 2006 Dag Wieers <dag@wieers.com> - 1.1.13-1

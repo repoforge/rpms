@@ -1,11 +1,11 @@
-# $Id$
+# $Id: memcached.spec 4876 2006-11-11 11:55:45Z dag $
 # Authority: dag
 # Upstream: Brad Fitzpatrick <brad$danga,com>
 
 Summary: Distributed memory object caching system
 Name: memcached
 Version: 1.2.1
-Release: 1
+Release: 2
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.danga.com/memcached/
@@ -165,6 +165,9 @@ fi
 %{_bindir}/memcached-debug
 
 %changelog
+* Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 1.2.1-2
+- Rebuild against libevent-1.3a.
+
 * Mon Feb 19 2007 Dag Wieers <dag@wieers.com> - 1.2.1-1
 - Updated to release 1.2.1.
 

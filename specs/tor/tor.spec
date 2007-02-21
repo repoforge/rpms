@@ -9,7 +9,7 @@
 Summary: Send network traffic through virtual tunnels to improve your privacy
 Name: tor
 Version: 0.1.1.26
-Release: 1
+Release: 2
 License: BSD
 Group: Applications/Internet
 URL: http://tor.eff.org/
@@ -34,19 +34,21 @@ that are blocked by their local Internet service providers (ISPs).
 %setup
 
 %build
-export CPPFLAGS=-I/usr/include/kerberos
-%configure --with-tor-user=%{toruser} --with-tor-group=%{torgroup}
+export CPPFLAGS="-I/usr/include/kerberos"
+%configure --with-tor-user="%{toruser}" --with-tor-group="%{torgroup}"
 %{__make} %{?_smp_mflags}
 %{__perl} -pi -e "s|# chkconfig: 2345|# chkconfig: -|g;" contrib/tor.sh
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__install} -D -m755 contrib/torctl %{buildroot}%{_bindir}/torctl
-%{__install} -D -m755 contrib/tor.sh %{buildroot}%{_initrddir}/tor
-%{__install} -D -m644 contrib/tor.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/tor
-%{__mv} %{buildroot}%{_sysconfdir}/tor/torrc.sample %{buildroot}%{_sysconfdir}/tor/torrc
-%{__install} -d %{buildroot}%{_localstatedir}/lib/tor %{buildroot}%{_localstatedir}/run/tor %{buildroot}%{_localstatedir}/log/tor
+%{__make} install DESTDIR="%{buildroot}"
+%{__install} -Dp -m755 contrib/torctl %{buildroot}%{_bindir}/torctl
+%{__install} -Dp -m755 contrib/tor.sh %{buildroot}%{_initrddir}/tor
+%{__install} -Dp -m644 contrib/tor.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/tor
+%{__mv} -f %{buildroot}%{_sysconfdir}/tor/torrc.sample %{buildroot}%{_sysconfdir}/tor/torrc
+%{__install} -d %{buildroot}%{_localstatedir}/lib/tor/
+%{__install} -d %{buildroot}%{_localstatedir}/run/tor/
+%{__install} -d %{buildroot}%{_localstatedir}/log/tor/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -68,7 +70,7 @@ if [ $1 -eq 0 ]; then
 fi
 
 %postun
-/sbin/service tor condrestart > /dev/null 2>&1 || :
+/sbin/service tor condrestart &>/dev/null || :
 
 %files
 %defattr(-, root, root, 0755)
@@ -80,18 +82,25 @@ fi
 %{_bindir}/torify
 %{_sysconfdir}/logrotate.d/tor
 %{_initrddir}/tor
+
 %defattr(-, root, %{torgroup}, 0750)
 %dir %{_sysconfdir}/tor/
+
 %defattr(-, root, %{torgroup}, 0640)
 %config(noreplace) %{_sysconfdir}/tor/tor-tsocks.conf
 %config(noreplace) %{_sysconfdir}/tor/torrc
+
 %defattr(-, %{toruser}, %{torgroup}, 0700)
 %dir %{_localstatedir}/lib/tor
+
 %defattr(-, %{toruser}, %{torgroup}, 0750)
 %dir %{_localstatedir}/run/tor
 %dir %{_localstatedir}/log/tor
 
 %changelog
+* Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 0.1.1.26-2
+- Rebuild against libevent-1.3a.
+
 * Mon Dec 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.1.26-1
 - Updated to release 0.1.1.26.
 
