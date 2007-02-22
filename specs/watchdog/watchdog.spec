@@ -5,21 +5,23 @@
 
 Summary: Software watchdog
 Name: watchdog
-Version: 5.2.5
+Version: 5.3.1
 Release: 1
 License: GPL
 Group: System Environment/Daemons
-URL: http://oss.digirati.com.br/watchcatd/watchdog.html
+#URL: http://oss.digirati.com.br/watchcatd/watchdog.html
+URL: http://sourceforge.net/projects/watchdog/
 
-Source: http://ftp.debian.org/debian/pool/main/w/watchdog/watchdog_%{version}.orig.tar.gz
+#Source: http://ftp.debian.org/debian/pool/main/w/watchdog/watchdog_%{version}.orig.tar.gz
 #Source: http://www.ibiblio.org/pub/Linux/system/daemons/watchdog/watchdog-%{version}.tar.gz
+Source: http://dl.sf.net/watchdog/watchdog_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
-A software watchdog.
+watchdog is a software watchdog.
 
 %prep
-%setup -n %{name}-%{version}.orig
+%setup
 
 ### FIXME: Make it compile on RH80, RH9, RHEL3 and RHFC1. (Fix upstream please)
 %{?fc1:%{__perl} -pi.orig -e 's| __GNUC__ == 2 && __GNUC_MINOR__ >= 5| __GNUC__ >= 2|' include/sundries.h}
@@ -175,13 +177,18 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING examples/ IAFA-PACKAGE NEWS README TODO watchdog.lsm
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man5/watchdog.conf.5*
+%doc %{_mandir}/man8/watchdog.8*
 %config(noreplace) %{_sysconfdir}/watchdog.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/watchdog
 %config %{_initrddir}/watchdog
-%{_sbindir}/*
+%{_sbindir}/watchdog
+%{_sbindir}/wd_keepalive
 
 %changelog
+* Thu Feb 22 2007 Dag Wieers <dag@wieers.com> - 5.3.1-1
+- Updated to release 5.3.1.
+
 * Mon Apr 24 2006 Dag Wieers <dag@wieers.com> - 5.2.5-1
 - Updated to release 5.2.5.
 
