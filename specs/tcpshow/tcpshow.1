@@ -1,0 +1,292 @@
+.\" @(#) $Id: tcpshow.1,v 1.0 1996/07/03 20:17:25 mike Exp $
+.\"
+.\" #if !defined(MAY_NOT_MODIFY)
+.\"
+.\" Copyright (c) 1996 I.T. NetworX Ltd.  All rights reserved.
+.\"
+.\" The conditions applying to the use of this manual page are the same as
+.\" those conditions applying to the file "tcpshow.c".  See that file for
+.\" the conditions.
+.\"
+.\" #endif
+.TH TCPSHOW 1  "03 July 1996"
+.SH NAME
+tcpshow \- decode a \fBtcpdump\fP savefile
+.SH SYNOPSIS
+.na
+.B tcpshow
+[
+.B \-b
+] [
+.B \-sb
+] [
+.B \-w
+.I width
+] [
+.B \-nolink
+] [
+.B \-noip
+]
+.br
+.ti +8
+[
+.B \-nodata
+] [
+.B \-data
+] [
+.B \-track
+] [
+.B \-terse
+]
+.br
+.ti +8
+[
+.B \-cooked
+] [
+.B \-pp
+] [
+.B \-s
+] [
+.B \-h
+]
+.br
+.ti +8
+[
+.B expression
+]
+.br
+.ad
+.SH DESCRIPTION
+.LP
+\fBtcpshow\fP reads a \fBtcpdump\fP(1) savefile and provides a
+reasonably complete decode
+of Ethernet, IP, ICMP, UDP and TCP headers, in packets that match the
+boolean \fIexpression\fP.  The data belonging to these packets is
+displayed in ASCII.
+.LP
+Currently, protocol data is not decoded.  This is not considered a
+serious problem for applications that use ASCII data streams.
+.LP
+Also, IP and TCP options are not decoded.
+.LP
+The input file must be in the format produced by
+\fItcpdump -enx\fP.  This file can be generated from
+.br
+1. a prior run of
+.B tcpdump -w
+.I file
+.br
+2. a live run of
+.B tcpdump
+(without -w)
+.br
+3. any other program that produces a correctly formatted
+.br
+   trace
+.br
+See under EXAMPLES for each of these different methods, plus a
+description of the format the input file needs to be in.
+.LP
+Except when \fI-cooked\fP is used, \fBtcpdump\fP(1) is required
+to be on your PATH, to process the raw savefile.
+.SH OPTIONS
+The following options can be used in just about any sane combination.
+.TP
+.B \-b
+break long lines so they don't wrap
+.IP
+This produces a neater, more readable display of the application
+data.  The default width is 60 columns.  See the \fI-w\fP flag for
+how to change this default.
+.TP
+.B \-sb
+show line breaks
+.IP
+When \fI-b\fP is used, it may be useful to see exactly where
+\fBtcpshow\fP wrapped each line, in its display of application data.
+This option causes the string ``<break>'' to be displayed at the
+end of each wrapped line.  (Lines which were not wrapped, but
+terminated before the page width, are not so marked.)
+.TP
+.B \-w \fIwidth\fP
+.br
+set pagewidth to \fIwidth\fP columns
+.IP
+This determines where \fBtcpshow\fP will fold long lines, when the
+\fI-b\fP switch is used.
+.TP
+.B \-nolink
+don't decode the link header
+.IP
+The data link header (Ethernet header) is not decoded and displayed.
+.TP
+.B \-noip
+don't decode the IP header
+.IP
+The IP header is not decoded and displayed.
+.TP
+.B \-nodata
+don't show the data
+.IP
+The protocol data is not displayed (a count of data bytes is shown).
+.TP
+.B \-data
+display only the data
+.IP
+The data, plus a minimal decode of the IP and transport/ICMP headers,
+is displayed.
+.TP
+.B \-track
+track TCP sequence numbers
+.IP
+An additional field is produced in the output which shows the TCP
+acknowledgement number which this side of the connection should
+receive once the current packet has been received by its peer.
+.TP
+.B \-terse
+show the header decode in compact format
+.IP
+Without this option, the display of the decoded header is verbose,
+occupying a lot of display-space real-estate.  With this option,
+the decoded header information is much more compact and terse.
+Once you're familiar with the meanings of the header fields, you'll
+probably always use this option.  (Maybe this should be the
+default, with a \fI-verbose\fP flag to get long-winded header decodes?)
+.TP
+.B \-cooked
+don't run \fBtcpdump\fP(1) to pre-process the input
+.IP
+If the input file is already in the expected format, this option
+must be used.  See EXAMPLES below of where this flag is appropriate.
+.TP
+.B \-pp
+point-to-point link
+.IP
+If the input file was collected from data travelling over a
+point-to-point link (one which doesn't make an Ethernet header available),
+this option needs to be used.
+.TP
+.B \-s
+also display a hex dump of spurious data at packet-end
+.IP
+For a reason unknown to the author, \fBtcpdump\fP(1) output sometimes
+contains data at the end of packets which don't belong to those packets.
+This spurious data is suppressed from the output, except when this
+option is used.
+.TP
+.B \-h
+display a help summary
+.IP
+This list of options is displayed, with one-liner descriptions.
+.TP
+.B expression
+filter the input file using a \fBtcpdump\fP(1) expression
+.IP
+If the \fI-cooked\fP option is not used, then \fBtcpdump\fP(1) is
+required to be on your PATH.  It is used to read the raw savefile,
+producing output in the format \fBtcpshow\fP expects.  The
+\fIexpression\fP should be a valid \fBtcpdump\fP(1) expression.
+It is not parsed or interpreted by \fBtcpshow\fP, but passed on
+to \fBtcpdump\fP(1) for its consumption.
+.SH EXAMPLES
+In the following examples, where \fBtcpdump\fP(1) is used, the
+flag \fI-s 1518\fP is used to be sure of saving the complete Ethernet
+frame.
+.LP
+Also, where \fBtcpdump\fP(1) expressions are used, these could equally
+have been given to \fBtcpdump\fP(1) directly, if it was known at this
+time what data you're interested in.
+.LP
+Capture a raw savefile and decode it later.
+.IP
+# tcpdump -s 1518 -w savefile
+.br
+# tcpshow < savefile
+.LP
+Decode the data as quickly as \fBtcpdump\fP(1) gives it to us.
+.IP
+# tcpdump -s 1518 -lenx | tcpshow
+.LP
+Display headers only.
+.IP
+# tcpshow -nodata < savefile
+.LP
+Display data only (minimal header decode).
+.IP
+# tcpshow -data
+.LP
+Display a decode of Telnet traffic only, omitting the link and IP headers.
+.IP
+# tcpdump -s 1518 -w savefile
+.br
+# tcpshow -nolink -noip tcp port telnet < savefile
+.LP
+Give a compact display of the TCP headers, and a full display of
+the data, for all packets going into or coming from the host "sam"
+-- this host is on a LAN accessible through a PPP link.
+.IP
+# tcpdump -i ppp0 -s 1518 -w savefile
+.br
+# tcpshow -pp -terse host sam < savefile
+.LP
+Show all SMTP mail transfers, omitting the headers and wrapping the
+message bodies to make it easy to read them (you're not supposed to
+do this).
+.IP
+# tcpdump -s 1518 -w savefile
+.br
+# tcpshow -b -w 40 -data port smtp < savefile
+.LP
+To display a decode of data not captured via \fBtcpdump\fP(1), you
+would typically use the application that captured the trace to dump
+that trace into a file in ASCII-hex format.  You feed that file into
+a Perl/sh/awk script (that you write), which produces a file in the
+format \fBtcpshow\fP expects.  Such scripts are easy to write.  For
+example, if your application is "capture" and your script
+is "convert", then \fBtcpshow\fP might be used as follows.
+.IP
+# capture -hexoutput | convert | tcpshow
+.LP
+A loose definition of the format \fBtcpshow\fP expects is: the 1st
+line of each packet must begin in column 1.  All other lines must
+begin with a TAB.  The hex bytes can be separated from each other by
+any amount of whitespace, including none.
+.br
+When using \fI-cooked\fP, the first field should be the time the
+packet was captured (or a string like "no-time-recorded" if the time
+isn't available).  The remaining fields should be the bytes of the
+IP datagram.
+.br
+When \fI-cooked\fP is not used, the first field should be as above,
+with the next three fields being the Ethernet source address, the
+Ethernet destination address and the DIX Ethernet Type field.
+.SH FILES
+\fBtcpshow\fP reads from standard input and writes to standard
+output.
+.SH SEE ALSO
+tcpdump(1), nit(4P), bpf(4)
+.\"
+.\" #if !defined(MAY_NOT_MODIFY)
+.\"
+.SH AUTHOR
+Mike Ryan <mike@NetworX.ie>
+.SH RESTRICTIONS
+This program and its source code are freely available.  See the
+Conditions governing their use in the source code.
+.\"
+.\" #endif
+.\"
+.SH BUGS
+It should decode IP and TCP options.
+.LP
+It should decode data from application protocols that don't send their
+data in ASCII (e.g. DNS/BIND).
+.LP
+It should not depend on \fBtcpdump\fP(1) as much as it does.  It should
+be modified to use pcap(3) directly.
+.LP
+It doesn't bother mapping IP addresses into their host names.  The option
+to do this should be provided.
+.LP
+The \fI-terse\fP option should be a default, with \fI-verbose\fP avaiable
+to produce a verbose display of the headers.

@@ -1,0 +1,20 @@
+--- tcpshow.c.cln	Sat Jan 16 11:32:43 1999
++++ tcpshow.c	Sat Jan 16 12:11:01 1999
+@@ -286,7 +286,7 @@
+ typedef unsigned char uchar;
+ 
+ 
+-void main(int, char **);
++int main(int, char **);
+ 
+ 
+ static boolean bflag = FALSE;
+@@ -858,7 +858,7 @@
+ /*                                                                          */
+ /****==========------------------------------------------------==========****/
+ 
+-void main (
++int main (
+    int argc,
+    char **argv
+ ) {
