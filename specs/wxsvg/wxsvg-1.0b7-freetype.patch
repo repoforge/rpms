@@ -1,0 +1,47 @@
+diff -Naupr wxsvg-1.0b7.orig/src/freetype/SVGCanvasTextFreetype.cpp wxsvg-1.0b7/src/freetype/SVGCanvasTextFreetype.cpp
+--- wxsvg-1.0b7.orig/src/freetype/SVGCanvasTextFreetype.cpp	2007-01-19 18:28:08.000000000 +0100
++++ wxsvg-1.0b7/src/freetype/SVGCanvasTextFreetype.cpp	2007-01-19 18:28:04.000000000 +0100
+@@ -163,7 +163,7 @@ void wxSVGCanvasTextFreetype::RenderLine
+   }
+ }
+ 
+-static gint moveto(FT_Vector* to, gpointer data)
++static int moveto(const FT_Vector* to, gpointer data)
+ {
+   wxSVGCanvasTextFreetype* canvasText = (wxSVGCanvasTextFreetype*) data;
+   
+@@ -179,7 +179,7 @@ static gint moveto(FT_Vector* to, gpoint
+   return 0;
+ }
+ 
+-static gint lineto (FT_Vector* to, gpointer data)
++static int lineto (const FT_Vector* to, gpointer data)
+ {
+   wxSVGCanvasTextFreetype* canvasText = (wxSVGCanvasTextFreetype*) data;
+   if (!canvasText->m_endpath)
+@@ -192,7 +192,7 @@ static gint lineto (FT_Vector* to, gpoin
+   return 0;
+ }
+ 
+-static gint conicto(FT_Vector* ftcontrol, FT_Vector* to, gpointer data)
++static int conicto(const FT_Vector* ftcontrol, const FT_Vector* to, gpointer data)
+ {
+   wxSVGCanvasTextFreetype* canvasText = (wxSVGCanvasTextFreetype*) data;
+   if (!canvasText->m_endpath)
+@@ -207,8 +207,8 @@ static gint conicto(FT_Vector* ftcontrol
+   return 0;
+ }
+ 
+-static gint cubicto(FT_Vector* ftcontrol1, FT_Vector* ftcontrol2,
+- FT_Vector* to, gpointer data)
++static int cubicto(const FT_Vector* ftcontrol1, const FT_Vector* ftcontrol2,
++ const FT_Vector* to, gpointer data)
+ {
+   wxSVGCanvasTextFreetype* canvasText = (wxSVGCanvasTextFreetype*) data;
+   if (!canvasText->m_endpath)
+@@ -266,3 +266,5 @@ int wxSVGCanvasTextFreetype::RenderGlyph
+   return x_position;
+ }
+ 
++
++ 	  	 
