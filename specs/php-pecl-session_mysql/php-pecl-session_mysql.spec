@@ -5,7 +5,7 @@
 
 Summary: PECL package to save sessions to a MySQL database
 Name: php-pecl-session_mysql
-Version: 1.8
+Version: 1.9
 Release: 1
 License: MIT/Beerware
 Group: Development/Languages
@@ -106,6 +106,9 @@ EOF
 
 
 %changelog
+* Fri Jan 12 2007 Matthias Saou <http://freshrpms.net/> 1.9-1
+- Update to 1.9.
+
 * Thu May  4 2006 Matthias Saou <http://freshrpms.net/> 1.8-1
 - Initial RPM release.
 
