@@ -17,7 +17,7 @@
 
 Summary: Proprietary ATI hardware accelerated OpenGL display driver
 Name: ati-x11-drv
-Version: 8.33.6
+Version: 8.34.8
 Release: 1
 License: Proprietary
 Group: User Interface/X Hardware Support
@@ -287,6 +287,9 @@ fi
 
 
 %changelog
+* Thu Feb 22 2007 Matthias Saou <http://freshrpms.net/> 8.34.8-1
+- Update to 8.34.8.
+
 * Thu Jan 11 2007 Matthias Saou <http://freshrpms.net/> 8.33.6-1
 - Update to 8.33.6.
 
