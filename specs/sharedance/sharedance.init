@@ -1,0 +1,80 @@
+#!/bin/sh
+#
+# sharedance   Sharedance server
+#
+# chkconfig: - 80 12
+# description: this is the Sharedance server, used to centralize ephemeral \
+#              key/data pair storage.
+# processname: sharedanced
+# pidfile: /var/run/
+# config: /etc/
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 0
+
+prog="sharedance"
+
+# Source configuration
+. /etc/sysconfig/sharedance
+# Defaults
+[ -z ${SHAREDANCE_DIR} ] && SHAREDANCE_DIR=/var/lib/sharedance
+SHAREDANCE_UID=`id -u sharedance`
+SHAREDANCE_GID=`id -g sharedance`
+
+start() {
+	echo -n $"Starting $prog: "
+        daemon sharedanced --directory="${SHAREDANCE_DIR}" --daemonize --uid=${SHAREDANCE_UID} --gid=${SHAREDANCE_GID} ${SHAREDANCE_OPTIONS}
+        RETVAL=$?
+        echo
+	if [ $RETVAL -eq 0 ]; then
+            touch /var/lock/subsys/$prog
+        fi
+	return $RETVAL
+}
+
+stop() {
+	echo -n $"Stopping $prog: "
+        killproc sharedanced
+	RETVAL=$?
+	echo
+	if [ $RETVAL -eq 0 ]; then
+            rm -f /var/lock/subsys/$prog
+        fi
+	return $RETVAL
+}
+
+restart() {
+	stop
+	start
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart)
+	restart
+	;;
+  status)
+        status $prog
+        RETVAL=$?
+        ;;
+  condrestart)
+	[ -f /var/lock/subsys/$prog ] && restart || :
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|restart|status|condrestart}"
+	exit 1
+esac
+
+exit $RETVAL

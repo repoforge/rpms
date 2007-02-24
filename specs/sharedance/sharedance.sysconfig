@@ -1,0 +1,6 @@
+# Sharedance settings
+# For all possible command line options, see "sharedanced --help" output
+
+#SHAREDANCE_DIR="/var/lib/sharedance"
+SHAREDANCE_OPTIONS="--ip=127.0.0.1"
+
