@@ -1,0 +1,52 @@
+--- ipw3945-1.2.0-1/ipw3945.h.orig	2007-01-27 17:52:04.000000000 +0200
++++ ipw3945-1.2.0-1/ipw3945.h	2007-01-27 17:52:31.000000000 +0200
+@@ -1170,6 +1170,7 @@
+ #define ALM_APMG_CLK_DIS                         (0x003008)
+ #define ALM_APMG_PS_CTL                          (0x00300c)
+ #define ALM_APMG_PCIDEV_STT                      (0x003010)
++#define ALM_APMG_RFKILL				 (0x003014)
+ #define ALM_APMG_LARC_INT                        (0x00301c)
+ #define ALM_APMG_LARC_INT_MSK                    (0x003020)
+ 
+--- ipw3945-1.2.0-1/ipw3945.c.orig	2007-01-27 17:52:02.000000000 +0200
++++ ipw3945-1.2.0-1/ipw3945.c	2007-01-27 17:53:07.000000000 +0200
+@@ -15955,6 +15955,8 @@
+ static void ipw_alive_start(struct ipw_priv *priv)
+ {
+ 	int thermal_spin = 0;
++	int rc;
++	u32 rfkill;
+ 
+ 	if (priv->card_alive.is_valid != 1) {
+ 		/* We had an error bringing up the hardware, so take it
+@@ -15969,7 +15971,19 @@
+ 
+ 	IPW_DEBUG_INFO("Alive received.\n");
+ 
+-	if (!(priv->status & STATUS_RF_KILL_MASK)) {
++	rc = ipw_grab_restricted_access(priv);
++	if (rc) {
++		IPW_WARNING("Can not read rfkill status from adapter\n");
++		return;
++	}
++
++	rfkill = ipw_read_restricted_reg(priv, ALM_APMG_RFKILL);
++	IPW_DEBUG_INFO("RFKILL status: 0x%x\n", rfkill);
++	ipw_release_restricted_access(priv);
++
++	if (rfkill & 1) {
++		priv->status &= ~STATUS_RF_KILL_HW;
++
+ 		/* if rfkill is not on, then
+ 		 * wait for thermal sensor in adapter to kick in */
+ 		while (ipw_read32(priv, CSR_UCODE_DRV_GP2) == 0) {
+@@ -15979,7 +15993,8 @@
+ 		if (thermal_spin)
+ 			IPW_DEBUG_INFO("Thermal calibration took %dus\n",
+ 				       thermal_spin * 10);
+-	}
++	} else
++		priv->status |= STATUS_RF_KILL_HW;
+ 
+ 	ipw_clear_stations_table(priv);
+ 
