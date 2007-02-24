@@ -1,0 +1,22 @@
+--- Makefile	2003-05-01 23:50:38.000000000 +0200
++++ Makefile.new	2004-02-02 13:53:30.000000000 +0100
+@@ -1,6 +1,17 @@
++
++PREFIX=/usr/local
++
++BINARY=nrg2iso
++
+ all: nrg2iso.c
+-	gcc nrg2iso.c -o nrg2iso
++	gcc $(CFLAGS) nrg2iso.c -o $(BINARY)
+ 
+ clean: 
+-	rm -f nrg2iso
++	rm -f $(BINARY)
+ 	rm -f *~
++
++install: 
++	install -D $(BINARY) $(PREFIX)/bin/$(BINARY)
++
++uninstall:
++	rm -f $(PREFIX)/bin/$(BINARY)
