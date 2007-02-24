@@ -1,12 +1,13 @@
 # $Id$
 # Authority: dag
 
-%define kernel %(rpm -q kernel-devel --qf '%{RPMTAG_VERSION}-%{RPMTAG_RELEASE}' 2>/dev/null || rpm -q kernel-source --qf '%{RPMTAG_VERSION}-%{RPMTAG_RELEASE}' 2>/dev/null| tail -1)
+# Ugly, but we need headers from a kernel to rebuild against
+%define kernel %(rpm -q kernel-devel --qf '%{RPMTAG_VERSION}-%{RPMTAG_RELEASE}\\n' 2>/dev/null | head -1)
 
 Summary: HA monitor built upon LVS, VRRP and services poller
 Name: keepalived
 Version: 1.1.13
-Release: 2
+Release: 5
 License: GPL
 Group: Applications/System
 URL: http://www.keepalived.org/
@@ -19,30 +20,30 @@ Patch1: keepalived-1.1.13-iflabel.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel
-# For recent distros where kernel-devel is available, we need both of these
+# We need both of these for proper LVS support
 BuildRequires: kernel, kernel-devel
-# For older distros, this should probably be enough
-#BuildRequires: kernel-source
+Requires(post): /sbin/chkconfig
+Requires(preun): /sbin/service, /sbin/chkconfig
+Requires(postun): /sbin/service
 
 %description
-The main goal of the keepalived project is to add a strong & robust
-keepalive facility to the Linux Virtual Server project. This project
-is written in C with multilayer TCP/IP stack checks.
+The main goal of the keepalived project is to add a strong & robust keepalive
+facility to the Linux Virtual Server project. This project is written in C with
+multilayer TCP/IP stack checks. Keepalived implements a framework based on
+three family checks : Layer3, Layer4 & Layer5/7. This framework gives the
+daemon the ability to check the state of an LVS server pool. When one of the
+servers of the LVS server pool is down, keepalived informs the linux kernel via
+a setsockopt call to remove this server entry from the LVS topology. In
+addition keepalived implements an independent VRRPv2 stack to handle director
+failover. So in short keepalived is a userspace daemon for LVS cluster nodes
+healthchecks and LVS directors failover.
 
-Keepalived implements a framework based on three family checks: Layer3,
-Layer4 & Layer5. This framework gives the daemon the ability of checking
-a LVS server pool states. When one of the server of the LVS server pool
-is down, keepalived informs the linux kernel via a setsockopt call to
-remove this server entrie from the LVS topology.
-
-In addition keepalived implements a VRRPv2 stack to handle director
-failover. So in short keepalived is a userspace daemon for LVS cluster
-nodes healthchecks and LVS directors failover.
 
 %prep
 %setup
 %patch0 -p1 -b .makefile
 %patch1 -p0 -b .iflabel
+
 
 %build
 %{?el3:export CPPFLAGS="-I/usr/kerberos/include"}
@@ -51,11 +52,12 @@ nodes healthchecks and LVS directors failover.
 %{?el3:--includedir="/usr/kerberos/include"} \
 %{?rh9:--includedir="/usr/kerberos/include"} \
     --with-kernel-dir="/lib/modules/%{kernel}/build"
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} STRIP=/bin/true
+
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
+%{__make} install DESTDIR=%{buildroot}
 # Remove "samples", as we include them in %%doc
 %{__rm} -rf %{buildroot}%{_sysconfdir}/keepalived/samples/
 # Init script (based on the included one, but enhanced)
@@ -65,8 +67,19 @@ nodes healthchecks and LVS directors failover.
 %{__install} -D -p -m 0755 %{SOURCE2} \
     %{buildroot}%{_sysconfdir}/sysconfig/keepalived
 
+
+%check
+# A build could silently have LVS support disabled if the kernel includes can't
+# be properly found, we need to avoid that.
+if ! grep -q "IPVS_SUPPORT='_WITH_LVS_'" config.log; then
+    echo "ERROR: We do not want keeepalived lacking LVS support."
+    exit 1
+fi
+
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %post
 /sbin/chkconfig --add keepalived
@@ -82,6 +95,7 @@ if [ $1 -ge 1 ]; then
     /sbin/service keepalived condrestart &>/dev/null || :
 fi
 
+
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHOR ChangeLog CONTRIBUTORS COPYING README TODO
@@ -96,7 +110,18 @@ fi
 %{_mandir}/man5/keepalived.conf.5*
 %{_mandir}/man8/keepalived.8*
 
+
 %changelog
+* Wed Feb 14 2007 Matthias Saou <http://freshrpms.net/> 1.1.13-5
+- Add missing scriplet requirements.
+
+* Tue Feb 13 2007 Matthias Saou <http://freshrpms.net/> 1.1.13-4
+- Add missing \n to the kernel define, for when multiple kernels are installed.
+- Pass STRIP=/bin/true to "make" in order to get a useful debuginfo package.
+
+* Tue Feb 13 2007 Matthias Saou <http://freshrpms.net/> 1.1.13-3
+- Add %%check section to make sure any build without LVS support will fail.
+
 * Mon Feb  5 2007 Matthias Saou <http://freshrpms.net/> 1.1.13-2
 - Use our own init script, include a sysconfig entry used by it for options.
 
@@ -142,3 +167,4 @@ fi
 
 * Fri Jun 06 2003 Dag Wieers <dag@wieers.com> - 1.0.3-0
 - Initial package. (using DAR)
+
