@@ -1,0 +1,37 @@
+diff -Naur i810switch-0.6.2.orig/Makefile i810switch-0.6.2/Makefile
+--- i810switch-0.6.2.orig/Makefile	2005-01-11 18:09:22.011215952 -0800
++++ i810switch-0.6.2/Makefile	2005-01-11 18:11:15.474110985 -0800
+@@ -1,5 +1,8 @@
+ OBJECTS	= i810switch.o
+ 
++bindir = $(DESTDIR)/usr/bin
++mandir = $(DESTDIR)/usr/share/man
++
+ %.o: %.c
+ 	$(CC) $(CFLAGS) -c -o $@ $<
+ 
+@@ -9,16 +12,16 @@
+ 	$(CC) $(CFLAGS) -o $@ $(OBJECTS)
+ 
+ install: i810switch
+-	install -d $(DESTDIR)/usr/bin
+-	install -d $(DESTDIR)/usr/share/man/man1
+-	install i810switch i810rotate $(DESTDIR)/usr/bin
+-	install i810switch.1.gz i810rotate.1.gz $(DESTDIR)/usr/share/man/man1
++	install -d $(bindir)
++	install -d $(mandir)/man1
++	install i810switch i810rotate $(bindir)
++	install i810switch.1.gz i810rotate.1.gz $(mandir)/man1
+ 
+ uninstall:
+-	rm -f $(DESTDIR)/usr/bin/i810switch
+-	rm -f $(DESTDIR)/usr/bin/i810rotate
+-	rm -f $(DESTDIR)/usr/share/man/man1/i810switch.1.gz
+-	rm -f $(DESTDIR)/usr/share/man/man1/i810rotate.1.gz
++	rm -f $(bindir)/i810switch
++	rm -f $(bindir)/i810rotate
++	rm -f $(mandir)/man1/i810switch.1.gz
++	rm -f $(mandir)/man1/i810rotate.1.gz
+ 
+ clean:
+ 	@rm -f $(OBJECTS) i810switch
