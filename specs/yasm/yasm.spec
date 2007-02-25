@@ -11,7 +11,7 @@
 
 Summary: Complete rewrite of the NASM assembler
 Name: yasm
-Version: 0.5.0
+Version: 0.6.0
 Release: 1
 License: BSD
 Group: Development/Languages
@@ -74,7 +74,7 @@ Install this package if you need to rebuild applications that use yasm.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Artistic.txt AUTHORS BSD.txt ChangeLog COPYING GNU* NEWS README
+%doc Artistic.txt AUTHORS BSD.txt COPYING GNU*
 %{_bindir}/yasm
 #%{_libdir}/*.so.*
 #%dir %{_libdir}/yasm/
@@ -83,18 +83,23 @@ Install this package if you need to rebuild applications that use yasm.
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/libyasm.h
 %{_includedir}/libyasm/
+%{_includedir}/libyasm-stdint.h
+%{_includedir}/libyasm.h
 %{_libdir}/libyasm.a
 #%exclude %{_libdir}/*.la
 #%{_libdir}/*.so
 #%dir %{_libdir}/yasm/
 #%{_libdir}/yasm/*.a
 #%exclude %{_libdir}/yasm/*.la
-%{_mandir}/man7/yasm_arch.7*
+%{_mandir}/man7/yasm_*.7*
 
 
 %changelog
+* Sun Feb 25 2007 Matthias Saou <http://freshrpms.net/> 0.6.0-1
+- Update to 0.6.0.
+- Remove empty doc files.
+
 * Fri Jul 14 2006 Dag Wieers <dag@wieers.com> - 0.5.0-1
 - Updated to release 0.5.0.
 
