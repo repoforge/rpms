@@ -1,0 +1,44 @@
+--- proftpd-1.3.0/src/main.c.cmdbufsize	2006-03-15 19:41:01.000000000 +0000
++++ proftpd-1.3.0/src/main.c	2006-11-17 16:53:35.000000000 +0000
+@@ -116,6 +116,8 @@
+ 
+ static char sbuf[PR_TUNABLE_BUFFER_SIZE] = {'\0'};
+ 
++#define PR_DEFAULT_CMD_BUFSZ 512
++
+ static char **Argv = NULL;
+ static char *LastArgv = NULL;
+ static const char *PidPath = PR_PID_FILE_PATH;
+@@ -823,13 +825,26 @@
+       long *buf_size = get_param_ptr(main_server->conf,
+         "CommandBufferSize", FALSE);
+ 
+-      if (buf_size == NULL || *buf_size <= 0)
+-        cmd_buf_size = 512;
++      if (buf_size == NULL) {
++        pr_log_debug(DEBUG1, "no CommandBufferSize size given, "
++          "using default buffer size (%u)", (unsigned int) PR_DEFAULT_CMD_BUFSZ);
++        cmd_buf_size = PR_DEFAULT_CMD_BUFSZ;
++
++      } else if (*buf_size <= 0) {
++	pr_log_pri(PR_LOG_WARNING, "invalid CommandBufferSize size (%ld) "
++          "given, resetting to default buffer size (%u)",
++          *buf_size, (unsigned int) PR_DEFAULT_CMD_BUFSZ);
++        cmd_buf_size = PR_DEFAULT_CMD_BUFSZ;
++
++      } else if (*buf_size + 1 > sizeof(buf)) {
++	pr_log_pri(PR_LOG_WARNING, "invalid CommandBufferSize size (%ld) "
++          "given, resetting to default buffer size (%u)",
++          *buf_size, (unsigned int) PR_DEFAULT_CMD_BUFSZ);
++	cmd_buf_size = PR_DEFAULT_CMD_BUFSZ;
+ 
+-      else if (*buf_size + 1 > sizeof(buf)) {
+-	pr_log_pri(PR_LOG_WARNING, "Invalid CommandBufferSize size given. "
+-          "Resetting to 512.");
+-	cmd_buf_size = 512;
++      } else {
++        pr_log_debug(DEBUG1, "setting CommandBufferSize to %ld", *buf_size);
++        cmd_buf_size = (long) *buf_size;
+       }
+     }
+ 

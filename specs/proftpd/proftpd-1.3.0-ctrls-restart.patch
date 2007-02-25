@@ -1,0 +1,104 @@
+Index: modules/mod_ctrls.c
+===================================================================
+RCS file: /cvsroot/proftp/proftpd/modules/mod_ctrls.c,v
+retrieving revision 1.30
+diff -u -r1.30 mod_ctrls.c
+--- modules/mod_ctrls.c	11 Nov 2005 21:05:32 -0000	1.30
++++ modules/mod_ctrls.c	23 May 2006 17:31:51 -0000
+@@ -3,7 +3,7 @@
+  *          server, as well as several utility functions for other Controls
+  *          modules
+  *
+- * Copyright (c) 2000-2005 TJ Saunders
++ * Copyright (c) 2000-2006 TJ Saunders
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -34,7 +34,7 @@
+ #include "privs.h"
+ #include "mod_ctrls.h"
+ 
+-#define MOD_CTRLS_VERSION "mod_ctrls/0.9.3"
++#define MOD_CTRLS_VERSION "mod_ctrls/0.9.4"
+ 
+ /* Master daemon in standalone mode? (from src/main.c) */
+ extern unsigned char is_master;
+@@ -518,7 +518,7 @@
+   } else if (res == PR_LOG_WRITABLE_DIR) {
+     pr_log_pri(PR_LOG_NOTICE, MOD_CTRLS_VERSION
+       ": unable to open ControlsLog '%s': "
+-      "containing directory is world writeable", ctrls_logname);
++      "containing directory is world writable", ctrls_logname);
+ 
+   } else if (res == PR_LOG_SYMLINK) {
+     pr_log_pri(PR_LOG_NOTICE, MOD_CTRLS_VERSION
+@@ -1476,7 +1476,7 @@
+ 
+     if (res == -2)
+       CONF_ERROR(cmd, pstrcat(cmd->tmp_pool,
+-        "unable to log to a world-writeable directory", NULL));
++        "unable to log to a world-writable directory", NULL));
+   }
+ 
+   return HANDLED(cmd);
+@@ -1506,10 +1506,12 @@
+     CONF_ERROR(cmd, "must be an absolute path");
+ 
+   /* Close the socket. */
+-  pr_log_debug(DEBUG3, MOD_CTRLS_VERSION ": closing ctrls socket '%s'",
+-    ctrls_sock_file);
+-  close(ctrls_sockfd);
+-  ctrls_sockfd = -1;
++  if (ctrls_sockfd >= 0) {
++    pr_log_debug(DEBUG3, MOD_CTRLS_VERSION ": closing ctrls socket '%s' (%d)",
++      ctrls_sock_file, ctrls_sockfd);
++    close(ctrls_sockfd);
++    ctrls_sockfd = -1;
++  }
+ 
+   /* Change the path. */
+   if (strcmp(cmd->argv[1], ctrls_sock_file) != 0)
+@@ -1608,9 +1610,28 @@
+   PRIVS_ROOT
+   ctrls_sockfd = ctrls_listen(ctrls_sock_file);
+   PRIVS_RELINQUISH
+-  if (ctrls_sockfd < 0)
++  if (ctrls_sockfd < 0) {
+     pr_log_pri(PR_LOG_NOTICE, "notice: unable to listen to local socket: %s",
+       strerror(errno));
++
++  } else {
++    /* Ensure that the listen socket used is not one of the major three
++     * (stdin, stdout, or stderr).
++     */
++    if (ctrls_sockfd < 3) {
++      if (dup2(ctrls_sockfd, 3) < 0) {
++        pr_log_pri(PR_LOG_NOTICE, MOD_CTRLS_VERSION
++          ": error duplicating listen socket: %s", strerror(errno));
++        (void) close(ctrls_sockfd);
++        ctrls_sockfd = -1;
++
++      } else {
++        (void) close(ctrls_sockfd);
++        ctrls_sockfd = 3;
++      }
++    }
++  }
++
+ }
+ 
+ static void ctrls_restart_ev(const void *event_data, void *user_data) {
+@@ -1633,10 +1654,11 @@
+   cl_list = NULL;
+   cl_listlen = 0;
+ 
+-  pr_log_debug(DEBUG3, MOD_CTRLS_VERSION ": closing ctrls socket '%s'",
+-    ctrls_sock_file);
++  pr_log_debug(DEBUG3, MOD_CTRLS_VERSION ": closing ctrls socket '%s' (%d)",
++    ctrls_sock_file, ctrls_sockfd);
+   close(ctrls_sockfd);
+   ctrls_sockfd = -1;
++
+   ctrls_closelog();
+ 
+   /* Clear the existing pool */

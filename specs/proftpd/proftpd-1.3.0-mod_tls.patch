@@ -1,0 +1,15 @@
+This is a possible fix Ralf S. Engelschall <rse+openpkg-security@openpkg.org>
+has made myself for the X.509 issue of mod_tls.c
+
+Index: contrib/mod_tls.c
+--- contrib/mod_tls.c.orig      2005-11-08 18:59:49 +0100
++++ contrib/mod_tls.c   2006-11-15 17:54:43 +0100
+@@ -2421,6 +2421,8 @@
+      datalen = BIO_get_mem_data(mem, &data);
+
+   if (data) {
++    if (datalen > sizeof(buf)-1)
++        datalen = sizeof(buf)-1;
+     memset(&buf, '\0', sizeof(buf));
+     memcpy(buf, data, datalen);
+     buf[datalen] = '\0';

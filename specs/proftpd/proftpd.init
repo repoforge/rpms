@@ -32,7 +32,7 @@ prog="proftpd"
 
 start() {
 	echo -n $"Starting $prog: "
-	daemon proftpd
+	daemon proftpd 2>/dev/null
 	RETVAL=$?
 	echo
 	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/proftpd

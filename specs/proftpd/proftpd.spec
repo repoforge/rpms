@@ -1,11 +1,10 @@
 # $Id$
-# Authority: matthias
-# Upstream: <proftp-devel$lists,sf,net>
+# Authority
 
 Summary: Flexible, stable and highly-configurable FTP server
 Name: proftpd
-Version: 1.2.10
-Release: 10
+Version: 1.3.0a
+Release: 3
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.proftpd.org/
@@ -16,20 +15,20 @@ Source3: proftpd-xinetd
 Source4: proftpd.logrotate
 Source5: welcome.msg
 Source6: proftpd.pam
-Patch0: proftpd-1.2.10-backport-CAN-2005-2390.patch
+Patch0: proftpd-1.3.0-rpath.patch
+Patch1: proftpd-1.3.0-ctrls-restart.patch
+Patch2: proftpd-1.3.0-cmdbufsize.patch
+Patch3: proftpd-1.3.0-mod_tls.patch
+Patch4: proftpd-1.3.0a-ctrls-bug2867.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: pam >= 0.59, /sbin/service, /sbin/chkconfig
-BuildRequires: pam-devel, perl, ncurses-devel, pkgconfig
-%{!?_without_tls:Requires: openssl}
-%{!?_without_tls:BuildRequires: openssl-devel, krb5-devel}
-%{?_with_ldap:Requires: openldap}
-%{?_with_ldap:BuildRequires: openldap-devel}
-%{?_with_mysql:Requires: mysql}
-%{?_with_mysql:BuildRequires: mysql-devel, zlib-devel}
-%{?_with_postgresql:Requires: postgresql-libs}
-%{?_with_postgresql:BuildRequires: postgresql-devel}
+Requires: pam >= 0.59
+Requires(post): /sbin/chkconfig
+Requires(preun): /sbin/service, /sbin/chkconfig
+Requires(postun): /sbin/service
+BuildRequires: pam-devel, ncurses-devel, pkgconfig
+BuildRequires: openssl-devel, krb5-devel, libacl-devel
+BuildRequires: openldap-devel, mysql-devel, zlib-devel, postgresql-devel
 Provides: ftpserver
-Conflicts: wu-ftpd, anonftp, vsftpd
 
 %description
 ProFTPD is an enhanced FTP server with a focus toward simplicity, security,
@@ -41,57 +40,78 @@ visibility.
 This package defaults to the standalone behaviour of ProFTPD, but all the
 needed scripts to have it run by xinetd instead are included.
 
-Available rpmbuild rebuild options :
---without : tls
---with : ldap mysql postgresql ipv6
+
+%package ldap
+Summary: Module to add LDAP support to the ProFTPD FTP server
+Group: System Environment/Daemons
+Requires: %{name} = %{version}-%{release}
+
+%description ldap
+Module to add LDAP support to the ProFTPD FTP server.
+
+
+%package mysql
+Summary: Module to add MySQL support to the ProFTPD FTP server
+Group: System Environment/Daemons
+Requires: %{name} = %{version}-%{release}
+
+%description mysql
+Module to add MySQL support to the ProFTPD FTP server.
+
+
+%package postgresql
+Summary: Module to add PostgreSQL support to the ProFTPD FTP server
+Group: System Environment/Daemons
+Requires: %{name} = %{version}-%{release}
+
+%description postgresql
+Module to add PostgreSQL support to the ProFTPD FTP server.
 
 
 %prep
 %setup
-%patch0 -p0 -b .CAN-2005-2390
+%patch0 -p1 -b .rpath
+%patch1 -p0 -b .ctrls-restart
+%patch2 -p1 -b .cmdbufsize
+%patch3 -p0 -b .mod_tls
+%patch4 -p0 -b .ctrls-bug2867
 
 
 %build
-# Workaround for the PostgreSQL include file
-%{__perl} -pi -e 's|pgsql/libpq-fe.h|libpq-fe.h|g' contrib/mod_sql_postgres.c
-
 # Disable stripping in order to get useful debuginfo packages
 %{__perl} -pi -e 's|"-s"|""|g' configure
 
-# TLS includes
-OPENSSL_INC=""
-if OPENSSL_CFLAGS=`pkg-config --cflags openssl`; then
-    for i in ${OPENSSL_CFLAGS}; do
-        INCPATH=`echo $i | perl -pi -e 's|-I([a-z/]*)|$1|g'`
-        test ! -z ${INCPATH} && OPENSSL_INC="${OPENSSL_INC}:${INCPATH}"
-    done
-fi
-
 %configure \
-    --localstatedir="/var/run" \
-    --with-includes="%{_includedir}%{!?_without_tls:${OPENSSL_INC}}%{?_with_mysql::%{_includedir}/mysql}" \
-    %{?_with_ipv6:--enable-ipv6} \
-    %{?_with_mysql:--with-libraries="%{_libdir}/mysql"} \
-    %{?_with_postgresql:--with-libraries="%{_libdir}"} \
-    --with-modules=mod_readme:mod_auth_pam%{?_with_ldap::mod_ldap}%{?_with_mysql::mod_sql:mod_sql_mysql}%{?_with_postgresql::mod_sql:mod_sql_postgres}%{!?_without_tls::mod_tls}
+    --libexecdir="%{_libexecdir}/proftpd" \
+    --localstatedir="%{_var}/run" \
+    --enable-ctrls \
+    --enable-facl \
+    --enable-dso \
+    --enable-ipv6 \
+    --with-libraries="%{_libdir}/mysql" \
+    --with-includes="%{_includedir}/mysql" \
+    --with-modules=mod_readme:mod_auth_pam:mod_tls \
+    --with-shared=mod_ldap:mod_sql:mod_sql_mysql:mod_sql_postgres:mod_quotatab:mod_quotatab_file:mod_quotatab_ldap:mod_quotatab_sql
+
 %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall rundir="%{buildroot}%{_localstatedir}/run/proftpd" \
+%{__make} install DESTDIR=%{buildroot} \
+    rundir="%{_var}/run/proftpd" \
     INSTALL_USER=`id -un` \
     INSTALL_GROUP=`id -gn`
-%{__install} -D -p -m 640 %{SOURCE1} \
+%{__install} -D -p -m 0640 %{SOURCE1} \
     %{buildroot}%{_sysconfdir}/proftpd.conf
-%{__install} -D -p -m 755 %{SOURCE2} \
+%{__install} -D -p -m 0755 %{SOURCE2} \
     %{buildroot}%{_sysconfdir}/rc.d/init.d/proftpd
-%{__install} -D -p -m 640 %{SOURCE3} \
+%{__install} -D -p -m 0640 %{SOURCE3} \
     %{buildroot}%{_sysconfdir}/xinetd.d/xproftpd
-%{__install} -D -p -m 644 %{SOURCE4} \
+%{__install} -D -p -m 0644 %{SOURCE4} \
     %{buildroot}%{_sysconfdir}/logrotate.d/proftpd
-%{__install} -D -p -m 644 %{SOURCE5} %{buildroot}/var/ftp/welcome.msg
-%{__install} -D -p -m 644 %{SOURCE6} %{buildroot}%{_sysconfdir}/pam.d/proftpd
+%{__install} -D -p -m 0644 %{SOURCE5} %{buildroot}/var/ftp/welcome.msg
+%{__install} -D -p -m 0644 %{SOURCE6} %{buildroot}%{_sysconfdir}/pam.d/proftpd
 %{__mkdir_p} %{buildroot}/var/ftp/uploads
 %{__mkdir_p} %{buildroot}/var/ftp/pub
 %{__mkdir_p} %{buildroot}/var/log/proftpd
@@ -103,7 +123,7 @@ touch %{buildroot}%{_sysconfdir}/ftpusers
 
 
 %post
-if [ $1 = 1 ]; then
+if [ $1 -eq 1 ]; then
     /sbin/chkconfig --add proftpd
     IFS=":"; cat /etc/passwd | \
     while { read username nu nu gid nu nu nu nu; }; do \
@@ -114,12 +134,12 @@ if [ $1 = 1 ]; then
 fi
 
 %preun
-if [ $1 = 0 ]; then
+if [ $1 -eq 0 ]; then
     /sbin/service proftpd stop &>/dev/null || :
     /sbin/chkconfig --del proftpd
     /sbin/service xinetd reload &>/dev/null || :
-    if [ -d /var/run/proftpd ]; then
-        rm -rf /var/run/proftpd/*
+    if [ -d %{_var}/run/proftpd ]; then
+        rm -rf %{_var}/run/proftpd/*
     fi
 fi
 
@@ -137,11 +157,17 @@ fi
 %config(noreplace) %{_sysconfdir}/proftpd.conf
 %config(noreplace) %{_sysconfdir}/xinetd.d/xproftpd
 %config %{_sysconfdir}/ftpusers
-%config %{_sysconfdir}/pam.d/proftpd
-%config %{_sysconfdir}/logrotate.d/proftpd
+%config(noreplace) %{_sysconfdir}/pam.d/proftpd
+%config(noreplace) %{_sysconfdir}/logrotate.d/proftpd
 %{_sysconfdir}/rc.d/init.d/proftpd
 %{_mandir}/*/*
 %{_bindir}/*
+%dir %{_libexecdir}/proftpd/
+%{_libexecdir}/proftpd/mod_quotatab.so
+%{_libexecdir}/proftpd/mod_quotatab_file.so
+%{_libexecdir}/proftpd/mod_sql.so
+%exclude %{_libexecdir}/proftpd/*.a
+%exclude %{_libexecdir}/proftpd/*.la
 %{_sbindir}/*
 %dir /var/ftp/
 %attr(331, ftp, ftp) %dir /var/ftp/uploads/
@@ -149,16 +175,107 @@ fi
 %config(noreplace) /var/ftp/welcome.msg
 %attr(750, root, root) %dir /var/log/proftpd/
 
+%files ldap
+%defattr(-, root, root, 0755)
+%dir %{_libexecdir}/proftpd/
+%{_libexecdir}/proftpd/mod_ldap.so
+%{_libexecdir}/proftpd/mod_quotatab_ldap.so
+
+%files mysql
+%defattr(-, root, root, 0755)
+%dir %{_libexecdir}/proftpd/
+%{_libexecdir}/proftpd/mod_sql_mysql.so
+%{_libexecdir}/proftpd/mod_quotatab_sql.so
+
+%files postgresql
+%defattr(-, root, root, 0755)
+%dir %{_libexecdir}/proftpd/
+%{_libexecdir}/proftpd/mod_sql_postgres.so
+%{_libexecdir}/proftpd/mod_quotatab_sql.so
+
 
 %changelog
-* Thu Feb  9 2006 Matthias Saou <http://freshrpms.net/> 1.2.10-10
-- Fix the default configuration to match the PAM file name change.
+* Tue Feb  6 2007 Matthias Saou <http://freshrpms.net/> 1.3.0a-3
+- Patch to fix local user buffer overflow in controls request handling, rhbz
+  bug #219938, proftpd bug #2867.
 
-* Mon Jan 30 2006 Matthias Saou <http://freshrpms.net/> 1.2.10-9
-- Sync changes from the Fedora Extras package (fixed pam file).
-- Remove extra info from the release tag that caused update problems.
-- Add conditional IPv6 support.
-- Include CAN-2005-2390 patch.
+* Mon Dec 11 2006 Matthias Saou <http://freshrpms.net/> 1.3.0a-2
+- Rebuild against new PostgreSQL.
+
+* Mon Nov 27 2006 Matthias Saou <http://freshrpms.net/> 1.3.0a-1
+- Update to 1.3.0a, which actually fixes CVE-2006-5815... yes, #214820!).
+
+* Thu Nov 16 2006 Matthias Saou <http://freshrpms.net/> 1.3.0-10
+- Fix cmdbufsize patch for missing CommandBufferSize case (#214820 once more).
+
+* Thu Nov 16 2006 Matthias Saou <http://freshrpms.net/> 1.3.0-9
+- Include mod_tls patch (#214820 too).
+
+* Mon Nov 13 2006 Matthias Saou <http://freshrpms.net/> 1.3.0-8
+- Include cmdbufsize patch (#214820).
+
+* Mon Aug 28 2006 Matthias Saou <http://freshrpms.net/> 1.3.0-7
+- FC6 rebuild.
+
+* Mon Aug 21 2006 Matthias Saou <http://freshrpms.net/> 1.3.0-6
+- Add mod_quotatab, _file, _ldap and _sql (#134291).
+
+* Mon Jul  3 2006 Matthias Saou <http://freshrpms.net/> 1.3.0-5
+- Disable sendfile by default since it breaks displaying the download speed in
+  ftptop and ftpwho (#196913).
+
+* Mon Jun 19 2006 Matthias Saou <http://freshrpms.net/> 1.3.0-4
+- Include ctrls restart patch, see #195884 (patch from proftpd.org #2792).
+
+* Wed May 10 2006 Matthias Saou <http://freshrpms.net/> 1.3.0-3
+- Add commented section about DSO loading to the default proftpd.conf.
+- Update TLS cert paths in the default proftpd.conf to /etc/pki/tls.
+
+* Fri Apr 28 2006 Matthias Saou <http://freshrpms.net/> 1.3.0-2
+- Mark pam.d and logrotate.d config files as noreplace.
+- Include patch to remove -rpath to DESTDIR/usr/sbin/ in the proftpd binary
+  when DSO is enabled (#190122).
+
+* Fri Apr 21 2006 Matthias Saou <http://freshrpms.net/> 1.3.0-1
+- Update to 1.3.0 final.
+- Remove no longer needed PostgreSQL and OpenSSL detection workarounds.
+- Remove explicit conflicts on wu-ftpd, anonftp and vsftpd to let people
+  install more than one ftp daemon (what for? hmm...) (#189023).
+- Enable LDAP, MySQL and PostgreSQL as DSOs by default, and stuff them in
+  new sub-packages. This won't introduce any regression since they weren't
+  enabled by default.
+- Remove useless explicit requirements.
+- Rearrange scriplets requirements.
+- Enable ctrls (controls via ftpdctl) and facl (POSIX ACLs).
+- Using --disable-static makes the build fail, so exclude .a files in %%files.
+- Silence harmless IPv6 failure message at startup when IPv6 isn't available.
+
+* Tue Mar  7 2006 Matthias Saou <http://freshrpms.net/> 1.3.0-0.2.rc4
+- Update to 1.3.0rc4 (bugfix release).
+
+* Mon Mar  6 2006 Matthias Saou <http://freshrpms.net/> 1.3.0-0.2.rc3
+- FC5 rebuild.
+
+* Thu Feb  9 2006 Matthias Saou <http://freshrpms.net/> 1.3.0-0.1.rc3
+- Update to 1.3.0rc3, which builds with the latest openssl.
+
+* Thu Nov 17 2005 Matthias Saou <http://freshrpms.net/> 1.2.10-7
+- Rebuild against new openssl library... not.
+
+* Wed Jul 13 2005 Matthias Saou <http://freshrpms.net/> 1.2.10-6
+- The provided pam.d file no longer works, use our own based on the one from
+  the vsftpd package (#163026).
+- Rename the pam.d file we use from 'ftp' to 'proftpd'.
+- Update deprecated AuthPAMAuthoritative in the config file (see README.PAM).
+
+* Tue May 10 2005 Matthias Saou <http://freshrpms.net/> 1.2.10-4
+- Disable stripping in order to get useful debuginfo packages.
+
+* Fri Apr  7 2005 Michael Schwendt <mschwendt[AT]users.sf.net> 1.2.10-3
+- rebuilt
+
+* Tue Nov 16 2004 Matthias Saou <http://freshrpms.net/> 1.2.10-2
+- Bump release to provide Extras upgrade path.
 
 * Wed Sep 22 2004 Matthias Saou <http://freshrpms.net/> 1.2.10-1
 - Updated to release 1.2.10.
