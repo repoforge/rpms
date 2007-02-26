@@ -21,10 +21,11 @@ BuildRequires: glib2-devel, libglade2-devel, gamin-devel
 BuildRequires: perl(XML::Parser), intltool
 BuildRequires: texinfo
 %{!?dist:BuildRequires: gnome-panel-devel}
-%{?el4:BuildRequires: gnome-panel-devel}
+%{?el5:BuildRequires: gnome-panel-devel}
 %{?fc6:BuildRequires: gnome-panel-devel}
 %{?fc5:BuildRequires: gnome-panel-devel}
 %{?fc4:BuildRequires: gnome-panel-devel}
+%{?el4:BuildRequires: gnome-panel-devel}
 %{?fc3:BuildRequires: gnome-panel-devel}
 %{?fc2:BuildRequires: gnome-panel-devel}
 
@@ -89,9 +90,6 @@ mails. It supports pop3, apop, imap4, mh, qmail and mailfile.
 
 * Mon Apr 10 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.0-1
 - Updated to release 2.2.0.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.1.9-1.2
-- Rebuild for Fedora Core 5.
 
 * Mon Jan 09 2006 Dries Verachtert <dries@ulyssis.org> - 2.1.9-1
 - Updated to release 2.1.9.

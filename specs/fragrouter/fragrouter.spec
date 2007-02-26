@@ -1,10 +1,11 @@
-# $Id$
+# $Id: fragrouter.spec 4899 2006-11-18 23:37:30Z dag $
 # Authority: dag
 # Upstream: Dug Song <dugsong$monkey,org>
 
 %{?dist: %{expand: %%define %dist 1}}
 
 %{!?dist:%define _with_libpcapdevel 1}
+%{?el5:%define _with_libpcapdevel 1}
 %{?fc6:%define _with_libpcapdevel 1}
 
 Summary: Fragrouter is a network intrusion detection evasion toolkit

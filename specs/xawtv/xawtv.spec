@@ -33,6 +33,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{!?_without_modxorg:BuildRequires: libX11-devel}
 BuildRequires: ncurses-devel, Xaw3d-devel, libjpeg-devel
 BuildRequires: zvbi-devel
+%{?el5:BuildRequires: lesstif-devel}
 %{?fc6:BuildRequires: lesstif-devel}
 %{?fc5:BuildRequires: openmotif-devel}
 %{?fc4:BuildRequires: openmotif-devel}
@@ -109,9 +110,6 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-xawtv.desktop}
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.94-2.2
-- Rebuild for Fedora Core 5.
-
 * Wed Feb 09 2005 Dag Wieers <dag@wieers.com> - 3.94-2
 - Added zvbi-devel build requirement. (Klaus-Peter Schrage)
 - Rebuild with zvbi-support.

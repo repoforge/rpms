@@ -7,8 +7,9 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %{!?dist:%define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el5:  %define _with_modxorg 1}
 %{?fc6:  %define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
 
 Summary: Structured WYSIWYG scientific text editor
 Name: texmacs
@@ -96,9 +97,6 @@ drawing editor and a presentation mode.
 
 * Sat May 20 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.6.1-1
 - Update to release 1.0.6.1.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.6-1.2
-- Rebuild for Fedora Core 5.
 
 * Mon Dec 06 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.6-1
 - Update to release 1.0.6.

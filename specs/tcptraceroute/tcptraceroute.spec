@@ -1,4 +1,4 @@
-# $Id$
+# $Id: tcptraceroute.spec 4899 2006-11-18 23:37:30Z dag $
 # Authority: dag
 # Upstream: Michael C. Toren <mct$toren,net>
 # Upstream: <tcptraceroute-dev$netisland,net>
@@ -6,6 +6,7 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %{!?dist:%define _with_libpcapdevel 1}
+%{?el5:%define _with_libpcapdevel 1}
 %{?fc6:%define _with_libpcapdevel 1}
 
 Summary: Traceroute implementation using TCP packets

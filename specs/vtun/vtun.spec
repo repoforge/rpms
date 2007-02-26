@@ -22,6 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: flex, bison, cyrus-sasl-devel, openssl-devel, lzo-devel
+%{?el5:BuildRequires: glibc-kernheaders}
 %{?fc6:BuildRequires: glibc-kernheaders}
 %{?fc5:BuildRequires: glibc-kernheaders}
 %{?fc4:BuildRequires: glibc-kernheaders}
@@ -185,9 +186,6 @@ fi
 %changelog
 * Sun Dec 15 2006 Dries Verachtert <dries@ulyssis.org> - 3.0.0-1
 - Updated to release 3.0.0.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.6-0.2
-- Rebuild for Fedora Core 5.
 
 * Mon May 26 2003 Dag Wieers <dag@wieers.com> - 2.6-0
 - Updated to release 2.6.

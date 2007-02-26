@@ -22,10 +22,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503
 %{!?dist:BuildRequires: db4-devel}
-%{?el4:BuildRequires: db4-devel}
+%{?el5:BuildRequires: db4-devel}
 %{?fc6:BuildRequires: db4-devel}
 %{?fc5:BuildRequires: db4-devel}
 %{?fc4:BuildRequires: db4-devel}
+%{?el4:BuildRequires: db4-devel}
 %{?fc3:BuildRequires: db4-devel}
 %{?fc2:BuildRequires: db4-devel}
 
@@ -65,9 +66,6 @@ FLAGS="%{optflags}" %{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTAL
 
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.30-1
 - Updated to release 0.30.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.27-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.27-1
 - Updated to release 0.27.

@@ -4,11 +4,15 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{!?dist:%define _with_modxorg 1}
 %{!?dist:%define _with_libpcapdevel 1}
+%{!?dist:%define _with_modxorg 1}
+
+%{?el5:%define _with_libpcapdevel 1}
+%{?el5:%define _with_modxorg 1}
 
 %{?fc6:%define _with_libpcapdevel 1}
 %{?fc6:%define _with_modxorg 1}
+
 %{?fc5:%define _with_modxorg 1}
 
 Summary: Sniff the network for images and movies and displays them

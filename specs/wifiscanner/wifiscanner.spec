@@ -4,6 +4,7 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %{!?dist:%define _with_libpcapdevel 1}
+%{?el5:%define _with_libpcapdevel 1}
 %{?fc6:%define _with_libpcapdevel 1}
 
 %define real_name WifiScanner
@@ -16,7 +17,7 @@ License: GPL
 Group: Applications/Internet
 URL: http://wifiscanner.sourceforge.net/
 
-Source:  http://dl.sf.net/wifiscanner/WifiScanner-%{version}.tar.gz
+Source: http://dl.sf.net/wifiscanner/WifiScanner-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap, glib-devel, gcc-c++, bison, flex, glib2-devel

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 # Upstream: <xine-user$lists,sf,net>
-# ExclusiveDist: fc5 fc6
+# ExclusiveDist: fc5 fc6 el5
 
 Summary: Extra libraries for the Xine library
 Name: xine-lib-moles

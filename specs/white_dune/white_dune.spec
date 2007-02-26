@@ -31,7 +31,7 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://www.csv.ica.uni-stuttgart.de/vrml/dune/
 
-Source: http://www.csv.ica.uni-stuttgart.de/vrml/dune/%{name}-%{real_version}.tar.gz
+Source: http://www.csv.ica.uni-stuttgart.de/vrml/dune/white_dune-%{real_version}.tar.gz
 #Patch: gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, flex, byacc, zlib-devel
@@ -40,9 +40,10 @@ BuildRequires: libjpeg-devel, libpng-devel, ImageMagick
 %{?_without_modxorg:BuildRequires: XFree86-devel, /usr/X11R6/bin/Xvfb}
 %{!?_without_freeglut:BuildRequires: freeglut-devel}
 %{?_without_freeglut:BuildRequires: glut-devel}
-%{?fc4:BuildRequires: openmotif-devel}
-%{?fc5:BuildRequires: openmotif-devel}
+%{?el5:BuildRequires: lesstif-devel}
 %{?fc6:BuildRequires: lesstif-devel}
+%{?fc5:BuildRequires: openmotif-devel}
+%{?fc4:BuildRequires: openmotif-devel}
 
 %description
 The white_dune program is a graphical VRML97 editor and animation tool.
@@ -53,16 +54,6 @@ by popular programs like maya, catia, 3D Studio MAX, cinema4D and others.
 Dune can read VRML97 files, display and let the user change the
 scenegraph/fields.
 Some documentation how to use dune is included.
-
-%description -l nl
-Het programma white_dune is een grafische VRML97 editor en een animatie
-tool. VRML97 (Virtual Reality Modelling Language) is de ISO standaard om 3D
-data voor te stellen op het internet. Het heeft ondersteuning voor
-animaties, realtime interactie en multimedia (beelden, films en geluid).
-Populaire programma's zoals maya, catia, 3D Studio MAX en cinema4D kunnen
-VML97 bestanden genereren. Dune kan VRML97 bestanden lezen, tonen en laat de
-gebruiker toe om eigenschappen te wijzigen.
-Documentatie over het gebruik van dune is ook beschikbaar.
 
 %prep
 %setup -n %{name}-%{real_version}
@@ -101,12 +92,11 @@ Documentatie over het gebruik van dune is ook beschikbaar.
 %{_bindir}/dune
 %{_bindir}/dune4kids
 %{_bindir}/illegal2vrml
-%{_mandir}/man1/*
+%{_mandir}/man1/*.1*
 %{_datadir}/applications/dune.desktop
 %{_datadir}/applications/dune4kids.desktop
 %{_datadir}/icons/*/48x48/apps/dune.png
 %{_datadir}/icons/*/48x48/apps/dune4kids.png
-
 
 %changelog
 * Sun Jan 14 2007 Dries Verachtert <dries@ulyssis.org> - 0.29-0.beta534
@@ -123,9 +113,6 @@ Documentatie over het gebruik van dune is ook beschikbaar.
 
 * Mon May 29 2006 Dries Verachtert <dries@ulyssis.org> - 0.29-0.beta345
 - Updated to release 0.29-0.beta345.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.29-0.beta255.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan 14 2006 Dries Verachtert <dries@ulyssis.org> 0.29-0.beta255
 - Updated to release 0.29-0.beta255.

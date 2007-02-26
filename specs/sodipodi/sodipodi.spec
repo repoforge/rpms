@@ -18,6 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libxml-devel, libpng-devel, libglade-devel, gcc-c++
 BuildRequires: gettext
+%{?el5:BuildRequires: libgnomeprint22-devel, libgnomeprintui22-devel, freetype-devel}
 %{?fc6:BuildRequires: libgnomeprint22-devel, libgnomeprintui22-devel, freetype-devel}
 %{?fc5:BuildRequires: libgnomeprint22-devel, libgnomeprintui22-devel, freetype-devel}
 %{?fc4:BuildRequires: libgnomeprint22-devel, libgnomeprintui22-devel}
@@ -60,9 +61,6 @@ with anti-aliased display, alpha transparency, and vector fonts.
 %{_datadir}/sodipodi/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.34-1.2
-- Rebuild for Fedora Core 5.
-
 * Tue Dec 21 2004 Richard Koerber <shred@despammed.com> - 0.34-1
 - Added a patch to fix a segfault on x86_64 startup.
 

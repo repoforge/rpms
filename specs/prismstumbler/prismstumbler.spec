@@ -5,6 +5,7 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %{!?dist:%define _with_libpcapdevel 1}
+%{?el5:%define _with_libpcapdevel 1}
 %{?fc6:%define _with_libpcapdevel 1}
 
 %{?fc1:%define _without_xorg 1}
@@ -31,6 +32,7 @@ BuildRequires: gtk2-devel, sqlite-devel, autoconf, automake, libtool
 BuildRequires: libpcap, gcc-c++
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: libXt-devel, libXpm-devel, libXaw-devel}
+%{?el5:BuildRequires: lesstif-devel}
 %{?fc6:BuildRequires: lesstif-devel}
 %{?fc5:BuildRequires: openmotif-devel}
 %{?fc4:BuildRequires: openmotif-devel}
@@ -39,8 +41,6 @@ BuildRequires: libpcap, gcc-c++
 %{?el3:BuildRequires: openmotif-devel}
 %{?el2:BuildRequires: lesstif-devel}
 %{?_with_libpcapdevel:BuildRequires:libpcap-devel}
-
-
 
 %description
 Prismstumbler is a wireless LAN (WLAN) discovery tool which scans for

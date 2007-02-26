@@ -1,7 +1,8 @@
-# $Id$
+# $Id: normalize.spec 4933 2006-11-24 17:46:31Z dag $
 # Authority: dag
 
 %{!?dist:%define _with_modxorg 1}
+%{?el5:  %define _with_modxorg 1}
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 

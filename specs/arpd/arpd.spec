@@ -5,6 +5,7 @@
 
 %{!?dist:%define _with_libpcapdevel 1}
 %{?fc7:%define _with_libpcapdevel 1}
+%{?el5:%define _with_libpcapdevel 1}
 %{?fc6:%define _with_libpcapdevel 1}
 
 Summary: ARP reply daemon

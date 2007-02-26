@@ -9,6 +9,7 @@
 
 %define mozilla seamonkey
 %{!?dist:%define mozilla firefox}
+%{?el5:%define mozilla firefox}
 %{?fc6:%define mozilla firefox}
 
 %{?fc4:%define _without_modxorg 1}
@@ -99,9 +100,6 @@ in your browser.
 
 * Tue Apr 11 2006 Dag Wieers <dag@wieers.com> - 3.25-1
 - Updated to release 3.25.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.21-1.2
-- Rebuild for Fedora Core 5.
 
 * Mon Feb 13 2006 Dag Wieers <dag@wieers.com> - 3.21-1
 - Updated to release 3.21.

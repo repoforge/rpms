@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# ExclusiveDist: fc6
+# ExclusiveDist: fc6 el5
 
 %define input_plugin_dir %(pkg-config --variable=input_plugin_dir audacious 2>/dev/null || echo %{_libdir}/audacious/Input)
 

@@ -4,6 +4,7 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?el5:%define _with_libtoolltdl 1}
 %{?fc6:%define _with_libtoolltdl 1}
 %{?fc5:%define _with_libtoolltdl 1}
 %{?fc4:%define _with_libtoolltdl 1}

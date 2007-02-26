@@ -1,4 +1,4 @@
-# $Id$
+# $Id: kernel-module-openswan.spec 4894 2006-11-18 17:53:52Z dries $
 # Authority: dag
 # Upstream: <dev$lists,openswan,org>
 
@@ -8,6 +8,10 @@
 # BuildAsRoot: 1
 
 %{?dist: %{expand: %%define %dist 1}}
+
+%{!?dist:%define _with_libpcapdevel 1}
+%{?el5:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
 
 %{?fc1:%define __cc gcc32}
 
@@ -39,7 +43,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap, gmp-devel, /usr/bin/man2html
 BuildRequires: kernel-source = %{kernel}
-%{?fc6:BuildRequires:libpcap-devel}
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 Linux drivers for OpenS/WAN IPsec support.

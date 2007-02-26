@@ -3,8 +3,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc5:%define _with_modxorg 1}
+%{?el5:%define _with_modxorg 1}
 %{?fc6:%define _with_modxorg 1}
+%{?fc5:%define _with_modxorg 1}
 
 %{?fc1:%define _without_kde32 1}
 %{?el3:%define _without_kde32 1}

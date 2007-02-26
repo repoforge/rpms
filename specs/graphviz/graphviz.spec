@@ -3,6 +3,7 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?el5:%define _without_java 1}
 %{?fc6:%define _without_java 1}
 %{?fc5:%define _without_java 1}
 
@@ -272,9 +273,6 @@ Some demo graphs for %{name}.
 * Sun Oct 15 2006 Dries Verachtert <dries@ulyssis.org> - 2.8-1
 - Updated to release 2.8.
 - Made some more subpackages.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.6-2.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov 12 2005 Dries Verachtert <dries@ulyssis.org> - 2.6-2
 - Changes in files section: dotneato* removed, static libs added.

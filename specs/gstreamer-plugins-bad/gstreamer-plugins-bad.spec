@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# ExclusiveDist: fc5 fc6 fc7
+# ExclusiveDist: fc5 fc6 fc7 el5
 
 %define desktop_vendor rpmforge
 

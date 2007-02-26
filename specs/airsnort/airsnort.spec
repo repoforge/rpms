@@ -1,10 +1,11 @@
-# $Id$
+# $Id: airsnort.spec 4899 2006-11-18 23:37:30Z dag $
 # Authority: dag
 # Upstream: Snax <snax$shmoo,com>
 
 %{?dist: %{expand: %%define %dist 1}}
 
 %{!?dist:%define _with_libpcapdevel 1}
+%{?el5:%define _with_libpcapdevel 1}
 %{?fc6:%define _with_libpcapdevel 1}
 
 %{?rh7:%define _without_freedesktop 1}

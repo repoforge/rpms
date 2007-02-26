@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# ExclusiveDist: fc6
+# ExclusiveDist: fc6 el5
 
 %define prever beta6
 
@@ -62,9 +62,6 @@ RSA encryption support for Gaim.
   names (this might break for older distros, but gaim 1.5.0 probably doesn't
   build there anyway).
 - Add docs to the package (including license).
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.38-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Jul 27 2005 Dag Wieers <dag@wieers.com> - 2.38-1
 - Updated to release 2.38.

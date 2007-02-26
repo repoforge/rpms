@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# ExclusiveDist: fc6
+# ExclusiveDist: fc6 el5
 
 Summary: Beep Media Player
 Name: bmpx
