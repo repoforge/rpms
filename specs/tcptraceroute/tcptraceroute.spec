@@ -1,4 +1,4 @@
-# $Id: tcptraceroute.spec 4899 2006-11-18 23:37:30Z dag $
+# $Id$
 # Authority: dag
 # Upstream: Michael C. Toren <mct$toren,net>
 # Upstream: <tcptraceroute-dev$netisland,net>

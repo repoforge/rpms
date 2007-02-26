@@ -1,4 +1,4 @@
-# $Id: 4g8.spec 4900 2006-11-18 23:59:38Z dag $
+# $Id$
 # Authority: dag
 # Upstream: Darren Bounds <dbounds$intrusense,com>
 

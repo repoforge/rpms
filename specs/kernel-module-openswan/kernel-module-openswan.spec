@@ -1,4 +1,4 @@
-# $Id: kernel-module-openswan.spec 4894 2006-11-18 17:53:52Z dries $
+# $Id$
 # Authority: dag
 # Upstream: <dev$lists,openswan,org>
 
