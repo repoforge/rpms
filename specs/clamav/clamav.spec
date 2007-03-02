@@ -253,6 +253,7 @@ fi
 		s|^(DatabaseMirror) db\.\.clamav\.net$|$1 db.$ENV{"CODE"}.clamav.net\n$1 db.local.clamav.net|;
 	' %{_sysconfdir}/freshclam.conf{,.rpmnew} &>/dev/null || :
 
+%post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %pre -n clamd
