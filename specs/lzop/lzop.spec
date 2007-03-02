@@ -5,7 +5,7 @@
 Summary: Real-time file compressor
 Name: lzop
 Version: 1.01
-Release: 1.2
+Release: 2
 License: GPL
 Group: Applications/Archiving
 URL: http://www.lzop.org/
@@ -29,12 +29,14 @@ reasonable drop-in compatiblity to gzip.
 %patch0
 
 %build
-%configure
+%configure \
+	--program-prefix="%{?_program_prefix}"
+echo "#define _LARGE_FILES 1" >>config.h
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -42,12 +44,12 @@ reasonable drop-in compatiblity to gzip.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS NEWS README THANKS
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/lzop.1*
+%{_bindir}/lzop
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1.2
-- Rebuild for Fedora Core 5.
+* Fri Mar 02 2007 Dag Wieers <dag@wieers.com> - 1.01-2
+- Fix large file support. (Joe Buehler)
 
 * Tue Mar 09 2004 Dag Wieers <dag@wieers.com> - 1.01-1
 - Initial package. (using DAR)

@@ -29,12 +29,20 @@ handle the Unicode character set but are not 8-bit safe, and when debugging.
 
 %build
 %configure
-%{__make} %{?_smp_mflags} BINDIR="%{_bindir}" MANDIR="%{_mandir}/man1" LOCALEDIR="%{_datadir}/locale"
+%{__make} %{?_smp_mflags} \
+	BINDIR="%{_bindir}" \
+	MANDIR="%{_mandir}/man1" \
+	LOCALEDIR="%{_datadir}/locale"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d %{buildroot}%{_bindir} %{buildroot}%{_mandir}/man1 %{buildroot}%{_datadir}/locale
-%makeinstall BINDIR=%{buildroot}%{_bindir} MANDIR="%{buildroot}%{_mandir}/man1" LOCALEDIR="%{buildroot}%{_datadir}/locale"
+%{__install} -d -m0755 %{buildroot}%{_bindir}
+%{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
+%{__install} -d -m0755 %{buildroot}%{_datadir}/locale/
+%{__make} install \
+	BINDIR="%{buildroot}%{_bindir}" \
+	MANDIR="%{buildroot}%{_mandir}/man1" \
+	LOCALEDIR="%{buildroot}%{_datadir}/locale"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -49,7 +57,7 @@ handle the Unicode character set but are not 8-bit safe, and when debugging.
 %{_bindir}/uni2ascii
 
 %changelog
-* Fri Mar 02 2007 Dries Verachtert <dries@ulyssis.org> - 4.1-1
+* Thu Mar 01 2007 Dag Wieers <dag@wieers.com> - 4.1-1
 - Updated to release 4.1.
 
 * Sat Feb 24 2007 Dries Verachtert <dries@ulyssis.org> - 4.0-1

@@ -8,16 +8,16 @@
 
 Summary: Manage the information fields in MP3 and Ogg Vorbis files
 Name: tagtool
-Version: 0.12.1
-Release: 1.2
+Version: 0.12.3
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://pwp.netcabo.pt/paol/tagtool/
 
-Source: http://dl.sf.net/tagtool/tagtool-%{version}.tar.gz
+Source: http://dl.sf.net/tagtool/tagtool-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: automake, autoconf, glib2-devel >= 2.4, gtk2-devel, libglade2-devel
+BuildRequires: automake, autoconf, glib2-devel >= 2.4, gtk2-devel >= 2.8, libglade2-devel >= 2.6
 BuildRequires: id3lib-devel, libogg-devel, libvorbis-devel, perl-XML-Parser
 BuildRequires: gettext, desktop-file-utils
 
@@ -34,7 +34,7 @@ Vorbis files.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
@@ -58,8 +58,8 @@ desktop-file-install --delete-original             \
 %{_datadir}/tagtool/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.12.1-1.2
-- Rebuild for Fedora Core 5.
+* Thu Mar 01 2007 Dag Wieers <dag@wieers.com> - 0.12.3-1
+- Updated to release 0.12.3.
 
 * Tue Mar 08 2005 Dag Wieers <dag@wieers.com> - 0.12.1-1
 - Updated to release 0.12.1.

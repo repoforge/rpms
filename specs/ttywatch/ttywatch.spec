@@ -67,9 +67,6 @@ fi
 %dir %{_localstatedir}/log/ttywatch/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Dec 26 2004 Dag Wieers <dag@wieers.com> - 0.14-1
 - Updated to release 0.14.
 

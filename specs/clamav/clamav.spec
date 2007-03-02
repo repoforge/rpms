@@ -10,8 +10,8 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.90
-Release: 3
+Version: 0.90.1
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -111,28 +111,31 @@ you will need to install %{name}-devel.
 		s|^#(PidFile) .+$|$1 %{_localstatedir}/run/clamav/clamd.pid|;
 		s|^#(TemporaryDirectory) .+$|$1 %{_localstatedir}/tmp|;
 		s|^#(DatabaseDirectory) .+$|$1 %{_localstatedir}/clamav|;
-		s|^(LocalSocket) .+$|#$1 %{_localstatedir}/run/clamav/clamd.sock|;
+		s|^#(LocalSocket) .+$|$1 %{_localstatedir}/run/clamav/clamd.sock|;
 		s|^#(FixStaleSocket)|$1|;
 		s|^#(TCPSocket) .+$|$1 3310|;
 		s|^#(TCPAddr) .+$|$1 127.0.0.1|;
 		s|^#(MaxConnectionQueueLength) .+$|$1 30|;
 		s|^#(StreamSaveToDisk)|$1|;
-		s|^#(MaxThreads ) .+$|$1 50|;
+		s|^#(MaxThreads) .+$|$1 50|;
 		s|^#(ReadTimeout) .+$|$1 300|;
 		s|^#(User) .+$|$1 clamav|;
 		s|^#(AllowSupplementaryGroups)|$1|;
+		s|^#(ScanPE) .+$|$1 yes|;
+		s|^#(ScanELF) .+$|$1 yes|;
 		s|^#(DetectBrokenExecutables)|$1|;
+		s|^#(ScanOLE2) .+$|$1 yes|;
+		s|^#(ScanMail)|$1|;
+		s|^#(ScanArchive) .+$|$1 yes|;
 		s|^#(ArchiveMaxCompressionRatio) .+|$1 300|;
 		s|^#(ArchiveBlockEncrypted)|$1|;
 		s|^#(ArchiveBlockMax)|$1|;
-		s|^#(ScanMail)|$1|;
 	' etc/clamd.conf
 
 %{__perl} -pi.orig -e '
-		s|^(Example)|#$1|;
 		s|^#(DatabaseDirectory) .+$|$1 %{_localstatedir}/clamav|;
 		s|^#(UpdateLogFile) .+$|$1 %{_localstatedir}/log/clamav/freshclam.log|;
-		s|^#(PidFile) .+$|$1 %{_localstatedir}/run/clamav/freshclam.pid|;
+		s|^#(LogSyslog)|$1|;
 		s|^#(DatabaseOwner) .+$|$1 clamav|;
 		s|^(Checks) .+$|$1 24|;
 		s|^#(NotifyClamd) .+$|$1 %{_sysconfdir}/clamd.conf|;
@@ -250,8 +253,7 @@ fi
 		s|^(DatabaseMirror) db\.\.clamav\.net$|$1 db.$ENV{"CODE"}.clamav.net\n$1 db.local.clamav.net|;
 	' %{_sysconfdir}/freshclam.conf{,.rpmnew} &>/dev/null || :
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%postun -p /sbin/ldconfig
 
 %pre -n clamd
 /usr/sbin/groupadd -r clamav 2>/dev/null || :
@@ -290,7 +292,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS ChangeLog COPYING FAQ INSTALL NEWS README test/ TODO
+%doc AUTHORS BUGS ChangeLog COPYING FAQ INSTALL NEWS README test/
 %doc docs/*.pdf etc/freshclam.conf
 %doc %{_mandir}/man1/sigtool.1*
 %doc %{_mandir}/man1/clamscan.1*
@@ -353,6 +355,9 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
+* Fri Mar 02 2007 Dag Wieers <dag@wieers.com> - 0.90.1-1
+- Updated to release 0.90.1.
+
 * Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 0.90-3
 - Do the right thing...
 

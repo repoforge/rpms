@@ -5,7 +5,7 @@
 
 Summary: Universal Plug'nPlay (uPNP) Media Server
 Name: ushare
-Version: 0.9.8
+Version: 0.9.10
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -166,5 +166,8 @@ fi
 %exclude %{_sysconfdir}/init.d/ushare
 
 %changelog
+* Thu Mar 01 2007 Dag Wieers <dag@wieers.com> - 0.9.10-1
+- Updated to release 0.9.10.
+
 * Wed Feb 21 2007 Dag Wieers <dag@wieers.com> - 0.9.8-1
 - Initial package. (using DAR)

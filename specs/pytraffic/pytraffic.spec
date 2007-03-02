@@ -4,8 +4,8 @@
 
 Summary: Rush Hour game
 Name: pytraffic
-Version: 2.5
-Release: 1.2
+Version: 2.5.4
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://alpha.uhasselt.be/Research/Algebra/Members/pytraffic/
@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildArch: noarch
 BuildRequires: python-devel >= 2.2
-Requires: python >= 2.2 , python-game >= 1.6, pygtk2 >= 2.4
+Requires: python >= 2.2 , pygtk2 >= 2.4
 Obsoletes: ttraffic
 
 %description
@@ -35,7 +35,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__python} setup.py install --root="%{buildroot}" --prefix=%{_prefix}
+%{__python} setup.py install --root="%{buildroot}" --prefix="%{_prefix}"
 
 ### FIXME: Remove unnecessary files. (Please fix upstream)
 %{__rm} -rf %{buildroot}%{_datadir}/pytraffic*/{AUTHORS,CHANGELOG,COPYING,INSTALL,README,DOCS/}
@@ -46,14 +46,17 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS CHANGELOG COPYING INSTALL README
-%doc DOCS/*.htm DOCS/*.png
-%{_datadir}/pytraffic*/
+%doc doc/*.htm doc/*.png
 %{_bindir}/pytraffic
 %{_datadir}/applications/pytraffic.desktop
+%{_datadir}/icons/hicolor/*/apps/pytraffic.png
+%{_datadir}/pytraffic*/
+#%{_libdir}/pytraffic/
+%{_prefix}/lib/pytraffic/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.5-1.2
-- Rebuild for Fedora Core 5.
+* Thu Mar 01 2007 Dag Wieers <dag@wieers.com> - 2.5.4-1
+- Updated to release 2.5.4.
 
 * Tue Aug 09 2005 Dag Wieers <dag@wieers.com> - 2.5-1
 - Initial package. (using DAR)
