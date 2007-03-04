@@ -63,11 +63,12 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}" prefix="%{_prefix}"
+%find_lang Exiv2
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f Exiv2.lang
 %defattr(-, root, root, 0755)
 %doc COPYING README
 %doc %{_mandir}/man1/exiv*.1*
