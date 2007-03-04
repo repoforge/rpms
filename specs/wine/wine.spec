@@ -47,7 +47,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 0.9.31
+Version: 0.9.32
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -104,9 +104,7 @@ take a look at the wine-* packages.
 Summary: Wine core package
 Group: Applications/Emulators
 Requires(post): /sbin/ldconfig, /sbin/chkconfig, /sbin/service,
-Requires(post): /usr/bin/update-desktop-database
 Requires(preun): /sbin/chkconfig, /sbin/service
-Requires(postun): /sbin/ldconfig, /usr/bin/update-desktop-database
 Requires: /usr/X11R6/bin/xmessage
 Obsoletes: wine-tools <= %{version}-%{release}
 Provides: wine-tools = %{version}-%{release}
@@ -556,6 +554,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/cryptdll.dll.so
 %{_libdir}/wine/cryptnet.dll.so
 %{_libdir}/wine/ctl3d32.dll.so
+%{_libdir}/wine/d3d8.dll.so
+%{_libdir}/wine/d3d9.dll.so
+%{_libdir}/wine/d3dx8.dll.so
 %{_libdir}/wine/d3dim.dll.so
 %{_libdir}/wine/d3drm.dll.so
 %{_libdir}/wine/d3dxof.dll.so
@@ -575,6 +576,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/dmsynth.dll.so
 %{_libdir}/wine/dmusic.dll.so
 %{_libdir}/wine/dmusic32.dll.so
+%{_libdir}/wine/dnsapi.dll.so
 %{_libdir}/wine/dplay.dll.so
 %{_libdir}/wine/dplayx.dll.so
 %{_libdir}/wine/dpnet.dll.so
@@ -583,7 +585,8 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/dswave.dll.so
 %{_libdir}/wine/dxdiagn.dll.so
 %{_libdir}/wine/gdi32.dll.so
-%{_libdir}/wine/gphoto2.ds.so
+%{_libdir}/wine/glu32.dll.so
+#%{_libdir}/wine/glut32.dll.so
 %{_libdir}/wine/hid.dll.so
 %{_libdir}/wine/hlink.dll.so
 %{_libdir}/wine/iccvid.dll.so
@@ -638,6 +641,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/oledlg.dll.so
 %{_libdir}/wine/olepro32.dll.so
 %{_libdir}/wine/olesvr32.dll.so
+%{_libdir}/wine/opengl32.dll.so
 %{_libdir}/wine/powrprof.dll.so
 %{_libdir}/wine/psapi.dll.so
 %{_libdir}/wine/pstorec.dll.so
@@ -651,11 +655,13 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/rpcrt4.dll.so
 %{_libdir}/wine/rsabase.dll.so
 %{_libdir}/wine/rsaenh.dll.so
-%{_libdir}/wine/sane.ds.so
+%{_libdir}/wine/schannel.dll.so
 %{_libdir}/wine/secur32.dll.so
+%{_libdir}/wine/security.dll.so
 %{_libdir}/wine/sensapi.dll.so
 %{_libdir}/wine/serialui.dll.so
 %{_libdir}/wine/setupapi.dll.so
+%{_libdir}/wine/sfc.dll.so
 %{_libdir}/wine/sfc_os.dll.so
 %{_libdir}/wine/shdoclc.dll.so
 %{_libdir}/wine/shdocvw.dll.so
@@ -663,6 +669,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/shfolder.dll.so
 %{_libdir}/wine/shlwapi.dll.so
 %{_libdir}/wine/snmpapi.dll.so
+%{_libdir}/wine/spoolss.dll.so
 %{_libdir}/wine/sti.dll.so
 %{_libdir}/wine/svrapi.dll.so
 %{_libdir}/wine/tapi32.dll.so
@@ -676,11 +683,12 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/vdmdbg.dll.so
 %{_libdir}/wine/version.dll.so
 %{_libdir}/wine/w32skrnl.dll.so
+%{_libdir}/wine/wined3d.dll.so
 %{_libdir}/wine/winedos.dll.so
+%{_libdir}/wine/wing32.dll.so
 %{_libdir}/wine/wininet.dll.so
 %{_libdir}/wine/winmm.dll.so
 %{_libdir}/wine/winnls32.dll.so
-%{_libdir}/wine/spoolss.dll.so
 %{_libdir}/wine/wintab32.dll.so
 %{_libdir}/wine/wintrust.dll.so
 %{_libdir}/wine/wnaspi32.dll.so
@@ -688,16 +696,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/ws2_32.dll.so
 %{_libdir}/wine/wsock32.dll.so
 %{_libdir}/wine/wtsapi32.dll.so
-%{_libdir}/wine/security.dll.so
-%{_libdir}/wine/sfc.dll.so
-%{_libdir}/wine/d3d8.dll.so
-%{_libdir}/wine/d3d9.dll.so
-%{_libdir}/wine/d3dx8.dll.so
-%{_libdir}/wine/glu32.dll.so
-#%{_libdir}/wine/glut32.dll.so
-%{_libdir}/wine/opengl32.dll.so
-%{_libdir}/wine/wined3d.dll.so
-%{_libdir}/wine/dnsapi.dll.so
+### ds.so
+%{_libdir}/wine/gphoto2.ds.so
+%{_libdir}/wine/sane.ds.so
 ### drv16
 %{_libdir}/wine/comm.drv16
 %{_libdir}/wine/display.drv16
@@ -808,5 +809,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Sat Mar 03 2007 Dag Wieers <dag@wieers.com> - 0.9.32-1
+- Updated to release 0.9.32.
+- Fixed the depenency to update-desktop-database. (Bart Schaefer)
+
 * Sat Feb 17 2007 Dag Wieers <dag@wieers.com> - 0.9.31-1
 - Initial package. (using DAR)
