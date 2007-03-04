@@ -14,14 +14,15 @@
 
 Summary: Exif and Iptc metadata manipulation library and tools
 Name: exiv2
-Version: 0.12
-Release: 2
+Version: 0.13
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://home.arcor.de/ahuggel/exiv2/index.html
 
 Source: http://home.arcor.de/ahuggel/exiv2/exiv2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc-c++, libtool, doxygen, libxslt, graphviz, python
 
 %description
@@ -83,6 +84,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/exiv2.pc
 
 %changelog
+* Sun Mar 04 2007 Dag Wieers <dag@wieers.com> - 0.13-1
+- Updated to release 0.13.
+
 * Wed Dec 20 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-2
 - Remove 'URL:' from pkgconfig file on older distro's, thanks to Rex Dieter.
 
@@ -94,9 +98,6 @@ you will need to install %{name}-devel.
 
 * Sun Jun 04 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Updated to release 0.10.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1.2
-- Rebuild for Fedora Core 5.
 
 * Mon Feb 06 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1
 - Updated to release 0.9.1.

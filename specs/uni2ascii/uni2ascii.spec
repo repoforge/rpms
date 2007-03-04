@@ -4,7 +4,7 @@
 
 Summary: Convert between UTF-8 Unicode and 7-bit ASCII equivalents
 Name: uni2ascii
-Version: 4.1
+Version: 4.2
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -13,7 +13,7 @@ URL: http://www.billposer.org/Software/uni2ascii.html
 Source: http://billposer.org/Software/Downloads/uni2ascii-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python, python-devel
+BuildRequires: python-devel
 
 %description
 uni2ascii and ascii2uni convert between UTF-8 Unicode and more than a
@@ -29,20 +29,14 @@ handle the Unicode character set but are not 8-bit safe, and when debugging.
 
 %build
 %configure
-%{__make} %{?_smp_mflags} \
-	BINDIR="%{_bindir}" \
-	MANDIR="%{_mandir}/man1" \
-	LOCALEDIR="%{_datadir}/locale"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
-%{__install} -d -m0755 %{buildroot}%{_datadir}/locale/
-%{__make} install \
-	BINDIR="%{buildroot}%{_bindir}" \
-	MANDIR="%{buildroot}%{_mandir}/man1" \
-	LOCALEDIR="%{buildroot}%{_datadir}/locale"
+#%{__install} -d -m0755 %{buildroot}%{_bindir}
+#%{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
+#%{__install} -d -m0755 %{buildroot}%{_datadir}/locale/
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -57,6 +51,9 @@ handle the Unicode character set but are not 8-bit safe, and when debugging.
 %{_bindir}/uni2ascii
 
 %changelog
+* Sun Mar 04 2007 Dag Wieers <dag@wieers.com> - 4.2-1
+- Updated to release 4.2.
+
 * Thu Mar 01 2007 Dag Wieers <dag@wieers.com> - 4.1-1
 - Updated to release 4.1.
 
