@@ -14,12 +14,12 @@
 
 Summary: MPEG-2 and MPEG-1 decoding library and test program
 Name: mpeg2dec
-Version: 0.4.0
-Release: 8b%{?date:.%{date}}
+Version: 0.4.1
+Release: 1%{?date:.%{date}}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libmpeg2.sourceforge.net/
-Source: http://libmpeg2.sourceforge.net/files/mpeg2dec-%{?date:snapshot}%{!?date:%{version}}b.tar.gz
+Source: http://libmpeg2.sourceforge.net/files/mpeg2dec-%{?date:snapshot}%{!?date:%{version}}.tar.gz
 Patch: mpeg2dec-0.4.0b-pic.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, pkgconfig, gcc-c++
@@ -93,6 +93,9 @@ CFLAGS="%{optflags}" \
 
 
 %changelog
+* Wed Mar  7 2007 Matthias Saou <http://freshrpms.net/> 0.4.1-1
+- Update to 0.4.1.
+
 * Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 0.4.0-8b
 - Fix modular X build requirement.
 

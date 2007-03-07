@@ -18,15 +18,17 @@
 %{?rh7:%define _without_alsa 1}
 %{?el2:%define _without_alsa 1}
 
+%define prever rc2
+
 Summary: Tools for recording, editing, playing and encoding mpeg video
 Name: mjpegtools
 Version: 1.9.0
-Release: 0.4
+Release: 0.5.%{prever}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/
-#Source: http://dl.sf.net/mjpeg/mjpegtools-%{version}.tar.gz
-Source: mjpegtools-%{version}cvs.tar.gz
+Source: http://dl.sf.net/mjpeg/mjpegtools-%{version}%{prever}.tar.gz
+#Source: mjpegtools-%{version}cvs.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, SDL-devel, libjpeg-devel, libpng-devel, gtk2-devel
 BuildRequires: libquicktime-devel, libdv-devel, SDL_gfx-devel
@@ -59,7 +61,7 @@ of the mjpegtools package.
 
 
 %prep
-%setup
+%setup -n %{name}-%{version}%{prever}
 
 
 %build
@@ -108,6 +110,9 @@ fi
 
 
 %changelog
+* Wed Mar  7 2007 Matthias Saou <http://freshrpms.net/> 1.9.0-0.5.rc2
+- Update to 1.9.0rc2.
+
 * Tue Jan 16 2007 Matthias Saou <http://freshrpms.net/> 1.9.0-0.4
 - Disable forcing our optflags as they seem to work again "the simple way".
 

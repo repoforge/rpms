@@ -12,16 +12,18 @@
 %define _use_internal_dependency_generator 0
 # Disable stripping or the default.sfx will get trashed
 %define __strip /bin/true
+# Don't create a debuginfo package since it would be empty
+%define debug_package %{nil}
 
 Summary: RAR archiver to create and manage RAR archives
 Name: rar
-Version: 3.6.0
-Release: 0.2.beta2
+Version: 3.7.0
+Release: 0.1.beta1
 License: Shareware
 Group: Applications/Archiving
 URL: http://www.rarlabs.com/
 #Source: http://www.rarlabs.com/rar/rarlinux-%{version}.tar.gz
-Source: http://www.rarlabs.com/rar/rarlinux-3.6.b2.tar.gz
+Source: http://www.rarlabs.com/rar/rarlinux-3.7.b1.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 ExclusiveArch: %{ix86}
 
@@ -33,6 +35,9 @@ a ".rar" extension. ZIP and other formats are not supported.
 
 %prep
 %setup -n %{name}
+
+
+%build
 
 
 %install
@@ -59,6 +64,12 @@ a ".rar" extension. ZIP and other formats are not supported.
 
 
 %changelog
+* Wed Mar  7 2007 Matthias Saou <http://freshrpms.net/> 3.7.0-0.1.beta1
+- Update to 3.7.0 beta1 (aka 3.7.b1).
+- Disable (empty) debuginfo package.
+- Add empty %%build section.
+- Fix macros inside the %%changelog.
+
 * Fri Apr 28 2006 Dag Wieers <dag@wieers.com> - 3.6.0-0.2.beta2
 - Added _with_static_rar for older distributions (<= FC1).
 
@@ -96,7 +107,7 @@ a ".rar" extension. ZIP and other formats are not supported.
 - Remove the internal dep check to avoid "corrupted program header size" msg.
 
 * Sun Mar 18 2001 Matthias Saou <http://freshrpms.net/>
-- Fix the %files with a %dir (cleaner uninstall)
+- Fix the %%files with a %%dir (cleaner uninstall)
 - Spec file cleanup
 
 * Sun Mar 18 2001 Alexander Skwar <ASkwar@Linux-Mandrake.com> 2.80-1

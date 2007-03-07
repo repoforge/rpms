@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define mamever 111u3
+%define mamever 113
 
 Summary: SDL port of the Multi Arcade Machine Emulator (MAME)
 Name: sdlmame
@@ -13,7 +13,6 @@ URL: http://rbelmont.mameworld.info/?page_id=163
 # Get with wget --user-agent="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.0.9) Gecko/20061206 Firefox/1.5.0.9"
 Source: http://rbelmont.mameworld.info/sdlmame0%{mamever}.zip
 Patch0: sdlmame0109-genericbuild.patch
-Patch1: sdlmame0109-ppc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, expat-devel, zlib-devel, libXinerama-devel
 
@@ -27,7 +26,6 @@ combined into a single multi-game emulator.
 %prep
 %setup -n sdlmame0%{mamever}
 %patch0 -p1 -b .genericbuild
-%patch1 -p1 -b .ppc
 # Create the required set of empty directories in "dirs" to be included as doc
 # (we don't want 'obj' which is currently empty but used during the build)
 touch obj/foo
@@ -75,6 +73,11 @@ export PPC=1
 
 
 %changelog
+* Wed Mar  7 2007 Matthias Saou <http://freshrpms.net/> 0.113-1
+- Update to 0.113.
+- Remove no longer needed ppc patch since -mlong-branch is now only added if
+  the target OS it MacOSX, as it should.
+
 * Tue Jan 16 2007 Matthias Saou <http://freshrpms.net/> 0.111u3-1
 - Update to 0.111u3.
 - Update URL to the main "SDLHome x.y.z" page.
