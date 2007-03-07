@@ -2,12 +2,12 @@
 # Authority: dag
 # Upstream: Jutta Degener <jutta$pobox,com>
 
-%define srcver 1.0-pl10
+%define srcver 1.0-pl12
 
 Summary: Shared libraries for GSM speech compressor
 Name: gsm
-Version: 1.0.10
-Release: 6
+Version: 1.0.12
+Release: 1
 License: MIT
 Group: System Environment/Libraries
 URL: http://kbs.cs.tu-berlin.de/~jutta/toast.html
@@ -69,6 +69,9 @@ you will need to install %{name}-devel.
 %{_includedir}/gsm/
 
 %changelog
+* Wed Mar  7 2007 Matthias Saou <http://freshrpms.net/> 1.0.12-1
+- Update to 1.0.12.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.0.10-6
 - Release bump to drop the disttag number in FC5 build.
 

@@ -3,14 +3,13 @@
 
 Summary: Optical Character Recognition (OCR) program
 Name: gocr
-Version: 0.43
+Version: 0.44
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://jocr.sourceforge.net/
 
-Source: http://dl.sf.net/jocr/gocr-%{version}.tar.gz
-Patch0: http://www-e.uni-magdeburg.de/jschulen/ocr/gocr-0.41-pgm.patch
+Source: http://downloads.sf.net/jocr/gocr-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel >= 1.2.8, netpbm-devel
@@ -80,6 +79,10 @@ cd -
 %{_bindir}/gtk-ocr
 
 %changelog
+* Wed Mar  7 2007 Matthias Saou <http://freshrpms.net/> 0.44-1
+- Update to 0.44.
+- Remove no longer used patch.
+
 * Mon Dec 18 2006 Dag Wieers <dag@wieers.com> - 0.43-1
 - Updated to release 0.43.
 
