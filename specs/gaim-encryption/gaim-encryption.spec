@@ -2,7 +2,7 @@
 # Authority: dag
 # ExclusiveDist: fc6 el5
 
-%define prever beta6
+%define prever beta8
 
 Summary: RSA encryption support for Gaim
 Name: gaim-encryption
@@ -12,7 +12,7 @@ License: GPL
 Group: Applications/Internet
 URL: http://gaim-encryption.sourceforge.net/
 
-Source: http://dl.sf.net/gaim-encryption/gaim-encryption-%{version}%{?prever}.tar.gz
+Source: http://downloads.sf.net/gaim-encryption/gaim-encryption-%{version}%{?prever}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gaim-devel >= 2.0.0, gtk2-devel, nss-devel, nspr-devel
@@ -50,6 +50,9 @@ RSA encryption support for Gaim.
 %{_datadir}/pixmaps/gaim/gaim-encryption/crypto.png
 
 %changelog
+* Thu Mar  7 2007 Matthias Saou <http://freshrpms.net/> 3.0-0.1.beta8
+- Update to 3.0beta8.
+
 * Fri Nov 10 2006 Matthias Saou <http://freshrpms.net/> 3.0-0.1.beta6
 - Update to 3.0beta6, compatible with gaim 2.0.0beta4 (FC6) release.
 

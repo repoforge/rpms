@@ -1,8 +1,8 @@
 # $Id$
 # Authority: dag
 
-%define date 20051122
-%define inv_date 22112005
+%define date 20060501
+%define inv_date 01052006
 %define mon_version 3.1
 %define desktop_vendor rpmforge
 
@@ -25,11 +25,11 @@
 Summary: 68k Macintosh emulator
 Name: BasiliskII
 Version: 1.0
-Release: 0.%{date}.5
+Release: 0.%{date}.1
 License: GPL
 Group: Applications/Emulators
-URL: http://www.gibix.net/projects/basilisk2/
-Source0: http://www.gibix.net/projects/basilisk2/files/BasiliskII_src_%{inv_date}.tar.bz2
+URL: http://gwenole.beauchesne.info/projects/basilisk2/
+Source0: http://gwenole.beauchesne.info/projects/basilisk2/files/BasiliskII_src_%{inv_date}.tar.bz2
 Source1: http://wwwthep.physik.uni-mainz.de/~cbauer/cxmon-%{mon_version}.tar.gz
 Source2: BasiliskII.png
 Patch: BasiliskII-1.0-nostrip.patch
@@ -112,6 +112,10 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Wed Mar  7 2007 Matthias Saou <http://freshrpms.net/> 1.0-0.20060501.1
+- Update to 01052006.
+- Update URL and source locations.
+
 * Wed Mar 22 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.20051122.5
 - Add missing modular X build requirements.
 
