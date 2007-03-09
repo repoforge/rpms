@@ -6,7 +6,7 @@
 Summary: Non-blocking DNS resolver library
 Name: libdnsres
 Version: 0.1a
-Release: 2
+Release: 3
 License: BSD-like
 Group: System Environment/Libraries
 URL: http://www.monkey.org/~provos/libdnsres/
@@ -60,8 +60,11 @@ you will need to install %{name}-devel.
 %{_libdir}/libdnsres.so
 
 %changelog
-* Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 0.1a-2
+* Wed Mar 07 2007 Dag Wieers <dag@wieers.com> - 0.2-4
 - Rebuild against libevent-1.3b.
+
+* Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 0.1a-2
+- Rebuild against libevent-1.3a.
 
 * Tue Feb 21 2006 Dag Wieers <dag@wieers.com> - 0.1a-1
 - Initial package. (using DAR)

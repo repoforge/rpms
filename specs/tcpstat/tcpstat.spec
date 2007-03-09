@@ -4,9 +4,9 @@
 Summary: Reports certain network interface statistics
 Name: tcpstat
 Version: 1.5
-Release: 1
+Release: 2
 License: NSD
-Group: System Environment/Tools
+Group: Applications/Internet
 URL: http://www.frenchfries.net/paul/tcpstat/
 
 Source: http://www.frenchfries.net/paul/tcpstat/tcpstat-%{version}.tar.gz
@@ -41,5 +41,8 @@ by reading previously saved tcpdump data from a file.
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Fri Mar 09 2007 Dag Wieers <dag@wieers.com> - 1.5-2
+- Fixed group.
+
 * Thu Feb 22 2007 Dag Wieers <dag@wieers.com> - 1.5-1
 - Initial package. (using DAR)

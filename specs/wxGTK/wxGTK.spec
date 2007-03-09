@@ -81,7 +81,7 @@ Header files for wxGTK, the GTK port of the wxWindows library.
 %{__make} install DESTDIR="%{buildroot}" -C contrib/src/svg
 %find_lang wxstd
 %find_lang wxmsw
-%{__cat} wxstd.lang wxmsw.lang >>wx.lang
+#{__cat} wxstd.lang wxmsw.lang >>wx.lang
 
 ### Overwrite wrong symlink (includes buildroot)
 %{__ln_s} -f ../%{_lib}/wx/config/gtk2-ansi-release-2.6 %{buildroot}%{_bindir}/wx-config

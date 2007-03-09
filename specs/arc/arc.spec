@@ -27,7 +27,7 @@ but useful if you have old .arc files you need to unpack.
 %{__install} -Dp -m0755 arc %{buildroot}%{_bindir}/arc
 %{__install} -Dp -m0755 marc %{buildroot}%{_bindir}/marc
 %{__install} -Dp -m0644 arc.1 %{buildroot}%{_mandir}/man1/arc.1
-%{__install} -Dp -m0644 marc.1 %{buildroot}%{_mandir}/man1/marc.1
+#%{__install} -Dp -m0644 marc.1 %{buildroot}%{_mandir}/man1/marc.1
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -36,7 +36,7 @@ but useful if you have old .arc files you need to unpack.
 %defattr(-, root, root, 0755)
 %doc Arc521.doc Arcinfo Changelog COPYING LICENSE Readme
 %doc %{_mandir}/man1/arc.1*
-%doc %{_mandir}/man1/marc.1*
+#%doc %{_mandir}/man1/marc.1*
 %{_bindir}/arc
 %{_bindir}/marc
 

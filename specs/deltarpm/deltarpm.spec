@@ -4,15 +4,15 @@
 Summary: Create deltas between rpms
 Name: deltarpm
 Version: 3.3
-Release: 1.2
+Release: 2
 License: BSD
-Group: Applications/Utilities
+Group: Applications/System
 URL: http://www.novell.com/products/linuxpackages/professional/deltarpm.html
 
-Source: ftp://ftp.suse.com/pub/projects/deltarpm/deltarpm-3.3.tar.bz2
+Source: ftp://ftp.suse.com/pub/projects/deltarpm/deltarpm-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: bzip2-devel
+BuildRequires: bzip2-devel, rpm-devel >= 4.2
 
 %description
 A deltarpm contains the difference between an old
@@ -25,11 +25,11 @@ deltarpms can also work with installed rpms.
 %setup
 
 %build
-%{__make} %{?_smp_mflags} bindir=%{_bindir} mandir=%{_mandir} prefix=%{_prefix}
+%{__make} %{?_smp_mflags} prefix="%{_prefix}" mandir="%{_mandir}"
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}" prefix="%{_prefix}" mandir="%{_mandir}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -37,7 +37,12 @@ deltarpms can also work with installed rpms.
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE.BSD README
-%doc %{_mandir}/man8/*
+%doc %{_mandir}/man8/applydeltaiso.8*
+%doc %{_mandir}/man8/applydeltarpm.8*
+%doc %{_mandir}/man8/combinedeltarpm.8*
+%doc %{_mandir}/man8/drpmsync.8*
+%doc %{_mandir}/man8/makedeltaiso.8*
+%doc %{_mandir}/man8/makedeltarpm.8*
 %{_bindir}/applydeltaiso
 %{_bindir}/applydeltarpm
 %{_bindir}/combinedeltarpm
@@ -47,8 +52,8 @@ deltarpms can also work with installed rpms.
 %{_bindir}/rpmdumpheader
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.3-1.2
-- Rebuild for Fedora Core 5.
+* Fri Mar 09 2007 Dag Wieers <dag@wieers.com> - 3.3-2
+- Fixed group.
 
 * Sat Dec 03 2005 Dries Verachtert <dries@ulyssis.org> - 3.3-1
 - Initial package.

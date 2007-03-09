@@ -4,7 +4,7 @@
 
 Summary: Simple interactive debugging utility
 Name: scanmem
-Version: 0.04
+Version: 0.05
 Release: 1
 License: GPL
 Group: Development/Debuggers
@@ -41,5 +41,8 @@ engineering, or as a "pokefinder" to cheat at video games.
 %{_bindir}/scanmem
 
 %changelog
+* Sun Mar 04 2007 Dag Wieers <dag@wieers.com> - 0.05-1
+- Updated to release 0.05.
+
 * Tue Jan 30 2007 Dag Wieers <dag@wieers.com> - 0.04-1
 - Initial package. (using DAR)

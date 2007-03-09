@@ -2,6 +2,12 @@
 # Authority: matthias
 # Upstream: Sam Hocevar <sam$zoy,org>
 
+%{!?dist:%define _with_modxorg 1}
+%{?fc7:  %define _with_modxorg 1}
+%{?el5:  %define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
+
 Summary: Library for Colour AsCii Art, text mode graphics
 Name: libcaca
 Version: 0.9
@@ -12,8 +18,10 @@ URL: http://sam.zoy.org/projects/libcaca/
 Source: http://sam.zoy.org/projects/libcaca/libcaca-%{version}.tar.bz2
 Patch: libcaca-0.9-man3.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Buildrequires: XFree86-devel, ncurses-devel >= 5, slang-devel, imlib2-devel
-Buildrequires: zlib-devel, doxygen, tetex-latex, tetex-dvips
+BuildRequires: ncurses-devel >= 5, slang-devel
+BuildRequires: imlib2-devel, zlib-devel, doxygen, tetex-latex, tetex-dvips
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{?_with_modxorg:BuildRequires: libX11-devel, libXt-devel}
 
 %description
 libcaca is the Colour AsCii Art library. It provides high level functions
@@ -24,7 +32,8 @@ drawing, as well as powerful image to text conversion routines.
 %package devel
 Summary: Development files for libcaca, the library for Colour AsCii Art
 Group: Development/Libraries
-Requires: XFree86-devel, ncurses-devel >= 5, slang-devel
+Requires: ncurses-devel >= 5, slang-devel
+%{!?_with_modxorg:Requires: XFree86-devel}
 
 %description devel
 libcaca is the Colour AsCii Art library. It provides high level functions
@@ -63,16 +72,19 @@ sprite blitting.
 %build
 %configure \
     --program-prefix="%{?_program_prefix}" \
-    --enable-slang \
+    --x-includes="%{_includedir}" \
+    --x-libraries="%{_libdir}" \
+    --enable-imlib2 \
     --enable-ncurses \
-    --enable-x11 \
-    --enable-imlib2
+    --enable-slang \
+    --enable-x11
 %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
+
 # We want to include the docs ourselves from the source directory
 %{__mv} %{buildroot}%{_docdir}/%{name}-dev %{name}-devel-docs
 

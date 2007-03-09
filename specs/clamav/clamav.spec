@@ -11,7 +11,7 @@
 Summary: Anti-virus software
 Name: clamav
 Version: 0.90.1
-Release: 1
+Release: 4
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -64,7 +64,8 @@ The Clam AntiVirus sendmail-milter Daemon
 %package db
 Summary: Virus database for %{name}
 Group: Applications/Databases
-Requires: clamav = %{version}-%{release}
+### Remove circular dependency
+#Requires: clamav = %{version}-%{release}
 
 ### Fedora Extras introduced them differently :(
 Obsoletes: clamav-update <= %{version}-%{release}
@@ -188,13 +189,14 @@ EOF
 
 CLAMAV_FLAGS="
 	--config-file=%{_sysconfdir}/clamd.conf
-	--max-children=10
 	--force-scan
-	--quiet
-	--dont-log-clean
+	--local    
+	--max-children=10
 	--noreject
-	-obl local:%{_localstatedir}/clamav/clmilter.socket
+	--outgoing                                                                                                            
+	--quiet
 "
+SOCKET_ADDRESS="local:%{_localstatedir}/clamav/clmilter.socket"
 EOF
 
 %build
@@ -234,7 +236,7 @@ touch %{buildroot}%{_localstatedir}/log/clamav/clamd.log
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/run/clamav/
 
 %post
-/sbin/ldconfig 2>/dev/null
+/sbin/ldconfig
 
 ZONES="/usr/share/zoneinfo/zone.tab"
 CONFIG="/etc/sysconfig/clock"
@@ -253,7 +255,6 @@ fi
 		s|^(DatabaseMirror) db\.\.clamav\.net$|$1 db.$ENV{"CODE"}.clamav.net\n$1 db.local.clamav.net|;
 	' %{_sysconfdir}/freshclam.conf{,.rpmnew} &>/dev/null || :
 
-%post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %pre -n clamd
@@ -356,6 +357,16 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
+* Fri Mar 09 2007 Dag Wieers <dag@wieers.com> - 0.90.1-4
+- Removed circular dependency.
+
+* Thu Mar 08 2007 Dag Wieers <dag@wieers.com> - 0.90.1-3
+- Cleaned up default options to clamav-milter. (Adam T. Bowen)
+- Removed -b/--bounce as it is no longer recognized.
+
+* Mon Mar 05 2007 Dag Wieers <dag@wieers.com> - 0.90.1-2
+- Removed the erroneous --dont-clean-log from the clamav-milter sysconfig. (Gerald Teschl)
+
 * Fri Mar 02 2007 Dag Wieers <dag@wieers.com> - 0.90.1-1
 - Updated to release 0.90.1.
 

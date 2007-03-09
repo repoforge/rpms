@@ -9,6 +9,7 @@
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
+%{?el5:%define _without_nas 1}
 %{?el4:%define _without_nas 1}
 %{?fc3:%define _without_nas 1}
 %{?fc2:%define _without_nas 1}

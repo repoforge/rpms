@@ -57,9 +57,9 @@ export CPPFLAGS="-I/usr/kerberos/include"
 %{_datadir}/lftp/
 %{_libdir}/lftp/
 %exclude %{_libdir}/liblftp-jobs.la
-%{_libdir}/liblftp-jobs.so.*
+%{_libdir}/liblftp-jobs.so*
 %exclude %{_libdir}/liblftp-tasks.la
-%{_libdir}/liblftp-tasks.so.*
+%{_libdir}/liblftp-tasks.so*
 
 %changelog
 * Fri Jan 26 2007 Dag Wieers <dag@wieers.com> - 3.5.9-1

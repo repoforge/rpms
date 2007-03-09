@@ -5,9 +5,9 @@
 Summary: Take screenshots using the framebuffer device
 Name: fbdump
 Version: 0.4.2
-Release: 1
+Release: 2
 License: GPL
-Group: Applications/Graphics
+Group: Amusements/Graphics
 URL: http://www.rcdrummond.net/fbdump/
 
 Source: http://www.rcdrummond.net/fbdump/fbdump-%{version}.tar.gz
@@ -40,5 +40,8 @@ X Window System desktop, as well as framebuffer applications.
 %{_bindir}/fbdump
 
 %changelog
+* Fri Mar 09 2007 Dag Wieers <dag@wieers.com> - 0.4.2-2
+- Fixed group.
+
 * Sun Mar 04 2007 Dag Wieers <dag@wieers.com> - 0.4.2-1
 - Initial package. (using DAR)

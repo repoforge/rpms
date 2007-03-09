@@ -4,7 +4,7 @@
 
 Summary: Abstract asynchronous event notification library
 Name: libevent
-Version: 1.3a
+Version: 1.3b
 Release: 1
 License: BSD
 Group: System Environment/Libraries
@@ -65,10 +65,13 @@ you will need to install %{name}-devel.
 %{_includedir}/event.h
 %{_includedir}/evhttp.h
 %{_libdir}/libevent.a
-%{_libdir}/libevent.so
 %exclude %{_libdir}/libevent.la
+%{_libdir}/libevent.so
 
 %changelog
+* Mon Mar 05 2007 Dag Wieers <dag@wieers.com> - 1.3b-1
+- Updated to release 1.3b.
+
 * Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 1.3a-1
 - Updated to release 1.3a.
 

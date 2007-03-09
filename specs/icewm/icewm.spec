@@ -6,14 +6,11 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
+%{!?dist:%define _with_modxorg 1}
+%{?fc7:  %define _with_modxorg 1}
+%{?el5:  %define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
 
 %{?rh7:%define _without_gnome2 1}
 %{?el2:%define _without_gnome2 1}
@@ -21,7 +18,7 @@
 
 Summary: Fast and small X11 window manager
 Name: icewm
-Version: 1.2.26
+Version: 1.2.30
 Release: 1
 License: LGPL
 Group: User Interface/Desktops
@@ -34,8 +31,8 @@ BuildRequires: autoconf, automake, libtool
 BuildRequires: imlib-devel, libpng-devel, kdelibs
 BuildRequires: gcc-c++, gettext
 %{!?_without_gnome2:BuildRequires: gnome-desktop-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-font-utils}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-font-utils}
+%{!?_with_modxorg:BuildRequires: XFree86-devel, XFree86-font-utils}
+%{?_with_modxorg:BuildRequires: xorg-x11-devel, xorg-x11-font-utils}
 Obsoletes: icewm-common <= %{version}
 Obsoletes: icewm-l10n <= %{version}
 Obsoletes: icewm-menu-gnome2 <= %{version}
@@ -95,6 +92,9 @@ EOF
 %{_datadir}/icewm/
 
 %changelog
+* Sun Mar 04 2007 Dag Wieers <dag@wieers.com> - 1.2.30-1
+- Updated to release 1.2.30.
+
 * Mon Apr 17 2006 Dag Wieers <dag@wieers.com> - 1.2.26-1
 - Updated to release 1.2.26.
 

@@ -56,6 +56,7 @@ you will need to install %{name}-devel.
 %doc AUTHORS ChangeLog COPYING* NEWS README
 %doc %{_mandir}/man1/otr_mackey.1*
 %doc %{_mandir}/man1/otr_modify.1*
+%doc %{_mandir}/man1/otr_parse.1*
 %doc %{_mandir}/man1/otr_readforge.1*
 %doc %{_mandir}/man1/otr_remac.1*
 %doc %{_mandir}/man1/otr_sesskeys.1*

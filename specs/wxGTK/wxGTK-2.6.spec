@@ -101,6 +101,7 @@ Header files for wxGTK, the GTK port of the wxWindows library.
 %files devel
 %defattr(-, root, root, 0755)
 %{_bindir}/wx-config
+%{_bindir}/wxrc
 %{_bindir}/wxrc-2.6
 %{_datadir}/aclocal/*.m4
 %dir %{_datadir}/bakefile/

@@ -47,7 +47,6 @@ you will need to install %{name}-devel.
 		%{buildroot}%{_bindir} \
 		%{buildroot}%{_includedir}
 %makeinstall
-#%{__make} install DESTDIR="%{buildroot}"
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -65,6 +64,7 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %{_includedir}/adns.h
 %{_libdir}/libadns.a
+%{_libdir}/libadns.so
 
 %changelog
 * Mon Aug 14 2006 Dag Wieers <dag@wieers.com> - 1.2-1

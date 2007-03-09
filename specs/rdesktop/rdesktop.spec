@@ -2,7 +2,16 @@
 # Authority: dag
 
 ### Ships with Fedora Core / Red Hat Enterprise
-# Tag: test
+##Tag: test
+# Rationale: We replace the RHEL version as it fixes a transparancy bug with compiz
+
+%{?dist: %{expand: %%define %dist 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc7:  %define _with_modxorg 1}
+%{?el5:  %define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
 
 Summary: X client for remote desktop into Windows Terminal Server
 Name: rdesktop
@@ -15,7 +24,9 @@ URL: http://www.rdesktop.org/
 Source: http://dl.sf.net/rdesktop/rdesktop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: openssl-devel, XFree86-devel
+BuildRequires: openssl-devel
+%{?_with_modxorg:BuildRequires: libXt-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 
 %description
 rdesktop is an open source client for Windows NT Terminal Server and

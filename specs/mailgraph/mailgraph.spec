@@ -52,7 +52,7 @@ fi
 %doc CHANGES COPYING README
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/mailgraph.conf.example
 %config(noreplace) %{_sysconfdir}/sysconfig/mailgraph
-%config %{_initrddir/mailgraph
+%config %{_initrddir}/mailgraph
 %{_libdir}/mailgraph/
 %{_localstatedir}/lib/mailgraph/img/
 %{_localstatedir}/lib/mailgraph/rrd/

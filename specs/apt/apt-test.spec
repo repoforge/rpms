@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Panu Matilainen <pmatilai$laiskiainen,org>
 
+# Tag: test
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?rh8:%define _without_elfutils 1}
@@ -17,13 +19,13 @@
 
 Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
-Version: 0.5.15lorg3.2
+Version: 0.5.15lorg3.90
 Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://apt-rpm.org/
 
-Source: http://apt-rpm.org/releases/apt-%{version}.tar.bz2
+Source: http://apt-rpm.org/testing/apt-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: rpm-devel >= 3.0.5, zlib-devel, gettext, ncurses-devel
@@ -214,6 +216,9 @@ touch %{buildroot}%{_sysconfdir}/apt/preferences \
 %{_includedir}/apt-pkg/
 
 %changelog
+* Wed Mar 07 2007 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.90-1
+- Updated to release 0.5.15lorg3.90.
+
 * Fri Jun 23 2006 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.2-1
 - Updated to release 0.5.15lorg3.2.
 

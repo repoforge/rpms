@@ -4,8 +4,8 @@
 
 Summary: Lotus Sametime Community Client library
 Name: meanwhile
-Version: 0.5.0
-Release: 1.2
+Version: 1.0.2
+Release: 1
 License: LGPL
 Group: Applications/Internet
 URL: http://meanwhile.sourceforge.net/
@@ -42,17 +42,14 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %{__mv} %{buildroot}%{_datadir}/doc/meanwhile-doc-%{version} rpmdoc
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
@@ -68,8 +65,8 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/meanwhile.pc
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.0-1.2
-- Rebuild for Fedora Core 5.
+* Sun Mar 04 2007 Dag Wieers <dag@wieers.com> - 1.0.2-1
+- Updated to release 1.0.2.
 
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.0-1
 - Updated to release 0.5.0.

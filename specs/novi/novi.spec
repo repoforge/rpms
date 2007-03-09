@@ -4,9 +4,9 @@
 Summary: Find the latest rpms by version in a tree
 Name: novi
 Version: 1.1.5
-Release: 1
+Release: 2
 License: Apache License 2.0
-Group: Applications/Utilities
+Group: Applications/System
 URL: http://www.exmachinatech.net/01/novi/
 
 Source: http://downloads.exmachinatech.net/novi/%{version}/novi-%{version}.tar.bz2
@@ -30,17 +30,21 @@ repodata files, which reduces client download and processing time.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall INSTALL_BIN_DIR=%{buildroot}%{_bindir} INSTALL_BASE=%{buildroot}%{_prefix} INSTALL_MAN_DIR=%{buildroot}%{_mandir} INSTALL_MAN1_DIR=%{buildroot}%{_mandir}/man1
+%{__make} install ALT_ROOT_DIR="%{buildroot}" INSTALL_MAN_DIR="%{buildroot}%{_mandir}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc *.TXT doc/*.html
-%doc %{_mandir}/man1/novi*
+%doc LICENSE* *.TXT doc/*.html
+%doc %{_mandir}/man1/novi.1*
+%doc %{_mandir}/man1/novi_examples.1*
 %{_bindir}/novi
 
 %changelog
+* Fri Mar 09 2007 Dag Wieers <dag@wieers.com> - 1.1.5-2
+- Fixed group.
+
 * Sat May 20 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.5-1
 - Initial package.

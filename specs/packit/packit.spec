@@ -8,6 +8,12 @@
 %{?el5:%define _with_libpcapdevel 1}
 %{?fc6:%define _with_libpcapdevel 1}
 
+%{?fc1:%define _without_pcapbpf_h 1}
+%{?el3:%define _without_pcapbpf_h 1}
+%{?rh9:%define _without_pcapbpf_h 1}
+%{?rh7:%define _without_pcapbpf_h 1}
+%{?el2:%define _without_pcapbpf_h 1}
+
 Summary: Network injection and capturing tool
 Name: packit
 Version: 1.0
@@ -34,9 +40,7 @@ learning TCP/IP.
 %prep
 %setup
 
-%{?el4:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' src/*.c src/*.h}
-%{?fc3:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' src/*.c src/*.h}
-%{?fc2:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' src/*.c src/*.h}
+%{!?_without_pcapbpf_h:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' src/*.c src/*.h}
 
 %build
 %configure

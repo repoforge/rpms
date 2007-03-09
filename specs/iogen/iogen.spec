@@ -5,9 +5,9 @@
 Summary: I/O generator
 Name: iogen
 Version: 2.2
-Release: 1
+Release: 2
 License: GPL
-Group: Applications/
+Group: Applications/System
 URL: http://www.peereboom.us/iogen/
 
 Source: http://www.peereboom.us/iogen/iogen_%{version}.tgz
@@ -48,5 +48,8 @@ to recreate the worst case scenario I/O.
 %{_bindir}/iogen
 
 %changelog
+* Fri Mar 09 2007 Dag Wieers <dag@wieers.com> - 2.2-2
+- Fixed group.
+
 * Sun Feb 11 2007 Dag Wieers <dag@wieers.com> - 2.2-1
 - Initial package. (using DAR)

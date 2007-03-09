@@ -25,7 +25,7 @@ test -f /etc/sysconfig/clamav-milter && . /etc/sysconfig/clamav-milter
 case "$1" in
   start)
 	echo -n "Starting Clamav Milter Daemon: "
-        daemon clamav-milter ${CLAMAV_FLAGS}
+        daemon clamav-milter $CLAMAV_FLAGS $SOCKET_ADDRESS
 	RETVAL=$?
 	echo
 	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/clamav-milter

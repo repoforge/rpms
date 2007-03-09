@@ -2,6 +2,7 @@
 # Authority: dag
 
 ### Ironically, yum 2.4 needs sqlite2, while this needs sqlite3
+# ExclusiveDist:
 # ExcludeDist: el4
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
