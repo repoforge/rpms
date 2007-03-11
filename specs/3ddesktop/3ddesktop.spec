@@ -7,19 +7,16 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-# %{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
+%{!?dist:%define _with_modxorg 1}
+%{?fc7:  %define _with_modxorg 1}
+%{?el5:  %define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
 
 Summary: OpenGL program for switching virtual desktops in 3D
 Name: 3ddesktop
-Version: 0.2.8
-Release: 1.2
+Version: 0.2.9
+Release: 1
 License: GPL
 Group: User Interface/Desktops
 URL: http://desk3d.sourceforge.net/
@@ -30,8 +27,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf >= 2.58, gcc-c++, zlib-devel
 BuildRequires: imlib2-devel, qt-devel, kdelibs-devel
-%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGL, XFree86-Mesa-libGLU}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU, xorg-x11-Mesa-libGL}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{?_with_modxorg:BuildRequires: libXt-devel, libXext-devel, libICE-devel, libXxf86vm-devel}
 %{?el2:BuildRequires: Mesa-devel}
 Requires: imlib2
 
@@ -52,7 +49,7 @@ source /etc/profile.d/qt.sh
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -60,14 +57,16 @@ source /etc/profile.d/qt.sh
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING INSTALL NEWS README* TODO
+%doc %{_mandir}/man1/3ddesk.1*
+%doc %{_mandir}/man1/3ddeskd.1*
 %config(noreplace) %{_sysconfdir}/3ddesktop.conf
 %{_bindir}/3ddesk
 %{_bindir}/3ddeskd
 %{_datadir}/3ddesktop/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.8-1.2
-- Rebuild for Fedora Core 5.
+* Sat Mar 10 2007 Dag Wieers <dag@wieers.com> - 0.2.9-1
+- Updated to release 0.2.9.
 
 * Thu Mar 24 2005 Dag Wieers <dag@wieers.com> - 0.2.8-1
 - Updated to release 0.2.8.

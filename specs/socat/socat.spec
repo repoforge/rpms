@@ -4,7 +4,7 @@
 
 Summary: Relay for bidirectional data transfer between 2 channels
 Name: socat
-Version: 1.5.0.0
+Version: 1.6.0.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -26,24 +26,13 @@ line editor, a program, or a combination of two of these.
 %prep
 %setup
 
-### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
-%{__perl} -pi.orig -e '
-		s|\@bindir\@|\$(bindir)|;
-		s|\@mandir\@|\$(mandir)|;
-	' Makefile.in
-
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-
-### FIXME: Makefile doesn't create target directories (Please fix upstream)
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1/
-
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -51,7 +40,7 @@ line editor, a program, or a combination of two of these.
 %files
 %defattr(-, root, root, 0755)
 %doc BUGREPORTS CHANGES COPYING* DEVELOPMENT EXAMPLES FAQ FILES PORTING README SECURITY
-%doc *.sh socat.html xio.help
+%doc *.sh doc/*.css doc/*.help doc/*.html
 %doc %{_mandir}/man1/socat.1*
 %{_bindir}/filan
 %{_bindir}/procan

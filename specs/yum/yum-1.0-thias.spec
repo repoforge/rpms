@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+# ExclusiveDist: el2 rh7 yd2 yd3
+
 # Which distro to make the default configuration for, defaults to 'rh'
 %{?_with_yd: %{expand: %%define distro yd}}
 %{!?distro: %{expand: %%define distro rh}}

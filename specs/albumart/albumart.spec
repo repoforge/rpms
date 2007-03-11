@@ -32,19 +32,15 @@ python setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-python setup.py install \
-	--root="%{buildroot}" \
-	--record="INSTALLED_FILES"
+python setup.py install --root="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files -f INSTALLED_FILES
 %defattr(-, root, root, 0755)
+%{_libdir}/albumart/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-0.2
-- Rebuild for Fedora Core 5.
-
 * Mon Jun 30 2003 Dag Wieers <dag@wieers.com> - 1.1-0
 - Initial package. (using DAR)

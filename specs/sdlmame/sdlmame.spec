@@ -1,6 +1,15 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc7:  %define _with_modxorg 1}
+%{?el5:  %define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
+
 %define mamever 113
 
 Summary: SDL port of the Multi Arcade Machine Emulator (MAME)
@@ -14,7 +23,9 @@ URL: http://rbelmont.mameworld.info/?page_id=163
 Source: http://rbelmont.mameworld.info/sdlmame0%{mamever}.zip
 Patch0: sdlmame0109-genericbuild.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: SDL-devel, expat-devel, zlib-devel, libXinerama-devel
+BuildRequires: SDL-devel, expat-devel, zlib-devel
+%{?_with_modxorg:BuildRequires: libXinerama-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 
 %description
 This is a simple SDL port of the almost legendary MAME. MAME is an arcade

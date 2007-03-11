@@ -362,7 +362,7 @@ fi
 
 * Thu Mar 08 2007 Dag Wieers <dag@wieers.com> - 0.90.1-3
 - Cleaned up default options to clamav-milter. (Adam T. Bowen)
-- Removed -b/--bounce as it is no longer recognized.
+- Removed -b/--bounce as it is no longer recognized. (Gerald Teschl)
 
 * Mon Mar 05 2007 Dag Wieers <dag@wieers.com> - 0.90.1-2
 - Removed the erroneous --dont-clean-log from the clamav-milter sysconfig. (Gerald Teschl)

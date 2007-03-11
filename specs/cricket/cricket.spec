@@ -1,54 +1,53 @@
 # Authority: nac
 # $Id$
 
-%define     version     1.0.5
-%define     release     6.0
-%define     name        cricket
-%define     httpd_user  apache
+%define version     1.0.5
+%define release     6.0
+%define name        cricket
+%define httpd_user  apache
 
 # /usr/lib/cricket will be the "cricket home"
 #    - www/cgi will hold CGIs
 #    - www/images will hold images
-%define     app_dir     %{_libdir}/%{name}/
-%define     cgi_dir     %{app_dir}/www/cgi/
-%define     img_dir     %{app_dir}/www/images/
+%define app_dir     %{_libdir}/%{name}/
+%define cgi_dir     %{app_dir}/www/cgi/
+%define img_dir     %{app_dir}/www/images/
 
 # Cache graphs here; must be writable by web server!
-%define     cache_dir   %{_var}/cache/%{name}/
+%define cache_dir   %{_var}/cache/%{name}/
 
 # /var/lib/cricket/ will contain RRD data
-%define     data_dir    %{_var}/lib/%{name}/
+%define data_dir    %{_var}/lib/%{name}/
 
 # /var/log/cricket will contain logs (duh)
-%define     log_dir     %{_var}/log/%{name}/
+%define log_dir     %{_var}/log/%{name}/
 
 # /etc/cricket/config will be the default config tree
-%define     etc_dir     %{_sysconfdir}/%{name}/
-%define     config_dir  %{etc_dir}/config/
+%define etc_dir     %{_sysconfdir}/%{name}/
+%define config_dir  %{etc_dir}/config/
 
-%define     cron_dir    %{_sysconfdir}/cron.d/
-%define     httpd_dir   %{_sysconfdir}/httpd/conf.d/
+%define cron_dir    %{_sysconfdir}/cron.d/
+%define httpd_dir   %{_sysconfdir}/httpd/conf.d/
 
 
-Summary:    Network statistics collection tool
-Name:       %{name}
-Version:    %{version}
-Release:    %{release}
-License:    GPL
-Group:      Applications/System
-URL:        http://cricket.sourceforge.net
-Requires:   perl(RRDs), perl(DB_File), perl(Time::HiRes), perl-SNMP_Session
-Requires:   perl(Date::Format), perl(Digest::MD5), perl(LWP), webserver
-Source0:    http://download.sourceforge.net/cricket/%{name}-%{version}.tar.gz
-Source1:    cricket.cron
-Source2:    cricket.apache
-Patch1:     cricket-paths.patch
-BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root
-AutoReq:    0
-AutoProv:   0
+Summary: Network statistics collection tool
+Name: %{name}
+Version: %{version}
+Release: %{release}
+License: GPL
+Group: Applications/System
+URL: http://cricket.sourceforge.net
+Requires: perl(RRDs), perl(DB_File), perl(Time::HiRes), perl-SNMP_Session
+Requires: perl(Date::Format), perl(Digest::MD5), perl(LWP), webserver
+Source0: http://download.sourceforge.net/cricket/%{name}-%{version}.tar.gz
+Source1: cricket.cron
+Source2: cricket.apache
+Patch1: cricket-paths.patch
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+AutoReq: 0
+AutoProv: 0
 
 %description
-
 Cricket is a high performance, extremely flexible system for monitoring
 trends in time-series data. Cricket was expressly developed to help
 network managers visualize and understand the traffic on their networks,

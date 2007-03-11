@@ -7,6 +7,12 @@
 %{?el5:%define _with_libpcapdevel 1}
 %{?fc6:%define _with_libpcapdevel 1}
 
+%{?fc1:%define _without_pcapbpf_h 1}
+%{?el3:%define _without_pcapbpf_h 1}
+%{?rh9:%define _without_pcapbpf_h 1}
+%{?rh7:%define _without_pcapbpf_h 1}
+%{?el2:%define _without_pcapbpf_h 1}
+
 %define real_version 0.9b3
 
 Summary: SSLSSLv3/TLS network protocol analyzer
@@ -36,9 +42,7 @@ decrypt the connections and display the application data traffic.
 %prep
 %setup -n %{name}-%{real_version}
 
-%{?el4:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' base/*.c}
-%{?fc3:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' base/*.c}
-%{?fc2:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' base/*.c}
+%{!?_without_pcapbpf_h:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' src/*.c src/*.h}
 
 %{?el3:%{__perl} -pi.orig -e 's|^(CFLAGS) \+= |$1 += -I/usr/kerberos/include |' Makefile.in}
 %{?rh9:%{__perl} -pi.orig -e 's|^(CFLAGS) \+= |$1 += -I/usr/kerberos/include |' Makefile.in}

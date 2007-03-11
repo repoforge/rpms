@@ -4,13 +4,17 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?el4:%define _without_modxorg 1}
-%{?el3:%define _without_modxorg 1}
-%{?el2:%define _without_modxorg 1}
 %{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
 %{?fc3:%define _without_modxorg 1}
 %{?fc2:%define _without_modxorg 1}
 %{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+
+%{?el2:%define _without_arts 1}
 
 Summary: Game library
 Name: allegro
@@ -24,9 +28,10 @@ Source: http://dl.sf.net/alleg/allegro-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: allegro-tools
 
-BuildRequires: gcc-c++, esound-devel, arts-devel, pkgconfig, texinfo
+BuildRequires: gcc-c++, esound-devel, pkgconfig, texinfo
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_modxorg:BuildRequires: libXext-devel}
+%{!?_without_arts:BuildRequires: arts-devel}
 
 %description
 Allegro is a multi-platform game library for C/C++ developers that provides
@@ -51,18 +56,16 @@ you will need to install %{name}-devel.
 %build
 %configure
 %{__make} %{?_smp_mflags}
-%{__make} %{?_smp_mflags} docs-dvi
+### texi2dvi missing on EL5
+#%{__make} %{?_smp_mflags} docs-dvi
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall install-gzipped-man install-gzipped-info
 %{__rm} -f %{buildroot}%{_datadir}/info/dir
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -99,9 +102,6 @@ you will need to install %{name}-devel.
 %changelog
 * Sun Dec 03 2006 Dries Verachtert <dries@ulyssis.org> - 4.2.1-1
 - Updated to release 4.2.1.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 4.2.0-1.2
-- Rebuild for Fedora Core 5.
 
 * Sun Dec 04 2005 Dries Verachtert <dries@ulyssis.org> - 4.2.0-1
 - Initial package.

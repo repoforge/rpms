@@ -6,7 +6,7 @@
 
 Summary: Simple multi-channel audio mixer
 Name: SDL_mixer
-Version: 1.2.7
+Version: 1.2.6
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -15,7 +15,7 @@ URL: http://www.libsdl.org/projects/SDL_mixer/
 Source: http://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, SDL-devel >= 1.2.10, libvorbis-devel, smpeg-devel, mikmod-devel
+BuildRequires: gcc-c++, SDL-devel, libvorbis-devel, smpeg-devel, mikmod-devel
 
 %description
 SDL_mixer is a simple multi-channel audio mixer. It supports 8 channels of 16
@@ -42,8 +42,8 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-%{__install} -D build/playmus %{buildroot}%{_bindir}/playmus
-%{__install} -D build/playwave %{buildroot}%{_bindir}/playwave
+%{__install} -D playmus %{buildroot}%{_bindir}/playmus
+%{__install} -D playwave %{buildroot}%{_bindir}/playwave
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -67,8 +67,5 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
-* Sat Mar 10 2007 Dag Wieers <dag@wieers.com> - 1.2.7-1
-- Updated to release 1.2.7.
-
 * Mon Jan 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.6-1
 - Initial package, based on the spec file provided by the PLD Linux Distribution.
