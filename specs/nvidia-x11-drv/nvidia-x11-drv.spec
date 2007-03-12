@@ -4,7 +4,7 @@
 # ExclusiveDist: fc6 el5
 
 %define majmin          1.0
-%define relver          9746
+%define relver          9755
 %define nvidialibdir    %{_libdir}/nvidia
 %define nvidialib32dir  %{_prefix}/lib/nvidia
 %define desktop_vendor  rpmforge
@@ -283,6 +283,9 @@ fi
 
 
 %changelog
+* Mon Mar 12 2007 Matthias Saou <http://freshrpms.net/> 1.0.9755-1
+- Update to 1.0-9755 (stable).
+
 * Fri Dec 22 2006 Matthias Saou <http://freshrpms.net/> 1.0.9746-1
 - Update to 1.0-9746 (stable).
 
