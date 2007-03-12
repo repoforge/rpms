@@ -4,8 +4,8 @@
 
 Summary: UDP broadcast installation
 Name: udpcast
-%define real_version 20070218
-Version: 0.0.20070218
+%define real_version 20070306
+Version: 0.0.20070306
 Release: 1
 License: GPL or BSD
 Group: Applications/System
@@ -44,6 +44,9 @@ Allows easy installation of client machines via UDP broadcast
 %{_sbindir}/udp-sender
 
 %changelog
+* Mon Mar 12 2007 Dries Verachtert <dries@ulyssis.org> - 0.0.20070306-1
+- Updated to release 20070306.
+
 * Sun Feb 18 2007 Dag Wieers <dag@wieers.com> - 0.0.20070218-1
 - Updated to release 20070218.
 
