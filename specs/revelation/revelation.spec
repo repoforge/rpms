@@ -20,6 +20,8 @@ BuildRequires: python >= 2.3, python-devel, python-crypto >= 1.9
 BuildRequires: gnome-keyring-devel, pygtk2-devel >= 2.8, gnome-python2
 BuildRequires: gnome-vfs2-devel, libgnomeui-devel, gnome-python2-bonobo
 BuildRequires: GConf2-devel, gnome-python2-gconf, gnome-python2-desktop
+%{?el5:BuildRequires: gnome-python2-extras, gnome-panel-devel}
+%{?fc6:BuildRequires: gnome-python2-extras, gnome-panel-devel}
 %{?fc5:BuildRequires: gnome-python2-extras, gnome-panel-devel}
 %{?fc4:BuildRequires: gnome-python2-extras, gnome-panel-devel}
 Requires: python >= 2.3, pygtk2 >= 2.4, python-crypto >= 1.9
@@ -42,8 +44,8 @@ a tree structure, and stores them as AES-encrypted XML files.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install \
-	DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}"
+%find_lang %{name}
 
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
@@ -58,7 +60,7 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %config %{_sysconfdir}/gconf/schemas/revelation.schemas
@@ -68,8 +70,6 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/revelation/
 %{_datadir}/icons/hicolor/*/apps/revelation.png
 %{_datadir}/icons/hicolor/48x48/mimetypes/gnome-mime-application-x-revelation.png
-%{_datadir}/icons/hicolor/scalable/filesystems/revelation-fallback-folder.svg
-%{_datadir}/icons/hicolor/scalable/filesystems/revelation-fallback-folder-open.svg
 %{_datadir}/mime/packages/revelation.xml
 
 %config %{_sysconfdir}/gconf/schemas/revelation-applet.schemas

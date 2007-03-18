@@ -13,7 +13,7 @@
 
 Summary: Easy to use front-end for ClamAV
 Name: clamtk
-Version: 2.28
+Version: 2.30
 Release: 1
 License: Perl
 Group: Applications/File
@@ -24,7 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Requires: perl-Gtk2, perl-File-Find-Rule, perl-Date-Calc, perl-libwww-perl
-Requires: clamav >= 0.83, clamav-db
+Requires: clamav >= 0.90, clamav-db
 
 Obsoletes: clamtk2
 
@@ -82,6 +82,9 @@ EOF
 %{_datadir}/pixmaps/clamtk.png
 
 %changelog
+* Sun Mar 18 2007 Dag Wieers <dag@wieers.com> - 2.30-1
+- Updated to release 2.30.
+
 * Fri Feb 23 2007 Dag Wieers <dag@wieers.com> - 2.28-1
 - Updated to release 2.28.
 

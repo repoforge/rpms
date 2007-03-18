@@ -16,7 +16,7 @@
 
 Summary: Host/service/network monitoring program plugins for Nagios
 Name: nagios-plugins
-Version: 1.4.5
+Version: 1.4.6
 Release: 1
 License: GPL
 Group: Applications/System
@@ -127,6 +127,9 @@ done
 %{_libdir}/nagios/plugins/check_icmp
 
 %changelog
+* Wed Mar 14 2007 Dag Wieers <dag@wieers.com> - 1.4.6-1
+- Updated to release 1.4.6.
+
 * Tue Dec 12 2006 Dag Wieers <dag@wieers.com> - 1.4.5-1
 - Updated to release 1.4.5.
 - Added setuid sub-package for setuid plugins. (Philip Chase)

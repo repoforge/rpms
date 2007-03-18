@@ -52,12 +52,17 @@
 
 Summary: Core library of the xine multimedia player
 Name: xine-lib
-Version: 1.1.2
-Release: 2
+Version: 1.1.4
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
 Source: http://dl.sf.net/xine/xine-lib-%{version}.tar.bz2
+Patch1: xine-lib-1.1.4-optflags.patch
+Patch2: xine-lib-1.1.4-CVE-2007-1246.patch
+Patch3: xine-lib-1.1.3-legacy-flac-init.patch
+Patch6: xine-lib-1.1.1-deepbind-939.patch
+Patch7: xine-lib-1.1.1-multilib-devel.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libdvdcss
 BuildRequires: gcc-c++, pkgconfig, zlib-devel, libtiff-devel
@@ -136,7 +141,12 @@ use the Xine library.
 
 %prep
 %setup
-
+%patch1 -p1 -b .optflags
+%patch2 -p1 -b .CVE-2007-1246
+%patch3 -p0 -b .legacy-flac-init
+### Patch6 needed at least when compiling with external ffmpeg, #939.
+%patch6 -p1 -b .deepbind
+%patch7 -p0 -b .multilib-devel
 
 %build
 %configure \
@@ -146,7 +156,8 @@ use the Xine library.
     %{?_without_alsa:--disable-alsa} \
     %{!?_with_extdvdnav:--with-included-dvdnav} \
     --with-external-a52dec \
-    --with-external-libmad
+    --with-external-libmad \
+    --with-pic
 %{__make} %{?_smp_mflags}
 
 
@@ -170,12 +181,13 @@ use the Xine library.
 %files -f %{libname}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README TODO
-%doc doc/README.dvb doc/README.dxr3 doc/README.network_dvd doc/README.opengl
-%doc doc/README.syncfb doc/README_xxmc.html doc/faq/faq.html
+%doc doc/README.* doc/faq/faq.txt doc/faq/faq.html
+%doc %{_docdir}/xine-lib/hackersguide/
 %{_libdir}/libxine.so.*
 %{_libdir}/xine/
 %{_datadir}/xine/
 %{_mandir}/man5/xine.5*
+%exclude %{_docdir}/xine-lib/
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -191,6 +203,10 @@ use the Xine library.
 
 
 %changelog
+* Sun Mar 11 2007 Dag Wieers <dag@wieers.com> - 1.1.4-1
+- Updated to release 1.1.4.
+- Added Fedora Extras patches.
+
 * Sun Sep 24 2006 Matthias Saou <http://freshrpms.net/> 1.1.2-2
 - Rebuild against new libcdio.
 

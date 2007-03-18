@@ -47,7 +47,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 0.9.32
+Version: 0.9.33
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -579,6 +579,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/dnsapi.dll.so
 %{_libdir}/wine/dplay.dll.so
 %{_libdir}/wine/dplayx.dll.so
+%{_libdir}/wine/dpnaddr.dll.so
 %{_libdir}/wine/dpnet.dll.so
 %{_libdir}/wine/dpnhpast.dll.so
 %{_libdir}/wine/dsound.dll.so
@@ -809,6 +810,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Sun Mar 18 2007 Dag Wieers <dag@wieers.com> - 0.9.33-1
+- Updated to release 0.9.33.
+
 * Sat Mar 03 2007 Dag Wieers <dag@wieers.com> - 0.9.32-1
 - Updated to release 0.9.32.
 - Fixed the depenency to update-desktop-database. (Bart Schaefer)

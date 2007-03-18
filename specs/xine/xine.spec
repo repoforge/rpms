@@ -6,7 +6,6 @@
 
 %{!?dist:%define _with_moles 1}
 %{?fc7:  %define _with_moles 1}
-%{?el5:  %define _with_moles 1}
 %{?fc6:  %define _with_moles 1}
 %{?fc5:  %define _with_moles 1}
 

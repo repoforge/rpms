@@ -1,0 +1,47 @@
+diff -Naupr moin-1.5.2.orig/MoinMoin/multiconfig.py moin-1.5.2/MoinMoin/multiconfig.py
+--- moin-1.5.2.orig/MoinMoin/multiconfig.py	2006-02-04 13:31:37.000000000 +0100
++++ moin-1.5.2/MoinMoin/multiconfig.py	2006-02-06 11:45:22.000000000 +0100
+@@ -353,13 +353,13 @@ class DefaultConfig:
+                               'edit_on_doubleclick': 0,
+                               'remember_last_visit': 0,
+                               'show_nonexist_qm':    nonexist_qm,
+-                              'show_page_trail':     1,
++                              'show_page_trail':     0,
+                               'show_toolbar':        1,
+                               'show_topbottom':      0,
+                               'show_fancy_diff':     1,
+                               'wikiname_add_spaces': 0,
+                               'remember_me':         1,
+-                              'want_trivial':        0,
++                              'want_trivial':        1,
+                              }
+     # don't let the user change those
+     # user_checkbox_disable = ['disabled', 'want_trivial']
+diff -Naupr moin-1.5.2.orig/wiki/config/wikiconfig.py moin-1.5.2/wiki/config/wikiconfig.py
+--- moin-1.5.2.orig/wiki/config/wikiconfig.py	2006-02-04 22:20:20.000000000 +0100
++++ moin-1.5.2/wiki/config/wikiconfig.py	2006-02-06 11:46:18.000000000 +0100
+@@ -65,14 +65,14 @@ class Config(DefaultConfig):
+ 
+     # Where your mutable wiki pages are. You want to make regular
+     # backups of this directory.
+-    data_dir = './data/'
++    data_dir = '../data/'
+ 
+     # Where read-only system and help page are. You might want to share
+     # this directory between several wikis. When you update MoinMoin,
+     # you can safely replace the underlay directory with a new one. This
+     # directory is part of MoinMoin distribution, you don't have to
+     # backup it.
+-    data_underlay_dir = './underlay/'
++    data_underlay_dir = '../underlay/'
+ 
+     # This must be '/wiki' for twisted and standalone. For CGI, it should
+     # match your Apache Alias setting.
+@@ -123,6 +123,7 @@ class Config(DefaultConfig):
+         #u'%(page_front_page)s',
+         u'RecentChanges',
+         u'FindPage',
++        u'SiteNavigation',
+         u'HelpContents',
+     ]
+ 

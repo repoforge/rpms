@@ -134,6 +134,7 @@ you will need to install %{name}-devel.
 	' etc/clamd.conf
 
 %{__perl} -pi.orig -e '
+		s|^(Example)|#$1|;
 		s|^#(DatabaseDirectory) .+$|$1 %{_localstatedir}/clamav|;
 		s|^#(UpdateLogFile) .+$|$1 %{_localstatedir}/log/clamav/freshclam.log|;
 		s|^#(LogSyslog)|$1|;

@@ -4,8 +4,8 @@
 
 Summary: Library for parsing, writing and creating RSS files or streams
 Name: libmrss
-Version: 0.7
-Release: 1.2
+Version: 0.17
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://www2.autistici.org/bakunin/libmrss/
@@ -37,13 +37,10 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -57,13 +54,13 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %{_includedir}/mrss.h
 %{_libdir}/libmrss.a
+%exclude %{_libdir}/libmrss.la
 %{_libdir}/libmrss.so
 %{_libdir}/pkgconfig/mrss.pc
-%exclude %{_libdir}/*.la
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7-1.2
-- Rebuild for Fedora Core 5.
+* Sun Mar 18 2007 Dag Wieers <dag@wieers.com> - 0.17-1
+- Updated to release 0.17.
 
 * Sun Jan 29 2006 Dries Verachtert <dries@ulyssis.org> - 0.7-1
 - Initial package.

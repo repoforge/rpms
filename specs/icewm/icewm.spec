@@ -28,11 +28,11 @@ Source: http://dl.sf.net/sourceforge/icewm/icewm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, automake, libtool
-BuildRequires: imlib-devel, libpng-devel, kdelibs
+BuildRequires: imlib2-devel, libpng-devel, kdelibs
 BuildRequires: gcc-c++, gettext
 %{!?_without_gnome2:BuildRequires: gnome-desktop-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel, XFree86-font-utils}
-%{?_with_modxorg:BuildRequires: xorg-x11-devel, xorg-x11-font-utils}
+%{?_with_modxorg:BuildRequires: libX11-devel, xorg-x11-font-utils}
 Obsoletes: icewm-common <= %{version}
 Obsoletes: icewm-l10n <= %{version}
 Obsoletes: icewm-menu-gnome2 <= %{version}

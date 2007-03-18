@@ -4,7 +4,7 @@
 
 Summary: Console RSS reader
 Name: rsstail
-Version: 0.8
+Version: 1.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -13,7 +13,7 @@ URL: http://www.vanheusden.com/rsstail/
 Source: http://www.vanheusden.com/rsstail/rsstail-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libmrss-devel
+BuildRequires: libmrss-devel >= 0.16
 
 %description
 RSSTail is more or less an RSS reader. It monitors an RSS feed, and if it
@@ -39,11 +39,11 @@ detects a new entry, it will emit only that new entry.
 %{_bindir}/rsstail
 
 %changelog
+* Sun Mar 18 2007 Dag Wieers <dag@wieers.com> - 0.18-1
+- Updated to release 0.18.
+
 * Sun Dec 03 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-1
 - Updated to release 0.8.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7-1.2
-- Rebuild for Fedora Core 5.
 
 * Sun Jan 29 2006 Dries Verachtert <dries@ulyssis.org> - 0.7-1
 - Updated to release 0.7.

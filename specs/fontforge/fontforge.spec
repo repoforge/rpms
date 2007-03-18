@@ -3,6 +3,12 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{!?dist:%define _with_modxorg 1}
+%{?fc7:  %define _with_modxorg 1}
+%{?el5:  %define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
+
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
@@ -19,9 +25,11 @@ URL: http://fontforge.sourceforge.net/
 Source: http://dl.sf.net/fontforge/fontforge_full-20050502.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, freetype-devel, libuninameslist-devel
+BuildRequires: freetype-devel, libuninameslist-devel
 BuildRequires: libjpeg-devel, libpng-devel, libtiff-devel, libungif-devel
 BuildRequires: libxml2-devel
+%{?_with_modxorg:BuildRequires: libX11-devel, libSM-devel, libXi-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Obsoletes: pfaedit
 
@@ -99,8 +107,5 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %exclude %{_libdir}/*.so
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0-0.cvs20050502.2
-- Rebuild for Fedora Core 5.
-
 * Mon May 30 2005 Dag Wieers <dag@wieers.com> - 0.0-0.20050502
 - Initial package. (using DAR)

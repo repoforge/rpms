@@ -4,7 +4,7 @@
 
 Summary: Punching holes in HTTP(S) proxy's
 Name: proxytunnel
-Version: 1.6.3
+Version: 1.7.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -35,17 +35,13 @@ proxy authentication
 %prep
 %setup
 
-### FIXME: Fix typo in Makefile
-%{__perl} -pi.orig -e 's|\)\)|\)/man1|' Makefile
-
 %build
 %{__make} %{?_smp_mflags} \
 	CFLAGS="%{optflags} -DHAVE_GETOPT_LONG -DUSE_SSL -DSETPROCTITLE -DSPT_TYPE=2 -I/usr/kerberos/include"
 
 %install
 %{__rm} -rf %{buildroot}
-#%{__make} install DESTDIR="%{buildroot}" PREFIX="%{_prefix}"
-%{__make} install PREFIX="%{buildroot}%{_prefix}" MANDIR="%{buildroot}%{_mandir}/man1"
+%{__make} install DESTDIR="%{buildroot}" PREFIX="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -57,6 +53,9 @@ proxy authentication
 %{_bindir}/proxytunnel
 
 %changelog
+* Fri Mar 16 2007 Dag Wieers <dag@wieers.com> - 1.7.0-1
+- Updated to release 1.7.0.
+
 * Sun Aug 06 2006 Dag Wieers <dag@wieers.com> - 1.6.3-1
 - Updated to release 1.6.3.
 
