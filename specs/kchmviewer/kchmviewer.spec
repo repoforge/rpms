@@ -7,7 +7,7 @@
 
 Summary: CHM file viewer
 Name: kchmviewer
-Version: 2.7
+Version: 3.0
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -39,11 +39,12 @@ source /etc/profile.d/qt.sh
 %{__rm} -rf %{buildroot}
 source  /etc/profile.d/qt.sh
 %makeinstall
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING
 %{_bindir}/kchmviewer
@@ -51,8 +52,14 @@ source  /etc/profile.d/qt.sh
 %{_libdir}/kde3/kio_msits*
 %{_datadir}/services/msits.protocol
 %{_datadir}/icons/crystalsvg/*/apps/kchmviewer.png
+%{_libdir}/libchm.a
+%{_libdir}/libchmfile.a
+%{_libdir}/libkdeextra.a
 
 %changelog
+* Mon Mar 19 2007 Dries Verachtert <dries@ulyssis.org> - 3.0-1
+- Updated to release 3.0.
+
 * Fri Dec 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.7-1
 - Updated to release 2.7.
 
