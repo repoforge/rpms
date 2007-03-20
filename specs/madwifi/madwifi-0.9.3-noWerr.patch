@@ -1,0 +1,11 @@
+diff -Naupr madwifi-0.9.3.orig/Makefile.inc madwifi-0.9.3/Makefile.inc
+--- madwifi-0.9.3.orig/Makefile.inc	2007-01-18 09:26:23.000000000 +0100
++++ madwifi-0.9.3/Makefile.inc	2007-03-19 18:00:54.000000000 +0100
+@@ -146,7 +146,6 @@ ATH_RATE=	$(TOP)/ath_rate
+ # 
+ TOOLS=  $(TOP)/tools 
+ 
+-COPTS+=	-Werror
+ INCS=	-include $(TOP)/include/compat.h -I$(TOP)/include
+ 
+ # TARGET defines the target platform architecture. It must match one of

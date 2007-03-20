@@ -3,14 +3,13 @@
 
 Summary: Multiband Atheros Driver for Wireless Fidelity
 Name: madwifi
-Version: 0.9.2.1
+Version: 0.9.3
 Release: 2
 License: GPL
 Group: System Environment/Kernel
 URL: http://madwifi.org/
-Source: http://dl.sf.net/sourceforge/madwifi/madwifi-%{version}.tar.bz2
-Patch0: madwifi-2.6.18-config.patch
-Patch1: madwifi-0.9.2.1-noWerr.patch
+Source: http://downloads.sf.net/madwifi/madwifi-%{version}.tar.bz2
+Patch0: madwifi-0.9.3-noWerr.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gcc, make
 Requires(post): dkms
@@ -28,8 +27,7 @@ common wireless tools (ifconfig, iwconfig and friends).
 
 %prep
 %setup
-%patch0 -p1 -b .config
-%patch1 -p1 -b .noWerr
+%patch0 -p1 -b .noWerr
 
 
 %build
@@ -56,7 +54,7 @@ export CFLAGS="%{optflags}"
 
 # Kernel module sources install for dkms
 %{__mkdir_p} %{buildroot}%{_usrsrc}/%{dkms_name}-%{dkms_vers}/
-%{__cp} -a ath/ ath_rate/ hal/ include/ net80211/ scripts/ \
+%{__cp} -a ath/ ath_hal/ ath_rate/ hal/ include/ net80211/ scripts/ \
     BuildCaps.inc kernelversion.c Makefile Makefile.inc release.h \
     %{buildroot}%{_usrsrc}/%{dkms_name}-%{dkms_vers}/
 
@@ -68,7 +66,7 @@ MAKE[0]="make modules KERNELPATH=${kernel_source_dir}"
 BUILT_MODULE_NAME[0]=ath_pci
 BUILT_MODULE_LOCATION[0]=ath
 BUILT_MODULE_NAME[1]=ath_hal
-BUILT_MODULE_LOCATION[1]=ath
+BUILT_MODULE_LOCATION[1]=ath_hal
 BUILT_MODULE_NAME[2]=wlan
 BUILT_MODULE_LOCATION[2]=net80211
 BUILT_MODULE_NAME[3]=wlan_acl
@@ -85,8 +83,12 @@ BUILT_MODULE_NAME[8]=wlan_wep
 BUILT_MODULE_LOCATION[8]=net80211
 BUILT_MODULE_NAME[9]=wlan_xauth
 BUILT_MODULE_LOCATION[9]=net80211
-BUILT_MODULE_NAME[10]=ath_rate_sample
-BUILT_MODULE_LOCATION[10]=ath_rate/sample
+BUILT_MODULE_NAME[10]=ath_rate_amrr
+BUILT_MODULE_LOCATION[10]=ath_rate/amrr
+BUILT_MODULE_NAME[11]=ath_rate_onoe
+BUILT_MODULE_LOCATION[11]=ath_rate/onoe
+BUILT_MODULE_NAME[12]=ath_rate_sample
+BUILT_MODULE_LOCATION[12]=ath_rate/sample
 DEST_MODULE_LOCATION[0]=/kernel/drivers/net/wireless
 DEST_MODULE_LOCATION[1]=/kernel/drivers/net/wireless
 DEST_MODULE_LOCATION[2]=/kernel/drivers/net/wireless
@@ -98,6 +100,8 @@ DEST_MODULE_LOCATION[7]=/kernel/drivers/net/wireless
 DEST_MODULE_LOCATION[8]=/kernel/drivers/net/wireless
 DEST_MODULE_LOCATION[9]=/kernel/drivers/net/wireless
 DEST_MODULE_LOCATION[10]=/kernel/drivers/net/wireless
+DEST_MODULE_LOCATION[11]=/kernel/drivers/net/wireless
+DEST_MODULE_LOCATION[12]=/kernel/drivers/net/wireless
 AUTOINSTALL="YES"
 EOF
 
@@ -127,6 +131,15 @@ dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
 
 %changelog
+* Tue Mar 20 2007 Matthias Saou <http://freshrpms.net/> 0.9.3-2
+- Commit with the new "ath_hal" directory added.
+- Commit with the two new ath_rate_amrr and ath_rate_onoe modules added.
+
+* Mon Mar 19 2007 Matthias Saou <http://freshrpms.net/> 0.9.3-1
+- Update to 0.9.3, which works with 2.6.20+ kernels.
+- Remove no longer needed 2.6.18-config patch.
+- Update noWerr patch (kept just in case the same happens again).
+
 * Tue Jan  9 2007 Matthias Saou <http://freshrpms.net/> 0.9.2.1-2
 - Add patch to remove -Werr since warnings are printed with recent FC6 kernels.
 
