@@ -6,7 +6,7 @@
 
 Summary: Scan logfiles and ban ip addresses with too many password failures
 Name: fail2ban
-Version: 0.6.0
+Version: 0.6.2
 Release: 1
 License: GPL
 Group: Applications/System
@@ -15,6 +15,7 @@ URL: http://fail2ban.sourceforge.net/
 Source: http://dl.sf.net/fail2ban/fail2ban-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: python, dos2unix
 Requires: python
 
@@ -34,8 +35,10 @@ dos2unix config/redhat-initd
 %install
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
-%{__install} -D -m0600 config/fail2ban.conf.default %{buildroot}%{_sysconfdir}/fail2ban.conf
-%{__install} -D -m0755 config/redhat-initd %{buildroot}%{_sysconfdir}/init.d/fail2ban
+%{__install} -D -m0600 config/fail2ban.conf.iptables %{buildroot}%{_sysconfdir}/fail2ban.conf
+%{__install} -D -m0755 config/redhat-initd %{buildroot}%{_initrddir}/fail2ban
+%{__install} -D -m0644 man/fail2ban.conf.5 %{buildroot}%{_mandir}/man5/fail2ban.conf.5
+%{__install} -D -m0644 man/fail2ban.8 %{buildroot}%{_mandir}/man8/fail2ban.8
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -59,12 +62,16 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGELOG README TODO
-#%doc %{_mandir}/man?/*
+%doc %{_mandir}/man5/fail2ban.conf.5*
+%doc %{_mandir}/man8/fail2ban.8*
+%config(noreplace) %{_sysconfdir}/fail2ban.conf
+%config %{_initrddir}/fail2ban
 %{_bindir}/fail2ban
 %{_libdir}/fail2ban/
-%config(noreplace) %{_sysconfdir}/fail2ban.conf
-%{_sysconfdir}/init.d/fail2ban
 
 %changelog
+* Wed Mar 21 2007 Dag Wieers <dag@wieers.com> - 0.6.2-1
+- Updated to release 0.6.2.
+
 * Tue Mar 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.0-1
 - Initial package.

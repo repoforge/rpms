@@ -11,14 +11,15 @@
 
 Summary: The Pan Newsreader
 Name: pan
-Version: 0.125
-Release: 1
+Version: 0.14.2.91
+Release: 2.2
 Epoch: 1
 License: GPL
 Group: Applications/Internet
 URL: http://pan.rebelbase.com/
 
-Source: http://pan.rebelbase.com/download/releases/%{version}/source/pan-%{version}.tar.bz2
+Source: http://pan.rebelbase.com/download/releases/%{version}/SOURCE/pan-%{version}.tar.bz2
+Patch: gcc4-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel >= 2.0.4, gtk2-devel >= 2.0.5, libxml2-devel >= 2.4.22
@@ -36,6 +37,7 @@ to get a perfect score on the Good Net-Keeping Seal of Approval evalutions.
 
 %prep
 %setup
+%patch -p1
 
 %build
 %configure \
@@ -45,7 +47,7 @@ to get a perfect score on the Good Net-Keeping Seal of Approval evalutions.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %if %{!?_without_freedesktop:1}0
@@ -55,7 +57,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category Network                     \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{buildroot}%{_datadir}/applications/pan.desktop
+	%{buildroot}%{_datadir}/gnome/apps/Internet/pan.desktop
 %endif
 
 %clean
@@ -63,14 +65,14 @@ desktop-file-install --vendor %{desktop_vendor}    \
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
+%doc ANNOUNCE.html AUTHORS ChangeLog COPYING CREDITS INSTALL NEWS README TODO
 %{_bindir}/pan
 %{_datadir}/applications/%{desktop_vendor}-pan.desktop
 %{_datadir}/pixmaps/pan.png
 
 %changelog
-* Wed Mar 21 2007 Dag Wieers <dag@wieers.com> - 0.125-1
-- Updated to release 0.125.
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.14.2.91-2.2
+- Rebuild for Fedora Core 5.
 
 * Tue Mar 30 2004 Dag Wieers <dag@wieers.com> - 0.14.2.91-2
 - Fixed missing categories in desktop-file. (Neil Bird)

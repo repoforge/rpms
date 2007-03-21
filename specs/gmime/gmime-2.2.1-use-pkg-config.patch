@@ -1,0 +1,16 @@
+--- gmime-2.2.1/gmime-config.in.use_pkg_config	2006-05-23 15:58:36.000000000 +0200
++++ gmime-2.2.1/gmime-config.in	2006-05-23 16:05:07.000000000 +0200
+@@ -55,11 +55,11 @@
+ 	;;
+ 
+     --cflags)
+-       	echo @GMIME_INCLUDEDIR@ @GMIME_CFLAGS@ @glib_cflags@
++       	echo `pkg-config --cflags gmime-2.0`
+        	;;
+ 
+     --libs)
+-       	echo -L@libdir@ @GMIME_LIBS@ @LIBS@ @glib_libs@
++       	echo `pkg-config --libs gmime-2.0`
+        	;;
+ 
+     *)

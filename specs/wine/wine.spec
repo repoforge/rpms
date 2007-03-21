@@ -48,7 +48,7 @@
 Summary: Windows 16/32/64 bit emulator
 Name: wine
 Version: 0.9.33
-Release: 1
+Release: 2
 License: LGPL
 Group: Applications/Emulators
 URL: http://www.winehq.org/
@@ -105,7 +105,8 @@ Summary: Wine core package
 Group: Applications/Emulators
 Requires(post): /sbin/ldconfig, /sbin/chkconfig, /sbin/service,
 Requires(preun): /sbin/chkconfig, /sbin/service
-Requires: /usr/X11R6/bin/xmessage
+%{?_with_modxorg:Requires: /usr/bin/xmessage}
+%{!?_with_modxorg:Requires: /usr/X11R6/bin/xmessage}
 Obsoletes: wine-tools <= %{version}-%{release}
 Provides: wine-tools = %{version}-%{release}
 
@@ -810,6 +811,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Wed Mar 21 2007 Dag Wieers <dag@wieers.com> - 0.9.33-2
+- Fixed a dependency reference to /usr/X11R6/bin/xmessage on EL5.
+
 * Sun Mar 18 2007 Dag Wieers <dag@wieers.com> - 0.9.33-1
 - Updated to release 0.9.33.
 

@@ -31,7 +31,7 @@
 Summary: Media player for X which resembles Winamp
 Name: xmms
 Version: 1.2.10
-Release: 11.1.2
+Release: 12
 Epoch: 1
 License: GPL
 Group: Applications/Multimedia
@@ -42,17 +42,24 @@ Source4: arts_output-%{artsplugin_ver}.tar.gz
 Source5: xmms.req
 Source6: xmms.xpm
 Source7: xmmsskins-1.0.tar.gz
-Source8: rh_mp3.c
+#Source8: rh_mp3.c
+Patch0: xmms-1.2.10-joycrash.patch
 Patch1: xmms-1.2.6-audio.patch
 Patch2: xmms-1.2.6-lazy.patch
 Patch3: xmms-1.2.8-default-skin.patch
 Patch4: xmms-1.2.9-nomp3.patch
 Patch5: xmms-1.2.8-arts.patch
 Patch6: xmms-1.2.8-alsalib.patch
-#Patch8: http://www3.big.or.jp/~sian/linux/products/xmms/xmms-1.2.5pre1j_20010601.diff.bz2
-Patch10: arts_output-0.6.0-buffer.patch
-Patch11: xmms-underquoted.patch
-Patch12: xmms-alsa-backport.patch
+Patch7: xmms-cd-mountpoint.patch
+# Patch8 on top of patch4
+Patch8: xmms-1.2.10-multidevel.patch
+Patch9: xmms-underquoted.patch
+Patch10: xmms-alsa-backport.patch
+Patch11: xmms-1.2.10-gcc4.patch
+Patch12: xmms-1.2.10-crossfade-0.3.9.patch
+Patch13: xmms-1.2.10-pls-188603.patch
+Patch14: xmms-1.2.10-configfile-safe-write.patch
+Patch15: xmms-1.2.10-reposition.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel, gtk+-devel, esound-devel
@@ -113,26 +120,36 @@ skins were obtained from http://www.xmms.org/skins.html .
 
 %prep
 %setup -a 4
+# Fix joystick plugin crashes
+%patch0 -p1 -b .joycrash
 # Set default output plugin to ALSA
 %patch1 -p1 -b .audio
 # Use RTLD_LAZY, not RTLD_NOW
 %patch2 -p1 -b .lazy
-# Change the default skin
+# Change the default skin 
 %patch3 -p1 -b .default-skin
 # Don't build MP3 support, support bits for MP3 placeholder
-#patch4 -p1 -b .nomp3
-%if %{!?_without_arts:1}0
+%patch4 -p1 -b .nomp3
 # Link arts dynamically and detect its presence for choosing output plugin
 %patch5 -p1 -b .arts
-# bump up the default buffer size to avoid audio artifacts
-%patch10 -p0 -b .buffer
-%endif
 # Don't link *everything* against alsa-lib
-%patch6 -p1 -b .alsalib
-%patch11 -p1 -b .underquoted
-%patch12 -p0 -b .alsa-backport
-
-#%patch8 -p1 -b .ja
+%patch6 -p1 -b .alsalib 
+# Use something that's more likely to work as the default cdrom mountpoint
+%patch7 -p0 -b .cd-mountpoint
+# Avoid multilib devel conflicts
+%patch8 -p1 -b .multidevel
+# Fix m4 underquoted warning 
+%patch9 -p1 -b .underquoted
+# Backport for recent ALSA
+%patch10 -p0 -b .alsa-backport
+# Fix compilation with gcc4
+%patch11 -p1 -b .gcc4
+# Fix for crossfade >= 0.3.9 to work properly
+%patch12 -p1 -b .crossfade
+# Randomize playlists better
+%patch13 -p1 -b .pls
+%patch14 -p1
+%patch15 -p1
 
 %build
 %configure \
@@ -152,7 +169,7 @@ ln -snf ../libxmms/configfile.h xmms/configfile.h
 %if %{!?_without_arts:1}0
 export XMMS_CONFIG=`pwd`/xmms-config
 cd arts_output-%{artsplugin_ver}
-CFLAGS="$RPM_OPT_FLAGS -I.." %configure
+CFLAGS="$RPM_OPT_FLAGS -I.. -I/usr/include/gtk-1.2" %configure
 make
 cd ..
 %endif
@@ -248,8 +265,8 @@ update-desktop-database %{_datadir}/desktop-menu-patches &>/dev/null || :
 %{_datadir}/xmms/Skins/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.10-11.1.2
-- Rebuild for Fedora Core 5.
+* Wed Mar 21 2007 Dag Wieers <dag@wieers.com> - 1:1.2.10-12
+- Fixed gcc4 compilation with patch from Fedora.
 
 * Tue Jan 11 2005 Dag Wieers <dag@wieers.com> - 1:1.2.10-9.2
 - Disable arts for el3.

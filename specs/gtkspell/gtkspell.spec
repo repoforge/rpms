@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-# ExcludeDist: el4
+# ExclusiveDist: el2 rh7 rh9 el3 fc1 fc2 fc3
 
 Summary: Gtk2 spell checker interface library
 Name: gtkspell
@@ -41,14 +41,11 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 touch docs/html/index.sgml
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
