@@ -3,6 +3,8 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?el5:%define _without_arts 1}
+
 %{?fc2:%define _without_mikmod 1}
 
 %{?fc1:%define _without_alsa 1}
@@ -47,7 +49,7 @@ Patch0: xmms-1.2.10-joycrash.patch
 Patch1: xmms-1.2.6-audio.patch
 Patch2: xmms-1.2.6-lazy.patch
 Patch3: xmms-1.2.8-default-skin.patch
-Patch4: xmms-1.2.9-nomp3.patch
+#Patch4: xmms-1.2.9-nomp3.patch
 Patch5: xmms-1.2.8-arts.patch
 Patch6: xmms-1.2.8-alsalib.patch
 Patch7: xmms-cd-mountpoint.patch
@@ -129,7 +131,7 @@ skins were obtained from http://www.xmms.org/skins.html .
 # Change the default skin 
 %patch3 -p1 -b .default-skin
 # Don't build MP3 support, support bits for MP3 placeholder
-%patch4 -p1 -b .nomp3
+#patch4 -p1 -b .nomp3
 # Link arts dynamically and detect its presence for choosing output plugin
 %patch5 -p1 -b .arts
 # Don't link *everything* against alsa-lib
@@ -151,26 +153,30 @@ skins were obtained from http://www.xmms.org/skins.html .
 %patch14 -p1
 %patch15 -p1
 
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure
+
 %build
 %configure \
-  --enable-kanji \
-  --enable-texthack \
-%if %{!?_without_arts:1}0
-  --enable-arts-shared \
-%endif
-  --enable-ipv6
+	--disable-dependency-tracking \
+	--disable-rpath \
+	--disable-static \
+%{!?_without_arts:--enable-arts-shared} \
+	--enable-ipv6 \
+	--enable-kanji \
+	--enable-texthack \
+	--with-pic
 
 %{__perl} -pi.orig -e 's|-lpthread|-lpthread -L/%{_lib}|g' Makefile */Makefile */*/Makefile */*/*/Makefile
 
-make
+%{__make}
 
 ln -snf ../libxmms/configfile.h xmms/configfile.h
 
 %if %{!?_without_arts:1}0
-export XMMS_CONFIG=`pwd`/xmms-config
+export XMMS_CONFIG="$(pwd)/xmms-config"
 cd arts_output-%{artsplugin_ver}
-CFLAGS="$RPM_OPT_FLAGS -I.. -I/usr/include/gtk-1.2" %configure
-make
+CFLAGS="$RPM_OPT_FLAGS -I.." %configure --disable-rpath
+%{__make}
 cd ..
 %endif
 
@@ -180,14 +186,12 @@ cd ..
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}
-%{__make} install \
-	DESTDIR=%{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
+%find_lang %{name}
 
 %if %{!?_without_arts:1}0
-make install -C arts_output-%{artsplugin_ver}\
-	DESTDIR="%{buildroot}"
+%{__make} install -C arts_output-%{artsplugin_ver} DESTDIR="%{buildroot}"
 %endif
-%find_lang %{name}
 
 #install -m 755 librh_mp3.so %{buildroot}%{_libdir}/xmms/Input
 
@@ -205,18 +209,19 @@ mkdir -pv %{buildroot}%{_datadir}/applications
 %{__install} -Dp -m0644 $RPM_SOURCE_DIR/xmms.xpm %{buildroot}%{_datadir}/pixmaps/xmms.xpm
 
 # unpackaged files
-rm -f %{buildroot}/%{_datadir}/xmms/*/lib*.{a,la} \
-      %{buildroot}/%{_libdir}/libxmms.la \
-      %{buildroot}/%{_libdir}/xmms/*/*.la \
-      %{buildroot}/%{_mandir}/man1/gnomexmms*
-
+rm -f %{buildroot}%{_datadir}/xmms/*/lib*.{a,la} \
+      %{buildroot}%{_libdir}/libxmms.la \
+      %{buildroot}%{_libdir}/xmms/*/*.la \
+      %{buildroot}%{_mandir}/man1/gnomexmms*
 
 %post
 /sbin/ldconfig
+gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &>/dev/null || :
 update-desktop-database %{_datadir}/desktop-menu-patches &>/dev/null || :
 
 %postun
 /sbin/ldconfig
+gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &>/dev/null || :
 update-desktop-database %{_datadir}/desktop-menu-patches &>/dev/null || :
 
 %clean
@@ -252,7 +257,7 @@ update-desktop-database %{_datadir}/desktop-menu-patches &>/dev/null || :
 %{_includedir}/xmms
 %{_bindir}/xmms-config
 %{_datadir}/aclocal/xmms.m4
-%{_libdir}/lib*.a
+#%{_libdir}/lib*.a
 %{_libdir}/lib*.so
 
 %files mp3

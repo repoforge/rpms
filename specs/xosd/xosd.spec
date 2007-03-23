@@ -2,6 +2,14 @@
 # Authority: matthias
 # Upstream: Tim Wright <tim$ignavus,net>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc7:%define _with_modxorg 1}
+%{?el5:%define _with_modxorg 1}
+%{?fc6:%define _with_modxorg 1}
+%{?fc5:%define _with_modxorg 1}
+
 %define xmms_generaldir %(xmms-config --general-plugin-dir 2>/dev/null || echo %{_libdir}/xmms/General)
 
 Summary: Displays transparent text on your screen like the OSD of TVs
@@ -13,7 +21,10 @@ Group: System Environment/Libraries
 URL: http://libxosd.sourceforge.net/
 Source: http://dl.sf.net/libxosd/xosd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, gtk+-devel, gdk-pixbuf-devel, xmms-devel
+BuildRequires: gcc-c++, gtk+-devel, gdk-pixbuf-devel
+%{!?_without_xmms:BuildRequires: xmms-devel}
+%{?_with_modxorg:BuildRequires: libX11-devel, libXext-devel, libXinerama-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 
 %description
 XOSD displays text on your screen, sounds simple right? The difference is
@@ -48,7 +59,6 @@ XOSD library, similarly to TV OSD.
 %prep
 %setup
 
-
 %build
 %configure \
     --disable-dependency-tracking \
@@ -59,7 +69,7 @@ XOSD library, similarly to TV OSD.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR=%{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 
 
 %post -p /sbin/ldconfig
@@ -74,25 +84,27 @@ XOSD library, similarly to TV OSD.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README
 %{_bindir}/osd_cat
-%{_libdir}/libxosd.so.*
 %{_datadir}/xosd/
+%{_libdir}/libxosd.so.*
 %{_mandir}/man1/osd_cat.1*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_bindir}/xosd-config
+%{_datadir}/aclocal/*.m4
 %{_includedir}/xosd.h
 %{_libdir}/libxosd.a
-%{_libdir}/libxosd.so
-%{_datadir}/aclocal/*.m4
 %exclude %{_libdir}/libxosd.la
+%{_libdir}/libxosd.so
 %{_mandir}/man1/xosd-config.1*
 %{_mandir}/man3/*.3*
 
+%if %{!?_without_xmms:1}0
 %files -n xmms-xosd
 %defattr(-, root, root, 0755)
 %{xmms_generaldir}/*.so
 %exclude %{xmms_generaldir}/*.la
+%endif
 
 
 %changelog
