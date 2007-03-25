@@ -1,0 +1,75 @@
+--- imlib-1.9.13/gdk_imlib/Makefile.am.gmodulehack	Wed Mar 13 13:02:39 2002
++++ imlib-1.9.13/gdk_imlib/Makefile.am	Thu Mar 14 12:20:10 2002
+@@ -83,7 +83,7 @@
+ 
+ libgdk_imlib_la_LDFLAGS = -version-info 10:13:9
+ libgdk_imlib_la_LIBADD = $(GMODULE_LIBS) $(X_PRE_LIBS) \
+-			 $(X_LIBS) $(X_EXTRA_LIBS)
++			 $(X_LIBS) $(X_EXTRA_LIBS) local-hack-gmodule/libgmodule-local.la
+ 
+ 
+ include_HEADERS = gdk_imlib.h gdk_imlib_private.h gdk_imlib_types.h
+--- imlib-1.9.13/configure.in.gmodulehack	Thu Mar 14 12:16:52 2002
++++ imlib-1.9.13/configure.in	Thu Mar 14 12:16:52 2002
+@@ -32,55 +32,12 @@
+ 	fi
+ ])
+ 
+-dynworks=false
+-if test x$with_modules = xno; then
+-	AC_MSG_RESULT(no)
+-else 
+-	AC_MSG_RESULT(yes)
+-
+-if test "x$GDK_IMLIB" != x; then
+-  oLIBS="$LIBS"
+-  oCFLAGS="$CFLAGS"
+-  LIBS="$LIBS `glib-config --libs gmodule`"
+-  CFLAGS="$CFLAGS `glib-config --cflags gmodule`"
+-  AC_TRY_RUN([
+-#include <glib.h>
+-#include <gmodule.h>
+-main ()
+-{
+-    if (g_module_supported ())
+-        exit (0);
+-    else
+-        exit (1);
+-}
+-], dynworks=true)
+-  LIBS="$oLIBS"
+-  CFLAGS="$oCFLAGS"
+-fi
+-
+-dnl Now we check to see if our libtool supports shared lib deps
+-dnl (in a rather ugly way even)
+-if $dynworks; then
+-   imlib_libtool_config="$srcdir/libtool --config"
+-   imlib_deplibs_check=`$imlib_libtool_config | \
+-      grep '^[[a-z_]]*check[[a-z_]]*_method=[['\''"]]' | \
+-      sed 's/.*[['\''"]]\(.*\)[['\''"]]$/\1/'`
+-   if test "x$imlib_deplibs_check" = "xnone" || \
+-      test "x$imlib_deplibs_check" = "xunknown" || \
+-      test "x$imlib_deplibs_check" = "x"; then
+-      dynworks=false
+-   fi
+-fi
+-
+-if $dynworks; then
+-   AC_DEFINE(USE_GMODULE)
+-   GMODULE_LIBS="`glib-config --libs gmodule`"
+-   GMODULE_FLAGS="`glib-config --cflags gmodule`"
+-   AC_SUBST(GMODULE_LIBS)
+-   AC_SUBST(GMODULE_FLAGS)
+-fi
+-
+-fi
++dynworks=true
++GMODULE_LIBS=
++GMODULE_CFLAGS=
++AC_DEFINE(USE_GMODULE)
++AC_SUBST(GMODULE_LIBS)
++AC_SUBST(GMODULE_CFLAGS)
+ 
+ AC_SUBST(TIFFLIBS)
+ AC_SUBST(GIFLIBS)

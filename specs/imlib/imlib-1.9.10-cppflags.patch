@@ -1,0 +1,11 @@
+--- imlib-1.9.10/configure.in.cppflags	Tue Jan  8 15:05:58 2002
++++ imlib-1.9.10/configure.in	Tue Jan  8 15:06:11 2002
+@@ -160,8 +160,6 @@
+   GX_LIBS="$GTK_LIBS"
+ fi
+ 
+-CPPFLAGS="$CPPFLAGS -I$includedir -I$prefix/include"
+-
+ SUPPORT_LIBS=""
+ 
+ dnl Test for shared memory headers and semantics, unless we are

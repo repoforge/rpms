@@ -12,7 +12,7 @@
 Summary: Decodes VoIP audio from tcpdump captures
 Name: vomit
 Version: 0.2c
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Internet
 URL: http://vomit.xtdnet.nl/
@@ -52,6 +52,9 @@ sniffer also it could be but the naming is probably related to H.323.
 %{_bindir}/vomit
 
 %changelog
+* Sun Mar 25 2007 Dag Wieers <dag@wieers.com> - 0.2c-4
+- Rebuild against libevent-1.1a on EL5.
+
 * Wed Mar 07 2007 Dag Wieers <dag@wieers.com> - 0.2c-3
 - Rebuild against libevent-1.3b.
 

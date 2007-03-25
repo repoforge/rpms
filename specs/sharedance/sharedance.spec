@@ -4,7 +4,7 @@
 Summary: Ephemeral key/data pair storing daemon
 Name: sharedance
 Version: 0.6
-Release: 3
+Release: 4
 License: GPL
 Group: System Environment/Daemons
 URL: http://sharedance.pureftpd.org/
@@ -86,6 +86,9 @@ fi
 
 
 %changelog
+* Sun Mar 25 2007 Dag Wieers <dag@wieers.com> - 0.6-4
+- Rebuild against libevent-1.1a on EL5.
+
 * Wed Mar 07 2007 Dag Wieers <dag@wieers.com> - 0.6-3
 - Rebuild against libevent-1.3b.
 

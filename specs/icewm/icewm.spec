@@ -28,8 +28,8 @@ Source: http://dl.sf.net/sourceforge/icewm/icewm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, automake, libtool
-BuildRequires: imlib2-devel, libpng-devel, kdelibs
 BuildRequires: gcc-c++, gettext
+BuildRequires: imlib-devel, imlib2-devel, libpng-devel, kdelibs
 %{!?_without_gnome2:BuildRequires: gnome-desktop-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel, XFree86-font-utils}
 %{?_with_modxorg:BuildRequires: libX11-devel, xorg-x11-font-utils}

@@ -9,7 +9,7 @@
 Summary: Send network traffic through virtual tunnels to improve your privacy
 Name: tor
 Version: 0.1.1.26
-Release: 3
+Release: 4
 License: BSD
 Group: Applications/Internet
 URL: http://tor.eff.org/
@@ -98,6 +98,9 @@ fi
 %dir %{_localstatedir}/log/tor
 
 %changelog
+* Sun Mar 25 2007 Dag Wieers <dag@wieers.com> - 0.1.1.26-4
+- Rebuild against libevent-1.1a on EL5.
+
 * Wed Mar 07 2007 Dag Wieers <dag@wieers.com> - 0.1.1.26-3
 - Rebuild against libevent-1.3b.
 

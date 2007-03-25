@@ -1,0 +1,45 @@
+--- imlib-1.9.10/configure.in.ac25	Tue Mar 27 23:10:41 2001
++++ imlib-1.9.10/configure.in	Thu Feb  7 17:06:56 2002
+@@ -249,21 +249,21 @@
+ 
+ dnl Test for libtiff
+ AC_CHECK_LIB(tiff, TIFFReadScanline,
+-  AC_CHECK_HEADER(tiffio.h,
++ [ AC_CHECK_HEADER(tiffio.h,
+     TIFFLIBS="-ltiff"
+     SUPPORT_LIBS="$SUPPORT_LIBS -ltiff"; AC_DEFINE(HAVE_LIBTIFF),
+-    AC_MSG_WARN(*** Native TIFF support will not be built (TIFF header files not found) ***)),
+-  AC_CHECK_LIB(tiff, TIFFWriteScanline,
+-    AC_CHECK_HEADER(tiffio.h,
++    AC_MSG_WARN(*** Native TIFF support will not be built (TIFF header files not found) ***)) ],
++ [ AC_CHECK_LIB(tiff, TIFFWriteScanline,
++  [  AC_CHECK_HEADER(tiffio.h,
+       TIFFLIBS="-ltiff -ljpeg -lz"
+       SUPPORT_LIBS="$SUPPORT_LIBS -ltiff -ljpeg -lz"; AC_DEFINE(HAVE_LIBTIFF),
+-      AC_MSG_WARN(*** Native TIFF support will not be built (TIFF header files not found) ***)),
+-    AC_CHECK_LIB(tiff34, TIFFFlushData,
+-      AC_CHECK_HEADER(tiffio.h,
++      AC_MSG_WARN(*** Native TIFF support will not be built (TIFF header files not found) ***)) ],
++  [  AC_CHECK_LIB(tiff34, TIFFFlushData,
++ [   AC_CHECK_HEADER(tiffio.h,
+         TIFFLIBS="-ltiff34 -ljpeg -lz"
+         SUPPORT_LIBS="$SUPPORT_LIBS -ltiff34 -ljpeg -lz"; AC_DEFINE(HAVE_LIBTIFF),
+-        AC_MSG_WARN(*** Native TIFF support will not be built (TIFF header files not found) ***)),
+-    AC_MSG_WARN(*** Native TIFF support will not be built (TIFF library not found) ***), -ljpeg -lz $GX_LIBS), -ljpeg -lz $GX_LIBS), $GX_LIBS)
++        AC_MSG_WARN(*** Native TIFF support will not be built (TIFF header files not found) ***)) ],
++    AC_MSG_WARN(*** Native TIFF support will not be built (TIFF library not found) ***), -ljpeg -lz $GX_LIBS) ], -ljpeg -lz $GX_LIBS) ], $GX_LIBS)
+ 
+ 
+ AC_CHECK_HEADER(gif_lib.h,
+@@ -281,9 +281,9 @@
+   AC_MSG_WARN(*** Native GIF support will not be built (GIF header not found) ***))
+ 
+ AC_CHECK_LIB(png, png_read_info,
+-  AC_CHECK_HEADER(png.h,
++  [ AC_CHECK_HEADER(png.h,
+     png_ok=yes,
+-    png_ok=no),
++    png_ok=no) ],
+   AC_MSG_WARN(*** Native PNG support will not be built (PNG library not found) ***), -lz -lm $GX_LIBS)
+ if test "$png_ok" = yes; then
+   AC_MSG_CHECKING([for png_structp in png.h])

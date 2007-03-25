@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL5 ships with pcsc-lite 1.3.1-7
+# ExclusiveDist: el2 rh7 rh9 el3 el4
+
 Summary: PC/SC Lite smart card framework and applications
 Name: pcsc-lite
 Version: 1.3.3

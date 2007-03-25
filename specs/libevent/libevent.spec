@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Niels Provos <provos$citi,umich,edu>
 
+### EL5 ships with libevent 1.1a-3.2.1
+# ExclusiveDist: el2 rh7 rh9 el3 el4
+
 Summary: Abstract asynchronous event notification library
 Name: libevent
 Version: 1.3b

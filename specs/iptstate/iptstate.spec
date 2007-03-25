@@ -1,12 +1,14 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: el4
+### EL4 ships with iptstate 1.3-4
+### EL5 ships with iptstate 1.4-1.1.2.2
+# ExclusiveDist: el2 rh7 rh9 el3
 
 Summary: Display IP Tables state table information in a "top"-like interface
 Name: iptstate
-Version: 1.4
-Release: 1.2
+Version: 2.2.0
+Release: 1
 License: zlib License
 Group: Applications/System
 URL: http://www.phildev.net/iptstate/

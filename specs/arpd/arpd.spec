@@ -11,7 +11,7 @@
 Summary: ARP reply daemon
 Name: arpd
 Version: 0.2
-Release: 4
+Release: 5
 License: OpenSource
 Group: Applications/Internet
 URL: http://www.honeyd.org/tools.php
@@ -53,6 +53,9 @@ but only after determining if another host already claims it.
 %{_sbindir}/arpd
 
 %changelog
+* Sun Mar 25 2007 Dag Wieers <dag@wieers.com> - 0.2-5
+- Rebuild against libevent-1.1a on EL5.
+
 * Wed Mar 07 2007 Dag Wieers <dag@wieers.com> - 0.2-4
 - Rebuild against libevent-1.3b.
 

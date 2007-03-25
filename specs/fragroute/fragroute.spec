@@ -12,7 +12,7 @@
 Summary: Intercepts, modifies, and rewrites egress traffic
 Name: fragroute
 Version: 1.2
-Release: 3
+Release: 4
 License: BSD
 Group: Applications/Internet
 URL: http://www.monkey.org/~dugsong/fragroute/
@@ -53,6 +53,9 @@ Eluding Network Intrusion Detection" paper of January 1998.
 %{_sbindir}/fragtest
 
 %changelog
+* Sun Mar 25 2007 Dag Wieers <dag@wieers.com> - 1.2-4
+- Rebuild against libevent-1.1a on EL5.
+
 * Wed Mar 07 2007 Dag Wieers <dag@wieers.com> - 1.2-3
 - Rebuild against libevent-1.3b.
 

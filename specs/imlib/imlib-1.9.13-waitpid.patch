@@ -1,0 +1,28 @@
+--- imlib-1.9.13/gdk_imlib/load.c.waitpid	Wed Apr 10 17:43:34 2002
++++ imlib-1.9.13/gdk_imlib/load.c	Wed Apr 10 17:43:38 2002
+@@ -302,11 +302,11 @@
+ 	  break;
+ 	}
+     }
+-#if 0
+   if (p && !needs_conv) {
+ 	if (p != stdin)
+       fclose(p);
+   }
++#if 0
+   else if (p)
+     _gdk_imlib_close_helper(p);
+ 
+--- imlib-1.9.13/Imlib/load.c.waitpid	Wed Apr 10 17:41:46 2002
++++ imlib-1.9.13/Imlib/load.c	Wed Apr 10 17:42:12 2002
+@@ -1823,9 +1823,9 @@
+       if (p != stdin) 
+         fclose(p);
+     }
++#if 0
+   else if (p)
+     close_helper(p);
+-#if 0
+   /* This is *all* fallback code.  Prone to badness.  Turn it OFF */
+   if ((!data) && (id->fallback))
+     {

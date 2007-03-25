@@ -91,6 +91,8 @@ groups, and many more features.
 %defattr(-, root, root, 0755)
 %doc AGREEMENT CREDITS FAQ GNUGPL HELP INSTALL README TODO
 %{_bindir}/amsn
+%{_bindir}/amsn-remote
+%{_bindir}/amsn-remote-CLI
 %{_datadir}/amsn/
 %{_datadir}/pixmaps/amsn.png
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/amsn.desktop}

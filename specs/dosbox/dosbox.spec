@@ -22,7 +22,7 @@
 
 Summary: x86/DOS emulator with sound/graphics
 Name: dosbox
-Version: 0.65
+Version: 0.70
 Release: 1
 License: GPL
 Group: Applications/Emulators
@@ -34,7 +34,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, SDL-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{?_with_modxorg:BuildRequires: xorg-x11-devel}
+%{?_with_modxorg:BuildRequires: libX11-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 
@@ -97,5 +97,8 @@ EOF
 %{_datadir}/pixmaps/dosbox.png
 
 %changelog
+* Mon Mar 26 2007 Dag Wieers <dag@wieers.com> - 0.70-1
+- Updated to release 0.70.
+
 * Wed Feb 14 2007 Dag Wieers <dag@wieers.com> - 0.65-1
-- Initialm package. (using DAR)
+- Initial package. (using DAR)
