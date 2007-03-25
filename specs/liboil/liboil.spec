@@ -1,9 +1,12 @@
 # $Id$
 # Authority: matthias
 
+### EL ships with liboil 0.3.8-2.1
+# ExclusiveDist: el2 rh7 rh9 el3 el4
+
 Summary: Library of Optimized Inner Loops, CPU optimized functions
 Name: liboil
-Version: 0.3.9
+Version: 0.3.11
 Release: 0
 License: LGPL
 Group: System Environment/Libraries
@@ -46,7 +49,7 @@ extended instructions provided by modern CPUs (Altivec, MMX, SSE, etc.).
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 
 %clean
@@ -75,6 +78,9 @@ extended instructions provided by modern CPUs (Altivec, MMX, SSE, etc.).
 
 
 %changelog
+* Sun Mar 25 2007 Dag Wieers <dag@wieers.com> - 0.3.11-1
+- Updated to release 0.3.11.
+
 * Wed Sep 20 2006 Matthias Saou <http://freshrpms.net/> 0.3.9-1
 - Update to 0.3.9.
 - Remove no longer gcc opt patch.

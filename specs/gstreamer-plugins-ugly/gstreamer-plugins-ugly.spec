@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-# ExclusiveDist: fc5 fc6
+# ExclusiveDist: fc5 fc6 el5
 
 %define desktop_vendor rpmforge
 
@@ -12,7 +12,7 @@
 %define gstpb_minver 0.10.2
 
 Summary: GStreamer streaming media framework "ugly" plug-ins
-Name: %{gstreamer}-plugins-ugly
+Name: gstreamer-plugins-ugly
 Version: 0.10.5
 Release: 1
 License: LGPL

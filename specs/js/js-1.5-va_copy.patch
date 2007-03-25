@@ -1,0 +1,30 @@
+diff -Naupr js.orig/src/config/Linux_All.mk js/src/config/Linux_All.mk
+--- js.orig/src/config/Linux_All.mk	2005-05-10 21:53:44.000000000 +0200
++++ js/src/config/Linux_All.mk	2006-01-26 11:38:12.000000000 +0100
+@@ -91,8 +91,12 @@ endif
+ JS_EDITLINE = 1
+ 
+ ifeq ($(CPU_ARCH),x86_64)
+-# Use VA_COPY() standard macro on x86-64
+-# FIXME: better use it everywhere
++# Use va_copy() standard macro on x86-64
++OS_CFLAGS += -DHAVE_VA_COPY -DVA_COPY=va_copy
++endif
++
++ifeq ($(CPU_ARCH),ppc)
++# Use va_copy() standard macro on ppc too
+ OS_CFLAGS += -DHAVE_VA_COPY -DVA_COPY=va_copy
+ endif
+ 
+diff -Naupr js.orig/src/jsprf.c js/src/jsprf.c
+--- js.orig/src/jsprf.c	2004-09-24 05:31:15.000000000 +0200
++++ js/src/jsprf.c	2006-01-26 11:34:52.000000000 +0100
+@@ -55,7 +55,7 @@
+ ** and requires array notation.
+ */
+ #ifdef HAVE_VA_COPY
+-#define VARARGS_ASSIGN(foo, bar)        VA_COPY(foo,bar)
++#define VARARGS_ASSIGN(foo, bar)        va_copy(foo,bar)
+ #elif defined(HAVE_VA_LIST_AS_ARRAY)
+ #define VARARGS_ASSIGN(foo, bar)        foo[0] = bar[0]
+ #else

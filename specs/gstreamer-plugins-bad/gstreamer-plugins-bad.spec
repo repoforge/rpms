@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# ExclusiveDist: fc5 fc6 fc7 el5
+# ExclusiveDist: fc5 fc6 el5 fc7
 
 %define desktop_vendor rpmforge
 
@@ -11,7 +11,7 @@
 %define gstpb_minver 0.10.2
 
 Summary: GStreamer streaming media framework "bad" plug-ins
-Name: %{gstreamer}-plugins-bad
+Name: gstreamer-plugins-bad
 Version: 0.10.3
 Release: 3
 License: LGPL
@@ -75,11 +75,13 @@ This package contains development files and documentation.
 %setup -q -n gst-plugins-bad-%{version}
 %patch0 -p1 -b .faad2
 
+### Use correct soundtouch pkgconfig package name
+%{__perl} -pi.orig -e 's|libSoundTouch|soundtouch-1.0|g' configure
 
 %build
 %configure \
-    --with-package-name='gst-plugins-ugly %{desktop_vendor} rpm' \
-    --with-package-origin='http://www.rpmforge.net/' \
+    --with-package-name="gst-plugins-bad %{desktop_vendor} rpm" \
+    --with-package-origin="http://www.rpmforge.net/" \
     --enable-debug \
     --disable-gtk-doc
 %{__make} %{?_smp_mflags}
@@ -87,7 +89,7 @@ This package contains development files and documentation.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang gst-plugins-bad-%{majorminor}
 
 # Clean out files that should not be part of the rpm.

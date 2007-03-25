@@ -2,21 +2,30 @@
 # Authority: dag
 # Upstream: <cairo$cairographics,org>
 
+### EL5 ships with version 1.2.4-1.fc6
+# ExclusiveDist: el2 rh7 rh9 el3 el4
+
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-# %{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
+%{!?dist:%define _with_modxorg 1}
+%{?fc7:  %define _with_modxorg 1}
+%{?el5:  %define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
+
+%{?rh9:%define _without_directfb 1}
+%{?rh7:%define _without_directfb 1}
+%{?el2:%define _without_directfb 1}
+
+%{?rh7:%define _without_fontconfig 1}
+%{?el2:%define _without_fontconfig 1}
+
+%{?rh7:%define _without_pkgconfig 1}
 
 Summary: Anti-aliased vector-based rendering for X
 Name: cairo
-Version: 0.2.0
-Release: 1.2
+Version: 1.2.4
+Release: 1
 License: MIT
 Group: System Environment/Libraries
 URL: http://cairo.freedesktop.org/
@@ -24,11 +33,13 @@ URL: http://cairo.freedesktop.org/
 Source: http://cairo.freedesktop.org/snapshots/cairo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pkgconfig, freetype-devel, fontconfig-devel, libpixman-devel
+BuildRequires: pkgconfig, freetype-devel, libpixman-devel
 BuildRequires: libpng-devel, gcc-c++
+%{!?_without_directfb:BuildRequires: directfb-devel >= 0.9.24}
+%{!?_without_fontconfig:BuildRequires: fontconfig-devel}
 #BuildRequires: glitz-devel, libxcb-devel
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{?_with_modxorg:BuildRequires: libX11-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 
 %description
 Cairo provides anti-aliased vector-based rendering for X. Paths consist
@@ -52,18 +63,20 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure
+%{?_without_pkgconfig:export png_CFLAGS="$(libpng-config --cflags)"}
+%{?_without_pkgconfig:export png_LIBS="$(libpng-config --libs)"}
+%{?_without_pkgconfig:export png_REQUIRES=" "}
+
+%configure \
+%{!?_without_directfb:--enable-directfb}
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -75,16 +88,17 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/cairo.h
-%{_includedir}/cairo-features.h
+%doc %{_datadir}/gtk-doc/html/cairo/
+%{_includedir}/cairo/
 %{_libdir}/libcairo.a
 %exclude %{_libdir}/libcairo.la
 %{_libdir}/libcairo.so
 %{_libdir}/pkgconfig/cairo.pc
+%{_libdir}/pkgconfig/cairo-*.pc
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.0-1.2
-- Rebuild for Fedora Core 5.
+* Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 0.2.0-1
+- Updated to release 0.2.0.
 
 * Wed Feb 25 2004 Dag Wieers <dag@wieers.com> - 0.1.23-1
 - Updated to release 0.1.23.

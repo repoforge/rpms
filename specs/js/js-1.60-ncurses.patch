@@ -1,0 +1,12 @@
+diff -Naupr js.orig/src/Makefile.ref js/src/Makefile.ref
+--- js.orig/src/Makefile.ref	2006-08-21 20:58:45.000000000 +0200
++++ js/src/Makefile.ref	2007-02-02 12:59:06.000000000 +0100
+@@ -132,7 +132,7 @@ endif 
+ ifdef JS_READLINE
+ # For those platforms with the readline library installed.
+ DEFINES += -DEDITLINE
+-PROG_LIBS += -lreadline -ltermcap
++PROG_LIBS += -lreadline -lncurses
+ else
+ ifdef JS_EDITLINE
+ # Use the editline library, built locally.

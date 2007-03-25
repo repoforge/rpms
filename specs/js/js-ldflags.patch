@@ -1,0 +1,11 @@
+--- src/Makefile.ref.orig	2005-04-19 22:14:17.000000000 +0300
++++ src/Makefile.ref	2005-04-19 22:14:49.000000000 +0300
+@@ -108,7 +108,7 @@
+ PERLLDFLAGS := $(subst -rdynamic,-export-dynamic,$(PERLLDFLAGS))
+ 
+ CFLAGS += $(PERLCFLAGS)
+-#LDFLAGS += $(PERLLDFLAGS) #PH removed this assgnment
++LDFLAGS += $(PERLLDFLAGS)
+ INCLUDES += -I. #needed for perlconnect/jsperl.c
+ endif
+ 

@@ -23,7 +23,7 @@
 %define extplug_names a52dec dvdnavsrc dvdreadsrc faad gsmenc gsmdec lame libfame mad mpeg2dec swfdec musepack
 
 Summary: GStreamer streaming media framework extra plugins
-Name: %{gstreamer}-plugins-extra
+Name: gstreamer-plugins-extra
 Version: 0.8.8
 Release: 3
 License: LGPL

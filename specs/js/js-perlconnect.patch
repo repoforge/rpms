@@ -1,0 +1,14 @@
+--- src/perlconnect/jsperl.c.orig
++++ src/perlconnect/jsperl.c
+@@ -218,7 +218,9 @@
+ {
+     PerlInterpreter *perl = JS_GetPrivate(cx, obj);
+ 
+-    perl_destruct(perl);
+-    perl_free(perl);
++    if (perl) {
++	perl_destruct(perl);
++	perl_free(perl);
++    }
+     /*    return JS_TRUE; */
+ }

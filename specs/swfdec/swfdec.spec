@@ -21,18 +21,25 @@
 %{?fc3:   %define gimp_plugin 1}
 %{?fc2:   %define gimp_plugin 1}
 %{?yd4:   %define gimp_plugin 1}
+
 %{!?dist: %define _without_mozilla 1}
-%{?el5:   %define _without_mozilla 1}
 %{?fc6:   %define _without_mozilla 1}
 %{?fc5:   %define _without_mozilla 1}
 %{?fc1:   %define _without_mozilla 1}
-%{?el3:   %define _without_mozilla 1}
+
+### Ca't figure out why only EL5 produces swfdec-mozilla-player
+%{?el5:%define _with_mozilla_player 1}
+
+%define mozilla seamonkey
+%{!?dist:%define mozilla firefox}
+%{?el5:%define mozilla firefox}
+%{?fc6:%define mozilla firefox}
+%{?rh9:%define mozilla mozilla}
+%{?rh7:%define mozilla mozilla}
+
 %{?el3:   %define _without_gstreamer 1}
-%{?rh9:   %define _without_mozilla 1}
 %{?rh9:   %define _without_gstreamer 1}
-%{?rh7:   %define _without_mozilla 1}
 %{?rh7:   %define _without_gstreamer 1}
-%{?el2:   %define _without_mozilla 1}
 %{?el2:   %define _without_gstreamer 1}
 
 Summary: Flash animations rendering library
@@ -41,14 +48,16 @@ Version: 0.3.6
 Release: 2
 License: LGPL
 Group: System Environment/Libraries
-URL: http://swfdec.sourceforge.net/
+URL: http://swfdec.freedesktop.org/wiki/
+#Source: http://swfdec.freedesktop.org/download/swfdec/0.4/swfdec-%{version}.tar.gz
 Source: http://www.schleef.org/swfdec/download/swfdec-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libart_lgpl-devel, gtk2-devel >= 2.1.2
 BuildRequires: libmad-devel, SDL-devel, gdk-pixbuf-devel, gcc-c++
 BuildRequires: liboil-devel, GConf2-devel, js-devel
+BuildRequires: directfb
 %{?gimp_plugin:BuildRequires: gimp-devel >= 2.0}
-%{!?_without_mozilla:BuildRequires: mozilla-devel}
+%{!?_without_mozilla:BuildRequires: %{mozilla}-devel}
 %{!?_without_gstreamer:BuildRequires: gstreamer-plugins-devel}
 %{?_with_modxorg:BuildRequires: libXt-devel}
 
@@ -99,7 +108,7 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 %post
 /sbin/ldconfig 2>/dev/null
-/usr/bin/update-gdk-pixbuf-loaders . || :
+/usr/bin/update-gdk-pixbuf-loaders $(uname -i)-redhat-linux-gnu || :
 
 ### Backward compatibility for gtk < 2.4.13-9
 [ -x %{_bindir}/gdk-pixbuf-query-loaders ] && \
@@ -108,7 +117,7 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 %postun
 /sbin/ldconfig 2>/dev/null
-/usr/bin/update-gdk-pixbuf-loaders . || :
+/usr/bin/update-gdk-pixbuf-loaders $(uname -i)-redhat-linux-gnu || :
 
 ### Backward compatibility for gtk < 2.4.13-9
 [ -x %{_bindir}/gdk-pixbuf-query-loaders ] && \
@@ -136,7 +145,7 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 %if %{!?_without_mozilla:1}0
 %files -n mozilla-swfdec
 %defattr(-, root, root, 0755)
-%{_bindir}/swfdec-mozilla-player
+%{?_with_mozilla_player:%{_bindir}/swfdec-mozilla-player}
 %exclude %{_libdir}/mozilla/plugins/libswfdecmozilla.a
 %exclude %{_libdir}/mozilla/plugins/libswfdecmozilla.la
 %{_libdir}/mozilla/plugins/libswfdecmozilla.so

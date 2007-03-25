@@ -1,17 +1,30 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+%{?el5:%define _with_sysfs 1}
+
+%define real_name DirectFB
+%define real_version 0.9.25
+
 Summary: Hardware graphics acceleration library
 Name: directfb
-Version: 0.9.24
+Version: 0.9.25.1
 Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.directfb.org/
+
 Source: http://www.directfb.org/download/DirectFB/DirectFB-%{version}.tar.gz
+Patch0: DirectFB-0.9.25.1-types.patch
+Patch1: DirectFB-0.9.25.1-linux-compiler.patch
+Patch2: DirectFB-0.9.25.1-ppc.patch
+Patch3: DirectFB-0.9.25.1-sysfs.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: libpng-devel, libjpeg-devel, zlib-devel, freetype-devel >= 2.0
-BuildRequires: SDL-devel, libtool, gcc-c++
+BuildRequires: SDL-devel, libtool, gcc-c++, libvncserver-devel
+%{?_with_sysfs:BuildRequires: libsysfs-devel}
 
 %description
 DirectFB is a thin library that provides hardware graphics acceleration,
@@ -22,116 +35,110 @@ software fallbacks for every graphics operation that is not supported by
 the underlying hardware. DirectFB adds graphical power to embedded systems
 and sets a new standard for graphics under Linux.
 
-
 %package devel
-Summary: Development files for DirectFB
+Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
-Requires: %{name} = %{version}, SDL-devel
+Requires: %{name} = %{version}-%{release}
+Requires: SDL-devel
 
 %description devel
-DirectFB is a thin library that provides hardware graphics acceleration,
-input device handling and abstraction, integrated windowing system with
-support for translucent windows and multiple display layers on top of the
-Linux Framebuffer Device. It is a complete hardware abstraction layer with
-software fallbacks for every graphics operation that is not supported by
-the underlying hardware. DirectFB adds graphical power to embedded systems
-and sets a new standard for graphics under Linux.
-
-Header files needed for building applications based on DirectFB.
-
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
-%setup -n DirectFB-%{version}
-
+%setup -n %{real_name}-%{version}
+%patch0 -p1 -b .types
+%patch1 -p1 -b .linux-compiler
+%patch2 -p1 -b .ppc
+%patch3 -p1 -b .sysfs
 
 %build
 %configure \
-    --enable-fbdev \
-    --enable-static \
-    --enable-linux-input \
-    --disable-maintainer-mode \
-    --disable-fast-install
+	--disable-dependency-tracking \
+	--disable-fast-install \
+	--disable-maintainer-mode \
+%ifarch x86_64
+	--disable-mmx \
+%endif
+	--enable-fbdev \
+	--enable-linux-input \
+	--enable-static \
+	--enable-video4linux2 \
+	--enable-zlib
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
-# Ugly libtool hack!
-#rm -f libtool && cp -a `which libtool` . || :
-%{__make} install DESTDIR=%{buildroot}
-# Remove all *.la files
-find %{buildroot} -name "*.la" | xargs rm -f
-# Clean up the docs
-%{__rm} -f docs/html/Makefile*
+%{__make} install DESTDIR="%{buildroot}"
 
+### Clean up the docs
+%{__rm} -f docs/html/Makefile*
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
-%post
-/sbin/ldconfig
-
-%postun
-/sbin/ldconfig
-
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING docs/README.screenshots fb.modes NEWS README
-%{_libdir}/*.so.*
-%dir %{_libdir}/%{name}-%{version}
-%dir %{_libdir}/%{name}-%{version}/gfxdrivers
-%dir %{_libdir}/%{name}-%{version}/inputdrivers
-%dir %{_libdir}/%{name}-%{version}/interfaces
-%dir %{_libdir}/%{name}-%{version}/interfaces/*
-%dir %{_libdir}/%{name}-%{version}/systems
-%{_libdir}/%{name}-%{version}/gfxdrivers/*.so
-%{_libdir}/%{name}-%{version}/gfxdrivers/*.o
-%{_libdir}/%{name}-%{version}/inputdrivers/libdirectfb_joystick.so
-%{_libdir}/%{name}-%{version}/inputdrivers/libdirectfb_keyboard.so
-%{_libdir}/%{name}-%{version}/inputdrivers/libdirectfb_mutouch.so
-%{_libdir}/%{name}-%{version}/inputdrivers/libdirectfb_linux_input.so
-%{_libdir}/%{name}-%{version}/inputdrivers/libdirectfb_lirc.so
-%{_libdir}/%{name}-%{version}/inputdrivers/libdirectfb_ps2mouse.so
-%{_libdir}/%{name}-%{version}/inputdrivers/libdirectfb_serialmouse.so
-%{_libdir}/%{name}-%{version}/inputdrivers/libdirectfb_sonypi.so
-%{_libdir}/%{name}-%{version}/inputdrivers/libdirectfb_wm97xx_ts.so
-%{_libdir}/%{name}-%{version}/inputdrivers/libdirectfb_sdlinput.so
-%{_libdir}/%{name}-%{version}/inputdrivers/*.o
-%{_libdir}/%{name}-%{version}/interfaces/*/*.so
-%{_libdir}/%{name}-%{version}/interfaces/*/*.o
-%{_libdir}/%{name}-%{version}/systems/libdirectfb_fbdev.so
-%{_libdir}/%{name}-%{version}/systems/libdirectfb_sdl.so
-%{_libdir}/%{name}-%{version}/systems/*.o
-%{_libdir}/%{name}-%{version}/wm/*.o
-%{_libdir}/%{name}-%{version}/wm/*.so
-%{_datadir}/%{name}-%{version}
-%{_mandir}/man5/*
+%doc %{_mandir}/man1/dfbg.1*
+%doc %{_mandir}/man5/directfbrc.5*
+%{_bindir}/dfbg
+%{_bindir}/dfbdump
+%{_bindir}/dfbinfo
+%{_bindir}/dfbinput
+%{_bindir}/dfblayer
+%{_bindir}/dfbpenmount
+%{_bindir}/dfbscreen
+%{_bindir}/dfbsummon
+%{_datadir}/directfb-%{real_version}/
+%dir %{_libdir}/directfb-%{real_version}/
+%dir %{_libdir}/directfb-%{real_version}/*/
+%dir %{_libdir}/directfb-%{real_version}/*/*/
+%{_libdir}/directfb-%{real_version}/*/*.o
+%{_libdir}/directfb-%{real_version}/*/*/*.o
+%{_libdir}/directfb-%{real_version}/*/*.so
+%{_libdir}/directfb-%{real_version}/*/*/*.so
+%{_libdir}/libdirect-*.so.*
+%{_libdir}/libdirectfb-*.so.*
+%{_libdir}/libfusion-*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc docs/html/*
-%{_bindir}/*
-%{_includedir}/*
-%{_libdir}/*.a
-%{_libdir}/*.so
-%dir %{_libdir}/%{name}-%{version}
-%dir %{_libdir}/%{name}-%{version}/gfxdrivers
-%dir %{_libdir}/%{name}-%{version}/inputdrivers
-%dir %{_libdir}/%{name}-%{version}/interfaces
-%dir %{_libdir}/%{name}-%{version}/interfaces/*
-%dir %{_libdir}/%{name}-%{version}/systems
-%{_libdir}/%{name}-%{version}/gfxdrivers/*.a
-%{_libdir}/%{name}-%{version}/inputdrivers/*.a
-%{_libdir}/%{name}-%{version}/interfaces/*/*.a
-%{_libdir}/%{name}-%{version}/systems/*.a
-%{_libdir}/%{name}-%{version}/wm/*.a
-%{_libdir}/pkgconfig/*
-%{_mandir}/man1/*
-
+%doc %{_mandir}/man1/directfb-csource.1*
+%{_bindir}/directfb-config
+%{_bindir}/directfb-csource
+%{_includedir}/directfb/
+%{_includedir}/directfb-internal/
+%dir %{_libdir}/directfb-%{real_version}/
+%dir %{_libdir}/directfb-%{real_version}/*/
+%dir %{_libdir}/directfb-%{real_version}/*/*/
+%{_libdir}/directfb-%{real_version}/*/*.a
+%{_libdir}/directfb-%{real_version}/*/*/*.a
+%exclude %{_libdir}/directfb-%{real_version}/*/*.la
+%exclude %{_libdir}/directfb-%{real_version}/*/*/*.la
+%{_libdir}/libdirectfb.a
+%{_libdir}/libdirect.a
+%{_libdir}/libfusion.a
+%exclude %{_libdir}/libdirectfb.la
+%exclude %{_libdir}/libdirect.la
+%exclude %{_libdir}/libfusion.la
+%{_libdir}/libdirectfb.so
+%{_libdir}/libdirect.so
+%{_libdir}/libfusion.so
+%{_libdir}/pkgconfig/direct.pc
+%{_libdir}/pkgconfig/directfb.pc
+%{_libdir}/pkgconfig/directfb-internal.pc
+%{_libdir}/pkgconfig/fusion.pc
 
 %changelog
+* Sun Mar 25 2007 Dag Wieers <dag@wieers.com> - 0.9.25.1-1
+- Updated to release 0.9.25.1.
+
 * Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.9.24-1
 - Updated to release 0.9.24.
 
