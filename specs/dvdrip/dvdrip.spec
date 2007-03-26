@@ -11,7 +11,7 @@
 
 Summary: Graphical DVD ripping and encoding tool based on transcode
 Name: dvdrip
-Version: 0.98.3
+Version: 0.98.4
 Release: 1
 License: Artistic or GPL
 Group: Applications/Multimedia
@@ -110,6 +110,9 @@ EOF
 
 
 %changelog
+* Mon Mar 26 2007 Matthias Saou <http://freshrpms.net/> 0.98.4-1
+- Update to 0.98.4.
+
 * Mon Mar 12 2007 Matthias Saou <http://freshrpms.net/> 0.98.3-1
 - Update to 0.98.3.
 
