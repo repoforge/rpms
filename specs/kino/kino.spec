@@ -10,19 +10,19 @@
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
-#define cvs 20060320
-
 Summary: Simple non-linear video editor
 Name: kino
-Version: 0.9.5
-Release: 1%{?cvs:.%{cvs}}
+Version: 1.0.0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.kinodv.org/
-Source: http://dl.sf.net/kino/kino-%{version}.tar.gz
+Source: http://downloads.sf.net/kino/kino-%{version}.tar.gz
+Patch0: kino-1.0.0-install.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.6
 Requires: mjpegtools
+%{?_with_extffmpeg:Requires: ffmpeg}
 BuildRequires: libdv-devel >= 0.102
 BuildRequires: libavc1394-devel, libraw1394-devel, libiec61883-devel
 BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel
@@ -32,7 +32,7 @@ BuildRequires: libxml2-devel, libsamplerate-devel, intltool
 # libtool *sigh*
 BuildRequires: gcc-c++
 %{!?_without_quicktime:BuildRequires: libquicktime-devel}
-%{!?_without_ffmpeg:BuildRequires: ffmpeg-devel}
+%{?_with_extffmpeg:BuildRequires: ffmpeg-devel}
 Obsoletes: kino-devel <= %{version}
 Obsoletes: kino-dvtitler <= 0.2.0-2
 
@@ -45,23 +45,20 @@ commands for fast navigating and editing inside the movie.
 
 %prep
 %setup
+%patch0 -p1 -b .install
 
 
 %build
 %configure \
     --disable-static \
-    --with-hotplug-script-dir=%{_sysconfdir}/hotplug/usb \
-    --with-hotplug-usermap-dir=%{_libdir}/hotplug/kino \
     %{!?_without_quicktime:--enable-quicktime} \
-    %{!?_without_ffmpeg:--with-avcodec}
+    %{?_with_extffmpeg:--enable-local-ffmpeg=no}
 %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall \
-    hotplugscriptdir=%{buildroot}%{_sysconfdir}/hotplug/usb \
-    hotplugusermapdir=%{buildroot}%{_libdir}/hotplug/kino
+%makeinstall 
 %find_lang %{name}
 # Move plugins back where they belong (new in 0.8.0)
 %{__mkdir_p} %{buildroot}%{_libdir}/kino-gtk2/
@@ -82,10 +79,9 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING NEWS README*
-%config %{_sysconfdir}/hotplug/usb/*
+%config %{_sysconfdir}/udev/rules.d/kino.rules
 %{_bindir}/*
 %{_includedir}/kino/
-%{_libdir}/hotplug/kino/
 %dir %{_libdir}/kino-gtk2/
 %{_libdir}/kino-gtk2/*.so*
 %exclude %{_libdir}/kino-gtk2/*.la
@@ -97,6 +93,12 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 
 
 %changelog
+* Mon Mar 26 2007 Matthias Saou <http://freshrpms.net/> 1.0.0-1
+- Update to 1.0.0.
+- Use the internal ffmpeg snapshot, make _with_extffmpeg a build time option.
+- Remove no longer shipped hotplug files, replace with new udev rules file.
+- Include patch to fix absolute (DESTDIR + bindir) symlink.
+
 * Tue Jan 16 2007 Matthias Saou <http://freshrpms.net/> 0.9.5-1
 - Update to 0.9.5.
 

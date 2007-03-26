@@ -1,0 +1,24 @@
+diff -Naupr kino-1.0.0.orig/src/Makefile.am kino-1.0.0/src/Makefile.am
+--- kino-1.0.0.orig/src/Makefile.am	2007-03-08 07:47:57.000000000 +0100
++++ kino-1.0.0/src/Makefile.am	2007-03-26 19:27:45.000000000 +0200
+@@ -118,7 +118,7 @@ pretty:
+ 	astyle $(ASTYLEFLAGS) $(kino_SOURCES)
+ 
+ install-exec-local:
+-	ln -sf $(DESTDIR)$(bindir)/kino $(DESTDIR)$(bindir)/kino2raw
++	ln -sf kino $(DESTDIR)$(bindir)/kino2raw
+ 
+ uninstall-local:
+ 	rm $(DESTDIR)$(bindir)/kino2raw
+diff -Naupr kino-1.0.0.orig/src/Makefile.in kino-1.0.0/src/Makefile.in
+--- kino-1.0.0.orig/src/Makefile.in	2007-03-08 07:48:40.000000000 +0100
++++ kino-1.0.0/src/Makefile.in	2007-03-26 19:27:54.000000000 +0200
+@@ -926,7 +926,7 @@ pretty:
+ 	astyle $(ASTYLEFLAGS) $(kino_SOURCES)
+ 
+ install-exec-local:
+-	ln -sf $(DESTDIR)$(bindir)/kino $(DESTDIR)$(bindir)/kino2raw
++	ln -sf kino $(DESTDIR)$(bindir)/kino2raw
+ 
+ uninstall-local:
+ 	rm $(DESTDIR)$(bindir)/kino2raw
