@@ -14,7 +14,7 @@
 
 Summary: Exif and Iptc metadata manipulation library and tools
 Name: exiv2
-Version: 0.13
+Version: 0.14
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -63,28 +63,32 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}" prefix="%{_prefix}"
-%find_lang Exiv2
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f Exiv2.lang
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc COPYING README
 %doc %{_mandir}/man1/exiv*.1*
 %{_bindir}/exiv2
-%{_libdir}/libexiv2*.so
+%{_libdir}/libexiv2.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/html
-%{_bindir}/exiv2-config
+#%{_bindir}/exiv2-config
 %{_includedir}/exiv2/
 %{_libdir}/libexiv2*.a
 %exclude %{_libdir}/libexiv2*.la
+%{_libdir}/libexiv2.so
 %{_libdir}/pkgconfig/exiv2.pc
 
 %changelog
+* Mon Mar 26 2007 Dag Wieers <dag@wieers.com> - 0.14-1
+- Updated to release 0.14.
+
 * Sun Mar 04 2007 Dag Wieers <dag@wieers.com> - 0.13-1
 - Updated to release 0.13.
 

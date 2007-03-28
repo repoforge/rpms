@@ -28,11 +28,11 @@
 
 Summary: Full featured MSN Messenger clone
 Name: amsn
-Version: 0.95
-Release: 2.2
+Version: 0.96
+Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://amsn.sourceforge.net/
+URL: http://www.amsn-project.net/
 
 Source: http://dl.sf.net/amsn/amsn-%{version}.tar.gz
 #Source1: http://dl.sf.net/amsn/tls%{tls_maj}.%{tls_min}-src.tar.bz2
@@ -43,12 +43,12 @@ Patch1: amsn-0.92-login.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386 x86_64
-BuildRequires: tcl >= 8.3, tk >= 8.3, openssl-devel
+BuildRequires: tcl >= 8.4, tk >= 8.4, openssl-devel
 BuildRequires: imlib-devel, libpng-devel, libtiff-devel
-%{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3, tk-devel}
-%{?_without_tcltk_devel:BuildRequires: tcl >= 8.3, tk}
+%{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.4, tk-devel}
+%{?_without_tcltk_devel:BuildRequires: tcl >= 8.4, tk}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-Requires: tcl >= 8.3, tk >= 8.3
+Requires: tcl >= 8.4, tk >= 8.4
 
 %description
 amsn is a Tcl/Tk clone that implements the Microsoft Messenger (MSN) for
@@ -57,7 +57,7 @@ groups, and many more features.
 
 %prep
 %setup -a 2
-%patch1 -p0
+#patch1 -p0
 
 %build
 %configure
@@ -99,8 +99,8 @@ groups, and many more features.
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-amsn.desktop}
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.95-2.2
-- Rebuild for Fedora Core 5.
+* Mon Mar 26 2007 Dag Wieers <dag@wieers.com> - 0.96-1
+- Updated to release 0.96.
 
 * Wed Jan 11 2006 Dag Wieers <dag@wieers.com> - 0.95-2
 - Really include release 0.95. (Jaime Ventura)

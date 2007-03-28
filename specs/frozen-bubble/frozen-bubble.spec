@@ -11,7 +11,7 @@ Release: 0
 License: GPL
 Group: Amusements/Games
 URL: http://www.frozen-bubble.org/
-Source: http://zarb.org/~gc/fb/frozen-bubble-%{version}-9fdd84f56e5221e6c58c12eab72459d9.tar.bz2
+Source: http://zarb.org/~gc/fb/frozen-bubble-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: perl-SDL >= 2.1.3
 BuildRequires: perl-SDL >= 2.1.3, SDL_mixer-devel, SDL_Pango-devel, glib2-devel

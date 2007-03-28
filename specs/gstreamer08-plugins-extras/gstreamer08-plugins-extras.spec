@@ -1,12 +1,19 @@
 # $Id$
 # Authority: matthias
 
-# ExclusiveDist: fc5
+# ExclusiveDist: el4 fc5
 
-%define gst_minver 0.8.9
+%{!?dist:%define _with_modxorg 1}
+%{?fc7:  %define _with_modxorg 1}
+%{?el5:  %define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
+
+%define gst_minver 0.8.8.1
 %define gstp_minver 0.8.8
 %define majorminor 0.8
-%define gstreamer gstreamer08
+%{?fc5:%define gstreamer gstreamer08}
+%{?el4:%define gstreamer gstreamer}
 %define register %{_bindir}/gst-register-%{majorminor}
 
 # gst plugins we want (this is passed to configure with spaces converted to
@@ -18,7 +25,7 @@
 %define extplug_names a52dec dvdnavsrc dvdreadsrc faad gsmenc gsmdec lame libfame mad mpeg2dec swfdec musepack
 
 Summary: GStreamer streaming media framework extra plugins
-Name: %{gstreamer}-plugins-extra
+Name: gstreamer-plugins-extra
 Version: 0.8.8
 Release: 3
 License: LGPL
@@ -33,7 +40,8 @@ BuildRequires: %{gstreamer}-devel >= %{gst_minver}
 # libtool needs this, sigh
 BuildRequires: gcc-c++
 # so gst-libs can build
-BuildRequires: libXt-devel
+%{?_with_modxorg:BuildRequires: libXt-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 # so glimagesink can build
 Buildrequires: libGL-devel, libGLU-devel
 # so configure passes

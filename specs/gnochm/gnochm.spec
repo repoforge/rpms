@@ -4,13 +4,11 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%define _without_shmime 1
-%{?fc6:%undefine _without_shmime}
-%{?fc5:%undefine _without_shmime}
-%{?fc4:%undefine _without_shmime}
-%{?el4:%undefine _without_shmime}
-%{?fc3:%undefine _without_shmime}
-%{?fc2:%undefine _without_shmime}
+%{?fc1:%define _without_shmime 1}
+%{?el3:%define _without_shmime 1}
+%{?rh9:%define _without_shmime 1}
+%{?rh7:%define _without_shmime 1}
+%{?el2:%define _without_shmime 1}
 
 Summary: CHM file viewer
 Name: gnochm

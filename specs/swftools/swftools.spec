@@ -3,7 +3,7 @@
 
 Summary: Tools for SWF (Flash) animations under linux
 Name: swftools
-Version: 0.8.0
+Version: 0.8.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -69,5 +69,8 @@ SWF Tools is a collection of SWF manipulation and generation utilities.
 %{_datadir}/swftools/
 
 %changelog
+* Thu Mar 01 2007 Dag Wieers <dag@wieers.com> - 0.8.1-1
+- Updated to release 0.8.1.
+
 * Mon Jan 22 2007 Dag Wieers <dag@wieers.com> - 0.8.0-1
 - Initial package. (using DAR)
