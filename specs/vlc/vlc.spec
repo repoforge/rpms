@@ -98,7 +98,7 @@
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
 Version: 0.8.6a
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -156,6 +156,7 @@ Buildrequires: autoconf, automake, libtool
 %{!?_without_vcd:BuildRequires: vcdimager-devel}
 %{?_with_avahi:BuildRequires: avahi-devel}
 %{!?_without_daap:BuildRequires: libopendaap-devel}
+%{!?_without_upnp:BuildRequires: libupnp-devel}
 %{?_with_avahi:BuildRequires: avahi-devel}
 # Added in 0.8.5
 %{!?_without_hal:BuildRequires: hal-devel}
@@ -180,7 +181,7 @@ Available rpmbuild rebuild options :
 --without dvdread dvdnav dvbpsi v4l avi asf aac ogg mad ffmpeg cdio
           a52 vorbis mpeg2dec flac aa caca esd arts alsa wxwidgets xosd
           lsp lirc id3tag faad2 theora mkv modplug smb speex glx x264
-          gnomevfs vcd daap pvr live
+          gnomevfs vcd daap upnp pvr live
 
 Options that would need not yet existing add-on packages :
 --with tremor tarkin svgalib ggi
@@ -288,6 +289,7 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
     %{?_with_ncurses:--enable-ncurses} \
     %{?_without_slp:--disable-slp} \
     %{?_with_pth:--enable-pth} \
+    %{!?_without_upnp:--enable-upnp} \
     %{!?_without_live:--enable-live555 --with-live555-tree="`pwd`/live"} \
     %{!?_without_jack:--enable-jack}
     #{!?_without_goom:--enable-goom} \
@@ -329,6 +331,9 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 
 
 %changelog
+* Wed Mar 28 2007 Matthias Saou <http://freshrpms.net/> 0.8.6a-4
+- Enable upnp support (Paul Stewart).
+
 * Wed Feb 14 2007 Matthias Saou <http://freshrpms.net/> 0.8.6a-3
 - Add patch for (new) FLAC 1.1.3 support.
 
