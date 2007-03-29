@@ -16,7 +16,8 @@ URL: http://search.cpan.org/~mlehmann/AnyEvent/
 Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/AnyEvent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
-BuildRequires: perl(Coro), perl(Event), perl(Glib), perl(Tk)
+#BuildRequires: perl(Coro), perl(Event), perl(Glib), perl(Tk)
+BuildRequires: perl(Event), perl(Glib), perl(Tk)
 
 %description
 AnyEvent provides a framework for multiple event loops.
@@ -27,7 +28,7 @@ AnyEvent provides a framework for multiple event loops.
 
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 

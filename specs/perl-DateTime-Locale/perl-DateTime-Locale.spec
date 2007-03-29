@@ -28,7 +28,7 @@ DateTime.pm class.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -52,9 +52,6 @@ DateTime.pm class.
 %{perl_vendorlib}/DateTime/LocaleCatalog.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.22-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.22-1
 - Updated to release 0.22.
 

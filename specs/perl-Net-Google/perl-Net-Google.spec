@@ -30,7 +30,7 @@ A simple OOP interface to the Google SOAP API.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -52,9 +52,6 @@ A simple OOP interface to the Google SOAP API.
 %changelog
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1
 - Updated to release 1.0.1.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
-- Rebuild for Fedora Core 5.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Updated to release 1.0.

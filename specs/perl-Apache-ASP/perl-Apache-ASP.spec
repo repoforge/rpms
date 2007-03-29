@@ -53,6 +53,7 @@ rendering, and new events not originally part of the ASP API!
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES LICENSE MANIFEST README
+%doc %{_mandir}/man1/asp-perl.1*
 %doc %{_mandir}/man3/*.3*
 %dir %{perl_vendorlib}/Apache/
 %{perl_vendorlib}/Apache/ASP/

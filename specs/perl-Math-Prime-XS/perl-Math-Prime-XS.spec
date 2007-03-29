@@ -29,7 +29,7 @@ Summing calculation.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -50,9 +50,6 @@ Summing calculation.
 %changelog
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.17-1
 - Updated to release 0.17.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1.2
-- Rebuild for Fedora Core 5.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.16-1
 - Initial package.

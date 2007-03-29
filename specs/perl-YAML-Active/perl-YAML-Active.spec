@@ -36,7 +36,7 @@ encapsulated in the data structure itself.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -58,8 +58,5 @@ encapsulated in the data structure itself.
 %{perl_vendorlib}/YAML/Active.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.00-1.2
-- Rebuild for Fedora Core 5.
-
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.00-1
 - Initial package.

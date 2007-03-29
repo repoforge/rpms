@@ -54,15 +54,12 @@ AuthCookie will verify the session key and re-authenticate the user.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-#doc %{_mandir}/man3/*
-%dir %{perl_vendorlib}/Apache/
-%{perl_vendorlib}/Apache/AuthCookie.pm
+%doc %{_mandir}/man3/Apache*::AuthCookie.3pm*
+%dir %{perl_vendorlib}/Apache*/
+%{perl_vendorlib}/Apache*/AuthCookie.pm
 %{perl_vendorlib}/Apache/AuthCookie/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 3.08-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 3.08-1
 - Updated to release 3.08.
 

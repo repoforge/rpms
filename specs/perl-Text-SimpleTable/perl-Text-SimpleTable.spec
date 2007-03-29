@@ -28,7 +28,7 @@ Simple eyecandy ASCII tables, as seen in Catalyst.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -48,9 +48,6 @@ Simple eyecandy ASCII tables, as seen in Catalyst.
 %changelog
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Updated to release 0.03.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1.2
-- Rebuild for Fedora Core 5.
 
 * Thu Dec 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

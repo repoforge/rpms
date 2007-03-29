@@ -36,7 +36,7 @@ need be changed only once to affect the whole site.
 %setup -n %{real_name}-%{real_version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -62,9 +62,6 @@ need be changed only once to affect the whole site.
 * Fri Apr 28 2006 Dries Verachtert <dries@ulyssis.org> - 1.3200-1
 - Changed the version so it's greater as the previous version 1.3101, 
   informed the author about the problem with these versions for rpms.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.32-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.32-1
 - Updated to release 1.32.

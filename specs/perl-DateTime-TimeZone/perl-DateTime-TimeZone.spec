@@ -33,7 +33,7 @@ tools/parse_olson.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -62,9 +62,6 @@ tools/parse_olson.
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.42-1
 - Updated to release 0.42.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.40-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.40-1
 - Updated to release 0.40.

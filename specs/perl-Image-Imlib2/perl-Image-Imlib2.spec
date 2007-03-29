@@ -44,7 +44,7 @@ output the images in a range of formats.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -72,9 +72,6 @@ output the images in a range of formats.
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.08-1
 - Updated to release 1.08.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.07-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.07-1
 - Updated to release 1.07.

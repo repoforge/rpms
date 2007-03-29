@@ -33,7 +33,7 @@ XML::Generator::vCard::RDF (version 1.3+)
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -51,8 +51,5 @@ XML::Generator::vCard::RDF (version 1.3+)
 %{perl_vendorlib}/XML/Generator/RFC822/RDF.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.1-1
 - Initial package.

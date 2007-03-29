@@ -28,7 +28,7 @@ With this module, you can create DateTime parser classes and objects.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -49,9 +49,6 @@ With this module, you can create DateTime parser classes and objects.
 %changelog
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.7807-1
 - Updated to release 0.7807.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.7806-1.2
-- Rebuild for Fedora Core 5.
 
 * Sun Dec 25 2005 Dries Verachtert <dries@ulyssis.org> - 0.7806-1
 - Initial package.
