@@ -18,6 +18,8 @@
 %{?fc6:%define _with_avahi 1}
 %{?fc5:%define _with_avahi 1}
 
+%{?el5:%define _without_jack 1}
+
 %{?el4:%define _without_jack 1}
 %{?el4:%define _without_sysfs 1}
 %{?el4:%define _without_upnp 1}
