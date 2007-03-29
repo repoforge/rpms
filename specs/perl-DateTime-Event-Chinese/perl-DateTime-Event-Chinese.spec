@@ -28,7 +28,7 @@ DateTime Extension for Calculating Important Chinese Dates.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -51,9 +51,6 @@ DateTime Extension for Calculating Important Chinese Dates.
 %{perl_vendorlib}/DateTime/Event/Chinese.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Updated to release 0.04.
 

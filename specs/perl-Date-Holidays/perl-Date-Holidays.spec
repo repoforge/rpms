@@ -28,7 +28,7 @@ A package with object oriented classes for holidays.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -48,9 +48,6 @@ A package with object oriented classes for holidays.
 %changelog
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Updated to release 0.08.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Updated to release 0.06.

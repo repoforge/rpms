@@ -28,7 +28,7 @@ Exact Currency Math with Formatting and Rounding.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -49,9 +49,6 @@ Exact Currency Math with Formatting and Rounding.
 %changelog
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.44-1
 - Updated to release 0.44.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.43-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.43-1
 - Updated to release 0.43.

@@ -10,10 +10,16 @@
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
+%{?el4: %define _without_libiec61883 1}
+%{?el3: %define _without_libiec61883 1}
+%{?rh9: %define _without_libiec61883 1}
+%{?rh7: %define _without_libiec61883 1}
+%{?el2: %define _without_libiec61883 1}
+
 Summary: Simple non-linear video editor
 Name: kino
 Version: 1.0.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.kinodv.org/
@@ -24,13 +30,14 @@ Requires: gtk2 >= 2.6
 Requires: mjpegtools
 %{?_with_extffmpeg:Requires: ffmpeg}
 BuildRequires: libdv-devel >= 0.102
-BuildRequires: libavc1394-devel, libraw1394-devel, libiec61883-devel
+BuildRequires: libavc1394-devel, libraw1394-devel
 BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel
-BuildRequires: gtk2-devel >= 2.6, libglade2-devel, gettext
+BuildRequires: gtk2-devel >= 2.6, libglade2-devel >= 2.5, gettext
 BuildRequires: libxml2-devel, libsamplerate-devel, intltool
 %{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel}
 # libtool *sigh*
 BuildRequires: gcc-c++
+%{!?_without_libiec61883:BuildRequires: libiec61883-devel}
 %{!?_without_quicktime:BuildRequires: libquicktime-devel}
 %{?_with_extffmpeg:BuildRequires: ffmpeg-devel}
 Obsoletes: kino-devel <= %{version}
@@ -52,7 +59,8 @@ commands for fast navigating and editing inside the movie.
 %configure \
     --disable-static \
     %{!?_without_quicktime:--enable-quicktime} \
-    %{?_with_extffmpeg:--enable-local-ffmpeg=no}
+    %{?_without_libiec61883:--with-dv1394} \
+    %{?_with_extffmpeg:--enable-local-ffmpeg="no"}
 %{__make} %{?_smp_mflags}
 
 
@@ -63,6 +71,9 @@ commands for fast navigating and editing inside the movie.
 # Move plugins back where they belong (new in 0.8.0)
 %{__mkdir_p} %{buildroot}%{_libdir}/kino-gtk2/
 %{__mv} %{buildroot}%{_libdir}/*.* %{buildroot}%{_libdir}/kino-gtk2/
+
+### Clean up buildroot (conflicts with ffmpeg package)
+%{__rm} -f %{buildroot}%{_mandir}/man1/ffmpeg.1*
 
 
 %post
@@ -93,6 +104,9 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 
 
 %changelog
+* Thu Mar 29 2007 Dag Wieers <dag@wieers.com> - 1.0.0-2
+- Remove ffmpeg.1 manpage as it conflicts with ffmpeg package.
+
 * Mon Mar 26 2007 Matthias Saou <http://freshrpms.net/> 1.0.0-1
 - Update to 1.0.0.
 - Use the internal ffmpeg snapshot, make _with_extffmpeg a build time option.

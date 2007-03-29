@@ -20,8 +20,8 @@
 
 Summary: Television application for video4linux compliant devices
 Name: xawtv
-Version: 3.94
-Release: 2.2
+Version: 3.95
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://bytesex.org/xawtv/
@@ -33,7 +33,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{!?_without_modxorg:BuildRequires: libX11-devel}
 BuildRequires: ncurses-devel, Xaw3d-devel, libjpeg-devel
 BuildRequires: zvbi-devel
-%{?el5:BuildRequires: lesstif-devel}
+%{?el5:BuildRequires: openmotif-devel}
 %{?fc6:BuildRequires: lesstif-devel}
 %{?fc5:BuildRequires: openmotif-devel}
 %{?fc4:BuildRequires: openmotif-devel}
@@ -110,6 +110,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-xawtv.desktop}
 
 %changelog
+* Thu Mar 29 2007 Dag Wieers <dag@wieers.com> - 3.95-1
+- Updated to release 3.95.
+
 * Wed Feb 09 2005 Dag Wieers <dag@wieers.com> - 3.94-2
 - Added zvbi-devel build requirement. (Klaus-Peter Schrage)
 - Rebuild with zvbi-support.

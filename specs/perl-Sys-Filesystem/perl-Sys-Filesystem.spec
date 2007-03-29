@@ -29,7 +29,7 @@ query filesystem names and their properties.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -55,9 +55,6 @@ query filesystem names and their properties.
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.21-1
 - Updated to release 1.21.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.18-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.18-1
 - Updated to release 1.18.

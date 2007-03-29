@@ -28,7 +28,7 @@ OOP for the del.icio.us API.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -52,9 +52,6 @@ OOP for the del.icio.us API.
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.96-1
 - Updated to release 0.96.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.95-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.95-1
 - Updated to release 0.95.

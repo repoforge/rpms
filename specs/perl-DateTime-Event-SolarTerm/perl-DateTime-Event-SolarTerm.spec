@@ -28,7 +28,7 @@ DateTime Extension to Calculate Solar Terms.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -51,8 +51,5 @@ DateTime Extension to Calculate Solar Terms.
 %{perl_vendorlib}/DateTime/Event/SolarTerm.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
-- Rebuild for Fedora Core 5.
-
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.

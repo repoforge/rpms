@@ -49,8 +49,5 @@ Asynchronous mail sending with POE.
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.13-1
 - Updated to release 0.13.
 
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1.2
-- Rebuild for Fedora Core 5.
-
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Initial package.

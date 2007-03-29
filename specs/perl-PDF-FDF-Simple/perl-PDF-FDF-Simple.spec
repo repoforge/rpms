@@ -30,7 +30,7 @@ just want to read or create fdf files.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -48,9 +48,6 @@ just want to read or create fdf files.
 %{perl_vendorlib}/PDF/FDF/Simple.p*
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Updated to release 0.10.
 

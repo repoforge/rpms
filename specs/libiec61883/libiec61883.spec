@@ -1,6 +1,9 @@
 # $Id$
 # Authority: matthias
 
+### EL5 ships with libiec61883 1.0.0-11
+# ExclusiveDist: el2 rh7 rh9 el3 el4
+
 Summary: Streaming library for IEEE1394
 Name: libiec61883
 Version: 1.0.0
@@ -8,7 +11,7 @@ Release: 0
 License: LGPL
 URL: http://linux1394.org/
 Group: System Environment/Libraries
-Source: http://linux1394.org/dl/libiec61883-%{version}.tar.gz
+Source: http://www.linux1394.org/dl/libiec61883-%{version}.tar.gz
 Patch: libiec61883-1.0.0-installtests.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Works only with newer libraw1394 versions

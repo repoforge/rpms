@@ -30,7 +30,7 @@ searches over them.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -56,9 +56,6 @@ searches over them.
 %changelog
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.41-1
 - Updated to release 0.41.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.30-1.2
-- Rebuild for Fedora Core 5.
 
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.30-1
 - Initial package.

@@ -27,7 +27,7 @@ Perl interface to Snowball stemmers.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -62,9 +62,6 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{build
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.94-1
 - Updated to release 0.94.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.93-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.93-1
 - Updated to release 0.93.

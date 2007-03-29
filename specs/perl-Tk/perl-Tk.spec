@@ -4,24 +4,17 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
+%{!?dist:%define _with_modxorg 1}
+%{?fc7:  %define _with_modxorg 1}
+%{?el5:  %define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
 
 %{?rh9:%define _without_tcltk_devel 1}
-%{?rh9:%define _without_xorg 1}
-
 %{?rh8:%define _without_tcltk_devel 1}
-%{?rh8:%define _without_xorg 1}
-
 %{?rh7:%define _without_tcltk_devel 1}
-%{?rh7:%define _without_xorg 1}
-
 %{?el2:%define _without_tcltk_devel 1}
-%{?el2:%define _without_xorg 1}
-
 %{?rh6:%define _without_tcltk_devel 1}
-%{?rh6:%define _without_xorg 1}
-
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
@@ -40,8 +33,8 @@ Source: http://www.cpan.org/modules/by-module/Tk/Tk-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 5.7.0, libpng-devel, libjpeg-devel
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{?_with_modxorg:BuildRequires: libX11-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_tcltk_devel:BuildRequires: tk-devel}
 %{?_without_tcltk_devel:BuildRequires: tk}
 Provides: perl(Tk::LabRadio), perl(Tk::TextReindex)

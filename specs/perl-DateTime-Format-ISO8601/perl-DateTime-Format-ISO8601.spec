@@ -29,7 +29,7 @@ ISO8601 time-intervals will be supported in a later release.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -47,8 +47,5 @@ ISO8601 time-intervals will be supported in a later release.
 %{perl_vendorlib}/DateTime/Format/ISO8601.p*
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.0403-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Dec 25 2005 Dries Verachtert <dries@ulyssis.org> - 0.0403-1
 - Initial package.

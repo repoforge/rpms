@@ -27,7 +27,7 @@ Math::Factor::XS factorises numbers by applying modulo operator divisons.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -48,9 +48,6 @@ Math::Factor::XS factorises numbers by applying modulo operator divisons.
 %changelog
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.33-1
 - Updated to release 0.33.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.32-1.2
-- Rebuild for Fedora Core 5.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.32-1
 - Initial package.
