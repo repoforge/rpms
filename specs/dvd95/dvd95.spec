@@ -7,7 +7,7 @@ Name: dvd95
 Version: 1.2p0
 Release: 1
 License: GPL
-Group: Applications/
+Group: Applications/Archiving
 URL: http://dvd95.sourceforge.net/
 
 Source: http://dl.sf.net/dvd95/dvd95-%{version}.tar.gz

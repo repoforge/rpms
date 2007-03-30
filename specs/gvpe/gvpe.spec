@@ -6,8 +6,8 @@
 
 Summary: Create a virtual ethernet using host-to-host tunnels
 Name: gvpe
-Version: 2.0
-Release: 2.2
+Version: 2.01
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: https://savannah.gnu.org/projects/gvpe/
@@ -47,7 +47,7 @@ connect them together.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %post
 /sbin/install-info --entry="* gvpe: (gvpe).       %{summary}" %{_infodir}/%{name}.info.gz %{_infodir}/dir
@@ -68,8 +68,8 @@ connect them together.
 %{_sbindir}/gvpe
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0-2.2
-- Rebuild for Fedora Core 5.
+* Fri Mar 30 2007 Dag Wieers <dag@wieers.com> - 2.01-1
+- Updated to release 2.01.
 
 * Fri Dec 23 2005 Dries Verachtert <dries@ulyssis.org> - 2.0-2
 - Avoid install-info warning at install, thanks to xyzzy at mail333 dot com.
