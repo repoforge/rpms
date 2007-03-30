@@ -9,13 +9,14 @@
 
 Summary: Simple DirectMedia Layer - Sample TrueType Font Library
 Name: SDL_ttf
-Version: 2.0.7
-Release: 0.2
+Version: 2.0.8
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.libsdl.org/projects/SDL_ttf/
 
 Source: http://www.libsdl.org/projects/SDL_ttf/release/SDL_ttf-%{version}.tar.gz
+Patch0: SDL_ttf-2.0.7-freetype-internals.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel >= 1.2.4, freetype-devel >= 2.0, zlib-devel, gcc-c++
@@ -36,6 +37,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
+%patch0 -p1 -b .freetype
 
 ### FIXME: Add missing ftbuild.h include (fix upstream please)
 %{?_freetype_fix:%{__perl} -pi.orig -e 's|^(#include <freetype/freetype.h>)$|#include <ft2build.h>\n$1|' SDL_ttf.c}
@@ -49,10 +51,8 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -70,15 +70,15 @@ you will need to install %{name}-devel.
 %dir %{_includedir}/SDL/
 %{_includedir}/SDL/*.h
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
-#exclude %{_libdir}/*.la
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.7-0.2
-- Rebuild for Fedora Core 5.
+* Fri Mar 30 2007 Dag Wieers <dag@wieers.com> - 2.0.8-1
+- Updated to release 2.0.8.
 
 * Mon Sep 05 2005 Dries Verachtert <dries@ulyssis.org> - 2.0.7-0
-- Update to release 2.0.7.
+- Updated to release 2.0.7.
 
 * Thu Sep 04 2003 Dag Wieers <dag@wieers.com> - 2.0.6-0
 - Initial package. (using DAR)

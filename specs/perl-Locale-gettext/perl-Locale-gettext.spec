@@ -1,18 +1,20 @@
 # $Id$
 # Authority: dag
 
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name gettext
 
 Summary: Internationalization for Perl
 Name: perl-Locale-gettext
 Version: 1.05
-Release: 1.2
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/gettext/
 
 Source: http://search.cpan.org/CPAN/authors/id/P/PV/PVANDRY/gettext-%{version}.tar.gz
-Patch0: gettext-1.01-fix-example-in-README.patch
 Patch1: gettext-1.01-includes.patch
 Patch2: gettext-1.01-add-iconv.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -30,16 +32,12 @@ bindtextdomain().
 
 %prep
 %setup -n %{real_name}-%{version}
-%patch0 -p1
-%patch1 -p1 -b .includes
-%patch2 -p0
+#patch1 -p1 -b .includes
+#patch2 -p0
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-        PREFIX="%{buildroot}%{_prefix}" \
-        INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags} \
-	OPTIMIZE="%{optflags}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 #%{__make} test
 
 %install
@@ -47,8 +45,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -56,13 +53,11 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%doc %{_mandir}/man3/*.3*
+%{perl_vendorarch}/Locale/
+%{perl_vendorarch}/auto/Locale/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.05-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> - 1.05-1
 - Updated to release 1.05.
 

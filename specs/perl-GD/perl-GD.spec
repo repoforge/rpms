@@ -1,6 +1,14 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc7:  %define _with_modxorg 1}
+%{?el5:  %define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
+
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
@@ -18,7 +26,9 @@ Source: http://www.cpan.org/modules/by-module/GD/GD-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.8.0, gd-devel >= 2.0.12, libpng-devel, zlib-devel
-BuildRequires: freetype-devel, libjpeg-devel, XFree86-devel
+BuildRequires: freetype-devel, libjpeg-devel
+%{?_with_modxorg:BuildRequires: libX11-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 Requires: perl >= 0:5.8.0
 
 %description

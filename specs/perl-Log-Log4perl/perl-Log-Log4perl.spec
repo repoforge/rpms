@@ -18,8 +18,8 @@ Source: http://www.cpan.org/modules/by-module/Log/Log-Log4perl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Time-HiRes
-Requires: perl-IPC-Shareable, perl-Log-Dispatch, perl-Log-Dispatch-FileRotate, perl-Time-HiRes
+BuildRequires: perl, perl(Time::HiRes)
+Requires: perl(IPC::Shareable), perl(Log::Dispatch), perl(Log::Dispatch::FileRotate), perl(Time::HiRes)
 
 %description
 Log::Log4perl is a Perl port of the widely popular log4j logging package. It

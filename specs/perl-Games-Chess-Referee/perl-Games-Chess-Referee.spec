@@ -52,7 +52,7 @@ cases of standard chess move notation.
 %doc README
 %{_bindir}/mkbd
 %{_bindir}/tryme
-#%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/Games::Chess::Rules.3pm*
 %{perl_vendorlib}/Games/Chess/Referee.p*
 %{perl_vendorlib}/Games/Chess/Piece/
 %{perl_vendorlib}/Games/Chess/Rules.pm

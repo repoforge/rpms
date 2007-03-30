@@ -2,7 +2,7 @@
 # Authority: dries
 # Upstream: &#9786;&#21776;&#40179;&#9787; <autrijus$autrijus,org>
 
-# Tag: test
+##Tag: test
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
