@@ -1,6 +1,14 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc7:  %define _with_modxorg 1}
+%{?el5:  %define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
+
 %{?fc1:%define _without_kde32 1}
 %{?el3:%define _without_kde32 1}
 %{?rh9:%define _without_kde32 1}
@@ -25,10 +33,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: k3b
 # Some of these are only to make the configure script happy.
-BuildRequires: XFree86-devel, kdelibs-devel >= 6:3.1, libart_lgpl-devel, arts-devel
+BuildRequires: kdelibs-devel >= 6:3.1, libart_lgpl-devel, arts-devel
 BuildRequires: zlib-devel, libpng-devel, libjpeg-devel
 BuildRequires: gettext, taglib-devel libmad-devel lame-devel
-%{!?_without_kd32:BuildRequires: libmng-devel fam-devel glib2-devel alsa-lib-devel esound-devel}
+%{!?_without_kde32:BuildRequires: libmng-devel fam-devel glib2-devel alsa-lib-devel esound-devel}
+%{?_with_modxorg:BuildRequires: libX11-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 
 Requires: k3b = %{version}
 
@@ -50,7 +60,8 @@ source /etc/profile.d/qt.sh
 	--without-flac \
 	--with-qt-libraries="$QTDIR/lib"
 
-%{__ln_s} -f %{_libdir}/libk3b.la libk3b/libk3b.la
+%{__ln_s} -f %{_libdir}/libk3bcore.la libk3b/libk3b.la
+#%{__cp} -av %{_libdir}/libk3bcore.la libk3b/libk3b.la
 
 %{__make} -C plugins/decoder/mp3 %{?_smp_mflags}
 %{__make} -C plugins/encoder/lame %{?_smp_mflags}
