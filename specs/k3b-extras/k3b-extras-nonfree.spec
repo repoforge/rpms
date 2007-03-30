@@ -17,8 +17,8 @@
 
 %{!?k3b_version:%define k3b_version %(rpm -q k3b --qf '%{RPMTAG_VERSION}' | tail -1)}
 
-Summary: MP3 decoder plugin for k3b CD/DVD burner
-Name: k3b-mp3
+Summary: Additional codec plugins for the k3b CD/DVD burning application
+Name: k3b-extras
 Version: %{k3b_version}
 Release: 1
 License: GPL
@@ -31,20 +31,25 @@ Patch0: k3b-0.12.2-statfs.patch
 Patch1: k3b-0.11.24-no-bad-gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+ExcludeArch: s390 s390x
 BuildRequires: k3b
 # Some of these are only to make the configure script happy.
 BuildRequires: kdelibs-devel >= 6:3.1, libart_lgpl-devel, arts-devel
-BuildRequires: zlib-devel, libpng-devel, libjpeg-devel
-BuildRequires: gettext, taglib-devel libmad-devel lame-devel
+BuildRequires: zlib-devel, libpng-devel, libjpeg-devel, libmusicbrainz-devel
+BuildRequires: gettext, taglib-devel, libmad-devel, lame-devel, ffmpeg-devel
+BuildRequires: libmng-devel, fam-devel, glib2-devel, alsa-lib-devel, esound-devel
 %{!?_without_kde32:BuildRequires: libmng-devel fam-devel glib2-devel alsa-lib-devel esound-devel}
 %{?_with_modxorg:BuildRequires: libX11-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 
-Requires: k3b = %{version}
+Requires: k3b = %{k3b_version}
+
+Obsoletes: k3b-mp3 <= %{version}-%{release}
+Provides: k3b-mp3 = %{version}-%{release}
 
 %description
-MP3 decoder plugin for k3b, a feature-rich and easy to handle CD/DVD
-burning application.
+Additional decoder/encoder plugins for k3b, a feature-rich and easy to
+handle CD/DVD burning application.
 
 %prep
 %setup -n k3b-%{version}
