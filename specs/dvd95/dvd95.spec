@@ -39,7 +39,7 @@ DVD95 support two copy modes :
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}" prefix="%{_prefix}"
 %find_lang %{name}
 
 %clean
