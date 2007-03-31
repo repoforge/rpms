@@ -1,0 +1,14 @@
+diff -Nur gqview-2.0.0-orig/src/editors.c gqview-2.0.0/src/editors.c
+--- gqview-2.0.0-orig/src/editors.c	2004-12-14 16:48:05.000000000 +0100
++++ gqview-2.0.0/src/editors.c	2005-02-26 22:18:47.794673928 +0100
+@@ -48,8 +48,8 @@
+ 
+ static gchar *editor_slot_defaults[] = {
+ 	N_("The Gimp"), "gimp-remote -n %f",
+-	N_("XV"), "xv %f",
+-	N_("Xpaint"), "xpaint %f",
++	NULL, NULL,
++	NULL, NULL,
+ 	NULL, NULL,
+ 	NULL, NULL,
+ 	NULL, NULL,

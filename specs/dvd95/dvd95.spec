@@ -16,9 +16,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libdvdread-devel, gtk2-devel >= 2.6
 
 %description
-DVD95 is an gnome application to convert DVD9 to DVD5 (4,7Gigas).
+DVD95 is a GNOME application to convert DVD9 (8.5G) to DVD5 (4.7G).
 
-It need no additional packages, an onboard version of vamps and dvdauthor
+It needs no additional packages, an onboard version of vamps and dvdauthor
 is used, to be as fast as possible. Interface is pretty simple yo use.
 Shrinking factor may be computed for best results, or an adaptive
 compression ratio method may be used.
@@ -27,8 +27,8 @@ Dvd can be converted to a file tree or an ISO file. The result can be played
 with xine, vlc, or mplayer or burned using third party software (k3b).
 
 DVD95 support two copy modes :
- - Menus less, one video title set, multiple audios and subtitles.
- - With menus, one video title set, multiple audios and subtitles.
+ - Without menus, one video title set, multiple audio and subtitles.
+ - With menus, one video title set, multiple audio and subtitles.
 
 %prep
 %setup
@@ -49,8 +49,8 @@ DVD95 support two copy modes :
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_bindir}/dvd95
-%{_datadir}/pixmaps/dvd95/
 %{_datadir}/applications/dvd95.desktop
+%{_datadir}/pixmaps/dvd95/
 
 %changelog
 * Fri Mar 30 2007 Dag Wieers <dag@wieers.com> - 1.2p0-1

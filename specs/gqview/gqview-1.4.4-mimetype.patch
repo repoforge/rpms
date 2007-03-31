@@ -1,0 +1,11 @@
+diff -Nur gqview-1.4.4-orig/gqview.desktop gqview-1.4.4/gqview.desktop
+--- gqview-1.4.4-orig/gqview.desktop	2004-03-01 21:45:33.000000000 +0100
++++ gqview-1.4.4/gqview.desktop	2004-09-25 14:29:06.380678632 +0200
+@@ -10,6 +10,7 @@
+ Exec=gqview
+ Icon=gqview.png
+ Type=Application
++MimeType=image/jpeg;image/gif;image/png;image/x-png;image/xpm;image/bmp;image/x-bmp;image/tiff;image/x-ico;image/x-pcx;image/x-tga;image/vnd.wap.wbmp;image/x-portable-anymap;image/x-portable-bitmap;image/x-portable-graymap;image/x-portable-pixmap;image/x-xbitmap;image/x-xpixmap;image/vnd.wap.wbmp;
+ Terminal=false
+ StartupNotify=false
+ StartupWMClass=gqview
