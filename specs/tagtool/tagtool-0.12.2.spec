@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 
 # Screenshot: http://pwp.netcabo.pt/users/51/0251296501/tagtool/tt_edit.png
@@ -8,16 +8,17 @@
 
 Summary: Manage the information fields in MP3 and Ogg Vorbis files
 Name: tagtool
-Version: 0.12.3
+Version: 0.12.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://pwp.netcabo.pt/paol/tagtool/
 
-Source: http://dl.sf.net/tagtool/tagtool-%{version}.tar.bz2
+Source: http://dl.sf.net/tagtool/tagtool-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: automake, autoconf, glib2-devel >= 2.4, gtk2-devel >= 2.6, libglade2-devel >= 2.8
+#BuildRequires: automake, autoconf, glib2-devel >= 2.4, gtk2-devel >= 2.4, libglade2-devel >= 2.4
+BuildRequires: automake, autoconf, glib2-devel, gtk2-devel, libglade2-devel
 BuildRequires: id3lib-devel, libogg-devel, libvorbis-devel, perl-XML-Parser
 BuildRequires: gettext, desktop-file-utils
 
@@ -72,13 +73,12 @@ desktop-file-install --delete-original             \
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README THANKS TODO
 %{_bindir}/tagtool
 %{_datadir}/applications/%{desktop_vendor}-tagtool.desktop
-%{_datadir}/icons/hicolor/48x48/apps/TagTool.png
-%{_datadir}/icons/hicolor/scalable/apps/TagTool.svg
+%{_datadir}/pixmaps/TagTool.png
 %{_datadir}/tagtool/
 
 %changelog
-* Thu Mar 01 2007 Dag Wieers <dag@wieers.com> - 0.12.3-1
-- Updated to release 0.12.3.
+* Thu Mar 01 2007 Dag Wieers <dag@wieers.com> - 0.12.2-1
+- Updated to release 0.12.2.
 
 * Tue Mar 08 2005 Dag Wieers <dag@wieers.com> - 0.12.1-1
 - Updated to release 0.12.1.
