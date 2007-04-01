@@ -1,18 +1,19 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Kevin Vigor <kevin$vigor,nu>
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
 
 Summary: Differential X protocol compressor
 Name: dxpc
@@ -26,8 +27,8 @@ Source: http://www.vigor.nu/dxpc/%{version}/dxpc-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: lzo-devel, gcc-c++
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
 dxpc is an X protocol compressor designed to improve the

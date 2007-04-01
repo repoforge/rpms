@@ -3,6 +3,18 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
+
 %define desktop_vendor rpmforge
 %define date           20050318
 
@@ -15,11 +27,13 @@ Group: Amusements/Games
 URL: http://bzflag.org/
 Source: http://dl.sf.net/bzflag/bzflag-%{version}.%{date}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: XFree86-devel, gcc-c++, desktop-file-utils
+BuildRequires: gcc-c++, desktop-file-utils
 BuildRequires: ncurses-devel, curl-devel, SDL-devel
 # This one should have been required by curl-devel
 %{!?dist:BuildRequires: libidn-devel}
 %{?fc3:BuildRequires: libidn-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
 
 %description
 BZFlag is a 3D multi-player tank battle game  that  allows users to play

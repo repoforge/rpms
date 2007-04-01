@@ -4,10 +4,18 @@
 %{?dist: %{expand: %%define %dist 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dist:%define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
 
 %{?fc1:%define _without_xorg 1}
 %{?el3:%define _without_xorg 1}
@@ -37,7 +45,7 @@ BuildRequires: libstdc++-devel, zlib-devel, libpng-devel, libjpeg-devel
 BuildRequires: SDL_image-devel, SDL_mixer-devel, SDL-devel, esound-devel
 BuildRequires: libxml2-devel, /usr/bin/find, unzip, gcc-c++, which
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%if 0%{!?_with_modxorg:1}
+%if 0%{?_without_modxorg:1}
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
 %else

@@ -6,14 +6,17 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
 
 %define logmsg logger -t %{name}/rpm
 
@@ -30,8 +33,8 @@ Source: http://dl.sf.net/bochs/bochs-%{version}.tar.gz
 Patch: bochs-2.1.1-gcc342.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
 
 %description
 Bochs is a portable x86 PC emulation software package that emulates enough of

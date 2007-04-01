@@ -3,6 +3,18 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
+
 %{?fc1:%define _without_xorg 1}
 %{?el3:%define _without_xorg 1}
 %{?rh9:%define _without_xorg 1}
@@ -25,10 +37,14 @@ Source: http://icculus.org/neverball/neverball-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl, zlib-devel
 BuildRequires: SDL-devel, SDL_image-devel, SDL_mixer-devel, SDL_ttf-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 # Mesa libGLU is required for correct linking
+%if 0%{?_without_modxorg:1}
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%else
+BuildRequires: libXt-devel, mesa-libGLU-devel
+%endif
 
 %description
 Tilt the floor to roll a ball through an obstacle course before time runs out.

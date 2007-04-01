@@ -3,14 +3,17 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
 
 %define gimp %(rpm -q gimp-devel | grep -q 1\.2; echo $?)
 
@@ -29,8 +32,8 @@ BuildRequires: libart_lgpl-devel >= 2.0, gimp-devel, autotrace-devel
 BuildRequires: gnome-libs-devel, autotrace
 BuildRequires: ImageMagick-devel, libtiff-devel, freetype-devel
 BuildRequires: libjpeg-devel, libpng-devel, bzip2-devel, libxml2-devel, zlib-devel
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
 Frontline provides a Gtk+/GNOME based GUI frontend for
@@ -75,9 +78,6 @@ autotrace.
 %endif
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.4-2.2
-- Rebuild for Fedora Core 5.
-
 * Tue Nov 26 2002 Dag Wieers <dag@wieers.com> - 0.5.4
 - Updated to 0.5.4
 

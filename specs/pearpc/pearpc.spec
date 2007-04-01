@@ -1,6 +1,20 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
+
 %define desktop_vendor rpmforge
 
 Summary: PowerPC Architecture Emulator
@@ -15,11 +29,12 @@ Source1: http://pearpc.sourceforge.net/pearpc3.png
 Source2: http://dl.sf.net/pearpc/pearpc-3gib.img.bz2
 Source3: http://dl.sf.net/pearpc/pearpc-6gib.img.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: XFree86-devel, SDL-devel
-BuildRequires: desktop-file-utils, gcc-c++
+BuildRequires: desktop-file-utils, gcc-c++, SDL-devel
 %ifarch %{ix86}
 BuildRequires: nasm
 %endif
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
 PearPC is an architecture-independent PowerPC platform emulator capable of

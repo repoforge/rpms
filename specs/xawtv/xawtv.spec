@@ -16,6 +16,16 @@
 %{?fc2:%define _without_modxorg 1}
 %{?fc1:%define _without_modxorg 1}
 
+%{!?dist:%define _with_lesstif 1}
+%{?el5:%define _with_openmotif 1}
+%{?fc6:%define _with_lesstif 1}
+%{?fc5:%define _with_openmotif 1}
+%{?fc4:%define _with_openmotif 1}
+%{?fc3:%define _with_lesstif 1}
+%{?el4:%define _with_openmotif 1}
+%{?el3:%define _with_openmotif 1}
+%{?el2:%define _with_lesstif 1}
+
 %define desktop_vendor rpmforge
 
 Summary: Television application for video4linux compliant devices
@@ -33,15 +43,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{!?_without_modxorg:BuildRequires: libX11-devel}
 BuildRequires: ncurses-devel, Xaw3d-devel, libjpeg-devel
 BuildRequires: zvbi-devel
-%{?el5:BuildRequires: openmotif-devel}
-%{?fc6:BuildRequires: lesstif-devel}
-%{?fc5:BuildRequires: openmotif-devel}
-%{?fc4:BuildRequires: openmotif-devel}
-%{?fc3:BuildRequires: lesstif-devel}
-%{?el4:BuildRequires: openmotif-devel}
-%{?el3:BuildRequires: openmotif-devel}
-%{?el2:BuildRequires: lesstif-devel}
-#%{!?rh62:BuildRequires: openmotif-devel}
+%{?_with_lesstif:BuildRequires: lesstif-devel}
+%{?_with_openmotif:BuildRequires: openmotif-devel}
 %{?rh62:BuildRequires: Mesa-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 #BuildRequires: libdv-devel, libquicktime-devel

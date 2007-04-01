@@ -1,13 +1,22 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Björn Augustsson <d3august $ dtek , chalmers , se>
+
 # Screenshot: http://www.dtek.chalmers.se/~d3august/xt/bigshot.jpg
 
 %{?dist: %{expand: %%define %dist 1}}
 
-# Tag: test
-# ExcludeDist: fc1
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
 
 %{?fc1:%define _without_xorg 1}
 %{?el3:%define _without_xorg 1}
@@ -16,6 +25,10 @@
 %{?rh7:%define _without_xorg 1}
 %{?el2:%define _without_xorg 1}
 %{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
+# Tag: test
+# ExcludeDist: fc1
 
 Summary: Graphical version of the traceroute program
 Name: xtraceroute
@@ -31,8 +44,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: bind-utils, traceroute, gettext, gtk2-devel, gtk+-devel
 BuildRequires: gdk-pixbuf-devel
 %{?fc4:BuildRequires: gtkglarea2}
-%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU, XFree86-Mesa-libGL}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU, xorg-x11-Mesa-libGL}
+%if 0%{?_without_modxorg:1}
+%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
+%else
+BuildRequires: mesa-libGLU-devel
+%endif
 
 %description
 Xtraceroute is a graphical version of the traceroute program, which traces

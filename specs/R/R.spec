@@ -1,6 +1,19 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
+
 Summary: Language for data analysis and graphics
 Name: R
 Version: 2.4.1
@@ -14,10 +27,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, gcc-g77, tetex-latex, texinfo 
 BuildRequires: libpng-devel, libjpeg-devel, readline-devel, libtermcap-devel
-BuildRequires: XFree86-devel
 BuildRequires: tcl-devel, tk-devel
 BuildRequires: blas >= 3.0, pcre-devel, zlib-devel
 BuildRequires: java-1.4.2-gcj-compat
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 Requires: ggv, cups, firefox
 
 ### These are the submodules that R provides. Sometimes R modules say they

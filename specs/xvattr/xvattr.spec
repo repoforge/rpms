@@ -2,6 +2,19 @@
 # Authority: matthias
 # Upstream: Björn Englund <d4bjorn$dtek,chalmers,se>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
+
 Summary: Utility for getting and setting Xv attributes
 Name: xvattr
 Version: 1.3
@@ -11,7 +24,10 @@ Group: User Interface/X
 URL: http://www.dtek.chalmers.se/groups/dvd/
 Source: http://www.dtek.chalmers.se/groups/dvd/dist/xvattr-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: XFree86-devel, gtk+-devel
+
+BuildRequires: gtk+-devel
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
 This program is used for getting and setting Xv attributes such as

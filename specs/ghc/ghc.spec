@@ -3,6 +3,18 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
+
 %{?fc1:%define _without_xorg 1}
 %{?el3:%define _without_xorg 1}
 %{?rh9:%define _without_xorg 1}
@@ -10,6 +22,7 @@
 %{?rh7:%define _without_xorg 1}
 %{?el2:%define _without_xorg 1}
 %{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
 
 # Warning: you need a lot of diskspace if you want to build this rpm!
 
@@ -28,9 +41,13 @@ BuildRequires: readline-devel, readline
 BuildRequires: m4, python, perl
 BuildRequires: python-devel, docbook-dtds
 BuildRequires: openjade, jadetex
-%{?fc4:BuildRequires:compat-readline43}
-%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU, XFree86-Mesa-libGL}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU, xorg-x11-Mesa-libGL}
+%{?fc4:BuildRequires: compat-readline43}
+%if 0%{?_without_modxorg:1}
+%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
+%else
+BuildRequires: libXt-devel, mesa-libGLU-devel
+%endif
 Requires: readline
 
 %description

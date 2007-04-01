@@ -5,13 +5,16 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
 
 Summary: GD Perl interface to the GD Graphics Library
 Name: perl-GD
@@ -27,8 +30,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl >= 0:5.8.0, gd-devel >= 1.8.4, libpng-devel, zlib-devel
 BuildRequires: freetype-devel, libjpeg-devel
 Requires: perl >= 0:5.8.0
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
 perl-GD is a Perl interface to the gd graphics library. GD allows you

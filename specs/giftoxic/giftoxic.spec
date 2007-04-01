@@ -6,14 +6,17 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
 
 %define real_name giFToxic
 
@@ -29,8 +32,8 @@ Source: http://dl.sf.net/giftoxic/giFToxic-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gift-devel, gtk2-devel, gettext, bison
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 Requires: gift
 
 %description
@@ -49,11 +52,8 @@ development.
 %makeinstall
 %find_lang %{real_name}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -68,8 +68,5 @@ development.
 %{_datadir}/giFToxic/logo.png
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.10-1.2
-- Rebuild for Fedora Core 5.
-
 * Mon Jun 07 2004 Dries Verachtert <dries@ulyssis.org> - 0.0.10-1
 - Initial package.

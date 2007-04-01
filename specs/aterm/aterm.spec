@@ -6,14 +6,16 @@
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-# %{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
 
 %define desktop_vendor rpmforge
 
@@ -28,8 +30,8 @@ URL: http://aterm.sourceforge.net/
 Source: http://dl.sf.net/aterm/aterm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
@@ -99,8 +101,5 @@ EOF
 %{?_without_freedesktop:%{_datadir}/gnome/apps/System/aterm.desktop}
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.2-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Mar 20 2005 Dag Wieers <dag@wieers.com> - 0.4.2-1
 - Initial package. (using DAR)

@@ -3,14 +3,16 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
 
 Summary: Cute little penguins that walk along the top of your windows
 Name: xpenguins-applet
@@ -27,8 +29,8 @@ Requires: xpenguins >= 1.9
 BuildRequires: gnome-libs-devel, automake, autoconf, gnome-panel-devel
 # configure checks if the themes are available
 BuildRequires: xpenguins
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: libXpm-devel}
+%{!?_without_modxorg:BuildRequires: libXpm-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
 This program is a GNOME panel applet that animates a friendly family
