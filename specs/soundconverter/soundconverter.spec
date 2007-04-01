@@ -5,7 +5,7 @@
 
 Summary: Simple sound converter application
 Name: soundconverter
-Version: 0.8.6
+Version: 0.9.4
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -15,9 +15,8 @@ Source: http://download.berlios.de/soundconverter/soundconverter-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
-BuildRequires: desktop-file-utils
-Requires: pygtk2, gstreamer-python, gnome-python2-gconf
-
+BuildRequires: python-devel >= 2.3.3, gstreamer-python >= 0.10
+Requires: python >= 2.3.3, pygtk2, gstreamer-python >= 0.10, gnome-python2-gconf
 
 %description
 A simple sound converter application. It can convert from and to all
@@ -26,46 +25,31 @@ gstreamer supported formats.
 %prep
 %setup
 
-%{__perl} -pi.orig -e 's|^GLADE\s*=.*|GLADE="%{_datadir}/soundconverter/soundconverter.glade"|' soundconverter.py
-
-%{__cat} <<EOF >soundconverter.desktop
-[Desktop Entry]
-Encoding=UTF-8
-Name=SoundConverter
-Comment=Convert audio using GStreamer
-Exec=soundconverter
-Terminal=false
-Type=Application
-Icon=soundconverter.png
-Categories=GNOME;Application;AudioVideo;
-EOF
-
 %build
+%configure
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 soundconverter.py %{buildroot}%{_bindir}/soundconverter
-%{__install} -Dp -m0644 soundconverter.glade %{buildroot}%{_datadir}/soundconverter/soundconverter.glade
-%{__install} -Dp -m0644 logo.png %{buildroot}%{_datadir}/soundconverter/logo.png
-%{__install} -Dp -m0644 logo.png %{buildroot}%{_datadir}/pixmaps/soundconverter.png
-
-desktop-file-install --vendor %{desktop_vendor}    \
-	--dir %{buildroot}%{_datadir}/applications \
-	--add-category X-Red-Hat-Base              \
-	soundconverter.desktop
+%{__make} install DESTDIR="%{buildroot}"
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING README TODO
+%doc %{_mandir}/man1/soundconverter.1*
 %{_bindir}/soundconverter
+%{_datadir}/applications/soundconverter.desktop
+%{_datadir}/pixmaps/soundconverter-icon.png
 %{_datadir}/soundconverter/
-%{_datadir}/applications/*soundconverter.desktop
-%{_datadir}/pixmaps/soundconverter.png
 
 %changelog
+* Sun Apr 01 2007 Dag Wieers <dag@wieers.com> - 0.9.4-1
+- Updated to release 0.9.4.
+
 * Fri Jun 02 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.6-1
 - Updated to release 0.8.6.
 
