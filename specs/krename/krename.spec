@@ -4,7 +4,7 @@
 
 Summary: Batch file renamer
 Name: krename
-Version: 3.0.13
+Version: 3.0.14
 Release: 1
 License: GPL
 Group: Applications/Utilities
@@ -51,6 +51,9 @@ permissions, and file ownership.
 %{_datadir}/applications/kde/krename.desktop
 
 %changelog
+* Sun Apr 01 2007 Dries Verachtert <dries@ulyssis.org> - 3.0.14-1
+- Updated to release 3.0.14.
+
 * Sun Dec 03 2006 Dries Verachtert <dries@ulyssis.org> - 3.0.13-1
 - Updated to release 3.0.13.
 

@@ -4,8 +4,8 @@
 
 Summary: C language library for interprocess communications and common tasks
 Name: radlib
-Version: 2.6.2
-Release: 1.2
+Version: 2.7.0
+Release: 1
 License: BSD
 Group: Development/Libraries
 URL: http://www.radlib.teel.ws/
@@ -61,11 +61,14 @@ you will need to install %{name}-devel.
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/rad*.h
-%{_libdir}/librad.a
 %{_libdir}/librad.so
+%exclude %{_libdir}/librad.a
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sun Apr 01 2007 Dries Verachtert <dries@ulyssis.org> - 2.7.0-1
+- Updated to release 2.7.0.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.6.2-1.2
 - Rebuild for Fedora Core 5.
 

@@ -4,7 +4,7 @@
 
 Summary: Parallel implementation of bzip2
 Name: pbzip2
-Version: 1.0
+Version: 1.0.1
 Release: 1
 License: BSD
 Group: Applications/File
@@ -41,6 +41,9 @@ machines.
 %{_bindir}/pbzip2
 
 %changelog
+* Sun Apr 01 2007 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1
+- Updated to release 1.0.1.
+
 * Mon Mar 19 2007 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Updated to release 1.0.
 
