@@ -4,34 +4,30 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
 
 %{?fc2:%define _without_fdsbits_patch 1}
-
 %{?fc1:%define _without_fdsbits_patch 1}
-%{?fc1:%define _without_xorg 1}
-
 %{?el3:%define _without_fdsbits_patch 1}
-%{?el3:%define _without_xorg 1}
-
 %{?rh9:%define _without_fdsbits_patch 1}
-%{?rh9:%define _without_xorg 1}
-
 %{?rh8:%define _without_fdsbits_patch 1}
-%{?rh8:%define _without_xorg 1}
-
 %{?rh7:%define _without_fdsbits_patch 1}
-%{?rh7:%define _without_freedesktop 1}
-%{?rh7:%define _without_xorg 1}
-
 %{?el2:%define _without_fdsbits_patch 1}
-%{?el2:%define _without_freedesktop 1}
-%{?el2:%define _without_xorg 1}
-
 %{?rh6:%define _without_fdsbits_patch 1}
-%{?rh6:%define _without_xorg 1}
-
 %{?yd3:%define _without_fdsbits_patch 1}
-%{?yd3:%define _without_xorg 1}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
 
 %define desktop_vendor rpmforge
 
@@ -55,8 +51,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildPrereq: /usr/bin/perl, tcp_wrappers
 BuildRequires: zlib-devel, libjpeg-devel
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 #Obsoletes: vnc
 Conflicts: vnc
 
@@ -73,9 +69,6 @@ a VNC or a TightVNC server.
 %package server
 Summary: TightVNC server
 Group: User Interface/X
-
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 Requires: bash >= 2.0
 Prereq: /sbin/chkconfig, /sbin/service
 #Obsoletes: vnc-server

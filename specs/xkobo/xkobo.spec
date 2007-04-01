@@ -3,6 +3,18 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
+
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
@@ -23,11 +35,8 @@ Source: http://www.redhead.dk/download/pub/Xkobo/xkobo-%{real_version}.tar.gz
 Patch0: xkobo-1.11+w01-imake.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
-%{!?dist:BuildRequires: xorg-x11-devel}
-%{?fc3:BuildRequires: xorg-x11-devel}
-%{?fc2:BuildRequires: xorg-x11-devel}
-%{?fc1:BuildRequires: XFree86-devel}
-%{?rh9:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description

@@ -3,6 +3,18 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
+
 %{?fc1:%define _without_xorg 1}
 %{?el3:%define _without_xorg 1}
 %{?rh9:%define _without_xorg 1}
@@ -10,6 +22,17 @@
 %{?rh7:%define _without_xorg 1}
 %{?el2:%define _without_xorg 1}
 %{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
+%{!?dist:%define _with_lesstif 1}
+%{?el5:%define _with_openmotif 1}
+%{?fc6:%define _with_lesstif 1}
+%{?fc5:%define _with_openmotif 1}
+%{?fc4:%define _with_openmotif 1}
+%{?fc3:%define _with_lesstif 1}
+%{?el4:%define _with_openmotif 1}
+%{?el3:%define _with_openmotif 1}
+%{?el2:%define _with_lesstif 1}
 
 %define desktop_vendor rpmforge
 
@@ -24,11 +47,16 @@ URL: http://www.tux.org/~bagleyd/xlockmore.html
 Source: http://www.tux.org/~bagleyd/latest/xlockmore-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, esound-devel, gtk2-devel
-BuildRequires: openmotif-devel, openmotif, pam-devel
-%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGL, XFree86-Mesa-libGLU}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGL, xorg-x11-Mesa-libGLU}
+BuildRequires: gcc-c++, esound-devel, gtk2-devel, pam-devel
 BuildRequires: desktop-file-utils
+%{?_with_lesstif:BuildRequires: lesstif-devel}
+%{?_with_openmotif:BuildRequires: openmotif-devel}
+%if 0%{?_without_modxorg:1}
+%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
+%else
+BuildRequires: mesa-libGLU-devel
+%endif
 
 %description
 A screen locker and screen saver.

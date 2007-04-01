@@ -1,20 +1,23 @@
 # $Id$
-
 # Authority: dries
-# Upstream:
+
 # Screenshot: http://www.dooglio.net/VncSelector/screenshot.png
 
 # ExcludeDist: el3
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
 
 Summary: Manage a list of currently active VNC server sessions
 Name: vncselector
@@ -30,8 +33,8 @@ Source: http://dl.sf.net/vncselector/vncselector_%{version}.tar.gz
 # Source: http://vncselector.sourceforge.net/VncSelector_%{version}.tar.gz
 BuildRequires: fltk-devel, gcc-c++, autoconf, automake
 BuildRequires: libtool, libpng-devel, libjpeg-devel
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 Requires: fltk
 
 %description
@@ -51,7 +54,7 @@ server sessions. This can be useful in a thin client situation (run from
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m 755 src/vncselector %{buildroot}%{_bindir}/vncselector
+%{__install} -Dp -m0755 src/vncselector %{buildroot}%{_bindir}/vncselector
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -59,12 +62,9 @@ server sessions. This can be useful in a thin client situation (run from
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog INSTALL NEWS README TODO
-%{_bindir}/*
+%{_bindir}/vncselector
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.1-2.2
-- Rebuild for Fedora Core 5.
-
 * Tue Nov 08 2005 Dries Verachtert <dries@ulyssis.org> 1.6.1-2
 - Source url fixed.
 

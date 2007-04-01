@@ -4,6 +4,18 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
+
 %{?fc1:%define _without_xorg 1}
 %{?el3:%define _without_xorg 1}
 %{?rh9:%define _without_xorg 1}
@@ -11,6 +23,7 @@
 %{?rh7:%define _without_xorg 1}
 %{?el2:%define _without_xorg 1}
 %{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
 
 %define real_name Pike
 %define real_version v7.6.24
@@ -35,8 +48,12 @@ BuildRequires: freetype-devel, libjpeg-devel, libtiff-devel
 BuildRequires: pcre-devel, bzip2-devel, freeglut-devel, gtk2-devel
 BuildRequires: SDL-devel, pkgconfig, gtkglarea2-devel
 BuildRequires: gtkglarea, gtk+, gtk+-devel, SDL_mixer-devel
-%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGL, XFree86-Mesa-libGLU}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU,xorg-x11-Mesa-libGL}
+%if 0%{?_without_modxorg:1}
+%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
+%else
+BuildRequires: libXt-devel, mesa-libGLU-devel
+%endif
 
 %description
 Pike is a general purpose programming language, which means that you can put

@@ -1,6 +1,29 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
 %define desktop_vendor rpmforge
 
 Summary: The Open Racing Car Simulator
@@ -17,8 +40,12 @@ Source3: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-bt.tgz
 Source4: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-olethros.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: torcs-data, torcs-data-tracks-road, torcs-data-cars-extra
-%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU, XFree86-Mesa-libGL}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU, xorg-x11-Mesa-libGL}
+%if 0%{?_without_modxorg:1}
+%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
+%else
+BuildRequires: mesa-libGLU-devel
+%endif
 BuildRequires: gcc-c++, freeglut-devel, plib-devel >= 1.8.3
 BuildRequires: libpng-devel, libjpeg-devel, zlib-devel, openal-devel
 BuildRequires: desktop-file-utils

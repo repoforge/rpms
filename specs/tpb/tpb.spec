@@ -2,6 +2,19 @@
 # Authority: dag
 # Upstream: Markus Braun <markus,braun$krawel,de>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
+
 Summary: Utility to enable the IBM ThinkPad(tm) special keys
 Name: tpb
 Version: 0.6.3
@@ -14,7 +27,9 @@ Source: http://savannah.nongnu.org/download/tpb/tpb-%{version}.tar.gz
 #Source1: tpbrc
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gettext, XFree86-devel, xosd-devel >= 2.0
+BuildRequires: gettext, xosd-devel >= 2.0
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
 This program enables the IBM Thinkpad(tm) special keys. It is possible to bind

@@ -2,6 +2,29 @@
 # Authority: matthias
 # Upstream: <gtkglext-list$gnome,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
 Summary: OpenGL Extension to GTK
 Name: gtkglext
 Version: 1.0.6
@@ -9,14 +32,19 @@ Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://gtkglext.sourceforge.net/
+
 Source: http://dl.sf.net/gtkglext/gtkglext-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU, XFree86-Mesa-libGL}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU, xorg-x11-Mesa-libGL}
-BuildRequires: gtk2-devel
 
+BuildRequires: gtk2-devel
 # libtool *sigh*
 BuildRequires: gcc-c++
+%if 0%{?_without_modxorg:1}
+%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
+%else
+BuildRequires: libXt-devel, mesa-libGLU-devel
+%endif
 
 %description
 GtkGLExt is an OpenGL extension to GTK. It provides the GDK objects
@@ -27,7 +55,7 @@ make GTK+ widgets OpenGL-capable.
 %package devel
 Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
-Requires: %{name} = %{version}, XFree86-devel, gtk2-devel
+Requires: %{name} = %{version}, gtk2-devel
 
 %description devel
 This package contains the header files, static libraries and development
@@ -53,11 +81,8 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig &>/dev/null
-
-%postun
-/sbin/ldconfig &>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files

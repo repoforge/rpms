@@ -4,11 +4,26 @@
 %{?dist: %{expand: %%define %dist 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dist:%define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1} 
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -33,14 +48,12 @@ BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, SDL_net-devel
 BuildRequires: SDL_ttf-devel, SDL_gfx-devel
 BuildRequires: smpeg-devel, libjpeg-devel, libpng-devel
 BuildRequires: perl(Module::Build)
-%{?_with_modxorg:BuildRequires: libXt-devel, mesa-libGLU-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
-%{?el4:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
-%{?fc3:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
-%{?fc2:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
-%{?fc1:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
-%{?el3:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
-%{?rh9:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
+%if 0%{?_without_modxorg:1}
+%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
+%else
+BuildRequires: libXt-devel, mesa-libGLU-devel
+%endif
 Provides: SDL_perl = %{version}-%{release}
 Provides: SDL_Perl = %{version}-%{release}
 

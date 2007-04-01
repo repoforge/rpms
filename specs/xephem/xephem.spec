@@ -4,6 +4,29 @@
 # still work in progress
 # Tag: test
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
+
+%{!?dist:%define _with_lesstif 1}
+%{?el5:%define _with_openmotif 1}
+%{?fc6:%define _with_lesstif 1}
+%{?fc5:%define _with_openmotif 1}
+%{?fc4:%define _with_openmotif 1}
+%{?fc3:%define _with_lesstif 1}
+%{?el4:%define _with_openmotif 1}
+%{?el3:%define _with_openmotif 1}
+%{?el2:%define _with_lesstif 1}
+
 Summary: Attractive astronomical ephemeris program for X Windows
 Name: xephem
 Version: 3.7.2
@@ -20,8 +43,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Provides: perl(cgi-lib.pl)
 Requires: lesstif, libXmu, libXt, libXp
-# TODO without_modxorg
-BuildRequires: libXmu-devel, lesstif-devel, libXt-devel, libXp-devel, libXau-devel
+%{!?_without_modxorg:BuildRequires: libXmu-devel, libXt-devel, libXp-devel, libXau-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{?_with_lesstif:BuildRequires: lesstif-devel}
+%{?_with_openmotif:BuildRequires: openmotif-devel}
 
 %description
 XEphem is an interactive astronomical ephemeris program for X Windows

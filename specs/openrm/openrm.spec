@@ -1,14 +1,21 @@
 # $Id$
-
 # Authority: dries
 
 %define real_version 1.5.2-3
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?rh7:%define _without_freedesktop 1}
-%{?el2:%define _without_freedesktop 1}
-%{?rh6:%define _without_freedesktop 1}
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
+%{?yd3:%define _without_modxorg 1}
 
 %{?fc1:%define _without_xorg 1}
 %{?el3:%define _without_xorg 1}
@@ -18,6 +25,10 @@
 %{?el2:%define _without_xorg 1}
 %{?rh6:%define _without_xorg 1}
 %{?yd3:%define _without_xorg 1}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
 
 Summary: OpenRM Scene Graph
 Name: openrm
@@ -33,8 +44,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 #BuildArch: i486
 
 BuildRequires: gcc-c++, libjpeg-devel
+%if 0%{?_without_modxorg:1}
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
+%else
+BuildRequires: libXt-devel, mesa-libGLU-devel
+%endif
 
 %description
 OpenRM Scene Graph is a developers toolkit that implements a scene graph
@@ -70,11 +85,8 @@ you will need to install %{name}-devel.
 %makeinstall INSTALL_DIR=%{buildroot}/usr
 %{__mv} %{buildroot}/usr/docs .
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -91,8 +103,5 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.5.2.3-1.2
-- Rebuild for Fedora Core 5.
-
 * Mon Aug 09 2004 Dries Verachtert <dries@ulyssis.org> - 1.5.2.3-1
 - Initial package.

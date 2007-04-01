@@ -10,16 +10,24 @@
 %{?fc3:%define _without_modxorg 1}
 %{?fc2:%define _without_modxorg 1}
 %{?fc1:%define _without_modxorg 1}
-
-%{?el3:%define _without_freeglut 1}
 %{?el3:%define _without_modxorg 1}
-
-%{?rh9:%define _without_freeglut 1}
 %{?rh9:%define _without_modxorg 1}
-
 %{?rh7:%define _without_modxorg 1}
 %{?el2:%define _without_modxorg 1}
 %{?yd3:%define _without_modxorg 1}
+
+%{?el3:%define _without_freeglut 1}
+%{?rh9:%define _without_freeglut 1}
+
+%{!?dist:%define _with_lesstif 1}
+%{?el5:%define _with_openmotif 1}
+%{?fc6:%define _with_lesstif 1}
+%{?fc5:%define _with_openmotif 1}
+%{?fc4:%define _with_openmotif 1}
+%{?fc3:%define _with_lesstif 1}
+%{?el4:%define _with_openmotif 1}
+%{?el3:%define _with_openmotif 1}
+%{?el2:%define _with_lesstif 1}
 
 %define real_version 0.29beta596
 
@@ -40,10 +48,8 @@ BuildRequires: libjpeg-devel, libpng-devel, ImageMagick
 %{?_without_modxorg:BuildRequires: XFree86-devel, /usr/X11R6/bin/Xvfb}
 %{!?_without_freeglut:BuildRequires: freeglut-devel}
 %{?_without_freeglut:BuildRequires: glut-devel}
-%{?el5:BuildRequires: lesstif-devel}
-%{?fc6:BuildRequires: lesstif-devel}
-%{?fc5:BuildRequires: openmotif-devel}
-%{?fc4:BuildRequires: openmotif-devel}
+%{?_with_lesstif:BuildRequires: lesstif-devel}
+%{?_with_openmotif:BuildRequires: openmotif-devel}
 
 %description
 The white_dune program is a graphical VRML97 editor and animation tool.
@@ -64,7 +70,7 @@ Some documentation how to use dune is included.
   --with-optimization \
   --with-buginlesstif \
   --without-devil \
-  --with-vrmlbrowser=mozilla \
+  --with-vrmlbrowser="mozilla" \
   --with-helpurl="%{_datadir}/doc/white_dune-%{real_version}/docs/index.html" \
   --with-nurbscurveprotourl="%{_datadir}/misc/white_dune/NurbsCurvePROTO.wrl" \
   --with-nurbsgroupprotourl="%{_datadir}/misc/white_dune/NurbsGroupPROTO.wrl" \
@@ -89,14 +95,15 @@ Some documentation how to use dune is included.
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README docs
+%doc %{_mandir}/man1/dune.1*
+%doc %{_mandir}/man1/illegal2vrml.1*
 %{_bindir}/dune
 %{_bindir}/dune4kids
 %{_bindir}/illegal2vrml
-%{_mandir}/man1/*.1*
 %{_datadir}/applications/dune.desktop
 %{_datadir}/applications/dune4kids.desktop
-%{_datadir}/icons/*/48x48/apps/dune.png
-%{_datadir}/icons/*/48x48/apps/dune4kids.png
+%{_datadir}/icons/Bluecurve/48x48/apps/dune.png
+%{_datadir}/icons/Bluecurve/48x48/apps/dune4kids.png
 
 %changelog
 * Sun Apr 01 2007 Dries Verachtert <dries@ulyssis.org> - 0.29-0.beta596
