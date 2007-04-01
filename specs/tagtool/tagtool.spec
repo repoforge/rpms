@@ -17,7 +17,7 @@ URL: http://pwp.netcabo.pt/paol/tagtool/
 Source: http://dl.sf.net/tagtool/tagtool-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: automake, autoconf, glib2-devel >= 2.4, gtk2-devel >= 2.6, libglade2-devel >= 2.8
+BuildRequires: automake, autoconf, glib2-devel >= 2.4, gtk2-devel >= 2.8, libglade2-devel >= 2.6
 BuildRequires: id3lib-devel, libogg-devel, libvorbis-devel, perl-XML-Parser
 BuildRequires: gettext, desktop-file-utils
 

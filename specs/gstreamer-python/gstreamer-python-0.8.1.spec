@@ -1,68 +1,65 @@
 # $Id$
-# Authority: dag
+# Authority: thias
 
-# ExclusiveDist: el5
-
-%define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")
-
-%define real_name gst-python
+# ExclusiveDist: el4
 
 Summary: Python bindings for GStreamer
 Name: gstreamer-python
-Version: 0.10.7
+Version: 0.8.1
 Release: 1
-License: LGPL
 Group: Development/Languages
+License: LGPL
 URL: http://gstreamer.net/
-
 Source: http://gstreamer.freedesktop.org/src/gst-python/gst-python-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-BuildRequires: gcc-c++, python, python-devel >= 2.3, pygtk2-devel >= 2.4.0
-BuildRequires: gstreamer-devel, gstreamer-plugins-base-devel, xmlto, links
-# xwindowlistener needs X11 headers
-BuildRequires: libX11-devel
 Requires: gnome-python2, pygtk2
-Requires: gstreamer, gstreamer-plugins-base-devel
-
+Requires: gstreamer, gstreamer-plugins
+BuildRequires: gcc-c++, python, python-devel >= 2.3, pygtk2-devel >= 2.4.0
+BuildRequires: gstreamer-devel, gstreamer-plugins-devel, xmlto, links
+# xwindowlistener needs X11 headers
+BuildRequires: XFree86-devel
 Provides: python-gstreamer = %{version}-%{release}
+
 
 %description
 This module contains a wrapper that allows GStreamer applications to be
 written in Python.
 
+
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n gst-python-%{version}
+
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
+%makeinstall
+
+# The __init__.py* files go into lib instead of lib64, so fix that
+if [ "%{_lib}" != "lib" ]; then
+    %{__mv} %{buildroot}%{_prefix}/lib/python?.?/site-packages/gst/__init__.* \
+            %{buildroot}%{_libdir}/python?.?/site-packages/gst/
+fi
+
 
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README
+%doc AUTHORS COPYING ChangeLog NEWS README
+%doc examples/gst/*.py examples/gstplay/*.py
+%{_libdir}/python?.?/site-packages/gst/
 %{_datadir}/gst-python/
-%{_libdir}/pkgconfig/gst-python-0.10.pc
-%{python_sitearch}/gst-0.10/
-%{python_sitearch}/pygst.pth
-%{python_sitearch}/pygst.py
-%{python_sitearch}/pygst.pyc
-%{python_sitearch}/pygst.pyo
+%{_libdir}/pkgconfig/*.pc
+
 
 %changelog
-* Sun Apr 01 2007 Dag Wieers <dag@wieers.com> - 0.10.7-1
-- Updated to release 0.10.7.
-
-* Thu Aug 25 2005 Matthias Saou <http://freshrpms.net> 0.8.2-1
-- Update to 0.8.2.
-
 * Thu Dec  9 2004 Matthias Saou <http://freshrpms.net> 0.8.1-1
 - Update to 0.8.1.
 
