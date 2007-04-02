@@ -17,11 +17,11 @@
 
 Summary: Proprietary ATI hardware accelerated OpenGL display driver
 Name: ati-x11-drv
-Version: 8.34.8
+Version: 8.35.5
 Release: 1
 License: Proprietary
 Group: User Interface/X Hardware Support
-URL: http://www.ati.com/online/customercareportal/linux.html
+URL: http://ati.amd.com/support/drivers/linux/linux-radeon.html
 Source0: http://www2.ati.com/drivers/linux/ati-driver-installer-%{version}-x86.x86_64.run
 Source1: fireglcontrolpanel.desktop
 Source2: Makefile.fglrx
@@ -267,6 +267,7 @@ fi
 %{_libdir}/xorg/modules/drivers/*.so
 %{_libdir}/xorg/modules/linux/*.so
 # Tools and utilities
+%{_bindir}/amdcccle
 %{_bindir}/aticonfig
 %{_bindir}/fgl_glxgears
 %{_bindir}/fglrxinfo
@@ -287,6 +288,13 @@ fi
 
 
 %changelog
+* Mon Apr  2 2007 Matthias Saou <http://freshrpms.net/> 8.35.5-1
+- Update to 8.35.5.
+- Include new amdcccle (AMD Catalyst Control Centre: Linux Edition).
+
+* Thu Mar 15 2007 Matthias Saou <http://freshrpms.net/> 8.34.8-2
+- Include patch to rebuild against 2.6.20 kernels (FC6 updates testing).
+
 * Thu Feb 22 2007 Matthias Saou <http://freshrpms.net/> 8.34.8-1
 - Update to 8.34.8.
 
