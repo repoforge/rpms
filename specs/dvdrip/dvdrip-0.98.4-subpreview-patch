@@ -1,0 +1,16 @@
+Index: lib/Video/DVDRip/GUI/Preview.pm
+===================================================================
+RCS file: /home/cvsroot/dvdrip/lib/Video/DVDRip/GUI/Preview.pm,v
+retrieving revision 1.21.2.1
+diff -u -r1.21.2.1 Preview.pm
+--- lib/Video/DVDRip/GUI/Preview.pm	24 Mar 2007 10:42:11 -0000	1.21.2.1
++++ lib/Video/DVDRip/GUI/Preview.pm	30 Mar 2007 08:29:16 -0000
+@@ -62,7 +62,7 @@
+ sub open {
+     my $self = shift;
+ 
+-    return if $self->get_transcode_pipe;
++    return if $self->transcode_pipe;
+ 
+     my $socket_file
+         = "/tmp/tc.$$." . time . ( int( rand(100000) ) ) . ".sock";
