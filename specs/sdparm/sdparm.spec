@@ -3,7 +3,7 @@
 
 Summary: List or change SCSI disk parameters
 Name: sdparm
-Version: 1.00
+Version: 1.01
 Release: 1
 License: FreeBSD
 Group: System Environment/Base
@@ -46,5 +46,8 @@ such that the disk stops operating or is slowed down. Use with care.
 %{_bindir}/sdparm
 
 %changelog
+* Sun Apr 15 2007 Dag Wieers <dag@wieers.com> - 1.01-1
+- Updated to release 1.01.
+
 * Tue Oct 17 2006 Dag Wieers <dag@wieers.com> - 1.00-1
 - Initial package. (based on upstream package)

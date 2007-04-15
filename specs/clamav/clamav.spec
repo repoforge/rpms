@@ -10,8 +10,8 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.90.1
-Release: 4
+Version: 0.90.2
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -358,6 +358,9 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
+* Sun Apr 15 2007 Dag Wieers <dag@wieers.com> - 0.90.2-1
+- Updated to release 0.90.2.
+
 * Fri Mar 09 2007 Dag Wieers <dag@wieers.com> - 0.90.1-4
 - Removed circular dependency.
 

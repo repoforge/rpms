@@ -2,16 +2,15 @@
 # Authority: dries
 # Upstream: Robin Rowe <rower$movieeditor,com>
 
-%define desktop_vendor rpmforge
-%define real_version 0.21-2
+%define real_version 0.20-1
 
 Summary: Motion picture frame-by-frame retouching and dust-busting
 Name: cinepaint
-Version: 0.21.2
-Release: 1
+Version: 0.20.1
+Release: 1.2
 License: GPL
 Group: Applications/Multimedia
-URL: http://cinepaint.org/
+URL: http://sourceforge.net/projects/cinepaint
 
 Source: http://dl.sf.net/cinepaint/cinepaint-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -43,7 +42,7 @@ you will need to install %{name}-devel.
 %prep
 %setup -n %{name}-%{real_version}
 
-%{__cat} <<EOF >cinepaint.desktop
+%{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
 Name=Cinepaint
 Comment=Motion picture retouching
@@ -52,7 +51,6 @@ Terminal=false
 Type=Application
 StartupNotify=true
 Categories=Application;AudioVideo;
-Encoding=UTF8
 EOF
 
 %build
@@ -63,13 +61,13 @@ EOF
 %{__rm} -rf %{buildroot}
 %{__perl} -pi -e 's|programplugindir = /usr|programplugindir = %{buildroot}/usr|g;' $(find . -type f | egrep 'Makefile$')
 %{__perl} -pi -e 's|programdatadir = /usr|programdatadir = %{buildroot}/usr|g;' $(find . -type f | egrep 'Makefile$')
-%{__make} install DESTDIR="%{buildroot}"
+%makeinstall
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor %{desktop_vendor}    \
+desktop-file-install --vendor rpmforge             \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	cinepaint.desktop
+	%{name}.desktop
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -80,13 +78,12 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
-%doc %{_mandir}/man1/cinepaint.1*
-%doc %{_mandir}/man1/cinepainttool.1*
+%doc %{_mandir}/man1/cinepaint*
 %{_bindir}/cinepaint
 %{_bindir}/cinepainttool
 %{_bindir}/cinepaint-remote
 %{_libdir}/libcinepaint.so.*
-%{_datadir}/applications/%{desktop_vendor}-cinepaint.desktop
+%{_datadir}/applications/*cinepaint.desktop
 %{_libdir}/cinepaint/
 %{_datadir}/cinepaint/
 # tofix?
@@ -95,17 +92,16 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_prefix}/libexec/rotate
 
 %files devel
-%defattr(-, root, root, 0755)
-%{_datadir}/aclocal/cinepaint.m4
 %{_includedir}/cinepaint/
-%exclude %{_libdir}/libcinepaint.a
-%exclude %{_libdir}/libcinepaint.la
+%{_libdir}/libcinepaint.a
 %{_libdir}/libcinepaint.so
 %{_libdir}/pkgconfig/cinepaint-gtk.pc
+%{_datadir}/aclocal/cinepaint.m4
+%exclude %{_libdir}/*.la
 
 %changelog
-* Sun Apr 01 2007 Dag Wieers <dag@wieers.com> - 0.21.2-1
-- Updated to release 0.21-2.
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.20.1-1.2
+- Rebuild for Fedora Core 5.
 
 * Thu Nov 10 2005 Dries Verachtert <dries@ulyssis.org> - 0.20.1-1
 - Initial package.

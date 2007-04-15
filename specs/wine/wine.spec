@@ -33,7 +33,6 @@
 
 ### EL2 has neither glut nor freeglut
 %{?el2:%define _without_alsa 1}
-%{?el2:%define _without_arts 1}
 %{?el2:%define _without_cups 1}
 %{?el2:%define _without_freedesktop 1}
 %{?el2:%define _without_freeglut 1}
@@ -47,8 +46,8 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 0.9.33
-Release: 2
+Version: 0.9.35
+Release: 1
 License: LGPL
 Group: Applications/Emulators
 URL: http://www.winehq.org/
@@ -67,7 +66,6 @@ BuildRequires: libxml2-devel, libxslt-devel, openldap-devel
 BuildRequires: zlib-devel, ncurses-devel
 BuildRequires: sane-backends-devel
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
-%{!?_without_arts:BuildRequires: arts-devel}
 %{!?_without_cups:BuildRequires: cups-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_freeglut:BuildRequires: freeglut-devel}
@@ -108,18 +106,11 @@ Requires(preun): /sbin/chkconfig, /sbin/service
 %{?_with_modxorg:Requires: /usr/bin/xmessage}
 %{!?_with_modxorg:Requires: /usr/X11R6/bin/xmessage}
 Obsoletes: wine-tools <= %{version}-%{release}
+Obsoletes: wine-arts <= %{version}-%{release}
 Provides: wine-tools = %{version}-%{release}
 
 %description core
 Wine core package includes the basic wine stuff needed by all other packages.
-
-%package arts
-Summary: Arts sound support for wine
-Group: System Environment/Libraries
-Requires: wine-core = %{version}-%{release}
-
-%description arts
-Arts sound support for wine.
 
 %package capi
 Summary: ISDN support for wine
@@ -376,9 +367,6 @@ fi
 /sbin/ldconfig
 update-desktop-database &>/dev/null || :
 
-%post arts -p /sbin/ldconfig
-%postun arts -p /sbin/ldconfig
-
 %post capi -p /sbin/ldconfig
 %postun capi -p /sbin/ldconfig
 
@@ -477,6 +465,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/regsvr32.exe.so
 %{_libdir}/wine/rpcss.exe.so
 %{_libdir}/wine/rundll32.exe.so
+%{_libdir}/wine/spoolsv.exe.so
 %{_libdir}/wine/start.exe.so
 %{_libdir}/wine/taskmgr.exe.so
 %{_libdir}/wine/uninstaller.exe.so
@@ -493,6 +482,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/winhelp.exe.so
 %{_libdir}/wine/winver.exe.so
 %{_libdir}/wine/wordpad.exe.so
+%{_libdir}/wine/xcopy.exe.so
 ### dll16
 %{_libdir}/wine/avifile.dll16
 %{_libdir}/wine/commdlg.dll16
@@ -601,6 +591,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/itss.dll.so
 %{_libdir}/wine/kernel32.dll.so
 %{_libdir}/wine/localspl.dll.so
+%{_libdir}/wine/localui.dll.so
 %{_libdir}/wine/lz32.dll.so
 %{_libdir}/wine/mapi32.dll.so
 %{_libdir}/wine/mciavi32.dll.so
@@ -741,11 +732,6 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/hhctrl.ocx.so
 %{_libdir}/wine/msisys.ocx.so
 
-%files arts
-%defattr(-, root, root, 0755)
-%dir %{_libdir}/wine/
-%{_libdir}/wine/winearts.drv.so
-
 %files capi
 %defattr(-, root, root, 0755)
 %dir %{_libdir}/wine/
@@ -811,6 +797,12 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Sun Apr 15 2007 Dag Wieers <dag@wieers.com> - 0.9.35-1
+- Updated to release 0.9.35.
+
+* Mon Apr 02 2007 Dag Wieers <dag@wieers.com> - 0.9.34-1
+- Updated to release 0.9.34.
+
 * Wed Mar 21 2007 Dag Wieers <dag@wieers.com> - 0.9.33-2
 - Fixed a dependency reference to /usr/X11R6/bin/xmessage on EL5.
 

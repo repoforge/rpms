@@ -60,10 +60,10 @@ desktop-file-install --delete-original             \
 	%{buildroot}%{_datadir}/applications/tagtool.desktop
 
 %pre
-%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor &>/dev/null || :
 
 %post
-%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor &>/dev/null || :
 
 %clean
 %{__rm} -rf %{buildroot}

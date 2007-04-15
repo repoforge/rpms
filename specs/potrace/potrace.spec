@@ -4,8 +4,8 @@
 
 Summary: Transforms bitmaps into vector graphics
 Name: potrace
-Version: 1.7
-Release: 2
+Version: 1.8
+Release: 1
 License: GPL
 Group: Applications/File
 URL: http://potrace.sourceforge.net/
@@ -45,6 +45,9 @@ to any resolution.
 %{_bindir}/potrace
 
 %changelog
+* Sun Apr 15 2007 Dag Wieers <dag@wieers.com> - 1.8-1
+- Updated to release 1.8.
+
 * Sun Jan 21 2007 Dag Wieers <dag@wieers.com> - 1.7-2
 - Fix group tag.
 
