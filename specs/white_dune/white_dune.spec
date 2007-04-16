@@ -29,12 +29,12 @@
 %{?el3:%define _with_openmotif 1}
 %{?el2:%define _with_lesstif 1}
 
-%define real_version 0.29beta596
+%define real_version 0.29beta607
 
 Summary: Graphical VRML97 editor and animation tool
 Name: white_dune
 Version: 0.29
-Release: 0.beta596
+Release: 0.beta607
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.csv.ica.uni-stuttgart.de/vrml/dune/
@@ -106,6 +106,9 @@ Some documentation how to use dune is included.
 %{_datadir}/icons/Bluecurve/48x48/apps/dune4kids.png
 
 %changelog
+* Mon Apr 16 2007 Dries Verachtert <dries@ulyssis.org> - 0.29-0.beta607
+- Updated to release 0.29-0.beta607.
+
 * Sun Apr 01 2007 Dries Verachtert <dries@ulyssis.org> - 0.29-0.beta596
 - Updated to release 0.29-0.beta596.
 
