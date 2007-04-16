@@ -4,8 +4,8 @@
 
 Summary: Implementation of the RFC1413 identification server
 Name: oidentd
-Version: 2.0.7
-Release: 4
+Version: 2.0.8
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://ojnk.sourceforge.net/
@@ -78,6 +78,9 @@ fi
 
 
 %changelog
+* Mon Apr 16 2007 Dries Verachtert <dries@ulyssis.org> - 2.0.8-1
+- Updated to release 2.0.8.
+
 * Wed Nov  3 2004 Matthias Saou <http://freshrpms.net/> 2.0.7-4
 - Rebuild for Fedora Core 3.
 - Change /etc/init.d to /etc/rc.d/init.d and minor other spec tweaks.

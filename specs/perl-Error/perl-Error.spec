@@ -5,8 +5,8 @@
 
 Summary: Error and exception handling in an OO-ish way module for perl
 Name: perl-Error
-Version: 0.15
-Release: 2
+Version: 0.17008
+Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Error/
@@ -56,6 +56,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 
 %changelog
+* Mon Apr 16 2007 Dries Verachtert <dries@ulyssis.org> - 0.17008-1
+- Updated to release 0.17008.
+
 * Wed May 26 2004 Matthias Saou <http://freshrpms.net/> 0.15-2
 - Rebuild for Fedora Core 2.
 
