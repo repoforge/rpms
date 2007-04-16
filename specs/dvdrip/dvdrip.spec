@@ -11,15 +11,13 @@
 
 Summary: Graphical DVD ripping and encoding tool based on transcode
 Name: dvdrip
-Version: 0.98.4
-Release: 2
+Version: 0.98.6
+Release: 1
 License: Artistic or GPL
 Group: Applications/Multimedia
 URL: http://www.exit1.org/dvdrip/
 Source: http://www.exit1.org/dvdrip/dist/dvdrip-%{version}.tar.gz
 Patch0: Video-DVDRip-0.97.8-nontplworkaround.patch
-Patch1: dvdrip-0.98.4-subpreview-patch
-Patch2: dvdrip-0.98.4-grab-preview-ffmpeg.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: transcode >= 0.6.13
 Requires: ImageMagick, ogmtools, subtitleripper, vcdimager, lsdvd
@@ -41,8 +39,6 @@ transcode and many other Open Source tools.
 %prep
 %setup
 %patch0 -p1 -b .nontplworkaround
-%patch1 -p0 -b .subpreview
-%patch2 -p0 -b .grab-preview-ffmpeg
 
 
 %build
@@ -114,6 +110,9 @@ EOF
 
 
 %changelog
+* Mon Apr 16 2007 Matthias Saou <http://freshrpms.net/> 0.98.6-1
+- Update to 0.98.6.
+
 * Mon Apr  2 2007 Matthias Saou <http://freshrpms.net/> 0.98.4-2
 - Include two fixes from Jörn.
 
