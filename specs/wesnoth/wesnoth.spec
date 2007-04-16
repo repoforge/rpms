@@ -8,13 +8,13 @@
 
 Summary: Battle for Wesnoth is a fantasy turn-based strategy game
 Name: wesnoth
-Version: 1.2
+Version: 1.2.4
 Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://www.wesnoth.org/
 
-Source: http://www.wesnoth.org/files/wesnoth-%{version}.tar.gz
+Source: http://www.wesnoth.org/files/wesnoth-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, make, SDL-devel >= 1.2.7
 BuildRequires: SDL_image-devel, SDL_ttf-devel, SDL_net-devel
@@ -71,6 +71,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/wesnoth/
 
 %changelog
+* Mon Apr 16 2007 Dries Verachtert <dries@ulyssis.org> - 1.2.4-1
+- Updated to release 1.2.4.
+
 * Mon Dec 25 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1
 - Updated to release 1.2.
 

@@ -1,11 +1,12 @@
 # $Id$
 # Authority: dries
 
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 Summary: Object shell
 Name: osh
-Version: 0.8.0
+Version: 0.8.1
 Release: 1
 License: GPL
 Group: System Environment/Shells
@@ -28,8 +29,8 @@ Unix environment.
 
 %prep
 %setup
-# it tries to install ../osh-0.8.0.tar.gz in the datadir
-%{__perl} -pi -e "s|, .\.\.\/osh-0.8.0.tar.gz.||g;" setup.py
+# it tries to install ../osh-%{version}.tar.gz in the datadir
+%{__perl} -pi -e "s|, .\.\.\/osh-%{version}.tar.gz.||g;" setup.py
 
 %build
 CFLAGS="%{optflags}" %{__python} setup.py build
@@ -48,10 +49,13 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{_bindir}/osh
 %{_bindir}/oshtestssh
 %{_bindir}/remoteosh
-%{python_sitearch}/osh/
+%{python_sitelib}/osh/
 %{_datadir}/osh/
 
 %changelog
+* Mon Apr 16 2007 Dries Verachtert <dries@ulyssis.org> - 0.8.1-1
+- Updated to release 0.8.1.
+
 * Mon Jan 08 2007 Dries Verachtert <dries@ulyssis.org> - 0.8.0-1
 - Updated to release 0.8.0.
 

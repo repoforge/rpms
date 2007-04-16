@@ -4,8 +4,8 @@
 
 Summary: Dictionary lookup program
 Name: ding
-Version: 1.4
-Release: 1.2
+Version: 1.5
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www-user.tu-chemnitz.de/~fri/ding/
@@ -34,8 +34,14 @@ for quick and easy lookups.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -D -m0755 ding %{buildroot}%{_bindir}/ding
-%{__install} -d %{buildroot}%{_datadir}/dict
+%{__install} -d %{buildroot}%{_datadir}/dict \
+	%{buildroot}%{_datadir}/applications \
+	%{buildroot}%{_datadir}/pixmaps \
+	%{buildroot}%{_mandir}/man1
 %{__install} -m0644 *-*.txt %{buildroot}%{_datadir}/dict/
+%{__install} -m0644 ding.desktop %{buildroot}%{_datadir}/applications/
+%{__install} -m0644 ding.png %{buildroot}%{_datadir}/pixmaps/
+%{__install} -m0644 ding.1 %{buildroot}%{_mandir}/man1/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -45,8 +51,14 @@ for quick and easy lookups.
 %doc COPYING README
 %{_bindir}/ding
 %{_datadir}/dict/de-en.txt
+%{_datadir}/pixmaps/ding.png
+%{_datadir}/applications/ding.desktop
+%doc %{_mandir}/man1/ding.1*
 
 %changelog
+* Mon Apr 16 2007 Dries Verachtert <dries@ulyssis.org> - 1.5-1
+- Updated to release 1.5.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1.2
 - Rebuild for Fedora Core 5.
 
