@@ -5,15 +5,16 @@
 
 Summary: Extra libraries for the Xine library
 Name: xine-lib-moles
-Version: 1.1.4
+Version: 1.1.5
 Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://xinehq.de/
-Source0: http://dl.sf.net/xine/xine-lib-%{version}.tar.bz2
+Source0: http://downloads.sf.net/xine/xine-lib-%{version}.tar.bz2
 # WARNING : Needs to be from the i386 package in order to contain vidix files
 Source1: rpm_-ql_xine-lib.txt
 Source2: rpm_-ql_xine-lib-extras.txt
+Patch0: xine-lib-1.1.5-pthread-check.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xine-lib = %{version}
 Requires: libdvdcss
@@ -41,14 +42,21 @@ Available rpmbuild rebuild options :
 
 %prep
 %setup -n xine-lib-%{version}
+%patch0 -p1 -b .pthread-check
+# Avoid standard rpaths on lib64 archs
+%{__perl} -pi -e 's|"/lib /usr/lib\b|"/%{_lib} %{_libdir}|' configure
 
 
 %build
 %configure \
+    --disable-rpath \
     %{?_with_extffmpeg:--with-external-ffmpeg} \
     %{!?_with_extdvdnav:--with-included-dvdnav} \
     --with-external-a52dec \
     --with-external-libmad
+# Remove /usr/lib64 RPATH on 64bit
+#sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
+#sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 %{__make} %{?_smp_mflags}
 
 
@@ -57,9 +65,11 @@ Available rpmbuild rebuild options :
 %{__make} install DESTDIR="`pwd`/tmp"
 # Only a small part of the libs are what we want, so clean up all the ones
 # from packages already in Extras
-EXCLUDE="`grep -h "plugins.*\.so$" %{SOURCE1} %{SOURCE2} | cut -d "/" -f 4-`"
-for lib in ${EXCLUDE}; do
-    %{__rm} -f tmp%{_libdir}/${lib}
+EXCLUDE="`grep -h 'xine/plugins/%{version}/' %{SOURCE1} %{SOURCE2} \
+    | cut -d '/' -f 4-`"
+# Remove only files, not directories
+for file in ${EXCLUDE}; do
+    test -f tmp%{_libdir}/${file} && %{__rm} -f tmp%{_libdir}/${file}
 done
 # ...then move all the remaining ones to be included.
 %{__mkdir_p} %{buildroot}%{_libdir}
@@ -78,6 +88,12 @@ done
 
 
 %changelog
+* Mon Apr 16 2007 Matthias Saou <http://freshrpms.net/> 1.1.5-1
+- Update to 1.1.5.
+- Include pthread patch (thanks to Ville Skyttä).
+- Better handle installation of wanted files (new "mime.types" in the way).
+- Remove /usr/lib64 RPATH on 64bit (taken from the xine-lib Fedora package).
+
 * Thu Feb  1 2007 Matthias Saou <http://freshrpms.net/> 1.1.4-1
 - Update to 1.1.4.
 - Switch back to .tar.bz2 since it's there again.
@@ -334,11 +350,11 @@ done
   (yeah, Fred, I'm doing that for you ;-)).
 
 * Thu Nov  1 2001 Matthias Saou <http://freshrpms.net/>
-- Added the missing xineshot to %files.
+- Added the missing xineshot to %%files.
 - Removed the menu navigation plugin : It's so buggy and not moving very
   fast. If you want menu support, try Ogle, it's worth it!
 - Added new man pages translations.
-- Cleaned-up the %doc section, lots were added recently.
+- Cleaned-up the %%doc section, lots were added recently.
 - Modified the way the target cpu is forced, it should now be possible to
   rebuild for anything else than i686.
 
