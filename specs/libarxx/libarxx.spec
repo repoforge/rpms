@@ -4,7 +4,7 @@
 
 Summary: Library for accessing ARX archives
 Name: libarxx
-Version: 0.7.1
+Version: 0.7.5
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -60,12 +60,15 @@ you will need to install %{name}-devel.
 
 %files devel
 %{_includedir}/libarxx/
-%{_libdir}/libarxx.a
+%exclude %{_libdir}/libarxx.a
 %{_libdir}/libarxx.so
 %{_libdir}/pkgconfig/libarxx.pc
 %exclude %{_libdir}/*.la
 
 %changelog
+* Mon Apr 16 2007 Dries Verachtert <dries@ulyssis.org> - 0.7.5-1
+- Updated to release 0.7.5.
+
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.1-1
 - Updated to release 0.7.1.
 
