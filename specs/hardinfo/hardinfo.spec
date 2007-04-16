@@ -11,7 +11,7 @@
 
 Summary: Displays information about your hardware and operating system
 Name: hardinfo
-Version: 0.4.1
+Version: 0.4.2.1
 Release: 1
 License: GPL
 Group: Applications/System
@@ -32,16 +32,7 @@ USB, IDE, SCSI, Serial and parallel port devices.
 %prep
 %setup
 
-%{__cat} <<EOF >hardinfo.desktop
-[Desktop Entry]
-Name=Hardware Information
-Comment=Display information about your hardware and operating system
-Icon=gnome-settings.png
-Exec=hardinfo
-Terminal=false
-Type=Application
-Categories=Application;Utility;System;
-EOF
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' Makefile.in
 
 %build
 %configure
@@ -49,36 +40,26 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-
-### FIXME: Create directory as make install doesn't do that.
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%makeinstall
-
-%if %{?_without_freedesktop:1}0
-        %{__install} -Dp -m0644 hardinfo.desktop %{buildroot}%{_datadir}/gnome/apps/System/hardinfo.desktop
-%else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor %{desktop_vendor}    \
-		--add-category X-Red-Hat-Base              \
-		--dir %{buildroot}%{_datadir}/applications \
-		%{name}.desktop
-%endif
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog
-%{_bindir}/*
+%doc LICENSE
+%{_bindir}/hardinfo
+%{_datadir}/applications/hardinfo.desktop
 %{_datadir}/hardinfo/
-%if %{?_without_freedesktop:1}0
-	%{_datadir}/gnome/apps/System/*.desktop
-%else
-	%{_datadir}/applications/*.desktop
-%endif
+%{_libdir}/hardinfo/
 
 %changelog
+* Sun Apr 15 2007 Dag Wieers <dag@wieers.com> - 0.4.2.1-1
+- Updated to release 0.4.2.1.
+
+* Wed Apr 04 2007 Dag Wieers <dag@wieers.com> - 0.4.2-1
+- Updated to release 0.4.2.
+
 * Tue Jun 20 2006 Dag Wieers <dag@wieers.com> - 0.4.1-1
 - Updated to release 0.4.1.
 

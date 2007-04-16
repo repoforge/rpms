@@ -25,12 +25,13 @@ comments, and more.
 %setup
 
 %build
-%configure
+%configure \
+	--program-prefix="%{?_program_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -38,7 +39,7 @@ comments, and more.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING INSTALL NEWS README THANKS TODO
-%doc %{_mandir}/man6/cboard*
+%doc %{_mandir}/man6/cboard*.6*
 %{_bindir}/cboard
 %{_datadir}/cboard/
 

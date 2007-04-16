@@ -3,8 +3,8 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{rh7:%define _with_python15 1}
-%{el2:%define _with_python15 1}
+%{?rh7:%define _with_python15 1}
+%{?el2:%define _with_python15 1}
 
 Summary: Software CONStruction tool, next-generation build tool
 Name: scons

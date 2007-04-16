@@ -8,22 +8,25 @@
 %{?el2:%define _without_freedesktop 1}
 
 %define desktop_vendor rpmforge
+%define langpack_version 1.2.1
 
 Summary: graphical LDAP directory browser and editor
 Name: gq
-Version: 1.2.1
+Version: 1.2.2
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://biot.com/gq/
 
-Source: http://dl.sf.net/gqclient/gq-%{version}.tar.gz
+Source0: http://dl.sf.net/gqclient/gq-%{version}.tar.gz
+Source1: http://dl.sf.net/sourceforge/gqclient/gq-%{langpack_version}-langpack-1.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel >= 2.6, gtk2-devel >= 2.6, openldap-devel
 BuildRequires: gnome-keyring-devel  >= 0.4.4, libglade2-devel
 BuildRequires: krb5-devel, openssl-devel, libxml2-devel, perl(XML::Parser)
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+BuildRequires: gettext,
 
 %description
 GQ is a graphical browser for LDAP directories and schemas.  Using GQ,
@@ -32,6 +35,7 @@ in that directory.
 
 %prep
 %setup
+%setup -T -D -a 1
 
 %{__cat} <<EOF >src/gq.desktop
 [Desktop Entry]
@@ -45,17 +49,21 @@ Encoding=UTF-8
 Categories=GNOME;Application;System;
 EOF
 
+gq-%{langpack_version}-langpack-1/langpack .
+%{__cp} -av gq-%{langpack_version}-langpack-1/po/LINGUAS po/
+
 %build
 %configure \
 	--enable-cache \
 	--enable-browser-dnd \
-	--disable-update-mimedb
+	--disable-update-mimedb \
+	--with-included-gettext
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-#find_lang %{name}
+%find_lang %{name}
 
 %if %{!?_without_freedesktop:1}0
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
@@ -65,22 +73,30 @@ EOF
 		%{buildroot}%{_datadir}/applications/gq.desktop
 %endif
 
+%post
+update-mime-database %{_datadir}/mime &>/dev/null || :
+
+%postun
+update-mime-database %{_datadir}/mime &>/dev/null || :
+
 %clean
 %{__rm} -rf %{buildroot}
 
 
-%files
-# -f %{name}.lang
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README* TODO
-%{_bindir}/*
-%{_datadir}/pixmaps/%{name}/
+%{_bindir}/gq
 %{_datadir}/gq/
 %{_datadir}/mime/packages/gq-ldif.xml
+%{_datadir}/pixmaps/gq/
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-gq.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/gq.desktop}
 
 %changelog
+* Mon Apr 16 2007 Dag Wieers <dag@wieers.com> - 1.2.2-1
+- Updated to release 1.2.2. 
+
 * Mon Oct 09 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.1-1
 - Updated to release 1.2.1. 
 
