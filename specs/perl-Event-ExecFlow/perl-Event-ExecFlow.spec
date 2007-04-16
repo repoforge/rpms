@@ -9,7 +9,7 @@
 
 Summary: High level API for event-based execution flow control
 Name: perl-Event-ExecFlow
-Version: 0.62
+Version: 0.63
 Release: 1
 License: Artistic or GPL
 Group: Development/Libraries
@@ -57,6 +57,9 @@ which consist of many jobs.
 
 
 %changelog
+* Mon Apr 16 2007 Matthias Saou <http://freshrpms.net/> 0.63-1
+- Update to 0.63.
+
 * Mon Jun 19 2006 Matthias Saou <http://freshrpms.net/> 0.62-1
 - Update to 0.62.
 
