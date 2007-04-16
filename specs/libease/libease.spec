@@ -4,13 +4,13 @@
 
 Summary: Easing algorithms for graphical effects and mathematical calculations
 Name: libease
-Version: 0.0.2
+Version: 0.0.3
 Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://libease.sourceforge.net/
 
-Source: http://dl.sf.net/libease/libease-%{version}.tar.bz2
+Source: http://dl.sf.net/libease/libease-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildRequires:
@@ -32,7 +32,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n libease
+%setup
 %{__perl} -pi -e "s|.*ldconfig.*||g;" Makefile
 %{__perl} -pi -e "s|ln -s (.*)/libease(.*) (.*)/libease.so|ln -s %{_libdir}/libease\$2 \${3}/libease.so|g;" Makefile
 
@@ -42,7 +42,7 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{_includedir} %{buildroot}%{_bindir} %{buildroot}%{_libdir} %{buildroot}%{_mandir}/man3
-%{__make} all install PREFIX=%{buildroot}%{_prefix}
+%{__make} all install PREFIX=%{buildroot}%{_prefix} LIBPATH=%{buildroot}%{_libdir}
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -65,6 +65,9 @@ you will need to install %{name}-devel.
 %{_libdir}/libease.so
 
 %changelog
+* Mon Apr 16 2007 Dries Verachtert <dries@ulyssis.org> - 0.0.3-1
+- Updated to release 0.0.3.
+
 * Fri Apr 28 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.2-1
 - Updated to release 0.0.2.
 
