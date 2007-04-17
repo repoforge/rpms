@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: 
+# Upstream: <gclion$mail,ru>
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -14,7 +14,7 @@
 
 Summary: On-screen analog clock
 Name: xonclock
-Version: 0.0.8.8
+Version: 0.0.8.9
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -70,6 +70,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*xonclock.desktop
 
 %changelog
+* Tue Apr 17 2007 Dries Verachtert <dries@ulyssis.org> - 0.0.8.9-1
+- Updated to release 0.0.8.9.
+
 * Mon Mar 12 2007 Dries Verachtert <dries@ulyssis.org> - 0.0.8.8-1
 - Updated to release 0.0.8.8.
 

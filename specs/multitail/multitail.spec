@@ -7,7 +7,7 @@
 
 Summary: View one or multiple files like tail but with multiple windows
 Name: multitail
-Version: 4.2.0
+Version: 5.0.0
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -52,8 +52,16 @@ given regular expressions and deleting and adding windows.
 %doc %{_mandir}/man1/multitail.1*
 %config(noreplace) %{_sysconfdir}/multitail.conf
 %{_bindir}/multitail
+%dir %{_sysconfdir}/multitail
+%{_sysconfdir}/multitail/colors-example.pl
+%{_sysconfdir}/multitail/colors-example.sh
+%{_sysconfdir}/multitail/convert-geoip.pl
+%{_sysconfdir}/multitail/convert-simple.pl
 
 %changelog
+* Mon Apr 16 2007 Dries Verachtert <dries@ulyssis.org> - 5.0.0-1
+- Updated to release 5.0.0.
+
 * Tue Sep 12 2006 Dag Wieers <dag@wieers.com> - 4.2.0-1
 - Updated to release 4.2.0.
 

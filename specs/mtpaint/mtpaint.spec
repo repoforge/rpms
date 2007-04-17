@@ -4,7 +4,7 @@
 
 Summary: Painting program for creating icons and pixel-based artwork
 Name: mtpaint
-Version: 3.02
+Version: 3.11
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -39,7 +39,7 @@ Categories=Application;Graphics;Viewer;
 EOF
 
 %build
-%configure gtk2 tiff jpeg gif man
+%configure gtk2 tiff jpeg GIF man
 %{__make} %{?_smp_mflags}
 
 %install
@@ -63,6 +63,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Mon Apr 16 2007 Dries Verachtert <dries@ulyssis.org> - 3.11-1
+- Updated to release 3.11.
+
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 3.02-1
 - Updated to release 3.02.
 
