@@ -4,7 +4,7 @@
 
 Summary: Robust and highly flexible VPN daemon
 Name: openvpn
-Version: 2.0.7
+Version: 2.0.9
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -23,10 +23,8 @@ transport through proxies or NAT, support for dynamic IP addresses and
 DHCP, scalability to hundreds or thousands of users, and portability to
 most major OS platforms.
 
-
 %prep
 %setup
-
 
 %build
 if pkg-config openssl; then
@@ -43,7 +41,6 @@ fi
 for pi in auth-pam down-root; do
 	%{__make} %{?_smp_mflags} -C plugin/$pi
 done
-
 
 %install
 %{__rm} -rf %{buildroot}
@@ -65,10 +62,8 @@ done
 ### Disable find-requires for documentation
 find contrib/ easy-rsa/ sample-*/ -type f -exec %{__chmod} -x {} \;
 
-
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %post
 /sbin/chkconfig --add openvpn
@@ -82,7 +77,6 @@ fi
 %postun
 /sbin/service openvpn condrestart &>/dev/null || :
 
-
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING COPYRIGHT.GPL INSTALL NEWS PORTS README
@@ -93,8 +87,10 @@ fi
 %{_datadir}/openvpn/
 %{_sbindir}/openvpn
 
-
 %changelog
+* Fri Feb 02 2007 Dag Wieers <dag@wieers.com> - 2.0.9-1
+- Updated to release 2.0.9.
+
 * Sat Apr 29 2006 Dag Wieers <dag@wieers.com> - 2.0.7-1
 - Updated to release 2.0.7.
 
