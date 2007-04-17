@@ -41,8 +41,5 @@ say, telnet or PPP to connect to a computer outside the firewall.
 %{_bindir}/*
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.0.5-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Mar 28 2004 Dag Wieers <dag@wieers.com> - 3.0.5-1
 - Initial package. (using DAR)
