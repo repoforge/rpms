@@ -32,8 +32,8 @@ possible to write your own functions using the built in editor.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d %{buildroot}%{_bindir}
-%{__make} install DESTDIR="%{buildroot}" BIN_DIR=%{buildroot}%{_bindir} DATA_DIR=%{buildroot}%{_datadir}/ump
+%{__install} -d -m0755 %{buildroot}%{_bindir}
+%{__make} install DESTDIR="%{buildroot}" BIN_DIR="%{buildroot}%{_bindir}" DATA_DIR="%{buildroot}%{_datadir}/ump"
 
 %clean
 %{__rm} -rf %{buildroot}

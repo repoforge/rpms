@@ -18,7 +18,7 @@ URL: http://gnubiff.sourceforge.net/
 Source: http://dl.sf.net/gnubiff/gnubiff-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libgnomeui-devel, gnome-panel, gcc-c++
-BuildRequires: openssl-devel, libglade-devel, gdk-pixbuf-devel
+BuildRequires: openssl-devel, gdk-pixbuf-devel
 BuildRequires: glib2-devel, libglade2-devel, gamin-devel
 BuildRequires: perl(XML::Parser), intltool
 BuildRequires: texinfo
@@ -58,21 +58,25 @@ mails. It supports pop3, apop, imap4, mh, qmail and mailfile.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ABOUT-NLS AUTHORS ChangeLog COPYING INSTALL NEWS README THANKS
+%doc %{_datadir}/info/gnubiff.info.gz
+%doc %{_mandir}/man1/gnubiff.1*
 %{_bindir}/gnubiff
 %{?fc2:%{_libdir}/bonobo/servers/GNOME_gnubiffApplet.server}
 %{?fc2:%{_datadir}/gnome-2.0/ui/GNOME_gnubiffApplet.xml}
 %{?fc3:%{_libdir}/bonobo/servers/GNOME_gnubiffApplet.server}
 %{?fc3:%{_datadir}/gnome-2.0/ui/GNOME_gnubiffApplet.xml}
+%{?el4:%{_libdir}/bonobo/servers/GNOME_gnubiffApplet.server}
+%{?el4:%{_datadir}/gnome-2.0/ui/GNOME_gnubiffApplet.xml}
 %{?fc4:%{_libdir}/bonobo/servers/GNOME_gnubiffApplet.server}
 %{?fc4:%{_datadir}/gnome-2.0/ui/GNOME_gnubiffApplet.xml}
 %{?fc5:%{_libdir}/bonobo/servers/GNOME_gnubiffApplet.server}
 %{?fc5:%{_datadir}/gnome-2.0/ui/GNOME_gnubiffApplet.xml}
 %{?fc6:%{_libdir}/bonobo/servers/GNOME_gnubiffApplet.server}
 %{?fc6:%{_datadir}/gnome-2.0/ui/GNOME_gnubiffApplet.xml}
-%{_datadir}/gnubiff
-%{_datadir}/info/gnubiff.info.gz
-%{_mandir}/man1/gnubiff.*
-%{_datadir}/pixmaps
+%{?el5:%{_libdir}/bonobo/servers/GNOME_gnubiffApplet.server}
+%{?el5:%{_datadir}/gnome-2.0/ui/GNOME_gnubiffApplet.xml}
+%{_datadir}/gnubiff/
+%{_datadir}/pixmaps/
 
 %changelog
 * Mon Apr 16 2007 Dries Verachtert <dries@ulyssis.org> - 2.2.6-1

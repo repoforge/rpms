@@ -2,6 +2,13 @@
 # Authority: dries
 # Upstream: Frank Richter <fri$hrz,tu,chemnitz,de>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+
+%define desktop_vendor rpmforge
+
 Summary: Dictionary lookup program
 Name: ding
 Version: 1.5
@@ -33,15 +40,21 @@ for quick and easy lookups.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 ding %{buildroot}%{_bindir}/ding
-%{__install} -d %{buildroot}%{_datadir}/dict \
-	%{buildroot}%{_datadir}/applications \
-	%{buildroot}%{_datadir}/pixmaps \
-	%{buildroot}%{_mandir}/man1
-%{__install} -m0644 *-*.txt %{buildroot}%{_datadir}/dict/
-%{__install} -m0644 ding.desktop %{buildroot}%{_datadir}/applications/
-%{__install} -m0644 ding.png %{buildroot}%{_datadir}/pixmaps/
-%{__install} -m0644 ding.1 %{buildroot}%{_mandir}/man1/
+%{__install} -Dp -m0755 ding %{buildroot}%{_bindir}/ding
+%{__install} -Dp -m0644 ding.png %{buildroot}%{_datadir}/pixmaps/ding.png
+%{__install} -Dp -m0644 ding.1 %{buildroot}%{_mandir}/man1/ding.1
+
+%{__install} -d %{buildroot}%{_datadir}/dict
+%{__install} -Dp -m0644 *-*.txt %{buildroot}%{_datadir}/dict/
+
+%if %{?_without_freedesktop:1}0
+	%{__install} -Dp -m0644 ding.desktop %{buildroot}/etc/X11/applnk/Utilities/ding.desktop
+%else
+%{__mkdir_p} %{buildroot}%{_datadir}/applications/
+	desktop-file-install --vendor %{desktop_vendor}    \
+		--dir %{buildroot}%{_datadir}/applications \
+		ding.desktop
+%endif
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -49,18 +62,17 @@ for quick and easy lookups.
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README
+%doc %{_mandir}/man1/ding.1*
 %{_bindir}/ding
 %{_datadir}/dict/de-en.txt
 %{_datadir}/pixmaps/ding.png
 %{_datadir}/applications/ding.desktop
-%doc %{_mandir}/man1/ding.1*
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-ding.desktop}
+%{?_without_freedesktop:/etc/X11/applnk/Utilities/ding.desktop}
 
 %changelog
 * Mon Apr 16 2007 Dries Verachtert <dries@ulyssis.org> - 1.5-1
 - Updated to release 1.5.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1.2
-- Rebuild for Fedora Core 5.
 
 * Fri Oct 14 2005 Dries Verachtert <dries@ulyssis.org> - 1.4-1
 - Initial package.

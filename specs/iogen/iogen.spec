@@ -4,18 +4,14 @@
 
 Summary: I/O generator
 Name: iogen
-Version: 2.2
-Release: 2
+Version: 3.0
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.peereboom.us/iogen/
 
 Source: http://www.peereboom.us/iogen/iogen_%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-#Buildarch: noarch
-#BuildRequires: 
-#Requires:
 
 %description
 iogen is an I/O generator. It forks child processes that each run a mix
@@ -48,6 +44,9 @@ to recreate the worst case scenario I/O.
 %{_bindir}/iogen
 
 %changelog
+* Tue Apr 17 2007 Dag Wieers <dag@wieers.com> - 3.0-1
+- Updated to release 3.0.
+
 * Fri Mar 09 2007 Dag Wieers <dag@wieers.com> - 2.2-2
 - Fixed group.
 
