@@ -4,7 +4,7 @@
 
 Summary: Small C editor
 Name: geany
-Version: 0.10.1
+Version: 0.10.2
 Release: 1
 License: GPL
 Group: Applications/Editors
@@ -47,6 +47,9 @@ Perl, LateX, and Bash), and symbol lists.
 %{_datadir}/applications/geany.desktop
 
 %changelog
+* Tue Apr 17 2007 Dries Verachtert <dries@ulyssis.org> - 0.10.2-1
+- Updated to release 0.10.2.
+
 * Sat Feb 24 2007 Dries Verachtert <dries@ulyssis.org> - 0.10.1-1
 - Updated to release 0.10.1.
 

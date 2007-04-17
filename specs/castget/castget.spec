@@ -4,7 +4,7 @@
 
 Summary: Command line-based RSS enclosure downloader
 Name: castget
-Version: 0.9.5
+Version: 0.9.6
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -60,10 +60,13 @@ you will need to install %{name}-devel.
 %files devel
 #%defattr(-, root, root, 0755)
 %{_includedir}/libcastget.h
-%{_libdir}/libcastget.a
+%exclude %{_libdir}/libcastget.a
 %{_libdir}/libcastget.so
 %exclude %{_libdir}/*.la
 
 %changelog
+* Tue Apr 17 2007 Dries Verachtert <dries@ulyssis.org> - 0.9.6-1
+- Updated to release 0.9.6.
+
 * Tue Aug 15 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.5-1
 - Initial package.

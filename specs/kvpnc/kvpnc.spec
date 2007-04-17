@@ -3,7 +3,7 @@
 
 Summary: Frontend for various VPN clients
 Name: kvpnc
-Version: 0.8.7
+Version: 0.8.8
 Release: 1
 License: GPL
 Group: Applications/System
@@ -47,6 +47,9 @@ for Linux 2.6.x and *BSD. It also supports PPTP (pptpclient) and OpenVPN.
 %{_datadir}/icons/*/*/apps/kvpnc.*
 
 %changelog
+* Tue Apr 17 2007 Dries Verachtert <dries@ulyssis.org> - 0.8.8-1
+- Updated to release 0.8.8.
+
 * Sun Dec 15 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.7-1
 - Updated to release 0.8.7.
 
