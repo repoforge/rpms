@@ -6,8 +6,8 @@
 
 Summary: Tool for distributing large files
 Name: jigdo
-Version: 0.7.1
-Release: 1.2
+Version: 0.7.3
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://atterer.net/jigdo/
@@ -15,8 +15,10 @@ URL: http://atterer.net/jigdo/
 Source: http://atterer.net/jigdo/jigdo-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: w3c-libwww-devel, gtk2-devel, pkgconfig, db4-devel
+BuildRequires: gtk2-devel, pkgconfig, db4-devel
 BuildRequires: gcc-c++, openssl-devel, desktop-file-utils, wget
+BuildRequires: curl-devel, bzip2-devel
+
 Requires: wget
 %{?fc4:BuildRequires: compat-gcc-32, compat-gcc-32-c++}
 
@@ -67,12 +69,18 @@ desktop-file-install --vendor rpmforge             \
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc changelog COPYING README THANKS
-%doc %{_mandir}/man?/*
-%{_bindir}/*
-%{_datadir}/jigdo
-%{_datadir}/applications/*.desktop
+%doc %{_mandir}/man1/jigdo*
+%{_bindir}/jigdo
+%{_bindir}/jigdo-file
+%{_bindir}/jigdo-lite
+%{_bindir}/jigdo-mirror
+%{_datadir}/jigdo/
+%{_datadir}/applications/*-jigdo.desktop
 
 %changelog
+* Wed Apr 18 2007 Ralph Angenendt <ra@br-online.de> 0.7.3-1
+- Updated to release 0.7.3.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.1-1.2
 - Rebuild for Fedora Core 5.
 
