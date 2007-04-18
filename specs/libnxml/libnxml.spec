@@ -4,7 +4,7 @@
 
 Summary: Library for parsing, writing and creating XML
 Name: libnxml
-Version: 0.17.1
+Version: 0.17.2
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -55,12 +55,15 @@ you will need to install %{name}-devel.
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/nxml.h
-%{_libdir}/libnxml.a
+%exclude %{_libdir}/libnxml.a
 %{_libdir}/libnxml.so
 %exclude %{_libdir}/libnxml.la
 %{_libdir}/pkgconfig/nxml.pc
 
 %changelog
+* Wed Apr 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.17.2-1
+- Updated to release 0.17.2.
+
 * Tue Apr 17 2007 Dries Verachtert <dries@ulyssis.org> - 0.17.1-1
 - Updated to release 0.17.1.
 
