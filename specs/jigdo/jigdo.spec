@@ -72,6 +72,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %defattr(-, root, root, 0755)
 %doc changelog COPYING README THANKS doc/
 %doc %{_mandir}/man1/jigdo.1*
+%doc %{_mandir}/man1/jigdo-file.1*
+%doc %{_mandir}/man1/jigdo-lite.1*
+%doc %{_mandir}/man1/jigdo-mirror.1*
 %{_bindir}/jigdo
 %{_bindir}/jigdo-file
 %{_bindir}/jigdo-lite

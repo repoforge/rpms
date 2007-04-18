@@ -24,11 +24,9 @@ Group: Applications/System
 URL: http://nagiosplug.sourceforge.net/
 
 Source: http://dl.sf.net/nagiosplug/nagios-plugins-%{version}.tar.gz
-Patch0: nagios-plugins-1.4.3-subst.patch
-Patch1: nagios-plugins-1.4.6-radius-ng.patch
-Patch2: nagios-plugins-1.4.3-ntpd.patch
-Patch3: nagios-plugins-1.4.4-check_ide_smart.patch
-Patch4: nagios-plugins-1.4.4-linux_raid.patch
+Patch0: nagios-plugins-1.4.3-ntpd.patch
+Patch1: nagios-plugins-1.4.4-check_ide_smart.patch
+Patch2: nagios-plugins-1.4.4-linux_raid.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 AutoReq: no
@@ -72,11 +70,9 @@ Nagios package.
 
 %prep
 %setup
-%patch0 -p1
-%patch1 -p0
+%patch0 -p0
+%patch1 -p1
 %patch2 -p0
-%patch3 -p1
-%patch4 -p0
 
 ### FIXME: Change to real perl and plugins location. (Please fix upstream)
 find contrib -type f -exec %{__perl} -pi -e '
@@ -182,7 +178,7 @@ done
 %{_libdir}/nagios/plugins/check_ping
 %{_libdir}/nagios/plugins/check_pop
 %{_libdir}/nagios/plugins/check_procs
-#%{_libdir}/nagios/plugins/check_radius
+%{_libdir}/nagios/plugins/check_radius
 %{_libdir}/nagios/plugins/check_real
 %{_libdir}/nagios/plugins/check_rpc
 %{_libdir}/nagios/plugins/check_sensors
