@@ -4,6 +4,8 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%define desktop_vendor rpmforge
+
 Summary: Tool for distributing large files
 Name: jigdo
 Version: 0.7.3
@@ -32,7 +34,7 @@ administrators have with hosting such large files.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >jigdo.desktop
 [Desktop Entry]
 Name=Jigdo
 Comment=Download large files from jigdo enabled webservers.
@@ -58,31 +60,28 @@ EOF
 %find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor rpmforge             \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+	jigdo.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc changelog COPYING README THANKS
-%doc %{_mandir}/man1/jigdo*
+%doc changelog COPYING README THANKS doc/
+%doc %{_mandir}/man1/jigdo.1*
 %{_bindir}/jigdo
 %{_bindir}/jigdo-file
 %{_bindir}/jigdo-lite
 %{_bindir}/jigdo-mirror
 %{_datadir}/jigdo/
-%{_datadir}/applications/*-jigdo.desktop
+%{_datadir}/applications/%{desktop_vendor}-jigdo.desktop
 
 %changelog
 * Wed Apr 18 2007 Ralph Angenendt <ra@br-online.de> 0.7.3-1
 - Updated to release 0.7.3.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.1-1.2
-- Rebuild for Fedora Core 5.
 
 * Mon Dec 13 2004 Dries Verachtert <dries@ulyssis.org> - 0.7.1-1
 - Initial package.
