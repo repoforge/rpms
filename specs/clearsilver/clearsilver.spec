@@ -10,12 +10,13 @@
 Summary: ClearSilver HTML template system
 Name: clearsilver
 Version: 0.10.4
-Release: 1
+Release: 2
 License: Apache License style
 Group: Development/Libraries
 URL: http://www.clearsilver.net/
 
 Source: http://www.clearsilver.net/downloads/clearsilver-%{version}.tar.gz
+Patch0: clearsilver-0.10.3-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: zlib-devel, python-devel, python
@@ -48,6 +49,8 @@ clearsilver CGI kit and templating system.
 Summary: Neotonic ClearSilver Perl Module
 Group: Development/Libraries
 Requires: clearsilver = %{version}
+Obsoletes: perl-clearsilver <= %{version}-%{release}
+Provides: perl-clearsilver = %{version}-%{release}
 
 %description -n perl-ClearSilver
 The clearsilver-perl package provides a perl interface to the
@@ -64,15 +67,14 @@ clearsilver templating system.
 
 %prep
 %setup
+%patch0 -p1
 
-### If older ExtUtils-MakeMaker, set DESTDIR
-%if "%{need_buildroot}" == "1"
-%{?need_buildroot:%{__perl} -pi.orig -e 's|^(WriteMakefile\()$|$1\n\t"PREFIX"\t=>\t"%{buildroot}%{_prefix}",|' perl/Makefile.PL}
-%endif
-%{__perl} -pi.orig -e 's|/usr/local|%{_prefix}|' scripts/document.py
+%{__perl} -pi -e 's|/neo/opt/bin/python|%{__python}|' python/examples/*/*.py
+find python/examples -type f | xargs chmod -x
 
 %build
 %configure \
+	--with-python="%{__python}" \
 	--enable-apache \
 	--enable-java \
 	--enable-python \
@@ -80,29 +82,17 @@ clearsilver templating system.
 	--disable-csharp \
 	--disable-ruby
 
-#%{__perl} -pi.orig -e '
-#		s|^(PYTHON)\s*=.*$|$1=python|;
-#		s|^(DESTDIR)\s*=.*$|$1=%{buildroot}|;
-#	' rules.mk
-#		s|^(PYTHON_SITE)\s*=.*$|$1=lib/python%pyver/ |;
-
-%{__make} %{?_smp_mflags}
+cd perl
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+cd -
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
-export PYTHON=python
 %{__rm} -rf %{buildroot}
-%{__make} install \
-	DESTDIR="%{buildroot}" \
-	INSTALLDIRS="vendor" PYTHON=python
-%{__make} install -C python \
-	DESTDIR="%{buildroot}" PYTHON=python PYTHON_SITE=%{python_sitearch}
-%{__make} install -C perl \
-	DESTDIR="%{buildroot}" \
-	INSTALLDIRS="vendor" PYTHON=python
+%makeinstall PYTHON_SITE="%{buildroot}%{python_sitearch}"
 
 ### Clean up buildroot (arch)
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -138,14 +128,14 @@ export PYTHON=python
 #{apache_libexec}/mod_ecs.so
 
 %changelog
+* Thu Apr 19 2007 Dries Verachtert <dries@ulyssis.org> - 0.10.4-2
+- Make SPEC file work on EL3 and older.
+
 * Wed Apr 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.10.4-1
 - Updated to release 0.10.4.
 
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.10.2-1
 - Updated to release 0.10.2.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.10.1-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.10.1-1
 - Updated to release 0.10.1.

@@ -15,8 +15,8 @@ URL: http://www.acs.com.hk/acr38_driversmanual.asp
 Source: http://www.acs.com.hk/download/ACR38_LINUX_%{real_version}_P.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pcsc-lite-devel >= 1.3.3
-Requires: pcsc-lite >= 1.3.3
+BuildRequires: pcsc-lite-devel >= 1.3.1
+Requires: pcsc-lite >= 1.3.1
 
 Provides: pcsc-ifd-handler
 Provides: acr38u = %{version}-%{release}

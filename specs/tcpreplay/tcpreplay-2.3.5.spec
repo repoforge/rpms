@@ -1,82 +1,60 @@
-# $Id$
+# $Id: tcpreplay.spec 2964 2005-03-08 19:22:25Z dag $
 # Authority: dag
 # Upstream: <tcpreplay-users$lists,sf,net>
 
-%{?dist: %{expand: %%define %dist 1}}
-
-%{!?dist:%define _with_libpcapdevel 1}
-%{?el5:%define _with_libpcapdevel 1}
-%{?fc6:%define _with_libpcapdevel 1}
-
 Summary: Replay captured network traffic
 Name: tcpreplay
-Version: 3.0.0
+Version: 2.3.5
 Release: 1
 License: BSD
 Group: Applications/Internet
-URL: http://tcpreplay.synfin.net/trac/
+URL: http://tcpreplay.sourceforge.net/
 
 Source: http://dl.sf.net/tcpreplay/tcpreplay-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: libnet >= 1.1.1
-BuildRequires: libpcap >= 0.5, tcpdump
-%{?_with_libpcapdevel:BuildRequires:libpcap-devel >= 0.5}
+BuildRequires: libnet >= 1.1.1, tcpdump, libpcap
 
 %description
-Tcpreplay is a suite of tools to edit and replay captured network traffic.
-The tcpreplay suite includes tcpprep to pre-process pcap files, tcprewrite a
-pcap editor and tcpreplay to send packets.  Also included is tcpbridge which
-is a user-space bridge and flowreplay, a client-side agent using pcap files
-as the basis of connections.
+Tcpreplay is a tool to replay captured network traffic.  Currently, tcpreplay
+supports pcap (tcpdump) and snoop capture formats.  Also included, is tcpprep
+a tool to pre-process capture files to allow increased performance under
+certain conditions as well as capinfo which provides basic information about
+capture files.
 
 %prep
 %setup
 
+### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
+%{__perl} -pi.orig -e 's|\@mandir\@|\$(mandir)|' Makefile.in
+
 %build
-%configure \
-	--enable-tcpreplay-edit
-#	--enable-flowreplay
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-#%{__make} install DESTDIR="%{buildroot}"
-
-#%{__install} -Dp -m0755 src/flowreplay %{buildroot}%{_bindir}/flowreplay
-%{__install} -Dp -m0755 src/tcpbridge %{buildroot}%{_bindir}/tcpbridge
-%{__install} -Dp -m0755 src/tcpprep %{buildroot}%{_bindir}/tcpprep
-%{__install} -Dp -m0755 src/tcpreplay %{buildroot}%{_bindir}/tcpreplay
-%{__install} -Dp -m0755 src/tcprewrite %{buildroot}%{_bindir}/tcprewrite
-
-#%{__install} -Dp -m0644 src/flowreplay.1 %{buildroot}%{_mandir}/man1/flowreplay.1
-%{__install} -Dp -m0644 src/tcpbridge.1 %{buildroot}%{_mandir}/man1/tcpbridge.1
-%{__install} -Dp -m0644 src/tcpprep.1 %{buildroot}%{_mandir}/man1/tcpprep.1
-%{__install} -Dp -m0644 src/tcpreplay.1 %{buildroot}%{_mandir}/man1/tcpreplay.1
-%{__install} -Dp -m0644 src/tcprewrite.1 %{buildroot}%{_mandir}/man1/tcprewrite.1
+%makeinstall
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc docs/CHANGELOG docs/CREDIT docs/HACKING docs/INSTALL docs/LICENSE
-%doc docs/TODO README
-#%doc %{_mandir}/man1/flowreplay.1*
-%doc %{_mandir}/man1/tcpbridge.1*
+%doc README Docs/CHANGELOG Docs/CREDIT Docs/INSTALL Docs/LICENSE Docs/TODO
+#%doc Docs/*.css Docs/*.html Docs/*.txt
+%doc %{_mandir}/man1/capinfo.1*
+%doc %{_mandir}/man1/flowreplay.1*
+%doc %{_mandir}/man1/pcapmerge.1*
 %doc %{_mandir}/man1/tcpprep.1*
-%doc %{_mandir}/man1/tcpreplay.1*
-%doc %{_mandir}/man1/tcprewrite.1*
-#%{_bindir}/flowreplay
-%{_bindir}/tcpbridge
+%doc %{_mandir}/man8/tcpreplay.8*
+%{_bindir}/capinfo
+%{_bindir}/flowreplay
+%{_bindir}/pcapmerge
 %{_bindir}/tcpprep
-%{_bindir}/tcpreplay
-%{_bindir}/tcprewrite
+%{_sbindir}/tcpreplay
 
 %changelog
-* Fri Apr 20 2007 Dag Wieers <dag@wieers.com> - 3.0.0-1
-- Updated to release 3.0.0.
-
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 2.3.5-1
 - Updated to release 2.3.5.
 

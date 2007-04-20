@@ -1,0 +1,84 @@
+diff -Nur clearsilver-0.10.3.orig/cgi/cgi.c clearsilver-0.10.3/cgi/cgi.c
+--- clearsilver-0.10.3.orig/cgi/cgi.c	2006-03-13 18:04:52.000000000 +0100
++++ clearsilver-0.10.3/cgi/cgi.c	2006-03-13 19:17:12.000000000 +0100
+@@ -641,7 +641,7 @@
+ 
+   if ((debugger = hdf_get_value (cgi->hdf, "Config.Debugger", NULL)) == NULL)
+   {
+-    debugger = "/usr/local/bin/sudo /usr/local/bin/ddd -display %s %s %d";
++    debugger = "/usr/bin/sudo /usr/local/bin/ddd -display %s %s %d";
+   }
+ 
+   if (!pid)
+diff -Nur clearsilver-0.10.3.orig/configure clearsilver-0.10.3/configure
+--- clearsilver-0.10.3.orig/configure	2006-03-13 18:04:52.000000000 +0100
++++ clearsilver-0.10.3/configure	2006-03-13 19:20:09.000000000 +0100
+@@ -6003,7 +6003,7 @@
+ echo $ECHO_N "checking for python includes... $ECHO_C" >&6
+   python_inc=no
+   python_lib=no
+-  python_search_path="/neo/opt /usr/local /usr /c"
++  python_search_path="/usr"
+   python_versions="2.4 2.3 2.2 2.1 2.0 1.5 24 23 22 21 20 15"
+   if test $cs_cv_python_path != "no" -a -x $cs_cv_python_path; then
+     python_bin=$cs_cv_python_path
+@@ -6299,7 +6299,8 @@
+ done
+ _ACJNI_FOLLOWED="$_cur"
+ 
+-_JTOPDIR=`echo "$_ACJNI_FOLLOWED" | sed -e 's://*:/:g' -e 's:/[^/]*$::'`
++#_JTOPDIR=`echo "$_ACJNI_FOLLOWED" | sed -e 's://*:/:g' -e 's:/[^/]*$::'`
++_JTOPDIR="$java_path"
+ case "$host_os" in
+         darwin*)        _JTOPDIR=`echo "$_JTOPDIR" | sed -e 's:/[^/]*$::'`
+                         _JINC="$_JTOPDIR/Headers";;
+diff -Nur clearsilver-0.10.3.orig/imd/imdm.py clearsilver-0.10.3/imd/imdm.py
+--- clearsilver-0.10.3.orig/imd/imdm.py	2006-03-13 18:04:52.000000000 +0100
++++ clearsilver-0.10.3/imd/imdm.py	2006-03-13 19:20:25.000000000 +0100
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/python
++#!/usr/bin/python
+ #
+ # imdm
+ # 
+diff -Nur clearsilver-0.10.3.orig/java-jni/Makefile clearsilver-0.10.3/java-jni/Makefile
+--- clearsilver-0.10.3.orig/java-jni/Makefile	2006-03-13 18:04:52.000000000 +0100
++++ clearsilver-0.10.3/java-jni/Makefile	2006-03-13 19:21:50.000000000 +0100
+@@ -37,14 +37,14 @@
+ org_clearsilver_CS.h: $(NEO_UTIL_JAVA_JAR)
+ 	$(JAVAH) -classpath $(NEO_UTIL_JAVA_JAR) -jni org.clearsilver.CS
+ 
+-CSTest.class: CSTest.java
++CSTest.class: CSTest.java $(NEO_UTIL_JAVA_JAR)
+ 	$(JAVAC) -classpath $(NEO_UTIL_JAVA_JAR) CSTest.java
+ 
+ gold: CSTest.class
+ 	@/bin/sh -c "LD_LIBRARY_PATH=$(NEOTONIC_ROOT)/java-jni; export LD_LIBRARY_PATH; CLASSPATH=$(NEO_UTIL_JAVA_JAR):.; export CLASSPATH; $(JAVA_PATH)/bin/java CSTest" > javatest.gold
+ 	@echo "Generated gold files"
+ 
+-test: CSTest.class
++test: CSTest.class $(NEO_UTIL_SO)
+ 	@echo "Running java test"
+ 	@failed=0; \
+ 	rm -f javatest.out; \
+diff -Nur clearsilver-0.10.3.orig/ruby/Makefile clearsilver-0.10.3/ruby/Makefile
+--- clearsilver-0.10.3.orig/ruby/Makefile	2006-03-13 18:04:52.000000000 +0100
++++ clearsilver-0.10.3/ruby/Makefile	2006-03-13 19:22:19.000000000 +0100
+@@ -41,7 +41,7 @@
+ 
+ 
+ install: all
+-	$(RUBY) install.rb install
++	$(RUBY) install.rb install --prefix=$(DESTDIR)
+ 
+ clean:
+ 	$(RM) ext/hdf/*.o ext/hdf/*.so
+diff -Nur clearsilver-0.10.3.orig/scripts/document.py clearsilver-0.10.3/scripts/document.py
+--- clearsilver-0.10.3.orig/scripts/document.py	2006-03-13 18:04:52.000000000 +0100
++++ clearsilver-0.10.3/scripts/document.py	2006-03-13 19:22:42.000000000 +0100
+@@ -1,4 +1,4 @@
+-#!/bin/env python
++#!/usr/bin/env python
+ """
+   document.py -- Simple script to generate manpages from C header
+   files.  Looks for the following formatted C comments in the C header files:

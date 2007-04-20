@@ -4,8 +4,8 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?el4:%define _without_modxorg 1}
 %{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
 %{?fc3:%define _without_modxorg 1}
 %{?fc2:%define _without_modxorg 1}
 %{?fc1:%define _without_modxorg 1}
@@ -18,7 +18,7 @@
 
 Summary: VNC server for the current X11 session
 Name: x11vnc
-Version: 0.8.4
+Version: 0.9
 Release: 1
 License: GPL
 Group: User Interface/X
@@ -66,6 +66,9 @@ fi
 %{_datadir}/x11vnc/
 
 %changelog
+* Fri Apr 20 2007 Dag Wieers <dag@wieers.com> - 0.9-1
+- Updated to release 0.9.
+
 * Fri Feb 02 2007 Dag Wieers <dag@wieers.com> - 0.8.4-1
 - Updated to release 0.8.4.
 
