@@ -4,13 +4,13 @@
 
 Summary: Descriptive vector graphics language
 Name: asymptote
-Version: 1.20
+Version: 1.26
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://asymptote.sourceforge.net/
 
-Source: http://dl.sf.net/asymptote/asymptote-%{version}.tar.gz
+Source: http://dl.sf.net/asymptote/asymptote-%{version}.src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgc-devel >= 6.7, libgc >= 6.7, fftw-devel
@@ -78,6 +78,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*-asymptote.desktop
 
 %changelog
+* Fri Apr 20 2007 Dries Verachtert <dries@ulyssis.org> - 1.26-1
+- Updated to release 1.26.
+
 * Tue Jan 09 2007 Dries Verachtert <dries@ulyssis.org> - 1.20-1
 - Updated to release 1.20.
 

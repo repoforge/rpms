@@ -4,8 +4,8 @@
 
 Summary: Mixer for kde and alsa
 Name: kamix
-Version: 0.6.5
-Release: 1.2
+Version: 0.6.6
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://kamix.sourceforge.net
@@ -31,22 +31,24 @@ correct handling of "enumerated" elements, and selective item hiding/showing.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %{_bindir}/kamix
 %{_datadir}/applnk/Utilities/kamix.desktop
 %{_datadir}/apps/kamix/
 %{_datadir}/doc/HTML/*/kamix/
-%{_datadir}/icons/*/*/*/*.png
-%{_datadir}/icons/hicolor/128x128/apps/kamix/mute.png
+%{_datadir}/icons/hicolor/*/*/*.png
+%{_datadir}/icons/hicolor/128x128/apps/kamix/
 
 %changelog
+* Fri Apr 20 2007 Dries Verachtert <dries@ulyssis.org> - 0.6.6-1
+- Updated to release 0.6.6.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.5-1.2
 - Rebuild for Fedora Core 5.
 

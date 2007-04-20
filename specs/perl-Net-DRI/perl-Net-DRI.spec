@@ -10,7 +10,7 @@
 
 Summary: Uniform API to access domain registries, registrars and resellers
 Name: perl-Net-DRI
-Version: 0.40
+Version: 0.80
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ methods (such as TCP, TLS, SOAP, or email).
 %{perl_vendorlib}/Net/DRI/
 
 %changelog
+* Fri Apr 20 2007 Dries Verachtert <dries@ulyssis.org> - 0.80-1
+- Updated to release 0.80.
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.40-1
 - Updated to release 0.40.
 
