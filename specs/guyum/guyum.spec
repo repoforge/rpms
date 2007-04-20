@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: vkleinde$yahoo,de
+# Upstream: <vkleinde$yahoo,de>
 
 Summary: GUI for yum
 Name: guyum
@@ -13,7 +13,7 @@ URL: http://www.guyum.de/
 Source: http://dl.sf.net/guyum/guyum-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: 
+BuildRequires: gtk2-devel
 
 %description
 GuYum is a GUI for Yum. It has a multi-tabbed search interface. Repositories 
