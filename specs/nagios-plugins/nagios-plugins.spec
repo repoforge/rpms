@@ -18,7 +18,7 @@
 Summary: Host/service/network monitoring program plugins for Nagios
 Name: nagios-plugins
 Version: 1.4.8
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://nagiosplug.sourceforge.net/
@@ -26,7 +26,6 @@ URL: http://nagiosplug.sourceforge.net/
 Source: http://dl.sf.net/nagiosplug/nagios-plugins-%{version}.tar.gz
 Patch0: nagios-plugins-1.4.3-ntpd.patch
 Patch1: nagios-plugins-1.4.4-check_ide_smart.patch
-Patch2: nagios-plugins-1.4.4-linux_raid.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 AutoReq: no
@@ -72,7 +71,6 @@ Nagios package.
 %setup
 %patch0 -p0
 %patch1 -p1
-%patch2 -p0
 
 ### FIXME: Change to real perl and plugins location. (Please fix upstream)
 find contrib -type f -exec %{__perl} -pi -e '
@@ -85,6 +83,7 @@ find contrib -type f -exec %{__perl} -pi -e '
 PATH="/sbin:%{_sbindir}:$PATH" \
 %configure \
 	--with-cgiurl="/nagios/cgi-bin"
+#	--with-mysql="%{_prefix}"
 #	--with-nagios-user="nagios" \
 #	--with-nagios-group="nagios" \
 %{__make} %{?_smp_mflags}
@@ -109,7 +108,7 @@ done
 %{__install} -m4755 plugins-root/check_* %{buildroot}%{_libdir}/nagios/plugins/
 %{__install} -m0755 contrib/check_* %{buildroot}%{_libdir}/nagios/plugins/contrib/
 
-#%{__install} -Dp -m0644 plugins-scripts/utils.pm %{buildroot}%{perl_vendorlib}/utils.pm
+%{__install} -Dp -m0644 plugins-scripts/utils.pm %{buildroot}%{perl_vendorlib}/utils.pm
 %{__install} -Dp -m0644 plugins-scripts/utils.pm %{buildroot}%{_libdir}/nagios/plugins/plugins.pm
 %{__install} -Dp -m0644 contrib/utils.py %{buildroot}%{_libdir}/nagios/plugins/utils.py
 
@@ -178,7 +177,7 @@ done
 %{_libdir}/nagios/plugins/check_ping
 %{_libdir}/nagios/plugins/check_pop
 %{_libdir}/nagios/plugins/check_procs
-%{_libdir}/nagios/plugins/check_radius
+#%{_libdir}/nagios/plugins/check_radius
 %{_libdir}/nagios/plugins/check_real
 %{_libdir}/nagios/plugins/check_rpc
 %{_libdir}/nagios/plugins/check_sensors
@@ -285,7 +284,7 @@ done
 %{_libdir}/nagios/plugins/utils.pyc
 %ghost %{_libdir}/nagios/plugins/utils.pyo
 %{_libdir}/nagios/plugins/utils.sh
-#%{perl_vendorlib}/utils.pm
+%{perl_vendorlib}/utils.pm
 %exclude %{_libdir}/nagios/plugins/check_dhcp
 %exclude %{_libdir}/nagios/plugins/check_icmp
 
@@ -297,6 +296,9 @@ done
 %{_libdir}/nagios/plugins/check_icmp
 
 %changelog
+* Fri Apr 20 2007 Dag Wieers <dag@wieers.com> - 1.4.8-2
+- Restored utils.pm in %%{perl_vendorlib}. (Nathan Grennan)
+
 * Wed Apr 18 2007 Dag Wieers <dag@wieers.com> - 1.4.8-1
 - Updated to release 1.4.8.
 
