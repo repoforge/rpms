@@ -9,6 +9,9 @@
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
+%{?rh7:%define _without_fontconfig 1}
+%{?el2:%define _without_fontconfig 1}
+
 Summary: Window Manager based on Blackbox
 Name: fluxbox
 Version: 0.9.15.1
@@ -21,7 +24,8 @@ Source0: http://dl.sf.net/fluxbox/fluxbox-%{version}.tar.bz2
 Source1: fluxbox-xdg-menu.py
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: zlib-devel, imlib2-devel, fontconfig-devel
+BuildRequires: zlib-devel, imlib2-devel
+%{!?_without_fontconfig:BuildRequires: fontconfig-devel}
 %{?_with_modxorg:BuildRequires: libICE-devel, libSM-devel, libX11-devel, libXext-devel, libXft-devel, libXinerama-devel, libXpm-devel, libXrandr-devel, libXrender-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 Requires: python-xdg, artwiz-aleczapka-fonts
@@ -50,7 +54,8 @@ EOF
 %build
 %configure \
 	--x-includes="%{_includedir}" \
-	--x-libraries="%{_libdir}" \
+%{?_with_modxorg:--x-libraries="%{_libdir}"} \
+%{!?_with_modxorg:--x-libraries="%{_prefix}/X11R6/%{_lib}"} \
 	--enable-gnome \
 	--enable-imlib2 \
 	--enable-kde \
@@ -63,7 +68,7 @@ EOF
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-%{__install} -Dp -m0644 fluxbox.desktop %{buildroot}%{_datadir}/xsessions/
+%{__install} -Dp -m0644 fluxbox.desktop %{buildroot}%{_datadir}/xsessions/fluxbox.desktop
 %{__install} -Dp -m0755 %{SOURCE1} %{buildroot}%{_bindir}/fluxbox-xdg-menu
 
 %clean
