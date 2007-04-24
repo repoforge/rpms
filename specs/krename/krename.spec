@@ -5,9 +5,9 @@
 Summary: Batch file renamer
 Name: krename
 Version: 3.0.14
-Release: 1
+Release: 2
 License: GPL
-Group: Applications/Utilities
+Group: Applications/File
 URL: http://www.krename.net/
 
 Source: http://dl.sf.net/krename/krename-%{version}.tar.bz2
@@ -34,7 +34,7 @@ permissions, and file ownership.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %clean
@@ -43,14 +43,17 @@ permissions, and file ownership.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO
+%doc %{_datadir}/doc/HTML/en/krename/
 %{_bindir}/krename
 %{_datadir}/icons/*/*/apps/krename.png
-%{_datadir}/doc/HTML/en/krename/
 %{_datadir}/apps/krename/
 %{_datadir}/apps/konqueror/servicemenus/krename*.desktop
 %{_datadir}/applications/kde/krename.desktop
 
 %changelog
+* Tue Apr 24 2007 Dag Wieers <dag@wieers.com> - 3.0.14-2
+- Fix group tag.
+
 * Sun Apr 01 2007 Dries Verachtert <dries@ulyssis.org> - 3.0.14-1
 - Updated to release 3.0.14.
 

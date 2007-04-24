@@ -5,9 +5,9 @@
 Summary: Ncurses PGN editor and front end to chess engines
 Name: cboard
 Version: 0.3
-Release: 1
+Release: 2
 License: GPL
-Group: Entertainment/Games
+Group: Amusements/Games
 URL: http://bjk.sourceforge.net/cboard/
 
 Source: http://dl.sf.net/bjk/cboard-%{version}.tar.gz
@@ -39,10 +39,13 @@ comments, and more.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING INSTALL NEWS README THANKS TODO
-%doc %{_mandir}/man6/cboard*.6*
+%doc %{_mandir}/man6/cboard.6*
 %{_bindir}/cboard
 %{_datadir}/cboard/
 
 %changelog
+* Tue Apr 24 2007 Dag Wieers <dag@wieers.com> - 0.3-2
+- Fix group tag.
+
 * Sun Apr 15 2007 Dries Verachtert <dries@ulyssis.org> - 0.3-1
 - Initial package.

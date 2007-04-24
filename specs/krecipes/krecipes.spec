@@ -1,13 +1,12 @@
 # $Id$
 # Authority: dries
-# Upstream:
 
 Summary: Recipe manager
 Name: krecipes
 Version: 0.9.1
-Release: 1.2
+Release: 2
 License: GPL
-Group: Applications/Utilities
+Group: Applications/Databases
 URL: http://krecipes.sourceforge.net
 
 Source: http://dl.sf.net/krecipes/krecipes-%{version}.tar.gz
@@ -30,7 +29,7 @@ recipe suggestions based on calories/diets, and much more.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %clean
@@ -47,8 +46,8 @@ recipe suggestions based on calories/diets, and much more.
 %{_datadir}/mimelnk/application/x-krecipes*.desktop
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1.2
-- Rebuild for Fedora Core 5.
+* Tue Apr 24 2007 Dag Wieers <dag@wieers.com> - 0.9.1-2
+- Fix group tag.
 
 * Mon Dec 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1
 - Initial package.

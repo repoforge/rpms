@@ -2,12 +2,14 @@
 # Authority: dries
 # Upstream: PiotrPsz <piotr$beesoft,org>
 
+%define desktop_vendor rpmforge
+
 Summary: Beesoft Commander file manager
 Name: bsc
 Version: 2.27
-Release: 1
+Release: 2
 License: GPL
-Group: Applications/Utilities
+Group: Applications/System
 URL: http://www.beesoft.org/index.html
 
 Source: http://www.beesoft.org/download/bsc_%{version}_src.tar.gz
@@ -21,7 +23,7 @@ Beesoft Commander is a file manager (like Norton Commander) for Linux.
 %prep
 %setup -n bsc
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >bsc.desktop
 [Desktop Entry]
 Name=bsc
 Comment=File manager
@@ -37,13 +39,13 @@ qmake bsc.pro
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 bsc %{buildroot}%{_bindir}/bsc
+%{__install} -Dp -m0755 bsc %{buildroot}%{_bindir}/bsc
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor rpmforge             \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+	bsc.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -52,9 +54,12 @@ desktop-file-install --vendor rpmforge             \
 %defattr(-, root, root, 0755)
 #doc readme.txt
 %{_bindir}/bsc
-%{_datadir}/applications/*.desktop
+%{_datadir}/applications/bsc-%{desktop_vendor}.desktop
 
 %changelog
+* Tue Apr 24 2007 Dag Wieers <dag@wieers.com> - 2.27-2
+- Fix group tag.
+
 * Thu Aug 24 2006 Dries Verachtert <dries@ulyssis.org> - 2.27-1
 - Updated to release 2.27.
 
