@@ -12,37 +12,41 @@
 
 %{?fc1:%define _without_alsa 1}
 %{?fc1:%define _without_gtk24 1}
+
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_gtk24 1}
+
 %{?rh9:%define _without_alsa 1}
 %{?rh9:%define _without_gtk24 1}
 %{?rh9:%define _without_x264 1}
+
 %{?rh8:%define _without_alsa 1}
 %{?rh8:%define _without_gtk24 1}
 %{?rh8:%define _without_x264 1}
+
 %{?rh7:%define _without_1394 1}
 %{?rh7:%define _without_alsa 1}
 %{?rh7:%define _without_gtk24 1}
 %{?rh7:%define _without_x264 1}
+
 %{?el2:%define _without_1394 1}
 %{?el2:%define _without_alsa 1}
 %{?el2:%define _without_gtk24 1}
 %{?el2:%define _without_x264 1}
+
 %{?yd3:%define _without_alsa 1}
 
 #define prever pre1
 
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
-Version: 0.9.10
-Release: 3%{?prever:.%{prever}}
+Version: 1.0.0
+Release: 1%{?prever:.%{prever}}
 License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sourceforge.net/
 Source: http://dl.sf.net/libquicktime/libquicktime-%{version}%{?prever}.tar.gz
-Patch0: libquicktime-0.9.8-plugin_dir.patch
-Patch1: libquicktime-0.9.10-x264.patch
-Patch2: libquicktime-0.9.10-faad2.patch
+Patch0: libquicktime-1.0.0-plugin_dir.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libdv-devel, libvorbis-devel, lame-devel
 BuildRequires: libpng-devel >= 1.0.8, libjpeg-devel, gcc-c++
@@ -88,9 +92,7 @@ programs that need to access quicktime files using libquicktime.
 
 %prep
 %setup -n %{name}-%{version}%{?prever}
-%patch0 -p1 -b .plugin_dir
-%patch1 -p1 -b .x264
-%patch2 -p1 -b .faad2
+%patch0 -p0 -b .plugin_dir
 
 
 %build
@@ -102,7 +104,9 @@ programs that need to access quicktime files using libquicktime.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
+%find_lang %{name}
+
 # Add compatibility symlink for "quicktime/lqt.h" includes
 # (for transcode 1.0.0beta3)
 %{__ln_s} lqt %{buildroot}%{_includedir}/quicktime
@@ -117,31 +121,34 @@ programs that need to access quicktime files using libquicktime.
 %postun -p /sbin/ldconfig
 
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc COPYING README TODO
 %{_bindir}/lqtplay
 %{_bindir}/lqt_transcode
 %{_bindir}/qt*
-%{_libdir}/*.so.*
+%{_libdir}/libquicktime.so.*
 %dir %{_libdir}/libquicktime/
-%{_libdir}/libquicktime/*.so
-%{_mandir}/man1/*
+%{_libdir}/libquicktime/lqt_*.so
+%{_mandir}/man1/lqtplay.1*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{?!_without_gtk24:%{_bindir}/libquicktime_config}
 %{_bindir}/lqt-config
+%{_datadir}/aclocal/*.m4
 %{_includedir}/lqt/
 %{_includedir}/quicktime
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
-%exclude %{_libdir}/%{name}/*.la
-%{_datadir}/aclocal/*.m4
+%exclude %{_libdir}/libquicktime/*.la
 %{_libdir}/pkgconfig/libquicktime.pc
 
 
 %changelog
+* Sat Apr 21 2007 Dag Wieers <dag@wieers.com> - 1.0.0-1
+- Updated to release 1.0.0.
+
 * Mon Jan  8 2007 Matthias Saou <http://freshrpms.net/> 0.9.10-3
 - Include patch to fix runtime against latest faad2.
 - Add explicit faac, faad2, x264 buildreqs (ffmpeg was pulling them in anyway).

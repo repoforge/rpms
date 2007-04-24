@@ -1,0 +1,32 @@
+--- configure.ac.orig	2007-04-21 04:11:23.000000000 +0200
++++ configure.ac	2007-04-21 04:13:22.000000000 +0200
+@@ -669,11 +669,8 @@
+ dnl Plugin directory
+ dnl
+ 
+-if test "x$prefix" = xNONE; then
+-  prefix="${ac_default_prefix}"
+-fi
+-if test "x$exec_prefix" = xNONE; then
+-   exec_prefix="${prefix}"
++if test "x$libdir" = xNONE; then
++  libdir="${ac_default_libdir}"
+ fi
+ plugin_dir="$libdir/$PACKAGE"
+ 
+--- configure.orig	2007-04-21 04:11:28.000000000 +0200
++++ configure	2007-04-21 04:14:02.000000000 +0200
+@@ -30076,11 +30076,8 @@
+ 
+ 
+ 
+-if test "x$prefix" = xNONE; then
+-  prefix="${ac_default_prefix}"
+-fi
+-if test "x$exec_prefix" = xNONE; then
+-   exec_prefix="${prefix}"
++if test "x$libdir" = xNONE; then
++  prefix="${ac_default_libdir}"
+ fi
+ plugin_dir="$libdir/$PACKAGE"
+ 

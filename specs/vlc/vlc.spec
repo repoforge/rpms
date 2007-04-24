@@ -99,8 +99,8 @@
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
-Version: 0.8.6a
-Release: 4
+Version: 0.8.6b
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -333,6 +333,9 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 
 
 %changelog
+* Sat Apr 21 2007 Dag Wieers <dag@wieers.com> - 0.8.6b-1
+- Updated to release 0.8.6b.
+
 * Wed Mar 28 2007 Matthias Saou <http://freshrpms.net/> 0.8.6a-4
 - Enable upnp support (Paul Stewart).
 
