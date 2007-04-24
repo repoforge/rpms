@@ -5,7 +5,7 @@
 
 Summary: Extra libraries for the Xine library
 Name: xine-lib-moles
-Version: 1.1.5
+Version: 1.1.6
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -14,7 +14,6 @@ Source0: http://downloads.sf.net/xine/xine-lib-%{version}.tar.bz2
 # WARNING : Needs to be from the i386 package in order to contain vidix files
 Source1: rpm_-ql_xine-lib.txt
 Source2: rpm_-ql_xine-lib-extras.txt
-Patch0: xine-lib-1.1.5-pthread-check.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xine-lib = %{version}
 Requires: libdvdcss
@@ -42,7 +41,6 @@ Available rpmbuild rebuild options :
 
 %prep
 %setup -n xine-lib-%{version}
-%patch0 -p1 -b .pthread-check
 # Avoid standard rpaths on lib64 archs
 %{__perl} -pi -e 's|"/lib /usr/lib\b|"/%{_lib} %{_libdir}|' configure
 
@@ -88,6 +86,9 @@ done
 
 
 %changelog
+* Tue Apr 24 2007 Matthias Saou <http://freshrpms.net/> 1.1.6-1
+- Update to 1.1.6.
+
 * Mon Apr 16 2007 Matthias Saou <http://freshrpms.net/> 1.1.5-1
 - Update to 1.1.5.
 - Include pthread patch (thanks to Ville Skyttä).
