@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jörgen Scheibengruber <mfcn$gmx,de>
+# Upstream: Joergen Scheibengruber <mfcn$gmx,de>
 
 %{?dist: %{expand: %%define %dist 1}}
 

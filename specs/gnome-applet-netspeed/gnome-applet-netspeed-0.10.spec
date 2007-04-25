@@ -1,6 +1,6 @@
 # $Id: netspeed_applet.spec 471 2004-05-03 19:42:19Z dag $
 # Authority: dag
-# Upstream: Jörgen Scheibengruber <mfcn@gmx.de>
+# Upstream: Joergen Scheibengruber <mfcn@gmx.de>
 
 %{?dist: %{expand: %%define %dist 1}}
 
