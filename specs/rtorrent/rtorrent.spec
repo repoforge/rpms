@@ -3,11 +3,11 @@
 
 Summary: Console based bittorrent client
 Name: rtorrent
-Version: 0.7.1
+Version: 0.7.4
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://libtorrent.rakshasa.no
+URL: http://libtorrent.rakshasa.no/
 
 Source: http://libtorrent.rakshasa.no/downloads/rtorrent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -25,6 +25,9 @@ management.
 %setup
 
 %build
+### FIXME: Why does curl-compilation fail without the libsigc++20 includes
+export STUFF_CFLAGS="$(curl-config --cflags) $(pkg-config sigc++-2.0 --cflags)"
+export STUFF_LIBS="$(curl-config --libs) $(pkg-config sigc++-2.0 --libs) -ltorrent"
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -42,6 +45,9 @@ management.
 %{_bindir}/rtorrent
 
 %changelog
+* Wed Apr 25 2007 Dag Wieers <dag@wieers.com> - 0.7.4-1
+- Updated to release 0.7.4.
+
 * Mon Jan 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.7.1-1
 - Updated to release 0.7.1.
 
