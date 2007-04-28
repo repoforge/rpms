@@ -6,12 +6,13 @@
 ### FIXME: amavisd-new requires clamd to run as user vscan, solution needed
 ### REMINDER: Look and sync with Petr Kristof's work
 
-%{?el2:%define _without_milter 1}
+### sendmail has been updated on EL2, no longer true.
+#{?el2:%define _without_milter 1}
 
 Summary: Anti-virus software
 Name: clamav
 Version: 0.90.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -358,6 +359,9 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
+* Fri Apr 27 2007 Dag Wieers <dag@wieers.com> - 0.90.2-2
+- Added clamav-milter support for EL2.1 now that it comes with a newer sendmail. (Tom G. Christensen)
+
 * Sun Apr 15 2007 Dag Wieers <dag@wieers.com> - 0.90.2-1
 - Updated to release 0.90.2.
 

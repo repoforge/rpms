@@ -11,13 +11,14 @@
 Summary: heXoNet RFB (remote control for the X Window System)
 Name: rfb
 Version: 0.6.1
-Release: 5.2
+Release: 6
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.hexonet.de/software/rfb/
 
-Source: http://download.hexonet.com/software/rfb/%{name}-%{version}.tar.gz
-Patch: rfb-0.6.1-rpmoptflags.patch
+Source: http://download.hexonet.com/software/rfb/rfb-%{version}.tar.gz
+Patch0: rfb-0.6.1-rpmoptflags.patch
+Patch1: rfb-0.6.1-11-debian.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libxclass
@@ -42,6 +43,7 @@ X Window System.
 %prep
 %setup
 %patch0 -p1
+%patch1 -p1
 
 %{__cat} <<EOF >x0rfbserver.desktop
 [Desktop Entry]
@@ -82,18 +84,18 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
-%{__install} -p -m0644 man/man1/* %{buildroot}%{_mandir}/man1/
+%{__install} -p -m0644 man/man1/*.1* %{buildroot}%{_mandir}/man1/
 %{__install} -Dp -m0755 x0rfbserver/x0rfbserver %{buildroot}%{_bindir}/x0rfbserver
 %{__install} -Dp -m0755 xvncconnect/xvncconnect %{buildroot}%{_bindir}/xvncconnect
 %{__install} -Dp -m0755 xrfbviewer/xplayfbs %{buildroot}%{_bindir}/xplayfbs
 %{__install} -Dp -m0755 xrfbviewer/xrfbviewer %{buildroot}%{_bindir}/xrfbviewer
-%{__install} -Dp -m0755 rfbcat/rfbcat %{buildroot}%{_bindir}/rfbcat
+#%{__install} -Dp -m0755 rfbcat/rfbcat %{buildroot}%{_bindir}/rfbcat
 
 %if %{?_without_freedesktop:1}0
 	%{__install} -Dp -m0644 x0rfbserver.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/x0rfbserver.desktop
 	%{__install} -Dp -m0644 xvncconnect.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/xvncconnect.desktop
 %else
-        install -d -m0755 %{buildroot}%{_datadir}/applications
+        %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
         desktop-file-install --vendor "%{desktop_vendor}"  \
                 --add-category X-Red-Hat-Base              \
                 --dir %{buildroot}%{_datadir}/applications \
@@ -106,14 +108,21 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING INSTALL README rfm_fbs.1.0.html
-%doc %{_mandir}/man?/*
-%{_bindir}/*
-%{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/*.desktop}
-%{!?_without_freedesktop:%{_datadir}/applications/*.desktop}
+%doc %{_mandir}/man1/x0rfbserver.1*
+%doc %{_mandir}/man1/xplayfbs.1*
+%doc %{_mandir}/man1/xrfbviewer.1*
+%{_bindir}/x0rfbserver
+%{_bindir}/xvncconnect
+%{_bindir}/xplayfbs
+%{_bindir}/xrfbviewer
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/x0rfbserver.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/xvncconnect.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-x0rfbserver.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-xvncconnect.desktop}
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.1-5.2
-- Rebuild for Fedora Core 5.
+* Fri Apr 27 2007 Dag Wieers <dag@wieers.com> - 0.6.1-6
+- Added Debian patch set.
 
 * Sun Nov  6 2005 Matthias Saou <http://freshrpms.net/> 0.6.1-5
 - Remove /usr/X11R6/bin bindir, it's obsoleted with the newest X.org server.

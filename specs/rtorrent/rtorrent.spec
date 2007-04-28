@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dries
 
+%{?el4:%define _without_curl_pc 1}
+
 Summary: Console based bittorrent client
 Name: rtorrent
 Version: 0.7.4
@@ -25,9 +27,9 @@ management.
 %setup
 
 %build
-### FIXME: Why does curl-compilation fail without the libsigc++20 includes
-export STUFF_CFLAGS="$(curl-config --cflags) $(pkg-config sigc++-2.0 --cflags)"
-export STUFF_LIBS="$(curl-config --libs) $(pkg-config sigc++-2.0 --libs) -ltorrent"
+### FIXME: Why does curl-compilation fail without the libsigc++20 includes on EL4 ?
+%{?_without_curl_pc:export STUFF_CFLAGS="$(curl-config --cflags) $(pkg-config sigc++-2.0 --cflags)"}
+%{?_without_curl_pc:export STUFF_LIBS="$(curl-config --libs) $(pkg-config sigc++-2.0 --libs) -ltorrent"}
 %configure
 %{__make} %{?_smp_mflags}
 

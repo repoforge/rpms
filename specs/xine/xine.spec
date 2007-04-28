@@ -108,7 +108,7 @@ EOF
 
 %build
 %configure \
-    %{?_without_lirc:--disable-lirc}
+%{?_without_lirc:--disable-lirc}
 %{__make} %{?_smp_mflags}
 
 

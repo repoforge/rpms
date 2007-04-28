@@ -33,7 +33,6 @@ BuildRequires: gcc-c++
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_modxorg:BuildRequires: libXt-devel, libXmu-devel, libXpm-devel, libXext-devel}
 %{?fc4:BuildRequires: compat-gcc-32-c++}
-%{?el4:BuildRequires: compat-gcc-c++}
 %{?fc3:BuildRequires: compat-gcc-c++}
 %{?fc2:BuildRequires: compat-gcc-c++}
 %{?fc1:BuildRequires: compat-gcc-c++}
@@ -96,15 +95,12 @@ against.
 %doc doc/ChangeLog doc/GPL doc/LGPL doc/LICENSE doc/tcl.license.terms doc/tk.license.terms
 %doc doc/INSTALL doc/Layout.notes doc/MimeTypes.README doc/Programming.notes
 %config(noreplace) %{_sysconfdir}/xclass/
-%{_datadir}/xclass/
 %{_bindir}/xc-config
+%{_datadir}/xclass/
 %{_includedir}/xclass/
-%{_libdir}/*
+%{_libdir}/libxclass.a
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1
 - Updated to release 0.9.1.
 

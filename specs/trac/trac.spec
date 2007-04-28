@@ -6,7 +6,7 @@
 
 Name: trac
 Summary: Integrated SCM and project management tool
-Version: 0.10.3.1
+Version: 0.10.4
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -78,6 +78,9 @@ EOF
 %{_localstatedir}/lib/trac/
 
 %changelog
+* Fri Apr 27 2007 Dag Wieers <dag@wieers.com> - 0.10.4-1
+- Updated to release 0.10.4.
+
 * Sat Mar 10 2007 Dag Wieers <dag@wieers.com> - 0.10.3.1-1
 - Updated to release 0.10.3.1.
 

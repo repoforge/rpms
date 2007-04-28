@@ -7,7 +7,7 @@
 
 Summary: View one or multiple files like tail but with multiple windows
 Name: multitail
-Version: 5.0.0
+Version: 5.0.1
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -41,24 +41,34 @@ given regular expressions and deleting and adding windows.
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}
 %{__make} install DESTDIR="%{buildroot}"
+
+### Prepare documentation
+%{__install} -d -m0755 scripts/
+%{__install} -p -m0644 *.pl *.sh scripts/
+
+### Clean up buildroot
 %{__mv} -f %{buildroot}%{_sysconfdir}/multitail.conf.new %{buildroot}%{_sysconfdir}/multitail.conf
+%{__rm} -f %{buildroot}%{_sysconfdir}/multitail/convert-geoip.pl 
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes INSTALL *.conf *.html *.txt
+%doc Changes INSTALL *.conf *.html *.txt scripts/
 %doc %{_mandir}/man1/multitail.1*
 %config(noreplace) %{_sysconfdir}/multitail.conf
 %{_bindir}/multitail
-%dir %{_sysconfdir}/multitail
+%dir %{_sysconfdir}/multitail/
 %{_sysconfdir}/multitail/colors-example.pl
 %{_sysconfdir}/multitail/colors-example.sh
-%{_sysconfdir}/multitail/convert-geoip.pl
 %{_sysconfdir}/multitail/convert-simple.pl
 
 %changelog
+* Fri Apr 27 2007 Dag Wieers <dag@wieers.com> - 5.0.1-1
+- Updated to release 5.0.1.
+- Removed perl-Geo-IP from dependencies by moving it to %%doc. (Michael Mansour)
+
 * Mon Apr 16 2007 Dries Verachtert <dries@ulyssis.org> - 5.0.0-1
 - Updated to release 5.0.0.
 
