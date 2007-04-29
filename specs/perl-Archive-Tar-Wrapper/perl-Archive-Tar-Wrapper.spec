@@ -9,7 +9,7 @@
 
 Summary: API wrapper around the tar utility
 Name: perl-Archive-Tar-Wrapper
-Version: 0.07
+Version: 0.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ directory on disk.
 %{perl_vendorlib}/Archive/Tar/Wrapper.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.08-1
+- Updated to release 0.08.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Updated to release 0.07.
 

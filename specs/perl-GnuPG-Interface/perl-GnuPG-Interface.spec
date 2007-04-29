@@ -9,13 +9,13 @@
 
 Summary: Perl interface to GnuPG
 Name: perl-GnuPG-Interface
-Version: 0.33
-Release: 1.2
+Version: 0.35
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GnuPG-Interface/
 
-Source: http://search.cpan.org/CPAN/authors/id/F/FT/FTOBIN/GnuPG-Interface-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/J/JE/JESSE/GnuPG-Interface-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -51,5 +51,8 @@ verification, and key-listing parsing.
 %{perl_vendorlib}/auto/GnuPG/
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.35-1
+- Updated to release 0.35.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.33-1
 - Initial package.

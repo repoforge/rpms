@@ -9,7 +9,7 @@
 
 Summary: Constructor for Email::MIME
 Name: perl-Email-MIME-Creator
-Version: 1.451
+Version: 1.453
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,5 +46,8 @@ This package contains a constructor for Email::MIME.
 %{perl_vendorlib}/Email/MIME/Creator.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.453-1
+- Updated to release 1.453.
+
 * Wed Dec 20 2006 Dries Verachtert <dries@ulyssis.org> - 1.451
 - Initial package.

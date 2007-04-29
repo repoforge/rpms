@@ -9,8 +9,8 @@
 
 Summary: Object Oriented Interface to GnuPG
 Name: perl-Crypt-GPG
-Version: 1.52
-Release: 1.2
+Version: 1.63
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-GPG/
@@ -50,6 +50,12 @@ verification, key generation, key certification, export and import.
 %{perl_vendorlib}/Crypt/GPG.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.63-1
+- Updated to release 1.63.
+
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.61-1
+- Updated to release 1.61.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.52-1.2
 - Rebuild for Fedora Core 5.
 

@@ -8,8 +8,8 @@
 
 Summary: Crypt-RSA module for perl
 Name: perl-Crypt-RSA
-Version: 1.57
-Release: 1.2
+Version: 1.58
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-RSA/
@@ -50,6 +50,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorlib}/Crypt/RSA/
 
 %changelog
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.58-1
+- Updated to release 1.58.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.57-1.2
 - Rebuild for Fedora Core 5.
 

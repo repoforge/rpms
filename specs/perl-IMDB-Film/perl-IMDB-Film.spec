@@ -9,7 +9,7 @@
 
 Summary: Interface to IMDB
 Name: perl-IMDB-Film
-Version: 0.22
+Version: 0.27
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}
 %{perl_vendorlib}/IMDB/
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.27-1
+- Updated to release 0.27.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.22-1
 - Updated to release 0.22.
 

@@ -9,7 +9,7 @@
 
 Summary: Send email
 Name: perl-Email-Send
-Version: 2.183
+Version: 2.185
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ Perl module for sending mail.
 %{perl_vendorlib}/Email/Send/
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 2.185-1
+- Updated to release 2.185.
+
 * Wed Dec 20 2006 Dries Verachtert <dries@ulyssis.org> - 2.183-1
 - Initial package.

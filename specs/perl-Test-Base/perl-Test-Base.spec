@@ -8,7 +8,7 @@
 
 Summary: Data driven testing framework for perl
 Name: perl-Test-Base
-Version: 0.52
+Version: 0.53
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ A data driven testing framework.
 %{perl_vendorlib}/Test/Base/
 
 %changelog
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.53-1
+- Updated to release 0.53.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.52-1
 - Updated to release 0.52.
 

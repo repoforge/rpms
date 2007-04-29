@@ -9,13 +9,13 @@
 
 Summary: Configurable web traversal engine
 Name: perl-WWW-Robot
-Version: 0.023
-Release: 1.2
+Version: 0.025
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Robot/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AW/AWRIGLEY/WWW-Robot-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/K/KV/KVENTIN/WWW-Robot-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -48,6 +48,12 @@ open to change until a 1.000 release.
 %{perl_vendorlib}/WWW/Robot.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.025-1
+- Updated to release 0.025.
+
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.024-1
+- Updated to release 0.024.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.023-1.2
 - Rebuild for Fedora Core 5.
 

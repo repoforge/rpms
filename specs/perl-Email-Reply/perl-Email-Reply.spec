@@ -9,7 +9,7 @@
 
 Summary: Reply to mails
 Name: perl-Email-Reply
-Version: 1.200
+Version: 1.201
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,5 +46,8 @@ Perl package to reply to mails.
 %{perl_vendorlib}/Email/Reply.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.201-1
+- Updated to release 1.201.
+
 * Wed Dec 20 2006 Dries Verachtert <dries@ulyssis.org> - 1.200-1
 - Initial package.

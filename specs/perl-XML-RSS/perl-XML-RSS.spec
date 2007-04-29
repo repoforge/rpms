@@ -9,7 +9,7 @@
 
 Summary: Creates and updates RSS files
 Name: perl-XML-RSS
-Version: 1.10
+Version: 1.22
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -52,6 +52,12 @@ creating, updating, and saving RSS files.
 %{perl_vendorlib}/XML/RSS.pm
 
 %changelog
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.22-1
+- Updated to release 1.22.
+
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 1.20-1
+- Updated to release 1.20.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.10-1
 - Updated to release 1.10.
 

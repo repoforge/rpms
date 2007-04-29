@@ -9,8 +9,8 @@
 
 Summary: Routines for manipulating a person's name
 Name: perl-Lingua-EN-NameParse
-Version: 1.22
-Release: 2.2
+Version: 1.23
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-EN-NameParse/
@@ -36,7 +36,7 @@ the name is broken down into components.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 %{__perl} -pi -e 's|/usr/local/bin/perl|%{_bindir}/perl|g;' %{buildroot}%{perl_vendorlib}/Lingua/EN/*
 
 %clean
@@ -45,12 +45,16 @@ the name is broken down into components.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/Lingua::EN::NameGrammar*
+%doc %{_mandir}/man3/Lingua::EN::NameParse*
 %{perl_vendorlib}/Lingua/EN/NameParse.pm
 %{perl_vendorlib}/Lingua/EN/NameGrammar.pm
-%{perl_vendorlib}/Lingua/EN/demo.pl
+#%{perl_vendorlib}/Lingua/EN/demo.pl
 
 %changelog
+* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.23-1
+- Updated to release 1.23.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.22-2.2
 - Rebuild for Fedora Core 5.
 
