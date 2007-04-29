@@ -9,12 +9,12 @@
 Summary: Perl module to deal with time periods.
 Name: perl-Time-Period
 Version: 1.20
-Release: 1.2
+Release: 2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Period/
 
-Source: http://search.cpan.org/CPAN/authors/id/P/PR/PRYAN/Period-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Time/Period-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -52,5 +52,5 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTA
 %{perl_vendorlib}/Time/Period.pm
 
 %changelog
-* Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 1.20-1
+* Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 1.20-2
 - Initial package. (using DAR)
