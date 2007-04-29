@@ -7,11 +7,9 @@
 
 %define real_name Font-TTF
 
-%define short_version 0.40
-
 Summary: TTF Fonts
 Name: perl-Font-TTF
-Version: 0.40
+Version: 0.41
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -28,7 +26,7 @@ Provides: perl(ttfmod.pl)
 Use TTF fonts with Perl.
 
 %prep
-%setup -n %{real_name}-%{short_version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -37,7 +35,7 @@ Use TTF fonts with Perl.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 %{__rm} -f %{buildroot}%{perl_vendorlib}/Font/TTF/Win32.pm
 
 %clean
@@ -46,19 +44,15 @@ Use TTF fonts with Perl.
 %files
 %defattr(-, root, root, 0755)
 %doc README.TXT
-%doc %{_mandir}/man?/*
-#%{_bindir}/check_attach.plx
-#%{_bindir}/eurofix.plx
-#%{_bindir}/hackos2.plx
-#%{_bindir}/psfix.plx
-#%{_bindir}/ttfbuilder.plx
-#%{_bindir}/ttfname.plx
-#%{_bindir}/ttfremap.plx
+%doc %{_mandir}/man?/Font::TTF*
 %{perl_vendorlib}/Font/TTF.pm
 %{perl_vendorlib}/Font/TTF/
 %{perl_vendorlib}/ttfmod.pl
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.41-1
+- Updated to release 0.41.
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.40-1
 - Updated to release 0.40.
 

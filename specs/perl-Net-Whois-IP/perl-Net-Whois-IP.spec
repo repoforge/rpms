@@ -9,7 +9,7 @@
 
 Summary: Lookup the whois information for ipaddresses
 Name: perl-Net-Whois-IP
-Version: 1.02
+Version: 1.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,6 +48,9 @@ Perl extension for looking up the whois information for ipadresses.
 %{perl_vendorlib}/auto/Net/Whois/IP/
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.04-1
+- Updated to release 1.04.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.02-1
 - Updated to release 1.02.
 

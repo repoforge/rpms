@@ -9,7 +9,7 @@
 
 Summary: Simple text template engine
 Name: perl-Text-Template-Simple
-Version: 0.46
+Version: 0.47
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,6 +46,9 @@ Simple text template engine.
 %{perl_vendorlib}/Text/Template/Simple.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.47-1
+- Updated to release 0.47.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.46-1
 - Updated to release 0.46.
 

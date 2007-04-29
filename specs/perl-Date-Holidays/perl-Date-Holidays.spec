@@ -9,7 +9,7 @@
 
 Summary: Object Oriented classes for holidays
 Name: perl-Date-Holidays
-Version: 0.08
+Version: 0.15
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -42,10 +42,14 @@ A package with object oriented classes for holidays.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/Date::Holidays*
 %{perl_vendorlib}/Date/Holidays.pm
+%{perl_vendorlib}/Date/Holidays/
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.15-1
+- Updated to release 0.15.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Updated to release 0.08.
 

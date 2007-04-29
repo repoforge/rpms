@@ -9,13 +9,13 @@
 
 Summary: Remove files and directories
 Name: perl-File-Remove
-Version: 0.31
-Release: 1.2
+Version: 0.34
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Remove/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RS/RSOD/File-Remove-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/A/AD/ADAMK/File-Remove-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -34,18 +34,21 @@ Remove files and directories.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README
-%doc %{_mandir}/man3/*
+%doc Changes README
+%doc %{_mandir}/man3/File::Remove*
 %{perl_vendorlib}/File/Remove.pm
 
 %changelog
+* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.34-1
+- Updated to release 0.34.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.31-1.2
 - Rebuild for Fedora Core 5.
 

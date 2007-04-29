@@ -10,15 +10,15 @@
 
 Summary: XML-SAX Perl module
 Name: perl-XML-SAX
-Version: 0.13
-Release: 1.2
+Version: 0.15
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-SAX/
 
 Source: http://www.cpan.org/modules/by-module/XML/XML-SAX-%{version}.tar.gz
 Source1: ParserDetails.ini
-Patch0: perl-XML-SAX-parsers.patch
+#Patch0: perl-XML-SAX-parsers.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -35,7 +35,7 @@ XML-SAX Perl module.
 
 %prep
 %setup -n %{real_name}-%{version}
-%patch
+#patch
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
@@ -61,6 +61,12 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorlib}/XML/SAX/
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.15-1
+- Updated to release 0.15.
+
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1
+- Updated to release 0.14.
+
 * Mon Apr 10 2006 Dries Verachtert <dries@ulyssis.org> - 0.13-1.2
 - Rebuild for Fedora Core 5.
 

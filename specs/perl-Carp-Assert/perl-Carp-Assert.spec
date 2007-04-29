@@ -9,7 +9,7 @@
 
 Summary: Executable commments
 Name: perl-Carp-Assert
-Version: 0.19
+Version: 0.20
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -49,6 +49,9 @@ Carp::Assert is intended for a purpose like the ANSI C library assert.h.
 %{perl_vendorlib}/Carp/
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.20-1
+- Updated to release 0.20.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.19-1
 - Updated to release 0.19.
 

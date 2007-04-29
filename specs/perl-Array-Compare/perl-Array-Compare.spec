@@ -9,8 +9,8 @@
 
 Summary: Extension for comparing arrays
 Name: perl-Array-Compare
-Version: 1.13
-Release: 1.2
+Version: 1.14
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Array-Compare/
@@ -44,8 +44,7 @@ differing columns.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-#%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
-%{__rm} -rf %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -53,10 +52,13 @@ differing columns.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/Array::Compare*
 %{perl_vendorlib}/Array/Compare.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.14-1
+- Updated to release 1.14.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.13-1
 - Updated to release 1.13.
 

@@ -9,7 +9,7 @@
 
 Summary: Easily create test classes in an xUnit/JUnit style
 Name: perl-Test-Class
-Version: 0.22
+Version: 0.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,6 +47,9 @@ Easily create test classes in an xUnit/JUnit style.
 %{perl_vendorlib}/Test/Class
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.24-1
+- Updated to release 0.24.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.22-1
 - Updated to release 0.22.
 

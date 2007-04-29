@@ -9,7 +9,7 @@
 
 Summary: Generic file fetching mechanism
 Name: perl-File-Fetch
-Version: 0.08
+Version: 0.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -34,7 +34,7 @@ A generic file fetching mechanism.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -42,12 +42,14 @@ A generic file fetching mechanism.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/File::Fetch*
 %dir %{perl_vendorlib}/File/
 %{perl_vendorlib}/File/Fetch.pm
-%{perl_vendorlib}/File/Fetch/
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.10-1
+- Updated to release 0.10.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Updated to release 0.08.
 
