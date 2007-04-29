@@ -46,7 +46,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 0.9.35
+Version: 0.9.36
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -443,10 +443,12 @@ update-desktop-database &>/dev/null || :
 %{_datadir}/wine/wine.inf
 %{_libdir}/libwine.so.1*
 %dir %{_libdir}/wine/
+
 ### exe16
 %{_libdir}/wine/gdi.exe16
 %{_libdir}/wine/krnl386.exe16
 %{_libdir}/wine/user.exe16
+
 ### exe.so
 %{_libdir}/wine/clock.exe.so
 %{_libdir}/wine/cmd.exe.so
@@ -483,6 +485,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/winver.exe.so
 %{_libdir}/wine/wordpad.exe.so
 %{_libdir}/wine/xcopy.exe.so
+
 ### dll16
 %{_libdir}/wine/avifile.dll16
 %{_libdir}/wine/commdlg.dll16
@@ -522,7 +525,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/winsock.dll16
 %{_libdir}/wine/wintab.dll16
 %{_libdir}/wine/wprocs.dll16
+
 ### dll.so
+%{_libdir}/wine/acledit.dll.so
 %{_libdir}/wine/activeds.dll.so
 %{_libdir}/wine/advapi32.dll.so
 %{_libdir}/wine/advpack.dll.so
@@ -665,6 +670,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/spoolss.dll.so
 %{_libdir}/wine/sti.dll.so
 %{_libdir}/wine/svrapi.dll.so
+%{_libdir}/wine/sxs.dll.so
 %{_libdir}/wine/tapi32.dll.so
 %{_libdir}/wine/unicows.dll.so
 %{_libdir}/wine/url.dll.so
@@ -689,9 +695,11 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/ws2_32.dll.so
 %{_libdir}/wine/wsock32.dll.so
 %{_libdir}/wine/wtsapi32.dll.so
+
 ### ds.so
 %{_libdir}/wine/gphoto2.ds.so
 %{_libdir}/wine/sane.ds.so
+
 ### drv16
 %{_libdir}/wine/comm.drv16
 %{_libdir}/wine/display.drv16
@@ -700,6 +708,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/sound.drv16
 %{_libdir}/wine/system.drv16
 %{_libdir}/wine/wineps16.drv16
+
 ### drv.so
 %{_libdir}/wine/msacm32.drv.so
 %{_libdir}/wine/wineaudioio.drv.so
@@ -710,6 +719,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/winspool.drv.so
 %{_libdir}/wine/winealsa.drv.so
 %{_libdir}/wine/wineps.drv.so
+
 ### vxd
 %{_libdir}/wine/ifsmgr.vxd.so
 %{_libdir}/wine/mmdevldr.vxd.so
@@ -720,14 +730,17 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/vnetbios.vxd.so
 %{_libdir}/wine/vtdapi.vxd.so
 %{_libdir}/wine/vwin32.vxd.so
+
 ### acm.so
 %{_libdir}/wine/imaadp32.acm.so
 %{_libdir}/wine/msadp32.acm.so
 %{_libdir}/wine/msg711.acm.so
 %{_libdir}/wine/winemp3.acm.so
+
 ### tlb.so
 %{_libdir}/wine/stdole2.tlb.so
 %{_libdir}/wine/stdole32.tlb.so
+
 ### ocx.so
 %{_libdir}/wine/hhctrl.ocx.so
 %{_libdir}/wine/msisys.ocx.so
@@ -797,6 +810,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Sat Apr 28 2007 Dag Wieers <dag@wieers.com> - 0.9.36-1
+- Updated to release 0.9.36.
+
 * Sun Apr 15 2007 Dag Wieers <dag@wieers.com> - 0.9.35-1
 - Updated to release 0.9.35.
 

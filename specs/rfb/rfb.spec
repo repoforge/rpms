@@ -11,7 +11,7 @@
 Summary: heXoNet RFB (remote control for the X Window System)
 Name: rfb
 Version: 0.6.1
-Release: 6
+Release: 7
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.hexonet.de/software/rfb/
@@ -31,7 +31,7 @@ BuildRequires: libxclass
 %{?rh8:BuildRequires: compat-gcc-c++}
 
 ### Fix problem with apt requiring compat-gcc-c++ (Panu)
-Requires: compat-libstdc++
+#Requires: compat-libstdc++
 
 %description
 The heXoNet RFB Software package includes many different projects. The
@@ -121,6 +121,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-xvncconnect.desktop}
 
 %changelog
+* Sat Apr 28 2007 Dag Wieers <dag@wieers.com> - 0.6.1-7
+- Removed the compat-libstdc++ dependency.
+
 * Fri Apr 27 2007 Dag Wieers <dag@wieers.com> - 0.6.1-6
 - Added Debian patch set.
 

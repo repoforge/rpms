@@ -18,24 +18,28 @@
 %{?fc1:%define _without_xvmc 1}
 
 %{?el3:%define _without_alsa 1}
+%{?el3:%define _without_freetype2_pc 1}
 %{?el3:%define _without_fribidi 1}
 %{?el3:%define _without_gettextdevel 1}
 %{?el3:%define _without_theora 1}
 %{?el3:%define _without_xvmc 1}
 
 %{?rh9:%define _without_alsa 1}
+%{?rh9:%define _without_freetype2_pc 1}
 %{?rh9:%define _without_fribidi 1}
 %{?rh9:%define _without_gettextdevel 1}
 %{?rh9:%define _without_theora 1}
 %{?rh9:%define _without_xvmc 1}
 
 %{?rh8:%define _without_alsa 1}
+%{?rh8:%define _without_freetype2_pc 1}
 %{?rh8:%define _without_fribidi 1}
 %{?rh8:%define _without_gettextdevel 1}
 %{?rh8:%define _without_theora 1}
 %{?rh8:%define _without_xvmc 1}
 
 %{?rh7:%define _without_alsa 1}
+%{?rh7:%define _without_freetype2_pc 1}
 %{?rh7:%define _without_fribidi 1}
 %{?rh7:%define _without_gettextdevel 1}
 %{?rh7:%define _without_theora 1}
@@ -43,6 +47,7 @@
 %{?rh7:%define _without_xvmc 1}
 
 %{?yd3:%define _without_alsa 1}
+%{?yd3:%define _without_freetype2_pc 1}
 %{?yd3:%define _without_fribidi 1}
 %{?yd3:%define _without_gettextdevel 1}
 %{?yd3:%define _without_theora 1}
@@ -52,18 +57,15 @@
 
 Summary: Core library of the xine multimedia player
 Name: xine-lib
-Version: 1.1.4
+Version: 1.1.6
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
-Source: http://dl.sf.net/xine/xine-lib-%{version}.tar.bz2
-Patch1: xine-lib-1.1.4-optflags.patch
-Patch2: xine-lib-1.1.4-CVE-2007-1246.patch
-Patch3: xine-lib-1.1.3-legacy-flac-init.patch
-Patch6: xine-lib-1.1.1-deepbind-939.patch
-Patch7: xine-lib-1.1.1-multilib-devel.patch
+
+Source: http://downloads.sf.net/xine/xine-lib-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 Requires: libdvdcss
 BuildRequires: gcc-c++, pkgconfig, zlib-devel, libtiff-devel
 BuildRequires: libvorbis-devel, SDL-devel, bzip2-devel
@@ -80,6 +82,7 @@ BuildRequires: libcdio-devel, vcdimager-devel, a52dec-devel, libmad-devel
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_esound:BuildRequires: esound-devel}
 %{!?_without_aalib:BuildRequires: aalib-devel}
+%{!?_without_directfb:BuildRequires: directfb-devel}
 %{!?_without_flac:BuildRequires: flac-devel}
 %{!?_without_libfame:BuildRequires: libfame-devel}
 %{!?_without_arts:BuildRequires: arts-devel}
@@ -102,6 +105,7 @@ BuildRequires: libcdio-devel, vcdimager-devel, a52dec-devel, libmad-devel
 %{?rh9:BuildRequires: glut-devel}
 Obsoletes: xine-libs <= 1.0.0
 Obsoletes: libxine <= %{version}
+Obsoletes: xine-libs-moles <= %{version}-%{release}
 
 %description
 Xine is a free multimedia player. It plays back CDs, DVDs, and VCDs. It also
@@ -141,29 +145,30 @@ use the Xine library.
 
 %prep
 %setup
-%patch1 -p1 -b .optflags
-%patch2 -p1 -b .CVE-2007-1246
-%patch3 -p0 -b .legacy-flac-init
-### Patch6 needed at least when compiling with external ffmpeg, #939.
-%patch6 -p1 -b .deepbind
-%patch7 -p0 -b .multilib-devel
+%{__perl} -pi -e 's|"/lib /usr/lib\b|"/%{_lib} %{_libdir}|' configure
 
 %build
+%{?_without_freetype2_pc:export FT2_CFLAGS="$(freetype-config --cflags)"}
+%{?_without_freetype2_pc:export FT2_LIBS="$(freetype-config --libs)"}
 %configure \
-    %{?_with_modxorg:--with-xv-path=%{_libdir}} \
-    --enable-ipv6 \
-    %{?_with_extffmpeg:--with-external-ffmpeg} \
-    %{?_without_alsa:--disable-alsa} \
-    %{!?_with_extdvdnav:--with-included-dvdnav} \
-    --with-external-a52dec \
-    --with-external-libmad \
-    --with-pic
+%{?_with_modxorg:--with-xv-path="%{_libdir}"} \
+%{?_without_alsa:--disable-alsa} \
+	--enable-antialiasing \
+%{!?_without_directfb:--enable-directfb} \
+	--enable-ipv6 \
+%{?_with_extffmpeg:--with-external-ffmpeg} \
+%{!?_with_extdvdnav:--with-included-dvdnav} \
+	--with-external-a52dec \
+	--with-external-libmad \
+        --with-fontconfig \
+        --with-freetype \
+	--with-pic
 %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR=%{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{libname}
 # Remove all those unused docs
 %{__rm} -rf %{buildroot}%{_docdir}/xine/ || :
@@ -203,6 +208,12 @@ use the Xine library.
 
 
 %changelog
+* Sat Apr 21 2007 Dag Wieers <dag@wieers.com> - 1.1.6-1
+- Updated to release 1.1.6.
+
+* Sun Apr 15 2007 Dag Wieers <dag@wieers.com> - 1.1.5-1
+- Updated to release 1.1.5.
+
 * Sun Mar 11 2007 Dag Wieers <dag@wieers.com> - 1.1.4-1
 - Updated to release 1.1.4.
 - Added Fedora Extras patches.
