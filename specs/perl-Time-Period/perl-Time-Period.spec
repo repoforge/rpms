@@ -7,7 +7,7 @@
 %define real_name Period
 
 Summary: Perl module to deal with time periods.
-Name: perl-Period
+Name: perl-Time-Period
 Version: 1.20
 Release: 1.2
 License: distributable
@@ -17,10 +17,12 @@ URL: http://search.cpan.org/dist/Period/
 Source: http://search.cpan.org/CPAN/authors/id/P/PR/PRYAN/Period-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildArch: noarch
 BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503
+
+Obsoletes: perl-Period <= %{version}-%{release}
+Provides: perl-Period
 
 %description
 Perl module to deal with time periods.
@@ -29,9 +31,7 @@ Perl module to deal with time periods.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTALLDIRS="vendor"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -39,8 +39,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,13 +47,10 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%doc %{_mandir}/man?/*
-%dir %{perl_vendorlib}/Time
+%doc %{_mandir}/man3/Time::Period.3pm*
+%dir %{perl_vendorlib}/Time/
 %{perl_vendorlib}/Time/Period.pm
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.20-1.2
-- Rebuild for Fedora Core 5.
-
 * Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 1.20-1
 - Initial package. (using DAR)
