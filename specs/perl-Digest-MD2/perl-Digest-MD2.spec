@@ -48,12 +48,17 @@ output a 128-bit "fingerprint" or "message digest" of the input.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%{_mandir}/man3/*
+%{_mandir}/man3/Digest::MD2*
 %{perl_vendorarch}/Digest/MD2.pm
+%dir %{perl_vendorarch}/auto/Digest/
+%dir %{perl_vendorarch}/auto/Digest/MD2/
 %{perl_vendorarch}/auto/Digest/MD2/MD2.bs
 %{perl_vendorarch}/auto/Digest/MD2/MD2.so
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 2.03-2
+- Cleanup
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.03-1.2
 - Rebuild for Fedora Core 5.
 
