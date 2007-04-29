@@ -21,7 +21,7 @@ Patch1: munin-1.2.4-conf.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-Requires: perl-HTML-Template, perl-Net-Server, perl-Net-SNMP
+Requires: perl-Net-Server, perl-Net-SNMP
 Requires: rrdtool, shadow-utils
 
 %description
@@ -76,7 +76,7 @@ SNMP or similar technology.
 %{__perl} -pi.orig -e 's|2345|-|' dists/redhat/munin-node.rc
 
 %{__cat} <<EOF > munin.logrotate.conf
-/var/log/munin/munin-graph.log /var/log/munin/munin-html.log /var/log/munin/munin-limits.log /var/log/munin/munin-update.log {
+%{_localstatedir}/log/munin/munin-graph.log %{_localstatedir}/log/munin/munin-html.log %{_localstatedir}/log/munin/munin-limits.log %{_localstatedir}/log/munin/munin-update.log {
         daily
         missingok
         rotate 7
@@ -87,7 +87,7 @@ SNMP or similar technology.
 EOF
 
 %{__cat} <<EOF >munin-node.logrotate.conf
-/var/log/munin/munin-node.log {
+%{_localstatedir}/log/munin/munin-node.log {
 	daily
 	missingok
 	rotate 7
@@ -135,13 +135,26 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 
-### Install node
-%{__make} install-main install-node install-node-plugins install-doc install-man \
+### Install server
+%{__make} install-main install-man \
 	CONFIG="dists/redhat/Makefile.config" \
 	DESTDIR="%{buildroot}" \
-	DOCDIR="doc-rpm" \
 	MANDIR="%{buildroot}%{_mandir}"
-# DOCDIR="%{buildroot}%{_docdir}/%{name}-%{version}"
+
+%{__install} -Dp -m0644 dists/redhat/munin.cron.d %{buildroot}%{_sysconfdir}/cron.d/munin
+%{__install} -Dp -m0644 munin.logrotate.conf %{buildroot}%{_sysconfdir}/logrotate.d/munin
+%{__install} -Dp -m0644 munin.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/munin.conf
+%{__install} -Dp -m0644 server/style.css %{buildroot}%{_localstatedir}/www/munin/style.css
+
+### Move munin CGI to /var/www/munin
+%{__install} -dp -m0755 %{buildroot}%{_localstatedir}/www/munin/cgi/
+%{__mv} -v %{buildroot}%{_localstatedir}/www/html/munin/cgi/munin-cgi-graph \
+			%{buildroot}%{_localstatedir}/www/munin/cgi/munin-cgi-graph
+
+### Install node
+%{__make} install-node install-node-plugins \
+	CONFIG="dists/redhat/Makefile.config" \
+	DESTDIR="%{buildroot}" \
 
 %{__install} -Dp -m0755 dists/redhat/munin-node.rc %{buildroot}%{_initrddir}/munin-node
 %{__install} -Dp -m0644 dists/tarball/plugins.conf %{buildroot}%{_sysconfdir}/munin/plugins.conf
@@ -152,27 +165,13 @@ EOF
 ### that are not in extras. We can readd them when/if those modules are added. 
 %{__rm} -f %{buildroot}%{_datadir}/munin/plugins/sybase_space
 
-### Install server
-%{__make} install-main \
-	CONFIG="dists/redhat/Makefile.config" \
-	DESTDIR="%{buildroot}"
-
-%{__install} -Dp -m0644 dists/redhat/munin.cron.d %{buildroot}%{_sysconfdir}/cron.d/munin
-%{__install} -Dp -m0644 server/style.css %{buildroot}%{_localstatedir}/www/munin/style.css
-%{__install} -Dp -m0644 munin.logrotate.conf %{buildroot}%{_sysconfdir}/logrotate.d/munin
-%{__install} -Dp -m0644 munin.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/munin.conf
-
-### Move munin CGI to /var/www/munin
-%{__install} -dp -m0755 %{buildroot}%{_localstatedir}/www/munin/cgi/
-%{__mv} -v %{buildroot}%{_localstatedir}/www/html/munin/cgi/munin-cgi-graph \
-			%{buildroot}%{_localstatedir}/www/munin/cgi/munin-cgi-graph
-
 ### Install config for hddtemp_smartctl
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}/etc/munin/plugin-conf.d/hddtemp_smartctl
 
 ### Install config for sendmail under fedora
 %{__install} -Dp -m0644 %{SOURCE2} %{buildroot}/etc/munin/plugin-conf.d/sendmail
 
+### Create empty directories
 %{__install} -dp -m0755 %{buildroot}%{_localstatedir}/lib/munin/
 %{__install} -dp -m0755 %{buildroot}%{_localstatedir}/log/munin/
 %{__install} -dp -m0755 %{buildroot}%{_sysconfdir}/munin/plugins/
@@ -181,7 +180,6 @@ EOF
 %{__rm} -rf %{buildroot}
 
 # Main package scripts
-# uid 18 is the next uid in http://fedoraproject.org/wiki/PackageUserRegistry
 %pre
 if ! /usr/bin/getent group munin &>/dev/null; then
         /usr/sbin/groupadd -r munin || \
@@ -192,14 +190,14 @@ if ! /usr/bin/id munin &>/dev/null; then
                 %logmsg "Unexpected error adding user \"munin\". Aborting installation."
 fi
 
+### userdel removes group munin as well
 %postun
-if [ $1 -ne 0 ]; then
-        /usr/sbin/userdel munin || %logmsg "User \"munin\" could not be deleted."
-        /usr/sbin/groupdel munin || %logmsg "Group \"munin\" could not be deleted."
+if [ $1 -eq 0 ]; then
+	/usr/sbin/userdel munin || %logmsg "User \"munin\" could not be deleted."
+#	/usr/sbin/groupdel munin || %logmsg "Group \"munin\" could not be deleted."
 fi
  
 ### Node package scripts
-### uid 18 is the next uid in http://fedoraproject.org/wiki/PackageUserRegistry
 %pre node
 if ! /usr/bin/getent group munin &>/dev/null; then
         /usr/sbin/groupadd -r munin || \
@@ -215,15 +213,16 @@ fi
 /usr/sbin/munin-node-configure --shell | sh
 
 %preun node
-if [ $1 -ne 0 ]; then
+if [ $1 -eq 0 ]; then
 	/sbin/service munin-node stop &>/dev/null || :
 	/sbin/chkconfig --del munin-node
 fi
 
+### userdel removes group munin as well
 %postun node
-if [ $1 -ne 0 ]; then
-        /usr/sbin/userdel munin || %logmsg "User \"munin\" could not be deleted."
-        /usr/sbin/groupdel munin || %logmsg "Group \"munin\" could not be deleted."
+if [ $1 -eq 0 ]; then
+	/usr/sbin/userdel munin || %logmsg "User \"munin\" could not be deleted."
+#	/usr/sbin/groupdel munin || %logmsg "Group \"munin\" could not be deleted."
 fi
 
 %files
