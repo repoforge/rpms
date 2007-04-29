@@ -42,7 +42,7 @@ Simple standalone param-checking functions.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Params/
 %{perl_vendorlib}/Params/Util.pm
 
@@ -64,9 +64,6 @@ Simple standalone param-checking functions.
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Updated to release 0.10.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1
 - Updated to release 0.09.

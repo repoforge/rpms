@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Image/Image-Info-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(IO::String)
 
 %description
 This Perl extention allows you to extract meta information from
@@ -37,8 +37,7 @@ various types of image files.
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -46,7 +45,7 @@ various types of image files.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES CREDITS README TODO
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Image/
 %{perl_vendorlib}/Image/Info.pm
 %{perl_vendorlib}/Image/Info/
