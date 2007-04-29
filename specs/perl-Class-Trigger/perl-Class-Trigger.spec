@@ -9,8 +9,8 @@
 
 Summary: Mixin to add / call inheritable triggers
 Name: perl-Class-Trigger
-Version: 0.10
-Release: 1.2
+Version: 0.11
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Trigger/
@@ -47,6 +47,9 @@ get called at some points you specify.
 %{perl_vendorlib}/Class/Trigger.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.11-1
+- Updated to release 0.11.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1.2
 - Rebuild for Fedora Core 5.
 

@@ -10,7 +10,7 @@
 
 Summary: MailTools module for perl
 Name: perl-MailTools
-Version: 1.74
+Version: 1.76
 Release: 1
 License: distributable
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ MailTools module for perl.
 %{perl_vendorlib}/auto/Mail/
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.76-1
+- Updated to release 1.76.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.74-1
 - Updated to release 1.74.
 

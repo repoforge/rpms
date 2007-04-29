@@ -9,7 +9,7 @@
 
 Summary: Converts Perl data to and from JavaScript Object Notation
 Name: perl-JSON
-Version: 1.07
+Version: 1.11
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -62,5 +62,8 @@ structure into each other. For JSON, see http://www.json.org/
 %{perl_vendorlib}/Apache/JSONRPC.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.11-1
+- Updated to release 1.11.
+
 * Sun Sep 03 2006 Al Pacifico < adpacifico@users.sourceforge.net> - 1.07-1
 - Initial packaging.

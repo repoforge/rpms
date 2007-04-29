@@ -12,7 +12,7 @@
 
 Summary: Edit MP3 tags
 Name: perl-MP3-Info
-Version: 1.20
+Version: 1.22
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ With this module, you can read and edit information within MP3 files.
 #%{perl_vendorlib}/MPEG/MP3Info.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.22-1
+- Updated to release 1.22.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.20-1
 - Updated to release 1.20.
 

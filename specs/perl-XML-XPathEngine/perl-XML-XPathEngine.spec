@@ -9,7 +9,7 @@
 
 Summary: Reusable XPath engine for DOM-like trees
 Name: perl-XML-XPathEngine
-Version: 0.05
+Version: 0.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,6 +47,9 @@ This module is used to add XPath support to XML modules.
 %{perl_vendorlib}/XML/XPathEngine/
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.08-1
+- Updated to release 0.08.
+
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Updated to release 0.05.
 

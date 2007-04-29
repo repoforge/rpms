@@ -9,8 +9,8 @@
 
 Summary: Object interface for function callbacks
 Name: perl-Callback
-Version: 1.06
-Release: 1.2
+Version: 1.07
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Callback/
@@ -48,6 +48,9 @@ arguments) or object-oriented (a method call on an object).
 %{perl_vendorlib}/Callback.p*
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.07-1
+- Updated to release 1.07.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.06-1.2
 - Rebuild for Fedora Core 5.
 

@@ -9,7 +9,7 @@
 
 Summary: Run a subprocess in batch mode
 Name: perl-IPC-Run3
-Version: 0.036
+Version: 0.037
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ Run a subprocess in batch mode.
 %{perl_vendorlib}/IPC/Run3/
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.037-1
+- Updated to release 0.037.
+
 * Sat Sep 23 2006 Dries Verachtert <dries@ulyssis.org> - 0.036-1
 - Updated to release 0.036.
 

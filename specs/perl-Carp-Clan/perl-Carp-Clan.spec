@@ -10,7 +10,7 @@
 
 Summary: Report errors which match a pattern
 Name: perl-Carp-Clan
-Version: 5.8
+Version: 5.9
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}
 %{perl_vendorlib}/Carp/Clan.pod
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 5.9-1
+- Updated to release 5.9.
+
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 5.8-1
 - Updated to release 5.8.
 

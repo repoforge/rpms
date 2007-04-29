@@ -9,7 +9,7 @@
 
 Summary: Mechanism for AJAX or DHTML based web applications
 Name: perl-CGI-Ajax
-Version: 0.697
+Version: 0.701
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -61,6 +61,9 @@ of a Content Management System, or some other larger project.
 %{perl_vendorlib}/CGI/Ajax.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.701-1
+- Updated to release 0.701.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.697-1
 Updated to release 0.697.
 

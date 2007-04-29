@@ -11,8 +11,8 @@
 
 Summary: IO:: interface to Compress::Zlib
 Name: perl-IO-Zlib
-Version: 1.04
-Release: 1.2
+Version: 1.05
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Zlib/
@@ -52,6 +52,9 @@ code that doesn't know which sort of file it is using.
 %{perl_vendorlib}/IO/Zlib.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.05-1
+- Updated to release 1.05.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.04-1.2
 - Rebuild for Fedora Core 5.
 

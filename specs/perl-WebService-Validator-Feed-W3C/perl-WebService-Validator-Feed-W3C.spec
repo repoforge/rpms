@@ -9,7 +9,7 @@
 
 Summary: Find errors in feeds
 Name: perl-WebService-Validator-Feed-W3C
-Version: 0.3
+Version: 0.5
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,6 +48,9 @@ SOAP 1.2 support. It helps to find errors in RSS or ATOM feeds.
 %{perl_vendorlib}/WebService/Validator/Feed/W3C.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.5-1
+- Updated to release 0.5.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-1
 - Updated to release 0.3.
 

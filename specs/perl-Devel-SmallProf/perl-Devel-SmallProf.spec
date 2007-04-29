@@ -9,8 +9,8 @@
 
 Summary: Per-line Perl profiler
 Name: perl-Devel-SmallProf
-Version: 2.00_03
-Release: 1.2
+Version: 2.01
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-SmallProf/
@@ -49,6 +49,9 @@ program as possible and also in terms of being simple to use.
 %{perl_vendorlib}/Devel/SmallProf.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 2.01-1
+- Updated to release 2.01.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.00_03-1.2
 - Rebuild for Fedora Core 5.
 

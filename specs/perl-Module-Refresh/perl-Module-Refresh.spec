@@ -9,8 +9,8 @@
 
 Summary: Refresh %INC files when updated on disk
 Name: perl-Module-Refresh
-Version: 0.09
-Release: 1.2
+Version: 0.11
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Refresh/
@@ -46,6 +46,9 @@ With this module, you can refresh %INC when updated on disk.
 %{perl_vendorlib}/Module/Refresh.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.11-1
+- Updated to release 0.11.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1.2
 - Rebuild for Fedora Core 5.
 

@@ -9,7 +9,7 @@
 
 Summary: Case preserving but case insensitive hash table
 Name: perl-Tie-CPHash
-Version: 1.02
+Version: 1.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,6 +46,9 @@ This module provides a case preserving but case insensitive hash.
 %{perl_vendorlib}/Tie/CPHash.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.03-1
+- Updated to release 1.03.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.02-1
 - Updated to release 1.02.
 

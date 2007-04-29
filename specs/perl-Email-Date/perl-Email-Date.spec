@@ -9,7 +9,7 @@
 
 Summary: Find and format date headers
 Name: perl-Email-Date
-Version: 1.101
+Version: 1.102
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,5 +46,8 @@ With this package you can find and format date headers.
 %{perl_vendorlib}/Email/Date.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.102-1
+- Updated to release 1.102.
+
 * Wed Dec 20 2006 Dries Verachtert <dries@ulyssis.org> - 1.101-1
 - Initial package.

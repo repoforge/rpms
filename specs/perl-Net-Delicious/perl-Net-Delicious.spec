@@ -9,7 +9,7 @@
 
 Summary: OOP for the del.icio.us API
 Name: perl-Net-Delicious
-Version: 1.01
+Version: 1.11
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,6 +47,9 @@ OOP for the del.icio.us API.
 %{perl_vendorlib}/Net/Delicious/
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.11-1
+- Updated to release 1.11.
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Updated to release 1.01.
 

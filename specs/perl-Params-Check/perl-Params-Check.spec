@@ -9,7 +9,7 @@
 
 Summary: Generic input parsing/checking mechanism
 Name: perl-Params-Check
-Version: 0.25
+Version: 0.26
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,6 +48,9 @@ templating system, providing default values and so on.
 %{perl_vendorlib}/Params/Check.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.26-1
+- Updated to release 0.26.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.25-1
 - Updated to release 0.25.
 

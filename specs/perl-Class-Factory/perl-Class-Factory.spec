@@ -9,7 +9,7 @@
 
 Summary: Base class for dynamic factory classes
 Name: perl-Class-Factory
-Version: 1.04
+Version: 1.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,6 +46,9 @@ A base class for dynamic factory classes.
 %{perl_vendorlib}/Class/Factory.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.05-1
+- Updated to release 1.05.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.04-1
 - Updated to release 1.04.
 

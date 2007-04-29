@@ -9,7 +9,7 @@
 
 Summary: Simple blog code for valid XHTML and HTML
 Name: perl-HTML-SBC
-Version: 0.14
+Version: 0.15
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ even with invalid input. It will always produce valid (X)HTML.
 %{perl_vendorlib}/HTML/SBC.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.15-1
+- Updated to release 0.15.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1
 - Initial package.

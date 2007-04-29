@@ -9,7 +9,7 @@
 
 Summary: Module for merging hierarchies using the C3 algorithm
 Name: perl-Algorithm-C3
-Version: 0.05
+Version: 0.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,5 +53,8 @@ MRO for Parrot objects as well.
 %{perl_vendorlib}/Algorithm/C3.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.06-1
+- Updated to release 0.06.
+
 * Sat Jul 15 2006 Al Pacifico <adpacifico@users.sourceforge.net> - 0.05-1
 - Initial packaging

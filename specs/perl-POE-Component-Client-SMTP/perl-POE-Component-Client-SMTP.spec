@@ -9,7 +9,7 @@
 
 Summary: Asynchronous mail sending with POE
 Name: perl-POE-Component-Client-SMTP
-Version: 0.13
+Version: 0.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,6 +46,9 @@ Asynchronous mail sending with POE.
 %{perl_vendorlib}/POE/Component/Client/SMTP.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.14-1
+- Updated to release 0.14.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.13-1
 - Updated to release 0.13.
 

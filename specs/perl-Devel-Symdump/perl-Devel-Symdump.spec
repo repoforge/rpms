@@ -9,7 +9,7 @@
 
 Summary: Dump symbol names or the symbol table
 Name: perl-Devel-Symdump
-Version: 2.06
+Version: 2.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,6 +48,9 @@ Dump symbol names or the symbol table.
 %{perl_vendorlib}/Devel/Symdump/Export.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 2.07-1
+- Updated to release 2.07.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.06-1
 - Updated to release 2.06.
 

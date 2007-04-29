@@ -11,8 +11,8 @@
 
 Summary: Interact with a t/test_manifest file
 Name: perl-Test-Manifest
-Version: 1.14
-Release: 1.2
+Version: 1.17
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Manifest/
@@ -49,6 +49,9 @@ This module allows you to interact with a t/test_manifest file.
 %{perl_vendorlib}/Test/Manifest.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.17-1
+- Updated to release 1.17.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.14-1.2
 - Rebuild for Fedora Core 5.
 

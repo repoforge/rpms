@@ -9,8 +9,8 @@
 
 Summary: Iterate across files in a directory tree
 Name: perl-File-Iterator
-Version: 0.12
-Release: 1.2
+Version: 0.14
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Iterator/
@@ -47,6 +47,9 @@ files in a directory tree.
 %{perl_vendorlib}/File/Iterator.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.14-1
+- Updated to release 0.14.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1.2
 - Rebuild for Fedora Core 5.
 

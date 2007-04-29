@@ -9,7 +9,7 @@
 
 Summary: Compare perl data structures
 Name: perl-Data-Compare
-Version: 0.14
+Version: 0.16
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,6 +48,9 @@ of each other.
 %{perl_vendorlib}/Data/Compare
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.16-1
+- Updated to release 0.16.
+
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1
 - Updated to release 0.14.
 

@@ -9,7 +9,7 @@
 
 Summary: Graph operations
 Name: perl-Graph
-Version: 0.80
+Version: 0.81
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ This modules contains functions for manipulating graphics.
 %{perl_vendorlib}/Graph/
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.81-1
+- Updated to release 0.81.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.80-1
 - Updated to release 0.80.
 
