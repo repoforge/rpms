@@ -1,4 +1,4 @@
-# $Id$
+# $Id: perl-Convert-Morse.spec 3128 2005-04-16 08:40:14Z dries $
 # Authority: dries
 # Upstream: Tels <nospam-abuse$bloodgate,com>
 
@@ -9,17 +9,17 @@
 
 Summary: Convert between ASCII and MORSE code
 Name: perl-Convert-Morse
-Version: 0.05
+Version: 0.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-Morse/
 
-Source: http://search.cpan.org/CPAN/authors/id/T/TE/TELS/convert/Convert-Morse-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/T/TE/TELS/Convert-Morse-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 2:5.8.1
+BuildRequires: perl
 
 %description
 A package to convert between ASCII and MORSE code.
@@ -34,24 +34,18 @@ A package to convert between ASCII and MORSE code.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README
-%doc %{_mandir}/man3/Convert::Morse*.3pm*
+%doc Changes README
+%doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/Convert/
 %{perl_vendorlib}/Convert/Morse.pm
 
 %changelog
-* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.05-1
-- Updated to release 0.05.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.

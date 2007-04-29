@@ -1,22 +1,21 @@
 # $Id$
 # Authority: dag
-# Upstream: Andrew Zhilenko <andrew$ti,cz>
+# Upstream: Peter Hickman <peterhi$ntlworld,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Authen-Radius
+%define real_name Apache-LogRegex
 
-Summary: Perl module that provides simple Radius client facilities
-Name: perl-Authen-Radius
-Version: 0.13
+Summary: Perl module to parse a line from an Apache logfile into a hash
+Name: perl-Apache-LogRegex
+Version: 1.4
 Release: 1
 License: Artistic
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Authen-Radius/
+URL: http://search.cpan.org/dist/Apache-LogRegex/
 
-#Source: http://www.cpan.org/modules/by-module/Authen/Authen-Radius-%{version}.tar.gz
-Source: http://www.cpan.org/authors/id/M/MA/MANOWAR/RadiusPerl-0.13.tar.gz
+Source: http://www.cpan.org/modules/by-module/Apache/Apache-LogRegex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -24,7 +23,8 @@ BuildRequires: perl
 Requires: perl
 
 %description
-Authen::Radius is a perl module that provides simple Radius client facilities.
+Apache-LogRegex is a perl module to parse a line from an Apache
+logfile into a hash.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -45,12 +45,11 @@ Authen::Radius is a perl module that provides simple Radius client facilities.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README
-%doc %{_mandir}/man3/Authen::Radius.3pm*
-%dir %{perl_vendorlib}/Authen/
-#%{perl_vendorlib}/Authen/Radius/
-%{perl_vendorlib}/Authen/Radius.pm
+%doc MANIFEST META.yml README
+%doc %{_mandir}/man3/Apache::LogRegex.3pm*
+%dir %{perl_vendorlib}/Apache/
+%{perl_vendorlib}/Apache/LogRegex.pm
 
 %changelog
-* Sun Apr 29 2007 Dag Wieers <dag@wieers.com> - 0.13-1
+* Sun Apr 29 2007 Dag Wieers <dag@wieers.com> - 1.4-1
 - Initial package. (using DAR)
