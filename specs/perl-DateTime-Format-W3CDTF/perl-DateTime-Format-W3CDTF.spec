@@ -1,21 +1,21 @@
 # $Id$
-# Authority: dries
-# Upstream: Steve Hancock <shancock7078$bigfoot,com>
+# Authority: dag
+# Upstream: Kellan Elliott-Mccrea <kellan$protest,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Perl-Tidy
+%define real_name DateTime-Format-W3CDTF
 
-Summary: Perl module that parses and beautifies perl source
-Name: perl-Tidy
-Version: 20070424
+Summary: Perl module to parse and format W3CDTF datetime strings
+Name: perl-DateTime-Format-W3CDTF
+Version: 0.04
 Release: 1
 License: Artistic
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Perl-Tidy/
+URL: http://search.cpan.org/dist/DateTime-Format-W3CDTF/
 
-Source: http://www.cpan.org/modules/by-module/Perl/Perl-Tidy-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Format-W3CDTF-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -23,8 +23,8 @@ BuildRequires: perl
 Requires: perl
 
 %description
-Perltidy is a tool to indent and reformat perl scripts. It can also
-write scripts in html format.
+DateTime-Format-W3CDTF is a Perl module to parse and format
+W3CDTF datetime strings.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -45,13 +45,12 @@ write scripts in html format.
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS CHANGES COPYING MANIFEST META.yml README TODO
-%doc %{_mandir}/man1/perltidy.1*
-%doc %{_mandir}/man3/Perl::Tidy.3pm*
-%{_bindir}/perltidy
-%dir %{perl_vendorlib}/Perl/
-%{perl_vendorlib}/Perl/Tidy.pm
+%doc Changes LICENSE MANIFEST README
+%doc %{_mandir}/man3/DateTime::Format::W3CDTF.3pm*
+%dir %{perl_vendorlib}/DateTime/
+%dir %{perl_vendorlib}/DateTime/Format/
+%{perl_vendorlib}/DateTime/Format/W3CDTF.pm
 
 %changelog
-* Tue May 01 2007 Dag Wieers <dag@wieers.com> - 20070424-1
+* Tue May 01 2007 Dag Wieers <dag@wieers.com> - 0.04-1
 - Initial package. (using DAR)
