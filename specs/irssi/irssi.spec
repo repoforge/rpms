@@ -16,7 +16,7 @@
 Summary: Modular text-mode IRC client
 Name: irssi
 Version: 0.8.10a
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Communications
 URL: http://irssi.org/
@@ -54,11 +54,11 @@ Support for other protocols like ICQ could be created some day too.
 	--with-glib2 \
 	--with-imlib \
         --with-ncurses \
-	--with-perl="module" \
 	--with-perl-lib="%(dirname %{buildroot}%{perl_vendorarch})" \
 	--with-plugins \
         --with-proxy \
         --with-textui
+#	--with-perl="module" \
 #	--with-perl-lib="%{buildroot}%{perl_vendorarch}"
 #	--with-perl-lib="vendor"
 %{__make} %{?_smp_mflags}
@@ -94,6 +94,9 @@ Support for other protocols like ICQ could be created some day too.
 %exclude %{_docdir}/irssi/
 
 %changelog
+* Mon Apr 30 2007 Dag Wieers <dag@wieers.com> - 0.8.10a-2
+- Remove --with-perl="module" as it disables /script support. (Tom�Laovika)
+
 * Fri Apr 20 2007 Dag Wieers <dag@wieers.com> - 0.8.10a-1
 - Updated to release 0.8.10a.
 - Fixed invalid pointer when DCC unregister. (Saleem Abdulrasool)
