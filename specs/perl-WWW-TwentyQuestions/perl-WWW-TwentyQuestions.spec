@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/K/KI/KIRSLE/WWW-TwentyQuestions-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 4:5.8.8
 
 %description
 Interface to the classic 20 Questions game as provided by 20Q.net.

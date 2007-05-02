@@ -8,8 +8,8 @@
 
 Summary: Send network traffic through virtual tunnels to improve your privacy
 Name: tor
-Version: 0.1.1.26
-Release: 4
+Version: 0.1.2.13
+Release: 1
 License: BSD
 Group: Applications/Internet
 URL: http://tor.eff.org/
@@ -34,7 +34,8 @@ that are blocked by their local Internet service providers (ISPs).
 %setup
 
 %build
-export CPPFLAGS="-I/usr/include/kerberos"
+#export CPPFLAGS="-I/usr/include/kerberos"
+export CPPFLAGS="-I/usr/kerberos/include"
 %configure --with-tor-user="%{toruser}" --with-tor-group="%{torgroup}"
 %{__make} %{?_smp_mflags}
 %{__perl} -pi -e "s|# chkconfig: 2345|# chkconfig: -|g;" contrib/tor.sh
@@ -47,8 +48,8 @@ export CPPFLAGS="-I/usr/include/kerberos"
 %{__install} -Dp -m644 contrib/tor.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/tor
 %{__mv} -f %{buildroot}%{_sysconfdir}/tor/torrc.sample %{buildroot}%{_sysconfdir}/tor/torrc
 %{__install} -d %{buildroot}%{_localstatedir}/lib/tor/
-%{__install} -d %{buildroot}%{_localstatedir}/run/tor/
 %{__install} -d %{buildroot}%{_localstatedir}/log/tor/
+%{__install} -d %{buildroot}%{_localstatedir}/run/tor/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -76,12 +77,12 @@ fi
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog INSTALL LICENSE README
 %doc %{_mandir}/man1/tor*
+%config %{_initrddir}/tor
+%config(noreplace) %{_sysconfdir}/logrotate.d/tor
 %{_bindir}/tor-resolve
 %{_bindir}/tor
 %{_bindir}/torctl
 %{_bindir}/torify
-%{_sysconfdir}/logrotate.d/tor
-%{_initrddir}/tor
 
 %defattr(-, root, %{torgroup}, 0750)
 %dir %{_sysconfdir}/tor/
@@ -98,6 +99,9 @@ fi
 %dir %{_localstatedir}/log/tor
 
 %changelog
+* Wed May 02 2007 Dag Wieers <dag@wieers.com> - 0.1.2.13-1
+- Updated to release 0.1.2.13.
+
 * Sun Mar 25 2007 Dag Wieers <dag@wieers.com> - 0.1.1.26-4
 - Rebuild against libevent-1.1a on EL5.
 
