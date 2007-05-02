@@ -72,8 +72,7 @@ desktop-file-install --vendor net                  \
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
 gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -89,8 +88,8 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 
 %files devel
 %{_includedir}/*.h
-%{_libdir}/*.a
 %{_libdir}/*.so
+%exclude %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 
 %changelog

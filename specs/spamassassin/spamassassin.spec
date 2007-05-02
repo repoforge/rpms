@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %{?rh8:%define _with_perl_5_6 1}
 %{?rh7:%define _with_perl_5_6 1}
 %{?el2:%define _with_perl_5_6 1}
@@ -12,7 +14,7 @@
 
 Summary: Spam filter for email which can be invoked from mail delivery agents
 Name: spamassassin
-Version: 3.1.8
+Version: 3.2.0
 Release: 1
 License: Apache License
 Group: Applications/Internet
@@ -20,16 +22,15 @@ URL: http://spamassassin.apache.org/
 
 Source: http://www.apache.org/dist/spamassassin/source/Mail-SpamAssassin-%{version}.tar.bz2
 Source99: filter-requires-spamassassin.sh
-#Patch3: spamassassin-3.0.2-krb5-backcompat.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl(HTML::Parser) >= 3.24, perl(Net::DNS), perl(Time::HiRes), openssl-devel
-Requires: procmail, perl(Net::DNS), perl(Time::HiRes), perl-libwww-perl
-Requires: perl(Archive::Tar) >= 1.23, perl(IO::Zlib)
+Requires: procmail, gnupg, perl(Net::DNS), perl(Time::HiRes), perl-libwww-perl
+Requires: perl(Archive::Tar) >= 1.23, perl(IO::Zlib), perl(IO::Socket::SSL)
+Requires: perl(DB_File), perl(LWP::UserAgent), perl(HTTP::Date)
 Requires: /sbin/chkconfig, /sbin/service
-#Requires: perl(Mail::SpamAssassin) = %{version}-%{release}
-Provides: perl(Mail::SpamAssassin) = %{version}-%{release}
-Obsoletes: perl-Mail-SpamAssassin
+Obsoletes: perl-Mail-SpamAssassin <= %{version}-%{release}
+Obsoletes: spamassassin-tools <= %{version}-%{release}
 
 %define __find_requires %{SOURCE99}
 
@@ -50,18 +51,8 @@ INCLUDERC=/etc/mail/spamassassin/spamassassin-default.rc
 To filter spam for all users, add that line to /etc/procmailrc
 (creating if necessary).
 
-%package tools
-Summary: Miscellaneous tools and documentation for SpamAssassin
-Group: System Environment/Daemons
-Requires: perl(Mail::SpamAssassin) = %{version}
-
-%description tools
-Miscellaneous tools and documentation from various authors, distributed
-with SpamAssassin. See /usr/share/doc/SpamAssassin-tools-*/.
-
 %prep
 %setup -n %{real_name}-%{version}
-#patch3 -p0
 
 %{__cat} <<EOF >local.cf		### SOURCE2
 # These values can be overridden by editing ~/.spamassassin/user_prefs.cf
@@ -92,22 +83,48 @@ EOF
 SPAMDOPTIONS="-d -c -m5 -H"
 EOF
 
+%{__cat} <<EOF >sa-update.logrotate		### SOURCE 6
+/var/log/sa-update.log {
+    monthly
+    notifempty
+    missingok
+}
+EOF
+
+%{__cat} <<EOF >sa-update.crontab		### SOURCE 7
+### OPTIONAL: Spamassassin Rules Updates ###
+#
+# http://wiki.apache.org/spamassassin/RuleUpdates
+# Highly recommended that you read the documentation before using this.
+# ENABLE UPDATES AT YOUR OWN RISK.
+#
+# /var/log/sa-update.log contains a history log of sa-update runs
+
+#10 4 * * * root /usr/share/spamassassin/sa-update.cron 2>&1 | tee -a /var/log/sa-update.log
+EOF
+
+%{__cat} <<'EOF' >sa-update.cronscript		### SOURCE 8
+#!/bin/bash
+
+sleep $(expr $RANDOM % 7200)
+# Only restart spamd if sa-update returns 0, meaning it updated the rules
+/usr/bin/sa-update && /etc/init.d/spamassassin condrestart > /dev/null
+EOF
+
 %{__cat} <<EOF >spamassassin-helper.sh		### SOURCE10
 #!/bin/sh
 /usr/bin/spamassassin -e
 EOF
 
 %build
-export CFLAGS="-I/usr/kerberos/include %{optflags} -fPIC"
+export CFLAGS="%{optflags} -I/usr/kerberos/include"
 %{__perl} Makefile.PL \
 %{!?_with_perl_5_6:DESTDIR="%{buildroot}"} \
 		SYSCONFDIR="%{_sysconfdir}" \
 		INSTALLDIRS="vendor" \
 		ENABLE_SSL="yes" </dev/null
-%{__make} %{?_smp_mflags} \
-	OPTIMIZE="%{optflags} -fPIC"
-%{__make} %{?_smp_mflags} spamc/libspamc.so \
-	LIBS="-ldl %{optflags} -fPIC"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags} spamc/libspamc.so LIBS="-ldl %{optflags} -fPIC"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -126,18 +143,32 @@ export CFLAGS="-I/usr/kerberos/include %{optflags} -fPIC"
 %{__install} -Dp -m0644 spamassassin-default.rc %{buildroot}%{_sysconfdir}/mail/spamassassin/spamassassin-default.rc
 %{__install} -Dp -m0644 spamassassin-spamc.rc %{buildroot}%{_sysconfdir}/mail/spamassassin/spamassassin-spamc.rc
 %{__install} -Dp -m0644 spamassassin-helper.sh %{buildroot}%{_sysconfdir}/mail/spamassassin/spamassassin-helper.sh
+%{__install} -Dp -m0644 sa-update.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/sa-update
+%{__install} -Dp -m0600 sa-update.crontab %{buildroot}%{_sysconfdir}/cron.d/sa-update
+%{__install} -Dp -m0744 sa-update.cronscript %{buildroot}%{_datadir}/spamassassin/sa-update.cron
+
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/spamassassin/
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/run/spamassassin/
 
 ### Disable find-requires for documentation
-find contrib/ masses/ sql/ tools/ -type f -exec %{__chmod} -x {} \;
+find ldap/ sql/ -type f -exec %{__chmod} -x {} \;
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib}
 %{__rm} -rf %{buildroot}%{perl_vendorarch}
 
 %post
-if [ $1 -eq 1 ]; then
-        /sbin/chkconfig --add spamassassin
-fi
+/sbin/chkconfig --add spamassassin
+
+# -a and --auto-whitelist options were removed from 3.0.0
+# prevent service startup failure
+TMPFILE=$(/bin/mktemp /etc/sysconfig/spamassassin.XXXXXX) || exit 1
+cp /etc/sysconfig/spamassassin $TMPFILE
+perl -p -i -e 's/(["\s]-\w+)a/$1/ ; s/(["\s]-)a(\w+)/$1$2/ ; s/(["\s])-a\b/$1/' $TMPFILE
+perl -p -i -e 's/ --auto-whitelist//' $TMPFILE
+# replace /etc/sysconfig/spamassassin only if it actually changed
+cmp /etc/sysconfig/spamassassin $TMPFILE || cp $TMPFILE /etc/sysconfig/spamassassin
+rm $TMPFILE
 
 if [ -f %{_sysconfdir}/spamassassin.cf ]; then
 	%{__mv} -f %{_sysconfdir}/spamassassin.cf %{_sysconfdir}/mail/spamassassin/migrated.cf
@@ -146,8 +177,6 @@ fi
 if [ -f %{_sysconfdir}/mail/spamassassin.cf ]; then
 	%{__mv} -f %{_sysconfdir}/mail/spamassassin.cf %{_sysconfdir}/mail/spamassassin/migrated.cf
 fi
-
-/sbin/service spamassassin condrestart &>/dev/null || :
 
 %preun
 if [ $1 -eq 0 ]; then
@@ -165,25 +194,29 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS Changes CREDITS LICENSE NOTICE PACKAGING README STATUS TRADEMARK
-%doc *.txt spamc/README.qmail UPGRADE USAGE
+%doc Changes CREDITS LICENSE NOTICE PACKAGING README TRADEMARK UPGRADE USAGE
+%doc *.txt spamc/README.qmail ldap/ sql/
 %doc %{_mandir}/man1/*.1*
 %doc %{_mandir}/man3/*.3pm*
 %config %{_initrddir}/spamassassin
+%config(noreplace) %{_sysconfdir}/cron.d/sa-update
+%config(noreplace) %{_sysconfdir}/logrotate.d/sa-update
 %config(noreplace) %{_sysconfdir}/mail/spamassassin/
 %config(noreplace) %{_sysconfdir}/sysconfig/spamassassin
+%dir %{_datadir}/spamassassin/
+%dir %{_localstatedir}/lib/spamassassin/
+%dir %{_localstatedir}/run/spamassassin/
 %{_bindir}/*
 %{_datadir}/spamassassin/
+%{_includedir}/libspamc.h
 %{_libdir}/libspamc.so
 %{perl_vendorlib}/Mail/
 %{perl_vendorlib}/spamassassin-run.pod
-%{_includedir}/libspamc.h
-
-%files tools
-%defattr(0644, root, root, 0755)
-%doc contrib/ masses/ sql/ tools/
 
 %changelog
+* Wed May 02 2007 Dag Wieers <dag@wieers.com> - 3.2.0-1
+- Updated to release 3.2.0.
+
 * Fri Feb 16 2007 Dag Wieers <dag@wieers.com> - 3.1.8-1
 - Updated to release 3.1.8.
 
