@@ -1,28 +1,28 @@
 # $Id$
 # Authority: dag
-# Upstream: Emmanuele Bassi <emmanuele$emmanuelebassi,net>
+# Upstream: Torsten Schönfeld <kaffeetisch$gmx,de>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Gnome2-Print
+%define real_name GStreamer
 
-Summary: Perl wrapper for the Gnome Print utilities
-Name: perl-Gnome2-Print
-Version: 1.000
+Summary: Perl module with bindings to the GStreamer library
+Name: perl-GStreamer
+Version: 0.09
 Release: 1
 License: Artistic
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Gnome2-Print/
+URL: http://search.cpan.org/dist/GStreamer/
 
-Source: http://www.cpan.org/modules/by-module/Gnome2/Gnome2-Print-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/GStreamer/GStreamer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, libgnomeprintui22-devel >= 2.2
+BuildRequires: perl, gstreamer-devel >= 0.10
 Requires: perl
 
 %description
-Gnome2-Print is a Perl wrapper for the Gnome Print utilities.
+GStreamer is a Perl module with bindings to the GStreamer library.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -43,14 +43,12 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog MANIFEST META.yml NEWS README
+%doc ChangeLog LICENSE MANIFEST META.yml NEWS README TODO
 %doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorarch}/Gnome2/
-%{perl_vendorarch}/Gnome2/Print.pm
-%{perl_vendorarch}/Gnome2/Print/
-%dir %{perl_vendorarch}/auto/Gnome2/
-%{perl_vendorarch}/auto/Gnome2/Print/
+%{perl_vendorarch}/GStreamer.pm
+%{perl_vendorarch}/GStreamer/
+%{perl_vendorarch}/auto/GStreamer/
 
 %changelog
-* Tue May 01 2007 Dag Wieers <dag@wieers.com> - 1.000-1
+* Tue May 01 2007 Dag Wieers <dag@wieers.com> - 0.09-1
 - Initial package. (using DAR)

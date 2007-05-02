@@ -1,28 +1,28 @@
 # $Id$
 # Authority: dag
-# Upstream: Emmanuele Bassi <emmanuele$emmanuelebassi,net>
+# Upstream: John Gardiner Myers <jgmyers$proofpoint,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Gnome2-Print
+%define real_name Encode-Detect
 
-Summary: Perl wrapper for the Gnome Print utilities
-Name: perl-Gnome2-Print
-Version: 1.000
+Summary: Perl module that implements an Encode::Encoding subclass that detects the encoding of data
+Name: perl-Encode-Detect
+Version: 1.00
 Release: 1
 License: Artistic
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Gnome2-Print/
+URL: http://search.cpan.org/dist/Encode-Detect/
 
-Source: http://www.cpan.org/modules/by-module/Gnome2/Gnome2-Print-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Encode/Encode-Detect-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, libgnomeprintui22-devel >= 2.2
-Requires: perl
+BuildRequires: perl
 
 %description
-Gnome2-Print is a Perl wrapper for the Gnome Print utilities.
+Encode-Detect is a Perl module that implements an Encode::Encoding subclass
+that detects the encoding of data.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -43,14 +43,14 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog MANIFEST META.yml NEWS README
+%doc Changes LICENSE MANIFEST META.yml
 %doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorarch}/Gnome2/
-%{perl_vendorarch}/Gnome2/Print.pm
-%{perl_vendorarch}/Gnome2/Print/
-%dir %{perl_vendorarch}/auto/Gnome2/
-%{perl_vendorarch}/auto/Gnome2/Print/
+%dir %{perl_vendorarch}/Encode/
+%{perl_vendorarch}/Encode/Detect/
+%{perl_vendorarch}/Encode/Detect.pm
+%dir %{perl_vendorarch}/auto/Encode/
+%{perl_vendorarch}/auto/Encode/Detect/
 
 %changelog
-* Tue May 01 2007 Dag Wieers <dag@wieers.com> - 1.000-1
+* Wed May 02 2007 Dag Wieers <dag@wieers.com> - 1.00-1
 - Initial package. (using DAR)

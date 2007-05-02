@@ -49,8 +49,5 @@ With this module, you can use a Sender Policy Framework.
 %{perl_vendorlib}/Mail/SPF/Query.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.999.1-1.2
-- Rebuild for Fedora Core 5.
-
 * Fri Mar  3 2006 Dries Verachtert <dries@ulyssis.org> - 1.999.1-1
 - Initial package.

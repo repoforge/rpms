@@ -1,28 +1,27 @@
 # $Id$
 # Authority: dag
-# Upstream: Emmanuele Bassi <emmanuele$emmanuelebassi,net>
+# Upstream: Marc Lehmann <pcg$goof,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Gnome2-Print
+%define real_name Gtk2-Spell
 
-Summary: Perl wrapper for the Gnome Print utilities
-Name: perl-Gnome2-Print
-Version: 1.000
+Summary: Perl module with bindings for GtkSpell with Gtk2
+Name: perl-Gtk2-Spell
+Version: 1.03
 Release: 1
 License: Artistic
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Gnome2-Print/
+URL: http://search.cpan.org/dist/Gtk2-Spell/
 
-Source: http://www.cpan.org/modules/by-module/Gnome2/Gnome2-Print-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Gtk2/Gtk2-Spell-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, libgnomeprintui22-devel >= 2.2
-Requires: perl
+BuildRequires: perl
 
 %description
-Gnome2-Print is a Perl wrapper for the Gnome Print utilities.
+Gtk2-Spell is a Perl module with bindings for GtkSpell with Gtk2.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -43,14 +42,14 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog MANIFEST META.yml NEWS README
-%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorarch}/Gnome2/
-%{perl_vendorarch}/Gnome2/Print.pm
-%{perl_vendorarch}/Gnome2/Print/
-%dir %{perl_vendorarch}/auto/Gnome2/
-%{perl_vendorarch}/auto/Gnome2/Print/
+%doc AUTHORS ChangeLog LICENSE MANIFEST README
+%doc %{_mandir}/man3/Gtk2::Spell.3pm*
+%dir %{perl_vendorarch}/Gtk2/
+%{perl_vendorarch}/Gtk2/Spell.pm
+%{perl_vendorarch}/Gtk2/Spell/
+%dir %{perl_vendorarch}/auto/Gtk2/
+%{perl_vendorarch}/auto/Gtk2/Spell/
 
 %changelog
-* Tue May 01 2007 Dag Wieers <dag@wieers.com> - 1.000-1
+* Wed May 02 2007 Dag Wieers <dag@wieers.com> - 1.03-1
 - Initial package. (using DAR)

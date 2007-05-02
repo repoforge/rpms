@@ -2,8 +2,8 @@
 # Authority: dries
 # Upstream: Karl Glazebrook <karlglazebrook$yahoo,com>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name ExtUtils-F77
 
@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-F77/
 
-Source: http://search.cpan.org/CPAN/authors/id/K/KG/KGB/ExtUtils-F77-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/ExtUtils/ExtUtils-F77-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -37,6 +37,8 @@ and name varies with each OS/compiler combination!
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
@@ -45,7 +47,8 @@ and name varies with each OS/compiler combination!
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/ExtUtils::F77.3pm*
+%dir %{perl_vendorlib}/ExtUtils/
 %{perl_vendorlib}/ExtUtils/F77.pm
 
 %changelog

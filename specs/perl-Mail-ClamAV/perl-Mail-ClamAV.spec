@@ -1,28 +1,28 @@
 # $Id$
 # Authority: dag
-# Upstream: Emmanuele Bassi <emmanuele$emmanuelebassi,net>
+# Upstream: Scott Beck <sbeck$gossamer-threads,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Gnome2-Print
+%define real_name Mail-ClamAV
 
-Summary: Perl wrapper for the Gnome Print utilities
-Name: perl-Gnome2-Print
-Version: 1.000
+Summary: Perl module with bindings for the clamav virus scanner
+Name: perl-Mail-ClamAV
+Version: 0.20
 Release: 1
 License: Artistic
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Gnome2-Print/
+URL: http://search.cpan.org/dist/Mail-ClamAV/
 
-Source: http://www.cpan.org/modules/by-module/Gnome2/Gnome2-Print-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Mail/Mail-ClamAV-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, libgnomeprintui22-devel >= 2.2
+BuildRequires: perl, perl(Inline), clamav-devel
 Requires: perl
 
 %description
-Gnome2-Print is a Perl wrapper for the Gnome Print utilities.
+Mail-ClamAV is a Perl module with bindings for the clamav virus scanner.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -43,14 +43,13 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog MANIFEST META.yml NEWS README
-%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorarch}/Gnome2/
-%{perl_vendorarch}/Gnome2/Print.pm
-%{perl_vendorarch}/Gnome2/Print/
-%dir %{perl_vendorarch}/auto/Gnome2/
-%{perl_vendorarch}/auto/Gnome2/Print/
+%doc Changes INSTALL MANIFEST META.yml README
+%doc %{_mandir}/man3/Mail::ClamAV.3pm*
+%dir %{perl_vendorarch}/Mail/
+%{perl_vendorarch}/Mail/ClamAV.pm
+%dir %{perl_vendorarch}/auto/Mail/
+%{perl_vendorarch}/auto/Mail/ClamAV/
 
 %changelog
-* Tue May 01 2007 Dag Wieers <dag@wieers.com> - 1.000-1
+* Wed May 02 2007 Dag Wieers <dag@wieers.com> - 0.20-1
 - Initial package. (using DAR)
