@@ -17,8 +17,8 @@
 
 Summary: Proprietary ATI hardware accelerated OpenGL display driver
 Name: ati-x11-drv
-Version: 8.35.5
-Release: 1
+Version: 8.36.5
+Release: 2
 License: Proprietary
 Group: User Interface/X Hardware Support
 URL: http://ati.amd.com/support/drivers/linux/linux-radeon.html
@@ -164,6 +164,8 @@ done
     %{buildroot}%{_libdir}/xorg/modules/drivers/
 %{__install} -p -m 0755 x710%{?xext}/usr/X11R6/%{_lib}/modules/linux/* \
     %{buildroot}%{_libdir}/xorg/modules/linux/
+%{__install} -p -m 0755 x710%{?xext}/usr/X11R6/%{_lib}/modules/*.* \
+    %{buildroot}%{_libdir}/xorg/modules/
 
 # Install ACPI config and scripts
 %{__install} -D -p -m 0644 packages/Fedora/a-ac-aticonfig \
@@ -213,7 +215,7 @@ echo %{fglrxlib32dir} >> %{buildroot}%{_sysconfdir}/ld.so.conf.d/fglrx.conf
 
 
 %clean
-%{__rm} -rf %{buildroot}
+#{__rm} -rf %{buildroot}
 
 
 %post
@@ -266,6 +268,8 @@ fi
 %{_prefix}/X11R6/
 %{_libdir}/xorg/modules/drivers/*.so
 %{_libdir}/xorg/modules/linux/*.so
+%{_libdir}/xorg/modules/*.so
+%{_libdir}/xorg/modules/*.a
 # Tools and utilities
 %{_bindir}/amdcccle
 %{_bindir}/aticonfig
@@ -288,6 +292,12 @@ fi
 
 
 %changelog
+* Wed May  2 2007 Matthias Saou <http://freshrpms.net/> 8.36.5-2
+- Include new esut.a and glesx.so files to fix Xv.
+
+* Wed Apr 25 2007 Matthias Saou <http://freshrpms.net/> 8.36.5-1
+- Update to 8.36.5.
+
 * Mon Apr  2 2007 Matthias Saou <http://freshrpms.net/> 8.35.5-1
 - Update to 8.35.5.
 - Include new amdcccle (AMD Catalyst Control Centre: Linux Edition).
