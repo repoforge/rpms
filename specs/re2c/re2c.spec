@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-Summary: tool for generating C-based recognizers from regular expressions
+Summary: Tool for generating C-based recognizers from regular expressions
 Name: re2c
 Version: 0.12.0
 Release: 1
@@ -41,7 +41,7 @@ flexible.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README examples/ doc/* lessons/
+%doc CHANGELOG README examples/ doc/* lessons/
 %doc %{_mandir}/man1/re2c.1*
 %{_bindir}/re2c
 
