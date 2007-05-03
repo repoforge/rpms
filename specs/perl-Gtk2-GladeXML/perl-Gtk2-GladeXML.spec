@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Torsten Schönfeld <kaffeetisch$gmx,de>
+# Upstream: Torsten SchÃ¶nfeld <kaffeetisch$gmx,de>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
