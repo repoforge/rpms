@@ -1,28 +1,29 @@
 # $Id$
-# Authority: dries
-# Upstream: Michael R. Davis <account=%3eperl,tld=%3ecom,domain=%3emichaelrdavis>
+# Authority: dag
+# Upstream: Michael R. Davis <account=>perl,tld=>com,domain=>michaelrdavis>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name GPS-PRN
 
-Summary: Package for PRN - Object ID conversions
+Summary: Perl module that implements PRN - Object ID conversions
 Name: perl-GPS-PRN
-Version: 0.03
+Version: 0.05
 Release: 1
-License: Artistic/GPL
+License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GPS-PRN/
 
-Source: http://search.cpan.org//CPAN/authors/id/M/MR/MRDVT/GPS-PRN-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/GPS/GPS-PRN-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+Requires: perl
 
 %description
-Package for PRN - Object ID conversions.
+GPS-PRN is a Perl module that implements PRN - Object ID conversions.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -34,18 +35,22 @@ Package for PRN - Object ID conversions.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README
-%doc %{_mandir}/man3/GPS::PRN*
-%{perl_vendorlib}/GPS/PRN.pm
+%doc CHANGES LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/GPS::PRN.3pm*
+#%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/GPS/
+#%{perl_vendorlib}/GPS/PRN/
+%{perl_vendorlib}/GPS/PRN.pm
 
 %changelog
-* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.03-1
-- Initial package.
+* Tue May 01 2007 Dag Wieers <dag@wieers.com> - 0.05-1
+- Initial package. (using DAR)
