@@ -7,7 +7,7 @@
 
 %define real_name Parallel-Fork-BossWorker
 
-Summary: Extension for easiliy creating forking queue processing application
+Summary: Extension for easily creating forking queue processing application
 Name: perl-Parallel-Fork-BossWorker
 Version: 0.01
 Release: 1
@@ -19,10 +19,10 @@ Source: http://search.cpan.org//CPAN/authors/id/J/JR/JROD/Parallel-Fork-BossWork
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 4:5.8.8
 
 %description
-Perl extension for easiliy creating forking queue processing application.
+Perl extension for easily creating forking queue processing application.
 
 %prep
 %setup -n %{real_name}-%{version}
