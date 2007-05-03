@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Ingy döt Net <INGY$cpan,org>
+# Upstream: Ingy dÃ¶t Net <INGY$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
