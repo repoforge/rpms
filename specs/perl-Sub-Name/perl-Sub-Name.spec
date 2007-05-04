@@ -1,28 +1,27 @@
 # $Id$
 # Authority: dag
-# Upstream: Torsten Schönfeld <kaffeetisch$gmx,de>
+# Upstream: Matthijs van Duin <xmath-no-spam$nospam,cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Gtk2-GladeXML
+%define real_name Sub-Name
 
-Summary: Perl module to create user interfaces directly from Glade XML files
-Name: perl-Gtk2-GladeXML
-Version: 1.006
+Summary: Perl module to (re)name a sub
+Name: perl-Sub-Name
+Version: 0.02
 Release: 1
 License: Artistic
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Gtk2-GladeXML/
+URL: http://search.cpan.org/dist/Sub-Name/
 
-Source: http://www.cpan.org/modules/by-module/Gtk2/Gtk2-GladeXML-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Sub/Sub-Name-0.02.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl
 
 %description
-Gtk2-GladeXML is a Perl module to create user interfaces
-directly from Glade XML files.
+Sub-Name is a Perl module to (re)name a sub.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -43,14 +42,13 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog LICENSE MANIFEST META.yml NEWS README
-%doc %{_mandir}/man3/Gtk2::GladeXML.3pm*
-%dir %{perl_vendorarch}/Gtk2/
-%{perl_vendorarch}/Gtk2/GladeXML.pm
-%{perl_vendorarch}/Gtk2/GladeXML/
-%dir %{perl_vendorarch}/auto/Gtk2/
-%{perl_vendorarch}/auto/Gtk2/GladeXML/
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Sub::Name.3pm*
+%dir %{perl_vendorarch}/Sub/
+%{perl_vendorarch}/Sub/Name.pm
+%dir %{perl_vendorarch}/auto/Sub/
+%{perl_vendorarch}/auto/Sub/Name/
 
 %changelog
-* Wed May 02 2007 Dag Wieers <dag@wieers.com> - 1.006-1
+* Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.02-1
 - Initial package. (using DAR)

@@ -1,28 +1,28 @@
 # $Id$
 # Authority: dag
-# Upstream: Torsten Schönfeld <kaffeetisch$gmx,de>
+# Upstream: Daniel P. Berrangé <dan$berrange,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Gtk2-GladeXML
+%define real_name Net-DBus
+%define real_version 0.32
 
-Summary: Perl module to create user interfaces directly from Glade XML files
-Name: perl-Gtk2-GladeXML
-Version: 1.006
+Summary: Perl module with bindings for the DBus message system
+Name: perl-Net-DBus
+Version: 0.32.2
 Release: 1
 License: Artistic
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Gtk2-GladeXML/
+URL: http://search.cpan.org/dist/Net-DBus/
 
-Source: http://www.cpan.org/modules/by-module/Gtk2/Gtk2-GladeXML-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/Net-DBus-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl
 
 %description
-Gtk2-GladeXML is a Perl module to create user interfaces
-directly from Glade XML files.
+perl-Net-DBus is a Perl module with bindings for the DBus message system.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -43,14 +43,14 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog LICENSE MANIFEST META.yml NEWS README
-%doc %{_mandir}/man3/Gtk2::GladeXML.3pm*
-%dir %{perl_vendorarch}/Gtk2/
-%{perl_vendorarch}/Gtk2/GladeXML.pm
-%{perl_vendorarch}/Gtk2/GladeXML/
-%dir %{perl_vendorarch}/auto/Gtk2/
-%{perl_vendorarch}/auto/Gtk2/GladeXML/
+%doc AUTHORS CHANGES COPYING MANIFEST META.yml README
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Net/
+%{perl_vendorarch}/Net/DBus/
+%{perl_vendorarch}/Net/DBus.pm
+%dir %{perl_vendorarch}/auto/Net/
+%{perl_vendorarch}/auto/Net/DBus/
 
 %changelog
-* Wed May 02 2007 Dag Wieers <dag@wieers.com> - 1.006-1
+* Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.32.2-1
 - Initial package. (using DAR)
