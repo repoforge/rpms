@@ -22,8 +22,8 @@
 
 Summary: Free multimedia player
 Name: xine
-Version: 0.99.4
-Release: 8
+Version: 0.99.5
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -31,22 +31,20 @@ Source0: http://dl.sf.net/xine/xine-ui-%{version}.tar.gz
 Source1: xine.png
 Source2: http://www.bluebeamentertainment.com/xine/smokeyglass_splash.png
 Source3: http://www.bluebeamentertainment.com/xine/smokeyglass_logo.m1v
-Patch0: xine-ui-0.99.3-sprintf.patch
-Patch1: xine-ui-0.99.3-xftfontsize.patch
-Patch2: xine-ui-0.99.3-uifixups.patch
-Patch3: xine-ui-0.99.3-shared-lirc.patch
+Patch0: xine-ui-0.99.3-shared-lirc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{!?_with_moles:Requires: xine-lib >= 1.1.2}
 %{?_with_moles:Requires: xine-lib-moles >= 1.1.2}
-BuildRequires: gcc-c++, libpng-devel, xine-lib-devel >= 1.0.0
+BuildRequires: gcc-c++, gettext, libpng-devel, xine-lib-devel >= 1.0.0
 BuildRequires: curl-devel, libidn-devel, libtermcap-devel, readline-devel
 BuildRequires: pkgconfig, /usr/bin/find
 # Required by autogen.sh
 Buildrequires: autoconf, automake, libtool
+# Required to overwrite the ugly icons
+BuildRequires: ImageMagick
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel, libXinerama-devel, libXtst-devel, libXxf86vm-devel, libXext-devel, libXft-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
-%{!?_without_aalib:BuildRequires: aalib-devel}
 %{!?_without_caca:BuildRequires: libcaca-devel}
 %{!?_without_lirc:BuildRequires: lirc-devel}
 
@@ -60,20 +58,17 @@ formats, too.
 This package contains the GUI of the Xine multimedia player.
 
 Available rpmbuild rebuild options :
---without : aalib caca lirc freedesktop
+--without : caca lirc freedesktop
 
 
 %prep
 %setup -n xine-ui-%{version}
-%patch0 -p1 -b .strintf
-%patch1 -p1 -b .xftfontsize
-%patch2 -p1 -b .uifixups
-%patch3 -p0 -b .shared-lirc
+%patch0 -p0 -b .shared-lirc
 
 # Required by the shared-lirc patch
 ./autogen.sh
 
-# Replace the default Christmas splash screen, it's nearly May already!
+# Replace the default splash screen
 %{__cp} -a -f %{SOURCE2} misc/xine_splash.png
 # Replace the default window content with one matching the splash screen
 %{__cp} -a -f %{SOURCE3} misc/xine-ui_logo.mpv
@@ -105,6 +100,18 @@ xine
 	mime_types=video/mpeg,video/msvideo,video/quicktime,video/x-avi,video/x-ms-asf,video/x-ms-wmv,video/x-msvideo,application/x-ogg,application/ogg,audio/x-mp3,audio/x-mpeg,video/x-mpeg,video/x-fli,audio/x-wav,audio/x-mpegurl,audio/x-scpls,audio/x-ms-asx,application/vnd.rn-realmedia,audio/x-real-audio,audio/x-pn-realaudio,application/x-flac,audio/x-flac,application/x-shockwave-flash,audio/mpeg,audio/x-ms-asf,audio/x-m4a,audio/x-ms-wax,video/dv,video/x-anim,video/x-flc,misc/ultravox,application/x-matroska,audio/vnd.rn-realaudio,audio/x-pn-aiff,audio/x-pn-au,audio/x-pn-wav,audio/x-pn-windows-acm,image/vnd.rn-realpix,video/vnd.rn-realvideo
 EOF
 
+# Replace all of the ugly icons with ours
+for size in 16 22 32 48; do
+    convert -scale ${size}x${size} %{SOURCE1} \
+        misc/desktops/icons/${size}/xine.png
+done
+
+# Convert all man pages to UTF-8
+for manpage in doc/man/*/*.1*; do
+    iconv -f iso8859-1 -t utf8 -o manpage.tmp ${manpage}
+    %{__mv} -f manpage.tmp ${manpage}
+done
+
 
 %build
 %configure \
@@ -113,22 +120,25 @@ EOF
 
 
 %install
-%{__rm} -rf %{buildroot}
+%{__rm} -rf %{buildroot} _doc
 %{__make} install DESTDIR=%{buildroot}
 %find_lang xine-ui
 
 %{__install} -D -m 0644 xine.applications \
     %{buildroot}%{_datadir}/application-registry/xine.applications
 
-# Replace (ugly) default icons with a nice one
-%{__rm} -rf %{buildroot}%{_datadir}/pixmaps/*
+# Replace (ugly) default icon with a nice one
+%{__rm} -f %{buildroot}%{_datadir}/pixmaps/xine.xpm
 %{__install} -p -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/
 
 # Remove unpackaged files
-find %{buildroot} -name "xitk*" | xargs rm -rf || :
+find %{buildroot} -name 'xitk*' | xargs rm -rf || :
 
 # Move the docs back into place
-%{__mv} %{buildroot}%{_docdir}/xine-ui xine-ui-doc
+%{__mv} %{buildroot}%{_docdir}/xine-ui _doc
+
+# Remove aaxine man pages, since we don't include it anymore
+find %{buildroot} -name 'aaxine.1*' | xargs rm -f || :
 
 %if %{?_without_freedesktop:1}0
 %{__install} -D -m 0644 xine.desktop %{buildroot}/etc/X11/applnk/Multimedia/xine.desktop
@@ -152,9 +162,8 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %files -f xine-ui.lang
-%defattr(-, root, root, 0755)
-%doc xine-ui-doc/*
-%{!?_without_aalib:%{_bindir}/aaxine}
+%defattr(-,root,root,-)
+%doc _doc/*
 %{!?_without_caca:%{_bindir}/cacaxine}
 %{_bindir}/fbxine
 %{_bindir}/xine
@@ -162,6 +171,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{_bindir}/xine-check
 %{_bindir}/xine-remote
 %{_datadir}/application-registry/xine.applications
+%{_datadir}/icons/hicolor/*/apps/xine.png
 %{_datadir}/pixmaps/xine.png
 %{_datadir}/xine/
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-xine.desktop}
@@ -174,6 +184,13 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Fri May  4 2007 Matthias Saou <http://freshrpms.net/> 0.99.5-1
+- Update to 0.99.5.
+- Remove no longer needed patches.
+- Remove aaxine and its man pages, no longer built and cacaxine is nicer.
+- Include new hicolor icons, but create them from our own icon.
+- Convert man pages to UTF-8.
+
 * Mon Dec 18 2006 Matthias Saou <http://freshrpms.net/> 0.99.4-8
 - Change name of requirement from xine-lib-extras to xine-lib-moles.
 
@@ -217,7 +234,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 - Replace default icons with a nicer home made one.
 
 * Tue Apr  5 2005 Matthias Saou <http://freshrpms.net/> 0.99.3-3
-- Fix Exec line in desktop file to get drag and drop to work properly (%U).
+- Fix Exec line in desktop file to get drag and drop to work properly (%%U).
 
 * Fri Jan  7 2005 Matthias Saou <http://freshrpms.net/> 0.99.3-2
 - Add a quick lib vs. lib64 replace for lirc static lib detection to work on
@@ -356,11 +373,11 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
   (yeah, Fred, I'm doing that for you ;-)).
 
 * Thu Nov  1 2001 Matthias Saou <http://freshrpms.net/>
-- Added the missing xineshot to %files.
+- Added the missing xineshot to %%files.
 - Removed the menu navigation plugin : It's so buggy and not moving very
   fast. If you want menu support, try Ogle, it's worth it!
 - Added new man pages translations.
-- Cleaned-up the %doc section, lots were added recently.
+- Cleaned-up the %%doc section, lots were added recently.
 - Modified the way the target cpu is forced, it should now be possible to
   rebuild for anything else than i686.
 
