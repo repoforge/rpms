@@ -20,7 +20,7 @@ Source: http://www.cpan.org/modules/by-module/Module/Module-Starter-PBP-v%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(Module::Starter)
 
 %description
 Module-Starter-PBP is a Perl module to create a module

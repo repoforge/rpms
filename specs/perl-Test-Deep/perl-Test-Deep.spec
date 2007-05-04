@@ -1,29 +1,28 @@
 # $Id$
 # Authority: dag
-# Upstream: Andy Armstrong <andy$hexten,net>
+# Upstream: Fergal Daly <fergal$esatclear,ie>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name CGI-Simple
+%define real_name Test-Deep
 
-Summary: Perl module that implements a CGI.pm compliant CGI interface
-Name: perl-CGI-Simple
-Version: 0.080
+Summary: Perl module implements an extremely flexible deep comparison
+Name: perl-Test-Deep
+Version: 0.096
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/CGI-Simple/
+URL: http://search.cpan.org/dist/Test-Deep/
 
-Source: http://www.cpan.org/modules/by-module/CGI/CGI-Simple-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Test/Test-Deep-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-Requires: perl
 
 %description
-CGI-Simple is a perl module that implements a CGI.pm compliant CGI interface.
+perl-Test-Deep is a Perl module implements an extremely flexible deep comparison.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -44,12 +43,13 @@ CGI-Simple is a perl module that implements a CGI.pm compliant CGI interface.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README SIGNATURE
-%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorlib}/CGI/
-%{perl_vendorlib}/CGI/Simple/
-%{perl_vendorlib}/CGI/Simple.pm
+%doc CHANGES MANIFEST META.yml README TODO
+%doc %{_mandir}/man3/Test::Deep.3pm*
+%dir %{perl_vendorlib}/Test/
+%{perl_vendorlib}/Test/Deep/
+%{perl_vendorlib}/Test/Deep.pm
+%{perl_vendorlib}/Test/Deep.pod
 
 %changelog
-* Sun Apr 29 2007 Dag Wieers <dag@wieers.com> - 0.080-1
+* Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.096-1
 - Initial package. (using DAR)

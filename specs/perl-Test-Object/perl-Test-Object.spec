@@ -1,29 +1,28 @@
 # $Id$
 # Authority: dag
-# Upstream: Andy Armstrong <andy$hexten,net>
+# Upstream: Adam Kennedy <cpan@ali.as>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name CGI-Simple
+%define real_name Test-Object
 
-Summary: Perl module that implements a CGI.pm compliant CGI interface
-Name: perl-CGI-Simple
-Version: 0.080
+Summary: Thoroughly testing objects via registered handlers
+Name: perl-Test-Object
+Version: 0.07
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/CGI-Simple/
+URL: http://search.cpan.org/dist/Test-Object/
 
-Source: http://www.cpan.org/modules/by-module/CGI/CGI-Simple-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Test/Test-Object-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-Requires: perl
+BuildRequires: perl >= 0:5.005 
 
 %description
-CGI-Simple is a perl module that implements a CGI.pm compliant CGI interface.
+Thoroughly testing objects via registered handlers.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -44,12 +43,12 @@ CGI-Simple is a perl module that implements a CGI.pm compliant CGI interface.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README SIGNATURE
-%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorlib}/CGI/
-%{perl_vendorlib}/CGI/Simple/
-%{perl_vendorlib}/CGI/Simple.pm
+%doc Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/Test::Object.3pm*
+%dir %{perl_vendorlib}/Test/
+%{perl_vendorlib}/Test/Object/
+%{perl_vendorlib}/Test/Object.pm
 
 %changelog
-* Sun Apr 29 2007 Dag Wieers <dag@wieers.com> - 0.080-1
+* Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.07-1
 - Initial package. (using DAR)

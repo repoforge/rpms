@@ -1,8 +1,9 @@
 # $Id$
 # Authority: dag
-
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+# Upstream: Dan Kogai <dankogai$dan,co,jp>
+ 
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Jcode
 
@@ -14,11 +15,11 @@ License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Jcode/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DA/DANKOGAI/Jcode-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Jcode/Jcode-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.8.0
-Requires: perl >= 0:5.8.0
+BuildArch: noarch
+BuildRequires: perl >= 2:5.8.0
 
 %description
 Jcode (Japanese Charset Handler) module for perl.
@@ -27,7 +28,7 @@ Jcode (Japanese Charset Handler) module for perl.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" 
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -42,12 +43,15 @@ Jcode (Japanese Charset Handler) module for perl.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README
+%doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/*.3*
 %{perl_vendorlib}/Jcode.pm
 %{perl_vendorlib}/Jcode/
 
 %changelog
+* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 2.06-1
+- Updated to release 2.06.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 2.06-1
 - Updated to release 2.06.
 

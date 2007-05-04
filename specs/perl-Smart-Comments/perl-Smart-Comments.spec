@@ -1,32 +1,33 @@
 # $Id$
 # Authority: dag
-# Upstream: Andy Armstrong <andy$hexten,net>
+# Upstream: Damian Conway <damian$conway,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name CGI-Simple
+%define real_name Smart-Comments
+%define real_version 1.000002
 
-Summary: Perl module that implements a CGI.pm compliant CGI interface
-Name: perl-CGI-Simple
-Version: 0.080
+Summary: Perl module implements comments that do more than just sit there
+Name: perl-Smart-Comments
+Version: 1.0.2
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/CGI-Simple/
+URL: http://search.cpan.org/dist/Smart-Comments/
 
-Source: http://www.cpan.org/modules/by-module/CGI/CGI-Simple-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/D/DC/DCONWAY/Smart-Comments-v%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-Requires: perl
 
 %description
-CGI-Simple is a perl module that implements a CGI.pm compliant CGI interface.
+perl-Smart-Comments is a Perl module implements comments
+that do more than just sit there.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-v%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -44,12 +45,11 @@ CGI-Simple is a perl module that implements a CGI.pm compliant CGI interface.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README SIGNATURE
-%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorlib}/CGI/
-%{perl_vendorlib}/CGI/Simple/
-%{perl_vendorlib}/CGI/Simple.pm
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Smart::Comments.3pm*
+%dir %{perl_vendorlib}/Smart/
+%{perl_vendorlib}/Smart/Comments.pm
 
 %changelog
-* Sun Apr 29 2007 Dag Wieers <dag@wieers.com> - 0.080-1
+* Fri May 04 2007 Dag Wieers <dag@wieers.com> - 1.0.2-1
 - Initial package. (using DAR)

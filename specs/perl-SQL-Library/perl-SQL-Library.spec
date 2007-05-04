@@ -1,29 +1,30 @@
 # $Id$
 # Authority: dag
-# Upstream: Andy Armstrong <andy$hexten,net>
+# Upstream: Doug Gorley <dgorley$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name CGI-Simple
+%define real_name SQL-Library
+%define real_version v0.0.3
 
-Summary: Perl module that implements a CGI.pm compliant CGI interface
-Name: perl-CGI-Simple
-Version: 0.080
+Summary: Perl module for managing simple SQL libraries stored in INI-like files
+Name: perl-SQL-Library
+Version: 0.0.3
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/CGI-Simple/
+URL: http://search.cpan.org/dist/SQL-Library/
 
-Source: http://www.cpan.org/modules/by-module/CGI/CGI-Simple-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/SQL/SQL-Library-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-Requires: perl
 
 %description
-CGI-Simple is a perl module that implements a CGI.pm compliant CGI interface.
+perl-SQL-Library is a Perl module for managing simple SQL libraries
+stored in INI-like files.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -44,12 +45,11 @@ CGI-Simple is a perl module that implements a CGI.pm compliant CGI interface.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README SIGNATURE
-%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorlib}/CGI/
-%{perl_vendorlib}/CGI/Simple/
-%{perl_vendorlib}/CGI/Simple.pm
+%doc Changes LICENSE MANIFEST README
+%doc %{_mandir}/man3/SQL::Library.3pm*
+%dir %{perl_vendorlib}/SQL/
+%{perl_vendorlib}/SQL/Library.pm
 
 %changelog
-* Sun Apr 29 2007 Dag Wieers <dag@wieers.com> - 0.080-1
+* Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.0.3-1
 - Initial package. (using DAR)

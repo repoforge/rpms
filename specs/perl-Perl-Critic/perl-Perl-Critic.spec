@@ -1,29 +1,29 @@
 # $Id$
 # Authority: dag
-# Upstream: Andy Armstrong <andy$hexten,net>
+# Upstream: Jeffrey Thalhammer <thaljef@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name CGI-Simple
+%define real_name Perl-Critic
 
-Summary: Perl module that implements a CGI.pm compliant CGI interface
-Name: perl-CGI-Simple
-Version: 0.080
+Summary: Critique Perl source code for best-practices
+Name: perl-Perl-Critic
+Version: 1.051
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/CGI-Simple/
+URL: http://search.cpan.org/dist/Perl-Critic/
 
-Source: http://www.cpan.org/modules/by-module/CGI/CGI-Simple-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Perl/Perl-Critic-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-Requires: perl
+BuildRequires: perl(Test::More)
 
 %description
-CGI-Simple is a perl module that implements a CGI.pm compliant CGI interface.
+Critique Perl source code for best-practices.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -44,12 +44,15 @@ CGI-Simple is a perl module that implements a CGI.pm compliant CGI interface.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README SIGNATURE
+%doc Changes INSTALL LICENSE MANIFEST META.yml README TODO.pod
+%doc %{_mandir}/man1/perlcritic.1*
 %doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorlib}/CGI/
-%{perl_vendorlib}/CGI/Simple/
-%{perl_vendorlib}/CGI/Simple.pm
+%{_bindir}/perlcritic
+%dir %{perl_vendorlib}/Perl/
+%{perl_vendorlib}/Perl/Critic/
+%{perl_vendorlib}/Perl/Critic.pm
+%{perl_vendorlib}/Perl/TODO.pod
 
 %changelog
-* Sun Apr 29 2007 Dag Wieers <dag@wieers.com> - 0.080-1
+* Fri May 04 2007 Dag Wieers <dag@wieers.com> - 1.051-1
 - Initial package. (using DAR)

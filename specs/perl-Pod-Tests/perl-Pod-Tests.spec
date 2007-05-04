@@ -1,29 +1,28 @@
 # $Id$
 # Authority: dag
-# Upstream: Andy Armstrong <andy$hexten,net>
+# Upstream: Adam Kennedy <cpan$ali,as>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name CGI-Simple
+%define real_name Pod-Tests
 
-Summary: Perl module that implements a CGI.pm compliant CGI interface
-Name: perl-CGI-Simple
-Version: 0.080
+Summary: Perl module named Pod-Tests
+Name: perl-Pod-Tests
+Version: 0.18
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/CGI-Simple/
+URL: http://search.cpan.org/dist/Pod-Tests/
 
-Source: http://www.cpan.org/modules/by-module/CGI/CGI-Simple-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Pod/Pod-Tests-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-Requires: perl
 
 %description
-CGI-Simple is a perl module that implements a CGI.pm compliant CGI interface.
+perl-Pod-Tests is a Perl module.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -44,12 +43,13 @@ CGI-Simple is a perl module that implements a CGI.pm compliant CGI interface.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README SIGNATURE
-%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorlib}/CGI/
-%{perl_vendorlib}/CGI/Simple/
-%{perl_vendorlib}/CGI/Simple.pm
+%doc Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man1/pod2test.1*
+%doc %{_mandir}/man3/Pod::Tests.3pm*
+%{_bindir}/pod2test
+%dir %{perl_vendorlib}/Pod/
+%{perl_vendorlib}/Pod/Tests.pm
 
 %changelog
-* Sun Apr 29 2007 Dag Wieers <dag@wieers.com> - 0.080-1
+* Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.18-1
 - Initial package. (using DAR)

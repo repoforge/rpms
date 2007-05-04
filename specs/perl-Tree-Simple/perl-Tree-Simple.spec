@@ -2,8 +2,8 @@
 # Authority: dries
 # Upstream: Stevan Little <stevan$iinteractive,com>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Tree-Simple
 
@@ -15,11 +15,13 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tree-Simple/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/ST/STEVAN/Tree-Simple-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Tree/Tree-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.6.0 
+BuildRequires: perl(Test::More) >= 0.47
+BuildRequires: perl(Test::Exception) >= 0.15
 
 %description
 A simple tree object.
@@ -34,17 +36,20 @@ A simple tree object.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/Tree/Simple.pm
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorlib}/Tree/
 %{perl_vendorlib}/Tree/Simple/
+%{perl_vendorlib}/Tree/Simple.pm
 
 %changelog
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 1.17-1
@@ -52,9 +57,6 @@ A simple tree object.
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.16-1
 - Updated to release 1.16.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.15-1.2
-- Rebuild for Fedora Core 5.
 
 * Thu Dec 15 2005 Dries Verachtert <dries@ulyssis.org> - 1.15-1
 - Initial package.
