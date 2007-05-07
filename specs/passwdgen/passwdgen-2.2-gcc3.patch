@@ -1,0 +1,72 @@
+--- passwdgen-2.2/class/password.h.orig	Fri Nov 24 01:54:19 2000
++++ passwdgen-2.2/class/password.h	Sat Oct 12 15:28:48 2002
+@@ -54,7 +54,7 @@
+     void hand (int hand); 
+     void pronounceable (bool pronounce);
+     char *generate ();
+-    friend ostream &operator << (ostream &os, password &a);
++    friend std::ostream &operator << (std::ostream &os, password &a);
+ 
+   protected:
+     void lengthErr () throw (pwdgenerr);
+--- passwdgen-2.2/class/password.cpp.orig	Fri Nov 24 02:23:44 2000
++++ passwdgen-2.2/class/password.cpp	Sat Oct 12 15:29:13 2002
+@@ -21,6 +21,8 @@
+ #include <config.h>
+ #include "password.h"
+ 
++using namespace std;
++
+ password::password ()
+ {
+   minLength = 0;
+--- passwdgen-2.2/class/pwdgenerr.h.orig	Thu Nov 23 21:03:43 2000
++++ passwdgen-2.2/class/pwdgenerr.h	Sat Oct 12 15:28:07 2002
+@@ -21,11 +21,11 @@
+ class pwdgenerr
+ {
+   public:
+-    pwdgenerr (string error, int value);
++    pwdgenerr (std::string error, int value);
+     int value ();
+-    string *message ();
++    std::string *message ();
+ 
+   protected:
+-    string errorMsg;
++    std::string errorMsg;
+     int errorInt;
+ };
+--- passwdgen-2.2/class/pwdgenerr.cpp.orig	Thu Nov 23 21:04:02 2000
++++ passwdgen-2.2/class/pwdgenerr.cpp	Sat Oct 12 15:29:38 2002
+@@ -18,6 +18,8 @@
+ 
+ #include "pwdgenerr.h"
+ 
++using namespace std;
++
+ pwdgenerr::pwdgenerr (string e, int a)
+ {
+   errorMsg = e;
+--- passwdgen-2.2/src/cli.cpp.orig	Fri Nov 24 02:31:48 2000
++++ passwdgen-2.2/src/cli.cpp	Sat Oct 12 15:31:46 2002
+@@ -28,6 +28,8 @@
+ 
+ #include "../class/password.h"
+ 
++using namespace std;
++
+ void instructUser ();
+ void displayHelp ();
+ void displayVersion ();
+--- passwdgen-2.2/src/main.cpp.orig	Fri Nov 24 02:31:40 2000
++++ passwdgen-2.2/src/main.cpp	Sat Oct 12 15:31:25 2002
+@@ -20,6 +20,8 @@
+ #include <config.h>
+ #include "cli.h"
+ 
++using namespace std;
++
+ int main (int argc, char **argv)
+ {
+   password a;

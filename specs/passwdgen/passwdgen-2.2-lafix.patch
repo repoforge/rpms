@@ -1,0 +1,11 @@
+--- class/Makefile.in.orig	2007-05-07 11:57:42.000000000 +0200
++++ class/Makefile.in	2007-05-07 11:57:48.000000000 +0200
+@@ -80,7 +80,7 @@
+ lib_LTLIBRARIES = libpasswdgen.la
+ libpasswdgen_la_SOURCES = password.cpp pwdgenerr.cpp
+ 
+-libpasswdgen_la_LDFLAGS =          -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)            -release $(LT_RELEASE)					        -export-dynamic         $(X_LIBS)
++libpasswdgen_la_LDFLAGS =          -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)            -release $(LT_RELEASE)					        -export-dynamic
+ 
+ 
+ libpasswdgenincludedir = $(prefix)/include/passwdgen

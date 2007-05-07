@@ -16,10 +16,12 @@ URL: http://oss.codepoet.no/revelation/
 Source: ftp://oss.codepoet.no/revelation/revelation-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python >= 2.3, python-devel, python-crypto >= 1.9
-BuildRequires: gnome-keyring-devel, pygtk2-devel >= 2.8, gnome-python2
+BuildRequires: python-devel >= 2.3, python-crypto >= 1.9
+BuildRequires: gnome-keyring-devel, pygtk2-devel >= 2.8, gnome-python2-devel
 BuildRequires: gnome-vfs2-devel, libgnomeui-devel, gnome-python2-bonobo
 BuildRequires: GConf2-devel, gnome-python2-gconf, gnome-python2-desktop
+BuildRequires: gnome-python2-applet, gnome-panel-devel, gnome-python2-extras
+BuildRequires: cracklib-devel, cracklib-dicts
 %{?el5:BuildRequires: gnome-python2-extras, gnome-panel-devel}
 %{?fc6:BuildRequires: gnome-python2-extras, gnome-panel-devel}
 %{?fc5:BuildRequires: gnome-python2-extras, gnome-panel-devel}
@@ -27,6 +29,7 @@ BuildRequires: GConf2-devel, gnome-python2-gconf, gnome-python2-desktop
 Requires: python >= 2.3, pygtk2 >= 2.4, python-crypto >= 1.9
 Requires: gnome-python2-canvas, gnome-python2-gconf, gnome-python2-gnomevfs
 Requires: gnome-python2-bonobo, cracklib, gnome-python2-applet
+Requires: cracklib-dicts
 
 %description
 Revelation is a password manager. It organizes accounts in
@@ -39,7 +42,8 @@ a tree structure, and stores them as AES-encrypted XML files.
 %configure \
 	--disable-desktop-update \
 	--disable-mime-update \
-	--disable-schemas-install
+	--disable-schemas-install \
+	--with-cracklib-dict="/usr/share/cracklib/pw_dict"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -47,15 +51,25 @@ a tree structure, and stores them as AES-encrypted XML files.
 %{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
+%{__rm} -f %{buildroot}%{_datadir}/revelation/pwdict*
+
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
 gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
-/usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
-/usr/bin/update-desktop-database -q || :
+gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}-applet.schemas &>/dev/null
+update-mime-database %{_datadir}/mime &>/dev/null || :
+update-desktop-database -q || :
+gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &> /dev/null || :
+
+%preun
+export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
+gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null || :
+gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/%{name}-applet.schemas &>/dev/null || :
 
 %postun
-/usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
-/usr/bin/update-desktop-database -q || :
+update-mime-database %{_datadir}/mime &>/dev/null || :
+update-desktop-database -q || :
+gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &> /dev/null || :
 
 %clean
 %{__rm} -rf %{buildroot}
