@@ -12,13 +12,13 @@ License: BSD
 Prefix: %{_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 
+BuildRequires: pkgconfig, openssl-devel, zlib-devel
+
 %description
 libssh2 is a library implementing the SSH2 protocol as defined by
 Internet Drafts: SECSH-TRANS(22), SECSH-USERAUTH(25),
 SECSH-CONNECTION(23), SECSH-ARCH(20), SECSH-FILEXFER(06)*,
 SECSH-DHGEX(04), and SECSH-NUMBERS(10).
-
-BuildRequires: pkgconfig, openssl-devel, zlib-devel
 
 %prep
 %setup -q
