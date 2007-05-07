@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Encode/
 Source: http://www.cpan.org/modules/by-module/Encode/Encode-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl >= 1:5.7.3
 
 %description
 perl-Encode is a Perl module.

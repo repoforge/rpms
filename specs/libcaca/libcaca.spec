@@ -1,6 +1,8 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
 # Upstream: Sam Hocevar <sam$zoy,org>
+
+%{?dist: %{expand: %%define %dist 1}}
 
 %{!?dist:%define _with_modxorg 1}
 %{?fc7:  %define _with_modxorg 1}
@@ -8,18 +10,23 @@
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
+%{?el3:%define _without_glut 1}
+%{?el2:%define _without_glut 1}
+
 Summary: Library for Colour AsCii Art, text mode graphics
 Name: libcaca
-Version: 0.9
-Release: 4
+Version: 0.99
+Release: 0.1.beta11
 License: LGPL
 Group: System Environment/Libraries
 URL: http://sam.zoy.org/projects/libcaca/
-Source: http://sam.zoy.org/projects/libcaca/libcaca-%{version}.tar.bz2
-Patch: libcaca-0.9-man3.patch
+
+Source: http://libcaca.zoy.org/files/libcaca-%{version}.beta11.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: ncurses-devel >= 5, slang-devel
+
+BuildRequires: ncurses-devel >= 5, slang-devel, pango-devel
 BuildRequires: imlib2-devel, zlib-devel, doxygen, tetex-latex, tetex-dvips
+%{!?_without_glut:BuildRequires: glut-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{?_with_modxorg:BuildRequires: libX11-devel, libXt-devel}
 
@@ -27,7 +34,6 @@ BuildRequires: imlib2-devel, zlib-devel, doxygen, tetex-latex, tetex-dvips
 libcaca is the Colour AsCii Art library. It provides high level functions
 for colour text drawing, simple primitives for line, polygon and ellipse
 drawing, as well as powerful image to text conversion routines.
-
 
 %package devel
 Summary: Development files for libcaca, the library for Colour AsCii Art
@@ -42,7 +48,6 @@ drawing, as well as powerful image to text conversion routines.
 
 This package contains the header files and static libraries needed to
 compile applications or shared objects that use libcaca.
-
 
 %package -n caca-utils
 Summary: Colour AsCii Art Text mode graphics utilities based on libcaca
@@ -63,63 +68,78 @@ art flames, and cacademo is a simple application that shows the libcaca
 rendering features such as line and ellipses drawing, triangle filling and
 sprite blitting.
 
-
 %prep
-%setup
-%patch -p1 -b .man3
-
+%setup -n %{name}-%{version}.beta11
 
 %build
 %configure \
-    --program-prefix="%{?_program_prefix}" \
-    --x-includes="%{_includedir}" \
-    --x-libraries="%{_libdir}" \
-    --enable-imlib2 \
-    --enable-ncurses \
-    --enable-slang \
-    --enable-x11
+	--program-prefix="%{?_program_prefix}" \
+	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
+	--disable-rpath \
+	--enable-imlib2 \
+	--enable-ncurses \
+	--enable-slang \
+	--enable-x11
+%{__perl} -pi.orig -e '
+		s|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g;
+		s|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g;
+	' libtool
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
 # We want to include the docs ourselves from the source directory
-%{__mv} %{buildroot}%{_docdir}/%{name}-dev %{name}-devel-docs
-
+%{__mv} %{buildroot}%{_docdir}/libcucul-dev libcucul-dev-docs
 
 %clean
 %{__rm} -rf %{buildroot}
 
+%files
+%defattr(-, root, root, 0755)
+%{_libdir}/libcaca.so.*
+%{_libdir}/libcucul.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc %{name}-devel-docs/* COPYING
-%{_libdir}/*.a
+%doc ChangeLog COPYING libcucul-dev-docs/*
+%doc %{_mandir}/man1/caca-config.1*
+%doc %{_mandir}/man3/*.3*
 %{_bindir}/caca-config
-%{_includedir}/*
-%{_mandir}/man1/caca-config.1*
-#{_mandir}/man3/*
+%{_includedir}/caca.h
+%{_includedir}/caca0.h
+%{_includedir}/cucul.h
+%{_libdir}/libcaca.a
+%exclude %{_libdir}/libcaca.la
+%{_libdir}/libcaca.so
+%{_libdir}/libcucul.a
+%exclude %{_libdir}/libcucul.la
+%{_libdir}/libcucul.so
+%{_libdir}/pkgconfig/caca.pc
+%{_libdir}/pkgconfig/cucul.pc
 
 %files -n caca-utils
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS COPYING NEWS NOTES README THANKS TODO
-%{_bindir}/cacaball
+%doc AUTHORS COPYING NEWS NOTES README THANKS TODO
+%doc %{_mandir}/man1/cacademo.1*
+%doc %{_mandir}/man1/cacafire.1*
+%doc %{_mandir}/man1/cacaplay.1*
+%doc %{_mandir}/man1/cacaserver.1*
+%doc %{_mandir}/man1/cacaview.1*
+%doc %{_mandir}/man1/img2irc.1*
 %{_bindir}/cacademo
 %{_bindir}/cacafire
-%{_bindir}/cacamoir
-%{_bindir}/cacaplas
+%{_bindir}/cacaplay
+%{_bindir}/cacaserver
 %{_bindir}/cacaview
+%{_bindir}/img2irc
 %{_datadir}/libcaca/
-%{_mandir}/man1/cacaball.1*
-%{_mandir}/man1/cacademo.1*
-%{_mandir}/man1/cacafire.1*
-%{_mandir}/man1/cacamoir.1*
-%{_mandir}/man1/cacaplas.1*
-%{_mandir}/man1/cacaview.1*
 
 %changelog
+* Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.99-0.1.beta11
+- Updated to release 0.99.beta11.
+
 * Wed Nov  3 2004 Matthias Saou <http://freshrpms.net/> 0.9-4
 - Disable man3 pages, they don't build on FC3, this needs fixing.
 - Fix to not get the debuginfo files go into the devel package.

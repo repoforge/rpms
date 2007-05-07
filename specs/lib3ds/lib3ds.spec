@@ -1,12 +1,17 @@
 # $Id$
-# Authority: rudolf
+# Authority: dag
 
 %{?dist:%{expand: %%define %{dist} 1}}
+
+%{?el3:%define _without_freeglut 1}
+%{?rh9:%define _without_freeglut 1}
+%{?rh7:%define _without_freeglut 1}
+%{?el2:%define _without_freeglut 1}
 
 Summary: The 3D Studio File Format Library
 Name: lib3ds
 Version: 1.2.0
-Release: 0
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://lib3ds.sourceforge.net/
@@ -15,12 +20,8 @@ Source: http://dl.sf.net/lib3ds/lib3ds-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ### No default is needed (works without BuildRequires too)
-#%{!?dist:BuildRequires: freeglut-devel}
-%{?el4:BuildRequires: freeglut-devel}
-%{?fc3:BuildRequires: freeglut-devel}
-%{?fc2:BuildRequires: freeglut-devel}
-%{?fc1:BuildRequires: freeglut-devel}
-%{?rh9:BuildRequires: glut-devel}
+%{!?_without_freeglut:BuildRequires: freeglut-devel}
+%{?_without_freeglut:BuildRequires: glut-devel}
 
 %description
 Lib3ds is a free alternative to Autodesk's 3DS File Toolkit for handling
@@ -39,7 +40,7 @@ based on unofficial information about the 3DS format found on the web.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,12 +48,19 @@ based on unofficial information about the 3DS format found on the web.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog INSTALL README TODO
-%doc %{_mandir}/man?/*
-%{_bindir}/*
-%{_datadir}/aclocal/*.m4
+%doc %{_mandir}/man1/3ds2m.1*
+%doc %{_mandir}/man1/3dsdump.1*
+%doc %{_mandir}/man1/lib3ds-config.1*
+%{_bindir}/3ds2m
+%{_bindir}/3dsdump
+%{_bindir}/lib3ds-config
+%{_datadir}/aclocal/lib3ds.m4
 %{_includedir}/lib3ds/
-%{_libdir}/*.a
+%{_libdir}/lib3ds.a
 
 %changelog
+* Fri May 04 2007 Dag Wieers <dag@wieers.com> - 1.2.0-1
+- Cosmetic changes.
+
 * Sat Jun 14 2003 Che
 - initial rpm release

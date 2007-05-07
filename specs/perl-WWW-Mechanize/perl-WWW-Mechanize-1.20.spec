@@ -2,9 +2,6 @@
 # Authority: dries
 # Upstream: Andy Lester <andy$petdance,com>
 
-### Requires a newer HTTP::Headers from perl-libwww-perl
-# ExclusiveDist: el5
-
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
@@ -12,7 +9,7 @@
 
 Summary: Web browsing in a Perl object
 Name: perl-WWW-Mechanize
-Version: 1.22
+Version: 1.20
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -39,8 +36,7 @@ echo y | %{__perl} Makefile.PL --nolive INSTALLDIRS="vendor" PREFIX="%{buildroot
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -56,9 +52,6 @@ echo y | %{__perl} Makefile.PL --nolive INSTALLDIRS="vendor" PREFIX="%{buildroot
 %{perl_vendorlib}/WWW/Mechanize/
 
 %changelog
-* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.22-1
-- Updated to release 1.22.
-
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.20-1
 - Updated to release 1.20.
 

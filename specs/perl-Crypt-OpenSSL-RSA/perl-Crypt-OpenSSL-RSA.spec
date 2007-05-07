@@ -1,8 +1,6 @@
-# $Id$
-
+# $Id: perl-Crypt-OpenSSL-RSA.spec 4890 2006-11-17 22:09:23Z dries $
 # Authority: dries
 # Upstream: Ian Robertson <iroberts+perl$red-bean,com>
-
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)

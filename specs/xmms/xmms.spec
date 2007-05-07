@@ -33,7 +33,7 @@
 Summary: Media player for X which resembles Winamp
 Name: xmms
 Version: 1.2.10
-Release: 12
+Release: 14
 Epoch: 1
 License: GPL
 Group: Applications/Multimedia
@@ -62,6 +62,7 @@ Patch12: xmms-1.2.10-crossfade-0.3.9.patch
 Patch13: xmms-1.2.10-pls-188603.patch
 Patch14: xmms-1.2.10-configfile-safe-write.patch
 Patch15: xmms-1.2.10-reposition.patch
+Patch16: xmms-1.2.10-ubuntu-CVE-2007-0653.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel, gtk+-devel, esound-devel
@@ -79,7 +80,7 @@ Requires: /usr/share/desktop-menu-patches/redhat-audio-player.desktop
 Requires: redhat-menus >= 0.11
 
 Obsoletes: x11amp0.7-1-1, x11amp, xmms-esd, xmms-gl, xmms-mikmod, xmms-gnome
-Obsoletes: xmms-alsa, alsa-xmms
+Obsoletes: xmms-alsa, alsa-xmms, xmms-libs
 
 #%{!?_without_arts:Conflicts: arts < 1.2.0-1.5}
 
@@ -152,8 +153,21 @@ skins were obtained from http://www.xmms.org/skins.html .
 %patch13 -p1 -b .pls
 %patch14 -p1
 %patch15 -p1
+%patch16 -p1
 
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure
+
+%{__cat} <<'EOF' >wmxmms.sh
+#!/bin/sh
+### http://bugs.xmms.org/show_bug.cgi?id=1907.
+exec env XLIB_SKIP_ARGB_VISUALS=1 %{_libexecdir}/wmxmms "$@"
+EOF
+
+%{__cat} <<'EOF' >xmms.sh
+#!/bin/sh
+### http://bugs.xmms.org/show_bug.cgi?id=1907.
+exec env XLIB_SKIP_ARGB_VISUALS=1 %{_libexecdir}/xmms "$@"
+EOF
 
 %build
 %configure \
@@ -170,12 +184,12 @@ skins were obtained from http://www.xmms.org/skins.html .
 
 %{__make}
 
-ln -snf ../libxmms/configfile.h xmms/configfile.h
+%{__ln_s} -nf ../libxmms/configfile.h xmms/configfile.h
 
 %if %{!?_without_arts:1}0
-export XMMS_CONFIG="$(pwd)/xmms-config"
+export XMMS_CONFIG="env PKG_CONFIG_PATH=$(pwd) $(pwd)/xmms-config"
 cd arts_output-%{artsplugin_ver}
-CFLAGS="$RPM_OPT_FLAGS -I.." %configure --disable-rpath
+CFLAGS="%{optflags} -I.." %configure --disable-rpath
 %{__make}
 cd ..
 %endif
@@ -193,6 +207,12 @@ cd ..
 %{__make} install -C arts_output-%{artsplugin_ver} DESTDIR="%{buildroot}"
 %endif
 
+### https://bugzilla.redhat.com/213172
+%{__install} -Dp -m0755 %{buildroot}%{_bindir}/wmxmms %{buildroot}%{_libexecdir}/wmxmms
+%{__install} -Dp -m0755 wmxmms.sh %{buildroot}%{_bindir}/wmxmms
+%{__install} -Dp -m0755 %{buildroot}%{_bindir}/xmms %{buildroot}%{_libexecdir}/xmms
+%{__install} -Dp -m0755 xmms.sh %{buildroot}%{_bindir}/xmms
+
 #install -m 755 librh_mp3.so %{buildroot}%{_libdir}/xmms/Input
 
 mkdir -p %{buildroot}%{_datadir}/xmms/Skins
@@ -207,6 +227,7 @@ mkdir -pv %{buildroot}%{_datadir}/applications
 %{__install} -Dp -m0644 xmms/xmms_logo.xpm %{buildroot}%{_datadir}/pixmaps/xmms_logo.xpm
 %{__install} -Dp -m0644 xmms/xmms_mini.xpm %{buildroot}%{_datadir}/pixmaps/mini/xmms_mini.xpm
 %{__install} -Dp -m0644 $RPM_SOURCE_DIR/xmms.xpm %{buildroot}%{_datadir}/pixmaps/xmms.xpm
+%{__install} -Dp -m0644 xmms.pc %{buildroot}%{_libdir}/pkgconfig/xmms.pc
 
 # unpackaged files
 rm -f %{buildroot}%{_datadir}/xmms/*/lib*.{a,la} \
@@ -230,8 +251,8 @@ update-desktop-database %{_datadir}/desktop-menu-patches &>/dev/null || :
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING FAQ INSTALL NEWS README TODO
-%{_bindir}/xmms
 %{_bindir}/wmxmms
+%{_bindir}/xmms
 %{_libdir}/libxmms.so.1*
 %dir %{_libdir}/xmms/
 %{_libdir}/xmms/Effect/
@@ -244,6 +265,8 @@ update-desktop-database %{_datadir}/desktop-menu-patches &>/dev/null || :
 %{_libdir}/xmms/Input/libwav.so
 %{_libdir}/xmms/Output/
 %{_libdir}/xmms/Visualization/
+%{_libexecdir}/wmxmms
+%{_libexecdir}/xmms
 %{_datadir}/applications/redhat-audio-player.desktop
 %{_datadir}/pixmaps/xmms.xpm
 %{_datadir}/pixmaps/xmms_logo.xpm
@@ -259,6 +282,7 @@ update-desktop-database %{_datadir}/desktop-menu-patches &>/dev/null || :
 %{_datadir}/aclocal/xmms.m4
 #%{_libdir}/lib*.a
 %{_libdir}/lib*.so
+%{_libdir}/pkgconfig/xmms.pc 
 
 %files mp3
 %defattr(-, root, root, 0755)
@@ -270,6 +294,13 @@ update-desktop-database %{_datadir}/desktop-menu-patches &>/dev/null || :
 %{_datadir}/xmms/Skins/
 
 %changelog
+* Sat May 05 2007 Dag Wieers <dag@wieers.com> - 1:1.2.10-14
+- Workaround for http://bugs.xmms.org/show_bug.cgi?id=1907.
+- Fixed build again on anything older than EL5.
+
+* Fri May 04 2007 Dag Wieers <dag@wieers.com> - 1:1.2.10-13
+- Added xmms.pc for building software against xmms. (Chris Tracy)
+
 * Wed Mar 21 2007 Dag Wieers <dag@wieers.com> - 1:1.2.10-12
 - Fixed gcc4 compilation with patch from Fedora.
 

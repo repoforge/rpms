@@ -13,7 +13,7 @@
 Summary: Extension for reading and writing YAML
 Name: syck
 Version: 0.55
-Release: 3
+Release: 4
 License: GPL
 Group: Development/Libraries
 URL: http://www.whytheluckystiff.net/syck/
@@ -35,7 +35,7 @@ your language's symbol table.
 %package devel
 Summary: Extension for reading and writing YAML
 Group: Development/Libraries
-Obsoletes: syck <= %{version}
+Requires: %{name} = %{version}-%{release}
 
 %description devel
 Syck is an extension for reading and writing YAML swiftly in popular
@@ -60,8 +60,10 @@ The php-syck package contains the syck php extension.
 Summary: YAML module for python
 Group: Development/Languages
 Requires: python
-Obsoletes: python-syck <= %{version}-%{release}
-Provides: php-syck = %{version}-%{release}
+Obsoletes: syck-python <= %{version}-%{release}
+Obsoletes: PySyck <= %{version}-%{release}
+Provides: syck-python = %{version}-%{release}
+Provides: PySyck = %{version}-%{release}
 
 %description -n python-syck
 Syck is an extension for reading and writing YAML swiftly in popular
@@ -75,18 +77,22 @@ your language's symbol table.
 %build
 libtoolize --force --copy && aclocal && automake --add-missing && autoconf
 %configure
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
+
+%{__rm} -f lib/*.la lib/.libs/*.la lib/.libs/*.lai
 
 %if %{!?_without_php:1}0
 pushd ext/php
 phpize
+export php_cv_cc_rpath=no
+export CFLAGS="%{optflags} -I../../lib -L../../lib/.libs"
 %configure --with-syck="."
 %{__make} %{?_smp_mflags}
 popd
 %endif
 
 pushd ext/python
-%{__python} setup.py build
+CFLAGS="%{optflags}" %{__python} setup.py build
 popd
 
 %install
@@ -109,7 +115,7 @@ popd
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG COPYING README TODO
+%doc CHANGELOG COPYING README* TODO
 %{_libdir}/libsyck.so.*
 
 %files devel
@@ -140,6 +146,11 @@ popd
 %ghost %{python_sitearch}/ypath.pyo
 
 %changelog
+* Sat May 05 2007 Dag Wieers <dag@wieers.com> - 0.55-4
+- Fixed syck-devel require syck.
+- Added missing README* documentation.
+- Obsoletes jbj's PySyck.
+
 * Wed May 02 2007 Dag Wieers <dag@wieers.com> - 0.55-3
 - Added php and python extensions.
 

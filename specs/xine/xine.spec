@@ -15,6 +15,9 @@
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
+%{?rh7:%define _without_caca 1}
+%{?el2:%define _without_caca 1}
+
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
@@ -35,7 +38,7 @@ Patch0: xine-ui-0.99.3-shared-lirc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{!?_with_moles:Requires: xine-lib >= 1.1.2}
 %{?_with_moles:Requires: xine-lib-moles >= 1.1.2}
-BuildRequires: gcc-c++, gettext, libpng-devel, xine-lib-devel >= 1.0.0
+BuildRequires: gcc-c++, gettext, libpng-devel >= 2:1.2.8, xine-lib-devel >= 1.0.0
 BuildRequires: curl-devel, libidn-devel, libtermcap-devel, readline-devel
 BuildRequires: pkgconfig, /usr/bin/find
 # Required by autogen.sh
@@ -115,7 +118,9 @@ done
 
 %build
 %configure \
-    %{?_without_lirc:--disable-lirc}
+	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
+%{?_without_lirc:--disable-lirc} \
+%{?_without_caca:--without-caca}
 %{__make} %{?_smp_mflags}
 
 

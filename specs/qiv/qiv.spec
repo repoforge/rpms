@@ -5,7 +5,7 @@
 Summary: Quick Image Viewer
 Name: qiv
 Version: 2.0
-Release: 1.2
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.klografx.net/qiv/
@@ -26,14 +26,20 @@ and more.
 %prep
 %setup
 
+%{__cat} <<'EOF' >qiv.sh
+#!/bin/sh
+### http://bugs.xmms.org/show_bug.cgi?id=1907.
+exec env XLIB_SKIP_ARGB_VISUALS=1 %{_libexecdir}/qiv "$@"
+EOF
+
 %build
 %{__perl} -pi.orig -e 's|/var/tmp|%{_tmppath}|' Makefile
-%{__make} %{?_smp_mflags} \
-	CFLAGS="%{optflags}"
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 qiv %{buildroot}%{_bindir}/qiv
+%{__install} -Dp -m0755 qiv %{buildroot}%{_libexecdir}/qiv
+%{__install} -Dp -m0755 qiv.sh %{buildroot}%{_bindir}/qiv
 %{__install} -Dp -m0644 qiv.1 %{buildroot}%{_mandir}/man1/qiv.1
 
 %clean
@@ -42,12 +48,13 @@ and more.
 %files
 %defattr(-, root, root, 0755)
 %doc README* intro.jpg qiv-command.example
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/qiv.1*
+%{_bindir}/qiv
+%{_libexecdir}/qiv
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0-1.2
-- Rebuild for Fedora Core 5.
+* Sat May 05 2007 Dag Wieers <dag@wieers.com> - 2.0-2
+- Workaround for http://bugs.xmms.org/show_bug.cgi?id=1907.
 
 * Sat May 22 2004 Dag Wieers <dag@wieers.com> - 2.0-1
 - Updated to release 2.0.
