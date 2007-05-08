@@ -3,7 +3,7 @@
 
 Summary: Fake chroot environment
 Name: fakechroot
-Version: 2.5
+Version: 2.6
 Release: 1
 License: LGPL
 Group: Development/Tools
@@ -47,5 +47,8 @@ privileges.
 %exclude %{_libdir}/fakechroot/libfakechroot.la
 
 %changelog
+* Tue May 08 2007 Dries Verachtert <dries@ulyssis.org> - 2.6-1
+- Updated to release 2.6.
+
 * Wed Mar 21 2007 Dag Wieers <dag@wieers.com> - 2.5-1
 - Initial package. (using DAR)
