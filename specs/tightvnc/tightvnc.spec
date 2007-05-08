@@ -13,17 +13,8 @@
 %{?rh9:%define _without_modxorg 1}
 %{?rh7:%define _without_modxorg 1}
 %{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
 %{?yd3:%define _without_modxorg 1}
-
-%{?fc2:%define _without_fdsbits_patch 1}
-%{?fc1:%define _without_fdsbits_patch 1}
-%{?el3:%define _without_fdsbits_patch 1}
-%{?rh9:%define _without_fdsbits_patch 1}
-%{?rh8:%define _without_fdsbits_patch 1}
-%{?rh7:%define _without_fdsbits_patch 1}
-%{?el2:%define _without_fdsbits_patch 1}
-%{?rh6:%define _without_fdsbits_patch 1}
-%{?yd3:%define _without_fdsbits_patch 1}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
@@ -33,20 +24,13 @@
 
 Summary: Graphical remote administration system
 Name: tightvnc
-Version: 1.2.9
-Release: 4
+Version: 1.3.9
+Release: 1
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.tightvnc.com/
 
 Source: http://dl.sf.net/vnc-tight/tightvnc-%{version}_unixsrc.tar.bz2
-Patch1: tightvnc-1.2.6-config-x86_64.patch
-Patch2: vncserver-vncpasswd-1.2.6.patch
-Patch3: vncserver-halfbaked.patch
-Patch4: vncviewer-fix-crash-when-lose-focus.patch
-Patch5: tightvnc-1.2.9-fix-build-when-fds_bits-not-defined.patch
-Patch6: tightvnc-1.2.9-use-stdlib-malloc.patch
-Patch7: tightvnc-1.2.9-includes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildPrereq: /usr/bin/perl, tcp_wrappers
@@ -69,6 +53,7 @@ a VNC or a TightVNC server.
 %package server
 Summary: TightVNC server
 Group: User Interface/X
+
 Requires: bash >= 2.0
 Prereq: /sbin/chkconfig, /sbin/service
 #Obsoletes: vnc-server
@@ -80,19 +65,11 @@ allows you to view a computing 'desktop' environment not only on the
 machine where it is running, but from anywhere on the Internet and
 from a wide variety of machine architectures.
 
-This package is a TightVNC server, allowing others to access the
-desktop on your machine.
+TightVNC is an enhanced VNC distribution. This package is a TightVNC
+server, allowing others to access the desktop on your machine.
 
 %prep
 %setup -n vnc_unixsrc
-#patch1 -p1 -b .orig
-%patch1 -p1 -b .config-x86_64
-%patch2 -p1
-%patch3 -p0 -b .halfbaked
-%patch4 -p1 -b .fix_crash
-%{!?_without_fdsbits_patch:%patch5 -p1 -b .fds_bits}
-%patch6 -p1 -b .stdlib_malloc
-%patch7 -p1 -b .includes
 
 %{__perl} -pi -e 's|/usr/local/vnc/classes|%{_datadir}/vnc/classes|;' vncserver
 %{__perl} -pi -e 's|unix/:7100|unix/:-1|;' vncserver
@@ -276,6 +253,7 @@ fi
 
 %files server
 %defattr(-, root, root, 0755)
+%doc ChangeLog LICENCE.TXT README WhatsNew Xvnc/bug-report Xvnc/RELNOTES*
 %doc %{_mandir}/man1/Xvnc.*
 %doc %{_mandir}/man1/vncserver.*
 %doc %{_mandir}/man1/vncconnect.*
@@ -289,8 +267,11 @@ fi
 %{_datadir}/vnc/
 
 %changelog
-* Tue Oct 17 2006 Dag Wieers <dag@wieers.com> - 1.2.9-4
-- Added patches from Mandriva to build on newer/older systems.
+* Tue May 08 2007 Dag Wieers <dag@wieers.com> - 1.3.9-1
+- Updated to release 1.3.9.
+
+* Wed Oct 18 2006 Dag Wieers <dag@wieers.com> - 1.3.8-1
+- Updated to release 1.3.8.
 
 * Sun May 23 2004 Dag Wieers <dag@wieers.com> - 1.2.9-3
 - Fixed dependency on xorg-x11 instead of XFree86 on fc2. (Christopher V. Browne)

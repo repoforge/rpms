@@ -1,6 +1,12 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{!?dist:%define _with_libpcapdevel 1}
+%{?el5:%define _with_libpcapdevel 1}
+%{?fc6:%define _with_libpcapdevel 1}
+
 Summary: Active operating system fingerprinting tool
 Name: xprobe2
 Version: 0.3
@@ -12,7 +18,8 @@ URL: http://sys-security.com/blog/xprobe2/
 Source: http://dl.sf.net/xprobe/xprobe2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpcap-devel
+BuildRequires: libpcap
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 Xprobe is an alternative to some tools which are heavily dependent upon the

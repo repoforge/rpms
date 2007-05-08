@@ -3,7 +3,7 @@
 
 Summary: RPM implementation in python
 Name: pyrpm
-Version: 0.67
+Version: 0.69
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -45,6 +45,9 @@ install packages.
 %ghost %{_datadir}/pyrpm/*/*.pyo
 
 %changelog
+* Tue May 08 2007 Dag Wieers <dag@wieers.com> - 0.69-1
+- Updated to release 0.69.
+
 * Sun Apr 15 2007 Dag Wieers <dag@wieers.com> - 0.67-1
 - Updated to release 0.67.
 
