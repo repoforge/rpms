@@ -1,16 +1,16 @@
 # $Id$
 # Authority: stefan
 
-Summary: A library implementing the SSH2 protocol
+Summary: Library implementing the SSH2 protocol
 Name: libssh2
-Version: 0.12
+Version: 0.14
 Release: 1
-Group: System Environment/Libraries
-Source: http://heanet.dl.sourceforge.net/sourceforge/libssh2/libssh2-%{version}.tar.gz
-URL: http://www.libssh2.org/
 License: BSD
-Prefix: %{_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+Group: System Environment/Libraries
+URL: http://www.libssh2.org/
+
+Source: http://heanet.dl.sourceforge.net/sourceforge/libssh2/libssh2-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig, openssl-devel, zlib-devel
 
@@ -20,32 +20,52 @@ Internet Drafts: SECSH-TRANS(22), SECSH-USERAUTH(25),
 SECSH-CONNECTION(23), SECSH-ARCH(20), SECSH-FILEXFER(06)*,
 SECSH-DHGEX(04), and SECSH-NUMBERS(10).
 
+%package devel
+Summary: Header files, libraries and development documentation for %{name}.
+Group: Development/Libraries
+#Requires: %{name} = %{version}-%{release}
+Obsoletes: %{name} <= %{version}-%{release}
+Provides: %{name} = %{version}-%{release}
+
+%description devel
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
+
 %prep
-%setup -q
+%setup
+
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g;' configure Makefile.in */Makefile.in
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{_prefix}
+%configure
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf ${RPM_BUILD_ROOT}
-mkdir -p ${RPM_BUILD_ROOT}
-make install DESTDIR=${RPM_BUILD_ROOT}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
-rm -rf ${RPM_BUILD_ROOT}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
-%files
-%defattr(-,root,root)
+%files devel
+%defattr(-, root, root, 0755)
+%doc LICENSE README ssh2_sample.c
 %{_libdir}/libssh2.so
-%{_includedir}/libssh2*
+%{_includedir}/libssh2*.h
 
 %changelog
-* Tue Dec 06 2005 Stefan Pietsch <stefan.pietsch@eds.com> 0.12
-- update to new release
+* Tue Dec 06 2005 Stefan Pietsch <stefan.pietsch@eds.com> - 0.14-1
+- Updated to release 0.14.
+- Renamed to libssh2-devel.
+- Cosmetic changes.
 
-* Tue Oct 25 2005 Stefan Pietsch <stefan.pietsch@eds.com> 0.11
-- first release
+* Tue Dec 06 2005 Stefan Pietsch <stefan.pietsch@eds.com> - 0.12-1
+- Update to new release.
+
+* Tue Oct 25 2005 Stefan Pietsch <stefan.pietsch@eds.com> - 0.11-1
+- First release.
