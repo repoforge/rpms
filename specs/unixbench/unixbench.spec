@@ -43,6 +43,9 @@ it became obvious that we needed to redesign our benchmarks.
 %{__install} -d -m0755 %{buildroot}%{_libdir}/unixbench/
 %{__cp} -av pgms/ testdir/ %{buildroot}%{_libdir}/unixbench/
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %doc README old-doc/bench.doc old-doc/bench3.doc
 %{_bindir}/unixbench

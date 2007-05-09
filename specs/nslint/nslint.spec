@@ -33,7 +33,7 @@ names with cname records (RFC 1033) missing quotes, and unknown keywords.
 %{__install} -Dp -m0755 nslint %{buildroot}%{_bindir}/nslint
 %{__install} -Dp -m0644 nslint.8 %{buildroot}%{_mandir}/man8/nslint.8
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 %files

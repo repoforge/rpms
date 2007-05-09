@@ -43,6 +43,9 @@ text and/or images with graphs.
 
 %{__install} -D -m0644 contrib/sample_configs/ipac.conf %{buildroot}%{_sysconfdir}/ipac-ng/ipac.conf
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGELOG COPYING README TODO contrib/ doc/*
