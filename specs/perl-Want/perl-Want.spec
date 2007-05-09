@@ -9,7 +9,7 @@
 
 Summary: Implement the 'want' command
 Name: perl-Want
-Version: 0.12
+Version: 0.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -43,11 +43,14 @@ how its return value is going to be immediately used.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/Want*
 %{perl_vendorarch}/Want.pm
 %{perl_vendorarch}/auto/Want
 
 %changelog
+* Wed May 09 2007 Dries Verachtert <dries@ulyssis.org> - 0.14-1
+- Updated to release 0.14.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Updated to release 0.12.
 
