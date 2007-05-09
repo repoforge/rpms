@@ -9,7 +9,7 @@
 
 Summary: SMB (samba) share browser for KDE
 Name: smb4k
-Version: 0.8.1
+Version: 0.8.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -65,6 +65,9 @@ source "/etc/profile.d/qt.sh"
 %{_datadir}/icons/crystalsvg/*/apps/smb4k.png
 
 %changelog
+* Wed May 09 2007 Dries Verachtert <dries@ulyssis.org> - 0.8.3-1
+- Updated to release 0.8.3.
+
 * Mon Apr 16 2007 Dries Verachtert <dries@ulyssis.org> - 0.8.1-1
 - Updated to release 0.8.1.
 

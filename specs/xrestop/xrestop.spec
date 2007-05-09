@@ -26,7 +26,7 @@ Source: http://projects.o-hand.com/sources/xrestop/xrestop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel
-%{!?_without_modxorg:BuildRequires: libXres-devel}
+%{!?_without_modxorg:BuildRequires: libXres-devel, libXext-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description

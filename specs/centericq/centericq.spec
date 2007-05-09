@@ -14,6 +14,8 @@ URL: http://konst.org.ua/centericq/
 Source: http://konst.org.ua/download/centericq-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gcc-c++, gpgme-devel, curl-devel, libjpeg-devel
+
 %description
 centericq is a text mode menu- and window-driven IM interface.
 
@@ -29,8 +31,6 @@ inactivity (on any console), and have your own ignore, visible and
 invisible lists. It can also associate events with sounds, has support
 for Hebrew and Arabic languages and allows to arrange contacts into
 groups. Internal RSS reader and a client for LiveJournal are provided.
-
-BuildRequires: gcc-c++, gpgme-devel, curl-devel, libjpeg-devel
 
 %prep
 %setup
