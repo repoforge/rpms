@@ -5,7 +5,7 @@
 Summary: Converts MS-Word documents to ASCII and Postscript
 Name: antiword
 Version: 0.37
-Release: 1.2
+Release: 2
 License: GPL
 Group: Applications/Publishing
 URL: http://www.winfield.demon.nl/
@@ -29,6 +29,7 @@ Antiword tries to keep the layout of the document intact.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall LOCAL_INSTALL_DIR=%{buildroot}%{_bindir} LOCAL_RESOURCES_DIR=%{buildroot}%{_datadir}/antiword
+%{__chmod} a+rx %{buildroot}%{_bindir}/*antiword
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -41,8 +42,8 @@ Antiword tries to keep the layout of the document intact.
 %{_datadir}/antiword/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.37-1.2
-- Rebuild for Fedora Core 5.
+* Wed May 09 2007 Dries Verachtert <dries@ulyssis.org> - 0.37-2
+- Change permissions of antiword, thanks to Tim Wegener and Michael Mansour.
 
 * Tue Nov 29 2005 Dries Verachtert <dries@ulyssis.org> - 0.37-1
 - Updated to release 0.37.
