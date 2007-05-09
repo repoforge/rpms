@@ -6,7 +6,7 @@
 
 Summary: E-book reader
 Name: fbreader
-Version: 0.8.2
+Version: 0.8.3
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -46,6 +46,9 @@ HTML, fb2, and plain text.
 %{_datadir}/zlibrary/
 
 %changelog
+* Wed May 09 2007 Dries Verachtert <dries@ulyssis.org> - 0.8.3-1
+- Updated to release 0.8.3.
+
 * Mon Apr 16 2007 Dries Verachtert <dries@ulyssis.org> - 0.8.2-1
 - Updated to release 0.8.2.
 
