@@ -5,7 +5,7 @@
 
 Summary: POP3 mail retriever with reliable Maildir delivery
 Name: getmail
-Version: 4.7.3
+Version: 4.7.4
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -48,6 +48,9 @@ python setup.py install --root="%{buildroot}"
 %{python_sitelib}/getmailcore/
 
 %changelog
+* Wed May 09 2007 Dries Verachtert <dries@ulyssis.org> - 4.7.4-1
+- Updated to release 4.7.4.
+
 * Mon Mar 19 2007 Dries Verachtert <dries@ulyssis.org> - 4.7.3-1
 - Updated to release 4.7.3.
 
