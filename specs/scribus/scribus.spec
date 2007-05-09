@@ -11,7 +11,7 @@
 
 Summary: Graphical desktop publishing (DTP) application
 Name: scribus
-Version: 1.3.3.8
+Version: 1.3.3.9
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -90,6 +90,9 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %{!?_without_freedesktop:%{_datadir}/applications/*.desktop}
 
 %changelog
+* Wed May 09 2007 Dries Verachtert <dries@ulyssis.org> - 1.3.3.9-1
+- Updated to release 1.3.3.9.
+
 * Fri Mar 02 2007 Dries Verachtert <dries@ulyssis.org> - 1.3.3.8-1
 - Updated to release 1.3.3.8.
 
@@ -107,9 +110,6 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 
 * Mon Aug 09 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.3.3-1
 - Updated to release 1.3.3.3.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.2-0.2
-- Rebuild for Fedora Core 5.
 
 * Sun Jan 29 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.2-1
 - Updated to release 1.3.2.

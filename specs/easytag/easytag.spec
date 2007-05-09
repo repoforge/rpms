@@ -1,16 +1,19 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
 
 Summary: Tag editor for mp3, ogg, flac and other music files
 Name: easytag
-Version: 1.99.12
+Version: 2.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://easytag.sourceforge.net/
+
 Source: http://dl.sf.net/easytag/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gtk2-devel >= 2.4.0, id3lib-devel >= 3.7.12
+
+BuildRequires: gcc-c++, flac-devel, glib2-devel >= 2.8
+BuildRequires: gtk2-devel >= 2.4, id3lib-devel >= 3.7.12
 BuildRequires: libvorbis-devel >= 1.0, flac-devel, gettext, gcc-c++
 
 %description
@@ -18,37 +21,34 @@ EasyTAG is an utility for viewing, editing and writing tags of your
 MP3, MP2, FLAC and OGG files. Its simple and nice GTK+ interface makes
 tagging easier.
 
-
 %prep
 %setup
-
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
-
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING README THANKS TODO USERS-GUIDE
+%doc %{_mandir}/man1/easytag.1*
 %{_bindir}/easytag
-%{_datadir}/applications/*easytag.desktop
+%{_datadir}/applications/easytag.desktop
 %{_datadir}/easytag/
-%{_datadir}/pixmaps/*
-%{_mandir}/man?/*
-
+%{_datadir}/pixmaps/EasyTAG.xpm
 
 %changelog
+* Wed May 09 2007 Dag Wieers <dag@wieers.com> - 2.1-1
+- Updated to release 2.1.
+
 * Tue Apr 11 2006 Matthias Saou <http://freshrpms.net/> 1.99.12-1
 - Update to 1.99.12.
 

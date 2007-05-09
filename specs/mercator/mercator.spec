@@ -5,7 +5,7 @@
 Summary: Terrain generation and management library
 Name: mercator
 Version: 0.2.5
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Libraries
 URL: http://www.worldforge.org/dev/eng/libraries/mercator
@@ -13,7 +13,7 @@ URL: http://www.worldforge.org/dev/eng/libraries/mercator
 Source: http://dl.sf.net/worldforge/mercator-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: wfmath-devel, gcc-c++, pkgconfig
+BuildRequires: gcc-c++, pkgconfig, wfmath-devel
 
 %description
 Mercator is a terrain generation and management library that handles the
@@ -39,13 +39,11 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
-%post
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -57,12 +55,15 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/Mercator*/
-%{_libdir}/libmercator*.so
-%exclude %{_libdir}/libmercator*.la
-%{_libdir}/pkgconfig/mercator*.pc
+%{_includedir}/Mercator-0.2/
+%{_libdir}/libmercator-0.2.so
+%exclude %{_libdir}/libmercator-0.2.la
+%{_libdir}/pkgconfig/mercator-0.2.pc
 
 %changelog
+* Wed May 09 2007 Dag Wieers <dag@wieers.com> - 0.2.5-2
+- Rebuild against wfmath 0.3.5.
+
 * Thu Aug 24 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.5-1
 - Updated to release 0.2.5.
 

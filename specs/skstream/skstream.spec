@@ -7,7 +7,7 @@ Version: 0.3.6
 Release: 1
 License: GPL/LGPL
 Group: Development/Libraries
-URL: ttp://www.worldforge.org/dev/eng/libraries/skstream
+URL: http://www.worldforge.org/dev/eng/libraries/skstream
 
 Source: http://dl.sf.net/worldforge/skstream-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -40,13 +40,11 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
-%post
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -54,22 +52,20 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-%{_libdir}/libskstream*.so.*
-%{_libdir}/pkgconfig/skstream*.pc
-%{_libdir}/skstream-*/
+%{_libdir}/libskstream-0.3.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/skstream*/
-%{_libdir}/libskstream*.so
-%exclude %{_libdir}/*.la
+%{_includedir}/skstream-0.3/
+%exclude %{_libdir}/libskstream-0.3.la
+%{_libdir}/libskstream-0.3.so
+%{_libdir}/pkgconfig/skstream-0.3.pc
+%{_libdir}/pkgconfig/skstream-unix-0.3.pc
+%{_libdir}/skstream-0.3/
 
 %changelog
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.6-1
 - Updated to release 0.3.6.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.5-1.2
-- Rebuild for Fedora Core 5.
 
 * Sun Dec 04 2005 Dries Verachtert <dries@ulyssis.org> - 0.3.5-1
 - Initial package.

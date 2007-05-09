@@ -18,6 +18,9 @@
 
 %{?el3:%define _without_freeglut 1}
 %{?rh9:%define _without_freeglut 1}
+%{?rh7:%define _without_freeglut 1}
+%{?el2:%define _without_freeglut 1}
+
 
 %{!?dist:%define _with_lesstif 1}
 %{?el5:%define _with_openmotif 1}

@@ -9,7 +9,7 @@
 
 Summary: Linux/UNIX tool suite for various mobile phones
 Name: gnokii
-Version: 0.6.14
+Version: 0.6.15
 Release: 1
 License: GPL
 Group: Applications/Communications
@@ -94,18 +94,19 @@ you will need to install %{name}-devel.
 %doc ChangeLog COPYING Docs/Bugs Docs/CREDITS Docs/DataCalls-QuickStart MAINTAINERS TODO
 %doc Docs/FAQ Docs/README* Docs/gnokii-IrDA-Linux Docs/gnokii-ir-howto Docs/ringtones.txt
 %doc Docs/protocol/ Docs/sample/ utils/gnapplet.sis
-%doc %{_mandir}/man?/gnokii*
-%doc %{_mandir}/man?/mgnokii*
-%doc %{_mandir}/man?/ppm2nokia*
-%doc %{_mandir}/man?/sendsms*
-%doc %{_mandir}/man?/todologo*
+%doc %{_mandir}/man1/gnokii.1*
+%doc %{_mandir}/man1/ppm2nokia.1*
+%doc %{_mandir}/man1/sendsms.1*
+%doc %{_mandir}/man1/todologo.1*
+%doc %{_mandir}/man8/gnokiid.8*
+%doc %{_mandir}/man8/mgnokiidev.8*
 %config(noreplace) %{_sysconfdir}/gnokiirc
 %{_bindir}/gnokii
 %{_bindir}/ppm2nokia
 %{_bindir}/sendsms
 %{_bindir}/todologo
 %{_bindir}/waitcall
-%{_libdir}/*.so.*
+%{_libdir}/libgnokii.so.*
 %{_sbindir}/gnokiid
 
 %defattr(4750, root, gnokii, 0755)
@@ -114,21 +115,25 @@ you will need to install %{name}-devel.
 
 %files gui -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man?/xgnokii*
+%doc %{_mandir}/man1/xgnokii.1x*
 %{_bindir}/xgnokii
 %{_datadir}/xgnokii/
-%{_datadir}/applications/*gnokii.desktop
+%{_datadir}/applications/xgnokii.desktop
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_libdir}/pkgconfig/*.pc
-%{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
-%{_includedir}/*.h
 %{_includedir}/gnokii/
+%{_includedir}/gnokii.h
+%{_libdir}/pkgconfig/gnokii.pc
+%{_libdir}/pkgconfig/xgnokii.pc
+%{_libdir}/libgnokii.a
+%exclude %{_libdir}/libgnokii.la
+%{_libdir}/libgnokii.so
 
 %changelog
+* Wed May 09 2007 Dag Wieers <dag@wieers.com> - 0.6.15-1
+- Updated to release 0.6.15.
+
 * Tue Aug 29 2006 Dag Wieers <dag@wieers.com> - 0.6.14-1
 - Updated to release 0.6.14.
 
