@@ -14,10 +14,9 @@ URL: http://pyropus.ca/software/getmail/
 Source: http://pyropus.ca/software/getmail/old-versions/getmail-%{version}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: python-devel = 2.3
-BuildRequires: python-devel
-Requires: python >= 1.5.2
 BuildArch: noarch
+BuildRequires: python-devel >= 2.3.3
+Requires: python >= 2.3.3
 
 %description
 getmail is intended as a simple replacement for fetchmail for those people
@@ -27,7 +26,6 @@ email accounts, and reliably delivers into a Maildir specified on a
 per-account basis.  It can also deliver into mbox files, although this
 should not be attempted over NFS.  getmail is written entirely in python.
 
-
 %prep
 %setup
 
@@ -35,7 +33,7 @@ should not be attempted over NFS.  getmail is written entirely in python.
 
 %install
 %{__rm} -rf %{buildroot}
-python setup.py install --root="%{buildroot}"
+%{__python} setup.py install --root="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -43,8 +41,14 @@ python setup.py install --root="%{buildroot}"
 %files
 %defattr(-, root, root, 0755)
 %doc docs/*
-%doc %{_mandir}/man1/*.1*
-%{_bindir}/getmail*
+%doc %{_mandir}/man1/getmail.1*
+%doc %{_mandir}/man1/getmail_fetch.1*
+%doc %{_mandir}/man1/getmail_maildir.1*
+%doc %{_mandir}/man1/getmail_mbox.1*
+%{_bindir}/getmail
+%{_bindir}/getmail_fetch
+%{_bindir}/getmail_maildir
+%{_bindir}/getmail_mbox
 %{python_sitelib}/getmailcore/
 
 %changelog

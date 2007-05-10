@@ -14,6 +14,11 @@
 %{?el2:%define _without_modxorg 1}
 %{?yd3:%define _without_modxorg 1}
 
+%{!?dist:%define _with_lesstif 1}
+%{?fc6:%define _with_lesstif 1}
+%{?fc3:%define _with_lesstif 1}
+%{?el2:%define _with_lesstif 1}
+
 Summary: View and manipulate 3D geometric objects
 Name: geomview
 Version: 1.9.1
@@ -26,8 +31,9 @@ Source: http://dl.sf.net/geomview/geomview-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
-%{!?_without_modxorg:BuildRequires: mesa-libGL-devel, mesa-libGLU-devel, lesstif-devel, libXmu-devel, libXext-devel, libSM-devel}
+%{!?_without_modxorg:BuildRequires: mesa-libGL-devel, mesa-libGLU-devel, libXmu-devel, libXext-devel, libSM-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
+%{?_with_lesstif:BuildRequires: lesstif-devel}
 
 %description
 Geomview is an interactive program written by the staff of the Geometry 

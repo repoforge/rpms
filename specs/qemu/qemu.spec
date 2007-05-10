@@ -2,22 +2,31 @@
 # Authority: dag
 # Upstream: Fabrice Bellard <fabrice$bellard,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el5:%define _with_compat_gcc_version 34}
+
+%{?el3:%define _without_alsa 1}
+%{?rh9:%define _without_alsa 1}
+%{?rh7:%define _without_alsa 1}
+%{?el2:%define _without_alsa 1}
+
 Summary: CPU emulator
 Name: qemu
 Version: 0.9.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Emulators
 URL: http://qemu.org/
 
 Source: http://qemu.org/qemu-%{version}.tar.gz
-#Patch0: qemu-0.8.2-build.patch
-Patch1: qemu-0.7.0-dyngen.patch
-#Patch2: qemu-0.7.0-gcc4-x86.patch
-#Patch3: qemu-0.7.0-gcc4-ppc.patch
+Patch0: qemu-0.7.0-build.patch
+Patch1: qemu-0.8.0-sdata.patch
+Patch2: qemu-0.9.0-load-initrd.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: SDL-devel
+BuildRequires: zlib-devel, SDL-devel
+%{?_with_compat_gcc_version:BuildRequires: compat-gcc-%{_with_compat_gcc_version}}
 #BuildRequires: texi2html
 
 %description
@@ -40,10 +49,9 @@ reasonnable speed while being easy to port on new host CPUs.
 
 %prep
 %setup
-#patch0 -b .build
-%patch1 -b .dyngen
-#%patch2
-#%patch3
+%patch0 -p1
+%patch1 -p1
+%patch2 -p0
 
 %{__cat} <<'EOF' >qemu.sysv
 #!/bin/sh
@@ -139,24 +147,25 @@ esac
 exit $RETVAL
 EOF
 
-
-
 %build
-%configure \
-	--disable-gcc-check --interp-prefix="%{_prefix}/qemu-%%M" \
-
-%{__perl} -pi.orig -e '
-		s|\$\(datadir\)|\$(datadir)/qemu|;
-		s|\$\(sharedir\)|\$(datadir)/qemu|;
-		s|\$\(prefix\)/bin|\$(bindir)|;
-		s|/usr/share|\$(datadir)/qemu|;
-	' Makefile* config-host.mak
-
+#configure \
+./configure \
+	--prefix="%{_prefix}" \
+	--cc="gcc%{?_with_compat_gcc_version}" \
+	--interp-prefix="%{_prefix}/qemu-%%M" \
+%{!?_without_alsa:--enable-alsa}
+#	--disable-gcc-check
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install \
+	prefix="%{buildroot}%{_prefix}" \
+	bindir="%{buildroot}%{_bindir}" \
+	sharedir="%{buildroot}%{_datadir}/qemu" \
+	mandir="%{buildroot}%{_mandir}" \
+	datadir="%{buildroot}%{_datadir}/qemu" \
+	docdir="./rpm-doc"
 
 %{__install} -Dp -m0755 qemu.sysv %{buildroot}%{_initrddir}/qemu
 
@@ -175,19 +184,17 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc *.html Changelog COPYING* README* TODO
-%doc %{_mandir}/man1/qemu*
+%doc Changelog COPYING* LICENSE README* TODO *.html
+%doc %{_mandir}/man1/qemu.1*
+%doc %{_mandir}/man1/qemu-img.1*
 %config %{_initrddir}/qemu
 %{_bindir}/qemu*
-%dir %{_datadir}/qemu/
-%{_datadir}/qemu/keymaps/
-%{_datadir}/qemu/*.bin
-#%{_datadir}/qemu/*.elf
-%{_datadir}/qemu/openbios-sparc32
-%{_datadir}/qemu/video.x
-%exclude %{_datadir}/qemu/doc/
+%{_datadir}/qemu/
 
 %changelog
+* Thu May 10 2007 Dag Wieers <dag@wieers.com> - 0.9.0-2
+- Added patches from Fedora.
+
 * Sun Feb 11 2007 Dag Wieers <dag@wieers.com> - 0.9.0-1
 - Updated to release 0.9.0.
 

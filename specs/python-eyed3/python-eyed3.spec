@@ -8,7 +8,7 @@
 
 Summary: Python Module for ID3 Tag Manipulation
 Name: python-eyed3
-Version: 0.6.13
+Version: 0.6.14
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -51,6 +51,9 @@ export CFLAGS="%{optflags}"
 %{python_sitelib}/eyeD3/
 
 %changelog
+* Thu May 10 2007 Dag Wieers <dag@wieers.com> - 0.6.14-1
+- Updated to release 0.6.14.
+
 * Wed May 02 2007 Dag Wieers <dag@wieers.com> - 0.6.13-1
 - Updated to release 0.6.13.
 

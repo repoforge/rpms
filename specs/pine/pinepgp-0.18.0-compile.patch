@@ -1,0 +1,46 @@
+diff -Nru pinepgp-0.18.0-old/Makefile.in pinepgp-0.18.0/Makefile.in
+--- pinepgp-0.18.0-old/Makefile.in	2002-05-03 08:30:07.000000000 -0500
++++ pinepgp-0.18.0/Makefile.in	2006-11-07 00:47:16.000000000 -0600
+@@ -1,5 +1,6 @@
+ # makefile for 'pinepgp'
+ 
++SHELL=/bin/csh
+ prefix=@prefix@
+ exec_prefix=@exec_prefix@
+ bindir=@bindir@
+@@ -60,7 +61,7 @@
+ 		s%^cese=.*%cese="$(GPG) -at -se"%;\
+ 		s%^cec=.*%cec="\$(GPG)"%;\
+ 		s%^cefp=.*%cefp=gpg%' > $(@).c
+-	$(CPP) -DGPG $(BUILD_FLAGS) $(@).c | $(GREP) -v "^# .* .*" > $(@)
++	-$(CPP) -DGPG $(BUILD_FLAGS) $(@).c | $(GREP) -v "^# .* .*" > $(@)
+ 	chmod 755 $(@)
+ 
+ pinepgp26x:	pinegpgp
+@@ -70,7 +71,7 @@
+ 		s%^cese=.*%cese="\$(PGP) -fat -se"%;\
+ 		s%^cec=.*%cec="\$(PGP) -f"%;\
+ 		s%^cefp=.*%cefp=pgp26x%' > $(@).c
+-	$(CPP) -DPGP26X $(BUILD_FLAGS) $(@).c | $(GREP) -v "^# .* .*" > $(@)
++	-$(CPP) -DPGP26X $(BUILD_FLAGS) $(@).c | $(GREP) -v "^# .* .*" > $(@)
+ 	chmod 755 $(@)
+ 
+ pinepgp5x:	pinegpgp
+@@ -80,7 +81,7 @@
+ 		s%^cese=.*%cese="$(PGP5E) -fat -s"%;\
+ 		s%^cec=.*%cec="$(PGP5V) -f"%;\
+ 		s%^cefp=.*%cefp=pgp26x%' > $(@).c
+-	$(CPP) -DPGP5X $(BUILD_FLAGS) $(@).c | $(GREP) -v "^# .* .*" > $(@)
++	-$(CPP) -DPGP5X $(BUILD_FLAGS) $(@).c | $(GREP) -v "^# .* .*" > $(@)
+ 	chmod 755 $(@)
+ 
+ pinepgp65x:	pinegpgp
+@@ -90,7 +91,7 @@
+ 		s%^cese=.*%cese="\$(PGP6) -fat -se -u $$USER"%;\
+ 		s%^cec=.*%cec="\$(PGP6) -f -u $$USER"%;\
+ 		s%^cefp=.*%cefp=pgp65x%' > $(@).c
+-	$(CPP) -DPGP65X $(BUILD_FLAGS) $(@).c | $(GREP) -v "^# .* .*" > $(@)
++	-$(CPP) -DPGP65X $(BUILD_FLAGS) $(@).c | $(GREP) -v "^# .* .*" > $(@)
+ 	chmod 755 $(@)
+ 
+ install:	$(BUILD_FILTERS:%=install-%)
