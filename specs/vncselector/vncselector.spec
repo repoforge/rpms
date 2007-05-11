@@ -27,10 +27,10 @@ License: GPL
 Group: User Interface/Desktops
 URL: http://www.dooglio.net/VncSelector/
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-# Source: http://www.dooglio.net/VncSelector/VncSelector_%{version}.tar.gz
 Source: http://dl.sf.net/vncselector/vncselector_%{version}.tar.gz
+# Source: http://www.dooglio.net/VncSelector/VncSelector_%{version}.tar.gz
 # Source: http://vncselector.sourceforge.net/VncSelector_%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: fltk-devel, gcc-c++, autoconf, automake
 BuildRequires: libtool, libpng-devel, libjpeg-devel
 %{!?_without_modxorg:BuildRequires: libX11-devel}

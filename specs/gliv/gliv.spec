@@ -3,13 +3,13 @@
 # Upstream: Guillaume Chazarain <guichaz$yahoo,fr>
 
 %{?dist: %{expand: %%define %dist 1}}
-%{?el4:%define _without_modxorg 1}
-%{?el3:%define _without_modxorg 1}
-%{?el2:%define _without_modxorg 1}
 %{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
 %{?fc3:%define _without_modxorg 1}
 %{?fc2:%define _without_modxorg 1}
 %{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
 
 %define desktop_vendor rpmforge
 
@@ -40,7 +40,7 @@ panning and zooming if you have an OpenGL accelerated graphics board.
 Name=Gliv Image Viewer
 Comment=View images fast and smoothly
 Exec=gliv
-Icon=redhat-graphics.png
+Icon=gliv.png
 Terminal=false
 Type=Application
 MimeType=image/gif;image/x-xpm;image/x-xbm;image/jpeg;image/x-bmp;image/png;image/x-tiff;image/x-tga;
@@ -63,21 +63,29 @@ EOF
 
 %build
 %configure \
-	--x-libraries="%{_prefix}/X11R6/%{_lib}"
+%{!?_without_modxorg:--x-libraries="%{_libdir}"} \
+%{?_without_modxorg:--x-libraries="%{_prefix}/X11R6/%{_lib}"}
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %{__install} -Dp -m0644 gliv.applications %{buildroot}%{_datadir}/application-registry/gliv.applications
+%{__install} -Dp -m0644 gliv.png %{buildroot}%{_datadir}/pixmaps/gliv.png
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
 	gliv.desktop
+
+%post
+update-desktop-database &>/dev/null || :
+
+%postun
+update-desktop-database &>/dev/null || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -89,9 +97,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %doc %{_mandir}/*/man1/gliv.1*
 %{_bindir}/gliv
 %{_datadir}/applications/%{desktop_vendor}-gliv.desktop
+%{_datadir}/applications/gnome-gliv.desktop
 %{_datadir}/application-registry/gliv.applications
 %{_datadir}/pixmaps/gliv.png
-%{_datadir}/applications/gnome-gliv.desktop
 
 %changelog
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.9.6-1

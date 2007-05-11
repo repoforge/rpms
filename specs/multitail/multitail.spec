@@ -46,9 +46,11 @@ given regular expressions and deleting and adding windows.
 %{__install} -d -m0755 scripts/
 %{__install} -p -m0644 *.pl *.sh scripts/
 
+### We don't want rpm to require on geoip, so remove it
+%{__rm} -f %{buildroot}%{_sysconfdir}/multitail/convert-geoip.pl
+
 ### Clean up buildroot
 %{__mv} -f %{buildroot}%{_sysconfdir}/multitail.conf.new %{buildroot}%{_sysconfdir}/multitail.conf
-%{__rm} -f %{buildroot}%{_sysconfdir}/multitail/convert-geoip.pl 
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -65,7 +67,7 @@ given regular expressions and deleting and adding windows.
 %{_sysconfdir}/multitail/convert-simple.pl
 
 %changelog
-* Fri May 11 2007 Dries Verachtert <dries@ulyssis.org> - 5.0.3-1
+* Thu May 10 2007 Dag Wieers <dag@wieers.com> - 5.0.3-1
 - Updated to release 5.0.3.
 
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 5.0.2-1
