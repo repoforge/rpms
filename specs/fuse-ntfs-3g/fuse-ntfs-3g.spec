@@ -8,7 +8,7 @@ Name: fuse-ntfs-3g
 Version: 1.417
 Release: 1
 License: GPL
-Group: System Environment/Base
+Group: System Environment/Kernel
 URL: http://www.ntfs-3g.org/
 
 Source: http://www.ntfs-3g.org/ntfs-3g-%{version}.tgz

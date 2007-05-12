@@ -8,7 +8,7 @@ Name: fuse-smb
 Version: 0.8.5
 Release: 1
 License: GPL
-Group: System Environment/Base
+Group: System Environment/Kernel
 URL: http://www.ricardis.tudelft.nl/~vincent/fusesmb/
 
 Source: http://www.ricardis.tudelft.nl/~vincent/fusesmb/download/fusesmb-%{version}.tar.gz

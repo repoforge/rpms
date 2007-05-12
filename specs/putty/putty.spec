@@ -12,7 +12,7 @@
 
 Summary: Graphical SSH, Telnet and Rlogin client
 Name: putty
-Version: 0.59
+Version: 0.60
 Release: 1
 License: MIT
 Group: Applications/Internet
@@ -84,6 +84,9 @@ convert windows/putty.ico putty.png
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Network/putty.desktop}
 
 %changelog
+* Sat May 12 2007 Dag Wieers <dag@wieers.com> - 0.60-1
+- Updated to release 0.60.
+
 * Wed Jan 31 2007 Dag Wieers <dag@wieers.com> - 0.59-1
 - Updated to release 0.59.
 

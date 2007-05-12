@@ -5,13 +5,15 @@
 
 %{?el3:%define _without_udev 1}
 %{?rh9:%define _without_udev 1}
+%{?rh7:%define _without_udev 1}
+%{?el2:%define _without_udev 1}
 
 Summary: File System in Userspace (FUSE) utilities
 Name: fuse
-Version: 2.6.3
+Version: 2.6.5
 Release: 1
 License: GPL
-Group: System Environment/Base
+Group: System Environment/Kernel
 URL: http://fuse.sourceforge.net/
 
 Source: http://dl.sourceforge.net/sourceforge/fuse/fuse-%{version}.tar.gz
@@ -149,6 +151,7 @@ fi
 
 %files devel
 %defattr(-, root, root, 0755)
+%doc doc/*
 %exclude %{_libdir}/libfuse.la
 %exclude %{_libdir}/libulockmgr.la
 %{_libdir}/libfuse.so
@@ -159,5 +162,8 @@ fi
 %{_includedir}/fuse/
 
 %changelog
+* Sat May 12 2007 Dag Wieers <dag@wieers.com> - 2.6.5-1
+- Updated to release 2.6.5.
+
 * Sat May 12 2007 Dag Wieers <dag@wieers.com> - 2.6.3-1
 - Initial package. (using DAR)

@@ -50,7 +50,8 @@ it does not use NFS.
 %files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README
-%doc %{_mandir}/man1/*
+%doc %{_mandir}/man1/encfs.1*
+%doc %{_mandir}/man1/encfsctl.1*
 %{_bindir}/encfs
 %{_bindir}/encfsctl
 %{_bindir}/encfssh

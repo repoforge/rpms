@@ -8,7 +8,7 @@ Name: fuse-sshfs
 Version: 1.7
 Release: 1
 License: GPL
-Group: System Environment/Base
+Group: System Environment/Kernel
 URL: http://fuse.sourceforge.net/sshfs.html
 
 Source: http://dl.sf.net/sourceforge/fuse/sshfs-fuse-%{version}.tar.gz

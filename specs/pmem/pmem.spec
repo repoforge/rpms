@@ -5,8 +5,8 @@
 
 Summary: Process Memory Information
 Name: pmem
-Version: 1.1
-Release: 1.2
+Version: 1.1.2
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.pmem.net/
@@ -30,7 +30,7 @@ files system.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -38,11 +38,11 @@ files system.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING INSTALL NEWS README
-%{_bindir}/*
+%{_bindir}/pmem
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-1.2
-- Rebuild for Fedora Core 5.
+* Sat May 12 2007 Dag Wieers <dag@wieers.com> - 1.1.2-1
+- Updated to release 1.1.2
 
-* Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> 1.1-1
+* Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> - 1.1-1
 - Initial package.
