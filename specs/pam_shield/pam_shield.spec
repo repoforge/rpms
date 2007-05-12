@@ -34,6 +34,8 @@ pam_shield is meant as an aid to protect public computers on the open internet.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}" libdir="%{_libdir}"
 
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/pam_shield/
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -46,6 +48,7 @@ pam_shield is meant as an aid to protect public computers on the open internet.
 %{_libdir}/security/pam_shield.so
 %{_sbindir}/shield-purge
 %{_sbindir}/shield-trigger.sh
+%dir %{_localstatedir}/lib/pam_shield/
 
 %changelog
 * Sat May 12 2007 Dag Wieers <dag@wieers.com> - 0.9.1-1

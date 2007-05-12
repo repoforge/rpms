@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name vnc_reflector
@@ -8,15 +7,15 @@ Summary: VNC server which acts as a proxy for a number of VNC clients
 Name: vncreflector
 Version: 1.2.4
 Release: 0.2
-Group: User Interface/Desktops
 License: GPL
+Group: User Interface/Desktops
 URL: http://sf.net/projects/vnc-reflector/
 
 Source: http://dl.sf.net/vnc-reflector/vnc_reflector-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: libjpeg-devel, zlib-devel
+Obsoletes: vnc-reflector <= %{version}-%{release}
 
 %description
 VNC Reflector is a specialized VNC server which acts as a proxy sitting
@@ -39,11 +38,8 @@ designed to work efficiently with large number of clients.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog LICENSE README
-%{_bindir}/*
+%{_bindir}/vncreflector
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.4-0.2
-- Rebuild for Fedora Core 5.
-
 * Mon Jun 30 2003 Dag Wieers <dag@wieers.com> - 1.2.4-0
 - Initial package. (using DAR)

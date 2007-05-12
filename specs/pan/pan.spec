@@ -1,4 +1,4 @@
-# $Id$
+# $Id: pan.spec 4308 2006-04-21 22:20:20Z dries $
 # Authority: dag
 # Upstream: <pan-devel$nongnu,org>
 
@@ -11,7 +11,7 @@
 
 Summary: The Pan Newsreader
 Name: pan
-Version: 0.125
+Version: 0.129
 Release: 1
 Epoch: 1
 License: GPL
@@ -69,6 +69,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/pan.png
 
 %changelog
+* Sat May 12 2007 Dag Wieers <dag@wieers.com> - 0.129-1
+- Updated to release 0.129.
+
 * Wed Mar 21 2007 Dag Wieers <dag@wieers.com> - 0.125-1
 - Updated to release 0.125.
 
