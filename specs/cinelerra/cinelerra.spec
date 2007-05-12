@@ -39,7 +39,7 @@ BuildRequires: fftw3-devel
 BuildRequires: a52dec-devel
 BuildRequires: lame-devel
 BuildRequires: libsndfile-devel
-BuildRequires: OpenEXR-devel
+BuildRequires: openexr-devel
 BuildRequires: faad2-devel
 BuildRequires: libraw1394-devel >= 1.2.0
 BuildRequires: libiec61883-devel

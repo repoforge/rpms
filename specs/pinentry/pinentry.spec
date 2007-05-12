@@ -2,21 +2,43 @@
 # Authority: dag
 # Upstream: <gnupg-devel$gnupg,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el3:%define _without_gtk24 1}
+%{?el3:%define _without_qt33 1}
+%{?rh9:%define _without_gtk24 1}
+%{?rh9:%define _without_qt33 1}
+%{?rh7:%define _without_gtk24 1}
+%{?rh7:%define _without_qt33 1}
+%{?el2:%define _without_gtk24 1}
+%{?el2:%define _without_qt33 1}
+
 Summary: PIN or passphrase entry dialog
 Name: pinentry
-Version: 0.6.8
-Release: 1.2
+Version: 0.7.2
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.gnupg.org/aegypten/
 
-Source: ftp://ftp.gnupg.org/gcrypt/alpha/aegypten/pinentry-%{version}.tar.gz
-Patch: %{name}-info.patch
+Source: http://ftp.gnupg.org/gcrypt/pinentry/pinentry-%{version}.tar.gz
+Patch: pinentry-0.7.2-info.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glib-devel >= 1:1.2.0, gtk+-devel >= 1:1.2.0, qt-devel
-BuildRequires: ncurses-devel, gcc-c++
+BuildRequires: glib-devel >= 1.2, gtk+-devel >= 1.2
+%{!?_without_gtk24:BuildRequires: gtk2-devel >= 2.4}
+%{!?_without_qt33:BuildRequires: qt-devel >= 3.3}
+BuildRequires: ncurses-devel
 Requires: chkconfig, info
+
+Provides: pinentry-curses = %{version}-%{release}
+Obsoletes: pinentry-curses <= %{version}-%{release}
+Provides: pinentry-gtk = %{version}-%{release}
+Obsoletes: pinentry-gtk <= %{version}-%{release}
+Provides: pinentry-gui = %{version}-%{release}
+Obsoletes: pinentry-gui <= %{version}-%{release}
+%{!?_without_qt33:Provides: pinentry-qt = %{version}-%{release}}
+%{!?_without_qt33:Obsoletes: pinentry-qt <= %{version}-%{release}}
 
 %description
 This is a collection of simple PIN or passphrase entry dialogs which
@@ -25,15 +47,19 @@ http://www.gnupg.org/aegypten/ for details.
 
 %prep
 %setup
-%patch0 -p0
+%patch0 -p1
 
 %build
-%configure
+source "/etc/profile.d/qt.sh"
+%configure \
+%{?_without_gtk24:--disable-pinentry-gtk2} \
+%{?_without_qt33:--disable-pinentry-qt}
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+source "/etc/profile.d/qt.sh"
+%{__make} install DESTDIR="%{buildroot}"
 
 touch %{buildroot}%{_bindir}/pinentry
 
@@ -44,14 +70,16 @@ touch %{buildroot}%{_bindir}/pinentry
 install-info %{_infodir}/pinentry.info.gz %{_infodir}/dir
 update-alternatives --install %{_bindir}/pinentry pinentry %{_bindir}/pinentry-curses 10
 update-alternatives --install %{_bindir}/pinentry pinentry %{_bindir}/pinentry-gtk 40
-update-alternatives --install %{_bindir}/pinentry pinentry %{_bindir}/pinentry-qt 30
+%{!?_without_gtk24:update-alternatives --install %{_bindir}/pinentry pinentry %{_bindir}/pinentry-gtk-2 50}
+%{!?_without_qt33:update-alternatives --install %{_bindir}/pinentry pinentry %{_bindir}/pinentry-qt 30}
 
 %postun
 if [ $1 -eq 0 ]; then
 	install-info --delete %{_infodir}/pinentry.info.gz %{_infodir}/dir
 	update-alternatives --remove pinentry %{_bindir}/pinentry-curses
 	update-alternatives --remove pinentry %{_bindir}/pinentry-gtk
-	update-alternatives --remove pinentry %{_bindir}/pinentry-qt
+%{!?_without_gtk24:update-alternatives --remove pinentry %{_bindir}/pinentry-gtk-2}
+%{!?_without_qt33:update-alternatives --remove pinentry %{_bindir}/pinentry-qt}
 fi
 
 %clean
@@ -61,12 +89,15 @@ fi
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README THANKS TODO
 %doc %{_infodir}/*.info*
-%{_bindir}/pinentry-*
+%{_bindir}/pinentry-curses
+%{_bindir}/pinentry-gtk
+%{!?_without_gtk24:%{_bindir}/pinentry-gtk-2}
+%{!?_without_qt33:%{_bindir}/pinentry-qt}
 %ghost %{_bindir}/pinentry
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.8-1.2
-- Rebuild for Fedora Core 5.
+* Sat May 12 2007 Dag Wieers <dag@wieers.com> - 0.7.2-1
+- Updated to release 0.7.2.
 
 * Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 0.6.8-1
 - Initial package. (using DAR)

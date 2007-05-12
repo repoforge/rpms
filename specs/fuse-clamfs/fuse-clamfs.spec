@@ -14,7 +14,7 @@ URL: http://clamfs.sourceforge.net/
 Source: http://dl.sf.net/clamfs/clamfs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: fuse-devel >= 2.2, rlog-devel, poco-devel
+BuildRequires: fuse-devel >= 2.2, rlog-devel, poco-devel, commoncpp2-devel
 Requires: fuse >= 2.2
 
 Obsoletes: clamfs <= %{name}-%{version}
@@ -35,29 +35,15 @@ file scanning through clamd daemon.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-%find_lang %{real_name}
-
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_docdir}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{real_name}.lang
+%files
 %defattr(-, root, root, 0755)
-#%doc AUTHORS BUGS COPYING FAQ INSTALL NEWS README* THANKS TODO etc/davfs2.conf etc/secrets
-#%doc %{_mandir}/man5/davfs2.conf.5*
-#%doc %{_mandir}/man8/mount.davfs.8*
-#%doc %{_mandir}/man8/umount.davfs.8*
-#%doc %{_mandir}/*/man5/davfs2.conf.5*
-#%doc %{_mandir}/*/man8/mount.davfs.8*
-#%doc %{_mandir}/*/man8/umount.davfs.8*
-#%config(noreplace) %{_sysconfdir}/davfs2/davfs2.conf
-#%config %{_sysconfdir}/davfs2/secrets
-#%config %{_sysconfdir}/davfs2/certs/
-#/sbin/mount.davfs
-#/sbin/umount.davfs
-#%{_datadir}/davfs2/
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO doc/clamfs.xml
+%doc %{_mandir}/man1/clamfs.1*
+%{_bindir}/clamfs
 
 %changelog
 * Sat May 12 2007 Dag Wieers <dag@wieers.com> - 0.9.1-1
