@@ -3,7 +3,7 @@
 
 Summary: Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
 Name: asciidoc
-Version: 8.1.0
+Version: 8.2.1
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -18,7 +18,8 @@ Requires: python >= 2.3
 
 %description
 AsciiDoc is a text document format for writing short documents, articles,
-books and UNIX man pages.
+books and UNIX man pages. AsciiDoc files can be translated to HTML and
+DocBook markups using the asciidoc(1) command.
 
 %prep
 %setup
@@ -66,6 +67,9 @@ books and UNIX man pages.
 %{_datadir}/asciidoc/
 
 %changelog
+* Sat May 12 2007 Dag Wieers <dag@wieers.com> - 8.2.1-1
+- Updated to release 8.2.1.
+
 * Sat Nov 11 2006 Dag Wieers <dag@wieers.com> - 8.1.0-1
 - Updated to release 8.1.0.
 

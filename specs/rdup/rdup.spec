@@ -3,7 +3,7 @@
 
 Summary: Prints filenames for backup
 Name: rdup
-Version: 0.3.8
+Version: 0.3.9
 Release: 1
 License: GPL
 Group: Applications/File
@@ -40,12 +40,14 @@ this list and implement the backup strategy.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog DEPENDENCIES DESIGN LICENSE README todo hdup/
 %doc %{_mandir}/man1/rdup-crypt.1*
+%doc %{_mandir}/man1/rdup-gpg.1*
 %doc %{_mandir}/man1/rdup-gzip.1*
 %doc %{_mandir}/man8/rdup-backups.8*
 %doc %{_mandir}/man8/rdup-cp.8*
 %doc %{_mandir}/man8/rdup-dump.8*
 %doc %{_mandir}/man8/rdup-mirror.8*
 %doc %{_mandir}/man8/rdup-restore.8*
+%doc %{_mandir}/man8/rdup-simple.8*
 %doc %{_mandir}/man8/rdup-snap.8*
 %doc %{_mandir}/man8/rdup-snap-link.8*
 %doc %{_mandir}/man8/rdup-snapshot.8*
@@ -54,15 +56,20 @@ this list and implement the backup strategy.
 %{_sbindir}/rdup-cp
 %{_sbindir}/rdup-crypt
 %{_sbindir}/rdup-dump
+%{_sbindir}/rdup-gpg
 %{_sbindir}/rdup-gzip
 %{_sbindir}/rdup-mirror
 %{_sbindir}/rdup-restore
+%{_sbindir}/rdup-simple
 %{_sbindir}/rdup-snap
 %{_sbindir}/rdup-snap-link
 %{_sbindir}/rdup-snapshot
 %{_datadir}/rdup/
 
 %changelog
+* Sat May 12 2007 Dag Wieers <dag@wieers.com> - 0.3.9-1
+- Updated to release 0.3.9.
+
 * Sun Mar 18 2007 Dag Wieers <dag@wieers.com> - 0.3.8-1
 - Updated to release 0.3.8.
 
