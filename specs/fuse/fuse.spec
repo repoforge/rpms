@@ -153,7 +153,7 @@ fi
 %exclude %{_libdir}/libulockmgr.la
 %{_libdir}/libfuse.so
 %{_libdir}/libulockmgr.so
-%{_libdir}/pkgconfig/*.pc
+%{_libdir}/pkgconfig/fuse.pc
 %{_includedir}/fuse.h
 %{_includedir}/ulockmgr.h
 %{_includedir}/fuse/

@@ -51,7 +51,10 @@ it does not use NFS.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README
 %doc %{_mandir}/man1/*
-%{_bindir}/*
+%{_bindir}/encfs
+%{_bindir}/encfsctl
+%{_bindir}/encfssh
+%exclude %{_libdir}/libencfs.la
 %{_libdir}/libencfs.so*
 
 %changelog
