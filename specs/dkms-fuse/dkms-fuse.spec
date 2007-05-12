@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# ExclusiveDist: el4
+# ExclusiveDist: el4 el5
 # Dist: nodist
 
 Summary: Linux kernel module for FUSE (Filesystem in USErspace)
