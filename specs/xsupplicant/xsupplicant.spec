@@ -2,23 +2,34 @@
 # Authority: dag
 # Upstream: <open1x-xsupplicant$lists,sourceforge,net>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el4:%define _without_wireless_tools_devel 1}
+%{?el3:%define _without_wireless_tools_devel 1}
+%{?rh9:%define _without_wireless_tools_devel 1}
+%{?rh7:%define _without_wireless_tools_devel 1}
+%{?el2:%define _without_wireless_tools_devel 1}
+
 Summary: Open source implement of IEEE 802.1x
 Name: xsupplicant
-Version: 1.0.1
-Release: 1.2
+Version: 1.2.8
+Release: 1
 License: GPL
 Group: System Environment/Base
-URL: http://www.open1x.org/
+URL: http://open1x.sourceforge.net/
 
 Source: http://dl.sf.net/open1x/xsupplicant-%{version}.tar.gz
+Patch0: xsupplicant-1.2.2-docsfix.patch
+Patch2: xsupplicant-1.2.8-nocompilerh-systemheaders.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: openssl-devel >= 0.9.7, byacc, flex
+BuildRequires: openssl-devel >= 0.9.7, byacc, flex, wireless-tools
+%{!?_without_wireless_tools_devel:BuildRequires: wireless-tools-devel}
 Requires: /sbin/ldconfig, openssl >= 0.9.7
 
 %description
-This software allows a GNU/Linux or BSD workstation to authenticate with
-a RADIUS server using 802.1x and various EAP protocols.  The intended
+xsupplicant allows a GNU/Linux or BSD workstation to authenticate with
+a RADIUS server using 802.1x and various EAP protocols. The intended
 use is for computers with wireless LAN connections to complete a strong
 authentication before joining the network.
 
@@ -34,6 +45,8 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
+%patch0 -p1
+%patch2 -p1
 
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure*
 
@@ -43,35 +56,38 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %{__install} -Dp -m0600 etc/xsupplicant.conf %{buildroot}%{_sysconfdir}/xsupplicant.conf
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING doc/html/ doc/README* doc/txt/ etc/*.conf README README.wireless_cards
+%doc AUTHORS CHANGELOG COPYING INSTALL LICENSE README TODO doc/README* doc/standards/ doc/*.html etc/*.conf
 %config(noreplace) %{_sysconfdir}/xsupplicant.conf
 %{_bindir}/config-parser
+%{_bindir}/xsup_get_state
 %{_bindir}/xsup_monitor
+%{_bindir}/xsup_ntpwdhash
 %{_bindir}/xsup_set_pwd
 %{_sbindir}/xsupplicant
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_libdir}/libcardif.a
+%{_includedir}/xsupconfcheck.h
+%{_includedir}/xsupconfig.h
+%{_includedir}/xsupconfwrite.h
+%{_includedir}/xsupgui.h
+%{_libdir}/libxsup*.a
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1.2
-- Rebuild for Fedora Core 5.
+* Mon May 14 2007 Dag Wieers <dag@wieers.com> - 1.2.8-1
+- Updated to release 1.2.8.
 
 * Sun Feb 13 2005 Dag Wieers <dag@wieers.com> - 1.0.1-2
 - Added default xsupplicant.conf.

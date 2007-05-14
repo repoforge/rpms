@@ -46,7 +46,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 0.9.36
+Version: 0.9.37
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -181,7 +181,6 @@ you will need to install %{name}-devel.
 %prep
 %setup
 %patch0
-%patch1
 
 %{__cat} <<EOF >wine-config.desktop
 [Desktop Entry]
@@ -810,6 +809,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Tue May 15 2007 Dag Wieers <dag@wieers.com> - 0.9.37-1
+- Updated to release 0.9.37.
+
 * Sat Apr 28 2007 Dag Wieers <dag@wieers.com> - 0.9.36-1
 - Updated to release 0.9.36.
 

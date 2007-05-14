@@ -4,13 +4,14 @@
 
 Summary: Download utility with BitTorrent and Metalink support
 Name: aria2
-Version: 0.10.2
+%define real_version 0.10.2+1
+Version: 0.10.2.1
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://aria2.sourceforge.net/
 
-Source: http://dl.sf.net/aria2/aria2-%{version}.tar.bz2
+Source: http://dl.sf.net/aria2/aria2-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, libxml2-devel, gcc-c++, gettext
@@ -20,18 +21,18 @@ aria2 is a download utility with resuming and segmented downloading.
 Supported protocols are HTTP/HTTPS/FTP/BitTorrent/Metalink.
 
 %prep
-%setup
+%setup -n %{name}-%{real_version}
  
 %build
 export CPPFLAGS="-I/usr/include/libxml2 $(pkg-config --cflags openssl)"
 %configure \
-	--enable-metalink \
-	--disable-xmltest
+	--disable-xmltest \
+	--enable-metalink
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang aria2c
 
 %clean
@@ -44,6 +45,9 @@ export CPPFLAGS="-I/usr/include/libxml2 $(pkg-config --cflags openssl)"
 %{_bindir}/aria2c
 
 %changelog
+* Tue May 15 2007 Dag Wieers <dag@wieers.com> - 0.10.2.1-1
+- Updated to release 0.10.2+1.
+
 * Wed Mar 28 2007 Dries Verachtert <dries@ulyssis.org> - 0.10.2-1
 - Updated to release 0.10.2.
 

@@ -6,13 +6,13 @@
 
 Summary: Mobile phone tools
 Name: gammu
-Version: 1.09.00
+Version: 1.11.0
 Release: 1
 License: GPL
 Group: Applications/Communications
 URL: http://www.gammu.net/
 
-Source: http://www.mwiacek.com/zips/gsm/gammu/stable/1_0x/gammu-%{version}.tar.gz
+Source: http://dl.cihar.com/gammu/releases/gammu-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bluez-libs-devel, autoconf, automake
@@ -51,27 +51,27 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} installlib \
-	DESTDIR="%{buildroot}"
+%{__make} installlib DESTDIR="%{buildroot}"
+%find_lang %{name}
 
 %{__install} -Dp -m0644 docs/examples/config/gammurc %{buildroot}%{_sysconfdir}/gammurc
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc changelog copying docs/docs/ docs/examples/ readme.txt
-%doc %{_mandir}/man?/*
+%doc ChangeLog COPYING INSTALL README SUPPORTERS docs/examples/ docs/user/*.htm docs/user/*.txt
+%doc %{_mandir}/man1/gammu.1*
 %config(noreplace) %{_sysconfdir}/gammurc
-%{_bindir}/*
-%{_libdir}/*.so.*
-%{_datadir}/gammu/
+%{_bindir}/gammu
+%{_libdir}/libGammu.so.*
+#%{_datadir}/gammu/
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc docs/develop/*
-%{_libdir}/*.so
-%{_libdir}/*.a
+%{_libdir}/libGammu.a
+%{_libdir}/libGammu.so
 %{_includedir}/gammu/
-%{_libdir}/pkgconfig/*.pc
+%{_libdir}/pkgconfig/gammu.pc
 %exclude %{_docdir}
 
 %post -p /sbin/ldconfig
@@ -81,6 +81,9 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Mon May 14 2007 Dries Verachtert <dries@ulyssis.org> - 1.11.00-1
+- Updated to release 1.11.00.
+
 * Mon Nov 27 2006 Dries Verachtert <dries@ulyssis.org> - 1.09.00-1
 - Updated to release 1.09.00.
 

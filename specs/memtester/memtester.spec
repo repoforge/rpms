@@ -4,7 +4,7 @@
 
 Summary: Userspace utility for testing the memory subsystem for faults
 Name: memtester
-Version: 4.0.6
+Version: 4.0.7
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -37,6 +37,9 @@ memtester is a userspace utility for testing the memory subsystem for faults.
 %{_bindir}/memtester
 
 %changelog
+* Mon May 14 2007 Dag Wieers <dag@wieers.com> - 4.0.7-1
+- Updated to release 4.0.7.
+
 * Tue Mar 15 2005 Dag Wieers <dag@wieers.com> - 4.0.6-1
 - Updated to release 4.0.6.
 

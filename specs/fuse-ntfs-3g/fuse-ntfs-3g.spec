@@ -1,12 +1,14 @@
 # $Id$
 # Authority: dag
 
+%define _sbindir /sbin
+
 %define real_name ntfs-3g
 
 Summary: Linux NTFS userspace driver 
 Name: fuse-ntfs-3g
 Version: 1.417
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.ntfs-3g.org/
@@ -59,24 +61,23 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-### Hardlink different locations
-ln -f %{buildroot}%{_bindir}/ntfs-3g %{buildroot}/sbin/mount.ntfs-3g
-ln -f %{buildroot}%{_bindir}/ntfs-3g %{buildroot}%{_bindir}/ntfsmount
-ln -f %{buildroot}/sbin/mount.ntfs-3g %{buildroot}/sbin/mount.ntfs-fuse
+### Symlink different locations
+%{__ln_s} -f %{_bindir}/ntfs-3g %{buildroot}%{_sbindir}/mount.ntfs-3g
+%{__ln_s} -f %{_bindir}/ntfs-3g %{buildroot}%{_sbindir}/mount.ntfs-fuse
+%{__ln_s} -f %{_bindir}/ntfs-3g %{buildroot}%{_bindir}/ntfsmount
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING CREDITS NEWS README
 %doc %{_mandir}/man8/*.8*
-/sbin/mount.ntfs-3g
-/sbin/mount.ntfs-fuse
+%{_sbindir}/mount.ntfs-3g
+%{_sbindir}/mount.ntfs-fuse
 %{_bindir}/ntfs-3g
 %{_bindir}/ntfsmount
 %{_libdir}/libntfs-3g.so.*
@@ -88,5 +89,8 @@ ln -f %{buildroot}/sbin/mount.ntfs-3g %{buildroot}/sbin/mount.ntfs-fuse
 %{_libdir}/libntfs-3g.so
 
 %changelog
+* Mon May 14 2007 Dag Wieers <dag@wieers.com> - 1.417-2
+- Symlink mount binaries instead of hardlink (different mountpoints). (Jon Wilson)
+
 * Sat May 12 2007 Dag Wieers <dag@wieers.com> - 1.417-1
 - Initial package. (using DAR)
