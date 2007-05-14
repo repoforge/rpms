@@ -7,7 +7,7 @@
 ### REMINDER: Look and sync with Petr Kristof's work
 
 ### sendmail has been updated on EL2, no longer true.
-#{?el2:%define _without_milter 1}
+#%{?el2:#define _without_milter 1}
 
 Summary: Anti-virus software
 Name: clamav

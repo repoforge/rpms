@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Walter de Jong <walter$heiho,net>
 
 %define _libdir /%{_lib}
 

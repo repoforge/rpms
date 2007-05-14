@@ -12,7 +12,7 @@ URL: http://www.opbyte.it/grsync/
 Source: http://www.opbyte.it/release/grsync-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gettext, glib2-devel >= 2.6, gtk2-devel
+BuildRequires: gettext, glib2-devel >= 2.6, gtk2-devel, perl(XML::Parser)
 Requires: rsync
 
 %description
@@ -44,6 +44,9 @@ used to synchronize local directories.
 %{_datadir}/applications/grsync.desktop
 
 %changelog
+* Sun May 13 2007 Dag Wieers <dag@wieers.com> - 0.5.2-1
+- Added perl(XML::Parser) dependency. (Lajos)
+
 * Sun Jan 21 2007 Dag Wieers <dag@wieers.com> - 0.5.2-1
 - Updated to release 0.5.2.
 

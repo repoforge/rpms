@@ -5,7 +5,7 @@
 Summary: Tunnel IPv4 data through a DNS server
 Name: iodine
 Version: 0.4.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://code.kryo.se/iodine/
@@ -26,8 +26,11 @@ queries are allowed.
 
 %install
 %{__rm} -rf %{buildroot}
+#%{__make} install DESTDIR="%{buildroot}"
+#%{__make} install PREFIX="%{buildroot}%{_prefix}"
 %{__install} -Dp -m0755 bin/iodine %{buildroot}%{_bindir}/iodine
 %{__install} -Dp -m0755 bin/iodined %{buildroot}%{_bindir}/iodined
+%{__install} -Dp -m0644 man/iodine.8 %{buildroot}%{_mandir}/man8/iodine.8
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -35,10 +38,14 @@ queries are allowed.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGELOG README TODO
+%doc %{_mandir}/man8/iodine.8*
 %{_bindir}/iodine
 %{_bindir}/iodined
 
 %changelog
+* Sun May 13 2007 Dag Wieers <dag@wieers.com> - 0.4.0-2
+- Added iodine manpage. (Erik Ekman)
+
 * Sun Mar 25 2007 Dag Wieers <dag@wieers.com> - 0.4.0-1
 - Updated to release 0.4.0.
 

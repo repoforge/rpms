@@ -33,9 +33,7 @@ displaying flat file content in human readable form.
 %{__make} install DESTDIR="%{buildroot}"
 %{__mv} %{buildroot}%{_docdir}/ffe rpmdocs
 
-%post
-/sbin/ldconfig 2>/dev/null
-
+%post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %clean
@@ -44,7 +42,7 @@ displaying flat file content in human readable form.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README rpmdocs/*
-%doc %{_mandir}/man1/ffe*
+%doc %{_mandir}/man1/ffe.1*
 %doc %{_infodir}/ffe.info*
 %{_bindir}/ffe
 
