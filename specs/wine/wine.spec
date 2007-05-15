@@ -459,6 +459,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/icinfo.exe.so
 %{_libdir}/wine/iexplore.exe.so
 %{_libdir}/wine/msiexec.exe.so
+%{_libdir}/wine/net.exe.so
 %{_libdir}/wine/notepad.exe.so
 %{_libdir}/wine/oleview.exe.so
 %{_libdir}/wine/progman.exe.so
