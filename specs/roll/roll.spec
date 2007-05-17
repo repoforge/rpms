@@ -31,7 +31,7 @@ expressions (e.g., 2d8+4).
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR=%{buildroot}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -39,7 +39,7 @@ expressions (e.g., 2d8+4).
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-%doc %{_mandir}/man1/roll*
+%doc %{_mandir}/man1/roll.1*
 %{_bindir}/roll
 
 %changelog

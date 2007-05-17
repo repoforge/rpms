@@ -24,11 +24,11 @@ Gesslein II and has been under development since 1986.
 %setup
 
 %build
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} prefix=%{_prefix}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install prefix=%{buildroot}%{_prefix} mandir=%{buildroot}%{_mandir}
 %{__rm} -rf %{buildroot}%{_datadir}/doc/mathomatic
 
 %clean
