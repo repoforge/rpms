@@ -5,7 +5,7 @@
 Summary: Command line utilities for manipulating high dynamic range images
 Name: exrtools
 Version: 0.4
-Release: 1.2
+Release: 2
 License: MIT/X Consortium License
 Group: Applications/Multimedia
 URL: http://scanline.ca/exrtools/
@@ -32,7 +32,7 @@ value to others.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -40,7 +40,18 @@ value to others.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING INSTALL README
-%doc %{_mandir}/man1/*
+%doc %{_mandir}/man1/exrblur.1*
+%doc %{_mandir}/man1/exrchr.1*
+%doc %{_mandir}/man1/exricamtm.1*
+%doc %{_mandir}/man1/exrnlm.1*
+%doc %{_mandir}/man1/exrnormalize.1*
+%doc %{_mandir}/man1/exrpptm.1*
+%doc %{_mandir}/man1/exrstats.1*
+%doc %{_mandir}/man1/exrtools.1*
+%doc %{_mandir}/man1/exrtopng.1*
+%doc %{_mandir}/man1/jpegtoexr.1*
+%doc %{_mandir}/man1/pngtoexr.1*
+%doc %{_mandir}/man1/ppmtoexr.1*
 %{_bindir}/exrblur
 %{_bindir}/exrchr
 %{_bindir}/exricamtm
@@ -54,8 +65,8 @@ value to others.
 %{_bindir}/ppmtoexr
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4-1.2
-- Rebuild for Fedora Core 5.
+* Tue May 15 2007 Dag Wieers <dag@wieers.com> - 0.4-2
+- Rebuild against openexr 0.4a.
 
 * Tue Nov 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.4-1
 - Initial package.

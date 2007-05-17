@@ -7,14 +7,15 @@ Summary: Application to read out information from the Belgian electronic ID card
 %define real_name Belgian_Identity_Card_Run-time
 Name: eid-belgium
 Version: 2.5.9
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://eid.belgium.be/
 
 ### Since it needs a specific referer, download it from http://www.belgium.be/zip/eid_datacapture_nl.html
 Source: http://www.belgium.be/zip/Belgian_Identity_Card_Run-time%{version}.tar.bz2
-Patch: eid-belgium-2.5.9-openscreader.patch
+Patch0: eid-belgium-2.5.9-openscreader.patch
+Patch1: eid-belgium-2.5.9-reader-pcsc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ### SCons doesn't build when eid-belgium is already installed
@@ -44,7 +45,8 @@ the government's servers.
 %prep
 %setup -n beid-%{version}
 
-%patch -p0
+%patch0 -p0
+%patch1 -p0
 
 %{__cat} <<EOF >beidcrld.sysconfig
 OPTIONS=""
@@ -324,7 +326,8 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %files -f beidgui.lang
 %defattr(-, root, root, 0755)
 %doc CHANGES INSTALL README VERSION doc/*.rtf doc/*.doc
-%doc %{_mandir}/man1/*.1*
+%doc %{_mandir}/man1/beid-pkcs11-tools.1*
+%doc %{_mandir}/man1/beid-tools.1*
 %config(noreplace) %{_sysconfdir}/beidbase.conf
 %config(noreplace) %{_sysconfdir}/beidgui.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/beidcrld
@@ -344,9 +347,12 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %exclude %{_datadir}/beid/DeveloperGuide.doc
 %{_datadir}/icons/beidgui.png
 %{_includedir}/beid/
-%{_libdir}/*.so*
+%{_libdir}/libbeid*.so*
 %{_libdir}/pkcs11/
 
 %changelog
+* Wed May 16 2007 Dag Wieers <dag@wieers.com> - 2.5.9-2
+- Added patch to build against pcsc-lite 1.4. (Daniel De Baerdemaeker)
+
 * Fri Feb 09 2007 Dag Wieers <dag@wieers.com> - 2.5.9-1
 - Initial package. (using DAR)
