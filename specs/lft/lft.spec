@@ -10,7 +10,7 @@
 
 Summary: Alternative traceroute tool for network (reverse) engineers
 Name: lft
-Version: 2.5
+Version: 3.0
 Release: 1
 License: MainNerve Public License
 Group: Applications/Internet
@@ -22,7 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libpcap
 %{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
-Obsoletes: fft
+Obsoletes: fft <= %{version}-%{release}
 
 %description
 LFT, short for Layer Four Traceroute, is a sort of 'traceroute' that
@@ -40,9 +40,7 @@ lookups, loose source routing, netblock name lookups, et al.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall \
-	DESTDIR="%{buildroot}%{_bindir}" \
-	MANDIR="%{buildroot}%{_mandir}/man8"
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -57,6 +55,9 @@ lookups, loose source routing, netblock name lookups, et al.
 %{_bindir}/lft
 
 %changelog
+* Thu May 17 2007 Dag Wieers <dag@wieers.com> - 3.0-1
+- Updated to release 3.0.
+
 * Sat Apr 29 2006 Dag Wieers <dag@wieers.com> - 2.5-1
 - Updated to release 2.5.
 

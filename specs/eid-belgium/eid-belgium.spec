@@ -326,8 +326,8 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %files -f beidgui.lang
 %defattr(-, root, root, 0755)
 %doc CHANGES INSTALL README VERSION doc/*.rtf doc/*.doc
-%doc %{_mandir}/man1/beid-pkcs11-tools.1*
-%doc %{_mandir}/man1/beid-tools.1*
+%doc %{_mandir}/man1/beid-pkcs11-tool.1*
+%doc %{_mandir}/man1/beid-tool.1*
 %config(noreplace) %{_sysconfdir}/beidbase.conf
 %config(noreplace) %{_sysconfdir}/beidgui.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/beidcrld

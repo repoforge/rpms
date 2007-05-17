@@ -20,7 +20,7 @@ Version: 0.4
 Release: 1
 License: GPL
 Group: Applications/System
-URL: http://www.freedesktop.org/wiki/Software_2fxrestop
+URL: http://www.freedesktop.org/wiki/Software/xrestop
 
 Source: http://projects.o-hand.com/sources/xrestop/xrestop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

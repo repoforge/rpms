@@ -4,7 +4,7 @@
 
 Summary: Tool that helps you find what software is using the most power
 Name: powertop
-Version: 1.1
+Version: 1.2
 Release: 1
 License: GPL
 Group: Applications/System
@@ -26,7 +26,7 @@ from the kernel into one convenient screen so that you can see how well
 your system is doing, and which components are the biggest problem. 
 
 %prep
-%setup -n %{name}
+%setup
 
 %build
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
@@ -35,6 +35,7 @@ your system is doing, and which components are the biggest problem.
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_bindir}
 %{__make} install DESTDIR="%{buildroot}"
+%{__install} -Dp -m0644 powertop.1 %{buildroot}%{_mandir}/man1/powertop.1
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -42,8 +43,12 @@ your system is doing, and which components are the biggest problem.
 %files
 %defattr(-, root, root, 0755)
 %doc Changelog COPYING README
+%doc %{_mandir}/man1/powertop.1*
 %{_bindir}/powertop
 
 %changelog
+* Tue May 15 2007 Dag Wieers <dag@wieers.com> - 1.2-1
+- Updated to release 1.2.
+
 * Tue May 15 2007 Dag Wieers <dag@wieers.com> - 1.1-1
 - Initial package. (using DAR)
