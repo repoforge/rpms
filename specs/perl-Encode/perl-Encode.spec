@@ -7,7 +7,7 @@
 
 %define real_name Encode
 
-Summary: Perl module named Encode
+Summary: Perl module that implements character encodings
 Name: perl-Encode
 Version: 2.20
 Release: 1
@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl >= 1:5.7.3
 
 %description
-perl-Encode is a Perl module.
+perl-Encode is a Perl module that implements character encodings.
 
 %prep
 %setup -n %{real_name}-%{version}

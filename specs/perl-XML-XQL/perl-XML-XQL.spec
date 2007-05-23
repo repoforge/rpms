@@ -1,19 +1,17 @@
 # $Id$
-
 # Authority: dries
 # Upstream: T.J. Mather <tjmather$maxmind,com>
 
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name XML-XQL
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Query XML tree structures with XQL
 Name: perl-XML-XQL
 Version: 0.68
-Release: 1.2
-License: Artistic
+Release: 2
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-XQL/
 
@@ -33,28 +31,30 @@ other implementations, like XML::Grove, may soon follow.
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST README
+%doc %{_mandir}/man3/*.3pm*
 %{_bindir}/xql.pl
+%dir %{perl_vendorlib}/XML/
 %{perl_vendorlib}/XML/XQL.pm
-%{perl_vendorlib}/XML/XQL/*
+%{perl_vendorlib}/XML/XQL/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.68-1.2
-- Rebuild for Fedora Core 5.
+* Thu May 24 2007 Dag Wieers <dag@wieers.coM> - 0.68-2
+- Cosmetic cleanup.
 
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.68-1
 - Initial package.

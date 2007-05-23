@@ -1,16 +1,15 @@
 # $Id$
 # Authority: dag
-# Upstream: 
 
 Summary: I/O generator
 Name: iogen
-Version: 3.0
+Version: 3.1
 Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.peereboom.us/iogen/
 
-Source: http://www.peereboom.us/iogen/iogen_%{version}.tgz
+Source: http://www.peereboom.us/iogen/iogen_%{version}p0.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -23,7 +22,7 @@ It is by no means meant as a performance measuring tool since it tries
 to recreate the worst case scenario I/O.
 
 %prep
-%setup -n %{name}_%{version}
+%setup -n %{name}_%{version}p0
 
 %build
 %{__make} %{?_smp_mflags}
@@ -44,6 +43,9 @@ to recreate the worst case scenario I/O.
 %{_bindir}/iogen
 
 %changelog
+* Sat May 23 2007 Dag Wieers <dag@wieers.com> - 3.1-1
+- Updated to release 3.1p0.
+
 * Tue Apr 17 2007 Dag Wieers <dag@wieers.com> - 3.0-1
 - Updated to release 3.0.
 

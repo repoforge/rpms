@@ -3,7 +3,7 @@
 
 Summary: Remotely administer the file systems of multiple unix machines
 Name: radmind
-Version: 1.7.0
+Version: 1.8.1
 Release: 1
 License: BSD-like
 Group: System Environment/Base
@@ -245,6 +245,7 @@ fi
 %doc %{_mandir}/man1/lmerge.1*
 %doc %{_mandir}/man1/lsort.1*
 %doc %{_mandir}/man1/rash.1*
+%doc %{_mandir}/man1/repo.1*
 %doc %{_mandir}/man1/twhich.1*
 %doc %{_mandir}/man5/applefile.5*
 %doc %{_mandir}/man8/radmind.8*
@@ -262,6 +263,7 @@ fi
 %{_bindir}/lmerge
 %{_bindir}/lsort
 %{_bindir}/ra.sh
+%{_bindir}/repo
 %{_bindir}/twhich
 %{_sbindir}/radmind
 %dir %{_localstatedir}/radmind/
@@ -274,5 +276,8 @@ fi
 %dir %{_localstatedir}/radmind/transcript/
 
 %changelog
+* Wed May 23 2007 Dag Wieers <dag@wieers.com> - 1.8.1-1
+- Updated to release 1.8.1.
+
 * Sun Aug 06 2006 Dag Wieers <dag@wieers.com> - 1.7.0-1
 - Initial package based on Mandrake package.

@@ -1,10 +1,10 @@
-%define rkhVer 1.2.8
-%define rpmRel 3
+# $Id$
+# Authority: dag
 
 Summary: Host-based tool to scan for rootkits, backdoors and local exploits
 Name: rkhunter
 Version: 1.2.9
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.rootkit.nl/
@@ -36,12 +36,86 @@ exploits by running tests like:
 %prep
 %setup -n %{name}-%{version}/files
 
-%{__perl} -pi.0001 -e '
-		s|^#(INSTALLDIR=).+$|$1%{_prefix}|;
-		s|^#(MAIL-ON-WARNING=).+$|$1root\@localhost|;
-		s|^#(TMPDIR=).+$|$1%{_var}/%{name}/tmp|;
-		s|^#(DBDIR=).+$|$1%{_var}/%{name}/db|;
-	' rkhunter.conf
+%{__cat} <<EOF >rkhunter.conf.new
+# This is the configuration file of Rootkit Hunter. Please change
+# it to your needs.
+#
+# All lines beginning with a hash (#) or empty lines, will be ignored.
+#
+INSTALLDIR=%{_prefix}
+
+# Links to files. Don't change if you don't need to.
+LATESTVERSION=/rkhunter_latest.dat
+UPDATEFILEINFO=/rkhunter_fileinfo.dat
+
+# Send a warning message to the admin when one or more warnings
+# are available (rootkit and MD5 check). Note: uses default `mail`
+# commmand to send the warning message.
+MAIL-ON-WARNING=root@localhost
+
+# Use a custom temporary directory (you can override it with the
+# --tmpdir parameter)
+# Note: don't use /tmp as your temporary directory, because some
+# important files will be written to this directory. Be sure
+# you have setup your permissions very tight.
+TMPDIR=%{_localstatedir}/rkhunter/tmp
+
+# Use a custom database directory (you can override it with the
+# --dbdir parameter)
+DBDIR=%{_localstatedir}/rkhunter/db
+
+# Whitelist files (and their MD5 hash)
+# Usage: MD5WHITELIST=<binary>:<MD5 hash>
+#MD5WHITELIST=/bin/ps:9bd8bf260adc81d3a43a086fce6b430a
+#MD5WHITELIST=/bin/ps:404583a6b166c2f7ac1287445a9de6b3
+
+# Allow direct root login via SSH
+# Don't use this option if you don't know what the warning about
+# this option means!!
+#ALLOW_SSH_ROOT_USER=0
+
+# Allow hidden directory
+# One directory per line (use multiple ALLOWHIDDENDIR lines)
+#
+#ALLOWHIDDENDIR=/etc/.java
+#ALLOWHIDDENDIR=/dev/.udev
+#ALLOWHIDDENDIR=/dev/.udevdb
+#ALLOWHIDDENDIR=/dev/.udev.tdb
+#ALLOWHIDDENDIR=/dev/.static
+#ALLOWHIDDENDIR=/dev/.initramfs
+#ALLOWHIDDENDIR=/dev/.SRC-unix
+
+# Allow hidden file
+# One file per line (use multiple ALLOWHIDDENFILE lines)
+# 
+#ALLOWHIDDENFILE=/etc/.java
+#ALLOWHIDDENFILE=/usr/share/man/man1/..1.gz
+#ALLOWHIDDENFILE=/etc/.pwd.lock
+#ALLOWHIDDENFILE=/etc/.init.state
+
+# Allow process to use deleted files
+# One process per line (use multiple ALLOWPROCDELFILE lines)
+#
+#ALLOWPROCDELFILE=/sbin/cardmgr
+#ALLOWPROCDELFILE=/usr/sbin/gpm
+#ALLOWPROCDELFILE=/usr/libexec/gconfd-2
+#ALLOWPROCDELFILE=/usr/sbin/mysqld
+
+# Allow process to listen on any interface
+# One process per line (use multiple ALLOWPROCLISTEN lines)
+#
+#ALLOWPROCLISTEN=/sbin/dhclient
+#ALLOWPROCLISTEN=/usr/bin/dhcpcd
+#ALLOWPROCLISTEN=/usr/sbin/pppoe
+#ALLOWPROCLISTEN=/usr/sbin/tcpdump
+#ALLOWPROCLISTEN=/usr/sbin/snort-plain
+#ALLOWPROCLISTEN=/usr/local/bin/wpa_supplicant
+
+# The End
+EOF
+
+### Check what has been changed
+diff -u rkhunter.conf rkhunter.conf.new || :
 
 %{__perl} -pi.orig -e 's| /usr/man| %{_mandir}|g' rkhunter
 
@@ -61,7 +135,7 @@ EOF
 %{__install} -Dp -m0750 rkhunter %{buildroot}%{_bindir}/rkhunter
 
 %{__install} -Dp -m0644 rkhunter.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/rkhunter
-%{__install} -Dp -m0640 rkhunter.conf %{buildroot}%{_sysconfdir}/rkhunter.conf
+%{__install} -Dp -m0640 rkhunter.conf.new %{buildroot}%{_sysconfdir}/rkhunter.conf
 #%{__install} -Dp -m0640 rkhunter.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/rkhunter
 #%{__install} -Dp -m0750 01-rkhunter %{buildroot}%{_sysconfdir}/cron.daily/01-rkhunter
 
@@ -97,5 +171,8 @@ touch %{buildroot}%{_localstatedir}/log/rkhunter.log
 %ghost %{_localstatedir}/log/rkhunter.log
 
 %changelog
+* Thu May 17 2007 Dag Wieers <dag@wieers.com> - 1.2.9-2
+- Fixed the INSTALLDIR location in rkhunter.conf. (Phil Schaffner)
+
 * Mon May 14 2007 Dag Wieers <dag@wieers.com> - 1.2.9-1
 - Initial package. (using DAR)

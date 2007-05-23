@@ -1,0 +1,10 @@
+--- pstoedit-3.44/configure.orig	2006-06-15 00:52:42.000000000 +0200
++++ pstoedit-3.44/configure	2006-06-15 00:52:45.000000000 +0200
+@@ -22590,7 +22590,6 @@
+ echo "${ECHO_T}GNU" >&6
+     SPECIAL_CXXFLAGS="-DBUGGYGPP -pedantic -Wall -Wwrite-strings -Wcast-qual -Wpointer-arith "
+   fi
+-  CXXFLAGS="-g"
+ elif test `echo "$CXX" | egrep -c 'xlC$'` -eq 1; then
+   echo "$as_me:$LINENO: result: AIX xlC" >&5
+ echo "${ECHO_T}AIX xlC" >&6

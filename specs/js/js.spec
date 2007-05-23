@@ -133,7 +133,7 @@ find %{buildroot}%{perl_vendorarch} -type f -exec %{__chmod} u+w {} \;
 %{_includedir}/js*.h
 
 %changelog
-* Sun Mar 25 2007 Dag Wieers <dag@wieers.coM> - 1.60-1
+* Sun Mar 25 2007 Dag Wieers <dag@wieers.com> - 1.60-1
 - Updated to release 1.60.
 
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.5-1

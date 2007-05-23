@@ -3,7 +3,7 @@
 
 Summary: Compiler for C-style language of UML notation
 Name: umlspeed
-Version: 0.15
+Version: 0.16
 Release: 1
 License: GPL
 Group: Development/Languages
@@ -30,6 +30,10 @@ SVG UML diagrams, XMI documents and generate source code in various languages.
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
 %{__make} install BIN_DIR="%{buildroot}%{_bindir}" MAN_DIR="%{buildroot}%{_mandir}/man1"
 
+### FIXME: Install the VIM syntax files 'somewhere'
+#%{__install} -Dp -m0644 syntax/filetype.vim %{buildroot}%{_datadir}/vim/vimXX/syntax/filetype.vim
+#%{__install} -Dp -m0644 syntax/umlspeed.vim %{buildroot}%{_datadir}/vim/vimXX/syntax/umlspeed.vim
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -40,5 +44,8 @@ SVG UML diagrams, XMI documents and generate source code in various languages.
 %{_bindir}/umlspeed
 
 %changelog
+* Wed May 23 2007 Dag Wieers <dag@wieers.com> - 0.16-1
+- Updated to release 0.16.
+
 * Thu May 17 2007 Dag Wieers <dag@wieers.com> - 0.15-1
 - Initial package. (using DAR)

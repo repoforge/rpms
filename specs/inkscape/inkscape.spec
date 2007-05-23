@@ -25,13 +25,15 @@
 
 Summary: Vector drawing application
 Name: inkscape
-Version: 0.45
+Version: 0.45.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://inkscape.sourceforge.net/
 
 Source: http://dl.sf.net/inkscape/inkscape-%{version}.tar.gz
+Patch0: inkscape-0.44.1-psinput.patch
+Patch1: inkscape-0.45-python.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildRequires: libsigc++2-devel, gtkmm24-devel, glibmm-devel
@@ -41,11 +43,15 @@ BuildRequires: libgc-devel,  perl(XML::Parser)
 BuildRequires: gcc-c++, pkgconfig
 BuildRequires: gettext, libpng-devel, freetype-devel, zlib-devel
 BuildRequires: gtk2-devel, libxml2-devel, libxslt-devel
-BuildRequires: python-devel
+BuildRequires: python-devel, lcms-devel >= 1.13
+BuildRequires: loudmouth-devel >= 1.0
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 #%{?_without_modxorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
 %{?_without_modxorg:BuildRequires: XFree86-devel, xorg-x11-Mesa-libGLU}
 %{!?_without_modxorg:BuildRequires: mesa-libGL-devel, mesa-libGLU-devel}
+
+Requires: pstoedit
+Requires: perl(Image::Magick)
 
 %description
 Inkscape is a SVG based generic vector-drawing program.
@@ -53,32 +59,24 @@ Inkscape is a SVG based generic vector-drawing program.
 %prep
 %setup
 
-%{__cat} <<EOF >inkscape.desktop.in
-[Desktop Entry]
-Name=Inkscape Vector Drawing Program
-Comment=Vector drawing program.
-Type=Application
-MimeType=image/svg+xml
-FilePattern=inkscape
-Icon=inkscape.png
-Exec=inkscape %U
-TryExec=inkscape
-Terminal=false
-StartupNotify=true
-Encoding=UTF-8
-Categories=Application;Graphics;
-EOF
+%patch0 -p1 -b .psinput
+%patch1 -p1 -b .python
 
 %build
 %configure \
-	--with-xinerama \
+	--enable-inkboard \
+	--enable-lcms \
 	--enable-static="no" \
-	--with-inkjar
+	--with-gnome-vfs \
+	--with-inkjar \
+	--with-perl \
+	--with-python \
+	--with-xinerama
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %if %{!?_without_freedesktop:1}0
@@ -88,6 +86,12 @@ EOF
                 --dir %{buildroot}%{_datadir}/applications \
                 %{buildroot}%{_datadir}/applications/inkscape.desktop
 %endif
+
+%post
+update-desktop-database %{_datadir}/applications &>/dev/null || :
+
+%postun
+update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 %clean
 %{__rm} -rf %{buildroot}

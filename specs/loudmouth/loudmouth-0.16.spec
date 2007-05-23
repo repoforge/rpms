@@ -1,11 +1,8 @@
-# $Id$
+# $Id: loudmouth.spec 4303 2006-04-18 22:05:03Z dries $
 # Authority: dag
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?el4:%define _without_gnutls 1}
-%{?el3:%define _without_gnutls 1}
-%{?rh9:%define _without_gnutls 1}
 %{?rh7:%define _without_gnutls 1}
 %{?el2:%define _without_gnutls 1}
 
@@ -14,20 +11,19 @@
 
 Summary: Jabber programming library written in C
 Name: loudmouth
-Version: 1.2.2
+Version: 0.16
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.loudmouth-project.org/
 
-Source: http://ftp.imendio.com/pub/imendio/loudmouth/src/loudmouth-%{version}.tar.bz2
-Patch0: loudmouth-1.2.2-stream-error.patch
+Source: http://ftp.imendio.com/pub/imendio/loudmouth/src/loudmouth-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, gtk-doc >= 0.10
-BuildRequires: glib2-devel >= 2.0.0, libidn-devel, check-devel
+BuildRequires: gcc-c++
+BuildRequires: glib2-devel >= 2.0, libidn-devel, check-devel
 %{!?_without_gtkdoc:BuildRequires: gtk-doc >= 0.10}
-%{!?_without_gnutls:BuildRequires: gnutls-devel >= 1.4}
+%{!?_without_gnutls:BuildRequires: gnutls-devel}
 %{?_without_gnutls:BuildRequires: openssl-devel}
 
 %description
@@ -40,7 +36,7 @@ Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: glib2-devel, libidn-devel
-%{!?_without_gnutls:Requires: gnutls-devel >= 1.4}
+%{!?_without_gnutls:Requires: gnutls-devel}
 %{?_without_gnutls:Requires: openssl-devel}
 
 %description devel
@@ -50,7 +46,6 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch0 -p1 -b .stream-error
 
 %build
 %configure \
@@ -84,9 +79,6 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libloudmouth-1.la
 
 %changelog
-* Wed May 23 2007 Dag Wieers <dag@wieers.com> - 1.2.2-1
-- Updated to release 1.2.2.
-
 * Thu Apr 29 2004 Dag Wieers <dag@wieers.com> - 0.16-1
 - Updated to release 0.16.
 
