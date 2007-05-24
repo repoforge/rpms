@@ -42,7 +42,7 @@ BuildRequires: gtkmm2, lcms-devel
 BuildRequires: libgc-devel,  perl(XML::Parser)
 BuildRequires: gcc-c++, pkgconfig
 BuildRequires: gettext, libpng-devel, freetype-devel, zlib-devel
-BuildRequires: gtk2-devel, libxml2-devel, libxslt-devel
+BuildRequires: gtk2-devel >= 2.8, libxml2-devel, libxslt-devel
 BuildRequires: python-devel, lcms-devel >= 1.13
 BuildRequires: loudmouth-devel >= 1.0
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}

@@ -4,7 +4,7 @@
 
 Summary: Tool that helps you find what software is using the most power
 Name: powertop
-Version: 1.2
+Version: 1.3
 Release: 1
 License: GPL
 Group: Applications/System
@@ -47,6 +47,9 @@ your system is doing, and which components are the biggest problem.
 %{_bindir}/powertop
 
 %changelog
+* Thu May 24 2007 Dag Wieers <dag@wieers.com> - 1.3-1
+- Updated to release 1.3.
+
 * Tue May 15 2007 Dag Wieers <dag@wieers.com> - 1.2-1
 - Updated to release 1.2.
 

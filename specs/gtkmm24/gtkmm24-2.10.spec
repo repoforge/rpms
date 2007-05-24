@@ -3,19 +3,20 @@
 
 Summary: C++ interface for GTK2 (a GUI library for X)
 Name: gtkmm24
-Version: 2.4.11
+Version: 2.10.9
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://gtkmm.sourceforge.net/
 
-Source: http://ftp.gnome.org/pub/GNOME/sources/gtkmm/2.4/gtkmm-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/gtkmm/2.10/gtkmm-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glibmm24-devel >= 2.4.0
-BuildRequires: atk-devel >= 1.6.0
-BuildRequires: pango-devel >= 1.4.0
-BuildRequires: gtk2-devel >= 2.4.0
+BuildRequires: glibmm24-devel >= 2.12.8
+BuildRequires: atk-devel >= 1.9.0
+BuildRequires: pango-devel >= 1.5.2
+BuildRequires: gtk2-devel >= 2.10.0
+BuildRequires: glib2-devel >= 2.8.0
 BuildRequires: cairomm-devel >= 1.1.12
 
 %description
@@ -97,8 +98,8 @@ developing gtkmm applications.
 %exclude %{_libdir}/libpangomm-1.4.la
 
 %changelog
-* Thu May 24 2007 Dag Wieers <dag@wieers.com> - 2.4.11-1
-- Updated to release 2.4.11.
+* Thu May 24 2007 Dag Wieers <dag@wieers.com> - 2.10.9-1
+- Updated to release 2.10.9.
 
 * Tue Feb 13 2007 Dag Wieers <dag@wieers.com> - 2.4.8-1
 - Initial package. (using DAR)

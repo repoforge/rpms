@@ -3,17 +3,17 @@
 
 Summary: C++ interface for GTK2 (a GUI library for X)
 Name: glibmm24
-Version: 2.4.8
+Version: 2.12.8
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://gtkmm.sourceforge.net/
 
-Source: http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.4/glibmm-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.12/glibmm-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libsigc++20-devel >= 2.0.0
-BuildRequires: glib2-devel >= 2.4.0
+BuildRequires: glib2-devel >= 2.9.0
 
 %description
 gtkmm provides a C++ interface to the GTK+ GUI library. gtkmm2 wraps GTK+ 2.
@@ -73,5 +73,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libglibmm_generate_extra_defs-2.4.la
 
 %changelog
+* Thu May 24 2007 Dag Wieers <dag@wieers.com> - 2.12.8-1
+- Updated to release 2.12.8.
+
 * Tue Feb 13 2007 Dag Wieers <dag@wieers.com> - 2.4.8-1
 - Initial package. (using DAR)
