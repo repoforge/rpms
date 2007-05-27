@@ -8,7 +8,7 @@
 
 Summary: Send network traffic through virtual tunnels to improve your privacy
 Name: tor
-Version: 0.1.2.13
+Version: 0.1.2.14
 Release: 1
 License: BSD
 Group: Applications/Internet
@@ -99,6 +99,9 @@ fi
 %dir %{_localstatedir}/log/tor
 
 %changelog
+* Sun May 27 2007 Dag Wieers <dag@wieers.com> - 0.1.2.14-1
+- Updated to release 0.1.2.14.
+
 * Wed May 02 2007 Dag Wieers <dag@wieers.com> - 0.1.2.13-1
 - Updated to release 0.1.2.13.
 

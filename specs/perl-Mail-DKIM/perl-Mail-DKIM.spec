@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jason Long <jason$long,name>
+# Upstream: Jason Long <jlong$messiah,edu>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,9 +9,9 @@
 
 Summary: Perl module to signs/verify Internet mail with DKIM/DomainKey signatures
 Name: perl-Mail-DKIM
-Version: 0.24
+Version: 0.26
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-DKIM/
 
@@ -44,12 +44,15 @@ with DKIM/DomainKey signatures.
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog Changes MANIFEST META.yml README TODO
+%doc ChangeLog Changes HACKING.DKIM MANIFEST META.yml README TODO
 %doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Mail/
 %{perl_vendorlib}/Mail/DKIM/
 %{perl_vendorlib}/Mail/DKIM.pm
 
 %changelog
+* Fri May 25 2007 Dag Wieers <dag@wieers.com> - 0.26-1
+- Updated to release 0.26.
+
 * Wed May 02 2007 Dag Wieers <dag@wieers.com> - 0.24-1
 - Initial package. (using DAR)
