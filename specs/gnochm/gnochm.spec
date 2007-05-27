@@ -12,7 +12,7 @@
 
 Summary: CHM file viewer
 Name: gnochm
-Version: 0.9.9
+Version: 0.9.10
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -42,16 +42,23 @@ http links and internationalisation.
 
 %build
 %configure \
+	--disable-mime-update \
 	--disable-schemas-install
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 #%{__install} -Dp -m0644 gnochm.xml %{buildroot}%{_datadir}/mime/packages/gnochm.xml
+
+echo "MimeType=application/x-chm" >> %{buildroot}%{_datadir}/applications/gnochm.desktop
+
+%{__install} -Dp -m0644 pixmaps/chmfile.png %{buildroot}%{_datadir}/icons/gnome/48x48/mimetypes/application-x-chm.png
+%{__install} -Dp -m0644 pixmaps/chmfile.png %{buildroot}%{_datadir}/icons/gnome/48x48/mimetypes/gnome-mime-application-x-chm.png
+%{__install} -Dp -m0644 pixmaps/gnochm.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/gnochm.png
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -80,19 +87,18 @@ scrollkeeper-update -q || :
 %{_datadir}/applications/gnochm.desktop
 %{_datadir}/gnochm/
 %{_datadir}/mime/packages/gnochm.xml
-%{!?_without_shmime:%{_datadir}/mime/application/x-chm.xml}
-%{!?_without_shmime:%exclude %{_datadir}/mime/XMLnamespaces}
-%{!?_without_shmime:%exclude %{_datadir}/mime/globs}
-%{!?_without_shmime:%exclude %{_datadir}/mime/magic}
-%{!?_without_shmime:%exclude %{_datadir}/mime/aliases}
-%{!?_without_shmime:%exclude %{_datadir}/mime/mime.cache}
-%{!?_without_shmime:%exclude %{_datadir}/mime/subclasses}
 %{_datadir}/mime-info/gnochm.*
 %{_datadir}/omf/gnochm/
-%{_datadir}/pixmaps/*.png
-%exclude %{_localstatedir}/scrollkeeper/
+%{_datadir}/pixmaps/chmfile.png
+%{_datadir}/pixmaps/gnochm*.png
+#%exclude %{_localstatedir}/scrollkeeper/
+%{_datadir}/icons/hicolor/
+%{_datadir}/icons/gnome/
 
 %changelog
+* Sun May 27 2007 Dag Wieers <dag@wieers.com> - 0.9.10-1
+- Updated to release 0.9.10.
+
 * Sat Nov 11 2006 Dag Wieers <dag@wieers.com> - 0.9.9-1
 - Updated to release 0.9.9.
 
