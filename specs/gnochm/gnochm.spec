@@ -52,8 +52,6 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 %{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
-#%{__install} -Dp -m0644 gnochm.xml %{buildroot}%{_datadir}/mime/packages/gnochm.xml
-
 echo "MimeType=application/x-chm" >> %{buildroot}%{_datadir}/applications/gnochm.desktop
 
 %{__install} -Dp -m0644 pixmaps/chmfile.png %{buildroot}%{_datadir}/icons/gnome/48x48/mimetypes/application-x-chm.png
@@ -78,8 +76,6 @@ scrollkeeper-update -q || :
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
-#%doc %{_mandir}/man?/*
-#%doc %{_mandir}/it/man?/*
 %doc %{_datadir}/gnome/help/gnochm/
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/gnochm
@@ -90,8 +86,8 @@ scrollkeeper-update -q || :
 %{_datadir}/mime-info/gnochm.*
 %{_datadir}/omf/gnochm/
 %{_datadir}/pixmaps/chmfile.png
-%{_datadir}/pixmaps/gnochm*.png
-#%exclude %{_localstatedir}/scrollkeeper/
+%{_datadir}/pixmaps/gnochm.png
+%{_datadir}/pixmaps/gnochm_logo.png
 %{_datadir}/icons/hicolor/
 %{_datadir}/icons/gnome/
 
