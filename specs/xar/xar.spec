@@ -3,7 +3,7 @@
 
 Summary: eXtensible ARchiver
 Name: xar
-Version: 1.4
+Version: 1.5
 Release: 1
 License: BSD
 Group: Applications/Archiving
@@ -72,6 +72,9 @@ Development files for xar.
 
 
 %changelog
+* Mon May 28 2007 Dries Verachtert <dries@ulyssis.org> - 1.5-1
+- Updated to release 1.5.
+
 * Sun Feb 25 2007 Matthias Saou <http://freshrpms.net/> 1.4-1
 - Initial RPM release.
 
