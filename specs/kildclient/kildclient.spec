@@ -4,7 +4,7 @@
 
 Summary: MUD client
 Name: kildclient
-Version: 2.5.0
+Version: 2.5.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -37,17 +37,6 @@ other clients compatible with the MudMaster or zChat protocols.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
-[Desktop Entry]
-Name=Kildclient
-Comment=MUD client
-Exec=kildclient
-Terminal=false
-Type=Application
-StartupNotify=true
-Categories=Application;Internet;Network;
-EOF
-
 %build
 %configure
 %{__make} %{?_smp_mflags}
@@ -58,25 +47,22 @@ EOF
 %find_lang %{name}
 %{__mv} %{buildroot}%{_datadir}/doc/kildclient rpmdocs
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor rpmforge             \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
-
 %clean
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ChangeLog INSTALL rpmdocs/*
-%doc %{_mandir}/man1/kildclient*
+%doc %{_mandir}/man1/kildclient.1*
 %{_bindir}/kildclient
 %{_datadir}/kildclient/
 %{_datadir}/applications/*kildclient.desktop
 %{_datadir}/pixmaps/kildclient.*
 
 %changelog
+* Mon May 28 2007 Dries Verachtert <dries@ulyssis.org> - 2.5.1-1
+- Updated to release 2.5.1.
+
 * Sun Aug 13 2006 Dries Verachtert <dries@ulyssis.org> - 2.5.0-1
 - Updated to release 2.5.0.
 

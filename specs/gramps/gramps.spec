@@ -7,7 +7,7 @@
 
 Summary: Genealogical Research and Analysis Management Programming System
 Name: gramps
-Version: 2.2.5
+Version: 2.2.8
 Release: 1
 License: GPL
 Group: Applications/Editors
@@ -88,6 +88,9 @@ scrollkeeper-update -q || :
 %{_datadir}/gnome/help/gramps/
 
 %changelog
+* Mon May 28 2007 Dries Verachtert <dries@ulyssis.org> - 2.2.8-1
+- Updated to release 2.2.8.
+
 * Mon Jan 29 2007 Dries Verachtert <dries@ulyssis.org> - 2.2.5-1
 - Updated to release 2.2.5.
 

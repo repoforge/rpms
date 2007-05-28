@@ -14,7 +14,7 @@
 
 Summary: Steer a marble ball through a labyrinth
 Name: trackballs
-Version: 1.1.2
+Version: 1.1.4
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -41,7 +41,7 @@ soundeffects and background music.
 # building as a user. Is group=games required?
 sed -i "s/chgrp/#chgrp/g;" share/Makefile*
 %configure
-%{__perl} -pi -e 's|^mkinstalldirs.*|mkinstalldirs=\$\(MKINSTALLDIRS\)|g;' po/Makefile
+# {__perl} -pi -e 's|^mkinstalldirs.*|mkinstalldirs=\$\(MKINSTALLDIRS\)|g;' po/Makefile
 
 %build
 %{__make} %{?_smp_mflags}
@@ -57,11 +57,16 @@ sed -i "s/chgrp/#chgrp/g;" share/Makefile*
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man6/*
+%doc %{_mandir}/man6/trackballs.6*
 %{_bindir}/trackballs
 %{_datadir}/trackballs
+%{_datadir}/icons/hicolor/*/apps/trackballs.png
+%{_datadir}/applications/trackballs.desktop
 
 %changelog
+* Mon May 28 2007 Dries Verachtert <dries@ulyssis.org> - 1.1.4-1
+- Updated to release 1.1.4.
+
 * Mon Aug 07 2006 Dries Verachtert <dries@ulyssis.org> 1.1.2-1
 - Update to release 1.1.2.
 
