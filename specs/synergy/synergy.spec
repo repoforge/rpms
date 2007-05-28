@@ -3,12 +3,16 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc5: %define fedora 5}
+%{!?dist:%define _with_modxorg 1}
+%{?fc7:  %define _with_modxorg 1}
+%{?el5:  %define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
 
 Summary: Mouse and keyboard sharing utility
 Name: synergy
-Version: 1.2.7
-Release: 1
+Version: 1.3.1
+Release: 2
 License: GPL
 Group: System Environment/Daemons
 URL: http://synergy2.sourceforge.net/
@@ -16,12 +20,8 @@ Source: http://dl.sf.net/synergy2/synergy-%{version}.tar.gz
 Patch: synergy-1.2.2-werror.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, autoconf, automake
-%if "%{fedora}" >= "5"
-BuildRequires: libX11-devel, libXext-devel, libXtst-devel, libXt-devel
-BuildRequires: libXinerama-devel
-%else
-BuildRequires: xorg-x11-devel
-%endif
+%{?_with_modxorg:BuildRequires: libX11-devel, libXt-devel, libXinerama-devel, libXtst-devel, libXext-devel}
+%{!?_with_modxorg:BuildRequires: XFree86-devel}
 
 %description
 Synergy lets you easily share a single mouse and keyboard between
@@ -30,26 +30,21 @@ own display, without special hardware.  It's intended for users
 with multiple computers on their desk since each system uses its
 own display.
 
-
 %prep
 %setup
 %patch -p1 -b .werror
-%{__autoconf}
-
 
 %build
+autoreconf
 %configure
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files
 %defattr(-, root, root, 0755)
@@ -59,8 +54,17 @@ own display.
 %{_bindir}/synergyc
 %{_bindir}/synergys
 
-
 %changelog
+* Mon Aug 28 2006 Matthias Saou <http://freshrpms.net/> 1.3.1-2
+- FC6 rebuild.
+
+* Thu May  4 2006 Matthias Saou <http://freshrpms.net/> 1.3.1-1
+- Update to 1.3.1.
+- Run full autoreconf instead of just autoconf since 1.6 is required otherwise.
+
+* Mon Mar  6 2006 Matthias Saou <http://freshrpms.net/> 1.2.7-2
+- FC5 rebuild.
+
 * Tue Dec 20 2005 Matthias Saou <http://freshrpms.net/> 1.2.7-1
 - Update to 1.2.7.
 - Add automake build requirement (to get aclocal).

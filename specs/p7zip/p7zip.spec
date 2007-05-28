@@ -3,7 +3,7 @@
 
 Summary: Very high compression ratio file archiver
 Name: p7zip
-Version: 4.45
+Version: 4.47
 Release: 1
 License: LGPL
 Group: Applications/Archiving
@@ -91,6 +91,9 @@ EOF
 
 
 %changelog
+* Tue May 29 2007 Dag Wieers <dag@wieers.com> - 4.47-1
+- Updated to release 4.47.
+
 * Sun Apr 22 2007 Dag Wieers <dag@wieers.com> - 4.45-1
 - Updated to release 4.45.
 

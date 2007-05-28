@@ -32,7 +32,7 @@ access, you can use rssh to do that.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,9 +47,6 @@ access, you can use rssh to do that.
 %attr(4755, root, root) %{_libexecdir}/rssh_chroot_helper
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.3.2-1.2
-- Rebuild for Fedora Core 5.
-
 * Tue Mar 07 2006 Dag Wieers <dag@wieers.com> - 2.3.2-1
 - Updated to release 2.3.2.
 

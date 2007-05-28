@@ -11,7 +11,7 @@
 
 Summary: Countdown timer applet for GNOME
 Name: gnome-applet-timer
-Version: 1.3.2
+Version: 2.0.1
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -72,6 +72,9 @@ scrollkeeper-update -q || :
 %{_libexecdir}/timer-applet
 
 %changelog
+* Sat Apr 28 2007 Dag Wieers <dag@wieers.com> - 2.0.1-1
+- Updated to release 2.0.1
+
 * Fri Mar 23 2007 Dag Wieers <dag@wieers.com> - 1.3.2-1
 - Updated to release 1.3.2
 - Renamed package to gnome-applet-timer.
