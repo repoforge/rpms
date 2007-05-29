@@ -8,8 +8,8 @@
 
 Summary: Software CONStruction tool, next-generation build tool
 Name: scons
-Version: 0.96.1
-Release: 2.2
+Version: 0.97
+Release: 1
 License: MIT
 Group: Development/Tools
 URL: http://www.scons.org/
@@ -37,9 +37,7 @@ SCons is an easier, more reliable and faster way to build software.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__python} setup.py install --root="%{buildroot}"
-%{__install} -Dp -m0644 scons.1 %{buildroot}%{_mandir}/man1/scons.1
-%{__install} -Dp -m0644 sconsign.1 %{buildroot}%{_mandir}/man1/sconsign.1
+%{__python} setup.py install --root="%{buildroot}" --install-data=%{_datadir}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,12 +45,19 @@ SCons is an easier, more reliable and faster way to build software.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES.txt LICENSE.txt README.txt RELEASE.txt
-%doc %{_mandir}/man1/*.1*
+%doc %{_mandir}/man1/scons*.1*
 %{_prefix}/bin/scons
+%{_prefix}/bin/scons-%{version}
+%{_prefix}/bin/scons-time
+%{_prefix}/bin/scons-time-%{version}
 %{_prefix}/bin/sconsign
-%{_prefix}/lib/scons/
+%{_prefix}/bin/sconsign-%{version}
+%{_prefix}/lib/scons-%{version}/
 
 %changelog
+* Tue May 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.97-1
+- Updated to release 0.97.
+
 * Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 0.96.1-2
 - Make the package noarch as it always should have been.
 
