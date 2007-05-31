@@ -28,12 +28,12 @@
 %{?el2:%define _without_glibc232 1}
 %{?el2:%define _without_gtk26 1}
 
-%define date 20061214
+%define date 20070529
 
 Summary: Library for encoding and decoding H264/AVC video streams
 Name: x264
 Version: 0.0.0
-Release: 0.3.%{date}
+Release: 0.4.%{date}
 License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/x264.html
@@ -120,6 +120,10 @@ H264/AVC video streams using the x264 graphical utility.
 
 %postun -p /sbin/ldconfig
 
+%post gtk -p /sbin/ldconfig
+
+%postun gtk -p /sbin/ldconfig
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -154,6 +158,10 @@ H264/AVC video streams using the x264 graphical utility.
 %endif
 
 %changelog
+* Wed May 30 2007 Matthias Saou <http://freshrpms.net/> 0.0.0-0.4.20070529
+- Update to 20070529 snasphot for F7 (soname .54 bump to .55).
+- Add missing ldconfig calls for the gtk sub-package.
+
 * Fri Dec 15 2006 Matthias Saou <http://freshrpms.net/> 0.0.0-0.3.20061214
 - Update to 20061214 snapshot (same soname, no rebuilds required).
 
