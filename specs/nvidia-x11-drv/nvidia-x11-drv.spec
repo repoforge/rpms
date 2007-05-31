@@ -4,7 +4,7 @@
 # ExclusiveDist: fc6 el5
 
 %define majmin          1.0
-%define relver          9755
+%define relver          9762
 %define nvidialibdir    %{_libdir}/nvidia
 %define nvidialib32dir  %{_prefix}/lib/nvidia
 %define desktop_vendor  rpmforge
@@ -32,6 +32,7 @@ Source5: nvidia.modprobe
 Patch0: NVIDIA_kernel-1.0-9625-NOSMBUS.diff.txt
 # http://www.nvnews.net/vbulletin/showthread.php?t=77597
 Patch1: NVIDIA-Linux-1.0-9629-xenrt.patch
+Patch2: nvidia-x11-drv-1.0.9755-noxensanitycheck.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Required for proper dkms operation
 Requires: gcc, make
@@ -70,6 +71,7 @@ sh %{SOURCE1} --extract-only --target tmp/
 %{__rm} -rf tmp/
 %patch0 -p0
 %patch1 -p0
+%patch2 -p0
 
 
 %build
@@ -116,6 +118,8 @@ EOF
 %{__mkdir_p} %{buildroot}%{_libdir}/xorg/modules/extensions/nvidia/
 %{__install} -p -m 0755 usr/X11R6/lib/modules/extensions/libglx.so.%{version} \
     %{buildroot}%{_libdir}/xorg/modules/extensions/nvidia/libglx.so
+%{__install} -p -m 0755 usr/X11R6/lib/modules/libnvidia-wfb.so.%{version} \
+    %{buildroot}%{_libdir}/xorg/modules/libwfb.so
 
 # Install GL and tls libs
 %{__mkdir_p} %{buildroot}%{nvidialibdir}/tls/
@@ -194,9 +198,9 @@ echo %{nvidialib32dir} >> %{buildroot}%{_sysconfdir}/ld.so.conf.d/nvidia.conf
 %endif
 
 # Install profile.d files
-%{__install} -D -p -m 0755 %{SOURCE2} \
+%{__install} -D -p -m 0644 %{SOURCE2} \
     %{buildroot}%{_sysconfdir}/profile.d/nvidia.sh
-%{__install} -D -p -m 0755 %{SOURCE3} \
+%{__install} -D -p -m 0644 %{SOURCE3} \
     %{buildroot}%{_sysconfdir}/profile.d/nvidia.csh
 
 # Install X configuration script
@@ -264,6 +268,7 @@ fi
 %{_libdir}/xorg/modules/drivers/nvidia_drv.so
 %dir %{_libdir}/xorg/modules/extensions/nvidia/
 %{_libdir}/xorg/modules/extensions/nvidia/libglx.so
+%{_libdir}/xorg/modules/libwfb.so
 # Tools and utilities
 %{_sysconfdir}/profile.d/*
 %{_bindir}/*
@@ -283,8 +288,18 @@ fi
 
 
 %changelog
+* Fri May 18 2007 Matthias Saou <http://freshrpms.net/> 1.0.9762-1
+- Update to 1.0-9762.
+
+* Fri May 18 2007 Matthias Saou <http://freshrpms.net/> 1.0.9755-3
+- Include missing libwfb.so (Simone Caronni).
+
+* Thu Mar 15 2007 Matthias Saou <http://freshrpms.net/> 1.0.9755-2
+- Disable Xen sanity check since it fails, but the module actually works.
+
 * Mon Mar 12 2007 Matthias Saou <http://freshrpms.net/> 1.0.9755-1
 - Update to 1.0-9755 (stable).
+- Change profile.d sourced files from mode 755 to 644, as they should be.
 
 * Fri Dec 22 2006 Matthias Saou <http://freshrpms.net/> 1.0.9746-1
 - Update to 1.0-9746 (stable).
