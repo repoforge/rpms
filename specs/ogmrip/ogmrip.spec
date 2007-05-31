@@ -3,7 +3,7 @@
 
 Summary: DVD ripping and encoding graphical user interface
 Name: ogmrip
-Version: 0.10.2
+Version: 0.10.3
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -49,7 +49,9 @@ Development headers and libraries for ogmrip.
 
 
 %build
-%configure --disable-static
+%configure \
+    --disable-static \
+    --disable-schemas-install
 %{__make} %{?_smp_mflags}
 
 
@@ -64,6 +66,7 @@ Development headers and libraries for ogmrip.
 
 
 %post
+/sbin/ldconfig
 export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
 gconftool-2 --makefile-install-rule \
     %{_sysconfdir}/gconf/schemas/ogmrip.schemas &>/dev/null || :
@@ -75,15 +78,16 @@ if [ "$1" -eq 0 ]; then
         %{_sysconfdir}/gconf/schemas/ogmrip.schemas &>/dev/null || :
 fi
 
+%postun -p /sbin/ldconfig
+
 
 %files -f %{name}.lang
-%defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog NEWS README TODO
+%defattr(-,root,root,-)
+%doc AUTHORS COPYING ChangeLog README TODO
 %{_sysconfdir}/gconf/schemas/ogmrip.schemas
 %{_bindir}/dvdcpy
 %{_bindir}/ogmrip
-# This file conflicts with subtitleripper
-%exclude %{_bindir}/srttool
+%{_bindir}/srtutil
 %{_bindir}/subp2pgm
 %{_bindir}/theoraenc
 %{_libdir}/*.so.*
@@ -92,7 +96,7 @@ fi
 %{_datadir}/pixmaps/ogmrip.png
 
 %files devel
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
 %{_includedir}/*
 %exclude %{_libdir}/*.la
 %{_libdir}/pkgconfig/*.pc
@@ -100,6 +104,13 @@ fi
 
 
 %changelog
+* Tue Mar 13 2007 Matthias Saou <http://freshrpms.net/> 0.10.3-1
+- Update to 0.10.3.
+- Remove exclude for no longer included srttool binary.
+- Include new srtutil binary.
+- Remove empty NEWS file.
+- Add missing ldconfig calls.
+
 * Wed Feb 14 2007 Matthias Saou <http://freshrpms.net/> 0.10.2-1
 - Update to 0.10.2.
 
