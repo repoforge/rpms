@@ -7,6 +7,7 @@
 
 %{!?dist:%define _with_modxorg 1}
 %{?el5:%define _with_modxorg 1}
+%{?fc7:%define _with_modxorg 1}
 %{?fc6:%define _with_modxorg 1}
 %{?fc5:%define _with_modxorg 1}
 
@@ -15,12 +16,13 @@
 Summary: MPEG-2 and MPEG-1 decoding library and test program
 Name: mpeg2dec
 Version: 0.4.1
-Release: 1%{?date:.%{date}}
+Release: 2%{?date:.%{date}}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libmpeg2.sourceforge.net/
 Source: http://libmpeg2.sourceforge.net/files/mpeg2dec-%{?date:snapshot}%{!?date:%{version}}.tar.gz
-Patch: mpeg2dec-0.4.0b-pic.patch
+Patch0: mpeg2dec-0.4.0b-pic.patch
+Patch1: mpeg2dec-0.4.1-automake-1.10.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, pkgconfig, gcc-c++
 %{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel}
@@ -46,7 +48,8 @@ libmpeg2.
 
 %prep
 %setup -n %{name}-%{version}%{?date:-cvs}
-%patch -p0 -b .pic
+%patch0 -p0 -b .pic
+%patch1 -p1 -b .automake-1.10
 ./bootstrap
 
 
@@ -93,6 +96,9 @@ CFLAGS="%{optflags}" \
 
 
 %changelog
+* Thu May 31 2007 Matthias Saou <http://freshrpms.net/> 0.4.1-2
+- Include patch for bootstrap to work with automake 1.10 (F7).
+
 * Wed Mar  7 2007 Matthias Saou <http://freshrpms.net/> 0.4.1-1
 - Update to 0.4.1.
 
@@ -156,7 +162,7 @@ CFLAGS="%{optflags}" \
 
 * Wed May 08 2002 Erik Walthinsen <omega@temple-baptist.com>
 - changed whitespace
-- removed %attr and changed %defattr to (-,root,root)
+- removed %%attr and changed %%defattr to (-,root,root)
 
 * Fri May 03 2002 Thomas Vander Stichele <thomas@apestaart.org>
 - adapted from PLD spec for 0.2.1

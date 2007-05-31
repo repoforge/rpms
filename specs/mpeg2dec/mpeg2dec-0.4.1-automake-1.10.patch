@@ -1,0 +1,12 @@
+diff -Naupr mpeg2dec-0.4.1.orig/bootstrap mpeg2dec-0.4.1/bootstrap
+--- mpeg2dec-0.4.1.orig/bootstrap	2006-02-14 11:00:54.000000000 +0100
++++ mpeg2dec-0.4.1/bootstrap	2007-05-31 00:08:02.000000000 +0200
+@@ -4,7 +4,7 @@ set -e
+ 
+ # Check for automake
+ amvers="no"
+-for v in "-1.9" "19" "-1.8" "18" "-1.7" "17" "-1.6" "16" "-1.5" "15"; do
++for v in "-1.10" "110" "-1.9" "19" "-1.8" "18" "-1.7" "17" "-1.6" "16" "-1.5" "15"; do
+   if automake${v} --version >/dev/null 2>&1; then
+     amvers="${v}"
+     break
