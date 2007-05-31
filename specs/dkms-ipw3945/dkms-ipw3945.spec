@@ -4,14 +4,13 @@
 
 Summary: Driver for Intel® PRO/Wirelss 3945 network adaptors
 Name: dkms-ipw3945
-Version: 1.2.0
-Release: 3
+Version: 1.2.1
+Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://ipw3945.sourceforge.net/
 Source: http://dl.sf.net/ipw3945/ipw3945-%{version}.tgz
 Patch0: ipw3945-1.2.0-options.patch
-Patch1: ipw3945-1.2.0-read-rfkill-register.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 Requires: gcc, make
@@ -27,7 +26,6 @@ Driver (Linux kernel module) for Intel® PRO/Wirelss 3945 network adaptors.
 %prep
 %setup -n ipw3945-%{version}
 %patch0 -p1
-%patch1 -p1
 
 
 %build
@@ -55,7 +53,7 @@ AUTOINSTALL="YES"
 EOF
 
 # File to set special compile options (created and used by our patch)
-%{__install} -p -D -m 0600 options.mak \
+%{__install} -p -D -m 0644 options.mak \
     %{buildroot}%{_sysconfdir}/sysconfig/ipw3945-options.mak
 
 
@@ -76,13 +74,17 @@ dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
 
 %files
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
 %doc CHANGES ISSUES LICENSE* README.ipw3945
 %config(noreplace) %{_sysconfdir}/sysconfig/ipw3945-options.mak
 %{_usrsrc}/%{dkms_name}-%{dkms_vers}/
 
 
 %changelog
+* Fri May 18 2007 Matthias Saou <http://freshrpms.net/> 1.2.1-1
+- Update to 1.2.1.
+- Drop upstreamed previous patch.
+
 * Mon Jan 29 2007 Matthias Saou <http://freshrpms.net/> 1.2.0-3
 - Add RF kill deadlock patch (upstream #1096), Stefan Becker.
 
