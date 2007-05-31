@@ -2,11 +2,11 @@
 # Authority: matthias
 # Dist: nodist
 
-%define date 20070110
+%define date 20070508
 
 Summary: Generic Softwares Package for Camera Adapters kernel module
 Name: dkms-gspca
-Version: 1.0.12
+Version: 1.0.18
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -25,6 +25,9 @@ a wide variety of USB webcams.
 
 %prep
 %setup -n gspcav1-%{date}
+# Remove useless executable bit from header and source files
+find . -name '*.h' -exec chmod -x {} \;
+find . -name '*.c' -exec chmod -x {} \;
 
 
 %build
@@ -68,11 +71,15 @@ dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
 
 %files
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
+%doc changelog
 %{_usrsrc}/%{dkms_name}-%{dkms_vers}/
 
 
 %changelog
+* Fri May 18 2007 Matthias Saou <http://freshrpms.net/> 1.0.18-1
+- Update to 1.0.18.
+
 * Wed Jan 24 2007 Matthias Saou <http://freshrpms.net/> 1.0.12-1
 - Minor spec file cleanup.
 - Name dkms-gspca to make transition to the future v4l2 module easier.
