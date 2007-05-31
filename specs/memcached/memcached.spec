@@ -4,8 +4,8 @@
 
 Summary: Distributed memory object caching system
 Name: memcached
-Version: 1.2.1
-Release: 4
+Version: 1.2.2
+Release: 1
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.danga.com/memcached/
@@ -129,7 +129,8 @@ EOF
 %build
 %configure \
 	--program-prefix="%{?_program_prefix}" \
-	--enable-shared
+	--enable-shared \
+	--enable-threads
 %{__make} %{?_smp_mflags}
 
 
@@ -165,6 +166,10 @@ fi
 %{_bindir}/memcached-debug
 
 %changelog
+* Tue May 29 2007 Matthias Saou <http://freshrpms.net/> 1.2.2-1
+- Update to 1.2.2.
+- Enable new threads feature.
+
 * Sun Mar 25 2007 Dag Wieers <dag@wieers.com> - 1.2.1-4
 - Rebuild against libevent-1.1a on EL5.
 
