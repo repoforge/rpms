@@ -3,7 +3,7 @@
 
 Summary: Kernel module to allow the use of NDIS drivers 
 Name: dkms-ndiswrapper
-Version: 1.38
+Version: 1.44
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -75,7 +75,7 @@ dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
 
 %files
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
 %doc AUTHORS ChangeLog INSTALL README
 %dir %{_sysconfdir}/ndiswrapper/
 %{_usrsrc}/%{dkms_name}-%{dkms_vers}/
@@ -86,13 +86,16 @@ dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
 
 %changelog
-* Wed Mar  7 2007 Jon Nettleton <http://freshrpms.net/> 1.38-1
+* Fri May 18 2007 Matthias Saou <http://freshrpms.net/> 1.44-1
+- Update to 1.44.
+
+* Wed Mar  7 2007 Matthias Saou <http://freshrpms.net/> 1.38-1
 - Update to 1.38.
 
-* Mon Feb 12 2007 Jon Nettleton <http://freshrpms.net/> 1.37-1
+* Mon Feb 12 2007 Matthias Saou <http://freshrpms.net/> 1.37-1
 - Update to 1.37.
 
-* Wed Nov 29 2006 Jon Nettleton <http://freshrpms.net/> 1.30-1
+* Wed Nov 29 2006 Matthias Saou <http://freshrpms.net/> 1.30-1
 - Update to 1.30 and minor spec file cleanup.
 - Remove noarch, since there is a binary in the package.
 - Provides plain versionned "ndiswrapper" too.
