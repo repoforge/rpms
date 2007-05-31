@@ -1,18 +1,18 @@
-diff -Naupr ffmpeg-20070109.orig/configure ffmpeg-20070109/configure
---- ffmpeg-20070109.orig/configure	2007-01-07 01:22:32.000000000 +0100
-+++ ffmpeg-20070109/configure	2007-01-09 16:28:16.000000000 +0100
-@@ -1516,7 +1516,7 @@ if enabled libfaad; then
-     check_ld <<EOF && add_extralibs -lfaad || die "ERROR: libfaad not found"
- #include <faad.h>
- int main(){
--    faacDecOpen();
-+    NeAACDecOpen();
-     return 0;
- }
- EOF
-diff -Naupr ffmpeg-20070109.orig/libavcodec/faad.c ffmpeg-20070109/libavcodec/faad.c
---- ffmpeg-20070109.orig/libavcodec/faad.c	2007-01-07 00:54:01.000000000 +0100
-+++ ffmpeg-20070109/libavcodec/faad.c	2007-01-09 16:28:52.000000000 +0100
+diff -Naupr ffmpeg-20070530.orig/configure ffmpeg-20070530/configure
+--- ffmpeg-20070530.orig/configure	2007-05-27 18:31:02.000000000 +0200
++++ ffmpeg-20070530/configure	2007-05-30 21:02:05.000000000 +0200
+@@ -1635,7 +1635,7 @@ enabled x264       && require x264 x264.
+ enabled dc1394     && require libdc1394 libdc1394/dc1394_control.h dc1394_create_handle -ldc1394_control -lraw1394
+ enabled mlib       && require mediaLib mlib_types.h mlib_VectorSub_S16_U8_Mod -lmlib
+ enabled libfaac    && require2 libfaac "stdint.h faac.h" faacEncGetVersion -lfaac
+-enabled libfaad    && require2 libfaad faad.h faacDecOpen -lfaad
++enabled libfaad    && require2 libfaad faad.h NeAACDecOpen -lfaad
+ enabled avisynth   && require2 vfw32 "windows.h vfw.h" AVIFileInit -lvfw32
+ 
+ # test for lrintf in math.h
+diff -Naupr ffmpeg-20070530.orig/libavcodec/faad.c ffmpeg-20070530/libavcodec/faad.c
+--- ffmpeg-20070530.orig/libavcodec/faad.c	2007-04-08 22:24:16.000000000 +0200
++++ ffmpeg-20070530/libavcodec/faad.c	2007-05-30 21:03:22.000000000 +0200
 @@ -55,42 +55,42 @@ typedef struct {
      int init;
  
@@ -129,27 +129,25 @@ diff -Naupr ffmpeg-20070109.orig/libavcodec/faad.c ffmpeg-20070109/libavcodec/fa
          return -1;
      }
  
-@@ -196,8 +196,8 @@ static int faac_decode_end(AVCodecContex
+@@ -196,7 +196,7 @@ static int faac_decode_end(AVCodecContex
  {
-     FAACContext *s = (FAACContext *) avctx->priv_data;
+     FAACContext *s = avctx->priv_data;
  
--    if (s->faacDecClose)
--        s->faacDecClose(s->faac_handle);
-+    if (s->NeAACDecClose)
-+        s->NeAACDecClose(s->faac_handle);
+-    s->faacDecClose(s->faac_handle);
++    s->NeAACDecClose(s->faac_handle);
  
      dlclose(s->handle);
      return 0;
-@@ -206,7 +206,7 @@ static int faac_decode_end(AVCodecContex
+@@ -205,7 +205,7 @@ static int faac_decode_end(AVCodecContex
  static int faac_decode_init(AVCodecContext *avctx)
  {
-     FAACContext *s = (FAACContext *) avctx->priv_data;
+     FAACContext *s = avctx->priv_data;
 -    faacDecConfigurationPtr faac_cfg;
 +    NeAACDecConfigurationPtr faac_cfg;
  
  #ifdef CONFIG_LIBFAADBIN
      const char* err = 0;
-@@ -219,38 +219,38 @@ static int faac_decode_init(AVCodecConte
+@@ -218,38 +218,38 @@ static int faac_decode_init(AVCodecConte
          return -1;
      }
  #define dfaac(a, b) \
@@ -165,9 +163,11 @@ diff -Naupr ffmpeg-20070109.orig/libavcodec/faad.c ffmpeg-20070109/libavcodec/fa
  
          // resolve all needed function calls
 -        dfaac(Open, (faacDecHandle FAADAPI (*)(void)));
+-        dfaac(Close, (void FAADAPI (*)(faacDecHandle hDecoder)));
 -        dfaac(GetCurrentConfiguration, (faacDecConfigurationPtr
 -                                        FAADAPI (*)(faacDecHandle)));
 +        dfaac(Open, (NeAACDecHandle FAADAPI (*)(void)));
++        dfaac(Close, (void FAADAPI (*)(NeAACDecHandle hDecoder)));
 +        dfaac(GetCurrentConfiguration, (NeAACDecConfigurationPtr
 +                                        FAADAPI (*)(NeAACDecHandle)));
  #ifndef FAAD2_VERSION
@@ -183,9 +183,7 @@ diff -Naupr ffmpeg-20070109.orig/libavcodec/faad.c ffmpeg-20070109/libavcodec/fa
 +    dfaac(Init2, (int FAADAPI (*)(NeAACDecHandle, unsigned char*,
                                         unsigned long, unsigned long*,
                                         unsigned long*)));
--    dfaac(Close, (void FAADAPI (*)(faacDecHandle hDecoder)));
 -        dfaac(Decode, (int FAADAPI (*)(faacDecHandle, unsigned char*,
-+    dfaac(Close, (void FAADAPI (*)(NeAACDecHandle hDecoder)));
 +        dfaac(Decode, (int FAADAPI (*)(NeAACDecHandle, unsigned char*,
                               unsigned long*, short*, unsigned long*)));
  #else
@@ -205,7 +203,7 @@ diff -Naupr ffmpeg-20070109.orig/libavcodec/faad.c ffmpeg-20070109/libavcodec/fa
                               unsigned char*, unsigned long)));
          dfaac(GetErrorMessage, (char* FAADAPI (*)(unsigned char)));
  #endif
-@@ -267,7 +267,7 @@ static int faac_decode_init(AVCodecConte
+@@ -266,7 +266,7 @@ static int faac_decode_init(AVCodecConte
      }
  #endif
  
@@ -214,7 +212,7 @@ diff -Naupr ffmpeg-20070109.orig/libavcodec/faad.c ffmpeg-20070109/libavcodec/fa
      if (!s->faac_handle) {
          av_log(avctx, AV_LOG_ERROR, "FAAD library: cannot create handler!\n");
          faac_decode_end(avctx);
-@@ -275,7 +275,7 @@ static int faac_decode_init(AVCodecConte
+@@ -274,7 +274,7 @@ static int faac_decode_init(AVCodecConte
      }
  
  
@@ -223,7 +221,7 @@ diff -Naupr ffmpeg-20070109.orig/libavcodec/faad.c ffmpeg-20070109/libavcodec/fa
  
      if (faac_cfg) {
          switch (avctx->bits_per_sample) {
-@@ -305,7 +305,7 @@ static int faac_decode_init(AVCodecConte
+@@ -304,7 +304,7 @@ static int faac_decode_init(AVCodecConte
          faac_cfg->defObjectType = LC;
      }
  
