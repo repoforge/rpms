@@ -215,7 +215,7 @@ echo %{fglrxlib32dir} >> %{buildroot}%{_sysconfdir}/ld.so.conf.d/fglrx.conf
 
 
 %clean
-#{__rm} -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 
 %post

@@ -1,8 +1,8 @@
 # $Id$
 # Authority: matthias
 
-%define somaj  4
-%define somin  1
+%define somaj 4
+%define somin 1
 
 %{?dist: %{expand: %%define %dist 1}}
 

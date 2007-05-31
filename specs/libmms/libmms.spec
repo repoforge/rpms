@@ -51,7 +51,7 @@ protocol using libmms.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING.LIB ChangeLog NEWS README* TODO
+%doc AUTHORS COPYING.LIB ChangeLog README* TODO
 %{_libdir}/*.so.*
 
 %files devel

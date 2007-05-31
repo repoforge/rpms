@@ -6,6 +6,7 @@
 
 %{!?dist:%define _with_modxorg 1}
 %{?el5:%define _with_modxorg 1}
+%{?fc7:%define _with_modxorg 1}
 %{?fc6:%define _with_modxorg 1}
 %{?fc5:%define _with_modxorg 1}
 
@@ -39,7 +40,7 @@ BuildRequires: fftw3-devel
 BuildRequires: a52dec-devel
 BuildRequires: lame-devel
 BuildRequires: libsndfile-devel
-BuildRequires: openexr-devel
+BuildRequires: OpenEXR-devel
 BuildRequires: faad2-devel
 BuildRequires: libraw1394-devel >= 1.2.0
 BuildRequires: libiec61883-devel

@@ -100,7 +100,7 @@
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
 Version: 0.8.6b
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -170,6 +170,7 @@ Buildrequires: autoconf, automake, libtool
 #{!?_without_goom:BuildRequires: goom-devel}
 %{!?_without_jack:BuildRequires: jack-audio-connection-kit-devel}
 %{!?_without_sysfs:BuildRequires: libsysfs-devel}
+#{!?_without_dc1394:BuildRequires: libdc1394-devel}
 Obsoletes: videolan-client < 0.8.5-4
 Provides: videolan-client = %{version}-%{release}
 
@@ -294,6 +295,7 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
     %{!?_without_upnp:--enable-upnp} \
     %{!?_without_live:--enable-live555 --with-live555-tree="`pwd`/live"} \
     %{!?_without_jack:--enable-jack}
+    #{!?_without_dc1394:--enable-dc1394}
     #{!?_without_goom:--enable-goom} \
 %{__make} %{?_smp_mflags}
 
@@ -309,12 +311,13 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %{__cp} -ap %{buildroot}%{_datadir}/vlc/vlc48x48.png \
     %{buildroot}%{_datadir}/pixmaps/vlc.png
 
+
 %clean
 %{__rm} -rf %{buildroot}
 
 
 %files -f %{name}.lang
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
 %doc AUTHORS COPYING ChangeLog MAINTAINERS README THANKS
 %doc _docs/*
 %{_bindir}/*vlc
@@ -325,7 +328,7 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %{_datadir}/vlc/
 
 %files devel
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
 %doc HACKING
 %{_bindir}/vlc-config
 %{_includedir}/vlc/
@@ -333,6 +336,10 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 
 
 %changelog
+* Thu May 31 2007 Matthias Saou <http://freshrpms.net/> 0.8.6b-2
+- Still no dc1394 support.
+- F7 rebuild.
+
 * Sat Apr 21 2007 Dag Wieers <dag@wieers.com> - 0.8.6b-1
 - Updated to release 0.8.6b.
 

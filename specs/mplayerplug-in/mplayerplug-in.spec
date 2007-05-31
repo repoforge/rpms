@@ -10,6 +10,7 @@
 %define mozilla seamonkey
 %{!?dist:%define mozilla firefox}
 %{?el5:%define mozilla firefox}
+%{?fc7:%define mozilla firefox}
 %{?fc6:%define mozilla firefox}
 
 %{?fc4:%define _without_modxorg 1}

@@ -6,6 +6,7 @@
 
 %{!?dist:%define _with_modxorg 1}
 %{?el5:  %define _with_modxorg 1}
+%{?fc7:  %define _with_modxorg 1}
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
@@ -269,7 +270,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %clean
-#{__rm} -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 
 %files
@@ -350,8 +351,8 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 - Update live library to 2006.07.04.
 
 * Fri Jun 23 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.28.pre8
-- Move location where binary codecs are searched for from %{_libdir}/win32/ to
-  %{_libdir}/codecs/ since "win32" is considered obsolete by MPlayer. Looks
+- Move location where binary codecs are searched for from %%{_libdir}/win32/ to
+  %%{_libdir}/codecs/ since "win32" is considered obsolete by MPlayer. Looks
   like codecs in the old location are still picked up automatically!
 
 * Thu Jun 22 2006 Matthias Saou <http://freshrpms.net/> 1.0-0.27.pre8
@@ -547,7 +548,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 * Mon Jun 16 2003 Matthias Saou <http://freshrpms.net/>
 - Update to today's cvs snapshot.
 - Reverted Requires(...) to plain Requires.
-- Changed %pre / %post to -p.
+- Changed %%pre / %%post to -p.
 - Added libpostproc install workaround since it seems broken.
 
 * Mon Apr 28 2003 Matthias Saou <http://freshrpms.net/>
@@ -680,7 +681,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 - Added 3 skins + removed workaround since skin archives are fixed.
 
 * Wed Jan  2 2002 Matthias Saou <http://freshrpms.net/>
-- %doc cleanup and update to today's build.
+- %%doc cleanup and update to today's build.
 - Modified for the new CONFDIR stuff.
 
 * Wed Dec 12 2001 Matthias Saou <http://freshrpms.net/>
