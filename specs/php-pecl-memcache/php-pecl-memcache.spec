@@ -5,7 +5,7 @@
 
 Summary: PECL package to use the memcached distributed caching system
 Name: php-pecl-memcache
-Version: 2.0.4
+Version: 2.1.2
 Release: 1
 License: PHP
 Group: Development/Languages
@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: php
 BuildRequires: php, php-devel, zlib-devel, openssl-devel
 # Required by phpize
-BuildRequires: autoconf, automake, libtool, gcc-c++
+BuildRequires: autoconf, automake, libtool
 
 %description
 Memcached is a caching daemon designed especially for dynamic web applications
@@ -24,7 +24,7 @@ you to work with memcached through handy OO and procedural interfaces.
 
 
 %prep
-%setup -n memcache-%{version}
+%setup -q -n memcache-%{version}
 # Docs are +x (as of 2.0.0), so fix here
 %{__chmod} -x CREDITS README
 
@@ -53,13 +53,16 @@ EOF
 
 
 %files
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
 %doc CREDITS README
 %config(noreplace) %{_sysconfdir}/php.d/memcache.ini
 %{php_extdir}/memcache.so
 
 
 %changelog
+* Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 2.1.2-1
+- Update to 2.1.2.
+
 * Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 2.0.4-1
 - Update to 2.0.4.
 
