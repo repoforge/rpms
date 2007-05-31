@@ -3,7 +3,7 @@
 
 Summary: Music Player Daemon
 Name: mpd
-Version: 0.12.1
+Version: 0.13.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -44,7 +44,7 @@ frontend options, or restart X often.
 
 
 %files
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING README TODO UPGRADING
 %doc doc/COMMANDS doc/mpdconf.example
 %{_bindir}/mpd
@@ -53,6 +53,9 @@ frontend options, or restart X often.
 
 
 %changelog
+* Thu May 31 2007 Matthias Saou <http://freshrpms.net/> 0.13.0-1
+- Update to 0.13.0.
+
 * Wed Oct 18 2006 Matthias Saou <http://freshrpms.net/> 0.12.1-1
 - Update to 0.12.1.
 
