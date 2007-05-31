@@ -7,18 +7,18 @@
 %define majorminor   0.10
 %define gstreamer    gstreamer
 
-%define gst_minver   0.10.2
-%define gstpb_minver 0.10.2
+%define gst_minver   0.10.10.1
+%define gstpb_minver 0.10.10.1
 
 Summary: GStreamer streaming media framework "bad" plug-ins
 Name: gstreamer-plugins-bad
-Version: 0.10.3
-Release: 3
+Version: 0.10.4
+Release: 1
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
 Source: http://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-%{version}.tar.bz2
-Patch0: gst-plugins-bad-0.10.3-faad2.patch
+Patch0: gst-plugins-bad-0.10.4-faad2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: %{gstreamer} >= %{gst_minver}
 BuildRequires: %{gstreamer}-devel >= %{gst_minver}
@@ -26,7 +26,6 @@ BuildRequires: %{gstreamer}-plugins-base-devel >= %{gstpb_minver}
 
 BuildRequires: gcc-c++
 BuildRequires: gettext-devel
-BuildRequires: gtk-doc
 BuildRequires: PyXML
 Buildrequires: libXt-devel
 
@@ -39,14 +38,18 @@ BuildRequires: gsm-devel
 BuildRequires: libmpcdec-devel
 BuildRequires: SDL-devel
 BuildRequires: soundtouch-devel
-BuildRequires: swfdec-devel
-#Buildrequires: wavpack-devel
+#BuildRequires: swfdec-devel
+Buildrequires: wavpack-devel
 BuildRequires: xvidcore-devel
 BuildRequires: bzip2-devel
 BuildRequires: mesa-libGLU-devel
 BuildRequires: neon-devel
 BuildRequires: libmms-devel
 BuildRequires: libmusicbrainz-devel
+BuildRequires: libcdaudio-devel
+BuildRequires: jack-audio-connection-kit-devel
+BuildRequires: ladspa-devel
+BuildRequires: mjpegtools-devel
 
 %description
 GStreamer is a streaming media framework, based on graphs of elements which
@@ -56,34 +59,19 @@ This package contains plug-ins that have licensing issues, aren't tested
 well enough, or the code is not of good enough quality.
 
 
-%package devel
-Summary: Development files for GStreamer Bad Plugins
-Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
-
-%description devel
-GStreamer is a streaming media framework, based on graphs of elements which
-operate on media data.
-
-This package contains plug-ins that have licensing issues, aren't tested
-well enough, or the code is not of good enough quality.
-
-This package contains development files and documentation.
-
-
 %prep
 %setup -q -n gst-plugins-bad-%{version}
 %patch0 -p1 -b .faad2
-
 ### Use correct soundtouch pkgconfig package name
 %{__perl} -pi.orig -e 's|libSoundTouch|soundtouch-1.0|g' configure
+
 
 %build
 %configure \
     --with-package-name="gst-plugins-bad %{desktop_vendor} rpm" \
     --with-package-origin="http://www.rpmforge.net/" \
     --enable-debug \
-    --disable-gtk-doc
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 
@@ -93,8 +81,8 @@ This package contains development files and documentation.
 %find_lang gst-plugins-bad-%{majorminor}
 
 # Clean out files that should not be part of the rpm.
-%{__rm} -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.{a,la}
-%{__rm} -f %{buildroot}%{_libdir}/*.{a,la}
+%{__rm} -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.la
+%{__rm} -f %{buildroot}%{_libdir}/*.la
 
 
 %clean
@@ -102,44 +90,65 @@ This package contains development files and documentation.
 
 
 %files -f gst-plugins-bad-%{majorminor}.lang
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
 %doc AUTHORS COPYING README REQUIREMENTS
-
 # Plugins without external dependencies
 %{_libdir}/gstreamer-%{majorminor}/libgstcdxaparse.so
+%{_libdir}/gstreamer-%{majorminor}/libgstdeinterlace.so
+%{_libdir}/gstreamer-%{majorminor}/libgstfilter.so
 %{_libdir}/gstreamer-%{majorminor}/libgstfreeze.so
+%{_libdir}/gstreamer-%{majorminor}/libgsth264parse.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmodplug.so
+%{_libdir}/gstreamer-%{majorminor}/libgstmultifile.so
+%{_libdir}/gstreamer-%{majorminor}/libgstnsf.so
+%{_libdir}/gstreamer-%{majorminor}/libgstnuvdemux.so
 %{_libdir}/gstreamer-%{majorminor}/libgstqtdemux.so
+%{_libdir}/gstreamer-%{majorminor}/libgstreplaygain.so
+%{_libdir}/gstreamer-%{majorminor}/libgstspectrum.so
 %{_libdir}/gstreamer-%{majorminor}/libgstspeed.so
 %{_libdir}/gstreamer-%{majorminor}/libgsttrm.so
 %{_libdir}/gstreamer-%{majorminor}/libgsttta.so
+%{_libdir}/gstreamer-%{majorminor}/libgstvideocrop.so
+%{_libdir}/gstreamer-%{majorminor}/libgstvideoparse.so
 %{_libdir}/gstreamer-%{majorminor}/libgstxingheader.so
-
 # Plugins with external dependencies
+%{_libdir}/gstreamer-%{majorminor}/libgstalsaspdif.so
 %{_libdir}/gstreamer-%{majorminor}/libgstbz2.so
+%{_libdir}/gstreamer-%{majorminor}/libgstcdaudio.so
 %{_libdir}/gstreamer-%{majorminor}/libgstdfbvideosink.so
 %{_libdir}/gstreamer-%{majorminor}/libgstdtsdec.so
+%{_libdir}/gstreamer-%{majorminor}/libgstdvbsrc.so
 %{_libdir}/gstreamer-%{majorminor}/libgstfaac.so
 %{_libdir}/gstreamer-%{majorminor}/libgstfaad.so
 %{_libdir}/gstreamer-%{majorminor}/libgstglimagesink.so
 %{_libdir}/gstreamer-%{majorminor}/libgstgsm.so
+%{_libdir}/gstreamer-%{majorminor}/libgstjack.so
+%{_libdir}/gstreamer-%{majorminor}/libgstladspa.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmms.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmusepack.so
 %{_libdir}/gstreamer-%{majorminor}/libgstneonhttpsrc.so
 %{_libdir}/gstreamer-%{majorminor}/libgstpitch.so
+%{_libdir}/gstreamer-%{majorminor}/libgstrfbsrc.so
 %{_libdir}/gstreamer-%{majorminor}/libgstsdlvideosink.so
-%{_libdir}/gstreamer-%{majorminor}/libgstswfdec.so
-%{_libdir}/gstreamer-%{majorminor}/libgstvideo4linux2.so
-#%{_libdir}/gstreamer-%{majorminor}/libgstwavpack.so
+#%{_libdir}/gstreamer-%{majorminor}/libgstswfdec.so
+%{_libdir}/gstreamer-%{majorminor}/libgstwavpack.so
 %{_libdir}/gstreamer-%{majorminor}/libgstxvid.so
-
-
-%files devel
-%defattr(-, root, root, 0755)
-#doc %{_datadir}/gtk-doc/html/gst-plugins-bad-plugins-%{majorminor}/
+%{_libdir}/gstreamer-%{majorminor}/libgsty4menc.so
 
 
 %changelog
+* Wed Mar 30 2007 Matthias Saou <http://freshrpms.net/> 0.10.4-1
+- Update to 0.10.4 for F7.
+- Disable swfdec... does anything/anyone even use it here? Once it stabilizes
+  somewhat more, maybe then it'll be worth re-enabling.
+- Re-enable wavpack, it works again now.
+- Enable libcdaudio support.
+- Enable jack support.
+- Enable ladspa support.
+- Enable mpeg2enc (mjpegtools) support.
+- Remove no longer present libgstvideo4linux2.so and add all new plugins.
+- Remove all gtk-doc references (all gone...?) and devel package too.
+
 * Tue Jan  9 2007 Matthias Saou <http://freshrpms.net/> 0.10.3-3
 - Update faad2 patch to also update the plugin sources, not just configure.
 
