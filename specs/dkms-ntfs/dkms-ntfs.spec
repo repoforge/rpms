@@ -2,12 +2,12 @@
 # Authority: matthias
 # Dist: nodist
 
-%define fromkernel 2.6.19.1
+%define fromkernel 2.6.20.4
 
 Summary: Driver for reading and writing on NTFS formatted volumes
 Name: dkms-ntfs
-Version: 2.1.27
-Release: 2
+Version: 2.1.28
+Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.linux-ntfs.org/
@@ -80,6 +80,9 @@ dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
 
 %changelog
+* Mon Mar 26 2007 Matthias Saou <http://freshrpms.net/> 2.1.28-1
+- Update with module source from 2.6.20.4 to fix build on recent FC6 kernels.
+
 * Tue Jan  9 2007 Matthias Saou <http://freshrpms.net/> 2.1.27-2
 - Update with module source from 2.6.19.1 to fix build on recent FC6 kernels.
 - Remove now included noblksize patch.
