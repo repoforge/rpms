@@ -8,17 +8,19 @@
 
 Summary: Coroutine process abstraction
 Name: perl-Coro
-Version: 1.9
+Version: 3.63
 Release: 1
 License: Artistic or GPL
 Group: Development/Libraries
 URL: http://search.cpan.org/~mlehmann/Coro/
 Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/Coro-%{version}.tar.gz
-Patch0: Coro-1.9-noprompt.patch
+Patch0: Coro-3.63-noprompt.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl(Event) >= 0.86, perl(IO::AIO) >= 1.6
 # This would introduce a circular dependency since AnyEvent requires Coro...
 #BuildRequires: perl(AnyEvent)
+# Provided by either perl or perl-devel
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module collection manages coroutines.
@@ -47,7 +49,7 @@ Coroutines are similar to threads but don't run in parallel.
 
 
 %files
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
 %doc Changes COPYING README
 %{perl_vendorarch}/auto/Coro/
 %{perl_vendorarch}/Coro/
@@ -56,6 +58,10 @@ Coroutines are similar to threads but don't run in parallel.
 
 
 %changelog
+* Thu May 31 2007 Matthias Saou <http://freshrpms.net/> 3.63-1
+- Update to 3.63.
+- Build require perl(ExtUtils::MakeMaker) for F7.
+
 * Wed Apr 19 2006 Matthias Saou <http://freshrpms.net/> 1.9-1
 - Initial RPM release, patch to use the ucontext method since the Linux
   specific one doesn't compile on FC5.

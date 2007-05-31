@@ -8,13 +8,15 @@
 
 Summary: Asynchronous Input/Output
 Name: perl-IO-AIO
-Version: 1.73
+Version: 2.33
 Release: 1
 License: Artistic or GPL
 Group: Development/Libraries
 URL: http://search.cpan.org/~mlehmann/IO-AIO/
 Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/IO-AIO-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+# Provided by either perl or perl-devel
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module implements asynchronous I/O using whatever means your operating
@@ -46,13 +48,16 @@ system supports.
 %doc Changes COPYING README
 %dir %{perl_vendorarch}/IO/
 %{perl_vendorarch}/IO/AIO.pm
-%{perl_vendorarch}/IO/autoconf.pm
 %dir %{perl_vendorarch}/auto/IO/
 %{perl_vendorarch}/auto/IO/AIO/
 %{_mandir}/man3/*
 
 
 %changelog
+* Thu May 31 2007 Matthias Saou <http://freshrpms.net/> 2.33-1
+- Update to 2.33.
+- Build require perl(ExtUtils::MakeMaker) for F7.
+
 * Wed Apr 19 2006 Matthias Saou <http://freshrpms.net/> 1.73-1
 - Initial RPM release.
 - Not sure if the autoconf.pm should be included or not...

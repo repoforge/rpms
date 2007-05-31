@@ -10,13 +10,15 @@
 Summary: High level API for event-based execution flow control
 Name: perl-Event-ExecFlow
 Version: 0.63
-Release: 1
+Release: 2
 License: Artistic or GPL
 Group: Development/Libraries
 URL: http://www.exit1.org/Event-ExecFlow/
 Source: http://www.exit1.org/packages/Event-ExecFlow/dist/Event-ExecFlow-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl(AnyEvent)
+# Provided by either perl or perl-devel
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildArch: noarch
 
 %description
@@ -48,7 +50,7 @@ which consist of many jobs.
 
 
 %files
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
 %doc Changes README
 %{_bindir}/execflow
 %{perl_vendorlib}/Event/ExecFlow/
@@ -57,6 +59,9 @@ which consist of many jobs.
 
 
 %changelog
+* Thu May 31 2007 Matthias Saou <http://freshrpms.net/> 0.63-2
+- Build require perl(ExtUtils::MakeMaker) for F7.
+
 * Mon Apr 16 2007 Matthias Saou <http://freshrpms.net/> 0.63-1
 - Update to 0.63.
 

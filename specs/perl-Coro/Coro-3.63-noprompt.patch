@@ -1,0 +1,14 @@
+diff -Naupr Coro-3.63.orig/Coro/Makefile.PL Coro-3.63/Coro/Makefile.PL
+--- Coro-3.63.orig/Coro/Makefile.PL	2007-05-02 07:26:37.000000000 +0200
++++ Coro-3.63/Coro/Makefile.PL	2007-05-31 10:02:54.000000000 +0200
+@@ -20,9 +20,7 @@ maintainer :)
+ 
+ EOF
+ 
+-if (prompt ("Skip further questions and use defaults (y/n)?", "y") =~ /[yY]/) {
+-   $ENV{PERL_MM_USE_DEFAULT} = 1;
+-}
++$ENV{PERL_MM_USE_DEFAULT} = 1;
+ 
+ 
+ $DEFINE .= " -DHAVE_MMAP" if $Config{d_mmap} eq "define" && $Config{d_munmap} eq "define";
