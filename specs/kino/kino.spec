@@ -7,6 +7,7 @@
 
 %{!?dist:%define _with_modxorg 1}
 %{?el5:  %define _with_modxorg 1}
+%{?fc7:  %define _with_modxorg 1}
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
@@ -19,12 +20,13 @@
 Summary: Simple non-linear video editor
 Name: kino
 Version: 1.0.0
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.kinodv.org/
 Source: http://downloads.sf.net/kino/kino-%{version}.tar.gz
 Patch0: kino-1.0.0-install.patch
+Patch1: kino-1.0.0-udev-rules.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.6
 Requires: mjpegtools
@@ -53,6 +55,7 @@ commands for fast navigating and editing inside the movie.
 %prep
 %setup
 %patch0 -p1 -b .install
+%patch1 -p1 -b .udev-rules
 
 
 %build
@@ -104,6 +107,9 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 
 
 %changelog
+* Thu May 31 2007 Matthias Saou <http://freshrpms.net/> 1.0.0-3
+- Include udev-rules patch to fix udev warnings on boot.
+
 * Thu Mar 29 2007 Dag Wieers <dag@wieers.com> - 1.0.0-2
 - Remove ffmpeg.1 manpage as it conflicts with ffmpeg package.
 

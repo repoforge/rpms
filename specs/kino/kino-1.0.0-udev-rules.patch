@@ -1,0 +1,32 @@
+diff -Naupr kino-1.0.0.orig/kino.rules kino-1.0.0/kino.rules
+--- kino-1.0.0.orig/kino.rules	2007-02-05 04:49:31.000000000 +0100
++++ kino-1.0.0/kino.rules	2007-05-31 11:55:03.000000000 +0200
+@@ -8,20 +8,20 @@ ACTION!="add", GOTO="kino_rules_end"
+ SUBSYSTEM!="input", GOTO="kino_rules_end"
+ 
+ # Contour ShuttlePro
+-ATTRS{idVendor}=="0b33", ATTRS{idProduct}=="0010", MODE="644", RUN+="/usr/bin/killall --quiet -USR2 kino"
++SYSFS{idVendor}=="0b33", SYSFS{idProduct}=="0010", MODE="644", RUN+="/usr/bin/killall --quiet -USR2 kino"
+ # Contour ShuttlePro
+-ATTRS{idVendor}=="0b33", ATTRS{idProduct}=="0011", MODE="644", RUN+="/usr/bin/killall --quiet -USR2 kino"
++SYSFS{idVendor}=="0b33", SYSFS{idProduct}=="0011", MODE="644", RUN+="/usr/bin/killall --quiet -USR2 kino"
+ # Contour ShuttlePro
+-ATTRS{idVendor}=="05f3", ATTRS{idProduct}=="0240", MODE="644", RUN+="/usr/bin/killall --quiet -USR2 kino"
++SYSFS{idVendor}=="05f3", SYSFS{idProduct}=="0240", MODE="644", RUN+="/usr/bin/killall --quiet -USR2 kino"
+ # Contour ShuttleXPress
+-ATTRS{idVendor}=="0b33", ATTRS{idProduct}=="0030", MODE="644", RUN+="/usr/bin/killall --quiet -USR2 kino"
++SYSFS{idVendor}=="0b33", SYSFS{idProduct}=="0030", MODE="644", RUN+="/usr/bin/killall --quiet -USR2 kino"
+ # Contour ShuttlePRO v2
+-ATTRS{idVendor}=="0b33", ATTRS{idProduct}=="0030", MODE="644", RUN+="/usr/bin/killall --quiet -USR2 kino"
++SYSFS{idVendor}=="0b33", SYSFS{idProduct}=="0030", MODE="644", RUN+="/usr/bin/killall --quiet -USR2 kino"
+ # JLCooper MCS3
+-ATTRS{idVendor}=="0760", ATTRS{idProduct}=="0001", MODE="644", RUN+="/usr/bin/killall --quiet -USR2 kino"
++SYSFS{idVendor}=="0760", SYSFS{idProduct}=="0001", MODE="644", RUN+="/usr/bin/killall --quiet -USR2 kino"
+ # Griffin PowerMate
+-ATTRS{idVendor}=="077d", ATTRS{idProduct}=="0410", MODE="644", RUN+="/usr/bin/killall --quiet -USR2 kino"
++SYSFS{idVendor}=="077d", SYSFS{idProduct}=="0410", MODE="644", RUN+="/usr/bin/killall --quiet -USR2 kino"
+ # X-Keys Editor
+-ATTRS{idVendor}=="05f3", ATTRS{idProduct}=="0241", MODE="644", RUN+="/usr/bin/killall --quiet -USR2 kino"
++SYSFS{idVendor}=="05f3", SYSFS{idProduct}=="0241", MODE="644", RUN+="/usr/bin/killall --quiet -USR2 kino"
+ 
+ LABEL="kino_rules_end"
