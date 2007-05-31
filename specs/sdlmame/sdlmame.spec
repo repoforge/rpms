@@ -10,7 +10,7 @@
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
-%define mamever 113
+%define mamever 115
 
 Summary: SDL port of the Multi Arcade Machine Emulator (MAME)
 Name: sdlmame
@@ -76,7 +76,7 @@ export PPC=1
 
 
 %files
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
 %doc docs/*.txt *.txt dirs/
 %{_bindir}/chdman-sdlmame
 %{_bindir}/romcmp-sdlmame
@@ -84,6 +84,9 @@ export PPC=1
 
 
 %changelog
+* Thu May 31 2007 Matthias Saou <http://freshrpms.net/> 0.115-1
+- Update to 0.115.
+
 * Wed Mar  7 2007 Matthias Saou <http://freshrpms.net/> 0.113-1
 - Update to 0.113.
 - Remove no longer needed ppc patch since -mlong-branch is now only added if
