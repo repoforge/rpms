@@ -1,20 +1,19 @@
 # $Id$
 # Authority: matthias
-
-# ExclusiveDist: fc5 fc6 el5
+# ExclusiveDist: fc5 fc6 el5 fc7
 
 %define desktop_vendor rpmforge
 
 %define majorminor   0.10
 %define gstreamer    gstreamer
 
-%define gst_minver   0.10.2
-%define gstpb_minver 0.10.2
+%define gst_minver   0.10.6
+%define gstpb_minver 0.10.3
 
 Summary: GStreamer streaming media framework "ugly" plug-ins
 Name: gstreamer-plugins-ugly
 Version: 0.10.5
-Release: 1
+Release: 2
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
@@ -25,7 +24,6 @@ BuildRequires: %{gstreamer}-devel >= %{gst_minver}
 BuildRequires: %{gstreamer}-plugins-base-devel >= %{gstpb_minver}
 
 BuildRequires: gcc-c++
-BuildRequires: gtk-doc
 BuildRequires: gettext-devel
 
 BuildRequires: libsidplay-devel >= 1.36.0
@@ -59,24 +57,6 @@ gstreamer-plugins-good because:
 - there are possible licensing issues with the code.
 
 
-%package devel
-Summary: Development files for the GStreamer "ugly" plug-ins
-Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
-
-%description devel
-GStreamer is a streaming media framework, based on graphs of elements which
-operate on media data.
-
-This package contains well-written plug-ins that can't be shipped in
-gstreamer-plugins-good because:
-- the license is not LGPL
-- the license of the library is not LGPL
-- there are possible licensing issues with the code.
-
-This package contains development files and documentation.
-
-
 %prep
 %setup -n gst-plugins-ugly-%{version}
 
@@ -86,7 +66,7 @@ This package contains development files and documentation.
     --with-package-name='gst-plugins-ugly %{desktop_vendor} rpm' \
     --with-package-origin='http://www.rpmforge.net/' \
     --enable-debug \
-    --disable-gtk-doc
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 
@@ -96,8 +76,8 @@ This package contains development files and documentation.
 %find_lang gst-plugins-ugly-%{majorminor}
 
 # Clean out files that should not be part of the rpm.
-%{__rm} -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.{a,la}
-%{__rm} -f %{buildroot}%{_libdir}/*.{a,la}
+%{__rm} -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.la
+%{__rm} -f %{buildroot}%{_libdir}/*.la
 
 
 %clean
@@ -105,9 +85,8 @@ This package contains development files and documentation.
 
 
 %files -f gst-plugins-ugly-%{majorminor}.lang
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
 %doc AUTHORS COPYING README REQUIREMENTS
-
 # Plugins without external dependencies
 %{_libdir}/gstreamer-%{majorminor}/libgstasf.so
 %{_libdir}/gstreamer-%{majorminor}/libgstdvdlpcmdec.so
@@ -116,7 +95,6 @@ This package contains development files and documentation.
 %{_libdir}/gstreamer-%{majorminor}/libgstmpegaudioparse.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmpegstream.so
 %{_libdir}/gstreamer-%{majorminor}/libgstrmdemux.so
-
 # Plugins with external dependencies
 %{_libdir}/gstreamer-%{majorminor}/libgsta52dec.so
 %{_libdir}/gstreamer-%{majorminor}/libgstamrnb.so
@@ -128,12 +106,10 @@ This package contains development files and documentation.
 %{_libdir}/gstreamer-%{majorminor}/libgstsid.so
 
 
-%files devel
-%defattr(-, root, root, 0755)
-#doc %{_datadir}/gtk-doc/html/gst-plugins-ugly-plugins-%{majorminor}/
-
-
 %changelog
+* Wed Mar 30 2007 Matthias Saou <http://freshrpms.net/> 0.10.5-2
+- Remove gtk-doc entirely, do devel package too.
+
 * Fri Dec 15 2006 Matthias Saou <http://freshrpms.net/> 0.10.5-1
 - Update to 0.10.5.
 - Remove no longer needed AC3 sound patch.
@@ -229,7 +205,7 @@ This package contains development files and documentation.
 - Add libdir/*
 
 * Thu Mar 04 2004 Christian Schaller <Uraeus@gnome.org>
-- Add missing gconf schema install in %post
+- Add missing gconf schema install in %%post
 
 * Tue Mar 02 2004 Thomas Vander Stichele <thomas at apestaart dot org>
 - Libraries/Multimedia doesn't exist, remove it
@@ -273,7 +249,7 @@ This package contains development files and documentation.
 - add navigation lib to package
 
 * Tue Sep 11 2003 Christian Schaller <Uraeus@gnome.org>
-- Add -%{majorminor} to each instance of gst-register
+- Add -%%{majorminor} to each instance of gst-register
 
 * Tue Aug 19 2003 Christian Schaller <Uraeus@Gnome.org>
 - Add new plugins
@@ -351,7 +327,7 @@ This package contains development files and documentation.
 - added gst-compprep calls
 
 * Wed Sep 18 2002 Thomas Vander Stichele <thomas@apestaart.org>
-- add gst-register-%{majorminor} calls everywhere again since auto-reregister doesn't work
+- add gst-register-%%{majorminor} calls everywhere again since auto-reregister doesn't work
 - added gstreamer-audio-formats to mad's requires since it needs the typefind
   to work properly
 
@@ -371,14 +347,14 @@ This package contains development files and documentation.
 * Fri Jul 05 2002 Thomas Vander Stichele <thomas@apestaart.org>
 - release 0.4.0 !
 - added gstreamer-libs.pc
-- removed all gst-register-%{majorminor} calls since this should be done automatically now
+- removed all gst-register-%%{majorminor} calls since this should be done automatically now
 
 * Thu Jul 04 2002 Thomas Vander Stichele <thomas@apestaart.org>
 - fix issue with SDL package
 - make all packages STRICTLY require the right version to avoid
   ABI issues
 - make gst-plugins obsolete gst-plugin-libs
-- also send output of gst-register-%{majorminor} to /dev/null to lower the noise
+- also send output of gst-register-%%{majorminor} to /dev/null to lower the noise
 
 * Wed Jul 03 2002 Thomas Vander Stichele <thomas@apestaart.org>
 - require glibc-devel instead of glibc-kernheaders since the latter is only
@@ -389,7 +365,7 @@ This package contains development files and documentation.
 
 * Mon Jun 17 2002 Thomas Vander Stichele <thomas@apestaart.org>
 - major cleanups
-- adding gst-register-%{majorminor} on postun everywhere
+- adding gst-register-%%{majorminor} on postun everywhere
 - remove ldconfig since we don't actually install libs in system dirs
 - removed misc package
 - added video-effects
