@@ -2,13 +2,12 @@
 # Authority: matthias
 # Upstream: <transcode-users$exit1.org>
 
-#define prever rc1
-
 %{?dist: %{expand: %%define %dist 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{!?dist:%define _with_modxorg 1}
 %{?el5:  %define _with_modxorg 1}
+%{?fc7:  %define _with_modxorg 1}
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
@@ -29,18 +28,14 @@
 
 Summary: Linux video stream processing utility
 Name: transcode
-Version: 1.0.2
-Release: 12%{?prever:.%{prever}}
+Version: 1.0.3
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
-Source: http://www.kraymer.mynetcologne.de/transcode-%{version}%{?prever}.tar.gz
-Patch0: transcode-1.0.2-filter_compare-fixes-try1.patch
-Patch1: transcode-1.0.2-filter_logo-hangup-try1.patch
-Patch2: transcode-1.0.x-filter-patch.txt
-Patch3: transcode-1.0.2-lzo2.patch
-Patch4: transcode-1.0.2-libmpeg3.patch
-Patch5: transcode-1.0.2-libavcodec.patch
+Source: http://fromani.exit1.org/transcode-%{version}.tar.bz2
+Patch0: transcode-1.0.3-lzo2.patch
+Patch1: transcode-1.0.2-libmpeg3.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gtk+-devel, SDL-devel, libxml2-devel, libjpeg-devel
 BuildRequires: freetype-devel >= 2.0, libogg-devel, libvorbis-devel
@@ -79,13 +74,9 @@ Available rpmbuild rebuild options :
 
 
 %prep
-%setup -n %{name}-%{version}%{?prever}
-%patch0 -p0 -b .filter_compare-fixes-try1
-%patch1 -p0 -b .filter_logo-hangup-try1
-%patch2 -p0 -b .filter-patch
-%patch3 -p1 -b .lzo2
-%patch4 -p1 -b .libmpeg3
-%patch5 -p1 -b .libavcodec
+%setup
+%patch0 -p1 -b .lzo2
+%patch1 -p1 -b .libmpeg3
 
 
 %build
@@ -144,6 +135,11 @@ export LDFLAGS="-L%{_usr}/X11R6/%{_lib}"
 
 
 %changelog
+* Fri Apr 20 2007 Matthias Saou <http://freshrpms.net/> 1.0.3-1
+- Update to 1.0.3.
+- Update lzo2 patch.
+- Remove all now unneeded patches.
+
 * Thu Jan 11 2007 Dag Wieers <dag@wieers.com> - 1.0.2-12
 - Rebuild against newer ffmpeg and mjpegtools.
 
