@@ -1,0 +1,717 @@
+diff -ur rpm-4.5-orig/build/Makefile.am rpm-4.5-ok/build/Makefile.am
+--- rpm-4.5-orig/build/Makefile.am	2007-05-25 19:35:56.000000000 +0200
++++ rpm-4.5-ok/build/Makefile.am	2007-06-01 20:51:58.000000000 +0200
+@@ -27,20 +27,20 @@
+ LDFLAGS = -L$(RPM_BUILD_ROOT)$(usrlibdir) -L$(DESTDIR)$(usrlibdir)
+ 
+ usrlibdir = $(libdir)@MARK64@
+-usrlib_LTLIBRARIES = librpmbuild.la
+-librpmbuild_la_SOURCES = \
++usrlib_LTLIBRARIES = librpmbuild5.la
++librpmbuild5_la_SOURCES = \
+ 	build.c expression.c files.c misc.c names.c pack.c \
+ 	parseBuildInstallClean.c parseChangelog.c parseDescription.c \
+ 	parseFiles.c parsePreamble.c parsePrep.c parseReqs.c parseScript.c \
+ 	parseSpec.c poptBT.c reqprov.c spec.c
+-librpmbuild_la_LDFLAGS = -no-undefined -release $(LT_CURRENT).$(LT_REVISION) $(LDFLAGS) \
+-	$(top_builddir)/lib/librpm.la \
+-	$(top_builddir)/rpmdb/librpmdb.la \
+-	$(top_builddir)/rpmio/librpmio.la \
++librpmbuild5_la_LDFLAGS = -no-undefined -release $(LT_CURRENT).$(LT_REVISION) $(LDFLAGS) \
++	$(top_builddir)/lib/librpm5.la \
++	$(top_builddir)/rpmdb/librpmdb5.la \
++	$(top_builddir)/rpmio/librpmio5.la \
+ 	@WITH_LIBELF_LIB@
+ 
+ if HAVE_LD_VERSION_SCRIPT
+-librpmbuild_la_LDFLAGS += -Wl,--version-script=$(srcdir)/librpmbuild.vers
++librpmbuild5_la_LDFLAGS += -Wl,--version-script=$(srcdir)/librpmbuild.vers
+ endif
+ 
+ rpmfile.h:
+@@ -54,12 +54,12 @@
+ #BUILT_SOURCES = rpmbuild.lcd
+ 
+ rpmbuild.lcd: Makefile.am ${librpmbuild_la_SOURCES} ${pkginc_HEADERS} ${noinst_HEADERS}
+-	-lclint ${DEFS} ${INCLUDES} ${librpmbuild_la_SOURCES} -dump $@ 2>/dev/null
++	-lclint ${DEFS} ${INCLUDES} ${librpmbuild5_la_SOURCES} -dump $@ 2>/dev/null
+ 
+ .PHONY:	sources
+ sources:
+-	@echo $(librpmbuild_la_SOURCES:%=build/%)
++	@echo $(librpmbuild5_la_SOURCES:%=build/%)
+ 
+ .PHONY:	lint
+ lint:
+-	$(LINT) ${DEFS} ${INCLUDES} ${librpmbuild_la_SOURCES}
++	$(LINT) ${DEFS} ${INCLUDES} ${librpmbuild5_la_SOURCES}
+Only in rpm-4.5-ok/build: Makefile.am~
+Only in rpm-4.5-ok/build: Makefile.am.orig
+Only in rpm-4.5-ok/build: Makefile.am.rej
+diff -ur rpm-4.5-orig/configure.ac rpm-4.5-ok/configure.ac
+--- rpm-4.5-orig/configure.ac	2007-05-25 21:55:03.000000000 +0200
++++ rpm-4.5-ok/configure.ac	2007-06-01 20:49:59.000000000 +0200
+@@ -651,13 +651,13 @@
+ if test -d popt ; then
+   WITH_POPT_SUBDIR=popt
+   WITH_POPT_INCLUDE="-I\${top_srcdir}/${WITH_POPT_SUBDIR}"
+-  WITH_POPT_LIB="\${top_builddir}/${WITH_POPT_SUBDIR}/libpopt.la"
++  WITH_POPT_LIB="\${top_builddir}/${WITH_POPT_SUBDIR}/libpopt5.la"
+ else
+   AC_CHECK_HEADER([popt.h], [
+     AC_CHECK_LIB(popt, poptGetContext, [
+       WITH_POPT_SUBDIR=
+       WITH_POPT_INCLUDE=
+-      WITH_POPT_LIB="-lpopt"
++      WITH_POPT_LIB="-lpopt5"
+     ])
+   ])
+ fi
+@@ -1466,12 +1466,12 @@
+ AC_SUBST(LOCALEDIR)
+ LIBDIR="`echo $libdir | sed 's-/lib$-/%{_lib}-'`"
+ AC_SUBST(LIBDIR)
+-USRLIBRPM="`echo ${usrprefix}/lib/rpm`"
++USRLIBRPM="`echo ${usrprefix}/lib/rpm5`"
+ AC_DEFINE_UNQUOTED(USRLIBRPM, "$USRLIBRPM",
+ 	[Full path to rpm global configuration directory (usually /usr/lib/rpm)])
+ AC_SUBST(USRLIBRPM)
+ 
+-SYSCONFIGDIR="`echo /etc/rpm`"
++SYSCONFIGDIR="`echo /etc/rpm5`"
+ AC_DEFINE_UNQUOTED(SYSCONFIGDIR, "$SYSCONFIGDIR",
+ 	[Full path to rpm system configuration directory (usually /etc/rpm)])
+ AC_SUBST(SYSCONFIGDIR)
+diff -ur rpm-4.5-orig/db3/configure rpm-4.5-ok/db3/configure
+--- rpm-4.5-orig/db3/configure	2007-05-25 19:35:57.000000000 +0200
++++ rpm-4.5-ok/db3/configure	2007-06-01 20:50:08.000000000 +0200
+@@ -23,6 +23,7 @@
+ distdir install check:\
+ \
+ db4_install: all install_setip' > Makefile
++perl -pi -e "s|^libdb_base=.*|libdb_base= libdb5|g;" Makefile
+ 
+ mv db.h db.h.orig
+ cat db.h.orig | sed \
+diff -ur rpm-4.5-orig/lib/Makefile.am rpm-4.5-ok/lib/Makefile.am
+--- rpm-4.5-orig/lib/Makefile.am	2007-05-25 19:36:02.000000000 +0200
++++ rpm-4.5-ok/lib/Makefile.am	2007-06-01 20:49:59.000000000 +0200
+@@ -27,14 +27,14 @@
+ noinst_HEADERS = \
+ 	cpio.h fsm.h manifest.h psm.h rpmlead.h rpmlock.h signature.h tar.h
+ 
+-mylibs = librpm.la
++mylibs = librpm5.la
+ LIBS =
+ 
+ LDFLAGS = -L$(RPM_BUILD_ROOT)$(usrlibdir) -L$(DESTDIR)$(usrlibdir)
+ 
+ usrlibdir = $(libdir)@MARK64@
+-usrlib_LTLIBRARIES = librpm.la
+-librpm_la_SOURCES = \
++usrlib_LTLIBRARIES = librpm5.la
++librpm5_la_SOURCES = \
+ 	cpio.c depends.c formats.c fs.c fsm.c getdate.c \
+ 	manifest.c misc.c package.c \
+ 	poptALL.c poptI.c poptQV.c psm.c query.c \
+@@ -43,15 +43,15 @@
+ 	rpmlead.c rpmlock.c rpmns.c rpmps.c rpmrc.c rpmsx.c rpmte.c rpmts.c \
+ 	signature.c stringbuf.c transaction.c \
+ 	verify.c tar.c
+-librpm_la_LDFLAGS = -no-undefined -release $(LT_CURRENT).$(LT_REVISION) $(LDFLAGS) \
+-	$(top_builddir)/rpmdb/librpmdb.la \
+-	$(top_builddir)/rpmio/librpmio.la \
++librpm5_la_LDFLAGS = -no-undefined -release $(LT_CURRENT).$(LT_REVISION) $(LDFLAGS) \
++	$(top_builddir)/rpmdb/librpmdb5.la \
++	$(top_builddir)/rpmio/librpmio5.la \
+ 	@WITH_POPT_LIB@ \
+ 	@WITH_SELINUX_LIB@ \
+ 	@LTLIBINTL@
+ 
+ if HAVE_LD_VERSION_SCRIPT
+-librpm_la_LDFLAGS += -Wl,--version-script=$(srcdir)/librpm.vers
++librpm5_la_LDFLAGS += -Wl,--version-script=$(srcdir)/librpm.vers
+ endif
+ 
+ getdate.c: getdate.y
+@@ -87,13 +87,13 @@
+ 
+ BUILT_SOURCES = getdate.c # rpmlib.lcd
+ 
+-rpmlib.lcd: Makefile.am ${librpm_la_SOURCES} ${pkginc_HEADERS} ${noinst_HEADERS}
+-	-lclint ${DEFS} ${INCLUDES} ${librpm_la_SOURCES} -dump $@ 2>/dev/null
++rpmlib.lcd: Makefile.am ${librpm5_la_SOURCES} ${pkginc_HEADERS} ${noinst_HEADERS}
++	-lclint ${DEFS} ${INCLUDES} ${librpm5_la_SOURCES} -dump $@ 2>/dev/null
+ 
+ .PHONY:	sources
+ sources:
+-	@echo $(librpm_la_SOURCES:%=lib/%)
++	@echo $(librpm5_la_SOURCES:%=lib/%)
+ 
+ .PHONY:	lint
+ lint:
+-	$(LINT) $(DEFS) $(INCLUDES) $(librpm_la_SOURCES)
++	$(LINT) $(DEFS) $(INCLUDES) $(librpm5_la_SOURCES)
+diff -ur rpm-4.5-orig/Makefile.am rpm-4.5-ok/Makefile.am
+--- rpm-4.5-orig/Makefile.am	2007-05-25 21:55:03.000000000 +0200
++++ rpm-4.5-ok/Makefile.am	2007-06-01 20:49:59.000000000 +0200
+@@ -30,20 +30,20 @@
+ myLDFLAGS = @WITH_LIBELF_LIB@ @WITH_BEECRYPT_LIB@
+ 
+ myLDADD = \
+-	$(top_builddir)/lib/librpm.la \
+-	$(top_builddir)/rpmdb/librpmdb.la \
+-	$(top_builddir)/rpmio/librpmio.la \
++	$(top_builddir)/lib/librpm5.la \
++	$(top_builddir)/rpmdb/librpmdb5.la \
++	$(top_builddir)/rpmio/librpmio5.la \
+ 	@WITH_POPT_LIB@ \
+ 	@WITH_ZLIB_LIB@ \
+ 	@LIBMISC@
+ 
+ rpmbindir = `echo $(bindir) | sed -e s,usr/bin,bin,`
+-rpmbin_PROGRAMS = rpm
++rpmbin_PROGRAMS = rpm5
+ 
+-bin_SCRIPTS =		gendiff
++bin_SCRIPTS =		gendiff5
+ 
+ pkglibdir =		@USRLIBRPM@
+-pkglib_PROGRAMS =	rpmb rpmd rpmi rpmk rpmq
++pkglib_PROGRAMS =	rpmb5 rpmd5 rpmi5 rpmk5 rpmq5
+ pkglib_DATA =		rpmrc rpmpopt-$(VERSION) macros
+ pkglib_SCRIPTS =	find-provides find-requires mkinstalldirs \
+ 			config.guess config.sub config.site
+@@ -53,44 +53,44 @@
+ 
+ noinst_HEADERS = build.h debug.h system.h
+ 
+-rpm_SOURCES =
+-rpm_LDFLAGS =		$(myLDFLAGS) $(staticLDFLAGS)
+-rpm_LDADD =		rpm.o $(top_builddir)/build/.libs/librpmbuild.a $(myLDADD)
++rpm5_SOURCES =
++rpm5_LDFLAGS =		$(myLDFLAGS) $(staticLDFLAGS)
++rpm5_LDADD =		rpm5.o $(top_builddir)/build/.libs/librpmbuild5.a $(myLDADD)
+ #rpm_LDFLAGS =		$(myLDFLAGS)
+ #rpm_LDADD =		rpm.o $(top_builddir)/build/.libs/librpmbuild.a $(myLDADD)
+-rpm.o:	$(top_srcdir)/rpmqv.c
++rpm5.o:	$(top_srcdir)/rpmqv.c
+ 	$(COMPILE) -fpie -DIAM_RPMDB -DIAM_RPMEIU -DIAM_RPMK -DIAM_RPMQV -o $@ -c $<
+ 
+-rpmb_SOURCES =		$(top_srcdir)/build.c
+-rpmb_LDFLAGS =		$(myLDFLAGS) $(staticLDFLAGS)
+-rpmb_LDADD =		rpmb.o $(top_builddir)/build/librpmbuild.la $(myLDADD)
+-rpmb.o:	$(top_srcdir)/rpmqv.c
++rpmb5_SOURCES =		$(top_srcdir)/build.c
++rpmb5_LDFLAGS =		$(myLDFLAGS) $(staticLDFLAGS)
++rpmb5_LDADD =		rpmb5.o $(top_builddir)/build/librpmbuild5.la $(myLDADD)
++rpmb5.o:	$(top_srcdir)/rpmqv.c
+ 	$(COMPILE) -fpie -DIAM_RPMBT -o $@ -c $<
+ 
+-rpmd_SOURCES =
+-rpmd_LDFLAGS =		$(myLDFLAGS) $(staticLDFLAGS)
+-rpmd_LDADD =		rpmd.o $(myLDADD)
+-rpmd.o:	$(top_srcdir)/rpmqv.c
++rpmd5_SOURCES =
++rpmd5_LDFLAGS =		$(myLDFLAGS) $(staticLDFLAGS)
++rpmd5_LDADD =		rpmd5.o $(myLDADD)
++rpmd5.o:	$(top_srcdir)/rpmqv.c
+ 	$(COMPILE) -fpie -DIAM_RPMDB -o $@ -c $<
+ 
+-rpmi_SOURCES =
+-rpmi_LDFLAGS =		$(myLDFLAGS) # $(staticLDFLAGS)
+-rpmi_LDADD =		rpmi.o $(myLDADD)
++rpmi5_SOURCES =
++rpmi5_LDFLAGS =		$(myLDFLAGS) # $(staticLDFLAGS)
++rpmi5_LDADD =		rpmi5.o $(myLDADD)
+ #rpmi_LDFLAGS =		$(myLDFLAGS)
+ #rpmi_LDADD =		rpmi.o $(myLDADD)
+-rpmi.o:	$(top_srcdir)/rpmqv.c
++rpmi5.o:	$(top_srcdir)/rpmqv.c
+ 	$(COMPILE) -fpie -DIAM_RPMEIU -o $@ -c $<
+ 
+-rpmk_SOURCES =
+-rpmk_LDFLAGS =		$(myLDFLAGS) $(staticLDFLAGS)
+-rpmk_LDADD =		rpmk.o $(myLDADD)
+-rpmk.o:	$(top_srcdir)/rpmqv.c
++rpmk5_SOURCES =
++rpmk5_LDFLAGS =		$(myLDFLAGS) $(staticLDFLAGS)
++rpmk5_LDADD =		rpmk5.o $(myLDADD)
++rpmk5.o:	$(top_srcdir)/rpmqv.c
+ 	$(COMPILE) -fpie -DIAM_RPMK -o $@ -c $<
+ 
+-rpmq_SOURCES =
+-rpmq_LDFLAGS =		$(myLDFLAGS) # $(staticLDFLAGS)
+-rpmq_LDADD =		rpmq.o $(top_builddir)/build/librpmbuild.la $(myLDADD)
+-rpmq.o:	$(top_srcdir)/rpmqv.c
++rpmq5_SOURCES =
++rpmq5_LDFLAGS =		$(myLDFLAGS) # $(staticLDFLAGS)
++rpmq5_LDADD =		rpmq5.o $(top_builddir)/build/librpmbuild5.la $(myLDADD)
++rpmq5.o:	$(top_srcdir)/rpmqv.c
+ 	$(COMPILE) -fpie -DIAM_RPMQV -o $@ -c $<
+ 
+ $(PROGRAMS): 		$(myLDADD) @WITH_APIDOCS_TARGET@
+@@ -121,28 +121,28 @@
+ pkgsrcdir = $(prefix)/src/rpm
+ 
+ install-data-local:
+-	@$(mkinstalldirs) $(DESTDIR)$(varprefix)/lib/rpm
++	@$(mkinstalldirs) $(DESTDIR)$(varprefix)/lib/rpm5
+ 	@rm -f $(DESTDIR)$(pkglibdir)/rpmt
+ 	@@LN_S@ rpmb $(DESTDIR)$(pkglibdir)/rpmt
+-	@rm -f $(DESTDIR)$(pkglibdir)/rpme
++	@rm -f $(DESTDIR)$(pkglibdir)/rpme5
+ 	@@LN_S@ rpmi $(DESTDIR)$(pkglibdir)/rpme
+ 	@rm -f $(DESTDIR)$(pkglibdir)/rpmu
+ 	@@LN_S@ rpmi $(DESTDIR)$(pkglibdir)/rpmu
+ 	@rm -f $(DESTDIR)$(pkglibdir)/rpmv
+ 	@@LN_S@ rpmq $(DESTDIR)$(pkglibdir)/rpmv
+-	rm -f $(DESTDIR)$(bindir)/rpmbuild
+-	@LN_S@ ../lib/rpm/rpmb $(DESTDIR)$(bindir)/rpmbuild
+-	rm -f $(DESTDIR)$(bindir)/rpmquery
+-	@LN_S@ ../lib/rpm/rpmq $(DESTDIR)$(bindir)/rpmquery
+-	rm -f $(DESTDIR)$(bindir)/rpmverify
+-	@LN_S@ ../lib/rpm/rpmv $(DESTDIR)$(bindir)/rpmverify
+-	rm -f $(DESTDIR)$(bindir)/rpmsign
+-	@LN_S@ ../lib/rpm/rpmk $(DESTDIR)$(bindir)/rpmsign
+-	rm -f $(DESTDIR)$(bindir)/rpmdb ; \
+-	@LN_S@ ../lib/rpm/rpmd $(DESTDIR)$(bindir)/rpmdb ; \
++	rm -f $(DESTDIR)$(bindir)/rpmbuild5
++	@LN_S@ ../lib/rpm5/rpmb $(DESTDIR)$(bindir)/rpmbuild5
++	rm -f $(DESTDIR)$(bindir)/rpmquery5
++	@LN_S@ ../lib/rpm5/rpmq $(DESTDIR)$(bindir)/rpmquery5
++	rm -f $(DESTDIR)$(bindir)/rpmverify5
++	@LN_S@ ../lib/rpm5/rpmv $(DESTDIR)$(bindir)/rpmverify5
++	rm -f $(DESTDIR)$(bindir)/rpmsign5
++	@LN_S@ ../lib/rpm5/rpmk $(DESTDIR)$(bindir)/rpmsign5
++	rm -f $(DESTDIR)$(bindir)/rpmdb5 ; \
++	@LN_S@ ../lib/rpm5/rpmd $(DESTDIR)$(bindir)/rpmdb5 ; \
+ 	for bf in e i u ; do \
+-	    rm -f $(DESTDIR)$(bindir)/rpm$$bf ; \
+-	    @LN_S@ ../lib/rpm/rpm$$bf $(DESTDIR)$(bindir)/rpm$$bf ; \
++	    rm -f $(DESTDIR)$(bindir)/rpm$$bf5 ; \
++	    @LN_S@ ../lib/rpm5/rpm$$bf $(DESTDIR)$(bindir)/rpm$$bf5 ; \
+ 	done
+ 	@for dir in BUILD RPMS SOURCES SPECS SRPMS ; do\
+ 	    $(mkinstalldirs) $(DESTDIR)$(pkgsrcdir)/$$dir;\
+diff -ur rpm-4.5-orig/popt/Makefile.am rpm-4.5-ok/popt/Makefile.am
+--- rpm-4.5-orig/popt/Makefile.am	2007-05-25 21:00:38.000000000 +0200
++++ rpm-4.5-ok/popt/Makefile.am	2007-06-01 20:49:59.000000000 +0200
+@@ -36,25 +36,25 @@
+ include_HEADERS = popt.h
+ 
+ usrlibdir = $(libdir)@MARK64@
+-usrlib_LTLIBRARIES = libpopt.la
++usrlib_LTLIBRARIES = libpopt5.la
+ 
+-libpopt_la_SOURCES = popt.c findme.c poptparse.c poptconfig.c popthelp.c poptint.c
+-libpopt_la_LDFLAGS = -no-undefined @LTLIBINTL@ # @LTLIBICONV@
++libpopt5_la_SOURCES = popt.c findme.c poptparse.c poptconfig.c popthelp.c poptint.c
++libpopt5_la_LDFLAGS = -no-undefined @LTLIBINTL@ # @LTLIBICONV@
+ 
+ if HAVE_LD_VERSION_SCRIPT
+-libpopt_la_LDFLAGS += -Wl,--version-script=$(srcdir)/libpopt.vers
++libpopt5_la_LDFLAGS += -Wl,--version-script=$(srcdir)/libpopt.vers
+ endif
+ 
+ man_MANS = popt.3
+ 
+ #BUILT_SOURCES = popt.lcd
+ 
+-popt.lcd: Makefile.am ${libpopt_la_SOURCES} ${include_HEADERS} ${noinst_HEADERS}
+-	lclint -dump $@ ${libpopt_la_SOURCES}
++popt.lcd: Makefile.am ${libpopt5_la_SOURCES} ${include_HEADERS} ${noinst_HEADERS}
++	lclint -dump $@ ${libpopt5_la_SOURCES}
+ 
+ .PHONY:	sources
+ sources:
+-	@echo $(libpopt_la_SOURCES:%=popt/%)
++	@echo $(libpopt5_la_SOURCES:%=popt/%)
+ 
+ .PHONY: lint
+ lint:
+diff -ur rpm-4.5-orig/python/Makefile.am rpm-4.5-ok/python/Makefile.am
+--- rpm-4.5-orig/python/Makefile.am	2007-05-25 19:36:31.000000000 +0200
++++ rpm-4.5-ok/python/Makefile.am	2007-06-01 20:49:59.000000000 +0200
+@@ -30,22 +30,22 @@
+ 	spec-py.h
+ 
+ mylibs= \
+-	$(top_builddir)/build/librpmbuild.la \
+-	$(top_builddir)/lib/librpm.la \
+-	$(top_builddir)/rpmdb/librpmdb.la \
+-	$(top_builddir)/rpmio/librpmio.la \
++	$(top_builddir)/build/librpmbuild5.la \
++	$(top_builddir)/lib/librpm5.la \
++	$(top_builddir)/rpmdb/librpmdb5.la \
++	$(top_builddir)/rpmio/librpmio5.la \
+ 	@WITH_POPT_LIB@ \
+ 	@WITH_LIBELF_LIB@
+ 
+ LDADD =
+ 
+ rpmdir = $(pylibdir)/site-packages/rpm
+-rpm_LTLIBRARIES = _rpmmodule.la
++rpm_LTLIBRARIES = _rpmmodule5.la
+ 
+-_rpmmodule_la_LDFLAGS = $(mylibs) $(LIBS) -module -avoid-version
+-_rpmmodule_la_LIBADD =  @WITH_BEECRYPT_LIB@
++_rpmmodule5_la_LDFLAGS = $(mylibs) $(LIBS) -module -avoid-version
++_rpmmodule5_la_LIBADD =  @WITH_BEECRYPT_LIB@
+ 
+-_rpmmodule_la_SOURCES = rpmmodule.c header-py.c \
++_rpmmodule5_la_SOURCES = rpmmodule.c header-py.c \
+ 		       rpmal-py.c rpmds-py.c rpmdb-py.c rpmfd-py.c rpmfts-py.c \
+ 		       rpmfi-py.c rpmmi-py.c rpmps-py.c rpmrc-py.c rpmte-py.c \
+ 		       rpmts-py.c spec-py.c
+diff -ur rpm-4.5-orig/rpmdb/Makefile.am rpm-4.5-ok/rpmdb/Makefile.am
+--- rpm-4.5-orig/rpmdb/Makefile.am	2007-05-25 19:36:33.000000000 +0200
++++ rpm-4.5-ok/rpmdb/Makefile.am	2007-06-01 20:49:59.000000000 +0200
+@@ -22,7 +22,7 @@
+ 
+ tjfn_SOURCES = tjfn.c
+ tjfn_LDFLAGS = @LDFLAGS_STATIC@
+-tjfn_LDADD = librpmdb.la
++tjfn_LDADD = librpmdb5.la
+ 
+ pkgincdir = $(pkgincludedir)
+ pkginc_HEADERS = db.h header.h hdrinline.h rpmdb.h
+@@ -34,33 +34,33 @@
+ 	rpmdb_hotbackup rpmdb_load rpmdb_printlog rpmdb_recover \
+ 	rpmdb_svc rpmdb_stat rpmdb_upgrade rpmdb_verify 
+ 
+-mylibs = librpmdb.la
++mylibs = librpmdb5.la
+ 
+ LIBS =
+ 
+ # XXX watchout, ../db3/libdb.la created by this Makefile may surprise
+-libdb_la = $(top_builddir)/$(WITH_DB_SUBDIR)/libdb.la
++libdb5_la = $(top_builddir)/$(WITH_DB_SUBDIR)/libdb.la
+ 
+ # XXX grrr, RPM_BUILD_ROOT prevents build pollution if/when -lrpm different
+ LDFLAGS = -L$(RPM_BUILD_ROOT)$(usrlibdir) -L$(DESTDIR)$(usrlibdir)
+ 
+ usrlibdir = $(libdir)@MARK64@
+-usrlib_LTLIBRARIES = librpmdb.la
+-librpmdb_la_SOURCES = \
++usrlib_LTLIBRARIES = librpmdb5.la
++librpmdb5_la_SOURCES = \
+ 	dbconfig.c fprint.c \
+ 	hdrNVR.c header.c header_internal.c legacy.c merge.c \
+ 	poptDB.c rpmdb.c \
+ 	tagname.c tagtbl.c
+-librpmdb_la_LDFLAGS = -no-undefined -release $(LT_CURRENT).$(LT_REVISION) \
+-	$(top_builddir)/rpmio/librpmio.la \
++librpmdb5_la_LDFLAGS = -no-undefined -release $(LT_CURRENT).$(LT_REVISION) \
++	$(top_builddir)/rpmio/librpmio5.la \
+ 	@WITH_POPT_LIB@ \
+ 	@WITH_SQLITE3_LIB@ \
+ 	@WITH_LIBELF_LIB@
+-librpmdb_la_LIBADD = $(DBLIBOBJS) $(libdb_la)
+-librpmdb_la_DEPENDENCIES = $(DBLIBOBJS) $(libdb_la)
++librpmdb5_la_LIBADD = $(DBLIBOBJS) $(libdb5_la)
++librpmdb5_la_DEPENDENCIES = $(DBLIBOBJS) $(libdb5_la)
+ 
+ if HAVE_LD_VERSION_SCRIPT
+-librpmdb_la_LDFLAGS += -Wl,--version-script=$(srcdir)/librpmdb.vers
++librpmdb5_la_LDFLAGS += -Wl,--version-script=$(srcdir)/librpmdb.vers
+ endif
+ 
+ # XXX make sure that db.h symlink is generated
+@@ -92,48 +92,48 @@
+ 	@ln -sf ../$(WITH_DB_SUBDIR)/db.h $@
+ 
+ # XXX grrr, force noinst libdb.la for db3.
+-$(libdb_la):
+-	sed -e"/^libdir=/s/^.*$$/libdir=''/" < $(top_builddir)/$(WITH_DB_SUBDIR)/libdb-4.5.la > $(libdb_la)
++$(libdb5_la):
++	sed -e"/^libdir=/s/^.*$$/libdir=''/" < $(top_builddir)/$(WITH_DB_SUBDIR)/libdb5-4.5.la > $(libdb5_la)
+ 
+ rpmdb_archive_SOURCES =
+ rpmdb_archive_LDADD = \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/db_archive.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/util_sig.o \
+-	librpmdb.la
++	librpmdb5.la
+ 
+ rpmdb_checkpoint_SOURCES =
+ rpmdb_checkpoint_LDADD = \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/db_checkpoint.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/util_log.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/util_sig.o \
+-	librpmdb.la
++	librpmdb5.la
+ 
+ rpmdb_deadlock_SOURCES =
+ rpmdb_deadlock_LDADD = \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/db_deadlock.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/util_log.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/util_sig.o \
+-	librpmdb.la
++	librpmdb5.la
+ 
+ rpmdb_dump_SOURCES =
+ rpmdb_dump_LDADD = \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/db_dump.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/util_cache.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/util_sig.o \
+-	librpmdb.la
++	librpmdb5.la
+ 
+ rpmdb_hotbackup_SOURCES =
+ rpmdb_hotbackup_LDADD = \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/db_hotbackup.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/util_sig.o \
+-	librpmdb.la
++	librpmdb5.la
+ 
+ rpmdb_load_SOURCES =
+ rpmdb_load_LDADD = \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/db_load.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/util_cache.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/util_sig.o \
+-	librpmdb.la
++	librpmdb5.la
+ 
+ rpmdb_printlog_SOURCES =
+ rpmdb_printlog_LDADD = \
+@@ -148,21 +148,21 @@
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/rep_autop.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/txn_autop.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/util_sig.o \
+-	librpmdb.la
++	librpmdb5.la
+ 
+ rpmdb_recover_SOURCES =
+ rpmdb_recover_LDADD = \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/db_recover.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/util_cache.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/util_sig.o \
+-	librpmdb.la
++	librpmdb5.la
+ 
+ rpmdb_stat_SOURCES =
+ rpmdb_stat_LDADD = \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/db_stat.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/util_cache.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/util_sig.o \
+-	librpmdb.la
++	librpmdb5.la
+ 
+ rpmdb_svc_SOURCES =
+ rpmdb_svc_LDADD = \
+@@ -172,55 +172,55 @@
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/db_server_xdr.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/gen_db_server.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/util_log.o \
+-	librpmdb.la
++	librpmdb5.la
+ 
+ rpmdb_upgrade_SOURCES =
+ rpmdb_upgrade_LDADD = \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/db_upgrade.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/util_cache.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/util_sig.o \
+-	librpmdb.la
++	librpmdb5.la
+ 
+ rpmdb_verify_SOURCES =
+ rpmdb_verify_LDADD = \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/db_verify.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/util_cache.o \
+ 	$(top_builddir)/$(WITH_DB_SUBDIR)/util_sig.o \
+-	librpmdb.la
++	librpmdb5.la
+ 
+ clean-local:
+ 	rm -f *.o db.h $(libdb_la)
+ 
+ BUILT_SOURCES = tagtbl.c
+ 
+-rpmdb.lcd: Makefile.am ${librpmdb_la_SOURCES} ${pkginc_HEADERS} ${noinst_HEADERS}
++rpmdb.lcd: Makefile.am ${librpmdb5_la_SOURCES} ${pkginc_HEADERS} ${noinst_HEADERS}
+ 	-splint ${DEFS} ${INCLUDES} ${librpmdb_la_SOURCES} -dump $@ 2>/dev/null
+ 
+ .PHONY:	sources
+ sources:
+-	@echo $(librpmdb_la_SOURCES:%=rpmdb/%)
++	@echo $(librpmdb5_la_SOURCES:%=rpmdb/%)
+ 
+ .PHONY:	lint
+ lint:
+ 	$(LINT) $(DEFS) $(INCLUDES) $(librpmdb_la_SOURCES) $(DBLIBSRCS)
+ 
+-tdbi: tdbi.o librpmdb.la
++tdbi: tdbi.o librpmdb5.la
+ 	$(LINK) @LDFLAGS_STATIC@ -o $@ $< $(mylibpaths) $(mylibs) $(LIBS)
+ 
+-tdpkg: tdpkg.o librpmdb.la
++tdpkg: tdpkg.o librpmdb5.la
+ 	$(LINK) @LDFLAGS_STATIC@ -o $@ $< $(mylibpaths) $(mylibs) $(LIBS)
+ 
+-tmpkg: tmpkg.o librpmdb.la
++tmpkg: tmpkg.o librpmdb5.la
+ 	$(LINK) @LDFLAGS_STATIC@ -o $@ $< $(mylibpaths) $(mylibs) $(LIBS)
+ 
+-tsql: tsql.o librpmdb.la
++tsql: tsql.o librpmdb5.la
+ 	$(LINK) @LDFLAGS_STATIC@ -o $@ $< $(mylibpaths) $(mylibs) $(LIBS)
+ 
+-tpkgadd: tpkgadd.o librpmdb.la
++tpkgadd: tpkgadd.o librpmdb5.la
+ 	$(LINK) @LDFLAGS_STATIC@ -o $@ $< $(mylibpaths) $(mylibs) $(LIBS)
+ 
+-trepomd: trepomd.o librpmdb.la
++trepomd: trepomd.o librpmdb5.la
+ 	$(LINK) @LDFLAGS_STATIC@ -o $@ $< $(mylibpaths) $(mylibs) $(LIBS)
+ 
+-ttag: ttag.o librpmdb.la
++ttag: ttag.o librpmdb5.la
+ 	$(LINK) @LDFLAGS_STATIC@ -o $@ $< $(mylibpaths) $(mylibs) $(LIBS)
+diff -ur rpm-4.5-orig/rpmio/Makefile.am rpm-4.5-ok/rpmio/Makefile.am
+--- rpm-4.5-orig/rpmio/Makefile.am	2007-05-25 21:00:39.000000000 +0200
++++ rpm-4.5-ok/rpmio/Makefile.am	2007-06-01 20:49:59.000000000 +0200
+@@ -33,8 +33,8 @@
+ LDFLAGS = -L$(RPM_BUILD_ROOT)$(usrlibdir) -L$(DESTDIR)$(usrlibdir)
+ 
+ usrlibdir = $(libdir)@MARK64@
+-usrlib_LTLIBRARIES = librpmio.la
+-librpmio_la_SOURCES = \
++usrlib_LTLIBRARIES = librpmio5.la
++librpmio5_la_SOURCES = \
+ 	argv.c digest.c fts.c getpass.c macro.c mire.c \
+ 	md2.c md4.c rmd128.c rmd160.c rmd256.c rmd320.c sha224.c \
+ 	salsa10.c salsa20.c tiger.c \
+@@ -42,7 +42,7 @@
+ 	rpmpgp.c rpmrpc.c rpmsq.c rpmsw.c strcasecmp.c strtolocale.c \
+ 	stubs.c url.c ugid.c \
+ 	LzmaDecode.c
+-librpmio_la_LDFLAGS = -no-undefined -release $(LT_CURRENT).$(LT_REVISION) $(LDFLAGS) \
++librpmio5_la_LDFLAGS = -no-undefined -release $(LT_CURRENT).$(LT_REVISION) $(LDFLAGS) \
+ 	@WITH_BEECRYPT_LIB@ \
+ 	@WITH_NEON_LIB@ \
+ 	@WITH_LUA_LIB@ \
+@@ -52,11 +52,11 @@
+ 	@WITH_ZLIB_LIB@ \
+ 	-lpthread \
+ 	@LTLIBINTL@
+-librpmio_la_LIBADD = # $(BEECRYPTLOBJS)
+-librpmio_la_DEPENDENCIES = # .created
++librpmio5_la_LIBADD = # $(BEECRYPTLOBJS)
++librpmio5_la_DEPENDENCIES = # .created
+ 
+ if HAVE_LD_VERSION_SCRIPT
+-librpmio_la_LDFLAGS += -Wl,--version-script=$(srcdir)/librpmio.vers
++librpmio5_la_LDFLAGS += -Wl,--version-script=$(srcdir)/librpmio.vers
+ endif
+ 
+ .created:
+@@ -73,64 +73,64 @@
+ 
+ #BUILT_SOURCES = rpmio.lcd
+ 
+-rpmio.lcd: Makefile.am ${librpmio_la_SOURCES} ${pkginc_HEADERS} ${noinst_HEADERS}
+-	-lclint -load ../beecrypt/beecrypt.lcd $(DEFS) $(INCLUDES) $(librpmio_la_SOURCES) -dump $@ 2>/dev/null
++rpmio.lcd: Makefile.am ${librpmio5_la_SOURCES} ${pkginc_HEADERS} ${noinst_HEADERS}
++	-lclint -load ../beecrypt/beecrypt.lcd $(DEFS) $(INCLUDES) $(librpmio5_la_SOURCES) -dump $@ 2>/dev/null
+ 
+ .PHONY:	sources
+ sources:
+-	@echo $(librpmio_la_SOURCES:%=rpmio/%)
++	@echo $(librpmio5_la_SOURCES:%=rpmio/%)
+ 
+ .PHONY:	lint
+ lint:
+-	$(LINT) $(DEFS) $(INCLUDES) $(librpmio_la_SOURCES)
++	$(LINT) $(DEFS) $(INCLUDES) $(librpmio5_la_SOURCES)
+ 
+ tax_SOURCES = tax.c
+-tax_LDADD = librpmio.la
++tax_LDADD = librpmio5.la
+ 
+ tdir_SOURCES = tdir.c
+ tdir_LDFLAGS = @LDFLAGS_STATIC@
+-tdir_LDADD = librpmio.la $(top_builddir)/popt/libpopt.la
++tdir_LDADD = librpmio5.la $(top_builddir)/popt/libpopt5.la
+ 
+ tfts_SOURCES = tfts.c
+ tfts_LDFLAGS = @LDFLAGS_STATIC@
+-tfts_LDADD = librpmio.la $(top_builddir)/popt/libpopt.la
++tfts_LDADD = librpmio5.la $(top_builddir)/popt/libpopt5.la
+ 
+ tget_SOURCES = tget.c
+ tget_LDFLAGS = @LDFLAGS_STATIC@
+-tget_LDADD = librpmio.la $(top_builddir)/popt/libpopt.la
++tget_LDADD = librpmio5.la $(top_builddir)/popt/libpopt5.la
+ 
+ thkp_SOURCES = thkp.c
+ thkp_LDFLAGS = @LDFLAGS_STATIC@
+-thkp_LDADD = librpmio.la $(top_builddir)/popt/libpopt.la
++thkp_LDADD = librpmio5.la $(top_builddir)/popt/libpopt5.la
+ 
+ tput_SOURCES = tput.c
+ tput_LDFLAGS = @LDFLAGS_STATIC@
+-tput_LDADD = librpmio.la $(top_builddir)/popt/libpopt.la
++tput_LDADD = librpmio5.la $(top_builddir)/popt/libpopt5.la
+ 
+ 
+ tglob_SOURCES = tglob.c
+ tglob_LDFLAGS = @LDFLAGS_STATIC@
+-tglob_LDADD = librpmio.la $(top_builddir)/popt/libpopt.la
++tglob_LDADD = librpmio5.la $(top_builddir)/popt/libpopt5.la
+ 
+ tinv_SOURCES = tinv.c
+ tinv_LDFLAGS = @LDFLAGS_STATIC@
+-tinv_LDADD = librpmio.la $(top_builddir)/popt/libpopt.la
++tinv_LDADD = librpmio5.la $(top_builddir)/popt/libpopt5.la
+ 
+ tkey_SOURCES = tkey.c
+ tkey_LDFLAGS = @LDFLAGS_STATIC@
+-tkey_LDADD = librpmio.la $(top_builddir)/popt/libpopt.la
++tkey_LDADD = librpmio5.la $(top_builddir)/popt/libpopt5.la
+ 
+ trpmio_SOURCES = trpmio.c
+-trpmio_LDADD = librpmio.la $(top_builddir)/popt/libpopt.la
++trpmio_LDADD = librpmio5.la $(top_builddir)/popt/libpopt5.la
+ 
+ tsw_SOURCES = tsw.c
+-tsw_LDFLAGS = librpmio.la
++tsw_LDFLAGS = librpmio5.la
+ 
+ dumpasn1_SOURCES = dumpasn1.c
+ 
+ lookup3_SOURCES = lookup3.c
+ lookup3_CFLAGS	= $(CFLAGS) -D_JLU3_SELFTEST
+-lookup3_LDADD = librpmio.la
++lookup3_LDADD = librpmio5.la
+ 
+ tficl.o: tficl.c
+ 	$(COMPILE) -I/usr/include/ficl -o $@ -c tficl.c 
+diff -ur rpm-4.5-orig/scripts/Makefile.am rpm-4.5-ok/scripts/Makefile.am
+--- rpm-4.5-orig/scripts/Makefile.am	2007-05-25 19:36:39.000000000 +0200
++++ rpm-4.5-ok/scripts/Makefile.am	2007-06-01 20:49:59.000000000 +0200
+@@ -25,9 +25,9 @@
+ 
+ all:
+ 
+-bin_SCRIPTS = rpm2cpio
++bin_SCRIPTS = rpm2cpio5
+ 
+-configdir = ${prefix}/lib/rpm
++configdir = ${prefix}/lib/rpm5
+ config_SCRIPTS = \
+ 	brp-compress brp-python-bytecompile brp-java-gcjcompile brp-redhat \
+ 	brp-strip brp-strip-comment-note brp-nobuildrootpath \
+diff -ur rpm-4.5-orig/tools/Makefile.am rpm-4.5-ok/tools/Makefile.am
+--- rpm-4.5-orig/tools/Makefile.am	2007-05-25 19:36:41.000000000 +0200
++++ rpm-4.5-ok/tools/Makefile.am	2007-06-01 20:49:59.000000000 +0200
+@@ -19,7 +19,7 @@
+ 
+ EXTRA_PROGRAMS = debugedit convertdb1
+ 
+-LDADD = $(top_builddir)/lib/librpm.la
++LDADD = $(top_builddir)/lib/librpm5.la
+ 
+ pkgbindir = @USRLIBRPM@
+ pkgbin_PROGRAMS = rpmdeps @WITH_LIBDWARF_DEBUGEDIT@
