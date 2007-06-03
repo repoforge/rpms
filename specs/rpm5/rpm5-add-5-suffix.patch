@@ -715,3 +715,43 @@ diff -ur rpm-4.5-orig/tools/Makefile.am rpm-4.5-ok/tools/Makefile.am
  
  pkgbindir = @USRLIBRPM@
  pkgbin_PROGRAMS = rpmdeps @WITH_LIBDWARF_DEBUGEDIT@
+--- rpm-4.5-orig/file/magic/Makefile.am 2007-05-25 19:36:00.000000000 +0200
++++ rpm-4.5-ok/file/magic/Makefile.am   2007-06-03 13:35:29.000000000 +0200
+@@ -1,5 +1,5 @@
+ #pkgdata_DATA = magic magic.mime magic.mgc magic.mime.mgc
+-pkglibdir =  @prefix@/lib/rpm
++pkglibdir =  @prefix@/lib/rpm5
+ pkglib_DATA = magic magic.mime magic.mgc magic.mime.mgc
+
+ EXTRA_DIST = magic2mime Localstuff Header magic.mime $(magic_FRAGMENTS)
+--- rpm-4.5-orig/installplatform        2007-05-25 19:35:52.000000000 +0200
++++ rpm-4.5-ok/installplatform     2007-06-03 14:14:54.000000000 +0200
+@@ -1,7 +1,7 @@
+ #!/usr/bin/env bash
+
+ DESTDIR="${DESTDIR:-/}"
+-pkglibdir="${pkglibdir:-/usr/lib/rpm}"
++pkglibdir="${pkglibdir:-/usr/lib/rpm5}"
+
+ RPMRC="${1:-rpmrc}"
+ MACROS="${2:-macros}"
+@@ -19,7 +19,7 @@
+ macrofiles:    $MACROS
+ E_O_F
+
+-RPM="./rpm --rcfile $TEMPRC"
++RPM="./rpm5 --rcfile $TEMPRC"
+
+ canonarch_sed='s_i.86_i386_;s_pentium[34]_i386_;s_athlon_i386_;s_sparc[^-]*_sparc_;s_alpha[^-]*_alpha_;s_\(powerpc\|ppc\)[^-]*_ppc_'
+ arch="$RPM --eval '%{_arch}' 2>/dev/null |sed -e "$canonarch_sed""
+--- rpm-4.5-orig/file/magic/Makefile.in 2007-05-26 03:04:23.000000000 +0200
++++ rpm-4.5-ok/file/magic/Makefile.in      2007-06-03 14:44:12.000000000 +0200
+@@ -55,7 +55,7 @@
+ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+
+ #pkgdata_DATA = magic magic.mime magic.mgc magic.mime.mgc
+-pkglibdir = @prefix@/lib/rpm
++pkglibdir = @prefix@/lib/rpm5
+ ACLOCAL = @ACLOCAL@
+ AMTAR = @AMTAR@
+ AR = @AR@

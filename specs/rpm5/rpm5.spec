@@ -71,6 +71,13 @@ verifying, querying, and updating software packages. Each software
 package consists of an archive of files along with information about
 the package like its version, a description, etc.
 
+%package conflicts
+Summary: Files which conflict with other rpm packages
+Group: System Environment/Base
+
+%description conflicts
+Files which conflict with other rpm packages.
+
 %package libs
 Summary:  Libraries for manipulating RPM packages.
 Group: Development/Libraries
@@ -84,8 +91,8 @@ This package contains the RPM shared libraries.
 %package devel
 Summary:  Development files for manipulating RPM packages.
 Group: Development/Libraries
-Requires: rpm = %{version}-%{release}
-Requires: rpm-libs = %{version}-%{release}
+Requires: rpm5 = %{version}-%{release}
+Requires: rpm5-libs = %{version}-%{release}
 Requires: beecrypt >= 4.1.2
 Requires: neon-devel
 Requires: sqlite-devel
@@ -105,12 +112,20 @@ will manipulate RPM packages and databases.
 %package build
 Summary: Scripts and executable programs used to build packages.
 Group: Development/Tools
-Requires: rpm = %{version}-%{release}, patch >= 2.5
+Requires: rpm5 = %{version}-%{release}, patch >= 2.5
 Requires: getconf(GNU_LIBPTHREAD_VERSION) = NPTL
 
 %description build
 The rpm-build package contains the scripts and executable programs
 that are used to build packages using the RPM Package Manager.
+
+%package build-conflicts
+Summary: Conflicting files of the rpm5-build package
+Group: Development/Tools
+Requires: rpm5 = %{version}-%{release}, patch >= 2.5
+
+%description build-conflicts
+Conflicting files of the rpm5-build package.
 
 %if %{with_python_subpackage}
 %package python
@@ -165,12 +180,31 @@ arguments to be aliased via configuration files and includes utility
 functions for parsing arbitrary strings into argv[] arrays using
 shell-like rules.
 
+%package -n popt5-devel
+Summary: Header files, libraries and development documentation for popt5.
+Group: Development/Libraries
+Requires: popt5
+
+%description -n popt5-devel
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using popt5,
+you will need to install popt5-devel.
+
+%package  -n popt5-devel-conflicts
+Summary: Conflicting files for popt5-devel.
+Group: Development/Libraries
+Requires: popt5-devel
+
+%description -n popt5-devel-conflicts
+This package contains the conflicting files of popt5-devel.
+
+
 %prep
 %setup -q -n rpm-%{rpm_version}
 %patch -p1
 %{__cp} gendiff gendiff5
 %{__cp} scripts/rpm2cpio scripts/rpm2cpio5
-%{__perl} -pi -e "s|@localedir@|/usr/share/locale|g;" po/Makefile*
+# {__perl} -pi -e "s|@localedir@|/usr/share/locale|g;" po/Makefile* */Makefile*
 
 %build
 bash ./autogen.sh
@@ -191,11 +225,11 @@ WITH_PERL="--without-perl"
 bash ./autogen.sh
 %ifos linux
 CFLAGS="$RPM_OPT_FLAGS"; export CFLAGS
-./configure --prefix=%{_prefix} --sysconfdir=/etc \
+localedir=%{_prefix}/share/locale ./configure --prefix=%{_prefix} --sysconfdir=/etc \
 	--localstatedir=/var --infodir='${prefix}%{__share}/info' \
 	--mandir='${prefix}%{__share}/man' \
 	$WITH_PYTHON $WITH_PERL --enable-posixmutexes --without-javaglue \
-	--localedir=%{_prefix}/share/locale
+	
 %else
 export CPPFLAGS=-I%{_prefix}/include 
 CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{_prefix} $WITH_PYTHON $WITH_PERL \
@@ -217,7 +251,7 @@ eval `perl '-V:installarchlib'`
 mkdir -p $RPM_BUILD_ROOT$installarchlib
 %endif
 
-make DESTDIR="$RPM_BUILD_ROOT" install
+make DESTDIR="$RPM_BUILD_ROOT" localedir=/usr/share/locale install
 
 %ifos linux
 
@@ -259,6 +293,7 @@ gzip -9n apidocs/man/man*/* || :
   rm -rf .%{_mandir}/pl/man8/rpmgraph.8*
   rm -rf .%{_mandir}/{fr,ko}
   rm -f .%{_bindir}/rpm{e,i,u}
+  rm -f .%{_bindir}/rpm
 %if %{with_python_subpackage}
   rm -f .%{_libdir}/python%{with_python_version}/site-packages/*.{a,la}
   rm -f .%{_libdir}/python%{with_python_version}/site-packages/rpm/*.{a,la}
@@ -314,8 +349,8 @@ exit 0
 %attr(0755, rpm, rpm)	/bin/rpm5
 
 %ifos linux
-%config(noreplace,missingok)	/etc/cron.daily/rpm
-%config(noreplace,missingok)	/etc/logrotate.d/rpm
+#%config(noreplace,missingok)	/etc/cron.daily/rpm
+#%config(noreplace,missingok)	/etc/logrotate.d/rpm
 %dir				/etc/rpm
 #%config(noreplace,missingok)	/etc/rpm/macros.*
 %attr(0755, rpm, rpm)	%dir /var/lib/rpm
@@ -340,6 +375,7 @@ exit 0
 %attr(0644, rpm, rpm)	%{_usrlibrpm}/macros
 %rpmattr	%{_usrlibrpm}/mkinstalldirs
 %rpmattr	%{_usrlibrpm}/rpm.*
+%rpmattr	%{_usrlibrpm}/rpm[deiukqv]5
 %rpmattr	%{_usrlibrpm}/rpm[deiukqv]
 %rpmattr	%{_usrlibrpm}/tgpg
 %attr(0644, rpm, rpm)	%{_usrlibrpm}/rpmpopt*
@@ -405,6 +441,13 @@ exit 0
 %lang(tr)	%{__prefix}/*/locale/tr/LC_MESSAGES/rpm.mo
 %lang(uk)	%{__prefix}/*/locale/uk/LC_MESSAGES/rpm.mo
 
+
+%files conflicts
+%ifos linux
+%config(noreplace,missingok)	/etc/cron.daily/rpm
+%config(noreplace,missingok)	/etc/logrotate.d/rpm
+%endif
+
 %{_mandir}/man8/rpm.8*
 %{_mandir}/man8/rpm2cpio.8*
 %lang(ja)	%{_mandir}/ja/man8/rpm.8*
@@ -464,15 +507,18 @@ exit 0
 %rpmattr	%{_usrlibrpm}/pythondeps.sh
 %rpmattr	%{_usrlibrpm}/rpmdeps
 
+%rpmattr	%{_usrlibrpm}/rpm[bt]5
 %rpmattr	%{_usrlibrpm}/rpm[bt]
 %rpmattr	%{_usrlibrpm}/symclash.*
 %rpmattr	%{_usrlibrpm}/u_pkg.sh
 %rpmattr	%{_usrlibrpm}/vpkg-provides.sh
 %rpmattr	%{_usrlibrpm}/vpkg-provides2.sh
 
+%files build-conflicts
 %{_mandir}/man1/gendiff.1*
 %{_mandir}/man8/rpmbuild.8*
 %{_mandir}/man8/rpmdeps.8*
+
 #%lang(ja)	%{_mandir}/ja/man1/gendiff.1*
 %lang(ja)	%{_mandir}/ja/man8/rpmbuild.8*
 #%lang(ja)	%{_mandir}/ja/man8/rpmdeps.8*
@@ -489,6 +535,7 @@ exit 0
 #%lang(sk)	%{_mandir}/sk/man8/rpmbuild.8*
 #%lang(sk)	%{_mandir}/sk/man8/rpmdeps.8*
 
+
 %if %{with_python_subpackage}
 %files python
 %{_libdir}/python%{with_python_version}/site-packages/rpm
@@ -500,6 +547,7 @@ exit 0
 %{_libdir}/perl5/site_perl/*/*/RPM.*
 %{_mandir}/man3/RPM.*
 %endif
+
 
 %files devel
 %if %{with_apidocs}
@@ -553,10 +601,11 @@ exit 0
 %lang(zh_CN)	%{__prefix}/*/locale/zh_CN/LC_MESSAGES/popt.mo
 %lang(zh_TW)	%{__prefix}/*/locale/zh_TW/LC_MESSAGES/popt.mo
 
-## XXX These may end up in popt-devel but it hardly seems worth the effort.
+%files -n popt5-devel
 %{_libdir}/libpopt5.a
 %{_libdir}/libpopt5.la
 %{_libdir}/libpopt5.so
+%files -n popt5-devel-conflicts
 %{_includedir}/popt.h
 
 %changelog
