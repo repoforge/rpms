@@ -6,7 +6,7 @@
 
 Summary: Library of Optimized Inner Loops, CPU optimized functions
 Name: liboil
-Version: 0.3.11
+Version: 0.3.12
 Release: 0
 License: LGPL
 Group: System Environment/Libraries
@@ -65,19 +65,22 @@ extended instructions provided by modern CPUs (Altivec, MMX, SSE, etc.).
 %defattr(-, root, root, 0755)
 %doc ChangeLog
 %{_bindir}/oil-bugreport
-%{_libdir}/*.so.*
+%{_libdir}/liboil-0.3.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*
-%{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
-%{_libdir}/pkgconfig/*.pc
+%{_includedir}/liboil-0.3/
+%exclude %{_libdir}/liboil-0.3.a
+%exclude %{_libdir}/liboil-0.3.la
+%{_libdir}/liboil-0.3.so
+%{_libdir}/pkgconfig/liboil-0.3.pc
 %doc %{_datadir}/gtk-doc/html/liboil/
 
 
 %changelog
+* Sat Jun 02 2007 Dag Wieers <dag@wieers.com> - 0.3.12-1
+- Updated to release 0.3.12.
+
 * Sun Mar 25 2007 Dag Wieers <dag@wieers.com> - 0.3.11-1
 - Updated to release 0.3.11.
 

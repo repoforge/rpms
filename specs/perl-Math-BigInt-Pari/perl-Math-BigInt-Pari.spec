@@ -1,0 +1,55 @@
+# $Id$
+# Authority: dag
+# Upstream: Benjamin Trott <ben@rhumba.pair.com>, Tels <http://bloodgate.com>
+
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name Math-BigInt-Pari
+
+Summary: Use Math::Pari for Math::BigInt routines
+Name: perl-Math-BigInt-Pari
+Version: 1.12
+Release: 1.rf
+License: Artistic/GPL
+Group: Applications/CPAN
+URL: http://search.cpan.org/dist/Math-BigInt-Pari/
+
+Source: http://www.cpan.org/modules/by-module/Math/Math-BigInt-Pari-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildArch: noarch
+BuildRequires: perl >= 1:5.6.2 
+BuildRequires: perl(Test::More) >= 0.47
+
+%description
+Use Math::Pari for Math::BigInt routines.
+
+%prep
+%setup -n %{real_name}-%{version}
+
+%build
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc CHANGES LICENSE MANIFEST MANIFEST.SKIP META.yml README SIGNATURE
+%doc %{_mandir}/man3/Math::BigInt::Pari.3pm*
+%dir %{perl_vendorlib}/Math/
+%dir %{perl_vendorlib}/Math/BigInt/
+%{perl_vendorlib}/Math/BigInt/Pari.pm
+
+%changelog
+* Thu May 31 2007 Dag Wieers <dag@wieers.com> - 1.12-1
+- Initial package. (using DAR)

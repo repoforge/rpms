@@ -7,13 +7,13 @@
 
 Summary: Abstract asynchronous event notification library
 Name: libevent
-Version: 1.3b
+Version: 1.5c
 Release: 1
 License: BSD
 Group: System Environment/Libraries
 URL: http://monkey.org/~provos/libevent/
 
-Source: http://monkey.org/~provos/libevent-%{version}.tar.gz
+Source: http://www.citi.umich.edu/u/provos/honeyd/honeyd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
@@ -72,6 +72,9 @@ you will need to install %{name}-devel.
 %{_libdir}/libevent.so
 
 %changelog
+* Tue May 29 2007 Dag Wieers <dag@wieers.com> - 1.5c-1
+- Updated to release 1.5c.
+
 * Mon Mar 05 2007 Dag Wieers <dag@wieers.com> - 1.3b-1
 - Updated to release 1.3b.
 

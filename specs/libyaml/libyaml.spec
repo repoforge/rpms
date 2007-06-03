@@ -32,7 +32,7 @@ you will need to install %{name}-devel.
 
 %build
 %configure --disable-static
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} AM_CFLAGS=""
 
 %install
 %{__rm} -rf %{buildroot}
