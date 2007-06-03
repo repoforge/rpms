@@ -1,10 +1,18 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{!?dist:%define _with_modxorg 1}
+%{?fc7:  %define _with_modxorg 1}
+%{?el5:  %define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
+
 Summary: Merge of libpixregion and libic
 Name: libpixman
-Version: 0.1.2
-Release: 1.2
+Version: 0.1.6
+Release: 1
 License: MIT
 Group: System Environment/Libraries
 URL: http://www.cairographics.org/
@@ -22,7 +30,9 @@ libpixman is a merge of libpixregion and libic.
 Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
-Requires: libpixman-devel, XFree86-devel
+Requires: libpixman-devel
+%{!?_with_modxorg:Requires: XFree86-devel}
+%{?_with_modxorg:Requires: libX11-devel}
 
 %description devel
 This package contains the header files, static libraries and development
@@ -38,13 +48,10 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -63,11 +70,12 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libpixman.pc
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.2-1.2
-- Rebuild for Fedora Core 5.
+* Thu May 31 2007 Dag Wieers <dag@wieers.com> - 0.1.6-1
+- Updated to release 0.1.6.
+- Fixed static dependency to XFree86-devel.
 
 * Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 0.1.2-1
-- Updated to release 0.1.1.
+- Updated to release 0.1.2.
 
 * Sun Jul 25 2004 Dag Wieers <dag@wieers.com> - 0.1.1-1
 - Updated to release 0.1.1.

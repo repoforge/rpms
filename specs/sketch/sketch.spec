@@ -12,7 +12,7 @@ URL: http://sketch.sourceforge.net/
 Source: http://dl.sf.net/sketch/sketch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python-imaging-devel >= 1.1, python-devel, python
+BuildRequires: python-imaging >= 1.1, python-devel, python
 BuildRequires: tcl-devel, tk-devel
 Requires: python >= 1.5.1, python-imaging >= 1.1
 
@@ -23,10 +23,10 @@ language.
 
 %prep
 %setup
-mv Pax/README Pax/README.pax
-mv Pax/COPYING Pax/COPYING.pax
-mv Filter/COPYING Filter/COPYING.filter
-mv Filter/README Filter/README.filter
+%{__mv} -vf Pax/README Pax/README.pax
+%{__mv} -vf Pax/COPYING Pax/COPYING.pax
+%{__mv} -vf Filter/COPYING Filter/COPYING.filter
+%{__mv} -vf Filter/README Filter/README.filter
 
 %build
 ./setup.py configure --with-nls
@@ -54,9 +54,6 @@ strip -S Sketch/Modules/*.so
 %{_bindir}/skshow
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.14-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Jan 04 2003 Dag Wieers <dag@wieers.com> - 0.6.14-1
 - Updated to 0.6.14.
 

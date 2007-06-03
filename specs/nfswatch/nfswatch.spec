@@ -3,7 +3,7 @@
 
 Summary: Command line tool to monitor NFS traffic
 Name: nfswatch
-Version: 4.99.8
+Version: 4.99.9
 Release: 1
 License: BSD
 Group: Applications/Internet
@@ -45,6 +45,9 @@ interface or on all interfaces.
 %{_sbindir}/nfswatch
 
 %changelog
+* Sat Jun 02 2007 Dag Wieers <dag@wieers.com> - 4.99.9-1
+- Updated to release 4.99.9.
+
 * Sun Mar 18 2007 Dag Wieers <dag@wieers.com> - 4.99.8-1
 - Updated to release 4.99.8.
 

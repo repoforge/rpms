@@ -1,6 +1,13 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el5:%define _without_pulseaudio 1}
+%{?el4:%define _without_pulseaudio 1}
+%{?el3:%define _without_pulseaudio 1}
+%{?el2:%define _without_pulseaudio 1}
+
 Summary: Music Player Daemon
 Name: mpd
 Version: 0.13.0
@@ -11,10 +18,10 @@ URL: http://www.musicpd.org/
 Source: http://www.musicpd.org/uploads/files/mpd-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
-BuildRequires: alsa-lib-devel, pulseaudio-devel, libshout-devel
+BuildRequires: alsa-lib-devel, libshout-devel, mikmod-devel
 BuildRequires: libid3tag-devel, libmad-devel, libogg-devel, libvorbis-devel
 BuildRequires: flac-devel, audiofile-devel, faad2-devel, libmpcdec-devel
-BuildRequires: mikmod-devel
+%{!?_without_pulseaudio:BuildRequires: pulseaudio-devel}
 
 %description
 Music Player Daemon (MPD) allows remote access for playing music and managing
@@ -35,7 +42,7 @@ frontend options, or restart X often.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %{__rm} -rf %{buildroot}%{_datadir}/doc/mpd/
 
 

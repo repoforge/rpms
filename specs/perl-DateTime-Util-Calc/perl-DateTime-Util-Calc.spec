@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dries
-# Upstream: Daisuke Maki <dmaki$cpan,org>
+# Upstream: Daisuke Maki <daisuke$endeworks,jp>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name DateTime-Util-Calc
 
 Summary: DateTime calculation utilities
 Name: perl-DateTime-Util-Calc
-Version: 0.11
+Version: 0.13002
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,11 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Util-Calc-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Module-Build, perl-Math-BigInt-GMP
+BuildRequires: perl >= 1:5.6.1 
+BuildRequires: perl(Module::Build), perl(Math::BigInt::GMP)
+BuildRequires: perl(Math::BigInt::FastCalc)
 BuildRequires: perl(Math::Round), perl(DateTime)
+BuildRequires: perl(Test::More)
 
 %description
 A perl module with additional DateTime calculation utilities.
@@ -37,26 +40,26 @@ A perl module with additional DateTime calculation utilities.
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES LICENSE
-%doc %{_mandir}/man3/*
+%doc CHANGES LICENSE MANIFEST META.yml
+%doc %{_mandir}/man3/DateTime::Util::Calc.3pm*
+#%doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/DateTime/
 %dir %{perl_vendorlib}/DateTime/Util/
 %{perl_vendorlib}/DateTime/Util/Calc.pm
 
 %changelog
+* Thu May 31 2007 Dag Wieers <dag@wieers.com> - 0.13002-1
+- Updated to release 0.13002.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.11-1
 - Updated to release 0.11.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Updated to release 0.10.

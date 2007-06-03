@@ -8,7 +8,7 @@
 
 Summary: Python's own image processing library
 Name: python-imaging
-Version: 1.1.5
+Version: 1.1.6
 Release: 1
 License: Distributable
 Group: Development/Libraries
@@ -40,21 +40,30 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 
+### Clean up buildroot
+for script in %{buildroot}%{_bindir}/*.py; do
+	%{__mv} -f $script %{buildroot}%{_bindir}/$(basename $script .py)
+done
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES* CONTENTS Images/ README Sane/ Scripts/
-%{_bindir}/pilconvert.py
-%{_bindir}/pildriver.py
-%{_bindir}/pilfile.py
-%{_bindir}/pilfont.py
-%{_bindir}/pilprint.py
+%{_bindir}/pilconvert
+%{_bindir}/pildriver
+%{_bindir}/pilfile
+%{_bindir}/pilfont
+%{_bindir}/pilprint
 %{python_sitearch}/PIL.pth
 %{python_sitearch}/PIL/
 
 %changelog
+* Thu May 31 2007 Dag Wieers <dag@wieers.com> - 1.1.6-1
+- Updated to release 1.1.6.
+- Rename the python scripts in %%{_bindir} without .py.
+
 * Mon Aug 14 2006 Dag Wieers <dag@wieers.com> - 1.1.5-1
 - Updated to release 1.1.5.
 

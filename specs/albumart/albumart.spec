@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Downloads album cover images semi-automatically from the Internet
@@ -13,9 +12,9 @@ URL: http://kempele.fi/~skyostil/projects/albumart/
 Source: http://louhi.kempele.fi/~skyostil/projects/albumart/dist/albumart-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: python, python-devel
 Requires: python, PyQt, python-imaging
-BuildArch: noarch
 
 %description
 Album Cover Art Downloader is a download utility for semi-automatically
@@ -34,11 +33,19 @@ python setup.py build
 %{__rm} -rf %{buildroot}
 python setup.py install --root="%{buildroot}"
 
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{_docdir}
+
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f INSTALLED_FILES
+%files
 %defattr(-, root, root, 0755)
+%doc README TODO
+%{_bindir}/albumart-qt
+%{_datadir}/albumart/
+%{_datadir}/applnk/Multimedia/albumart.desktop
+%{_datadir}/pixmaps/albumart.png
 %{_libdir}/albumart/
 
 %changelog

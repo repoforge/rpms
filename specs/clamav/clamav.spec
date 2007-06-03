@@ -11,8 +11,8 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.90.2
-Release: 2
+Version: 0.90.3
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -122,7 +122,7 @@ you will need to install %{name}-devel.
 		s|^#(MaxThreads) .+$|$1 50|;
 		s|^#(ReadTimeout) .+$|$1 300|;
 		s|^#(User) .+$|$1 clamav|;
-		s|^#(AllowSupplementaryGroups)|$1|;
+		s|^#(AllowSupplementaryGroups).*$|$1 yes|;
 		s|^#(ScanPE) .+$|$1 yes|;
 		s|^#(ScanELF) .+$|$1 yes|;
 		s|^#(DetectBrokenExecutables)|$1|;
@@ -359,6 +359,9 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
+* Thu May 31 2007 Dag Wieers <dag@wieers.com> - 0.90.3-1
+- Updated to release 0.90.3.
+
 * Fri Apr 27 2007 Dag Wieers <dag@wieers.com> - 0.90.2-2
 - Added clamav-milter support for EL2.1 now that it comes with a newer sendmail. (Tom G. Christensen)
 

@@ -34,12 +34,12 @@ This package contains also a virtual file system for Midnight Commander.
 ### same directory as the binaries, and we don't want them in %{_bindir}.
 %{__cat} << 'EOF' > 7za.sh
 #!/bin/sh
-exec %{_libexecdir}/p7zip/7za $@
+exec %{_libexecdir}/p7zip/7za "$@"
 EOF
 
 %{__cat} << 'EOF' > 7z.sh
 #!/bin/sh
-exec %{_libexecdir}/p7zip/7z $@
+exec %{_libexecdir}/p7zip/7z "$@"
 EOF
 
 %build
@@ -74,9 +74,10 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog DOCS/* README TODO
+%doc ChangeLog README TODO DOCS/*
 %{_bindir}/7za
 %dir %{_libexecdir}/p7zip/
+%{_libexecdir}/p7zip/7z.so
 %{_libexecdir}/p7zip/7za
 %{_libexecdir}/p7zip/7zCon.sfx
 
@@ -87,7 +88,7 @@ EOF
 %dir %{_libexecdir}/p7zip/
 %{_libexecdir}/p7zip/7z
 %{_libexecdir}/p7zip/Codecs/
-%{_libexecdir}/p7zip/Formats/
+#%{_libexecdir}/p7zip/Formats/
 
 
 %changelog

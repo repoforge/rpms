@@ -10,14 +10,16 @@
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
+%{?el5:%define _without_glide3 1}
 %{?el4:%define _without_glide3 1}
+%{?el3:%define _without_glide3 1}
+%{?el2:%define _without_glide3 1}
+
 %{?fc1:%define _without_alsa 1}
 %{?el3:%define _without_alsa 1}
-%{?el3:%define _without_glide3 1}
 %{?rh9:%define _without_alsa 1}
 %{?rh7:%define _without_alsa 1}
 %{?el2:%define _without_alsa 1}
-%{?el2:%define _without_glide3 1}
 
 #define rcver cvs
 %define targets %{?!_without_mame:mame} %{?!_without_mess:mess}
