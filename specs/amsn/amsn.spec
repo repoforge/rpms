@@ -43,7 +43,7 @@ Patch1: amsn-0.92-login.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386 x86_64
-BuildRequires: tcl >= 8.4, tk >= 8.4, openssl-devel
+BuildRequires: tcl >= 8.4, tk >= 8.4, openssl-devel, gcc-c++
 BuildRequires: imlib-devel, libpng-devel, libtiff-devel
 %{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.4, tk-devel}
 %{?_without_tcltk_devel:BuildRequires: tcl >= 8.4, tk}

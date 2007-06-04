@@ -22,6 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
 Requires: tk
+%{?!_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Ding is a dictionary lookup program for the X Window system on Linux/Unix. It

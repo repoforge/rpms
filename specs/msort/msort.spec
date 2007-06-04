@@ -14,7 +14,7 @@ URL: http://billposer.org/Software/msort.html
 Source: http://billposer.org/Software/Downloads/msort-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: tre-devel, libuninum-devel >= 2.1
+BuildRequires: tre-devel, libuninum-devel >= 2.1, utf8proc-devel
 
 %description
 Msort is a program for sorting files in sophisticated ways. Records need not

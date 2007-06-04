@@ -24,7 +24,7 @@ Source0: http://dl.sf.net/fluxbox/fluxbox-%{version}.tar.bz2
 Source1: fluxbox-xdg-menu.py
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: zlib-devel, imlib2-devel
+BuildRequires: zlib-devel, imlib2-devel, gcc-c++
 %{!?_without_fontconfig:BuildRequires: fontconfig-devel}
 %{?_with_modxorg:BuildRequires: libICE-devel, libSM-devel, libX11-devel, libXext-devel, libXft-devel, libXinerama-devel, libXpm-devel, libXrandr-devel, libXrender-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
