@@ -22,7 +22,7 @@ KTorrent is a BitTorrent program for KDE.
 %setup
 
 %build
-%configure
+%configure LDFLAGS=-L$QTLIB
 %{__make} %{?_smp_mflags}
 
 %install
