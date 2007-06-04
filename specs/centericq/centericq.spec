@@ -15,6 +15,7 @@ Source: http://konst.org.ua/download/centericq-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, gpgme-devel, curl-devel, libjpeg-devel
+BuildRequires: ncurses-devel
 
 %description
 centericq is a text mode menu- and window-driven IM interface.

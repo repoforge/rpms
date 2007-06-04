@@ -12,6 +12,8 @@ URL: http://www.peereboom.us/iogen/
 Source: http://www.peereboom.us/iogen/iogen_%{version}p0.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: groff
+
 %description
 iogen is an I/O generator. It forks child processes that each run a mix
 of reads and writes. The idea is to generate heavily fragmented files

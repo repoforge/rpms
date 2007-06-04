@@ -29,7 +29,7 @@ permissions, and file ownership.
 %setup
 
 %build
-%configure
+%configure LDFLAGS=-L$QTLIB
 %{__make} %{?_smp_mflags}
 
 %install

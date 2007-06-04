@@ -54,7 +54,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %defattr(-, root, root, 0755)
 #doc readme.txt
 %{_bindir}/bsc
-%{_datadir}/applications/bsc-%{desktop_vendor}.desktop
+%{_datadir}/applications/%{desktop_vendor}-bsc.desktop
 
 %changelog
 * Tue Apr 24 2007 Dag Wieers <dag@wieers.com> - 2.27-2
