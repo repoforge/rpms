@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 # Dist: nodist
-# ExclusiveDist: fc6 el5
+# ExclusiveDist: fc6 el5 fc7
 
 %define majmin          1.0
 %define relver          9762
@@ -16,7 +16,7 @@
 Summary: Proprietary NVIDIA hardware accelerated OpenGL display driver
 Name: nvidia-x11-drv
 Version: %{majmin}.%{relver}
-Release: 1%{?beta}
+Release: 2%{?beta}
 License: Proprietary
 Group: User Interface/X Hardware Support
 URL: http://www.nvidia.com/object/unix.html
@@ -28,6 +28,7 @@ Source2: nvidia.sh
 Source3: nvidia.csh
 Source4: nvidia-config-display
 Source5: nvidia.modprobe
+Source6: nvidia.nodes
 # http://www.nvnews.net/vbulletin/attachment.php?attachmentid=20486&d=1158955681
 Patch0: NVIDIA_kernel-1.0-9625-NOSMBUS.diff.txt
 # http://www.nvnews.net/vbulletin/showthread.php?t=77597
@@ -207,6 +208,10 @@ echo %{nvidialib32dir} >> %{buildroot}%{_sysconfdir}/ld.so.conf.d/nvidia.conf
 %{__install} -D -p -m 0755 %{SOURCE4} \
     %{buildroot}%{_sbindir}/nvidia-config-display
 
+# Install udev "configuration" file, required as of F7
+%{__install} -D -p -m 0644 %{SOURCE6} \
+    %{buildroot}%{_sysconfdir}/udev/makedev.d/60-nvidia.nodes
+
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -243,6 +248,8 @@ fi
 # Kernel and dkms related bits
 %config %{_sysconfdir}/modprobe.d/nvidia
 %{_usrsrc}/%{dkms_name}-%{dkms_vers}/
+# udev "configuration"
+%config %{_sysconfdir}/udev/makedev.d/60-nvidia.nodes
 # Devices for udev to copy directly
 %attr(0600,root,root) %dev(c,195,0) %{_sysconfdir}/udev/devices/nvidia0
 %attr(0600,root,root) %dev(c,195,1) %{_sysconfdir}/udev/devices/nvidia1
@@ -288,6 +295,10 @@ fi
 
 
 %changelog
+* Tue Jun  5 2007 Matthias Saou <http://freshrpms.net/> 1.0.9762-2
+- Add 60-nvidia.nodes udev file to have device nodes copied in F7 and get
+  things right with selinux.
+
 * Fri May 18 2007 Matthias Saou <http://freshrpms.net/> 1.0.9762-1
 - Update to 1.0-9762.
 
