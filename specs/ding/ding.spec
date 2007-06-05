@@ -45,7 +45,7 @@ for quick and easy lookups.
 %{__install} -Dp -m0644 ding.png %{buildroot}%{_datadir}/pixmaps/ding.png
 %{__install} -Dp -m0644 ding.1 %{buildroot}%{_mandir}/man1/ding.1
 
-%{__install} -d %{buildroot}%{_datadir}/dict
+%{__install} -d %{buildroot}%{_datadir}/dict/
 %{__install} -Dp -m0644 *-*.txt %{buildroot}%{_datadir}/dict/
 
 %if %{?_without_freedesktop:1}0
@@ -67,7 +67,6 @@ for quick and easy lookups.
 %{_bindir}/ding
 %{_datadir}/dict/de-en.txt
 %{_datadir}/pixmaps/ding.png
-%{_datadir}/applications/ding.desktop
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-ding.desktop}
 %{?_without_freedesktop:/etc/X11/applnk/Utilities/ding.desktop}
 
