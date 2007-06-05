@@ -13,6 +13,7 @@ Source: http://downloads.sf.net/pidgin-encrypt/pidgin-encryption-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: pidgin
 BuildRequires: pidgin-devel, gtk2-devel, nss-devel, nspr-devel
+Obsoletes: gaim-encryption < 3.0-1
 
 %description
 Pidgin-Encryption transparently encrypts your instant messages with RSA
