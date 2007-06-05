@@ -100,7 +100,7 @@
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
 Version: 0.8.6b
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -336,6 +336,9 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 
 
 %changelog
+* Mon Jun 04 2007 Dag Wieers <dag@wieers.com> - 0.8.6b-3
+- Rebuild against x264-0.4.20070529 because I missed it.
+
 * Thu May 31 2007 Matthias Saou <http://freshrpms.net/> 0.8.6b-2
 - Still no dc1394 support.
 - F7 rebuild.

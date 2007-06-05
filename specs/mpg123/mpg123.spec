@@ -5,6 +5,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?el5:%define _without_jack 1}
+%{?el5:%define _without_nas 1}
+
 %{?el4:%define _without_jack 1}
 %{?el4:%define _without_nas 1}
 
@@ -42,7 +45,7 @@
 
 Summary: MPEG audio player
 Name: mpg123
-Version: 0.65
+Version: 0.66
 Release: 1
 License: GPL/LGPL
 Group: Applications/Multimedia
@@ -95,6 +98,9 @@ Available rpmbuild rebuild option :
 
 
 %changelog
+* Mon Jun 04 2007 Dag Wieers <dag@wieers.com> - 0.66-1
+- Updated to release 0.66.
+
 * Wed Feb 07 2007 Dag Wieers <dag@wieers.com> - 0.65-1
 - Updated to release 0.65.
 

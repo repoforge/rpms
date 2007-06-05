@@ -25,19 +25,14 @@ echo "%{_datadir}/typespeed/" >typespeedrc
 %build
 %configure
 %{__make} %{?_smp_mflags}
-#CC="%{__cc}" CFLAGS="%{optflags} -D_GNU_SOURCE -I%{_includedir}/ncurses" PREFIX="%{_prefix}"
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-#%{__install} -Dp -m0755 typespeed %{buildroot}%{_bindir}/typespeed
-#%{__install} -Dp -m0644 typespeed.6 %{buildroot}%{_mandir}/man6/typespeed.6
-#%{__install} -Dp -m0644 typespeedrc %{buildroot}%{_sysconfdir}/typespeedrc
+%find_lang %{name}
 
-#%{__install} -d -m0755 %{buildroot}%{_datadir}/typespeed/
-#%{__install} -p -m0644 words/words.* %{buildroot}%{_datadir}/typespeed/
-
-#%{__install} -d -m0755 %{buildroot}%{_localstatedir}/games/typespeed/
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{_docdir}/typespeed/
 
 %post
 %{_bindir}/typespeed --makescores &>/dev/null || :
@@ -45,14 +40,15 @@ echo "%{_datadir}/typespeed/" >typespeedrc
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING NEWS README TODO
 %doc %{_mandir}/man6/typespeed.6*
 %config %{_sysconfdir}/typespeedrc
 %{_bindir}/typespeed
 %{_datadir}/typespeed/
-#%dir %{_localstatedir}/games/typespeed/
+%dir %{_localstatedir}/games/
+%{_localstatedir}/games/typespeed.score
 
 %changelog
 * Sat Jun 02 2007 Dag Wieers <dag@wieers.com> - 0.6.2-1

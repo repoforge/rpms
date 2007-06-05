@@ -4,7 +4,7 @@
 
 Summary: Tool that performs system call replay of strace logs
 Name: sreplay
-Version: 0.2.7
+Version: 0.2.8
 Release: 1
 License: LGPL
 Group: Development/Debuggers
@@ -39,6 +39,9 @@ applications in their entirety.
 %{_bindir}/sreplay
 
 %changelog
+* Tue Jun 05 2007 Dag Wieers <dag@wieers.com> - 0.2.8-1
+- Updated to release 0.2.8.
+
 * Tue May 29 2007 Dag Wieers <dag@wieers.com> - 0.2.7-1
 - Updated to release 0.2.7.
 

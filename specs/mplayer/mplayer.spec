@@ -70,7 +70,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.34%{?rcver:.%{rcver}}%{?date:.%{date}}try2
+Release: 0.35%{?rcver:.%{rcver}}%{?date:.%{date}}try2
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -318,6 +318,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Mon Jun 04 2007 Dag Wieers <dag@wieers.com> - 1.0-0.35.rc1try2
+- Rebuild against x264-0.4.20070529 because I missed it.
+
 * Tue Jan  9 2007 Matthias Saou <http://freshrpms.net/> 1.0-0.34.rc1try2
 - Include patch to fix mp3 playback on AMD CPUs.
 - Include patch to fix buffer overflow in asmrp.c.

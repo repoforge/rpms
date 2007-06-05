@@ -38,7 +38,7 @@ License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/x264.html
 Source: http://downloads.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{date}-2245.tar.bz2
-Patch0: x264-snapshot-20061214-2245-glibc232.patch
+Patch0: x264-snapshot-20070529-2245-glibc232.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: nasm, yasm, gettext
 %{?!_without_gtk26:BuildRequires: gtk2-devel >= 2.6}

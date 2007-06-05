@@ -3,31 +3,25 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?rh7:%define _without_faac 1}
-%{?el2:%define _without_faac 1}
-
-%{?el4:%define _without_theora 1}
-%{?el3:%define _without_theora 1}
-%{?rh9:%define _without_theora 1}
-%{?rh7:%define _without_theora 1}
-%{?el2:%define _without_theora 1}
-
 %{?el4:%define _without_texi2html 1}
 %{?fc3:%define _without_texi2html 1}
 %{?fc2:%define _without_texi2html 1}
 %{?fc1:%define _without_texi2html 1}
 %{?el3:%define _without_texi2html 1}
+
 %{?rh9:%define _without_texi2html 1}
-%{?rh7:%define _without_texi2html 1}
-%{?el2:%define _without_texi2html 1}
-
-%{?el2:%define _without_vorbis 1}
-
 %{?rh9:%define _without_x264 1}
+
+%{?rh7:%define _without_faac 1}
+%{?rh7:%define _without_texi2html 1}
 %{?rh7:%define _without_x264 1}
+
+%{?el2:%define _without_faac 1}
+%{?el2:%define _without_texi2html 1}
+%{?el2:%define _without_vorbis 1}
 %{?el2:%define _without_x264 1}
 
-%define date 20070530
+%define date 20070109
 
 Summary: Utilities and libraries to record, convert and stream audio and video
 Name: ffmpeg
@@ -40,14 +34,13 @@ URL: http://ffmpeg.org/
 # find ffmpeg -name .svn | xargs rm -rf
 # then rename the directory and compress
 Source: ffmpeg-%{date}.tar.bz2
-Patch0: ffmpeg-20070530-gsm.patch
-Patch1: ffmpeg-20070530-faad2.patch
+Patch0: ffmpeg-20070109-gsm.patch
+Patch1: ffmpeg-20070109-faad2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel
 %{!?_without_texi2html:BuildRequires: texi2html}
 %{!?_without_lame:BuildRequires: lame-devel}
 %{!?_without_vorbis:BuildRequires: libogg-devel, libvorbis-devel}
-%{!?_without_theora:BuildRequires: libogg-devel, libtheora-devel}
 %{!?_without_faad:BuildRequires: faad2-devel}
 %{!?_without_faac:BuildRequires: faac-devel}
 %{!?_without_gsm:BuildRequires: gsm-devel}
@@ -55,6 +48,7 @@ BuildRequires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel
 %{!?_without_x264:BuildRequires: x264-devel}
 %{!?_without_a52dec:Requires: a52dec}
 %{!?_without_a52dec:BuildRequires: a52dec-devel}
+%{!?_without_dts:BuildRequires: libdca-devel}
 
 %description
 FFmpeg is a very fast video and audio converter. It can also grab from a
@@ -66,7 +60,7 @@ from any sample rate to any other, and resize video on the fly with a high
 quality polyphase filter.
 
 Available rpmbuild rebuild options :
---without : lame vorbis theora faad faac gsm xvid x264 a52dec altivec
+--without : lame vorbis faad faac gsm xvid x264 a52dec dts altivec
 
 
 %package devel
@@ -82,6 +76,7 @@ Requires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel, pkgconfig
 %{!?_without_xvid:Requires: xvidcore-devel}
 %{!?_without_x264:Requires: x264-devel}
 %{!?_without_a52dec:Requires: a52dec-devel}
+%{!?_without_dts:Requires: libdca-devel}
 
 %description devel
 FFmpeg is a very fast video and audio converter. It can also grab from a
@@ -132,15 +127,15 @@ export CFLAGS="%{optflags}"
 %ifarch x86_64
     --extra-cflags="-fPIC" \
 %endif
-    %{!?_without_lame:   --enable-libmp3lame} \
-    %{!?_without_vorbis: --enable-libogg --enable-libvorbis} \
-    %{!?_without_theora: --enable-libogg --enable-libtheora} \
-    %{!?_without_faad:   --enable-libfaad} \
-    %{!?_without_faac:   --enable-libfaac} \
+    %{!?_without_lame:   --enable-mp3lame} \
+    %{!?_without_vorbis: --enable-libogg --enable-vorbis} \
+    %{!?_without_faad:   --enable-faad} \
+    %{!?_without_faac:   --enable-faac} \
     %{!?_without_gsm:    --enable-libgsm} \
     %{!?_without_xvid:   --enable-xvid} \
     %{!?_without_x264:   --enable-x264} \
-    %{!?_without_a52:    --enable-liba52 --enable-liba52bin} \
+    %{!?_without_a52:    --enable-a52 --enable-a52bin} \
+    %{!?_without_dts:    --enable-dts} \
     --enable-pp \
     --enable-shared \
     --enable-pthreads \
@@ -210,14 +205,8 @@ chcon -t textrel_shlib_t %{_libdir}/libav{codec,format,util}.so.*.*.* \
 
 
 %changelog
-* Mon Jun 04 2007 Dag Wieers <dag@wieers.com> - 0.4.9-0.9.20070530
+* Mon Jun 04 2007 Dag Wieers <dag@wieers.com> - 0.4.9-0.9.20070109
 - Rebuild against x264-0.4.20070529 because I missed it.
-
-* Wed May 30 2007 Matthias Saou <http://freshrpms.net/> 0.4.9-0.8.20070530
-- Update to today's SVN codebase.
-- Rename various options to match new configure names.
-- Remove dca support since it's no longer available with the external lib.
-- Enable theora support by default.
 
 * Tue Jan  9 2007 Matthias Saou <http://freshrpms.net/> 0.4.9-0.8.20070109
 - Update to today's SVN codebase, fixes the non existing ffmpeg.pc refrence.

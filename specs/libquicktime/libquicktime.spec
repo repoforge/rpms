@@ -27,11 +27,13 @@
 
 %{?rh7:%define _without_1394 1}
 %{?rh7:%define _without_alsa 1}
+%{?rh7:%define _without_faac 1}
 %{?rh7:%define _without_gtk24 1}
 %{?rh7:%define _without_x264 1}
 
 %{?el2:%define _without_1394 1}
 %{?el2:%define _without_alsa 1}
+%{?el2:%define _without_faac 1}
 %{?el2:%define _without_gtk24 1}
 %{?el2:%define _without_x264 1}
 
@@ -42,7 +44,7 @@
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
 Version: 1.0.0
-Release: 1%{?prever:.%{prever}}
+Release: 2%{?prever:.%{prever}}
 License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sourceforge.net/
@@ -147,6 +149,9 @@ programs that need to access quicktime files using libquicktime.
 
 
 %changelog
+* Mon Jun 04 2007 Dag Wieers <dag@wieers.com> - 1.0.0-2
+- Rebuild against x264-0.4.20070529 because I missed it.
+
 * Sat Apr 21 2007 Dag Wieers <dag@wieers.com> - 1.0.0-1
 - Updated to release 1.0.0.
 

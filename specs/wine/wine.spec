@@ -46,7 +46,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 0.9.37
+Version: 0.9.38
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -461,6 +461,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/msiexec.exe.so
 %{_libdir}/wine/net.exe.so
 %{_libdir}/wine/notepad.exe.so
+%{_libdir}/wine/ntoskrnl.exe.so
 %{_libdir}/wine/oleview.exe.so
 %{_libdir}/wine/progman.exe.so
 %{_libdir}/wine/regedit.exe.so
@@ -476,6 +477,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/winecfg.exe.so
 %{_libdir}/wine/wineconsole.exe.so
 %{_libdir}/wine/winedbg.exe.so
+%{_libdir}/wine/winedevice.exe.so
 %{_libdir}/wine/winefile.exe.so
 %{_libdir}/wine/winemenubuilder.exe.so
 %{_libdir}/wine/winemine.exe.so
@@ -582,8 +584,10 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/dswave.dll.so
 %{_libdir}/wine/dxdiagn.dll.so
 %{_libdir}/wine/gdi32.dll.so
+%{_libdir}/wine/gdiplus.dll.so
 %{_libdir}/wine/glu32.dll.so
 #%{_libdir}/wine/glut32.dll.so
+%{_libdir}/wine/hal.dll.so
 %{_libdir}/wine/hid.dll.so
 %{_libdir}/wine/hlink.dll.so
 %{_libdir}/wine/iccvid.dll.so
@@ -688,6 +692,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/wininet.dll.so
 %{_libdir}/wine/winmm.dll.so
 %{_libdir}/wine/winnls32.dll.so
+%{_libdir}/wine/winscard.dll.so
 %{_libdir}/wine/wintab32.dll.so
 %{_libdir}/wine/wintrust.dll.so
 %{_libdir}/wine/wnaspi32.dll.so
@@ -810,6 +815,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Mon Jun 04 2007 Dag Wieers <dag@wieers.com> - 0.9.38-1
+- Updated to release 0.9.38.
+
 * Tue May 15 2007 Dag Wieers <dag@wieers.com> - 0.9.37-1
 - Updated to release 0.9.37.
 

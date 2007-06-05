@@ -15,7 +15,7 @@
 Summary: Advanced audio and video capturing, compositing, and editing
 Name: cinelerra
 Version: 2.1
-Release: 0.12%{?prever:.%{prever}}
+Release: 0.13%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://cvs.cinelerra.org/
@@ -126,6 +126,9 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
 
 
 %changelog
+* Sun Jun 03 2007 Dag Wieers <dag@wieers.com> - 2.0-0.13.20070108
+- Rebuild against x264-0.4.20070529 because I missed it.
+
 * Mon Jan  8 2007 Matthias Saou <http://freshrpms.net/> 2.0-0.12.20070108
 - Update to today's SVN code.
 - Include faad2 patch.

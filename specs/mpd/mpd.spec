@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel
 BuildRequires: alsa-lib-devel, libshout-devel, mikmod-devel
 BuildRequires: libid3tag-devel, libmad-devel, libogg-devel, libvorbis-devel
-BuildRequires: flac-devel, audiofile-devel, faad2-devel, libmpcdec-devel
+BuildRequires: flac-devel >= 1.1.2, audiofile-devel, faad2-devel, libmpcdec-devel
 %{!?_without_pulseaudio:BuildRequires: pulseaudio-devel}
 
 %description
