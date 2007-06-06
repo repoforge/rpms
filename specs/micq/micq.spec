@@ -12,8 +12,8 @@
 
 Summary: Clone of the Mirabilis ICQ online messaging program
 Name: micq
-Version: 0.5.1
-Release: 1.2
+Version: 0.5.4
+Release: 1
 Group: Applications/Internet
 License: GPL
 URL: http://www.micq.org/
@@ -64,8 +64,8 @@ program.
 %{_datadir}/micq/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.1-1.2
-- Rebuild for Fedora Core 5.
+* Wed Jun 06 2007 Dag Wieers <dag@wieers.com> - 0.5.4-1
+- Updated to release 0.5.4.
 
 * Mon Feb 13 2006 Dag Wieers <dag@wieers.com> - 0.5.1-1
 - Updated to release 0.5.1.

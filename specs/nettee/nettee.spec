@@ -1,16 +1,16 @@
 # $Id$
 # Authority: dag
-# Upstream: David Mathog <mathog@caltech.edu>
+# Upstream: David Mathog <mathog$caltech,edu>
 
 Summary: Network "tee" program
 Name: nettee
-Version: 0.1.7
-Release: 1.2
+Version: 0.1.8
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://saf.bio.caltech.edu/nettee.html
 
-Source: http://saf.bio.caltech.edu/pub/software/linux_or_unix_tools/nettee.tar.gz
+Source: http://saf.bio.caltech.edu/pub/software/linux_or_unix_tools/nettee-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -20,7 +20,7 @@ which connects them.  It is handy for cloning nodes or moving large
 database files.
 
 %prep
-%setup -n %{name}-%{version}
+%setup
 
 %build
 %{__cc} %{optflags} -D_LARGEFILE64_SOURCE -o nettee nettee.c
@@ -41,8 +41,8 @@ database files.
 %{_bindir}/nettee
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.7-1.2
-- Rebuild for Fedora Core 5.
+* Wed Jun 06 2007 Dag Wieers <dag@wieers.com> - 0.1.8-1
+- Updated to release 0.1.8.
 
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.1.7-1
 - Updated to release 0.1.7.

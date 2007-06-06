@@ -1,9 +1,10 @@
 # $Id$
 # Authority: dag
+# Upstream: <namikus$users,sf,net>
 
 Summary: Recover files based on their headers and footers
 Name: foremost
-Version: 1.2
+Version: 1.5
 Release: 1
 License: freeware
 Group: Applications/Archiving
@@ -23,8 +24,7 @@ headers you want to look for.
 %setup
 
 %build
-%{__make} %{?_smp_mflags} \
-	CFLAGS="%{optflags}"
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -38,16 +38,16 @@ headers you want to look for.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES README
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/foremost.1*
 %config %{_sysconfdir}/foremost.conf
 %{_sbindir}/foremost
 
 %changelog
+* Wed Jun 06 2007 Dag Wieers <dag@wieers.com> - 1.5-1
+- Updated to release 1.5.
+
 * Sat Apr 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1
 - Updated to release 1.2.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.69-0.2
-- Rebuild for Fedora Core 5.
 
 * Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 0.69-0
 - Updated to release 0.69.
