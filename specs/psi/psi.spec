@@ -11,22 +11,15 @@
 %{?rh6:%define _without_freedesktop 1}
 
 %define desktop_vendor rpmforge
-%define qca            qca-1.0
-%define tls_plugin     qca-tls-1.0
-%define sasl_plugin    qca-sasl-1.0
-%define qtdir          %(echo ${QTDIR})
 
 Summary: Client application for the Jabber network
 Name: psi
 Version: 0.10
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Communications
 URL: http://psi-im.org/
 Source0: http://dl.sf.net/psi/psi-%{version}.tar.bz2
-Source1: http://psi.affinix.com/beta/%{tls_plugin}.tar.bz2
-Source2: http://delta.affinix.com/qca/%{qca}.tar.bz2
-Source3: http://delta.affinix.com/qca/%{sasl_plugin}.tar.bz2
 # Source20: psi_ca.qm
 Source21: psi_cs.qm
 Source22: psi_de.qm
@@ -43,28 +36,31 @@ Source32: psi_zh.qm
 Source33: psi_et.qm
 Source34: psi_vi.qm
 Source35: psi_ru.qm
+Patch0: psi-0.9.2-strip.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: kdelibs-devel, openssl-devel, gcc-c++
+
+BuildRequires: kdelibs-devel, openssl-devel, gcc-c++, zlib-devel, qca-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-Obsoletes: psi-iconsets < 0.9.1
+Obsoletes: psi-iconsets <= %{version}-%{release} 0.9.1
 
 %description
 Psi is a client program for the Jabber messaging network. It supports
 multiple accounts, group chat, Unicode and SSL encryption.
 
-
 %package languagepack
 Summary: Translations for the Psi jabber client
 Group: Applications/Communications
-Requires: %{name} = %{version}
+Requires: %{name} = %{version}-%{release}
+Obsoletes: %{name}-i18n <= %{version}-%{release}
+Provides: %{name}-i18n = %{version}-%{release}
 
 %description languagepack
-This package contains the necessairy files for using the jabber client Psi
+This package contains the necessary files for using the jabber client Psi
 in other languages than English.
 
-
 %prep
-%setup -a 1 -a 2 -a 3
+%setup
+%patch0 -p1 -b .strip
 
 #%{__cat} <<EOF >psi.desktop
 #[Desktop Entry]
@@ -80,48 +76,19 @@ in other languages than English.
 #EOF
 
 %build
-# We need to build QCA-1.0 first
-pushd %{qca}
-    ./configure \
-    --prefix="${PWD}%{_prefix}"
-    %{__perl} -pi.orig -e "s|${PWD}/src||g" Makefile
-    %{__make}
-popd
 source %{_sysconfdir}/profile.d/qt.sh
-# It's not an autoconf generated script...
-# The PWD thing is an ugly hack since relative paths mess everything up...
-#    --libdir="${PWD}/src%{_datadir}/%{name}" \
 ./configure \
-    --prefix="${PWD}/src%{_prefix}" \
-    --bindir="${PWD}/src%{_bindir}" \
-    --with-qca-inc="${PWD}/%{qca}/src" \
-    --with-qca-lib="${PWD}/%{qca}"
-%{__perl} -pi.orig -e "s|${PWD}/src||g" Makefile src/config.h
+        --prefix="%{_prefix}" \
+        --bindir="%{_bindir}" \
+        --datadir="%{_datadir}"\
+        --qtdir="$QTDIR"
 %{__make} %{?_smp_mflags}
-
-# Transport Layer Security plugin
-# Again, impossible to get the prefix right easily (see install below)...
-pushd %{tls_plugin}
-    ./configure
-    %{__make}
-popd
-
 
 %install
 %{__rm} -rf %{buildroot}
 source %{_sysconfdir}/profile.d/qt.sh
-# That trailing "/" is mandatory because of "$(INSTALL_ROOT)usr" type of lines
 
-# Install QCA-1.0
-pushd %{qca}
-    %{__make} install INSTALL_ROOT="%{buildroot}/"
-popd
-
-%{__make} install INSTALL_ROOT="%{buildroot}/"
-
-# Transport Layer Security plugin
-%{__install} -Dp -m0755 %{tls_plugin}/libqca-tls.so \
-    %{buildroot}%{qtdir}/plugins/crypto/libqca-tls.so
+%{__make} install INSTALL_ROOT="%{buildroot}"
 
 # Install the pixmap for the menu entry
 %{__install} -Dp -m0644 iconsets/system/default/icon_32.png \
@@ -149,25 +116,30 @@ popd
     %{SOURCE31} %{SOURCE32} %{SOURCE33} %{SOURCE34} %{SOURCE35} \
     %{buildroot}%{_datadir}/psi/
 
+%post
+touch --no-create %{_datadir}/icons/hicolor || :
+%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+
+%postun
+touch --no-create %{_datadir}/icons/hicolor || :
+%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README TODO
-%{_libdir}/libqca.so*
-%{_includedir}/qca.h
 %{_bindir}/psi
+%{_datadir}/psi/
+%{_datadir}/pixmaps/psi.png
+%{_datadir}/applications/psi.desktop
+%{_datadir}/icons/hicolor/*/apps/psi.png
+#%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-psi.desktop}
+#%{?_without_freedesktop:%{_sysconfdir}/X11/applnk/Internet/psi.desktop}
 %exclude %{_datadir}/psi/COPYING
 %exclude %{_datadir}/psi/README
 %exclude %{_datadir}/psi/*.qm
-%{_datadir}/psi/
-%{qtdir}/plugins/crypto/libqca-tls.so
-%{_datadir}/pixmaps/psi.png
-%{_datadir}/applications/psi.desktop
-#%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-psi.desktop}
-#%{?_without_freedesktop:%{_sysconfdir}/X11/applnk/Internet/psi.desktop}
 
 %files languagepack
 %defattr(-, root, root, 0755)
@@ -189,6 +161,9 @@ popd
 %lang(ru) %{_datadir}/psi/psi_ru.qm
 
 %changelog
+* Wed Jun 06 2007 Dag Wieers <dag@wieers.coM> - 0.10-4
+- Removed qca build into seperate qca package.
+
 * Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-3
 - Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
 
