@@ -8,13 +8,14 @@
 
 Summary: Python bindings for GNU adns library
 Name: python-adns
-Version: 1.1.0
-Release: 1.2
+Version: 1.1.1
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://dustman.net/andy/python/adns-python/
 
 Source: http://dustman.net/andy/python/adns-python/%{version}/adns-python-%{version}.tar.gz
+Patch: python-adns-1.1.0-srv.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python, python-devel, adns-devel
@@ -26,9 +27,10 @@ resolver library.
 
 %prep
 %setup -n %{real_name}-%{version}
+%patch0 -p1 -b .srv
 
 %build
-CFLAGS="%{optflags} -fPIC -fomit-frame-pointer -DPIC" %{__python} setup.py build
+CFLAGS="%{optflags}" %{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
@@ -40,11 +42,14 @@ CFLAGS="%{optflags} -fPIC -fomit-frame-pointer -DPIC" %{__python} setup.py build
 %files
 %defattr(-, root, root, 0755)
 %doc GPL README
-%{python_sitearch}/*
+%{python_sitearch}/adns.so
+%{python_sitearch}/*.py
+%{python_sitearch}/*.pyc
+%ghost %{python_sitearch}/*.pyo
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.0-1.2
-- Rebuild for Fedora Core 5.
+* Wed Jun 06 2007 Dag Wieers <dag@wieers.com> - 1.1.1-1
+- Updated to release 1.1.1.
 
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.1.0-1
 - Updated to release 1.1.0.

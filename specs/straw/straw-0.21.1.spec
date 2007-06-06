@@ -13,11 +13,10 @@ Version: 0.21.1
 Release: 2
 License: GPL
 Group: Applications/Internet
-URL: http://www.nongnu.org/straw/
+URL: http://www.gnome.org/projects/straw/
 
 Source: http://savannah.nongnu.org/download/straw/straw.pkg/%{version}/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: python >= 2.2, gtk2 >= 2.0, libglade2 >= 2.0
 BuildRequires: adns, libxml2-python >= 1.99.13

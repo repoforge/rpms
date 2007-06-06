@@ -2,25 +2,30 @@
 # Authority: dag
 # Upstream: Juri Pakaste <juri$iki,fi>
 
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+
+%define desktop_vendor rpmforge
+
 Summary: Desktop news aggregator
 Name: straw
-Version: 0.26
-Release: 1.2
+Version: 0.27
+Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://www.nongnu.org/straw/
+URL: http://www.gnome.org/projects/straw/
 
-Source: http://savannah.nongnu.org/download/straw/straw-%{version}.tar.gz
+Source: http://download.gnome.org/sources/straw/%{version}/straw-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python >= 2.2, gtk2 >= 2.4, libglade2 >= 2.3
+BuildArch: noarch
+BuildRequires: python >= 2.4, gtk2 >= 2.4, libglade2 >= 2.3
 BuildRequires: python-adns, python-bsddb3, libxml2-python >= 1.99.13
 BuildRequires: pyorbit, pygtk2 >= 1.99.13, pygtk2-libglade
 BuildRequires: gnome-python2-gtkhtml2, gnome-python2-gconf, gnome-python2-gnomevfs
-
-Requires: python >= 2.2, gtk2 >= 2.4, libglade2 >= 2.0
-Requires: libxml2-python >= 1.99.13, python-adns, python-bsddb3, mx
-Requires: gnome-python2-gconf, gnome-python2-gnomevfs, pyorbit, pygtk2 >= 1.99.13
+Requires: python >= 2.4, gtk2 >= 2.4, libglade2 >= 2.3
+Requires: python-adns, python-bsddb3, libxml2-python >= 1.99.13, mx
+Requires: pyorbit, pygtk2 >= 1.99.13, pygtk2-libglade
+Requires: gnome-python2-gtkhtml2, gnome-python2-gconf, gnome-python2-gnomevfs
 
 %description
 Straw is a desktop news aggregator for the GNOME environment. Its aim
@@ -48,15 +53,13 @@ python setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
-python setup.py install \
-	--prefix="%{buildroot}%{_prefix}" \
-	--sysconfdir="%{buildroot}%{_sysconfdir}"
+export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}" --sysconfdir="%{_sysconfdir}"
 %find_lang %{name}
 
 %{__install} -Dp -m0644 data/straw.schemas %{buildroot}%{_sysconfdir}/gconf/schemas/straw.schemas
 
-desktop-file-install --vendor gnome --delete-original \
+desktop-file-install --vendor %{desktop_vendor} --delete-original \
 	--add-category X-Red-Hat-Base                 \
 	--dir %{buildroot}%{_datadir}/applications    \
 	%{buildroot}%{_datadir}/applications/*.desktop
@@ -70,16 +73,16 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%config %{_sysconfdir}/gconf/schemas/*.schemas
-%{_bindir}/*
-%{_libdir}/python*/site-packages/straw/
+%config %{_sysconfdir}/gconf/schemas/straw.schemas
+%{_bindir}/straw
+%{python_sitelib}/straw/
 %{_datadir}/straw/
-%{_datadir}/applications/*.desktop
-%{_datadir}/pixmaps/*.png
+%{_datadir}/applications/%{desktop_vendor}-straw.desktop
+%{_datadir}/pixmaps/straw.png
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.26-1.2
-- Rebuild for Fedora Core 5.
+* Wed Jun 06 2007 Dag Wieers <dag@wieers.com> - 0.27-1
+- Updated to release 0.27.
 
 * Sun Mar 12 2006 Dag Wieers <dag@wieers.com> - 0.26-1
 - Updated to release 0.26.
