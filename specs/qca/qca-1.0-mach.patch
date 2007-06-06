@@ -1,0 +1,10 @@
+--- ./qca.pro.mach	2004-11-22 11:15:24.061984966 +0100
++++ ./qca.pro	2004-11-22 11:15:31.483010203 +0100
+@@ -2,6 +2,7 @@
+ 
+ TEMPLATE = lib
+ CONFIG += qt thread release
++CONFIG += no_fixpath
+ TARGET = qca
+ 
+ MOC_DIR        = .moc

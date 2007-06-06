@@ -1,0 +1,10 @@
+--- ./qca-tls.pro.mach	2004-06-10 11:55:22.411187448 +0200
++++ ./qca-tls.pro	2004-06-10 11:55:43.460987392 +0200
+@@ -2,6 +2,7 @@
+ 
+ TEMPLATE = lib
+ CONFIG  += qt thread release plugin
++CONFIG += no_fixpath
+ TARGET   = qca-tls
+ 
+ !exists(qcaprovider.h) {

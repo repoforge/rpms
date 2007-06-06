@@ -6,27 +6,41 @@
 %{?el3:%define _without_python 1}
 
 %{?rh9:%define _without_python 1}
+%{?rh9:%define _without_ruby 1}
 %{?rh9:%define _without_tcltk_devel 1}
+
+%{?rh7:%define _without_python 1}
+%{?rh7:%define _without_ruby 1}
+%{?rh7:%define _without_tcltk_devel 1}
+
+%{?el2:%define _without_python 1}
+%{?el2:%define _without_ruby 1}
+%{?el2:%define _without_tcltk_devel 1}
 
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 %define python_version %(%{__python} -c 'import string, sys; print string.split(sys.version, " ")[0]')
+%define ruby_sitearch %(ruby -rrbconfig -e "puts Config::CONFIG['sitearchdir']")
+%define ruby_archdir %(ruby -rrbconfig -e "puts Config::CONFIG['archdir']")
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
-Version: 1.2.18
+Version: 1.2.23
 Release: 1
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
 
-Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/rrdtool-%{version}.tar.gz
+Source0: http://oss.oetiker.ch/rrdtool/pub/rrdtool-%{version}.tar.gz
+Patch0: rrdtool-1.2.13-php.patch
+Patch1: rrdtool-1.2.19-python.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, openssl-devel, libart_lgpl-devel >= 2.0, cgilib-devel
+BuildRequires: gcc-c++, openssl-devel, cgilib-devel, libart_lgpl-devel >= 2.0
 BuildRequires: libpng-devel, zlib-devel, freetype-devel
 %{!?_without_python:BuildRequires: python-devel >= 2.3}
+%{!?_without_ruby:BuildRequires: ruby-devel}
 %{!?_without_tcltk_devel:BuildRequires: tcl-devel, tk-devel}
 %{?_without_tcltk_devel:BuildRequires: tcl, tk}
 Requires: perl >= %(rpm -q --qf '%%{epoch}:%%{version}' perl)
@@ -54,7 +68,8 @@ server load average). This package allow you to use directly this library.
 Summary: Perl RRDtool bindings
 Group: Development/Languages
 Requires: %{name} = %{version}
-Obsoletes: rrdtool-perl <= %{version}
+Obsoletes: rrdtool-perl <= %{version}-%{release}
+Provides: rrdtool-perl = %{version}-%{release}
 
 %description -n perl-rrdtool
 The Perl RRDtool bindings
@@ -63,7 +78,8 @@ The Perl RRDtool bindings
 Summary: TCL bindings
 Group: Development/Languages
 Requires: %{name} = %{version}
-Obsoletes: rrdtool-tcl <= %{version}
+Obsoletes: rrdtool-tcl <= %{version}-%{release}
+Provides: rrdtool-tcl = %{version}-%{release}
 
 %description -n tcl-rrdtool
 The TCL RRDtool bindings
@@ -74,6 +90,8 @@ Group: Development/Languages
 BuildRequires: python
 Requires: python >= %{python_version}
 Requires: %{name} = %{version}
+Obsoletes: rrdtool-python <= %{version}-%{release}
+Provides: rrdtool-python = %{version}-%{release}
 
 %description -n python-rrdtool
 Python RRDtool bindings.
@@ -82,45 +100,82 @@ Python RRDtool bindings.
 Summary: RRDtool module for PHP
 Group: Development/Languages
 Requires: %{name} = %{version}, php >= 4.0
+Obsoletes: rrdtool-php <= %{version}-%{release}
+Provides: rrdtool-php = %{version}-%{release}
 
 %description -n php-rrdtool
 The php-%{name} package includes a dynamic shared object (DSO) that adds
 RRDtool bindings to the PHP HTML-embedded scripting language.
 
+%package -n ruby-rrdtool
+Summary: RRDtool module for Ruby
+Group: Development/Languages
+Requires: %{name} = %{version}, ruby-devel
+Obsoletes: rrdtool-ruby <= %{version}-%{release}
+Provides: rrdtool-ruby = %{version}-%{release}
+
+%description -n ruby-rrdtool
+The ruby-%{name} package includes a library that implements RRDtool bindings
+for the Ruby language.
+
 %prep
 %setup
+#if %{!?_without_php:1}0
+#patch0 -p0 -b .php
+#%{__perl} -pi.orig -e 's|../config.h|../rrd_config.h|g' php4/rrdtool.c
+#endif
+#patch1 -p0 -b .python
 
 ### FIXME: Fixes to /usr/lib(64) for x86_64. (Fix upstream)
-%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure Makefile.in
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure Makefile.in php4/configure php4/ltconfig*
+
+### Fix to find correct python dir on lib64
+%{__perl} -pi.orig -e 's|get_python_lib\(0,0,prefix|get_python_lib\(1,0,prefix|g' configure
 
 %build
 %configure \
+%{?_without_python:--disable-python} \
+%{?_without_ruby:--disable-ruby} \
+	--disable-static \
+%{?_without_tcl:--disable-tcl} \
 	--enable-perl-site-install \
-	--with-perl-options='INSTALLDIRS="vendor" DESTDIR="" PREFIX="%{buildroot}%{_prefix}"'
+%{!?_without_python:--enable-python} \
+%{!?_without_ruby:--enable-ruby} \
+	--enable-ruby-site-install \
+%{!?_without_tcl:--enable-tcl} \
+	--enable-tcl-site \
+	--with-perl-options='INSTALLDIRS="vendor" DESTDIR="" PREFIX="%{buildroot}%{_prefix}"' \
+	--with-pic \
+	--with-tcllib="%{_libdir}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}" \
-	pkglibdir="%{_datadir}/tclrrd1.2.11" \
-	pythondir="%{python_sitearch}"
-### FIXME: pkglibdir ends up being "/usr/lib /usr/share/tclrrd1.2.11" on EL4 (Fix upstream)
-### FIXME: pythondir is /usr/lib on 64bit too, should be /usr/lib64 (Fix upstream)
+%{__make} install DESTDIR="%{buildroot}"
 
 ### FIXME: Another dirty hack to install perl modules with old and new perl-ExtUtils-MakeMaker (Fix upstream)
 %{__rm} -rf %{buildroot}%{buildroot}
 %{__make} -C bindings/perl-piped install INSTALLDIRS="vendor" DESTDIR="" PREFIX="%{buildroot}%{_prefix}"
 %{__make} -C bindings/perl-shared install INSTALLDIRS="vendor" DESTDIR="" PREFIX="%{buildroot}%{_prefix}"
 
+### FIXME: Another dirty hack to install ruby files if they're available
+if [ -f bindings/ruby/RRD.so ]; then
+	%{__install} -Dp -m0755 bindings/ruby/RRD.so %{buildroot}%{ruby_sitearch}/RRD.so
+	%{__rm} -rf %{buildroot}%{ruby_archdir}
+fi
+
 ### We only want .txt and .html files for the main documentation
 %{__mkdir_p} rpm-doc/docs/
 %{__cp} -ap doc/*.txt doc/*.html rpm-doc/docs/
 
+### Clean up examples dir
 %{__rm} -f examples/Makefile* examples/*.in
+find examples/ -type f -exec chmod 0644 {} \;
+find examples/ -type f -exec %{__perl} -pi -e 's|^#! \@perl\@|#!%{__perl}|gi' {} \;
+find examples/ -name "*.pl" -exec %{__perl} -pi -e 's|\015||gi' {} \;
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 %{__rm} -f %{buildroot}%{perl_vendorarch}/ntmake.pl
 
 %clean
@@ -129,7 +184,6 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES CONTRIBUTORS COPYING COPYRIGHT NEWS README THREADS TODO
-### FIXME: examples/ includes scripts that require perl-rrdtool (circular dependency)
 %doc examples/ rpm-doc/docs/
 %doc %{_mandir}/man1/*.1*
 %{_bindir}/rrdcgi
@@ -142,16 +196,14 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/rrd.h
-%{_libdir}/librrd.a
-%{_libdir}/librrd_th.a
-%exclude %{_libdir}/librrd.la
-%exclude %{_libdir}/librrd_th.la
 %{_libdir}/librrd.so
 %{_libdir}/librrd_th.so
+%exclude %{_libdir}/librrd.la
+%exclude %{_libdir}/librrd_th.la
 
 %files -n perl-rrdtool
 %defattr(-, root, root, 0755)
-%doc examples/
+%doc bindings/perl-shared/MANIFEST bindings/perl-shared/README
 %doc %{_mandir}/man3/RRDp.3*
 %doc %{_mandir}/man3/RRDs.3*
 %{perl_vendorlib}/RRDp.pm
@@ -160,19 +212,32 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 
 %files -n tcl-rrdtool
 %defattr(-, root, root, 0755)
+%doc bindings/tcl/README
 %{_libdir}/tclrrd%{version}.so
-#%{_datadir}/tclrrd%{version}/ifOctets.tcl
-#%{_datadir}/tclrrd%{version}/pkgIndex.tcl
-%{_datadir}/tclrrd1.2.11/ifOctets.tcl
-%{_datadir}/tclrrd1.2.11/pkgIndex.tcl
+%{_libdir}/rrdtool/ifOctets.tcl
+%{_libdir}/rrdtool/pkgIndex.tcl
 
 %if %{!?_without_python:1}0
 %files -n python-rrdtool
 %defattr(-, root, root, 0755)
+%doc bindings/python/ACKNOWLEDGEMENT bindings/python/AUTHORS bindings/python/COPYING bindings/python/README
 %{python_sitearch}/rrdtoolmodule.so
 %endif
 
+%if %{!?_without_ruby:1}0
+%files -n ruby-rrdtool
+%defattr(-, root, root, 0755)
+%doc bindings/ruby/CHANGES bindings/ruby/README
+%{ruby_sitearch}/RRD.so
+%endif
+
 %changelog
+* Wed Jun 06 2007 Dag Wieers <dag@wieers.com> - 1.2.23-1
+- Updated to release 1.2.23.
+
+* Wed May 02 2007 Dag Wieers <dag@wieers.com> - 1.2.21-1
+- Updated to release 1.2.21.
+
 * Fri Jan 26 2007 Dag Wieers <dag@wieers.com> - 1.2.18-1
 - Updated to release 1.2.18.
 
