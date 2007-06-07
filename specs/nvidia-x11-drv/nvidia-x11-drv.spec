@@ -16,7 +16,7 @@
 Summary: Proprietary NVIDIA hardware accelerated OpenGL display driver
 Name: nvidia-x11-drv
 Version: %{majmin}.%{relver}
-Release: 2%{?beta}
+Release: 3%{?beta}
 License: Proprietary
 Group: User Interface/X Hardware Support
 URL: http://www.nvidia.com/object/unix.html
@@ -250,18 +250,18 @@ fi
 %{_usrsrc}/%{dkms_name}-%{dkms_vers}/
 # udev "configuration"
 %config %{_sysconfdir}/udev/makedev.d/60-nvidia.nodes
-# Devices for udev to copy directly
-%attr(0600,root,root) %dev(c,195,0) %{_sysconfdir}/udev/devices/nvidia0
-%attr(0600,root,root) %dev(c,195,1) %{_sysconfdir}/udev/devices/nvidia1
-%attr(0600,root,root) %dev(c,195,2) %{_sysconfdir}/udev/devices/nvidia2
-%attr(0600,root,root) %dev(c,195,3) %{_sysconfdir}/udev/devices/nvidia3
-%attr(0600,root,root) %dev(c,195,4) %{_sysconfdir}/udev/devices/nvidia4
-%attr(0600,root,root) %dev(c,195,5) %{_sysconfdir}/udev/devices/nvidia5
-%attr(0600,root,root) %dev(c,195,6) %{_sysconfdir}/udev/devices/nvidia6
-%attr(0600,root,root) %dev(c,195,7) %{_sysconfdir}/udev/devices/nvidia7
-%attr(0600,root,root) %dev(c,195,8) %{_sysconfdir}/udev/devices/nvidia8
-%attr(0600,root,root) %dev(c,195,9) %{_sysconfdir}/udev/devices/nvidia9
-%attr(0600,root,root) %dev(c,195,255) %{_sysconfdir}/udev/devices/nvidiactl
+# Devices for udev to copy directly - No longer needed thanks to the above
+#attr(0600,root,root) %dev(c,195,0) %{_sysconfdir}/udev/devices/nvidia0
+#attr(0600,root,root) %dev(c,195,1) %{_sysconfdir}/udev/devices/nvidia1
+#attr(0600,root,root) %dev(c,195,2) %{_sysconfdir}/udev/devices/nvidia2
+#attr(0600,root,root) %dev(c,195,3) %{_sysconfdir}/udev/devices/nvidia3
+#attr(0600,root,root) %dev(c,195,4) %{_sysconfdir}/udev/devices/nvidia4
+#attr(0600,root,root) %dev(c,195,5) %{_sysconfdir}/udev/devices/nvidia5
+#attr(0600,root,root) %dev(c,195,6) %{_sysconfdir}/udev/devices/nvidia6
+#attr(0600,root,root) %dev(c,195,7) %{_sysconfdir}/udev/devices/nvidia7
+#attr(0600,root,root) %dev(c,195,8) %{_sysconfdir}/udev/devices/nvidia8
+#attr(0600,root,root) %dev(c,195,9) %{_sysconfdir}/udev/devices/nvidia9
+#attr(0600,root,root) %dev(c,195,255) %{_sysconfdir}/udev/devices/nvidiactl
 # Libraries and X modules
 %config %{_sysconfdir}/ld.so.conf.d/nvidia.conf
 %dir %{nvidialibdir}/
@@ -295,6 +295,9 @@ fi
 
 
 %changelog
+* Tue Jun  5 2007 Matthias Saou <http://freshrpms.net/> 1.0.9762-3
+- Remove included udev nodes, since they're redundant with the previous change.
+
 * Tue Jun  5 2007 Matthias Saou <http://freshrpms.net/> 1.0.9762-2
 - Add 60-nvidia.nodes udev file to have device nodes copied in F7 and get
   things right with selinux.
