@@ -3,9 +3,9 @@
 
 Summary: Guifications Plugin for Gaim
 Name: gaim-guifications
-%define real_version 2.13beta6
+%define real_version 2.13beta2
 Version: 2.13
-Release: 0.beta6
+Release: 0.beta2
 License: GPL
 Group: Applications/Internet
 URL: http://gaim.guifications.org/
@@ -29,12 +29,12 @@ instant messaging client Gaim
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-%find_lang guifications
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f guifications.lang
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README doc/*.dia doc/*.png
 %{_datadir}/pixmaps/gaim/guifications/
@@ -44,12 +44,6 @@ instant messaging client Gaim
 %{_libdir}/gaim/guifications.so
 
 %changelog
-* Thu Jun 07 2006 Dag Wieers <dag@wieers.com> - 2.13-0.beta6
-- Updated to release 2.13beta6.
-
-* Mon Apr 03 2006 Dag Wieers <dag@wieers.com> - 2.13-0.beta3
-- Updated to release 2.13beta3.
-
 * Mon Mar 17 2006 Dag Wieers <dag@wieers.com> - 2.13-0.beta2
 - Updated to release 2.13beta2.
 

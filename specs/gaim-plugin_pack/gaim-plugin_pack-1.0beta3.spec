@@ -3,9 +3,9 @@
 
 Summary: Plugin pack for Gaim
 Name: gaim-plugin_pack
-%define real_version 1.0beta6
+%define real_version 1.0beta3
 Version: 1.0
-Release: 0.beta6
+Release: 0.beta3
 License: GPL
 Group: Applications/Internet
 URL: http://plugins.guifications.org/trac/
@@ -23,8 +23,7 @@ instant messaging client Gaim
 %setup -n %{name}-%{real_version}
 
 ### Remove broken plugins
-#%{__rm} -f {markerline,nicksaid}/.{build,plugin}
-%{__rm} -f mystatusbox/.{build,plugin}
+%{__rm} -f {markerline,nicksaid}/.{build,plugin}
 
 %build
 %configure
@@ -33,25 +32,19 @@ instant messaging client Gaim
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-%find_lang plugin_pack
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f plugin_pack.lang
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO doc/*.txt
 %dir %{_libdir}/gaim/
 #exclude %{_libdir}/gaim/*.a
 %exclude %{_libdir}/gaim/*.la
 %{_libdir}/gaim/*.so
-%dir %{_datadir}/pixmaps/
-%dir %{_datadir}/pixmaps/gaim/
-%{_datadir}/pixmaps/gaim/plugin_pack/
 
 %changelog
-* Thu Jun 07 2007 Dag Wieers <dag@wieers.com> - 1.0-0.beta6
-- Updated to release 1.0beta6.
-
 * Mon Apr 03 2006 Dag Wieers <dag@wieers.com> - 1.0-0.beta3
 - Initial package. (using DAR)
