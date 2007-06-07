@@ -3,7 +3,7 @@
 
 Summary: Innovative free MMORPG with 2D graphics
 Name: themanaworld
-Version: 0.0.21.1
+Version: 0.0.23
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -36,7 +36,7 @@ solved. Quests should also encourage teamwork.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR=%{buildroot}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -44,12 +44,16 @@ solved. Quests should also encourage teamwork.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
+%doc %{_mandir}/man6/tmw.6*
 %{_bindir}/tmw
 %{_datadir}/pixmaps/tmw.png
 %{_datadir}/applications/tmw.desktop
 %{_datadir}/tmw/
 
 %changelog
+* Thu May 07 2007 Dries Verachtert <dries@ulyssis.org> - 0.0.23-1
+- Updated to release 0.0.23.
+
 * Sat Dec 09 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.21.1-1
 - Updated to release 0.0.21.1.
 
