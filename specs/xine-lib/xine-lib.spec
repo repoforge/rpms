@@ -57,7 +57,7 @@
 
 Summary: Core library of the xine multimedia player
 Name: xine-lib
-Version: 1.1.6
+Version: 1.1.7
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -208,6 +208,9 @@ use the Xine library.
 
 
 %changelog
+* Sat Apr 21 2007 Dag Wieers <dag@wieers.com> - 1.1.7-1
+- Updated to release 1.1.7.
+
 * Sat Apr 21 2007 Dag Wieers <dag@wieers.com> - 1.1.6-1
 - Updated to release 1.1.6.
 
