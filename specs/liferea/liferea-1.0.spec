@@ -19,11 +19,9 @@
 
 %define desktop_vendor rpmforge
 
-%define real_version 1.2.16
-
 Summary: RSS/RDF feed reader
 Name: liferea
-Version: 1.2.16b
+Version: 1.0.27
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -32,8 +30,8 @@ URL: http://liferea.sourceforge.net/
 Source: http://dl.sf.net/liferea/liferea-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: GConf2-devel >= 2.2, gtkhtml2-devel, libxml2-devel >= 2.6.27
-BuildRequires: gettext, gcc-c++, desktop-file-utils, gtk2 >= 2.4, libxslt >= 1.1.19
+BuildRequires: GConf2-devel >= 2.2, gtkhtml2-devel, libxml2-devel >= 2.5.10
+BuildRequires: gettext, gcc-c++, desktop-file-utils, gtk2 >= 2.4
 %{!?_without_mozilla:BuildRequires: %{mozilla}-devel}
 Requires: GConf2
 
@@ -45,7 +43,7 @@ browse through their items, and show their contents
 using GtkHTML.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
 
 %build
 %configure \
@@ -79,30 +77,17 @@ gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/%{name}.schem
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
 %doc %{_mandir}/man1/liferea.1*
-%doc %{_mandir}/pl/man1/liferea.1*
 %config %{_sysconfdir}/gconf/schemas/liferea.schemas
 %{_bindir}/liferea*
 %{_datadir}/applications/%{desktop_vendor}-liferea.desktop
 %{_datadir}/liferea/
-%{_datadir}/icons/*/*/apps/liferea.png
+%{_datadir}/pixmaps/liferea.png
 %dir %{_libdir}/liferea/
 %exclude %{_libdir}/liferea/*.la
 %{_libdir}/liferea/*.so*
 
 %changelog
-* Thu Jun 07 2007 Dag Wieers <dag@wieers.com> - 1.2.16b-1
-- Updated to release 1.2.16b.
-
-* Thu May 31 2007 Dag Wieers <dag@wieers.com> - 1.2.15b-1
-- Updated to release 1.2.15b.
-
-* Sun Mar 18 2007 Dag Wieers <dag@wieers.com> - 1.2.8-1
-- Updated to release 1.2.8.
-
-* Wed Dec 20 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.0-1
-- Updated to release 1.2.0.
-
-* Sat Dec 09 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.27-1
+* Fri Jun 01 2007 Dag Wieers <dag@wieers.com> - 1.0.27-1
 - Updated to release 1.0.27.
 
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.24-1

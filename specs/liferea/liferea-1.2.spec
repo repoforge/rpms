@@ -19,11 +19,11 @@
 
 %define desktop_vendor rpmforge
 
-%define real_version 1.2.16
+%define real_version 1.2.2
 
 Summary: RSS/RDF feed reader
 Name: liferea
-Version: 1.2.16b
+Version: 1.2.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -32,8 +32,9 @@ URL: http://liferea.sourceforge.net/
 Source: http://dl.sf.net/liferea/liferea-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: GConf2-devel >= 2.2, gtkhtml2-devel, libxml2-devel >= 2.6.27
-BuildRequires: gettext, gcc-c++, desktop-file-utils, gtk2 >= 2.4, libxslt >= 1.1.19
+BuildRequires: GConf2-devel >= 2.2, gtkhtml2-devel
+#BuildRequires: libxml2-devel >= 2.6.26, libxslt >= 1.1.17
+BuildRequires: gettext, gcc-c++, desktop-file-utils, gtk2 >= 2.4
 %{!?_without_mozilla:BuildRequires: %{mozilla}-devel}
 Requires: GConf2
 
@@ -90,11 +91,8 @@ gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/%{name}.schem
 %{_libdir}/liferea/*.so*
 
 %changelog
-* Thu Jun 07 2007 Dag Wieers <dag@wieers.com> - 1.2.16b-1
-- Updated to release 1.2.16b.
-
-* Thu May 31 2007 Dag Wieers <dag@wieers.com> - 1.2.15b-1
-- Updated to release 1.2.15b.
+* Thu May 31 2007 Dag Wieers <dag@wieers.com> - 1.2.2-1
+- Updated to release 1.2.2.
 
 * Sun Mar 18 2007 Dag Wieers <dag@wieers.com> - 1.2.8-1
 - Updated to release 1.2.8.

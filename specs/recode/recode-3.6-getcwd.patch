@@ -1,0 +1,11 @@
+--- recode-3.6/lib/gettext.c.orig	2005-03-07 12:18:30.000000000 +0100
++++ recode-3.6/lib/gettext.c	2005-03-07 12:23:14.000000000 +0100
+@@ -1668,8 +1668,6 @@
+ # if !defined HAVE_GETCWD
+ char *getwd ();
+ #  define getcwd(buf, max) getwd (buf)
+-# else
+-char *getcwd ();
+ # endif
+ # ifndef HAVE_STPCPY
+ static char *stpcpy PARAMS ((char *dest, const char *src));

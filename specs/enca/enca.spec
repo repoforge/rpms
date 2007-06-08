@@ -1,19 +1,18 @@
 # $Id$
-
 # Authority: dries
 
 Summary: Charset and encoding analyser
 Name: enca
 Version: 1.9
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Text
 URL: http://trific.ath.cx/software/enca/
 
-Source: http://trific.ath.cx/Ftp//enca/enca-%{version}.tar.bz2
+Source: http://trific.ath.cx/Ftp/enca/enca-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: recode, recode-devel, gcc-c++
-Requires: recode
+
+BuildRequires: gcc-c++
 
 %description
 Enca is an Extremely Naive Charset Analyser. It detects character set and
@@ -33,13 +32,18 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure
+%configure \
+	--disable-dependency-tracking \
+	--disable-external \
+	--disable-gtk-doc \
+	--disable-static \
+	--without-librecode
 %{__make} %{?_smp_mflags}
 
 %install
-%{__rm} -rf %{buildroot} _html
-%{__make} install DESTDIR=%{buildroot}
-%{__mv} %{buildroot}%{_datadir}/gtk-doc/html _html
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
+%{__mv} -f %{buildroot}%{_datadir}/gtk-doc/html/ rpm-docs/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,30 +51,29 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING FAQ INSTALL NEWS README THANKS TODO
+%doc %{_datadir}/man/man1/enca.1*
+%doc %{_datadir}/man/man1/enconv.1*
 %{_bindir}/enca
 %{_bindir}/enconv
 %{_libdir}/libenca.so.*
-%{_libexecdir}/enca/extconv/cstocs
-%{_libexecdir}/enca/extconv/map
-%{_libexecdir}/enca/extconv/piconv
-%{_libexecdir}/enca/extconv/recode
-%{_libexecdir}/enca/extconv/umap
-%{_datadir}/man/man1/enca.1*
-%{_datadir}/man/man1/enconv.1*
+%exclude %{_libexecdir}/enca/
 
 %files devel
+%defattr(-, root, root, 0755)
+%doc README.devel devel-docs/html/*.html
 %{_includedir}/enca.h
 %{_libdir}/libenca.so
-%{_libdir}/libenca.a
 %{_libdir}/pkgconfig/enca.pc
 %exclude %{_libdir}/libenca.la
 
 %changelog
+* Fri Jun 08 2007 Dag Wieers <dag@wieers.com> - 1.9-4
+- Build without recode, removed recode requirement.
+- Removed %%{_libexecdir} and static library.
+- Added enca-devel docs.
+
 * Sun Dec 03 2006 Dries Verachtert <dries@ulyssis.org> - 1.9-3
 - Made a devel subpackage.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.9-1.2
-- Rebuild for Fedora Core 5.
 
 * Sun Dec 18 2005 Dries Verachtert <dries@ulyssis.org> 1.9-1
 - Update to release 1.9.

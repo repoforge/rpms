@@ -26,19 +26,21 @@ HTML, fb2, and plain text.
 %setup
 
 %build
-%{__make} %{?_smp_mflags} EXTERNALINCLUDE=-I${QTDIR}/include MOC=moc UILIBS="-L${QTDIR}/lib -lqt-mt" INSTALLDIR=%{_prefix} TARGET_ARCH=desktop UI_TYPE=qt LIBDIR=%{_libdir}
+%{__make} %{?_smp_mflags} EXTERNALINCLUDE="-I${QTDIR}/include" MOC="moc" UILIBS="-L${QTDIR}/lib -lqt-mt" TARGET_ARCH="desktop" UI_TYPE="qt" INSTALLDIR="%{_prefix}" LIBDIR="%{_libdir}"
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall EXTERNALINCLUDE=-I${QTDIR}/include MOC=moc UILIBS="-L${QTDIR}/lib -lqt-mt" INSTALLDIR=%{_prefix} DESTDIR=%{buildroot} TARGET_ARCH=desktop UI_TYPE=qt LIBDIR=%{_libdir}
+%{__make} install DESTDIR="%{buildroot}" INSTALLDIR="%{_prefix}" LIBDIR="%{_libdir}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
+%doc fbreader/LICENSE
 %{_bindir}/FBReader
 %{_datadir}/FBReader/
+#%{_libdir}/libzlibrary-gtk.so.*
 %{_libdir}/libzlibrary-qt.so.*
 %{_datadir}/applications/FBReader.desktop
 %{_datadir}/pixmaps/FBReader.png
