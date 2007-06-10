@@ -4,13 +4,13 @@
 
 Summary: Tools to spin down hard disks automatically for power savings
 Name: laptop-mode-tools
-Version: 1.32
+Version: 1.33
 Release: 1
 License: GPL
 Group: System Environment/Base
-URL: http://www.xs4all.nl/~bsamwel/laptop_mode/tools/
+URL: http://www.samwel.tk/laptop_mode/
 
-Source: http://www.xs4all.nl/~bsamwel/laptop_mode/tools/downloads/laptop-mode-tools_%{version}.tar.gz
+Source: http://samwel.tk/laptop_mode/tools/downloads/laptop-mode-tools_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -75,6 +75,9 @@ fi
 %{_sbindir}/lm-syslog-setup
 
 %changelog
+* Sun Jun 10 2007 Dries Verachtert <dries@ulyssis.org> - 1.33-1
+- Updated to release 1.33.
+
 * Sun Oct 08 2006 Dag Wieers <dag@wieers.com> - 1.32-1
 - Updated to release 1.32.
 
