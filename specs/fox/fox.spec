@@ -20,7 +20,7 @@
 
 Summary: Toolkit for GUI development
 Name: fox
-Version: 1.6.19
+Version: 1.6.28
 Release: 1
 License: LGPL
 Group: Development/Libraries
@@ -97,14 +97,17 @@ you will need to install %{name}-devel.
 
 %files devel
 %{_includedir}/fox-*/
-%{_libdir}/libCHART-*.a
-%{_libdir}/libFOX-*.a
 %{_libdir}/libCHART-*.so
 %{_libdir}/libFOX-*.so
 %{_libdir}/pkgconfig/fox.pc
+%exclude %{_libdir}/libCHART-*.a
+%exclude %{_libdir}/libFOX-*.a
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sun Jun 10 2007 Dries Verachtert <dries@ulyssis.org> - 1.6.28-1
+- Updated to release 1.6.28.
+
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.19-1
 - Updated to release 1.6.19.
 
