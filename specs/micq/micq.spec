@@ -12,7 +12,7 @@
 
 Summary: Clone of the Mirabilis ICQ online messaging program
 Name: micq
-Version: 0.5.4
+Version: 0.5.4.1
 Release: 1
 Group: Applications/Internet
 License: GPL
@@ -64,6 +64,9 @@ program.
 %{_datadir}/micq/
 
 %changelog
+* Mon Jun 11 2007 Dag Wieers <dag@wieers.com> - 0.5.4.1-1
+- Updated to release 0.5.4.1.
+
 * Wed Jun 06 2007 Dag Wieers <dag@wieers.com> - 0.5.4-1
 - Updated to release 0.5.4.
 

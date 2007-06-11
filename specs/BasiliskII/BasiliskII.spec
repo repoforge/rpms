@@ -3,7 +3,7 @@
 
 %define date 20060501
 %define inv_date 01052006
-%define mon_version 3.1
+%define cxmon_version 3.2
 %define desktop_vendor rpmforge
 
 %{?dist: %{expand: %%define %dist 1}}
@@ -27,15 +27,17 @@
 Summary: 68k Macintosh emulator
 Name: BasiliskII
 Version: 1.0
-Release: 0.%{date}.1
+Release: 0.%{date}.2
 License: GPL
 Group: Applications/Emulators
 URL: http://gwenole.beauchesne.info/projects/basilisk2/
+
 Source0: http://gwenole.beauchesne.info/projects/basilisk2/files/BasiliskII_src_%{inv_date}.tar.bz2
-Source1: http://wwwthep.physik.uni-mainz.de/~cbauer/cxmon-%{mon_version}.tar.gz
+Source1: http://cxmon.cebix.net/downloads/cxmon-%{cxmon_version}.tar.gz
 Source2: BasiliskII.png
 Patch: BasiliskII-1.0-nostrip.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc-c++, gtk2-devel, esound-devel >= 0.2.8
 BuildRequires: desktop-file-utils, readline-devel
 %{?_with_modxorg:BuildRequires: libXt-devel, libXxf86dga-devel, libXxf86vm-devel}
@@ -51,11 +53,9 @@ Available rebuild options :
 --with    : sdl banks modxorg
 --without : mon
 
-
 %prep
 %setup -a 1
 %patch -p1 -b .nostrip
-
 
 %build
 pushd src/Unix
@@ -63,11 +63,10 @@ pushd src/Unix
     --datadir=%{_sysconfdir} \
     %{?_with_banks:--enable-addressing="banks"} \
     %{!?_with_banks:--enable-jit-compiler} \
-    %{!?_without_mon: --with-mon=../../cxmon-%{mon_version}/src} \
+    %{!?_without_mon: --with-mon="../../cxmon-%{cxmon_version}/src"} \
     %{?_with_sdl: --enable-sdl-video --enable-sdl-audio}
 %{__make} %{?_smp_mflags}
 popd
-
 
 %install
 %{__rm} -rf %{buildroot}
@@ -95,10 +94,8 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{__install} -D -p -m 0644 %{SOURCE2} \
     %{buildroot}%{_datadir}/pixmaps/BasiliskII.png
 
-
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files
 %defattr(-, root, root, 0755)
@@ -112,8 +109,10 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
 %{_mandir}/man1/BasiliskII.1*
 
-
 %changelog
+* Mon Jun 11 2007 Dag Wieers <dag@wieers.com> - 1.0-0.20060501.2
+- Updated release of cxmon.
+
 * Wed Mar  7 2007 Matthias Saou <http://freshrpms.net/> 1.0-0.20060501.1
 - Update to 01052006.
 - Update URL and source locations.

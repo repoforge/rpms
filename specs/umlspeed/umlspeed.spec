@@ -3,7 +3,7 @@
 
 Summary: Compiler for C-style language of UML notation
 Name: umlspeed
-Version: 0.16
+Version: 0.17
 Release: 1
 License: GPL
 Group: Development/Languages
@@ -44,6 +44,9 @@ SVG UML diagrams, XMI documents and generate source code in various languages.
 %{_bindir}/umlspeed
 
 %changelog
+* Sat Jun 09 2007 Dag Wieers <dag@wieers.com> - 0.17-1
+- Updated to release 0.17.
+
 * Wed May 23 2007 Dag Wieers <dag@wieers.com> - 0.16-1
 - Updated to release 0.16.
 

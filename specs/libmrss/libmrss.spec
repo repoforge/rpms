@@ -4,7 +4,7 @@
 
 Summary: Library for parsing, writing and creating RSS files or streams
 Name: libmrss
-Version: 0.17
+Version: 0.17.3
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -54,11 +54,14 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %{_includedir}/mrss.h
 %{_libdir}/libmrss.a
-%exclude %{_libdir}/libmrss.la
 %{_libdir}/libmrss.so
 %{_libdir}/pkgconfig/mrss.pc
+%exclude %{_libdir}/libmrss.la
 
 %changelog
+* Fri Jun 08 2007 Dag Wieers <dag@wieers.com> - 0.17.3-1
+- Updated to release 0.17.3.
+
 * Sun Mar 18 2007 Dag Wieers <dag@wieers.com> - 0.17-1
 - Updated to release 0.17.
 

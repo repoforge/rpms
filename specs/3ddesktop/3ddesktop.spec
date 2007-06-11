@@ -28,7 +28,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf >= 2.58, gcc-c++, zlib-devel
 BuildRequires: imlib2-devel, qt-devel, kdelibs-devel
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
-%{?_with_modxorg:BuildRequires: libXt-devel, libXext-devel, libICE-devel, libXxf86vm-devel, libXmu-devel}
+%{?_with_modxorg:BuildRequires: libXt-devel, libXext-devel, libICE-devel, libXxf86vm-devel, libXmu-devel, libXi-devel}
 %{?el2:BuildRequires: Mesa-devel}
 Requires: imlib2
 

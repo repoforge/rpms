@@ -17,13 +17,13 @@
 
 Summary: Network traffic probe that shows the network usage
 Name: ntop
-Version: 3.2
-Release: 2
+Version: 3.3
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.ntop.org/
 
-Source: http://dl.sf.net/ntop/ntop-%{version}.tgz
+Source: http://dl.sf.net/ntop/ntop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, gdbm-devel, libpcap, rrdtool-devel, zlib-devel, glib-devel
@@ -283,6 +283,9 @@ fi
 #%exclude %{_libdir}/plugins/
 
 %changelog
+* Sun Jun 10 2007 Dag Wieers <dag@wieers.com> - 3.3-1
+- Updated to release 3.3.
+
 * Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 3.2-2
 - Enabled tcp_wrappers functionality.
 

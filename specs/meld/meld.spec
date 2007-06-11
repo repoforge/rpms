@@ -6,7 +6,7 @@
 
 Summary: Graphical visual diff and merge tool
 Name: meld
-Version: 1.1.4
+Version: 1.1.5
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -94,6 +94,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/meld.png
 
 %changelog
+* Sun Jun 10 2007 Dag Wieers <dag@wieers.com> - 1.1.5-1
+- Updated to release 1.1.5.
+
 * Mon Jun 12 2006 Dag Wieers <dag@wieers.com> - 1.1.4-1
 - Updated to release 1.1.4.
 
