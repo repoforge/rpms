@@ -1,0 +1,18 @@
+--- SDL_ttf-2.0.7/SDL_ttf.c.freetype-internals	2005-10-17 09:05:19.000000000 -0400
++++ SDL_ttf-2.0.7/SDL_ttf.c	2005-10-17 09:05:36.000000000 -0400
+@@ -48,7 +48,6 @@
+ #include <freetype/ftoutln.h>
+ #include <freetype/ttnameid.h>
+ */
+-#include <freetype/internal/ftobjs.h>
+ 
+ #ifndef FT_OPEN_STREAM
+ #define FT_OPEN_STREAM ft_open_stream
+@@ -275,7 +274,6 @@
+ 	}
+ 	memset(stream, 0, sizeof(*stream));
+ 
+-	stream->memory = library->memory;
+ 	stream->read = RWread;
+ 	stream->descriptor.pointer = src;
+ 	stream->pos = (unsigned long)position;
