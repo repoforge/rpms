@@ -11,7 +11,7 @@
 %{?fc5:  %define _with_modxorg 1}
 
 %define date 20060514
-%define mon_version 3.1
+%define cxmon_version 3.2
 %define desktop_vendor rpmforge
 
 Summary: Power Macintosh emulator
@@ -22,7 +22,7 @@ License: GPL
 Group: Applications/Emulators
 URL: http://www.gibix.net/projects/sheepshaver/
 Source0: http://www.gibix.net/projects/sheepshaver/files/SheepShaver-%{version}-0.%{date}.1.tar.bz2
-Source1: http://wwwthep.physik.uni-mainz.de/~cbauer/cxmon-%{mon_version}.tar.gz
+Source1: http://cxmon.cebix.net/downloads/cxmon-%{cxmon_version}.tar.gz
 Source2: SheepShaver.png
 Patch0: SheepShaver-2.2-nostrip.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -58,7 +58,7 @@ Available rebuild options :
 pushd src/Unix
 %configure \
     --datadir=%{_sysconfdir} \
-    %{!?_without_mon: --with-mon=../../cxmon-%{mon_version}/src} \
+    %{!?_without_mon: --with-mon="../../cxmon-%{cxmon_version}/src"} \
     %{?_with_sdl: --enable-sdl-video --enable-sdl-audio}
     %{__make} %{?_smp_mflags}
 popd
