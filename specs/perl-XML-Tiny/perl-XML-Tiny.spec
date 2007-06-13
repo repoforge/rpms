@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/D/DC/DCANTRELL/XML-Tiny-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Simple lightweight parser for a subset of XML.

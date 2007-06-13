@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/T/TO/TOMYHERO/Catalyst-Plugin-Lo
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Catalyst Plugin for Colorful Log.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/F/FE/FERREIRA/Sort-Half-Maker-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Create half-sort subs easily.

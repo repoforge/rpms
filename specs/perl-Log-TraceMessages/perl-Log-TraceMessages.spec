@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Log/Log-TraceMessages-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-Log-TraceMessages is a Perl module.

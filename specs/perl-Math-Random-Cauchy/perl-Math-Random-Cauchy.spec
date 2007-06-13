@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SM/SMUELLER/Math-Random-Cauchy-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Random numbers following a Cauchy PDF.

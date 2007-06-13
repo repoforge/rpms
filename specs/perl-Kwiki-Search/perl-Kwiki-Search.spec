@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Kwiki/Kwiki-Search-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Kwiki Search plugin.

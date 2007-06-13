@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Kwiki/Kwiki-UserPreferences-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Kwiki User Preferences plugin.

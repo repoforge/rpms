@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/Y/YX/YXES/Data-SearchReplace-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl extention for searching and replacing entries in complex data 

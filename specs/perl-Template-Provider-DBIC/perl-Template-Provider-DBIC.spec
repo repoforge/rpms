@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/D/DC/DCARDWELL/Template-Provider
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Load templates using DBIx::Class.

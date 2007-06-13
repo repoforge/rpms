@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/A/AL/ALEXMASS/Parallel-Mpich-MPD
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Mpich MPD wrapper.

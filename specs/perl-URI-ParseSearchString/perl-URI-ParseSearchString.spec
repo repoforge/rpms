@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/S/SD/SDEN/URI-ParseSearchString-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Parse referer logs for search engine query strings.

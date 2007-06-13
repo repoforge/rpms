@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Lingua/Lingua-EN-Inflect-Number-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Lingua-EN-Inflect-Number is a Perl module to force number of words

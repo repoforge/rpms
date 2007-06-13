@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/B/BO/BORISZ/File-Next-OO-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 File-finding iterator Wrapper for File::Next::files.

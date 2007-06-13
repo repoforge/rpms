@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/B/BD/BDFOY/File-Find-Closures-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Functions you can use with File::Find.

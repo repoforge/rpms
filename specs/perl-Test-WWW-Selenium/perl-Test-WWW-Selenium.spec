@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/L/LU/LUKEC/Test-WWW-Selenium-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Test applications using Selenium Remote Control.

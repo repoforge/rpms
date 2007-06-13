@@ -21,7 +21,7 @@ URL: http://search.cpan.org/dist/HTML-Parser/
 Source: http://www.cpan.org/modules/by-module/HTML/HTML-Parser-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 HTML-Parser is a Perl module that implements a HTML parser class.

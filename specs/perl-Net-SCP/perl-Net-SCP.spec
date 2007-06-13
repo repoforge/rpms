@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-SCP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-Net-SCP is a Perl module that implements a secure copy protocol.

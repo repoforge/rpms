@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SO/SONNEN/Data-Validate-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Common data validation methods.

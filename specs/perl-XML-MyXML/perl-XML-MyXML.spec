@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/K/KA/KARJALA/MyXML/XML-MyXML-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Simple-to-use XML module, for parsing and creating XML documents.

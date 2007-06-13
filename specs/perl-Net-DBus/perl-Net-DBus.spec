@@ -19,7 +19,7 @@ URL: http://search.cpan.org/dist/Net-DBus/
 Source: http://www.cpan.org/modules/by-module/Net/Net-DBus-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-Net-DBus is a Perl module with bindings for the DBus message system.

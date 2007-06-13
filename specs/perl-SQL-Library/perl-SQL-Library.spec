@@ -20,7 +20,7 @@ Source: http://www.cpan.org/modules/by-module/SQL/SQL-Library-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-SQL-Library is a Perl module for managing simple SQL libraries

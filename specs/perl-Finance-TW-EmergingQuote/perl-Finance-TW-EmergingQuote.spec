@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/C/CL/CLKAO/Finance-TW-EmergingQu
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Check stock quotes from Taiwan Emerging Stock.

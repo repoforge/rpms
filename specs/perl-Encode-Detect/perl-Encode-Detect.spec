@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Encode-Detect/
 Source: http://www.cpan.org/modules/by-module/Encode/Encode-Detect-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Encode-Detect is a Perl module that implements an Encode::Encoding subclass

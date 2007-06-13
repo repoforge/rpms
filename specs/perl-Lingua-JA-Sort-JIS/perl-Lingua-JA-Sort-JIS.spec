@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/S/SA/SADAHIRO/Lingua-JA-Sort-JIS
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Compares and sorts strings encoded in UTF-8.

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Kwiki/Kwiki-ModPerl-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Kwiki-ModPerl is a Perl module to enable Kwiki to work under mod_perl.

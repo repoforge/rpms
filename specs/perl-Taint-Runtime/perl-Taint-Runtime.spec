@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Taint-Runtime/
 Source: http://www.cpan.org/modules/by-module/Taint/Taint-Runtime-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-Taint-Runtime is a Perl module.

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-WWW-Mechanize-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-Test-WWW-Mechanize is a Perl module implements

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Email/Email-Find-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-Email-Find is a Perl module to find RFC 822 email addresses in plain text.

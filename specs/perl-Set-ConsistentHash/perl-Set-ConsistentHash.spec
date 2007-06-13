@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/B/BR/BRADFITZ/Set-ConsistentHash
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Library for doing consistent hashing.

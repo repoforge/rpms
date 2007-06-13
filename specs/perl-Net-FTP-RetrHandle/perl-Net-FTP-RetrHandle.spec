@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/G/GI/GIFF/Net-FTP-RetrHandle-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Tied or IO::Handle-compatible interface to a file retrieved by FTP.

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/HTML/HTML-FromText-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-HTML-FromText is a Perl module to convert plain text to HTML.

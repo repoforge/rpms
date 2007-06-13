@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-TreeBuilder-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-XML-TreeBuilder is a Perl module that implements a parser

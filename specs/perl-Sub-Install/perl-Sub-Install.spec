@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Sub/Sub-Install-0.924.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Sub-Install is a Perl module to install subroutines into packages easily.

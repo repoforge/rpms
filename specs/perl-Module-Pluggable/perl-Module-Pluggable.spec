@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SI/SIMONW/Module-Pluggable-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Provides a simple but, hopefully, extensible way of having 'plugins' for

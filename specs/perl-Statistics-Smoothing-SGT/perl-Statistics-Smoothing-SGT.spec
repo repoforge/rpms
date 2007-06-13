@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BJ/BJOERNW/Statistics-Smoothing
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 A Simple Good-Turing (SGT) smoothing implementation.

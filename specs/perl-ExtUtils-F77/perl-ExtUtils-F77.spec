@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/ExtUtils/ExtUtils-F77-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module tries to figure out how to link C programs with

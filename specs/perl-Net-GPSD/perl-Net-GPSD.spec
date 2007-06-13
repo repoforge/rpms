@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-GPSD-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-Net-GPSD is a Perl module that provides an object client interface

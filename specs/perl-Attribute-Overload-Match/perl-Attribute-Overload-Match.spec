@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/K/KA/KARASIK/Attribute-Overload-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Argument-dependent handlers for overloaded operators.

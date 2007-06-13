@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/B/BA/BARBIE/WWW-Scraper-ISBN-Pea
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Search driver for Pearson Education's online catalog.

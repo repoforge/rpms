@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Kwiki/Kwiki-Diff-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Kwiki plugin to display differences between the current wiki page and older revisions.

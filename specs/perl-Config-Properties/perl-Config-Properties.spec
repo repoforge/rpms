@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/S/SA/SALVA/Config-Properties-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Read and write property files.

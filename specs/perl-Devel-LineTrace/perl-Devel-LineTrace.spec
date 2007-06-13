@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/S/SH/SHLOMIF/Devel-LineTrace-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Apply traces to individual lines.

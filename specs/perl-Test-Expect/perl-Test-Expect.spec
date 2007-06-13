@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Expect-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Automated driving and testing of terminal-based programs.

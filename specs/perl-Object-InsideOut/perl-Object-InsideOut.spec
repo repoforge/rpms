@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Object/Object-InsideOut-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-Object-InsideOut is a Perl module with comprehensive inside-out

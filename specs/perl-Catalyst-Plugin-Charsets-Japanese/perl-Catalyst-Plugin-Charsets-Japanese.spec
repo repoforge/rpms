@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/L/LY/LYOKATO/Catalyst-Plugin-Cha
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Japanese specific charsets handler.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/S/SU/SUMMER/Lingua-EN-NameCase-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl module to fix the case of people's names.

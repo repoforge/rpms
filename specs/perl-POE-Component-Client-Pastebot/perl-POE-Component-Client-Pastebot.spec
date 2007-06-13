@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/B/BI/BINGOS/POE-Component-Client
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Interact with Bot::Pastebot web services.

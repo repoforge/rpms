@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/W/WA/WALTMAN/Geo-Coordinates-Dec
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Convert between degrees/minutes/seconds and decimal degrees.

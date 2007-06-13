@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/Z/ZB/ZBY/Catalyst-Controller-Pat
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Syntactic sugar for Catalyst::DispatchType::Chained.

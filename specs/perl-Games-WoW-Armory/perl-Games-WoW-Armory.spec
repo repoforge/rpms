@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/F/FR/FRANCKC/Games-WoW-Armory-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Access to the WoW Armory.

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Maypole/Maypole-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Maypole is a Perl module that implements a MVC web application framework.

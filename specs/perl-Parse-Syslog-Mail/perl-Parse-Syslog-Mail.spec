@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SA/SAPER/Parse-Syslog-Mail-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Parse mailer logs from syslog.

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/SQL/SQL-Abstract-Limit-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Portable LIMIT emulation.

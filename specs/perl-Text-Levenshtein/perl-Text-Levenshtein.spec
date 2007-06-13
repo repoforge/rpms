@@ -20,7 +20,7 @@ Source: http://www.cpan.org/modules/by-module/Text/Text-Levenshtein-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-Text-Levenshtein is a Perl module implements the Levenshtein edit distance.

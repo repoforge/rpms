@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/PerlIO/PerlIO-via-dynamic-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 PerlIO-via-dynamic is a Perl module that implements dynamic PerlIO layers.

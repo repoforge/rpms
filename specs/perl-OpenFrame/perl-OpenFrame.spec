@@ -19,7 +19,7 @@ Source: http://www.cpan.org/authors/id/R/RC/RCLAMP/OpenFrame-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-OpenFrame is a Perl module that implements a framework

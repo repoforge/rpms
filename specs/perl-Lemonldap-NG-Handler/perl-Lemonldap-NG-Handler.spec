@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GU/GUIMARD/Lemonldap-NG-Handler
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The Apache protection module part of Lemonldap::NG Web-SSO system.

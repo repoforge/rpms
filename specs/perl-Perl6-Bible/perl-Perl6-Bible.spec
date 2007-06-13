@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Perl6/Perl6-Bible-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.0 
+BuildRequires: perl >= 0:5.0, perl(ExtUtils::MakeMaker)
 
 %description
 Perl 6 Design Documentations.

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/authors/id/K/KA/KANE/Package-Constants-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-Package-Constants is a Perl module to list all constants

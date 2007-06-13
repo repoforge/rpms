@@ -19,7 +19,7 @@ Source: http://www.cpan.org/authors/id/R/RJ/RJBS/Package-Generator-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-Package-Generator is a Perl module to generate new packages

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/ST/STRUAN/WebService-Validator-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Access the W3Cs online HTML validator.

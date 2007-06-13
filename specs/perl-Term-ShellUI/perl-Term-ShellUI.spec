@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/B/BR/BRONSON/Term-ShellUI-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 A fully-featured shell-like command line environment.

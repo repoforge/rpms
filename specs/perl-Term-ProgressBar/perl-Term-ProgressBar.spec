@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Term/Term-ProgressBar-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-Term-ProgressBar is a Perl module to provide a progress meter

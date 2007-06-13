@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/HTTP/HTTP-Recorder-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 HTTP-Recorder is a Perl module to record interaction with websites.

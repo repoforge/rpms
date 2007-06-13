@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RK/RKAPL/XML-Table2XML-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Generic conversion of tabular data to XML by reverting Excel's 

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/HTTP/HTTP-Proxy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 HTTP-Proxy is a Perl module that implements a HTTP proxy.

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Spelling-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-Test-Spelling is a Perl module to check for spelling errors in POD files.

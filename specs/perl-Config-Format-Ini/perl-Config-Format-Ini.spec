@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/I/IO/IOANNIS/Config-Format-Ini-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 4:5.8.8
+BuildRequires: perl >= 4:5.8.8, perl(ExtUtils::MakeMaker)
 
 %description
 Reads INI configuration files.

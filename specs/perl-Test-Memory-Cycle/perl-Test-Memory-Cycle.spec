@@ -18,7 +18,7 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Memory-Cycle-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Verifies code hasn't left circular references.

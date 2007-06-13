@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/POE/POE-Component-Server-XMLRPC-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-POE-Component-Server-XMLRPC is a Perl module to publish POE event handlers

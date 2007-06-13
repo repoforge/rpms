@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/IO/IO-Digest-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 IO-Digest is a Perl module to calculate digests while reading or writing.

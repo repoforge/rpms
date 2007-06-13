@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/Z/ZA/ZACKSE/CGI-Application-Plug
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Generate csv output from a CGI::Application runmode.

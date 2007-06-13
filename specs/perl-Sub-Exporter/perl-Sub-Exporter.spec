@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Sub/Sub-Exporter-0.974.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Sub-Exporter is a Perl module that implements a sophisticated exporter

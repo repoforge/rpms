@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Pod/Pod-Strip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Remove POD from Perl code.
