@@ -1,31 +1,33 @@
 # $Id$
 # Authority: dag
 
-%define real_name git-core
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %{?dist: %{expand: %%define %dist 1}}
-%{?fc1:%define _without_asciidoc 1}
-%{?el3:%define _without_asciidoc 1}
-%{?rh9:%define _without_asciidoc 1}
-%{?rh8:%define _without_asciidoc 1}
-%{?rh7:%define _without_asciidoc 1}
-%{?el2:%define _without_asciidoc 1}
-%{?rh6:%define _without_asciidoc 1}
 
 Summary: Git core and tools
 Name: git
-Version: 0.99.4
-Release: 3
+Version: 1.5.2.1
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://git.or.cz/
 
-Source: http://kernel.org/pub/software/scm/git/git-core-%{version}.tar.gz
+Source: http://kernel.org/pub/software/scm/git/git-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: zlib-devel, openssl-devel, curl-devel
-%{!?_without_asciidoc:BuildRequires: xmlto, asciidoc > 6.0.3}
 Requires: sh-utils, diffutils, rsync, rcs, mktemp >= 1.5
+
+Obsoletes: git-arch <= %{version}-%{release}
+Provides: git-arch = %{version}-%{release}
+Obsoletes: git-cvs <= %{version}-%{release}
+Provides: git-cvs = %{version}-%{release}
+Obsoletes: git-email <= %{version}-%{release}
+Provides: git-email = %{version}-%{release}
+Obsoletes: git-svn <= %{version}-%{release}
+Provides: git-svn = %{version}-%{release}
 
 %description
 GIT comes in two layers. The bottom layer is merely an extremely fast
@@ -34,19 +36,38 @@ with regard to their history. The top layer is a SCM-like tool which
 enables human beings to work with the database in a manner to a degree
 similar to other SCM tools (like CVS, BitKeeper or Monotone).
 
+%package gui
+Summary: Graphical frontend to git
+Group: Development/Tools
+
+Requires: %{name} = %{version}-%{release}
+Requires: tk >= 8.4
+
+%description gui
+Graphical frontend to git.
+
+%package -n perl-Git
+Summary: Perl module that implements Git bindings
+Group: Development/CPAN
+
+Requires: %{name} = %{version}-%{release}
+
+%description -n perl-Git
+Git is a Perl module that implements Git bindings.
+
 %prep
-%setup -n %{real_name}-%{version}
-# avoid warning about ../README:
-%{__perl} -pi -e "s|asciidoc |asciidoc --unsafe |g;" Documentation/Makefile
-# avoid asciidoc errors:
-%{__perl} -pi -e "s|\^|\\\^|g;" Documentation/git-rev-list.txt
+%setup
 
 %build
-%{__make} %{?_smp_mflags} all %{!?_without_asciidoc:doc} prefix="%{_prefix}"
+%{__make} %{?_smp_mflags} all CFLAGS="%{optflags}" prefix="%{_prefix}" WITH_OWN_SUBPROCESS_PY="YesPlease"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install %{!?_without_asciidoc:install-doc} dest="%{buildroot}" prefix="%{_prefix}" mandir="%{_mandir}"
+%{__make} install DESTDIR="%{buildroot}" CFLAGS="%{optflags}" prefix="%{_prefix}" mandir="%{_mandir}" INSTALLDIRS="vendor"
+
+### Clean up buildroot
+find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^$RPM_BUILD_ROOT||' {} \;
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -54,19 +75,35 @@ similar to other SCM tools (like CVS, BitKeeper or Monotone).
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING Documentation/*.txt README
-%{!?_without_asciidoc:%doc %{_mandir}/man1/*.1*}
-%{!?_without_asciidoc:%doc %{_mandir}/man7/*.7*}
+#%{!?_without_asciidoc:%doc %{_mandir}/man1/*.1*}
+#%{!?_without_asciidoc:%doc %{_mandir}/man7/*.7*}
 %{_bindir}/git*
-%{_datadir}/git-core
+%exclude %{_bindir}/git-citool
+%exclude %{_bindir}/git-gui
+%{_datadir}/git-core/
+
+%files gui
+%defattr(-, root, root, 0755)
+%{_bindir}/git-citool
+%{_bindir}/git-gui
+%{_datadir}/git-gui/
+
+%files -n perl-Git
+%defattr(-, root, root, 0755)
+%doc %{_mandir}/man3/Git.3pm*
+%{perl_vendorlib}/Git.pm
 
 %changelog
+* Mon Jun 11 2007 Dag Wieers <dag@wieers.com> - 1.5.2.1-1
+- Update to release 1.5.2.1.
+
+* Sat Jun 09 2007 Dag Wieers <dag@wieers.com> - 1.5.0.6-1
+- Update to release 1.5.0.6.
+
 * Wed Feb 14 2007 Dries Verachtert <dries@ulyssis.org> - 0.99.4-3
 - Fix location of templates (Dave Miller).
 - Option '--unsafe' added to call to asciidoc.
 - Fix asciidoc problem with '^'.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.99.4-1.2
-- Rebuild for Fedora Core 5.
 
 * Sun Aug 14 2005 Dries Verachtert <dries@ulyssis.org> - 0.99.4-1
 - Update to release 0.99.4.

@@ -27,7 +27,7 @@
 %{?fc5:   %define _without_mozilla 1}
 %{?fc1:   %define _without_mozilla 1}
 
-### Ca't figure out why only EL5 produces swfdec-mozilla-player
+### Can't figure out why only EL5 produces swfdec-mozilla-player
 %{?el5:%define _with_mozilla_player 1}
 
 %define mozilla seamonkey

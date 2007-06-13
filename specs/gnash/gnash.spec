@@ -13,19 +13,19 @@
 %{?rh7:%define _without_kde32 1}
 %{?el2:%define _without_kde32 1}
 
-%ifarch x86_64
-%define _without_kde32 1
-%endif
+#ifarch x86_64
+#define _without_kde32 1
+#endif
 
 Summary: Flash player
 Name: gnash
-Version: 0.7.2
+Version: 0.8.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.gnu.org/software/gnash/
 
-Source: ftp://ftp.belnet.be/mirror/ftp.gnu.org/gnu/gnash/%{version}/gnash-%{version}.tar.bz2
+Source: http://ftp.gnu.org/gnu/gnash/%{version}/gnash-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildrequires: SDL-devel, libxml2-devel, SDL_mixer-devel
@@ -35,7 +35,7 @@ BuildRequires: libpng-devel, libmad-devel, libogg-devel, gcc-c++
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 
 %description
-A flash player.
+Gnash is an open-source flash player.
 
 %package -n konqueror-gnash
 Summary: Konqueror plugin for playing Flash movies
@@ -129,6 +129,9 @@ Firefox plugin for playing Flash movies
 %{_libdir}/mozilla/plugins/
 
 %changelog
+* Sun Jun 10 2007 Dag Wieers <dag@wieers.com> - 0.8.0-1
+- Updated to release 0.8.0.
+
 * Mon Jan 15 2007 Dag Wieers <dag@wieers.com> - 0.7.2-1
 - Updated to release 0.7.2.
 
