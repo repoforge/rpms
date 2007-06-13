@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Jcode/Jcode-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl >= 2:5.8.0, perl(ExtUtils::MakeMaker)
 
 %description
 Jcode (Japanese Charset Handler) module for perl.
