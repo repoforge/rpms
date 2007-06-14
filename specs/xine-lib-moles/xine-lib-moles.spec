@@ -1,11 +1,11 @@
 # $Id$
 # Authority: matthias
 # Upstream: <xine-user$lists,sf,net>
-# ExclusiveDist: fc5 fc6 el5
+# ExclusiveDist: fc5 fc6 el5 fc7
 
 Summary: Extra libraries for the Xine library
 Name: xine-lib-moles
-Version: 1.1.6
+Version: 1.1.7
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -79,13 +79,16 @@ done
 
 
 %files
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
 %doc COPYING doc/README.network_dvd
 %{_libdir}/xine/plugins/%{version}/post/*.so
 %{_libdir}/xine/plugins/%{version}/*.so
 
 
 %changelog
+* Thu Jun 14 2007 Matthias Saou <http://freshrpms.net/> 1.1.7-1
+- Update to 1.1.7.
+
 * Tue Apr 24 2007 Matthias Saou <http://freshrpms.net/> 1.1.6-1
 - Update to 1.1.6.
 
