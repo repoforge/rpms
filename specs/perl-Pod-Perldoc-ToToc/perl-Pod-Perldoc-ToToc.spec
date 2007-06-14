@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/B/BD/BDFOY/Pod-Perldoc-ToToc-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Translates Pod to a table of contents.

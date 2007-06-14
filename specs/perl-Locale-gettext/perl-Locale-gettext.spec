@@ -19,7 +19,7 @@ Patch1: gettext-1.01-includes.patch
 Patch2: gettext-1.01-add-iconv.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.00503
+BuildRequires: perl >= 0:5.00503, perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.00503
 
 %description

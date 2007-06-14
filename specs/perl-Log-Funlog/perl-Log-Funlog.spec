@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/K/KO/KORSANI/Log-Funlog-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Log module with some fun.

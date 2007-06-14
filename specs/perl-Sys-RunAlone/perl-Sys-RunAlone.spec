@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/E/EL/ELIZABETH/Sys-RunAlone-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Make sure only one invocation of a script is active at a time.

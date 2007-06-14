@@ -18,7 +18,7 @@ Source: http://www.cpan.org/modules/by-module/Log/Log-Log4perl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Time::HiRes)
+BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(Time::HiRes)
 Requires: perl(IPC::Shareable), perl(Log::Dispatch), perl(Log::Dispatch::FileRotate), perl(Time::HiRes)
 
 %description

@@ -15,7 +15,7 @@ Group: Applications/CPAN
 URL: http://search.cpan.org/dist/libintl-perl/
 Source: http://www.cpan.org/modules/by-module/Locale/libintl-perl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 Provides: perl-libintl-perl = %{version}-%{release}
 Provides: perl(Locale::gettext_xs)
 BuildArch: noarch

@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/RPM2/
 Source: http://search.cpan.org//CPAN/authors/id/C/CH/CHIPT/RPM2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl bindings for the RPM Package Manager API.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/S/SC/SCHUBIGER/Dir-Split-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Split files of a directory to subdirectories.

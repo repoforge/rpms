@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Compress-Raw-Zlib/
 Source: http://search.cpan.org//CPAN/authors/id/P/PM/PMQS/Compress-Raw-Zlib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Low-Level Interface to zlib compression library.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/L/LB/LBROCARD/File-Copy-Reliable
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Copy and move files with extra checking.

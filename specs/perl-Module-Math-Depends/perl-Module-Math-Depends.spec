@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/A/AD/ADAMK/Module-Math-Depends-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Convenience object for manipulating module dependencies.

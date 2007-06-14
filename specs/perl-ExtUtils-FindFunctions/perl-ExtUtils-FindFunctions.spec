@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/S/SA/SAPER/ExtUtils-FindFunction
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Find functions in external libraries.

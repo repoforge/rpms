@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/G/GU/GUGOD/WWW-Shorten-0rz-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Shorten URL using 0rz.tw.

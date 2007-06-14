@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Boost-Graph/
 Source: http://search.cpan.org//CPAN/authors/id/D/DB/DBURDICK/BoostGraph/Boost-Graph-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, gcc-c++, boost-devel
+BuildRequires: perl, perl(ExtUtils::MakeMaker), gcc-c++, boost-devel
 
 %description
 Perl interface to the Boost-Graph C++ libraries.

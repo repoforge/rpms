@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GR/GREGOR/Games-Chess-Referee-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is an early conversion of my first chess-related Perl

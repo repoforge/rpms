@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/A/AD/ADAMK/Module-Extract-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Module::Extract is a convenience base class for creating module that
