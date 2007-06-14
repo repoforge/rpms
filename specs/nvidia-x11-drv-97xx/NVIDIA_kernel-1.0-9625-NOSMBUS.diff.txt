@@ -1,0 +1,16 @@
+diff -ru usr/src/nv/nv-i2c.c usr/src/nv.NOSMBUS/nv-i2c.c
+--- usr/src/nv/nv-i2c.c	2006-09-15 01:10:17.000000000 +0200
++++ usr/src/nv.NOSMBUS/nv-i2c.c	2006-09-22 21:56:17.259789750 +0200
+@@ -138,11 +138,7 @@
+ 
+ static u32 nv_i2c_algo_functionality(struct i2c_adapter *adap)
+ {
+-    return (I2C_FUNC_I2C |
+-            I2C_FUNC_SMBUS_QUICK |
+-            I2C_FUNC_SMBUS_BYTE |
+-            I2C_FUNC_SMBUS_BYTE_DATA |
+-            I2C_FUNC_SMBUS_WORD_DATA);
++    return I2C_FUNC_I2C;
+ }
+ 
+ static struct i2c_algorithm nv_i2c_algo = {

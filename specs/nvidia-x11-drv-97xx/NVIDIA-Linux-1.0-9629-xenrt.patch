@@ -1,0 +1,117 @@
+diff -urN usr/src/nv/nv.c usr/src/nv-xenrt/nv.c
+--- usr/src/nv/nv.c	2006-09-26 21:33:35.000000000 +0200
++++ usr/src/nv-xenrt/nv.c	2006-10-03 01:15:42.000000000 +0200
+@@ -42,8 +42,26 @@
+ 
+ int nv_pat_enabled = 0;
+ 
++/*
++ * disable PAT support if XEN or PREEMPT_RT is configured in kernel
++ */
++
++#if defined(CONFIG_XEN) || defined(CONFIG_PREEMPT_RT)
++static int nv_disable_pat = 1;
++#else
+ static int nv_disable_pat = 0;
++#endif
++
++/*
++ * you can re-enable PAT support for PREEMPT_RT when applying
++ * "nv_disable_pat=0" as kernel parameter for the sake of slightly
++ * better 3D performance but at the expense of higher latencies.
++ * if XEN is configured, then PAT support can't be enabled!
++ */
++
++#if !defined(CONFIG_XEN)
+ NV_MODULE_PARAMETER(nv_disable_pat);
++#endif
+ 
+ #if defined(NVCPU_X86) || defined(NVCPU_X86_64)
+ NvU64 __nv_supported_pte_mask = ~_PAGE_NX;
+diff -urN usr/src/nv/nv-linux.h usr/src/nv-xenrt/nv-linux.h
+--- usr/src/nv/nv-linux.h	2006-09-26 21:33:37.000000000 +0200
++++ usr/src/nv-xenrt/nv-linux.h	2006-10-03 01:15:42.000000000 +0200
+@@ -226,7 +226,7 @@
+  * tiny, and the kernel panics when it is exhausted. try to warn the user that
+  * they need to boost the size of their pool.
+  */
+-#if defined(CONFIG_SWIOTLB) && !defined(GFP_DMA32)
++#if defined(CONFIG_SWIOTLB) && !defined(GFP_DMA32) && !defined(CONFIG_XEN)
+ #define NV_SWIOTLB 1
+ #endif
+ 
+@@ -734,7 +734,10 @@
+ #define NV_VM_INSERT_PAGE(vma, addr, page) \
+     vm_insert_page(vma, addr, page)
+ #endif
+-#if defined(NV_REMAP_PFN_RANGE_PRESENT)
++#if defined(CONFIG_XEN)
++#define NV_REMAP_PAGE_RANGE(from, offset, x...) \
++    io_remap_pfn_range(vma, from, ((offset) >> PAGE_SHIFT), x)
++#elif defined(NV_REMAP_PFN_RANGE_PRESENT)
+ #define NV_REMAP_PAGE_RANGE(from, offset, x...) \
+     remap_pfn_range(vma, from, ((offset) >> PAGE_SHIFT), x)
+ #elif defined(NV_REMAP_PAGE_RANGE_5_PRESENT)
+@@ -746,6 +749,9 @@
+ #define NV_REMAP_PAGE_RANGE(x...) remap_page_range(x)
+ #endif
+ 
++#if !defined(CONFIG_XEN)
++#define phys_to_machine(x) x
++#endif
+ 
+ #define NV_PGD_OFFSET(address, kernel, mm)              \
+    ({                                                   \
+diff -urN usr/src/nv/nv-vm.c usr/src/nv-xenrt/nv-vm.c
+--- usr/src/nv/nv-vm.c	2006-09-26 21:33:37.000000000 +0200
++++ usr/src/nv-xenrt/nv-vm.c	2006-10-03 01:24:31.000000000 +0200
+@@ -352,6 +352,9 @@
+ 
+ static void nv_flush_caches(void)
+ {
++#if defined(CONFIG_PREEMPT_RT)
++    if(!nv_pat_enabled) return;
++#endif
+ #if defined(KERNEL_2_4)
+     // for 2.4 kernels, just automatically flush the caches and invalidate tlbs
+ #ifdef CONFIG_SMP
+@@ -508,7 +511,7 @@
+         page_ptr->phys_addr = phys_addr;
+         page_ptr->page_count = NV_GET_PAGE_COUNT(page_ptr);
+         page_ptr->virt_addr = virt_addr;
+-        page_ptr->dma_addr = page_ptr->phys_addr;
++        page_ptr->dma_addr = phys_to_machine(page_ptr->phys_addr);
+ 
+         /* lock the page for dma purposes */
+         nv_lock_page(page_ptr);
+diff -urN usr/src/nv/os-agp.c usr/src/nv-xenrt/os-agp.c
+--- usr/src/nv/os-agp.c	2006-09-26 21:33:37.000000000 +0200
++++ usr/src/nv-xenrt/os-agp.c	2006-10-03 01:15:42.000000000 +0200
+@@ -286,7 +286,7 @@
+ 
+          page_ptr->phys_addr = (ptr->memory[i] & PAGE_MASK);
+          page_ptr->virt_addr = (unsigned long) __va(page_ptr->phys_addr);
+-         page_ptr->dma_addr  = page_ptr->phys_addr;
++         page_ptr->dma_addr  = phys_to_machine(page_ptr->phys_addr);
+     }
+ 
+     return RM_OK;
+diff -urN usr/src/nv/os-interface.c usr/src/nv-xenrt/os-interface.c
+--- usr/src/nv/os-interface.c	2006-09-26 21:33:37.000000000 +0200
++++ usr/src/nv-xenrt/os-interface.c	2006-10-03 01:15:42.000000000 +0200
+@@ -527,6 +527,7 @@
+     MicroSeconds = MilliSeconds * 1000;
+     tm_end.tv_usec = MicroSeconds;
+     tm_end.tv_sec = 0;
++#if !defined(CONFIG_XEN)
+     NV_TIMERADD(&tm_aux, &tm_end, &tm_end);
+ 
+     /* do we have a full jiffie to wait? */
+@@ -564,6 +565,7 @@
+                 MicroSeconds = 0;
+         } while ((jiffies = NV_USECS_TO_JIFFIES(MicroSeconds)) != 0);
+     }
++#endif
+ 
+     if (MicroSeconds > 1000)
+     {

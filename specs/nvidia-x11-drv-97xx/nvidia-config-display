@@ -1,0 +1,154 @@
+#!/usr/bin/python
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Library General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+#
+# Copyright 2003, 2004 Peter Backlund
+
+import ixf86config
+import string
+import os
+import sys
+
+if os.uname()[4] == "x86_64" :
+    TOP_MOD_DIR = "/usr/lib64/xorg/modules"
+else:
+    TOP_MOD_DIR = "/usr/lib/xorg/modules"
+
+# This will add an entry to ModulePath section,
+# with previous entries untouched.
+def addModulePath(files, newPathEntry):
+    prevModPath = []
+    # Check for existing ModulePath
+    if (files.module != None):
+        prevModPath = string.split(files.module, ",")
+    # First, add the default module dirs. We add the dirs in
+    # reversed order, and reverse the list at the end.
+    newModPath = [TOP_MOD_DIR]
+    #newModPath.append(TOP_MOD_DIR + "/extensions")
+    for i in range(len(prevModPath)):
+        mp = prevModPath[i]
+        # Remove trailing "/", in case the config file
+        # has been hand-edited
+        if mp[len(mp) - 1] == "/":
+            mp = mp[:(len(mp) - 1)]
+        # Add to new module path
+        if not mp in newModPath and mp != (TOP_MOD_DIR + "/extensions"):
+            newModPath.append(mp)
+    # Add new path entry
+    if not (TOP_MOD_DIR + newPathEntry) in newModPath:
+        newModPath.append(TOP_MOD_DIR + newPathEntry)
+    # Reverse list
+    newModPath.reverse()
+    files.module = string.join(newModPath, ",")
+
+#
+# Removes an entry in the ModulePath list.
+#
+def removeModulePath(files, modulePath):
+    prevModPath = []
+    # Check for existing ModulePath
+    if (files.module != None):
+        prevModPath = string.split(files.module, ",")
+    if (len(prevModPath) < 1):
+        # ModulePath empty, do nothing.
+        return
+    newModPath = []
+    for i in range(len(prevModPath)):
+        mp = prevModPath[i]
+        # Remove trailing "/", in case the config file
+        # has been hand-edited
+        if mp[len(mp) - 1] == "/":
+            mp = mp[:(len(mp) - 1)]
+        if mp != (TOP_MOD_DIR + modulePath) and mp != (TOP_MOD_DIR + "/extensions"):
+            newModPath.append(mp)
+    files.module = string.join(newModPath, ",")
+
+#
+# Set driver to newDriver where
+# if driver is oldDriver
+#
+def toggleDriver(device, oldDriver, newDriver):
+    for dev in device:
+        if (dev.driver.lower() == oldDriver.lower()):
+            dev.driver = newDriver
+
+def printError(err):
+    print "Error:", err
+
+def printUsage():
+    print "Usage: nvidia-config-display [enable|disable]"
+
+# ------------
+# Main section
+# ------------
+
+try:
+    # Read config file
+    (xconfig, xconfigpath) = ixf86config.readConfigFile()
+except:
+    printError("Could not read X config file")
+    sys.exit(1)
+
+# Check number of arguments
+if (len(sys.argv) == 2):
+    arg = sys.argv[1]
+else:
+    printError("Wrong number of arguments")
+    printUsage()
+    sys.exit(1)
+
+# Check value of argument
+if arg != "enable" and arg != "disable":
+    printError("Invalid command")
+    printUsage()
+    sys.exit(1)
+
+# Backup original X config file to .backup-nvidia
+backup_file = None
+output_file = xconfigpath
+if output_file != None and os.access(output_file, os.F_OK):
+    backup_file = output_file + ".backup-nvidia"
+    try:
+        os.rename(output_file, backup_file)
+    except:
+        printError("Cannot write backup file")
+        sys.exit(1)
+else:
+    printError("Cannot open X config file (missing or malformed)")
+    sys.exit(1)
+try:
+    if (arg == "enable"):
+        # Enable nvidia driver:
+        # Add nvidia module path and change driver to 'nvidia'
+        addModulePath(xconfig.files, "/extensions/nvidia")
+        toggleDriver(xconfig.device, "nv", "nvidia")
+    elif (arg == "disable"):
+        # Disable nvidia driver:
+        # Remove nvidia module path and change driver to 'nv'
+        removeModulePath(xconfig.files, "/extensions/nvidia")
+        toggleDriver(xconfig.device, "nvidia", "nv")
+    else:
+        # This shouldn't happen, but we handle it anyway
+        raise
+    # Write new X config file
+    xconfig.write(output_file)
+except:
+    printError("Editing failed, restoring backup")
+    try:
+        # Something went wrong, restore backup
+        os.rename(backup_file, output_file)
+    except:
+        printError("Failed to restore backup")
+
