@@ -1,10 +1,10 @@
 # $Id$
 # Authority: matthias
 # Dist: nodist
-# ExclusiveDist: fc6 el5
+# ExclusiveDist: fc6 el5 fc7
 
 %define majmin          1.0
-%define relver          9631
+%define relver          9639
 %define nvidialibdir    %{_libdir}/nvidia
 %define nvidialib32dir  %{_prefix}/lib/nvidia
 %define desktop_vendor  rpmforge
@@ -28,10 +28,12 @@ Source2: nvidia.sh
 Source3: nvidia.csh
 Source4: nvidia-config-display
 Source5: nvidia.modprobe
+Source6: nvidia.nodes
 # http://www.nvnews.net/vbulletin/attachment.php?attachmentid=20486&d=1158955681
 Patch0: NVIDIA_kernel-1.0-9625-NOSMBUS.diff.txt
 # http://www.nvnews.net/vbulletin/showthread.php?t=77597
 Patch1: NVIDIA-Linux-1.0-9629-xenrt.patch
+Patch2: nvidia-x11-drv-1.0.9755-noxensanitycheck.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Required for proper dkms operation
 Requires: gcc, make
@@ -46,6 +48,8 @@ BuildRequires: desktop-file-utils
 ExclusiveArch: i386 x86_64
 Provides: dkms-nvidia = %{version}-%{release}
 Conflicts: xorg-x11-drv-nvidia
+Conflicts: nvidia-x11-drv
+Conflicts: nvidia-x11-drv-97xx
 
 %description
 Proprietary NVIDIA GL libraries, Xorg and Linux module for hardware
@@ -70,6 +74,7 @@ sh %{SOURCE1} --extract-only --target tmp/
 %{__rm} -rf tmp/
 %patch0 -p0
 %patch1 -p0
+%patch2 -p0
 
 
 %build
@@ -194,14 +199,18 @@ echo %{nvidialib32dir} >> %{buildroot}%{_sysconfdir}/ld.so.conf.d/nvidia.conf
 %endif
 
 # Install profile.d files
-%{__install} -D -p -m 0755 %{SOURCE2} \
+%{__install} -D -p -m 0644 %{SOURCE2} \
     %{buildroot}%{_sysconfdir}/profile.d/nvidia.sh
-%{__install} -D -p -m 0755 %{SOURCE3} \
+%{__install} -D -p -m 0644 %{SOURCE3} \
     %{buildroot}%{_sysconfdir}/profile.d/nvidia.csh
 
 # Install X configuration script
 %{__install} -D -p -m 0755 %{SOURCE4} \
     %{buildroot}%{_sbindir}/nvidia-config-display
+
+# Install udev "configuration" file, required as of F7
+%{__install} -D -p -m 0644 %{SOURCE6} \
+    %{buildroot}%{_sysconfdir}/udev/makedev.d/60-nvidia.nodes
 
 
 %clean
@@ -232,25 +241,32 @@ fi
 
 %postun -p /sbin/ldconfig
 
+%triggerin -- xorg-x11-server-Xorg
+# Enable the proprietary driver
+# Required since xorg-x11-server-Xorg empties the "Files" section
+%{_sbindir}/nvidia-config-display enable || :
+
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-,root,root,-)
 %doc LICENSE usr/share/doc/*
 # Kernel and dkms related bits
 %config %{_sysconfdir}/modprobe.d/nvidia
 %{_usrsrc}/%{dkms_name}-%{dkms_vers}/
-# Devices for udev to copy directly
-%attr(0600,root,root) %dev(c,195,0) %{_sysconfdir}/udev/devices/nvidia0
-%attr(0600,root,root) %dev(c,195,1) %{_sysconfdir}/udev/devices/nvidia1
-%attr(0600,root,root) %dev(c,195,2) %{_sysconfdir}/udev/devices/nvidia2
-%attr(0600,root,root) %dev(c,195,3) %{_sysconfdir}/udev/devices/nvidia3
-%attr(0600,root,root) %dev(c,195,4) %{_sysconfdir}/udev/devices/nvidia4
-%attr(0600,root,root) %dev(c,195,5) %{_sysconfdir}/udev/devices/nvidia5
-%attr(0600,root,root) %dev(c,195,6) %{_sysconfdir}/udev/devices/nvidia6
-%attr(0600,root,root) %dev(c,195,7) %{_sysconfdir}/udev/devices/nvidia7
-%attr(0600,root,root) %dev(c,195,8) %{_sysconfdir}/udev/devices/nvidia8
-%attr(0600,root,root) %dev(c,195,9) %{_sysconfdir}/udev/devices/nvidia9
-%attr(0600,root,root) %dev(c,195,255) %{_sysconfdir}/udev/devices/nvidiactl
+# udev "configuration"
+%config %{_sysconfdir}/udev/makedev.d/60-nvidia.nodes
+# Devices for udev to copy directly - No longer needed thanks to the above
+#attr(0600,root,root) %dev(c,195,0) %{_sysconfdir}/udev/devices/nvidia0
+#attr(0600,root,root) %dev(c,195,1) %{_sysconfdir}/udev/devices/nvidia1
+#attr(0600,root,root) %dev(c,195,2) %{_sysconfdir}/udev/devices/nvidia2
+#attr(0600,root,root) %dev(c,195,3) %{_sysconfdir}/udev/devices/nvidia3
+#attr(0600,root,root) %dev(c,195,4) %{_sysconfdir}/udev/devices/nvidia4
+#attr(0600,root,root) %dev(c,195,5) %{_sysconfdir}/udev/devices/nvidia5
+#attr(0600,root,root) %dev(c,195,6) %{_sysconfdir}/udev/devices/nvidia6
+#attr(0600,root,root) %dev(c,195,7) %{_sysconfdir}/udev/devices/nvidia7
+#attr(0600,root,root) %dev(c,195,8) %{_sysconfdir}/udev/devices/nvidia8
+#attr(0600,root,root) %dev(c,195,9) %{_sysconfdir}/udev/devices/nvidia9
+#attr(0600,root,root) %dev(c,195,255) %{_sysconfdir}/udev/devices/nvidiactl
 # Libraries and X modules
 %config %{_sysconfdir}/ld.so.conf.d/nvidia.conf
 %dir %{nvidialibdir}/
@@ -274,7 +290,7 @@ fi
 
 # Not needed devel but would violate the license not to include them
 #files devel
-#defattr(-,root,root,0755)
+#defattr(-,root,root,-)
 %{nvidialibdir}/*.a
 %{nvidialibdir}/*.so
 %ifarch x86_64
@@ -283,6 +299,13 @@ fi
 
 
 %changelog
+* Wed Jun 13 2007 Matthias Saou <http://freshrpms.net/> 1.0.9639-1
+- Update to 1.0-9639 (legacy 96xx).
+- Add explicit conflicts with nvidia-x11-drv and nvidia-x11-drv-97xx.
+- Backport Xen patch from 97xx.
+- Backport udev changes from 97xx.
+- Backport profile file mode fixes from 97xx.
+
 * Mon Jan  8 2007 Matthias Saou <http://freshrpms.net/> 1.0.9631-1
 - Fork 96xx legacy driver (required for older video cards).
 
