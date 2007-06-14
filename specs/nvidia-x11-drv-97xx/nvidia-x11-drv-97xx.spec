@@ -14,7 +14,7 @@
 %define debug_package   %{nil}
 
 Summary: Proprietary NVIDIA hardware accelerated OpenGL display driver
-Name: nvidia-x11-drv
+Name: nvidia-x11-drv-97xx
 Version: %{majmin}.%{relver}
 Release: 4%{?beta}
 License: Proprietary
