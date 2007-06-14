@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AN/ANDK/Devel-Symdump-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Dump symbol names or the symbol table.

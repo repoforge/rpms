@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/C/CO/CORDATA/Kwiki-TableOfConten
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Provides ability to print entire sections of the kwiki website based on the 

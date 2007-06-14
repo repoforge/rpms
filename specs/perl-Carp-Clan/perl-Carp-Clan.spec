@@ -20,7 +20,7 @@ Source: http://www.cpan.org/modules/by-module/Carp/Carp-Clan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module reports errors from the perspective of the caller of a

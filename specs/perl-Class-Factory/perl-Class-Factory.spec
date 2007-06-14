@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PH/PHRED/Class-Factory-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 A base class for dynamic factory classes.

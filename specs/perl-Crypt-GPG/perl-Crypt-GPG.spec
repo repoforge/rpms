@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AG/AGUL/Crypt-GPG-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The Crypt::GPG module provides access to the functionality of the GnuPG

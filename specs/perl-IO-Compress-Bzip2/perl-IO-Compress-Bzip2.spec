@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/P/PM/PMQS/IO-Compress-Bzip2-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 A module for handling bzip2 compressed files.

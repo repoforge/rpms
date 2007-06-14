@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BI/BINGOS/POE-Component-Client-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module implements a non-blocking RFC812 whois query.

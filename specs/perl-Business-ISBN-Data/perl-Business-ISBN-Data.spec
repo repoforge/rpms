@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Business/Business-ISBN-Data-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is a data pack for Business::ISBN.  You can update

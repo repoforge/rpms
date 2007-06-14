@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TE/TELS/convert/Convert-Morse-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 2:5.8.1
+BuildRequires: perl >= 2:5.8.1, perl(ExtUtils::MakeMaker)
 
 %description
 A package to convert between ASCII and MORSE code.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/B/BI/BINGOS/POE-Component-Server
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 A very simple component to implement RFC 863.

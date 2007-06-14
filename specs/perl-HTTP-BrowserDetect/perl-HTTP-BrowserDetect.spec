@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/W/WA/WALSHAM/HTTP-BrowserDetect-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The HTTP::BrowserDetect object does a number of tests on an HTTP user

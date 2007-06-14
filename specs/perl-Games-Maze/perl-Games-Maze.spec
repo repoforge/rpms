@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JG/JGAMBLE/Games-Maze-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this module, you can create mazes.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AD/ADIE/Test-Exception-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides a few convenience methods for testing exception

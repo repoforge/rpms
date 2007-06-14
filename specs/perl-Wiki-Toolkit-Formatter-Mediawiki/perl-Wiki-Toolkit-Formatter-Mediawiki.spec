@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/D/DP/DPRICE/Wiki-Toolkit-Formatt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 A Mediawiki-style formatter for Wiki::Toolkit.

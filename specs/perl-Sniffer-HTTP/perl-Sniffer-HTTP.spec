@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/C/CO/CORION/Sniffer-HTTP-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 A multi-connection sniffer driver.

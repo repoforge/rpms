@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AD/ADAMK/File-HomeDir-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this module, you can get the home directory of a user.

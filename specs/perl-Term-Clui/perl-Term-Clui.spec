@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Term/Term-Clui-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Term::Clui offers a high-level user interface, with subroutines &choose

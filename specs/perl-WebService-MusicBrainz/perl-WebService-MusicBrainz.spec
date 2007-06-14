@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/B/BF/BFAIST/WebService-MusicBrai
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module will search the MusicBrainz database through their web service 

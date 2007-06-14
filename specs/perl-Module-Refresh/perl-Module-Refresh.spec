@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JE/JESSE/Module-Refresh-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this module, you can refresh %INC when updated on disk.

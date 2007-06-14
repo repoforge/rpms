@@ -13,7 +13,7 @@ URL: http://search.cpan.org/dist/Error/
 Source: http://www.cpan.org/modules/by-module/Error/Error-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: perl >= 0:5.8.0
-BuildRequires: perl >= 0:5.8.0
+BuildRequires: perl >= 0:5.8.0, perl(ExtUtils::MakeMaker)
 BuildArch: noarch
 
 %description

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SA/SALVA/Devel-SmallProf-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The Devel::SmallProf profiler is focused on the time taken for a

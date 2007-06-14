@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Set/Set-IntSpan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Set::IntSpan manages sets of integers.  It is optimized for sets that

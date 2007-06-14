@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Class/Class-DBI-Pager-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 Requires: perl
 
 %description

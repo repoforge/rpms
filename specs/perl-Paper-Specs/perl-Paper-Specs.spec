@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JO/JONALLEN/Paper-Specs-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 A module to provide general purpose access to specifications on paper stock, labels and other

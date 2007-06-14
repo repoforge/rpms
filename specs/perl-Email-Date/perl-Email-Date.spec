@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RJ/RJBS/Email-Date-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this package you can find and format date headers.

@@ -18,6 +18,7 @@ URL: http://www.kwiki.org/
 Source: http://www.cpan.org/modules/by-module/Kwiki/Kwiki-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Kwiki is a modular implementation of a Wiki in Perl.

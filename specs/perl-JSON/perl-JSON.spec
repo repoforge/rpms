@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MA/MAKAMAKA/JSON-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(HTTP::Request), perl(HTTP::Response), dos2unix
+BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(HTTP::Request), perl(HTTP::Response), dos2unix
 
 %description
 JSON (JavaScript Object Notation) is a lightweight data-interchange format.

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-RSS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module was created to help those who need to manage

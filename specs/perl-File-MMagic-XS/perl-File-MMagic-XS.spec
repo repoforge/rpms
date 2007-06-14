@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/File-MMagic-XS/
 Source: http://www.cpan.org/modules/by-module/File/File-MMagic-XS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 Requires: perl
 
 %description

@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/ExtUtils/ExtUtils-ParseXS-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this module, you can Convert Perl XS code into C code.

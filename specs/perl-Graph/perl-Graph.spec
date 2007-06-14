@@ -19,7 +19,7 @@ BuildArch: noarch
 Source: http://www.cpan.org/modules/by-module/Graph/Graph-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This modules contains functions for manipulating graphics.

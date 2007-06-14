@@ -22,7 +22,7 @@ Source: http://www.cpan.org/modules/by-module/MP3/MP3-Info-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this module, you can read and edit information within MP3 files.

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Chart/Chart-Strip-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this module you can draw strip chart type graphs.

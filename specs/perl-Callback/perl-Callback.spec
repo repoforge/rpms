@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MU/MUIR/modules/Callback-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Callback provides a standard interface to register callbacks. Those

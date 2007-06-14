@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Module/Module-Load-Conditional-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Allows you to query the state of modules on your system. It can

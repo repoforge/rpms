@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BI/BINGOS/POE-Component-WWW-Sho
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides a non-blocking POE wrapper around WWW::Shorten.

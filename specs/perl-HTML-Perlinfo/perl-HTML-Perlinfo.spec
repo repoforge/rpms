@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/A/AC/ACCARDO/HTML-Perlinfo-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Display a lot of Perl information in HTML format.

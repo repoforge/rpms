@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AV/AVIF/Tree-Trie-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Tree::Trie is an implementation of a Trie data structure in Perl.

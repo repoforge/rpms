@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/IO/IO-Zlib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This modules provides an IO:: style interface to the Compress::Zlib

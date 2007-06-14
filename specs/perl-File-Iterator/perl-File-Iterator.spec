@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SW/SWHITAKER/File-Iterator-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 File::Iterator is an object-oriented Perl module for iterating across

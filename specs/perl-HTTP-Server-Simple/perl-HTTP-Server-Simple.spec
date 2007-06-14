@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/HTTP/HTTP-Server-Simple-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 HTTP::Server::Simple is a very simple standalone HTTP daemon with no non-core

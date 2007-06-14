@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/S/SI/SIMONW/Net-Google-Calendar-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Programmatic access to Google's Calendar API.

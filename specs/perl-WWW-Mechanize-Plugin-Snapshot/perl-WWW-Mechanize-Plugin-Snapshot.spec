@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/M/MC/MCMAHON/WWW-Mechanize-Plugi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Snapshot the Mech object's state.

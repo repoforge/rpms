@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/M/MI/MIROD/XML-XPathEngine-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module is used to add XPath support to XML modules.

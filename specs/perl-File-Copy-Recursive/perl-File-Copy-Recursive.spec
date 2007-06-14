@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DM/DMUEY/File-Copy-Recursive-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module has 3 functions, one to copy files only, one to copy directories

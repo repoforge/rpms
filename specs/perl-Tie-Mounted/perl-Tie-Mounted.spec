@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/S/SC/SCHUBIGER/Tie-Mounted-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Tie a mounted node to an array.

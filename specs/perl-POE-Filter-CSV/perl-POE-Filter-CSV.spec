@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/B/BI/BINGOS/POE-Filter-CSV-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 A POE-based parser for CSV files, suitable for use with POE::Filter::Stackable 

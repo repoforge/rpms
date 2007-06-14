@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AG/AGRUNDMA/HTTP-Body-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module contains a HTTP body parser.

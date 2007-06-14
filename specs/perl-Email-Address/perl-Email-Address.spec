@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Email/Email-Address-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This class implements a complete RFC 2822 parser that locates email

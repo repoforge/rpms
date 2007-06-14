@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/IO/IO-All-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 IO::All combines all of the best Perl IO modules into a single Spiffy

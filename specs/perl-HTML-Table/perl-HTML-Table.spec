@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/HTML/HTML-Table-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 HTML::Table is used to generate HTML tables for

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/O/OL/OLIVIERT/WebService/WebServi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module is an experimental interface to the W3C Feed Validation online

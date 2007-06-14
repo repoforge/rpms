@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Manifest-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module allows you to interact with a t/test_manifest file.

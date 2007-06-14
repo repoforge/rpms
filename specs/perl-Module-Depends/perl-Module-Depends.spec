@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Module/Module-Depends-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Identify the dependencies of a distribution.

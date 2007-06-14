@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/File/File-Flat-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 Requires: perl
 
 %description

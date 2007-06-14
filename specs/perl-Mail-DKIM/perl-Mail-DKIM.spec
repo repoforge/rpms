@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Mail/Mail-DKIM-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Mail-DKIM is a Perl module to signs/verify Internet mail

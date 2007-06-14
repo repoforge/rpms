@@ -22,7 +22,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHORNY/File-NCopy-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Easy functions for copying files.

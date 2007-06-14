@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/G/GR/GRANTG/WWW-Myspace-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 WWW::Myspace.pm provides methods to access myspace.com accounts and functions

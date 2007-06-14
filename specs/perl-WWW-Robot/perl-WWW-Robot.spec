@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KV/KVENTIN/WWW-Robot-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This distribution contains a module which provides a web traversal engine

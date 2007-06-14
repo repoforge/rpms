@@ -21,7 +21,7 @@ URL: http://search.cpan.org/dist/Digest-MD2/
 Source: http://www.cpan.org/modules/by-module/Digest/Digest-MD2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The Digest::MD2 module allows you to use the RSA Data Security

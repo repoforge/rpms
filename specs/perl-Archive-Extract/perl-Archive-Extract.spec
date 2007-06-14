@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Archive/Archive-Extract-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 A generic archive extracting mechanism.

@@ -20,7 +20,7 @@ Source: http://www.cpan.org/authors/id/M/MA/MANOWAR/RadiusPerl-0.13.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 Requires: perl
 
 %description

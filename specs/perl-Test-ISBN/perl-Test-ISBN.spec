@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-ISBN-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module allows you to check International Standard Book Numbers.

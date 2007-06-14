@@ -21,7 +21,7 @@ Source: http://www.cpan.org/authors/id/D/DC/DCONWAY/Contextual-Return-v%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 Requires: perl
 
 %description

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Params/Params-Util-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Scalar::Util)
+BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(Scalar::Util)
 
 %description
 Simple standalone param-checking functions.
