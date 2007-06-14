@@ -46,6 +46,7 @@ File-MimeInfo is a Perl module to determine file type.
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README t/magic/application_x-perl.txt
 %doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man1/mime*.1*
 %{_bindir}/mimeopen
 %{_bindir}/mimetype
 %dir %{perl_vendorlib}/File/

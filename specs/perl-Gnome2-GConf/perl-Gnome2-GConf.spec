@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Gnome2-GConf/
 Source: http://www.cpan.org/modules/by-module/Gnome2/Gnome2-GConf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(ExtUtils::Depends), perl(ExtUtils::PkgConfig)
 Requires: perl
 
 %description

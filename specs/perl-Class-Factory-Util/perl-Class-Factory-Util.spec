@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Class-Factory-Util-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(Module::Build)
 
 %description
 This module contains utility methods for factory classes.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CJ/CJM/Tie-CPHash-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(Module::Build)
 
 %description
 This module provides a case preserving but case insensitive hash.

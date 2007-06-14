@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/File/File-BOM-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(Module::Build)
 Requires: perl
 
 %description

@@ -20,7 +20,7 @@ Source: http://www.cpan.org/modules/by-module/HTML/HTML-Template-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this module, you can use HTML templates in CGI scripts.
