@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Kwiki/Kwiki-Archive-Rcs-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Kwiki plugin for page archival using RCS.

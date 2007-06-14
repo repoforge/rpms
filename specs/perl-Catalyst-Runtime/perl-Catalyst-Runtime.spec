@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Runtime-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 2:5.8.1
+BuildRequires: perl >= 2:5.8.1, perl(ExtUtils::MakeMaker)
 
 %description
 Catalyst  Runtime version.

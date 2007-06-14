@@ -19,6 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Gnome2/Gnome2-Print-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, libgnomeprintui22-devel >= 2.2, perl(ExtUtils::MakeMaker)
+BuildRequires: perl(ExtUtils::Depends)
 Requires: perl
 
 %description

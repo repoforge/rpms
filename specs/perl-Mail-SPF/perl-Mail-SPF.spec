@@ -20,7 +20,7 @@ Source: http://www.cpan.org/modules/by-module/Mail/Mail-SPF-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(Module::Build)
 
 %description
 Mail-SPF is a Perl module that implements Sender Policy Framework.

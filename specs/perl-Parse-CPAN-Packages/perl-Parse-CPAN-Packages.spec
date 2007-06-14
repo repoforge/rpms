@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Parse/Parse-CPAN-Packages-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Parse 02packages.details.txt.gz.

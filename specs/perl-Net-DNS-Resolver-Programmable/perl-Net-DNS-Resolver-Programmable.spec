@@ -20,7 +20,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-DNS-Resolver-Programmable-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(Module::Build)
 
 %description
 Net-DNS-Resolver-Programmable is a Perl module that implements
