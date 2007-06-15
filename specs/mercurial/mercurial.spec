@@ -3,8 +3,6 @@
 # Upstream: Matt Mackall <mpm$selenic,com>
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
-%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
-
 
 Summary: Fast lightweight source control management system
 Name: mercurial
@@ -32,7 +30,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %install
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
-%{__make} install-doc PREFIX=%{buildroot}%{_prefix} MANDIR=%{buildroot}%{_mandir}
+%{__make} install-doc PREFIX="%{buildroot}%{_prefix}" MANDIR="%{buildroot}%{_mandir}"
 # TODO: also install contrib, maybe in subpackage
 
 %clean
@@ -40,14 +38,20 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 
 %files
 %defattr(-, root, root, 0755)
-%doc CONTRIBUTORS COPYING README 
-%doc %{_mandir}/man1/hg*.1*
-%doc %{_mandir}/man5/hg*.5*
+%doc CONTRIBUTORS COPYING README contrib/
+%doc %{_mandir}/man1/hg.1*
+%doc %{_mandir}/man1/hgmerge.1*
+%doc %{_mandir}/man5/hgignore.5*
+%doc %{_mandir}/man5/hgrc.5*
 %{_bindir}/hg
 %{_bindir}/hgmerge
-%{python_sitelib}/mercurial/
-%{python_sitelib}/hgext/
+%{python_sitearch}/hgext/
+%{python_sitearch}/mercurial/
 
 %changelog
+* Fri Jun 15 2007 Dag Wieers <dag@wieers.com> - 0.9.3-2
+- Use %%{python_sitearch} to build for x86_64. (Tong Ho)
+- Added contrib/.
+
 * Tue Jun 05 2007 Dries Verachtert <dries@ulyssis.org> - 0.9.3-1
 - Initial package.
