@@ -18,7 +18,7 @@ Source: http://www.cpan.org/modules/by-module/Exception/Exception-Class-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Class-Data-Inheritable, perl-Devel-StackTrace
+BuildRequires: perl, perl(ExtUtils::MakeMaker), perl-Class-Data-Inheritable, perl-Devel-StackTrace
 
 %description
 This module allows you to declare hierarchies of exception classes for use

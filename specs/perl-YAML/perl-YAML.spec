@@ -18,7 +18,7 @@ Source: http://www.cpan.org/modules/by-module/YAML/YAML-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 YAML is an abbreviation of YAML Ain't Markup Language. It's a straightforward

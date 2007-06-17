@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JM/JMUHLICH/Net-ICQ-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is a really unfinished module for communicating with an ICQ

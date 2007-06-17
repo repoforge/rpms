@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/A/AP/APOCAL/POE-Component-Simple
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl extension to manage a simple logging system for POE.

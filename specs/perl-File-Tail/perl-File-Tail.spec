@@ -18,7 +18,7 @@ Source: http://www.cpan.org/modules/by-module/File/File-Tail-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The File::Tail module is designed for reading files which are continously

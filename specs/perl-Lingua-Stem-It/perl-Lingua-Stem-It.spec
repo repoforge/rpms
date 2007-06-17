@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AC/ACALPINI/Lingua-Stem-It-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module applies the Porter Stemming Algorithm to its parameters,

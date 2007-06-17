@@ -20,7 +20,7 @@ URL: http://search.cpan.org/dist/String-Ediff/
 Source: http://www.cpan.org/modules/by-module/String/String-Ediff-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module uses a suffix tree algorithm to determine the

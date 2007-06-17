@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RB/RBS/Test-Differences-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Test strings and data structures and show differences if not ok.

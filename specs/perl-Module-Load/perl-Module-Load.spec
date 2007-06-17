@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Module/Module-Load-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Runtime require of both modules and files.

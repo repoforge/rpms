@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DJ/DJBERG/Set-String-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Set::String allows you to create strings as objects and use OO-style

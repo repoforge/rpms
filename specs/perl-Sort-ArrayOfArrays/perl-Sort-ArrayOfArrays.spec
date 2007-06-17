@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/E/EA/EARL/Sort-ArrayOfArrays-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Sort::ArrayOfArrays was written to sort an arbitrary array of arrays, in

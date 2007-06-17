@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MM/MMACHADO/Geo-Weather-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The Geo::Weather module retrieves the current weather from weather.com

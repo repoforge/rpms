@@ -22,7 +22,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-DNS-SEC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module implements DNS Resource Record types that are relevant

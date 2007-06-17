@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/H/HA/HASANT/Sub-Usage-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Sub::Usage provides functions to display usage of subroutines or methods

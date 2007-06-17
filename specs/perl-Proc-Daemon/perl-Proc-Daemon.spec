@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Proc/Proc-Daemon-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Proc::Daemon provides the capability for a Perl program to run

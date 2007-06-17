@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DL/DLOWE/String-Checker-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is a very simple library for checking a string against a given

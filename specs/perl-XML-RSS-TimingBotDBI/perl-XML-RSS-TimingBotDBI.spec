@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-RSS-TimingBotDBI-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This class is for requesting RSS feeds only as often as needed, and

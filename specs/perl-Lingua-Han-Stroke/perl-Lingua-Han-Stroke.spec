@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/F/FA/FAYLAND/Lingua-Han-Stroke-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Retrieve the stroke count of a Chinese character.

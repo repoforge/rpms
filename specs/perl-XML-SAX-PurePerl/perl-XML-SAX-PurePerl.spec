@@ -18,7 +18,7 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-SAX-PurePerl-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 Requires: perl
 
 %description

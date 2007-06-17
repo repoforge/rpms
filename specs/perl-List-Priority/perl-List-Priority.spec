@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/U/UD/UDASSIN/List-Priority-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 If you want to handle multiple data bits by their order of importance -

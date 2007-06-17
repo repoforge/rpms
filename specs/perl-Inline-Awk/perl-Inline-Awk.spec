@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JM/JMCNAMARA/Inline-Awk-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The Inline::Awk module allows you to include awk code in your

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/E/EY/EYCK/Net-Lite-XMMP-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 a Perl XMMP client.

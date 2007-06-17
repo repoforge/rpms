@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Set-Object/
 Source: http://search.cpan.org/CPAN/authors/id/S/SA/SAMV/Set-Object-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This modules implements a set of objects, that is, an unordered

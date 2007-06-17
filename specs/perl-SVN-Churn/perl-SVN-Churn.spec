@@ -21,7 +21,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RC/RCLAMP/SVN-Churn-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Generate a graph for repository churn.

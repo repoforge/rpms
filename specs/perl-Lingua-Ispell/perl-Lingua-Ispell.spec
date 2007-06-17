@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JD/JDPORTER/Lingua-Ispell-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Lingua::Ispell::spellcheck() takes one argument.  It must be

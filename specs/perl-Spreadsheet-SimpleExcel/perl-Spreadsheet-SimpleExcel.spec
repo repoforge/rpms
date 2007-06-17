@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RE/RENEEB/Spreadsheet-SimpleExc
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module is used to show data in excel-files in the web. It can be used

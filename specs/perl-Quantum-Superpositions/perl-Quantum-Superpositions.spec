@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/L/LE/LEMBARK/Quantum-Superpositio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 QM-like superpositions in Perl.

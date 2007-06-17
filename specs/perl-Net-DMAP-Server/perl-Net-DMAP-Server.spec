@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-DMAP-Server-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 A base class for D[A-Z]AP servers.

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Apache/Apache-Session-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 Requires: perl-DBI
 
 %description

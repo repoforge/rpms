@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/H/HP/HPALM/VRML-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Specification independent VRML methods (1.0, 2.0, 97).

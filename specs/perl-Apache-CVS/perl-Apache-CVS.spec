@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BA/BARBEE/Apache-CVS-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module contains a method handler which provides a web interface to CVS

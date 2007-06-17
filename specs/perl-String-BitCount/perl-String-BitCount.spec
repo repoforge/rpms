@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/W/WI/WINKO/String-BitCount-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The String::BitCount module for perl5 may be used to determine the number

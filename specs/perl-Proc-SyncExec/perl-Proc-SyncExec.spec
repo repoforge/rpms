@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RO/ROSCH/Proc-SyncExec-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This distribution contains the Proc::SyncExec module.

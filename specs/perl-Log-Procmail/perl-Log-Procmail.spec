@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BO/BOOK/Log-Procmail-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The Log::Procmail module processes procmail(1) logfiles and returns

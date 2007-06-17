@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SK/SKONNO/Net-UPnP-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl extension for UPnP.

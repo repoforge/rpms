@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AU/AUTRIJUS/LWP-Authen-Wsse-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module is a library for enabling X-WSSE authentication in LWP.

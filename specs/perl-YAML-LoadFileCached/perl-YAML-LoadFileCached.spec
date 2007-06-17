@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/YAML/YAML-LoadFileCached-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 A wrapper around YAML::LoadFile with caching capabilities.

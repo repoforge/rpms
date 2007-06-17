@@ -18,7 +18,7 @@ Source: http://www.cpan.org/modules/by-module/MLDBM/MLDBM-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.8.0
+BuildRequires: perl >= 0:5.8.0, perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.8.0
 
 %description

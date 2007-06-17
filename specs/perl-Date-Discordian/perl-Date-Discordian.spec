@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RB/RBOW/Date-Discordian-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Calculate the Discordian date of a particular 'real' date.

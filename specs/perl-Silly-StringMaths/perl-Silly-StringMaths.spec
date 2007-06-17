@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SK/SKINGTON/Silly-StringMaths-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Silly::StringMaths provides support for basic integer mathematics, using

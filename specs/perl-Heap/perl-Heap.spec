@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Heap/
 Source: http://www.cpan.org/modules/by-module/Heap/Heap-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is a collection of routines for managing a heap data structure. There are

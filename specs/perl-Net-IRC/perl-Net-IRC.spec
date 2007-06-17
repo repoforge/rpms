@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-IRC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 First intended to be a quick tool for writing an IRC script in Perl,

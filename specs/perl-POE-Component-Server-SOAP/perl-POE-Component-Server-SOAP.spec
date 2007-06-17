@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/A/AP/APOCAL/POE-Component-Server
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this module, you can publish POE event handlers via SOAP over HTTP.

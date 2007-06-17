@@ -18,7 +18,7 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Pod-Coverage-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module allows you to check for pod coverage in your distribution.

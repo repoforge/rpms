@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/PostScript-EPSF-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The PostScript::EPSF module provide the function include_epsf() that

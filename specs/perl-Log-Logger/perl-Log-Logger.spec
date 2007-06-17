@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JL/JLBEC/Log-Logger-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 his is just a simple interface to user-defined logfiles.

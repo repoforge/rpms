@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIDI/Sort-Array-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Sort_Table() is capable of sorting table-form arrays by a particular

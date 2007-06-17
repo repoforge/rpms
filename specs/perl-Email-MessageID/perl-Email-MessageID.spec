@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Email/Email-MessageID-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Message-ids are optional, but highly recommended, headers that identify

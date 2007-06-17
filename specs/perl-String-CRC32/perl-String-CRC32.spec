@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/String-CRC32/
 Source: http://search.cpan.org/CPAN/authors/id/S/SO/SOENKE/String-CRC32-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This packages provides a perl module to generate checksums from strings

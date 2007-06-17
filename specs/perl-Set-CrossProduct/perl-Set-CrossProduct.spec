@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BD/BDFOY/Set-CrossProduct-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Work with the cross product of two or more sets.

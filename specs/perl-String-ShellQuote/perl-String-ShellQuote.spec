@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/String/String-ShellQuote-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module contains some functions which are useful for quoting strings

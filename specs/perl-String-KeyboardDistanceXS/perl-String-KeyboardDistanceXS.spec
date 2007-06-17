@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/String-KeyboardDistanceXS/
 Source: http://search.cpan.org/CPAN/authors/id/K/KR/KRBURTON/String-KeyboardDistanceXS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is an XS implementation of the main qwerty functions for computing

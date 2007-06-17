@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DA/DARREN/String-Format-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 String::Format lets you define arbitrary printf-like format

@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/XML-CanonicalizeXML/
 Source: http://search.cpan.org/CPAN/authors/id/S/SJ/SJZASADA/XML-CanonicalizeXML-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, libxml2-devel
+BuildRequires: perl, perl(ExtUtils::MakeMaker), libxml2-devel
 
 %description
 This module provides a wrapper to the XML Canonicalization functions

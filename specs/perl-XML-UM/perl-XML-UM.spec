@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-UM-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides methods to convert UTF-8 strings to any XML encoding that

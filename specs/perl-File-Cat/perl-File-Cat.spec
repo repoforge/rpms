@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/F/FI/FIMM/File-Cat-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl implementation of cat.

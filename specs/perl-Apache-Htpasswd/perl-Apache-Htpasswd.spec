@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KM/KMELTZ/Apache-Htpasswd-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module comes with a set of methods to use with htaccess password

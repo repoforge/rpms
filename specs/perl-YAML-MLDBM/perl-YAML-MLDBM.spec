@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/YAML/YAML-MLDBM-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module is similar to MLDBM except that it stores data internally as

@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/IO-Tty/
 Source: http://www.cpan.org/modules/by-module/IO/IO-Tty-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 IO::Tty and IO::Pty provide an interface to pseudo ttys.

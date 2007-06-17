@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/F/FD/FDALY/Exporter-Easy-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Exporter::Easy gets rid of the drudgery of exporting symbols allowing you to

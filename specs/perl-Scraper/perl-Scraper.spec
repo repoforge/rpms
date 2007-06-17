@@ -21,7 +21,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GL/GLENNWOOD/Scraper-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 These modules scrape data from search engines on the WWW.

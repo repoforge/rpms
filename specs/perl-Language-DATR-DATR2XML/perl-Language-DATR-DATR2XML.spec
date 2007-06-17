@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/L/LG/LGODDARD/Language-DATR-DATR2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Manipulate DATR .dtr, XML, HTML, XML.

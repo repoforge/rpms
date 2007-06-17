@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MU/MUIR/modules/Proc-Forkfunc-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is a simple wrapper for fork.  It will wait for there

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/I/IN/INGY/Spiffy-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 "Spiffy" is a framework and methodology for doing object oriented (OO)

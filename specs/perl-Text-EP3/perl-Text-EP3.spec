@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MY/MYKL/Text-EP3-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 EP3 is a Perl5 program that preprocesses STDIN or some set of

@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Math-VectorReal/
 Source: http://www.cpan.org/modules/by-module/Math/Math-VectorReal-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The Math::VectorReal' package defines a 3D mathematical "vector", in a way

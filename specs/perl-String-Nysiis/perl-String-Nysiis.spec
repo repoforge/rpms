@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KR/KRBURTON/String-Nysiis-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 New York State Identification and Intelligence System (NYSIIS) algorithm

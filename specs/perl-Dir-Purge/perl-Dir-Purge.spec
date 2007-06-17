@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JV/JV/Dir-Purge-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Dir::Purge implements functions to reduce the number of files in a

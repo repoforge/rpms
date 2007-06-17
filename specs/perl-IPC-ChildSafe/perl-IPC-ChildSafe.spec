@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/IPC-ChildSafe/
 Source: http://search.cpan.org/CPAN/authors/id/D/DS/DSB/IPC-ChildSafe-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This distribution contains a C API for controlling a co-process as well

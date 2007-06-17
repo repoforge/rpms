@@ -17,7 +17,7 @@ URL: http://search.cpan.org/dist/HTML-Strip/
 Source: http://www.cpan.org/modules/by-module/HTML/HTML-Strip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.006
+BuildRequires: perl >= 0:5.006, perl(ExtUtils::MakeMaker)
 
 %description
 This module strips HTML-like markup from text.  It is written in XS,

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/O/OE/OEVANS/RADIUS-UserFile-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl extension for manipulating a RADIUS users file.

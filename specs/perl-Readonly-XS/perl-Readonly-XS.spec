@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Readonly-XS/
 Source: http://search.cpan.org/CPAN/authors/id/R/RO/ROODE/Readonly-XS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is a companion module to Readonly.pm.  You do not use

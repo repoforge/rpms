@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RH/RHNELSON/SyslogScan-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 SyslogScan contains routines to parse system logs.  The package

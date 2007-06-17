@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/Include-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Include is a perl5 package which allows the use of macros defined in 'C' header

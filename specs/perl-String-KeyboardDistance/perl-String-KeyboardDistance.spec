@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KR/KRBURTON/String-KeyboardDist
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module implmements a version of keyboard distance for fuzzy string

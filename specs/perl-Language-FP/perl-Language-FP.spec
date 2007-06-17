@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SE/SEANO/Language-FP-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Language::FP is an implementation of John Backus' FP language, a

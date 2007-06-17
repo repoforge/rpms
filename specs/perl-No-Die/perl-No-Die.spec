@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KA/KANE/No-Die-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Tired of using eval as a straightjacket on modules that have as

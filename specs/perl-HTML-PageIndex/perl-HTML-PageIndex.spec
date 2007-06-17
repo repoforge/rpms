@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KM/KMELTZ/HTML-PageIndex-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Create HTML page index objects.

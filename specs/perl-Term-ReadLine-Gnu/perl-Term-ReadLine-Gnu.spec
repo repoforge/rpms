@@ -19,7 +19,7 @@ URL: http://search.cpan.org/dist/Term-ReadLine-Gnu/
 Source: http://www.cpan.org/modules/by-module/Term/Term-ReadLine-Gnu-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, readline-devel
+BuildRequires: perl, perl(ExtUtils::MakeMaker), readline-devel
 
 %description
 Term::ReadLine::Gnu (TRG) is an implementation of the

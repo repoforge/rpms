@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/U/UL/ULPFR/Logfile-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The Logfile extension will help you to generate various reports from

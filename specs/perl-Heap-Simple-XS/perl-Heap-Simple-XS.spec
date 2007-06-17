@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Heap-Simple-XS/
 Source: http://search.cpan.org/CPAN/authors/id/T/TH/THOSPEL/Heap-Simple-XS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides an XS implementation of the interface described in Heap::Simple.

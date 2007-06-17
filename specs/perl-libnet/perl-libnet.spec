@@ -14,7 +14,7 @@ Source0: http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/libnet-%{version}.tar
 Source10: filter-depends.sh
 URL: http://www.cpan.org
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: perl >= 0:5.00503
+BuildRequires: perl >= 0:5.00503, perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.00503
 
 %description

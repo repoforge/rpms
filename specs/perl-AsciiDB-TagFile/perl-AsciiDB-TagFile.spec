@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JO/JOSERODR/AsciiDB-TagFile-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 AsciiDB::Tag allows you to access a simple ASCII database using a

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Text/Text-CSV-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Text::CSV provides facilities for the composition and decomposition of

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JN/JNH/Sort-Fields-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Sort lines containing delimited fields.

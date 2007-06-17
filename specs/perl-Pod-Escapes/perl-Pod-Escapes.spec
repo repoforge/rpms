@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Pod/Pod-Escapes-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides things that are useful in decoding Pod E...

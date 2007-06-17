@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SB/SBURKE/Sort-ArbBiLex-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Arbitrary bi-level lexicographic sorting.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TL/TLBDK/RPM-Perlonly-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl-RPM-Perlonly is a clone of RPM::Header written in only perl, so it provides

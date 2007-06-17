@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Math-CDF/
 Source: http://search.cpan.org/CPAN/authors/id/C/CA/CALLAHAN/Math-CDF-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This package provides a perl interface to DCDFLIB, a set of C functions

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Math/Math-Derivative-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Numeric 1st and 2nd order differentiation.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RH/RHENSSEL/Math-Base36-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Encoding and decoding of base36 strings.

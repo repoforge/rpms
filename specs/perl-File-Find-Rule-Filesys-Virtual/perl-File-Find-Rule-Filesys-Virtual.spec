@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/File/File-Find-Rule-Filesys-Virtua
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 File::Find::Rule adapted to Filesys::Virtual.

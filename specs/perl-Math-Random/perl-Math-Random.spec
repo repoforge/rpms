@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Math-Random/
 Source: http://search.cpan.org/CPAN/authors/id/G/GR/GROMMEL/Math-Random-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module generates a variety of random numbers.  Capabilities

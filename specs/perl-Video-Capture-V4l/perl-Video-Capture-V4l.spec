@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Video-Capture-V4l/
 Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/Video-Capture-V4l-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl interface to the Video4linux framegrabber interface.

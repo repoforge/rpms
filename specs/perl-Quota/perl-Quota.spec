@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Quota/
 Source: http://www.cpan.org/modules/by-module/Quota/Quota-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, quota
+BuildRequires: perl, perl(ExtUtils::MakeMaker), quota
 
 %description
 The Quota module provides access to file system quotas.  The

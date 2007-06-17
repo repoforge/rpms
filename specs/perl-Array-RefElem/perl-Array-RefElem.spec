@@ -19,7 +19,7 @@ URL: http://search.cpan.org/dist/Array-RefElem/
 Source: http://www.cpan.org/modules/by-module/Array/Array-RefElem-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module give direct access to the internal perl routines that let

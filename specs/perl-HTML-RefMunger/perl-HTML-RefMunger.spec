@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AD/ADESC/HTML-RefMunger-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 HTML::RefMunger is a module that will parse HTML files for HREF and IMG

@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/A/AP/APOCAL/POE-Component-SSLify
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module makes Net::SSLeay's SSL sockets behave with POE.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/N/NA/NANDU/Pod-DocBook-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Convert Pod data to DocBook SGML.

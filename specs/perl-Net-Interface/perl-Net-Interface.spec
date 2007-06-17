@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Net-Interface/
 Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIKER/Net-Interface-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Net::Interface is designed to make the use of ifconfig(1) and friends

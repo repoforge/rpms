@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SB/SBURKE/Sort-Naturally-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module exports two functions, nsort and ncmp; they are

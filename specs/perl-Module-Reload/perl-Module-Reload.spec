@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JP/JPRIT/Module-Reload-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Reload %INC files when updated on disk.

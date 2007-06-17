@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-XMPP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The Extensible Messaging and Presence Protocol (XMPP) is an IETF standard

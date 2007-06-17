@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RO/ROSCH/IPC-Signal-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Utility functions dealing with signals.

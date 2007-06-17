@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AV/AVIF/String-REPartition-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 String::REPartition exports a function for generating regular expressions

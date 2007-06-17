@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/User-Utmp/
 Source: http://search.cpan.org/CPAN/authors/id/M/MP/MPIOTR/User-Utmp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides a simple Perl interface to utmp- and utmpx-style

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MU/MUIR/modules/File-Flock-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 File::Flock is a wrapper around the flock() call.  The only thing it

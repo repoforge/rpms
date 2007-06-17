@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/IO-String-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 IO::String is an IO::File (and IO::Handle) compatible class that read

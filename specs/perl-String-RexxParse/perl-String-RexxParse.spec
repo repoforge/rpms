@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BL/BLCKSMTH/String-RexxParse-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Some long-time REXX programmers switching to Perl find it difficult

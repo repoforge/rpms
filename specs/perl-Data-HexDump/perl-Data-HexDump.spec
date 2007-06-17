@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/F/FT/FTASSIN/Data-HexDump-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Dump in hexadecimal the content of a scalar. The result is returned in a

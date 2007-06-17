@@ -22,7 +22,7 @@ Source: http://www.cpan.org/modules/by-module/File/File-Slurp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides subroutines to read or write entire files with a

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/Font-AFM-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module implements the Font::AFM class. Objects of this

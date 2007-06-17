@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/String-CRC/
 Source: http://search.cpan.org/CPAN/authors/id/M/MU/MUIR/modules/String-CRC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The CRC module calculates CRC of various lenghts. The default CRC length is

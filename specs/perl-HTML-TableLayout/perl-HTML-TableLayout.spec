@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SF/SFARRELL/HTML-TableLayout-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Layout Manager for cgi-based web applications.

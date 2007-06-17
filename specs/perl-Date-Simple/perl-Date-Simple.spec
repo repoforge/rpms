@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Date-Simple/
 Source: http://search.cpan.org/CPAN/authors/id/Y/YV/YVES/Date-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Dates are complex enough without times and timezones. This module may be

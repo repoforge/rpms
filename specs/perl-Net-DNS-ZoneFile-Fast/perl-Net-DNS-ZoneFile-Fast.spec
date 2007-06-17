@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/H/HA/HARDAKER/Net-DNS-ZoneFile-Fa
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The Net::DNS::ZoneFile::Fast module provides an ability to parse zone

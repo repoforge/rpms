@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PD/PDEEGAN/XML-Mini-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 XML::Mini is a set of Perl (and PHP) classes that allow you to access

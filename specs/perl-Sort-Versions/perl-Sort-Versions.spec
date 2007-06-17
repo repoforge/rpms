@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/E/ED/EDAVIS/Sort-Versions-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module allows easy sorting (via comparisons) of mixed text and numeric

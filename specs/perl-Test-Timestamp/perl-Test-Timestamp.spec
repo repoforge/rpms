@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PK/PKENT/Test-Timestamp-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this module you can create one or more timestamp objects which can

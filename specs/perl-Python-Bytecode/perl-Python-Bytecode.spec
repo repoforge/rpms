@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Python/Python-Bytecode-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this module, you can disassemble and investigate Python bytecode.

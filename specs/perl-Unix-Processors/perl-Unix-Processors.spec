@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Unix-Processors/
 Source: http://search.cpan.org/CPAN/authors/id/W/WS/WSNYDER/Unix-Processors-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This package provides access to per-processor information from Perl.

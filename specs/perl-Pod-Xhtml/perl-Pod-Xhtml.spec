@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BB/BBC/Pod-Xhtml-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Generate well-formed XHTML documents from POD format documentation.

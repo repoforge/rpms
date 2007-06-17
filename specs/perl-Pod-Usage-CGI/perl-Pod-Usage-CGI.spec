@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BB/BBC/Pod-Usage-CGI-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This package generates usage information for CGI scripts.

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Pod-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module allows you to check for POD errors in files.

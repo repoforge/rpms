@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SI/SIFUKURT/Crypt-OTP-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Crypt::OTP is a pure perl implementation of One Time Pad (hence

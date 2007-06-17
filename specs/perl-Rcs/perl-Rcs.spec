@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CF/CFRETER/Rcs-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is Perl Object Class Rcs.pm 1.05, a front-end to Revision Contron System (RCS)

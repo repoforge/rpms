@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/String/String-Escape-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides a flexible calling interface to some

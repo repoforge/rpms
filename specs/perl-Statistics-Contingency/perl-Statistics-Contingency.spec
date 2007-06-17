@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KW/KWILLIAMS/Statistics-Conting
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The "Statistics::Contingency" class helps you calculate several useful

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RC/RCAPUTO/POE-Component-Client
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 POE::Component::Client::DNS is an event driven wrapper for

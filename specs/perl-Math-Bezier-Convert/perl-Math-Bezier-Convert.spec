@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/Y/YS/YSAS/Math-Bezier-Convert-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Math::Bezier::Convert provides functions to convert quadratic bezier to

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JH/JHI/Set-Bag-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module implements a bag (aka multiset) Perl class.

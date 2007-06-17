@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MC/MCAST/Test-Unit-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Test::Unit::* is a sophisticated unit testing framework for Perl

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JV/JV/PostScript-Font-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This package contains a couple of modules to get information for and

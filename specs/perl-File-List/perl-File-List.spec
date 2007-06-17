@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DO/DOPACKI/File-List-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl extension for crawling directory trees and compiling lists of files.

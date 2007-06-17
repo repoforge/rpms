@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Set/Set-Infinite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module contains functions for sets of intervals.

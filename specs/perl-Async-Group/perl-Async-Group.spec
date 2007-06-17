@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DD/DDUMONT/Async-Group-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 If you sometimes have to launch several asynchronous calls in

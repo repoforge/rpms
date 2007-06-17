@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RS/RSAVAGE/Lingua-EN-Infinitive
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Determine the infinitive form of a conjugated word.

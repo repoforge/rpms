@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIKER/Geo-CountryFlags-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This package contains methods for fetching images of country flags.

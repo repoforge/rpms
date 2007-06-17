@@ -22,7 +22,7 @@ Source: http://www.cpan.org/modules/by-module/HTML/HTML-FillInForm-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module automatically inserts data from a previous HTML form into the HTML input and select

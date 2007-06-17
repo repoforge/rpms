@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Math-BigInt-GMP/
 Source: http://www.cpan.org/modules/by-module/Math/Math-BigInt-GMP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, gmp-devel
+BuildRequires: perl, perl(ExtUtils::MakeMaker), gmp-devel
 
 %description
 This package contains a replacement (drop-in) module for Math::BigInt's

@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Text/Text-Autoformat-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Text::Autoformat provides intelligent formatting of

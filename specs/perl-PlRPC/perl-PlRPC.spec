@@ -21,7 +21,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JW/JWIED/PlRPC-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 PlRPC (Perl RPC) is a package for implementing servers and clients that

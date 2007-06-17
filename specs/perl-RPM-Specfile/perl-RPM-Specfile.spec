@@ -12,7 +12,7 @@ Source: http://www.cpan.org/modules/by-module/RPM/RPM-Specfile-%{version}.tar.gz
 URL: http://search.cpan.org/dist/RPM-Specfile/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: perl
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 BuildArch: noarch
 
 %description

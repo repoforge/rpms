@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Net-IP-CMatch/
 Source: http://search.cpan.org/CPAN/authors/id/B/BE/BEAU/Net-IP-CMatch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Net::IP::CMatch is based upon, and does the same thing as

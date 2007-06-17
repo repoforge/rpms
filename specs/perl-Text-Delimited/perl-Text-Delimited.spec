@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Text/Text-Delimited-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Text::Delimited provides a programattical interface to data stored in

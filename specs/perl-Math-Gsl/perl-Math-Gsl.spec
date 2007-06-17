@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/L/LE/LETO/Math-Gsl-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Currently this module implements the GSL Special function library and the

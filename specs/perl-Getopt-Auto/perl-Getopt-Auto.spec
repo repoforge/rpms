@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SI/SIMON/Getopt-Auto-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Framework for command-line applications.

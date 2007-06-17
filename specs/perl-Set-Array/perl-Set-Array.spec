@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RS/RSAVAGE/Set-Array-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Set::Array allows you to create arrays as objects and use OO-style

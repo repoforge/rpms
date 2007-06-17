@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DM/DMEGG/XMLNews-Meta-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This distribution contains a Perl module designed to read and write an

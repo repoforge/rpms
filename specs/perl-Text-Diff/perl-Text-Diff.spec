@@ -18,7 +18,7 @@ Source: http://www.cpan.org/modules/by-module/Text/Text-Diff-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perform diffs on files and record sets.

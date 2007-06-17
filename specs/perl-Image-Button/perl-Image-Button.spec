@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Image/Image-Button-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module contains a base class for building PNG buttons using GD.

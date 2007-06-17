@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Reporter-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Test::Reporter reports the test results of any given distribution to the

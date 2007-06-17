@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SR/SREZIC/GraphViz-Makefile-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 dependencies. A sample program for generating Tk output

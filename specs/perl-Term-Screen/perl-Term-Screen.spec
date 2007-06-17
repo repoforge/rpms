@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JS/JSTOWE/Term-Screen-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 A Simple all perl Term::Cap based screen positioning module.

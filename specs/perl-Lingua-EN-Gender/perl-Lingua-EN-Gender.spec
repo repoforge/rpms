@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/E/EE/EEKIM/Lingua-EN-Gender-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Lingua::EN::Gender implements the Koppel-Argamon algorithm for

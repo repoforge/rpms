@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/W/WI/WINKO/String-Parity-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The String::Parity module for perl5 may be used to generate and test

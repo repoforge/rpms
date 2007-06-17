@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Test-AutoBuild/
 Source: http://www.cpan.org/modules/by-module/Test/Test-AutoBuild-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl-BSD-Resource
+BuildRequires: perl, perl(ExtUtils::MakeMaker), perl-BSD-Resource
 
 %description
 Test-AutoBuild provides a PERL framework for performing

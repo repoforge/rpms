@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RA/RANI/Regexp-Ignore-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Let us ignore unwanted parts, while parsing text.

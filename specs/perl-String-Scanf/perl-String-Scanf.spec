@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JH/JHI/String-Scanf-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The 2.0 release of String::Scanf introduces an object-oriented interface

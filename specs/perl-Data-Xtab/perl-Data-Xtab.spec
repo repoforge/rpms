@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BJ/BJEPS/Data-Xtab-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module allows you to feed it tables of data to be pivoted in such a way

@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-Validator-Schema-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module allows you to validate XML documents against a W3C XML
