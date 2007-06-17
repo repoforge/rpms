@@ -9,12 +9,16 @@
 Summary: Python's own image processing library
 Name: python-imaging
 Version: 1.1.6
-Release: 1
+Release: 2
 License: Distributable
 Group: Development/Libraries
 URL: http://www.pythonware.com/products/pil/
 
 Source: http://effbot.org/downloads/Imaging-%{version}.tar.gz
+Patch0: python-imaging-no-xv.patch
+Patch1: python-imaging-lib64.patch
+Patch2: python-imaging-giftrans.patch
+Patch3: python-imaging-1.1.6-sane-types.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python, python-devel, gtk+-devel
@@ -32,6 +36,10 @@ internal representation, and powerful image processing capabilities.
 
 %prep
 %setup -n Imaging-%{version}
+%patch0 -p1
+%patch1 -p0
+%patch2 -p1
+%patch3 -p1 -b .sane-types
 
 %build
 CFLAGS="%{optflags}" %{__python} setup.py build
@@ -60,6 +68,10 @@ done
 %{python_sitearch}/PIL/
 
 %changelog
+* Wed Jun 13 2007 Dag Wieers <dag@wieers.com> - 1.1.6-2
+- Added patches from Fedora.
+- Fixed a problem where png support was disabled for x86_64. (Paul Casteels)
+
 * Thu May 31 2007 Dag Wieers <dag@wieers.com> - 1.1.6-1
 - Updated to release 1.1.6.
 - Rename the python scripts in %%{_bindir} without .py.

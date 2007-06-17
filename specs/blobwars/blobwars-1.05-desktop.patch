@@ -1,0 +1,15 @@
+--- blobwars-1.06/icons/blobwars.desktop.dsktop	2007-04-06 18:16:35.000000000 +0200
++++ blobwars-1.06/icons/blobwars.desktop	2007-04-10 21:01:28.000000000 +0200
+@@ -1,9 +1,8 @@
+ [Desktop Entry]
+ Encoding=UTF-8
+-Categories=Application;Game;
+-X-Desktop-File-Install-Version=1.0
+-Name=Metal Blob Solid
+-Icon=blobwars
++Categories=Game;ActionGame;
++Name=Blob Wars: Metal Blob Solid
++Icon=blobwars.png
+ Exec=blobwars
+ Terminal=false
+ Type=Application

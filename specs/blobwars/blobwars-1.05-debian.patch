@@ -1,0 +1,25 @@
+--- blobwars-1.06/makefile.debian	2007-04-06 18:16:35.000000000 +0200
++++ blobwars-1.06/makefile	2007-04-10 21:10:10.000000000 +0200
+@@ -9,8 +9,8 @@
+ DEMO = 0
+ 
+ PREFIX=$(DESTDIR)/usr
+-BINDIR = $(PREFIX)/games/
+-DATADIR = $(PREFIX)/share/games/blobwars/
++BINDIR = $(PREFIX)/bin/
++DATADIR = $(PREFIX)/share/blobwars/
+ DOCDIR = $(PREFIX)/share/doc/$(PROG)/
+ ICONDIR = $(PREFIX)/share/icons/hicolor/
+ DESKTOPDIR = $(PREFIX)/share/applications/
+@@ -78,9 +78,8 @@
+ 	mkdir -p $(ICONDIR)64x64/apps
+ 	mkdir -p $(DESKTOPDIR)
+ 
+-	install -o root -g games -m 755 $(PROG) $(BINDIR)$(PROG)
+-	install -o root -g games -m 644 $(PAKNAME) $(DATADIR)$(PAKNAME)
+-	install -o root -g games -m 644 $(DOCS) $(DOCDIR)
++	install -m 755 $(PROG) $(BINDIR)$(PROG)
++	install -m 644 $(PAKNAME) $(DATADIR)$(PAKNAME)
+ 	cp $(ICONS)$(PROG).png $(ICONDIR)32x32/apps/
+ 	cp $(ICONS)$(PROG)-mini.png $(ICONDIR)16x16/apps/$(PROG).png
+ 	cp $(ICONS)$(PROG)-large.png $(ICONDIR)64x64/apps/$(PROG).png

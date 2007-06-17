@@ -4,6 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+### Work around 'Invalid characters in locale name' in desktop-file-install
+%{?rh9:%define _without_freedesktop 1}
+
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
@@ -11,20 +14,18 @@
 
 Summary: The Pan Newsreader
 Name: pan
-Version: 0.14.2.91
-Release: 2.2
+Version: 0.14.2
+Release: 2
 Epoch: 1
 License: GPL
 Group: Applications/Internet
 URL: http://pan.rebelbase.com/
 
 Source: http://pan.rebelbase.com/download/releases/%{version}/SOURCE/pan-%{version}.tar.bz2
-Patch: gcc4-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel >= 2.0.4, gtk2-devel >= 2.0.5, libxml2-devel >= 2.4.22
-BuildRequires: gnet2-devel, gtkspell >= 2.0.2, pcre-devel >= 4.0, gettext
-BuildRequires: gtkspell-devel
+BuildRequires: gnet2-devel, gtkspell-devel >= 2.0.2, gettext, pcre-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
@@ -37,13 +38,11 @@ to get a perfect score on the Good Net-Keeping Seal of Approval evalutions.
 
 %prep
 %setup
-%patch -p1
 
 %build
 %configure \
 	--program-prefix="%{?_program_prefix}"
-%{__make} %{?_smp_mflags} \
-	LDFLAGS="-s"
+%{__make} %{?_smp_mflags} LDFLAGS="-s"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -67,18 +66,13 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %defattr(-, root, root, 0755)
 %doc ANNOUNCE.html AUTHORS ChangeLog COPYING CREDITS INSTALL NEWS README TODO
 %{_bindir}/pan
-%{_datadir}/applications/%{desktop_vendor}-pan.desktop
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/pan.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-pan.desktop}
 %{_datadir}/pixmaps/pan.png
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.14.2.91-2.2
-- Rebuild for Fedora Core 5.
-
-* Tue Mar 30 2004 Dag Wieers <dag@wieers.com> - 0.14.2.91-2
-- Fixed missing categories in desktop-file. (Neil Bird)
-
-* Sun Mar 28 2004 Dag Wieers <dag@wieers.com> - 0.14.2.91-1
-- Updated to release 0.14.2.91.
+* Sat Jun 16 2007 Dag Wieers <dag@wieers.com> - 0.14.2-2
+- Cosmetic cleanup.
 
 * Mon Sep 08 2003 Dag Wieers <dag@wieers.com> - 0.14.2-1
 - Build against gnet2-devel.
