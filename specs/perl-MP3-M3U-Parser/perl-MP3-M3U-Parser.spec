@@ -1,19 +1,17 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Burak Gürsoy <burak$cpan,org>
 
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name MP3-M3U-Parser
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: MP3 playlist parser
 Name: perl-MP3-M3U-Parser
-Version: 2.1
-Release: 1.2
-License: Artistic
+Version: 2.20
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MP3-M3U-Parser/
 
@@ -32,26 +30,29 @@ formats like xml and html.
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/MP3::M3U::Parser.3pm*
+%dir %{perl_vendorlib}/MP3/
+%dir %{perl_vendorlib}/MP3/M3U/
 %{perl_vendorlib}/MP3/M3U/Parser.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.1-1.2
-- Rebuild for Fedora Core 5.
+* Sun Jun 17 2007 Dag Wieers <dag@wieers.com> - 2.20-1
+- Updated to release 2.20.
 
 * Wed Oct 20 2004 Dries Verachtert <dries@ulyssis.org> - 2.1-1
 - Update to release 2.1.
