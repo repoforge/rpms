@@ -6,8 +6,8 @@
 
 Summary: Versatile desktop calculator library
 Name: libqalculate
-Version: 0.9.5
-Release: 3
+Version: 0.9.6
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://qalculate.sourceforge.net/
@@ -104,6 +104,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %exclude %{_docdir}/libqalculate-%{version}/
 
 %changelog
+* Sun Jun 17 2007 Dries Verachtert <dries@ulyssis.org> - 0.9.6-1
+- Updated to release 0.9.6.
+
 * Wed Dec 20 2006 Dag Wieers <dag@wieers.com> - 0.9.5-3
 - Added the qalculate sub-package (this allows upgrade path from qalculate).
 

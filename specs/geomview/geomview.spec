@@ -21,7 +21,7 @@
 
 Summary: View and manipulate 3D geometric objects
 Name: geomview
-Version: 1.9.1
+Version: 1.9.2
 Release: 1
 License: Distributable
 Group: Applications/Multimedia
@@ -129,6 +129,9 @@ desktop-file-install --vendor rpmforge             \
 %exclude %{_libdir}/libgeomview.la
 
 %changelog
+* Sun Jun 17 2007 Dries Verachtert <dries@ulyssis.org> - 1.9.2-1
+- Updated to release 1.9.2.
+
 * Tue May 08 2007 Dries Verachtert <dries@ulyssis.org> - 1.9.1-1
 - Updated to release 1.9.1.
 

@@ -4,7 +4,7 @@
 
 Summary: Peer-to-peer framework
 Name: gnunet
-Version: 0.7.1
+Version: 0.7.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -77,6 +77,7 @@ you will need to install %{name}-devel.
 %{_bindir}/gnunet-unindex
 %{_bindir}/gnunet-update
 %{_bindir}/gnunet-vpn
+%{_bindir}/gnunet-setup
 %{_bindir}/gnunetd
 %{_libdir}/GNUnet/
 %{_libdir}/libgnunetcollection.so.*
@@ -86,8 +87,12 @@ you will need to install %{name}-devel.
 %{_libdir}/libgnunetfs.so.*
 %{_libdir}/libgnunetfsui.so.*
 %{_libdir}/libgnunetgetoption_api.so.*
-%{_libdir}/libgnunetmodule_rpc_util.so.*
-%{_libdir}/libgnunetmodule_traffic_api.so.*
+%{_libdir}/libgnunetidentity_api.so.*
+%{_libdir}/libgnunetip.so.*
+%{_libdir}/libgnunetrpc_util.so.*
+%{_libdir}/libgnunetsetup.so.*
+%{_libdir}/libgnunettesting_api.so.*
+%{_libdir}/libgnunettraffic_api.so.*
 %{_libdir}/libgnunetnamespace.so.*
 %{_libdir}/libgnunetstats_api.so.*
 %{_libdir}/libgnuneturitrack.so.*
@@ -111,8 +116,12 @@ you will need to install %{name}-devel.
 %{_libdir}/libgnunetfs.so
 %{_libdir}/libgnunetfsui.so
 %{_libdir}/libgnunetgetoption_api.so
-%{_libdir}/libgnunetmodule_rpc_util.so
-%{_libdir}/libgnunetmodule_traffic_api.so
+%{_libdir}/libgnunetidentity_api.so
+%{_libdir}/libgnunetip.so
+%{_libdir}/libgnunetrpc_util.so
+%{_libdir}/libgnunetsetup.so
+%{_libdir}/libgnunettesting_api.so
+%{_libdir}/libgnunettraffic_api.so
 %{_libdir}/libgnunetnamespace.so
 %{_libdir}/libgnunetstats_api.so
 %{_libdir}/libgnuneturitrack.so
@@ -127,5 +136,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sun Jun 17 2007 Dries Verachtert <dries@ulyssis.org> - 0.7.2-1
+- Updated to release 0.7.2.
+
 * Sat Dec 23 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.1-1
 - Initial package.
