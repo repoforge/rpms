@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SZ/SZABGAB/CGI-Upload-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module has been written to provide a simple and secure manner by

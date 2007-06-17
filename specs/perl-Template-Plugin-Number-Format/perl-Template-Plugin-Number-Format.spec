@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DA/DARREN/Template-Plugin-Numbe
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Plugin/filter interface to Number::Format.

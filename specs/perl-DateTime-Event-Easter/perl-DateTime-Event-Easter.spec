@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Event-Easter-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 The DateTime::Event::Easter module returns Easter events for DateTime

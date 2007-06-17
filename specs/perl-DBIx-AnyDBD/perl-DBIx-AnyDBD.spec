@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/DBIx-AnyDBD-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This class is an alternative approach to developing database independant

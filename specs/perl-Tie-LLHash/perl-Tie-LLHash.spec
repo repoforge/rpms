@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KW/KWILLIAMS/Tie-LLHash-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This is the Tie::LLHash.pm module.  It is a class for implementing

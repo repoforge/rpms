@@ -20,7 +20,7 @@ Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-Vigenere-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This modules allows you to recreate the workings of the cryptographic

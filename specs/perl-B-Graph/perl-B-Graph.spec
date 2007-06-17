@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SM/SMCCAM/B-Graph-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module is a layer between the perl-internals-examining parts of

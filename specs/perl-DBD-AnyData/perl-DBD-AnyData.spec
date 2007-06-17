@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JZ/JZUCKER/DBD-AnyData-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 The DBD::AnyData module provides a DBI (Perl Database Interface)

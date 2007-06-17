@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AJ/AJGOUGH/AI-Gene-Sequence-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Perl module which you can use for gene sequences.

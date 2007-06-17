@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/Y/YA/YAPPO/WebService-SyncSBS-D2H
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module implements a del.icio.us and hatena bookmark sync.

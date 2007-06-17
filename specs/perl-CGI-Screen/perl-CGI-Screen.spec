@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/U/UL/ULPFR/CGI-Screen-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 CGI::Screen is a subclass of `CGI' which allows the esay(TM) creation of

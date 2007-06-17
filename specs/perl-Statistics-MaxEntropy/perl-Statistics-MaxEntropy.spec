@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TE/TERDOEST/Statistics-MaxEntro
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module is an implementation of the Generalised and Improved

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CO/COLINK/Convert-SciEng-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module provides an object-oriented interface for converting

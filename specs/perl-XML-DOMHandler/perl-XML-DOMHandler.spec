@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/E/ER/ERIKRAY/XML-DOMHandler-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Implements a call-back interface to DOM.

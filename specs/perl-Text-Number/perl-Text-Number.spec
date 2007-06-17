@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/F/FI/FIXLER/Text-Number-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Provides a facility for transparently configuring numbers

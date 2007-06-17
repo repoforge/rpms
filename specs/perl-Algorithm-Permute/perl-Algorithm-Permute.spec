@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Algorithm-Permute/
 Source: http://search.cpan.org/CPAN/authors/id/E/ED/EDPRATOMO/Algorithm-Permute-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Handy and fast permutation with object oriented interface.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SU/SUMMER/Text-MacroScript-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Define macros, scripts and variables in macro files or directly in text

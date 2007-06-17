@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Tie/Tie-Array-Sorted-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 An array which is kept sorted.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KI/KILINRAX/Array-Reform-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module converts an array into an N-sized array of arrays, using

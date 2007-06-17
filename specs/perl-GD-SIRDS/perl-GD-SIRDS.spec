@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CO/COGENT/GD-SIRDS-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Creates Single Image Random Dot Stereograms from a source image or depth

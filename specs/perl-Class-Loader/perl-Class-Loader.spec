@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/V/VI/VIPUL/Class-Loader-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Load modules and create objects on demand.

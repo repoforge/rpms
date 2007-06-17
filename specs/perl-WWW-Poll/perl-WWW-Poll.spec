@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MG/MGAMMON/WWW-Poll-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module is a simple perl module to allow folks to easily run

@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Text-ExtractWords/
 Source: http://search.cpan.org/CPAN/authors/id/H/HD/HDIAS/Text-ExtractWords-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 With this module, you can extract words from strings.

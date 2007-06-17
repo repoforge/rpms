@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Class-Date/
 Source: http://search.cpan.org/CPAN/authors/id/D/DL/DLUX/Class-Date-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module is intended to provide a general-purpose date and datetime

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AM/AMS/Crypt-NULL-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 The NULL Encryption Algorithm is a symmetric block cipher described

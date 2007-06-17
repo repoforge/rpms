@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MG/MGH/CGI-Response-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 CGI::Response is one of several Perl5 modules designed to help create

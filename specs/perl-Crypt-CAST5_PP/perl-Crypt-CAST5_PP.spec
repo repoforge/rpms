@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BO/BOBMATH/Crypt-CAST5_PP-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 The CAST5 block cipher, implemented in pure Perl.

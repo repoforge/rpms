@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PD/PDCAWLEY/Class-Inner-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 A perlish implementation of Java like inner classes.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MA/MARKSTOS/CGI-Application-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 Requires: perl-HTML-Template
 
 %description

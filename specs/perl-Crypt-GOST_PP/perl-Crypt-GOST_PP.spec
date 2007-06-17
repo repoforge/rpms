@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SI/SIFUKURT/Crypt-GOST_PP-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Crypt::GOST_PP is a pure perl implementation of GOST, a 64-bit

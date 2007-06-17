@@ -14,7 +14,7 @@ Source: http://www.cpan.org/modules/by-module/Cache/Cache-Cache-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: perl >= 0:5.8.0
 Requires: perl(Error), perl(Storable), perl(IPC::ShareLite)
-BuildRequires: perl >= 0:5.8.0
+BuildRequires: perl(ExtUtils::MakeMaker), perl >= 0:5.8.0
 BuildArch: noarch
 
 %description

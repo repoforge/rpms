@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Audio-DSP/
 Source: http://search.cpan.org/CPAN/authors/id/S/SE/SETHJ/Audio-DSP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Audio::DSP is built around the OSS (Open Sound System) API and allows

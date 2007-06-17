@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Digest-Elf/
 Source: http://search.cpan.org/CPAN/authors/id/M/MC/MCKAY/Digest-Elf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Digest::Elf provides an XS based implimentation of the ElfHash algorithm.

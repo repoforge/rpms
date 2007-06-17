@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RB/RBOW/Date-Easter-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Calculates Easter for a given year.

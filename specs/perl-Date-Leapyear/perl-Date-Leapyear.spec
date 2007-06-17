@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RB/RBOW/Date-Leapyear-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Date::Leapyear exports one function - isleap - which returns 1 or 0 if a

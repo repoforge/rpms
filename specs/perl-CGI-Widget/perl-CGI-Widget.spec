@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AL/ALLENDAY/CGI-Widget-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Modules under the CGI::Widget namespace serve the purpose of allowing

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GM/GMCCAR/VCS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 `VCS' is an API for abstracting access to all version control systems

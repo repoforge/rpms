@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JV/JV/Text-Filter-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Text::Filter is a base class for modules that have in common that they

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Set-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 The DateTime::Set module provides a date/time sets implementation.

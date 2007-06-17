@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/F/FO/FORTY/Apache-SimpleTemplate-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Apache::SimpleTemplate is *another* Template-with-embedded-Perl package

@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Event-Random-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module creates DateTime::* objects with random values.

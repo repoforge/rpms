@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DD/DDUMONT/Text-Vpp-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Vpp can handle conditional text, loop, variable substitutions in the

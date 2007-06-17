@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Audio-Mixer/
 Source: http://search.cpan.org/CPAN/authors/id/S/SE/SERGEY/Audio-Mixer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Library to query / set various sound mixer parameters.

@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Compress-LZV1/
 Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/Compress-LZV1-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 LZV1 is an extremely fast (not that much slower than a pure memcpy)

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BT/BTROTT/Data-Buffer-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Data::Buffer implements a low-level binary buffer in which you can get and

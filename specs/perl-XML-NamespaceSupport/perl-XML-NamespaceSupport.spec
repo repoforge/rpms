@@ -20,7 +20,7 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-NamespaceSupport-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 XML-NamespaceSupport Perl module.

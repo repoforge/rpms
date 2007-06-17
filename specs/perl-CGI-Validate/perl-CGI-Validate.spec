@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/Z/ZE/ZENIN/CGI-Validate-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 The basic concept of this module is to combine the best features of the

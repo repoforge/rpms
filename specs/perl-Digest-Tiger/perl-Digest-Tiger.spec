@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Digest-Tiger/
 Source: http://search.cpan.org/CPAN/authors/id/C/CL/CLINTDW/Digest-Tiger-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module implements the tiger hash, which returns a 192-bit hash value.

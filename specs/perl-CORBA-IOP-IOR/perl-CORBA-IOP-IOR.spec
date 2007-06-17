@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PH/PHILIPA/CORBA-IOP-IOR-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 CORBA::IOP::IOR is a handy module for processing IORs. I've found

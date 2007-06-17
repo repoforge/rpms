@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Crypt-IDEA/
 Source: http://search.cpan.org/CPAN/authors/id/D/DP/DPARIS/Crypt-IDEA-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Perl interface to IDEA block cipher.

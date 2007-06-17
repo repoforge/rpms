@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/DBD/DBD-CSV-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 The DBD::CSV module is yet another driver for the DBI (Database

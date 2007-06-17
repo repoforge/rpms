@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/XML-QL-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module is an early implementation of a note published by

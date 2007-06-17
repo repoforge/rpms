@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/F/FO/FONKIE/CDDB_get-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module/script gets the CDDB info for an audio cd. You need

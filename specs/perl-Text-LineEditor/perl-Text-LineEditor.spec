@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GO/GOSSAMER/Text-LineEditor-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module implements a -very- simple editor like Berkley mail used

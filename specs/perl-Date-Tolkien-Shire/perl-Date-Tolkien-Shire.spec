@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TB/TBRAUN/Date-Tolkien-Shire-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This is an object-oriented module to convert dates into

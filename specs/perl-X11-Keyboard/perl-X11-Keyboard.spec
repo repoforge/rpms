@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/X11/X11-Keyboard-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module make available certain keyboard functions useful to translate

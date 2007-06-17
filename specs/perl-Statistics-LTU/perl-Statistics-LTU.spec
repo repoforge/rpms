@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TO/TOMFA/Statistics-LTU-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 An implementation of Linear Threshold Units.

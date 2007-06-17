@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JS/JSMITH/CGI-WeT-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 CGI::WeT is a package to help build a website with the ability to offer

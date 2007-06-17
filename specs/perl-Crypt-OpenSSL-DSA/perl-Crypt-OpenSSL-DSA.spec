@@ -20,7 +20,7 @@ URL: http://search.cpan.org/dist/Crypt-OpenSSL-DSA/
 Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-OpenSSL-DSA-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, openssl-devel, krb5-devel
+BuildRequires: perl(ExtUtils::MakeMaker), perl, openssl-devel, krb5-devel
 
 %description
 Crypt::OpenSSL::DSA implements the DSA (Digital Signature Algorithm)

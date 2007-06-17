@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SB/SBURKE/Class-BlackHole-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Normally, if you try to call a method that there's no

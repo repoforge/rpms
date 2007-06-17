@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AP/APPEL/Crypt-ECB-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module is a Perl-only implementation of the ECB mode. In

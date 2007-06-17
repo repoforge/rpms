@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CL/CLACO/Catalyst-Model-NetBlog
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 5.8.0
+BuildRequires: perl(ExtUtils::MakeMaker), perl >= 5.8.0
 
 %description
 This model class uses Net::Blogger to post and retrieve blog entries to

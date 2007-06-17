@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SZ/SZABGAB/Array-Unique-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This package lets you create an array which will allow only one

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CW/CWINTERS/SPOPS-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 SPOPS is a robust and powerful module that allows you to serialize

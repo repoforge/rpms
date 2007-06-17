@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BP/BPOWERS/Tk-FileDialog-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Tk::FileDialog is a perl5 package which implements a File Selector

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Business/Business-ISBN-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 With this module you can work with ISBN numbers.

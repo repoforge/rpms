@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/X11/X11-SendEvent-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module presents a simple interface for sending events to

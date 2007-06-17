@@ -19,7 +19,7 @@ URL: http://search.cpan.org/dist/Crypt-CAST5/
 Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-CAST5-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module implements the CAST5 block cipher using compiled C code for

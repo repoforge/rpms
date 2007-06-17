@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHROMATIC/Text-WikiFormat-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Text::WikiFormat converts text in a simple Wiki markup language to whatever

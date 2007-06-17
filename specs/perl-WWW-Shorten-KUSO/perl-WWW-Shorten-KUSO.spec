@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KE/KENWU/WWW-Shorten-KUSO-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Shorten URL using http://KUSO.CC/ .

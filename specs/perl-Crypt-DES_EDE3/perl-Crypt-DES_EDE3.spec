@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BT/BTROTT/Crypt-DES_EDE3-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This is Crypt::DES_EDE3, a module implementing Triple-DES EDE

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KW/KWILLIAMS/Tie-DB_Lock-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This is the Tie::DB_Lock.pm module.  It is a TIEHASH class that implements

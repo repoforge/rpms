@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PG/PGOLLUCCI/Apache-DBI-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module is supposed to be used with the Apache server together with

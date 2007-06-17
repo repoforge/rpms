@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Class/Class-Hook-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Class::Hook enables you to trace methods calls from your code to other

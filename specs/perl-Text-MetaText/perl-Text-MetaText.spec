@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AB/ABW/Text-MetaText-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 MetaText is a text processing and markup meta-language which can

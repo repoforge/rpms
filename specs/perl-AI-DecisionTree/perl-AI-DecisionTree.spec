@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/AI-DecisionTree/
 Source: http://search.cpan.org/CPAN/authors/id/K/KW/KWILLIAMS/AI-DecisionTree-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 The "AI::DecisionTree" module automatically creates so-called "decision

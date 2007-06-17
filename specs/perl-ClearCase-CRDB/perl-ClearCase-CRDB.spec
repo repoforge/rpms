@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DS/DSB/ClearCase-CRDB-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Whouses provides a limited form of "impact analysis" in a clearmake

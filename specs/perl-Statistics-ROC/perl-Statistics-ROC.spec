@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/H/HA/HAKESTLER/Statistics-ROC-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This code implements a method for constructing nonparametric confidence

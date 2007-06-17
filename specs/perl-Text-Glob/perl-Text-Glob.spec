@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Text/Text-Glob-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module allows you to match globbing patterns against text.

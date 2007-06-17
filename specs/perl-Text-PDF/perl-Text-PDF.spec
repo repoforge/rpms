@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MH/MHOSKEN/Text-PDF-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 PDF functions for Perl.

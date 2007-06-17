@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Unicode-CheckUTF8/
 Source: http://search.cpan.org/CPAN/authors/id/B/BR/BRADFITZ/Unicode-CheckUTF8-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 With this module, you can check if a scalar is valid UTF-8.

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Calendar-Christi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module implements the Christian calendar, which consists of both

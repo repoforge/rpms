@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-Registry-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 The idea is to convert XML to Perl and back again using

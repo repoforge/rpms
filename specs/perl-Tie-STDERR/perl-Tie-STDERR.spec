@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JA/JANPAZ/Tie-STDERR-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Send output of your STDERR to a process or mail.

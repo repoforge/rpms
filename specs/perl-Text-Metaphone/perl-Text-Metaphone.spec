@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Text-Metaphone/
 Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHWERN/Text-Metaphone-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Metaphone() is a function whereby a string/word is broken down into

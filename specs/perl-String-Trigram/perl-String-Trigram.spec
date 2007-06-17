@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/String-Trigram/
 Source: http://search.cpan.org/CPAN/authors/id/T/TA/TAREKA/String-Trigram-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module computes the similarity of two strings based on the trigram

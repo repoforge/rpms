@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Devel-Size/
 Source: http://search.cpan.org/CPAN/authors/id/D/DS/DSUGAL/Devel-Size-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl extension for finding the memory usage of Perl variables.

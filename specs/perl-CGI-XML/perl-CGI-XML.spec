@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/E/EI/EISEN/CGI-XML-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 The XML::CGI module converts CGI.pm variables from/to XML.

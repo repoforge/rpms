@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHWARTZ/Convert-Context-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 An Attributed Text data type.

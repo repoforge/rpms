@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Sys-Load/
 Source: http://search.cpan.org/CPAN/authors/id/B/BA/BARABAS/Sys-Load-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Sys::Load is a module that is used to get the current system load and uptime.

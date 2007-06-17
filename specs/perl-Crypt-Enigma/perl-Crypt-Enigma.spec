@@ -20,7 +20,7 @@ Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-Enigma-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module contains a perl implementation of the WWII Enigma machine.

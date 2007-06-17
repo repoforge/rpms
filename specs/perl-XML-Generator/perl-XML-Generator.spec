@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BH/BHOLZMAN/XML-Generator-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module allows you to generate XML documents.

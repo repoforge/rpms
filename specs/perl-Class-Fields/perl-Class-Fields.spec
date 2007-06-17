@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHWERN/Class-Fields-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Inspect the fields of a class.

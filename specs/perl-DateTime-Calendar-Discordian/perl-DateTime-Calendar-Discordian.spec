@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/J/JA/JALDHAR/DateTime-Calendar-D
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This is a module that implements the Discordian calendar made popular

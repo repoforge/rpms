@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/H/HL/HLHAMILT/Getopt-ExPar-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Extended Parameters, Getopt::ExPar, is written as a possible alternative

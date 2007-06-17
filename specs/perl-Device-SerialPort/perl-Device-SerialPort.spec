@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Device-SerialPort/
 Source: http://search.cpan.org/CPAN/authors/id/C/CO/COOK/Device-SerialPort-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is a POSIX-based version of the Win32::Serialport module ported by

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCONWAY/Attribute-Handlers-P
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module, when inherited by a package, allows that package's class to

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JA/JARW/Getopt-Regex-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Perl Module Getopt::Regex - handle command line options flexibly using

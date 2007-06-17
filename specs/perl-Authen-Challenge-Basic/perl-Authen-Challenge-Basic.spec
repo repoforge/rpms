@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/L/LU/LUISMUNOZ/Authen-Challenge-B
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This is a perl5 module implementing basic MD5-based challenge/response.

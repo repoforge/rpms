@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/XML-DOM-BagOfTricks/
 Source: http://search.cpan.org/CPAN/authors/id/T/TE/TEEJAY/XML-DOM-BagOfTricks-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 XML::DOM::BagOfTricks provides a bundle, or bag, of functions that make

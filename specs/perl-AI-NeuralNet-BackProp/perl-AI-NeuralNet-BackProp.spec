@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JB/JBRYAN/AI-NeuralNet-BackProp
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 AI::NeuralNet::BackProp is a simply back-propagation,

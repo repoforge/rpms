@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/L/LT/LTHEGLER/Date-Holidays-DK-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Date::Holidays::DK Determines whether a given date is a Danish public holiday

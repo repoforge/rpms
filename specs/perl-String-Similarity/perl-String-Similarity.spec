@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/String-Similarity/
 Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/String-Similarity-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 The "similarity"-function calculates the similarity index of its two

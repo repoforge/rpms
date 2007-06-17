@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCARRAWAY/Text-BasicTemplate
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This is a template parsing module for perl5 and higher.  Originally

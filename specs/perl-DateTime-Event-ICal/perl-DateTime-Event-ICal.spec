@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Event-ICal-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Perl DateTime extension for computing rfc2445 recurrences like

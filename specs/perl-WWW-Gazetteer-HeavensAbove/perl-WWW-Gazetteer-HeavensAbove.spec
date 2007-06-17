@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/B/BO/BOOK/WWW-Gazetteer-HeavensA
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module allows you to request information about cities

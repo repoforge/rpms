@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RI/RICKM/DateTime-Format-Strpti
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module replicates most of Strptime for DateTime. Strptime is the

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/U/UM/UMVUE/Authen-NTLM-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 The NTLM (Windows NT LAN Manager) authentication scheme is the

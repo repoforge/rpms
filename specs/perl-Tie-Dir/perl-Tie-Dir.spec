@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/Tie-Dir-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Class definition for reading directories via a tied hash.

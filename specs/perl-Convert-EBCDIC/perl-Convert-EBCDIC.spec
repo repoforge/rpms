@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CX/CXL/Convert-EBCDIC-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module provides two functions ascii2ebcdic and ebcdic2ascii for

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CW/CWINTERS/Class-Observable-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Allow other classes and objects to respond to events in your classes.

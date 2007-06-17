@@ -17,7 +17,7 @@ URL: http://search.cpan.org/dist/Compress-Zlib/
 Source: http://www.cpan.org/modules/by-module/Compress/Compress-Zlib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.004, zlib-devel >= 1.0.2
+BuildRequires: perl(ExtUtils::MakeMaker), perl >= 0:5.004, zlib-devel >= 1.0.2
 Requires: perl >= 0:5.004, zlib >= 1.0.2
 
 %description

@@ -18,7 +18,7 @@ Source: http://www.cpan.org/modules/by-module/Getopt/Getopt-Long-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 Requires: perl
 
 %description

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/E/EV/EVO/Data-DRef-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module provides delimited-key access to complex data structures.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/F/FG/FGLOCK/Date-Tie-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Date::Tie is an attempt to simplify date operations syntax.

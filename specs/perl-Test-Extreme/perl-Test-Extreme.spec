@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AS/ASIMJALIS/Test-Extreme-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 A perlish unit testing framework.

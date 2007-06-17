@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/G/GT/GTERMARS/CGI-Application-Pl
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Get back query params as hash(ref).

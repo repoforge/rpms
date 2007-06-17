@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BT/BTROTT/Crypt-DH-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Math::BigInt) >= 1.60
+BuildRequires: perl(ExtUtils::MakeMaker), perl, perl(Math::BigInt) >= 1.60
 
 %description
 This module implements the Diffie-Hellman key exchange system.

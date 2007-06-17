@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Authen-Smb/
 Source: http://www.cpan.org/modules/by-module/Authen/Authen-Smb-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Authen::Smb allows you to authenticate users against an NT server.

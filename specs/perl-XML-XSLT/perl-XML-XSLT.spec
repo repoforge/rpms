@@ -22,7 +22,7 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-XSLT-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This is a Perl module to parse XSL Transformational sheets. For a

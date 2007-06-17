@@ -19,7 +19,7 @@ URL: http://search.cpan.org/dist/Crypt-Twofish2/
 Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-Twofish2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module implements the twofish cipher in a less braindamaged (read:

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TI/TIMA/XML-RAI-TrackBack-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 XML::RAI::TrackBack adds TrackBack element mappings for XML::RAI elements.

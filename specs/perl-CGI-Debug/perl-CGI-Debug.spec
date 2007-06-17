@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JO/JONAS/CGI-Debug-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 It's goal is to catch ALL errors and display them, along with useful

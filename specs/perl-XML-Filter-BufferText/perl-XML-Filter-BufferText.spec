@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-Filter-BufferText-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This is a very simple filter. One common cause of grief (and programmer

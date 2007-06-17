@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DI/DIONALM/Text-FixedLength-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Manipulates fixed length fields. You can create, and parse fixed length

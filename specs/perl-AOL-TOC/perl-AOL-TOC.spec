@@ -20,7 +20,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JH/JHARDING/AOL-TOC-%{real_vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.00503
+BuildRequires: perl(ExtUtils::MakeMaker), perl >= 0:5.00503
 Requires: perl >= 0:5.00503
 
 %description

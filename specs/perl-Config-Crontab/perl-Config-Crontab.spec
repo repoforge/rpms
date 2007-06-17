@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SC/SCOTTW/Config-Crontab-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Config::Crontab reads and writes (and pretty-prints) your crontab(5)

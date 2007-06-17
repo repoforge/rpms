@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/P/PH/PHILCROW/UML-Sequence-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 UML::Sequence and its helpers produce UML sequence diagrams.

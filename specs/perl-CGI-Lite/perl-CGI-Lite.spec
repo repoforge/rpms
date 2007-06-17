@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SM/SMYLERS/CGI-Lite-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 You can use this module to decode form and query information, including file

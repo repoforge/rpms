@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/N/NP/NPESKETT/Audio-Wav-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 These modules provide a method of reading & writing uncompressed

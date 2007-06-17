@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/E/EV/EVO/Class-MakeMethods-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Generate common types of methods.

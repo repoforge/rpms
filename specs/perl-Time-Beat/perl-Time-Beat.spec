@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/E/EM/EMARTIN/Time-Beat-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 "Time::Beat" is a module to convert normal time to and from .beats,

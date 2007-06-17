@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-RegExp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This package contains regular expressions for the following XML tokens:

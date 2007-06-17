@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JS/JSMITH/AI-Menu-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 An "AI::Menu::Factory" object generates "Tree::Nary" objects from

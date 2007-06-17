@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JE/JESSE/Text-Quoted-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Extract the structure of a quoted mail message.

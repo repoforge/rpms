@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JU/JUERD/Crypt-Caesar-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module is based on the caesar program from the bsdgames package,

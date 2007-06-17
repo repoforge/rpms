@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RC/RCAPUTO/CDDB-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 CDDB is a high-level interface to databases based on the Compact Disc

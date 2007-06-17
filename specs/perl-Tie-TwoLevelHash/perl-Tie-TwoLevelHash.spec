@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KM/KMELTZ/Tie-TwoLevelHash-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This is the Tie::TwoLevelHash module.  It is a TIEHASH interface which lets you

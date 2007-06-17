@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GU/GUIDO/Crypt-DES_PP-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 The Data Encryption Standard (DES), also known as Data

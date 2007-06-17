@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AK/AKSTE/Array-PrintCols-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Array::PrintCols is a Perl 5 module which defines a subroutine to print

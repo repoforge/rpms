@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/I/IV/IVORW/Tie-FTP-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module downloads a file on an FTP server into a temporary file, and

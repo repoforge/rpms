@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/YAML/YAML-ConfigFile-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 With this module, you can read configuration files in YAML format.

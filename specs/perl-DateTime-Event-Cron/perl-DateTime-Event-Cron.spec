@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Event-Cron-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 DateTime extension for generating recurrence sets from crontab lines and files.

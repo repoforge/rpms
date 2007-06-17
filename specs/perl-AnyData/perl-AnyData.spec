@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JZ/JZUCKER/AnyData-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 The AnyData modules provide simple and uniform access to data from

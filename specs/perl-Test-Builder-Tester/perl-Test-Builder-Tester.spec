@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Builder-Tester-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Test testsuites that have been built with Test::Builder.

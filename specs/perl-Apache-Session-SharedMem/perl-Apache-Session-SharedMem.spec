@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SI/SIMONW/Apache-Session-Shared
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This is an Apache::Session extension module that stores the

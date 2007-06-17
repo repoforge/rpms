@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JG/JGLICK/Sys-Pushd-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 A micro-module permitting you to change directory, lexically.

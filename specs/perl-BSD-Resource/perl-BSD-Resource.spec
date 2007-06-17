@@ -20,7 +20,7 @@ URL: http://search.cpan.org/dist/BSD-Resource/
 Source: http://www.cpan.org/modules/by-module/BSD/BSD-Resource-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This Perl extension implements the BSD process resource limit functions

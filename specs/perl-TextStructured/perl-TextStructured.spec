@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PS/PSHARPE/TextStructured-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Text::Structured is a class for manipulating fixed-format pages of

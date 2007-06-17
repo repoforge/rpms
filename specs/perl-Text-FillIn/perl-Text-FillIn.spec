@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KW/KWILLIAMS/Text-FillIn-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This is the Text::FillIn.pm module.  It is a class for implementing fill-in

@@ -22,7 +22,7 @@ Source: http://www.cpan.org/modules/by-module/Data/Data-DumpXML-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 Requires: perl(XML::Parser), perl-Array-RefElem
 
 %description

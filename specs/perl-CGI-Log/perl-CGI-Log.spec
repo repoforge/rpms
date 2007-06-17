@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JM/JMOORE/CGI-Log-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 CGI::Log is a perl extension for centralized logging of debug, error,

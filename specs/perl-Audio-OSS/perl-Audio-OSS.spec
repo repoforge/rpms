@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DJ/DJHD/Audio-OSS-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module provides a pure-Perl, no-nonsense, filehandle-based

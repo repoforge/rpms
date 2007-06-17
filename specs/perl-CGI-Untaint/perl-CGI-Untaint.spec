@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/CGI/CGI-Untaint-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Process CGI input parameters.

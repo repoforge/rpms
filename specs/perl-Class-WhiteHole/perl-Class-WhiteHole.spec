@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHWERN/Class-WhiteHole-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 A base class to treat unhandled method calls as errors.

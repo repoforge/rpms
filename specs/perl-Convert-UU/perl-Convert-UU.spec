@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AN/ANDK/Convert-UU-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 UUencode and UUDecode strings and files.

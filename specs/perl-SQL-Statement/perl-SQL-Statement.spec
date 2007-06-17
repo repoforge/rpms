@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/SQL/SQL-Statement-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 These modules can be used stand-alone to parse SQL statements

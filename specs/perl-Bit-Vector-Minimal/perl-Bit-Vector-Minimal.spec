@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Bit/Bit-Vector-Minimal-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This is a much simplified, lightweight version of Bit::Vector, and wraps

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/I/IA/IAN/SNMP-Simple-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module provides shortcuts when performing repetitive

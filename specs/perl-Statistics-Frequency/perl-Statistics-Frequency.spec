@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JH/JHI/Statistics-Frequency-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This is a small module for a small but very common task: counting things,

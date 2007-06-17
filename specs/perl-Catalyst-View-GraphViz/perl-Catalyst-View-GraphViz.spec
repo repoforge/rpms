@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JO/JOHANL/Catalyst-View-GraphVi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This package contains a GraphViz view class for Catalyst.

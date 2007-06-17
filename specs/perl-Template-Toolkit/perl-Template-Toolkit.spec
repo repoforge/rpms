@@ -19,7 +19,7 @@ URL: http://search.cpan.org/dist/Template-Toolkit/
 Source: http://www.cpan.org/modules/by-module/Template/Template-Toolkit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl-AppConfig
+BuildRequires: perl(ExtUtils::MakeMaker), perl, perl-AppConfig
 
 %description
 The Template Toolkit is a collection of modules which implement a

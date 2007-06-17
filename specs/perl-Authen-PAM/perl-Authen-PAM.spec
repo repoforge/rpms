@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Authen-PAM/
 Source: http://www.cpan.org/modules/by-module/Authen/Authen-PAM-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, pam-devel
+BuildRequires: perl(ExtUtils::MakeMaker), perl, pam-devel
 
 %description
 This module provides a Perl interface to the PAM library.

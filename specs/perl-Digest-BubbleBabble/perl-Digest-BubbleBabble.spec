@@ -22,7 +22,7 @@ Source: http://www.cpan.org/modules/by-module/Digest/Digest-BubbleBabble-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module allows you to create bubble-babble fingerprints.

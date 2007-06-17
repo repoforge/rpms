@@ -17,7 +17,7 @@ URL: http://search.cpan.org/dist/Convert-UUlib/
 Source: http://www.cpan.org/modules/by-module/Convert/Convert-UUlib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.8.0
+BuildRequires: perl(ExtUtils::MakeMaker), perl >= 0:5.8.0
 Requires: perl >= 0:5.8.0
 
 %description

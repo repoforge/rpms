@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/String-Strip/
 Source: http://search.cpan.org/CPAN/authors/id/B/BP/BPOWERS/String-Strip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 String::Strip is an XS extension that implements four white space

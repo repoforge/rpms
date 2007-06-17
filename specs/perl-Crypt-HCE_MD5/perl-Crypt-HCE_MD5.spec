@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/E/EE/EESTABROO/Crypt-HCE_MD5-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module implements a chaining block cipher using a one

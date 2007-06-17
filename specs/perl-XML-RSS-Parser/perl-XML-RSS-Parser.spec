@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-RSS-Parser-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 XML::RSS::Parser is an objected-oriented liberal parser for handling

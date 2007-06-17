@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BA/BAUERM/Crypt-CFB-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Pure Perl implementation of Cipher Feedback Mode for almost

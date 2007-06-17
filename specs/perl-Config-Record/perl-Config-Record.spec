@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Config/Config-Record-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Config::Record provides a module for loading configuration

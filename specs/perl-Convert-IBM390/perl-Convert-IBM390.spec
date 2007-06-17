@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Convert-IBM390/
 Source: http://www.cpan.org/modules/by-module/Convert/Convert-IBM390-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 onvert::IBM390 is a Perl module.  It supplies various functions that

@@ -17,7 +17,7 @@ URL: http://search.cpan.org/dist/Crypt-DES/
 Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-DES-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.00503
+BuildRequires: perl(ExtUtils::MakeMaker), perl >= 0:5.00503
 Requires: perl >= 0:5.00503
 
 %description

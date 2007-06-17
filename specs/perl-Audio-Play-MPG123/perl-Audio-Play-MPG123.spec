@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/Audio-Play-MPG123-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This is a frontend to the mpg123 player. It works by starting an

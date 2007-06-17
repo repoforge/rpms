@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GS/GSPIVEY/Text-EP3-Verilog-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module is an EP3 extension for the Verilog Hardware

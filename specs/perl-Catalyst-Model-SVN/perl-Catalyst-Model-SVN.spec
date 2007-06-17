@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CL/CLACO/Catalyst-Model-SVN-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 5.8.0
+BuildRequires: perl(ExtUtils::MakeMaker), perl >= 5.8.0
 
 %description
 This model class uses the perl-subversion bindings to access a

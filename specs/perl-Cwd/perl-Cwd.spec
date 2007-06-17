@@ -20,7 +20,7 @@ URL: http://search.cpan.org/dist/Cwd/
 Source: http://www.cpan.org/modules/by-module/Cwd/Cwd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This small module getś the pathname of the current working directory.

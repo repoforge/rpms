@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHROMATIC/Crypt-CipherSaber-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Crypt::CipherSaber is a Perl module providing an object oriented interface to

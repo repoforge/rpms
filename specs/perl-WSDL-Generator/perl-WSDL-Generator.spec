@@ -21,7 +21,7 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PD/PDENIS/WSDL-Generator-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 You know folks out there who use another language than Perl (huh?) and

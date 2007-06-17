@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SM/SMORTON/Chart-Plot-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Chart::Plot will plot multiple data sets in the same graph, each with

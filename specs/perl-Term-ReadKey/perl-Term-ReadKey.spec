@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JS/JSTOWE/TermReadKey-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Obsoletes: perl-TermReadKey <= %{version}
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module, ReadKey, provides ioctl control for terminals and Win32

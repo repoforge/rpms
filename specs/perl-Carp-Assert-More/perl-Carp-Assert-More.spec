@@ -18,7 +18,7 @@ Source: http://www.cpan.org/modules/by-module/Carp/Carp-Assert-More-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Convenience wrappers around Carp::Assert.

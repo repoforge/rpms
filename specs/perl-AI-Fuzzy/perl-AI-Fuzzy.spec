@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TS/TSCANLAN/AI-Fuzzy-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 AI::Fuzzy really consists of two modules - AI::Fuzzy::Label and

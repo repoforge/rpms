@@ -19,7 +19,7 @@ URL: http://search.cpan.org/dist/Crypt-RC6/
 Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-RC6-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 A Crypt::CBC compliant RC6 block cipher encryption module.

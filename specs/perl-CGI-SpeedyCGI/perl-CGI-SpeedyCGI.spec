@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/CGI-SpeedyCGI/
 Source: http://search.cpan.org/CPAN/authors/id/H/HO/HORROCKS/CGI-SpeedyCGI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 SpeedyCGI is a way to run perl scripts persistently, which can make them

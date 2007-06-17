@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MH/MHAMILTON/Text-Thesaurus-ISO
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module is intended to support the using of ISO thesaurus files

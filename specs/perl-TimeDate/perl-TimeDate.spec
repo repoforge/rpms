@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/TimeDate-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.00503
+BuildRequires: perl(ExtUtils::MakeMaker), perl >= 0:5.00503
 Requires: perl >= 0:5.00503
 
 %description

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SE/SEANO/Compress-SelfExtractin
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Compress::SelfExtracting allows you to create pure-Perl

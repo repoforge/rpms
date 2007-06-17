@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SR/SREZIC/GD-Convert-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 GD::Convert is a pure perl module which provides additional output

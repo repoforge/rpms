@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DM/DMEGG/XMLNews-HTMLTemplate-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This distribution contains a Perl module designed to create

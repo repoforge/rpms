@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Event-Sunrise-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module will return a DateTime Object for sunrise and sunset for a

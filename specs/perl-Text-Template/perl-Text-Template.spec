@@ -22,7 +22,7 @@ Source: http://www.cpan.org/modules/by-module/Text/Text-Template-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This is a library for generating form letters, building HTML pages, or

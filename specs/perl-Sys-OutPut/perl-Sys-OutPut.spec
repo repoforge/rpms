@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AK/AKSTE/Sys-OutPut-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Sys::OutPut, is a Perl 5 module which defines the

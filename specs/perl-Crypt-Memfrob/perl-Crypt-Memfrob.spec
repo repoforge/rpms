@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KN/KNAGANO/Crypt-Memfrob-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This package provides one function 'memfrob.' This is equivalent to the

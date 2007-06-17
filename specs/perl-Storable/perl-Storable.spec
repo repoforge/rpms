@@ -17,7 +17,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AM/AMS/Storable-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: perl >= 0:5.8.0
-BuildRequires: perl >= 0:5.8.0
+BuildRequires: perl(ExtUtils::MakeMaker), perl >= 0:5.8.0
 
 %description
 %{summary}.

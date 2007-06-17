@@ -17,7 +17,7 @@ URL: http://search.cpan.org/dist/Socket6/
 Source: http://www.cpan.org/modules/by-module/Socket6/Socket6-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.00503
+BuildRequires: perl(ExtUtils::MakeMaker), perl >= 0:5.00503
 Requires: perl >= 0:5.00503
 
 %description

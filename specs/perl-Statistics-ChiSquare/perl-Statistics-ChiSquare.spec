@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCANTRELL/Statistics-ChiSqua
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module implements to Chi Squared test, using pre-computed tables.

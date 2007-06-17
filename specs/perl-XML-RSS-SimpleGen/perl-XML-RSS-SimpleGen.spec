@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-RSS-SimpleGen-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module is for writing RSS files, simply. It transparently handles

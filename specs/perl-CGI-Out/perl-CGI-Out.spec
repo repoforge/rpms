@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MU/MUIR/modules/CGI-Out-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This is a helper routine for building CGI programs.  It buffers

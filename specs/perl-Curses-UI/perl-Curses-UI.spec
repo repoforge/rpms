@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MA/MARCUS/Curses-UI-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 A UI framework based on the curses library. Curses::UI contains
