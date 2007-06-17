@@ -18,7 +18,7 @@ Source: http://www.cpan.org/modules/by-module/IO/IO-stringy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.00503
+BuildRequires: perl >= 0:5.00503, perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.00503
 
 Obsoletes: perl-IO-Stringy <= %{version}-%{release}

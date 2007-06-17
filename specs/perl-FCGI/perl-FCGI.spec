@@ -21,7 +21,7 @@ URL: http://search.cpan.org/dist/FCGI/
 Source: http://www.cpan.org/modules/by-module/FCGI/FCGI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is a Fast CGI module for perl. It's based on the FCGI module

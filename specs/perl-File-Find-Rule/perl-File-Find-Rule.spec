@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/File/File-Find-Rule-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module contains an alternative interface to File::Find.

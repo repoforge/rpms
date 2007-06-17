@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AJ/AJOHNSON/Games-WordFind-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module results from a one-off script I created some time ago

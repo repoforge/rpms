@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/F/FK/FKOLODNY/Net-Rexec-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl extension for the client side of the REXEC protocol.

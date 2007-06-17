@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/E/EV/EVO/Devel-PreProcessor-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This package processes Perl source files and outputs a modified

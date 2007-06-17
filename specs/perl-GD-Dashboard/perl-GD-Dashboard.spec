@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/F/FE/FERRANCE/GD-Dashboard-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl module to create JPEG graphics of meters and dials.

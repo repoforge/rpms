@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MH/MHAMILTON/Log-Common-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Log messages in the httpd access and error log styles

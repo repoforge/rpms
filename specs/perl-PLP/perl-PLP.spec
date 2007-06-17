@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SH/SHIAR/PLP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 PLP is yet another Perl embedder, primarily for HTML documents. Unlike

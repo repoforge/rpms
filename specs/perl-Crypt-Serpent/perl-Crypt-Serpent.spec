@@ -19,7 +19,7 @@ URL: http://search.cpan.org/dist/Crypt-Serpent/
 Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-Serpent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 "Serpent was designed by Ross Anderson, Eli Biham and Lars Knudsen

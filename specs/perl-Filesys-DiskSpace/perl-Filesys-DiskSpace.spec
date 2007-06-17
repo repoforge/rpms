@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/F/FT/FTASSIN/Filesys-DiskSpace-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This routine displays information on a file system such as its type,

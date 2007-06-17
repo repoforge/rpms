@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AK/AKARGER/Language-Basic-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Language::Basic is a Perl module implementation of the BASIC computer language

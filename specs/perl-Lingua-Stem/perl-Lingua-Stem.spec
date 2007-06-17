@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Lingua/Lingua-Stem-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Provides word stemming algorithms localized by language.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PO/PODMASTER/HTML-Scrubber-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-HTML-Parser
+BuildRequires: perl, perl(ExtUtils::MakeMaker), perl-HTML-Parser
 
 %description
 Perl extension for scrubbing/sanitizing html.

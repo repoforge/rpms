@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KE/KENSHAN/IO-Tee-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The `IO::Tee' constructor, given a list of output handles, returns a

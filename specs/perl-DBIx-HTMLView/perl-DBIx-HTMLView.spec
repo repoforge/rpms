@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/H/HA/HAKANARDO/DBIx-HTMLView-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is a general propose module to simplify the creation of web

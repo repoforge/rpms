@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIKO/Math-BooleanEval-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 BooleanEval parses a boolean expression and creates an array of elements

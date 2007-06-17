@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Math-BigInteger/
 Source: http://search.cpan.org/CPAN/authors/id/T/TE/TELS/math/Math-BigInteger-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 If you want big integer (and float and rational) support in Perl, please use

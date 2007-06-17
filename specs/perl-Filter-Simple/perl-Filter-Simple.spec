@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Filter/Filter-Simple-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module permits simplified source filtering.

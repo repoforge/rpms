@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCOPPIT/Module-Install-Custo
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-File-HomeDir
+BuildRequires: perl, perl(ExtUtils::MakeMaker), perl-File-HomeDir
 
 %description
 A Module::Install extension that allows the user to interactively specify

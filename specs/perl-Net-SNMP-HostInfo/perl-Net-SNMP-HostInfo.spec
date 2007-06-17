@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-SNMP-HostInfo-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Net::SNMP::HostInfo is a class that simplifies access to the

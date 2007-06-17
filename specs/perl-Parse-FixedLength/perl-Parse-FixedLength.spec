@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Parse/Parse-FixedLength-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Parse an ascii string containing fixed length fields into component parts.

@@ -22,7 +22,7 @@ URL: http://search.cpan.org/dist/Net-DNS/
 Source: http://search.cpan.org/CPAN/authors/id/O/OL/OLAF/Net-DNS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.00503, perl(Digest::HMAC)
+BuildRequires: perl >= 0:5.00503, perl(Digest::HMAC), perl(ExtUtils::MakeMaker)
 %{!?el2:BuildRequires: perl(Digest::MD5) >= 2.12, perl(MIME::Base64) >= 2.11}
 %{?el2:BuildRequires: perl-Digest-MD5 >= 2.12, perl-MIME-Base64 >= 2.11}
 Requires: perl >= 0:5.00503, perl(Digest::HMAC)

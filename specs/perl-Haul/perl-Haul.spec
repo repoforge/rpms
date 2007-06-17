@@ -21,7 +21,7 @@ Source: http://search.cpan.org/CPAN/authors/id/L/LB/LBROCARD/Haul-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module knows about CPAN modules. It can report whether a module is

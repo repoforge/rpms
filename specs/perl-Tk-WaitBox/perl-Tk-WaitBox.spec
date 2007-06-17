@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BP/BPOWERS/Tk-WaitBox-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Tk::WaitBox is a perl5 package which implements a very flexible

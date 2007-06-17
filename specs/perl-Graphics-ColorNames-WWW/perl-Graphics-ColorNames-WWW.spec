@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CF/CFAERBER/Graphics-ColorNames
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module contains color names and their equivalent RGB values.

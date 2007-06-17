@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/U/UR/URI/File-ReadBackwards-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module reads a file backwards line by line. It is simple to use,

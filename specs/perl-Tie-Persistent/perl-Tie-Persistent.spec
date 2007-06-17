@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Tie/Tie-Persistent-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The Persistent package makes working with persistent data real

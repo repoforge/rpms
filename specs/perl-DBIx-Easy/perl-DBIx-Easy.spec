@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/H/HO/HORNBURG/DBIx-Easy-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Easy to Use DBI interface.

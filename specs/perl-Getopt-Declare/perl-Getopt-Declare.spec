@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCONWAY/Getopt-Declare-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Getopt::Declare is *yet another* command-line argument parser, one which

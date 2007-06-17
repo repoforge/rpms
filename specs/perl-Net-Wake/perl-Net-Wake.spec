@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CL/CLINTDW/Net-Wake-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This package sends wake-on-lan (AKA magic) packets to turn on machines

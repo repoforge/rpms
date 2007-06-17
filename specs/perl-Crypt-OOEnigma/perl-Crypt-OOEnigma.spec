@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SJ/SJBAKER/Crypt-OOEnigma-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Those who wish to explore an Enigma with historically accurate ciphers should

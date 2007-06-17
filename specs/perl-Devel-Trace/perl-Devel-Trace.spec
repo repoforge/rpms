@@ -22,7 +22,7 @@ Source: http://www.cpan.org/modules/by-module/Devel/Devel-Trace-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 If you run your program with "perl -d:Trace program", this module will

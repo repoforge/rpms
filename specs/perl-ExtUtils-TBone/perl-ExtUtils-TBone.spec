@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/E/ER/ERYQ/ExtUtils-TBone-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module is intended for folks who release CPAN modules with "t/*.t"

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIKEDLR/Tie-TransactHash-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Tie::TransactHash is a package which provides facilities for easy

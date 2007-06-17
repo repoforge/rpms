@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PT/PTIMMINS/Geo-Coordinates-Van
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this module, you can convert and Manipulate telco V and H coordinates.

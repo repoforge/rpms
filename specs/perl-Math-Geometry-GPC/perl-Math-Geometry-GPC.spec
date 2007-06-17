@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Math-Geometry-GPC/
 Source: http://search.cpan.org/CPAN/authors/id/D/DV/DVDPOL/Math-Geometry-GPC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is a autoloadable interface module for gpc, a popular library

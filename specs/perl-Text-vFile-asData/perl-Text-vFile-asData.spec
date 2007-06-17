@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Text/Text-vFile-asData-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this package you can parse vFile formatted files into data structures.

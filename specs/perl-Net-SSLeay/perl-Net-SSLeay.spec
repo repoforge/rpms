@@ -17,7 +17,7 @@ URL: http://search.cpan.org/dist/Net-SSLeay.pm/
 Source: http://www.cpan.org/modules/by-module/Net/Net_SSLeay.pm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.00503, openssl-devel
+BuildRequires: perl >= 0:5.00503, openssl-devel, perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.00503
 
 %description

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TE/TEEJAY/GraphViz/GraphViz-DBI
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module constructs a graph for a database showing tables and

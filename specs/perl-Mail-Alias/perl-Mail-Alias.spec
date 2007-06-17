@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Mail/Mail-Alias-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 ail::Alias allows you to directly access the contents of E-Mail alias files.

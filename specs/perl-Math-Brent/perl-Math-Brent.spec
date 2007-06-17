@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JA/JARW/Math-Brent-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is an implementation of Brents method for One-Dimensional minimisation

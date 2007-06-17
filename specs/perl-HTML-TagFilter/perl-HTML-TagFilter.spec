@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/W/WR/WROSS/HTML-TagFilter-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 HTML::TagFilter is a subclass of HTML::Parser with a

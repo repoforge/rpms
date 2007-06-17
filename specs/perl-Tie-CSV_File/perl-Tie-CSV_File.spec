@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BI/BIGJ/Tie-CSV_File-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Ties a csv-file to an array of arrays.

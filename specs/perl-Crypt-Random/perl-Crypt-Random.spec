@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/V/VI/VIPUL/Crypt-Random-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Crypt::Random is an interface module to the /dev/random device found on most

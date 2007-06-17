@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/E/EB/EBOHLMAN/Text-Query-Advanced
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Match text against Boolean expression.

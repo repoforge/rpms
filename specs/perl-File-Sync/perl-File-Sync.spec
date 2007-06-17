@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/File-Sync/
 Source: http://search.cpan.org/CPAN/authors/id/C/CE/CEVANS/File-Sync-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 It provides Perl interfaces to the Unix sync(2) and POSIX.1b fsync(2)

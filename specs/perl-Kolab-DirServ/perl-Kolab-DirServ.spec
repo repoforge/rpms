@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/ST/STEPHANB/Kolab-DirServ-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 A Perl Module that handles Address book synchronisation between Kolab

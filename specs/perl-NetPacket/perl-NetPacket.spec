@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/NetPacket/NetPacket-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 These modules do basic disassembly of network packets of various Internet

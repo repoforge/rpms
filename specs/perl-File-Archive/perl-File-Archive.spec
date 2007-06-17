@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RB/RBOW/File-Archive-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Figure out what is in an archive file.

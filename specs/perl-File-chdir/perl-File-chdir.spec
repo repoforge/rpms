@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/File/File-chdir-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 A more sensible way to change directories.

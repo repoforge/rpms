@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AS/ASPINELLI/Math-VecStat-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This package provides some basic statistics on numerical vectors. All the

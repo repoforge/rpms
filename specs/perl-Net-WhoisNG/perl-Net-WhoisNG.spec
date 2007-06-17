@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-WhoisNG-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl extension for whois lookup and parsing.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PU/PUCKERING/Math-BaseArith-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The inspiration for this module is a pair of functions in the APL

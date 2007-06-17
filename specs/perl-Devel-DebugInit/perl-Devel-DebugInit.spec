@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JA/JASONS/Devel-DebugInit-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Devel::DebugInit is aimed at C/C++ developers who want access to C

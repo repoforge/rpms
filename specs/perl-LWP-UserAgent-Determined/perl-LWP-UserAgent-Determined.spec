@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/LWP/LWP-UserAgent-Determined-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This class works just like LWP::UserAgent (and is based on it, by

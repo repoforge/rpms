@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Graphics/Graphics-ColorPicker-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module generates a set of palettes to select a HEX or DECIMAL color

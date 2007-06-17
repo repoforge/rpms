@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DJ/DJBECKETT/Metadata-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This collection of modules provide an implementation of Dublin Core

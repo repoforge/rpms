@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/F/FI/FIMM/IO-Cat-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Object-oriented Perl implementation of cat.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KA/KACCV/Lingua-NO-Num2Word-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 OO module for converting positiv whole numbers into its

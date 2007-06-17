@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RR/RRA/Gateway-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Tools for gatewaying messages between news and mail.

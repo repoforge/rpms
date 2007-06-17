@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/O/OR/ORTALO/MOP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The two modules MOP::MOP and MOP::MetaModule provide the basis of

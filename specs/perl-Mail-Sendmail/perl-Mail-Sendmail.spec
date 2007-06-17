@@ -22,7 +22,7 @@ Source: http://www.cpan.org/modules/by-module/Mail/Mail-Sendmail-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Simple platform independent e-mail from your perl script. Only requires

@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Graph/Graph-SocialMap-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Easy tool to create a social map.

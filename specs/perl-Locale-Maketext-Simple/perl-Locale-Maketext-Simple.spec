@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Locale/Locale-Maketext-Simple-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Simple interface to Locale::Maketext::Lexicon.

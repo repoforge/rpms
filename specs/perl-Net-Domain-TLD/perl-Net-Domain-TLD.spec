@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-Domain-TLD-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The purpose of this module is to provide user with current list of

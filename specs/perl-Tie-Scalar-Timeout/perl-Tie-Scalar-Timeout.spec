@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MA/MARCEL/Tie-Scalar-Timeout-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module allows you to tie a scalar variable whose value will be

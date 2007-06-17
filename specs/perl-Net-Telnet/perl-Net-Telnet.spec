@@ -22,7 +22,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-Telnet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Net::Telnet allows you to make client connections to a TCP port

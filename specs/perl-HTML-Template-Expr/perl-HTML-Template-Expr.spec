@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SA/SAMTREGAR/HTML-Template-Expr
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides an extension to HTML::Template which allows

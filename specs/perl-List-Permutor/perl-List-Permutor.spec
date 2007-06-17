@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PH/PHOENIX/List-Permutor-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Process all possible permutations of a list.

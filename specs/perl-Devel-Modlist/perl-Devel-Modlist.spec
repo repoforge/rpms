@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RJ/RJRAY/Devel-Modlist-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Devel::Modlist is a small tool that emits a list of files that were brought

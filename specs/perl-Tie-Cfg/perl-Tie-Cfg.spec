@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/O/OE/OESTERHOL/Tie-Cfg-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Tie-Cfg can now handle .ini files and you can access sections

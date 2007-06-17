@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Number/Number-Compare-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module contains functions for numeric comparisons.

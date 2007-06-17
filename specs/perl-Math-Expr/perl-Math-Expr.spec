@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Math/Math-Expr-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Parses mathematical expressions into a tree structure. The expressions

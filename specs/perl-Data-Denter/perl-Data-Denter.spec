@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/I/IN/INGY/Data-Denter-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Data::Denter is yet another Perl data serializer/deserializer. It formats

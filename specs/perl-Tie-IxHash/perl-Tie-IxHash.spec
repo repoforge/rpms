@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Tie/Tie-IxHash-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 If you have been led to believe that associative arrays in perl

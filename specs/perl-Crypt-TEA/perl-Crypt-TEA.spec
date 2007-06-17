@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Crypt-TEA/
 Source: http://search.cpan.org/CPAN/authors/id/A/AM/AMS/Crypt-TEA-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 TEA is a 64-bit symmetric block cipher with a 128-bit key

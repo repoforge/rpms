@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DO/DOUGM/ExtUtils-DynaGlue-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Methods for generating Perl extension files.

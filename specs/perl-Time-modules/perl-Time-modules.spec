@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MU/MUIR/modules/Time-modules-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Date and time objects.

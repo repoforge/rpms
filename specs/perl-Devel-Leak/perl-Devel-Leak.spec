@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Devel-Leak/
 Source: http://search.cpan.org/CPAN/authors/id/N/NI/NI-S/Devel-Leak-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides a basic way to discover if a piece of perl code

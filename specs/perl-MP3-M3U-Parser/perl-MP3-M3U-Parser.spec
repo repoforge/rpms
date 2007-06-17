@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/MP3/MP3-M3U-Parser-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Parses M3U mp3 playlists and if wanted, exports the parsed data to

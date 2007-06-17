@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SR/SRI/Module-Pluggable-Fast-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Similar to "Module::Pluggable" but instantiates plugins as soon as

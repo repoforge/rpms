@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/File-Lockf/
 Source: http://search.cpan.org/CPAN/authors/id/P/PH/PHENSON/File-Lockf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 File-Lockf is a wrapper around the lockf system call. Perl supports the

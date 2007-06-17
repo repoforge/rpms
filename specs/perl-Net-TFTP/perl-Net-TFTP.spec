@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/Net-TFTP-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Net::TFTP was previously part of the libnet distribution. But has now

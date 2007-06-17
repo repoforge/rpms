@@ -13,7 +13,7 @@ URL: http://search.cpan.org/dist/IPC-ShareLite/
 Source: http://www.cpan.org/modules/by-module/IPC/IPC-ShareLite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: perl >= 0:5.8.0
-BuildRequires: perl >= 0:5.8.0
+BuildRequires: perl >= 0:5.8.0, perl(ExtUtils::MakeMaker)
 
 %description
 IPC::ShareLite provides a simple interface to shared memory, allowing data to

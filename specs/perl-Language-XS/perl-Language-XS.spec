@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/Language-XS-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module allows C & XS-code creation "on-the-fly", i.e. while your

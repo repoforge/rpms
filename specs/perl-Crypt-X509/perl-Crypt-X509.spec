@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Crypt-X509/
 Source: http://search.cpan.org/CPAN/authors/id/A/AJ/AJUNG/Crypt-X509-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Crypt::X509 is an object oriented X.509 certificate parser with numerous

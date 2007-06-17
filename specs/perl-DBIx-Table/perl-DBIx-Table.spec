@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DL/DLOWE/DBIx-Table-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Class used to represent DBI database tables.

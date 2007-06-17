@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/W/WR/WRW/Number-Format-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Number::Format is a library for formatting numbers.  Functions are

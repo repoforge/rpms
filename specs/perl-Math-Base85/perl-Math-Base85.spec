@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TM/TMONROE/Math-Base85-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module handles numbers in base 85, via strings and Math::BigInt.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/F/FS/FSORIANO/Tree-Nary-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The Tree::Nary class implements N-ary trees (trees of data with any

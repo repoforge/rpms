@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GW/GWARD/Getopt-Tabular-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Getopt::Tabular is a Perl 5 module for table-driven argument parsing,

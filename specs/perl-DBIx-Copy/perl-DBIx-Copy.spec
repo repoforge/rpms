@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TO/TOBIX/DBIx-Copy-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This Module might help you copying a DB.  Currently only the data itself can

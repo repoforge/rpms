@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/N/NE/NEILW/Inline-Filters-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Inline::Filters provides common source code filters to Inline Language

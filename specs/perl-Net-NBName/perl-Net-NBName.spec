@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-NBName-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Net::NBName is a class that allows you to perform simple NetBIOS Name

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KA/KAELIN/HTML-Subtext-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module is designed to do simple textual substitutions into an

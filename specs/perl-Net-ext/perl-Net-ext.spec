@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Net-ext/
 Source: http://search.cpan.org/CPAN/authors/id/S/SP/SPIDB/Net-ext-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Modules Net::Gen, Net::Inet, Net::TCP, Net::UDP, Net::UNIX,

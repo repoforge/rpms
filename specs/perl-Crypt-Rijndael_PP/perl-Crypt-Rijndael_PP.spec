@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DE/DELTA/Crypt-Rijndael_PP-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is a pure perl implementation of the new AES Rijndael. You want to

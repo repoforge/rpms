@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/F/FI/FIXLER/Math-Financial-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Contains common calculations for loans and anniuities. You

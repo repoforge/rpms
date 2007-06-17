@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/F/FR/FRAJULAC/GnuPG-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 GnuPG is a perl module that interface with the Gnu Privacy Guard using

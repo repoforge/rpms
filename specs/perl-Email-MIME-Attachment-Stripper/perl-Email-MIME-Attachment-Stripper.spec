@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Email/Email-MIME-Attachment-Stripp
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this perl module, you can strip attachments from a mail.

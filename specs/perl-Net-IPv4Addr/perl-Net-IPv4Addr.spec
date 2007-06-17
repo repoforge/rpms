@@ -18,7 +18,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-IPv4Addr-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This package contains a Perl extension for manipulating IPv4 addresses.

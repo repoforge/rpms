@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SH/SHLOMOY/Lingua-EN-Sentence-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Module for splitting text into sentences.

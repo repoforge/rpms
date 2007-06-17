@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BR/BROCSEIB/Tie-Syslog-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module allows you to tie a filehandle (output only) to

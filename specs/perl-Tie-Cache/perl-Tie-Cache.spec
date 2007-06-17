@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHAMAS/Tie-Cache-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module implements a least recently used (LRU) cache in memory

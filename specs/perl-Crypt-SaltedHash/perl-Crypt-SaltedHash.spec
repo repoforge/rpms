@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/E/ES/ESSKAR/Crypt-SaltedHash-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl interface to functions that assist in working with salted hashes.

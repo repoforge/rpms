@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/N/NE/NEILW/Inline-Struct-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Inline::Struct lets you bind C structs to Perl. No special work required, you

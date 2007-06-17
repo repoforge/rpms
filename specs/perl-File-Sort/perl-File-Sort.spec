@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CN/CNANDOR/File-Sort-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is File::Sort, for sorting files similarly to sort(1).  Written

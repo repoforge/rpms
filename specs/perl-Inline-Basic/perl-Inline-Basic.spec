@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIYAGAWA/Inline-Basic-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Write Perl subroutines in Basic.

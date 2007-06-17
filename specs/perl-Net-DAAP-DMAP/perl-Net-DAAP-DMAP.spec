@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-DAAP-DMAP-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl module for reading and writing DAAP structures.

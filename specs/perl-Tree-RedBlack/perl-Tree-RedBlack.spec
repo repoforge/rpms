@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BH/BHOLZMAN/Tree-RedBlack-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Tree::RedBlack is a pure perl implementation of the Red/Black balanced tree

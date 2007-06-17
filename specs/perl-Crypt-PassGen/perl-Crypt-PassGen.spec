@@ -20,7 +20,7 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TJ/TJENNESS/Crypt-PassGen-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, words
+BuildRequires: perl, perl(ExtUtils::MakeMaker), words
 
 %description
 This module provides a single command for generating random password

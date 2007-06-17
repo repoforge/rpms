@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TG/TGROSE/HTML-Summary-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The HTML::Summary module produces summaries from the textual content of

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Graph/Graph-ReadWrite-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is a collection of perl classes for reading and writing

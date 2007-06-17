@@ -22,7 +22,7 @@ Source: http://www.cpan.org/modules/by-module/Image/Image-Size-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module contains functions for reading the dimensions of images in several popular formats.

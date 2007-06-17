@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TI/TIMPOTTER/Net-PcapUtils-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides some code to abstract away some of the messier

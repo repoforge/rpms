@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SA/SAMTREGAR/IPC-SharedCache-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides a shared memory cache accessed as a tied hash.

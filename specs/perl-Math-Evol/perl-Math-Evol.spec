@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PJ/PJB/Math-Evol-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module implements the evolution search strategy.

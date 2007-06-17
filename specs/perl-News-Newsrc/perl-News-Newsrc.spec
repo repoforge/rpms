@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SW/SWMCD/News-Newsrc-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 News::Newsrc manages newsrc files.

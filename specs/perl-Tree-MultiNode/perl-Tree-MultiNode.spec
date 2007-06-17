@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KR/KRBURTON/Tree-MultiNode-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is an implementation of a multi node tree.  The uniqueness of

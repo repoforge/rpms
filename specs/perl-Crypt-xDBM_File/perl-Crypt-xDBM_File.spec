@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/E/EE/EESTABROO/Crypt-xDBM_File-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this module you can encrypt almost any kind of dbm file.

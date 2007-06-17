@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TW/TWH/GD-SVG-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 GD::SVG seamlessly enables the scalable vector graphics (SVG) output

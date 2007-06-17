@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DV/DVDPOL/Math-Geometry-Planar-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides a set of 2D polygon, line and line segment operations.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DS/DSTAAL/HTML-Stream-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The HTML::Stream module provides you with an object-oriented (and

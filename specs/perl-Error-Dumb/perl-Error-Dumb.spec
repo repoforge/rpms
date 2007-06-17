@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/I/IL/ILIAL/Error-Dumb-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Simple error management for simple classes.

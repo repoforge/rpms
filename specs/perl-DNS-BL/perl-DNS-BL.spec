@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/DNS/DNS-BL-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Modules and  scripts that  ease the maintenance  and operation  of DNS

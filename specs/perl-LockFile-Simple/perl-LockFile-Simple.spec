@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RA/RAM/LockFile-Simple-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The LockFile::Simple extension provides simple file locking, of

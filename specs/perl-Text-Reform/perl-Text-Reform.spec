@@ -20,7 +20,7 @@ Source: http://www.cpan.org/modules/by-module/Text/Text-Reform-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The module supplies a re-entrant, highly configurable replacement

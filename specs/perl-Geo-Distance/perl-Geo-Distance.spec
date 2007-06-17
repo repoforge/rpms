@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BL/BLUEFEET/Geo-Distance-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This perl library aims to provide as many tools to make it as simple as possible to calculate

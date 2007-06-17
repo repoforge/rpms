@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AB/ABIGAIL/Geography-Countries-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.00503
+BuildRequires: perl >= 0:5.00503, perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.00503
 Obsoletes: perl(IP::Country) <= 2.08
 

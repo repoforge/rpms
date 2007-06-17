@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Math-PRSG/
 Source: http://search.cpan.org/CPAN/authors/id/G/GA/GARY/Math-PRSG-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl interface to pseudo random sequence generator function.

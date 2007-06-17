@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Perl6/Perl6-Export-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 

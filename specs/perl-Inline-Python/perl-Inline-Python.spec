@@ -20,7 +20,7 @@ URL: http://search.cpan.org/dist/Inline-Python/
 Source: http://www.cpan.org/modules/by-module/Inline/Inline-Python-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, python-devel
+BuildRequires: perl, perl(ExtUtils::MakeMaker), python-devel
 
 %description
 Inline::Python lets you write Perl subroutines and classes in

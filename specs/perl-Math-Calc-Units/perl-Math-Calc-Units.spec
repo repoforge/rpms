@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SF/SFINK/Math-Calc-Units-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Human-readable unit-aware calculator.

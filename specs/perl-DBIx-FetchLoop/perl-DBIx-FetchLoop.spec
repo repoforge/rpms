@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BI/BITS/DBIx-FetchLoop-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Fetch with change detection and aggregates.

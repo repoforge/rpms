@@ -22,7 +22,7 @@ Source: http://www.cpan.org/modules/by-module/HTML/HTML-Clean-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The HTML::Clean module encapsulates a number of HTML optimizations

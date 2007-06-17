@@ -20,7 +20,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BO/BOESCH/Math-Integral-Romberg
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Romberg integration is used for estimating the integral of a scalar

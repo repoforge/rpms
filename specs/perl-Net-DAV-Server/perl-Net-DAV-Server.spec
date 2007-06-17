@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-DAV-Server-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides a WebDAV server. WebDAV stands for "Web-based

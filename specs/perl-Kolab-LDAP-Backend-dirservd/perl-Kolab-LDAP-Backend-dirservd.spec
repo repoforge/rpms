@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/ST/STEPHANB/Kolab-LDAP-Backend-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl extension for kolab for the Directory Services updater.

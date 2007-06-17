@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHGEUER/Crypt-RIPEMD160-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl extension for RIPEMD-160 HASH and MAC function.

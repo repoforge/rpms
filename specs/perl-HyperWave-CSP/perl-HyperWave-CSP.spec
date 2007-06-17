@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GO/GOSSAMER/HyperWave-CSP-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module is not finished. However, some of it -does- work.  Everything in

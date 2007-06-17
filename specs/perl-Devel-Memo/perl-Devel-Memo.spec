@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JG/JGLICK/Devel-Memo-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Devel::Memo permits you to create function objects (i.e. blessed code-refs

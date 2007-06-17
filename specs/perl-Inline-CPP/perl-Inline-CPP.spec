@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/N/NE/NEILW/Inline-CPP-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Inline::CPP lets you write Perl subroutines and classes in C++. You

@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/DBIx-TextIndex/
 Source: http://search.cpan.org/CPAN/authors/id/D/DK/DKOCH/DBIx-TextIndex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 DBIx::TextIndex was developed for doing full-text searches on BLOB

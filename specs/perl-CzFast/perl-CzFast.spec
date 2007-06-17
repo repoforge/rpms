@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/CzFast/
 Source: http://search.cpan.org/CPAN/authors/id/T/TR/TRIPIE/CzFast-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl module for czech charsets manipulation.

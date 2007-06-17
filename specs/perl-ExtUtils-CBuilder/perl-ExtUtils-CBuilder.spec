@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/ExtUtils/ExtUtils-CBuilder-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this perl module, you can compile and link C code for perl modules

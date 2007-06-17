@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Digest-SHA2/
 Source: http://search.cpan.org/CPAN/authors/id/J/JC/JCDUQUE/Digest-SHA2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 A variable-length one-way hash function.

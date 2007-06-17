@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/File-CounterFile-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module implements a persistent counter class. Each counter is

@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Image/Image-Xpm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this module, you can load, create, manipulate and save xpm image files.

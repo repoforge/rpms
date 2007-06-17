@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JE/JETTERO/Math-Business-EMA-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl extension for calculating EMAs.

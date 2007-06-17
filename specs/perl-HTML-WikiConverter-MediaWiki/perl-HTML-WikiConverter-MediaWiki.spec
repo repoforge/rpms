@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/D/DI/DIBERRI/HTML-WikiConverter-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 HTML::WikiConverter::MediaWiki adds the MediaWiki dialect to

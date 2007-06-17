@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JP/JPRIT/Devel-Carp-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The same as Carp, but more protected against deep recursion.

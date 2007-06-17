@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/W/WI/WIMV/Math-LinearCombination-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Math::LinearCombination is a module for representing mathematical linear

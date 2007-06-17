@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AD/ADESC/Devel-CoreStack-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 try to generate a stack dump from a core file.

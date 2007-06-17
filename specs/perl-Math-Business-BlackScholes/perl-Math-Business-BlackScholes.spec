@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AN/ANDERS/Math-Business-BlackSc
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Estimates the fair market price of a European stock option according to

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PJ/PJB/Math-RungeKutta-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module offers algorithms for the numerical integration of

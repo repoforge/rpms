@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DO/DOUGW/Net-CIDR-Lite-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl extension for merging IPv4 or IPv6 CIDR addresses.

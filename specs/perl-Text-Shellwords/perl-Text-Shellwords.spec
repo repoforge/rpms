@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/L/LD/LDS/Text-Shellwords-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is a thin wrapper around the shellwords.pl package, which comes

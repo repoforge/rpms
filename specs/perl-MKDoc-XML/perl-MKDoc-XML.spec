@@ -21,7 +21,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BP/BPOSTLE/MKDoc-XML-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Typically, in MKDoc the stripper is used to remove unwanted presentational

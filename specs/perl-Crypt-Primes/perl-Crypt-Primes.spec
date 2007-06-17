@@ -17,7 +17,7 @@ URL: http://search.cpan.org/dist/Crypt-Primes/
 Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-Primes-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.00503
+BuildRequires: perl >= 0:5.00503, perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.00503
 
 %description

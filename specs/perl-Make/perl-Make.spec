@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/N/NI/NI-S/Make-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This package implements 'make' in perl.

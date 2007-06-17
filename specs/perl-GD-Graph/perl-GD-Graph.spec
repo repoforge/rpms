@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MV/MVERB/GDGraph-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.8.0
+BuildRequires: perl >= 0:5.8.0, perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.8.0
 
 %description

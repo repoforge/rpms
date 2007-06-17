@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DI/DIONALM/File-Recurse-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 A module is used to recurse directory structures and saving the data

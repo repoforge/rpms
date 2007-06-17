@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AP/APEIRON/Module-Pluggable-Ord
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module behaves exactly the same as "Module::Pluggable", supporting

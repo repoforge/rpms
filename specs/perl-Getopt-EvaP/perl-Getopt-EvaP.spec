@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/L/LU/LUSOL/Getopt-EvaP-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Briefly, EvaP() is a table driven command line argument processor that type

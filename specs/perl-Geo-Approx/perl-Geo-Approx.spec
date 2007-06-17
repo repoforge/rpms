@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/N/NW/NWETTERS/Geo-Approx-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this module you can represent an approximate global position by a single number.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MA/MAHEX/Image-Grab-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Perl module to easily grab images from the 'net.

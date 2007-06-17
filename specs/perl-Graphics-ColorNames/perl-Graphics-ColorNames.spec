@@ -22,7 +22,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RR/RRWO/Graphics-ColorNames-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module defines RGB values for common color names. The intention is

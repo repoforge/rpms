@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/H/HV/HVDS/C-Scan-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this module you can scan C language files for easily recognized

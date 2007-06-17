@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-DAAP-Client-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 dapple is a DAAP library for Perl.  DAAP is the protocol built

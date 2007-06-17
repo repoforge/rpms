@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GW/GWADEJ/Games-Maze-SVG-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module is an extension to the Games::Maze module. Games::Maze::SVG

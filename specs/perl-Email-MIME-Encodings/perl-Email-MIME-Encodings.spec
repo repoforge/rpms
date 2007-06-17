@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Email/Email-MIME-Encodings-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module simply wraps "MIME::Base64" and "MIME::QuotedPrint" so that

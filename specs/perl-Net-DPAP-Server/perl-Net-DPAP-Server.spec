@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-DPAP-Server-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this module, you can provide a DPAP Server.

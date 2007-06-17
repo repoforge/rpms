@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GR/GREGFAST/Lingua-EN-Syllable-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Lingua::EN::Syllable provides one subroutine, syllable(), which

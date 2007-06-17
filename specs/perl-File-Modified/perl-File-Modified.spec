@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CO/CORION/File-Modified-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides an easy way for long running processes

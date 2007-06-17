@@ -18,7 +18,7 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PE/PEREINAR/File-Which-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.00503
+BuildRequires: perl >= 0:5.00503, perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.00503
 
 %description

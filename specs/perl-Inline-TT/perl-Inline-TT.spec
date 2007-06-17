@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PH/PHILCROW/Inline-TT-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Template-Toolkit is not just a Templating Engine. It's a language. Yep,

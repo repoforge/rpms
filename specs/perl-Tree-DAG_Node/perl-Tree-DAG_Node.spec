@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SB/SBURKE/Tree-DAG_Node-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Tree::DAG_Node is a (super)class for representing nodes in a tree.

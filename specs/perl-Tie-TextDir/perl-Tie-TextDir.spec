@@ -22,7 +22,7 @@ Source: http://www.cpan.org/modules/by-module/Tie/Tie-TextDir-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is the Tie::TextDir module.  It is a TIEHASH interface which lets you

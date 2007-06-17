@@ -22,7 +22,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-Jabber-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The Jabber Instant Messaging project is an Open Source project seeking

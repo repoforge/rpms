@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AU/AUTRIJUS/Encode-compat-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 A module providing compatibility interfaces for Encode.pm on Perl versions

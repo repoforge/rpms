@@ -17,7 +17,7 @@ URL: http://search.cpan.org/dist/Inline-BC/
 Source: http://www.cpan.org/modules/by-module/Inline/Inline-BC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Inline::BC is an ILSM (Inline Support Language Module ) for Gnu bc, the arbitrary

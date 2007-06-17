@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/ST/STBEY/Graph-Kruskal-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Kruskal's Algorithm for Minimal Spanning Trees in Graphs.

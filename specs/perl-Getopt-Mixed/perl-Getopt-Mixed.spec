@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CJ/CJM/Getopt-Mixed-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides GNU-style option processing for Perl 5 scripts,

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AV/AVIF/Games-Dissociate-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides the function `dissociate', which implements a

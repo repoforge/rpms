@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KW/KWITKNR/GD-Barcode-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 GD::Barcode is a subclass of GD and allows you to create barcode image with GD.

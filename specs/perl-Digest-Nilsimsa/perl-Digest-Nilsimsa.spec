@@ -21,7 +21,7 @@ URL: http://search.cpan.org/dist/Digest-Nilsimsa/
 Source: http://www.cpan.org/modules/by-module/Digest/Digest-Nilsimsa-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module contains a perl version of the Nilsimsa code.

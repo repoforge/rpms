@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AG/AGIERTH/News-Article-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module originated with the development of the software intended

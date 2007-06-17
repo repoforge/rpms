@@ -22,7 +22,7 @@ Source: http://www.cpan.org/modules/by-module/Mail/Mail-Sender-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 Requires: perl
 
 %description

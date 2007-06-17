@@ -21,7 +21,7 @@ URL: http://search.cpan.org/dist/Log-Dispatch/
 Source: http://www.cpan.org/modules/by-module/Params/Params-Validate-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The Params::Validate module provides a flexible system for validation

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TH/THOSPEL/Heap-Simple-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 A heap is a partially sorted structure where it's always easy to extract the
