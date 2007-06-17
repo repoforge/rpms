@@ -14,7 +14,7 @@
 
 Summary: Visualize and manipulate multidimensional surfaces
 Name: k3dsurf
-Version: 0.6.1
+Version: 0.6.2
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -73,6 +73,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*-k3dsurf.desktop
 
 %changelog
+* Thu Jun 14 2007 Dries Verachtert <dries@ulyssis.org> - 0.6.2-1
+- Updated to release 0.6.2.
+
 * Sat Dec 09 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.1-1
 - Updated to release 0.6.1.
 
