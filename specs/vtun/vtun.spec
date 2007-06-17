@@ -11,7 +11,7 @@
 
 Summary: Virtual tunnel over TCP/IP networks
 Name: vtun
-Version: 3.0.0
+Version: 3.0.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -179,11 +179,14 @@ fi
 %doc %{_mandir}/man?/*
 %attr(600, root, root) %config(noreplace) %{_sysconfdir}/vtund.conf
 %config %{_initrddir}/vtund
-%{_sbindir}/*
+%{_sbindir}/vtund
 %{_localstatedir}/lock/vtund/
 %{_localstatedir}/log/vtund/
 
 %changelog
+* Sun Jun 17 2007 Dries Verachtert <dries@ulyssis.org> - 3.0.1-1
+- Updated to release 3.0.1.
+
 * Sun Dec 15 2006 Dries Verachtert <dries@ulyssis.org> - 3.0.0-1
 - Updated to release 3.0.0.
 
