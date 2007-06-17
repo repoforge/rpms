@@ -51,7 +51,7 @@ formats like xml and html.
 %{perl_vendorlib}/MP3/M3U/Parser.pm
 
 %changelog
-* Sun Jun 17 2007 Dag Wieers <dag@wieers.com> - 2.20-1
+* Sat Jun 16 2007 Who Knows ( aka Jim ) <quien-sabe@metaorg.com> - 2.20-1
 - Updated to release 2.20.
 
 * Wed Oct 20 2004 Dries Verachtert <dries@ulyssis.org> - 2.1-1
