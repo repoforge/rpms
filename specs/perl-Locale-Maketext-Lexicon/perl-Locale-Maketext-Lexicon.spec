@@ -9,13 +9,13 @@
 
 Summary: Extract translatable strings from source
 Name: perl-Locale-Maketext-Lexicon
-Version: 0.62
+Version: 0.64
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Locale-Maketext-Lexicon/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AU/AUTRIJUS/Locale-Maketext-Lexicon-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/A/AU/AUDREYT/Locale-Maketext-Lexicon-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -49,6 +49,9 @@ PO files, MO files, or from databases via the "Tie" interface.
 %{perl_vendorlib}/Locale/Maketext
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.64-1
+- Updated to release 0.64.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.62-1
 - Updated to release 0.62.
 

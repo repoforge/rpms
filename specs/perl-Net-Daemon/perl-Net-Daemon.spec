@@ -12,7 +12,7 @@
 
 Summary: Perl extension for portable daemons
 Name: perl-Net-Daemon
-Version: 0.39
+Version: 0.43
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -28,7 +28,7 @@ BuildRequires: perl, perl(ExtUtils::MakeMaker)
 This package contains a perl extension for portable daemons.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -51,6 +51,9 @@ This package contains a perl extension for portable daemons.
 %{perl_vendorlib}/Net/Daemon/*
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.43-1
+- Updated to release 0.43.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.39-1
 - Updated to release 0.39.
 

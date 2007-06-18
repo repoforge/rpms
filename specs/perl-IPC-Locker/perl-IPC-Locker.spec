@@ -9,7 +9,7 @@
 
 Summary: Distributed lock handler
 Name: perl-IPC-Locker
-Version: 1.463
+Version: 1.470
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,6 +46,8 @@ without the mess of NFS or other file locking techniques.
 %defattr(-, root, root, 0755)
 %doc README
 %doc %{_mandir}/man?/*
+%{_bindir}/pidstat
+%{_bindir}/uriexec
 %{_bindir}/lockerd
 %{_bindir}/pidstatd
 %{_bindir}/pidwatch
@@ -56,6 +58,9 @@ without the mess of NFS or other file locking techniques.
 %{perl_vendorlib}/IPC/PidStat
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 1.470-1
+- Updated to release 1.470.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.463-1
 - Updated to release 1.463.
 

@@ -9,13 +9,13 @@
 
 Summary: Report versions of all modules in memory
 Name: perl-Module-Versions-Report
-Version: 1.02
-Release: 1.2
+Version: 1.03
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Versions-Report/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SB/SBURKE/Module-Versions-Report-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RU/RUZ/Module-Versions-Report-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -51,6 +51,9 @@ defined a $VERSION, at least).
 %{perl_vendorlib}/Module/Versions/Report.pm
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 1.03-1
+- Updated to release 1.03.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.02-1.2
 - Rebuild for Fedora Core 5.
 

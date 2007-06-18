@@ -11,13 +11,13 @@
 
 Summary: Perl extension for writing PlRPC servers and clients
 Name: perl-PlRPC
-Version: 0.2018
-Release: 1.2
+Version: 0.2020
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PlRPC/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JW/JWIED/PlRPC-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MN/MNOONING/PlRPC/PlRPC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -31,7 +31,7 @@ Method Interface), because PlRPC gives you the complete power of Perl's
 OO framework in a very simple manner.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -54,6 +54,9 @@ OO framework in a very simple manner.
 %{perl_vendorlib}/RPC
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.2020-1
+- Updated to release 0.2020.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.2018-1.2
 - Rebuild for Fedora Core 5.
 
