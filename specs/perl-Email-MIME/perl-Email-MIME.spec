@@ -9,7 +9,7 @@
 
 Summary: Easy MIME message parsing
 Name: perl-Email-MIME
-Version: 1.854
+Version: 1.859
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -42,8 +42,8 @@ message. Headers are decoded from MIME encoding.
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-                %{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod \
+                %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -51,11 +51,14 @@ message. Headers are decoded from MIME encoding.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/Email::MIME*
 %dir %{perl_vendorlib}/Email/
 %{perl_vendorlib}/Email/MIME.pm
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.859-1
+- Updated to release 1.859.
+
 * Tue Nov 21 2006 Dries Verachtert <dries@ulyssis.org> - 1.854-1
 - Updated to release 1.854.
 - perl(Email::Simple) added to requirements, thanks to Max Kanat-Alexander.

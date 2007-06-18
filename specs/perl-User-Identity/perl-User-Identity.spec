@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/M/MA/MARKOV/User-Identity-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Maintains info about a physical person.
