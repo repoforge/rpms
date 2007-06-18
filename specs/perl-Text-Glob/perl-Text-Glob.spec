@@ -9,7 +9,7 @@
 
 Summary: Match globbing patterns against text
 Name: perl-Text-Glob
-Version: 0.07
+Version: 0.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ This module allows you to match globbing patterns against text.
 %{perl_vendorlib}/Text/Glob.pm
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.08-1
+- Updated to release 0.08.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Updated to release 0.07.
 

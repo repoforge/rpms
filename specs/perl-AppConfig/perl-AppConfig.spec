@@ -10,7 +10,7 @@
 
 Summary: Module for reading configuration files and parsing command line args
 Name: perl-AppConfig
-Version: 1.64
+Version: 1.65
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -65,6 +65,9 @@ accessible through the AppConfig.pm module.
 %{perl_vendorlib}/AppConfig/*
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 1.65-1
+- Updated to release 1.65.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.64-1
 - Updated to release 1.64.
 

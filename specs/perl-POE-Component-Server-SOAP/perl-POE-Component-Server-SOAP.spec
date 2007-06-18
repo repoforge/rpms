@@ -9,7 +9,7 @@
 
 Summary: Publish POE event handlers via SOAP over HTTP
 Name: perl-POE-Component-Server-SOAP
-Version: 1.10
+Version: 1.11
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ With this module, you can publish POE event handlers via SOAP over HTTP.
 %{perl_vendorlib}/POE/Component/Server/SOAP/
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 1.11-1
+- Updated to release 1.11.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.10-1
 - Initial package.

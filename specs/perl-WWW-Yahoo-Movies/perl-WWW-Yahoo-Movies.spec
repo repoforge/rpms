@@ -9,7 +9,7 @@
 
 Summary: Get Yahoo Movies information
 Name: perl-WWW-Yahoo-Movies
-Version: 0.03
+Version: 0.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,6 +48,9 @@ Movies or title.
 %{perl_vendorlib}/WWW/Yahoo/Movies.pm
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.04-1
+- Updated to release 0.04.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Updated to release 0.03.
 

@@ -11,8 +11,8 @@
 
 Summary: System for building perl modules
 Name: perl-Module-Build
-Version: 0.2806
-Release: 2
+Version: 0.2808
+Release: 1
 License: Artistic or GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Build/
@@ -59,6 +59,9 @@ pure-perl and written in a very cross-platform way.
 %{perl_vendorlib}/Module/Build.pm
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.2808-1
+- Updated to release 0.2808.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.2806-2
 - Rebuild against perl(ExtUtils::CBuilder).
 

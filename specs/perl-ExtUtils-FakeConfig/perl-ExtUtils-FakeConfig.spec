@@ -9,7 +9,7 @@
 
 Summary: Allows overriding some config values
 Name: perl-ExtUtils-FakeConfig
-Version: 0.09
+Version: 0.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,6 +47,9 @@ Allows you to override some config values.
 %{perl_vendorlib}/Config_m.pod
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.10-1
+- Updated to release 0.10.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.09-1
 - Updated to release 0.09.
 

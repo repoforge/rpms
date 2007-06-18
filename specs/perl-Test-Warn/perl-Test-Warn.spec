@@ -9,7 +9,7 @@
 
 Summary: Perl extension to test methods for warnings
 Name: perl-Test-Warn
-Version: 0.09
+Version: 0.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,6 +47,9 @@ code.
 %{perl_vendorlib}/Test/Warn.pm
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.10-1
+- Updated to release 0.10.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.09-1
 - Updated to release 0.09.
 

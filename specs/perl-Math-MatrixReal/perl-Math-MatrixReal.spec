@@ -9,8 +9,8 @@
 
 Summary: Matrix of Reals
 Name: perl-Math-MatrixReal
-Version: 2.01
-Release: 1.2
+Version: 2.02
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-MatrixReal/
@@ -50,6 +50,9 @@ Perl type thanks to OPERATOR OVERLOADING.
 %{perl_vendorlib}/Math/funcs.pl
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 2.02-1
+- Updated to release 2.02.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.01-1.2
 - Rebuild for Fedora Core 5.
 

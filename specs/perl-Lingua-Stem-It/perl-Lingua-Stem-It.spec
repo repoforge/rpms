@@ -9,8 +9,8 @@
 
 Summary: Porter's stemming algorithm for Italian
 Name: perl-Lingua-Stem-It
-Version: 0.01
-Release: 1.2
+Version: 0.02
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-Stem-It/
@@ -47,6 +47,9 @@ returning the stemmed words.
 %{perl_vendorlib}/Lingua/Stem/It.pm
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.02-1
+- Updated to release 0.02.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-1.2
 - Rebuild for Fedora Core 5.
 

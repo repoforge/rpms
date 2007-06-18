@@ -9,7 +9,7 @@
 
 Summary: Combinatorial counting operations
 Name: perl-Math-Counting
-Version: 0.06
+Version: 0.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,6 +46,9 @@ This module contains functions for combinatorial counting operations.
 %{perl_vendorlib}/Math/Counting.pm
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.07-1
+- Updated to release 0.07.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Updated to release 0.06.
 

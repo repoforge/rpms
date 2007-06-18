@@ -9,7 +9,7 @@
 
 Summary: Per-line Perl profiler
 Name: perl-Devel-SmallProf
-Version: 2.01
+Version: 2.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,6 +49,9 @@ program as possible and also in terms of being simple to use.
 %{perl_vendorlib}/Devel/SmallProf.pm
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 2.02-1
+- Updated to release 2.02.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 2.01-1
 - Updated to release 2.01.
 

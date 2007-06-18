@@ -8,7 +8,7 @@
 
 Summary: IANA Character Set Registry names and Unicode::MapUTF8 (et al.) conversion scheme names
 Name: perl-I18N-Charset
-Version: 1.382
+Version: 1.385
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ conversion scheme names .
 %{perl_vendorlib}/I18N/Charset/
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 1.385-1
+- Updated to release 1.385.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.382-1
 - Updated to release 1.382.
 

@@ -9,7 +9,7 @@
 
 Summary: Produces HTML tables
 Name: perl-HTML-Table
-Version: 2.05
+Version: 2.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -60,6 +60,9 @@ cell tags specified for HTML 3.0.
 %{perl_vendorlib}/HTML/Table.pm
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 2.06-1
+- Updated to release 2.06.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 2.05-1
 - Updated to release 2.05.
 

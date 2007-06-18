@@ -9,7 +9,7 @@
 
 Summary: Data pack for Business::ISBN
 Name: perl-Business-ISBN-Data
-Version: 1.13
+Version: 1.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,6 +48,9 @@ Most of the interesting stuff is in Business::ISBN.
 %{perl_vendorlib}/Business/ISBN/Data.pm
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 1.14-1
+- Updated to release 1.14.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.13-1
 - Updated to release 1.13.
 

@@ -8,7 +8,7 @@
 
 Summary: Archive-Tar module for perl
 Name: perl-Archive-Tar
-Version: 1.30
+Version: 1.32
 Release: 1
 License: distributable
 Group: Applications/CPAN
@@ -58,6 +58,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_bindir}/ptar*
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 1.32-1
+- Updated to release 1.32.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.30-1
 Updated to release 1.30.
 
