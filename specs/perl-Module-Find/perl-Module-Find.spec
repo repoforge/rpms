@@ -19,7 +19,7 @@ Source: http://ftp.cpan.org/pub/CPAN/modules/by-module/Module/Module-Find-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Module::Find lets you and use modules in categoris. This can be very useful

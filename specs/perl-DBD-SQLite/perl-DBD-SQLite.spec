@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/DBD-SQLite/
 Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/DBD-SQLite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(DBI), sqlite-devel
+BuildRequires: perl, perl(DBI), sqlite-devel, perl(ExtUtils::MakeMaker)
 
 %description
 SQLite is a small fast embedded SQL database engine.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RO/ROSCH/URI-Find-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(URI), perl(URI::URL)
+BuildRequires: perl, perl(URI), perl(URI::URL), perl(ExtUtils::MakeMaker)
 
 %description
 This module does one thing: Finds URIs and URLs in plain text. It finds them

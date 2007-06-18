@@ -9,7 +9,7 @@
 
 Summary: Extremely light-weight Lev-Zimpel-Free compression
 Name: perl-Compress-LZF
-Version: 1.7
+Version: 1.8
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Compress-LZF/
 Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/Compress-LZF-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 LZF is an extremely fast (not that much slower than a pure memcpy)
@@ -51,6 +51,9 @@ problems incoporating this module into commercial programs.
 %{perl_vendorarch}/auto/Compress/LZF
 
 %changelog
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.8-1
+- Updated to release 1.8.
+
 * Sat Sep 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.7-1
 - Updated to release 1.7.
 

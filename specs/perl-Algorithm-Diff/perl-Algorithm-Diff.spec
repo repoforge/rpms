@@ -18,7 +18,7 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TY/TYEMQ/Algorithm-Diff-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is a module for computing the difference between two files, two

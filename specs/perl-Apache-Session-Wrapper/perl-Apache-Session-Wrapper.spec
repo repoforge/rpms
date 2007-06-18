@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/D/DR/DROLSKY/Apache-Session-Wrap
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides a simple wrapper for Apache::Session that manages

@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-DNS-Codes-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Net::DNS::Codes provides forward and reverse lookup for most common "C"

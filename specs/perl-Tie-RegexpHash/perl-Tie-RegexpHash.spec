@@ -19,7 +19,7 @@ Source: http://ftp.cpan.org/pub/CPAN/modules/by-module/Tie/Tie-RegexpHash-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module allows one to use regular expressions for hash keys, so that
