@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/CPAN/CPAN-DistnameInfo-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Many online services that are centered around CPAN attempt to associate

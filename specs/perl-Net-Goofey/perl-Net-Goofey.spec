@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GO/GOSSAMER/Net-Goofey-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(Text::LineEditor)
 
 %description
 This is a really simple module for communicating with a Goofey server.

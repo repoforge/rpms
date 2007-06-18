@@ -18,6 +18,7 @@ Source: http://www.robobunny.com/projects/bargraph/Text-BarGraph.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Text::BarGraph is a simple Perl module for generating ASCII bar graphs based
