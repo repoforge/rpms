@@ -20,6 +20,15 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 2:5.8.1, perl(ExtUtils::MakeMaker)
+# this module seems to require 50% of cpan..
+BuildRequires: perl(Class::Accessor::Fast), perl(Class::Inspector)
+BuildRequires: perl(CGI::Simple::Cookie), perl(Data::Dump)
+BuildRequires: perl(File::Modified), perl(HTML::Entities), perl(HTTP::Body)
+BuildRequires: perl(HTTP::Headers), perl(HTTP::Request), perl(HTTP::Response)
+BuildRequires: perl(HTTP::Request::AsCGI), perl(LWP::UserAgent)
+BuildRequires: perl(Module::Pluggable), perl(Path::Class), perl(Scalar::Util)
+BuildRequires: perl(Text::SimpleTable), perl(Tree::Simple)
+BuildRequires: perl(Tree::Simple::Visitor::FindByPath), perl(URI)
 
 %description
 Catalyst  Runtime version.

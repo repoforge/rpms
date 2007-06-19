@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/PAR/PAR-Dist-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 With this module, you can create and manipulate PAR distributions.

@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/File-ExtAttr/
 Source: http://www.cpan.org/modules/by-module/File/File-ExtAttr-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl, perl(ExtUtils::MakeMaker), libattr-devel
 Requires: perl
 
 %description

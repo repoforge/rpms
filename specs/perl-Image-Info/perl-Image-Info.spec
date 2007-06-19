@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Image/Image-Info-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(IO::String)
+BuildRequires: perl(ExtUtils::MakeMaker), perl, perl(IO::String)
 
 %description
 This Perl extention allows you to extract meta information from

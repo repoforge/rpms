@@ -22,7 +22,7 @@ Source: http://www.cpan.org/modules/by-module/WWW/WWW-Mechanize-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This module provides perl objects for web browsing.

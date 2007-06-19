@@ -20,7 +20,7 @@ Source: http://www.cpan.org/modules/by-module/IO/IO-Prompt-v%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 IO-Prompt is a Perl module to interactively prompt for user input.

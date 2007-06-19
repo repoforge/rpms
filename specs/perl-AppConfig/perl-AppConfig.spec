@@ -20,7 +20,7 @@ Source: http://www.cpan.org/modules/by-module/AppConfig/AppConfig-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 AppConfig is a bundle of Perl5 modules for reading configuration files

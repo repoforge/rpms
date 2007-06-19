@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/J/JP/JPEACOCK/SVN-Notify-Mirror-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(Module::Build)
 
 %description
 Keep a mirrored working copy of a repository path.

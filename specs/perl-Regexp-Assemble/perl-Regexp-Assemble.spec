@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DL/DLAND/Regexp-Assemble-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 You can create regular expressions with this module.

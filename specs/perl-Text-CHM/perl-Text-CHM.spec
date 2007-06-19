@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Text-CHM/
 Source: http://www.cpan.org/modules/by-module/Text/Text-CHM-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl, perl(ExtUtils::MakeMaker), chmlib-devel
 
 %description
 perl-Text-CHM is a Perl module for handling MS Compiled HtmlHelp files.

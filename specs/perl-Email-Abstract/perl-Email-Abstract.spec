@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RJ/RJBS/Email-Abstract-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 "Email::Abstract" provides module writers with the ability to write

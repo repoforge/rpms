@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SM/SMUELLER/Module-ScanDeps-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Module::ScanDeps, a module to recursively

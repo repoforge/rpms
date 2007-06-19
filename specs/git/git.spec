@@ -18,6 +18,7 @@ Source: http://kernel.org/pub/software/scm/git/git-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: zlib-devel, openssl-devel, curl-devel
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: sh-utils, diffutils, rsync, rcs, mktemp >= 1.5
 
 Obsoletes: git-arch <= %{version}-%{release}
