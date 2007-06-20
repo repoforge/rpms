@@ -13,7 +13,7 @@
 Summary: GStreamer streaming media framework "bad" plug-ins
 Name: gstreamer-plugins-bad
 Version: 0.10.3
-Release: 4
+Release: 5
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
@@ -110,7 +110,7 @@ well enough, or the code is not of good enough quality.
 %{_libdir}/gstreamer-%{majorminor}/libgstneonhttpsrc.so
 %{_libdir}/gstreamer-%{majorminor}/libgstpitch.so
 %{_libdir}/gstreamer-%{majorminor}/libgstsdlvideosink.so
-%{_libdir}/gstreamer-%{majorminor}/libgstswfdec.so
+#%{_libdir}/gstreamer-%{majorminor}/libgstswfdec.so
 %{_libdir}/gstreamer-%{majorminor}/libgstvideo4linux2.so
 #%{_libdir}/gstreamer-%{majorminor}/libgstwavpack.so
 %{_libdir}/gstreamer-%{majorminor}/libgstxvid.so
@@ -119,6 +119,9 @@ well enough, or the code is not of good enough quality.
 %exclude %{_libdir}/gstreamer-%{majorminor}/*.la
 
 %changelog
+* Thu Jun 14 2007 Dag Wieers <dag@wieers.com> - 0.10.3-5
+- Disable swfdec.
+
 * Tue Jun 12 2007 Dag Wieers <dag@wieers.com> - 0.10.3-4
 - Remove (empty) devel package.
 - Rebuild against swfdec 0.4.3 on EL5.

@@ -7,8 +7,8 @@
 
 Summary: Linux NTFS userspace driver 
 Name: fuse-ntfs-3g
-Version: 1.417
-Release: 2
+Version: 1.616
+Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.ntfs-3g.org/
@@ -89,6 +89,9 @@ you will need to install %{name}-devel.
 %{_libdir}/libntfs-3g.so
 
 %changelog
+* Tue Jun 19 2007 Dag Wieers <dag@wieers.com> - 1.616-1
+- Updated to release 1.616.
+
 * Mon May 14 2007 Dag Wieers <dag@wieers.com> - 1.417-2
 - Symlink mount binaries instead of hardlink (different mountpoints). (Jon Wilson)
 

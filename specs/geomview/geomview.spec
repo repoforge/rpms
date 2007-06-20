@@ -19,6 +19,11 @@
 %{?fc3:%define _with_lesstif 1}
 %{?el2:%define _with_lesstif 1}
 
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+
+%define desktop_vendor rpmforge
+
 Summary: View and manipulate 3D geometric objects
 Name: geomview
 Version: 1.9.2
@@ -34,6 +39,7 @@ BuildRequires: gcc-c++
 %{!?_without_modxorg:BuildRequires: mesa-libGL-devel, mesa-libGLU-devel, libXmu-devel, libXext-devel, libSM-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{?_with_lesstif:BuildRequires: lesstif-devel}
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Geomview is an interactive program written by the staff of the Geometry 
@@ -55,7 +61,7 @@ you will need to install %{name}-devel.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >geomview.desktop
 [Desktop Entry]
 Name=Geomview
 Comment=View and manipulate 3D objects
@@ -68,7 +74,9 @@ Categories=Application;Graphics;
 EOF
 
 %build
-%configure
+%configure \
+	--program-prefix="%{?_program_prefix}" \
+	--disable-static
 %{__make} %{?_smp_mflags}
 
 %install
@@ -76,17 +84,19 @@ EOF
 %makeinstall
 %{__mv} %{buildroot}%{_docdir}/geomview rpmdocs
 
+
+%if %{?_without_freedesktop:1}0
+%{__install} -Dp -m0644 geomview.desktop %{buildroot}/etc/X11/applnk/Utilities/geomview.desktop
+%else
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor rpmforge             \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+	geomview.desktop
+%endif
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -94,9 +104,11 @@ desktop-file-install --vendor rpmforge             \
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README rpmdocs/*
-%doc %{_mandir}/man1/*1*
-%doc %{_mandir}/man3/*3*
-%doc %{_mandir}/man5/*5*
+%doc %{_mandir}/man1/*.1*
+%doc %{_mandir}/man3/*.3*
+%doc %{_mandir}/man5/*.5*
+%doc %{_infodir}/figs/
+%doc %{_infodir}/geomview*
 %{_bindir}/anytooff
 %{_bindir}/anytoucd
 %{_bindir}/bdy
@@ -114,12 +126,11 @@ desktop-file-install --vendor rpmforge             \
 %{_bindir}/togeomview
 %{_bindir}/ucdtooff
 %{_bindir}/vrml2oogl
-%{_libdir}/libgeomview-*.so
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-geomview.desktop}
+%{?_without_freedesktop:/etc/X11/applnk/Utilities/geomview.desktop}
 %{_datadir}/geomview/
+%{_libdir}/libgeomview-*.so
 %{_libexecdir}/geomview/
-%{_datadir}/applications/*geomview.desktop
-%{_infodir}/geomview*
-%{_infodir}/figs/
 
 %files devel
 %defattr(-, root, root, 0755)

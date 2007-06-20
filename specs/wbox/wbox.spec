@@ -4,9 +4,11 @@ Summary: Command line tool to test HTTP performance of Web servers and Web appli
 Name: wbox
 Version: 4
 Release: 1
-License: GPLv2
+License: GPL
 Group: Applications/Internet
-Source0: http://hping.org/wbox/wbox-%{version}.tar.gz
+URL: http://hping.org/wbox/
+
+Source: http://hping.org/wbox/wbox-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -23,17 +25,17 @@ sharing.
 %{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-%{__install} -D -m0755 wbox %{buildroot}%{_bindir}/wbox
+%{__rm} -rf %{buildroot}
+%{__install} -Dp -m0755 wbox %{buildroot}%{_bindir}/wbox
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
 %doc AUTHORS Changelog README TODO
 %{_bindir}/wbox
 
 %changelog
-* Mon Jun 11 2007 Laurent Papier <papier[at]tuxfan.net>
+* Mon Jun 11 2007 Laurent Papier <papier[at]tuxfan.net> - 4-1
 - created spec file

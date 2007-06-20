@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-# ExcludeDist: el4
+# ExcludeDist: el4 el5
 
 Summary: Open-source, patent-free speech codec
 Name: speex
@@ -10,7 +10,8 @@ Release: 1
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.speex.org/
-Source: http://www.speex.org/download/speex-%{version}.tar.gz
+
+Source: http://downloads.us.xiph.org/releases/speex/speex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Provides: libspeex = %{version}-%{release}
 Obsoletes: libspeex <= 1.0.0
@@ -22,7 +23,6 @@ Vorbis which targets general audio) signals and providing good narrowband
 and wideband quality. This project aims to be complementary to the Vorbis
 codec.
 
-
 %package devel
 Summary: Speex development files
 Group: Development/Libraries
@@ -32,35 +32,26 @@ Requires: %{name} = %{version}
 %description devel
 Speex development files.
 
-
 %prep
 %setup
 
-
 %build
-export CFLAGS='%{optflags} -DRELEASE'
+export CFLAGS="%{optflags} -DRELEASE"
 %configure \
 	--enable-shared \
 	--enable-static \
 	--with-ogg-libraries="%{_libdir}"
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
-%{__make} DESTDIR=%{buildroot} install
+%{__make} DESTDIR="%{buildroot} install"
 
-
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
-
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files
 %defattr(-, root, root, 0755)
@@ -80,7 +71,6 @@ export CFLAGS='%{optflags} -DRELEASE'
 %{_libdir}/libspeex.so
 %{_libdir}/pkgconfig/speex.pc
 %{_datadir}/aclocal/speex.m4
-
 
 %changelog
 * Wed Jul 21 2004 Dag Wieers <dag@wieers.com> - 1.0.5-1

@@ -9,7 +9,7 @@
 
 Summary: Interface to the gnome libxslt library
 Name: perl-XML-LibXSLT
-Version: 1.62
+Version: 1.59
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/XML-LibXSLT/
 Source: http://www.cpan.org/modules/by-module/XML/XML-LibXSLT-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, libxslt-devel, perl(XML::LibXML) >= 1.60
+BuildRequires: perl, libxslt-devel, perl(XML::LibXML) >= 1.58
 
 %description
 perl-XML-LibXSLT is a fast XSLT library, based on the Gnome libxslt engine
@@ -52,14 +52,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/XML/LibXSLT/
 
 %changelog
-* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.62-1
-- Updated to release 1.62.
-
-* Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.61-1
-- Updated to release 1.61.
-
-* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.60-1
-- Updated to release 1.60.
+* Wed Jun 20 2007 Dag Wieers <dag@wieers.com> - 1.59-1
+- Updated to release 1.59.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.58-1
 - Updated to release 1.58.

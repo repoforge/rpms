@@ -17,7 +17,7 @@ URL: http://git.or.cz/
 Source: http://kernel.org/pub/software/scm/git/git-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: zlib-devel, openssl-devel, curl-devel
+BuildRequires: zlib-devel, openssl-devel, curl-devel >= 7.9
 BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: sh-utils, diffutils, rsync, rcs, mktemp >= 1.5
 
@@ -62,12 +62,21 @@ Git is a Perl module that implements Git bindings.
 %build
 %{__make} %{?_smp_mflags} all CFLAGS="%{optflags}" prefix="%{_prefix}" WITH_OWN_SUBPROCESS_PY="YesPlease"
 
+### Perl preparation
+cd perl
+%{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTALLDIRS="vendor"
+#%{__make} %{?_smp_mflags}
+cd -
+
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}" CFLAGS="%{optflags}" prefix="%{_prefix}" mandir="%{_mandir}" INSTALLDIRS="vendor"
 
+### Perl installation
+#%makeinstall -C perl INSTALLDIRS="vendor"
+
 ### Clean up buildroot
-find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^$RPM_BUILD_ROOT||' {} \;
+find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {} \;
 %{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean

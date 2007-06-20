@@ -99,8 +99,8 @@
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
-Version: 0.8.6b
-Release: 3
+Version: 0.8.6c
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -209,7 +209,7 @@ to link statically to it.
 %patch0 -p1 -b .ffmpegX11
 %patch1 -p1 -b .wx28
 %patch2 -p1 -b .faad2
-%patch3 -p1 -b .flac-1.1.3
+#patch3 -p1 -b .flac-1.1.3
 # Fix PLUGIN_PATH path for lib64
 %{__perl} -pi -e 's|/lib/vlc|/%{_lib}/vlc|g' vlc-config.in.in configure*
 
@@ -336,6 +336,9 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 
 
 %changelog
+* Mon Jun 18 2007 Dag Wieers <dag@wieers.com> - 0.8.6c-1
+- Updated to release 0.8.6c.
+
 * Mon Jun 04 2007 Dag Wieers <dag@wieers.com> - 0.8.6b-3
 - Rebuild against x264-0.4.20070529 because I missed it.
 
