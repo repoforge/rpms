@@ -12,8 +12,8 @@
 
 Summary: LaTeX editor
 Name: texmaker
-Version: 1.6
-Release: 1
+Version: 1.11
+Release: 2
 License: GPL
 Group: Applications/Publishing
 URL: http://www.xm1math.net/texmaker/
@@ -21,34 +21,34 @@ URL: http://www.xm1math.net/texmaker/
 Source: http://www.xm1math.net/texmaker/texmaker-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: qt-devel >= 4.0, kdelibs-devel, gcc-c++
+BuildRequires: qt-devel >= 3.1, kdelibs-devel, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
-Texmaker is a program, that integrates many tools needed
-to develop documents with LaTeX, in just one application.
+Texmaker is a program, that integrates many tools needed 
+to develop documents with LaTeX, in just one application. 
 
 It have thoses features:
-- an editor to write your LaTeX source files
+- an editor to write your LaTeX source files 
   (syntax highlighting, undo-redo, search-replace, ...)
-- the principal LaTex tags can be inserted directly with the "LaTeX",
-  "Math" and "Greek" menus
-- 370 mathematical symbols can be inserted in just one click
+- the principal LaTex tags can be inserted directly with the "LaTeX", 
+  "Math" and "Greek" menus 
+- 370 mathematical symbols can be inserted in just one click 
 - wizards to generate code ('Quick document', 'Quick letter', tabular,
-  tabbing and array environments)
-- LaTeX-related programs can be launched via the "Tools" menu
+  tabbing and array environments) 
+- LaTeX-related programs can be launched via the "Tools" menu 
 - the standard Bibtex entry types can be inserted in the ".bib" file
-  with the "Bibliography" menu
-- a "structure view" of the document for easier navigation of a document
-  (by clicking on an item in the "Structure" frame, you can jump directly
-  to the corresponding part of your document
-- extensive LaTeX documentation
-- in the "Messages / Log File" frame, you can see information about processes
-  and the logfile after a LaTeX compilation
+  with the "Bibliography" menu 
+- a "structure view" of the document for easier navigation of a document 
+  (by clicking on an item in the "Structure" frame, you can jump directly 
+  to the corresponding part of your document 
+- extensive LaTeX documentation 
+- in the "Messages / Log File" frame, you can see information about processes 
+  and the logfile after a LaTeX compilation 
 - the "Next Latex Error" and "Previous Latex Error" commands let you reach the
-  LaTeX errors detected by Kile in the log file
-- by clicking on the number of a line in the log file, the cursor jumps to the
-  corresponding line in the editor
+  LaTeX errors detected by Kile in the log file 
+- by clicking on the number of a line in the log file, the cursor jumps to the 
+  corresponding line in the editor 
 
 %prep
 %setup
@@ -79,17 +79,17 @@ $QTDIR/bin/qmake -makefile -unix texmaker.pro
 %{__rm} -rf %{buildroot}
 #%{__make} install \
 #	DESTDIR="%{buildroot}"
-%{__install} -Dp -m0755 texmaker %{buildroot}%{_bindir}/texmaker
-%{__install} -Dp -m0644 utilities/texmaker16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/texmaker.png
-%{__install} -Dp -m0644 utilities/texmaker32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/texmaker.png
-%{__install} -Dp -m0644 utilities/texmaker48x48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/texmaker.png
-%{__install} -Dp -m0644 utilities/texmaker48x48.png %{buildroot}%{_datadir}/pixmaps/texmaker.png
+%{__install} -D -m0755 texmaker %{buildroot}%{_bindir}/texmaker
+%{__install} -D -m0644 utilities/texmaker16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/texmaker.png
+%{__install} -D -m0644 utilities/texmaker32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/texmaker.png
+%{__install} -D -m0644 utilities/texmaker48x48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/texmaker.png
+%{__install} -D -m0644 utilities/texmaker48x48.png %{buildroot}%{_datadir}/pixmaps/texmaker.png
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/texmaker/
-%{__install} -p -m0644 utilities/*.{css,gif,html,png} %{buildroot}%{_datadir}/texmaker/
+%{__install} -m0644 utilities/*.{css,gif,html,png} %{buildroot}%{_datadir}/texmaker/
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -Dp -m0644 texmaker.desktop %{buildroot}%{_datadir}/applications/texmaker.desktop
+	%{__install} -D -m0644 texmaker.desktop %{buildroot}%{_datadir}/applications/texmaker.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \
@@ -112,21 +112,6 @@ $QTDIR/bin/qmake -makefile -unix texmaker.pro
 %{_datadir}/texmaker/
 
 %changelog
-* Thu Jun 21 2007 Dag Wieers <dag@weers.com> - 1.6-1
-- Updated to release 1.6.
-
-* Wed Aug 02 2006 Dag Wieers <dag@weers.com> - 1.4-1
-- Updated to release 1.4.
-
-* Sat Jul 23 2005 Dag Wieers <dag@weers.com> - 1.2.1-1
-- Updated to release 1.2.1.
-
-* Mon Jul 11 2005 Dag Wieers <dag@weers.com> - 1.2-1
-- Updated to release 1.2.
-
-* Sat Apr 30 2005 Dag Wieers <dag@weers.com> - 1.12-1
-- Updated to release 1.12.
-
 * Wed Jan 26 2005 Dag Wieers <dag@weers.com> - 1.11-2
 - Fixed location of the documentation. (Richard Heck)
 

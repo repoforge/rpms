@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JE/JESSE/Module-Refresh-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 2:5.8.1, perl(ExtUtils::MakeMaker)
 
 %description
 With this module, you can refresh %INC when updated on disk.
@@ -34,15 +34,18 @@ With this module, you can refresh %INC when updated on disk.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml SIGNATURE
+%doc %{_mandir}/man3/Module::Refresh.3pm*
+%dir %{perl_vendorlib}/Module/
 %{perl_vendorlib}/Module/Refresh.pm
 
 %changelog
@@ -51,9 +54,6 @@ With this module, you can refresh %INC when updated on disk.
 
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.11-1
 - Updated to release 0.11.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Dec 31 2005 Dries Verachtert <dries@ulyssis.org> - 0.09-1
 - Initial package.

@@ -12,7 +12,7 @@
 
 Summary: LaTeX editor
 Name: texmaker
-Version: 1.6
+Version: 1.4
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -21,7 +21,7 @@ URL: http://www.xm1math.net/texmaker/
 Source: http://www.xm1math.net/texmaker/texmaker-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: qt-devel >= 4.0, kdelibs-devel, gcc-c++
+BuildRequires: qt-devel >= 3.3, kdelibs-devel, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
@@ -112,9 +112,6 @@ $QTDIR/bin/qmake -makefile -unix texmaker.pro
 %{_datadir}/texmaker/
 
 %changelog
-* Thu Jun 21 2007 Dag Wieers <dag@weers.com> - 1.6-1
-- Updated to release 1.6.
-
 * Wed Aug 02 2006 Dag Wieers <dag@weers.com> - 1.4-1
 - Updated to release 1.4.
 

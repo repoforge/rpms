@@ -7,7 +7,7 @@
 Summary: Process monitor and restart utility
 Name: monit
 Version: 4.9
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.tildeslash.com/monit/
@@ -112,6 +112,7 @@ exit $RETVAL
 EOF
 
 %{__perl} -pi.orig -e 's|\bmonitrc\b|monit.conf|' monitor.h
+%{__perl} -pi.orig -e 's|^#\s+(include .*)$|$1|' monitrc
 
 %build
 %configure \
@@ -167,6 +168,9 @@ fi
 %{_localstatedir}/lib/monit/
 
 %changelog
+* Mon Jun 18 2007 Dag Wieers <dag@wieers.com> - 4.9-2
+- Enable the use of /etc/monit.d/ in the config-file. (Oren Held)
+
 * Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 4.9-1
 - Updated to release 4.9.
 
