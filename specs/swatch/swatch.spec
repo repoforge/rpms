@@ -27,17 +27,15 @@ searching logfiles using perl.
 
 %prep
 %setup
-chmod 644 tools/*
+%{__chmod} 0644 tools/*
 
 %build
-%{__perl} Makefile.PL \
-	INSTALLDIRS="vendor"
+%{__perl} Makefile.PL INSTALLDIRS="vendor"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install \
-	PERL_INSTALL_ROOT="%{buildroot}"
+%{__make} pure_install PERL_INSTALL_ROOT="%{buildroot}"
 %{__chmod} -R u+w %{buildroot}/*
 
 ### Clean up buildroot
@@ -58,9 +56,6 @@ chmod 644 tools/*
 %changelog
 * Sat Apr 22 2006 Dries Verachtert <dries@ulyssis.org> - 3.1.1-1
 - Updated to release 3.1.1.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.1-1.2
-- Rebuild for Fedora Core 5.
 
 * Sun Jul 25 2004 Dag Wieers <dag@wieers.com> - 3.1-1
 - Initial package. (using DAR)

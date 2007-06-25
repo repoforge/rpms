@@ -3,7 +3,7 @@
 
 Summary: Utility to copy DVD .vob files to disk
 Name: vobcopy
-Version: 1.0.1
+Version: 1.0.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -23,7 +23,7 @@ matter much.
 
 
 %prep
-%setup -q
+%setup
 %patch0 -p1 -b .Makefile
 
 
@@ -55,6 +55,9 @@ matter much.
 
 
 %changelog
+* Sun Jun 24 2007 Dag Wieers <dag@wieers.com> - 1.0.2-1
+- Updated to release 1.0.2.
+
 * Mon Nov 27 2006 Matthias Saou <http://freshrpms.net/> 1.0.1-1
 - Update to 1.0.1.
 - Remove no longer needed gcc change in the Makefile patch.

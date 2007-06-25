@@ -9,7 +9,7 @@
 
 Summary: Linux/UNIX tool suite for various mobile phones
 Name: gnokii
-Version: 0.6.15
+Version: 0.6.17
 Release: 1
 License: GPL
 Group: Applications/Communications
@@ -95,17 +95,12 @@ you will need to install %{name}-devel.
 %doc Docs/FAQ Docs/README* Docs/gnokii-IrDA-Linux Docs/gnokii-ir-howto Docs/ringtones.txt
 %doc Docs/protocol/ Docs/sample/ utils/gnapplet.sis
 %doc %{_mandir}/man1/gnokii.1*
-%doc %{_mandir}/man1/ppm2nokia.1*
 %doc %{_mandir}/man1/sendsms.1*
-%doc %{_mandir}/man1/todologo.1*
 %doc %{_mandir}/man8/gnokiid.8*
 %doc %{_mandir}/man8/mgnokiidev.8*
 %config(noreplace) %{_sysconfdir}/gnokiirc
 %{_bindir}/gnokii
-%{_bindir}/ppm2nokia
 %{_bindir}/sendsms
-%{_bindir}/todologo
-%{_bindir}/waitcall
 %{_libdir}/libgnokii.so.*
 %{_sbindir}/gnokiid
 
@@ -131,6 +126,9 @@ you will need to install %{name}-devel.
 %{_libdir}/libgnokii.so
 
 %changelog
+* Sun Jun 24 2007 Dag Wieers <dag@wieers.com> - 0.6.17-1
+- Updated to release 0.6.17.
+
 * Wed May 09 2007 Dag Wieers <dag@wieers.com> - 0.6.15-1
 - Updated to release 0.6.15.
 
