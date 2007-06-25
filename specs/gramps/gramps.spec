@@ -8,7 +8,7 @@
 Summary: Genealogical Research and Analysis Management Programming System
 Name: gramps
 Version: 2.2.8
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Editors
 URL: http://gramps.sourceforge.net/
@@ -18,7 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf >= 2.52, automake >= 1.6, scrollkeeper >= 0.1.4
 BuildRequires: gnome-python2-canvas, gnome-python2-gconf
-BuildRequires: pygtk2, pygtk2-libglade, gettext
+BuildRequires: pygtk2, pygtk2-libglade, gettext, pkgconfig
 BuildRequires: desktop-file-utils, gnome-doc-utils, intltool, perl(XML::Parser)
 
 Requires(post): scrollkeeper
@@ -88,6 +88,9 @@ scrollkeeper-update -q || :
 %{_datadir}/gnome/help/gramps/
 
 %changelog
+* Mon Jun 25 2007 Dries Verachtert <dries@ulyssis.org> - 2.2.8-2
+- Added the pkgconfig buildrequirement, thanks to Jorrit Jorritsma.
+
 * Mon May 28 2007 Dries Verachtert <dries@ulyssis.org> - 2.2.8-1
 - Updated to release 2.2.8.
 
