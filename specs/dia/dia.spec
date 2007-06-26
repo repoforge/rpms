@@ -1,26 +1,29 @@
 # $Id$
 # Authority: dag
 
-##ExcludeDist: rh9 fc1 fc2
-# ExcludeDist: el4
-
 Summary: Diagram drawing program
 Name: dia
-Version: 0.95
+Version: 0.96.1
 Release: 1
-epoch: 1
+Epoch: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.gnome.org/projects/dia/
 
-Source: http://ftp.gnome.org/pub/gnome/sources/dia/%{version}/dia-%{version}.tar.bz2
+#Source: http://ftp.gnome.org/pub/gnome/sources/dia/%{version}/dia-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/gnome/sources/dia/0.96/dia-%{version}.tar.bz2
+Patch1: dia-0.92.2-dtd.patch
+Patch2: dia-0.95-pre6-help.patch
+Patch3: dia-0.94-fallbacktoxpmicons.patch
+Patch4: dia-0.96-python-detect.patch
+Patch5: dia-0.96.1-64bit.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glib2-devel >= 2.0.6, gtk2-devel >= 2.0.6, libxml2-devel >= 2.3.9
+BuildRequires: glib2-devel >= 2.6, gtk2-devel >= 2.6, libxml2-devel >= 2.3.9
 BuildRequires: libgnome-devel >= 2.0, libgnomeui-devel >= 2.0, pango-devel >= 1.1.5
 BuildRequires: libart_lgpl-devel >= 2.3.10, libxslt-devel, libpng-devel
-BuildRequires: python-devel >= 2.2.1, pygtk2-devel, gcc-c++
-BuildRequires: intltool, perl-XML-Parser, gettext, PyXML, docbook-style-xsl
+BuildRequires: python-devel >= 2.2.1, pygtk2-devel, gcc-c++, gettext, pkgconfig >= 0.9
+BuildRequires: intltool, perl(XML::Parser), gettext, PyXML, docbook-style-xsl
 %{?el4:BuildRequires: gcc-g77}
 %{?fc5:BuildRequires: gcc-gfortran}
 %{?fc4:BuildRequires: gcc-gfortran}
@@ -36,29 +39,23 @@ format, and can export to PostScript(TM).
 
 %prep
 %setup
-
-### FIXME: Create proper desktop file
-#%{__cat} <<EOF >dia.desktop
-#[desktop]
-#Name=Dia Diagrams
-#Comment=Create diagrams
-#EOF
+%patch1 -p1 -b .dtd
+%patch2 -p1 -b .help
+%patch3 -p1 -b .fallbacktoxpmicons
+%patch4 -p1 -b .py-detect
+%patch5 -p1 -b .64bit
 
 %build
-#{__aclocal}
-#./autogen.sh
 %configure \
+	--enable-db2html \
 	--enable-gnome \
 	--with-python
-#	--enable-maintainer-mode
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
-#%{__mv} %{buildroot}%{_bindir}/dia %{buildroot}%{_bindir}/dia-bin
-#%{__install} -Dp -m0755 dia.sh %{buildroot}%{_bindir}/dia
 
 ### Clean up buildroot
 #{__rm} -f %{buildroot}%{_libdir}/dia/*.la
@@ -68,23 +65,24 @@ format, and can export to PostScript(TM).
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING doc/ KNOWN_BUGS NEWS README TODO
+%doc AUTHORS ChangeLog COPYING doc/ KNOWN_BUGS NEWS README THANKS TODO
 %doc %{_datadir}/gnome/help/dia/
 %doc %{_mandir}/man?/*
-%{_bindir}/*
-%{_libdir}/dia/
-%{_datadir}/applications/*.desktop
+%{_bindir}/dia
+%{_datadir}/applications/dia.desktop
 %{_datadir}/dia/
-%{_datadir}/mime-info/*
-%{_datadir}/pixmaps/*
-%exclude %{_localstatedir}/scrollkeeper/
+%{_datadir}/mime-info/dia.keys
+%{_datadir}/mime-info/dia.mime
+%{_datadir}/pixmaps/dia-diagram.png
+%{_datadir}/pixmaps/dia_gnome_icon.png
+%{_libdir}/dia/
 
 %changelog
+* Mon Jun 25 2007 Dag Wieers <dag@wieers.com> - 0.96.1-1.
+- Updated to release 0.96.1.
+
 * Sat May 06 2006 Dries Verachtert <dries@ulyssis.org> - 0.95-1
 - Updated to release 0.95.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.94-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Aug 25 2004 Dag Wieers <dag@wieers.com> - 0.94-1.
 - Updated to release 0.94.

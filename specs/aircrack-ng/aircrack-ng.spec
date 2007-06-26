@@ -3,7 +3,7 @@
 
 Summary: Reliable 802.11 (wireless) sniffer and WEP/WPA-PSK key cracker
 Name: aircrack-ng
-Version: 0.9
+Version: 0.9.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -66,6 +66,9 @@ chmod a+x evalrev
 %{_sbindir}/airtun-ng
 
 %changelog
+* Wed Jun 27 2007 Dag Wieers <dag@wieers.com> - 0.9.1-1
+- Updated to release 0.9.1.
+
 * Mon May 14 2007 Dag Wieers <dag@wieers.com> - 0.9-1
 - Updated to release 0.9.
 

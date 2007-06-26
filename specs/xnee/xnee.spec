@@ -16,7 +16,7 @@
 
 Summary: Record, distribute and replay X protocol data
 Name: xnee
-Version: 2.05
+Version: 2.06
 Release: 1
 License: GPL
 Group: User Interface/X
@@ -77,6 +77,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/applications/%{desktop_vendor}-xnee.desktop
 
 %changelog
+* Mon Jun 25 2007 Dag Wieers <dag@wieers.com> - 2.06-1
+- Updated to release 2.06.
+
 * Sun Aug 06 2006 Dag Wieers <dag@wieers.com> - 2.05-1
 - Updated to release 2.05.
 
