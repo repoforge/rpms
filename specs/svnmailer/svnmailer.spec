@@ -15,6 +15,7 @@ URL: http://opensource.perlig.de/svnmailer/
 Source: http://storage.perlig.de/svnmailer/svnmailer-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: python >= 2.3
 Requires: python >= 2.3
 
@@ -55,6 +56,9 @@ python setup.py install --root=%{buildroot}
 %{python_sitelib}/svnmailer
 
 %changelog
+* Thu Jun 28 2007 Dag Wieers <dag@wieers.com> - 1.0.8-2
+- Changed BuildArch to noarch. (Leo Eraly)
+
 * Fri Apr 21 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.8-1
 - Updated to release 1.0.8.
 

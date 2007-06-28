@@ -6,8 +6,8 @@
 
 Summary: General-purpose resource monitoring system
 Name: mon
-Version: 0.99.2
-Release: 1.2
+Version: 1.2.0
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.kernel.org/software/mon/
@@ -234,7 +234,7 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYING COPYRIGHT CREDITS README TODO doc/README.*
-%doc KNOWN-PROBLEMS mon.lsm utils/ VERSION
+%doc KNOWN-PROBLEMS utils/ VERSION
 %doc alerts/*/*.README mon.cgi-1.52/
 %doc clients/{skymon,batch-example} etc/*.cf etc/example.m4 etc/example.monshowrc
 %config(noreplace) %{_sysconfdir}/mon/
@@ -249,8 +249,8 @@ fi
 %{_libdir}/mon/mon.d/dialin.monitor.wrap
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.99.2-1.2
-- Rebuild for Fedora Core 5.
+* Wed Jun 27 2007 Dag Wieers <dag@wieers.com> - 1.2.0-1
+- Updated to release 1.2.0.
 
 * Tue Mar 06 2004 Dag Wieers <dag@wieers.com> - 0.99.2-1
 - Fixed problems with perl-modules.

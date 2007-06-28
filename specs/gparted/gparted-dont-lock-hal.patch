@@ -1,0 +1,33 @@
+--- src/GParted_Core.cc	2006-12-05 14:39:31.000000000 -0500
++++ src/GParted_Core.cc.new	2007-04-02 21:59:01.000000000 -0400
+@@ -54,21 +54,6 @@
+ 
+ 	ped_exception_set_handler( ped_exception_handler ) ; 
+ 	
+-	//disable automount //FIXME: temporary hack, till i find a better solution...
+-	std::ofstream fdi_file( "/usr/share/hal/fdi/policy/gparted-disable-automount.fdi" ) ;
+-	if ( fdi_file )
+-	{
+-		fdi_file << "<deviceinfo version='0.2'>" ;
+-		fdi_file << "<device>" ;
+-		fdi_file << "<match key='@block.storage_device:storage.hotpluggable' bool='true'>" ;
+-		fdi_file << "<merge key='volume.ignore' type='bool'>true</merge>" ;
+-		fdi_file << "</match>" ;
+-		fdi_file << "</device>" ;
+-		fdi_file << "</deviceinfo>" ;
+-
+-		fdi_file .close() ;
+-	}	
+-
+ 	//get valid flags ...
+ 	for ( PedPartitionFlag flag = ped_partition_flag_next( static_cast<PedPartitionFlag>( NULL ) ) ;
+ 	      flag ;
+@@ -2287,8 +2272,6 @@
+ 	if ( p_filesystem )
+ 		delete p_filesystem ;
+ 
+-	//remove .fdi file..
+-	remove( "/usr/share/hal/fdi/policy/gparted-disable-automount.fdi" ) ;
+ }
+ 	
+ } //GParted
