@@ -4,7 +4,7 @@
 
 Summary: Console MUD client
 Name: tintin
-Version: 1.97.0
+Version: 1.97.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -24,6 +24,7 @@ text based multi user dungeon.
 %{__perl} -pi -e "s| /usr/bin| %{buildroot}%{_bindir}|g;" src/Makefile*
 
 %build
+%{__chmod} +x src/configure
 cd src
 %configure
 %{__make} %{?_smp_mflags}
@@ -43,6 +44,9 @@ cd src
 %{_bindir}/tt++
 
 %changelog
+* Fri Jun 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.97.2-1
+- Updated to release 1.97.2.
+
 * Wed May 09 2007 Dries Verachtert <dries@ulyssis.org> - 1.97.0-1
 - Updated to release 1.97.0.
 

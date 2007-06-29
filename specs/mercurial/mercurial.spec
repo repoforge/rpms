@@ -6,8 +6,8 @@
 
 Summary: Fast lightweight source control management system
 Name: mercurial
-Version: 0.9.3
-Release: 2
+Version: 0.9.4
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://www.selenic.com/mercurial/wiki/
@@ -49,6 +49,9 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{python_sitearch}/mercurial/
 
 %changelog
+* Fri Jun 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.9.4-1
+- Updated to release 0.9.4.
+
 * Fri Jun 15 2007 Dag Wieers <dag@wieers.com> - 0.9.3-2
 - Use %%{python_sitearch} to build for x86_64. (Tong Ho)
 - Added contrib/.
