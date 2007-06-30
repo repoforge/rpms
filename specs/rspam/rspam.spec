@@ -1,5 +1,6 @@
 # $Id$
-# Authority: 	dag
+# Authority: 	hadams
+
 %define         name    	rspam
 %define         version 	0.0.5
 %define         release 	1
