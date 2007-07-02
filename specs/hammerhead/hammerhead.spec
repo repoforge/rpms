@@ -1,17 +1,18 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Web server stress testing tool
 Name: hammerhead
 Version: 2.1.3
-Release: 0.2
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://hammerhead.sourceforge.net/
 
 Source: http://dl.sf.net/hammerhead/hammerhead-%{version}.tar.gz
+Patch0: hammerhead-2.1.3-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc-c++
 
 %description
@@ -25,6 +26,7 @@ under load, or the ability of the port to service a set of requests.
 
 %prep
 %setup
+%patch0 -p0
 
 %build
 %configure
@@ -48,13 +50,13 @@ under load, or the ability of the port to service a set of requests.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGELOG Copying README bin/* doc/hammerhead.html doc/hammerhead.txt
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/hammerhead.1*
 %config %{_sysconfdir}/hammerhead/
-%{_bindir}/*
+%{_bindir}/hammerhead
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.1.3-0.2
-- Rebuild for Fedora Core 5.
+* Mon Jul 02 2007 Dag Wieers <dag@wieers.com> - 2.1.3-1
+- Added patch to build with gcc4.
 
 * Tue Jun 10 2003 Dag Wieers <dag@wieers.com> - 2.1.3-0
 - Initial package. (using DAR)

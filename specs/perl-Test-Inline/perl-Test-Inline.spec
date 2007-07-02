@@ -23,7 +23,7 @@ BuildRequires: perl(File::Spec) >= 0.80, perl(List::Util) >= 1.11
 BuildRequires: perl(GetOpt::Long) >= 2.34, perl(File::Slurp) >= 9999.04
 BuildRequires: perl(File::Find::Rule) >= 0.26, perl(Config::Tiny) >= 2.00
 BuildRequires: perl(Params::Util) >= 0.05, perl(Class::Autouse) >= 1.15
-BuildRequires: perl(Algorithm::Dependency >= 1.02), perl(File::Flat) >= 0.95
+BuildRequires: perl(Algorithm::Dependency) >= 1.02, perl(File::Flat) >= 0.95
 BuildRequires: perl(Pod::Tests) >= 0.18
 
 Requires: perl

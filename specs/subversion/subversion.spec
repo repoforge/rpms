@@ -21,10 +21,11 @@
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+%define ruby_sitearch %(ruby -rrbconfig -e 'puts Config::CONFIG["sitearchdir"]')
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.4.3
+Version: 1.4.4
 ### FC3 comes with release 1.1
 Release: 0.1
 License: BSD
@@ -128,14 +129,17 @@ cd -
 
 export CC=gcc CXX=g++
 %configure \
+	--disable-mod-activation \
+	--disable-static \
 	--with-apr="%{_prefix}" \
 	--with-apr-util="%{_prefix}" \
-        --with-apxs="%{_sbindir}/apxs" \
-	--disable-mod-activation \
-%{!?_without_swig:--with-swig=swig-%{swig_version}/install} \
+	--with-apxs="%{_sbindir}/apxs" \
 	--with-expat \
-	--with-ssl
-#	--with-neon="%{_prefix}" \
+    --with-neon="%{_prefix}" \
+    --with-ruby-sitedir="%{ruby_sitearch}" \
+	--with-ssl \
+    --with-swig \
+%{!?_without_swig:--with-swig="swig-%{swig_version}/install"}
 # 1.3.0 tarball ships with generated swig sources
 #make extraclean-swig-headers swig-headers
 %{__make} %{?_smp_mflags} all
@@ -220,9 +224,22 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %doc BUGS CHANGES COMMITTERS COPYING HACKING INSTALL README
 %doc mod_authz_svn-INSTALL subversion/LICENSE tools/
 %doc contrib/client-side/svn_load_dirs{.pl,_*,.README}
-%{_bindir}/svn*
+%doc %{_mandir}/man1/svn.1*
+%doc %{_mandir}/man1/svnadmin.1*
+%doc %{_mandir}/man1/svndumpfilter.1*
+%doc %{_mandir}/man1/svnlook.1*
+%doc %{_mandir}/man1/svnsync.1*
+%doc %{_mandir}/man1/svnversion.1*
+%doc %{_mandir}/man5/svnserve.conf.5*
+%doc %{_mandir}/man8/svnserve.8*
+%{_bindir}/svn
+%{_bindir}/svnadmin
+%{_bindir}/svndumpfilter
+%{_bindir}/svnlook
+%{_bindir}/svnserver
+%{_bindir}/svnsync
+%{_bindir}/svnversion
 %{_libdir}/libsvn_*.so.*
-%{_mandir}/man?/svn*
 %{_datadir}/emacs/site-lisp/
 %{_datadir}/xemacs/site-packages/lisp/
 %{!?_without_swig:%exclude %{_libdir}/libsvn_swig_perl*}
@@ -247,13 +264,16 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %if %{!?_without_swig:1}0
 %files perl
 %defattr(-, root, root, 0755)
-%{perl_vendorarch}/auto/SVN
-%{perl_vendorarch}/SVN
+%doc %{_mandir}/man3:*::*.3pm*
+%{perl_vendorarch}/auto/SVN/
+%{perl_vendorarch}/SVN/
 %{_libdir}/libsvn_swig_perl*
-%{_mandir}/man*/*::*
 %endif
 
 %changelog
+* Mon Jul 02 2007 Dag Wieers <dag@wieers.com> - 1.4.4-0.1
+- Updated to release 1.4.4.
+
 * Thu Jan 25 2007 Dag Wieers <dag@wieers.com> - 1.4.3-0.1
 - Updated to release 1.4.3.
 

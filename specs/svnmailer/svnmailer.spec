@@ -7,7 +7,7 @@
 Summary: Notification script which can be used as subversion hook
 Name: svnmailer
 Version: 1.0.8
-Release: 1
+Release: 2
 License: Apache License 2.0
 Group: Development/Tools
 URL: http://opensource.perlig.de/svnmailer/
@@ -44,20 +44,22 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-python setup.py install --root=%{buildroot}
+python setup.py install --root="%{buildroot}" --prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CREDITS LICENSE README
+%doc CREDITS LICENSE NOTICE README docs/
 %{_bindir}/svn-mailer
 %{python_sitelib}/svnmailer
 
 %changelog
 * Thu Jun 28 2007 Dag Wieers <dag@wieers.com> - 1.0.8-2
 - Changed BuildArch to noarch. (Leo Eraly)
+- Added --prefix to setup phase. (Leo Eraly)
+- Added NOTICE and docs to %%doc.
 
 * Fri Apr 21 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.8-1
 - Updated to release 1.0.8.

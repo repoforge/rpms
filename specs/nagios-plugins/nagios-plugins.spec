@@ -8,8 +8,8 @@
 %{?el2:%define _without_net_snmp 1}
 %{?rh6:%define _without_net_snmp 1}
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define _libexecdir %{_libdir}/nagios/plugins
 
@@ -17,8 +17,8 @@
 
 Summary: Host/service/network monitoring program plugins for Nagios
 Name: nagios-plugins
-Version: 1.4.8
-Release: 2
+Version: 1.4.9
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://nagiosplug.sourceforge.net/
@@ -138,6 +138,7 @@ done
 %{_libdir}/nagios/plugins/check_breeze
 %{_libdir}/nagios/plugins/check_by_ssh
 %{_libdir}/nagios/plugins/check_clamd
+%{_libdir}/nagios/plugins/check_cluster
 %{_libdir}/nagios/plugins/check_dig
 %{_libdir}/nagios/plugins/check_disk
 %{_libdir}/nagios/plugins/check_disk_smb
@@ -157,7 +158,7 @@ done
 %{_libdir}/nagios/plugins/check_ircd
 %{_libdir}/nagios/plugins/check_jabber
 %{_libdir}/nagios/plugins/check_ldap
-#%{_libdir}/nagios/plugins/check_ldaps
+%{_libdir}/nagios/plugins/check_ldaps
 %{_libdir}/nagios/plugins/check_load
 %{_libdir}/nagios/plugins/check_log
 %{_libdir}/nagios/plugins/check_mailq
@@ -177,7 +178,7 @@ done
 %{_libdir}/nagios/plugins/check_ping
 %{_libdir}/nagios/plugins/check_pop
 %{_libdir}/nagios/plugins/check_procs
-#%{_libdir}/nagios/plugins/check_radius
+%{_libdir}/nagios/plugins/check_radius
 %{_libdir}/nagios/plugins/check_real
 %{_libdir}/nagios/plugins/check_rpc
 %{_libdir}/nagios/plugins/check_sensors
@@ -208,6 +209,7 @@ done
 %{_libdir}/nagios/plugins/contrib/check_cluster
 %{_libdir}/nagios/plugins/contrib/check_cluster.c
 %{_libdir}/nagios/plugins/contrib/check_cluster2
+%{_libdir}/nagios/plugins/contrib/check_cluster2.README
 %{_libdir}/nagios/plugins/contrib/check_cluster2.c
 %{_libdir}/nagios/plugins/contrib/check_compaq_insight.pl
 %{_libdir}/nagios/plugins/contrib/check_cpqarray.c
@@ -296,6 +298,9 @@ done
 %{_libdir}/nagios/plugins/check_icmp
 
 %changelog
+* Mon Jun 25 2007 Dag Wieers <dag@wieers.com> - 1.4.9-1
+- Updated to release 1.4.9.
+
 * Fri Apr 20 2007 Dag Wieers <dag@wieers.com> - 1.4.8-2
 - Restored utils.pm in %%{perl_vendorlib}. (Nathan Grennan)
 

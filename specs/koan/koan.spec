@@ -5,7 +5,7 @@
 
 Summary: Network provisioning tool for Xen and Bare Metal Machines 
 Name: koan
-Version: 0.3.1
+Version: 0.5.0
 Release: 1
 License: GPL
 Group: Applications/System
@@ -13,7 +13,6 @@ URL: http://cobbler.et.redhat.com/
 
 Source: http://cobbler.et.redhat.com/download/koan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: python-devel >= 2.2
@@ -49,5 +48,8 @@ of any existing system. For use with a boot-server configured with
 %ghost %{python_sitelib}/koan/*.pyo
 
 %changelog
+* Mon Jul 02 2007 Dag Wieers <dag@wieers.com> - 0.5.0-1
+- Updated to release 0.5.0.
+
 * Sat May 12 2007 Dag Wieers <dag@wieers.com> - 0.3.1-1
 - Initial package. (using DAR)

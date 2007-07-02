@@ -5,7 +5,7 @@
 
 Summary: Boot server configurator
 Name: cobbler
-Version: 0.4.8
+Version: 0.5.0
 Release: 1
 License: GPL
 Group: Applications/System
@@ -109,5 +109,8 @@ fi
 %dir %{_localstatedir}/www/cobbler/systems/
 
 %changelog
+* Mon Jul 02 2007 Dag Wieers <dag@wieers.com> - 0.5.0-1
+- Updated to release 0.5.0.
+
 * Sat May 12 2007 Dag Wieers <dag@wieers.com> - 0.4.8-1
 - Initial package. (using DAR)

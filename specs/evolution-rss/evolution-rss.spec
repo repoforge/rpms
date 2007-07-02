@@ -1,50 +1,50 @@
 # $Id$
 # Authority: hadams
 
-%define		_evolution_version	 2.8
+Summary: Evolution plugin for rss feed support
+Name: evolution-rss
+Version: 0.0.3
+Release: 2
+License: GPL
+Group: Productivity/Networking/Email/Clients
+URL: http://mips.edu.ms/evo/index.php/Evolution_RSS_Reader_Plugin
 
-Name:		evolution-rss
-Version:	0.0.3
-Release:	2
-Summary:	This is an evolution plugin which enables evolution to read rss feeds.
-URL:		http://mips.edu.ms/evo/index.php/Evolution_RSS_Reader_Plugin
-Group:		Productivity/Networking/Email/Clients
-License:	GPL
-Source0:	http://mips.edu.ms/%{name}-%{version}.tar.gz
-Requires:	evolution
-BuildRequires:	evolution-devel
-BuildRequires:	gettext-devel
-BuildRequires:	perl-XML-Parser
-BuildRoot:	%{_tmppath}/%{name}-%{version}-root
+Source: http://mips.edu.ms/evolution-rss-%{version}.tar.gz
+Requires: evolution
+BuildRequires: gettext-devel, evolution-devel, perl(XML::Parser)
+BuildRoot: %{_tmppath}/%{name}-%{version}-root
 
 %description
-This is an evolution plugin which enables evolution to read rss feeds.
+RSS Evolution plugin enables evolution to read rss feeds.
 
 %prep
-%setup -q 
+%setup
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
-%{__rm} -rf $RPM_BUILD_ROOT
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
-
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %clean
-%{__rm} -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang 
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog INSTALL NEWS README TODO
-%{_datadir}/evolution/%{_evolution_version}/errors/*
-%{_libdir}/evolution/%{_evolution_version}/plugins/*
+%dir %{_datadir}/evolution/
+%dir %{_datadir}/evolution/*/
+%dir %{_datadir}/evolution/*/errors/
+%{_datadir}/evolution/*/errors/*
+%dir %{_libdir}/evolution/*/plugins/
+%{_libdir}/evolution/*/plugins/*
 
 %changelog
 * Sat Jun 30 2007 Heiko Adams <info@fedora-blog.de> - 0.0.3-2
-- Rebuild for CentOS
+- Rebuild for RPMforge.
 
-* Sun May 20 2007 Piotr Pacholak <obi.gts@gmail.com>
-- Initial release
+* Sun May 20 2007 Piotr Pacholak <obi.gts@gmail.com> - 0.0.3-1
+- Initial release.

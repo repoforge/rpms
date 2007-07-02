@@ -1,19 +1,19 @@
 # $Id$
-
 # Authority: dries
 # Screenshot: http://poedit.sourceforge.net/screenshots/poEditUnicode_s.png
 # ScreenshotURL: http://poedit.sourceforge.net/screenshots.php
 
 Summary: PoEdit is a cross-platform gettext catalogs (.po files) editor
 Name: poedit
-Version: 1.3.5
+Version: 1.3.7
 Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://poedit.sourceforge.net/
 
-Source: http://dl.sf.net/poedit/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/poedit/poedit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc, gcc-c++, wxGTK-devel >= 2.6, db4-devel, gettext, zip
 Requires: wxGTK, db4, gettext
 
@@ -22,7 +22,6 @@ poEdit is a cross-platform gettext catalogs (.po files) editor. It is built
 with wxWindows.
 
 %prep
-%{__rm} -rf %{buildroot}
 %setup
 
 %build
@@ -31,7 +30,7 @@ with wxWindows.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install-strip DESTDIR=%{buildroot}
+%{__make} install-strip DESTDIR="%{buildroot}"
 %find_lang %{name}
 #mkdir -p %{buildroot}%{_datadir}/applications
 #cat > %{buildroot}%{_datadir}/applications/poedit.desktop <<EOF
@@ -50,20 +49,20 @@ with wxWindows.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc README
+%doc %{_mandir}/man1/poedit*
 %{_bindir}/poedit
-%{_mandir}/man1/poedit*
-%{_datadir}/poedit
+%{_datadir}/poedit/
 %{_datadir}/applications/poedit.desktop
 %{_datadir}/icons/hicolor/*/apps/poedit.png
 %{_datadir}/icons/hicolor/scalable/apps/poedit.svg*
 %{_datadir}/pixmaps/poedit.png
 
 %changelog
+* Mon Jul 02 2007 Dag Wieers <dag@wieers.com> - 1.3.7-1
+- Updated to release 1.3.7.
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.5-1
 - Updated to release 1.3.5.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.4-1.2
-- Rebuild for Fedora Core 5.
 
 * Mon Oct 03 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.4-1
 - Updated to release 1.3.4.

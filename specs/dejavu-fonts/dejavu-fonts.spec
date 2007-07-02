@@ -6,7 +6,7 @@
 
 Summary: DejaVu TrueType fonts
 Name: dejavu-fonts
-Version: 2.16
+Version: 2.18
 Release: 1
 License: Redistributable, with restrictions
 Group: User Interface/X
@@ -53,6 +53,9 @@ fi
 %ghost %{_datadir}/fonts/dejavu/fonts.cache-1
 
 %changelog
+* Mon Jul 02 2007 Dag Wieers <dag@wieers.com> - 2.18-1
+- Updated to release 2.18.
+
 * Wed Apr 04 2007 Dag Wieers <dag@wieers.com> - 2.16-1
 - Updated to release 2.16.
 

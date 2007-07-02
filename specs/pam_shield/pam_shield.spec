@@ -6,8 +6,8 @@
 
 Summary: PAM module that uses failed login count to lock system
 Name: pam_shield
-Version: 0.9.1
-Release: 2
+Version: 0.9.2
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.ka.sara.nl/home/walter/pam_shield/
@@ -25,7 +25,7 @@ that probe your computer for open logins and/or easy guessable passwords.
 pam_shield is meant as an aid to protect public computers on the open internet.
 
 %prep
-%setup -n %{name}
+%setup
 %patch0 -p0
 
 %build
@@ -45,7 +45,7 @@ pam_shield is meant as an aid to protect public computers on the open internet.
 
 %files
 %defattr(-, root, root, 0755)
-%doc INSTALL GPL README
+%doc GPL INSTALL README
 %config(noreplace) %{_sysconfdir}/cron.daily/pam-shield
 %config(noreplace) %{_sysconfdir}/security/shield.conf
 %dir %{_libdir}/security/
@@ -55,6 +55,9 @@ pam_shield is meant as an aid to protect public computers on the open internet.
 %dir %{_localstatedir}/lib/pam_shield/
 
 %changelog
+* Mon Jul 02 2007 Dag Wieers <dag@wieers.com> - 0.9.2-1
+- Updated to release 0.9.2.
+
 * Mon May 14 2007 Dag Wieers <dag@wieers.com> - 0.9.1-2
 - Fix the name of the trigger script referenced in shield.conf.
 

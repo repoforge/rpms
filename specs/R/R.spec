@@ -3,6 +3,8 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?el5:%define _with_compat_gcc34 1}
+
 %{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}
 %{?fc3:%define _without_modxorg 1}
@@ -16,7 +18,7 @@
 
 Summary: Language for data analysis and graphics
 Name: R
-Version: 2.4.1
+Version: 2.5.1
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -25,13 +27,15 @@ URL: http://www.r-project.org/
 Source: ftp://cran.r-project.org/pub/R/src/base/R-2/R-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, gcc-g77, tetex-latex, texinfo 
+BuildRequires: gcc-c++, tetex-latex, texinfo 
 BuildRequires: libpng-devel, libjpeg-devel, readline-devel, libtermcap-devel
 BuildRequires: tcl-devel, tk-devel
 BuildRequires: blas >= 3.0, pcre-devel, zlib-devel
 BuildRequires: java-1.4.2-gcj-compat
 %{!?_without_modxorg:BuildRequires: libX11-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
+%{?_with_compat_gcc34:BuildRequires: compat-gcc-34-g77}
+%{!?_with_compat_gcc34:BuildRequires: gcc-g77}
 Requires: ggv, cups, firefox
 
 ### These are the submodules that R provides. Sometimes R modules say they
@@ -177,12 +181,16 @@ export R_PRINTCMD="lpr"
 %doc %{_infodir}/R-*.info*
 %config %{_sysconfdir}/ld.so.conf.d/R-%{_target}.conf
 %{_bindir}/R
+%{_bindir}/Rscript
+
 %{_libdir}/R/
 %exclude %{_datadir}/info/dir*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/manual/R-exts.pdf
+%{_libdir}/pkgconfig/libR.pc
+%{_libdir}/pkgconfig/libRmath.pc
 
 %files -n libRmath
 %defattr(-, root, root, 0755)
@@ -194,5 +202,8 @@ export R_PRINTCMD="lpr"
 %{_libdir}/libRmath.a
 
 %changelog
+* Thu Jun 28 2007 Dag Wieers <dag@wieers.com> - 2.5.1-1
+- Updated to release 2.5.1.
+
 * Sat Feb 17 2007 Dag Wieers <dag@wieers.com> - 2.4.1-1
 - Initial package. (using DAR)

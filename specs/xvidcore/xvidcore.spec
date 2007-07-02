@@ -14,7 +14,7 @@
 
 Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore
-Version: 1.1.2
+Version: 1.1.3
 Release: 1
 License: XviD
 Group: System Environment/Libraries
@@ -112,6 +112,9 @@ execstack -c %{buildroot}%{_libdir}/*.so.*.* || :
 
 
 %changelog
+* Fri Jun 29 2007 Dag Wieers <dag@wieers.com> - 1.1.3-1
+- Updated to release 1.1.3.
+
 * Wed Nov  8 2006 Matthias Saou <http://freshrpms.net/> 1.1.2-1
 - Update to 1.1.2.
 - Chmod +x the shared library to get it stripped and proper debuginfo created.

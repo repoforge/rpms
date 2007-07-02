@@ -46,7 +46,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 0.9.39
+Version: 0.9.40
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -582,6 +582,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/dpnhpast.dll.so
 %{_libdir}/wine/dsound.dll.so
 %{_libdir}/wine/dswave.dll.so
+%{_libdir}/wine/dwmapi.dll.so
 %{_libdir}/wine/dxdiagn.dll.so
 %{_libdir}/wine/gdi32.dll.so
 %{_libdir}/wine/gdiplus.dll.so
@@ -590,6 +591,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/hal.dll.so
 %{_libdir}/wine/hid.dll.so
 %{_libdir}/wine/hlink.dll.so
+%{_libdir}/wine/hnetcfg.dll.so
 %{_libdir}/wine/iccvid.dll.so
 %{_libdir}/wine/icmp.dll.so
 %{_libdir}/wine/infosoft.dll.so
@@ -633,6 +635,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/newdev.dll.so
 %{_libdir}/wine/ntdll.dll.so
 %{_libdir}/wine/ntdsapi.dll.so
+%{_libdir}/wine/ntprint.dll.so
 %{_libdir}/wine/objsel.dll.so
 %{_libdir}/wine/odbc32.dll.so
 %{_libdir}/wine/odbccp32.dll.so
@@ -646,6 +649,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/opengl32.dll.so
 %{_libdir}/wine/pdh.dll.so
 %{_libdir}/wine/powrprof.dll.so
+%{_libdir}/wine/printui.dll.so
 %{_libdir}/wine/psapi.dll.so
 %{_libdir}/wine/pstorec.dll.so
 %{_libdir}/wine/qcap.dll.so
@@ -816,6 +820,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Mon Jul 02 2007 Dag Wieers <dag@wieers.com> - 0.9.40-1
+- Updated to release 0.9.40.
+
 * Sat Jun 16 2007 Dag Wieers <dag@wieers.com> - 0.9.39-1
 - Updated to release 0.9.39.
 
