@@ -9,7 +9,7 @@
 
 Summary: Lookup the vendor for a MAC address
 Name: perl-Net-MAC-Vendor
-Version: 1.16
+Version: 1.17
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ Lookup the vendor for a MAC address.
 %{perl_vendorlib}/Net/MAC/Vendor.pm
 
 %changelog
+* Thu Jul 5 2007 Quien Sabe (aka Jim) <quien-sabe@metaorg.com> - 1.17-1
+- Updated to latest upstream version { old source not available }
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.16-1
 - Initial package.
