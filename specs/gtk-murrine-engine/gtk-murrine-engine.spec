@@ -1,13 +1,16 @@
 # $Id$
 # Authority: hadams
 
+%define real_name murrine
+
 Summary: Murrine GTK2 engine
 Name: gtk-murrine-engine
 Version: 0.53.1
 Release: 1
 License: GPL
-Group: System Environment/Libraries
+Group: User Interface/X
 URL: http://cimi.netsons.org/pages/murrine.php
+
 Source0: http://murrine.netsons.org/files/murrine-%{version}.tar.bz2
 Source10: http://murrine.netsons.org/files/MurrinaFancyCandy.tar.bz2
 Source11: http://murrine.netsons.org/files/MurrinaVerdeOlivo.tar.bz2
@@ -15,82 +18,88 @@ Source12: http://murrine.netsons.org/files/MurrinaAquaIsh.tar.bz2
 Source13: http://murrine.netsons.org/files/MurrinaGilouche.tar.bz2
 Source14: http://murrine.netsons.org/files/MurrinaLoveGray.tar.bz2
 Source15: http://murrine.netsons.org/files/MurrineThemePack.tar.bz2
-BuildRequires: gtk2-devel
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: gtk2-devel >= 2.8
 
 %description
 Murrine is a cairo-based fast gtk2 theme engine.
 
 %prep
-%setup -q -n murrine-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
-%configure --enable-animation --enable-macmenu
-make %{?_smp_mflags}
+%configure \
+    --enable-animation \
+    --enable-macmenu
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/%{_datadir}/themes
-(cd $RPM_BUILD_ROOT/%{_datadir}/themes;
-bzcat %{SOURCE10} | tar -xvf -;
-bzcat %{SOURCE11} | tar -xvf -;
-bzcat %{SOURCE12} | tar -xvf -;
-bzcat %{SOURCE13} | tar -xvf -;
-bzcat %{SOURCE14} | tar -xvf -;
-bzcat %{SOURCE15} | tar -xvf -;
-)
-
-#remove .la files
-find $RPM_BUILD_ROOT -name *.la | xargs rm -f || true
-#fix permission
-find $RPM_BUILD_ROOT/%{_datadir}/themes -type f | xargs chmod 0644 || true
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
+#find_lang %{real_name}
+%{__install} -d -m0755 %{buildroot}%{_datadir}/themes/
+tar -xvj -C %{buildroot}%{_datadir}/themes/ -f %{SOURCE10};
+tar -xvj -C %{buildroot}%{_datadir}/themes/ -f %{SOURCE11};
+tar -xvj -C %{buildroot}%{_datadir}/themes/ -f %{SOURCE12};
+tar -xvj -C %{buildroot}%{_datadir}/themes/ -f %{SOURCE13};
+tar -xvj -C %{buildroot}%{_datadir}/themes/ -f %{SOURCE14};
+tar -xvj -C %{buildroot}%{_datadir}/themes/ -f %{SOURCE15};
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
+#files -f {real_name}.lang
 %files
-%defattr(-,root,root,-)
-%doc AUTHORS ChangeLog NEWS CREDITS COPYING
-%{_libdir}/gtk-2.0/*/engines/*
-%{_datadir}/*
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING CREDITS NEWS
+%{_datadir}/themes/MurrinaAquaIsh/
+%{_datadir}/themes/MurrinaCandy/
+%{_datadir}/themes/MurrinaCappuccino/
+%{_datadir}/themes/MurrinaEalm/
+%{_datadir}/themes/MurrinaFancyCandy/
+%{_datadir}/themes/MurrinaGilouche/
+%{_datadir}/themes/MurrinaLoveGray/
+%{_datadir}/themes/MurrinaNeoGraphite/
+%{_datadir}/themes/MurrinaVerdeOlivo/
+%{_libdir}/gtk-2.0/*/engines/libmurrine.so
+%exclude %{_libdir}/gtk-2.0/*/engines/libmurrine.la
 
 %changelog
-* Wed Jun  27 2007 Heiko Adams <info@fedora-blog.de> 0.53-1
-- 0.53.1
+* Wed Jun  27 2007 Heiko Adams <info@fedora-blog.de> - 0.53-1
+- Updated to release 0.53.
 
-* Mon Jun  25 2007 Heiko Adams <info@fedora-blog.de> 0.52-2
-- Rebuild for CentOS
+* Mon Jun  25 2007 Heiko Adams <info@fedora-blog.de> - 0.52-2
+- Rebuild for RPMforge.
 
-* Thu Apr  5 2007 Leo, Shidai Liu <sdl.web@gmail.com> 0.52-1
-- 0.52
+* Thu Apr  5 2007 Leo, Shidai Liu <sdl.web@gmail.com> - 0.52-1
+- Updated to release 0.52.
 
-* Thu Mar 15 2007 Leo, Shidai Liu <sdl.web@gmail.com> 0.51-2
-- fix last change
+* Thu Mar 15 2007 Leo, Shidai Liu <sdl.web@gmail.com> - 0.51-2
+- Fix last change.
 
-* Thu Mar 15 2007 Leo, Shidai Liu <sdl.web@gmail.com> 0.51-1
-- 0.51
+* Thu Mar 15 2007 Leo, Shidai Liu <sdl.web@gmail.com> - 0.51-1
+- Updated to release 0.51.
 
-* Fri Jan 12 2007 Shidai Liu, Leo <sdl.web@gmail.com> 0.41-1
-- 0.41
+* Fri Jan 12 2007 Shidai Liu, Leo <sdl.web@gmail.com> - 0.41-1
+- Updated to release 0.41.
 
-* Wed Jan 10 2007 Shidai Liu, Leo <sdl.web@gmail.com> 0.40.1-1
-- 0.40.1
+* Wed Jan 10 2007 Shidai Liu, Leo <sdl.web@gmail.com> - 0.40.1-1
+- Updated to release 0.40.1.
 
-* Fri Nov 24 2006 Shidai Liu, Leo <sdl.web@gmail.com> 0.31-4
-- Correct changelog entries to include release number
+* Fri Nov 24 2006 Shidai Liu, Leo <sdl.web@gmail.com> - 0.31-4
+- Correct changelog entries to include release number.
 
-* Tue Nov 21 2006 Shidai Liu, Leo <sdl.web@gmail.com> 0.31-3
-- remove themes from gnome-look
-- remove CREDITS patch
-- add all themes from upstream
+* Tue Nov 21 2006 Shidai Liu, Leo <sdl.web@gmail.com> - 0.31-3
+- Remove themes from gnome-look.
+- Remove CREDITS patch.
+- Add all themes from upstream.
 
-* Thu Nov 16 2006 Shidai Liu, Leo <sdl.web@gmail.com> 0.31-2
-- 0.31
+* Thu Nov 16 2006 Shidai Liu, Leo <sdl.web@gmail.com> - 0.31-2
+- Updated to release 0.31.
 
-* Sun Nov 12 2006 Shidai Liu, Leo <sdl.web@gmail.com> 0.30.2-1
-- Add three gtk2 themes
+* Sun Nov 12 2006 Shidai Liu, Leo <sdl.web@gmail.com> - 0.30.2-1
+- Add three gtk2 themes.
 
 * Tue Sep 19 2006 Shidai Liu, Leo <sdl.web@gmail.com> 
 - Initial build.
-

@@ -1,48 +1,56 @@
 # $Id$
 # Authority: hadams
 
-Summary: Blueprint GTK2 engine
-Name: gtk-blueprint-engine
+%define real_name nimbus
+
+Summary: Nimbus GTK2 engine
+Name: gtk-nimbus-engine
 Version: 0.0.6
 Release: 1
 License: GPL
-Group: System Environment/Libraries
+Group: User Interface/X
 URL: http://dlc.sun.com/osol/jds/downloads/extras/
-Source0: http://dlc.sun.com/osol/jds/downloads/extras/nimbus-%{version}.tar.bz2
+
+Source: http://dlc.sun.com/osol/jds/downloads/extras/nimbus-%{version}.tar.bz2
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gtk2-devel
 BuildRequires: intltool >= 0.23
 BuildRequires: gnome-common >= 1.2.4
 BuildRequires: icon-naming-utils >= 0.8.1
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
-Nimbus is the default gtk engine from Open Solaris
+Nimbus is the default gtk engine from Open Solaris.
 
 %prep
-%setup -q -n nimbus-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
-./autogen.sh --enable-animation --enable-macmenu
-#%configure --enable-animation --enable-macmenu
-make %{?_smp_mflags}
+#configure \
+./autogen.sh \
+    --enable-animation \
+    --enable-macmenu \
+    --prefix="%{_prefix}"
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
-
-#remove .la files
-find $RPM_BUILD_ROOT -name *.la | xargs rm -f || true
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
+#find_lang %{real_name}
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
+#files -f %{name}.lang
 %files
-%defattr(-,root,root,-)
-%doc AUTHORS ChangeLog NEWS COPYING
-%{_libdir}/gtk-2.0/*/engines/*
-%{_datadir}/*
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING NEWS
+%{_datadir}/icons/nimbus/
+%{_datadir}/themes/nimbus/
+%{_libdir}/gtk-2.0/*/engines/libnimbus.so
+%exclude %{_libdir}/gtk-2.0/*/engines/libnimbus.a
+%exclude %{_libdir}/gtk-2.0/*/engines/libnimbus.la
 
 %changelog
-* Wed Jun  27 2007 Heiko Adams <info@fedora-blog.de> 0.0.6-1
+* Wed Jun 27 2007 Heiko Adams <info@fedora-blog.de> - 0.0.6-1
 - Initial build.
-

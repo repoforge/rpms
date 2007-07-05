@@ -1,67 +1,52 @@
 # $Id$
 # Authority: hadams
 
-%global	pidgin_version 2.0.0
+Summary: Libnotify Pidgin plugin 
+Name: pidgin-libnotify
+Version: 0.13
+Release: 1
+License: GPL
+Group: Applications/Internet
+URL: http://gaim-libnotify.sourceforge.net/
 
-Name:		pidgin-libnotify
-Version:	0.13
-Release:	1
-Summary:	Libnotify Pidgin plugin 
+Source: http://dl.sf.net/gaim-libnotify/pidgin-libnotify-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Group:		Applications/Internet
-License:	GPL
-URL:		http://gaim-libnotify.sourceforge.net/
+BuildRequires: gettext
+BuildRequires: libtool
+BuildRequires: libnotify-devel >= 0.3.2
+BuildRequires: gtk2-devel
+BuildRequires: pidgin-devel >= 2.0
 
-Source0:	http://downloads.sourceforge.net/gaim-libnotify/pidgin-libnotify-%{version}.tar.gz
-#Patch0:		%{name}-renamed-to-pidgin.patch
-
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-
-BuildRequires:	libnotify-devel >= 0.3.2
-BuildRequires:	gtk2-devel
-BuildRequires:	pidgin-devel >= %{pidgin_version}
-BuildRequires:	libtool
-BuildRequires:	gettext
-
-Requires:	pidgin >= %{pidgin_version}
-
-## Provides a proper upgrade path from gaim-libnotify installations.
-Provides:	gaim-libnotify = %{version}-%{release} 
-Obsoletes:	gaim-libnotify < %{version}-%{release}
+Obsoletes: gaim-libnotify <= %{version}-%{release}
+Provides: gaim-libnotify = %{version}-%{release} 
 
 %description
 This is a plugin for the open-source Pidgin instant messaging client that uses
 libnotify to display graphic notifications of new messages and other events
 such as a buddy signing on or off.
 
-
 %prep
-%setup -q -n "pidgin-libnotify-%{version}"
-#%patch -p0 -b .renamed-to-pidgin
-autoreconf
-
+%setup
 
 %build
-%configure --disable-static
-make %{?_smp_mflags}
-
+%configure \
+    --disable-static
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
-%find_lang pidgin-libnotify
-
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
+%find_lang %{name}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
-
-%files -f pidgin-libnotify.lang
-%defattr(-,root,root,-)
+%files -f %{name}.lang
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS TODO
-%exclude %{_libdir}/purple-2/*.la
 %{_libdir}/purple-2/pidgin-libnotify.so
-
+%exclude %{_libdir}/purple-2/pidgin-libnotify.la
 
 %changelog
 * Tue Jul 01 2007 Heiko Adams <info@fedora-blog.de> - 0.13-1

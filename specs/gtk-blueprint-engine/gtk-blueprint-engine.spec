@@ -1,48 +1,56 @@
 # $Id$
 # Authority: hadams
 
+%define real_name blueprint
+
 Summary: Blueprint GTK2 engine
 Name: gtk-blueprint-engine
 Version: 0.9.18
 Release: 1
 License: GPL
-Group: System Environment/Libraries
+Group: User Interface/X
 URL: http://dlc.sun.com/osol/jds/downloads/extras/
-Source0: http://dlc.sun.com/osol/jds/downloads/extras/blueprint-%{version}.tar.bz2
+
+Source: http://dlc.sun.com/osol/jds/downloads/extras/blueprint-%{version}.tar.bz2
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gtk2-devel
 BuildRequires: intltool >= 0.23
 BuildRequires: gnome-common >= 1.2.4
 BuildRequires: icon-naming-utils >= 0.8.1
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
-Blueprint is a gtk engine from Open Solaris
+Blueprint is a GTK engine from Open Solaris.
 
 %prep
-%setup -q -n blueprint-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
-./autogen.sh --enable-animation --enable-macmenu
-#%configure --enable-animation --enable-macmenu
-make %{?_smp_mflags}
+%configure \
+    --enable-animation \
+    --enable-macmenu
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
-
-#remove .la files
-find $RPM_BUILD_ROOT -name *.la | xargs rm -f || true
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
+%find_lang %{real_name}
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
-%files
-%defattr(-,root,root,-)
-%doc AUTHORS ChangeLog NEWS COPYING
-%{_libdir}/gtk-2.0/*/engines/*
-%{_datadir}/*
+%files -f %{real_name}.lang
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING NEWS
+%{_datadir}/icons/blueprint/
+%{_datadir}/themes/blueprint/
+%{_datadir}/themes/blueprint-Green/
+%{_datadir}/themes/blueprint-Ice/
+%{_datadir}/themes/blueprint-Sand/
+%{_libdir}/gtk-2.0/*/engines/libblueprint.so
+%exclude %{_libdir}/gtk-2.0/*/engines/libblueprint.a
+%exclude %{_libdir}/gtk-2.0/*/engines/libblueprint.la
 
 %changelog
-* Wed Jun  27 2007 Heiko Adams <info@fedora-blog.de> 0.9.18-1
+* Wed Jun 27 2007 Heiko Adams <info@fedora-blog.de> - 0.9.18-1
 - Initial build.
-
