@@ -9,7 +9,7 @@
 
 Summary: Easy-to-use color space conversions
 Name: perl-Graphics-ColorUtils
-Version: 0.03
+Version: 0.17
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,5 +46,8 @@ Easy-to-use color space conversions and more.
 %{perl_vendorlib}/Graphics/ColorUtils.pm
 
 %changelog
+* Thu Jul 5 2007 Quien Sabe (aka Jim) <quien-sabe@metaorg.com> - 0.17-1
+- Updated to latest upstream version { old source not available }
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.
