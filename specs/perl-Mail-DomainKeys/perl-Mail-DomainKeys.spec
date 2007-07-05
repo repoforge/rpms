@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Mail/Mail-DomainKeys-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Crypt::OpenSSL::RSA)
+BuildRequires: perl, perl(Crypt::OpenSSL::RSA), perl(ExtUtils::MakeMaker)
 
 %description
 Mail-DomainKeys is a Perl module that implements DomainKeys.
