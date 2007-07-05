@@ -9,7 +9,7 @@
 
 Summary: POE component implementing an RFC 862 Echo server
 Name: perl-POE-Component-Server-Echo
-Version: 1.4
+Version: 1.51
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,6 +49,9 @@ A POE component implementing a RFC 862 Echo server.
 %{perl_vendorlib}/POE/Component/Server/Echo.pm
 
 %changelog
+* Thu Jul 5 2007 Quien Sabe (aka Jim) <quien-sabe@metaorg.com> - 1.51-1
+- Updated to latest upstream version { old source not available }
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1
 - Updated to release 1.4.
 
