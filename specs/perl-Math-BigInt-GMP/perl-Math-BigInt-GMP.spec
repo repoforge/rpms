@@ -2,8 +2,8 @@
 # Authority: dries
 # Upstream: Tels <perl_dummy$bloodgate,com>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Math-BigInt-GMP
 
@@ -11,7 +11,7 @@ Summary: Use the GMP library for Math::BigInt routines
 Name: perl-Math-BigInt-GMP
 Version: 1.22
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-BigInt-GMP/
 
@@ -36,27 +36,27 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-                %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES CREDITS README
-%doc %{_mandir}/man3/*
+%doc BUGS CHANGES CREDITS INSTALL LICENSE MANIFEST MANIFEST.SKIP META.yml README SIGNATURE TODO
+%doc %{_mandir}/man3/Math::BigInt::GMP.3pm*
+#%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorarch}/Math/
+%dir %{perl_vendorarch}/Math/BigInt/
+%{perl_vendorarch}/Math/BigInt/GMP.pm
 %{perl_vendorarch}/Math/BigInt/
+%dir %{perl_vendorarch}/auto/Math/
 %dir %{perl_vendorarch}/auto/Math/BigInt/
 %{perl_vendorarch}/auto/Math/BigInt/GMP/
 
 %changelog
 * Thu Jul 5 2007 Quien Sabe (aka Jim) <quien-sabe@metaorg.com> - 1.22-1
 - Updated to latest upstream version { old source not available }
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.18-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.18-1
 - Updated to release 1.18.

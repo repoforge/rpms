@@ -3,17 +3,16 @@
 # Authority: dries
 # Upstream: Michael Robinton <michael$bizsystems,com>
 
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name Net-DNS-ToolKit
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Routines to pick apart, examine and put together DNS packets
 Name: perl-Net-DNS-ToolKit
 Version: 0.31
 Release: 1
-License: Artistic/GPL
+License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DNS-ToolKit/
 
@@ -32,35 +31,37 @@ applications to interact directly with remote DNS servers.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Artistic Changes INSTALL MANIFEST META.yml README
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Net/
+%dir %{perl_vendorarch}/Net/DNS/
 %{perl_vendorarch}/Net/DNS/ToolKit.pm
-%{perl_vendorarch}/Net/DNS/ToolKit
-%{perl_vendorarch}/auto/Net/DNS/ToolKit
+%{perl_vendorarch}/Net/DNS/ToolKit/
+%dir %{perl_vendorarch}/auto/Net/
+%dir %{perl_vendorarch}/auto/Net/DNS/
+%{perl_vendorarch}/auto/Net/DNS/ToolKit/
 
 %changelog
-* Thu Jul 5 2007 Quien Sabe (aka Jim) <quien-sabe@metaorg.com> - 0.31-1
+* Thu Jul  5 2007 Quien Sabe (aka Jim) <quien-sabe@metaorg.com> - 0.31-1
 - Updated to latest upstream version { old source not available }
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.26-1
 - Updated to release 0.26.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.25-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.25-1
 - Updated to release 0.25.

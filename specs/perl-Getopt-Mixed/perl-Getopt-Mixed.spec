@@ -2,8 +2,8 @@
 # Authority: dries
 # Upstream: Christopher J. Madsen <cjm$pobox,com>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Getopt-Mixed
 
@@ -37,6 +37,8 @@ restrictions.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
@@ -44,8 +46,9 @@ restrictions.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Getopt::Mixed.3pm*
+%dir %{perl_vendorlib}/Getopt/
 %{perl_vendorlib}/Getopt/Mixed.pm
 
 %changelog

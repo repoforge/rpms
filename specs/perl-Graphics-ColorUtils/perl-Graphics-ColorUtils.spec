@@ -2,8 +2,8 @@
 # Authority: dries
 # Upstream: Philipp K. Janert <pause$beyondcode,org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Graphics-ColorUtils
 
@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graphics-ColorUtils/
 
-Source: http://search.cpan.org//CPAN/authors/id/J/JA/JANERT/Graphics-ColorUtils-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Graphics/Graphics-ColorUtils-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -34,15 +34,18 @@ Easy-to-use color space conversions and more.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Graphics::ColorUtils*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Graphics::ColorUtils.3pm*
+%dir %{perl_vendorlib}/Graphics/
 %{perl_vendorlib}/Graphics/ColorUtils.pm
 
 %changelog

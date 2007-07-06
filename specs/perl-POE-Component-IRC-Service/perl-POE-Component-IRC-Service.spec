@@ -2,8 +2,8 @@
 # Authority: dries
 # Upstream: Chris Williams <chris$bingosnet,co,uk>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name POE-Component-IRC-Service
 
@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-IRC-Service/
 
-Source: http://search.cpan.org//CPAN/authors/id/B/BI/BINGOS/POE-Component-IRC-Service-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/POE/POE-Component-IRC-Service-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -35,20 +35,23 @@ which provides a convenient way for POE applications to create an IRC Service.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/*/.packlist
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README install
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/POE/
 %dir %{perl_vendorlib}/POE/Component/
 %dir %{perl_vendorlib}/POE/Component/IRC/
 %{perl_vendorlib}/POE/Component/IRC/Service.pm
 %{perl_vendorlib}/POE/Component/IRC/Service/
+%dir %{perl_vendorlib}/POE/Filter/
 %{perl_vendorlib}/POE/Filter/CTCP/
 %{perl_vendorlib}/POE/Filter/IRC/
 

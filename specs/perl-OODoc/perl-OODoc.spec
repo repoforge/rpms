@@ -34,18 +34,21 @@ Creates code related documentation in an object oriented way.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/.packlist
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README LICENSE
-%doc %{_mandir}/man3/*
-%doc %{_mandir}/man1/oodist*
+%doc ChangeLog LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man1/oodist.1*
+%doc %{_mandir}/man3/*.3pm*
 %{_bindir}/oodist
-%{perl_vendorlib}/OODoc.p*
+%{perl_vendorlib}/OODoc.pm
+%{perl_vendorlib}/OODoc.pod
 %{perl_vendorlib}/OODoc/
 
 %changelog
