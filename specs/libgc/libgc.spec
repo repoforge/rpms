@@ -5,14 +5,14 @@
 
 Summary: Conservative garbage collector for C
 Name: libgc
-Version: 6.8
-Release: 2
+Version: 7.0
+Release: 1
 Epoch: 1
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.hpl.hp.com/personal/Hans_Boehm/gc/
 
-Source: http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/gc%{version}.tar.gz
+Source: http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/gc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Obsoletes: libgc6 <= %{epoch}:%{version}-%{release}
@@ -40,7 +40,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{real_name}%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure \
@@ -72,21 +72,27 @@ you will need to install %{name}-devel.
 %doc README.QUICK
 %{_libdir}/libgc.so.*
 %{_libdir}/libgccpp.so.*
+%{_libdir}/libcord.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/*
 %doc %{_mandir}/man?/*
-%{_libdir}/libgc.a
-%{_libdir}/libgccpp.a
 %{_libdir}/libgc.so
 %{_libdir}/libgccpp.so
-%{_includedir}/*.h
+%{_libdir}/libcord.so
 %{_includedir}/gc/
 %{_includedir}/libgc/
+%{_libdir}/pkgconfig/bdw-gc.pc
+%exclude %{_libdir}/libgc.a
+%exclude %{_libdir}/libgccpp.a
+%exclude %{_libdir}/libcord.a
 #exclude %{_libdir}/*.la
 
 %changelog
+* Sun Jul 08 2007 Dries Verachtert <dries@ulyssis.org> - 7.0-1
+- Updated to release 7.0.
+
 * Fri Dec 15 2006 Dries Verachtert <dries@ulyssis.org> - 6.8-2
 - Added --enable-cplusplus, thanks to Jens Hoelldampf.
 

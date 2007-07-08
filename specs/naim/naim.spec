@@ -4,13 +4,13 @@
 
 Summary: Console AIM, ICQ, IRC, and Lily client
 Name: naim
-Version: 0.11.8.2.1
+Version: 0.11.8.3
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://naim.n.ml.org/
 
-Source: http://shell.n.ml.org/n/naim/naim-%{version}.tar.bz2
+Source: http://naim.googlecode.com/files/naim-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel
@@ -51,5 +51,8 @@ Internet Relay Chat (IRC), and The lily CMC.
 %{_bindir}/nlily
 
 %changelog
+* Sun Jul 08 2007 Dries Verachtert <dries@ulyssis.org> - 0.11.8.3-1
+- Updated to release 0.11.8.3.
+
 * Mon Nov 20 2006 Dag Wieers <dag@wieers.com> - 0.11.8.2.1-1
 - Initial package. (using DAR)

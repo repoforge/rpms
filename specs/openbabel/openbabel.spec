@@ -4,8 +4,8 @@
 
 Summary: Convert between file formats used in molecular modeling chemistry
 Name: openbabel
-Version: 1.100.2
-Release: 1.2
+Version: 2.1.1
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://openbabel.sourceforge.net/
@@ -54,23 +54,38 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README THANKS
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/*
 %{_bindir}/babel
 %{_bindir}/obfit
 %{_bindir}/obgrep
 %{_bindir}/obrotate
+%{_bindir}/obchiral
+%{_bindir}/obenergy
+%{_bindir}/obminimize
+%{_bindir}/obprop
+%{_bindir}/obrotamer
+%{_bindir}/roundtrip
 %{_libdir}/libopenbabel.so.*
-%{_datadir}/openbabel
+%{_libdir}/libinchi.so.*
+%{_libdir}/openbabel/
+%{_datadir}/openbabel/
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/openbabel
-%{_libdir}/pkgconfig/openbabel.pc
-%{_libdir}/libopenbabel.a
+%{_includedir}/openbabel-2.0/
+%{_includedir}/inchi/
+%{_libdir}/pkgconfig/openbabel-2.0.pc
 %{_libdir}/libopenbabel.so
+%{_libdir}/libinchi.so
+%exclude %{_libdir}/libopenbabel.a
 %exclude %{_libdir}/libopenbabel.la
+%exclude %{_libdir}/libinchi.a
+%exclude %{_libdir}/libinchi.la
 
 %changelog
+* Sat Jul 08 2007 Dries Verachtert <dries@ulyssis.org> - 2.1.1-1
+- Updated to release 2.1.1.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.100.2-1.2
 - Rebuild for Fedora Core 5.
 
