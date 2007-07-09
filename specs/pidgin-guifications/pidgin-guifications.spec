@@ -45,7 +45,7 @@ instant messaging client Pidgin
 
 %changelog
 * Fri Jul 06 2007 Heiko Adams <info@fedora-blog.de> - 2.14-1
-- Updated to release 2.14
+- Updated to release 2.14.
 
 * Thu Jun 07 2006 Dag Wieers <dag@wieers.com> - 2.13-0.beta6
 - Updated to release 2.13beta6.

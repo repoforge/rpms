@@ -10,12 +10,12 @@
 Summary: Interface to The GNU Scientific Library
 Name: perl-Math-Gsl
 Version: 0.08
-Release: 1.2
-License: GPL
+Release: 2
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Gsl/
 
-Source: http://search.cpan.org/CPAN/authors/id/L/LE/LETO/Math-Gsl-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Math/Math-Gsl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildArch: noarch
@@ -31,42 +31,34 @@ single GSL function poly_complex_solve.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 #so strip doesn't fail
 find %{buildroot}%{perl_vendorarch} -name '*.so' -exec chmod u+w {} \;
+
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/*.pod
-%{__rm} %{buildroot}%{perl_vendorarch}/auto/Math/Gsl/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README THANKS doc contrib
-%doc %{_mandir}/man3/Math::Gsl.3pm*
-%doc %{_mandir}/man3/Math::Gsl::*.3pm*
+%doc Changes MANIFEST README THANKS doc/ contrib/
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Math/
 %{perl_vendorarch}/Math/Gsl.pm
-%{perl_vendorarch}/Math/Gsl/Sf.pm
-%{perl_vendorarch}/Math/Gsl/Polynomial.pm
-%{perl_vendorarch}/auto/Math/Gsl/Gsl.bs
-%{perl_vendorarch}/auto/Math/Gsl/Gsl.so
-%{perl_vendorarch}/auto/Math/Gsl/Sf/Sf.bs
-%{perl_vendorarch}/auto/Math/Gsl/Sf/Sf.so
-%{perl_vendorarch}/auto/Math/Gsl/Polynomial/Polynomial.bs
-%{perl_vendorarch}/auto/Math/Gsl/Polynomial/Polynomial.so
+%{perl_vendorarch}/Math/Gsl/
+%dir %{perl_vendorarch}/auto/Math/
+%{perl_vendorarch}/auto/Math/Gsl/
 
 %changelog
-* Thu Jul 5 2007 Quien Sabe (aka Jim) <quien-sabe@metaorg.com> - 0.08-1.3
+* Thu Jul 5 2007 Quien Sabe (aka Jim) <quien-sabe@metaorg.com> - 0.08-2
 - Added Requires/BuildRequires to build for Fedora 7
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1.2
-- Rebuild for Fedora Core 5.
 
 * Tue Apr 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Initial package.

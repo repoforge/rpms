@@ -26,6 +26,7 @@ Nimbus is the default gtk engine from Open Solaris.
 %setup -n %{real_name}-%{version}
 
 %build
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure.in
 #configure \
 ./autogen.sh \
     --enable-animation \

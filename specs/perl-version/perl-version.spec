@@ -6,7 +6,7 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name version
-%define real_version  0.7203
+%define real_version 0.7203
 
 Summary: Perl module that implements for Version Objects
 Name: perl-version

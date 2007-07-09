@@ -77,9 +77,6 @@ cd src
 * Sun Apr 23 2006 Dries Verachtert <dries@ulyssis.org> - 1.95.9-1
 - Updated to release 1.95.9.
 
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.95.8-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Mar 12 2006 Dries Verachtert <dries@ulyssis.org> - 1.95.8-1
 - Updated to release 1.95.8.
 

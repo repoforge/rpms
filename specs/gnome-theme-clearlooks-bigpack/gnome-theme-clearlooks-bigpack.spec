@@ -1,59 +1,50 @@
 # $Id$
 # Authority: hadams
 
-Name:		gnome-theme-clearlooks-bigpack
-Version:	0.6
-Release:	6
-Summary:	Additional Clearlooks color schemes
+Summary: Additional Clearlooks color schemes
+Name: gnome-theme-clearlooks-bigpack
+Version: 0.6
+Release: 6
+License: GPL
+Group: User Interface/Desktops
+URL: http://gnomethemes.org/?p=43
 
-Group:		User Interface/Desktops
-License:	GPL
-URL:		http://gnomethemes.org/?p=43
-
-Source0:	http://kwh.kernow-gb.com/~bvc/theme/gtk/clearlooks/Clearlooks-Big_Pack-0.6.x.tar.gz
+Source: http://kwh.kernow-gb.com/~bvc/theme/gtk/clearlooks/Clearlooks-Big_Pack-0.6.x.tar.gz
 ## Using my own hosting so that the tarball will be versioned; have sent an
 ## inquiry about this to upstream.
-Source1:	http://mirror.thecodergeek.com/ALL-CL-Big_Pack-Cairo-%{version}.tar.gz
-Patch0:		%{name}-fix-Cairo_Curve-ComboBox-text-contrast.patch
+Source1: http://mirror.thecodergeek.com/ALL-CL-Big_Pack-Cairo-%{version}.tar.gz
+Patch0: gnome-theme-clearlooks-bigpack-fix-Cairo_Curve-ComboBox-text-contrast.patch
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildArch:	noarch
-
-Requires:	gtk2-engines >= 2.8
+BuildArch: noarch
+Requires: gtk2-engines >= 2.8
 
 %description
 Lots and lots of color schemes for the Clearlooks GTK+ 2.x engine, including
 Cairo-enabled schemes for smoother visual rendering.
 
-
 %prep
-%setup -q -b 0 -c
-%setup -q -D -b 1 -c
+%setup -b 0 -c
+%setup -D -b 1 -c
 %patch0 -p0 
 
-
 %build
-# Nothing to build...
-
 
 %install
-rm -rf %{buildroot}
-mkdir -p %{buildroot}/%{_datadir}/themes
-cp -ap Clearlooks* %{buildroot}%{_datadir}/themes
-
+%{__rm} -rf %{buildroot}
+%{__install} -d -m0755 %{buildroot}%{_datadir}/themes/
+%{__cp} -av Clearlooks* %{buildroot}%{_datadir}/themes/
 
 %clean
-rm -rf %{buildroot}
-
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
 %{_datadir}/themes/*
-
 
 %changelog
 * Sun Jul 08 2007 Heiko Adams <info@fedora-blog.de> - 0.6-6
-- Rebuild for rpmforge
+- Rebuild for RPMforge.
 
 * Tue Apr 10 2007 Peter Gordon <peter@thecodergeek.com> - 0.6-5
 - Add patch to fix the longstanding issue of ComboBox hover text having little

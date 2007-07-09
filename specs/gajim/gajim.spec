@@ -58,7 +58,7 @@ Gajim does not require GNOME to run, even though it exists with it nicely.
 
 %changelog
 * Sat Jul 07 2007 Heiko Adams <info@fedora-blog.de> - 0.11.1-2
-- Added depency on python-sqlite2
+- Added depency on python-sqlite2.
 
 * Thu Jun 07 2007 Dag Wieers <dag@wieers.com> - 0.11.1-1
 - Initial package. (using DAR)

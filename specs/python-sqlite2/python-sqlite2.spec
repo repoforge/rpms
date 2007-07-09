@@ -1,105 +1,55 @@
 # $Id$
 # Authority: hadams
 
-%{!?python_sitearch: %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
-Name:           python-sqlite2
-Version:        2.3.3
-Release:        2
-Epoch:          1
-Summary:        DB-API 2.0 interface for SQLite 3.x
+%define real_name pysqlite
 
-Group:          Development/Languages
-License:        zlib/libpng
-URL:            http://pysqlite.org/
-Source0:        http://initd.org/pub/software/pysqlite/releases/2.3/%{version}/pysqlite-%{version}.tar.gz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Summary: DB-API 2.0 interface for SQLite 3.x
+Name: python-sqlite2
+Version: 2.3.3
+Release: 1
+License: zlib/libpng
+Group: Development/Languages
+URL: http://pysqlite.org/
 
-BuildRequires:  dos2unix
-BuildRequires:  python-devel
-BuildRequires:  sqlite-devel >= 3.3.3
+Source: http://initd.org/pub/software/pysqlite/releases/2.3/%{version}/pysqlite-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Requires:       sqlite >= 3.3.3
+BuildRequires: python-devel, sqlite-devel >= 3.3.3, dos2unix
+Requires: sqlite >= 3.3.3
 
 %description
 pysqlite is an interface to the SQLite 3.x embedded relational database
 engine. It is almost fully compliant with the Python database API version
 2.0 also exposes the unique features of SQLite.
 
-
 %prep
-%setup -q -n pysqlite-%{version}
-sed -i -e '
-/\/usr\/include/d
-/\/usr\/lib/d' setup.cfg
-
+%setup -n %{real_name}-%{version}
+sed -i -e '/\/usr\/include/d; /\/usr\/lib/d' setup.cfg
 
 %build
 CFLAGS="%{optflags}" %{__python} setup.py build
 
-
 %install
-rm -rf %{buildroot}
-%{__python} setup.py install -O1 \
-        --skip-build \
-        --root %{buildroot}
-
-%{__rm} -rf %{buildroot}%{_prefix}/pysqlite2-doc
+%{__rm} -rf %{buildroot}
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 dos2unix doc/code/*
 
-
-%check
-# workaround for a strange bug (thanks to Ville Skyttä!)
-cd doc
-PYTHONPATH="%{buildroot}%{python_sitearch}" %{__python} -c \
-        "from pysqlite2.test import test; test()"
-
-
 %clean
-rm -rf %{buildroot}
-
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,-)
-%doc LICENSE doc/code doc/usage-guide.txt
-%dir %{python_sitearch}/pysqlite2
-%{python_sitearch}/pysqlite2/__init__.py
-%{python_sitearch}/pysqlite2/__init__.pyc
-%{python_sitearch}/pysqlite2/__init__.pyo
-%{python_sitearch}/pysqlite2/dbapi2.py
-%{python_sitearch}/pysqlite2/dbapi2.pyc
-%{python_sitearch}/pysqlite2/dbapi2.pyo
-%{python_sitearch}/pysqlite2/_sqlite.so
-%dir %{python_sitearch}/pysqlite2/test
-%{python_sitearch}/pysqlite2/test/__init__.py
-%{python_sitearch}/pysqlite2/test/__init__.pyc
-%{python_sitearch}/pysqlite2/test/__init__.pyo
-%{python_sitearch}/pysqlite2/test/dbapi.py
-%{python_sitearch}/pysqlite2/test/dbapi.pyc
-%{python_sitearch}/pysqlite2/test/dbapi.pyo
-%{python_sitearch}/pysqlite2/test/factory.py
-%{python_sitearch}/pysqlite2/test/factory.pyc
-%{python_sitearch}/pysqlite2/test/factory.pyo
-%{python_sitearch}/pysqlite2/test/hooks.py
-%{python_sitearch}/pysqlite2/test/hooks.pyc
-%{python_sitearch}/pysqlite2/test/hooks.pyo
-%{python_sitearch}/pysqlite2/test/regression.py
-%{python_sitearch}/pysqlite2/test/regression.pyc
-%{python_sitearch}/pysqlite2/test/regression.pyo
-%{python_sitearch}/pysqlite2/test/transactions.py
-%{python_sitearch}/pysqlite2/test/transactions.pyc
-%{python_sitearch}/pysqlite2/test/transactions.pyo
-%{python_sitearch}/pysqlite2/test/types.py
-%{python_sitearch}/pysqlite2/test/types.pyc
-%{python_sitearch}/pysqlite2/test/types.pyo
-%{python_sitearch}/pysqlite2/test/userfunctions.py
-%{python_sitearch}/pysqlite2/test/userfunctions.pyc
-%{python_sitearch}/pysqlite2/test/userfunctions.pyo
-
+%defattr(-, root, root, 0755)
+%doc LICENSE doc/usage-guide.txt doc/code/
+%{python_sitearch}/pysqlite2
+%ghost %{python_sitearch}/pysqlite2/*.pyo
+%ghost %{python_sitearch}/pysqlite2/test/*.pyo
+%exclude %{_prefix}/pysqlite2-doc/
 
 %changelog
-* Sat Jul 07 2007 Heiko Adams <info@fedora-blog.de> - 1:2.3.3-2
-- Rebuild for rpmforge
+* Sat Jul 07 2007 Heiko Adams <info@fedora-blog.de> - 2.3.3-1
+- Rebuild for RPMforge.
 
 * Tue Mar 13 2007 Dawid Gajownik <gajownik[AT]gmail.com> - 1:2.3.3-1
 - Update to 2.3.3 (#231848)

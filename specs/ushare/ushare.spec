@@ -5,7 +5,7 @@
 
 Summary: Universal Plug'nPlay (uPNP) Media Server
 Name: ushare
-Version: 0.9.10
+Version: 1.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -45,7 +45,7 @@ of libupnp to stream the files to clients.
 source %{_initrddir}/functions
 
 OPTIONS=""
-  
+
 [ -x %{_bindir}/ushare ] || exit 1
 [ -r "%{_sysconfdir}/ushare.conf" ] && source %{_sysconfdir}/ushare.conf
 [ -z "$USHARE_DIR" ] && exit 0
@@ -142,8 +142,8 @@ fi
 
 %postun
 if [ $1 -eq 0 ]; then 
-        /usr/sbin/userdel ushare || %logmsg "User \"ushare\" could not be deleted."
-        /usr/sbin/groupdel ushare || %logmsg "Group \"ushare\" could not be deleted."
+	/usr/sbin/userdel ushare || %logmsg "User \"ushare\" could not be deleted."
+	/usr/sbin/groupdel ushare || %logmsg "Group \"ushare\" could not be deleted."
 fi
 if [ $1 -ge 1 ]; then
 	/sbin/service ushare condrestart &>/dev/null || :
@@ -166,6 +166,9 @@ fi
 %exclude %{_sysconfdir}/init.d/ushare
 
 %changelog
+* Fri Jul 06 2007 Dag Wieers <dag@wieers.com> - 1.0-1
+- Updated to release 1.0.
+
 * Thu Mar 01 2007 Dag Wieers <dag@wieers.com> - 0.9.10-1
 - Updated to release 0.9.10.
 

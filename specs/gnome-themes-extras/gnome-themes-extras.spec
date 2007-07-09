@@ -1,25 +1,21 @@
 # $Id$
 # Authority: hadams
 
-Name:           gnome-themes-extras
-Version:        0.9.0
-Release:        6
+Summary: Collection of metathemes for the Gnome desktop environment
+Name: gnome-themes-extras
+Version: 0.9.0
+Release: 6
+License: LGPL
+Group: User Interface/Desktops
+URL: http://librsvg.sourceforge.net/theme.php
 
-Summary:        Collection of metathemes for the Gnome desktop environment
+Source: ftp://ftp.gnome.org/pub/GNOME/sources/gnome-themes-extras/0.9/gnome-themes-extras-%{version}.tar.bz2
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Group:          User Interface/Desktops
-License:        LGPL
-URL:            http://librsvg.sourceforge.net/theme.php
-Source0:        ftp://ftp.gnome.org/pub/GNOME/sources/gnome-themes-extras/0.9/%{name}-%{version}.tar.bz2
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-
-BuildRequires:  gettext, gtk2-devel, perl(XML::Parser), gtk2-engines >= 2.6
-Requires:       gnome-icon-theme
-Requires:       gnome-themes
-
-Obsoletes:      themes-meta-nuvola
-
-BuildArch:      noarch
+BuildArch: noarch
+BuildRequires: gettext, gtk2-devel, perl(XML::Parser), gtk2-engines >= 2.6
+Requires: gnome-icon-theme, gnome-themes
+Obsoletes: themes-meta-nuvola
 
 %description
 The Gnome themes extras package is a collection of metathemes for the Gnome
@@ -28,33 +24,41 @@ newer to work properly. The design goal of this package is to give Gnome users
 an extra set of themes that are not only functional, but also eye catching.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-%makeinstall
-
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
+#makeinstall
 %find_lang %{name}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-,root,root,-)
-%doc AUTHORS COPYING ChangeLog README TODO
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING README TODO
 %dir %{_datadir}/icons
 %dir %{_datadir}/themes
-%{_datadir}/icons/*
-%{_datadir}/themes/*
-
+%{_datadir}/icons/Amaranth/
+%{_datadir}/icons/Gorilla/
+%{_datadir}/icons/Lush/
+%{_datadir}/icons/Nuvola/
+%{_datadir}/icons/Wasp/
+%{_datadir}/themes/Amaranth/
+%{_datadir}/themes/Gorilla/
+%{_datadir}/themes/Lush/
+%{_datadir}/themes/Nuvola/
+%{_datadir}/themes/Nuvola-old/
+%{_datadir}/themes/Wasp/
 
 %changelog 
 * Sun Jul 08 2007 Heiko Adams <info@fedora-blog.de> - 0.9.0-6
-- Rebuild for rpmforge
+- Rebuild for RPMforge.
 
 * Mon Aug 27 2006 Michael J. Knox <michael[AT]knox.net.nz> - 0.9.0-5
 - Rebuild for FC6

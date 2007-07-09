@@ -17,7 +17,7 @@ BuildRequires: pkgconfig, libtool, gettext, gaim-devel, gtk2-devel
 
 %description
 Plugin Pack is a collection of plugins for the open source
-instant messaging client Gaim
+instant messaging client Gaim.
 
 %prep
 %setup -n %{name}-%{real_version}
@@ -42,12 +42,11 @@ instant messaging client Gaim
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO doc/*.txt
 %dir %{_libdir}/gaim/
-#exclude %{_libdir}/gaim/*.a
-%exclude %{_libdir}/gaim/*.la
 %{_libdir}/gaim/*.so
-%dir %{_datadir}/pixmaps/
 %dir %{_datadir}/pixmaps/gaim/
 %{_datadir}/pixmaps/gaim/plugin_pack/
+#exclude %{_libdir}/gaim/*.a
+%exclude %{_libdir}/gaim/*.la
 
 %changelog
 * Thu Jun 07 2007 Dag Wieers <dag@wieers.com> - 1.0-0.beta6
