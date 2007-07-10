@@ -4,7 +4,7 @@
 Summary: Flexible, stable and highly-configurable FTP server
 Name: proftpd
 Version: 1.3.0a
-Release: 3
+Release: 4
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.proftpd.org/
@@ -29,6 +29,11 @@ BuildRequires: pam-devel, ncurses-devel, pkgconfig
 BuildRequires: openssl-devel, krb5-devel, libacl-devel
 BuildRequires: openldap-devel, mysql-devel, zlib-devel, postgresql-devel
 Provides: ftpserver
+
+# Taken from ftp://carroll.cac.psu.edu/pub/linux/distributions/mandrivalinux/official/updates/2007.0/SRPMS/main/updates/proftpd-1.3.0-4.5mdv2007.0.src.rpm
+# http://www.mandriva.com/security/advisories?name=MDKSA-2007:130
+Patch100: proftpd-1.3.0-CVE-2007-2165.patch
+Patch101: proftpd-1.3.0-CVE-2007-2165-pam_fixes.patch
 
 %description
 ProFTPD is an enhanced FTP server with a focus toward simplicity, security,
@@ -76,6 +81,8 @@ Module to add PostgreSQL support to the ProFTPD FTP server.
 %patch3 -p0 -b .mod_tls
 %patch4 -p0 -b .ctrls-bug2867
 
+%patch100 -p1 -b .CVE-2007-2165
+%patch101 -p0 -b .CVE-2007-2165-pam_fixes
 
 %build
 # Disable stripping in order to get useful debuginfo packages
@@ -195,6 +202,9 @@ fi
 
 
 %changelog
+* Thu Jul  5 2007 Peter Bieringer <pb@bieringer.de> 1.3.0a-4
+- Migrate CVE-2007-2165 patches from Mandrake.
+
 * Tue Feb  6 2007 Matthias Saou <http://freshrpms.net/> 1.3.0a-3
 - Patch to fix local user buffer overflow in controls request handling, rhbz
   bug #219938, proftpd bug #2867.

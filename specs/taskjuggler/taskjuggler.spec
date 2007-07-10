@@ -4,7 +4,7 @@
 
 Summary: Project management tool
 Name: taskjuggler
-Version: 2.3.0
+Version: 2.4.0
 Release: 1
 License: GPL
 Group: Applications/Utilities
@@ -65,6 +65,12 @@ communication management.
 %{_bindir}/TaskJugglerUI
 
 %changelog
+* Tue Jul 10 2007 Dries Verachtert <dries@ulyssis.org> - 2.4.0-1
+- Updated to release 2.4.0.
+
+* Tue Apr 17 2007 Dries Verachtert <dries@ulyssis.org> - 2.3.1-1
+- Updated to release 2.3.1.
+
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 2.3.0-1
 - Updated to release 2.3.0.
 
