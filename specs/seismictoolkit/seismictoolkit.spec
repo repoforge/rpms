@@ -2,6 +2,8 @@
 # Authority: dries
 # Upstream: Dominique Reymond <reymond,d$labogeo,pf>
 
+%define desktop_vendor rpmforge
+
 Summary: Tool for processing and displaying seismic signal data
 Name: seismictoolkit
 Version: 0.50
@@ -38,19 +40,20 @@ Encoding=UTF-8
 EOF
 
 %build
-automake --add-missing
-(cd Utilities/POLAR_0_05/; automake --add-missing)
+autoreconf --force --install --symlink
+#automake --add-missing
+#(cd Utilities/POLAR_0_05/; automake --add-missing)
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor rpmforge             \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
+desktop-file-install --vendor %{desktop_vendor} \
+	--add-category X-Red-Hat-Base               \
+	--dir %{buildroot}%{_datadir}/applications  \
 	%{name}.desktop
 
 %clean
@@ -60,7 +63,7 @@ desktop-file-install --vendor rpmforge             \
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %{_bindir}/STK.%{version}
-%{_datadir}/applications/*seismictoolkit.desktop
+%{_datadir}/applications/%{desktop_vendor}-seismictoolkit.desktop
 
 %changelog
 * Sun Jul 08 2007 Dries Verachtert <dries@ulyssis.org> - 0.50-1

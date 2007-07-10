@@ -1,0 +1,18 @@
+--- yadis/etxrd.py.orig	2006-12-07 13:12:55.000000000 -0600
++++ yadis/etxrd.py	2006-12-07 13:13:14.000000000 -0600
+@@ -20,13 +20,8 @@
+ 
+ from elementtree.ElementTree import ElementTree
+ 
+-# Use expat if it's present. Otherwise, use xmllib
+-try:
+-    from xml.parsers.expat import ExpatError as XMLError
+-    from elementtree.ElementTree import XMLTreeBuilder
+-except ImportError:
+-    from elementtree.SimpleXMLTreeBuilder import TreeBuilder as XMLTreeBuilder
+-    from xmllib import Error as XMLError
++from xml.parsers.expat import ExpatError as XMLError
++from elementtree.ElementTree import XMLTreeBuilder
+ 
+ class XRDSError(Exception):
+     """An error with the XRDS document."""

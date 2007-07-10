@@ -16,7 +16,7 @@ Source: http://www.ka.sara.nl/home/walter/pam_shield/pam_shield-%{version}.tar.g
 Patch: pam_shield-0.9.1-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pam-devel
+BuildRequires: pam-devel, gdbm-devel
 Requires: pam
 
 %description
@@ -55,6 +55,9 @@ pam_shield is meant as an aid to protect public computers on the open internet.
 %dir %{_localstatedir}/lib/pam_shield/
 
 %changelog
+* Tue Jul 10 2007 Dag Wieers <dag@wieers.com> - 0.9.2-1
+- Added missing BuildRequires gdbm-devel. (Leo Eraly)
+
 * Mon Jul 02 2007 Dag Wieers <dag@wieers.com> - 0.9.2-1
 - Updated to release 0.9.2.
 

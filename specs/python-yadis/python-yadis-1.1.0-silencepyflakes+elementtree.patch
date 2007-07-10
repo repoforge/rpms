@@ -1,0 +1,21 @@
+--- yadis/etxrd.py.orig	2007-01-14 08:26:25.000000000 -0600
++++ yadis/etxrd.py	2007-01-14 12:52:22.000000000 -0600
+@@ -20,15 +20,11 @@
+ 
+ import random
+ 
+-from elementtree.ElementTree import ElementTree
++from xml.etree.ElementTree import ElementTree
+ 
+ # Use expat if it's present. Otherwise, use xmllib
+-try:
+-    from xml.parsers.expat import ExpatError as XMLError
+-    from elementtree.ElementTree import XMLTreeBuilder
+-except ImportError:
+-    from elementtree.SimpleXMLTreeBuilder import TreeBuilder as XMLTreeBuilder
+-    from xmllib import Error as XMLError
++from xml.parsers.expat import ExpatError as XMLError
++from xml.etree.ElementTree import XMLTreeBuilder
+ 
+ from yadis import xri
+ 
