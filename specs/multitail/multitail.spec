@@ -7,7 +7,7 @@
 
 Summary: View one or multiple files like tail but with multiple windows
 Name: multitail
-Version: 5.0.5
+Version: 5.2.0
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -67,6 +67,9 @@ given regular expressions and deleting and adding windows.
 %{_sysconfdir}/multitail/convert-simple.pl
 
 %changelog
+* Tue Jul 10 2007 Dries Verachtert <dries@ulyssis.org> - 5.2.0-1
+- Updated to release 5.2.0.
+
 * Sat Jun 09 2007 Dag Wieers <dag@wieers.com> - 5.0.5-1
 - Updated to release 5.0.5.
 

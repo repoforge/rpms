@@ -4,7 +4,7 @@
 
 Summary: PNG tester and debugger
 Name: pngcheck
-Version: 2.2.0
+Version: 2.3.0
 Release: 1
 License: BSD
 Group: Applications/Multimedia
@@ -42,6 +42,9 @@ animations.
 %{_bindir}/pngcheck
 
 %changelog
+* Tue Jul 10 2007 Dries Verachtert <dries@ulyssis.org> - 2.3.0-1
+- Updated to release 2.3.0.
+
 * Tue Dec 05 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.0-1
 - Updated to release 2.2.0.
 
