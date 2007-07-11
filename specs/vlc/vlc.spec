@@ -110,7 +110,6 @@ Source2: http://www.live555.com/liveMedia/public/live.%{live_date}.tar.gz
 Patch0: vlc-0.8.6-ffmpegX11.patch
 Patch1: vlc-0.8.6-wx28.patch
 Patch2: vlc-0.8.6a-faad2.patch
-Patch3: vlc-0.8.6a-flac-1.1.3.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, libpng-devel, libxml2-devel, libtiff-devel
 BuildRequires: libgcrypt-devel, gnutls-devel, libtar-devel
@@ -209,7 +208,6 @@ to link statically to it.
 %patch0 -p1 -b .ffmpegX11
 %patch1 -p1 -b .wx28
 %patch2 -p1 -b .faad2
-#patch3 -p1 -b .flac-1.1.3
 # Fix PLUGIN_PATH path for lib64
 %{__perl} -pi -e 's|/lib/vlc|/%{_lib}/vlc|g' vlc-config.in.in configure*
 
@@ -336,6 +334,9 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 
 
 %changelog
+* Wed Jul 11 2007 Matthias Saou <http://freshrpms.net/> 0.8.6c-1
+- Remove no longer needed flac patch.
+
 * Mon Jun 18 2007 Dag Wieers <dag@wieers.com> - 0.8.6c-1
 - Updated to release 0.8.6c.
 

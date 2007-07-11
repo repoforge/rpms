@@ -11,7 +11,6 @@ URL: http://vobcopy.org/projects/c/c.shtml
 Source: http://vobcopy.org/download/vobcopy-%{version}.tar.bz2
 Patch0: vobcopy-1.0.1-Makefile.patch
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: libdvdread
 BuildRequires: libdvdread-devel
 
 %description
@@ -46,7 +45,7 @@ matter much.
 
 
 %files
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
 %doc Changelog COPYING README Release-Notes TODO
 %doc alternative_programs.txt
 %{_bindir}/vobcopy
@@ -74,7 +73,7 @@ matter much.
 
 * Fri Jul 29 2005 Robos  <robos@muon.de>
 - 0.5.15: -option to skip already present files with -m.
-  	  copying of dvd's with files ending in ";?" should work now.
+  copying of dvd's with files ending in ";?" should work now.
 
 * Sun Oct 24 2004 Robos  <robos@muon.de>
 - 0.5.14-rc1: - misc *bsd fixes and first straight OSX support
@@ -84,17 +83,16 @@ matter much.
 
 * Mon Jan 19 2004 Robos <robos@muon.de>
 - 0.5.10-1: -O now works
-  	    cleanup
-
-
+  cleanup
 
 * Wed Nov 13 2003 Robos <robos@muon.de>
 - 0.5.9-1: -F now accepts factor number
-  	   cleanups and small bugfix
-  	   new vobcopy.spec
+  cleanups and small bugfix
+  new vobcopy.spec
 
 * Sun Nov 09 2003 Florin Andrei <florin@andrei.myip.org>
 - 0.5.8-2: libdvdread is now a pre-requisite
 
 * Sun Nov 09 2003 Florin Andrei <florin@andrei.myip.org>
 - first package, 0.5.8-1
+
