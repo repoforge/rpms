@@ -15,7 +15,6 @@ URL: http://fuse.sourceforge.net/wiki/index.php/FuseIso
 Source: http://ubiz.ru/dm/fuseiso-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: fuse-devel, zlib-devel, glib2-devel >= 2.6
 BuildRequires: fuse-devel, zlib-devel, glib2-devel
 Requires: fuse
 
@@ -44,5 +43,8 @@ Supported image types are .iso, .img, .bin, .mdf and .nrg.
 %{_bindir}/fuseiso
 
 %changelog
+* Tue Jul 10 2007 Dag Wieers <dag@wieers.com> - 0.0.20070708-1
+- Updated to release 20070708.
+
 * Tue Jul 10 2007 Dag Wieers <dag@wieers.com> - 0.0.20061017-1
 - Initial package. (using DAR)
