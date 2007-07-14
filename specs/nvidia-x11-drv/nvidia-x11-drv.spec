@@ -3,8 +3,6 @@
 # Dist: nodist
 # ExclusiveDist: fc6 el5 fc7
 
-%define majmin          1.0
-%define relver          9762
 %define nvidialibdir    %{_libdir}/nvidia
 %define nvidialib32dir  %{_prefix}/lib/nvidia
 %define desktop_vendor  rpmforge
@@ -15,15 +13,15 @@
 
 Summary: Proprietary NVIDIA hardware accelerated OpenGL display driver
 Name: nvidia-x11-drv
-Version: %{majmin}.%{relver}
-Release: 3%{?beta}
+Version: 100.14.11
+Release: 1%{?beta}
 License: Proprietary
 Group: User Interface/X Hardware Support
 URL: http://www.nvidia.com/object/unix.html
 # i386
-Source0: http://download.nvidia.com/XFree86/Linux-x86/%{majmin}-%{relver}/NVIDIA-Linux-x86-%{majmin}-%{relver}-pkg0.run
+Source0: http://us.download.nvidia.com/XFree86/Linux-x86/%{version}/NVIDIA-Linux-x86-%{version}-pkg0.run
 # x86_64
-Source1: http://download.nvidia.com/XFree86/Linux-x86_64/%{majmin}-%{relver}/NVIDIA-Linux-x86_64-%{majmin}-%{relver}-pkg2.run
+Source1: http://us.download.nvidia.com/XFree86/Linux-x86_64/%{version}/NVIDIA-Linux-x86_64-%{version}-pkg2.run
 Source2: nvidia.sh
 Source3: nvidia.csh
 Source4: nvidia-config-display
@@ -31,9 +29,6 @@ Source5: nvidia.modprobe
 Source6: nvidia.nodes
 # http://www.nvnews.net/vbulletin/attachment.php?attachmentid=20486&d=1158955681
 Patch0: NVIDIA_kernel-1.0-9625-NOSMBUS.diff.txt
-# http://www.nvnews.net/vbulletin/showthread.php?t=77597
-Patch1: NVIDIA-Linux-1.0-9629-xenrt.patch
-Patch2: nvidia-x11-drv-1.0.9755-noxensanitycheck.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Required for proper dkms operation
 Requires: gcc, make
@@ -57,6 +52,15 @@ INSTALLING THIS PACKAGE WILL TAINT YOUR KERNEL, SO PLEASE DO NOT REPORT *ANY*
 BUGS BEFORE YOU UNINSTALL THE PACKAGE AND REBOOT THE SYSTEM.
 
 
+%package 32bit
+Summary: Compatibility 32bit files for the 64bit Proprietary NVIDIA driver
+Group: User Interface/X Hardware Support
+Requires: %{name} = %{version}-%{release}
+
+%description 32bit
+Compatibility 32bit files for the 64bit Proprietary NVIDIA driver.
+
+
 %prep
 %setup -T -c
 # Extract the proper "sources" for the current architecture
@@ -71,8 +75,6 @@ sh %{SOURCE1} --extract-only --target tmp/
 %{__mv} tmp/* .
 %{__rm} -rf tmp/
 %patch0 -p0
-%patch1 -p0
-%patch2 -p0
 
 
 %build
@@ -241,37 +243,25 @@ fi
 
 %postun -p /sbin/ldconfig
 
+%triggerin -- xorg-x11-server-Xorg
+# Enable the proprietary driver
+# Required since xorg-x11-server-Xorg empties the "Files" section
+%{_sbindir}/nvidia-config-display enable || :
+
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-,root,root,-)
 %doc LICENSE usr/share/doc/*
 # Kernel and dkms related bits
 %config %{_sysconfdir}/modprobe.d/nvidia
 %{_usrsrc}/%{dkms_name}-%{dkms_vers}/
 # udev "configuration"
 %config %{_sysconfdir}/udev/makedev.d/60-nvidia.nodes
-# Devices for udev to copy directly - No longer needed thanks to the above
-#attr(0600,root,root) %dev(c,195,0) %{_sysconfdir}/udev/devices/nvidia0
-#attr(0600,root,root) %dev(c,195,1) %{_sysconfdir}/udev/devices/nvidia1
-#attr(0600,root,root) %dev(c,195,2) %{_sysconfdir}/udev/devices/nvidia2
-#attr(0600,root,root) %dev(c,195,3) %{_sysconfdir}/udev/devices/nvidia3
-#attr(0600,root,root) %dev(c,195,4) %{_sysconfdir}/udev/devices/nvidia4
-#attr(0600,root,root) %dev(c,195,5) %{_sysconfdir}/udev/devices/nvidia5
-#attr(0600,root,root) %dev(c,195,6) %{_sysconfdir}/udev/devices/nvidia6
-#attr(0600,root,root) %dev(c,195,7) %{_sysconfdir}/udev/devices/nvidia7
-#attr(0600,root,root) %dev(c,195,8) %{_sysconfdir}/udev/devices/nvidia8
-#attr(0600,root,root) %dev(c,195,9) %{_sysconfdir}/udev/devices/nvidia9
-#attr(0600,root,root) %dev(c,195,255) %{_sysconfdir}/udev/devices/nvidiactl
 # Libraries and X modules
 %config %{_sysconfdir}/ld.so.conf.d/nvidia.conf
 %dir %{nvidialibdir}/
 %{nvidialibdir}/*.so.*
 %{nvidialibdir}/tls/
-%ifarch x86_64
-%dir %{nvidialib32dir}/
-%{nvidialib32dir}/*.so.*
-%{nvidialib32dir}/tls/
-%endif
 %{_libdir}/xorg/modules/drivers/nvidia_drv.so
 %dir %{_libdir}/xorg/modules/extensions/nvidia/
 %{_libdir}/xorg/modules/extensions/nvidia/libglx.so
@@ -283,18 +273,35 @@ fi
 %{_datadir}/applications/*
 %{_datadir}/pixmaps/*
 %{_mandir}/man1/*
-
 # Not needed devel but would violate the license not to include them
 #files devel
-#defattr(-,root,root,0755)
+#defattr(-,root,root,-)
 %{nvidialibdir}/*.a
 %{nvidialibdir}/*.so
+
 %ifarch x86_64
+%files 32bit
+%defattr(-,root,root,-)
+%dir %{nvidialib32dir}/
+%{nvidialib32dir}/*.so.*
+%{nvidialib32dir}/tls/
+# Not needed devel but would violate the license not to include them
+#files 32bit-devel
+#defattr(-,root,root,-)
 %{nvidialib32dir}/*.so
 %endif
 
 
 %changelog
+* Sat Jul 14 2007 Matthias Saou <http://freshrpms.net/> 100.14.11-1
+- Update to 100.14.11.
+- Split out 32bit "compat" files to a sub-package on x86_64.
+- Remove Xen patches, as parts seem to be merged (but enough?).
+
+* Wed Jun 13 2007 Matthias Saou <http://freshrpms.net/> 100.14.09-1
+- Update to new 100.14.09 stable release... weird version jump, though.
+- Add triggerin to re-enable driver after xorg-x11-server-Xorg update.
+
 * Tue Jun  5 2007 Matthias Saou <http://freshrpms.net/> 1.0.9762-3
 - Remove included udev nodes, since they're redundant with the previous change.
 
