@@ -6,7 +6,7 @@
 
 Summary: Small efficient C++ GUI library
 Name: guichan
-Version: 0.7.0
+Version: 0.7.1
 Release: 1
 License: BSD
 Group: Development/Libraries
@@ -77,6 +77,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Mon Jul 16 2007 Dries Verachtert <dries@ulyssis.org> - 0.7.1-1
+- Updated to release 0.7.1.
+
 * Tue Jul 10 2007 Dries Verachtert <dries@ulyssis.org> - 0.7.0-1
 - Updated to release 0.7.0.
 

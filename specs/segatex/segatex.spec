@@ -4,7 +4,7 @@
 
 Summary: Create SELinux policies
 Name: segatex
-Version: 3.05
+Version: 3.07
 Release: 1
 License: GPL
 Group: Applications/System
@@ -61,6 +61,12 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*-segatex.desktop
 
 %changelog
+* Mon Jul 16 2007 Dries Verachtert <dries@ulyssis.org> - 3.07-1
+- Updated to release 3.07.
+
+* Mon Jul 16 2007 Dries Verachtert <dries@ulyssis.org> - 3.06-1
+- Updated to release 3.06.
+
 * Tue Jul 10 2007 Dries Verachtert <dries@ulyssis.org> - 3.05-1
 - Updated to release 3.05.
 
