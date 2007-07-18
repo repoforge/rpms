@@ -67,8 +67,8 @@ ls *.{php,html,css,ico} | sed 's/^/\/usr\/share\/phpMyAdmin\//' > level1files.li
 
 %post
 if [ $1 -eq 1 ]; then
-	chmod g+w %{_datadir}/%{real_name}/config
-	chmod g+w %{_datadir}/%{real_name}/config.inc.php
+	%{__chmod} g+w %{_datadir}/%{real_name}/config
+	%{__chmod} g+w %{_datadir}/%{real_name}/config.inc.php
 fi
 
 
