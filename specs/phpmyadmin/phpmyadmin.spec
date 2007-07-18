@@ -49,18 +49,18 @@ ls *.{php,html,css,ico} | sed 's/^/\/usr\/share\/phpMyAdmin\//' > level1files.li
 %install
 %{__rm} -rf %{buildroot}
 
-install -d -m755 %{buildroot}%{_datadir}/%{real_name}
+%{__install} -d -m755 %{buildroot}%{_datadir}/%{real_name}
 %{__cp} *.{php,html,css,ico} %{buildroot}%{_datadir}/%{real_name}
-cp -a contrib css js lang libraries pmd scripts test themes %{buildroot}%{_datadir}/%{real_name}
+%{__cp} -a contrib css js lang libraries pmd scripts test themes %{buildroot}%{_datadir}/%{real_name}
 
-install -d -m755 %{buildroot}%{_datadir}/%{real_name}/config
+%{__install} -d -m755 %{buildroot}%{_datadir}/%{real_name}/config
 
-cp %{buildroot}%{_datadir}/%{real_name}/libraries/config.default.php \
+%{__cp} %{buildroot}%{_datadir}/%{real_name}/libraries/config.default.php \
 	%{buildroot}%{_datadir}/%{real_name}/config.inc.php
 
 
-install -d %{buildroot}%{_sysconfdir}/httpd/conf.d
-install -m644 %{real_name}.conf %{buildroot}%{_sysconfdir}/httpd/conf.d
+%{__install} -d %{buildroot}%{_sysconfdir}/httpd/conf.d
+%{__install} -m644 %{real_name}.conf %{buildroot}%{_sysconfdir}/httpd/conf.d
 
 %clean
 %{__rm} -rf %{buildroot}
