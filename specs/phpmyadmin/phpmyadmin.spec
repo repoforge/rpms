@@ -5,7 +5,7 @@
 
 Summary: Web application to manage MySQL
 Name: phpmyadmin
-Version: 2.10.2
+Version: 2.10.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -54,27 +54,16 @@ ls *.{php,html,css,ico} | sed 's/^/\/usr\/share\/phpMyAdmin\//' > level1files.li
 %{__cp} -a contrib css js lang libraries pmd scripts test themes %{buildroot}%{_datadir}/%{real_name}
 
 %{__install} -d -m755 %{buildroot}%{_datadir}/%{real_name}/config
-
-%{__cp} %{buildroot}%{_datadir}/%{real_name}/libraries/config.default.php \
-	%{buildroot}%{_datadir}/%{real_name}/config.inc.php
-
-
+%{__install} -m644 config.sample.inc.php %{buildroot}%{_datadir}/%{real_name}/config.inc.php
 %{__install} -d %{buildroot}%{_sysconfdir}/httpd/conf.d
 %{__install} -m644 %{real_name}.conf %{buildroot}%{_sysconfdir}/httpd/conf.d
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%post
-if [ $1 -eq 1 ]; then
-	%{__chmod} g+w %{_datadir}/%{real_name}/config
-	%{__chmod} g+w %{_datadir}/%{real_name}/config.inc.php
-fi
-
-
 %files -f level1files.list
 %defattr(-,root,root)
-%doc ChangeLog CREDITS Documentation.* INSTALL LICENSE README RELEASE-DATE*
+%doc ChangeLog CREDITS Documentation.* INSTALL LICENSE README RELEASE-DATE* TODO
 %{_datadir}/%{real_name}/contrib
 %{_datadir}/%{real_name}/css
 %{_datadir}/%{real_name}/js
@@ -89,7 +78,10 @@ fi
 
 
 %changelog
-* Sun Jun 17 2007 Jim <quien-sabe@metaorg.com> - 2.10.2
+* Fri Jul 20 2007 Jim <quien-sabe@metaorg.com> - 2.10.3-1
+- Updated to latest upstream version
+
+* Sun Jun 17 2007 Jim <quien-sabe@metaorg.com> - 2.10.2-1
 - Updated to latest upstream version
 
 * Tue Mar 6 2007 Jim <quien-sabe@metaorg.com> - 2.10.0.2-1
