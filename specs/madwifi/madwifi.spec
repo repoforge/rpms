@@ -3,13 +3,13 @@
 
 Summary: Multiband Atheros Driver for Wireless Fidelity
 Name: madwifi
-Version: 0.9.3
-Release: 2
+Version: 0.9.4
+Release: 0.1.r2594
 License: GPL
 Group: System Environment/Kernel
 URL: http://madwifi.org/
-Source: http://downloads.sf.net/madwifi/madwifi-%{version}.tar.bz2
-Patch0: madwifi-0.9.3-noWerr.patch
+#Source: http://downloads.sf.net/madwifi/madwifi-.tar.bz2
+Source: http://snapshots.madwifi.org/madwifi-trunk-current.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gcc, make
 Requires(post): dkms
@@ -26,8 +26,7 @@ common wireless tools (ifconfig, iwconfig and friends).
 
 
 %prep
-%setup
-%patch0 -p1 -b .noWerr
+%setup -n madwifi-ng-r2594-20070719
 
 
 %build
@@ -123,14 +122,18 @@ dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
 
 %files
-%defattr(-, root, root, 0755)
-%doc COPYRIGHT README THANKS docs/users-guide.pdf docs/WEP-HOWTO.txt
+%defattr(-,root,root,-)
+%doc COPYRIGHT README THANKS
+#doc docs/users-guide.pdf docs/WEP-HOWTO.txt
 %{_bindir}/*
 %{_mandir}/man8/*
 %{_usrsrc}/%{dkms_name}-%{dkms_vers}/
 
 
 %changelog
+* Mon Jul 23 2007 Matthias Saou <http://freshrpms.net/> 0.9.4-0.1.r2594
+- Update to svn trunk to compile with F7 2.6.22 kernels (madwifi #1434).
+
 * Tue Mar 20 2007 Matthias Saou <http://freshrpms.net/> 0.9.3-2
 - Commit with the new "ath_hal" directory added.
 - Commit with the two new ath_rate_amrr and ath_rate_onoe modules added.
