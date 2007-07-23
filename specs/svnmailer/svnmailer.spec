@@ -16,7 +16,7 @@ Source: http://storage.perlig.de/svnmailer/svnmailer-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: python >= 2.3
+BuildRequires: python >= 2.3, subversion
 Requires: python >= 2.3
 
 %description
