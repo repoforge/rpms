@@ -1,0 +1,11 @@
+--- dia-0.96.1/app/load_save.c~	2007-06-09 09:55:13.000000000 +0200
++++ dia-0.96.1/app/load_save.c	2007-06-09 10:02:30.000000000 +0200
+@@ -17,6 +17,8 @@
+  */
+ #include <config.h>
+ 
++/* so we get fdopen declared even when compiling with -ansi */
++#define _POSIX_C_SOURCE 2
+ #ifdef HAVE_UNISTD_H
+ #include <unistd.h>
+ #endif

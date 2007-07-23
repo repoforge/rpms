@@ -1,0 +1,11 @@
+--- dia-0.92.2/doc/en/dia.xml.dtdfix	2003-12-10 14:15:20.000000000 +0100
++++ dia-0.92.2/doc/en/dia.xml	2003-12-10 14:21:04.000000000 +0100
+@@ -4,7 +4,7 @@
+ 
+ <!DOCTYPE book
+ 
+-  PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "../../dtd/docbookx.dtd"
++  PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+ 
+   [
+ 

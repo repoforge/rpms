@@ -1,0 +1,45 @@
+--- dia-0.95-pre6/app/commands.c.help	2006-01-27 18:48:45.000000000 +0100
++++ dia-0.95-pre6/app/commands.c	2006-03-22 16:37:25.000000000 +0100
+@@ -526,7 +526,7 @@
+   const char *dentry;
+   GError *error = NULL;
+ 
+-  helpdir = dia_get_data_directory("help");
++  helpdir = g_strdup ("/usr/share/gnome/help/dia");
+   if (!helpdir) {
+     message_warning(_("Could not find help directory"));
+     return;
+@@ -554,11 +554,11 @@
+ 			      G_DIR_SEPARATOR_S "dia-manual.chm", NULL);
+       if (!g_file_test(helpindex, G_FILE_TEST_EXISTS)) {
+ 	helpindex = g_strconcat(helpdir, G_DIR_SEPARATOR_S, dentry,
+-			      G_DIR_SEPARATOR_S "index.html", NULL);
++			      G_DIR_SEPARATOR_S "dia.xml", NULL);
+       }
+ #else
+       helpindex = g_strconcat(helpdir, G_DIR_SEPARATOR_S, dentry,
+-			      G_DIR_SEPARATOR_S "index.html", NULL);
++			      G_DIR_SEPARATOR_S "dia.xml", NULL);
+ #endif
+       bestscore = score;
+     }
+@@ -575,7 +575,7 @@
+   ShellExecuteA (0, "open", helpindex, NULL, helpdir, SW_SHOWNORMAL);
+ #else
+   command = getenv("BROWSER");
+-  command = g_strdup_printf("%s 'file://%s' &", command ? command : "gnome-open", helpindex);
++  command = g_strdup_printf("%s '%s' &", command ? command : "yelp", helpindex);
+   system(command);
+   g_free(command);
+ #endif
+--- dia-0.95-pre6/doc/en/dia.xml.help	2006-03-22 16:33:12.000000000 +0100
++++ dia-0.95-pre6/doc/en/dia.xml	2006-03-22 16:33:13.000000000 +0100
+@@ -5,7 +5,7 @@
+ <!DOCTYPE book
+ 
+   PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+-
++"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
+   [
+ 
+     <!ENTITY VERSION "0.95-pre6">

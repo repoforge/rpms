@@ -1,0 +1,22 @@
+--- dia-0.96/acinclude.m4~	2007-04-01 11:43:19.000000000 +0200
++++ dia-0.96/acinclude.m4	2007-04-01 11:43:19.000000000 +0200
+@@ -225,7 +225,7 @@
+ 
+ AC_MSG_CHECKING(for libpython${PYTHON_VERSION}.a)
+ 
+-py_config_dir="$py_prefix/lib/python${PYTHON_VERSION}/config"
++py_config_dir="$pyexecdir/../config"
+ 
+ py_makefile="${py_config_dir}/Makefile"
+ if test -f "$py_makefile"; then
+--- dia-0.96/configure~	2007-04-01 11:43:18.000000000 +0200
++++ dia-0.96/configure	2007-04-01 11:43:18.000000000 +0200
+@@ -25152,7 +25152,7 @@
+ echo "$as_me:$LINENO: checking for libpython${PYTHON_VERSION}.a" >&5
+ echo $ECHO_N "checking for libpython${PYTHON_VERSION}.a... $ECHO_C" >&6
+ 
+-py_config_dir="$py_prefix/lib/python${PYTHON_VERSION}/config"
++py_config_dir="$pyexecdir/../config"
+ 
+ py_makefile="${py_config_dir}/Makefile"
+ if test -f "$py_makefile"; then

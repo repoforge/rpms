@@ -1,0 +1,28 @@
+--- dia-0.94/app/interface.c.orit	2005-03-10 08:29:36.000000000 +0000
++++ dia-0.94/app/interface.c	2005-03-10 08:30:44.000000000 +0000
+@@ -877,6 +877,17 @@
+       GError* gerror = NULL;
+       
+       pixbuf = gdk_pixbuf_new_from_file(sheet_obj->pixmap_file, &gerror);
++      if (pixbuf == NULL) {
++          int len = strlen(sheet_obj->pixmap_file);
++          if ((len > 4) && !strcmp(sheet_obj->pixmap_file+len-4, ".png"))
++	  {
++                GError* gerrortwo = NULL;
++          	strcpy(sheet_obj->pixmap_file+len-4, ".xpm");
++      		pixbuf = gdk_pixbuf_new_from_file(sheet_obj->pixmap_file, &gerrortwo);
++      		if (gerrortwo) g_error_free (gerrortwo);
++          }
++      }
++
+       if (pixbuf != NULL) {
+           gdk_pixbuf_render_pixmap_and_mask(pixbuf, &pixmap, &mask, 1.0);
+           gdk_pixbuf_unref(pixbuf);
+@@ -885,6 +896,7 @@
+           g_warning("failed to load pixbuf for file %s; cause=%s",
+                     sheet_obj->pixmap_file,gerror?gerror->message:"[NULL]");
+       }
++      if (gerror) g_error_free (gerror);
+     } else {
+       DiaObjectType *type;
+       type = object_get_type(sheet_obj->object_type);
