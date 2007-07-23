@@ -5,7 +5,7 @@
 
 Summary: HTTP anti-virus proxy filter
 Name: havp
-Version: 0.82
+Version: 0.86
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -92,6 +92,9 @@ fi
 %{_localstatedir}/run/havp/
 
 %changelog
+* Mon Jul 23 2007 Dries Verachtert <dries@ulyssis.org> - 0.86-1
+- Updated to release 0.86.
+
 * Tue Aug 22 2006 Dag Wieers <dag@wieers.com> - 0.7.9-1
 - Cosmetic changes.
 
