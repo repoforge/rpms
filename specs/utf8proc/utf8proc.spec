@@ -4,7 +4,7 @@
 
 Summary: Library for processing UTF-8 encoded unicode strings
 Name: utf8proc
-Version: 1.0.3
+Version: 1.1.1
 Release: 1
 License: BSD
 Group: Development/Libraries
@@ -60,5 +60,8 @@ you will need to install %{name}-devel.
 %{_includedir}/utf8proc.h
 
 %changelog
+* Mon Jul 23 2007 Dries Verachtert <dries@ulyssis.org> - 1.1.1-1
+- Updated to release 1.1.1.
+
 * Tue Apr 17 2007 Dries Verachtert <dries@ulyssis.org> - 1.0.3-1
 - Initial package.

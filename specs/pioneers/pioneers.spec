@@ -5,7 +5,7 @@
 
 Summary: Playable implementation of the Settlers of Catan 
 Name: pioneers
-Version: 0.10.2
+Version: 0.11.1
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -136,6 +136,9 @@ scrollkeeper-update -q || :
 %{_datadir}/pixmaps/pioneers-server.png
 
 %changelog
+* Mon Jul 23 2007 Dries Verachtert <dries@ulyssis.org> - 0.11.1-1
+- Updated to release 0.11.1.
+
 * Mon Nov 13 2006 Dries Verachtert <dries@ulyssis.org> - 0.10.2-1
 - Updated to release 0.10.2.
 
