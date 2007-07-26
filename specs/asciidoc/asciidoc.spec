@@ -3,7 +3,7 @@
 
 Summary: Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
 Name: asciidoc
-Version: 8.2.1
+Version: 8.2.2
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -30,11 +30,11 @@ DocBook markups using the asciidoc(1) command.
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/asciidoc/{docbook-xsl,filters,images/icons,javascripts,stylesheets}/
 %{__install} -p -m0644 *.conf %{buildroot}%{_sysconfdir}/asciidoc/
-%{__install} -p -m0644 docbook-xsl/*.xsl %{buildroot}%{_sysconfdir}/asciidoc/docbook-xsl/
 %{__install} -p -m0644 filters/*.conf %{buildroot}%{_sysconfdir}/asciidoc/filters/
 %{__install} -p -m0755 filters/*.py %{buildroot}%{_sysconfdir}/asciidoc/filters/
-%{__install} -p -m0644 javascripts/*.js %{buildroot}%{_sysconfdir}/asciidoc/javascripts/
+%{__install} -p -m0644 docbook-xsl/*.xsl %{buildroot}%{_sysconfdir}/asciidoc/docbook-xsl/
 %{__install} -p -m0644 stylesheets/*.css %{buildroot}%{_sysconfdir}/asciidoc/stylesheets/
+%{__install} -p -m0644 javascripts/*.js %{buildroot}%{_sysconfdir}/asciidoc/javascripts/
 %{__cp} -pR images/ %{buildroot}%{_sysconfdir}/asciidoc/
 
 %{__install} -Dp -m0755 asciidoc.py %{buildroot}%{_bindir}/asciidoc
@@ -43,7 +43,7 @@ DocBook markups using the asciidoc(1) command.
 %{__install} -Dp -m0644 doc/a2x.1 %{buildroot}%{_mandir}/man1/a2x.1
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/asciidoc/
-%{__cp} -pR images/ stylesheets/ %{buildroot}%{_datadir}/asciidoc/
+%{__cp} -pR javascripts/ images/ stylesheets/ %{buildroot}%{_datadir}/asciidoc/
 
 ### Fix symlinks in examples/
 %{__install} -d -m0755 symlinks/
@@ -58,7 +58,7 @@ DocBook markups using the asciidoc(1) command.
 %files
 %defattr(-, root, root, 0755)
 %doc BUGS* CHANGELOG* COPYING COPYRIGHT INSTALL* README*
-%doc doc/ examples/ symlinks/*
+%doc doc/ examples/ symlinks/* vim/
 %doc %{_mandir}/man1/a2x.1*
 %doc %{_mandir}/man1/asciidoc.1*
 %config(noreplace) %{_sysconfdir}/asciidoc/
@@ -67,6 +67,9 @@ DocBook markups using the asciidoc(1) command.
 %{_datadir}/asciidoc/
 
 %changelog
+* Wed Jul 25 2007 Dag Wieers <dag@wieers.com> - 8.2.2-1
+- Updated to release 8.2.2.
+
 * Sat May 12 2007 Dag Wieers <dag@wieers.com> - 8.2.1-1
 - Updated to release 8.2.1.
 

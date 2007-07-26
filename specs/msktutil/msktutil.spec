@@ -2,21 +2,22 @@
 # Authority: dag
 # Upstream: Christoph Maser <cmr$financial,com>
 
-%define real_version 0.3.16-4
 
 Summary: Program for (kerberos) interoperability with Active Directory 
 Name: msktutil
+%define real_version 0.3.16
+%define source_version 0.3.16-4
 Version: 0.3.16.4
 Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://download.systemimager.org/~finley/msktutil/
 
-Source: http://download.systemimager.org/~finley/msktutil/msktutil_%{real_version}.tar.gz
+Source: http://download.systemimager.org/~finley/msktutil/msktutil_%{source_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: openldap-devel, gcc, krb5-devel
-Requires: openldap, cyrus-sasl-gssapi, krb5-workstation
+BuildRequires: openldap-devel, krb5-devel
+Requires: cyrus-sasl-gssapi
 
 %description
 A program for interoperability with Active Directory that can:
@@ -27,7 +28,7 @@ A program for interoperability with Active Directory that can:
   change the computer account's password.
 
 %prep
-%setup -n %{name}-0.3.16
+%setup -n %{name}-%{real_version}
 
 %build
 %configure

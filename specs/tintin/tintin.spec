@@ -33,7 +33,7 @@ cd src
 %{__rm} -rf %{buildroot}
 cd src
 %{__install} -d %{buildroot}%{_bindir}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}

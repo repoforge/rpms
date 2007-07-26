@@ -46,7 +46,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 0.9.40
+Version: 0.9.41
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -554,9 +554,10 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/ctl3d32.dll.so
 %{_libdir}/wine/d3d8.dll.so
 %{_libdir}/wine/d3d9.dll.so
-%{_libdir}/wine/d3dx8.dll.so
+%{_libdir}/wine/d3d10.dll.so
 %{_libdir}/wine/d3dim.dll.so
 %{_libdir}/wine/d3drm.dll.so
+%{_libdir}/wine/d3dx8.dll.so
 %{_libdir}/wine/d3dxof.dll.so
 %{_libdir}/wine/dbghelp.dll.so
 %{_libdir}/wine/dciman32.dll.so
@@ -820,6 +821,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Thu Jul 19 2007 Dag Wieers <dag@wieers.com> - 0.9.41-1
+- Updated to release 0.9.41.
+
 * Mon Jul 02 2007 Dag Wieers <dag@wieers.com> - 0.9.40-1
 - Updated to release 0.9.40.
 

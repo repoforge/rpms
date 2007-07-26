@@ -236,7 +236,7 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %{_bindir}/svnadmin
 %{_bindir}/svndumpfilter
 %{_bindir}/svnlook
-%{_bindir}/svnserver
+%{_bindir}/svnserve
 %{_bindir}/svnsync
 %{_bindir}/svnversion
 %{_libdir}/libsvn_*.so.*
@@ -250,7 +250,6 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/subversion-1/
-%{_libdir}/libsvn_*.a
 %{_libdir}/libsvn_*.la
 %{_libdir}/libsvn_*.so
 %{!?_without_swig:%exclude %{_libdir}/libsvn_swig_perl*}
@@ -264,7 +263,7 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %if %{!?_without_swig:1}0
 %files perl
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man3:*::*.3pm*
+%doc %{_mandir}/man3/*::*.3pm*
 %{perl_vendorarch}/auto/SVN/
 %{perl_vendorarch}/SVN/
 %{_libdir}/libsvn_swig_perl*

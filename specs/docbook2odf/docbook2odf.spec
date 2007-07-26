@@ -5,7 +5,7 @@
 Summary: DocBook to OpenDocument XSLT
 Name: docbook2odf
 Version: 0.244
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Text
 URL: http://open.comsultia.com/docbook2odf/
@@ -43,9 +43,10 @@ converting to these respective formats.
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 utils/docbook2odf %{buildroot}%{_bindir}/docbook2odf
 %{__install} -Dp -m0644 docs/docbook2odf.1 %{buildroot}%{_mandir}/man1/docbook2odf.1
+%{__install} -Dp -m0644 bindings/desktop/docbook2odf.desktop %{buildroot}%{_datadir}/applications/docbook2odf.desktop
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/docbook2odf/
-%{__cp} -av bindings/ examples/ libs/ tests/ xsl/ %{buildroot}%{_datadir}/docbook2odf/
+%{__cp} -av tests/ xsl/ %{buildroot}%{_datadir}/docbook2odf/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -55,9 +56,13 @@ converting to these respective formats.
 %doc license README examples/
 %doc %{_mandir}/man1/docbook2odf.1*
 %{_bindir}/docbook2odf
+%{_datadir}/applications/docbook2odf.desktop
 %{_datadir}/docbook2odf/
 
 %changelog
+* Wed Jul 25 2007 Dag Wieers <dag@wieers.com> - 0.244-2
+- Do not install bindings and libs.
+
 * Mon Jun 18 2007 Dag Wieers <dag@wieers.com> - 0.244-1
 - Updated to release 0.244.
 

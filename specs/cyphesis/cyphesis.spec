@@ -74,9 +74,6 @@ WorldForge project.
 * Sat May 20 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.7-1
 - Updated to release 0.5.7.
 
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.6-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Jan 25 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.6-1
 - Updated to release 0.5.6.
 

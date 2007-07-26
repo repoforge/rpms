@@ -8,13 +8,13 @@
 
 Summary: Fonts to replace commonly used Microsoft Windows Fonts
 Name: liberation-fonts
-Version: 0.1
-Release: 4
+Version: 0.2
+Release: 1
 License: GPL
 Group: User Interface/X
 URL: https://www.redhat.com/promo/fonts/
 
-#Source: https://www.redhat.com/f/fonts/liberation-fonts-%{version}.tar.gz
+#Source: https://www.redhat.com/f/fonts/liberation-fonts-ttf-3.tar.gz
 Source: liberation-fonts-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -27,10 +27,10 @@ most commonly used fonts on Microsoft systems: Times New Roman,
 Arial, and Courier New.
 
 %prep
-%setup -c
+%setup
 
 %install
-%{__install} -Dp -m0644 License.txt %{buildroot}%{_datadir}/fonts/liberation/License.txt
+%{__install} -d -m0755 %{buildroot}%{_datadir}/fonts/liberation/
 %{__install} -p -m0644 *.ttf %{buildroot}%{_datadir}/fonts/liberation/
 
 %post
@@ -43,12 +43,15 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc License.txt
+%doc COPYING License.txt
 %{_datadir}/fonts/liberation/
 
 %changelog
+* Sun Jul 22 2007 Dag Wieers <dag@wieers.com> - 0.2-1
+- Updated to release 0.2.
+
 * Wed May 16 2007 Dag Wieers <dag@wieers.com> - 0.1-4
-- Require fontconfig package for post and postun
+- Initial import into RPMforge.
 
 * Wed Apr 25 2007 Meethune Bhowmick <bhowmick@redhat.com> 0.1-4
 - Require fontconfig package for post and postun

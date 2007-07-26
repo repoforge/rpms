@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: jim
 
 %define real_name phpMyAdmin
@@ -6,15 +6,19 @@
 Summary: Web application to manage MySQL
 Name: phpmyadmin
 Version: 2.10.3
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.phpmyadmin.net/
+
 Source: http://dl.sf.net/phpmyadmin/phpMyAdmin-%{version}-all-languages.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildArch: noarch
 Requires: php-mysql >= 4.1.0
 Requires: webserver
+Obsoletes: phpMyAdmin <= %{version}-%{release}
+Provides: phpMyAdmin = %{version}-%{release}
 
 %description
 phpMyAdmin can manage a whole MySQL server (needs a super-user) as well as a
@@ -25,59 +29,50 @@ the appropriate part in the MySQL manual.
 %prep
 %setup -n %{real_name}-%{version}-all-languages
 
-%{__cat} <<EOF >%{real_name}.conf
+%{__cat} <<EOF >phpmyadmin.conf
 #
 #  %{summary}
 #
 
-<Directory "%{_datadir}/%{real_name}">
+<Directory "%{_datadir}/phpmyadmin">
   Order Deny,Allow
   Deny from all
   Allow from 127.0.0.1
 </Directory>
 
-Alias /%{real_name} %{_datadir}/%{real_name}
-Alias /mysqladmin %{_datadir}/%{real_name}
-
+Alias /phpmyadmin %{_datadir}/phpmyadmin
+Alias /phpMyAdmin %{_datadir}/phpmyadmin
+Alias /mysqladmin %{_datadir}/phpmyadmin
 EOF
 
-ls *.{php,html,css,ico} | sed 's/^/\/usr\/share\/phpMyAdmin\//' > level1files.list
-
 %build
-
 
 %install
 %{__rm} -rf %{buildroot}
 
-%{__install} -d -m755 %{buildroot}%{_datadir}/%{real_name}
-%{__cp} *.{php,html,css,ico} %{buildroot}%{_datadir}/%{real_name}
-%{__cp} -a contrib css js lang libraries pmd scripts test themes %{buildroot}%{_datadir}/%{real_name}
+%{__install} -d -m0755 %{buildroot}%{_datadir}/phpmyadmin/
+%{__cp} -av *.{php,html,css,ico} %{buildroot}%{_datadir}/phpmyadmin/
+%{__cp} -av contrib/ css/ js/ lang/ libraries/ pmd/ scripts/ test/ themes/ %{buildroot}%{_datadir}/phpmyadmin/
 
-%{__install} -d -m755 %{buildroot}%{_datadir}/%{real_name}/config
-%{__install} -m644 config.sample.inc.php %{buildroot}%{_datadir}/%{real_name}/config.inc.php
-%{__install} -d %{buildroot}%{_sysconfdir}/httpd/conf.d
-%{__install} -m644 %{real_name}.conf %{buildroot}%{_sysconfdir}/httpd/conf.d
+%{__install} -Dp -m0644 config.sample.inc.php %{buildroot}%{_datadir}/phpmyadmin/config.inc.php
+%{__install} -Dp -m0644 phpmyadmin.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/phpmyadmin.conf
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f level1files.list
-%defattr(-,root,root)
+%files
+%defattr(-, root, root, 0755)
 %doc ChangeLog CREDITS Documentation.* INSTALL LICENSE README RELEASE-DATE* TODO
-%{_datadir}/%{real_name}/contrib
-%{_datadir}/%{real_name}/css
-%{_datadir}/%{real_name}/js
-%{_datadir}/%{real_name}/lang
-%{_datadir}/%{real_name}/libraries
-%{_datadir}/%{real_name}/pmd
-%{_datadir}/%{real_name}/scripts
-%{_datadir}/%{real_name}/test
-%{_datadir}/%{real_name}/themes
-%attr(640,root,apache) %config(noreplace) %{_datadir}/%{real_name}/config.inc.php
-%config(noreplace) %{_sysconfdir}/httpd/conf.d/*.conf
+%config(noreplace) %{_sysconfdir}/httpd/conf.d/phpmyadmin.conf
+%{_datadir}/phpmyadmin/
 
+%defattr(0640, root, apache, 0755)
+%config(noreplace) %{_datadir}/phpmyadmin/config.inc.php
 
 %changelog
+* Thu Jul 26 2007 Dag Wieers <dag@wieers.com> - 2.10.3-2
+- Cosmetic cleanup.
+
 * Fri Jul 20 2007 Jim <quien-sabe@metaorg.com> - 2.10.3-1
 - Updated to latest upstream version
 

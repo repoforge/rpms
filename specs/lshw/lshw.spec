@@ -13,8 +13,8 @@
 
 Summary: Hardware lister
 Name: lshw
-%define real_version B.02.10
-Version: 2.10
+%define real_version B.02.11
+Version: 2.11
 Release: 1
 License: GPL
 Group: Applications/System
@@ -63,17 +63,19 @@ Information can be output in plain text, XML or HTML.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install \
-	DESTDIR="%{buildroot}" \
-	PREFIX="%{_prefix}" \
-	SBINDIR="%{_sbindir}" \
-	MANDIR="%{_mandir}"
+    DESTDIR="%{buildroot}" \
+    PREFIX="%{_prefix}" \
+    SBINDIR="%{_sbindir}" \
+    MANDIR="%{_mandir}" \
+    INSTALL="%{__install} -p"
 
 %if %{!?_without_gtk24:1}0
 %{__make} install-gui\
-	DESTDIR="%{buildroot}" \
-	PREFIX="%{_prefix}" \
-	SBINDIR="%{_sbindir}" \
-	MANDIR="%{_mandir}"
+    DESTDIR="%{buildroot}" \
+    PREFIX="%{_prefix}" \
+    SBINDIR="%{_sbindir}" \
+    MANDIR="%{_mandir}" \
+    INSTALL="%{__install} -p"
 %{__ln_s} -f gtk-lshw %{buildroot}%{_sbindir}/lshw-gui
 %endif
 
@@ -96,6 +98,9 @@ Information can be output in plain text, XML or HTML.
 %endif
 
 %changelog
+* Thu Jul 26 2007 Dag Wieers <dag@wieers.com> - 2.11-1
+- Updated to release B.02.11.
+
 * Wed Feb 14 2007 Dag Wieers <dag@wieers.com> - 2.10-1
 - Updated to release B.02.10.
 

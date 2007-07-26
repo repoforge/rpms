@@ -11,7 +11,7 @@
 
 Summary: Displays information about your hardware and operating system
 Name: hardinfo
-Version: 0.4.2.1
+Version: 0.4.2.2
 Release: 1
 License: GPL
 Group: Applications/System
@@ -54,6 +54,9 @@ USB, IDE, SCSI, Serial and parallel port devices.
 %{_libdir}/hardinfo/
 
 %changelog
+* Sat Jul 21 2007 Dag Wieers <dag@wieers.com> - 0.4.2.2-1
+- Updated to release 0.4.2.2.
+
 * Sun Apr 15 2007 Dag Wieers <dag@wieers.com> - 0.4.2.1-1
 - Updated to release 0.4.2.1.
 
