@@ -21,7 +21,7 @@ Group: Development/Libraries
 URL: http://effbot.org/zone/element-index.htm
 
 Source0: http://effbot.org/downloads/elementtree-%{real_version}.tar.gz
-Source1: http://effbot.org/downloads/cElementTree-%{real_version_celementtree}.tar.gz
+Source1: http://effbot.org/downloads/cElementTree-%{real_version_celementtree}.zip
 Source2: cElementTree-system-expat-setup.py
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
