@@ -1,60 +1,59 @@
 # $Id$
-# Authority:    hadams
+# Authority: hadams
 
-%{!?python_sitearch: %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+
 %define real_name sexy-python
-Name:           python-sexy
-Version:        0.1.9
-Release:        3
 
-Summary:        Python bindings to libsexy
+Summary: Python bindings to libsexy
+Name: python-sexy
+Version: 0.1.9
+Release: 3
+License: LGPL
+Group: System Environment/Libraries
+URL: http://www.chipx86.com/wiki/Libsexy
 
-Group:          System Environment/Libraries
-License:        LGPL
-URL:            http://www.chipx86.com/wiki/Libsexy
-Source0:        http://releases.chipx86.com/libsexy/sexy-python/sexy-python-%{version}.tar.gz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Source: http://releases.chipx86.com/libsexy/sexy-python/sexy-python-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires:  libsexy-devel >= 0.1.10
-BuildRequires:  python-devel >= 2
-BuildRequires:  pygtk2-devel >= 2.8.0
-BuildRequires:  libxml2-devel
-Requires:  	libsexy >= 0.1.10
+BuildRequires: python-devel >= 2.0
+BuildRequires: pygtk2-devel >= 2.8.0
+BuildRequires: libsexy-devel >= 0.1.10
+BuildRequires: libxml2-devel
+Requires: libsexy >= 0.1.10
 
 %description
 sexy-python is a set of Python bindings around libsexy.
 
 
 %prep
-%setup -q -n  %{real_name}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure --enable-docs
-make %{?_smp_mflags}
-
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make DESTDIR=${RPM_BUILD_ROOT} install
-find $RPM_BUILD_ROOT -type f -name "*.la" -exec rm -f {} ';'
-
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
-rm -rf $RPM_BUILD_ROOT
-
-
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog NEWS README
+%doc AUTHORS ChangeLog COPYING NEWS README
+%dir %{python_sitearch}/gtk-2.0/
 %{python_sitearch}/gtk-2.0/sexy.so
+%dir %{_datadir}/pygtk/
+%dir %{_datadir}/pygtk/2.0/
+%dir %{_datadir}/pygtk/2.0/defs/
 %{_datadir}/pygtk/2.0/defs/sexy.defs
-
-
+%exclude %{python_sitearch}/gtk-2.0/sexy.la
 
 %changelog
-* Sun Jul 22 2007 Heiko Adams <info@fedora-blog.de> - 1.4-2
-- rebuild for rpmforge
+* Sun Jul 22 2007 Heiko Adams <info@fedora-blog.de> - 0.1.9-3
+- Rebuild for RPMforge.
 
 * Thu Oct 26 2006 Haïkel Guémar <karlthered@gmail.com> - 0.1.9-2
 - fixed requires that asked libsexy-devel instead of libsexy.

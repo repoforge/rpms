@@ -51,19 +51,17 @@ popd
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_libdir}/python%{python_version}/site-packages/
-%{__make} install -C unix DESTDIR=%{buildroot}
+%{__install} -d -m0755 %{buildroot}%{_libdir}/python%{python_version}
+%{__make} install -C unix DESTDIR="%{buildroot}"
 
+touch %{_libdir}/python%{python_version}/metakit.py{c,o}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files
@@ -74,6 +72,8 @@ popd
 #%{_libdir}/python%{python_version}/site-packages/metakit.py
 %{_libdir}/python%{python_version}/Mk4py.so
 %{_libdir}/python%{python_version}/metakit.py
+%ghost %{_libdir}/python%{python_version}/metakit.pyc
+%ghost %{_libdir}/python%{python_version}/metakit.pyo
 %{_lib32dir}/tcl*/Mk4tcl/
 
 

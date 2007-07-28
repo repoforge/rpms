@@ -16,7 +16,7 @@
 Summary: Modular text-mode IRC client
 Name: irssi
 Version: 0.8.10a
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Communications
 URL: http://irssi.org/
@@ -27,7 +27,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, automake, gcc-c++,
 BuildRequires: glib2-devel, imlib-devel, ncurses-devel
-%{!?_Without_gc:BuildRequires: libgc-devel}
+%{!?_without_gc:BuildRequires: libgc-devel}
 
 Provides: irssi-devel = %{version}-%{release}
 Obsoletes: irssi-devel <= %{version}-%{release}
@@ -94,6 +94,9 @@ Support for other protocols like ICQ could be created some day too.
 %exclude %{_docdir}/irssi/
 
 %changelog
+* Fri Jul 27 2007 Dag Wieers <dag@wieers.com> - 0.8.10a-3
+- Rebuild against libgc-7.0.
+
 * Mon Apr 30 2007 Dag Wieers <dag@wieers.com> - 0.8.10a-2
 - Remove --with-perl="module" as it disables /script support. (Tom�Laovika)
 

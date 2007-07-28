@@ -10,7 +10,7 @@ Version: 0.7.1
 Release: 1
 License: BSD
 Group: Development/Libraries
-URL: http://guichan.sourceforge.net
+URL: http://guichan.sourceforge.net/
 
 Source: http://guichan.googlecode.com/files/guichan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -35,7 +35,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%{__perl} -pi -e 's|-Werror||g;' configure*
+%{__perl} -pi.orig -e 's|-Werror||g;' configure*
 
 %build
 %configure
@@ -43,13 +43,10 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -41,18 +41,15 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure --datadir=%{_datadir}/gdal
+%configure --datadir="%{_datadir}/gdal"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR=%{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -70,8 +67,8 @@ you will need to install %{name}-devel.
 %{_bindir}/epsg_tr.py
 %{_bindir}/pct2rgb.py
 %{_bindir}/rgb2pct.py
-%{_libdir}/libgdal.so.*
 %{_datadir}/gdal/
+%{_libdir}/libgdal.so.*
 %{python_sitearch}/_gdalmodule.*
 %{python_sitearch}/gdal*.py
 %{python_sitearch}/ogr.py

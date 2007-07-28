@@ -52,8 +52,5 @@ export CFLAGS="%{optflags}"
 %{python_includedir}/pyogg/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun May 08 2005 Dag Wieers <dag@wieers.com> - 1.3-1
 - Initial package. (using DAR)

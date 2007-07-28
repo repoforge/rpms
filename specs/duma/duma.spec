@@ -44,14 +44,15 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d %{buildroot}%{_bindir} %{buildroot}%{_mandir}/man3 %{buildroot}%{_libdir}
-%makeinstall BIN_INSTALL_DIR=%{buildroot}%{_bindir} LIB_INSTALL_DIR=%{buildroot}%{_libdir} MAN_INSTALL_DIR=%{buildroot}%{_mandir}/man3/
+%{__install} -d -m0755 %{buildroot}%{_bindir}
+%{__install} -d -m0755 %{buildroot}%{_mandir}/man3/
+%{__install} -d -m0755 %{buildroot}%{_libdir}
+%makeinstall BIN_INSTALL_DIR="%{buildroot}%{_bindir}" \
+    LIB_INSTALL_DIR="%{buildroot}%{_libdir}" \
+    MAN_INSTALL_DIR="%{buildroot}%{_mandir}/man3/"
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -59,7 +60,7 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc INSTALL README.txt TODO
-%doc %{_mandir}/man?/duma*
+%doc %{_mandir}/man3/duma.3*
 %{_bindir}/duma
 %{_libdir}/libduma.so.*
 
@@ -77,9 +78,6 @@ you will need to install %{name}-devel.
 
 * Thu Apr 27 2006 Dries Verachtert <dries@ulyssis.org> - 2.4.27-1
 - Updated to release 2.4.27.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.4.26-2.2
-- Rebuild for Fedora Core 5.
 
 * Thu Nov 10 2005 Dries Verachtert <dries@ulyssis.org> - 2.4.26-2
 - Fixed the project url and source url.

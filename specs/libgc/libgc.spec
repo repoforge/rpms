@@ -77,7 +77,7 @@ you will need to install %{name}-devel.
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/*
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/libgc.1*
 %{_libdir}/libgc.so
 %{_libdir}/libgccpp.so
 %{_libdir}/libcord.so

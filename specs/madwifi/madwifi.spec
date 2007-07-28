@@ -1,10 +1,13 @@
 # $Id$
 # Authority: matthias
 
+%define real_name madwifi-ng
+
 Summary: Multiband Atheros Driver for Wireless Fidelity
 Name: madwifi
 Version: 0.9.4
-Release: 0.1.r2594
+%define real_version r2598-20070725
+Release: 0.1.r2598
 License: GPL
 Group: System Environment/Kernel
 URL: http://madwifi.org/
@@ -26,7 +29,7 @@ common wireless tools (ifconfig, iwconfig and friends).
 
 
 %prep
-%setup -n madwifi-ng-r2594-20070719
+%setup -n %{real_name}-%{real_version}
 
 
 %build

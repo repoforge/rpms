@@ -23,6 +23,8 @@ URL: http://flac.sourceforge.net/
 Source: http://dl.sf.net/flac/flac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: xmms-devel, libogg-devel, gettext
+### Doesn't actually require it, but at least we won't build it for older FLAC releases
+BuildRequires: flac-devel >= 1.1
 %{!?_without_gettextdevel:BuildRequires: gettext-devel}
 
 %description
@@ -88,4 +90,3 @@ This is the input plugin for XMMS to be able to read FLAC files.
   someone wants to provide a simple script to extract only the relevant sources
   in order to create a custom source package of the plugin only, that would
   be great!
-

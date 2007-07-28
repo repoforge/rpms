@@ -74,9 +74,6 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_bindir}/bdf2gdfont.pl
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.30-2.2
-- Rebuild for Fedora Core 5.
-
 * Sun Dec 25 2005 Dag Wieers <dag@wieers.com> - 2.30-2
 - Added PNG support. (Why was it gone ?)
 
