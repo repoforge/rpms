@@ -45,7 +45,7 @@ Patch7: subversion-1.1.3-java.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, libtool, python, python-devel, texinfo, which
-BuildRequires: expat-devel, docbook-style-xsl
+BuildRequires: expat-devel, docbook-style-xsl, gettext
 BuildRequires: apr-util-devel >= 0.9.3-2, openssl-devel
 BuildRequires: apr-devel >= 0.9.4
 BuildRequires: neon-devel >= 0.24.7-1
