@@ -4,7 +4,7 @@
 
 Summary: Parallel implementation of bzip2
 Name: pbzip2
-Version: 1.0.1
+Version: 1.0.2
 Release: 1
 License: BSD
 Group: Applications/File
@@ -23,13 +23,14 @@ machines.
 %prep
 %setup
 %{__perl} -npi -e "s|.PREFIX./man|(PREFIX)/share/man|g;" Makefile
+%{__perl} -npi -e "s|..PREFIX./bin/pbzip2( ..PREFIX./bin/pbunzip2)|%{_bindir}/pbzip2 \1|g;" Makefile
 
 %build
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall PREFIX=%{buildroot}%{_prefix}
+%{__make} install PREFIX=%{buildroot}%{_prefix}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -39,8 +40,12 @@ machines.
 %doc AUTHORS ChangeLog COPYING README
 %doc %{_mandir}/man1/pbzip2.1*
 %{_bindir}/pbzip2
+%{_bindir}/pbunzip2
 
 %changelog
+* Sat Jul 28 2007 Dries Verachtert <dries@ulyssis.org> - 1.0.2-1
+- Updated to release 1.0.2.
+
 * Sun Apr 01 2007 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1
 - Updated to release 1.0.1.
 

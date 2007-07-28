@@ -2,20 +2,22 @@
 # Authority: dries
 # Upstream: jcupitt <john,cupitt$ng-london,org,uk>
 
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+
 Summary: Image processing suite for extremely large images and colorimetry
 Name: vips
-Version: 7.10.21
+Version: 7.12.3
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.vips.ecs.soton.ac.uk/
 
-Source: http://www.vips.ecs.soton.ac.uk/vips-7.10/vips-%{version}.tar.gz
+Source: http://www.vips.ecs.soton.ac.uk/vips-7.12/vips-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, gettext, pkgconfig, glib2-devel, libpng-devel
 BuildRequires: libtiff-devel, zlib-devel, libjpeg-devel, ImageMagick-devel
-BuildRequires: fftw-devel, intltool, perl(XML::Parser)
+BuildRequires: fftw-devel, intltool, perl(XML::Parser), python
 
 %description
 VIPS is an image processing suite designed for extremely large images and
@@ -86,17 +88,20 @@ you will need to install %{name}-devel.
 %{_bindir}/vips2dj
 %{_libdir}/libvips.so.*
 %{_libdir}/libvipsCC.so.*
+%{python_sitearch}/vipsCC/
 
 %files devel
 %{_includedir}/vips/
-%{_libdir}/libvips.a
-%{_libdir}/libvipsCC.a
 %{_libdir}/libvips.so
 %{_libdir}/libvipsCC.so
 %{_libdir}/pkgconfig/vips*.pc
+%exclude %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Jul 28 2007 Dries Verachtert <dries@ulyssis.org> - 7.12.3-1
+- Updated to release 7.12.3.
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 7.10.21-1
 - Updated to release 7.10.21.
 

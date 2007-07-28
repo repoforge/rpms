@@ -4,7 +4,7 @@
 
 Summary: Flickr uploader
 Name: kflickr
-Version: 0.8
+Version: 0.9
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -51,6 +51,9 @@ sending the photo. Multiple users are supported.
 %{_libdir}/kde3/libkflickrpart.*
 
 %changelog
+* Sat Jul 28 2007 Dries Verachtert <dries@ulyssis.org> - 0.9-1
+- Updated to release 0.9.
+
 * Wed Mar 28 2007 Dries Verachtert <dries@ulyssis.org> - 0.8-1
 - Updated to release 0.8.
 
