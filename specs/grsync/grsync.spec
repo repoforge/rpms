@@ -3,7 +3,7 @@
 
 Summary: GUI for rsync
 Name: grsync
-Version: 0.5.2
+Version: 0.6
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -39,11 +39,16 @@ used to synchronize local directories.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %doc %{_mandir}/man1/grsync.1*
+%doc %{_mandir}/man1/grsync-batch.1*
 %{_bindir}/grsync
+%{_bindir}/grsync-batch
 %{_datadir}/pixmaps/grsync.png
 %{_datadir}/applications/grsync.desktop
 
 %changelog
+* Sun Jul 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.6-1
+- Updated to release 0.6.
+
 * Sun May 13 2007 Dag Wieers <dag@wieers.com> - 0.5.2-1
 - Added perl(XML::Parser) dependency. (Lajos)
 

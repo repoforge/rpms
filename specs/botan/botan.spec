@@ -3,18 +3,17 @@
 
 Summary: Library implementing a variety of cryptographic algorithms and formats
 Name: botan
-Version: 1.4.12
-Release: 1.2
+Version: 1.6.3
+Release: 1
 License: Other
 Group: System Environment/Libraries
 URL: http://botan.randombit.net/
 
 #Source: http://botan.randombit.net/files/Botan-%{version}.tgz
-Source: http://files.randombit.net/botan/archive/v1.4/Botan-%{version}.tgz
+Source: http://files.randombit.net/botan/archive/v1.6/Botan-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, perl
-%{?fc4:BuildRequires: compat-gcc-32-c++}
 
 %description
 Botan is a library, written in C++. It's main purpose it to provide an easy
@@ -39,19 +38,18 @@ you will need to install %{name}-devel.
 %build
 %{expand: %%define optflags -O2}
 ./configure.pl \
-	--prefix="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} CXX=g++32
+	--prefix="%{_prefix}"
+%{__perl} -pi -e "s|-o ..OWNER. -g ..GROUP.||g;" Makefile
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install INSTALLROOT=%{buildroot}%{_prefix}
 %{__mv} -vf %{buildroot}%{_docdir}/Botan-%{version} rpm-doc
 
-%post
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -59,16 +57,22 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc rpm-doc/*
-%{_bindir}/*
+%{_bindir}/botan-config
 %{_libdir}/libbotan-*.so
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/botan
-%{_libdir}/*.a
-%{_libdir}/*.so
+%{_includedir}/botan/
+%{_libdir}/libbotan.so
+%exclude %{_libdir}/libbotan.a
 
 %changelog
+* Sun Jul 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.6.3-1
+- Updated to release 1.6.3.
+
+* Mon Dec 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.0-1
+- Updated to release 1.6.0.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.12-1.2
 - Rebuild for Fedora Core 5.
 
