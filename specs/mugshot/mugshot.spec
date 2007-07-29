@@ -2,8 +2,8 @@
 # Authority: hadams
 
 Name:           mugshot
-Version:        1.1.45
-Release:        2
+Version:        1.1.48
+Release:        1
 Summary:        Companion software for mugshot.org
 
 Group:          Applications/Internet
@@ -212,6 +212,9 @@ fi
 %{_sysconfdir}/gconf/schemas/*.schemas
 
 %changelog
+* Sun Jul 29 2007 Heiko Adams <info@fedora-blog.de> - 1.1.48-1
+- 1.1.48
+
 * Sat Jul 14 2007 Heiko Adams <info@fedora-blog.de> - 1.1.45-2
 - rebuild for rpmforge
 
