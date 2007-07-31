@@ -13,6 +13,8 @@ URL: http://www.linuxpowertop.org/
 Source: http://www.linuxpowertop.org/download/powertop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: ncurses-devel
+
 %description
 powertop is a Linux tool that finds the software component(s) that make your
 laptop use more power than necessary while it is idle. As of Linux kernel

@@ -45,7 +45,7 @@ URL: http://www.csv.ica.uni-stuttgart.de/vrml/dune/
 Source: http://www.csv.ica.uni-stuttgart.de/vrml/dune/white_dune-%{real_version}.tar.gz
 #Patch: gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, flex, byacc, zlib-devel
+BuildRequires: gcc-c++, flex, byacc, zlib-devel, bison
 BuildRequires: libjpeg-devel, libpng-devel, ImageMagick
 %{!?_without_modxorg:BuildRequires: libX11-devel, xorg-x11-server-Xvfb, xorg-x11-proto-devel, libXi-devel, libXmu-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel, /usr/X11R6/bin/Xvfb}

@@ -20,7 +20,7 @@ URL: http://alpha.linuxmag.com.br/~leandro/hardinfo/
 Source: http://download.berlios.de/hardinfo/hardinfo-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk2-devel >= 2.6
+BuildRequires: gtk2-devel >= 2.6, pciutils
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Requires: pciutils
 

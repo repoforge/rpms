@@ -29,6 +29,7 @@ BuildRequires: perl(HTTP::Request::AsCGI), perl(LWP::UserAgent)
 BuildRequires: perl(Module::Pluggable), perl(Path::Class), perl(Scalar::Util)
 BuildRequires: perl(Text::SimpleTable), perl(Tree::Simple)
 BuildRequires: perl(Tree::Simple::Visitor::FindByPath), perl(URI)
+BuildRequires: perl(Class::Data::Inheritable)
 
 %description
 Catalyst  Runtime version.
