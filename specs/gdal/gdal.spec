@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, python, curl-devel, openssl-devel, geos-devel
 BuildRequires: libtiff-devel, libpng-devel, netcdf-devel, giflib-devel
-BuildRequires: libjpeg-devel, postgresql-devel
+BuildRequires: libjpeg-devel, postgresql-devel, python-devel
 
 %description
 The Geospatial Data Abstraction Library (GDAL) is a unifying C/C++ API for 

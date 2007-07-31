@@ -13,7 +13,7 @@ URL: http://www.linuxpowertop.org/
 Source: http://www.linuxpowertop.org/download/powertop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ncurses-devel
+BuildRequires: ncurses-devel, gettext
 
 %description
 powertop is a Linux tool that finds the software component(s) that make your
