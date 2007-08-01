@@ -18,7 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gettext, pkgconfig, glib2-devel, libpng-devel
 BuildRequires: libtiff-devel, zlib-devel, libjpeg-devel, ImageMagick-devel
 BuildRequires: fftw-devel, intltool, perl(XML::Parser), python, libxml2-devel
-BuildRequires: python-devel
+BuildRequires: python-devel, swig
 
 %description
 VIPS is an image processing suite designed for extremely large images and

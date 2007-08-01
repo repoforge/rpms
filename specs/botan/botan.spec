@@ -40,11 +40,11 @@ you will need to install %{name}-devel.
 ./configure.pl \
 	--prefix="%{_prefix}"
 %{__perl} -pi -e "s|-o ..OWNER. -g ..GROUP.||g;" Makefile
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} LIBDIR=%{_libdir}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install INSTALLROOT=%{buildroot}%{_prefix}
+%{__make} install INSTALLROOT=%{buildroot}%{_prefix} LIBDIR=%{buildroot}%{_libdir}
 %{__mv} -vf %{buildroot}%{_docdir}/Botan-%{version} rpm-doc
 
 %post -p /sbin/ldconfig
