@@ -24,7 +24,7 @@ BuildArch: noarch
 BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
-ail::Alias allows you to directly access the contents of E-Mail alias files.
+Mail::Alias allows you to directly access the contents of E-Mail alias files.
 You can perform the following actions:
 	Set the name of the current aliases file being accessed
 	Verify the presence of aliases
@@ -51,7 +51,7 @@ command).
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
@@ -61,7 +61,7 @@ command).
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/Mail::Alias.3pm*
 %{perl_vendorlib}/Mail/Alias.pm
 
 %changelog

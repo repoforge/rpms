@@ -34,8 +34,8 @@ echo n | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefi
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__make} install
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -43,9 +43,9 @@ echo n | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefi
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/Mail::IMAPClient*
 %{perl_vendorlib}/Mail/IMAPClient.p*
-%{perl_vendorlib}/Mail/IMAPClient/*
+%{perl_vendorlib}/Mail/IMAPClient/
 
 %changelog
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.9-1.2

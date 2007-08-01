@@ -35,8 +35,8 @@ perl-based biff clients, mail readers, or whatever.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__make} install
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -44,7 +44,7 @@ perl-based biff clients, mail readers, or whatever.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/Mail::POP3Client.3pm*
 %{perl_vendorlib}/Mail/POP3Client.pm
 
 %changelog

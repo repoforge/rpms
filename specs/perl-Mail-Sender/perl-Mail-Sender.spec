@@ -38,7 +38,7 @@ echo "N" | %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 %{__rm} -f %{buildroot}%{perl_vendorlib}/Mail/Sender/CType/Win32.pm
@@ -49,9 +49,9 @@ echo "N" | %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%{_mandir}/man3/*
+%{_mandir}/man3/Mail::Sender.3pm*
 %{perl_vendorlib}/Mail/Sender.pm
-%{perl_vendorlib}/Mail/Sender
+%{perl_vendorlib}/Mail/Sender/
 
 %changelog
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.13-1

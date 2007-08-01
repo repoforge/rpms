@@ -37,7 +37,7 @@ Perl 5 and a network connection.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
@@ -47,7 +47,7 @@ Perl 5 and a network connection.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%{_mandir}/man3/*
+%{_mandir}/man3/Mail::Sendmail.3pm*
 %{perl_vendorlib}/Mail/Sendmail.pm
 
 %changelog

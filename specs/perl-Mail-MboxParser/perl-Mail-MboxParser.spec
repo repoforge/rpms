@@ -33,8 +33,8 @@ Mail::MboxParser is a module for working with UNIX-flavoured mailboxes.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__make} install
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -42,9 +42,9 @@ Mail::MboxParser is a module for working with UNIX-flavoured mailboxes.
 %files
 %defattr(-, root, root, 0755)
 %doc Changelog README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/Mail::MboxParser*
 %{perl_vendorlib}/Mail/MboxParser.pm
-%{perl_vendorlib}/Mail/MboxParser
+%{perl_vendorlib}/Mail/MboxParser/
 
 %changelog
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.55-1.2

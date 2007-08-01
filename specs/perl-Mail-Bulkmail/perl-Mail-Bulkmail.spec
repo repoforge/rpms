@@ -33,8 +33,8 @@ Platform independent mailing list module.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__make} install
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -42,9 +42,9 @@ Platform independent mailing list module.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/Mail::Bulkmail*
 %{perl_vendorlib}/Mail/Bulkmail.pm
-%{perl_vendorlib}/Mail/Bulkmail
+%{perl_vendorlib}/Mail/Bulkmail/
 
 %changelog
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 3.12-1.2

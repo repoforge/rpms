@@ -33,8 +33,8 @@ This package implements 'make' in perl.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__make} install
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -42,7 +42,8 @@ This package implements 'make' in perl.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/pmake.1*
+%doc %{_mandir}/man3/Make.3pm*
 %{_bindir}/pmake
 %{perl_vendorlib}/Make.pm
 
