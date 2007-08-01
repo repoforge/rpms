@@ -47,6 +47,7 @@ Requires: lesstif, libXmu, libXt, libXp
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{?_with_lesstif:BuildRequires: lesstif-devel}
 %{?_with_openmotif:BuildRequires: openmotif-devel}
+BuildRequires: groff
 
 %description
 XEphem is an interactive astronomical ephemeris program for X Windows

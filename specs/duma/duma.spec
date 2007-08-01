@@ -2,11 +2,11 @@
 # Authority: dries
 # Upstream:  Hayati Ayguen <h_ayguen$web,de>
 
-%define real_version 2_5_3
+%define real_version 2_5_4
 
 Summary: Detect Unintended Memory Access
 Name: duma
-Version: 2.5.3
+Version: 2.5.4
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -70,6 +70,9 @@ you will need to install %{name}-devel.
 %{_libdir}/libduma.so
 
 %changelog
+* Wed Aug 01 2007 Dries Verachtert <dries@ulyssis.org> - 2.5.4-1
+- Updated to release 2.5.4.
+
 * Mon Jul 16 2007 Dries Verachtert <dries@ulyssis.org> - 2.5.3-1
 - Updated to release 2.5.3.
 
