@@ -1,0 +1,17 @@
+See http://bugs.debian.org/159693
+
+diff -Naru Imaging-1.1.4.orig/PIL/GifImagePlugin.py Imaging-1.1.4/PIL/GifImagePlugin.py
+--- Imaging-1.1.4.orig/PIL/GifImagePlugin.py	2003-05-06 23:44:16.000000000 +0300
++++ Imaging-1.1.4/PIL/GifImagePlugin.py	2004-10-09 21:12:12.635957206 +0300
+@@ -346,6 +346,11 @@
+         for i in range(maxcolor):
+             s.append(chr(i) * 3)
+ 
++    if im.info.has_key('transparency'):
++        transparentIndex = im.info['transparency']
++        s.append('!' + chr(0xf9) + chr(4) + chr(1) + chr(0) + chr(0) +
++                 chr(transparentIndex) + chr(0))
++
+     return s
+ 
+ def getdata(im, offset = (0, 0), **params):

@@ -1,0 +1,14 @@
+diff -Naru Imaging-1.1.4.orig/PIL/Image.py Imaging-1.1.4/PIL/Image.py
+--- Imaging-1.1.4.orig/PIL/Image.py	2003-05-08 23:48:47.000000000 +0300
++++ Imaging-1.1.4/PIL/Image.py	2004-10-09 21:11:16.547285512 +0300
+@@ -1722,9 +1722,7 @@
+     else:
+         format = None
+         if not command:
+-            command = "xv"
+-            if title:
+-                command = command + " -name \"%s\"" % title
++            command = "eog"
+ 
+     if self.mode == "I;16":
+         # @PIL88 @PIL101
