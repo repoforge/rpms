@@ -18,6 +18,7 @@ BuildRequires: gtk2-devel
 BuildRequires: intltool >= 0.23
 BuildRequires: gnome-common >= 1.2.4
 BuildRequires: icon-naming-utils >= 0.8.1
+BuildRequires: gettext
 
 %description
 Blueprint is a GTK engine from Open Solaris.
