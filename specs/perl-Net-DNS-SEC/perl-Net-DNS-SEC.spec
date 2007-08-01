@@ -38,7 +38,7 @@ document set.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/Net/DNS/SEC/.packlist
 
@@ -48,8 +48,11 @@ document set.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%{_mandir}/man3/*
-%{perl_vendorlib}/Net/DNS
+%{_mandir}/man3/Net::DNS::*.3pm*
+%{perl_vendorlib}/Net/DNS/Keyset.pm
+%{perl_vendorlib}/Net/DNS/SEC.pm
+%{perl_vendorlib}/Net/DNS/RR/
+%{perl_vendorlib}/Net/DNS/SEC/
 
 %changelog
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1
