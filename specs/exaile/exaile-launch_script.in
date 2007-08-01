@@ -1,0 +1,7 @@
+#!/bin/bash
+
+ FF_LIBDIR=`cat @GRE_CONF_PATH@ | grep GRE_PATH | sed -e 's/GRE_PATH=//'`
+ cd @DATADIR@/exaile
+ export LD_LIBRARY_PATH=$FF_LIBDIR
+ exec python exaile.py "$@"
+
