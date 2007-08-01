@@ -58,6 +58,9 @@ Earth satellites, solar system and deep-sky objects.
 %prep
 %setup
 %patch -p1 
+# make sure the correct libdir is also added to the ldflags (needed on x86_64)
+%{__perl} -pi -e "s|^LDFLAGS = |LDFLAGS = -L%{_libdir} |g;" GUI/xephem/Makefile
+
 
 %build
 cd libastro
