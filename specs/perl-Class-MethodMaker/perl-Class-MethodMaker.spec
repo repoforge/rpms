@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Class-MethodMaker/
 Source: http://www.cpan.org/modules/by-module/Class/Class-MethodMaker-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build)
 
 %description
 This package allows you to create generic methods for OO Perl.
