@@ -34,7 +34,7 @@ as a Unix daemon process.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

@@ -35,7 +35,7 @@ Test::Reporter has wide support for various perl5's and platforms.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

@@ -33,10 +33,10 @@ A POE filter wrapped around Compress::LZO.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}

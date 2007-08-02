@@ -36,7 +36,7 @@ which are going to pass through the shell or a shell-like object.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 

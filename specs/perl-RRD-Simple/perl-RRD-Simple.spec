@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/N/NI/NICOLAW/RRD-Simple-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build)
 
 %description
 RRD::Simple provides a simple interface to RRDTool's RRDs module.
@@ -43,7 +43,7 @@ RRA definitions.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean

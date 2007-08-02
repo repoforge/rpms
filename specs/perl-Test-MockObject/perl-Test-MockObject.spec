@@ -40,7 +40,7 @@ option is not to test difficult things.  Now you have no excuse.)
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 

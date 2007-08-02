@@ -35,7 +35,7 @@ This module uses different ways to get the full hostname.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 
 %clean

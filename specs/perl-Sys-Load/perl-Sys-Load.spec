@@ -32,7 +32,7 @@ Sys::Load is a module that is used to get the current system load and uptime.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean

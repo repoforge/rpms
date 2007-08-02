@@ -34,7 +34,7 @@ some utility functions to make it easier to deal with them.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

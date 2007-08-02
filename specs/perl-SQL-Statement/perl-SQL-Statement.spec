@@ -38,7 +38,7 @@ XML, CSV, Fixed Length, Excel Spreadsheets and many others.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_vendorarch} \
 	%{buildroot}%{perl_archlib}
 

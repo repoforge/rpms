@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SR/SRI/Text-SimpleTable-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build)
 
 %description
 Simple eyecandy ASCII tables, as seen in Catalyst.
@@ -33,7 +33,7 @@ Simple eyecandy ASCII tables, as seen in Catalyst.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean

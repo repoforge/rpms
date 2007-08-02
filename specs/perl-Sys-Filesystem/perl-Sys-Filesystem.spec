@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/N/NI/NICOLAW/Sys-Filesystem-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build)
 
 %description
 Sys::Filesystem is intended to be a portable interface to list and
@@ -34,7 +34,7 @@ query filesystem names and their properties.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 %{__rm} -f %{buildroot}%{perl_vendorlib}/Sys/Filesystem/Mswin32.pm
 

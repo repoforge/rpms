@@ -33,7 +33,7 @@ This module is a foundation of a POE HTTP Daemon.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

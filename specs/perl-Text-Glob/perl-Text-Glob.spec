@@ -33,7 +33,7 @@ This module allows you to match globbing patterns against text.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \
