@@ -33,7 +33,7 @@ This package implements the Perl 6 'slurp' built-in.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

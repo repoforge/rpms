@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JP/JPEACOCK/Math-Currency-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build)
 
 %description
 Exact Currency Math with Formatting and Rounding.
@@ -33,7 +33,7 @@ Exact Currency Math with Formatting and Rounding.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean

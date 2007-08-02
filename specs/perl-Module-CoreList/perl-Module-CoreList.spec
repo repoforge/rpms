@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Module/Module-CoreList-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build)
 
 %description
 This module gets the list of modules shipped with versions of perl.
@@ -33,7 +33,7 @@ This module gets the list of modules shipped with versions of perl.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

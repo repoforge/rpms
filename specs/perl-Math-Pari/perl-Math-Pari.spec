@@ -20,7 +20,7 @@ Source0: http://search.cpan.org/CPAN/authors/id/I/IL/ILYAZ/modules/Math-Pari-%{v
 Source1: http://pari.math.u-bordeaux.fr/pub/pari/unix/pari-%{pari_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build)
 ### FIXME: Make it build with external pre-build pari package
 #Buildrequires: pari-devel
 
@@ -37,10 +37,10 @@ More info can be found at http://www.parigp-home.de/
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}

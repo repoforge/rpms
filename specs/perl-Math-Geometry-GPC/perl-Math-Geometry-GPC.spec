@@ -34,8 +34,8 @@ DIFFERENCE, INTERSECTION, XOR and UNION operations on polygons.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} install
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist/auto/*/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}

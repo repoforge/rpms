@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SC/SCHWIGON/pdf-fdf-simple/PDF-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build)
 
 %description
 PDF::FDF::Simple helps creating and extracting FDF files. It is
@@ -35,7 +35,7 @@ just want to read or create fdf files.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 
 %clean

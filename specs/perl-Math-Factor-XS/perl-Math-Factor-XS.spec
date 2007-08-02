@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Math-Factor-XS/
 Source: http://search.cpan.org/CPAN/authors/id/S/SC/SCHUBIGER/Math-Factor-XS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build)
 
 %description
 Math::Factor::XS factorises numbers by applying modulo operator divisons.
@@ -32,7 +32,7 @@ Math::Factor::XS factorises numbers by applying modulo operator divisons.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 
 %clean

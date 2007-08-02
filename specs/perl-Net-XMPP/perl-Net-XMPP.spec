@@ -38,7 +38,7 @@ talk to each other.  XMPP seeks to get rid of those barriers.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

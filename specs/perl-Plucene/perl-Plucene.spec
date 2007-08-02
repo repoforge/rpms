@@ -36,7 +36,7 @@ and search for things in them later.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -Rf %{buildroot}%{perl_vendorarch} %{buildroot}%{perl_archlib}
 
 %clean
