@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Algorithm-MedianSelect-XS/
 Source: http://search.cpan.org/CPAN/authors/id/S/SC/SCHUBIGER/Algorithm-MedianSelect-XS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build)
 
 %description
 Algorithm::MedianSelect::XS finds the item which is smaller than half of
@@ -33,7 +33,7 @@ the integers and bigger than half of the integers.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 
 %clean

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DA/DAVECROSS/Array-Compare-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build)
 
 %description
 Array::Compare is a Perl module which allows you to compare two arrays.
@@ -43,7 +43,7 @@ differing columns.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean

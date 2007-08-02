@@ -40,7 +40,7 @@ You may find this module useful if you:
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/Alias/.packlist
 
 %clean
