@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/J/JH/JHOBLITT/DateTime-Format-Da
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build)
 
 %description
 This module is a compatibility wrapper around Date::Parse.
@@ -33,7 +33,7 @@ This module is a compatibility wrapper around Date::Parse.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 
 %clean

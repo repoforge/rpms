@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JH/JHOBLITT/DateTime-Format-ISO
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build)
 
 %description
 This module parses almost all ISO8601 date and time formats.
@@ -34,7 +34,7 @@ ISO8601 time-intervals will be supported in a later release.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 
 %clean

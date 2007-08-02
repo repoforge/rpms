@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/DateTime-Locale/
 Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Locale-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl-Module-Build, perl
+BuildRequires: perl(Module::Build), perl
 
 %description
 The DateTime::Locale modules provide localization data for the
@@ -33,7 +33,7 @@ DateTime.pm class.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

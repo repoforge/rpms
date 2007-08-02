@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/DateTime-TimeZone/
 Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-TimeZone-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl-Module-Build, perl
+BuildRequires: perl(Module::Build), perl
 Provides: perl(DateTime::TimeZoneCatalog)
 
 %description
@@ -38,7 +38,7 @@ tools/parse_olson.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

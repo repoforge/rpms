@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JO/JONASBN/Date-Holidays-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build)
 
 %description
 A package with object oriented classes for holidays.
@@ -33,7 +33,7 @@ A package with object oriented classes for holidays.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean

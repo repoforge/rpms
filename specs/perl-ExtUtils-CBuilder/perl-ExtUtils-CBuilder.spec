@@ -35,7 +35,7 @@ With this perl module, you can compile and link C code for perl modules
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

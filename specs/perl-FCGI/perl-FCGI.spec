@@ -37,7 +37,7 @@ not require you to recompile perl.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/FCGI/.packlist
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Event-Chinese-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build)
 
 %description
 DateTime Extension for Calculating Important Chinese Dates.
@@ -33,7 +33,7 @@ DateTime Extension for Calculating Important Chinese Dates.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

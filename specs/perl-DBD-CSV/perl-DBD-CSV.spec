@@ -40,7 +40,7 @@ MS Excel data.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_vendorarch} \
 	%{buildroot}%{perl_archlib}
 

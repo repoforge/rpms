@@ -32,7 +32,7 @@ This module contains a version of expect written in perl.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/Expect/.packlist
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 

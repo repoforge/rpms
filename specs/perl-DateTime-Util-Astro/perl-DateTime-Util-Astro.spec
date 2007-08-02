@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/DateTime-Util-Astro/
 Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Util-Astro-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build)
 
 %description
 This module contains functions for astronomical calendar calculations.
@@ -34,7 +34,7 @@ This module contains functions for astronomical calendar calculations.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib} \
 	%{buildroot}%{perl_vendorarch}
 

@@ -42,8 +42,8 @@ or "cat /dev/null >file") transparently, without losing any input.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__make} install
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib}

@@ -33,7 +33,7 @@ This is a Perl extension for accessing _all_ bash environment variables.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \
