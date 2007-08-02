@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SC/SCHROEER/Wortschatz/Lingua-D
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build)
 
 %description
 Wortschatz.uni-leipzig.de webservice client.
@@ -33,7 +33,7 @@ Wortschatz.uni-leipzig.de webservice client.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 
 %clean

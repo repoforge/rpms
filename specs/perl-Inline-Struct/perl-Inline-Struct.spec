@@ -34,8 +34,8 @@ just tell Inline that you want to bind to structs as well as functions.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__make} install
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}

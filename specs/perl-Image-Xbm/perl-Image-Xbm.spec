@@ -35,7 +35,7 @@ With this module, you can load, create, manipulate and save xbm image files.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

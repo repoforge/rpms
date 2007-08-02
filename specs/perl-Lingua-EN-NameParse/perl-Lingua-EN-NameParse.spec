@@ -35,7 +35,7 @@ the name is broken down into components.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 %{__perl} -pi -e 's|/usr/local/bin/perl|%{_bindir}/perl|g;' %{buildroot}%{perl_vendorlib}/Lingua/EN/*
 

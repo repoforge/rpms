@@ -20,7 +20,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/HTML-Mason-%{real_ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build)
 
 %description
 Mason is a Perl-based web site development and delivery
@@ -41,7 +41,7 @@ need be changed only once to affect the whole site.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean

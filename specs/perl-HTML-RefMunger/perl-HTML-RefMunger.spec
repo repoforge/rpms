@@ -38,8 +38,8 @@ limit of 32 characters which made mastering impossible with long filenames.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__make} install
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}

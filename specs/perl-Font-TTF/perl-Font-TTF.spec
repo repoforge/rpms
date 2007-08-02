@@ -34,7 +34,7 @@ Use TTF fonts with Perl.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 %{__rm} -f %{buildroot}%{perl_vendorlib}/Font/TTF/Win32.pm
 

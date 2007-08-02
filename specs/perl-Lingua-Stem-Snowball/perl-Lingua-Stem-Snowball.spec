@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Lingua-Stem-Snowball/
 Source: http://www.cpan.org/modules/by-module/Lingua/Lingua-Stem-Snowball-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build)
 
 %description
 Perl interface to Snowball stemmers.
@@ -32,7 +32,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

@@ -36,7 +36,7 @@ With this module, you can use HTML templates in CGI scripts.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

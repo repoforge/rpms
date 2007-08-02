@@ -34,8 +34,8 @@ Inline::TT is a Inline plugin to allow you to code your Perl subs in TT.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__make} install
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}

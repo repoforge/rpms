@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KA/KAPPA/IMAP-BodyStructure-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build)
 
 %description
 An IMAP4-compatible IMAP server MUST include a full MIME-parser which
@@ -37,7 +37,7 @@ with parsing previous sentence.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
