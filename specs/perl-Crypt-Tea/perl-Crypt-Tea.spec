@@ -41,7 +41,7 @@ a browser. A wrapper executable 'tea' is included for command-line use.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib} \
 		%{buildroot}%{perl_vendorarch}
 

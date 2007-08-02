@@ -38,8 +38,8 @@ as single dots)
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__make} install
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 %{__mv} %{buildroot}%{_bindir}/hexdump %{buildroot}%{_bindir}/perlhexdump
 
 %clean
