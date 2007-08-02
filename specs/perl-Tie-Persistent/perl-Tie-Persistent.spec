@@ -40,7 +40,7 @@ course, that you can use arbitrary data structures inside the variable
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/YAML/YAML-Active-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl(Module::Build)
 
 %description
 YAML is an intuitive way to describe nested data structures. This module
@@ -41,7 +41,7 @@ encapsulated in the data structure itself.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

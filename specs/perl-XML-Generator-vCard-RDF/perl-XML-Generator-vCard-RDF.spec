@@ -18,7 +18,7 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-Generator-vCard-RDF-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
-BuildRequires: perl, perl-Module-Build, perl(Module::Build)
+BuildRequires: perl, perl(Module::Build), perl(Module::Build)
 
 %description
 Generate RDF/XML SAX2 events for vCard 3.0.
@@ -32,8 +32,8 @@ Generate RDF/XML SAX2 events for vCard 3.0.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__make} install
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}

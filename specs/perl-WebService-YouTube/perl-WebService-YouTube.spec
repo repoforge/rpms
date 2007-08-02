@@ -34,7 +34,7 @@ export PERL_EXTUTILS_AUTOINSTALL="--skipdeps --skip"
 %install
 %{__rm} -rf %{buildroot}
 export PERL_EXTUTILS_AUTOINSTALL="--skipdeps --skip"
-%makeinstall
+%{__make} install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
