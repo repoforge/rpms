@@ -21,34 +21,27 @@ BuildArch: noarch
 BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503
 
-
 %description
 Module for manipulations of tar archives.
-
 
 %prep
 %setup -n %{real_name}-%{version}
 
-
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
+    PREFIX="%{buildroot}%{_prefix}" \
+    INSTALLDIRS="vendor"
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-                %{buildroot}%{perl_vendorarch}
-
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files
 %defattr(-, root, root, 0755)
@@ -62,10 +55,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 - Updated to release 1.32.
 
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.30-1
-Updated to release 1.30.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.26-1.2
-- Rebuild for Fedora Core 5.
+- Updated to release 1.30.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.26-1
 - Updated to release 1.26.

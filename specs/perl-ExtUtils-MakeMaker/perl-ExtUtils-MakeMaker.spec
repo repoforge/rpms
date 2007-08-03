@@ -34,13 +34,13 @@ This is a CPAN distribution of the venerable MakeMaker module.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 #%{__install} -d -m0755 %{buildroot}%{_mandir}
 #%{__mv} -f %{buildroot}%{_prefix}/man/man3/ %{buildroot}%{_mandir}
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

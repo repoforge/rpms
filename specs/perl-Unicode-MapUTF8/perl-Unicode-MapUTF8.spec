@@ -33,7 +33,7 @@ Unicode-MapUTF8 (Conversions to and from arbitrary character sets and UTF8) modu
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

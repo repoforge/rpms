@@ -42,7 +42,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### FIXME: Change to real perl location. (Please fix upstream)
 %{__perl} -pi -e 's|^#!/.*bin/perl|#!%{__perl}|i;' examples/*.pl

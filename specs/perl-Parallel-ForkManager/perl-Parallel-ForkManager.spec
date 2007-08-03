@@ -35,7 +35,7 @@ Share Perl variables between processes.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 
 ### Clean up buildroot

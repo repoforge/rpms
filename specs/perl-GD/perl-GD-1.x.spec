@@ -60,7 +60,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/

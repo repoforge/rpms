@@ -40,7 +40,7 @@ encoding and decoding ASN.1 data structures using BER/DER rules.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

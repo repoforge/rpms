@@ -47,7 +47,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Remove this file because it generates an rpm dependency for Win32::Registry
 %{__rm} -f %{buildroot}%{perl_vendorarch}/Net/DNS/Resolver/Win32.pm

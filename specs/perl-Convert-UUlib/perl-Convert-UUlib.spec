@@ -35,7 +35,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot (arch)
 %{__rm} -rf %{buildroot}%{perl_archlib} \
