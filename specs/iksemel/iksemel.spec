@@ -3,13 +3,13 @@
 
 Summary: XML-parsing library
 Name: iksemel
-Version: 1.2
-Release: 1.2
+Version: 1.3
+Release: 1
 License: LGPL
 Group: Development/Libraries
-URL: http://iksemel.jabberstudio.org/
+URL: http://code.google.com/p/iksemel/
 
-Source: http://files.jabberstudio.org/iksemel/iksemel-%{version}.tar.gz
+Source: http://iksemel.googlecode.com/files/iksemel-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, gnutls-devel
@@ -41,11 +41,9 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%post
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -62,12 +60,15 @@ you will need to install %{name}-devel.
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/iksemel.h
-%{_libdir}/libiksemel.a
 %{_libdir}/libiksemel.so
 %{_libdir}/pkgconfig/iksemel.pc
+%exclude %{_libdir}/libiksemel.a
 %exclude %{_libdir}/*.la
 
 %changelog
+* Fri Jul 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.3-1
+- Updated to release 1.3.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1.2
 - Rebuild for Fedora Core 5.
 
