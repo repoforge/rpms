@@ -1,4 +1,4 @@
-# $Id
+# $Id$
 # Authority: dag
 # Upstream: Colin Phipps <cph@moria.org.uk>
 
