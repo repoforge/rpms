@@ -46,7 +46,6 @@ you will need to install %{name}-devel.
 %{__make} install DESTDIR="%{buildroot}"
 
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
 
 %clean
@@ -55,10 +54,10 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-%{_bindir}/geos-config
 %{_libdir}/libgeos*.so.*
 
 %files devel
+%{_bindir}/geos-config
 %{_bindir}/XMLTester
 %{_includedir}/geos*.h
 %{_includedir}/geos/
