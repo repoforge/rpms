@@ -4,10 +4,6 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?el5:%define _without_gc 1}
-%{?fc6:%define _without_gc 1}
-%{?fc5:%define _without_gc 1}
-
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 
@@ -16,7 +12,7 @@
 Summary: Modular text-mode IRC client
 Name: irssi
 Version: 0.8.10a
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Communications
 URL: http://irssi.org/
@@ -27,7 +23,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, automake, gcc-c++,
 BuildRequires: glib2-devel, imlib-devel, ncurses-devel
-%{!?_without_gc:BuildRequires: libgc-devel}
+%{?_with_gc:BuildRequires: libgc-devel}
 
 Provides: irssi-devel = %{version}-%{release}
 Obsoletes: irssi-devel <= %{version}-%{release}
@@ -50,7 +46,7 @@ Support for other protocols like ICQ could be created some day too.
         --enable-ipv6 \
 	--enable-ssl \
         --with-bot \
-%{!?_without_gc:--with-gc} \
+%{?_with_gc:--with-gc} \
 	--with-glib2 \
 	--with-imlib \
         --with-ncurses \
@@ -94,6 +90,9 @@ Support for other protocols like ICQ could be created some day too.
 %exclude %{_docdir}/irssi/
 
 %changelog
+* Thu Aug 02 2007 Dag Wieers <dag@wieers.com> - 0.8.10a-4
+- Disabled libgc for all distributions. (And be done with this mess)
+
 * Fri Jul 27 2007 Dag Wieers <dag@wieers.com> - 0.8.10a-3
 - Rebuild against libgc-7.0.
 

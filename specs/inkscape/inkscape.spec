@@ -26,7 +26,7 @@
 Summary: Vector drawing application
 Name: inkscape
 Version: 0.45.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://inkscape.sourceforge.net/
@@ -109,6 +109,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{_datadir}/pixmaps/inkscape.png
 
 %changelog
+* Sun Jul 29 2007 Dag Wieers <dag@wieers.com> - 0.45-2
+- Rebuild against libgc-7.0.
+
 * Tue Feb 13 2007 Dag Wieers <dag@wieers.com> - 0.45-1
 - Updated to release 0.45.
 
