@@ -10,7 +10,7 @@
 
 Summary: File System in Userspace (FUSE) utilities
 Name: fuse
-Version: 2.6.5
+Version: 2.7.0
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -63,7 +63,7 @@ Or use tools like "system-config-users" to add user "foo" to the fuse group.
 Note that the user has to re-login after he was added to the group.
 
 
-If you don't want to add all users to the fuse group you can also run
+If you do not want to add all users to the fuse group you can also run
 
 	# chmod 4755 /usr/bin/fusermount
 
@@ -79,11 +79,13 @@ EOF
 fuse
 EOF
 
+%{__ln_s} ../lib util/lib
+
 %build
 ### Kernel module is part of dkms-fuse
 %configure \
-	--disable-static \
-	--disable-kernel-module 
+    --disable-static \
+    --disable-kernel-module 
 %{__make} %{?_smp_mflags}
 
 %install
@@ -120,7 +122,7 @@ chown root:fuse /dev/fuse
 
 %postun 
 if [ $1 -eq 0 ]; then
-	%{_sbindir}/groupdel fuse || :
+    %{_sbindir}/groupdel fuse || :
 fi
 /sbin/ldconfig
 
@@ -162,6 +164,9 @@ fi
 %{_includedir}/fuse/
 
 %changelog
+* Mon Aug 06 2007 Dag Wieers <dag@wieers.com> - 2.7.0-1
+- Updated to release 2.7.0.
+
 * Sat May 12 2007 Dag Wieers <dag@wieers.com> - 2.6.5-1
 - Updated to release 2.6.5.
 

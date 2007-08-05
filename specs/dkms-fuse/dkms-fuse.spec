@@ -5,7 +5,7 @@
 
 Summary: Linux kernel module for FUSE (Filesystem in USErspace)
 Name: dkms-fuse
-Version: 2.6.3
+Version: 2.7.0
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -74,6 +74,9 @@ dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
 
 %changelog
+* Mon Aug 06 2007 Dag Wieers <dag@wieers.com> - 2.7.0-1
+- Updated to release 2.7.0.
+
 * Thu Feb 22 2007 Matthias Saou <http://freshrpms.net/> 2.6.3-1
 - Initial RPM release.
 
