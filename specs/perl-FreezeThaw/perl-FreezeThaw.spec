@@ -1,8 +1,8 @@
 # $Id$
 # Authority: dag
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name FreezeThaw
 
@@ -18,8 +18,8 @@ Source: http://www.cpan.org/modules/by-module/FreezeThaw/FreezeThaw-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.8.0, perl(ExtUtils::MakeMaker)
-Requires: perl >= 0:5.8.0
+BuildRequires: perl >= 2:5.8.0, perl(ExtUtils::MakeMaker)
+Requires: perl >= 2:5.8.0
 
 %description
 FreezeThaw module for perl.

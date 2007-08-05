@@ -1,8 +1,8 @@
 # $Id: perl-IP-Country.spec 171 2004-03-28 01:43:07Z dag $
 # Authority: dag
 
-%define perl_vendorlib  %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch  %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name SVG
 
@@ -28,22 +28,15 @@ Perl extension for generating Scalable Vector Graphics (SVG) documents.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
 
-### Clean up buildroot (noarch)
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
-
-### Clean up buildroot (arch)
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-                %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

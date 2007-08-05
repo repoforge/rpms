@@ -1,8 +1,8 @@
 # $Id$
 # Authority: dag
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Unicode-MapUTF8
 
@@ -18,8 +18,8 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SN/SNOWHARE/Unicode-MapUTF8-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl >= 0:5.8.0
-Requires: perl >= 0:5.8.0
+BuildRequires: perl(ExtUtils::MakeMaker), perl >= 2:5.8.0
+Requires: perl >= 2:5.8.0
 
 %description
 Unicode-MapUTF8 (Conversions to and from arbitrary character sets and UTF8) module for perl.
@@ -36,8 +36,7 @@ Unicode-MapUTF8 (Conversions to and from arbitrary character sets and UTF8) modu
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

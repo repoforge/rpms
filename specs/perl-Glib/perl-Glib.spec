@@ -2,8 +2,8 @@
 # Authority: dag
 # Upstream: <gtk-perl-list$gnome,org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Glib
 
@@ -18,9 +18,9 @@ URL: http://search.cpan.org/dist/Glib/
 Source: http://www.cpan.org/modules/by-module/Glib/Glib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.8.0, glib2-devel, perl(ExtUtils::Depends)
+BuildRequires: perl >= 2:5.8.0, glib2-devel, perl(ExtUtils::Depends)
 BuildRequires: perl(ExtUtils::PkgConfig)
-Requires: perl >= 0:5.8.0, glib2 >= 2.0.6
+Requires: perl >= 2:5.8.0, glib2 >= 2.0.6
 
 %description
 perl-Glib provides perl access to GLib and GLib's GObject libraries.  GLib is
@@ -33,19 +33,15 @@ and are used in many unrelated projects.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags} \
-	OPTIMIZE="%{optflags}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

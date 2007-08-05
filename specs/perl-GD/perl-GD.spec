@@ -1,5 +1,9 @@
 # $Id$
 # Authority: dag
+# Upstream: Lincoln D. Stein <lstein$cshl,edu>
+
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -9,27 +13,24 @@
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-
 %define real_name GD
 
 Summary: GD Perl interface to the GD Graphics Library
 Name: perl-GD
-Version: 2.30
-Release: 2.2
-License: LGPL
+Version: 2.35
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GD/
 
 Source: http://www.cpan.org/modules/by-module/GD/GD-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.8.0, gd-devel >= 2.0.12, libpng-devel, zlib-devel
+BuildRequires: perl >= 2:5.8.0, gd-devel >= 2.0.12, libpng-devel, zlib-devel
 BuildRequires: freetype-devel, libjpeg-devel
 %{?_with_modxorg:BuildRequires: libX11-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
-Requires: perl >= 0:5.8.0
+Requires: perl >= 2:5.8.0
 
 %description
 perl-GD is a Perl interface to the gd graphics library. GD allows you
@@ -40,40 +41,41 @@ and emit the drawings as PNG files.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	-options "JPEG,FT,XPM,PNG,GIF" \
-	-lib_gd_path "%{_libdir}" \
-	-lib_ft_path "%{_libdir}" \
-	-lib_png_path "%{_libdir}" \
-	-lib_jpeg_path "%{_libdir}" \
-	-lib_xpm_path "%{_libdir}" \
-	-lib_zlib_path "%{_libdir}" \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags} \
-	OPTIMIZE="%{optflags}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" \
+    -options "JPEG,FT,XPM,PNG,GIF" \
+    -lib_gd_path "%{_libdir}" \
+    -lib_ft_path "%{_libdir}" \
+    -lib_png_path "%{_libdir}" \
+    -lib_jpeg_path "%{_libdir}" \
+    -lib_xpm_path "%{_libdir}" \
+    -lib_zlib_path "%{_libdir}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog MANIFEST README
-%doc %{_mandir}/man?/*
-%{perl_vendorarch}/GD.pm
+%doc ChangeLog MANIFEST META.yml README README.QUICKDRAW README.unix
+%doc %{_mandir}/man1/bdf2gdfont.pl.1*
+%doc %{_mandir}/man3/*.3pm*
+%{_bindir}/bdf2gdfont.pl
 %{perl_vendorarch}/GD/
+%{perl_vendorarch}/GD.pm
 %{perl_vendorarch}/auto/GD/
 %{perl_vendorarch}/qd.pl
-%{_bindir}/bdf2gdfont.pl
 
 %changelog
+* Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 2.35-1
+- Updated to release 2.35.
+
 * Sun Dec 25 2005 Dag Wieers <dag@wieers.com> - 2.30-2
 - Added PNG support. (Why was it gone ?)
 

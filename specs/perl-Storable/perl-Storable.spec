@@ -1,63 +1,61 @@
-# $Id: perl-Convert-UUlib.spec 125 2004-03-16 22:05:34Z dag $
-# Authority: matthias
+# $Id$
+# Authority: dag
+# Upstream: Abhijit Menon-Sen <ams$wiw,org>
 
+### Upstream perl package now provides perl(Storable)
 # ExclusiveDist: rh6 el2 rh7
+
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Storable
 
-Summary: %{real_name} module for perl
+Summary: Perl module for persistence for Perl data structures
 Name: perl-Storable
-Version: 2.15
+Version: 2.16
 Release: 1
-License: GPL or Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/%{real_name}/
+URL: http://search.cpan.org/dist/Storable/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AM/AMS/Storable-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Storable/Storable-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Requires: perl >= 0:5.8.0
-BuildRequires: perl(ExtUtils::MakeMaker), perl >= 0:5.8.0
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
+Requires: perl
 
 %description
-%{summary}.
-
+perl-Storable is a Perl module for persistence for Perl data structures.
 
 %prep
 %setup -n %{real_name}-%{version}
 
-
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags} \
-	OPTIMIZE="%{optflags}"
-
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 find %{buildroot}%{_libdir} -name "*.so" -exec chmod u+w {} \;
-
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %files
 %defattr(-, root, root, 0755)
-%doc MANIFEST README
-%{_libdir}/perl5/vendor_perl/*/*
-# No man pages...
-#{_mandir}/man?/*
-
+%doc ChangeLog MANIFEST README
+#%doc %{_mandir}/man3/Storable.3pm*
+%{perl_vendorarch}/Storable.pm
+%{perl_vendorarch}/auto/Storable/
 
 %changelog
+* Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 2.16-1
+- Updated to release 2.16.
+
 * Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 2.15-1
 - Updated to release 2.15.
 

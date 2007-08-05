@@ -62,6 +62,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/goferperf.pl
 %dir %{perl_vendorarch}/Win32/
 %{perl_vendorarch}/Win32/DBIODBC.pm
+
+### Remove this file because it generates an rpm dependency for Win32::ODBC
 %exclude %{perl_vendorarch}/DBI/W32ODBC.pm
 
 %changelog

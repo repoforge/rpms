@@ -1,8 +1,8 @@
 # $Id$
 # Authority: dag
 
-%define perl_vendorlib  %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch  %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Archive-Zip
 
@@ -28,15 +28,12 @@ read, and write Zip archive files.
 Zip archives can be created, or you can read from existing zip files.
 Once created, they can be written to files, streams, or strings.
 
-
 %prep
 %setup -n %{real_name}-%{version}
 
-
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTALLDIRS="vendor"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
@@ -62,9 +59,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Archive/Zip/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.16-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Jul 13 2005 Dag Wieers <dag@wieers.com> - 1.16-1
 - Updated to release 1.16.
 

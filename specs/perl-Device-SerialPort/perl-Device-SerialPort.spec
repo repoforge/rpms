@@ -2,23 +2,26 @@
 # Authority: dries
 # Upstream: Kees Cook <cook-cpan$outflux,net>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Device-SerialPort
 
 Summary: Linux/POSIX emulation of Win32::SerialPort functions
 Name: perl-Device-SerialPort
-Version: 1.002
-Release: 1.2
+Version: 1.003001
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Device-SerialPort/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CO/COOK/Device-SerialPort-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Device/Device-SerialPort-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, perl(ExtUtils::MakeMaker)
+
+Obsoletes: perl-Device-SerialPorts <= %{version}-%{release}
+Provides: perl-Device-SerialPorts = %{release}-%{version}
 
 %description
 This is a POSIX-based version of the Win32::Serialport module ported by
@@ -33,28 +36,42 @@ Operating Systems.
 
 %build
 %{__perl} -pi -e 's/^if \(\!defined\(\$file\)\)/if (1 == 0)/g;' Makefile.PL
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" TESTPORT=/dev/ttyS1
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" /dev/ttyS1
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man?/*
+%doc Changes MANIFEST META.yml README TODO eg/
+%doc %{_mandir}/man1/modemtest.1*
+%doc %{_mandir}/man3/Device::SerialPort.3pm*
 %{_bindir}/modemtest
+%dir %{perl_vendorarch}/Device/
 %{perl_vendorarch}/Device/SerialPort.pm
-%{perl_vendorarch}/auto/Device/SerialPort
+%dir %{perl_vendorarch}/auto/Device/
+%{perl_vendorarch}/auto/Device/SerialPort/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.002-1.2
-- Rebuild for Fedora Core 5.
+* Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 1.003001-1
+- Updated to release 1.003001.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.002-1
 - Initial package.
+
+* Mon Jul 21 2003 Dag Wieers <dag@wieers.com> - 0.22-1
+- Disabled examples.
+
+* Sun Jul 20 2003 Dag Wieers <dag@wieers.com> - 0.22-0
+- Initial package. (using DAR)

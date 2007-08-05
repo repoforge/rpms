@@ -2,8 +2,8 @@
 # Authority: dag
 # Upstream: <gtk-perl-list$gnome,org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Cairo
 
@@ -18,9 +18,9 @@ URL: http://search.cpan.org/dist/Cairo/
 Source: http://www.cpan.org/modules/by-module/GStreamer/TSCH/Cairo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.8.0, perl(Glib) >= 1.0.0
+BuildRequires: perl >= 2:5.8.0, perl(Glib) >= 1.0.0
 BuildRequires: cairo-devel
-Requires: perl >= 0:5.8.0
+Requires: perl >= 2:5.8.0
 
 %description
 Perl interface to the cairo library.
@@ -37,7 +37,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTA
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

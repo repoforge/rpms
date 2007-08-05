@@ -1,8 +1,9 @@
 # $Id$
 # Authority: dag
+# Upstream: David Coppit <david$coppit,org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name FileHandle-Unget
 
@@ -10,7 +11,7 @@ Summary: FileHandle which supports multi-byte unget
 Name: perl-FileHandle-Unget
 Version: 0.16.1
 Release: 1
-License: GPL
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/FileHandle-Unget/
 
@@ -44,9 +45,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES LICENSE MANIFEST README
-%doc %{_mandir}/man3/*.3pm*
-%{perl_vendorlib}/FileHandle/
+%doc CHANGES LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/FileHandle::Unget.3pm*
+%dir %{perl_vendorlib}/FileHandle/
+%{perl_vendorlib}/FileHandle/Unget.pm
 
 %changelog
 * Tue Jun 06 2006 Dag Wieers <dag@wieers.com> - 0.16.1-1

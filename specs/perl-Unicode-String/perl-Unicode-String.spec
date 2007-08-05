@@ -1,5 +1,9 @@
 # $Id$
 # Authority: dag
+# Upstream: Gisle Aas <gisle$ActiveState,com>
+
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Unicode-String
 
@@ -7,15 +11,15 @@ Summary: Unicode-String (String of Unicode characters (UCS2/UTF16)) module for p
 Name: perl-Unicode-String
 Version: 2.09
 Release: 1.2
-License: GPL or Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-String/
 
 Source: http://www.cpan.org/modules/by-module/Unicode/Unicode-String-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.8.0, perl(ExtUtils::MakeMaker)
-Requires: perl >= 0:5.8.0
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
+Requires: perl
 
 %description
 Unicode-String (String of Unicode characters (UCS2/UTF16)) module for perl.
@@ -24,33 +28,31 @@ Unicode-String (String of Unicode characters (UCS2/UTF16)) module for perl.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags} \
-	OPTIMIZE="%{optflags}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README
-%doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Unicode::CharName.3pm*
+%doc %{_mandir}/man3/Unicode::String.3pm*
+%dir %{perl_vendorarch}/Unicode/
+%{perl_vendorarch}/Unicode/CharName.pm
+%{perl_vendorarch}/Unicode/String.pm
+%dir %{perl_vendorarch}/auto/Unicode/
+%{perl_vendorarch}/auto/Unicode/String/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.09-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.09-1
 - Updated to release 2.09.
 

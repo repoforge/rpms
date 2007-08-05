@@ -1,19 +1,26 @@
 # $Id$
-# Authority: matthias
-# ExclusiveDist: el2 rh7 rh9 el3 fc1
+# Authority: dag
+# Upstream: Chip Turner <cturner$pattern,net>
+
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name RPM-Specfile
 
 Summary: Perl module for creating rpm packages of other perl modules
 Name: perl-RPM-Specfile
-Version: 1.19
+Version: 1.51
 Release: 1
-License: GPL or Artistic
-Group: Development/Tools
-Source: http://www.cpan.org/modules/by-module/RPM/RPM-Specfile-%{version}.tar.gz
+License: Artistic/GPL
+Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RPM-Specfile/
+
+Source: http://www.cpan.org/modules/by-module/RPM/RPM-Specfile-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: perl
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+
 BuildArch: noarch
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
+Requires: perl
 
 %description
 Simple module for creation of RPM Spec files.  Used by cpanflute2 to turn CPAN
@@ -21,33 +28,35 @@ tarballs into RPM modules.
 See the included script cpanflute2 for usage; documentation coming soon.
 
 %prep
-%setup -n RPM-Specfile-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" perl Makefile.PL
-%{__make} %{?_smp_mflags} OPTIMIZE="$RPM_OPT_FLAGS"
-%{__make} test
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-eval `%{__perl} '-V:installarchlib'`
-%{__mkdir_p} %{buildroot}$installarchlib
-%makeinstall PERL_INSTALL_ROOT=%{buildroot}
-%{__rm} -f `find %{buildroot} -type f -name perllocal.pod -o -name .packlist`
+%{__make} pure_install
 
-[ -x /usr/lib/rpm/brp-compress ] && /usr/lib/rpm/brp-compress
-
-find %{buildroot} -type f -print | \
-  sed "s@^%{buildroot}@@g" > %{name}-%{version}-%{release}-filelist
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}-%{version}-%{release}-filelist
+%files
 %defattr(-, root, root, 0755)
-%doc Changes README
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/RPM::Specfile.3pm*
+%{_bindir}/cpanflute2
+%{_bindir}/cpanflute2-old
+%dir %{perl_vendorlib}/RPM/
+%{perl_vendorlib}/RPM/Specfile.pm
 
 %changelog
+* Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 1.51-1
+- Updated to release 1.51.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.19-1
 - Updated to release 1.19.
 
@@ -63,4 +72,3 @@ find %{buildroot} -type f -print | \
 
 * Sun Feb  9 2003 Ville Skyttä <ville.skytta at iki.fi> 1.11-1.fedora.1
 - First Fedora release.
-

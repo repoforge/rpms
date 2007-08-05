@@ -1,8 +1,9 @@
 # $Id$
 # Authority: dag
+# Upstream: David Coppit <david@coppit.org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Mail-Mbox-MessageParser
 
@@ -10,7 +11,7 @@ Summary: Fast and simple mbox folder reader
 Name: perl-Mail-Mbox-MessageParser
 Version: 1.5000
 Release: 1
-License: GPL
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-Mbox-MessageParser/
 
@@ -18,7 +19,10 @@ Source: http://www.cpan.org/modules/by-module/Mail/Mail-Mbox-MessageParser-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(FileHandle::Unget)
+BuildRequires: perl >= 0:5.004
+BuildRequires: perl(FileHandle::Unget)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Text::Diff)
 Requires: perl
 
 %description
@@ -33,20 +37,22 @@ echo | %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-echo | %makeinstall
+echo | %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES LICENSE MANIFEST README
-%{_mandir}/man3/*
-%{perl_vendorlib}/Mail/
+%doc CHANGES LICENSE MANIFEST MANIFEST.SKIP META.yml README
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorlib}/Mail/
+%dir %{perl_vendorlib}/Mail/Mbox/
+%{perl_vendorlib}/Mail/Mbox/MessageParser/
+%{perl_vendorlib}/Mail/Mbox/MessageParser.pm
 
 %changelog
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.5000-1

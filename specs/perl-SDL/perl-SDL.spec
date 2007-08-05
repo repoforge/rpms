@@ -1,5 +1,5 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
 
 %{?dist: %{expand: %%define %dist 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
@@ -27,7 +27,7 @@
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
-%define _use_internal_dependency_generator 0
+#define _use_internal_dependency_generator 0
 
 %define real_name SDL_Perl
 
@@ -37,13 +37,16 @@ Version: 2.1.3
 Release: 1
 License: GPL
 Group: System Environment/Libraries
-URL: http://sdl.perl.org/
+URL: http://search.cpan.org/dist/SDL_Perl/
+#URL: http://sdl.perl.org/
+
 Source: http://search.cpan.org/CPAN/authors/id/D/DG/DGOEHRIG/SDL_Perl-%{version}.tar.gz
 Source10: filter-depends.sh
 Patch0: http://ftp.debian.org/debian/pool/main/s/sdlperl/sdlperl_2.1.2-1.diff.gz
 Patch1: perl-SDL-no-mixertest.patch
 Patch2: perl-SDL-gfxPie.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, SDL_net-devel
 BuildRequires: SDL_ttf-devel, SDL_gfx-devel
 BuildRequires: smpeg-devel, libjpeg-devel, libpng-devel
@@ -61,7 +64,6 @@ Provides: SDL_Perl = %{version}-%{release}
 
 %description
 The SDL (Simple DirectMedia Layer) bindings for the perl language.
-
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -81,34 +83,26 @@ patch -p1 < debian/patches/030_opengl_fixes.diff
 # This, we don't want since it'll fail the audio dev check in a minimal chroot
 #./Build test
 
-
 %install
 %{__rm} -rf %{buildroot}
-export PERL_INSTALL_ROOT="%{buildroot}"
-./Build install installdirs="vendor"
-
-# Remove files we don't want to include
-%{__rm} -f `/usr/bin/find %{buildroot} -type f \
-    -name perllocal.pod -o -name .packlist -o -name '*.bs'`
+PERL_INSTALL_ROOT="%{buildroot}" ./Build install installdirs="vendor"
 
 ### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{__rm} -rf %{buildroot}%{perl_vendorarch}/auto/src/
-
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS CHANGELOG COPYING MANIFEST README TODO
+%doc BUGS CHANGELOG COPYING MANIFEST META.yml README TODO
+%doc %{_mandir}/man3/*.3pm*
 %{perl_vendorarch}/auto/SDL/
 %{perl_vendorarch}/auto/SDL_perl/
 %{perl_vendorarch}/SDL/
 %{perl_vendorarch}/SDL.pm
 %{perl_vendorarch}/SDL_perl.pm
-%{_mandir}/man3/*
-
 
 %changelog
 * Fri Mar 30 2007 Dag Wieers <dag@wieers.com> - 2.1.3-1

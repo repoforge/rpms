@@ -6,8 +6,8 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Net-DNS
 
@@ -38,23 +38,17 @@ script.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" --no-online-tests \
-        INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags} \
-        OPTIMIZE="%{optflags}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" \
+    --no-online-tests
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
 
-### Remove this file because it generates an rpm dependency for Win32::Registry
-%{__rm} -f %{buildroot}%{perl_vendorarch}/Net/DNS/Resolver/Win32.pm
-
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-                %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -65,6 +59,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %doc %{_mandir}/man?/*
 %{perl_vendorarch}/Net/
 %{perl_vendorarch}/auto/Net/
+
+### Remove this file because it generates an rpm dependency for Win32::Registry
+%exclude %{perl_vendorarch}/Net/DNS/Resolver/Win32.pm
 
 %changelog
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.59-1

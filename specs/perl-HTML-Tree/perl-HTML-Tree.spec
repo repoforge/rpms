@@ -17,10 +17,9 @@ URL: http://search.cpan.org/dist/HTML-Tree/
 Source: http://www.cpan.org/modules/by-module/HTML/HTML-Tree-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildArch: noarch
-BuildRequires: perl >= 0:5.8.0
-Requires: perl >= 0:5.8.0
+BuildRequires: perl >= 2:5.8.0
+Requires: perl >= 2:5.8.0
 
 %description
 HTML-Tree module for perl.

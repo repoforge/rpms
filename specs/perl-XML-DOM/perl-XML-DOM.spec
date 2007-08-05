@@ -1,11 +1,11 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
+# Upstream: T.J. Mather <tjmather$maxmind,com>
+
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name XML-DOM
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Perl module for building DOM Level 1 compliant document structures
 Name: perl-XML-DOM
@@ -14,10 +14,12 @@ Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-DOM/
+
 Source: http://www.cpan.org/modules/by-module/XML/XML-DOM-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+
 BuildArch: noarch
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 This is a Perl extension to XML::Parser. It adds a new 'Style' to XML::Parser,
@@ -26,35 +28,36 @@ with a DOM Level 1 compliant interface.
 For a description of the DOM (Document Object Model), see :
 http://www.w3.org/DOM/
 
-
 %prep
 %setup -n %{real_name}-%{version}
 
-
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
-
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*{,/*}/.packlist
+%{__make} pure_install
 
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find samples/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc BUGS Changes FAQ.xml MANIFEST META.yml README samples/
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorlib}/XML/
 %{perl_vendorlib}/XML/DOM/
 %{perl_vendorlib}/XML/DOM.pm
+%dir %{perl_vendorlib}/XML/
+%dir %{perl_vendorlib}/XML/Handler/
 %{perl_vendorlib}/XML/Handler/BuildDOM.pm
-
 
 %changelog
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.44-1

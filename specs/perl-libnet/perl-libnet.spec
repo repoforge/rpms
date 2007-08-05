@@ -1,62 +1,60 @@
 # $Id$
 # Authority: dag
+# Upstream: Graham Barr <gbarr$pobox,com>
 
 # ExclusiveDist: rh6 el2 rh7 rh8
 
-Summary: libnet module for perl
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name libnet
+
+Summary: Collection of Perl modules which provide Internet protocols
 Name: perl-libnet
-Version: 1.19
+Version: 1.21
 Epoch: 2
-Release: 1.2
-License: distributable
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
-Source0: http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/libnet-%{version}.tar.gz
-Source10: filter-depends.sh
-URL: http://www.cpan.org
+URL: http://search.cpan.org/dist/libnet/
+
+Source: http://www.cpan.org/modules/by-module/Net/libnet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: perl >= 0:5.00503, perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.00503
 
 %description
-libnet module for perl
-
-# Provide perl-specific find-{provides,requires}.
-%define __find_provides /usr/lib/rpm/find-provides.perl
-%define __find_requires %{SOURCE10}
+perl-libnet is a collection of Perl modules which provides a simple
+and consistent programming interface (API) to the client side
+of various protocols used in the internet community.
 
 %prep
-%setup -q -n libnet-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" perl Makefile.PL < /dev/null
-make
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+
+%install
+%{__rm} -rf %{buildroot}
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%install
-%{__rm} -rf %{buildroot}
-eval `perl '-V:installarchlib'`
-mkdir -p $RPM_BUILD_ROOT/$installarchlib
-make PREFIX=$RPM_BUILD_ROOT/usr INSTALLDIRS=vendor install
-
-[ -x /usr/lib/rpm/brp-compress ] && /usr/lib/rpm/brp-compress
-
-find $RPM_BUILD_ROOT/usr -type f -print |
-	sed "s@^$RPM_BUILD_ROOT@@g" |
-	grep -v perllocal.pod |
-	grep -v "\.packlist" > libnet-1.0901-filelist
-if [ "$(cat libnet-1.0901-filelist)X" = "X" ] ; then
-    echo "ERROR: EMPTY FILE LIST"
-    exit -1
-fi
-
-%files -f libnet-1.0901-filelist
+%files
 %defattr(-, root, root, 0755)
+%doc Changes MANIFEST META.yml README SIGNATURE
+%doc %{_mandir}/man3/*.3pm*
+%{perl_vendorlib}/Net/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.19-1.2
-- Rebuild for Fedora Core 5.
+* Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 1.21-1
+- Updated to release 1.21.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.19-1
 - Updated to release 1.19.

@@ -46,14 +46,11 @@ the Julian and the Gregorian calendars.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/DateTime::Calendar::Christian.3pm*
 %dir %{perl_vendorlib}/DateTime/
 %dir %{perl_vendorlib}/DateTime/Calendar/
 %{perl_vendorlib}/DateTime/Calendar/Christian.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
-- Rebuild for Fedora Core 5.
-
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.
