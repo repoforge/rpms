@@ -1,0 +1,52 @@
+--- src/statgrab/Makefile.am.old	2005-02-04 19:45:16.384407326 +0100
++++ src/statgrab/Makefile.am	2005-02-04 19:45:23.292225787 +0100
+@@ -19,12 +19,12 @@
+ if STATGRAB
+ if SETGIDBINS
+ # Some operating systems need the binary to be setgid kmem
+-	chgrp kmem $(DESTDIR)@bindir@/statgrab
+-	chmod g+s $(DESTDIR)@bindir@/statgrab
++	chgrp kmem $(DESTDIR)@bindir@/statgrab || true
++	chmod g+s $(DESTDIR)@bindir@/statgrab || true
+ endif
+ if SETUIDBINS
+ # Some operating systems need the binary to be setuid root
+-	chown root $(DESTDIR)@bindir@/statgrab
++	chown root $(DESTDIR)@bindir@/statgrab || true
+ 	chmod u+s $(DESTDIR)@bindir@/statgrab
+ endif
+ endif
+--- src/statgrab/Makefile.in.old	2005-02-04 19:56:55.352716673 +0100
++++ src/statgrab/Makefile.in	2005-02-04 19:57:31.010601483 +0100
+@@ -507,10 +507,10 @@
+ 
+ install-exec-local:
+ # Some operating systems need the binary to be setgid kmem
+-@SETGIDBINS_TRUE@@STATGRAB_TRUE@	chgrp kmem $(DESTDIR)@bindir@/statgrab
+-@SETGIDBINS_TRUE@@STATGRAB_TRUE@	chmod g+s $(DESTDIR)@bindir@/statgrab
++@SETGIDBINS_TRUE@@STATGRAB_TRUE@	chgrp kmem $(DESTDIR)@bindir@/statgrab || true
++@SETGIDBINS_TRUE@@STATGRAB_TRUE@	chmod g+s $(DESTDIR)@bindir@/statgrab || true
+ # Some operating systems need the binary to be setuid root
+-@SETUIDBINS_TRUE@@STATGRAB_TRUE@	chown root $(DESTDIR)@bindir@/statgrab
++@SETUIDBINS_TRUE@@STATGRAB_TRUE@	chown root $(DESTDIR)@bindir@/statgrab || true
+ @SETUIDBINS_TRUE@@STATGRAB_TRUE@	chmod u+s $(DESTDIR)@bindir@/statgrab
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
+ # Otherwise a system limit (for SysV at least) may be exceeded.
+--- src/saidar/Makefile.in.old	2005-02-04 20:34:08.108193091 +0100
++++ src/saidar/Makefile.in	2005-02-04 20:34:34.550848428 +0100
+@@ -474,11 +474,11 @@
+ 
+ install-exec-local:
+ # Some operating systems need the binary to be setgid kmem
+-@SAIDAR_TRUE@@SETGIDBINS_TRUE@	chgrp kmem $(DESTDIR)@bindir@/saidar
+-@SAIDAR_TRUE@@SETGIDBINS_TRUE@	chmod g+s $(DESTDIR)@bindir@/saidar
++@SAIDAR_TRUE@@SETGIDBINS_TRUE@	chgrp kmem $(DESTDIR)@bindir@/saidar || true
++@SAIDAR_TRUE@@SETGIDBINS_TRUE@	chmod g+s $(DESTDIR)@bindir@/saidar || true
+ # Some operating systems need the binary to be setuid root
+-@SAIDAR_TRUE@@SETUIDBINS_TRUE@	chown root $(DESTDIR)@bindir@/saidar
+-@SAIDAR_TRUE@@SETUIDBINS_TRUE@	chmod u+s $(DESTDIR)@bindir@/saidar
++@SAIDAR_TRUE@@SETUIDBINS_TRUE@	chown root $(DESTDIR)@bindir@/saidar || true
++@SAIDAR_TRUE@@SETUIDBINS_TRUE@	chmod u+s $(DESTDIR)@bindir@/saidar || true
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
+ # Otherwise a system limit (for SysV at least) may be exceeded.
+ .NOEXPORT:

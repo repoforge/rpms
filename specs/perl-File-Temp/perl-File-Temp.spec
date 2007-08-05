@@ -1,30 +1,29 @@
 # $Id$
 # Authority: dag
-# Upstream: Chia-liang Kao <clkao@clkao.org>
+# Upstream: Tim Jenness <t,jenness$jach,hawaii,edu>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name App-CLI
+%define real_name File-Temp
 
-Summary: Dispatcher module for command line interface programs
-Name: perl-App-CLI
-Version: 0.07
+Summary: Perl module that returns name and handle of a temporary file safely
+Name: perl-File-Temp
+Version: 0.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/App-CLI/
+URL: http://search.cpan.org/dist/File-Temp/
 
-Source: http://www.cpan.org/modules/by-module/App/App-CLI-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/File/File-Temp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(Locale::Maketext::Simple)
-BuildRequires: perl(Getopt::Long) >= 2.35
-BuildRequires: perl(Pod::Simple::Text)
+BuildRequires: perl
 
 %description
-Dispatcher module for command line interface programs.
+perl-File-Temp is a Perl module that returns name and handle
+of a temporary file safely.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -45,13 +44,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml SIGNATURE
-%doc %{_mandir}/man3/App::CLI.3pm*
-%doc %{_mandir}/man3/App::CLI::Command.3pm*
-%dir %{perl_vendorlib}/App/
-%{perl_vendorlib}/App/CLI/
-%{perl_vendorlib}/App/CLI.pm
+%doc ChangeLog MANIFEST META.yml README
+%doc %{_mandir}/man3/File::Temp.3pm*
+%dir %{perl_vendorlib}/File/
+%{perl_vendorlib}/File/Temp.pm
 
 %changelog
-* Fri Aug 03 2007 Dag Wieers <dag@wieers.com> - 0.07-1
+* Mon Aug 06 2007 Dag Wieers <dag@wieers.com> - 0.18-1
 - Initial package. (using DAR)

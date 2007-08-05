@@ -5,16 +5,19 @@
 
 Summary: Postfix Greylisting Policy Server
 Name: postgrey
-Version: 1.27
-Release: 3
+Version: 1.30
+Release: 1
 License: GPL
 Group: System Environment/Daemons
+URL: http://isg.ee.ethz.ch/tools/postgrey/
+
 Source0: http://isg.ee.ethz.ch/tools/postgrey/pub/postgrey-%{version}.tar.gz
 Source1: postgrey.init
 Source2: README-rpm
-Patch0: postgrey-1.27-group.patch
-URL: http://isg.ee.ethz.ch/tools/postgrey/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildArch: noarch
+
 # We require postfix for its directories and gid
 Requires: postfix
 # This module seems to be a weak dependency from Net::Server, so we need to
@@ -24,7 +27,6 @@ Requires(pre): /usr/sbin/useradd
 Requires(post): /sbin/chkconfig
 Requires(preun): /sbin/service, /sbin/chkconfig
 Requires(postun): /sbin/service
-BuildArch: noarch
 
 %description
 Postgrey is a Postfix policy server implementing greylisting.  When a request
@@ -37,8 +39,7 @@ again later, as it is however required per RFC.
 
 %prep
 %setup
-%patch0 -p1 -b .group
-%{__install} -p -m 0644 %{SOURCE2} README-rpm
+%{__install} -p -m0644 %{SOURCE2} README-rpm
 
 
 %build
@@ -52,30 +53,15 @@ pod2man \
 %install
 %{__rm} -rf %{buildroot}
 
-# Configuration files
-%{__mkdir_p} %{buildroot}%{confdir}
-%{__install} -p -m 0644 postgrey_whitelist_{clients,recipients} \
-    %{buildroot}%{confdir}/
-touch %{buildroot}%{confdir}/postgrey_whitelist_clients.local
+%{__install} -Dp -m0644 postgrey_whitelist_clients %{buildroot}%{confdir}/postgrey_whitelist_clients
+%{__install} -Dp -m0644 postgrey_whitelist_recipients %{buildroot}%{confdir}/postgrey_whitelist_recipients
+%{__install} -Dp -m0755 postgrey %{buildroot}%{_sbindir}/postgrey
+%{__install} -Dp -m0755 %{SOURCE1} %{buildroot}%{_initrddir}/postgrey
+%{__install} -Dp -m0644 postgrey.8 %{buildroot}%{_mandir}/man8/postgrey.8
+%{__install} -Dp -m0755 contrib/postgreyreport %{buildroot}%{_sbindir}/postgreyreport
 
-# Main script
-%{__install} -D -p -m 0755 postgrey %{buildroot}%{_sbindir}/postgrey
-
-# Spool directory
 %{__mkdir_p} %{buildroot}%{_var}/spool/postfix/postgrey
-
-# Init script
-%{__install} -D -p -m 0755 %{SOURCE1} \
-    %{buildroot}%{_sysconfdir}/rc.d/init.d/postgrey
-
-# Man page
-%{__install} -D -p -m 0644 postgrey.8 \
-    %{buildroot}%{_mandir}/man8/postgrey.8
-
-# Optional report script
-%{__install} -D -p -m 0755 contrib/postgreyreport \
-    %{buildroot}%{_sbindir}/postgreyreport
-
+touch %{buildroot}%{confdir}/postgrey_whitelist_clients.local
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -101,19 +87,24 @@ fi
 
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc Changes COPYING README README-rpm
-%{_sysconfdir}/rc.d/init.d/postgrey
+%doc %{_mandir}/man8/postgrey.8*
+%config %{_initrddir}/postgrey
 %config(noreplace) %{confdir}/postgrey_whitelist_clients
 %config(noreplace) %{confdir}/postgrey_whitelist_recipients
 %config(noreplace) %{confdir}/postgrey_whitelist_clients.local
 %{_sbindir}/postgrey
 %{_sbindir}/postgreyreport
-%{_mandir}/man8/postgrey.8*
-%dir %attr(0751, postgrey, postfix) %{_var}/spool/postfix/postgrey/
+
+%defattr(0751, postgrey, postfix, 0751)
+%dir %{_var}/spool/postfix/postgrey/
 
 
 %changelog
+* Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 1.30-1
+- Updated to release 1.30.
+
 * Mon Dec  4 2006 Matthias Saou <http://freshrpms.net/> 1.27-3
 - Add man page generation (Mike Wohlgemuth).
 
