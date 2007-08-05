@@ -1,29 +1,29 @@
 # $Id$
-# Authority: dries
+# Authority: dag
+# Upstream: Jonas B, NIelsen <jonasbn$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name HTML-Tree
+%define real_name Workflow
+%define real_version 1.32
 
-Summary: HTML-Tree module for perl
-Name: perl-HTML-Tree
-Version: 3.23
+Summary: Simple, flexible system to implement workflows
+Name: perl-Workflow
+Version: 0.28
 Release: 1
-License: GPL or Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/HTML-Tree/
+URL: http://search.cpan.org/dist/Workflow/
 
-Source: http://www.cpan.org/modules/by-module/HTML/HTML-Tree-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Workflow/Workflow-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildArch: noarch
-BuildRequires: perl >= 0:5.8.0
-Requires: perl >= 0:5.8.0
+BuildRequires: perl
 
 %description
-HTML-Tree module for perl.
+Simple, flexible system to implement workflows.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -39,24 +39,19 @@ HTML-Tree module for perl.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find doc/ eg/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README TODO
+%doc Changes MANIFEST META.yml README TODO VERSION doc/ eg/
 %doc %{_mandir}/man3/*.3pm*
-%{perl_vendorlib}/HTML/
+%{perl_vendorlib}/Workflow/
+%{perl_vendorlib}/Workflow.pm
 
 %changelog
-* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 3.23-1
-- Updated to release 3.23.
-
-* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 3.21-1
-- Updated to release 3.21.
-
-* Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 3.18-0
-- Updated to release 3.18.
-
-* Sun Aug 03 2003 Dag Wieers <dag@wieers.com> - 3.17-0
+* Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 0.28-1
 - Initial package. (using DAR)

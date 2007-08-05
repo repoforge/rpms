@@ -1,28 +1,27 @@
 # $Id$
 # Authority: dag
+# Upstream: Vlad Manilici <vman$tmok,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name aliased
+%define real_name Net-Libdnet
 
-Summary: aliased module for perl
-Name: perl-aliased
-Version: 0.21
+Summary: Perl module that implements an interface to libdnet
+Name: perl-Net-Libdnet
+Version: 0.01
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/aliased/
+URL: http://search.cpan.org/dist/Net-Libdnet/
 
-Source: http://www.cpan.org/modules/by-module/aliased/aliased-%{version}.tar.gz
-#Source: http://www.cpan.org/authors/id/O/OV/OVID/aliased-0.21.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/Net-Libdnet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-Requires: perl
 
 %description
-aliased module for perl.
+perl-Net-Libdnet is a Perl module that implements an interface to libdnet.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -43,11 +42,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ANNOUNCE ChangeLog Changes LICENSE MANIFEST README TODO
-%doc %{_mandir}/man3/aliased.3pm*
-%{perl_vendorarch}/aliased.pm
-%{perl_vendorarch}/auto/aliased/
+%doc Changes LICENSE MANIFEST README
+%doc %{_mandir}/man3/Net::Libdnet.3pm*
+%dir %{perl_vendorarch}/Net/
+%{perl_vendorarch}/Net/Libdnet.pm
+%dir %{perl_vendorarch}/auto/Net/
+%{perl_vendorarch}/auto/Net/Libdnet/
 
 %changelog
-* Sun Apr 29 2007 Dag Wieers <dag@wieers.com> - 0.21-1
+* Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 0.01-1
 - Initial package. (using DAR)

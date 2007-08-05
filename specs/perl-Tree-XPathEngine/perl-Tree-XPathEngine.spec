@@ -1,29 +1,28 @@
 # $Id$
-# Authority: dries
+# Authority: dag
+# Upstream: Michel Rodriguez <xmltwig$gmail,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name HTML-Tree
+%define real_name Tree-XPathEngine
 
-Summary: HTML-Tree module for perl
-Name: perl-HTML-Tree
-Version: 3.23
+Summary: Perl module that implements a re-usable XPath engine
+Name: perl-Tree-XPathEngine
+Version: 0.05
 Release: 1
-License: GPL or Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/HTML-Tree/
+URL: http://search.cpan.org/dist/Tree-XPathEngine/
 
-Source: http://www.cpan.org/modules/by-module/HTML/HTML-Tree-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Tree/Tree-XPathEngine-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildArch: noarch
-BuildRequires: perl >= 0:5.8.0
-Requires: perl >= 0:5.8.0
+BuildRequires: perl
 
 %description
-HTML-Tree module for perl.
+perl-Tree-XPathEngine is a Perl module that implements a re-usable XPath engine.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -44,19 +43,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README TODO
+%doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/*.3pm*
-%{perl_vendorlib}/HTML/
+%dir %{perl_vendorlib}/Tree/
+%{perl_vendorlib}/Tree/XPathEngine/
+%{perl_vendorlib}/Tree/XPathEngine.pm
 
 %changelog
-* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 3.23-1
-- Updated to release 3.23.
-
-* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 3.21-1
-- Updated to release 3.21.
-
-* Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 3.18-0
-- Updated to release 3.18.
-
-* Sun Aug 03 2003 Dag Wieers <dag@wieers.com> - 3.17-0
+* Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 0.05-1
 - Initial package. (using DAR)

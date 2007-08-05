@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Handler-YAWriter/
 
-Source: http://search.cpan.org/CPAN/authors/id/K/KR/KRAEHE/XML-Handler-YAWriter-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/XML/XML-Handler-YAWriter-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -35,22 +35,24 @@ technique, and want some kind of pretty printing.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man?/*
+%doc Changes MANIFEST README
+%doc %{_mandir}/man1/xmlpretty.1*
+%doc %{_mandir}/man3/XML::Handler::YAWriter.3pm*
 %{_bindir}/xmlpretty
+%dir %{perl_vendorlib}/XML/
+%dir %{perl_vendorlib}/XML/Handler/
 %{perl_vendorlib}/XML/Handler/YAWriter.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.23-1.2
-- Rebuild for Fedora Core 5.
-
-* Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.23-1
+* Sat Apr 09 2005 Dries Verachtert <dries@ulyssis.org> - 0.23-1
 - Initial package.

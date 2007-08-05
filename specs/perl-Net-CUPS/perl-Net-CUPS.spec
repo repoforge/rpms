@@ -1,28 +1,28 @@
 # $Id$
 # Authority: dag
+# Upstream: D. Hageman <dhageman$dracken,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name aliased
+%define real_name Net-CUPS
 
-Summary: aliased module for perl
-Name: perl-aliased
-Version: 0.21
+Summary: Perl module that implements a Common Unix Printing System Interface
+Name: perl-Net-CUPS
+Version: 0.51
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/aliased/
+URL: http://search.cpan.org/dist/Net-CUPS/
 
-Source: http://www.cpan.org/modules/by-module/aliased/aliased-%{version}.tar.gz
-#Source: http://www.cpan.org/authors/id/O/OV/OVID/aliased-0.21.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/Net-CUPS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-Requires: perl
 
 %description
-aliased module for perl.
+perl-Net-CUPS is a Perl module that implements a Perl module implements
+a Common Unix Printing System Interface.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -43,11 +43,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ANNOUNCE ChangeLog Changes LICENSE MANIFEST README TODO
-%doc %{_mandir}/man3/aliased.3pm*
-%{perl_vendorarch}/aliased.pm
-%{perl_vendorarch}/auto/aliased/
+%doc Changes MANIFEST README TODO
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Net/
+%{perl_vendorarch}/Net/CUPS/
+%{perl_vendorarch}/Net/CUPS.pm
+%dir %{perl_vendorarch}/auto/Net/
+%{perl_vendorarch}/auto/Net/CUPS/
 
 %changelog
-* Sun Apr 29 2007 Dag Wieers <dag@wieers.com> - 0.21-1
+* Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 0.51-1
 - Initial package. (using DAR)

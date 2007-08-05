@@ -1,0 +1,56 @@
+# $Id$
+# Authority: dag
+# Upstream: Björn Höhrmann <bjoern$hoehrmann,de>
+
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name SGML-Parser-OpenSP
+
+Summary: Perl module to parse SGML documents using OpenSP
+Name: perl-SGML-Parser-OpenSP
+Version: 0.99
+Release: 1
+License: Artistic/GPL
+Group: Applications/CPAN
+URL: http://search.cpan.org/dist/SGML-Parser-OpenSP/
+
+Source: http://www.cpan.org/modules/by-module/SGML/SGML-Parser-OpenSP-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: perl, opensp-devel
+
+%description
+perl-SGML-Parser-OpenSP is a Perl module to parse SGML documents using OpenSP.
+
+%prep
+%setup -n %{real_name}-%{version}
+
+%build
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+
+%install
+%{__rm} -rf %{buildroot}
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc Changes MANIFEST META.yml README samples/
+%doc %{_mandir}/man3/SGML::Parser::OpenSP.3pm*
+%dir %{perl_vendorarch}/SGML/
+%dir %{perl_vendorarch}/SGML/Parser/
+%{perl_vendorarch}/SGML/Parser/OpenSP.pm
+%dir %{perl_vendorarch}/auto/SGML/
+%dir %{perl_vendorarch}/auto/SGML/Parser/
+%{perl_vendorarch}/auto/SGML/Parser/OpenSP/
+
+%changelog
+* Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 0.99-1
+- Initial package. (using DAR)

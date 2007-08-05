@@ -34,9 +34,7 @@ Once created, they can be written to files, streams, or strings.
 
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTALLDIRS="vendor"
 %{__make} %{?_smp_mflags}
 
 
@@ -48,9 +46,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{__perl} -pi -e 's|^#!/.*bin/perl|#!%{__perl}|i;' examples/*.pl
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
-
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

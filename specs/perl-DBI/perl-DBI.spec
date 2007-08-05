@@ -10,7 +10,7 @@
 Summary: Perl module that implements a database independent interface
 Name: perl-DBI
 Version: 1.58
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBI/
@@ -42,7 +42,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README TODO_2005.txt TODO_2005.txt
+%doc Changes MANIFEST META.yml README TODO_2005.txt
 %doc %{_mandir}/man1/dbilogstrip.1*
 %doc %{_mandir}/man1/dbiprof.1*
 %doc %{_mandir}/man1/dbiproxy.1*
@@ -52,17 +52,21 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/dbiproxy
 %dir %{perl_vendorarch}/Bundle/
 %{perl_vendorarch}/Bundle/DBI.pm
-%{perl_vendorarch}/DBI.pm
 %{perl_vendorarch}/DBD/
+%{perl_vendorarch}/DBI.pm
 %{perl_vendorarch}/DBI/
 %{perl_vendorarch}/Roadmap.pod
 %{perl_vendorarch}/TASKS.pod
-%dir %{perl_vendorarch}/Win32/
-%{perl_vendorarch}/Win32/DBIODBC.pm
+%{perl_vendorarch}/auto/DBI/
 %{perl_vendorarch}/dbixs_rev.pl
 %{perl_vendorarch}/goferperf.pl
-%{perl_vendorarch}/auto/DBI/
+%dir %{perl_vendorarch}/Win32/
+%{perl_vendorarch}/Win32/DBIODBC.pm
+%exclude %{perl_vendorarch}/DBI/W32ODBC.pm
 
 %changelog
+* Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 1.58-2
+- Remove dependency on perl(Win32::ODBC). (Mark D. Nagel)
+
 * Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 1.58-1
 - Initial package. (using DAR)

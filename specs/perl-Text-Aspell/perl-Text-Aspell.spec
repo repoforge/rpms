@@ -1,28 +1,27 @@
 # $Id$
 # Authority: dag
+# Upstream: Bill Moseley <mods$hank,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name aliased
+%define real_name Text-Aspell
 
-Summary: aliased module for perl
-Name: perl-aliased
-Version: 0.21
+Summary: Perl module to the GNU Aspell library
+Name: perl-Text-Aspell
+Version: 0.08
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/aliased/
+URL: http://search.cpan.org/dist/Text-Aspell/
 
-Source: http://www.cpan.org/modules/by-module/aliased/aliased-%{version}.tar.gz
-#Source: http://www.cpan.org/authors/id/O/OV/OVID/aliased-0.21.tar.gz
+Source: http://www.cpan.org/modules/by-module/Text/Text-Aspell-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-Requires: perl
 
 %description
-aliased module for perl.
+perl-Text-Aspell is a Perl module to the GNU Aspell library.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -43,11 +42,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ANNOUNCE ChangeLog Changes LICENSE MANIFEST README TODO
-%doc %{_mandir}/man3/aliased.3pm*
-%{perl_vendorarch}/aliased.pm
-%{perl_vendorarch}/auto/aliased/
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Text::Aspell.3pm*
+%dir %{perl_vendorarch}/Text/
+%{perl_vendorarch}/Text/Aspell.pm
+%dir %{perl_vendorarch}/auto/Text/
+%{perl_vendorarch}/auto/Text/Aspell/
 
 %changelog
-* Sun Apr 29 2007 Dag Wieers <dag@wieers.com> - 0.21-1
+* Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 0.08-1
 - Initial package. (using DAR)

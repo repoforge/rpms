@@ -1,28 +1,27 @@
 # $Id$
 # Authority: dag
+# Upstream: Dan Kogai <dankogai$dan,co,jp>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name aliased
+%define real_name Text-Kakasi
 
-Summary: aliased module for perl
-Name: perl-aliased
-Version: 0.21
+Summary: Perl module implements a frontend to kakasi
+Name: perl-Text-Kakasi
+Version: 2.04
 Release: 1
-License: Artistic
+License: GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/aliased/
+URL: http://search.cpan.org/dist/Text-Kakasi/
 
-Source: http://www.cpan.org/modules/by-module/aliased/aliased-%{version}.tar.gz
-#Source: http://www.cpan.org/authors/id/O/OV/OVID/aliased-0.21.tar.gz
+Source: http://www.cpan.org/modules/by-module/Text/Text-Kakasi-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
-Requires: perl
+BuildRequires: perl, kakasi-devel
 
 %description
-aliased module for perl.
+perl-Text-Kakasi is a Perl module implements a frontend to kakasi.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -43,11 +42,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ANNOUNCE ChangeLog Changes LICENSE MANIFEST README TODO
-%doc %{_mandir}/man3/aliased.3pm*
-%{perl_vendorarch}/aliased.pm
-%{perl_vendorarch}/auto/aliased/
+%doc COPYING ChangeLog.1 Changes MANIFEST META.yml README README.jp
+%doc %{_mandir}/man3/Text::Kakasi.3pm*
+%dir %{perl_vendorarch}/Text/
+%{perl_vendorarch}/Text/Kakasi.pm
+%dir %{perl_vendorarch}/auto/Text/
+%{perl_vendorarch}/auto/Text/Kakasi/
 
 %changelog
-* Sun Apr 29 2007 Dag Wieers <dag@wieers.com> - 0.21-1
+* Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 2.04-1
 - Initial package. (using DAR)

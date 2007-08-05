@@ -1,18 +1,15 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Grant McLean <grantm$cpan,org>
 
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name XML-Simple
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Easy API to XML files
 Name: perl-XML-Simple
-Version: 2.16
+Version: 2.17
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -32,30 +29,33 @@ This module contains an easy API to XML files.
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/XML::Simple.3pm*
+%doc %{_mandir}/man3/XML::Simple::FAQ.3pm*
+%dir %{perl_vendorlib}/XML/
+%{perl_vendorlib}/XML/Simple/
 %{perl_vendorlib}/XML/Simple.pm
-%{perl_vendorlib}/XML/Simple/*
 
 %changelog
+* Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 2.17-1
+- Updated to release 2.17.
+
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 2.16-1
 - Updated to release 2.16.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.14-2.2
-- Rebuild for Fedora Core 5.
 
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 2.14-1
 - Updated to release 2.14.

@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Chris Reinhardt <cpan$triv,org>
 
-# ExcludeDist: el4
+##ExcludeDist: el4
 
 %{?dist: %{expand: %%define %dist 1}}
 

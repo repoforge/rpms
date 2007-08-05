@@ -1,18 +1,17 @@
 # $Id$
 # Authority: dag
+# Upstream: Grant McLean <grantm$cpan,org>
 
-# ExcludeDist: el4
-
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name XML-SAX
 
-Summary: XML-SAX Perl module
+Summary: Perl module that implements a simple API for XML
 Name: perl-XML-SAX
-Version: 0.15
+Version: 0.16
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-SAX/
 
@@ -31,16 +30,14 @@ Provides: perl(XML::SAX::PurePerl::EncodingDetect), perl(XML::SAX::PurePerl::NoU
 Provides: perl(XML::SAX::PurePerl::UnicodeExt), perl(XML::SAX::PurePerl::XMLDecl)
 
 %description
-XML-SAX Perl module.
+perl-XML-SAX is a Perl module that implements a simple API for XML.
 
 %prep
 %setup -n %{real_name}-%{version}
 #patch
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
+echo "N" | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -48,27 +45,27 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE MANIFEST README
-%doc %{_mandir}/man?/*
+%doc Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/*.3pm*
 %{perl_vendorlib}/XML/SAX.pm
 %{perl_vendorlib}/XML/SAX/
 
 %changelog
+* Sun Aug 05 2007 Dag Wieers <dag@wieers.com>> - 0.16-1
+- Updated to release 0.16.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.15-1
 - Updated to release 0.15.
 
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1
 - Updated to release 0.14.
-
-* Mon Apr 10 2006 Dries Verachtert <dries@ulyssis.org> - 0.13-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.13-1
 - Updated to release 0.13.
