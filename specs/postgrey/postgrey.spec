@@ -6,7 +6,7 @@
 Summary: Postfix Greylisting Policy Server
 Name: postgrey
 Version: 1.30
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Daemons
 URL: http://isg.ee.ethz.ch/tools/postgrey/
@@ -14,6 +14,7 @@ URL: http://isg.ee.ethz.ch/tools/postgrey/
 Source0: http://isg.ee.ethz.ch/tools/postgrey/pub/postgrey-%{version}.tar.gz
 Source1: postgrey.init
 Source2: README-rpm
+Patch0: postgrey-1.30-group.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -39,6 +40,7 @@ again later, as it is however required per RFC.
 
 %prep
 %setup
+%patch0 -p1 -b .group
 %{__install} -p -m0644 %{SOURCE2} README-rpm
 
 
@@ -102,6 +104,9 @@ fi
 
 
 %changelog
+* Mon Aug 06 2007 Dag Wieers <dag@wieers.com> - 1.30-2
+- Readded nogroup patch. (What was I thinking ?)
+
 * Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 1.30-1
 - Updated to release 1.30.
 
