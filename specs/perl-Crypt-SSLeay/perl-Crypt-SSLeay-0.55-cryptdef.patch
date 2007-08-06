@@ -1,0 +1,24 @@
+--- Crypt-SSLeay-0.37/SSLeay.xs.cryptdef	Tue Jun 11 10:58:56 2002
++++ Crypt-SSLeay-0.37/SSLeay.xs	Tue Jun 11 10:59:24 2002
+@@ -9,9 +9,6 @@
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
+-#include "EXTERN.h"
+-#include "perl.h"
+-#include "XSUB.h"
+ 
+ /* ssl.h or openssl/ssl.h is included from the crypt_ssleay_version
+  * file which is written when building with perl Makefile.PL
+@@ -20,6 +17,11 @@
+ #include "crypt_ssleay_version.h"
+ 
+ #undef Free /* undo namespace pollution from crypto.h */
++
++#include "EXTERN.h"
++#include "perl.h"
++#include "XSUB.h"
++
+ #ifdef __cplusplus
+ }
+ #endif

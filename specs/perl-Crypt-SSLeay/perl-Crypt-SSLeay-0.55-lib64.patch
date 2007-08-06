@@ -1,0 +1,18 @@
+--- Crypt-SSLeay-0.55/Makefile.PL.orig	2007-06-07 12:51:15.000000000 -0400
++++ Crypt-SSLeay-0.55/Makefile.PL	2007-06-07 12:53:20.000000000 -0400
+@@ -166,7 +166,14 @@
+ else {
+     push @INC_FLAGS, "-I$pkg_config->{inc}";
+ 
+-    push @LIB_FLAGS, "-L$SSL_DIR/lib", qw(-lssl -lcrypto -lgcc);
++    if (-d "$SSL_DIR/lib64") {
++      push @LIB_FLAGS, "-L".$SSL_DIR."/lib64";
++    }
++    else {
++      push @LIB_FLAGS, "-L".$SSL_DIR."/lib";
++    }
++
++    push @LIB_FLAGS, qw(-lssl -lcrypto -lgcc);
+     push @LIB_FLAGS, qw(-lRSAglue -lrsaref) if $pkg_config->{type} ne 'OpenSSL';
+ 
+     # ccc on alpha support
