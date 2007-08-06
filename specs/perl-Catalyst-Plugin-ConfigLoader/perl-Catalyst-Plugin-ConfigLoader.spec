@@ -20,6 +20,14 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Catalyst)
+BuildRequires: perl(Config::Any) >= 0.04
+BuildRequires: perl(Data::Visitor) >= 0.02
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::Pod)
+BuildRequires: perl(Test::Pod::Coverage)
+Requires: perl(Catalyst)
 
 %description
 perl-Catalyst-Plugin-ConfigLoader is a Perl module to load config files

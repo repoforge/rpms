@@ -13,6 +13,7 @@ URL: http://rc.vintela.com/topics/ddns/
 
 Source0: http://de.samba.org/samba/ftp/tsig-gss/nsupdate-gss
 Source1: http://ftp.sayclub.com/pub/samba/tsig-gss/README
+Patch: nsupdate-gss-ad-sites2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -25,6 +26,7 @@ on a Win2000 DNS server using gss-tsig.
 %prep
 %setup -c -T
 %{__cp} -v %{SOURCE0} %{SOURCE1} .
+%patch0
 
 %build
 
