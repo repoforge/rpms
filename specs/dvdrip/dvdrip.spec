@@ -11,9 +11,9 @@
 
 Summary: Graphical DVD ripping and encoding tool based on transcode
 Name: dvdrip
-Version: 0.98.6
+Version: 0.98.7
 Release: 1
-License: Artistic or GPL
+License: GPL+ or Artistic
 Group: Applications/Multimedia
 URL: http://www.exit1.org/dvdrip/
 Source: http://www.exit1.org/dvdrip/dist/dvdrip-%{version}.tar.gz
@@ -75,7 +75,7 @@ Exec=dvdrip
 Icon=%{perl_sitelib}/Video/DVDRip/icon.xpm
 Terminal=false
 Type=Application
-Categories=Application;AudioVideo;
+Categories=AudioVideo;
 EOF
 
 %if %{?_without_freedesktop:1}0
@@ -94,9 +94,9 @@ EOF
 
 
 %files
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
 %doc Changes COPYRIGHT Credits README TODO
-%attr(0755, root, root) %{_bindir}/*
+%attr(0755,root,root) %{_bindir}/*
 %lang(cs) %{perl_sitelib}/LocaleData/cs/LC_MESSAGES/video.dvdrip.mo
 %lang(de) %{perl_sitelib}/LocaleData/de/LC_MESSAGES/video.dvdrip.mo
 %lang(es) %{perl_sitelib}/LocaleData/es/LC_MESSAGES/video.dvdrip.mo
@@ -110,6 +110,9 @@ EOF
 
 
 %changelog
+* Mon Aug  6 2007 Matthias Saou <http://freshrpms.net/> 0.98.7-1
+- Update to 0.98.7.
+
 * Mon Apr 16 2007 Matthias Saou <http://freshrpms.net/> 0.98.6-1
 - Update to 0.98.6.
 
