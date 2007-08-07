@@ -1,27 +1,26 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Jochen Wiedmann <jwied$cpan,org>
 
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name PlRPC
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Perl extension for writing PlRPC servers and clients
 Name: perl-PlRPC
 Version: 0.2020
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PlRPC/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MN/MNOONING/PlRPC/PlRPC-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/RPC/PlRPC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 PlRPC (Perl RPC) is a package for implementing servers and clients that
@@ -35,30 +34,35 @@ OO framework in a very simple manner.
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
-%{_mandir}/man3/*
+%doc ChangeLog MANIFEST META.yml README
+%doc %{_mandir}/man3/Bundle::PlRPC.3pm*
+%doc %{_mandir}/man3/RPC::PlClient.3pm*
+%doc %{_mandir}/man3/RPC::PlServer.3pm*
+%dir %{perl_vendorlib}/Bundle/
 %{perl_vendorlib}/Bundle/PlRPC.pm
-%{perl_vendorlib}/RPC
+%dir %{perl_vendorlib}/RPC/
+%{perl_vendorlib}/RPC/PlClient/
+%{perl_vendorlib}/RPC/PlClient.pm
+%{perl_vendorlib}/RPC/PlServer/
+%{perl_vendorlib}/RPC/PlServer.pm
 
 %changelog
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.2020-1
 - Updated to release 0.2020.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.2018-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.2018-1
 - Updated to release 0.2018.

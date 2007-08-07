@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
+# Upstream: Michael G Schwern <mschwern$cpan,org>
 
+### From RH9 onwards perl(Test::Simple) is provided by the perl package (sigh)
 # ExclusiveDist: el2 rh7
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
@@ -10,7 +12,7 @@
 
 Summary: Simplified testing framework
 Name: perl-Test-Simple
-Version: 0.62
+Version: 0.70
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -36,6 +38,8 @@ run either standalone or under Test::Harness.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
+
+### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
@@ -43,8 +47,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc MANIFEST README
-%doc %{_mandir}/man3/*.3*
+%doc Changes MANIFEST META.yml README SIGNATURE TODO
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Test/
 %{perl_vendorlib}/Test/Builder.pm
 %{perl_vendorlib}/Test/Builder/
@@ -53,5 +57,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Tutorial.pod
 
 %changelog
+* Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 0.70-1
+- Updated to release 0.70.
+
 * Mon May 29 2006 Dag Wieers <dag@wieers.com> - 0.62-1
 - Initial package. (using DAR)

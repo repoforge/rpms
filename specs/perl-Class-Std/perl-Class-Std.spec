@@ -1,27 +1,30 @@
-# $Id: $
+# $Id$
 # Authority: ae
 # Upstream: Damian Conway <damian$conway,org>
 
-# package included in extras beginning with fc5
-# ExclusiveDist: fc1 fc2 fc3 fc4
+# Package included in extras beginning with fc5
+##ExclusiveDist: fc1 fc2 fc3 fc4
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Class-Std
+%define real_version 0.000008
 
 Summary: Implementation of a "Std" class
 Name: perl-Class-Std
 Version: 0.0.8
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Std/
 
 Source: http://www.cpan.org/modules/by-module/Class/Class-Std-v%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildArch: noarch
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module provides tools that help to implement the 
@@ -40,19 +43,18 @@ and reprinted with permission.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Class::Std.3pm*
 %dir %{perl_vendorlib}/Class/
 %{perl_vendorlib}/Class/Std.pm
 

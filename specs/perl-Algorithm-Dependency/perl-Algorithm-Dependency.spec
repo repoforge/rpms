@@ -19,8 +19,11 @@ Source: http://www.cpan.org/modules/by-module/Algorithm/Algorithm-Dependency-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Test::More) >= 0.47, perl(File::Spec) >= 0.80
-BuildRequires: perl(Test::ClassAPI) >= 0.6, perl(Params::Util) >= 0.06
+BuildRequires: perl
+BuildRequires: perl(Test::More) >= 0.47
+BuildRequires: perl(File::Spec) >= 0.80
+BuildRequires: perl(Test::ClassAPI) >= 0.6
+BuildRequires: perl(Params::Util) >= 0.06
 BuildRequires: perl(List::Util) >= 1.11
 Requires: perl
 

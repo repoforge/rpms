@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Adam Kennedy <adamk@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,9 +9,9 @@
 
 Summary: Inlining your tests next to the code being tested
 Name: perl-Test-Inline
-Version: 2.103
+Version: 2.205
 Release: 1
-License: GPL
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Inline/
 
@@ -18,14 +19,19 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Inline-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Test::More) >= 0.47, perl(Test::ClassAPI) >= 1.02
+BuildRequires: perl >= 0:5.005 
+BuildRequires: perl(Test::ClassAPI) >= 1.02
+BuildRequires: perl(Test::More) >= 0.42
+BuildRequires: perl(Test::Script)
+#BuildRequires: perl(Test::Script) >= 1.02
 BuildRequires: perl(File::Spec) >= 0.80, perl(List::Util) >= 1.11
-BuildRequires: perl(GetOpt::Long) >= 2.34, perl(File::Slurp) >= 9999.04
+#BuildRequires: perl(GetOpt::Long)
+BuildRequires: perl(Getopt::Long) >= 2.34
+BuildRequires: perl(File::Slurp) >= 9999.04
 BuildRequires: perl(File::Find::Rule) >= 0.26, perl(Config::Tiny) >= 2.00
 BuildRequires: perl(Params::Util) >= 0.05, perl(Class::Autouse) >= 1.15
 BuildRequires: perl(Algorithm::Dependency) >= 1.02, perl(File::Flat) >= 0.95
 BuildRequires: perl(Pod::Tests) >= 0.18
-
 Requires: perl
 
 %description
@@ -38,7 +44,7 @@ to date.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTALLDIRS="vendor"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -53,11 +59,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES LICENSE MANIFEST README
-%doc %{_mandir}/man3/*.3*
-%dir %{perl_vendorlib}/Apache/
-%{perl_vendorlib}/Apache/ASP/
+%doc Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man1/inline2test.1*
+%doc %{_mandir}/man3/*.3pm*
+%{_bindir}/inline2test
+%dir %{perl_vendorlib}/Test/
+%{perl_vendorlib}/Test/Inline/
+%{perl_vendorlib}/Test/Inline.pm
 
 %changelog
+* Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 2.205-1
+- Updated to release 2.205.
+
 * Mon Jun 05 2006 Dag Wieers <dag@wieers.com> - 2.103-1
 - Initial package. (using DAR)
