@@ -9,7 +9,7 @@
 Summary: Perl extension providing access to the GSSAPIv2 library
 Name: perl-GSSAPI
 Version: 0.23
-Release: 1
+Release: 2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GSSAPI/
@@ -26,8 +26,7 @@ described in rfc2743 and rfc2744 and implemented by the Kerberos-1.2
 distribution from MIT.
 
 %prep
-%setup -n GSSAPI-%{version}
-%{__chmod} a-x examples/*.pl
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -39,6 +38,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -52,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/GSSAPI/
 
 %changelog
+* Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 0.23-2
+- Disabled auto-requires for examples/.
+
 * Wed Aug 16 2006 Dag Wieers <dag@wieers.com> - 0.23-1
 - Updated to release 0.23.
 

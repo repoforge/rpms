@@ -29,8 +29,8 @@ of Sablotron XSLT processor.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -43,9 +43,11 @@ of Sablotron XSLT processor.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
-%{perl_vendorarch}/XML/Sablotron.pm
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/XML/
 %{perl_vendorarch}/XML/Sablotron/
+%{perl_vendorarch}/XML/Sablotron.pm
+%dir %{perl_vendorarch}/auto/XML/
 %{perl_vendorarch}/auto/XML/Sablotron/
 
 %changelog

@@ -29,8 +29,8 @@ changing the interpreter line at the top of the script.
 %setup -n %{real_name}-%{version}
 
 %build
-echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+echo | CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -45,11 +45,9 @@ echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}
 %doc Changes README
 #%doc %{_mandir}/man3/*
 %{_bindir}/speedy*
+%dir %{perl_vendorlib}/CGI/
 %{perl_vendorlib}/CGI/SpeedyCGI.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.22-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.22-1
 - Initial package.

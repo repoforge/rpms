@@ -37,8 +37,8 @@ http://www.bfi.org/map.htm for more details.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -51,13 +51,12 @@ http://www.bfi.org/map.htm for more details.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Geo/
 %{perl_vendorarch}/Geo/Dymaxion.pm
+%dir %{perl_vendorarch}/auto/Geo/
 %{perl_vendorarch}/auto/Geo/Dymaxion/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Initial package.

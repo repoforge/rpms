@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DA/DARREN/Template-Plugin-Numbe
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Plugin/filter interface to Number::Format.
@@ -28,8 +29,8 @@ Plugin/filter interface to Number::Format.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -41,12 +42,12 @@ Plugin/filter interface to Number::Format.
 
 %files
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorlib}/Template/
+%dir %{perl_vendorlib}/Template/Plugin/
+%dir %{perl_vendorlib}/Template/Plugin/Number/
 %{perl_vendorlib}/Template/Plugin/Number/Format.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1.2
-- Rebuild for Fedora Core 5.
-
 * Thu Nov 10 2005 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Initial package.

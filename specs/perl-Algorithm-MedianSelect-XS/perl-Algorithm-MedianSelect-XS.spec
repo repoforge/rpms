@@ -28,8 +28,8 @@ the integers and bigger than half of the integers.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -42,8 +42,12 @@ the integers and bigger than half of the integers.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Algorithm/
+%dir %{perl_vendorarch}/Algorithm/MedianSelect/
 %{perl_vendorarch}/Algorithm/MedianSelect/XS.pm
+%dir %{perl_vendorarch}/auto/Algorithm/
+%dir %{perl_vendorarch}/auto/Algorithm/MedianSelect/
 %{perl_vendorarch}/auto/Algorithm/MedianSelect/XS/
 
 %changelog

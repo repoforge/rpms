@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Device-SerialPort/
 Source: http://www.cpan.org/modules/by-module/Device/Device-SerialPort-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 Obsoletes: perl-Device-SerialPorts <= %{version}-%{release}
 Provides: perl-Device-SerialPorts = %{release}-%{version}

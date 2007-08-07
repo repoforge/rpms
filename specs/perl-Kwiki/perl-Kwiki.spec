@@ -10,7 +10,7 @@ Summary: Kwiki module for perl
 Name: perl-Kwiki
 Version: 0.39
 Release: 1
-License: GPL or Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 #URL: http://search.cpan.org/dist/Kwiki/
 URL: http://www.kwiki.org/
@@ -27,9 +27,7 @@ Kwiki is a modular implementation of a Wiki in Perl.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-        PREFIX="%{buildroot}%{_prefix}" \
-        INSTALLDIRS="vendor" \
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -45,9 +43,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man?/*
-%{perl_vendorlib}/*
+%doc %{_mandir}/man3/*.3pm*
 %{_bindir}/*
+%{perl_vendorlib}/*
 
 %changelog
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.39-1

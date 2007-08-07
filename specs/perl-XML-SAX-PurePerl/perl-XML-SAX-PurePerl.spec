@@ -28,7 +28,7 @@ XML-SAX-PurePerl Perl module.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -44,13 +44,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST README
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorlib}/XML/
+%dir %{perl_vendorlib}/XML/SAX/
 %{perl_vendorlib}/XML/SAX/PurePerl.pm
-%{perl_vendorlib}/XML/SAX/PurePerl
+%{perl_vendorlib}/XML/SAX/PurePerl/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.80-0.2
-- Rebuild for Fedora Core 5.
-
 * Sun Aug 24 2003 Dag Wieers <dag@wieers.com> - 0.80-0
 - Initial package. (using DAR)

@@ -28,8 +28,8 @@ DateTime.pm class.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -45,10 +45,10 @@ DateTime.pm class.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/DateTime/
-%{perl_vendorlib}/DateTime/Locale.pm
 %{perl_vendorlib}/DateTime/Locale/
+%{perl_vendorlib}/DateTime/Locale.pm
 %{perl_vendorlib}/DateTime/LocaleCatalog.pm
 
 %changelog

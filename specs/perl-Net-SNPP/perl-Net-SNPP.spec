@@ -17,7 +17,6 @@ URL: http://search.cpan.org/dist/Net-SNPP/
 Source: http://www.cpan.org/modules/by-module/Net/Net-SNPP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildArch: noarch
 BuildRequires: perl >= 0:5.00503, perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.00503
@@ -29,7 +28,7 @@ Simple Network Pager Protocol Client.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -50,9 +49,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/SNPP/
 
 %changelog
-* Mon Apr 10 2006 Dries Verachtert <dries@ulyssis.org> - 1.17-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.17-1
 - Updated to release 1.17.
 

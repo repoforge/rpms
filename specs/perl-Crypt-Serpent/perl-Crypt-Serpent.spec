@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 # Upstream: John Hughes <jhughes$frostburg,edu>
 
@@ -52,7 +51,7 @@ main algorithm."
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -67,9 +66,11 @@ main algorithm."
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Crypt/
 %{perl_vendorarch}/Crypt/Serpent.pm
-%{perl_vendorarch}/auto/Crypt/Serpent
+%dir %{perl_vendorarch}/auto/Crypt/
+%{perl_vendorarch}/auto/Crypt/Serpent/
 
 %changelog
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1.2

@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Steffen Ullrich <Steffen_Ullrich$genua,de>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +10,8 @@
 Summary: IO-Socket-SSL module for perl
 Name: perl-IO-Socket-SSL
 Version: 1.07
-Release: 1
-License: GPL or Artistic
+Release: 2
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Socket-SSL/
 
@@ -38,18 +39,24 @@ IO-Socket-SSL module for perl.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find docs/ example/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS Changes MANIFEST README docs/* example/
-%doc %{_mandir}/man3/*.3*
+%doc BUGS Changes MANIFEST README docs/ example/
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/IO/
 %dir %{perl_vendorlib}/IO/Socket/
 %{perl_vendorlib}/IO/Socket/SSL.pm
 
 %changelog
+* Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 1.07-2
+- Disabled auto-requires for docs/ and example/.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 1.07-1
 - Updated to release 1.07.
 

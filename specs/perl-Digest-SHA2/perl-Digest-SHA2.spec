@@ -27,8 +27,8 @@ A variable-length one-way hash function.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -41,11 +41,11 @@ A variable-length one-way hash function.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorarch}/Digest/
 %{perl_vendorarch}/Digest/SHA2.pm
-%dir %{perl_vendorarch}/auto/Digest/SHA2/
-%{perl_vendorarch}/auto/Digest/SHA2/SHA2.*
+%dir %{perl_vendorarch}/auto/Digest/
+%{perl_vendorarch}/auto/Digest/SHA2/
 
 %changelog
 * Mon May  8 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.0-1

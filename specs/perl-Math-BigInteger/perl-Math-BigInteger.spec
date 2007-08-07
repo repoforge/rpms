@@ -29,8 +29,8 @@ Math::BigInt::a Big::GMP.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -43,13 +43,12 @@ Math::BigInt::a Big::GMP.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Math/
 %{perl_vendorarch}/Math/BigInteger.p*
+%dir %{perl_vendorarch}/auto/Math/
 %{perl_vendorarch}/auto/Math/BigInteger
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Initial package.

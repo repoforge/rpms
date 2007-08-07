@@ -32,8 +32,8 @@ command on GNU/Linux will show all charset supported.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -46,13 +46,12 @@ command on GNU/Linux will show all charset supported.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Text/
 %{perl_vendorarch}/Text/Unaccent.pm
-%{perl_vendorarch}/auto/Text/Unaccent
+%dir %{perl_vendorarch}/auto/Text/
+%{perl_vendorarch}/auto/Text/Unaccent/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.08-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.08-1
 - Initial package.

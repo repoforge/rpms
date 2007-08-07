@@ -28,7 +28,7 @@ Crypt-RSA module for perl
 %setup -n %{rname}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -44,17 +44,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc MANIFEST README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Crypt/
-%{perl_vendorlib}/Crypt/RSA.pm
 %{perl_vendorlib}/Crypt/RSA/
+%{perl_vendorlib}/Crypt/RSA.pm
 
 %changelog
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.58-1
 - Updated to release 1.58.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.57-1.2
-- Rebuild for Fedora Core 5.
 
 * Thu Jan 12 2006 Dag Wieers <dag@wieers.com> - 1.57-1
 - Initial package. (using DAR)

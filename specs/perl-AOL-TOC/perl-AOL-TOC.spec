@@ -30,7 +30,7 @@ Perl extension for interfacing with AOL's AIM service.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -46,7 +46,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc MANIFEST README
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man?/*.3pm*
 %{perl_vendorlib}/*
 
 %changelog

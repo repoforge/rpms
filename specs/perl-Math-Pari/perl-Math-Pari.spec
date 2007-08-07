@@ -32,8 +32,9 @@ More info can be found at http://www.parigp-home.de/
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" LIBPARI="-L/usr/lib -lpari" pari_tgz="%{SOURCE1}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" LIBPARI="-L/usr/lib -lpari" pari_tgz="%{SOURCE1}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -48,12 +49,12 @@ More info can be found at http://www.parigp-home.de/
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorarch}/Math/
 %{perl_vendorarch}/Math/Pari*
 %{perl_vendorarch}/Math/libPARI*
 %dir %{perl_vendorarch}/auto/Math/
-%{perl_vendorarch}/auto/Math/Pari/Pari.*
+%{perl_vendorarch}/auto/Math/Pari/
 
 %changelog
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 2.010706-1
@@ -61,9 +62,6 @@ More info can be found at http://www.parigp-home.de/
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.010704-1
 - Updated to release 2.010704.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.010702-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.010702-1
 - Updated to release 2.010702.

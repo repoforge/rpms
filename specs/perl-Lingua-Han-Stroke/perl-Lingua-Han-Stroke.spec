@@ -28,8 +28,8 @@ Retrieve the stroke count of a Chinese character.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -42,16 +42,15 @@ Retrieve the stroke count of a Chinese character.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorlib}/Lingua/
+%dir %{perl_vendorlib}/Lingua/Han/
 %{perl_vendorlib}/Lingua/Han/Stroke.pm
 %{perl_vendorlib}/Lingua/Han/Stroke/
 
 %changelog
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Updated to release 0.05.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1.2
-- Rebuild for Fedora Core 5.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.

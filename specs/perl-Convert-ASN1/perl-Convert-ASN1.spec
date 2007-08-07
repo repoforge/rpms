@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Graham Barr <gbarr@cpan.org>
 
 # ExcludeDist: el4
 
@@ -11,8 +12,8 @@
 Summary: Perl classes implementing conversion from/to ASN.1 data structures using BER/DER rules
 Name: perl-Convert-ASN1
 Version: 0.21
-Release: 1
-License: distributable
+Release: 2
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-ASN1/
 
@@ -20,8 +21,9 @@ Source: http://www.cpan.org/modules/by-module/Convert/Convert-ASN1-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.00503, perl(ExtUtils::MakeMaker)
-Requires: perl >= 0:5.00503
+BuildRequires: perl >= 0:5.005
+BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 0:5.005
 
 Obsoletes: perl-convert-asn1
 
@@ -43,24 +45,30 @@ encoding and decoding ASN.1 data structures using BER/DER rules.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog MANIFEST README SIGNATURE examples/
-%doc %{_mandir}/man?/*
-%{perl_vendorlib}/Convert/
+%doc ChangeLog MANIFEST META.yml README SIGNATURE examples/
+%doc %{_mandir}/man3/Convert::ASN1.3pm*
+%doc %{perl_vendorlib}/Convert/ASN1/
+%{perl_vendorlib}/Convert/ASN1/
+%{perl_vendorlib}/Convert/ASN1.pm
+%{perl_vendorlib}/Convert/ASN1.pod
 
 %changelog
+* Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 0.21-2
+- Disabled auto-requires for examples/.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.21-1
 - Updated to release 0.21.
 
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.20-1
 - Updated to release 0.20.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.19-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.19-1
 - Updated to release 0.19.

@@ -10,7 +10,7 @@
 Summary: Perl interface to the 2.x series of the Gimp Toolkit library
 Name: perl-Gtk2
 Version: 1.141
-Release: 1
+Release: 2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gtk2/
@@ -42,6 +42,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ gtk-demo/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -54,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Gtk2/
 
 %changelog
+* Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 1.141-2
+- Disabled auto-requires for examples/ and gtk-demo/.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.141-1
 - Updated to release 1.141.
 

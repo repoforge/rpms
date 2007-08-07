@@ -4,6 +4,7 @@
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name Term-ReadLine-Gnu
 
 # todo mv dir, wrong name
@@ -37,11 +38,8 @@ a program which uses the GNU Readline Library.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags} \
-	OPTIMIZE="%{optflags}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -57,16 +55,17 @@ a program which uses the GNU Readline Library.
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%{_mandir}/man3/*
+%{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Term/
+%dir %{perl_vendorarch}/Term/ReadLine/
 %{perl_vendorarch}/Term/ReadLine/Gnu*
-%{perl_vendorarch}/auto/Term/ReadLine/Gnu/*
+%dir %{perl_vendorarch}/auto/Term/
+%dir %{perl_vendorarch}/auto/Term/ReadLine/
+%{perl_vendorarch}/auto/Term/ReadLine/Gnu/
 
 %changelog
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.16-1
 - Updated to release 1.16.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.15-2.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan 01 2005 Dries Verachtert <dries@ulyssis.org> - 1.15-2
 - Fixed the license tag (Thanks to David Necas !)

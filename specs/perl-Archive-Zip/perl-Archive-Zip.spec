@@ -1,16 +1,17 @@
 # $Id$
 # Authority: dag
+# Upstream: Ned Konz <perl$bike-nomad,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Archive-Zip
 
-Summary: Archive-Zip module for perl
+Summary: Provide an interface to ZIP archive files.
 Name: perl-Archive-Zip
-Version: 1.16
-Release: 1.2
-License: distributable
+Version: 1.20
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Archive-Zip/
 
@@ -18,8 +19,9 @@ Source: http://www.cpan.org/modules/by-module/Archive/Archive-Zip-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.00503, perl(Compress::Zlib) >= 1.08
-Requires: perl >= 0:5.00503, perl(Compress::Zlib) >= 1.08
+BuildRequires: perl >= 0:5.00503
+BuildRequires: perl(Compress::Zlib) >= 1.08
+Requires: perl >= 0:5.00503
 
 %description
 The Archive::Zip module allows a Perl program to create, manipulate,
@@ -32,7 +34,7 @@ Once created, they can be written to files, streams, or strings.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -45,20 +47,25 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README TODO docs/* examples/
-%doc %{_mandir}/man?/*
+%doc Changes INSTALL LICENSE MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/*.3pm*
 %{_bindir}/crc32
 %dir %{perl_vendorlib}/Archive/
 %{perl_vendorlib}/Archive/Zip.pm
-%{perl_vendorlib}/Archive/Zip.pod
 %{perl_vendorlib}/Archive/Zip/
 
 %changelog
+* Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 1.20-1
+- Disabled auto-requires for examples/.
+
 * Wed Jul 13 2005 Dag Wieers <dag@wieers.com> - 1.16-1
 - Updated to release 1.16.
 

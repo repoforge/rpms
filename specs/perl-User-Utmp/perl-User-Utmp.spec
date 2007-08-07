@@ -33,8 +33,8 @@ installed as User::Utmp(3) manpage, and the example.pl script.
 %{__perl} -pi -e 's|/usr/local/bin/perl|%{_bindir}/perl|g;' *
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -48,16 +48,15 @@ installed as User::Utmp(3) manpage, and the example.pl script.
 %defattr(-, root, root, 0755)
 %doc Changes README
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorarch}/User/
 %{perl_vendorarch}/User/Utmp.pm
 %{perl_vendorarch}/User/example.pl
-%{perl_vendorarch}/auto/User/Utmp
+%dir %{perl_vendorarch}/auto/User/
+%{perl_vendorarch}/auto/User/Utmp/
 
 %changelog
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.8-1
 - Updated to release 1.8.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.6-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.6-1
 - Initial package.

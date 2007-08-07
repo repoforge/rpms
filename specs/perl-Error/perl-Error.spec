@@ -10,7 +10,7 @@
 Summary: Error and exception handling in an OO-ish way module for perl
 Name: perl-Error
 Version: 0.17008
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Error/
@@ -57,6 +57,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Error.pm
 
 %changelog
+* Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 0.17008-2
+- Disabled auto-requires for examples/.
+
 * Mon Apr 16 2007 Dries Verachtert <dries@ulyssis.org> - 0.17008-1
 - Updated to release 0.17008.
 

@@ -28,7 +28,7 @@ A Crypt::CBC compliant RC6 block cipher encryption module.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -43,13 +43,12 @@ A Crypt::CBC compliant RC6 block cipher encryption module.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Crypt/
 %{perl_vendorarch}/Crypt/RC6.pm
-%{perl_vendorarch}/auto/Crypt/RC6
+%dir %{perl_vendorarch}/auto/Crypt/
+%{perl_vendorarch}/auto/Crypt/RC6/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
-- Rebuild for Fedora Core 5.
-
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Initial package.

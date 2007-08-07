@@ -10,8 +10,8 @@
 Summary: Perl module for building DOM Level 1 compliant document structures
 Name: perl-XML-DOM
 Version: 1.44
-Release: 1
-License: Artistic
+Release: 2
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-DOM/
 
@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-DOM-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This is a Perl extension to XML::Parser. It adds a new 'Style' to XML::Parser,
@@ -60,9 +61,11 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/XML/Handler/BuildDOM.pm
 
 %changelog
+* Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 1.44-2
+- Disabled auto-requires for samples/.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.44-1
 - Updated to release 1.44.
 
 * Fri Dec 17 2004 Matthias Saou <http://freshrpms.net/> 1.43-1
 - Initial package based on Dries' perl-XML-RegExp spec file.
-

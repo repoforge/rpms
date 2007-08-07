@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Bo Zou <boxzou$yahoo,com>
 
-%define real_name String-Ediff
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name String-Ediff
 
 Summary: Produce common sub-string indices for two strings
 Name: perl-String-Ediff
@@ -30,7 +28,7 @@ common substrings.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -45,14 +43,13 @@ common substrings.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/String/
 %{perl_vendorarch}/String/Ediff.pm
+%dir %{perl_vendorarch}/auto/String/
 %{perl_vendorarch}/auto/String/Ediff/*
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Updated to release 0.08.
 

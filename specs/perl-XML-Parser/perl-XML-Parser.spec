@@ -12,7 +12,7 @@
 Summary: XML-Parser Perl module
 Name: perl-XML-Parser
 Version: 2.34
-Release: 1.2
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Parser/
@@ -57,6 +57,9 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/auto/XML/Parser/Expat/
 
 %changelog
+* Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 2.34-2
+- Disabled auto-requires for samples/.
+
 * Fri Nov 12 2004 Dag Wieers <dag@wieers.com> - 2.34-1
 - Workaround directory-conflicts bug in up2date. (RHbz #106123)
 

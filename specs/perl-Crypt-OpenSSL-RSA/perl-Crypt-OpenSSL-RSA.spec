@@ -30,8 +30,8 @@ in the OpenSSL library.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}" INC=-I/usr/kerberos/include
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}" INC="-I/usr/kerberos/include"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -45,9 +45,13 @@ in the OpenSSL library.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%{_mandir}/man3/*
+%{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Crypt/
+%dir %{perl_vendorarch}/Crypt/OpenSSL/
 %{perl_vendorarch}/Crypt/OpenSSL/RSA.pm
-%{perl_vendorarch}/auto/Crypt/OpenSSL/RSA/*
+%dir %{perl_vendorarch}/auto/Crypt/
+%dir %{perl_vendorarch}/auto/Crypt/OpenSSL/
+%{perl_vendorarch}/auto/Crypt/OpenSSL/RSA/
 
 %changelog
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.24-1

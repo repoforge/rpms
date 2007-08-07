@@ -30,8 +30,8 @@ on Suns.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -44,18 +44,15 @@ on Suns.
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
 %{_bindir}/tkscope
 %{_bindir}/dial
 %{_bindir}/morse
 %{_bindir}/pplay
-%{perl_vendorarch}/Audio
-%{perl_vendorarch}/Tk
-%{perl_vendorarch}/auto/Audio
+%{perl_vendorarch}/Audio/
+%{perl_vendorarch}/Tk/
+%{perl_vendorarch}/auto/Audio/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.029-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.029-1
 - Initial package.

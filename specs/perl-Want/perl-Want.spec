@@ -29,8 +29,8 @@ how its return value is going to be immediately used.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -43,9 +43,9 @@ how its return value is going to be immediately used.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/Want*
+%doc %{_mandir}/man3/Want*.3pm*
 %{perl_vendorarch}/Want.pm
-%{perl_vendorarch}/auto/Want
+%{perl_vendorarch}/auto/Want/
 
 %changelog
 * Wed May 09 2007 Dries Verachtert <dries@ulyssis.org> - 0.14-1
@@ -56,9 +56,6 @@ how its return value is going to be immediately used.
 
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Updated to release 0.10.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.09-1
 - Updated to release 0.09.

@@ -10,7 +10,7 @@
 Summary: Perl module that implements JSON serialising/deserialising
 Name: perl-JSON-XS
 Version: 1.43
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/JSON-XS/
@@ -38,6 +38,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -53,5 +56,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/JSON/XS/
 
 %changelog
+* Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 1.43-2
+- Disabled auto-requires for eg/.
+
 * Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 1.43-1
 - Initial package. (using DAR)

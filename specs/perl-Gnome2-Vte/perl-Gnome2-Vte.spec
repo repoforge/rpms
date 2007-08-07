@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Torsten Schönfeld <kaffeetisch$gmx,de>
 
-%define real_name Gnome2-Vte
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Gnome2-Vte
 
 Summary: Interface to the Virtual Terminal Emulation library
 Name: perl-Gnome2-Vte
@@ -32,7 +30,7 @@ for short) from Perl.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -47,11 +45,12 @@ for short) from Perl.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog LICENSE README
-%{_mandir}/man3/*
+%{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Gnome2/
 %{perl_vendorarch}/Gnome2/Vte.pm
-%{perl_vendorarch}/Gnome2/Vte
-%{perl_vendorarch}/auto/Gnome2/Vte/Vte.bs
-%{perl_vendorarch}/auto/Gnome2/Vte/Vte.so
+%{perl_vendorarch}/Gnome2/Vte/
+%dir %{perl_vendorarch}/auto/Gnome2/
+%{perl_vendorarch}/auto/Gnome2/Vte/
 
 %changelog
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.08-1
@@ -65,9 +64,6 @@ for short) from Perl.
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Updated to release 0.05.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Updated to release 0.04.

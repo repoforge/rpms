@@ -15,7 +15,6 @@ URL: http://search.cpan.org/dist/RPM-Specfile/
 Source: http://www.cpan.org/modules/by-module/RPM/RPM-Specfile-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildArch: noarch
 Requires: perl
 BuildRequires: perl
@@ -29,9 +28,7 @@ See the included script cpanflute2 for usage; documentation coming soon.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" perl Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -53,9 +50,6 @@ CFLAGS="%{optflags}" perl Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.12-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Aug 24 2003 Dag Wieers <dag@wieers.com> - 1.12-1
 - Fixed site -> vendor. (Matthew Mastracci)
 

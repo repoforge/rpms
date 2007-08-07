@@ -35,8 +35,8 @@ scalars. The C code is lean and mean ( IMHO ).
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -50,12 +50,13 @@ scalars. The C code is lean and mean ( IMHO ).
 %defattr(-, root, root, 0755)
 %doc Changes README
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorarch}/Net/
+%dir %{perl_vendorarch}/Net/IP/
 %{perl_vendorarch}/Net/IP/CMatch.pm
+%dir %{perl_vendorarch}/auto/Net/
+%dir %{perl_vendorarch}/auto/Net/IP/
 %{perl_vendorarch}/auto/Net/IP/CMatch/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

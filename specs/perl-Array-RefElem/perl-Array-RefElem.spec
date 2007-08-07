@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Gisle Aas <gisle$ActiveState,com>
 
@@ -29,7 +28,7 @@ you store reference to things in arrays and hashes.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -44,14 +43,13 @@ you store reference to things in arrays and hashes.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Array/
 %{perl_vendorarch}/Array/RefElem.pm
-%{perl_vendorarch}/auto/Array/RefElem/RefElem.*
+%dir %{perl_vendorarch}/auto/Array/
+%{perl_vendorarch}/auto/Array/RefElem/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.00-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Jun 15 2004 Dries Verachtert <dries@ulyssis.org> - 1.00-1
 - Initial package.
 

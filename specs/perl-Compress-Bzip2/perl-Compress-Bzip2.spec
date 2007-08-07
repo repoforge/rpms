@@ -28,8 +28,8 @@ library from your Perl scripts to compress ordinary Perl strings.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -42,14 +42,13 @@ library from your Perl scripts to compress ordinary Perl strings.
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Compress/
 %{perl_vendorarch}/Compress/Bzip2.pm
-%{perl_vendorarch}/auto/Compress/Bzip2
+%dir %{perl_vendorarch}/auto/Compress/
+%{perl_vendorarch}/auto/Compress/Bzip2/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.09-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.09-1
 - Updated to release 2.09.
 

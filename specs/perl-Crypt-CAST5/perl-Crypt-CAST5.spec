@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Bob Mathews <bobmathews$alumni,calpoly,edu>
 
@@ -29,7 +28,7 @@ increased speed. See RFC 2114.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -45,16 +44,15 @@ increased speed. See RFC 2114.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Crypt/
 %{perl_vendorarch}/Crypt/CAST5.pm
-%{perl_vendorarch}/auto/Crypt/CAST5
+%dir %{perl_vendorarch}/auto/Crypt/
+%{perl_vendorarch}/auto/Crypt/CAST5/
 
 %changelog
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Updated to release 0.05.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
-- Rebuild for Fedora Core 5.
 
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.

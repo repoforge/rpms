@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Bryce Harrington <bryce$osdl,org>
 
-%define real_name SVG-Metadata
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name SVG-Metadata
 
 Summary: Perl module to capture metadata info about an SVG file
 Name: perl-SVG-Metadata
@@ -36,7 +34,7 @@ metadata into a separate directory structure for packaging.  See
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -51,15 +49,15 @@ metadata into a separate directory structure for packaging.  See
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog README
-%{_bindir}/*
+%doc %{_mandir}/man1/svg_annotate.1*
+%doc %{_mandir}/man1/svg_validate.1*
+%doc %{_mandir}/man3/SVG::Metadata.3pm*
+%{_bindir}/svg_annotate
+%{_bindir}/svg_validate
+%dir %{perl_vendorlib}/SVG/
 %{perl_vendorlib}/SVG/Metadata.pm
-%doc %{_mandir}/man3/*
-%doc %{_mandir}/man1/*
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.28-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.28-1
 - Updated to release 0.28.
 

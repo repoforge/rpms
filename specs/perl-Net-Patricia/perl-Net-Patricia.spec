@@ -39,8 +39,8 @@ Reno release.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -53,14 +53,13 @@ Reno release.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Net/
 %{perl_vendorarch}/Net/Patricia.pm
-%{perl_vendorarch}/auto/Net/Patricia
+%dir %{perl_vendorarch}/auto/Net/
+%{perl_vendorarch}/auto/Net/Patricia/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.014-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.014-1
 - Updated to release 1.014.
 

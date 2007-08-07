@@ -11,7 +11,7 @@
 Summary: Share Perl variables between processes
 Name: perl-IPC-Shareable
 Version: 0.60
-Release: 1.2
+Release: 2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPC-Shareable/
@@ -20,7 +20,8 @@ Source: http://www.cpan.org/modules/by-module/IPC/IPC-Shareable-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.00503, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 0:5.00503
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.00503
 
 %description
@@ -56,5 +57,8 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/IPC/Shareable.pm
 
 %changelog
+* Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 0.60-2
+- Disabled auto-requires for eg/.
+
 * Sun Mar 07 2004 Dag Wieers <dag@wieers.com> - 0.60-1
 - Initial package. (using DAR)

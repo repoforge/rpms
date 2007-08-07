@@ -28,8 +28,8 @@ Net::TCP::Server, and Net::UNIX::Server.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -42,13 +42,10 @@ Net::TCP::Server, and Net::UNIX::Server.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog README
-%doc %{_mandir}/man3/*
-%{perl_vendorarch}/Net
-%{perl_vendorarch}/auto/Net
+%doc %{_mandir}/man3/*.3pm*
+%{perl_vendorarch}/Net/
+%{perl_vendorarch}/auto/Net/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.011-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.011-1
 - Initial package.

@@ -27,8 +27,8 @@ This module provides an XS implementation of the interface described in Heap::Si
 %setup -n %{real_name}-%{version}
 
 %build
-echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+echo | CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -41,13 +41,14 @@ echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Heap/
+%dir %{perl_vendorarch}/Heap/Simple/
 %{perl_vendorarch}/Heap/Simple/XS.pm
+%dir %{perl_vendorarch}/auto/Heap/
+%dir %{perl_vendorarch}/auto/Heap/Simple/
 %{perl_vendorarch}/auto/Heap/Simple/XS/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1.2
-- Rebuild for Fedora Core 5.
-
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.09-1
 - Initial package.

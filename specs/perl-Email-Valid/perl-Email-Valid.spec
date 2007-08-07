@@ -28,9 +28,7 @@ Check validity of Internet email addresses
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -47,11 +45,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes README
 %doc %{_mandir}/man3/Email::Valid.3pm*
+%dir %{perl_vendorlib}/Email/
 %{perl_vendorlib}/Email/Valid.pm
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.15-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Aug 07 2004 Dag Wieers <dag@wieers.com> - 1.2-1
 - Initial package. (using DAR)

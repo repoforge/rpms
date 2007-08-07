@@ -51,8 +51,8 @@ programming language used for the software.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -68,25 +68,16 @@ programming language used for the software.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS CHANGES INSTALL README
-%doc %{_mandir}/man3/*
-%dir %{_sysconfdir}/auto-build.d
-%dir %{_sysconfdir}/auto-build.d/templates
-%config(noreplace) %{_sysconfdir}/auto-build.d/auto-build.*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{_sysconfdir}/auto-build.d/
+%dir %{_sysconfdir}/auto-build.d/templates/
 %config(noreplace) %{_sysconfdir}/auto-build.d/*
 %{_bindir}/auto-build.pl
 %dir %{perl_vendorlib}/Test/
 %{perl_vendorlib}/Test/AutoBuild.pm
 %{perl_vendorlib}/Test/AutoBuild/
 
-# perl_vendorlib: /usr/lib/perl5/vendor_perl/5.8.0
-# perl_vendorarch: /usr/lib/perl5/vendor_perl/5.8.0/i386-linux-thread-multi
-# perl_archlib: /usr/lib/perl5/5.8.0/i386-linux-thread-multi
-# perl_privlib: /usr/lib/perl5/5.8.0
-
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.3-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.3-1
 - Updated to release 1.0.3.
 

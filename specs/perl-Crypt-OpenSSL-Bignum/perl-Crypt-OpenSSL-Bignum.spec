@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Ian Robertson <iroberts+perl$red-bean,com>
 
@@ -34,7 +33,7 @@ requires that the OpenSSL libraries and header files be installed.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" INC=-I/usr/kerberos/include
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" INC="-I/usr/kerberos/include"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -49,14 +48,15 @@ requires that the OpenSSL libraries and header files be installed.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Crypt/
+%dir %{perl_vendorarch}/Crypt/OpenSSL/
+%{perl_vendorarch}/Crypt/OpenSSL/Bignum/
 %{perl_vendorarch}/Crypt/OpenSSL/Bignum.pm
-%{perl_vendorarch}/Crypt/OpenSSL/Bignum
-%{perl_vendorarch}/auto/Crypt/OpenSSL/Bignum
+%dir %{perl_vendorarch}/auto/Crypt/
+%dir %{perl_vendorarch}/auto/Crypt/OpenSSL/
+%{perl_vendorarch}/auto/Crypt/OpenSSL/Bignum/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1.2
-- Rebuild for Fedora Core 5.
-
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.

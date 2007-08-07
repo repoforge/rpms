@@ -35,8 +35,8 @@ You may find this module useful if you:
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -49,13 +49,10 @@ You may find this module useful if you:
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README Todo
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
 %{perl_vendorarch}/Alias.pm
-%{perl_vendorarch}/auto/Alias
+%{perl_vendorarch}/auto/Alias/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.32-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.32-1
 - Initial package.

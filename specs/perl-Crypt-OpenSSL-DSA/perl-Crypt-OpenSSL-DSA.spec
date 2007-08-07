@@ -1,8 +1,6 @@
 # $Id$
-
 # Authority: dries
 # Upstream: T,J, Mather <tjmather$maxmind,com>
-
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
@@ -33,7 +31,7 @@ OpenSSL crypto library, located at http://www.openssl.org.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" INC=-I/usr/kerberos/include
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" INC="-I/usr/kerberos/include"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -49,16 +47,16 @@ OpenSSL crypto library, located at http://www.openssl.org.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%{_mandir}/man3/*
+%{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Crypt/
+%dir %{perl_vendorarch}/Crypt/OpenSSL/
 %{perl_vendorarch}/Crypt/OpenSSL/DSA.pm
-%{perl_vendorarch}/Crypt/OpenSSL/DSA/Signature.pod
-%{perl_vendorarch}/auto/Crypt/OpenSSL/DSA/DSA.bs
-%{perl_vendorarch}/auto/Crypt/OpenSSL/DSA/DSA.so
+%{perl_vendorarch}/Crypt/OpenSSL/DSA/
+%dir %{perl_vendorarch}/auto/Crypt/
+%dir %{perl_vendorarch}/auto/Crypt/OpenSSL/
+%{perl_vendorarch}/auto/Crypt/OpenSSL/DSA/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.13-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.13-1
 - Updated to release 0.13.
 

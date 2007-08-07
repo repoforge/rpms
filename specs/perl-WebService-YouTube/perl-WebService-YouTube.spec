@@ -28,8 +28,8 @@ An interface to YouTube.
 
 %build
 export PERL_EXTUTILS_AUTOINSTALL="--skipdeps --skip"
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -43,7 +43,7 @@ export PERL_EXTUTILS_AUTOINSTALL="--skipdeps --skip"
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/WebService/
 %{perl_vendorlib}/WebService/YouTube.pm
 %{perl_vendorlib}/WebService/YouTube/

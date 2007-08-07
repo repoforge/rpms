@@ -36,8 +36,8 @@ the Apache API with Perl and C.  Functionality includes:
 %setup -n %{real_name}2-%{version}-dev
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -53,14 +53,11 @@ the Apache API with Perl and C.  Functionality includes:
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
 #%{perl_vendorlib}/libapreq.pm
 #%{perl_vendorlib}/libapreq/*
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.04-0.03.1.2
-- Rebuild for Fedora Core 5.
-
 * Mon Apr 18 2005 Dries Verachtert <dries@ulyssis.org> - 2.04-0.03.1
 - Update.
 

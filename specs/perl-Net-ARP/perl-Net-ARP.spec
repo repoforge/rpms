@@ -29,8 +29,8 @@ this extension. It uses kernel header files to create the packets.
 %setup -n %{real_name}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -43,16 +43,15 @@ this extension. It uses kernel header files to create the packets.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Net/
 %{perl_vendorarch}/Net/ARP.pm
+%dir %{perl_vendorarch}/auto/Net/
 %{perl_vendorarch}/auto/Net/ARP/
 
 %changelog
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-1
 - Updated to release 0.8.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1.2
-- Rebuild for Fedora Core 5.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.6-1
 - Initial package.

@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Neil Watkiss <nwatkiss$ttul,org>
 
-%define real_name Inline-Python
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Inline-Python
 
 Summary: Write Perl subs and classes in Python
 Name: perl-Inline-Python
@@ -33,7 +31,7 @@ it knows about into Perl structures, and vice versa.
 %setup -n %{real_name}-%{version}
 
 %build
-echo 1 | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+echo 1 | CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -48,9 +46,11 @@ echo 1 | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefi
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Inline/
 %{perl_vendorarch}/Inline/Python.*
-%{perl_vendorarch}/auto/Inline/Python/*
+%dir %{perl_vendorarch}/auto/Inline/
+%{perl_vendorarch}/auto/Inline/Python/
 
 %changelog
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.22-1.2

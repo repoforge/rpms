@@ -32,8 +32,8 @@ then DBD::SQLite may be just what you need.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -46,8 +46,10 @@ then DBD::SQLite may be just what you need.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/DBD/
 %{perl_vendorarch}/DBD/SQLite.pm
+%dir %{perl_vendorarch}/auto/DBD/
 %{perl_vendorarch}/auto/DBD/SQLite
 
 %changelog
@@ -56,9 +58,6 @@ then DBD::SQLite may be just what you need.
 
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.12-1
 - Updated to release 1.12.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1
 - Updated to release 1.11.

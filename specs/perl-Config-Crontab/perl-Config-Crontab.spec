@@ -49,8 +49,8 @@ crontab program.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -63,15 +63,13 @@ crontab program.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorlib}/Config/
 %{perl_vendorlib}/Config/Crontab.pm
 
 %changelog
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.20-1
 - Updated to release 1.20.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1
 - Updated to release 1.11.

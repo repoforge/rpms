@@ -31,11 +31,8 @@ statistics gathered from a log file.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags} \
-        OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -49,13 +46,11 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes examples MANIFEST README
-%doc %{_mandir}/man?/Text::BarGraph*
+%doc Changes MANIFEST README examples/
+%doc %{_mandir}/man3/Text::BarGraph*.3pm*
+%dir %{perl_vendorlib}/Text/
 %{perl_vendorlib}/Text/BarGraph.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
-- Rebuild for Fedora Core 5.
-
 * Fri Nov 04 2005 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Initial package.

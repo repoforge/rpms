@@ -1,14 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Christophe Wolfhugel <wolf$oleane,net>
 
-
-%define real_name Msgcat
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Msgcat
 
 Summary: Support for XPG4 message catalog functions
 Name: perl-Msgcat
@@ -30,7 +27,7 @@ This module contains support for XPG4 message catalog functions  : catopen(3), c
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -46,13 +43,12 @@ This module contains support for XPG4 message catalog functions  : catopen(3), c
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%{_mandir}/man3/*
+%{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Locale/
 %{perl_vendorarch}/Locale/Msgcat.pm
-%{perl_vendorarch}/auto/Locale/Msgcat
+%dir %{perl_vendorarch}/auto/Locale/
+%{perl_vendorarch}/auto/Locale/Msgcat/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.03-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 1.03-1
 - Initial package.

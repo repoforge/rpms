@@ -2,60 +2,61 @@
 # Authority: matthias
 # Upstream: Jörn Reder <joern$zyn,de>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Gtk2-Ex-FormFactory
 
 Summary: Framework for Gtk2 perl applications
 Name: perl-Gtk2-Ex-FormFactory
 Version: 0.65
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Libraries
 URL: http://www.exit1.org/Gtk2-Ex-FormFactory/
+
 Source: http://www.exit1.org/packages/Gtk2-Ex-FormFactory/dist/Gtk2-Ex-FormFactory-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: perl(Gtk2)
+
 BuildArch: noarch
+BuildRequires: perl(Gtk2)
 
 %description
 Gtk2::Ex::FormFactory is a framework for Perl Gtk2 developers.
 
-
 %prep
 %setup -n %{real_name}-%{version}
-# Make it so that the .pl scripts in %%doc don't add bogus requirements
-%{__chmod} -x examples/*.pl tutorial/*.pl
-
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod \
-           %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} pure_install
 
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find examples/ tutorial/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %files
 %defattr(-, root, root, 0755)
-%doc Changes examples/ LICENSE README tutorial/
+%doc Changes LICENSE README examples/ tutorial/
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Gtk2/
 %dir %{perl_vendorlib}/Gtk2/Ex/
 %{perl_vendorlib}/Gtk2/Ex/FormFactory/
 %{perl_vendorlib}/Gtk2/Ex/FormFactory.pm
-%{_mandir}/man3/*
-
 
 %changelog
+* Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 0.65-2
+- Disabled auto-requires for examples/ and tutorial/.
+
 * Sun Jul  2 2006 Matthias Saou <http://freshrpms.net/> 0.65-1
 - Update to 0.65.
 

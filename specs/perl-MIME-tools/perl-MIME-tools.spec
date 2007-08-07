@@ -11,7 +11,7 @@
 Summary: Perl modules for parsing (and creating!) MIME entities
 Name: perl-MIME-tools
 Version: 5.420
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-tools/
@@ -51,6 +51,9 @@ parser and tool for building your own MIME parser, and utilities.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -61,6 +64,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MIME/
 
 %changelog
+* Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 5.420-2
+- Disabled auto-requires for examples/.
+
 * Mon Apr 17 2006 Dag Wieers <dag@wieers.com> - 5.420-1
 - Updated to release 5.420.
 

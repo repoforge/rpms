@@ -33,7 +33,7 @@ in the main .pm file) if you need to use functions defined in the module.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -49,13 +49,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST README
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man?/*.3pm*
+%dir %{perl_vendorlib}/ExtUtils/
 %{perl_vendorlib}/ExtUtils/Depends.pm
 
 %changelog
-* Mon Apr 10 2006 Dries Verachtert <dries@ulyssis.org> - 0.205-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.205-1
 - Updated to release 0.205.
 

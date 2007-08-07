@@ -30,8 +30,8 @@ a little tricky, so I thought some people might find this useful.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -47,7 +47,7 @@ a little tricky, so I thought some people might find this useful.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Math/
 %{perl_vendorlib}/Math/Round.pm
 %dir %{perl_vendorlib}/auto/Math/
@@ -56,9 +56,6 @@ a little tricky, so I thought some people might find this useful.
 %changelog
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Updated to release 0.06.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1.2
-- Rebuild for Fedora Core 5.
 
 * Mon Dec 06 2004 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Initial package.

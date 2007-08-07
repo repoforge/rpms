@@ -28,8 +28,8 @@ dealing with and creating DOM objects easier.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -42,13 +42,14 @@ dealing with and creating DOM objects easier.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorlib}/XML/
+%dir %{perl_vendorlib}/XML/DOM/
 %{perl_vendorlib}/XML/DOM/BagOfTricks.pm
+%dir %{perl_vendorlib}/auto/XML/
+%dir %{perl_vendorlib}/auto/XML/DOM/
 %{perl_vendorlib}/auto/XML/DOM/BagOfTricks/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Initial package.
