@@ -23,6 +23,8 @@ BuildRequires: perl >= 0:5.005
 BuildRequires: perl(Test::More) >= 0.47
 BuildRequires: perl(File::Spec) >= 0.82
 BuildRequires: perl(ExtUtils::AutoInstall) >= 0.49
+BuildRequires: perl(PPI) >= 0.840
+BuildRequires: perl(Wx) >= 0.19
 
 %description
 A wxPerl-based interactive PPI debugger/tester.
@@ -48,11 +50,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes LICENSE MANIFEST META.yml README
 %doc %{_mandir}/man3/PPI::Tester.3pm*
+%doc %{_mandir}/man1/ppitester.1.gz
 #%doc %{_mandir}/man3/*.3pm*
+%{_bindir}/ppitester
 %dir %{perl_vendorlib}/PPI/
 #%{perl_vendorlib}/PPI/Tester/
 %{perl_vendorlib}/PPI/Tester.pm
 
 %changelog
+* Mon Aug 06 2007 Jim <quien-sabe@metaorg.com> - 0.06-2
+- Added BuildRequires perl(PPI) perl(Wx)
+- Fixed unpackagedfiles error for ppitester
+
 * Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 0.06-1
 - Initial package. (using DAR)
