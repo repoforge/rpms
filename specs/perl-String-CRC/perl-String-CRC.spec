@@ -31,8 +31,8 @@ in list context and as a packed binary string if called in scalar context.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" "PREFIX=%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -45,13 +45,13 @@ in list context and as a packed binary string if called in scalar context.
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%doc %{_mandir}/man3/*
-%{perl_vendorarch}/String/CRC.p*
-%{perl_vendorarch}/auto/String/CRC/CRC.*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/String/
+%{perl_vendorarch}/String/CRC.pm
+%{perl_vendorarch}/String/CRC.pod
+%dir %{perl_vendorarch}/auto/String/
+%{perl_vendorarch}/auto/String/CRC/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  2 2005 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Initial package.

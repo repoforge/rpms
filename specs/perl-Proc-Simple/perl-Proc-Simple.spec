@@ -28,8 +28,8 @@ from a user's point of view.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -45,15 +45,12 @@ from a user's point of view.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Proc/
 %{perl_vendorlib}/Proc/Simple.pm
 %dir %{perl_vendorlib}/auto/Proc/
-%{perl_vendorlib}/auto/Proc/Simple
+%{perl_vendorlib}/auto/Proc/Simple/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.21-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Dec 08 2004 Dries Verachtert <dries@ulyssis.org> - 1.21-1
 - Initial package.

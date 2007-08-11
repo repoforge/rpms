@@ -31,8 +31,8 @@ canonicalization (http://www.w3.org/TR/2002/REC-xml-exc-c14n-20020718/)
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -45,14 +45,13 @@ canonicalization (http://www.w3.org/TR/2002/REC-xml-exc-c14n-20020718/)
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/XML/
 %{perl_vendorarch}/XML/CanonicalizeXML.pm
+%dir %{perl_vendorarch}/auto/XML/
 %{perl_vendorarch}/auto/XML/CanonicalizeXML/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Updated to release 0.03.
 

@@ -1,14 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Dave Rolsky <autarch$urth,org>
 
-
-%define real_name Params-Validate
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Params-Validate
 
 Summary: Validation of method parameters
 Name: perl-Params-Validate
@@ -41,7 +38,7 @@ implementation that it can fall back on.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -56,9 +53,14 @@ implementation that it can fall back on.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes LICENSE README
-%{_mandir}/man3/*
+%{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Attribute/
+%dir %{perl_vendorarch}/Attribute/Params/
 %{perl_vendorarch}/Attribute/Params/Validate.pm
+%dir %{perl_vendorarch}/Params/
 %{perl_vendorarch}/Params/Validate*
+%dir %{perl_vendorarch}/auto/Params/
+%dir %{perl_vendorarch}/auto/Params/Validate/
 %{perl_vendorarch}/auto/Params/Validate/Validate.*
 
 %changelog
@@ -70,9 +72,6 @@ implementation that it can fall back on.
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.80-1
 - Updated to release 0.80.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.78-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.78-1
 - Updated to release 0.78.

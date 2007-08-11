@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Sys-Load/
 Source: http://search.cpan.org/CPAN/authors/id/B/BA/BARABAS/Sys-Load-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Sys::Load is a module that is used to get the current system load and uptime.
@@ -27,8 +28,8 @@ Sys::Load is a module that is used to get the current system load and uptime.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -41,13 +42,12 @@ Sys::Load is a module that is used to get the current system load and uptime.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Sys/
 %{perl_vendorarch}/Sys/Load.pm
-%{perl_vendorarch}/auto/Sys/Load
+%dir %{perl_vendorarch}/auto/Sys/
+%{perl_vendorarch}/auto/Sys/Load/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.2-1
 - Initial package.

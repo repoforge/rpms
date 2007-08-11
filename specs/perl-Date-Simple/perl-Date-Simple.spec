@@ -28,8 +28,8 @@ used to create simple date objects.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -42,14 +42,13 @@ used to create simple date objects.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog README
-%doc %{_mandir}/man3/*
-%{perl_vendorarch}/Date/Simple.pm
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Date/
 %{perl_vendorarch}/Date/Simple/
+%{perl_vendorarch}/Date/Simple.pm
+%dir %{perl_vendorarch}/auto/Date/
 %{perl_vendorarch}/auto/Date/Simple/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 3.02-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 3.02-1
 - Initial package.

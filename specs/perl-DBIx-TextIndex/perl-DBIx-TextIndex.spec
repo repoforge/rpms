@@ -30,8 +30,8 @@ module. MySQL, PostgreSQL, and SQLite are currently supported.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -44,14 +44,13 @@ module. MySQL, PostgreSQL, and SQLite are currently supported.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/DBIx/
 %{perl_vendorarch}/DBIx/TextIndex.pm
 %{perl_vendorarch}/DBIx/TextIndex
-%{perl_vendorarch}/auto/DBIx/TextIndex
+%dir %{perl_vendorarch}/auto/DBIx/
+%{perl_vendorarch}/auto/DBIx/TextIndex/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.25-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.25-1
 - Initial package.

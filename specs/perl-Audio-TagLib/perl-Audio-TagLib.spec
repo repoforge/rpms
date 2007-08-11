@@ -26,8 +26,8 @@ Perl library for reading and editing audio meta data, commonly known as tags.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -42,7 +42,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Bugs Changes LICENSE* README TODO
-%doc %{_mandir}/man3/*.3*
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorarch}/Audio/
 %{perl_vendorarch}/Audio/TagLib.pm
 %{perl_vendorarch}/Audio/TagLib/

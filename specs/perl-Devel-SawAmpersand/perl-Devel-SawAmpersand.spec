@@ -30,8 +30,8 @@ breaks the handling of the $`, $&, and $' completely.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -44,18 +44,18 @@ breaks the handling of the $`, $&, and $' completely.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/B/
 %{perl_vendorarch}/B/FindAmpersand.pm
+%dir %{perl_vendorarch}/Devel/
 %{perl_vendorarch}/Devel/SawAmpersand.pm
 %{perl_vendorarch}/Devel/FindAmpersand.pm
-%{perl_vendorarch}/auto/Devel/SawAmpersand
+%dir %{perl_vendorarch}/auto/Devel/
+%{perl_vendorarch}/auto/Devel/SawAmpersand/
 
 %changelog
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.31-1
 - Updated to release 0.31.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.30-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.30-1
 - Initial package.

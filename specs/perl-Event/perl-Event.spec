@@ -28,8 +28,8 @@ a broad class of applications.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -42,9 +42,10 @@ a broad class of applications.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog README
-%doc %{_mandir}/man3/*
-%{perl_vendorarch}/Event.p*
-%{perl_vendorarch}/Event
+%doc %{_mandir}/man3/*.3pm*
+%{perl_vendorarch}/Event/
+%{perl_vendorarch}/Event.pm
+%{perl_vendorarch}/Event.pod
 %{perl_vendorarch}/auto/Event
 
 %changelog

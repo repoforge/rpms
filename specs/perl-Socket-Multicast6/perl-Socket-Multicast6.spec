@@ -27,8 +27,8 @@ Constructors and constants for IPv4 and IPv6 multicast socket operations.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -41,8 +41,10 @@ Constructors and constants for IPv4 and IPv6 multicast socket operations.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/Socket::Multicast6*
+%doc %{_mandir}/man3/Socket::Multicast6*.3pm*
+%dir %{perl_vendorarch}/Socket/
 %{perl_vendorarch}/Socket/Multicast6.pm
+%dir %{perl_vendorarch}/auto/Socket/
 %{perl_vendorarch}/auto/Socket/Multicast6/
 
 %changelog

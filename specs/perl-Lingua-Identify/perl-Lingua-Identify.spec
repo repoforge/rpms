@@ -28,8 +28,8 @@ A module which can identify languages.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -42,19 +42,17 @@ A module which can identify languages.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
-%doc %{_mandir}/man1/*
+%doc %{_mandir}/man1/*.1*
+%doc %{_mandir}/man3/*.3pm*
 %{_bindir}/langident
 %{_bindir}/make-lingua-identify-language
+%dir %{perl_vendorlib}/Lingua/
 %{perl_vendorlib}/Lingua/Identify.pm
 %{perl_vendorlib}/Lingua/Identify/
 
 %changelog
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.19-1
 - Updated to release 0.19.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.18-1.2
-- Rebuild for Fedora Core 5.
 
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.18-1
 - Initial package.

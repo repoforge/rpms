@@ -33,8 +33,8 @@ Coroutines are similar to threads but don't run in parallel.
 
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 
 %install
@@ -65,4 +65,3 @@ Coroutines are similar to threads but don't run in parallel.
 * Wed Apr 19 2006 Matthias Saou <http://freshrpms.net/> 1.9-1
 - Initial RPM release, patch to use the ucontext method since the Linux
   specific one doesn't compile on FC5.
-

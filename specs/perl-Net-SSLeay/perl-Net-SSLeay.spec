@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Florian Ragwitz <rafl$debian,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,16 +9,18 @@
 
 Summary: Net-SSLeay module for perl
 Name: perl-Net-SSLeay
-Version: 1.25
-Release: 3.2
-License: distributable
+Version: 1.30
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SSLeay.pm/
 
 Source: http://www.cpan.org/modules/by-module/Net/Net_SSLeay.pm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.00503, openssl-devel, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 0:5.00503
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: openssl-devel
 Requires: perl >= 0:5.00503
 
 %description
@@ -39,13 +42,16 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL %{_prefix} INSTALLDIRS="vendor" PREFI
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
 %doc Changes Credits MANIFEST QuickRef README examples/
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorarch}/Net/
 %{perl_vendorarch}/Net/ptrtstrun.pl
 %{perl_vendorarch}/Net/SSLeay/
@@ -54,9 +60,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Net/SSLeay/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.25-3.2
-- Rebuild for Fedora Core 5.
-
 * Mon Nov 14 2005 Matthias Saou <http://freshrpms.net/> 1.25-3
 - Add missing openssl-devel build requirement.
 

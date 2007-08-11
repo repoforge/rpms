@@ -13,8 +13,10 @@ Release: 1
 License: Artistic or GPL
 Group: Development/Libraries
 URL: http://search.cpan.org/~mlehmann/IO-AIO/
+
 Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/IO-AIO-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 # Provided by either perl or perl-devel
 BuildRequires: perl(ExtUtils::MakeMaker)
 
@@ -28,8 +30,8 @@ system supports.
 
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 
 %install
@@ -50,7 +52,7 @@ system supports.
 %{perl_vendorarch}/IO/AIO.pm
 %dir %{perl_vendorarch}/auto/IO/
 %{perl_vendorarch}/auto/IO/AIO/
-%{_mandir}/man3/*
+%{_mandir}/man3/*.3pm*
 
 
 %changelog

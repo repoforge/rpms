@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Steffen Beyer <sb$engelschall,com>
 
 # ExclusiveDist: el3
 
@@ -12,7 +13,7 @@ Summary: Gregorian calendar date calculations
 Name: perl-Date-Calc
 Version: 5.4
 Release: 1
-License: distributable
+License: Artistic/GPL/LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Calc/
 
@@ -26,7 +27,7 @@ Requires: perl
 Gregorian calendar date calculations
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -39,12 +40,15 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean 
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc *.txt examples/
+%doc Artistic.txt CHANGES.txt CREDITS.txt EXAMPLES.txt GNU_GPL.txt GNU_LGPL.txt INSTALL.txt MANIFEST README.txt TOOLS.txt examples/
 %doc %{_mandir}/man3/*.3pm*
 %{perl_vendorarch}/Date/
 %{perl_vendorarch}/auto/Date/

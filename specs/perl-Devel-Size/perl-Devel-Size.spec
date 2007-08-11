@@ -27,8 +27,8 @@ Perl extension for finding the memory usage of Perl variables.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -41,14 +41,13 @@ Perl extension for finding the memory usage of Perl variables.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Devel/
 %{perl_vendorarch}/Devel/Size.pm
 #%{perl_vendorarch}/Devel/Size/
+%dir %{perl_vendorarch}/auto/Devel/
 %{perl_vendorarch}/auto/Devel/Size/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.64-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Jan  4 2006 Dries Verachtert <dries@ulyssis.org> - 0.64-1
 - Initial package.

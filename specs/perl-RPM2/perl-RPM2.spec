@@ -27,8 +27,8 @@ Perl bindings for the RPM Package Manager API.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -41,7 +41,7 @@ Perl bindings for the RPM Package Manager API.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/RPM2*
+%doc %{_mandir}/man3/RPM2*.3pm*
 %{perl_vendorarch}/RPM2.pm
 %{perl_vendorarch}/auto/RPM2/
 

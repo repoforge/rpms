@@ -27,8 +27,8 @@ With this module, you can extract words from strings.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -41,8 +41,10 @@ With this module, you can extract words from strings.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Text/
 %{perl_vendorarch}/Text/ExtractWords.pm
+%dir %{perl_vendorarch}/auto/Text/
 %{perl_vendorarch}/auto/Text/ExtractWords/
 
 %changelog

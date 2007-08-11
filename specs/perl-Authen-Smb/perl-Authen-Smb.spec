@@ -27,7 +27,7 @@ Authen::Smb allows you to authenticate users against an NT server.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -42,14 +42,12 @@ Authen::Smb allows you to authenticate users against an NT server.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%{_mandir}/man3/*
+%{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Authen/
 %{perl_vendorarch}/Authen/Smb.pm
-%{perl_vendorarch}/auto/Authen/Smb
+%dir %{perl_vendorarch}/auto/Authen/
+%{perl_vendorarch}/auto/Authen/Smb/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.91-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.91-1
 - Initial package.
-

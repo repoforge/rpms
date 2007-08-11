@@ -29,8 +29,8 @@ Ngram analysis of text.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -43,8 +43,10 @@ Ngram analysis of text.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Text/
 %{perl_vendorarch}/Text/Ngram.pm
+%dir %{perl_vendorarch}/auto/Text/
 %{perl_vendorarch}/auto/Text/Ngram/
 
 %changelog
@@ -53,9 +55,6 @@ Ngram analysis of text.
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1
 - Updated to release 0.09.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Initial package.

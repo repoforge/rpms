@@ -11,10 +11,12 @@ Summary: Framework for Gtk2 perl applications
 Name: perl-Gtk2-Ex-FormFactory
 Version: 0.65
 Release: 2
-License: GPL
+License: Artistic/GPL
 Group: Development/Libraries
+#URL: http://search.cpan.org/dist/Gtk2-Ex-FormFactory/
 URL: http://www.exit1.org/Gtk2-Ex-FormFactory/
 
+#Source: http://www.cpan.org/modules/by-module/Gtk2/Gtk2-Ex-FormFactory-%{version}.tar.gz
 Source: http://www.exit1.org/packages/Gtk2-Ex-FormFactory/dist/Gtk2-Ex-FormFactory-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -46,7 +48,7 @@ find examples/ tutorial/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE README examples/ tutorial/
+%doc Changes LICENSE MANIFEST META.yml README examples/ tutorial/
 %doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Gtk2/
 %dir %{perl_vendorlib}/Gtk2/Ex/

@@ -44,8 +44,8 @@ output the images in a range of formats.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -57,11 +57,11 @@ output the images in a range of formats.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorarch}/Image/
 %{perl_vendorarch}/Image/Imlib2.pm
 %dir %{perl_vendorarch}/auto/Image/
-%{perl_vendorarch}/auto/Image/Imlib2
+%{perl_vendorarch}/auto/Image/Imlib2/
 
 %changelog
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.13-1

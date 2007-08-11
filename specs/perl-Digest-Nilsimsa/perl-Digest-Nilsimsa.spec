@@ -1,14 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Vipul Ved Prakash <mail$vipul,net>
 
-
-%define real_name Digest-Nilsimsa
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Digest-Nilsimsa
 
 Summary: Nilsimsa algorithm
 Name: perl-Digest-Nilsimsa
@@ -30,7 +27,7 @@ This module contains a perl version of the Nilsimsa code.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -45,14 +42,12 @@ This module contains a perl version of the Nilsimsa code.
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README
-%{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Digest/
 %{perl_vendorarch}/Digest/Nilsimsa.pm
-%{perl_vendorarch}/auto/Digest/Nilsimsa/Nilsimsa.bs
-%{perl_vendorarch}/auto/Digest/Nilsimsa/Nilsimsa.so
+%dir %{perl_vendorarch}/auto/Digest/
+%{perl_vendorarch}/auto/Digest/Nilsimsa/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.

@@ -30,8 +30,8 @@ physical interfaces (if your O/S supports it).
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -44,9 +44,11 @@ physical interfaces (if your O/S supports it).
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Net/
 %{perl_vendorarch}/Net/Interface.pm
-%{perl_vendorarch}/auto/Net/Interface
+%dir %{perl_vendorarch}/auto/Net/
+%{perl_vendorarch}/auto/Net/Interface/
 
 %changelog
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1
@@ -54,9 +56,6 @@ physical interfaces (if your O/S supports it).
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Updated to release 0.06.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04_2-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.04_2-1
 - Initial package.

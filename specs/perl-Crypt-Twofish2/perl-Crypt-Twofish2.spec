@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Marc Lehmann <pcg$goof,com>
 
@@ -33,7 +32,7 @@ that module (except generality, which is often a good thing), since
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -48,14 +47,13 @@ that module (except generality, which is often a good thing), since
 %files
 %defattr(-, root, root, 0755)
 %doc Changes COPYING README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Crypt/
 %{perl_vendorarch}/Crypt/Twofish2.pm
-%{perl_vendorarch}/auto/Crypt/Twofish2/*
+%dir %{perl_vendorarch}/auto/Crypt/
+%{perl_vendorarch}/auto/Crypt/Twofish2/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1.2
-- Rebuild for Fedora Core 5.
-
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Updated to release 1.01.
 

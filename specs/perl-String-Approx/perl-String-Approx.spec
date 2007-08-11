@@ -31,8 +31,8 @@ have used the agrep utility or the Glimpse indexing system.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -45,16 +45,15 @@ have used the agrep utility or the Glimpse indexing system.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/String/
 %{perl_vendorarch}/String/Approx.pm
+%dir %{perl_vendorarch}/auto/String/
 %{perl_vendorarch}/auto/String/Approx
 
 %changelog
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 3.26-1
 - Updated to release 3.26.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 3.25-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 3.25-1
 - Updated to release 3.25.

@@ -31,8 +31,8 @@ data, if necessary.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -45,14 +45,13 @@ data, if necessary.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Cache/
 %{perl_vendorarch}/Cache/Mmap.pm
-%{perl_vendorarch}/auto/Cache/Mmap
+%dir %{perl_vendorarch}/auto/Cache/
+%{perl_vendorarch}/auto/Cache/Mmap/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1
 - Updated to release 0.09.
 

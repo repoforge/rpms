@@ -27,8 +27,8 @@ Low-Level Interface to bzip2 compression library.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -41,8 +41,12 @@ Low-Level Interface to bzip2 compression library.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/Compress::Raw::Bzip2*
+%doc %{_mandir}/man3/Compress::Raw::Bzip2*.3pm*
+%dir %{perl_vendorarch}/Compress/
+%dir %{perl_vendorarch}/Compress/Raw/
 %{perl_vendorarch}/Compress/Raw/Bzip2.pm
+%dir %{perl_vendorarch}/auto/Compress/
+%dir %{perl_vendorarch}/auto/Compress/Raw/
 %{perl_vendorarch}/auto/Compress/Raw/Bzip2/
 
 %changelog

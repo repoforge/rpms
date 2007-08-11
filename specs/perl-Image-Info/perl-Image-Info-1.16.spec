@@ -1,16 +1,16 @@
 # $Id$
 # Authority: dries
-# Upstream: Tels <nospam-abuse@bloodgate.com>
+# Upstream: Gisle Aas <gisle$activestate,com>
 
-%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Image-Info
 
 Summary: Extract meta information from image files
 Name: perl-Image-Info
-Version: 1.25
-Release: 1
+Version: 1.16
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Info/
@@ -20,9 +20,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(IO::String)
-BuildRequires: perl(Test::More) >= 0.42
 
 %description
 This Perl extention allows you to extract meta information from
@@ -37,42 +34,24 @@ various types of image files.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+%makeinstall
 
 ### Clean up buildroot
-find %{buildroot} -name .packlist -exec %{__rm} {} \;
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES CREDITS MANIFEST MANIFEST.SKIP META.yml README SIGNATURE TODO
+%doc Changes README
 %doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Image/
-%{perl_vendorlib}/Image/Info/
 %{perl_vendorlib}/Image/Info.pm
+%{perl_vendorlib}/Image/Info/
 %{perl_vendorlib}/Image/TIFF.pm
 
 %changelog
-* Wed Jun 13 2007 Dries Verachtert <dries@ulyssis.org> - 1.25-1
-- Updated to release 1.25.
-
-* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.24-1
-- Updated to release 1.24.
-
-* Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 1.23-1
-- Updated to release 1.23.
-
-* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.22-1
-- Updated to release 1.22.
-
-* Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.21-1
-- Updated to release 1.21.
-
-* Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.20-1
-- Updated to release 1.20.
-
 * Sat Jan 01 2005 Dries Verachtert <dries@ulyssis.org> - 1.16-2
 - Fixed the license tag (Thanks to David Necas !)
 

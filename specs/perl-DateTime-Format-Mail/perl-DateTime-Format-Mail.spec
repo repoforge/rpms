@@ -11,7 +11,7 @@ Summary: Perl module to convert between DateTime and RFC2822/822 formats
 Name: perl-DateTime-Format-Mail
 Version: 0.30
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Format-Mail/
 
@@ -19,7 +19,9 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Format-Mail-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(Module::Build)
+BuildRequires: perl,
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Build)
 Requires: perl
 
 %description
@@ -40,12 +42,15 @@ and RFC2822/822 formats.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find notes/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Artistic AUTHORS Changes COPYING CREDITS LICENCE MANIFEST META.yml README notes/
+%doc AUTHORS Artistic COPYING CREDITS Changes LICENCE MANIFEST MANIFEST.SKIP META.yml README notes/
 %doc %{_mandir}/man3/DateTime::Format::Mail.3pm*
 %dir %{perl_vendorlib}/DateTime/
 %dir %{perl_vendorlib}/DateTime/Format/

@@ -28,8 +28,8 @@ Perl extension for RIPEMD-160 HASH and MAC function.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -42,14 +42,13 @@ Perl extension for RIPEMD-160 HASH and MAC function.
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Crypt/
 %{perl_vendorarch}/Crypt/RIPEMD160.pm
-%{perl_vendorarch}/Crypt/RIPEMD160
-%{perl_vendorarch}/auto/Crypt/RIPEMD160
+%{perl_vendorarch}/Crypt/RIPEMD160/
+%dir %{perl_vendorarch}/auto/Crypt/
+%{perl_vendorarch}/auto/Crypt/RIPEMD160/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.

@@ -34,7 +34,7 @@ hexdump:  dump memory in an MVS-like format
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -49,7 +49,7 @@ hexdump:  dump memory in an MVS-like format
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorarch}/Convert/
 %{perl_vendorarch}/Convert/IBM390.pm
 %{perl_vendorarch}/Convert/IBM390.pod
@@ -59,9 +59,6 @@ hexdump:  dump memory in an MVS-like format
 %changelog
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.22-1
 - Updated to release 0.22.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.21-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.21-1
 - Updated to release 0.21.

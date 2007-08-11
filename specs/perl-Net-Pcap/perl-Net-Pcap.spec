@@ -34,8 +34,8 @@ This module is an interface to pcap(3) LBL packet capture library.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -51,13 +51,13 @@ This module is an interface to pcap(3) LBL packet capture library.
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man1/pcapinfo*.1*
+%doc %{_mandir}/man3/*.3pm*
+%{_bindir}/pcapinfo
 %dir %{perl_vendorarch}/Net/
 %{perl_vendorarch}/Net/Pcap.pm
 %dir %{perl_vendorarch}/auto/Net/
 %{perl_vendorarch}/auto/Net/Pcap/
-%{_bindir}/pcapinfo
-%doc %{_mandir}/man1/pcapinfo*
 
 %changelog
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1

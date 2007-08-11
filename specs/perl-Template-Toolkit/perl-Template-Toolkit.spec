@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Andy Wardley <cpan$wardley,org>
 
@@ -33,13 +32,14 @@ LaTeX, and so on.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL TT_DBI=n TT_XS_ENABLE=y TT_ACCEPT=y INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} \
-	TT_PREFIX="%{_datadir}/tt2"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" \
+    TT_DBI="n" TT_XS_ENABLE="y" TT_ACCEPT="y"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}" \
+    TT_PREFIX="%{_datadir}/tt2"
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall \
+%{__make} pure_install \
 	PREFIX="%{buildroot}%{_prefix}" \
 	TT_PREFIX="%{buildroot}%{_datadir}/tt2"
 #	PERLPREFIX=%{buildroot}/usr \
@@ -56,21 +56,18 @@ LaTeX, and so on.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man1/*
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man1/*.1*
+%doc %{_mandir}/man3/*.3pm*
 %{_datadir}/tt2
 %{_bindir}/tpage
 %{_bindir}/ttree
-%{perl_vendorarch}/Template.pm
 %{perl_vendorarch}/Template/
+%{perl_vendorarch}/Template.pm
 %{perl_vendorarch}/auto/Template/
 
 %changelog
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 2.15-1
 - Updated to release 2.15.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.14-1.2
-- Rebuild for Fedora Core 5.
 
 * Thu Nov 04 2004 Dries Verachtert <dries@ulyssis.org> - 2.14-1
 - Initial package.

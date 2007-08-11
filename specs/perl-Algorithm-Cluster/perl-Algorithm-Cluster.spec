@@ -27,8 +27,8 @@ Perl interface to the C Clustering Library.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -41,8 +41,8 @@ Perl interface to the C Clustering Library.
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%doc %{_mandir}/man3/Algorithm::Cluster*
-%{perl_vendorarch}/Algorithm/Cluster.pm
+%doc %{_mandir}/man3/Algorithm::Cluster*.3pm*
+%dir %{perl_vendorarch}/Algorithm/
 %{perl_vendorarch}/auto/Algorithm/Cluster/
 
 %changelog

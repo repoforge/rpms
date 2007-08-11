@@ -30,8 +30,8 @@ complete and accurate than reverse DNS lookups.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -44,15 +44,12 @@ complete and accurate than reverse DNS lookups.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
 %{perl_vendorarch}/Geo/IP.pm
 %{perl_vendorarch}/Geo/IP/
 %{perl_vendorarch}/Geo/Mirror.pm
 %{perl_vendorarch}/auto/Geo/IP/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.27-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.27-1
 - Initial package.

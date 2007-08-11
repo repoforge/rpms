@@ -1,14 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Sven Verdoolaege <skimo$kotnet,org>
 
-
-%define real_name FCGI
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name FCGI
 
 Summary: Fast CGI module
 Name: perl-FCGI
@@ -32,7 +29,7 @@ not require you to recompile perl.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -47,14 +44,10 @@ not require you to recompile perl.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog LICENSE.TERMS README
-%{_mandir}/man3/*
+%{_mandir}/man3/*.3pm*
 %{perl_vendorarch}/FCGI.pm
-%{perl_vendorarch}/auto/FCGI/FCGI.bs
-%{perl_vendorarch}/auto/FCGI/FCGI.so
+%{perl_vendorarch}/auto/FCGI/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.67-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.67-1
 - Initial package.

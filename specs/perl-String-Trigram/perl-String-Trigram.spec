@@ -34,8 +34,8 @@ tokens). For our example this means dividing 4 / 9 resulting in 0.44.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -48,13 +48,12 @@ tokens). For our example this means dividing 4 / 9 resulting in 0.44.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/String/
 %{perl_vendorarch}/String/Trigram.pm
-%{perl_vendorarch}/auto/String/Trigram
+%dir %{perl_vendorarch}/auto/String/
+%{perl_vendorarch}/auto/String/Trigram/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.1-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.1-1
 - Initial package.

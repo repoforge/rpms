@@ -27,8 +27,8 @@ This module implements the tiger hash, which returns a 192-bit hash value.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -42,12 +42,11 @@ This module implements the tiger hash, which returns a 192-bit hash value.
 %defattr(-, root, root, 0755)
 %doc README
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorarch}/Digest/
 %{perl_vendorarch}/Digest/Tiger.pm
-%{perl_vendorarch}/auto/Digest/Tiger
+%dir %{perl_vendorarch}/auto/Digest/
+%{perl_vendorarch}/auto/Digest/Tiger/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

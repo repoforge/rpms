@@ -27,8 +27,8 @@ With this module, you can check if a scalar is valid UTF-8.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -41,13 +41,12 @@ With this module, you can check if a scalar is valid UTF-8.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Unicode/
 %{perl_vendorarch}/Unicode/CheckUTF8.pm
+%dir %{perl_vendorarch}/auto/Unicode/
 %{perl_vendorarch}/auto/Unicode/CheckUTF8/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1.2
-- Rebuild for Fedora Core 5.
-
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Initial package.

@@ -41,8 +41,8 @@ more sense.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -56,6 +56,7 @@ more sense.
 %defattr(-, root, root, 0755)
 %doc Changes README
 %doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorlib}/File/
 %{perl_vendorlib}/File/System.pm
 %{perl_vendorlib}/File/System/
 

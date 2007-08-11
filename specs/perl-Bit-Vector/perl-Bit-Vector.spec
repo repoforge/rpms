@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Steffen Beyer <sb$engelschall,com>
 
 # ExcludeDist: el4
 
@@ -12,7 +13,7 @@ Summary: Efficient bit vector, set of integers and "big int" math library
 Name: perl-Bit-Vector
 Version: 6.4
 Release: 2
-License: Artistic
+License: Artistic/GPL/LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Bit-Vector/
 
@@ -26,7 +27,6 @@ Efficient bit vector, set of integers and "big int" math library.
 
 %prep
 %setup -n %{real_name}-%{version}
-%{__chmod} a-x examples/*.pl
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -39,14 +39,16 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Artistic.txt CHANGES.txt CREDITS.txt GNU_LGPL.txt GNU_GPL.txt INSTALL.txt MANIFEST README.txt
-%doc examples/
-%doc %{_mandir}/man3/*.3*
+%doc Artistic.txt CHANGES.txt CREDITS.txt GNU_GPL.txt GNU_LGPL.txt INSTALL.txt MANIFEST README.txt examples/
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorarch}/auto/Bit/
 %{perl_vendorarch}/auto/Bit/Vector/
 %dir %{perl_vendorarch}/Bit/

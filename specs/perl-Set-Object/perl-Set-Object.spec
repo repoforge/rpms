@@ -31,8 +31,8 @@ anything that is a reference is considered an object.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -45,16 +45,15 @@ anything that is a reference is considered an object.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes.pod README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Set/
 %{perl_vendorarch}/Set/Object.pm
-%{perl_vendorarch}/auto/Set/Object
+%dir %{perl_vendorarch}/auto/Set/
+%{perl_vendorarch}/auto/Set/Object/
 
 %changelog
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.18-1
 - Updated to release 1.18.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.14-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.14-1
 - Updated to release 1.14.

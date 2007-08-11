@@ -28,8 +28,8 @@ and from files.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" "PREFIX=%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -42,16 +42,16 @@ and from files.
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%doc %{_mandir}/man3/*
-%{perl_vendorarch}/String/CRC32.p*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/String/
+%{perl_vendorarch}/String/CRC32.pm
+%{perl_vendorarch}/String/CRC32.pod
+%dir %{perl_vendorarch}/auto/String/
 %{perl_vendorarch}/auto/String/CRC32
 
 %changelog
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1
 - Updated to release 1.4.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.3-1
 - Updated to release 1.3.

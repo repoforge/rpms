@@ -2,9 +2,10 @@
 # Authority: dries
 # Upstream: Piers Harding <piers$cpan,org>
 
-%define real_name Inline-BC
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name Inline-BC
 
 Summary: Inline ILSM for bc the arbitrary precision math Language
 Name: perl-Inline-BC
@@ -29,11 +30,8 @@ program.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags} \
-	OPTIMIZE="%{optflags}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -47,13 +45,12 @@ program.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Inline/BC
 %{perl_vendorarch}/Inline/BC.pm
-%{perl_vendorarch}/auto/Inline/BC/*
+%dir %{perl_vendorarch}/auto/Inline/
+%{perl_vendorarch}/auto/Inline/BC/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1.2
-- Rebuild for Fedora Core 5.
-
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.

@@ -2,11 +2,10 @@
 # Authority: dries
 # Upstream: Jarkko Hietaniemi <jhi@iki,fi>
 
-%define real_name BSD-Resource
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name BSD-Resource
 
 Summary: BSD process resource limit and priority functions
 Name: perl-BSD-Resource
@@ -36,8 +35,8 @@ with better time resolution.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -53,16 +52,15 @@ with better time resolution.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/BSD/
 %{perl_vendorarch}/BSD/Resource.pm
-%{perl_vendorarch}/auto/BSD/Resource/*
+%dir %{perl_vendorarch}/auto/BSD/
+%{perl_vendorarch}/auto/BSD/Resource/
 
 %changelog
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.28-1
 - Updated to release 1.28.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.24-1.2
-- Rebuild for Fedora Core 5.
 
 * Sun Dec 19 2004 Dries Verachtert <dries@ulyssis.org> - 1.24-1
 - Initial package.

@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Ken Williams <ken$mathforum,org>
 
-%define real_name Cwd
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Cwd
 
 Summary: Get the pathname of the current working directory
 Name: perl-Cwd
@@ -23,13 +21,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
-This small module getś the pathname of the current working directory.
+This small module get the pathname of the current working directory.
 
 %prep
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -44,14 +42,11 @@ This small module getś the pathname of the current working directory.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
 %{perl_vendorarch}/Cwd.pm
-%{perl_vendorarch}/auto/Cwd/*
+%{perl_vendorarch}/auto/Cwd/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.21-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 2.21-1
 - Updated to release 2.21.
 

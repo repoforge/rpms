@@ -46,12 +46,13 @@ This module contains an object oriented Tk extension for Perl.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL XFT=1 INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" X11LIB=%{_prefix}/X11R6/%{_lib}
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" \
+    XFT="1" X11LIB="%{_prefix}/X11R6/%{_lib}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 %{__perl} -pi -e 's|/bin/perl|%{_bindir}/perl|g' %{buildroot}%{perl_vendorarch}/Tk/reindex.pl
 %{__perl} -pi -e 's|/usr/local/bin/perl|%{_bindir}/perl|g' \
@@ -68,8 +69,8 @@ This module contains an object oriented Tk extension for Perl.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
-%doc %{_mandir}/man1/*
+%doc %{_mandir}/man1/*.1*
+%doc %{_mandir}/man3/*.3*
 %{_bindir}/gedi
 %{_bindir}/ptked
 %{_bindir}/ptksh
@@ -83,9 +84,6 @@ This module contains an object oriented Tk extension for Perl.
 %{perl_vendorarch}/fix_4_os2.pl
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 804.027-3.2
-- Rebuild for Fedora Core 5.
-
 * Sun Aug 14 2005 Dries Verachtert <dries@ulyssis.org> - 804.027-3
 - Enable XFT support (thanks to Void Main).
 

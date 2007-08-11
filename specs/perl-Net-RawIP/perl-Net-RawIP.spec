@@ -37,8 +37,8 @@ with an optional feature for manipulating Ethernet headers.
 %patch -p1
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} 
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} OPTIMIZE="%{optflags}"
 #%{?_smp_mflags}
 
 %install
@@ -52,10 +52,12 @@ with an optional feature for manipulating Ethernet headers.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Net/
+%{perl_vendorarch}/Net/RawIP/
 %{perl_vendorarch}/Net/RawIP.pm
-%{perl_vendorarch}/Net/RawIP
-%{perl_vendorarch}/auto/Net/RawIP
+%dir %{perl_vendorarch}/auto/Net
+%{perl_vendorarch}/auto/Net/RawIP/
 
 %changelog
 * Thu Aug 24 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-2

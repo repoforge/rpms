@@ -35,8 +35,8 @@ implement whatever specific functionality is required.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -52,13 +52,10 @@ implement whatever specific functionality is required.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Class/
 %{perl_vendorlib}/Class/Singleton.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.03-1.2
-- Rebuild for Fedora Core 5.
-
 * Mon Dec 06 2004 Dries Verachtert <dries@ulyssis.org> - 1.03-1
 - Initial package.

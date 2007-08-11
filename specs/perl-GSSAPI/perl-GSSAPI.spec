@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Achim Grolms <pause$grolmsnet,de>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,16 +9,18 @@
 
 Summary: Perl extension providing access to the GSSAPIv2 library
 Name: perl-GSSAPI
-Version: 0.23
-Release: 2
-License: GPL or Artistic
+Version: 0.24
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GSSAPI/
 
 Source: http://www.cpan.org/authors/id/A/AG/AGROLMS/GSSAPI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(Test::Pod) >= 1.00, perl(Test::Pod::Coverage) >= 1.04
+BuildRequires: perl
+BuildRequires: perl(Test::Pod) >= 1.00
+BuildRequires: perl(Test::Pod::Coverage) >= 1.04
 BuildRequires: krb5-devel
 
 %description
@@ -47,14 +50,15 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README examples/
+%doc Changes MANIFEST META.yml README examples/
 %doc %{_mandir}/man3/*.3pm*
 %{perl_vendorarch}/GSSAPI/
 %{perl_vendorarch}/GSSAPI.pm
 %{perl_vendorarch}/auto/GSSAPI/
 
 %changelog
-* Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 0.23-2
+* Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 0.24-1
+- Updated to release 0.24.
 - Disabled auto-requires for examples/.
 
 * Wed Aug 16 2006 Dag Wieers <dag@wieers.com> - 0.23-1

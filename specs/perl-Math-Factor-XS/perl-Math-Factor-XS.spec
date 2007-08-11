@@ -27,8 +27,8 @@ Math::Factor::XS factorises numbers by applying modulo operator divisons.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -41,8 +41,12 @@ Math::Factor::XS factorises numbers by applying modulo operator divisons.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Math/
+%dir %{perl_vendorarch}/Math/Factor/
 %{perl_vendorarch}/Math/Factor/XS.pm
+%dir %{perl_vendorarch}/auto/Math/
+%dir %{perl_vendorarch}/auto/Math/Factor/
 %{perl_vendorarch}/auto/Math/Factor/XS/
 
 %changelog

@@ -20,7 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildArch: noarch
 Requires: gsl >= 0.94
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: gsl-devel >= 0.94
 
 %description
@@ -36,19 +37,23 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
+
 #so strip doesn't fail
 find %{buildroot}%{perl_vendorarch} -name '*.so' -exec chmod u+w {} \;
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find contrib/ doc/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README THANKS doc/ contrib/
+%doc Changes MANIFEST README THANKS contrib/ doc/
 %doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorarch}/Math/
 %{perl_vendorarch}/Math/Gsl.pm

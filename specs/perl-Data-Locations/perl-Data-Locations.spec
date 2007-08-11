@@ -27,8 +27,8 @@ Magic insertion points in your data.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -41,13 +41,12 @@ Magic insertion points in your data.
 %files
 %defattr(-, root, root, 0755)
 %doc README.txt
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Data/
 %{perl_vendorarch}/Data/Locations.pm
-%{perl_vendorarch}/auto/Data/Locations
+%dir %{perl_vendorarch}/auto/Data/
+%{perl_vendorarch}/auto/Data/Locations/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 5.4-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 5.4-1
 - Initial package.
