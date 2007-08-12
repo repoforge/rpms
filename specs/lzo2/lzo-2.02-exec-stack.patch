@@ -1,0 +1,25 @@
+--- asm/i386/src_nasm/asminit.def.orig	2005-12-29 22:51:45.000000000 +1100
++++ asm/i386/src_nasm/asminit.def	2005-12-29 22:54:11.000000000 +1100
+@@ -32,6 +32,9 @@
+ ;  <markus@oberhumer.com>
+ ;  http://www.oberhumer.com/opensource/lzo/
+ ;
++%ifidn __OUTPUT_FORMAT__,elf
++section .note.GNU-stack noalloc noexec nowrite progbits
++%endif
+ 
+ %define F(name) name
+ %ifidni __OUTPUT_FORMAT__,elf
+--- asm/i386/src_gas/asminit.def.orig	2005-12-29 22:51:58.000000000 +1100
++++ asm/i386/src_gas/asminit.def	2005-12-29 22:55:29.000000000 +1100
+@@ -32,6 +32,10 @@
+    <markus@oberhumer.com>
+    http://www.oberhumer.com/opensource/lzo/
+ */
++#ifdef __ELF__
++.section .note.GNU-stack,"",@progbits
++#endif
++
+ 
+ #ifndef F
+ #  define F(name)       name
