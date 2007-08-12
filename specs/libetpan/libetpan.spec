@@ -3,7 +3,7 @@
 
 Summary: Portable mail access library
 Name: libetpan
-Version: 0.46
+Version: 0.49
 Release: 1
 License: BSD
 Group: System Environment/Libraries
@@ -75,6 +75,9 @@ the libetpan library.
 
 
 %changelog
+* Sun Aug 12 2007 Heiko Adams <info@fedora-blog.de> - 0.49-1
+- Updated to release 0.49.
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.46-1
 - Updated to release 0.46.
 
