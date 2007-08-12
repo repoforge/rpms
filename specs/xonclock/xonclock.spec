@@ -14,7 +14,7 @@
 
 Summary: On-screen analog clock
 Name: xonclock
-Version: 0.0.8.9
+Version: 0.0.9.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -70,6 +70,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*xonclock.desktop
 
 %changelog
+* Sun Aug 12 2007 Dries Verachtert <dries@ulyssis.org> - 0.0.9.1-1
+- Updated to release 0.0.9.1.
+
 * Tue Apr 17 2007 Dries Verachtert <dries@ulyssis.org> - 0.0.8.9-1
 - Updated to release 0.0.8.9.
 
