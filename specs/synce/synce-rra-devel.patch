@@ -1,0 +1,26 @@
+--- synce-rra-0.9.1/configure.ac.in.orig	2005-09-27 23:40:16.000000000 +0200
++++ synce-rra-0.9.1/configure.ac.in	2005-09-27 23:40:34.000000000 +0200
+@@ -48,13 +48,6 @@
+     )
+ 
+ 
+-	AC_CHECK_LIB(mimedir,mdir_parse,,[
+-		AC_MSG_ERROR([Can't find libmimedir (http://sourceforge.net/projects/libmimedir/)])
+-		])
+-	AC_CHECK_HEADERS(libmimedir.h,,[
+-		AC_MSG_ERROR([Can't find libmimedir.h (http://sourceforge.net/projects/libmimedir/)])
+-		])
+-
+   enable_recurrence=1
+   AC_ARG_ENABLE(recurrence,
+     AC_HELP_STRING(
+--- synce-rra-0.9.1/src/Makefile.am.orig	2005-09-27 23:40:45.000000000 +0200
++++ synce-rra-0.9.1/src/Makefile.am	2005-09-27 23:41:46.000000000 +0200
+@@ -1,6 +1,6 @@
+ ## useful flags
+ AM_CFLAGS = -ansi @CFLAGS@ -I../lib
+-LDADD = -L../lib ../lib/librra.la
++LDADD = -L../lib ../lib/librra.la -L../../libmimedir-0.4 -lmimedir
+ 
+ bin_PROGRAMS = synce-matchmaker
+ 

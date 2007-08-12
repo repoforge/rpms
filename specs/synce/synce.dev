@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ "$ACTION" = "add" ] ; then
+    /usr/bin/logger -p kern.info -t synce "iPAQ plugged, starting connection..."
+    # start the connection, and remove empty lines from output (to keep the log clean)
+    synce-serial-start | grep -v "^$" | /usr/bin/logger -p kern.info -t synce
+elif [ "$ACTION" = "remove" ] ; then
+    /usr/bin/logger -p kern.info -t synce "iPAQ removed"
+fi

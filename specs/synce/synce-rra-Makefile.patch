@@ -1,0 +1,40 @@
+--- synce-rra-0.9.1/lib/Makefile.in.orig	2005-08-20 15:08:17.000000000 +0200
++++ synce-rra-0.9.1/lib/Makefile.in	2005-08-20 15:08:44.000000000 +0200
+@@ -132,7 +132,7 @@
+ sharedstatedir = @sharedstatedir@
+ sysconfdir = @sysconfdir@
+ target_alias = @target_alias@
+-AM_CFLAGS = -g -Wall -Wsign-compare -Wno-long-long -Werror -ansi @CFLAGS@ -I..
++AM_CFLAGS = -ansi @CFLAGS@ -I..
+ 
+ include_HEADERS = \
+ 	appointment.h \
+--- synce-rra-0.9.1/lib/Makefile.am.orig	2005-08-20 15:08:51.000000000 +0200
++++ synce-rra-0.9.1/lib/Makefile.am	2005-08-20 15:09:04.000000000 +0200
+@@ -1,5 +1,5 @@
+ ## useful flags
+-AM_CFLAGS = -g -Wall -Wsign-compare -Wno-long-long -Werror -ansi @CFLAGS@ -I..
++AM_CFLAGS = -ansi @CFLAGS@ -I..
+ ## @APPLE_CFLAGS@
+ 
+ includedir = @includedir@/rra
+--- synce-rra-0.9.1/src/Makefile.in.orig	2005-08-20 15:14:21.000000000 +0200
++++ synce-rra-0.9.1/src/Makefile.in	2005-08-20 15:14:38.000000000 +0200
+@@ -131,7 +131,7 @@
+ sharedstatedir = @sharedstatedir@
+ sysconfdir = @sysconfdir@
+ target_alias = @target_alias@
+-AM_CFLAGS = -g -Wall -Wsign-compare -Wno-long-long -Werror -ansi @CFLAGS@ -I../lib
++AM_CFLAGS = -ansi @CFLAGS@ -I../lib
+ LDADD = -L../lib ../lib/librra.la
+ 
+ bin_PROGRAMS = synce-matchmaker
+--- synce-rra-0.9.1/src/Makefile.am.orig	2005-08-20 15:14:12.000000000 +0200
++++ synce-rra-0.9.1/src/Makefile.am	2005-08-20 15:14:55.000000000 +0200
+@@ -1,5 +1,5 @@
+ ## useful flags
+-AM_CFLAGS = -g -Wall -Wsign-compare -Wno-long-long -Werror -ansi @CFLAGS@ -I../lib
++AM_CFLAGS = -ansi @CFLAGS@ -I../lib
+ LDADD = -L../lib ../lib/librra.la
+ 
+ bin_PROGRAMS = synce-matchmaker

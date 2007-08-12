@@ -1,0 +1,5 @@
+To configure the connection of your handheld through SynCE,
+plug it in, run "dccm" as your desktop user, and the run
+"synce-serial-config ipaq" as root.
+Unplug the device, and plug it back. It should connect
+automatically from now on.
