@@ -3,14 +3,17 @@
 
 Summary: Programs for 48x48x1 image compression and decompression
 Name: compface
-Version: 1.4
+Version: 1.5.2
 Release: 1
 License: MIT
 Group: Applications/System
-URL: http://freshmeat.net/projects/compface/
-Source: http://www.ibiblio.org/pub/Linux/apps/graphics/convert/compface-%{version}.tar.gz
-Patch0: compface-1.4-errno.patch
-Patch1: compface-1.4-makefile.patch
+URL: 		http://www.ibiblio.org/pub/Linux/apps/graphics/convert/
+Source0:        http://ftp.xemacs.org/pub/xemacs/aux/%{name}-%{version}.tar.gz
+Source1:        compface-test.xbm
+Source2:        compface-README.copyright
+Patch0:         http://ftp.debian.org/debian/pool/main/libc/libcompface/libcompface_1.5.2-3.diff.gz
+Patch1:         compface-1.5.2-stack-smashing.patch
+Patch2:         %{name}-1.5.2-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -31,9 +34,10 @@ applications such as mail dispatchers and mail notification daemons.
 
 
 %prep
-%setup
-%patch0 -p1 -b .errno
-%patch1 -p1 -b .makefile
+%setup -q
+%patch0 -p1
+%patch1 -p1 -b .stack-smashing
+%patch2 -p0
 
 
 %build
@@ -52,21 +56,26 @@ applications such as mail dispatchers and mail notification daemons.
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
+%doc ChangeLog README xbm2xface.pl
+%doc _extdoc/README.copyright
 %{_bindir}/compface
 %{_bindir}/uncompface
+%{_libdir}/libcompface.so.*
 %{_mandir}/man1/compface.1*
 %{_mandir}/man1/uncompface.1*
 
 %files devel
-%defattr(-, root, root, 0755)
-%{_libdir}/libcompface.a
+%defattr(-,root,root,-)
 %{_includedir}/compface.h
+%{_libdir}/libcompface.so
 %{_mandir}/man3/compface.3*
 %{_mandir}/man3/uncompface.3*
 
 
 %changelog
+* Sun Aug 12 2007 Heiko Adams <info@fedora-blog.de> 1.5.2
+- Update to 1.5.2
+
 * Tue May 11 2004 Matthias Saou <http://freshrpms.net/> 1.4-1
 - Initial RPM release.
 

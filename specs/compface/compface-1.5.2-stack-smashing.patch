@@ -1,0 +1,26 @@
+Prevent sscanf stack smashing, and fix two GCC warnings.
+
+diff -Nur compface-1.5.2-prepped/file.c compface-1.5.2-modified/file.c
+--- compface-1.5.2-prepped/file.c	2006-08-04 18:58:17.000000000 +0200
++++ compface-1.5.2-modified/file.c	2006-08-04 18:59:30.000000000 +0200
+@@ -80,7 +80,7 @@
+ 	static char table_inv[] = { 0,8,4,12,2,10,6,14,1,9, 5,13, 3,11, 7,15 };
+ 	static char table_nop[] = { 0,1,2, 3,4, 5,6, 7,8,9,10,11,12,13,14,15 };
+ 	char *table = table_nop;	/* optionally invert bits in nibble */
+-	register inc = 0;		/* optionally swap nimmles */
++	register int inc = 0;		/* optionally swap nimmles */
+ 	int bits;
+ 
+ 	t = s = fbuf;
+@@ -91,9 +91,9 @@
+ 			char type1[128];
+ 			char type2[128];
+ 			while (*s && *s++ != '\n');
+-			if (sscanf(s, "#define %*s %d", &bits) == 1) if (bits == 48) {
++			if ((sscanf(s, "#define %*s %d", &bits) == 1) && (bits == 48)) {
+ 				while (*s && *s++ != '\n');
+-				if (sscanf(s, "static %s %s", type1,type2)==2 &&
++				if (sscanf(s, "static %127s %127s", type1,type2)==2 &&
+ 					(!strcmp(type1, "char") || 
+ 				    	 !strcmp(type2, "char"))) {
+ 						while (*s && *s++ != '\n');
