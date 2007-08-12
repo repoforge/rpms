@@ -481,6 +481,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(it) %{_datadir}/locale/it/LC_MESSAGES/gtkhtml2_viewer.mo
 %lang(pt_BR) %{_datadir}/locale/pt_BR/LC_MESSAGES/gtkhtml2_viewer.mo
 %lang(pl) %{_datadir}/locale/pl/LC_MESSAGES/gtkhtml2_viewer.mo
+%lang(zh_CN) %{_datadir}/locale/zh_CN/LC_MESSAGES/gtkhtml2_viewer.mo
 
 
 %files mailmbox
@@ -511,7 +512,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(cs) %{_datadir}/locale/cs/LC_MESSAGES/notification_plugin.mo
 %lang(hu) %{_datadir}/locale/hu/LC_MESSAGES/notification_plugin.mo
 %lang(pt_BR) %{_datadir}/locale/pt_BR/LC_MESSAGES/notification_plugin.mo
-
+%lang(zh_CN) %{_datadir}/locale/zh_CN/LC_MESSAGES/notification_plugin.mo
 
 %files pdfviewer
 %defattr(-,root,root,0755)
