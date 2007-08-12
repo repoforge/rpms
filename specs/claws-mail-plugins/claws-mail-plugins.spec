@@ -2,21 +2,21 @@
 # Authority: hadams
 
 # define plugin version
-%define acpinotifier	1.0.9
-%define attachwarner    0.2.6
-%define attremover	1.0.5
-%define cachesaver	0.10.4
-%define fetchinfo	0.4.18
-%define gtkhtml2viewer  0.15
-%define mailmbox	1.13
-%define newmail		0.0.9
-%define notification	0.10
-%define pdfviewer       0.4
-%define perl		0.9.8
-%define rssyl		0.12
-%define smime		0.7
-%define synce		0.7
-%define vcalendar	1.95
+%define acpinotifier	1.0.11
+%define attachwarner    0.2.7
+%define attremover	1.0.6
+%define cachesaver	0.10.5
+%define fetchinfo	0.4.19
+%define gtkhtml2viewer  0.15.1
+%define mailmbox	1.13.1
+%define newmail		0.0.10
+%define notification	0.11
+%define pdfviewer       0.5
+%define perl		0.9.9
+%define rssyl		0.14
+%define smime		0.7.1
+%define synce		0.7.1
+%define vcalendar	1.96
 Name:           claws-mail-plugins
 Version:        2.10.0
 Release:        1
