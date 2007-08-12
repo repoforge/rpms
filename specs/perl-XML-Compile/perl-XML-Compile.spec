@@ -9,7 +9,7 @@
 
 Summary: Compilation based XML processing
 Name: perl-XML-Compile
-Version: 0.12
+Version: 0.51
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -42,11 +42,14 @@ Compilation based XML processing.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog
-%doc %{_mandir}/man3/XML::Compile*
+%doc %{_mandir}/man3/XML::Compile*.3*
 %{perl_vendorlib}/XML/Compile.p*
 %{perl_vendorlib}/XML/Compile/
 
 %changelog
+* Sun Aug 12 2007 Dries Verachtert <dries@ulyssis.org> - 0.51-1
+- Updated to release 0.51.
+
 * Sat Jan 06 2007 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Updated to release 0.12.
 

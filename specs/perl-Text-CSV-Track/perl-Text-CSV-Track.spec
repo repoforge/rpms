@@ -9,7 +9,7 @@
 
 Summary: Module to work with .csv file that stores some value(s) per identificator
 Name: perl-Text-CSV-Track
-Version: 0.2
+Version: 0.6
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ Module to work with .csv file that stores some value(s) per identificator.
 %{perl_vendorlib}/Text/CSV/Track/
 
 %changelog
+* Sun Aug 12 2007 Dries Verachtert <dries@ulyssis.org> - 0.6-1
+- Updated to release 0.6.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.2-1
 - Initial package.

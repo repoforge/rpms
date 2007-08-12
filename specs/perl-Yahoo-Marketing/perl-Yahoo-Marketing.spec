@@ -9,7 +9,7 @@
 
 Summary: Interface for Yahoo! Search Marketing's Web Services
 Name: perl-Yahoo-Marketing
-Version: 0.07
+Version: 2.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,7 +19,8 @@ Source: http://search.cpan.org//CPAN/authors/id/J/JL/JLAVALLEE/Yahoo-Marketing-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(SOAP::Lite), perl(Test::Class), perl(XML::XPath)
+BuildRequires: perl(YAML)
 
 %description
 An interface for Yahoo! Search Marketing's Web Services.
@@ -42,10 +43,14 @@ An interface for Yahoo! Search Marketing's Web Services.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/Yahoo::Marketing*
+%doc %{_mandir}/man3/Yahoo::Marketing*.3*
+%dir %{perl_vendorlib}/Yahoo/
 %{perl_vendorlib}/Yahoo/Marketing.pm
 %{perl_vendorlib}/Yahoo/Marketing/
 
 %changelog
+* Sun Aug 12 2007 Dries Verachtert <dries@ulyssis.org> - 2.02-1
+- Updated to release 2.02.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Initial package.

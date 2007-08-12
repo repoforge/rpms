@@ -9,7 +9,7 @@
 
 Summary: POE filter wrapped around Compress::Bzip2
 Name: perl-POE-Filter-Bzip2
-Version: 1.4
+Version: 1.52
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -42,9 +42,14 @@ POE filter wrapped around Compress::Bzip2.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/POE::Filter::Bzip2*
+%doc %{_mandir}/man3/POE::Filter::Bzip2*.3*
+%dir %{perl_vendorlib}/POE/
+%dir %{perl_vendorlib}/POE/Filter/
 %{perl_vendorlib}/POE/Filter/Bzip2.pm
 
 %changelog
+* Sun Aug 12 2007 Dries Verachtert <dries@ulyssis.org> - 1.52-1
+- Updated to release 1.52.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1
 - Initial package.

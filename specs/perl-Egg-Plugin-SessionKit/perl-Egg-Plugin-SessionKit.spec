@@ -9,7 +9,7 @@
 
 Summary: Session plugin for Egg
 Name: perl-Egg-Plugin-SessionKit
-Version: 0.06
+Version: 2.01
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/L/LU/LUSHE/Egg-Plugin-SessionKit
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(Module::Install)
 
 %description
 Session plugin for Egg.
@@ -42,10 +42,15 @@ Session plugin for Egg.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/Egg::Plugin::SessionKit*
+%doc %{_mandir}/man3/Egg::Plugin::SessionKit*.3*
+%dir %{perl_vendorlib}/Egg/
+%dir %{perl_vendorlib}/Egg/Plugin/
 %{perl_vendorlib}/Egg/Plugin/SessionKit.pm
 %{perl_vendorlib}/Egg/Plugin/SessionKit/
 
 %changelog
+* Sun Aug 12 2007 Dries Verachtert <dries@ulyssis.org> - 2.01-1
+- Updated to release 2.01.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.
