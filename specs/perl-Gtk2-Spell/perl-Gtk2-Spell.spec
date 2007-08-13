@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Gtk2-Spell/
 Source: http://www.cpan.org/modules/by-module/Gtk2/Gtk2-Spell-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(ExtUtils::Depends)
+BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(ExtUtils::Depends), perl(ExtUtils::PkgConfig)
 
 %description
 Gtk2-Spell is a Perl module with bindings for GtkSpell with Gtk2.

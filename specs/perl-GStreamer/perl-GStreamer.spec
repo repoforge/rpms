@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/GStreamer/
 Source: http://www.cpan.org/modules/by-module/GStreamer/GStreamer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, gstreamer-devel >= 0.10
+BuildRequires: perl, gstreamer-devel >= 0.10, perl(ExtUtils::Depends)
 Requires: perl
 
 %description

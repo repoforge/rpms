@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/WebService-YouTube/
 Source: http://search.cpan.org//CPAN/authors/id/Y/YO/YOSHIDA/WebService-YouTube-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 An interface to YouTube.

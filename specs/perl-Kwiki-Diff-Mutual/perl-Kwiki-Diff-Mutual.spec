@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/Y/YA/YAPPO/Kwiki-Diff-Mutual-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(Module::Install)
 
 %description
 The selection of revision of both parties of Diff is enabled.

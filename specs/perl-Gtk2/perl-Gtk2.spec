@@ -23,6 +23,7 @@ Buildrequires: perl(ExtUtils::Depends)
 BuildRequires: perl(ExtUtils::PkgConfig)
 BuildRequires: perl(Glib) >= 1.0.0
 BuildRequires: gtk2-devel >= 2.0.0
+BuildRequires: perl(Cairo)
 Requires: perl >= 2:5.8.0
 
 %description

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Class/Class-Gomor-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Class-Gomor is a Perl module that implements another class and object builder.

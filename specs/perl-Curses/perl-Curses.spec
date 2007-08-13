@@ -17,7 +17,7 @@ URL: http://search.cpan.org/dist/Curses/
 Source: http://www.cpan.org/modules/by-module/Curses/Curses-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, ncurses-devel
+BuildRequires: perl, ncurses-devel, perl(ExtUtils::MakeMaker)
 Requires: perl
 
 %description

@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/JSON-XS/
 Source: http://www.cpan.org/authors/id/M/ML/MLEHMANN/JSON-XS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-JSON-XS is a Perl module that implements JSON serialising/deserialising,

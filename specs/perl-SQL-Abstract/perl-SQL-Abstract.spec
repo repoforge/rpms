@@ -17,6 +17,7 @@ URL: http://search.cpan.org/dist/SQL-Abstract/
 Source: http://search.cpan.org/CPAN/authors/id/N/NW/NWIGER/SQL-Abstract-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildArch: noarch
 
 %description

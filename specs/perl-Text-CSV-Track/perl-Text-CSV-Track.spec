@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/J/JK/JKUTEJ/Text-CSV-Track-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Module to work with .csv file that stores some value(s) per identificator.

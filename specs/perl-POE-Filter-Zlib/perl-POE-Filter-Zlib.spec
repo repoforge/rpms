@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/B/BI/BINGOS/POE-Filter-Zlib-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 A POE filter wrapped around Compress::Zlib.

@@ -17,7 +17,7 @@ URL: http://search.cpan.org/dist/GTop/
 Source: http://www.cpan.org/modules/by-module/GTop/GTop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-GTop is a Perl module to interface with libgtop.

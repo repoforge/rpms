@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/B-Size/
 Source: http://search.cpan.org/CPAN/authors/id/P/PG/PGOLLUCCI/B-Size-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Tools to measure size of Perl OPs and [SAV]Vs.
