@@ -4,7 +4,7 @@
 
 Summary: Tools for ICMPv6 Neighbor&Router Discovery and TCP/IPv6 traceroute
 Name: ndisc6
-Version: 0.7.1
+Version: 0.9.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -20,30 +20,20 @@ This package consists of two programs:
 
 %prep
 %setup
-#%{__perl} -pi -e 's|\)/man/man8/|)/share/man/man8/|g;' Makefile
-# make sure 'install' doesn't depend on 'all'
-#%{__perl} -pi -e 's|install: all|install: |g;' Makefile
 
 %build
 %configure
 %{__make} %{?_smp_mflags} 
-#ndisc6 rdisc6 traceroute6
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d %{buildroot}%{_mandir}/man8 %{buildroot}%{_bindir}
-%makeinstall #DESTDIR=%{buildroot}
-%{__rm} -f %{buildroot}%{_mandir}/man8/tcptraceroute6.8
-%{__ln_s} %{_mandir}/man8/traceroute6.8 %{buildroot}%{_mandir}/man8/tcptraceroute6.8
-%{__rm} -f %{buildroot}%{_mandir}/man8/tracert6.8
-%{__ln_s} %{_mandir}/man8/rltraceroute6.8 %{buildroot}%{_mandir}/man8/tracert6.8
-%{__rm} -f %{buildroot}%{_mandir}/man1/nameinfo.1
-%{__ln_s} %{_mandir}/man1/addrinfo.1 %{buildroot}%{_mandir}/man1/nameinfo.1
+%{__make} install DESTDIR=%{buildroot}
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING INSTALL NEWS README
 %doc %{_mandir}/man8/ndisc6.8*
@@ -52,12 +42,14 @@ This package consists of two programs:
 %doc %{_mandir}/man8/tcptraceroute6.8*
 %doc %{_mandir}/man8/rltraceroute6.8*
 %doc %{_mandir}/man1/tcpspray6.1*
-%doc %{_mandir}/man1/addrinfo*
-%doc %{_mandir}/man1/dnssort*
-%doc %{_mandir}/man1/nameinfo*
-%{_bindir}/addrinfo
+%doc %{_mandir}/man1/addr2name.1*
+%doc %{_mandir}/man1/name2addr.1*
+%doc %{_mandir}/man1/dnssort.1*
+%doc %{_mandir}/man1/tcpspray.1*
+%{_bindir}/addr2name
+%{_bindir}/name2addr
 %{_bindir}/dnssort
-%{_bindir}/nameinfo
+%{_bindir}/tcpspray
 %{_bindir}/ndisc6
 %{_bindir}/rdisc6
 %{_bindir}/tcpspray6
@@ -66,6 +58,9 @@ This package consists of two programs:
 %{_bindir}/tcptraceroute6
 
 %changelog
+* Mon Aug 13 2007 Dries Verachtert <dries@ulyssis.org> - 0.9.3-1
+- Updated to release 0.9.3.
+
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.1-1
 - Updated to release 0.7.1.
 

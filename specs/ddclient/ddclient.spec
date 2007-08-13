@@ -3,7 +3,7 @@
 
 Summary: Updates dynamic DNS entries
 Name: ddclient
-Version: 3.7.1
+Version: 3.7.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -65,6 +65,9 @@ fi
 %{_sbindir}/ddclient
 
 %changelog
+* Mon Aug 13 2007 Dries Verachtert <dries@ulyssis.org> - 3.7.3-1
+- Updated to release 3.7.3.
+
 * Mon Feb 12 2007 Dries Verachtert <dries@ulyssis.org> - 3.7.1-1
 - Updated to release 3.7.1.
 
