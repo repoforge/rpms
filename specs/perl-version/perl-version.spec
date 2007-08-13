@@ -19,7 +19,7 @@ URL: http://search.cpan.org/dist/version/
 Source: http://www.cpan.org/modules/by-module/version/version-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 version is a Perl module that implements for Version Objects.

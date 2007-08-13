@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/IO/IO-Compress-Zlib-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Write and read zip files and buffers.

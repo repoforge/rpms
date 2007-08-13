@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Devel-SawAmpersand/
 Source: http://search.cpan.org/CPAN/authors/id/A/AN/ANDK/Devel-SawAmpersand-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 There's a global variable in the perl source, called sawampersand. It

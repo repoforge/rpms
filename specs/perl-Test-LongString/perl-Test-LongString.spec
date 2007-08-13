@@ -18,7 +18,7 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-LongString-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 Requires: perl
 

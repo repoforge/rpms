@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/E/ES/ESSKAR/HTML-Prototype-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Generate HTML and Javascript for the Prototype library.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TO/TONYC/Imager-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, libpng-devel, pkgconfig, freetype-devel, libungif-devel, libtiff-devel
-BuildRequires: libjpeg-devel
+BuildRequires: libjpeg-devel, perl(ExtUtils::MakeMaker)
 
 %description
 Perl extension for Generating 24 bit Images.

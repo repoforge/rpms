@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Want/
 Source: http://search.cpan.org/CPAN/authors/id/R/RO/ROBIN/Want-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module generalises the mechanism of the wantarray

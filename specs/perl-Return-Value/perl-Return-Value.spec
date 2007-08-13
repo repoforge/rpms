@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RJ/RJBS/Return-Value-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This package provides polymorphic return values.

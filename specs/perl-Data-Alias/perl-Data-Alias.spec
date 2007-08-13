@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Data-Alias/
 Source: http://search.cpan.org//CPAN/authors/id/X/XM/XMATH/Data-Alias-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 2:5.8.1
+BuildRequires: perl >= 2:5.8.1, perl(ExtUtils::MakeMaker)
 
 %description
 Comprehensive set of aliasing operations.

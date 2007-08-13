@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/R/RU/RUZ/Regexp-Common-net-CIDR-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Regexp::Common)
+BuildRequires: perl, perl(Regexp::Common), perl(ExtUtils::MakeMaker)
 
 %description
 Provide patterns for CDIR blocks.

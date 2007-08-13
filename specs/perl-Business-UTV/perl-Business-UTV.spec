@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/P/PS/PSINNOTT/Business-UTV-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides access to UTV Internet account information.

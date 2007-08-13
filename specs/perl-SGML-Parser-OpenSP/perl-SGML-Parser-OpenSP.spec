@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/SGML-Parser-OpenSP/
 Source: http://www.cpan.org/modules/by-module/SGML/SGML-Parser-OpenSP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, opensp-devel
+BuildRequires: perl, opensp-devel, perl(ExtUtils::MakeMaker)
 
 %description
 perl-SGML-Parser-OpenSP is a Perl module to parse SGML documents using OpenSP.

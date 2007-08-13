@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Math-Round/
 Source: http://www.cpan.org/modules/by-module/Math/Math-Round-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Math::Round is a Perl module.  It supplies functions to round numbers,

@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/PBS/
 Source: http://www.cpan.org/authors/id/T/TM/TMERRITT/PBS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, libtorque-devel
+BuildRequires: perl, libtorque-devel, perl(ExtUtils::MakeMaker)
 
 %description
 perl-PBS is a Perl module for PBS.

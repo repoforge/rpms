@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PT/PTINSLEY/POE-Filter-FSSocket
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 A POE filter for FreeSWITCH (http://www.freeswitch.org) that parses 

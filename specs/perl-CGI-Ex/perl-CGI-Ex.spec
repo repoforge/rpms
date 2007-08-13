@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/CGI/CGI-Ex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-CGI-Ex is a Perl module to make powerful application writing fun and easy.

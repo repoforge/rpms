@@ -18,7 +18,7 @@ Source: http://www.cpan.org/modules/by-module/Expect/Expect-Simple-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(Expect)
+BuildRequires: perl(Expect), perl(ExtUtils::MakeMaker)
 
 %description
 Expect::Simple is a wrapper around the Expect module which should

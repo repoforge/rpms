@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/File/File-Temp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-File-Temp is a Perl module that returns name and handle

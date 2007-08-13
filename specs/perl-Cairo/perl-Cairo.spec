@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 2:5.8.0
 BuildRequires: perl(Glib) >= 1.0.0
-BuildRequires: cairo-devel
+BuildRequires: cairo-devel, perl(ExtUtils::Depends)
 Requires: perl >= 2:5.8.0
 
 %description

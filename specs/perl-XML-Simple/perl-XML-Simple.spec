@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module contains an easy API to XML files.

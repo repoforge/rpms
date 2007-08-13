@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Socket-Multicast6/
 Source: http://search.cpan.org//CPAN/authors/id/N/NJ/NJH/Socket-Multicast6-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Constructors and constants for IPv4 and IPv6 multicast socket operations.

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/DBIx/DBIx-SQLite-Simple-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 easy access to SQLite databases using objects.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/D/DO/DOMM/Class-DispatchToAll-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Dispatch a method call to all inherited methods

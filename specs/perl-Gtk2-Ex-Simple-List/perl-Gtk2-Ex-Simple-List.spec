@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Gtk2/Gtk2-Ex-Simple-List-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(Glib::MakeHelper)
+BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(Glib::MakeHelper), perl(Gtk2)
 
 %description
 Gtk2-Ex-Simple-List is a Perl module with bindings

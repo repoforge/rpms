@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/YAML-Syck/
 Source: http://search.cpan.org/CPAN/authors/id/A/AU/AUDREYT/YAML-Syck-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This package contains a YAML loader and dumper.

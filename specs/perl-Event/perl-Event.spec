@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Event/
 Source: http://search.cpan.org/CPAN/authors/id/J/JP/JPRIT/Event-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This extension aims to provide an simple and optimized event loop for

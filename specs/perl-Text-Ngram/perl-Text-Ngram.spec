@@ -20,7 +20,7 @@ URL: http://search.cpan.org/dist/Text-Ngram/
 Source: http://search.cpan.org/CPAN/authors/id/A/AM/AMBS/Text/Text-Ngram-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Ngram analysis of text.

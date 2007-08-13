@@ -18,7 +18,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-SNMP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6, perl(Digest::HMAC), perl(Crypt::DES)
+BuildRequires: perl >= 0:5.6, perl(Digest::HMAC), perl(Crypt::DES), perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.6
 
 %description
