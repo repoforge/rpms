@@ -1,0 +1,34 @@
+--- src/SDL.xs~	2003-03-27 12:17:23.000000000 +0200
++++ src/SDL.xs	2005-02-25 20:32:07.353170226 +0200
+@@ -71,6 +71,7 @@
+ #include <SDL_gfxPrimitives.h>
+ #include <SDL_framerate.h>
+ #include <SDL_imageFilter.h>
++#define PERL_SDL_GFXVERSION SDL_VERSIONNUM(SDL_GFXPRIMITIVES_MAJOR,SDL_GFXPRIMITIVES_MINOR,SDL_GFXPRIMITIVES_MICRO)
+ #endif
+ 
+ #ifdef USE_THREADS
+@@ -3742,7 +3743,11 @@
+     Sint16 end;
+     Uint32 color;
+ CODE:
++#if PERL_SDL_GFXVERSION >= 2012
++     RETVAL = filledPieColor( dst, x, y, rad, start, end, color );
++#else
+      RETVAL = filledpieColor( dst, x, y, rad, start, end, color );
++#endif
+ OUTPUT:
+      RETVAL
+ 
+@@ -3759,7 +3764,11 @@
+     Uint8 b;
+     Uint8 a;
+ CODE:
++#if PERL_SDL_GFXVERSION >= 2012
++     RETVAL = filledPieRGBA( dst, x, y, rad, start, end, r, g, b, a );
++#else
+      RETVAL = filledpieRGBA( dst, x, y, rad, start, end, r, g, b, a );
++#endif
+ OUTPUT:
+      RETVAL
+ 
