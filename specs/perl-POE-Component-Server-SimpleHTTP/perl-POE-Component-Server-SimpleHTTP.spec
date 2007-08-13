@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BI/BINGOS/POE-Component-Server-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(POE::Component::SSLify)
+BuildRequires: perl, perl(POE::Component::SSLify), perl(ExtUtils::MakeMaker)
 
 %description
 Serve HTTP requests in POE.

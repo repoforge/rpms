@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Geo-IP/
 Source: http://search.cpan.org/CPAN/authors/id/T/TJ/TJMATHER/Geo-IP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, geoip-devel
+BuildRequires: perl, geoip-devel, perl(ExtUtils::MakeMaker)
 
 %description
 This module a simple file-based database.  This database simply contains

@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/O/ON/ONDR/Data-Pagination-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Paginal navigation on some data.

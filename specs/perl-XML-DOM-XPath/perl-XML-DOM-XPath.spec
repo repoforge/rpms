@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/M/MI/MIROD/XML-DOM-XPath-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 XML::DOM::XPath is a helper module for XML::DOM that adds XPath support to it.

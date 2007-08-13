@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Compress-LZO/
 Source: http://search.cpan.org/CPAN/authors/id/M/MF/MFX/Compress-LZO-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, lzo-devel
+BuildRequires: perl, perl(ExtUtils::MakeMaker), lzo-devel
 
 %description
 Perl-LZO provides LZO bindings for Perl, i.e. you can access the

@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/M/MT/MTHURN/Lingua-Alphabet-Phon
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Map ABC to phonetic alphabets.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RJ/RJBS/Email-Simple-Creator-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This package provides a constructor for Email::Simple.

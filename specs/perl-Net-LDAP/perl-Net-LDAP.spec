@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 0:5.00503, perl(IO::Socket::SSL), perl(Convert::ASN1)
 BuildRequires: perl(Authen::SASL), perl(Digest::MD5), perl(URI::ldap), perl(XML::SAX::Base)
-BuildRequires: perl(MIME::Base64), perl(URI)
+BuildRequires: perl(MIME::Base64), perl(URI), perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.00503, perl(Carp), perl(Convert::ASN1), perl(Data::Dumper)
 Requires: perl(Exporter), perl(Getopt::Std), perl(MIME::Base64), perl(Authen::SASL)
 Requires: perl(IO::Socket::SSL)

@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/G/GU/GUIMARD/Net-Server-Mail-ESM
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 4:5.8.8
+BuildRequires: perl >= 4:5.8.8, perl(ExtUtils::MakeMaker)
 
 %description
 This module adds support for XFORWARD to Net::Server::Mail::ESMTP.

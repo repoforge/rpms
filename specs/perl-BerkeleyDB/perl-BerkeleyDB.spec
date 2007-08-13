@@ -19,7 +19,7 @@ URL: http://search.cpan.org/dist/BerkeleyDB/
 Source: http://www.cpan.org/modules/by-module/BerkeleyDB/BerkeleyDB-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.00503
+BuildRequires: perl >= 0:5.00503, perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.00503
 %{!?dist:BuildRequires: db4-devel}
 %{?el5:BuildRequires: db4-devel}

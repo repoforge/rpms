@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/YAML-Parser-Syck/
 Source: http://www.cpan.org/modules/by-module/YAML/YAML-Parser-Syck-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, syck-devel
+BuildRequires: perl, syck-devel, perl(ExtUtils::MakeMaker)
 
 %description
 Perl Wrapper for the YAML Parser Extension: libsyck.

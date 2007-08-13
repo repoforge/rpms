@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Unix-Statgrab/
 Source: http://www.cpan.org/modules/by-module/Unix/Unix-Statgrab-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, libstatgrab-devel
+BuildRequires: perl, libstatgrab-devel, perl(ExtUtils::MakeMaker)
 
 %description
 perl-Unix-Statgrab is a Perl module for collecting information

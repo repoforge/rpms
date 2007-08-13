@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/O/OL/OLIVER/Class-Accessor-Fast-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Fast accessors with data containment.

@@ -24,7 +24,7 @@ BuildRequires: perl(IO::Compress::Base) >= 2.005
 BuildRequires: perl(IO::Compress::Gzip) >= 2.005
 BuildRequires: perl(IO::Compress::Gzip::Constants) >= 2.005
 BuildRequires: perl(IO::Uncompress::Base) >= 2.005
-BuildRequires: perl(IO::Uncompress::Gunzip) >= 2.005
+BuildRequires: perl(IO::Uncompress::Gunzip) >= 2.005, perl(ExtUtils::MakeMaker)
 
 Requires: perl >= 0:5.004
 

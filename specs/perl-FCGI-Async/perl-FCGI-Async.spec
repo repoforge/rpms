@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/P/PE/PEVANS/FCGI-Async-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Module to allow use of FastCGI asynchronously.
