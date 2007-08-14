@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/R/RJ/RJRAY/WebService-ISBNDB-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(Module::Build)
 
 %description
 A Perl extension to access isbndb.com.

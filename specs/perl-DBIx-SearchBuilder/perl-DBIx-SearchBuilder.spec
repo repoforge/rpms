@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(DBD::SQLite)
-BuildRequires: perl(File::Temp)
+BuildRequires: perl(File::Temp), perl(ExtUtils::MakeMaker)
 #BuildRequires: perl(Test::More) >= 0.52
 BuildRequires: perl(DBI), perl(Want), perl(Encode), perl(Class::Accessor)
 BuildRequires: perl(Class::ReturnValue) >= 0.4, perl-capitalization >= 0.03

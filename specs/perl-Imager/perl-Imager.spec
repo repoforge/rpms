@@ -9,7 +9,7 @@
 
 Summary: Extension for generating 24 bit images
 Name: perl-Imager
-Version: 0.55
+Version: 0.59
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,6 +48,12 @@ echo y | CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX=
 %{perl_vendorarch}/auto/Imager/
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.59-1
+- Updated to release 0.59.
+
+* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.56-1
+- Updated to release 0.56.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.55-1
 - Updated to release 0.55.
 
