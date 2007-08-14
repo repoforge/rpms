@@ -22,7 +22,7 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This is a simplified Perl testing framework for creating tests to be

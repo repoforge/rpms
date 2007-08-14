@@ -19,6 +19,7 @@ Source: http://www.cpan.org/modules/by-module/GStreamer/GStreamer-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, gstreamer-devel >= 0.10, perl(ExtUtils::Depends)
+BuildRequires: perl(ExtUtils::PkgConfig)
 Requires: perl
 
 %description

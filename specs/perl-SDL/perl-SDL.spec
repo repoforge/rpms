@@ -50,7 +50,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, SDL_net-devel
 BuildRequires: SDL_ttf-devel, SDL_gfx-devel
 BuildRequires: smpeg-devel, libjpeg-devel, libpng-devel
-BuildRequires: perl(Module::Build)
+BuildRequires: perl(Module::Build), perl(YAML)
 %if 0%{?_without_modxorg:1}
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}

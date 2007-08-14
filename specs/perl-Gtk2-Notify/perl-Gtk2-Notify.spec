@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Gtk2-Notify/
 Source: http://www.cpan.org/modules/by-module/Gtk2/Gtk2-Notify-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(Glib::CodeGen)
 
 %description
 Perl interface to libnotify.

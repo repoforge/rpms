@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/A/AB/ABIGAIL/Geography-States-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Map states and provinces to their codes, and vica versa.
