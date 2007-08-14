@@ -1,10 +1,9 @@
 # $Id$
 # Authority: matthias
-# ExclusiveDist: fc6
+# ExclusiveDist: fc6 fc7
 
 %define fglrxlibdir    %{_libdir}/fglrx
 %define fglrxlib32dir  %{_prefix}/lib/fglrx
-%define desktop_vendor  rpmforge
 
 %ifarch i386
 %define atiarch x86
@@ -17,14 +16,13 @@
 
 Summary: Proprietary ATI hardware accelerated OpenGL display driver
 Name: ati-x11-drv
-Version: 8.36.5
-Release: 2
+Version: 8.40.4
+Release: 1
 License: Proprietary
 Group: User Interface/X Hardware Support
 URL: http://ati.amd.com/support/drivers/linux/linux-radeon.html
 Source0: http://www2.ati.com/drivers/linux/ati-driver-installer-%{version}-x86.x86_64.run
-Source1: fireglcontrolpanel.desktop
-Source2: Makefile.fglrx
+Source1: Makefile.fglrx
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Required for proper dkms operation
 Requires: gcc
@@ -32,8 +30,6 @@ Requires(post): dkms, /sbin/ldconfig
 Requires(preun): dkms, system-config-display
 # Required by the ATI run file
 Buildrequires: tar
-# Required to build the fireglcontrolpanel
-BuildRequires: qt-devel, libXmu-devel, libXxf86vm-devel
 # Required for our build
 BuildRequires: desktop-file-utils
 BuildRequires: gcc-c++
@@ -69,29 +65,6 @@ sh %{SOURCE0} --extract .
 
 
 %build
-# Build the fireglcontrolpanel utility, nothing else needs to be built
-%{__mkdir_p} fireglcontrolpanel
-cd fireglcontrolpanel
-tar xzvf ../common/usr/src/ati/fglrx_panel_sources.tgz
-. /etc/profile.d/qt.sh
-# Get most linking to work again
-%{__perl} -pi -e 's|/usr/X11R6|/usr|g' Makefile
-# Have the linking work with lib64
-%{__perl} -pi -e 's|\$\(MK_QTDIR\)/\$\(LIB_DIR\)|\$\(MK_QTDIR\)/lib|g' Makefile
-# Actual build
-# MK_QTDIR needs to be forced since the default is wrong
-# LIBQT_DYN needs to be forced since it tried to use "qt" on i386
-# DEBUG needs to be set to 1 so that we can pass our oprflags as debug flags
-%{__make} \
-    MK_QTDIR="$QTDIR" \
-    LIBQT_DYN="qt-mt" \
-    DEBUG=1 \
-    CDEBFLAGS="%{optflags}" \
-    CCDEBFLAGS="%{optflags}"
-# Get the program back to its original name, we don't want the symlink
-%{__rm} -f fireglcontrol *.bz2
-%{__mv} fireglcontrol.qt*.gcc* fireglcontrolpanel
-cd ..
 
 
 %install
@@ -118,7 +91,7 @@ EOF
     arch/%{atiarch}/lib/modules/fglrx/build_mod/libfglrx_ip.a.GCC4 \
     %{buildroot}%{_usrsrc}/%{dkms_name}-%{dkms_vers}/
 # Install our own Makefile, based on the one from 2.6.x/
-%{__install} -p -m 0644 %{SOURCE2} \
+%{__install} -p -m 0644 %{SOURCE1} \
     %{buildroot}%{_usrsrc}/%{dkms_name}-%{dkms_vers}/Makefile
 
 # Install utilities and atieventsd program with its init script and man page
@@ -183,23 +156,23 @@ done
 %{__install} -p -m 0644 common/usr/X11R6/include/X11/extensions/fglrx_gamma.h \
     %{buildroot}%{_includedir}/X11/extensions/
 
-# Install the fireglcontrolpanel utility we built in %build
-%{__install} -p -m 0755 fireglcontrolpanel/fireglcontrolpanel \
-    %{buildroot}%{_bindir}/fireglcontrolpanel
-
-# Install pixmap for the fireglcontrolpanel desktop entry
+# Install pixmaps for the amdcccle desktop entry
 %{__mkdir_p} %{buildroot}%{_datadir}/pixmaps/
-%{__install} -p -m 0644 packages/SuSE/fglrx.png \
-    %{buildroot}%{_datadir}/pixmaps/fireglcontrolpanel.png
+%{__install} -p -m 0644 common/usr/share/icons/*.xpm \
+    %{buildroot}%{_datadir}/pixmaps/
 
-# Desktop entry for fireglcontrolpanel
+# Desktop entry for amdcccle
 %{__mkdir_p} %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor %{desktop_vendor} \
+desktop-file-install \
+    --vendor "" \
     --dir %{buildroot}/%{_datadir}/applications/ \
     --add-category System \
-    --add-category Application \
-    --add-category KDE \
-    %{SOURCE1}
+    --remove-category Application \
+    packages/Debian/dists/experimental/amdcccle.desktop
+
+# Install the control file (new in 8.39.4, "AMD testing" watermark without)
+%{__install} -D -p -m 0644 common/etc/ati/control \
+    %{buildroot}%{_sysconfdir}/ati/control
 
 # Install ld.so.conf.d file
 %{__mkdir_p} %{buildroot}%{_sysconfdir}/ld.so.conf.d/
@@ -212,6 +185,7 @@ echo %{fglrxlib32dir} >> %{buildroot}%{_sysconfdir}/ld.so.conf.d/fglrx.conf
 # ACPI config files and the init script, and it contains nothing more
 %{__cp} -a common/usr/share/doc/fglrx _doc
 %{__rm} -rf _doc/examples/
+find _doc -type f -exec %{__chmod} -x {} \;
 
 
 %clean
@@ -244,9 +218,9 @@ fi
 
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-,root,root,-)
 %doc _doc/*
-# Init script
+# Init script and control file
 %{_sysconfdir}/ati/
 %{_sysconfdir}/rc.d/init.d/atieventsd
 # ACPI stuff
@@ -279,19 +253,35 @@ fi
 %{_sbindir}/atieventsd
 %{_sbindir}/atigetsysteminfo.sh
 %{_mandir}/man8/atieventsd.8.gz
-# The fireglcontrolpanel
-%{_bindir}/fireglcontrolpanel
-%{_datadir}/applications/*fireglcontrolpanel.desktop
-%{_datadir}/pixmaps/fireglcontrolpanel.png
+%{_datadir}/applications/amdcccle.desktop
+%{_datadir}/pixmaps/*.xpm
 
 %files devel
-%defattr(-,root,root,0755)
+%defattr(-,root,root,-)
 %{_includedir}/GL/
 %{_includedir}/X11/extensions/*
 %{fglrxlibdir}/*.a
 
 
 %changelog
+* Tue Aug 14 2007 Matthias Saou <http://freshrpms.net/> 8.40.4-1
+- Update to 8.40.4.
+
+* Thu Jul 26 2007 Matthias Saou <http://freshrpms.net/> 8.39.4-3
+- Include the control file to fix AMD testing watermark.
+
+* Mon Jul 23 2007 Matthias Saou <http://freshrpms.net/> 8.39.4-2
+- Update to 8.39.4 (yeah, the new one...).
+
+* Fri Jul 20 2007 Matthias Saou <http://freshrpms.net/> 8.39.4-1
+- Update to 8.39.4.
+
+* Tue Jun 26 2007 Matthias Saou <http://freshrpms.net/> 8.38.6-1
+- Update to 8.38.6.
+- Remove no longer shipped fireglcontrolpanel.
+- Include desktop entry for the new ATI Catalyst Control Center (amdcccle).
+- Remove vendor prefix from the desktop file.
+
 * Wed May  2 2007 Matthias Saou <http://freshrpms.net/> 8.36.5-2
 - Include new esut.a and glesx.so files to fix Xv.
 
