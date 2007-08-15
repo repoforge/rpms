@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, libgnomeprintui22-devel >= 2.2, perl(ExtUtils::MakeMaker)
 BuildRequires: perl(ExtUtils::Depends), perl(ExtUtils::PkgConfig)
-BuildRequires: perl(Gtk2::CodeGen)
+BuildRequires: perl(Gtk2::CodeGen), perl(Cairo::Install::Files)
 Requires: perl
 
 %description

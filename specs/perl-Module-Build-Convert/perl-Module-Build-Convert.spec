@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/S/SC/SCHUBIGER/Module-Build-Conv
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Makefile.PL to Build.PL converter.

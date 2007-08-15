@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/J/JI/JIRO/WebService-PhotoZou-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Easy-to-use Interface for PhotoZou Web Services.

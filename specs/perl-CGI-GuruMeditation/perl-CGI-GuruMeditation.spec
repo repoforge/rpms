@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/R/RS/RSE/CGI-GuruMeditation-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Guru Meditation for CGIs.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/D/DJ/DJERIUS/Config-Wild-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Parse an application configuration file with wildcard keywords

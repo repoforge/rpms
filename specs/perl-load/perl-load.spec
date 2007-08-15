@@ -18,7 +18,7 @@ Source: http://search.cpan.org/CPAN/authors/id/E/EL/ELIZABETH/load-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 The "load" pragma allows a module developer to give the application

@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/M/MM/MMORGAN/Class-XML-Parser-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Parse an XML message into a user-defined class structure.

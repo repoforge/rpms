@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/E/EL/ELIZABETH/Sys-RunAlways-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Make sure always one invocation of a script is active.

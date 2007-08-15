@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/S/SP/SPROUT/Font-GlyphNames-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Convert between glyph names and characters.

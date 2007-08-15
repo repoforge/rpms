@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/A/AD/ADAMK/File-Find-Rule-VCS-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Exclude files/directories for Version Control Systems.

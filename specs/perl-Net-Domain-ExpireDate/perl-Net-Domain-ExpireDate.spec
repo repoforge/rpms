@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/D/DE/DESPAIR/Net-Domain-ExpireDa
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Obtain expiration date of domain names.

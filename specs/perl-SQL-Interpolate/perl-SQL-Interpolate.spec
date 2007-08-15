@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/D/DM/DMANURA/SQL-Interpolate-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Interpolate Perl variables into SQL statements.

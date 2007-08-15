@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/N/NW/NWCLARK/Acme-Steganography-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Hide data (badly) in Png images.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/D/DP/DPRICE/Text-MediawikiFormat
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Translate Wiki markup into other text formats.

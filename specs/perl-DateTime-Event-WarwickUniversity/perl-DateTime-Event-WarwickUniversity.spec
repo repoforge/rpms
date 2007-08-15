@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/D/DI/DIOCLES/DateTime-Event-Warw
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Warwick University academic calendar.

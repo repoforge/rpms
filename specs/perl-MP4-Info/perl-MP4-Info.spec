@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/J/JH/JHAR/MP4-Info-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Fetch info from MPEG-4 files (.mp4, .m4a, .m4p, .3gp).

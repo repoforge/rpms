@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/D/DO/DOMIZIO/Template-Magic-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Magic merger of runtime values with templates.

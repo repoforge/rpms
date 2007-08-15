@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 2:5.8.0, perl(ExtUtils::Depends), perl(ExtUtils::PkgConfig),
 BuildRequires: perl(Glib), perl(Gtk2), perl(Gnome2::VFS), perl(Gnome2::Canvas)
-BuildRequires: libgnomeui-devel >= 2.0.0
+BuildRequires: libgnomeui-devel >= 2.0.0, perl(Cairo::Install::Files)
 Requires: perl >= 2:5.8.0
 
 %description

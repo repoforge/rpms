@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/A/AD/ADAMK/Object-Signature-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Generate cryptographic signatures for objects.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/T/TO/TOKUHIROM/DateTime-Util-Day
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 DateTime Localized Day of Week Utilities.

@@ -18,7 +18,7 @@ Source: http://search.cpan.org/CPAN/authors/id/E/EL/ELIZABETH/Thread-Pool-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 The Thread::Pool allows you to set up a group of (worker) threads to

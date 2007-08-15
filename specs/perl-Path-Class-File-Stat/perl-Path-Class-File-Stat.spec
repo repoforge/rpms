@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/K/KA/KARMAN/Path-Class-File-Stat
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Cache and compare stat() calls on a Path::Class::File object.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/C/CL/CLKAO/Finance-TW-TSEQuote-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Check stock quotes from Taiwan Security Exchange.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/A/AD/ADAMK/Module-Manifest-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Parse and examine a Perl distribution MANIFEST file.

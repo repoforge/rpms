@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/P/PM/PMQS/IO-Compress-Lzop-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Write and read Lzop files of buffers.

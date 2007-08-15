@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/M/MI/MIYAGAWA/HTML-ResolveLink-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Resolve relative links in (X)HTML into an absolute URI.

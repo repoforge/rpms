@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Gtk2/Gtk2-Notify-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, perl(Glib::CodeGen), perl(ExtUtils::Depends)
-BuildRequires: perl(ExtUtils::PkgConfig)
+BuildRequires: perl(ExtUtils::PkgConfig), pkgconfig
 
 %description
 Perl interface to libnotify.

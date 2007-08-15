@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, perl-ExtUtils-Depends, perl-ExtUtils-PkgConfig
 BuildRequires: perl-Glib, perl-Gtk2, pkgconfig, gtk2-devel, vte-devel
-BuildRequires: zlib-devel
+BuildRequires: zlib-devel, perl(Cairo::Install::Files)
 
 %description
 This module allows you to use the Virtual Terminal Emulation library (libvte

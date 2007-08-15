@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/G/GT/GTERMARS/Template-Plugin-No
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 TT filter to add rel="nofollow" to all HTML links.

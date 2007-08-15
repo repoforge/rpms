@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/App/App-CLI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(Locale::Maketext::Simple)
+BuildRequires: perl(Locale::Maketext::Simple), perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Getopt::Long) >= 2.35
 BuildRequires: perl(Pod::Simple::Text)
 

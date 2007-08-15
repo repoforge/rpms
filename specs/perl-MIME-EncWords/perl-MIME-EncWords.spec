@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/N/NE/NEZUMI/MIME-EncWords-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Deal with RFC-1522 encoded words.

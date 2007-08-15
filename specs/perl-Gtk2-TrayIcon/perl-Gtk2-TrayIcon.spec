@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Gtk2/Gtk2-TrayIcon-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, perl-ExtUtils-Depends, perl-ExtUtils-PkgConfig
-BuildRequires: perl-Glib, perl-Gtk2, pkgconfig, gtk2-devel
+BuildRequires: perl-Glib, perl-Gtk2, pkgconfig, gtk2-devel, perl(Cairo::Install::Files)
 
 %description
 This module contains a perl interface to the EggTrayIcon library.

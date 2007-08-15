@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Gnome2/Gnome2-GConf-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(ExtUtils::Depends), perl(ExtUtils::PkgConfig)
-BuildRequires: perl(Glib::CodeGen)
+BuildRequires: perl(Glib::CodeGen), pkgconfig
 Requires: perl
 
 %description

@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/I/IC/ICD/Catalyst-Plugin-I18N-DB
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Internationalization for Catalyst data loaded from a database.

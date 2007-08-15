@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/K/KI/KIM/Text-Same-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Look for similarities between files or arrays.

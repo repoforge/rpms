@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/N/NN/NNUNLEY/Algorithm-RabinKarp
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 Rabin-Karp streaming hash.

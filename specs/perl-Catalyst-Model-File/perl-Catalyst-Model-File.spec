@@ -19,7 +19,7 @@ Source: http://search.cpan.org//CPAN/authors/id/A/AS/ASH/Catalyst-Model-File-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl
 
 %description
 File based storage model for Catalyst.
