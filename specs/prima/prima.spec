@@ -21,7 +21,7 @@
 
 Summary: Extensible Perl toolkit for multi-platform GUI development
 Name: prima
-Version: 1.21
+Version: 1.22
 Release: 1
 License: BSD
 Group: System Environment/Libraries
@@ -79,6 +79,9 @@ identically on X, Win32 and OS/2 PM.
 %{_bindir}/VB
 
 %changelog
+* Wed Aug 15 2007 Dries Verachtert <dries@ulyssis.org> - 1.22-1
+- Updated to release 1.22.
+
 * Tue Nov 21 2006 Dries Verachtert <dries@ulyssis.org> - 1.21-1
 - Updated to release 1.21.
 

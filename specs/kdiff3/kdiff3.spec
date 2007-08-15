@@ -13,7 +13,7 @@ URL: http://kdiff3.sourceforge.net/
 Source: http://dl.sf.net/kdiff3/kdiff3-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, gettext, kdelibs-devel
+BuildRequires: gcc-c++, gettext, kdelibs-devel, kdebase-devel
 
 %description
 KDiff3 is a program that compares two or three text input files or 
@@ -26,7 +26,7 @@ intuitive graphical user interface.
 %setup
 
 %build
-%configure
+%configure LDFLAGS=-L$QTDIR/lib
 %{__make} %{?_smp_mflags}
 
 %install
