@@ -13,6 +13,7 @@ Source: http://mips.edu.ms/evolution-rss-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext-devel, evolution-devel, perl(XML::Parser)
+BuildRequires: evolution-data-server-devel
 Requires: evolution
 
 %description

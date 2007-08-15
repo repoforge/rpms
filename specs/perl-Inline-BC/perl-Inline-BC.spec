@@ -46,7 +46,6 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %defattr(-, root, root, 0755)
 %doc Changes README
 %doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorarch}/Inline/BC
 %{perl_vendorarch}/Inline/BC.pm
 %dir %{perl_vendorarch}/auto/Inline/
 %{perl_vendorarch}/auto/Inline/BC/

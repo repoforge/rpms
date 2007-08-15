@@ -43,6 +43,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %doc README
 %doc %{_mandir}/man3/Algorithm::Cluster*.3pm*
 %dir %{perl_vendorarch}/Algorithm/
+%{perl_vendorarch}/Algorithm/Cluster.pm
 %{perl_vendorarch}/auto/Algorithm/Cluster/
 
 %changelog

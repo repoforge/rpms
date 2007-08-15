@@ -13,7 +13,7 @@ URL: http://ccbuild.sourceforge.net/
 Source: http://dl.sf.net/ccbuild/ccbuild-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, flex
 
 %description
 ccbuild is like a dynamic Makefile. ccbuild finds all programs in the

@@ -46,11 +46,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc COPYING Changes MANIFEST README Todo
 %doc %{_mandir}/man3/IPTables::IPv4.3pm*
-#%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/IPTables::IPv6.3pm*
 %dir %{perl_vendorarch}/IPTables/
 %{perl_vendorarch}/IPTables/IPv4.pm
+%{perl_vendorarch}/IPTables/IPv4/
+%{perl_vendorarch}/IPTables/IPv6.pm
+#%{perl_vendorarch}/IPTables/IPv6/
 %dir %{perl_vendorarch}/auto/IPTables/
 %{perl_vendorarch}/auto/IPTables/IPv4/
+%{perl_vendorarch}/auto/IPTables/IPv6/
 
 %changelog
 * Sat May 05 2007 Dag Wieers <dag@wieers.com> - 0.98-1

@@ -15,7 +15,7 @@ URL: http://geophile.com/osh/index.html
 Source: http://geophile.com/osh/osh-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python
+BuildRequires: python, python-devel
 
 %description
 Object Shell (osh) is the interpreter for a Python-like language that 

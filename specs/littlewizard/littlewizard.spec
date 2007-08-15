@@ -13,7 +13,7 @@ URL: http://littlewizard.sourceforge.net/
 Source: http://dl.sf.net/littlewizard/littlewizard-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, pkgconfig, gtk2-devel, libxml2-devel
+BuildRequires: gcc-c++, pkgconfig, gtk2-devel, libxml2-devel, gettext
 
 %description
 Little Wizard is a development environment for children. Little Wizard

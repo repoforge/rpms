@@ -14,6 +14,7 @@ URL: http://udpcast.linux.lu/
 Source: http://udpcast.linux.lu/download/udpcast-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: m4
 #Requires: netcfg
 
 %description

@@ -15,7 +15,7 @@ BuildRequires:	gmime-devel, poppler-devel, gettext
 BuildRequires:	gnome-desktop-devel, gamin-devel
 BuildRequires:	libexif-devel, libgsf-devel, gstreamer-devel
 BuildRequires:	desktop-file-utils, intltool, deskbar-applet
-BuildRequires:	sqlite-devel
+BuildRequires:	sqlite-devel, dbus-devel
 
 %description
 Tracker is a powerful desktop-neutral first class object database,

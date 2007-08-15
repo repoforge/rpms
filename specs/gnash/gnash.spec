@@ -28,7 +28,7 @@ URL: http://www.gnu.org/software/gnash/
 Source: http://ftp.gnu.org/gnu/gnash/%{version}/gnash-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Buildrequires: SDL-devel, libxml2-devel, SDL_mixer-devel
+Buildrequires: SDL-devel, libxml2-devel, SDL_mixer-devel, boost-devel
 BuildRequires: libpng-devel, libmad-devel, libogg-devel, gcc-c++
 %{!?_without_kde32:BuildRequires: kdebase-devel >= 3.2}
 %{?_with_modxorg:BuildRequires: libGLU-devel, libXmu-devel, libXi-devel}

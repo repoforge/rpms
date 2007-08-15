@@ -47,9 +47,11 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README samples/
 %doc %{_mandir}/man3/SGML::Parser::OpenSP.3pm*
+%doc %{_mandir}/man3/SGML::Parser::OpenSP::Tools.3pm*
 %dir %{perl_vendorarch}/SGML/
 %dir %{perl_vendorarch}/SGML/Parser/
 %{perl_vendorarch}/SGML/Parser/OpenSP.pm
+%{perl_vendorarch}/SGML/Parser/OpenSP/
 %dir %{perl_vendorarch}/auto/SGML/
 %dir %{perl_vendorarch}/auto/SGML/Parser/
 %{perl_vendorarch}/auto/SGML/Parser/OpenSP/
