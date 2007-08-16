@@ -24,6 +24,8 @@ intuitive graphical user interface.
 
 %prep
 %setup
+# avoid buildproblem on rhel4 because of undefined entity
+%{__perl} -pi -e 's|&Sander.Koning;||g; s|&vertaling.sander;||g;' doc/nl/index.docbook
 
 %build
 %configure LDFLAGS=-L$QTDIR/lib
