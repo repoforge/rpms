@@ -28,7 +28,7 @@ intuitive graphical user interface.
 %{__perl} -pi -e 's|&Sander.Koning;||g; s|&vertaling.sander;||g;' doc/nl/index.docbook
 
 %build
-%configure LDFLAGS=-L$QTDIR/lib
+%configure --with-qt-libraries=$QTDIR/lib
 %{__make} %{?_smp_mflags}
 
 %install
