@@ -23,14 +23,18 @@ BuildArch: noarch
 BuildRequires: perl >= 0:5.004
 BuildRequires: perl(Authen::SASL) >= 2.0
 BuildRequires: perl(Convert::ASN1)
+BuildRequires: perl(Digest::MD5)
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(IO::Socket::SSL) > 0.81
+BuildRequires: perl(MIME::Base64)
 BuildRequires: perl(URI::ldap) >= 1.1
-Requires: perl(Convert::ASN1)
+BuildRequires: perl(XML::SAX::Base)
 Requires: perl(IO::Socket::SSL)
-Requires: perl(XML::SAX::Base)
 
 Obsoletes: perl-ldap <= %{version}-%{release}
+Obsoletes: perl-Net-LDAP <= %{version}-%{release}
 Provides: perl-ldap = %{version}-%{release}
+Provides: perl-Net-LDAP = %{version}-%{release}
 
 %description
 This package contains a perl module with an interface to LDAP.
@@ -50,14 +54,14 @@ This package contains a perl module with an interface to LDAP.
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 ### Clean up docs
-find contrib/ -type f -exec %{__chmod} a-x {} \;
+find bin/ contrib/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CREDITS Changes INSTALL MANIFEST META.yml README SIGNATURE TODO install-nomake contrib/
+%doc CREDITS Changes INSTALL MANIFEST META.yml README SIGNATURE TODO install-nomake bin/ contrib/
 %doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Bundle/
 %dir %{perl_vendorlib}/Bundle/Net/
@@ -74,8 +78,8 @@ find contrib/ -type f -exec %{__chmod} a-x {} \;
 
 %changelog
 * Fri Aug 17 2007 Dag Wieers <dag@wieers.com> - 0.34-1
-- Renamed package from perl-ldap to perl-LDAP to match upstream.
-  (though distribution is called perl-ldap and module perl-Net-LDAP !)
+- Renamed package to perl-LDAP to match upstream.
+  (though distribution is called perl-ldap and module is perl-Net-LDAP !)
 
 * Wed Aug 16 2006 Dag Wieers <dag@wieers.com> - 0.33-1
 - Updated to release 0.33.

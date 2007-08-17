@@ -2,6 +2,11 @@
 # Authority: dries
 # Upstream: Christian Grothoff <christian$grothoff,org>
 
+%{?el4:%define _without_dht 1}
+%{?el4:%define _without_guile18 1}
+
+%define real_name GNUnet
+
 Summary: Peer-to-peer framework
 Name: gnunet
 Version: 0.7.2
@@ -14,8 +19,11 @@ Source: http://gnunet.org/download/GNUnet-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, curl-devel, libextractor-devel, mysql-devel
-BuildRequires: libgcrypt-devel, gmp-devel, libtool, libtool-ltdl-devel
+BuildRequires: gmp-devel, libtool
+BuildRequires: libgcrypt-devel >= 1.2.0
 BuildRequires: ncurses-devel
+%{!?_without_guile18:BuildRequires: guile-devel >= 1.8.0}
+#BuildRequires: libtool-ltdl-devel
 
 %description
 GNUnet is a peer-to-peer framework with focus on providing security. All 
@@ -37,7 +45,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n GNUnet-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure
@@ -45,24 +53,21 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%find_lang GNUnet
+%{__make} install DESTDIR="%{buildroot}"
+%find_lang %{real_name}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f GNUnet.lang
+%files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
-%doc %{_mandir}/man1/gnunet*
-%doc %{_mandir}/man5/gnunet*
-%{_bindir}/gnunet-dht-query
+%doc %{_mandir}/man1/gnunet*.1*
+%doc %{_mandir}/man5/gnunet*.5*
+%{!?_without_dht:%{_bindir}/gnunet-dht-query}
 %{_bindir}/gnunet-directory
 %{_bindir}/gnunet-download
 %{_bindir}/gnunet-download-manager.scm
@@ -78,12 +83,12 @@ you will need to install %{name}-devel.
 %{_bindir}/gnunet-unindex
 %{_bindir}/gnunet-update
 %{_bindir}/gnunet-vpn
-%{_bindir}/gnunet-setup
+%{!?_without_guile18:%{_bindir}/gnunet-setup}
 %{_bindir}/gnunetd
 %{_libdir}/GNUnet/
 %{_libdir}/libgnunetcollection.so.*
 %{_libdir}/libgnunetcore.so.*
-%{_libdir}/libgnunetdht_api.so.*
+%{!?_without_dht:%{_libdir}/libgnunetdht_api.so.*}
 %{_libdir}/libgnunetecrs.so.*
 %{_libdir}/libgnunetfs.so.*
 %{_libdir}/libgnunetfsui.so.*
@@ -91,7 +96,7 @@ you will need to install %{name}-devel.
 %{_libdir}/libgnunetidentity_api.so.*
 %{_libdir}/libgnunetip.so.*
 %{_libdir}/libgnunetrpc_util.so.*
-%{_libdir}/libgnunetsetup.so.*
+%{!?_without_guile18:%{_libdir}/libgnunetsetup.so.*}
 %{_libdir}/libgnunettesting_api.so.*
 %{_libdir}/libgnunettraffic_api.so.*
 %{_libdir}/libgnunetnamespace.so.*
@@ -112,7 +117,7 @@ you will need to install %{name}-devel.
 %{_includedir}/GNUnet/
 %{_libdir}/libgnunetcollection.so
 %{_libdir}/libgnunetcore.so
-%{_libdir}/libgnunetdht_api.so
+%{!?_without_dht:%{_libdir}/libgnunetdht_api.so}
 %{_libdir}/libgnunetecrs.so
 %{_libdir}/libgnunetfs.so
 %{_libdir}/libgnunetfsui.so
@@ -120,7 +125,7 @@ you will need to install %{name}-devel.
 %{_libdir}/libgnunetidentity_api.so
 %{_libdir}/libgnunetip.so
 %{_libdir}/libgnunetrpc_util.so
-%{_libdir}/libgnunetsetup.so
+%{!?_without_guile18:%{_libdir}/libgnunetsetup.so}
 %{_libdir}/libgnunettesting_api.so
 %{_libdir}/libgnunettraffic_api.so
 %{_libdir}/libgnunetnamespace.so
