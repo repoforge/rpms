@@ -1,4 +1,4 @@
-# $Id: perl-Crypt-OpenSSL-RSA.spec 4890 2006-11-17 22:09:23Z dries $
+# $Id$
 # Authority: dries
 # Upstream: Ian Robertson <iroberts+perl$red-bean,com>
 
@@ -9,7 +9,7 @@
 
 Summary: RSA encoding and decoding
 Name: perl-Crypt-OpenSSL-RSA
-Version: 0.24
+Version: 0.25
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Crypt-OpenSSL-RSA/
 Source: http://search.cpan.org/CPAN/authors/id/I/IR/IROBERTS/Crypt-OpenSSL-RSA-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, openssl-devel, krb5-devel
+BuildRequires: perl, openssl-devel, krb5-devel, perl(ExtUtils::MakeMaker)
 Requires: openssl
 
 %description
@@ -54,6 +54,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Crypt/OpenSSL/RSA/
 
 %changelog
+* Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.25-1
+- Updated to release 0.25.
+
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.24-1
 - Updated to release 0.24.
 

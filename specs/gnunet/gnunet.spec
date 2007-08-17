@@ -15,6 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, curl-devel, libextractor-devel, mysql-devel
 BuildRequires: libgcrypt-devel, gmp-devel, libtool, libtool-ltdl-devel
+BuildRequires: ncurses-devel
 
 %description
 GNUnet is a peer-to-peer framework with focus on providing security. All 

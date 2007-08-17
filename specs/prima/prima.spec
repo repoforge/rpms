@@ -29,7 +29,7 @@ URL: http://www.prima.eu.org/
 
 Source: http://search.cpan.org/CPAN/authors/id/K/KA/KARASIK/Prima-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gdbm-devel, db4-devel, libpng-devel
+BuildRequires: gdbm-devel, db4-devel, libpng-devel, perl(ExtUtils::Packlist)
 BuildRequires: libjpeg-devel, libungif-devel, libtiff-devel
 Provides: perl(Prima::Buttons), perl(Prima::Classes), perl(Prima::ExtLists)
 Provides: perl(Prima::Grids), perl(Prima::Notebooks), perl(Prima::Outlines)

@@ -13,7 +13,7 @@ Source: %{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: intltool >= 0.25
+BuildRequires: intltool >= 0.25, perl(XML::Parser)
 
 %description
 This package contains Sun branded GNOME login manager (GDM) themes.

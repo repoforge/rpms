@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JA/JASONK/WWW-Google-SiteMap-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(URI::Escape), perl(XML::Twig)
+BuildRequires: perl, perl(URI::Escape), perl(XML::Twig), perl(ExtUtils::MakeMaker)
 
 %description
 The Sitemap Protocol allows you to inform search engine crawlers about

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DU/DURIST/WWW-Babelfish-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module is a simple perl front-end to the Babelfish translation

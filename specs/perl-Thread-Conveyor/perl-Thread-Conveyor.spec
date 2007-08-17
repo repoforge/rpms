@@ -18,7 +18,7 @@ Source: http://search.cpan.org/CPAN/authors/id/E/EL/ELIZABETH/Thread-Conveyor-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The Thread::Conveyor object is a thread-safe data structure that 

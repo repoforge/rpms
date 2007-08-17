@@ -18,7 +18,7 @@ Source: http://search.cpan.org/CPAN/authors/id/E/EL/ELIZABETH/Thread-Tie-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 The standard shared variable scheme used by Perl, is based on tie-ing
