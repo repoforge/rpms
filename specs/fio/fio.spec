@@ -51,7 +51,7 @@ utilization, and more. It supports Linux, FreeBSD, and OpenSolaris.
 #%{_libdir}/fio/
 
 %changelog
-* Fri Aug 17 2007 Dries Verachtert <dries@ulyssis.org> -1.17-1
+* Thu Aug 16 2007 Dag Wieers <dag@wieers.com> - 1.17-1
 - Updated to release 1.17.
 
 * Tue Jun 19 2007 Dag Wieers <dag@wieers.com> - 1.16.5-1

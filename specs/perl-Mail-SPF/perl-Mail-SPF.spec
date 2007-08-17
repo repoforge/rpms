@@ -1,32 +1,36 @@
 # $Id$
 # Authority: dag
 # Upstream: Julian Mehnle <julian$mehnle,net>
+# Upstream: Shevek <cpan$anarres,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Mail-SPF
-%define real_version 2.004000
 
 Summary: Perl module that implements Sender Policy Framework
 Name: perl-Mail-SPF
-Version: 2.004
+Version: 2.005
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-SPF/
 
-Source: http://www.cpan.org/modules/by-module/Mail/Mail-SPF-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Mail/Mail-SPF-v%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(Module::Build)
+BuildRequires: perl >= 0:5.6
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Build) >= 0.2805
+BuildRequires: perl(Net::DNS::Resolver::Programmable) >= 0.002.1
+BuildRequires: perl(Test::More)
 
 %description
 Mail-SPF is a Perl module that implements Sender Policy Framework.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-v%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -45,7 +49,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES INSTALL LICENSE MANIFEST META.yml README SIGNATURE TODO
-%{_mandir}/man1/spfquery.1*
+%doc %{_mandir}/man1/spfquery.1*
 %doc %{_mandir}/man3/*.3pm*
 %{_bindir}/spfquery
 %dir %{perl_vendorlib}/Mail/
@@ -53,5 +57,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Mail/SPF.pm
 
 %changelog
+* Sun Aug 12 2007 Dag Wieers <dag@wieers.com> - 2.005-1
+- Updated to release 2.005.
+
 * Wed May 02 2007 Dag Wieers <dag@wieers.com> - 2.004-1
 - Initial package. (using DAR)

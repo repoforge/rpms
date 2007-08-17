@@ -6,28 +6,29 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Net-DNS-Resolver-Programmable
-%define real_version 0.002002
 
 Summary: Perl module that implements a programmable DNS resolver class for offline emulation of DNS
 Name: perl-Net-DNS-Resolver-Programmable
-Version: 0.002.2
+Version: 0.003
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DNS-Resolver-Programmable/
 
-Source: http://www.cpan.org/modules/by-module/Net/Net-DNS-Resolver-Programmable-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/Net-DNS-Resolver-Programmable-v%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(Module::Build)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Build) >= 0.2805
 
 %description
 Net-DNS-Resolver-Programmable is a Perl module that implements
 a programmable DNS resolver class for offline emulation of DNS.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-v%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -45,7 +46,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES INSTALL MANIFEST META.yml README SIGNATURE TODO
+%doc CHANGES INSTALL LICENSE MANIFEST META.yml README SIGNATURE TODO
 %doc %{_mandir}/man3/Net::DNS::Resolver::Programmable.3pm*
 %dir %{perl_vendorlib}/Net/
 %dir %{perl_vendorlib}/Net/DNS/

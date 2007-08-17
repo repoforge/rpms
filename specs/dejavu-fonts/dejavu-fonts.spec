@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+
 # Dist: nodist
 
 %define real_name dejavu-ttf

@@ -5,7 +5,7 @@
 
 Summary: Playable implementation of the Settlers of Catan 
 Name: pioneers
-Version: 0.11.1
+Version: 0.11.2
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -77,15 +77,15 @@ listening for client connections.
 %find_lang %{name}
 
 desktop-file-install \
-	--vendor %{desktop_vendor} --delete-original  \
-	--add-category X-Red-Hat-Base                 \
-	--add-category GNOME                          \
-	--add-category Application                    \
-	--add-category Game                           \
-	--dir %{buildroot}%{_datadir}/applications    \
-	%{buildroot}%{_datadir}/applications/pioneers.desktop \
-	%{buildroot}%{_datadir}/applications/pioneers-editor.desktop \
-	%{buildroot}%{_datadir}/applications/pioneers-server.desktop
+    --vendor %{desktop_vendor} --delete-original  \
+    --add-category X-Red-Hat-Base                 \
+    --add-category GNOME                          \
+    --add-category Application                    \
+    --add-category Game                           \
+    --dir %{buildroot}%{_datadir}/applications    \
+    %{buildroot}%{_datadir}/applications/pioneers.desktop \
+    %{buildroot}%{_datadir}/applications/pioneers-editor.desktop \
+    %{buildroot}%{_datadir}/applications/pioneers-server.desktop
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_localstatedir}/scrollkeeper/
@@ -136,6 +136,9 @@ scrollkeeper-update -q || :
 %{_datadir}/pixmaps/pioneers-server.png
 
 %changelog
+* Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 0.11.2-1
+- Updated to release 0.11.2.
+
 * Mon Jul 23 2007 Dries Verachtert <dries@ulyssis.org> - 0.11.1-1
 - Updated to release 0.11.1.
 

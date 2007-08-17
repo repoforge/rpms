@@ -8,8 +8,10 @@ Release: 1
 License: BSD
 Group: Applications/Archiving
 URL: http://code.google.com/p/xar/
+
 Source: http://xar.googlecode.com/files/xar-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: libxml2-devel
 BuildRequires: openssl-devel
 BuildRequires: zlib-devel
@@ -25,51 +27,44 @@ individual files in the archive, the ability to store checksums for individual
 files in both compressed and uncompressed form, and the ability to query the
 table of content's rich meta-data.
 
-
 %package devel
-Summary: Development files for xar
+Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
 %description devel
-Development files for xar.
-
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
 %setup
-
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR=%{buildroot}
-
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
 
-
 %files
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
 %doc LICENSE TODO
+%doc %{_mandir}/man1/xar.1*
 %{_bindir}/xar
 %{_libdir}/libxar.so.*
-%{_mandir}/man1/xar.1*
 
 %files devel
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
 %{_includedir}/xar/
 %{_libdir}/libxar.so
-
 
 %changelog
 * Tue Jul 10 2007 Dries Verachtert <dries@ulyssis.org> - 1.5.1-1

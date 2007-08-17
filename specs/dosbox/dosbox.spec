@@ -22,7 +22,7 @@
 
 Summary: x86/DOS emulator with sound/graphics
 Name: dosbox
-Version: 0.70
+Version: 0.71
 Release: 1
 License: GPL
 Group: Applications/Emulators
@@ -32,9 +32,9 @@ Source0: http://dl.sf.net/dosbox/dosbox-%{version}.tar.gz
 Source1: dosbox.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpng-devel, SDL-devel
+BuildRequires: libpng-devel, SDL-devel, SDL_net-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{?_with_modxorg:BuildRequires: libX11-devel}
+%{?_with_modxorg:BuildRequires: libX11-devel libGLU-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 
@@ -65,8 +65,9 @@ EOF
 
 %build
 %configure \
-	--program-prefix="%{?_program_prefix}" \
-	--enable-shots
+    --program-prefix="%{?_program_prefix}" \
+    --enable-core-inline \
+    --enable-shots
 %{__make} %{?_smp_mflags}
 
 %install
@@ -74,12 +75,12 @@ EOF
 %{__make} install DESTDIR="%{buildroot}"
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -Dp -m0644 dosbox.desktop %{buildroot}/etc/X11/applnk/Applications/dosbox.desktop
+    %{__install} -Dp -m0644 dosbox.desktop %{buildroot}/etc/X11/applnk/Applications/dosbox.desktop
 %else
-	%{__mkdir_p} %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor %{desktop_vendor} \
-		--dir %{buildroot}%{_datadir}/applications  \
-		dosbox.desktop
+    %{__mkdir_p} %{buildroot}%{_datadir}/applications/
+    desktop-file-install --vendor %{desktop_vendor} \
+        --dir %{buildroot}%{_datadir}/applications  \
+        dosbox.desktop
 %endif
 
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/dosbox.png
@@ -97,6 +98,9 @@ EOF
 %{_datadir}/pixmaps/dosbox.png
 
 %changelog
+* Sat Aug 11 2007 Dag Wieers <dag@wieers.com> - 0.71-1
+- Updated to release 0.71.
+
 * Mon Mar 26 2007 Dag Wieers <dag@wieers.com> - 0.70-1
 - Updated to release 0.70.
 

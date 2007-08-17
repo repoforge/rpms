@@ -66,7 +66,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/applications/%{desktop_vendor}-gtick.desktop
 
 %changelog
-* Fri Aug 17 2007 Dries Verachtert <dries@ulyssis.org> - 0.4.0-1
+* Thu Aug 16 2007 Dag Wieers <dag@wieers.com> - 0.4.0-1
 - Updated to release 0.4.0.
 
 * Tue May 08 2007 Dries Verachtert <dries@ulyssis.org> - 0.3.15-1

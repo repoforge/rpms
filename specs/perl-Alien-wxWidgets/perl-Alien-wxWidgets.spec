@@ -33,7 +33,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -46,10 +46,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes MANIFEST MANIFEST.SKIP META.yml README.txt
 %doc %{_mandir}/man3/Alien::wxWidgets.3pm*
 %doc %{_mandir}/man3/Alien::wxWidgets::Utility.3pm*
-%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorarch}/Alien/
-%{perl_vendorarch}/Alien/wxWidgets.pm
 %{perl_vendorarch}/Alien/wxWidgets/
+%{perl_vendorarch}/Alien/wxWidgets.pm
 
 %changelog
 * Mon Aug 06 2007 Dag Wieers <dag@wieers.com> - 0.31-1

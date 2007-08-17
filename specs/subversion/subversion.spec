@@ -52,6 +52,9 @@ BuildRequires: neon-devel >= 0.24.7-1
 #%{!?_without_swig:BuildRequires: swig >= 1.3.21-5}
 #%{!?_without_swig:BuildRequires: swig}
 
+Provides: python-subversion = %{version}-%{release}
+Provides: subversion-python = %{version}-%{release}
+
 %define __perl_requires %{SOURCE3}
 
 # Put Python bindings in site-packages

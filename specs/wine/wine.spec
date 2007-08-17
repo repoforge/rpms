@@ -30,6 +30,7 @@
 %{?rh7:%define _without_freeglut 1}
 %{?rh7:%define _without_glut 0}
 %{?rh7:%define _without_ieee1284 1}
+%{?rh7:%define _without_opengl 1}
 
 ### EL2 has neither glut nor freeglut
 %{?el2:%define _without_alsa 1}
@@ -41,12 +42,13 @@
 %{?el2:%define _without_ieee1284 1}
 %{?el2:%define _without_isdn4k 1}
 %{?el2:%define _without_libusb 1}
+%{?el2:%define _without_opengl 1}
 
 %define desktop_vendor rpmforge
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 0.9.42
+Version: 0.9.43
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -300,7 +302,8 @@ echo "%{_libdir}/wine/" >wine.ld.conf
 %build
 %configure \
 	--sysconfdir="%{_sysconfdir}/wine" \
-	--disable-static
+	--disable-static \
+%{?_without_opengl:--without-opengl}
 %{__make} depend all
 
 %install
@@ -486,6 +489,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/winhelp.exe.so
 %{_libdir}/wine/winver.exe.so
 %{_libdir}/wine/wordpad.exe.so
+%{_libdir}/wine/write.exe.so
 %{_libdir}/wine/xcopy.exe.so
 
 ### dll16
@@ -581,13 +585,15 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/dpnaddr.dll.so
 %{_libdir}/wine/dpnet.dll.so
 %{_libdir}/wine/dpnhpast.dll.so
+%{_libdir}/wine/dpnlobby.dll.so
 %{_libdir}/wine/dsound.dll.so
 %{_libdir}/wine/dswave.dll.so
 %{_libdir}/wine/dwmapi.dll.so
 %{_libdir}/wine/dxdiagn.dll.so
+%{_libdir}/wine/faultrep.dll.so
 %{_libdir}/wine/gdi32.dll.so
 %{_libdir}/wine/gdiplus.dll.so
-%{_libdir}/wine/glu32.dll.so
+%{!?_without_opengl:%{_libdir}/wine/glu32.dll.so}
 #%{_libdir}/wine/glut32.dll.so
 %{_libdir}/wine/hal.dll.so
 %{_libdir}/wine/hid.dll.so
@@ -596,6 +602,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/iccvid.dll.so
 %{_libdir}/wine/icmp.dll.so
 %{_libdir}/wine/infosoft.dll.so
+%{_libdir}/wine/inkobj.dll.so
 %{_libdir}/wine/imagehlp.dll.so
 %{_libdir}/wine/imm32.dll.so
 %{_libdir}/wine/inseng.dll.so
@@ -647,7 +654,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/oledlg.dll.so
 %{_libdir}/wine/olepro32.dll.so
 %{_libdir}/wine/olesvr32.dll.so
-%{_libdir}/wine/opengl32.dll.so
+%{!?_without_opengl:%{_libdir}/wine/opengl32.dll.so}
 %{_libdir}/wine/pdh.dll.so
 %{_libdir}/wine/powrprof.dll.so
 %{_libdir}/wine/printui.dll.so
@@ -692,9 +699,10 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/vdmdbg.dll.so
 %{_libdir}/wine/version.dll.so
 %{_libdir}/wine/w32skrnl.dll.so
-%{_libdir}/wine/wined3d.dll.so
+%{!?_without_opengl:%{_libdir}/wine/wined3d.dll.so}
 %{_libdir}/wine/winedos.dll.so
 %{_libdir}/wine/wing32.dll.so
+%{_libdir}/wine/winhttp.dll.so
 %{_libdir}/wine/wininet.dll.so
 %{_libdir}/wine/winmm.dll.so
 %{_libdir}/wine/winnls32.dll.so
@@ -749,6 +757,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/winemp3.acm.so
 
 ### tlb.so
+%{_libdir}/wine/mshtml.tlb.so
 %{_libdir}/wine/stdole2.tlb.so
 %{_libdir}/wine/stdole32.tlb.so
 
@@ -821,6 +830,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Sun Aug 12 2007 Dag Wieers <dag@wieers.com> - 0.9.43-1
+- Updated to release 0.9.43.
+
 * Mon Aug 06 2007 Dag Wieers <dag@wieers.com> - 0.9.42-1
 - Updated to release 0.9.42.
 

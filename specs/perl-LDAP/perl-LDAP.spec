@@ -6,7 +6,7 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name perl-ldap
-#%define real_name Net-LDAP
+#define real_name Net-LDAP
 
 Summary: Interface to LDAP for Perl
 Name: perl-LDAP
@@ -68,6 +68,9 @@ find contrib/ -type f -exec %{__chmod} a-x {} \;
 %dir %{perl_vendorlib}/Net/
 %{perl_vendorlib}/Net/LDAP/
 %{perl_vendorlib}/Net/LDAP.pm
+%{perl_vendorlib}/Net/LDAP.pod
+%{perl_vendorlib}/Net/LDAPI.pm
+%{perl_vendorlib}/Net/LDAPS.pm
 
 %changelog
 * Fri Aug 17 2007 Dag Wieers <dag@wieers.com> - 0.34-1

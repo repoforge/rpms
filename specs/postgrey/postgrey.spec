@@ -9,9 +9,11 @@ Version: 1.30
 Release: 2
 License: GPL
 Group: System Environment/Daemons
-URL: http://isg.ee.ethz.ch/tools/postgrey/
+URL: http://postgrey.schweikert.ch/
+#URL: http://isg.ee.ethz.ch/tools/postgrey/
 
-Source0: http://isg.ee.ethz.ch/tools/postgrey/pub/postgrey-%{version}.tar.gz
+Source0: http://postgrey.schweikert.ch/pub/postgrey-%{version}.tar.gz
+#Source0: http://isg.ee.ethz.ch/tools/postgrey/pub/postgrey-%{version}.tar.gz
 Source1: postgrey.init
 Source2: README-rpm
 Patch0: postgrey-1.30-group.patch
@@ -37,12 +39,10 @@ seen, or if the triplet was first seen less than 5 minutes, then the mail gets
 rejected with a temporary error. Hopefully spammers or viruses will not try
 again later, as it is however required per RFC.
 
-
 %prep
 %setup
 %patch0 -p1 -b .group
 %{__install} -p -m0644 %{SOURCE2} README-rpm
-
 
 %build
 # We only have perl scripts, so just "build" the man page
@@ -50,7 +50,6 @@ pod2man \
     --center="Postgrey Policy Server for Postfix" \
     --section="8" \
     postgrey > postgrey.8
-
 
 %install
 %{__rm} -rf %{buildroot}
@@ -67,7 +66,6 @@ touch %{buildroot}%{confdir}/postgrey_whitelist_clients.local
 
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %pre
 /usr/sbin/useradd -d %{_var}/spool/postfix/postgrey -s /sbin/nologin \
@@ -87,7 +85,6 @@ if [ $1 -ge 1 ]; then
     /sbin/service postgrey condrestart &>/dev/null || :
 fi
 
-
 %files
 %defattr(-, root, root, 0755)
 %doc Changes COPYING README README-rpm
@@ -101,7 +98,6 @@ fi
 
 %defattr(0751, postgrey, postfix, 0751)
 %dir %{_var}/spool/postfix/postgrey/
-
 
 %changelog
 * Mon Aug 06 2007 Dag Wieers <dag@wieers.com> - 1.30-2

@@ -14,7 +14,7 @@
 
 Summary: Spam filter for email which can be invoked from mail delivery agents
 Name: spamassassin
-Version: 3.2.2
+Version: 3.2.3
 Release: 1
 License: Apache License
 Group: Applications/Internet
@@ -214,6 +214,9 @@ fi
 %{perl_vendorlib}/spamassassin-run.pod
 
 %changelog
+* Sat Aug 11 2007 Dag Wieers <dag@wieers.com> - 3.2.3-1
+- Updated to release 3.2.3.
+
 * Wed Jul 25 2007 Dag Wieers <dag@wieers.com> - 3.2.2-1
 - Updated to release 3.2.2.
 

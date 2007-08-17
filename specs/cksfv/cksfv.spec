@@ -3,7 +3,7 @@
 
 Summary: Tool to create and check SFV files
 Name: cksfv
-Version: 1.3.9
+Version: 1.3.12
 Release: 1
 License: GPL
 Group: Applications/File
@@ -38,10 +38,13 @@ CRC32 checksums.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README TODO
-%{_mandir}/man1/cksfv.1*
+%doc %{_mandir}/man1/cksfv.1*
 %{_bindir}/cksfv
 
 %changelog
+* Thu Aug 16 2007 Dag Wieers <dag@wieers.com> - 1.3.12-1
+- Updated to release 1.3.12.
+
 * Wed Jun 14 2006 Dag Wieers <dag@wieers.com> - 1.3.9-1
 - Updated to release 1.3.9.
 

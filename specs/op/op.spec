@@ -5,10 +5,10 @@
 Summary: Allows restricted root access for specified users
 Name: op
 Version: 1.32
-Release: 1.2
+Release: 2
 License: BSD
 Group: Applications/System
-URL: https://svn.swapoff.org/op/
+URL: http://swapoff.org/op/
 
 Source: http://swapoff.org/files/op/op-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -83,6 +83,16 @@ controlled.
 #	$1=on|off
 EOF
 
+%{__cat} <<EOF >su.conf
+### 'op su' - gives user a root shell.
+### Restrict a list of local users.
+#su
+#»··/bin/su -; 
+#»··users=dag,ramses,wim
+#»··environment
+#»··password
+EOF
+
 %{__cat} <<EOF >op.pam
 #%PAM-1.0
 auth       required	pam_stack.so service=system-auth
@@ -101,7 +111,8 @@ EOF
 
 %{__install} -Dp -m0600 op.conf %{buildroot}%{_sysconfdir}/op.conf
 %{__install} -Dp -m0644 op.pam %{buildroot}%{_sysconfdir}/pam.d/op
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/op.d/
+%{__install} -d -m0700 %{buildroot}%{_sysconfdir}/op.d/
+%{__install} -Dp -m0600 su.conf %{buildroot}%{_sysconfdir}/op.d/su.conf
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -112,12 +123,13 @@ EOF
 %doc %{_mandir}/man1/op.1*
 %config(noreplace) %{_sysconfdir}/op.conf
 %config(noreplace) %{_sysconfdir}/op.d/
-%config %{_sysconfdir}/pam.d/op
+%config(noreplace) %{_sysconfdir}/pam.d/op
 %{_bindir}/op
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.32-1.2
-- Rebuild for Fedora Core 5.
+* Thu Aug 16 2007 Dag Wieers <dag@wieers.com> - 1.32-2
+- Change permissions of /etc/op.d/ to 0700.
+- Added su.conf example to show how it works.
 
 * Thu Dec 08 2005 Dries Verachtert <dries@ulyssis.org> - 1.32-1
 - Updated to release 1.32.

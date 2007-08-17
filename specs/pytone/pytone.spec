@@ -9,7 +9,7 @@
 
 Summary: Music Jukebox with a Curses Based GUI
 Name: pytone
-Version: 2.3.1
+Version: 3.0.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -18,8 +18,8 @@ URL: http://www.luga.de/pytone/
 Source: http://www.luga.de/pytone/download/PyTone-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python, python-devel, libao-devel
-Requires: python, python-ao, python-mad, python-ogg, python-vorbis
+BuildRequires: python, python-devel, python-sqlite2, libao-devel
+Requires: python, python-ao, python-mad, python-ogg, python-sqlite2, python-vorbis
 #Requires: python-xmms, python-eyed3
 
 %description
@@ -52,6 +52,7 @@ export CFLAGS="%{optflags}"
 
 %{__install} -Dp -m0755 pytone.sh %{buildroot}%{_bindir}/pytone
 %{__install} -Dp -m0755 pytonectl.sh %{buildroot}%{_bindir}/pytonectl
+%{__install} -Dp -m0644 conf/pytonerc %{buildroot}%{_sysconfdir}/pytonerc
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -65,6 +66,9 @@ export CFLAGS="%{optflags}"
 %{python_sitearch}/pytone/
 
 %changelog
+* Thu Aug 16 2007 Dag Wieers <dag@wieers.com> - 3.0.1-1
+- Updated to release 3.0.1.
+
 * Sat Aug 12 2006 Dag Wieers <dag@wieers.com> - 2.3.1-1
 - Updated to release 2.3.0.
 

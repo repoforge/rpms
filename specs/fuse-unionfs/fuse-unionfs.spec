@@ -5,7 +5,7 @@
 
 Summary: FUSE-base user-space union filesystem
 Name: fuse-unionfs
-Version: 0.17
+Version: 0.18
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -45,5 +45,8 @@ unionfs is a FUSE-base user-space union filesystem.
 %{_bindir}/unionfs
 
 %changelog
+* Sat Aug 11 2007 Dag Wieers <dag@wieers.com> - 0.18-1
+- Updated to release 0.18.
+
 * Sat May 12 2007 Dag Wieers <dag@wieers.com> - 0.17-1
 - Initial package. (using DAR)
