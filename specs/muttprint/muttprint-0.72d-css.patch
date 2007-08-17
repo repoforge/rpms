@@ -1,0 +1,55 @@
+--- doc/manual/de/Makefile.orig	2007-05-04 19:40:56.000000000 +0200
++++ doc/manual/de/Makefile	2007-05-04 19:41:06.000000000 +0200
+@@ -91,7 +91,7 @@
+ 	mkdir -p $(docdir)/$(docdirname)/manual-$(lang)
+ 	# ignore the stylesheet-images/ directory because the files are not needed
+ 	$(INSTALL) manual-$(lang)/*.html $(docdir)/$(docdirname)/manual-$(lang)/
+-	$(INSTALL) manual-$(lang)/*.css $(docdir)/$(docdirname)/manual-$(lang)/
++#	$(INSTALL) manual-$(lang)/*.css $(docdir)/$(docdirname)/manual-$(lang)/
+ 
+ gzip:
+ 	$(gzip) *.ps *.txt
+--- doc/manual/en/Makefile.orig	2007-05-04 19:40:56.000000000 +0200
++++ doc/manual/en/Makefile	2007-05-04 19:41:06.000000000 +0200
+@@ -91,7 +91,7 @@
+ 	mkdir -p $(docdir)/$(docdirname)/manual-$(lang)
+ 	# ignore the stylesheet-images/ directory because the files are not needed
+ 	$(INSTALL) manual-$(lang)/*.html $(docdir)/$(docdirname)/manual-$(lang)/
+-	$(INSTALL) manual-$(lang)/*.css $(docdir)/$(docdirname)/manual-$(lang)/
++#	$(INSTALL) manual-$(lang)/*.css $(docdir)/$(docdirname)/manual-$(lang)/
+ 
+ gzip:
+ 	$(gzip) *.ps *.txt
+--- doc/manual/es/Makefile.orig	2007-05-04 19:40:56.000000000 +0200
++++ doc/manual/es/Makefile	2007-05-04 19:41:06.000000000 +0200
+@@ -91,7 +91,7 @@
+ 	mkdir -p $(docdir)/$(docdirname)/manual-$(lang)
+ 	# ignore the stylesheet-images/ directory because the files are not needed
+ 	$(INSTALL) manual-$(lang)/*.html $(docdir)/$(docdirname)/manual-$(lang)/
+-	$(INSTALL) manual-$(lang)/*.css $(docdir)/$(docdirname)/manual-$(lang)/
++#	$(INSTALL) manual-$(lang)/*.css $(docdir)/$(docdirname)/manual-$(lang)/
+ 
+ gzip:
+ 	$(gzip) *.ps *.txt
+--- doc/manual/it/Makefile.orig	2007-05-04 19:40:56.000000000 +0200
++++ doc/manual/it/Makefile	2007-05-04 19:41:06.000000000 +0200
+@@ -91,7 +91,7 @@
+ 	mkdir -p $(docdir)/$(docdirname)/manual-$(lang)
+ 	# ignore the stylesheet-images/ directory because the files are not needed
+ 	$(INSTALL) manual-$(lang)/*.html $(docdir)/$(docdirname)/manual-$(lang)/
+-	$(INSTALL) manual-$(lang)/*.css $(docdir)/$(docdirname)/manual-$(lang)/
++#	$(INSTALL) manual-$(lang)/*.css $(docdir)/$(docdirname)/manual-$(lang)/
+ 
+ gzip:
+ 	$(gzip) *.ps *.txt
+--- doc/manual/sl/Makefile.orig	2007-05-04 19:40:56.000000000 +0200
++++ doc/manual/sl/Makefile	2007-05-04 19:41:06.000000000 +0200
+@@ -91,7 +91,7 @@
+ 	mkdir -p $(docdir)/$(docdirname)/manual-$(lang)
+ 	# ignore the stylesheet-images/ directory because the files are not needed
+ 	$(INSTALL) manual-$(lang)/*.html $(docdir)/$(docdirname)/manual-$(lang)/
+-	$(INSTALL) manual-$(lang)/*.css $(docdir)/$(docdirname)/manual-$(lang)/
++#	$(INSTALL) manual-$(lang)/*.css $(docdir)/$(docdirname)/manual-$(lang)/
+ 
+ gzip:
+ 	$(gzip) *.ps *.txt

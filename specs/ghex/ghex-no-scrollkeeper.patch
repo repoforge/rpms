@@ -1,0 +1,18 @@
+diff -Naur ghex-2.8.2.org/omf-install/Makefile.in ghex-2.8.2/omf-install/Makefile.in
+--- ghex-2.8.2.org/omf-install/Makefile.in	2006-07-15 16:05:45.000000000 +0200
++++ ghex-2.8.2/omf-install/Makefile.in	2006-07-15 16:06:14.000000000 +0200
+@@ -374,14 +374,12 @@
+ 	-for file in $(srcdir)/*.omf; do \
+ 		$(INSTALL_DATA) $(srcdir)/$$file $(DESTDIR)$(omf_dest_dir); \
+ 	done
+-	-scrollkeeper-update -p $(localstatedir)/scrollkeeper
+ 
+ uninstall-local:
+ 	-for file in $(srcdir)/*.omf; do \
+ 		basefile=`basename $$file`; \
+ 		rm -f $(omf_dest_dir)/$$basefile; \
+         done
+-	-scrollkeeper-update -p $(localstatedir)/scrollkeeper
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
+ # Otherwise a system limit (for SysV at least) may be exceeded.
+ .NOEXPORT:

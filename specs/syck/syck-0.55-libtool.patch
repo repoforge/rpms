@@ -1,0 +1,57 @@
+--- syck-0.55/ext/php/make_module.sh.bak	2005-08-24 16:02:05.000000000 -0700
++++ syck-0.55/ext/php/make_module.sh	2005-08-24 16:09:19.000000000 -0700
+@@ -1,5 +1,5 @@
+ #!/bin/sh
+ phpize
+-./configure --with-syck
++CFLAGS='-L../../lib/.libs -I../../lib' ./configure --with-syck=../../lib/.libs
+ make
+ make install
+--- syck-0.55/ext/python/setup.py.bak	2005-08-24 15:54:34.000000000 -0700
++++ syck-0.55/ext/python/setup.py	2005-08-24 15:55:12.000000000 -0700
+@@ -3,7 +3,7 @@
+ syck = Extension('syck',
+                  include_dirs = ['/usr/local/include','../../lib'],
+                  libraries = ['syck'],
+-                 library_dirs = ['/usr/local/lib','../../lib'],
++                 library_dirs = ['/usr/local/lib','../../lib/.libs'],
+                  sources = ['pyext.c'])
+ 
+ setup (name = 'Syck',
+--- syck-0.55/lib/Makefile.am.bak	2005-08-24 15:37:27.000000000 -0700
++++ syck-0.55/lib/Makefile.am	2005-08-24 15:45:55.000000000 -0700
+@@ -4,10 +4,10 @@
+ 
+ AM_YFLAGS = -d -t -v -p syck
+ 
+-lib_LIBRARIES = libsyck.a
++lib_LTLIBRARIES = libsyck.la
+ include_HEADERS = syck.h syck_st.h
+ 
+-libsyck_a_SOURCES = \
++libsyck_la_SOURCES = \
+			emitter.c \
+             handler.c \
+             node.c \
+@@ -19,6 +19,11 @@
+             token.re \
+             implicit.re
+ 
++# CURRENT:REVISION:AGE
++# Bump REVISION if there's no API or ABI changes.
++# Bump AGE and CURRENT and reset REVISION if there's no ABI changes.
++# Bump CURRENT and reset AGE and REVISION if there's ABI changes.
++libsyck_la_LDFLAGS = -version-info 0:55:0
+ # libsyck_a_LIBADD = $(LEXLIB)
+ 
+ REC = re2c
+--- syck-0.55/configure.in.bak	2005-08-24 15:37:00.000000000 -0700
++++ syck-0.55/configure.in	2005-08-24 15:50:42.000000000 -0700
+@@ -7,6 +7,7 @@
+ AM_CONFIG_HEADER(config.h)
+ 
+ # Checks for programs.
++AC_PROG_LIBTOOL
+ AC_PROG_CC_STDC
+ AC_PROG_INSTALL
+ AC_PROG_LN_S

@@ -1,0 +1,36 @@
+--- inkscape-0.45/configure.orig	2007-02-07 12:08:44.000000000 -0800
++++ inkscape-0.45/configure	2007-02-07 12:22:34.000000000 -0800
+@@ -10769,7 +10769,7 @@
+     if test "$?" -gt "0"; then
+         with_python="no"
+     else
+-        checkPYTHON_LIBS=`python -c "import distutils.sysconfig ; print '%s/%s %s' % (distutils.sysconfig.get_config_var('LIBPL'),distutils.sysconfig.get_config_var('LDLIBRARY'),distutils.sysconfig.get_config_var('LIBS'))" 2>/dev/null`
++        checkPYTHON_LIBS=`python -c "import distutils.sysconfig ; print '%s/%s %s' % (distutils.sysconfig.get_config_var('DBLIB'),distutils.sysconfig.get_config_var('LDLIBRARY'),distutils.sysconfig.get_config_var('LIBS'))" 2>/dev/null`
+         if test "$?" -gt "0"; then
+             with_python="no"
+         else
+--- inkscape-0.45/src/extension/script/inkscape_py_wrap.cpp.orig	2007-02-07 17:11:42.000000000 -0800
++++ inkscape-0.45/src/extension/script/inkscape_py_wrap.cpp	2007-02-07 18:19:21.000000000 -0800
+@@ -802,7 +802,7 @@
+     obj = pyobj;
+     if (PyCFunction_Check(obj)) {
+       /* here we get the method pointer for callbacks */
+-      char *doc = (((PyCFunctionObject *)obj) -> m_ml -> ml_doc);
++      const char *doc = (((PyCFunctionObject *)obj) -> m_ml -> ml_doc);
+       c = doc ? strstr(doc, "swig_ptr: ") : 0;
+       if (c) {
+ 	c += 10;
+@@ -977,11 +977,11 @@
+ 		       swig_type_info **types_initial) {
+   int i;
+   for (i = 0; methods[i].ml_name; ++i) {
+-    char *c = methods[i].ml_doc;
++    const char *c = methods[i].ml_doc;
+     if (c && (c = strstr(c, "swig_ptr: "))) {
+       int j;
+       swig_const_info *ci = 0;
+-      char *name = c + 10;
++      const char *name = c + 10;
+       for (j = 0; const_table[j].type; j++) {
+ 	if (strncmp(const_table[j].name, name, 
+ 		    strlen(const_table[j].name)) == 0) {

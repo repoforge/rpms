@@ -1,0 +1,42 @@
+--- inkscape-0.44.1/share/extensions/ps_input.inx.orig	2006-12-06 11:47:27.000000000 +0100
++++ inkscape-0.44.1/share/extensions/ps_input.inx	2006-12-06 11:46:40.000000000 +0100
+@@ -1,7 +1,6 @@
+ <inkscape-extension>
+     <_name>Postscript Input</_name>
+     <id>org.inkscape.input.ps</id>
+-    <dependency type="extension">org.inkscape.input.sk</dependency>
+     <dependency type="executable">pstoedit</dependency>
+     <input>
+         <extension>.ps</extension>
+@@ -11,7 +10,6 @@
+         <output_extension>org.inkscape.output.ps</output_extension>
+     </input>
+     <script>
+-        <command reldir="path">pstoedit -f sk</command>
+-        <helper_extension>org.inkscape.input.sk</helper_extension>
++        <command reldir="path">pstoedit -ndt -f plot-svg</command>
+     </script>
+ </inkscape-extension>
+--- inkscape-0.44.1/share/extensions/eps_input.inx.orig	2006-12-06 12:19:56.000000000 +0100
++++ inkscape-0.44.1/share/extensions/eps_input.inx	2006-12-06 12:19:42.000000000 +0100
+@@ -1,9 +1,8 @@
+ <inkscape-extension>
+     <_name>EPS Input</_name>
+     <id>org.inkscape.input.eps</id>
+-    <dependency type="extension">org.inkscape.input.ps</dependency>
+-    <dependency type="executable">gs</dependency>
+-    <input>
++    <dependency type="executable">pstoedit</dependency>
++     <input>
+         <extension>.eps</extension>
+         <mimetype>image/x-encapsulated-postscript</mimetype>
+         <_filetypename>Encapsulated Postscript (*.eps)</_filetypename>
+@@ -11,7 +10,6 @@
+         <output_extension>org.inkscape.output.eps</output_extension>
+     </input>
+     <script>
+-        <command reldir="path">gs -q -sDEVICE=pswrite -sOutputFile=- -dNOPAUSE -dBATCH -dSAFER -dDEVICEWIDTH=250000 -dDEVICEHEIGHT=250000</command>
+-        <helper_extension>org.inkscape.input.ps</helper_extension>
++         <command reldir="path">pstoedit -ndt -f plot-svg</command>
+     </script>
+ </inkscape-extension>

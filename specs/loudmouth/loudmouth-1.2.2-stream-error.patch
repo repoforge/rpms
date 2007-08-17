@@ -1,0 +1,49 @@
+--- loudmouth-1.2.2/loudmouth/lm-connection.c.stream-error	2007-05-16 13:15:21.000000000 -0400
++++ loudmouth-1.2.2/loudmouth/lm-connection.c	2007-05-16 13:17:58.000000000 -0400
+@@ -285,7 +285,7 @@
+ 	}
+ 	else if (lm_message_get_type (m) == LM_MESSAGE_TYPE_STREAM_ERROR) {
+ 		connection_stream_error (connection, m);
+-		goto out;
++		goto run_global_handlers;
+ 	}
+ 	
+ 	id = lm_message_node_get_attribute (m->node, "id");
+@@ -304,6 +304,7 @@
+ 		goto out;
+ 	}
+ 
++run_global_handlers:
+ 	for (l = connection->handlers[lm_message_get_type (m)]; 
+ 	     l && result == LM_HANDLER_RESULT_ALLOW_MORE_HANDLERS; 
+ 	     l = l->next) {
+@@ -1461,7 +1462,7 @@
+ static void
+ connection_stream_error (LmConnection *connection, LmMessage *m)
+ {
+-	LmMessageNode *node;
++	LmMessageNode *node, *child;
+ 
+ 	g_return_if_fail (connection != NULL);
+ 	g_return_if_fail (m != NULL);
+@@ -1469,16 +1470,16 @@
+ 	node = m->node;
+ 
+ 	/* Resource conflict */
+-	node = lm_message_node_get_child (node, "conflict");
+-	if (node) {
++	child = lm_message_node_get_child (node, "conflict");
++	if (child) {
+ 		lm_verbose ("Stream error: Conflict (resource connected elsewhere)\n");
+ 		connection->disconnect_reason = LM_DISCONNECT_REASON_RESOURCE_CONFLICT;
+ 		return;
+ 	}
+ 
+ 	/* XML is crack */
+-	node = lm_message_node_get_child (node, "xml-not-well-formed");
+-	if (node) {
++	child = lm_message_node_get_child (node, "xml-not-well-formed");
++	if (child) {
+ 		lm_verbose ("Stream error: XML not well formed\n");
+ 		connection->disconnect_reason = LM_DISCONNECT_REASON_INVALID_XML;
+ 		return;

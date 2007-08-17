@@ -1,0 +1,11 @@
+--- src/gtkhex.c
++++ src/gtkhex.c
+@@ -2290,7 +2290,7 @@
+ 												   gint len,
+ 												   const gchar *colour)
+ {
+-	GtkHex_AutoHighlight *new = g_malloc0(sizeof(GtkHex_Highlight));
++	GtkHex_AutoHighlight *new = g_malloc0(sizeof(GtkHex_AutoHighlight));
+ 
+ 	new->search_string = g_memdup(search, len);
+ 	new->search_len = len;
