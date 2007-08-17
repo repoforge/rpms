@@ -4,21 +4,20 @@
 
 Summary: User and group administration tools for Samba-OpenLDAP
 Name: smbldap-tools
-Version: 0.9.1
-Release: 1.2
+Version: 0.9.3
+Release: 1
 License: GPL
 Group: System Environment/Base
-URL: http://samba.idealx.org/index.en.html
+URL: http://sourceforge.net/projects/smbldap-tools/
 
-Source: http://samba.idealx.org/dist/smbldap-tools-%{version}.tgz
+Source: http://download.gna.org/smbldap-tools/packages/smbldap-tools-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl >= 5.6
 Requires: perl >= 5.6, openldap, openldap-clients, samba
-Requires: perl(XML::SAX::Base), perl-ldap, perl(XML::NamespaceSupport)
-Requires: perl(Convert::ASN1)
-
-BuildArch: noarch
+#Requires: perl(XML::SAX::Base), perl(XML::NamespaceSupport)
+#Requires: perl(Convert::ASN1)
 
 %description
 In settings with OpenLDAP and Samba-LDAP servers, this collection is
@@ -29,18 +28,23 @@ tools to manage users, groups and passwords.
 %prep
 %setup
 %{__perl} -pi.orig -e '
-		s|/etc/opt/IDEALX|/etc|g;
-		s|/opt/IDEALX||g;
-	' Makefile smb.conf smbldap.conf doc/*.html smbldap_tools.pm
+        s|/etc/opt/IDEALX|/etc|g;
+        s|/opt/IDEALX||g;
+    ' Makefile configure.pl smb.conf smbldap.conf smbldap_tools.pm doc/*.html
 
 %build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 smbldap_tools.pm %{buildroot}%{_sbindir}/smbldap_tools.pm
-%{__install} -p -m0755 smbldap-* %{buildroot}%{_sbindir}
 %{__install} -Dp -m0644 smbldap.conf %{buildroot}%{_sysconfdir}/smbldap-tools/smbldap.conf
 %{__install} -Dp -m0600 smbldap_bind.conf %{buildroot}%{_sysconfdir}/smbldap-tools/smbldap_bind.conf
+%{__install} -Dp -m0755 smbldap_tools.pm %{buildroot}%{_sbindir}/smbldap_tools.pm
+for cmd in smbldap-[gpu]*; do
+    %{__install} -Dp -m0755 $cmd %{buildroot}%{_sbindir}/$cmd
+    pod2man --section=8 $cmd >$cmd.8
+    %{__install} -Dp -m0644 $cmd.8 %{buildroot}%{_mandir}/man8/$cmd.8
+done
+
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,14 +52,37 @@ tools to manage users, groups and passwords.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog CONTRIBUTORS COPYING FILES INFRA INSTALL README TODO
-%doc *.conf configure.pl doc/html/*.html
+%doc *.conf configure.pl doc/html/ doc/migration_scripts/ doc/smbldap-*
+%doc %{_mandir}/man8/smbldap-groupadd.8*
+%doc %{_mandir}/man8/smbldap-groupdel.8*
+%doc %{_mandir}/man8/smbldap-groupmod.8*
+%doc %{_mandir}/man8/smbldap-groupshow.8*
+%doc %{_mandir}/man8/smbldap-passwd.8*
+%doc %{_mandir}/man8/smbldap-populate.8*
+%doc %{_mandir}/man8/smbldap-useradd.8*
+%doc %{_mandir}/man8/smbldap-userdel.8*
+%doc %{_mandir}/man8/smbldap-usermod.8*
+%doc %{_mandir}/man8/smbldap-userinfo.8*
+%doc %{_mandir}/man8/smbldap-userlist.8*
+%doc %{_mandir}/man8/smbldap-usershow.8*
 %config(noreplace) %{_sysconfdir}/smbldap-tools/
-%{_sbindir}/smbldap*
-%exclude %{_sbindir}/smbldap-tools.spec
+%{_sbindir}/smbldap-groupadd
+%{_sbindir}/smbldap-groupdel
+%{_sbindir}/smbldap-groupmod
+%{_sbindir}/smbldap-groupshow
+%{_sbindir}/smbldap-passwd
+%{_sbindir}/smbldap-populate
+%{_sbindir}/smbldap-useradd
+%{_sbindir}/smbldap-userdel
+%{_sbindir}/smbldap-usermod
+%{_sbindir}/smbldap-userinfo
+%{_sbindir}/smbldap-userlist
+%{_sbindir}/smbldap-usershow
+%{_sbindir}/smbldap_tools.pm
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1.2
-- Rebuild for Fedora Core 5.
+* Sat Aug 18 2007 Dag Wieers <dag@wieers.com> - 0.9.3-1
+- Updated to release 0.9.3.
 
 * Fri Aug 12 2005 Dag Wieers <dag@wieers.com> - 0.9.1-2
 - Excluded smbldap-tools.spec. (Simon Perreault)
