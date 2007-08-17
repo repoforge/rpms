@@ -20,8 +20,8 @@
 
 Summary: File manager
 Name: krusader
-Version: 1.70.0
-Release: 2
+Version: 1.80.0
+Release: 1
 License: GPL
 Group: User Interface/Desktops
 URL: http://krusader.sourceforge.net/
@@ -48,30 +48,22 @@ great on your desktop! :-)
 
 %prep
 %setup
-%{__perl} -pi -e "s|class vfs;|class ListPanelFunc;\nclass vfs;|g;" krusader/Panel/listpanel.h
-%{__perl} -pi -e "s|^class KMountMan|class KMountManGUI;\nclass KMountMan|g;" krusader/MountMan/kmountman.h
-%{__perl} -pi -e "s|class ListPanel;|class ListPanel;\nclass KrDetailedViewItem;|g;" krusader/Panel/krdetailedview.h
-
 
 %build
 export KDEDIR=/usr
-source %{_sysconfdir}/profile.d/qt.sh
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 export KDEDIR=/usr
-source %{_sysconfdir}/profile.d/qt.sh
 %makeinstall
 %{__rm} -f %{buildroot}%{_datadir}/mimelnk/application/x-ace.desktop
 %find_lang %{name}
 
-%post
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -79,20 +71,25 @@ source %{_sysconfdir}/profile.d/qt.sh
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO
-%doc %{_mandir}/man?/*
-%{_bindir}/*
-%{_datadir}/applnk/krusader*.desktop
+%doc %{_mandir}/man1/krusader.1.*
+%{_bindir}/krusader
+%{_datadir}/applications/kde/krusader*.desktop
 %{_datadir}/icons/*/*/apps/krusader*.png
-%{_datadir}/apps/krusader
-%{_datadir}/doc/HTML/en/krusader
+%{_datadir}/apps/krusader/
+%{_datadir}/doc/HTML/*/krusader/
 %{_datadir}/services/krarc.protocol
 %{_libdir}/kde3/kio_krarc.*
 %{_libdir}/kde3/kio_iso*
+%{_libdir}/kde3/kio_virt*
 %{_datadir}/apps/konqueror/servicemenus/isoservice.desktop
 %{_datadir}/config/kio_isorc
 %{_datadir}/services/iso.protocol
+%{_datadir}/services/virt.protocol
 
 %changelog
+* Fri Aug 17 2007 Dries Verachtert <dries@ulyssis.org> - 1.80.0-1
+- Updated to release 1.80.0.
+
 * Thu Mar 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.70.0-2
 - Simplify buildequirements: kdelibs-devel already requires xorg-x11-devel/XFree86-devel
 

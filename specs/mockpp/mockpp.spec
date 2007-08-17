@@ -3,7 +3,7 @@
 
 Summary: Platform independent generic unit testing framework for C++
 Name: mockpp
-Version: 1.15.1
+Version: 1.16.1
 Release: 1
 License: LGPL
 Group: Development/Libraries
@@ -57,6 +57,8 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO
+%{_bindir}/mockpp2xml
+%{_bindir}/xml2mockpp
 %{_libdir}/libmockpp.so.*
 %{_libdir}/libmockpp_cxxtest.so.*
 %{_libdir}/libmockpp_production.so.*
@@ -73,5 +75,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Fri Aug 17 2007 Dries Verachtert <dries@ulyssis.org> - 1.16.1-1
+- Updated to release 1.16.1.
+
 * Sun Apr 15 2007 Dries Verachtert <dries@ulyssis.org> - 1.15.1-1
 - Initial package.
