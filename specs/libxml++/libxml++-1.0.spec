@@ -1,17 +1,17 @@
-# $Id$
+# $Id: libxml++.spec 4303 2006-04-18 22:05:03Z dries $
 # Authority: dag
 # Upstream: <libxmlplusplus-general$lists,sf,net>
 
 Summary: C++ interface for working with XML files
 Name: libxml++
-Version: 2.19.1
+Version: 1.0.5
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libxmlplusplus.sourceforge.net/
 
 #Source: http://dl.sf.net/libxmlplusplus/libxml++-%{version}.tar.bz2
-Source: http://ftp.gnome.org/pub/GNOME/sources/libxml++/2.19/libxml++-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/libxml++/1.0/libxml++-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, libxml2-devel >= 2.5.1
@@ -51,22 +51,17 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
-%{_libdir}/libxml++-2.6.so.*
+%{_libdir}/libxml++-1.0.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc examples/
-%doc %{_docdir}/libxml++-2.6/
-%{_includedir}/libxml++-2.6/
-%{_libdir}/libxml++-2.6.so
-%{_libdir}/pkgconfig/*.pc
-%{_libdir}/libxml++-2.6/
-%exclude %{_libdir}/libxml++-2.6.la
+%{_includedir}/libxml++-1.0/
+%{_libdir}/libxml++-1.0.so
+%{_libdir}/pkgconfig/libxml++-1.0.pc
+%exclude %{_libdir}/libxml++-1.0.la
 
 %changelog
-* Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 2.19.1-1
-- Updated to release 2.19.1.
-
 * Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 1.0.5-1
 - Updated to release 1.0.5.
 
