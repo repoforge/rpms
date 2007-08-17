@@ -34,14 +34,13 @@ an easy access to the SMB shares of your local network neighborhood.
 
 %build
 source "/etc/profile.d/qt.sh"
-%configure LDFLAGS=-L$QTLIB
+%configure LDFLAGS="-L$QTLIB"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 source "/etc/profile.d/qt.sh"
-%{__make} install \
-	DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %clean

@@ -4,7 +4,7 @@
 
 Summary: partition imaging utility, much like Ghost
 Name: partimage
-Version: 0.6.5
+Version: 0.6.6
 Release: 1
 License: GPL
 Group: Applications/System
@@ -180,17 +180,17 @@ EOF
 EOF
 
 %build
-%configure \
-	--program-prefix="%{?_program_prefix}" \
-	--with-log-dir="%{_localstatedir}/log" \
-	--enable-pam \
-	--disable-ssl \
-	--enable-gui-text \
-	--enable-gui-newt \
-	--enable-all-static
-%{__make} %{?_smp_mflags}
-%{__mv} -f src/client/partimage partimage-static
-%{__rm} -f src/server/partimaged
+#%configure \
+#	--program-prefix="%{?_program_prefix}" \
+#	--with-log-dir="%{_localstatedir}/log" \
+#	--enable-pam \
+#	--disable-ssl \
+#	--enable-gui-text \
+#	--enable-gui-newt \
+#	--enable-all-static
+#%{__make} %{?_smp_mflags}
+#%{__mv} -f src/client/partimage partimage-static
+#%{__rm} -f src/server/partimaged
 
 %configure \
 	--program-prefix="%{?_program_prefix}" \
@@ -205,9 +205,9 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%find_lang %{name}
+#%find_lang %{name}
 
-%{__install} -Dp -m0755 partimage-static %{buildroot}%{_sbindir}/partimage-static
+#%{__install} -Dp -m0755 partimage-static %{buildroot}%{_sbindir}/partimage-static
 
 %{__install} -Dp -m0755 partimaged.sysv %{buildroot}%{_initrddir}/partimaged
 %{__install} -Dp -m0644 partimaged.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/partimaged
@@ -241,7 +241,8 @@ fi
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+#%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BOOT* BUGS ChangeLog COPYING FUTURE README* THANKS TODO
 %{_sbindir}/partimage
@@ -261,13 +262,16 @@ fi
 %dir %{_localstatedir}/partimaged/
 %ghost %{_localstatedir}/log/partimaged.log
 
-%files static
-%defattr(-, root, root, 0755)
-%doc AUTHORS BOOT* BUGS ChangeLog COPYING FUTURE README* THANKS TODO
-%{_sbindir}/partimage-static
+#%files static
+#%defattr(-, root, root, 0755)
+#%doc AUTHORS BOOT* BUGS ChangeLog COPYING FUTURE README* THANKS TODO
+#%{_sbindir}/partimage-static
 
 %changelog
-* Mon Dec 18 2004 Dag Wieers <dag@wieers.com> - 0.6.5-1
+* Thu Aug 16 2007 Dag Wieers <dag@wieers.com> - 0.6.6-1
+- Updated to release 0.6.6.
+
+* Mon Dec 18 2006 Dag Wieers <dag@wieers.com> - 0.6.5-1
 - Updated to release 0.6.5.
 
 * Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 0.6.4-1

@@ -1,29 +1,28 @@
 # $Id:$
 # Authority: hadams
 
-Name:           synce
-Version:        0.9.1
-Release:        10
-Summary:        Serial connection support for Pocket PC devices
+Summary: Serial connection support for Pocket PC devices
+Name: synce
+Version: 0.9.1
+Release: 10
+License: MIT
+Group: Applications/Communications
+URL: http://synce.sourceforge.net/
 
-Group:          Applications/Communications
-License:        MIT
-URL:            http://synce.sourceforge.net/
-Source0:        http://dl.sf.net/synce/synce-libsynce-%{version}.tar.gz
-Source1:        http://dl.sf.net/synce/synce-dccm-%{version}.tar.gz
-Source2:        http://dl.sf.net/synce/synce-serial-%{version}.tar.gz
-Source3:        http://dl.sf.net/synce/synce-rra-%{version}.tar.gz
-Source4:        http://dl.sf.net/synce/synce-librapi2-%{version}.tar.gz
-Source5:        http://dl.sf.net/synce/libmimedir-0.4.tar.gz
-Source6:        synce.dev
-Source7:        synce-README.Fedora
-Patch0:         synce-rra-Makefile.patch
-Patch1:         synce-rra-devel.patch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Source0: http://dl.sf.net/synce/synce-libsynce-%{version}.tar.gz
+Source1: http://dl.sf.net/synce/synce-dccm-%{version}.tar.gz
+Source2: http://dl.sf.net/synce/synce-serial-%{version}.tar.gz
+Source3: http://dl.sf.net/synce/synce-rra-%{version}.tar.gz
+Source4: http://dl.sf.net/synce/synce-librapi2-%{version}.tar.gz
+Source5: http://dl.sf.net/synce/libmimedir-0.4.tar.gz
+Source6: synce.dev
+Source7: synce-README.Fedora
+Patch0: synce-rra-Makefile.patch
+Patch1: synce-rra-devel.patch
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires:  automake
-BuildRequires:  libtool
-
+BuildRequires: automake
+BuildRequires: libtool
 Requires: ppp
 
 %description
@@ -33,20 +32,17 @@ FreeBSD or a similar operating system. The SynCE project homepage is
 available here: http://synce.sourceforge.net/
 
 %package devel
-Summary: Development libraries and header files for SynCE
-Group: Development
+Summary: Header files, libraries and development documentation for %{name}.
+Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
 %description devel
-This package contains the header files and link libraries for SynCE
-application development. SynCE provides support for communication
-between a Windows CE device (PDA, smart phone) and a Linux machine.
-
-For more details on the SynCE project, please refer to the project's
-homepage at http://synce.sourceforge.net/
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
-%setup -q -c -a 1 -a 2 -a 3 -a 4 -a 5
+%setup -c -a 1 -a 2 -a 3 -a 4 -a 5
 %patch0
 %patch1
 
@@ -54,39 +50,39 @@ homepage at http://synce.sourceforge.net/
 # build libsynce
 cd synce-libsynce-%{version}
 %configure --disable-static --disable-rpath
-make
+%{__make}
 SYNCEINC="$(pwd)/lib"
 SYNCELIB="$(pwd)/lib/.libs"
-cd ..
+cd -
 # build dccm
 cd synce-dccm-%{version}
 %configure \
     --with-libsynce-include="${SYNCEINC}" \
     --with-libsynce-lib="${SYNCELIB}" \
     --disable-static
-make LDFLAGS="-L${SYNCEINC}"
-cd ..
+%{__make} LDFLAGS="-L${SYNCEINC}"
+cd -
 # build librapi2
 cd synce-librapi2-%{version}
 %configure \
     --with-libsynce-include="${SYNCEINC}" \
     --with-libsynce-lib="${SYNCELIB}" \
-    --disable-static \
-    --disable-rpath
-make LDFLAGS="-L${SYNCEINC}"
+    --disable-rpath \
+    --disable-static
+%{__make} LDFLAGS="-L${SYNCEINC}"
 RAPI2INC="$(pwd)/src"
 RAPI2LIB="$(pwd)/src/.libs"
-cd ..
+cd -
 # build libmimedir
 cd libmimedir-0.4
-CFLAGS="$RPM_OPT_FLAGS -fPIC" %configure 
-make
+CFLAGS="%{optflags} -fPIC" %configure 
+%{__make}
 # build shared libmimedir to work around x86_64 build error
 ld --shared --whole-archive libmimedir.a -o libmimedir.so
 rm libmimedir.a
 MIMEDIRINC="$(pwd)"
 MIMEDIRLIB="$(pwd)"
-cd ..
+cd -
 # build rra
 cd synce-rra-%{version}
 ./bootstrap
@@ -97,48 +93,43 @@ cd synce-rra-%{version}
     --with-librapi2-lib="${RAPI2LIB}" \
     --with-libmimedir-include="${MIMEDIRINC}" \
     --with-libmimedir-lib="${MIMEDIRLIB}" \
-    --disable-static \
-    --disable-rpath
-
-make LDFLAGS="-L${SYNCEINC} -L${RAPI2INC} -L${MIMEDIRLIB} --shared"
-cd ..
+    --disable-rpath \
+    --disable-static
+%{__make} LDFLAGS="-L${SYNCEINC} -L${RAPI2INC} -L${MIMEDIRLIB} --shared"
+cd -
 # build the serial support
 cd synce-serial-%{version}
 %configure
-make
-cd ..
+%{__make}
+cd -
 
 %install
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 for module in libsynce dccm librapi2 rra serial ; do
-    cd synce-${module}-%{version}
-    %makeinstall
-    cd ..
+    %{__make} -C "synce-${module}-%{version}" install DESTDIR="%{buildroot}"
 done
 
-install -m 775 libmimedir-0.4/libmimedir.so $RPM_BUILD_ROOT/%{_libdir}/libmimedir.so
+%{__install} -Dp -m0775 libmimedir-0.4/libmimedir.so %{buildroot}%{_libdir}/libmimedir.so
 
-find $RPM_BUILD_ROOT -type f -name "*.la" -exec rm -f {} ';'
+find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 
 # Enable autoconnect
-install -p -m 755 -D %{SOURCE6} $RPM_BUILD_ROOT/%{_sysconfdir}/udev/scripts/synce.dev
-mkdir -p $RPM_BUILD_ROOT/%{_sysconfdir}/dev.d/ipaq/
-ln -s ../../udev/scripts/synce.dev $RPM_BUILD_ROOT/%{_sysconfdir}/dev.d/ipaq/synce.dev
-mkdir -p $RPM_BUILD_ROOT/%{_sysconfdir}/udev/rules.d/
-echo 'DRIVER=="ipaq", NAME="ipaq", SYMLINK+="ttyUSB%%n"' > \
-    $RPM_BUILD_ROOT/%{_sysconfdir}/udev/rules.d/50-ipaq.rules
-cp %{SOURCE7} README.Fedora
+%{__install} -Dp -m0755 %{SOURCE6} %{buildroot}%{_sysconfdir}/udev/scripts/synce.dev
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/dev.d/ipaq/
+%{__ln_s} ../../udev/scripts/synce.dev %{buildroot}%{_sysconfdir}/dev.d/ipaq/synce.dev
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/udev/rules.d/
+echo 'DRIVER=="ipaq", NAME="ipaq", SYMLINK+="ttyUSB%%n"' >%{buildroot}%{_sysconfdir}/udev/rules.d/50-ipaq.rules
+%{__cp} -v %{SOURCE7} README-rpm
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-,root,root,0755)
-%doc README.Fedora
+%defattr(-, root, root, 0755)
+%doc README-rpm
 
 #libsynce
 %{_libdir}/libsynce.so.0*
@@ -192,15 +183,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/dev.d/ipaq/
 
 %files devel
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
 %{_includedir}/*.h
 %{_libdir}/lib*.so
 %{_datadir}/aclocal/*.m4
 
 %changelog
-* Sun Aug 12 2007 Heiko Adams <info@fedora-blog.de>
-0.9.1-10
-- rebuild for rpmforge
+* Sun Aug 12 2007 Heiko Adams <info@fedora-blog.de> - 0.9.1-10
+- Rebuild for RPMforge.
 
 * Sat Nov 11 2006 Andreas Bierfert <andreas.bierfert[AT]lowlatency.de>
 0.9.1-9
