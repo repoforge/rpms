@@ -4,16 +4,19 @@
 
 Summary: Performance analysis tool
 Name: nmon
-Version: 11d
-Release: 2
+Version: 11f
+Release: 1
 License: Proprietary
 Group: Applications/System
 URL: http://www-128.ibm.com/developerworks/aix/library/au-analyze_aix/
 #URL: http://www-941.haw.ibm.com/collaboration/wiki/display/WikiPtype/nmon
 
-Source0: http://www-941.haw.ibm.com/collaboration/wiki/download/attachments/437/nmon4linux_x86_%{version}.zip?version=1
-Source1: http://www-941.haw.ibm.com/collaboration/wiki/download/attachments/437/nmon4linux_power_%{version}.zip?version=2
-Source2: http://www-941.haw.ibm.com/collaboration/wiki/download/attachments/437/nmon4linux_x86_64_b.zip?version=1
+#Source0: http://www-941.haw.ibm.com/collaboration/wiki/download/attachments/437/nmon4linux_x86_%{version}.zip?version=1
+Source0: http://www-941.haw.ibm.com/collaboration/wiki/download/attachments/437/nmon_x86_%{version}.zip?version=1
+#Source1: http://www-941.haw.ibm.com/collaboration/wiki/download/attachments/437/nmon4linux_power_%{version}.zip?version=2
+Source1: http://www-941.haw.ibm.com/collaboration/wiki/download/attachments/437/nmon_power_rhel4.zip?version=1
+#Source2: http://www-941.haw.ibm.com/collaboration/wiki/download/attachments/437/nmon4linux_x86_64_b.zip?version=1
+Source2: http://www-941.haw.ibm.com/collaboration/wiki/download/attachments/437/nmon_x86_64_rhel4.zip?version=1
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386 x86_64 ppc ppc64
@@ -78,7 +81,7 @@ EOF
 %endif
 %ifarch x86_64
 %{?fc6:%{__install} -Dp -m0755 nmon_x86_64_fedora6 %{buildroot}%{_bindir}/nmon}
-%{?el4:%{__install} -Dp -m0755 nmon_x86_64_rhel4u4 %{buildroot}%{_bindir}/nmon}
+%{?el4:%{__install} -Dp -m0755 nmon_x86_64_rhel4 %{buildroot}%{_bindir}/nmon}
 %endif
 %ifarch ppc ppc64
 %{?el4:%{__install} -Dp -m0755 nmon_power_rhel4 %{buildroot}%{_bindir}/nmon}
@@ -104,6 +107,9 @@ EOF
 %{_localstatedir}/log/nmon/
 
 %changelog
+* Sat Aug 18 2007 Dag Wieers <dag@wieers.com> - 11f-1
+- Updated to release 11f.
+
 * Tue Feb 06 2007 Dag Wieers <dag@wieers.com> - 11d-2
 - Added nmon-script cronjob to do data collection.
 

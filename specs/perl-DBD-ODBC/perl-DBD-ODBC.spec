@@ -28,6 +28,8 @@ module uses the unixODBC manager to connect to the database.
 %prep
 %setup -n %{real_name}-%{version}
 
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' Makefile.PL
+
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" -o %{_prefix}
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
@@ -53,5 +55,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/DBD/ODBC/
 
 %changelog
+* Sat Aug 18 2007 Dag Wieers <dag@wieers.com> - 1.13-1
+- Added patch to build on x86_64. (Stefan Radman)
+
 * Tue Jun 12 2007 Dag Wieers <dag@wieers.com> - 1.13-1
 - Initial package. (using DAR)

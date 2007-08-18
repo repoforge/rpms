@@ -122,9 +122,6 @@ scrollkeeper-update -q || :
 %exclude %{_libdir}/libglabels.la
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.4-1.2
-- Rebuild for Fedora Core 5.
-
 * Thu Dec 29 2005 Dag Wieers <dag@wieers.com> - 2.0.4-1
 - Updated to release 2.0.4.
 
