@@ -1,0 +1,48 @@
+diff -ur xsupplicant-1.2.8/src/cardif/linux/cardif_atmel_driver.c xsupplicant-1.2.8.sal/src/cardif/linux/cardif_atmel_driver.c
+--- xsupplicant-1.2.8/src/cardif/linux/cardif_atmel_driver.c	2006-10-08 05:42:53.000000000 +0200
++++ xsupplicant-1.2.8.sal/src/cardif/linux/cardif_atmel_driver.c	2006-11-21 10:11:17.000000000 +0100
+@@ -103,7 +103,6 @@
+ #include <sys/ioctl.h>
+ #include <linux/types.h>
+ #include <linux/socket.h>
+-#include <linux/compiler.h>
+ #include <iwlib.h>
+ #include <stdlib.h>
+ #include <string.h>
+Only in xsupplicant-1.2.8.sal/src/cardif/linux: cardif_atmel_driver.c~
+diff -ur xsupplicant-1.2.8/src/cardif/linux/cardif_linux.c xsupplicant-1.2.8.sal/src/cardif/linux/cardif_linux.c
+--- xsupplicant-1.2.8/src/cardif/linux/cardif_linux.c	2006-10-08 05:42:53.000000000 +0200
++++ xsupplicant-1.2.8.sal/src/cardif/linux/cardif_linux.c	2006-11-21 10:11:08.000000000 +0100
+@@ -174,7 +174,6 @@
+ #include <netinet/in.h>
+ #include <linux/types.h>
+ #include <linux/socket.h>
+-#include <linux/compiler.h>
+ #include <iwlib.h>
+ #include <linux/if_packet.h>
+ #include <stdio.h>
+Only in xsupplicant-1.2.8.sal/src/cardif/linux: cardif_linux.c~
+diff -ur xsupplicant-1.2.8/src/cardif/linux/cardif_linux_rtnetlink.c xsupplicant-1.2.8.sal/src/cardif/linux/cardif_linux_rtnetlink.c
+--- xsupplicant-1.2.8/src/cardif/linux/cardif_linux_rtnetlink.c	2006-10-08 05:42:53.000000000 +0200
++++ xsupplicant-1.2.8.sal/src/cardif/linux/cardif_linux_rtnetlink.c	2006-11-21 10:11:37.000000000 +0100
+@@ -203,7 +203,6 @@
+ 
+ #include <unistd.h>
+ #include <sys/socket.h>
+-#include <linux/compiler.h>
+ #include <iwlib.h>
+ #include <sys/ioctl.h>
+ #include "netlink.h"
+Only in xsupplicant-1.2.8.sal/src/cardif/linux: cardif_linux_rtnetlink.c~
+diff -ur xsupplicant-1.2.8/src/cardif/linux/cardif_linux_wext.c xsupplicant-1.2.8.sal/src/cardif/linux/cardif_linux_wext.c
+--- xsupplicant-1.2.8/src/cardif/linux/cardif_linux_wext.c	2006-10-08 05:42:53.000000000 +0200
++++ xsupplicant-1.2.8.sal/src/cardif/linux/cardif_linux_wext.c	2006-11-21 10:11:28.000000000 +0100
+@@ -203,7 +203,6 @@
+ #include <netinet/in.h>
+ #include <linux/types.h>
+ #include <linux/socket.h>
+-#include <linux/compiler.h>
+ #include <linux/wireless.h>
+ #include <iwlib.h>
+ #include <linux/if_packet.h>
+Only in xsupplicant-1.2.8.sal/src/cardif/linux: cardif_linux_wext.c~

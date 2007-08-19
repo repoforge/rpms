@@ -1,0 +1,53 @@
+--- configure.ac.orig	2006-02-05 01:48:05.000000000 +0100
++++ configure.ac	2006-02-05 01:46:52.000000000 +0100
+@@ -35,8 +35,11 @@
+ 
+ # Checks for libraries. (not perfect yet)
+ AC_SEARCH_LIBS([pthread_self], [pthread])
+-AC_SEARCH_LIBS([alGetError], [openal32 openal])
+ 
++
++PKG_CHECK_MODULES(openal,openal)
++AC_SUBST(openal_CFLAGS)
++AC_SUBST(openal_LIBS)
+ ################################################################################
+ # Checks for header files.
+ ################################################################################
+--- examples/Makefile.am.orig	2006-02-05 01:49:09.000000000 +0100
++++ examples/Makefile.am	2006-02-05 01:50:40.000000000 +0100
+@@ -1,8 +1,11 @@
++OPENAL_LIBS = @openal_LIBS@
++OPENAL_CFLAGS = @openal_CFLAGS@
++
+ # Build, but do not install the following test programs:
+ noinst_PROGRAMS = hello_world playfile
+ 
+ # We need to link against our *own* libalut.
+-LDADD = ../src/libalut.la
++LDADD = ../src/libalut.la $(OPENAL_LIBS)
+ 
+ # Specifying the following path is needed to find <AL/alut.h>.
+-AM_CPPFLAGS = -I$(top_srcdir)/include
++AM_CPPFLAGS = -I$(top_srcdir)/include $(OPENAL_CFLAGS)
+--- test_suite/Makefile.am.orig	2006-02-05 02:08:56.000000000 +0100
++++ test_suite/Makefile.am	2006-02-05 02:10:13.000000000 +0100
+@@ -1,3 +1,6 @@
++OPENAL_LIBS = @openal_LIBS@
++OPENAL_CFLAGS = @openal_CFLAGS@
++
+ # The following files should be in our source distribution in addition to the
+ # standard ones included by automake itself:
+ EXTRA_DIST =			\
+@@ -15,10 +18,10 @@
+ 	test_waveforms
+ 
+ # We need to link against our *own* libalut.
+-LDADD = ../src/libalut.la
++LDADD = ../src/libalut.la $(OPENAL_LIBS)
+ 
+ # Specifying the following path is needed to find <AL/alut.h>.
+-AM_CPPFLAGS = -I$(top_srcdir)/include
++AM_CPPFLAGS = -I$(top_srcdir)/include $(OPENAL_CFLAGS)
+ 
+ # test_retrostuff tests deprecated functions, but we don't want to get compiler
+ # warnings because of that.

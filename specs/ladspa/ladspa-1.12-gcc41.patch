@@ -1,0 +1,95 @@
+--- ladspa_sdk/src/plugins/sine.cpp.bak	2002-07-06 19:23:17.000000000 +0200
++++ ladspa_sdk/src/plugins/sine.cpp	2006-06-07 12:24:33.677978128 +0200
+@@ -92,11 +92,36 @@
+   }
+ 
+   friend LADSPA_Handle instantiateSineOscillator(const LADSPA_Descriptor *,
++						 unsigned long SampleRate);
++
++  friend void connectPortToSineOscillator(LADSPA_Handle Instance,
++					  unsigned long Port,
++					  LADSPA_Data * DataLocation);
++
++  friend void activateSineOscillator(void * pvHandle);
++
++  friend void runSineOscillator_FreqAudio_AmpAudio(LADSPA_Handle Instance,
++						   unsigned long SampleCount);
++
++  friend void runSineOscillator_FreqAudio_AmpCtrl(LADSPA_Handle Instance,
++						  unsigned long SampleCount);
++
++  friend void runSineOscillator_FreqCtrl_AmpAudio(LADSPA_Handle Instance,
++						  unsigned long SampleCount);
++
++  friend void runSineOscillator_FreqCtrl_AmpCtrl(LADSPA_Handle Instance,
++						 unsigned long SampleCount);
++
++  friend void cleanupSineOscillator(void *pvHandle);
++
++};
++
++  LADSPA_Handle instantiateSineOscillator(const LADSPA_Descriptor *,
+ 						 unsigned long SampleRate) {
+     return new SineOscillator(SampleRate);
+   }
+ 
+-  friend void connectPortToSineOscillator(LADSPA_Handle Instance,
++  void connectPortToSineOscillator(LADSPA_Handle Instance,
+ 					  unsigned long Port,
+ 					  LADSPA_Data * DataLocation) {
+     switch (Port) {
+@@ -112,11 +137,11 @@
+     }
+   }
+ 
+-  friend void activateSineOscillator(void * pvHandle) {
++  void activateSineOscillator(void * pvHandle) {
+     ((SineOscillator *)pvHandle)->m_lPhase = 0;
+   }
+ 
+-  friend void runSineOscillator_FreqAudio_AmpAudio(LADSPA_Handle Instance,
++  void runSineOscillator_FreqAudio_AmpAudio(LADSPA_Handle Instance,
+ 						   unsigned long SampleCount) {
+     SineOscillator * poSineOscillator = (SineOscillator *)Instance;
+     for (unsigned long lIndex = 0; lIndex < SampleCount; lIndex++) {
+@@ -133,7 +158,7 @@
+     }
+   }
+ 
+-  friend void runSineOscillator_FreqAudio_AmpCtrl(LADSPA_Handle Instance,
++  void runSineOscillator_FreqAudio_AmpCtrl(LADSPA_Handle Instance,
+ 						  unsigned long SampleCount) {
+     SineOscillator * poSineOscillator = (SineOscillator *)Instance;
+     LADSPA_Data fAmplitude = *(poSineOscillator->m_pfAmplitude);
+@@ -151,7 +176,7 @@
+     }
+   }
+ 
+-  friend void runSineOscillator_FreqCtrl_AmpAudio(LADSPA_Handle Instance,
++  void runSineOscillator_FreqCtrl_AmpAudio(LADSPA_Handle Instance,
+ 						  unsigned long SampleCount) {
+     SineOscillator * poSineOscillator = (SineOscillator *)Instance;
+     poSineOscillator->setPhaseStepFromFrequency
+@@ -165,7 +190,7 @@
+     }
+   }
+ 
+-  friend void runSineOscillator_FreqCtrl_AmpCtrl(LADSPA_Handle Instance,
++  void runSineOscillator_FreqCtrl_AmpCtrl(LADSPA_Handle Instance,
+ 						 unsigned long SampleCount) {
+     SineOscillator * poSineOscillator = (SineOscillator *)Instance;
+     LADSPA_Data fAmplitude = *(poSineOscillator->m_pfAmplitude);
+@@ -180,12 +205,10 @@
+     }
+   }
+ 
+-  friend void cleanupSineOscillator(void *pvHandle) {
++  void cleanupSineOscillator(void *pvHandle) {
+     delete (SineOscillator *)pvHandle;
+   }
+ 
+-};
+-
+ /*****************************************************************************/
+ 
+ typedef char * char_ptr;
