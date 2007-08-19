@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CF/CFABER/Net-IMAP-Simple-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module is a simple way to access IMAP accounts.

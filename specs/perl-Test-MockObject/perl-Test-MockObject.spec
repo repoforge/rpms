@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-MockObject-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Test::MockObject is a highly polymorphic testing object, capable of looking

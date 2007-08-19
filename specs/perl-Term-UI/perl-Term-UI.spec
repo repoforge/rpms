@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Term/Term-UI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Term::UI provides methods to ask both elaborate questions as well
