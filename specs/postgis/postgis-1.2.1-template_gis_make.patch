@@ -1,0 +1,10 @@
+--- postgis-1.2.1.orig/extras/template_gis/Makefile	2007-01-04 15:52:57.000000000 -0900
++++ postgis-1.2.1/extras/template_gis/Makefile	2007-07-02 12:34:22.000000000 -0800
+@@ -41,7 +41,6 @@
+ 	@mkdir -p $(SCRIPT_TARGETDIR)
+ 	@mkdir -p $(SCRIPT_LINKDIR)
+ 	$(foreach SCRIPT, $(SCRIPTS), $(SCRIPT_INSTALL);)
+-	$(foreach SCRIPT, $(PUBLIC_SCRIPTS), $(SCRIPT_DOLINK);)
+ 	@mkdir -p $(DEFAULTS_DIR)
+ 	cp profile $(SCRIPT_DEFAULTS)
+ 	rm -f $(SCRIPT_TARGETDIR)/profile
