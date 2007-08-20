@@ -4,7 +4,7 @@
 
 Summary: IRC to other chat networks gateway
 Name: bitlbee
-Version: 1.0.3
+Version: 1.0.4
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -62,7 +62,7 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 ### FIXME: makeinstall-phase doesn't use autotool dirs and wants to change ownerships.
-%makeinstall DATADIR=%{buildroot}%{_datadir}/bitlbee
+%makeinstall DATADIR="%{buildroot}%{_datadir}/bitlbee"
 #%{__install} -Dp -m0755 bitlbee %{buildroot}%{_sbindir}/bitlbee
 ##%{__install} -Dp -m0644 help.txt %{buildroot}%{_datadir}/bitlbee/help.txt
 %{__install} -Dp -m0644 bitlbee.xinet %{buildroot}%{_sysconfdir}/xinetd.d/bitlbee
@@ -89,6 +89,9 @@ EOF
 %{_localstatedir}/lib/bitlbee/
 
 %changelog
+* Mon Aug 20 2007 Dag Wieers <dag@wieers.com> - 1.0.4-1
+- Updated to release 1.0.4.
+
 * Sat Aug 12 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.3-1
 - Updated to release 1.0.3.
 

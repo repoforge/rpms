@@ -14,7 +14,10 @@ URL: http://www.cgsecurity.org/wiki/TestDisk
 Source: http://www.cgsecurity.org/testdisk-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ncurses-devel >= 5.2, e2fsprogs-devel, libjpeg-devel
+BuildRequires: e2fsprogs-devel
+BuildRequires: libjpeg-devel
+BuildRequires: ncurses-devel >= 5.2
+%{!?_without_ntfs:BuildRequires: ntfsprogs-devel}
 
 %description
 The testdisk package contains the testdisk tool. This tool can check and
