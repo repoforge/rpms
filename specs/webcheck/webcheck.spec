@@ -3,7 +3,7 @@
 
 Summary: Site Management Tool for webmasters
 Name: webcheck
-Version: 1.9.8
+Version: 1.10.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -62,6 +62,9 @@ Webcheck (fka Linbot) allows webmasters to:
 %ghost %{_libdir}/webcheck/*/*.pyo
 
 %changelog
+* Wed Aug 22 2007 Dag Wieers <dag@wieers.com> - 1.10.1-1
+- Updated to release 1.10.1.
+
 * Sat Apr 21 2007 Dag Wieers <dag@wieers.com> - 1.9.8-1
 - Cosmetic changes.
 

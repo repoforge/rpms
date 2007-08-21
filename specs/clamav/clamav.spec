@@ -11,7 +11,7 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.91.1
+Version: 0.91.2
 Release: 1
 License: GPL
 Group: Applications/System
@@ -192,10 +192,10 @@ EOF
 CLAMAV_FLAGS="
 	--config-file=%{_sysconfdir}/clamd.conf
 	--force-scan
-	--local    
+	--local
 	--max-children=10
 	--noreject
-	--outgoing                                                                                                            
+	--outgoing
 	--quiet
 "
 SOCKET_ADDRESS="local:%{_localstatedir}/clamav/clmilter.socket"
@@ -204,20 +204,21 @@ EOF
 %build
 %configure  \
 	--program-prefix="%{?_program_prefix}" \
-%{!?_without_milter:--enable-milter} \
-	--enable-id-check \
-	--with-libcurl \
-	--enable-dns \
 	--disable-clamav \
-	--with-user="clamav" \
-	--with-group="clamav" \
+    --disable-static \
+	--disable-zlib-vcheck \
+	--enable-dns \
+	--enable-id-check \
+%{!?_without_milter:--enable-milter} \
 	--with-dbdir="%{_localstatedir}/clamav" \
-	--disable-zlib-vcheck
+	--with-group="clamav" \
+	--with-libcurl \
+	--with-user="clamav"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %{__install} -Dp -m0755 %{SOURCE1} %{buildroot}%{_initrddir}/clamd
 %{__install} -Dp -m0755 freshclam.cron %{buildroot}%{_sysconfdir}/cron.daily/freshclam
@@ -325,9 +326,9 @@ fi
 %defattr(0644, clamav, clamav, 0755)
 %{_localstatedir}/run/clamav/
 %dir %{_localstatedir}/clamav/
-%exclude %{_localstatedir}/clamav/*
 %dir %{_localstatedir}/log/clamav/
 %ghost %{_localstatedir}/log/clamav/clamd.log
+%exclude %{_localstatedir}/clamav/*
 
 %if %{!?_without_milter:1}0
 %files milter
@@ -353,12 +354,14 @@ fi
 %defattr(-, root, root, 0755)
 %{_bindir}/clamav-config
 %{_includedir}/clamav.h
-%{_libdir}/libclamav.a
-%exclude %{_libdir}/libclamav.la
 %{_libdir}/libclamav.so
 %{_libdir}/pkgconfig/libclamav.pc
+%exclude %{_libdir}/libclamav.la
 
 %changelog
+* Tue Aug 21 2007 Dag Wieers <dag@wieers.com> - 0.91.2-1
+- Updated to release 0.91.2.
+
 * Tue Jul 17 2007 Dag Wieers <dag@wieers.com> - 0.91.1-1
 - Updated to release 0.91.1.
 
