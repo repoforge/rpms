@@ -5,12 +5,12 @@
 Summary: Driver for Texas Instruments' ACX100/ACX111 wireless network chips
 Name: dkms-tiacx
 Version: 0.4.7
-Release: 3
-License: GPL
+Release: 5.20070101
+License: GPLv2 or MPLv1.1
 Group: System Environment/Kernel
 URL: http://www.kernel.org/pub/linux/kernel/people/akpm/
-Source: tiacx-2.6.18-mm3.tar.bz2
-Patch0: tiacx-2.6.18-mm3-build.patch
+Source: http://www.cmartin.tk/acx/acx-20070101.tar.bz2
+Patch0: acx-20070101-macraw.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 Requires: gcc
@@ -24,8 +24,10 @@ Instruments' ACX100/ACX111 wireless network chips.
 
 
 %prep
-%setup -n tiacx-2.6.18-mm3
+%setup -n acx-20070101
 %patch0 -p1
+# All files are u-w :-(
+%{__chmod} -R u+w .
 
 
 %build
@@ -71,12 +73,17 @@ dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
 
 %files
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
 %doc Changelog README
 %{_usrsrc}/%{dkms_name}-%{dkms_vers}/
 
 
 %changelog
+* Wed Aug 22 2007 Matthias Saou <http://freshrpms.net/> 0.4.7-5.20070101
+- Switch back to the acx100.sf.net source acx-20070101 since tiacx seems to
+  have vanished from mm and wireless-2.6 kernel patches (legal reasons?).
+- Patch out the "mac.raw" which produces a build error with recent kernels.
+
 * Sat Oct 28 2006 Matthias Saou <http://freshrpms.net/> 0.4.7-4
 - Switch to the sources found in the 2.6.18-mm3 kernel since the others
   always made my test machine freeze, but these work.
