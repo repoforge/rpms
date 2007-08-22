@@ -1,58 +1,104 @@
 # $Id$
 # Authority: matthias
 
-Summary: DTS Coherent Acoustics decoder
+Summary: DTS Coherent Acoustics decoder library
 Name: libdca
-Version: 0.0.2
-Release: 4
-License: GPL
+Version: 0.0.5
+Release: 1
+License: GPLv2+
 Group: System Environment/Libraries
 URL: http://www.videolan.org/libdca.html
-Source: http://download.videolan.org/pub/videolan/libdca/%{version}/libdca-%{version}.tar.gz
+Source: http://download.videolan.org/pub/videolan/libdca/%{version}/libdca-%{version}.tar.bz2
+Patch0: libdca-0.0.5-relsymlinks.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-# Only a static lib, but two binaries too, so provide devel in the main
-Provides: %{name}-devel = %{version}-%{release}
-Requires: pkgconfig
 
 %description
 Free library for decoding DTS Coherent Acoustics streams.
 
 
+%package tools
+Summary: Tools from the DTS Coherent Acoustics decoder
+Group: Applications/Multimedia
+Requires: %{name} = %{version}-%{release}
+
+%description tools
+Tools from the DTS Coherent Acoustics decoder.
+
+
+%package devel
+Summary: Development files for the DTS Coherent Acoustics decoder library
+Group: Development/Libraries
+Requires: %{name} = %{version}-%{release}
+Requires: pkgconfig
+
+%description devel
+Development files for the DTS Coherent Acoustics decoder library.
+
+
 %prep
-%setup -n libdts-%{version}
+%setup
+%patch0 -p1 -b .relsymlinks
 
 
 %build
 # Force PIC as applications fail to recompile against the lib on x86_64 without
 export CFLAGS="%{optflags} -fPIC"
-%configure
+%configure --disable-static
+# Get rid of the /usr/lib64 RPATH on 64bit (as of 0.0.5)
+sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
+sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR=%{buildroot}
 
 
 %clean
 %{__rm} -rf %{buildroot}
 
 
+%post -p /sbin/ldconfig
+
+%postun -p /sbin/ldconfig
+
+
 %files
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
-%doc doc/libdts.txt
+%doc doc/libdca.txt
+%{_libdir}/libdca.so.*
+
+%files tools
+%defattr(-,root,root,-)
+%{_bindir}/dcadec
 %{_bindir}/dtsdec
+%{_bindir}/extract_dca
 %{_bindir}/extract_dts
-%{_includedir}/dts.h
-%{_libdir}/libdts.a
-%{_libdir}/libdts_pic.a
-%{_libdir}/pkgconfig/libdts.pc
+%{_mandir}/man1/dcadec.1*
 %{_mandir}/man1/dtsdec.1*
+%{_mandir}/man1/extract_dca.1*
 %{_mandir}/man1/extract_dts.1*
+
+%files devel
+%defattr(-,root,root,-)
+%{_includedir}/dca.h
+%{_includedir}/dts.h
+%exclude %{_libdir}/libdca.la
+%{_libdir}/libdca.so
+%{_libdir}/pkgconfig/libdca.pc
+%{_libdir}/pkgconfig/libdts.pc
 
 
 %changelog
+* Wed Aug 22 2007 Matthias Saou <http://freshrpms.net/> 0.0.5-1
+- Update to 0.0.5.
+- Patch to have relative symlinks created.
+- Split out tools to fix inter-repo problems.
+- Split out devel now that a shared library is produced by default.
+- Pass --disable-static (it does disable libdca.a).
+
 * Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 0.0.2-4
 - Use the source from videolan.org as it is available again.
 

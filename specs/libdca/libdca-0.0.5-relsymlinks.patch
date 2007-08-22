@@ -1,0 +1,53 @@
+diff -Naupr libdca-0.0.5.orig/libdca/Makefile.am libdca-0.0.5/libdca/Makefile.am
+--- libdca-0.0.5/libdca/Makefile.am	2007-04-08 10:32:01.000000000 +0200
++++ libdca-0.0.5/libdca/Makefile.am	2007-04-08 10:32:01.000000000 +0200
+@@ -14,7 +14,7 @@ pkgconfig_DATA = libdca.pc libdts.pc
+ EXTRA_DIST = configure.incl
+ 
+ install-exec-hook:
+-	ln -sf "$(libdir)/libdca.a" "$(DESTDIR)$(libdir)/libdts.a"
++	[ -f "$(DESTDIR)$(libdir)/libdca.a" ] && ln -sf "libdca.a" "$(DESTDIR)$(libdir)/libdts.a" || true
+ 
+ uninstall-hook:
+-	unlink "$(DESTDIR)$(libdir)/libdts.a"
++	[ -f "$(DESTDIR)$(libdir)/libdca.a" ] && unlink "$(DESTDIR)$(libdir)/libdts.a" || true
+diff -Naupr libdca-0.0.5.orig/libdca/Makefile.in libdca-0.0.5/libdca/Makefile.in
+--- libdca-0.0.5/libdca/Makefile.in	2007-04-10 14:31:23.000000000 +0200
++++ libdca-0.0.5/libdca/Makefile.in	2007-04-10 14:31:23.000000000 +0200
+@@ -504,10 +504,10 @@ uninstall-am: uninstall-libLTLIBRARIES u
+ 
+ 
+ install-exec-hook:
+-	ln -sf "$(libdir)/libdca.a" "$(DESTDIR)$(libdir)/libdts.a"
++	[ -f "$(DESTDIR)$(libdir)/libdca.a" ] && ln -sf "libdca.a" "$(DESTDIR)$(libdir)/libdts.a" || true
+ 
+ uninstall-hook:
+-	unlink "$(DESTDIR)$(libdir)/libdts.a"
++	[ -f "$(DESTDIR)$(libdir)/libdca.a" ] && unlink "$(DESTDIR)$(libdir)/libdts.a" || true
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
+ # Otherwise a system limit (for SysV at least) may be exceeded.
+ .NOEXPORT:
+diff -Naupr libdca-0.0.5.orig/src/Makefile.am libdca-0.0.5/src/Makefile.am
+--- libdca-0.0.5/src/Makefile.am	2007-04-08 10:21:18.000000000 +0200
++++ libdca-0.0.5/src/Makefile.am	2007-04-08 10:21:18.000000000 +0200
+@@ -24,7 +24,7 @@ install-data-hook:
+ 	for a in dcadec extract_dca; do \
+ 		oldname=`echo "$$a" | sed -e 's/ca/ts/' | sed '$(transform)'` ; \
+ 		name=`echo "$$a" | sed '$(transform)'` ; \
+-		ln -sf "$(man1dir)/$${name}.1" "$(DESTDIR)$(man1dir)/$${oldname}.1" ; \
++		ln -sf "$${name}.1" "$(DESTDIR)$(man1dir)/$${oldname}.1" ; \
+ 	done
+ 
+ uninstall-hook:
+diff -Naupr libdca-0.0.5.orig/src/Makefile.in libdca-0.0.5/src/Makefile.in
+--- libdca-0.0.5/src/Makefile.in	2007-04-10 14:31:23.000000000 +0200
++++ libdca-0.0.5/src/Makefile.in	2007-04-10 14:31:23.000000000 +0200
+@@ -562,7 +562,7 @@ install-data-hook:
+ 	for a in dcadec extract_dca; do \
+ 		oldname=`echo "$$a" | sed -e 's/ca/ts/' | sed '$(transform)'` ; \
+ 		name=`echo "$$a" | sed '$(transform)'` ; \
+-		ln -sf "$(man1dir)/$${name}.1" "$(DESTDIR)$(man1dir)/$${oldname}.1" ; \
++		ln -sf "$${name}.1" "$(DESTDIR)$(man1dir)/$${oldname}.1" ; \
+ 	done
+ 
+ uninstall-hook:
