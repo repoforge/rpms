@@ -5,8 +5,8 @@
 
 Summary: Web application to manage MySQL
 Name: phpmyadmin
-Version: 2.10.3
-Release: 2
+Version: 2.11.0
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.phpmyadmin.net/
@@ -52,7 +52,7 @@ EOF
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/phpmyadmin/
 %{__cp} -av *.{php,html,css,ico} %{buildroot}%{_datadir}/phpmyadmin/
-%{__cp} -av contrib/ css/ js/ lang/ libraries/ pmd/ scripts/ test/ themes/ %{buildroot}%{_datadir}/phpmyadmin/
+%{__cp} -av contrib/ js/ lang/ libraries/ pmd/ scripts/ test/ themes/ %{buildroot}%{_datadir}/phpmyadmin/
 
 %{__install} -Dp -m0644 config.sample.inc.php %{buildroot}%{_datadir}/phpmyadmin/config.inc.php
 %{__install} -Dp -m0644 phpmyadmin.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/phpmyadmin.conf
@@ -70,6 +70,9 @@ EOF
 %config(noreplace) %{_datadir}/phpmyadmin/config.inc.php
 
 %changelog
+* Thu Aug 23 2007 Jim <quien-sabe@metaorg.com> - 2.11.0-1
+- Updated to latest upstream version
+
 * Thu Jul 26 2007 Dag Wieers <dag@wieers.com> - 2.10.3-2
 - Cosmetic cleanup.
 
