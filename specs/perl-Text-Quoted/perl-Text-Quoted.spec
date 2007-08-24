@@ -1,25 +1,26 @@
 # $Id$
 # Authority: dries
-# Upstream: Jesse Vincent <jesse+cpan$fsck,com>
+# Upstream: Jesse Vincent <jesse$bestpractical,com>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Text-Quoted
 
 Summary: Extract the structure of a quoted mail message
 Name: perl-Text-Quoted
-Version: 1.8
-Release: 1.2
+Version: 2.02
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Quoted/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JE/JESSE/Text-Quoted-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Text/Text-Quoted-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Extract the structure of a quoted mail message.
@@ -33,21 +34,24 @@ Extract the structure of a quoted mail message.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Text::Quoted.3pm*
+%dir %{perl_vendorlib}/Text/
 %{perl_vendorlib}/Text/Quoted.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.8-1.2
-- Rebuild for Fedora Core 5.
+* Sat Aug 25 2007 Dag Wieers <dag@wieers.com> - 2.02-1
+- Updated to release 2.02.
 
 * Sat Dec 31 2005 Dries Verachtert <dries@ulyssis.org> - 1.8-1
 - Initial package.
