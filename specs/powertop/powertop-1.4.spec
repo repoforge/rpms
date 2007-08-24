@@ -4,14 +4,13 @@
 
 Summary: Tool that helps you find what software is using the most power
 Name: powertop
-Version: 1.8
+Version: 1.4
 Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.linuxpowertop.org/
 
 Source: http://www.linuxpowertop.org/download/powertop-%{version}.tar.gz
-Patch: powertop-1.8-usb.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, gettext
@@ -30,7 +29,6 @@ your system is doing, and which components are the biggest problem.
 
 %prep
 %setup
-%patch
 
 %build
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
@@ -50,17 +48,8 @@ your system is doing, and which components are the biggest problem.
 %{_bindir}/powertop
 
 %changelog
-* Fri Aug 24 2007 Dag Wieers <dag@wieers.com> - 1.8-1
-- Updated to release 1.8.
-
-* Tue Jun 19 2007 Dag Wieers <dag@wieers.com> - 1.7-1
-- Updated to release 1.7.
-
-* Sun Jun 10 2007 Dag Wieers <dag@wieers.com> - 1.6-1
-- Updated to release 1.6.
-
-* Mon May 28 2007 Dag Wieers <dag@wieers.com> - 1.5-1
-- Updated to release 1.5.
+* Mon May 28 2007 Dag Wieers <dag@wieers.com> - 1.4-1
+- Updated to release 1.4.
 
 * Thu May 24 2007 Dag Wieers <dag@wieers.com> - 1.3-1
 - Updated to release 1.3.

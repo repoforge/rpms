@@ -71,7 +71,7 @@ EOF
 
 %changelog
 * Thu Aug 23 2007 Jim <quien-sabe@metaorg.com> - 2.11.0-1
-- Updated to latest upstream version
+- Updated to release 2.11.0.
 
 * Thu Jul 26 2007 Dag Wieers <dag@wieers.com> - 2.10.3-2
 - Cosmetic cleanup.

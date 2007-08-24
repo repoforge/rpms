@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# DistExclude: el5
+# ExcludeDist: el5
 
 Summary: The Netscape standalone navigator
 Name: netscape3
