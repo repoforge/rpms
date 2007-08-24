@@ -1,12 +1,19 @@
 # $Id: suphp.spec 3469 2005-08-11 22:23:52Z dag $
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+%{?el4:%define _without_apr1 1}
+%{?el3:%define _without_apr1 1}
+%{?rh9:%define _without_apr1 1}
+%{?rh7:%define _without_apr1 1}
+%{?el2:%define _without_apr1 1}
+
 %define real_name suphp
 
 Summary: Apache module that enables running PHP scripts under different users
 Name: mod_suphp
-Version: 0.6.1
-Release: 2.2
+Version: 0.6.2
+Release: 1
 License: GPL/Apache License
 Group: System Environment/Daemons
 URL: http://www.suphp.org/
@@ -111,11 +118,13 @@ AddHandler x-httpd-php .php .php4 .php3 .phtml
 EOF
 
 %build
-export CPPFLAGS="-I/usr/include/apr-0"
+#export CPPFLAGS="-I/usr/include/apr-0 -I/usr/include/apr-1"
 %configure \
-	--with-apache-user="apache" \
-	--with-apxs="%{_sbindir}/apxs" \
 	--disable-checkpath \
+	--with-apache-user="apache" \
+%{!?_without_apr1:--with-apr="%{_bindir}/apr-1-config"} \
+%{?_without_apr1:--with-apr="%{_bindir}/apr-config"} \
+	--with-apxs="%{_sbindir}/apxs" \
 	--with-logfile="%{_localstatedir}/log/httpd/suphp_log" \
 	--with-min-uid="500" \
 	--with-min-gid="500" \
@@ -143,8 +152,8 @@ export CPPFLAGS="-I/usr/include/apr-0"
 %{_sbindir}/suphp
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.1-2.2
-- Rebuild for Fedora Core 5.
+* Thu Aug 23 2007 Dag Wieers <dag@wieers.com> - 0.6.2-1
+- Updated to release 0.6.2.
 
 * Tue Feb 28 2006 Dag Wieers <dag@wieers.com> - 0.6.1-2
 - Added suPHP_AddHandler/suPHP_RemoveHandler patch for Apache2. (Asheesh Laroia)

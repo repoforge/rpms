@@ -38,7 +38,7 @@ possible about a host.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING README
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %doc %{_mandir}/man1/dmitry.1*
 %{_bindir}/dmitry
 
