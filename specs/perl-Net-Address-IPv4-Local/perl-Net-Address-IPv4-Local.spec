@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Module::Build)
+Requires: perl(Error)
 
 %description
 A class for discovering the local system's IP address.
