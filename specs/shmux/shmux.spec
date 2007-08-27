@@ -4,7 +4,7 @@
 
 Summary: Program for executing the same command on many hosts in parallel
 Name: shmux
-Version: 1.0
+Version: 1.0.1
 Release: 1
 License: BSD-like
 Group: System Environment/Shells
@@ -25,16 +25,13 @@ the user, or written to files for later processing.
 %prep
 %setup
 
-### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
-%{__perl} -pi.orig -e 's|\$\(sharedir\)|\$(DESTDIR)\$(datadir)/shmux|' Makefile.in
-
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,6 +44,9 @@ the user, or written to files for later processing.
 %{_datadir}/shmux/
 
 %changelog
+* Mon Aug 27 2007 Dag Wieers <dag@wieers.com> - 1.0.1-1
+- Updated to release 1.0.1.
+
 * Thu Aug 31 2006 Dag Wieers <dag@wieers.com> - 1.0-1
 - Updated to release 1.0.
 

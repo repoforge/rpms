@@ -4,7 +4,7 @@
 Summary: Alternative Pine mail user agent implementation
 Name: alpine
 Version: 0.999
-Release: 1
+Release: 2
 License: Apache License
 Group: Applications/Internet
 URL: http://www.washington.edu/alpine/
@@ -12,7 +12,10 @@ URL: http://www.washington.edu/alpine/
 Source: ftp://ftp.cac.washington.edu/alpine/alpine-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Conflicts: pine
+### RPM bug causes package to conflict with itself
+#Conflicts: pine
+#Obsoletes: pine <= 4.64
+Provides: pine = 4.64
 
 %description
 Alpine (Alternatively Licensed Program for Internet News & Email) is a tool
@@ -29,9 +32,7 @@ personal-preference options.
 
 %build
 touch imap/ip6
-%configure \
-    --with-spellcheck-prog="aspell" \
-    --without-krb5
+%configure --with-spellcheck-prog="aspell"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -79,5 +80,8 @@ touch imap/ip6
 %{_sbindir}/mlock
 
 %changelog
+* Mon Aug 27 2007 Dag Wieers <dag@wieers.com> - 0.999-2
+- Removed Conflicts: pine as RPM bug causes package to conflict with itself. (Bart Schaefer)
+
 * Fri Aug 24 2007 Dag Wieers <dag@wieers.com> - 0.999-1
 - Initial package. (using DAR)
