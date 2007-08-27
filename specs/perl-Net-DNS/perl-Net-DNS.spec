@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Chris Reinhardt <cpan$triv,org>
+# Upstream: Olaf Kolkman <olaf$net-dns,org>
 
 ##ExcludeDist: el4
 
@@ -11,15 +11,15 @@
 
 %define real_name Net-DNS
 
-Summary: Net-DNS Perl module
+Summary: Perl DNS resolver module
 Name: perl-Net-DNS
-Version: 0.59
+Version: 0.61
 Release: 1
-License: Artistic and GPL
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DNS/
 
-Source: http://search.cpan.org/CPAN/authors/id/O/OL/OLAF/Net-DNS-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/Net-DNS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.00503, perl(Digest::HMAC), perl(ExtUtils::MakeMaker)
@@ -41,7 +41,6 @@ script.
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" \
     --no-online-tests
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
-%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -50,34 +49,43 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find contrib/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README TODO
-%doc %{_mandir}/man?/*
-%{perl_vendorarch}/Net/
-%{perl_vendorarch}/auto/Net/
+%doc Changes MANIFEST META.yml README TODO contrib/
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/Net/
+%{perl_vendorarch}/Net/DNS/
+%{perl_vendorarch}/Net/DNS.pm
+%dir %{perl_vendorarch}/auto/Net/
+%{perl_vendorarch}/auto/Net/DNS/
 
 ### Remove this file because it generates an rpm dependency for Win32::Registry
 %exclude %{perl_vendorarch}/Net/DNS/Resolver/Win32.pm
 
 %changelog
+* Mon Aug 27 2007 Dag Wieers <dag@wieers.com> - 0.61-1
+- Updated to release 0.60.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.59-1
-Updated to release 0.59.
+- Updated to release 0.59.
 
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.58-1
 - Updated to release 0.58.
 
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.57-1
-- Update to release 0.57.
+- Updated to release 0.57.
 
 * Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.53-1
-- Update to release 0.53.
+- Updated to release 0.53.
 
 * Wed Oct 20 2004 Dries Verachtert <dries@ulyssis.org> - 0.48-1
-- Update to release 0.48.
+- Updated to release 0.48.
 
 * Sat Jun 19 2004 Dag Wieers <dag@wieers.com> - 0.47-1
 - Updated to release 0.47.
