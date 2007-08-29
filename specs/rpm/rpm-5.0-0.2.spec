@@ -3,8 +3,20 @@
 
 # Tag: test
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{!?dist:%define with_python_version 2.5%{nil}}
+%{?el5:%define with_python_version 2.4%{nil}}
+%{?el4:%define with_python_version 2.4%{nil}}
+%{?el3:%define with_python_version 2.4%{nil}}
+%{?fc7:%define with_python_version 2.5%{nil}}
+%{?fc6:%define with_python_version 2.4%{nil}}
+%{?fc5:%define with_python_version 2.4%{nil}}
+%{?fc4:%define with_python_version 2.4%{nil}}
+%{?fc3:%define with_python_version 2.4%{nil}}
+
 %define	with_python_subpackage	1%{nil}
-%define	with_python_version	2.4%{nil}
+#define	with_python_version	2.4%{nil}
 %define	with_perl_subpackage	1%{nil}
 %define	with_bzip2		1%{nil}
 %define	with_apidocs		1%{nil}
@@ -25,6 +37,10 @@ Release: %{rpm_release}.0
 Group: System Environment/Base
 URL: http://rpm5.org
 Source: http://rpm5.org/files/rpm/rpm-5.0/rpm-%{version}-%{rpm_release}.tar.gz
+
+# from http://cvs.pld-linux.org/cgi-bin/cvsweb/SOURCES/rpm-arch-x86_64.patch?rev=1.4
+Patch: rpm-arch-x86_64.patch
+
 License: LGPL
 %ifos linux
 Prereq: fileutils shadow-utils
@@ -143,6 +159,7 @@ programs that will manipulate RPM packages and databases.
 
 %prep
 %setup
+%patch -p1
 
 %build
 
@@ -337,6 +354,8 @@ exit 0
 %endif
 %ifarch x86_64
 %attr(-, rpm, rpm)		%{_usrlibrpm}/x86_64*
+%attr(-, rpm, rpm)		%{_usrlibrpm}/ia32e*
+%attr(-, rpm, rpm)		%{_usrlibrpm}/amd64*
 %endif
 %attr(-, rpm, rpm)		%{_usrlibrpm}/noarch*
 
