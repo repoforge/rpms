@@ -35,7 +35,7 @@ Requires: getconf(GNU_LIBPTHREAD_VERSION) = NPTL
 #dries BuildRequires: rpm >= 4.4.7
 BuildRequires: elfutils-libelf
 BuildRequires: elfutils-devel
-BuildRequires: zlib-devel, autoconf, automake, libtool, gcc-c++, gettext-devel, doxygen
+BuildRequires: zlib-devel, autoconf, automake, libtool, gcc-c++, gettext-devel, doxygen, python-devel
 
 BuildRequires: beecrypt-devel >= 4.1.2
 Requires: beecrypt >= 4.1.2
@@ -162,11 +162,23 @@ WITH_PERL="--without-perl"
 %endif
 
 %ifos linux
+# not pretty..
+%ifarch x86_64
+CFLAGS="$RPM_OPT_FLAGS -fPIC "; export CFLAGS
+./configure --with-pic --prefix=%{_prefix} --sysconfdir=/etc \
+	--localstatedir=/var --infodir='${prefix}%{__share}/info' \
+	--mandir='${prefix}%{__share}/man' \
+	$WITH_PYTHON $WITH_PERL --enable-posixmutexes --without-javaglue
+echo zlib opnieuw
+(cd zlib; make clean; ./configure --with-pic --prefix=%{_prefix})
+%else
 CFLAGS="$RPM_OPT_FLAGS"; export CFLAGS
 ./configure --prefix=%{_prefix} --sysconfdir=/etc \
 	--localstatedir=/var --infodir='${prefix}%{__share}/info' \
 	--mandir='${prefix}%{__share}/man' \
 	$WITH_PYTHON $WITH_PERL --enable-posixmutexes --without-javaglue
+%endif
+
 %else
 export CPPFLAGS=-I%{_prefix}/include 
 CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{_prefix} $WITH_PYTHON $WITH_PERL \
