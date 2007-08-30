@@ -1,0 +1,12 @@
+diff -Nurip audacious-1.3.1-orig/src/audacious/main.c audacious-1.3.1/src/audacious/main.c
+--- audacious-1.3.1-orig/src/audacious/main.c	2007-03-04 07:34:27.000000000 +0100
++++ audacious-1.3.1/src/audacious/main.c	2007-03-14 21:03:25.000000000 +0100
+@@ -159,7 +159,7 @@ BmpConfig bmp_default_config = {
+     0.0,                        /* equalizer preamp */
+     {0, 0, 0, 0, 0,             /* equalizer bands */
+      0, 0, 0, 0, 0},
+-    NULL,                       /* skin */
++    "/usr/share/xmms/Skins/Bluecurve-xmms.zip", /* skin */
+     NULL,                       /* output plugin */
+     NULL,                       /* file selector path */
+     NULL,                       /* playlist path */

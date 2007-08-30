@@ -1,0 +1,12 @@
+diff -uNr audacious-1.2.1-orig/audacious/widgets/skin.c audacious-1.2.1/audacious/widgets/skin.c
+--- audacious-1.2.1-orig/audacious/widgets/skin.c	2006-10-29 11:35:14.000000000 +0100
++++ audacious-1.2.1/audacious/widgets/skin.c	2006-10-29 12:40:56.000000000 +0100
+@@ -1795,7 +1795,7 @@
+                          (i * 25) + 25, 0, 25, 14);
+ 
+     /* right corner */
+-    skin_draw_pixmap(skin, drawable, gc, SKIN_PLEDIT, 99, focus ? 57 : 42,
++    skin_draw_pixmap(skin, drawable, gc, SKIN_PLEDIT, 99, focus ? 42 : 57,
+                      width - 50, 0, 50, 14);
+ }
+ 
