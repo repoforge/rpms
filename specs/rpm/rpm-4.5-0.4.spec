@@ -49,7 +49,7 @@ Prereq: fileutils shadow-utils
 Requires: getconf(GNU_LIBPTHREAD_VERSION) = NPTL
 
 # XXX necessary only to drag in /usr/lib/libelf.a, otherwise internal elfutils.
-BuildRequires: rpm >= 4.4.7
+#dries BuildRequires: rpm >= 4.4.7
 BuildRequires: elfutils-libelf
 BuildRequires: elfutils-devel
 BuildRequires: zlib-devel, autoconf, automake, libtool, gcc-c++, gettext-devel, doxygen
