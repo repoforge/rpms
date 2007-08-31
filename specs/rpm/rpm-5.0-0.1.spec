@@ -50,7 +50,7 @@ Requires: getconf(GNU_LIBPTHREAD_VERSION) = NPTL
 #dries BuildRequires: rpm >= 4.4.7
 BuildRequires: elfutils-libelf
 BuildRequires: elfutils-devel
-BuildRequires: zlib-devel, autoconf, automake, libtool, gcc-c++, gettext-devel, doxygen
+BuildRequires: zlib-devel, autoconf, automake, libtool, gcc-c++, gettext-devel, doxygen, python-devel
 
 BuildRequires: beecrypt-devel >= 4.1.2
 Requires: beecrypt >= 4.1.2
