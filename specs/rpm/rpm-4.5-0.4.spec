@@ -15,6 +15,7 @@
 %{?fc4:%define with_python_version 2.4%{nil}}
 %{?fc3:%define with_python_version 2.4%{nil}}
 
+
 %define	with_python_subpackage	1%{nil}
 #define	with_python_version	2.5%{nil}
 %define	with_perl_subpackage	1%{nil}
@@ -22,20 +23,21 @@
 %define	with_apidocs		1%{nil}
 
 %{!?_usrlibrpm:%global _usrlibrpm /usr/lib/rpm}
+%{!?_rpmhome:%global _rpmhome /usr/lib/rpm/4.5}
 
 %define	__prefix	%{?_prefix}%{!?_prefix:/usr}
 %{?!_lib: %define _lib lib}
 %{expand: %%define __share %(if [ -d %{__prefix}/share/man ]; then echo /share ; else echo %%{nil} ; fi)}
 
-%define rpm_release 0.1
+%define rpm_release 0.4
 
 Summary: The RPM package management system.
 Name: rpm
-Version: 5.0
+Version: 4.5
 Release: %{rpm_release}.0
 Group: System Environment/Base
-URL: http://wraptastic.org
-Source: http://rpm5.org/files/rpm/rpm-5.0/rpm-%{version}-%{rpm_release}.tar.gz
+URL: http://rpm5.org
+Source: http://rpm5.org/files/rpm/rpm-4.5/rpm-%{version}-%{rpm_release}.tar.gz
 
 # from http://cvs.pld-linux.org/cgi-bin/cvsweb/SOURCES/rpm-arch-x86_64.patch?rev=1.4
 Patch: rpm-arch-x86_64.patch
@@ -47,7 +49,7 @@ Prereq: fileutils shadow-utils
 Requires: getconf(GNU_LIBPTHREAD_VERSION) = NPTL
 
 # XXX necessary only to drag in /usr/lib/libelf.a, otherwise internal elfutils.
-#dries BuildRequires: rpm >= 4.4.7
+BuildRequires: rpm >= 4.4.7
 BuildRequires: elfutils-libelf
 BuildRequires: elfutils-devel
 BuildRequires: zlib-devel, autoconf, automake, libtool, gcc-c++, gettext-devel, doxygen
@@ -62,7 +64,7 @@ BuildRequires: sqlite-devel
 BuildRequires: bzip2-devel >= 0.9.0c-2
 %endif
 %if %{with_python_subpackage}
-#dries BuildRequires: python-devel >= %{with_python_version}
+BuildRequires: python-devel >= %{with_python_version}
 %endif
 %if %{with_perl_subpackage}
 BuildRequires: perl >= 2:5.8.0
@@ -243,7 +245,7 @@ gzip -9n apidocs/man/man*/* || :
 
 # Get rid of unpackaged files
 { cd $RPM_BUILD_ROOT
-  rm -f .%{_usrlibrpm}/{Specfile.pm,cpanflute,cpanflute2,rpmdiff,rpmdiff.cgi,sql.prov,sql.req,tcl.req,trpm}
+  rm -f .%{_rpmhome}/{Specfile.pm,cpanflute,cpanflute2,rpmdiff,rpmdiff.cgi,sql.prov,sql.req,tcl.req,trpm}
   rm -rf .%{_mandir}/man8/rpmcache.8*
   rm -rf .%{_mandir}/man8/rpmgraph.8*
   rm -rf .%{_mandir}/ja/man8/rpmcache.8*
@@ -316,10 +318,11 @@ exit 0
 %rpmattr	%{_bindir}/gendiff
 
 %attr(0755, rpm, rpm)	%dir %{_usrlibrpm}
-%attr(0644, rpm, rpm)	%{_usrlibrpm}/macros-5.0
-%rpmattr	%{_usrlibrpm}/rpm.*
-%rpmattr	%{_usrlibrpm}/tgpg
-%attr(0644, rpm, rpm)	%{_usrlibrpm}/rpmpopt-5.0
+%attr(0755, rpm, rpm)	%dir %{_rpmhome}
+%attr(0644, rpm, rpm)	%{_rpmhome}/macros
+%rpmattr	%{_rpmhome}/rpm.*
+%rpmattr	%{_rpmhome}/tgpg
+%attr(0644, rpm, rpm)	%{_rpmhome}/rpmpopt
 
 %ifarch i386 i486 i586 i686 athlon pentium3 pentium4
 %attr(-, rpm, rpm)		%{_usrlibrpm}/i[3456]86*
@@ -357,8 +360,12 @@ exit 0
 %endif
 %attr(-, rpm, rpm)		%{_usrlibrpm}/noarch*
 
-%rpmattr	%{_usrlibrpm}/rpmdb_loadcvt
-%rpmattr	%{_usrlibrpm}/db_*
+%rpmattr	%{_rpmhome}/rpmdb_loadcvt
+%rpmattr	%{_rpmhome}/db_*
+%rpmattr	%{_rpmhome}/magic
+%rpmattr	%{_rpmhome}/magic.mgc
+%rpmattr	%{_rpmhome}/magic.mime
+%rpmattr	%{_rpmhome}/magic.mime.mgc
 
 %{_mandir}/man8/rpm.8*
 %{_mandir}/man8/rpm2cpio.8*
@@ -387,40 +394,35 @@ exit 0
 %dir %{__prefix}/src/rpm/RPMS
 %{__prefix}/src/rpm/RPMS/*
 %rpmattr	%{_bindir}/rpmbuild
-%rpmattr	%{_usrlibrpm}/brp-*
-%rpmattr	%{_usrlibrpm}/check-files
-%rpmattr	%{_usrlibrpm}/cross-build
-%rpmattr	%{_usrlibrpm}/debugedit
-%rpmattr	%{_usrlibrpm}/find-debuginfo.sh
-%rpmattr	%{_usrlibrpm}/find-lang.sh
-%rpmattr	%{_usrlibrpm}/find-prov.pl
-%rpmattr	%{_usrlibrpm}/find-provides.perl
-%rpmattr	%{_usrlibrpm}/find-req.pl
-%rpmattr	%{_usrlibrpm}/find-requires.perl
-%rpmattr	%{_usrlibrpm}/getpo.sh
-%rpmattr	%{_usrlibrpm}/http.req
-%rpmattr	%{_usrlibrpm}/javadeps.sh
-%rpmattr	%{_usrlibrpm}/magic
-%rpmattr	%{_usrlibrpm}/magic.mgc
-%rpmattr	%{_usrlibrpm}/magic.mime
-%rpmattr	%{_usrlibrpm}/magic.mime.mgc
+%rpmattr	%{_rpmhome}/brp-*
+%rpmattr	%{_rpmhome}/check-files
+%rpmattr	%{_rpmhome}/cross-build
+%rpmattr	%{_rpmhome}/debugedit
+%rpmattr	%{_rpmhome}/find-debuginfo.sh
+%rpmattr	%{_rpmhome}/find-lang.sh
+%rpmattr	%{_rpmhome}/find-prov.pl
+%rpmattr	%{_rpmhome}/find-provides.perl
+%rpmattr	%{_rpmhome}/find-req.pl
+%rpmattr	%{_rpmhome}/find-requires.perl
+%rpmattr	%{_rpmhome}/getpo.sh
+%rpmattr	%{_rpmhome}/http.req
+%rpmattr	%{_rpmhome}/javadeps.sh
 
-%rpmattr	%{_usrlibrpm}/executabledeps.sh
-%rpmattr	%{_usrlibrpm}/libtooldeps.sh
-%rpmattr	%{_usrlibrpm}/perldeps.pl
-%rpmattr	%{_usrlibrpm}/perl.prov
-%rpmattr	%{_usrlibrpm}/perl.req
-%rpmattr	%{_usrlibrpm}/php.prov
-%rpmattr	%{_usrlibrpm}/php.req
-%rpmattr	%{_usrlibrpm}/pkgconfigdeps.sh
-%rpmattr	%{_usrlibrpm}/pythondeps.sh
-%rpmattr	%{_usrlibrpm}/rpmdeps
+%rpmattr	%{_rpmhome}/executabledeps.sh
+%rpmattr	%{_rpmhome}/libtooldeps.sh
+%rpmattr	%{_rpmhome}/perldeps.pl
+%rpmattr	%{_rpmhome}/perl.prov
+%rpmattr	%{_rpmhome}/perl.req
+%rpmattr	%{_rpmhome}/php.prov
+%rpmattr	%{_rpmhome}/php.req
+%rpmattr	%{_rpmhome}/pkgconfigdeps.sh
+%rpmattr	%{_rpmhome}/pythondeps.sh
+%rpmattr	%{_rpmhome}/rpmdeps
 
-%rpmattr	%{_usrlibrpm}/rpm[bt]
-%rpmattr	%{_usrlibrpm}/symclash.*
-%rpmattr	%{_usrlibrpm}/u_pkg.sh
-%rpmattr	%{_usrlibrpm}/vpkg-provides.sh
-%rpmattr	%{_usrlibrpm}/vpkg-provides2.sh
+%rpmattr	%{_rpmhome}/symclash.*
+%rpmattr	%{_rpmhome}/u_pkg.sh
+%rpmattr	%{_rpmhome}/vpkg-provides.sh
+%rpmattr	%{_rpmhome}/vpkg-provides2.sh
 
 %{_mandir}/man1/gendiff.1*
 %{_mandir}/man8/rpmbuild.8*
@@ -472,25 +474,50 @@ exit 0
 %{_libdir}/librpmbuild.so
 
 %changelog
-* Tue Aug 28 2007 Dries Verachtert <dries@ulyssis.org> - 5.0-0.1.0
+* Fri Aug 31 2007 Dries Verachtert <dries@ulyssis.org> - 4.5-0.4.0
 - Rebuild, small changes.
 
-* Fri Jun 15 2007 Jeff Johnson <jbj@rpm5.org> 5.0-0.1
-- rse: provide portability fallbacks for sighold(3), sigrelse(3) and sigpause(3)
-- rse: allow RPM to build again even if iconv(3) is not available
-- rse: provide --with-db-{largefile,rpc,mutex} options for flexibly building DB
-- rse: portability: replace hard-coded -ldl (Linux) for Lua with Autoconf checks
-- rse: added devtool/devtool.conf build environment helper
-- rse: pruned tree from third-party libraries (except for zlib, db and lua)
-- goeran: updated "sv" translation.
-- rse: cleaned up the "autogen.sh" scripts.
-- jbj: skip packages/headers with unverifiable signatures.
-- update README to point to new rpm5.org home.
+* Sun Jun 17 2007 Jeff Johnson <jbj@rpm5.org> 4.5-0.4
+- jbj: re-add /usr/bin/rpmbuild for now, poptBT option wiring needs fixing.
+- jbj: pass -F fnum to patch (#243720).
+- jbj: refactor _free() from rpmlib.h -> rpmio.h.
+- jbj: add _rpmhome macro, revector helper paths through _rpmhome.
+- jbj: hack a version into magic install path. better needs to be done.
+- jbj: start consistent versionlibdir usage in all Makefile.am files.
+- jbj: populate /usr/lib/rpm/4.5/ instead of foo-4.5 files.
+- jbj: move gendiff into the scripts directory.
+- jbj: don't include perl/CVS with "make dist".
+- jbj: remove rpmbuild and rpmb helper for now.
+- jbj: fix plain brown rpm upgrade rpm.spec.
+- jbj: rescusutate build after cvs server side tree surgery.
+- skip packages/headers with unverifiable signatures.
+- update library version.
+- eliminate rpm executable helpers.
+- install rpm into /usr/bin, not /bin.
+- build popt as separate package.
+- protottype headerGetEntry 4th arg as void *, not void **.
+- add D_(...) i18n marker for debug messages, with default disable.
+- perl: don't read rpmrc by default.
+- python: don't read rpmrc by default.
+- don't build Packagecolor index (yet).
+- revert Filedigests -> Filemd5s index name.
+- configure: modern usage.
+- popt: allow tests to pass in distcheck where builddir != srcdir.
+- python: restore rpm.RPMSENSE_PREREQ for rpmlint.
+- python: permit hdr.name as well as hdr['name'].
+- python: pathetic band-aid pythonic return fixing (#239586).
+- python: missing ts reference while iterating(#241751).
+- revert indices to db_hash for compatibility.
 - upgrade to file-4.21 (CVE-2007-2026, CVE-2007-2799).
-- build against rpm5.org cvs,
-- fix: swap PART_INSTALL and PART_CLEAN automagic cleanup.
-- keys: add Getpass stub vector.
-- solaris: add clearenv stub.
-- fix: avoid accessing freed memory.
-- start rpm-5.0 development.
 
+* Fri May 25 2007 Jeff Johnson <jbj@jbj.org> 4.5-0.3
+- solaris: add clearenv stub.
+- keys: add Getpass stub vector.
+- fix: swap PART_INSTALL and PART_CLEAN automagic cleanup.
+- build against rpm5.org cvs,
+
+* Tue May 22 2007 Jeff Johnson <jbj@jbj.org> 4.5-0.2
+- fix: avoid accessing freed memory.
+
+* Mon May 21 2007 Jeff Johnson <jbj@jbj.org> 4.5-0.1
+- start rpm-4.5 development.
