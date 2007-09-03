@@ -41,6 +41,7 @@ applications such as mail dispatchers and mail notification daemons.
 
 
 %build
+export CFLAGS="%{optflags} -fPIC"
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -57,7 +58,7 @@ applications such as mail dispatchers and mail notification daemons.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog README xbm2xface.pl
-%doc _extdoc/README.copyright
+#%doc _extdoc/README.copyright
 %{_bindir}/compface
 %{_bindir}/uncompface
 %{_libdir}/libcompface.so.*
