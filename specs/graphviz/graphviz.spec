@@ -40,7 +40,7 @@
 
 Summary: Graph Visualization Tools
 Name: graphviz
-Version: 2.8
+Version: 2.14.1
 Release: 1
 License: CPL
 Group: Applications/Multimedia
@@ -64,6 +64,12 @@ BuildRequires: python-devel, php-devel, guile-devel, perl
 %description
 A collection of tools and tcl packages for the manipulation and layout
 of graphs (as in nodes and edges, not as in barcharts).
+
+%post
+/sbin/ldconfig
+%{_bindir}/dot -c
+
+%postun -p /sbin/ldconfig
 
 %package tcl
 Group: Applications/Multimedia
@@ -193,7 +199,8 @@ Some demo graphs for %{name}.
 %files
 %defattr(-, root, root, 0755)
 %doc *.txt AUTHORS ChangeLog COPYING NEWS README
-%doc %{_mandir}/man1/*
+%doc %{_mandir}/man1/*.1*
+%doc %{_mandir}/man7/graphviz.7*
 %{_bindir}/*
 %dir %{_datadir}/graphviz/
 %{_datadir}/graphviz/lefty/
@@ -202,11 +209,12 @@ Some demo graphs for %{name}.
 #exclude %{_libdir}/graphviz/libtk*.so.*
 #exclude %{_bindir}/dotneato-config
 #exclude %{_mandir}/man1/dotneato-config.1*
+%{_libdir}/lib*.so.*
 
 %files tcl
 %defattr(-, root, root, 0755)
 #%doc doc/tcldot.html
-%doc %{_mandir}/mann/*
+%doc %{_mandir}/mann/*.n*
 %{_libdir}/graphviz/tcl/
 %{_datadir}/graphviz/demo/
 #{_libdir}/graphviz/lib*tcl*.so.*
@@ -222,9 +230,11 @@ Some demo graphs for %{name}.
 #%{_bindir}/dotneato-config
 %{_includedir}/graphviz/
 %{_libdir}/graphviz/*.so
-%{_libdir}/graphviz/*.a
+%{_libdir}/lib*.so
+# %{_libdir}/graphviz/*.a
 %{_libdir}/pkgconfig/*.pc
 %exclude %{_libdir}/graphviz/*.la
+%exclude %{_libdir}/*.la
 
 %files ruby
 %defattr(-, root, root, 0755)
@@ -270,6 +280,10 @@ Some demo graphs for %{name}.
 %doc rpmdoc/*
 
 %changelog
+* Mon Sep  3 2007 Dries Verachtert <dries@ulyssis.org> - 2.14.1-1
+- Updated to release 2.14.1.
+- Generate config file in post script, thanks to Stefan Radman.
+
 * Sun Oct 15 2006 Dries Verachtert <dries@ulyssis.org> - 2.8-1
 - Updated to release 2.8.
 - Made some more subpackages.
