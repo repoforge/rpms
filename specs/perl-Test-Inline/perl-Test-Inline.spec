@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Adam Kennedy <adamk@cpan.org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -10,7 +12,7 @@
 Summary: Inlining your tests next to the code being tested
 Name: perl-Test-Inline
 Version: 2.205
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Inline/
@@ -34,6 +36,7 @@ BuildRequires: perl(Algorithm::Dependency) >= 1.02, perl(File::Flat) >= 0.95
 BuildRequires: perl(Pod::Tests) >= 0.18
 Requires: perl
 
+
 %description
 Test::Inline is a way to embed tests in the same file as your source
 code rather than in a seperate file.  The idea is, the closer your
@@ -42,6 +45,12 @@ to date.
 
 %prep
 %setup -n %{real_name}-%{version}
+%{__cat} <<EOF >%{_tmppath}/perl-Test-Inline-filter-requirements.sh
+#!/bin/bash
+%{__perl_requires} $* | perl -pe 's/perl\(script\)//g'
+EOF
+%{__chmod} +x %{_tmppath}/perl-Test-Inline-filter-requirements.sh
+%define __perl_requires %{_tmppath}/perl-Test-Inline-filter-requirements.sh
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -68,6 +77,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Inline.pm
 
 %changelog
+* Mon Sep  3 2007 Dries Verachtert <dries@ulyssis.org> - 2.205-2
+- Remove the automatic perl(script) requirement, thanks to Kanwar Ranbir Sandhu.
+
 * Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 2.205-1
 - Updated to release 2.205.
 
