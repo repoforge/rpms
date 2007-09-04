@@ -2,14 +2,14 @@
 # Authority: dries
 # Upstream:  Phil Schwartz <phil_schwartz$users,sourceforge,net>
 
-%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(0)')
 
 %define real_name DenyHosts
 
 Summary: Scan ssh server logs and block hosts
 Name: denyhosts
 Version: 2.6
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://denyhosts.sourceforge.net/
@@ -39,6 +39,11 @@ logins.
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install --root="%{buildroot}" --prefix="%{_prefix}"
 %{__rm} -Rf %{buildroot}%{_datadir}/denyhosts
+%{__mkdir_p} %{buildroot}%{_sysconfdir}/init.d
+%{__cp} daemon-control-dist %{buildroot}%{_sysconfdir}/init.d/denyhosts
+%{__mkdir_p} %{buildroot}%{_sysconfdir}/denyhosts
+%{__cp} denyhosts.cfg-dist %{buildroot}%{_sysconfdir}/denyhosts/denyhosts.cfg
+%{__sed} -i -e 's@^DENYHOSTS_CFG   =.*@DENYHOSTS_CFG   = "%{_sysconfdir}/denyhosts/denyhosts.cfg"@g' %{buildroot}%{_sysconfdir}/init.d/denyhosts
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,8 +53,17 @@ logins.
 %doc CHANGELOG.txt daemon-control-dist denyhosts.cfg-dist LICENSE.txt README.txt
 %{_bindir}/denyhosts.py*
 %{python_sitearch}/DenyHosts/
+%config (noreplace) /etc/denyhosts/denyhosts.cfg
+/etc/init.d/denyhosts
 
 %changelog
+* Fri Aug 10 2007 Christoph Maser <cmr$financial,com> - 2.6-2 
+- make /etc/denyhosts
+- copy dist-conf to /etc/denyhosts/denyhosts.cfg
+- copy daemon-control-dist /etc/init.d/denyhosts
+- edit /etc/init.d/denyhosts to use /etc/denyhosts/denyhosts.cfg
+- ignore arch in %{python_sitearch} since python setup ignores it too
+
 * Sun Dec 24 2006 Dries Verachtert <dries@ulyssis.org> - 2.6-1
 - Updated to release 2.6.
 
