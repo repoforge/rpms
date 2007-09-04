@@ -3,17 +3,22 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-### Kannel needs sqlite2, on older systems it is packaged as sqlite, not sqlite2
-%{?el4:%define _without_sqlite2_package 1}
-%{?el3:%define _without_sqlite2_package 1}
-%{?rh9:%define _without_sqlite2_package 1}
-%{?rh7:%define _without_sqlite2_package 1}
-%{?el2:%define _without_sqlite2_package 1}
+### Kannel can use sqlite 2 or sqlite 3
+### el5, fc7, fc6, fc5, fc4 contain 3.x as 'sqlite'
+### el4, el3, fc3 contain 2.8 as 'sqlite'
+### so: default is sqlite 3
+
+%{?el4:%define _without_sqlite3 1}
+%{?el3:%define _without_sqlite3 1}
+%{?el2:%define _without_sqlite3 1}
+%{?fc3:%define _without_sqlite3 1}
+%{?rh9:%define _without_sqlite3 1}
+%{?rh7:%define _without_sqlite3 1}
 
 Summary: WAP and SMS gateway
 Name: kannel
 Version: 1.4.1
-Release: 2
+Release: 3
 License: Kannel
 Group: System Environment/Daemons
 URL: http://www.kannel.org/
@@ -27,8 +32,7 @@ BuildRequires: bison, byacc, flex, ImageMagick
 BuildRequires: libxml2-devel, openssl-devel, zlib-devel
 BuildRequires: pcre-devel
 # DB backends
-%{!?_without_sqlite2_package:BuildRequires: sqlite2-devel}
-%{?_without_sqlite2_package:BuildRequires: sqlite-devel >= 2.0}
+BuildRequires: sqlite-devel >= 2.0
 # For the docs... I think we need transfig too, so disable for now.
 #BuildRequires: jadetex, tetex-dvips, docbook-dtds, docbook-style-dsssl
 
@@ -70,7 +74,8 @@ use the kannel WAP and SMS gateway.
 %configure \
     --enable-start-stop-daemon \
     --enable-pcre \
-    --with-sqlite
+%{!?_without_sqlite3:--with-sqlite3} \
+%{?_without_sqlite:--with-sqlite}
 %{__make} %{?_smp_mflags}
 
 
@@ -135,6 +140,9 @@ fi
 
 
 %changelog
+* Tue Sep  4 2007 Dries Verachtert <dries@ulyssis.org> - 1.4.1-3
+- Use sqlite 3 if possible, thanks to Stefan Radman.
+
 * Mon Jan 15 2007 Dries Verachtert <dries@ulyssis.org> - 1.4.1-2
 - Sqlite buildrequirement fix for el4.
 
