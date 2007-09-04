@@ -6,7 +6,7 @@
 
 Summary: E-book reader
 Name: fbreader
-Version: 0.8.4
+Version: 0.8.6
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -26,11 +26,11 @@ HTML, fb2, and plain text.
 %setup
 
 %build
-%{__make} %{?_smp_mflags} EXTERNALINCLUDE="-I${QTDIR}/include" MOC="moc" UILIBS="-L${QTDIR}/lib -lqt-mt" TARGET_ARCH="desktop" UI_TYPE="qt" INSTALLDIR="%{_prefix}" LIBDIR="%{_libdir}"
+%{__make} %{?_smp_mflags}  MOC="moc" EXTERNALINCLUDE="-I${QTDIR}/include" UILIBS="-L${QTDIR}/lib -lqt-mt" TARGET_ARCH="desktop" UI_TYPE="qt" INSTALLDIR="%{_prefix}" LIBDIR="%{_libdir}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}" INSTALLDIR="%{_prefix}" LIBDIR="%{_libdir}"
+%{__make} install DESTDIR="%{buildroot}" INSTALLDIR="%{_prefix}" LIBDIR="%{_libdir}" EXTERNALINCLUDE="-I${QTDIR}/include" UILIBS="-L${QTDIR}/lib -lqt-mt" TARGET_ARCH="desktop" UI_TYPE="qt" MOC=moc
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -40,14 +40,23 @@ HTML, fb2, and plain text.
 %doc fbreader/LICENSE
 %{_bindir}/FBReader
 %{_datadir}/FBReader/
-#%{_libdir}/libzlibrary-gtk.so.*
-%{_libdir}/libzlibrary-qt.so.*
+%{_libdir}/libzlcore.so*
+%{_libdir}/libzltext.so*
+%dir %{_libdir}/zlibrary/
+%dir %{_libdir}/zlibrary/ui/
+%{_libdir}/zlibrary/ui/zlui-qt.so
 %{_datadir}/applications/FBReader.desktop
 %{_datadir}/pixmaps/FBReader.png
 %{_datadir}/pixmaps/FBReader/
 %{_datadir}/zlibrary/
 
 %changelog
+* Mon Aug 20 2007 Dries Verachtert <dries@ulyssis.org> - 0.8.6-1
+- Updated to release 0.8.6.
+
+* Sun Jul 08 2007 Dries Verachtert <dries@ulyssis.org> - 0.8.5-1
+- Updated to release 0.8.5.
+
 * Thu Jun 07 2007 Dries Verachtert <dries@ulyssis.org> - 0.8.4-1
 - Updated to release 0.8.4.
 
