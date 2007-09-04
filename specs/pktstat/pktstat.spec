@@ -3,7 +3,7 @@
 
 Summary: Displays a live list of active connections and what files are being transferred
 Name: pktstat
-Version: 1.8.3
+Version: 1.8.4
 Release: 1
 License: BSD
 Group: Applications/Internet
@@ -11,6 +11,8 @@ URL: http://www.adaptive-enterprises.com.au/~d/software/pktstat/
 
 Source: http://www.adaptive-enterprises.com.au/~d/software/pktstat/pktstat-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: libpcap
 
 %description
 Display a real-time list of active connections seen on a network
@@ -43,6 +45,9 @@ accepts filter expressions like tcpdump.
 %{_bindir}/pktstat
 
 %changelog
+* Tue Sep  4 2007 Dries Verachtert <dries@ulyssis.org> - 1.8.4-1
+- Updated to release 1.8.4.
+
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 1.8.3-1
 - Updated to release 1.8.3.
 

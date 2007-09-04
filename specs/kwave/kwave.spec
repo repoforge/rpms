@@ -4,7 +4,7 @@
 
 Summary: Sound editor
 Name: kwave
-Version: 0.7.7
+Version: 0.7.10
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -48,12 +48,12 @@ you will need to install %{name}-devel.
 %{__perl} -pi -e "s|selecttimewidget.h|libgui/SelectTimeWidget.h|g;" ./plugins/selectrange/SelectRangeDlg.ui
 
 %build
-%{__make} -f Makefile.dist
+cmake .
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
 
 %post -p /sbin/ldconfig
@@ -73,15 +73,16 @@ you will need to install %{name}-devel.
 %{_datadir}/apps/kwave/
 %{_datadir}/icons/*/*/apps/kwave.png
 %{_datadir}/mimelnk/audio/*.desktop
-%{_libdir}/kde3/plugins/kwave/
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_libdir}/libkwave.so
 %{_libdir}/libkwavegui.so
-%exclude %{_libdir}/*.la
 
 %changelog
+* Sat Aug 25 2007 Dries Verachtert <dries@ulyssis.org> - 0.7.10-1
+- Updated to release 0.7.10.
+
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.7-1
 - Updated to release 0.7.7.
 
