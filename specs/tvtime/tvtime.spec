@@ -24,7 +24,7 @@
 Summary: High quality TV viewer
 Name: tvtime
 Version: 1.0.2
-Release: 1.2
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://tvtime.sourceforge.net/
@@ -50,6 +50,11 @@ videophiles.
 
 %prep
 %setup
+%{__perl} -pi -e "s|#include <linux/compiler.h>||g;" src/videodev2.h
+%{__perl} -pi -e "s|DScalerFilterGreedyH::||g;" plugins/greedyh.asm
+%{__perl} -pi -e "s|DScalerFilterTomsMoComp::||g;" plugins/tomsmocomp/TomsMoCompAll2.inc
+%{__perl} -pi -e "s|DScalerFilterTomsMoComp::||g;" plugins/tomsmocomp.*
+
 
 %build
 %configure
@@ -90,6 +95,9 @@ videophiles.
 %{_bindir}/tvtime
 
 %changelog
+* Tue Aug  4 2007 Dries Verachtert <dries@ulyssis.org> - 1.0.2-2
+- Fix: removed the linux/compiler.h include, thanks to Tony.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.2-1.2
 - Rebuild for Fedora Core 5.
 
