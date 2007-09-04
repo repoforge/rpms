@@ -17,6 +17,7 @@ BuildRequires: libtool
 BuildRequires: libnotify-devel >= 0.3.2
 BuildRequires: gtk2-devel
 BuildRequires: pidgin-devel >= 2.0
+BuildRequires: intltool, perl(XML::Parser)
 
 Obsoletes: gaim-libnotify <= %{version}-%{release}
 Provides: gaim-libnotify = %{version}-%{release} 

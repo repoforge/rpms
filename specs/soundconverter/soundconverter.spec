@@ -16,6 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: python-devel >= 2.3.3, gstreamer-python >= 0.10
+BuildRequires: intltool, perl(XML::Parser)
 Requires: python >= 2.3.3, pygtk2, gstreamer-python >= 0.10, gnome-python2-gconf
 
 %description

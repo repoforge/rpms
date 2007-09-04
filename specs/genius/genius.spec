@@ -3,7 +3,7 @@
 
 Summary: Advanced calculator
 Name: genius
-Version: 0.7.4
+Version: 0.7.7
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -15,6 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk2-devel, vte-devel, libgnomeui-devel >= 2.0, gcc-c++
 BuildRequires: gtksourceview-devel >= 0.3, libglade2-devel >= 1.99
 BuildRequires: readline-devel, ncurses-devel, gmp-devel, flex
+BuildRequires: intltool, perl(XML::Parser)
 
 %description
 Genius is an advanced calculator and a mathematical programming language.
@@ -47,6 +48,9 @@ integers, complex numbers and matrixes.
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Tue Feb 13 2007 Dries Verachtert <dries@ulyssis.org> - 0.7.7-1
+- Updated to release 0.7.7.
+
 * Wed Apr 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.4-1
 - Updated to release 0.7.4.
 

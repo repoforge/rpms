@@ -15,7 +15,7 @@ URL: http://rubyforge.org/projects/ruby-rpm/
 Source: http://rubyforge.org/frs/download.php/20469/ruby-rpm-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ruby-devel >= 1.8.1, rpm-devel >= 4.2.1, db4-devel
+BuildRequires: ruby-devel >= 1.8.1, rpm-devel >= 4.2.1, db4-devel, ruby
 Requires: ruby >= 1.8.1
 
 %description

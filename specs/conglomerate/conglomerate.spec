@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libxml2-devel >= 2.0, gcc-c++, gtk2-devel >= 2.4
 BuildRequires: libgnomeui-devel >= 2.0, libglade2-devel >= 2.0
 BuildRequires: libgnomeprintui22-devel, gtksourceview-devel, gtk-doc
-BuildRequires: scrollkeeper
+BuildRequires: scrollkeeper, intltool, perl(XML::Parser)
 
 Requires: scrollkeeper
 

@@ -4,7 +4,7 @@
 
 Summary: Console RSS reader
 Name: rsstail
-Version: 1.0
+Version: 1.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -13,7 +13,7 @@ URL: http://www.vanheusden.com/rsstail/
 Source: http://www.vanheusden.com/rsstail/rsstail-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libmrss-devel >= 0.16
+BuildRequires: libmrss-devel >= 0.16, curl-devel
 
 %description
 RSSTail is more or less an RSS reader. It monitors an RSS feed, and if it
@@ -39,6 +39,9 @@ detects a new entry, it will emit only that new entry.
 %{_bindir}/rsstail
 
 %changelog
+* Fri May 04 2007 Dries Verachtert <dries@ulyssis.org> - 1.1-1
+- Updated to release 1.1.
+
 * Sun Mar 18 2007 Dag Wieers <dag@wieers.com> - 0.18-1
 - Updated to release 0.18.
 

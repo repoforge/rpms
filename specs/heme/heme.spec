@@ -12,6 +12,8 @@ URL: http://heme.sourceforge.net/
 Source: http://dl.sf.net/heme/heme-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: ncurses-devel
+
 %description
 Heme is a fast and portable console hex editor. It has undo support, ability
 to fill a range of addresses with the specified byte, ability to search for
