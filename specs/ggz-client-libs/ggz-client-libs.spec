@@ -3,8 +3,8 @@
 
 Summary: Client libraries for GGZ gaming zone
 Name: ggz-client-libs
-Version: 0.0.12
-Release: 1.2
+Version: 0.0.14
+Release: 1
 License: LGPL
 Group: Development/Libraries
 URL: http://www.ggzgamingzone.org/
@@ -38,31 +38,34 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
-%post
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-%doc %{_mandir}/man3/ggz*
-%doc %{_mandir}/man5/ggz*
-%doc %{_mandir}/man6/ggz*
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README
+%doc %{_mandir}/man3/ggz*.3*
+%doc %{_mandir}/man5/ggz*.5*
+%doc %{_mandir}/man6/ggz*.6*
+%doc %{_mandir}/man7/ggz*.7*
+%doc %{_mandir}/man1/ggz*.1*
+%{_bindir}/ggz
 %{_bindir}/ggz-config
 %{_bindir}/ggz-wrapper
 %{_libdir}/libggzcore.so.*
 %{_libdir}/libggzmod.so.*
+%{_libdir}/ggz/
 %{_sysconfdir}/xdg/menus/applications-merged/ggz.merge.menu
 %{_sysconfdir}/xdg/menus/ggz.menu
 %{_datadir}/desktop-directories/ggz*.directory
 %{_datadir}/locale/*/LC_MESSAGES/ggz-config.mo
+%{_datadir}/locale/*/LC_MESSAGES/ggzcore.mo
 
 %files devel
 %{_includedir}/ggz*.h
@@ -73,6 +76,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Wed Sep  5 2007 Dries Verachtert <dries@ulyssis.org> - 0.0.14-1
+- Updated to release 0.0.14.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.12-1.2
 - Rebuild for Fedora Core 5.
 

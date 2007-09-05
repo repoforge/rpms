@@ -5,8 +5,8 @@
 # ExclusiveDist: fc3 fc4 fc5 el4
 
 %{?dist: %{expand: %%define %dist 1}}
-%{!?dist: %define fc4 1}
 
+%{?el5:%define _without_channels 1}
 %{?el4:%define _without_channels 1}
 %{?el3:%define _without_channels 1}
 %{?el3:%define _without_gui 1}
@@ -20,7 +20,7 @@
 
 Summary: Next generation package handling tool
 Name: smart
-Version: 0.42
+Version: 0.51
 Release: 1
 License: GPL
 Group: Applications/System
@@ -84,6 +84,9 @@ exec %{_bindir}/smart --gui $@
 EOF
 
 %if %{!?_without_channels:1}0
+%{?fc8:name='Fedora Core'; version='8'}
+%{?fc7:name='Fedora Core'; version='7'}
+%{?fc6:name='Fedora Core'; version='6'}
 %{?fc5:name='Fedora Core'; version='5'}
 %{?fc4:name='Fedora Core'; version='4'}
 %{?fc3:name='Fedora Core'; version='3'}
@@ -241,6 +244,9 @@ cd -
 %endif
 
 %changelog
+* Wed Sep  5 2007 Dries Verachtert <dries@ulyssis.org> - 0.51-1
+- Updated to release 0.51.
+
 * Fri Dec 23 2005 Dag Wieers <dag@wieers.com> - 0.42-1
 - Updated to release 0.42.
 

@@ -3,8 +3,8 @@
 
 Summary: Utilities for GGZ gamingzone
 Name: ggz-utils
-Version: 0.0.12
-Release: 1.2
+Version: 0.0.14
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://www.ggzgamingzone.org/
@@ -30,7 +30,7 @@ This pacakge contains some utilities for GGZ gaming zone.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -41,12 +41,15 @@ This pacakge contains some utilities for GGZ gaming zone.
 %doc %{_mandir}/man1/*
 %{_bindir}/ggz-cmd
 %{_bindir}/ggzcommgen
-%{_bindir}/metaserv
+%{_bindir}/ggzmetaserv
 %{_bindir}/telggz
-%dir %{_datadir}/metaserv/
-%config(noreplace) %{_datadir}/metaserv/metaservconf.xml
+%dir %{_datadir}/ggzmetaserv/
+%config(noreplace) %{_datadir}/ggzmetaserv/metaservconf.xml
 
 %changelog
+* Wed Sep  5 2007 Dries Verachtert <dries@ulyssis.org> - 0.0.14-1
+- Updated to release 0.0.14.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.12-1.2
 - Rebuild for Fedora Core 5.
 

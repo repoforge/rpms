@@ -3,8 +3,8 @@
 
 Summary: Library for client-server games
 Name: libggz
-Version: 0.0.12
-Release: 1.2
+Version: 0.0.14
+Release: 1
 License: LGPL
 Group: Development/Libraries
 URL: http://www.ggzgamingzone.org/
@@ -58,11 +58,14 @@ you will need to install %{name}-devel.
 
 %files devel
 %{_includedir}/ggz*.h
-%{_libdir}/libggz.a
 %{_libdir}/libggz.so
+%exclude %{_libdir}/libggz.a
 %exclude %{_libdir}/*.la
 
 %changelog
+* Wed Sep  5 2007 Dries Verachtert <dries@ulyssis.org> - 0.0.14-1
+- Updated to release 0.0.14.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.0.12-1.2
 - Rebuild for Fedora Core 5.
 
