@@ -7,7 +7,7 @@
 Summary: Detect Unintended Memory Access
 Name: duma
 Version: 2.5.8
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Tools
 URL: http://duma.sourceforge.net/
@@ -40,7 +40,8 @@ you will need to install %{name}-devel.
 %setup -n duma_%{real_version}
 
 %build
-%{__make} %{?_smp_mflags}
+# duma doesn't build with _smp_mflags
+%{__make}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -70,6 +71,10 @@ you will need to install %{name}-devel.
 %{_libdir}/libduma.so
 
 %changelog
+* Wed Sep  5 2007 Dries Verachtert <dries@ulyssis.org> - 2.5.8-2
+- Fix build on systems with multiple processors, thanks to Brian Watt.
+
+
 * Mon Aug 20 2007 Dries Verachtert <dries@ulyssis.org> - 2.5.8-1
 - Updated to release 2.5.8.
 
