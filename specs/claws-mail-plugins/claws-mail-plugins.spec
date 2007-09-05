@@ -2,23 +2,24 @@
 # Authority: hadams
 
 # define plugin version
-%define acpinotifier	1.0.11
-%define attachwarner    0.2.7
-%define attremover	1.0.6
-%define cachesaver	0.10.5
-%define fetchinfo	0.4.19
-%define gtkhtml2viewer  0.15.1
-%define mailmbox	1.13.1
-%define newmail		0.0.10
-%define notification	0.11
-%define pdfviewer       0.5
-%define perl		0.9.9
-%define rssyl		0.14
-%define smime		0.7.1
-%define synce		0.7.1
-%define vcalendar	1.96
+%define acpinotifier	1.0.12
+%define attachwarner    0.2.8
+%define attremover	1.0.7
+%define cachesaver	0.10.6
+%define fetchinfo	0.4.20
+%define gtkhtml2viewer  0.15.2
+%define mailmbox	1.14
+%define newmail		0.0.11
+%define notification	0.12
+%define pdfviewer       0.6
+%define perl		0.9.10
+%define rssyl		0.15
+%define smime		0.7.2
+%define spam_report	0.2
+%define synce		0.7.2
+%define vcalendar	1.97
 Name:           claws-mail-plugins
-Version:        2.10.0
+Version:        3.0.0
 Release:        1
 Summary:        Additional plugins for claws-mail
 
@@ -211,6 +212,15 @@ Obsoletes:      sylpheed-claws-plugins-smime <= 2.6.0
 This plugin handles S/MIME signed and/or encrypted mails. You can decrypt
 mails, verify signatures or sign and encrypt your own mails.
 
+%package spam_report
+Summary:        This plugin reports spam to various places. 
+Group:          Applications/Internet
+Requires:	claws-mail >= %{version}
+Provides:       sylpheed-claws-plugins-spam-report = %{version}-%{release}
+
+%description spam_report
+%{summary}
+
 %package synce
 Summary:        Keeping the addressbook of a Windows CE device in sync
 Group:          Applications/Internet
@@ -303,6 +313,11 @@ cd ../smime-%{smime}
 %configure --disable-static --disable-dependency-tracking
 %{__make} %{?_smp_mflags}
 
+#spam_report
+cd ../spam_report-%{spam_report}
+%configure --disable-static --disable-dependency-tracking
+%{__make} %{?_smp_mflags}
+
 #synce
 cd ../synce_plugin-%{synce}
 %configure --disable-static --disable-dependency-tracking
@@ -374,6 +389,11 @@ cd ../rssyl-%{rssyl}
 
 #smime
 cd ../smime-%{smime}
+%{__make} install DESTDIR=$RPM_BUILD_ROOT CLAWS_MAIL_PLUGINDIR=%{_libdir}/claws-mail/plugins/
+
+
+#spam_report
+cd ../spam_report-%{spam_report}
 %{__make} install DESTDIR=$RPM_BUILD_ROOT CLAWS_MAIL_PLUGINDIR=%{_libdir}/claws-mail/plugins/
 
 
@@ -510,6 +530,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/claws-mail/plugins/notification_plugin.so
 %lang(ca) %{_datadir}/locale/ca/LC_MESSAGES/notification_plugin.mo
 %lang(cs) %{_datadir}/locale/cs/LC_MESSAGES/notification_plugin.mo
+%lang(fi) %{_datadir}/locale/fi/LC_MESSAGES/notification_plugin.mo
 %lang(hu) %{_datadir}/locale/hu/LC_MESSAGES/notification_plugin.mo
 %lang(pt_BR) %{_datadir}/locale/pt_BR/LC_MESSAGES/notification_plugin.mo
 %lang(zh_CN) %{_datadir}/locale/zh_CN/LC_MESSAGES/notification_plugin.mo
@@ -572,6 +593,20 @@ rm -rf $RPM_BUILD_ROOT
 %doc smime-%{smime}/NEWS
 %{_libdir}/claws-mail/plugins/smime*
 
+%files spam_report
+%defattr(-,root,root,0755)
+%doc spam_report-%{spam_report}/ChangeLog
+%doc spam_report-%{spam_report}/COPYING
+%doc spam_report-%{spam_report}/NEWS
+%{_libdir}/claws-mail/plugins/spamreport*
+%lang(ca) %{_datadir}/locale/ca/LC_MESSAGES/spam_report.mo
+%lang(es) %{_datadir}/locale/es/LC_MESSAGES/spam_report.mo
+%lang(fi) %{_datadir}/locale/fi/LC_MESSAGES/spam_report.mo
+%lang(fr) %{_datadir}/locale/fr/LC_MESSAGES/spam_report.mo
+%lang(hu) %{_datadir}/locale/hu/LC_MESSAGES/spam_report.mo
+%lang(pt_BR) %{_datadir}/locale/pt_BR/LC_MESSAGES/spam_report.mo
+%lang(sk) %{_datadir}/locale/sk/LC_MESSAGES/spam_report.mo
+
 %files synce
 %defattr(-,root,root,0755)
 %doc synce_plugin-%{synce}/AUTHORS
@@ -602,6 +637,10 @@ rm -rf $RPM_BUILD_ROOT
 %exclude %{_includedir}/ical.h
 
 %changelog
+* Wed Sep 05 2007 Heiko Adams <info@fedora-blog.de>
+3.0.0-1
+- version upgrade
+
 * Sun Aug 12 2007 Heiko Adams <info@fedora-blog.de>
 2.10.0-1
 - version upgrade
