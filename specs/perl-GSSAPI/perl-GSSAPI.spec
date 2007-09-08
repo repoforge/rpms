@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Achim Grolms <pause$grolmsnet,de>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -21,7 +23,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl
 BuildRequires: perl(Test::Pod) >= 1.00
 BuildRequires: perl(Test::Pod::Coverage) >= 1.04
-BuildRequires: krb5-devel
+%{!?_without_krb5:BuildRequires: krb5-devel}
+%{?_with_heimdal:BuildRequires: heimdal-devel}
 
 %description
 This module gives access to the routines of the GSSAPI library, as

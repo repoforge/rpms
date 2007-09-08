@@ -18,6 +18,8 @@ URL: http://search.cpan.org/dist/Authen-Krb5/
 Source: http://www.cpan.org/modules/by-module/Authen/Krb5-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: krb5-devel
+BuildRequires: openssl-devel
 BuildRequires: perl
 
 %description

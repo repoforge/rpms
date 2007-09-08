@@ -2,9 +2,11 @@
 # Authority: dag
 # Upstream: Simon Floery <simon,floery$gmx,at>
 
+%define real_version 1.3.0
+
 Summary: Graphical scientific calculator
 Name: galculator
-Version: 1.2.5.2
+Version: 1.3
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -25,7 +27,7 @@ at the moment. galculator can be used in algebraic mode as well as in
 Reverse Polish Notation.
 
 %prep
-%setup
+%setup -n %{name}-%{real_version}
 
 %build
 %configure
@@ -33,7 +35,7 @@ Reverse Polish Notation.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %clean
@@ -46,8 +48,12 @@ Reverse Polish Notation.
 %{_bindir}/galculator
 %{_datadir}/applications/galculator.desktop
 %{_datadir}/galculator/
+%{_datadir}/pixmaps/galculator/
 
 %changelog
+* Sat Sep 08 2007 Dag Wieers <dag@wieers.com> - 1.3-1
+- Updated to release 1.3.
+
 * Mon Apr 03 2006 Dag Wieers <dag@wieers.com> - 1.2.5.2-1
 - Updated to release 1.2.5.2.
 

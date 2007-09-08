@@ -1,9 +1,9 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
 
 Summary: Very high compression ratio file archiver
 Name: p7zip
-Version: 4.48
+Version: 4.53
 Release: 1
 License: LGPL
 Group: Applications/Archiving
@@ -90,8 +90,10 @@ EOF
 %{_libexecdir}/p7zip/Codecs/
 #%{_libexecdir}/p7zip/Formats/
 
-
 %changelog
+* Sun Sep 02 2007 Dag Wieers <dag@wieers.com> - 4.53-1
+- Updated to release 4.53.
+
 * Mon Jul 02 2007 Dag Wieers <dag@wieers.com> - 4.48-1
 - Updated to release 4.48.
 

@@ -22,7 +22,7 @@
 
 Summary: x86/DOS emulator with sound/graphics
 Name: dosbox
-Version: 0.71
+Version: 0.72
 Release: 1
 License: GPL
 Group: Applications/Emulators
@@ -98,6 +98,9 @@ EOF
 %{_datadir}/pixmaps/dosbox.png
 
 %changelog
+* Tue Aug 28 2007 Dag Wieers <dag@wieers.com> - 0.72-1
+- Updated to release 0.72.
+
 * Sat Aug 11 2007 Dag Wieers <dag@wieers.com> - 0.71-1
 - Updated to release 0.71.
 
