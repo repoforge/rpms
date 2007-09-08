@@ -11,8 +11,8 @@
 
 Summary: Honeypot daemon
 Name: honeyd
-Version: 1.5b
-Release: 5
+Version: 1.5c
+Release: 1
 License: BSD
 Group: Applications/Internet
 URL: http://www.honeyd.org/
@@ -64,6 +64,9 @@ host to claim multiple addresses on a LAN for network simulation.
 %{_libdir}/honeyd/
 
 %changelog
+* Tue May 29 2007 Dag Wieers <dag@wieers.com> - 1.5c-1
+- Updated to release 1.5c.
+
 * Sun Mar 25 2007 Dag Wieers <dag@wieers.com> - 1.5b-5
 - Rebuild against libevent-1.1a on EL5.
 

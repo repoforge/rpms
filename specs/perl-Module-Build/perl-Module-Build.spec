@@ -20,8 +20,8 @@ URL: http://search.cpan.org/dist/Module-Build/
 Source: http://www.cpan.org/modules/by-module/Module/Module-Build-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl(Archive::Tar), perl(ExtUtils::CBuilder)
 BuildArch: noarch
+BuildRequires: perl(Archive::Tar), perl(ExtUtils::CBuilder)
 
 %description
 "Module::Build" is a system for building, testing, and installing Perl

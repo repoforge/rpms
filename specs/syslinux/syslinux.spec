@@ -9,7 +9,7 @@
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
 Version: 3.51
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://syslinux.zytor.com/
@@ -22,10 +22,10 @@ BuildRequires: nasm, perl, netpbm-progs
 Requires: mtools
 
 %description
-Syslinux is a simple kernel loader. It normally loads the kernel (and an
-optional initrd image) from a FAT filesystem. It can also be used as a
-PXE bootloader during network boots (PXELINUX), or for booting from
-ISO 9660 CD-ROMs (ISOLINUX).
+SYSLINUX is a suite of bootloaders, currently supporting DOS FAT
+filesystems, Linux ext2/ext3 filesystems (EXTLINUX), PXE network boots
+(PXELINUX), or ISO 9660 CD-ROMs (ISOLINUX).  It also includes a tool,
+MEMDISK, which loads legacy operating systems from these media.
 
 %prep
 %setup
@@ -40,15 +40,12 @@ ISO 9660 CD-ROMs (ISOLINUX).
 %makeinstall install-lib \
 	INSTALLROOT="%{buildroot}" \
 	BINDIR="%{_bindir}" \
-	LIBDIR="%{_libdir}" \
+	LIBDIR="%{_prefix}/lib" \
 	INCDIR="%{_includedir}"
-%{__install} -p -m0755 mkdiskimage sys2ansi.pl keytab-lilo.pl %{buildroot}%{_libdir}/syslinux/
+%{__install} -p -m0755 mkdiskimage sys2ansi.pl keytab-lilo.pl %{buildroot}%{_prefix}/lib/syslinux/
 
 %clean
 %{__rm} -rf %{buildroot}
-
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
@@ -58,9 +55,12 @@ ISO 9660 CD-ROMs (ISOLINUX).
 %{_bindir}/lss16toppm
 %{_bindir}/ppmtolss16
 %{_bindir}/syslinux
-%{_libdir}/syslinux/
+%{_prefix}/lib/syslinux/
 
 %changelog
+* Sat Sep 08 2007 Dag Wieers <dag@wieers.com> - 3.51-2
+- Fixed the location of syslinux on x86_64. (Matt Hyclak)
+
 * Tue Jun 12 2007 Dag Wieers <dag@wieers.com> - 3.51-1
 - Updated to release 3.51.
 
