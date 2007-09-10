@@ -3,15 +3,15 @@
 
 Summary: Translates PostScript and PDF graphics into other vector formats
 Name: pstoedit
-Version: 3.44
+Version: 3.45
 Release: 1
 License: GPL
 Group: Applications/Productivity
 URL: http://www.pstoedit.net/
 
 Source: http://dl.sf.net/pstoedit/pstoedit-%{version}.tar.gz
-Patch0: pstoedit-3.44-cxxflags.patch
-Patch1: pstoedit-3.44-quiet.patch
+#Patch0: pstoedit-3.44-cxxflags.patch
+#Patch1: pstoedit-3.44-quiet.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gd-devel, libpng-devel, libEMF-devel
@@ -39,8 +39,8 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch0 -p1 -b .cxxflags
-%patch1 -p1 -b .quiet
+#patch0 -p1 -b .cxxflags
+#patch1 -p1 -b .quiet
 dos2unix doc/*.htm doc/readme.txt
 
 %build
@@ -80,5 +80,8 @@ dos2unix doc/*.htm doc/readme.txt
 %exclude %{_libdir}/libpstoedit.la
 
 %changelog
+* Mon Sep 10 2007 Dries Verachtert <dries@ulyssis.org> - 3.45-1
+- Updated to release 3.45.
+
 * Thu May 24 2007 Dag Wieers <dag@wieers.com> - 3.44-1
 - Initial package. (using DAR)
