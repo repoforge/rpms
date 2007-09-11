@@ -13,7 +13,7 @@ URL: http://regexxer.sourceforge.net/
 Source: http://dl.sf.net/regexxer/regexxer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glib2-devel >= 2.0.7, gtk2-devel >= 2.0
+BuildRequires: glib2-devel >= 2.12, gtk2-devel >= 2.0
 BuildRequires: libsigc++-devel >= 1.2, gtkmm2-devel >= 2.0
 BuildRequires: libglademm24-devel, pcre-devel, gettext
 BuildRequires: pcre >= 3.9, gtkmm24-devel, gcc-c++, gconfmm26-devel
@@ -34,12 +34,18 @@ regular expressions.
 %install
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
 gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
+touch --no-create %{_datadir}/icons/hicolor || :
+%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+
+%postun
+touch --no-create %{_datadir}/icons/hicolor || :
+%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -50,7 +56,7 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/regexxer
 %{_datadir}/applications/regexxer.desktop
-%{_datadir}/pixmaps/regexxer.png
+%{_datadir}/icons/hicolor/48x48/apps/regexxer.png
 %{_datadir}/regexxer/
 
 %changelog

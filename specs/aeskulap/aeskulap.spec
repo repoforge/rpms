@@ -32,12 +32,15 @@ any platform were these packages are available.
 %setup
 
 %build
-%configure
+%configure \
+    --disable-schemas-install \
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall imagesdir=%{buildroot}%{_datadir}/aeskulap/images
+#makeinstall imagesdir="%{buildroot}%{_datadir}/aeskulap/images"
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %clean
@@ -46,19 +49,17 @@ any platform were these packages are available.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING README
+%config %{_sysconfdir}/gconf/schemas/aeskulap.schemas
 %{_bindir}/aeskulap
-%{_libdir}/libdcm*.so
-%{_libdir}/libijg*.so
-%{_libdir}/libimagepool.*
-%{_libdir}/libofstd.so*
+%{_prefix}/lib/aeskulap/
+%{_libdir}/aeskulap/
+#%{_libdir}/libijg*.so
+#%{_libdir}/libimagepool.*
+#%{_libdir}/libofstd.so*
 %{_datadir}/aeskulap/
 %{_datadir}/applications/aeskulap.desktop
-%{_datadir}/gconf/schemas/aeskulap.schema
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.1-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Mar 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.1-1
 - Updated to release 0.2.1.
 

@@ -26,7 +26,6 @@ package includes many existing open source packages and the "glue" to
 integrate them together. This is a tool for streaming video and audio that
 is standards-oriented and free from proprietary protocols and extensions.
 
-
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
@@ -37,17 +36,15 @@ This package contains the header files, static libraries and development
 documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
-
 %prep
 %setup
 %patch0 -p1 -b .nowerror
 
-
 %build
 sh bootstrap --disable-warns-as-err
 %configure \
-    --disable-warns-as-err \
-    --disable-static
+    --disable-static \
+    --disable-warns-as-err
 %{__make} %{?_smp_mflags}
 
 
@@ -58,31 +55,26 @@ sh bootstrap --disable-warns-as-err
 # Remove all *.la files
 find %{buildroot} -name '*.la' -exec rm -f {} \;
 
-
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
-
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING FEATURES.html README* TODO
+%{_mandir}/man1/*.1*
 %{_bindir}/*
 %{_libdir}/*.so.*
 %{_libdir}/mp4player_plugin/
-%{_mandir}/man1/*
 
 %files devel
 %defattr(-, root, root, 0755)
+%doc %{_mandir}/man3/*.3*
+%doc %{_mandir}/manm/*
 %{_includedir}/*.h
 %{_libdir}/*.so
-%{_mandir}/man3/*
-%{_mandir}/manm/*
-
 
 %changelog
 * Tue Jul 11 2006 Matthias Saou <http://freshrpms.net/> 1.5.0.1-1
@@ -90,9 +82,5 @@ find %{buildroot} -name '*.la' -exec rm -f {} \;
 - Move man3 files to devel package.
 - Add missing ldconfig calls.
 
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Jan 01 2004 Dag Wieers <dag@wieers.com> - 1.2-1
 - Initial package. (using DAR)
-

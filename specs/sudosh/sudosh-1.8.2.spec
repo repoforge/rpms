@@ -1,11 +1,11 @@
-# $Id: $
+# $Id$
 # Authority: dries
 # Upstream: Douglas Hanks
 
 Summary: Logged root shell that can be used for auditing
 Name: sudosh
-Version: 2.0.0
-Release: 1
+Version: 1.8.2
+Release: 2
 License: Open Software License
 Group: Applications/System
 URL: http://sourceforge.net/projects/sudosh/
@@ -21,7 +21,7 @@ users may use to obtain full root access. Unlike providing a team of system
 administrators full root access through sudo, it guarantees that detailed
 logs are kept. It uses the script command in conjunction with a secure FIFO
 and comes with a utility to view sessions and drill down deeper and see the
-actual session output.
+actual session output. 
 
 %prep
 %setup
@@ -55,8 +55,8 @@ actual session output.
 %config(noreplace) %{_sysconfdir}/sudosh.conf
 
 %changelog
-* Mon Apr 03 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.0-1
-- Updated to release 2.0.0.
+* Mon Sep 10 2007 Dag Wieers <dag@wieers.com> - 1.8.2-2
+- Disabled root:root install.
 
 * Mon Jun 13 2005 Dries Verachtert <dries@ulyssis.org> - 1.8.2-1
 - Update to release 1.8.2.
