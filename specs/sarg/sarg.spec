@@ -5,7 +5,7 @@
 
 Summary: Squid usage report generator per user/ip/name
 Name: sarg
-Version: 2.2.1
+Version: 2.2.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -87,7 +87,7 @@ fi
 if [ -s %{_localstatedir}/log/squid/access.log.1.gz ]; then
 	LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log.1.gz"
 fi
-if [ -s %{_localstatedir}/log/squid/access.log ]]; then
+if [ -s %{_localstatedir}/log/squid/access.log ]; then
 	LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log"
 fi
 
@@ -215,6 +215,10 @@ EOF
 %{_sysconfdir}/sarg/languages/
 
 %changelog
+* Sat Aug 25 2007 Dag Wieers <dag@wieers.com> - 2.2.3-1
+- Updated to release 2.2.3.
+- Fixed typo in monthly script. (Rabie Van der Merwe)
+
 * Mon May 29 2006 Dag Wieers <dag@wieers.com> - 2.2.1-1
 - Updated to release 2.2.1.
 - Many changes to reflect release 2.2. (Bernard Lheureux)
