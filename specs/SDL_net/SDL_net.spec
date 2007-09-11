@@ -3,7 +3,7 @@
 
 Summary: Cross-platform network API
 Name: SDL_net
-Version: 1.2.6
+Version: 1.2.7
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -22,6 +22,7 @@ cross-platform network API.
 Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
+Requires: SDL-devel >= 1.2.4
 
 %description devel
 This package contains the header files, static libraries and development
@@ -32,12 +33,13 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure
+%configure \
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -54,16 +56,15 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %dir %{_includedir}/SDL/
 %{_includedir}/SDL/SDL_net.h
-%{_libdir}/libSDL_net.a
 %{_libdir}/libSDL_net.so
-%exclude %{_libdir}/*.la
+%exclude %{_libdir}/libSDL_net.la
 
 %changelog
+* Sun Sep 09 2007 Dag Wieers <dag@wieers.com> - 1.2.7-1
+- Updated to release 1.2.7.
+
 * Fri May 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.6-1
 - Updated to release 1.2.6.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.5-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Feb 01 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.5-1
 - Initial package.
