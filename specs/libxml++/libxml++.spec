@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: <libxmlplusplus-general$lists,sf,net>
 
-Summary: C++ interface for working with XML files
+Summary: C++ wrapper for working with XML files
 Name: libxml++
 Version: 2.19.1
 Release: 1
