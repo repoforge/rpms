@@ -10,7 +10,7 @@
 Summary: E-mail handling
 Name: perl-Mail-Box
 Version: 2.073
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-Box/
@@ -39,6 +39,17 @@ BuildRequires: perl(Test::Pod) >= 1
 BuildRequires: perl(Time::Zone)
 BuildRequires: perl(User::Identity)
 BuildRequires: perl(URI) >= 1.23
+
+### Missing provides from autoprov
+Provides: perl(Mail::Message::Body::Construct) = %{version}
+Provides: perl(Mail::Message::Construct) = %{version}
+Provides: perl(Mail::Message::Construct::Bounce) = %{version}
+Provides: perl(Mail::Message::Construct::Build) = %{version}
+Provides: perl(Mail::Message::Construct::Forward) = %{version}
+Provides: perl(Mail::Message::Construct::Read) = %{version}
+Provides: perl(Mail::Message::Construct::Rebuild) = %{version}
+Provides: perl(Mail::Message::Construct::Reply) = %{version}
+Provides: perl(Mail::Message::Construct::Text) = %{version}
 
 %description
 E-mail handling.
@@ -70,5 +81,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Mail/
 
 %changelog
+* Wed Sep 12 2007 Dag Wieers <dag@wieers.com> - 2.073-2
+- Added static perl(Mail::Message) provides. (Josh Kelley)
+
 * Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 2.073-1
 - Initial package. (using DAR)

@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Filesys-SmbClient/
 Source: http://www.cpan.org/modules/by-module/Filesys/Filesys-SmbClient-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker), samba-common
+BuildRequires: perl, perl(ExtUtils::MakeMaker), samba-common >= 3.0
 
 %description
 Perl client to reach Samba resources with smbclient.
