@@ -1,0 +1,12 @@
+# To fix the "glrx_dri.so: undefined symbol:..." message, add this section to
+# your /etc/X11/xorg.conf
+
+Section "ServerFlags"
+	Option "AIGLX" "off"
+EndSection
+
+# To fix the ""cannot restore segment prot after reloc" message
+# on glesx.so when running selinux en enforcing mode, run this once :
+
+chcon -t texrel_shlib_t /usr/lib*/xorg/modules/glesx.so
+

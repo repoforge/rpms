@@ -16,13 +16,14 @@
 
 Summary: Proprietary ATI hardware accelerated OpenGL display driver
 Name: ati-x11-drv
-Version: 8.40.4
+Version: 8.41.7
 Release: 1
 License: Proprietary
 Group: User Interface/X Hardware Support
 URL: http://ati.amd.com/support/drivers/linux/linux-radeon.html
 Source0: http://www2.ati.com/drivers/linux/ati-driver-installer-%{version}-x86.x86_64.run
 Source1: Makefile.fglrx
+Source2: README-rpm
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Required for proper dkms operation
 Requires: gcc
@@ -62,6 +63,8 @@ sh %{SOURCE0} --extract .
 # Fix for FC6 kernels
 %{__perl} -pi -e 's|#include <linux/config.h>||g' \
     common/lib/modules/fglrx/build_mod/*.{c,h}
+# Our quick README to be included as %%doc
+%{__install} -p -m 0644 %{SOURCE2} README-rpm
 
 
 %build
@@ -106,8 +109,8 @@ EOF
     %{buildroot}%{_sysconfdir}/rc.d/init.d/atieventsd
 %{__install} -D -p -m 0755 packages/Fedora/authatieventsd.sh \
     %{buildroot}%{_sysconfdir}/ati/authatieventsd.sh
-%{__install} -D -p -m 0644 common/usr/share/man/man8/atieventsd.8.gz \
-    %{buildroot}%{_mandir}/man8/atieventsd.8.gz
+%{__install} -D -p -m 0644 common/usr/share/man/man8/atieventsd.8 \
+    %{buildroot}%{_mandir}/man8/atieventsd.8
 
 # Install libaries
 %{__mkdir_p} %{buildroot}%{fglrxlibdir}
@@ -171,8 +174,11 @@ desktop-file-install \
     packages/Debian/dists/experimental/amdcccle.desktop
 
 # Install the control file (new in 8.39.4, "AMD testing" watermark without)
+# As well as the signature file
 %{__install} -D -p -m 0644 common/etc/ati/control \
     %{buildroot}%{_sysconfdir}/ati/control
+%{__install} -D -p -m 0644 common/etc/ati/signature \
+    %{buildroot}%{_sysconfdir}/ati/signature
 
 # Install ld.so.conf.d file
 %{__mkdir_p} %{buildroot}%{_sysconfdir}/ld.so.conf.d/
@@ -219,8 +225,8 @@ fi
 
 %files
 %defattr(-,root,root,-)
-%doc _doc/*
-# Init script and control file
+%doc _doc/* README-rpm
+# Init script and control/signature files
 %{_sysconfdir}/ati/
 %{_sysconfdir}/rc.d/init.d/atieventsd
 # ACPI stuff
@@ -264,6 +270,14 @@ fi
 
 
 %changelog
+* Thu Sep 13 2007 Matthias Saou <http://freshrpms.net/> 8.41.7-1
+- Update to 8.41.7.
+- The atieventsd.8 man page is no longer provided gzipped, go figure.
+
+* Wed Aug 15 2007 Matthias Saou <http://freshrpms.net/> 8.40.4-2
+- Include signature file to fix AMD testing watermark.
+- Include quick README-rpm file with tips for typical gotchas.
+
 * Tue Aug 14 2007 Matthias Saou <http://freshrpms.net/> 8.40.4-1
 - Update to 8.40.4.
 
