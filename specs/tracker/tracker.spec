@@ -3,19 +3,19 @@
 
 Summary:	An object database, tag/metadata database, search tool and indexer
 Name:		tracker
-Version:	0.6.0
-Release:	2
+Version:	0.6.1
+Release:	1
 License:	GPL
 Group:		Applications/System
-URL:		http://www.gnome.org/~jamiemcc/tracker/
-Source0:	http://www.gnome.org/~jamiemcc/tracker/tracker-0.6.0.tar.bz2
+URL:		http://www.gnome.org/projects/tracker/index.html
+Source0:	http://www.gnome.org/~jamiemcc/tracker/tracker-%{version}.tar.bz2
 Source1:	tracker-handler.py
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:	gmime-devel, poppler-devel, gettext
 BuildRequires:	gnome-desktop-devel, gamin-devel
 BuildRequires:	libexif-devel, libgsf-devel, gstreamer-devel
 BuildRequires:	desktop-file-utils, intltool, deskbar-applet
-BuildRequires:	sqlite-devel, dbus-devel
+BuildRequires:	sqlite-devel
 
 %description
 Tracker is a powerful desktop-neutral first class object database,
@@ -126,6 +126,9 @@ rm -rf %{buildroot}
 %{_datadir}/autostart/*.desktop
 
 %changelog
+* Sun Sep 16 2007 Heiko Adams <info@fedora-blog.de> - 0.6.1-1
+- version update
+
 * Thu Aug 09 2007 Heiko Adams <info@fedora-blog.de> - 0.6.0-2
 - rebuild for rpmforge
 
