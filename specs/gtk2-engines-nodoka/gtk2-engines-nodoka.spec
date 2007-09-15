@@ -3,16 +3,17 @@
 
 Name:           gtk2-engines-nodoka
 Version:        0.6
-Packager:       Christopher Bratusek <nano-master@gmx.de>
+Packager:       Heiko Adams <info@fedora-blog.de>
 Release:        14.2
 License:        GPL-2
 URL:            https://hosted.fedoraproject.org/projects/nodoka/wiki
 Source:         %{name}_%{version}-1nano.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:  make, bash, gtk2-devel, sed
+BuildRequires:  gtk2-devel
+BuildRequires:  sed
 
-Group:          NANO
+Group:          System Environment/Libraries
 Summary:        GTK+2 Theme Engine
 
 %description
@@ -36,10 +37,14 @@ rm -rf "$RPM_BUILD_ROOT"
 
 %files
 %defattr(0755,root,root)
-/usr/lib/gtk-2.0/
-/usr/share/themes/Nodoka/gtk-2.0/gtkrc
+%doc AUTHORS ChangeLog NEWS COPYING
+%{_libdir}/gtk-2.0/*/engines/*
+%{_datadir}/*
 
 %changelog
-* Sun Jul 22 2007 Heiko Adams <info@fedora-blog.de> - 0.6-14.2
+* Sat Sep 15 2007 Heiko Adams <info@fedora-blog.de> - 0.6-14.3
+- Some small updates to the specfile
+
+* Fri Sep 14 2007 Heiko Adams <info@fedora-blog.de> - 0.6-14.2
 - Rebuild for rpmforge
 
