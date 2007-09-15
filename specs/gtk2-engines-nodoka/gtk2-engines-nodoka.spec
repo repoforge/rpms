@@ -4,7 +4,7 @@
 Name:           gtk2-engines-nodoka
 Version:        0.6
 Packager:       Heiko Adams <info@fedora-blog.de>
-Release:        14.2
+Release:        14.3
 License:        GPL-2
 URL:            https://hosted.fedoraproject.org/projects/nodoka/wiki
 Source:         %{name}_%{version}-1nano.tar.gz
