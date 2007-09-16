@@ -8,14 +8,14 @@ Release:	1
 License:	GPL
 Group:		Applications/System
 URL:		http://www.gnome.org/projects/tracker/index.html
-Source0:	http://www.gnome.org/~jamiemcc/tracker/tracker-%{version}.tar.bz2
+Source0:	http://www.gnome.org/~jamiemcc/tracker/%{name}-%{version}.tar.bz2
 Source1:	tracker-handler.py
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:	gmime-devel, poppler-devel, gettext
 BuildRequires:	gnome-desktop-devel, gamin-devel
 BuildRequires:	libexif-devel, libgsf-devel, gstreamer-devel
 BuildRequires:	desktop-file-utils, intltool, deskbar-applet
-BuildRequires:	sqlite-devel
+BuildRequires:	sqlite-devel, dbus-devel
 
 %description
 Tracker is a powerful desktop-neutral first class object database,
