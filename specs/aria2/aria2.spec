@@ -4,7 +4,7 @@
 
 Summary: Download utility with BitTorrent and Metalink support
 Name: aria2
-Version: 0.11.2
+Version: 0.11.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -44,6 +44,9 @@ export CPPFLAGS="-I/usr/include/libxml2 $(pkg-config --cflags openssl)"
 %{_bindir}/aria2c
 
 %changelog
+* Sun Sep 16 2007 Dries Verachtert <dries@ulyssis.org> - 0.11.3-1
+- Updated to release 0.11.3.
+
 * Fri Aug 17 2007 Dries Verachtert <dries@ulyssis.org> - 0.11.2-1
 - Updated to release 0.11.2.
 

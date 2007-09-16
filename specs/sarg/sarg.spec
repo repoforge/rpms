@@ -5,7 +5,7 @@
 
 Summary: Squid usage report generator per user/ip/name
 Name: sarg
-Version: 2.2.3
+Version: 2.2.3.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -215,6 +215,9 @@ EOF
 %{_sysconfdir}/sarg/languages/
 
 %changelog
+* Sun Sep 16 2007 Dries Verachtert <dries@ulyssis.org> - 2.2.3.1-1
+- Updated to release 2.2.3.1.
+
 * Sat Aug 25 2007 Dag Wieers <dag@wieers.com> - 2.2.3-1
 - Updated to release 2.2.3.
 - Fixed typo in monthly script. (Rabie Van der Merwe)

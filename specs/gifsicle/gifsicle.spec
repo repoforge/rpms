@@ -15,7 +15,7 @@
 
 Summary: Powerful program for manipulating GIF images and animations
 Name: gifsicle
-Version: 1.46
+Version: 1.48
 Release: 1
 License: GPL
 Group: Applications/File
@@ -69,6 +69,9 @@ appearance.
 %{_bindir}/gifview
 
 %changelog
+* Sun Sep 16 2007 Dries Verachtert <dries@ulyssis.org> - 1.48-1
+- Updated to release 1.48.
+
 * Sun Jan 21 2007 Dag Wieers <dag@wieers.com> - 1.46-1
 - Updated to release 1.46.
 
