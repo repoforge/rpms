@@ -9,7 +9,7 @@ Version: 12.7.6
 Release: 1
 License: LGPL
 Group: Applications/Engineering
-URL: http://www.mathomatic.com/
+URL: http://www.mathomatic.org/
 
 Source: http://www.panix.com/~gesslein/mathomatic-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

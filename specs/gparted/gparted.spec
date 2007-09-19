@@ -1,10 +1,23 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el5:%define _without_hallock 1}
+%{?el4:%define _without_hallock 1}
+%{?el3:%define _without_hallock 1}
+%{?el2:%define _without_hallock 1}
+%{?fc6:%define _without_hallock 1}
+%{?fc5:%define _without_hallock 1}
+%{?fc4:%define _without_hallock 1}
+%{?fc3:%define _without_hallock 1}
+%{?fc2:%define _without_hallock 1}
+%{?fc1:%define _without_hallock 1}
+
 Summary: Gnome Partition Editor
 Name: gparted
 Version: 0.3.3
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://gparted.sourceforge.net/
@@ -20,7 +33,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtkmm24-devel, parted-devel 
 BuildRequires: e2fsprogs-devel, gettext perl(XML::Parser) 
 BuildRequires: desktop-file-utils
-Requires: hal >= 0.5.9
+
+%{!?_without_hallock:Requires: hal >= 0.5.9}
 
 %description
 GParted stands for Gnome Partition Editor and is a graphical frontend to
@@ -34,10 +48,16 @@ will be detected at runtime and don't require a rebuild of GParted
 %patch0 -p0 -b .hal
 %patch1 -p0 -b .devs
 
+%if %{?_without_hallock:1}0
+%{__cat} <<EOF >run-gparted
+%{_sbindir}/gparted
+EOF
+%else
 %{__cat} <<EOF >run-gparted
 #!/bin/bash
-%{_bindir}/hal-lock --interface org.freedesktop.Hal.Device.Storage  --exclusive --run %{_sbindir}/usr/sbin/gparted
+%{_bindir}/hal-lock --interface org.freedesktop.Hal.Device.Storage  --exclusive --run %{_sbindir}/gparted
 EOF
+%endif
 
 %{__cat} <<EOF >gparted.pam
 #%PAM-1.0
@@ -97,6 +117,9 @@ fi
 %{_sbindir}/gparted
 
 %changelog
+* Wed Sep 19 2007 Dries Verachtert <dries@ulyssis.org> - 0.3.3-2
+- Only use hal-lock on recent distributions.
+
 * Thu Jun 28 2007 Dag Wieers <dag@wieers.com> - 0.3.3-1
 - Added Fedora patches.
 - Initial package. (using DAR)
