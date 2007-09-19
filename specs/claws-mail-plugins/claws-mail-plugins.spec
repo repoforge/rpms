@@ -3,23 +3,23 @@
 
 # define plugin version
 %define acpinotifier	1.0.12
-%define attachwarner    0.2.8
 %define attremover	1.0.7
+%define attachwarner    0.2.8
 %define cachesaver	0.10.6
 %define fetchinfo	0.4.20
 %define gtkhtml2viewer  0.15.2
 %define mailmbox	1.14
 %define newmail		0.0.11
-%define notification	0.12
+%define notification	0.12.1
 %define pdfviewer       0.6
 %define perl		0.9.10
 %define rssyl		0.15
 %define smime		0.7.2
 %define spam_report	0.2
 %define synce		0.7.2
-%define vcalendar	1.97
+%define vcalendar	1.98
 Name:           claws-mail-plugins
-Version:        3.0.0
+Version:        3.0.1
 Release:        1
 Summary:        Additional plugins for claws-mail
 
@@ -637,6 +637,10 @@ rm -rf $RPM_BUILD_ROOT
 %exclude %{_includedir}/ical.h
 
 %changelog
+* Wed Sep 19 2007 Heiko Adams <info@fedora-blog.de>
+3.0.1-1
+- version upgrade
+
 * Wed Sep 05 2007 Heiko Adams <info@fedora-blog.de>
 3.0.0-1
 - version upgrade

@@ -2,13 +2,13 @@
 # Authority: hadams
 
 Name:           claws-mail
-Version:        3.0.0
+Version:        3.0.1
 Release:        1
 Summary:        The extended version of Sylpheed
 Group:          Applications/Internet
 License:        GPL
 URL:            http://claws-mail.org
-Source0:        http://dl.sf.net/sylpheed-claws/claws-mail-3.0.0.tar.bz2
+Source0:        http://dl.sf.net/sylpheed-claws/%{name}-%{version}.tar.bz2
 Source1:        claws-mail.desktop
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:  flex, bison
@@ -208,6 +208,10 @@ find manual -type f -name Makefile -exec rm {} \;
 
 
 %changelog
+* Wed Sep 19 2007 Heiko Adams <info@fedora-blog.de> 
+3.0.1
+- version upgrade
+
 * Wed Sep 05 2007 Heiko Adams <info@fedora-blog.de> 
 3.0.0
 - version upgrade
