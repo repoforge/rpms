@@ -44,7 +44,7 @@ and Noise Removal, and it also supports VST plug-in effects.
 %patch0 -p1 -b .localeinstall
 %patch1 -p1 -b .desktop
 %patch2 -p1 -b .samplerate
-
+%{__perl} -pi -e 's|SoundTouch::||g;' ./lib-src/soundtouch/include/SoundTouch.h
 
 %build
 %configure \
