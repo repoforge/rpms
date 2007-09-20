@@ -34,6 +34,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: GConf2-devel >= 2.2, gtkhtml2-devel, libxml2-devel >= 2.6.27
 BuildRequires: gettext, gcc-c++, desktop-file-utils, gtk2 >= 2.4, libxslt >= 1.1.19
+BuildRequires: intltool, perl(XML::Parser)
 %{!?_without_mozilla:BuildRequires: %{mozilla}-devel}
 Requires: GConf2
 

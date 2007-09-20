@@ -21,6 +21,7 @@ BuildRequires: libmusicbrainz-devel >= 2.0.1, libgnomeui-devel >= 2.0.0
 BuildRequires: glib2-devel >= 2.0.0, gstreamer-devel >= 0.6.1
 BuildRequires: GConf2-devel >= 2.0.0
 BuildRequires: scrollkeeper
+BuildRequires: intltool, perl(XML::Parser)
 
 Requires(post): scrollkeeper
 Requires(postun): scrollkeeper
