@@ -48,7 +48,7 @@ BuildRequires: gcc-c++, libjpeg-devel
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
 %else
-BuildRequires: libXt-devel, mesa-libGLU-devel
+BuildRequires: libXt-devel, mesa-libGLU-devel, libXmu-devel
 %endif
 
 %description

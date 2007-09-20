@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Mail/Mail-ClamAV-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, perl(Inline), clamav-devel, perl(Parse::RecDescent)
-BuildRequires: bzip2-devel
+BuildRequires: bzip2-devel, gmp-devel
 Requires: perl
 
 %description
