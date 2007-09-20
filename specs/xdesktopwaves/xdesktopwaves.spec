@@ -26,7 +26,7 @@ URL: http://xdesktopwaves.sourceforge.net/
 Source: http://dl.sf.net/xdesktopwaves/xdesktopwaves-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel, libXext-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description

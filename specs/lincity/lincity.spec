@@ -36,7 +36,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, libpng-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel, libXext-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
