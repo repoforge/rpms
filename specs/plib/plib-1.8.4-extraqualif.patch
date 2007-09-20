@@ -1,0 +1,21 @@
+diff -Naupr plib-1.8.4.orig/src/ssgAux/ssgaSky.h plib-1.8.4/src/ssgAux/ssgaSky.h
+--- plib-1.8.4.orig/src/ssgAux/ssgaSky.h	2003-09-26 16:54:20.000000000 +0200
++++ plib-1.8.4/src/ssgAux/ssgaSky.h	2006-02-09 18:59:30.000000000 +0100
+@@ -104,7 +104,7 @@ public:
+   ssgaCelestialBodyList ( int init = 3 )
+ 	  : ssgSimpleList ( sizeof(ssgaCelestialBody*), init ) { }
+ 
+-  ssgaCelestialBodyList::~ssgaCelestialBodyList () { removeAll(); }
++  ~ssgaCelestialBodyList () { removeAll(); }
+ 
+   int getNum (void) { return total ; }
+ 
+@@ -192,7 +192,7 @@ public:
+   ssgaCloudLayerList ( int init = 3 )
+ 	  : ssgSimpleList ( sizeof(ssgaCloudLayer*), init ) { }
+ 
+-  ssgaCloudLayerList::~ssgaCloudLayerList () { removeAll(); }
++  ~ssgaCloudLayerList () { removeAll(); }
+ 
+   int getNum (void) { return total ; }
+ 

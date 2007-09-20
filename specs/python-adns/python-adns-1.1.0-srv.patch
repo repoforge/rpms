@@ -1,0 +1,60 @@
+--- adns-python-1.1.0/adnsmodule.c.orig	2006-05-08 16:23:21.000000000 -0400
++++ adns-python-1.1.0/adnsmodule.c	2006-05-09 11:35:15.000000000 -0400
+@@ -88,9 +88,10 @@
+ };
+ 
+ static _constant_class adns_rr[] = {
+-	{ "typemask", adns__rrt_typemask },
++	{ "typemask", adns_rrt_typemask },
+ 	{ "deref", adns__qtf_deref },
+ 	{ "mail822", adns__qtf_mail822 },
++	{ "unknown", adns_r_unknown },
+ 	{ "none", adns_r_none },
+ 	{ "A", adns_r_a },
+ 	{ "NSraw", adns_r_ns_raw },
+@@ -106,6 +107,8 @@
+ 	{ "TXT", adns_r_txt },
+ 	{ "RPraw", adns_r_rp_raw },
+ 	{ "RP", adns_r_rp },
++	{ "SRVraw", adns_r_srv_raw },
++	{ "SRV", adns_r_srv },
+ 	{ "ADDR", adns_r_addr },
+ 	{ NULL, 0 }
+ };
+@@ -176,6 +179,17 @@
+ 			  addrs);
+ 	return o;
+ }
++
++static PyObject *
++interpret_srv(
++	adns_rr_srvraw *srvrr
++	)
++{
++	PyObject *o;
++	o = Py_BuildValue("iiis", srvrr->priority, srvrr->weight, srvrr->port,
++		srvrr->host);
++	return o;
++}
+ 	
+ static PyObject *
+ interpret_answer(
+@@ -184,7 +198,7 @@
+ {
+ 	PyObject *o, *rrs;
+ 	int i;
+-	adns_rrtype t = answer->type & adns__rrt_typemask;
++	adns_rrtype t = answer->type & adns_rrt_typemask;
+ 	adns_rrtype td = answer->type & adns__qtf_deref;
+ 
+ 	rrs = PyTuple_New(answer->nrrs);
+@@ -273,6 +287,9 @@
+ 				a = Py_BuildValue("ss", v->array[0], v->array[1]);
+ 			}
+ 			break;
++		case adns_r_srv_raw:
++			a = interpret_srv((answer->rrs.srvraw+i));
++			break;
+ 		default:
+ 			a = Py_None;
+ 			Py_INCREF(a);

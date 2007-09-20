@@ -1,0 +1,109 @@
+--- plib-1.8.4/src/pw/pwX11.cxx.key	2006-10-05 19:56:42.000000000 +0200
++++ plib-1.8.4/src/pw/pwX11.cxx	2006-10-05 20:04:19.000000000 +0200
+@@ -117,11 +117,19 @@
+ static XTextProperty *titlePropertyPtr = NULL;
+ 
+ static bool autoRepeat = false ;
++static bool haveFocus = false ;
+ 
+ static void getEvents ();
+ 
+ void pwSetAutoRepeatKey ( bool enable )
+ {
++  if ( (autoRepeat != enable) && haveFocus )
++  {
++    if ( enable )
++      XAutoRepeatOn ( currDisplay ) ;
++    else
++      XAutoRepeatOff ( currDisplay ) ;
++  }
+   autoRepeat = enable ;
+ }
+ 
+@@ -351,7 +359,7 @@
+                        KeyPressMask        | KeyReleaseMask       |
+ 		       EnterWindowMask     | LeaveWindowMask      |
+                        PointerMotionMask   | ButtonMotionMask     |
+-                       VisibilityChangeMask ;
++                       VisibilityChangeMask| FocusChangeMask;
+ 
+   attribs.background_pixmap = None ;
+   attribs.background_pixel  = 0    ;
+@@ -405,6 +413,10 @@
+   XMapWindow       ( currDisplay, wmWindow ) ;
+   glXMakeCurrent   ( currDisplay, currHandle, currContext ) ;
+ 
++  haveFocus = true;
++  if (!autoRepeat)
++    XAutoRepeatOff ( currDisplay ) ;
++
+   pwSetCursor ( PW_CURSOR_LEFT ) ;
+ 
+ #ifdef GL_MULTISAMPLE_FILTER_HINT_NV
+@@ -717,8 +729,6 @@
+ 
+ static void getEvents ()
+ {
+-  bool repeating = false ;
+-  char keyflags [ 32 ] ;
+   XEvent event ;
+ 
+   insideCallback = true ;
+@@ -770,6 +780,18 @@
+           (*mpCB) ( event.xmotion.x, event.xmotion.y ) ;
+         break ;
+ 
++      case FocusIn:
++        if ( !haveFocus && !autoRepeat )
++          XAutoRepeatOff ( currDisplay ) ;
++        haveFocus = true;
++        break;
++
++      case FocusOut:
++        if ( haveFocus && !autoRepeat )
++          XAutoRepeatOn ( currDisplay ) ;
++        haveFocus = false;
++        break;
++
+       case ButtonRelease   :
+         updown = PW_UP ;
+         /* FALLTHROUGH */
+@@ -792,23 +814,9 @@
+ 
+       case KeyRelease      :
+         updown = PW_UP ;
+-
+-        XQueryKeymap ( currDisplay, keyflags ) ;
+-
+-        repeating = ( ( keyflags [ event.xkey.keycode >> 3 ] &
+-                          ( 1 << ( event.xkey.keycode & 7 ) ) ) != 0 ) ;
+-
+         /* FALLTHROUGH */
+ 
+       case KeyPress        :
+-        /*
+-          Only generate a key up callback if the key is actually up
+-          and not repeating.
+-        */
+-
+-        if ( ! autoRepeat && repeating )
+-          break ;
+-
+         XComposeStatus composeStatus ;
+         char           asciiCode [ 32 ] ;
+         KeySym         keySym ;
+@@ -1021,10 +1029,14 @@
+   if ( fsWindow != None )
+     pwSetWindowed ( ) ;
+ 
++  if ( haveFocus && !autoRepeat )
++    XAutoRepeatOn ( currDisplay ) ;
++
+   glXDestroyContext ( currDisplay, currContext ) ;
+   XDestroyWindow    ( currDisplay, currHandle  ) ;
+   XDestroyWindow    ( currDisplay, wmWindow    ) ;
+   XCloseDisplay     ( currDisplay ) ;
++  haveFocus = false;
+   currDisplay = NULL;
+ }
+ 

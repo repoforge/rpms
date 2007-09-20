@@ -1,0 +1,93 @@
+--- jpeg-mmx-0.1.5/jdapimin.c
++++ jpeg-mmx-0.1.5/jdapimin.c
+@@ -22,7 +22,7 @@
+ 
+ #if defined(HAVE_MMX_INTEL_MNEMONICS) || defined(HAVE_MMX_ATT_MNEMONICS)
+ int MMXAvailable;
+-int mmxsupport();
++static int mmxsupport();
+ #endif
+ 
+ /*
+@@ -413,7 +413,7 @@
+ 
+ 
+ static int mmx_supported = 0;
+-int mmxsupport()
++static int mmxsupport()
+ {
+ 
+ #ifdef HAVE_MMX_INTEL_MNEMONICS
+--- movtar_play.c
++++ movtar_play.c
+@@ -260,7 +260,9 @@
+     }
+   }
+ 
++#if defined(HAVE_MMX_ATT_MNEMONICS)
+   asm ("emms");
++#endif
+ }
+ 
+ static int64 rb16mask = 0x00f800f800f800f8; // just red and blue remain
+@@ -460,7 +462,9 @@
+     }
+   }
+ 
++#if defined(HAVE_MMX_ATT_MNEMONICS)
+   asm ("emms");
++#endif
+ }
+ #endif // ifndef IRIX
+ 
+--- rtjpeg/RTjpeg.h
++++ rtjpeg/RTjpeg.h
+@@ -25,7 +25,7 @@
+ #ifndef __RTjpeg_h__
+ #define __RTjpeg_h__
+ 
+-#ifndef _I386_TYPES_H
++#if 0
+ typedef unsigned char __u8;
+ typedef unsigned short __u16;
+ typedef unsigned long __u32;
+@@ -33,11 +33,13 @@
+ typedef signed char __s8;
+ typedef signed short __s16;
+ typedef signed long __s32;
++#else
++#include <asm/types.h>
+ #endif
+ 
+ extern void RTjpeg_init_Q(__u8 Q);
+-extern void RTjpeg_init_compress(long unsigned int *buf, int width, int height, __u8 Q);
+-extern void RTjpeg_init_decompress(long unsigned int *buf, int width, int height);
++extern void RTjpeg_init_compress(__u32 *buf, int width, int height, __u8 Q);
++extern void RTjpeg_init_decompress(__u32 *buf, int width, int height);
+ extern int RTjpeg_compressYUV420(__s8 *sp, unsigned char *bp);
+ extern int RTjpeg_compressYUV422(__s8 *sp, unsigned char *bp);
+ extern void RTjpeg_decompressYUV420(__s8 *sp, __u8 *bp);
+--- /movtar_play.c	2001-07-13 23:38:03.000000000 +0200
++++ movtar_play.c	2003-08-18 10:10:16.000000000 +0200
+@@ -141,9 +141,9 @@
+ #if defined(__GNUC__)
+ #define int64 unsigned long long
+ #endif
+-static const int64 te0 = 0x0080008000800080; // -128 << 2
+-static const int64 te1 = 0xe9fa7168e9fa7168; // for cb 
+-static const int64 te2 = 0x59bad24d59bad24d; // for cr
++static const int64 __attribute__ ((used)) te0 = 0x0080008000800080; // -128 << 2
++static const int64 __attribute__ ((used)) te1 = 0xe9fa7168e9fa7168; // for cb 
++static const int64 __attribute__ ((used)) te2 = 0x59bad24d59bad24d; // for cr
+ 
+ METHODDEF(void)
+ ycc_rgb32_convert_mmx (j_decompress_ptr cinfo,
+@@ -267,7 +267,7 @@
+ static int64 rb16mult = 0x2000000820000008; // mult/Add factor (see intel appnote 553)
+ static int64 g16mask = 0x0000f8000000f800; // just green remains
+ static int64 rgb16offset = 6; // shift right after the whole stuff
+-static const int64 shiftmask = 0xffff; // shift right after the whole stuff
++static const int64  __attribute__ ((used)) shiftmask = 0xffff; // shift right after the whole stuff
+ 
+ void calc_rgb16_params(struct SDL_PixelFormat *format)
+ {

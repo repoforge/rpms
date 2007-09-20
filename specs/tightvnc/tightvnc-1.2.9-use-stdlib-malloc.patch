@@ -1,0 +1,46 @@
+--- vnc_unixsrc/Xvnc/lib/Xau/AuRead.c.deush	2004-09-03 14:21:45.927081876 +0200
++++ vnc_unixsrc/Xvnc/lib/Xau/AuRead.c	2004-09-03 14:23:47.945527051 +0200
+@@ -28,6 +28,7 @@
+ */
+ 
+ #include <X11/Xauth.h>
++#include <stdlib.h>
+ 
+ static
+ read_short (shortp, file)
+@@ -49,7 +50,7 @@
+ FILE	*file;
+ {
+     unsigned short  len;
+-    char	    *data, *malloc ();
++    char	    *data;
+ 
+     if (read_short (&len, file) == 0)
+ 	return 0;
+@@ -76,7 +77,6 @@
+ {
+     Xauth   local;
+     Xauth   *ret;
+-    char    *malloc ();
+ 
+     if (read_short (&local.family, auth_file) == 0)
+ 	return 0;
+--- vnc_unixsrc/Xvnc/lib/Xau/AuWrite.c.deush	2004-09-03 14:22:03.700438043 +0200
++++ vnc_unixsrc/Xvnc/lib/Xau/AuWrite.c	2004-09-03 14:25:11.554202519 +0200
+@@ -28,6 +28,7 @@
+ */
+ 
+ #include <X11/Xauth.h>
++#include <stdlib.h>
+ 
+ static
+ write_short (s, file)
+@@ -61,8 +62,6 @@
+ FILE	*auth_file;
+ Xauth	*auth;
+ {
+-    char    *malloc ();
+-
+     if (write_short (auth->family, auth_file) == 0)
+ 	return 0;
+     if (write_counted_string (auth->address_length, auth->address, auth_file) == 0)

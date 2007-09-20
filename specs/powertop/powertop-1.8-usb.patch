@@ -1,0 +1,11 @@
+--- usb.c.orig	2007-08-24 19:22:14.882108416 +0200
++++ usb.c	2007-08-24 19:22:26.326368624 +0200
+@@ -89,7 +89,7 @@
+ 			fclose(file);
+ 			continue;
+ 		}
+-		if (!strtoull(line, NULL,10)<1)
++		if (strtoull(line, NULL,10)<1)
+ 			need_hint = 1;
+ 
+ 		fclose(file);

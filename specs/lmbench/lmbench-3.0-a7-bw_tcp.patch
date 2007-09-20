@@ -1,0 +1,9 @@
+--- lmbench-3.0-a7/doc/bw_tcp.8.bw_tcp	2000-10-16 18:14:01.000000000 +0300
++++ lmbench-3.0-a7/doc/bw_tcp.8	2006-11-17 14:29:35.000000000 +0200
+@@ -1,5 +1,5 @@
+ .\" $Id$
+-.TH BW_TCP 1 "$Date$" "(c)1994 Larry McVoy" "LMBENCH"
++.TH BW_TCP 8 "$Date$" "(c)1994 Larry McVoy" "LMBENCH"
+ .SH NAME
+ bw_tcp \- time data movement through TCP/IP sockets
+ .SH SYNOPSIS

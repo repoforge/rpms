@@ -1,0 +1,22 @@
+diff -uNr bindings/python-orig/Makefile.am bindings/python/Makefile.am
+--- bindings/python-orig/Makefile.am	2007-03-31 11:21:43.000000000 +0100
++++ bindings/python/Makefile.am	2007-03-31 11:24:47.000000000 +0100
+@@ -2,6 +2,7 @@
+ 
+ pyexec_PROGRAMS = rrdtoolmodule.so
+ 
++rrdtoolmodule_so_LDFLAGS = -module -shared
+ rrdtoolmodule_so_LDADD = $(top_builddir)/src/librrd.la
+ rrdtoolmodule_so_SOURCES = rrdtoolmodule.c
+ 
+diff -uNr bindings/python-orig/Makefile.in bindings/python/Makefile.in
+--- bindings/python-orig/Makefile.in	2007-03-31 11:21:43.000000000 +0100
++++ bindings/python/Makefile.in	2007-03-31 11:22:14.000000000 +0100
+@@ -233,6 +233,7 @@
+ target_os = @target_os@
+ target_vendor = @target_vendor@
+ AM_CPPFLAGS = @CFLAGS@ -I$(top_srcdir)/src @PYTHON_INCLUDES@
++rrdtoolmodule_so_LDFLAGS = -module -shared
+ rrdtoolmodule_so_LDADD = $(top_builddir)/src/librrd.la
+ rrdtoolmodule_so_SOURCES = rrdtoolmodule.c
+ noinst_HEADERS = rrd_extra.h

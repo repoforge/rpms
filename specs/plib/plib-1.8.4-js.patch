@@ -1,0 +1,11 @@
+--- plib-1.8.4/src/js/jsLinuxOld.cxx~	2006-06-03 20:00:00.000000000 +0200
++++ plib-1.8.4/src/js/jsLinuxOld.cxx	2006-06-03 20:00:00.000000000 +0200
+@@ -27,7 +27,7 @@
+ 
+ #include <linux/joystick.h>
+ 
+-#if !defined(JS_VERSION) || JS_VERSION >= 0x010000
++#if !defined(JS_VERSION) || JS_VERSION < 0x010000
+ 
+ #include <fcntl.h>
+ #include <sys/ioctl.h>

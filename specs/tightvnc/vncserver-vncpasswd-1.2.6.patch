@@ -1,0 +1,10 @@
+--- vnc_unixsrc/vncserver.deush	2003-01-02 17:50:08.000000000 +0100
++++ vnc_unixsrc/vncserver	2003-01-02 17:52:50.000000000 +0100
+@@ -127,6 +127,7 @@
+ if (!-e _ || ($mode & 077) != 0) {
+     warn "\nYou will require a password to access your desktops.\n\n";
+     system("vncpasswd $vncUserDir/passwd");
++    chmod 0600, "$vncUserDir/passwd";
+     if (($? & 0xFF00) != 0) {
+         exit 1;
+     }

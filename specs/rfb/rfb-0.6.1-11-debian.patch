@@ -1,0 +1,1180 @@
+--- rfb-0.6.1.orig/lib/.depend
++++ rfb-0.6.1/lib/.depend
+@@ -1,29 +1,33 @@
+-computeSubrectDimensions.o: computeSubrectDimensions.cc
+ Connection.o: Connection.cc ../include/Connection.h
++Framebuffer.o: Framebuffer.cc ../include/Framebuffer.h \
++ ../include/rfb.h
++PixelFormatFramebuffer.o: PixelFormatFramebuffer.cc \
++ ../include/PixelFormatFramebuffer.h ../include/Framebuffer.h \
++ ../include/rfb.h
++ScaleEasyFramebuffer.o: ScaleEasyFramebuffer.cc \
++ ../include/ScaleFramebuffer.h ../include/Framebuffer.h \
++ ../include/rfb.h
++ScaleFramebuffer.o: ScaleFramebuffer.cc ../include/ScaleFramebuffer.h \
++ ../include/Framebuffer.h ../include/rfb.h
++ScaleFramebufferAA.o: ScaleFramebufferAA.cc \
++ ../include/ScaleFramebuffer.h ../include/Framebuffer.h \
++ ../include/rfb.h
++ScaleFramebuffer_save.o: ScaleFramebuffer_save.cc \
++ ../include/ScaleFramebuffer.h ../include/Framebuffer.h \
++ ../include/rfb.h
++ZlibConnection.o: ZlibConnection.cc ../include/ZlibConnection.h \
++ ../include/Connection.h
++computeSubrectDimensions.o: computeSubrectDimensions.cc
+ d3des.o: d3des.cc ../include/d3des.h
+ encodeRectangleCoRRE.o: encodeRectangleCoRRE.cc ../include/rfbServer.h \
+-  ../include/rfb.h ../include/Connection.h ../include/Framebuffer.h
++ ../include/rfb.h ../include/Connection.h ../include/Framebuffer.h
+ encodeRectangleHextile.o: encodeRectangleHextile.cc \
+-  ../include/rfbServer.h ../include/rfb.h ../include/Connection.h \
+-  ../include/Framebuffer.h
++ ../include/rfbServer.h ../include/rfb.h ../include/Connection.h \
++ ../include/Framebuffer.h
+ encodeRectangleRRE.o: encodeRectangleRRE.cc ../include/rfbServer.h \
+-  ../include/rfb.h ../include/Connection.h ../include/Framebuffer.h
+-Framebuffer.o: Framebuffer.cc ../include/Framebuffer.h ../include/rfb.h
+-PixelFormatFramebuffer.o: PixelFormatFramebuffer.cc \
+-  ../include/PixelFormatFramebuffer.h ../include/Framebuffer.h \
+-  ../include/rfb.h
++ ../include/rfb.h ../include/Connection.h ../include/Framebuffer.h
+ rfb.o: rfb.cc ../include/rfb.h
+ rfbClient.o: rfbClient.cc ../include/rfbClient.h ../include/rfb.h \
+-  ../include/Framebuffer.h ../include/Connection.h
++ ../include/Framebuffer.h ../include/Connection.h
+ rfbServer.o: rfbServer.cc ../include/rfbServer.h ../include/rfb.h \
+-  ../include/Connection.h ../include/Framebuffer.h ../include/d3des.h
+-ScaleEasyFramebuffer.o: ScaleEasyFramebuffer.cc \
+-  ../include/ScaleFramebuffer.h ../include/Framebuffer.h ../include/rfb.h
+-ScaleFramebufferAA.o: ScaleFramebufferAA.cc ../include/ScaleFramebuffer.h \
+-  ../include/Framebuffer.h ../include/rfb.h
+-ScaleFramebuffer.o: ScaleFramebuffer.cc ../include/ScaleFramebuffer.h \
+-  ../include/Framebuffer.h ../include/rfb.h
+-ScaleFramebuffer_save.o: ScaleFramebuffer_save.cc \
+-  ../include/ScaleFramebuffer.h ../include/Framebuffer.h ../include/rfb.h
+-ZlibConnection.o: ZlibConnection.cc ../include/ZlibConnection.h \
+-  ../include/Connection.h
++ ../include/Connection.h ../include/Framebuffer.h ../include/d3des.h
+--- rfb-0.6.1.orig/lib/Framebuffer.cc
++++ rfb-0.6.1/lib/Framebuffer.cc
+@@ -161,27 +161,54 @@
+                             unsigned int r,
+                             unsigned int g,
+                             unsigned int b,
+-                            unsigned int m = 255 )
++                            unsigned int m )
+ {
+     FramebufferPixel(this,x,y).setColor(r,g,b,m);
+ }
+ 
+ 
++void Framebuffer::putPixel( unsigned int x,
++                            unsigned int y,
++                            unsigned int r,
++                            unsigned int g,
++                            unsigned int b )
++{
++    FramebufferPixel(this,x,y).setColor(r,g,b,255);
++}
++
++
+ void Framebuffer::getPixel( unsigned int x,
+                             unsigned int y,
+                             unsigned int &r,
+                             unsigned int &g,
+                             unsigned int &b,
+-                            unsigned int m = 255 )
++                            unsigned int m )
+ {
+     FramebufferPixel(this,x,y).getColor(r,g,b,m);
+ }
+ 
++void Framebuffer::getPixel( unsigned int x,
++                            unsigned int y,
++                            unsigned int &r,
++                            unsigned int &g,
++                            unsigned int &b )
++{
++    FramebufferPixel(this,x,y).getColor(r,g,b,255);
++}
++
++
++void FramebufferPixel::setColor( unsigned int r,
++                                 unsigned int g,
++                                 unsigned int b )
++{
++    FramebufferPixel::setColor(r,g,b,255);
++}
++
+ 
+ void FramebufferPixel::setColor( unsigned int r,
+                                  unsigned int g,
+                                  unsigned int b,
+-                                 unsigned int m = 255 )
++                                 unsigned int m )
+ {
+     unsigned int r_max =   fb->pixelFormat.red_max;
+     unsigned int g_max =   fb->pixelFormat.green_max;
+@@ -245,8 +272,15 @@
+ 
+ void FramebufferPixel::getColor( unsigned int &r,
+                                  unsigned int &g,
++                                 unsigned int &b )
++{
++  FramebufferPixel::getColor(r,g,b,255);
++}
++
++void FramebufferPixel::getColor( unsigned int &r,
++                                 unsigned int &g,
+                                  unsigned int &b,
+-                                 unsigned int m = 255 )
++                                 unsigned int m )
+ {
+     unsigned int r_max =   fb->pixelFormat.red_max;
+     unsigned int g_max =   fb->pixelFormat.green_max;
+@@ -285,13 +319,16 @@
+ }
+ 
+ 
+-
++int saveFramebufferAsPPM( int file, Framebuffer *fb ) {
++  return saveFramebufferAsPPM(file, fb,
++					 0,0,-1,-1);
++}
+ 
+ int saveFramebufferAsPPM( int file, Framebuffer *fb,
+-                          int x0 = 0,
+-                          int y0 = 0,
+-                          int width = -1,
+-                          int height = -1 ) {
++                          int x0,
++                          int y0,
++                          int width,
++                          int height ) {
+     if ( width < 0 ) width = fb->width;
+     if ( height < 0 ) height = fb->height;
+     char tmp[255] = "";
+--- rfb-0.6.1.orig/lib/ScaleFramebuffer.cc
++++ rfb-0.6.1/lib/ScaleFramebuffer.cc
+@@ -207,7 +207,7 @@
+             if ( (_y <= row) && (row <= _y + _h) ) {
+ 	        for ( col = __x; col < __x + __w; ++col ) {
+ //	        for ( col = 0; col < cols; ++col ) {
+-                    getPixel( col, _cy, _r, _g, _b );
++                    getPixel( col, _cy, _r, _g, _b);
+ 		    rs[col] += fracrowleft * _r;
+ 		    gs[col] += fracrowleft * _g;
+ 		    bs[col] += fracrowleft * _b;
+--- rfb-0.6.1.orig/lib/rfb.cc
++++ rfb-0.6.1/lib/rfb.cc
+@@ -28,7 +28,12 @@
+ /* CARD16                                         */
+ /**************************************************/
+ 
+-CARD16::CARD16( unsigned int _value = 0 )
++CARD16::CARD16()
++{
++  CARD16::CARD16(0);
++}
++
++CARD16::CARD16( unsigned int _value )
+ {
+   value[1] = _value;
+   _value >>= 8;
+@@ -55,6 +60,11 @@
+ /* CARD32                                         */
+ /**************************************************/
+ 
++CARD32::CARD32()
++{
++  CARD32::CARD32(0);
++}
++
+ CARD32::CARD32( unsigned int _value = 0 )
+ {
+   value[3] = _value;
+--- rfb-0.6.1.orig/include/Framebuffer.h
++++ rfb-0.6.1/include/Framebuffer.h
+@@ -60,14 +60,26 @@
+                    unsigned int &r,
+                    unsigned int &g,
+                    unsigned int &b,
+-                   unsigned int m = 255 );
++                   unsigned int m );
++
++    void getPixel( unsigned int x,
++                   unsigned int y,
++                   unsigned int &r,
++                   unsigned int &g,
++                   unsigned int &b );
+                          
+     void putPixel( unsigned int x,
+                    unsigned int y,
+                    unsigned int r,
+                    unsigned int g,
+                    unsigned int b,
+-                   unsigned int m = 255 );
++                   unsigned int m );
++
++    void putPixel( unsigned int x,
++                   unsigned int y,
++                   unsigned int r,
++                   unsigned int g,
++                   unsigned int b );
+ 
+     PixelFormat pixelFormat;
+     unsigned int width;
+@@ -94,12 +106,20 @@
+         void setColor( unsigned int r,
+                        unsigned int g,
+                        unsigned int b,
+-                       unsigned int m = 255 );
++                       unsigned int m );
++
++        void setColor( unsigned int r,
++                       unsigned int g,
++                       unsigned int b );
+ 
+         void getColor( unsigned int &r,
+                        unsigned int &g,
+                        unsigned int &b,
+-                       unsigned int m = 255 );
++                       unsigned int m );
++
++        void getColor( unsigned int &r,
++                       unsigned int &g,
++                       unsigned int &b );
+        
+         void moveUp() { p -= rs; y--; }
+         void moveDown() { p += rs; y++; }
+@@ -120,10 +140,12 @@
+ };
+ 
+ int saveFramebufferAsPPM( int file, Framebuffer *fb,
+-                          int x0 = 0,
+-                          int y0 = 0,
+-                          int width = -1,
+-                          int height = -1 );
++                          int x0,
++                          int y0,
++                          int width,
++                          int height );
++
++int saveFramebufferAsPPM( int file, Framebuffer *fb );
+ 
+ }
+ 
+--- rfb-0.6.1.orig/include/rfb.h
++++ rfb-0.6.1/include/rfb.h
+@@ -29,7 +29,8 @@
+ class CARD16
+ {
+  public:
+-  CARD16( unsigned int _value = 0 );
++  CARD16();
++  CARD16( unsigned int _value);
+   operator unsigned int() const {
+     return (value[0] << 8) | value[1];
+   }
+@@ -42,7 +43,8 @@
+ class CARD32
+ {
+  public:
+-  CARD32( unsigned int _value = 0 );
++  CARD32();
++  CARD32( unsigned int _value);
+   operator unsigned int() const {
+     return (value[0] << 24) | (value[1] << 16) | (value[2] << 8) | value[3];
+   }
+--- rfb-0.6.1.orig/include/rfbClient.h
++++ rfb-0.6.1/include/rfbClient.h
+@@ -257,7 +257,7 @@
+ 
+  protected:
+   Rectangle rectangle;
+-  friend ClientStateDecodingRaw;
++  friend class ClientStateDecodingRaw;
+ };
+ 
+ 
+--- rfb-0.6.1.orig/include/rfbServer.h
++++ rfb-0.6.1/include/rfbServer.h
+@@ -25,7 +25,7 @@
+ #include "Connection.h"
+ #include "Framebuffer.h"
+ 
+-#include <list>
++#include <list.h>
+ 
+ namespace rfb {
+ 
+--- rfb-0.6.1.orig/x0rfbserver/.depend
++++ rfb-0.6.1/x0rfbserver/.depend
+@@ -1,24 +1,24 @@
+ OXAbout.o: OXAbout.cc OXAbout.h xclass++.h ../include/version.h
+ OXButtonBox.o: OXButtonBox.cc OXButtonBox.h ../icons/top2.xpm \
+-  ../icons/top2_hexonet.xpm ../icons/right2.xpm
++ ../icons/top2_hexonet.xpm ../icons/right2.xpm
+ OXNewClient.o: OXNewClient.cc OXNewClient.h
+ OXProperties.o: OXProperties.cc OXProperties.h xclass++.h \
+-  ../include/d3des.h OXButtonBox.h
++ ../include/d3des.h OXButtonBox.h
+ OXServiceApplet.o: OXServiceApplet.cc OXServiceApplet.h xclass++.h \
+-  ../icons/serviceInactive16x16.xpm ../icons/serviceActive16x16.xpm \
+-  ../icons/serviceInactive32x32.xpm ../icons/serviceActive32x32.xpm \
+-  ../icons/serviceInactive40x40.xpm ../icons/serviceActive40x40.xpm \
+-  ../icons/rfb_service_large.xpm ../icons/digit.0.xpm \
+-  ../icons/digit.1.xpm ../icons/digit.2.xpm ../icons/digit.3.xpm \
+-  ../icons/digit.4.xpm ../icons/digit.5.xpm ../icons/digit.6.xpm \
+-  ../icons/digit.7.xpm ../icons/digit.8.xpm ../icons/digit.9.xpm \
+-  ../icons/digit.colon.xpm ../icons/digit.minus.xpm OXAbout.h \
+-  ../include/version.h OXProperties.h
+-x0rfbserver.o: x0rfbserver.cc ../include/rfbServer.h ../include/rfb.h \
+-  ../include/Connection.h ../include/Framebuffer.h ../include/version.h \
+-  OXAbout.h xclass++.h ../icons/rfb_service_large.xpm \
+-  OSocketFileHandler.h OXServiceApplet.h OXProperties.h OXNewClient.h \
+-  XUpdateScanner.h ../include/ZlibConnection.h
++ ../icons/serviceInactive16x16.xpm ../icons/serviceActive16x16.xpm \
++ ../icons/serviceInactive32x32.xpm ../icons/serviceActive32x32.xpm \
++ ../icons/serviceInactive40x40.xpm ../icons/serviceActive40x40.xpm \
++ ../icons/rfb_service_large.xpm ../icons/digit.0.xpm \
++ ../icons/digit.1.xpm ../icons/digit.2.xpm ../icons/digit.3.xpm \
++ ../icons/digit.4.xpm ../icons/digit.5.xpm ../icons/digit.6.xpm \
++ ../icons/digit.7.xpm ../icons/digit.8.xpm ../icons/digit.9.xpm \
++ ../icons/digit.colon.xpm ../icons/digit.minus.xpm OXAbout.h \
++ ../include/version.h OXProperties.h
+ XUpdateScanner.o: XUpdateScanner.cc XUpdateScanner.h \
+-  ../include/rfbServer.h ../include/rfb.h ../include/Connection.h \
+-  ../include/Framebuffer.h OXProperties.h xclass++.h
++ ../include/rfbServer.h ../include/rfb.h ../include/Connection.h \
++ ../include/Framebuffer.h OXProperties.h xclass++.h
++x0rfbserver.o: x0rfbserver.cc ../include/rfbServer.h ../include/rfb.h \
++ ../include/Connection.h ../include/Framebuffer.h ../include/version.h \
++ OXAbout.h xclass++.h ../icons/rfb_service_large.xpm \
++ OSocketFileHandler.h OXServiceApplet.h OXProperties.h OXNewClient.h \
++ XUpdateScanner.h ../include/ZlibConnection.h
+--- rfb-0.6.1.orig/x0rfbserver/OXServiceApplet.cc
++++ rfb-0.6.1/x0rfbserver/OXServiceApplet.cc
+@@ -20,7 +20,7 @@
+ 
+ #include "OXServiceApplet.h"
+ 
+-#include <iostream>
++#include <iostream.h>
+ 
+ #include "../icons/serviceInactive16x16.xpm"
+ #include "../icons/serviceActive16x16.xpm"
+--- rfb-0.6.1.orig/x0rfbserver/x0rfbserver.cc
++++ rfb-0.6.1/x0rfbserver/x0rfbserver.cc
+@@ -484,7 +484,7 @@
+   if ( _fh == fhSocket ) {
+     if ( _mask & XCM_READABLE ) {
+       struct sockaddr addr;
+-      size_t laddr = sizeof(addr);
++      socklen_t laddr = sizeof(addr);
+       int fdClient = accept(fd, &addr, &laddr);
+       int one = 1;
+       setsockopt(fdClient, IPPROTO_TCP, TCP_NODELAY, (char *)&one, sizeof(one));
+--- rfb-0.6.1.orig/x0rfbserver/xclass++.h
++++ rfb-0.6.1/x0rfbserver/xclass++.h
+@@ -1,7 +1,7 @@
+ #ifndef _hexonet_xclass_plusplus_
+ #define _hexonet_xclass_plusplus_
+ 
+-#include <map>
++#include <map.h>
+ 
+ 
+ #define LAYOUT_HINTS map< OXFrame*, OLayoutHints* > layoutHints
+--- rfb-0.6.1.orig/xrfbviewer/.depend
++++ rfb-0.6.1/xrfbviewer/.depend
+@@ -1,33 +1,34 @@
+ ConnectionInfo.o: ConnectionInfo.cc ConnectionInfo.h
+ FBStreamRecorder.o: FBStreamRecorder.cc FBStreamRecorder.h \
+-  ../include/rfb.h
++ ../include/rfb.h
+ OXAbout.o: OXAbout.cc OXAbout.h xclass++.h ../include/version.h
+ OXConnectionDetails.o: OXConnectionDetails.cc OXConnectionDetails.h \
+-  ConnectionInfo.h OXConnectionOptions.h ../include/version.h \
+-  ../icons/top.xpm ../icons/top_hexonet.xpm ../icons/right.xpm
++ ConnectionInfo.h OXConnectionOptions.h ../include/version.h \
++ ../icons/top.xpm ../icons/top_hexonet.xpm ../icons/right.xpm
+ OXConnectionOptions.o: OXConnectionOptions.cc OXConnectionOptions.h \
+-  ConnectionInfo.h
++ ConnectionInfo.h
+ OXPassword.o: OXPassword.cc OXPassword.h ConnectionInfo.h
+ OXViewerApplet.o: OXViewerApplet.cc OXViewerApplet.h ConnectionInfo.h \
+-  OXAbout.h xclass++.h OXConnectionOptions.h OXConnectionDetails.h \
+-  ../icons/rfb_viewer_large.xpm ../icons/viewerInactive16x16.xpm \
+-  ../icons/viewerInactive32x32.xpm ../icons/viewerInactive40x40.xpm \
+-  ../icons/digit.0.xpm ../icons/digit.1.xpm ../icons/digit.2.xpm \
+-  ../icons/digit.3.xpm ../icons/digit.4.xpm ../icons/digit.5.xpm \
+-  ../icons/digit.6.xpm ../icons/digit.7.xpm ../icons/digit.8.xpm \
+-  ../icons/digit.9.xpm ../icons/digit.colon.xpm ../icons/digit.minus.xpm \
+-  ../include/version.h
+-RFMacroRecorder.o: RFMacroRecorder.cc RFMacroRecorder.h ../include/rfb.h
+-XFramebuffer.o: XFramebuffer.cc XFramebuffer.h ../include/Framebuffer.h \
+-  ../include/rfb.h
++ OXAbout.h xclass++.h OXConnectionOptions.h OXConnectionDetails.h \
++ ../icons/rfb_viewer_large.xpm ../icons/viewerInactive16x16.xpm \
++ ../icons/viewerInactive32x32.xpm ../icons/viewerInactive40x40.xpm \
++ ../icons/digit.0.xpm ../icons/digit.1.xpm ../icons/digit.2.xpm \
++ ../icons/digit.3.xpm ../icons/digit.4.xpm ../icons/digit.5.xpm \
++ ../icons/digit.6.xpm ../icons/digit.7.xpm ../icons/digit.8.xpm \
++ ../icons/digit.9.xpm ../icons/digit.colon.xpm \
++ ../icons/digit.minus.xpm ../include/version.h
++RFMacroRecorder.o: RFMacroRecorder.cc RFMacroRecorder.h \
++ ../include/rfb.h
++XFramebuffer.o: XFramebuffer.cc XFramebuffer.h \
++ ../include/Framebuffer.h ../include/rfb.h
+ xplayfbs.o: xplayfbs.cc ../icons/begin.xpm ../icons/rewind.xpm \
+-  ../icons/play.xpm ../icons/eject.xpm ../icons/forward.xpm \
+-  ../icons/end.xpm ../icons/fbs_player.xpm ../include/rfb.h OXAbout.h \
+-  xclass++.h ../include/version.h
++ ../icons/play.xpm ../icons/eject.xpm ../icons/forward.xpm \
++ ../icons/end.xpm ../icons/fbs_player.xpm ../include/rfb.h OXAbout.h \
++ xclass++.h ../include/version.h
+ xrfbviewer.o: xrfbviewer.cc ../include/rfbClient.h ../include/rfb.h \
+-  ../include/Framebuffer.h ../include/Connection.h OXAbout.h xclass++.h \
+-  OXViewerApplet.h ConnectionInfo.h OXConnectionOptions.h \
+-  OXConnectionDetails.h OXPassword.h XFramebuffer.h \
+-  ../include/ScaleFramebuffer.h ../include/PixelFormatFramebuffer.h \
+-  ../include/d3des.h ../include/ZlibConnection.h FBStreamRecorder.h \
+-  RFMacroRecorder.h ../icons/rfb_viewer_large.xpm ../include/version.h
++ ../include/Framebuffer.h ../include/Connection.h OXAbout.h xclass++.h \
++ OXViewerApplet.h ConnectionInfo.h OXConnectionOptions.h \
++ OXConnectionDetails.h OXPassword.h XFramebuffer.h \
++ ../include/ScaleFramebuffer.h ../include/PixelFormatFramebuffer.h \
++ ../include/d3des.h ../include/ZlibConnection.h FBStreamRecorder.h \
++ RFMacroRecorder.h ../icons/rfb_viewer_large.xpm ../include/version.h
+--- rfb-0.6.1.orig/xrfbviewer/OXViewerApplet.cc
++++ rfb-0.6.1/xrfbviewer/OXViewerApplet.cc
+@@ -24,7 +24,7 @@
+ #include "OXConnectionOptions.h"
+ #include "OXConnectionDetails.h"
+ 
+-#include <iostream>
++#include <iostream.h>
+ 
+ #include <sys/types.h>
+ #include <fcntl.h>
+@@ -197,7 +197,7 @@
+   if ( _fh == fhSocket ) {
+     cout << "Connection request" << endl;
+     struct sockaddr addr;
+-    size_t laddr = sizeof(addr);
++    socklen_t laddr = sizeof(addr);
+     int fdClient = accept(_fh->GetFd(), &addr, &laddr);
+     int one = 1;
+     setsockopt(fdClient, IPPROTO_TCP, TCP_NODELAY, (char *)&one, sizeof(one));
+--- rfb-0.6.1.orig/xrfbviewer/OXViewerApplet.h
++++ rfb-0.6.1/xrfbviewer/OXViewerApplet.h
+@@ -30,7 +30,7 @@
+ 
+ #include "ConnectionInfo.h"
+ 
+-#include <map>
++#include <map.h>
+ 
+ class OXCompositeFrame;
+ 
+--- rfb-0.6.1.orig/xrfbviewer/xclass++.h
++++ rfb-0.6.1/xrfbviewer/xclass++.h
+@@ -1,7 +1,7 @@
+ #ifndef _hexonet_xclass_plusplus_
+ #define _hexonet_xclass_plusplus_
+ 
+-#include <map>
++#include <map.h>
+ 
+ 
+ #define LAYOUT_HINTS map< OXFrame*, OLayoutHints* > layoutHints
+--- rfb-0.6.1.orig/xrfbviewer/xplayfbs.cc
++++ rfb-0.6.1/xrfbviewer/xplayfbs.cc
+@@ -37,6 +37,7 @@
+ #include <xclass/OXClient.h>
+ #include <xclass/OXWindow.h>
+ #include <xclass/OXMainFrame.h>
++#undef max
+ #include <xclass/OXFileDialog.h>
+ #include <xclass/OFileHandler.h>
+ #include <xclass/OTimer.h>
+@@ -312,24 +313,24 @@
+ 
+ void printVersion_xplayfbs()
+ {
+-  cerr << endl << "heXoNet FBS player"
+-       << endl << "Version " << VERSION_xplayfbs
+-       << endl;
++  std::cerr << std::endl << "heXoNet FBS player"
++       << std::endl << "Version " << VERSION_xplayfbs
++       << std::endl;
+ }
+ 
+ 
+ void printHelp_xplayfbs()
+ {
+   printVersion_xplayfbs();
+-  cerr 
+-    << endl 
+-    << "usage: xplayfbs [<options>] [file]" << endl
+-    << "       xplayfbs [<options>] -stdout [file]" << endl
+-    << "       xplayfbs [<options>] -connect [<host>][:<display>] [file]" << endl
+-    << "       xplayfbs -about" << endl
+-    << endl
+-    << "<options>" << endl
+-    << "       " << endl
++  std::cerr 
++    << std::endl 
++    << "usage: xplayfbs [<options>] [file]" << std::endl
++    << "       xplayfbs [<options>] -stdout [file]" << std::endl
++    << "       xplayfbs [<options>] -connect [<host>][:<display>] [file]" << std::endl
++    << "       xplayfbs -about" << std::endl
++    << std::endl
++    << "<options>" << std::endl
++    << "       " << std::endl
+   ;
+   exit( 1 );
+ }
+--- rfb-0.6.1.orig/xrfbviewer/xrfbviewer.cc
++++ rfb-0.6.1/xrfbviewer/xrfbviewer.cc
+@@ -52,6 +52,7 @@
+ #include <xclass/OFileHandler.h>
+ #include <xclass/OXCanvas.h>
+ #include <xclass/OTimer.h>
++#undef max
+ #include <xclass/OXFileDialog.h>
+ 
+ #include <X11/cursorfont.h>
+@@ -84,7 +85,7 @@
+ 
+ #ifdef DEBUG
+ #include <iostream>
+-#define debug(msg) (cerr << msg << endl)
++#define debug(msg) (std::cerr << msg << endl)
+ #else // DEBUG
+ #define debug(msg)
+ #endif // DEBUG
+@@ -284,7 +285,7 @@
+ 
+   virtual int send( unsigned char* _data, unsigned int _size )
+     {
+-//      cerr << "send() " << _size << endl;
++//      std::cerr << "send() " << _size << endl;
+       if ( !client->fh1 )
+         if ( client->fd0 == client->fd1 ) {
+ 	  delete client->fh0;
+@@ -300,7 +301,7 @@
+           client->fh1 = new OFileHandler( client->mainFrame,
+ 	                                  client->fd1,
+ 		                          XCM_WRITABLE | XCM_EXCEPTION );
+-//      cerr << "return send()" << endl;
++//      std::cerr << "return send()" << endl;
+       return connection->send( _data, _size );
+     }
+ 
+@@ -526,18 +527,18 @@
+   BufferedConnection *connection = client->connectionLayer.buffered;
+   int fd = _fh->GetFd();
+   
+-//  cerr << "HandleFileEvent() " << fd << endl;
++//  std::cerr << "HandleFileEvent() " << fd << endl;
+ 
+   if ( (mask & XCM_EXCEPTION) ) {
+-//    cerr << "XCM_EXCEPTION" << endl;
++//    std::cerr << "XCM_EXCEPTION" << endl;
+ 
+-//    cerr << "return HandleFileEvent() XCM_EXCEPTION " << endl;
++//    std::cerr << "return HandleFileEvent() XCM_EXCEPTION " << endl;
+     delete this;
+     return true;
+   }
+ 
+   if ( (mask & XCM_READABLE) && (fd == client->fd0) ) {
+-//    cerr << "XCM_READABLE" << endl;
++//    std::cerr << "XCM_READABLE" << endl;
+ 
+     int readSize = connection->receiverBuffer.size - connection->receiverBuffer.end;
+     int bytesRead;
+@@ -546,7 +547,7 @@
+                       readSize );
+     
+     if (bytesRead <= 0) {
+-//      cerr << "return HandleFileEvent() XCM_READABLE" << endl;
++//      std::cerr << "return HandleFileEvent() XCM_READABLE" << endl;
+       delete this;
+       return true;
+     }
+@@ -560,7 +561,7 @@
+ 
+ 
+   if ( (mask & XCM_WRITABLE) && (fd == client->fd1) ) {
+-//    cerr << "XCM_WRITEABLE" << endl;
++//    std::cerr << "XCM_WRITEABLE" << endl;
+ 
+     int writeSize = connection->senderBuffer.end - connection->senderBuffer.pos;
+     if ( writeSize > 0 ) {
+@@ -569,7 +570,7 @@
+                connection->senderBuffer.data + connection->senderBuffer.pos,
+                writeSize );
+       if (bytesWritten < 0) {
+-//        cerr << "return HandleFileEvent() XCM_WRITABLE" << endl;
++//        std::cerr << "return HandleFileEvent() XCM_WRITABLE" << endl;
+         delete this;
+         return true;
+       }
+@@ -583,7 +584,7 @@
+     }
+   }
+ 
+-//  cerr << "return HandleFileEvent() " << endl;
++//  std::cerr << "return HandleFileEvent() " << endl;
+   return True;
+ }
+ 
+@@ -593,7 +594,7 @@
+ {
+   Client::handleProtocolVersion( protocolVersion );
+   protocolVersion[12] = 0;
+-//  cerr << "RFB protocol version: " << protocolVersion;
++//  std::cerr << "RFB protocol version: " << protocolVersion;
+ }
+ 
+ 
+@@ -607,7 +608,7 @@
+ #ifdef USE_ZLIB_WARREN
+ void Client95::handleZlibEnabled()
+ {
+-//  cerr << "Zlib (WARREN) enabled" << endl;
++//  std::cerr << "Zlib (WARREN) enabled" << endl;
+   connectionLayer.buffered->enableReceiverInflation();
+ }
+ #endif
+@@ -660,7 +661,7 @@
+     connectionInfo->recordFBS = (finfo.filename)? 1 : 0;
+     if ( connectionInfo->recordFBS ) {
+       sprintf( connectionInfo->filenameFBS, "%s/%s", finfo.ini_dir, finfo.filename );
+-//      cerr << "FBS - filename: " << connectionInfo->filenameFBS << endl;
++//      std::cerr << "FBS - filename: " << connectionInfo->filenameFBS << endl;
+       
+       fbsRecorder = new FBStreamRecorder( connectionInfo->filenameFBS );
+       fbsRecorder->record( (unsigned char*) "RFB 003.003\n", 12 );
+@@ -682,7 +683,7 @@
+     connectionInfo->recordRFM = (finfo.filename)? 1 : 0;
+     if ( connectionInfo->recordRFM ) {
+       sprintf( connectionInfo->filenameRFM, "%s/%s", finfo.ini_dir, finfo.filename );
+-//      cerr << "RFM - filename: " << connectionInfo->filenameRFM << endl;
++//      std::cerr << "RFM - filename: " << connectionInfo->filenameRFM << endl;
+       
+       rfmRecorder = new RFMacroRecorder( connectionInfo->filenameRFM );
+     }
+@@ -702,9 +703,9 @@
+ {
+   Client::handleServerInitialisation( serverInitialisation );
+ 
+-//  cerr << "Desktop: " << serverInitialisation.name_string << endl;
+-//  cerr << "FB-Width: " << serverInitialisation.framebuffer_width << endl;
+-//  cerr << "FB-Height: " << serverInitialisation.framebuffer_height << endl;
++//  std::cerr << "Desktop: " << serverInitialisation.name_string << endl;
++//  std::cerr << "FB-Width: " << serverInitialisation.framebuffer_width << endl;
++//  std::cerr << "FB-Height: " << serverInitialisation.framebuffer_height << endl;
+ 
+   
+   mainFrame->canvas = new OXCanvas( mainFrame,
+@@ -912,26 +913,26 @@
+ 
+ void printVersion_xrfbviewer()
+ {
+-  cerr << endl << "heXoNet RFB viewer for the X Window System"
+-       << endl << "Version " << VERSION_xrfbviewer
+-       << endl;
++  std::cerr << std::endl << "heXoNet RFB viewer for the X Window System"
++       << std::endl << "Version " << VERSION_xrfbviewer
++       << std::endl;
+ }
+ 
+ void printHelp_xrfbviewer()
+ {
+   printVersion_xrfbviewer();
+-  cerr 
+-    << endl 
+-    << "usage: xrfbviewer [<options>] [<host>][:<display>]" << endl
+-    << "       xrfbviewer [<options>] -listen [<display>]" << endl
+-    << "       xrfbviewer [<options>] -stdio" << endl
+-    << "       xrfbviewer -about" << endl
+-    << endl
+-    << "<options>" << endl
+-    << "       -shared" << endl
+-    << "       -viewonly" << endl
+-    << "       -bgr233 | -spf" << endl
+-    << "       -scale <num>/<denum>" << endl;
++  std::cerr 
++    << std::endl 
++    << "usage: xrfbviewer [<options>] [<host>][:<display>]" << std::endl
++    << "       xrfbviewer [<options>] -listen [<display>]" << std::endl
++    << "       xrfbviewer [<options>] -stdio" << std::endl
++    << "       xrfbviewer -about" << std::endl
++    << std::endl
++    << "<options>" << std::endl
++    << "       -shared" << std::endl
++    << "       -viewonly" << std::endl
++    << "       -bgr233 | -spf" << std::endl
++    << "       -scale <num>/<denum>" << std::endl;
+   ;
+   exit( 1 );
+ }
+--- rfb-0.6.1.orig/rfbcat/.depend
++++ rfb-0.6.1/rfbcat/.depend
+@@ -1,5 +1,5 @@
+ FBStreamRecorder.o: FBStreamRecorder.cc FBStreamRecorder.h \
+-  ../include/rfb.h
++ ../include/rfb.h
+ rfbcat.o: rfbcat.cc ../include/rfbClient.h ../include/rfb.h \
+-  ../include/Framebuffer.h ../include/Connection.h ../include/d3des.h \
+-  ../include/version.h FBStreamRecorder.h
++ ../include/Framebuffer.h ../include/Connection.h ../include/d3des.h \
++ ../include/version.h FBStreamRecorder.h
+--- rfb-0.6.1.orig/rfbcat/rfbcat.cc
++++ rfb-0.6.1/rfbcat/rfbcat.cc
+@@ -20,8 +20,8 @@
+ 
+ #include "rfbClient.h"
+ 
+-#include <iostream>
+-#include <fstream>
++#include <iostream.h>
++#include <fstream.h>
+ 
+ #include <stdio.h>
+ #include <stdlib.h>
+--- rfb-0.6.1.orig/debian/patches/remove-rfbcat.patch
++++ rfb-0.6.1/debian/patches/remove-rfbcat.patch
+@@ -0,0 +1,58 @@
++From: Wesley J Landaker <wjl@icecavern.net>
++To: 207479@bugs.debian.org
++Subject: patch for removing rfbcat
++Date: Tue, 9 Mar 2004 22:28:09 -0700
++
++package rfb
++tags 207479 +patch
++thanks
++
++Just for convenience, here is a patch to not compile or install rfbcat (see
++my previous e-mail for justification).
++
++--- rfb-0.6.1/debian/rfb.install.orig   2004-03-09 22:21:13.000000000 -0700
+++++ rfb-0.6.1/debian/rfb.install        2004-03-09 22:21:48.000000000 -0700
++@@ -1,5 +1,4 @@
++ ./x0rfbserver/x0rfbserver usr/bin
++ ./xrfbviewer/xrfbviewer usr/bin
++ ./xrfbviewer/xplayfbs usr/bin
++-./rfbcat/rfbcat usr/bin
++ ./man/man1 usr/share/man
++
++--- rfb-0.6.1/Makefile.orig     2004-03-09 22:20:29.000000000 -0700
+++++ rfb-0.6.1/Makefile  2004-03-09 22:24:15.000000000 -0700
++@@ -20,7 +20,7 @@
++
++ USE_ZLIB = USE_ZLIB_WARREN
++
++-PROGRAMS = xrfbviewer x0rfbserver xplayfbs rfbcat xvncconnect
+++PROGRAMS = xrfbviewer x0rfbserver xplayfbs xvncconnect
++
++ ENVIRONMENT = USE_ZLIB=$(USE_ZLIB)
++
++@@ -31,7 +31,6 @@
++        -cd lib         &&  $(MAKE) -e $(ENVIRONMENT) $@
++        -cd xrfbviewer  &&  $(MAKE) -e $(ENVIRONMENT) $@
++        -cd x0rfbserver &&  $(MAKE) -e $(ENVIRONMENT) $@
++-       -cd rfbcat      &&  $(MAKE) -e $(ENVIRONMENT) $@
++
++
++ librfb.a:
++@@ -46,9 +45,6 @@
++ xplayfbs: librfb.a
++        cd xrfbviewer   &&  $(MAKE) -e $(ENVIRONMENT) $@
++
++-rfbcat: librfb.a
++-       cd rfbcat       &&  $(MAKE) -e $(ENVIRONMENT) $@
++-
++ xvncconnect:
++        cd xvncconnect  &&  $(MAKE) -e $(ENVIRONMENT) $@
++
++@@ -57,5 +53,4 @@
++        cd x0rfbserver  &&  $(MAKE) $@
++        cd xrfbviewer   &&  $(MAKE) $@
++        cd xvncconnect  &&  $(MAKE) $@
++-       cd rfbcat       &&  $(MAKE) $@
++
++
++
+--- rfb-0.6.1.orig/debian/patches/size_t-to-socklen_t.diff
++++ rfb-0.6.1/debian/patches/size_t-to-socklen_t.diff
+@@ -0,0 +1,24 @@
++Wesley J Landaker <wjl@icecavern.net>
++
++--- rfb-0.6.1/x0rfbserver/x0rfbserver.cc.orig	2004-03-15 21:45:26.000000000 -0700
+++++ rfb-0.6.1/x0rfbserver/x0rfbserver.cc	2004-03-15 21:44:48.000000000 -0700
++@@ -484,7 +484,7 @@
++   if ( _fh == fhSocket ) {
++     if ( _mask & XCM_READABLE ) {
++       struct sockaddr addr;
++-      size_t laddr = sizeof(addr);
+++      socklen_t laddr = sizeof(addr);
++       int fdClient = accept(fd, &addr, &laddr);
++       int one = 1;
++       setsockopt(fdClient, IPPROTO_TCP, TCP_NODELAY, (char *)&one, sizeof(one));
++--- rfb-0.6.1/xrfbviewer/OXViewerApplet.cc.orig	2004-03-15 21:43:09.000000000 -0700
+++++ rfb-0.6.1/xrfbviewer/OXViewerApplet.cc	2004-03-15 21:43:56.000000000 -0700
++@@ -197,7 +197,7 @@
++   if ( _fh == fhSocket ) {
++     cout << "Connection request" << endl;
++     struct sockaddr addr;
++-    size_t laddr = sizeof(addr);
+++    socklen_t laddr = sizeof(addr);
++     int fdClient = accept(_fh->GetFd(), &addr, &laddr);
++     int one = 1;
++     setsockopt(fdClient, IPPROTO_TCP, TCP_NODELAY, (char *)&one, sizeof(one));
+--- rfb-0.6.1.orig/debian/patches/gcc3.4.patch
++++ rfb-0.6.1/debian/patches/gcc3.4.patch
+@@ -0,0 +1,51 @@
++From: Andreas Jochens <aj@andaco.de>
++
++When building 'rfb' with gcc-3.4 I get the following error:
++
++In file included from /usr/include/c++/3.4/vector:75,
++                 from /usr/include/xclass/OXItemView.h:25,
++                 from /usr/include/xclass/OXListView.h:32,
++                 from /usr/include/xclass/OXFileDialog.h:26,
++                 from xrfbviewer.cc:55:
++/usr/include/c++/3.4/bits/vector.tcc: In member function `void std::vector<_Tp, _Alloc>::_M_fill_insert(__gnu_cxx::__normal_iterator<typename _Alloc::pointer, std::vector<_Tp, _Alloc> >, size_t, const _Tp&)':
++/usr/include/c++/3.4/bits/vector.tcc:307: error: expected unqualified-id before '(' token
++/usr/include/c++/3.4/bits/vector.tcc: In member function `void std::vector<_Tp, _Alloc>::_M_range_insert(__gnu_cxx::__normal_iterator<typename _Alloc::pointer, std::vector<_Tp, _Alloc> >, _ForwardIterator, _ForwardIterator, std::forward_iterator_tag)':
++/usr/include/c++/3.4/bits/vector.tcc:384: error: expected unqualified-id before '(' token
++In file included from /usr/include/c++/3.4/backward/map.h:59,
++                 from xclass++.h:4,
++                 from OXAbout.h:36,
++                 from xrfbviewer.cc:60:
++/usr/include/c++/3.4/backward/backward_warning.h:32:2: warning: #warning This file includes at least one deprecated or antiquated header. Please consider using one of the 32 headers found in section 17.4.1.2 of the C++ standard. Examples include substituting the <X> header for the <X.h> header for C++ includes, or <iostream> instead of the deprecated header <iostream.h>. To disable this warning use -Wno-deprecated.
++xrfbviewer.cc:783:10: warning: extra tokens at end of #endif directive
++make[2]: *** [xrfbviewer.o] Error 1
++make[2]: Leaving directory `/rfb-0.6.1/xrfbviewer'
++
++With the attached patch 'rfb' can be compiled using gcc-3.4.
++
++Regards
++Andreas Jochens
++
++diff -urN ../tmp-orig/rfb-0.6.1/xrfbviewer/xplayfbs.cc ./xrfbviewer/xplayfbs.cc
++--- ../tmp-orig/rfb-0.6.1/xrfbviewer/xplayfbs.cc	2004-11-12 10:00:49.617032880 +0000
+++++ ./xrfbviewer/xplayfbs.cc	2004-11-12 10:00:31.499787120 +0000
++@@ -37,6 +37,7 @@
++ #include <xclass/OXClient.h>
++ #include <xclass/OXWindow.h>
++ #include <xclass/OXMainFrame.h>
+++#undef max
++ #include <xclass/OXFileDialog.h>
++ #include <xclass/OFileHandler.h>
++ #include <xclass/OTimer.h>
++diff -urN ../tmp-orig/rfb-0.6.1/xrfbviewer/xrfbviewer.cc ./xrfbviewer/xrfbviewer.cc
++--- ../tmp-orig/rfb-0.6.1/xrfbviewer/xrfbviewer.cc	2004-11-12 10:00:49.617032880 +0000
+++++ ./xrfbviewer/xrfbviewer.cc	2004-11-12 10:00:46.513504688 +0000
++@@ -52,6 +52,7 @@
++ #include <xclass/OFileHandler.h>
++ #include <xclass/OXCanvas.h>
++ #include <xclass/OTimer.h>
+++#undef max
++ #include <xclass/OXFileDialog.h>
++ 
++ #include <X11/cursorfont.h>
++
++
+--- rfb-0.6.1.orig/debian/copyright
++++ rfb-0.6.1/debian/copyright
+@@ -0,0 +1,28 @@
++This package was debianized by Paul Hedderly <prh@debian.org> on
++Wed, 16 Oct 2002 12:03:02 +0100.
++
++It was downloaded from:
++	http://www.hexonet.de/software/rfb/
++	http://forum.hexonet.com/
++
++Upstream Author:
++	Jens Wagner <jwagner@hexonet.de>
++
++Copyright:
++ Copyright (c) 2000 heXoNet Support GmbH, D-66424 Homburg
++
++ This is free software; you can redistribute it and/or modify it under
++ the terms of the GNU General Public License as published by the Free
++ Software Foundation; either version 2, or (at your option) any later
++ version.
++
++ This is distributed in the hope that it will be useful, but WITHOUT
++ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
++ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
++ for more details.
++
++ You should have received a copy of the GNU General Public License with
++ your Debian GNU/Linux system, in /usr/share/common-licenses/GPL, or with
++ the debarchiver source package as the file COPYING.  If not, write to the Free
++ Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
++ 02111-1307, USA.
+--- rfb-0.6.1.orig/debian/dirs
++++ rfb-0.6.1/debian/dirs
+@@ -0,0 +1,3 @@
++usr/bin
++usr/sbin
++usr/share/man/man1
+--- rfb-0.6.1.orig/debian/docs
++++ rfb-0.6.1/debian/docs
+@@ -0,0 +1 @@
++README
+--- rfb-0.6.1.orig/debian/menu
++++ rfb-0.6.1/debian/menu
+@@ -0,0 +1,5 @@
++?package(rfb):needs="X11" section="Apps/Net"\
++  title="x0rfbserver" command="/usr/bin/x0rfbserver"
++
++?package(rfb):needs="X11" section="Apps/Net"\
++  title="/usr/bin/x0rfbviewer" command="/usr/bin/xrfbviewer"
+--- rfb-0.6.1.orig/debian/rfb.install
++++ rfb-0.6.1/debian/rfb.install
+@@ -0,0 +1,4 @@
++./x0rfbserver/x0rfbserver usr/bin
++./xrfbviewer/xrfbviewer usr/bin
++./xrfbviewer/xplayfbs usr/bin
++./man/man1 usr/share/man
+--- rfb-0.6.1.orig/debian/rules
++++ rfb-0.6.1/debian/rules
+@@ -0,0 +1,95 @@
++#!/usr/bin/make -f
++# Sample debian/rules that uses debhelper.
++# GNU copyright 1997 to 1999 by Joey Hess.
++
++# Uncomment this to turn on verbose mode.
++#export DH_VERBOSE=1
++
++# This is the debhelper compatibility version to use.
++export DH_COMPAT=3
++
++
++
++ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
++	CFLAGS += -g
++endif
++ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
++	INSTALL_PROGRAM += -s
++endif
++
++configure: configure-stamp
++configure-stamp:
++	dh_testdir
++	# Add here commands to configure the package.
++
++	touch configure-stamp
++
++
++build: build-stamp
++
++build-stamp: configure-stamp 
++	dh_testdir
++
++	# Add here commands to compile the package.
++	$(MAKE)
++	#/usr/bin/docbook-to-man debian/rfb.sgml > rfb.1
++
++	touch build-stamp
++
++clean:
++	dh_testdir
++	dh_testroot
++	rm -f build-stamp configure-stamp
++
++	# Add here commands to clean up after the build process.
++	-$(MAKE) clean
++
++	dh_clean
++
++install: build
++	dh_testdir
++	dh_testroot
++	dh_clean -k
++	dh_installdirs
++
++	# Add here commands to install the package into debian/rfb.
++	#$(MAKE) install DESTDIR=$(CURDIR)/debian/rfb
++	dh_install
++
++
++# Build architecture-independent files here.
++binary-indep: build install
++# We have nothing to do by default.
++
++# Build architecture-dependent files here.
++binary-arch: build install
++	dh_testdir
++	dh_testroot
++#	dh_installdebconf	
++	dh_installdocs
++	dh_installexamples
++	dh_installmenu
++#	dh_installlogrotate
++#	dh_installemacsen
++#	dh_installpam
++#	dh_installmime
++#	dh_installinit
++	dh_installcron
++	dh_installman
++	dh_installinfo
++	dh_undocumented rfbcat.1
++	dh_installchangelogs 
++	dh_link
++	dh_strip
++	dh_compress
++	dh_fixperms
++#	dh_makeshlibs
++	dh_installdeb
++#	dh_perl
++	dh_shlibdeps
++	dh_gencontrol
++	dh_md5sums
++	dh_builddeb
++
++binary: binary-indep binary-arch
++.PHONY: build clean binary-indep binary-arch binary install configure
+--- rfb-0.6.1.orig/debian/watch
++++ rfb-0.6.1/debian/watch
+@@ -0,0 +1,6 @@
++# Example watch control file for uscan
++# Rename this file to "watch" and then you can run the "uscan" command
++# to check for upstream updates and more.
++# Site		Directory		Pattern			Version	Script
++version=2
++sunsite.unc.edu	/pub/Linux/Incoming	rfb-(.*)\.tar\.gz	debian	uupdate
+--- rfb-0.6.1.orig/debian/changelog
++++ rfb-0.6.1/debian/changelog
+@@ -0,0 +1,90 @@
++rfb (0.6.1-11) unstable; urgency=low
++
++  * Fixed dependency, closes: #278148.
++
++ -- Ola Lundqvist <opal@debian.org>  Sun, 17 Apr 2005 21:11:33 +0200
++
++rfb (0.6.1-10) unstable; urgency=low
++
++  * Need xclass 0.8.3 to build correctly for sarge, closes: #293112.
++
++ -- Ola Lundqvist <opal@debian.org>  Sat,  5 Feb 2005 21:17:31 +0100
++
++rfb (0.6.1-9) unstable; urgency=low
++
++  * Applied patch from Andreas Jochens <aj@andaco.de> so it can compile
++    on gcc3.4, closes: #280875.
++
++ -- Ola Lundqvist <opal@debian.org>  Fri, 28 Jan 2005 21:49:23 +0100
++
++rfb (0.6.1-8) unstable; urgency=low
++
++  * Applied the patch mentioned in last upload about the build issue,
++    closes: #205316. I apparently forgot to apply it.
++
++ -- Ola Lundqvist <opal@debian.org>  Sat, 14 Aug 2004 18:17:54 +0200
++
++rfb (0.6.1-7) unstable; urgency=low
++
++  * Applied patch that fix a build issue, closes: #205316. Thanks to
++    Wesley J Landaker <wjl@icecavern.net> for the patch.
++  * Updated standards version 3.6.1.
++  * Removed rfbcat, closes: #207479.
++    Thanks to Wesley J Landaker <wjl@icecavern.net> for the patch.
++    Got some rejects but thy were not necessary to fix (in Makefile).
++  * Fixed menu entry as suggested by "Christoffer Sawicki" <qerub@home.se>.
++    Quoted them too, closes: #203293.
++  * Changed cerr and endl to std::cerr and std::endl in
++    xrfbviewer/xrfbviewer.cc and xrfbviewer/xplayfbs.cc in order to make it
++    compile.
++  * Changed build depends on libxclass0-dev (<< 0.9.0), was (<< 0.7.0).
++    No problem with that as far as I can see.
++
++ -- Ola Lundqvist <opal@debian.org>  Thu, 12 Aug 2004 09:01:39 +0200
++
++rfb (0.6.1-6) unstable; urgency=low
++
++  * Updated licensing information, closes: #207584.
++  * Updated debian policy from 3.5.8 to 3.5.10.
++
++ -- Ola Lundqvist <opal@debian.org>  Fri, 29 Aug 2003 20:53:04 +0200
++
++rfb (0.6.1-5) unstable; urgency=low
++
++  * Rebuild to make dependencies correct, closes: #195180.
++
++ -- Ola Lundqvist <opal@debian.org>  Fri, 13 Jun 2003 18:49:03 +0200
++
++rfb (0.6.1-4) unstable; urgency=low
++
++  * Added missing build dependency, closes: #189671.
++  * Fixing dependency on xclass0, closes: #192879.
++  * Updated copyright a bit.
++
++ -- Ola Lundqvist <opal@debian.org>  Sat, 19 Apr 2003 23:15:02 +0200
++
++rfb (0.6.1-3) unstable; urgency=low
++
++  * Now compiles using gcc3.2, closes: #166465.
++  * Seems not to crash with all the gcc fixes, closes: #168512.
++  * Removed libc6 from build dep, closes: #167989.
++  * Added missing build dependency, closes: #166363.
++  * Updated standards version to 3.5.8.
++  * Fixed spelling error in description,
++    closes: #181773, #165773, #167681, #172884.
++  * New maintainer.
++
++ -- Ola Lundqvist <opal@debian.org>  Thu, 17 Apr 2003 20:36:34 +0200
++
++rfb (0.6.1-2) unstable; urgency=low
++
++  * Closes ITA (Closes: Bug#78896)
++
++ -- Paul Hedderly <prh@debian.org>  Wed, 16 Oct 2002 13:09:18 +0100
++
++rfb (0.6.1-1) unstable; urgency=low
++
++  * Initial Release.
++
++ -- Paul Hedderly <prh@debian.org>  Wed, 16 Oct 2002 12:03:02 +0100
++
+--- rfb-0.6.1.orig/debian/control
++++ rfb-0.6.1/debian/control
+@@ -0,0 +1,19 @@
++Source: rfb
++Section: x11
++Priority: optional
++Maintainer: Ola Lundqvist <opal@debian.org>
++Build-Depends: debhelper (>> 3.0.0), libxclass0-dev (>> 0.8.3), libxclass0-dev (<< 0.9.0), zlib1g-dev, xlibs-dev
++Standards-Version: 3.6.1
++
++Package: rfb
++Architecture: any
++Depends: ${shlibs:Depends}, libxclass0 (>> 0.8.3)
++Description: VNC Server for X11 - exports current display
++ Like the xvncserver package, x0rfbserver exports an X display using the
++ RFB protocol.
++ .
++ Unlike xvncserver which creates a virtual X11 display to export, x0rfbserver
++ actually exports the display it is run in... just like the windows VNC server.
++ .
++ Also included are rfb utilities to capture and replay RFB data streams, and
++ a vnc viewer.
+--- rfb-0.6.1.orig/Makefile
++++ rfb-0.6.1/Makefile
+@@ -20,7 +20,7 @@
+ 
+ USE_ZLIB = USE_ZLIB_WARREN
+ 
+-PROGRAMS = xrfbviewer x0rfbserver xplayfbs rfbcat xvncconnect
++PROGRAMS = xrfbviewer x0rfbserver xplayfbs xvncconnect
+ 
+ ENVIRONMENT = USE_ZLIB=$(USE_ZLIB)
+ 

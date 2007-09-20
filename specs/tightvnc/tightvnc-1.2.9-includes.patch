@@ -1,0 +1,141 @@
+--- vnc_unixsrc/Xvnc/include/Xfuncs.h.includes	2000-06-11 14:00:52.000000000 +0200
++++ vnc_unixsrc/Xvnc/include/Xfuncs.h	2006-01-20 17:58:28.000000000 +0100
+@@ -43,9 +43,11 @@ int bcmp();
+ #if (__STDC__ && !defined(X_NOT_STDC_ENV) && !defined(sun) && !defined(macII) && !defined(apollo)) || defined(SVR4) || defined(hpux) || defined(_IBMR2) || defined(_SEQUENT_)
+ #include <string.h>
+ #define _XFUNCS_H_INCLUDED_STRING_H
++#if defined(sun)
+ #define bcopy(b1,b2,len) memmove(b2, b1, (size_t)(len))
+ #define bzero(b,len) memset(b, 0, (size_t)(len))
+ #define bcmp(b1,b2,len) memcmp(b1, b2, (size_t)(len))
++#endif
+ #else
+ #ifdef sgi
+ #include <bstring.h>
+--- vnc_unixsrc/Xvnc/lib/Xdmcp/Alloc.c.includes	2000-06-11 14:00:52.000000000 +0200
++++ vnc_unixsrc/Xvnc/lib/Xdmcp/Alloc.c	2006-01-20 17:58:28.000000000 +0100
+@@ -30,8 +30,7 @@ in this Software without prior written a
+  */
+ 
+ /* stubs for use when Xalloc, Xrealloc and Xfree are not defined */
+-
+-extern char	*malloc (), *realloc ();
++#include <stdlib.h>
+ 
+ unsigned long *
+ Xalloc (amount)
+--- vnc_unixsrc/Xvnc/lib/Xdmcp/GenKey.c.includes	2000-06-11 14:00:52.000000000 +0200
++++ vnc_unixsrc/Xvnc/lib/Xdmcp/GenKey.c	2006-01-20 17:58:28.000000000 +0100
+@@ -29,6 +29,7 @@ in this Software without prior written a
+  * Author:  Keith Packard, MIT X Consortium
+  */
+ 
++#include <time.h>
+ #include <X11/Xos.h>
+ #include <X11/X.h>
+ #include <X11/Xmd.h>
+--- vnc_unixsrc/Xvnc/programs/Xserver/hw/vnc/init.c.includes	2002-10-27 13:36:02.000000000 +0100
++++ vnc_unixsrc/Xvnc/programs/Xserver/hw/vnc/init.c	2006-01-20 17:58:28.000000000 +0100
+@@ -55,6 +55,8 @@ from the X Consortium.
+ 
+ #include <stdio.h>
+ #include <stdarg.h>
++#include <stdlib.h>
++#include <time.h>
+ #include <sys/types.h>
+ #include <sys/socket.h>
+ #include <netinet/in.h>
+--- vnc_unixsrc/Xvnc/programs/Xserver/hw/vnc/sockets.c.includes	2002-10-27 13:36:02.000000000 +0100
++++ vnc_unixsrc/Xvnc/programs/Xserver/hw/vnc/sockets.c	2006-01-20 17:58:28.000000000 +0100
+@@ -38,11 +38,13 @@
+  */
+ 
+ #include <stdio.h>
++#include <stdlib.h>
+ #include <sys/types.h>
+ #include <sys/time.h>
+ #include <sys/socket.h>
+ #include <netinet/in.h>
+ #include <netinet/tcp.h>
++#include <arpa/inet.h>
+ #include <netdb.h>
+ #include <fcntl.h>
+ #include <errno.h>
+@@ -156,7 +158,7 @@ rfbCheckFds()
+     fd_set fds;
+     struct timeval tv;
+     struct sockaddr_in addr;
+-    int addrlen = sizeof(addr);
++    socklen_t addrlen = sizeof(addr);
+     char buf[6];
+     const int one = 1;
+     int sock;
+--- vnc_unixsrc/Xvnc/programs/Xserver/hw/vnc/httpd.c.includes	2003-04-09 00:20:13.000000000 +0200
++++ vnc_unixsrc/Xvnc/programs/Xserver/hw/vnc/httpd.c	2006-01-20 17:58:28.000000000 +0100
+@@ -28,6 +28,7 @@
+ #include <sys/socket.h>
+ #include <netinet/in.h>
+ #include <netinet/tcp.h>
++#include <arpa/inet.h>
+ #include <netdb.h>
+ #include <fcntl.h>
+ #include <errno.h>
+@@ -112,7 +113,7 @@ httpCheckFds()
+     fd_set fds;
+     struct timeval tv;
+     struct sockaddr_in addr;
+-    int addrlen = sizeof(addr);
++    socklen_t addrlen = sizeof(addr);
+ 
+     if (!httpDir)
+ 	return;
+@@ -192,7 +193,7 @@ static void
+ httpProcessInput()
+ {
+     struct sockaddr_in addr;
+-    int addrlen = sizeof(addr);
++    socklen_t addrlen = sizeof(addr);
+     char fullFname[512];
+     char params[1024];
+     char *ptr;
+--- vnc_unixsrc/libvncauth/vncauth.c.includes	2003-03-01 17:48:06.000000000 +0100
++++ vnc_unixsrc/libvncauth/vncauth.c	2006-01-20 17:58:28.000000000 +0100
+@@ -24,6 +24,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
++#include <time.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include <unistd.h>
+--- vnc_unixsrc/vncconnect/vncconnect.c.includes	2000-11-10 11:20:07.000000000 +0100
++++ vnc_unixsrc/vncconnect/vncconnect.c	2006-01-20 17:58:28.000000000 +0100
+@@ -3,6 +3,8 @@
+  */
+ 
+ #include <stdio.h>
++#include <stdlib.h>
++#include <string.h>
+ #include <X11/Xlib.h>
+ #include <X11/Xatom.h>
+ 
+--- vnc_unixsrc/vncviewer/sockets.c.includes	2001-01-15 04:54:18.000000000 +0100
++++ vnc_unixsrc/vncviewer/sockets.c	2006-01-20 18:00:55.000000000 +0100
+@@ -325,7 +325,7 @@ AcceptTcpConnection(int listenSock)
+ {
+   int sock;
+   struct sockaddr_in addr;
+-  int addrlen = sizeof(addr);
++  socklen_t addrlen = sizeof(addr);
+   int one = 1;
+ 
+   sock = accept(listenSock, (struct sockaddr *) &addr, &addrlen);
+@@ -401,7 +401,7 @@ Bool
+ SameMachine(int sock)
+ {
+   struct sockaddr_in peeraddr, myaddr;
+-  int addrlen = sizeof(struct sockaddr_in);
++  socklen_t addrlen = sizeof(struct sockaddr_in);
+ 
+   getpeername(sock, (struct sockaddr *)&peeraddr, &addrlen);
+   getsockname(sock, (struct sockaddr *)&myaddr, &addrlen);

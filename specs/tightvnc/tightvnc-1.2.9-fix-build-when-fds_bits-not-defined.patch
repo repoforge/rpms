@@ -1,0 +1,12 @@
+--- vnc_unixsrc/Xvnc/include/Xpoll.h.deush	2004-09-03 12:58:28.221930897 +0200
++++ vnc_unixsrc/Xvnc/include/Xpoll.h	2004-09-03 12:58:39.260152096 +0200
+@@ -89,6 +89,9 @@
+ #define Select(n,r,w,e,t) select(n,(fd_set*)r,(fd_set*)w,(fd_set*)e,(struct timeval*)t)
+ #endif
+ 
++#ifndef fds_bits 
++#define fds_bits __fds_bits
++#endif
+ #ifndef FD_SET
+ #define FD_SET(n, p)    ((p)->fds_bits[(n)/NFDBITS] |= (1 << ((n) % NFDBITS)))
+ #endif

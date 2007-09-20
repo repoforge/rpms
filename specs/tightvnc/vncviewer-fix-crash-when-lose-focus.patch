@@ -1,0 +1,19 @@
+--- vnc_unixsrc/vncviewer/misc.c--	2004-03-16 11:04:41.947493167 +0100
++++ vnc_unixsrc/vncviewer/misc.c	2004-03-16 11:05:47.634753826 +0100
+@@ -24,6 +24,7 @@
+ #include <vncviewer.h>
+ #include <signal.h>
+ #include <fcntl.h>
++#include <X11/Xproto.h>
+ 
+ static void CleanupSignalHandler(int sig);
+ static int CleanupXErrorHandler(Display *dpy, XErrorEvent *error);
+@@ -293,6 +294,8 @@ static int
+ CleanupXErrorHandler(Display *dpy, XErrorEvent *error)
+ {
+   fprintf(stderr,"CleanupXErrorHandler called\n");
++  if( error->request_code == X_SetInputFocus )
++      return 0;
+   Cleanup();
+   return (*defaultXErrorHandler)(dpy, error);
+ }

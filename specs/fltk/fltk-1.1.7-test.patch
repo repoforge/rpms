@@ -1,0 +1,21 @@
+--- fltk-1.1.7/Makefile.test	2006-01-15 12:36:16.000000000 -0600
++++ fltk-1.1.7/Makefile	2006-12-12 00:34:49.000000000 -0600
+@@ -27,7 +27,7 @@
+ 
+ include makeinclude
+ 
+-DIRS	=	$(IMAGEDIRS) src fluid test documentation
++DIRS	=	$(IMAGEDIRS) src fluid documentation
+ 
+ all: makeinclude
+ 	for dir in $(DIRS); do\
+@@ -35,6 +35,9 @@
+ 		(cd $$dir; $(MAKE) $(MFLAGS)) || break;\
+ 	done
+ 
++test:	
++	(cd test;; $(MAKE) $(MFLAGS)) || exit 1
++
+ install: makeinclude
+ 	-mkdir -p $(DESTDIR)$(bindir)
+ 	$(RM) $(DESTDIR)$(bindir)/fltk-config

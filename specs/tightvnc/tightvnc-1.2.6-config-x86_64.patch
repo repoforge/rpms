@@ -1,0 +1,126 @@
+--- vnc_unixsrc/Xvnc/config/cf/Imake.cf.config-x86_64	2002-04-30 09:07:30.000000000 -0400
++++ vnc_unixsrc/Xvnc/config/cf/Imake.cf	2002-12-04 11:25:39.000000000 -0500
+@@ -604,6 +604,16 @@ XCOMM Keep cpp from replacing path eleme
+ #  define PowerPCArchitecture
+ #  undef powerpc
+ # endif
++# if defined(__x86_64__)
++#  undef __x86_64__
++#  define x86_64Architecture
++# endif
++# if defined(x86_64__)
++#  undef x86_64__
++#  ifndef(x86_64Architecture)
++#   define x86_64Architecture
++#  endif
++# endif
+ #endif /* linux */
+ 
+ #if (defined(__Lynx__) || defined(Lynx)) && (defined(i386) || defined(__i386__) || defined(__x86__) || defined(__powerpc__) || defined(__sparc__) || defined(sparc))
+--- vnc_unixsrc/Xvnc/config/cf/linux.cf.config-x86_64	2002-03-20 05:49:23.000000000 -0500
++++ vnc_unixsrc/Xvnc/config/cf/linux.cf	2002-12-04 11:30:13.000000000 -0500
+@@ -43,7 +43,7 @@ XCOMM platform:  $XFree86: xc/config/cf/
+ #if defined(AlphaArchitecture) || defined(PowerPCArchitecture) || \
+     defined(SparcArchitecture) || defined(ArmArchitecure) || \
+     defined(i386Architecture) || defined(s390Architecture) || \
+-    defined(s390xArchitecture)
++    defined(s390xArchitecture) || defined(x86_64Architecture)
+ #define DefaultLinuxCLibMajorVersion	6
+ #else
+ #define DefaultLinuxCLibMajorVersion	5
+@@ -157,6 +157,14 @@ XCOMM binutils:	(LinuxBinUtilsMajorVersi
+ #define UseStaticTermcapLib	NO
+ #endif
+ 
++#ifndef HaveLib64
++# if defined (x86_64Architecture) || defined (s390xArchitecture)
++#  define HaveLib64 YES
++# else
++#  define HaveLib64 NO
++# endif
++#endif
++
+ #define MkdirHierCmd		mkdir -p
+ #if LinuxElfDefault
+ #if UseElfFormat
+@@ -179,6 +187,13 @@ XCOMM binutils:	(LinuxBinUtilsMajorVersi
+ #ifdef SparcArchitecture
+ #define AsmDefines		-D__ELF__
+ #endif /* SparcArchitecture */
++#  ifdef x86_64Architecture
++#   define CcCmd                 gcc
++#   define CplusplusCmd          g++
++#   define AsCmd                 CcCmd -c -x assembler-with-cpp
++#   define LdCmd                 CcCmd -nostdlib
++#   define AsmDefines            -DUSE_GAS -U__ELF__
++#  endif /* x86_64Architecture */
+ #ifdef i386Architecture
+ #define CcCmd			gcc -b i486-linuxaout
+ #define CplusplusCmd		g++ -b i486-linuxaout
+@@ -206,6 +221,13 @@ XCOMM binutils:	(LinuxBinUtilsMajorVersi
+ #ifdef SparcArchitecture
+ #define AsmDefines		-D__ELF__
+ #endif /* SparcArchitecture */
++#  ifdef x86_64Architecture
++#   define CcCmd                 gcc
++#   define CplusplusCmd          g++
++#   define AsCmd                 CcCmd -c -x assembler-with-cpp
++#   define LdCmd                 CcCmd -nostdlib
++#   define AsmDefines            -D__ELF__
++#  endif /* x86_64Architecture */
+ #ifdef i386Architecture
+ #define CcCmd			gcc -b i486-linux
+ #define AsCmd			/usr/i486-linux/bin/as
+@@ -261,6 +283,15 @@ XCOMM binutils:	(LinuxBinUtilsMajorVersi
+ #define ServerExtraDefines	-DGCCUSESGAS XFree86ServerDefines -D_XSERVER64
+ #endif /* AlphaArchitecture */
+ 
++#ifdef x86_64Architecture
++# ifndef OptimizedCDebugFlags
++#  define OptimizedCDebugFlags	DefaultGcc2x86_64Opt
++# endif
++# define LinuxMachineDefines   -D__x86_64__
++# define ServerOSDefines	XFree86ServerOSDefines -DDDXTIME -DPART_NET
++# define ServerExtraDefines	-DGCCUSESGAS XFree86ServerDefines -D_XSERVER64
++#endif /* x86_64Architecture */
++
+ #ifdef Mc68020Architecture
+ #define OptimizedCDebugFlags	-O2
+ #define LinuxMachineDefines 	-D__mc68000__
+--- vnc_unixsrc/Xvnc/config/cf/xfree86.cf.config-x86_64	2000-06-11 08:00:51.000000000 -0400
++++ vnc_unixsrc/Xvnc/config/cf/xfree86.cf	2002-12-04 11:32:41.000000000 -0500
+@@ -1013,6 +1013,12 @@ XFREE86JAPANESEDOCDIR = $(XFREE86DOCDIR)
+ #endif
+ #endif
+ 
++#if HasGcc2 && defined(x86_64Architecture)
++# ifndef DefaultGcc2x86_64Opt
++#  define DefaultGcc2x86_64Opt -O2 -fno-strength-reduce
++# endif
++#endif
++
+ #ifndef DontDefineXF86Contrib
+ #define XF86Contrib
+ #endif
+--- vnc_unixsrc/Xvnc/config/imake/imakemdep.h.config-x86_64	2002-03-20 00:36:47.000000000 -0500
++++ vnc_unixsrc/Xvnc/config/imake/imakemdep.h	2002-12-04 11:34:22.000000000 -0500
+@@ -304,6 +304,9 @@ char *cpp_argv[ARGUMENTS] = {
+ # ifdef __alpha__
+        "-D__alpha__",
+ # endif
++# ifdef __x86_64__
++	"-D__x86_64__",
++# endif
+ # ifdef __GNUC__
+ 	"-traditional",
+ # endif
+@@ -468,6 +471,9 @@ char *cpp_argv[ARGUMENTS] = {
+ # ifdef __alpha__
+ 	"-D__alpha__",
+ # endif
++# ifdef __x86_64__
++	"-D__x86_64__",
++# endif
+ # ifdef __i386__
+ 	"-D__i386__",
+ # endif
