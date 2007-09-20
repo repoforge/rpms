@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/IPC/IPC-Cmd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Allows for the searching and execution of any binary on your system.

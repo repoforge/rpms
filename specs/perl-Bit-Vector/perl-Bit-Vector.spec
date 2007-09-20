@@ -20,7 +20,7 @@ URL: http://search.cpan.org/dist/Bit-Vector/
 Source: http://www.cpan.org/modules/by-module/Bit/Bit-Vector-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Efficient bit vector, set of integers and "big int" math library.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AU/AUDREYT/Module-Signature-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, gnupg, perl-PAR-Dist, perl-Digest-SHA
+BuildRequires: perl, gnupg, perl-PAR-Dist, perl-Digest-SHA, perl(ExtUtils::MakeMaker)
 
 %description
 A module to check and create SIGNATURE files for CPAN distributions.

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BT/BTROTT/Convert-PEM-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Convert::ASN1)
+BuildRequires: perl, perl(Convert::ASN1), perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Class::ErrorHandler), perl(Crypt::DES_EDE3)
 
 %description

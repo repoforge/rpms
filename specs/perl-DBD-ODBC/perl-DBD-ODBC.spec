@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/DBD-ODBC/
 Source: http://www.cpan.org/modules/by-module/DBD/DBD-ODBC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(DBI) >= 1.21, unixODBC-devel > 2.2.5
+BuildRequires: perl, perl(DBI) >= 1.21, unixODBC-devel > 2.2.5, perl(ExtUtils::MakeMaker)
 Requires: perl(DBI) >= 1.21, unixODBC > 2.2.5
 
 %description

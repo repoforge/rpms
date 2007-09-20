@@ -22,7 +22,7 @@ Source: http://www.cpan.org/modules/by-module/Data/Data-Dump-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This package contain the Data::Dump module. It can be used for pretty

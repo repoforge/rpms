@@ -20,7 +20,7 @@ Patch0: perl-Crypt-SSLeay-0.55-cryptdef.patch
 Patch1: perl-Crypt-SSLeay-0.55-lib64.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 OpenSSL support for LWP.

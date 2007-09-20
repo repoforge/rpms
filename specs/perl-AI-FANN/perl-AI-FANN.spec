@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/AI-FANN/
 Source: http://search.cpan.org//CPAN/authors/id/S/SA/SALVA/AI-FANN-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, fann-devel
+BuildRequires: perl, fann-devel, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides a Perl wrapper for the FANN library

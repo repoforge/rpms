@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CD/CDAWSON/Podcast-Publisher-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this module, you can manage rss feeds and podcasts.

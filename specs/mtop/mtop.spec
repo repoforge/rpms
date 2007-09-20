@@ -16,7 +16,7 @@ Source: http://dl.sf.net/mtop/mtop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 mtop (MySQL top) monitors a MySQL database showing the queries

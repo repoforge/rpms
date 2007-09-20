@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GR/GRICHTER/SVN-Push-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, subversion-perl
+BuildRequires: perl, subversion-perl, perl(ExtUtils::MakeMaker)
 
 %description
 SVN::Push is a module which let you push the content of a repoitory

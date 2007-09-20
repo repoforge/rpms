@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TU/TURNERJW/DBD-LDAP-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-DBI
+BuildRequires: perl, perl-DBI, perl(ExtUtils::MakeMaker)
 
 %description
 DBD::LDAP - A DBI driver for LDAP databases.  LDAP stands for the

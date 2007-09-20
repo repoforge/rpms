@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl, perl(Date::Calc), perl(Date::Format)
-BuildRequires: perl(File::Tail), perl(Time::HiRes)
+BuildRequires: perl(File::Tail), perl(Time::HiRes), perl(ExtUtils::MakeMaker)
 
 %description
 The Simple WATCHer is an automated monitoring tool that is capable

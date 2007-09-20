@@ -22,7 +22,7 @@ Source: http://www.cpan.org/modules/by-module/Log/Log-Dispatch-FileRotate-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 Requires: perl, perl-Log-Dispatch
 
 %description

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AM/AMURREN/CGI-WML-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-XML-Parser
+BuildRequires: perl, perl-XML-Parser, perl(ExtUtils::MakeMaker)
 
 %description
 CGI::WML provides WML output and WML methods for CGI programming.

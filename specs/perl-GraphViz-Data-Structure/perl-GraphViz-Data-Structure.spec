@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MC/MCMAHON/GraphViz-Data-Struct
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-GraphViz, graphviz
+BuildRequires: perl, perl-GraphViz, graphviz, perl(ExtUtils::MakeMaker)
 
 %description
 GraphViz::Data::Structure produces simple and elegant visualizations

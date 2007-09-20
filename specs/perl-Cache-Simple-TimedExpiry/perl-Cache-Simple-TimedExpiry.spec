@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JE/JESSE/Cache-Simple-TimedExpi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides a cache with a simple timed expiry.

@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-Rendezvous-Publish-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 Requires: perl(Class::Accessor::Lvalue)
 
 %description

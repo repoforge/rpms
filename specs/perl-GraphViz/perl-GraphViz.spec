@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/GraphViz/GraphViz-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, graphviz
+BuildRequires: perl, graphviz, perl(ExtUtils::MakeMaker)
 Requires: graphviz
 
 %description

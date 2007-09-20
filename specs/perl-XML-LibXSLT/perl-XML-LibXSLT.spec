@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/XML-LibXSLT/
 Source: http://www.cpan.org/modules/by-module/XML/XML-LibXSLT-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, libxslt-devel, perl(XML::LibXML) >= 1.60
+BuildRequires: perl, libxslt-devel, perl(XML::LibXML) >= 1.60, perl(ExtUtils::MakeMaker)
 
 %description
 perl-XML-LibXSLT is a fast XSLT library, based on the Gnome libxslt engine

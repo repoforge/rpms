@@ -20,7 +20,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-Netmask-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 With this module, you can parse, manipulate and

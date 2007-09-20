@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/SOAP/SOAP-Lite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-XML-Parser, perl-Crypt-SSLeay, perl-Compress-Zlib
+BuildRequires: perl, perl-XML-Parser, perl-Crypt-SSLeay, perl-Compress-Zlib, perl(ExtUtils::MakeMaker)
 
 %description
 SOAP::Lite for Perl is a collection of Perl modules which provides a simple

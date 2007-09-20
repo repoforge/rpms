@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Email/Email-MIME-ContentType-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Parse a MIME Content-Type Header.

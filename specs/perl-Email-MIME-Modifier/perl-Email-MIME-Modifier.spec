@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Email/Email-MIME-Modifier-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 Provides: perl(Email::MIME::Modifier)
 
 %description

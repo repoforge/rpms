@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-DPAP-Client-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This module provides a DPAP client. DPAP is the Digital Photo Access

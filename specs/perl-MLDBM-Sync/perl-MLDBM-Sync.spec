@@ -18,7 +18,7 @@ Source: http://www.cpan.org/modules/by-module/MLDBM/MLDBM-Sync-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(MLDBM)
+BuildRequires: perl, perl(MLDBM), perl(ExtUtils::MakeMaker)
 Requires: perl-MLDBM
 
 %description

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Chart/Chart-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(GD)
+BuildRequires: perl, perl(GD), perl(ExtUtils::MakeMaker)
 
 %description
 With this module you can produce many types of charts.
