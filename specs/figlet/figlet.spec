@@ -42,7 +42,7 @@ FIGlet is a program for making large letters out of ordinary text.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Artistic-license.txt CHANGES FAQ README
+%doc LICENSE CHANGES FAQ README
 %doc %{_mandir}/man6/*
 %{_bindir}/*
 %{_datadir}/figlet/
