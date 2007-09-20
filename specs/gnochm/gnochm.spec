@@ -12,7 +12,7 @@
 
 Summary: CHM file viewer
 Name: gnochm
-Version: 0.9.10
+Version: 0.9.11
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -92,6 +92,9 @@ scrollkeeper-update -q || :
 %{_datadir}/icons/gnome/
 
 %changelog
+* Thu Sep 20 2007 Dries Verachtert <dries@ulyssis.org> - 0.9.11-1
+- Updated to release 0.9.11.
+
 * Sun May 27 2007 Dag Wieers <dag@wieers.com> - 0.9.10-1
 - Updated to release 0.9.10.
 
