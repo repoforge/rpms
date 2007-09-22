@@ -154,14 +154,14 @@ fi
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/*
-%exclude %{_libdir}/libfuse.la
-%exclude %{_libdir}/libulockmgr.la
 %{_libdir}/libfuse.so
 %{_libdir}/libulockmgr.so
 %{_libdir}/pkgconfig/fuse.pc
+%{_includedir}/fuse/
 %{_includedir}/fuse.h
 %{_includedir}/ulockmgr.h
-%{_includedir}/fuse/
+%exclude %{_libdir}/libfuse.la
+%exclude %{_libdir}/libulockmgr.la
 
 %changelog
 * Mon Aug 06 2007 Dag Wieers <dag@wieers.com> - 2.7.0-1

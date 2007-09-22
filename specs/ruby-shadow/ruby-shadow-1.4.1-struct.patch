@@ -1,0 +1,51 @@
+--- shadow-1.4.1/shadow.c-orig	2007-05-15 13:09:41.000000000 +0100
++++ shadow-1.4.1/shadow.c	2007-05-15 13:18:17.000000000 +0100
+@@ -60,7 +60,7 @@
+ 		      INT2FIX(entry->sp_inact),
+ 		      INT2FIX(entry->sp_expire),
+ 		      INT2FIX(entry->sp_flag),
+-		      0);
++		      NULL);
+   free(entry);
+   return result;
+ };
+@@ -89,7 +89,7 @@
+ 		      INT2FIX(entry->sp_inact),
+ 		      INT2FIX(entry->sp_expire),
+ 		      INT2FIX(entry->sp_flag),
+-		      0);
++		      NULL);
+   return result;
+ };
+ 
+@@ -114,7 +114,7 @@
+ 		      INT2FIX(entry->sp_inact),
+ 		      INT2FIX(entry->sp_expire),
+ 		      INT2FIX(entry->sp_flag),
+-		      0);
++		      NULL);
+   return result;
+ };
+ 
+@@ -142,7 +142,7 @@
+ 		      INT2FIX(entry->sp_inact),
+ 		      INT2FIX(entry->sp_expire),
+ 		      INT2FIX(entry->sp_flag),
+-		      0);
++		      NULL);
+   return result;
+ };
+ 
+@@ -254,10 +254,10 @@
+   rb_sPasswdEntry = rb_struct_define("PasswdEntry",
+ 				     "sp_namp","sp_pwdp","sp_lstchg",
+ 				     "sp_min","sp_max","sp_warn",
+-				     "sp_inact","sp_expire","sp_flag",0);
++				     "sp_inact","sp_expire","sp_flag",NULL);
+   rb_sGroupEntry = rb_struct_define("GroupEntry",
+ 				    "sg_name","sg_passwd",
+-				    "sg_adm","sg_mem",0);
++				    "sg_adm","sg_mem",NULL);
+ 
+   rb_mShadow = rb_define_module("Shadow");
+   rb_eFileLock = rb_define_class_under(rb_mShadow,"FileLock",rb_eException);

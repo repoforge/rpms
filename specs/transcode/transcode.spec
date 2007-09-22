@@ -28,7 +28,7 @@
 
 Summary: Linux video stream processing utility
 Name: transcode
-Version: 1.0.3
+Version: 1.0.4
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -76,7 +76,7 @@ Available rpmbuild rebuild options :
 %prep
 %setup
 %patch0 -p1 -b .lzo2
-%patch1 -p1 -b .libmpeg3
+#patch1 -p1 -b .libmpeg3
 
 
 %build
@@ -135,6 +135,9 @@ export LDFLAGS="-L%{_usr}/X11R6/%{_lib}"
 
 
 %changelog
+* Sat Sep 22 2007 Dag Wieers <dag@wieers.com> - 1.0.4-1
+- Updated to release 1.0.4.
+
 * Fri Apr 20 2007 Matthias Saou <http://freshrpms.net/> 1.0.3-1
 - Update to 1.0.3.
 - Update lzo2 patch.

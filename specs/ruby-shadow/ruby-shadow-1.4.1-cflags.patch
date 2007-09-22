@@ -1,0 +1,11 @@
+--- shadow-1.4.1/extconf.rb-orig	2007-05-15 09:16:03.000000000 +0100
++++ shadow-1.4.1/extconf.rb	2007-05-15 09:17:29.000000000 +0100
+@@ -6,7 +6,7 @@
+ 
+ require 'mkmf'
+ 
+-$CFLAGS = ""
++$CFLAGS = "#{$CFLAGS}"
+ $LDFLAGS = "-lshadow"
+ 
+ if( ! (ok = have_library("shadow","getspent")) )

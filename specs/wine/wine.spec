@@ -48,7 +48,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 0.9.44
+Version: 0.9.45
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -654,6 +654,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/oledlg.dll.so
 %{_libdir}/wine/olepro32.dll.so
 %{_libdir}/wine/olesvr32.dll.so
+%{_libdir}/wine/olethk32.dll.so
 %{!?_without_opengl:%{_libdir}/wine/opengl32.dll.so}
 %{_libdir}/wine/pdh.dll.so
 %{_libdir}/wine/powrprof.dll.so
@@ -830,6 +831,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Sat Sep 22 2007 Dag Wieers <dag@wieers.com> - 0.9.45-1
+- Updated to release 0.9.45.
+
 * Sat Aug 25 2007 Dag Wieers <dag@wieers.com> - 0.9.44-1
 - Updated to release 0.9.44.
 

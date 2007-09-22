@@ -7,17 +7,20 @@
 
 Summary: Python Expect-like module
 Name: python-pexpect
-Version: 2.0
-Release: 1.2
+Version: 2.1
+Release: 1
 License: Python Software Foundation License
 Group: Development/Libraries
 URL: http://pexpect.sourceforge.net/
 
-Source: http://dl.sf.net/pexpect/pexpect-%{version}.tgz
-Source1: http://dl.sf.net/pexpect/pexpect-%{version}-examples.tgz
+Source: http://dl.sf.net/pexpect/pexpect-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: python-devel >= 2.0
+
+Obsoletes: pexpect <= %{version}-%{release}
+Provides: pexpect = %{version}-%{release}
 
 %description
 Pexpect is a pure Python module for spawning child applications; controlling
@@ -29,9 +32,7 @@ software package installations on different servers. It can be used for
 automated software testing.
 
 %prep
-%setup -n %{real_name}-%{version} -a 1
-
-%{__rm} -rf examples/CVS/
+%setup -n %{real_name}-%{version}
 
 %build
 %{__python} setup.py build
@@ -40,19 +41,29 @@ automated software testing.
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 
+### Clean up docs
+%{__mv} -f ANSI.py FSM.py screen.py examples/
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README examples/
+%doc LICENSE README doc/ examples/
+%{python_sitelib}/fdpexpect.py
+%{python_sitelib}/fdpexpect.pyc
+%ghost %{python_sitelib}/fdpexpect.pyo
 %{python_sitelib}/pexpect.py
 %{python_sitelib}/pexpect.pyc
 %ghost %{python_sitelib}/pexpect.pyo
+%{python_sitelib}/pxssh.py
+%{python_sitelib}/pxssh.pyc
+%ghost %{python_sitelib}/pxssh.pyo
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0-1.2
-- Rebuild for Fedora Core 5.
+* Sat Sep 22 2007 Dag Wieers <dag@wieers.com> - 2.1-1
+- Updated to release 2.1.
 
 * Sun Nov 27 2005 Dag Wieers <dag@wieers.com> - 2.0-1
 - Initial package. (using DAR)
