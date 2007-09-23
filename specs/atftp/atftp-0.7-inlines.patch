@@ -1,0 +1,33 @@
+diff -ruN atftp-0.7/argz.h atftp-0.7-new/argz.h
+--- atftp-0.7/argz.h	2003-01-20 20:38:35.000000000 -0500
++++ atftp-0.7-new/argz.h	2005-06-06 20:28:53.000000000 -0400
+@@ -177,29 +177,6 @@
+ extern char *argz_next (__const char *__restrict __argz, size_t __argz_len,
+ 			__const char *__restrict __entry) __THROW;
+ 
+-#ifdef __USE_EXTERN_INLINES
+-extern inline char *
+-__argz_next (__const char *__argz, size_t __argz_len,
+-	     __const char *__entry) __THROW
+-{
+-  if (__entry)
+-    {
+-      if (__entry < __argz + __argz_len)
+-	__entry = strchr (__entry, '\0') + 1;
+-
+-      return __entry >= __argz + __argz_len ? (char *) NULL : (char *) __entry;
+-    }
+-  else
+-    return __argz_len > 0 ? (char *) __argz : 0;
+-}
+-extern inline char *
+-argz_next (__const char *__argz, size_t __argz_len,
+-	   __const char *__entry) __THROW
+-{
+-  return __argz_next (__argz, __argz_len, __entry);
+-}
+-#endif /* Use extern inlines.  */
+-
+ __END_DECLS
+ 
+ #endif /* argz.h */
