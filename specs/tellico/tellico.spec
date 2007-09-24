@@ -9,7 +9,7 @@
 
 Summary: collection manager
 Name: tellico
-Version: 1.2.13
+Version: 1.2.14
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -71,8 +71,12 @@ source /etc/profile.d/qt.sh
 %{_datadir}/icons/hicolor/*/mimetypes/tellico.png
 %{_datadir}/mimelnk/application/x-tellico.desktop
 %{_datadir}/config.kcfg/tellico_config.kcfg
+%{_datadir}/config/tellicorc
 
 %changelog
+* Mon Sep 24 2007 Dries Verachtert <dries@ulyssis.org> - 12.14-1
+- Updated to release 1.2.14.
+
 * Sun Jul 29 2007 Dries Verachtert <dries@ulyssis.org> - 12.13-1
 - Updated to release 1.2.13.
 
