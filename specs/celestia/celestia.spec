@@ -3,13 +3,13 @@
 
 Summary: Real-time visual space simulation
 Name: celestia
-Version: 1.3.2
+Version: 1.4.1
 Release: 1
 License: GPL
 Group: Amusements/Graphics
 URL: http://www.shatters.net/celestia/
 Source: http://dl.sf.net/celestia/celestia-%{version}.tar.gz
-Patch: celestia-1.3.2-gcc34.patch
+#Patch: celestia-1.3.2-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libgnomeui-devel, gtkglext-devel, freeglut-devel
 BuildRequires: libpng-devel, libjpeg-devel, gcc-c++, zlib-devel
@@ -28,8 +28,9 @@ simple to navigate through the universe to the object you want to visit.
 
 %prep
 %setup
-%patch -p1 -b .gcc34
-
+#patch -p1 -b .gcc34
+%{__perl} -pi -e "s|StarDetails::StarDetails|StarDetails|g;" src/celengine/star.h
+%{__perl} -pi -e "s|CommandGotoLongLat::CommandGotoLongLat|CommandGotoLongLat|g;" src/celengine/command.h
 
 %build
 export CXXFLAGS="%{optflags} -fno-strict-aliasing"
@@ -41,7 +42,7 @@ export CXXFLAGS="%{optflags} -fno-strict-aliasing"
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 %{__make} install DESTDIR=%{buildroot}
-
+%find_lang %{name}
 
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
@@ -57,7 +58,7 @@ gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/celestia.sche
 %{__rm} -rf %{buildroot}
 
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog controls.txt COPYING NEWS README TODO
 %{_sysconfdir}/gconf/schemas/celestia.schemas
@@ -65,14 +66,16 @@ gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/celestia.sche
 %{_datadir}/applications/celestia.desktop
 %dir %{_datadir}/celestia/
 %config %{_datadir}/celestia/celestia.cfg
-%{_datadir}/celestia/celestia.png
+%{_datadir}/celestia/celestia-logo.png
+%{_datadir}/celestia/celestiaui.xml
+%{_datadir}/celestia/splash/
 %doc %{_datadir}/celestia/controls.txt
 %exclude %{_datadir}/celestia/COPYING
 %{_datadir}/celestia/data/
 %{_datadir}/celestia/*.cel
 %{_datadir}/celestia/extras/
 %{_datadir}/celestia/fonts/
-%doc %{_datadir}/celestia/manual/
+#%doc %{_datadir}/celestia/manual/
 %{_datadir}/celestia/models/
 %{_datadir}/celestia/shaders/
 %{_datadir}/celestia/textures/
@@ -80,6 +83,9 @@ gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/celestia.sche
 
 
 %changelog
+* Mon Sep 24 2007 Dries Verachtert <dries@ulyssis.org> - 1.4.1-1
+- Updated to release 1.4.1.
+
 * Wed Nov 23 2005 Matthias Saou <http://freshrpms.net/> 1.3.2-2
 - Add -fno-strict-aliasing since -O2 breaks things (rh#171636).
 
