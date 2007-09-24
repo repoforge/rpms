@@ -19,7 +19,7 @@
 
 Summary: Flash player
 Name: gnash
-Version: 0.8.0
+Version: 0.8.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -30,7 +30,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildrequires: SDL-devel, libxml2-devel, SDL_mixer-devel, boost-devel
 BuildRequires: libpng-devel, libmad-devel, libogg-devel, gcc-c++
-BuildRequires: atk-devel
+BuildRequires: atk-devel, autotrace, agg-devel
 %{!?_without_kde32:BuildRequires: kdebase-devel >= 3.2}
 %{?_with_modxorg:BuildRequires: libGLU-devel, libXmu-devel, libXi-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
@@ -62,9 +62,12 @@ Firefox plugin for playing Flash movies
 
 %build
 #./autogen.sh
+source %{_sysconfdir}/profile.d/qt.sh
 %configure \
 	--disable-ghelp \
 	--disable-docbook \
+	--disable-rpath \
+	--disable-static \
 	--enable-dom \
 	--enable-glext \
 	--enable-http \
@@ -79,48 +82,49 @@ Firefox plugin for playing Flash movies
 	--enable-png \
 	--enable-xmlreader \
 	--with-plugindir="%{_libdir}/mozilla/plugins"
+#	--with-qtdir="$QTDIR"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+source %{_sysconfdir}/profile.d/qt.sh
 %{__install} -d -m0755 %{buildroot}%{_libdir}/mozilla/plugins/
 %{__make} install DESTDIR="%{buildroot}"
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS TODO
+%doc %{_mandir}/man1/gnash.1*
 %{_bindir}/gnash
+%{_bindir}/gtk-nash
+%{_bindir}/kde-gnash
 %{_bindir}/gparser
 %{_bindir}/gprocessor
-%exclude %{_libdir}/libgnashasobjs.a
-%exclude %{_libdir}/libgnashasobjs.la
-%{_libdir}/libgnashasobjs.so*
-%exclude %{_libdir}/libgnashbackend.a
+%{_datadir}/gnash/
+%{_libdir}/gnash/libgnashamf*.so*
+%{_libdir}/gnash/libgnashbackend*.so*
+%{_libdir}/gnash/libgnashbase*.so*
+%{_libdir}/gnash/libgnashgeo*.so*
+%{_libdir}/gnash/libgnashserver*.so*
+%exclude %{_libdir}/libgnashamf.la
 %exclude %{_libdir}/libgnashbackend.la
-%{_libdir}/libgnashbackend.so*
-%exclude %{_libdir}/libgnashbase.a
 %exclude %{_libdir}/libgnashbase.la
-%{_libdir}/libgnashbase.so*
-%exclude %{_libdir}/libgnashgeo.a
 %exclude %{_libdir}/libgnashgeo.la
-%{_libdir}/libgnashgeo.so*
-%exclude %{_libdir}/libgnashserver.a
 %exclude %{_libdir}/libgnashserver.la
-%{_libdir}/libgnashserver.so*
 
 %if %{!?_without_kde32:1}0
 %files -n konqueror-gnash
 %defattr(-, root, root, 0755)
-%config %{_datadir}/config/klashrc
-%{_bindir}/klash
+#%config %{_datadir}/config/klashrc
+#%{_bindir}/klash
 %{_datadir}/apps/klash
 %{_datadir}/services/klash_part.desktop
 %{_libdir}/kde3/libklashpart.la
 %{_libdir}/kde3/libklashpart.so
-%exclude %{_libdir}/kde3/libklashpart.a
 %endif
 
 %files -n mozilla-gnash
@@ -130,6 +134,9 @@ Firefox plugin for playing Flash movies
 %{_libdir}/mozilla/plugins/
 
 %changelog
+* Mon Sep 24 2007 Dag Wieers <dag@wieers.com> - 0.8.1-1
+- Updated to release 0.8.1.
+
 * Sun Jun 10 2007 Dag Wieers <dag@wieers.com> - 0.8.0-1
 - Updated to release 0.8.0.
 

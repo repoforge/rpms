@@ -102,9 +102,6 @@ EOF
 %{_sbindir}/in.tftpd
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7-5.2
-- Rebuild for Fedora Core 5.
-
 * Mon Mar 13 2006 Dag Wieers <dag@wieers.com> - 0.7.0-5
 - Removed readline and readline-devel as a dependency.
 

@@ -48,13 +48,10 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -81,9 +78,6 @@ you will need to install %{name}-devel.
 %changelog
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.64-1
 - Updated to release 0.64.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.63-1.2
-- Rebuild for Fedora Core 5.
 
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 0.63-1
 - Updated to release 0.63.

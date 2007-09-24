@@ -20,7 +20,7 @@ BuildRequires: perl(Mail::IMAPClient)
 #Requires: perl(Mail::IMAPClient)
 #Requires: perl(Net::SSLeay)
 
-%define __perl_requires %{_builddir}/%{buildsubdir}/filter-requires-imapsync.sh
+%define __perl_requires %{_builddir}/%{buildsubdir}/imapsync-filter-requires.sh
 
 %description
 imapsync is a tool for facilitating incremental recursive IMAP
@@ -34,7 +34,7 @@ successful transfer.
 %prep
 %setup
 
-%{__cat} <<'EOF' >filter-requires-imapsync.sh
+%{__cat} <<'EOF' >imapsync-filter-requires.sh
 #!/bin/sh
 /usr/lib/rpm/perl.req $* | sed -e '/perl(--prefix2)/d'
 EOF
@@ -49,7 +49,7 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog CREDITS FAQ GPL INSTALL README TODO
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/imapsync.1*
 %{_bindir}/imapsync
 
 %clean

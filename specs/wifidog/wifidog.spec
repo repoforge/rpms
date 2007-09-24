@@ -1,5 +1,5 @@
 # $Id$
-# AUthority: dag
+# Authority: dag
 
 Summary: Captive portal solution for wireless hotspots
 Name: wifidog
