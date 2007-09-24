@@ -100,7 +100,7 @@ source %{_sysconfdir}/profile.d/qt.sh
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS TODO
 %doc %{_mandir}/man1/gnash.1*
 %{_bindir}/gnash
-%{_bindir}/gtk-nash
+%{_bindir}/gtk-gnash
 %{_bindir}/kde-gnash
 %{_bindir}/gparser
 %{_bindir}/gprocessor
@@ -110,11 +110,11 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_libdir}/gnash/libgnashbase*.so*
 %{_libdir}/gnash/libgnashgeo*.so*
 %{_libdir}/gnash/libgnashserver*.so*
-%exclude %{_libdir}/libgnashamf.la
-%exclude %{_libdir}/libgnashbackend.la
-%exclude %{_libdir}/libgnashbase.la
-%exclude %{_libdir}/libgnashgeo.la
-%exclude %{_libdir}/libgnashserver.la
+%exclude %{_libdir}/gnash/libgnashamf.la
+%exclude %{_libdir}/gnash/libgnashbackend.la
+%exclude %{_libdir}/gnash/libgnashbase.la
+%exclude %{_libdir}/gnash/libgnashgeo.la
+%exclude %{_libdir}/gnash/libgnashserver.la
 
 %if %{!?_without_kde32:1}0
 %files -n konqueror-gnash

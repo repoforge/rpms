@@ -16,7 +16,7 @@
 
 Summary: Tool to recover from or prevent Repetitive Strain Injury
 Name: workrave
-Version: 1.8.3
+Version: 1.8.5
 Release: 1
 License: GPL
 Group: Applications/System
@@ -25,7 +25,7 @@ URL: http://workrave.sourceforge.net/
 Source: http://dl.sf.net/workrave/workrave-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libsigc++-devel, gnet2-devel, glib2-devel, gcc-c++
+BuildRequires: libsigc++-devel, gnet2-devel, glib2-devel >= 2.12, gcc-c++
 BuildRequires: gtkmm2-devel, libgnomeuimm26-devel, gettext
 BuildRequires: gnome-panel-devel
 
@@ -70,7 +70,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README
+%doc AUTHORS COPYING NEWS README TODO
 %config %{_sysconfdir}/sound/events/*
 %{_bindir}/workrave
 %{_libexecdir}/*
@@ -80,14 +80,13 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/workrave/
 %{_datadir}/sounds/workrave/
 %{_datadir}/workrave/
-#%{_datadir}/locale/*/LC_MESSAGES/workrave.*
 
 %changelog
+* Mon Sep 24 2007 Dag Wieers <dag@wieers.com> - 1.8.5-1
+- Updated to release 1.8.5.
+
 * Fri May 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.8.3-1
 - Updated to release 1.8.3.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.8.2-1.2
-- Rebuild for Fedora Core 5.
 
 * Sun Feb 12 2006 Dries Verachtert <dries@ulyssis.org> - 1.8.2-1
 - Updated to release 1.8.2.

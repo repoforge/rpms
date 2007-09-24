@@ -4,13 +4,13 @@
 
 Summary: Remote control for text mode virtual consoles
 Name: conspy
-Version: 1.4
-Release: 1.2
-License: GPL
+Version: 1.5
+Release: 1
+License: Eclipse Public License v1.0
 Group: Applications/System
 URL: http://ace-host.stuart.id.au/russell/files/conspy/
 
-Source: http://ace-host.stuart.id.au/russell/files/conspy/conspy-%{version}.tar.bz2
+Source: http://ace-host.stuart.id.au/russell/files/conspy/conspy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel
@@ -32,20 +32,20 @@ used.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README conspy.html
+%doc AUTHORS ChangeLog INSTALL README *.html
 %doc %{_mandir}/man1/conspy.1*
 %{_bindir}/conspy
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1.2
-- Rebuild for Fedora Core 5.
+* Mon Sep 24 2007 Dag Wieers <dag@wieers.com> - 1.5-1
+- Updated to release 1.5.
 
 * Wed Jan 25 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1
 - Updated to release 1.4.
