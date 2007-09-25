@@ -4,28 +4,29 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %{!?dist:%define _with_modxorg 1}
-%{?fc7: %define _with_modxorg 1}
-%{?el5: %define _with_modxorg 1}
-%{?fc6: %define _with_modxorg 1}
-%{?fc5: %define _with_modxorg 1}
+%{?fc7:  %define _with_modxorg 1}
+%{?el5:  %define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
 
 %{?rh9: %define _without_lirc 1}
 %{?rh7: %define _without_lirc 1}
 
 Summary: Lightweight, purely OSD based xine frontend
 Name: oxine
-Version: 0.7.0
+Version: 0.6
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://oxine.sourceforge.net/
 
 Source: http://dl.sf.net/oxine/oxine-%{version}.tar.gz
+Patch0: oxine-0.6-install.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: xine-lib-devel >= 1.0.1, gettext
-BuildRequires: curl-devel, ImageMagick-devel
-BuildRequires: eject, hal-devel >= 0.5
+BuildRequires: curl-devel, ImageMagick-devel, lirc-devel
+BuildRequires: eject
 %{?_with_modxorg:BuildRequires: libX11-devel, libXtst-devel, libXinerama-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_lirc:BuildRequires: lirc-devel}
@@ -40,11 +41,13 @@ entertainment systems or kiosk systems.
 
 %prep
 %setup
+%patch0 -p1 -b .install
 
 %build
 # --disable-weather until we get libmetar packaged
 # --without-jsw until we get libjsw packaged
 %configure \
+%{?_without_lirc:--disable-lirc} \
     --disable-rpath \
     --disable-weather \
     --enable-vdr \
@@ -61,14 +64,11 @@ entertainment systems or kiosk systems.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog NEWS README TODO
+%doc AUTHORS COPYING ChangeLog NEWS README TODO doc/doc.html
 %{_bindir}/oxine
 %{_datadir}/oxine/
 
 %changelog
-* Tue Sep 25 2007 Dag Wieers <dag@wieers.com> - 0.7.0-1
-- Updated to release 0.7.0.
-
 * Mon Dec 18 2006 Matthias Saou <http://freshrpms.net/> 0.6-1
 - Update to 0.6.
 - Include install patch.
