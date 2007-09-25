@@ -5,7 +5,7 @@
 Summary: Stand-alone milter written in C that implements greylist filtering
 Name: milter-greylist
 Version: 3.0
-Release: 1
+Release: 2
 License: BSD
 Group: System Environment/Daemons
 URL: http://hcpnet.free.fr/milter-greylist/
@@ -40,8 +40,9 @@ before the second attempt.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-%{__install} -D milter-greylist.m4 %{buildroot}%{_datadir}/sendmail-cf/feature/milter-greylist.m4
-%{__install} -D rc-redhat.sh %{buildroot}%{_initrddir}/milter-greylist
+
+%{__install} -Dp -m0755 milter-greylist.m4 %{buildroot}%{_datadir}/sendmail-cf/feature/milter-greylist.m4
+%{__install} -Dp -m0755 rc-redhat.sh %{buildroot}%{_initrddir}/milter-greylist
 
 %post
 /sbin/chkconfig --add milter-greylist
@@ -64,11 +65,18 @@ fi
 %doc %{_mandir}/man5/greylist.conf.5*
 %doc %{_mandir}/man8/milter-greylist.8*
 %config(noreplace) %{_sysconfdir}/mail/greylist.conf
-%{_initrddir}/milter-greylist
+%config %{_initrddir}/milter-greylist
 %{_bindir}/milter-greylist
-%dir %{_localstatedir}/milter-greylist/
+%dir %{_datadir}/sendmail-cf/
+%dir %{_datadir}/sendmail-cf/feature/
 %{_datadir}/sendmail-cf/feature/milter-greylist.m4
 
+%defattr(-, smmsp, smmsp, 0755)
+%dir %{_localstatedir}/milter-greylist/
+
 %changelog
+* Tue Sep 25 2007 Dag Wieers <dag@wieers.com> - 3.0-2
+- Change ownership of /var/milter-greylist/ to smmsp:smmsp. (Michael Mansour)
+
 * Mon Sep 24 2007 Dries Verachtert <dries@ulyssis.org> - 3.0-1
 - Initial package, based on the spec file made by Ivan F. Martinez.
