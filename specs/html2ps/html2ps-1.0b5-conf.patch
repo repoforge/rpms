@@ -1,0 +1,67 @@
+diff -Nur html2ps-1.0b3.orig/html2ps html2ps-1.0b3/html2ps
+--- html2ps-1.0b3.orig/html2ps	Wed Aug 16 23:42:03 2000
++++ html2ps-1.0b3/html2ps	Mon Mar 19 20:55:05 2001
+@@ -26,8 +26,8 @@
+ # Set the name of the global configuration file. See the installation notes
+ # and manual page for more details on configuration files.
+ 
+-$globrc='/opt/misc/lib/html2ps/html2psrc';
+-$ug='/opt/misc/lib/html2ps/html2ps.html';
++$globrc='@CONFDIR@/html2psrc';
++$ug='@DOCDIR@/html2ps.html';
+ 
+ $conf=<<'EOR';
+ @html2ps {
+@@ -478,6 +478,17 @@
+ print DBG "*****\n" if($opt_d);
+ &pagedef;
+ ($pagew,$pageh)=split /\s+/, $AT_page{'size'} if(defined $AT_page{'size'});
++
++# try autoconfiguration (basing on paths known from PLD packages)
++eval "require Image::Magick"; $package{'PerlMagick'}=!$@;
++$package{'ImageMagick'} = ( -x "/usr/X11R6/bin/mogrify" );
++$package{'pbmplus'} = ( -x "/usr/bin/giftoppm" );
++$package{'netpbm'} = ( -x "/usr/bin/giftopnm" );
++$package{'djpeg'} = ( -x "/usr/bin/djpeg" );
++$package{'Ghostscript'} = ( -x "/usr/bin/gs" );
++$package{'TeX'} = ( -x "/usr/bin/tex" );
++$package{'dvips'} = ( -x "/usr/bin/dvips" );
++eval "require LWP::UserAgent"; $package{'libwww-perl'}=!$@;
+ 
+ require Image::Magick if($package{'PerlMagick'});
+ $geturl=$package{'geturl'};
+diff -Nur html2ps-1.0b3.orig/html2ps.1 html2ps-1.0b3/html2ps.1
+--- html2ps-1.0b3.orig/html2ps.1	Wed Aug 16 23:42:03 2000
++++ html2ps-1.0b3/html2ps.1	Mon Mar 19 20:54:13 2001
+@@ -348,6 +348,9 @@
+ 
+ .SH FILES
+ .TP
++@CONFDIR@/html2psrc
++Global configuration file, see html2psrc(5).
++.TP
+ $HOME/.html2psrc
+ User configuration file, see html2psrc(5).
+ .SH SEE ALSO
+diff -Nur html2ps-1.0b3.orig/html2psrc html2ps-1.0b3/html2psrc
+--- html2ps-1.0b3.orig/html2psrc	Thu Jan  1 01:00:00 1970
++++ html2ps-1.0b3/html2psrc	Mon Mar 19 20:52:21 2001
+@@ -0,0 +1,18 @@
++/* Global configuration file for html2ps */
++
++@html2ps {
++  package {
++    path: "/usr/X11R6/bin:/usr/bin";
++  }
++  paper {
++    type: A4;
++  }
++  hyphenation {
++    en {
++      file: "/usr/share/texmf/tex/generic/hyphen/hyphen.tex";
++    }
++    pl {
++      file: "/usr/share/texmf/tex/generic/hyphen/plhyph.tex";
++    }
++  }
++}

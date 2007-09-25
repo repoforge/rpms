@@ -1,0 +1,31 @@
+--- html2ps.orig	Wed Aug 16 23:42:03 2000
++++ html2ps	Wed Oct  9 18:41:24 2002
+@@ -354,8 +354,8 @@
+ 
+ EOR
+ 
+-eval "require POSIX";
+-$posix = !$@;
++use POSIX;
++$posix = 1;
+ 
+ %extend=('quote',1, 'font',1, 'colour',1, 'hyphenation',1);
+ %fal=("serif","times", "sans_serif","helvetica", "monospace","courier");
+@@ -495,6 +495,8 @@
+ die "Ghostscript is required to generate cross references\n"
+  if($opt_R && !$package{'Ghostscript'});
+ $tmpname=$posix?POSIX::tmpnam():"h2p_$$";
++sysopen TMP, $tmpname, O_RDWR|O_CREAT|O_EXCL, 0600 or die "$!";
++close TMP;
+ ($scr=$tmpname)=~/\w+$/;
+ $tempdir=$`;
+ 
+@@ -3179,7 +3181,7 @@
+       open(SCRATCH,">$scr.tex");
+       print SCRATCH $tex;
+       close SCRATCH;
+-      `tex $scr.tex`;
++      `tex $scr.tex`;# seems ok, $scr not user controlled
+       `dvips -E -o $scr.ps $scr.dvi`;
+       open(LOG,"$scr.log");
+       $log=<LOG>;
