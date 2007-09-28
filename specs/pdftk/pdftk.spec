@@ -15,6 +15,7 @@ Group: Applications/Publishing
 URL: http://www.accesspdf.com/pdftk/
 
 Source: http://www.pdfhacks.com/pdftk/pdftk-%{version}.tar.bz2
+Patch0: pdftk-1.12-gcj4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-java, libgcj-devel
@@ -36,6 +37,7 @@ of your desktop and use it to:
 
 %prep
 %setup
+%patch -p1
 
 %build
 export -n CLASSPATH
@@ -53,10 +55,13 @@ export -n CLASSPATH
 
 %files
 %defattr(-, root, root, 0755)
-%doc pdftk.1.html pdftk.1.txt
+%doc pdftk.1.html pdftk.1.notes pdftk.1.txt
 %doc %{_mandir}/man1/pdftk.1*
 %{_bindir}/pdftk
 
 %changelog
+* Fri Sep 28 2007 Dag Wieers <dag@wieers.com> - 1.12-1
+- Added cj4 patch for RHEL5. (Les Bell)
+
 * Tue Oct 03 2006 Dag Wieers <dag@wieers.com> - 1.12-1
 - Initial package. (using DAR)

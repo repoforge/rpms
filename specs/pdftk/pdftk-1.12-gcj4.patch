@@ -1,0 +1,10 @@
+--- pdftk-1.12/java_libs/com/lowagie/text/pdf/codec/PngImage.java	2004-05-27 08:06:12.000000000 +1000
++++ pdftk-1.12-1/java_libs/com/lowagie/text/pdf/codec/PngImage.java	2007-04-16 10:30:08.000000000 +1000
+@@ -94,6 +94,7 @@
+ import com.lowagie.text.ExceptionConverter;
+ import com.lowagie.text.Image;
+ //SID import com.lowagie.text.ImgRaw;
++import com.lowagie.text.ImgRaw;
+ import com.lowagie.text.pdf.ByteBuffer;
+ import com.lowagie.text.pdf.PdfArray;
+ import com.lowagie.text.pdf.PdfDictionary;
