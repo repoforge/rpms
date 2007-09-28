@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Luis Muñoz <luismunoz$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,9 +9,9 @@
 
 Summary: Manages IPv4 and IPv6 addresses and subnets
 Name: perl-NetAddr-IP
-Version: 4.004
+Version: 4.007
 Release: 1
-License: distributable
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/NetAddr-IP/
 
@@ -28,7 +29,7 @@ Manages IPv4 and IPv6 addresses and subnets.
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -37,19 +38,26 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs 
+find docs/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc MANIFEST README TODO
-%doc %{_mandir}/man?/NetAddr::IP*
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README TODO docs/
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorarch}/NetAddr/
 %{perl_vendorarch}/NetAddr/IP.pm
 %{perl_vendorarch}/NetAddr/IP/
-%{perl_vendorarch}/auto/NetAddr/
+%dir %{perl_vendorarch}/auto/NetAddr/
+%{perl_vendorarch}/auto/NetAddr/IP/
 
 %changelog
+* Fri Sep 28 2007 Dag Wieers <dag@wieers.com> - 4.007-1
+- Updated to release 4.007.
+
 * Tue Feb 13 2007 Dries Verachtert <dries@ulyssis.org> - 4.004-1
 - Updated to release 4.004.
 - Buildarch isn't noarch anymore (thanks to Peter Bieringer)

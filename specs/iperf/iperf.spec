@@ -5,13 +5,14 @@
 Summary: Tool for measuring TCP and UDP bandwidth performance
 Name: iperf
 Version: 2.0.2
-Release: 1.2
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://dast.nlanr.net/Projects/Iperf/
 
 #Source: http://dast.nlanr.net/Projects/Iperf/iperf-%{version}.tar.gz
 Source: http://dast.nlanr.net/Projects/Iperf2.0/iperf-%{version}.tar.gz
+Patch0: iperf-2.0.2-noyield.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, libstdc++-devel
@@ -23,6 +24,7 @@ delay jitter, datagram loss.
 
 %prep
 %setup
+%patch -p1
 
 %build
 %configure
@@ -42,8 +44,8 @@ delay jitter, datagram loss.
 %{_bindir}/iperf
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.2-1.2
-- Rebuild for Fedora Core 5.
+* Thu Sep 27 2007 Dag Wieers <dag@wieers.com> - 2.0.2-2
+- Added Ingo Molnar's noyield patch.
 
 * Sun Sep 18 2005 Dries Verachtert <dries@ulyssis.org> - 2.0.2-1
 - Updated to release 2.0.2.

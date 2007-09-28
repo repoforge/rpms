@@ -3,18 +3,20 @@
 # Upstream: <syslinux$zytor,com>
 
 # Rationale: If you need syslinux, you'd appreciate the latest, trust me.
+# Tag: test
 
 %define _sbindir /sbin
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
+%define real_version 3.52-pre10
 Version: 3.52
-Release: 1
+Release: 0.pre10
 License: GPL
 Group: Applications/System
 URL: http://syslinux.zytor.com/
 
-Source: ftp://ftp.kernel.org/pub/linux/utils/boot/syslinux/syslinux-%{version}.tar.bz2
+Source: ftp://ftp.kernel.org/pub/linux/utils/boot/syslinux/Testing/syslinux-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386 x86_64
@@ -28,7 +30,7 @@ filesystems, Linux ext2/ext3 filesystems (EXTLINUX), PXE network boots
 MEMDISK, which loads legacy operating systems from these media.
 
 %prep
-%setup
+%setup -n %{name}-%{real_version}
 
 %build
 %{__make} clean
@@ -55,17 +57,14 @@ MEMDISK, which loads legacy operating systems from these media.
 %doc BUGS COPYING NEWS README* TODO *.doc com32/modules/mboot.doc memdisk/memdisk.doc sample/
 %{_sbindir}/extlinux
 %{_bindir}/gethostip
-%{_bindir}/lss16toppm
 %{_bindir}/md5pass
+%{_bindir}/lss16toppm
 %{_bindir}/ppmtolss16
 %{_bindir}/sha1pass
 %{_bindir}/syslinux
 %{_prefix}/lib/syslinux/
 
 %changelog
-* Wed Sep 26 2007 Dag Wieers <dag@wieers.com> - 3.52-1
-- Updated to release 3.52.
-
 * Sat Sep 08 2007 Dag Wieers <dag@wieers.com> - 3.51-2
 - Fixed the location of syslinux on x86_64. (Matt Hyclak)
 
