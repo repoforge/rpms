@@ -1,5 +1,7 @@
 # $Id$
 # Authority: dag
+# Upstream: Jan Akkerman <jan$it,uu,se>
+# Upstream: <html2ps-users-request$list,it,uu,se>
 
 Summary: HTML to PostScript converter
 Name: html2ps
