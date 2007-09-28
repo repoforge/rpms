@@ -72,13 +72,13 @@ fi
 %doc %{_mandir}/man1/recode.1*
 %{_bindir}/recode
 %{_libdir}/librecode.so.*
-%exclude %{_libdir}/librecode.la
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/recode.h
 %{_includedir}/recodext.h
 %{_libdir}/librecode.so
+%exclude %{_libdir}/librecode.la
 
 %changelog
 * Fri Jun 08 2007 Dag Wieers <dag@wieers.com> - 3.6-1

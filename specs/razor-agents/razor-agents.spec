@@ -6,7 +6,7 @@
 
 Summary: Use the Razor catalog server to filter spam messages
 Name: razor-agents
-Version: 2.82
+Version: 2.84
 Release: 1
 License: Artistic
 Group: Applications/Internet
@@ -72,9 +72,9 @@ pod2text Changes.pod > Changes
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS Changes CREDITS docs/ FAQ INSTALL README
-%doc %{_mandir}/man1/razor-*
-%doc %{_mandir}/man5/razor-*
+%doc BUGS Changes CREDITS FAQ INSTALL README docs/
+%doc %{_mandir}/man1/razor-*.1*
+%doc %{_mandir}/man5/razor-*.5*
 %{_bindir}/razor-admin
 %{_bindir}/razor-check
 %{_bindir}/razor-client
@@ -83,14 +83,17 @@ pod2text Changes.pod > Changes
 
 %files -n perl-Razor-Agent
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/Razor2::*
+%doc BUGS Changes CREDITS FAQ INSTALL README docs/
+%doc %{_mandir}/man3/Razor2::*.3pm*
 %{perl_vendorlib}/Razor2/
 %{perl_vendorlib}/auto/Razor2/
 %{perl_vendorarch}/Razor2/
 %{perl_vendorarch}/auto/Razor2/
 
 %changelog
+* Fri Sep 28 2007 Dag Wieers <dag@wieers.com> - 2.84-1
+- Updated to release 2.84.
+
 * Fri Jan 19 2007 Dag Wieers <dag@wieers.com> - 2.82-1
 - Updated to release 2.82.
 
