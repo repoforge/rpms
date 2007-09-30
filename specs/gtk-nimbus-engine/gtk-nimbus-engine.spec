@@ -5,7 +5,7 @@
 
 Summary: Nimbus GTK2 engine
 Name: gtk-nimbus-engine
-Version: 0.0.6
+Version: 0.0.8
 Release: 1
 License: GPL
 Group: User Interface/X
@@ -53,5 +53,8 @@ Nimbus is the default gtk engine from Open Solaris.
 %exclude %{_libdir}/gtk-2.0/*/engines/libnimbus.la
 
 %changelog
+* Sun Sep 30 2007 Heiko Adams <info [at] fedora-blog [dot] de> - 0.0.8-1
+- version update
+
 * Wed Jun 27 2007 Heiko Adams <info@fedora-blog.de> - 0.0.6-1
 - Initial build.

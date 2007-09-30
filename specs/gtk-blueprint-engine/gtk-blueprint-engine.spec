@@ -5,7 +5,7 @@
 
 Summary: Blueprint GTK2 engine
 Name: gtk-blueprint-engine
-Version: 0.9.18
+Version: 0.9.20
 Release: 1
 License: GPL
 Group: User Interface/X
@@ -53,5 +53,8 @@ Blueprint is a GTK engine from Open Solaris.
 %exclude %{_libdir}/gtk-2.0/*/engines/libblueprint.la
 
 %changelog
+* Sun Sep 30 2007 Heiko Adams <info [at] fedora-blog [dot] de> - 0.9.20-1
+- version update
+
 * Wed Jun 27 2007 Heiko Adams <info@fedora-blog.de> - 0.9.18-1
 - Initial build.
