@@ -6,6 +6,8 @@
 
 %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")
 
+%define real_name pygtk
+
 Summary: Python bindings for the GTK+ widget set.
 Name: pygtk2
 Version: 2.10.1
@@ -15,7 +17,7 @@ Group: Development/Languages
 URL: http://www.pygtk.org/
 
 Source: http://ftp.gnome.org/pub/GNOME/sources/pygtk/2.10/pygtk-%{version}.tar.bz2
-Patch0: pygtk-nodisplay-exception.patch
+Patch0: pygtk2-nodisplay-exception.patch
 Patch1: pygtk2-2.10.1-treeview.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -73,7 +75,7 @@ This package contains files required to build wrappers for GTK+ addon
 libraries so that they interoperate with pygtk.
 
 %prep
-%setup -n pygtk-%{version}
+%setup -n %{real_name}-%{version}
 %patch0 -p1
 %patch1 -p1
 
