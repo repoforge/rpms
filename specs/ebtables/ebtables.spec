@@ -6,14 +6,13 @@
 
 Summary: Ethernet Bridge frame table administration tool
 Name: ebtables
-Version: 2.0.6
-Release: 3.2
+Version: 2.0.8
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://ebtables.sourceforge.net/
 
-Source: http://dl.sf.net/ebtables/ebtables-v%{version}.tar.gz
-Patch0: ebtables-2.0.6-gcc34.patch
+Source: http://dl.sf.net/ebtables/ebtables-v%{version}-1.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -25,8 +24,7 @@ The ebtables tool can be used together with the other Linux filtering tools,
 like iptables. There are no incompatibility issues.
 
 %prep
-%setup -n ebtables-v%{version}
-%patch0 -p1
+%setup -n ebtables-v%{version}-1
 
 %{__cat} <<'EOF' >ebtables.sysv
 #!/bin/bash
@@ -145,8 +143,7 @@ exit $RETVAL
 EOF
 
 %build
-%{__make} %{?_smp_mflags} \
-	CFLAGS="%{optflags}"
+%{__make} %{?_smp_mflags} CFLAGS="$(echo %{optflags} -fPIC | sed -e 's|-fstack-protector||g')"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -155,11 +152,19 @@ EOF
 %{__install} -Dp -m0644 ethertypes %{buildroot}%{_sysconfdir}/ethertypes
 %{__install} -Dp -m0644 ebtables.8 %{buildroot}%{_mandir}/man8/ebtables.8
 
+%{__install} -d -m0755 %{buildroot}%{_libdir}
+%{__install} -Dp -m0755 *.so extensions/*.so %{buildroot}%{_libdir}
+
+touch %{buildroot}%{_sysconfdir}/ebtables.filter
+touch %{buildroot}%{_sysconfdir}/ebtables.nat
+touch %{buildroot}%{_sysconfdir}/ebtables.broute
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %post
 /sbin/chkconfig --add ebtables
+/sbin/ldconfig
 
 %preun
 if [ $1 -eq 0 ]; then
@@ -169,6 +174,7 @@ fi
 
 %postun
 /sbin/service ebtables condrestart &>/dev/null || :
+/sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
@@ -176,11 +182,15 @@ fi
 %doc %{_mandir}/man8/ebtables.8*
 %config %{_sysconfdir}/ethertypes
 %config %{_initrddir}/ebtables
+%{_libdir}/libebt*.so
 %{_sbindir}/ebtables
+%ghost %{_sysconfdir}/ebtables.filter
+%ghost %{_sysconfdir}/ebtables.nat
+%ghost %{_sysconfdir}/ebtables.broute
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.6-3.2
-- Rebuild for Fedora Core 5.
+* Sun Sep 30 2007 Dag Wieers <dag@wieers.com> - 2.0.8-1
+- Updated to release 2.0.8.
 
 * Mon Dec 19 2005 Dag Wieers <dag@wieers.com> - 2.0.6-3
 - Fixed typo in sysv script that prevented saving ruleset. (Neil McCalden)
