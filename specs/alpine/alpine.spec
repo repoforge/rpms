@@ -3,8 +3,8 @@
 
 Summary: Alternative Pine mail user agent implementation
 Name: alpine
-Version: 0.999
-Release: 2
+Version: 0.9999
+Release: 1
 License: Apache License
 Group: Applications/Internet
 URL: http://www.washington.edu/alpine/
@@ -12,6 +12,7 @@ URL: http://www.washington.edu/alpine/
 Source: ftp://ftp.cac.washington.edu/alpine/alpine-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: inews, aspell, openldap-devel, openssl-devel, krb5-devel
 ### RPM bug causes package to conflict with itself
 #Conflicts: pine
 #Obsoletes: pine <= 4.64
@@ -80,6 +81,9 @@ touch imap/ip6
 %{_sbindir}/mlock
 
 %changelog
+* Sun Sep 30 2007 Dag Wieers <dag@wieers.com> - 0.9999-1
+- Updated to release 0.9999.
+
 * Mon Aug 27 2007 Dag Wieers <dag@wieers.com> - 0.999-2
 - Removed Conflicts: pine as RPM bug causes package to conflict with itself. (Bart Schaefer)
 

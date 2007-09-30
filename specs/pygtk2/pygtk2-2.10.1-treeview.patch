@@ -1,0 +1,109 @@
+diff -ru pygtk-2.10.1/gtk/gtkobject-support.c pygtk-2.10.2/gtk/gtkobject-support.c
+--- pygtk-2.10.1/gtk/gtkobject-support.c	2006-07-05 15:12:16.000000000 +0200
++++ pygtk-2.10.2/gtk/gtkobject-support.c	2006-09-16 16:08:12.000000000 +0200
+@@ -120,3 +120,19 @@
+     return list;
+ }
+ 
++void
++pygtk_boxed_unref_shared(PyObject *boxed)
++{
++    PyGBoxed *pyboxed;
++    g_return_if_fail(boxed != NULL && PyObject_TypeCheck(boxed, &PyGBoxed_Type));
++    pyboxed = (PyGBoxed *) boxed;
++    if (pyboxed->ob_refcnt != 1) {
++        if (!pyboxed->free_on_dealloc) {
++            pyboxed->boxed = g_boxed_copy(pyboxed->gtype,
++                                          pyboxed->boxed);
++            pyboxed->free_on_dealloc = TRUE;
++        }
++    }
++    Py_DECREF(boxed);
++}
++
+diff -ru pygtk-2.10.1/gtk/gtk.override pygtk-2.10.2/gtk/gtk.override
+--- pygtk-2.10.1/gtk/gtk.override	2006-08-04 22:28:11.000000000 +0200
++++ pygtk-2.10.2/gtk/gtk.override	2006-09-16 13:57:48.000000000 +0200
+@@ -6891,8 +6891,9 @@
+                                            buffer, &format, &length);
+      
+     if (ret) {
++        PyObject *py_ret;
+         name = gdk_atom_name(format);
+-        PyObject *py_ret = Py_BuildValue("(s#s)", ret, length, name);
++        py_ret = Py_BuildValue("(s#s)", ret, length, name);
+         g_free(ret);
+         g_free(name);
+         return py_ret;
+diff -ru pygtk-2.10.1/gtk/gtktreeview.override pygtk-2.10.2/gtk/gtktreeview.override
+--- pygtk-2.10.1/gtk/gtktreeview.override	2006-07-19 22:29:19.000000000 +0200
++++ pygtk-2.10.2/gtk/gtktreeview.override	2006-09-16 16:17:07.000000000 +0200
+@@ -579,6 +579,7 @@
+ }
+ %%
+ override gtk_tree_selection_selected_foreach
++
+ static void
+ pygtk_tree_selection_foreach_marshal(GtkTreeModel *model,
+                                      GtkTreePath *path,
+@@ -597,17 +598,17 @@
+     py_path = pygtk_tree_path_to_pyobject(path);
+     py_iter = pyg_boxed_new(GTK_TYPE_TREE_ITER, iter, FALSE, FALSE);
+     if (cunote->data)
+-        retobj = PyEval_CallFunction(cunote->func, "(NNNO)",
++        retobj = PyEval_CallFunction(cunote->func, "(NNOO)",
+                                      py_model, py_path, py_iter,
+                                      cunote->data);
+     else
+-        retobj = PyEval_CallFunction(cunote->func, "(NNN)",
++        retobj = PyEval_CallFunction(cunote->func, "(NNO)",
+                                      py_model, py_path, py_iter);
+ 
+     if (retobj == NULL) {
+         PyErr_Print();
+     }
+-
++    pygtk_boxed_unref_shared(py_iter);
+     Py_XDECREF(retobj);
+ 
+     pyg_gil_state_release(state);
+@@ -1124,13 +1125,14 @@
+     py_iter2 = pyg_boxed_new(GTK_TYPE_TREE_ITER, iter2,  FALSE, FALSE);
+ 
+     if (cunote->data) {
+-        retobj = PyEval_CallFunction(cunote->func, "(NNNO)", py_model,
++        retobj = PyEval_CallFunction(cunote->func, "(OONO)", py_model,
+                                      py_iter1, py_iter2, cunote->data);
+     } else {
+-        retobj = PyEval_CallFunction(cunote->func, "(NNN)", py_model,
++        retobj = PyEval_CallFunction(cunote->func, "(OON)", py_model,
+                                      py_iter1, py_iter2);
+     }
+-
++    pygtk_boxed_unref_shared(py_iter1);
++    pygtk_boxed_unref_shared(py_iter2);
+     if (retobj)
+         ret = PyInt_AsLong(retobj);
+     if (PyErr_Occurred()) {
+diff -ru pygtk-2.10.1/gtk/pygtkcellrenderer.c pygtk-2.10.2/gtk/pygtkcellrenderer.c
+--- pygtk-2.10.1/gtk/pygtkcellrenderer.c	2005-01-09 18:35:02.000000000 +0100
++++ pygtk-2.10.2/gtk/pygtkcellrenderer.c	2006-09-16 16:17:07.000000000 +0200
+@@ -250,7 +250,7 @@
+     Py_DECREF(py_ret);
+ 
+ out:
+-    Py_DECREF(py_event);
++    pygtk_boxed_unref_shared(py_event);
+     Py_DECREF(py_widget);
+     Py_DECREF(py_background_area);
+     Py_DECREF(py_cell_area);
+diff -ru pygtk-2.10.1/gtk/pygtk-private.h pygtk-2.10.2/gtk/pygtk-private.h
+--- pygtk-2.10.1/gtk/pygtk-private.h	2006-07-05 15:12:17.000000000 +0200
++++ pygtk-2.10.2/gtk/pygtk-private.h	2006-09-16 16:11:01.000000000 +0200
+@@ -70,4 +70,6 @@
+ #define PYGDK_TYPE_REGION (pygdk_region_get_type ())
+ #endif /* GDK_TYPE_REGION */
+ 
++void pygtk_boxed_unref_shared(PyObject *boxed);
++
+ #endif
