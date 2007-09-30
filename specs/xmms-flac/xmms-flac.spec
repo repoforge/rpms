@@ -1,5 +1,5 @@
 # $Id$
-# Authority: thias
+# Authority: dag
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -15,13 +15,15 @@
 
 Summary: XMMS plugin needed to play FLAC (Free Lossless Audio Codec) files
 Name: xmms-flac
-Version: 1.1.4
+Version: 1.2.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://flac.sourceforge.net/
+
 Source: http://dl.sf.net/flac/flac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: xmms-devel, libogg-devel, gettext
 ### Doesn't actually require it, but at least we won't build it for older FLAC releases
 BuildRequires: flac-devel >= 1.1
@@ -32,33 +34,29 @@ FLAC is a Free Lossless Audio Codec. The FLAC format supports streaming,
 seeking, and archival, and gives 25-75% compression on typical CD audio.
 This is the input plugin for XMMS to be able to read FLAC files.
 
-
 %prep
 %setup -n flac-%{version}
-
 
 %build
 %configure --with-pic
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m 0755 src/plugin_xmms/.libs/libxmms-flac.so \
-    %{buildroot}%{xmms_inputdir}/libxmms-flac.so
-
+%{__install} -Dp -m0755 src/plugin_xmms/.libs/libxmms-flac.so %{buildroot}%{xmms_inputdir}/libxmms-flac.so
 
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING.GPL
 %{xmms_inputdir}/libxmms-flac.so
 
-
 %changelog
+* Sun Sep 30 2007 Dag Wieers <dag@wieers.com> - 1.2.1-1
+- Updated to release 1.2.1.
+
 * Thu Feb 15 2007 Matthias Saou <http://freshrpms.net/> 1.1.4-1
 - Update to 1.1.4.
 - Remove now included "xmms" patch.
