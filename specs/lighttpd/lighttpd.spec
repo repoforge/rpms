@@ -1,29 +1,43 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
+
+%{?dist: %{expand: %%define %dist 1}}
+%{?el5:%define _without_lua 1}
+%{?el4:%define _without_lua 1}
+%{?el3:%define _without_lua 1}
+%{?rh9:%define _without_lua 1}
+
+%{?rh7:%define _without_lua 1}
+%{?rh7:%define _without_ssl 1}
+
+%{?el2:%define _without_lua 1}
+%{?el2:%define _without_ssl 1}
 
 %define webroot /srv/www/lighttpd
 
 Summary: Lightning fast webserver with light system requirements
 Name: lighttpd
-Version: 1.3.16
+Version: 1.4.18
 Release: 1
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.lighttpd.net/
-Source0: http://www.lighttpd.net/download/lighttpd-%{version}.tar.gz
-Source1: lighttpd.logrotate
-Source2: php.d-lighttpd.ini
-Source10: index.html
-Source11: lighttpd.png
-Source12: powered_by_fedora.png
-Patch0: lighttpd-1.3.10-defaultconf.patch
+
+Source: http://www.lighttpd.net/download/lighttpd-%{version}.tar.bz2
+Patch0: lighttpd-1.4.17-defaultconf.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: pcre-devel, bzip2-devel, zlib-devel, readline-devel
+BuildRequires: /usr/bin/awk
+%{?_with_gamin:BuildRequires: gamin-devel}
+%{!?_without_gdbm:BuildRequires: gdbm-devel}
+%{!?_without_lua:BuildRequires: lua-devel >= 5.1}
+%{!?_without_ldap:BuildRequires: openldap-devel}
+%{!?_without_ssl:BuildRequires: openssl-devel}
 Requires(pre): /usr/sbin/useradd
 Requires(post): /sbin/chkconfig
 Requires(preun): /sbin/service, /sbin/chkconfig
 Requires(postun): /sbin/service
-BuildRequires: openssl-devel, pcre-devel, bzip2-devel, zlib-devel, gcc-c++
-%{?_with_ldap:BuildRequires: openldap-devel}
 
 %description
 Secure, fast, compliant and very flexible web-server which has been optimized
@@ -34,23 +48,22 @@ it the perfect webserver-software for every server that is suffering load
 problems.
 
 Available rpmbuild rebuild options :
---with : ldap
-
+--with : gamin webdavprops webdavlocks memcache
+--without : ldap gdbm lua (cml) ssl
 
 %package mod_mysql_vhost
 Summary: Virtual host module for lighttpd that uses a MySQL database
 Group: System Environment/Daemons
-Requires: %{name} = %{version}
+Requires: %{name} = %{version}-%{release}
 BuildRequires: mysql-devel
 
 %description mod_mysql_vhost
 Virtual host module for lighttpd that uses a MySQL database.
 
-
 %package fastcgi
 Summary: FastCGI module and spawning helper for lighttpd and PHP configuration
 Group: System Environment/Daemons
-Requires: %{name} = %{version}
+Requires: %{name} = %{version}-%{release}
 
 %description fastcgi
 This package contains the spawn-fcgi helper for lighttpd's automatic spawning
@@ -60,55 +73,68 @@ Note that for FastCGI to work with PHP, you will most likely need to find a
 tweaked PHP package (--enable-fastcgi and --enable-discard-path added) or
 recompile PHP yourself.
 
-
 %prep
 %setup
 %patch0 -p1 -b .defaultconf
 
+%{__cat} <<EOF >lighttpd.logrotate
+%{_localstatedir}/log/lighttpd/*log {
+    missingok
+    notifempty
+    sharedscripts
+    postrotate
+        /bin/kill -HUP $(cat %{_localstatedir}/run/lighttpd.pid 2>/dev/null) 2>/dev/null || :
+    endscript
+}
+EOF
+
+%{__cat} <<EOF >php.d-lighttpd.ini
+; Required so that PHP_SELF gets set correctly when using PHP through
+; FastCGI with lighttpd (see main php.ini for more about this option)
+cgi.fix_pathinfo = 1
+EOF
 
 %build
 %configure \
     --libdir="%{_libdir}/lighttpd" \
-    --with-openssl \
+    --program-prefix="%{?_program_prefix}" \
+    %{?_with_gamin:--with-fam} \
+    %{!?_without_gdbm:--with-gdbm} \
+    %{!?_without_ldap:--with-ldap} \
+    %{?!_without_lua:--with-lua} \
+    %{?_with_memcache:--with-memcache} \
     --with-mysql \
-    %{?_with_ldap:--with-ldap}
-%{__make}
-
+    %{?_without_ssl:--without-openssl} \
+    %{!?_without_ssl:--with-openssl} \
+    %{?_with_webdavlocks:--with-webdav-locks} \
+    %{?_with_webdavprops:--with-webdav-props}
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall \
-    libdir="%{buildroot}%{_libdir}/lighttpd"
+%{__make} install DESTDIR="%{buildroot}"
 
-# Install included init script and sysconfig entry
-%{__install} -D -p -m 0755 doc/rc.lighttpd.redhat \
-    %{buildroot}%{_sysconfdir}/rc.d/init.d/lighttpd
-%{__install} -D -p -m 0644 doc/sysconfig.lighttpd \
-    %{buildroot}%{_sysconfdir}/sysconfig/lighttpd
+### Install included init script and sysconfig entry
+%{__install} -Dp -m0755 doc/rc.lighttpd.redhat %{buildroot}%{_sysconfdir}/rc.d/init.d/lighttpd
+%{__install} -Dp -m0644 doc/sysconfig.lighttpd %{buildroot}%{_sysconfdir}/sysconfig/lighttpd
 
-# Install (*patched above*) sample config file
-%{__install} -D -p -m 0640 doc/lighttpd.conf \
-    %{buildroot}%{_sysconfdir}/lighttpd/lighttpd.conf
+### Install (*patched above*) sample config file
+%{__install} -Dp -m0640 doc/lighttpd.conf %{buildroot}%{_sysconfdir}/lighttpd/lighttpd.conf
 
-# Install our own logrotate entry
-%{__install} -D -p -m 0644 %{SOURCE1} \
-    %{buildroot}%{_sysconfdir}/logrotate.d/lighttpd
+### Install our own logrotate entry
+%{__install} -Dp -m0644 lighttpd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/lighttpd
 
-# Install our own php.d ini file
-%{__install} -D -p -m 0644 %{SOURCE2} \
-    %{buildroot}%{_sysconfdir}/php.d/lighttpd.ini
+### Install our own php.d ini file
+%{__install} -Dp -m0644 php.d-lighttpd.ini %{buildroot}%{_sysconfdir}/php.d/lighttpd.ini
 
-# Install our own default web page and images
-%{__mkdir_p} %{buildroot}%{webroot}
-%{__install} -p -m 0644 %{SOURCE10} %{SOURCE11} %{SOURCE12} \
-    %{buildroot}%{webroot}/
+### Install empty log directory to include
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/lighttpd
 
-# Install empty log directory to include
-%{__mkdir_p} %{buildroot}%{_var}/log/lighttpd
+### Install empty run directory to include (for the example fastcgi socket)
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/run/lighttpd
 
-
-%clean
-%{__rm} -rf %{buildroot}
+### Create an empty document root
+%{__install} -d -m0755 %{buildroot}%{webroot}
 
 
 %pre
@@ -120,8 +146,8 @@ recompile PHP yourself.
 
 %preun
 if [ $1 -eq 0 ]; then
-  /sbin/service lighttpd stop &>/dev/null || :
-  /sbin/chkconfig --del lighttpd
+    /sbin/service lighttpd stop &>/dev/null || :
+    /sbin/chkconfig --del lighttpd
 fi
 
 %postun
@@ -129,24 +155,29 @@ if [ $1 -ge 1 ]; then
     /sbin/service lighttpd condrestart &>/dev/null || :
 fi
 
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README
 %doc doc/*.txt doc/lighttpd.conf doc/lighttpd.user
+%doc %{_mandir}/man1/lighttpd.1*
 %dir %{_sysconfdir}/lighttpd/
 %config(noreplace) %{_sysconfdir}/lighttpd/lighttpd.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/lighttpd
 %config(noreplace) %{_sysconfdir}/sysconfig/lighttpd
 %{_sysconfdir}/rc.d/init.d/lighttpd
 %{_sbindir}/lighttpd
+%{_sbindir}/lighttpd-angel
 %{_libdir}/lighttpd/
+%{webroot}/
 %exclude %{_libdir}/lighttpd/*.la
 %exclude %{_libdir}/lighttpd/mod_fastcgi.so
 %exclude %{_libdir}/lighttpd/mod_mysql_vhost.so
-%{_mandir}/man1/lighttpd.1*
-%attr(0750, lighttpd, lighttpd) %{_var}/log/lighttpd/
-%{webroot}/
+
+%defattr(-, lighttpd, lighttpd, 0750)
+%{_localstatedir}/log/lighttpd/
 
 %files mod_mysql_vhost
 %defattr(-, root, root, 0755)
@@ -157,14 +188,16 @@ fi
 %files fastcgi
 %defattr(-, root, root, 0755)
 %doc doc/fastcgi*.txt
+%doc %{_mandir}/man1/spawn-fcgi.1*
 %config(noreplace) %{_sysconfdir}/php.d/lighttpd.ini
 %{_bindir}/spawn-fcgi
 %dir %{_libdir}/lighttpd/
 %{_libdir}/lighttpd/mod_fastcgi.so
-%{_mandir}/man1/spawn-fcgi.1*
-
 
 %changelog
+* Mon Oct 01 2007 Dag Wieers <dag@wieers.com> - 1.4.18-1
+- Updated to release 1.4.18.
+
 * Mon Aug  1 2005 Matthias Saou <http://freshrpms.net/> 1.3.16-1
 - Update to 1.3.16.
 

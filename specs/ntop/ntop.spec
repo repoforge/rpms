@@ -202,6 +202,8 @@ EOF
 EOF
 
 %build
+%{__rm} -f libtool.m4.in
+./autogen.sh --noconfig
 %configure \
 	--program-prefix="%{?_program_prefix}" \
 	--enable-i18n \
