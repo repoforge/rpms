@@ -5,7 +5,7 @@
 
 Summary: Generic Page Description Language parser
 Name: pkpgcounter
-Version: 2.18
+Version: 3.20
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -49,5 +49,8 @@ ink coverage needed to print each page, in different colorspaces.
 %{python_sitelib}/pkpgpdls/
 
 %changelog
+* Tue Oct 02 2007 Vincent Knecht <vknecht@users.sourceforge.net> - 3.20-1
+- Updated for 3.20.
+
 * Tue Aug 21 2007 Vincent Knecht <vknecht@users.sourceforge.net> - 2.18-1
 - Initial packaging.
