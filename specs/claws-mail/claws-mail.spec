@@ -2,7 +2,7 @@
 # Authority: hadams
 
 Name:           claws-mail
-Version:        3.0.1
+Version:        3.0.2
 Release:        1
 Summary:        The extended version of Sylpheed
 Group:          Applications/Internet
@@ -208,6 +208,10 @@ find manual -type f -name Makefile -exec rm {} \;
 
 
 %changelog
+* Thu Oct 02 2007 Heiko Adams <info@fedora-blog.de> 
+3.0.2
+- version upgrade
+
 * Wed Sep 19 2007 Heiko Adams <info@fedora-blog.de> 
 3.0.1
 - version upgrade
