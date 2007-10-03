@@ -2,9 +2,11 @@
 # Authority: dries
 # Upstream: <vkleinde$yahoo,de>
 
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(0)')
+
 Summary: GUI for yum
 Name: guyum
-Version: 0.3.1
+Version: 0.4.1
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -21,35 +23,35 @@ can be enabled/disabled per search request. It is written in C with GTK+.
 
 %prep
 %setup
+%{__cat} <<'EOF' >guyum.sh
+#!/bin/sh
+python /usr/share/guyum/gymain.py
+EOF
 
 %build
-%configure
-%{__make} %{?_smp_mflags}
+%{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
-%find_lang %{name}
-
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor rpmforge             \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
+%{__install} -Dp -m0755 guyum.sh %{buildroot}%{_bindir}/guyum.sh
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
+%doc README
 %{_sysconfdir}/pam.d/guyum
 %{_sysconfdir}/security/console.apps/guyum
-%{_bindir}/guyum
-%{_sbindir}/guyum
+%{_bindir}/guyum.sh
 %{_datadir}/guyum/
 %{_datadir}/applications/*guyum.desktop
+%{python_sitelib}/guyum/
 
 %changelog
+* Wed Oct  3 2007 Dries Verachtert <dries@ulyssis.org> - 0.4.1-1
+- Updated to release 0.4.1.
+
 * Fri Apr 20 2007 Dries Verachtert <dries@ulyssis.org> - 0.3.1-1
 - Initial package.
