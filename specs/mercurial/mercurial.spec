@@ -7,7 +7,7 @@
 Summary: Fast lightweight source control management system
 Name: mercurial
 Version: 0.9.4
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Tools
 URL: http://www.selenic.com/mercurial/wiki/
@@ -21,6 +21,18 @@ BuildRequires: python-devel >= 2.3
 Mercurial is a fast, lightweight Source Control Management system designed 
 for the efficient handling of very large distributed projects. 
 
+%package hgk
+Summary: hgk GUI for mercurial
+Group: Development/Tools
+Requires: %{name} = %{version}-%{release}
+
+%description hgk
+With hgk you can browse a repository graphically.
+
+Add the following to ~/.hgrc and use 'hg view':
+[extensions]
+hgk=
+
 %prep
 %setup
 
@@ -31,7 +43,8 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 %{__make} install-doc PREFIX="%{buildroot}%{_prefix}" MANDIR="%{buildroot}%{_mandir}"
-# TODO: also install contrib, maybe in subpackage
+%{__install} contrib/hgk %{buildroot}%{_bindir}/hgk
+# TODO: also install other contribs, maybe in subpackage
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,7 +61,14 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{python_sitearch}/hgext/
 %{python_sitearch}/mercurial/
 
+%files hgk
+%defattr(-, root, root, 0755)
+%{_bindir}/hgk
+
 %changelog
+* Wed Oct  3 2007 Dries Verachtert <dries@ulyssis.org> - 0.9.4-2
+- Added hgk as a subpackage, based on the PLD spec file started by arekm.
+
 * Fri Jun 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.9.4-1
 - Updated to release 0.9.4.
 
