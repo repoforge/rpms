@@ -4,7 +4,7 @@
 %define php_extdir %(php-config --extension-dir 2>/dev/null || echo %{_libdir}/php4)
 %{!?php_version:%define php_version %(php-config --version 2>/dev/null || echo 4.3.11)}
 
-%define module_version 0.9.3
+%define module_version 0.9.5.2
 
 Summary: PHP accelerator, optimizer, encoder and dynamic content cacher
 Name: php-eaccelerator
@@ -13,8 +13,7 @@ Release: 4
 License: GPL
 Group: Development/Languages
 URL: http://eaccelerator.sourceforge.net/
-Source: http://dl.sf.net/eaccelerator/eaccelerator-%{module_version}.tar.gz
-Patch: eaccelerator-0.9.3-buffer-overflow.patch
+Source: http://dl.sf.net/eaccelerator/eaccelerator-%{module_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: php = %{php_version}
 Provides: php-zend_extension
@@ -31,7 +30,6 @@ that the overhead of compiling is almost completely eliminated.
 
 %prep
 %setup -n eaccelerator-%{module_version}
-%patch -p1
 
 
 %build
@@ -91,6 +89,9 @@ EOF
 
 
 %changelog
+* Fri Oct 05 2007 Dag Wieers <dag@wieers.com> - x.x.x_0.9.5.2-1
+- Updated to release 0.9.5.2.
+
 * Tue Jul 12 2005 Matthias Saou <http://freshrpms.net/> 4.x.x_0.9.3-4
 - Force SEM to FCNTL as the IPC version is buggy on SMP systems at least.
 

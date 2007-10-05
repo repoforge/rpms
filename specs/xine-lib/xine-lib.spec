@@ -57,7 +57,7 @@
 
 Summary: Core library of the xine multimedia player
 Name: xine-lib
-Version: 1.1.7
+Version: 1.1.8
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -123,7 +123,6 @@ Available rpmbuild rebuild options :
 (only alsa can be really disabled, others only remove explicit package
  dependency which won't make much difference if devel files are found)
 
-
 %package devel
 Summary: Development files for the xine library
 Group: Development/Libraries
@@ -142,7 +141,6 @@ formats, too.
 This package contains the development files needed to build applications that
 use the Xine library.
 
-
 %prep
 %setup
 %{__perl} -pi -e 's|"/lib /usr/lib\b|"/%{_lib} %{_libdir}|' configure
@@ -153,18 +151,17 @@ use the Xine library.
 %configure \
 %{?_with_modxorg:--with-xv-path="%{_libdir}"} \
 %{?_without_alsa:--disable-alsa} \
-	--enable-antialiasing \
+    --enable-antialiasing \
 %{!?_without_directfb:--enable-directfb} \
-	--enable-ipv6 \
+    --enable-ipv6 \
 %{?_with_extffmpeg:--with-external-ffmpeg} \
 %{!?_with_extdvdnav:--with-included-dvdnav} \
-	--with-external-a52dec \
-	--with-external-libmad \
-        --with-fontconfig \
-        --with-freetype \
-	--with-pic
+    --with-external-a52dec \
+    --with-external-libmad \
+    --with-fontconfig \
+    --with-freetype \
+    --with-pic
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
@@ -173,15 +170,11 @@ use the Xine library.
 # Remove all those unused docs
 %{__rm} -rf %{buildroot}%{_docdir}/xine/ || :
 
-
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
-
 
 %files -f %{libname}.lang
 %defattr(-, root, root, 0755)
@@ -206,8 +199,10 @@ use the Xine library.
 %{_datadir}/aclocal/xine.m4
 %{_mandir}/man1/xine-config.1*
 
-
 %changelog
+* Thu Oct 04 2007 Dag Wieers <dag@wieers.com> - 1.1.8-1
+- Updated to release 1.1.8.
+
 * Sat Apr 21 2007 Dag Wieers <dag@wieers.com> - 1.1.7-1
 - Updated to release 1.1.7.
 

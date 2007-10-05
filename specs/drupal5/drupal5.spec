@@ -6,7 +6,7 @@
 Summary: Drupal CMS
 Name: drupal5
 Version: 5.2
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Languages
 URL: http://drupal.org/
@@ -16,7 +16,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: php >= 4.3.3
-Requires: httpd, mysql, php >= 4.3.3, php-mysql >= 4.3.3
+Requires: httpd, mysql, php >= 4.3.3
+Requires: php-gd, php-mbtstring, php-mysql
 
 %description
 Drupal is an open source content management platform. Drupal is equipped
@@ -37,6 +38,7 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0644 drupal5.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/drupal5.conf
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/drupal-%{version}/files/
 %{__install} -Dp -m0644 .htaccess %{buildroot}%{_localstatedir}/www/drupal-%{version}/.htaccess
 %{__cp} -av *.php %{buildroot}%{_localstatedir}/www/drupal-%{version}/
 %{__cp} -av includes/ misc/ modules/ profiles/ scripts/ sites/ themes/ %{buildroot}%{_localstatedir}/www/drupal-%{version}/
@@ -52,5 +54,9 @@ EOF
 %{_localstatedir}/www/drupal-%{version}/
 
 %changelog
+* Mon Oct 01 2007 Dag Wieers <dag@wieers.com> - 5.2-2
+- Added missing php-gd and php-mbtstring requirements.
+- Added empty files/ directory.
+
 * Sun Sep 30 2007 Dag Wieers <dag@wieers.com> - 5.2-1
 - Initial package. (using DAR)

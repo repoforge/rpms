@@ -4,7 +4,7 @@
 
 Summary: General-purpose video codec
 Name: dirac
-Version: 0.7.0
+Version: 0.8.0
 Release: 1
 License: MPL 1.1
 Group: System Environment/Libraries
@@ -34,13 +34,23 @@ you will need to install %{name}-devel.
 %prep
 %setup
 
+#%{__perl} -pi.orig -e 's|CXXFLAGS =  -g -pedantic -Wall -Werror|CXXFLAGS =  -g -pedantic -Wall|' decoder/Makefile.in
+
 %build
-%configure
+%configure CXXFLAGS="%{optflags}" CFLAGS="%{optflags}" \
+    --disable-static \
+    --enable-debug="no" \
+%ifarch x86_64 \
+        --enable-mmx="yes" \
+%else \
+        --enable-mmx="no" \
+%endif \
+    --enable-overlay
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %{__mv} -f %{buildroot}%{_docdir}/ rpm-doc/
 
@@ -55,18 +65,23 @@ you will need to install %{name}-devel.
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 #%doc %{_mandir}/man?/*
 %{_bindir}/*
-%{_libdir}/*.so.*
+%{_libdir}/libdirac_decoder.so.*
+%{_libdir}/libdirac_encoder.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc rpm-doc/*
 %{_includedir}/dirac/
-%{_libdir}/*.a
-%{_libdir}/*.so
-%exclude %{_libdir}/libdirac*.la
+%{_libdir}/libdirac_decoder.so
+%{_libdir}/libdirac_encoder.so
 %{_libdir}/pkgconfig/dirac.pc
+%exclude %{_libdir}/libdirac_decoder.la
+%exclude %{_libdir}/libdirac_encoder.la
 
 %changelog
+* Wed Oct 03 2007 Dag Wieers <dag@wieers.com> - 0.8.0-1
+- Updated to release 0.8.0.
+
 * Wed May 09 2007 Dries Verachtert <dries@ulyssis.org> - 0.7.0-1
 - Updated to release 0.7.0.
 

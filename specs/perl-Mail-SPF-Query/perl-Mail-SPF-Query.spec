@@ -2,20 +2,21 @@
 # Authority: dries
 # Upstream: Julian Mehnle <julian$mehnle,net>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Mail-SPF-Query
+%define real_version 1.999001
 
 Summary: Query a Sender Policy Framework
 Name: perl-Mail-SPF-Query
 Version: 1.999.1
-Release: 1.2
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-SPF-Query/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JM/JMEHNLE/mail-spf-query/Mail-SPF-Query-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Mail/Mail-SPF-Query-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -33,21 +34,32 @@ With this module, you can use a Sender Policy Framework.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find bin/ examples/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README
+%doc CHANGES MANIFEST META.yml README bin/ examples/
 %doc %{_mandir}/man3/Mail::SPF::Query*
-%doc %{_mandir}/man1/spf*
-%{_bindir}/spfd
-%{_bindir}/spfquery
+%dir %{perl_vendorlib}/Mail/
+%dir %{perl_vendorlib}/Mail/SPF/
 %{perl_vendorlib}/Mail/SPF/Query.pm
+%exclude %{_bindir}/spfd
+%exclude %{_bindir}/spfquery
+%exclude %{_mandir}/man1/spfd.1*
+%exclude %{_mandir}/man1/spfquery.1*
 
 %changelog
+* Thu Oct 04 2007 Dag Wieers <dag@wieers.com> - 1.999.1-2
+- Excluded spfd and spfquery, included them as documentation.
+
 * Fri Mar  3 2006 Dries Verachtert <dries@ulyssis.org> - 1.999.1-1
 - Initial package.
