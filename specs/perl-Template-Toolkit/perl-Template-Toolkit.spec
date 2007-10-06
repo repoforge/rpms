@@ -2,14 +2,14 @@
 # Authority: dries
 # Upstream: Andy Wardley <cpan$wardley,org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Template-Toolkit
 
 Summary: Template processing system
 Name: perl-Template-Toolkit
-Version: 2.15
+Version: 2.19
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Template-Toolkit/
 Source: http://www.cpan.org/modules/by-module/Template/Template-Toolkit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl(ExtUtils::MakeMaker), perl, perl-AppConfig
+BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(AppConfig)
 
 %description
 The Template Toolkit is a collection of modules which implement a
@@ -40,25 +40,27 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install \
-	PREFIX="%{buildroot}%{_prefix}" \
-	TT_PREFIX="%{buildroot}%{_datadir}/tt2"
-#	PERLPREFIX=%{buildroot}/usr \
-#	SITEPREFIX=%{buildroot}/usr \
-#	VENDORPREFIX=%{buildroot}/usr \
+    PREFIX="%{buildroot}%{_prefix}" \
+    TT_PREFIX="%{buildroot}%{_datadir}/tt2"
+#   PERLPREFIX=%{buildroot}/usr \
+#   SITEPREFIX=%{buildroot}/usr \
+#   VENDORPREFIX=%{buildroot}/usr \
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find docs/ examples/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
+%doc Changes HACKING INSTALL MANIFEST META.yml README TODO docs/ examples/
 %doc %{_mandir}/man1/*.1*
 %doc %{_mandir}/man3/*.3pm*
-%{_datadir}/tt2
+#%{_datadir}/tt2/
 %{_bindir}/tpage
 %{_bindir}/ttree
 %{perl_vendorarch}/Template/
@@ -66,6 +68,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Template/
 
 %changelog
+* Fri Oct  5 2007 Dave Miller <justdave@mozilla.com> - 2.19-1
+- Updated to release 2.19.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 2.15-1
 - Updated to release 2.15.
 
