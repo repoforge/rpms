@@ -5,7 +5,7 @@
 #		proftpd.
 #
 # chkconfig: - 80 30
-# description: ProFTPD is an enhanced FTP server with a focus towards \
+# description: ProFTPd is an enhanced FTP server with a focus towards \
 #              simplicity, security, and ease of configuration. \
 #              It features a very Apache-like configuration syntax, \
 #              and a highly customizable server infrastructure, \
@@ -14,6 +14,19 @@
 # processname: proftpd
 # config: /etc/proftp.conf
 # pidfile: /var/run/proftpd.pid
+
+### BEGIN INIT INFO
+# Provides: proftpd ftpserver
+# Required-Start: $local_fs $network $named $remote_fs
+# Required-Stop: $local_fs $network $named $remote_fs
+# Short-Description: ProFTPd FTP Server
+# Description: ProFTPd is an enhanced FTP server with a focus towards
+#      simplicity, security, and ease of configuration.
+#      It features a very Apache-like configuration syntax,
+#      and a highly customizable server infrastructure,
+#      including support for multiple 'virtual' FTP servers,
+#      anonymous FTP, and permission-based directory visibility.
+### END INIT INFO
 
 # Source function library.
 . /etc/rc.d/init.d/functions
@@ -62,21 +75,21 @@ case "$1" in
 	stop
 	start
 	;;
-  condrestart)
+  try-restart|condrestart)
 	if [ -f /var/lock/subsys/proftpd ]; then
 	  stop
 	  start
 	fi
 	;;
-  reload)
+  reload|force-reload)
 	echo -n $"Re-reading $prog configuration: "
 	killproc proftpd -HUP
 	RETVAL=$?
 	echo
 	;;
   *)
-	echo "Usage: $prog {start|stop|restart|reload|condrestart|status}"
-	exit 1
+	echo "Usage: $prog {start|stop|restart|try-restart|reload|status}"
+	exit 2
 esac
 
 exit $RETVAL

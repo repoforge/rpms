@@ -1,13 +1,20 @@
 # $Id$
-# Authority
+# Authority: dag
+
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_acl 1}
+%{?el2:%define _without_acl 1}
+%{?el2:%define _without_postgresql 1}
 
 Summary: Flexible, stable and highly-configurable FTP server
 Name: proftpd
-Version: 1.3.0a
-Release: 4
+Version: 1.3.1
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.proftpd.org/
+
 Source0: ftp://ftp.proftpd.org/distrib/source/proftpd-%{version}.tar.bz2
 Source1: proftpd.conf
 Source2: proftpd.init
@@ -15,25 +22,18 @@ Source3: proftpd-xinetd
 Source4: proftpd.logrotate
 Source5: welcome.msg
 Source6: proftpd.pam
-Patch0: proftpd-1.3.0-rpath.patch
-Patch1: proftpd-1.3.0-ctrls-restart.patch
-Patch2: proftpd-1.3.0-cmdbufsize.patch
-Patch3: proftpd-1.3.0-mod_tls.patch
-Patch4: proftpd-1.3.0a-ctrls-bug2867.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: pam-devel, ncurses-devel, pkgconfig
+BuildRequires: openssl-devel, krb5-devel
+BuildRequires: openldap-devel, mysql-devel, zlib-devel
+%{!?_without_acl:BuildRequires: libacl-devel}
+%{!?_without_postgresql:BuildRequires: postgresql-devel}
 Requires: pam >= 0.59
 Requires(post): /sbin/chkconfig
 Requires(preun): /sbin/service, /sbin/chkconfig
 Requires(postun): /sbin/service
-BuildRequires: pam-devel, ncurses-devel, pkgconfig
-BuildRequires: openssl-devel, krb5-devel, libacl-devel
-BuildRequires: openldap-devel, mysql-devel, zlib-devel, postgresql-devel
 Provides: ftpserver
-
-# Taken from ftp://carroll.cac.psu.edu/pub/linux/distributions/mandrivalinux/official/updates/2007.0/SRPMS/main/updates/proftpd-1.3.0-4.5mdv2007.0.src.rpm
-# http://www.mandriva.com/security/advisories?name=MDKSA-2007:130
-Patch100: proftpd-1.3.0-CVE-2007-2165.patch
-Patch101: proftpd-1.3.0-CVE-2007-2165-pam_fixes.patch
 
 %description
 ProFTPD is an enhanced FTP server with a focus toward simplicity, security,
@@ -45,6 +45,15 @@ visibility.
 This package defaults to the standalone behaviour of ProFTPD, but all the
 needed scripts to have it run by xinetd instead are included.
 
+%package devel
+Summary: Header files, libraries and development documentation for %{name}.
+Group: Development/Libraries
+Requires: %{name} = %{version}-%{release}
+
+%description devel
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %package ldap
 Summary: Module to add LDAP support to the ProFTPD FTP server
@@ -54,7 +63,6 @@ Requires: %{name} = %{version}-%{release}
 %description ldap
 Module to add LDAP support to the ProFTPD FTP server.
 
-
 %package mysql
 Summary: Module to add MySQL support to the ProFTPD FTP server
 Group: System Environment/Daemons
@@ -62,7 +70,6 @@ Requires: %{name} = %{version}-%{release}
 
 %description mysql
 Module to add MySQL support to the ProFTPD FTP server.
-
 
 %package postgresql
 Summary: Module to add PostgreSQL support to the ProFTPD FTP server
@@ -72,40 +79,34 @@ Requires: %{name} = %{version}-%{release}
 %description postgresql
 Module to add PostgreSQL support to the ProFTPD FTP server.
 
-
 %prep
 %setup
-%patch0 -p1 -b .rpath
-%patch1 -p0 -b .ctrls-restart
-%patch2 -p1 -b .cmdbufsize
-%patch3 -p0 -b .mod_tls
-%patch4 -p0 -b .ctrls-bug2867
 
-%patch100 -p1 -b .CVE-2007-2165
-%patch101 -p0 -b .CVE-2007-2165-pam_fixes
-
-%build
 # Disable stripping in order to get useful debuginfo packages
 %{__perl} -pi -e 's|"-s"|""|g' configure
 
+%build
+if pkg-config openssl; then
+    export CFLAGS="%{optflags} $(pkg-config --cflags openssl)"
+    export LDFLAGS="$LDFLAGS $(pkg-config --libs-only-L openssl)"
+fi
 %configure \
     --libexecdir="%{_libexecdir}/proftpd" \
     --localstatedir="%{_var}/run" \
     --enable-ctrls \
-    --enable-facl \
     --enable-dso \
+%{!?_without_acl:--enable-facl} \
     --enable-ipv6 \
-    --with-libraries="%{_libdir}/mysql" \
+    --enable-openssl \
     --with-includes="%{_includedir}/mysql" \
-    --with-modules=mod_readme:mod_auth_pam:mod_tls \
-    --with-shared=mod_ldap:mod_sql:mod_sql_mysql:mod_sql_postgres:mod_quotatab:mod_quotatab_file:mod_quotatab_ldap:mod_quotatab_sql
-
+    --with-libraries="%{_libdir}/mysql" \
+    --with-modules="mod_readme:mod_auth_pam:mod_tls" \
+    --with-shared="mod_ldap:mod_sql:mod_sql_mysql:%{!?_without_postgresql:mod_sql_postgres:}mod_quotatab:mod_quotatab_file:mod_quotatab_ldap:mod_quotatab_sql"
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR=%{buildroot} \
+%{__make} install DESTDIR="%{buildroot}" \
     rundir="%{_var}/run/proftpd" \
     INSTALL_USER=`id -un` \
     INSTALL_GROUP=`id -gn`
@@ -124,10 +125,8 @@ Module to add PostgreSQL support to the ProFTPD FTP server.
 %{__mkdir_p} %{buildroot}/var/log/proftpd
 touch %{buildroot}%{_sysconfdir}/ftpusers
 
-
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %post
 if [ $1 -eq 1 ]; then
@@ -155,11 +154,9 @@ if [ $1 -ge 1 ]; then
     /sbin/service proftpd condrestart &>/dev/null || :
 fi
 
-
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING CREDITS ChangeLog NEWS README*
-%doc doc/* sample-configurations/
+%doc COPYING CREDITS ChangeLog NEWS README* doc/* sample-configurations/
 %dir %{_localstatedir}/run/proftpd/
 %config(noreplace) %{_sysconfdir}/proftpd.conf
 %config(noreplace) %{_sysconfdir}/xinetd.d/xproftpd
@@ -167,20 +164,28 @@ fi
 %config(noreplace) %{_sysconfdir}/pam.d/proftpd
 %config(noreplace) %{_sysconfdir}/logrotate.d/proftpd
 %{_sysconfdir}/rc.d/init.d/proftpd
-%{_mandir}/*/*
+%{_mandir}/man?/*
 %{_bindir}/*
 %dir %{_libexecdir}/proftpd/
 %{_libexecdir}/proftpd/mod_quotatab.so
 %{_libexecdir}/proftpd/mod_quotatab_file.so
 %{_libexecdir}/proftpd/mod_sql.so
-%exclude %{_libexecdir}/proftpd/*.a
-%exclude %{_libexecdir}/proftpd/*.la
 %{_sbindir}/*
 %dir /var/ftp/
-%attr(331, ftp, ftp) %dir /var/ftp/uploads/
 %dir /var/ftp/pub/
 %config(noreplace) /var/ftp/welcome.msg
-%attr(750, root, root) %dir /var/log/proftpd/
+
+%defattr(0331, ftp, ftp, 0331)
+%dir /var/ftp/uploads/
+
+%defattr(0750, root, root, 0750)
+%dir /var/log/proftpd/
+%exclude %{_libexecdir}/proftpd/*.a
+%exclude %{_libexecdir}/proftpd/*.la
+
+%files devel
+%defattr(-, root, root, 0755)
+%{_includedir}/proftpd/
 
 %files ldap
 %defattr(-, root, root, 0755)
@@ -194,15 +199,19 @@ fi
 %{_libexecdir}/proftpd/mod_sql_mysql.so
 %{_libexecdir}/proftpd/mod_quotatab_sql.so
 
+%if %{!?_without_postgresql:1}0
 %files postgresql
 %defattr(-, root, root, 0755)
 %dir %{_libexecdir}/proftpd/
 %{_libexecdir}/proftpd/mod_sql_postgres.so
 %{_libexecdir}/proftpd/mod_quotatab_sql.so
-
+%endif
 
 %changelog
-* Thu Jul  5 2007 Peter Bieringer <pb@bieringer.de> 1.3.0a-4
+* Sat Oct 06 2007 Dag Wieers <dag@wieers.com> - 1.3.1-1
+- Updated to release 1.3.1.
+
+* Thu Jul  5 2007 Peter Bieringer <pb@bieringer.de> - 1.3.0a-4
 - Migrate CVE-2007-2165 patches from Mandrake.
 
 * Tue Feb  6 2007 Matthias Saou <http://freshrpms.net/> 1.3.0a-3
