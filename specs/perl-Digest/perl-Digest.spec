@@ -1,36 +1,35 @@
 # $Id$
-# Authority: dries
+# Authority: dag
 # Upstream: Gisle Aas <gisle$ActiveState,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Data-Dump
+%define real_name Digest
 
-Summary: Pretty print data
-Name: perl-Data-Dump
-Version: 1.08
+Summary: Perl module that calculate message digests
+Name: perl-Digest
+Version: 1.15
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Data-Dump/
+URL: http://search.cpan.org/dist/Digest/
 
-Source: http://www.cpan.org/modules/by-module/Data/Data-Dump-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Digest/Digest-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
 
 %description
-This package contain the Data::Dump module. It can be used for pretty
-printing data.
+perl-Digest is a Perl module that calculate message digests.
 
 %prep
 %setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -45,15 +44,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST README
-%doc %{_mandir}/man3/Data::Dump.3pm*
-%{perl_vendorlib}/Data/Dump.pm
+%doc %{_mandir}/man3/Digest.3pm*
+%doc %{_mandir}/man3/Digest::base.3pm*
+%doc %{_mandir}/man3/Digest::file.3pm*
+%{perl_vendorlib}/Digest/
+%{perl_vendorlib}/Digest.pm
 
 %changelog
-* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.08-1
-- Updated to release 1.08.
-
-* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.06-1
-- Updated to release 1.06.
-
-* Sat Jun 15 2004 Dries Verachtert <dries@ulyssis.org> - 1.03-1
-- Initial package.
+* Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 1.15-1
+- Initial package. (using DAR)
