@@ -7,12 +7,13 @@ Version: 1.12.0
 Release: 3
 License: LGPL
 Group: Development/Libraries
-URL: http://cppunit.sourceforge.net/
+URL: http://cppunit.sourceforge.net/cppunit-wiki
 
 Source: http://dl.sf.net/cppunit/cppunit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: doxygen, graphviz
+%{!?_without_doxygen:BuildRequires: doxygen}
+%{!?_without_graphviz:BuildRequires: graphviz}
 
 %description
 CppUnit is the C++ port of the famous JUnit framework for unit testing.
@@ -34,7 +35,8 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure --enable-doxygen
+%configure \
+%{!?_without_doxygen:--enable-doxygen}
 %{__make} %{?_smp_mflags}
 
 %install
@@ -53,7 +55,6 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING NEWS README THANKS TODO doc/FAQ
-%doc %{_mandir}/man1/*.1*
 %{_bindir}/DllPlugInTester
 %{_datadir}/aclocal/cppunit.m4
 %{_libdir}/libcppunit*.so.*
@@ -61,6 +62,7 @@ you will need to install %{name}-devel.
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/html/*
+%doc %{_mandir}/man1/cppunit.1*
 %{_bindir}/cppunit-config
 %{_includedir}/cppunit/
 %{_libdir}/libcppunit.a
