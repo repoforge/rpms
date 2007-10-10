@@ -14,7 +14,7 @@
 
 Summary: Window Manager based on Blackbox
 Name: fluxbox
-Version: 0.9.15.1
+Version: 1.0.0
 Release: 1
 License: MIT
 Group: User Interface/Desktops
@@ -83,5 +83,8 @@ EOF
 %{_datadir}/xsessions/fluxbox.desktop
 
 %changelog
+* Tue Oct 09 2007 Dag Wieers <dag@wieers.com> - 1.0.0-1
+- Updated to release 1.0.0.
+
 * Tue Apr 24 2007 Dag Wieers <dag@wieers.com> - 0.9.15.1-1
 - Initial package. (using DAR)

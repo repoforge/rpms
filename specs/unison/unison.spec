@@ -79,9 +79,6 @@ EOF
 %{_datadir}/pixmaps/unison.png
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.13.16-1.2
-- Rebuild for Fedora Core 5.
-
 * Fri Dec 02 2005 Dag Wieers <dag@wieers.com> - 2.13.16-1
 - Updated to release 2.13.16.
 

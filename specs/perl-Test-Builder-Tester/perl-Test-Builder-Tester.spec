@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Mark Fowler <mark$twoshortplanks,com>
 
@@ -31,28 +30,29 @@ Test testsuites that have been built with Test::Builder.
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README SIGNATURE TODO
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorlib}/Test/
+%dir %{perl_vendorlib}/Test/Builder/
+%dir %{perl_vendorlib}/Test/Builder/Tester/
+%{perl_vendorlib}/Test/Builder/Tester/
 %{perl_vendorlib}/Test/Builder/Tester.pm
-%{perl_vendorlib}/Test/Builder/Tester/*
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Updated to release 1.01.
 
