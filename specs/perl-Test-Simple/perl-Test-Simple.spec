@@ -3,7 +3,7 @@
 # Upstream: Michael G Schwern <mschwern$cpan,org>
 
 ### From RH9 onwards perl(Test::Simple) is provided by the perl package (sigh)
-# ExclusiveDist: el2 rh7
+## ExclusiveDist: el2 rh7
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -12,7 +12,7 @@
 
 Summary: Simplified testing framework
 Name: perl-Test-Simple
-Version: 0.70
+Version: 0.72
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -23,6 +23,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl, perl(ExtUtils::MakeMaker)
+
+### Obsolete wrong packages from the past
+Obsoletes: perl-Test-Builder-Tester
+Provides: perl-Test-Builder-Tester
 
 %description
 This is a simplified Perl testing framework for creating tests to be
@@ -50,13 +54,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes MANIFEST META.yml README SIGNATURE TODO
 %doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Test/
-%{perl_vendorlib}/Test/Builder.pm
 %{perl_vendorlib}/Test/Builder/
+%{perl_vendorlib}/Test/Builder.pm
 %{perl_vendorlib}/Test/More.pm
 %{perl_vendorlib}/Test/Simple.pm
 %{perl_vendorlib}/Test/Tutorial.pod
 
 %changelog
+* Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 0.72-1
+- Updated to release 0.72.
+
 * Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 0.70-1
 - Updated to release 0.70.
 
