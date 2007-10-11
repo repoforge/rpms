@@ -5,7 +5,7 @@
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Ace
+%define real_name AcePerl
 
 Summary: Perl module that implements Object-Oriented Access to ACEDB Databases
 Name: perl-Ace
@@ -23,6 +23,21 @@ BuildRequires: perl
 %description
 perl-Ace is a Perl module that implements Object-Oriented Access
 to ACEDB Databases.
+
+This package contains the following Perl modules:
+
+    Ace
+    Ace::Browser::AceSubs
+    Ace::Browser::SearchSubs
+    Ace::Freesubs
+    Ace::Iterator
+    Ace::Local
+    Ace::Model
+    Ace::Object
+    Ace::RPC
+    Ace::Sequence
+    Ace::Sequence::GappedAlignment
+    Ace::SocketServer
 
 %prep
 %setup -n %{real_name}Perl-%{version}
