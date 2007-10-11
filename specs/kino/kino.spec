@@ -19,14 +19,13 @@
 
 Summary: Simple non-linear video editor
 Name: kino
-Version: 1.0.0
-Release: 3
+Version: 1.1.1
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.kinodv.org/
 Source: http://downloads.sf.net/kino/kino-%{version}.tar.gz
-Patch0: kino-1.0.0-install.patch
-Patch1: kino-1.0.0-udev-rules.patch
+Patch0: kino-1.0.0-udev-rules.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.6
 Requires: mjpegtools
@@ -54,8 +53,7 @@ commands for fast navigating and editing inside the movie.
 
 %prep
 %setup
-%patch0 -p1 -b .install
-%patch1 -p1 -b .udev-rules
+%patch0 -p1 -b .udev-rules
 
 
 %build
@@ -75,9 +73,6 @@ commands for fast navigating and editing inside the movie.
 %{__mkdir_p} %{buildroot}%{_libdir}/kino-gtk2/
 %{__mv} %{buildroot}%{_libdir}/*.* %{buildroot}%{_libdir}/kino-gtk2/
 
-### Clean up buildroot (conflicts with ffmpeg package)
-%{__rm} -f %{buildroot}%{_mandir}/man1/ffmpeg.1*
-
 
 %post
 update-mime-database %{_datadir}/mime &>/dev/null || :
@@ -91,7 +86,7 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 
 
 %files -f %{name}.lang
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
 %doc AUTHORS BUGS ChangeLog COPYING NEWS README*
 %config %{_sysconfdir}/udev/rules.d/kino.rules
 %{_bindir}/*
@@ -107,6 +102,12 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 
 
 %changelog
+* Thu Oct 11 2007 Matthias Saou <http://freshrpms.net/> 1.1.1-1
+- Update to 1.1.1.
+
+* Mon Jul 30 2007 Matthias Saou <http://freshrpms.net/> 1.1.0-1
+- Update to 1.1.0.
+
 * Thu May 31 2007 Matthias Saou <http://freshrpms.net/> 1.0.0-3
 - Include udev-rules patch to fix udev warnings on boot.
 
