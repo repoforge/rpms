@@ -8,9 +8,9 @@
 %define real_name AcePerl
 
 Summary: Perl module that implements Object-Oriented Access to ACEDB Databases
-Name: perl-Ace
+Name: perl-AcePerl
 Version: 1.91
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AcePerl/
@@ -19,6 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Ace/AcePerl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
+Obsoletes: perl-Ace <= %{version}-%{release}
+Provides: perl-Ace = %{version}-%{release}
 
 %description
 perl-Ace is a Perl module that implements Object-Oriented Access
@@ -40,7 +42,7 @@ This package contains the following Perl modules:
     Ace::SocketServer
 
 %prep
-%setup -n %{real_name}Perl-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" <<EOF
@@ -75,5 +77,8 @@ find docs/ examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/auto/Ace/
 
 %changelog
+* Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 1.91-2
+- Rename perl-Ace to perl-AcePerl (upstream distribution name).
+
 * Sat Oct 06 2007 Dag Wieers <dag@wieers.com> - 1.91-1
 - Initial package. (using DAR)

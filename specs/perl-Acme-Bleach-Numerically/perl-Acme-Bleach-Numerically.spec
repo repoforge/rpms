@@ -1,33 +1,33 @@
 # $Id$
 # Authority: dag
-# Upstream: Hendrik Van Belleghem <hendrik,vanbelleghem$gmail,com>
+# Upstream: Dan Kogai <dankogai$dan,co,jp>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Acme-Beatnik
+%define real_name Acme-Bleach-Numerically
 
-Summary: Perl module that implements a source filter for the Beatnik language
-Name: perl-Acme-Beatnik
-Version: 0.02
+Summary: Perl module to fit the whole world between 0 and 1
+Name: perl-Acme-Bleach-Numerically
+Version: 0.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Acme-Beatnik/
+URL: http://search.cpan.org/dist/Acme-Bleach-Numerically/
 
-Source: http://www.cpan.org/modules/by-module/Acme/Acme-Beatnik-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Acme/Acme-Bleach-Numerically-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 2:5.8.1
 
 %description
-perl-Acme-Beatnik is a Perl module that implements a source filter for the
-Beatnik language.
+perl-Acme-Bleach-Numerically is a Perl module to fit the whole world
+between 0 and 1.
 
 This package contains the following Perl module:
 
-    Acme::Beatnik
+    Acme::Bleach::Numerically
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -48,14 +48,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README
-%doc %{_mandir}/man3/Acme::Beatnik.3pm*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Acme::Bleach::Numerically.3pm*
 %dir %{perl_vendorlib}/Acme/
-%{perl_vendorlib}/Acme/example.pl
-%{perl_vendorlib}/Acme/findwords.pl
-%{perl_vendorlib}/Acme/generate.pl
-%{perl_vendorlib}/Acme/Beatnik.pm
+%dir %{perl_vendorlib}/Acme/Bleach/
+%{perl_vendorlib}/Acme/Bleach/Numerically.pm
 
 %changelog
-* Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 0.02-1
+* Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 0.04-1
 - Initial package. (using DAR)

@@ -1,13 +1,13 @@
 # $Id$
-# Authority: dries
+# Authority: dag
 # Upstream: Jason Kohles <cpan$jasonkohles,com>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name WWW-Google-SiteMap
 
-Summary: Create sitemaps
+Summary: Perl module to create sitemaps
 Name: perl-WWW-Google-SiteMap
 Version: 1.09
 Release: 1
@@ -15,18 +15,22 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Google-SiteMap/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JA/JASONK/WWW-Google-SiteMap-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/WWW/WWW-Google-SiteMap-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(URI::Escape), perl(XML::Twig), perl(ExtUtils::MakeMaker)
+BuildRequires: perl
 
 %description
-The Sitemap Protocol allows you to inform search engine crawlers about
-URLs on your Web sites that are available for crawling. A Sitemap con-
-sists of a list of URLs and may also contain additional information
-about those URLs, such as when they were last modified, how frequently
-they change, etc.
+perl-WWW-Google-SiteMap is a Perl module to create sitemaps.
+
+This package contains the following Perl modules:
+
+    WWW::Google::SiteMap
+    WWW::Google::SiteMap::Index
+    WWW::Google::SiteMap::Ping
+    WWW::Google::SiteMap::Robot
+    WWW::Google::SiteMap::URL
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -37,20 +41,22 @@ they change, etc.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3*
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/WWW/
 %dir %{perl_vendorlib}/WWW/Google/
-%{perl_vendorlib}/WWW/Google/SiteMap.pm
 %{perl_vendorlib}/WWW/Google/SiteMap/
+%{perl_vendorlib}/WWW/Google/SiteMap.pm
 
 %changelog
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.09-1
@@ -61,9 +67,6 @@ they change, etc.
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.07-1
 - Updated to release 1.07.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.04-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.04-1
 - Updated to release 1.04.

@@ -22,7 +22,8 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KA/KANE/CPANPLUS-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl >= 5.8.1
+BuildRequires: perl >= 2:5.8.1
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 The "CPANPLUS" library is an API to the "CPAN" mirrors and a collection

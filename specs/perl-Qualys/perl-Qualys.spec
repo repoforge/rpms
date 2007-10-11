@@ -1,33 +1,32 @@
 # $Id$
 # Authority: dag
-# Upstream: Hendrik Van Belleghem <hendrik,vanbelleghem$gmail,com>
+# Upstream: Anthony G Persaud <apersaud$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Acme-Beatnik
+%define real_name Qualys
 
-Summary: Perl module that implements a source filter for the Beatnik language
-Name: perl-Acme-Beatnik
-Version: 0.02
+Summary: Perl module to connect to the Qualys scanner API
+Name: perl-Qualys
+Version: 0.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Acme-Beatnik/
+URL: http://search.cpan.org/dist/Qualys/
 
-Source: http://www.cpan.org/modules/by-module/Acme/Acme-Beatnik-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/A/AP/APERSAUD/Qualys-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 
 %description
-perl-Acme-Beatnik is a Perl module that implements a source filter for the
-Beatnik language.
+perl-Qualys is a Perl module to connect to the Qualys scanner API.
 
 This package contains the following Perl module:
 
-    Acme::Beatnik
+    Qualys
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -48,14 +47,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README
-%doc %{_mandir}/man3/Acme::Beatnik.3pm*
-%dir %{perl_vendorlib}/Acme/
-%{perl_vendorlib}/Acme/example.pl
-%{perl_vendorlib}/Acme/findwords.pl
-%{perl_vendorlib}/Acme/generate.pl
-%{perl_vendorlib}/Acme/Beatnik.pm
+%doc Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/Qualys.3pm*
+%{perl_vendorlib}/Qualys.pm
 
 %changelog
-* Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 0.02-1
+* Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 0.05-1
 - Initial package. (using DAR)

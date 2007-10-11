@@ -1,33 +1,33 @@
 # $Id$
 # Authority: dag
-# Upstream: Hendrik Van Belleghem <hendrik,vanbelleghem$gmail,com>
+# Upstream: John Kirk <johnkirk$dystanhays,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Acme-Beatnik
+%define real_name Qtk-QuickTk
+%define real_version 0.9
 
-Summary: Perl module that implements a source filter for the Beatnik language
-Name: perl-Acme-Beatnik
-Version: 0.02
+Summary: Perl module named Qtk-QuickTk
+Name: perl-Qtk-QuickTk
+Version: 0.90
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Acme-Beatnik/
+URL: http://search.cpan.org/dist/Qtk-QuickTk/
 
-Source: http://www.cpan.org/modules/by-module/Acme/Acme-Beatnik-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/J/JN/JNK/Qtk-QuickTk-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 
 %description
-perl-Acme-Beatnik is a Perl module that implements a source filter for the
-Beatnik language.
+perl-Qtk-QuickTk is a Perl module.
 
 This package contains the following Perl module:
 
-    Acme::Beatnik
+    Qtk::QuickTk
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -48,14 +48,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README
-%doc %{_mandir}/man3/Acme::Beatnik.3pm*
-%dir %{perl_vendorlib}/Acme/
-%{perl_vendorlib}/Acme/example.pl
-%{perl_vendorlib}/Acme/findwords.pl
-%{perl_vendorlib}/Acme/generate.pl
-%{perl_vendorlib}/Acme/Beatnik.pm
+%doc 
+%doc %{_mandir}/man3/Qtk::QuickTk.3pm*
+%dir %{perl_vendorlib}/Qtk/
+#%{perl_vendorlib}/Qtk/QuickTk/
+%{perl_vendorlib}/Qtk/QuickTk.pm
 
 %changelog
-* Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 0.02-1
+* Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 0.90-1
 - Initial package. (using DAR)

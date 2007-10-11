@@ -1,33 +1,33 @@
 # $Id$
 # Authority: dag
-# Upstream: Hendrik Van Belleghem <hendrik,vanbelleghem$gmail,com>
+# Upstream: Ricardo SIGNES <rjbs$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Acme-Beatnik
+%define real_name Querylet-Output-Excel-XLS
 
-Summary: Perl module that implements a source filter for the Beatnik language
-Name: perl-Acme-Beatnik
-Version: 0.02
+Summary: perl module to output querylet results to an Excel file
+Name: perl-Querylet-Output-Excel-XLS
+Version: 0.132
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Acme-Beatnik/
+URL: http://search.cpan.org/dist/Querylet-Output-Excel-XLS/
 
-Source: http://www.cpan.org/modules/by-module/Acme/Acme-Beatnik-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/R/RJ/RJBS/Querylet-Output-Excel-XLS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 
 %description
-perl-Acme-Beatnik is a Perl module that implements a source filter for the
-Beatnik language.
+perl-Querylet-Output-Excel-XLS is a Perl module to output querylet results
+to an Excel file.
 
 This package contains the following Perl module:
 
-    Acme::Beatnik
+    Querylet::Output::Excel::XLS
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -48,14 +48,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README
-%doc %{_mandir}/man3/Acme::Beatnik.3pm*
-%dir %{perl_vendorlib}/Acme/
-%{perl_vendorlib}/Acme/example.pl
-%{perl_vendorlib}/Acme/findwords.pl
-%{perl_vendorlib}/Acme/generate.pl
-%{perl_vendorlib}/Acme/Beatnik.pm
+%doc Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/Querylet::Output::Excel::XLS.3pm*
+%dir %{perl_vendorlib}/Querylet/
+%dir %{perl_vendorlib}/Querylet/Output/
+%dir %{perl_vendorlib}/Querylet/Output/Excel/
+%{perl_vendorlib}/Querylet/Output/Excel/XLS.pm
 
 %changelog
-* Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 0.02-1
+* Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 0.132-1
 - Initial package. (using DAR)
