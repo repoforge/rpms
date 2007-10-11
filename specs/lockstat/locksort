@@ -1,0 +1,785 @@
+#!/usr/bin/perl
+
+use Getopt::Std;
+
+#
+# 8-15-02	ricklind@us.ibm.com
+#
+# locksort -- sort lockmeter output.  This is HIGHLY dependent on the
+#	format of the output and if it changes in any of the following
+#	areas, this tool will need to be tweaked.  This "knows" the
+#	following things about the output.
+#
+#	* blank lines are not significant and safe to ignore (or insert)
+#
+#	* "interesting" output begins a certain number of lines after a
+#	  line beginning with a "-"
+#
+#	* lockmeter output is extremely column-oriented. This tool "knows" the
+#	  columns in which interesting fields will appear (see the comments
+#	  before each of get_spin_info() and print_spin_lock(), and their
+#	  counterparts in the rd/wr locks routines. If any of these formats
+#	  should change, this tool will need to change.
+#
+
+##
+##
+## spinlock specific functions
+##	(section 1 of lockmeter output)
+##
+##
+sub find_spin_section {
+
+    my $i, $throwaway;
+
+    #
+    # skip up to beginning of lockmeter data. It's five lines
+    # past the first line starting with a dash.
+    #
+    while (<>) {
+	print;
+	last if (/^-/);
+    }
+
+    for ($i = 0; $i < 5; $i++) {
+	$throwaway = <>;
+	print $throwaway;
+    }
+}
+ 
+sub save_spin_section {
+
+    while (<>) {
+	#
+	# The array is structured the same way, but the 13th element is
+	# a reference to another array, representing locations where the
+	# lock is acquired (indented, in the original output). Each
+	# location is a 12-element array like above.
+	#
+	next if (/^\s*$/);
+	last if (/^-/);
+	chomp;
+	if (substr($_,79,1) eq " ") {
+	    #
+	    # It's indented. Then this is a location, not a lock name
+	    #
+	    #printf "  %s (curr_lock is %s)\n", substr($_,81), $locks[$curr_lock]->[11];
+	    $locks[$curr_lock]->[12]->[$#{$locks[$curr_lock]->[12]}+1] = get_spin_info();
+	} else {
+	    #printf "%s\n", substr($_,79);
+	    $locks[$curr_lock = $lock_count] = get_spin_info();
+	    $locks[$lock_count++]->[12] = [];
+	}
+    }
+}
+
+sub sort_spin_section {
+    sort_locks(12, $sort_spin_by);	# field 12 holds the list of callers
+}
+
+sub print_spin_section {
+    
+    my $i, $lastlock;
+    my $callers = $_[0];
+
+    for ($i = 0; $i < $lock_count; $i++) {
+	#
+	# formatting the entries. we want a leading newline if:
+	# it's not the first one we're printing, AND
+	# (if this lock had callers, or
+	# this lock did not have callers but the previous one did.)
+	#
+	if ($i != 0 &&
+	    ($#{$locks[$i]->[12]} > -1 ||
+	     ($#{$locks[$i]->[12]} < 0 && ($#{$lastlock->[12]} > -1)))) {
+	    print "\n";
+	}
+	print_spin_lock($locks[$i],"");
+	$lastlock = $locks[$i];
+    }
+
+    #
+    # interaction with save_spin_section. Back then, we sucked up
+    # a line beginning with a dash to note the end of this spinlock
+    # section.  Spit it back out now.
+    #
+    print "\n$_";
+}
+
+#
+# we are passed an index into the global array "locks".  That's
+# the lock we should print out.
+#
+sub print_spin_lock {
+
+    my $thislock = $_[0];
+    my $i;
+
+    print " ";
+    printpct($thislock->[0]);
+    print " ";
+    printpct($thislock->[1]);
+    print " ";
+    printtime($thislock->[2]);
+    print "(";
+    printtime($thislock->[3]);
+    print ") ";
+    printtime($thislock->[4]);
+    if ($thislock->[4]) {
+	print "(";
+	printtime($thislock->[5]);
+	print ")(";
+	printpct($thislock->[6]);
+	print ") ";
+    } else {
+	print "                ";
+    }
+    printf("%9d ", $thislock->[7]);
+    printpct($thislock->[8]);
+    print " ";
+    printpct($thislock->[9]);
+    print " ";
+    printpct($thislock->[10]);
+    print "  ";
+    printf("%s%s\n", $_[1],$thislock->[11]);
+    for ($i = 0; $i <= $#{$thislock->[12]}; $i++) {
+	#print "x $i $thislock->[12]->[$i] x\n";
+	print_spin_lock($thislock->[12]->[$i], "  ");
+	#print "y $i $thislock->[12]->[$i] y\n";
+	#printf("  %d ", $thislock->[12]->[$i]->[$sort_spin_by]);
+	#printf("  %s\n", $thislock->[12]->[$i]->[11]);
+    }
+}
+
+#
+# the output of lockmeter is extremely column-oriented.
+# Here are the pertinent columns (first column is 0 and
+# the columns listed here are inclusive:
+#
+#	field  1 1-4		%age utilized (in 1000ths of a percent)
+#	field  2 7-10		%age contention (in 1000ths of a percent)
+#	field  3 13-18		average time held (in 10ths of a us)
+#	field  4 20-25		longest time held (in 10ths of a us)
+#	field  5 28-33		average time waited for (in 10ths of a us)
+#	field  6 35-40		longest time waited for (in 10ths of a us)
+#	field  7 43-46		%cpu tied up (in 1000ths of a percent)
+#	field  8 50-58		number of times requested
+#	field  9 60-63		%age acquired (in 1000ths of a percent)
+#	field 10 66-69		%age spin (in 1000ths of a percent)
+#	field 11 72-75		# of rejects
+#	field 12 79-end		name/location of lock
+#
+sub get_spin_info {
+
+    my @arr;
+
+    $arr[0] =  getpct(substr($_,1,4));
+    $arr[1] =  getpct(substr($_,7,4));
+    $arr[2] =  get_time(substr($_,13,6));
+    $arr[3] =  get_time(substr($_,20,6));
+    $arr[4] =  get_time(substr($_,28,6));
+    $arr[5] =  get_time(substr($_,35,6));
+    $arr[6] =  getpct(substr($_,43,4));
+    $arr[7] =  int(substr($_,50,9));
+    $arr[8] =  getpct(substr($_,60,4));
+    $arr[9] =  getpct(substr($_,66,4));
+    $arr[10] = getpct(substr($_,72,4));
+
+    if (substr($_,79,1) eq " ") {
+	$arr[11] = substr($_,81);
+    } else {
+	$arr[11] = substr($_,79);
+    }
+#    printf "arr = %d %d %d %d %d %d %d %d %d %d %d\n",
+#	$arr[0], $arr[1], $arr[2], $arr[3], $arr[4],
+#	$arr[5], $arr[6], $arr[7], $arr[8], $arr[9],
+#	$arr[10], $arr[11];
+    return \@arr;
+}
+
+##
+##
+## read-side-of-rwlock specific functions
+##	(section 2 of lockmeter output)
+##
+##
+
+#
+# we're pretty much there.  We've already eaten the line with a
+# beginning "-" so we just need to skip over the next few lines
+# to the data.
+#
+sub find_rd_section {
+    
+    my $i, $throwaway;
+
+    for ($i = 0; $i < 5; $i++) {
+	$throwaway = <>;
+	print $throwaway;
+    }
+}
+
+#
+# the output of lockmeter is extremely column-oriented.
+# Here are the pertinent columns for the rd side of rw
+# locks:
+#
+#	field  1 	% utilization
+#	field  2 	% contention
+#	field  3 	mean hold time
+#	field  4 	max # readers
+#	field  5 	mean busy time
+#	field  6 	max busy time
+#	field  7 	mean wait time
+#	field  8 	max wait time
+#	field  9 	% cpu utilization
+#	field 10 	# of times used
+#	field 11 	% of time no wait needed
+#	field 12 	% of time spinning
+#	field 13 	name
+#
+# The locks array is structured the same way, but the 14th element is
+# a reference to another array, representing locations where the
+# lock is acquired (indented, in the original output). Each
+# location is a 13-element array like above.
+#
+sub save_rd_section {
+
+    $locks = [ ];
+    $lock_count = 0;
+    while (<>) {
+	next if (/^\s*$/);
+	last if (/^-/);
+	chomp;
+	if (substr($_,87,1) eq " ") {
+	    #
+	    # It's indented. Then this is a location, not a lock name
+	    #
+	    #printf "  %s (curr_lock is %s)\n", substr($_,81), $locks[$curr_lock]->[11];
+	    $locks[$curr_lock]->[13]->[$#{$locks[$curr_lock]->[13]}+1] = get_rd_info();
+	} else {
+	    #printf "%s\n", substr($_,87);
+	    $locks[$curr_lock = $lock_count] = get_rd_info();
+	    $locks[$lock_count++]->[13] = [];
+	}
+    }
+}
+
+#
+# the output of lockmeter is extremely column-oriented.
+# Here are the pertinent columns for the data for the read
+# portion of reader/writer locks. First column is 0 and
+# the columns listed here are inclusive:
+#
+#	field  1 1-4		% utilization
+#	field  2 7-10		% contention
+#	field  3 14-19		mean hold time
+#	field  4 21-25		max # readers
+#	field  5 27-32		mean busy time
+#	field  6 34-39		max busy time
+#	field  7 42-47		mean wait time
+#	field  8 49-54		max wait time
+#	field  9 57-60		% cpu utilization
+#	field 10 64-72		# of times used
+#	field 11 74-77		% of time no wait needed
+#	field 12 80-83		% of time spinning
+#	field 13 87-end		name
+#
+sub get_rd_info {
+
+    my @arr;
+
+    $arr[0] =  getpct(substr($_, 1,4));
+    $arr[1] =  getpct(substr($_, 7,4));
+    $arr[2] =  get_time(substr($_,14,6));
+    $arr[3] =  int(substr($_,21,5));
+    $arr[4] =  get_time(substr($_,27,6));
+    $arr[5] =  get_time(substr($_,34,6));
+    $arr[6] =  get_time(substr($_,42,6));
+    $arr[7] =  get_time(substr($_,49,6));
+    $arr[8] =  getpct(substr($_,57,4));
+    $arr[9] =  int(substr($_,64,9));
+    $arr[10] = getpct(substr($_,74,4));
+    $arr[11] = getpct(substr($_,80,4));
+
+    if (substr($_,87,1) eq " ") {
+	$arr[12] = substr($_,89);
+    } else {
+	$arr[12] = substr($_,87);
+    }
+#    printf "rd arr = %d %d %d %d %d %d %d %d %d %d %d\n",
+#	$arr[0], $arr[1], $arr[2], $arr[3], $arr[4],
+#	$arr[5], $arr[6], $arr[7], $arr[8], $arr[9],
+#	$arr[10], $arr[11];
+    return \@arr;
+}
+
+    
+sub sort_rd_section {
+    sort_locks(13, $sort_rd_by);	# field 13 holds the list of callers
+}
+
+
+sub print_rd_section {
+    
+    my $i, $lastlock;
+
+    for ($i = 0; $i < $lock_count; $i++) {
+	#
+	# formatting the entries. we want a leading newline if:
+	# it's not the first one we're printing, AND
+	# (if this lock had callers, or
+	# this lock did not have callers but the previous one did.)
+	#
+	if ($i != 0 &&
+	    ($#{$locks[$i]->[13]} > -1 ||
+	     ($#{$locks[$i]->[13]} < 0 && ($#{$lastlock->[13]} > -1)))) {
+	    print "\n";
+	}
+	print_rd_lock($locks[$i],"");
+	$lastlock = $locks[$i];
+    }
+
+    #
+    # interaction with save_rd_section. Back then, we sucked up
+    # a line beginning with a dash to note the end of this spinlock
+    # section.  Spit it back out now.
+    #
+    print "\n$_";
+}
+
+sub print_rd_lock {
+
+    my $thislock = $_[0];
+    my $i;
+
+    if ($thislock->[0]) {
+	print " ";
+	printpct($thislock->[0]);
+	print " ";
+    } else {
+	print "       ";
+    }
+    printpct($thislock->[1]);
+    if ($thislock->[2]) {
+	print "  ";
+	printtime($thislock->[2]);
+	print " ";
+	printf("%5d", $thislock->[3]);
+	print " ";
+	printtime($thislock->[4]);
+	print "(";
+	printtime($thislock->[5]);
+	print ") ";
+    } else {
+	print "                              ";
+    }
+    printtime($thislock->[6]);
+    if ($thislock->[6]) {
+	print "(";
+	printtime($thislock->[7]);
+	print ")(";
+	printpct($thislock->[8]);
+	print ") ";
+    } else {
+	print "                ";
+    }
+    printf("%9d", $thislock->[9]);
+    print " ";
+    printpct($thislock->[10]);
+    print " ";
+    printpct($thislock->[11]);
+    print "  ";
+    printf("%s%s\n", $_[1],$thislock->[12]);
+    for ($i = 0; $i <= $#{$thislock->[13]}; $i++) {
+	#print "x $i $thislock->[13]->[$i] x\n";
+	print_rd_lock($thislock->[13]->[$i], "  ");
+	#print "y $i $thislock->[13]->[$i] y\n";
+	#printf("  %d ", $thislock->[13]->[$i]->[$sort_by]);
+	#printf("  %s\n", $thislock->[13]->[$i]->[12]);
+    }
+}
+
+##
+##
+## Section of write-side-of-rwlock specific functions
+##	(section 3 of lockmeter output)
+##
+##
+
+sub find_wr_section {
+    find_rd_section();
+}
+
+#
+# the output of lockmeter is extremely column-oriented.
+# Here are the pertinent columns for the wr side of rw
+# locks (first column is 0 and the columns listed here
+# are inclusive):
+#
+#	field  1 	% utilization
+#	field  2 	% contention
+#	field  3 	mean hold time
+#	field  4 	max hold time
+#	field  5 	mean wait time (all)
+#	field  6 	max wait time (all)
+#	field  7 	% cpu consumed
+#	field  8 	mean wait time (ww)
+#	field  9 	max wait time (ww)
+#	field 10 	total # of calls
+#	field 11 	% of time no waiting was necessary
+#	field 12 	% of time spinning was necessary
+#	field 13 	% ww
+#	field 14 	name
+#
+#
+# The locks array is structured the same way, but the 15th element is
+# a reference to another array, representing locations where the
+# lock is acquired (indented, in the original output). Each
+# location is a 14-element array like above.
+#
+sub save_wr_section {
+
+    $locks = [ ];
+    $lock_count = 0;
+    while (<>) {
+	next if (/^\s*$/);
+	last if (/^_/);
+	chomp;
+	if (substr($_,95,1) eq " ") {
+	    #
+	    # It's indented. Then this is a location, not a lock name
+	    #
+	    #printf "  %s (curr_lock is %s)\n", substr($_,81), $locks[$curr_lock]->[13];
+	    $locks[$curr_lock]->[14]->[$#{$locks[$curr_lock]->[14]}+1] = get_wr_info();
+	} else {
+	    #printf "%s\n", substr($_,87);
+	    $locks[$curr_lock = $lock_count] = get_wr_info();
+	    $locks[$lock_count++]->[14] = [];
+	}
+    }
+}
+ 
+#
+# the output of lockmeter is extremely column-oriented.
+# Here are the pertinent columns for the data for the read
+# portion of reader/writer locks. First column is 0 and
+# the columns listed here are inclusive:
+#
+#	field  1 1-4		% utilization
+#	field  2 7-10		% contention
+#	field  3 13-18		mean hold time
+#	field  4 20-25		max hold time
+#	field  5 28-33		mean wait time (all)
+#	field  6 35-40		max wait time (all)
+#	field  7 43-46		% cpu consumed
+#	field  8 50-55		mean wait time (ww)
+#	field  9 57-62		max wait time (ww)
+#	field 10 66-73		total # of calls
+#	field 11 75-78		% of time no waiting was necessary
+#	field 12 81-84		% of time spinning was necessary
+#	field 13 87-90		% ww
+#	field 14 95-end		name
+#
+sub get_wr_info {
+
+    my @arr;
+
+    $arr[0] =  getpct(substr($_, 1,4));
+    $arr[1] =  getpct(substr($_, 7,4));
+    $arr[2] =  get_time(substr($_,13,6));
+    $arr[3] =  get_time(substr($_,20,6));
+    $arr[4] =  get_time(substr($_,28,6));
+    $arr[5] =  get_time(substr($_,35,6));
+    $arr[6] =  getpct(substr($_,43,6));
+    $arr[7] =  get_time(substr($_,50,6));
+    $arr[8] =  get_time(substr($_,57,6));
+    $arr[9] =  int(substr($_,66,9));
+    $arr[10] = getpct(substr($_,75,4));
+    $arr[11] = getpct(substr($_,81,4));
+    $arr[12] = getpct(substr($_,87,4));
+
+    if (substr($_,95,1) eq " ") {
+	$arr[13] = substr($_,97);
+    } else {
+	$arr[13] = substr($_,95);
+    }
+#    printf "rd arr = %d %d %d %d %d %d %d %d %d %d %d\n",
+#	$arr[0], $arr[1], $arr[2], $arr[3], $arr[4],
+#	$arr[5], $arr[6], $arr[7], $arr[8], $arr[9],
+#	$arr[10], $arr[11];
+    return \@arr;
+}
+
+sub sort_wr_section {
+    sort_locks(14, $sort_wr_by);	# field 14 holds the list of callers
+}
+
+
+sub print_wr_section {
+    
+    my $i, $lastlock;
+
+    for ($i = 0; $i < $lock_count; $i++) {
+	#
+	# formatting the entries. we want a leading newline if:
+	# it's not the first one we're printing, AND
+	# (if this lock had callers, or
+	# this lock did not have callers but the previous one did.)
+	#
+	if ($i != 0 &&
+	    ($#{$locks[$i]->[14]} > -1 ||
+	     ($#{$locks[$i]->[14]} < 0 && ($#{$lastlock->[14]} > -1)))) {
+	    print "\n";
+	}
+	print_wr_lock($locks[$i],"");
+	$lastlock = $locks[$i];
+    }
+
+    #
+    # interaction with save_wr_section. Back then, we sucked up
+    # a line beginning with a dash to note the end of this spinlock
+    # section.  Spit it back out now.
+    #
+    print "$_";
+}
+
+sub print_wr_lock {
+
+    my $thislock = $_[0];
+    my $i;
+
+    print " ";
+    printpct($thislock->[0]);
+    print " ";
+    printpct($thislock->[1]);
+    print " ";
+    printtime($thislock->[2]);
+    print "(";
+    printtime($thislock->[3]);
+    print ") ";
+    printtime($thislock->[4]);
+    if ($thislock->[4]) {
+	print "(";
+	printtime($thislock->[5]);
+	print ")(";
+	printpct($thislock->[6]);
+	print ") ";
+    } else {
+	print "                ";
+    }
+    printtime($thislock->[7]);
+    if ($thislock->[7]) {
+	print "(";
+	printtime($thislock->[8]);
+	print ") ";
+    } else {
+	print "         ";
+    }
+    printf("%9d", $thislock->[9]);
+    print " ";
+    printpct($thislock->[10]);
+    print " ";
+    printpct($thislock->[11]);
+    print "(";
+    printpct($thislock->[12]);
+    print ")  ";
+    printf("%s%s\n", $_[1],$thislock->[13]);
+    for ($i = 0; $i <= $#{$thislock->[14]}; $i++) {
+	#print "x $i $thislock->[14]->[$i] x\n";
+	print_wr_lock($thislock->[14]->[$i], "  ");
+	#print "y $i $thislock->[14]->[$i] y\n";
+	#printf("  %d ", $thislock->[14]->[$i]->[$sort_by]);
+	#printf("  %s\n", $thislock->[14]->[$i]->[13]);
+    }
+}
+
+
+##
+##
+## Section of formatting specific functions
+##
+##
+sub printtime {
+    
+    my $tm = $_[0];		# actually, tenths of a us
+
+    if ($tm == 0) {
+	printf("   0us");
+    } elsif ($tm < 100) {
+	printf("%2d.%01dus", $tm/10, $tm%10);
+    } elsif ($tm < 100000) {
+	printf("%4dus", $tm/10);
+    } else {
+	printf("%4dms", $tm/10000);
+    }
+}
+
+sub printpct {
+    
+    my $pct = $_[0];		# actually, thousandths of a %
+
+    if ($pct == 0) {
+	print("   0%");
+    } elsif ($pct < 1000) {
+	printf("%d.%02d%%", $pct/1000, ($pct/10)%1000);
+    } elsif ($pct < 100000) {
+	printf("%2d.%01d%%", $pct/1000, ($pct/100)%10);
+    } else {
+	print(" 100%");
+    }
+}
+
+#
+# time specifications will end with either "us" or "ms" for
+# microseconds or milliseconds.  Scale appropriately ...
+#
+sub get_time {
+
+    if (substr($_[0],4,1) eq "u") {
+	return (substr($_[0],0,4) * 10);
+    } else {
+	return (substr($_[0],0,4) * 10000);
+    }
+}
+
+sub getpct {
+    
+    my $str = $_[0];
+
+    if (substr($str,0,4) eq "0.00") {
+	return 1;
+    }
+    return substr($str,0,4) * 1000;
+}
+
+#
+# sort the locks by the field $sort_by in descending
+# order using a simple bubble sort. Calling locations are similarly sorted.
+# Since spin locks, read sides of read/write locks, and write side of
+# read/write locks all have differing numbers of fields, the first
+# argument indicates the array element in this collection of locks
+# where the callers may be held.
+#
+sub sort_locks {
+
+    my $i, $j;
+    my $callers = $_[0];
+    my $tmp;
+    my $sort_by = $_[1];
+
+    for ($i = 0; $i < $lock_count; $i++) {
+	for ($j = $i; $j < $lock_count; $j++) {
+	    if ($locks[$i]->[$sort_by] < $locks[$j]->[$sort_by]) {
+		$tmp = $locks[$i];
+		$locks[$i] = $locks[$j];
+		$locks[$j] = $tmp;
+	    }
+	}
+	sort_calls($locks[$i]->[$callers], $sort_by);
+    }
+}
+
+sub sort_calls {
+
+    my $i, $j, $z;
+    my $tmp;
+    my $thisarray = $_[0];
+    my $sort_by = $_[1];
+
+    #printf "sorting %d items\n", $#{$thisarray}+1;
+    #for ($z = 0; $z <= $#{$thisarray}; $z++) {
+#	printf("  %d ", $thisarray->[$z]->[$sort_by]);
+#	printf("  %s\n", $thisarray->[$z]->[11]);
+#    }
+#    print "vs.\n";
+    for ($i = 0; $i <= $#{$thisarray}; $i++) {
+	for ($j = $i; $j <= $#{$thisarray}; $j++) {
+	    if ($thisarray->[$i]->[$sort_by] < $thisarray->[$j]->[$sort_by]) {
+		$tmp = $thisarray->[$i];
+		$thisarray->[$i] = $thisarray->[$j];
+		$thisarray->[$j] = $tmp;
+	    }
+	}
+    }
+#    for ($z = 0; $z <= $#{$thisarray}; $z++) {
+#	printf("  %d ", $thisarray->[$z]->[$sort_by]);
+#	printf("  %s\n", $thisarray->[$z]->[11]);
+#    }
+}
+
+###
+###
+### Main program, finally.
+###
+###
+
+#
+# defaults: sort alphabetically. locksort acts a complex "cat"
+# command in the default case, since it outputs things in exactly
+# the same format lockmeter would.
+#
+$opt_s = "+11";
+$opt_r = "+12";
+$opt_w = "+13";
+
+die "Usage: $0 [-s [+]N] [-r [+]N] [-w [+]N] [file]\n" unless &getopts("r:w:s:");
+
+#
+#  sort_spin_by tells us what field to sort the spinlocks by. This is
+#  0 based so it would be 0 to sort on field 1, 1 to sort on field 2, etc.
+#  sort_rd_by and sort_wr_by are the analogous variables for read/write
+#  spinlocks.
+#
+#  sort_spin_descending is a boolean telling us to sort the spinlocks
+#  in descending order.  There are analogous variables for the
+#  read/write spinlocks.
+#
+# A field designation of +N indicates to sort in ascending order.
+#
+if (substr($opt_s,0,1) eq "+") {
+    $sort_spin_by = substr($opt_s,1);
+    $sort_spin_descending = 0;
+} else {
+    $sort_spin_by = $opt_s;
+    $sort_spin_descending = 1;
+}
+
+if (substr($opt_r,0,1) eq "+") {
+    $sort_rd_by = substr($opt_r,1);
+    $sort_rd_descending = 0;
+} else {
+    $sort_rd_by = $opt_r;
+    $sort_rd_descending = 1;
+}
+
+if (substr($opt_w,0,1) eq "+") {
+    $sort_wr_by = substr($opt_w,1);
+    $sort_wr_descending = 0;
+} else {
+    $sort_wr_by = $opt_w;
+    $sort_wr_descending = 1;
+}
+
+find_spin_section();
+save_spin_section();
+sort_spin_section();
+print_spin_section();
+
+find_rd_section();
+save_rd_section();
+sort_rd_section();
+print_rd_section();
+
+find_wr_section();
+save_wr_section();
+sort_wr_section();
+print_wr_section();
+
+#
+# just copy everything else out
+#
+while (<>) {
+    print;
+}
+

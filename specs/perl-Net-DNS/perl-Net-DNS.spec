@@ -70,7 +70,7 @@ find contrib/ -type f -exec %{__chmod} a-x {} \;
 
 %changelog
 * Mon Aug 27 2007 Dag Wieers <dag@wieers.com> - 0.61-1
-- Updated to release 0.60.
+- Updated to release 0.61.
 
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.59-1
 - Updated to release 0.59.
