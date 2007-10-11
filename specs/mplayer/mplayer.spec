@@ -30,20 +30,24 @@
 %{?rh9:%define _without_fribidi 1}
 %{?rh9:%define _without_nas 1}
 %{?rh9:%define _without_theora 1}
+%{?rh9:%define _without_x264 1}
 %{?rh9:%define _without_xvmc 1}
 
 %{?rh8:%define _without_alsa 1}
 %{?rh8:%define _without_fribidi 1}
 %{?rh8:%define _without_nas 1}
 %{?rh8:%define _without_theora 1}
+%{?rh8:%define _without_x264 1}
 %{?rh8:%define _without_xvmc 1}
 
 %{?rh7:%define _without_alsa 1}
+%{?rh7:%define _without_faac 1}
 %{?rh7:%define _without_fribidi 1}
 %{?rh7:%define _without_freedesktop 1}
 %{?rh7:%define _without_nas 1}
 %{?rh7:%define _without_theora 1}
 %{?rh7:%define _without_gcccheck 1}
+%{?rh7:%define _without_x264 1}
 %{?rh7:%define _without_xvmc 1}
 
 %{?el2:%define _without_alsa 1}
@@ -54,6 +58,7 @@
 %{?el2:%define _without_freedesktop 1}
 %{?el2:%define _without_nas 1}
 %{?el2:%define _without_theora 1}
+%{?el2:%define _without_x264 1}
 %{?el2:%define _without_xvmc 1}
 
 %{?yd3:%define _without_alsa 1}
@@ -95,6 +100,7 @@ Patch10: MPlayer-1.0pre6a-fribidi.patch
 # Fixes to 1.0rc1 which won't be needed anymore with 1.0rc2
 Patch50: MPlayer-1.0rc1-dct64_amd.patch
 Patch51: asmrules_fix_20061231.diff
+Patch100: mplayer-1.0rc1-h264-static.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: mplayer-fonts
 BuildRequires: gtk2-devel, SDL-devel
@@ -182,6 +188,7 @@ This package contains the end user documentation.
 %patch10 -p1 -b .fribidi
 %patch50 -p1 -b .dct64_amd
 %patch51 -p0 -b .asmrules_fix
+%patch100 -p0 -b .h264_static
 
 # Overwrite some of the details of the provided system menu entry
 %{__perl} -pi -e 's|^Exec=gmplayer$|Exec=gmplayer %f|g;
