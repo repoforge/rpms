@@ -37,13 +37,10 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -51,18 +48,18 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL
-%{_libdir}/libgksuui*.so.*
-%{_datadir}/gtk-doc/html/libgksuui*/
+%doc %{_datadir}/gtk-doc/html/libgksuui*/
 %{_datadir}/libgksuui*/gksu-auth.png
 %{_datadir}/locale/*/*/libgksuui*
+%{_libdir}/libgksuui*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/*.h
 %{_libdir}/libgksuui*.a
 %{_libdir}/libgksuui*.so
-%exclude %{_libdir}/*.la
 %{_libdir}/pkgconfig/libgksuui*.pc
+%exclude %{_libdir}/*.la
 
 %changelog
 * Fri Mar 09 2007 Dag Wieers <dag@wieers.com> - 1.0.7-2

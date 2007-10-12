@@ -6,18 +6,18 @@
 
 Summary: Graphical frontend to su
 Name: gksu
-Version: 2.0.0
+Version: 1.3.7
 Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/gksu/
 
-Source: http://people.debian.org/~kov/gksu/gksu-%{version}.tar.gz
+Source: http://people.debian.org/~kov/gksu/old_stuff/gksu/gksu-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, gettext, intltool, perl(XML::Parser)
-BuildRequires: gtk2-devel >= 2.4.0, GConf2-devel
-BuildRequires: bison, gtk-doc, gnome-keyring-devel, nautilus-devel
+BuildRequires: bison, gtk-doc, gnome-keyring-devel
+BuildRequires: glib2-devel >= 2.6, gtk2-devel >= 2.6, GConf2-devel
 BuildRequires: libgksu-devel, libgksuui-devel
 
 %description
@@ -43,24 +43,23 @@ user.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %doc %{_mandir}/man1/gksu.1*
 %doc %{_mandir}/man1/gksudo.1*
+%doc %{_mandir}/man1/gksuexec.1*
+%config %{_sysconfdir}/gconf/schemas/gksu.schemas
 %{_bindir}/gksu
 %{_bindir}/gksudo
+%{_bindir}/gksuexec
 %{_datadir}/applications/gksu.desktop
+%{_datadir}/applications/gksuexec.desktop
 %{_datadir}/gksu/
 %{_datadir}/pixmaps/gksu-icon.png
 %{_datadir}/pixmaps/gksu-root-terminal.png
-%dir %{_libdir}/nautilus/
-%dir %{_libdir}/nautilus/extensions-1.0/
-%{_libdir}/nautilus/extensions-1.0/libnautilus-gksu.so
-%exclude %{_libdir}/nautilus/extensions-1.0/libnautilus-gksu.a
-%exclude %{_libdir}/nautilus/extensions-1.0/libnautilus-gksu.la
 
 %changelog
-* Fri Oct 12 2007 Dag Wieers <dag@wieers.com> - 2.0.0-1
-- Updated to release 2.0.0.
+* Fri Oct 12 2007 Dag Wieers <dag@wieers.com> - 1.3.7-1
+- Updated to release 1.3.7.
 
 * Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 1.3.4-2
 - Fixed group.
