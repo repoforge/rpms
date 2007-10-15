@@ -1,0 +1,39 @@
+Index: src/kerberosbasic.c
+===================================================================
+--- src/kerberosbasic.c	(revision 1735)
++++ src/kerberosbasic.c	(working copy)
+@@ -16,7 +16,7 @@
+  * DRI: Cyrus Daboo, cdaboo@apple.com
+  **/
+ 
+-#include <Python/Python.h>
++#include <Python.h>
+ #include "kerberosbasic.h"
+ 
+ #include <stdio.h>
+Index: src/kerberosgss.c
+===================================================================
+--- src/kerberosgss.c	(revision 1735)
++++ src/kerberosgss.c	(working copy)
+@@ -16,7 +16,7 @@
+  * DRI: Cyrus Daboo, cdaboo@apple.com
+  **/
+ 
+-#include <Python/Python.h>
++#include <Python.h>
+ #include "kerberosgss.h"
+ 
+ #include "base64.h"
+Index: src/kerberos.c
+===================================================================
+--- src/kerberos.c	(revision 1735)
++++ src/kerberos.c	(working copy)
+@@ -16,7 +16,7 @@
+  * DRI: Cyrus Daboo, cdaboo@apple.com
+  **/
+ 
+-#include <Python/Python.h>
++#include <Python.h>
+ 
+ #include "kerberosbasic.h"
+ #include "kerberosgss.h"
