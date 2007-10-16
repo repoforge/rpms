@@ -20,7 +20,7 @@
 Summary: Simple non-linear video editor
 Name: kino
 Version: 1.1.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.kinodv.org/
@@ -99,9 +99,13 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 %{_datadir}/mime/packages/kino.xml
 %{_datadir}/pixmaps/kino.png
 %{_mandir}/man1/*
+%exclude %{_mandir}/man1/ffmpeg.1*
 
 
 %changelog
+* Fri Oct 12 2007 Dag Wieers <dag@wieers.com> - 1.1.1-2
+- Remove ffmpeg.1 manpage as it conflicts with ffmpeg package.
+
 * Thu Oct 11 2007 Matthias Saou <http://freshrpms.net/> 1.1.1-1
 - Update to 1.1.1.
 

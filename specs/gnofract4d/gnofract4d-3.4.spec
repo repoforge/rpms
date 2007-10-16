@@ -2,13 +2,11 @@
 # Authority: dag
 # Upstream: Edwin Young <edwin$sourceforge,net>
 
-%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
-
 %define desktop_vendor rpmforge
 
 Summary: Program to generate and view fractals
 Name: gnofract4d
-Version: 3.5
+Version: 3.4
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -17,7 +15,7 @@ URL: http://gnofract4d.sourceforge.net/
 Source: http://dl.sf.net/gnofract4d/gnofract4d-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: scrollkeeper, gcc-c++, pkgconfig, python-devel >= 2.4
+BuildRequires: scrollkeeper, gcc-c++, pkgconfig, python-devel
 BuildRequires: desktop-file-utils, GConf2-devel, gtk2-devel
 Requires(post): scrollkeeper
 
@@ -53,21 +51,15 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 %doc COPYING README
 %doc %{_datadir}/gnome/help/gnofract4d/
 %{_bindir}/gnofract4d
-%{_datadir}/applications/gnofract4d.desktop
 %{_datadir}/gnofract4d/
 %{_datadir}/mime/packages/gnofract4d-mime.xml
+%{_datadir}/applications/gnofract4d.desktop
 %{_datadir}/pixmaps/gnofract4d/
 %{_datadir}/pixmaps/gnofract4d-logo.png
-%{python_sitelib}/fract4d/
-%{python_sitelib}/fract4dgui/
-%{python_sitelib}/fractutils/
-%exclude %{python_sitelib}/buildtools/
+%{_prefix}/lib/gnofract4d-%{version}/
 
 %changelog
-* Mon Oct 15 2007 Dag Wieers <dag@wieers.com> - 3.5-1
-- Updated to release 3.5.
-
-* Wed May 02 2007 Dag Wieers <dag@wieers.com> - 3.4-1
+* Wed May 02 2007 Dag Wieers <dag@wieers.com> - 3.4-1 - 5269+/dag
 - Updated to release 3.4.
 
 * Sun Apr 15 2007 Dag Wieers <dag@wieers.com> - 3.3-1

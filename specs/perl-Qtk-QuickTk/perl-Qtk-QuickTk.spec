@@ -6,17 +6,17 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Qtk-QuickTk
-%define real_version 0.9
+%define real_version 0.90
 
 Summary: Perl module named Qtk-QuickTk
 Name: perl-Qtk-QuickTk
-Version: 0.90
+Version: 0.9
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Qtk-QuickTk/
 
-Source: http://www.cpan.org/authors/id/J/JN/JNK/Qtk-QuickTk-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/J/JN/JNK/Qtk-QuickTk-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -49,11 +49,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc 
-%doc %{_mandir}/man3/Qtk::QuickTk.3pm*
+%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Qtk/
-#%{perl_vendorlib}/Qtk/QuickTk/
+%{perl_vendorlib}/Qtk/QuickTk/
 %{perl_vendorlib}/Qtk/QuickTk.pm
+%dir %{perl_vendorlib}/auto/Qtk/
+%{perl_vendorlib}/auto/Qtk/QuickTk/
 
 %changelog
-* Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 0.90-1
+* Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 0.9-1
 - Initial package. (using DAR)

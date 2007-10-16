@@ -3,8 +3,8 @@
 
 Summary: Off-The-Record Messaging library and toolkit
 Name: libotr
-Version: 3.0.0
-Release: 2
+Version: 3.1.0
+Release: 1
 License: GPL, LGPL
 Group: System Environment/Libraries
 URL: http://www.cypherpunks.ca/otr/
@@ -36,13 +36,14 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure --with-pic
+%configure \
+    --disable-static \
+    --with-pic
 %{__make} %{?_smp_mflags} all
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install \
-	DESTDIR="%{buildroot}" \
+%{__make} install DESTDIR="%{buildroot}" \
 	LIBINSTDIR="%{_libdir}"
 
 %clean
@@ -74,11 +75,13 @@ you will need to install %{name}-devel.
 %doc Protocol*
 %{_datadir}/aclocal/libotr.m4
 %{_includedir}/libotr/
-%{_libdir}/libotr.a
-%exclude %{_libdir}/libotr.la
 %{_libdir}/libotr.so
+%exclude %{_libdir}/libotr.la
 
 %changelog
+* Sat Oct 13 2007 Dag Wieers <dag@wieers.com> - 3.1.0-1
+- Updated to release 3.1.0.
+
 * Sun Mar 19 2006 Dries Verachtert <dries@ulyssis.org> - 3.0.0-2
 - gcc-c++ buildrequirement added.
 

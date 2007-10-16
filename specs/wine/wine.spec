@@ -48,7 +48,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 0.9.46
+Version: 0.9.47
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -231,68 +231,68 @@ EOF
 %{__cat} <<'EOF' >wine.sysv
 #!/bin/sh
 #
-# wine	Allow users to run Windows(tm) applications by just clicking on them
-#	(or typing ./file.exe)
+# wine  Allow users to run Windows(tm) applications by just clicking on them
+#i      (or typing ./file.exe)
 #
 # chkconfig: 35 98 10
 # description: Allow users to run Windows(tm) applications by just clicking \
-#	       on them (or typing ./file.exe)
+#              on them (or typing ./file.exe)
 
 source %{_initrddir}/functions
 RETVAL=0
 
 start() {
-	echo -n $"Registering binary handler for Windows applications"
-	/sbin/modprobe binfmt_misc &>/dev/null
-	echo ':windows:M::MZ::%{_bindir}/wine:' >/proc/sys/fs/binfmt_misc/register || :
-	echo ':windowsPE:M::PE::%{_bindir}/wine:' >/proc/sys/fs/binfmt_misc/register || :
+    echo -n $"Registering binary handler for Windows applications"
+    /sbin/modprobe binfmt_misc &>/dev/null
+    echo ':windows:M::MZ::%{_bindir}/wine:' >/proc/sys/fs/binfmt_misc/register || :
+    echo ':windowsPE:M::PE::%{_bindir}/wine:' >/proc/sys/fs/binfmt_misc/register || :
 }
 
 stop() {
-	echo -n $"Unregistering binary handler for Windows applications"
-	echo "-1" >/proc/sys/fs/binfmt_misc/windows || :
-	echo "-1" >/proc/sys/fs/binfmt_misc/windowsPE || :
+    echo -n $"Unregistering binary handler for Windows applications"
+    echo "-1" >/proc/sys/fs/binfmt_misc/windows || :
+    echo "-1" >/proc/sys/fs/binfmt_misc/windowsPE || :
 }
 
 reload() {
-	stop
-	start
+    stop
+    start
 }
 
 wine_status() {
-	if [ -e /proc/sys/fs/binfmt_misc/windows ]; then
-		echo $"Wine binary format handlers are registered."
-		return 0
-	else
-		echo $"Wine binary format handlers are not registered."
-		return 3
-	fi
+    if [ -e /proc/sys/fs/binfmt_misc/windows ]; then
+        echo $"Wine binary format handlers are registered."
+        return 0
+    else
+        echo $"Wine binary format handlers are not registered."
+        return 3
+    fi
 }
 
 case "$1" in
-	start)
-		start
-		;;
-	stop)
-		stop
-		;;
-	status)
-		wine_status
-		RETVAL=$?
-		;;
-	restart)
-		stop
-		start
-		;;
-	condrestart)
-		if [ -e /proc/sys/fs/binfmt_misc/windows ]; then
-			stop
-			start
-		fi
-		;;
-	*)
-		echo $"Usage: $prog {start|stop|status|restart|condrestart}"
-		exit 1
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        wine_status
+        RETVAL=$?
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    condrestart)
+        if [ -e /proc/sys/fs/binfmt_misc/windows ]; then
+            stop
+            start
+        fi
+        ;;
+    *)
+        echo $"Usage: $prog {start|stop|status|restart|condrestart}"
+        exit 1
 esac
 exit $RETVAL
 EOF
@@ -301,68 +301,68 @@ echo "%{_libdir}/wine/" >wine.ld.conf
 
 %build
 %configure \
-	--sysconfdir="%{_sysconfdir}/wine" \
-	--disable-static \
+    --sysconfdir="%{_sysconfdir}/wine" \
+    --disable-static \
 %{?_without_opengl:--without-opengl}
 %{__make} depend all
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}" \
-	dlldir="%{_libdir}/wine" \
-	includedir="%{_includedir}/wine" \
-	sysconfdir="%{_sysconfdir}/wine" \
-	LDCONFIG="/bin/true" \
-	UPDATE_DESKTOP_DATABASE="/bin/true"
+    dlldir="%{_libdir}/wine" \
+    includedir="%{_includedir}/wine" \
+    sysconfdir="%{_sysconfdir}/wine" \
+    LDCONFIG="/bin/true" \
+    UPDATE_DESKTOP_DATABASE="/bin/true"
 
 %{__install} -Dp -m0755 wine.sysv %{buildroot}%{_initrddir}/wine
 %{__install} -Dp -m0644 wine.ld.conf %{buildroot}%{_sysconfdir}/ld.so.conf.d/wine-%{_arch}.conf
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -Dp -m0644 wine-config.desktop %{buildroot}/etc/X11/applnk/Applications/wine-config.desktop
-	%{__install} -Dp -m0644 wine-fileman.desktop %{buildroot}/etc/X11/applnk/Applications/wine-fileman.desktop
-	%{__install} -Dp -m0644 wine-regedit.desktop %{buildroot}/etc/X11/applnk/Applications/wine-regedit.desktop
-	%{__install} -Dp -m0644 wine-uninstaller.desktop %{buildroot}/etc/X11/applnk/Applications/wine-uninstaller.desktop
+    %{__install} -Dp -m0644 wine-config.desktop %{buildroot}/etc/X11/applnk/Applications/wine-config.desktop
+    %{__install} -Dp -m0644 wine-fileman.desktop %{buildroot}/etc/X11/applnk/Applications/wine-fileman.desktop
+    %{__install} -Dp -m0644 wine-regedit.desktop %{buildroot}/etc/X11/applnk/Applications/wine-regedit.desktop
+    %{__install} -Dp -m0644 wine-uninstaller.desktop %{buildroot}/etc/X11/applnk/Applications/wine-uninstaller.desktop
 %else
-	desktop-file-install --delete-original             \
-		--vendor=%{desktop_vendor}                 \
-		--dir=%{buildroot}%{_datadir}/applications \
-		%{buildroot}%{_datadir}/applications/wine.desktop
+    desktop-file-install --delete-original             \
+        --vendor=%{desktop_vendor}                 \
+        --dir=%{buildroot}%{_datadir}/applications \
+        %{buildroot}%{_datadir}/applications/wine.desktop
 
-	desktop-file-install                               \
-		--vendor=%{desktop_vendor}                 \
-		--dir=%{buildroot}%{_datadir}/applications \
-		wine-config.desktop
+    desktop-file-install                               \
+        --vendor=%{desktop_vendor}                 \
+        --dir=%{buildroot}%{_datadir}/applications \
+        wine-config.desktop
 
-	desktop-file-install                               \
-		--vendor=%{desktop_vendor}                 \
-		--dir=%{buildroot}%{_datadir}/applications \
-		wine-fileman.desktop
+    desktop-file-install                               \
+        --vendor=%{desktop_vendor}                 \
+        --dir=%{buildroot}%{_datadir}/applications \
+        wine-fileman.desktop
 
-	desktop-file-install                               \
-		--vendor=%{desktop_vendor}                 \
-		--dir=%{buildroot}%{_datadir}/applications \
-		wine-regedit.desktop
+    desktop-file-install                               \
+        --vendor=%{desktop_vendor}                 \
+        --dir=%{buildroot}%{_datadir}/applications \
+        wine-regedit.desktop
 
-	desktop-file-install                               \
-		--vendor=%{desktop_vendor}                 \
-		--dir=%{buildroot}%{_datadir}/applications \
-		wine-uninstaller.desktop
+    desktop-file-install                               \
+        --vendor=%{desktop_vendor}                 \
+        --dir=%{buildroot}%{_datadir}/applications \
+        wine-uninstaller.desktop
 %endif
 
 %post core
 /sbin/ldconfig
 update-desktop-database &>/dev/null || :
 if [ $1 -eq 1 ]; then
-	/sbin/chkconfig --add wine
-	/sbin/chkconfig --level 2345 wine on
-	/sbin/service wine start &>/dev/null || :
+    /sbin/chkconfig --add wine
+    /sbin/chkconfig --level 2345 wine on
+    /sbin/service wine start &>/dev/null || :
 fi
 
 %preun core
 if [ $1 -eq 0 ]; then
-	/sbin/service wine stop &>/dev/null
-	/sbin/chkconfig --del wine
+    /sbin/service wine stop &>/dev/null
+    /sbin/chkconfig --del wine
 fi
 
 %postun core
@@ -630,6 +630,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/msimg32.dll.so
 %{_libdir}/wine/msnet32.dll.so
 %{_libdir}/wine/msrle32.dll.so
+%{_libdir}/wine/msvcirt.dll.so
 %{_libdir}/wine/msvcrt.dll.so
 %{_libdir}/wine/msvcrt20.dll.so
 %{_libdir}/wine/msvcrt40.dll.so
@@ -662,6 +663,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/psapi.dll.so
 %{_libdir}/wine/pstorec.dll.so
 %{_libdir}/wine/qcap.dll.so
+%{_libdir}/wine/qmgr.dll.so
 %{_libdir}/wine/quartz.dll.so
 %{_libdir}/wine/query.dll.so
 %{_libdir}/wine/rasapi32.dll.so
@@ -831,6 +833,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Sun Oct 14 2007 Dag Wieers <dag@wieers.com> - 0.9.47-1
+- Updated to release 0.9.47.
+
 * Sat Sep 29 2007 Dag Wieers <dag@wieers.com> - 0.9.46-1
 - Updated to release 0.9.46.
 
