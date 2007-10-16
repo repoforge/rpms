@@ -4,7 +4,7 @@
 
 Summary: Small C editor
 Name: geany
-Version: 0.11
+Version: 0.12
 Release: 1
 License: GPL
 Group: Applications/Editors
@@ -30,7 +30,7 @@ Perl, LateX, and Bash), and symbol lists.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 %{__mv} %{buildroot}%{_datadir}/doc/geany rpmdocs
 
@@ -42,11 +42,16 @@ Perl, LateX, and Bash), and symbol lists.
 %doc INSTALL THANKS rpmdocs/*
 %doc %{_mandir}/man1/geany*
 %{_bindir}/geany
+%{_libdir}/geany/
 %{_datadir}/geany/
+%{_datadir}/icons/*/*/apps/classviewer*.png
 %{_datadir}/pixmaps/geany.*
 %{_datadir}/applications/geany.desktop
 
 %changelog
+* Tue Oct 16 2007 Dries Verachtert <dries@ulyssis.org> - 0.12-1
+- Updated to release 0.12.
+
 * Mon Jun 25 2007 Dries Verachtert <dries@ulyssis.org> - 0.11-1
 - Updated to release 0.11.
 
