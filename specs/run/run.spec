@@ -1,13 +1,13 @@
 # $Id$
 # Authority: dag
 
-Summary: Control process scheduler attributres and CPU affinity
+Summary: Control process scheduler attributes and CPU affinity
 Name: run
 Version: 3.0
 Release: 2.2
 License: GPL
 Group: Applications/System
-URL: http://www.ccur.com/id_oss.asp
+URL: http://www.ccur.com/isd_oss.asp
 
 Source: http://www.ccur.com/oss/run-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -27,17 +27,14 @@ list of existing processes/threads.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 #libtool --finish %{buildroot}%{_libdir}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
@@ -53,11 +50,8 @@ list of existing processes/threads.
 %{_includedir}/proc_stat.h
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.0-2.2
-- Rebuild for Fedora Core 5.
-
 * Thu Sep 30 2004 Dag Wieers <dag@wieers.com> - 3.0-2
-- Fixed misplaced %Mdefattr. (Truls Gulbrandsen)
+- Fixed misplaced %defattr. (Truls Gulbrandsen)
 
 * Wed Sep 29 2004 Dag Wieers <dag@wieers.com> - 3.0-1
 - Initial package. (using DAR)

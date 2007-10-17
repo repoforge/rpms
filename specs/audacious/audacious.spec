@@ -1,76 +1,69 @@
 # $Id$
-# Authority:    hadams
+# Authority: hadams
 
-Name:           audacious
-Version:        1.3.2
-Release:        2
-Summary:        A GTK2 based media player similar to xmms
+%define desktop_vendor rpmforge
 
-Group:          Applications/Multimedia
-License:        GPL
-URL:            http://audacious-media-player.org/
+Summary: Graphical media player similar to xmms
+Name: audacious
+Version: 1.3.2
+Release: 2
+License: GPL
+Group: Applications/Multimedia
+URL: http://audacious-media-player.org/
 
-Source0:        http://static.audacious-media-player.org/release/audacious-%{version}.tgz
-Patch0:         audacious-1.3.1-xmms-skins.patch
-Patch1:         audacious-1.3.1-default-skin.patch
-# Patch2:         audacious-1.1.0-no-rpath.patch
-Patch3:         audacious-1.2.1-relative-links.patch
-# Patch4:         audacious-1.1.0-quoting.patch
-# Patch5:         audacious-1.1.0-amidi-backend.patch
-Patch6:         audacious-1.2.1-shaded-skin.patch
-# Patch7:         audacious-1.1.1-controlsocket-name.patch
-# Patch8:         audacious-1.1.1-playlist-twenty.patch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Source: http://static.audacious-media-player.org/release/audacious-%{version}.tgz
+Patch0: audacious-1.3.1-xmms-skins.patch
+Patch1: audacious-1.3.1-default-skin.patch
+#Patch2: audacious-1.1.0-no-rpath.patch
+Patch3: audacious-1.2.1-relative-links.patch
+#Patch4: audacious-1.1.0-quoting.patch
+#Patch5: audacious-1.1.0-amidi-backend.patch
+Patch6: audacious-1.2.1-shaded-skin.patch
+#Patch7: audacious-1.1.1-controlsocket-name.patch
+#Patch8: audacious-1.1.1-playlist-twenty.patch
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires:  gtk2-devel >= 2.6
-BuildRequires:  zlib-devel, desktop-file-utils >= 0.9
-BuildRequires:  libglade2-devel >= 2.4
-BuildRequires:  GConf2-devel
-BuildRequires:  gettext
-BuildRequires:  mcs-devel >= 0.1
+BuildRequires: gtk2-devel >= 2.6
+BuildRequires: zlib-devel, desktop-file-utils >= 0.9
+BuildRequires: libglade2-devel >= 2.4
+BuildRequires: GConf2-devel
+BuildRequires: gettext
+BuildRequires: libmcs-devel >= 0.1
 
-Requires:       audacious-plugins >= 1.3.0
-
-Requires(post):   desktop-file-utils >= 0.9
+Requires: audacious-plugins >= 1.3.0
+Requires(post): desktop-file-utils >= 0.9
 Requires(postun): desktop-file-utils >= 0.9
 
-Obsoletes:      bmp <= 0.9.7.1
-Provides:       bmp = 0.9.7.1
+Obsoletes: bmp <= 0.9.7.1
+Provides: bmp = 0.9.7.1
 
 %description
 Audacious is a media player that currently uses a skinned
-user interface based on Winamp 2.x skins. It is based on ("forked off")
-BMP.
+user interface based on Winamp 2.x skins. It is based on BMP.
 
+%package libs
+Summary: Library files for Audacious
+Group: System Environment/Libraries
 
-%package        libs
-Summary:        Library files for Audacious
-Group:          System Environment/Libraries
-
-%description    libs
+%description libs
 Library files for Audacious
 
+%package devel
+Summary: Development files for Audacious
+Group: Development/Libraries
+Requires: %{name}-libs = %{version}-%{release}
+Requires: glib2-devel, gtk2-devel >= 2.6, GConf2-devel, libglade2-devel >= 2.4
+Requires: libmcs-devel >= 0.1
+Requires: pkgconfig
 
-%package        devel
-Summary:        Development files for Audacious
-Group:          Development/Libraries
-Requires:       %{name}-libs = %{version}-%{release}
-Requires:       glib2-devel, gtk2-devel >= 2.6, GConf2-devel, libglade2-devel >= 2.4
-Requires:       mcs-devel >= 0.1
-Requires:       pkgconfig
+Obsoletes: bmp-devel <= 0.9.7.1
+Provides: bmp-devel = 0.9.7.1
 
-Requires(post):   /sbin/ldconfig
-Requires(postun): /sbin/ldconfig
-
-Obsoletes:      bmp-devel <= 0.9.7.1
-Provides:       bmp-devel = 0.9.7.1
-
-%description    devel
+%description devel
 Development files for Audacious
 
-
 %prep
-%setup -q
+%setup
 
 # Read xmms skins directory
 %patch0 -p1 -b .xmms-skins
@@ -101,88 +94,64 @@ Development files for Audacious
 
 %build
 %configure \
-    --disable-rpath \
-    --enable-gconf \
+    --disable-dependency-tracking \
     --disable-gnome-vfs \
+    --disable-rpath \
     --enable-chardet \
-    --disable-dependency-tracking
-make V=1 %{?_smp_mflags}
-
+    --enable-gconf
+%{__make} %{?_smp_mflags} V="1"
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
-desktop-file-install --vendor fedora \
-    --dir $RPM_BUILD_ROOT%{_datadir}/applications   \
-    --delete-original \
-    --remove-mime-type audio/x-scpls \
-    --remove-mime-type audio/x-mpegurl \
-    --remove-mime-type audio/mpegurl \
-    --remove-mime-type audio/mp3 \
-    --remove-mime-type audio/x-mp3 \
-    --remove-mime-type audio/mpeg \
-    --remove-mime-type audio/x-mpeg \
-    --remove-mime-type audio/x-wav \
-    --remove-mime-type application/x-ogg \
-    --remove-category Application \
-    $RPM_BUILD_ROOT%{_datadir}/applications/audacious.desktop
-
-install -m 755 -d $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/48x48/apps
-mv $RPM_BUILD_ROOT%{_datadir}/pixmaps/audacious.png $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/48x48/apps
-
-find $RPM_BUILD_ROOT -type f -name "*.la" -exec rm -f {} ';'
+desktop-file-install --delete-original \
+    --dir %{buildroot}%{_datadir}/applications  \
+    --vendor %{desktop_vendor} \
+    %{buildroot}%{_datadir}/applications/audacious.desktop
 
 %clean
-rm -rf $RPM_BUILD_ROOT
-
+%{__rm} -rf %{buildroot}
 
 %post
 update-desktop-database %{_datadir}/applications
 touch --no-create %{_datadir}/icons/hicolor || :
-if [ -x %{_bindir}/gtk-update-icon-cache ]; then
-    %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-fi
-
+%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor &>/dev/null || :
 
 %postun
 update-desktop-database %{_datadir}/applications
 touch --no-create %{_datadir}/icons/hicolor || :
-if [ -x %{_bindir}/gtk-update-icon-cache ]; then
-    %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-fi
+%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor &>/dev/null || :
 
 %post libs -p /sbin/ldconfig
-
 %postun libs -p /sbin/ldconfig
 
-
 %files -f %{name}.lang
-%defattr(-,root,root,-)
-%doc AUTHORS COPYING ChangeLog NEWS README
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING NEWS README
+%doc %{_mandir}/man1/audacious.1*
+%doc %{_mandir}/man1/audtool.1*
 %{_bindir}/audacious
 %{_bindir}/audtool
-%{_datadir}/audacious
-%{_mandir}/man[^3]/*
-%{_datadir}/applications/*
-%{_datadir}/icons/hicolor/48x48/apps/*
+%{_datadir}/applications/%{desktop_vendor}-audacious.desktop
+%{_datadir}/audacious/
+%{_datadir}/pixmaps/audacious.png
 
 %files libs
-%defattr(-,root,root,-)
-%{_libdir}/audacious
-%{_libdir}/*.so.*
+%defattr(-, root, root, 0755)
+%{_libdir}/audacious/
+%{_libdir}/libaudacious.so.*
 
 %files devel
-%defattr(-,root,root,-)
-%{_includedir}/audacious
-%{_libdir}/*.so
+%defattr(-, root, root, 0755)
+%{_includedir}/audacious/
+%{_libdir}/libaudacious.so
 %{_libdir}/pkgconfig/*
 
-
 %changelog
-* Thu Aug 30 2007 Heiko Adams <info@fedora-blog.de> 1.3.2-2
-- rebuild for rpmforge
+* Thu Aug 30 2007 Heiko Adams <info@fedora-blog.de> - 1.3.2-2
+- Rebuild for RPMforge.
 
 * Mon Apr 16 2007 Ralf Ertzinger <ralf@skytale.net> 1.3.2-1.fc6
 - Update to 1.3.2
