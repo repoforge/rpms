@@ -2,7 +2,7 @@
 # Authority: hadams
 
 Name:		evolution-rss
-Version:	0.0.5
+Version:	0.0.6
 Release:	1
 Summary:	Evolution plugin for rss feed support
 URL:		http://mips.edu.ms/evo/index.php/Evolution_RSS_Reader_Plugin
@@ -11,6 +11,7 @@ License:	GPL
 Source:         http://mips.edu.ms/evolution-rss-%{version}.tar.gz
 Requires:       evolution
 BuildRequires:  gettext-devel, evolution-devel, perl(XML::Parser)
+BuildRequires:  firefox-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}-root
 
 %description
@@ -46,6 +47,9 @@ RSS Evolution plugin enables evolution to read rss feeds.
 %{_datadir}/evolution/*/glade/*
 
 %changelog
+* Fri Oct 19 2007 Heiko Adams <info@fedora-blog.de> - 0.0.6-1
+- Version update
+
 * Sat Sep 08 2007 Heiko Adams <info@fedora-blog.de> - 0.0.5-1
 - Version update
 
