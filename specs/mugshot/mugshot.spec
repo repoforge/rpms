@@ -2,7 +2,7 @@
 # Authority: hadams
 
 Name:           mugshot
-Version:        1.1.48
+Version:        1.1.56
 Release:        1
 Summary:        Companion software for mugshot.org
 
@@ -40,6 +40,7 @@ BuildRequires:  gnome-desktop-devel >= 2.10.0
 BuildRequires:  gnome-vfs2-devel
 BuildRequires:  firefox-devel >= 1.5.0.4
 BuildRequires:  desktop-file-utils
+BuildRequires:  sqlite-devel >= 3.0.0
 
 # 1.0.3-3 has a backport from 1.0.4 to fix various segfaults
 Requires:       loudmouth >= 1.0.3-3
@@ -56,6 +57,13 @@ the panel, web browser, music player and other parts of the desktop with
 a "live social experience" and interoperation with online services you and 
 your friends use. It's fun and easy.
 
+%package devel
+Summary: Development headers for Online Desktop
+Group: Development/Languages
+Requires: dbus-devel
+
+%description devel
+This package contains libraries for Online Desktop.
 
 %prep
 %setup -q
@@ -72,7 +80,7 @@ make install DESTDIR=$RPM_BUILD_ROOT
 unset GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL
 
 # Don't package a .la file for the component .so
-rm -f $RPM_BUILD_ROOT%{_libdir}/mugshot/firefox/components/*.la
+find $RPM_BUILD_ROOT -type f -name "*.la" -exec rm -f {} ';'
 
 # Run desktop-file-install to so we get validation (and to make
 # things fedora-packaging-guidelines compliant)
@@ -83,7 +91,7 @@ desktop-file-install 					\
 desktop-file-install 					\
   --dir=$RPM_BUILD_ROOT%{_datadir}/gnome/autostart 	\
   --vendor=mugshot   					\
-  mugshot.desktop
+  mugshot-autostart.desktop
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -192,7 +200,7 @@ if [ "$1" != 0 ] ; then
 fi
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-,root,root,-)
 %doc LICENSE
 
 %{_bindir}/mugshot
@@ -206,12 +214,22 @@ fi
 %{_datadir}/mugshot
 %ghost %{_datadir}/mugshot/version
 %{_libdir}/mugshot
+%{_libdir}/*.so.*
 %{_datadir}/dbus-1/services/*.service
 %{_datadir}/applications/mugshot.desktop
-%{_datadir}/gnome/autostart/mugshot.desktop
+%{_datadir}/gnome/autostart/mugshot-autostart.desktop
 %{_sysconfdir}/gconf/schemas/*.schemas
 
+%files devel
+%dir %{_includedir}/ddm-1
+%{_includedir}/ddm-1/*
+%{_libdir}/pkgconfig/*.pc
+%{_libdir}/*.so
+
 %changelog
+* Sat Oct 19 2007 Heiko Adams <info@fedora-blog.de> - 1.1.56-1
+- 1.1.56
+
 * Sun Jul 29 2007 Heiko Adams <info@fedora-blog.de> - 1.1.48-1
 - 1.1.48
 
