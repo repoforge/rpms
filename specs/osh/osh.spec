@@ -6,7 +6,7 @@
 
 Summary: Object shell
 Name: osh
-Version: 0.9.0
+Version: 0.9.1
 Release: 1
 License: GPL
 Group: System Environment/Shells
@@ -30,7 +30,7 @@ Unix environment.
 %prep
 %setup
 # it tries to install ../osh-%{version}.tar.gz in the datadir
-%{__perl} -pi -e "s|, .\.\.\/osh-%{version}.tar.gz.||g;" setup.py
+%{__perl} -pi -e "s|, .\.\.\/osh-.s.tar.gz. . VERSION||g;" setup.py
 
 %build
 CFLAGS="%{optflags}" %{__python} setup.py build
@@ -53,6 +53,9 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{_datadir}/osh/
 
 %changelog
+* Wed Oct 17 2007 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1
+- Updated to release 0.9.1.
+
 * Mon Sep  3 2007 Dries Verachtert <dries@ulyssis.org> - 0.9.0-1
 - Updated to release 0.9.0.
 

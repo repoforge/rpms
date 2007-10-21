@@ -1,10 +1,13 @@
 # $Id$
 # Authority: dries
 
+# the name of the dir in _libdir contains the following (wrong?) version
+%define real_version 2.41.1
+
 Summary: ANSI Common Lisp implementation
 Name: clisp
-Version: 2.41
-Release: 2
+Version: 2.42
+Release: 1
 License: GPL
 Group: Development/Languages
 URL: http://clisp.cons.org
@@ -23,9 +26,9 @@ and foreign language interface
 %setup
 
 %build
-./configure --prefix=/usr --exec-prefix=/usr --bindir=/usr/bin --datadir=/usr/share --includedir=/usr/include --libdir=/usr/lib --mandir=/usr/share/man
+./configure --prefix=%{_prefix} --exec-prefix=%{_prefix} --bindir=%{_bindir} --datadir=%{_datadir} --includedir=%{_includedir} --libdir=%{_libdir} --mandir=%{_mandir}
 cd src
-./makemake --prefix=/usr --exec-prefix=/usr --bindir=/usr/bin --datadir=/usr/share --includedir=/usr/include --libdir=/usr/lib --mandir=/usr/share/man --with-dynamic-ffi > Makefile
+./makemake --prefix=%{_prefix} --exec-prefix=%{_prefix} --bindir=%{_bindir} --datadir=%{_datadir} --includedir=%{_includedir} --libdir=%{_libdir} --mandir=%{_mandir} --with-dynamic-ffi > Makefile
 %{__make} %{?_smp_mflags} config.lisp
 %{__make} %{?_smp_mflags}
 
@@ -48,11 +51,18 @@ cd -
 %doc rpmdocs/*
 %doc %{_mandir}/man1/clisp*
 %{_bindir}/clisp
-%{_libdir}/clisp/
+%{_libdir}/clisp-%{real_version}/
 %{_datadir}/emacs/site-lisp/clhs.el
 %{_datadir}/emacs/site-lisp/clisp-*
+%dir %{_datadir}/vim/vimfiles/
+%dir %{_datadir}/vim/vimfiles/after/
+%dir %{_datadir}/vim/vimfiles/after/syntax/
+%{_datadir}/vim/vimfiles/after/syntax/lisp.vim
 
 %changelog
+* Wed Oct 17 2007 Dries Verachtert <dries@ulyssis.org> - 2.42-1
+- Updated to release 2.42.
+
 * Wed Nov 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.41-2
 - Fix links to buildroot, thanks to Scott Dowdle.
 

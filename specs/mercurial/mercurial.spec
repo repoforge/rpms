@@ -6,8 +6,8 @@
 
 Summary: Fast lightweight source control management system
 Name: mercurial
-Version: 0.9.4
-Release: 2
+Version: 0.9.5
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://www.selenic.com/mercurial/wiki/
@@ -66,6 +66,9 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{_bindir}/hgk
 
 %changelog
+* Sun Oct 21 2007 Dries Verachtert <dries@ulyssis.org> - 0.9.5-1
+- Updated to release 0.9.5.
+
 * Wed Oct  3 2007 Dries Verachtert <dries@ulyssis.org> - 0.9.4-2
 - Added hgk as a subpackage, based on the PLD spec file started by arekm.
 
