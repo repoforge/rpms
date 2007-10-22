@@ -1,0 +1,18 @@
+--- lirc-0.8.2/configure.in.alldrivers	2007-06-09 20:54:09.000000000 +0200
++++ lirc-0.8.2/configure.in	2007-08-01 21:34:44.547507875 +0200
+@@ -1209,7 +1209,6 @@ elif test "$lirc_driver" = "all"; then
+ 	lirc_atiusb \
+ 	lirc_bt829 \
+ 	lirc_cmdir \
+-	lirc_gpio \
+ 	lirc_i2c \
+ 	lirc_igorplugusb \
+ 	lirc_ttusbir \
+@@ -1217,7 +1216,6 @@ elif test "$lirc_driver" = "all"; then
+ 	lirc_it87 \
+ 	lirc_mceusb \
+ 	lirc_mceusb2 \
+-	lirc_parallel \
+ 	lirc_sasem \
+ 	lirc_serial \
+ 	lirc_sir \

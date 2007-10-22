@@ -7,14 +7,14 @@
 
 Summary: Drivers for lirc supported hardware
 Name: dkms-lirc
-Version: 0.8.1
+Version: 0.8.2
 Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.lirc.org/
-Source: http://lirc.sourceforge.net/software/snapshots/lirc-%{version}pre2.tar.bz2
-Patch0: lirc-0.8.1pre2-alldrivers.patch
-Patch1: lirc-0.8.1pre2-nolinuxconfigh.patch
+Source: http://dl.sf.net/lirc/lirc-%{version}.tar.bz2
+Patch0: lirc-0.8.2-alldrivers.patch
+Patch1: lirc-0.8.2-2.6.23-unregister_chrdev-void.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 Requires: gcc, make, lirc
@@ -30,9 +30,9 @@ receivers supported by lirc.
 
 
 %prep
-%setup -n lirc-%{version}pre2
+%setup -n lirc-%{version}
 %patch0 -p1 -b .alldrivers
-%patch1 -p1 -b .nolinuxconfigh
+%patch1 -p1 -b .2.6.23-unregister_chrdev-void
 
 
 %build
@@ -77,6 +77,9 @@ done
 AUTOINSTALL="YES"
 EOF
 
+# Clean up... makes module builds fail
+#find %{buildroot} -name .deps | xargs %{__rm} -rf
+
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -95,12 +98,16 @@ dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
 
 %files
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
 %doc COPYING
 %{_usrsrc}/%{dkms_name}-%{dkms_vers}/
 
 
 %changelog
+* Mon Oct 22 2007 Matthias Saou <http://freshrpms.net/> 0.8.2-1
+- Update to 0.8.2 (patch from Miroslav Lichvar).
+- Include patch to fix compilation with 2.6.23+ kernels.
+
 * Mon Jan  8 2007 Matthias Saou <http://freshrpms.net/> 0.8.1-1
 - Update to 0.8.1 final.
 
