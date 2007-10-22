@@ -11,7 +11,7 @@
 Summary: Perl module that implements a distributed version control system (VCS)
 Name: perl-SVK
 Version: 2.0.2
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVK/
@@ -24,7 +24,7 @@ BuildRequires: perl
 BuildRequires: perl(Test::More) >= 0.42
 BuildRequires: perl(version) >= 0.68
 BuildRequires: perl(Algorithm::Annotate)
-BuildRequires: perl(Algorithm::Diff) >= 1.1901
+BuildRequires: perl(Algorithm::Diff) >= 1.19
 BuildRequires: perl(YAML::Syck) >= 0.60
 BuildRequires: perl(Data::Hierarchy) >= 0.30
 BuildRequires: perl(PerlIO::via::dynamic) >= 0.11
@@ -82,5 +82,8 @@ find contrib/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/SVK.pm
 
 %changelog
+* Mon Oct 22 2007 Dries Verachtert <dries@ulyssis.org> - 2.0.2-2
+- Fixed the perl(Algorithm::Diff) dependency, thanks to Geoffrey Broadwell.
+
 * Mon Aug 06 2007 Dag Wieers <dag@wieers.com> - 2.0.2-1
 - Initial package. (using DAR)
