@@ -2,23 +2,18 @@
 # Authority: dag
 
 %define desktop_vendor rpmforge
+%define real_name beid
 
 Summary: Application to read out information from the Belgian electronic ID card
-%define real_name Belgian_Identity_Card_Run-time
 Name: eid-belgium
 Version: 2.6.0
-Release: 1%{dist}
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://eid.belgium.be/
 
 ### Since it needs a specific referer, download it from http://www.belgium.be/zip/eid_datacapture_nl.html
-Packager: Dag Wieers <dag@wieers.com> 
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.belgium.be/zip/beid-2.6.0-20070222.tgz
-#Patch0: eid-belgium-2.5.9-openscreader.patch
-#Patch1: eid-belgium-2.5.9-reader-pcsc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ### SCons doesn't build when eid-belgium is already installed
@@ -26,11 +21,12 @@ BuildConflicts: eid-belgium
 BuildRequires: wxGTK-devel >= 2.4, openssl-devel >= 0.9.7, pcsc-lite-devel >= 1.2.9
 BuildRequires: qt-devel >= 3.3.3, java-sdk
 #BuildRequires: java-sdk-1.4.2
+Requires: pcsc-lite >= 1.2.9,  openssl >= 0.9.7, wxGTK >= 2.4
+
 Provides: belpic = %{version}-%{release}
 Obsoletes: belpic <= %{version}-%{release}
 Provides: beid = %{version}-%{release}
 Obsoletes: beid <= %{version}-%{release}
-Requires: pcsc-lite >= 1.2.9,  openssl >= 0.9.7, wxGTK >= 2.4
 
 %description
 This application allows the user to read out any information from a
@@ -47,10 +43,7 @@ checks the certificate against the government's Certificate Revocation List
 the government's servers.
 
 %prep
-%setup -n beid-%{version}
-
-#%patch0 -p0
-#%patch1 -p0
+%setup -n %{real_name}-%{version}
 
 %{__cat} <<EOF >beidcrld.sysconfig
 OPTIONS=""
@@ -247,13 +240,13 @@ EOF
 %{__perl} -pi.orig -e 's|/usr/local/share\b|%{_datadir}|g' src/eidviewer/beidgui.conf
 %{__perl} -pi.orig -e 's|/usr/local/include/beid\b|/usr/include/beid|g' src/eidlib/test/Makefile
 %{__perl} -pi.orig -e 's|/usr/local/lib/\b|/usr/lib/|g' src/newpkcs11/src/libopensc/card-belpic.c src/newpkcs11/src/tools/opensc-tool.c src/newpkcs11/src/tools/pkcs11-tool.c src/eidviewer/eidviewerApp.cpp
-sed -i s#'QLibrary(PCSCNAME)'#'QLibrary(QString(PCSCNAME) + QString(".so.1"))'# src/winscarp/winscarp.cpp
-
+%{__perl} -pi.orig -e 's|QLibrary\(PCSCNAME\)|QLibrary\(QString\(PCSCNAME\) + QString\(".so.1"\)\)|' src/winscarp/winscarp.cpp
 
 %build
 export CFLAGS="%{optflags}"
 export JAVA_HOME="$(readlink /etc/alternatives/java_sdk)"
 #export JAVA_HOME=/usr/java/jdk1.5.0_09
+export SCONS="disable"
 source "/etc/profile.d/qt.sh"
 ./configure prefix="%{_prefix}"
 ./scons prefix="%{_prefix}"
