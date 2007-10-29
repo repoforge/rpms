@@ -4,7 +4,7 @@
 
 Summary: BibTex editor
 Name: kbibtex
-Version: 0.1.5
+Version: 0.2
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -47,6 +47,9 @@ to .bib files, and export to both .pdf and .ps thru (pdf)latex.
 %{_datadir}/services/kbibtex_part.desktop
 
 %changelog
+* Mon Nov 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.2-1
+- Updated to release 0.2.
+
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.5-1
 - Updated to release 0.1.5.
 

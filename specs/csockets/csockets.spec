@@ -3,7 +3,7 @@
 
 Summary: C++ wrapper for sockets
 Name: csockets
-Version: 2.1.8
+Version: 2.2.4
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -32,16 +32,15 @@ you will need to install %{name}-devel.
 %prep
 %setup -n Sockets-%{version}
 
-### Work-around for kerberos/openssl on RH9 and EL3
-%{__perl} -pi.orig -e 's|^(INCLUDE\s*=\s*)|$1 -I/usr/kerberos/include |' Makefile
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' Makefile
 
 %build
-%{__make} %{?_smp_mflags} PREFIX=%{_prefix}
+### Work-around for kerberos/openssl on RH9 and EL3
+%{__make} %{?_smp_mflags} PREFIX=%{_prefix} INCLUDE=-I/usr/kerberos/include
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall PREFIX=%{buildroot}%{_prefix}
+%{__make} install PREFIX=%{buildroot}%{_prefix}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -54,9 +53,20 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %{_includedir}/Sockets/
 %{_libdir}/libSockets.a
-#%{_libdir}/libSocketsEx.a
 
 %changelog
+* Mon Oct 29 2007 Dries Verachtert <dries@ulyssis.org> - 2.2.4-1
+- Updated to release 2.2.4.
+
+* Mon Oct 22 2007 Dries Verachtert <dries@ulyssis.org> - 2.2.2-1
+- Updated to release 2.2.2.
+
+* Tue Oct 17 2007 Dries Verachtert <dries@ulyssis.org> - 2.2.1-1
+- Updated to release 2.2.1.
+
+* Tue Oct  2 2007 Dries Verachtert <dries@ulyssis.org> - 2.1.9-1
+- Updated to release 2.1.9.
+
 * Mon Oct  1 2007 Dries Verachtert <dries@ulyssis.org> - 2.1.8-1
 - Updated to release 2.1.8.
 

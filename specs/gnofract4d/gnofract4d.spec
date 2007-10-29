@@ -2,13 +2,13 @@
 # Authority: dag
 # Upstream: Edwin Young <edwin$sourceforge,net>
 
-%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 %define desktop_vendor rpmforge
 
 Summary: Program to generate and view fractals
 Name: gnofract4d
-Version: 3.5
+Version: 3.6
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -61,9 +61,12 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 %{python_sitelib}/fract4d/
 %{python_sitelib}/fract4dgui/
 %{python_sitelib}/fractutils/
-%exclude %{python_sitelib}/buildtools/
+#%exclude %{python_sitelib}/buildtools/
 
 %changelog
+* Mon Oct 29 2007 Dries Verachtert <dries@ulyssis.org> - 3.6-1
+- Updated to release 3.6.
+
 * Mon Oct 15 2007 Dag Wieers <dag@wieers.com> - 3.5-1
 - Updated to release 3.5.
 
