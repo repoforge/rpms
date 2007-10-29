@@ -5,7 +5,7 @@
 
 Summary: Drupal CMS
 Name: drupal4
-Version: 4.7.7
+Version: 4.7.8
 Release: 1
 License: GPL
 Group: Development/Languages
@@ -16,7 +16,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: php >= 4.3.3
-Requires: httpd, mysql, php >= 4.3.3, php-mysql >= 4.3.3
+Requires: httpd, mysql, php >= 4.3.3
+Requires: php-gd, php-mbstring, php-mysql
+
+Obsoletes: drupal <= %{version}-%{release}
+Provides: drupal = %{version}-%{release}
 
 %description
 Drupal is an open source content management platform. Drupal is equipped
@@ -52,5 +56,8 @@ EOF
 %{_localstatedir}/www/drupal-%{version}/
 
 %changelog
+* Sun Oct 21 2007 Dag Wieers <dag@wieers.com> - 4.7.8-1
+- Updated to release 4.8.1.
+
 * Sun Sep 30 2007 Dag Wieers <dag@wieers.com> - 4.7.7-1
 - Initial package. (using DAR)

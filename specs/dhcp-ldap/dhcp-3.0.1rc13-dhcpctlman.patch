@@ -1,0 +1,21 @@
+--- dhcp-3.0.1/dhcpctl/dhcpctl.3.dhcpctlman	2004-06-10 13:59:23.000000000 -0400
++++ dhcp-3.0.1/dhcpctl/dhcpctl.3	2004-06-15 15:07:41.800138192 -0400
+@@ -43,7 +43,8 @@
+ .\"
+ .\"
+ .Sh SYNOPSIS
+-.Fd #include <dhcpctl/dhcpctl.h>
++.Fd #include <dhcpctl.h>
++.sp
+ .Ft dhcpctl_status
+ .Fo dhcpctl_initialize
+ .Fa void
+@@ -424,7 +425,7 @@
+ #include <netinet/in.h>
+ 
+ #include <isc/result.h>
+-#include <dhcpctl/dhcpctl.h>
++#include <dhcpctl.h>
+ 
+ int main (int argc, char **argv) {
+ 	dhcpctl_data_string ipaddrstring = NULL;

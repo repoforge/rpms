@@ -1,0 +1,73 @@
+--- dhcp-3.0.5/includes/minires/minires.h.minires	2004-06-10 13:59:37.000000000 -0400
++++ dhcp-3.0.5/includes/minires/minires.h	2006-11-13 22:33:13.000000000 -0500
+@@ -65,7 +65,7 @@
+ #define res_protocolname MRres_protocolname
+ #define res_servicename MRres_servicename
+ #define ns_datetosecs MRns_datetosecs
+-#define b64_pton MRb64_pton
++/* #define b64_pton MRb64_pton */
+ #define res_ninit minires_ninit
+ #define res_randomid MRres_randomid
+ #define res_findzonecut MRres_findzonecut
+--- dhcp-3.0.5/minires/ns_name.c.minires	2004-06-10 13:59:40.000000000 -0400
++++ dhcp-3.0.5/minires/ns_name.c	2006-11-13 22:32:04.000000000 -0500
+@@ -71,6 +71,11 @@
+ 	dn = dst;
+ 	eom = dst + dstsiz;
+ 
++	if (dn >= eom) {
++ 		errno = EMSGSIZE;
++ 		return (-1);
++ 	}
++
+ 	while ((n = *cp++) != 0) {
+ 		if ((n & NS_CMPRSFLGS) != 0) {
+ 			/* Some kind of compression pointer. */
+--- dhcp-3.0.5/minires/res_update.c.minires	2004-06-10 13:59:44.000000000 -0400
++++ dhcp-3.0.5/minires/res_update.c	2006-11-13 22:32:04.000000000 -0500
+@@ -172,7 +172,7 @@
+ 	if (rcode != ISC_R_SUCCESS)
+ 		goto undone;
+ 
+-	rcode = ns_rcode_to_isc (((HEADER *)answer)->rcode);
++	rcode = ns_rcode_to_isc (((HEADER *)(void*)answer)->rcode);
+ 	if (zcookie && rcode == ISC_R_BADSIG) {
+ 		repudiate_zone (&zcookie);
+ 	}
+--- dhcp-3.0.5/minires/res_mkupdate.c.minires	2004-06-10 13:59:43.000000000 -0400
++++ dhcp-3.0.5/minires/res_mkupdate.c	2006-11-13 22:32:04.000000000 -0500
+@@ -49,6 +49,10 @@
+ #include "minires/minires.h"
+ #include "arpa/nameser.h"
+ 
++/* prototypes */
++extern int b64_pton(char const *src, u_char *target, size_t targsize);
++int dn_comp(const char *src, u_char *dst, unsigned dstsiz, u_char **dnptrs, u_char **lastdnptr);
++
+ /* Options.  Leave them on. */
+ #define DEBUG
+ #define MAXPORT 1024
+--- dhcp-3.0.5/minires/res_comp.c.minires	2004-06-10 13:59:42.000000000 -0400
++++ dhcp-3.0.5/minires/res_comp.c	2006-11-13 22:32:04.000000000 -0500
+@@ -91,6 +91,11 @@
+ #include "minires/minires.h"
+ #include "arpa/nameser.h"
+ 
++/* Prototypes */
++int ns_name_uncompress(const u_char *msg, const u_char *eom, const u_char *src, char *dst, size_t dstsiz);
++int ns_name_compress(const char *src, u_char *dst, size_t dstsiz, const u_char **dnptrs, const u_char **lastdnptr);
++int ns_name_skip(const u_char **ptrptr, const u_char *eom);
++
+ /*
+  * Expand compressed domain name 'comp_dn' to full domain name.
+  * 'msg' is a pointer to the begining of the message,
+--- dhcp-3.0.5/minires/res_init.c.minires	2004-06-10 13:59:43.000000000 -0400
++++ dhcp-3.0.5/minires/res_init.c	2006-11-13 22:32:04.000000000 -0500
+@@ -102,6 +102,7 @@
+ #define DEBUG
+ 
+ static void res_setoptions (res_state, const char *, const char *);
++u_int res_randomid(void);
+ 
+ #ifdef RESOLVSORT
+ static const char sort_mask[] = "/&";

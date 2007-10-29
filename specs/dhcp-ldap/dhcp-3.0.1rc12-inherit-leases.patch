@@ -1,0 +1,33 @@
+--- dhcp-3.0.1rc14/client/scripts/linux.inherit-leases	2004-06-23 17:41:17.576048392 -0400
++++ dhcp-3.0.1rc14/client/scripts/linux	2004-06-23 17:42:14.788350800 -0400
+@@ -123,8 +123,9 @@
+     # Bring down alias interface. Its routes will disappear too.
+     ifconfig $interface:0- inet 0
+   fi
+-  if [ $relmajor -lt 2 ] || ( [ $relmajor -eq 2 ] && [ $relminor -eq 0 ] )
+-   then
++  if [ x$keep_old_ip == xyes ]; then
++    ifconfig $interface up
++  elif [ $relmajor -lt 2 ] || ( [ $relmajor -eq 2 ] && [ $relminor -eq 0 ] )   then
+     ifconfig $interface inet 0.0.0.0 netmask 0.0.0.0 \
+ 		broadcast 255.255.255.255 up
+     # Add route to make broadcast work. Do not omit netmask.
+--- dhcp-3.0.1rc14/client/dhclient.c.inherit-leases	2004-06-23 17:41:17.474063896 -0400
++++ dhcp-3.0.1rc14/client/dhclient.c	2004-06-23 17:41:17.647037600 -0400
+@@ -378,6 +378,16 @@
+ 				continue;
+ 			script_init (ip -> client,
+ 				     "PREINIT", (struct string_list *)0);
++			if (/* Has an active lease */
++			    ip -> client -> active &&
++			    !ip -> client -> active -> is_bootp &&
++			    ip -> client -> active -> expiry > cur_time &&
++			    /* Which is same as current ip */
++			    ip -> primary_address.s_addr != 0 &&
++			    ip -> client -> active -> address.len == 4 &&
++			    memcmp (ip -> client -> active -> address.iabuf,
++				    &ip->primary_address, 4) == 0)
++				client_envadd (ip -> client, "", "keep_old_ip", "%s", "yes");
+ 			if (ip -> client -> alias)
+ 				script_write_params (ip -> client, "alias_",
+ 						     ip -> client -> alias);

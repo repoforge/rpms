@@ -1,0 +1,64 @@
+--- dhcp-3.0.5/includes/omapip/omapip.h.includes	2004-06-10 13:59:39.000000000 -0400
++++ dhcp-3.0.5/includes/omapip/omapip.h	2006-11-10 11:52:28.000000000 -0500
+@@ -251,12 +251,12 @@
+ 		     omapi_array_foreach_index++) {			      \
+ 			if ((array) -> data [omapi_array_foreach_index]) {    \
+ 				((*(array) -> ref)			      \
+-				 ((char **)&var,			      \
++				 ((void*)&var,			              \
+ 				  (array) -> data [omapi_array_foreach_index],\
+ 				  MDL));
+ 
+ #define	omapi_array_foreach_end(array, stype, var)			      \
+-				(*(array) -> deref) ((char **)&var, MDL);     \
++				(*(array) -> deref) ((void*)&var, MDL);       \
+ 			}						      \
+ 		}							      \
+ 	}
+--- dhcp-3.0.5/includes/dhcpd.h.includes	2006-11-10 11:52:08.000000000 -0500
++++ dhcp-3.0.5/includes/dhcpd.h	2006-11-10 11:52:21.000000000 -0500
+@@ -667,7 +667,8 @@
+ 	S_BOUND = 5,
+ 	S_RENEWING = 6,
+ 	S_REBINDING = 7,
+-	S_STOPPED = 8
++	S_STOPPED = 8,
++	S_DECLINED = 9
+ };
+ 
+ /* Authentication and BOOTP policy possibilities (not all values work
+@@ -730,6 +731,8 @@
+ 	int do_forward_update;		/* If nonzero, and if we have the
+ 					   information we need, update the
+ 					   A record for the address we get. */
++	int bootp_broadcast_always;	/* If nonzero, always set the BOOTP_BROADCAST
++								flag in requests */
+ };
+ 
+ /* Per-interface state used in the dhcp client... */
+@@ -1818,6 +1821,13 @@
+ extern void *lookup_new_option_info(struct option *);
+ #endif
+ 
++#ifdef EXTENDED_NEW_OPTION_INFO
++#define GENERATE_NEW_OPTION_INFO ((void*)1)
++extern void *new_option_info_tree;
++extern void *add_new_option_info(struct option*);
++extern void *lookup_new_option_info(struct option *);
++#endif 
++
+ /* stables.c */
+ #if defined (FAILOVER_PROTOCOL)
+ extern failover_option_t null_failover_option;
+--- dhcp-3.0.5/includes/dhctoken.h.includes	2005-09-22 12:19:57.000000000 -0400
++++ dhcp-3.0.5/includes/dhctoken.h	2006-11-10 11:52:25.000000000 -0500
+@@ -309,7 +309,8 @@
+ 	DOMAIN_NAME = 613,
+ 	DO_FORWARD_UPDATE = 614,
+ 	KNOWN_CLIENTS = 615,
+-	ATSFP = 616
++	ATSFP = 616,
++	BOOTP_BROADCAST_ALWAYS=617
+ };
+ 
+ #define is_identifier(x)	((x) >= FIRST_TOKEN &&	\

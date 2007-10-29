@@ -1,0 +1,11 @@
+--- dhcp-3.0pl2/client/dhclient.c.selinux	2003-10-08 09:59:43.000000000 -0400
++++ dhcp-3.0pl2/client/dhclient.c	2004-01-05 09:10:35.065642283 -0500
+@@ -2559,6 +2559,8 @@
+ 			wstatus = 0;
+ 		}
+ 	} else {
++	        if (leaseFile)
++		  fclose (leaseFile);
+ 		execve (scriptName, argv, envp);
+ 		log_error ("execve (%s, ...): %m", scriptName);
+ 		exit (0);

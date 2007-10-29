@@ -1,0 +1,198 @@
+--- dhcp-3.0.5/common/parse.c.common	2006-11-13 19:07:33.000000000 -0500
++++ dhcp-3.0.5/common/parse.c	2006-11-13 19:07:33.000000000 -0500
+@@ -4842,14 +4842,15 @@
+ #endif
+ 
+ 	if (log_perror) {
+-		write (STDERR_FILENO, mbuf, strlen (mbuf));
+-		write (STDERR_FILENO, "\n", 1);
+-		write (STDERR_FILENO, cfile -> token_line,
++		int r;
++		r = write (STDERR_FILENO, mbuf, strlen (mbuf));
++		r = write (STDERR_FILENO, "\n", 1);
++		r = write (STDERR_FILENO, cfile -> token_line,
+ 		       strlen (cfile -> token_line));
+-		write (STDERR_FILENO, "\n", 1);
++		r = write (STDERR_FILENO, "\n", 1);
+ 		if (cfile -> lexchar < 81)
+-			write (STDERR_FILENO, lexbuf, lix);
+-		write (STDERR_FILENO, "^\n", 2);
++			r = write (STDERR_FILENO, lexbuf, lix);
++		r = write (STDERR_FILENO, "^\n", 2);
+ 	}
+ 
+ 	cfile -> warnings_occurred = 1;
+--- dhcp-3.0.5/common/alloc.c.common	2006-02-22 17:43:27.000000000 -0500
++++ dhcp-3.0.5/common/alloc.c	2006-11-13 19:07:33.000000000 -0500
+@@ -146,7 +146,7 @@
+ 	for (car = option_chain_head -> first; car; car = cdr) {
+ 		cdr = car -> cdr;
+ 		if (car -> car)
+-			option_cache_dereference ((struct option_cache **)
++			option_cache_dereference ((void*)
+ 						  (&car -> car), MDL);
+ 		dfree (car, MDL);
+ 		car = cdr;
+--- dhcp-3.0.5/common/conflex.c.common	2006-02-22 17:43:27.000000000 -0500
++++ dhcp-3.0.5/common/conflex.c	2006-11-13 19:07:33.000000000 -0500
+@@ -605,6 +605,8 @@
+ 			return BALANCE;
+ 		if (!strcasecmp (atom + 1, "ound"))
+ 			return BOUND;
++		if (!strcasecmp (atom + 1, "ootp-broadcast-always"))
++			return BOOTP_BROADCAST_ALWAYS;
+ 		break;
+ 	      case 'c':
+ 		if (!strcasecmp (atom + 1, "ase"))
+--- dhcp-3.0.5/common/dhcp-options.5.common	2006-04-26 11:12:43.000000000 -0400
++++ dhcp-3.0.5/common/dhcp-options.5	2006-11-13 19:07:33.000000000 -0500
+@@ -834,6 +834,24 @@
+ classless IP routing is now the most widely deployed routing standard,
+ this option is virtually useless, and is not implemented by any of the
+ popular DHCP clients, for example the Microsoft DHCP client.
++.PP
++NOTE to Red Hat dhclient users:
++.br
++The RedHat dhclient-script interprets trailing 0 octets of the  target
++as  indicating  the  subnet  class  of  the route - so for this
++static-routes value:
++.br
++        option static-routes 172.0.0.0 172.16.2.254,
++.br
++                             192.168.0.0 192.168.2.254;
++.br
++the Red Hat dhclient-script will create routes:
++.br
++        172/8 via 172.16.2.254 dev $interface
++.br
++        192.168/16 via 192.168.2.254 dev $interface
++.br
++which slightly increases the usefulness of the static-routes option.
+ .RE
+ .PP
+ .nf
+--- dhcp-3.0.5/common/discover.c.common	2006-02-22 17:43:27.000000000 -0500
++++ dhcp-3.0.5/common/discover.c	2006-11-13 19:07:33.000000000 -0500
+@@ -878,7 +878,7 @@
+ 		interface -> client = (struct client_state *)0;
+ 
+ 	if (interface -> shared_network)
+-		omapi_object_dereference ((omapi_object_t **)
++		omapi_object_dereference ((void*)
+ 					  &interface -> shared_network, MDL);
+ 
+ 	return ISC_R_SUCCESS;
+--- dhcp-3.0.5/common/options.c.common	2006-02-22 17:43:27.000000000 -0500
++++ dhcp-3.0.5/common/options.c	2006-11-13 19:07:33.000000000 -0500
+@@ -1733,9 +1733,9 @@
+ 		   in its place. */
+ 		if (bptr) {
+ 			option_cache_dereference
+-				((struct option_cache **)&bptr -> car, MDL);
++			        ((void*)&bptr -> car, MDL);
+ 			option_cache_reference
+-				((struct option_cache **)&bptr -> car,
++			        ((void*)&bptr -> car,
+ 				 oc, MDL);
+ 			return;
+ 		}
+@@ -1749,7 +1749,7 @@
+ 	}
+ 	bptr -> cdr = hash [hashix];
+ 	bptr -> car = 0;
+-	option_cache_reference ((struct option_cache **)&bptr -> car, oc, MDL);
++	option_cache_reference ((void*)&bptr -> car, oc, MDL);
+ 	hash [hashix] = bptr;
+ }
+ 
+@@ -1793,7 +1793,7 @@
+ 		else
+ 			hash [hashix] = bptr -> cdr;
+ 		option_cache_dereference
+-			((struct option_cache **)(&bptr -> car), MDL);
++			((void*)(&bptr -> car), MDL);
+ 		free_pair (bptr, MDL);
+ 	}
+ }
+@@ -1869,7 +1869,7 @@
+ 		for (cp = heads [i]; cp; cp = next) {
+ 			next = cp -> cdr;
+ 			option_cache_dereference
+-				((struct option_cache **)&cp -> car,
++			    ((void*)&cp -> car,
+ 				 file, line);
+ 			free_pair (cp, file, line);
+ 		}
+@@ -2276,9 +2276,9 @@
+ 	for (tail = &head -> first; *tail; tail = &((*tail) -> cdr)) {
+ 		if (oc -> option ==
+ 		    ((struct option_cache *)((*tail) -> car)) -> option) {
+-			option_cache_dereference ((struct option_cache **)
++			option_cache_dereference ((void*)
+ 						  (&(*tail) -> car), MDL);
+-			option_cache_reference ((struct option_cache **)
++			option_cache_reference ((void*)
+ 						(&(*tail) -> car), oc, MDL);
+ 			return;
+ 		}
+@@ -2286,7 +2286,7 @@
+ 
+ 	*tail = cons (0, 0);
+ 	if (*tail) {
+-		option_cache_reference ((struct option_cache **)
++		option_cache_reference ((void*)
+ 					(&(*tail) -> car), oc, MDL);
+ 	}
+ }
+@@ -2344,7 +2344,7 @@
+ 		    ((struct option_cache *)(*tail) -> car) -> option -> code)
+ 		{
+ 			tmp = (*tail) -> cdr;
+-			option_cache_dereference ((struct option_cache **)
++			option_cache_dereference ((void*)
+ 						  (&(*tail) -> car), MDL);
+ 			dfree (*tail, MDL);
+ 			(*tail) = tmp;
+--- dhcp-3.0.5/common/packet.c.common	2005-03-03 11:55:23.000000000 -0500
++++ dhcp-3.0.5/common/packet.c	2006-11-13 19:07:33.000000000 -0500
+@@ -140,6 +140,7 @@
+ 	struct ip ip;
+ 	struct udphdr udp;
+ 
++	memset( &ip, '\0', sizeof ip);
+ 	/* Fill out the IP header */
+ 	IP_V_SET (&ip, 4);
+ 	IP_HL_SET (&ip, 20);
+@@ -219,7 +220,7 @@
+ {
+   unsigned char *data;
+   struct ip ip;
+-  struct udphdr *udp;
++  struct udphdr udph, *udp=&udph;
+   u_int32_t ip_len = (buf [bufix] & 0xf) << 2;
+   u_int32_t sum, usum;
+   static int ip_packets_seen;
+@@ -233,7 +234,7 @@
+   int ignore = 0;
+ 
+   memcpy(&ip, buf + bufix, sizeof (struct ip));
+-  udp = (struct udphdr *)(buf + bufix + ip_len);
++  memcpy(udp, buf + bufix + ip_len, sizeof(struct udphdr));
+ 
+ #ifdef USERLAND_FILTER
+   /* Is it a UDP packet? */
+--- dhcp-3.0.5/common/dispatch.c.common	2006-02-22 17:43:27.000000000 -0500
++++ dhcp-3.0.5/common/dispatch.c	2006-11-13 19:08:00.000000000 -0500
+@@ -195,7 +195,6 @@
+ 	}
+ }
+ 
+-#if defined (DEBUG_MEMORY_LEAKAGE_ON_EXIT)
+ void cancel_all_timeouts ()
+ {
+ 	struct timeout *t, *n;
+@@ -216,4 +215,3 @@
+ 		dfree (t, MDL);
+ 	}
+ }
+-#endif

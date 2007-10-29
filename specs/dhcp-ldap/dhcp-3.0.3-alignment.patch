@@ -1,0 +1,24 @@
+--- common/packet.c.orig	2005-08-10 00:03:29.942311824 +0200
++++ common/packet.c	2005-08-10 00:05:31.223874224 +0200
+@@ -218,8 +218,8 @@
+ 	unsigned buflen;
+ {
+   unsigned char *data;
+-  struct ip ip;
+-  struct udphdr *udp;
++  struct ip ipdat, *ip = &ipdat;
++  struct udphdr udpdat, *udp = &udpdat;
+   u_int32_t ip_len = (buf [bufix] & 0xf) << 2;
+   u_int32_t sum, usum;
+   static int ip_packets_seen;
+@@ -232,8 +232,8 @@
+   unsigned ulen;
+   int ignore = 0;
+ 
+-  memcpy(&ip, buf + bufix, sizeof (struct ip));
+-  udp = (struct udphdr *)(buf + bufix + ip_len);
++  memcpy(ip, (struct ip *)(buf + bufix), sizeof(ipdat));
++  memcpy(udp, (struct udphdr *)(buf + bufix + ip_len), sizeof(udpdat));
+ 
+ #ifdef USERLAND_FILTER
+   /* Is it a UDP packet? */

@@ -1,0 +1,106 @@
+--- dhcp-3.0.1/server/dhcp.c.new-host	2004-09-27 18:56:38.241406000 -0400
++++ dhcp-3.0.1/server/dhcp.c	2004-09-27 19:01:11.007933000 -0400
+@@ -1483,6 +1483,7 @@
+ 	struct lease *lt;
+ 	struct lease_state *state;
+ 	struct lease *next;
++	struct host_decl *host = (struct host_decl *)0;
+ 	TIME lease_time;
+ 	TIME offered_lease_time;
+ 	struct data_string d1;
+@@ -1505,6 +1506,10 @@
+ 	if (lease -> state)
+ 		return;
+ 
++	/* If the lease carries a host record, remember it. */
++	if (lease -> host)
++	    host_reference (&host, lease -> host, MDL);	
++
+ 	/* Allocate a lease state structure... */
+ 	state = new_lease_state (MDL);
+ 	if (!state)
+@@ -1646,8 +1651,8 @@
+ 		} while (1);
+ 	    }
+ 	    if (!lease -> uid_len ||
+-		(lease -> host &&
+-		 !lease -> host -> client_identifier.len &&
++		( host &&
++		 !host -> client_identifier.len &&
+ 		 (oc = lookup_option (&server_universe, state -> options,
+ 				      SV_DUPLICATES)) &&
+ 		 !evaluate_boolean_option_cache (&ignorep, packet, lease,
+@@ -1720,17 +1725,11 @@
+ 	}
+ 
+ 	/* Try to find a matching host declaration for this lease.
+-	 * If this is an offer, then verify our host for the lease is the
+-	 * right one for the host we're offering to...by dereffing and
+-	 * re-finding.
+ 	 */
+-	if ((offer == DHCPOFFER) ||(!lease -> host)) {
++	if (!host) {
+ 		struct host_decl *hp = (struct host_decl *)0;
+ 		struct host_decl *h;
+ 
+-		if (lease -> host)
+-			host_dereference (&lease -> host, MDL);
+-
+ 		/* Try to find a host_decl that matches the client
+ 		   identifier or hardware address on the packet, and
+ 		   has no fixed IP address.   If there is one, hang
+@@ -1746,7 +1745,7 @@
+ 			find_hosts_by_uid (&hp, d1.data, d1.len, MDL);
+ 			data_string_forget (&d1, MDL);
+ 			if (hp)
+-				host_reference (&lease -> host, hp, MDL);
++				host_reference (&host, hp, MDL);
+ 		}
+ 		if (!hp) {
+ 			find_hosts_by_haddr (&hp,
+@@ -1759,7 +1758,7 @@
+ 					break;
+ 			}
+ 			if (h)
+-				host_reference (&lease -> host, h, MDL);
++				host_reference (&host, h, MDL);
+ 		}
+ 		if (hp)
+ 			host_dereference (&hp, MDL);
+@@ -1767,20 +1766,20 @@
+ 
+ 	/* If we have a host_decl structure, run the options associated
+ 	   with its group.  Wether the host decl struct is old or not. */
+-	if (lease -> host)
++	if (host)
+ 		execute_statements_in_scope ((struct binding_value **)0,
+ 					     packet, lease,
+ 					     (struct client_state *)0,
+ 					     packet -> options,
+ 					     state -> options, &lease -> scope,
+-					     lease -> host -> group,
++					     host -> group,
+ 					     (lease -> pool
+ 					      ? lease -> pool -> group
+ 					      : lease -> subnet -> group));
+ 
+ 	/* Drop the request if it's not allowed for this client.   By
+ 	   default, unknown clients are allowed. */
+-	if (!lease -> host &&
++	if (!host &&
+ 	    (oc = lookup_option (&server_universe, state -> options,
+ 				 SV_BOOT_UNKNOWN_CLIENTS)) &&
+ 	    !evaluate_boolean_option_cache (&ignorep,
+@@ -2120,8 +2119,10 @@
+ 		data_string_forget (&d1, MDL);
+ 	}
+ 
+-	if (lease -> host)
+-		host_reference (&lt -> host, lease -> host, MDL);
++	if (host) {
++		host_reference (&lt -> host, host, MDL);
++		host_dereference (&host, MDL);
++	}
+ 	if (lease -> subnet)
+ 		subnet_reference (&lt -> subnet, lease -> subnet, MDL);
+ 	if (lease -> billing_class)

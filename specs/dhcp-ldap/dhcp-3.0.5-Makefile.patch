@@ -1,0 +1,148 @@
+--- dhcp-3.0.5/client/Makefile.dist.Makefile	2004-06-10 13:59:11.000000000 -0400
++++ dhcp-3.0.5/client/Makefile.dist	2006-11-10 11:10:13.000000000 -0500
+@@ -128,6 +128,6 @@
+ 
+ 
+ dhclient:	$(OBJS) $(DHCPLIB)
+-	$(CC) $(LFLAGS) -o $(PROG) $(OBJS) $(DHCPLIB) $(LIBS)
++	$(CC) $(LFLAGS) -pie $(RPM_OPT_FLAGS) -Wl,-z,relro,-z,now,-z,noexecstack,-z,nodlopen -o $(PROG) $(OBJS) $(DHCPLIB) $(LIBS)
+ 
+ # Dependencies (semi-automatically-generated)
+--- dhcp-3.0.5/dhcpctl/Makefile.dist.Makefile	2005-03-03 11:55:23.000000000 -0500
++++ dhcp-3.0.5/dhcpctl/Makefile.dist	2006-11-10 11:11:16.000000000 -0500
+@@ -37,10 +37,10 @@
+ all:	libdhcpctl.a omshell cltest $(CATMANPAGES)
+ 
+ omshell:	omshell.o $(DHCPCTLLIBS)
+-	$(CC) $(DEBUG) $(LFLAGS) -o omshell omshell.o $(DHCPCTLLIBS) $(LIBS)
++	$(CC) $(DEBUG) $(LFLAGS) -pie $(RPM_OPT_FLAGS) -Wl,-z,relro,-z,now,-z,noexecstack,-z,nodlopen -o omshell omshell.o $(DHCPCTLLIBS) $(LIBS)
+ 
+ cltest:	cltest.o $(DHCPCTLLIBS)
+-	$(CC) $(DEBUG) $(LFLAGS) -o cltest cltest.o $(DHCPCTLLIBS) $(LIBS)
++	$(CC) $(DEBUG) $(LFLAGS) -pie $(RPM_OPT_FLAGS) -Wl,-z,relro,-z,now,-z,noexecstack,-z,nodlopen -o cltest cltest.o $(DHCPCTLLIBS) $(LIBS)
+ 
+ libdhcpctl.a:	$(OBJ)
+ 	rm -f libdhcpctl.a
+--- dhcp-3.0.5/dst/Makefile.dist.Makefile	2004-06-10 13:59:28.000000000 -0400
++++ dhcp-3.0.5/dst/Makefile.dist	2006-11-10 11:11:42.000000000 -0500
+@@ -30,7 +30,12 @@
+ 
+ all:	libdst.a
+ 
+-install:
++install: all
++	if [ ! -d $(DESTDIR)$(LIBDIR) ]; then \
++		mkdir $(DESTDIR)$(LIBDIR); chmod 755 $(DESTDIR)$(LIBDIR); \
++	fi
++	$(INSTALL) libdst.a $(DESTDIR)$(LIBDIR)
++	$(CHMOD) 644 $(DESTDIR)$(LIBDIR)/libdst.a
+ 
+ libdst.a:	$(OBJ)
+ 	rm -f dst.a
+--- dhcp-3.0.5/minires/Makefile.dist.Makefile	2004-06-10 13:59:40.000000000 -0400
++++ dhcp-3.0.5/minires/Makefile.dist	2006-11-10 11:14:00.000000000 -0500
+@@ -21,9 +21,6 @@
+ #   <info@isc.org>
+ #   http://www.isc.org/
+ 
+-CATMANPAGES = dhcpctl.cat3
+-SEDMANPAGES = dhcpctl.man3
+-MAN    = dhcpctl.3
+ SRC    = res_mkupdate.c res_init.c res_update.c res_send.c res_comp.c \
+ 	 res_sendsigned.c res_findzonecut.c res_query.c res_mkquery.c \
+ 	 ns_date.c ns_parse.c ns_sign.c ns_name.c ns_samedomain.c ns_verify.c
+@@ -50,24 +47,17 @@
+ 	-rm -f $(OBJ) libres.a
+ 
+ realclean: clean
+-	-rm -f *~ $(CATMANPAGES) $(SEDMANPAGES)
++	-rm -f *~
+ 
+ distclean: realclean
+ 	-rm -f Makefile
+ 
+ links:
+-	@for foo in $(SRC) $(MAN) $(HDRS); do \
++	@for foo in $(SRC) $(HDRS); do \
+ 	  if [ ! -b $$foo ]; then \
+ 	    rm -f $$foo; \
+ 	  fi; \
+ 	  ln -s $(TOP)/minires/$$foo $$foo; \
+ 	done
+ 
+-dhcpctl.cat3:	dhcpctl.man3
+-	nroff -man dhcpctl.man3 >dhcpctl.cat3
+-
+-dhcpctl.man3:	dhcpctl.3
+-	sed -e "s#ETCDIR#$(ETC)#g" -e "s#DBDIR#$(VARDB)#g" \
+-		-e "s#RUNDIR#$(VARRUN)#g" < dhcpctl.3 >dhcpctl.man3
+-
+ # Dependencies (semi-automatically-generated)
+--- dhcp-3.0.5/relay/Makefile.dist.Makefile	2004-06-10 13:59:50.000000000 -0400
++++ dhcp-3.0.5/relay/Makefile.dist	2006-11-10 11:13:30.000000000 -0500
+@@ -83,6 +83,6 @@
+ 		-e "s#RUNDIR#$(VARRUN)#" < dhcrelay.8 >dhcrelay.man8
+ 
+ dhcrelay:	dhcrelay.o $(DHCPLIB)
+-	$(CC) $(LFLAGS) -o $(PROG) dhcrelay.o $(DHCPLIB) $(LIBS)
++	$(CC) $(LFLAGS) -pie $(RPM_OPT_FLAGS) -Wl,-z,relro,-z,now,-z,nodlopen,-z,noexecstack -o $(PROG) dhcrelay.o $(DHCPLIB) $(LIBS)
+ 
+ # Dependencies (semi-automatically-generated)
+--- dhcp-3.0.5/server/Makefile.dist.Makefile	2004-06-10 13:59:50.000000000 -0400
++++ dhcp-3.0.5/server/Makefile.dist	2006-11-10 11:14:27.000000000 -0500
+@@ -103,6 +103,6 @@
+ 		-e "s#RUNDIR#$(VARRUN)#g" < dhcpd.leases.5 >dhcpd.leases.man5
+ 
+ dhcpd:	$(OBJS) $(COBJ) $(DHCPLIB)
+-	$(CC) $(LFLAGS) -o dhcpd $(OBJS) $(DHCPLIB) $(LIBS)
++	$(CC) $(LFLAGS) -pie $(RPM_OPT_FLAGS) -Wl,-z,relro,-z,now,-z,noexecstack,-z,nodlopen -o dhcpd $(OBJS) $(DHCPLIB) $(LIBS)
+ 
+ # Dependencies (semi-automatically-generated)
+--- dhcp-3.0.5/Makefile.Makefile	2004-06-10 13:59:10.000000000 -0400
++++ dhcp-3.0.5/Makefile	2006-11-10 11:09:32.000000000 -0500
+@@ -33,7 +33,7 @@
+ 	 if [ ! -d work.$$sysname ]; then \
+ 	   echo No build directory for $$sysname - please run ./configure.; \
+ 	else \
+-	   (cd work.$$sysname; make all); \
++	   (cd work.$$sysname; $(MAKE) all); \
+ 	fi
+ 
+ install:
+@@ -41,7 +41,7 @@
+ 	 if [ ! -d work.$$sysname ]; then \
+ 	   echo No build directory for $$sysname - please run ./configure.; \
+ 	else \
+-	   (cd work.$$sysname; make install); \
++	   (cd work.$$sysname; $(MAKE) install); \
+ 	fi
+ 
+ depend:
+@@ -49,7 +49,7 @@
+ 	 if [ ! -d work.$$sysname ]; then \
+ 	   echo No build directory for $$sysname - please run ./configure.; \
+ 	else \
+-	   (cd work.$$sysname; make depend); \
++	   (cd work.$$sysname; $(MAKE) depend); \
+ 	fi
+ 
+ clean:
+@@ -81,6 +81,6 @@
+ 	 if [ ! -d work.$$sysname ]; then \
+ 	   echo No build directory for $$sysname - please run ./configure.; \
+ 	else \
+-	   (cd work.$$sysname; make links); \
++	   (cd work.$$sysname; $(MAKE) links); \
+ 	fi
+ 
+--- dhcp-3.0.5/Makefile.conf.Makefile	2005-06-16 15:39:35.000000000 -0400
++++ dhcp-3.0.5/Makefile.conf	2006-11-10 11:12:43.000000000 -0500
+@@ -49,7 +49,7 @@
+ DEBUG = -g
+ #WARNERR = -Werror
+ RANLIB = ranlib
+-MKDEP = mkdep
++MKDEP = $(CC)
+ CLIENT_PATH = '"PATH=/usr/ucb:/usr/bin:/usr/sbin:/bin:/sbin"'
+ 
+ BINDLIB = ../minires/libres.a

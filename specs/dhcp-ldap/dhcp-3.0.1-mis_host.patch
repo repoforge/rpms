@@ -1,0 +1,23 @@
+--- dhcp-3.0.1/server/dhcp.c.mis_host	2004-06-17 16:54:40.000000000 -0400
++++ dhcp-3.0.1/server/dhcp.c	2004-08-30 13:21:56.409501000 -0400
+@@ -1719,11 +1719,18 @@
+ 		}
+ 	}
+ 
+-	/* Try to find a matching host declaration for this lease. */
+-	if (!lease -> host) {
++	/* Try to find a matching host declaration for this lease.
++	 * If this is an offer, then verify our host for the lease is the
++	 * right one for the host we're offering to...by dereffing and
++	 * re-finding.
++	 */
++	if ((offer == DHCPOFFER) ||(!lease -> host)) {
+ 		struct host_decl *hp = (struct host_decl *)0;
+ 		struct host_decl *h;
+ 
++		if (lease -> host)
++			host_dereference (&lease -> host, MDL);
++
+ 		/* Try to find a host_decl that matches the client
+ 		   identifier or hardware address on the packet, and
+ 		   has no fixed IP address.   If there is one, hang

@@ -1,0 +1,22 @@
+--- dhcp-3.0.1/client/dhclient.c.preserve-sent-options	2004-08-16 14:52:21.525206000 -0400
++++ dhcp-3.0.1/client/dhclient.c	2004-08-16 16:10:59.258812000 -0400
+@@ -1955,7 +1955,10 @@
+ 				    DHO_DHCP_SERVER_IDENTIFIER);
+ 	else
+ 		oc = (struct option_cache *)0;
+-
++	
++	if( client->sent_options != 0L )
++	    option_state_dereference (&client -> sent_options, MDL);	    
++	
+ 	make_client_options (client, lease, &request, oc,
+ 			     ((client -> state == S_REQUESTING ||
+ 			       client -> state == S_REBOOTING)
+@@ -1978,7 +1981,6 @@
+ 			      (struct data_string *)0,
+ 			      client -> config -> vendor_space_name);
+ 
+-	option_state_dereference (&client -> sent_options, MDL);
+ 	if (client -> packet_length < BOOTP_MIN_LEN)
+ 		client -> packet_length = BOOTP_MIN_LEN;
+ 

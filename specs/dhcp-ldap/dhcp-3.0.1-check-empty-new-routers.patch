@@ -1,0 +1,20 @@
+--- dhcp-3.0.1/client/scripts/linux.check-empty-new-routers	2004-11-16 14:31:05.083158000 -0500
++++ dhcp-3.0.1/client/scripts/linux	2004-11-16 14:39:38.542185000 -0500
+@@ -264,7 +264,7 @@
+   exit_with_hooks 0
+ fi
+ 
+-if [ x$reason = xTIMEOUT ]; then
++if [ x$reason = xTIMEOUT ] && [ "x$new_routers" != 'x' ]; then
+   if [ x$alias_ip_address != x ]; then
+     ifconfig $interface:0- inet 0
+   fi
+@@ -291,6 +291,8 @@
+   fi
+   ifconfig $interface inet 0 down
+   exit_with_hooks 1
++elif [ x$reason = xTIMEOUT ]; then
++  exit_with_hooks 1
+ fi
+ 
+ exit_with_hooks 0

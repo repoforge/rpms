@@ -1,0 +1,82 @@
+#!/bin/sh
+#
+# dhcrelay      This shell script takes care of starting and stopping
+#               dhcrelay.
+#
+# chkconfig: - 66 34
+# description: dhcrelay provides a relay for Dynamic Host Control Protocol.
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Source dhcrelay configuration. We can't default a DHCPSERVERS entry!
+if [ -f /etc/sysconfig/dhcrelay ] ; then
+	. /etc/sysconfig/dhcrelay
+	[ -n "$DHCPSERVERS" ] || exit 0
+else
+	exit 0
+fi
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 0
+
+[ -f /usr/sbin/dhcrelay ] || exit 0
+
+RETVAL=0
+prog="dhcrelay"
+
+start() {
+	# Start daemons.
+	echo -n $"Starting $prog: "
+	daemon /usr/sbin/dhcrelay \
+		$([ -n "$INTERFACES" ] && for int in $INTERFACES ; do echo -n " -i $int" ; done) \
+		$DHCPSERVERS
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/dhcrelay
+	return $RETVAL
+}
+
+stop() {
+	# Stop daemons.
+	echo -n $"Shutting down $prog: "
+	killproc dhcrelay
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/dhcrelay
+	return $RETVAL
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart|reload)
+	stop
+	start
+	RETVAL=$?
+	;;
+  condrestart)
+	if [ -f /var/lock/subsys/dhcrelay ]; then
+	    stop
+	    start
+	    RETVAL=$?
+	fi
+	;;
+  status)
+	status dhcrelay
+	RETVAL=$?
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|restart|condrestart|status}"
+	exit 1
+esac
+
+exit $RETVAL

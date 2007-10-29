@@ -1,0 +1,18 @@
+--- dhcp-3.0.1rc14/client/scripts/linux.noconfig	2004-06-23 17:43:11.000000000 -0400
++++ dhcp-3.0.1rc14/client/scripts/linux	2004-06-24 14:41:27.857538440 -0400
+@@ -85,10 +85,11 @@
+ 
+ need_config ${CONFIG}
+ 
+-[ -f "${CONFIG}" ] || {
+-    echo $"$0: configuration for $interface not found." >&2
+-    exit_with_hooks 1
+-}   
++if [ -f "${CONFIG}" ]; then 
++    source_config
++else
++    echo $"$0: configuration for $interface not found. Continuing with defaults." >&2
++fi
+ 
+ source_config
+ 

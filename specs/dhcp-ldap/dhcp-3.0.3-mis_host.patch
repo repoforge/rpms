@@ -1,0 +1,21 @@
+--- server/dhcp.c.orig	2005-08-10 00:11:04.832158056 +0200
++++ server/dhcp.c	2005-08-10 00:13:22.857175064 +0200
+@@ -1736,11 +1736,17 @@
+ 	}
+ 
+ 	/* Try to find a matching host declaration for this lease.
++	 * If this is an offer, then verify our host for the lease is the
++	 * right one for the host we're offering to...by dereffing and
++	 * re-finding.
+ 	 */
+-	if (!host) {
++	if ((offer == DHCPOFFER) ||(!lease -> host)) {
+ 		struct host_decl *hp = (struct host_decl *)0;
+ 		struct host_decl *h;
+ 
++		if (lease -> host)
++			host_dereference (&lease -> host, MDL);
++
+ 		/* Try to find a host_decl that matches the client
+ 		   identifier or hardware address on the packet, and
+ 		   has no fixed IP address.   If there is one, hang

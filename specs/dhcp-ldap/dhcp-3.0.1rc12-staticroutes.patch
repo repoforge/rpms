@@ -1,0 +1,21 @@
+--- dhcp-3.0.1rc12/client/scripts/linux.staticroutes	2004-03-25 14:53:20.740651072 -0500
++++ dhcp-3.0.1rc12/client/scripts/linux	2004-03-25 14:53:20.747650008 -0500
+@@ -217,6 +217,18 @@
+     for router in $new_routers; do
+       route add default gw $router
+     done
++    # static routes
++    if [ "x$new_static_routes" != x ]; then
++      len=`echo $new_static_routes | awk '{print NF}'`
++      i=1
++      while [ $i -lt $len ]; do
++        target=`echo $new_static_routes | awk "{print \\$$i}"`
++        let i=i+1
++        gateway=`echo $new_static_routes | awk "{print \\$$i}"`
++        let i=i+1
++        route add -host $target gw $gateway $interface
++      done
++    fi
+   fi
+   if [ x$new_ip_address != x$alias_ip_address ] && [ x$alias_ip_address != x ];
+    then

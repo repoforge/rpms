@@ -1,0 +1,16 @@
+--- dhcp-3.0.1/client/scripts/linux.noexp	2004-06-21 11:37:13.630140936 -0400
++++ dhcp-3.0.1/client/scripts/linux	2004-06-21 11:37:13.670134856 -0400
+@@ -92,10 +92,9 @@
+ 
+ source_config
+ 
+-release=`uname -r`
+-release=`expr $release : '\(.*\)\..*'`
+-relminor=`echo $release |sed -e 's/[0-9]*\.\([0-9][0-9]*\)\(\..*\)*$/\1/'`
+-relmajor=`echo $release |sed -e 's/\([0-9][0-9]*\)\..*$/\1/'`
++release=`uname -r`
++relmajor=`echo $release |/bin/cut -f1 -d'.'`
++relminor=`echo $release |/bin/cut -f2 -d'.'`
+ 
+ if [ x$new_broadcast_address != x ]; then
+   new_broadcast_arg="broadcast $new_broadcast_address"

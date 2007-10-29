@@ -1,0 +1,10 @@
+--- dhcp-3.0.1rc12/server/Makefile.dist.pie	2002-11-17 03:29:30.000000000 +0100
++++ dhcp-3.0.1rc12/server/Makefile.dist	2004-05-17 16:13:30.085925200 +0200
+@@ -98,6 +98,6 @@
+ 		-e "s#RUNDIR#$(VARRUN)#g" < dhcpd.leases.5 >dhcpd.leases.man5
+ 
+ dhcpd:	$(OBJS) $(COBJ) $(DHCPLIB)
+-	$(CC) $(LFLAGS) -o dhcpd $(OBJS) $(DHCPLIB) $(LIBS)
++	$(CC) $(LFLAGS) -pie -o dhcpd $(OBJS) $(DHCPLIB) $(LIBS)
+ 
+ # Dependencies (semi-automatically-generated)

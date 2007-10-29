@@ -8,14 +8,14 @@
 %{?rh6:%define _without_net_snmp 1}
 
 Summary: Fast c-based poller for the cacti graphing solution
-Name: cacti-cactid
-Version: 0.8.6i
+Name: cacti-spine
+Version: 0.8.7
 Release: 1
 License: LGPL
 Group: Applications/System
 URL: http://www.cacti.net/
 
-Source: http://www.cacti.net/downloads/cactid/cacti-cactid-%{version}.tar.gz
+Source: http://www.cacti.net/downloads/spine/cacti-spine-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: mysql-devel, openssl-devel
@@ -25,8 +25,11 @@ BuildRequires: mysql-devel, openssl-devel
 
 Requires: cacti
 
+Obsoletes: cacti-cactid <= %{version}-%{release}
+Provides: cacti-cactid = %{version}-%{release}
+
 %description
-Cactid is a supplemental poller for Cacti that makes use of pthreads
+Spine is a supplemental poller for Cacti that makes use of pthreads
 to achieve excellent performance.
 
 %prep
@@ -36,32 +39,35 @@ to achieve excellent performance.
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure
 
 %build
+%{__aclocal} --force
+%{__libtoolize} --force --copy
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 cactid %{buildroot}%{_bindir}/cactid
-%{__install} -Dp -m0600 cactid.conf %{buildroot}%{_sysconfdir}/cactid.conf
+%{__install} -Dp -m0755 spine %{buildroot}%{_bindir}/spine
+%{__install} -Dp -m0600 spine.conf %{buildroot}%{_sysconfdir}/spine.conf
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog LICENSE* README
-%{_bindir}/cactid
+%doc AUTHORS ChangeLog COPYING LICENSE* NEWS README
+%{_bindir}/spine
 
 %defattr(-, cacti, cacti, 0755)
-%config(noreplace) %{_sysconfdir}/cactid.conf
+%config(noreplace) %{_sysconfdir}/spine.conf
 
 %changelog
+* Mon Oct 29 2007 Dag Wieers <dag@wieers.com> - 0.8.7-1
+- Updated to release 0.8.7.
+- Rename package from cacti-cactid to cacti-spine.
+
 * Thu Jan 18 2007 Matthias Saou <http://freshrpms.net/> 0.8.6i-1
 - Update to 0.8.6i.
 - Include only relevant documentation.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.6g-1.2
-- Rebuild for Fedora Core 5.
 
 * Mon Jan 30 2006 Dag Wieers <dag@wieers.com> - 0.8.6g-1
 - Updated to release 0.8.6g.

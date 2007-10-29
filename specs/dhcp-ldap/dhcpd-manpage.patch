@@ -1,0 +1,52 @@
+*** dhcp-3.0pl1/server/dhcpd.conf.5~	2003-03-05 00:59:56.000000000 -0500
+--- dhcp-3.0pl1/server/dhcpd.conf.5	2003-03-05 01:00:36.000000000 -0500
+***************
+*** 1106,1116 ****
+  one for the zone containing A records that will be updates and one for
+  the zone containing PTR records - for ISC BIND, something like this:
+  .PP
+  .nf
+  key DHCP_UPDATER {
+!   algorithm HMAC-MD5.SIG-ALG.REG.INT;
+    secret pRP5FapFoJ95JEL06sv4PQ==;
+  };
+  
+  zone "example.org" {
+  	type master;
+--- 1106,1116 ----
+  one for the zone containing A records that will be updates and one for
+  the zone containing PTR records - for ISC BIND, something like this:
+  .PP
+  .nf
+  key DHCP_UPDATER {
+!   algorithm hmac-md5;
+    secret pRP5FapFoJ95JEL06sv4PQ==;
+  };
+  
+  zone "example.org" {
+  	type master;
+***************
+*** 1129,1139 ****
+  these zones.   To do so, you need to add something like this to your
+  dhcpd.conf file:
+  .PP
+  .nf
+  key DHCP_UPDATER {
+!   algorithm HMAC-MD5.SIG-ALG.REG.INT;
+    secret pRP5FapFoJ95JEL06sv4PQ==;
+  };
+  
+  zone EXAMPLE.ORG. {
+    primary 127.0.0.1;
+--- 1129,1139 ----
+  these zones.   To do so, you need to add something like this to your
+  dhcpd.conf file:
+  .PP
+  .nf
+  key DHCP_UPDATER {
+!   algorithm hmac-md5;
+    secret pRP5FapFoJ95JEL06sv4PQ==;
+  };
+  
+  zone EXAMPLE.ORG. {
+    primary 127.0.0.1;

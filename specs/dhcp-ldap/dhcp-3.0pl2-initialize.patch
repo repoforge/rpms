@@ -1,0 +1,10 @@
+--- dhcp-3.0pl2/common/packet.c.initialize	2004-01-21 15:04:27.424131872 -0500
++++ dhcp-3.0pl2/common/packet.c	2004-01-21 15:05:33.257662255 -0500
+@@ -149,6 +149,7 @@
+ 	struct ip ip;
+ 	struct udphdr udp;
+ 
++	memset( &ip, sizeof ip, 0);
+ 	/* Fill out the IP header */
+ 	IP_V_SET (&ip, 4);
+ 	IP_HL_SET (&ip, 20);

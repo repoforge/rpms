@@ -1,0 +1,213 @@
+--- dhcp-3.0.5/server/bootp.c.server	2005-05-18 15:54:17.000000000 -0400
++++ dhcp-3.0.5/server/bootp.c	2006-11-10 11:56:36.000000000 -0500
+@@ -62,6 +62,7 @@
+ 	char msgbuf [1024];
+ 	int ignorep;
+ 	int peer_has_leases = 0;
++	int norelay = 0;
+ 
+ 	if (packet -> raw -> op != BOOTREQUEST)
+ 		return;
+@@ -77,7 +78,7 @@
+ 		 ? inet_ntoa (packet -> raw -> giaddr)
+ 		 : packet -> interface -> name);
+ 
+-	if (!locate_network (packet)) {
++	if ((norelay = locate_network (packet)) == 0) {
+ 		log_info ("%s: network unknown", msgbuf);
+ 		return;
+ 	}
+@@ -357,6 +358,16 @@
+ 					      from, &to, &hto);
+ 			goto out;
+ 		}
++	} else if (norelay == 2) {
++		to.sin_addr = raw.ciaddr;
++		to.sin_port = remote_port;
++		if (fallback_interface) {
++			result = send_packet (fallback_interface,
++					      (struct packet *)0,
++					      &raw, outgoing.packet_length,
++					      from, &to, &hto);
++			goto out;                
++		}
+ 
+ 	/* If it comes from a client that already knows its address
+ 	   and is not requesting a broadcast response, and we can
+--- dhcp-3.0.5/server/confpars.c.server	2006-07-20 12:02:52.000000000 -0400
++++ dhcp-3.0.5/server/confpars.c	2006-11-10 11:56:38.000000000 -0500
+@@ -992,10 +992,17 @@
+ 		parse_warn (cfile, "peer address may not be omitted");
+ 
+ 	/* XXX - when/if we get a port number assigned, just set as default */
++	/* See Red Hat Bugzilla 167292:
++	 * we do now:  dhcp-failover 647/tcp
++         *             dhcp-failover 647/udp
++         *             dhcp-failover 847/tcp
++         *             dhcp-failover 847/udp
++         * IANA registration by Bernard Volz<volz@cisco.com 
++         */
+ 	if (!peer -> me.port)
+-		parse_warn (cfile, "local port may not be omitted");
++	    peer -> me.port = 647;
+ 	if (!peer -> partner.port)
+-		parse_warn (cfile, "peer port may not be omitted");
++	    peer -> partner.port = 847;
+ 
+ 	if (peer -> i_am == primary) {
+ 	    if (!peer -> hba) {
+@@ -2909,7 +2916,7 @@
+ 				 *p; p = &((*p) -> cdr))
+ 				    ;
+ 			    *p = cons (0, 0);
+-			    option_cache_reference (((struct option_cache **)
++			    option_cache_reference (((void*)
+ 						     &((*p) -> car)), oc, MDL);
+ 			    option_cache_dereference (&oc, MDL);
+ 			}
+--- dhcp-3.0.5/server/dhcp.c.server	2006-08-22 13:15:56.000000000 -0400
++++ dhcp-3.0.5/server/dhcp.c	2006-11-10 11:56:41.000000000 -0500
+@@ -3828,6 +3828,7 @@
+ 	struct data_string data;
+ 	struct subnet *subnet = (struct subnet *)0;
+ 	struct option_cache *oc;
++	int norelay = 0;
+ 
+ 	/* See if there's a subnet selection option. */
+ 	oc = lookup_option (&dhcp_universe, packet -> options,
+@@ -3837,12 +3838,27 @@
+ 	   from the interface, if there is one.   If not, fail. */
+ 	if (!oc && !packet -> raw -> giaddr.s_addr) {
+ 		if (packet -> interface -> shared_network) {
+-			shared_network_reference
+-				(&packet -> shared_network,
+-				 packet -> interface -> shared_network, MDL);
+-			return 1;
+-		}
+-		return 0;
++			struct in_addr any_addr;
++			any_addr.s_addr = INADDR_ANY;
++			if (!packet -> packet_type &&
++			    memcmp(&packet -> raw -> ciaddr, &any_addr, 4)) {
++				struct iaddr cip;
++				memcpy(cip.iabuf, &packet -> raw -> ciaddr, 4);
++				cip.len = 4;
++				if (!find_grouped_subnet(&subnet,
++				    packet -> interface -> shared_network, 
++				    cip, MDL)) 
++					norelay = 2;
++			}
++			if (!norelay) {
++				shared_network_reference
++					(&packet -> shared_network,
++					 packet -> interface -> shared_network,
++					 MDL);
++				return 1;
++			}
++		} else
++			return 0;
+ 	}
+ 
+ 	/* If there's an SSO, and it's valid, use it to figure out the
+@@ -3864,7 +3880,10 @@
+ 		data_string_forget (&data, MDL);
+ 	} else {
+ 		ia.len = 4;
+-		memcpy (ia.iabuf, &packet -> raw -> giaddr, 4);
++		if (norelay)
++			memcpy (ia.iabuf, &packet -> raw -> ciaddr, 4);
++		else
++			memcpy (ia.iabuf, &packet -> raw -> giaddr, 4);
+ 	}
+ 
+ 	/* If we know the subnet on which the IP address lives, use it. */
+@@ -3872,7 +3891,10 @@
+ 		shared_network_reference (&packet -> shared_network,
+ 					  subnet -> shared_network, MDL);
+ 		subnet_dereference (&subnet, MDL);
+-		return 1;
++		if (norelay)
++			return norelay;
++		else
++			return 1;
+ 	}
+ 
+ 	/* Otherwise, fail. */
+--- dhcp-3.0.5/server/dhcpd.c.server	2006-07-17 11:23:44.000000000 -0400
++++ dhcp-3.0.5/server/dhcpd.c	2006-11-10 11:56:44.000000000 -0500
+@@ -551,7 +551,8 @@
+ 				if ((i = open (path_dhcpd_pid,
+ 					O_WRONLY | O_CREAT, 0644)) >= 0) {
+ 				    sprintf (pbuf, "%d\n", (int)getpid ());
+-				    write (i, pbuf, strlen (pbuf));
++				    if((status = write (i, pbuf, strlen (pbuf))) != strlen(pbuf))
++					log_fatal("Unable to write %s",path_dhcpd_pid);
+ 				    close (i);
+ 				    pidfilewritten = 1;
+ 				}
+@@ -584,7 +585,8 @@
+ 		if ((i = open (path_dhcpd_pid,
+ 			       O_WRONLY | O_CREAT, 0644)) >= 0) {
+ 			sprintf (pbuf, "%d\n", (int)getpid ());
+-			write (i, pbuf, strlen (pbuf));
++			if((status = write (i, pbuf, strlen (pbuf))) != strlen(pbuf))
++			    log_fatal("Unable to write %s",path_dhcpd_pid);
+ 			close (i);
+ 			pidfilewritten = 1;
+ 		}
+--- dhcp-3.0.5/server/dhcpd.conf.5.server	2006-07-09 11:02:24.000000000 -0400
++++ dhcp-3.0.5/server/dhcpd.conf.5	2006-11-10 11:56:46.000000000 -0500
+@@ -531,9 +531,9 @@
+ failover peer "foo" {
+   primary;
+   address anthrax.rc.vix.com;
+-  port 519;
++  port 647;
+   peer address trantor.rc.vix.com;
+-  peer port 520;
++  peer port 847;
+   max-response-delay 60;
+   max-unacked-updates 10;
+   mclt 3600;
+@@ -592,9 +592,7 @@
+ .B port \fIport-number\fR\fB;\fR
+ .PP
+ The \fBport\fR statement declares the TCP port on which the server
+-should listen for connections from its failover peer.   This statement
+-may not currently be omitted, because the failover protocol does not
+-yet have a reserved TCP port number.
++should listen for connections from its failover peer.  
+ .RE
+ .PP
+ The 
+@@ -606,10 +604,8 @@
+ .PP
+ The \fBpeer port\fR statement declares the TCP port to which the
+ server should connect to reach its failover peer for failover
+-messages.   This statement may not be omitted because the failover
+-protocol does not yet have a reserved TCP port number.   The port
+-number declared in the \fBpeer port\fR statement may be the same as
+-the port number declared in the \fBport\fR statement.
++messages. The port number declared in the \fBpeer port\fR statement 
++may be the same as the port number declared in the \fBport\fR statement.
+ .RE
+ .PP
+ The 
+@@ -1133,7 +1129,7 @@
+ .PP
+ .nf
+ key DHCP_UPDATER {
+-  algorithm HMAC-MD5.SIG-ALG.REG.INT;
++  algorithm hmac-md5;
+   secret pRP5FapFoJ95JEL06sv4PQ==;
+ };
+ 
+@@ -1156,7 +1152,7 @@
+ .PP
+ .nf
+ key DHCP_UPDATER {
+-  algorithm HMAC-MD5.SIG-ALG.REG.INT;
++  algorithm hmac-md5;
+   secret pRP5FapFoJ95JEL06sv4PQ==;
+ };
+ 

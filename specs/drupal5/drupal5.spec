@@ -5,8 +5,8 @@
 
 Summary: Drupal CMS
 Name: drupal5
-Version: 5.2
-Release: 3
+Version: 5.3
+Release: 1
 License: GPL
 Group: Development/Languages
 URL: http://drupal.org/
@@ -18,6 +18,9 @@ BuildArch: noarch
 BuildRequires: php >= 4.3.3
 Requires: httpd, mysql, php >= 4.3.3
 Requires: php-gd, php-mbstring, php-mysql
+
+Obsoletes: drupal <= %{version}-%{release}
+Provides: drupal = %{version}-%{release}
 
 %description
 Drupal is an open source content management platform. Drupal is equipped
@@ -42,6 +45,7 @@ EOF
 %{__install} -Dp -m0644 .htaccess %{buildroot}%{_localstatedir}/www/drupal-%{version}/.htaccess
 %{__cp} -av *.php %{buildroot}%{_localstatedir}/www/drupal-%{version}/
 %{__cp} -av includes/ misc/ modules/ profiles/ scripts/ sites/ themes/ %{buildroot}%{_localstatedir}/www/drupal-%{version}/
+%{__mkdir} %{buildroot}%{_localstatedir}/www/drupal-%{version}/files/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -54,6 +58,9 @@ EOF
 %{_localstatedir}/www/drupal-%{version}/
 
 %changelog
+* Sun Oct 21 2007 Dag Wieers <dag@wieers.com> - 5.3-1
+- Updated to release 5.3.
+
 * Fri Oct 05 2007 Dag Wieers <dag@wieers.com> - 5.2-3
 - Fixed typo in Requires. (Seán O Sullivan)
 

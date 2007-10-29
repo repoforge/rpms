@@ -1,0 +1,234 @@
+--- dhcp-3.0.5/omapip/connection.c.omapip	2004-11-24 12:39:17.000000000 -0500
++++ dhcp-3.0.5/omapip/connection.c	2006-11-10 11:54:45.000000000 -0500
+@@ -174,7 +174,7 @@
+ 			
+ 			if (bind (obj -> socket, (struct sockaddr *)&local_sin,
+ 				  sizeof local_sin) < 0) {
+-				omapi_object_dereference ((omapi_object_t **)
++				omapi_object_dereference ((void*)
+ 							  &obj, MDL);
+ 				if (errno == EADDRINUSE)
+ 					return ISC_R_ADDRINUSE;
+--- dhcp-3.0.5/omapip/dispatch.c.omapip	2004-11-24 12:39:17.000000000 -0500
++++ dhcp-3.0.5/omapip/dispatch.c	2006-11-10 11:54:45.000000000 -0500
+@@ -139,7 +139,7 @@
+ 
+ isc_result_t omapi_dispatch (struct timeval *t)
+ {
+-	return omapi_wait_for_completion ((omapi_object_t *)&omapi_io_states,
++	return omapi_wait_for_completion ((void *)&omapi_io_states,
+ 					  t);
+ }
+ 
+@@ -449,7 +449,7 @@
+ 						     tmp, MDL);
+ 					else
+ 						omapi_signal_in
+-							((omapi_object_t *)
++							((void *)
+ 							 &omapi_io_states,
+ 							 "ready");
+ 				}
+--- dhcp-3.0.5/omapip/errwarn.c.omapip	2004-09-30 16:38:32.000000000 -0400
++++ dhcp-3.0.5/omapip/errwarn.c	2006-11-10 11:54:45.000000000 -0500
+@@ -45,6 +45,8 @@
+ int log_perror = 1;
+ #endif
+ int log_priority;
++int log_isc_blurb=1;
++
+ void (*log_cleanup) (void);
+ 
+ #define CVT_BUF_MAX 1023
+@@ -72,11 +74,14 @@
+ 
+   /* Also log it to stderr? */
+   if (log_perror) {
+-	  write (STDERR_FILENO, mbuf, strlen (mbuf));
+-	  write (STDERR_FILENO, "\n", 1);
++	  int r;
++	  r=write (STDERR_FILENO, mbuf, strlen (mbuf));
++	  r=write (STDERR_FILENO, "\n", 1);
+   }
+ 
+-#if !defined (NOMINUM)
++#if !defined(NOMINUM)
++  if ( log_isc_blurb )
++  {
+   log_error ("%s", "");
+   log_error ("If you did not get this software from ftp.isc.org, please");
+   log_error ("get the latest from ftp.isc.org and install that before");
+@@ -94,7 +99,12 @@
+   log_error ("the README file.");
+   log_error ("%s", "");
+   log_error ("exiting.");
++  }else
++  {
++      log_error ("exiting.");
++  }
+ #endif
++
+   if (log_cleanup)
+ 	  (*log_cleanup) ();
+   exit (1);
+@@ -120,8 +130,9 @@
+ #endif
+ 
+   if (log_perror) {
+-	  write (STDERR_FILENO, mbuf, strlen (mbuf));
+-	  write (STDERR_FILENO, "\n", 1);
++	  int r;
++	  r=write (STDERR_FILENO, mbuf, strlen (mbuf));
++	  r=write (STDERR_FILENO, "\n", 1);
+   }
+ 
+   return 0;
+@@ -147,8 +158,9 @@
+ #endif
+ 
+   if (log_perror) {
+-	  write (STDERR_FILENO, mbuf, strlen (mbuf));
+-	  write (STDERR_FILENO, "\n", 1);
++	  int r;
++	  r=write (STDERR_FILENO, mbuf, strlen (mbuf));
++	  r=write (STDERR_FILENO, "\n", 1);
+   }
+ 
+   return 0;
+@@ -174,8 +186,9 @@
+ #endif
+ 
+   if (log_perror) {
+-	  write (STDERR_FILENO, mbuf, strlen (mbuf));
+-	  write (STDERR_FILENO, "\n", 1);
++	  int r;
++	  r=write (STDERR_FILENO, mbuf, strlen (mbuf));
++	  r=write (STDERR_FILENO, "\n", 1);
+   }
+ 
+   return 0;
+--- dhcp-3.0.5/omapip/message.c.omapip	2004-11-24 12:39:17.000000000 -0500
++++ dhcp-3.0.5/omapip/message.c	2006-11-10 11:54:45.000000000 -0500
+@@ -58,7 +58,7 @@
+ 	}
+ 	status = omapi_object_reference (&m -> inner, g, file, line);
+ 	if (status != ISC_R_SUCCESS) {
+-		omapi_object_dereference ((omapi_object_t **)&m, file, line);
++		omapi_object_dereference ((void*)&m, file, line);
+ 		omapi_object_dereference (&g, file, line);
+ 		return status;
+ 	}
+@@ -66,7 +66,7 @@
+ 					 (omapi_object_t *)m, file, line);
+ 
+ 	if (status != ISC_R_SUCCESS) {
+-		omapi_object_dereference ((omapi_object_t **)&m, file, line);
++		omapi_object_dereference ((void*)&m, file, line);
+ 		omapi_object_dereference (&g, file, line);
+ 		return status;
+ 	}
+@@ -286,16 +286,16 @@
+ 
+ 	if (omapi_registered_messages) {
+ 		omapi_object_reference
+-			((omapi_object_t **)&m -> next,
++			((void*)&m -> next,
+ 			 (omapi_object_t *)omapi_registered_messages, MDL);
+ 		omapi_object_reference
+-			((omapi_object_t **)&omapi_registered_messages -> prev,
++			((void*)&omapi_registered_messages -> prev,
+ 			 (omapi_object_t *)m, MDL);
+ 		omapi_object_dereference
+-			((omapi_object_t **)&omapi_registered_messages, MDL);
++			((void*)&omapi_registered_messages, MDL);
+ 	}
+ 	omapi_object_reference
+-		((omapi_object_t **)&omapi_registered_messages,
++		((void*)&omapi_registered_messages,
+ 		 (omapi_object_t *)m, MDL);
+ 	return ISC_R_SUCCESS;;
+ }
+@@ -315,34 +315,34 @@
+ 
+ 	n = (omapi_message_object_t *)0;
+ 	if (m -> next) {
+-		omapi_object_reference ((omapi_object_t **)&n,
++		omapi_object_reference ((void*)&n,
+ 					(omapi_object_t *)m -> next, MDL);
+-		omapi_object_dereference ((omapi_object_t **)&m -> next, MDL);
+-		omapi_object_dereference ((omapi_object_t **)&n -> prev, MDL);
++		omapi_object_dereference ((void*)&m -> next, MDL);
++		omapi_object_dereference ((void*)&n -> prev, MDL);
+ 	}
+ 	if (m -> prev) {
+ 		omapi_message_object_t *tmp = (omapi_message_object_t *)0;
+-		omapi_object_reference ((omapi_object_t **)&tmp,
++		omapi_object_reference ((void*)&tmp,
+ 					(omapi_object_t *)m -> prev, MDL);
+-		omapi_object_dereference ((omapi_object_t **)&m -> prev, MDL);
++		omapi_object_dereference ((void*)&m -> prev, MDL);
+ 		if (tmp -> next)
+ 			omapi_object_dereference
+-				((omapi_object_t **)&tmp -> next, MDL);
++				((void*)&tmp -> next, MDL);
+ 		if (n)
+ 			omapi_object_reference
+-				((omapi_object_t **)&tmp -> next,
++				((void*)&tmp -> next,
+ 				 (omapi_object_t *)n, MDL);
+-		omapi_object_dereference ((omapi_object_t **)&tmp, MDL);
++		omapi_object_dereference ((void*)&tmp, MDL);
+ 	} else {
+ 		omapi_object_dereference
+-			((omapi_object_t **)&omapi_registered_messages, MDL);
++			((void*)&omapi_registered_messages, MDL);
+ 		if (n)
+ 			omapi_object_reference
+-				((omapi_object_t **)&omapi_registered_messages,
++				((void*)&omapi_registered_messages,
+ 				 (omapi_object_t *)n, MDL);
+ 	}
+ 	if (n)
+-		omapi_object_dereference ((omapi_object_t **)&n, MDL);
++		omapi_object_dereference ((void*)&n, MDL);
+ 	return ISC_R_SUCCESS;
+ }
+ 
+--- dhcp-3.0.5/omapip/protocol.c.omapip	2006-02-22 17:43:27.000000000 -0500
++++ dhcp-3.0.5/omapip/protocol.c	2006-11-10 11:54:45.000000000 -0500
+@@ -498,7 +498,7 @@
+ 		}
+ 		previous_outstanding = dmalloc_outstanding;
+ #endif
+-		status = omapi_message_new ((omapi_object_t **)&p -> message,
++		status = omapi_message_new ((void*)&p -> message,
+ 					    MDL);
+ 		if (status != ISC_R_SUCCESS) {
+ 			omapi_disconnect (c, 1);
+@@ -1151,7 +1151,7 @@
+ 	if (po -> type != omapi_type_protocol)
+ 		return ISC_R_INVALIDARG;
+ 
+-	status = omapi_message_new ((omapi_object_t **)&message, MDL);
++	status = omapi_message_new ((void*)&message, MDL);
+ 	if (status != ISC_R_SUCCESS)
+ 		return status;
+ 	mo = (omapi_object_t *)message;
+@@ -1209,7 +1209,7 @@
+ 	if (po -> type != omapi_type_protocol)
+ 		return ISC_R_INVALIDARG;
+ 
+-	status = omapi_message_new ((omapi_object_t **)&message, MDL);
++	status = omapi_message_new ((void*)&message, MDL);
+ 	mo = (omapi_object_t *)message;
+ 
+ 	if (status == ISC_R_SUCCESS)
+@@ -1268,7 +1268,7 @@
+ 	if (po -> type != omapi_type_protocol)
+ 		return ISC_R_INVALIDARG;
+ 
+-	status = omapi_message_new ((omapi_object_t **)&message, MDL);
++	status = omapi_message_new ((void*)&message, MDL);
+ 	if (status != ISC_R_SUCCESS)
+ 		return status;
+ 	mo = (omapi_object_t *)message;

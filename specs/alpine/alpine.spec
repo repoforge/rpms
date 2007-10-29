@@ -4,7 +4,7 @@
 Summary: Alternative Pine mail user agent implementation
 Name: alpine
 Version: 0.9999
-Release: 1
+Release: 2
 License: Apache License
 Group: Applications/Internet
 URL: http://www.washington.edu/alpine/
@@ -33,7 +33,9 @@ personal-preference options.
 
 %build
 touch imap/ip6
-%configure --with-spellcheck-prog="aspell"
+%configure \
+    --with-passfile=".pinepwd" \
+    --with-spellcheck-prog="aspell"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -81,6 +83,9 @@ touch imap/ip6
 %{_sbindir}/mlock
 
 %changelog
+* Sun Oct 28 2007 Dag Wieers <dag@wieers.com> - 0.9999-2
+- Enabled passfile support.
+
 * Sun Sep 30 2007 Dag Wieers <dag@wieers.com> - 0.9999-1
 - Updated to release 0.9999.
 

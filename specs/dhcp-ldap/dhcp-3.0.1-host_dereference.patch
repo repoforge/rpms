@@ -1,0 +1,56 @@
+--- dhcp-3.0.1/server/dhcp.c.host-dereference	2004-10-06 15:44:50.580294000 -0400
++++ dhcp-3.0.1/server/dhcp.c	2004-10-06 15:45:44.413407000 -0400
+@@ -1718,6 +1718,8 @@
+ 					  d1.data [0]);
+ 				data_string_forget (&d1, MDL);
+ 				free_lease_state (state, MDL);
++				if( host )
++				    host_dereference (&host, MDL);
+ 				return;
+ 			}
+ 			data_string_forget (&d1, MDL);
+@@ -1791,6 +1793,8 @@
+ 		if (!ignorep)
+ 			log_info ("%s: unknown client", msg);
+ 		free_lease_state (state, MDL);
++		if( host )
++		    host_dereference (&host, MDL);
+ 		return;
+ 	} 
+ 
+@@ -1807,6 +1811,8 @@
+ 		if (!ignorep)
+ 			log_info ("%s: bootp disallowed", msg);
+ 		free_lease_state (state, MDL);
++		if( host )
++		    host_dereference (&host, MDL);
+ 		return;
+ 	} 
+ 
+@@ -1823,6 +1829,8 @@
+ 		if (!ignorep)
+ 			log_info ("%s: booting disallowed", msg);
+ 		free_lease_state (state, MDL);
++		if( host )
++		    host_dereference (&host, MDL);
+ 		return;
+ 	}
+ 
+@@ -1859,6 +1867,8 @@
+ 						  msg);
+ 					free_lease_state (state, MDL);
+ 					/* XXX probably not necessary: */
++					if( host )
++					    host_dereference (&host, MDL);
+ 					return;
+ 				}
+ 			}
+@@ -1891,6 +1901,8 @@
+ 		log_info ("%s: can't allocate temporary lease structure: %s",
+ 			  msg, isc_result_totext (result));
+ 		free_lease_state (state, MDL);
++		if( host )
++		    host_dereference (&host, MDL);
+ 		return;
+ 	}
+ 		

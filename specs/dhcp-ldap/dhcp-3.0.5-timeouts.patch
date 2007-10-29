@@ -1,0 +1,295 @@
+--- dhcp-3.0.5/common/dispatch.c.timeouts	2006-11-13 19:08:34.000000000 -0500
++++ dhcp-3.0.5/common/dispatch.c	2006-11-13 19:15:03.000000000 -0500
+@@ -39,8 +39,24 @@
+ 
+ #include "dhcpd.h"
+ 
+-struct timeout *timeouts;
+-static struct timeout *free_timeouts;
++struct timeout {
++#ifndef LIBDHCP
++	struct timeout *next;
++#endif
++	TIME when;
++	void (*func) PROTO ((void *));
++	void *what;
++	tvref_t ref;
++	tvunref_t unref;
++};
++
++#ifdef LIBDHCP
++static struct timeout *timeouts = NULL;
++static int ntimeouts = 0;
++#else
++static struct timeout *timeouts = NULL;
++static struct timeout *free_timeouts = NULL;
++#endif
+ 
+ void set_time(TIME t)
+ {
+@@ -53,9 +69,41 @@
+ 
+ struct timeval *process_outstanding_timeouts (struct timeval *tvp)
+ {
++#ifdef LIBDHCP
++	int i;
++	struct timeout t = { 0 };
++#endif
+ 	/* Call any expired timeouts, and then if there's
+ 	   still a timeout registered, time out the select
+ 	   call then. */
++#ifdef LIBDHCP
++	if (!ntimeouts)
++		return NULL;
++
++	for (i = 0; i < ntimeouts && timeouts[i].when <= cur_time;) {
++		struct timeout *new_timeouts;
++		size_t n;
++
++		memmove(&t, &timeouts[i], sizeof (t));
++
++		n = (ntimeouts - i - 1) * sizeof (t);
++		memmove(&timeouts[i+1], &timeouts[i], n);
++
++		n = --ntimeouts * sizeof (t);
++		new_timeouts = realloc(timeouts, n);
++		/* XXX broken API, no way to return error here */
++		if (new_timeouts || !n)
++			timeouts = new_timeouts;
++
++		if (t.func)
++			t.func(t.what);
++		if (t.unref)
++			t.unref(t.what, MDL);
++	}
++	if (tvp && ntimeouts) {
++		tvp->tv_sec = timeouts[0].when;
++		tvp->tv_usec = 0;
++#else
+       another:
+ 	if (timeouts) {
+ 		struct timeout *t;
+@@ -73,9 +121,15 @@
+ 			tvp -> tv_sec = timeouts -> when;
+ 			tvp -> tv_usec = 0;
+ 		}
++#endif
+ 		return tvp;
++#ifdef LIBDHCP
++	}
++	return NULL;
++#else
+ 	} else
+ 		return (struct timeval *)0;
++#endif
+ }
+ 
+ /* Wait for packets to come in using select().   When one does, call
+@@ -104,13 +158,28 @@
+ 	tvref_t ref;
+ 	tvunref_t unref;
+ {
++#ifdef LIBDHCP
++	struct timeout t = {
++		.when = when,
++		.func = where,
++		.what = what,
++		.ref = ref,
++		.unref = unref
++	};
++	struct timeout *new_timeouts;
++	int i, pos = 0;
++#else
+ 	struct timeout *t, *q;
++#endif
+ 
+ 	/* See if this timeout supersedes an existing timeout. */
++#ifdef LIBDHCP
++	for (i = 0; i < ntimeouts; i++) {
++		struct timeout *q = &timeouts[i];
++#else
+ 	t = (struct timeout *)0;
+ 	for (q = timeouts; q; q = q -> next) {
+-		if ((where == NULL || q -> func == where) &&
+-		    q -> what == what) {
++		if ((where == NULL || q -> func == where) && q -> what == what) {
+ 			if (t)
+ 				t -> next = q -> next;
+ 			else
+@@ -119,7 +188,29 @@
+ 		}
+ 		t = q;
+ 	}
++#endif
+ 
++#ifdef LIBDHCP
++		/* If this one is already in the list with a different time,
++		 * remove it and re-add */
++		if ((where == NULL || q->func == where) &&
++				q->what == what) {
++			size_t n = (--ntimeouts - i) * sizeof (*q);
++			memmove(&t, q, sizeof (t));
++
++			if (n)
++				memmove(&timeouts[i], &timeouts[i+1], n);
++
++			if (ntimeouts) {
++				new_timeouts = realloc(timeouts, ntimeouts * sizeof (*q));
++				/* XXX broken API, no way to return error here */
++				if (new_timeouts)
++					timeouts = new_timeouts;
++			} else {
++				timeouts = NULL;
++			}
++			add_timeout(when, where, what, ref, unref);
++#else
+ 	/* If we didn't supersede a timeout, allocate a timeout
+ 	   structure now. */
+ 	if (!q) {
+@@ -128,7 +219,7 @@
+ 			free_timeouts = q -> next;
+ 		} else {
+ 			q = ((struct timeout *)
+-			     dmalloc (sizeof (struct timeout), MDL));
++				dmalloc (sizeof (struct timeout), MDL));
+ 			if (!q)
+ 				log_fatal ("add_timeout: no memory!");
+ 		}
+@@ -158,22 +249,76 @@
+ 		if (t -> next -> when > q -> when) {
+ 			q -> next = t -> next;
+ 			t -> next = q;
++#endif
+ 			return;
++#ifdef LIBDHCP
++		} else if (timeouts[i].when > when) {
++			pos = i;
++#endif
+ 		}
+ 	}
+ 
++#ifdef LIBDHCP
++	/* If we didn't supersede an existing timeout, then pos is set
++	 * to the timeout which will post after this one.  Insert this
++	 * one before it. */
++
++	new_timeouts = realloc(timeouts, sizeof (t) * (ntimeouts+1));
++	/* XXX broken API, no way to return error here */
++	if (new_timeouts) {
++		/* ntimeouts = 10
++		 * pos = 3;
++		 * n = 10-3 * sizeof (t) = 7 * sizeof (t) 
++		 */
++		size_t n = (ntimeouts - pos) * sizeof (t);
++
++		timeouts = new_timeouts;
++		memmove(&timeouts[pos+1], &timeouts[pos], n);
++		memmove(&timeouts[pos], &t, sizeof (t));
++		ntimeouts++;
++	}
++#else
+ 	/* End of list. */
+ 	t -> next = q;
+ 	q -> next = (struct timeout *)0;
++#endif
+ }
+ 
+ void cancel_timeout (where, what)
+ 	void (*where) PROTO ((void *));
+ 	void *what;
+ {
++#ifdef LIBDHCP
++	struct timeout t;
++	int i = 0;
++#else
+ 	struct timeout *t, *q;
++#endif
+ 
+ 	/* Look for this timeout on the list, and unlink it if we find it. */
++#ifdef LIBDHCP
++	for (i = 0; i < ntimeouts; i++) {
++		struct timeout *new_timeouts, *q = &timeouts[i];
++
++		if (q->func == where && q->what == what) {
++			size_t n;
++
++			memmove(&t, q, sizeof (t));
++
++			n = (ntimeouts - i - 1) * sizeof (t);
++			memmove(&timeouts[i+1], &timeouts[i], n);
++
++			n = --ntimeouts * sizeof (t);
++			new_timeouts = realloc(timeouts, n);
++			/* XXX broken API, no way to return error here */
++			if (new_timeouts || !n)
++				timeouts = new_timeouts;
++
++			if (t.unref)
++				t.unref(t.what, MDL);
++		}
++	}
++#else
+ 	t = (struct timeout *)0;
+ 	for (q = timeouts; q; q = q -> next) {
+ 		if (q -> func == where && q -> what == what) {
+@@ -193,10 +338,15 @@
+ 		q -> next = free_timeouts;
+ 		free_timeouts = q;
+ 	}
++#endif
+ }
+ 
+ void cancel_all_timeouts ()
+ {
++#ifdef LIBDHCP
++	cur_time = TIME_MAX;
++	process_outstanding_timeouts(NULL);
++#else
+ 	struct timeout *t, *n;
+ 	for (t = timeouts; t; t = n) {
+ 		n = t -> next;
+@@ -205,13 +355,19 @@
+ 		t -> next = free_timeouts;
+ 		free_timeouts = t;
+ 	}
++#endif
+ }
+ 
+ void relinquish_timeouts ()
+ {
++#ifdef LIBDHCP
++	while (ntimeouts)
++		cancel_timeout(timeouts[0].func, timeouts[0].what);
++#else
+ 	struct timeout *t, *n;
+ 	for (t = free_timeouts; t; t = n) {
+ 		n = t -> next;
+ 		dfree (t, MDL);
+ 	}
++#endif
+ }
+--- dhcp-3.0.5/includes/dhcpd.h.timeouts	2006-11-13 19:08:34.000000000 -0500
++++ dhcp-3.0.5/includes/dhcpd.h	2006-11-13 19:08:43.000000000 -0500
+@@ -817,14 +817,6 @@
+ 
+ typedef void (*tvref_t)(void *, void *, const char *, int);
+ typedef void (*tvunref_t)(void *, const char *, int);
+-struct timeout {
+-	struct timeout *next;
+-	TIME when;
+-	void (*func) PROTO ((void *));
+-	void *what;
+-	tvref_t ref;
+-	tvunref_t unref;
+-};
+ 
+ struct protocol {
+ 	struct protocol *next;
+@@ -1751,7 +1743,6 @@
+ 					    struct dhcp_packet *, unsigned,
+ 					    unsigned int,
+ 					    struct iaddr, struct hardware *));
+-extern struct timeout *timeouts;
+ extern omapi_object_type_t *dhcp_type_interface;
+ #if defined (TRACING)
+ trace_type_t *interface_trace;

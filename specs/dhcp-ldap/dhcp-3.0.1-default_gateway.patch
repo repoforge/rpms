@@ -1,0 +1,33 @@
+--- dhcp-3.0.1/client/scripts/linux.default_gateway	2004-08-02 10:39:00.000000000 -0400
++++ dhcp-3.0.1/client/scripts/linux	2004-08-03 15:43:45.184792000 -0400
+@@ -120,6 +120,7 @@
+   exit_with_hooks 0
+ fi
+ 
++added_old_broadcast_route=0;
+ if [ x$reason = xPREINIT ]; then
+   if [ x$alias_ip_address != x ]; then
+     # Bring down alias interface. Its routes will disappear too.
+@@ -131,7 +132,7 @@
+     ifconfig $interface inet 0.0.0.0 netmask 0.0.0.0 \
+ 		broadcast 255.255.255.255 up
+     # Add route to make broadcast work. Do not omit netmask.
+-    route add default dev $interface netmask 0.0.0.0
++    route add default dev $interface netmask 0.0.0.0 && added_old_broadcast_route=1;
+   else
+     ifconfig $interface 0 up
+   fi
+@@ -216,9 +217,12 @@
+     if [ $relmajor -lt 2 ] || \
+ 		( [ $relmajor -eq 2 ] && [ $relminor -eq 0 ] ); then
+       route add -net $new_network_number $new_subnet_arg dev $interface
++      if [ $added_old_broadcast_route -eq 1 ]; then
++	  route del default;
++      fi;
+     fi
+     for router in $new_routers; do
+-      route add default gw $router
++      route add default gw $router && break; # there can be only one !
+     done
+     # static routes
+     if [ "x$new_static_routes" != x ]; then

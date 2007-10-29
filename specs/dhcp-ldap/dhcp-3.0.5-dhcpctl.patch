@@ -1,0 +1,86 @@
+--- dhcp-3.0.5/dhcpctl/callback.c.dhcpctl	2004-06-10 13:59:23.000000000 -0400
++++ dhcp-3.0.5/dhcpctl/callback.c	2006-11-10 11:50:05.000000000 -0500
+@@ -150,7 +150,7 @@
+ 		return ISC_R_INVALIDARG;
+ 	p = (dhcpctl_callback_object_t *)h;
+ 	if (p -> handle)
+-		omapi_object_dereference ((omapi_object_t **)&p -> handle,
++		omapi_object_dereference ((void*)&p -> handle,
+ 					  file, line);
+ 	return ISC_R_SUCCESS;
+ }
+--- dhcp-3.0.5/dhcpctl/dhcpctl.3.dhcpctl	2004-09-24 17:08:38.000000000 -0400
++++ dhcp-3.0.5/dhcpctl/dhcpctl.3	2006-11-10 11:50:08.000000000 -0500
+@@ -43,7 +43,8 @@
+ .\"
+ .\"
+ .Sh SYNOPSIS
+-.Fd #include <dhcpctl/dhcpctl.h>
++.Fd #include <dhcpctl.h>
++.sp
+ .Ft dhcpctl_status
+ .Fo dhcpctl_initialize
+ .Fa void
+@@ -426,7 +427,7 @@
+ #include <netinet/in.h>
+ 
+ #include <isc/result.h>
+-#include <dhcpctl/dhcpctl.h>
++#include <dhcpctl.h>
+ 
+ int main (int argc, char **argv) {
+ 	dhcpctl_data_string ipaddrstring = NULL;
+--- dhcp-3.0.5/dhcpctl/remote.c.dhcpctl	2004-06-10 13:59:24.000000000 -0400
++++ dhcp-3.0.5/dhcpctl/remote.c	2006-11-10 11:50:10.000000000 -0500
+@@ -122,7 +122,7 @@
+ 	isc_result_t status;
+ 
+ 	m = (dhcpctl_remote_object_t *)0;
+-	status = omapi_object_allocate ((omapi_object_t **)&m,
++	status = omapi_object_allocate ((void*)&m,
+ 					dhcpctl_remote_type, 0, MDL);
+ 	if (status != ISC_R_SUCCESS)
+ 		return status;
+@@ -135,7 +135,7 @@
+ 	}
+ 	status = omapi_object_reference (&m -> inner, g, MDL);
+ 	if (status != ISC_R_SUCCESS) {
+-		omapi_object_dereference ((omapi_object_t **)&m, MDL);
++		omapi_object_dereference ((void*)&m, MDL);
+ 		omapi_object_dereference (&g, MDL);
+ 		return status;
+ 	}
+@@ -143,7 +143,7 @@
+ 					 (omapi_object_t *)m, MDL);
+ 
+ 	if (status != ISC_R_SUCCESS) {
+-		omapi_object_dereference ((omapi_object_t **)&m, MDL);
++		omapi_object_dereference ((void*)&m, MDL);
+ 		omapi_object_dereference (&g, MDL);
+ 		return status;
+ 	}
+@@ -152,13 +152,13 @@
+ 				       omapi_datatype_string,
+ 				       object_type);
+ 	if (status != ISC_R_SUCCESS) {
+-		omapi_object_dereference ((omapi_object_t **)&m, MDL);
++		omapi_object_dereference ((void*)&m, MDL);
+ 		omapi_object_dereference (&g, MDL);
+ 		return status;
+ 	}
+ 
+ 	status = omapi_object_reference (h, (omapi_object_t *)m, MDL);
+-	omapi_object_dereference ((omapi_object_t **)&m, MDL);
++	omapi_object_dereference ((void*)&m, MDL);
+ 	omapi_object_dereference (&g, MDL);
+ 	if (status != ISC_R_SUCCESS)
+ 		return status;
+@@ -339,7 +339,7 @@
+ 		return ISC_R_INVALIDARG;
+ 	p = (dhcpctl_remote_object_t *)h;
+ 	if (p -> handle)
+-		omapi_object_dereference ((omapi_object_t **)&p -> handle,
++		omapi_object_dereference ((void*)&p -> handle,
+ 					  file, line);
+ 	if (p -> rtype)
+ 		omapi_typed_data_dereference ((omapi_typed_data_t **)&p->rtype,

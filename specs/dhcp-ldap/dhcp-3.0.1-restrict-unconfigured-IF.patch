@@ -1,0 +1,25 @@
+--- dhcp-3.0.1/common/discover.c.restrict-unconfigured-IF	2004-06-10 13:59:16.000000000 -0400
++++ dhcp-3.0.1/common/discover.c	2004-11-16 14:17:35.515537000 -0500
+@@ -392,6 +392,22 @@
+ 			if (tmp)
+ 				continue;
+ 
++			/*+++       Red Hat patch for bug #138181        +++*/
++			/* See if this is the sort of interface we want to
++			   deal with. */
++			strncpy (ifr.ifr_name, name, IFNAMSIZ);
++
++			/* Skip non broadcast interfaces (plus loopback and
++			   point-to-point in case an OS incorrectly marks them
++			   as broadcast).
++			*/
++			 if (  (ioctl (sock, SIOCGIFFLAGS, &ifr) < 0)
++			     ||(!(ifr.ifr_flags & IFF_BROADCAST))
++			     ||(ifr.ifr_flags & IFF_LOOPBACK )
++			     ||(ifr.ifr_flags & IFF_POINTOPOINT)
++		            ) continue;
++			/*---  END  Red Hat patch for bug #138181        ---*/
++
+ 			/* Otherwise, allocate one. */
+ 			tmp = (struct interface_info *)0;
+ 			status = interface_allocate (&tmp, MDL);

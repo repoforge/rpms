@@ -1,0 +1,60 @@
+--- dhcp-3.0.5/dst/dst_api.c.dst	2001-02-22 02:22:08.000000000 -0500
++++ dhcp-3.0.5/dst/dst_api.c	2006-11-13 17:31:45.000000000 -0500
+@@ -58,6 +58,10 @@
+ 
+ #include "dst_internal.h"
+ 
++/* prototypes */
++extern int b64_pton(char const *src, u_char *target, size_t targsize);
++extern int b64_ntop(u_char const *src, size_t srclength, char *target, size_t targsize);
++
+ /* static variables */
+ static int done_init = 0;
+ dst_func *dst_t_func[DST_MAX_ALGS];
+@@ -542,8 +546,14 @@
+ 			 ,name));
+ 		return (NULL);
+ 	}
++
+ 	/* read in the key string */
+-	fgets(enckey, sizeof(enckey), fp);
++	if( fgets(enckey, sizeof(enckey), fp) == NULL )
++	{
++	        EREPORT(("dst_read_public_key(): Can not read enckey field from %s\n"
++			 ,name));
++		return (NULL);
++	}
+ 
+ 	/* If we aren't at end-of-file, something is wrong.  */
+ 	while ((c = getc(fp)) != EOF)
+@@ -866,7 +876,7 @@
+ 	len = cnt;
+ 	p = in_buff;
+ 
+-	if (!dst_s_verify_str((const char **) &p, "Private-key-format: v")) {
++	if (!dst_s_verify_str((void*) &p, "Private-key-format: v")) {
+ 		EREPORT(("dst_s_read_private_key_file(): Not a Key file/Decrypt failed %s\n", name));
+ 		goto fail;
+ 	}
+@@ -884,7 +894,7 @@
+ 
+ 	while (*p++ != '\n') ;	/* skip to end of line */
+ 
+-	if (!dst_s_verify_str((const char **) &p, "Algorithm: "))
++	if (!dst_s_verify_str((void*) &p, "Algorithm: "))
+ 		goto fail;
+ 
+ 	if (sscanf((char *)p, "%d", &alg) != 1)
+--- dhcp-3.0.5/dst/dst_support.c.dst	2001-02-22 02:22:08.000000000 -0500
++++ dhcp-3.0.5/dst/dst_support.c	2006-11-13 17:32:00.000000000 -0500
+@@ -32,6 +32,10 @@
+ 
+ #include "dst_internal.h"
+ 
++/* prototypes */
++extern int b64_pton(char const *src, u_char *target, size_t targsize);
++extern int b64_ntop(u_char const *src, size_t srclength, char *target, size_t targsize);
++
+ /*
+  * dst_s_conv_bignum_u8_to_b64
+  *	This function converts binary data stored as a u_char[] to a

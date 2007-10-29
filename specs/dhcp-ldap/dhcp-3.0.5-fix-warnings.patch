@@ -1,0 +1,1741 @@
+--- dhcp-3.0.5/client/clparse.c.warnings	2006-11-13 18:29:06.000000000 -0500
++++ dhcp-3.0.5/client/clparse.c	2006-11-13 18:29:17.000000000 -0500
+@@ -39,8 +39,6 @@
+ 
+ #include "dhcpd.h"
+ 
+-static TIME parsed_time;
+-
+ struct client_config top_level_config;
+ 
+ u_int32_t default_requested_options [] = {
+@@ -65,7 +63,6 @@
+ isc_result_t read_client_conf ()
+ {
+ 	struct client_config *config;
+-	struct client_state *state;
+ 	struct interface_info *ip;
+ 	isc_result_t status;
+ 
+@@ -246,11 +243,9 @@
+ 	int token;
+ 	const char *val;
+ 	struct option *option;
+-	struct executable_statement *stmt, **p;
+-	enum statement_op op;
++	struct executable_statement *stmt;
+ 	int lose;
+ 	char *name;
+-	struct data_string key_id;
+ 	enum policy policy;
+ 	int known;
+ 	int tmp, i;
+@@ -979,11 +974,9 @@
+ {
+ 	int token;
+ 	const char *val;
+-	char *t, *n;
+ 	struct interface_info *ip;
+ 	struct option_cache *oc;
+ 	struct client_state *client = (struct client_state *)0;
+-	struct data_string key_id;
+ 
+ 	switch (next_token (&val, (unsigned *)0, cfile)) {
+ 	      case KEY:
+@@ -1174,12 +1167,6 @@
+ 	struct parse *cfile;
+ 	int flag;
+ {
+-	enum dhcp_token token;
+-	const char *val;
+-	unsigned char rf = flag;
+-	struct expression *data = (struct expression *)0;
+-	int status;
+-
+ 	parse_warn (cfile, "allow/deny/ignore not permitted here.");
+ 	skip_to_semi (cfile);
+ 	return 0;
+--- dhcp-3.0.5/common/icmp.c.warnings	2004-06-10 13:59:18.000000000 -0400
++++ dhcp-3.0.5/common/icmp.c	2006-11-13 18:29:17.000000000 -0500
+@@ -61,11 +61,7 @@
+ {
+ 	struct protoent *proto;
+ 	int protocol = 1;
+-	struct sockaddr_in from;
+-	int fd;
+ 	int state;
+-	struct icmp_state *new;
+-	omapi_object_t *h;
+ 	isc_result_t result;
+ 
+ 	/* Only initialize icmp once. */
+@@ -284,7 +280,6 @@
+ void trace_icmp_input_input (trace_type_t *ttype, unsigned length, char *buf)
+ {
+ 	struct iaddr *ia;
+-	unsigned len;
+ 	u_int8_t *icbuf;
+ 	ia = (struct iaddr *)buf;
+ 	ia->len = ntohl(ia->len);
+--- dhcp-3.0.5/common/parse.c.warnings	2006-11-13 18:29:06.000000000 -0500
++++ dhcp-3.0.5/common/parse.c	2006-11-13 18:29:17.000000000 -0500
+@@ -311,9 +311,6 @@
+ 	struct parse *cfile;
+ 	struct iaddr *addr;
+ {
+-	const char *val;
+-	enum dhcp_token token;
+-
+ 	addr -> len = 4;
+ 	if (parse_numeric_aggregate (cfile, addr -> iabuf,
+ 				     &addr -> len, DOT, 10, 8))
+@@ -650,7 +647,6 @@
+ TIME parse_date (cfile)
+ 	struct parse *cfile;
+ {
+-	struct tm tm;
+ 	int guess;
+ 	int tzoff, wday, year, mon, mday, hour, min, sec;
+ 	const char *val;
+@@ -1022,7 +1018,6 @@
+ 	char tokbuf [128];
+ 	unsigned tokix = 0;
+ 	char type;
+-	int code;
+ 	int is_signed;
+ 	char *s;
+ 	int has_encapsulation = 0;
+@@ -1515,7 +1510,6 @@
+ {
+ 	enum dhcp_token token;
+ 	const char *val;
+-	struct executable_statement base;
+ 	struct class *cta;
+ 	struct option *option;
+ 	struct option_cache *cache;
+@@ -1818,7 +1812,6 @@
+ 		if (token != NAME && token != NUMBER_OR_NAME) {
+ 			parse_warn (cfile,
+ 				    "%s can't be a variable name", val);
+-		      badunset:
+ 			skip_to_semi (cfile);
+ 			*lose = 1;
+ 			return 0;
+@@ -2793,16 +2786,12 @@
+ 	enum dhcp_token token;
+ 	const char *val;
+ 	struct collection *col;
+-	struct option *option;
+ 	struct expression *nexp, **ep;
+ 	int known;
+ 	enum expr_op opcode;
+ 	const char *s;
+ 	char *cptr;
+-	struct executable_statement *stmt;
+-	int i;
+ 	unsigned long u;
+-	isc_result_t status, code;
+ 	unsigned len;
+ 
+ 	token = peek_token (&val, (unsigned *)0, cfile);
+@@ -3290,7 +3279,6 @@
+ 					parse_warn
+ 						(cfile,
+ 						 "expecting dns expression.");
+-			      badnstrans:
+ 				expression_dereference (expr, MDL);
+ 				*lose = 1;
+ 				return 0;
+@@ -4198,8 +4186,6 @@
+ 	struct expression *expr = (struct expression *)0;
+ 	struct expression *tmp;
+ 	int lose;
+-	struct executable_statement *stmt;
+-	int ftt = 1;
+ 
+ 	token = peek_token (&val, (unsigned *)0, cfile);
+ 	if (token == SEMI) {
+@@ -4317,9 +4303,7 @@
+ 	struct expression *t = (struct expression *)0;
+ 	unsigned char buf [4];
+ 	unsigned len;
+-	unsigned char *ob;
+ 	struct iaddr addr;
+-	int num;
+ 	const char *f, *g;
+ 	struct enumeration_value *e;
+ 
+@@ -4557,11 +4541,6 @@
+ 
+ 	/* Parse the option data... */
+ 	do {
+-		/* Set a flag if this is an array of a simple type (i.e.,
+-		   not an array of pairs of IP addresses, or something
+-		   like that. */
+-		int uniform = option -> format [1] == 'A';
+-
+ 		for (fmt = option -> format; *fmt; fmt++) {
+ 			if (*fmt == 'A')
+ 				break;
+@@ -4760,7 +4739,6 @@
+ 	int token;
+ 	const char *val;
+ 	unsigned len;
+-	u_int8_t *s;
+ 
+ 	token = peek_token (&val, (unsigned *)0, cfile);
+ 	if (token == NUMBER_OR_NAME || token == NUMBER) {
+@@ -4827,9 +4805,10 @@
+ 		if (lix < (sizeof lexbuf) - 1)
+ 			lexbuf [lix++] = ' ';
+ 		if (cfile -> token_line [i] == '\t') {
+-			for (lix;
+-			     lix < (sizeof lexbuf) - 1 && (lix & 7); lix++)
++			while ((lix < (sizeof lexbuf) - 1) && (lix & 7)) {
+ 				lexbuf [lix] = ' ';
++				lix++;
++			}
+ 		}
+ 	}
+ 	lexbuf [lix] = 0;
+--- dhcp-3.0.5/common/socket.c.warnings	2004-06-10 13:59:21.000000000 -0400
++++ dhcp-3.0.5/common/socket.c	2006-11-13 18:29:17.000000000 -0500
+@@ -55,8 +55,6 @@
+ # endif
+ #endif
+ 
+-static int once = 0;
+-
+ /* Reinitializes the specified interface after an address change.   This
+    is not required for packet-filter APIs. */
+ 
+--- dhcp-3.0.5/common/memory.c.warnings	2004-06-10 13:59:19.000000000 -0400
++++ dhcp-3.0.5/common/memory.c	2006-11-13 18:29:18.000000000 -0500
+@@ -84,8 +84,7 @@
+ 
+ isc_result_t supersede_group (struct group_object *group, int writep)
+ {
+-	struct group_object *t, *u;
+-	isc_result_t status;
++	struct group_object *t;
+ 
+ 	/* Register the group in the group name hash table,
+ 	   so we can look it up later. */
+@@ -142,7 +141,6 @@
+ int clone_group (struct group **gp, struct group *group,
+ 		 const char *file, int line)
+ {
+-	isc_result_t status;
+ 	struct group *g = (struct group *)0;
+ 
+ 	/* Normally gp should contain the null pointer, but for convenience
+--- dhcp-3.0.5/common/print.c.warnings	2006-02-22 17:43:27.000000000 -0500
++++ dhcp-3.0.5/common/print.c	2006-11-13 18:29:18.000000000 -0500
+@@ -1043,7 +1043,6 @@
+ 			       const char *suffix, ...)
+ {
+ 	va_list list;
+-	char *buf;
+ 	unsigned len;
+ 	char *s, *t, *u;
+ 
+@@ -1081,7 +1080,6 @@
+ 			      struct data_string *data)
+ {
+ 	int i;
+-	char *buf;
+ 	char obuf [3];
+ 
+ 	/* See if this is just ASCII. */
+--- dhcp-3.0.5/common/options.c.warnings	2006-11-13 18:29:06.000000000 -0500
++++ dhcp-3.0.5/common/options.c	2006-11-13 18:29:18.000000000 -0500
+@@ -43,16 +43,11 @@
+ 
+ struct option *vendor_cfg_option;
+ 
+-static void do_option_set PROTO ((pair *,
+-				  struct option_cache *,
+-				  enum statement_op));
+-
+ /* Parse all available options out of the specified packet. */
+ 
+ int parse_options (packet)
+ 	struct packet *packet;
+ {
+-	int i;
+ 	struct option_cache *op = (struct option_cache *)0;
+ 
+ 	/* Allocate a new option state. */
+@@ -112,8 +107,6 @@
+ 	unsigned length;
+ 	struct universe *universe;
+ {
+-	unsigned char *t;
+-	const unsigned char *end = buffer + length;
+ 	unsigned len, offset;
+ 	int code;
+ 	struct option_cache *op = (struct option_cache *)0;
+@@ -277,7 +270,6 @@
+ 			  const unsigned char *buffer,
+ 			  unsigned length, struct universe *u)
+ {
+-	char *name;
+ 	struct buffer *bp = (struct buffer *)0;
+ 
+ 	/* FQDN options have to be at least four bytes long. */
+@@ -466,9 +458,7 @@
+ 	int priority_len;
+ 	unsigned char buffer [4096];	/* Really big buffer... */
+ 	unsigned main_buffer_size, mb_max;
+-	unsigned mainbufix, bufix, agentix;
+-	int fileix;
+-	int snameix;
++	unsigned mainbufix, agentix;
+ 	unsigned option_size;
+ 	unsigned length;
+ 	int i;
+@@ -476,7 +466,6 @@
+ 	struct data_string ds;
+ 	pair pp, *hash;
+ 	int need_endopt = 0;
+-	int have_sso = 0;
+ 	int ocount = 0;
+ 	int ofbuf1=0, ofbuf2=0;
+ 
+@@ -814,7 +803,6 @@
+ 	    if (u -> options [code] &&
+ 		((u -> options [code] -> format [0] == 'E' && !oc) ||
+ 		 u -> options [code] -> format [0] == 'e')) {
+-		int uix;
+ 		static char *s, *t;
+ 		struct option_cache *tmp;
+ 		struct data_string name;
+@@ -940,7 +928,6 @@
+ 	    toptstart = tix;
+ 	    while (length) {
+ 		    unsigned incr = length;
+-		    int consumed = 0;
+ 		    int *pix;
+ 		    unsigned char *base;
+ 
+@@ -1053,7 +1040,6 @@
+ 	const char *format;
+ {
+ 	const char *p;
+-	int retval = 0;
+ 
+ 	p = format;
+ 	while (*p != '\0') {
+@@ -2006,7 +1992,6 @@
+ {
+ 	pair ocp;
+ 	int status;
+-	int i;
+ 	static struct option_cache *no_nwip;
+ 	struct data_string ds;
+ 	struct option_chain_head *head;
+@@ -2020,7 +2005,6 @@
+ 
+ 	status = 0;
+ 	for (ocp = head -> first; ocp; ocp = ocp -> cdr) {
+-		struct option_cache *oc = (struct option_cache *)(ocp -> car);
+ 		if (store_option (result, universe, packet,
+ 				  lease, client_state, in_options,
+ 				  cfg_options, scope,
+@@ -2206,7 +2190,6 @@
+ {
+ 	struct universe *universe = find_option_universe (oc -> option,
+ 							  vsname);
+-	int i;
+ 
+ 	if (universe -> foreach)
+ 		(*universe -> foreach) (packet, lease, client_state,
+@@ -2256,7 +2239,6 @@
+ 	struct option_cache *oc;
+ {
+ 	pair *tail;
+-	pair np = (pair )0;
+ 	struct option_chain_head *head;
+ 
+ 	if (universe -> index >= options -> universe_count)
+@@ -2428,7 +2410,6 @@
+ 	struct iaddr from;
+ 	struct hardware *hfrom;
+ {
+-	int i;
+ 	struct option_cache *op;
+ 	struct packet *decoded_packet;
+ #if defined (DEBUG_MEMORY_LEAKAGE)
+--- dhcp-3.0.5/common/inet.c.warnings	2005-03-03 11:55:22.000000000 -0500
++++ dhcp-3.0.5/common/inet.c	2006-11-13 18:29:18.000000000 -0500
+@@ -124,7 +124,7 @@
+ 	struct iaddr subnet;
+ 	struct iaddr mask;
+ {
+-	int i, j, k;
++	int i;
+ 	struct iaddr rv;
+ 
+ 	if (subnet.len > sizeof(subnet.iabuf))
+--- dhcp-3.0.5/common/tree.c.warnings	2006-07-17 11:34:44.000000000 -0400
++++ dhcp-3.0.5/common/tree.c	2006-11-13 18:29:18.000000000 -0500
+@@ -249,8 +249,6 @@
+ 	struct expression *expr;
+ 	int limit;
+ {
+-	struct expression *rv;
+-
+ 	/* Allocate a node to enforce a limit on evaluation. */
+ 	if (!expression_allocate (new, MDL))
+ 		log_error ("no memory for limit expression");
+@@ -644,11 +642,10 @@
+ 	struct binding_scope **scope;
+ 	struct expression *expr;
+ {
+-	ns_updrec *foo;
+ 	unsigned long ttl = 0;
+ 	char *tname;
+ 	struct data_string name, data;
+-	int r0, r1, r2, r3;
++	int r0, r1, r2;
+ 
+ 	if (!result || *result) {
+ 		log_error ("evaluate_dns_expression called with non-null %s",
+@@ -903,10 +900,7 @@
+ 	struct binding_scope **scope;
+ 	struct expression *expr;
+ {
+-	struct data_string left, right;
+-	struct data_string rrtype, rrname, rrdata;
+-	unsigned long ttl;
+-	int srrtype, srrname, srrdata, sttl;
++	struct data_string left;
+ 	int bleft, bright;
+ 	int sleft, sright;
+ 	struct binding *binding;
+@@ -1275,11 +1269,10 @@
+ 	int line;
+ {
+ 	struct data_string data, other;
+-	unsigned long offset, len, i;
++	unsigned long offset, len;
+ 	int s0, s1, s2, s3;
+ 	int status;
+ 	struct binding *binding;
+-	char *s;
+ 	struct binding_value *bv;
+ 
+ 	switch (expr -> op) {
+@@ -1826,7 +1819,6 @@
+ 					       MDL);
+ 
+ 		if (s0 && s1) {
+-			char *upper;
+ 			int i;
+ 
+ 			/* The buffer must be a multiple of the number's
+@@ -3127,8 +3119,6 @@
+ int op_precedence (op1, op2)
+ 	enum expr_op op1, op2;
+ {
+-	int ov1, ov2;
+-
+ 	return op_val (op1) - op_val (op2);
+ }
+ 
+@@ -3742,7 +3732,6 @@
+ 	const char *file;
+ 	int line;
+ {
+-	int i;
+ 	struct binding_scope *binding_scope;
+ 
+ 	if (!ptr || !*ptr) {
+--- dhcp-3.0.5/common/dns.c.warnings	2006-02-22 17:43:27.000000000 -0500
++++ dhcp-3.0.5/common/dns.c	2006-11-13 18:29:19.000000000 -0500
+@@ -127,7 +127,6 @@
+ isc_result_t find_tsig_key (ns_tsig_key **key, const char *zname,
+ 			    struct dns_zone *zone)
+ {
+-	isc_result_t status;
+ 	ns_tsig_key *tkey;
+ 
+ 	if (!zone)
+@@ -201,7 +200,6 @@
+ 
+ isc_result_t dns_zone_lookup (struct dns_zone **zone, const char *name)
+ {
+-	struct dns_zone *tz = (struct dns_zone *)0;
+ 	int len;
+ 	char *tname = (char *)0;
+ 	isc_result_t status;
+@@ -234,7 +232,6 @@
+ 	const char *file;
+ 	int line;
+ {
+-	int i;
+ 	struct dns_zone *dns_zone;
+ 
+ 	if (!ptr || !*ptr) {
+@@ -397,9 +394,7 @@
+ void cache_found_zone (ns_class class,
+ 		       char *zname, struct in_addr *addrs, int naddrs)
+ {
+-	isc_result_t status = ISC_R_NOTFOUND;
+ 	struct dns_zone *zone = (struct dns_zone *)0;
+-	struct data_string nsaddrs;
+ 	int ix = strlen (zname);
+ 
+ 	if (zname [ix - 1] == '.')
+--- dhcp-3.0.5/common/resolv.c.warnings	2005-10-27 11:56:26.000000000 -0400
++++ dhcp-3.0.5/common/resolv.c	2006-11-13 18:29:19.000000000 -0500
+@@ -50,10 +50,8 @@
+ 	struct parse *cfile;
+ 	const char *val;
+ 	int token;
+-	int declaration = 0;
+ 	struct name_server *sp, *sl, *ns;
+ 	struct domain_search_list *dp, *dl, *nd;
+-	struct iaddr *iaddr;
+ 
+ 	if ((file = open (path_resolv_conf, O_RDONLY)) < 0) {
+ 		log_error ("Can't open %s: %m", path_resolv_conf);
+@@ -179,7 +177,6 @@
+ 
+ struct name_server *first_name_server ()
+ {
+-	FILE *rc;
+ 	static TIME rcdate;
+ 	struct stat st;
+ 
+@@ -190,8 +187,6 @@
+ 			return (struct name_server *)0;
+ 		}
+ 		if (st.st_mtime > rcdate) {
+-			char rcbuf [512];
+-			char *s, *t, *u;
+ 			rcdate = cur_time + 1;
+ 			
+ 			read_resolv_conf (rcdate);
+--- dhcp-3.0.5/common/execute.c.warnings	2006-02-22 17:43:27.000000000 -0500
++++ dhcp-3.0.5/common/execute.c	2006-11-13 18:29:19.000000000 -0500
+@@ -54,8 +54,6 @@
+ 	struct executable_statement *r, *e, *next;
+ 	int rc;
+ 	int status;
+-	unsigned long num;
+-	struct binding_scope *outer;
+ 	struct binding *binding;
+ 	struct data_string ds;
+ 	struct binding_scope *ns;
+@@ -283,7 +281,6 @@
+ 					binding -> next = (*scope) -> bindings;
+ 					(*scope) -> bindings = binding;
+ 				    } else {
+-				       badalloc:
+ 					dfree (binding, MDL);
+ 					binding = (struct binding *)0;
+ 				    }
+@@ -526,8 +523,6 @@
+ 	const char *file;
+ 	int line;
+ {
+-	struct executable_statement *bp;
+-
+ 	if (!ptr || !*ptr) {
+ 		log_error ("%s(%d): null pointer", file, line);
+ #if defined (POINTER_DEBUG)
+@@ -650,8 +645,6 @@
+ 	int indent;
+ {
+ 	struct executable_statement *r, *x;
+-	int result;
+-	int status;
+ 	const char *s, *t, *dot;
+ 	int col;
+ 
+@@ -906,10 +899,8 @@
+ {
+ 	int status, sub;
+ 	struct executable_statement *s;
+-	unsigned long foo;
+ 
+ 	if (is_data_expression (expr)) {
+-		struct executable_statement *e;
+ 		struct data_string cd, ds;
+ 		memset (&ds, 0, sizeof ds);
+ 		memset (&cd, 0, sizeof cd);
+@@ -983,7 +974,6 @@
+ {
+ 	struct executable_statement *foo;
+ 	int ok = 0;
+-	int result;
+ 
+ 	for (foo = stmt; foo; foo = foo -> next) {
+ 	    if ((*callback) (foo, vp, condp) != 0)
+--- dhcp-3.0.5/common/comapi.c.warnings	2006-02-22 17:43:27.000000000 -0500
++++ dhcp-3.0.5/common/comapi.c	2006-11-13 18:29:20.000000000 -0500
+@@ -143,7 +143,6 @@
+ {
+ 	struct group_object *group;
+ 	isc_result_t status;
+-	int foo;
+ 
+ 	if (h -> type != dhcp_type_group)
+ 		return ISC_R_INVALIDARG;
+@@ -217,7 +216,6 @@
+ {
+ 	struct group_object *group;
+ 	isc_result_t status;
+-	struct data_string ip_addrs;
+ 
+ 	if (h -> type != dhcp_type_group)
+ 		return ISC_R_INVALIDARG;
+@@ -240,7 +238,6 @@
+ isc_result_t dhcp_group_destroy (omapi_object_t *h, const char *file, int line)
+ {
+ 	struct group_object *group, *t;
+-	isc_result_t status;
+ 
+ 	if (h -> type != dhcp_type_group)
+ 		return ISC_R_INVALIDARG;
+@@ -271,7 +268,7 @@
+ isc_result_t dhcp_group_signal_handler (omapi_object_t *h,
+ 					const char *name, va_list ap)
+ {
+-	struct group_object *group, *t;
++	struct group_object *group;
+ 	isc_result_t status;
+ 	int updatep = 0;
+ 
+@@ -453,7 +450,6 @@
+ {
+ 	dhcp_control_object_t *control;
+ 	isc_result_t status;
+-	int foo;
+ 	unsigned long newstate;
+ 
+ 	if (h -> type != dhcp_type_control)
+@@ -488,7 +484,6 @@
+ {
+ 	dhcp_control_object_t *control;
+ 	isc_result_t status;
+-	struct data_string ip_addrs;
+ 
+ 	if (h -> type != dhcp_type_control)
+ 		return ISC_R_INVALIDARG;
+@@ -511,9 +506,6 @@
+ isc_result_t dhcp_control_destroy (omapi_object_t *h,
+ 				   const char *file, int line)
+ {
+-	dhcp_control_object_t *control, *t;
+-	isc_result_t status;
+-
+ 	if (h -> type != dhcp_type_control)
+ 		return ISC_R_INVALIDARG;
+ 
+@@ -524,9 +516,8 @@
+ isc_result_t dhcp_control_signal_handler (omapi_object_t *h,
+ 					const char *name, va_list ap)
+ {
+-	dhcp_control_object_t *control, *t;
++	dhcp_control_object_t *control;
+ 	isc_result_t status;
+-	int updatep = 0;
+ 
+ 	if (h -> type != dhcp_type_control)
+ 		return ISC_R_INVALIDARG;
+@@ -580,7 +571,6 @@
+ {
+ 	omapi_value_t *tv = (omapi_value_t *)0;
+ 	isc_result_t status;
+-	dhcp_control_object_t *control;
+ 
+ 	/* First see if we were sent a handle. */
+ 	if (ref) {
+@@ -629,7 +619,6 @@
+ {
+ 	struct subnet *subnet;
+ 	isc_result_t status;
+-	int foo;
+ 
+ 	if (h -> type != dhcp_type_subnet)
+ 		return ISC_R_INVALIDARG;
+@@ -675,7 +664,6 @@
+ isc_result_t dhcp_subnet_destroy (omapi_object_t *h, const char *file, int line)
+ {
+ 	struct subnet *subnet;
+-	isc_result_t status;
+ 
+ 	if (h -> type != dhcp_type_subnet)
+ 		return ISC_R_INVALIDARG;
+@@ -752,10 +740,6 @@
+ 				 omapi_object_t *id,
+ 				 omapi_object_t *ref)
+ {
+-	omapi_value_t *tv = (omapi_value_t *)0;
+-	isc_result_t status;
+-	struct subnet *subnet;
+-
+ 	/* Can't look up subnets yet. */
+ 
+ 	/* If we get to here without finding a subnet, no valid key was
+@@ -784,7 +768,6 @@
+ {
+ 	struct shared_network *shared_network;
+ 	isc_result_t status;
+-	int foo;
+ 
+ 	if (h -> type != dhcp_type_shared_network)
+ 		return ISC_R_INVALIDARG;
+@@ -832,7 +815,6 @@
+ 					  const char *file, int line)
+ {
+ 	struct shared_network *shared_network;
+-	isc_result_t status;
+ 
+ 	if (h -> type != dhcp_type_shared_network)
+ 		return ISC_R_INVALIDARG;
+@@ -922,10 +904,6 @@
+ 					 omapi_object_t *id,
+ 					 omapi_object_t *ref)
+ {
+-	omapi_value_t *tv = (omapi_value_t *)0;
+-	isc_result_t status;
+-	struct shared_network *shared_network;
+-
+ 	/* Can't look up shared_networks yet. */
+ 
+ 	/* If we get to here without finding a shared_network, no valid key was
+--- dhcp-3.0.5/dhcpctl/dhcpctl.c.warnings	2004-06-10 13:59:24.000000000 -0400
++++ dhcp-3.0.5/dhcpctl/dhcpctl.c	2006-11-13 18:29:20.000000000 -0500
+@@ -101,7 +101,6 @@
+ 				dhcpctl_handle authinfo)
+ {
+ 	isc_result_t status;
+-	dhcpctl_status waitstatus;
+ 
+ 	status = omapi_generic_new (connection, MDL);
+ 	if (status != ISC_R_SUCCESS) {
+@@ -171,7 +170,6 @@
+ {
+ 	isc_result_t status;
+ 	omapi_value_t *tv = (omapi_value_t *)0;
+-	omapi_data_string_t *value = (omapi_data_string_t *)0;
+ 	unsigned len;
+ 	int ip;
+ 
+@@ -263,7 +261,6 @@
+ 	isc_result_t status;
+ 	omapi_typed_data_t *tv = (omapi_typed_data_t *)0;
+ 	omapi_data_string_t *name = (omapi_data_string_t *)0;
+-	int len;
+ 
+ 	status = omapi_data_string_new (&name, strlen (value_name), MDL);
+ 	if (status != ISC_R_SUCCESS)
+@@ -297,7 +294,6 @@
+ 	isc_result_t status;
+ 	omapi_typed_data_t *tv = (omapi_typed_data_t *)0;
+ 	omapi_data_string_t *name = (omapi_data_string_t *)0;
+-	int len;
+ 
+ 	status = omapi_data_string_new (&name, strlen (value_name), MDL);
+ 	if (status != ISC_R_SUCCESS)
+@@ -386,7 +382,6 @@
+ 	isc_result_t status;
+ 	omapi_typed_data_t *tv = (omapi_typed_data_t *)0;
+ 	omapi_data_string_t *name = (omapi_data_string_t *)0;
+-	int len;
+ 
+ 	status = omapi_data_string_new (&name, strlen (value_name), MDL);
+ 	if (status != ISC_R_SUCCESS)
+@@ -416,7 +411,6 @@
+ 	isc_result_t status;
+ 	omapi_typed_data_t *tv = (omapi_typed_data_t *)0;
+ 	omapi_data_string_t *name = (omapi_data_string_t *)0;
+-	int len;
+ 
+ 	status = omapi_data_string_new (&name, strlen (value_name), MDL);
+ 	if (status != ISC_R_SUCCESS)
+--- dhcp-3.0.5/dhcpctl/callback.c.warnings	2006-11-13 18:29:06.000000000 -0500
++++ dhcp-3.0.5/dhcpctl/callback.c	2006-11-13 18:29:20.000000000 -0500
+@@ -59,7 +59,6 @@
+ {
+ 	dhcpctl_callback_object_t *callback;
+ 	omapi_object_t *inner;
+-	isc_result_t status;
+ 
+ 	callback = dmalloc (sizeof *callback, MDL);
+ 	if (!callback)
+@@ -162,8 +161,6 @@
+ 					    omapi_object_t *id,
+ 					    omapi_object_t *p)
+ {
+-	int i;
+-
+ 	if (p -> type != dhcpctl_callback_type)
+ 		return ISC_R_INVALIDARG;
+ 
+--- dhcp-3.0.5/dhcpctl/remote.c.warnings	2006-11-13 18:29:06.000000000 -0500
++++ dhcp-3.0.5/dhcpctl/remote.c	2006-11-13 18:29:20.000000000 -0500
+@@ -354,8 +354,6 @@
+ 					  omapi_object_t *id,
+ 					  omapi_object_t *p)
+ {
+-	int i;
+-
+ 	if (p -> type != dhcpctl_remote_type)
+ 		return ISC_R_INVALIDARG;
+ 
+--- dhcp-3.0.5/dhcpctl/omshell.c.warnings	2005-10-27 11:56:26.000000000 -0400
++++ dhcp-3.0.5/dhcpctl/omshell.c	2006-11-13 18:29:20.000000000 -0500
+@@ -82,11 +82,9 @@
+ 	dhcpctl_handle connection;
+ 	dhcpctl_handle authenticator;
+ 	dhcpctl_handle oh;
+-	dhcpctl_data_string cid, ip_addr;
+-	dhcpctl_data_string result, groupname, identifier;
+ 	struct data_string secret;
+ 	const char *name = 0, *algorithm = "hmac-md5";
+-	int i, j;
++	int i;
+ 	int port = 7911;
+ 	const char *server = "127.0.0.1";
+ 	struct parse *cfile;
+@@ -481,7 +479,6 @@
+ 				val = buf;
+ 				do {
+ 				    int intval = atoi (val);
+-				dotiszero:
+ 				    if (intval > 255) {
+ 					parse_warn (cfile,
+ 						    "dotted octet > 255: %s",
+--- dhcp-3.0.5/dhcpctl/cltest.c.warnings	2004-06-10 13:59:23.000000000 -0400
++++ dhcp-3.0.5/dhcpctl/cltest.c	2006-11-13 18:29:20.000000000 -0500
+@@ -60,9 +60,8 @@
+ 	isc_result_t status, waitstatus;
+ 	dhcpctl_handle authenticator;
+ 	dhcpctl_handle connection;
+-	dhcpctl_handle host_handle, group_handle, interface_handle;
+-	dhcpctl_data_string cid;
+-	dhcpctl_data_string result, groupname, identifier;
++	dhcpctl_handle interface_handle;
++	dhcpctl_data_string result;
+ 	int i;
+ 	int mode = undefined;
+ 	const char *interface = 0;
+--- dhcp-3.0.5/dst/prandom.c.warnings	2001-02-22 02:22:09.000000000 -0500
++++ dhcp-3.0.5/dst/prandom.c	2006-11-13 18:29:20.000000000 -0500
+@@ -335,7 +335,7 @@
+ 		cnt += do_time(work);
+ 	}
+ 	while ((n = fread(buffer, sizeof(char), sizeof(buffer), pipe)) > 0)
+-		NULL; /* drain the pipe */
++		continue; /* drain the pipe */
+ 	pclose(pipe);
+ 	return (cnt);		/* read how many bytes where read in */
+ }
+--- dhcp-3.0.5/minires/res_mkupdate.c.warnings	2006-11-13 18:29:06.000000000 -0500
++++ dhcp-3.0.5/minires/res_mkupdate.c	2006-11-13 18:29:20.000000000 -0500
+@@ -112,7 +112,7 @@
+ 	u_int16_t rtype, rclass;
+ 	u_int32_t n1, rttl;
+ 	u_char *dnptrs[20], **dpp, **lastdnptr;
+-	unsigned siglen, certlen;
++	unsigned certlen;
+ 	int keylen;
+ 	unsigned buflen = *blp;
+ 	u_char *buf = (unsigned char *)bp;
+--- dhcp-3.0.5/minires/res_update.c.warnings	2006-11-13 18:29:06.000000000 -0500
++++ dhcp-3.0.5/minires/res_update.c	2006-11-13 18:29:20.000000000 -0500
+@@ -106,7 +106,7 @@
+ 	double answer[PACKETSZ / sizeof (double)];
+ 	double packet[2*PACKETSZ / sizeof (double)];
+ 	struct zonegrp *zptr, tgrp;
+-	int nzones = 0, nscount = 0;
++	int nscount = 0;
+ 	unsigned n;
+ 	unsigned rval;
+ 	struct sockaddr_in nsaddrs[MAXNS];
+--- dhcp-3.0.5/omapip/protocol.c.warnings	2006-11-13 18:29:06.000000000 -0500
++++ dhcp-3.0.5/omapip/protocol.c	2006-11-13 18:29:20.000000000 -0500
+@@ -161,7 +161,6 @@
+ 	omapi_remote_auth_t *ra;
+ 	omapi_value_t *signature;
+ 	isc_result_t status;
+-	u_int32_t foo;
+ 	unsigned auth_len;
+ 
+ 	if (po -> type != omapi_type_protocol ||
+@@ -940,8 +939,6 @@
+ 					  omapi_object_t *id,
+ 					  omapi_object_t *p)
+ {
+-	int i;
+-
+ 	if (p -> type != omapi_type_protocol)
+ 		return ISC_R_INVALIDARG;
+ 
+@@ -1128,8 +1125,6 @@
+ 					    omapi_object_t *id,
+ 					    omapi_object_t *p)
+ {
+-	int i;
+-
+ 	if (p -> type != omapi_type_protocol_listener)
+ 		return ISC_R_INVALIDARG;
+ 
+--- dhcp-3.0.5/omapip/buffer.c.warnings	2005-10-06 15:05:46.000000000 -0400
++++ dhcp-3.0.5/omapip/buffer.c	2006-11-13 18:29:20.000000000 -0500
+@@ -438,7 +438,6 @@
+ 	int bytes_written;
+ 	unsigned first_byte;
+ 	omapi_buffer_t *buffer;
+-	unsigned char *bufp;
+ 	omapi_connection_object_t *c;
+ 	isc_result_t status;
+ 
+@@ -575,7 +574,6 @@
+ 					  u_int32_t value)
+ {
+ 	u_int32_t inbuf;
+-	isc_result_t status;
+ 
+ 	inbuf = htonl (value);
+ 	
+@@ -602,7 +600,6 @@
+ 					  u_int32_t value)
+ {
+ 	u_int16_t inbuf;
+-	isc_result_t status;
+ 
+ 	inbuf = htons (value);
+ 	
+--- dhcp-3.0.5/omapip/connection.c.warnings	2006-11-13 18:29:06.000000000 -0500
++++ dhcp-3.0.5/omapip/connection.c	2006-11-13 18:29:21.000000000 -0500
+@@ -111,10 +111,6 @@
+ 	omapi_connection_object_t *obj;
+ 	int flag;
+ 	struct sockaddr_in local_sin;
+-#if defined (TRACING)
+-	trace_addr_t *addrs;
+-	u_int16_t naddrs;
+-#endif
+ 
+ 	obj = (omapi_connection_object_t *)0;
+ 	status = omapi_connection_allocate (&obj, MDL);
+@@ -1005,8 +1001,6 @@
+ 					    omapi_object_t *id,
+ 					    omapi_object_t *m)
+ {
+-	int i;
+-
+ 	if (m -> type != omapi_type_connection)
+ 		return ISC_R_INVALIDARG;
+ 
+--- dhcp-3.0.5/omapip/listener.c.warnings	2004-06-10 13:59:48.000000000 -0400
++++ dhcp-3.0.5/omapip/listener.c	2006-11-13 18:29:21.000000000 -0500
+@@ -68,12 +68,9 @@
+ 				omapi_addr_t *addr,
+ 				int max)
+ {
+-	struct hostent *he;
+-	int hix;
+ 	isc_result_t status;
+ 	omapi_listener_object_t *obj;
+ 	int i;
+-	struct in_addr ia;
+ 
+ 	/* Get the handle. */
+ 	obj = (omapi_listener_object_t *)0;
+@@ -200,8 +197,6 @@
+ 	SOCKLEN_T len;
+ 	omapi_connection_object_t *obj;
+ 	omapi_listener_object_t *listener;
+-	omapi_addr_t remote_addr;
+-	int i;
+ 	struct sockaddr_in addr;
+ 	int socket;
+ 
+@@ -223,7 +218,6 @@
+ 	/* If we're recording a trace, remember the connection. */
+ 	if (trace_record ()) {
+ 		trace_iov_t iov [3];
+-		u_int32_t lsock;
+ 		iov [0].buf = (char *)&addr.sin_port;
+ 		iov [0].len = sizeof addr.sin_port;
+ 		iov [1].buf = (char *)&addr.sin_addr;
+@@ -455,8 +449,6 @@
+ 					  omapi_object_t *id,
+ 					  omapi_object_t *l)
+ {
+-	int i;
+-
+ 	if (l -> type != omapi_type_listener)
+ 		return ISC_R_INVALIDARG;
+ 
+--- dhcp-3.0.5/omapip/generic.c.warnings	2006-02-22 17:43:27.000000000 -0500
++++ dhcp-3.0.5/omapip/generic.c	2006-11-13 18:29:21.000000000 -0500
+@@ -292,7 +292,6 @@
+ isc_result_t omapi_generic_clear_flags (omapi_object_t *o)
+ {
+ 	int i;
+-	isc_result_t status;
+ 	omapi_generic_object_t *g;
+ 
+ 	if (o -> type != omapi_type_generic)
+--- dhcp-3.0.5/omapip/support.c.warnings	2006-02-22 17:43:27.000000000 -0500
++++ dhcp-3.0.5/omapip/support.c	2006-11-13 18:29:21.000000000 -0500
+@@ -53,7 +53,6 @@
+ 
+ omapi_object_type_t *omapi_object_types;
+ int omapi_object_type_count;
+-static int ot_max;
+ 
+ #if defined (DEBUG_MEMORY_LEAKAGE_ON_EXIT)
+ void omapi_type_relinquish ()
+@@ -298,7 +297,6 @@
+ isc_result_t omapi_signal_in (omapi_object_t *handle, const char *name, ...)
+ {
+ 	va_list ap;
+-	omapi_object_t *outer;
+ 	isc_result_t status;
+ 
+ 	if (!handle)
+@@ -368,7 +366,6 @@
+ 				  const char *name,
+ 				  omapi_typed_data_t *value)
+ {
+-	omapi_object_t *outer;
+ 	omapi_data_string_t *nds;
+ 	isc_result_t status;
+ 
+@@ -389,8 +386,6 @@
+ 	isc_result_t status;
+ 	omapi_typed_data_t *tv = (omapi_typed_data_t *)0;
+ 	omapi_data_string_t *n = (omapi_data_string_t *)0;
+-	int len;
+-	int ip;
+ 
+ 	status = omapi_data_string_new (&n, strlen (name), MDL);
+ 	if (status != ISC_R_SUCCESS)
+@@ -415,8 +410,6 @@
+ 	isc_result_t status;
+ 	omapi_typed_data_t *tv = (omapi_typed_data_t *)0;
+ 	omapi_data_string_t *n = (omapi_data_string_t *)0;
+-	int len;
+-	int ip;
+ 
+ 	status = omapi_data_string_new (&n, strlen (name), MDL);
+ 	if (status != ISC_R_SUCCESS)
+@@ -441,8 +434,6 @@
+ 	isc_result_t status;
+ 	omapi_typed_data_t *tv = (omapi_typed_data_t *)0;
+ 	omapi_data_string_t *n = (omapi_data_string_t *)0;
+-	int len;
+-	int ip;
+ 
+ 	status = omapi_data_string_new (&n, strlen (name), MDL);
+ 	if (status != ISC_R_SUCCESS)
+@@ -467,8 +458,6 @@
+ 	isc_result_t status;
+ 	omapi_typed_data_t *tv = (omapi_typed_data_t *)0;
+ 	omapi_data_string_t *n = (omapi_data_string_t *)0;
+-	int len;
+-	int ip;
+ 
+ 	status = omapi_data_string_new (&n, strlen (name), MDL);
+ 	if (status != ISC_R_SUCCESS)
+--- dhcp-3.0.5/omapip/handle.c.warnings	2006-02-22 17:43:27.000000000 -0500
++++ dhcp-3.0.5/omapip/handle.c	2006-11-13 18:29:21.000000000 -0500
+@@ -76,7 +76,6 @@
+ 
+ isc_result_t omapi_object_handle (omapi_handle_t *h, omapi_object_t *o)
+ {
+-	int tabix;
+ 	isc_result_t status;
+ 
+ 	if (o -> handle) {
+@@ -285,7 +284,6 @@
+ isc_result_t omapi_handle_td_lookup (omapi_object_t **obj,
+ 				     omapi_typed_data_t *handle)
+ {
+-	isc_result_t status;
+ 	omapi_handle_t h;
+ 
+ 	if (handle -> type == omapi_datatype_int)
+--- dhcp-3.0.5/omapip/message.c.warnings	2006-11-13 18:29:06.000000000 -0500
++++ dhcp-3.0.5/omapip/message.c	2006-11-13 18:29:21.000000000 -0500
+@@ -209,8 +209,6 @@
+ isc_result_t omapi_message_destroy (omapi_object_t *h,
+ 				    const char *file, int line)
+ {
+-	int i;
+-
+ 	omapi_message_object_t *m;
+ 	if (h -> type != omapi_type_message)
+ 		return ISC_R_INVALIDARG;
+@@ -261,8 +259,6 @@
+ 					 omapi_object_t *id,
+ 					 omapi_object_t *m)
+ {
+-	int i;
+-
+ 	if (m -> type != omapi_type_message)
+ 		return ISC_R_INVALIDARG;
+ 
+--- dhcp-3.0.5/omapip/convert.c.warnings	2004-11-24 12:39:17.000000000 -0500
++++ dhcp-3.0.5/omapip/convert.c	2006-11-13 18:29:21.000000000 -0500
+@@ -165,7 +165,7 @@
+ 	u_int32_t number;
+ 	static char h2a [] = "0123456789abcdef";
+ 	int power = converted_length (inbuf, base, width);
+-	int i, j;
++	int i;
+ 
+ 	if (base > 16)
+ 		return 0;
+--- dhcp-3.0.5/omapip/hash.c.warnings	2006-02-22 17:43:27.000000000 -0500
++++ dhcp-3.0.5/omapip/hash.c	2006-11-13 18:29:21.000000000 -0500
+@@ -81,8 +81,6 @@
+ 	const char *file;
+ 	int line;
+ {
+-	int i;
+-	struct hash_bucket *hbc, *hbn = (struct hash_bucket *)0;
+ 	struct hash_table *ptr = *tp;
+ 
+ #if defined (DEBUG_MEMORY_LEAKAGE) || \
+@@ -175,7 +173,6 @@
+ 	const char *file;
+ 	int line;
+ {
+-	struct hash_bucket *hp;
+ #if defined (DEBUG_MALLOC_POOL)
+ 	for (hp = free_hash_buckets; hp; hp = hp -> next) {
+ 		if (hp == ptr) {
+--- dhcp-3.0.5/omapip/array.c.warnings	2006-02-22 17:43:27.000000000 -0500
++++ dhcp-3.0.5/omapip/array.c	2006-11-13 18:29:21.000000000 -0500
+@@ -46,7 +46,6 @@
+ 				   omapi_array_deref_t deref,
+ 				   const char *file, int line)
+ {
+-	isc_result_t status;
+ 	omapi_array_t *aptr;
+ 
+ 	if (!array || *array)
+@@ -63,7 +62,6 @@
+ isc_result_t omapi_array_free (omapi_array_t **array,
+ 			       const char *file, int line)
+ {
+-	isc_result_t status;
+ 	omapi_array_t *aptr;
+ 	int i;
+ 
+--- dhcp-3.0.5/omapip/trace.c.warnings	2006-02-22 17:43:27.000000000 -0500
++++ dhcp-3.0.5/omapip/trace.c	2006-11-13 18:29:21.000000000 -0500
+@@ -312,7 +312,7 @@
+ 				   void (*stop_tracing) (trace_type_t *),
+ 				   const char *file, int line)
+ {
+-	trace_type_t *ttmp, *tptr;
++	trace_type_t *ttmp;
+ 	unsigned slen = strlen (name);
+ 	isc_result_t status;
+ 
+@@ -511,7 +511,6 @@
+ 	trace_type_t *ttype;
+ 	unsigned paylen;
+ 	int status;
+-	int len;
+ 	fpos_t curpos;
+ 
+ 	status = fgetpos (traceinfile, &curpos);
+@@ -637,7 +636,6 @@
+ 	unsigned bufmax = 0;
+ 	unsigned buflen = 0;
+ 	char *buf = (char *)0;
+-	isc_result_t status;
+ 	time_t result;
+ 	trace_type_t *ttp;
+ 	
+--- dhcp-3.0.5/omapip/mrtrace.c.warnings	2004-09-30 16:23:07.000000000 -0400
++++ dhcp-3.0.5/omapip/mrtrace.c	2006-11-13 18:29:21.000000000 -0500
+@@ -85,7 +85,6 @@
+ 	unsigned buflen = 0;
+ 	char *buf = (char *)0;
+ 	isc_result_t status;
+-	u_int32_t id;
+ 	int i;
+ 
+ 	if (trace_playback ()) {
+@@ -412,7 +411,6 @@
+ 	isc_result_t status;
+ 
+ 	if (trace_playback ()) {
+-		int nscount;
+ 		status = trace_get_packet (&trace_mr_randomid, &buflen, &buf);
+ 		if (status != ISC_R_SUCCESS) {
+ 			log_error ("trace_mr_statp: no statp packet found.");
+--- dhcp-3.0.5/relay/dhcrelay.c.warnings	2006-04-27 17:38:30.000000000 -0400
++++ dhcp-3.0.5/relay/dhcrelay.c	2006-11-13 18:29:21.000000000 -0500
+@@ -734,7 +734,7 @@
+ 	unsigned length;
+ 	struct in_addr giaddr;
+ {
+-	int is_dhcp = 0, agent_options_present = 0;
++	int is_dhcp = 0;
+ 	unsigned optlen;
+ 	u_int8_t *op, *nextop, *sp, *max, *end_pad = NULL;
+ 
+--- dhcp-3.0.5/server/dhcpd.c.warnings	2006-11-13 18:29:06.000000000 -0500
++++ dhcp-3.0.5/server/dhcpd.c	2006-11-13 18:29:21.000000000 -0500
+@@ -215,9 +215,6 @@
+ 	struct interface_info *ip;
+ 	struct parse *parse;
+ 	int lose;
+-	omapi_object_t *auth;
+-	struct tsig_key *key;
+-	omapi_typed_data_t *td;
+ 	int no_dhcpd_conf = 0;
+ 	int no_dhcpd_db = 0;
+ 	int no_dhcpd_pid = 0;
+@@ -976,7 +973,6 @@
+ 	   necessary. */
+ 	if (!ia) {
+ 		const char *fnn = "fallback-net";
+-		char *s;
+ 		status = shared_network_allocate (&ip -> shared_network, MDL);
+ 		if (status != ISC_R_SUCCESS)
+ 			log_fatal ("No memory for shared subnet: %s",
+--- dhcp-3.0.5/server/dhcp.c.warnings	2006-11-13 18:29:06.000000000 -0500
++++ dhcp-3.0.5/server/dhcp.c	2006-11-13 18:29:21.000000000 -0500
+@@ -388,7 +388,6 @@
+ 	int ours = 0;
+ 	struct option_cache *oc;
+ 	struct data_string data;
+-	int status;
+ 	char msgbuf [1024]; /* XXX */
+ 	const char *s;
+ 	char smbuf [19];
+@@ -927,14 +926,13 @@
+ 	char msgbuf [1024];
+ 	struct data_string d1, prl;
+ 	struct option_cache *oc;
+-	struct expression *expr;
+ 	struct option_state *options = (struct option_state *)0;
+ 	struct dhcp_packet raw;
+ 	struct packet outgoing;
+ 	unsigned char dhcpack = DHCPACK;
+ 	struct subnet *subnet = (struct subnet *)0;
+ 	struct iaddr cip, gip;
+-	unsigned i, j;
++	unsigned i;
+ 	int nulltp;
+ 	struct sockaddr_in to;
+ 	struct in_addr from;
+@@ -1308,7 +1306,6 @@
+ 	unsigned i;
+ 	struct data_string data;
+ 	struct option_state *options = (struct option_state *)0;
+-	struct expression *expr;
+ 	struct option_cache *oc = (struct option_cache *)0;
+ 	struct iaddr myfrom;
+ 
+@@ -1514,15 +1511,11 @@
+ 	TIME max_lease_time;
+ 	TIME default_lease_time;
+ 	struct option_cache *oc;
+-	struct expression *expr;
+-	int status;
+ 	isc_result_t result;
+-	int did_ping = 0;
+ 	TIME ping_timeout;
+ 
+ 	unsigned i, j;
+-	int s1, s2;
+-	int val;
++	int s1;
+ 	int ignorep;
+ 
+ 	/* If we're already acking this lease, don't do it again. */
+@@ -2742,12 +2735,9 @@
+ 	struct in_addr from;
+ 	struct hardware hto;
+ 	int result;
+-	int i;
+ 	struct lease_state *state = lease -> state;
+ 	int nulltp, bootpp, unicastp = 1;
+-	struct option_tag *ot, *not;
+ 	struct data_string d1;
+-	struct option_cache *oc;
+ 	const char *s;
+ 
+ 	if (!state)
+@@ -2968,7 +2958,6 @@
+ 	struct data_string d1;
+ 	int have_client_identifier = 0;
+ 	struct data_string client_identifier;
+-	int status;
+ 	struct hardware h;
+ 
+ 	/* Quick check to see if the peer has leases. */
+--- dhcp-3.0.5/server/confpars.c.warnings	2006-11-13 18:29:06.000000000 -0500
++++ dhcp-3.0.5/server/confpars.c	2006-11-13 18:29:21.000000000 -0500
+@@ -329,15 +329,12 @@
+ 	enum dhcp_token token;
+ 	const char *val;
+ 	struct shared_network *share;
+-	char *t, *n;
+-	struct expression *expr;
+-	struct data_string data;
++	char *n;
+ 	struct hardware hardware;
+ 	struct executable_statement *et, *ep;
+ 	struct option *option;
+ 	struct option_cache *cache;
+ 	int lose;
+-	struct data_string key_id;
+ 	int known;
+ 	isc_result_t status;
+ 
+@@ -927,7 +924,6 @@
+ 					    "load balance settings.");
+ 			if (token != NUMBER) {
+ 				parse_warn (cfile, "expecting number");
+-			      badsplit:
+ 				skip_to_rbrace (cfile, 1);
+ 				dhcp_failover_state_dereference (&peer, MDL);
+ 				return;
+@@ -1538,8 +1534,6 @@
+ 
+ 	/* See if there's already a pool into which we can merge this one. */
+ 	for (pp = pool -> shared_network -> pools; pp; pp = pp -> next) {
+-		struct lease *l;
+-
+ 		if (pp -> group -> statements != pool -> group -> statements)
+ 			continue;
+ #if defined (FAILOVER_PROTOCOL)
+@@ -1850,7 +1844,6 @@
+ 	char *name;
+ 	const char *tname;
+ 	struct executable_statement *stmt = (struct executable_statement *)0;
+-	struct expression *expr;
+ 	int new = 1;
+ 	isc_result_t status = ISC_R_FAILURE;
+ 
+@@ -2259,7 +2252,6 @@
+ 	unsigned char addr [4];
+ 	unsigned len = sizeof addr;
+ 	int declaration = 0;
+-	struct interface_info *ip;
+ 	isc_result_t status;
+ 
+ 	subnet = (struct subnet *)0;
+@@ -2553,8 +2545,6 @@
+ 	char tbuf [32];
+ 	struct lease *lease;
+ 	struct executable_statement *on;
+-	struct expression *exp;
+-	struct data_string ds;
+ 	int lose;
+ 	TIME t;
+ 	char *s;
+@@ -2980,7 +2970,6 @@
+ 
+ 			token = peek_token (&val, (unsigned *)0, cfile);
+ 			if (token == STRING) {
+-			    unsigned char *tuid;
+ 			    token = next_token (&val, &buflen, cfile);
+ 			    binding -> value -> type = binding_data;
+ 			    binding -> value -> value.data.len = buflen;
+@@ -3137,7 +3126,6 @@
+ 	int dynamic = 0;
+ 	struct subnet *subnet;
+ 	struct shared_network *share;
+-	struct pool *p;
+ 	struct pool *pool;
+ 	isc_result_t status;
+ 
+--- dhcp-3.0.5/server/db.c.warnings	2006-07-19 12:45:30.000000000 -0400
++++ dhcp-3.0.5/server/db.c	2006-11-13 18:29:21.000000000 -0500
+@@ -56,7 +56,6 @@
+ 	struct tm *t;
+ 	char tbuf [64];
+ 	int errors = 0;
+-	int i;
+ 	struct binding *b;
+ 	char *s;
+ 
+@@ -199,7 +198,6 @@
+ 		}
+ 	}
+ 	if (lease -> uid_len) {
+-		int i;
+ 		s = quotify_buf (lease -> uid, lease -> uid_len, MDL);
+ 		if (s) {
+ 			fprintf (db_file, "\n  uid \"%s\";", s);
+@@ -467,7 +465,6 @@
+ 	struct group_object *group;
+ {
+ 	int errors = 0;
+-	int i;
+ 
+ 	/* If the lease file is corrupt, don't try to write any more leases
+ 	   until we've written a good lease file. */
+@@ -625,8 +622,6 @@
+ {
+ 	struct collection *lp;
+ 	struct class *cp;
+-	struct hash_bucket *bp;
+-	int i;
+ 
+ 	for (lp = collections; lp; lp = lp -> next) {
+ 	    for (cp = lp -> classes; cp; cp = cp -> nic) {
+--- dhcp-3.0.5/server/failover.c.warnings	2006-09-22 12:29:44.000000000 -0400
++++ dhcp-3.0.5/server/failover.c	2006-11-13 18:29:21.000000000 -0500
+@@ -57,7 +57,6 @@
+ {
+ 	dhcp_failover_state_t *state;
+ 	isc_result_t status;
+-	dhcp_failover_listener_t *l;
+ 
+ 	for (state = failover_states; state; state = state -> next) {
+ 		dhcp_failover_state_transition (state, "startup");
+@@ -174,7 +173,6 @@
+ {
+ 	isc_result_t status;
+ 	dhcp_failover_link_t *obj;
+-	omapi_value_t *value = (omapi_value_t *)0;
+ 	dhcp_failover_state_t *state;
+ 	omapi_object_t *o;
+ 	int i;
+@@ -276,8 +274,6 @@
+ 	isc_result_t status;
+ 	dhcp_failover_link_t *link;
+ 	omapi_object_t *c;
+-	u_int16_t nlen;
+-	u_int32_t vlen;
+ 	dhcp_failover_state_t *s, *state = (dhcp_failover_state_t *)0;
+ 
+ 	if (h -> type != dhcp_type_failover_link) {
+@@ -591,7 +587,6 @@
+ 	unsigned op_size;
+ 	unsigned op_count;
+ 	int i;
+-	isc_result_t status;
+ 	
+ 	if (link -> imsg_count + 2 > link -> imsg_len) {
+ 		log_error ("FAILOVER: message overflow at option code.");
+@@ -1121,8 +1116,6 @@
+ 					   omapi_object_t *id,
+ 					   omapi_object_t *p)
+ {
+-	int i;
+-
+ 	if (p -> type != dhcp_type_failover_listener)
+ 		return ISC_R_INVALIDARG;
+ 
+@@ -1182,11 +1175,8 @@
+ 					 const char *name, va_list ap)
+ {
+ 	isc_result_t status;
+-	omapi_connection_object_t *c;
+-	omapi_protocol_object_t *obj;
+ 	dhcp_failover_state_t *state;
+ 	dhcp_failover_link_t *link;
+-	char *peer_name;
+ 
+ 	if (!o || o -> type != dhcp_type_failover_state)
+ 		return ISC_R_INVALIDARG;
+@@ -1831,7 +1821,6 @@
+ 	enum failover_state previous_state = state -> partner.state;
+ 	enum failover_state new_state;
+ 	int startupp;
+-	isc_result_t status;
+ 
+ 	new_state = msg -> server_state;
+ 	startupp = (msg -> server_flags & FTF_STARTUP) ? 1 : 0;
+@@ -2185,7 +2174,6 @@
+ 	struct lease *next = (struct lease *)0;
+ 	struct shared_network *s;
+ 	struct pool *p;
+-	int polarity;
+ 	binding_state_t peer_lease_state;
+ 	binding_state_t my_lease_state;
+ 	struct lease **lq;
+@@ -2328,7 +2316,6 @@
+ 
+ int dhcp_failover_state_pool_check (dhcp_failover_state_t *state)
+ {
+-	struct lease *lp;
+ 	struct shared_network *s;
+ 	struct pool *p;
+ 
+@@ -2647,7 +2634,7 @@
+ 
+ void dhcp_failover_keepalive (void *vs)
+ {
+-	dhcp_failover_state_t *state = vs;
++	return;
+ }
+ 
+ void dhcp_failover_reconnect (void *vs)
+@@ -2681,7 +2668,6 @@
+ void dhcp_failover_startup_timeout (void *vs)
+ {
+ 	dhcp_failover_state_t *state = vs;
+-	isc_result_t status;
+ 
+ #if defined (DEBUG_FAILOVER_TIMING)
+ 	log_info ("dhcp_failover_startup_timeout");
+@@ -2693,7 +2679,6 @@
+ void dhcp_failover_link_startup_timeout (void *vl)
+ {
+ 	dhcp_failover_link_t *link = vl;
+-	isc_result_t status;
+ 	omapi_object_t *p;
+ 
+ 	for (p = (omapi_object_t *)link; p -> inner; p = p -> inner)
+@@ -3172,7 +3157,6 @@
+ int dhcp_failover_state_match (dhcp_failover_state_t *state,
+ 			       u_int8_t *addr, unsigned addrlen)
+ {
+-	struct option_cache *oc;
+ 	struct data_string ds;
+ 	int i;
+ 	
+@@ -3709,7 +3693,6 @@
+ 					omapi_object_t *connection,
+ 					int msg_type, ...)
+ {
+-	unsigned count = 0;
+ 	unsigned size = 0;
+ 	int bad_option = 0;
+ 	int opix = 0;
+@@ -3822,7 +3805,6 @@
+ {
+ 	dhcp_failover_state_t *state = vstate;
+ 	dhcp_failover_link_t *link;
+-	isc_result_t status;
+ 
+ #if defined (DEBUG_FAILOVER_TIMING)
+ 	log_info ("dhcp_failover_timeout");
+@@ -3942,7 +3924,6 @@
+ 	dhcp_failover_link_t *link;
+ 	dhcp_failover_state_t *state;
+ 	isc_result_t status;
+-	char hba [32];
+ #if defined (DEBUG_FAILOVER_MESSAGES)	
+ 	char obuf [64];
+ 	unsigned obufix = 0;
+--- dhcp-3.0.5/server/omapi.c.warnings	2006-02-22 17:43:27.000000000 -0500
++++ dhcp-3.0.5/server/omapi.c	2006-11-13 18:29:21.000000000 -0500
+@@ -208,7 +208,6 @@
+ {
+ 	struct lease *lease;
+ 	isc_result_t status;
+-	int foo;
+ 
+ 	if (h -> type != dhcp_type_lease)
+ 		return ISC_R_INVALIDARG;
+@@ -378,7 +377,6 @@
+ isc_result_t dhcp_lease_destroy (omapi_object_t *h, const char *file, int line)
+ {
+ 	struct lease *lease;
+-	isc_result_t status;
+ 
+ 	if (h -> type != dhcp_type_lease)
+ 		return ISC_R_INVALIDARG;
+@@ -455,7 +453,6 @@
+ {
+ 	struct lease *lease;
+ 	isc_result_t status;
+-	int updatep = 0;
+ 
+ 	if (h -> type != dhcp_type_lease)
+ 		return ISC_R_INVALIDARG;
+@@ -876,9 +873,8 @@
+ 				   omapi_data_string_t *name,
+ 				   omapi_typed_data_t *value)
+ {
+-	struct host_decl *host, *hp;
++	struct host_decl *host;
+ 	isc_result_t status;
+-	int foo;
+ 
+ 	if (h -> type != dhcp_type_host)
+ 		return ISC_R_INVALIDARG;
+@@ -1137,7 +1133,6 @@
+ isc_result_t dhcp_host_destroy (omapi_object_t *h, const char *file, int line)
+ {
+ 	struct host_decl *host;
+-	isc_result_t status;
+ 
+ 	if (h -> type != dhcp_type_host)
+ 		return ISC_R_INVALIDARG;
+@@ -1558,7 +1553,6 @@
+ {
+ 	struct pool *pool;
+ 	isc_result_t status;
+-	int foo;
+ 
+ 	if (h -> type != dhcp_type_pool)
+ 		return ISC_R_INVALIDARG;
+@@ -1604,8 +1598,6 @@
+ isc_result_t dhcp_pool_destroy (omapi_object_t *h, const char *file, int line)
+ {
+ 	struct pool *pool;
+-	isc_result_t status;
+-	struct permit *pc, *pn;
+ 
+ 	if (h -> type != dhcp_type_pool)
+ 		return ISC_R_INVALIDARG;
+@@ -1702,10 +1694,6 @@
+ isc_result_t dhcp_pool_lookup (omapi_object_t **lp,
+ 			       omapi_object_t *id, omapi_object_t *ref)
+ {
+-	omapi_value_t *tv = (omapi_value_t *)0;
+-	isc_result_t status;
+-	struct pool *pool;
+-
+ 	/* Can't look up pools yet. */
+ 
+ 	/* If we get to here without finding a pool, no valid key was
+@@ -1734,7 +1722,6 @@
+ {
+ 	struct class *class;
+ 	isc_result_t status;
+-	int foo;
+ 
+ 	if (h -> type != dhcp_type_class)
+ 		return ISC_R_INVALIDARG;
+@@ -1780,8 +1767,6 @@
+ isc_result_t dhcp_class_destroy (omapi_object_t *h, const char *file, int line)
+ {
+ 	struct class *class;
+-	isc_result_t status;
+-	int i;
+ 
+ 	if (h -> type != dhcp_type_class && h -> type != dhcp_type_subclass)
+ 		return ISC_R_INVALIDARG;
+@@ -1881,10 +1866,6 @@
+ isc_result_t dhcp_class_lookup (omapi_object_t **lp,
+ 				omapi_object_t *id, omapi_object_t *ref)
+ {
+-	omapi_value_t *tv = (omapi_value_t *)0;
+-	isc_result_t status;
+-	struct class *class;
+-
+ 	/* Can't look up classs yet. */
+ 
+ 	/* If we get to here without finding a class, no valid key was
+@@ -1913,7 +1894,6 @@
+ {
+ 	struct subclass *subclass;
+ 	isc_result_t status;
+-	int foo;
+ 
+ 	if (h -> type != dhcp_type_subclass)
+ 		return ISC_R_INVALIDARG;
+@@ -2008,10 +1988,6 @@
+ isc_result_t dhcp_subclass_lookup (omapi_object_t **lp,
+ 				   omapi_object_t *id, omapi_object_t *ref)
+ {
+-	omapi_value_t *tv = (omapi_value_t *)0;
+-	isc_result_t status;
+-	struct subclass *subclass;
+-
+ 	/* Can't look up subclasss yet. */
+ 
+ 	/* If we get to here without finding a subclass, no valid key was
+--- dhcp-3.0.5/server/mdb.c.warnings	2006-07-18 14:16:25.000000000 -0400
++++ dhcp-3.0.5/server/mdb.c	2006-11-13 18:29:21.000000000 -0500
+@@ -238,7 +238,6 @@
+ 	struct host_decl *hp = (struct host_decl *)0;
+ 	struct host_decl *np = (struct host_decl *)0;
+ 	struct host_decl *foo;
+-	struct executable_statement *esp;
+ 	int hw_head = 0, uid_head = 1;
+ 
+ 	/* Don't need to do it twice. */
+@@ -373,7 +372,6 @@
+ 			 const unsigned char *haddr, unsigned hlen,
+ 			 const char *file, int line)
+ {
+-	struct host_decl *foo;
+ 	struct hardware h;
+ 
+ 	h.hlen = hlen + 1;
+@@ -403,7 +401,6 @@
+ 			   struct iaddr *addr, struct shared_network *share)
+ {
+ 	int i;
+-	struct subnet *subnet;
+ 	struct iaddr ip_address;
+ 	struct host_decl *hp;
+ 	struct data_string fixed_addr;
+@@ -453,12 +450,11 @@
+ 	struct pool *pool;
+ 	struct lease **lpchain;
+ {
+-	struct lease *address_range, *lp, *plp;
++	struct lease *address_range;
+ 	struct iaddr net;
+ 	unsigned min, max, i;
+ 	char lowbuf [16], highbuf [16], netbuf [16];
+ 	struct shared_network *share = subnet -> shared_network;
+-	isc_result_t status;
+ 	struct lease *lt = (struct lease *)0;
+ 
+ 	/* All subnets should have attached shared network structures. */
+@@ -745,7 +741,6 @@
+ 	struct lease *lease;
+ {
+ 	struct lease *comp = (struct lease *)0;
+-	isc_result_t status;
+ 
+ 	if (find_lease_by_ip_addr (&comp, lease -> ip_addr, MDL)) {
+ 		if (!comp -> pool) {
+@@ -795,7 +790,6 @@
+ 	int enter_uid = 0;
+ 	int enter_hwaddr = 0;
+ 	struct lease *lp, **lq, *prev;
+-	TIME lp_next_state;
+ 
+ #if defined (FAILOVER_PROTOCOL)
+ 	/* We must commit leases before sending updates regarding them
+@@ -1475,7 +1469,6 @@
+ 	void *vpool;
+ {
+ 	struct pool *pool;
+-	struct lease *lt = (struct lease *)0;
+ 	struct lease *next = (struct lease *)0;
+ 	struct lease *lease = (struct lease *)0;
+ 	struct lease **lptr [5];
+@@ -2013,7 +2006,6 @@
+ {
+ 	struct shared_network *s;
+ 	struct pool *p;
+-	struct hash_bucket *hb;
+ 	int i;
+ 	struct lease *l;
+ 	struct lease **lptr [5];
+--- dhcp-3.0.5/server/ddns.c.warnings	2005-03-03 11:55:24.000000000 -0500
++++ dhcp-3.0.5/server/ddns.c	2006-11-13 18:29:21.000000000 -0500
+@@ -224,7 +224,6 @@
+ 	struct data_string ddns_fwd_name;
+ 	struct data_string ddns_rev_name;
+ 	struct data_string ddns_dhcid;
+-	unsigned len;
+ 	struct data_string d1;
+ 	struct option_cache *oc;
+ 	int s1, s2;
+@@ -659,7 +658,6 @@
+ 	struct data_string ddns_rev_name;
+ 	struct data_string ddns_dhcid;
+ 	isc_result_t rcode;
+-	struct binding *binding;
+ 	int result = 0;
+ 	int client_updated = 0;
+ 
