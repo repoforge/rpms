@@ -31,7 +31,7 @@ html2ps can be used as ImageMagick delegate to convert from HTML.
 %package -n xhtml2ps
 Summary: GUI frontend for html2ps, a HTML-to-PostScript converter
 Group: Applications/Graphics
-Requires: %{name} = %{version}-%{version}
+Requires: %{name} = %{version}-%{release}
 Requires: tk
 
 %description -n xhtml2ps
@@ -76,5 +76,8 @@ HTML-to-PostScript converter.
 %{_bindir}/xhtml2ps
 
 %changelog
+* Tue Oct 30 2007 Dag Wieers <dag@wieers.com> - 1.0b5-1
+- Fixed a typo in the Requires of xhtml2ps. (Dave Shield)
+
 * Tue Sep 25 2007 Dag Wieers <dag@wieers.com> - 1.0b5-0
 - Initial package. (using DAR)
