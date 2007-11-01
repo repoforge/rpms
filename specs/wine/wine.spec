@@ -48,7 +48,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 0.9.47
+Version: 0.9.48
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -628,6 +628,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/mshtml.dll.so
 %{_libdir}/wine/msi.dll.so
 %{_libdir}/wine/msimg32.dll.so
+%{_libdir}/wine/msimtf.dll.so
 %{_libdir}/wine/msnet32.dll.so
 %{_libdir}/wine/msrle32.dll.so
 %{_libdir}/wine/msvcirt.dll.so
@@ -833,6 +834,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Tue Oct 30 2007 Dag Wieers <dag@wieers.com> - 0.9.48-1
+- Updated to release 0.9.48.
+
 * Sun Oct 14 2007 Dag Wieers <dag@wieers.com> - 0.9.47-1
 - Updated to release 0.9.47.
 

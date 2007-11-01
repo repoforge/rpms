@@ -4,7 +4,7 @@
 
 Summary: I/O benchmark and stress/hardware verification tool
 Name: fio
-Version: 1.17
+Version: 1.17.2
 Release: 1
 License: GPL
 Group: Applications/System
@@ -38,7 +38,7 @@ utilization, and more. It supports Linux, FreeBSD, and OpenSolaris.
 %install
 %{__rm} -rf %{buildroot}
 #%{__make} install DESTDIR="%{buildroot}" prefix="%{_prefix}" bindir="%{_bindir}" libdir="%{_libdir}/fio"
-%{__make} install DESTDIR="%{buildroot}" prefix="%{_prefix}" bindir="%{_bindir}"
+%{__make} install DESTDIR="%{buildroot}" prefix="%{_prefix}" bindir="%{_bindir}" mandir="%{_mandir}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -46,11 +46,15 @@ utilization, and more. It supports Linux, FreeBSD, and OpenSolaris.
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README examples/
+%doc %{_mandir}/man1/fio.1*
 %{_bindir}/fio
 %{_bindir}/fio_generate_plots
 #%{_libdir}/fio/
 
 %changelog
+* Tue Oct 30 2007 Dag Wieers <dag@wieers.com> - 1.17.2-1
+- Updated to release 1.17.2.
+
 * Thu Aug 16 2007 Dag Wieers <dag@wieers.com> - 1.17-1
 - Updated to release 1.17.
 
