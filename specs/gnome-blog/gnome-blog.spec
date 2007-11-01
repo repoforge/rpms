@@ -1,115 +1,99 @@
 # $Id$
-# Authority:    hadams
+# Authority: hadams
 
-%define gnome_python2_version 2.6
-%{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+%define desktop_vendor rpmforge
 
-Name:		gnome-blog
-Version:	0.9.1
-Release:	5
-Summary:	GNOME panel object for posting blog entries
+Summary: GNOME panel object for posting blog entries
+Name: gnome-blog
+Version: 0.9.1
+Release: 5
+License: GPL
+Group: Applications/Internet
+URL: http://www.gnome.org/~seth/gnome-blog/
 
-Group:		Applications/Internet
-License:	GPL
-URL:		http://www.gnome.org/~seth/gnome-blog/		
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/%{version}/%{name}-%{version}.tar.bz2
-Patch1:		%{name}-bonobo.patch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildArch:	noarch
+Source: http://ftp.gnome.org/pub/gnome/sources/gnome-blog/0.9/gnome-blog-%{version}.tar.bz2
+Patch0: gnome-blog-bonobo.patch
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Requires:	gnome-python2-applet >= %{gnome_python2_version}
-Requires:	gnome-python2-gconf  >= %{gnome_python2_version}
-Requires:	gnome-python2-gnomevfs >= %{gnome_python2_version}
-Requires:	gnome-python2-gtkspell
-Requires:	pygtk2 >= %{gnome_python2_version}
-
-Requires(pre): GConf2
-Requires(post): GConf2
-Requires(preun): GConf2
-
-BuildRequires:	pygtk2-devel >= %{gnome_python2_version}
-BuildRequires:	glib2-devel
-BuildRequires:	gettext
-BuildRequires:	GConf2
-BuildRequires:	desktop-file-utils
-BuildRequires:	perl(XML::Parser)
-BuildRequires:	intltool
-
+BuildArch: noarch
+BuildRequires: desktop-file-utils
+BuildRequires: GConf2
+BuildRequires: glib2-devel
+BuildRequires: gettext
+BuildRequires: intltool
+BuildRequires: perl(XML::Parser)
+BuildRequires: pygtk2-devel >= 2.6
+Requires: GConf2
+Requires: gnome-python2-applet
+Requires: gnome-python2-gconf
+Requires: gnome-python2-gnomevfs
+Requires: gnome-python2-gtkspell
+Requires: pygtk2
 
 %description
 GNOME panel object that allows convenient posting of blog entries to
 any blog that supports the bloggerAPI.
 
-
 %prep
-%setup -q
-%patch1 -p1 -b .bonobo
-
+%setup
+%patch0 -p1 -b .bonobo
 
 %build
 %configure --disable-schemas-install
-make %{?_smp_mflags}
-
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
-desktop-file-install --vendor=fedora --delete-original	\
-  --dir=$RPM_BUILD_ROOT%{_datadir}/applications		\
-  --add-category=X-Fedora --add-category=Network	\
-  --remove-category=Utility				\
-  $RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop
-
-# This is a program file and doesn't need to be placed in the library path
-rm -f $RPM_BUILD_ROOT/%{python_sitelib}/gnomeblog/%{name}-poster
-
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
+desktop-file-install --delete-original                   \
+    --vendor="%{desktop_vendor}"                         \
+    --add-category="Network" --remove-category="Utility" \
+    --dir="%{buildroot}%{_datadir}/applications"         \
+    %{buildroot}%{_datadir}/applications/gnome-blog.desktop
 
 %pre
-if [ "$1" -gt 1 ]; then
-    export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
-    gconftool-2 --makefile-uninstall-rule \
-      %{_sysconfdir}/gconf/schemas/gnomeblog.schemas >/dev/null || :
+if [ $1 -gt 1 ]; then
+    export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
+    gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/gnomeblog.schemas >/dev/null || :
 fi
 
 
 %post
-export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
-gconftool-2 --makefile-install-rule \
-  %{_sysconfdir}/gconf/schemas/gnomeblog.schemas > /dev/null || :
+export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
+gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/gnomeblog.schemas >/dev/null || :
 
 
 %preun
-if [ "$1" -eq 0 ]; then
-    export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
-    gconftool-2 --makefile-uninstall-rule \
-      %{_sysconfdir}/gconf/schemas/gnomeblog.schemas > /dev/null || :
+if [ $1 -eq 0 ]; then
+    export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
+    gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/gnomeblog.schemas >/dev/null || :
 fi
 
+%clean
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-,root,root,-)
-%doc AUTHORS COPYING ChangeLog README
-%{_bindir}/*
-%{_libexecdir}/*
-%{_sysconfdir}/gconf/schemas/gnomeblog.schemas
-%{_datadir}/pixmaps/%{name}.png
-%{_datadir}/gnome-2.0/ui/*.xml
-%{_datadir}/applications/*.desktop
-%{_libdir}/bonobo/servers/*.server
-%dir %{python_sitelib}/gnomeblog
-%{python_sitelib}/gnomeblog/*.py
-%{python_sitelib}/gnomeblog/*.pyc
-%{python_sitelib}/gnomeblog/*.pyo
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING README
+%config %{_sysconfdir}/gconf/schemas/gnomeblog.schemas
+%{_bindir}/gnome-blog-poster
+%{_datadir}/applications/%{desktop_vendor}-gnome-blog.desktop
+%{_datadir}/gnome-2.0/ui/GNOME_BlogApplet.xml
+%{_datadir}/pixmaps/gnome-blog.png
+%{_libdir}/bonobo/servers/GNOME_BlogApplet.server
+%{_libexecdir}/blog_applet.py
+%{_libexecdir}/blog_applet.pyc
+%ghost %{_libexecdir}/blog_applet.pyo
+%{python_sitelib}/gnomeblog/
+%ghost %{python_sitelib}/gnomeblog/*.pyo
+%exclude %{python_sitelib}/gnomeblog/gnome-blog-poster
 
 %changelog
 * Wed Oct 31 2007 Heiko Adams <info [at] fedora-blog [dot] de> - 0.9.1-5
-- rebuild for rpmforge
+- Rebuild for RPMforge.
 
 * Wed Sep  6 2006 Brian Pepple <bpepple@fedoraproject.org> - 0.9.1-4
 - Don't ghost *.pyo files.
