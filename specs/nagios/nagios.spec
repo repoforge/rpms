@@ -14,7 +14,7 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: nagios
-Version: 2.9
+Version: 2.10
 Release: 1
 License: GPL
 Group: Applications/System
@@ -85,18 +85,14 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install install-init install-commandmode install-config \
-        DESTDIR="%{buildroot}" \
-        INSTALL_OPTS="" \
-        COMMAND_OPTS="" \
-        INIT_OPTS=""
-
-for file in %{buildroot}%{_sysconfdir}/nagios/*.cfg-sample; do
-	%{__mv} -f $file ${file%%-*}
-done
+    DESTDIR="%{buildroot}" \
+    INSTALL_OPTS="" \
+    COMMAND_OPTS="" \
+    INIT_OPTS=""
 
 %{__make} install -C contrib \
-	DESTDIR="%{buildroot}" \
-	INSTALL_OPTS=""
+    DESTDIR="%{buildroot}" \
+    INSTALL_OPTS=""
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/nagios/plugins/eventhandlers/
 %{__cp} -afpv contrib/eventhandlers/* %{buildroot}%{_libdir}/nagios/plugins/eventhandlers/
@@ -185,6 +181,9 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Wed Oct 24 2007 Christoph Maser <cmr@financial.com> - 2.10-1
+- Updated to release 2.10.
+
 * Sun Apr 15 2007 Dag Wieers <dag@wieers.com> - 2.9-1
 - Updated to release 2.9.
 

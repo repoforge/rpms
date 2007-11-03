@@ -14,7 +14,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 Requires: sed, gawk, findutils, modutils, tar, cpio, gzip, grep, mktemp
-Requires: bash > 1.99, kernel-devel
+Requires: bash > 1.99, kernel-devel, gcc
 
 Provides: dkms-minimal
 
