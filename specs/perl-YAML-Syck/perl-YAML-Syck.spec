@@ -1,27 +1,32 @@
 # $Id$
 # Authority: dries
-# Upstream: &#9786;&#21776;&#40179;&#9787; <cpan$audreyt,org>
+# Upstream: Audrey Tang <cpan$audreyt,org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name YAML-Syck
 
 Summary: Fast YAML loader and dumper
 Name: perl-YAML-Syck
-Version: 0.72
+Version: 0.99
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-Syck/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AU/AUDREYT/YAML-Syck-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/YAML/YAML-Syck-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 0:5.3.7
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
-This package contains a YAML loader and dumper.
+perl-YAML-Syck contains a fast, lightweight YAML loader and dumper.
+
+This package contains the following Perl module:
+
+    JSON::Syck
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -32,25 +37,34 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
-%{perl_vendorarch}/JSON/
+%doc COPYING Changes MANIFEST META.yml README SIGNATURE
+%doc %{_mandir}/man3/JSON::Syck.3pm*
+%doc %{_mandir}/man3/YAML::Syck.3pm*
+%dir %{perl_vendorarch}/JSON/
+%{perl_vendorarch}/JSON/Syck.pm
 %dir %{perl_vendorarch}/YAML/
-%{perl_vendorarch}/YAML/Dumper/
-%{perl_vendorarch}/YAML/Loader/
-%{perl_vendorarch}/YAML/Syck.p*
+%dir %{perl_vendorarch}/YAML/Dumper/
+%{perl_vendorarch}/YAML/Dumper/Syck.pm
+%dir %{perl_vendorarch}/YAML/Loader/
+%{perl_vendorarch}/YAML/Loader/Syck.pm
+%{perl_vendorarch}/YAML/Syck.pm
 %dir %{perl_vendorarch}/auto/YAML/
 %{perl_vendorarch}/auto/YAML/Syck/
 
 %changelog
+* Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.99-1
+- Updated to release 0.99.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.72-1
 - Updated to release 0.72.
 

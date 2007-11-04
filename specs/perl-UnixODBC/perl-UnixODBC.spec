@@ -1,28 +1,31 @@
 # $Id$
 # Authority: dag
-# Upstream: Leif Johanson <leifj$it,su,se>
+# Upstream: Robert Kiesling <rkies$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Heimdal-Kadm5
+%define real_name UnixODBC
 
-Summary: Perl module to interface with Heimdal Kerberos 5
-Name: perl-Heimdal-Kadm5
-Version: 0.06
+Summary: Perl module for unixODBC
+Name: perl-UnixODBC
+Version: 0.33
 Release: 1
-License: BSD
+License: Artistic
 Group: Applications/CPAN
-URL: ftp://ftp.su.se/pub/users/leifj/
+URL: http://search.cpan.org/dist/UnixODBC/
 
-Source: ftp://ftp.su.se/pub/users/leifj/Heimdal-Kadm5-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/R/RK/RKIES/UnixODBC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: heimdal-devel
 BuildRequires: perl
 
 %description
-perl-Heimdal-Kadm5 is a Perl module to interface with Heimdal Kerberos 5.
+perl-UnixODBC is a Perl module for unixODBC.
+
+This package contains the following Perl module:
+
+    UnixODBC
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -38,18 +41,19 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README test.pl
-%doc %{_mandir}/man3/Heimdal::Kadm5.3pm*
-%dir %{perl_vendorarch}/Heimdal/
-%{perl_vendorarch}/Heimdal/Kadm5.pm
-%dir %{perl_vendorarch}/auto/Heimdal/
-%{perl_vendorarch}/auto/Heimdal/Kadm5/
+%doc Artistic README eg/
+%doc %{_mandir}/man3/UnixODBC.3pm*
+%{perl_vendorarch}/UnixODBC.pm
+%{perl_vendorarch}/auto/UnixODBC/
 
 %changelog
-* Tue Oct 16 2007 Dag Wieers <dag@wieers.com> - 0.06-1
+* Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.33-1
 - Initial package. (using DAR)

@@ -1,28 +1,31 @@
 # $Id$
 # Authority: dag
-# Upstream: Leif Johanson <leifj$it,su,se>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Heimdal-Kadm5
+%define real_name Unicode-Decompose
 
-Summary: Perl module to interface with Heimdal Kerberos 5
-Name: perl-Heimdal-Kadm5
-Version: 0.06
+Summary: Perl module that implements Unicode decomposition and normalization
+Name: perl-Unicode-Decompose
+Version: 0.02
 Release: 1
-License: BSD
+License: Artistic/GPL
 Group: Applications/CPAN
-URL: ftp://ftp.su.se/pub/users/leifj/
+URL: http://search.cpan.org/dist/Unicode-Decompose/
 
-Source: ftp://ftp.su.se/pub/users/leifj/Heimdal-Kadm5-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Unicode/Unicode-Decompose-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: heimdal-devel
 BuildRequires: perl
 
 %description
-perl-Heimdal-Kadm5 is a Perl module to interface with Heimdal Kerberos 5.
+perl-Unicode-Decompose is a Perl module that implements Unicode decomposition
+and normalization.
+
+This package contains the following Perl module:
+
+    Unicode::Decompose
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -43,13 +46,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README test.pl
-%doc %{_mandir}/man3/Heimdal::Kadm5.3pm*
-%dir %{perl_vendorarch}/Heimdal/
-%{perl_vendorarch}/Heimdal/Kadm5.pm
-%dir %{perl_vendorarch}/auto/Heimdal/
-%{perl_vendorarch}/auto/Heimdal/Kadm5/
+%doc Changes MANIFEST README
+%doc %{_mandir}/man3/Unicode::Decompose.3pm*
+%dir %{perl_vendorarch}/Unicode/
+%{perl_vendorarch}/Unicode/Decompose.pm
+%dir %{perl_vendorarch}/auto/Unicode/
+%{perl_vendorarch}/auto/Unicode/Decompose/
 
 %changelog
-* Tue Oct 16 2007 Dag Wieers <dag@wieers.com> - 0.06-1
+* Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.02-1
 - Initial package. (using DAR)
