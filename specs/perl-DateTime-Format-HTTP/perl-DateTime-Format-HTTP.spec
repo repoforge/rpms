@@ -11,7 +11,7 @@ Summary: Perl module that implements date conversion routines.
 Name: perl-DateTime-Format-HTTP
 Version: 0.37
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Format-HTTP/
 
@@ -19,11 +19,17 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Format-HTTP-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(Module::Build)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Build)
 Requires: perl
 
 %description
 DateTime-Format-HTTP is a Perl module that implements date conversion routines.
+
+This package contains the following Perl module:
+
+    DateTime::Format::HTTP
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -44,7 +50,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Artistic AUTHORS Changes COPYING CREDITS LICENCE MANIFEST META.yml README
+%doc AUTHORS Artistic COPYING CREDITS Changes INSTALL LICENCE MANIFEST MANIFEST.SKIP META.yml README
 %doc %{_mandir}/man3/DateTime::Format::HTTP.3pm*
 %dir %{perl_vendorlib}/DateTime/
 %dir %{perl_vendorlib}/DateTime/Format/

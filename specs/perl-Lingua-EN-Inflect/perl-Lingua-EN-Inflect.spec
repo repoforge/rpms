@@ -2,8 +2,8 @@
 # Authority: dries
 # Upstream: Damian Conway <damian$conway,org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Lingua-EN-Inflect
 
@@ -15,11 +15,12 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-EN-Inflect/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCONWAY/Lingua-EN-Inflect-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Lingua/Lingua-EN-Inflect-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 The exportable subroutines of Lingua::EN::Inflect provide plural
@@ -29,6 +30,11 @@ Plural forms of all nouns, most verbs, and some adjectives are
 provided. Where appropriate, "classical" variants (for example:
 "brother" -> "brethren", "dogma" -> "dogmata", etc.) are also
 provided.
+
+This package contains the following Perl module:
+
+    Lingua::EN::Inflect
+
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -40,23 +46,25 @@ provided.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST README
+%doc %{_mandir}/man3/Lingua::EN::Inflect.3pm*
+%dir %{perl_vendorlib}/Lingua/
+%dir %{perl_vendorlib}/Lingua/EN/
+#%{perl_vendorlib}/Lingua/EN/Inflect/
 %{perl_vendorlib}/Lingua/EN/Inflect.pm
 %{perl_vendorlib}/Lingua/EN/*.pl
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.89-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.89-1
 - Updated to release 1.89.
 

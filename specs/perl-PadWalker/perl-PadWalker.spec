@@ -23,6 +23,10 @@ BuildRequires: perl >= 2:5.8.2, perl(ExtUtils::MakeMaker)
 %description
 perl-PadWalker is a Perl module to play with other peoples' lexical variables.
 
+This package contains the following Perl module:
+
+    PadWalker
+
 %prep
 %setup -n %{real_name}-%{version}
 

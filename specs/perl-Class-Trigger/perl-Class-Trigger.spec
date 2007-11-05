@@ -1,21 +1,21 @@
 # $Id$
 # Authority: dries
-# Upstream: Tatsuhiko Miyagawa <miyagawa$gmail,com>
+# Upstream: Tatsuhiko Miyagawa <miyagawa$bulknews,net>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Class-Trigger
 
 Summary: Mixin to add / call inheritable triggers
 Name: perl-Class-Trigger
-Version: 0.11
+Version: 0.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Trigger/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIYAGAWA/Class-Trigger-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Class/Class-Trigger-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -24,6 +24,10 @@ BuildRequires: perl, perl(ExtUtils::MakeMaker)
 %description
 Class::Trigger is a mixin class to add / call triggers (or hooks) that
 get called at some points you specify.
+
+This package contains the following Perl module:
+
+    Class::Trigger
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -34,24 +38,27 @@ get called at some points you specify.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Class::Trigger.3pm*
+%dir %{perl_vendorlib}/Class/
 %{perl_vendorlib}/Class/Trigger.pm
 
 %changelog
+* Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.12-1
+- Updated to release 0.12.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.11-1
 - Updated to release 0.11.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Updated to release 0.10.

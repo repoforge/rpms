@@ -1,21 +1,21 @@
 # $Id$
 # Authority: dries
-# Upstream: Ricardo Signes <rjbs$cpan,org>
+# Upstream: Casey West <casey$geeknest,com>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Email-MIME-Creator
 
 Summary: Constructor for Email::MIME
 Name: perl-Email-MIME-Creator
-Version: 1.453
+Version: 1.454
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-MIME-Creator/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RJ/RJBS/Email-MIME-Creator-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Email/Email-MIME-Creator-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -23,6 +23,10 @@ BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 This package contains a constructor for Email::MIME.
+
+This package contains the following Perl module:
+
+    Email::MIME::Creator
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -33,19 +37,27 @@ This package contains a constructor for Email::MIME.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Email::MIME::Creator*
+%doc Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/Email::MIME::Creator.3pm*
+%dir %{perl_vendorlib}/Email/
+%dir %{perl_vendorlib}/Email/MIME/
+#%{perl_vendorlib}/Email/MIME/Creator/
 %{perl_vendorlib}/Email/MIME/Creator.pm
 
 %changelog
+* Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 1.454-1
+- Updated to release 1.454.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.453-1
 - Updated to release 1.453.
 

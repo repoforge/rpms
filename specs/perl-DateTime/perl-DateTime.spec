@@ -2,14 +2,14 @@
 # Authority: dries
 # Upstream: Dave Rolsky <autarch$urth,org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name DateTime
 
-Summary: Date and time object
+Summary: Date and time objects
 Name: perl-DateTime
-Version: 0.31
+Version: 0.41
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/DateTime/
 Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 Provides: perl(DateTimePPExtra)
 
 %description
@@ -33,6 +34,10 @@ saving time rules, can be handled transparently, simply by setting the
 correct time zone. This is done by using the DateTime::TimeZone
 module.
 
+This package contains the following Perl module:
+
+    DateTime
+
 %prep
 %setup -n %{real_name}-%{version}
 
@@ -42,19 +47,22 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc CREDITS Changes LICENSE MANIFEST MANIFEST.SKIP META.yml README SIGNATURE TODO leaptab.txt
+%doc %{_mandir}/man3/DateTime.3pm*
+%doc %{_mandir}/man3/DateTime::Duration.3pm*
+%doc %{_mandir}/man3/DateTime::Helpers.3pm*
+%doc %{_mandir}/man3/DateTime::Infinite.3pm*
+%doc %{_mandir}/man3/DateTime::LeapSecond.3pm*
 %{perl_vendorarch}/DateTime.pm
 %{perl_vendorarch}/DateTimePP.pm
 %{perl_vendorarch}/DateTimePPExtra.pm
@@ -63,11 +71,11 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/DateTime/DateTime.*
 
 %changelog
+* Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 0.41-1.
+- Updated to release 0.41.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.31-1
 - Updated to release 0.31.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.30-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.30-1
 - Updated to release 0.30.

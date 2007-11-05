@@ -11,7 +11,7 @@ Summary: Perl module to guess file type
 Name: perl-File-MMagic
 Version: 1.27
 Release: 1
-License: Artistic
+License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-MMagic/
 
@@ -19,11 +19,15 @@ Source: http://www.cpan.org/modules/by-module/File/File-MMagic-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
-Requires: perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 File-MMagic is a Perl module to guess file type.
+
+This package contains the following Perl module:
+
+    File::MMagic
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -39,12 +43,15 @@ File-MMagic is a Perl module to guess file type.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find contrib/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING ChangeLog MANIFEST META.yml
+%doc COPYING ChangeLog MANIFEST META.yml README.en README.ja contrib/
 %doc %{_mandir}/man3/File::MMagic.3pm*
 %dir %{perl_vendorlib}/File/
 %{perl_vendorlib}/File/MMagic.pm

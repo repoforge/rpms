@@ -1,9 +1,9 @@
 # $Id$
 # Authority: dries
-# Upstream: Jesse Vincent <jesse+cpan$fsck,com>
+# Upstream: Jesse Vincent <jesse$bestpractical,com>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Module-Refresh
 
@@ -15,11 +15,13 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Refresh/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JE/JESSE/Module-Refresh-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Module/Module-Refresh-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 2:5.8.1, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 2:5.8.1
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
 
 %description
 With this module, you can refresh %INC when updated on disk.
@@ -33,10 +35,10 @@ With this module, you can refresh %INC when updated on disk.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

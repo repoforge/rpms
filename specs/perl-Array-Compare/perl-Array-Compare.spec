@@ -1,9 +1,9 @@
 # $Id$
 # Authority: dries
-# Upstream: Dave Cross <dave$dave,org,uk>
+# Upstream: Dave Cross <dave$mag-sol,com>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Array-Compare
 
@@ -15,11 +15,12 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Array-Compare/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DA/DAVECROSS/Array-Compare-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Array/Array-Compare-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Module::Build)
+BuildRequires: perl >= 0:5.6.0
+BuildRequires: perl(Module::Build)
 
 %description
 Array::Compare is a Perl module which allows you to compare two arrays.
@@ -43,16 +44,19 @@ differing columns.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Array::Compare*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Array::Compare.3pm*
+%dir %{perl_vendorlib}/Array/
 %{perl_vendorlib}/Array/Compare.pm
 
 %changelog

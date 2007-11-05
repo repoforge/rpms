@@ -24,6 +24,10 @@ BuildRequires: perl, perl(ExtUtils::MakeMaker)
 %description
 Parse a MIME Content-Type Header.
 
+This package contains the following Perl module:
+
+    Email::MIME::ContentType
+
 %prep
 %setup -n %{real_name}-%{version}
 
@@ -33,10 +37,10 @@ Parse a MIME Content-Type Header.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

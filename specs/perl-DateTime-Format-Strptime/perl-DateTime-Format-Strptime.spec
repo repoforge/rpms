@@ -2,30 +2,35 @@
 # Authority: dries
 # Upstream: Rick Measham <rickm$cpan,org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name DateTime-Format-Strptime
 
 Summary: Strptime functionality for DateTime
 Name: perl-DateTime-Format-Strptime
-Version: 1.0700
-Release: 1.2
+Version: 1.0702
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Format-Strptime/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RI/RICKM/DateTime-Format-Strptime-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Format-Strptime-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module replicates most of Strptime for DateTime. Strptime is the
 unix command that is the reverse of Strftime. While Strftime takes a
 DateTime and outputs it in a given format, Strptime takes a DateTime and
 a format and returns the DateTime object associated.
+
+This package contains the following Perl module:
+
+    DateTime::Format::Strptime
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -36,8 +41,10 @@ a format and returns the DateTime object associated.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -45,12 +52,15 @@ a format and returns the DateTime object associated.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/DateTime::Format::Strptime.3pm*
+%dir %{perl_vendorlib}/DateTime/
+%dir %{perl_vendorlib}/DateTime/Format/
+#%{perl_vendorlib}/DateTime/Format/Strptime/
 %{perl_vendorlib}/DateTime/Format/Strptime.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.0700-1.2
-- Rebuild for Fedora Core 5.
+* Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 1.0702-1
+- Updated to release 1.0702.
 
 * Sun Dec 25 2005 Dries Verachtert <dries@ulyssis.org> - 1.0700-1
 - Initial package.

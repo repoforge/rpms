@@ -25,6 +25,10 @@ BuildRequires: perl
 perl-Cache-Memcached is a Perl module implements a client library
 for memcached.
 
+This package contains the following Perl module:
+
+    Cache::Memcached
+
 %prep
 %setup -n %{real_name}-%{version}
 

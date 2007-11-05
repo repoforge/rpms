@@ -9,7 +9,7 @@
 
 Summary: Perl module implements a testing-specific WWW::Mechanize subclass
 Name: perl-Test-WWW-Mechanize
-Version: 1.12
+Version: 1.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,11 +19,16 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-WWW-Mechanize-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-Test-WWW-Mechanize is a Perl module implements
 a testing-specific WWW::Mechanize subclass.
+
+This package contains the following Perl module:
+
+    Test::WWW::Mechanize
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -51,5 +56,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/WWW/Mechanize.pm
 
 %changelog
+* Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 1.14-1
+- Updated to release 1.14.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 1.12-1
 - Initial package. (using DAR)

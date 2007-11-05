@@ -34,18 +34,21 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist/auto/*{,/*{,/*}}/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING Changes LICENSE MANIFEST META.yml NEWS README
-%doc %{_mandir}/man3/Crypt::Rijndael.3*
+%doc COPYING Changes LICENSE MANIFEST META.yml NEWS README examples/
+%doc %{_mandir}/man3/Crypt::Rijndael.3pm*
 %dir %{perl_vendorarch}/Crypt/
 %{perl_vendorarch}/Crypt/Rijndael.pm
 %dir %{perl_vendorarch}/auto/Crypt/

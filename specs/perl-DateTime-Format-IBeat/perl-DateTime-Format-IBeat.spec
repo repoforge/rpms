@@ -11,7 +11,7 @@ Summary: Perl module to format times in .beat notation
 Name: perl-DateTime-Format-IBeat
 Version: 0.161
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Format-IBeat/
 
@@ -19,11 +19,16 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Format-IBeat-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
-Requires: perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More) >= 0.47
 
 %description
 DateTime-Format-IBeat is a Perl module to format times in .beat notation.
+
+This package contains the following Perl module:
+
+    DateTime::Format::IBeat
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -44,7 +49,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Artistic Changes COPYING LICENCE MANIFEST META.yml README
+%doc Artistic COPYING Changes INSTALL LICENCE MANIFEST MANIFEST.SKIP META.yml README
 %doc %{_mandir}/man3/DateTime::Format::IBeat.3pm*
 %dir %{perl_vendorlib}/DateTime/
 %dir %{perl_vendorlib}/DateTime/Format/

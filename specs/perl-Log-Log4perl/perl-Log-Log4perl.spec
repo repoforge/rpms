@@ -1,16 +1,17 @@
 # $Id$
 # Authority: dries
-# Upstream: mailto:log4perl-devel$lists,sourceforge,net
+# Upstream: Mike Schilli <m$perlmeister,com>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name Log-Log4perl
 
 Summary: Perl port of log4j
 Name: perl-Log-Log4perl
-Version: 1.04
+Version: 1.12
 Release: 1
-License: GPL
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://log4perl.sourceforge.net/
 
@@ -18,7 +19,9 @@ Source: http://www.cpan.org/modules/by-module/Log/Log-Log4perl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(Time::HiRes)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Time::HiRes)
 Requires: perl(IPC::Shareable), perl(Log::Dispatch), perl(Log::Dispatch::FileRotate), perl(Time::HiRes)
 
 %description
@@ -56,22 +59,25 @@ perl-Log-Log4perl.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE README
-%doc %{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST MANIFEST.SKIP META.yml README eg/
+%doc %{_mandir}/man3/Log::Log4perl.3pm*
+%doc %{_mandir}/man3/Log::Log4perl::*.3pm*
 %dir %{perl_vendorlib}/Log/
-%{perl_vendorlib}/Log/Log4perl.pm
 %{perl_vendorlib}/Log/Log4perl/
+%{perl_vendorlib}/Log/Log4perl.pm
 %exclude %{_mandir}/man3/Log::Log4perl::Appender::RRDs.3pm*
 %exclude %{perl_vendorlib}/Log/Log4perl/Appender/RRDs.pm
 
@@ -80,8 +86,10 @@ perl-Log-Log4perl.
 %doc %{_mandir}/man3/Log::Log4perl::Appender::RRDs.3pm*
 %{perl_vendorlib}/Log/Log4perl/Appender/RRDs.pm
 
-
 %changelog
+* Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 1.12-1
+- Updated to release 1.12.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.04-1
 - Updated to release 1.04.
 
