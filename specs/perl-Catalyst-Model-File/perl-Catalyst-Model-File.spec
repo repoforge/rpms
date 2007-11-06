@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Ash Berlin <ash%20%3c+%3e%20cpan%20org>
+# Upstream: Ash Berlin, C<ash$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: File based storage model for Catalyst
 Name: perl-Catalyst-Model-File
-Version: 0.04
+Version: 0.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,7 +19,9 @@ Source: http://search.cpan.org//CPAN/authors/id/A/AS/ASH/Catalyst-Model-File-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl >= 2:5.8.1 
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
 
 %description
 File based storage model for Catalyst.
@@ -33,19 +35,31 @@ File based storage model for Catalyst.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/Catalyst::*
-%{perl_vendorlib}/Catalyst/Model/
-%{perl_vendorlib}/Catalyst/Helper/Model/
+%doc Changes MANIFEST META.yml
+%doc %{_mandir}/man3/Catalyst::Model::File.3pm*
+%doc %{_mandir}/man3/Catalyst::Helper::Model::File.3pm*
+%dir %{perl_vendorlib}/Catalyst/
+%dir %{perl_vendorlib}/Catalyst/Helper/
+%dir %{perl_vendorlib}/Catalyst/Helper/Model/
+#%{perl_vendorlib}/Catalyst/Helper/Model/File/
+%{perl_vendorlib}/Catalyst/Helper/Model/File.pm
+%dir %{perl_vendorlib}/Catalyst/Model/
+#%{perl_vendorlib}/Catalyst/Model/File/
+%{perl_vendorlib}/Catalyst/Model/File.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.06-1
+- Updated to release 0.06.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.

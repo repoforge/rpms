@@ -1,28 +1,28 @@
 # $Id$
 # Authority: dag
-# Upstream: Joel Bernstein <rataxis$cpan,org>
+# Upstream: David A, Golden <dagolden$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Config-Any
+%define real_name Test-Number-Delta
 
-Summary: Load configuration from different file formats, transparently
-Name: perl-Config-Any
-Version: 0.08
+Summary: Compare the difference between numbers against a given tolerance
+Name: perl-Test-Number-Delta
+Version: 1.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Config-Any/
+URL: http://search.cpan.org/dist/Test-Number-Delta/
 
-Source: http://www.cpan.org/modules/by-module/Config/Config-Any-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Test/Test-Number-Delta-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.004 
 
 %description
-Load configuration from different file formats, transparently.
+Compare the difference between numbers against a given tolerance.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -43,16 +43,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
-%doc %{_mandir}/man3/Config::Any.3pm*
-%doc %{_mandir}/man3/Config::Any::*.3pm*
-%dir %{perl_vendorlib}/Config/
-%{perl_vendorlib}/Config/Any/
-%{perl_vendorlib}/Config/Any.pm
+%doc Changes INSTALL LICENSE MANIFEST META.yml README Todo
+%doc %{_mandir}/man3/Test::Number::Delta.3pm*
+%dir %{perl_vendorlib}/Test/
+%dir %{perl_vendorlib}/Test/Number/
+#%{perl_vendorlib}/Test/Number/Delta/
+%{perl_vendorlib}/Test/Number/Delta.pm
 
 %changelog
-* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.08-1
-- Updated to release 0.08.
-
-* Fri Aug 03 2007 Dag Wieers <dag@wieers.com> - 0.07-1
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.03-1
 - Initial package. (using DAR)

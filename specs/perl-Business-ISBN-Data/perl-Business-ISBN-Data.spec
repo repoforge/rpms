@@ -1,15 +1,15 @@
 # $Id$
-
 # Authority: dries
 # Upstream: brian d foy <bdfoy$cpan,org>
 
-%define real_name Business-ISBN-Data
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
+%define real_name Business-ISBN-Data
+
 Summary: Data pack for Business::ISBN
 Name: perl-Business-ISBN-Data
-Version: 1.14
+Version: 1.17
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Business/Business-ISBN-Data-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This is a data pack for Business::ISBN.  You can update
@@ -30,21 +31,29 @@ Most of the interesting stuff is in Business::ISBN.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX=%{buildroot}%{_prefix}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/Business::ISBN::Data.3*
+%dir %{perl_vendorlib}/Business/
+%dir %{perl_vendorlib}/Business/ISBN/
+#%{perl_vendorlib}/Business/ISBN/Data/
 %{perl_vendorlib}/Business/ISBN/Data.pm
 
 %changelog
@@ -56,9 +65,6 @@ Most of the interesting stuff is in Business::ISBN.
 
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1
 - Updated to release 1.11.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.10-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.10-1
 - Updated to release 1.10.

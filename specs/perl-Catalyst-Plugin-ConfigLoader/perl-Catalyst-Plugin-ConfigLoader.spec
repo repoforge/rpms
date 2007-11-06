@@ -9,7 +9,7 @@
 
 Summary: Perl module to load config files of various types
 Name: perl-Catalyst-Plugin-ConfigLoader
-Version: 0.14
+Version: 0.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Catalyst)
-BuildRequires: perl(Config::Any) >= 0.04
+BuildRequires: perl(Config::Any) >= 0.08
 BuildRequires: perl(Data::Visitor) >= 0.02
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More)
@@ -52,14 +52,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc 
+%doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Catalyst::Plugin::ConfigLoader.3pm*
+%doc %{_mandir}/man3/Catalyst::Plugin::ConfigLoader::*.3pm*
 #%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Catalyst/
 %dir %{perl_vendorlib}/Catalyst/Plugin/
-#%{perl_vendorlib}/Catalyst/Plugin/ConfigLoader/
+%{perl_vendorlib}/Catalyst/Plugin/ConfigLoader/
 %{perl_vendorlib}/Catalyst/Plugin/ConfigLoader.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.18-1
+- Updated to release 0.18.
+
 * Fri Aug 03 2007 Dag Wieers <dag@wieers.com> - 0.14-1
 - Initial package. (using DAR)

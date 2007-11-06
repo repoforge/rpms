@@ -9,17 +9,22 @@
 
 Summary: Perl module implementing a modular perl shell
 Name: perl-Zoidberg
-Version: 0.95
+Version: 0.96
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Zoidberg/
 
-Source: http://www.cpan.org/authors/id/P/PA/PARDUS/zoidberg/Zoidberg-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/P/PA/PARDUS/Zoidberg-%{version}.tar.gz
+#Source: http://www.cpan.org/authors/id/P/PA/PARDUS/zoidberg/Zoidberg-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Data::Dumper)
+BuildRequires: perl(Module::Build) >= 0.24
+BuildRequires: perl(Pod::Text)
+BuildRequires: perl(Test::More)
 
 %description
 perl-Zoidberg is a Perl module implementing a modular perl shell.
@@ -81,5 +86,8 @@ find doc/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/auto/Zoidberg/
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.96-1
+- Updated to release 0.96.
+
 * Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 0.95-1
 - Initial package. (using DAR)

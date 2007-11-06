@@ -9,17 +9,18 @@
 
 Summary: Syntactic sugar for Catalyst::DispatchType::Chained
 Name: perl-Catalyst-Controller-PathArgs
-Version: 0.1
+Version: 0.2
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Controller-PathArgs/
 
-Source: http://search.cpan.org//CPAN/authors/id/Z/ZB/ZBY/Catalyst-Controller-PathArgs-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Controller-PathArgs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Syntactic sugar for Catalyst::DispatchType::Chained.
@@ -33,19 +34,29 @@ Syntactic sugar for Catalyst::DispatchType::Chained.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Catalyst::Controller::PathArgs*
-%{perl_vendorlib}/Catalyst/Controller/PathArgs.pm
+%doc Changes LICENSE MANIFEST META.yml README Todo examples/
+%doc %{_mandir}/man3/Catalyst::Controller::PathArgs.3pm*
+%dir %{perl_vendorlib}/Catalyst/
 %dir %{perl_vendorlib}/Catalyst/Controller/
+#%{perl_vendorlib}/Catalyst/Controller/PathArgs/
+%{perl_vendorlib}/Catalyst/Controller/PathArgs.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.2-1
+- Updated to release 0.2.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.1-1
 - Initial package.

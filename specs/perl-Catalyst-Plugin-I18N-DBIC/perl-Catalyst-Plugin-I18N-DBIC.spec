@@ -9,23 +9,24 @@
 
 Summary: Internationalization for Catalyst data loaded from a database
 Name: perl-Catalyst-Plugin-I18N-DBIC
-Version: 0.03
+Version: 0.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Plugin-I18N-DBIC/
 
-Source: http://search.cpan.org//CPAN/authors/id/I/IC/ICD/Catalyst-Plugin-I18N-DBIC-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Plugin-I18N-DBIC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Internationalization for Catalyst data loaded from a database.
 
 %prep
-%setup -n %{real_name}
+%setup -n catalyst_plugin_i18n_dbic
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -33,17 +34,26 @@ Internationalization for Catalyst data loaded from a database.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man3/Catalyst::Plugin::I18N::DBIC*
+%doc %{_mandir}/man3/Catalyst::Plugin::I18N::DBIC.3pm*
+%dir %{perl_vendorlib}/Catalyst/
+%dir %{perl_vendorlib}/Catalyst/Plugin/
+%dir %{perl_vendorlib}/Catalyst/Plugin/I18N/
+#%{perl_vendorlib}/Catalyst/Plugin/I18N/DBIC/
 %{perl_vendorlib}/Catalyst/Plugin/I18N/DBIC.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.04-1
+- Updated to release 0.04.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.

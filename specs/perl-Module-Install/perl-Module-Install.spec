@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: &#9786;&#21776;&#40179;&#9787; <autrijus$autrijus,org>
+# Upstream: Audrey Tang <autrijus$autrijus,org>
 
 ##Tag: test
 
@@ -11,7 +11,7 @@
 
 Summary: Installer for perl modules
 Name: perl-Module-Install
-Version: 0.67
+Version: 0.68
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,11 +21,17 @@ Source: http://www.cpan.org/modules/by-module/Module/Module-Install-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(File::Spec) >= 0.87, perl(Test::Harness) >= 2.03
-BuildRequires: perl(Test::More) >= 0.42, perl(Module::ScanDeps) >= 0.28
-BuildRequires: perl(Module::CoreList), perl(PAR::Dist) >= 0.03
-BuildRequires: perl(Archive::Tar), perl(ExtUtils::Install) >= 0.3
-BuildRequires: perl(ExtUtils::ParseXS), perl(Module::Build)
+BuildRequires: perl >= 0:5.004 
+BuildRequires: perl(Archive::Tar)
+BuildRequires: perl(ExtUtils::Install) >= 0.3
+BuildRequires: perl(ExtUtils::ParseXS)
+BuildRequires: perl(File::Spec) >= 0.87
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(Module::CoreList)
+BuildRequires: perl(Module::ScanDeps) >= 0.28
+BuildRequires: perl(PAR::Dist) >= 0.03
+BuildRequires: perl(Test::Harness) >= 2.03
+BuildRequires: perl(Test::More) >= 0.42
 # needed for certain older versions of perl-Module-Build
 BuildRequires: perl(YAML::Syck)
 
@@ -43,25 +49,34 @@ descendent of CPAN::MakeMaker.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST META.yml README ToDo
+%doc %{_mandir}/man3/Module::AutoInstall.3pm.gz
+%doc %{_mandir}/man3/Module::Install.3pm.gz
+%doc %{_mandir}/man3/Module::Install::*.3pm.gz
+%doc %{_mandir}/man3/inc::Module::Install.3pm*
 %dir %{perl_vendorlib}/Module/
 %{perl_vendorlib}/Module/AutoInstall.pm
 %{perl_vendorlib}/Module/Install/
-%{perl_vendorlib}/Module/Install.p*
+%{perl_vendorlib}/Module/Install.pm
+%{perl_vendorlib}/Module/Install.pod
 %dir %{perl_vendorlib}/inc/
 %dir %{perl_vendorlib}/inc/Module/
 %{perl_vendorlib}/inc/Module/Install.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.68-1
+- Updated to release 0.68.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.67-1
 - Updated to release 0.67.
 

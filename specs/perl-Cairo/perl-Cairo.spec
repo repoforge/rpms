@@ -9,7 +9,7 @@
 
 Summary: Perl interface to the cairo library  
 Name: perl-Cairo
-Version: 1.041
+Version: 1.043
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,9 +19,12 @@ URL: http://search.cpan.org/dist/Cairo/
 Source: http://www.cpan.org/authors/id/T/TS/TSCH/Cairo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: cairo-devel
 BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl(ExtUtils::Depends)
+BuildRequires: perl(ExtUtils::PkgConfig)
 BuildRequires: perl(Glib) >= 1.0.0
-BuildRequires: cairo-devel, perl(ExtUtils::Depends), perl(ExtUtils::PkgConfig)
+BuildRequires: perl(Test::Number::Delta) >= 1
 Requires: perl >= 2:5.8.0
 
 %description
@@ -50,12 +53,16 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog LICENSE MANIFEST MANIFEST.SKIP META.yml NEWS README TODO examples/
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Cairo.3pm*
+#%doc %{_mandir}/man3/*.3pm*
 %{perl_vendorarch}/Cairo/
 %{perl_vendorarch}/Cairo.pm
 %{perl_vendorarch}/auto/Cairo/
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.043-1
+- Updated to release 1.043.
+
 * Wed Aug 08 2007 Dag Wieers <dag@wieers.com> - 1.041-1
 - Updated to release 1.041.
 

@@ -9,7 +9,7 @@
 
 Summary: Catalyst  Runtime version
 Name: perl-Catalyst-Runtime
-Version: 5.7007
+Version: 5.7011
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,17 +19,30 @@ Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Runtime-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 2:5.8.1, perl(ExtUtils::MakeMaker)
-# this module seems to require 50% of cpan..
-BuildRequires: perl(Class::Accessor::Fast), perl(Class::Inspector)
-BuildRequires: perl(CGI::Simple::Cookie), perl(Data::Dump)
-BuildRequires: perl(File::Modified), perl(HTML::Entities), perl(HTTP::Body)
-BuildRequires: perl(HTTP::Headers) >= 1.64, perl(HTTP::Request), perl(HTTP::Response)
-BuildRequires: perl(HTTP::Request::AsCGI), perl(LWP::UserAgent)
-BuildRequires: perl(Module::Pluggable), perl(Path::Class), perl(Scalar::Util)
-BuildRequires: perl(Text::SimpleTable), perl(Tree::Simple)
-BuildRequires: perl(Tree::Simple::Visitor::FindByPath), perl(URI) >= 1.35
+BuildRequires: perl >= 2:5.8.1
+### this module seems to require half of cpan..
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(CGI::Simple::Cookie)
+BuildRequires: perl(Class::Accessor::Fast)
 BuildRequires: perl(Class::Data::Inheritable)
+BuildRequires: perl(Class::Inspector)
+BuildRequires: perl(Data::Dump)
+BuildRequires: perl(File::Modified)
+BuildRequires: perl(HTML::Entities)
+BuildRequires: perl(HTTP::Body)
+BuildRequires: perl(HTTP::Headers) >= 1.64
+BuildRequires: perl(HTTP::Request)
+BuildRequires: perl(HTTP::Request::AsCGI)
+BuildRequires: perl(HTTP::Response)
+BuildRequires: perl(LWP::UserAgent)
+BuildRequires: perl(Module::Pluggable)
+BuildRequires: perl(Path::Class)
+BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(Test::Perl::Critic)
+BuildRequires: perl(Text::SimpleTable)
+BuildRequires: perl(Tree::Simple)
+BuildRequires: perl(Tree::Simple::Visitor::FindByPath)
+BuildRequires: perl(URI) >= 1.35
 
 %description
 Catalyst  Runtime version.
@@ -55,11 +68,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml
 %doc %{_mandir}/man1/catalyst.pl.1*
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Catalyst.3pm*
+%doc %{_mandir}/man3/Catalyst::*.3pm*
 %{_bindir}/catalyst.pl
 %{perl_vendorlib}/Catalyst/
 %{perl_vendorlib}/Catalyst.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 5.7011-1
+- Updated to release 5.7011.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 5.7007-1
 - Initial package. (using DAR)

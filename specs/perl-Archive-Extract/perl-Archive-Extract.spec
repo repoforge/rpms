@@ -9,7 +9,7 @@
 
 Summary: Generic archive extracting mechanism
 Name: perl-Archive-Extract
-Version: 0.22
+Version: 0.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Archive/Archive-Extract-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 A generic archive extracting mechanism.
@@ -33,19 +34,25 @@ A generic archive extracting mechanism.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man3/*
+%doc CHANGES MANIFEST META.yml README
+%doc %{_mandir}/man3/Archive::Extract.3pm*
 %dir %{perl_vendorlib}/Archive/
 %{perl_vendorlib}/Archive/Extract.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.24-1
+- Updated to release 0.24.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.22-1
 - Updated to release 0.22.
 
@@ -60,9 +67,6 @@ A generic archive extracting mechanism.
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Updated to release 0.08.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1.2
-- Rebuild for Fedora Core 5.
 
 * Thu Mar 31 2005 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Initial package.

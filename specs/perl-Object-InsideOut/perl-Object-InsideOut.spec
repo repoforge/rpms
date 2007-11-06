@@ -9,7 +9,7 @@
 
 Summary: Perl module with comprehensive inside-out object support module
 Name: perl-Object-InsideOut
-Version: 3.14
+Version: 3.27
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Object/Object-InsideOut-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-Object-InsideOut is a Perl module with comprehensive inside-out
@@ -39,13 +40,18 @@ object support module.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/Bundle::Object::InsideOut.3pm*
+%doc %{_mandir}/man3/Object::InsideOut.3pm*
+%doc %{_mandir}/man3/Object::InsideOut::*.3pm*
 %dir %{perl_vendorlib}/Bundle/
 %dir %{perl_vendorlib}/Bundle/Object/
 %{perl_vendorlib}/Bundle/Object/InsideOut.pm
@@ -55,5 +61,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Object/InsideOut.pod
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 3.27-1
+- Updated to release 3.27.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 3.14-1
 - Initial package. (using DAR)

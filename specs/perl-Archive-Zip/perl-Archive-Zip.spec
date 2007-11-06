@@ -9,7 +9,7 @@
 
 Summary: Provide an interface to ZIP archive files.
 Name: perl-Archive-Zip
-Version: 1.20
+Version: 1.22
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,14 +55,18 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes INSTALL LICENSE MANIFEST META.yml README examples/
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes LICENSE MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/Archive::Zip.3pm*
+%doc %{_mandir}/man3/Archive::Zip::*.3pm*
 %{_bindir}/crc32
 %dir %{perl_vendorlib}/Archive/
-%{perl_vendorlib}/Archive/Zip.pm
 %{perl_vendorlib}/Archive/Zip/
+%{perl_vendorlib}/Archive/Zip.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.22-1
+- Updated to release 1.22.
+
 * Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 1.20-1
 - Disabled auto-requires for examples/.
 
