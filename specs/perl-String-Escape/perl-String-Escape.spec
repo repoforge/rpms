@@ -4,8 +4,8 @@
 # Upstream: Matthew Simon Cavalletto <simonm$cavalletto,org>
 
 %define real_name String-Escape
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 Summary: Registry of string functions, including backslash escapes
 Name: perl-String-Escape

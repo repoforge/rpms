@@ -1,24 +1,26 @@
 # $Id$
 # Authority: dries
-# Upstream: Andy Wardley <cpan$wardley,org>
+# Upstream: Andy Wardley <abw$wardley,org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Class-Singleton
 
 Summary: Implementation of a "Singleton" class
 Name: perl-Class-Singleton
-Version: 1.03
-Release: 1.2
-License: Artistic
+Version: 1.4
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Singleton/
 
 Source: http://www.cpan.org/modules/by-module/Class/Class-Singleton-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildArch: noarch
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This is the Class::Singleton module. A Singleton describes an
@@ -35,27 +37,30 @@ implement whatever specific functionality is required.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Class::Singleton.3pm*
 %dir %{perl_vendorlib}/Class/
+#%{perl_vendorlib}/Class/Singleton/
 %{perl_vendorlib}/Class/Singleton.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.4-1
+- Updated to release 1.4.
+
 * Mon Dec 06 2004 Dries Verachtert <dries@ulyssis.org> - 1.03-1
 - Initial package.

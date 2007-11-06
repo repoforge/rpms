@@ -3,8 +3,8 @@
 # Upstream: Matija Grabnar <matija,grabnar$arnes,si>
 
 %define real_name File-Tail
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 Summary: Perl extension for reading from continuosly updated files
 Name: perl-File-Tail

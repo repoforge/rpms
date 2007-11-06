@@ -2,8 +2,8 @@
 # Authority: dries
 # Upstream: Gisle Aas <gisle$ActiveState,com>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Font-AFM
 
@@ -15,17 +15,22 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Font-AFM/
 
-Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/Font-AFM-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Font/Font-AFM-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module implements the Font::AFM class. Objects of this
 class are initialised from an AFM-file and allows you to obtain
 information about the font and the metrics of the various glyphs
 in the font.
+
+This package contains the following Perl module:
+
+    Font::AFM
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -36,22 +41,23 @@ in the font.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST README
+%doc %{_mandir}/man3/Font::AFM.3pm*
+%dir %{perl_vendorlib}/Font/
+#%{perl_vendorlib}/Font/AFM/
 %{perl_vendorlib}/Font/AFM.pm
-%{perl_vendorlib}/Font/Metrics
+%{perl_vendorlib}/Font/Metrics/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.19-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.19-1
 - Initial package.

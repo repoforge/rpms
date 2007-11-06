@@ -9,7 +9,7 @@
 
 Summary: Extract meta information from image files
 Name: perl-Image-Info
-Version: 1.25
+Version: 1.26
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,13 +48,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES CREDITS MANIFEST MANIFEST.SKIP META.yml README SIGNATURE TODO
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Image::Info.3pm*
+%doc %{_mandir}/man3/Image::Info::*.3pm*
 %dir %{perl_vendorlib}/Image/
 %{perl_vendorlib}/Image/Info/
 %{perl_vendorlib}/Image/Info.pm
 %{perl_vendorlib}/Image/TIFF.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.26-1
+- Updated to release 1.26.
+
 * Wed Jun 13 2007 Dries Verachtert <dries@ulyssis.org> - 1.25-1
 - Updated to release 1.25.
 

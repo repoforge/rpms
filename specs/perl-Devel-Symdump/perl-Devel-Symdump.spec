@@ -1,9 +1,9 @@
 # $Id$
 # Authority: dries
-# Upstream: Andreas J. Konig <andreas,koenig$anima,de>
+# Upstream: Andreas J. König <andreas,koenig$anima,de>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Devel-Symdump
 
@@ -15,14 +15,19 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-Symdump/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AN/ANDK/Devel-Symdump-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Devel/Devel-Symdump-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Dump symbol names or the symbol table.
+
+This package contains the following Perl module:
+
+    Devel::Symdump
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -33,19 +38,21 @@ Dump symbol names or the symbol table.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
-%doc %{_mandir}/man3/*
+%doc ChangeLog ChangeLog.svn MANIFEST META.yml README SIGNATURE
+%doc %{_mandir}/man3/Devel::Symdump.3pm*
+%dir %{perl_vendorlib}/Devel/
+%{perl_vendorlib}/Devel/Symdump/
 %{perl_vendorlib}/Devel/Symdump.pm
-%dir %{perl_vendorlib}/Devel/Symdump/
-%{perl_vendorlib}/Devel/Symdump/Export.pm
 
 %changelog
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 2.07-1
@@ -53,9 +60,6 @@ Dump symbol names or the symbol table.
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.06-1
 - Updated to release 2.06.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.05-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.05-1
 - Updated to release 2.05.

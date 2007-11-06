@@ -2,8 +2,8 @@
 # Authority: dries
 # Upstream: Brian Ingerson <ingy$cpan,org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name IO-All
 
@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/IO/IO-All-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 1:5.6.1
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 IO::All combines all of the best Perl IO modules into a single Spiffy
@@ -48,23 +49,23 @@ readline, getc, print, printf, syswrite, sysread, close.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/IO::All.3pm*
+%doc %{_mandir}/man3/IO::All::*.3pm*
 %dir %{perl_vendorlib}/IO/
+%{perl_vendorlib}/IO/All/
 %{perl_vendorlib}/IO/All.pm
 %{perl_vendorlib}/IO/All.pod
-%{perl_vendorlib}/IO/All/
 
 %changelog
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.38-1
@@ -75,9 +76,6 @@ readline, getc, print, printf, syswrite, sysread, close.
 
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.35-1
 - Updated to release 0.35.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.33-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.33-1
 - Updated to release 0.33.

@@ -3,8 +3,8 @@
 # Upstream: Barrie Slaymaker <barries$slaysys,com>
 
 %define real_name Text-Diff
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 Summary: Perform diffs on files and record sets
 Name: perl-Text-Diff

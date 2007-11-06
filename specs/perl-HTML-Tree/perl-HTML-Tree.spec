@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dries
+# Upstream: Pete Krawczyk <petek$bsod,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -10,7 +11,7 @@ Summary: HTML-Tree module for perl
 Name: perl-HTML-Tree
 Version: 3.23
 Release: 1
-License: GPL or Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Tree/
 
@@ -23,6 +24,10 @@ Requires: perl >= 2:5.8.0
 
 %description
 HTML-Tree module for perl.
+
+This package contains the following Perl module:
+
+    HTML::AsSubs
 
 %prep
 %setup -n %{real_name}-%{version}

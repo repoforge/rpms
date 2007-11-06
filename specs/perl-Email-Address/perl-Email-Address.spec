@@ -2,16 +2,16 @@
 # Authority: dries
 # Upstream: Casey West <casey$geeknest,com>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Email-Address
 
 Summary: RFC 2822 Address Parsing and Creation
 Name: perl-Email-Address
-Version: 1.887
+Version: 1.888
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Address/
 
@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Email/Email-Address-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This class implements a complete RFC 2822 parser that locates email
@@ -36,23 +37,26 @@ software is to be correct, and very very fast.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/Email::Address.3pm*
 %dir %{perl_vendorlib}/Email/
+#%{perl_vendorlib}/Email/Address/
 %{perl_vendorlib}/Email/Address.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.888-1
+- Updated to release 1.888.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.887-1
 - Updated to release 1.887.
 

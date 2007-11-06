@@ -4,8 +4,8 @@
 # Upstream: Steffen Beyer <sb$engelschall,com>
 
 %define real_name Set-IntRange
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 Summary: Sets of Integers
 Name: perl-Set-IntRange

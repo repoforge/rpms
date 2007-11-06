@@ -11,7 +11,7 @@ Summary: Perl module to find memory cycles in objects
 Name: perl-Devel-Cycle
 Version: 1.07
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-Cycle/
 
@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Devel/Devel-Cycle-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl
 
 %description

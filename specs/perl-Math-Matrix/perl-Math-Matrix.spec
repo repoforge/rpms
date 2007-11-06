@@ -4,8 +4,8 @@
 # Upstream: Ulrich Pfeifer <pfeifer$wait,de>
 
 %define real_name Math-Matrix
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 Summary: Multiply and invert Matrices
 Name: perl-Math-Matrix

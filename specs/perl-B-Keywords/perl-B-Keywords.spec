@@ -9,9 +9,9 @@
 
 Summary: Perl module with lists of reserved barewords and symbol names
 Name: perl-B-Keywords
-Version: 1.06
+Version: 1.08
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/B-Keywords/
 
@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/B/B-Keywords-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl
 
 %description
@@ -50,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/B/Keywords.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.08-1
+- Updated to release 1.08.
+
 * Sun Apr 29 2007 Dag Wieers <dag@wieers.com> - 1.06-1
 - Initial package. (using DAR)

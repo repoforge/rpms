@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Ricardo SIGNES <rjbs$cpan,org>
+# Upstream: Ricardo Signes <rjbs@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -15,11 +15,12 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Package-Generator/
 
-Source: http://www.cpan.org/authors/id/R/RJ/RJBS/Package-Generator-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Package/Package-Generator-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-Package-Generator is a Perl module to generate new packages
@@ -48,6 +49,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man3/Package::Generator.3pm*
 %doc %{_mandir}/man3/Package::Reaper.3pm*
 %dir %{perl_vendorlib}/Package/
+#%{perl_vendorlib}/Package/Generator/
 %{perl_vendorlib}/Package/Generator.pm
 %{perl_vendorlib}/Package/Reaper.pm
 

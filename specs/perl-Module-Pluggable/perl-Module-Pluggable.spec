@@ -2,8 +2,8 @@
 # Authority: dries
 # Upstream: Simon Wistow <simon$thegestalt,org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Module-Pluggable
 
@@ -15,15 +15,20 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Pluggable/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SI/SIMONW/Module-Pluggable-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Module/Module-Pluggable-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Provides a simple but, hopefully, extensible way of having 'plugins' for
 your module.
+
+This package contains the following Perl module:
+
+    Devel::InnerPackage
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -34,16 +39,20 @@ your module.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes INSTALL MANIFEST MANIFEST.SKIP META.yml README
+%doc %{_mandir}/man3/Devel::InnerPackage.3pm*
+%doc %{_mandir}/man3/Module::Pluggable.3pm*
+%doc %{_mandir}/man3/Module::Pluggable::Object.3pm*
 %dir %{perl_vendorlib}/Devel/
 %{perl_vendorlib}/Devel/InnerPackage.pm
 %dir %{perl_vendorlib}/Module/

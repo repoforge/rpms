@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Andy Wardley <cpan$wardley,org>
+# Upstream: Andy Wardley <abw$wardley,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -18,7 +18,9 @@ URL: http://search.cpan.org/dist/Template-Toolkit/
 Source: http://www.cpan.org/modules/by-module/Template/Template-Toolkit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(AppConfig)
+BuildRequires: perl
+BuildRequires: perl(AppConfig)
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 The Template Toolkit is a collection of modules which implement a
@@ -58,8 +60,10 @@ find docs/ examples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes HACKING INSTALL MANIFEST META.yml README TODO docs/ examples/
-%doc %{_mandir}/man1/*.1*
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man1/tpage.1*
+%doc %{_mandir}/man1/ttree.1*
+%doc %{_mandir}/man3/Template.3pm*
+%doc %{_mandir}/man3/Template::*.3pm*
 #%{_datadir}/tt2/
 %{_bindir}/tpage
 %{_bindir}/ttree

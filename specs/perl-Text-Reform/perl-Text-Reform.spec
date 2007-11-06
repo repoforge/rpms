@@ -2,17 +2,16 @@
 # Authority: dries
 # Upstream: Damian Conway <damian$conway,org>
 
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name Text-Reform
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Manual text wrapping and reformatting
 Name: perl-Text-Reform
 Version: 1.11
 Release: 1.2
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Reform/
 
@@ -20,43 +19,44 @@ Source: http://www.cpan.org/modules/by-module/Text/Text-Reform-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 The module supplies a re-entrant, highly configurable replacement
 for the built-in Perl format() mechanism.
 
+This package contains the following Perl module:
+
+    Text::Reform
+
 %prep
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} -pi -e 's|/usr/local/bin/perl|%{_bindir}/perl|g;' demo*.pl
-%{__perl} Makefile.PL \
-	INSTALLDIRS="vendor" \
-	PREFIX="%{buildroot}%{_prefix}"
+%{__perl} -pi -e 's|/usr/local/bin/perl|%{__perl}|g;' demo*.pl
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST README
+%doc %{_mandir}/man3/Text::Reform.3pm*
+%dir %{perl_vendorlib}/Text/
+#%{perl_vendorlib}/Text/Reform/
 %{perl_vendorlib}/Text/Reform.pm
 %{perl_vendorlib}/Text/demo*.pl
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Dec 19 2004 Dries Verachtert <dries@ulyssis.org> - 1.11
 - Initial package.

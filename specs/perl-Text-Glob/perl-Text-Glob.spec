@@ -2,8 +2,8 @@
 # Authority: dries
 # Upstream: Richard Clamp <richardc$unixbeard,net>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Text-Glob
 
@@ -19,7 +19,9 @@ Source: http://www.cpan.org/modules/by-module/Text/Text-Glob-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
 
 %description
 This module allows you to match globbing patterns against text.
@@ -33,20 +35,20 @@ This module allows you to match globbing patterns against text.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Text::Glob.3pm*
 %dir %{perl_vendorlib}/Text/
+#%{perl_vendorlib}/Text/Glob/
 %{perl_vendorlib}/Text/Glob.pm
 
 %changelog
@@ -55,9 +57,6 @@ This module allows you to match globbing patterns against text.
 
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Updated to release 0.07.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Dec 08 2004 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.

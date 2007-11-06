@@ -10,7 +10,7 @@ Summary: Lexically scoped subroutine wrappers
 Name: perl-Hook-LexWrap
 Version: 0.20
 Release: 1
-License: GPL
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Hook-LexWrap/
 
@@ -18,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/Hook/Hook-LexWrap-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl
 
 %description
@@ -28,7 +29,7 @@ Lexically scoped subroutine wrappers
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTALLDIRS="vendor"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install

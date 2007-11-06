@@ -1,16 +1,17 @@
 # $Id$
 # Authority: dries
+# Upstream: David F. Skoll <dfs+pause$roaringpenguin,com>
 
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define rname IO-stringy
+%define real_name IO-stringy
 
 Summary: IO-Stringy - I/O on in-core objects like strings and arrays
 Name: perl-IO-stringy
 Version: 2.110
 Release: 1.2
-License: distributable
+License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-stringy/
 
@@ -18,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/IO/IO-stringy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.00503, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 0:5.00503
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.00503
 
 Obsoletes: perl-IO-Stringy <= %{version}-%{release}
@@ -33,7 +35,7 @@ In the more-traditional IO::Handle front, we have IO::AtomicFile which
 may be used to painlessly create files which are updated atomically.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -41,24 +43,24 @@ may be used to painlessly create files which are updated atomically.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find contrib/ examples/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING MANIFEST README*
-%doc %{_mandir}/man3/*.3pm*
+%doc COPYING MANIFEST META.yml README contrib/ examples/
+%doc %{_mandir}/man3/IO::*.3pm*
 %{perl_vendorlib}/IO/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.110-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.110-1
 - Updated to release 2.110.
 

@@ -4,8 +4,8 @@
 # Upstream: brian d foy <bdfoy$cpan,org>
 
 %define real_name Test-ISBN
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 Summary: Check International Standard Book Numbers
 Name: perl-Test-ISBN

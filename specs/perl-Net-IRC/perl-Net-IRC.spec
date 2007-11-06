@@ -4,8 +4,8 @@
 # Upstream: Jeremy Muhlich <jmuhlich%20at%20bitflood,org>
 
 %define real_name Net-IRC
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 Summary: Perl interface to the Internet Relay Chat protocol
 Name: perl-Net-IRC

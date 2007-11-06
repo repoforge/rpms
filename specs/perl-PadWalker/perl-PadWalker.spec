@@ -18,14 +18,11 @@ URL: http://search.cpan.org/dist/PadWalker/
 Source: http://www.cpan.org/authors/id/R/RO/ROBIN/PadWalker-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 2:5.8.2, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 2:5.8.2
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-PadWalker is a Perl module to play with other peoples' lexical variables.
-
-This package contains the following Perl module:
-
-    PadWalker
 
 %prep
 %setup -n %{real_name}-%{version}

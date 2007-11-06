@@ -4,8 +4,8 @@
 # Upstream: Leo Lapworth <LLAP$cuckoo,org>
 
 %define real_name Text-vCard
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 Summary: Edit and create a single vCard (RFC 2426)
 Name: perl-Text-vCard

@@ -4,8 +4,8 @@
 # Upstream: John A.R. Williams <J,A,R,Williams$aston,ac,uk>
 
 %define real_name Math-Derivative
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 Summary: Numeric 1st and 2nd order differentiation
 Name: perl-Math-Derivative

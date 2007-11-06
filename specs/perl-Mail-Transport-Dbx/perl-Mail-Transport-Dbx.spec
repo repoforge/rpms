@@ -23,6 +23,10 @@ BuildRequires: perl
 %description
 perl-Mail-Transport-Dbx is a Perl module to parse Outlook Express mailboxes.
 
+This package contains the following Perl module:
+
+    Mail::Transport::Dbx
+
 %prep
 %setup -n %{real_name}-%{version}
 

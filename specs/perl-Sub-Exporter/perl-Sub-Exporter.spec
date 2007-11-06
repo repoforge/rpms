@@ -9,17 +9,18 @@
 
 Summary: Perl module that implements a sophisticated exporter for custom-built routines
 Name: perl-Sub-Exporter
-Version: 0.974
+Version: 0.976
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sub-Exporter/
 
-Source: http://www.cpan.org/modules/by-module/Sub/Sub-Exporter-0.974.tar.gz
+Source: http://www.cpan.org/modules/by-module/Sub/Sub-Exporter-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Sub-Exporter is a Perl module that implements a sophisticated exporter
@@ -45,11 +46,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes LICENSE MANIFEST META.yml README
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Sub::Exporter.3pm*
+%doc %{_mandir}/man3/Sub::Exporter::*.3pm*
 %dir %{perl_vendorlib}/Sub/
 %{perl_vendorlib}/Sub/Exporter/
 %{perl_vendorlib}/Sub/Exporter.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.976-1
+- Updated to release 0.976.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.974-1
 - Initial package. (using DAR)

@@ -1,19 +1,17 @@
 # $Id$
-
 # Authority: dries
-# Upstream: Casey West <casey$geeknest,com>
+# Upstream: Ricardo SIGNES <rjbs$cpan,org>
+
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Email-MIME-Attachment-Stripper
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
-Summary: Strips the attachments from a mail
+Summary: Strip the attachments from a mail
 Name: perl-Email-MIME-Attachment-Stripper
-Version: 1.31
-Release: 1.2
-License: Artistic
+Version: 1.314
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-MIME-Attachment-Stripper/
 
@@ -21,36 +19,46 @@ Source: http://www.cpan.org/modules/by-module/Email/Email-MIME-Attachment-Stripp
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 With this perl module, you can strip attachments from a mail.
+
+This package contains the following Perl module:
+
+    Email::MIME::Attachment::Stripper
 
 %prep
 %setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/Email::MIME::Attachment::Stripper.3pm*
+%dir %{perl_vendorlib}/Email/
+%dir %{perl_vendorlib}/Email/MIME/
+%dir %{perl_vendorlib}/Email/MIME/Attachment/
+#%{perl_vendorlib}/Email/MIME/Attachment/Stripper/
 %{perl_vendorlib}/Email/MIME/Attachment/Stripper.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.31-1.2
-- Rebuild for Fedora Core 5.
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.314-1
+- Updated to release 1.314.
 
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.31-1
 - Updated to release 1.31.

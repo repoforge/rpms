@@ -3,8 +3,8 @@
 # Upstream: Francis J, Lacoste <frajulac$contre,com>
 
 %define real_name Net-IPv4Addr
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 Summary: Perl extension for manipulating IPv4 addresses
 Name: perl-Net-IPv4Addr

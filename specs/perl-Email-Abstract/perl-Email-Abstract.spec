@@ -1,9 +1,9 @@
 # $Id$
 # Authority: dries
-# Upstream: Ricardo Signes <rjbs$cpan,org>
+# Upstream: Ricardo SIGNES <rjbs$cpan,org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Email-Abstract
 
@@ -15,11 +15,12 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Abstract/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RJ/RJBS/Email-Abstract-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Email/Email-Abstract-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 "Email::Abstract" provides module writers with the ability to write
@@ -31,6 +32,10 @@ object from scratch, "Email::Abstract" can be used to perform certain
 simple operations on an object regardless of its underlying
 representation.
 
+This package contains the following Perl module:
+
+    Email::Abstract
+
 %prep
 %setup -n %{real_name}-%{version}
 
@@ -40,18 +45,21 @@ representation.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Email::Abstract*
-%{perl_vendorlib}/Email/Abstract.pm
+%doc Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/Email::Abstract.3pm*
+%dir %{perl_vendorlib}/Email/
 %{perl_vendorlib}/Email/Abstract/
+%{perl_vendorlib}/Email/Abstract.pm
 
 %changelog
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 2.132-1

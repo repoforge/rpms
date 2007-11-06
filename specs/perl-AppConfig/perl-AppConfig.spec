@@ -3,14 +3,14 @@
 # Authority: dries
 # Upstream: Andy Wardley <abw$wardley,org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name AppConfig
 
 Summary: Module for reading configuration files and parsing command line args
 Name: perl-AppConfig
-Version: 1.65
+Version: 1.66
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,8 @@ Source: http://www.cpan.org/modules/by-module/AppConfig/AppConfig-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 AppConfig is a bundle of Perl5 modules for reading configuration files
@@ -46,25 +47,30 @@ accessible through the AppConfig.pm module.
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README TODO
-%doc %{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST META.yml README TODO
+%doc %{_mandir}/man3/AppConfig.3pm*
+%doc %{_mandir}/man3/AppConfig::*.3pm*
+%{perl_vendorlib}/AppConfig/
 %{perl_vendorlib}/AppConfig.pm
-%{perl_vendorlib}/AppConfig/*
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.66-1
+- Updated to release 1.66.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 1.65-1
 - Updated to release 1.65.
 
@@ -73,9 +79,6 @@ accessible through the AppConfig.pm module.
 
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.63-1
 - Updated to release 1.63.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.56-2.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan 01 2005 Dries Verachtert <dries@ulyssis.org> - 1.56-2
 - Fixed the license tag (Thanks to David Necas !)

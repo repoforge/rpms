@@ -1,19 +1,16 @@
 # $Id$
-
 # Authority: dries
-# Upstream: Randy J Ray <rjray$blackperl,com>
+# Upstream: Randy J. Ray <rjray$blackperl,com>
 
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Image-Size
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Read the dimensions of images
 Name: perl-Image-Size
-Version: 2.992
-Release: 1.2
+Version: 3.1
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Size/
@@ -22,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Image/Image-Size-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module contains functions for reading the dimensions of images in several popular formats.
@@ -36,24 +34,29 @@ This module contains functions for reading the dimensions of images in several p
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
+%doc ChangeLog MANIFEST MANIFEST.SKIP META.yml README README.Win32 SIGNATURE
+%doc %{_mandir}/man1/imgsize.1*
+%doc %{_mandir}/man3/Image::Size.3pm*
 %{_bindir}/imgsize
-%{_mandir}/man?/*
+%dir %{perl_vendorlib}/Image/
+#%{perl_vendorlib}/Image/Size/
 %{perl_vendorlib}/Image/Size.pm
-%{perl_vendorlib}/auto/Image/Size/*
+%dir %{perl_vendorlib}/auto/Image/
+%{perl_vendorlib}/auto/Image/Size/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.992-1.2
-- Rebuild for Fedora Core 5.
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 3.1-1
+- Updated to release 3.1.
 
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 2.992
 - Initial package.

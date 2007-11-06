@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Andy Lester <andy$petdance,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -10,7 +11,7 @@ Summary: Checks for POD Coverage in your distribution
 Name: perl-Test-Pod-Coverage
 Version: 1.08
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Pod-Coverage/
 
@@ -18,10 +19,15 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Pod-Coverage-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module allows you to check for pod coverage in your distribution.
+
+This package contains the following Perl module:
+
+    Test::Pod::Coverage
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -42,10 +48,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST
-%doc %{_mandir}/man3/*.3*
+%doc Changes MANIFEST META.yml
+%doc %{_mandir}/man3/Test::Pod::Coverage.3pm*
 %dir %{perl_vendorlib}/Test/
 %dir %{perl_vendorlib}/Test/Pod/
+#%{perl_vendorlib}/Test/Pod/Coverage/
 %{perl_vendorlib}/Test/Pod/Coverage.pm
 
 %changelog

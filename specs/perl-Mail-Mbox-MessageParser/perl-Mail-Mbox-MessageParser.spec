@@ -32,7 +32,7 @@ Mail::Mbox::MessageParser is a fast and simple mbox folder reader.
 %setup -n %{real_name}-%{version}
 
 %build
-echo | %{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTALLDIRS="vendor"
+echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 echo | %{__make} %{?_smp_mflags}
 
 %install

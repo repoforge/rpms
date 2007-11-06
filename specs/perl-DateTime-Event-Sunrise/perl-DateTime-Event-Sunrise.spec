@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Ron Hill <rkhill$firstlight,net>
 
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name DateTime-Event-Sunrise
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: DateTime extension for computing the sunrise/sunset on a given day
 Name: perl-DateTime-Event-Sunrise

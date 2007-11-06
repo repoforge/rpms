@@ -1,28 +1,39 @@
 # $Id$
 # Authority: dries
-# Upstream: Adam Kennedy <cpan$ali,as>
+# Upstream: Adam Kennedy <adamk@cpan.org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name PPI
 
 Summary: Parse and manipulate perl code non-destructively
 Name: perl-PPI
-Version: 1.118
+Version: 1.201
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PPI/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AD/ADAMK/PPI-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/PPI/PPI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-File-Slurp
-BuildRequires: perl-List-MoreUtils, perl-Clone, perl-Class-Autouse
-BuildRequires: perl-Test-ClassAPI, perl(Storable), perl-Params-Util
-BuildRequires: perl-IO-stringy
+BuildRequires: perl >= 0:5.005 
+BuildRequires: perl(Class::Autouse)
+BuildRequires: perl(Clone)
+BuildRequires: perl(File::Remove) >= 0.34
+BuildRequires: perl(File::Slurp)
+BuildRequires: perl(File::Spec) >= 0.84
+BuildRequires: perl(IO::Stringy)
+BuildRequires: perl(List::MoreUtils)
+BuildRequires: perl(Params::Util)
+BuildRequires: perl(Storable)
+BuildRequires: perl(Test::ClassAPI) >= 1.03
+BuildRequires: perl(Test::More) >= 0.47
+BuildRequires: perl(Test::Object) >= 0.07
+BuildRequires: perl(Test::SubCalls) >= 1.06
+BuildRequires: perl(Test::ClassAPI)
 #perl(List::Util) > 1.18
 
 %description
@@ -46,27 +57,30 @@ the B:: modules.
 
 %build
 echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/PPI.pm
+%doc Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/PPI.3pm*
+%doc %{_mandir}/man3/PPI::*.3pm*
 %{perl_vendorlib}/PPI/
+%{perl_vendorlib}/PPI.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.201-1
+- Updated to release 1.201.
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.118-1
 - Updated to release 1.118.
 
@@ -78,9 +92,6 @@ echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.110-1
 - Updated to release 1.110.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.109-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.109-1
 - Updated to release 1.109.

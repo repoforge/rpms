@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Perl-Critic-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Use Perl::Critic in test scripts.
@@ -47,6 +48,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man3/Test::Perl::Critic.3pm*
 %dir %{perl_vendorlib}/Test/
 %dir %{perl_vendorlib}/Test/Perl/
+#%{perl_vendorlib}/Test/Perl/Critic/
 %{perl_vendorlib}/Test/Perl/Critic.pm
 
 %changelog

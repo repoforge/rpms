@@ -2,8 +2,8 @@
 # Authority: dries
 # Upstream: &#1497;&#1493;&#1489;&#1500; &#1511;&#1493;&#1490;'&#1502;&#1503; <nothingmuch$woobling,org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name UNIVERSAL-isa
 

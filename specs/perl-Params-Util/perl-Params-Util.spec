@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dries
-# Upstream: Adam Kennedy <cpan$ali,as>
+# Upstream: Adam Kennedy <adamk@cpan.org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Params-Util
 
 Summary: Param checking functions
 Name: perl-Params-Util
-Version: 0.25
+Version: 0.30
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,7 +19,11 @@ Source: http://www.cpan.org/modules/by-module/Params/Params-Util-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(Scalar::Util)
+BuildRequires: perl >= 0:5.005
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Spec) >= 0.8
+BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(Test::More) >= 0.42
 
 %description
 Simple standalone param-checking functions.
@@ -33,20 +37,25 @@ Simple standalone param-checking functions.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/Params::Util.3pm*
 %dir %{perl_vendorlib}/Params/
 %{perl_vendorlib}/Params/Util.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.30-1
+- Updated to release 0.30.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.25-1
 - Updated to release 0.25.
 

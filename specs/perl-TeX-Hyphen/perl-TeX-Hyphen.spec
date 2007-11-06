@@ -2,8 +2,8 @@
 # Authority: dries
 # Upstream: Jan Pazdziora <adelton$fi,muni,cz>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name TeX-Hyphen
 
@@ -15,16 +15,21 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/TeX-Hyphen/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JA/JANPAZ/TeX-Hyphen-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/TeX/TeX-Hyphen-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This is the README file for the TeX::Hyphen module. This module uses
 TeX style hyphenation patterns to find places in words to hyphenate.
 You can supply any hyphenation file you like.
+
+This package contains the following Perl module:
+
+    TeX::Hyphen
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -35,22 +40,24 @@ You can supply any hyphenation file you like.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST README
+%doc %{_mandir}/man3/TeX::Hyphen.3pm*
+%doc %{_mandir}/man3/TeX::Hyphen::czech.3pm*
+%doc %{_mandir}/man3/TeX::Hyphen::german.3pm*
+%dir %{perl_vendorlib}/TeX/
+%{perl_vendorlib}/TeX/Hyphen/
 %{perl_vendorlib}/TeX/Hyphen.pm
-%{perl_vendorlib}/TeX/Hyphen
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.140-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.140-1
 - Initial package.

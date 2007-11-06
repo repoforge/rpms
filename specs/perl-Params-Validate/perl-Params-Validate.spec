@@ -2,23 +2,24 @@
 # Authority: dries
 # Upstream: Dave Rolsky <autarch$urth,org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Params-Validate
 
 Summary: Validation of method parameters
 Name: perl-Params-Validate
-Version: 0.86
+Version: 0.89
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Log-Dispatch/
+URL: http://search.cpan.org/dist/Params-Validate/
 
 Source: http://www.cpan.org/modules/by-module/Params/Params-Validate-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 The Params::Validate module provides a flexible system for validation
@@ -43,27 +44,35 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/Params/Validate/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE README
-%{_mandir}/man3/*.3pm*
+%doc Changes LICENSE MANIFEST META.yml README TODO
+%doc %{_mandir}/man3/Attribute::Params::Validate.3pm*
+%doc %{_mandir}/man3/Params::Validate.3pm*
+%doc %{_mandir}/man3/Params::ValidatePP.3pm*
+%doc %{_mandir}/man3/Params::ValidateXS.3pm*
 %dir %{perl_vendorarch}/Attribute/
 %dir %{perl_vendorarch}/Attribute/Params/
 %{perl_vendorarch}/Attribute/Params/Validate.pm
 %dir %{perl_vendorarch}/Params/
-%{perl_vendorarch}/Params/Validate*
+%{perl_vendorarch}/Params/Validate.pm
+%{perl_vendorarch}/Params/ValidatePP.pm
+%{perl_vendorarch}/Params/ValidateXS.pm
 %dir %{perl_vendorarch}/auto/Params/
-%dir %{perl_vendorarch}/auto/Params/Validate/
-%{perl_vendorarch}/auto/Params/Validate/Validate.*
+%{perl_vendorarch}/auto/Params/Validate/
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.89-1
+- Updated to release 0.89.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.86-1
 - Updated to release 0.86.
 

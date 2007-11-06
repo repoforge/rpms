@@ -1,19 +1,17 @@
 # $Id$
-
 # Authority: dries
 # Upstream: brian d foy <bdfoy$cpan,org>
 
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name Test-Manifest
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Interact with a t/test_manifest file
 Name: perl-Test-Manifest
-Version: 1.17
+Version: 1.22
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Manifest/
 
@@ -21,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Manifest-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module allows you to interact with a t/test_manifest file.
@@ -31,29 +30,35 @@ This module allows you to interact with a t/test_manifest file.
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/Test::Manifest.3*
+%dir %{perl_vendorlib}/Test/
+#%{perl_vendorlib}/Test/Manifest/
 %{perl_vendorlib}/Test/Manifest.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.22-1
+- Updated to release 1.22
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.17-1
 - Updated to release 1.17.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.14-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.14-1
 - Updated to release 1.14.

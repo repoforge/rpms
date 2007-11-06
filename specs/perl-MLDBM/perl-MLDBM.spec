@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Joshua Chamas <josh$chamas,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -10,7 +11,7 @@ Summary: MLDBM module for perl
 Name: perl-MLDBM
 Version: 2.01
 Release: 2.2
-License: GPL or Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MLDBM/
 
@@ -18,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/MLDBM/MLDBM-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 2:5.8.0, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 2:5.8.0
 
 %description
@@ -44,14 +46,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST README
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/MLDBM.3pm*
 %{perl_vendorlib}/MLDBM/
 %{perl_vendorlib}/MLDBM.pm
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.01-2.2
-- Rebuild for Fedora Core 5.
-
 * Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 2.01-2
 - Cosmetic cleanup.
 

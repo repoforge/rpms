@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Ricardo SIGNES <rjbs$cpan,org>
+# Upstream: Ricardo Signes <rjbs$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -11,15 +11,16 @@ Summary: Perl module to install subroutines into packages easily
 Name: perl-Sub-Install
 Version: 0.924
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sub-Install/
 
-Source: http://www.cpan.org/modules/by-module/Sub/Sub-Install-0.924.tar.gz
+Source: http://www.cpan.org/modules/by-module/Sub/Sub-Install-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Sub-Install is a Perl module to install subroutines into packages easily.
@@ -46,6 +47,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes LICENSE MANIFEST META.yml README
 %doc %{_mandir}/man3/Sub::Install.3pm*
 %dir %{perl_vendorlib}/Sub/
+#%{perl_vendorlib}/Sub/Install/
 %{perl_vendorlib}/Sub/Install.pm
 
 %changelog

@@ -1,17 +1,17 @@
 # $Id$
 # Authority: dries
-# Upstream: Adam Kennedy <cpan$al,as>
+# Upstream: Adam Kennedy <adamk$cpan,org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Config-Tiny
 
 Summary: Read and write ini style files
 Name: perl-Config-Tiny
-Version: 2.10
+Version: 2.12
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-Tiny/
 
@@ -19,7 +19,11 @@ Source: http://www.cpan.org/modules/by-module/Config/Config-Tiny-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Test::More) >= 0.47, perl(FindBin) >= 1.42
+BuildRequires: perl >= 0:5.004 
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.11
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(FindBin) >= 1.42
+BuildRequires: perl(Test::More) >= 0.47
 
 %description
 Config::Tiny is a perl class to read and write .ini style configuration
@@ -39,26 +43,29 @@ file.
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE README
-%doc %{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/Config::Tiny.3pm*
 %dir %{perl_vendorlib}/Config/
 %{perl_vendorlib}/Config/Tiny.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 2.12-1
+- Updated to release 2.12.
+
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 2.10-1
 - Updated to release 2.10.
 
@@ -70,9 +77,6 @@ file.
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.05-1
 - Updated to release 2.05.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.04-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.04-1
 - Updated to release 2.04.

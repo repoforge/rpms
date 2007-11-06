@@ -9,7 +9,7 @@
 
 Summary: Perl module to parse and validate simple name/value option pairs
 Name: perl-Data-OptList
-Version: 0.101
+Version: 0.103
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Data/Data-OptList-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl
 
 %description
@@ -45,13 +46,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
+%doc Changes LICENSE MANIFEST META.yml README
 %doc %{_mandir}/man3/Data::OptList.3pm*
-#%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Data/
 #%{perl_vendorlib}/Data/OptList/
 %{perl_vendorlib}/Data/OptList.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.103-1
+- Updated to release 0.103.
+
 * Mon Apr 30 2007 Dag Wieers <dag@wieers.com> - 0.101-1
 - Initial package. (using DAR)

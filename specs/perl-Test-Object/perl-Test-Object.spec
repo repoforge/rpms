@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Object-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.005, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 0:5.005
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Thoroughly testing objects via registered handlers.

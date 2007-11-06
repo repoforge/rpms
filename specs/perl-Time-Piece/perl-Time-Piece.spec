@@ -1,9 +1,9 @@
 # $Id$
 # Authority: dries
-# Upstream: Matt Sergeant <matt$sergeant,org>
+# Upstream: Matt Sergeant <msergeant$cpan,org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Time-Piece
 
@@ -12,14 +12,15 @@ Name: perl-Time-Piece
 Version: 1.11
 Release: 1
 Epoch: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Time-Piece/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/Time-Piece-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Time/Time-Piece-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module contains Object Oriented time objects.
@@ -33,18 +34,19 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist/auto/*{,/*{,/*}}/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3*
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README
+%doc %{_mandir}/man3/Time::Piece.3pm*
+%doc %{_mandir}/man3/Time::Seconds.3pm*
 %dir %{perl_vendorarch}/Time/
 %{perl_vendorarch}/Time/Piece.pm
 %{perl_vendorarch}/Time/Seconds.pm

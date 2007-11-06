@@ -11,7 +11,7 @@ Summary: Modify Email::MIME Objects Easily
 Name: perl-Email-MIME-Modifier
 Version: 1.442
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-MIME-Modifier/
 

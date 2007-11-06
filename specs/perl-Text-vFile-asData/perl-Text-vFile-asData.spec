@@ -4,8 +4,8 @@
 # Upstream: Richard Clamp <richardc$unixbeard,net>
 
 %define real_name Text-vFile-asData
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 Summary: Parse vFile formatted files into data structures
 Name: perl-Text-vFile-asData

@@ -26,10 +26,6 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 perl-Image-Xbm is a Perl module to load, create, manipulate and
 save xbm image files.
 
-This package contains the following Perl module:
-
-    Image::Xbm
-
 %prep
 %setup -n %{real_name}-%{version}
 
@@ -52,6 +48,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc MANIFEST README
 %doc %{_mandir}/man3/Image::Xbm.3pm*
 %dir %{perl_vendorlib}/Image/
+#%{perl_vendorlib}/Image/Xbm/
 %{perl_vendorlib}/Image/Xbm.pm
 
 %changelog

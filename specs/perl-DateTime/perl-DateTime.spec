@@ -59,19 +59,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc CREDITS Changes LICENSE MANIFEST MANIFEST.SKIP META.yml README SIGNATURE TODO leaptab.txt
 %doc %{_mandir}/man3/DateTime.3pm*
-%doc %{_mandir}/man3/DateTime::Duration.3pm*
-%doc %{_mandir}/man3/DateTime::Helpers.3pm*
-%doc %{_mandir}/man3/DateTime::Infinite.3pm*
-%doc %{_mandir}/man3/DateTime::LeapSecond.3pm*
+%doc %{_mandir}/man3/DateTime::*.3pm*
 %{perl_vendorarch}/DateTime.pm
 %{perl_vendorarch}/DateTimePP.pm
 %{perl_vendorarch}/DateTimePPExtra.pm
 %{perl_vendorarch}/DateTime/
-%dir %{perl_vendorarch}/auto/DateTime/
-%{perl_vendorarch}/auto/DateTime/DateTime.*
+%{perl_vendorarch}/auto/DateTime/
 
 %changelog
-* Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 0.41-1.
+* Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 0.41-1
 - Updated to release 0.41.
 
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.31-1

@@ -4,8 +4,8 @@
 # Upstream: Anthony Peacock <a,peacock$chime,ucl,ac,uk>
 
 %define real_name HTML-Table
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 Summary: Produces HTML tables
 Name: perl-HTML-Table

@@ -2,8 +2,8 @@
 # Authority: dries
 # Upstream: &#2716;&#2738;&#2727;&#2736; &#2745;. &#2741;&#2765;&#2735;&#2750;&#2744; <jaldhar$braincells,com>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name DateTime-Calendar-Discordian
 

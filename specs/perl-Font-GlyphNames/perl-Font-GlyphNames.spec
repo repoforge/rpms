@@ -2,8 +2,8 @@
 # Authority: dries
 # Upstream: Father Chrysostomos <$_%20=%20'spro%5e%5e*%25*%5e6ut%23$&$%25*c%3e%23!%5e!%23&!pan,org'%3b%20y/a-z,$//cd%3b%20print>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Font-GlyphNames
 

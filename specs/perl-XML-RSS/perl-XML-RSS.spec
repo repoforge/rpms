@@ -1,17 +1,17 @@
 # $Id$
 # Authority: dries
-# Upstream: kellan elliott-mccrea <kellan$protest,net>
+# Upstream: Ask Bjørn Hansen <ask$perl,org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name XML-RSS
 
 Summary: Creates and updates RSS files
 Name: perl-XML-RSS
-Version: 1.22
+Version: 1.31
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-RSS/
 
@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-RSS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module was created to help those who need to manage
@@ -35,23 +36,29 @@ creating, updating, and saving RSS files.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README TODO examples/
+%doc %{_mandir}/man3/XML::RSS.3pm*
 %dir %{perl_vendorlib}/XML/
+%{perl_vendorlib}/XML/RSS/
 %{perl_vendorlib}/XML/RSS.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.31-1
+- Updated to release 1.31.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.22-1
 - Updated to release 1.22.
 
@@ -60,9 +67,6 @@ creating, updating, and saving RSS files.
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.10-1
 - Updated to release 1.10.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.05-1.2
-- Rebuild for Fedora Core 5.
 
 * Sun Dec 19 2004 Dries Verachtert <dries@ulyssis.org> - 1.05
 - Initial package.

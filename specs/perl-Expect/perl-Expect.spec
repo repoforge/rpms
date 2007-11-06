@@ -2,7 +2,7 @@
 # Authority: dries
 # Upstream: Roland Giersig <RGiersig$cpan,org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 
 %define real_name Expect
 
