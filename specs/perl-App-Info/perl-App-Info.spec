@@ -9,17 +9,19 @@
 
 Summary: Provides metadata about installed software packages
 Name: perl-App-Info
-Version: 0.51
+Version: 0.52
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/App-Info/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DW/DWHEELER/App-Info-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/App/App-Info-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Module::Build)
+BuildRequires: perl
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(Test::Simple) >= 0.17
 
 %description
 App::Info provides a generalized interface for providing metadata about
@@ -55,20 +57,26 @@ added as needed.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/App/Info.pm
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/App::Info.3pm*
+%doc %{_mandir}/man3/App::Info::*.3pm*
 %{perl_vendorlib}/App/Info/
+%{perl_vendorlib}/App/Info.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.52-1
+- Updated to release 0.52.
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.51-1
 - Updated to release 0.51.
 

@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements a MVC web application framework
 Name: perl-Maypole
-Version: 2.11
+Version: 2.121
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Maypole/Maypole-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Maypole is a Perl module that implements a MVC web application framework.
@@ -38,12 +39,17 @@ Maypole is a Perl module that implements a MVC web application framework.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
+
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS Changes MANIFEST META.yml README
+%doc AUTHORS Changes MANIFEST MANIFEST.SKIP META.yml README examples/
 %doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Apache/
 %{perl_vendorlib}/Apache/MVC.pm
@@ -55,5 +61,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Maypole/
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 2.121-1
+- Updated to release 2.121.
+
 * Thu May 03 2007 Dag Wieers <dag@wieers.com> - 2.11-1
 - Initial package. (using DAR)

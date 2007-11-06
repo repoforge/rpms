@@ -9,8 +9,8 @@
 
 Summary: Simple back-prop neural net that uses Delta's and Hebbs' rule
 Name: perl-AI-NeuralNet-BackProp
-Version: 0.77
-Release: 1.2
+Version: 0.89
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AI-NeuralNet-BackProp/
@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JB/JBRYAN/AI-NeuralNet-BackProp
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 AI::NeuralNet::BackProp is a simply back-propagation,
@@ -28,7 +29,7 @@ a generalization of the Delta rule and a bit of Hopefield
 theory.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -c %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -36,21 +37,26 @@ theory.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes docs.htm MANIFEST README examples/
+%doc %{_mandir}/man3/AI::NeuralNet::BackProp.3pm*
 %{perl_vendorlib}/AI/NeuralNet/BackProp.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.77-1.2
-- Rebuild for Fedora Core 5.
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.89-1
+- Updated to release 0.89.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.77-1
 - Initial package.

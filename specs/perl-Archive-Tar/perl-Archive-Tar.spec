@@ -8,9 +8,9 @@
 
 Summary: Archive-Tar module for perl
 Name: perl-Archive-Tar
-Version: 1.32
+Version: 1.36
 Release: 1
-License: distributable
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Archive-Tar/
 
@@ -43,12 +43,21 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc MANIFEST README
-%doc %{_mandir}/man?/*
-%{perl_vendorlib}/*
-%{_bindir}/ptar*
+%doc CHANGES MANIFEST META.yml README
+%doc %{_mandir}/man1/ptar.1*
+%doc %{_mandir}/man1/ptardiff.1*
+%doc %{_mandir}/man3/Archive::Tar.3pm*
+%doc %{_mandir}/man3/Archive::Tar::File.3pm*
+%{_bindir}/ptar
+%{_bindir}/ptardiff
+%dir %{perl_vendorlib}/Archive/
+%{perl_vendorlib}/Archive/Tar/
+%{perl_vendorlib}/Archive/Tar.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.36-1
+- Updated to release 1.36.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 1.32-1
 - Updated to release 1.32.
 

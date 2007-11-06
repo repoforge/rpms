@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Michael Schilli <m$perlmeister,com>
+# Upstream: Mike Schilli <cpan$perlmeister,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,17 +9,18 @@
 
 Summary: API wrapper around the tar utility
 Name: perl-Archive-Tar-Wrapper
-Version: 0.08
+Version: 0.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Archive-Tar-Wrapper/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHILLI/Archive-Tar-Wrapper-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Archive/Archive-Tar-Wrapper-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Archive::Tar::Wrapper is an API wrapper around the 'tar' command line
@@ -37,27 +38,35 @@ directory on disk.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README eg/
+%doc %{_mandir}/man3/Archive::Tar::Wrapper.3pm*
+%dir %{perl_vendorlib}/Archive/
+%dir %{perl_vendorlib}/Archive/Tar/
+#%{perl_vendorlib}/Archive/Tar/Wrapper/
 %{perl_vendorlib}/Archive/Tar/Wrapper.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.10-1
+- Updated to release 0.10.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Updated to release 0.08.
 
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Updated to release 0.07.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1.2
-- Rebuild for Fedora Core 5.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.

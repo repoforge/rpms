@@ -9,16 +9,18 @@
 
 Summary: Median finding algorithm
 Name: perl-Algorithm-MedianSelect-XS
-Version: 0.16
+Version: 0.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Algorithm-MedianSelect-XS/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SC/SCHUBIGER/Algorithm-MedianSelect-XS-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Algorithm/Algorithm-MedianSelect-XS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(Module::Build)
+BuildRequires: perl
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(Test::More)
 
 %description
 Algorithm::MedianSelect::XS finds the item which is smaller than half of
@@ -33,16 +35,18 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes INSTALL MANIFEST META.yml README
+%doc %{_mandir}/man3/Algorithm::MedianSelect::XS.3pm*
 %dir %{perl_vendorarch}/Algorithm/
 %dir %{perl_vendorarch}/Algorithm/MedianSelect/
 %{perl_vendorarch}/Algorithm/MedianSelect/XS.pm
@@ -51,6 +55,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Algorithm/MedianSelect/XS/
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.18-1
+- Updated to release 0.18.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1
 - Updated to release 0.16.
 

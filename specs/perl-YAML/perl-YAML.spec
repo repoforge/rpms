@@ -2,13 +2,14 @@
 # Authority: dries
 # Upstream: Brian Ingerson <ingy$cpan,org>
 
-%define real_name YAML
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
+%define real_name YAML
+
 Summary: Machine parseable data serialization format
 Name: perl-YAML
-Version: 0.62
+Version: 0.66
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -18,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/YAML/YAML-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 1:5.6.1 
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 YAML is an abbreviation of YAML Ain't Markup Language. It's a straightforward
@@ -29,36 +31,40 @@ machine-parseable data serialization format.
 
 %build
 echo y | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%doc %{_mandir}/man1/*
-%{_bindir}/*
-%{perl_vendorlib}/YAML.*
-%{perl_vendorlib}/YAML/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man1/ysh.1*
+%doc %{_mandir}/man3/Test::YAML.3pm*
+%doc %{_mandir}/man3/YAML.3pm*
+%doc %{_mandir}/man3/YAML::*.3pm*
+%{_bindir}/ysh
+%dir %{perl_vendorlib}/Test/
 %{perl_vendorlib}/Test/YAML.pm
+%{perl_vendorlib}/YAML/
+%{perl_vendorlib}/YAML.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.66-1
+- Updated to release 0.66.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.62-1
 - Updated to release 0.62.
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.58-1
 - Updated to release 0.58.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.39-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.39-1
 - Updated to release 0.39.

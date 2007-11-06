@@ -9,7 +9,7 @@
 
 Summary: Send email
 Name: perl-Email-Send
-Version: 2.190
+Version: 2.192
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,16 +53,15 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %defattr(-, root, root, 0755)
 %doc Changes LICENSE MANIFEST META.yml README eg/
 %doc %{_mandir}/man3/Email::Send.3pm*
-%doc %{_mandir}/man3/Email::Send::NNTP.3pm*
-%doc %{_mandir}/man3/Email::Send::Qmail.3pm*
-%doc %{_mandir}/man3/Email::Send::SMTP.3pm*
-%doc %{_mandir}/man3/Email::Send::Sendmail.3pm*
-%doc %{_mandir}/man3/Email::Send::Test.3pm*
+%doc %{_mandir}/man3/Email::Send::*.3pm*
 %dir %{perl_vendorlib}/Email/
 %{perl_vendorlib}/Email/Send/
 %{perl_vendorlib}/Email/Send.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 2.192-1
+- Updated to release 2.192.
+
 * Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 2.190-1
 - Updated to release 2.190.
 

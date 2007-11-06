@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream:
+# Upstream: Paul Johnson <paul$pjcj,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Devel-Cover module for perl
 Name: perl-Devel-Cover
-Version: 0.61
+Version: 0.62
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -18,11 +18,15 @@ URL: http://search.cpan.org/dist/Devel-Cover/
 Source: http://www.cpan.org/modules/by-module/Devel/Devel-Cover-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildArch: noarch
-BuildRequires: perl, perl(Storable), perl(Digest::MD5), perl(Template) >= 2.00
-BuildRequires: perl(PPI::HTML) >= 1.07, perl(Tidy) >= 20060719
-BuildRequires: perl(Pod::Coverage) >= 0.06, perl(Test::Differences)
-Requires: perl
+BuildRequires: perl
+BuildRequires: perl(Digest::MD5)
+BuildRequires: perl(Pod::Coverage) >= 0.06
+BuildRequires: perl(PPI::HTML) >= 1.07
+BuildRequires: perl(Storable)
+BuildRequires: perl(Template) >= 2.00
+BuildRequires: perl(Test::Differences)
+BuildRequires: perl-Tidy >= 20060719
+#BuildRequires: perl(Tidy) >= 20060719
 
 %description
 Devel-Cover module for perl.
@@ -31,8 +35,8 @@ Devel-Cover module for perl.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -46,13 +50,24 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS CHANGES MANIFEST META.yml README TODO
+%doc BUGS CHANGES MANIFEST MANIFEST.SKIP META.yml README TODO
+%doc %{_mandir}/man1/cover.1*
+%doc %{_mandir}/man1/cpancover.1*
+%doc %{_mandir}/man1/gcov2perl.1*
 %doc %{_mandir}/man3/Devel::Cover.3pm*
-#%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorlib}/Devel/
-#%{perl_vendorlib}/Devel/Cover/
-%{perl_vendorlib}/Devel/Cover.pm
+%doc %{_mandir}/man3/Devel::Cover::*.3pm*
+%{_bindir}/cover
+%{_bindir}/cpancover
+%{_bindir}/gcov2perl
+%dir %{perl_vendorarch}/Devel/
+%{perl_vendorarch}/Devel/Cover/
+%{perl_vendorarch}/Devel/Cover.pm
+%dir %{perl_vendorarch}/auto/Devel/
+%{perl_vendorarch}/auto/Devel/Cover/
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.62-1
+- Updated to release 0.62.
+
 * Tue May 01 2007 Dag Wieers <dag@wieers.com> - 0.61-1
 - Initial package. (using DAR)

@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements attribute wrappers for CPAN Tie classes
 Name: perl-Attribute-TieClasses
-Version: 0.02
+Version: 0.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,10 @@ Source: http://www.cpan.org/modules/by-module/Attribute/Attribute-TieClasses-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.6.0 
+BuildRequires: perl(Test::Compile)
 BuildRequires: perl(Test::More)
+BuildRequires: perl(UNIVERSAL::require)
 
 %description
 perl-Attribute-TieClasses is a Perl module that implements attribute wrappers
@@ -48,8 +50,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Attribute::TieClasses.3pm*
 %dir %{perl_vendorlib}/Attribute/
+#%{perl_vendorlib}/Attribute/TieClasses/
 %{perl_vendorlib}/Attribute/TieClasses.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.03-1
+- Updated to release 0.03.
+
 * Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 0.02-1
 - Initial package. (using DAR)

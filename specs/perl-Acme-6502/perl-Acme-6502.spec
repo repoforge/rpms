@@ -6,6 +6,7 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Acme-6502
+%define real_version 0.000006
 
 Summary: Pure Perl 65C02 simulator
 Name: perl-Acme-6502
@@ -51,5 +52,5 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Acme/6502.pm
 
 %changelog
-* Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 0.000006-1
+* Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 0.0.6-1
 - Initial package. (using DAR)

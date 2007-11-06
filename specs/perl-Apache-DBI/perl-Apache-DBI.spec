@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Ask Bj&#248;rn Hansen <ask$perl,org>
+# Upstream: Philip M. Gollucci <pgollucci$p6m7g8,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,17 +9,18 @@
 
 Summary: Persistent database connections and basic authentication support
 Name: perl-Apache-DBI
-Version: 0.9901
-Release: 2.2
+Version: 1.06
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-DBI/
 
-Source: http://search.cpan.org/CPAN/authors/id/P/PG/PGOLLUCCI/Apache-DBI-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Apache/Apache-DBI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module is supposed to be used with the Apache server together with
@@ -36,22 +37,30 @@ connections via Perl's Database Independent Interface (DBI).
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/Apache/DBI.pm
+%doc Changes MANIFEST META.yml README TODO traces.txt eg/
+%doc %{_mandir}/man3/Apache::AuthDBI.3pm*
+%doc %{_mandir}/man3/Apache::DBI.3pm*
+%dir %{perl_vendorlib}/Apache/
 %{perl_vendorlib}/Apache/AuthDBI.pm
+%{perl_vendorlib}/Apache/DBI.pm
+
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9901-2.2
-- Rebuild for Fedora Core 5.
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.06-1
+- Updated to release 1.06.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.9901-2
 - Fixed the source url.

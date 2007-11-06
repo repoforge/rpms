@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Salvador Fandi&#241;o Garc&#237;a <salva$cpan,org>
+# Upstream: Salvador Fandiño García <salva$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -15,10 +15,12 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AI-FANN/
 
-Source: http://search.cpan.org//CPAN/authors/id/S/SA/SALVA/AI-FANN-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/AI/AI-FANN-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, fann-devel, perl(ExtUtils::MakeMaker)
+BuildRequires: fann-devel
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module provides a Perl wrapper for the FANN library
@@ -29,20 +31,25 @@ This module provides a Perl wrapper for the FANN library
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find samples/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes MANIFEST META.yml README samples/
+%doc %{_mandir}/man3/AI::FANN.3pm*
 %dir %{perl_vendorarch}/AI/
 %{perl_vendorarch}/AI/FANN.pm
 %dir %{perl_vendorarch}/auto/AI/

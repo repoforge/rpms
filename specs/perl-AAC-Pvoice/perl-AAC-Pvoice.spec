@@ -44,7 +44,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes LICENSE MANIFEST META.yml README Todo
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/AAC::Pvoice.3pm*
+%doc %{_mandir}/man3/AAC::Pvoice::*.3pm*
 %dir %{perl_vendorlib}/AAC/
 %{perl_vendorlib}/AAC/Pvoice/
 %{perl_vendorlib}/AAC/Pvoice.pm

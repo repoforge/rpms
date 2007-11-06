@@ -9,7 +9,7 @@
 
 Summary: Interface to the Boost-Graph C++ libraries
 Name: perl-Boost-Graph
-Version: 1.3
+Version: 1.4
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,7 +18,10 @@ URL: http://search.cpan.org/dist/Boost-Graph/
 Source: http://search.cpan.org//CPAN/authors/id/D/DB/DBURDICK/BoostGraph/Boost-Graph-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker), gcc-c++, boost-devel
+BuildRequires: boost-devel
+BuildRequires: gcc-c++
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Perl interface to the Boost-Graph C++ libraries.
@@ -32,22 +35,28 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man3/Boost::Graph*
+%doc MANIFEST META.yml README
+%doc %{_mandir}/man3/Boost::Graph.3pm*
+%doc %{_mandir}/man3/Boost::Graph::*.3pm*
 %dir %{perl_vendorarch}/Boost/
-%{perl_vendorarch}/Boost/Graph.pm
 %{perl_vendorarch}/Boost/Graph/
+%{perl_vendorarch}/Boost/Graph.pm
 %dir %{perl_vendorarch}/auto/Boost/
 %{perl_vendorarch}/auto/Boost/Graph/
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.4-1
+- Updated to release 1.4.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.3-1
 - Initial package.

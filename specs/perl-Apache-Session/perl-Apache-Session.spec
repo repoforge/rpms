@@ -9,9 +9,9 @@
 
 Summary: Session data persistence
 Name: perl-Apache-Session
-Version: 1.81
+Version: 1.84
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-Session/
 
@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Apache/Apache-Session-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl-DBI
 
 %description
@@ -33,30 +34,33 @@ interacts with a tied hash.
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README TODO
-%{_mandir}/man3/*
+%doc CHANGES Contributing.txt INSTALL MANIFEST META.yml README TODO eg/
+%doc %{_mandir}/man3/Apache::Session.3pm*
+%doc %{_mandir}/man3/Apache::Session::*.3pm*
+%dir %{perl_vendorlib}/Apache/
+%{perl_vendorlib}/Apache/Session/
 %{perl_vendorlib}/Apache/Session.pm
-%{perl_vendorlib}/Apache/Session/*
 
 %changelog
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.81-1
 - Updated to release 1.81.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.80-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.80-1
 - Updated to release 1.80.

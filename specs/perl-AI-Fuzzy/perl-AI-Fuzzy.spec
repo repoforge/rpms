@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Tom Scanlan <cutthis,tscanlan$sosaith,org>
+# Upstream: Michal Wallace <sabren$manifestation,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -15,11 +15,12 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AI-Fuzzy/
 
-Source: http://search.cpan.org/CPAN/authors/id/T/TS/TSCANLAN/AI-Fuzzy-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/AI/AI-Fuzzy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 AI::Fuzzy really consists of two modules - AI::Fuzzy::Label and
@@ -46,22 +47,22 @@ the labels describes the particular value in question.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST README
+%doc %{_mandir}/man3/AI::Fuzzy.3pm*
+%dir %{perl_vendorlib}/AI/
+%{perl_vendorlib}/AI/Fuzzy/
 %{perl_vendorlib}/AI/Fuzzy.pm
-%{perl_vendorlib}/AI/Fuzzy
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Initial package.

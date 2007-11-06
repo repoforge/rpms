@@ -9,7 +9,7 @@
 
 Summary: Downloads orbital elements from the Space Track web site
 Name: perl-Astro-SpaceTrack
-Version: 0.028
+Version: 0.030
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -36,29 +36,38 @@ TO THIRD PARTIES WITHOUT PRIOR PERMISSION.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL -y INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" -y
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man1/*.1*
-%doc %{_mandir}/man3/*.3*
+%doc Changes MANIFEST META.yml README eg/
+%doc %{_mandir}/man1/SpaceTrack.1*
+%doc %{_mandir}/man1/SpaceTrackTk.1*
+%doc %{_mandir}/man3/Astro::SpaceTrack.3pm*
 %{_bindir}/SpaceTrack
 %{_bindir}/SpaceTrackTk
 %dir %{perl_vendorlib}/Astro/
-%{perl_vendorlib}/Astro/SpaceTrack.pm
 %{perl_vendorlib}/Astro/SpaceTrack/
+%{perl_vendorlib}/Astro/SpaceTrack.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.030-1
+- Updated to release 0.030.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.028-1
 - Updated to release 0.028.
 
@@ -76,9 +85,6 @@ TO THIRD PARTIES WITHOUT PRIOR PERMISSION.
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.016-1
 - Updated to release 0.016.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.013-1.2
-- Rebuild for Fedora Core 5.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.013-1
 - Initial package.

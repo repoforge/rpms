@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.6.0 
-BuildRequires: perl(Test::Builder::Tester) >= 1.02
+BuildRequires: perl(Test::Builder::Tester) >= 1.01
 
 %description
 Track the number of times subs are called.

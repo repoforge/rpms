@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# Upstream: Marc Lehmann <pcg$goof,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,22 +9,22 @@
 
 Summary: Asynchronous Input/Output
 Name: perl-IO-AIO
-Version: 2.33
+Version: 2.51
 Release: 1
-License: Artistic or GPL
-Group: Development/Libraries
-URL: http://search.cpan.org/~mlehmann/IO-AIO/
+License: GPL
+Group: Applications/CPAN
+URL: http://search.cpan.org/dist/IO-AIO/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/IO-AIO-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/IO/IO-AIO-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 # Provided by either perl or perl-devel
+BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module implements asynchronous I/O using whatever means your operating
 system supports.
-
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -36,26 +37,27 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod \
-           %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
 
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %files
 %defattr(-, root, root, 0755)
-%doc Changes COPYING README
+%doc COPYING Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/IO::AIO.3pm*
 %dir %{perl_vendorarch}/IO/
 %{perl_vendorarch}/IO/AIO.pm
 %dir %{perl_vendorarch}/auto/IO/
 %{perl_vendorarch}/auto/IO/AIO/
-%{_mandir}/man3/*.3pm*
-
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 2.51-1
+- Updated to release
+
 * Thu May 31 2007 Matthias Saou <http://freshrpms.net/> 2.33-1
 - Update to 2.33.
 - Build require perl(ExtUtils::MakeMaker) for F7.

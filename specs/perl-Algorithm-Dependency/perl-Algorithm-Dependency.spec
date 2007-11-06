@@ -9,7 +9,7 @@
 
 Summary: Perl module for implementing various dependency trees 
 Name: perl-Algorithm-Dependency
-Version: 1.102
+Version: 1.103
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -19,13 +19,12 @@ Source: http://www.cpan.org/modules/by-module/Algorithm/Algorithm-Dependency-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(Test::More) >= 0.47
+BuildRequires: perl >= 0:5.005
 BuildRequires: perl(File::Spec) >= 0.80
-BuildRequires: perl(Test::ClassAPI) >= 0.6
-BuildRequires: perl(Params::Util) >= 0.06
 BuildRequires: perl(List::Util) >= 1.11
-Requires: perl
+BuildRequires: perl(Params::Util) >= 0.06
+BuildRequires: perl(Test::ClassAPI) >= 0.6
+BuildRequires: perl(Test::More) >= 0.47
 
 %description
 Algorithm-Dependency is a perl module for implementing various
@@ -50,12 +49,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE MANIFEST README
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/Algorithm::Dependency.3pm*
+%doc %{_mandir}/man3/Algorithm::Dependency::*.3pm*
 %dir %{perl_vendorlib}/Algorithm/
 %{perl_vendorlib}/Algorithm/Dependency/
 %{perl_vendorlib}/Algorithm/Dependency.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.103-1
+- Updated to release 1.103.
+
 * Sun Apr 29 2007 Dag Wieers <dag@wieers.com> - 1.102-1
 - Initial package. (using DAR)

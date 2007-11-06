@@ -9,17 +9,18 @@
 
 Summary: Simple progress bar for the patient
 Name: perl-Acme-ProgressBar
-Version: 1.121
+Version: 1.123
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Acme-ProgressBar/
 
-Source: http://search.cpan.org//CPAN/authors/id/R/RJ/RJBS/Acme-ProgressBar-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Acme/Acme-ProgressBar-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Simple progress bar for the patient.
@@ -33,18 +34,25 @@ Simple progress bar for the patient.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Acme::ProgressBar*
+%doc Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/Acme::ProgressBar.3pm*
+%dir %{perl_vendorlib}/Acme/
+#%{perl_vendorlib}/Acme/ProgressBar/
 %{perl_vendorlib}/Acme/ProgressBar.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.123-1
+- Updated to release 1.123.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.121-1
 - Initial package.

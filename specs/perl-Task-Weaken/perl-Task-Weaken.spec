@@ -1,29 +1,30 @@
 # $Id$
 # Authority: dag
-# Upstream: Jonas B, NIelsen <jonasbn$cpan,org>
+# Upstream: Adam Kennedy <adamk@cpan.org>, L<http://ali.as/>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Workflow
-%define real_version 1.32
+%define real_name Task-Weaken
 
-Summary: Simple, flexible system to implement workflows
-Name: perl-Workflow
-Version: 0.31
+Summary: Ensure that a platform has weaken support
+Name: perl-Task-Weaken
+Version: 1.01
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Workflow/
+URL: http://search.cpan.org/dist/Task-Weaken/
 
-Source: http://www.cpan.org/modules/by-module/Workflow/Workflow-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Task/Task-Weaken-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.005 
+BuildRequires: perl(File::Spec) >= 0.8
+BuildRequires: perl(Test::More) >= 0.42
 
 %description
-Simple, flexible system to implement workflows.
+Ensure that a platform has weaken support.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -39,22 +40,17 @@ Simple, flexible system to implement workflows.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
-### Clean up docs
-find doc/ eg/ -type f -exec %{__chmod} a-x {} \;
-
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README TODO VERSION doc/ eg/
-%doc %{_mandir}/man3/*.3pm*
-%{perl_vendorlib}/Workflow/
-%{perl_vendorlib}/Workflow.pm
+%doc Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/Task::Weaken.3pm*
+%dir %{perl_vendorlib}/Task/
+#%{perl_vendorlib}/Task/Weaken/
+%{perl_vendorlib}/Task/Weaken.pm
 
 %changelog
-* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.31-1
-- Updated to release 0.31.
-
-* Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 0.28-1
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.01-1
 - Initial package. (using DAR)

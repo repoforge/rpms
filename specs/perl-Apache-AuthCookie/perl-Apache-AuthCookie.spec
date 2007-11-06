@@ -9,17 +9,18 @@
 
 Summary: Authentication and Authorization via cookie
 Name: perl-Apache-AuthCookie
-Version: 3.08
-Release: 1.2
+Version: 3.10
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-AuthCookie/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHOUT/Apache-AuthCookie-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Apache/Apache-AuthCookie-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, mod_perl >= 2.0
+BuildRequires: perl
+BuildRequires: mod_perl >= 2.0
 
 %description
 Apache::AuthCookie allows you to intercept a user's first unauthenticated
@@ -43,23 +44,29 @@ AuthCookie will verify the session key and re-authenticate the user.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
-### CLean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Apache*::AuthCookie.3pm*
-%dir %{perl_vendorlib}/Apache*/
-%{perl_vendorlib}/Apache*/AuthCookie.pm
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README README.modperl2
+%doc %{_mandir}/man3/Apache::AuthCookie.3pm*
+%doc %{_mandir}/man3/Apache2::AuthCookie.3pm*
+%dir %{perl_vendorlib}/Apache/
 %{perl_vendorlib}/Apache/AuthCookie/
+%{perl_vendorlib}/Apache/AuthCookie.pm
+%dir %{perl_vendorlib}/Apache2/
+%{perl_vendorlib}/Apache2/AuthCookie.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 3.10-1
+- Updated to release 3.10.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 3.08-1
 - Updated to release 3.08.
 

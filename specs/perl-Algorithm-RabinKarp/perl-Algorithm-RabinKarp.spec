@@ -9,7 +9,7 @@
 
 Summary: Rabin-Karp streaming hash
 Name: perl-Algorithm-RabinKarp
-Version: 0.40
+Version: 0.41
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,10 +19,13 @@ Source: http://search.cpan.org//CPAN/authors/id/N/NN/NNUNLEY/Algorithm-RabinKarp
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Temp)
+BuildRequires: perl(Test::More)
 
 %description
-Rabin-Karp streaming hash.
+An implementation of the Rabin-Karp rolling hash algorithm.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -33,21 +36,28 @@ Rabin-Karp streaming hash.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog
-%doc %{_mandir}/man3/Algorithm::RabinKarp*
+%doc ChangeLog MANIFEST META.yml
+%doc %{_mandir}/man3/Algorithm::RabinKarp.3pm*
+%doc %{_mandir}/man3/Algorithm::RabinKarp::Util.3pm*
 %{_bindir}/rabin.pl
-%{perl_vendorlib}/Algorithm/RabinKarp.pm
+%dir %{perl_vendorlib}/Algorithm/
 %{perl_vendorlib}/Algorithm/RabinKarp/
+%{perl_vendorlib}/Algorithm/RabinKarp.pm
 %{perl_vendorlib}/Algorithm/rabin.pl
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.41-1
+- Updated to release 0.41.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.40-1
 - Initial package.

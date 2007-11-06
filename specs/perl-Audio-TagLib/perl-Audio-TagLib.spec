@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Dongxu Ma <dongxu,ma$gmail,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,7 +9,7 @@
 
 Summary: Perl library for reading and editing audio meta data, commonly known as tags. 
 Name: perl-Audio-TagLib
-Version: 1.42
+Version: 1.43
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -17,7 +18,10 @@ URL: http://search.cpan.org/dist/Audio-TagLib/
 Source: http://www.cpan.org/modules/by-module/Audio/Audio-TagLib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 3:5.8.3, taglib-devel, gcc-c++, perl(ExtUtils::MakeMaker)
+BuildRequires: gcc-c++
+BuildRequires: perl >= 3:5.8.3
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: taglib-devel
 
 %description
 Perl library for reading and editing audio meta data, commonly known as tags.
@@ -41,8 +45,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Bugs Changes LICENSE* README TODO
-%doc %{_mandir}/man3/*.3pm*
+%doc Bugs Changes INSTALL LICENSE LICENSE.Artistic LICENSE.GPL MANIFEST META.yml README TODO
+%doc %{_mandir}/man3/Audio::TagLib.3pm*
+%doc %{_mandir}/man3/Audio::TagLib::*.3pm*
 %dir %{perl_vendorarch}/Audio/
 %{perl_vendorarch}/Audio/TagLib.pm
 %{perl_vendorarch}/Audio/TagLib/
@@ -50,5 +55,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Audio/TagLib/
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.43-1
+- Updated to release 1.43.
+
 * Mon Jun 26 2006 Dag Wieers <dag@wieers.com> - 1.42-1
 - Initial package. (using DAR)

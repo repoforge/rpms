@@ -9,7 +9,7 @@
 
 Summary: building, finding and using wxWidgets binaries
 Name: perl-Alien-wxWidgets
-Version: 0.31
+Version: 0.32
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,6 +18,7 @@ URL: http://search.cpan.org/dist/Alien-wxWidgets/
 Source: http://www.cpan.org/modules/by-module/Alien/Alien-wxWidgets-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+#BuildArch: noarch
 BuildRequires: perl >= 0:5.006 
 BuildRequires: perl(Module::Build) >= 0.26
 
@@ -28,7 +29,7 @@ building, finding and using wxWidgets binaries.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}" </dev/null
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" </dev/null
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -49,7 +50,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %dir %{perl_vendorarch}/Alien/
 %{perl_vendorarch}/Alien/wxWidgets/
 %{perl_vendorarch}/Alien/wxWidgets.pm
+#%dir %{perl_vendorlib}/Alien/
+#%{perl_vendorlib}/Alien/wxWidgets/
+#%{perl_vendorlib}/Alien/wxWidgets.pm
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.32-1
+- Updated to release 0.32.
+
 * Mon Aug 06 2007 Dag Wieers <dag@wieers.com> - 0.31-1
 - Initial package. (using DAR)
