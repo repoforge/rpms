@@ -9,13 +9,13 @@
 
 Summary: Extension for easy creation of multi screen CGI scripts
 Name: perl-CGI-Screen
-Version: 0.119
-Release: 1.2
+Version: 0.122
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Screen/
 
-Source: http://search.cpan.org/CPAN/authors/id/U/UL/ULPFR/CGI-Screen-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/CGI/CGI-Screen-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -36,21 +36,28 @@ parameters. This is the common case for scripts linking to themselves.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
-%doc %{_mandir}/man3/*
+%doc ChangeLog MANIFEST README eg/
+%doc %{_mandir}/man3/CGI::Screen.3pm*
+%dir %{perl_vendorlib}/CGI/
+#%{perl_vendorlib}/CGI/Screen/
 %{perl_vendorlib}/CGI/Screen.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.119-1.2
-- Rebuild for Fedora Core 5.
+* Wed Nov 07 2007 Dag Wieers <dag@wieers.com> - 0.122-1
+- Updated to release 0.122.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.119-1
 - Initial package.

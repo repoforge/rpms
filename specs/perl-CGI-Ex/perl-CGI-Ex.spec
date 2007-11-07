@@ -9,7 +9,7 @@
 
 Summary: Perl module to make powerful application writing fun and easy
 Name: perl-CGI-Ex
-Version: 2.18
+Version: 2.21
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/CGI/CGI-Ex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-CGI-Ex is a Perl module to make powerful application writing fun and easy.
@@ -47,11 +48,15 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST MANIFEST.SKIP META.yml README samples/
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/CGI::Ex.3pm*
+%doc %{_mandir}/man3/CGI::Ex::*.3pm*
 %dir %{perl_vendorlib}/CGI/
 %{perl_vendorlib}/CGI/Ex/
 %{perl_vendorlib}/CGI/Ex.pm
 
 %changelog
+* Wed Nov 07 2007 Dag Wieers <dag@wieers.com> - 2.21-1
+- Updated to release 2.21.
+
 * Fri Aug 03 2007 Dag Wieers <dag@wieers.com> - 2.18-1
 - Initial package. (using DAR)

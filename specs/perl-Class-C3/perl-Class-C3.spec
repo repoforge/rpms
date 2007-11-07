@@ -9,17 +9,22 @@
 
 Summary: Pragma for the C3 method resolution order algorithm
 Name: perl-Class-C3
-Version: 0.14
+Version: 0.19
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-C3/
 
-Source: http://search.cpan.org//CPAN/authors/id/B/BL/BLBLACK/Class-C3-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Class/Class-C3-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(Algorithm::C3) >= 0.07
+BuildRequires: perl(Class::C3::XS >= 0.07
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Scalar::Util) >= 1.10
+BuildRequires: perl(Test::More) >= 0.47
 
 %description
 Pragma for the C3 method resolution order algorithm.
@@ -33,18 +38,26 @@ Pragma for the C3 method resolution order algorithm.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
-%doc %{_mandir}/man3/Class::C3*
+%doc ChangeLog MANIFEST META.yml README
+%doc %{_mandir}/man3/Class::C3.3pm*
+%doc %{_mandir}/man3/Class::C3::next.3pm*
+%dir %{perl_vendorlib}/Class/
+%{perl_vendorlib}/Class/C3/
 %{perl_vendorlib}/Class/C3.pm
 
 %changelog
+* Wed Nov 07 2007 Dag Wieers <dag@wieers.com> - 0.19-1
+- Updated to release 0.19.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1
 - Initial package.

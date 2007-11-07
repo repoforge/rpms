@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Out/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MU/MUIR/modules/CGI-Out-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/CGI/CGI-Out-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -37,23 +37,26 @@ problem.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/CGI/Out.pm
+%doc CHANGELOG MANIFEST META.yml README
+%doc %{_mandir}/man3/CGI::BigDeath.3pm*
+%doc %{_mandir}/man3/CGI::Out.3pm*
+%doc %{_mandir}/man3/CGI::Wrap.3pm*
+%dir %{perl_vendorlib}/CGI/
+#%{perl_vendorlib}/CGI/Out/
 %{perl_vendorlib}/CGI/BigDeath.pm
+%{perl_vendorlib}/CGI/Out.pm
 %{perl_vendorlib}/CGI/Wrap.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 101.121401-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 101.121401-1
 - Initial package.

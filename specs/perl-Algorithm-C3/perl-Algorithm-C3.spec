@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dries
-# Upstream: Brandon L Black <blblack$gmail,com>
+# Upstream: Brandon L. Black <blblack$gmail,com>
+# Upstream: Stevan Little <stevan$iinteractive,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -15,11 +16,12 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Algorithm-C3/
 
-Source: http://search.cpan.org/CPAN/authors/id/B/BL/BLBLACK/Algorithm-C3-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Algorithm/Algorithm-C3-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Test::More)
+BuildRequires: perl
+BuildRequires: perl(Test::More) >= 0.47
 
 %description
 C3 is the name of an algorithm which aims to provide a sane method
@@ -39,17 +41,20 @@ MRO for Parrot objects as well.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Algorithm::C3*
-%dir %{perl_vendorlib}/Algorithm
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Algorithm::C3.3pm*
+%dir %{perl_vendorlib}/Algorithm/
+#%{perl_vendorlib}/Algorithm/C3/
 %{perl_vendorlib}/Algorithm/C3.pm
 
 %changelog
