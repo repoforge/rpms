@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Text/Text-CSV-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Text::CSV provides facilities for the composition and decomposition of
@@ -37,7 +38,7 @@ fields into a CSV string and parse a CSV string into fields.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 %{__rm} -rf %{buildroot}%{perl_vendorarch} \
             %{buildroot}%{perl_archlib}
 

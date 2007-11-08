@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/POE/POE-Component-JobQueue-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Handle large numbers of tasks with finite numbers of workers..

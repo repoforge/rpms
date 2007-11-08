@@ -18,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/Locale/libintl-perl-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 Provides: perl-libintl-perl = %{version}-%{release}
 Provides: perl(Locale::gettext_xs)
 

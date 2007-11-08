@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/WWW/WWW-Bugzilla-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-WWW-Bugzilla is a Perl module handles submission/update of bugzilla bugs

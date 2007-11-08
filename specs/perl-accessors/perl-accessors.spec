@@ -1,4 +1,3 @@
-# $Id$
 # Authority: dries
 # Upstream: Steve Purkis <spurkis%20%5bat%5d%20quiup_dot_com>
 
@@ -39,10 +38,10 @@ laziness in mind.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

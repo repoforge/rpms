@@ -39,7 +39,7 @@ With this perl module, you can create 3D graphs with GD.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

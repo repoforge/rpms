@@ -22,7 +22,8 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 ### Obsolete wrong packages from the past
 Obsoletes: perl-Test-Builder-Tester

@@ -1,4 +1,3 @@
-# $Id$
 # Authority: dries
 # Upstream: Andy Lester <andy$petdance,com>
 
@@ -33,10 +32,10 @@ echo y | %{__perl} Makefile.PL --nolive INSTALLDIRS="vendor" PREFIX="%{buildroot
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -67,3 +66,4 @@ echo y | %{__perl} Makefile.PL --nolive INSTALLDIRS="vendor" PREFIX="%{buildroot
 * Mon Dec 27 2004 Dries Verachtert <dries@ulyssis.org> - 1.08-1
 - Initial package.
 
+# $Id$

@@ -39,7 +39,7 @@ Event based transparent Client/Server RPC framework.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod \
            %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 

@@ -18,7 +18,8 @@ Source: http://search.cpan.org/CPAN/authors/id/E/EL/ELIZABETH/Thread-Pool-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 The Thread::Pool allows you to set up a group of (worker) threads to
@@ -41,7 +42,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist

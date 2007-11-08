@@ -18,7 +18,9 @@ URL: http://search.cpan.org/dist/Data-Structure-Util/
 Source: http://www.cpan.org/modules/by-module/Data/Data-Structure-Util-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(Module::Build)
+BuildRequires: perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)(Module::Build)
 Requires: perl
 
 %description

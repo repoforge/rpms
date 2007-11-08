@@ -19,7 +19,8 @@ Source: http://www.cpan.org/authors/id/S/ST/STEVAN/Moose-Policy-0.03.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Moose-Policy module for perl.

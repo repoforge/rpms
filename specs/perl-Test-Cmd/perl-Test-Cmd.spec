@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Cmd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-Test-Cmd is a Perl module for portable testing of commands and scripts.

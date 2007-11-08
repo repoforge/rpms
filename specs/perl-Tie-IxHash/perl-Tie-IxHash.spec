@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Tie/Tie-IxHash-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 If you have been led to believe that associative arrays in perl
@@ -43,7 +44,7 @@ index of one of the numerous books on perl.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 

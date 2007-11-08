@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Set-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 The DateTime::Set module provides a date/time sets implementation.
@@ -39,7 +40,7 @@ pattern, within a time range.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

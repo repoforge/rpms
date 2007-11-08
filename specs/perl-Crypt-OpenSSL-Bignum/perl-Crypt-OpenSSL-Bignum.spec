@@ -9,16 +9,17 @@
 
 Summary: OpenSSL's multiprecision integer arithmetic
 Name: perl-Crypt-OpenSSL-Bignum
-Version: 0.03
-Release: 1.2
-License: Artistic
+Version: 0.04
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-OpenSSL-Bignum/
 
 Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-OpenSSL-Bignum-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker), openssl-devel, krb5-devel
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), openssl-devel, krb5-devel
 
 %description
 Crypt::OpenSSL::Bignum is an XS perl module designed to provide basic
@@ -38,17 +39,19 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/Crypt::OpenSSL::Bignum.3pm*
+%doc %{_mandir}/man3/Crypt::OpenSSL::Bignum::CTX.3pm*
 %dir %{perl_vendorarch}/Crypt/
 %dir %{perl_vendorarch}/Crypt/OpenSSL/
 %{perl_vendorarch}/Crypt/OpenSSL/Bignum/
@@ -58,5 +61,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Crypt/OpenSSL/Bignum/
 
 %changelog
+* Thu Nov 08 2007 Dag Wieers <dag@wieers.com> - 0.04-1
+- Updated to release 0.04.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.

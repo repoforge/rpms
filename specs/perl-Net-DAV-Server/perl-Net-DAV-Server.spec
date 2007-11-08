@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-DAV-Server-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module provides a WebDAV server. WebDAV stands for "Web-based
@@ -46,7 +47,7 @@ cadaver and the Mac OS X Finder as clients.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 

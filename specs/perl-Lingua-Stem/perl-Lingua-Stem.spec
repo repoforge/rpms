@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Lingua/Lingua-Stem-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Provides word stemming algorithms localized by language.
@@ -33,7 +34,7 @@ Provides word stemming algorithms localized by language.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

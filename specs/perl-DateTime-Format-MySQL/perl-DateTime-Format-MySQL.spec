@@ -19,7 +19,9 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Format-MySQL-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(Module::Build)
+BuildRequires: perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)(Module::Build)
 Requires: perl
 
 %description

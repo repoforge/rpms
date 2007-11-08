@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PH/PHILCROW/Inline-TT-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Template-Toolkit is not just a Templating Engine. It's a language. Yep,
@@ -34,8 +35,10 @@ Inline::TT is a Inline plugin to allow you to code your Perl subs in TT.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

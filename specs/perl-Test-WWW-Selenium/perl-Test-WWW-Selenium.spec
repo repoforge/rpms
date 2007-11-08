@@ -19,7 +19,9 @@ Source: http://search.cpan.org//CPAN/authors/id/L/LU/LUKEC/Test-WWW-Selenium-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker), perl(Test::More) >= 0.42
+BuildRequires: perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)(Test::More) >= 0.42
 BuildRequires: perl(Test::Exception), perl(Test::Pod)
 
 %description
@@ -34,8 +36,10 @@ Test applications using Selenium Remote Control.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

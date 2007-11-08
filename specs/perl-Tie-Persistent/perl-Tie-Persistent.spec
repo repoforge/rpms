@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Tie/Tie-Persistent-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 The Persistent package makes working with persistent data real
@@ -40,7 +41,7 @@ course, that you can use arbitrary data structures inside the variable
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

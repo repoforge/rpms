@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GL/GLENNWOOD/Scraper-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 These modules scrape data from search engines on the WWW.
@@ -33,7 +34,7 @@ These modules scrape data from search engines on the WWW.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_vendorlib}/prereqinst.pl
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/.packlist

@@ -19,7 +19,9 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-IANA-PortNumbers-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker), perl-libwww-perl
+BuildRequires: perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)-libwww-perl
 
 %description
 With this module, you can translate ports to services and vice versa.
@@ -33,7 +35,7 @@ With this module, you can translate ports to services and vice versa.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/Net-IANA-PortNumbers/.packlist
 

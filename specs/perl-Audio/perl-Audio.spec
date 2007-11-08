@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Audio/
 Source: http://search.cpan.org/CPAN/authors/id/N/NI/NI-S/Audio-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This is the beginings of Audio manipulation routines for perl.
@@ -35,7 +36,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/Audio/.packlist
 
 %clean

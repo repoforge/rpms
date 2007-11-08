@@ -9,17 +9,18 @@
 
 Summary: Read and write Vixie compatible crontab files
 Name: perl-Config-Crontab
-Version: 1.20
+Version: 1.21
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-Crontab/
 
 Source: http://search.cpan.org/CPAN/authors/id/S/SC/SCOTTW/Config-Crontab-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildArch: noarch
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Config::Crontab reads and writes (and pretty-prints) your crontab(5)
@@ -54,20 +55,29 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find example/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes MANIFEST META.yml README example/
+%doc %{_mandir}/man3/Config::Crontab.3pm*
 %dir %{perl_vendorlib}/Config/
+#%{perl_vendorlib}/Config/Crontab/
 %{perl_vendorlib}/Config/Crontab.pm
 
 %changelog
+* Wed Nov 07 2007 Dag Wieers <dag@wieers.com> - 1.21-1
+- Updated to release 1.21.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.20-1
 - Updated to release 1.20.
 

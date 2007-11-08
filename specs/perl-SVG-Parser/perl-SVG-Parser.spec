@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/SVG/SVG-Parser-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-SVG-Parser is a Perl module that implements an XML Parser

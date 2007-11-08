@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MA/MARKSTOS/CGI-Session-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 CGI-Session is a Perl5 library that provides an easy, reliable and
@@ -37,8 +38,10 @@ accross HTTP requests. CGI::Session does that and many more.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{__rm} -f %{buildroot}%{perl_vendorlib}/CGI/Session.pm.mine %{buildroot}%{perl_vendorlib}/CGI/Session.pm.r24[29]
 
 %clean

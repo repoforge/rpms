@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/FileHandle-Fmode/
 Source: http://www.cpan.org/modules/by-module/FileHandle/FileHandle-Fmode-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-FileHandle-Fmode is a Perl module to determine whether a filehandle

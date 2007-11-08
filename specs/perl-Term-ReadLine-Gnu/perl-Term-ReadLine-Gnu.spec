@@ -20,7 +20,8 @@ URL: http://search.cpan.org/dist/Term-ReadLine-Gnu/
 Source: http://www.cpan.org/modules/by-module/Term/Term-ReadLine-Gnu-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker), readline-devel
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), readline-devel
 
 %description
 Term::ReadLine::Gnu (TRG) is an implementation of the
@@ -43,7 +44,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 

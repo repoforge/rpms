@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-Rendezvous-Publish-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl(Class::Accessor::Lvalue)
 
 %description
@@ -34,7 +35,7 @@ With this module, you can publish Rendezvous services.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 

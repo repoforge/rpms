@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/SOAP/SOAP-WSDL-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 A WSDL-driven message preprocessor for SOAP::Lite.
@@ -33,7 +34,7 @@ A WSDL-driven message preprocessor for SOAP::Lite.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 

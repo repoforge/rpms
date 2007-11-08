@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Math-BigInt-FastCalc/
 Source: http://www.cpan.org/modules/by-module/Math/Math-BigInt-FastCalc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Math::BigInt::Calc with some XS for more speed.

@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JE/JESSE/GnuPG-Interface-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker), gnupg
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), gnupg
 Requires: perl(Class::MethodMaker)
 
 %description
@@ -37,8 +38,10 @@ verification, and key-listing parsing.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

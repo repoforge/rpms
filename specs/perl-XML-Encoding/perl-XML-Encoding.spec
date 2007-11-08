@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-Encoding-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-XML-Encoding is a Perl module for parsing XML encoding maps.

@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Bryan Henderson <bryanh$giraffe-data,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,9 +9,9 @@
 
 Summary: Perl module for terminal screen handling and optimization
 Name: perl-Curses
-Version: 1.15
+Version: 1.17
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Curses/
 
@@ -44,8 +45,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Artistic Copying INSTALL MANIFEST README
-%doc %{_mandir}/man3/*
+%doc Artistic Copying HISTORY INSTALL MANIFEST README
+%doc %{_mandir}/man3/Curses.3pm*
 %{perl_vendorarch}/Curses.pm
 %{perl_vendorarch}/auto/Curses/
 
@@ -55,9 +56,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.14-1
 - Updated to release 1.14.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.13-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.13-1
 - Updated to release 1.13.

@@ -1,4 +1,3 @@
-# $Id$
 # Authority: dries
 # Upstream: Jesse Vincent <jesse+cpan$fsck,com>
 
@@ -19,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/HTTP/HTTP-Server-Simple-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 HTTP::Server::Simple is a very simple standalone HTTP daemon with no non-core
@@ -35,10 +35,10 @@ your existing tools.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -70,3 +70,4 @@ your existing tools.
 
 * Sat Dec 31 2005 Dries Verachtert <dries@ulyssis.org> - 0.16-1
 - Initial package.
+# $Id$

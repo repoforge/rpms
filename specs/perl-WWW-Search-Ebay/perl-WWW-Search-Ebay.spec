@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/WWW/WWW-Search-Ebay-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This is a backend for use with the WWW::Search module for searching on Ebay.
@@ -33,7 +34,7 @@ This is a backend for use with the WWW::Search module for searching on Ebay.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 

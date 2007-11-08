@@ -33,7 +33,7 @@ Simple eyecandy ASCII tables, as seen in Catalyst.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;

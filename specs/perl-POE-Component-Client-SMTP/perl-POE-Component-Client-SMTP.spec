@@ -34,7 +34,9 @@ Asynchronous mail sending with POE.
 %install
 %{__rm} -rf %{buildroot}
 %{__perl} Build install destdir=%{buildroot}
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

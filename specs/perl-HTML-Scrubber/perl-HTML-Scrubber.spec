@@ -19,7 +19,9 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PO/PODMASTER/HTML-Scrubber-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker), perl-HTML-Parser
+BuildRequires: perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)-HTML-Parser
 
 %description
 Perl extension for scrubbing/sanitizing html.
@@ -33,8 +35,10 @@ Perl extension for scrubbing/sanitizing html.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

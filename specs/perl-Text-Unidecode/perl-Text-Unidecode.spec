@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Text/Text-Unidecode-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-Text-Unidecode is a Perl module implements an US-ASCII

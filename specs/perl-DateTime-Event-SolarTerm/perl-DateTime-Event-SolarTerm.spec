@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Daisuke Maki <dmaki$cpan,org>
+# Upstream: Daisuke Maki <daisuke$endeworks,jp>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: DateTime Extension to Calculate Solar Terms
 Name: perl-DateTime-Event-SolarTerm
-Version: 0.04
-Release: 1.2
+Version: 0.05
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Event-SolarTerm/
@@ -19,7 +19,12 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Event-SolarTerm-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Module::Build)
+BuildRequires: perl
+BuildRequires: perl(DateTime)
+BuildRequires: perl(DateTime::Set)
+BuildRequires: perl(DateTime::Util::Astro::Sun) >= 0.11
+BuildRequires: perl(DateTime::Util::Calc) >= 0.12
+BuildRequires: perl(Module::Build)
 
 %description
 DateTime Extension to Calculate Solar Terms.
@@ -33,21 +38,21 @@ DateTime Extension to Calculate Solar Terms.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README
-%doc %{_mandir}/man3/*
+%doc CHANGES LICENSE MANIFEST META.yml
+%doc %{_mandir}/man3/DateTime::Event::SolarTerm.3pm*
 %dir %{perl_vendorlib}/DateTime/
 %dir %{perl_vendorlib}/DateTime/Event/
+#%{perl_vendorlib}/DateTime/Event/SolarTerm/
 %{perl_vendorlib}/DateTime/Event/SolarTerm.pm
 
 %changelog

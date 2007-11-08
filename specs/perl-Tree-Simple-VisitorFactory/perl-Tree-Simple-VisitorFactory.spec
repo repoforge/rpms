@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/S/ST/STEVAN/Tree-Simple-VisitorFa
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module implements different versions of the Visitor pattern for Simple::Tree objects.
@@ -33,8 +34,10 @@ This module implements different versions of the Visitor pattern for Simple::Tre
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

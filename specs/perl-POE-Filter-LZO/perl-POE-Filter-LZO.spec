@@ -1,4 +1,3 @@
-# $Id$
 # Authority: dries
 # Upstream: Chris Williams <chris$bingosnet,co,uk>
 
@@ -19,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/POE/POE-Filter-LZO-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 A POE filter wrapped around Compress::LZO.
@@ -33,10 +33,10 @@ A POE filter wrapped around Compress::LZO.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -58,3 +58,4 @@ A POE filter wrapped around Compress::LZO.
 
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1
 - Initial package.
+# $Id$

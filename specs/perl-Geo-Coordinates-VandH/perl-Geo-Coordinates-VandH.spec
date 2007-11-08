@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PT/PTIMMINS/Geo-Coordinates-Van
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 With this module, you can convert and Manipulate telco V and H coordinates.
@@ -33,8 +34,10 @@ With this module, you can convert and Manipulate telco V and H coordinates.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

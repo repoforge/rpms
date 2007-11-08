@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Text-Iconv/
 Source: http://www.cpan.org/modules/by-module/Text/Text-Iconv-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl(ExtUtils::MakeMaker), perl >= 0:5.00503
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker) >= 0:5.00503
 Requires: perl >= 0:5.00503
 
 %description

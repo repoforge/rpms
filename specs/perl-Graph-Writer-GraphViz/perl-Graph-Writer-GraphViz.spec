@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Graph/Graph-Writer-GraphViz-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Graph::Writer::GraphViz is an Writer object of Graph, using
@@ -35,7 +36,7 @@ by nature.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

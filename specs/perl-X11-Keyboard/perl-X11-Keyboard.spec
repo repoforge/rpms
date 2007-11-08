@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/X11/X11-Keyboard-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module make available certain keyboard functions useful to translate
@@ -34,7 +35,7 @@ keysyms and keycodes, when working with the X11::Protocol module.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

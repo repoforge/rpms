@@ -19,7 +19,8 @@ Source: http://www.cpan.org/authors/id/S/ST/STEVAN/Moose-0.20.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Moose is a Perl module that implements a complete modern object system.

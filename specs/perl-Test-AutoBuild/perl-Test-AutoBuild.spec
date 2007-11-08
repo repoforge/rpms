@@ -18,7 +18,9 @@ URL: http://search.cpan.org/dist/Test-AutoBuild/
 Source: http://www.cpan.org/modules/by-module/Test/Test-AutoBuild-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker), perl-BSD-Resource
+BuildRequires: perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)-BSD-Resource
 
 %description
 Test-AutoBuild provides a PERL framework for performing
@@ -56,7 +58,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

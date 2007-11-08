@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Class/Class-Prototyped-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Fast prototype-based OO programming in Perl.

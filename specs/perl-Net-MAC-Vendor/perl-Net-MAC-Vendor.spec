@@ -1,4 +1,3 @@
-# $Id$
 # Authority: dries
 # Upstream: brian d foy <bdfoy$cpan,org>
 
@@ -19,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-MAC-Vendor-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Lookup the vendor for a MAC address.
@@ -33,10 +33,10 @@ Lookup the vendor for a MAC address.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -55,3 +55,4 @@ Lookup the vendor for a MAC address.
 
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.16-1
 - Initial package.
+# $Id$

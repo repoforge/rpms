@@ -1,4 +1,3 @@
-# $Id$
 # Authority: dries
 # Upstream: Philipp K. Janert <pause$beyondcode,org>
 
@@ -19,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/Graphics/Graphics-ColorUtils-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Easy-to-use color space conversions and more.
@@ -33,10 +33,10 @@ Easy-to-use color space conversions and more.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -54,3 +54,4 @@ Easy-to-use color space conversions and more.
 
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.
+# $Id$

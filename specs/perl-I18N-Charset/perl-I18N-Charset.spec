@@ -18,7 +18,8 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MT/MTHURN/I18N-Charset-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl >= 0:5.00503
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker) >= 0:5.00503
 Requires: perl >= 0:5.00503
 
 %description

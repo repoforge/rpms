@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/UNIVERSAL/UNIVERSAL-require-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-UNIVERSAL-require is a Perl module to require() modules from a variable.

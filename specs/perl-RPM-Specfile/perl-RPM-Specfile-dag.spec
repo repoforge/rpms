@@ -33,7 +33,7 @@ See the included script cpanflute2 for usage; documentation coming soon.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/

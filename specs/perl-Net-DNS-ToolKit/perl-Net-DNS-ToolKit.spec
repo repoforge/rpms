@@ -1,4 +1,3 @@
-# $Id$
 
 # Authority: dries
 # Upstream: Michael Robinton <michael$bizsystems,com>
@@ -19,7 +18,8 @@ URL: http://search.cpan.org/dist/Net-DNS-ToolKit/
 Source: http://www.cpan.org/modules/by-module/Net/Net-DNS-ToolKit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Routines to pick apart, examine and put together DNS packets. They can
@@ -36,10 +36,10 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist/auto/*{,/*{,/*}}/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -74,3 +74,4 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.17-1
 - Initial package.
+# $Id$

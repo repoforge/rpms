@@ -18,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/Log/Log-Message-Simple-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module provides standardized logging facilities using the Log::Message

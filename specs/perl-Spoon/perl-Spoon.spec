@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/I/IN/INGY/Spoon-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Spoon is an Application Framework that is designed primarily for
@@ -35,7 +36,7 @@ built on top of Spoon.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Graham Barr <gbarr$pobox,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -19,7 +20,8 @@ Source: http://www.cpan.org/modules/by-module/Convert/Convert-BER-%{real_version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl >= 0:5.00503
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker) >= 0:5.00503
 Requires: perl >= 0:5.00503
 
 %description
@@ -49,8 +51,5 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Convert/BER.p*
 
 %changelog
-* Mon Apr 10 2006 Dries Verachtert <dries@ulyssis.org> - 1.32.01-1.2
-- Rebuild for Fedora Core 5.
-
 * Tue Mar 16 2004 Dag Wieers <dag@wieers.com> - 1.32.01-1
 - Initial package. (using DAR)

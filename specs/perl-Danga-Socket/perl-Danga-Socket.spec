@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Danga/Danga-Socket-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-Danga-Socket is a Perl module that implements an event loop and

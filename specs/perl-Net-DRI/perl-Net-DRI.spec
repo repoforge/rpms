@@ -37,7 +37,7 @@ methods (such as TCP, TLS, SOAP, or email).
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist

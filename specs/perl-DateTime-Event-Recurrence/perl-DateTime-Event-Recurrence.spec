@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Event-Recurrence
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module aims to support basic recurrences, such as 'daily'.
@@ -33,7 +34,7 @@ This module aims to support basic recurrences, such as 'daily'.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 

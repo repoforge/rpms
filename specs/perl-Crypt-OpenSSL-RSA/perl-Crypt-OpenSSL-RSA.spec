@@ -35,7 +35,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/Crypt/OpenSSL/RSA/.packlist
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 

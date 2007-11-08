@@ -1,4 +1,3 @@
-# $Id$
 # Authority: dries
 # Upstream: Burak Gürsoy <burak$cpan,org>
 
@@ -19,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/MP3/MP3-M3U-Parser-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Parses M3U mp3 playlists and if wanted, exports the parsed data to
@@ -34,10 +34,10 @@ formats like xml and html.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -59,3 +59,4 @@ formats like xml and html.
 
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 2.0-1
 - Initial package.
+# $Id$

@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/HTML/HTML-Template-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 With this module, you can use HTML templates in CGI scripts.
@@ -35,7 +36,7 @@ With this module, you can use HTML templates in CGI scripts.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

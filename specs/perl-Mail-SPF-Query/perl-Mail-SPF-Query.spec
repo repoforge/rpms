@@ -20,7 +20,8 @@ Source: http://www.cpan.org/modules/by-module/Mail/Mail-SPF-Query-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 With this module, you can use a Sender Policy Framework.

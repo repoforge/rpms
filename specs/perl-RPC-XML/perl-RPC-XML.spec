@@ -19,7 +19,9 @@ Source: http://www.cpan.org/modules/by-module/RPC/RPC-XML-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker), perl-libwww-perl
+BuildRequires: perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)-libwww-perl
 # Apparently i used the wrong name: XML-RPC doesn't exist, it's RPC-XML
 Obsoletes: perl-XML-RPC
 
@@ -40,7 +42,7 @@ are used by them.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

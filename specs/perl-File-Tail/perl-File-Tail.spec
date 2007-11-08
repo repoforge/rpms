@@ -1,16 +1,16 @@
-# $Id$
 # Authority: dries
-# Upstream: Matija Grabnar <matija,grabnar$arnes,si>
+# Upstream: Matija Grabnar <matija+pause$serverflow,com>
 
-%define real_name File-Tail
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name File-Tail
 
 Summary: Perl extension for reading from continuosly updated files
 Name: perl-File-Tail
 Version: 0.99.3
 Release: 1.2
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Tail/
 
@@ -18,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/File/File-Tail-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 The File::Tail module is designed for reading files which are continously
@@ -35,32 +36,28 @@ or "cat /dev/null >file") transparently, without losing any input.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	INSTALLDIRS="vendor" \
-	PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/File::Tail.3pm*
+%dir %{perl_vendorlib}/File/
+#%{perl_vendorlib}/File/Tail/
 %{perl_vendorlib}/File/Tail.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.99.3-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.99.3-1
 - Updated to release 0.99.3.
 

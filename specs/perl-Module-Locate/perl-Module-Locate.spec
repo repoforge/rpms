@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Module/Module-Locate-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Module-Locate is a Perl module to locate modules in the same fashion

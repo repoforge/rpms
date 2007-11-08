@@ -9,16 +9,17 @@
 
 Summary: Extremely light-weight Lev-Zimpel-Free compression
 Name: perl-Compress-LZF
-Version: 1.8
+Version: 1.9
 Release: 1
-License: Artistic/GPL
+License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Compress-LZF/
 
 Source: http://www.cpan.org/modules/by-module/Compress/Compress-LZF-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 LZF is an extremely fast (not that much slower than a pure memcpy)
@@ -37,10 +38,10 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist/auto/*{,/*{,/*}}/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -49,21 +50,20 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %defattr(-, root, root, 0755)
 %doc COPYING COPYING.Artistic COPYING.GNU Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Compress::LZF.3pm*
-#%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorarch}/Compress/
 %{perl_vendorarch}/Compress/LZF.pm
 %dir %{perl_vendorarch}/auto/Compress/
 %{perl_vendorarch}/auto/Compress/LZF/
 
 %changelog
+* Wed Nov 07 2007 Dag Wieers <dag@wieers.com> - 1.9-1
+- Updated to release 1.9.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.8-1
 - Updated to release 1.8.
 
 * Sat Sep 30 2006 Dries Verachtert <dries@ulyssis.org> - 1.7-1
 - Updated to release 1.7.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.6-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.6-1
 - Updated to release 1.6.

@@ -34,8 +34,10 @@ query filesystem names and their properties.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{__rm} -f %{buildroot}%{perl_vendorlib}/Sys/Filesystem/Mswin32.pm
 
 %clean

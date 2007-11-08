@@ -18,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/Class/Class-Data-Inheritable-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Class-Data-Inheritable module for perl

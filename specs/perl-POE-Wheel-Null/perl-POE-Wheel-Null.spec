@@ -18,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/POE/POE-Wheel-Null-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-POE-Wheel-Null is a Perl module that implements a POE Wheel that

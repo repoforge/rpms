@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Crypt-Rijndael/
 Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-Rijndael-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This is Crypt::Rijndael, an XS-based implementation of the newly-selected

@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Chemistry/Chemistry-Mol-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 his toolkit includes basic objects and methods to describe molecules. It
@@ -36,7 +37,7 @@ PerlMol toolkit; see http://www.perlmol.org/.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

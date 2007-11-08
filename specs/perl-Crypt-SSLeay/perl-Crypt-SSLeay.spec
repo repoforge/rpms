@@ -9,7 +9,7 @@
 
 Summary: OpenSSL support for LWP
 Name: perl-Crypt-SSLeay
-Version: 0.56
+Version: 0.57
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,8 @@ Patch0: perl-Crypt-SSLeay-0.55-cryptdef.patch
 Patch1: perl-Crypt-SSLeay-0.55-lib64.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 OpenSSL support for LWP.
@@ -28,7 +29,7 @@ OpenSSL support for LWP.
 %prep
 %setup -n %{real_name}-%{version}
 %patch0 -p1 -b .cryptdef
-%patch1 -p1 -b .lib64
+#patch1 -p1 -b .lib64
 
 %build
 if pkg-config openssl ; then
@@ -47,15 +48,12 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
-### Clean up docs
-find eg/ -type f -exec %{__chmod} a-x {} \;
-
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST MANIFEST.SKIP META.yml README TODO eg/
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README TODO
 %doc %{_mandir}/man3/Crypt::SSLeay.3pm*
 %doc %{_mandir}/man3/Net::SSL.3pm*
 %dir %{perl_vendorarch}/Crypt/
@@ -67,5 +65,8 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/auto/Crypt/SSLeay/
 
 %changelog
+* Thu Nov 08 2007 Dag Wieers <dag@wieers.com> - 0.57-1
+- Updated to release 0.57.
+
 * Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 0.56-1
 - Initial package. (using DAR)

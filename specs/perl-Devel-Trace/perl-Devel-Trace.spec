@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Devel/Devel-Trace-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 If you run your program with "perl -d:Trace program", this module will
@@ -35,7 +36,7 @@ the "-x" option of bash.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/Devel/Trace/.packlist
 

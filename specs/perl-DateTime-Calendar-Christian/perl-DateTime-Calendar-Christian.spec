@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Calendar-Christi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module implements the Christian calendar, which consists of both
@@ -34,7 +35,7 @@ the Julian and the Gregorian calendars.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

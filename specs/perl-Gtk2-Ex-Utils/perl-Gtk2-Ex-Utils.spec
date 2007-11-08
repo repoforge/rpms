@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Gtk2/Gtk2-Ex-Utils-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Gtk2-Ex-Utils is a Perl module that implements extra Gtk2 Utilities

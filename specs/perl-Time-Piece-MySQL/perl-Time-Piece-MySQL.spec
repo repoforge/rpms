@@ -18,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/Time/Time-Piece-MySQL-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-Time-Piece-MySQL is a Perl module adds MySQL-specific methods

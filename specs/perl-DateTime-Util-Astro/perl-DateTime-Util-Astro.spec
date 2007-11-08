@@ -34,7 +34,7 @@ This module contains functions for astronomical calendar calculations.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 %{__rm} -rf %{buildroot}%{perl_archlib} \
 	%{buildroot}%{perl_vendorarch}
 

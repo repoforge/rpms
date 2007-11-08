@@ -18,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/Class/Class-Container-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl, perl-Params-Validate
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl-Params-Validate
 
 %description
 This class facilitates building frameworks of several classes that

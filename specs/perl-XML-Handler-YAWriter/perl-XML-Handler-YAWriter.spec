@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-Handler-YAWriter-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 YAWriter implements Yet Another XML::Handler::Writer. The

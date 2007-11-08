@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Digest-MD5-M4p/
 Source: http://www.cpan.org/modules/by-module/Digest/Digest-MD5-M4p-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 he Digest::MD5 module is cloned from the Digest::MD5 module to support a
@@ -36,7 +37,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

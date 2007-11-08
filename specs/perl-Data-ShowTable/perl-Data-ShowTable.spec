@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Data/Data-ShowTable-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This is a Perl 5 module which defines subroutines
@@ -36,7 +37,7 @@ HTML-formatting (for World-Wide-Web output).
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__sed} -i "s/\/usr\/bin\/perl5/\/usr\/bin\/perl/g;" %{buildroot}%{_bindir}/showtable

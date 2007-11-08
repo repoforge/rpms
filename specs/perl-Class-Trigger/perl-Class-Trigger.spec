@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Class/Class-Trigger-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Class::Trigger is a mixin class to add / call triggers (or hooks) that

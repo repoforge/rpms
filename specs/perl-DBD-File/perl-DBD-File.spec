@@ -20,7 +20,8 @@ Source: http://www.cpan.org/modules/by-module/DBD/DBD-File-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl, perl-DBI >= 0.42
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), perl-DBI >= 0.42
 
 %description
 This module is currently not directly usable, rather it is a base subclass
@@ -37,7 +38,7 @@ for modules like DBD::CSV and DBD::AnyData.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 %{__rm} -rf %{buildroot}%{perl_archlib} \
 	%{buildroot}%{perl_vendorarch}
 %clean

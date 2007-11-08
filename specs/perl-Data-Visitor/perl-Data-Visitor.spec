@@ -7,9 +7,9 @@
 
 %define real_name Data-Visitor
 
-Summary: None
+Summary: Visitor style traversal of Perl data structures
 Name: perl-Data-Visitor
-Version: 0.08
+Version: 0.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-None.
+Visitor style traversal of Perl data structures.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -51,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Data/Visitor.pm
 
 %changelog
+* Thu Nov 08 2007 Dag Wieers <dag@wieers.com> - 0.09-1
+- Updated to release 0.09.
+
 * Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 0.08-1
 - Initial package. (using DAR)

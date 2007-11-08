@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Filesys-Df/
 Source: http://www.cpan.org/modules/by-module/Filesys/Filesys-Df-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-Filesys-Df is a Perl module for filesystem disk space information.

@@ -1,4 +1,3 @@
-# $Id$
 # Authority: dries
 # Upstream: Wilson Snyder <wsnyder$wsnyder,org>
 
@@ -18,7 +17,8 @@ URL: http://search.cpan.org/dist/Unix-Processors/
 Source: http://www.cpan.org/modules/by-module/Unix/Unix-Processors-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This package provides access to per-processor information from Perl.
@@ -32,10 +32,10 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist/auto/*{,/*{,/*}}/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -68,3 +68,4 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.030-1
 - Initial package.
+# $Id$

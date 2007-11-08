@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/SVG/SVG-Graph-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-SVG-Graph is a Perl module to visualize your data in Scalable Vector

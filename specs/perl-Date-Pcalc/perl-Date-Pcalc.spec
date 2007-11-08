@@ -18,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/Date/Date-Pcalc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl
 
 %description

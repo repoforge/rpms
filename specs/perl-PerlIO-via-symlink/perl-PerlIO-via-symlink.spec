@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/PerlIO/PerlIO-via-symlink-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 PerlIO layer for symlinks.

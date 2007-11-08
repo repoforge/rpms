@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/DBD/DBD-CSV-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 The DBD::CSV module is yet another driver for the DBI (Database
@@ -40,7 +41,7 @@ MS Excel data.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 %{__rm} -rf %{buildroot}%{perl_vendorarch} \
 	%{buildroot}%{perl_archlib}
 

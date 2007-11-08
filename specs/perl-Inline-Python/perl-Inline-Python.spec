@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Inline-Python/
 Source: http://www.cpan.org/modules/by-module/Inline/Inline-Python-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker), python-devel
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), python-devel
 
 %description
 Inline::Python lets you write Perl subroutines and classes in
@@ -36,7 +37,7 @@ echo 1 | CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX=
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 

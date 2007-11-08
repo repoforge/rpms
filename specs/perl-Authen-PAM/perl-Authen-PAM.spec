@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Authen-PAM/
 Source: http://www.cpan.org/modules/by-module/Authen/Authen-PAM-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl(ExtUtils::MakeMaker), perl, pam-devel
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), pam-devel
 
 %description
 This module provides a Perl interface to the PAM library.
@@ -32,10 +33,12 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}

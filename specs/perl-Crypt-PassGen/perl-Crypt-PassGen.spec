@@ -20,7 +20,8 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TJ/TJENNESS/Crypt-PassGen-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker), words
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), words
 
 %description
 This module provides a single command for generating random password
@@ -39,8 +40,10 @@ languages).
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{__install} -d %{buildroot}%{perl_sitelib}/Crypt/PassGenWordFreq.dat
 %{__mv} %{buildroot}%{perl_vendorlib}/Crypt/PassGenWordFreq.dat %{buildroot}%{perl_sitelib}/Crypt/PassGenWordFreq.dat
 %clean

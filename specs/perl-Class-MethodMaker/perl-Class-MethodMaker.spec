@@ -38,7 +38,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" DESTDIR="%{build
 %install
 %{__rm} -rf %{buildroot}
 #makeinstall
-%{__make} install
+%{__make} pure_install
 #./Build install
 
 ### Clean up buildroot

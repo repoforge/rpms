@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Math-Random-MT-Auto/
 Source: http://www.cpan.org/modules/by-module/Math/Math-Random-MT-Auto-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Auto-seeded Mersenne Twister PRNGs.

@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHANSEN/HTTP-Request-AsCGI-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Provides a convinient way of setting up an CGI enviroment from a HTTP::Request.
@@ -33,8 +34,10 @@ Provides a convinient way of setting up an CGI enviroment from a HTTP::Request.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

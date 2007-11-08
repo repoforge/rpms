@@ -39,7 +39,7 @@ for modules like DBD::CSV and DBD::AnyData.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 %{__rm} -rf %{buildroot}%{perl_archlib} \
 	%{buildroot}%{perl_vendorarch}
 %clean

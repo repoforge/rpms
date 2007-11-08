@@ -19,7 +19,8 @@ BuildArch: noarch
 Source: http://www.cpan.org/modules/by-module/Set/Set-Crontab-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Set::Crontab parses crontab-style lists of integers and defines
@@ -34,7 +35,7 @@ some utility functions to make it easier to deal with them.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

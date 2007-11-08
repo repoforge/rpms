@@ -33,7 +33,7 @@ This module adds support for XFORWARD to Net::Server::Mail::ESMTP.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/*/*/.packlist
 
 %clean

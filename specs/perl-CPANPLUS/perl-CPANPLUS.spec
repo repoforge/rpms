@@ -41,7 +41,7 @@ this API.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 %{__rm} -rf %{buildroot}%{perl_archlib} \
   %{buildroot}%{perl_vendorarch} \
   %{buildroot}%{_mandir}/man3/CPANPLUS*Win32* \

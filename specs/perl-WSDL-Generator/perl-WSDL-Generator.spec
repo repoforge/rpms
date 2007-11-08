@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PD/PDENIS/WSDL-Generator-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 You know folks out there who use another language than Perl (huh?) and
@@ -44,7 +45,7 @@ with the server. It contains also the namespace and URL as well.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 

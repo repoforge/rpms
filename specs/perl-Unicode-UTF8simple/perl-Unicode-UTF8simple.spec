@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Unicode/Unicode-UTF8simple-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-Unicode-UTF8simple is a Perl module for conversions to/from UTF8

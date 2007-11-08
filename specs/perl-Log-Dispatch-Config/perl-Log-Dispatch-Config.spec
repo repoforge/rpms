@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Log/Log-Dispatch-Config-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Log-Dispatch-Config is a Perl module that implements Log4j.

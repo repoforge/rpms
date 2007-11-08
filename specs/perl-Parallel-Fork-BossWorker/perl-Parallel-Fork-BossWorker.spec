@@ -19,7 +19,8 @@ Source: http://search.cpan.org//CPAN/authors/id/J/JR/JROD/Parallel-Fork-BossWork
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl >= 4:5.8.8
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker) >= 4:5.8.8
 
 %description
 Perl extension for easily creating forking queue processing application.
@@ -33,8 +34,10 @@ Perl extension for easily creating forking queue processing application.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

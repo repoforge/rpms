@@ -18,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-Tea-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module implements TEA, the Tiny Encryption Algorithm, and some
@@ -41,7 +42,7 @@ a browser. A wrapper executable 'tea' is included for command-line use.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 %{__rm} -rf %{buildroot}%{perl_archlib} \
 		%{buildroot}%{perl_vendorarch}
 

@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Perl6/Perl6-Slurp-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This package implements the Perl 6 'slurp' built-in.
@@ -33,7 +34,7 @@ This package implements the Perl 6 'slurp' built-in.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

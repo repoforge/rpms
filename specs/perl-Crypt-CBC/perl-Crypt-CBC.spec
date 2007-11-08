@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Lincoln D. Stein <lstein$cshl,org>
+# Upstream: Lincoln D. Stein <lstein$cshl,edu>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -15,11 +15,12 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-CBC/
 
-Source: http://search.cpan.org/CPAN/authors/id/L/LD/LDS/Crypt-CBC-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/L/LD/LDS/Crypt-CBC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This is Crypt::CBC, a Perl-only implementation of the cryptographic
@@ -37,16 +38,20 @@ compatible with the encryption format used by B<SSLeay>.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST README
+%doc %{_mandir}/man3/CBC.3pm*
+%dir %{perl_vendorlib}/Crypt/
+#%{perl_vendorlib}/Crypt/CBC/
 %{perl_vendorlib}/Crypt/CBC.pm
 
 %changelog
@@ -58,9 +63,6 @@ compatible with the encryption format used by B<SSLeay>.
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.17-1
 - Updated to release 2.17.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.15-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.15-1
 - Updated to release 2.15.

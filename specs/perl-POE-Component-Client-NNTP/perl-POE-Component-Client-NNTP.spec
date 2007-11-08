@@ -1,4 +1,3 @@
-# $Id$
 # Authority: dries
 # Upstream: Chris Williams <chris$bingosnet,co,uk>
 
@@ -19,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/POE/POE-Component-Client-NNTP-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 A component that provides access to NNTP.
@@ -33,10 +33,10 @@ A component that provides access to NNTP.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/*/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -63,3 +63,4 @@ A component that provides access to NNTP.
 
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.02-1
 - Initial package.
+# $Id$

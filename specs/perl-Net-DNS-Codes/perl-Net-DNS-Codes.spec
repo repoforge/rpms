@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-DNS-Codes-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Net::DNS::Codes provides forward and reverse lookup for most common "C"
@@ -34,7 +35,7 @@ library DNS codes as well as all the codes for the DNS HEADER field.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 

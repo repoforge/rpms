@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Harness-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-Test-Harness is a Perl module to run Perl standard test scripts

@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Compress-LZO/
 Source: http://search.cpan.org/CPAN/authors/id/M/MF/MFX/Compress-LZO-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker), lzo-devel
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), lzo-devel
 
 %description
 Perl-LZO provides LZO bindings for Perl, i.e. you can access the
@@ -34,8 +35,10 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

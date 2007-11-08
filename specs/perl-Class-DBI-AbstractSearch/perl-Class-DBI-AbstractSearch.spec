@@ -17,7 +17,8 @@ URL: http://search.cpan.org/dist/Class-DBI-AbstractSearch/
 Source: http://www.cpan.org/modules/by-module/Class/Class-DBI-AbstractSearch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl
 
 %description

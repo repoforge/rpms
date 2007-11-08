@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Paul Marquess <pmqs$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,7 +9,7 @@
 
 Summary: Perl module to interface to zlib compression library
 Name: perl-Compress-Zlib
-Version: 2.005
+Version: 2.007
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,12 +55,16 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README examples/
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Compress::Zlib.3pm*
 %dir %{perl_vendorlib}/Compress/
+#%{perl_vendorlib}/Compress/Zlib/
 %{perl_vendorlib}/Compress/Zlib.pm
 %{perl_vendorlib}/auto/Compress/Zlib/
 
 %changelog
+* Wed Nov 07 2007 Dag Wieers <dag@wieers.com> - 2.007-1
+- Updated to release 2.007.
+
 * Wed Aug 08 2007 Dag Wieers <dag@wieers.com> - 2.005-1
 - Updated to release 2.005.
 

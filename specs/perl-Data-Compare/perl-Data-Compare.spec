@@ -9,13 +9,13 @@
 
 Summary: Compare perl data structures
 Name: perl-Data-Compare
-Version: 0.16
+Version: 0.17
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Compare/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCANTRELL/Data-Compare-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Data/Data-Compare-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -34,7 +34,10 @@ of each other.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
@@ -42,20 +45,22 @@ of each other.
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README
-%doc %{_mandir}/man3/*
+%doc CHANGES MANIFEST META.yml NOTES README TODO
+%doc %{_mandir}/man3/Data::Compare.3pm*
+%doc %{_mandir}/man3/Data::Compare::*.3pm*
+%dir %{perl_vendorlib}/Data/
+%{perl_vendorlib}/Data/Compare/
 %{perl_vendorlib}/Data/Compare.pm
-%{perl_vendorlib}/Data/Compare
 
 %changelog
+* Thu Nov 08 2007 Dag Wieers <dag@wieers.com> - 0.17-1
+- Updated to release 0.17.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.16-1
 - Updated to release 0.16.
 
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1
 - Updated to release 0.14.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.13-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.13-1
 - Initial package.

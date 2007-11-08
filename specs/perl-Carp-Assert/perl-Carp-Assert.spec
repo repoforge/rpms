@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Carp/Carp-Assert-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Carp::Assert is intended for a purpose like the ANSI C library assert.h.
@@ -33,7 +34,7 @@ Carp::Assert is intended for a purpose like the ANSI C library assert.h.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

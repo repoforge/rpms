@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/IO-Interface/
 Source: http://www.cpan.org/modules/by-module/IO/IO-Interface-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 IO-Interface is a Perl module to accessto network card

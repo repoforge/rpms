@@ -1,4 +1,3 @@
-# $Id$
 # Authority: dries
 # Upstream: Gisle Aas <gisle$ActiveState,com>
 
@@ -19,7 +18,8 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/IO-String-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 IO::String is an IO::File (and IO::Handle) compatible class that read
@@ -36,10 +36,10 @@ such IO::String is a replacement for IO::Scalar.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -63,3 +63,4 @@ such IO::String is a replacement for IO::Scalar.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.06-1
 - Initial package.
+# $Id$

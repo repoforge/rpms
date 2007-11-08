@@ -9,17 +9,18 @@
 
 Summary: Impact analysis in a clearmake build environment
 Name: perl-ClearCase-CRDB
-Version: 0.12
-Release: 1.2
+Version: 0.15
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ClearCase-CRDB/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DS/DSB/ClearCase-CRDB-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/ClearCase/ClearCase-CRDB-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Whouses provides a limited form of "impact analysis" in a clearmake
@@ -36,24 +37,27 @@ elements.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%doc %{_mandir}/man1/*
+%doc Changes MANIFEST README
+%doc %{_mandir}/man1/whouses.1*
+%doc %{_mandir}/man3/ClearCase::CRDB.3pm*
 %{_bindir}/whouses
+%dir %{perl_vendorlib}/ClearCase/
+#%{perl_vendorlib}/ClearCase/CRDB/
 %{perl_vendorlib}/ClearCase/CRDB.pm
-%{perl_vendorlib}/ClearCase/CRDB/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1.2
-- Rebuild for Fedora Core 5.
+* Wed Nov 07 2007 Dag Wieers <dag@wieers.com> - 0.15-1
+- Updated to release 0.15.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Initial package.

@@ -21,7 +21,8 @@ URL: http://search.cpan.org/dist/Storable/
 Source: http://www.cpan.org/modules/by-module/Storable/Storable-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl
 
 %description

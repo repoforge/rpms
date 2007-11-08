@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/F/FT/FTASSIN/Data-HexDump-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Dump in hexadecimal the content of a scalar. The result is returned in a
@@ -38,8 +39,10 @@ as single dots)
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{__mv} %{buildroot}%{_bindir}/hexdump %{buildroot}%{_bindir}/perlhexdump
 
 %clean

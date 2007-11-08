@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Log/Log-Dispatch-FileRotate-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl, perl-Log-Dispatch
 
 %description
@@ -37,7 +38,7 @@ with additions.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/Log/Dispatch/FileRotate/.packlist
 

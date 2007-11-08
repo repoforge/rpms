@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-Elemental-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-XML-Elemental is a Perl module implements simplistic

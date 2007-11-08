@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/IPTables-IPv4/
 Source: http://www.cpan.org/modules/by-module/IPTables/IPTables-IPv4-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-IPTables-IPv4 is a Perl module for manipulating iptables rules

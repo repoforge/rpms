@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Deep-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-Test-Deep is a Perl module implements an extremely flexible deep comparison.

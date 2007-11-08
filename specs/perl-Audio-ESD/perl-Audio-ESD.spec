@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Audio-ESD/
 Source: http://search.cpan.org/CPAN/authors/id/D/DJ/DJHD/Audio-ESD-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl(ExtUtils::MakeMaker), perl, esound-devel
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), esound-devel
 
 %description
 This module provides a Perl interface to the Enlightened Sound Daemon,
@@ -37,8 +38,10 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

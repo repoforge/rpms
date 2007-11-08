@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Data/Data-DumpXML-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl(XML::Parser), perl-Array-RefElem
 
 %description
@@ -34,7 +35,7 @@ Dump arbitrary perl data structures as XML and restore them.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/Data/DumpXML/.packlist
 

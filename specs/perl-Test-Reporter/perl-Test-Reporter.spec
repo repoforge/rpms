@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Reporter-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Test::Reporter reports the test results of any given distribution to the
@@ -35,7 +36,7 @@ Test::Reporter has wide support for various perl5's and platforms.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

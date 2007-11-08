@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Parse/Parse-FixedLength-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Parse an ascii string containing fixed length fields into component parts.
@@ -33,7 +34,7 @@ Parse an ascii string containing fixed length fields into component parts.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 

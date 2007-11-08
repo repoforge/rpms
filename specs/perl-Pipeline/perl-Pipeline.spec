@@ -19,7 +19,8 @@ Source: http://www.cpan.org/authors/id/R/RC/RCLAMP/Pipeline-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-Pipeline is a Perl module.

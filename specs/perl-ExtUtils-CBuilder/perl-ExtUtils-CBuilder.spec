@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/ExtUtils/ExtUtils-CBuilder-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 With this perl module, you can compile and link C code for perl modules
@@ -35,7 +36,7 @@ With this perl module, you can compile and link C code for perl modules
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

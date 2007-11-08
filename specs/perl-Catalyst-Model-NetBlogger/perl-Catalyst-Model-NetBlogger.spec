@@ -1,4 +1,3 @@
-# $Id$
 # Authority: dries
 # Upstream: Christopher H. Laco <claco$cpan,org>
 
@@ -19,7 +18,8 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CL/CLACO/Catalyst-Model-NetBlog
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl >= 5.8.0
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker) >= 5.8.0
 
 %description
 This model class uses Net::Blogger to post and retrieve blog entries to
@@ -34,10 +34,10 @@ various web log engines XMLRPC API.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -61,3 +61,4 @@ various web log engines XMLRPC API.
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.
 
+# $Id$

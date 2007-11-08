@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TM/TMTM/Plucene-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Plucene is a Perl port of the Java Lucene search engine.
@@ -36,7 +37,7 @@ and search for things in them later.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 %{__rm} -Rf %{buildroot}%{perl_vendorarch} %{buildroot}%{perl_archlib}
 
 %clean

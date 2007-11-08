@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Crypt-CapnMidNite/
 Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIKER/Crypt-CapnMidNite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Perl interface to MD5, RC4, and modified asymetric RC4
@@ -41,8 +42,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install -f Makefile.CapnMidNite
-%{__make} install
+%{__make} pure_install -f Makefile.CapnMidNite
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

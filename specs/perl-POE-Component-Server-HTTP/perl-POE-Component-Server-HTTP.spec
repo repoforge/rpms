@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/POE/POE-Component-Server-HTTP-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module is a foundation of a POE HTTP Daemon.
@@ -33,7 +34,7 @@ This module is a foundation of a POE HTTP Daemon.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

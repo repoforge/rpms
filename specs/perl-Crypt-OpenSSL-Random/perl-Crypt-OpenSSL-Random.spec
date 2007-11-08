@@ -9,16 +9,17 @@
 
 Summary: Crypt::OpenSSL::Random module
 Name: perl-Crypt-OpenSSL-Random
-Version: 0.03
-Release: 1.2
+Version: 0.04
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-OpenSSL-Random/
 
-Source: http://search.cpan.org/CPAN/authors/id/I/IR/IROBERTS/Crypt-OpenSSL-Random-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-OpenSSL-Random-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker), openssl-devel
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker), openssl-devel
 
 %description
 This package contains the Crypt::OpenSSL::Random module.
@@ -32,16 +33,18 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST META.yml
+%doc %{_mandir}/man3/Crypt::OpenSSL::Random.3pm*
 %dir %{perl_vendorarch}/Crypt/
 %dir %{perl_vendorarch}/Crypt/OpenSSL/
 %{perl_vendorarch}/Crypt/OpenSSL/Random.pm
@@ -50,5 +53,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Crypt/OpenSSL/Random/
 
 %changelog
+* Thu Nov 08 2007 Dag Wieers <dag@wieers.com> - 0.04-1
+- Updated to release 0.04.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.

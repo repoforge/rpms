@@ -35,7 +35,7 @@ on client and server side.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/perllocal.pod

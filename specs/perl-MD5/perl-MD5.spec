@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/MD5-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This package contains a Perl interface to the MD5 Message-Digest Algorithm.
@@ -33,7 +34,7 @@ This package contains a Perl interface to the MD5 Message-Digest Algorithm.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/.packlist
 

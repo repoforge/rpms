@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Locale-Hebrew/
 Source: http://www.cpan.org/modules/by-module/Locale/Locale-Hebrew-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-Locale-Hebrew is a Perl module for bidirectional Hebrew support.

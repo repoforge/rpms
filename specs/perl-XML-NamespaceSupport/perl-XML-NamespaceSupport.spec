@@ -22,7 +22,8 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-NamespaceSupport-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-XML-NamespaceSupport is a Perl module that implements

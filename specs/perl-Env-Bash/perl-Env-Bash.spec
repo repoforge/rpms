@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Env/Env-Bash-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This is a Perl extension for accessing _all_ bash environment variables.
@@ -33,7 +34,7 @@ This is a Perl extension for accessing _all_ bash environment variables.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-MockModule-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-Test-MockModule is a Perl module to override subroutines in a module

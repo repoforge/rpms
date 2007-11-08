@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Mail/Mail-POP3Client-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 Obsoletes: perl-POP3Client <= %{version}-%{release}
 Provides: perl-POP3Client = %{version}-%{release}

@@ -1,4 +1,3 @@
-# $Id$
 # Authority: dries
 # Upstream: Chris Williams <chris$bingosnet,co,uk>
 
@@ -19,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/POE/POE-Component-Server-Echo-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 A POE component implementing a RFC 862 Echo server.
@@ -33,10 +33,10 @@ A POE component implementing a RFC 862 Echo server.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/*/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -59,3 +59,4 @@ A POE component implementing a RFC 862 Echo server.
 
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1
 - Initial package.
+# $Id$

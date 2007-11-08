@@ -18,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/Devel/Devel-StackTrace-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Devel-StackTrace module for perl.  Simple objects to deal with stack traces.

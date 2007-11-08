@@ -9,16 +9,17 @@
 
 Summary: Functions for manipulating mainframe data
 Name: perl-Convert-IBM390
-Version: 0.22
+Version: 0.23
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-IBM390/
 
 Source: http://www.cpan.org/modules/by-module/Convert/Convert-IBM390-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 onvert::IBM390 is a Perl module.  It supplies various functions that
@@ -39,17 +40,18 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__make} pure_install
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes INSTALL MANIFEST META.yml README
+%doc %{_mandir}/man3/Convert::IBM390.3pm*
 %dir %{perl_vendorarch}/Convert/
 %{perl_vendorarch}/Convert/IBM390.pm
 %{perl_vendorarch}/Convert/IBM390.pod
@@ -57,6 +59,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Convert/IBM390/
 
 %changelog
+* Wed Nov 07 2007 Dag Wieers <dag@wieers.com> - 0.23-1
+- Updated to release 0.23.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.22-1
 - Updated to release 0.22.
 

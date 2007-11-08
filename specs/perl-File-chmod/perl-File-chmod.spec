@@ -1,4 +1,3 @@
-# $Id$
 # Authority: dries
 # Upstream: Jeff Pinyan <japhy,734+CPAN$gmail,com>
 
@@ -19,7 +18,8 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PI/PINYAN/File-chmod-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Implements symbolic and ls chmod modes.
@@ -33,10 +33,10 @@ Implements symbolic and ls chmod modes.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -51,3 +51,4 @@ Implements symbolic and ls chmod modes.
 %changelog
 * Mon Sep  3 2007 Dries Verachtert <dries@ulyssis.org> - 0.32-1
 - Initial package.
+# $Id$

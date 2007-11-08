@@ -1,4 +1,3 @@
-# $Id$
 # Authority: dries
 # Upstream: Andy Lester <andy$petdance,com>
 
@@ -19,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Pod-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module allows you to check for POD errors in files.
@@ -33,10 +33,10 @@ This module allows you to check for POD errors in files.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -60,3 +60,4 @@ This module allows you to check for POD errors in files.
 
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.20-1
 - Initial package.
+# $Id$

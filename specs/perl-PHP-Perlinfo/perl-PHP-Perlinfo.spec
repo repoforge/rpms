@@ -1,4 +1,3 @@
-# $Id$
 # Authority: dries
 # Upstream: Michael Accardo <mikeaccardo$yahoo,com>
 
@@ -37,10 +36,10 @@ environment, OS version information, Perl modules, and the Perl License.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -68,3 +67,4 @@ environment, OS version information, Perl modules, and the Perl License.
 
 * Mon Dec 27 2004 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.
+# $Id$

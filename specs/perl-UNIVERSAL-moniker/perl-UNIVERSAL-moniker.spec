@@ -18,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/UNIVERSAL/UNIVERSAL-moniker-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-UNIVERSAL-moniker is a Perl module.

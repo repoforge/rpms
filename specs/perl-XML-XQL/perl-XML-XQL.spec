@@ -1,4 +1,3 @@
-# $Id$
 # Authority: dries
 # Upstream: T.J. Mather <tjmather$maxmind,com>
 
@@ -19,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-XQL-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This is a Perl extension that allows you to perform XQL queries on XML
@@ -35,10 +35,10 @@ other implementations, like XML::Grove, may soon follow.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -58,3 +58,4 @@ other implementations, like XML::Grove, may soon follow.
 
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.68-1
 - Initial package.
+# $Id$

@@ -23,7 +23,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: perl-Mail
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl >= 0:5.00503
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker) >= 0:5.00503
 %{?rh7:BuildRequires: perl-libnet >= 1.05}
 Requires: perl >= 0:5.00503
 %{?rh7:Requires: perl-libnet >= 1.05}

@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/CDB_File/
 Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/CDB_File-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 CDB_File is a module which provides a Perl interface to Dan Berstein's
@@ -33,7 +34,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/.packlist
 
 %clean

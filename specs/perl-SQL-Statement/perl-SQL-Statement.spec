@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/SQL/SQL-Statement-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 These modules can be used stand-alone to parse SQL statements
@@ -38,7 +39,7 @@ XML, CSV, Fixed Length, Excel Spreadsheets and many others.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 %{__rm} -rf %{buildroot}%{perl_vendorarch} \
 	%{buildroot}%{perl_archlib}
 

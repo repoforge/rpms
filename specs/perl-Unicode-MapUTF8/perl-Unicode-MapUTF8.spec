@@ -18,7 +18,8 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SN/SNOWHARE/Unicode-MapUTF8-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl >= 2:5.8.0
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker) >= 2:5.8.0
 Requires: perl >= 2:5.8.0
 
 %description

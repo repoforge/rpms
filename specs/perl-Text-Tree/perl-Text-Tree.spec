@@ -20,7 +20,8 @@ Source: http://www.cpan.org/modules/by-module/Text/Text-Tree-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-Text-Tree is a Perl module to format a simple tree of strings

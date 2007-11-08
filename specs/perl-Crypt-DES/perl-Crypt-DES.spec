@@ -17,7 +17,8 @@ URL: http://search.cpan.org/dist/Crypt-DES/
 Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-DES-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl(ExtUtils::MakeMaker), perl >= 0:5.00503
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker) >= 0:5.00503
 Requires: perl >= 0:5.00503
 
 %description
@@ -35,7 +36,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

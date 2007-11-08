@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RS/RSOD/IPC-Run-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module provides various IPC functionalities.
@@ -33,7 +34,7 @@ This module provides various IPC functionalities.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} pure_install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 %{__rm} -f %{buildroot}%{perl_vendorlib}/IPC/Run/Win32*

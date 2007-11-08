@@ -1,4 +1,3 @@
-# $Id$
 # Authority: dries
 # Upstream: Christopher H. Laco <claco$cpan,org>
 
@@ -19,7 +18,8 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CL/CLACO/Catalyst-Model-SVN-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(ExtUtils::MakeMaker), perl >= 5.8.0
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker) >= 5.8.0
 
 %description
 This model class uses the perl-subversion bindings to access a
@@ -36,10 +36,10 @@ client at a later time.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -65,3 +65,4 @@ client at a later time.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.
+# $Id$
