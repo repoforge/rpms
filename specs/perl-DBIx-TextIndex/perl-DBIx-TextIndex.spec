@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Daniel Koch <dkoch$bizjournals,com>
+# Upstream: Daniel Koch <dkoch$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,13 +9,13 @@
 
 Summary: full-text searching in SQL databases
 Name: perl-DBIx-TextIndex
-Version: 0.25
-Release: 1.2
+Version: 0.27
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-TextIndex/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DK/DKOCH/DBIx-TextIndex-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/DBIx/DBIx-TextIndex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -46,8 +46,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/DBIx::TextIndex.3pm*
+%doc %{_mandir}/man3/DBIx::TextIndex::*.3pm*
 %dir %{perl_vendorarch}/DBIx/
 %{perl_vendorarch}/DBIx/TextIndex.pm
 %{perl_vendorarch}/DBIx/TextIndex
@@ -55,5 +56,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/DBIx/TextIndex/
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.27-1
+- Updated to release 0.27.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.25-1
 - Initial package.

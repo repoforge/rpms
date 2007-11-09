@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements character encodings
 Name: perl-Encode
-Version: 2.20
+Version: 2.23
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Encode/
 Source: http://www.cpan.org/modules/by-module/Encode/Encode-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 1:5.7.3, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 1:5.7.3
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-Encode is a Perl module that implements character encodings.
@@ -43,6 +44,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS Changes MANIFEST META.yml README
+%doc %{_mandir}/man1/enc2xs.1*
+%doc %{_mandir}/man1/piconv.1*
+%doc %{_mandir}/man3/Encode.3pm*
+%doc %{_mandir}/man3/Encode::*.3pm*
+%doc %{_mandir}/man3/encoding.3pm*
 %{_bindir}/enc2xs
 %{_bindir}/piconv
 %{perl_vendorarch}/Encode/
@@ -51,5 +57,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Encode/
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 2.23-1
+- Updated to release 2.23.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 2.20-1
 - Initial package. (using DAR)

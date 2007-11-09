@@ -9,7 +9,7 @@
 
 Summary: Dump symbol names or the symbol table
 Name: perl-Devel-Symdump
-Version: 2.07
+Version: 2.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -24,10 +24,6 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Dump symbol names or the symbol table.
-
-This package contains the following Perl module:
-
-    Devel::Symdump
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -55,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Devel/Symdump.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 2.08-1
+- Updated to release 2.08.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 2.07-1
 - Updated to release 2.07.
 

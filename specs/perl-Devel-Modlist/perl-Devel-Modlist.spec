@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Randy J Ray <rjray$blackperl,com>
+# Upstream: Randy J. Ray <rjray$blackperl,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,18 +9,19 @@
 
 Summary: Collect module use information
 Name: perl-Devel-Modlist
-Version: 0.6
+Version: 0.71
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-Modlist/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RJ/RJRAY/Devel-Modlist-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Devel/Devel-Modlist-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.6.0 
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
 
 %description
 Devel::Modlist is a small tool that emits a list of files that were brought
@@ -50,16 +51,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
-%doc %{_mandir}/man3/*
+%doc ChangeLog MANIFEST MANIFEST.SKIP META.yml README SIGNATURE
+%doc %{_mandir}/man3/Devel::Modlist.3pm*
+%dir %{perl_vendorlib}/Devel/
+#%{perl_vendorlib}/Devel/Modlist/
 %{perl_vendorlib}/Devel/Modlist.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.71-1
+- Updated to release 0.71.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1
 - Updated to release 0.6.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.5-1
 - Initial package.

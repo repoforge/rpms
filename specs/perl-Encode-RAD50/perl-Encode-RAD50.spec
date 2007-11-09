@@ -9,13 +9,13 @@
 
 Summary: Convert to and from the Rad50 character set
 Name: perl-Encode-RAD50
-Version: 0.003
+Version: 0.005
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Encode-RAD50/
 
-Source: http://search.cpan.org//CPAN/authors/id/W/WY/WYANT/Encode-RAD50-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Encode/Encode-RAD50-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -44,10 +44,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Encode::RAD50*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Encode::RAD50.3pm*
+%dir %{perl_vendorlib}/Encode/
+#%{perl_vendorlib}/Encode/RAD50/
 %{perl_vendorlib}/Encode/RAD50.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.005-1
+- Updated to release 0.005.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.003-1
 - Initial package.

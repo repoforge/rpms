@@ -1,3 +1,4 @@
+# $Id$
 # Authority: dries
 # Upstream: T.J. Mather <tjmather$maxmind,com>
 
@@ -58,4 +59,3 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.68-1
 - Initial package.
-# $Id$

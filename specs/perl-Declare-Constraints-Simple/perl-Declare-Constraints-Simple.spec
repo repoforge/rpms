@@ -9,18 +9,19 @@
 
 Summary: Declarative Validation of Data Structures
 Name: perl-Declare-Constraints-Simple
-Version: 0.01
+Version: 0.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Declare-Constraints-Simple/
 
-Source: http://search.cpan.org//CPAN/authors/id/P/PH/PHAYLON/Declare-Constraints-Simple-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/P/PH/PHAYLON/Declare-Constraints-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
 
 %description
 Declarative Validation of Data Structures.
@@ -44,11 +45,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Declare::Constraints::Simple*
-%{perl_vendorlib}/Declare/Constraints/Simple.pm
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Declare::Constraints::Simple.3pm*
+%doc %{_mandir}/man3/Declare::Constraints::Simple::*.3pm*
+%dir %{perl_vendorlib}/Declare/
+%dir %{perl_vendorlib}/Declare/Constraints/
 %{perl_vendorlib}/Declare/Constraints/Simple/
+%{perl_vendorlib}/Declare/Constraints/Simple.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.03-1
+- Updated to release 0.03.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

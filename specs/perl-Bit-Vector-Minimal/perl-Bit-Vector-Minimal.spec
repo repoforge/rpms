@@ -1,3 +1,4 @@
+# $Id$
 # Authority: dries
 # Upstream: Tony Bowden <tony$tmtm,com>
 
@@ -55,4 +56,3 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Fri Dec 10 2004 Dries Verachtert <dries@ulyssis.org> - 1.1-1
 - Initial package.
-# $Id$

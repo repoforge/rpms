@@ -1,3 +1,4 @@
+# $Id$
 # Authority: dries
 # Upstream: Steve Purkis <spurkis%20%5bat%5d%20quiup_dot_com>
 
@@ -54,4 +55,3 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %changelog
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Initial package.
-# $Id$

@@ -1,3 +1,4 @@
+# $Id$
 # Authority: dries
 # Upstream: Chris Williams <chris$bingosnet,co,uk>
 
@@ -59,4 +60,3 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1
 - Initial package.
-# $Id$

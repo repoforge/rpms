@@ -9,7 +9,7 @@
 
 Summary: Interface to the gnome libxslt library
 Name: perl-XML-LibXSLT
-Version: 1.62
+Version: 1.63
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,7 +18,10 @@ URL: http://search.cpan.org/dist/XML-LibXSLT/
 Source: http://www.cpan.org/modules/by-module/XML/XML-LibXSLT-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, libxslt-devel, perl(XML::LibXML) >= 1.60, perl(ExtUtils::MakeMaker)
+BuildRequires: libxslt-devel
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(XML::LibXML) >= 1.60
 
 %description
 perl-XML-LibXSLT is a fast XSLT library, based on the Gnome libxslt engine
@@ -36,9 +39,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{__make} pure_install
 
 ### Clean up buildroot
-
-### Clean up buildroot
-find %{buildroot} -name .packlist -exec %{__rm} {} \;/auto/*{,/*{,/*}}/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -54,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;/auto/*{,/*{,/*}}/.packlist
 %{perl_vendorarch}/auto/XML/LibXSLT/
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.63-1
+- Updated to release 1.63.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.62-1
 - Updated to release 1.62.
 

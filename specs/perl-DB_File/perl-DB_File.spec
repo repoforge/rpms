@@ -9,7 +9,7 @@
 
 Summary: Perl module providing access to Berkeley DB version 1.x
 Name: perl-DB_File
-Version: 1.815
+Version: 1.816
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -25,6 +25,8 @@ perl-DB_File is a Perl module providing access to Berkeley DB version 1.x.
 
 %prep
 %setup -n %{real_name}-%{version}
+
+%{__perl} -pi.orig -e "s|INSTALLDIRS => \'perl\'|INSTALDIRS => \'vendor\'|" Makefile.PL
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -44,9 +46,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/DB_File.3pm*
-%{perl_vendorarch}/DB_File.pm
 %{perl_vendorarch}/auto/DB_File/
+%{perl_vendorarch}/DB_File.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.816-1
+- Updated to release 1.816.
+
 * Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 1.815-1
 - Initial package. (using DAR)

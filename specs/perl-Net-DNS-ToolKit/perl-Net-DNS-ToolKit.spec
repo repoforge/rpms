@@ -1,4 +1,4 @@
-
+# $Id$
 # Authority: dries
 # Upstream: Michael Robinton <michael$bizsystems,com>
 
@@ -74,4 +74,3 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;/auto/*{,/*{,/*}}/.packlist
 
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.17-1
 - Initial package.
-# $Id$

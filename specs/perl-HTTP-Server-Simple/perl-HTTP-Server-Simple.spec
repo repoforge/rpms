@@ -1,3 +1,4 @@
+# $Id$
 # Authority: dries
 # Upstream: Jesse Vincent <jesse+cpan$fsck,com>
 
@@ -70,4 +71,3 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Sat Dec 31 2005 Dries Verachtert <dries@ulyssis.org> - 0.16-1
 - Initial package.
-# $Id$

@@ -1,3 +1,4 @@
+# $Id$
 # Authority: dries
 # Upstream: Jeff Pinyan <japhy,734+CPAN$gmail,com>
 
@@ -51,4 +52,3 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %changelog
 * Mon Sep  3 2007 Dries Verachtert <dries@ulyssis.org> - 0.32-1
 - Initial package.
-# $Id$

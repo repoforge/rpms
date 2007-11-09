@@ -9,17 +9,18 @@
 
 Summary: Find the memory usage of perl variables
 Name: perl-Devel-Size
-Version: 0.64
-Release: 1.2
+Version: 0.69
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-Size/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DS/DSUGAL/Devel-Size-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Devel/Devel-Size-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More) >= 0.42
 
 %description
 Perl extension for finding the memory usage of Perl variables.
@@ -43,8 +44,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/*.3pm*
+%doc CHANGES MANIFEST MANIFEST.SKIP META.yml README SIGNATURE
+%doc %{_mandir}/man3/Devel::Size.3pm*
 %dir %{perl_vendorarch}/Devel/
 %{perl_vendorarch}/Devel/Size.pm
 #%{perl_vendorarch}/Devel/Size/
@@ -52,5 +53,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Devel/Size/
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.69-1
+- Updated to release 0.69.
+
 * Wed Jan  4 2006 Dries Verachtert <dries@ulyssis.org> - 0.64-1
 - Initial package.

@@ -9,16 +9,19 @@
 
 Summary: Small fast embedded SQL database engine
 Name: perl-DBD-SQLite
-Version: 1.13
+Version: 1.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBD-SQLite/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/DBD-SQLite-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/DBD/DBD-SQLite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(DBI), sqlite-devel, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(DBI)
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: sqlite-devel
 
 %description
 SQLite is a small fast embedded SQL database engine.
@@ -47,14 +50,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README
+%doc %{_mandir}/man3/DBD::SQLite.3pm*
 %dir %{perl_vendorarch}/DBD/
 %{perl_vendorarch}/DBD/SQLite.pm
 %dir %{perl_vendorarch}/auto/DBD/
-%{perl_vendorarch}/auto/DBD/SQLite
+%{perl_vendorarch}/auto/DBD/SQLite/
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.14-1
+- Updated to release 1.14.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.13-1
 - Updated to release 1.13.
 

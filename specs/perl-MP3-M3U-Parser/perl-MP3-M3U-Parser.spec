@@ -1,3 +1,4 @@
+# $Id$
 # Authority: dries
 # Upstream: Burak Gürsoy <burak$cpan,org>
 
@@ -59,4 +60,3 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 2.0-1
 - Initial package.
-# $Id$

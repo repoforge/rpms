@@ -1,3 +1,4 @@
+# $Id$
 # Authority: dries
 # Upstream: Michael Accardo <mikeaccardo$yahoo,com>
 
@@ -67,4 +68,3 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Mon Dec 27 2004 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.
-# $Id$

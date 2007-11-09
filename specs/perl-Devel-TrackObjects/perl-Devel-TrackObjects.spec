@@ -9,13 +9,13 @@
 
 Summary: Track usage of objects
 Name: perl-Devel-TrackObjects
-Version: 0.1
+Version: 0.2
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-TrackObjects/
 
-Source: http://search.cpan.org//CPAN/authors/id/S/SU/SULLR/Devel-TrackObjects-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Devel/Devel-TrackObjects-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -44,10 +44,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Devel::TrackObjects*
+%doc COPYRIGHT Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Devel::TrackObjects.3pm*
+%dir %{perl_vendorlib}/Devel/
+#%{perl_vendorlib}/Devel/TrackObjects/
 %{perl_vendorlib}/Devel/TrackObjects.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.2-1
+- Updated to release 0.2.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.1-1
 - Initial package.

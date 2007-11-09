@@ -1,3 +1,4 @@
+# $Id$
 # Authority: dries
 # Upstream: Wilson Snyder <wsnyder$wsnyder,org>
 
@@ -68,4 +69,3 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;/auto/*{,/*{,/*}}/.packlist
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.030-1
 - Initial package.
-# $Id$

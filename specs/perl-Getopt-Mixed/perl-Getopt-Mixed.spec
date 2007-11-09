@@ -1,3 +1,4 @@
+# $Id$
 # Authority: dries
 # Upstream: Christopher J. Madsen <cjm$pobox,com>
 
@@ -60,4 +61,3 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.008-1
 - Initial package.
-# $Id$

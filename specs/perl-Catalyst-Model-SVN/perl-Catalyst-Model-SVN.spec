@@ -1,3 +1,4 @@
+# $Id$
 # Authority: dries
 # Upstream: Christopher H. Laco <claco$cpan,org>
 
@@ -65,4 +66,3 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.
-# $Id$

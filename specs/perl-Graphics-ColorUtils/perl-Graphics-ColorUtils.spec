@@ -1,3 +1,4 @@
+# $Id$
 # Authority: dries
 # Upstream: Philipp K. Janert <pause$beyondcode,org>
 
@@ -54,4 +55,3 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.
-# $Id$

@@ -1,3 +1,4 @@
+# $Id$
 # Authority: dries
 # Upstream: brian d foy <bdfoy$cpan,org>
 
@@ -55,4 +56,3 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.16-1
 - Initial package.
-# $Id$

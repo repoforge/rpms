@@ -6,19 +6,22 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name DateTime-TimeZone
+%define real_version 0.6902
 
 Summary: Time zone object base class and factory
 Name: perl-DateTime-TimeZone
-Version: 0.46
+Version: 0.69.2
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-TimeZone/
 
-Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-TimeZone-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-TimeZone-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl(Module::Build), perl
+BuildArch: noarch
+BuildRequires: perl
+BuildRequires: perl(Module::Build)
 Provides: perl(DateTime::TimeZoneCatalog)
 
 %description
@@ -30,33 +33,37 @@ time zone calculations.  This conversion is done with the script in
 tools/parse_olson.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{real_version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes LICENSE MANIFEST MANIFEST.base META.yml README SIGNATURE
+%doc %{_mandir}/man3/DateTime::TimeZone.3pm*
+%doc %{_mandir}/man3/DateTime::TimeZoneCatalog.3pm*
+%doc %{_mandir}/man3/DateTime::TimeZone::*.3pm*
 %dir %{perl_vendorlib}/DateTime/
 %{perl_vendorlib}/DateTime/TimeZone/
 %{perl_vendorlib}/DateTime/TimeZone.pm
 %{perl_vendorlib}/DateTime/TimeZoneCatalog.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.69.2-1
+- Updated to release 0.6902.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.46-1
 - Updated to release 0.46.
 

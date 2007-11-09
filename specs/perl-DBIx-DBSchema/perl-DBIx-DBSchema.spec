@@ -9,7 +9,7 @@
 
 Summary: Interface to database schemas
 Name: perl-DBIx-DBSchema
-Version: 0.34
+Version: 0.35
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,8 +52,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc Changes MANIFEST MANIFEST.SKIP META.yml README
+%doc Changes MANIFEST MANIFEST.SKIP README
 %doc %{_mandir}/man3/DBIx::DBSchema.3pm*
 %doc %{_mandir}/man3/DBIx::DBSchema::*.3pm*
 %dir %{perl_vendorlib}/DBIx/
@@ -61,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DBIx/DBSchema.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.35-1
+- Updated to release 0.35.
+
 * Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 0.34-1
 - Updated to release 0.34.
 

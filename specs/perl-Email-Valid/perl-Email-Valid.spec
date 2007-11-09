@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Ricardo SIGNES <rjbs$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,8 +9,8 @@
 
 Summary: Check validity of Internet email addresses
 Name: perl-Email-Valid
-Version: 0.15
-Release: 1.2
+Version: 0.179
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Valid/
@@ -44,11 +45,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
+%doc Changes LICENSE MANIFEST META.yml README
 %doc %{_mandir}/man3/Email::Valid.3pm*
 %dir %{perl_vendorlib}/Email/
+#%{perl_vendorlib}/Email/Valid/
 %{perl_vendorlib}/Email/Valid.pm
 
 %changelog
-* Sat Aug 07 2004 Dag Wieers <dag@wieers.com> - 1.2-1
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.179-1
+- Updated to release 0.179.
+
+* Sat Aug 07 2004 Dag Wieers <dag@wieers.com> - 0.15-1
 - Initial package. (using DAR)

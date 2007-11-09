@@ -9,9 +9,9 @@
 
 Summary: Perl module that implements a pure perl multi-level hash/array DBM that supports transactions
 Name: perl-DBM-Deep
-Version: 1.0001
+Version: 1.0006
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBM-Deep/
 
@@ -19,9 +19,15 @@ Source: http://www.cpan.org/modules/by-module/DBM/DBM-Deep-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.006 
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl
+BuildRequires: perl(File::Path) >= 0.01
+BuildRequires: perl(File::Temp) >= 0.01
+BuildRequires: perl(IO::Scalar) >= 0.01
+BuildRequires: perl(Test::Deep) >= 0.095
+BuildRequires: perl(Test::Exception) >= 0.21
+BuildRequires: perl(Test::More) >= 0.47
+BuildRequires: perl(Test::Warn) >= 0.08
 
 %description
 DBM-Deep is a Perl module that implements a pure perl multi-level
@@ -47,12 +53,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/DBM::Deep.3pm*
+%doc %{_mandir}/man3/DBM::Deep::*.3pm*
 %dir %{perl_vendorlib}/DBM/
 %{perl_vendorlib}/DBM/Deep/
 %{perl_vendorlib}/DBM/Deep.pm
 %{perl_vendorlib}/DBM/Deep.pod
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.0006-1
+- Updated to release 1.0006.
+
 * Tue May 01 2007 Dag Wieers <dag@wieers.com> - 1.0001-1
 - Initial package. (using DAR)

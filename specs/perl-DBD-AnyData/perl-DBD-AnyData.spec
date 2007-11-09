@@ -9,13 +9,13 @@
 
 Summary: Interface to data in many formats and from many sources
 Name: perl-DBD-AnyData
-Version: 0.08
-Release: 1.2
+Version: 0.09
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBD-AnyData/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JZ/JZUCKER/DBD-AnyData-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/DBD/DBD-AnyData-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -51,13 +51,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/DBD::AnyData.3pm*
+%dir %{perl_vendorlib}/DBD/
+#%{perl_vendorlib}/DBD/AnyData/
 %{perl_vendorlib}/DBD/AnyData.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1.2
-- Rebuild for Fedora Core 5.
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.09-1
+- Updated to release 0.09.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Initial package.

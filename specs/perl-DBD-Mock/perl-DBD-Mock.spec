@@ -11,7 +11,7 @@
 
 Summary: Mock database driver for testing
 Name: perl-DBD-Mock
-Version: 1.35
+Version: 1.36
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,8 +49,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/DBD::Mock.3pm*
 %dir %{perl_vendorlib}/DBD/
+#%{perl_vendorlib}/DBD/Mock/
 %{perl_vendorlib}/DBD/Mock.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.36-1
+- Updated to release 1.36.
+
 * Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 1.35-1
 - Initial package. (using DAR)
