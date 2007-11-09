@@ -9,17 +9,21 @@
 
 Summary: DBI Exception objects
 Name: perl-Exception-Class-DBI
-Version: 0.95
+Version: 0.96
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Exception-Class-DBI/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DW/DWHEELER/Exception-Class-DBI-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Exception/Exception-Class-DBI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Module::Build), perl(Exception::Class)
+BuildRequires: perl
+BuildRequires: perl(Exception::Class)
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(Test::Harness) >= 2.03
+BuildRequires: perl(Test::Simple) >= 0.17
 
 %description
 This module offers a set of DBI-specific exception classes. They inherit from
@@ -45,11 +49,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Exception::Class::DBI.3pm*
+%dir %{perl_vendorlib}/Exception/
+%dir %{perl_vendorlib}/Exception/Class/
+#%{perl_vendorlib}/Exception/Class/DBI/
 %{perl_vendorlib}/Exception/Class/DBI.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.96-1
+- Updated to release 0.96.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.95-1
 - Updated to release 0.95.
 

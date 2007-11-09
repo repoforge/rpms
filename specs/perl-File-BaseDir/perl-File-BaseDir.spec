@@ -9,9 +9,9 @@
 
 Summary: Perl module to use the freedesktop basedir spec
 Name: perl-File-BaseDir
-Version: 0.02
+Version: 0.03
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-BaseDir/
 
@@ -21,6 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Build) >= 0.24
+BuildRequires: perl(Test::More)
 Requires: perl
 
 %description
@@ -45,11 +47,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README
+%doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/File::BaseDir.3pm*
 %dir %{perl_vendorlib}/File/
+#%{perl_vendorlib}/File/BaseDir/
 %{perl_vendorlib}/File/BaseDir.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.03-1
+- Updated to release 0.03.
+
 * Tue May 01 2007 Dag Wieers <dag@wieers.com> - 0.02-1
 - Initial package. (using DAR)

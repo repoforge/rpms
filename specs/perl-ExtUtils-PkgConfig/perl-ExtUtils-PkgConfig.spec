@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Ross McFarland <rmcfarla$neces,com>
+# Upstream: Marc Lehmann <pcg$goof,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: Perl module that implements a simplistic interface to pkg-config
 Name: perl-ExtUtils-PkgConfig
-Version: 1.07
-Release: 1.2
+Version: 1.08
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-PkgConfig/
@@ -19,7 +19,9 @@ Source: http://www.cpan.org/modules/by-module/ExtUtils/ExtUtils-PkgConfig-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: pkgconfig, perl >= 2:5.8.0, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: pkgconfig
 Requires: perl >= 2:5.8.0
 
 %description
@@ -46,12 +48,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README
 %doc %{_mandir}/man3/ExtUtils::PkgConfig.3pm*
 %dir %{perl_vendorlib}/ExtUtils/
+#%{perl_vendorlib}/ExtUtils/PkgConfig/
 %{perl_vendorlib}/ExtUtils/PkgConfig.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.08-1
+- Updated to release 1.08.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.07-1
 - Updated to release 1.07.
 

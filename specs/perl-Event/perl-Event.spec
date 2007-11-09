@@ -9,13 +9,13 @@
 
 Summary: Generic Perl Event Loop
 Name: perl-Event
-Version: 1.08
+Version: 1.09
 Release: 1
 License: Artistic/GPL
 Group: Development/Libraries
 URL: http://search.cpan.org/dist/Event/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JP/JPRIT/Event-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Event/Event-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -44,14 +44,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
-%doc %{_mandir}/man3/*.3pm*
+%doc ANNOUNCE ChangeLog INSTALL MANIFEST MANIFEST.SKIP META.yml README TODO
+%doc %{_mandir}/man3/Event.3pm*
+%doc %{_mandir}/man3/Event::*.3pm*
 %{perl_vendorarch}/Event/
 %{perl_vendorarch}/Event.pm
 %{perl_vendorarch}/Event.pod
-%{perl_vendorarch}/auto/Event
+%{perl_vendorarch}/auto/Event/
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.09-1
+- Updated to release 1.09.
+
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 1.08-1
 - Updated to release 1.08.
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Michael G Schwern <mschwern$cpan,org>
+# Upstream: Michael G Schwern <schwern$pobox,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,9 +9,9 @@
 
 Summary: More sensible way to change directories
 Name: perl-File-chdir
-Version: 0.06
-Release: 1.2
-License: Artistic
+Version: 0.09
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-chdir/
 
@@ -37,22 +37,22 @@ A more sensible way to change directories.
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml
+%doc %{_mandir}/man3/File::chdir.3pm*
 %dir %{perl_vendorlib}/File/
+#%{perl_vendorlib}/File/chdir/
 %{perl_vendorlib}/File/chdir.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1.2
-- Rebuild for Fedora Core 5.
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.09-1
+- Updated to release 0.09.
 
 * Fri Dec 10 2004 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.

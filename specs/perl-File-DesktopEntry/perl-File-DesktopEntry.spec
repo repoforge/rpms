@@ -9,9 +9,9 @@
 
 Summary: Perl module that implements an object to handle .desktop files
 Name: perl-File-DesktopEntry
-Version: 0.02
+Version: 0.04
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-DesktopEntry/
 
@@ -21,7 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl
+BuildRequires: perl(Module::Build) >= 0.24
+BuildRequires: perl(Test::More)
 
 %description
 File-DesktopEntry is a Perl module that implements an object
@@ -49,8 +50,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/File::DesktopEntry.3pm*
 %dir %{perl_vendorlib}/File/
+#%{perl_vendorlib}/File/DesktopEntry/
 %{perl_vendorlib}/File/DesktopEntry.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.04-1
+- Updated to release 0.04.
+
 * Tue May 01 2007 Dag Wieers <dag@wieers.com> - 0.02-1
 - Initial package. (using DAR)

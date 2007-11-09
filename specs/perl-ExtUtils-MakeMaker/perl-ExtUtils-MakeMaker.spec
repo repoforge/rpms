@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Michael G Schwern <schwern$pobox,com>
 
 # ExclusiveDist: el2 rh7 rh9 el3
 
@@ -10,8 +11,8 @@
 
 Summary: Create a module Makefile
 Name: perl-ExtUtils-MakeMaker
-Version: 6.30
-Release: 1.2
+Version: 6.36
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-MakeMaker/
@@ -36,9 +37,6 @@ This is a CPAN distribution of the venerable MakeMaker module.
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
 
-#%{__install} -d -m0755 %{buildroot}%{_mandir}
-#%{__mv} -f %{buildroot}%{_prefix}/man/man3/ %{buildroot}%{_mandir}
-
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
@@ -47,16 +45,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST NOTES README
-%doc %{_mandir}/man3/*
-%doc %{_mandir}/man1/instmodsh*
-%dir %{perl_vendorlib}/ExtUtils/
+%doc Changes MANIFEST MANIFEST.SKIP META.yml NOTES README SIGNATURE TODO
+%doc %{_mandir}/man1/instmodsh.1*
+%doc %{_mandir}/man3/ExtUtils::*.3pm*
 %{_bindir}/instmodsh
 %{perl_vendorlib}/ExtUtils/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 6.30-1.2
-- Rebuild for Fedora Core 5.
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 6.36-1
+- Updated to release 6.36.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 6.30-1
 - Updated to release 6.30.

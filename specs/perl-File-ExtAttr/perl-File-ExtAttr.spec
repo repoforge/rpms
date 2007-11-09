@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Richard Dawe <rich$phekda,gotadsl,co,uk>
+# Upstream: Richard Dawe <richdawe$gmail,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,9 +9,9 @@
 
 Summary: Perl module for accessing extended attributes of files
 Name: perl-File-ExtAttr
-Version: 1.03
+Version: 1.06
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-ExtAttr/
 
@@ -44,7 +44,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README TODO
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README TODO
 %doc %{_mandir}/man3/File::ExtAttr.3pm*
 %doc %{_mandir}/man3/File::ExtAttr::Tie.3pm*
 %dir %{perl_vendorarch}/File/
@@ -54,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/File/ExtAttr/
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.06-1
+- Updated to release 1.06.
+
 * Tue May 01 2007 Dag Wieers <dag@wieers.com> - 1.03-1
 - Initial package. (using DAR)

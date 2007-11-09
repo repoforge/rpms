@@ -9,8 +9,8 @@
 
 Summary: Error and exception handling in an OO-ish way module for perl
 Name: perl-Error
-Version: 0.17008
-Release: 2
+Version: 0.17009
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Error/
@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Error/Error-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 2:5.8.0, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 2:5.8.0
 
 %description
@@ -57,14 +58,14 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Error.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.17009-1
+- Updated to release 0.17009.
+
 * Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 0.17008-2
 - Disabled auto-requires for examples/.
 
 * Mon Apr 16 2007 Dries Verachtert <dries@ulyssis.org> - 0.17008-1
 - Updated to release 0.17008.
-
-* Wed May 26 2004 Matthias Saou <http://freshrpms.net/> 0.15-2
-- Rebuild for Fedora Core 2.
 
 * Fri Mar 19 2004 Matthias Saou <http://freshrpms.net/> 0.15-1
 - Initial RPM release.

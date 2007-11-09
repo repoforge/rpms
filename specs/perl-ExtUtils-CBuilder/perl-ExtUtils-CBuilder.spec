@@ -9,7 +9,7 @@
 
 Summary: Compile and link C code
 Name: perl-ExtUtils-CBuilder
-Version: 0.19
+Version: 0.21
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -29,9 +29,7 @@ With this perl module, you can compile and link C code for perl modules
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	INSTALLDIRS="vendor" \
-	PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -39,30 +37,30 @@ With this perl module, you can compile and link C code for perl modules
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/*
+%doc Changes INSTALL MANIFEST META.yml README SIGNATURE
+%doc %{_mandir}/man3/ExtUtils::CBuilder.3pm*
+%doc %{_mandir}/man3/ExtUtils::CBuilder::Platform::Windows.3pm*
 %dir %{perl_vendorlib}/ExtUtils/
+%{perl_vendorlib}/ExtUtils/CBuilder/
 %{perl_vendorlib}/ExtUtils/CBuilder.pm
 %{perl_vendorlib}/ExtUtils/bleadcheck.pl
-%{perl_vendorlib}/ExtUtils/CBuilder/
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.21-1
+- Updated to release 0.21.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.19-1
 - Updated to release 0.19.
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.18-1
 - Updated to release 0.18.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.15-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.15-1
 - Updated to release 0.15.

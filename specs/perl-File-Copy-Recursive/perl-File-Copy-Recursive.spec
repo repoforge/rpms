@@ -9,13 +9,13 @@
 
 Summary: Copy files recusively
 Name: perl-File-Copy-Recursive
-Version: 0.33
+Version: 0.35
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Copy-Recursive/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DM/DMUEY/File-Copy-Recursive-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/File/File-Copy-Recursive-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -45,11 +45,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/File::Copy::Recursive.3pm*
+%dir %{perl_vendorlib}/File/
+%dir %{perl_vendorlib}/File/Copy/
+#%{perl_vendorlib}/File/Copy/Recursive/
 %{perl_vendorlib}/File/Copy/Recursive.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.35-1
+- Updated to release 0.35.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.33-1
 - Updated to release 0.33.
 
@@ -70,9 +76,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.19-1
 - Updated to release 0.19.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1.2
-- Rebuild for Fedora Core 5.
 
 * Thu Dec 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.16-1
 - Initial package.

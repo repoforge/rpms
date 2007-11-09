@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Diab Jerius <djerius$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,17 +9,19 @@
 
 Summary: Wrapper around the Expect module
 Name: perl-Expect-Simple
-Version: 0.02
+Version: 0.03
 Release: 1
-License: GPL
-Group: Development/Libraries
+License: Artistic/GPL
+Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Expect-Simple/
 
 Source: http://www.cpan.org/modules/by-module/Expect/Expect-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(Expect), perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(Expect)
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Expect::Simple is a wrapper around the Expect module which should
@@ -44,10 +47,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE README
-%doc %{_mandir}/man3/*.3pm*
-%{perl_vendorlib}/Expect/
+%doc ChangeLog Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/Expect::Simple.3pm*
+%dir %{perl_vendorlib}/Expect/
+#%{perl_vendorlib}/Expect/Simple/
+%{perl_vendorlib}/Expect/Simple.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.03-1
+- Updated to release 0.03.
+
 * Sun Apr 29 2007 Dag Wieers <dag@wieers.com> - 0.02-1
 - Initial package. (using DAR)

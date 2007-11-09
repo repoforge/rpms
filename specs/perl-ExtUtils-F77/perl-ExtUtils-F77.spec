@@ -9,9 +9,9 @@
 
 Summary: Simple interface to F77 libs
 Name: perl-ExtUtils-F77
-Version: 1.15
-Release: 1.2
-License: Artistic/GPL
+Version: 1.16
+Release: 1
+License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-F77/
 
@@ -47,10 +47,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README
+%doc CHANGES COPYING MANIFEST META.yml README
 %doc %{_mandir}/man3/ExtUtils::F77.3pm*
 %dir %{perl_vendorlib}/ExtUtils/
+#%{perl_vendorlib}/ExtUtils/F77/
 %{perl_vendorlib}/ExtUtils/F77.pm
+%{perl_vendorlib}/ExtUtils/._F77.pm
 
 %changelog
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.15-1.2

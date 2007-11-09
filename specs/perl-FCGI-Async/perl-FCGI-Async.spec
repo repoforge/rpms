@@ -9,18 +9,19 @@
 
 Summary: Allows FastCGI asynchronously
 Name: perl-FCGI-Async
-Version: 0.06
+Version: 0.11
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/FCGI-Async/
 
-Source: http://search.cpan.org//CPAN/authors/id/P/PE/PEVANS/FCGI-Async-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/FCGI/FCGI-Async-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
 
 %description
 Module to allow use of FastCGI asynchronously.
@@ -39,16 +40,24 @@ Module to allow use of FastCGI asynchronously.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/FCGI::Async*
-%{perl_vendorlib}/FCGI/Async.pm
+%doc Changes MANIFEST META.yml README fcgi-spec.html examples/
+%doc %{_mandir}/man3/FCGI::Async.3pm*
+%doc %{_mandir}/man3/FCGI::Async::*.3pm*
+%dir %{perl_vendorlib}/FCGI/
 %{perl_vendorlib}/FCGI/Async/
+%{perl_vendorlib}/FCGI/Async.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.11-1
+- Updated to release 0.11.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.
