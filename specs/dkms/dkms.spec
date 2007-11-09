@@ -1,10 +1,15 @@
 # $Id$
 # Authority: dag
 
+%{?el2:%define _without_kernel-devel 1}
+%{?el3:%define _without_kernel-devel 1}
+%{?rh7:%define _without_kernel-devel 1}
+%{?rh9:%define _without_kernel-devel 1}
+
 Summary: Dynamic Kernel Module Support Framework
 Name: dkms
 Version: 2.0.17.5
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Kernel
 URL: http://linux.dell.com/dkms/
@@ -14,7 +19,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 Requires: sed, gawk, findutils, modutils, tar, cpio, gzip, grep, mktemp
-Requires: bash > 1.99, kernel-devel, gcc
+Requires: bash > 1.99, gcc
+%{?_without_kernel-devel:Requires: kernel-source}
+%{!?_without_kernel-devel:Requires: kernel-devel}
 
 Provides: dkms-minimal
 
@@ -63,6 +70,9 @@ fi
 %{_localstatedir}/lib/dkms/
 
 %changelog
+* Fri Nov 09 2007 Fabian Arrotin <fabian.arrotin@arrfab.net> - 2.0.17.5-2
+- Modified the Requires: for older distributions still using kernel-source
+
 * Fri Oct 12 2007 Dag Wieers <dag@wieers.com> - 2.0.17.5-1
 - Updated to release 2.0.17.5.
 
