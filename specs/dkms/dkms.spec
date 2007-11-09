@@ -1,10 +1,12 @@
 # $Id$
 # Authority: dag
 
-%{?el2:%define _without_kernel-devel 1}
-%{?el3:%define _without_kernel-devel 1}
-%{?rh7:%define _without_kernel-devel 1}
-%{?rh9:%define _without_kernel-devel 1}
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el3:%define _without_kernel_devel 1}
+%{?rh9:%define _without_kernel_devel 1}
+%{?rh7:%define _without_kernel_devel 1}
+%{?el2:%define _without_kernel_devel 1}
 
 Summary: Dynamic Kernel Module Support Framework
 Name: dkms
@@ -20,8 +22,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 Requires: sed, gawk, findutils, modutils, tar, cpio, gzip, grep, mktemp
 Requires: bash > 1.99, gcc
-%{?_without_kernel-devel:Requires: kernel-source}
-%{!?_without_kernel-devel:Requires: kernel-devel}
+%{?_without_kernel_devel:Requires: kernel-source}
+%{!?_without_kernel_devel:Requires: kernel-devel}
 
 Provides: dkms-minimal
 
