@@ -22,7 +22,8 @@ BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)(Test::More) >= 0.42
-BuildRequires: perl(Test::Exception), perl(Test::Pod)
+BuildRequires: perl(Test::Exception)
+BuildRequires: perl(Test::Pod)
 
 %description
 Test applications using Selenium Remote Control.

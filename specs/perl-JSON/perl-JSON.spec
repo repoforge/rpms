@@ -21,7 +21,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)(HTTP::Request), perl(HTTP::Response), dos2unix
+BuildRequires: perl(ExtUtils::MakeMaker)(HTTP::Request)
+BuildRequires: perl(HTTP::Response)
+BuildRequires: dos2unix
 
 %description
 JSON (JavaScript Object Notation) is a lightweight data-interchange format.

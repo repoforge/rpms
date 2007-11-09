@@ -21,7 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), perl-DBI >= 0.42
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl-DBI >= 0.42
 
 %description
 This module is currently not directly usable, rather it is a base subclass
@@ -31,16 +32,13 @@ for modules like DBD::CSV and DBD::AnyData.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	INSTALLDIRS="vendor" \
-	PREFIX=%{buildroot}%{_prefix}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-	%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -52,9 +50,6 @@ for modules like DBD::CSV and DBD::AnyData.
 #%{perl_vendorlib}/DBI/SQL/Nano.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.34-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.34-1
 - Updated to release 0.34.
 

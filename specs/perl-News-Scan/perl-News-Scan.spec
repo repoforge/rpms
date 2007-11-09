@@ -19,7 +19,9 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GB/GBACON/News-Scan-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-MailTools, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl-MailTools
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This distribution provides a mechanism for collecting articles from a

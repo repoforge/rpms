@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements a Meta Object Protocol
 Name: perl-Class-MOP
-Version: 0.37
+Version: 0.42
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -21,7 +21,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(Test::Exception) >= 0.21
+#BuildRequires: perl(Test::More) >= 0.62
 
 %description
 Class-MOP is a Perl module that implements a Meta Object Protocol.
@@ -40,18 +42,26 @@ Class-MOP is a Perl module that implements a Meta Object Protocol.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README examples/
+%doc %{_mandir}/man3/Class::MOP.3pm*
+%doc %{_mandir}/man3/Class::MOP::*.3pm*
+%doc %{_mandir}/man3/metaclass.3pm*
 %dir %{perl_vendorlib}/Class/
 %{perl_vendorlib}/Class/MOP/
 %{perl_vendorlib}/Class/MOP.pm
 %{perl_vendorlib}/metaclass.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.42-1
+- Updated to release 0.42.
+
 * Mon Apr 30 2007 Dag Wieers <dag@wieers.com> - 0.37-1
 - Initial package. (using DAR)

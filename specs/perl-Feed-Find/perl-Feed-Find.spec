@@ -19,8 +19,12 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BT/BTROTT/Feed-Find-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Class-ErrorHandler
-BuildRequires: perl-libwww-perl, perl-URI, perl-HTML-Parser, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl-Class-ErrorHandler
+BuildRequires: perl-libwww-perl
+BuildRequires: perl-URI
+BuildRequires: perl-HTML-Parser
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 A class to perform autodiscovery of syndication feeds.

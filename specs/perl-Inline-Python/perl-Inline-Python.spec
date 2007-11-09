@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Inline/Inline-Python-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), python-devel
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: python-devel
 
 %description
 Inline::Python lets you write Perl subroutines and classes in
@@ -32,7 +33,7 @@ it knows about into Perl structures, and vice versa.
 %setup -n %{real_name}-%{version}
 
 %build
-echo 1 | CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+echo "1" | CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install

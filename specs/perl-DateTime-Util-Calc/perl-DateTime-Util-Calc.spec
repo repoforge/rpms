@@ -20,9 +20,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 1:5.6.1 
-BuildRequires: perl(Module::Build), perl(Math::BigInt::GMP)
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(Math::BigInt::GMP)
 BuildRequires: perl(Math::BigInt::FastCalc)
-BuildRequires: perl(Math::Round), perl(DateTime)
+BuildRequires: perl(Math::Round)
+BuildRequires: perl(DateTime)
 BuildRequires: perl(Test::More)
 
 %description

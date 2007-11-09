@@ -7,19 +7,23 @@
 
 %define real_name Graph-Easy
 
-Summary: Create graphs
+Summary: Render graphs as ASCII, HTML, SVG or via Graphviz
 Name: perl-Graph-Easy
-Version: 0.55
+Version: 0.59
 Release: 1
-License: GPL
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graph-Easy/
 
-Source: http://search.cpan.org/CPAN/authors/id/T/TE/TELS/graph/Graph-Easy-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Graph/Graph-Easy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 2:5.8.1, perl-Heap, perl(Scalar::Util) >= 1.13, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 2:5.8.1
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Heap)
+BuildRequires: perl(Scalar::Util) >= 1.13
+#BuildRequires: perl(Test::More) >= 0.62
 
 %description
 This module let's you create graphs (nodes/vertices connected by edges/arcs,
@@ -46,19 +50,27 @@ that is human readable and maintainable.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README TODO
-%doc %{_mandir}/man3/Graph::Easy*
-%doc %{_mandir}/man1/graph-easy*
+%doc CHANGES INSTALL LICENSE MANIFEST MANIFEST.SKIP META.yml README SIGNATURE TODO examples/
+%doc %{_mandir}/man1/graph-easy.1*
+%doc %{_mandir}/man3/Graph::Easy.3pm*
+%doc %{_mandir}/man3/Graph::Easy::*.3pm*
 %{_bindir}/graph-easy
-%{perl_vendorlib}/Graph/Easy.pm
+%dir %{perl_vendorlib}/Graph/
 %{perl_vendorlib}/Graph/Easy/
+%{perl_vendorlib}/Graph/Easy.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.59-1
+- Updated to release 0.59.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.55-1
 - Updated to release 0.55.
 
@@ -83,9 +95,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.43-1
 - Updated to release 0.43.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.38-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.38-1
 - Updated to release 0.38.

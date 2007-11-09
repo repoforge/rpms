@@ -19,7 +19,9 @@ Source: http://www.cpan.org/modules/by-module/GraphViz/GraphViz-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, graphviz, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: graphviz
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: graphviz
 
 %description
@@ -41,8 +43,7 @@ http://www.research.att.com/sw/tools/graphviz/).
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

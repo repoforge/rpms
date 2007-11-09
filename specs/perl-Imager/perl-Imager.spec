@@ -18,8 +18,14 @@ URL: http://search.cpan.org/dist/Imager/
 Source: http://search.cpan.org/CPAN/authors/id/T/TO/TONYC/Imager-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, libpng-devel, pkgconfig, freetype-devel, libungif-devel, libtiff-devel
-BuildRequires: libjpeg-devel, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: libpng-devel
+BuildRequires: pkgconfig
+BuildRequires: freetype-devel
+BuildRequires: libungif-devel
+BuildRequires: libtiff-devel
+BuildRequires: libjpeg-devel
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Perl extension for Generating 24 bit Images.
@@ -28,7 +34,7 @@ Perl extension for Generating 24 bit Images.
 %setup -n %{real_name}-%{version}
 
 %build
-echo y | CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+echo "y" | CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install

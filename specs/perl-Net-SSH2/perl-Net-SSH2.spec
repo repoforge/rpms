@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Net-SSH2/
 Source: http://www.cpan.org/modules/by-module/Net/Net-SSH2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, libssh2-devel
+BuildRequires: perl
+BuildRequires: libssh2-devel
 
 %description
 perl-Net-SSH2 is a Perl module that implements support for the SSH 2 protocol

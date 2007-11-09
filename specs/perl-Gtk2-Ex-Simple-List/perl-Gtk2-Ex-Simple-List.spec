@@ -21,7 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)(Glib::MakeHelper), perl(Gtk2)
+BuildRequires: perl(ExtUtils::MakeMaker)(Glib::MakeHelper)
+BuildRequires: perl(Gtk2)
 
 %description
 Gtk2-Ex-Simple-List is a Perl module with bindings

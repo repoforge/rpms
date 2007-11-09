@@ -28,9 +28,7 @@ Perform diffs on files and record sets.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	INSTALLDIRS="vendor" \
-	PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -38,8 +36,7 @@ Perform diffs on files and record sets.
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,13 +45,11 @@ Perform diffs on files and record sets.
 %defattr(-, root, root, 0755)
 %doc Changes
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Text/
+%{perl_vendorlib}/Text/Diff/
 %{perl_vendorlib}/Text/Diff.pm
-%{perl_vendorlib}/Text/Diff
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.35-1.2
-- Rebuild for Fedora Core 5.
-
 * Fri Jan  7 2005 Dries Verachtert <dries@ulyssis.org> - 0.35-1
 - Initial package.
 

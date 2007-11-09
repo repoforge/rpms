@@ -20,7 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)-Class-Data-Inheritable, perl-Devel-StackTrace
+BuildRequires: perl(ExtUtils::MakeMaker)-Class-Data-Inheritable
+BuildRequires: perl-Devel-StackTrace
 
 %description
 This module allows you to declare hierarchies of exception classes for use

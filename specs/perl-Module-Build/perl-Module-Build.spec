@@ -21,7 +21,8 @@ Source: http://www.cpan.org/modules/by-module/Module/Module-Build-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(Archive::Tar), perl(ExtUtils::CBuilder)
+BuildRequires: perl(Archive::Tar)
+BuildRequires: perl(ExtUtils::CBuilder)
 
 %description
 "Module::Build" is a system for building, testing, and installing Perl
@@ -43,8 +44,7 @@ pure-perl and written in a very cross-platform way.
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

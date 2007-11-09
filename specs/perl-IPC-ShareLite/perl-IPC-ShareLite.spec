@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/IPC-ShareLite/
 Source: http://www.cpan.org/modules/by-module/IPC/IPC-ShareLite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 2:5.8.0, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 2:5.8.0
 
 %description

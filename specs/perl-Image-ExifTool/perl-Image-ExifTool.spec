@@ -1,21 +1,22 @@
 # $Id$
 # Authority: dries
-# Upstream: Phil Harvey <phil%20at%20owl,phy,queensu,ca>
+# Upstream: Phil Harvey <phil$owl,phy,queensu,ca>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Image-ExifTool
+%define real_version 1.07
 
 Summary: Read and write meta information in images
 Name: perl-Image-ExifTool
-Version: 6.90
+Version: 7.00
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-ExifTool/
 
-Source: http://search.cpan.org/CPAN/authors/id/E/EX/EXIFTOOL/Image-ExifTool-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Image/Image-ExifTool-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -45,15 +46,24 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%doc %{_mandir}/man1/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man1/exiftool.1*
+%doc %{_mandir}/man3/File::RandomAccess.3pm*
+%doc %{_mandir}/man3/Image::ExifTool.3pm*
+%doc %{_mandir}/man3/Image::ExifTool::*.3pm*
 %{_bindir}/exiftool
-%{perl_vendorlib}/File/RandomAccess.p*
-%{perl_vendorlib}/Image/ExifTool.p*
+%dir %{perl_vendorlib}/File/
+%{perl_vendorlib}/File/RandomAccess.pm
+%{perl_vendorlib}/File/RandomAccess.pod
+%dir %{perl_vendorlib}/Image/
 %{perl_vendorlib}/Image/ExifTool/
+%{perl_vendorlib}/Image/ExifTool.pm
+%{perl_vendorlib}/Image/ExifTool.pod
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 7.00-1
+- Updated to release 7.00.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 6.90-1
 - Updated to release 6.90.
 
@@ -74,9 +84,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 6.00-1
 - Updated to release 6.00.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 5.87-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 5.87-1
 - Updated to release 5.87.

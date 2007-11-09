@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MF/MFX/Compress-LZO-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), lzo-devel
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: lzo-devel
 
 %description
 Perl-LZO provides LZO bindings for Perl, i.e. you can access the

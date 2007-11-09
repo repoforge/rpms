@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/N/NI/NICOLAW/Sys-Filesystem-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Module::Build)
+BuildRequires: perl
+BuildRequires: perl(Module::Build)
 
 %description
 Sys::Filesystem is intended to be a portable interface to list and

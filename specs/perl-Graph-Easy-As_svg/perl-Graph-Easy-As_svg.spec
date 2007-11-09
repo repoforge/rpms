@@ -19,7 +19,9 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TE/TELS/graph/Graph-Easy-As_svg
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Graph-Easy >= 0.5, perl(Image::Info) >= 1.22
+BuildRequires: perl
+BuildRequires: perl-Graph-Easy >= 0.5
+BuildRequires: perl(Image::Info) >= 1.22
 
 %description
 Render Graph-Easy as SVG (Scalable Vector Graphics).

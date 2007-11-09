@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SP/SPURKIS/AI-Perceptron-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Module::Build)
+BuildRequires: perl
+BuildRequires: perl(Module::Build)
 
 %description
 This module is meant to show how a single node of a neural network

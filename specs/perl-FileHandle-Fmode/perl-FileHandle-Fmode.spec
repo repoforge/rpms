@@ -6,10 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name FileHandle-Fmode
+%define real_version 0.1
 
 Summary: Perl module to determine whether a filehandle is opened for reading, writing, or both
 Name: perl-FileHandle-Fmode
-Version: 0.09
+Version: 0.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/FileHandle/Fmode/
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.10-1
+- Updated to release 0.10.
+
 * Sun May 27 2007 Dag Wieers <dag@wieers.com> - 0.09-1
 - Initial package. (using DAR)

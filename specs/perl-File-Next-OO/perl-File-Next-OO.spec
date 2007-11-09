@@ -9,13 +9,13 @@
 
 Summary: File-finding iterator Wrapper for File::Next::files
 Name: perl-File-Next-OO
-Version: 0.02
+Version: 0.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Next-OO/
 
-Source: http://search.cpan.org//CPAN/authors/id/B/BO/BORISZ/File-Next-OO-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/File/File-Next-OO-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -44,11 +44,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/File::Next::OO.3pm*
+%dir %{perl_vendorlib}/File/
 %dir %{perl_vendorlib}/File/Next/
 %{perl_vendorlib}/File/Next/OO.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.04-1
+- Updated to release 0.04.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

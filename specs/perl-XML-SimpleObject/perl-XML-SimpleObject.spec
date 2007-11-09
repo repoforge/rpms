@@ -19,7 +19,10 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DB/DBRIAN/XML-SimpleObject-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-XML-Parser, perl-XML-LibXML, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl-XML-Parser
+BuildRequires: perl-XML-LibXML
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This is a small and simple package that takes the output of an XML parser

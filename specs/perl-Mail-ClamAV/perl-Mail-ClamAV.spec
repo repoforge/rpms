@@ -18,8 +18,12 @@ URL: http://search.cpan.org/dist/Mail-ClamAV/
 Source: http://www.cpan.org/modules/by-module/Mail/Mail-ClamAV-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(Inline), clamav-devel, perl(Parse::RecDescent)
-BuildRequires: bzip2-devel, gmp-devel
+BuildRequires: perl
+BuildRequires: perl(Inline)
+BuildRequires: clamav-devel
+BuildRequires: perl(Parse::RecDescent)
+BuildRequires: bzip2-devel
+BuildRequires: gmp-devel
 Requires: perl
 
 %description

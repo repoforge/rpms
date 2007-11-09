@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SC/SCHROEER/Wortschatz/Lingua-D
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Module::Build)
+BuildRequires: perl
+BuildRequires: perl(Module::Build)
 
 %description
 Wortschatz.uni-leipzig.de webservice client.

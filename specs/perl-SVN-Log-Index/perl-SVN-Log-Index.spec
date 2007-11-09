@@ -19,7 +19,9 @@ Source: http://search.cpan.org/CPAN/authors/id/N/NI/NIKC/SVN-Log-Index-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, subversion-perl, perl-Module-Build
+BuildRequires: perl
+BuildRequires: subversion-perl
+BuildRequires: perl-Module-Build
 
 %description
 SVN::Log::Index builds a Plucene index of commit logs from any number of
@@ -38,8 +40,7 @@ searches over them.
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

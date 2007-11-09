@@ -26,13 +26,17 @@ BuildRequires: perl(Test::ClassAPI) >= 1.02
 BuildRequires: perl(Test::More) >= 0.42
 BuildRequires: perl(Test::Script)
 #BuildRequires: perl(Test::Script) >= 1.02
-BuildRequires: perl(File::Spec) >= 0.80, perl(List::Util) >= 1.11
+BuildRequires: perl(File::Spec) >= 0.80
+BuildRequires: perl(List::Util) >= 1.11
 #BuildRequires: perl(GetOpt::Long)
 BuildRequires: perl(Getopt::Long) >= 2.34
 BuildRequires: perl(File::Slurp) >= 9999.04
-BuildRequires: perl(File::Find::Rule) >= 0.26, perl(Config::Tiny) >= 2.00
-BuildRequires: perl(Params::Util) >= 0.05, perl(Class::Autouse) >= 1.15
-BuildRequires: perl(Algorithm::Dependency) >= 1.02, perl(File::Flat) >= 0.95
+BuildRequires: perl(File::Find::Rule) >= 0.26
+BuildRequires: perl(Config::Tiny) >= 2.00
+BuildRequires: perl(Params::Util) >= 0.05
+BuildRequires: perl(Class::Autouse) >= 1.15
+BuildRequires: perl(Algorithm::Dependency) >= 1.02
+BuildRequires: perl(File::Flat) >= 0.95
 BuildRequires: perl(Pod::Tests) >= 0.18
 Requires: perl
 

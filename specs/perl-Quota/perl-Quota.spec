@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Quota/Quota-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), quota
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: quota
 
 %description
 The Quota module provides access to file system quotas.  The
@@ -43,8 +44,7 @@ export CFLAGS="-fPIC"
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

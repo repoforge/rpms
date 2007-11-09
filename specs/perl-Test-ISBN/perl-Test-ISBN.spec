@@ -1,11 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: brian d foy <bdfoy$cpan,org>
 
-%define real_name Test-ISBN
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name Test-ISBN
 
 Summary: Check International Standard Book Numbers
 Name: perl-Test-ISBN
@@ -29,7 +29,7 @@ This module allows you to check International Standard Book Numbers.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX=%{buildroot}%{_prefix}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install

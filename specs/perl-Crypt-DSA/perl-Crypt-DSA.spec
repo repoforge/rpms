@@ -18,8 +18,12 @@ Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-DSA-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.00503, perl(Math::BigInt) >= 1.60, perl(Digest::SHA1) >= 2.02
-BuildRequires: perl(Convert::PEM) >= 0.07, perl(Data::Buffer) >= 0.01, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 0:5.00503
+BuildRequires: perl(Math::BigInt) >= 1.60
+BuildRequires: perl(Digest::SHA1) >= 2.02
+BuildRequires: perl(Convert::PEM) >= 0.07
+BuildRequires: perl(Data::Buffer) >= 0.01
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.00503
 
 %description

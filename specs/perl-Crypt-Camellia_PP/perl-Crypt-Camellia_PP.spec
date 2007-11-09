@@ -19,7 +19,8 @@ Source: http://search.cpan.org//CPAN/authors/id/O/OY/OYAMA/Crypt-Camellia_PP-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 3:5.8.6, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 3:5.8.6
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Pure Perl Camellia 128-bit block cipher module.

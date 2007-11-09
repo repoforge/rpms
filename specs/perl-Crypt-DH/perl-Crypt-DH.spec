@@ -20,7 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), perl(Math::BigInt) >= 1.60
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Math::BigInt) >= 1.60
 
 %description
 This module implements the Diffie-Hellman key exchange system.

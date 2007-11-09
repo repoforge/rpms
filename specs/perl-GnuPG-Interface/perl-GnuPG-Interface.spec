@@ -9,18 +9,19 @@
 
 Summary: Perl interface to GnuPG
 Name: perl-GnuPG-Interface
-Version: 0.35
+Version: 0.36
 Release: 1
-License: Artistic/GPL
+License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GnuPG-Interface/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JE/JESSE/GnuPG-Interface-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/GnuPG/GnuPG-Interface-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
+BuildRequires: gnupg
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), gnupg
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl(Class::MethodMaker)
 
 %description
@@ -48,12 +49,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
-%doc %{_mandir}/man3/*.3*
+%doc COPYING ChangeLog MANIFEST META.yml NEWS README SIGNATURE THANKS
+%doc %{_mandir}/man3/GnuPG::*.3pm*
 %{perl_vendorlib}/GnuPG/
-%{perl_vendorlib}/auto/GnuPG/
+%dir %{perl_vendorlib}/auto/GnuPG/
+%{perl_vendorlib}/auto/GnuPG/Interface/
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.36-1
+- Updated to release 0.36.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.35-1
 - Updated to release 0.35.
 

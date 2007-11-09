@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Text-Kakasi/
 Source: http://www.cpan.org/modules/by-module/Text/Text-Kakasi-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, kakasi-devel
+BuildRequires: perl
+BuildRequires: kakasi-devel
 
 %description
 perl-Text-Kakasi is a Perl module implements a frontend to kakasi.

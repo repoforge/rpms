@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DJ/DJHD/Audio-ESD-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), esound-devel
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: esound-devel
 
 %description
 This module provides a Perl interface to the Enlightened Sound Daemon,

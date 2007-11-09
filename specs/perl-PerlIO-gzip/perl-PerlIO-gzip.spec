@@ -18,7 +18,9 @@ URL: http://search.cpan.org/dist/PerlIO-gzip/
 Source: http://www.cpan.org/modules/by-module/PerlIO/PerlIO-gzip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, zlib-devel, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: zlib-devel
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module contains a layer for the PerlIO system to

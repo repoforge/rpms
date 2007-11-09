@@ -44,13 +44,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST
+%doc %{_mandir}/man3/Class:Eroot.3pm*
+%dir %{perl_vendorlib}/Class/
 %{perl_vendorlib}/Class/Eroot.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.1-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.1-1
 - Initial package.

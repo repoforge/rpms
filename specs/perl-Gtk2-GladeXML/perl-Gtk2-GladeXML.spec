@@ -18,8 +18,15 @@ URL: http://search.cpan.org/dist/Gtk2-GladeXML/
 Source: http://www.cpan.org/modules/by-module/Gtk2/Gtk2-GladeXML-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 2:5.8.0, perl(ExtUtils::MakeMaker), perl(ExtUtils::Depends), perl(ExtUtils::PkgConfig)
-BuildRequires: perl(Glib::MakeHelper), perl(Gtk2), pkgconfig, libglade2-devel, perl(Cairo::Install::Files)
+BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(ExtUtils::Depends)
+BuildRequires: perl(ExtUtils::PkgConfig)
+BuildRequires: perl(Glib::MakeHelper)
+BuildRequires: perl(Gtk2)
+BuildRequires: pkgconfig
+BuildRequires: libglade2-devel
+BuildRequires: perl(Cairo::Install::Files)
 
 %description
 Gtk2-GladeXML is a Perl module to create user interfaces

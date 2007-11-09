@@ -21,8 +21,11 @@ URL: http://search.cpan.org/dist/XML-LibXML/
 Source: http://www.cpan.org/modules/by-module/XML/XML-LibXML-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 2:5.8.0, libxml2-devel >= 2.4.20
-BuildRequires: perl(XML::LibXML::Common), perl(XML::NamespaceSupport), perl(XML::SAX)
+BuildRequires: perl >= 2:5.8.0
+BuildRequires: libxml2-devel >= 2.4.20
+BuildRequires: perl(XML::LibXML::Common)
+BuildRequires: perl(XML::NamespaceSupport)
+BuildRequires: perl(XML::SAX)
 BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 2:5.8.0
 

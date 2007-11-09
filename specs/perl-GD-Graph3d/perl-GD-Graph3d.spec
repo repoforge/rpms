@@ -19,7 +19,10 @@ Source: http://www.cpan.org/modules/by-module/GD/GD-Graph3d-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(GD), perl(GD::Text), perl(GD::Graph)
+BuildRequires: perl
+BuildRequires: perl(GD)
+BuildRequires: perl(GD::Text)
+BuildRequires: perl(GD::Graph)
 BuildRequires: perl(ExtUtils::MakeMaker)
 
 ### Obsolete to provide fedora.us compatibility
@@ -32,9 +35,7 @@ With this perl module, you can create 3D graphs with GD.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	INSTALLDIRS="vendor" \
-	PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -42,8 +43,7 @@ With this perl module, you can create 3D graphs with GD.
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -58,9 +58,6 @@ With this perl module, you can create 3D graphs with GD.
 %{perl_vendorlib}/GD/Graph/*.pm
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.63-2.2
-- Rebuild for Fedora Core 5.
-
 * Sun Oct 03 2004 Dries Verachtert <dries@ulyssis.org> - 0.63-2
 - Rebuild.
 

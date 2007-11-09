@@ -38,7 +38,6 @@ of each other.
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}

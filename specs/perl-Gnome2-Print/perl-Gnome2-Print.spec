@@ -18,9 +18,13 @@ URL: http://search.cpan.org/dist/Gnome2-Print/
 Source: http://www.cpan.org/modules/by-module/Gnome2/Gnome2-Print-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, libgnomeprintui22-devel >= 2.2, perl(ExtUtils::MakeMaker)
-BuildRequires: perl(ExtUtils::Depends), perl(ExtUtils::PkgConfig)
-BuildRequires: perl(Gtk2::CodeGen), perl(Cairo::Install::Files)
+BuildRequires: perl
+BuildRequires: libgnomeprintui22-devel >= 2.2
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(ExtUtils::Depends)
+BuildRequires: perl(ExtUtils::PkgConfig)
+BuildRequires: perl(Gtk2::CodeGen)
+BuildRequires: perl(Cairo::Install::Files)
 Requires: perl
 
 %description

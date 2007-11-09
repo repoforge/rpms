@@ -9,13 +9,13 @@
 
 Summary: File-finding iterator
 Name: perl-File-Next
-Version: 0.38
+Version: 1.00
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Next/
 
-Source: http://search.cpan.org//CPAN/authors/id/P/PE/PETDANCE/File-Next-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/File/File-Next-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -44,10 +44,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/File::Next*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/File::Next.3pm*
+%dir %{perl_vendorlib}/File/
 %{perl_vendorlib}/File/Next.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.00-1
+- Updated to release 1.00.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.38-1
 - Initial package.

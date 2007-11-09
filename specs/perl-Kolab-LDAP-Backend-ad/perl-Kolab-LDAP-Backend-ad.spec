@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/S/ST/STEPHANB/Kolab-LDAP-Backend-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 3:5.8.3, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 3:5.8.3
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Perl extension for kolab for an Active Directory backend.

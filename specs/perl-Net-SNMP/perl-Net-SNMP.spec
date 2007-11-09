@@ -11,14 +11,17 @@ Name: perl-Net-SNMP
 Version: 5.2.0
 Release: 1.2
 License: distributable
-Group: Development/Libraries
+Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SNMP/
 
 Source: http://www.cpan.org/modules/by-module/Net/Net-SNMP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6, perl(Digest::HMAC), perl(Crypt::DES), perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 0:5.6
+BuildRequires: perl(Digest::HMAC)
+BuildRequires: perl(Crypt::DES)
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.6
 
 %description
@@ -45,16 +48,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man1/snmpkey.1*
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/Net::SNMP.3pm*
+%doc %{_mandir}/man3/Net::SNMP::*.3pm*
 %{_bindir}/snmpkey
 %dir %{perl_vendorlib}/Net/
 %{perl_vendorlib}/Net/SNMP/
 %{perl_vendorlib}/Net/SNMP.pm
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 5.2.0-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 5.2.0-1
 - Updated to release 5.2.0.
 

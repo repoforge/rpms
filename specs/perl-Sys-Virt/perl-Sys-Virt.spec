@@ -19,7 +19,8 @@ URL: http://search.cpan.org/dist/Sys-Virt/
 Source: http://www.cpan.org/modules/by-module/Sys/Sys-Virt-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, xen-libs-devel
+BuildRequires: perl
+BuildRequires: xen-libs-devel
 
 %description
 perl-Sys-Virt is a Perl module to represent and manage

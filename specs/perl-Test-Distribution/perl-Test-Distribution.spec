@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Distribution-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Module::Build)
+BuildRequires: perl
+BuildRequires: perl(Module::Build)
 
 %description
 perform tests on all modules of a distribution.

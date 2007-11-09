@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Text/Text-SimpleTable-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Module::Build)
+BuildRequires: perl
+BuildRequires: perl(Module::Build)
 
 %description
 Simple eyecandy ASCII tables, as seen in Catalyst.

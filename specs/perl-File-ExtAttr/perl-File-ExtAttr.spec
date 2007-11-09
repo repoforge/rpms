@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/File/File-ExtAttr-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), libattr-devel
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: libattr-devel
 Requires: perl
 
 %description

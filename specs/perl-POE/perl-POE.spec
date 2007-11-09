@@ -33,10 +33,7 @@ framework for Perl.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	--default \
-	PREFIX="%{buildroot}%{_prefix}" \
-        INSTALLDIRS="vendor"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --default
 %{__make} %{?_smp_mflags}
 
 %install
@@ -44,8 +41,7 @@ framework for Perl.
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -66,9 +62,6 @@ Updated to release 0.38.
 
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.34-1
 - Updated to release 0.34.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.33-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.33-1
 - Updated to release 0.33.

@@ -31,16 +31,15 @@ fields into a CSV string and parse a CSV string into fields.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-          INSTALLDIRS="vendor" \
-          PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -rf %{buildroot}%{perl_vendorarch} \
-            %{buildroot}%{perl_archlib}
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -53,8 +52,5 @@ fields into a CSV string and parse a CSV string into fields.
 %{perl_vendorlib}/auto/Text/CSV
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-1.2
-- Rebuild for Fedora Core 5.
-
 * Mon Feb 28 2005 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AS/ASCOPE/XML-Generator-RFC822-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Module::Build)
+BuildRequires: perl
+BuildRequires: perl(Module::Build)
 
 %description
 Generate RDF/XML SAX2 events for RFC822 messages.

@@ -19,7 +19,10 @@ Source: http://search.cpan.org//CPAN/authors/id/J/JL/JLAVALLEE/Yahoo-Marketing-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(SOAP::Lite), perl(Test::Class), perl(XML::XPath)
+BuildRequires: perl
+BuildRequires: perl(SOAP::Lite)
+BuildRequires: perl(Test::Class)
+BuildRequires: perl(XML::XPath)
 BuildRequires: perl(YAML)
 
 %description

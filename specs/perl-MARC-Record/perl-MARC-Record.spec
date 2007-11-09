@@ -20,7 +20,8 @@ Source: http://www.cpan.org/modules/by-module/MARC/MARC-Record-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 2:5.8.1, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 2:5.8.1
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 MARC-Record is a Perl module for handling MARC fields.

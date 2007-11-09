@@ -19,9 +19,14 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-SimpleUnit-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Data::Compare) >= 0.02, perl(Data::Dumper)
-BuildRequires: perl(Scalar::Util), perl(Carp), perl(IO::Handle)
-BuildRequires: perl(IO::File), perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(Data::Compare) >= 0.02
+BuildRequires: perl(Data::Dumper)
+BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(Carp)
+BuildRequires: perl(IO::Handle)
+BuildRequires: perl(IO::File)
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This is a simplified Perl unit-testing framework for creating unit tests to be

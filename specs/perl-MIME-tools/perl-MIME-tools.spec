@@ -22,7 +22,9 @@ Patch1: MIME-Tools.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(IO::Stringy) >= 1.211, perl-MailTools, perl(ExtUtils::MakeMaker)
+BuildRequires: perl(IO::Stringy) >= 1.211
+BuildRequires: perl-MailTools
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl(IO::Stringy) >= 1.211, perl-MailTools >= 1.15
 %{?rh7:BuildRequires: perl(MIME::Base64) >= 2.04}
 %{?el2:BuildRequires: perl-MIME-Base64 >= 2.04}

@@ -19,7 +19,11 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DP/DPARIS/HTTP-CryptoCookie-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-SHA256, perl-Crypt-CBC, perl-Convert-ASCII-Armour, perl-FreezeThaw
+BuildRequires: perl
+BuildRequires: perl-SHA256
+BuildRequires: perl-Crypt-CBC
+BuildRequires: perl-Convert-ASCII-Armour
+BuildRequires: perl-FreezeThaw
 
 %description
 HTTP::CryptoCookie provides a method for the secure storage and

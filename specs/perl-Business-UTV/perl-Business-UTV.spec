@@ -35,7 +35,7 @@ you monthly usage without going to the UTV website.
 %setup -n %{real_name}-%{version}
 
 %build
-echo n | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+echo "n" | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install

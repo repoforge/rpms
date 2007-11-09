@@ -19,7 +19,8 @@ Source: http://search.cpan.org//CPAN/authors/id/L/LU/LUSHE/Egg-Plugin-SessionKit
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Module::Install)
+BuildRequires: perl
+BuildRequires: perl(Module::Install)
 
 %description
 Session plugin for Egg.

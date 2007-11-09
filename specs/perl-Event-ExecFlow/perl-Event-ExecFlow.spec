@@ -11,11 +11,13 @@ Summary: High level API for event-based execution flow control
 Name: perl-Event-ExecFlow
 Version: 0.63
 Release: 2
-License: Artistic or GPL
-Group: Development/Libraries
+License: Artistic/GPL
+Group: Applications/CPAN
 URL: http://www.exit1.org/Event-ExecFlow/
+
 Source: http://www.exit1.org/packages/Event-ExecFlow/dist/Event-ExecFlow-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: perl(AnyEvent)
 # Provided by either perl or perl-devel
 BuildRequires: perl(ExtUtils::MakeMaker)
@@ -28,15 +30,12 @@ information, triggers actions when the command has been finished etc. Such jobs
 can be chained together in a recursive fashion to fulfill rather complex tasks
 which consist of many jobs.
 
-
 %prep
 %setup -n %{real_name}-%{version}
-
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
@@ -44,19 +43,16 @@ which consist of many jobs.
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod \
            %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
-
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %files
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
 %doc Changes README
 %{_bindir}/execflow
 %{perl_vendorlib}/Event/ExecFlow/
 %{perl_vendorlib}/Event/ExecFlow.pm
 %{_mandir}/man3/*
-
 
 %changelog
 * Thu May 31 2007 Matthias Saou <http://freshrpms.net/> 0.63-2

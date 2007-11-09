@@ -18,7 +18,9 @@ Source: http://www.cpan.org/authors/id/J/JK/JKEISER/PatchReader-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(File::Temp), perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(File::Temp)
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: cvs
 
 %description

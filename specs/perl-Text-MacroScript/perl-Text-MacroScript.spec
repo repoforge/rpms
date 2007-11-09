@@ -37,7 +37,7 @@ additional methods which have no command equivalents.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" "PREFIX=%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -58,8 +58,5 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Text/macroutil.pl
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.38-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  2 2005 Dries Verachtert <dries@ulyssis.org> - 1.38-1
 - Initial package.

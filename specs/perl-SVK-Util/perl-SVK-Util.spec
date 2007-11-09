@@ -20,16 +20,31 @@ Source: http://www.cpan.org/authors/id/C/CL/CLKAO/SVK-v%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Algorithm::Annotate), perl(Algorithm::Diff) >= 1.1901
-BuildRequires: perl(YAML::Syck) >= 0.60, perl(Data::Hierarchy) >= 0.30
-BuildRequires: perl(PerlIO::via::dynamic) >= 0.11, perl(PerlIO::via::symlink) >= 0.02
-BuildRequires: perl(IO::Digest), perl(SVN::Simple::Edit) >= 0.27
-BuildRequires: perl(URI), perl(PerlIO::eol) >= 0.13, perl(Class:Autouse) >= 1.15
-BuildRequires: perl(App::CLI), perl(List::MoreUtils), perl(Class::Accessor::Fast)
-BuildRequires: perl(Class::Data::Inheritable), perl(Path::Class) >= 0.16
-BuildRequires: perl(UNIVERSAL::require), perl(Term::ReadKey)
-BuildRequires: perl(Time::HiRes), perl(File::Temp) >= 0.17, perl(Encode) >= 2.10
-BuildRequires: perl(Getopt::Long) >= 2.35, perl(Pod::Escapes), perl(Pod::Simple)
+BuildRequires: perl
+BuildRequires: perl(Algorithm::Annotate)
+BuildRequires: perl(Algorithm::Diff) >= 1.1901
+BuildRequires: perl(YAML::Syck) >= 0.60
+BuildRequires: perl(Data::Hierarchy) >= 0.30
+BuildRequires: perl(PerlIO::via::dynamic) >= 0.11
+BuildRequires: perl(PerlIO::via::symlink) >= 0.02
+BuildRequires: perl(IO::Digest)
+BuildRequires: perl(SVN::Simple::Edit) >= 0.27
+BuildRequires: perl(URI)
+BuildRequires: perl(PerlIO::eol) >= 0.13
+BuildRequires: perl(Class:Autouse) >= 1.15
+BuildRequires: perl(App::CLI)
+BuildRequires: perl(List::MoreUtils)
+BuildRequires: perl(Class::Accessor::Fast)
+BuildRequires: perl(Class::Data::Inheritable)
+BuildRequires: perl(Path::Class) >= 0.16
+BuildRequires: perl(UNIVERSAL::require)
+BuildRequires: perl(Term::ReadKey)
+BuildRequires: perl(Time::HiRes)
+BuildRequires: perl(File::Temp) >= 0.17
+BuildRequires: perl(Encode) >= 2.10
+BuildRequires: perl(Getopt::Long) >= 2.35
+BuildRequires: perl(Pod::Escapes)
+BuildRequires: perl(Pod::Simple)
 BuildRequires: perl(File::Spec) >= 3.19
 
 %description

@@ -20,7 +20,8 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-DBus-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), pkgconfig
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: pkgconfig
 
 %description
 perl-Net-DBus is a Perl module with bindings for the DBus message system.

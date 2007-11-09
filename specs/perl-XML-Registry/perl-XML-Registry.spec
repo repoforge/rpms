@@ -1,11 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Jonathan Eisenzopf <eisen$pobox,com>
 
-%define real_name XML-Registry
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name XML-Registry
 
 Summary: Perl module for loading and saving an XML registry
 Name: perl-XML-Registry
@@ -30,7 +30,7 @@ a specific XML syntax; in this case, a kind of registry.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX=%{buildroot}%{_prefix}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install

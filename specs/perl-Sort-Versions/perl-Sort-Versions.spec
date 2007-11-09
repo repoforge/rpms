@@ -1,11 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Kenneth Albanowski <kjahds$kjahds,com>
 
-%define real_name Sort-Versions
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name Sort-Versions
 
 Summary: Module for sorting of revision-like numbers
 Name: perl-Sort-Versions
@@ -31,7 +31,7 @@ packages and shared library systems use.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX=%{buildroot}%{_prefix}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install

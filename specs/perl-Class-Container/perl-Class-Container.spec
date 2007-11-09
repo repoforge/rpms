@@ -19,7 +19,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), perl-Params-Validate
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl-Params-Validate
 
 %description
 This class facilitates building frameworks of several classes that

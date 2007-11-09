@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements a dynamic definition of Class::DBI sub classes
 Name: perl-Class-DBI-Loader
-Version: 0.32
+Version: 0.34
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -47,12 +47,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Class::DBI::Loader.3pm*
+%doc %{_mandir}/man3/Class::DBI::Loader::*.3pm*
 %dir %{perl_vendorlib}/Class/
 %dir %{perl_vendorlib}/Class/DBI/
 %{perl_vendorlib}/Class/DBI/Loader/
 %{perl_vendorlib}/Class/DBI/Loader.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.34-1
+- Updated to release 0.35.
+
 * Mon Apr 30 2007 Dag Wieers <dag@wieers.com> - 0.32-1
 - Initial package. (using DAR)

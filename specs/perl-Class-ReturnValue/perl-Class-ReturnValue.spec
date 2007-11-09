@@ -9,13 +9,13 @@
 
 Summary: Return-value object
 Name: perl-Class-ReturnValue
-Version: 0.53
-Release: 1.2
+Version: 0.55
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-ReturnValue/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JE/JESSE/Class-ReturnValue-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Class/Class-ReturnValue-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -44,14 +44,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST MANIFEST.SKIP META.yml
+%doc %{_mandir}/man3/Class::ReturnValue.3pm*
+%dir %{perl_vendorlib}/Class/
+#%{perl_vendorlib}/Class/ReturnValue/
 %{perl_vendorlib}/Class/ReturnValue.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.53-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.53-1
 - Updated to release 0.53.
 

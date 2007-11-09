@@ -9,8 +9,8 @@
 
 Summary: Perl interface to the 2.x series of the GNOME libraries
 Name: perl-Gnome2
-Version: 1.041
-Release: 2
+Version: 1.042
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gnome2/
@@ -18,9 +18,15 @@ URL: http://search.cpan.org/dist/Gnome2/
 Source: http://www.cpan.org/modules/by-module/Gnome2/Gnome2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 2:5.8.0, perl(ExtUtils::Depends), perl(ExtUtils::PkgConfig),
-BuildRequires: perl(Glib), perl(Gtk2), perl(Gnome2::VFS), perl(Gnome2::Canvas)
-BuildRequires: libgnomeui-devel >= 2.0.0, perl(Cairo::Install::Files)
+BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl(Cairo::Install::Files)
+BuildRequires: perl(ExtUtils::Depends)
+BuildRequires: perl(ExtUtils::PkgConfig)
+BuildRequires: perl(Glib)
+BuildRequires: perl(Gnome2::Canvas)
+BuildRequires: perl(Gnome2::VFS)
+BuildRequires: perl(Gtk2)
+BuildRequires: libgnomeui-devel >= 2.0.0
 Requires: perl >= 2:5.8.0
 
 %description
@@ -52,7 +58,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog LICENSE MANIFEST MANIFEST.SKIP META.yml NEWS README TODO copyright.pod examples/
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Gnome2.3pm*
+%doc %{_mandir}/man3/Gnome2::*.3pm*
 %{perl_vendorarch}/Gnome2/
 %{perl_vendorarch}/Gnome2.pm
 %{perl_vendorarch}/auto/Gnome2/

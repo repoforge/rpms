@@ -19,8 +19,11 @@ Source: http://www.cpan.org/modules/by-module/FileHandle/FileHandle-Unget-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.00503, perl(Test::More), perl(File::Spec::Functions)
-BuildRequires: perl(ExtUtils::MakeMaker::bytes), perl(Scalar::Util) >= 1.14
+BuildRequires: perl >= 0:5.00503
+BuildRequires: perl(Test::More)
+BuildRequires: perl(File::Spec::Functions)
+BuildRequires: perl(ExtUtils::MakeMaker::bytes)
+BuildRequires: perl(Scalar::Util) >= 1.14
 Requires: perl >= 0:5.00503
 
 %description

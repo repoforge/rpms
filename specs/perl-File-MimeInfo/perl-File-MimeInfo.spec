@@ -9,9 +9,9 @@
 
 Summary: Perl module to determine file type
 Name: perl-File-MimeInfo
-Version: 0.13
+Version: 0.14
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-MimeInfo/
 
@@ -45,9 +45,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README t/magic/application_x-perl.txt
-%doc %{_mandir}/man3/*.3pm*
-%doc %{_mandir}/man1/mime*.1*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man1/mimeopen.1*
+%doc %{_mandir}/man1/mimetype.1*
+%doc %{_mandir}/man3/File::MimeInfo.3pm*
+%doc %{_mandir}/man3/File::MimeInfo::*.3pm*
 %{_bindir}/mimeopen
 %{_bindir}/mimetype
 %dir %{perl_vendorlib}/File/
@@ -55,5 +57,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/File/MimeInfo.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.14-1
+- Updated to release 0.14.
+
 * Tue May 01 2007 Dag Wieers <dag@wieers.com> - 0.13-1
 - Initial package. (using DAR)

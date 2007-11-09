@@ -12,7 +12,7 @@
 
 Summary: Perl module that implements a HTML parser class
 Name: perl-HTML-Parser
-Version: 3.55
+Version: 3.56
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -41,13 +41,16 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README TODO
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes MANIFEST README TODO eg/
+%doc %{_mandir}/man3/HTML::*.3pm*
 %{perl_vendorarch}/HTML/Entities.pm
 %{perl_vendorarch}/HTML/Filter.pm
 %{perl_vendorarch}/HTML/HeadParser.pm
@@ -59,5 +62,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/HTML/Parser/
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 3.56-1
+- Updated to release 3.56.
+
 * Wed May 02 2007 Dag Wieers <dag@wieers.com> - 3.55-1
 - Initial package. (using DAR)

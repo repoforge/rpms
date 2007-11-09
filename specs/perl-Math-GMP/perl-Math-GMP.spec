@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHIPT/Math-GMP-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), gmp-devel
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: gmp-devel
 
 %description
 Math::GMP gives you access to the fast GMP library for fast

@@ -24,7 +24,9 @@ URL: http://search.cpan.org/dist/Net-Pcap/
 Source: http://search.cpan.org/CPAN/authors/id/S/SA/SAPER/Net-Pcap-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, libpcap, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: libpcap
+BuildRequires: perl(ExtUtils::MakeMaker)
 %{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
@@ -42,8 +44,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}/*/*/*/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

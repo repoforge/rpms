@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/PerlIO-eol/
 Source: http://www.cpan.org/modules/by-module/PerlIO/PerlIO-eol-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 1:5.7.3, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 1:5.7.3
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 PerlIO layer for normalizing line endings.

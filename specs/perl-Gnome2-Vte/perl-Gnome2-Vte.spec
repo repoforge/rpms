@@ -18,9 +18,16 @@ URL: http://search.cpan.org/dist/Gnome2-Vte/
 Source: http://www.cpan.org/modules/by-module/Gnome2/Gnome2-Vte-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl-ExtUtils-Depends, perl-ExtUtils-PkgConfig
-BuildRequires: perl-Glib, perl-Gtk2, pkgconfig, gtk2-devel, vte-devel
-BuildRequires: zlib-devel, perl(Cairo::Install::Files)
+BuildRequires: perl
+BuildRequires: perl-ExtUtils-Depends
+BuildRequires: perl-ExtUtils-PkgConfig
+BuildRequires: perl-Glib
+BuildRequires: perl-Gtk2
+BuildRequires: pkgconfig
+BuildRequires: gtk2-devel
+BuildRequires: vte-devel
+BuildRequires: zlib-devel
+BuildRequires: perl(Cairo::Install::Files)
 
 %description
 This module allows you to use the Virtual Terminal Emulation library (libvte

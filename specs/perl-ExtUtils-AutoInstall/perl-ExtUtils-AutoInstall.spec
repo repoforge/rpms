@@ -24,7 +24,9 @@ Source: http://www.cpan.org/modules/by-module/ExtUtils/ExtUtils-AutoInstall-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-CPANPLUS, perl-Sort-Versions
+BuildRequires: perl
+BuildRequires: perl-CPANPLUS
+BuildRequires: perl-Sort-Versions
 
 %description
 ExtUtils::AutoInstall is a module to let Makefile.PL automatically
@@ -34,9 +36,7 @@ install dependencies via CPAN or CPANPLUS.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	INSTALLDIRS="vendor" \
-	PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -44,8 +44,7 @@ install dependencies via CPAN or CPANPLUS.
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

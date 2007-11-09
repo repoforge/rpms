@@ -18,7 +18,9 @@ Source: http://www.cpan.org/modules/by-module/MLDBM/MLDBM-Sync-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(MLDBM), perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(MLDBM)
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl-MLDBM
 
 %description
@@ -32,18 +34,15 @@ writes.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-                %{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -57,9 +56,6 @@ writes.
 %{perl_vendorlib}/MLDBM/Sync.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.30-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Jul 11 2004 Dag Wieers <dag@wieers.com> - 0.30-1
 - Cosmetic changes.
 

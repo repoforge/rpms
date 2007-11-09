@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/U/UL/ULTRADM/POE-Component-Client
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl
+BuildRequires: perl-Module-Build
 
 %description
 Asynchronous mail sending with POE.

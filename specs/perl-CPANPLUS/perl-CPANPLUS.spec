@@ -42,8 +42,7 @@ this API.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-  %{buildroot}%{perl_vendorarch} \
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
   %{buildroot}%{_mandir}/man3/CPANPLUS*Win32* \
   %{buildroot}%{perl_vendorlib}/CPANPLUS/inc/*/*/*Win32* \
   %{buildroot}%{perl_vendorlib}/CPANPLUS/inc/ \

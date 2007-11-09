@@ -39,7 +39,9 @@ calculations.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/Geo/Distance/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -51,8 +53,5 @@ calculations.
 %{perl_vendorlib}/Geo/Distance.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.11-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.11-1
 - Initial package.

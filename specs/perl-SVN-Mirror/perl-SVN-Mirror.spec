@@ -19,8 +19,14 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CL/CLKAO/SVN-Mirror-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, subversion-perl, perl-Data-UUID, perl-Term-ReadKey
-BuildRequires: perl-SVN-Simple, perl-TimeDate, perl-File-chdir, perl-Class-Accessor
+BuildRequires: perl
+BuildRequires: subversion-perl
+BuildRequires: perl-Data-UUID
+BuildRequires: perl-Term-ReadKey
+BuildRequires: perl-SVN-Simple
+BuildRequires: perl-TimeDate
+BuildRequires: perl-File-chdir
+BuildRequires: perl-Class-Accessor
 
 %description
 SVN::Mirror is a subversion repository mirroring tool.
@@ -37,8 +43,7 @@ echo "n" | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_pre
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 
 %clean

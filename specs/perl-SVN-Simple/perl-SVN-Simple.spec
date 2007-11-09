@@ -19,7 +19,9 @@ Source: http://www.cpan.org/modules/by-module/SVN/SVN-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, subversion-perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: subversion-perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 SVN::Simple is a simple interface to subversion's editor interface.

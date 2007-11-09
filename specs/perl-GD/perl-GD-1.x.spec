@@ -31,8 +31,12 @@ URL: http://search.cpan.org/dist/GD/
 Source: http://www.cpan.org/modules/by-module/GD/GD-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, gd-devel >= 1.8.4, libpng-devel, zlib-devel
-BuildRequires: freetype-devel, libjpeg-devel
+BuildRequires: perl
+BuildRequires: gd-devel >= 1.8.4
+BuildRequires: libpng-devel
+BuildRequires: zlib-devel
+BuildRequires: freetype-devel
+BuildRequires: libjpeg-devel
 Requires: perl
 %{!?_without_modxorg:BuildRequires: libX11-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}

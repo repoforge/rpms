@@ -19,7 +19,9 @@ Source: http://www.cpan.org/modules/by-module/MooseX/MooseX-Object-Pluggable-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Test::More) >= 0.62, perl(Moose) >= 0.17
+BuildRequires: perl
+BuildRequires: perl(Test::More) >= 0.62
+BuildRequires: perl(Moose) >= 0.17
 BuildRequires: perl(Module::Pluggable::Object)
 
 %description

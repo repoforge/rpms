@@ -19,7 +19,8 @@ Source: http://search.cpan.org//CPAN/authors/id/K/KI/KIRSLE/WWW-TwentyQuestions-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 4:5.8.8, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 4:5.8.8
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Interface to the classic 20 Questions game as provided by 20Q.net.

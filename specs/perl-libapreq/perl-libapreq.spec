@@ -23,7 +23,10 @@ URL: http://search.cpan.org/dist/libapreq/
 Source: http://apache.belnet.be/httpd/libapreq/libapreq2-%{real_version}-dev.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, httpd-devel, mod_perl, perl-ExtUtils-XSBuilder
+BuildRequires: perl
+BuildRequires: httpd-devel
+BuildRequires: mod_perl
+BuildRequires: perl-ExtUtils-XSBuilder
 
 %description
 This package contains modules for manipulating client request data via
@@ -44,8 +47,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/W/WY/WYANT/Astro-SpaceTrack-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Tk)
+BuildRequires: perl
+BuildRequires: perl(Tk)
 
 %description
 This library logs in to the Space Track web site and downloads orbital

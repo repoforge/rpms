@@ -18,7 +18,9 @@ Source: http://www.cpan.org/modules/by-module/HTTP/HTTP-DAV-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-libwww-perl, perl-libxml-enno
+BuildRequires: perl
+BuildRequires: perl-libwww-perl
+BuildRequires: perl-libxml-enno
 Requires: perl, perl-libwww-perl
 
 %description

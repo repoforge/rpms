@@ -20,8 +20,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)(ExtUtils::Depends), perl(ExtUtils::PkgConfig)
-BuildRequires: perl(Gtk2::CodeGen), pkgconfig, gtkspell
+BuildRequires: perl(ExtUtils::MakeMaker)(ExtUtils::Depends)
+BuildRequires: perl(ExtUtils::PkgConfig)
+BuildRequires: perl(Gtk2::CodeGen)
+BuildRequires: pkgconfig
+BuildRequires: gtkspell
 
 %description
 Gtk2-Spell is a Perl module with bindings for GtkSpell with Gtk2.

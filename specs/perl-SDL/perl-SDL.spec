@@ -36,7 +36,7 @@ Name: perl-SDL
 Version: 2.1.3
 Release: 1
 License: GPL
-Group: System Environment/Libraries
+Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SDL_Perl/
 #URL: http://sdl.perl.org/
 
@@ -47,15 +47,23 @@ Patch1: perl-SDL-no-mixertest.patch
 Patch2: perl-SDL-gfxPie.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, SDL_net-devel
-BuildRequires: SDL_ttf-devel, SDL_gfx-devel
-BuildRequires: smpeg-devel, libjpeg-devel, libpng-devel
-BuildRequires: perl(Module::Build), perl(YAML)
+BuildRequires: SDL-devel
+BuildRequires: SDL_mixer-devel
+BuildRequires: SDL_image-devel
+BuildRequires: SDL_net-devel
+BuildRequires: SDL_ttf-devel
+BuildRequires: SDL_gfx-devel
+BuildRequires: smpeg-devel
+BuildRequires: libjpeg-devel
+BuildRequires: libpng-devel
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(YAML)
 %if 0%{?_without_modxorg:1}
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
 %else
-BuildRequires: libXt-devel, mesa-libGLU-devel
+BuildRequires: libXt-devel
+BuildRequires: mesa-libGLU-devel
 %endif
 Provides: SDL_perl = %{version}-%{release}
 Provides: SDL_Perl = %{version}-%{release}

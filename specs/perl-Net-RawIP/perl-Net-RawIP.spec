@@ -25,7 +25,9 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SK/SKOLYCHEV/Net-RawIP-%{versio
 Patch: gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, libpcap, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: libpcap
+BuildRequires: perl(ExtUtils::MakeMaker)
 %{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description

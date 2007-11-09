@@ -32,7 +32,7 @@ This module provides perl objects for web browsing.
 %setup -n %{real_name}-%{version}
 
 %build
-echo y | %{__perl} Makefile.PL --nolive INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+echo "y" | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --nolive
 %{__make} %{?_smp_mflags}
 
 %install
@@ -40,8 +40,7 @@ echo y | %{__perl} Makefile.PL --nolive INSTALLDIRS="vendor" PREFIX="%{buildroot
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

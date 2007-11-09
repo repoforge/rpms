@@ -33,9 +33,7 @@ genereren.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -43,8 +41,7 @@ genereren.
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-                %{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -58,9 +55,6 @@ genereren.
 %{perl_vendorlib}/MIME/changes.pod
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.01-2.2
-- Rebuild for Fedora Core 5.
-
 * Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> 3.01-2
 - URL changed to cpan.
 

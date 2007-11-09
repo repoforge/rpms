@@ -37,7 +37,7 @@ large amounts of memory, and decrease the script load time.
 %setup -n %{real_name}-%{version}
 
 %build
-echo n | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+echo "n" | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install

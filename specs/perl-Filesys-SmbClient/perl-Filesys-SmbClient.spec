@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Filesys/Filesys-SmbClient-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), samba-common >= 3.0
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: samba-common >= 3.0
 
 %description
 Perl client to reach Samba resources with smbclient.

@@ -28,7 +28,7 @@ This module provides perl objects for web browsing.
 %setup -n %{real_name}-%{version}
 
 %build
-echo y | %{__perl} Makefile.PL --nolive INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+echo "y" | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --nolive
 %{__make} %{?_smp_mflags}
 
 %install

@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SJ/SJZASADA/XML-CanonicalizeXML
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), libxml2-devel
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: libxml2-devel
 
 %description
 This module provides a wrapper to the XML Canonicalization functions

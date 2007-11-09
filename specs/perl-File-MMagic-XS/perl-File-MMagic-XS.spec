@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Daisuke Maki <dmaki$cpan,org>
+# Upstream: Daisuke Maki <daisuke$endeworks,jp>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,9 +9,9 @@
 
 Summary: Perl module to guess File Type With XS (a la mod_mime_magic)
 Name: perl-File-MMagic-XS
-Version: 0.08
+Version: 0.09003
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-MMagic-XS/
 
@@ -52,12 +52,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %dir %{perl_vendorarch}/File/MMagic/
 %{perl_vendorarch}/File/MMagic/XS.pm
 %{perl_vendorarch}/File/MMagic/benchmark.pl
-%{perl_vendorarch}/File/MMagic/compat.pm
 %{perl_vendorarch}/File/MMagic/magic
 %dir %{perl_vendorarch}/auto/File/
 %dir %{perl_vendorarch}/auto/File/MMagic/
 %{perl_vendorarch}/auto/File/MMagic/XS/
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.09003-1
+- Updated to release 0.09003.
+
 * Tue May 01 2007 Dag Wieers <dag@wieers.com> - 0.08-1
 - Initial package. (using DAR)

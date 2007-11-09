@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Gtk2/Gtk2-Ex-PodViewer-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Locale::gettext)
+BuildRequires: perl
+BuildRequires: perl(Locale::gettext)
 
 %description
 perl-Gtk2-Ex-PodViewer is a Perl module that implements a Gtk2 widget

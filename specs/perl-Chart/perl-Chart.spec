@@ -19,7 +19,9 @@ Source: http://www.cpan.org/modules/by-module/Chart/Chart-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(GD), perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(GD)
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 With this module you can produce many types of charts.
@@ -28,9 +30,7 @@ With this module you can produce many types of charts.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	INSTALLDIRS="vendor" \
-	PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -38,8 +38,7 @@ With this module you can produce many types of charts.
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -55,9 +54,6 @@ With this module you can produce many types of charts.
 %changelog
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.4.1-1
 - Updated to release 2.4.1.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.3-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Jan 19 2005 Dag Wieers <dag@wieers.com> - 2.3-1
 - Updated to release 2.3.

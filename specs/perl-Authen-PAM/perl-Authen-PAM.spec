@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Authen/Authen-PAM-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), pam-devel
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: pam-devel
 
 %description
 This module provides a Perl interface to the PAM library.

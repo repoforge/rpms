@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Math/Math-BigInt-GMP-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), gmp-devel
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: gmp-devel
 
 %description
 This package contains a replacement (drop-in) module for Math::BigInt's

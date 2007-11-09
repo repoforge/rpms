@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JP/JPEACOCK/Math-Currency-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Module::Build)
+BuildRequires: perl
+BuildRequires: perl(Module::Build)
 
 %description
 Exact Currency Math with Formatting and Rounding.

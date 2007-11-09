@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-LibIDN-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), libidn-devel
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: libidn-devel
 Requires: perl
 
 %description

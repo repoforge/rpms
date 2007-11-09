@@ -9,13 +9,13 @@
 
 Summary: Fetch images of country flags
 Name: perl-Geo-CountryFlags
-Version: 0.02
-Release: 1.2
+Version: 1.00
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-CountryFlags/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIKER/Geo-CountryFlags-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Geo/Geo-CountryFlags-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -44,13 +44,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST MANIFEST.SKIP MANIFEST.in META.yml
+%doc %{_mandir}/man3/Geo::CountryFlags.3pm*
+%doc %{_mandir}/man3/Geo::CountryFlags::*.3pm*
+%dir %{perl_vendorlib}/Geo/
+%{perl_vendorlib}/Geo/CountryFlags/
 %{perl_vendorlib}/Geo/CountryFlags.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1.2
-- Rebuild for Fedora Core 5.
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.00-1
+- Updated to release 1.00.
 
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

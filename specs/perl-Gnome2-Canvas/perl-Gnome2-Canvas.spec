@@ -20,8 +20,12 @@ URL: http://gtk2-perl.sourceforge.net/
 Source: http://dl.sf.net/gtk2-perl/Gnome2-Canvas-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 2:5.8.0, perl(ExtUtils::Depends), perl(ExtUtils::PkgConfig) >= 1.03,
-BuildRequires: perl(Glib) >= 1.040, perl(Gtk2) >= 1.040, perl(Cairo::Install::Files)
+BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl(ExtUtils::Depends)
+BuildRequires: perl(ExtUtils::PkgConfig) >= 1.03
+BuildRequires: perl(Glib) >= 1.040
+BuildRequires: perl(Gtk2) >= 1.040
+BuildRequires: perl(Cairo::Install::Files)
 BuildRequires: libgnomeui-devel >= 2.0.0
 Requires: perl >= 2:5.8.0
 

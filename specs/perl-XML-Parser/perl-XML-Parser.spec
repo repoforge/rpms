@@ -20,7 +20,9 @@ URL: http://search.cpan.org/dist/XML-Parser/
 Source: http://www.cpan.org/modules/by-module/XML/XML-Parser-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.004, expat-devel, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 0:5.004
+BuildRequires: expat-devel
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.004
 
 %description

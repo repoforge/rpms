@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AR/ARJAY/Compress-Bzip2-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), bzip2-devel
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: bzip2-devel
 
 %description
 Perl-Bzip2 provides Bzip2 bindings for Perl5. I.e. you can use the Bzip2

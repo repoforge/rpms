@@ -19,7 +19,10 @@ Source: http://ftp.cpan.org/pub/CPAN/modules/by-module/Tie/Tie-Cache-LRU-Expires
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Class::Virtual), perl(Tie::Cache::LRU), perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(Class::Virtual)
+BuildRequires: perl(Tie::Cache::LRU)
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 A LRU cache is similar to the kind of cache used by a web browser. New items

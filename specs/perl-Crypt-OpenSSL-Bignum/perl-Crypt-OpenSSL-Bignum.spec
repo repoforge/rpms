@@ -19,7 +19,9 @@ Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-OpenSSL-Bignum-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), openssl-devel, krb5-devel
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: openssl-devel
+BuildRequires: krb5-devel
 
 %description
 Crypt::OpenSSL::Bignum is an XS perl module designed to provide basic

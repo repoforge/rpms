@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KI/KIMRYAN/Locale-SubCountry-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 2:5.8.4, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 2:5.8.4
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module allows you to convert the full name for a countries administrative

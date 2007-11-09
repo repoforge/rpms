@@ -9,18 +9,21 @@
 
 Summary: Dissociated Press algorithm and filter
 Name: perl-Games-Dissociate
-Version: 0.18
+Version: 0.19
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Games-Dissociate/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AV/AVIF/Games-Dissociate-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Games/Games-Dissociate-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Pod::Coverage) >= 0.18
+BuildRequires: perl(Test::Pod) >= 1.26
+BuildRequires: perl(Test::Pod::Coverage) >= 1.08
 
 %description
 This module provides the function `dissociate', which implements a
@@ -47,11 +50,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
-%doc %{_mandir}/man3/*
+%doc ChangeLog MANIFEST META.yml README
+%doc %{_mandir}/man3/Games::Dissociate.3pm*
+%dir %{perl_vendorlib}/Games/
+#%{perl_vendorlib}/Games/Dissociate/
 %{perl_vendorlib}/Games/Dissociate.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.19-1
+- Updated to release 0.19.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.18-1
 - Updated to release 0.18.
 

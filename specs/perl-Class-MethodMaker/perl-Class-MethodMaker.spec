@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Martyn J. Pearce <fluffy$cpan,org>
+# Upstream: Steffen Schwigon <schwigon$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: Create generic methods for OO Perl
 Name: perl-Class-MethodMaker
-Version: 2.08
-Release: 1.2
+Version: 2.10
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-MethodMaker/
@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Class-MethodMaker/
 Source: http://www.cpan.org/modules/by-module/Class/Class-MethodMaker-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(Module::Build)
+BuildRequires: perl
+BuildRequires: perl(Module::Build)
 
 %description
 This package allows you to create generic methods for OO Perl.
@@ -27,40 +28,34 @@ This package allows you to create generic methods for OO Perl.
 %setup -n %{real_name}-%{version}
 
 %build
-# FIXME: Install doesn't work with PREFIX
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" DESTDIR="%{buildroot}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
-#./configure --prefix=%{buildroot}
-#%{__perl} Build.PL
-#./Build
-
 
 %install
 %{__rm} -rf %{buildroot}
-#makeinstall
 %{__make} pure_install
-#./Build install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes INSTALL MANIFEST MANIFEST.SKIP META.yml README SIGNATURE TODO examples/
+%doc %{_mandir}/man3/Class::MethodMaker.3pm*
+%doc %{_mandir}/man3/Class::MethodMaker::*.3pm*
+%dir %{perl_vendorarch}/auto/Class/
+%{perl_vendorarch}/auto/Class/MethodMaker/
 %dir %{perl_vendorarch}/Class/
 %{perl_vendorarch}/Class/MethodMaker.pm
 %{perl_vendorarch}/Class/MethodMaker/
-%dir %{perl_vendorarch}/auto/Class/
-%{perl_vendorarch}/auto/Class/MethodMaker/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.08-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.08-1
 - Updated to release 2.08.
 

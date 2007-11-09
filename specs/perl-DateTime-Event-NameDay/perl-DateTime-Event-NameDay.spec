@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Event-NameDay-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Module::Build)
+BuildRequires: perl
+BuildRequires: perl(Module::Build)
 
 %description
 This module handles generating name days from dates and vice versa.
@@ -37,8 +38,7 @@ This module handles generating name days from dates and vice versa.
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

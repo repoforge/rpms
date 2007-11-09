@@ -19,7 +19,9 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCOPPIT/Module-Install-GetPr
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Sort-Versions, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl-Sort-Versions
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 A Module::Install extension that allows the user to interactively specify

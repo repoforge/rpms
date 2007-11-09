@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Salvador Fandi&#241;o Garc&#237;a <salva$cpan,org>
+# Upstream: Salvador Fandiño García <salva$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,13 +9,13 @@
 
 Summary: Read and write property files
 Name: perl-Config-Properties
-Version: 0.65
+Version: 1.68
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-Properties/
 
-Source: http://search.cpan.org//CPAN/authors/id/S/SA/SALVA/Config-Properties-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Config/Config-Properties-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -44,10 +44,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Config::Properties*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Config::Properties.3pm*
+%dir %{perl_vendorlib}/Config/
+#%{perl_vendorlib}/Config/Properties/
 %{perl_vendorlib}/Config/Properties.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.68-1
+- Updated to release 1.68.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.65-1
 - Initial package.

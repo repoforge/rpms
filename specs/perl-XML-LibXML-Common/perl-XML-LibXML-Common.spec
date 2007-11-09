@@ -21,7 +21,8 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-LibXML-Common-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), libxml2-devel
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: libxml2-devel
 Requires: perl
 
 %description

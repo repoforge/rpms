@@ -19,8 +19,14 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIYAGAWA/XML-Atom-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-DateTime, perl-XML-LibXML, perl-URI, perl-XML-XPath
-BuildRequires: perl-libwww-perl, perl-LWP-Authen-Wsse, perl-Digest-SHA1
+BuildRequires: perl
+BuildRequires: perl-DateTime
+BuildRequires: perl-XML-LibXML
+BuildRequires: perl-URI
+BuildRequires: perl-XML-XPath
+BuildRequires: perl-libwww-perl
+BuildRequires: perl-LWP-Authen-Wsse
+BuildRequires: perl-Digest-SHA1
 BuildRequires: perl(Class::Data::Inheritable)
 
 %description

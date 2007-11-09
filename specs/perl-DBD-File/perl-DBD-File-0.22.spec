@@ -32,16 +32,13 @@ for modules like DBD::CSV and DBD::AnyData.
 %patch -p1
 
 %build
-%{__perl} Makefile.PL \
-	INSTALLDIRS="vendor" \
-	PREFIX=%{buildroot}%{_prefix}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-	%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -53,9 +50,6 @@ for modules like DBD::CSV and DBD::AnyData.
 #%{perl_vendorlib}/DBI/SQL/Nano.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.22-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Jan 29 2006 Dries Verachtert <dries@ulyssis.org> - 0.22-2
 - Added a patch made by Peter Bieringer so it works on el4, thanks!
 

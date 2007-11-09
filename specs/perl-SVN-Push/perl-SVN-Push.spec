@@ -19,7 +19,9 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GR/GRICHTER/SVN-Push-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, subversion-perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: subversion-perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 SVN::Push is a module which let you push the content of a repoitory
@@ -56,8 +58,7 @@ have the same uuid.
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

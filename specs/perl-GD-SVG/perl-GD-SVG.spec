@@ -31,7 +31,7 @@ functions into SVG functions.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" "PREFIX=%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -53,9 +53,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %changelog
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.28-1
 - Updated to release 0.28.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.27-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.27-1
 - Updated to release 0.27.

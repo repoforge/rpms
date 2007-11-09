@@ -32,7 +32,9 @@ URL: http://search.cpan.org/dist/Tk/
 Source: http://www.cpan.org/modules/by-module/Tk/Tk-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 1:5.7.0, libpng-devel, libjpeg-devel
+BuildRequires: perl >= 1:5.7.0
+BuildRequires: libpng-devel
+BuildRequires: libjpeg-devel
 %{?_with_modxorg:BuildRequires: libX11-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_tcltk_devel:BuildRequires: tk-devel}

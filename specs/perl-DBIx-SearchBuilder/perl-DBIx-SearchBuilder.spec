@@ -21,12 +21,19 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(DBD::SQLite)
-BuildRequires: perl(File::Temp), perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Temp)
+BuildRequires: perl(ExtUtils::MakeMaker)
 #BuildRequires: perl(Test::More) >= 0.52
-BuildRequires: perl(DBI), perl(Want), perl(Encode), perl(Class::Accessor)
-BuildRequires: perl(Class::ReturnValue) >= 0.4, perl-capitalization >= 0.03
-BuildRequires: perl(Cache::Simple::TimedExpiry) >= 0.21, perl(Clone)
-BuildRequires: perl(capitalization) >= 0.03, perl(DBIx::DBSchema)
+BuildRequires: perl(DBI)
+BuildRequires: perl(Want)
+BuildRequires: perl(Encode)
+BuildRequires: perl(Class::Accessor)
+BuildRequires: perl(Class::ReturnValue) >= 0.4
+BuildRequires: perl-capitalization >= 0.03
+BuildRequires: perl(Cache::Simple::TimedExpiry) >= 0.21
+BuildRequires: perl(Clone)
+BuildRequires: perl(capitalization) >= 0.03
+BuildRequires: perl(DBIx::DBSchema)
 
 Requires: perl
 

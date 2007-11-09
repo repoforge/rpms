@@ -19,7 +19,11 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PC/PCIMPRICH/XML-STX-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-XML-SAX, perl-Clone, perl-XML-NamespaceSupport, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl-XML-SAX
+BuildRequires: perl-Clone
+BuildRequires: perl-XML-NamespaceSupport
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 XML::STX is a pure Perl implementation of STX processor. Streaming

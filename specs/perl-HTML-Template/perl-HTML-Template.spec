@@ -29,9 +29,7 @@ With this module, you can use HTML templates in CGI scripts.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	INSTALLDIRS="vendor" \
-        PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -39,8 +37,7 @@ With this module, you can use HTML templates in CGI scripts.
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-                %{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -54,9 +51,6 @@ With this module, you can use HTML templates in CGI scripts.
 %changelog
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 2.9-1
 - Updated to release 2.9.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.8-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.8-1
 - Updated to release 2.8.

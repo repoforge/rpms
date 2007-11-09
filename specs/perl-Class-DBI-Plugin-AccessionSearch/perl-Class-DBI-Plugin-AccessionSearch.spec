@@ -9,13 +9,13 @@
 
 Summary: Plugin for adding search attributes
 Name: perl-Class-DBI-Plugin-AccessionSearch
-Version: 0.01
+Version: 0.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-DBI-Plugin-AccessionSearch/
 
-Source: http://search.cpan.org//CPAN/authors/id/N/NE/NEKOKAK/Class-DBI-Plugin-AccessionSearch-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Class/Class-DBI-Plugin-AccessionSearch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -44,10 +44,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Class::DBI::Plugin::AccessionSearch*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Class::DBI::Plugin::AccessionSearch.3pm*
+%dir %{perl_vendorlib}/Class/
+%dir %{perl_vendorlib}/Class/DBI/
+%dir %{perl_vendorlib}/Class/DBI/Plugin/
+#%{perl_vendorlib}/Class/DBI/Plugin/AccessionSearch/
 %{perl_vendorlib}/Class/DBI/Plugin/AccessionSearch.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.02-1
+- Updated to release 0.02.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

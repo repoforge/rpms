@@ -18,7 +18,8 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SP/SPURKIS/accessors-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Module::Build)
+BuildRequires: perl
+BuildRequires: perl(Module::Build)
 
 %description
 The accessors pragma lets you create simple accessors at compile-time.

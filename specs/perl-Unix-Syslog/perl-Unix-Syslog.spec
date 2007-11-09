@@ -17,7 +17,8 @@ URL: http://search.cpan.org/dist/Unix-Syslog/
 Source: http://search.cpan.org/CPAN/authors/id/M/MH/MHARNISCH/Unix-Syslog-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.00503, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 0:5.00503
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.00503
 
 %description

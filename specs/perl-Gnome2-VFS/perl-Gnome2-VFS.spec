@@ -9,8 +9,8 @@
 
 Summary: Perl interface to the 2.x series of the GNOME VFS library
 Name: perl-Gnome2-VFS
-Version: 1.061
-Release: 2
+Version: 1.080
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 #URL: http://gtk2-perl.sourceforge.net/
@@ -19,9 +19,12 @@ URL: http://search.cpan.org/dist/Gnome2-VFS/
 Source: http://www.cpan.org/modules/by-module/Gnome2/Gnome2-VFS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 2:5.8.0, perl(ExtUtils::Depends), perl(ExtUtils::PkgConfig),
-BuildRequires: perl(Glib), perl(Gtk2)
 BuildRequires: libgnomeui-devel >= 2.0.0
+BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl(ExtUtils::Depends)
+BuildRequires: perl(ExtUtils::PkgConfig)
+BuildRequires: perl(Glib)
+BuildRequires: perl(Gtk2)
 Requires: perl >= 2:5.8.0
 
 %description
@@ -53,7 +56,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog LICENSE MANIFEST MANIFEST.SKIP META.yml NEWS README copyright.pod examples/
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Gnome2::VFS.3pm*
+%doc %{_mandir}/man3/Gnome2::VFS::*.3pm*
 %dir %{perl_vendorarch}/Gnome2/
 %{perl_vendorarch}/Gnome2/VFS/
 %{perl_vendorarch}/Gnome2/VFS.pm
@@ -61,6 +65,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/auto/Gnome2/VFS/
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.080-1
+- Updated to release 1.080.
+
 * Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 1.061-2
 - Cosmetic cleanup.
 

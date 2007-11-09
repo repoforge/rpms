@@ -1,11 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Leo Lapworth <LLAP$cuckoo,org>
 
-%define real_name Text-vCard
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name Text-vCard
 
 Summary: Edit and create a single vCard (RFC 2426)
 Name: perl-Text-vCard
@@ -29,7 +29,7 @@ With this module you can create and edit a single vCard (RFC 2426).
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX=%{buildroot}%{_prefix}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install

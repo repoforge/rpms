@@ -19,7 +19,9 @@ Source: http://search.cpan.org/CPAN/authors/id/N/NI/NIKC/SVN-Log-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Module-Build, subversion-perl
+BuildRequires: perl
+BuildRequires: perl-Module-Build
+BuildRequires: subversion-perl
 
 %description
 SVN::Log retrieves and parses the commit logs from Subversion
@@ -37,8 +39,7 @@ repositories.
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

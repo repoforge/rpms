@@ -30,7 +30,10 @@ URL: http://search.cpan.org/dist/Image-Imlib2/
 Source: http://www.cpan.org/modules/by-module/Image/Image-Imlib2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, imlib2-devel, perl-Module-Build, zlib-devel
+BuildRequires: perl
+BuildRequires: imlib2-devel
+BuildRequires: perl-Module-Build
+BuildRequires: zlib-devel
 %{!?_without_modxorg:BuildRequires: freetype-devel, libXext-devel}
 
 %description

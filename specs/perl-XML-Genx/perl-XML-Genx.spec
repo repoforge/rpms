@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/XML-Genx/
 Source: http://search.cpan.org//CPAN/authors/id/H/HD/HDM/XML-Genx-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(Module::Build)
+BuildRequires: perl
+BuildRequires: perl(Module::Build)
 
 %description
 A small simple correct XML writer.

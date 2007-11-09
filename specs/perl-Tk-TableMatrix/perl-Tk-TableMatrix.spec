@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Tk-TableMatrix/
 Source: http://www.cpan.org/modules/by-module/Tk/Tk-TableMatrix-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(Tk::MMtry)
+BuildRequires: perl
+BuildRequires: perl(Tk::MMtry)
 
 %description
 perl-Tk-TableMatrix is a Perl module.

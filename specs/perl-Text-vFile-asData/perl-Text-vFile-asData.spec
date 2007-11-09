@@ -1,11 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Richard Clamp <richardc$unixbeard,net>
 
-%define real_name Text-vFile-asData
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name Text-vFile-asData
 
 Summary: Parse vFile formatted files into data structures
 Name: perl-Text-vFile-asData
@@ -29,7 +29,7 @@ With this package you can parse vFile formatted files into data structures.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX=%{buildroot}%{_prefix}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install

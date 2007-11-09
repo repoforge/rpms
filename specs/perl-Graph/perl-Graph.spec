@@ -9,16 +9,16 @@
 
 Summary: Graph operations
 Name: perl-Graph
-Version: 0.81
+Version: 0.84
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graph/
 
-BuildArch: noarch
 Source: http://www.cpan.org/modules/by-module/Graph/Graph-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 
@@ -37,21 +37,27 @@ This modules contains functions for manipulating graphics.
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README TODO
+%doc %{_mandir}/man3/Graph.3pm*
+%doc %{_mandir}/man3/Graph::*.3pm*
+%doc %{_mandir}/man3/Heap071::*.3pm*
+%{perl_vendorlib}/Graph/
 %{perl_vendorlib}/Graph.pm
 %{perl_vendorlib}/Graph.pod
-%{perl_vendorlib}/Graph/
+%{perl_vendorlib}/Heap071/
+%{perl_vendorlib}/auto/Heap071/
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.84-1
+- Updated to release 0.84.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.81-1
 - Updated to release 0.81.
 

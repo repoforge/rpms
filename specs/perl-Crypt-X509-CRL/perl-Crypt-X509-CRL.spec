@@ -19,7 +19,8 @@ Source: http://search.cpan.org//CPAN/authors/id/G/GI/GIGAGEEK/Crypt-X509-CRL-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 4:5.8.8, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 4:5.8.8
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Parses an X.509 certificate revocation list.

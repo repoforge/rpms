@@ -19,10 +19,17 @@ Source: http://search.cpan.org/CPAN/authors/id/N/NI/NIKC/SVN-Web-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Template-Toolkit, perl-YAML, perl-XML-RSS, perl-Text-Diff
-BuildRequires: perl-Locale-Maketext-Simple, subversion-perl
-BuildRequires: perl-Text-Diff-HTML, perl-Template-Plugin-Number-Format
-BuildRequires: perl-Locale-Maketext-Lexicon, perl-Locale-Maketext-Simple
+BuildRequires: perl
+BuildRequires: perl-Template-Toolkit
+BuildRequires: perl-YAML
+BuildRequires: perl-XML-RSS
+BuildRequires: perl-Text-Diff
+BuildRequires: perl-Locale-Maketext-Simple
+BuildRequires: subversion-perl
+BuildRequires: perl-Text-Diff-HTML
+BuildRequires: perl-Template-Plugin-Number-Format
+BuildRequires: perl-Locale-Maketext-Lexicon
+BuildRequires: perl-Locale-Maketext-Simple
 # 0.42 can't be built mod_perl >= 2.0.0
 BuildRequires: mod_perl < 2.0.0
 
@@ -41,8 +48,7 @@ SVN::Web is a subversion repository web frontend.
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

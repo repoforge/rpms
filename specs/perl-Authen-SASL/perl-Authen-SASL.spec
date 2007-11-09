@@ -24,7 +24,9 @@ Source: http://www.cpan.org/modules/by-module/Authen/Authen-SASL-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Digest::HMAC_MD5), perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(Digest::HMAC_MD5)
+BuildRequires: perl(ExtUtils::MakeMaker)
 %{!?_without_gssapi:BuildRequires: perl(GSSAPI)}
 
 %description

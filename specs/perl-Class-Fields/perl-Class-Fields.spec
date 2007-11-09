@@ -9,13 +9,13 @@
 
 Summary: Inspect the fields of a class
 Name: perl-Class-Fields
-Version: 0.201
-Release: 1.2
+Version: 0.203
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Fields/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHWERN/Class-Fields-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Class/Class-Fields-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -44,17 +44,23 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml SIGNATURE
+%doc %{_mandir}/man3/Class::Fields.3pm*
+%doc %{_mandir}/man3/Class::Fields::*.3pm*
+%doc %{_mandir}/man3/private.3pm*
+%doc %{_mandir}/man3/protected.3pm*
+%doc %{_mandir}/man3/public.3pm*
+%dir %{perl_vendorlib}/Class/
+#%{perl_vendorlib}/Class/Fields/
+%{perl_vendorlib}/Class/Fields/
 %{perl_vendorlib}/Class/Fields.pm
-%{perl_vendorlib}/Class/Fields
 %{perl_vendorlib}/private.pm
 %{perl_vendorlib}/protected.pm
 %{perl_vendorlib}/public.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.201-1.2
-- Rebuild for Fedora Core 5.
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.203-1
+- Updated to release 0.203.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.201-1
 - Initial package.

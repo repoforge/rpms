@@ -19,7 +19,9 @@ Source: http://www.cpan.org/modules/by-module/File/File-System-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildArch: noarch
-BuildRequires: perl, perl(Module::Build), perl(Parse::RecDescent)
+BuildRequires: perl
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(Parse::RecDescent)
 
 %description
 The goal of the File::System module is to provide a very general framework for

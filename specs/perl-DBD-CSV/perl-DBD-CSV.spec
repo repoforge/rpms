@@ -1,11 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Jeff Zucker <jeff$vpservices,com>
 
-%define real_name DBD-CSV
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name DBD-CSV
 
 Summary: DBI driver for CSV files
 Name: perl-DBD-CSV
@@ -34,16 +34,15 @@ MS Excel data.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	INSTALLDIRS="vendor" \
-	PREFIX=%{buildroot}%{_prefix}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -rf %{buildroot}%{perl_vendorarch} \
-	%{buildroot}%{perl_archlib}
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -56,9 +55,6 @@ MS Excel data.
 %{perl_vendorlib}/Bundle/DBD/CSV.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.22-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.22-1
 - Updated to release 0.22.
 

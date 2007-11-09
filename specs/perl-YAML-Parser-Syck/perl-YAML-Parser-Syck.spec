@@ -18,7 +18,9 @@ URL: http://search.cpan.org/dist/YAML-Parser-Syck/
 Source: http://www.cpan.org/modules/by-module/YAML/YAML-Parser-Syck-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, syck-devel, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: syck-devel
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Perl Wrapper for the YAML Parser Extension: libsyck.
@@ -35,8 +37,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}
-%{__rm} -rf %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}

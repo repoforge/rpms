@@ -12,7 +12,7 @@ Name: perl-Event
 Version: 1.09
 Release: 1
 License: Artistic/GPL
-Group: Development/Libraries
+Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Event/
 
 Source: http://www.cpan.org/modules/by-module/Event/Event-%{version}.tar.gz
@@ -47,10 +47,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc ANNOUNCE ChangeLog INSTALL MANIFEST MANIFEST.SKIP META.yml README TODO
 %doc %{_mandir}/man3/Event.3pm*
 %doc %{_mandir}/man3/Event::*.3pm*
+%{perl_vendorarch}/auto/Event/
 %{perl_vendorarch}/Event/
 %{perl_vendorarch}/Event.pm
 %{perl_vendorarch}/Event.pod
-%{perl_vendorarch}/auto/Event/
 
 %changelog
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.09-1

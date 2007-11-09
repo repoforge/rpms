@@ -20,7 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.00503
-BuildRequires: perl(Geography::Countries), perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Geography::Countries)
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.00503
 
 %description

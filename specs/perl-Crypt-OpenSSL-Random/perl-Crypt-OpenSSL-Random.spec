@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-OpenSSL-Random-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), openssl-devel
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: openssl-devel
 
 %description
 This package contains the Crypt::OpenSSL::Random module.

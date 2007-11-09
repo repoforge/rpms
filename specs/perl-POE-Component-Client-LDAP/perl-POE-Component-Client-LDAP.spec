@@ -19,10 +19,17 @@ Source: http://www.cpan.org/modules/by-module/POE/POE-Component-Client-LDAP-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0, perl(Net::LDAP) >= 0.31, perl(Net::LDAP::ASN)
-BuildRequires: perl(Convert::ASN1), perl(POE), perl(POE::Filter::Stream)
-BuildRequires: perl(POE::Session), perl(POE::Kernel), perl(POE::Wheel::Null)
-BuildRequires: perl(POE::Wheel::ReadWrite), perl(POE::Wheel::SocketFactory)
+BuildRequires: perl >= 0:5.6.0
+BuildRequires: perl(Net::LDAP) >= 0.31
+BuildRequires: perl(Net::LDAP::ASN)
+BuildRequires: perl(Convert::ASN1)
+BuildRequires: perl(POE)
+BuildRequires: perl(POE::Filter::Stream)
+BuildRequires: perl(POE::Session)
+BuildRequires: perl(POE::Kernel)
+BuildRequires: perl(POE::Wheel::Null)
+BuildRequires: perl(POE::Wheel::ReadWrite)
+BuildRequires: perl(POE::Wheel::SocketFactory)
 BuildRequires: perl(POE::Driver::SysRW)
 
 %description

@@ -21,7 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), words
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: words
 
 %description
 This module provides a single command for generating random password

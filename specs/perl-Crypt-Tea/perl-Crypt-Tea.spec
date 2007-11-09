@@ -35,16 +35,13 @@ a browser. A wrapper executable 'tea' is included for command-line use.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	INSTALLDIRS="vendor" \
-	PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -60,9 +57,6 @@ a browser. A wrapper executable 'tea' is included for command-line use.
 %changelog
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 2.12-1
 - Updated to release 2.12.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.09-1.2
-- Rebuild for Fedora Core 5.
 
 * Mon Feb 21 2005 Dries Verachtert <dries@ulyssis.org> - 2.09-1
 - Update to release 2.09.

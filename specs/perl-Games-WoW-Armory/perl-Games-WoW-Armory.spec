@@ -6,16 +6,17 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Games-WoW-Armory
+%define real_version 0.000007
 
 Summary: Access to the WoW Armory
 Name: perl-Games-WoW-Armory
-Version: 0.0.3
+Version: 0.0.7
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Games-WoW-Armory/
 
-Source: http://search.cpan.org//CPAN/authors/id/F/FR/FRANCKC/Games-WoW-Armory-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Games/Games-WoW-Armory-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -39,16 +40,24 @@ Access to the WoW Armory.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Games::WoW::Armory*
-%{perl_vendorlib}/Games/WoW/Armory.pm
+%doc Changes MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/Games::WoW::Armory.3pm*
+%dir %{perl_vendorlib}/Games/
 %dir %{perl_vendorlib}/Games/WoW/
+#%{perl_vendorlib}/Games/WoW/Armory/
+%{perl_vendorlib}/Games/WoW/Armory.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.0.7-1
+- Updated to release 0.0.7.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.0.3-1
 - Initial package.

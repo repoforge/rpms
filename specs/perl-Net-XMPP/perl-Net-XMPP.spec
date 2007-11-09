@@ -32,9 +32,7 @@ talk to each other.  XMPP seeks to get rid of those barriers.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	INSTALLDIRS="vendor" \
-	PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -42,8 +40,7 @@ talk to each other.  XMPP seeks to get rid of those barriers.
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-                %{buildroot}%{perl_vendorarch}
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -57,9 +54,6 @@ talk to each other.  XMPP seeks to get rid of those barriers.
 %{perl_vendorlib}/Net/XMPP/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Jan  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Initial package.
 

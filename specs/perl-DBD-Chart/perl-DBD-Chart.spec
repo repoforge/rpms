@@ -19,7 +19,12 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DA/DARNOLD/DBD-Chart-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-DBI, perl-GD, gd-devel, perl-GD-Text-Util, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl-DBI
+BuildRequires: perl-GD
+BuildRequires: gd-devel
+BuildRequires: perl-GD-Text-Util
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 The DBD::Chart provides a DBI abstraction for rendering pie charts, bar

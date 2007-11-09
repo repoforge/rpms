@@ -32,7 +32,7 @@ server.
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-echo "N" | %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+echo "N" | %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}

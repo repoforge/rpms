@@ -21,7 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)-DBI, perl-DBD-Pg
+BuildRequires: perl(ExtUtils::MakeMaker)-DBI
+BuildRequires: perl-DBD-Pg
 
 %description
 DBIx::Recordset is a perl module for abstraction and simplification of

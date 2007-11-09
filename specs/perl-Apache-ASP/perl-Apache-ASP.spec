@@ -19,7 +19,10 @@ Source: http://www.cpan.org/modules/by-module/Apache/Apache-ASP-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.00503, perl(Digest::MD5), perl(MLDBM), perl(MLDBM::Sync)
+BuildRequires: perl >= 0:5.00503
+BuildRequires: perl(Digest::MD5)
+BuildRequires: perl(MLDBM)
+BuildRequires: perl(MLDBM::Sync)
 Requires: perl >= 0:5.00503, perl(Digest::MD5), perl(MLDBM), perl(MLDBM::Sync)
 #Requires: mod_perl
 

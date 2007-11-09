@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <gtk-perl-list$gnome,org>
+# Upstream: Torsten Schönfeld <kaffeetisch$gmx,de>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,18 +9,22 @@
 
 Summary: Perl wrappers for the GLib utility and object libraries
 Name: perl-Glib
-Version: 1.142
+Version: 1.161
 Release: 1
-License: LGPL
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Glib/
 
 Source: http://www.cpan.org/modules/by-module/Glib/Glib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 2:5.8.0, glib2-devel, perl(ExtUtils::Depends)
-BuildRequires: perl(ExtUtils::PkgConfig), perl(ExtUtils::MakeMaker)
-Requires: perl >= 2:5.8.0, glib2 >= 2.0.6
+BuildRequires: perl >= 2:5.8.0
+BuildRequires: glib2-devel
+BuildRequires: perl(ExtUtils::Depends)
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(ExtUtils::PkgConfig)
+Requires: glib2 >= 2.0.6
+Requires: perl >= 2:5.8.0
 
 %description
 perl-Glib provides perl access to GLib and GLib's GObject libraries.  GLib is
@@ -48,13 +52,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog LICENSE MANIFEST NEWS README* TODO
-%doc %{_mandir}/man?/*
+%doc AUTHORS ChangeLog LICENSE MANIFEST MANIFEST.SKIP META.yml NEWS README TODO copyright.pod
+%doc %{_mandir}/man3/Glib.3pm*
+%doc %{_mandir}/man3/Glib::*.3pm*
 %{perl_vendorarch}/Glib/
 %{perl_vendorarch}/Glib.pm
 %{perl_vendorarch}/auto/Glib/
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.161-1
+- Updated to release 1.161.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.142-1
 - Updated to release 1.142.
 

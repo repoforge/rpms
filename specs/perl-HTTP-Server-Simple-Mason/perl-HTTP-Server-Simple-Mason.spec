@@ -18,7 +18,8 @@ Source: http://www.cpan.org/modules/by-module/HTTP/HTTP-Server-Simple-Mason-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(HTML::Mason) >= 1.25
+BuildRequires: perl
+BuildRequires: perl(HTML::Mason) >= 1.25
 Buildrequires: perl(HTTP::Server::Simple) >= 0.04, perl(Hook::LexWrap)
 
 %description

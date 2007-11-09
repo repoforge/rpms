@@ -9,13 +9,13 @@
 
 Summary: Interface to Google Checkout
 Name: perl-Google-Checkout
-Version: 1.0.4
+Version: 1.1.1
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Google-Checkout/
 
-Source: http://search.cpan.org//CPAN/authors/id/D/DZ/DZHUO/Google-Checkout-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Google/Google-Checkout-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -39,15 +39,23 @@ Interface to Google Checkout.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Google::Checkout::*
-%{perl_vendorlib}/Google/
+%doc Changes MANIFEST README examples/
+%doc %{_mandir}/man3/Google::Checkout::*.3pm*
+%dir %{perl_vendorlib}/Google/
+%{perl_vendorlib}/Google/Checkout/
+#%{perl_vendorlib}/Google/Checkout.pm
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.1.1-1
+- Updated to release 1.1.1.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.0.4-1
 - Initial package.

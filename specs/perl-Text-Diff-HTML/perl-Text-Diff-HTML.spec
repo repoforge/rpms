@@ -19,7 +19,10 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DW/DWHEELER/Text-Diff-HTML-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-HTML-Parser, perl-Text-Diff, perl-Module-Build
+BuildRequires: perl
+BuildRequires: perl-HTML-Parser
+BuildRequires: perl-Text-Diff
+BuildRequires: perl-Module-Build
 
 %description
 An XHTML format for Text::Diff::Unified.

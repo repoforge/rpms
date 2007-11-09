@@ -1,32 +1,31 @@
 # $Id$
 # Authority: dag
+# Upstream: Michael Robinton <michael$bizsystems,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define rname Crypt-RSA
+%define real_name File-SafeDo
 
-Summary: Crypt-RSA module for perl
-Name: perl-Crypt-RSA
-Version: 1.58
+Summary: Safer do file for perl
+Name: perl-File-SafeDo
+Version: 0.11
 Release: 1
-License: distributable
+License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Crypt-RSA/
+URL: http://search.cpan.org/dist/File-SafeDo/
 
-Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-RSA-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/File/File-SafeDo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.00503
-BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl >= 0:5.00503
+BuildRequires: perl
 
 %description
-Crypt-RSA module for perl
+Safer do file for perl.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n File-SafeDO-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -44,15 +43,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc MANIFEST README
-%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorlib}/Crypt/
-%{perl_vendorlib}/Crypt/RSA/
-%{perl_vendorlib}/Crypt/RSA.pm
+%doc Changes MANIFEST README
+%doc %{_mandir}/man3/File::SafeDO.3pm*
+%dir %{perl_vendorlib}/File/
+#%{perl_vendorlib}/File/SafeDO/
+%{perl_vendorlib}/File/SafeDO.pm
 
 %changelog
-* Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.58-1
-- Updated to release 1.58.
-
-* Thu Jan 12 2006 Dag Wieers <dag@wieers.com> - 1.57-1
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.11-1
 - Initial package. (using DAR)

@@ -9,17 +9,21 @@
 
 Summary: Visualise data structures
 Name: perl-GraphViz-Data-Structure
-Version: 0.15
-Release: 1.2
+Version: 0.17
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GraphViz-Data-Structure/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MC/MCMAHON/GraphViz-Data-Structure-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/GraphViz/GraphViz-Data-Structure-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-GraphViz, graphviz, perl(ExtUtils::MakeMaker)
+BuildRequires: graphviz
+BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(GraphViz)
+Requires: perl >= 2:5.8.0
 
 %description
 GraphViz::Data::Structure produces simple and elegant visualizations
@@ -44,13 +48,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc BUGS Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/GraphViz::Data::Structure.3pm*
+%dir %{perl_vendorlib}/GraphViz/
+%dir %{perl_vendorlib}/GraphViz/Data/
+#%{perl_vendorlib}/GraphViz/Data/Structure/
 %{perl_vendorlib}/GraphViz/Data/Structure.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.15-1.2
-- Rebuild for Fedora Core 5.
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.17-1
+- Updated to release 0.17.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.15-1
 - Updated to release 0.15.

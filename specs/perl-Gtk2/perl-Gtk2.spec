@@ -9,7 +9,7 @@
 
 Summary: Perl interface to the 2.x series of the Gimp Toolkit library
 Name: perl-Gtk2
-Version: 1.146
+Version: 1.161
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,20 +47,24 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 ### Clean up docs
-find examples/ gtk-demo/ -type f -exec %{__chmod} a-x {} \;
+find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog LICENSE MANIFEST MANIFEST.SKIP META.yml NEWS README TODO copyright.pod examples/ gtk-demo/
-%doc %{_mandir}/man3/*.3pm*
+%doc AUTHORS ChangeLog LICENSE MANIFEST MANIFEST.SKIP META.yml NEWS README TODO copyright.pod examples/
+%doc %{_mandir}/man3/Gtk2.3pm*
+%doc %{_mandir}/man3/Gtk2::*.3pm*
+%{perl_vendorarch}/auto/Gtk2/
 %{perl_vendorarch}/Gtk2/
 %{perl_vendorarch}/Gtk2.pm
-%{perl_vendorarch}/auto/Gtk2/
 
 %changelog
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.161-1
+- Updated to release 1.161.
+
 * Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 1.146-1
 - Updated to release 1.146.
 - Disabled auto-requires for examples/ and gtk-demo/.
@@ -68,16 +72,13 @@ find examples/ gtk-demo/ -type f -exec %{__chmod} a-x {} \;
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.141-1
 - Updated to release 1.141.
 
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.102-1.2
-- Rebuild for Fedora Core 5.
-
 * Tue Dec 27 2005 Dries Verachtert <dries@ulyssis.org> - 1.102-1
 - Updated to release 1.102.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.101-1
 - Updated to release 1.101.
 
-* Tue Mar 08 2005 Dag Wieers <dag@wieers.com> - 1.080-1 - $Rev$
+* Tue Mar 08 2005 Dag Wieers <dag@wieers.com> - 1.080-1
 - Updated to release 1.080.
 
 * Sun Feb 13 2005 Dag Wieers <dag@wieers.com> - 1.062-1

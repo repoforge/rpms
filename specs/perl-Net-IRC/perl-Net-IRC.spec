@@ -32,7 +32,7 @@ protocol (RFC 1459).
 
 %build
 %{__perl} -pi -e 's|IO::Socket::INET6?|IO::Socket::INET6|g;' *.pm
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX=%{buildroot}%{_prefix}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -53,9 +53,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/IRC
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.75-2.2
-- Rebuild for Fedora Core 5.
-
 * Tue Jul 26 2005 Jima <jima@devel.mintygreen.net> - 0.75-2
 - IO::Socket::INET calls changed to IO::Socket::INET6 so IPV6 can be used.
 
