@@ -12,7 +12,7 @@ Source:         http://mips.edu.ms/evolution-rss-%{version}.tar.gz
 Requires:       evolution
 BuildRequires:  gettext-devel, evolution-devel, perl(XML::Parser)
 BuildRequires:  firefox-devel
-BuildRoot:      %{_tmppath}/%{name}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 RSS Evolution plugin enables evolution to read rss feeds.

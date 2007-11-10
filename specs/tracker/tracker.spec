@@ -10,7 +10,7 @@ Group:		Applications/System
 URL:		http://www.gnome.org/projects/tracker/index.html
 Source0:	http://www.gnome.org/~jamiemcc/tracker/%{name}-%{version}.tar.bz2
 Source1:	tracker-handler.py
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:	gmime-devel, poppler-devel, gettext
 BuildRequires:	gnome-desktop-devel, gamin-devel
 BuildRequires:	libexif-devel, libgsf-devel, gstreamer-devel

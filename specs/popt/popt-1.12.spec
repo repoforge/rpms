@@ -11,7 +11,7 @@ License: X Consortium
 Group: System Environment/Libraries
 Source: http://rpm5.org/files/popt/%{name}-%{version}.tar.gz
 BuildRequires: gettext
-BuildRoot: %{_tmppath}/%{name}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Popt is a C library for parsing command line parameters. Popt was

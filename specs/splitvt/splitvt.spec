@@ -11,7 +11,7 @@ URL: http://www.devolution.com/~slouken/projects/splitvt/
 
 Source: http://www.devolution.com/~slouken/projects/splitvt/splitvt-%{version}.tar.gz
 Patch: splitvt-1.6.5-config.patch
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 This program takes any VT100 terminal window and splits it into two shell

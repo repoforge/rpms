@@ -11,7 +11,7 @@ URL: http://www.viewvc.org/
 
 Source0: http://www.viewvc.org/viewvc-%{version}.tar.gz
 Patch0: viewvc-tools.patch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: python >= 1.5.2

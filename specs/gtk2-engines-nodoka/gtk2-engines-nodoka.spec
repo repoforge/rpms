@@ -8,7 +8,7 @@ Release:        14.3
 License:        GPL-2
 URL:            https://hosted.fedoraproject.org/projects/nodoka/wiki
 Source:         %{name}_%{version}-1nano.tar.gz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires:  gtk2-devel
 BuildRequires:  sed

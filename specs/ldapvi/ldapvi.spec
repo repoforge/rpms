@@ -11,7 +11,7 @@ Group: Applications/Editors
 URL: http://www.lichteblau.com/ldapvi/
 
 Source: http://www.lichteblau.com/download/ldapvi-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildrequires: openldap-devel >= 2.2, ncurses-devel, readline-devel, pkgconfig, openssl-devel
 Requires: openldap-clients >= 2.2, ncurses, openssl

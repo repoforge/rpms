@@ -12,7 +12,7 @@ Group: Applications/Internet
 URL: http://www.geocities.com/majormms/
 
 Source: http://www.geocities.com/majormms/mms_client-%{version}.tar.gz
-BuildRoot: %{_builddir}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 mms_client is a tool to download MMS streams to play them locally.

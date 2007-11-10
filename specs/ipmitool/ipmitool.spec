@@ -12,7 +12,7 @@ Group: System Environment/Kernel
 URL: http://ipmitool.sourceforge.net/
 
 Source: http://dl.sf.net/ipmitool/ipmitool-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 ipmitool is a utility for interfacing with devices that support the

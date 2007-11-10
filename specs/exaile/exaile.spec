@@ -10,7 +10,7 @@ License:	GPL
 URL:		http://www.exaile.org
 Source0:	http://www.exaile.org/files/exaile_%{version}.tar.gz
 Source1:	exaile-launch_script.in
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:	python-devel
 BuildRequires:	pygtk2-devel
 BuildRequires:	gtk2-devel

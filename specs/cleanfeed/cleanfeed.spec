@@ -11,7 +11,7 @@ Group: System Environment/Daemons
 Source: ftp://ftp.exit109.com/users/jeremy/cleanfeed-%{version}.tar.gz
 Patch0: cleanfeed-0.95.7b-redhat.patch
 Patch1: cleanfeed-0.95.7b-ro.patch
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 

@@ -10,7 +10,7 @@ License:        GPL
 URL:            http://claws-mail.org
 Source0:        http://dl.sf.net/sylpheed-claws/%{name}-%{version}.tar.bz2
 Source1:        claws-mail.desktop
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:  flex, bison
 BuildRequires:  glib2-devel >= 2.6.2
 BuildRequires:  gtk2-devel >= 2.6.2

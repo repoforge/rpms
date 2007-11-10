@@ -7,7 +7,7 @@
 
 Summary: DNS toolkit for Python
 Name: python-dns
-Version: 1.4.0
+Version: 1.5.0
 Release: 1
 License: BSD-like
 Group: Development/Languages
@@ -53,5 +53,8 @@ find examples/ -type f | xargs %{__chmod} a-x
 %ghost %{python_sitelib}/dns/rdtypes/*/*.pyo
 
 %changelog
+* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.5.0-1
+- Updated to release 1.5.0.
+
 * Mon Aug 14 2006 Dag Wieers <dag@wieers.com> - 1.4.0-1
 - Initial package. (using DAR)

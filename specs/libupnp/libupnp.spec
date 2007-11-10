@@ -10,7 +10,7 @@ Group: System Environment/Libraries
 URL: http://pupnp.sourceforge.net/
 
 Source: http://dl.sf.net/pupnp/libupnp-%{version}.tar.bz2
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 The Universal Plug and Play (UPnP) SDK for Linux provides 

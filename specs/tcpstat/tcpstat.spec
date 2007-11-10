@@ -10,7 +10,7 @@ Group: Applications/Internet
 URL: http://www.frenchfries.net/paul/tcpstat/
 
 Source: http://www.frenchfries.net/paul/tcpstat/tcpstat-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 tcpstat reports certain network interface statistics much like vmstat does

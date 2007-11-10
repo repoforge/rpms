@@ -68,7 +68,7 @@ BuildRequires: bzip2-devel >= 0.9.0c-2
 BuildRequires: perl >= 2:5.8.0
 %endif
 
-BuildRoot: %{_tmppath}/%{name}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 The RPM Package Manager (RPM) is a powerful command line driven

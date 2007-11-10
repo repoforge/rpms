@@ -38,7 +38,7 @@ Patch126: dhcp-3.0.1-host_dereference.patch
 Patch127: dhcp-3.0.1-restrict-unconfigured-IF.patch
 Patch128: dhcp-3.0.1-check-empty-new-routers.patch
 Patch130: dhcp-3.0.3-ldap-patch
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: groff
 #BuildRequires: gcc >= 3.4.3

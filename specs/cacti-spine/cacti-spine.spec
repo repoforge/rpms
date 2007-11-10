@@ -39,8 +39,7 @@ to achieve excellent performance.
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure
 
 %build
-%{__aclocal} --force
-%{__libtoolize} --force --copy
+autoreconf --force --install --symlink
 %configure
 %{__make} %{?_smp_mflags}
 

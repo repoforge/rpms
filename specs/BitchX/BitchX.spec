@@ -11,7 +11,7 @@ URL: http://www.bitchx.org/
 Source: http://bitchx.org/files/source/ircii-pana-%{version}-final.tar.gz
 Patch0: ircii-pana-1.1-final-64bit.patch
 Patch1: ircii-pana-1.1-final-fixes.patch
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 #BuildRequires: gtk+-devel >= 1.2.8, imlib-devel, gnome-libs-devel
 BuildRequires: openssl-devel, ncurses-devel
 

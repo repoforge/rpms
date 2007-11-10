@@ -11,7 +11,7 @@ Group: Applications/Internet
 URL: http://plugins.guifications.org/trac/
 
 Source: http://downloads.guifications.org/plugins/Plugin%20Pack%20Archive/purple-plugin_pack-%{real_version}.tar.bz2
-BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig, libtool, gettext, xmms-devel, pidgin-devel, gtk2-devel
 Obsoletes: gaim-plugin_pack <= %{version}-%{release}

@@ -12,7 +12,7 @@ Group: System Environment/Base
 URL: http://www.etallen.com/cpuid.html
 
 Source: http://www.etallen.com/cpuid/cpuid-%{real_version}.src.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 cpuid dumps detailed information about the CPU(s) gathered from the CPUID 

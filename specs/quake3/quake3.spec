@@ -24,7 +24,7 @@ URL: http://www.icculus.org/quake3/
 Source0: %{name}-%{version}-rc2.tar.bz2
 Source1: quake3.png
 Patch0: quake3-1.34-nostrip.patch
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, openal-devel, nasm, subversion
 %{?_with_modxorg:BuildRequires: libXt-devel, libGL-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}

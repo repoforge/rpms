@@ -10,7 +10,7 @@ Group: Development/Libraries
 URL: http://www.appinf.com/poco/
 
 Source: http://dl.sf.net/poco/poco-%{version}-ssl.tar.bz2
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel
 

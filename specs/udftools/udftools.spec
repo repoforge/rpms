@@ -13,7 +13,7 @@ Source: http://dl.sf.net/linux-udf/udftools-%{version}.tar.gz
 Patch0: udftools-1.0.0b3-pktsetup-chardev.patch
 Patch1: udftools-1.0.0b3-mkudffs-bigendian.patch
 Patch2: udftools-1.0.0b3-wrudf-gcc4.patch
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: readline-devel
 
 %description

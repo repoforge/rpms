@@ -16,7 +16,7 @@ Group: Applications/Internet
 URL: http://new.remote-exploit.org/index.php/Codes_main
 
 Source: http://www.remote-exploit.org/images/5/5a/Cowpatty-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, libpcap
 %{?_with_libpcapdevel:BuildRequires:libpcap-devel}

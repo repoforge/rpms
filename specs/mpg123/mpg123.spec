@@ -45,7 +45,7 @@
 
 Summary: MPEG audio player
 Name: mpg123
-Version: 0.66
+Version: 0.68
 Release: 1
 License: GPL/LGPL
 Group: Applications/Multimedia
@@ -98,6 +98,9 @@ Available rpmbuild rebuild option :
 
 
 %changelog
+* Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 0.68-1
+- Updated to release 0.68.
+
 * Mon Jun 04 2007 Dag Wieers <dag@wieers.com> - 0.66-1
 - Updated to release 0.66.
 

@@ -18,6 +18,7 @@ URL: http://tcpick.sourceforge.net/
 
 Source: http://dl.sf.net/tcpick/tcpick-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: libpcap
 %{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 

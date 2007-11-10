@@ -12,7 +12,7 @@ URL: http://www.tux.org/pub/tux/niemi/unixbench/
 Source: http://www.tux.org/pub/tux/niemi/unixbench/unixbench-%{version}.tgz
 Patch0: unixbench-4.0.1-altpackage.patch
 Patch1: unixbench-4.0.1-buildflags.patch
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: gcc
 

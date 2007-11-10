@@ -10,7 +10,7 @@ Group: Applications/System
 URL: http://ncrypt.sourceforge.net/
 
 Source: http://dl.sf.net/sourceforge/ncrypt/ncrypt-%{version}.tgz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-rpmbuildroot
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc, make
 
