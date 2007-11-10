@@ -1,5 +1,5 @@
 # $Id$
-# authority: matthias
+# Authority: matthias
 # ExclusiveDist: fc4 fc5
 
 # Stuff to be implemented externally :
