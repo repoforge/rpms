@@ -3,20 +3,21 @@
 
 Summary:	A music player
 Name:		exaile
-Version:	0.2.10
-Release:	2
+Version:	0.2.11.1
+Release:	1
 Group:		Applications/Multimedia
 License:	GPL
 URL:		http://www.exaile.org
 Source0:	http://www.exaile.org/files/exaile_%{version}.tar.gz
-Source1:	exaile-launch_script.in
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Patch0:		exaile-makefile.patch
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:	python-devel
 BuildRequires:	pygtk2-devel
 BuildRequires:	gtk2-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	pkgconfig
 BuildRequires:	gettext intltool perl(XML::Parser)
+BuildRequires:	firefox-devel
 
 Requires:	python-mutagen >= 1.8
 Requires:	dbus-python
@@ -28,11 +29,6 @@ Requires:	gnome-python2-gtkmozembed
 Requires:	python-CDDB
 Requires:	python-sexy
 Requires:	gamin-python
-
-#%if "%fedora" > "6"
-# for iPod device support
-#Requires:	python-gpod
-#%endif
 
 %ifarch x86_64 ia64 ppc64 s390x
 %define gre_conf %{_sysconfdir}/gre.d/gre64.conf
@@ -55,11 +51,10 @@ on your iPod to last.fm
 
 %prep
 %setup -q -n %{name}_%{version}
+%patch0 -p0 -b .fix
 
-#Fix typo in the desktop file
-sed -i 's/MimeType=M/M/' exaile.desktop 
 # remove shebangs from all files as none should be executable scripts
-sed -e '/^#!\//,1 d' -i plugins/*.py exaile.py
+sed -e '/^#!\//,1 d' -i plugins/*.py xl/plugins/*.py xl/*.py exaile.py
 
 %build
 make #%{?_smp_mflags}
@@ -67,19 +62,14 @@ make #%{?_smp_mflags}
 %install
 rm -rf %{buildroot}
 
-make install PREFIX=%{_prefix} LIBDIR=%{_libdir} DESTDIR=%{buildroot}
+make install PREFIX=%{_prefix} LIBDIR=%{_libdir}	\
+	FIREFOX=%{firefox_lib} DESTDIR=%{buildroot}
 
 desktop-file-install --delete-original			\
 	--vendor="fedora"				\
-	--remove-category=Application			\
-	--remove-category=AudioPlayer			\
-	--add-category=Audio				\
 	--dir=%{buildroot}%{_datadir}/applications	\
 	%{buildroot}%{_datadir}/applications/%{name}.desktop
 
-rm -rf %{buildroot}%{_bindir}/exaile
-sed 's#@DATADIR@#'%{_datadir}'#g;s#@GRE_CONF_PATH@#'%{gre_conf}'#g'	\
-	< %{SOURCE1} > %{buildroot}%{_bindir}/exaile
 chmod 755 %{buildroot}%{_bindir}/exaile
 
 chmod 755 %{buildroot}%{_libdir}/exaile/mmkeys.so
@@ -93,11 +83,15 @@ rm -rf %{buildroot}
 %defattr(-,root,root,0755)
 %doc changelog COPYING TODO
 %{_bindir}/exaile
-%{_libdir}/exaile/
+%{_libdir}/exaile
 %{_datadir}/applications/*.desktop
 %{_datadir}/pixmaps/exaile.png
 %{_datadir}/exaile/
 %{_mandir}/man1/exaile*.*
+
+%changelog
+* Sat Nov 10 2007 Heiko Adams <info@fedora-blog.de> - 0.2.11.1-1
+- version update
 
 %changelog
 * Sun Jul 22 2007 Heiko Adams <info@fedora-blog.de> - 0.2.10-2
