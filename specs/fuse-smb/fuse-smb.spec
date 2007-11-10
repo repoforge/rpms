@@ -12,7 +12,7 @@ Group: System Environment/Kernel
 URL: http://www.ricardis.tudelft.nl/~vincent/fusesmb/
 
 Source: http://www.ricardis.tudelft.nl/~vincent/fusesmb/download/fusesmb-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: fuse-devel >= 2.3, samba-client >= 3.0
 

@@ -15,7 +15,7 @@ URL:            http://live.gnome.org/DeskbarApplet
 Source0:        http://ftp.gnome.org/pub/GNOME/sources/deskbar-applet/2.16/%{name}-%{version}.tar.bz2
 Source1:        fedorabz.py
 Source2:        fedorabz.png
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:  gtk2-devel python-devel pygtk2-devel gnome-python2-extras
 BuildRequires:  gettext evolution-data-server-devel gnome-desktop-devel
 BuildRequires:  libSM-devel gnome-python2-applet desktop-file-utils

@@ -10,7 +10,7 @@ Group: Applications/Internet
 URL: http://pyropus.ca/software/getmail/
 
 Source: http://pyropus.ca/software/getmail/old-versions/getmail-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-devel >= 2.3.3
 Requires: python >= 2.3.3

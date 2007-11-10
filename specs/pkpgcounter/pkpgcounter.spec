@@ -12,7 +12,7 @@ Group: System Environment/Libraries
 URL: http://www.pykota.com/software/pkpgcounter/
 
 Source: http://www.pykota.com/software/pkpgcounter/download/tarballs/pkpgcounter-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: python-devel >= 2.2
