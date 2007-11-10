@@ -14,7 +14,7 @@ Group: System Environment/Libraries
 URL: http://www.dalkescientific.com/Python/PyRSS2Gen.html
 
 Source: http://www.dalkescientific.com/Python/PyRSS2Gen-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: python-devel >= 2.3

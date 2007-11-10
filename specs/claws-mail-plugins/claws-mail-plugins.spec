@@ -27,7 +27,7 @@ Group:          Applications/Internet
 License:        GPL
 URL:            http://claws-mail.org
 Source0:        http://dl.sf.net/sylpheed-claws/claws-mail-extra-plugins-%{version}.tar.bz2
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires:  claws-mail-devel >= %{version}
 BuildRequires:  glib2-devel

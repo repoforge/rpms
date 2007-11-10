@@ -12,7 +12,7 @@ URL:		http://tango-project.org/
 
 Source0:	http://tango-project.org/releases/%{name}-%{version}.tar.gz
 BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires:	icon-naming-utils >= 0.7.2
 BuildRequires:	ImageMagick-devel >= 5.5.7

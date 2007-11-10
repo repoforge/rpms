@@ -12,7 +12,7 @@ Group: Development/Libraries
 URL: http://proj-clhep.web.cern.ch/proj-clhep/
 
 Source: http://proj-clhep.web.cern.ch/proj-clhep/export/share/CLHEP/1.8.2.1/clhep-%{version}.tgz
-BuildRoot: %{_builddir}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildrequires: gcc-c++
 Obsoletes: CLHEP <= %{version}

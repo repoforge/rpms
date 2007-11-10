@@ -1,5 +1,5 @@
 # $Id$
-# authority: matthias
+# Authority: matthias
 # Dist: nodist
 
 %define snapshot 20060521

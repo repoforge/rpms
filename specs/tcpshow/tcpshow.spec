@@ -12,7 +12,7 @@ URL: http://www.cs.berkeley.edu/~daw/mike/
 Source0: http://www.cs.berkeley.edu/~daw/mike/tcpshow.c
 Source1: http://www.cs.berkeley.edu/~daw/mike/tcpshow.1
 Patch0: tcpshow.patch
-BuildRoot: %{_tmppath}/%{name}-%{release}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: tcpdump
 

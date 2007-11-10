@@ -1,5 +1,5 @@
 # $Id$
-# authority: matthias
+# Authority: matthias
 # Dist: nodist
 
 %define kmod_name ipw3945

@@ -10,7 +10,7 @@ Group: Development/Libraries
 URL: http://arg0.net/wiki/rlog/
 
 Source: http://arg0.net/users/vgough/download/rlog-%{version}.tgz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: doxygen, tetex-latex
 
