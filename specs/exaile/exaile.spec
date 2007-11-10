@@ -93,7 +93,6 @@ rm -rf %{buildroot}
 * Sat Nov 10 2007 Heiko Adams <info@fedora-blog.de> - 0.2.11.1-1
 - version update
 
-%changelog
 * Sun Jul 22 2007 Heiko Adams <info@fedora-blog.de> - 0.2.10-2
 - Rebuild for rpmforge
 
