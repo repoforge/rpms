@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Language-Functional/
 
-Source: http://search.cpan.org/CPAN/authors/id/L/LB/LBROCARD/Language-Functional-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Language/Language-Functional-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

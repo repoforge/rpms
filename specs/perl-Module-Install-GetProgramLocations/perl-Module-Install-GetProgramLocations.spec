@@ -15,7 +15,7 @@ License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Install-GetProgramLocations/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCOPPIT/Module-Install-GetProgramLocations-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Module/Module-Install-GetProgramLocations-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

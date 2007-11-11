@@ -20,7 +20,7 @@ URL: http://search.cpan.org/dist/libapreq/
 
 #The version at cpan is very old
 #Source: http://www.cpan.org/modules/by-module/libapreq/libapreq-%{version}.tar.gz
-Source: http://apache.belnet.be/httpd/libapreq/libapreq2-%{real_version}-dev.tar.gz
+Source: http://www.cpan.org/authors/id/S/ST/STAS/libapreq-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

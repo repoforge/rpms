@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Set-NestedGroups/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AB/ABARCLAY/Set-NestedGroups-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Set/Set-NestedGroups-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

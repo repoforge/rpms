@@ -14,7 +14,7 @@ License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/TimeDate/
 
-Source: http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/TimeDate-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/G/GB/GBARR/TimeDate-%{version}.tar.gz
 #Source: http://www.cpan.org/modules/by-module/TimeDate/TimeDate-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

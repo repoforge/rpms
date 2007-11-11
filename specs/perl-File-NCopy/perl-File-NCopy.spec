@@ -15,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-NCopy/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHORNY/File-NCopy-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/File/File-NCopy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

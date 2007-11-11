@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Proc-Background/
 
-Source: http://search.cpan.org/CPAN/authors/id/B/BZ/BZAJAC/Proc-Background-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Proc/Proc-Background-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

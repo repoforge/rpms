@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-TBone/
 
-Source: http://search.cpan.org/CPAN/authors/id/E/ER/ERYQ/ExtUtils-TBone-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/ExtUtils/ExtUtils-TBone-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

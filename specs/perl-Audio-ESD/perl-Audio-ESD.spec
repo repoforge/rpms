@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Audio-ESD/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DJ/DJHD/Audio-ESD-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Audio/Audio-ESD-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

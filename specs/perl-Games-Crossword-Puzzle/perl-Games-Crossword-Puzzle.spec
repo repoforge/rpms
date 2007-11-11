@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Games-Crossword-Puzzle/
 
-Source: http://search.cpan.org//CPAN/authors/id/R/RJ/RJBS/Games-Crossword-Puzzle-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Games/Games-Crossword-Puzzle-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

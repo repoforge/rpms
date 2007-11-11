@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MathML-Entities/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DI/DISTLER/MathML-Entities-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/MathML/MathML-Entities-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

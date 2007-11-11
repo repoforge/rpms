@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/LWP-Authen-Wsse/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AU/AUTRIJUS/LWP-Authen-Wsse-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/LWP/LWP-Authen-Wsse-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

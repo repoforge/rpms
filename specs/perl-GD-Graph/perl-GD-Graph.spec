@@ -14,7 +14,7 @@ License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GDGraph/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MV/MVERB/GDGraph-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/GD/GDGraph-%{version}.tar.gz
 #Source: http://www.cpan.org/modules/by-module/GDGraph/GDGraph-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

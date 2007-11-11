@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Lite-XMMP/
 
-Source: http://search.cpan.org/CPAN/authors/id/E/EY/EYCK/Net-Lite-XMMP-%{version}.tgz
+Source: http://www.cpan.org/modules/by-module/Net/Net-Lite-XMMP-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

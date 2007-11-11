@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Alias/
 
-Source: http://search.cpan.org/CPAN/authors/id/G/GS/GSAR/Alias-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Alias/Alias-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

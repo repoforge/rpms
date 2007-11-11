@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Filesys-DiskFree/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AB/ABARCLAY/Filesys-DiskFree-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Filesys/Filesys-DiskFree-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Getopt-ExPar/
 
-Source: http://search.cpan.org/CPAN/authors/id/H/HL/HLHAMILT/Getopt-ExPar-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Getopt/Getopt-ExPar-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

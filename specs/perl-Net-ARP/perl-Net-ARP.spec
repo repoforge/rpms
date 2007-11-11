@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-ARP/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CR/CRAZYDJ/Net-ARP-%{version}.tgz
+Source: http://www.cpan.org/modules/by-module/Net/Net-ARP-%{version}.1.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

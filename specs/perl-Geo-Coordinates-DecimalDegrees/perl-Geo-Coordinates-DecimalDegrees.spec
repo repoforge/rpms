@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-Coordinates-DecimalDegrees/
 
-Source: http://search.cpan.org//CPAN/authors/id/W/WA/WALTMAN/Geo-Coordinates-DecimalDegrees-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Geo/Geo-Coordinates-DecimalDegrees-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

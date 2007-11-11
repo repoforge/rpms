@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Yahoo-Movies/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/ST/STEPANOV/WWW-Yahoo-Movies-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/WWW/WWW-Yahoo-Movies-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

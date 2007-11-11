@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Template-Simple/
 
-Source: http://search.cpan.org//CPAN/authors/id/B/BU/BURAK/Text-Template-Simple-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Text/Text-Template-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

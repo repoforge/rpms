@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-Checker/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DL/DLOWE/String-Checker-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/String/String-Checker-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

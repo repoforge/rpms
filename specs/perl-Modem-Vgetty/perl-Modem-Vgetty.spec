@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Modem-Vgetty/
 
-Source: http://search.cpan.org/CPAN/authors/id/Y/YE/YENYA/Modem-Vgetty-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Modem/Modem-Vgetty-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

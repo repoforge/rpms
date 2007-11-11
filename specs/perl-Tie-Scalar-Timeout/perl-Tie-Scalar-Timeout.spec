@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-Scalar-Timeout/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MA/MARCEL/Tie-Scalar-Timeout-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Tie/Tie-Scalar-Timeout-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Wikipedia/
 
-Source: http://search.cpan.org//CPAN/authors/id/B/BR/BRICAS/WWW-Wikipedia-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/WWW/WWW-Wikipedia-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

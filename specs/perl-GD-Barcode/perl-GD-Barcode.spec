@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GD-Barcode/
 
-Source: http://search.cpan.org/CPAN/authors/id/K/KW/KWITKNR/GD-Barcode-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/GD/GD-Barcode-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

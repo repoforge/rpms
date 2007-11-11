@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Multimethods/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCONWAY/Class-Multimethods-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Class/Class-Multimethods-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

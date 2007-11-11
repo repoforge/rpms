@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lemonldap-NG-Manager/
 
-Source: http://search.cpan.org//CPAN/authors/id/G/GU/GUIMARD/Lemonldap-NG-Manager-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Lemonldap/Lemonldap-NG-Manager-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

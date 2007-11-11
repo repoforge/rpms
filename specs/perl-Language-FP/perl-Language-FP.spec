@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Language-FP/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SE/SEANO/Language-FP-%{version}.tgz
+Source: http://www.cpan.org/modules/by-module/Language/Language-FP-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-Coordinates-VandH/
 
-Source: http://search.cpan.org/CPAN/authors/id/P/PT/PTIMMINS/Geo-Coordinates-VandH-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Geo/Geo-Coordinates-VandH-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

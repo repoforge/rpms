@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Factory/
 
-Source: http://search.cpan.org/CPAN/authors/id/P/PH/PHRED/Class-Factory-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Class/Class-Factory-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

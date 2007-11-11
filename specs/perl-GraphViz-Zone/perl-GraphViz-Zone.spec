@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GraphViz-Zone/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHRIS/GraphViz-Zone-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/GraphViz/GraphViz-Zone-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

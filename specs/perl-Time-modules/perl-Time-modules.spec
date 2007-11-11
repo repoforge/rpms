@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Time-modules/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MU/MUIR/modules/Time-modules-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Time/Time-modules-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

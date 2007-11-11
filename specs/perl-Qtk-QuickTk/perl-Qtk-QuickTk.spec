@@ -16,7 +16,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Qtk-QuickTk/
 
-Source: http://www.cpan.org/authors/id/J/JN/JNK/Qtk-QuickTk-%{real_version}.tar.gz
+Source: http://www.cpan.org/authors/id/J/JN/JNK/Qtk-QuickTk-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

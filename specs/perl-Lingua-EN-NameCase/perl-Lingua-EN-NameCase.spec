@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-EN-NameCase/
 
-Source: http://search.cpan.org//CPAN/authors/id/S/SU/SUMMER/Lingua-EN-NameCase-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Lingua/Lingua-EN-NameCase-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

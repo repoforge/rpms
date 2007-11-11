@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-GMP/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHIPT/Math-GMP-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Math/Math-GMP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

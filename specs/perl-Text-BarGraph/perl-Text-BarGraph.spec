@@ -14,7 +14,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://www.robobunny.com/projects/bargraph
 
-Source: http://www.robobunny.com/projects/bargraph/Text-BarGraph.tar.gz
+Source: http://www.cpan.org/modules/by-module/Text/Text-BarGraph-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

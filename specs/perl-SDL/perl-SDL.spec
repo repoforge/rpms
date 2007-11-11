@@ -40,7 +40,7 @@ Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SDL_Perl/
 #URL: http://sdl.perl.org/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DG/DGOEHRIG/SDL_Perl-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/D/DG/DGOEHRIG/SDL_Perl-%{version}.tar.gz
 Source10: filter-depends.sh
 Patch0: http://ftp.debian.org/debian/pool/main/s/sdlperl/sdlperl_2.1.2-1.diff.gz
 Patch1: perl-SDL-no-mixertest.patch

@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AsciiDB-TagFile/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JO/JOSERODR/AsciiDB-TagFile-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/AsciiDB/AsciiDB-TagFile-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Flock/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MU/MUIR/modules/File-Flock-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/File/File-Flock-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

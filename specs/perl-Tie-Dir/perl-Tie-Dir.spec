@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-Dir/
 
-Source: http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/Tie-Dir-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Tie/Tie-Dir-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

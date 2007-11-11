@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SHA256/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DI/DIDO/SHA256-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/D/DI/DIDO/SHA256-%{version}b.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

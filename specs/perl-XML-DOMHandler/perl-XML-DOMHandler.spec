@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-DOMHandler/
 
-Source: http://search.cpan.org/CPAN/authors/id/E/ER/ERIKRAY/XML-DOMHandler-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/XML/XML-DOMHandler-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

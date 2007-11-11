@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/NetServer-SMTP/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHSTROSS/NetServer-SMTP-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/NetServer/NetServer-SMTP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

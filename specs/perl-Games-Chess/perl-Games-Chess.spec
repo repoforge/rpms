@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Games-Chess/
 
-Source: http://search.cpan.org/CPAN/authors/id/G/GD/GDR/Games-Chess-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Games/Games-Chess-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

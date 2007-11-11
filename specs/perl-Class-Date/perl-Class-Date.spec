@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Date/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DL/DLUX/Class-Date-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Class/Class-Date-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

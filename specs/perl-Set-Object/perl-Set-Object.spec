@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Set-Object/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SA/SAMV/Set-Object-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Set/Set-Object-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

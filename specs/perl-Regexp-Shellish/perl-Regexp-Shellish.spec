@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Regexp-Shellish/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RB/RBS/Regexp-Shellish-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Regexp/Regexp-Shellish-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

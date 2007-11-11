@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-WWW-Selenium/
 
-Source: http://search.cpan.org//CPAN/authors/id/L/LU/LUKEC/Test-WWW-Selenium-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Test/Test-WWW-Selenium-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Async-Group/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DD/DDUMONT/Async-Group-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Async/Async-Group-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

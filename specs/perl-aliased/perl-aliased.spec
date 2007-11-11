@@ -15,7 +15,7 @@ Group: Applications/CPAN
 URL: http://search.cpan.org/dist/aliased/
 
 Source: http://www.cpan.org/modules/by-module/aliased/aliased-%{version}.tar.gz
-#Source: http://www.cpan.org/authors/id/O/OV/OVID/aliased-0.21.tar.gz
+#Source: http://www.cpan.org/authors/id/O/OV/OVID/aliased-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Boost-Graph/
 
-Source: http://search.cpan.org//CPAN/authors/id/D/DB/DBURDICK/BoostGraph/Boost-Graph-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Boost/Boost-Graph-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: boost-devel

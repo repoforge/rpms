@@ -15,7 +15,7 @@ License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Grove/
 
-Source: http://www.cpan.org/modules/by-module/XML/XML-Grove-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/XML/XML-Grove-%{version}alpha.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

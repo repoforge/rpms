@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-WeT/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JS/JSMITH/CGI-WeT-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/CGI/CGI-WeT-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

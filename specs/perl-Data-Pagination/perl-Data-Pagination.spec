@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Pagination/
 
-Source: http://search.cpan.org//CPAN/authors/id/O/ON/ONDR/Data-Pagination-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Data/Data-Pagination-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

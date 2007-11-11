@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Perlinfo/
 
-Source: http://search.cpan.org//CPAN/authors/id/A/AC/ACCARDO/HTML-Perlinfo-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/HTML/HTML-Perlinfo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-RegexpHash/
 
-Source: http://ftp.cpan.org/pub/CPAN/modules/by-module/Tie/Tie-RegexpHash-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Tie/Tie-RegexpHash-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

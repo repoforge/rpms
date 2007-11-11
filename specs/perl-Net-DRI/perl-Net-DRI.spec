@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DRI/
 
-Source: http://search.cpan.org/CPAN/authors/id/P/PM/PMEVZEK/Net-DRI-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/Net-DRI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

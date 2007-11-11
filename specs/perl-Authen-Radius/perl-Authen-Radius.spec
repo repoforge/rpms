@@ -16,7 +16,7 @@ Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Authen-Radius/
 
 #Source: http://www.cpan.org/modules/by-module/Authen/Authen-Radius-%{version}.tar.gz
-Source: http://www.cpan.org/authors/id/M/MA/MANOWAR/RadiusPerl-0.13.tar.gz
+Source: http://www.cpan.org/modules/by-module/Authen/RadiusPerl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

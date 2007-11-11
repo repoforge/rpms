@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-Session-SharedMem/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SI/SIMONW/Apache-Session-SharedMem-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Apache/Apache-Session-SharedMem-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

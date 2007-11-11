@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/JavaScript-RPC/
 
-Source: http://search.cpan.org//CPAN/authors/id/B/BR/BRICAS/JavaScript-RPC-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/JavaScript/JavaScript-RPC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Font-GlyphNames/
 
-Source: http://search.cpan.org//CPAN/authors/id/S/SP/SPROUT/Font-GlyphNames-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Font/Font-GlyphNames-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-IndexParser/
 
-Source: http://search.cpan.org//CPAN/authors/id/J/JE/JEB/WWW-IndexParser-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/WWW/WWW-IndexParser-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

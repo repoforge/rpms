@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Regexp-Ignore/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RA/RANI/Regexp-Ignore-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Regexp/Regexp-Ignore-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

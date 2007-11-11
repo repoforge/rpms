@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-ECB/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AP/APPEL/Crypt-ECB-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-ECB-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

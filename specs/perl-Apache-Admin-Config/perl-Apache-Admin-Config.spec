@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-Admin-Config/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RS/RSOLIV/Apache-Admin-Config-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Apache/Apache-Admin-Config-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

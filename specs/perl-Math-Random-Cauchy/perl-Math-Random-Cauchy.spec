@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Random-Cauchy/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SM/SMUELLER/Math-Random-Cauchy-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Math/Math-Random-Cauchy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

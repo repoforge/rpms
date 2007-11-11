@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPC-ChildSafe/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DS/DSB/IPC-ChildSafe-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/IPC/IPC-ChildSafe-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

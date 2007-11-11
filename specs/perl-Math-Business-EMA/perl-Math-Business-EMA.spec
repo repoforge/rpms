@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Business-EMA/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JE/JETTERO/Math-Business-EMA-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Math/Math-Business-EMA-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Template-Expr/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SA/SAMTREGAR/HTML-Template-Expr-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/HTML/HTML-Template-Expr-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

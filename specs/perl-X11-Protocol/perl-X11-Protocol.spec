@@ -15,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/X11-Protocol/
 
-Source: http://www.cpan.org/modules/by-module/X11/X11-Protocol-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/X11/X11-Protocol-0.56.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

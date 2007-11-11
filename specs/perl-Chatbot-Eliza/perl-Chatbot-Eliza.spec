@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Chatbot-Eliza/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JN/JNOLAN/Chatbot-Eliza-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Chatbot/Chatbot-Eliza-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

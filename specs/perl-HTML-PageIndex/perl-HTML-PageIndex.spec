@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-PageIndex/
 
-Source: http://search.cpan.org/CPAN/authors/id/K/KM/KMELTZ/HTML-PageIndex-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/HTML/HTML-PageIndex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

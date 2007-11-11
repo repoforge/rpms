@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-EN-NameParse/
 
-Source: http://search.cpan.org/CPAN/authors/id/K/KI/KIMRYAN/Lingua-EN-NameParse-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Lingua/Lingua-EN-NameParse-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

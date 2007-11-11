@@ -20,10 +20,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl-XML-Parser
-BuildRequires: perl-Crypt-SSLeay
-BuildRequires: perl-Compress-Zlib
+BuildRequires: perl(Crypt::SSLeay)
+BuildRequires: perl(Compress::Zlib)
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(XML::Parser)
 
 %description
 SOAP::Lite for Perl is a collection of Perl modules which provides a simple
@@ -68,9 +68,6 @@ on client and server side.
 %changelog
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.69-1
 - Updated to release 0.69.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.67-1.2
-- Rebuild for Fedora Core 5.
 
 * Mon Jan 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.67-1
 - Updated to release 0.67.

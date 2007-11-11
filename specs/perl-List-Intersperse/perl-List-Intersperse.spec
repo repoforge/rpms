@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/List-Intersperse/
 
-Source: http://search.cpan.org/CPAN/authors/id/T/TA/TAYERS/List-Intersperse-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/List/List-Intersperse-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

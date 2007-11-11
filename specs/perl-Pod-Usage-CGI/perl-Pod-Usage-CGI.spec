@@ -15,7 +15,7 @@ License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Pod-Usage-CGI/
 
-Source: http://search.cpan.org/CPAN/authors/id/B/BB/BBC/Pod-Usage-CGI-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Pod/Pod-Usage-CGI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

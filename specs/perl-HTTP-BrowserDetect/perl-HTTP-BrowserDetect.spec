@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-BrowserDetect/
 
-Source: http://search.cpan.org/CPAN/authors/id/W/WA/WALSHAM/HTTP-BrowserDetect-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/HTTP/HTTP-BrowserDetect-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WebService-PhotoZou/
 
-Source: http://search.cpan.org//CPAN/authors/id/J/JI/JIRO/WebService-PhotoZou-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/WebService/WebService-PhotoZou-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

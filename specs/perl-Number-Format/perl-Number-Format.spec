@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Number-Format/
 
-Source: http://search.cpan.org/CPAN/authors/id/W/WR/WRW/Number-Format-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Number/Number-Format-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

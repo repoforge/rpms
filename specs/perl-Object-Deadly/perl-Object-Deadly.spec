@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Object-Deadly/
 
-Source: http://search.cpan.org//CPAN/authors/id/J/JJ/JJORE/Object-Deadly-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Object/Object-Deadly-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

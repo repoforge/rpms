@@ -6,7 +6,6 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name MQSeries-Message
-%define real_version 1.25
 
 Summary: Perl module named MQSeries-Message
 Name: perl-MQSeries-Message

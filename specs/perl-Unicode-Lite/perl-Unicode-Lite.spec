@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-Lite/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AM/AMICHAUER/Unicode-Lite-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Unicode/Unicode-Lite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

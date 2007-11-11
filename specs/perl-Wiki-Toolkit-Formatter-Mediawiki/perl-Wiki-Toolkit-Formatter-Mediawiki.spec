@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Wiki-Toolkit-Formatter-Mediawiki/
 
-Source: http://search.cpan.org//CPAN/authors/id/D/DP/DPRICE/Wiki-Toolkit-Formatter-Mediawiki-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Wiki/Wiki-Toolkit-Formatter-Mediawiki-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

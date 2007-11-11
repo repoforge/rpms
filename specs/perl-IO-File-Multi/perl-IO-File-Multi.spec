@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-File-Multi/
 
-Source: http://search.cpan.org/CPAN/authors/id/N/NE/NEMWS/IO-File-Multi-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/IO/IO-File-Multi-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

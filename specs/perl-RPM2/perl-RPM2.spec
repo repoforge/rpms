@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RPM2/
 
-Source: http://search.cpan.org//CPAN/authors/id/C/CH/CHIPT/RPM2-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/C/CH/CHIPT/RPM2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

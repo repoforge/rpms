@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-HexDump/
 
-Source: http://search.cpan.org/CPAN/authors/id/F/FT/FTASSIN/Data-HexDump-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Data/Data-HexDump-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

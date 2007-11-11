@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Fleximal/
 
-Source: http://search.cpan.org/CPAN/authors/id/T/TI/TILLY/Math-Fleximal-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Math/Math-Fleximal-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Appliance-Phrasebook/
 
-Source: http://search.cpan.org//CPAN/authors/id/O/OL/OLIVER/Net-Appliance-Phrasebook-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/Net-Appliance-Phrasebook-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

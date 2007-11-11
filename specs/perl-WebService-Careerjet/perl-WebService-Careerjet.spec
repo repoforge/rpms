@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WebService-Careerjet/
 
-Source: http://search.cpan.org//CPAN/authors/id/J/JE/JETEVE/WebService-Careerjet-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/WebService/WebService-Careerjet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

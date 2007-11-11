@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sniffer-HTTP/
 
-Source: http://search.cpan.org//CPAN/authors/id/C/CO/CORION/Sniffer-HTTP-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/C/CO/CORION/Sniffer-HTTP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

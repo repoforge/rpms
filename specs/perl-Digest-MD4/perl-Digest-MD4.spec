@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-MD4/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIKEM/DigestMD4/Digest-MD4-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Digest/Digest-MD4-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

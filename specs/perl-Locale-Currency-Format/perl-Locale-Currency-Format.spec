@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Locale-Currency-Format/
 
-Source: http://search.cpan.org/CPAN/authors/id/T/TN/TNGUYEN/Locale-Currency-Format-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Locale/Locale-Currency-Format-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

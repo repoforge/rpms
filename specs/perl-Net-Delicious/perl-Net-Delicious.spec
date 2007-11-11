@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Delicious/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AS/ASCOPE/Net-Delicious-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/Net-Delicious-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

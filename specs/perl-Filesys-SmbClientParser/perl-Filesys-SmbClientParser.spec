@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Filesys-SmbClientParser/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AL/ALIAN/Filesys-SmbClientParser-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Filesys/Filesys-SmbClientParser-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

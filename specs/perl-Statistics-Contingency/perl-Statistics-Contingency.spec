@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Statistics-Contingency/
 
-Source: http://search.cpan.org/CPAN/authors/id/K/KW/KWILLIAMS/Statistics-Contingency-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Statistics/Statistics-Contingency-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

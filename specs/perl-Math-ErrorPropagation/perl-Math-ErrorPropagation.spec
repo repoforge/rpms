@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-ErrorPropagation/
 
-Source: http://search.cpan.org/CPAN/authors/id/Z/ZB/ZBYS/Math-ErrorPropagation-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Math/Math-ErrorPropagation-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

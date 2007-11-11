@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tk-MListbox/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RC/RCS/Tk-MListbox-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Tk/Tk-MListbox-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

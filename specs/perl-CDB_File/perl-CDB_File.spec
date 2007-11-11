@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CDB_File/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/CDB_File-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/CDB_File/CDB_File-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

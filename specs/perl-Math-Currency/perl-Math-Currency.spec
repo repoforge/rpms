@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Currency/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JP/JPEACOCK/Math-Currency-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Math/Math-Currency-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -16,7 +16,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Integral-Romberg/
 
-Source: http://search.cpan.org/CPAN/authors/id/B/BO/BOESCH/Math-Integral-Romberg-%{real_version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Math/Math-Integral-Romberg-0_02.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

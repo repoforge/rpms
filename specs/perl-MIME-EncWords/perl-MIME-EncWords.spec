@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-EncWords/
 
-Source: http://search.cpan.org//CPAN/authors/id/N/NE/NEZUMI/MIME-EncWords-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/MIME/MIME-EncWords-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

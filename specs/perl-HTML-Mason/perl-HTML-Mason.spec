@@ -16,7 +16,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Mason/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/HTML-Mason-%{real_version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/HTML/HTML-Mason-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

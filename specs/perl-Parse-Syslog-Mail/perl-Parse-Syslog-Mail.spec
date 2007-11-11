@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Parse-Syslog-Mail/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SA/SAPER/Parse-Syslog-Mail-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Parse/Parse-Syslog-Mail-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

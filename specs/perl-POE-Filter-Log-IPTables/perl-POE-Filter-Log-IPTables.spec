@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Filter-Log-IPTables/
 
-Source: http://search.cpan.org/CPAN/authors/id/P/PA/PAULV/POE-Filter-Log-IPTables-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/POE/POE-Filter-Log-IPTables-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

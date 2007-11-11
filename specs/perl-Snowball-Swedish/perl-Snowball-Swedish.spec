@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Snowball-Swedish/
 
-Source: http://www.cpan.org/modules/by-module/Lingua/Snowball-Swedish-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/A/AS/ASKSH/Snowball-Swedish-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

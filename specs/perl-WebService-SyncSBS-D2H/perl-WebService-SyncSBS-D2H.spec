@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WebService-SyncSBS-D2H/
 
-Source: http://search.cpan.org/CPAN/authors/id/Y/YA/YAPPO/WebService-SyncSBS-D2H-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/WebService/WebService-SyncSBS-D2H-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

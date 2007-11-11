@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tree-DAG_Node/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SB/SBURKE/Tree-DAG_Node-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Tree/Tree-DAG_Node-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -15,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Model3D-WavefrontObject/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DO/DODGER/Model3D/Model3D-WavefrontObject-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Model3D/Model3D-WavefrontObject-%{version}.00.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

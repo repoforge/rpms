@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tree-Nary/
 
-Source: http://search.cpan.org/CPAN/authors/id/F/FS/FSORIANO/Tree-Nary-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Tree/Tree-Nary-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

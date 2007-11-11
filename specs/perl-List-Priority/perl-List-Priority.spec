@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/List-Priority/
 
-Source: http://search.cpan.org/CPAN/authors/id/U/UD/UDASSIN/List-Priority-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/List/List-Priority-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

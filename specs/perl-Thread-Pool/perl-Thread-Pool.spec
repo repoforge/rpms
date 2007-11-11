@@ -14,7 +14,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Thread-Pool/
 
-Source: http://search.cpan.org/CPAN/authors/id/E/EL/ELIZABETH/Thread-Pool-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Thread/Thread-Pool-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

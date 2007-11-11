@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Graphics/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SF/SFARRELL/Text-Graphics-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Text/Text-Graphics-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

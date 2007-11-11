@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AI-Gene-Sequence/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AJ/AJGOUGH/AI-Gene-Sequence-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/AI/AI-Gene-Sequence-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

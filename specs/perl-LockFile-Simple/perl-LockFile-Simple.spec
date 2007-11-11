@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/LockFile-Simple/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RA/RAM/LockFile-Simple-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/LockFile/LockFile-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

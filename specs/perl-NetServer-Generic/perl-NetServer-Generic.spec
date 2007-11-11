@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/NetServer-Generic/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHSTROSS/NetServer-Generic-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/NetServer/NetServer-Generic-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

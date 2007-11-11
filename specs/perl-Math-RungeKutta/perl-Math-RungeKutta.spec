@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-RungeKutta/
 
-Source: http://search.cpan.org/CPAN/authors/id/P/PJ/PJB/Math-RungeKutta-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Math/Math-RungeKutta-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

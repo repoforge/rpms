@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Statistics-MaxEntropy/
 
-Source: http://search.cpan.org/CPAN/authors/id/T/TE/TERDOEST/Statistics-MaxEntropy-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Statistics/Statistics-MaxEntropy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-MatrixReal/
 
-Source: http://search.cpan.org/CPAN/authors/id/L/LE/LETO/Math-MatrixReal-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Math/Math-MatrixReal-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

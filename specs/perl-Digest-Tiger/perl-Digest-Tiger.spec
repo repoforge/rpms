@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-Tiger/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CL/CLINTDW/Digest-Tiger-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Digest/Digest-Tiger-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

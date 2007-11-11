@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Video-Capture-V4l/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/Video-Capture-V4l-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Video/Video-Capture-V4l-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

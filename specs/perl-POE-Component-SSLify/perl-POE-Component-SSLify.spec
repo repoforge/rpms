@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-SSLify/
 
-Source: http://search.cpan.org//CPAN/authors/id/A/AP/APOCAL/POE-Component-SSLify-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/POE/POE-Component-SSLify-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

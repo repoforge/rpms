@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-BlackHole/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SB/SBURKE/Class-BlackHole-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Class/Class-BlackHole-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

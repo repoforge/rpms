@@ -14,7 +14,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SQL-Abstract/
 
-Source: http://search.cpan.org/CPAN/authors/id/N/NW/NWIGER/SQL-Abstract-%{version}.tgz
+Source: http://www.cpan.org/modules/by-module/SQL/SQL-Abstract-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl(ExtUtils::MakeMaker)

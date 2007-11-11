@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sort-Array/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIDI/Sort-Array-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Sort/Sort-Array-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

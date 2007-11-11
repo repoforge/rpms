@@ -14,7 +14,7 @@ License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-SAX-PurePerl/
 
-Source: http://www.cpan.org/modules/by-module/XML/XML-SAX-PurePerl-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/XML/XML-SAX-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tk-HTML/
 
-Source: http://search.cpan.org/CPAN/authors/id/N/NI/NI-S/Tk-HTML-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Tk/Tk-HTML-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

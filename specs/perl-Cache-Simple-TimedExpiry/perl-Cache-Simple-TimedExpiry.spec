@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Cache-Simple-TimedExpiry/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JE/JESSE/Cache-Simple-TimedExpiry-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Cache/Cache-Simple-TimedExpiry-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

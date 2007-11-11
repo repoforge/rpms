@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-SciEng/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CO/COLINK/Convert-SciEng-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Convert/Convert-SciEng-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

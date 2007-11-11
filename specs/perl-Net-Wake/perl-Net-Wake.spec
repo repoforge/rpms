@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Wake/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CL/CLINTDW/Net-Wake-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/Net-Wake-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

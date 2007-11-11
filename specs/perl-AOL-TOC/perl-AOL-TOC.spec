@@ -15,7 +15,7 @@ License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AOL-TOC/
 
-Source: http://www.cpan.org/authors/id/J/JH/JHARDING/AOL-TOC-%{real_version}.tar.gz
+Source: http://www.cpan.org/authors/id/J/JH/JHARDING/AOL-TOC-%{version}.tar.gz
 #Source: http://www.cpan.org/modules/by-module/AOL/AOL-TOC-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

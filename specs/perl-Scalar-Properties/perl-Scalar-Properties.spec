@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Scalar-Properties/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCANTRELL/Scalar-Properties-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Scalar/Scalar-Properties-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

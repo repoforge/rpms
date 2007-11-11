@@ -15,7 +15,7 @@ Group: Applications/CPAN
 URL: http://search.cpan.org/dist/capitalization/
 
 #Source: http://www.cpan.org/modules/by-module/capitalization/capitalization-%{version}.tar.gz
-Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIYAGAWA/capitalization-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/M/MI/MIYAGAWA/capitalization-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

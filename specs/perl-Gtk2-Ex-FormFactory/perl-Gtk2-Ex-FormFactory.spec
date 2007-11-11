@@ -17,7 +17,7 @@ Group: Applications/CPAN
 URL: http://www.exit1.org/Gtk2-Ex-FormFactory/
 
 #Source: http://www.cpan.org/modules/by-module/Gtk2/Gtk2-Ex-FormFactory-%{version}.tar.gz
-Source: http://www.exit1.org/packages/Gtk2-Ex-FormFactory/dist/Gtk2-Ex-FormFactory-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Gtk2/Gtk2-Ex-FormFactory-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

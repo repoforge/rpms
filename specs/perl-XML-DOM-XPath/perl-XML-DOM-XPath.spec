@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-DOM-XPath/
 
-Source: http://search.cpan.org//CPAN/authors/id/M/MI/MIROD/XML-DOM-XPath-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/XML/XML-DOM-XPath-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

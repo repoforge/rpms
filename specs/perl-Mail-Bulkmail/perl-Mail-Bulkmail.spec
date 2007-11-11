@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-Bulkmail/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JI/JIMT/Mail-Bulkmail-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Mail/Mail-Bulkmail-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

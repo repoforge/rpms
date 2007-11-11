@@ -15,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-chmod/
 
-Source: http://search.cpan.org/CPAN/authors/id/P/PI/PINYAN/File-chmod-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/File/File-chmod-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

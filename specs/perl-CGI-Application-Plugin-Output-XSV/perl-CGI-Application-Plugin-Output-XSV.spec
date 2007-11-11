@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Application-Plugin-Output-XSV/
 
-Source: http://search.cpan.org//CPAN/authors/id/Z/ZA/ZACKSE/CGI-Application-Plugin-Output-XSV-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/CGI/CGI-Application-Plugin-Output-XSV-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

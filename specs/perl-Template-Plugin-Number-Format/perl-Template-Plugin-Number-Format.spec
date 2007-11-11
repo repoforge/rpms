@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Template-Plugin-Number-Format/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DA/DARREN/Template-Plugin-Number-Format-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Template/Template-Plugin-Number-Format-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildArch: noarch

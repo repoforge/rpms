@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SNMP-Simple/
 
-Source: http://search.cpan.org/CPAN/authors/id/I/IA/IAN/SNMP-Simple-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/SNMP/SNMP-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

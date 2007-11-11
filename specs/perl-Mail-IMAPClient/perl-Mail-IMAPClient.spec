@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-IMAPClient/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DJ/DJKERNEN/Mail-IMAPClient-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Mail/Mail-IMAPClient-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

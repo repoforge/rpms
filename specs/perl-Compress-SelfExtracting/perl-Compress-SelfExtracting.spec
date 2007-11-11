@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Compress-SelfExtracting/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SE/SEANO/Compress-SelfExtracting-%{version}.tgz
+Source: http://www.cpan.org/modules/by-module/Compress/Compress-SelfExtracting-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

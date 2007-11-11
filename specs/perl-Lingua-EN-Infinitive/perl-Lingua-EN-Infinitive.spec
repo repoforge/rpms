@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-EN-Infinitive/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RS/RSAVAGE/Lingua-EN-Infinitive-%{version}.tgz
+Source: http://www.cpan.org/modules/by-module/Lingua/Lingua-EN-Infinitive-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

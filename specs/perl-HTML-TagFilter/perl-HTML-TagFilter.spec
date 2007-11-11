@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-TagFilter/
 
-Source: http://search.cpan.org/CPAN/authors/id/W/WR/WROSS/HTML-TagFilter-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/HTML/HTML-TagFilter-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

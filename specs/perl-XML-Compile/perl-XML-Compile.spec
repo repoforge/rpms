@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Compile/
 
-Source: http://search.cpan.org//CPAN/authors/id/M/MA/MARKOV/XML-Compile-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/XML/XML-Compile-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

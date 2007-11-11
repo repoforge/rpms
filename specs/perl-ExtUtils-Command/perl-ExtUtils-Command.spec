@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-Command/
 
-Source: http://www.cpan.org/modules/by-module/Shell/ExtUtils-Command-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/ExtUtils/ExtUtils-Command-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

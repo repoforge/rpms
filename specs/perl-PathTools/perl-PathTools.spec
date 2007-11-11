@@ -16,7 +16,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PathTools/
 
-Source: http://www.cpan.org/modules/by-module/File/PathTools-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/K/KW/KWILLIAMS/PathTools-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.005 

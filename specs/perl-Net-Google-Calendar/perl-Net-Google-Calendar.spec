@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Google-Calendar/
 
-Source: http://search.cpan.org//CPAN/authors/id/S/SI/SIMONW/Net-Google-Calendar-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/Net-Google-Calendar-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

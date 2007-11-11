@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Heap-Simple/
 
-Source: http://search.cpan.org/CPAN/authors/id/T/TH/THOSPEL/Heap-Simple-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Heap/Heap-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

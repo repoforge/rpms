@@ -5,7 +5,7 @@
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Net_SSLeay.pm
+%define real_name Net-SSLeay
 
 Summary: Net-SSLeay module for perl
 Name: perl-Net-SSLeay
@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SSLeay.pm/
 
-Source: http://www.cpan.org/modules/by-module/Net/Net_SSLeay.pm-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/Net-SSLeay-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.00503

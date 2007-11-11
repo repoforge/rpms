@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geography-States/
 
-Source: http://search.cpan.org//CPAN/authors/id/A/AB/ABIGAIL/Geography-States-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Geography/Geography-States-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

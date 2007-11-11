@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-Config/
 
-Source: http://search.cpan.org/CPAN/authors/id/K/KO/KOZO/Tie-Config-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Tie/Tie-Config-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

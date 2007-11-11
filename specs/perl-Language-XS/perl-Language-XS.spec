@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Language-XS/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/Language-XS-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Language/Language-XS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

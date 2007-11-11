@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/User-Identity/
 
-Source: http://search.cpan.org//CPAN/authors/id/M/MA/MARKOV/User-Identity-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/User/User-Identity-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

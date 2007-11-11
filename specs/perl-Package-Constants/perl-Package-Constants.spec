@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Package-Constants/
 
-Source: http://www.cpan.org/authors/id/K/KA/KANE/Package-Constants-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Package/Package-Constants-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

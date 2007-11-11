@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Prime-XS/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SC/SCHUBIGER/Math-Prime-XS-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Math/Math-Prime-XS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

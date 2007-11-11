@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-DES_PP/
 
-Source: http://search.cpan.org/CPAN/authors/id/G/GU/GUIDO/Crypt-DES_PP-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-DES_PP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

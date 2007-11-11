@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://www.exit1.org/Event-ExecFlow/
 
-Source: http://www.exit1.org/packages/Event-ExecFlow/dist/Event-ExecFlow-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Event/Event-ExecFlow-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl(AnyEvent)

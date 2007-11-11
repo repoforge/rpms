@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WebService-YouTube/
 
-Source: http://search.cpan.org//CPAN/authors/id/Y/YO/YOSHIDA/WebService-YouTube-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/WebService/WebService-YouTube-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

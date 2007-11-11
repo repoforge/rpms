@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-REPartition/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AV/AVIF/String-REPartition-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/A/AV/AVIF/String-REPartition-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

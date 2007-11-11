@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sub-ForceEval/
 
-Source: http://search.cpan.org//CPAN/authors/id/L/LE/LEMBARK/Sub-ForceEval-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Sub/Sub-ForceEval-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

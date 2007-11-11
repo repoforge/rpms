@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Warn/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHORNY/Test-Warn-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Test/Test-Warn-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

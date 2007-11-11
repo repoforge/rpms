@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Locale-Maketext-Fuzzy/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AU/AUTRIJUS/Locale-Maketext-Fuzzy-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Locale/Locale-Maketext-Fuzzy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

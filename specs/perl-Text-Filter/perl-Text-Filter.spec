@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Filter/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JV/JV/Text-Filter-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Text/Text-Filter-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

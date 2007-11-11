@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-ParseSearchString/
 
-Source: http://search.cpan.org//CPAN/authors/id/S/SD/SDEN/URI-ParseSearchString-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/URI/URI-ParseSearchString-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Feed-Find/
 
-Source: http://search.cpan.org/CPAN/authors/id/B/BT/BTROTT/Feed-Find-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/B/BT/BTROTT/Feed-Find-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

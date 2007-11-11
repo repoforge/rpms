@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Tolkien-Shire/
 
-Source: http://search.cpan.org/CPAN/authors/id/T/TB/TBRAUN/Date-Tolkien-Shire-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Date/Date-Tolkien-Shire-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

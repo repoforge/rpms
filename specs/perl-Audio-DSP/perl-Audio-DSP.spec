@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Audio-DSP/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SE/SETHJ/Audio-DSP-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Audio/Audio-DSP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

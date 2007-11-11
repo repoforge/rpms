@@ -15,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Moose/
 
-Source: http://www.cpan.org/authors/id/S/ST/STEVAN/Moose-0.20.tar.gz
+Source: http://www.cpan.org/authors/id/S/ST/STEVAN/Moose-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

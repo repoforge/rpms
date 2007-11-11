@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Simple/
 
-Source: http://search.cpan.org/CPAN/authors/id/Y/YV/YVES/Date-Simple-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Date/Date-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

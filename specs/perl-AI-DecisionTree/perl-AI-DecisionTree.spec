@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AI-DecisionTree/
 
-Source: http://search.cpan.org/CPAN/authors/id/K/KW/KWILLIAMS/AI-DecisionTree-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/AI/AI-DecisionTree-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

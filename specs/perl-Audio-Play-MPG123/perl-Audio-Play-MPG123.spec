@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Audio-Play-MPG123/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/Audio-Play-MPG123-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Audio/Audio-Play-MPG123-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

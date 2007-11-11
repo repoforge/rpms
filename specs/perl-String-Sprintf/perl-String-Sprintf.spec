@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-Sprintf/
 
-Source: http://search.cpan.org//CPAN/authors/id/B/BA/BARTL/String-Sprintf-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/String/String-Sprintf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

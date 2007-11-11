@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-UPnP/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SK/SKONNO/Net-UPnP-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/Net-UPnP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

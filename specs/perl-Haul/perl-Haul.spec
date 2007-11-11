@@ -15,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Haul/
 
-Source: http://search.cpan.org/CPAN/authors/id/L/LB/LBROCARD/Haul-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/L/LB/LBROCARD/Haul-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

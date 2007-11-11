@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sort-ArrayOfArrays/
 
-Source: http://search.cpan.org/CPAN/authors/id/E/EA/EARL/Sort-ArrayOfArrays-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Sort/Sort-ArrayOfArrays-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

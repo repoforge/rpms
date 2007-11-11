@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Accessor-Fast-Contained/
 
-Source: http://search.cpan.org//CPAN/authors/id/O/OL/OLIVER/Class-Accessor-Fast-Contained-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Class/Class-Accessor-Fast-Contained-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

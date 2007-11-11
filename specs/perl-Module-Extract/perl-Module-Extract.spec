@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Extract/
 
-Source: http://search.cpan.org//CPAN/authors/id/A/AD/ADAMK/Module-Extract-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Module/Module-Extract-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

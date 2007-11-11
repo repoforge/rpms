@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DIME-Tools/
 
-Source: http://www.cpan.org/authors/id/D/DA/DALCAZAR/DIME/DIME-Tools-%{version}.tgz
+Source: http://www.cpan.org/authors/id/D/DA/DALCAZAR/DIME/DIME-Tools-0.03.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

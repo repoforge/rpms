@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/No-Die/
 
-Source: http://search.cpan.org/CPAN/authors/id/K/KA/KANE/No-Die-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/No/No-Die-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

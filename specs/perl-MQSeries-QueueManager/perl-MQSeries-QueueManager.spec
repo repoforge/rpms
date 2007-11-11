@@ -6,7 +6,6 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name MQSeries-QueueManager
-%define real_version 1.25
 
 Summary: Perl module named MQSeries-QueueManager
 Name: perl-MQSeries-QueueManager

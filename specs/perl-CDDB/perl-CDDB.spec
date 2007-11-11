@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CDDB/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RC/RCAPUTO/CDDB-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/CDDB/CDDB-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

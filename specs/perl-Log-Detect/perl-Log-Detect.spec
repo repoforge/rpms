@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Detect/
 
-Source: http://search.cpan.org/CPAN/authors/id/W/WS/WSNYDER/Log-Detect-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Log/Log-Detect-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

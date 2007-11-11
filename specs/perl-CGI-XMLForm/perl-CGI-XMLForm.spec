@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-XMLForm/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/CGI-XMLForm-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/CGI/CGI-XMLForm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

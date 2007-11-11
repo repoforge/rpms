@@ -63,9 +63,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Crypt/C_LockTite/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.00-2.2
-- Rebuild for Fedora Core 5.
-
 * Sat Dec 11 2004 Dries Verachtert <dries@ulyssis.org> - 1.00-2
 - Figured out how to build the Crypt::C_LockTite module
 

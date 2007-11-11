@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-MacroScript/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SU/SUMMER/Text-MacroScript-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Text/Text-MacroScript-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

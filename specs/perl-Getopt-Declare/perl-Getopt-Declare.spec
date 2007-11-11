@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Getopt-Declare/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCONWAY/Getopt-Declare-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Getopt/Getopt-Declare-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

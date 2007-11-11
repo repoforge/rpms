@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Whois-IP/
 
-Source: http://search.cpan.org/CPAN/authors/id/B/BS/BSCHMITZ/Net-Whois-IP-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/Net-Whois-IP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

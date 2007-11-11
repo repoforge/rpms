@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Caesar/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JU/JUERD/Crypt-Caesar-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-Caesar-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

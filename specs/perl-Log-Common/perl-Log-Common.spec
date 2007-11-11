@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Common/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MH/MHAMILTON/Log-Common-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Log/Log-Common-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

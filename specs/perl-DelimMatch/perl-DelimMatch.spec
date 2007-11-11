@@ -16,7 +16,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DelimMatch/
 
-Source: http://search.cpan.org/CPAN/authors/id/N/NW/NWALSH/DelimMatch-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/N/NW/NWALSH/DelimMatch-%{version}a.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

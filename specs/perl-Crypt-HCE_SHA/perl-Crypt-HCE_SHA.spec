@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-HCE_SHA/
 
-Source: http://search.cpan.org/CPAN/authors/id/E/EE/EESTABROO/Crypt-HCE_SHA-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-HCE_SHA-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

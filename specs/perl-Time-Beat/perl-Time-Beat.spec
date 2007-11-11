@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Time-Beat/
 
-Source: http://search.cpan.org/CPAN/authors/id/E/EM/EMARTIN/Time-Beat-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Time/Time-Beat-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

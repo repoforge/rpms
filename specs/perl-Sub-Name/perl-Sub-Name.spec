@@ -15,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sub-Name/
 
-Source: http://www.cpan.org/modules/by-module/Sub/Sub-Name-0.02.tar.gz
+Source: http://www.cpan.org/modules/by-module/Sub/Sub-Name-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

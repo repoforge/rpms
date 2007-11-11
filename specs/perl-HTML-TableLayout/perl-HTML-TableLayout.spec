@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-TableLayout/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SF/SFARRELL/HTML-TableLayout-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/HTML/HTML-TableLayout-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

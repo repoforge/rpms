@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-EN-Sentence/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SH/SHLOMOY/Lingua-EN-Sentence-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Lingua/Lingua-EN-Sentence-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

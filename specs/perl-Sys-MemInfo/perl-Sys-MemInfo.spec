@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-MemInfo/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SC/SCRESTO/Sys-MemInfo-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Sys/Sys-MemInfo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

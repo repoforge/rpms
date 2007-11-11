@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-TigerLine/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SD/SDERLE/Geo-TigerLine-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Geo/Geo-TigerLine-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

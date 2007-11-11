@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Virtual/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHWERN/Class-Virtual-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Class/Class-Virtual-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

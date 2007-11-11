@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-PRSG/
 
-Source: http://search.cpan.org/CPAN/authors/id/G/GA/GARY/Math-PRSG-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Math/Math-PRSG-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

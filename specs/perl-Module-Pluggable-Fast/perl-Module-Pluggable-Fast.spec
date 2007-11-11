@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Pluggable-Fast/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SR/SRI/Module-Pluggable-Fast-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Module/Module-Pluggable-Fast-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sort-ArbBiLex/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SB/SBURKE/Sort-ArbBiLex-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Sort/Sort-ArbBiLex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

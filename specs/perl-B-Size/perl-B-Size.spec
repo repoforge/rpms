@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/B-Size/
 
-Source: http://search.cpan.org/CPAN/authors/id/P/PG/PGOLLUCCI/B-Size-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/B/B-Size-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

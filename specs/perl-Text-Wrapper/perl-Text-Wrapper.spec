@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Wrapper/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CJ/CJM/Text-Wrapper-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Text/Text-Wrapper-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

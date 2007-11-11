@@ -14,7 +14,7 @@ License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/gettext/
 
-Source: http://search.cpan.org/CPAN/authors/id/P/PV/PVANDRY/gettext-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Locale/gettext-%{version}.tar.gz
 Patch1: gettext-1.01-includes.patch
 Patch2: gettext-1.01-add-iconv.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

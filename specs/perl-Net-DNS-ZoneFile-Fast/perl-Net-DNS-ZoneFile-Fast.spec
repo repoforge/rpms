@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DNS-ZoneFile-Fast/
 
-Source: http://search.cpan.org/CPAN/authors/id/H/HA/HARDAKER/Net-DNS-ZoneFile-Fast-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/Net-DNS-ZoneFile-Fast-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

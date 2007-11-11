@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Acme-Steganography-Image-Png/
 
-Source: http://search.cpan.org//CPAN/authors/id/N/NW/NWCLARK/Acme-Steganography-Image-Png-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Acme/Acme-Steganography-Image-Png-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

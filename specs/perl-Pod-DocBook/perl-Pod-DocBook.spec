@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Pod-DocBook/
 
-Source: http://search.cpan.org/CPAN/authors/id/N/NA/NANDU/Pod-DocBook-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Pod/Pod-DocBook-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

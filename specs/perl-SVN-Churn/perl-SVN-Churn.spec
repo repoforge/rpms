@@ -15,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Churn/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RC/RCLAMP/SVN-Churn-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/SVN/SVN-Churn-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

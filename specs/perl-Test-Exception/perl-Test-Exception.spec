@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Exception/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AD/ADIE/Test-Exception-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Test/Test-Exception-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

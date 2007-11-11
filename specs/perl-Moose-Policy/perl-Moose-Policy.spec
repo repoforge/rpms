@@ -15,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Moose-Policy/
 
-Source: http://www.cpan.org/authors/id/S/ST/STEVAN/Moose-Policy-0.03.tar.gz
+Source: http://www.cpan.org/authors/id/S/ST/STEVAN/Moose-Policy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

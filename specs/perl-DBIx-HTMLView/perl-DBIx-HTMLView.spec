@@ -15,7 +15,7 @@ License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-HTMLView/
 
-Source: http://search.cpan.org/CPAN/authors/id/H/HA/HAKANARDO/DBIx-HTMLView-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/DBIx/DBIx-HTMLView-LATEST.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

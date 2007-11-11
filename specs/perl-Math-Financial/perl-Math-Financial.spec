@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Financial/
 
-Source: http://search.cpan.org/CPAN/authors/id/F/FI/FIXLER/Math-Financial-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Math/Math-Financial-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

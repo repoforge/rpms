@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-XML_RDB/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/DBIx-XML_RDB-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/DBIx/DBIx-XML_RDB-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Template-Magic/
 
-Source: http://search.cpan.org//CPAN/authors/id/D/DO/DOMIZIO/Template-Magic-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Template/Template-Magic-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

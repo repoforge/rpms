@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Automate/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SK/SKUD/WWW-Automate-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/WWW/WWW-Automate-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

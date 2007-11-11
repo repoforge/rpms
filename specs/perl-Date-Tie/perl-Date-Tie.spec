@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Tie/
 
-Source: http://search.cpan.org/CPAN/authors/id/F/FG/FGLOCK/Date-Tie-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Date/Date-Tie-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

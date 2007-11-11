@@ -16,8 +16,7 @@ Group: Applications/CPAN
 #URL: http://search.cpan.org/dist/Gnome2-Canvas/
 URL: http://gtk2-perl.sourceforge.net/
 
-#Source: http://www.cpan.org/modules/by-module/Gnome2/Gnome2-Canvas-%{version}.tar.gz
-Source: http://dl.sf.net/gtk2-perl/Gnome2-Canvas-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Gnome2/Gnome2-Canvas-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 2:5.8.0
