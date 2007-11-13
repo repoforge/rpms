@@ -9,7 +9,7 @@ License: BSD
 Group: Applications/Internet
 
 Source: ftp://ftp.ee.lbl.gov/nslint-%{version}.tar.bz2
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 nslint is a lint-like program that checks DNS files for errors. 

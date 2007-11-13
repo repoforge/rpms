@@ -5,9 +5,9 @@
 Summary: Secure password generator
 Name: secpwgen
 Version: 1.3
-Release: 1
+Release: 2
 License: GPL
-Group: Productivity/Security
+Group: System Environment/Base
 URL: http://www.core-dump.com.hr/?q=node/28
 
 Source: http://www.core-dump.com.hr/software/secpwgen-%{version}.tar.gz
@@ -43,5 +43,8 @@ methods for passphrase generation, including the Diceware method with
 %{_bindir}/secpwgen
 
 %changelog
+* Sun Nov 11 2007 Dag Wieers <dag@wieers.com> - 1.3-2
+- Fix group tag.
+
 * Mon May 07 2007 Dag Wieers <dag@wieers.com> - 1.3-1
 - Initial package. (using DAR)

@@ -5,7 +5,7 @@
 
 Summary: FUSE-Filesystem to access WebDAV servers
 Name: fuse-davfs2
-Version: 1.2.1
+Version: 1.2.2
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -69,5 +69,8 @@ Neon supports TLS/SSL (using OpenSSL or GnuTLS) and access via proxy server.
 %{_datadir}/davfs2/
 
 %changelog
+* Sat Nov 10 2007 Dag Wieers <dag@wieers.com> - 1.2.2-1
+- Updated to release 1.2.2.
+
 * Sat May 12 2007 Dag Wieers <dag@wieers.com> - 1.2.1-1
 - Initial package. (using DAR)

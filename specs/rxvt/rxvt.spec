@@ -1,27 +1,31 @@
 # $Id$
 # Authority: dag
 
+%define desktop_vendor rpmforge
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
-%{?el4:%define _without_modxorg 1}
-%{?el3:%define _without_modxorg 1}
-%{?el2:%define _without_modxorg 1}
 %{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
 %{?fc3:%define _without_modxorg 1}
 %{?fc2:%define _without_modxorg 1}
 %{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
 
 Summary: Color VT102 terminal emulator for the X Window System
 Name: rxvt
 Version: 2.7.10
-Release: 1.2
+Release: 2
 Epoch: 18
 License: GPL
-Group: User Interface/Desktops
+Group: User Interface/X
 URL: http://www.rxvt.org/
 
 Source: http://dl.sf.net/rxvt/rxvt-%{version}.tar.gz
@@ -59,8 +63,8 @@ you will need to install %{name}-devel.
 ### FIXME: Include improved desktop-file. (Please fix upstream)
 %{__cat} <<EOF >rxvt.desktop
 [Desktop Entry]
-Name=Rxvt Terminal
-Comment=Small and fast X terminal application
+Name=RXVT Terminal
+Comment=Use the command line
 Exec=rxvt
 Icon=gnome-term-linux.png
 Type=Application
@@ -71,29 +75,29 @@ EOF
 
 %build
 %configure \
-	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
-	--enable-256-color \
-	--enable-everything \
-	--enable-greek \
-	--enable-languages \
-	--enable-shared \
-	--enable-smart-resize \
-	--enable-ttygid \
-	--enable-xgetdefault \
-	--with-x
+%{!?_without_modxorg:--x-includes="%{_includedir}"} \
+%{!?_without_modxorg:--x-libraries="%{_libdir}"} \
+%{?_without_modxorg:--x-libraries="%{_prefix}/X11R6/%{_lib}"} \
+    --enable-256-color \
+    --enable-everything \
+    --enable-languages \
+    --enable-shared \
+    --enable-smart-resize \
+    --enable-ttygid \
+    --enable-xgetdefault \
+    --with-x
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall \
-	mandir="%{buildroot}%{_mandir}/man1"
+%makeinstall mandir="%{buildroot}%{_mandir}/man1"
 
 %if %{?!_without_freedesktop:1}0
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor net                  \
-		--add-category X-Red-Hat-Base              \
-		--dir %{buildroot}%{_datadir}/applications \
-		rxvt.desktop
+    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+    desktop-file-install --vendor %{desktop_vendor} \
+        --add-category X-Red-Hat-Base               \
+        --dir %{buildroot}%{_datadir}/applications  \
+        rxvt.desktop
 %else
         %{__install} -Dp -m0644 rxvt.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/rxvt.desktop
 %endif
@@ -105,22 +109,25 @@ EOF
 %defattr(-, root, root, 0755)
 %doc doc/*.html doc/*.txt doc/BUGS doc/FAQ doc/README* doc/TODO
 %doc doc/menu/ doc/rxvt* doc/xterm.seq
-%doc %{_mandir}/man?/*
-%{_bindir}/*
-%{_libdir}/*.so.*
+%doc %{_mandir}/man1/rclock.1*
+%doc %{_mandir}/man1/rxvt.1*
+%{_bindir}/rclock
+%{_bindir}/rxvt
+%{_bindir}/rxvt-2.7.10
+%{_libdir}/librxvt.so.*
 %exclude %{_libdir}/*.la
-%{!?_without_freedesktop:%{_datadir}/applications/net-rxvt.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-rxvt.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/rxvt.desktop}
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*.h
-%{_libdir}/*.a
-%{_libdir}/*.so
+%{_includedir}/rxvtlib.h
+%{_libdir}/librxvt.a
+%{_libdir}/librxvt.so
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.7.10-1.2
-- Rebuild for Fedora Core 5.
+* Sun Nov 11 2007 Dag Wieers <dag@wieers.com> - 2.7.10-2
+- Fix build for modxorg.
 
 * Sun Jun 06 2004 Dag Wieers <dag@wieers.com> - 2.7.10-1
 - Addded improved desktop file.

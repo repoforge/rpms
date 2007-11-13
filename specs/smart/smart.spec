@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Gustavo Niemeyer <niemeyer$conectiva,com>
 
-# ExclusiveDist: fc3 fc4 fc5 el4
+# ExcludeDist el2 rh7 rh9 el3 fc1 fc2
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -174,6 +174,7 @@ cd -
 %{__ln_s} -f consolehelper %{buildroot}%{_bindir}/smart-gui
 
 %{__install} -Dp -m0644 distro.py %{buildroot}%{_prefix}/lib/smart/distro.py
+touch %{buildroot}%{_prefix}/lib/smart/distro.py{c,o}
 %{__install} -Dp -m4755 contrib/smart-update/smart-update %{buildroot}%{_bindir}/smart-update
 #%{__install} -Dp -m0755 %{SOURCE1} %{buildroot}%{python_dir}/smart/plugins/channelsync.py
 
@@ -207,6 +208,7 @@ cd -
 %doc HACKING IDEAS LICENSE README TODO doc/*
 %doc %{_mandir}/man8/smart.8*
 %config %{_prefix}/lib/smart/distro.py
+%exclude %{_prefix}/lib/smart/distro.py?
 %dir %{_prefix}/lib/smart/
 %config(noreplace) %{_sysconfdir}/smart/channels/
 %{_bindir}/smart

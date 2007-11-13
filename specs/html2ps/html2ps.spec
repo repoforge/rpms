@@ -7,9 +7,9 @@ Summary: HTML to PostScript converter
 Name: html2ps
 %define real_version 1.0b5
 Version: 1.0
-Release: 0.b5.1
+Release: 0.b5.2
 License: GPL
-Group: Applications/Graphics
+Group: Applications/File
 URL: http://user.it.uu.se/~jan/html2ps.html
 
 Source: http://user.it.uu.se/~jan/html2ps-%{real_version}.tar.gz
@@ -30,7 +30,7 @@ html2ps can be used as ImageMagick delegate to convert from HTML.
 
 %package -n xhtml2ps
 Summary: GUI frontend for html2ps, a HTML-to-PostScript converter
-Group: Applications/Graphics
+Group: Applications/File
 Requires: %{name} = %{version}-%{release}
 Requires: tk
 
@@ -76,6 +76,9 @@ HTML-to-PostScript converter.
 %{_bindir}/xhtml2ps
 
 %changelog
+* Sun Nov 11 2007 Dag Wieers <dag@wieers.com> - 1.0-0.b5.2
+- Fix group tag.
+
 * Tue Oct 30 2007 Dag Wieers <dag@wieers.com> - 1.0-0.b5.1
 - Fixed a typo in the Requires of xhtml2ps. (Dave Shield)
 

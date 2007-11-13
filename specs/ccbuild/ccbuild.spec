@@ -5,9 +5,9 @@
 Summary: Dynamic makefiles
 Name: ccbuild
 Version: 1.5.4
-Release: 1
+Release: 2
 License: GPL
-Group: Development/Utilities
+Group: Development/Tools
 URL: http://ccbuild.sourceforge.net/
 
 Source: http://dl.sf.net/ccbuild/ccbuild-%{version}.tar.gz
@@ -48,6 +48,9 @@ files, and graph dependencies using DOT (graphviz) graphs.
 %{_bindir}/ccbuild
 
 %changelog
+* Sun Nov 11 2007 Dag Wieers <dag@wieers.com> - 1.5.4-2
+- Fix group tag.
+
 * Thu May 17 2007 Dries Verachtert <dries@ulyssis.org> - 1.5.4-1
 - Updated to release 1.5.4.
 

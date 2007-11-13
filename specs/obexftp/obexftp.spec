@@ -9,8 +9,8 @@
 
 Summary: Tool to access devices via the OBEX protocol
 Name: obexftp
-Version: 0.19
-Release: 3
+Version: 0.20
+Release: 1
 License: GPL
 Group: Applications/Communications
 URL: http://openobex.triq.net/
@@ -67,9 +67,10 @@ pictures and alike
 %build
 ### FIXME: Disabled perl because cannot make Makefile place it in DESTDIR
 %configure \
-	%{?_without_python2:--disable-python} \
-	--disable-perl \
-	--disable-tcl
+    --disable-perl \
+%{?_without_python2:--disable-python} \
+    --disable-static \
+    --disable-tcl
 %{__make} %{?_smp_mflags}
 
 %install
@@ -86,7 +87,9 @@ pictures and alike
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog NEWS README* THANKS TODO
 %doc %{_mandir}/man1/obexftp.1*
+%doc %{_mandir}/man1/obexftpd.1*
 %{_bindir}/obexftp
+%{_bindir}/obexftpd
 
 %files -n libobexftp
 %defattr(-, root, root, 0755)
@@ -97,21 +100,24 @@ pictures and alike
 %{_includedir}/bfb/
 %{_includedir}/multicobex/
 %{_includedir}/obexftp/
-%{_libdir}/*.a
+#%{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
 
 %if %{!?_without_python2:1}0
 %files -n python-obexftp
 %defattr(-, root, root, 0755)
+%{python_sitearch}/obexftp/
 %{python_sitelib}/obexftp/
 %ghost %{python_sitelib}/obexftp/*.pyo
-%exclude %{python_sitearch}/obexftp/*.a
 %exclude %{python_sitearch}/obexftp/*.la
-%exclude %{python_sitearch}/obexftp/*.so.*
+%{python_sitearch}/obexftp/*.so.*
 %endif
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.20-1
+- Updated to release 0.20.
+
 * Mon Oct 09 2006 Dag Wieers <dag@wieers.com> - 0.19-3
 - Fixed group name.
 

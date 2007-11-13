@@ -3,11 +3,11 @@
 
 Summary: Reclaim space on your drive
 Name: freedup
-%define real_version 1.0-4
-Version: 1.0.4
-Release: 1
+%define real_version 1.0-5
+Version: 1.0.5
+Release: 3
 License: GPL
-Group: Productivity/File utilities
+Group: Applications/File
 URL: http://software.neuper.de/freedup/
 
 Source: http://software.neuper.de/freedup/freedup-%{real_version}-src.tar.bz2
@@ -27,23 +27,32 @@ content.
 %setup -n %{name}-1.0
 
 %build
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} freedup
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 freedup %{buildroot}%{_bindir}/freedup
-%{__install} -Dp -m0644 freedup.1.gz %{buildroot}%{_mandir}/man1/freedup.1.gz
+%{__install} -Dp -m0644 freedup.1 %{buildroot}%{_mandir}/man1/freedup.1
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README TODO html/
+%doc ChangeLog COPYING copyright README* TODO html/
 %doc %{_mandir}/man1/freedup.1*
 %{_bindir}/freedup
 
 %changelog
+* Sun Nov 11 2007 Dag Wieers <dag@wieers.com> - 1.0.5-3
+- Fix group tag. (really!)
+
+* Sun Nov 11 2007 Dag Wieers <dag@wieers.com> - 1.0.5-2
+- Fix group tag.
+
+* Sat Nov 10 2007 Dag Wieers <dag@wieers.com> - 1.0.5-1
+- Updated to release 1.0.5.
+
 * Thu Nov 08 2007 Dag Wieers <dag@wieers.com> - 1.0.4-1
 - Updated to release 1.0-4.
 
