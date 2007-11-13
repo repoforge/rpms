@@ -9,7 +9,7 @@
 
 Summary: Write and read Lzop files of buffers
 Name: perl-IO-Compress-Lzop
-Version: 2.003
+Version: 2.008
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,12 +44,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/IO::Compress::Lzop*
-%doc %{_mandir}/man3/IO::Uncompress::UnLzop*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/IO::Compress::Lzop.3pm*
+%doc %{_mandir}/man3/IO::Uncompress::UnLzop.3pm*
+%dir %{perl_vendorlib}/IO/
 %{perl_vendorlib}/IO/Compress/
 %{perl_vendorlib}/IO/Uncompress/
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 2.008-1
+- Updated to release 2.008.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 2.003-1
 - Initial package.

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Barrie Slaymaker <barries$slaysys,com>
+# Upstream: Ricardo SIGNES <rjbs$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,9 +9,9 @@
 
 Summary: Run a subprocess in batch mode
 Name: perl-IPC-Run3
-Version: 0.037
+Version: 0.039
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPC-Run3/
 
@@ -43,13 +43,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
-%doc %{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST MANIFEST.SKIP META.yml README
+%doc %{_mandir}/man3/IPC::Run3.3pm*
+%doc %{_mandir}/man3/IPC::Run3::*.3pm*
 %dir %{perl_vendorlib}/IPC/
-%{perl_vendorlib}/IPC/Run3.pm
 %{perl_vendorlib}/IPC/Run3/
+%{perl_vendorlib}/IPC/Run3.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.039-1
+- Updated to release 0.039.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.037-1
 - Updated to release 0.037.
 

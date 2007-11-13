@@ -6,10 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Language-Indonesia
+%define real_version 0.000002
 
 Summary: Write Perl program in Bahasa Indonesia
 Name: perl-Language-Indonesia
-Version: 0.01
+Version: 0.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,10 +45,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes readme
-%doc %{_mandir}/man3/Language::Indonesia*
+%doc Changes MANIFEST README
+%doc %{_mandir}/man3/Language::Indonesia.3pm*
+%dir %{perl_vendorlib}/Language/
+#%{perl_vendorlib}/Language/Indonesia/
 %{perl_vendorlib}/Language/Indonesia.pm
 
+
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.02-1
+- Updated to release 0.02.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

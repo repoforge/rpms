@@ -9,7 +9,7 @@
 
 Summary: Finding and running system commands made easy
 Name: perl-IPC-Cmd
-Version: 0.36
+Version: 0.40
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,12 +46,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man3/*
+%doc CHANGES MANIFEST META.yml README
+%doc %{_mandir}/man3/IPC::Cmd.3pm*
 %dir %{perl_vendorlib}/IPC/
 %{perl_vendorlib}/IPC/Cmd.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.40-1
+- Updated to release 0.40.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.36-1
 - Updated to release 0.36.
 
@@ -61,9 +64,5 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.25-1
 - Updated to release 0.25.
 
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.24-1.2
-- Rebuild for Fedora Core 5.
-
 * Thu Mar 31 2005 Dries Verachtert <dries@ulyssis.org> - 0.24-1
 - Initial package.
-

@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dag
-# Upstream: Andy Lester <andy$petdance,com>
+# Upstream: Andy Armstrong <andy$hexten,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Test-Harness
 
-Summary: Perl module to run Perl standard test scripts with statistics
+Summary: Run Perl standard test scripts with statistics
 Name: perl-Test-Harness
-Version: 2.64
+Version: 3.00
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -23,8 +23,7 @@ BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
-perl-Test-Harness is a Perl module to run Perl standard test scripts
-with statistics.
+Run Perl standard test scripts with statistics.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -48,14 +47,24 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml NOTES examples/
+%doc Changes Changes-2.64 HACKING.pod MANIFEST META.yml README examples/
 %doc %{_mandir}/man1/prove.1*
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/App::Prove.3pm*
+%doc %{_mandir}/man3/Test::HACKING.3pm*
+%doc %{_mandir}/man3/Test::Harness.3pm*
+%doc %{_mandir}/man3/TAP::*.3pm*
 %{_bindir}/prove
+%dir %{perl_vendorlib}/App/
+%{perl_vendorlib}/App/Prove.pm
 %dir %{perl_vendorlib}/Test/
-%{perl_vendorlib}/Test/Harness/
+#%{perl_vendorlib}/Test/Harness/
+%{perl_vendorlib}/Test/HACKING.pod
 %{perl_vendorlib}/Test/Harness.pm
+%{perl_vendorlib}/TAP/
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 3.00-1
+- Updated to release 3.00.
+
 * Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 2.64-1
 - Initial package. (using DAR)

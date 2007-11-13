@@ -9,9 +9,9 @@
 
 Summary: Perl interface to Snowball stemmers
 Name: perl-Lingua-Stem-Snowball
-Version: 0.94
+Version: 0.941
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-Stem-Snowball/
 
@@ -37,7 +37,6 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
-# remove test scripts
 %{__rm} -f %{buildroot}%{_bindir}/*.plx
 
 %clean
@@ -45,18 +44,22 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Lingua::Stem::Snowball.3pm*
+%dir %{perl_vendorarch}/auto/Lingua/
+%dir %{perl_vendorarch}/auto/Lingua/Stem/
+%{perl_vendorarch}/auto/Lingua/Stem/Snowball/
 %dir %{perl_vendorarch}/Lingua/
 %dir %{perl_vendorarch}/Lingua/Stem/
 %{perl_vendorarch}/Lingua/Stem/Snowball.pm
 #%{_bindir}/add_stemmer.pl
-%dir %{perl_vendorarch}/auto/Lingua/Stem/
-%{perl_vendorarch}/auto/Lingua/Stem/Snowball/
 #{_bindir}/benchmark_stemmers.plx
 #{_bindir}/generate_tests.plx
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.941-1
+- Updated to release 0.941.
+
 * Sun Jun 04 2006 Dries Verachtert <dries@ulyssis.org> - 0.94-2
 - Fix: don't package the test scripts, thanks to Andreas de Pretis.
 

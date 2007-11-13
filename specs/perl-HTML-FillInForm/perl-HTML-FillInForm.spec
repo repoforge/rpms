@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: T,J, Mather <tjmather$maxmind,com>
+# Upstream: T.J. Mather <tjmather$maxmind,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,9 +9,9 @@
 
 Summary: Populates HTML Forms with CGI data
 Name: perl-HTML-FillInForm
-Version: 1.06
-Release: 1.2
-License: Artistic
+Version: 2.00
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-FillInForm/
 
@@ -37,21 +37,24 @@ tags.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/HTML::FillInForm.3pm*
+%dir %{perl_vendorlib}/HTML/
+#%{perl_vendorlib}/HTML/FillInForm/
 %{perl_vendorlib}/HTML/FillInForm.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.06-1.2
-- Rebuild for Fedora Core 5.
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 2.00-1
+- Updated to release 2.00.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.06-1
 - Updated to release 1.06.

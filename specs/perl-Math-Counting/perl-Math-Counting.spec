@@ -9,7 +9,7 @@
 
 Summary: Combinatorial counting operations
 Name: perl-Math-Counting
-Version: 0.07
+Version: 0.0704
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,19 +44,21 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES
-%doc %{_mandir}/man3/*
+%doc CHANGES MANIFEST MANIFEST.SKIP META.yml
+%doc %{_mandir}/man3/Math::Counting.3pm*
+%dir %{perl_vendorlib}/Math/
+#%{perl_vendorlib}/Math/Counting/
 %{perl_vendorlib}/Math/Counting.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.0704-1
+- Updated to release 0.0704.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Updated to release 0.07.
 
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Updated to release 0.06.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1.2
-- Rebuild for Fedora Core 5.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Initial package.

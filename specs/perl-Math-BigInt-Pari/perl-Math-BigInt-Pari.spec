@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: Benjamin Trott <ben@rhumba.pair.com>, Tels <http://bloodgate.com>
+# Upstream: Benjamin Trott <ben$rhumba.pair,com>
+# Upstream: Tels <nospam-abuse@$loodgate,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +10,8 @@
 
 Summary: Use Math::Pari for Math::BigInt routines
 Name: perl-Math-BigInt-Pari
-Version: 1.12
-Release: 1.rf
+Version: 1.13
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-BigInt-Pari/
@@ -19,8 +20,8 @@ Source: http://www.cpan.org/modules/by-module/Math/Math-BigInt-Pari-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 1:5.6.2 
-BuildRequires: perl(Test::More) >= 0.47
+BuildRequires: perl >= 1:5.6.2
+BuildRequires: perl(Test::More) >= 0.62
 
 %description
 Use Math::Pari for Math::BigInt routines.
@@ -51,5 +52,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Math/BigInt/Pari.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 1.13-1
+- Updated to release 1.13.
+
 * Thu May 31 2007 Dag Wieers <dag@wieers.com> - 1.12-1
 - Initial package. (using DAR)

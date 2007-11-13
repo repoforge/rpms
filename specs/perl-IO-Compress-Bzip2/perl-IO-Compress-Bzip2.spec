@@ -9,7 +9,7 @@
 
 Summary: Handle bzip2 compressed files
 Name: perl-IO-Compress-Bzip2
-Version: 2.003
+Version: 2.008
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,19 +39,28 @@ A module for handling bzip2 compressed files.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/IO::Compress::Bzip2*
-%doc %{_mandir}/man3/IO::Uncompress::Bunzip2*
+%doc Changes MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/IO::Compress::Bzip2.3pm*
+%doc %{_mandir}/man3/IO::Uncompress::Bunzip2.3pm*
+%dir %{perl_vendorlib}/IO/
+%dir %{perl_vendorlib}/IO/Compress/
 %{perl_vendorlib}/IO/Compress/Bzip2.pm
 %{perl_vendorlib}/IO/Compress/Adapter/
+%dir %{perl_vendorlib}/IO/Uncompress/
 %{perl_vendorlib}/IO/Uncompress/Bunzip2.pm
 %{perl_vendorlib}/IO/Uncompress/Adapter/
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 2.008-1
+- Updated to release 2.008.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 2.003-1
 - Initial package.

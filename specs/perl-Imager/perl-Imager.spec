@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dries
-# Upstream: Tony Cook <tony$develop-help,com>
+# Upstream: Tony Cook <tony$imager,perl,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Imager
 
-Summary: Extension for generating 24 bit images
+Summary: Perl extension for Generating 24 bit Images
 Name: perl-Imager
-Version: 0.59
+Version: 0.61
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,18 +44,25 @@ echo "y" | CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFI
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find samples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
-%{perl_vendorarch}/Imager.pm
-%{perl_vendorarch}/Imager/
+%doc Changes Changes.old MANIFEST MANIFEST.SKIP META.yml README samples/
+%doc %{_mandir}/man3/Imager.3pm*
+%doc %{_mandir}/man3/Imager::*.3pm*
 %{perl_vendorarch}/auto/Imager/
+%{perl_vendorarch}/Imager/
+%{perl_vendorarch}/Imager.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.61-1
+- Updated to release 0.61.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.59-1
 - Updated to release 0.59.
 

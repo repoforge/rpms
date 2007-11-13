@@ -9,7 +9,7 @@
 
 Summary: Distributed lock handler
 Name: perl-IPC-Locker
-Version: 1.470
+Version: 1.472
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,20 +47,33 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man?/*
-%{_bindir}/pidstat
-%{_bindir}/uriexec
+%doc COPYING Changes MANIFEST META.yml README readme.texi
+%doc %{_mandir}/man1/lockerd.1*
+%doc %{_mandir}/man1/lockersh.1*
+%doc %{_mandir}/man1/pidstat.1*
+%doc %{_mandir}/man1/pidstatd.1*
+%doc %{_mandir}/man1/pidwatch.1*
+%doc %{_mandir}/man1/uriexec.1*
+%doc %{_mandir}/man3/IPC::Locker.3pm*
+%doc %{_mandir}/man3/IPC::Locker::*.3pm*
+%doc %{_mandir}/man3/IPC::PidStat.3pm*
+%doc %{_mandir}/man3/IPC::PidStat::*.3pm*
 %{_bindir}/lockerd
+%{_bindir}/lockersh
+%{_bindir}/pidstat
 %{_bindir}/pidstatd
 %{_bindir}/pidwatch
-%{_bindir}/lockersh
+%{_bindir}/uriexec
+%dir %{perl_vendorlib}/IPC/
+%{perl_vendorlib}/IPC/Locker/
 %{perl_vendorlib}/IPC/Locker.pm
-%{perl_vendorlib}/IPC/Locker
+%{perl_vendorlib}/IPC/PidStat/
 %{perl_vendorlib}/IPC/PidStat.pm
-%{perl_vendorlib}/IPC/PidStat
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 1.472-1
+- Updated to release 1.472.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 1.470-1
 - Updated to release 1.470.
 

@@ -10,8 +10,8 @@
 
 Summary: framework for localization and inheritance-based lexicons for Perl
 Name: perl-Locale-Maketext
-Version: 1.09
-Release: 1.2
+Version: 1.10
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Locale-Maketext/
@@ -19,6 +19,7 @@ URL: http://search.cpan.org/dist/Locale-Maketext/
 Source: http://www.cpan.org/modules/by-module/Locale/Locale-Maketext-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl >= 0:5.00503
 BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.00503
@@ -33,8 +34,8 @@ in this dist).
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -48,14 +49,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog MANIFEST README
-%doc %{_mandir}/man3/*.3pm*
+%doc ChangeLog MANIFEST MANIFEST.SKIP META.yml README
+%doc %{_mandir}/man3/Locale::Maketext.3pm*
+%doc %{_mandir}/man3/Locale::Maketext::*.3pm*
 %dir %{perl_vendorlib}/Locale/
 %{perl_vendorlib}/Locale/Maketext/
 %{perl_vendorlib}/Locale/Maketext.pm
 %{perl_vendorlib}/Locale/Maketext.pod
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 1.10-1
+- Updated to release 1.10.
+
 * Sat Apr 02 2005 Dag Wieers <dag@wieers.com> - 1.06-1
 - Cosmetic cleanup.
 

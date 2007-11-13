@@ -9,9 +9,9 @@
 
 Summary: Stemming of words
 Name: perl-Lingua-Stem
-Version: 0.81
-Release: 1.2
-License: Artistic
+Version: 0.83
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-Stem/
 
@@ -39,20 +39,26 @@ Provides word stemming algorithms localized by language.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Artistic_License.txt Changes GPL_License.txt LICENSE MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/Lingua::Stem.3pm*
+%doc %{_mandir}/man3/Lingua::Stem::*.3pm*
 %dir %{perl_vendorlib}/Lingua/
-%{perl_vendorlib}/Lingua/Stem.pm
 %{perl_vendorlib}/Lingua/Stem/
+%{perl_vendorlib}/Lingua/Stem.pm
+%{perl_vendorlib}/Lingua/Stem.pod
+%{perl_vendorlib}/Lingua/test.pl
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.81-1.2
-- Rebuild for Fedora Core 5.
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.83-1
+- Updated to release 0.83.
 
 * Fri Dec 10 2004 Dries Verachtert <dries@ulyssis.org> - 0.81-1
 - Initial package.

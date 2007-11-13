@@ -7,9 +7,9 @@
 
 %define real_name HTML-TreeBuilder-XPath
 
-Summary: XPath support for HTML::TreeBuilder
+Summary: Add XPath support for HTML::TreeBuilder
 Name: perl-HTML-TreeBuilder-XPath
-Version: 0.07
+Version: 0.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,11 +44,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/HTML::TreeBuilder::XPath*
-%{perl_vendorlib}/HTML/TreeBuilder/XPath.pm
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/HTML::TreeBuilder::XPath.3pm*
+%dir %{perl_vendorlib}/HTML/
 %dir %{perl_vendorlib}/HTML/TreeBuilder/
+#%{perl_vendorlib}/HTML/TreeBuilder/XPath/
+%{perl_vendorlib}/HTML/TreeBuilder/XPath.pm
+
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.08-1
+- Updated to release 0.08.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Initial package.

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Tatsuhiko Miyagawa <miyagawa$gmail,com>
+# Upstream: Tatsuhiko Miyagawa <miyagawa$bulknews,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,9 +9,9 @@
 
 Summary: Perl module that implements Log4j
 Name: perl-Log-Dispatch-Config
-Version: 1.01
+Version: 1.02
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Dispatch-Config/
 
@@ -44,7 +44,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README
+%doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Log::Dispatch::Config.3pm*
 %doc %{_mandir}/man3/Log::Dispatch::Configurator.3pm*
 %doc %{_mandir}/man3/Log::Dispatch::Configurator::AppConfig.3pm*
@@ -56,5 +56,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Log/Dispatch/Configurator/AppConfig.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 1.02-1
+- Updated to release 1.02.
+
 * Thu May 03 2007 Dag Wieers <dag@wieers.com> - 1.01-1
 - Initial package. (using DAR)

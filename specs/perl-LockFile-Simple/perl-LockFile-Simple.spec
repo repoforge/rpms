@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Raphael Manfredi <Raphael_Manfredi$pobox,com>
+# Upstream: Johan Vromans <jv$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: Simple file locking
 Name: perl-LockFile-Simple
-Version: 0.2.5
-Release: 1.2
+Version: 0.206
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/LockFile-Simple/
@@ -31,8 +31,8 @@ wishing to lock the same files.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -46,13 +46,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/LockFile
+%doc ChangeLog MANIFEST META.yml README
+%doc %{_mandir}/man3/LockFile::Simple.3pm*
+%dir %{perl_vendorlib}/LockFile/
+%{perl_vendorlib}/LockFile/Lock/
+%{perl_vendorlib}/LockFile/Lock.pm
+%{perl_vendorlib}/LockFile/Manager.pm
+%{perl_vendorlib}/LockFile/Simple.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.5-1.2
-- Rebuild for Fedora Core 5.
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.206-1
+- Updated to release 0.206.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.5-1
 - Initial package.

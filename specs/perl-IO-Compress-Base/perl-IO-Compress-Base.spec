@@ -9,7 +9,7 @@
 
 Summary: Base Class for IO::Compress modules
 Name: perl-IO-Compress-Base
-Version: 2.006
+Version: 2.008
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -61,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IO/Uncompress/AnyUncompress.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 2.008-1
+- Updated to release 2.008.
+
 * Mon Nov 12 2007 Dag Wieers <dag@wieers.com> - 2.006-1
 - Updated to release 2.006.
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Chris Winters <chris$cwinters,com>
+# Upstream: Fred Moyer <fred$redhotpenguin,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Base class for dynamic factory classes
 Name: perl-Class-Factory
-Version: 1.05
+Version: 1.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,11 +44,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Class::Factory.3pm*
+%dir %{perl_vendorlib}/Class/
+#%{perl_vendorlib}/Class/Factory/
 %{perl_vendorlib}/Class/Factory.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 1.06-1
+- Updated to release 1.06.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.05-1
 - Updated to release 1.05.
 

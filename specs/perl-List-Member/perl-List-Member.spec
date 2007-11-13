@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Lee Goddard <REMOVETHISlgoddard$cpan,orgREMOVETHIS>
+# Upstream: Lee Goddard <lgoddard$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: Member function of Prolog
 Name: perl-List-Member
-Version: 0.02
-Release: 1.2
+Version: 0.042
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/List-Member/
@@ -44,13 +44,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/List::Member.3pm*
+%dir %{perl_vendorlib}/List/
+#%{perl_vendorlib}/List/Member/
 %{perl_vendorlib}/List/Member.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1.2
-- Rebuild for Fedora Core 5.
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.042-1
+- Updated to release 0.042.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

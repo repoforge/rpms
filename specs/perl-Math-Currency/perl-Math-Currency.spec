@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: John Peacock <jpeacock$rowman,com>
+# Upstream: John Peacock <jpeacock$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Exact Currency Math with Formatting and Rounding
 Name: perl-Math-Currency
-Version: 0.44
+Version: 0.46
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,12 +44,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/Math/Currency.pm
+%doc Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/Math::Currency.3pm*
+%dir %{perl_vendorlib}/Math/
 %{perl_vendorlib}/Math/Currency/
+%{perl_vendorlib}/Math/Currency.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.46-1
+- Updated to release 0.46.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.44-1
 - Updated to release 0.44.
 

@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dries
 # Upstream: Masatoshi Mizuno <mizuno$bomcity,com>
+# Upstream: Masatoshi Mizuno <lushe$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +10,7 @@
 
 Summary: Session plugin for Egg
 Name: perl-Egg-Plugin-SessionKit
-Version: 2.01
+Version: 2.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,19 +40,26 @@ Session plugin for Egg.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Egg::Plugin::SessionKit*.3*
+%doc Changes MANIFEST META.yml README eg/
+%doc %{_mandir}/man3/Egg::Plugin::SessionKit.3pm*
+%doc %{_mandir}/man3/Egg::Plugin::SessionKit::*.3pm*
 %dir %{perl_vendorlib}/Egg/
 %dir %{perl_vendorlib}/Egg/Plugin/
-%{perl_vendorlib}/Egg/Plugin/SessionKit.pm
 %{perl_vendorlib}/Egg/Plugin/SessionKit/
+%{perl_vendorlib}/Egg/Plugin/SessionKit.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 2.10-1
+- Updated to release 2.10.
+
 * Sun Aug 12 2007 Dries Verachtert <dries@ulyssis.org> - 2.01-1
 - Updated to release 2.01.
 

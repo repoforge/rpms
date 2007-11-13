@@ -9,7 +9,7 @@
 
 Summary: Functions you can use with File::Find
 Name: perl-File-Find-Closures
-Version: 1.06
+Version: 1.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,15 +39,24 @@ Functions you can use with File::Find.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/File::Find::Closures*
+%doc Changes LICENSE MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/File::Find::Closures.3*
+%dir %{perl_vendorlib}/File/
+%dir %{perl_vendorlib}/File/Find/
+#%{perl_vendorlib}/File/Find/Closures/
 %{perl_vendorlib}/File/Find/Closures.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 1.07-1
+- Updated to release 1.07.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.06-1
 - Initial package.

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Tatsuhiko Miyagawa <miyagawa$gmail,com>
+# Upstream: Tatsuhiko Miyagawa <miyagawa$bulknews,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Resolve relative links in (X)HTML into an absolute URI
 Name: perl-HTML-ResolveLink
-Version: 0.03
+Version: 0.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,10 +44,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/HTML::ResolveLink*
+%doc Changes MANIFEST META.yml
+%doc %{_mandir}/man3/HTML::ResolveLink.3pm*
+%dir %{perl_vendorlib}/HTML/
+#%{perl_vendorlib}/HTML/ResolveLink/
 %{perl_vendorlib}/HTML/ResolveLink.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.05-1
+- Updated to release 0.05.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.

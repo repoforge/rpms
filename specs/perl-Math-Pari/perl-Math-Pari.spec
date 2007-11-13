@@ -10,9 +10,9 @@
 
 Summary: Perl interface to PARI
 Name: perl-Math-Pari
-Version: 2.010706
+Version: 2.010709
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Pari/
 
@@ -49,15 +49,23 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorarch}/Math/
-%{perl_vendorarch}/Math/Pari*
-%{perl_vendorarch}/Math/libPARI*
+%doc Changes INSTALL MANIFEST META.yml README TODO
+%doc %{_mandir}/man3/Math::Pari.3pm*
+%doc %{_mandir}/man3/Math::PariInit.3pm*
+%doc %{_mandir}/man3/Math::libPARI.3pm*
+%doc %{_mandir}/man3/Math::libPARI.dumb.3pm*
 %dir %{perl_vendorarch}/auto/Math/
 %{perl_vendorarch}/auto/Math/Pari/
+%dir %{perl_vendorarch}/Math/
+%{perl_vendorarch}/Math/Pari.pm
+%{perl_vendorarch}/Math/PariInit.pm
+%{perl_vendorarch}/Math/libPARI.dumb.pod
+%{perl_vendorarch}/Math/libPARI.pod
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 2.010709-1
+- Updated to release 2.010709.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 2.010706-1
 - Updated to release 2.010706.
 

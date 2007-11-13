@@ -9,7 +9,7 @@
 
 Summary: Map ABC to phonetic alphabets
 Name: perl-Lingua-Alphabet-Phonetic
-Version: 0.053
+Version: 0.054
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -45,12 +45,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/Lingua::Alphabet::Phonetic*
-%doc %{_mandir}/man1/phonetize*
+%doc %{_mandir}/man1/phonetize.1*
+%doc %{_mandir}/man3/Lingua::Alphabet::Phonetic.3pm*
+%doc %{_mandir}/man3/Lingua::Alphabet::Phonetic::*.3pm*
 %{_bindir}/phonetize
-%{perl_vendorlib}/Lingua/Alphabet/Phonetic.pm
+%dir %{perl_vendorlib}/Lingua/
+%dir %{perl_vendorlib}/Lingua/Alphabet/
 %{perl_vendorlib}/Lingua/Alphabet/Phonetic/
+%{perl_vendorlib}/Lingua/Alphabet/Phonetic.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.054-1
+- Updated to release 0.054.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.053-1
 - Initial package.

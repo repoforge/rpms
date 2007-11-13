@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: &#9786;&#21776;&#23447;&#28450;&#9787; <autrijus$autrijus,org>
+# Upstream: <cpan$audreyt,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: Maketext from already interpolated strings
 Name: perl-Locale-Maketext-Fuzzy
-Version: 0.02
-Release: 1.2
+Version: 0.10
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Locale-Maketext-Fuzzy/
@@ -46,13 +46,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST README SIGNATURE
+%doc %{_mandir}/man3/Locale::Maketext::Fuzzy.3pm*
+%dir %{perl_vendorlib}/Locale/
+%dir %{perl_vendorlib}/Locale/Maketext/
+#%{perl_vendorlib}/Locale/Maketext/Fuzzy/
 %{perl_vendorlib}/Locale/Maketext/Fuzzy.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1.2
-- Rebuild for Fedora Core 5.
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.10-1
+- Updated to release 0.10.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

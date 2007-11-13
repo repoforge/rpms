@@ -6,17 +6,16 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Acme-6502
-%define real_version 0.000006
 
 Summary: Pure Perl 65C02 simulator
 Name: perl-Acme-6502
-Version: 0.0.6
+Version: 0.71
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Acme-6502/
 
-Source: http://www.cpan.org/modules/by-module/Acme/Acme-6502-v%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Acme/Acme-6502-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -26,7 +25,7 @@ BuildRequires: perl
 Pure Perl 65C02 simulator.
 
 %prep
-%setup -n %{real_name}-v%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -52,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Acme/6502.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.71-1
+- Updated to release 0.71.
+
 * Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 0.0.6-1
 - Initial package. (using DAR)

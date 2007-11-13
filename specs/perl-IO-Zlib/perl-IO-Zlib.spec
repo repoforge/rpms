@@ -9,9 +9,9 @@
 
 Summary: IO:: interface to Compress::Zlib
 Name: perl-IO-Zlib
-Version: 1.05
+Version: 1.07
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Zlib/
 
@@ -38,19 +38,25 @@ code that doesn't know which sort of file it is using.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
-%doc %{_mandir}/man3/*
+%doc ChangeLog MANIFEST META.yml README SIGNATURE
+%doc %{_mandir}/man3/IO::Zlib.3pm*
+%dir %{perl_vendorlib}/IO/
+#%{perl_vendorlib}/IO/Zlib/
 %{perl_vendorlib}/IO/Zlib.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 1.07-1
+- Updated to release 1.07.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.05-1
 - Updated to release 1.05.
 

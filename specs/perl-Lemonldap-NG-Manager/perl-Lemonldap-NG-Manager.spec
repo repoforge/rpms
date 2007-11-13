@@ -9,7 +9,7 @@
 
 Summary: Perl extension for managing Lemonldap::NG Web-SSO system
 Name: perl-Lemonldap-NG-Manager
-Version: 0.44
+Version: 0.82
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,21 +39,30 @@ Perl extension for managing Lemonldap::NG Web-SSO system.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find example/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Lemonldap::NG::Manager*
-%{perl_vendorlib}/Lemonldap/NG/Manager.pm
-%{perl_vendorlib}/Lemonldap/NG/Manager/
-%{perl_vendorlib}/auto/Lemonldap/NG/Manager/
-%dir %{perl_vendorlib}/Lemonldap/NG/
-%dir %{perl_vendorlib}/auto/Lemonldap/NG/
-%dir %{perl_vendorlib}/Lemonldap/
+%doc Changes MANIFEST META.yml README TODO example/
+%doc %{_mandir}/man1/lmConfig_File2MySQL.1*
+%doc %{_mandir}/man3/Lemonldap::NG::Manager.3pm*
+%doc %{_mandir}/man3/Lemonldap::NG::Manager::*.3pm*
+%{_bindir}/lmConfig_File2MySQL
 %dir %{perl_vendorlib}/auto/Lemonldap/
+%dir %{perl_vendorlib}/auto/Lemonldap/NG/
+%{perl_vendorlib}/auto/Lemonldap/NG/Manager/
+%dir %{perl_vendorlib}/Lemonldap/
+%dir %{perl_vendorlib}/Lemonldap/NG/
+%{perl_vendorlib}/Lemonldap/NG/Manager/
+%{perl_vendorlib}/Lemonldap/NG/Manager.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.82-1
+- Updated to release 0.82.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.44-1
 - Initial package.

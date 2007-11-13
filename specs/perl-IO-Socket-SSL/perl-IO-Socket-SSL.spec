@@ -7,10 +7,10 @@
 
 %define real_name IO-Socket-SSL
 
-Summary: IO-Socket-SSL module for perl
+Summary: Nearly transparent SSL encapsulation for IO::Socket::INET
 Name: perl-IO-Socket-SSL
-Version: 1.07
-Release: 2
+Version: 1.12
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Socket-SSL/
@@ -24,7 +24,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 2:5.8.0
 
 %description
-IO-Socket-SSL module for perl.
+Nearly transparent SSL encapsulation for IO::Socket::INET.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -49,12 +49,15 @@ find docs/ example/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc BUGS Changes MANIFEST README docs/ example/
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/IO::Socket::SSL.3pm*
 %dir %{perl_vendorlib}/IO/
 %dir %{perl_vendorlib}/IO/Socket/
 %{perl_vendorlib}/IO/Socket/SSL.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 1.12-1
+- Updated to release 1.12.
+
 * Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 1.07-2
 - Disabled auto-requires for docs/ and example/.
 

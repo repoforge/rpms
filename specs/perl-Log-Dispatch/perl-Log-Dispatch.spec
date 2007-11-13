@@ -7,9 +7,9 @@
 
 %define real_name Log-Dispatch
 
-Summary: OO modules for logging
+Summary: Dispatches messages to one or more outputs
 Name: perl-Log-Dispatch
-Version: 2.18
+Version: 2.20
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,9 +20,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl-Params-Validate
-BuildRequires: perl-Module-Build
-Requires: perl-Params-Validate, perl-Mail-Sender, perl-Mail-Sendmail
+BuildRequires: perl(File::Temp)
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(Params::Validate)
+BuildRequires: perl(Test::More)
+Requires: perl(Mail::Sender)
+Requires: perl(Mail::Sendmail)
+Requires: perl(Params::Validate)
 
 %description
 Log::Dispatch is a suite of OO modules for logging messages to
@@ -56,18 +60,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE README
-%{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST META.yml README SIGNATURE
+%doc %{_mandir}/man3/Log::Dispatch.3pm*
+%doc %{_mandir}/man3/Log::Dispatch::*.3pm*
 %dir %{perl_vendorlib}/Log/
-%dir %{perl_vendorlib}/Log/Dispatch/
-%dir %{perl_vendorlib}/Log/Dispatch/Email/
-%dir %{perl_vendorlib}/Log/Dispatch/File/
+%{perl_vendorlib}/Log/Dispatch/
 %{perl_vendorlib}/Log/Dispatch.pm
-%{perl_vendorlib}/Log/Dispatch/*.pm
-%{perl_vendorlib}/Log/Dispatch/Email/*.pm
-%{perl_vendorlib}/Log/Dispatch/File/*.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 2.20-1
+- Updated to release 2.20.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 2.18-1
 - Updated to release 2.18.
 

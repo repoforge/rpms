@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Alexis Sukrieh <sukria+perl$sukria,net>
+# Upstream: Alexis Sukrieh <sukria$sukria,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Wrapper for syslog
 Name: perl-Logger-Syslog
-Version: 1.0
+Version: 1.1
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,10 +44,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man3/Logger::Syslog*
+%doc CHANGES README
+%doc %{_mandir}/man3/Logger::Syslog.3pm*
+%dir %{perl_vendorlib}/Logger/
+#%{perl_vendorlib}/Logger/Syslog/
 %{perl_vendorlib}/Logger/Syslog.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 1.1-1
+- Updated to release 1.1.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Initial package.

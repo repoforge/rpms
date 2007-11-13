@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Mark Overmeer <mark$overmeer,net>
+# Upstream: Mark Overmeer <perl$overmeer,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Maintains info about a physical person
 Name: perl-User-Identity
-Version: 0.91
+Version: 0.92
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,13 +44,21 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/User::Identity*
-%doc %{_mandir}/man3/Mail::Identity*
-%{perl_vendorlib}/User/Identity.p*
-%{perl_vendorlib}/Mail/Identity.p*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Mail::Identity.3pm*
+%doc %{_mandir}/man3/User::Identity.3pm*
+%doc %{_mandir}/man3/User::Identity::*.3pm*
+%dir %{perl_vendorlib}/Mail/
+%{perl_vendorlib}/Mail/Identity.pm
+%{perl_vendorlib}/Mail/Identity.pod
+%dir %{perl_vendorlib}/User/
 %{perl_vendorlib}/User/Identity/
+%{perl_vendorlib}/User/Identity.pm
+%{perl_vendorlib}/User/Identity.pod
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.92-1
+- Updated to release 0.92.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.91-1
 - Initial package.

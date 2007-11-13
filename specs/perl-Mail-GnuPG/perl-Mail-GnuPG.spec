@@ -9,9 +9,9 @@
 
 Summary: Perl module to process email with GPG
 Name: perl-Mail-GnuPG
-Version: 0.08
+Version: 0.10
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-GnuPG/
 
@@ -46,11 +46,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Mail::GnuPG.3pm*
-#%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Mail/
 #%{perl_vendorlib}/Mail/GnuPG/
 %{perl_vendorlib}/Mail/GnuPG.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.10-1
+- Updated to release 0.10.
+
 * Thu May 03 2007 Dag Wieers <dag@wieers.com> - 0.08-1
 - Initial package. (using DAR)

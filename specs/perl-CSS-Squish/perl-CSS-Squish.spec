@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Thomas Sibley <tsibley$cpan,org>
+# Upstream: Thomas Sibley <trs$bestpractical,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Perl module to compact many CSS files into one big file
 Name: perl-CSS-Squish
-Version: 0.05
+Version: 0.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/CSS/Squish.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.07-1
+- Updated to release 0.07.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.05-1
 - Initial package. (using DAR)

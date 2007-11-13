@@ -9,7 +9,7 @@
 
 Summary: Perl wrappers for the GLib utility and object libraries
 Name: perl-Glib
-Version: 1.161
+Version: 1.162
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,11 +55,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc AUTHORS ChangeLog LICENSE MANIFEST MANIFEST.SKIP META.yml NEWS README TODO copyright.pod
 %doc %{_mandir}/man3/Glib.3pm*
 %doc %{_mandir}/man3/Glib::*.3pm*
+%{perl_vendorarch}/auto/Glib/
 %{perl_vendorarch}/Glib/
 %{perl_vendorarch}/Glib.pm
-%{perl_vendorarch}/auto/Glib/
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 1.162-1
+- Updated to release 1.162.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.161-1
 - Updated to release 1.161.
 

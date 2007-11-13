@@ -9,7 +9,7 @@
 
 Summary: Perl module to interface to zlib compression library
 Name: perl-Compress-Zlib
-Version: 2.007
+Version: 2.008
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -63,6 +63,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/auto/Compress/Zlib/
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 2.008-1
+- Updated to release 2.008.
+
 * Wed Nov 07 2007 Dag Wieers <dag@wieers.com> - 2.007-1
 - Updated to release 2.007.
 

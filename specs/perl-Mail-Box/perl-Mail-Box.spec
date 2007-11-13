@@ -9,7 +9,7 @@
 
 Summary: E-mail handling
 Name: perl-Mail-Box
-Version: 2.075
+Version: 2.078
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -77,10 +77,13 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog INSTALL LICENSE MANIFEST META.yml README README.FAQ README.todo TODO.v2 examples/
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Mail::*.3pm*
 %{perl_vendorlib}/Mail/
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 2.078-1
+- Updated to release 2078.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 2.075-1
 - Updated to release 2.075.
 

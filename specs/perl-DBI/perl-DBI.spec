@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Tim Bunce <dbi-users$perl,org>
+# Upstream: Tim Bunce <Tim,Bunce$pobox,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

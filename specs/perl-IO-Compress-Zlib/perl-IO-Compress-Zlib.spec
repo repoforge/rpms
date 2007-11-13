@@ -9,7 +9,7 @@
 
 Summary: Write and read zip files and buffers
 Name: perl-IO-Compress-Zlib
-Version: 2.006
+Version: 2.008
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,12 +48,16 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README examples/
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/IO::Compress::*.3pm*
+%doc %{_mandir}/man3/IO::Uncompress::*.3pm*
 %dir %{perl_vendorlib}/IO/
 %{perl_vendorlib}/IO/Compress/
 %{perl_vendorlib}/IO/Uncompress/
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 2.008-1
+- Updated to release 2.008.
+
 * Sun Nov 11 2007 Dag Wieers <dag@wieers.com> - 2.006-1
 - Updated to release 2.006.
 
