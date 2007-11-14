@@ -16,7 +16,7 @@ URL: http://www.pablotron.org/software/fam-ruby/
 Source: http://www.pablotron.org/download/fam-ruby-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ruby-devel >= 1.8, gamin-devel
+BuildRequires: ruby, ruby-devel >= 1.8, gamin-devel
 Requires: ruby >= 1.8
 Provides: ruby(fam) = 0.1.4
 Provides: ruby(gamin) = 0.1.4
