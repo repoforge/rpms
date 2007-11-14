@@ -4,7 +4,7 @@
 
 Summary: Library which handles page faults
 Name: libsigsegv
-Version: 2.4
+Version: 2.5
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -36,12 +36,12 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure --enable-shared --enable-static
+%configure --enable-shared --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -60,11 +60,13 @@ you will need to install %{name}-devel.
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/sigsegv.h
-%{_libdir}/libsigsegv.a
 %{_libdir}/libsigsegv.so
 %exclude %{_libdir}/*.la
 
 %changelog
+* Wed Nov 14 2007 Dries Verachtert <dries@ulyssis.org> - 2.5-1
+- Updated to release 2.5.
+
 * Wed Dec 27 2006 Dries Verachtert <dries@ulyssis.org> - 2.4-1
 - Updated to release 2.4.
 
