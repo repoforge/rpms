@@ -20,9 +20,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(Test::More) >= 0.62
-BuildRequires: perl(Moose) >= 0.17
 BuildRequires: perl(Module::Pluggable::Object)
+BuildRequires: perl(Moose) >= 0.17
+#BuildRequires: perl(Test::More) >= 0.62
 
 %description
 MooseX-Object-Pluggable is a Perl module to make your classes pluggable.

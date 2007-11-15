@@ -11,7 +11,7 @@
 Summary: Time zone object base class and factory
 Name: perl-DateTime-TimeZone
 Version: 0.69.4
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-TimeZone/
@@ -60,7 +60,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DateTime/TimeZone.pm
 %{perl_vendorlib}/DateTime/TimeZoneCatalog.pm
 
+### Exclude to disable Win32 dependencies
+%exclude %{_mandir}/man3/DateTime::TimeZone::Local::Win32.3pm*
+%exclude %{perl_vendorlib}/DateTime/TimeZone/Local/Win32.pm
+
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.69.4-2
+- Excluded Win32 dependencies by excluding module. (Ralph Angenendt)
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.69.4-1
 - Updated to release 0.6904.
 

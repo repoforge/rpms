@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Chris Nandor <cnandor$cpan,org>
+# Upstream: Dan Sully <daniel$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,9 +9,9 @@
 
 Summary: Edit MP3 tags
 Name: perl-MP3-Info
-Version: 1.22
+Version: 1.23
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MP3-Info/
 
@@ -35,20 +35,29 @@ With this module, you can read and edit information within MP3 files.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%{_mandir}/man3/*
+%doc Changes Info.pm MANIFEST README TODO eg/
+%doc %{_mandir}/man3/MP3::Info.3pm*
+%dir %{perl_vendorlib}/MP3/
+#%{perl_vendorlib}/MP3/Info/
 %{perl_vendorlib}/MP3/Info.pm
 #%{perl_vendorlib}/MPEG/MP3Info.pm
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.23-1
+- Updated to release 1.23.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.22-1
 - Updated to release 1.22.
 

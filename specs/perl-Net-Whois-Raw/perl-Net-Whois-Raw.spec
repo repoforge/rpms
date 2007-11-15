@@ -9,7 +9,7 @@
 
 Summary: Get Whois information for domains
 Name: perl-Net-Whois-Raw
-Version: 1.20
+Version: 1.34
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,13 +44,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Net::Whois::Raw*
-%doc %{_mandir}/man1/pwhois*
+%doc COPYRIGHT Changes MANIFEST META.yml README
+%doc %{_mandir}/man1/pwhois.1*
+%doc %{_mandir}/man3/Net::Whois::Raw.3pm*
 %{_bindir}/pwhois
-%{perl_vendorlib}/Net/Whois/Raw.pm
+%dir %{perl_vendorlib}/Net/
+%dir %{perl_vendorlib}/Net/Whois/
 %{perl_vendorlib}/Net/Whois/Raw/
+%{perl_vendorlib}/Net/Whois/Raw.pm
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.34-1
+- Updated to release 1.34.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.20-1
 - Initial package.

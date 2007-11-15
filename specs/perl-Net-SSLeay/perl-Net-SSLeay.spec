@@ -9,18 +9,23 @@
 
 Summary: Net-SSLeay module for perl
 Name: perl-Net-SSLeay
-Version: 1.30
+Version: 1.32
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Net-SSLeay.pm/
+URL: http://search.cpan.org/dist/Net-SSLeay/
 
 Source: http://www.cpan.org/modules/by-module/Net/Net-SSLeay-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.00503
-BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: openssl-devel
+BuildRequires: perl >= 0:5.00503
+BuildRequires: perl(Array::Compare)
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Sub::Uplevel)
+BuildRequires: perl(Test::Exception)
+BuildRequires: perl(Test::Warn)
+BuildRequires: perl(Tree::DAG_Node)
 Requires: perl >= 0:5.00503
 
 %description
@@ -32,7 +37,7 @@ Net-SSLeay module for perl.
 %{__perl} -pi -e 's|^\s*#!/.*bin/perl|#!%{__perl}|;' SSLeay.pm examples/*.pl
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL %{_prefix} INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+echo "n" | CFLAGS="%{optflags}" %{__perl} Makefile.PL %{_prefix} INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -50,16 +55,19 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes Credits MANIFEST QuickRef README examples/
-%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorarch}/Net/
-%{perl_vendorarch}/Net/ptrtstrun.pl
-%{perl_vendorarch}/Net/SSLeay/
-%{perl_vendorarch}/Net/SSLeay.pm
+%doc Changes Credits MANIFEST MANIFEST.SKIP META.yml README README.Win32 TODO examples/
+%doc %{_mandir}/man3/Net::SSLeay.3pm*
+%doc %{_mandir}/man3/Net::SSLeay::*.3pm*
 %dir %{perl_vendorarch}/auto/Net/
 %{perl_vendorarch}/auto/Net/SSLeay/
+%dir %{perl_vendorarch}/Net/
+%{perl_vendorarch}/Net/SSLeay/
+%{perl_vendorarch}/Net/SSLeay.pm
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.32-1
+- Updated to release 1.32.
+
 * Mon Nov 14 2005 Matthias Saou <http://freshrpms.net/> 1.25-3
 - Add missing openssl-devel build requirement.
 

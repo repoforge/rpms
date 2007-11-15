@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Ricardo Signes <rjbs$cpan,org>
+# Upstream: Andy Lester <andy$petdance,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,9 +9,9 @@
 
 Summary: Simple starterkit for any module
 Name: perl-Module-Starter
-Version: 1.42
-Release: 1.2
-License: Artistic
+Version: 1.470
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Starter/
 
@@ -35,24 +35,27 @@ A simple starterkit for any module.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/*
-%doc %{_mandir}/man1/*
-%{_bindir}/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man1/module-starter.1*
+%doc %{_mandir}/man3/Module::Starter.3pm*
+%doc %{_mandir}/man3/Module::Starter::*.3pm*
+%{_bindir}/module-starter
+%dir %{perl_vendorlib}/Module/
+%{perl_vendorlib}/Module/Starter/
 %{perl_vendorlib}/Module/Starter.pm
-%{perl_vendorlib}/Module/Starter
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.42-1.2
-- Rebuild for Fedora Core 5.
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.470-1
+- Updated to release 1.470.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.42-1
 - Updated to release 1.42.

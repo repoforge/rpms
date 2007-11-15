@@ -9,8 +9,8 @@
 
 Summary: Random number generators
 Name: perl-Math-Random
-Version: 0.67
-Release: 1.2
+Version: 0.70
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Random/
@@ -47,14 +47,24 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorarch}/Math/
-%{perl_vendorarch}/Math/Random.pm
-%{perl_vendorarch}/Math/example.pl
-%dir %{perl_vendorarch}/auto/Math/
-%{perl_vendorarch}/auto/Math/Random/
+%doc Changes INSTALL MANIFEST META.yml README
+%doc %{_mandir}/man3/Math::Random.3pm*
+#%dir %{perl_vendorarch}/auto/Math/
+#%{perl_vendorarch}/auto/Math/Random/
+#%dir %{perl_vendorarch}/Math/
+#%{perl_vendorarch}/Math/Random.pm
+#%{perl_vendorarch}/Math/example.pl
+%dir %{perl_sitearch}/auto/Math/
+%{perl_sitearch}/auto/Math/Random/
+%dir %{perl_sitearch}/Math/
+%{perl_sitearch}/Math/Random.pm
+%{perl_sitearch}/Math/example.pl
+%exclude %{perl_sitearch}/Math/test1.pl
+%exclude %{perl_sitearch}/Math/test2.pl
 
 %changelog
+* Wed Nov 14 2007 Dag Wieers <dag@wieers.com> - 0.70-1
+- Updated to release 0.70.
+
 * Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.67-1
 - Initial package.

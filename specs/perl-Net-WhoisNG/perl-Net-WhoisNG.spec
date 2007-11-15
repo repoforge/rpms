@@ -9,9 +9,9 @@
 
 Summary: Perl extension for whois lookup and parsing
 Name: perl-Net-WhoisNG
-Version: 0.05
-Release: 1.2
-License: Artistic
+Version: 0.09
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-WhoisNG/
 
@@ -35,21 +35,25 @@ Perl extension for whois lookup and parsing.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Net::WhoisNG.3pm*
+%doc %{_mandir}/man3/Net::WhoisNG::Person.3pm*
+%dir %{perl_vendorlib}/Net/
+%{perl_vendorlib}/Net/WhoisNG/
 %{perl_vendorlib}/Net/WhoisNG.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1.2
-- Rebuild for Fedora Core 5.
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.09-1
+- Updated to release 0.09.
 
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Updated to release 0.05.

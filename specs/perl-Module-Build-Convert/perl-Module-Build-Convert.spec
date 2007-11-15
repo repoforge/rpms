@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Steven Philip Schubiger <schubiger$cpan,org>
+# Upstream: Steven Schubiger <schubiger$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Makefile.PL to Build.PL converter
 Name: perl-Module-Build-Convert
-Version: 0.44
+Version: 0.49
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
 
 %description
 Makefile.PL to Build.PL converter.
@@ -44,12 +45,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Module::Build::Convert*
-%doc %{_mandir}/man1/make2build*
-%{perl_vendorlib}/Module/Build/Convert.pm
+%doc Changes INSTALL MANIFEST META.yml README
+%doc %{_mandir}/man1/make2build.1*
+%doc %{_mandir}/man3/Module::Build::Convert.3pm*
 %{_bindir}/make2build
+%dir %{perl_vendorlib}/Module/
+%dir %{perl_vendorlib}/Module/Build/
+#%{perl_vendorlib}/Module/Build/Convert/
+%{perl_vendorlib}/Module/Build/Convert.pm
 
 %changelog
+* Wed Nov 14 2007 Dag Wieers <dag@wieers.com> - 0.49-1
+- Updated to release 0.49.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.44-1
 - Initial package.

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Jos Boumans <kane$dwim,org>
+# Upstream: Jos Boumans <kane$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,9 +9,9 @@
 
 Summary: Runtime require of both modules and files
 Name: perl-Module-Load
-Version: 0.10
-Release: 1.2
-License: Artistic
+Version: 0.12
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Load/
 
@@ -44,14 +44,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man3/*
+%doc CHANGES MANIFEST META.yml README
+%doc %{_mandir}/man3/Module::Load.3pm*
 %dir %{perl_vendorlib}/Module/
+#%{perl_vendorlib}/Module/Load/
 %{perl_vendorlib}/Module/Load.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1.2
-- Rebuild for Fedora Core 5.
+* Wed Nov 14 2007 Dag Wieers <dag@wieers.com> - 0.12-1
+- Updated to release 0.12.
 
 * Fri Dec 10 2004 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Initial package.

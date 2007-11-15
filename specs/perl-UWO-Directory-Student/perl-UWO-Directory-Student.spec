@@ -21,14 +21,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Test)
-BuildRequires: perl(Test::More) >= 0.62
+#BuildRequires: perl(Test::More) >= 0.62
 
 %description
 Perform lookups using the University of Western Ontario's student directory.
-
-This package contains the following Perl module:
-
-    UWO::Directory::Student
 
 %prep
 %setup -n %{real_name}-%{version}

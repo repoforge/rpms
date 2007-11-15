@@ -9,7 +9,7 @@
 
 Summary: Identify the dependencies of a distribution
 Name: perl-Module-Depends
-Version: 0.12
+Version: 0.13
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
 
 %description
 Identify the dependencies of a distribution.
@@ -44,18 +45,19 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README
+%doc %{_mandir}/man3/Module::Depends.3pm*
+%doc %{_mandir}/man3/Module::Depends::Intrusive.3pm*
 %dir %{perl_vendorlib}/Module/
-%{perl_vendorlib}/Module/Depends.pm
 %{perl_vendorlib}/Module/Depends/
+%{perl_vendorlib}/Module/Depends.pm
 
 %changelog
+* Wed Nov 14 2007 Dag Wieers <dag@wieers.com> - 0.13-1
+- Updated to release 0.13.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Updated to release 0.12.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Updated to release 0.10.

@@ -21,8 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Test::Exception)
-BuildRequires: perl(Test::Simple) >= 0.62
-BuildRequires: perl(Test::More) >= 0.62
+#BuildRequires: perl(Test::Simple) >= 0.62
+#BuildRequires: perl(Test::More) >= 0.62
 BuildRequires: perl(Carp)
 BuildRequires: perl(Scalar::Util)
 BuildRequires: perl(Exporter) >= 5.58

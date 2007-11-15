@@ -9,7 +9,7 @@
 
 Summary: Auto-seeded Mersenne Twister PRNGs
 Name: perl-Math-Random-MT-Auto
-Version: 6.02
+Version: 6.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -38,24 +38,30 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
+%doc Changes MANIFEST META.yml README examples/
 %doc %{_mandir}/man3/Math::Random::MT::Auto.3pm*
 %doc %{_mandir}/man3/Math::Random::MT::Auto::Range.3pm*
+%dir %{perl_vendorarch}/auto/Math/
+%dir %{perl_vendorarch}/auto/Math/Random/
+%dir %{perl_vendorarch}/auto/Math/Random/MT/
+%{perl_vendorarch}/auto/Math/Random/MT/Auto/
 %dir %{perl_vendorarch}/Math/
 %dir %{perl_vendorarch}/Math/Random/
 %dir %{perl_vendorarch}/Math/Random/MT/
 %{perl_vendorarch}/Math/Random/MT/Auto.pm
 %{perl_vendorarch}/Math/Random/MT/Auto/
-%dir %{perl_vendorarch}/auto/Math/
-%dir %{perl_vendorarch}/auto/Math/Random/
-%dir %{perl_vendorarch}/auto/Math/Random/MT/
-%{perl_vendorarch}/auto/Math/Random/MT/Auto/
 
 %changelog
+* Wed Nov 14 2007 Dag Wieers <dag@wieers.com> - 6.09-1
+- Updated to release 6.09.
+
 * Sun May 27 2007 Dag Wieers <dag@wieers.com> - 6.02-1
 - Initial package. (using DAR)

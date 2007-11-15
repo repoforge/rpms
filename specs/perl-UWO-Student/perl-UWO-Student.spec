@@ -21,14 +21,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Test)
-BuildRequires: perl(Test::More) >= 0.62
+#BuildRequires: perl(Test::More) >= 0.62
 
 %description
 Provides Perl object representation of a University of Western Ontario student.
-
-This package contains the following Perl module:
-
-    UWO::Student
 
 %prep
 %setup -n %{real_name}-%{version}

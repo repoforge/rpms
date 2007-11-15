@@ -9,7 +9,7 @@
 
 Summary: Charset Informations for MIME
 Name: perl-MIME-Charset
-Version: 0.043
+Version: 0.044
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,12 +44,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/MIME::Charset*
+%doc ARTISTIC COPYING Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/MIME::Charset.3pm*
+%doc %{_mandir}/man3/MIME::Charset-ja_JP.3pm*
+%dir %{perl_vendorlib}/MIME/
+%{perl_vendorlib}/MIME/Charset/
 %{perl_vendorlib}/MIME/Charset.pm
 %{perl_vendorlib}/MIME/Charset-*.pod
-%{perl_vendorlib}/MIME/Charset/
 
 %changelog
+* Wed Nov 14 2007 Dag Wieers <dag@wieers.com> - 0.044-1
+- Updated to release 0.044.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.043-1
 - Initial package.

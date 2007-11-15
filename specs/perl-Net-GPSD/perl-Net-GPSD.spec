@@ -9,9 +9,9 @@
 
 Summary: Perl module that provides an object client interface to the gpsd server daemon
 Name: perl-Net-GPSD
-Version: 0.35
+Version: 0.36
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-GPSD/
 
@@ -40,17 +40,24 @@ to the gpsd server daemon.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find doc/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES LICENSE MANIFEST META.yml README
-%doc %{_mandir}/man3/*.3pm*
+%doc CHANGES LICENSE MANIFEST META.yml README doc/
+%doc %{_mandir}/man3/Net::GPSD.3pm*
+%doc %{_mandir}/man3/Net::GPSD::*.3pm*
 %dir %{perl_vendorlib}/Net/
 %{perl_vendorlib}/Net/GPSD/
 %{perl_vendorlib}/Net/GPSD.pm
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.36-1
+- Updated to release 0.36.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.35-1
 - Initial package. (using DAR)

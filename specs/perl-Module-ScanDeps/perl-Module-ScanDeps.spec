@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: &#9786;&#21776;&#40179;&#9787; <autrijus$autrijus,org>
+# Upstream: Audrey Tang <cpan@audreyt.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Recursively scan Perl programs for dependencies
 Name: perl-Module-ScanDeps
-Version: 0.74
+Version: 0.77
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Module/Module-ScanDeps-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.004
 BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
@@ -50,14 +50,19 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%doc %{_mandir}/man1/scandeps*
+%doc AUTHORS Changes MANIFEST META.yml README SIGNATURE
+%doc %{_mandir}/man1/scandeps.pl.1*
+%doc %{_mandir}/man3/Module::ScanDeps.3pm*
+%doc %{_mandir}/man3/Module::ScanDeps::DataFeed.3pm*
 %{_bindir}/scandeps.pl
-%{perl_vendorlib}/Module/ScanDeps.pm
+%dir %{perl_vendorlib}/Module/
 %{perl_vendorlib}/Module/ScanDeps/
+%{perl_vendorlib}/Module/ScanDeps.pm
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.77-1
+- Updated to release 0.77.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.74-1
 - Updated to release 0.74.
 

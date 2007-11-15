@@ -9,9 +9,9 @@
 
 Summary: Definition of MIME types
 Name: perl-MIME-Types
-Version: 1.20
+Version: 1.21
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-Types/
 
@@ -37,19 +37,28 @@ treatments with mime types are implemented.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/MIME/*
+%doc ChangeLog MANIFEST META.yml README
+%doc %{_mandir}/man3/MIME::Type.3pm*
+%doc %{_mandir}/man3/MIME::Types.3pm*
+%dir %{perl_vendorlib}/MIME/
+%{perl_vendorlib}/MIME/Type.pm
+%{perl_vendorlib}/MIME/Type.pod
+%{perl_vendorlib}/MIME/Types.pm
+%{perl_vendorlib}/MIME/Types.pod
 
 %changelog
+* Wed Nov 14 2007 Dag Wieers <dag@wieers.com> - 1.21-1
+- Updated to release 1.21.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 1.20-1
 - Updated to release 1.20.
 

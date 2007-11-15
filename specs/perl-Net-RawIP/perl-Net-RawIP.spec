@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Sergey V. Kolychev <ksv$al,lg,ua>
+# Upstream: Gábor Szabó <gabor$pti,co,il>
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -15,8 +15,8 @@
 
 Summary: Manipulate raw ip packets with interface to libpcap
 Name: perl-Net-RawIP
-Version: 0.2
-Release: 2
+Version: 0.21
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-RawIP/
@@ -36,7 +36,7 @@ with an optional feature for manipulating Ethernet headers.
 
 %prep
 %setup -n %{real_name}-%{version}
-%patch -p1
+#patch -p1
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -50,20 +50,27 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README README.Devel examples/
+%doc %{_mandir}/man3/Net::RawIP.3pm*
+%doc %{_mandir}/man3/Net::RawIP::libpcap.3pm*
+%dir %{perl_vendorarch}/auto/Net/
+%{perl_vendorarch}/auto/Net/RawIP/
 %dir %{perl_vendorarch}/Net/
 %{perl_vendorarch}/Net/RawIP/
 %{perl_vendorarch}/Net/RawIP.pm
-%dir %{perl_vendorarch}/auto/Net
-%{perl_vendorarch}/auto/Net/RawIP/
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.21-1
+- Updated to release 0.21.
+
 * Thu Aug 24 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-2
 - Gcc fixes: patch added.
 

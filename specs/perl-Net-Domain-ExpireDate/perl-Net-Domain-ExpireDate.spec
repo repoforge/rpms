@@ -9,7 +9,7 @@
 
 Summary: Obtain expiration date of domain names
 Name: perl-Net-Domain-ExpireDate
-Version: 0.40
+Version: 0.80
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,10 +44,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Net::Domain::ExpireDate*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Net::Domain::ExpireDate.3pm*
+%dir %{perl_vendorlib}/Net/
+%dir %{perl_vendorlib}/Net/Domain/
+#%{perl_vendorlib}/Net/Domain/ExpireDate/
 %{perl_vendorlib}/Net/Domain/ExpireDate.pm
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.80-1
+- Updated to release 0.80.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.40-1
 - Initial package.

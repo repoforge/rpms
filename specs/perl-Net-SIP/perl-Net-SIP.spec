@@ -9,7 +9,7 @@
 
 Summary: Framework for SIP and Voice Over IP
 Name: perl-Net-SIP
-Version: 0.23
+Version: 0.39
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,16 +39,25 @@ Framework SIP (Voice Over IP, RFC3261).
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find samples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Net::SIP*
-%{perl_vendorlib}/Net/SIP.p*
+%doc BUGS COPYRIGHT Changes INSTALL MANIFEST META.yml README THANKS TODO samples/
+%doc %{_mandir}/man3/Net::SIP.3pm*
+%doc %{_mandir}/man3/Net::SIP::*.3pm*
+%dir %{perl_vendorlib}/Net/
 %{perl_vendorlib}/Net/SIP/
+%{perl_vendorlib}/Net/SIP.pm
+%{perl_vendorlib}/Net/SIP.pod
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.39-1
+- Updated to release 0.39.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.23-1
 - Initial package.

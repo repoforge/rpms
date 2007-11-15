@@ -11,7 +11,7 @@
 
 Summary: Collection of Perl modules which provide Internet protocols
 Name: perl-libnet
-Version: 1.21
+Version: 1.22
 Epoch: 2
 Release: 1
 License: Artistic/GPL
@@ -50,10 +50,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README SIGNATURE
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Net::*.3pm*
 %{perl_vendorlib}/Net/
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.22-1
+- Updated to release 1.22.
+
 * Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 1.21-1
 - Updated to release 1.21.
 

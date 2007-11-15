@@ -9,7 +9,7 @@
 
 Summary: Creates code related documentation
 Name: perl-OODoc
-Version: 1.01
+Version: 1.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,20 +39,27 @@ Creates code related documentation in an object oriented way.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog LICENSE MANIFEST META.yml README
+%doc ChangeLog LICENSE MANIFEST META.yml README examples/
 %doc %{_mandir}/man1/oodist.1*
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/OODoc.3pm*
+%doc %{_mandir}/man3/OODoc::*.3pm*
 %{_bindir}/oodist
+%{perl_vendorlib}/OODoc/
 %{perl_vendorlib}/OODoc.pm
 %{perl_vendorlib}/OODoc.pod
-%{perl_vendorlib}/OODoc/
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.02-1
+- Updated to release 1.02.
+
 * Thu Jul 5 2007 Quien Sabe (aka Jim) <quien-sabe@metaorg.com> - 1.01-1
 - Updated to latest upstream version { old source not available }
 

@@ -52,13 +52,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
-%doc %{_mandir}/man3/*
+%doc ChangeLog MANIFEST MANIFEST.SKIP META.yml README
+%doc %{_mandir}/man3/Tree::DAG_Node.3pm*
+%dir %{perl_vendorlib}/Tree/
+#%{perl_vendorlib}/Tree/DAG_Node/
 %{perl_vendorlib}/Tree/DAG_Node.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.05-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.05-1
 - Initial package.

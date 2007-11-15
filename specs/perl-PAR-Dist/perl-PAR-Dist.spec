@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: autrijus$autrijus,org
+# Upstream: Steffen Müller <smueller$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,9 +9,9 @@
 
 Summary: Create and manipulate PAR distributions
 Name: perl-PAR-Dist
-Version: 0.22
+Version: 0.25
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PAR-Dist/
 
@@ -35,20 +35,25 @@ With this module, you can create and manipulate PAR distributions.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README SIGNATURE
+%doc %{_mandir}/man3/PAR::Dist.3pm*
+%dir %{perl_vendorlib}/PAR/
+#%{perl_vendorlib}/PAR/Dist/
 %{perl_vendorlib}/PAR/Dist.pm
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.29-1
+- Updated to release 0.29.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.22-1
 - Updated to release 0.22.
 

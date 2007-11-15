@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Luis Mu&#241;oz <luismunoz$cpan,org>
+# Upstream: Luis Muñoz <luismunoz$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Object-oriented Perl interface to RADIUS
 Name: perl-Net-Radius
-Version: 1.55
+Version: 1.56
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,16 +39,23 @@ Object-oriented Perl interface to RADIUS.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find contrib/ docs/ examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Net::Radius::*
-%dir %{perl_vendorlib}/Net/Radius/
-%{perl_vendorlib}/Net/Radius/*.pm
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README README.3COM README.VSA README.broken README.packets README.server version.pl contrib/ docs/ examples/
+%doc %{_mandir}/man3/Net::Radius::Dictionary.3pm*
+%doc %{_mandir}/man3/Net::Radius::Packet.3pm*
+%dir %{perl_vendorlib}/Net/
+%{perl_vendorlib}/Net/Radius/
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.56-1
+- Updated to release 1.56.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.55-1
 - Initial package.

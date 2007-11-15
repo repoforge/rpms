@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Simon Wistow <simonw$cpan,org>
+# Upstream: Simon Wistow <simon$thegestalt,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Access to Google's Calendar API
 Name: perl-Net-Google-Calendar
-Version: 0.4
+Version: 0.8
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,11 +44,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes Readme TODO USAGE
-%doc %{_mandir}/man3/Net::Google::Calendar*
-%{perl_vendorlib}/Net/Google/Calendar.pm
+%doc Changes MANIFEST META.yml Readme TODO
+%doc %{_mandir}/man3/Net::Google::Calendar.3pm*
+%doc %{_mandir}/man3/Net::Google::Calendar::*.3pm*
+%dir %{perl_vendorlib}/Net/
+%dir %{perl_vendorlib}/Net/Google/
 %{perl_vendorlib}/Net/Google/Calendar/
+%{perl_vendorlib}/Net/Google/Calendar.pm
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.8-1
+- Updated to release 0.8.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.4-1
 - Initial package.

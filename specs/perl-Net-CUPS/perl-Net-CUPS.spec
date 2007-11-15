@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements a Common Unix Printing System Interface
 Name: perl-Net-CUPS
-Version: 0.51
+Version: 0.55
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,6 +18,7 @@ URL: http://search.cpan.org/dist/Net-CUPS/
 Source: http://www.cpan.org/modules/by-module/Net/Net-CUPS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: cups-devel >= 1:1.2.2
 BuildRequires: perl
 
 %description
@@ -38,19 +39,26 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README TODO
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes MANIFEST README TODO examples/
+%doc %{_mandir}/man3/Net::CUPS.3pm*
+%doc %{_mandir}/man3/Net::CUPS::*.3pm*
+%dir %{perl_vendorarch}/auto/Net/
+%{perl_vendorarch}/auto/Net/CUPS/
 %dir %{perl_vendorarch}/Net/
 %{perl_vendorarch}/Net/CUPS/
 %{perl_vendorarch}/Net/CUPS.pm
-%dir %{perl_vendorarch}/auto/Net/
-%{perl_vendorarch}/auto/Net/CUPS/
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.55-1
+- Updated to release 0.55.
+
 * Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 0.51-1
 - Initial package. (using DAR)

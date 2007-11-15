@@ -9,7 +9,7 @@
 
 Summary: Looking up module information / loading at runtime
 Name: perl-Module-Load-Conditional
-Version: 0.16
+Version: 0.22
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,21 +48,21 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man3/*
+%doc CHANGES MANIFEST META.yml README
+%doc %{_mandir}/man3/Module::Load::Conditional.3pm*
 %dir %{perl_vendorlib}/Module/
 %dir %{perl_vendorlib}/Module/Load/
 %{perl_vendorlib}/Module/Load/Conditional.pm
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.22-1
+- Updated to release 0.22.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.16-1
 - Updated to release 0.16.
 
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Updated to release 0.12.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1.2
-- Rebuild for Fedora Core 5.
 
 * Thu Mar 31 2005 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Initial package.

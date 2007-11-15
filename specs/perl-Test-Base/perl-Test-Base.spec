@@ -8,9 +8,9 @@
 
 Summary: Data driven testing framework for perl
 Name: perl-Test-Base
-Version: 0.53
+Version: 0.54
 Release: 1
-License: GPL
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Base/
 
@@ -18,7 +18,7 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Base-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 1:5.6.1
 BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
@@ -43,8 +43,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Module::Install::TestBase.3pm*
+%doc %{_mandir}/man3/Test::Base.3pm*
+%doc %{_mandir}/man3/Test::Base::Filter.3pm*
 %dir %{perl_vendorlib}/Module/
 %dir %{perl_vendorlib}/Module/Install/
 %{perl_vendorlib}/Module/Install/TestBase.pm
@@ -53,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Base/
 
 %changelog
+* Wed Nov 14 2007 Dag Wieers <dag@wieers.com> - 0.54-1
+- Updated to release 0.54.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.53-1
 - Updated to release 0.53.
 

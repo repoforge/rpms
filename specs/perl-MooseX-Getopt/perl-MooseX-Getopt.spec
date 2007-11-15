@@ -21,8 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(Test::More) >= 0.62
 BuildRequires: perl(Test::Exception) >= 0.21
+#BuildRequires: perl(Test::More) >= 0.62
 
 %description
 A Moose role for processing command line options.

@@ -1,5 +1,9 @@
 # $Id$
 # Authority: dag
+# Upstream: Eryq <eryq$zeegee,com>
+# Upstream: David F. Skoll <dfs$roaringpenguin,com>
+# Upstream: Dave O'Neill <dmo$roaringpenguin,com>
+
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -10,9 +14,9 @@
 
 Summary: Perl modules for parsing (and creating!) MIME entities
 Name: perl-MIME-tools
-Version: 5.420
-Release: 2
-License: GPL
+Version: 5.424
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-tools/
 
@@ -61,8 +65,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING INSTALLING MANIFEST README* examples/
-%doc %{_mandir}/man3/*.3pm*
+%doc COPYING ChangeLog INSTALLING MANIFEST MANIFEST.SKIP META.yml README README-OR-DIE README.system examples/
+%doc %{_mandir}/man3/MIME::*.3pm*
 %{perl_vendorlib}/MIME/
 
 %changelog

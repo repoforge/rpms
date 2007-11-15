@@ -9,7 +9,7 @@
 
 Summary: Create and send ARP packets
 Name: perl-Net-ARP
-Version: 0.8
+Version: 1.0
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -45,14 +45,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorarch}/Net/
-%{perl_vendorarch}/Net/ARP.pm
+%doc Changes MANIFEST README
+%doc %{_mandir}/man3/Net::ARP.3pm*
 %dir %{perl_vendorarch}/auto/Net/
 %{perl_vendorarch}/auto/Net/ARP/
+%dir %{perl_vendorarch}/Net/
+%{perl_vendorarch}/Net/ARP.pm
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.0-1
+- Updated to release 1.0.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-1
 - Updated to release 0.8.
 

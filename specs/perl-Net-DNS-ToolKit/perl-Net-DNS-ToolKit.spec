@@ -9,7 +9,7 @@
 
 Summary: Routines to pick apart, examine and put together DNS packets
 Name: perl-Net-DNS-ToolKit
-Version: 0.31
+Version: 0.34
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -39,7 +39,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{__make} pure_install
 
 ### Clean up buildroot
-find %{buildroot} -name .packlist -exec %{__rm} {} \;/auto/*{,/*{,/*}}/.packlist
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,16 +47,20 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;/auto/*{,/*{,/*}}/.packlist
 %files
 %defattr(-, root, root, 0755)
 %doc Artistic Changes INSTALL MANIFEST META.yml README
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Net::DNS::ToolKit.3pm*
+%doc %{_mandir}/man3/Net::DNS::ToolKit::*.3pm*
+%dir %{perl_vendorarch}/auto/Net/
+%dir %{perl_vendorarch}/auto/Net/DNS/
+%{perl_vendorarch}/auto/Net/DNS/ToolKit/
 %dir %{perl_vendorarch}/Net/
 %dir %{perl_vendorarch}/Net/DNS/
 %{perl_vendorarch}/Net/DNS/ToolKit.pm
 %{perl_vendorarch}/Net/DNS/ToolKit/
-%dir %{perl_vendorarch}/auto/Net/
-%dir %{perl_vendorarch}/auto/Net/DNS/
-%{perl_vendorarch}/auto/Net/DNS/ToolKit/
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.34-1
+- Updated to release 0.34.
+
 * Thu Jul  5 2007 Quien Sabe (aka Jim) <quien-sabe@metaorg.com> - 0.31-1
 - Updated to latest upstream version { old source not available }
 

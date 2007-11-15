@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Marco Carnut <kiko$tempest,com,br>
+# Upstream: Sébastien Aperghis-Tramoni <maddingue$free,fr>
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -15,9 +15,9 @@
 
 Summary: Interface to pcap(3) LBL packet capture library
 Name: perl-Net-Pcap
-Version: 0.12
+Version: 0.14
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Pcap/
 
@@ -51,16 +51,19 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man1/pcapinfo*.1*
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man1/pcapinfo.1*
+%doc %{_mandir}/man3/Net::Pcap.3pm*
 %{_bindir}/pcapinfo
-%dir %{perl_vendorarch}/Net/
-%{perl_vendorarch}/Net/Pcap.pm
 %dir %{perl_vendorarch}/auto/Net/
 %{perl_vendorarch}/auto/Net/Pcap/
+%dir %{perl_vendorarch}/Net/
+%{perl_vendorarch}/Net/Pcap.pm
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.14-1
+- Updated to release 0.14.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Updated to release 0.12.
 

@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Gisle Aas <gisle$ActiveState,com>
 
-# ExcludeDist: el5
+##ExcludeDist: el5
 # Rationale: spamassasin 3.20 needs this core package to be updated
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)

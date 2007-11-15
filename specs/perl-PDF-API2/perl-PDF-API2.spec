@@ -53,6 +53,8 @@ find contrib/ examples/ -type f -exec %{__chmod} a-x {} \;
 %dir %{perl_vendorlib}/PDF/
 %{perl_vendorlib}/PDF/API2/
 %{perl_vendorlib}/PDF/API2.pm
+%exclude %{perl_vendorlib}/PDF/API2/Basic/TTF/Win32.pm
+%exclude %{perl_vendorlib}/PDF/API2/Win32.pm
 
 %changelog
 * Sun Nov 11 2007 Dag Wieers <dag@wieers.com> - 0.66-1

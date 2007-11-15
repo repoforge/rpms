@@ -9,7 +9,7 @@
 
 Summary: Multi-connection sniffer driver
 Name: perl-Sniffer-HTTP
-Version: 0.16
+Version: 0.17
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,12 +44,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
+%doc Changes MANIFEST MANIFEST.skip META.yml
+%doc %{_mandir}/man3/Net::Pcap::FindDevice.3pm*
 %doc %{_mandir}/man3/Sniffer::*
-%doc %{_mandir}/man3/Net::Pcap::FindDevice*
+%dir %{perl_vendorlib}/Net/Pcap/
+%{perl_vendorlib}/Net/Pcap/FindDevice.pm
 %{perl_vendorlib}/Sniffer/
-%{perl_vendorlib}/Net/Pcap/
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.17-1
+- Updated to release 0.17.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1
 - Initial package.
