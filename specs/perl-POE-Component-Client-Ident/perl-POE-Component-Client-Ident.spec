@@ -9,7 +9,7 @@
 
 Summary: Non-blocking Ident
 Name: perl-POE-Component-Client-Ident
-Version: 1.05
+Version: 1.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More) >= 0.47
 
 %description
 POE::Component::Client::Ident is a POE (Perl Object Environment) component which
@@ -46,13 +47,21 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/POE/Component/Client/Ident.pm
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/POE::Component::Client::Ident.3pm*
+%doc %{_mandir}/man3/POE::Component::Client::Ident::*.3pm*
+%doc %{_mandir}/man3/POE::Filter::Ident.3pm*
+%dir %{perl_vendorlib}/POE/
+%dir %{perl_vendorlib}/POE/Component/
+%dir %{perl_vendorlib}/POE/Component/Client/
 %{perl_vendorlib}/POE/Component/Client/Ident/
+%{perl_vendorlib}/POE/Component/Client/Ident.pm
 %{perl_vendorlib}/POE/Filter/Ident.pm
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.07-1
+- Updated to release 1.07.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.05-1
 - Updated to release 1.05.
 

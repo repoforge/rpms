@@ -9,7 +9,7 @@
 
 Summary: Translates Pod to a table of contents
 Name: perl-Pod-Perldoc-ToToc
-Version: 1.06
+Version: 1.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,18 +39,27 @@ Translates Pod to a table of contents.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/Pod::Perldoc::ToToc.3*
+%doc %{_mandir}/man3/Pod::TOC.3*
+%dir %{perl_vendorlib}/Pod/
 %dir %{perl_vendorlib}/Pod/Perldoc/
+#%{perl_vendorlib}/Pod/Perldoc/ToToc/
 %{perl_vendorlib}/Pod/Perldoc/ToToc.pm
 %{perl_vendorlib}/Pod/TOC.pm
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.07-1
+- Updated to release 1.07.
+
 * Wed Jan 10 2007 Dries Verachtert <dries@ulyssis.org> - 1.06-1
 - Updated to release 1.06.
 

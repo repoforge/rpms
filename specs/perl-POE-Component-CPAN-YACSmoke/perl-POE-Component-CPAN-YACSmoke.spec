@@ -9,7 +9,7 @@
 
 Summary: Smoke testing with POE
 Name: perl-POE-Component-CPAN-YACSmoke
-Version: 0.07
+Version: 1.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More) >= 0.47
 
 %description
 Smoke testing with POE.
@@ -29,7 +30,7 @@ Smoke testing with POE.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -39,16 +40,28 @@ Smoke testing with POE.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/POE::Component::CPAN::YACSmoke*
+%doc Changes MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/POE::Component::CPAN::YACSmoke.3pm*
+%doc %{_mandir}/man1/minismoker.1*
+%{_bindir}/minismoker
+%dir %{perl_vendorlib}/POE/
+%dir %{perl_vendorlib}/POE/Component/
+%dir %{perl_vendorlib}/POE/Component/CPAN/
+#%{perl_vendorlib}/POE/Component/CPAN/YACSmoke/
 %{perl_vendorlib}/POE/Component/CPAN/YACSmoke.pm
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.09-1
+- Updated to release 1.09.
+
 * Thu Jan 04 2007 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Updated to release 0.07.
 

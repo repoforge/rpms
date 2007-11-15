@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Rocco Caputo <rcaputo$pobox,com>
+# Upstream: Rocco Caputo <rcaputo$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: Event driven wrapper for Net::DNS::Resolver
 Name: perl-POE-Component-Client-DNS
-Version: 0.9803
-Release: 1.2
+Version: 1.00
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Client-DNS/
@@ -46,13 +46,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README
-%doc %{_mandir}/man3/*
+%doc CHANGES MANIFEST META.yml README
+%doc %{_mandir}/man3/POE::Component::Client::DNS.3pm*
+%dir %{perl_vendorlib}/POE/
+%dir %{perl_vendorlib}/POE/Component/
+%dir %{perl_vendorlib}/POE/Component/Client/
+#%{perl_vendorlib}/POE/Component/Client/DNS/
 %{perl_vendorlib}/POE/Component/Client/DNS.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.9803-1.2
-- Rebuild for Fedora Core 5.
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.00-1
+- Updated to release 1.00.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.9803-1
 - Initial package.

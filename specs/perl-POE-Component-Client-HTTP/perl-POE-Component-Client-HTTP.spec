@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Rocco Caputo <rcaputo$pobox,com>
+# Upstream: Rocco Caputo <rcaputo$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: HTTP user-agent component
 Name: perl-POE-Component-Client-HTTP
-Version: 0.80
+Version: 0.82
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,18 +39,29 @@ A HTTP user-agent component.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES* README
-%doc %{_mandir}/man3/POE::*
-%{perl_vendorlib}/POE/Component/Client/HTTP.pm
+%doc CHANGES CHANGES.OLD MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/POE::Component::Client::HTTP.3pm*
+%doc %{_mandir}/man3/POE::Component::Client::HTTP::*.3pm*
+%doc %{_mandir}/man3/POE::Filter::*.3pm*
+%dir %{perl_vendorlib}/POE/
+%dir %{perl_vendorlib}/POE/Component/
+%dir %{perl_vendorlib}/POE/Component/Client/
 %{perl_vendorlib}/POE/Component/Client/HTTP/
+%{perl_vendorlib}/POE/Component/Client/HTTP.pm
 %{perl_vendorlib}/POE/Filter/
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.82-1
+- Updated to release 0.82.
+
 * Sat Jan 06 2007 Dries Verachtert <dries@ulyssis.org> - 0.80-1
 - Updated to release 0.80.
 

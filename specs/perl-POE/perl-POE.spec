@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Rocco Caputo <rcaputo$pobox,com>
+# Upstream: Rocco Caputo <rcaputo$cpan,org>
 
 # ExcludeDist: el3
 
@@ -11,7 +11,7 @@
 
 Summary: Portable multitasking and networking framework for Perl
 Name: perl-POE
-Version: 0.38
+Version: 0.9999
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -43,19 +43,26 @@ framework for Perl.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES HISTORY README TODO
-%doc %{_mandir}/man3/*
+%doc CHANGES HISTORY MANIFEST MANIFEST.SKIP META.yml README TODO examples/
+%doc %{_mandir}/man3/POE.3pm*
+%doc %{_mandir}/man3/POE::*.3pm*
 %{perl_vendorlib}/POE/
 %{perl_vendorlib}/POE.pm
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.9999-1
+- Updated to release 0.9999.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.38-1
-Updated to release 0.38.
+- Updated to release 0.38.
 
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.37-1
 - Updated to release 0.37.

@@ -9,7 +9,7 @@
 
 Summary: POE component for IRC
 Name: perl-POE-Component-IRC
-Version: 5.32
+Version: 5.36
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More) >= 0.47
 
 %description
 POE::Component::IRC is a POE (Perl Object Environment) component
@@ -43,18 +44,28 @@ and over until it makes some sense.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find docs/ examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/POE/Component/IRC.pm
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README docs/ examples/
+%doc %{_mandir}/man3/POE::Component::IRC.3pm*
+%doc %{_mandir}/man3/POE::Component::IRC::*.3pm*
+%doc %{_mandir}/man3/POE::Filter::*.3pm*
+%dir %{perl_vendorlib}/POE/
+%dir %{perl_vendorlib}/POE/Component/
 %{perl_vendorlib}/POE/Component/IRC/
+%{perl_vendorlib}/POE/Component/IRC.pm
 %{perl_vendorlib}/POE/Filter/
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 5.36-1
+- Updated to release 5.36.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 5.32-1
 - Updated to release 5.32.
 

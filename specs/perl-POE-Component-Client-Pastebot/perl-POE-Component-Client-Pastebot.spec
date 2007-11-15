@@ -9,7 +9,7 @@
 
 Summary: Interact with Bot::Pastebot web services
 Name: perl-POE-Component-Client-Pastebot
-Version: 0.03
+Version: 1.00
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More) >= 0.47
 
 %description
 Interact with Bot::Pastebot web services.
@@ -39,16 +40,25 @@ Interact with Bot::Pastebot web services.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/POE::Component::Client::Pastebot*
+%doc Changes MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/POE::Component::Client::Pastebot.3pm*
+%dir %{perl_vendorlib}/POE/
+%dir %{perl_vendorlib}/POE/Component/
+%dir %{perl_vendorlib}/POE/Component/Client/
+#%{perl_vendorlib}/POE/Component/Client/Pastebot/
 %{perl_vendorlib}/POE/Component/Client/Pastebot.pm
-%{perl_vendorlib}/POE/Component/Client/
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.00-1
+- Updated to release 1.00.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.

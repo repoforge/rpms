@@ -9,9 +9,9 @@
 
 Summary: Perl port of the Lucene search engine
 Name: perl-Plucene
-Version: 1.24
-Release: 1.2
-License: Artistic
+Version: 1.25
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Plucene/
 
@@ -21,6 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Slurp) >= 2002.1031
+BuildRequires: perl(Test::Harness) >= 2.3
 
 %description
 Plucene is a Perl port of the Java Lucene search engine.
@@ -38,21 +40,24 @@ and search for things in them later.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -Rf %{buildroot}%{perl_vendorarch} %{buildroot}%{perl_archlib}
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/Plucene.pm
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Plucene.3pm*
+%doc %{_mandir}/man3/Plucene::*.3pm*
 %{perl_vendorlib}/Plucene/
+%{perl_vendorlib}/Plucene.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.24-1.2
-- Rebuild for Fedora Core 5.
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.25-1
+- Updated to release 1.25.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.24-1
 - Updated to release 1.24.

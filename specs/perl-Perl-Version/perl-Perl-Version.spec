@@ -10,13 +10,13 @@
 
 Summary: Parse and manipulate Perl version strings
 Name: perl-Perl-Version
-Version: 1.002
+Version: 1.004
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Perl-Version/
 
-Source: http://www.cpan.org/modules/by-module/Perl/Perl-Version-v%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Perl/Perl-Version-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -25,12 +25,8 @@ BuildRequires: perl
 %description
 Parse and manipulate Perl version strings.
 
-This package contains the following Perl module:
-
-    Perl::Version
-
 %prep
-%setup -n %{real_name}-v%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -58,5 +54,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Perl/Version.pm
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.004-1
+- Updated to release 1.004.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 1.002-1
 - Initial package. (using DAR)

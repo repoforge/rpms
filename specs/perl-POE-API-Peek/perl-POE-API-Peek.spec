@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: sungo <sungo$pobox,com>
+# Upstream: Matt Cashner <sungo$pobox,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: Peek into the internals of a running POE environment
 Name: perl-POE-API-Peek
-Version: 1.06
-Release: 1.2
+Version: 1.0802
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-API-Peek/
@@ -19,8 +19,12 @@ Source: http://www.cpan.org/modules/by-module/POE/POE-API-Peek-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 1:5.6.1
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Signature)
+BuildRequires: perl(Test::Distribution)
+BuildRequires: perl(Test::Pod::Coverage)
+Requires: perl >= 1:5.6.1
 
 %description
 POE::API::Peek extends the POE::Kernel interface to provide clean access
@@ -46,13 +50,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man3/*
+%doc LICENSE MANIFEST MANIFEST.SKIP META.yml README SIGNATURE VERSION
+%doc %{_mandir}/man3/POE::API::Peek.3pm*
+%dir %{perl_vendorlib}/POE/
+%dir %{perl_vendorlib}/POE/API/
+#%{perl_vendorlib}/POE/API/Peek/
 %{perl_vendorlib}/POE/API/Peek.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.06-1.2
-- Rebuild for Fedora Core 5.
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.0802-1
+- Updated to release 1.0802.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.06-1
 - Initial package.

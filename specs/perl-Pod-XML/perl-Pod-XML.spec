@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Matt Wilson <matt$mattsscripts,co,uk>
+# Upstream: Matt Wilson <mattw$mattsscripts,co,uk>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Converts POD to XML
 Name: perl-Pod-XML
-Version: 0.98
+Version: 0.99
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -26,7 +26,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 Module to convert POD to XML.
 
 %prep
-%setup -n %{real_name}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -44,12 +44,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Pod::XML*
-%doc %{_mandir}/man1/pod2xml*
+%doc Changes MANIFEST README
+%doc %{_mandir}/man1/pod2xml.1*
+%doc %{_mandir}/man3/Pod::XML.3pm*
 %{_bindir}/pod2xml
+%dir %{perl_vendorlib}/Pod/
+#%{perl_vendorlib}/Pod/XML/
 %{perl_vendorlib}/Pod/XML.pm
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.99-1
+- Updated to release 0.99.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.98-1
 - Initial package.

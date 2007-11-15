@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: George Nistoric&#259; <george$upg-ploiesti,ro>
+# Upstream: George Nistorica <ultadm$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Asynchronous mail sending with POE
 Name: perl-POE-Component-Client-SMTP
-Version: 0.14
+Version: 0.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -34,21 +34,31 @@ Asynchronous mail sending with POE.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__perl} Build install destdir=%{buildroot}
+%{__perl} Build install destdir="%{buildroot}"
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc COPYING Changes LICENSE MANIFEST META.yml README TODO eg/
+%doc %{_mandir}/man3/POE::Component::Client::SMTP.3pm*
+%dir %{perl_vendorlib}/POE/
+%dir %{perl_vendorlib}/POE/Component/
+%dir %{perl_vendorlib}/POE/Component/Client/
+#%{perl_vendorlib}/POE/Component/Client/SMTP/
 %{perl_vendorlib}/POE/Component/Client/SMTP.pm
 
 %changelog
+* Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.18-1
+- Updated to release 0.18.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.14-1
 - Updated to release 0.14.
 
