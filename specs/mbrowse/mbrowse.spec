@@ -5,7 +5,7 @@
 # Screenshot: http://www.kill-9.org/mbrowse/screenshot/tree.png
 # ScreenshotURL: http://www.kill-9.org/mbrowse/#Screenshots
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?rh7:%define _without_net_snmp 1}

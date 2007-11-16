@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Fabrice Bellard <fabrice$bellard,org>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el5:%define _with_compat_gcc_version 34}
 

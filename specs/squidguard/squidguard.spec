@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: <squidguard$squidguard,org>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %define real_name squidGuard
 %define dbhomedir %{_localstatedir}/lib/squidguard

@@ -2,7 +2,7 @@
 # Authority: matthias
 # Upstream: <mp3encoder$minnie,tuhs,org>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc1:%define _without_selinux 1}
 %{?el3:%define _without_selinux 1}

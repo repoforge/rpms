@@ -7,7 +7,7 @@
 # Archs: i686 i586 i386 athlon
 # BuildAsRoot: 1
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc1:%define __cc gcc32}
 

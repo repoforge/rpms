@@ -4,7 +4,7 @@
 
 ##ExclusiveDist: fc1 el3 rh9 rh8
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}

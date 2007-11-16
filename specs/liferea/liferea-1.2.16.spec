@@ -3,15 +3,15 @@
 # Upstream: Lars Lindner <llando$gmx,de>
 # Upstream: Nathan J. Conrad <t98502$users,sourceforge,net>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dist: %define _without_mozilla 1}
+%{!?dtag: %define _without_mozilla 1}
 %{?fc6:   %define _without_mozilla 1}
 %{?fc5:   %define _without_mozilla 1}
 %{?fc1:   %define _without_mozilla 1}
 
 %define mozilla seamonkey
-%{!?dist:%define mozilla firefox}
+%{!?dtag:%define mozilla firefox}
 %{?el5:%define mozilla firefox}
 %{?fc6:%define mozilla firefox}
 %{?rh9:%define mozilla mozilla}

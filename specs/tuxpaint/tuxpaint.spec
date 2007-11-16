@@ -5,7 +5,7 @@
 
 # ExcludeDist: el3
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Drawing program designed for young children
 Name: tuxpaint

@@ -2,11 +2,11 @@
 # Authority: matthias
 # Upstream: <vlc-devel$videolan,org>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dist:%define _with_modxorg 1}
-%{!?dist:%define _with_avahi 1}
+%{!?dtag:%define _with_modxorg 1}
+%{!?dtag:%define _with_avahi 1}
 
 %{?fc7:%define _with_modxorg 1}
 %{?el5:%define _with_modxorg 1}

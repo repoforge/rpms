@@ -3,9 +3,9 @@
 
 # Tag: test
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dist:%define with_python_version 2.5%{nil}}
+%{!?dtag:%define with_python_version 2.5%{nil}}
 %{?el5:%define with_python_version 2.4%{nil}}
 %{?el4:%define with_python_version 2.4%{nil}}
 %{?el3:%define with_python_version 2.4%{nil}}

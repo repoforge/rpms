@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: <open1x-xsupplicant$lists,sourceforge,net>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el4:%define _without_wireless_tools_devel 1}
 %{?el3:%define _without_wireless_tools_devel 1}

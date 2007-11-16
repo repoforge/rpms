@@ -1,10 +1,10 @@
 # $Id$
 # Authority: dag
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dist: %define _without_gstreamer 1}
+%{!?dtag: %define _without_gstreamer 1}
 %{?el5:   %define _without_gstreamer 1}
 %{?fc6:   %define _without_gstreamer 1}
 %{?fc5:   %define _without_gstreamer 1}
@@ -19,12 +19,12 @@
 %{?rh7:   %define _without_alsa 1}
 %{?el2:   %define _without_alsa 1}
 
-%{!?dist: %define _with_modxorg 1}
+%{!?dtag: %define _with_modxorg 1}
 %{?el5:   %define _with_modxorg 1}
 %{?fc6:   %define _with_modxorg 1}
 %{?fc5:   %define _with_modxorg 1}
 
-%{!?dist: %define _without_mozilla 1}
+%{!?dtag: %define _without_mozilla 1}
 %{?fc6:   %define _without_mozilla 1}
 %{?fc5:   %define _without_mozilla 1}
 %{?fc1:   %define _without_mozilla 1}
@@ -33,7 +33,7 @@
 %{?el5:%define _with_mozilla_player 1}
 
 %define mozilla seamonkey
-%{!?dist:%define mozilla firefox}
+%{!?dtag:%define mozilla firefox}
 %{?el5:%define mozilla firefox}
 %{?fc6:%define mozilla firefox}
 %{?rh9:%define mozilla mozilla}

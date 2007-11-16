@@ -7,7 +7,7 @@
 # Don't create a debuginfo package.
 %define debug_package %{nil}
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}

@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: <info$littlecms,com>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el3:%define _without_python 1}
 %{?rh9:%define _without_python 1}

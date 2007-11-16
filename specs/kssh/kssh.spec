@@ -4,7 +4,7 @@
 # Screenshot: http://kssh.sourceforge.net/foto2.png
 # ScreenshotURL: http://kssh.sourceforge.net/#screenshots
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: KDE front-end to ssh
 Name: kssh

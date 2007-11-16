@@ -4,7 +4,7 @@
 
 # ExcludeDist el2 rh7 rh9 el3 fc1 fc2
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el5:%define _without_channels 1}
 %{?el4:%define _without_channels 1}

@@ -2,7 +2,7 @@
 # Authority: matthias
 # Upstream: <gtkglext-list$gnome,org>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: RPM macros used by the RPMForge project
 Name: rpm-macros-rpmforge

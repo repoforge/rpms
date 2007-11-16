@@ -4,7 +4,7 @@
 # Screenshot: http://www.truesoft.ch/dieter/kkeyled/help/en/HTML/screenshot.png
 # ScreenshotURL: http://www.truesoft.ch/dieter/kkeyled-screens.html
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Displays the LED states of the keyboard
 Name: kkeyled

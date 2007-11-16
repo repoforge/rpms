@@ -2,7 +2,7 @@
 # Authority: dries
 # Upstream: Gilles Debunne <gilles,debunne$laposte,net>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %define real_version 2.2.3-1
 

@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Amos Waterland <apw$us,ibm,com>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: tool to impose stress on a POSIX-compliant operating system
 Name: stress
@@ -15,7 +15,7 @@ URL: http://weather.ou.edu/~apw/projects/stress/
 Source: http://weather.ou.edu/~apw/projects/stress/stress-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-%{!?dist:BuildRequires: glibc-headers}
+%{!?dtag:BuildRequires: glibc-headers}
 %{?fc3:BuildRequires: glibc-headers}
 %{?fc2:BuildRequires: glibc-headers}
 %{?fc1:BuildRequires: glibc-headers}

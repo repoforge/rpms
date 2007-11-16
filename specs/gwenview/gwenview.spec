@@ -3,7 +3,7 @@
 # Screenshot: http://gwenview.sourceforge.net/screenshots/shots/thumbs/6.png
 # ScreenshotURL: http://gwenview.sourceforge.net/screenshots/
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 ### Temporary exclude as it loops endlessly in configure on x86_64
 # ExcludeDist: el4

@@ -3,7 +3,7 @@
 # Upstream: RÃdiger Kuhlmann <info$ruediger-kuhlmann,de>
 # Upstream: <micq-list$micq,org>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh9:%define _without_tcltk_devel 1}
 %{?rh8:%define _without_tcltk_devel 1}
@@ -22,7 +22,7 @@ Source: http://www.micq.org/source/micq-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, tcl
-%{!?dist:BuildRequires: libgcrypt-devel, gnutls-devel}
+%{!?dtag:BuildRequires: libgcrypt-devel, gnutls-devel}
 %{?el4:BuildRequires: libgcrypt-devel, gnutls-devel}
 %{?fc3:BuildRequires: libgcrypt-devel, gnutls-devel}
 %{?fc2:BuildRequires: libgcrypt-devel, gnutls-devel}

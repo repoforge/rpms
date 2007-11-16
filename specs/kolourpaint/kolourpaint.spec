@@ -5,7 +5,7 @@
 # ScrenshotURL: http://kolourpaint.sourceforge.net/screenshots.html
 # Upstream: Clarence Dang <dang$kde,org>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc1:%define _without_selinux 1}
 %{?el3:%define _without_selinux 1}

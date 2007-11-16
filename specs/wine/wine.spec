@@ -1,9 +1,9 @@
 # $Id$
 # Authority: dag
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dist:%define _with_modxorg 1}
+%{!?dtag:%define _with_modxorg 1}
 
 %define _without_freeglut 0
 %define _without_glut 1

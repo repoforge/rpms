@@ -7,7 +7,7 @@
 
 # ExcludeDist: fc1
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc1:%define _without_alsa 1}
 %{?el3:%define _without_alsa 1}

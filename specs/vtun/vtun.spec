@@ -7,7 +7,7 @@
 # don't create debuginfo package
 %define debug_package %{nil}
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Virtual tunnel over TCP/IP networks
 Name: vtun

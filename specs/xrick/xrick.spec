@@ -4,7 +4,7 @@
 %define real_version   021212
 %define desktop_vendor rpmforge
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el2:%define _without_freedesktop 1}
 %{?rh7:%define _without_freedesktop 1}

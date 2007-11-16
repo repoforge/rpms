@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: <gnupg-devel$gnupg,org>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el3:%define _without_gtk24 1}
 %{?el3:%define _without_qt33 1}

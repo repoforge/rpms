@@ -6,7 +6,7 @@
 
 %define real_name ScoreReadingTrainer
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: musical score reading trainer
 Name: scorereadingtrainer

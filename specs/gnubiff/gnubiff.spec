@@ -5,7 +5,7 @@
 
 # ExcludeDist: fc1 el3
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Mail notification program
 Name: gnubiff
@@ -22,7 +22,7 @@ BuildRequires: openssl-devel, gdk-pixbuf-devel
 BuildRequires: glib2-devel, libglade2-devel, gamin-devel
 BuildRequires: perl(XML::Parser), intltool
 BuildRequires: texinfo
-%{!?dist:BuildRequires: gnome-panel-devel}
+%{!?dtag:BuildRequires: gnome-panel-devel}
 %{?el5:BuildRequires: gnome-panel-devel}
 %{?fc6:BuildRequires: gnome-panel-devel}
 %{?fc5:BuildRequires: gnome-panel-devel}

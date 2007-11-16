@@ -3,7 +3,7 @@
 # Upstream: <dspam-users$nuclearelephant,com>
 # Upstream: Jonathan A. Zdziarski <jonathan$nuclearelephant,com>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Library and Mail Delivery Agent for Bayesian spam filtering
 Name: dspam
@@ -18,7 +18,7 @@ Source1: dspam.m4
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: postgresql-python
 
-%{!?dist:BuildRequires: db4-devel}
+%{!?dtag:BuildRequires: db4-devel}
 %{?el4:BuildRequires: db4-devel}
 %{?fc3:BuildRequires: db4-devel}
 %{?fc2:BuildRequires: db4-devel}

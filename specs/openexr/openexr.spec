@@ -2,7 +2,7 @@
 # Authority: dries
 # Upstream: Drew Hess <dhess$yahoo,com>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}

@@ -3,7 +3,7 @@
 
 # ExclusiveDist: rh7
 
-%{?dist: %{expand %%define: %dist 1}}
+%{?dtag: %{expand %%define: %dist 1}}
 
 Summary: Translates an RPM database and dependency information into HTML
 Name: rpm2html

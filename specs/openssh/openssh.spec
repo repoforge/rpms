@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 # OpenSSH privilege separation requires a user & group ID
 %define sshd_uid    74

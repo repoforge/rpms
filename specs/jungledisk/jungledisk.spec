@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el5:%define _with_junglediskmonitor 1}
 %{?el4:%define _with_junglediskmonitor 1}

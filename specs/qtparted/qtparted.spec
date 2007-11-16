@@ -4,7 +4,7 @@
 # Screenshot: http://qtparted.sourceforge.net/images/screenshot-001-a.jpg
 # ScreenshotURL: http://qtparted.sourceforge.net/screenshots.en.html
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el4:%define _without_jfs 1}
 

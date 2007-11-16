@@ -1,9 +1,9 @@
 # $Id$
 # Authority: matthias
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dist:%define _with_gamin 1}
+%{!?dtag:%define _with_gamin 1}
 %{?fc4:%define _with_gamin 1}
 %{?el4:%define _with_gamin 1}
 %{?fc3:%define _with_gamin 1}

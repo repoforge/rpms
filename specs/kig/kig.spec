@@ -7,7 +7,7 @@
 # this program is now included in kde
 # ExcludeDist: fc3 fc2 fc1 el3
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Explore mathematical concepts with interactive geometry
 Name: kig

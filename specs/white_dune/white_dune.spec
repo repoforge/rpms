@@ -3,7 +3,7 @@
 # Screenshot: http://www.csv.ica.uni-stuttgart.de/vrml/dune/_gfx/screen02.jpg
 # ScreenshotURL: http://www.csv.ica.uni-stuttgart.de/vrml/dune/screen.html
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}
@@ -22,7 +22,7 @@
 %{?el2:%define _without_freeglut 1}
 
 
-%{!?dist:%define _with_lesstif 1}
+%{!?dtag:%define _with_lesstif 1}
 %{?el5:%define _with_openmotif 1}
 %{?fc6:%define _with_lesstif 1}
 %{?fc5:%define _with_openmotif 1}

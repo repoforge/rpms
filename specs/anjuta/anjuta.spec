@@ -13,7 +13,7 @@ Source: http://dl.sf.net/anjuta/anjuta-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libgnome >= 2.0.2, libglade2 >= 2.0.0, libgnomeui >= 2.0.2
 Requires: libgnomeprintui22 >= 2.0.1
-%{!?dist:Requires: gettext-devel}
+%{!?dtag:Requires: gettext-devel}
 %{?el4:Requires: gettext-devel}
 %{?fc3:Requires: gettext-devel}
 Requires: gettext
@@ -21,7 +21,7 @@ BuildRequires: libgnome-devel >= 2.0.2, libglade2-devel >= 2.0.0
 BuildRequires: libgnomeui-devel >= 2.0.2, libgnomeprintui22-devel >= 2.0.1
 BuildRequires: vte-devel, pcre-devel, libxml2-devel, gcc-c++
 BuildRequires: scrollkeeper, ncurses-devel
-%{!?dist:BuildRequires: gettext-devel}
+%{!?dtag:BuildRequires: gettext-devel}
 %{?el4:BuildRequires: gettext-devel}
 %{?fc3:BuildRequires: gettext-devel}
 BuildRequires: gettext

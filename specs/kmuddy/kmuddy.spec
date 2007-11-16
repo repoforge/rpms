@@ -6,7 +6,7 @@
 
 # ExcludeDist: el3
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: MUD (multi user dungeon) client
 Name: kmuddy

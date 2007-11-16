@@ -4,7 +4,7 @@
 # Screenshot: http://knowit.sourceforge.net/images/knowit.png
 # ScreenshotURL: http://knowit.sourceforge.net/screenshots.html
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Tool for managing notes
 Name: knowit

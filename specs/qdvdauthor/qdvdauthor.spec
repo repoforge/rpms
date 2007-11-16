@@ -2,7 +2,7 @@
 # Authority: dries
 # Upstream: <qdvdauthor$users,sf,net>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Frontend for dvdauthor
 Name: qdvdauthor

@@ -1,9 +1,9 @@
 # $Id$
 # Authority: dag
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dist:%define _with_openssl098 1}
+%{!?dtag:%define _with_openssl098 1}
 %{?el5:%define _with_openssl098 1}
 
 Summary: TLS plugin for the Qt Cryptographic Architecture

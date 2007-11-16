@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el5:%define _with_modxorg 1}
 %{?fc6:%define _with_modxorg 1}

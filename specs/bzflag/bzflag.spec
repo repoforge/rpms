@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}
@@ -30,7 +30,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, desktop-file-utils
 BuildRequires: ncurses-devel, curl-devel, SDL-devel
 # This one should have been required by curl-devel
-%{!?dist:BuildRequires: libidn-devel}
+%{!?dtag:BuildRequires: libidn-devel}
 %{?fc3:BuildRequires: libidn-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_modxorg:BuildRequires: libX11-devel}

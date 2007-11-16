@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh8:%define _with_perl_5_6 1}
 %{?rh7:%define _with_perl_5_6 1}

@@ -2,9 +2,9 @@
 # Authority: dag
 # Upstream: Florian <florian,boor$unix-ag,org>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dist:%define _with_libpcapdevel 1}
+%{!?dtag:%define _with_libpcapdevel 1}
 %{?el5:%define _with_libpcapdevel 1}
 %{?fc6:%define _with_libpcapdevel 1}
 
@@ -20,7 +20,7 @@
 %{?el2:%define _without_modxorg 1}
 %{?yd3:%define _without_modxorg 1}
 
-%{!?dist:%define _with_lesstif 1}
+%{!?dtag:%define _with_lesstif 1}
 %{?el5:%define _with_openmotif 1}
 %{?fc6:%define _with_lesstif 1}
 %{?fc5:%define _with_openmotif 1}

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: rudolf
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Console ncurses based ICQ2000, Yahoo!, MSN, AIM, IRC client
 Name: centericq

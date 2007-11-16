@@ -6,7 +6,7 @@
 # It compiles, but it does not work on my machine
 # Tag: test
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %define real_version 1.0
 

@@ -4,7 +4,7 @@
 
 %define xmms_visualdir %(xmms-config --visualization-plugin-dir 2>/dev/null || echo %{_libdir}/xmms/Visualization)
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}

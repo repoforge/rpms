@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: <gtk-sharp-list$ximian,com>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el3:%define _without_croco 1}
 %{?rh9:%define _without_croco 1}

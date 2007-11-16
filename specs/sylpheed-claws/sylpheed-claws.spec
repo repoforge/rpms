@@ -4,8 +4,8 @@
 %define desktop_vendor rpmforge
 #define extraver       cvs2.1
 
-%{?dist:  %{expand: %%define %dist 1}}
-%{!?dist: %define gettextdevel 1}
+%{?dtag:  %{expand: %%define %dtag 1}}
+%{!?dtag: %define gettextdevel 1}
 %{?fc4:   %define gettextdevel 1}
 %{?el4:   %define gettextdevel 1}
 %{?fc3:   %define gettextdevel 1}

@@ -2,7 +2,7 @@
 # Authority: dries
 # Upstream: Olof Naessen <olof$darkbits,org>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Small efficient C++ GUI library
 Name: guichan

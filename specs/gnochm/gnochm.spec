@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Ramos Rubens <rubensr$users,sourceforge,net>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc1:%define _without_shmime 1}
 %{?el3:%define _without_shmime 1}

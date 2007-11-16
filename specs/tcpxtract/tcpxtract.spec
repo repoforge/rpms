@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Nick Harbour <nickharbour$gmail,com>
 
-%{!?dist:%define _with_libpcapdevel 1}
+%{!?dtag:%define _with_libpcapdevel 1}
 %{?el5:%define _with_libpcapdevel 1}
 %{?fc6:%define _with_libpcapdevel 1}
 

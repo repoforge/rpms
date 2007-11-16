@@ -4,7 +4,7 @@
 # Screenshot: http://www.hansmatzen.de/pics/kleds_ss01.png
 # ScreenshotURL: http://www.hansmatzen.de/english/kleds.html#screenshots
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Shows the status of the keyboard indicator LEDs in the KDE panel
 Name: kleds

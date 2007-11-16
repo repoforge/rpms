@@ -1,9 +1,9 @@
 # $Id$
 # Authority: dag
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dist: %define _freetype_fix 1}
+%{!?dtag: %define _freetype_fix 1}
 %{?fc3: %define _freetype_fix 1}
 %{?fc2: %define _freetype_fix 1}
 

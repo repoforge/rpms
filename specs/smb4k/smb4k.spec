@@ -5,7 +5,7 @@
 
 # ExcludeDist: el3 fc1
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: SMB (samba) share browser for KDE
 Name: smb4k

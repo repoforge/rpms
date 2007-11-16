@@ -1,7 +1,7 @@
 # $Id$
 # Authority: bert
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: OpenGL rollercoaster ride animation for xscreensaver
 Name: xscreensaver-rollercoaster

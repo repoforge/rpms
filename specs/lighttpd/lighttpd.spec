@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 %{?el5:%define _without_lua 1}
 %{?el4:%define _without_lua 1}
 %{?el3:%define _without_lua 1}

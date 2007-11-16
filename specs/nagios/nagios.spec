@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Ethan Galstad <nagios$nagios,org>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _without_embedperl 1}
 %{?rh7:%define _without_perlcache 1}

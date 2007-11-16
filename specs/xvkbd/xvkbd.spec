@@ -2,9 +2,9 @@
 # Authority: dag
 # Upstream: Tom Sato <VEF00200$nifty,ne,jp>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dist:%define _with_modxorg 1}
+%{!?dtag:%define _with_modxorg 1}
 %{?fc7:  %define _with_modxorg 1}
 %{?el5:  %define _with_modxorg 1}
 %{?fc6:  %define _with_modxorg 1}

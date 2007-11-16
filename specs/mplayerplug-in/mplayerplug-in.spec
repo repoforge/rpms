@@ -5,10 +5,10 @@
 
 #%define mversion %(rpm -q mozilla-devel --qf "%%{epoch}:%%{version}")
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %define mozilla seamonkey
-%{!?dist:%define mozilla firefox}
+%{!?dtag:%define mozilla firefox}
 %{?el5:%define mozilla firefox}
 %{?fc7:%define mozilla firefox}
 %{?fc6:%define mozilla firefox}

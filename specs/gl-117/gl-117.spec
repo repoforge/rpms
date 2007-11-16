@@ -5,7 +5,7 @@
 # Screenshot: http://home.t-online.de/home/Primetime./gl-117/sshot2_092_700.jpg
 # ScreenshotURL: http://home.t-online.de/home/Primetime./gl-117/gallery.htm
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}

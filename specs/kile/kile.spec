@@ -6,7 +6,7 @@
 
 # ExcludeDist: el3 fc1
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: User friendly TeX/LaTeX editor
 Name: kile

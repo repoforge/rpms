@@ -2,10 +2,10 @@
 # Authority: matthias
 # Upstream: <xine-user$lists,sf,net>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dist:%define _with_modxorg 1}
+%{!?dtag:%define _with_modxorg 1}
 %{?el5:  %define _with_modxorg 1}
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
@@ -95,7 +95,7 @@ BuildRequires: libcdio-devel, vcdimager-devel, a52dec-devel, libmad-devel
 %{!?_without_magick:BuildRequires: ImageMagick-devel}
 %{!?_without_gettextdevel:BuildRequires: gettext-devel}
 %{?_without_gettextdevel:BuildRequires: gettext}
-%{!?dist:BuildRequires: freeglut-devel}
+%{!?dtag:BuildRequires: freeglut-devel}
 %{?fc6:BuildRequires: freeglut-devel}
 %{?fc5:BuildRequires: freeglut-devel}
 %{?fc4:BuildRequires: freeglut-devel}

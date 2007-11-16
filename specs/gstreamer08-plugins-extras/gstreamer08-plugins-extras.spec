@@ -3,7 +3,7 @@
 
 # ExclusiveDist: el4 fc5
 
-%{!?dist:%define _with_modxorg 1}
+%{!?dtag:%define _with_modxorg 1}
 %{?fc7:  %define _with_modxorg 1}
 %{?el5:  %define _with_modxorg 1}
 %{?fc6:  %define _with_modxorg 1}

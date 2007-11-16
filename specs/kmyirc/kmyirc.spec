@@ -4,7 +4,7 @@
 # Screenshot: http://www.kmyirc.de/images/screenshots/thumb_kmyirc-01.png
 # ScreenshotURL: http://www.kmyirc.de/screenshots.php?handed=0
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Internet Relay Chat client for KDE
 Name: kmyirc

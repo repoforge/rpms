@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Christian Grothoff <christian@grothoff.org>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el3:%define _without_gamin 1}
 %{?fc2:%define _without_gamin 1}

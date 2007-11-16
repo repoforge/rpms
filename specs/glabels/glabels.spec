@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Jim Evins <evins$snaught,com>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 #%{?el4:#define _without_shared_mime 1}
 #%{?fc3:#define _without_shared_mime 1}

@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Gustavo Niemeyer <niemeyer$conectiva,com>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 %define LIBVER 3.3
 
 Summary: Debian's Advanced Packaging Tool with RPM support
@@ -30,7 +30,7 @@ BuildRequires: readline-devel, bison, gcc-c++, libtool
 BuildRequires: pkgconfig >= 0.9
 %{!?rh6:BuildRequires: bzip2-devel, libstdc++-devel, docbook-utils}
 
-%{!?dist:BuildRequires: beecrypt-devel, elfutils-devel}
+%{!?dtag:BuildRequires: beecrypt-devel, elfutils-devel}
 %{?fc5:BuildRequires: beecrypt-devel, elfutils-devel}
 %{?fc4:BuildRequires: beecrypt-devel, elfutils-devel}
 %{?el4:BuildRequires: beecrypt-devel, elfutils-devel}

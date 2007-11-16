@@ -3,7 +3,7 @@
 
 # ExcludeDist: fc3 el4
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?rh7:%define _without_gtk2 1}

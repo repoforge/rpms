@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 %{?fc1:%define _with_static_rar 1}
 %{?el3:%define _with_static_rar 1}
 %{?rh9:%define _with_static_rar 1}

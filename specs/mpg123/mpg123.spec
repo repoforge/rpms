@@ -3,7 +3,7 @@
 
 %{!?audio:%define audio alsa}
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el5:%define _without_jack 1}
 %{?el5:%define _without_nas 1}

@@ -5,7 +5,7 @@
 ### Builds fine, but related python-sqlite needs python >= 2.3 and yum 2.4 needs sqlite2
 # ExcludeDist: el2 rh7 rh9 el3 el4
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el3:%define _without_tcl 1}
 %{?rh9:%define _without_tcl 1}

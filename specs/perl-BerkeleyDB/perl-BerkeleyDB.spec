@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -22,7 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl >= 0:5.00503
 BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.00503
-%{!?dist:BuildRequires: db4-devel}
+%{!?dtag:BuildRequires: db4-devel}
 %{?el5:BuildRequires: db4-devel}
 %{?fc6:BuildRequires: db4-devel}
 %{?fc5:BuildRequires: db4-devel}

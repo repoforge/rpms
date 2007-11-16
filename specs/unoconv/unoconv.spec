@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Dag Wieers <dag$wieers,com>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el4:%define _with_openoffice.org2 1}
 

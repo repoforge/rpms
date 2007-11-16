@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: <nrh-up2date-users$lists,sf,net>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Open Source server for Redhat's up2date suite
 Name: nrh-up2date
@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 Requires: perl, perl-Frontier-RPC, perl(XML::Parser), perl-BerkeleyDB, python, python-bsddb3
-%{!?dist:Requires: httpd, rpm, rpm-python, db4}
+%{!?dtag:Requires: httpd, rpm, rpm-python, db4}
 %{?el4:Requires: httpd, rpm, rpm-python, db4}
 %{?fc3:Requires: httpd, rpm, rpm-python, db4}
 %{?fc2:Requires: httpd, rpm, rpm-python, db4}

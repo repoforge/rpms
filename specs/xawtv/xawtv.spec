@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Gerd Knorr <kraxel$bytesex,org>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
@@ -16,7 +16,7 @@
 %{?fc2:%define _without_modxorg 1}
 %{?fc1:%define _without_modxorg 1}
 
-%{!?dist:%define _with_lesstif 1}
+%{!?dtag:%define _with_lesstif 1}
 %{?el5:%define _with_openmotif 1}
 %{?fc6:%define _with_lesstif 1}
 %{?fc5:%define _with_openmotif 1}

@@ -4,9 +4,9 @@
 # Screenshot: http://www.texmacs.org/Samples/texmacs-1.png
 # ScreenshotURL: http://www.texmacs.org/tmweb/home/screenshots.en.html
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dist:%define _with_modxorg 1}
+%{!?dtag:%define _with_modxorg 1}
 %{?el5:  %define _with_modxorg 1}
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}

@@ -2,7 +2,7 @@
 # Authority: dries
 # Upstream: fechjo-klavaro00$yahoo,com,br
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Typing tutor
 Name: klavaro

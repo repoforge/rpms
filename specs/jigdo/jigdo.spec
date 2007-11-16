@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %define desktop_vendor rpmforge
 

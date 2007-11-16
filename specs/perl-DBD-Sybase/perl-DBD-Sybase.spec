@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Michael Peppler <mpeppler$peppler,org>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _with_threaded 1}
 %{?el2:%define _with_threaded 1}

@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Chris Brady <bugs$memtest86,com>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Thorough, stand alone memory test
 Name: memtest86

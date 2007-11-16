@@ -3,7 +3,7 @@
 # Upstream: Martin Pool <mbp$sourcefrog,net>
 # Upstream: <distcc$lists,samba,org>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _without_gtk2 1}
 %{?el2:%define _without_gtk2 1}

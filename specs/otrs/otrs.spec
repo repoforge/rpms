@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: <info$otrs,de>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %define logmsg logger -t %{name}/rpm
 %define real_version 2.0.4-01

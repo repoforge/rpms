@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Jorge Ferrer <jferrer$ieeesb,etsit,upm,es>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc4:%define _without_mdbtools 1}
 %{?rh7:%define _without_mdbtools 1}

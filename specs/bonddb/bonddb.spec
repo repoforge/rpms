@@ -2,7 +2,7 @@
 # Authority: dries
 # Upstream: <dru$treshna,com>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Object oriented wrapper for PostgreSQL
 Name: bonddb

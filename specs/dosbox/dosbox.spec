@@ -1,8 +1,8 @@
 # $Id$
 # Authority: dag
 
-%{!?dist:%define _with_modxorg 1}
-%{!?dist:%define _with_avahi 1}
+%{!?dtag:%define _with_modxorg 1}
+%{!?dtag:%define _with_avahi 1}
    
 %{?fc7:%define _with_modxorg 1}
 %{?el5:%define _with_modxorg 1}

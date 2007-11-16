@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Panu Matilainen <pmatilai$laiskiainen,org>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh8:%define _without_elfutils 1}
 %{?rh7:%define _without_elfutils 1}

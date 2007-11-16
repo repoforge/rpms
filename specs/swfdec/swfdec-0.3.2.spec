@@ -1,9 +1,9 @@
 # $Id$
 # Authority: dag
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dist: %define gimp_plugin 1}
+%{!?dtag: %define gimp_plugin 1}
 %{?el4:   %define gimp_plugin 1}
 %{?fc3:   %define gimp_plugin 1}
 %{?fc2:   %define gimp_plugin 1}

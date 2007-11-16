@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: <pan-devel$nongnu,org>
 
-%{?dist: %{expand: %%define %dist 1}}
+%{?dtag: %{expand: %%define %dtag 1}}
 
 ### Work around 'Invalid characters in locale name' in desktop-file-install
 %{?rh9:%define _without_freedesktop 1}
