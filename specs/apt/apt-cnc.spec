@@ -71,7 +71,7 @@ you will need to install %{name}-devel.
 #{?rh6:%patch3 -b .402}
 #%patch4 -b .rpmhandler
 
-%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag RPM Repository %{dist}/%{_arch} APT-HTTP/1.3|' methods/http.cc
+%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag RPM Repository %{dtag}/%{_arch} APT-HTTP/1.3|' methods/http.cc
 
 %{__cat} <<EOF >dag.list
 # Name: Dag RPM Repository

@@ -105,7 +105,7 @@ This package includes the Perl bindings to the Subversion libraries.
 
 echo _without_swig: %{_without_swig}
 echo _without_pie: %{_without_pie}
-echo dist: %{dist}
+echo dtag: %{dtag}
 
 %build
 ./autogen.sh

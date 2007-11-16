@@ -7,19 +7,19 @@
 
 Summary: Compiler/language for writing Python extension modules.
 Name: pyrex
-Version: 0.9.4.1
+Version: 0.9.6.2
 Release: 1
 License: Public Domain
 Group: Development/Languages
 URL: http://www.cosc.canterbury.ac.nz/~greg/python/Pyrex/
 
-Source: http://www.cosc.canterbury.ac.nz/greg.ewing/python/Pyrex/Pyrex-%{version}.tar.gz
+Source: http://www.cosc.canterbury.ac.nz/greg.ewing/python/Pyrex/oldtar/Pyrex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 
-BuildRequires: python-devel >= 2.2, dos2unix, findutils
-Requires: python >= 2.2
+BuildRequires: python-devel >= 2.3, dos2unix, findutils
+Requires: python >= 2.3
 Obsoletes: Pyrex <= %{version}-%{release}
 Provides: Pyrex <= %{version}-%{release}
 
@@ -41,8 +41,6 @@ of your Python code or wrapping an external library.
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 
-echo "HERE: %{python_sitelib}"
-
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -53,5 +51,8 @@ echo "HERE: %{python_sitelib}"
 %{python_sitelib}/Pyrex/
 
 %changelog
+* Fri Nov 16 2007 Dag Wieers <dag@wieers.com> - 0.9.6.2-1
+- Updated to release 0.9.6.2.
+
 * Sat Dec 16 2006 Dag Wieers <dag@wieers.com> - 0.9.4.1-1
 - Initial package. (using DAR)

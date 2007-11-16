@@ -75,7 +75,7 @@ you will need to install %{name}-devel.
 %{?rh7:name='Red Hat'; version='7.3'}
 %{?rh6:name='Red Hat'; version='6.2'}
 
-%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|RPMforge RPM Repository %{dist}/%{_arch} APT-HTTP/1.3|' methods/http.cc
+%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|RPMforge RPM Repository %{dtag}/%{_arch} APT-HTTP/1.3|' methods/http.cc
 
 %{__cat} <<'EOF' >os.list
 # Name: Operating system and updates

@@ -28,28 +28,28 @@ RPM macros used by the RPMForge project.
 %%vendor RPMForge project (http://rpmforge.net/)
 
 
-%if %{?dist:1}0
-%%dist %dist
-%%%dist 1
+%if %{?dtag:1}0
+%%dtag %dtag
+%%%dtag 1
 %else
 ### Current distribution undefined in original buildsystem
-#%%dist ???
+#%%dtag ???
 #%%??? 1
 %endif
 
-%if "%dist" == "fc2"
+%if "%dtag" == "fc2"
 ### Fedora Core 2
 %%distribution RPMForge repository for Fedora Core 2
 %%errata 120
 %endif
-%if "%dist" == "fc1"
+%if "%dtag" == "fc1"
 ### Fedora Core 1
 %%distribution RPMForge repository for Fedora Core 1
 %%errata 110
 %%_without_alsa 1
 %%_without_theora 1
 %endif
-%if "%dist" == "el3"
+%if "%dtag" == "el3"
 ### Red Hat Enterprise Linux 3
 %%distribution RPMForge repository for Red Hat Enterprise Linux 3
 %%errata 91
@@ -57,7 +57,7 @@ RPM macros used by the RPMForge project.
 %%_without_fribidi 1
 %%_without_theora 1
 %endif
-%if "%dist" == "rh9"
+%if "%dtag" == "rh9"
 ### Red Hat Linux 9
 %%distribution RPMForge repository for Red Hat Linux 9
 %%errata 90
@@ -65,7 +65,7 @@ RPM macros used by the RPMForge project.
 %%_without_fribidi 1
 %%_without_theora 1
 %endif
-%if "%dist" == "rh8"
+%if "%dtag" == "rh8"
 ### Red Hat Linux 8.0
 %%distribution RPMForge repository for Red Hat Linux 8.0
 %%errata 80
@@ -73,7 +73,7 @@ RPM macros used by the RPMForge project.
 %%_without_fribidi 1
 %%_without_theora 1
 %endif
-%if "%dist" == "rh7"
+%if "%dtag" == "rh7"
 ### Red Hat Linux 7.3
 %%distribution RPMForge repository for Red Hat Linux 7.X
 %%errata 73
@@ -85,7 +85,7 @@ RPM macros used by the RPMForge project.
 %%_without_gtk2 1
 %%_without_theora 1
 %endif
-%if "%dist" == "el2"
+%if "%dtag" == "el2"
 ### Red hat Enterprise Linux 2.1
 %%distribution RPMForge repository for Red Hat Enterprise Linux 2.1
 %%errata 72
@@ -97,7 +97,7 @@ RPM macros used by the RPMForge project.
 %%_without_gtk2 1
 %%_without_theora 1
 %endif
-%if "%dist" == "rh6"
+%if "%dtag" == "rh6"
 ### Red Hat Linux 6.2
 %%distribution RPMForge repository for Red Hat Linux 6.2
 %%errata 62
@@ -132,8 +132,5 @@ EOF
 %config %{_sysconfdir}/rpm/macros.rpmforge
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0-1.2
-- Rebuild for Fedora Core 5.
-
 * Tue Jun 08 2004 Dag Wieers <dag@wieers.com> - 0-1
 - Initial package. (using DAR)
