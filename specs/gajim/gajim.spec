@@ -3,7 +3,7 @@
 
 Summary: Jabber client written in PyGTK
 Name: gajim
-Version: 0.11.2
+Version: 0.11.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -57,6 +57,9 @@ Gajim does not require GNOME to run, even though it exists with it nicely.
 %exclude %{_libdir}/gajim/*.la
 
 %changelog
+* Sun Nov 18 2007 Heiko Adams <info@fedora-blog.de> - 0.11.3-1
+- Version update
+
 * Mon Oct 08 2007 Heiko Adams <info@fedora-blog.de> - 0.11.2-1
 - Version update
 
