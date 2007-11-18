@@ -3,14 +3,13 @@
 
 Summary: Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
 Name: asciidoc
-Version: 8.2.4
-Release: 2
+Version: 8.2.5
+Release: 1
 License: GPL
 Group: Applications/Text
 URL: http://www.methods.co.nz/asciidoc/
 
 Source: http://dl.sf.net/asciidoc/asciidoc-%{version}.tar.gz
-Patch0: asciidoc-8.2.4-future.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -24,7 +23,6 @@ DocBook markups using the asciidoc(1) command.
 
 %prep
 %setup
-%patch0 -p0
 
 %build
 
@@ -69,6 +67,9 @@ DocBook markups using the asciidoc(1) command.
 %{_datadir}/asciidoc/
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 8.2.5-1
+- Updated to release 8.2.5.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 8.2.4-2
 - Fixed  SyntaxError: future feature with_statement is not defined.
 

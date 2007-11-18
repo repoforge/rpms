@@ -9,7 +9,7 @@
 
 Summary: Extract the structure of a quoted mail message
 Name: perl-Text-Quoted
-Version: 2.02
+Version: 2.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,9 @@ Source: http://www.cpan.org/modules/by-module/Text/Text-Quoted-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.6.0
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 0:5.6.0
 
 %description
 Extract the structure of a quoted mail message.
@@ -47,9 +48,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Text::Quoted.3pm*
 %dir %{perl_vendorlib}/Text/
+#%{perl_vendorlib}/Text/Quoted/
 %{perl_vendorlib}/Text/Quoted.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 2.03-1
+- Updated to release 2.03.
+
 * Sat Aug 25 2007 Dag Wieers <dag@wieers.com> - 2.02-1
 - Updated to release 2.02.
 

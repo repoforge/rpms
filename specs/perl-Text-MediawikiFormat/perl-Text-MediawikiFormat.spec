@@ -9,9 +9,9 @@
 
 Summary: Translate Wiki markup into other text formats
 Name: perl-Text-MediawikiFormat
-Version: 0.03
+Version: 0.05
 Release: 1
-License: Artistic/GPL
+License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-MediawikiFormat/
 
@@ -44,11 +44,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Text::MediawikiFormat*
-%{perl_vendorlib}/Text/MediawikiFormat.pm
+%doc ARTISTIC Changes MANIFEST META.yml README SIGNATURE
+%doc %{_mandir}/man3/Text::MediawikiFormat.3pm*
+%doc %{_mandir}/man3/Text::MediawikiFormat::*.3pm*
+%dir %{perl_vendorlib}/Text/
 %{perl_vendorlib}/Text/MediawikiFormat/
+%{perl_vendorlib}/Text/MediawikiFormat.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.05-1
+- Updated to release 0.05.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.

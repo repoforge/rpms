@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Burak G&#252;rsoy <burak$cpan,org>
+# Upstream: Burak Gursoy <burak$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Simple text template engine
 Name: perl-Text-Template-Simple
-Version: 0.47
+Version: 0.48
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,11 +44,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Text::Template::Simple.3pm*
+%dir %{perl_vendorlib}/Text/
+%dir %{perl_vendorlib}/Text/Template/
+#%{perl_vendorlib}/Text/Template/Simple/
 %{perl_vendorlib}/Text/Template/Simple.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.48-1
+- Updated to release 0.48.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.47-1
 - Updated to release 0.47.
 

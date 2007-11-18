@@ -9,8 +9,8 @@
 
 Summary: PDF Functions
 Name: perl-Text-PDF
-Version: 0.25
-Release: 1.2
+Version: 0.29
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-PDF/
@@ -39,21 +39,27 @@ PDF functions for Perl.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc readme.txt
-%doc %{_mandir}/man3/*
-%{_bindir}/pdfbklt.plx
-%{_bindir}/pdfrevert.plx
-%{_bindir}/pdfstamp.plx
-%{perl_vendorlib}/Text/PDF
+%doc MANIFEST MANIFEST.SKIP META.yml readme.txt examples/
+%doc %{_mandir}/man3/Text::PDF.3pm*
+%doc %{_mandir}/man3/Text::PDF::*.3pm*
+%{_bindir}/pdfbklt
+%{_bindir}/pdfrevert
+%{_bindir}/pdfstamp
+%dir %{perl_vendorlib}/Text/
+%{perl_vendorlib}/Text/PDF/
+%{perl_vendorlib}/Text/PDF.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.25-1.2
-- Rebuild for Fedora Core 5.
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.29-1
+- Updated to release 0.29.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.25-1
 - Initial package.

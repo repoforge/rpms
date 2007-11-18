@@ -9,7 +9,7 @@
 Summary: Free and Open Source Internet TV and video player
 Name: miro
 Version: 1.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.getmiro.com/
@@ -22,7 +22,7 @@ BuildRequires: xine-lib-devel, libfame, boost-devel
 BuildRequires: python-devel, pyrex
 BuildRequires: firefox-devel
 Requires: xine-lib, libfame, gnome-python2-gtkmozembed, gnome-python2-gconf
-Requires: python >= %{python_version}, dbus-python
+Requires: python >= %{python_version}, python-sqlite2, dbus-python
 Requires: firefox
 
 Obsoletes: Miro <= %{version}-%{release}

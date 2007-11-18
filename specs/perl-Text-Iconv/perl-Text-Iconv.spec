@@ -9,9 +9,9 @@
 
 Summary: Text::Iconv perl module
 Name: perl-Text-Iconv
-Version: 1.4
-Release: 1.2
-License: GPL
+Version: 1.7
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Iconv/
 
@@ -45,14 +45,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man?/*
-%{perl_vendorarch}/Text/
-%{perl_vendorarch}/auto/Text/
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Text::Iconv.3pm*
+%dir %{perl_vendorarch}/auto/Text/
+%{perl_vendorarch}/auto/Text/Iconv/
+%dir %{perl_vendorarch}/Text/
+%{perl_vendorarch}/Text/Iconv.pm
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1.2
-- Rebuild for Fedora Core 5.
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.7-1
+- Updated to release 1.7.
 
 * Sun Feb 20 2005 Dag Wieers <dag@wieers.com> - 1.4-1
 - Improved %%files list.

@@ -9,8 +9,8 @@
 
 Summary: Modern soundex, phonetic encoding of words
 Name: perl-Text-Metaphone
-Version: 1.96
-Release: 1.2
+Version: 2.00
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Metaphone/
@@ -46,13 +46,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorarch}/Text/
-%{perl_vendorarch}/Text/Metaphone.pm
+%doc Changes INSTALL MANIFEST META.yml README SIGNATURE
+%doc %{_mandir}/man3/Text::Metaphone.3pm*
 %dir %{perl_vendorarch}/auto/Text/
 %{perl_vendorarch}/auto/Text/Metaphone/
+%dir %{perl_vendorarch}/Text/
+%{perl_vendorarch}/Text/Metaphone.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 2.00-1
+- Updated to release 2.00.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.96-1
 - Initial package.
