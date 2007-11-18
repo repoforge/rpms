@@ -9,7 +9,7 @@
 
 Summary: Unified interface to mail representations
 Name: perl-Email-Abstract
-Version: 2.132
+Version: 2.134
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,11 +57,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes LICENSE MANIFEST META.yml README
 %doc %{_mandir}/man3/Email::Abstract.3pm*
+%doc %{_mandir}/man3/Email::Abstract::*.3pm*
 %dir %{perl_vendorlib}/Email/
 %{perl_vendorlib}/Email/Abstract/
 %{perl_vendorlib}/Email/Abstract.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 2.134-1
+- Updated to release 2.134.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 2.132-1
 - Updated to release 2.132.
 

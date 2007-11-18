@@ -9,7 +9,7 @@
 
 Summary: Test functions for particular variable types
 Name: perl-Test-Data
-Version: 1.20
+Version: 1.21
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,25 +39,30 @@ Test functions for particular variable types.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/Test::Data.3*
+%doc %{_mandir}/man3/Test::Data::*.3*
+%dir %{perl_vendorlib}/Test/
+%{perl_vendorlib}/Test/Data/
 %{perl_vendorlib}/Test/Data.pm
-%{perl_vendorlib}/Test/Data
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.21-1
+- Updated to release 1.21.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.20-1
 - Updated to release 1.20.
 
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.19-1
 - Updated to release 1.19.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.18-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.18-1
 - Updated to release 1.18.

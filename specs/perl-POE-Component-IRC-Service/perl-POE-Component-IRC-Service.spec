@@ -9,7 +9,7 @@
 
 Summary: Event driven IRC Services module for POE
 Name: perl-POE-Component-IRC-Service
-Version: 0.991
+Version: 0.993
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More) >= 0.47
 
 %description
 POE::Component::IRC::Service is a POE (Perl Object Environment) component 
@@ -40,12 +41,15 @@ which provides a convenient way for POE applications to create an IRC Service.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README install
+%doc Changes MANIFEST META.yml README examples/
 %doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/POE/
 %dir %{perl_vendorlib}/POE/Component/
@@ -57,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/POE/Filter/IRC/
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.993-1
+- Updated to release 0.993.
+
 * Thu Jul 5 2007 Quien Sabe (aka Jim) <quien-sabe@metaorg.com> - 0.991-1
 - Updated to latest upstream version { old source not available }
 

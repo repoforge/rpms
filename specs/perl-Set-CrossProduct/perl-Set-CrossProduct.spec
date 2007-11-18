@@ -9,7 +9,7 @@
 
 Summary: Work with the cross product of two or more sets
 Name: perl-Set-CrossProduct
-Version: 1.8
+Version: 1.92
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,21 +39,26 @@ Work with the cross product of two or more sets.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/Set::CrossProduct.3*
+%dir %{perl_vendorlib}/Set/
+#%{perl_vendorlib}/Set/CrossProduct/
 %{perl_vendorlib}/Set/CrossProduct.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.92-1
+- Updated to release 1.92.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.8-1
 - Updated to release 1.8.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.6-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.6-1
 - Initial package.

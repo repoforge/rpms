@@ -9,7 +9,7 @@
 
 Summary: Converts Perl data to and from JavaScript Object Notation
 Name: perl-JSON
-Version: 1.14
+Version: 1.15
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,11 +19,11 @@ Source: http://www.cpan.org/authors/id/M/MA/MAKAMAKA/JSON-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)(HTTP::Request)
-BuildRequires: perl(HTTP::Response)
 BuildRequires: dos2unix
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(HTTP::Request)
+BuildRequires: perl(HTTP::Response)
 
 %description
 JSON (JavaScript Object Notation) is a lightweight data-interchange format.
@@ -58,16 +58,23 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/JSON*
-%doc %{_mandir}/man3/Apache::JSONRPC*
-%{perl_vendorlib}/JSON.pm
-%{perl_vendorlib}/JSONRPC.pm
-%{perl_vendorlib}/JSON/
-%{perl_vendorlib}/JSONRPC/
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Apache::JSONRPC.3pm*
+%doc %{_mandir}/man3/JSON.3pm*
+%doc %{_mandir}/man3/JSON::*.3pm*
+%doc %{_mandir}/man3/JSONRPC.3pm*
+%doc %{_mandir}/man3/JSONRPC::*.3pm*
+%dir %{perl_vendorlib}/Apache/
 %{perl_vendorlib}/Apache/JSONRPC.pm
+%{perl_vendorlib}/JSON/
+%{perl_vendorlib}/JSON.pm
+%{perl_vendorlib}/JSONRPC/
+%{perl_vendorlib}/JSONRPC.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.15-1
+- Updated to release 1.15.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 1.14-1
 - Updated to release 1.14.
 

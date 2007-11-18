@@ -7,11 +7,11 @@
 
 %define real_name IO-CaptureOutput
 
-Summary: IO-CaptureOutput module for perl
+Summary: Capture STDOUT and STDERR from Perl code, subprocesses or XS
 Name: perl-IO-CaptureOutput
-Version: 1.03
+Version: 1.05
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-CaptureOutput/
 
@@ -20,9 +20,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Test::More) >= 0.62
 
 %description
-IO-CaptureOutput module for perl.
+Capture STDOUT and STDERR from Perl code, subprocesses or XS.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -43,13 +44,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
+%doc Changes INSTALL LICENSE MANIFEST MANIFEST.SKIP META.yml README
 %doc %{_mandir}/man3/IO::CaptureOutput.3pm*
-#%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/IO/
 #%{perl_vendorlib}/IO/CaptureOutput/
 %{perl_vendorlib}/IO/CaptureOutput.pm
+%{perl_vendorlib}/IO/CaptureOutput.pod
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.05-1
+- Updated to release 1.05.
+
 * Wed May 02 2007 Dag Wieers <dag@wieers.com> - 1.03-1
 - Initial package. (using DAR)

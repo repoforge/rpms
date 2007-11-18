@@ -9,9 +9,9 @@
 
 Summary: Launch and control background processes
 Name: perl-Proc-Simple
-Version: 1.21
-Release: 1.2
-License: Artistic
+Version: 1.22
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Proc-Simple/
 
@@ -39,18 +39,25 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorlib}/Proc/
-%{perl_vendorlib}/Proc/Simple.pm
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README eg/
+%doc %{_mandir}/man3/Proc::Simple.3pm*
 %dir %{perl_vendorlib}/auto/Proc/
 %{perl_vendorlib}/auto/Proc/Simple/
+%dir %{perl_vendorlib}/Proc/
+#%{perl_vendorlib}/Proc/Simple/
+%{perl_vendorlib}/Proc/Simple.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.22-1
+- Updated to release 1.22.
+
 * Wed Dec 08 2004 Dries Verachtert <dries@ulyssis.org> - 1.21-1
 - Initial package.

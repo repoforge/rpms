@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dries
+# Upstream: Nik Clayton, <nikc$cpan,org>
 # Upstream: Garrett Rooney <rooneg$electricjellyfish,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
@@ -9,7 +10,7 @@
 
 Summary: Index and search over Subversion commit logs
 Name: perl-SVN-Log-Index
-Version: 0.41
+Version: 0.51
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,14 +48,19 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README TODO
-%doc %{_mandir}/man3/*
-%{_bindir}/*
+%doc CHANGES MANIFEST MANIFEST.SKIP META.yml README SIGNATURE TODO
+%doc %{_mandir}/man1/sli.1*
+%doc %{_mandir}/man3/SVN::Log::Index.3pm*
+%{_bindir}/sli
 %dir %{perl_vendorlib}/SVN/
 %dir %{perl_vendorlib}/SVN/Log/
+#%{perl_vendorlib}/SVN/Log/Index/
 %{perl_vendorlib}/SVN/Log/Index.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.51-1
+- Updated to release 0.51.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.41-1
 - Updated to release 0.41.
 

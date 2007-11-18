@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Michael G Schwern <mschwern$cpan,org>
+# Upstream: David A, Golden <dagolden$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Apparently run a function in a higher stack frame
 Name: perl-Sub-Uplevel
-Version: 0.14
+Version: 0.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,16 +39,24 @@ Apparently run a function in a higher stack frame.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README examples/
+%doc %{_mandir}/man3/Sub::Uplevel.3pm*
+%dir %{perl_vendorlib}/Sub/
+#%{perl_vendorlib}/Sub/Uplevel/
 %{perl_vendorlib}/Sub/Uplevel.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.18-1
+- Updated to release 0.18.
+
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1
 - Updated to release 0.14.
 
@@ -57,9 +65,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Updated to release 0.12.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.09-1
 - Initial package.

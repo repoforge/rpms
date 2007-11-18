@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Adam Kennedy <cpan@ali.as>
+# Upstream: Adam Kennedy <adamk$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Track the number of times subs are called
 Name: perl-Test-SubCalls
-Version: 1.06
+Version: 1.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.6.0 
-BuildRequires: perl(Test::Builder::Tester) >= 1.01
+BuildRequires: perl(Test::Builder::Tester) >= 1.02
 
 %description
 Track the number of times subs are called.
@@ -47,8 +47,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes LICENSE MANIFEST META.yml README
 %doc %{_mandir}/man3/Test::SubCalls.3pm*
 %dir %{perl_vendorlib}/Test/
+#%{perl_vendorlib}/Test/SubCalls/
 %{perl_vendorlib}/Test/SubCalls.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.07-1
+- Updated to release 1.07.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 1.06-1
 - Initial package. (using DAR)

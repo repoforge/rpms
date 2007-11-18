@@ -9,7 +9,7 @@
 
 Summary: Load templates using DBIx::Class
 Name: perl-Template-Provider-DBIC
-Version: 0.01
+Version: 0.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(DBD::SQLite) >= 1.11
+BuildRequires: perl(DBIx::Class)
+BuildRequires: perl(Test::More)
 
 %description
 Load templates using DBIx::Class.
@@ -39,16 +42,24 @@ Load templates using DBIx::Class.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/Template::Provider::DBIC*
-%{perl_vendorlib}/Template/Provider/DBIC.pm
+%doc Changes INSTALL MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/Template::Provider::DBIC.3pm*
+%dir %{perl_vendorlib}/Template/
 %dir %{perl_vendorlib}/Template/Provider/
+#%{perl_vendorlib}/Template/Provider/DBIC/
+%{perl_vendorlib}/Template/Provider/DBIC.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.02-1
+- Updated to release 0.02.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

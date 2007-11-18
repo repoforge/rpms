@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Richard Soderberg <perl$crystalflame,net>
+# Upstream: Adam J, Foxson <afoxson$pobox,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: Report test results of a package retrieved from CPAN
 Name: perl-Test-Reporter
-Version: 1.27
-Release: 1.2
+Version: 1.38
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Reporter/
@@ -46,17 +46,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man1/*
-%doc %{_mandir}/man3/*
+%doc Changes INSTALL MANIFEST MANIFEST.SKIP META.yml README SIGNATURE
+%doc %{_mandir}/man1/cpantest.1*
+%doc %{_mandir}/man3/Test::Reporter.3pm*
 %{_bindir}/cpantest
 %dir %{perl_vendorlib}/Test/
+#%{perl_vendorlib}/Test/Reporter/
 %{perl_vendorlib}/Test/Reporter.pm
-%{perl_vendorlib}/Test/Reporter/*
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.27-1.2
-- Rebuild for Fedora Core 5.
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.38-1
+- Updated to release 1.38.
 
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 1.27-1
 - Updated to release 1.27.

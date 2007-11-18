@@ -9,7 +9,7 @@
 
 Summary: Create Regular expressions
 Name: perl-Regexp-Assemble
-Version: 0.31
+Version: 0.32
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,16 +39,24 @@ You can create regular expressions with this module.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README TODO eg/
+%doc %{_mandir}/man3/Regexp::Assemble.3pm*
+%dir %{perl_vendorlib}/Regexp/
+#%{perl_vendorlib}/Regexp/Assemble/
 %{perl_vendorlib}/Regexp/Assemble.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.32-1
+- Updated to release 0.32.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.31-1
 - Updated to release 0.31.
 

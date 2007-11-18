@@ -7,9 +7,9 @@
 
 %define real_name Module-ScanDeps
 
-Summary: Recursively scan Perl programs for dependencies
+Summary: Recursively scan Perl code for dependencies
 Name: perl-Module-ScanDeps
-Version: 0.77
+Version: 0.78
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -60,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/ScanDeps.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.78-1
+- Updated to release 0.78.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.77-1
 - Updated to release 0.77.
 

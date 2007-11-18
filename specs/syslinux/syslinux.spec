@@ -8,7 +8,7 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-Version: 3.52
+Version: 3.53
 Release: 1
 License: GPL
 Group: Applications/System
@@ -21,6 +21,9 @@ ExclusiveArch: i386 x86_64
 BuildRequires: nasm, perl, netpbm-progs
 Requires: mtools
 
+Obsoletes: syslinux-devel <= %{version}-%{release}
+Provides: syslinux-devel = %{version}-%{release}
+
 %description
 SYSLINUX is a suite of bootloaders, currently supporting DOS FAT
 filesystems, Linux ext2/ext3 filesystems (EXTLINUX), PXE network boots
@@ -31,18 +34,20 @@ MEMDISK, which loads legacy operating systems from these media.
 %setup
 
 %build
+export CFLAGS="-Werror -Wno-unused -finline-limit=2000"
 %{__make} clean
 %{__make} %{?_smp_mflags} installer
 
 %install
 %{__rm} -rf %{buildroot}
-#%makeinstall install-lib \
-%{__make} install install-lib \
-	INSTALLROOT="%{buildroot}" \
-	BINDIR="%{_bindir}" \
-	LIBDIR="%{_prefix}/lib" \
-	INCDIR="%{_includedir}"
-%{__install} -p -m0755 mkdiskimage sys2ansi.pl keytab-lilo.pl %{buildroot}%{_prefix}/lib/syslinux/
+%{__make} install-all \
+    INSTALLROOT="%{buildroot}" \
+    BINDIR="%{_bindir}" \
+    INCDIR="%{_includedir}" \
+    LIBDIR="%{_prefix}/lib" \
+    SBINDIR="%{_sbindir}"
+%{__install} -p -m0755 keytab-lilo.pl mkdiskimage sys2ansi.pl %{buildroot}%{_prefix}/lib/syslinux/
+%{__install} -p -m0755 unix/syslinux unix/syslinux-nomtools %{buildroot}%{_prefix}/lib/syslinux/
 
 ### Clean up docroot
 %{__make} -C sample tidy
@@ -53,7 +58,6 @@ MEMDISK, which loads legacy operating systems from these media.
 %files
 %defattr(-, root, root, 0755)
 %doc BUGS COPYING NEWS README* TODO *.doc com32/modules/mboot.doc memdisk/memdisk.doc sample/
-%{_sbindir}/extlinux
 %{_bindir}/gethostip
 %{_bindir}/lss16toppm
 %{_bindir}/md5pass
@@ -61,8 +65,12 @@ MEMDISK, which loads legacy operating systems from these media.
 %{_bindir}/sha1pass
 %{_bindir}/syslinux
 %{_prefix}/lib/syslinux/
+%{_sbindir}/extlinux
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 3.53-1
+- Updated to release 3.53.
+
 * Wed Sep 26 2007 Dag Wieers <dag@wieers.com> - 3.52-1
 - Updated to release 3.52.
 

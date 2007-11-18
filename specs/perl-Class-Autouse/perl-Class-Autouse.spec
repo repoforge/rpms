@@ -9,7 +9,7 @@
 
 Summary: Run-time class loading on first method call
 Name: perl-Class-Autouse
-Version: 1.28
+Version: 1.29
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -60,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 #%{perl_vendorlib}/Class/prefork.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.29-1
+- Updated to release 1.29.
+
 * Wed Nov 07 2007 Dag Wieers <dag@wieers.com> - 1.28-1
 - Updated to release 1.28.
 

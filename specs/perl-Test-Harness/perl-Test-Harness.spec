@@ -9,7 +9,7 @@
 
 Summary: Run Perl standard test scripts with statistics
 Name: perl-Test-Harness
-Version: 3.00
+Version: 3.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -63,6 +63,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/TAP/
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 3.03-1
+- Updated to release 3.03.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 3.00-1
 - Updated to release 3.00.
 

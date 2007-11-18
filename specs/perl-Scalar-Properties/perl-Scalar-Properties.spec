@@ -9,8 +9,8 @@
 
 Summary: Run-time properties on scalar variables
 Name: perl-Scalar-Properties
-Version: 0.12
-Release: 1.2
+Version: 0.13
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Scalar-Properties/
@@ -19,8 +19,12 @@ Source: http://www.cpan.org/modules/by-module/Scalar/Scalar-Properties-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.6.0 
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::Compile)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(UNIVERSAL::require)
+Requires: perl >= 0:5.6.0 
 
 %description
 Scalar::Properties attempts to make Perl more object-oriented by taking
@@ -46,13 +50,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README TODO
+%doc %{_mandir}/man3/Scalar::Properties.3pm*
+%dir %{perl_vendorlib}/Scalar/
+#%{perl_vendorlib}/Scalar/Properties/
 %{perl_vendorlib}/Scalar/Properties.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1.2
-- Rebuild for Fedora Core 5.
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.13-1
+- Updated to release 0.13.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Initial package.

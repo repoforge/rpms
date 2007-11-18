@@ -6,12 +6,13 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Quota
+%define real_version 1.006000
 
 Summary: Perl interface to file system quotas
 Name: perl-Quota
-Version: 1.5.1
-Release: 1.2
-License: Artistic
+Version: 1.6.0
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Quota/
 
@@ -46,19 +47,22 @@ export CFLAGS="-fPIC"
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find contrib/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README
-%doc %{_mandir}/man3/*
-%{perl_vendorarch}/Quota.pm
+%doc CHANGES INSTALL MANIFEST README contrib/
+%doc %{_mandir}/man3/Quota.3pm*
 %{perl_vendorarch}/auto/Quota/
+%{perl_vendorarch}/Quota.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.5.1-1.2
-- Rebuild for Fedora Core 5.
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.6.0-1
+- Updated to release 1.6.0.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.5.1-1
 - Updated to release 1.5.1.

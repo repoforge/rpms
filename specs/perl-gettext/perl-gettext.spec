@@ -11,7 +11,7 @@ Summary: Perl module implementing message handling functions
 Name: perl-gettext
 Version: 1.00
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/gettext/
 

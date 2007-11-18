@@ -9,7 +9,7 @@
 
 Summary: Use the GMP library for Math::BigInt routines
 Name: perl-Math-BigInt-GMP
-Version: 1.22
+Version: 1.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,16 +47,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc BUGS CHANGES CREDITS INSTALL LICENSE MANIFEST MANIFEST.SKIP META.yml README SIGNATURE TODO
 %doc %{_mandir}/man3/Math::BigInt::GMP.3pm*
-#%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/auto/Math/
+%dir %{perl_vendorarch}/auto/Math/BigInt/
+%{perl_vendorarch}/auto/Math/BigInt/GMP/
 %dir %{perl_vendorarch}/Math/
 %dir %{perl_vendorarch}/Math/BigInt/
 %{perl_vendorarch}/Math/BigInt/GMP.pm
 %{perl_vendorarch}/Math/BigInt/
-%dir %{perl_vendorarch}/auto/Math/
-%dir %{perl_vendorarch}/auto/Math/BigInt/
-%{perl_vendorarch}/auto/Math/BigInt/GMP/
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.24-1
+- Updated to release 1.24.
+
 * Thu Jul 5 2007 Quien Sabe (aka Jim) <quien-sabe@metaorg.com> - 1.22-1
 - Updated to latest upstream version { old source not available }
 

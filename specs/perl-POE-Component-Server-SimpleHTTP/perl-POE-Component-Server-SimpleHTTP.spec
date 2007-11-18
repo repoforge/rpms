@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dries
-# Upstream: Apocalypse <perl$0ne,us>
+# Upstream: Apocalypse <APOCAL$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name POE-Component-Server-SimpleHTTP
 
-Summary: Serve HTTP requests in POE
+Summary: Perl extension to serve HTTP requests in POE
 Name: perl-POE-Component-Server-SimpleHTTP
-Version: 1.23
+Version: 1.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,8 +20,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(POE::Component::SSLify)
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(LWP::UserAgent)
+BuildRequires: perl(POE::Component::Client::HTTP)
+BuildRequires: perl(POE::Component::SSLify)
+BuildRequires: perl(Test::More) >= 0.47
 
 %description
 Serve HTTP requests in POE.
@@ -40,19 +43,26 @@ echo "y" | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_pre
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/POE::Component::Server::SimpleHTTP.3pm*
+%dir %{perl_vendorlib}/POE/
 %dir %{perl_vendorlib}/POE/Component/
 %dir %{perl_vendorlib}/POE/Component/Server/
 %{perl_vendorlib}/POE/Component/Server/SimpleHTTP.pm
 %{perl_vendorlib}/POE/Component/Server/SimpleHTTP/
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.24-1
+- Updated to release 1.24.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.23-1
 - Updated to release 1.23.
 

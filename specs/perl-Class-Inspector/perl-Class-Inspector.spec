@@ -9,7 +9,7 @@
 
 Summary: Get information about a class and its structure
 Name: perl-Class-Inspector
-Version: 1.17
+Version: 1.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -30,10 +30,6 @@ arn't always very friendly, and usually involve a relatively high level
 of Perl wizardry, or strange and unusual looking code. Class::Inspector
 attempts to provide an easier, more friendly interface to this
 information.
-
-This package contains the following Perl module:
-
-    Class::Inspector
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -61,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/Inspector.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.18-1
+- Updated to release 1.18.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.17-1
 - Updated to release 1.17.
 

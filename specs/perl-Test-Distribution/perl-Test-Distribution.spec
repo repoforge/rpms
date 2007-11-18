@@ -9,7 +9,7 @@
 
 Summary: perform tests on all modules of a distribution
 Name: perl-Test-Distribution
-Version: 1.26
+Version: 2.00
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -29,11 +29,14 @@ perform tests on all modules of a distribution.
 %setup -n %{real_name}-%{version}
 
 %build
+#%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
+#%{__make} %{?_smp_mflags}
 %{__perl} Build.PL
 ./Build
 
 %install
 %{__rm} -rf %{buildroot}
+#%{__make} pure_install
 PERL_INSTALL_ROOT="%{buildroot}" ./Build install installdirs="vendor"
 
 ### Clean up buildroot
@@ -44,13 +47,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README SIGNATURE
+%doc Changes.pod MANIFEST META.yml README
 %doc %{_mandir}/man3/Test::Distribution.3pm*
-#%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Test/
 #%{perl_vendorlib}/Test/Distribution/
 %{perl_vendorlib}/Test/Distribution.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 2.00-1
+- Updated to release 2.00.
+
 * Mon Aug 06 2007 Dag Wieers <dag@wieers.com> - 1.26-1
 - Initial package. (using DAR)

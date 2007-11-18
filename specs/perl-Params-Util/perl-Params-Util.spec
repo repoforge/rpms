@@ -9,7 +9,7 @@
 
 Summary: Param checking functions
 Name: perl-Params-Util
-Version: 0.30
+Version: 0.31
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,9 +50,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes LICENSE MANIFEST META.yml README
 %doc %{_mandir}/man3/Params::Util.3pm*
 %dir %{perl_vendorlib}/Params/
+#%{perl_vendorlib}/Params/Util/
 %{perl_vendorlib}/Params/Util.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.31-1
+- Updated to release 0.31.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.30-1
 - Updated to release 0.30.
 

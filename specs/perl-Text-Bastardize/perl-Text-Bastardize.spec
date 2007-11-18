@@ -9,7 +9,7 @@
 
 Summary: Corruptor of innocent text
 Name: perl-Text-Bastardize
-Version: 0.07
+Version: 0.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,10 +44,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Text::Bastardize*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Text::Bastardize.3pm*
+%dir %{perl_vendorlib}/Text/
+#%{perl_vendorlib}/Text/Bastardize/
 %{perl_vendorlib}/Text/Bastardize.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.08-1
+- Updated to release 0.08.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Initial package.

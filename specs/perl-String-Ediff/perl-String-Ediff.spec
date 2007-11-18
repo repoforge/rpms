@@ -9,9 +9,9 @@
 
 Summary: Produce common sub-string indices for two strings
 Name: perl-String-Ediff
-Version: 0.08
-Release: 1.2
-License: Artistic
+Version: 0.09
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-Ediff/
 
@@ -35,22 +35,26 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
-%doc %{_mandir}/man3/*.3pm*
+%doc ChangeLog MANIFEST README
+%doc %{_mandir}/man3/String::Ediff.3pm*
+%dir %{perl_vendorarch}/auto/String/
+%{perl_vendorarch}/auto/String/Ediff/
 %dir %{perl_vendorarch}/String/
 %{perl_vendorarch}/String/Ediff.pm
-%dir %{perl_vendorarch}/auto/String/
-%{perl_vendorarch}/auto/String/Ediff/*
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.09-1
+- Updated to release 0.09.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Updated to release 0.08.
 

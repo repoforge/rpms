@@ -9,7 +9,7 @@
 
 Summary: Component implementing a RFC 865 Daytime server
 Name: perl-POE-Component-Server-Daytime
-Version: 1.05
+Version: 1.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More) >= 0.47
 
 %description
 A very simple component to implement RFC 867, a daytime server.
@@ -39,19 +40,25 @@ A very simple component to implement RFC 867, a daytime server.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/POE/Component/Server/Daytime.pm
-%dir %{perl_vendorlib}/POE/Component/Server/
-%dir %{perl_vendorlib}/POE/Component/
+%doc Changes MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/POE::Component::Server::Daytime.3pm*
 %dir %{perl_vendorlib}/POE/
+%dir %{perl_vendorlib}/POE/Component/
+%dir %{perl_vendorlib}/POE/Component/Server/
+%{perl_vendorlib}/POE/Component/Server/Daytime.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.07-1
+- Updated to release 1.07.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.05-1
 - Updated to release 1.05.
 

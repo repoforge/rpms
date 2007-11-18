@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jesse Vincent <jesse+cpan$fsck,com>
+# Upstream: Shawn M Moore <sartak$gmail,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements an object-relational persistence framework
 Name: perl-Jifty-DBI
-Version: 0.46
+Version: 0.47
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -26,10 +26,6 @@ BuildRequires: perl(Test::More) >= 0.52
 %description
 perl-Jifty-DBI is a Perl module that implements an object-relational
 persistence framework.
-
-This package contains the following Perl module:
-
-    Jifty::DBI
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -60,6 +56,9 @@ find doc/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Jifty/DBI.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.47-1
+- Updated to release 0.47.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.46-1
 - Updated to release 0.46.
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: clkao$clkao,org
+# Upstream: Nik Clayton <nik$FreeBSD,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,9 +9,9 @@
 
 Summary: Subversion repository web frontend
 Name: perl-SVN-Web
-Version: 0.46
+Version: 0.53
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Web/
 
@@ -55,20 +55,20 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc README TODO
-%doc %{_mandir}/man3/*
+%doc CHANGES.pod MANIFEST META.yml README SIGNATURE TODO
+%doc %{_mandir}/man3/SVN::Web.3pm*
 %{_bindir}/svnweb-install
 %dir %{perl_vendorlib}/SVN/
-%{perl_vendorlib}/SVN/Web.pm
-%{perl_vendorlib}/SVN/*.pod
 %{perl_vendorlib}/SVN/Web/
+%{perl_vendorlib}/SVN/Web.pm
+%{perl_vendorlib}/SVN/Web.pod
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.53-1
+- Updated to release 0.53.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.46-1
 - Updated to release 0.46.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.42-1.2
-- Rebuild for Fedora Core 5.
 
 * Sun Dec 25 2005 Dries Verachtert <dries@ulyssis.org> - 0.42-1
 - Updated to release 0.42.

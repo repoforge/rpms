@@ -9,7 +9,7 @@
 
 Summary: Provide patterns for CDIR blocks
 Name: perl-Regexp-Common-net-CIDR
-Version: 0.01
+Version: 0.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,9 +19,10 @@ Source: http://www.cpan.org/modules/by-module/Regexp/Regexp-Common-net-CIDR-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 2:5.8.0
 BuildRequires: perl(Regexp::Common)
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 2:5.8.0
 
 %description
 Provide patterns for CDIR blocks.
@@ -45,10 +46,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man3/Regexp::Common::net::CIDR*
+%doc MANIFEST META.yml README
+%doc %{_mandir}/man3/Regexp::Common::net::CIDR.3pm*
+%dir %{perl_vendorlib}/Regexp/
+%dir %{perl_vendorlib}/Regexp/Common/
+%dir %{perl_vendorlib}/Regexp/Common/net/
+#%{perl_vendorlib}/Regexp/Common/net/CIDR/
 %{perl_vendorlib}/Regexp/Common/net/CIDR.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.02-1
+- Updated to release 0.02.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

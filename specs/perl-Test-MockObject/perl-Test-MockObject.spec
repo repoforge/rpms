@@ -9,9 +9,9 @@
 
 Summary: Highly polymorphic testing object
 Name: perl-Test-MockObject
-Version: 1.07
+Version: 1.08
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-MockObject/
 
@@ -40,20 +40,26 @@ option is not to test difficult things.  Now you have no excuse.)
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Test::MockObject.3pm*
+%doc %{_mandir}/man3/Test::MockObject::Extends.3pm*
+%dir %{perl_vendorlib}/Test/
+%{perl_vendorlib}/Test/MockObject/
 %{perl_vendorlib}/Test/MockObject.pm
-%{perl_vendorlib}/Test/MockObject/*
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.08-1
+- Updated to release 1.08.
+
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 1.07-1
 - Updated to release 1.07.
 
@@ -62,9 +68,6 @@ option is not to test difficult things.  Now you have no excuse.)
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.04-1
 - Updated to release 1.04.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.02-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.02-1
 - Updated to release 1.02.

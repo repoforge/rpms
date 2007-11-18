@@ -9,7 +9,7 @@
 
 Summary: Remove files and directories
 Name: perl-File-Remove
-Version: 0.38
+Version: 0.39
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/File/Remove.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.39-1
+- Updated to release 0.39.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.38-1
 - Updated to release 0.38.
 

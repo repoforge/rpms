@@ -9,7 +9,7 @@
 
 Summary: Test applications using Selenium Remote Control
 Name: perl-Test-WWW-Selenium
-Version: 1.11
+Version: 1.13
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,8 +21,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)(Test::More) >= 0.42
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::Exception)
+BuildRequires: perl(Test::More) >= 0.42
 BuildRequires: perl(Test::Pod)
 
 %description
@@ -47,11 +48,19 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*WWW::Selenium*
+%doc Changes README todo.txt
+%doc %{_mandir}/man3/Test::WWW::Selenium.3pm*
+%doc %{_mandir}/man3/WWW::Selenium.3pm*
+%dir %{perl_vendorlib}/Test/
+%dir %{perl_vendorlib}/Test/WWW/
+#%{perl_vendorlib}/Test/WWW/Selenium/
 %{perl_vendorlib}/Test/WWW/Selenium.pm
+%dir %{perl_vendorlib}/WWW/
 %{perl_vendorlib}/WWW/Selenium.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.13-1
+- Updated to release 1.13.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.11-1
 - Initial package.

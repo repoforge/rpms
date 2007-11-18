@@ -6,11 +6,12 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Test-AutoBuild
+%define real_version 1.002000
 
 Summary: Automated build engine
 Name: perl-Test-AutoBuild
-Version: 1.0.3
-Release: 1.2
+Version: 1.2.0
+Release: 1
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-AutoBuild/
@@ -19,8 +20,11 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-AutoBuild-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)-BSD-Resource
+#BuildRequires: perl(BSD::Resource)
+BuildRequires: perl(Class::MethodMaker)
+BuildRequires: perl(Config::Record)
+BuildRequires: perl(ExtUtils::MakeMaker)
+Buildrequires: perl(Log::Log4perl)
 
 %description
 Test-AutoBuild provides a PERL framework for performing
@@ -63,22 +67,31 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find doc/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS CHANGES INSTALL README
-%doc %{_mandir}/man3/*.3pm*
-%dir %{_sysconfdir}/auto-build.d/
-%dir %{_sysconfdir}/auto-build.d/templates/
-%config(noreplace) %{_sysconfdir}/auto-build.d/*
-%{_bindir}/auto-build.pl
+%doc AUTHORS CHANGES COPYING INSTALL MANIFEST MANIFEST.SKIP META.yml README TODO doc/
+%doc %{_mandir}/man1/auto-build.1*
+%doc %{_mandir}/man1/auto-build-make-root.1*
+%doc %{_mandir}/man3/Test::AutoBuild.3pm*
+%doc %{_mandir}/man3/Test::AutoBuild::*.3pm*
+%doc %{_mandir}/man5/auto-build.conf.5*
+#%config(noreplace) %{_sysconfdir}/auto-build.d/
+%{_bindir}/auto-build
+%{_bindir}/auto-build-make-root
 %dir %{perl_vendorlib}/Test/
-%{perl_vendorlib}/Test/AutoBuild.pm
 %{perl_vendorlib}/Test/AutoBuild/
+%{perl_vendorlib}/Test/AutoBuild.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.2.0-1
+- Updated to release 1.2.0.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.3-1
 - Updated to release 1.0.3.
 

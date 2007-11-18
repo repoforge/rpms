@@ -1,31 +1,29 @@
 # $Id$
 # Authority: dag
-# Upstream: Joshua Harding <xjharding$elitemail,org>
+# Upstream: Zev Benjamin <zev@cpan.com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name AOL-TOC
-%define real_version 0.340
+%define real_name Test-Dependencies
 
-Summary: AOL-TOC module for perl
-Name: perl-AOL-TOC
-Version: 0.34
-Release: 1.2
+Summary: Ensure that your Makefile.PL specifies all module dependencies
+Name: perl-Test-Dependencies
+Version: 0.08
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/AOL-TOC/
+URL: http://search.cpan.org/dist/Test-Dependencies/
 
-Source: http://www.cpan.org/authors/id/J/JH/JHARDING/AOL-TOC-%{version}.tar.gz
-#Source: http://www.cpan.org/modules/by-module/AOL/AOL-TOC-%{real_version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Test/Test-Dependencies-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.00503
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(Test::Builder::Tester) >= 0.64
 
 %description
-Perl extension for interfacing with AOL's AIM service.
+Ensure that your Makefile.PL specifies all module dependencies.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -46,12 +44,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc MANIFEST README README.old
-%doc %{_mandir}/man3/AOL::TOC.3pm*
-%dir %{perl_vendorlib}/AOL/
-%{perl_vendorlib}/AOL/SFLAP.pm
-%{perl_vendorlib}/AOL/TOC.pm
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Test::Dependencies.3pm*
+%dir %{perl_vendorlib}/Test/
+#%{perl_vendorlib}/Test/Dependencies/
+%{perl_vendorlib}/Test/Dependencies.pm
 
 %changelog
-* Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 0.34-1
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.08-1
 - Initial package. (using DAR)

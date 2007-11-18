@@ -9,7 +9,7 @@
 
 Summary: Module to work with .csv file that stores some value(s) per identificator
 Name: perl-Text-CSV-Track
-Version: 0.6
+Version: 0.8
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
 
 %description
 Module to work with .csv file that stores some value(s) per identificator.
@@ -44,12 +45,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Text::CSV::Track*
-%{perl_vendorlib}/Text/CSV/Track.pm
+%doc Changes MANIFEST META.yml README SIGNATURE
+%doc %{_mandir}/man3/Text::CSV::Track.3pm*
+%doc %{_mandir}/man3/Text::CSV::Track::*.3pm*
+%dir %{perl_vendorlib}/Text/
+%dir %{perl_vendorlib}/Text/CSV/
 %{perl_vendorlib}/Text/CSV/Track/
+%{perl_vendorlib}/Text/CSV/Track.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.8-1
+- Updated to release 0.8.
+
 * Sun Aug 12 2007 Dries Verachtert <dries@ulyssis.org> - 0.6-1
 - Updated to release 0.6.
 

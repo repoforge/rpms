@@ -9,7 +9,7 @@
 
 Summary: Perl module named Taint-Runtime
 Name: perl-Taint-Runtime
-Version: 0.02
+Version: 0.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -43,15 +43,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README
 %doc %{_mandir}/man3/Taint::Runtime.3pm*
-#%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/auto/Taint/
+%{perl_vendorarch}/auto/Taint/Runtime/
 %dir %{perl_vendorarch}/Taint/
 %{perl_vendorarch}/Taint/Runtime.pm
 %{perl_vendorarch}/Taint/is_taint_bench.pl
-%dir %{perl_vendorarch}/auto/Taint/
-%{perl_vendorarch}/auto/Taint/Runtime/
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.03-1
+- Updated to release 0.03.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.02-1
 - Initial package. (using DAR)

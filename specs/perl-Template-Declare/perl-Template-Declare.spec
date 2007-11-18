@@ -9,7 +9,7 @@
 
 Summary: Perlish declarative templates
 Name: perl-Template-Declare
-Version: 0.26
+Version: 0.27
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -27,10 +27,6 @@ BuildRequires: perl(Test::Warn)
 
 %description
 Perlish declarative templates.
-
-This package contains the following Perl module:
-
-    Template::Declare
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -59,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Template/Declare.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.27-1
+- Updated to release 0.27.
+
 * Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 0.26-1
 - Updated to release 0.26.
 

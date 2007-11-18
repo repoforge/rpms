@@ -9,7 +9,7 @@
 
 Summary: Systems management command volley
 Name: perl-Sys-Manage
-Version: 0.56
+Version: 0.57
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,17 +39,26 @@ Systems management command volley.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc readme
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/Sys/Manage.p*
+%doc MANIFEST META.yml readme examples/
+%doc %{_mandir}/man3/Sys::Manage.3pm.gz
+%doc %{_mandir}/man3/Sys::Manage::*.3pm*
+%dir %{perl_vendorlib}/Sys/
 %{perl_vendorlib}/Sys/Manage/
+#%{perl_vendorlib}/Sys/Manage.pm
+%{perl_vendorlib}/Sys/Manage.pod
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.57-1
+- Updated to release 0.57.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.56-1
 - Updated to release 0.56.
 
@@ -61,9 +70,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.52-1
 - Updated to release 0.52.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.51-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.51-1
 - Updated to release 0.51.

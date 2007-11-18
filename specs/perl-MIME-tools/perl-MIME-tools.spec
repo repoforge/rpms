@@ -12,9 +12,9 @@
 
 %define real_name MIME-tools
 
-Summary: Perl modules for parsing (and creating!) MIME entities
+Summary: Tools to manipulate MIME messages
 Name: perl-MIME-tools
-Version: 5.424
+Version: 5.425
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -70,6 +70,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/MIME/
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 5.425-1
+- Updated to release 5.425.
+
 * Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 5.420-2
 - Disabled auto-requires for examples/.
 

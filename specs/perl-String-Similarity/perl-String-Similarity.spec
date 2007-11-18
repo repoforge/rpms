@@ -9,9 +9,9 @@
 
 Summary: Calculate the similarity of two strings
 Name: perl-String-Similarity
-Version: 1.02
-Release: 1.2
-License: Artistic/GPL
+Version: 1.03
+Release: 1
+License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-Similarity/
 
@@ -47,14 +47,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
+%doc COPYING Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/String::Similarity.3pm*
+%dir %{perl_vendorarch}/auto/String/
+%{perl_vendorarch}/auto/String/Similarity/
 %dir %{perl_vendorarch}/String/
 %{perl_vendorarch}/String/Similarity.pm
-%dir %{perl_vendorarch}/auto/String/
-%{perl_vendorarch}/auto/String/Similarity
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.03-1
+- Updated to release 1.03.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.02-1
 - Updated to release 1.02.
 

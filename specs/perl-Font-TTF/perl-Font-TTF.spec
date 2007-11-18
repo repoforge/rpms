@@ -9,9 +9,9 @@
 
 Summary: TTF Fonts
 Name: perl-Font-TTF
-Version: 0.41
+Version: 0.42
 Release: 1
-License: Artistic/GPL
+License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Font-TTF/
 
@@ -46,13 +46,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc README.TXT
-%doc %{_mandir}/man?/Font::TTF*
-%{perl_vendorlib}/Font/TTF.pm
+%doc COPYING MANIFEST MANIFEST.SKIP META.yml README.TXT TODO
+%doc %{_mandir}/man3/Font::TTF.3pm*
+%doc %{_mandir}/man3/Font::TTF::*.3pm*
+%dir %{perl_vendorlib}/Font/
 %{perl_vendorlib}/Font/TTF/
+%{perl_vendorlib}/Font/TTF.pm
 %{perl_vendorlib}/ttfmod.pl
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.42-1
+- Updated to release 0.42.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.41-1
 - Updated to release 0.41.
 
@@ -61,9 +66,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.38.1-1
 - Updated to release 0.38.1.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.37-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.37-1
 - Updated to release 0.37.

@@ -4,32 +4,31 @@
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name C
+%define real_name SNMP-Multi
 
-Summary: Compress-Zlib module for perl 
-Name: perl-Compress-Zlib
-Version: 1.33
-Release: 0
-License: distributable
+Summary: Perform SNMP operations on multiple hosts simultaneously
+Name: perl-SNMP-Multi
+Version: 2.1
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Compress-Zlib/
+URL: http://search.cpan.org/dist/SNMP-Multi/
 
 Source: http://www.cpan.org/modules/by-module/SNMP/SNMP-Multi-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.004
-BuildRequires: zlib-devel >= 1.0.2
-Requires: perl >= 0:5.004, zlib >= 1.0.2
+BuildArch: noarch
+BuildRequires: perl
 
 %description
-Compress-Zlib module for perl
+Perform SNMP operations on multiple hosts simultaneously.
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -38,21 +37,20 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
-%clean 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
+%clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ANNOUNCE README
-%doc %{_mandir}/man?/*
-%{perl_vendorarch}/*
+%doc ChangeLog INSTALL MANIFEST META.yml examples/
+%doc %{_mandir}/man3/SNMP::Multi.3pm*
+%dir %{perl_vendorlib}/SNMP/
+#%{perl_vendorlib}/SNMP/Multi/
+%{perl_vendorlib}/SNMP/Multi.pm
 
 %changelog
-* Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 1.33-0
-- Updated to release 1.33.
-
-* Mon Jul 14 2003 Dag Wieers <dag@wieers.com> - 1.22-0
-- Updated to release 1.22.
-
-* Sun Jan 26 2003 Dag Wieers <dag@wieers.com>
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 2.1-1
 - Initial package. (using DAR)

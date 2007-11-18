@@ -9,7 +9,7 @@
 
 Summary: Critique Perl source code for best-practices
 Name: perl-Perl-Critic
-Version: 1.078
+Version: 1.080
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -40,14 +40,14 @@ Critique Perl source code for best-practices.
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 ### Clean up docs
-find examples/ -type f -exec %{__chmod} a-x {} \;
+find doc/ examples/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes INSTALL LICENSE MANIFEST META.yml README TODO.pod examples/
+%doc Changes INSTALL LICENSE MANIFEST META.yml README TODO.pod doc/ examples/
 %doc %{_mandir}/man1/perlcritic.1*
 %doc %{_mandir}/man3/Perl::Critic.3pm*
 %doc %{_mandir}/man3/Perl::Critic::*.3pm*
@@ -59,6 +59,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Perl/TODO.pod
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.080-1
+- Updated to release 1.080.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.078-1
 - Updated to release 1.078.
 

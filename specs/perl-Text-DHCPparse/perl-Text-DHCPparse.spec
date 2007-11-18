@@ -9,7 +9,7 @@
 
 Summary: Perl extension for parsing dhcpd lease files
 Name: perl-Text-DHCPparse
-Version: 0.08
+Version: 0.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,15 +39,23 @@ Perl extension for parsing dhcpd lease files.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Text::DHCPparse*
+%doc Changes LICENSE MANIFEST META.yml README TODO examples/
+%doc %{_mandir}/man3/Text::DHCPparse.3pm*
+%dir %{perl_vendorlib}/Text/
+#%{perl_vendorlib}/Text/DHCPparse/
 %{perl_vendorlib}/Text/DHCPparse.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.09-1
+- Updated to release 0.09.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Initial package.

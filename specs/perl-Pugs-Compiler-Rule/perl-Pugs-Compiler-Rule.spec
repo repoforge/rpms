@@ -9,7 +9,7 @@
 
 Summary: Compiler for Perl 6 regexes
 Name: perl-Pugs-Compiler-Rule
-Version: 0.26
+Version: 0.28
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -38,6 +38,9 @@ Compiler for Perl 6 regexes.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -45,10 +48,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST MANIFEST.SKIP META.yml README TODO examples/
 %doc %{_mandir}/man1/compile_p6grammar.pl.1*
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Pugs::*.3pm*
 %{_bindir}/compile_p6grammar.pl
 %{perl_vendorlib}/Pugs/
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.28-1
+- Updated to release 0.28.
+
 * Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 0.26-1
 - Initial package. (using DAR)

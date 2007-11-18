@@ -9,7 +9,7 @@
 
 Summary: Perl module to display questions and act on the answers
 Name: perl-QWizard
-Version: 3.08
+Version: 3.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -24,24 +24,6 @@ BuildRequires: perl
 %description
 perl-QWizard is a Perl module to display a series of questions, get the
 answers, and act on the answers. 
-
-This package contains the following Perl modules:
-
-    QWizard
-    QWizard::API
-    QWizard::Generator
-    QWizard::Generator::Best
-    QWizard::Generator::HTML
-    QWizard::Generator::HTML::Vertical
-    QWizard::Generator::ReadLine
-    QWizard::Plugins::Bookmarks
-    QWizard::Plugins::History
-    QWizard::Storage::Base
-    QWizard::Storage::CGICookie
-    QWizard::Storage::CGIParam
-    QWizard::Storage::File
-    QWizard::Storage::Memory
-    QWizard::Storage::SQL
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -66,13 +48,18 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc MANIFEST MANIFEST.SKIP META.yml README examples/
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/QWizard.3pm*
+%doc %{_mandir}/man3/QWizard::*.3pm*
+%doc %{_mandir}/man3/QWizard_Widgets.3pm*
+%{perl_vendorlib}/auto/QWizard/
 %{perl_vendorlib}/QWizard/
 %{perl_vendorlib}/QWizard.pm
 %{perl_vendorlib}/QWizard_Widgets.pl
 %{perl_vendorlib}/QWizard_Widgets.pod
-%{perl_vendorlib}/auto/QWizard/
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 3.12-1
+- Updated to release 3.12.
+
 * Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 3.08-1
 - Initial package. (using DAR)

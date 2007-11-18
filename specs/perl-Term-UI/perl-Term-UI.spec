@@ -9,7 +9,7 @@
 
 Summary: Term::ReadLine UI made easy
 Name: perl-Term-UI
-Version: 0.14
+Version: 0.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,19 +46,19 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man3/*
+%doc CHANGES MANIFEST META.yml README
+%doc %{_mandir}/man3/Term::UI.3pm*
+%doc %{_mandir}/man3/Term::UI::History.3pm*
 %dir %{perl_vendorlib}/Term/
+%{perl_vendorlib}/Term/UI/
 %{perl_vendorlib}/Term/UI.pm
-%dir %{perl_vendorlib}/Term/UI
-%{perl_vendorlib}/Term/UI/History.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.18-1
+- Updated to release 0.18.
+
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1
 - Updated to release 0.14.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.12-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Updated to release 0.12.

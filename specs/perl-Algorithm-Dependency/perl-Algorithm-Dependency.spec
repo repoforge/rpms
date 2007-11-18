@@ -1,17 +1,17 @@
 # $Id$
 # Authority: dag
-# Upstream: Adam Kennedy <cpan$ali,as>
+# Upstream: Adam Kennedy <adamk$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Algorithm-Dependency
 
-Summary: Perl module for implementing various dependency trees 
+Summary: Base class for implementing various dependency trees
 Name: perl-Algorithm-Dependency
-Version: 1.103
+Version: 1.104
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Algorithm-Dependency/
 
@@ -57,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Algorithm/Dependency.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.104-1
+- Updated to release 1.104.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.103-1
 - Updated to release 1.103.
 

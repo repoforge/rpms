@@ -9,7 +9,7 @@
 
 Summary: Check file attributes
 Name: perl-Test-File
-Version: 1.18
+Version: 1.22
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,16 +39,23 @@ Check file attributes.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE MANIFEST META.yml README
+%doc Changes LICENSE MANIFEST META.yml README examples/
 %doc %{_mandir}/man3/Test::File.3*
 %dir %{perl_vendorlib}/Test/
+#%{perl_vendorlib}/Test/File/
 %{perl_vendorlib}/Test/File.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.22-1
+- Updated to release 1.22.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 1.18-1
 - Initial package. (using DAR)

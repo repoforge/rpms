@@ -9,9 +9,9 @@
 
 Summary: Perl module that implements a Meta Object Protocol
 Name: perl-Class-MOP
-Version: 0.42
+Version: 0.45
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-MOP/
 
@@ -50,7 +50,7 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST MANIFEST.SKIP META.yml README examples/
+%doc Changes MANIFEST META.yml README TODO examples/
 %doc %{_mandir}/man3/Class::MOP.3pm*
 %doc %{_mandir}/man3/Class::MOP::*.3pm*
 %doc %{_mandir}/man3/metaclass.3pm*
@@ -60,6 +60,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/metaclass.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.45-1
+- Updated to release 0.45.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.42-1
 - Updated to release 0.42.
 

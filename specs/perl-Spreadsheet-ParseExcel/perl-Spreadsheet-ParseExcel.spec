@@ -9,7 +9,7 @@
 
 Summary: Get information from Excel file
 Name: perl-Spreadsheet-ParseExcel
-Version: 0.31
+Version: 0.32
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -45,11 +45,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README README_Japan.htm
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Spreadsheet::ParseExcel.3pm*
+%doc %{_mandir}/man3/Spreadsheet::ParseExcel::*.3pm*
 %dir %{perl_vendorlib}/Spreadsheet/
 %{perl_vendorlib}/Spreadsheet/ParseExcel/
 %{perl_vendorlib}/Spreadsheet/ParseExcel.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.32-1
+- Updated to release 0.32.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.31-1
 - Initial package. (using DAR)

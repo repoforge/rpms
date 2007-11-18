@@ -1,17 +1,17 @@
 # $Id$
 # Authority: dag
-# Upstream: Paul Johnson <paul$pjcj,net>
+# Upstream: Paul Johnson <pjcj$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Devel-Cover
 
-Summary: Devel-Cover module for perl
+Summary: Code coverage metrics for Perl
 Name: perl-Devel-Cover
-Version: 0.62
+Version: 0.63
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-Cover/
 
@@ -66,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Devel/Cover/
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.63-1
+- Updated to release 0.63.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.62-1
 - Updated to release 0.62.
 

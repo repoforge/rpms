@@ -9,8 +9,8 @@
 
 Summary: Plugin/filter interface to Number::Format
 Name: perl-Template-Plugin-Number-Format
-Version: 1.01
-Release: 1.2
+Version: 1.02
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Template-Plugin-Number-Format/
@@ -44,12 +44,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man3/*.3pm*
+%doc MANIFEST META.yml
+%doc %{_mandir}/man3/Template::Plugin::Number::Format.3pm*
 %dir %{perl_vendorlib}/Template/
 %dir %{perl_vendorlib}/Template/Plugin/
 %dir %{perl_vendorlib}/Template/Plugin/Number/
 %{perl_vendorlib}/Template/Plugin/Number/Format.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.02-1
+- Updated to release 1.02.
+
 * Thu Nov 10 2005 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Initial package.

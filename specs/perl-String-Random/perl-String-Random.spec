@@ -9,8 +9,8 @@
 
 Summary: Perl module to generate random strings based on a pattern
 Name: perl-String-Random
-Version: 0.20
-Release: 1.2
+Version: 0.22
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-Random/
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Build)
 
 %description
 String::Random is used to generate random strings.  It was written to
@@ -31,12 +32,15 @@ documentation in pod format in the module for more information.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+#%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+#%{__make} %{?_smp_mflags}
+%{__perl} Build.PL
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+#%{__make} pure_install
+PERL_INSTALL_ROOT="%{buildroot}" ./Build install installdirs="vendor"
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -46,14 +50,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README TODO
+%doc %{_mandir}/man3/String::Random.3pm*
+%dir %{perl_vendorlib}/String/
+#%{perl_vendorlib}/String/Random/
 %{perl_vendorlib}/String/Random.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.20-1.2
-- Rebuild for Fedora Core 5.
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.22-1
+- Updated to release 0.22.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.20-1
 - Initial package.
-

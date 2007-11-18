@@ -25,10 +25,6 @@ BuildRequires: perl
 %description
 perl-Qtk-QuickTk is a Perl module.
 
-This package contains the following Perl module:
-
-    Qtk::QuickTk
-
 %prep
 %setup -n %{real_name}-%{version}
 
@@ -48,13 +44,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc 
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Qtk::*.3pm*
+%dir %{perl_vendorlib}/auto/Qtk/
+%{perl_vendorlib}/auto/Qtk/QuickTk/
 %dir %{perl_vendorlib}/Qtk/
 %{perl_vendorlib}/Qtk/QuickTk/
 %{perl_vendorlib}/Qtk/QuickTk.pm
-%dir %{perl_vendorlib}/auto/Qtk/
-%{perl_vendorlib}/auto/Qtk/QuickTk/
 
 %changelog
 * Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 0.9-1

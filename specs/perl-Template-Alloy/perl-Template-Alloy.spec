@@ -7,9 +7,9 @@
 
 %define real_name Template-Alloy
 
-Summary: Perl module that implements a TT2/3, HT, HTE, Tmpl, and Velocity Engine
+Summary: TT2/3, HT, HTE, Tmpl, and Velocity Engine
 Name: perl-Template-Alloy
-Version: 1.006
+Version: 1.009
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,12 +49,16 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST MANIFEST.SKIP META.yml README samples/
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Template::Alloy.3pm*
+%doc %{_mandir}/man3/Template::Alloy::*.3pm*
 %dir %{perl_vendorlib}/Template/
 %{perl_vendorlib}/Template/Alloy/
 %{perl_vendorlib}/Template/Alloy.pm
 %{perl_vendorlib}/Template/Alloy.pod
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.009-1
+- Updated to release 1.009.
+
 * Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 1.006-1
 - Initial package. (using DAR)

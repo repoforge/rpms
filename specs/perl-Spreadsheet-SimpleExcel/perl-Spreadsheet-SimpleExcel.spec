@@ -9,7 +9,7 @@
 
 Summary: Show excel-files on the web
 Name: perl-Spreadsheet-SimpleExcel
-Version: 1.1
+Version: 1.9
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,16 +46,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Spreadsheet::SimpleExcel.3pm*
+%dir %{perl_vendorlib}/Spreadsheet/
+#%{perl_vendorlib}/Spreadsheet/SimpleExcel/
 %{perl_vendorlib}/Spreadsheet/SimpleExcel.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.9-1
+- Updated to release 1.9.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-1
 - Updated to release 1.1.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-1.2
-- Rebuild for Fedora Core 5.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.8-1
 - Initial package.

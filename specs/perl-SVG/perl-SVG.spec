@@ -9,8 +9,8 @@
 
 Summary: Perl extension for generating Scalable Vector Graphics (SVG) documents
 Name: perl-SVG
-Version: 2.33
-Release: 2
+Version: 2.36
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVG/
@@ -49,11 +49,15 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README examples/
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/SVG.3pm*
+%doc %{_mandir}/man3/SVG::*.3pm*
 %{perl_vendorlib}/SVG/
 %{perl_vendorlib}/SVG.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 2.36-1
+- Updated to release 2.36.
+
 * Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 2.33-2
 - Disabled auto-requires for examples/.
 

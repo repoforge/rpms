@@ -9,9 +9,9 @@
 
 Summary: Manages sets of integers
 Name: perl-Set-IntSpan
-Version: 1.11
+Version: 1.13
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Set-IntSpan/
 
@@ -36,19 +36,25 @@ have long runs of consecutive integers.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Set::IntSpan.3pm*
+%dir %{perl_vendorlib}/Set/
+#%{perl_vendorlib}/Set/IntSpan/
 %{perl_vendorlib}/Set/IntSpan.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.13-1
+- Updated to release 1.13.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.11-1
 - Updated to release 1.11.
 

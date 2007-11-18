@@ -9,8 +9,8 @@
 
 Summary: Perl module that implements a database independent interface
 Name: perl-DBI
-Version: 1.58
-Release: 2
+Version: 1.601
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBI/
@@ -42,31 +42,40 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README TODO_2005.txt
+%doc Changes MANIFEST META.yml README Roadmap.pod TODO_2005.txt
 %doc %{_mandir}/man1/dbilogstrip.1*
 %doc %{_mandir}/man1/dbiprof.1*
 %doc %{_mandir}/man1/dbiproxy.1*
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Bundle::DBI.3pm*
+%doc %{_mandir}/man3/DBD::*.3pm*
+%doc %{_mandir}/man3/DBI.3pm*
+%doc %{_mandir}/man3/DBI::*.3pm*
+%doc %{_mandir}/man3/Roadmap.3pm*
+%doc %{_mandir}/man3/TASKS.3pm*
+%doc %{_mandir}/man3/Win32::DBIODBC.3pm*
 %{_bindir}/dbilogstrip
 %{_bindir}/dbiprof
 %{_bindir}/dbiproxy
+%{perl_vendorarch}/auto/DBI/
 %dir %{perl_vendorarch}/Bundle/
 %{perl_vendorarch}/Bundle/DBI.pm
 %{perl_vendorarch}/DBD/
-%{perl_vendorarch}/DBI.pm
 %{perl_vendorarch}/DBI/
+%{perl_vendorarch}/DBI.pm
 %{perl_vendorarch}/Roadmap.pod
 %{perl_vendorarch}/TASKS.pod
-%{perl_vendorarch}/auto/DBI/
-%{perl_vendorarch}/dbixs_rev.pl
-%{perl_vendorarch}/goferperf.pl
 %dir %{perl_vendorarch}/Win32/
 %{perl_vendorarch}/Win32/DBIODBC.pm
+%{perl_vendorarch}/dbixs_rev.pl
+#%{perl_vendorarch}/goferperf.pl
 
 ### Remove this file because it generates an rpm dependency for Win32::ODBC
 %exclude %{perl_vendorarch}/DBI/W32ODBC.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.601-1
+- Updated to release 1.601.
+
 * Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 1.58-2
 - Remove dependency on perl(Win32::ODBC). (Mark D. Nagel)
 

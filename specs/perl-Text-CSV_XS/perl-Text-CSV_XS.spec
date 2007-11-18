@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Jochen Wiedmann <jwied$cpan,org>
+# Upstream: H. Merijn Brand <h,merijn$xs4all,nl>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: Comma-separated values manipulation routines
 Name: perl-Text-CSV_XS
-Version: 0.23
-Release: 1.2
+Version: 0.32
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-CSV_XS/
@@ -40,21 +40,24 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
-%doc %{_mandir}/man3/*
-%dir %{perl_vendorarch}/Text/
-%{perl_vendorarch}/Text/CSV_XS.pm
+%doc ChangeLog MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/Text::CSV_XS.3pm*
 %dir %{perl_vendorarch}/auto/Text/
 %{perl_vendorarch}/auto/Text/CSV_XS/
+%dir %{perl_vendorarch}/Text/
+%{perl_vendorarch}/Text/CSV_XS.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.23-1.2
-- Rebuild for Fedora Core 5.
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.32-1
+- Updated to release 0.32.
 
 * Tue Mar  1 2005 Dries Verachtert <dries@ulyssis.org> - 0.23-1
 - Initial package.

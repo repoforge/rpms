@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dries
-# Upstream: Apocalypse <perl$0ne,us>
+# Upstream: Apocalypse <APOCAL$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name POE-Component-SimpleDBI
 
-Summary: Asynchronous non-blocking DBI calls in POE
+Summary: Asynchronous non-blocking DBI calls in POE made simple
 Name: perl-POE-Component-SimpleDBI
-Version: 1.16
+Version: 1.17
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,18 +39,26 @@ This module simplifies DBI usage in POE's multitasking world.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/POE::Component::SimpleDBI.3pm*
+%doc %{_mandir}/man3/POE::Component::SimpleDBI::SubProcess.3pm*
+%dir %{perl_vendorlib}/POE/
 %dir %{perl_vendorlib}/POE/Component/
-%{perl_vendorlib}/POE/Component/SimpleDBI.pm
 %{perl_vendorlib}/POE/Component/SimpleDBI/
+%{perl_vendorlib}/POE/Component/SimpleDBI.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.17-1
+- Updated to release 1.17.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 1.16-1
 - Updated to release 1.16.
 

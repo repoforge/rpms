@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: sylvain cresto <scresto%20%5b_at_%5d%20gmail,com>
+# Upstream: sylvain cresto <scresto$gmail,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: Get information about memory usage
 Name: perl-Sys-MemInfo
-Version: 0.4
-Release: 1.2
+Version: 0.91
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-MemInfo/
@@ -44,14 +44,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorarch}/Sys/
-%{perl_vendorarch}/Sys/MemInfo.pm
+%doc Changes MANIFEST README
+%doc %{_mandir}/man3/Sys::MemInfo.3pm*
 %dir %{perl_vendorarch}/auto/Sys/
 %{perl_vendorarch}/auto/Sys/MemInfo/
+%dir %{perl_vendorarch}/Sys/
+%{perl_vendorarch}/Sys/MemInfo.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.91-1
+- Updated to release 0.91.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.4-1
 - Updated to release 0.4.
 

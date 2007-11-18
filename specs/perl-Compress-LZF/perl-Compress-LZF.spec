@@ -9,7 +9,7 @@
 
 Summary: Extremely light-weight Lev-Zimpel-Free compression
 Name: perl-Compress-LZF
-Version: 1.9
+Version: 2.0
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -50,12 +50,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc COPYING COPYING.Artistic COPYING.GNU Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Compress::LZF.3pm*
-%dir %{perl_vendorarch}/Compress/
-%{perl_vendorarch}/Compress/LZF.pm
 %dir %{perl_vendorarch}/auto/Compress/
 %{perl_vendorarch}/auto/Compress/LZF/
+%dir %{perl_vendorarch}/Compress/
+%{perl_vendorarch}/Compress/LZF.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 2.0-1
+- Updated to release 2.0.
+
 * Wed Nov 07 2007 Dag Wieers <dag@wieers.com> - 1.9-1
 - Updated to release 1.9.
 

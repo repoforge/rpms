@@ -9,8 +9,8 @@
 
 Summary: Basic set operations
 Name: perl-Set-Scalar
-Version: 1.20
-Release: 1.2
+Version: 1.22
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Set-Scalar/
@@ -44,12 +44,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/Set/Scalar.pm
+%doc ChangeLog MANIFEST META.yml README
+%doc %{_mandir}/man3/Set::Scalar.3pm*
+%doc %{_mandir}/man3/Set::Scalar::*.3pm*
+%dir %{perl_vendorlib}/Set/
 %{perl_vendorlib}/Set/Scalar
+%{perl_vendorlib}/Set/Scalar.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.22-1
+- Updated to release 1.22.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.20-1
 - Updated to release 1.20.
 

@@ -9,10 +9,10 @@
 
 %define real_name Test-Inline
 
-Summary: Inlining your tests next to the code being tested
+Summary: Embed your tests in your code, next to what is being tested
 Name: perl-Test-Inline
-Version: 2.205
-Release: 2
+Version: 2.207
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Inline/
@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Inline-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.005 
+BuildRequires: perl >= 0:5.005
 BuildRequires: perl(Test::ClassAPI) >= 1.02
 BuildRequires: perl(Test::More) >= 0.42
 BuildRequires: perl(Test::Script)
@@ -38,8 +38,7 @@ BuildRequires: perl(Class::Autouse) >= 1.15
 BuildRequires: perl(Algorithm::Dependency) >= 1.02
 BuildRequires: perl(File::Flat) >= 0.95
 BuildRequires: perl(Pod::Tests) >= 0.18
-Requires: perl
-
+Requires: perl >= 0:5.005
 
 %description
 Test::Inline is a way to embed tests in the same file as your source
@@ -74,13 +73,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes LICENSE MANIFEST META.yml README
 %doc %{_mandir}/man1/inline2test.1*
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Test::Inline.3pm*
+%doc %{_mandir}/man3/Test::Inline::*.3pm*
 %{_bindir}/inline2test
 %dir %{perl_vendorlib}/Test/
 %{perl_vendorlib}/Test/Inline/
 %{perl_vendorlib}/Test/Inline.pm
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 2.207-1
+- Updated to release 2.207.
+
 * Mon Sep  3 2007 Dries Verachtert <dries@ulyssis.org> - 2.205-2
 - Remove the automatic perl(script) requirement, thanks to Kanwar Ranbir Sandhu.
 
