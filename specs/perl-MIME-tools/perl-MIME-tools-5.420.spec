@@ -1,4 +1,4 @@
-# $Id$
+# $Id: perl-MIME-tools.spec 5999 2007-11-18 21:44:00Z dag $
 # Authority: dag
 # Upstream: Eryq <eryq$zeegee,com>
 # Upstream: David F. Skoll <dfs$roaringpenguin,com>
@@ -13,8 +13,8 @@
 
 Summary: Tools to manipulate MIME messages
 Name: perl-MIME-tools
-Version: 5.425
-Release: 1
+Version: 5.420
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-tools/
@@ -28,9 +28,7 @@ BuildArch: noarch
 BuildRequires: perl-MailTools
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(IO::Stringy) >= 1.211
-BuildRequires: perl(File::Temp) >= 0.17
 Requires: perl-MailTools >= 1.15
-Requires: perl(File::Temp) >= 0.17
 Requires: perl(IO::Stringy) >= 1.211
 %{?rh7:BuildRequires: perl(MIME::Base64) >= 2.04}
 %{?el2:BuildRequires: perl-MIME-Base64 >= 2.04}
@@ -72,12 +70,6 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/MIME/
 
 %changelog
-* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 5.425-2
-- Added dependency to perl(File::Temp) >= 0.17. (Christof Damian)
-
-* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 5.425-1
-- Updated to release 5.425.
-
 * Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 5.420-2
 - Disabled auto-requires for examples/.
 

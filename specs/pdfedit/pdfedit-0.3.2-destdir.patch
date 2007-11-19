@@ -1,0 +1,77 @@
+--- pdfedit-0.3.1-pristine/src/gui/pdfedit.pro	2007-04-29 11:28:52.000000000 -0600
++++ pdfedit-0.3.1/src/gui/pdfedit.pro	2007-04-29 13:09:11.000000000 -0600
+@@ -46,56 +46,56 @@
+ 
+ #Data files installed in application data path (typically /usr/share/pdfedit)
+ # Basic data files
+-data.path       = $$DATA_PATH
++data.path       = $(QMAKE_DESTDIR)/$$DATA_PATH
+ data.files      = pdfeditrc *.conf *.qs operator.hint
+ # Icons
+-data_icon.path  	= $$DATA_PATH/icon
++data_icon.path  	= $(QMAKE_DESTDIR)/$$DATA_PATH/icon
+ data_icon.files 	= icon/*.png icon/*.svg
+ # Hi-color icon theme
+-data_icon_hicolor.path  = $$DATA_PATH/icon/hicolor
++data_icon_hicolor.path  = $(QMAKE_DESTDIR)/$$DATA_PATH/icon/hicolor
+ data_icon_hicolor.files = icon/hicolor/*.png 
+ # Help files (english)
+-data_help.path  	= $$DATA_PATH/help
++data_help.path  	= $(QMAKE_DESTDIR)/$$DATA_PATH/help
+ data_help.files 	= help/*.html
+ # Help files (czech)
+-data_help_cs.path 	= $$DATA_PATH/help/cs
++data_help_cs.path 	= $(QMAKE_DESTDIR)/$$DATA_PATH/help/cs
+ data_help_cs.files	= help/cs/*.html
+ # Help images
+-data_help_images.path 	= $$DATA_PATH/help/images
++data_help_images.path 	= $(QMAKE_DESTDIR)/$$DATA_PATH/help/images
+ data_help_images.files	= ../../doc/user/images/*.png
+ # Language files
+-data_lang.path  	= $$DATA_PATH/lang
++data_lang.path  	= $(QMAKE_DESTDIR)/$$DATA_PATH/lang
+ data_lang.files 	= lang/*.qm
+ # Scripts
+-data_scripts.path	= $$DATA_PATH/scripts
++data_scripts.path	= $(QMAKE_DESTDIR)/$$DATA_PATH/scripts
+ 			# do not include script files starting with underscore,
+ 			# as they are only for development/testing and not for production use
+ data_scripts.files 	= scripts/[a-z0-9A-Z]*.qs
+ 
+ # Documentation installed in documentation path (typically /usr/share/doc)
+-doc.path        = $$DOC_PATH
++doc.path        = $(QMAKE_DESTDIR)/$$DOC_PATH
+ doc.files       = ../../doc/user/*.html ../../doc/user/*.pdf  ../../doc/LICENSE.GPL ../../README ../../Changelog ../../doc/AUTHORS
+-doc_images.path		= $$DOC_PATH/images
++doc_images.path		= $(QMAKE_DESTDIR)/$$DOC_PATH/images
+ doc_images.files	= ../../doc/user/images/*.png
+-doc_kernel_images.path	= $$DOC_PATH/design/kernel/images
++doc_kernel_images.path	= $(QMAKE_DESTDIR)/$$DOC_PATH/design/kernel/images
+ doc_kernel_images.files	= ../../doc/design/kernel/images/*.png
+-doc_gui_images.path	= $$DOC_PATH/gui/images
++doc_gui_images.path	= $(QMAKE_DESTDIR)/$$DOC_PATH/gui/images
+ doc_gui_images.files	= ../../doc/user/gui/images/*.png
+-doc_gui_m_images.path	= $$DOC_PATH/gui/menuAndToolbarsFun/images
++doc_gui_m_images.path	= $(QMAKE_DESTDIR)/$$DOC_PATH/gui/menuAndToolbarsFun/images
+ doc_gui_m_images.files	= ../../doc/user/gui/menuAndToolbarsFun/images/*.png
+-doc_design.path 	= $$DOC_PATH/design
++doc_design.path 	= $(QMAKE_DESTDIR)/$$DOC_PATH/design
+ doc_design.files	= ../../doc/design/*.html ../../doc/design/kernel/*.pdf
+-doc_design_images.path	= $$DOC_PATH/design/images
++doc_design_images.path	= $(QMAKE_DESTDIR)/$$DOC_PATH/design/images
+ doc_design_images.files	= ../../doc/design/images/*.png
+-doc_examples.path 	= $$DOC_PATH/examples
++doc_examples.path 	= $(QMAKE_DESTDIR)/$$DOC_PATH/examples
+ doc_examples.files	= ../../doc/examples/*.qs
+ 
+ # Man page installed in man path (typically /usr/share/man/man1)
+-pdfedit_manual.path	= $$MAN_PATH
++pdfedit_manual.path	= $(QMAKE_DESTDIR)/$$MAN_PATH
+ pdfedit_manual.files	= ../../doc/user/pdfedit.1
+ 
+ #Binary file installed in binary path (typically /usr/bin)
+-pdfedit.path    = $$BIN_PATH
++pdfedit.path    = $(QMAKE_DESTDIR)/$$BIN_PATH
+ pdfedit.files   = pdfedit
+ 
+ # cygwin hack
