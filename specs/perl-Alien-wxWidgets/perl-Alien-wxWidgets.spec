@@ -19,8 +19,9 @@ Source: http://www.cpan.org/modules/by-module/Alien/Alien-wxWidgets-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildArch: noarch
-BuildRequires: perl >= 0:5.006 
+BuildRequires: perl >= 0:5.006
 BuildRequires: perl(Module::Build) >= 0.26
+Requires: perl >= 0:5.006
 
 %description
 building, finding and using wxWidgets binaries.

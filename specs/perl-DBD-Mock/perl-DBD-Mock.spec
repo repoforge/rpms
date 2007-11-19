@@ -21,8 +21,9 @@ Source: http://www.cpan.org/modules/by-module/DBD/DBD-Mock-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0 
+BuildRequires: perl >= 0:5.6.0
 BuildRequires: perl(Test::More) >= 0.47
+Requires: perl >= 0:5.6.0
 
 %description
 Mock database driver for testing.

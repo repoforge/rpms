@@ -11,8 +11,8 @@
 
 Summary: XML-Parser Perl module
 Name: perl-XML-Parser
-Version: 2.34
-Release: 2
+Version: 2.35
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Parser/
@@ -50,15 +50,20 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README samples/
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes MANIFEST META.yml README samples/
+%doc %{_mandir}/man3/XML::Parser.3pm*
+%doc %{_mandir}/man3/XML::Parser::*.3pm*
+%dir %{perl_vendorarch}/auto/XML/
+%dir %{perl_vendorarch}/auto/XML/Parser/
+%{perl_vendorarch}/auto/XML/Parser/Expat/
 %dir %{perl_vendorarch}/XML/
 %{perl_vendorarch}/XML/Parser/
 %{perl_vendorarch}/XML/Parser.pm
-%dir %{perl_vendorarch}/auto/XML/
-%{perl_vendorarch}/auto/XML/Parser/Expat/
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 2.35-1
+- Updated to release 2.35.
+
 * Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 2.34-2
 - Disabled auto-requires for samples/.
 

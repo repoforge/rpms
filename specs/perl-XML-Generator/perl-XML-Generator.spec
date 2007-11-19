@@ -9,8 +9,8 @@
 
 Summary: Perl extension for generating XML
 Name: perl-XML-Generator
-Version: 0.99_02
-Release: 1.2
+Version: 1.01
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Generator/
@@ -44,14 +44,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/XML::Generator.3*
+%doc %{_mandir}/man3/XML::Generator::*.3*
+%dir %{perl_vendorlib}/XML/
+%{perl_vendorlib}/XML/Generator/
 %{perl_vendorlib}/XML/Generator.pm
-%{perl_vendorlib}/XML/Generator
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.99_02-1.2
-- Rebuild for Fedora Core 5.
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 1.01-1
+- Updated to release 1.01.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.99_02-1
 - Updated to release 0.99_02.

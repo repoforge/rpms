@@ -20,8 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)(Glib::MakeHelper)
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Glib::MakeHelper)
 BuildRequires: perl(Gtk2)
 
 %description

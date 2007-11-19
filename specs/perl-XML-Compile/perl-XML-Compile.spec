@@ -9,7 +9,7 @@
 
 Summary: Compilation based XML processing
 Name: perl-XML-Compile
-Version: 0.51
+Version: 0.59
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,9 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-Compile-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 2:5.8.0
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 2:5.8.0
 
 %description
 Compilation based XML processing.
@@ -44,12 +45,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog
-%doc %{_mandir}/man3/XML::Compile*.3*
-%{perl_vendorlib}/XML/Compile.p*
+%doc ChangeLog MANIFEST META.yml README README.todo
+%doc %{_mandir}/man3/XML::Compile.3pm*
+%doc %{_mandir}/man3/XML::Compile::*.3pm*
+%dir %{perl_vendorlib}/XML/
 %{perl_vendorlib}/XML/Compile/
+%{perl_vendorlib}/XML/Compile.pm
+%{perl_vendorlib}/XML/Compile.pod
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.59-1
+- Updated to release 0.59.
+
 * Sun Aug 12 2007 Dries Verachtert <dries@ulyssis.org> - 0.51-1
 - Updated to release 0.51.
 

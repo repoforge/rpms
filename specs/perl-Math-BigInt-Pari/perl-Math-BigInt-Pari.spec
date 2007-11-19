@@ -22,6 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 1:5.6.2
 #BuildRequires: perl(Test::More) >= 0.62
+Requires: perl >= 1:5.6.2
 
 %description
 Use Math::Pari for Math::BigInt routines.

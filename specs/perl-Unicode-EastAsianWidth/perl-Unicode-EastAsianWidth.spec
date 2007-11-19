@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: ☺唐鳳☻ <cpan$audreyt,org>
+# Upstream: Audrey Tang <cpan@audreyt.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements East Asian Width properties
 Name: perl-Unicode-EastAsianWidth
-Version: 1.02
+Version: 1.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,15 +19,12 @@ Source: http://www.cpan.org/modules/by-module/Unicode/Unicode-EastAsianWidth-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.6.0
+Requires: perl >= 0:5.6.0
 
 %description
 perl-Unicode-EastAsianWidth is a Perl module that implements
 East Asian Width properties.
-
-This package contains the following Perl module:
-
-    Unicode::EastAsianWidth
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -55,5 +52,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Unicode/EastAsianWidth.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 1.10-1
+- Updated to release 1.10.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 1.02-1
 - Initial package. (using DAR)

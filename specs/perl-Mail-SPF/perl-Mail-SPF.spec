@@ -25,6 +25,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Module::Build) >= 0.2805
 BuildRequires: perl(Net::DNS::Resolver::Programmable) >= 0.002.1
 BuildRequires: perl(Test::More)
+Requires: perl >= 0:5.6
 
 %description
 Mail-SPF is a Perl module that implements Sender Policy Framework.

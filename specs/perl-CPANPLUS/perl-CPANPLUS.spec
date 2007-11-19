@@ -12,7 +12,7 @@
 
 Summary: Command-line access to the CPAN interface
 Name: perl-CPANPLUS
-Version: 0.80
+Version: 0.82
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -24,6 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 2:5.8.1
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 2:5.8.1
 
 %description
 The "CPANPLUS" library is an API to the "CPAN" mirrors and a collection
@@ -42,27 +43,33 @@ this API.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
+
+### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
-  %{buildroot}%{_mandir}/man3/CPANPLUS*Win32* \
-  %{buildroot}%{perl_vendorlib}/CPANPLUS/inc/*/*/*Win32* \
-  %{buildroot}%{perl_vendorlib}/CPANPLUS/inc/ \
-  %{buildroot}%{_mandir}/man?/CPANPLUS::inc*
+%{__rm} -rf  %{buildroot}%{_mandir}/man3/CPANPLUS*Win32* \
+  %{buildroot}%{_mandir}/man?/CPANPLUS::inc* \
+  %{buildroot}%{perl_vendorlib}/CPANPLUS/inc/*/*/*Win32*
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
-%doc %{_mandir}/man1/*
-%doc %{_mandir}/man3/*
+%doc ChangeLog MANIFEST MANIFEST.SKIP META.yml README
+%doc %{_mandir}/man1/cpan2dist.1*
+%doc %{_mandir}/man1/cpanp.1*
+%doc %{_mandir}/man3/CPANPLUS.3pm*
+%doc %{_mandir}/man3/CPANPLUS::*.3pm*
 %{_bindir}/cpan2dist
 %{_bindir}/cpanp
 %{_bindir}/cpanp-run-perl
-%{perl_vendorlib}/CPANPLUS.pm
 %{perl_vendorlib}/CPANPLUS/
+%{perl_vendorlib}/CPANPLUS.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.82-1
+- Updated to release 0.82.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.80-1
 - Updated to release 0.80.
 

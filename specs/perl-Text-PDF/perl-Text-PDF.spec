@@ -6,16 +6,17 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Text-PDF
+%define real_version 0.29
 
 Summary: PDF Functions
 Name: perl-Text-PDF
-Version: 0.29
+Version: 0.29a
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-PDF/
 
-Source: http://www.cpan.org/modules/by-module/Text/Text-PDF-%{version}a.tar.gz
+Source: http://www.cpan.org/modules/by-module/Text/Text-PDF-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -26,7 +27,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 PDF functions for Perl.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{real_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -58,6 +59,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Text/PDF.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.29a-1
+- Updated to release 0.29a.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.29-1
 - Updated to release 0.29.
 

@@ -7,9 +7,9 @@
 
 %define real_name XML-Atom
 
-Summary: Implementation of Atom
+Summary: Atom API and Feed Support
 Name: perl-XML-Atom
-Version: 0.23
+Version: 0.28
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,14 +20,14 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl-DateTime
-BuildRequires: perl-XML-LibXML
-BuildRequires: perl-URI
-BuildRequires: perl-XML-XPath
 BuildRequires: perl-libwww-perl
-BuildRequires: perl-LWP-Authen-Wsse
-BuildRequires: perl-Digest-SHA1
 BuildRequires: perl(Class::Data::Inheritable)
+BuildRequires: perl(DateTime)
+BuildRequires: perl(Digest::SHA1)
+BuildRequires: perl(LWP::Authen::Wsse)
+BuildRequires: perl(URI)
+BuildRequires: perl(XML::LibXML) >= 1.64
+BuildRequires: perl(XML::XPath)
 
 %description
 This module implements the API and feed format of Atom.
@@ -51,20 +51,22 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/XML/Atom.pm
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/XML::Atom.3pm*
+%doc %{_mandir}/man3/XML::Atom::*.3pm*
+%dir %{perl_vendorlib}/XML/
 %{perl_vendorlib}/XML/Atom/
+%{perl_vendorlib}/XML/Atom.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.28-1
+- Updated to release 0.28.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.23-1
 - Updated to release 0.23.
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.19-1
 - Updated to release 0.19.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.16-1
 - Initial package.

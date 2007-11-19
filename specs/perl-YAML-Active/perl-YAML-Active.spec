@@ -9,9 +9,9 @@
 
 Summary: Combine data and logic in YAML
 Name: perl-YAML-Active
-Version: 1.00
-Release: 1.2
-License: Artistic
+Version: 1.06
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-Active/
 
@@ -19,8 +19,12 @@ Source: http://www.cpan.org/modules/by-module/YAML/YAML-Active-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.6.0 
 BuildRequires: perl(Module::Build)
+BuildRequires: perl(Test::Compile)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(UNIVERSAL::require)
+Requires: perl >= 0:5.6.0 
 
 %description
 YAML is an intuitive way to describe nested data structures. This module
@@ -52,11 +56,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/YAML::Active.3pm*
 %dir %{perl_vendorlib}/YAML/
+%{perl_vendorlib}/YAML/Active/
 %{perl_vendorlib}/YAML/Active.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 1.06-1
+- Updated to release 1.06.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.00-1
 - Initial package.

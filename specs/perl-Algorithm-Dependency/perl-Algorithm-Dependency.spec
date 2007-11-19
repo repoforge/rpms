@@ -25,6 +25,7 @@ BuildRequires: perl(List::Util) >= 1.11
 BuildRequires: perl(Params::Util) >= 0.06
 BuildRequires: perl(Test::ClassAPI) >= 0.6
 BuildRequires: perl(Test::More) >= 0.47
+Requires: perl >= 0:5.005
 
 %description
 Algorithm-Dependency is a perl module for implementing various

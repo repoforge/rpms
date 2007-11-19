@@ -23,7 +23,7 @@ BuildRequires: perl >= 0:5.004
 BuildRequires: perl(FileHandle::Unget)
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Text::Diff)
-Requires: perl
+Requires: perl >= 0:5.004
 
 %description
 Mail::Mbox::MessageParser is a fast and simple mbox folder reader.

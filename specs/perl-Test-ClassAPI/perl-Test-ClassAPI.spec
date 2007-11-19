@@ -19,9 +19,10 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-ClassAPI-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.005 
+BuildRequires: perl >= 0:5.005
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More) >= 0.47
+Requires: perl >= 0:5.005
 
 %description
 For many APIs with large numbers of classes, it can be very useful to be

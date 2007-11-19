@@ -19,6 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 1:5.6.1 
+Requires: perl >= 1:5.6.1 
 
 %description
 perl-Acme is a Perl module that implements the base of perfection.

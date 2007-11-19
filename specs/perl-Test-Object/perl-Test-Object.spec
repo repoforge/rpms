@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 0:5.005
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 0:5.005
 
 %description
 Thoroughly testing objects via registered handlers.

@@ -9,7 +9,7 @@
 
 Summary: Perl module handles submission/update of bugzilla bugs via WWW::Mechanize
 Name: perl-WWW-Bugzilla
-Version: 0.9
+Version: 1.3
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -48,8 +48,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc ARTISTIC Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/WWW::Bugzilla.3pm*
 %dir %{perl_vendorlib}/WWW/
+%{perl_vendorlib}/WWW/Bugzilla/
 %{perl_vendorlib}/WWW/Bugzilla.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 1.3-1
+- Updated to release 1.3.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.9-1
 - Initial package. (using DAR)

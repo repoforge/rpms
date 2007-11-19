@@ -19,9 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Data/Data-Structure-Util-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)(Module::Build)
-Requires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Build)
 
 %description
 Data-Structure-Util is a Perl module to change nature of data

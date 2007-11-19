@@ -19,13 +19,14 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Script-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.005 
+BuildRequires: perl >= 0:5.005
 BuildRequires: perl(Test::Builder)
 #BuildRequires: perl(Test::Builder) >= 0.32
 BuildRequires: perl(Test::More)
 #BuildRequires: perl(Test::More) >= 0.62
 BuildRequires: perl(Test::Builder::Tester)
 #BuildRequires: perl(Test::Builder::Tester) >= 1.02
+Requires: perl >= 0:5.005
 
 %description
 Cross-platform basic tests for scripts.

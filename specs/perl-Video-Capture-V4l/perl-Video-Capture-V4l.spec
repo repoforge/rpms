@@ -9,9 +9,9 @@
 
 Summary: Perl interface to the Video4linux framegrabber interface
 Name: perl-Video-Capture-V4l
-Version: 0.9
-Release: 1.2
-License: Artistic/GPL
+Version: 0.901
+Release: 1
+License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Video-Capture-V4l/
 
@@ -38,17 +38,27 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm
-%{perl_vendorarch}/Video/
-%{perl_vendorarch}/auto/Video/
+%doc COPYING Changes MANIFEST META.yml README TODO examples/
+%doc %{_mandir}/man3/Video::Capture::V4l.3pm*
+%dir %{perl_vendorarch}/auto/Video/
+%dir %{perl_vendorarch}/auto/Video/Capture/
+%{perl_vendorarch}/auto/Video/Capture/V4l/
+%dir %{perl_vendorarch}/Video/
+%dir %{perl_vendorarch}/Video/Capture/
+%{perl_vendorarch}/Video/Capture/V4l.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.901-1
+- Updated to release 0.901.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.9-1
 - Updated to release 0.9.
 

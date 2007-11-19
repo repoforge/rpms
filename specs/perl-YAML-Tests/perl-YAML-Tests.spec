@@ -18,14 +18,11 @@ Source: http://www.cpan.org/modules/by-module/YAML/YAML-Tests-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.5.3 
+BuildRequires: perl >= 0:5.5.3
+Requires: perl >= 0:5.5.3
 
 %description
 Common Test Suite for Perl YAML Implementations.
-
-This package contains the following Perl module:
-
-    YAML::Tests
 
 %prep
 %setup -n %{real_name}-%{version}

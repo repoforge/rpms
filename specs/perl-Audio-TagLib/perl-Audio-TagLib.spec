@@ -22,6 +22,7 @@ BuildRequires: gcc-c++
 BuildRequires: perl >= 3:5.8.3
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: taglib-devel
+Requires: perl >= 3:5.8.3
 
 %description
 Perl library for reading and editing audio meta data, commonly known as tags.

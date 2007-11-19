@@ -22,6 +22,7 @@ BuildArch: noarch
 BuildRequires: perl >= 2:5.8.1 
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More)
+Requires: perl >= 2:5.8.1 
 
 %description
 File based storage model for Catalyst.

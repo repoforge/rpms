@@ -9,7 +9,7 @@
 
 Summary: Access the W3Cs online HTML validator
 Name: perl-WebService-Validator-HTML-W3C
-Version: 0.19
+Version: 0.22
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
 
 %description
 Access the W3Cs online HTML validator.
@@ -39,19 +40,27 @@ Access the W3Cs online HTML validator.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/WebService::Validator::HTML::W3C*
-%{perl_vendorlib}/WebService/Validator/HTML/W3C.pm
-%{perl_vendorlib}/WebService/Validator/HTML/W3C/
-%dir %{perl_vendorlib}/WebService/Validator/HTML/
+%doc Changes MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/WebService::Validator::HTML::W3C.3pm*
+%doc %{_mandir}/man3/WebService::Validator::HTML::W3C::*.3pm*
+%dir %{perl_vendorlib}/WebService/
 %dir %{perl_vendorlib}/WebService/Validator/
+%dir %{perl_vendorlib}/WebService/Validator/HTML/
+%{perl_vendorlib}/WebService/Validator/HTML/W3C/
+%{perl_vendorlib}/WebService/Validator/HTML/W3C.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.22-1
+- Updated to release 0.22.
+
 * Wed May 02 2007 Dries Verachtert <dries@ulyssis.org> - 0.19-1
 - Updated to release 0.19.
 

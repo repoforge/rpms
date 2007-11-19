@@ -23,6 +23,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 0:5.00503
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 0:5.00503
 
 %description
 Perl extension for interfacing with AOL's AIM service.

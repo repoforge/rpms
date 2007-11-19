@@ -9,7 +9,7 @@
 
 Summary: Access MySpace.com from perl
 Name: perl-WWW-Myspace
-Version: 0.64
+Version: 0.73
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -42,25 +42,33 @@ data, and post comments.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find samples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%doc %{_mandir}/man1/add_friends*
-%doc %{_mandir}/man1/approve_friends*
-%doc %{_mandir}/man1/comment_myspace*
-%doc %{_mandir}/man1/message_group*
-%{_bindir}/add_friends
+%doc Changes MANIFEST META.yml README samples/
+#%doc %{_mandir}/man1/add_friends.1*
+%doc %{_mandir}/man1/approve_friends.1*
+%doc %{_mandir}/man1/comment_myspace.1*
+%doc %{_mandir}/man1/message_group.1*
+%doc %{_mandir}/man3/WWW::Myspace.3pm*
+%doc %{_mandir}/man3/WWW::Myspace::*.3pm*
+#%{_bindir}/add_friends
 %{_bindir}/approve_friends
 %{_bindir}/comment_myspace
 %{_bindir}/message_group
-%{perl_vendorlib}/WWW/Myspace.pm
+%dir %{perl_vendorlib}/WWW/
 %{perl_vendorlib}/WWW/Myspace/
+%{perl_vendorlib}/WWW/Myspace.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.73-1
+- Updated to release 0.73.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.64-1
 - Updated to release 0.64.
 

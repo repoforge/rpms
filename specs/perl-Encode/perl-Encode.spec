@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 1:5.7.3
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 1:5.7.3
 
 %description
 perl-Encode is a Perl module that implements character encodings.

@@ -20,14 +20,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 2:5.8.1
+Requires: perl >= 2:5.8.1
 
 %description
 perl-Just-Another-Perl-Hacker is a Perl module to make Just Another
 Perl Hacker work.
-
-This package contains the following Perl module:
-
-    Hacker
 
 %prep
 %setup -n %{real_name}-%{version}

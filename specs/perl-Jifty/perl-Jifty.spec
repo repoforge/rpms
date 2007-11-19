@@ -19,15 +19,12 @@ Source: http://www.cpan.org/modules/by-module/Jifty/Jifty-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 2:5.8.3 
+BuildRequires: perl >= 2:5.8.3
 BuildRequires: perl(ExtUtils::MakeMaker) >= 6.11
+Requires: perl >= 2:5.8.3
 
 %description
 perl-Jifty is a Perl package that implements an application framework.
-
-This package contains the following Perl module:
-
-    Jifty
 
 %prep
 %setup -n %{real_name}-%{version}

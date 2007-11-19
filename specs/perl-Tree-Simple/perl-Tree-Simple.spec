@@ -9,7 +9,7 @@
 
 Summary: Simple tree object
 Name: perl-Tree-Simple
-Version: 1.17
+Version: 1.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,9 +19,10 @@ Source: http://www.cpan.org/modules/by-module/Tree/Tree-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0 
-BuildRequires: perl(Test::More) >= 0.47
+BuildRequires: perl >= 0:5.6.0
 BuildRequires: perl(Test::Exception) >= 0.15
+BuildRequires: perl(Test::More) >= 0.47
+Requires: perl >= 0:5.6.0
 
 %description
 A simple tree object.
@@ -38,8 +39,6 @@ A simple tree object.
 %{__make} pure_install
 
 ### Clean up buildroot
-
-### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
@@ -48,12 +47,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Tree::Simple.3pm*
+%doc %{_mandir}/man3/Tree::Simple::*.3pm*
 %dir %{perl_vendorlib}/Tree/
 %{perl_vendorlib}/Tree/Simple/
 %{perl_vendorlib}/Tree/Simple.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 1.18-1
+- Updated to release 1.18.
+
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 1.17-1
 - Updated to release 1.17.
 

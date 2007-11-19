@@ -19,9 +19,10 @@ Source: http://www.cpan.org/modules/by-module/Devel/Devel-Modlist-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0 
+BuildRequires: perl >= 0:5.6.0
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More)
+Requires: perl >= 0:5.6.0
 
 %description
 Devel::Modlist is a small tool that emits a list of files that were brought

@@ -19,13 +19,10 @@ Source: http://www.cpan.org/modules/by-module/YAML/YAML-LibYAML-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 2:5.8.3 
+Requires: perl >= 2:5.8.3 
 
 %description
 perl-YAML-LibYAML is a Perl module that implements YAML using XS and libyaml.
-
-This package contains the following Perl module:
-
-    YAML::LibYAML
 
 %prep
 %setup -n %{real_name}-%{version}

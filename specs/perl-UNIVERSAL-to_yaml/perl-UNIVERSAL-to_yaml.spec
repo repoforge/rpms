@@ -19,8 +19,9 @@ Source: http://www.cpan.org/modules/by-module/UNIVERSAL/UNIVERSAL-to_yaml-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 2:5.8.0 
+BuildRequires: perl >= 2:5.8.0
 BuildRequires: perl(Test::More)
+Requires: perl >= 2:5.8.0
 
 %description
 perl-UNIVERSAL-to_yaml is a Perl module that implements a to_yaml() method

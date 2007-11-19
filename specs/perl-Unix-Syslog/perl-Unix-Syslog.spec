@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Marcus Harnisch <marcus,harnisch$gmx,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,9 +9,9 @@
 
 Summary: Syslog module for perl
 Name: perl-Unix-Syslog
-Version: 0.100
-Release: 1.2
-License: distributable
+Version: 1.0
+Release: 1
+License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unix-Syslog/
 
@@ -43,16 +44,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Artistic Changes README
-%doc %{_mandir}/man3/*
-%dir %{perl_vendorarch}/Unix/
-%{perl_vendorarch}/Unix/Syslog.pm
+%doc Artistic Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Unix::Syslog.3pm*
 %dir %{perl_vendorarch}/auto/Unix/
 %{perl_vendorarch}/auto/Unix/Syslog/
+%dir %{perl_vendorarch}/Unix/
+%{perl_vendorarch}/Unix/Syslog.pm
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.100-1.2
-- Rebuild for Fedora Core 5.
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 1.0-1
+- Updated to release 1.0.
 
 * Tue Mar 29 2005 Dag Wieers <dag@wieers.com> - 0.100-1
 - Cosmetic changes.

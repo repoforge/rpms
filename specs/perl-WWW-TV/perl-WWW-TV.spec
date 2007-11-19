@@ -9,7 +9,7 @@
 
 Summary: arse TV.com for information about TV shows
 Name: perl-WWW-TV
-Version: 0.07
+Version: 0.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,11 +44,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/WWW::TV*
-%{perl_vendorlib}/WWW/TV.pm
+%doc Changes LICENSE MANIFEST README
+%doc %{_mandir}/man3/WWW::TV.3pm*
+%doc %{_mandir}/man3/WWW::TV::*.3pm*
+%dir %{perl_vendorlib}/WWW/
 %{perl_vendorlib}/WWW/TV/
+%{perl_vendorlib}/WWW/TV.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.08-1
+- Updated to release 0.08.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Initial package.

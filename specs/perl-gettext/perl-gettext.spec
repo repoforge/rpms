@@ -9,7 +9,7 @@
 
 Summary: Perl module implementing message handling functions
 Name: perl-gettext
-Version: 1.00
+Version: 1.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -43,11 +43,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%doc %{_mandir}/man3/gettext.3pm*
-%{perl_vendorarch}/gettext.pm
-%{perl_vendorarch}/gettext.pod
-%{perl_vendorarch}/auto/gettext/
+%doc %{_mandir}/man3/Locale::gettext.3pm*
+%dir %{perl_vendorarch}/auto/Locale/
+%{perl_vendorarch}/auto/Locale/gettext/
+%dir %{perl_vendorarch}/Locale/
+%{perl_vendorarch}/Locale/gettext.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 1.05-1
+- Updated to release 1.05.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 1.00-1
 - Initial package. (using DAR)

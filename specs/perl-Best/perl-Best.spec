@@ -22,13 +22,10 @@ BuildArch: noarch
 BuildRequires: perl >= 0:5.6.0
 BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::More)
+Requires: perl >= 0:5.6.0
 
 %description
 Fallbackable module loader.
-
-This package contains the following Perl module:
-
-    Best
 
 %prep
 %setup -n %{real_name}-%{version}

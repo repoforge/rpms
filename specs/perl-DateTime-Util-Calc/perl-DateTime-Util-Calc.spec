@@ -19,13 +19,14 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Util-Calc-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 1:5.6.1 
+BuildRequires: perl >= 1:5.6.1
 BuildRequires: perl(Module::Build)
 BuildRequires: perl(Math::BigInt::GMP)
 BuildRequires: perl(Math::BigInt::FastCalc)
 BuildRequires: perl(Math::Round)
 BuildRequires: perl(DateTime)
 BuildRequires: perl(Test::More)
+Requires: perl >= 1:5.6.1
 
 %description
 A perl module with additional DateTime calculation utilities.

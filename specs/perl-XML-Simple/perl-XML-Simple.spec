@@ -9,7 +9,7 @@
 
 Summary: Easy API to XML files
 Name: perl-XML-Simple
-Version: 2.17
+Version: 2.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/Simple.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 2.18-1
+- Updated to release 2.18.
+
 * Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 2.17-1
 - Updated to release 2.17.
 

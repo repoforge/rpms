@@ -19,14 +19,11 @@ Source: http://www.cpan.org/modules/by-module/Scalar/Scalar-Defer-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0 
+BuildRequires: perl >= 0:5.6.0
+Requires: perl >= 0:5.6.0
 
 %description
 Lazy evaluation in Perl.
-
-This package contains the following Perl module:
-
-    Scalar::Defer
 
 %prep
 %setup -n %{real_name}-%{version}

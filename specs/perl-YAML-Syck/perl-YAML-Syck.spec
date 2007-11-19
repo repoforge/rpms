@@ -20,13 +20,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.3.7
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 0:5.3.7
 
 %description
 perl-YAML-Syck contains a fast, lightweight YAML loader and dumper.
-
-This package contains the following Perl module:
-
-    JSON::Syck
 
 %prep
 %setup -n %{real_name}-%{version}

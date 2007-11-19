@@ -9,7 +9,7 @@
 
 Summary: Class representing a time value or interval in exact microseconds
 Name: perl-Time-HiRes-Value
-Version: 0.01
+Version: 0.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::Exception)
+BuildRequires: perl(Test::More)
 
 %description
 Class representing a time value or interval in exact microseconds.
@@ -44,9 +46,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man3/Time::HiRes::Value*
+%doc MANIFEST META.yml
+%doc %{_mandir}/man3/Time::HiRes::Value.3pm*
+%dir %{perl_vendorlib}/Time/
+%dir %{perl_vendorlib}/Time/HiRes/
+#%{perl_vendorlib}/Time/HiRes/Value/
 %{perl_vendorlib}/Time/HiRes/Value.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.05-1
+- Updated to release 0.05.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

@@ -19,8 +19,9 @@ Source: http://www.cpan.org/modules/by-module/Pod/Pod-Readme-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.005 
+BuildRequires: perl >= 0:5.005
 BuildRequires: perl(Test::More)
+Requires: perl >= 0:5.005
 
 %description
 Convert POD to README file.

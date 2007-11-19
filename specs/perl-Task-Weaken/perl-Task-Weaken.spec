@@ -19,9 +19,10 @@ Source: http://www.cpan.org/modules/by-module/Task/Task-Weaken-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.005 
+BuildRequires: perl >= 0:5.005
 BuildRequires: perl(File::Spec) >= 0.8
 BuildRequires: perl(Test::More) >= 0.42
+Requires: perl >= 0:5.005
 
 %description
 Ensure that a platform has weaken support.

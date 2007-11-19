@@ -9,7 +9,7 @@
 
 Summary: Edit and create a single vCard (RFC 2426)
 Name: perl-Text-vCard
-Version: 2.00
+Version: 2.01
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,20 +44,22 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes TODO
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml TODO
+%doc %{_mandir}/man3/Text::vCard.3pm*
+%doc %{_mandir}/man3/Text::vCard::*.3pm*
+%dir %{perl_vendorlib}/Text/
+%{perl_vendorlib}/Text/vCard/
 %{perl_vendorlib}/Text/vCard.pm
-%{perl_vendorlib}/Text/vCard
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 2.01-1
+- Updated to release 2.01.
+
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 2.00-1
 - Updated to release 2.00.
 
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.99-1
 - Updated to release 1.99.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.96-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.96-1
 - Updated to release 1.96.

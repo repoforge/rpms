@@ -19,9 +19,10 @@ Source: http://www.cpan.org/authors/id/A/AD/ADAMK/prefork-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.005 
+BuildRequires: perl >= 0:5.005
 BuildRequires: perl(Test::More) >= 0.47
 BuildRequires: perl(File::Spec) >= 0.8
+Requires: perl >= 0:5.005
 
 %description
 Optimized module loading for forking or non-forking processes.

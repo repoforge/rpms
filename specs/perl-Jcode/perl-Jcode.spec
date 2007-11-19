@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 2:5.8.0
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 2:5.8.0
 
 %description
 Jcode (Japanese Charset Handler) module for perl.

@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 2:5.8.1
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 2:5.8.1
 
 %description
 Comprehensive set of aliasing operations.

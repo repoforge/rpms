@@ -1,31 +1,27 @@
 # $Id$
 # Authority: dag
-# Upstream: D. H. <crazyinsomniac$yahoo,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name HTML-LinkExtractor
+%define real_name Digest-MD5-File
 
-Summary: Perl module to extract *links* from an HTML document
-Name: perl-HTML-LinkExtractor
-Version: 0.13
+Summary: Perl extension for getting MD5 sums for files and urls
+Name: perl-Digest-MD5-File
+Version: 0.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/HTML-LinkExtractor/
+URL: http://search.cpan.org/dist/Digest-MD5-File/
 
-Source: http://www.cpan.org/modules/by-module/HTML/HTML-LinkExtractor-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Digest/Digest-MD5-File-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(Tk)
 
 %description
-perl-HTML-LinkExtractor is a Perl module to extract *links*
-from an HTML document.
+Perl extension for getting MD5 sums for files and urls.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -46,11 +42,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE MANIFEST META.yml README
-%doc %{_mandir}/man3/HTML::LinkExtractor.3pm*
-%dir %{perl_vendorlib}/HTML/
-%{perl_vendorlib}/HTML/LinkExtractor.pm
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Digest::MD5::File.3pm*
+%dir %{perl_vendorlib}/Digest/
+%dir %{perl_vendorlib}/Digest/MD5/
+#%{perl_vendorlib}/Digest/MD5/File/
+%{perl_vendorlib}/Digest/MD5/File.pm
 
 %changelog
-* Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.13-1
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.05-1
 - Initial package. (using DAR)

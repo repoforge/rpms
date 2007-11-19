@@ -19,12 +19,13 @@ Source: http://www.cpan.org/modules/by-module/PPI/PPI-Tester-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.005 
+BuildRequires: perl >= 0:5.005
 BuildRequires: perl(Test::More) >= 0.47
 BuildRequires: perl(File::Spec) >= 0.82
 BuildRequires: perl(ExtUtils::AutoInstall) >= 0.49
 BuildRequires: perl(PPI) >= 0.840
 BuildRequires: perl(Wx) >= 0.19
+Requires: perl >= 0:5.005
 
 %description
 A wxPerl-based interactive PPI debugger/tester.

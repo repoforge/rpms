@@ -23,13 +23,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 0:5.006
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 0:5.006
 
 %description
 This module contains a perl extension for writing XML documents.
-
-This package contains the following Perl module:
-
-    XML::Writer
 
 %prep
 %setup -n %{real_name}-%{version}

@@ -20,9 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)(Module::Build)
-Requires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Build)
 
 %description
 File-BOM is a Perl module to implement utilities for handling Byte Order Marks.

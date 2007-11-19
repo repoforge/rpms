@@ -6,27 +6,29 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Text-Templet
+%define real_version 2.8
 
-Summary: Template processor which uses eval
+Summary: Lightweight Text Template Processor
 Name: perl-Text-Templet
-Version: 2.5
+Version: 2.8a
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Templet/
 
-Source: http://www.cpan.org/modules/by-module/Text/Text-Templet-%{version}a.tar.gz
+Source: http://www.cpan.org/modules/by-module/Text/Text-Templet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.006
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 0:5.006
 
 %description
 template processor built using Perl's eval().
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{real_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -44,10 +46,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Text::Templet*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Text::Templet.3pm*
+%dir %{perl_vendorlib}/Text/
+#%{perl_vendorlib}/Text/Templet/
 %{perl_vendorlib}/Text/Templet.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 2.8a-1
+- Updated to release 2.8a.
+
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 2.8-1
+- Updated to release 2.8.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 2.5-1
 - Initial package.

@@ -19,7 +19,8 @@ Source: http://www.cpan.org/authors/id/A/AG/AGENT/Pugs-Compiler-Rule-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 1:5.6.1 
+BuildRequires: perl >= 1:5.6.1
+Requires: perl >= 1:5.6.1
 
 %description
 Compiler for Perl 6 regexes.

@@ -24,9 +24,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 0:5.00503
 BuildRequires: perl(ExtUtils::MakeMaker)
-
 BuildRequires: perl(Digest::SHA1)
 %{?rh7:BuildRequires: perl(Digest::MD5)}
+
+Requires: perl >= 0:5.00503
 Requires: perl(Digest::SHA1)
 %{?rh7:Requires: perl(Digest::MD5)}
 

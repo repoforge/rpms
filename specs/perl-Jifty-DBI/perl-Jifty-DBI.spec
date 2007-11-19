@@ -19,9 +19,10 @@ Source: http://www.cpan.org/modules/by-module/Jifty/Jifty-DBI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 2:5.8.3 
+BuildRequires: perl >= 2:5.8.3
 BuildRequires: perl(DBD::SQLite)
 BuildRequires: perl(Test::More) >= 0.52
+Requires: perl >= 2:5.8.3
 
 %description
 perl-Jifty-DBI is a Perl module that implements an object-relational

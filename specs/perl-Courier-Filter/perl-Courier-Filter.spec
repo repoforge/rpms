@@ -21,9 +21,10 @@ Patch0: Courier-Filter-Build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 1:5.8 
+BuildRequires: perl >= 1:5.8
 BuildRequires: perl(Error)
 BuildRequires: perl(Test::Simple)
+Requires: perl >= 1:5.8
 
 %description
 A purely Perl-based mail filter framework for the Courier MTA.

@@ -24,6 +24,7 @@ BuildRequires: perl(Carp) >= 1.01
 BuildRequires: perl(File::Spec) >= 0.80
 BuildRequires: perl(List::Util) >= 1.18
 BuildRequires: perl(Test::More) >= 0.47
+Requires: perl >= 0:5.005 
 
 #Test-Simple and Scalar-List-Utils is already included in the perl package on fedora core
 

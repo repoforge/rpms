@@ -19,11 +19,12 @@ Source: http://www.cpan.org/modules/by-module/Config/Config-Tiny-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.004 
+BuildRequires: perl >= 0:5.004
 #BuildRequires: perl(ExtUtils::MakeMaker) >= 6.11
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(FindBin) >= 1.42
 BuildRequires: perl(Test::More) >= 0.47
+Requires: perl >= 0:5.004
 
 %description
 Config::Tiny is a perl class to read and write .ini style configuration

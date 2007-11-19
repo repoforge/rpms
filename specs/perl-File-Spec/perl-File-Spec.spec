@@ -18,12 +18,13 @@ URL: http://search.cpan.org/dist/File-Spec/
 Source: http://www.cpan.org/modules/by-module/File/PathTools-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.005 
+BuildRequires: perl >= 0:5.005
 BuildRequires: perl(ExtUtils::CBuilder)
 BuildRequires: perl(File::Path)
 BuildRequires: perl(Module::Build) >= 0.19
 BuildRequires: perl(Scalar::Util)
 BuildRequires: perl(Test)
+Requires: perl >= 0:5.005
 
 %description
 Tools for working with paths and file specs across platforms.

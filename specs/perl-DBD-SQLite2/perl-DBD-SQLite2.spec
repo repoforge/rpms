@@ -19,9 +19,8 @@ Source: http://www.cpan.org/modules/by-module/DBD/DBD-SQLite2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)(DBI)
-Requires: perl
+BuildRequires: perl(DBI)
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 DBD-SQLite2 is a Perl module that implements a self contained

@@ -9,9 +9,9 @@
 
 Summary: Perl module for WWW searches.
 Name: perl-WWW-Search
-Version: 2.494
+Version: 2.496
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Search/
 
@@ -47,16 +47,22 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
-%doc %{_mandir}/man1/*
+%doc %{_mandir}/man1/AutoSearch.1*
+%doc %{_mandir}/man1/WebSearch.1*
+%doc %{_mandir}/man3/WWW::Search.3pm*
+%doc %{_mandir}/man3/WWW::SearchResult.3pm*
+%doc %{_mandir}/man3/WWW::Search::*.3pm*
 %{_bindir}/AutoSearch
 %{_bindir}/WebSearch
 %dir %{perl_vendorlib}/WWW/
+%{perl_vendorlib}/WWW/Search/
 %{perl_vendorlib}/WWW/Search.pm
 %{perl_vendorlib}/WWW/SearchResult.pm
-%{perl_vendorlib}/WWW/Search/
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 2.496-1
+- Updated to release 2.496.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 2.494-1
 - Updated to release 2.494.
 

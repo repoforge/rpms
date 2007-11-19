@@ -19,6 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.006
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 0:5.006
 
 %description
 This module strips HTML-like markup from text.  It is written in XS,

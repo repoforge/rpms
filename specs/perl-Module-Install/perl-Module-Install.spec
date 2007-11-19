@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Module/Module-Install-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.004 
+BuildRequires: perl >= 0:5.004
 BuildRequires: perl(Archive::Tar)
 BuildRequires: perl(ExtUtils::Install) >= 0.3
 BuildRequires: perl(ExtUtils::ParseXS)
@@ -34,6 +34,7 @@ BuildRequires: perl(Test::Harness) >= 2.03
 BuildRequires: perl(Test::More) >= 0.42
 # needed for certain older versions of perl-Module-Build
 BuildRequires: perl(YAML::Syck)
+Requires: perl >= 0:5.004
 
 %description
 Module::Install is a standalone, extensible installer for Perl modules.  It is

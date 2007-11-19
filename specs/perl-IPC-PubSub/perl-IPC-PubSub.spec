@@ -19,14 +19,11 @@ Source: http://www.cpan.org/modules/by-module/IPC/IPC-PubSub-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0 
+BuildRequires: perl >= 0:5.6.0
+Requires: perl >= 0:5.6.0
 
 %description
 Interprocess Publish/Subscribe channels.
-
-This package contains the following Perl module:
-
-    IPC::PubSub
 
 %prep
 %setup -n %{real_name}-%{version}

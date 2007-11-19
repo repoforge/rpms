@@ -19,8 +19,9 @@ Source: http://www.cpan.org/modules/by-module/Params/Params-Coerce-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.5 
+BuildRequires: perl >= 0:5.5
 BuildRequires: perl(Test::More) >= 0.47
+Requires: perl >= 0:5.5
 
 %description
 Allows your classes to do coercion of parameters.

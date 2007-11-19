@@ -12,9 +12,9 @@
 
 Summary: Web browsing in a Perl object
 Name: perl-WWW-Mechanize
-Version: 1.30
+Version: 1.32
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Mechanize/
 
@@ -47,15 +47,19 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man1/*
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml
+%doc %{_mandir}/man1/mech-dump.1*
+%doc %{_mandir}/man3/WWW::Mechanize.3pm*
+%doc %{_mandir}/man3/WWW::Mechanize::*.3pm*
 %{_bindir}/mech-dump
 %dir %{perl_vendorlib}/WWW/
-%{perl_vendorlib}/WWW/Mechanize.pm
 %{perl_vendorlib}/WWW/Mechanize/
+%{perl_vendorlib}/WWW/Mechanize.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 1.32-1
+- Updated to release 1.32.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 1.30-1
 - Updated to release 1.30.
 

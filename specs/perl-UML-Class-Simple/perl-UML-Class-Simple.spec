@@ -19,15 +19,12 @@ Source: http://www.cpan.org/modules/by-module/UML/UML-Class-Simple-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.004 
+BuildRequires: perl >= 0:5.004
 BuildRequires: perl(Test::More)
+Requires: perl >= 0:5.004
 
 %description
 Render simple UML class diagrams, by loading the code.
-
-This package contains the following Perl module:
-
-    UML::Class::Simple
 
 %prep
 %setup -n %{real_name}-%{version}

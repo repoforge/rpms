@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 0:5.6.0
 BuildRequires: perl(Module::Build)
+Requires: perl >= 0:5.6.0
 
 %description
 Array::Compare is a Perl module which allows you to compare two arrays.

@@ -20,14 +20,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 2:5.8.1
+Requires: perl >= 2:5.8.1
 
 %description
 perl-Acme-Bleach-Numerically is a Perl module to fit the whole world
 between 0 and 1.
-
-This package contains the following Perl module:
-
-    Acme::Bleach::Numerically
 
 %prep
 %setup -n %{real_name}-%{version}

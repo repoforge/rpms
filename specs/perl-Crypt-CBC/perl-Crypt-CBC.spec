@@ -9,7 +9,7 @@
 
 Summary: Encrypt Data with Cipher Block Chaining Mode
 Name: perl-Crypt-CBC
-Version: 2.22
+Version: 2.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -43,18 +43,24 @@ compatible with the encryption format used by B<SSLeay>.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README
-%doc %{_mandir}/man3/CBC.3pm*
+%doc Changes MANIFEST README eg/
+%doc %{_mandir}/man3/Crypt::CBC.3pm*
 %dir %{perl_vendorlib}/Crypt/
 #%{perl_vendorlib}/Crypt/CBC/
 %{perl_vendorlib}/Crypt/CBC.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 2.24-1
+- Updated to release
+
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 2.22-1
 - Updated to release 2.22.
 

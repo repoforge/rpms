@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: Clark Cooper <clark$coopercc,net>
+# Upstream: Clark Cooper <coopercc$netheaven,com>
+# Upstream: Steve Hay <shay$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +10,7 @@
 
 Summary: Perl module for parsing XML encoding maps
 Name: perl-XML-Encoding
-Version: 1.01
+Version: 2.01
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,5 +53,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/Encoding.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 2.01-1
+- Updated to release 2.01.
+
 * Thu May 31 2007 Dag Wieers <dag@wieers.com> - 1.01-1
 - Initial package. (using DAR)

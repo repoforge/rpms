@@ -19,16 +19,13 @@ Source: http://www.cpan.org/modules/by-module/URI/URI-Escape-JavaScript-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 2:5.8.1 
+BuildRequires: perl >= 2:5.8.1
 BuildRequires: perl(Test::More)
+Requires: perl >= 2:5.8.1
 
 %description
 perl-URI-Escape-JavaScript is a Perl implementation of JavaScript's
 escape() and unescape() functions.
-
-This package contains the following Perl module:
-
-    URI::Escape::JavaScript
 
 %prep
 %setup -n %{real_name}-%{version}

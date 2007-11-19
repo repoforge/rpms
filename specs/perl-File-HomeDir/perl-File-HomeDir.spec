@@ -19,9 +19,10 @@ Source: http://www.cpan.org/modules/by-module/File/File-HomeDir-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.005 
+BuildRequires: perl >= 0:5.005
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More) >= 0.47
+Requires: perl >= 0:5.005
 
 %description
 Find your home and other directories, on any platform.

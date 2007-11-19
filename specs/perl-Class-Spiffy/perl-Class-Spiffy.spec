@@ -18,14 +18,11 @@ Source: http://www.cpan.org/modules/by-module/Class/Class-Spiffy-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 1:5.6.1 
+BuildRequires: perl >= 1:5.6.1
+Requires: perl >= 1:5.6.1
 
 %description
 Spiffy Perl Interface Framework For You.
-
-This package contains the following Perl module:
-
-    Class::Spiffy
 
 %prep
 %setup -n %{real_name}-%{version}

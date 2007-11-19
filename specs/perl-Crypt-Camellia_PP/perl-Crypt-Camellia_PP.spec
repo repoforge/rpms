@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 3:5.8.6
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 3:5.8.6
 
 %description
 Pure Perl Camellia 128-bit block cipher module.

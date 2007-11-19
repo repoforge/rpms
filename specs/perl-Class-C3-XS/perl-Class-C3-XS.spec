@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.6.0 
 BuildRequires: perl(Test::More) >= 0.47
+Requires: perl >= 0:5.6.0 
 
 %description
 XS speedups for Class::C3.

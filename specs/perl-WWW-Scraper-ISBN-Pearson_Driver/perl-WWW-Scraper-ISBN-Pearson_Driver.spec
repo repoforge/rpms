@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Barbie <barbie$missbarbell,co,uk>
+# Upstream: Barbie <barbie$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Search driver for Pearson Education's online catalog
 Name: perl-WWW-Scraper-ISBN-Pearson_Driver
-Version: 0.08
+Version: 0.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More) >= 0.45
 
 %description
 Search driver for Pearson Education's online catalog.
@@ -39,17 +40,25 @@ Search driver for Pearson Education's online catalog.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/WWW::Scraper::ISBN::Pearson_Driver*
-%{perl_vendorlib}/WWW/Scraper/ISBN/Pearson_Driver.pm
-%dir %{perl_vendorlib}/WWW/Scraper/ISBN/
+%doc Artistic Changes LICENSE MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/WWW::Scraper::ISBN::Pearson_Driver.3pm*
+%dir %{perl_vendorlib}/WWW/
 %dir %{perl_vendorlib}/WWW/Scraper/
+%dir %{perl_vendorlib}/WWW/Scraper/ISBN/
+#%{perl_vendorlib}/WWW/Scraper/ISBN/Pearson_Driver/
+%{perl_vendorlib}/WWW/Scraper/ISBN/Pearson_Driver.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.09-1
+- Updated to release 0.09.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Initial package.

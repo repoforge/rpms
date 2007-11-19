@@ -22,6 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 4:5.8.8
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 4:5.8.8
 
 %description
 This code implements a method for constructing nonparametric confidence

@@ -20,8 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)(Text::LineEditor)
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Text::LineEditor)
 
 %description
 This is a really simple module for communicating with a Goofey server.

@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dries
-# Upstream: Spiros Denaxas <s,denaxas$gmail,com>
+# Upstream: Spiros Denaxas <spiros$lokku,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name URI-ParseSearchString
 
-Summary: Parse referer logs for search engine query strings
+Summary: Parse Apache referer logs and extract search engine query strings
 Name: perl-URI-ParseSearchString
-Version: 1.9
+Version: 2.2
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,15 +39,23 @@ Parse referer logs for search engine query strings.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/URI::ParseSearchString*
+%doc Changes MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/URI::ParseSearchString.3pm*
+%dir %{perl_vendorlib}/URI/
+#%{perl_vendorlib}/URI/ParseSearchString/
 %{perl_vendorlib}/URI/ParseSearchString.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 2.2-1
+- Updated to release 2.2.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.9-1
 - Initial package.

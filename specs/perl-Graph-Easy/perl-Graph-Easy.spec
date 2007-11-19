@@ -24,6 +24,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Heap)
 BuildRequires: perl(Scalar::Util) >= 1.13
 #BuildRequires: perl(Test::More) >= 0.62
+Requires: perl >= 2:5.8.1
 
 %description
 This module let's you create graphs (nodes/vertices connected by edges/arcs,

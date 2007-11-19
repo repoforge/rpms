@@ -23,6 +23,7 @@ BuildRequires: perl >= 0:5.6.0
 BuildRequires: perl(Test::Compile)
 BuildRequires: perl(Test::More)
 BuildRequires: perl(UNIVERSAL::require)
+Requires: perl >= 0:5.6.0 
 
 %description
 perl-Attribute-TieClasses is a Perl module that implements attribute wrappers

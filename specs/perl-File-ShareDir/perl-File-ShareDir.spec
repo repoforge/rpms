@@ -19,16 +19,13 @@ Source: http://www.cpan.org/modules/by-module/File/File-ShareDir-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.005 
+BuildRequires: perl >= 0:5.005
 BuildRequires: perl(ExtUtils::MakeMaker) >= 6.11
 BuildRequires: perl(Test::More) >= 0.47
+Requires: perl >= 0:5.005
 
 %description
 Locate per-dist and per-module shared files.
-
-This package contains the following Perl module:
-
-    File::ShareDir
 
 %prep
 %setup -n %{real_name}-%{version}

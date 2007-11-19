@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 2:5.8.2
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 2:5.8.2
 
 %description
 perl-PadWalker is a Perl module to play with other peoples' lexical variables.

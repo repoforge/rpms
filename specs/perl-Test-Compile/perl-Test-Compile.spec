@@ -19,10 +19,11 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Compile-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0 
+BuildRequires: perl >= 0:5.6.0
 BuildRequires: perl(Test::More) >= 0.7
 BuildRequires: perl(Test::Pod)
 BuildRequires: perl(Test::Pod::Coverage)
+Requires: perl >= 0:5.6.0
 
 %description
 check whether Perl module files compile correctly.

@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 1:5.6.1
 BuildRequires: perl(Module::Build)
+Requires: perl >= 1:5.6.1
 
 %description
 PDF::FDF::Simple helps creating and extracting FDF files. It is

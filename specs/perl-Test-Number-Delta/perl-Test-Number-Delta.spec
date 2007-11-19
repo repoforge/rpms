@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Number-Delta-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.004 
+BuildRequires: perl >= 0:5.004
+Requires: perl >= 0:5.004
 
 %description
 Compare the difference between numbers against a given tolerance.

@@ -9,8 +9,8 @@
 
 Summary: Specification independent VRML methods
 Name: perl-VRML
-Version: 1.04
-Release: 1.2
+Version: 1.10
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/VRML/
@@ -44,14 +44,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc README.TXT
-%doc %{_mandir}/man3/*
+%doc CHANGES.TXT META.yml README.TXT TODO.TXT doc/ examples/
+%doc %{_mandir}/man3/VRML.3pm*
+%doc %{_mandir}/man3/VRML::*.3pm*
+%{perl_vendorlib}/VRML/
 %{perl_vendorlib}/VRML.pm
-%{perl_vendorlib}/VRML
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.04-1.2
-- Rebuild for Fedora Core 5.
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 1.10-1
+- Updated to release 1.10.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.04-1
 - Initial package.

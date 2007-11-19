@@ -9,7 +9,7 @@
 
 Summary: Simple-to-use XML module, for parsing and creating XML documents
 Name: perl-XML-MyXML
-Version: 0.08
+Version: 0.0986
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,10 +44,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/XML::MyXML*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/XML::MyXML.3pm*
+%dir %{perl_vendorlib}/XML/
+#%{perl_vendorlib}/XML/MyXML/
 %{perl_vendorlib}/XML/MyXML.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.0986-1
+- Updated to release 0.0986.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Initial package.

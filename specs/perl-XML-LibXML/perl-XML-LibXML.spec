@@ -12,7 +12,7 @@
 
 Summary: Perl module that implements binding for libxml2
 Name: perl-XML-LibXML
-Version: 1.63
+Version: 1.65
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,21 +47,28 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find docs/ example/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE MANIFEST META.yml README
-%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorarch}/XML/
-%{perl_vendorarch}/XML/LibXML.pm
-%{perl_vendorarch}/XML/LibXML.pod
-%{perl_vendorarch}/XML/LibXML/
+%doc Changes LICENSE MANIFEST META.yml README docs/ example/
+%doc %{_mandir}/man3/XML::LibXML.3pm*
+%doc %{_mandir}/man3/XML::LibXML::*.3pm*
 %dir %{perl_vendorarch}/auto/XML/
 %{perl_vendorarch}/auto/XML/LibXML/
+%dir %{perl_vendorarch}/XML/
+%{perl_vendorarch}/XML/LibXML/
+%{perl_vendorarch}/XML/LibXML.pm
+%{perl_vendorarch}/XML/LibXML.pod
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 1.65-1
+- Updated to release 1.65.
+
 * Wed Jun 20 2007 Dag Wieers <dag@wieers.com> - 1.63-1
 - Updated to release 1.63.
 

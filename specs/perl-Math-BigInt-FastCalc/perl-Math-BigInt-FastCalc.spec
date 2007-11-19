@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl >= 1:5.6.2
 BuildRequires: perl(ExtUtils::MakeMaker)
 #BuildRequires: perl(Test::More) >= 0.62
+Requires: perl >= 1:5.6.2
 
 %description
 Math::BigInt::Calc with some XS for more speed.

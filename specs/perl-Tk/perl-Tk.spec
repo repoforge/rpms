@@ -39,6 +39,7 @@ BuildRequires: libjpeg-devel
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_tcltk_devel:BuildRequires: tk-devel}
 %{?_without_tcltk_devel:BuildRequires: tk}
+Requires: perl >= 1:5.7.0
 Provides: perl(Tk::LabRadio), perl(Tk::TextReindex)
 
 %description

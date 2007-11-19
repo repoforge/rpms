@@ -19,14 +19,11 @@ Source: http://www.cpan.org/modules/by-module/Object/Object-Declare-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0 
+BuildRequires: perl >= 0:5.6.0
+Requires: perl >= 0:5.6.0
 
 %description
 Declarative object constructor.
-
-This package contains the following Perl module:
-
-    Object::Declare
 
 %prep
 %setup -n %{real_name}-%{version}

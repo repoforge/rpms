@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/PPI/PPI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.005 
+BuildRequires: perl >= 0:5.005
 BuildRequires: perl(Class::Autouse)
 BuildRequires: perl(Clone)
 BuildRequires: perl(File::Remove) >= 0.34
@@ -35,6 +35,7 @@ BuildRequires: perl(Test::Object) >= 0.07
 BuildRequires: perl(Test::SubCalls) >= 1.06
 BuildRequires: perl(Test::ClassAPI)
 #perl(List::Util) > 1.18
+Requires: perl >= 0:5.005
 
 %description
 This is an in-development package for parsing, manipulating and saving

@@ -9,7 +9,7 @@
 
 Summary: Interface to YouTube
 Name: perl-WebService-YouTube
-Version: 0.04
+Version: 1.0.2
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -40,18 +40,25 @@ export PERL_EXTUTILS_AUTOINSTALL="--skipdeps --skip"
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README examples/
+%doc %{_mandir}/man3/WebService::YouTube.3pm*
+%doc %{_mandir}/man3/WebService::YouTube::*.3pm*
 %dir %{perl_vendorlib}/WebService/
-%{perl_vendorlib}/WebService/YouTube.pm
 %{perl_vendorlib}/WebService/YouTube/
+%{perl_vendorlib}/WebService/YouTube.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 1.0.2-1
+- Updated to release 1.0.2.
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Updated to release 0.04.
 

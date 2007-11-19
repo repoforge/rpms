@@ -19,11 +19,12 @@ Source: http://www.cpan.org/modules/by-module/Template/Template-Declare-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0 
+BuildRequires: perl >= 0:5.6.0
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(HTML::Lint)
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::Warn)
+Requires: perl >= 0:5.6.0
 
 %description
 Perlish declarative templates.

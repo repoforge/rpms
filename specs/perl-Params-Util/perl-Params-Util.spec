@@ -24,6 +24,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(File::Spec) >= 0.8
 BuildRequires: perl(Scalar::Util)
 BuildRequires: perl(Test::More) >= 0.42
+Requires: perl >= 0:5.005
 
 %description
 Simple standalone param-checking functions.

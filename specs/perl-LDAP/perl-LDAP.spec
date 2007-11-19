@@ -29,6 +29,7 @@ BuildRequires: perl(IO::Socket::SSL) > 0.81
 BuildRequires: perl(MIME::Base64)
 BuildRequires: perl(URI::ldap) >= 1.1
 BuildRequires: perl(XML::SAX::Base)
+Requires: perl >= 0:5.004
 Requires: perl(IO::Socket::SSL)
 
 Obsoletes: perl-ldap <= %{version}-%{release}

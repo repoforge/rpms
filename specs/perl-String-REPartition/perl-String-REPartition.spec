@@ -9,7 +9,7 @@
 
 Summary: Generating regular expressions used to partition data sets
 Name: perl-String-REPartition
-Version: 1.5
+Version: 1.6
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,12 +49,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
-%doc %{_mandir}/man3/REPartition.3pm*
+%doc %{_mandir}/man3/String::REPartition.3pm*
 %dir %{perl_vendorlib}/String/
 #%{perl_vendorlib}/String/REPartition/
 %{perl_vendorlib}/String/REPartition.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 1.6-1
+- Updated to release 1.6.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.5-1
 - Updated to release 1.5.
 

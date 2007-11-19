@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 1:5.6.1 
+Requires: perl >= 1:5.6.1 
 
 %description
 Inheritable, overridable class and instance data accessor creation.

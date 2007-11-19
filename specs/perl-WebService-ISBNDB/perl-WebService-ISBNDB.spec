@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Randy J Ray <rjray$blackperl,com>
+# Upstream: Randy J. Ray <rjray$blackperl,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Easy access to isbndb.com
 Name: perl-WebService-ISBNDB
-Version: 0.20
+Version: 0.33
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,10 @@ Source: http://www.cpan.org/modules/by-module/WebService/WebService-ISBNDB-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.6.0 
 BuildRequires: perl(Module::Build)
+BuildRequires: perl(Test::More)
+Requires: perl >= 0:5.6.0 
 
 %description
 A Perl extension to access isbndb.com.
@@ -44,10 +46,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog.xml README
-%doc %{_mandir}/man3/WebService::ISBNDB*
+%doc ChangeLog ChangeLog.xml MANIFEST MANIFEST.SKIP META.yml README SIGNATURE
+%doc %{_mandir}/man3/WebService::ISBNDB.3pm*
+%doc %{_mandir}/man3/WebService::ISBNDB::*.3pm*
+%dir %{perl_vendorlib}/WebService/
 %{perl_vendorlib}/WebService/ISBNDB/
+%{perl_vendorlib}/WebService/ISBNDB.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.33-1
+- Updated to release 0.33.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.20-1
 - Initial package.

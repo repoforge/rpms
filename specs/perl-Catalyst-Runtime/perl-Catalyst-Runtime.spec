@@ -43,9 +43,10 @@ BuildRequires: perl(Text::SimpleTable)
 BuildRequires: perl(Tree::Simple)
 BuildRequires: perl(Tree::Simple::Visitor::FindByPath)
 BuildRequires: perl(URI) >= 1.35
+Requires: perl >= 2:5.8.1
 
 %description
-Catalyst  Runtime version.
+Catalyst Runtime version.
 
 %prep
 %setup -n %{real_name}-%{version}

@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 3:5.8.3
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 3:5.8.3
 
 %description
 Perl extension for kolab for an Active Directory backend.

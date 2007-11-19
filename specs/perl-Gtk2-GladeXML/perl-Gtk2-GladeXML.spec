@@ -27,6 +27,7 @@ BuildRequires: perl(Gtk2)
 BuildRequires: pkgconfig
 BuildRequires: libglade2-devel
 BuildRequires: perl(Cairo::Install::Files)
+Requires: perl >= 2:5.8.0
 
 %description
 Gtk2-GladeXML is a Perl module to create user interfaces

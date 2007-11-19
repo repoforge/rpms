@@ -9,8 +9,8 @@
 
 Summary: Date and time objects
 Name: perl-Time-modules
-Version: 2003.1126
-Release: 1.2
+Version: 2006.0814
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Time-modules/
@@ -44,13 +44,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/Time
+%doc CHANGELOG MANIFEST META.yml README
+%doc %{_mandir}/man3/Time::*.3pm*
+%{perl_vendorlib}/Time/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2003.1126-1.2
-- Rebuild for Fedora Core 5.
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 2006.0814-1
+- Updated to release 2006.0814.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2003.1126-1
 - Initial package.

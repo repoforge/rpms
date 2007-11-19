@@ -19,6 +19,7 @@ Source: http://www.cpan.org/authors/id/M/MA/MAKAMAKA/JSON-PC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 2:5.8.0
+Requires: perl >= 2:5.8.0
 
 %description
 perl-JSON-PC is a Perl module that implements a fast JSON Parser and Converter.

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/DBM/DBM-Deep-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.006 
+BuildRequires: perl >= 0:5.006
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(File::Path) >= 0.01
 BuildRequires: perl(File::Temp) >= 0.01
@@ -28,6 +28,7 @@ BuildRequires: perl(Test::Deep) >= 0.095
 BuildRequires: perl(Test::Exception) >= 0.21
 BuildRequires: perl(Test::More) >= 0.47
 BuildRequires: perl(Test::Warn) >= 0.08
+Requires: perl >= 0:5.006
 
 %description
 DBM-Deep is a Perl module that implements a pure perl multi-level

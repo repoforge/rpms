@@ -9,7 +9,7 @@
 
 Summary: Perl module named XML-Grove
 Name: perl-XML-Grove
-Version: 0.05
+Version: 0.46
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -25,7 +25,7 @@ BuildRequires: perl
 perl-XML-Grove is a Perl module.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{version}alpha
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -47,13 +47,17 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING ChangeLog Changes MANIFEST README examples/
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/XML::DOM-ecmascript.3pm*
+%doc %{_mandir}/man3/XML::Grove.3pm*
+%doc %{_mandir}/man3/XML::Grove::*.3pm*
 %dir %{perl_vendorlib}/XML/
 %{perl_vendorlib}/XML/Grove/
 %{perl_vendorlib}/XML/Grove.pm
-%dir %{perl_vendorlib}/XML/Parser/
-%{perl_vendorlib}/XML/Parser/Grove.pm
+%{perl_vendorlib}/XML/DOM-ecmascript.pod
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.46-1
+- Updated to release 0.46.
+
 * Sat Oct 06 2007 Dag Wieers <dag@wieers.com> - 0.05-1
 - Initial package. (using DAR)

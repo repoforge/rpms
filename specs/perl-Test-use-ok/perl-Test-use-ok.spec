@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-use-ok-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.005 
+BuildRequires: perl >= 0:5.005
+Requires: perl >= 0:5.005
 
 %description
 Alternative to Test::More::use_ok.

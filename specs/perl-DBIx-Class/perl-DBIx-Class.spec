@@ -20,11 +20,12 @@ Source: http://www.cpan.org/modules/by-module/DBIx/DBIx-Class-%{real_version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 1:5.6.1 
+BuildRequires: perl >= 1:5.6.1
 BuildRequires: perl(Class::Trigger)
 BuildRequires: perl(DBD::SQLite) >= 1.13
 BuildRequires: perl(DBIx::ContextualFetch)
 BuildRequires: perl(Test::Builder) >= 0.33
+Requires: perl >= 1:5.6.1
 
 %description
 Extensible and flexible object <-> relational mapper.

@@ -19,9 +19,10 @@ Source: http://www.cpan.org/modules/by-module/Image/Image-Math-Constrain-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.005 
+BuildRequires: perl >= 0:5.005
 BuildRequires: perl(Test::More) >= 0.47
 BuildRequires: perl(File::Spec) >= 0.82
+Requires: perl >= 0:5.005
 
 %description
 Scaling math used in image size constraining (such.

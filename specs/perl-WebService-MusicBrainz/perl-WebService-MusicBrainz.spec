@@ -7,9 +7,9 @@
 
 %define real_name WebService-MusicBrainz
 
-Summary: Search the MusicBrainz website
+Summary: Web service API to MusicBrainz database
 Name: perl-WebService-MusicBrainz
-Version: 0.04
+Version: 0.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,9 @@ Source: http://www.cpan.org/modules/by-module/WebService/WebService-MusicBrainz-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 1:5.7
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 1:5.7
 
 %description
 This module will search the MusicBrainz database through their web service 
@@ -45,11 +46,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/WebService::MusicBrainz*
-%{perl_vendorlib}/WebService/MusicBrainz.pm
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/WebService::MusicBrainz.3pm*
+%doc %{_mandir}/man3/WebService::MusicBrainz::*.3pm*
+%dir %{perl_vendorlib}/WebService/
 %{perl_vendorlib}/WebService/MusicBrainz/
+%{perl_vendorlib}/WebService/MusicBrainz.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.12-1
+- Updated to release 0.12.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.

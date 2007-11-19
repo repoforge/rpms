@@ -9,7 +9,7 @@
 
 Summary: Implement the 'want' command
 Name: perl-Want
-Version: 0.14
+Version: 0.15
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -45,12 +45,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Want*.3pm*
-%{perl_vendorarch}/Want.pm
+%doc Changes MANIFEST META.yml README TODO
+%doc %{_mandir}/man3/Want.3pm*
 %{perl_vendorarch}/auto/Want/
+%{perl_vendorarch}/Want.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.15-1
+- Updated to release 0.15.
+
 * Wed May 09 2007 Dries Verachtert <dries@ulyssis.org> - 0.14-1
 - Updated to release 0.14.
 

@@ -9,9 +9,9 @@
 
 Summary: Backend for searching www.ebay.com
 Name: perl-WWW-Search-Ebay
-Version: 2.229
+Version: 2.231
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Search-Ebay/
 
@@ -35,9 +35,9 @@ This is a backend for use with the WWW::Search module for searching on Ebay.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -45,11 +45,17 @@ This is a backend for use with the WWW::Search module for searching on Ebay.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/WWW::Search::Ebay.3pm*
+%doc %{_mandir}/man3/WWW::Search::Ebay::*.3pm*
+%dir %{perl_vendorlib}/WWW/
+%dir %{perl_vendorlib}/WWW/Search/
+%{perl_vendorlib}/WWW/Search/Ebay/
 %{perl_vendorlib}/WWW/Search/Ebay.pm
-%{perl_vendorlib}/WWW/Search/Ebay/*
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 2.231-1
+- Updated to release 2.231.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 2.229-1
 - Updated to release 2.229.
 

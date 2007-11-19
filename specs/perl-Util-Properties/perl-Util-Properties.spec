@@ -9,7 +9,7 @@
 
 Summary: Java.util.properties like class
 Name: perl-Util-Properties
-Version: 0.11
+Version: 0.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,13 +20,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Digest::MD5::File)
 
 %description
 Java.util.properties like class.
-
-This package contains the following Perl module:
-
-    Util::Properties
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -55,5 +52,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Util/Properties.pm
 
 %changelog
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.14-1
+- Updated to release 0.14.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.11-1
 - Initial package. (using DAR)

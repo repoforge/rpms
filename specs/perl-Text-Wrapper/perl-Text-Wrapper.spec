@@ -9,8 +9,8 @@
 
 Summary: Simple word wrapping routine
 Name: perl-Text-Wrapper
-Version: 1.000
-Release: 1.2
+Version: 1.01
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Wrapper/
@@ -19,8 +19,13 @@ Source: http://www.cpan.org/modules/by-module/Text/Text-Wrapper-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.004 
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(FindBin)
+BuildRequires: perl(Module::Build) >= 0.21
+BuildRequires: perl(Test::More)
+Requires: perl >= 0:5.004 
 
 %description
 This module provides simple word wrapping.  It breaks long lines,
@@ -42,18 +47,23 @@ Text::Format module.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find example/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README example/
+%doc %{_mandir}/man3/Text::Wrapper.3pm*
+%dir %{perl_vendorlib}/Text/
+#%{perl_vendorlib}/Text/Wrapper/
 %{perl_vendorlib}/Text/Wrapper.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.000-1.2
-- Rebuild for Fedora Core 5.
+* Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 1.01-1
+- Updated to release 1.01.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.000-1
 - Initial package.

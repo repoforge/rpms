@@ -31,6 +31,7 @@ BuildRequires: perl(POE::Wheel::Null)
 BuildRequires: perl(POE::Wheel::ReadWrite)
 BuildRequires: perl(POE::Wheel::SocketFactory)
 BuildRequires: perl(POE::Driver::SysRW)
+Requires: perl >= 0:5.6.0
 
 %description
 subclass of Net::LDAP which uses POE to speak via sockets in async mode..
