@@ -131,8 +131,8 @@ fi
 
 
 %changelog
-* Wed Nov 21 2007 Heiko Adams <info@fedora-blog.de> - 0.23-1
-- Update to 0.23
+* Wed Nov 21 2007 Heiko Adams <info@fedora-blog.de> - 0.26-1
+- Update to 0.26
 - rebuild for rpmforge
 
 * Sun Jan 14 2007 Brian Pepple <bpepple@fedoraproject.org> - 0.22-1
