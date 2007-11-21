@@ -2,24 +2,25 @@
 # Authority: hadams
 
 # define plugin version
-%define acpinotifier	1.0.12
+%define acpinotifier	1.0.13
 %define attremover	1.0.7
-%define attachwarner    0.2.8
+%define attachwarner    0.2.9
 %define cachesaver	0.10.6
-%define fetchinfo	0.4.20
-%define gtkhtml2viewer  0.15.2
+%define fetchinfo	0.4.21
+%define gtkhtml2viewer  0.16
 %define mailmbox	1.14
 %define newmail		0.0.11
-%define notification	0.12.1
-%define pdfviewer       0.6
-%define perl		0.9.10
-%define rssyl		0.15
-%define smime		0.7.2
-%define spam_report	0.2
-%define synce		0.7.2
-%define vcalendar	1.98
+%define notification	0.13
+%define pdfviewer       0.7
+%define perl		0.9.11
+%define rssyl		0.16
+%define smime		0.7.3
+%define spam_report	0.3
+%define synce		0.7.3
+%define tnef_parse	0.2
+%define vcalendar	1.99
 Name:           claws-mail-plugins
-Version:        3.0.1
+Version:        3.1.0
 Release:        1
 Summary:        Additional plugins for claws-mail
 
@@ -27,7 +28,7 @@ Group:          Applications/Internet
 License:        GPL
 URL:            http://claws-mail.org
 Source0:        http://dl.sf.net/sylpheed-claws/claws-mail-extra-plugins-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  claws-mail-devel >= %{version}
 BuildRequires:  glib2-devel
@@ -60,6 +61,8 @@ Requires:       %{name}-perl = %{version}-%{release}
 Requires:       %{name}-rssyl = %{version}-%{release}
 Requires:       %{name}-smime = %{version}-%{release}
 Requires:       %{name}-synce = %{version}-%{release}
+Requires:       %{name}-spam_report = %{version}-%{release}
+Requires:	%{name}-tnef_parse = %{version}-%{release}
 Requires:       %{name}-vcalendar = %{version}-%{release}
 # and the ones from main claws-mail-package...
 Requires:       %{name}-clamav
@@ -233,6 +236,15 @@ This plugin assists in keeping the addressbook of a Windows CE device
 (Pocket PC/ iPAQ, Smartphone etc) in sync with Claws' addressbook,
 with respect to email addresses.
 
+#%package tnef_parse
+#Summary:        This plugin enables reading application/ms-tnef attachments. 
+#Group:          Applications/Internet
+#Requires:	claws-mail >= %{version}
+#Provides:       sylpheed-claws-plugins-tnef_parse = %{version}-%{release}
+
+#%description tnef_parse
+#%{summary}
+
 %package vcalendar
 Summary:        vCalendar message handling
 Group:          Applications/Internet
@@ -323,6 +335,11 @@ cd ../synce_plugin-%{synce}
 %configure --disable-static --disable-dependency-tracking
 %{__make} %{?_smp_mflags}
 
+#tnef_parse
+#cd ../tnef_parse-%{tnef_parse}
+#%configure --disable-static --disable-dependency-tracking
+#%{__make} %{?_smp_mflags}
+
 #vcalendar
 cd ../vcalendar-%{vcalendar}
 %configure --disable-static --disable-dependency-tracking
@@ -400,6 +417,11 @@ cd ../spam_report-%{spam_report}
 #synce
 cd ../synce_plugin-%{synce}
 %{__make} install DESTDIR=$RPM_BUILD_ROOT CLAWS_MAIL_PLUGINDIR=%{_libdir}/claws-mail/plugins/
+
+
+#tnef_parse
+#cd ../tnef_parse-%{tnef_parse}
+#%{__make} install DESTDIR=$RPM_BUILD_ROOT CLAWS_MAIL_PLUGINDIR=%{_libdir}/claws-mail/plugins/
 
 
 #vcalendar
@@ -532,6 +554,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(cs) %{_datadir}/locale/cs/LC_MESSAGES/notification_plugin.mo
 %lang(fi) %{_datadir}/locale/fi/LC_MESSAGES/notification_plugin.mo
 %lang(hu) %{_datadir}/locale/hu/LC_MESSAGES/notification_plugin.mo
+%lang(it) %{_datadir}/locale/it/LC_MESSAGES/notification_plugin.mo
 %lang(pt_BR) %{_datadir}/locale/pt_BR/LC_MESSAGES/notification_plugin.mo
 %lang(zh_CN) %{_datadir}/locale/zh_CN/LC_MESSAGES/notification_plugin.mo
 
@@ -561,7 +584,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc perl_plugin-%{perl}/ChangeLog
 %doc perl_plugin-%{perl}/COPYING
 %doc perl_plugin-%{perl}/README
-%doc perl_plugin-%{perl}/sc_perl.pod
+#%doc perl_plugin-%{perl}/sc_perl.pod
 %{_libdir}/claws-mail/plugins/perl_plugin.so
 
 %files rssyl
@@ -604,6 +627,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fi) %{_datadir}/locale/fi/LC_MESSAGES/spam_report.mo
 %lang(fr) %{_datadir}/locale/fr/LC_MESSAGES/spam_report.mo
 %lang(hu) %{_datadir}/locale/hu/LC_MESSAGES/spam_report.mo
+%lang(it) %{_datadir}/locale/it/LC_MESSAGES/spam_report.mo
 %lang(pt_BR) %{_datadir}/locale/pt_BR/LC_MESSAGES/spam_report.mo
 %lang(sk) %{_datadir}/locale/sk/LC_MESSAGES/spam_report.mo
 
@@ -637,6 +661,14 @@ rm -rf $RPM_BUILD_ROOT
 %exclude %{_includedir}/ical.h
 
 %changelog
+* Wed Nov 21 2007 Heiko Adams <info@fedora-blog.de>
+3.1.0-1
+- version upgrade
+
+* Thu Oct 02 2007 Heiko Adams <info@fedora-blog.de>
+3.0.1-2
+- rebuild for claws-mail 3.0.2
+
 * Wed Sep 19 2007 Heiko Adams <info@fedora-blog.de>
 3.0.1-1
 - version upgrade
