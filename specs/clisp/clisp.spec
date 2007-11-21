@@ -6,7 +6,7 @@
 
 Summary: ANSI Common Lisp implementation
 Name: clisp
-Version: 2.42
+Version: 2.43
 Release: 1
 License: GPL
 Group: Development/Languages
@@ -60,6 +60,9 @@ cd -
 %{_datadir}/vim/vimfiles/after/syntax/lisp.vim
 
 %changelog
+* Tue Nov 20 2007 Dries Verachtert <dries@ulyssis.org> - 2.43-1
+- Updated to release 2.43.
+
 * Wed Oct 17 2007 Dries Verachtert <dries@ulyssis.org> - 2.42-1
 - Updated to release 2.42.
 

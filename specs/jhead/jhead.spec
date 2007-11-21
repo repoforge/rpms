@@ -4,7 +4,7 @@
 
 Summary: Tool for handling EXIF metadata in JPEG image files
 Name: jhead
-Version: 2.6
+Version: 2.8
 Release: 1
 License: Public Domain
 Group: System Environment/Libraries
@@ -45,6 +45,9 @@ portions of EXIF format JPEG image files, as produced by most digital cameras.
 
 
 %changelog
+* Tue Nov 20 2007 Dries Verachtert <dries@ulyssis.org> - 2.8-1
+- Updated to release 2.8.
+
 * Sat May 06 2006 Dries Verachtert <dries@ulyssis.org> - 2.6-1
 - Updated to release 2.6.
 
