@@ -19,6 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Sendmail/Sendmail-Milter-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
+BuildRequires: sendmail-devel
 
 %description
 perl-Sendmail-Milter is a Perl module.

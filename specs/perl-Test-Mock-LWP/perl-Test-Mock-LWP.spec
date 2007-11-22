@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Test::More) >= 0.42
+BuildRequires: perl(Test::MockObject) >= 1.08
 
 %description
 perl-Test-Mock-LWP is a Perl module.
