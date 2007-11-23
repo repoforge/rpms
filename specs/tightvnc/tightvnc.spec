@@ -1,4 +1,4 @@
-# $Id$
+# $Id: tightvnc-1.3.spec 5264 2007-04-01 15:14:36Z dag $
 # Authority: dag
 # Upstream: <vnc-tight-list$lists,sf,net>
 

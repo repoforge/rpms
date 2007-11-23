@@ -17,7 +17,10 @@ Source: http://dl.sf.net/numpy/Numeric-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: python, python-devel
 
-Obsoletes: numpy
+Obsoletes: numpy <= %{version}-%{release}
+Obsoletes: Numeric <= %{version}-%{release}
+Provides: numpy = %{version}-%{release}
+Provides: Numeric = %{version}-%{release}
 
 %description
 Numerical Extension to Python with subpackages.

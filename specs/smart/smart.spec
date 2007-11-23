@@ -20,7 +20,7 @@
 
 Summary: Next generation package handling tool
 Name: smart
-Version: 0.51
+Version: 0.52
 Release: 1
 License: GPL
 Group: Applications/System
@@ -190,13 +190,13 @@ touch %{buildroot}%{_prefix}/lib/smart/distro.py{c,o}
 %{__install} -Dp -m0644 smart/interfaces/images/smart.png %{buildroot}%{_datadir}/pixmaps/smart.png
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -Dp -m0644 smart-gui.desktop %{buildroot}%{_datadir}/gnome/apps/System/smart.desktop
+    %{__install} -Dp -m0644 smart-gui.desktop %{buildroot}%{_datadir}/gnome/apps/System/smart.desktop
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor %{desktop_vendor}    \
-		--dir %{buildroot}%{_datadir}/applications \
-		--add-category X-Red-Hat-Base              \
-		smart-gui.desktop
+    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+    desktop-file-install --vendor %{desktop_vendor}    \
+        --dir %{buildroot}%{_datadir}/applications \
+        --add-category X-Red-Hat-Base              \
+        smart-gui.desktop
 %endif
 %endif
 
@@ -246,6 +246,9 @@ touch %{buildroot}%{_prefix}/lib/smart/distro.py{c,o}
 %endif
 
 %changelog
+* Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 0.52-1
+- Updated to release 0.52.
+
 * Wed Sep  5 2007 Dries Verachtert <dries@ulyssis.org> - 0.51-1
 - Updated to release 0.51.
 

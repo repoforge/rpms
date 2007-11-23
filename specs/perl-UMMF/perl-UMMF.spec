@@ -25,10 +25,6 @@ BuildRequires: perl
 %description
 perl-UMMF is a Perl module that implements a UML Meta-Model Framework.
 
-This package contains the following Perl module:
-
-    Ex1::Storage
-
 %prep
 %setup -n %{real_name}-%{version}
 
@@ -56,7 +52,8 @@ find doc/ example/ -type f -exec %{__chmod} a-x {} \;
 %doc %{_mandir}/man1/files2dirs.pl.1*
 %doc %{_mandir}/man1/ummf.1*
 %doc %{_mandir}/man1/ummf.pl.1*
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/UMMF.3pm*
+%doc %{_mandir}/man3/UMMF::*.3pm*
 %{_bindir}/argo2xmi
 %{_bindir}/argo2xmi.pl
 %{_bindir}/files2dirs

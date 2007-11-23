@@ -5,10 +5,12 @@
 
 %{?rh7:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 Summary: Simple graphical text editor
 Name: leafpad
 Version: 0.8.9
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Editors
 URL: http://tarot.freeshell.org/leafpad/
@@ -67,5 +69,8 @@ update-desktop-database || :
 %{_datadir}/pixmaps/leafpad.xpm
 
 %changelog
+* Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 0.8.9-2
+- Define %%{desktop_vendor}.
+
 * Wed Feb 21 2007 Dag Wieers <dag@wieers.com> - 0.8.9-1
 - Initial package. (using DAR)

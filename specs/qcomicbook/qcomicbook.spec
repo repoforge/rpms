@@ -1,4 +1,4 @@
-# $Id$
+# $Id: qcomicbook.spec 4949 2006-11-30 21:49:46Z dries $
 # Authority: dries
 # Upstream: Pawel Stolowski <yogin$linux,bydg,org>
 

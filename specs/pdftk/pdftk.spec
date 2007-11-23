@@ -8,11 +8,11 @@
 
 Summary: PDF Tool Kit
 Name: pdftk
-Version: 1.12
+Version: 1.41
 Release: 1
 License: GPL
 Group: Applications/Publishing
-URL: http://www.accesspdf.com/pdftk/
+URL: http://www.pdfhacks.com/pdftk/
 
 Source: http://www.pdfhacks.com/pdftk/pdftk-%{version}.tar.bz2
 Patch0: pdftk-1.12-gcj4.patch
@@ -37,7 +37,7 @@ of your desktop and use it to:
 
 %prep
 %setup
-%patch -p1
+#%patch -p1
 
 %build
 export -n CLASSPATH
@@ -60,6 +60,9 @@ export -n CLASSPATH
 %{_bindir}/pdftk
 
 %changelog
+* Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 1.41-1
+- Updated to release 1.41.
+
 * Fri Sep 28 2007 Dag Wieers <dag@wieers.com> - 1.12-1
 - Added cj4 patch for RHEL5. (Les Bell)
 

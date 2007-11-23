@@ -27,12 +27,12 @@ Gajim does not require GNOME to run, even though it exists with it nicely.
 
 %build
 %configure \
-	--disable-dependency-tracking \
-	--disable-static \
-	--enable-gtkspell \
-	--enable-idle \
-	--enable-remote \
-	--enable-trayicon
+    --disable-dependency-tracking \
+    --disable-static \
+    --enable-gtkspell \
+    --enable-idle \
+    --enable-remote \
+    --enable-trayicon
 %{__make} %{?_smp_mflags}
 
 %install
@@ -58,10 +58,10 @@ Gajim does not require GNOME to run, even though it exists with it nicely.
 
 %changelog
 * Sun Nov 18 2007 Heiko Adams <info@fedora-blog.de> - 0.11.3-1
-- Version update
+- Updated to release 0.11.3.
 
 * Mon Oct 08 2007 Heiko Adams <info@fedora-blog.de> - 0.11.2-1
-- Version update
+- Updated to release 0.11.2.
 
 * Sat Jul 07 2007 Heiko Adams <info@fedora-blog.de> - 0.11.1-2
 - Added depency on python-sqlite2.
