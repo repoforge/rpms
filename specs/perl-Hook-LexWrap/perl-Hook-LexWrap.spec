@@ -20,7 +20,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl
 
 %description
 Lexically scoped subroutine wrappers
@@ -45,8 +44,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST README
-%doc %{_mandir}/man3/*.3*
+%doc %{_mandir}/man3/Hook::LexWrap.3pm*
 %dir %{perl_vendorlib}/Hook/
+#%{perl_vendorlib}/Hook/LexWrap/
 %{perl_vendorlib}/Hook/LexWrap.pm
 
 %changelog

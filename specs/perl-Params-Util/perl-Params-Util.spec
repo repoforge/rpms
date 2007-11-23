@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Adam Kennedy <adamk@cpan.org>
+# Upstream: Adam Kennedy <adamk$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

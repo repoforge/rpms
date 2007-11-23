@@ -7,7 +7,7 @@
 
 Summary: Linux NTFS userspace driver 
 Name: fuse-ntfs-3g
-Version: 1.1104
+Version: 1.1120
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -53,8 +53,8 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-	--disable-static \
-	--disable-ldconfig
+    --disable-ldconfig \
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
@@ -85,10 +85,13 @@ you will need to install %{name}-devel.
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/ntfs-3g/
-%exclude %{_libdir}/libntfs-3g.la
 %{_libdir}/libntfs-3g.so
+%exclude %{_libdir}/libntfs-3g.la
 
 %changelog
+* Tue Nov 20 2007 Dag Wieers <dag@wieers.com> - 1.1120-1
+- Updated to release 1.1120.
+
 * Wed Nov 07 2007 Dag Wieers <dag@wieers.com> - 1.1104-1
 - Updated to release 1.1104.
 

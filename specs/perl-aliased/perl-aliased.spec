@@ -1,35 +1,35 @@
 # $Id$
 # Authority: dag
+# Upstream: Curtis "Ovid" Poe <ovid$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name aliased
 
-Summary: aliased module for perl
+Summary: Use shorter versions of class names
 Name: perl-aliased
 Version: 0.21
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/aliased/
 
-Source: http://www.cpan.org/modules/by-module/aliased/aliased-%{version}.tar.gz
-#Source: http://www.cpan.org/authors/id/O/OV/OVID/aliased-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/O/OV/OVID/aliased-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl
-Requires: perl
 
 %description
-aliased module for perl.
+Use shorter versions of class names.
 
 %prep
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -43,10 +43,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ANNOUNCE ChangeLog Changes LICENSE MANIFEST README TODO
+%doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/aliased.3pm*
-%{perl_vendorarch}/aliased.pm
-%{perl_vendorarch}/auto/aliased/
+#%{perl_vendorlib}/aliased/
+%{perl_vendorlib}/aliased.pm
 
 %changelog
 * Sun Apr 29 2007 Dag Wieers <dag@wieers.com> - 0.21-1

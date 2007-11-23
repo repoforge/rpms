@@ -37,6 +37,7 @@
 %{?rh8:%define _without_fribidi 1}
 %{?rh8:%define _without_nas 1}
 %{?rh8:%define _without_theora 1}
+%{?rh8:%define _without_twolame 1}
 %{?rh8:%define _without_x264 1}
 %{?rh8:%define _without_xvmc 1}
 
@@ -44,9 +45,10 @@
 %{?rh7:%define _without_faac 1}
 %{?rh7:%define _without_fribidi 1}
 %{?rh7:%define _without_freedesktop 1}
+%{?rh7:%define _without_gcccheck 1}
 %{?rh7:%define _without_nas 1}
 %{?rh7:%define _without_theora 1}
-%{?rh7:%define _without_gcccheck 1}
+%{?rh7:%define _without_twolame 1}
 %{?rh7:%define _without_x264 1}
 %{?rh7:%define _without_xvmc 1}
 
@@ -58,6 +60,7 @@
 %{?el2:%define _without_freedesktop 1}
 %{?el2:%define _without_nas 1}
 %{?el2:%define _without_theora 1}
+%{?el2:%define _without_twolame 1} 
 %{?el2:%define _without_x264 1}
 %{?el2:%define _without_xvmc 1}
 
@@ -75,7 +78,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.36%{?rcver:.%{rcver}}%{?date:.%{date}}try2
+Release: 0.37%{?rcver:.%{rcver}}%{?date:.%{date}}try2
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -132,6 +135,7 @@ BuildRequires: ImageMagick
 %{!?_without_samba:BuildRequires: samba-common}
 %{!?_without_speex:BuildRequires: speex-devel}
 %{!?_without_nas:BuildRequires: nas-devel}
+%{!?_without_twolame:BuildRequires: twolame-devel}
 %{?_with_modxorg:BuildRequires: libXv-devel, libXxf86vm-devel, libGL-devel, libXt-devel}
 %{!?_with_modxorg:%{!?_without_xvmc:BuildRequires: libXvMCW-devel}}
 %{?_with_modxorg:%{!?_without_xvmc:BuildRequires: libXvMC-devel}}
@@ -147,7 +151,7 @@ Available rpmbuild rebuild options :
 --with : dvdread
 --without : aalib lirc cdparanoia arts xvid esd lzo fame caca dvb vstream
             theora osdmenu gcccheck fribidi xvmc x264 faac mpc live ladspa
-            amrnb samba speex
+            amrnb samba speex twolame
 
 
 %package -n mencoder
@@ -325,6 +329,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Tue Nov 20 2007 Tom G. Christensen <swpkg@statsbiblioteket.dk> - 1.0-0.37.rc1try2
+- Build with twolame support.
+
 * Thu Oct 11 2007 Matthias Saou <http://freshrpms.net/> 1.0-0.36.rc1try2
 - Rebuild freshrpms package to fix lame detection on i386.
 

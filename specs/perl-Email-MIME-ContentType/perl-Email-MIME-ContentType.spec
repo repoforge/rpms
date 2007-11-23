@@ -48,6 +48,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man3/Email::MIME::ContentType.3pm*
 %dir %{perl_vendorlib}/Email/
 %dir %{perl_vendorlib}/Email/MIME/
+#%{perl_vendorlib}/Email/MIME/ContentType/
 %{perl_vendorlib}/Email/MIME/ContentType.pm
 
 %changelog

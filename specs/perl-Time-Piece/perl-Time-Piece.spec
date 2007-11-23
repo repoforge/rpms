@@ -9,7 +9,7 @@
 
 Summary: Object Oriented time objects
 Name: perl-Time-Piece
-Version: 1.11
+Version: 1.12
 Release: 1
 Epoch: 1
 License: Artistic/GPL
@@ -47,13 +47,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes MANIFEST MANIFEST.SKIP META.yml README
 %doc %{_mandir}/man3/Time::Piece.3pm*
 %doc %{_mandir}/man3/Time::Seconds.3pm*
-%dir %{perl_vendorarch}/Time/
-%{perl_vendorarch}/Time/Piece.pm
-%{perl_vendorarch}/Time/Seconds.pm
 %dir %{perl_vendorarch}/auto/Time/
 %{perl_vendorarch}/auto/Time/Piece/
+%dir %{perl_vendorarch}/Time/
+#%{perl_vendorarch}/Time/Piece/
+%{perl_vendorarch}/Time/Piece.pm
+%{perl_vendorarch}/Time/Seconds.pm
 
 %changelog
+* Thu Nov 22 2007 Dag Wieers <dag@wieers.com> - 1.12-1
+- Updated to release 1.12.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1
 - Updated to release 1.11.
 

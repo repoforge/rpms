@@ -1,0 +1,11 @@
+--- libpaper-1.1.20/aclocal.m4.orig	2006-01-07 16:10:33.000000000 -0500
++++ libpaper-1.1.20/aclocal.m4	2007-07-09 09:09:07.000000000 -0400
+@@ -6433,7 +6433,7 @@ AC_DEFUN([AM_AUTOMAKE_VERSION], [am__api
+ # Call AM_AUTOMAKE_VERSION so it can be traced.
+ # This function is AC_REQUIREd by AC_INIT_AUTOMAKE.
+ AC_DEFUN([AM_SET_CURRENT_AUTOMAKE_VERSION],
+-	 [AM_AUTOMAKE_VERSION([1.9.6])])
++	 [AM_AUTOMAKE_VERSION([1.10])])
+ 
+ # AM_AUX_DIR_EXPAND                                         -*- Autoconf -*-
+ 

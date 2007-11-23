@@ -50,6 +50,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man3/Pod::Wordlist.3pm.gz
 %{_bindir}/podspell
 %dir %{perl_vendorlib}/Pod/
+#%{perl_vendorlib}/Pod/Spell/
 %{perl_vendorlib}/Pod/Spell.pm
 %{perl_vendorlib}/Pod/Wordlist.pm
 %{perl_vendorlib}/Pod/Wordlist.pod

@@ -20,10 +20,12 @@
 %{?rh7:%define _without_fontconfig 1}
 %{?el2:%define _without_fontconfig 1}
 
+%define desktop_vendor rpmforge
+
 Summary: Unicode version of rxvt
 Name: rxvt-unicode
 Version: 8.4
-Release: 1
+Release: 2
 License: GPL
 Group: User Interface/X
 URL: http://software.schmorp.de/
@@ -124,5 +126,8 @@ desktop-file-install --vendor=%{desktop_vendor} \
 %{_libdir}/urxvt/
 
 %changelog
+* Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 8.4-2
+- Define %%{desktop_vendor}.
+
 * Sun Nov 11 2007 Dag Wieers <dag@wieers.com> - 8.4-1
 - Initial package. (using DAR)

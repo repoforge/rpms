@@ -7,11 +7,11 @@
 
 %define real_name Template-Toolkit
 
-Summary: Template processing system
+Summary: Comprehensive template processing system
 Name: perl-Template-Toolkit
 Version: 2.19
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Template-Toolkit/
 

@@ -9,8 +9,8 @@
 
 Summary: Parses mathematical expressions
 Name: perl-Math-Expr
-Version: 0.2
-Release: 1.2
+Version: 0.4
+Release: 1
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Expr/
@@ -49,14 +49,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man3/*
+%doc COPYING MANIFEST README TODO
+%doc %{_mandir}/man3/Math::Expr.3pm*
+%doc %{_mandir}/man3/Math::Expr::*.3pm*
+%dir %{perl_vendorlib}/Math/
+%{perl_vendorlib}/Math/Expr/
 %{perl_vendorlib}/Math/Expr.pm
-%{perl_vendorlib}/Math/Expr
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.2-1.2
-- Rebuild for Fedora Core 5.
+* Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 0.4-1
+- Updated to release 0.4.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.2-1
 - Updated to release 0.2.

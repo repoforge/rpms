@@ -15,6 +15,7 @@ Group: Applications/System
 URL: http://syslinux.zytor.com/
 
 Source: ftp://ftp.kernel.org/pub/linux/utils/boot/syslinux/syslinux-%{version}.tar.bz2
+Patch: syslinux-3.53-gcc296.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386 x86_64
@@ -32,6 +33,7 @@ MEMDISK, which loads legacy operating systems from these media.
 
 %prep
 %setup
+%patch0 -p0 -b .gcc296
 
 %build
 export CFLAGS="-Werror -Wno-unused -finline-limit=2000"

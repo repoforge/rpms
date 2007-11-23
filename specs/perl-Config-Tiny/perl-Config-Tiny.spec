@@ -7,7 +7,7 @@
 
 %define real_name Config-Tiny
 
-Summary: Read and write ini style files
+Summary: Read/Write .ini style files with as little code as possible
 Name: perl-Config-Tiny
 Version: 2.12
 Release: 1
@@ -61,6 +61,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes LICENSE MANIFEST META.yml README
 %doc %{_mandir}/man3/Config::Tiny.3pm*
 %dir %{perl_vendorlib}/Config/
+#%{perl_vendorlib}/Config/Tiny/
 %{perl_vendorlib}/Config/Tiny.pm
 
 %changelog

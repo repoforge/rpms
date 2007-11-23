@@ -16,8 +16,8 @@ Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Courier-Filter/
 
 Source: http://www.cpan.org/authors/id/J/JM/JMEHNLE/courier-filter/Courier-Filter-%{version}.tar.gz
-Source1: pureperlfilter.conf
-Patch0: Courier-Filter-Build.patch
+#Source1: pureperlfilter.conf
+#Patch0: Courier-Filter-Build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -31,7 +31,7 @@ A purely Perl-based mail filter framework for the Courier MTA.
 
 %prep
 %setup -n %{real_name}-%{version}
-%patch0 -p1
+#patch0 -p1
 
 %build
 #%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -56,10 +56,10 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES INSTALL MANIFEST META.yml README SIGNATURE TODO examples/
-%doc %{_mandir}/man3/Courier::Config.3pm*
-%dir %{perl_vendorlib}/Courier/
-#%{perl_vendorlib}/Courier/Filter/
-%{perl_vendorlib}/Courier/Filter.pm
+%doc %{_mandir}/man1/test-filter-module.1*
+%doc %{_mandir}/man3/Courier::*.3pm*
+%{_bindir}/test-filter-module
+%{_datadir}/courier-filter-perl/
 
 %changelog
 * Mon Nov 12 2007 Dag Wieers <dag@wieers.com> - 0.17-1

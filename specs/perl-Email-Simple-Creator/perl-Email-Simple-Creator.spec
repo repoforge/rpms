@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Casey West <casey$geeknest,com>
+# Upstream: Ricardo SIGNES <rjbs$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

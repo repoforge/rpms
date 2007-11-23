@@ -1,0 +1,12 @@
+diff -uNr gnome-sudoku-0.5.0-original/setup.py gnome-sudoku-0.5.0/setup.py
+--- gnome-sudoku-0.5.0-original/setup.py	2006-06-17 09:30:32.000000000 -0400
++++ gnome-sudoku-0.5.0/setup.py	2006-09-15 21:10:50.000000000 -0400
+@@ -15,7 +15,7 @@
+ # first we have to extend our path to include src/lib/
+ sys.path.append(os.path.join(os.path.split(__file__)[0],'src','lib'))
+ #print sys.path
+-from defaults import VERSION
++from defaults_version import VERSION
+ 
+ name= 'gnome-sudoku'
+ 

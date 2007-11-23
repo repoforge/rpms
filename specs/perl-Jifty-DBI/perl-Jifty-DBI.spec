@@ -20,8 +20,30 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 2:5.8.3
+BuildRequires: perl(Cache::Memcached)
+BuildRequires: perl(Cache::Simple::TimedExpiry) >= 0.21
+BuildRequires: perl(Class::Accessor::Fast)
+BuildRequires: perl(Class::Data::Inheritable)
+BuildRequires: perl(Class::ReturnValue) >= 0.4
+BuildRequires: perl(Class::Trigger) >= 0.12
+BuildRequires: perl(Clone)
 BuildRequires: perl(DBD::SQLite)
+BuildRequires: perl(DBI)
+BuildRequires: perl(DBIx::DBSchema) >= 0.34
+BuildRequires: perl(Data::Page)
+BuildRequires: perl(DateTime) >= 0.34
+BuildRequires: perl(DateTime::Format::ISO8601) >= 0.0403
+BuildRequires: perl(DateTime::Format::Strptime) >= 1.0702
+BuildRequires: perl(Encode) >= 2.1
+BuildRequires: perl(Exporter::Lite)
+BuildRequires: perl(Hash::Merge)
+BuildRequires: perl(Lingua::EN::Inflect)
+BuildRequires: perl(Object::Declare) >= 0.22
+BuildRequires: perl(Scalar::Defer) >= 0.1
 BuildRequires: perl(Test::More) >= 0.52
+BuildRequires: perl(UNIVERSAL::require)
+BuildRequires: perl(version)
+BuildRequires: perl(YAML::Syck)
 Requires: perl >= 2:5.8.3
 
 %description

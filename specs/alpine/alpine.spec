@@ -3,8 +3,8 @@
 
 Summary: Alternative Pine mail user agent implementation
 Name: alpine
-Version: 0.9999
-Release: 2
+Version: 0.99999
+Release: 1
 License: Apache License
 Group: Applications/Internet
 URL: http://www.washington.edu/alpine/
@@ -83,6 +83,9 @@ touch imap/ip6
 %{_sbindir}/mlock
 
 %changelog
+* Tue Nov 20 2007 Dag Wieers <dag@wieers.com> - 0.99999-1
+- Updated to release 0.99999.
+
 * Sun Oct 28 2007 Dag Wieers <dag@wieers.com> - 0.9999-2
 - Enabled passfile support.
 

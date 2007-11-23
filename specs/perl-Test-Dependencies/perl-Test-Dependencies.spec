@@ -20,12 +20,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(Test::Builder::Tester) >= 0.64
 BuildRequires: perl(B::PerlReq)
 BuildRequires: perl(File::Find::Rule)
 BuildRequires: perl(IPC::Cmd)
 BuildRequires: perl(Module::CoreList)
 BuildRequires: perl(PerlReq::Utils)
+BuildRequires: perl(Test::Builder::Module)
+BuildRequires: perl(Test::Builder::Tester) >= 0.64
 BuildRequires: perl(YAML)
 
 %description
