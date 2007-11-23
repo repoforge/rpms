@@ -1,29 +1,27 @@
 # $Id$
-# Authority: dries
-# Upstream: Terrence Brannon <metaperl$urth,org>
+# Authority: dag
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Class-Eroot
+%define real_name Class-Classgen-classgen
 
-Summary: Eternal root to handle persistent objects
-Name: perl-Class-Eroot
-Version: 2.1
-Release: 2
+Summary: Simplifies creation, manipulation and usage of complex objects
+Name: perl-Class-Classgen-classgen
+Version: 3.03
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Class-Eroot/
+URL: http://search.cpan.org/dist/Class-Classgen-classgen/
 
-Source: http://search.cpan.org/CPAN/authors/id/T/TB/TBONE/Class-Eroot-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/M/MS/MSCHLUE/Class-Classgen-classgen-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
-An eternal root to handle persistent objects.
+Simplifies creation, manipulation and usage of complex objects.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -39,19 +37,21 @@ An eternal root to handle persistent objects.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST
-%doc %{_mandir}/man3/Class:Eroot.3pm*
+%doc Changes MANIFEST README examples/
+%doc %{_mandir}/man1/classgen.1*
+%doc %{_mandir}/man3/Class::Classgen::*.3pm*
+%{_bindir}/classgen
 %dir %{perl_vendorlib}/Class/
-%{perl_vendorlib}/Class/Eroot.pm
+%{perl_vendorlib}/Class/Classgen/
 
 %changelog
-* Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 2.1-2
-- Improved package.
-
-* Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.1-1
-- Initial package.
+* Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 3.03-1
+- Initial package. (using DAR)

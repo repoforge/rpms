@@ -1,29 +1,28 @@
 # $Id$
-# Authority: dries
-# Upstream: Michael Accardo <mikeaccardo$yahoo,com>
+# Authority: dag
+# Upstream: Anno Siegel <siegel$zrz,tu-berlin,de>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name HTML-Perlinfo
+%define real_name Text-Aligner
 
-Summary: Display a lot of Perl information in HTML format
-Name: perl-HTML-Perlinfo
-Version: 1.47
+Summary: Used to justify strings to various alignment styles
+Name: perl-Text-Aligner
+Version: 0.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/HTML-Perlinfo/
+URL: http://search.cpan.org/dist/Text-Aligner/
 
-Source: http://www.cpan.org/modules/by-module/HTML/HTML-Perlinfo-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Text/Text-Aligner-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
-Display a lot of Perl information in HTML format.
+Used to justify strings to various alignment styles.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -44,13 +43,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/HTML::Perlinfo.3pm*
-%doc %{_mandir}/man3/HTML::Perlinfo::*.3pm*
-%dir %{perl_vendorlib}/HTML/
-%{perl_vendorlib}/HTML/Perlinfo/
-%{perl_vendorlib}/HTML/Perlinfo.pm
+%doc Changes LICENSE MANIFEST MANIFEST.SKIP META.yml README
+%doc %{_mandir}/man3/Text::Aligner.3pm*
+%dir %{perl_vendorlib}/Text/
+#%{perl_vendorlib}/Text/Aligner/
+%{perl_vendorlib}/Text/Aligner.pm
 
 %changelog
-* Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.47-1
-- Initial package.
+* Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 0.03-1
+- Initial package. (using DAR)

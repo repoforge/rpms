@@ -10,7 +10,7 @@
 Summary: Clone of PHP's phpinfo function for Perl
 Name: perl-PHP-Perlinfo
 Version: 0.08
-Release: 1.2
+Release: 3
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PHP-Perlinfo/
@@ -20,7 +20,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+Provides: perl(PHP::Perlinfo::Apache) = %{version}-%{release}
+Provides: perl(PHP::Perlinfo::Credits) = %{version}-%{release}
+Provides: perl(PHP::Perlinfo::General) = %{version}-%{release}
 Provides: perl(PHP::Perlinfo::HTML) = %{version}-%{release}
+Provides: perl(PHP::Perlinfo::License) = %{version}-%{release}
+Provides: perl(PHP::Perlinfo::Modules) = %{version}-%{release}
+Provides: perl(PHP::Perlinfo::Variables) = %{version}-%{release}
 
 %description
 This module outputs a large amount of information (only in HTML in this
@@ -48,14 +54,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/PHP::Perlinfo.3pm*
 %dir %{perl_vendorlib}/PHP/
-%{perl_vendorlib}/PHP/Perlinfo.pm
 %{perl_vendorlib}/PHP/Perlinfo/
+%{perl_vendorlib}/PHP/Perlinfo.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1.2
-- Rebuild for Fedora Core 5.
+* Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 0.08-3
+- Added more missing provides.
 
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Updated to release 0.08.

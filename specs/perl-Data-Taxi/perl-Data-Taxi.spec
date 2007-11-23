@@ -1,29 +1,28 @@
 # $Id$
-# Authority: dries
-# Upstream: Michael Accardo <mikeaccardo$yahoo,com>
+# Authority: dag
+# Upstream: Miko O'Sullivan <miko$idocs,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name HTML-Perlinfo
+%define real_name Data-Taxi
 
-Summary: Display a lot of Perl information in HTML format
-Name: perl-HTML-Perlinfo
-Version: 1.47
+Summary: Taint-aware, XML-ish data serialization
+Name: perl-Data-Taxi
+Version: 0.94
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/HTML-Perlinfo/
+URL: http://search.cpan.org/dist/Data-Taxi/
 
-Source: http://www.cpan.org/modules/by-module/HTML/HTML-Perlinfo-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Data/Data-Taxi-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
-Display a lot of Perl information in HTML format.
+Taint-aware, XML-ish data serialization.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -44,13 +43,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/HTML::Perlinfo.3pm*
-%doc %{_mandir}/man3/HTML::Perlinfo::*.3pm*
-%dir %{perl_vendorlib}/HTML/
-%{perl_vendorlib}/HTML/Perlinfo/
-%{perl_vendorlib}/HTML/Perlinfo.pm
+%doc MANIFEST README
+%doc %{_mandir}/man3/Data::Taxi.3pm*
+%dir %{perl_vendorlib}/Data/
+#%{perl_vendorlib}/Data/Taxi/
+%{perl_vendorlib}/Data/Taxi.pm
 
 %changelog
-* Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.47-1
-- Initial package.
+* Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 0.94-1
+- Initial package. (using DAR)

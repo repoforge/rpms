@@ -1,29 +1,28 @@
 # $Id$
-# Authority: dries
-# Upstream: Michael Accardo <mikeaccardo$yahoo,com>
+# Authority: dag
+# Upstream: Tatsuhiko Miyagawa <miyagawa$bulknews,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name HTML-Perlinfo
+%define real_name Email-Valid-Loose
 
-Summary: Display a lot of Perl information in HTML format
-Name: perl-HTML-Perlinfo
-Version: 1.47
+Summary: Email::Valid which allows dot before at mark
+Name: perl-Email-Valid-Loose
+Version: 0.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/HTML-Perlinfo/
+URL: http://search.cpan.org/dist/Email-Valid-Loose/
 
-Source: http://www.cpan.org/modules/by-module/HTML/HTML-Perlinfo-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Email/Email-Valid-Loose-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
-Display a lot of Perl information in HTML format.
+Email::Valid which allows dot before at mark
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -44,13 +43,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/HTML::Perlinfo.3pm*
-%doc %{_mandir}/man3/HTML::Perlinfo::*.3pm*
-%dir %{perl_vendorlib}/HTML/
-%{perl_vendorlib}/HTML/Perlinfo/
-%{perl_vendorlib}/HTML/Perlinfo.pm
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Email::Valid::Loose.3pm*
+%dir %{perl_vendorlib}/Email/
+%dir %{perl_vendorlib}/Email/Valid/
+#%{perl_vendorlib}/Email/Valid/Loose/
+%{perl_vendorlib}/Email/Valid/Loose.pm
 
 %changelog
-* Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.47-1
-- Initial package.
+* Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 0.05-1
+- Initial package. (using DAR)

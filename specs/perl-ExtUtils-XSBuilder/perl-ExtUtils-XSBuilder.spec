@@ -21,7 +21,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl
 
 %description
 ExtUtils-XSBuilder is a Perl module that implements an automatic

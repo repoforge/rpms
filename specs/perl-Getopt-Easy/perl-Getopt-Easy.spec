@@ -1,29 +1,28 @@
 # $Id$
-# Authority: dries
-# Upstream: Michael Accardo <mikeaccardo$yahoo,com>
+# Authority: dag
+# Upstream: Jon Bjornstad <jon$icogitate,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name HTML-Perlinfo
+%define real_name Getopt-Easy
 
-Summary: Display a lot of Perl information in HTML format
-Name: perl-HTML-Perlinfo
-Version: 1.47
+Summary: Parses command line options in a simple but capable way
+Name: perl-Getopt-Easy
+Version: 0.1
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/HTML-Perlinfo/
+URL: http://search.cpan.org/dist/Getopt-Easy/
 
-Source: http://www.cpan.org/modules/by-module/HTML/HTML-Perlinfo-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Getopt/Getopt-Easy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
-Display a lot of Perl information in HTML format.
+Parses command line options in a simple but capable way.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -44,13 +43,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/HTML::Perlinfo.3pm*
-%doc %{_mandir}/man3/HTML::Perlinfo::*.3pm*
-%dir %{perl_vendorlib}/HTML/
-%{perl_vendorlib}/HTML/Perlinfo/
-%{perl_vendorlib}/HTML/Perlinfo.pm
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Getopt::Easy.3pm*
+%dir %{perl_vendorlib}/Getopt/
+#%{perl_vendorlib}/Getopt/Easy/
+%{perl_vendorlib}/Getopt/Easy.pm
 
 %changelog
-* Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.47-1
-- Initial package.
+* Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 0.1-1
+- Initial package. (using DAR)
