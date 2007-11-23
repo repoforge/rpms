@@ -24,10 +24,6 @@ BuildRequires: perl
 %description
 perl-Unix-ConfigFile is a Perl interface to various Unix configuration files.
 
-This package contains the following Perl module:
-
-    Unix::AliasFile
-
 %prep
 %setup -n %{real_name}-%{version}
 
