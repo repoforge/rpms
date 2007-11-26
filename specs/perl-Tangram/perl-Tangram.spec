@@ -10,7 +10,7 @@
 Summary: Store pure objects in standard relational databases
 Name: perl-Tangram
 Version: 2.10
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tangram/
@@ -20,6 +20,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+
+### Provides required by package itself
+Provides: perl(Tangram::Compat::Stub)
 
 %description
 Store pure objects in standard relational databases.
@@ -52,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Tangram.pod
 
 %changelog
+* Mon Nov 26 2007 Dag Wieers <dag@wieers.com> - 2.10-2
+- Added selfcontained provides.
+
 * Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 2.10-1
 - Updated to release 2.10.
 
