@@ -6,21 +6,21 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Convert-BER
-%define real_version 1.3101
+%define real_version 1.31
 
 Summary: ASN.1 Basic Encoding Rules perl module
 Name: perl-Convert-BER
-Version: 1.31.01
-Release: 1.2
-License: distributable
+Version: 1.3101
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-BER/
 
-Source: http://www.cpan.org/modules/by-module/Convert/Convert-BER-%{real_version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Convert/Convert-BER-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.00503
 BuildRequires: perl(ExtUtils::MakeMaker) >= 0:5.00503
 Requires: perl >= 0:5.00503
 
@@ -28,7 +28,7 @@ Requires: perl >= 0:5.00503
 ASN.1 Basic Encoding Rules perl module.
 
 %prep
-%setup -n %{real_name}-%{real_version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -47,9 +47,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog MANIFEST README
-%doc %{_mandir}/man?/*
-%{perl_vendorlib}/Convert/BER.p*
+%doc %{_mandir}/man3/Convert::BER.3pm*
+%dir %{perl_vendorlib}/Convert/
+#%{perl_vendorlib}/Convert/BER/
+%{perl_vendorlib}/Convert/BER.pm
+%{perl_vendorlib}/Convert/BER.pod
 
 %changelog
-* Tue Mar 16 2004 Dag Wieers <dag@wieers.com> - 1.32.01-1
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 1.3101-1
+- Switch to upstream version.
+
+* Tue Mar 16 2004 Dag Wieers <dag@wieers.com> - 1.31.01-1
 - Initial package. (using DAR)

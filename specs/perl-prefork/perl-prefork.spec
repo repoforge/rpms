@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Adam Kennedy, L<http://ali.as/>, cpan@ali.as
+# Upstream: Adam Kennedy <cpan$ali,as>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Optimized module loading for forking or non-forking processes
 Name: perl-prefork
-Version: 1.01
+Version: 1.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,8 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.005
-BuildRequires: perl(Test::More) >= 0.47
 BuildRequires: perl(File::Spec) >= 0.8
+BuildRequires: perl(Test::More) >= 0.47
 Requires: perl >= 0:5.005
 
 %description
@@ -51,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/prefork.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 1.02-1
+- Updated to release 1.02.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 1.01-1
 - Initial package. (using DAR)

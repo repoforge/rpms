@@ -6,17 +6,17 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name DateTime-Util-Astro
-%define real_version 0.11001
+%define real_version 0.11.1
 
 Summary: Astronomical Calendar Calculations
 Name: perl-DateTime-Util-Astro
-Version: 0.11.1
+Version: 0.11001
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Util-Astro/
 
-Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Util-Astro-%{real_version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Util-Astro-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -29,7 +29,7 @@ BuildRequires: perl(Module::Build)
 This module contains functions for astronomical calendar calculations.
 
 %prep
-%setup -n %{real_name}-%{real_version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -49,12 +49,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc CHANGES LICENSE MANIFEST META.yml
 %doc %{_mandir}/man3/DateTime::Util::Astro.3pm*
+%doc %{_mandir}/man3/DateTime::Util::Astro::*.3pm*
 %dir %{perl_vendorlib}/DateTime/
 %dir %{perl_vendorlib}/DateTime/Util/
 %{perl_vendorlib}/DateTime/Util/Astro/
-#%{perl_vendorlib}/DateTime/Util/Astro.pm
+%{perl_vendorlib}/DateTime/Util/Astro.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.11001-1
+- Switch to upstream version.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.11.1-1
 - Updated to release 0.11001.
 

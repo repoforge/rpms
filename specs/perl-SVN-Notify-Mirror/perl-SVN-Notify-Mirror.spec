@@ -1,22 +1,22 @@
 # $Id$
 # Authority: dries
-# Upstream: John Peacock <jpeacock$rowman,com>
+# Upstream: John Peacock <jpeacock$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name SVN-Notify-Mirror
-%define real_version 0.03603
+%define real_version 0.36.3
 
 Summary: Keep a mirrored working copy of a repository path
 Name: perl-SVN-Notify-Mirror
-Version: 0.36.3
+Version: 0.03603
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Notify-Mirror/
 
-Source: http://www.cpan.org/modules/by-module/SVN/SVN-Notify-Mirror-%{real_version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/SVN/SVN-Notify-Mirror-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -28,7 +28,7 @@ BuildRequires: perl(Module::Build)
 Keep a mirrored working copy of a repository path.
 
 %prep
-%setup -n %{real_name}-%{real_version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -55,7 +55,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/SVN/Notify/Mirror.pm
 
 %changelog
-* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.36.3
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.03603-1
+- Switch to upstream version.
+
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.36.3-1
 - Updated to release 0.03603.
 
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.036-1

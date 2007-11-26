@@ -9,7 +9,7 @@
 
 Summary: Interface to the C Clustering Library
 Name: perl-Algorithm-Cluster
-Version: 1.36
+Version: 1.37
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -45,11 +45,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc INSTALL MANIFEST META.yml README
 %doc %{_mandir}/man3/Algorithm::Cluster.3pm*
+%dir %{perl_vendorarch}/auto/Algorithm/
+%{perl_vendorarch}/auto/Algorithm/Cluster/
 %dir %{perl_vendorarch}/Algorithm/
 %{perl_vendorarch}/Algorithm/Cluster.pm
-%{perl_vendorarch}/auto/Algorithm/Cluster/
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 1.37-1
+- Updated to release 1.37.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.36-1
 - Updated to release 1.36.
 

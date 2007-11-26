@@ -9,7 +9,7 @@
 
 Summary: Store pure objects in standard relational databases
 Name: perl-Tangram
-Version: 2.09
+Version: 2.10
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Tangram.pod
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 2.10-1
+- Updated to release 2.10.
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 2.09-1
 - Initial package. (using DAR)

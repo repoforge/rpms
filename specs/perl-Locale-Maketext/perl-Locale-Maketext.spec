@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Andy Lester <andy$petdance,com>
 
 # ExclusiveDist: rh6 el2 rh7
 
@@ -10,9 +11,9 @@
 
 Summary: framework for localization and inheritance-based lexicons for Perl
 Name: perl-Locale-Maketext
-Version: 1.10
+Version: 1.12
 Release: 1
-License: distributable
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Locale-Maketext/
 
@@ -58,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Locale/Maketext.pod
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 1.12-1
+- Updated to release 1.12.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 1.10-1
 - Updated to release 1.10.
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Matt Simerson (matt$tnpi,net)
+# Upstream: Matt Simerson <matt,simerson$gmail,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,9 +9,9 @@
 
 Summary: Apache log file splitter, processor, sorter, etc
 Name: perl-Apache-Logmonster
-Version: 3.03
+Version: 3.04
 Release: 1
-License: BSD
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-Logmonster/
 
@@ -55,16 +55,22 @@ find doc/ examples/ -type f -exec %{__chmod} a-x {} \;
 %defattr(-, root, root, 0755)
 %doc Changes FAQ INSTALL MANIFEST MANIFEST.SKIP META.yml README TODO doc/ examples/
 #%doc %{_mandir}/man1/logmonster.pl.1*
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Apache::Logmonster.3pm*
+%doc %{_mandir}/man3/Apache::Logmonster::Perl.3pm*
+%doc %{_mandir}/man3/Apache::Logmonster::Utility.3pm*
+%doc %{_mandir}/man3/Regexp::Log::Monster.3pm*
 %dir %{perl_vendorlib}/Apache/
 %{perl_vendorlib}/Apache/Logmonster/
 %{perl_vendorlib}/Apache/Logmonster.pm
 #%{perl_vendorlib}/Apache/logmonster.pl
 %dir %{perl_vendorlib}/Regexp/Log/
 %{perl_vendorlib}/Regexp/Log/Monster.pm
-%{perl_vendorlib}/Regexp/Log.pm
+#%{perl_vendorlib}/Regexp/Log.pm
 %exclude %{_bindir}/install_freebsd_deps.sh
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 3.04-1
+- Updated to release 3.04.
+
 * Mon Aug 20 2007 Christoph Maser <cmr$financial,com> - 3.03-1
 - Initial package. (using DAR)

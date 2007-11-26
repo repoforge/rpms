@@ -6,17 +6,17 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Perl6-Junction
-%define real_version 1.30000
+%define real_version 1.30
 
 Summary: Perl6 style Junction operators in Perl5
 Name: perl-Perl6-Junction
-Version: 1.30
+Version: 1.30000
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Perl6-Junction/
 
-Source: http://www.cpan.org/modules/by-module/Perl6/Perl6-Junction-%{real_version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Perl6/Perl6-Junction-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -26,7 +26,7 @@ BuildRequires: perl
 Perl6 style Junction operators in Perl5.
 
 %prep
-%setup -n %{real_name}-%{real_version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -51,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Perl6/Junction.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 1.30000-1
+- Switch to upstream version.
+
 * Wed Nov 21 2007 Dag Wieers <dag@wieers.com> - 1.30-1
 - Initial package. (using DAR)

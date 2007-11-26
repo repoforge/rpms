@@ -9,7 +9,7 @@
 
 Summary: Warwick University academic calendar
 Name: perl-DateTime-Event-WarwickUniversity
-Version: 0.01
+Version: 0.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -29,12 +29,15 @@ Warwick University academic calendar.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+#%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+#%{__make} %{?_smp_mflags}
+%{__perl} Build.PL
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+#%{__make} pure_install
+PERL_INSTALL_ROOT="%{buildroot}" ./Build install installdirs="vendor"
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -48,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man3/DateTime::Event::WarwickUniversity*
 %{perl_vendorlib}/DateTime/Event/WarwickUniversity.pm
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.04-1
+- Updated to release 0.04.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

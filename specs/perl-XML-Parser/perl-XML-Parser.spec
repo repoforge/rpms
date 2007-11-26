@@ -11,7 +11,7 @@
 
 Summary: XML-Parser Perl module
 Name: perl-XML-Parser
-Version: 2.35
+Version: 2.36
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -61,6 +61,9 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/XML/Parser.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 2.36-1
+- Updated to release 2.36.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 2.35-1
 - Updated to release 2.35.
 

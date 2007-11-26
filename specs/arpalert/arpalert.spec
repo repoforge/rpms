@@ -9,7 +9,7 @@
 
 Summary: Monitor ethernet networks
 Name: arpalert
-Version: 2.0.7
+Version: 2.0.9
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -151,6 +151,7 @@ fi
 %doc CHANGES COPYING README
 %doc %{_mandir}/man8/arpalert.8*
 %config %{_initrddir}/arpalert
+%{_includedir}/arpalert.h
 %config(noreplace) %{_sysconfdir}/arpalert/
 %{_sbindir}/arpalert
 
@@ -158,6 +159,9 @@ fi
 %{_localstatedir}/lib/arpalert/
 
 %changelog
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 2.0.9-1
+- Updated to release 2.0.9.
+
 * Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 2.0.7-1
 - Updated to release 2.0.7.
 

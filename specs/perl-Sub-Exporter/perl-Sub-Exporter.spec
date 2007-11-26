@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements a sophisticated exporter for custom-built routines
 Name: perl-Sub-Exporter
-Version: 0.976
+Version: 0.978
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Sub/Exporter.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.978-1
+- Updated to release 0.978.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.976-1
 - Updated to release 0.976.
 

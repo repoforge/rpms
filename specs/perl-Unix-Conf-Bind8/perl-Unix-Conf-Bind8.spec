@@ -10,7 +10,7 @@
 Summary: Front end for a suite of classes for manipulating a Bind8 conf and associated zone record files
 Name: perl-Unix-Conf-Bind8
 Version: 0.3
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unix-Conf-Bind8/
@@ -21,13 +21,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 
+### Provides required by package itself
+Provides: perl(Unix::Conf/Bind8/DB/Parser)
+
 %description
 Front end for a suite of classes for manipulating a Bind8 conf
 and associated zone record files.
-
-This package contains the following Perl module:
-
-    Unix::Conf::Bind8
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -58,5 +57,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Unix/Conf/Bind8.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.3-2
+- Added selfcontained provides.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.3-1
 - Initial package. (using DAR)

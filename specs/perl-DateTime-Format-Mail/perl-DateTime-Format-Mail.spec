@@ -6,17 +6,17 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name DateTime-Format-Mail
-%define real_version 0.3001
+%define real_version 0.30.1
 
 Summary: Perl module to convert between DateTime and RFC2822/822 formats
 Name: perl-DateTime-Format-Mail
-Version: 0.30.1
+Version: 0.3001
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Format-Mail/
 
-Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Format-Mail-%{real_version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Format-Mail-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -29,12 +29,8 @@ Requires: perl
 DateTime-Format-Mail is a Perl module to convert between DateTime
 and RFC2822/822 formats.
 
-This package contains the following Perl module:
-
-    DateTime::Format::Mail
-
 %prep
-%setup -n %{real_name}-%{real_version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -56,9 +52,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man3/DateTime::Format::Mail.3pm*
 %dir %{perl_vendorlib}/DateTime/
 %dir %{perl_vendorlib}/DateTime/Format/
+#%{perl_vendorlib}/DateTime/Format/Mail/
 %{perl_vendorlib}/DateTime/Format/Mail.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.3001-1
+- Switch to upstream version.
+
 * Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 0.30.1-1
 - Updated to release 0.3001.
 

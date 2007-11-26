@@ -8,7 +8,7 @@
 Summary: Accurately serialize a data structure as Perl code
 Name: perl-Data-Dump-Streamer
 Version: 2.05
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Dump-Streamer/
@@ -17,6 +17,9 @@ Source: http://www.cpan.org/modules/by-module/Data/Data-Dump-Streamer-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
+
+### Provides required by package itself
+Provides: perl(Data::Dump::Streamer::_::Printers)
 
 %description
 Accurately serialize a data structure as Perl code.
@@ -51,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Data/Dump/Streamer.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 2.05-2
+- Added selfcontained provides.
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 2.05-1
 - Initial package. (using DAR)

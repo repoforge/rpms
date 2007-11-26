@@ -9,14 +9,14 @@
 
 Summary: Perl module that implements a complete modern object system
 Name: perl-Moose
-Version: 0.29
+Version: 0.30
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Moose/
 
-Source: http://www.cpan.org/authors/id/G/GR/GRODITI/Moose-%{version}.tar.gz
-#Source: http://www.cpan.org/authors/id/S/ST/STEVAN/Moose-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/S/ST/STEVAN/Moose-%{version}.tar.gz
+#Source: http://www.cpan.org/authors/id/G/GR/GRODITI/Moose-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -58,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Moose.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.30-1
+- Updated to release 0.30.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.29-1
 - Updated to release 0.29.
 

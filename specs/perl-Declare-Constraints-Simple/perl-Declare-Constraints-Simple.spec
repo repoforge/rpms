@@ -10,7 +10,7 @@
 Summary: Declarative Validation of Data Structures
 Name: perl-Declare-Constraints-Simple
 Version: 0.03
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Declare-Constraints-Simple/
@@ -22,6 +22,9 @@ BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More)
+
+### Provides required by package itself
+Provides: perl(Declare::Constraints::Simple-Library)
 
 %description
 Declarative Validation of Data Structures.
@@ -54,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Declare/Constraints/Simple.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.03-2
+- Added selfcontained provides.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.03-1
 - Updated to release 0.03.
 

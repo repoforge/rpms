@@ -50,14 +50,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man3/*
+%doc MANIFEST MANIFEST.SKIP README
+%doc %{_mandir}/man3/Data::HexDump.3pm*
 %{_bindir}/perlhexdump
+%dir %{perl_vendorlib}/Data/
+#%{perl_vendorlib}/Data/HexDump/
 %{perl_vendorlib}/Data/HexDump.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

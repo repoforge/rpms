@@ -9,7 +9,7 @@
 
 Summary: Perl module for terminal screen handling and optimization
 Name: perl-Curses
-Version: 1.17
+Version: 1.20
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,10 +49,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Artistic Copying HISTORY INSTALL MANIFEST README
 %doc %{_mandir}/man3/Curses.3pm*
-%{perl_vendorarch}/Curses.pm
 %{perl_vendorarch}/auto/Curses/
+%{perl_vendorarch}/Curses.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 1.20-1
+- Updated to release 1.20.
+
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 1.15-1
 - Updated to release 1.15.
 

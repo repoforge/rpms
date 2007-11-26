@@ -9,11 +9,12 @@
 
 Summary: Perl port of log4j
 Name: perl-Log-Log4perl
-Version: 1.13
+Version: 1.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://log4perl.sourceforge.net/
+URL: http://search.cpan.org/dist/Log-Log4perl/
+#URL: http://log4perl.sourceforge.net/
 
 Source: http://www.cpan.org/modules/by-module/Log/Log-Log4perl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -87,6 +88,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Log/Log4perl/Appender/RRDs.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 1.14-1
+- Updated to release 1.14.
+
 * Sun Nov 11 2007 Dag Wieers <dag@wieers.com> - 1.13-1
 - Updated to release 1.13.
 

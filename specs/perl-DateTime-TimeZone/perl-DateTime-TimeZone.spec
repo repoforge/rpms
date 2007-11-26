@@ -6,17 +6,17 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name DateTime-TimeZone
-%define real_version 0.6904
+%define real_version 0.69.4
 
 Summary: Time zone object base class and factory
 Name: perl-DateTime-TimeZone
-Version: 0.69.4
-Release: 2
+Version: 0.6904
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-TimeZone/
 
-Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-TimeZone-%{real_version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-TimeZone-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -33,7 +33,7 @@ time zone calculations.  This conversion is done with the script in
 tools/parse_olson.
 
 %prep
-%setup -n %{real_name}-%{real_version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -65,6 +65,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %exclude %{perl_vendorlib}/DateTime/TimeZone/Local/Win32.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.6904-1
+- Switch to upstream version.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.69.4-2
 - Excluded Win32 dependencies by excluding module. (Ralph Angenendt)
 

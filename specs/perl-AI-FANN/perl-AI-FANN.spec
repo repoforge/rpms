@@ -31,7 +31,7 @@ This module provides a Perl wrapper for the FANN library
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -50,10 +50,10 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README samples/
 %doc %{_mandir}/man3/AI::FANN.3pm*
-%dir %{perl_vendorarch}/AI/
-%{perl_vendorarch}/AI/FANN.pm
 %dir %{perl_vendorarch}/auto/AI/
 %{perl_vendorarch}/auto/AI/FANN/
+%dir %{perl_vendorarch}/AI/
+%{perl_vendorarch}/AI/FANN.pm
 
 %changelog
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.07-1

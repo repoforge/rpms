@@ -6,11 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Qtk-QuickTk
-%define real_version 0.90
+%define real_version 0.9
 
 Summary: Perl module named Qtk-QuickTk
 Name: perl-Qtk-QuickTk
-Version: 0.9
+Version: 0.90
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -26,7 +26,7 @@ BuildRequires: perl
 perl-Qtk-QuickTk is a Perl module.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{real_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -53,5 +53,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Qtk/QuickTk.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.90-1
+- Switch to upstream version.
+
 * Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 0.9-1
 - Initial package. (using DAR)

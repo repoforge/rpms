@@ -6,17 +6,17 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name IO
-%define real_version 1.2301
+%define real_version 1.23
 
 Summary: Perl module to load various IO modules
 Name: perl-IO
-Version: 1.23.1
+Version: 1.2301
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO/
 
-Source: http://www.cpan.org/modules/by-module/IO/IO-%{real_version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/IO/IO-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -25,7 +25,7 @@ BuildRequires: perl
 perl-IO is a Perl module to load various IO modules.
 
 %prep
-%setup -n %{real_name}-%{real_version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -44,11 +44,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog MANIFEST META.yml README SIGNATURE
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/IO.3pm*
+%doc %{_mandir}/man3/IO::*.3pm*
+%{perl_vendorarch}/auto/IO/
 %{perl_vendorarch}/IO/
 %{perl_vendorarch}/IO.pm
-%{perl_vendorarch}/auto/IO/
 
 %changelog
-* Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 1.2301-1
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 1.2301-1
+- Switch to upstream version.
+
+* Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 1.23.1-1
 - Initial package. (using DAR)

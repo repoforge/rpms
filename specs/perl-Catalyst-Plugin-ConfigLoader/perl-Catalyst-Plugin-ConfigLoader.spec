@@ -9,7 +9,7 @@
 
 Summary: Perl module to load config files of various types
 Name: perl-Catalyst-Plugin-ConfigLoader
-Version: 0.18
+Version: 0.19
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Plugin-ConfigLoa
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 2:5.8.0
 BuildRequires: perl(Catalyst)
 BuildRequires: perl(Config::Any) >= 0.08
 BuildRequires: perl(Data::Visitor) >= 0.02
@@ -27,6 +27,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::Pod)
 BuildRequires: perl(Test::Pod::Coverage)
+Requires: perl >= 2:5.8.0
 Requires: perl(Catalyst)
 
 %description
@@ -62,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Catalyst/Plugin/ConfigLoader.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.19-1
+- Updated to release 0.19.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.18-1
 - Updated to release 0.18.
 

@@ -9,7 +9,7 @@
 Summary: Git core and tools
 Name: git
 Version: 1.5.2.1
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Tools
 URL: http://git.or.cz/
@@ -49,7 +49,7 @@ Graphical frontend to git.
 
 %package -n perl-Git
 Summary: Perl module that implements Git bindings
-Group: Development/CPAN
+Group: Applications/CPAN
 
 Requires: %{name} = %{version}-%{release}
 
@@ -104,6 +104,9 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 %{perl_vendorlib}/Git.pm
 
 %changelog
+* Sun Nov 25 2007 Dag Wieers <dag@wieers.com> - 1.5.2.1-2
+- Fix group tag.
+
 * Mon Jun 11 2007 Dag Wieers <dag@wieers.com> - 1.5.2.1-1
 - Update to release 1.5.2.1.
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Michel Rodriguez <mirod$xmltwig,com>
+# Upstream: Michel Rodriguez <xmltwig$gmail,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Add XPath support for HTML::TreeBuilder
 Name: perl-HTML-TreeBuilder-XPath
-Version: 0.08
+Version: 0.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,8 +51,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 #%{perl_vendorlib}/HTML/TreeBuilder/XPath/
 %{perl_vendorlib}/HTML/TreeBuilder/XPath.pm
 
-
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.09-1
+- Updated to release 0.09.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.08-1
 - Updated to release 0.08.
 

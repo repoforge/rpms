@@ -10,7 +10,7 @@
 Summary: Object Oriented Persistent Store
 Name: perl-OOPS
 Version: 0.2003
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/OOPS/
@@ -20,6 +20,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+
+### Provides required by package itself
+Provides: perl(OOPS::DBOdebug)
 
 %description
 Object Oriented Persistent Store.
@@ -51,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/OOPS.pod
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.2003-2
+- Added selfcontained provides.
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 0.2003-1
 - Initial package. (using DAR)

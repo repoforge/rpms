@@ -6,10 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name rpm-build-perl
+%define real_version 0.006006
 
 Summary: Calculate dependencies for Perl sources
 Name: perl-rpm-build-perl
-Version: 0.6.5
+Version: 0.6.6
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -45,7 +46,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README README.ALT
 %doc %{_mandir}/man1/perl.prov.1*
-%doc %{_mandir}/man1/perl.prov.files.1*
+#%doc %{_mandir}/man1/perl.prov.files.1*
 %doc %{_mandir}/man1/perl.req.1*
 %doc %{_mandir}/man3/B::PerlReq.3pm*
 %doc %{_mandir}/man3/PerlReq::Utils.3pm*
@@ -60,5 +61,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/fake.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.6.6-1
+- Updated to release 0.6.6.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.6.5-1
 - Initial package. (using DAR)

@@ -9,7 +9,7 @@
 
 Summary: Warwick University academic calendar
 Name: perl-DateTime-Calendar-WarwickUniversity
-Version: 0.01
+Version: 0.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 2:5.8.4
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(Test::Exception)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::Pod)
+BuildRequires: perl(Test::Pod::Coverage)
 Requires: perl >= 2:5.8.4
 
 %description
@@ -45,10 +50,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/DateTime::Calendar::WarwickUniversity*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/DateTime::Calendar::WarwickUniversity.3pm*
+%dir %{perl_vendorlib}/DateTime/
+%dir %{perl_vendorlib}/DateTime/Calendar/
+#%{perl_vendorlib}/DateTime/Calendar/WarwickUniversity/
 %{perl_vendorlib}/DateTime/Calendar/WarwickUniversity.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.02-1
+- Updated to release 0.02.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

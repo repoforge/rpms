@@ -6,32 +6,46 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name DBIx-Class
-%define real_version 0.08008
+%define real_version 0.8.8
 
 Summary: Extensible and flexible object <-> relational mapper
 Name: perl-DBIx-Class
-Version: 0.8.8
+Version: 0.08008
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-Class/
 
-Source: http://www.cpan.org/modules/by-module/DBIx/DBIx-Class-%{real_version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/DBIx/DBIx-Class-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 1:5.6.1
+BuildRequires: perl(Carp::Clan) >= 5.9
+BuildRequires: perl(Class::Accessor::Grouped) >= 0.05002
+BuildRequires: perl(Class::C3) >= 0.13
+BuildRequires: perl(Class::C3::Componentised)
+BuildRequires: perl(Class::Inspector) >= 1.18
 BuildRequires: perl(Class::Trigger)
+BuildRequires: perl(Data::Page) >= 2
 BuildRequires: perl(DBD::SQLite) >= 1.13
+BuildRequires: perl(DBI) >= 1.4
 BuildRequires: perl(DBIx::ContextualFetch)
-BuildRequires: perl(Test::Builder) >= 0.33
+BuildRequires: perl(JSON) >= 1
+BuildRequires: perl(Module::Find)
+BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(Scope::Guard) >= 0.03
+BuildRequires: perl(SQL::Abstract) >= 1.2
+BuildRequires: perl(SQL::Abstract::Limit) >= 0.101
+BuildRequires: perl(Storable) >= 2.15
+#BuildRequires: perl(Test::Builder) >= 0.33
 Requires: perl >= 1:5.6.1
 
 %description
 Extensible and flexible object <-> relational mapper.
 
 %prep
-%setup -n %{real_name}-%{real_version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -56,5 +70,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DBIx/Class.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.08008-1
+- Switch to upstream version.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.8.8-1
 - Initial package. (using DAR)

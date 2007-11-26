@@ -24,8 +24,8 @@
 
 Summary: Unicode version of rxvt
 Name: rxvt-unicode
-Version: 8.4
-Release: 2
+Version: 8.7
+Release: 1
 License: GPL
 Group: User Interface/X
 URL: http://software.schmorp.de/
@@ -126,6 +126,12 @@ desktop-file-install --vendor=%{desktop_vendor} \
 %{_libdir}/urxvt/
 
 %changelog
+* Sun Nov 25 2007 Dag Wieers <dag@wieers.com> - 8.7-1
+- Updated to release 8.7.
+
+* Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 8.6-1
+- Updated to release 8.6.
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 8.4-2
 - Define %%{desktop_vendor}.
 

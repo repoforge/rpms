@@ -11,7 +11,7 @@
 Summary: File System in Userspace (FUSE) utilities
 Name: fuse
 Version: 2.7.0
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Kernel
 URL: http://fuse.sourceforge.net/
@@ -25,6 +25,8 @@ Requires(pre): %{_sbindir}/groupadd
 Requires(postun): %{_sbindir}/groupdel
 Provides: fuse-libs = %{version}-%{release}
 Obsoletes: fuse-libs <= %{version}-%{release}
+provides: libfuse = %{version}-%{release}
+Obsoletes: libfuse <= %{version}-%{release}
 
 %description
 With FUSE it is possible to implement a fully functional filesystem in a 
@@ -46,9 +48,9 @@ you will need to install %{name}-devel.
 %prep
 %setup
 %{__perl} -pi.orig -e '
-		s|chown root|echo chown root|;
-		s|mknod|echo mknod|;
-	' util/Makefile.in
+        s|chown root|echo chown root|;
+        s|mknod|echo mknod|;
+    ' util/Makefile.in
 %patch0 -b .patch0
 
 %{__cat} <<EOF >README.security
@@ -56,7 +58,7 @@ This fuse package for security reasons only allows members of the group "fuse"
 to (u)mount fuse filesystems. If you for example want to allow the user "foo" 
 to mount fuse filesystems you have to add him to the fuse group by running
 
-	# /usr/sbin/usermod -a -G fuse foo
+    # /usr/sbin/usermod -a -G fuse foo
 
 Or use tools like "system-config-users" to add user "foo" to the fuse group.
 
@@ -65,7 +67,7 @@ Note that the user has to re-login after he was added to the group.
 
 If you do not want to add all users to the fuse group you can also run
 
-	# chmod 4755 /usr/bin/fusermount
+    # chmod 4755 /usr/bin/fusermount
 
 to allow everyone to mount fuse filesystems. You have to re-run that command
 after each fuse update.
@@ -154,16 +156,19 @@ fi
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/*
-%{_libdir}/libfuse.so
-%{_libdir}/libulockmgr.so
-%{_libdir}/pkgconfig/fuse.pc
 %{_includedir}/fuse/
 %{_includedir}/fuse.h
 %{_includedir}/ulockmgr.h
+%{_libdir}/libfuse.so
+%{_libdir}/libulockmgr.so
+%{_libdir}/pkgconfig/fuse.pc
 %exclude %{_libdir}/libfuse.la
 %exclude %{_libdir}/libulockmgr.la
 
 %changelog
+* Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 2.7.0-2
+- Added compatibility Provices and Obsoletes for ATrpms.
+
 * Mon Aug 06 2007 Dag Wieers <dag@wieers.com> - 2.7.0-1
 - Updated to release 2.7.0.
 

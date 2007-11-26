@@ -9,9 +9,9 @@
 
 Summary: Interface to the GraphViz graphing tool
 Name: perl-GraphViz
-Version: 2.02
-Release: 1.2
-License: Artistic
+Version: 2.03
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GraphViz/
 
@@ -19,8 +19,8 @@ Source: http://www.cpan.org/modules/by-module/GraphViz/GraphViz-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: graphviz
+BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: graphviz
 
@@ -45,21 +45,26 @@ http://www.research.att.com/sw/tools/graphviz/).
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README
-%doc %{_mandir}/man3/*
+%doc CHANGES MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/Devel::GraphVizProf.3pm*
+%doc %{_mandir}/man3/GraphViz.3pm*
+%doc %{_mandir}/man3/GraphViz::*.3pm*
 %dir %{perl_vendorlib}/Devel/
-%{perl_vendorlib}/GraphViz.pm
 %{perl_vendorlib}/Devel/GraphVizProf.pm
 %{perl_vendorlib}/GraphViz/
+%{perl_vendorlib}/GraphViz.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.02-1.2
-- Rebuild for Fedora Core 5.
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 2.03-1
+- Updated to release 2.03.
 
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 2.02-1
 - Updated to release 2.02.

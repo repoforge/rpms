@@ -9,7 +9,7 @@
 
 Summary: Perl module to turn ref() into a multimethod
 Name: perl-UNIVERSAL-ref
-Version: 0.11
+Version: 0.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -22,10 +22,6 @@ BuildRequires: perl
 
 %description
 perl-UNIVERSAL-ref is a Perl module to turn ref() into a multimethod.
-
-This package contains the following Perl module:
-
-    UNIVERSAL::ref
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -48,11 +44,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/UNIVERSAL::ref.3pm*
-%dir %{perl_vendorarch}/UNIVERSAL/
-%{perl_vendorarch}/UNIVERSAL/ref.pm
 %dir %{perl_vendorarch}/auto/UNIVERSAL/
 %{perl_vendorarch}/auto/UNIVERSAL/ref/
+%dir %{perl_vendorarch}/UNIVERSAL/
+%{perl_vendorarch}/UNIVERSAL/ref.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.12-1
+- Updated to release 0.12.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.11-1
 - Initial package. (using DAR)

@@ -6,12 +6,12 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name AOL-TOC
-%define real_version 0.340
+%define real_version 0.34
 
 Summary: AOL-TOC module for perl
 Name: perl-AOL-TOC
-Version: 0.34
-Release: 1.2
+Version: 0.340
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AOL-TOC/
@@ -29,7 +29,7 @@ Requires: perl >= 0:5.00503
 Perl extension for interfacing with AOL's AIM service.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{real_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -54,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/AOL/TOC.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.340-1
+- Switch to upstream version.
+
 * Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 0.34-1
 - Initial package. (using DAR)

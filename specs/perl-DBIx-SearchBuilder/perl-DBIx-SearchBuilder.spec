@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jesse Vincent <jesse+cpan$fsck,com>
+# Upstream: Jesse Vincent <jesse$bestpractical,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 summary: Encapsulate SQL queries and rows in simple perl objects
 Name: perl-DBIx-SearchBuilder
-Version: 1.49
+Version: 1.50
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,25 +20,24 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(DBD::SQLite)
-BuildRequires: perl(File::Temp)
-BuildRequires: perl(ExtUtils::MakeMaker)
-#BuildRequires: perl(Test::More) >= 0.52
-BuildRequires: perl(DBI)
-BuildRequires: perl(Want)
-BuildRequires: perl(Encode)
+BuildRequires: perl(Cache::Simple::TimedExpiry) >= 0.21
+BuildRequires: perl(capitalization) >= 0.03
 BuildRequires: perl(Class::Accessor)
 BuildRequires: perl(Class::ReturnValue) >= 0.4
-BuildRequires: perl-capitalization >= 0.03
-BuildRequires: perl(Cache::Simple::TimedExpiry) >= 0.21
 BuildRequires: perl(Clone)
-BuildRequires: perl(capitalization) >= 0.03
+BuildRequires: perl(DBD::SQLite)
+BuildRequires: perl(DBI)
 BuildRequires: perl(DBIx::DBSchema)
+BuildRequires: perl(Encode)
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Temp)
+#BuildRequires: perl(Test::More) >= 0.52
+BuildRequires: perl(Want)
 
 Requires: perl
 
 %description
-Encapsulate SQL queries and rows in simple perl objects
+Encapsulate SQL queries and rows in simple perl objects.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -63,13 +62,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README ROADMAP SIGNATURE
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/DBIx::SearchBuilder.3pm*
+%doc %{_mandir}/man3/DBIx::SearchBuilder::*.3pm*
 %dir %{perl_vendorlib}/DBIx/
 %{perl_vendorlib}/DBIx/SearchBuilder/
 %{perl_vendorlib}/DBIx/SearchBuilder.pm
 %exclude %{perl_vendorlib}/DBIx/SearchBuilder/Handle/Oracle.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 1.50-1
+- Updated to release 1.50.
+
 * Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 1.49-1
 - Updated to release 1.49.
 - Removed perl(DBD:Oracle) dependency. (Kanwar Ranbir Sandhu)

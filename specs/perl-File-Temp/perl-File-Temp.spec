@@ -9,7 +9,7 @@
 
 Summary: Perl module that returns name and handle of a temporary file safely
 Name: perl-File-Temp
-Version: 0.18
+Version: 0.19
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/File/Temp.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.19-1
+- Updated to release 0.19.
+
 * Mon Aug 06 2007 Dag Wieers <dag@wieers.com> - 0.18-1
 - Initial package. (using DAR)

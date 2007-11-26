@@ -12,7 +12,7 @@
 
 Summary: Perl module for persistence for Perl data structures
 Name: perl-Storable
-Version: 2.17
+Version: 2.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot}%{_libdir} -name "*.so" -exec chmod u+w {} \;
 %{perl_vendorarch}/Storable.pm
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 2.18-1
+- Updated to release 2.18.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 2.17-1
 - Updated to release 2.17.
 

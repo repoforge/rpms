@@ -10,7 +10,7 @@
 Summary: Perform common time and date operations with additional GPS operations
 Name: perl-DateTime-Precise
 Version: 1.05
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Precise/
@@ -20,6 +20,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+
+### Provides required by package itself
+Provides: perl(DateTime::Math/bigfloat.pl)
+Provides: perl(DateTime::Math/bigint.pl)
 
 %description
 Perform common time and date operations with additional GPS operations.
@@ -53,5 +57,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DateTime/Math/bigint.pl
 
 %changelog
+* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 1.05-2
+- Added selfcontained provides.
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 1.05-1
 - Initial package. (using DAR)
