@@ -12,13 +12,14 @@
 Summary: Smart decoder for uuencode, xxencode, Base64 and BinHex
 Name: uudeview
 Version: 0.5.20
-Release: 0.2
+Release: 1
 License: GPL
 Group: Applications/File
 URL: http://www.fpx.de/fp/Software/UUDeview/
 
 Source: http://www.fpx.de/fp/Software/UUDeview/download/uudeview-%{version}.tar.gz
 Patch: uudeview-shared.patch
+Patch1: uudeview-latex-psfig-deprecated.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, libtool
@@ -56,6 +57,7 @@ you will need to install %{name}-devel.
 %prep
 %setup
 %patch -p1
+%patch1 -p1
 
 %build
 %{__libtoolize} --force --copy
@@ -100,6 +102,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Thu Nov 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.5.20-1
+- Added patch for the latex docs, thanks to Nicolas Thierry-Mieg.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.20-0.2
 - Rebuild for Fedora Core 5.
 

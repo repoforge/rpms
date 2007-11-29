@@ -1,0 +1,11 @@
+--- uudeview-0.5.20/doc/library.ltx.orig    2007-11-27 
+21:23:05.000000000 +0100
++++ uudeview-0.5.20/doc/library.ltx   2007-11-27 21:23:11.000000000 +0100
+@@ -1,6 +1,6 @@
+ \NeedsTeXFormat{LaTeX2e}
+ \documentclass{article}
+-\usepackage{psfig}
++%\usepackage{psfig}
+ \usepackage{times}
+ \usepackage{a4wide}
+ \author{Frank Pilhofer}
