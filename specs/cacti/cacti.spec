@@ -11,7 +11,7 @@
 
 Summary: Complete network graphing solution designed on top of RRDTool
 Name: cacti
-Version: 0.8.7
+Version: 0.8.7a
 Release: 1
 License: GPL
 Group: Applications/System
@@ -126,6 +126,9 @@ fi
 %doc docs/*
 
 %changelog
+* Wed Nov 28 2007 Dag Wieers <dag@wieers.com> - 0.8.7a-1
+- Updated to release 0.8.7a.
+
 * Fri Oct 26 2007 Dag Wieers <dag@wieers.com> - 0.8.7-1
 - Updated to release 0.8.7.
 

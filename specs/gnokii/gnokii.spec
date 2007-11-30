@@ -9,7 +9,7 @@
 
 Summary: Linux/UNIX tool suite for various mobile phones
 Name: gnokii
-Version: 0.6.19
+Version: 0.6.22
 Release: 1
 License: GPL
 Group: Applications/Communications
@@ -56,15 +56,17 @@ you will need to install %{name}-devel.
 %build
 #./autogen.sh
 %configure \
-	--with-x \
-	--with-gnu-ld \
-	--enable-nls \
-	--enable-security
+    --disable-static \
+    --enable-nls \
+    --enable-security \
+    --with-gnu-ld \
+    --with-x
 %{__make} %{?_smp_mflags}
 #%{__make} %{?_smp_mflags} -C smsd all libpq.so libmysql.so libfile.so
 
 %install
 %{__rm} -rf %{buildroot}
+#%{__make} install DESTDIR="%{buildroot}"
 %makeinstall
 #makeinstall -C smsd
 %find_lang %{name}
@@ -117,15 +119,18 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/gnokii/
-%{_includedir}/gnokii.h
-%{_libdir}/pkgconfig/gnokii.pc
-%{_libdir}/pkgconfig/xgnokii.pc
-%{_libdir}/libgnokii.a
+#%{_includedir}/gnokii/
+#%{_includedir}/gnokii.h
+#%{_libdir}/pkgconfig/gnokii.pc
+#%{_libdir}/pkgconfig/xgnokii.pc
+#%{_libdir}/libgnokii.a
 %exclude %{_libdir}/libgnokii.la
 %{_libdir}/libgnokii.so
 
 %changelog
+* Sun Nov 25 2007 Dag Wieers <dag@wieers.com> - 0.6.22-1
+- Updated to release 0.6.22.
+
 * Sat Oct 06 2007 Dag Wieers <dag@wieers.com> - 0.6.19-1
 - Updated to release 0.6.19.
 

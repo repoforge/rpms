@@ -62,17 +62,17 @@ you will need to install %{name}-devel.
 %build
 %{__libtoolize} --force --copy
 %configure \
-	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
-	--enable-tcl="%{_libdir}" \
-	--enable-tk="%{_libdir}"
+    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
+    --enable-tcl="%{_libdir}" \
+    --enable-tk="%{_libdir}"
 %{__make} %{?_smp_mflags}
 %{__make} ps -C doc
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-	BINDIR="%{buildroot}%{_bindir}" \
-	MANDIR="%{buildroot}%{_mandir}"
+    BINDIR="%{buildroot}%{_bindir}" \
+    MANDIR="%{buildroot}%{_mandir}"
 %makeinstall -C uulib
 
 %clean
@@ -81,11 +81,12 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc HISTORY IAFA-PACKAGE README* doc uudeview.lsm
-%doc %{_mandir}/man1/uu*
-%{_libdir}/*.so.*
-%{_bindir}/minews
+%doc %{_mandir}/man1/uudeview.1*
+%doc %{_mandir}/man1/uuenview.1*
+#%{_bindir}/minews
 %{_bindir}/uudeview
 %{_bindir}/uuenview
+%{_libdir}/libuu.so.*
 
 %files gui
 %defattr(-, root, root, 0755)
@@ -96,19 +97,17 @@ you will need to install %{name}-devel.
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/library.ps
-%{_libdir}/*.a
-%{_libdir}/*.so
-%{_includedir}/*.h
-%exclude %{_libdir}/*.la
+%{_libdir}/libuu.a
+%{_libdir}/libuu.so
+%{_includedir}/fptools.h
+%{_includedir}/uudeview.h
+%exclude %{_libdir}/libuu.la
 
 %changelog
 * Thu Nov 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.5.20-1
 - Added patch for the latex docs, thanks to Nicolas Thierry-Mieg.
 
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.20-0.2
-- Rebuild for Fedora Core 5.
-
-* Wed Mar 03 2004 Bert de Bruijn <bert édebruijn.be> - 0.5.20-0
+* Wed Mar 03 2004 Bert de Bruijn <bert@debruijn.be> - 0.5.20-0
 - Updated to release 0.5.20.
 
 * Fri Nov 21 2003 Dag Wieers <dag@wieers.com> - 0.5.19-0

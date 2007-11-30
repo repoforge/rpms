@@ -25,13 +25,14 @@ the forward zone files and generates PTR records which it inserts in the
 reverse zone maps.
 
 %prep
+%setup -cT
+zcat %{SOURCE0} >mkrdns
 
 %build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 %{SOURCE0} %{buildroot}%{_bindir}/mkrdns.gz
-gunzip %{buildroot}%{_bindir}/mkrdns.gz
+%{__install} -Dp -m0755 mkrdns %{buildroot}%{_bindir}/mkrdns
 
 %clean
 %{__rm} -rf %{buildroot}

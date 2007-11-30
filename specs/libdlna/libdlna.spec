@@ -4,7 +4,7 @@
 
 Summary: Implementation of Digital Living Network Alliance (DLNA) standards
 Name: libdlna
-Version: 0.2.2
+Version: 0.2.3
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -62,6 +62,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libdlna.pc
 
 %changelog
+* Tue Nov 27 2007 Dag Wieers <dag@wieers.com> - 0.2.3-1
+- Updated to release 0.2.3.
+
 * Sun Nov 25 2007 Dag Wieers <dag@wieers.com> - 0.2.2-1
 - Updated to release 0.2.2.
 
