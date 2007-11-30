@@ -3,14 +3,14 @@
 # Upstream: Timo Sirainen <tss$iki,fi>
 # Upstream: <dovecot$dovecot,org>
 
-# ExcludeDist: fc3 el4
+##ExcludeDist: fc3 el4
 
 %define logmsg logger -t %{name}/rpm
 
 Summary: Secure IMAP server
 Name: dovecot
-Version: 0.99.14
-Release: 1.2
+Version: 1.0.2
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://dovecot.org/
@@ -223,8 +223,14 @@ fi
 %{_localstatedir}/run/dovecot-login/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.99.14-1.2
-- Rebuild for Fedora Core 5.
+* Thu Jul 19 2007 Dag Wieers <dag@wieers.com> - 1.0.2-1
+- Updated to release 1.0.2.
+
+* Sat Jun 16 2007 Dag Wieers <dag@wieers.com> - 1.0.1-1
+- Updated to release 1.0.1.
+
+* Sun Apr 15 2007 Dag Wieers <dag@wieers.com> - 1.0.0-1
+- Updated to release 1.0.0.
 
 * Sun Jan 09 2005 Dag Wieers <dag@wieers.com> - 0.99.13-1
 - Updated to release 0.99.13.

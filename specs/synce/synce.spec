@@ -4,7 +4,7 @@
 Summary: Serial connection support for Pocket PC devices
 Name: synce
 Version: 0.9.1
-Release: 10
+Release: 11
 License: MIT
 Group: Applications/Communications
 URL: http://synce.sourceforge.net/
@@ -189,6 +189,9 @@ echo 'DRIVER=="ipaq", NAME="ipaq", SYMLINK+="ttyUSB%%n"' >%{buildroot}%{_sysconf
 %{_datadir}/aclocal/*.m4
 
 %changelog
+* Sun Nov 25 2007 Dag Wieers <dag@wieers.com> - 0.9.1-11
+- Fix group tag.
+
 * Sun Aug 12 2007 Heiko Adams <info@fedora-blog.de> - 0.9.1-10
 - Rebuild for RPMforge.
 

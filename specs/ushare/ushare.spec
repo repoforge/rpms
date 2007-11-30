@@ -5,7 +5,7 @@
 
 Summary: Universal Plug'nPlay (uPNP) Media Server
 Name: ushare
-Version: 1.0
+Version: 1.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -14,7 +14,7 @@ URL: http://ushare.geexbox.org/
 Source: http://ushare.geexbox.org/releases/ushare-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pkgconfig >= 0.9.0, libupnp-devel
+BuildRequires: pkgconfig >= 0.9.0, libupnp-devel, libdlna-devel
 Requires(post): /sbin/chkconfig
 Requires(preun): /sbin/service, /sbin/chkconfig
 Requires(postun): /sbin/service
@@ -38,9 +38,9 @@ of libupnp to stream the files to clients.
 # chkconfig: - 54 46
 # description: uShare UPnP Media Server
 #
-# processname: dovecot
-# config: %{_sysconfdir}/dovecot.conf
-# pidfile: %{_localstatedir}/run/dovecot
+# processname: ushare
+# config: %{_sysconfdir}/ushare.conf
+# pidfile: %{_localstatedir}/run/ushare
 
 source %{_initrddir}/functions
 
@@ -55,67 +55,68 @@ prog="ushare"
 desc="UPnP Media Server"
 
 start() {
-	echo -n $"Starting $desc ($prog): "
-	daemon --user ushare $prog -D $OPTIONS
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Starting $desc ($prog): "
+    daemon --user ushare $prog -D $OPTIONS
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 stop() {
-	echo -n $"Shutting down $desc ($prog): "
-	killproc $prog
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Shutting down $desc ($prog): "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 restart() {
-	stop
-	start
+    stop
+    start
 }
 
 reload() {
-	echo -n $"Reloading $desc ($prog): "
-	killproc $prog -HUP
-	RETVAL=$?
-	echo
-	return $RETVAL
+    echo -n $"Reloading $desc ($prog): "
+    killproc $prog -HUP
+    RETVAL=$?
+    echo
+    return $RETVAL
 }
 
 case "$1" in
   start)
-	start
-	;;
+    start
+    ;;
   stop)
-	stop
-	;;
+    stop
+    ;;
   restart)
-	restart
-	;;
+    restart
+    ;;
   reload)
-	reload
-	;;
+    reload
+    ;;
   condrestart)
-	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-	RETVAL=$?
-	;;
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
   status)
-	status $prog
-	RETVAL=$?
-	;;
+    status $prog
+    RETVAL=$?
+    ;;
   *)
-	echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
-	RETVAL=1
+    echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
+    RETVAL=1
 esac
 
 exit $RETVAL
 EOF
 
 %build
-%configure
+%configure \
+    --enable-dlna
 %{__make} %{?_smp_mflags}
 
 %install
@@ -127,8 +128,8 @@ EOF
 
 %pre
 if ! /usr/bin/id ushare &>/dev/null; then
-        /usr/sbin/useradd -r -M -d %{_localstatedir}/lib/ushare -s /sbin/nologin -c "ushare service accoung" ushare || \
-                %logmsg "Unexpected error adding user \"ushare\". Aborting installation."
+    /usr/sbin/useradd -r -M -d %{_localstatedir}/lib/ushare -s /sbin/nologin -c "ushare service accoung" ushare || \
+        %logmsg "Unexpected error adding user \"ushare\". Aborting installation."
 fi
 
 %post
@@ -136,17 +137,17 @@ fi
 
 %preun
 if [ $1 -eq 0 ]; then
-	/sbin/service ushare stop &>/dev/null || :
-	/sbin/chkconfig --del ushare
+    /sbin/service ushare stop &>/dev/null || :
+    /sbin/chkconfig --del ushare
 fi
 
 %postun
 if [ $1 -eq 0 ]; then 
-	/usr/sbin/userdel ushare || %logmsg "User \"ushare\" could not be deleted."
-	/usr/sbin/groupdel ushare || %logmsg "Group \"ushare\" could not be deleted."
+    /usr/sbin/userdel ushare || %logmsg "User \"ushare\" could not be deleted."
+    /usr/sbin/groupdel ushare || %logmsg "Group \"ushare\" could not be deleted."
 fi
 if [ $1 -ge 1 ]; then
-	/sbin/service ushare condrestart &>/dev/null || :
+    /sbin/service ushare condrestart &>/dev/null || :
 fi
 
 %clean
@@ -166,6 +167,9 @@ fi
 %exclude %{_sysconfdir}/init.d/ushare
 
 %changelog
+* Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 1.1-1
+- Updated to release 1.1.
+
 * Fri Jul 06 2007 Dag Wieers <dag@wieers.com> - 1.0-1
 - Updated to release 1.0.
 
