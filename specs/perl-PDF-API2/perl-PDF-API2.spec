@@ -27,6 +27,8 @@ High-Quality "Portable Document Format (aka. PDF)" files.
 
 %prep
 %setup -n %{real_name}-%{version}
+# avoid dependency on 'perl(the)' by changing some text
+%{__perl} -pi.orig -e 's|use the newer|Use the newer|g;' lib/PDF/API2/Resource/XObject/Image/PNM.pm
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
