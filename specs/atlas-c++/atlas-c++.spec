@@ -3,7 +3,7 @@
 
 Summary: Implements the WorldForge Atlas protocol
 Name: atlas-c++
-Version: 0.6.0
+Version: 0.6.1
 Release: 1
 License: LGPL
 Group: Development/Libraries
@@ -62,6 +62,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Dec  1 2007 Dries Verachtert <dries@ulyssis.org> - 0.6.1-1
+- Updated to release 0.6.1.
+
 * Fri Apr 21 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.0-1
 - Updated to release 0.6.0.
 
