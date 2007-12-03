@@ -10,6 +10,12 @@
 %{?fc5:   %define _without_mozilla 1}
 %{?fc1:   %define _without_mozilla 1}
 
+%{!?dtag: %define with_dbus 0}
+%{?el5:	  %define with_dbus 1}
+%{?fc6:   %define with_dbus 1}
+%{?fc5:   %define with_dbus 0}
+%{?fc1:   %define with_dbus 0}
+
 %define mozilla seamonkey
 %{!?dtag:%define mozilla firefox}
 %{?el5:%define mozilla firefox}
@@ -24,7 +30,7 @@
 Summary: RSS/RDF feed reader
 Name: liferea
 Version: 1.2.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://liferea.sourceforge.net/
@@ -38,6 +44,12 @@ BuildRequires: gettext, gcc-c++, desktop-file-utils, gtk2 >= 2.4
 %{!?_without_mozilla:BuildRequires: %{mozilla}-devel}
 Requires: GConf2
 
+%if %{with_dbus}
+Requires:      %{mozilla} >= 1.5
+BuildRequires: %{mozilla}-devel >= 1.5
+BuildRequires:	dbus-devel
+%endif
+
 %description
 Liferea (Linux Feed Reader) is an RSS/RDF feed reader.
 It's intended to be a clone of the Windows-only FeedReader.
@@ -50,7 +62,12 @@ using GtkHTML.
 
 %build
 %configure \
-	--disable-schemas-install
+	--disable-schemas-install\
+%if %{with_dbus}
+	--enable-dbus=yes
+%else
+	--enable-dbus=no
+%endif
 %{__make} %{?_smp_mflags}
 
 %install
@@ -91,6 +108,9 @@ gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/%{name}.schem
 %{_libdir}/liferea/*.so*
 
 %changelog
+* Mon Dec 03 2007 Heiko Adams <info-2007@fedora-blog.de> - 1.2.2-2
+- Wnabled DBus (and Mozilla) usage on FC6 & EL5
+
 * Thu May 31 2007 Dag Wieers <dag@wieers.com> - 1.2.2-1
 - Updated to release 1.2.2.
 
