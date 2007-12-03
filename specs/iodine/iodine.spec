@@ -4,8 +4,8 @@
 
 Summary: Tunnel IPv4 data through a DNS server
 Name: iodine
-Version: 0.4.0
-Release: 2
+Version: 0.4.1
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://code.kryo.se/iodine/
@@ -43,6 +43,9 @@ queries are allowed.
 %{_bindir}/iodined
 
 %changelog
+* Sat Dec 01 2007 Dag Wieers <dag@wieers.com> - 0.4.1-1
+- Updated to release 0.4.1.
+
 * Sun May 13 2007 Dag Wieers <dag@wieers.com> - 0.4.0-2
 - Added iodine manpage. (Erik Ekman)
 

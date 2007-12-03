@@ -10,10 +10,6 @@
 %{?fc5:   %define _without_mozilla 1}
 %{?fc1:   %define _without_mozilla 1}
 
-%{!?dtag: %define with_dbus 1}
-%{?el5:   %define with_dbus 1}
-%{?fc6:   %define with_dbus 1}
-
 %define mozilla seamonkey
 %{!?dtag:%define mozilla firefox}
 %{?el5:%define mozilla firefox}
@@ -25,7 +21,7 @@
 
 Summary: RSS/RDF feed reader
 Name: liferea
-Version: 1.0.27
+Version: 1.2.23
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -34,9 +30,9 @@ URL: http://liferea.sourceforge.net/
 Source: http://dl.sf.net/liferea/liferea-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: GConf2-devel >= 2.2, gtkhtml2-devel, libxml2-devel >= 2.5.10
-BuildRequires: gettext, gcc-c++, desktop-file-utils, gtk2 >= 2.4
-%{?_with_dbus:BuildRequires: dbus-devel >= 0.30}
+BuildRequires: gettext, gcc-c++, desktop-file-utils
+BuildRequires: gtk2 >= 2.4, GConf2-devel >= 2.2, gtkhtml2-devel
+BuildRequires: libxml2-devel >= 2.6.27, libxslt >= 1.1.19
 %{!?_without_mozilla:BuildRequires: %{mozilla}-devel}
 Requires: GConf2
 
@@ -52,8 +48,7 @@ using GtkHTML.
 
 %build
 %configure \
-    --disable-schemas-install \
-%{?_with_dbus:--enable-dbus="yes"}
+	--disable-schemas-install
 %{__make} %{?_smp_mflags}
 
 %install
@@ -61,11 +56,12 @@ using GtkHTML.
 %{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
-desktop-file-install --delete-original         \
-    --vendor %{desktop_vendor}                 \
-    --add-category X-Red-Hat-Base              \
-    --dir %{buildroot}%{_datadir}/applications \
-    %{buildroot}%{_datadir}/applications/liferea.desktop
+desktop-file-install \
+	--delete-original                          \
+	--vendor %{desktop_vendor}                 \
+	--add-category X-Red-Hat-Base              \
+	--dir %{buildroot}%{_datadir}/applications \
+	%{buildroot}%{_datadir}/applications/liferea.desktop
 
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
@@ -82,20 +78,33 @@ gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/%{name}.schem
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
 %doc %{_mandir}/man1/liferea.1*
+%doc %{_mandir}/pl/man1/liferea.1*
 %config %{_sysconfdir}/gconf/schemas/liferea.schemas
 %{_bindir}/liferea*
 %{_datadir}/applications/%{desktop_vendor}-liferea.desktop
 %{_datadir}/liferea/
-%{_datadir}/pixmaps/liferea.png
+%{_datadir}/icons/*/*/apps/liferea.png
 %dir %{_libdir}/liferea/
-%{_libdir}/liferea/*.so*
 %exclude %{_libdir}/liferea/*.la
+%{_libdir}/liferea/*.so*
 
 %changelog
-* Mon Dec 03 2007 Heiko Adams <info-2007@fedora-blog.de> - 1.0.27-2
-- Enabled DBus (and Mozilla) usage on FC6 and EL5.
+* Sun Oct 21 2007 Dag Wieers <dag@wieers.com> - 1.2.23-1
+- Updated to release 1.2.23.
 
-* Fri Jun 01 2007 Dag Wieers <dag@wieers.com> - 1.0.27-1
+* Thu Jun 07 2007 Dag Wieers <dag@wieers.com> - 1.2.16b-1
+- Updated to release 1.2.16b.
+
+* Thu May 31 2007 Dag Wieers <dag@wieers.com> - 1.2.15b-1
+- Updated to release 1.2.15b.
+
+* Sun Mar 18 2007 Dag Wieers <dag@wieers.com> - 1.2.8-1
+- Updated to release 1.2.8.
+
+* Wed Dec 20 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.0-1
+- Updated to release 1.2.0.
+
+* Sat Dec 09 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.27-1
 - Updated to release 1.0.27.
 
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.24-1

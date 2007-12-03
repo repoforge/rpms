@@ -25,7 +25,7 @@
 
 Summary: RSS/RDF feed reader
 Name: liferea
-Version: 1.0.27
+Version: 1.4.5b
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -34,8 +34,10 @@ URL: http://liferea.sourceforge.net/
 Source: http://dl.sf.net/liferea/liferea-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: GConf2-devel >= 2.2, gtkhtml2-devel, libxml2-devel >= 2.5.10
-BuildRequires: gettext, gcc-c++, desktop-file-utils, gtk2 >= 2.4
+BuildRequires: gettext, gcc-c++, desktop-file-utils
+BuildRequires: gtk2 >= 2.4, GConf2-devel >= 2.2, gtkhtml2-devel
+BuildRequires: intltool, perl(XML::Parser)
+BuildRequires: libxml2-devel >= 2.6.27, libxslt >= 1.1.19
 %{?_with_dbus:BuildRequires: dbus-devel >= 0.30}
 %{!?_without_mozilla:BuildRequires: %{mozilla}-devel}
 Requires: GConf2
@@ -82,20 +84,39 @@ gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/%{name}.schem
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
 %doc %{_mandir}/man1/liferea.1*
+%doc %{_mandir}/pl/man1/liferea.1*
 %config %{_sysconfdir}/gconf/schemas/liferea.schemas
 %{_bindir}/liferea*
 %{_datadir}/applications/%{desktop_vendor}-liferea.desktop
 %{_datadir}/liferea/
-%{_datadir}/pixmaps/liferea.png
+%{_datadir}/icons/*/*/apps/liferea.png
 %dir %{_libdir}/liferea/
 %{_libdir}/liferea/*.so*
 %exclude %{_libdir}/liferea/*.la
 
 %changelog
-* Mon Dec 03 2007 Heiko Adams <info-2007@fedora-blog.de> - 1.0.27-2
+* Mon Dec 03 2007 Heiko Adams <info-2007@fedora-blog.de> - 1.4.5b-2
 - Enabled DBus (and Mozilla) usage on FC6 and EL5.
 
-* Fri Jun 01 2007 Dag Wieers <dag@wieers.com> - 1.0.27-1
+* Sun Oct 21 2007 Dag Wieers <dag@wieers.com> - 1.4.5b-1
+- Updated to release 1.4.5b.
+
+* Sat Sep 08 2007 Dag Wieers <dag@wieers.com> - 1.4.0-1
+- Updated to release 1.4.0.
+
+* Thu Jun 07 2007 Dag Wieers <dag@wieers.com> - 1.2.16b-1
+- Updated to release 1.2.16b.
+
+* Thu May 31 2007 Dag Wieers <dag@wieers.com> - 1.2.15b-1
+- Updated to release 1.2.15b.
+
+* Sun Mar 18 2007 Dag Wieers <dag@wieers.com> - 1.2.8-1
+- Updated to release 1.2.8.
+
+* Wed Dec 20 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.0-1
+- Updated to release 1.2.0.
+
+* Sat Dec 09 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.27-1
 - Updated to release 1.0.27.
 
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.24-1

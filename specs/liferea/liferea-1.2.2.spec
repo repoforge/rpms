@@ -10,11 +10,9 @@
 %{?fc5:   %define _without_mozilla 1}
 %{?fc1:   %define _without_mozilla 1}
 
-%{!?dtag: %define with_dbus 0}
-%{?el5:	  %define with_dbus 1}
+%{!?dtag: %define with_dbus 1}
+%{?el5:   %define with_dbus 1}
 %{?fc6:   %define with_dbus 1}
-%{?fc5:   %define with_dbus 0}
-%{?fc1:   %define with_dbus 0}
 
 %define mozilla seamonkey
 %{!?dtag:%define mozilla firefox}
@@ -41,14 +39,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: GConf2-devel >= 2.2, gtkhtml2-devel
 #BuildRequires: libxml2-devel >= 2.6.26, libxslt >= 1.1.17
 BuildRequires: gettext, gcc-c++, desktop-file-utils, gtk2 >= 2.4
+%{?_with_dbus:BuildRequires: dbus-devel >= 0.30}
 %{!?_without_mozilla:BuildRequires: %{mozilla}-devel}
 Requires: GConf2
-
-%if %{with_dbus}
-Requires:      %{mozilla} >= 1.5
-BuildRequires: %{mozilla}-devel >= 1.5
-BuildRequires:	dbus-devel
-%endif
 
 %description
 Liferea (Linux Feed Reader) is an RSS/RDF feed reader.
@@ -62,12 +55,8 @@ using GtkHTML.
 
 %build
 %configure \
-	--disable-schemas-install\
-%if %{with_dbus}
-	--enable-dbus=yes
-%else
-	--enable-dbus=no
-%endif
+    --disable-schemas-install \
+%{?_with_dbus:--enable-dbus="yes"}
 %{__make} %{?_smp_mflags}
 
 %install
@@ -75,12 +64,11 @@ using GtkHTML.
 %{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
-desktop-file-install \
-	--delete-original                          \
-	--vendor %{desktop_vendor}                 \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	%{buildroot}%{_datadir}/applications/liferea.desktop
+desktop-file-install --delete-original         \
+    --vendor %{desktop_vendor}                 \
+    --add-category X-Red-Hat-Base              \
+    --dir %{buildroot}%{_datadir}/applications \
+    %{buildroot}%{_datadir}/applications/liferea.desktop
 
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
@@ -104,12 +92,12 @@ gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/%{name}.schem
 %{_datadir}/liferea/
 %{_datadir}/icons/*/*/apps/liferea.png
 %dir %{_libdir}/liferea/
-%exclude %{_libdir}/liferea/*.la
 %{_libdir}/liferea/*.so*
+%exclude %{_libdir}/liferea/*.la
 
 %changelog
 * Mon Dec 03 2007 Heiko Adams <info-2007@fedora-blog.de> - 1.2.2-2
-- Wnabled DBus (and Mozilla) usage on FC6 & EL5
+- Enabled DBus (and Mozilla) usage on FC6 and EL5.
 
 * Thu May 31 2007 Dag Wieers <dag@wieers.com> - 1.2.2-1
 - Updated to release 1.2.2.

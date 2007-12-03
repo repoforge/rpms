@@ -20,8 +20,8 @@
 
 Summary: Textmode windowing environment
 Name: twin
-Version: 0.5.1
-Release: 0.2
+Version: 0.6.0
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://linuz.sns.it/~max/twin/
@@ -63,21 +63,19 @@ you will need to install %{name}-devel.
 
 %build
 %configure
-%{__make} %{?_smp_mflags}
+%{__make} #%{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+#makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_datadir}/twin/{BUGS,COPYING*,INSTALL,README*,*.lsm,*.txt}
 %{__rm} -rf %{buildroot}%{_datadir}/twin/docs/
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -87,25 +85,28 @@ you will need to install %{name}-devel.
 %doc BUGS Changelog.txt COPYING* README* twin-current.lsm
 %doc docs/*.txt docs/Compatibility docs/FAQ docs/Philosophy docs/Tutorial
 %doc TODOS/TODO TODOS/twin-thoughts
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/twin.1*
 %config %{_libdir}/twin/
 %{_bindir}/*
-%{_sbindir}/*
-%{_libdir}/TT/
-%{_libdir}/*.so.*
 %{_datadir}/twin/
+%{_libdir}/libTutf.so.*
+%{_libdir}/libTw.so.*
+#%{_libdir}/TT/
+%{_sbindir}/twdm
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_libdir}/*.a
-%{_libdir}/*.so
-%{_includedir}/TT/
+#%{_includedir}/TT/
 %{_includedir}/Tutf/
 %{_includedir}/Tw/
+%{_libdir}/libTutf*.a
+%{_libdir}/libTw*.a
+%{_libdir}/libTutf.so
+%{_libdir}/libTw.so
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.1-0.2
-- Rebuild for Fedora Core 5.
+* Sun Dec 02 2007 Dag Wieers <dag@wieers.com> - 0.6.0-1
+- Updated to release 0.6.0.
 
 * Sun Sep 07 2003 Dag Wieers <dag@wieers.com> - 0.5.1-0
 - Updated to release 0.5.1.
