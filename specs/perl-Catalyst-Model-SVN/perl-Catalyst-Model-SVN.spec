@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dries
-# Upstream: Christopher H. Laco <claco$cpan,org>
+# Upstream: Christopher H. Laco <claco$chrislaco,com>
+# Upstream: Tomas Doran <bobtfish$bobtfish,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,18 +10,22 @@
 
 Summary: Catalyst Model to browse Subversion repositories
 Name: perl-Catalyst-Model-SVN
-Version: 0.05
+Version: 0.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Model-SVN/
 
-Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Model-SVN-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Model-SVN-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Catalyst::Devel)
 BuildRequires: perl(ExtUtils::MakeMaker) >= 5.8.0
+BuildRequires: perl(FindBin)
+BuildRequires: perl(Test::Exception)
+BuildRequires: perl(Test::More)
 
 %description
 This model class uses the perl-subversion bindings to access a
@@ -47,22 +52,26 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST MANIFEST.SKIP META.yml README Todo
+%doc %{_mandir}/man3/Catalyst::Model::SVN.3pm*
+%doc %{_mandir}/man3/Catalyst::Model::SVN::*.3pm*
+%doc %{_mandir}/man3/Catalyst::Helper::Model::SVN.3pm*
 %dir %{perl_vendorlib}/Catalyst/
 %dir %{perl_vendorlib}/Catalyst/Model/
+%{perl_vendorlib}/Catalyst/Model/SVN/
 %{perl_vendorlib}/Catalyst/Model/SVN.pm
 %dir %{perl_vendorlib}/Catalyst/
 %dir %{perl_vendorlib}/Catalyst/Helper/
 %dir %{perl_vendorlib}/Catalyst/Helper/Model/
+#%{perl_vendorlib}/Catalyst/Helper/Model/SVN/
 %{perl_vendorlib}/Catalyst/Helper/Model/SVN.pm
 
 %changelog
+* Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 0.07-1
+- Updated to release 0.07.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Updated to release 0.05.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
-- Rebuild for Fedora Core 5.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.

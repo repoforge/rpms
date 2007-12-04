@@ -9,9 +9,9 @@
 
 Summary: Generic config module
 Name: perl-Config-General
-Version: 2.36
+Version: 2.37
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-General/
 
@@ -55,20 +55,26 @@ configuration.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changelog README
-%doc %{_mandir}/man3/Config::General*
-%{perl_vendorlib}/Config/General.pm
+%doc Changelog MANIFEST README
+%doc %{_mandir}/man3/Config::General.3pm*
+%doc %{_mandir}/man3/Config::General::*.3pm*
+%dir %{perl_vendorlib}/Config/
 %{perl_vendorlib}/Config/General/
+%{perl_vendorlib}/Config/General.pm
 
 %changelog
+* Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 2.37-1
+- Updated to release 2.37.
+
 * Mon Oct 22 2007 Dries Verachtert <dries@ulyssis.org> - 2.36-1
 - Updated to release 2.36.
 

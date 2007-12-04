@@ -9,7 +9,7 @@
 
 Summary: Perl module to return derived classes of a class
 Name: perl-UNIVERSAL-derived_classes
-Version: 0.01
+Version: 0.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -24,10 +24,6 @@ BuildRequires: perl
 %description
 perl-UNIVERSAL-derived_classes is a Perl module to return derived classes
 of a class.
-
-This package contains the following Perl module:
-
-    UNIVERSAL::derived_classes
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -55,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/UNIVERSAL/derived_classes.pm
 
 %changelog
+* Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 0.02-1
+- Updated to release 0.02.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.01-1
 - Initial package. (using DAR)

@@ -7,10 +7,10 @@
 
 %define real_name OLE-Storage_Lite
 
-Summary: Simple Class for OLE document interface
+Summary: Read and write OLE storage files
 Name: perl-OLE-Storage_Lite
-Version: 0.14
-Release: 1.2
+Version: 0.15
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/OLE-Storage_Lite/
@@ -23,7 +23,7 @@ BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
-This module allows you to read and write an OLE-Structured file.
+Read and write OLE storage files.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -44,13 +44,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/OLE::Storage_Lite.3pm*
+%dir %{perl_vendorlib}/OLE/
+#%{perl_vendorlib}/OLE/Storage_Lite/
 %{perl_vendorlib}/OLE/Storage_Lite.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1.2
-- Rebuild for Fedora Core 5.
+* Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 0.15-1
+- Updated to release 0.15.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.14-1
 - Initial package.

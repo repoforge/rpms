@@ -1,16 +1,16 @@
 # $Id$
-
 # Authority: dries
-# Upstream: Alan Citterman <alan$mticket,com>
+# Upstream: Makamaka Hannyaharamitu <makamaka$cpan,org>
 
-%define real_name Text-CSV
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
+%define real_name Text-CSV
+
 Summary: Comma-separated values manipulation routines
 Name: perl-Text-CSV
-Version: 0.01
-Release: 1.2
+Version: 1.00
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-CSV/
@@ -46,11 +46,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Text::CSV.3pm*
+%doc %{_mandir}/man3/Text::CSV_PP.3pm*
+%dir %{perl_vendorlib}/Text/
+#%{perl_vendorlib}/Text/CSV/
 %{perl_vendorlib}/Text/CSV.pm
-%{perl_vendorlib}/auto/Text/CSV
+%{perl_vendorlib}/Text/CSV_PP.pm
 
 %changelog
+* Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 1.00-1
+- Updated to release 1.00.
+
 * Mon Feb 28 2005 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

@@ -9,7 +9,7 @@
 
 Summary: Perl module that provides date manipulation routines
 Name: perl-Date-Manip
-Version: 5.46
+Version: 5.48
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Date/Manip.pod
 
 %changelog
+* Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 5.48-1
+- Updated to release 5.48.
+
 * Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 5.46-1
 - Initial package. (using DAR)

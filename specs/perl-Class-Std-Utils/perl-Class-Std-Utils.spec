@@ -6,17 +6,17 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Class-Std-Utils
-%define real_version 0.000002
+%define real_version 0.000003
 
 Summary: Utility subroutines for building "inside-out" objects
 Name: perl-Class-Std-Utils
-Version: 0.0.2
+Version: 0.0.3
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Std-Utils/
 
-Source: http://www.cpan.org/modules/by-module/Class/Class-Std-Utils-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Class/Class-Std-Utils-v%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -26,7 +26,7 @@ BuildRequires: perl
 Utility subroutines for building "inside-out" objects.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-v%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -52,5 +52,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/Std/Utils.pm
 
 %changelog
+* Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 0.0.3-1
+- Updated to release 0.0.3.
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 0.0.2-1
 - Initial package. (using DAR)

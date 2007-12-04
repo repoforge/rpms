@@ -1,16 +1,16 @@
 # $Id$
 # Authority: dries
-# Upstream: Tom Zoerner <Tom,Zoerner$informatik,uni-erlangen,de>
+# Upstream: Tom Zoerner <tomzo$users,sourceforge,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Quota
-%define real_version 1.006000
+%define real_version 1.006001
 
 Summary: Perl interface to file system quotas
 Name: perl-Quota
-Version: 1.6.0
+Version: 1.6.1
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -36,9 +36,8 @@ according file system.
 %setup -n %{real_name}-%{version}
 
 %build
-export CFLAGS="-fPIC"
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags} -fPIC" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags} -fPIC"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -55,12 +54,15 @@ find contrib/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES INSTALL MANIFEST README contrib/
+%doc CHANGES INSTALL MANIFEST META.yml README contrib/
 %doc %{_mandir}/man3/Quota.3pm*
 %{perl_vendorarch}/auto/Quota/
 %{perl_vendorarch}/Quota.pm
 
 %changelog
+* Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 1.6.1-1
+- Updated to release 1.6.1.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.6.0-1
 - Updated to release 1.6.0.
 

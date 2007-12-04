@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements high resolution alarm, sleep, gettimeofday, interval timers
 Name: perl-Time-HiRes
-Version: 1.9708
+Version: 1.9711
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Time/HiRes.pm
 
 %changelog
+* Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 1.9711-1
+- Updated to release 1.9711.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 1.9708-1
 - Updated to release 1.9708.
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Michael G Schwern <mschwern$cpan,org>
+# Upstream: Michael G Schwern <schwern$pobox,com>
 
 ### From RH9 onwards perl(Test::Simple) is provided by the perl package (sigh)
 ## ExclusiveDist: el2 rh7
@@ -10,9 +10,9 @@
 
 %define real_name Test-Simple
 
-Summary: Simplified testing framework
+Summary: Basic utilities for writing tests
 Name: perl-Test-Simple
-Version: 0.72
+Version: 0.74
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -62,6 +62,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Tutorial.pod
 
 %changelog
+* Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 0.74-1
+- Updated to release 0.74.
+
 * Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 0.72-1
 - Updated to release 0.72.
 

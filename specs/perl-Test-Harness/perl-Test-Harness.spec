@@ -9,7 +9,7 @@
 
 Summary: Run Perl standard test scripts with statistics
 Name: perl-Test-Harness
-Version: 3.03
+Version: 3.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,11 +50,13 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %doc Changes Changes-2.64 HACKING.pod MANIFEST META.yml README examples/
 %doc %{_mandir}/man1/prove.1*
 %doc %{_mandir}/man3/App::Prove.3pm*
+%doc %{_mandir}/man3/App::Prove::*.3pm*
 %doc %{_mandir}/man3/Test::HACKING.3pm*
 %doc %{_mandir}/man3/Test::Harness.3pm*
 %doc %{_mandir}/man3/TAP::*.3pm*
 %{_bindir}/prove
 %dir %{perl_vendorlib}/App/
+%{perl_vendorlib}/App/Prove/
 %{perl_vendorlib}/App/Prove.pm
 %dir %{perl_vendorlib}/Test/
 #%{perl_vendorlib}/Test/Harness/
@@ -63,6 +65,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/TAP/
 
 %changelog
+* Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 3.04-1
+- Updated to release 3.04.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 3.03-1
 - Updated to release 3.03.
 

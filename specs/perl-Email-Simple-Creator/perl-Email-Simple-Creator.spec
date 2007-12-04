@@ -9,7 +9,7 @@
 
 Summary: Email::Simple constructor for starting anew
 Name: perl-Email-Simple-Creator
-Version: 1.423
+Version: 1.424
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Email/Simple/Creator.pm
 
 %changelog
+* Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 1.424-1
+- Updated to release 1.424.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.423-1
 - Updated to release 1.423.
 

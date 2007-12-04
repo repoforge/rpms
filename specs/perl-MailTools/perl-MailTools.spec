@@ -8,11 +8,11 @@
 
 %define real_name MailTools
 
-Summary: MailTools module for perl
+Summary: Various Mail related modules
 Name: perl-MailTools
-Version: 1.77
+Version: 2.02
 Release: 1
-License: distributable
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MailTools/
 
@@ -30,7 +30,7 @@ Requires: perl >= 0:5.00503
 %{?rh7:Requires: perl-libnet >= 1.05}
 
 %description
-MailTools module for perl.
+Various Mail related modules.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -46,17 +46,22 @@ MailTools module for perl.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README*
-%doc %{_mandir}/man?/*
+%doc ChangeLog MANIFEST META.yml README README.demos examples/
+%doc %{_mandir}/man3/Mail::*.3pm*
 %{perl_vendorlib}/Mail/
-%{perl_vendorlib}/auto/Mail/
 
 %changelog
+* Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 2.02-1
+- Updated to release 2.02.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 1.77-1
 - Updated to release 1.77.
 
@@ -65,9 +70,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.74-1
 - Updated to release 1.74.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.67-2.2
-- Rebuild for Fedora Core 5.
 
 * Tue Nov  8 2005 Matthias Saou <http://freshrpms.net/> 1.67-2
 - Fix RH7 perl-libnet dependency.

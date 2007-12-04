@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dag
-# Upstream: Xavier Noria <fxn$hashref,com>
+# Upstream: Xavier Noria <FXN$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Algorithm-Combinatorics
 
-Summary: Perl module that implements an efficient generation of combinatorial sequences
+Summary: Efficient generation of combinatorial sequences
 Name: perl-Algorithm-Combinatorics
-Version: 0.24
+Version: 0.25
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,8 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl
 
 %description
-perl-Algorithm-Combinatorics is a Perl module that implements an efficient
-generation of combinatorial sequences.
+Efficient generation of combinatorial sequences.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -45,11 +44,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Algorithm::Combinatorics.3pm*
-%dir %{perl_vendorarch}/Algorithm/
-%{perl_vendorarch}/Algorithm/Combinatorics.pm
 %dir %{perl_vendorarch}/auto/Algorithm/
 %{perl_vendorarch}/auto/Algorithm/Combinatorics/
+%dir %{perl_vendorarch}/Algorithm/
+%{perl_vendorarch}/Algorithm/Combinatorics.pm
 
 %changelog
+* Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 0.25-1
+- Updated to release 0.25.
+
 * Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 0.24-1
 - Initial package. (using DAR)

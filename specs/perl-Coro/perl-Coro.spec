@@ -9,7 +9,7 @@
 
 Summary: Coroutine process abstraction
 Name: perl-Coro
-Version: 4.13
+Version: 4.22
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -47,19 +47,25 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find doc/ eg/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING Changes INSTALL MANIFEST META.yml README README.linux-glibc
+%doc COPYING Changes INSTALL MANIFEST META.yml README README.linux-glibc doc/ eg/
 %doc %{_mandir}/man3/Coro.3pm*
 %doc %{_mandir}/man3/Coro::*.3pm*
+%{perl_vendorarch}/auto/Coro/
 %{perl_vendorarch}/Coro/
 %{perl_vendorarch}/Coro.pm
-%{perl_vendorarch}/auto/Coro/
 
 %changelog
+* Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 4.22-1
+- Updated to release 4.22.
+
 * Thu Nov 08 2007 Dag Wieers <dag@wieers.com> - 4.13-1
 - Updated to release 4.13.
 

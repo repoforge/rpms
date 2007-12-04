@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Philip M. Gollucci <pgollucci$p6m7g8,com>
+# Upstream: Fred Moyer <fred$redhotpenguin,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Perl module contains a Test.pm wrapper with helpers for testing Apache
 Name: perl-Apache-Test
-Version: 1.29
+Version: 1.30
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -45,11 +45,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes INSTALL LICENSE MANIFEST META.yml README ToDo install-pl
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Apache::*.3pm*
+%doc %{_mandir}/man3/Bundle::ApacheTest.3pm*
 %{perl_vendorlib}/Apache/
 %dir %{perl_vendorlib}/Bundle/
 %{perl_vendorlib}/Bundle/ApacheTest.pm
 
 %changelog
+* Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 1.30-1
+- Updated to release 1.30.
+
 * Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 1.29-1
 - Initial package. (using DAR)

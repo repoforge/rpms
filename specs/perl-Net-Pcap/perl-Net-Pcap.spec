@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Sébastien Aperghis-Tramoni <maddingue$free,fr>
+# Upstream: Sébastien Aperghis-Tramoni <sebastien$aperghis,net>
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
@@ -15,7 +15,7 @@
 
 Summary: Interface to pcap(3) LBL packet capture library
 Name: perl-Net-Pcap
-Version: 0.14
+Version: 0.15
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -30,7 +30,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 %{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
-This module is an interface to pcap(3) LBL packet capture library.
+Interface to pcap(3) LBL packet capture library.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -46,12 +46,15 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
+%doc Changes MANIFEST META.yml README eg/
 %doc %{_mandir}/man1/pcapinfo.1*
 %doc %{_mandir}/man3/Net::Pcap.3pm*
 %{_bindir}/pcapinfo
@@ -59,8 +62,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Net/Pcap/
 %dir %{perl_vendorarch}/Net/
 %{perl_vendorarch}/Net/Pcap.pm
+%{perl_vendorarch}/Net/._Pcap.pm
 
 %changelog
+* Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 0.15-1
+- Updated to release 0.15.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.14-1
 - Updated to release 0.14.
 

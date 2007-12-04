@@ -11,7 +11,7 @@
 
 Summary: Create a module Makefile
 Name: perl-ExtUtils-MakeMaker
-Version: 6.36
+Version: 6.38
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/ExtUtils/
 
 %changelog
+* Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 6.38-1
+- Updated to release 6.38.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 6.36-1
 - Updated to release 6.36.
 

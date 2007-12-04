@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Run Henssel <perl$henssel,dk>
+# Upstream: Rune Henssel <perl$henssel,dk>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: Encoding and decoding of base36 strings
 Name: perl-Math-Base36
-Version: 0.02
-Release: 1.2
+Version: 0.04
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Base36/
@@ -19,8 +19,10 @@ Source: http://www.cpan.org/modules/by-module/Math/Math-Base36-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.6.0
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
+Requires: perl >= 0:5.6.0
 
 %description
 Encoding and decoding of base36 strings.
@@ -44,14 +46,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Math::Base36.3pm*
+%dir %{perl_vendorlib}/Math/
+#%{perl_vendorlib}/Math/Base36/
 %{perl_vendorlib}/Math/Base36.pm
-%{perl_vendorlib}/auto/Math/Base36
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1.2
-- Rebuild for Fedora Core 5.
+* Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 0.04-1
+- Updated to release 0.04.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

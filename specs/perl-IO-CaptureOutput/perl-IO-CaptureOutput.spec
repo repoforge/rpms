@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Simon Flack <sf AT flacks,net>
+# Upstream: David A. Golden <dagolden$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Capture STDOUT and STDERR from Perl code, subprocesses or XS
 Name: perl-IO-CaptureOutput
-Version: 1.05
+Version: 1.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(Test::More) >= 0.62
+#BuildRequires: perl(Test::More) >= 0.62
 
 %description
 Capture STDOUT and STDERR from Perl code, subprocesses or XS.
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IO/CaptureOutput.pod
 
 %changelog
+* Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 1.06-1
+- Updated to release 1.06.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.05-1
 - Updated to release 1.05.
 
