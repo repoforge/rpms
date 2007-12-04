@@ -17,6 +17,7 @@
 
 %{?el2:%define _without_alsa 1}
 %{?el2:%define _without_freedesktop 1}
+%{?el2:%define _without_opengl 1}
 
 %define desktop_vendor rpmforge
 
@@ -66,6 +67,7 @@ EOF
 %build
 %configure \
     --program-prefix="%{?_program_prefix}" \
+%{?_without_opengl:--disable-opengl} \
     --enable-core-inline \
     --enable-shots
 %{__make} %{?_smp_mflags}
