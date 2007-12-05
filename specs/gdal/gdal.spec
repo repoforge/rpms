@@ -6,7 +6,7 @@
 
 Summary: Geospatial Data Abstraction Library
 Name: gdal
-Version: 1.4.2
+Version: 1.4.4
 Release: 1
 License: MIT/X
 Group: Applications/Engineering
@@ -64,15 +64,15 @@ you will need to install %{name}-devel.
 %{_bindir}/gdal*
 %{_bindir}/ogr*
 %{_bindir}/gcps*
-%{_bindir}/epsg_tr.py
-%{_bindir}/pct2rgb.py
-%{_bindir}/rgb2pct.py
+%{_bindir}/epsg_tr.py*
+%{_bindir}/pct2rgb.py*
+%{_bindir}/rgb2pct.py*
 %{_datadir}/gdal/
 %{_libdir}/libgdal.so.*
 %{python_sitearch}/_gdalmodule.*
-%{python_sitearch}/gdal*.py
-%{python_sitearch}/ogr.py
-%{python_sitearch}/osr.py
+%{python_sitearch}/gdal*.py*
+%{python_sitearch}/ogr.py*
+%{python_sitearch}/osr.py*
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -87,6 +87,12 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Mon Dec  3 2007 Dries Verachtert <dries@ulyssis.org> - 1.4.4-1
+- Updated to release 1.4.4.
+
+* Mon Nov  5 2007 Dries Verachtert <dries@ulyssis.org> - 1.4.3-1
+- Updated to release 1.4.3.
+
 * Thu Jul 26 2007 Dries Verachtert <dries@ulyssis.org> - 1.4.2-1
 - Updated to release 1.4.2.
 

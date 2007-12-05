@@ -3,7 +3,7 @@
 
 Summary: Geometric objects and math objects
 Name: wfmath
-Version: 0.3.6
+Version: 0.3.7
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -62,6 +62,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Mon Dec  3 2007 Dries Verachtert <dries@ulyssis.org> - 0.3.7-1
+- Updated to release 0.3.7.
+
 * Mon Jul 23 2007 Dries Verachtert <dries@ulyssis.org> - 0.3.6-1
 - Updated to release 0.3.6.
 
