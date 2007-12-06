@@ -10,7 +10,7 @@
 
 Summary: Searches your hard drive for files using pattern matching on meta-data
 Name: doodle
-Version: 0.6.6
+Version: 0.6.7
 Release: 1
 License: GPL
 Group: Applications/File
@@ -44,12 +44,13 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure
+%configure \
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %clean
@@ -68,12 +69,15 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man3/libdoodle.3*
 %{_includedir}/doodle.h
-%{_libdir}/libdoodle.a
+#%{_libdir}/libdoodle.a
 %{_libdir}/libdoodle.so
 %{_libdir}/pkgconfig/doodle.pc
 %exclude %{_libdir}/libdoodle.la
 
 %changelog
+* Thu Dec 06 2007 Dag Wieers <dag@wieers.com> - 0.6.7-1
+- Updated to release 0.6.7.
+
 * Sun Jan 07 2007 Dries Verachtert <dries@ulyssis.org> - 0.6.6-1
 - Updated to release 0.6.6.
 

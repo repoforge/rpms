@@ -28,8 +28,8 @@ BuildRequires: bzip2-devel, zlib-devel, gmp-devel, curl-devel
 Requires: clamav-db = %{version}-%{release}
 
 ### Fedora Extras introduced them differently :(
-Obsoletes: libclamav < %{version}-%{release}
-Obsoletes: clamav-lib < %{version}-%{release}
+Obsoletes: libclamav <= %{version}-%{release}
+Obsoletes: clamav-lib <= %{version}-%{release}
 Provides: libclamav
 
 %description
@@ -96,70 +96,70 @@ you will need to install %{name}-devel.
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g;' libtool configure
 
 %{__perl} -pi.orig -e '
-		s|\@DBDIR\@|\$(localstatedir)/clamav|g;
-		s|\@DBINST\@|\$(localstatedir)/clamav|g;
-		s|\@CFGDIR\@|\$(sysconfdir)|g;
-		s|\@CFGINST\@|\$(sysconfdir)|g;
-		s|^\@INSTALL_CLAMAV_CONF_TRUE\@|\t|g;
-		s|^\@INSTALL_FRESHCLAM_CONF_TRUE\@|\t|g;
-	' database/Makefile.in etc/Makefile.in
+        s|\@DBDIR\@|\$(localstatedir)/clamav|g;
+        s|\@DBINST\@|\$(localstatedir)/clamav|g;
+        s|\@CFGDIR\@|\$(sysconfdir)|g;
+        s|\@CFGINST\@|\$(sysconfdir)|g;
+        s|^\@INSTALL_CLAMAV_CONF_TRUE\@|\t|g;
+        s|^\@INSTALL_FRESHCLAM_CONF_TRUE\@|\t|g;
+    ' database/Makefile.in etc/Makefile.in
 
 %{__perl} -pi.orig -e '
-		s|^(Example)|#$1|;
-		s|^#(LogFile) .+$|$1 %{_localstatedir}/log/clamav/clamd.log|;
-		s|^#(LogFileMaxSize) .*|$1 0|;
-		s|^#(LogTime)|$1|;
-		s|^#(LogSyslog)|$1|;
-		s|^#(PidFile) .+$|$1 %{_localstatedir}/run/clamav/clamd.pid|;
-		s|^#(TemporaryDirectory) .+$|$1 %{_localstatedir}/tmp|;
-		s|^#(DatabaseDirectory) .+$|$1 %{_localstatedir}/clamav|;
-		s|^#(LocalSocket) .+$|$1 %{_localstatedir}/run/clamav/clamd.sock|;
-		s|^#(FixStaleSocket)|$1|;
-		s|^#(TCPSocket) .+$|$1 3310|;
-		s|^#(TCPAddr) .+$|$1 127.0.0.1|;
-		s|^#(MaxConnectionQueueLength) .+$|$1 30|;
-		s|^#(StreamSaveToDisk)|$1|;
-		s|^#(MaxThreads) .+$|$1 50|;
-		s|^#(ReadTimeout) .+$|$1 300|;
-		s|^#(User) .+$|$1 clamav|;
-		s|^#(AllowSupplementaryGroups).*$|$1 yes|;
-		s|^#(ScanPE) .+$|$1 yes|;
-		s|^#(ScanELF) .+$|$1 yes|;
-		s|^#(DetectBrokenExecutables)|$1|;
-		s|^#(ScanOLE2) .+$|$1 yes|;
-		s|^#(ScanMail)|$1|;
-		s|^#(ScanArchive) .+$|$1 yes|;
-		s|^#(ArchiveMaxCompressionRatio) .+|$1 300|;
-		s|^#(ArchiveBlockEncrypted)|$1|;
-		s|^#(ArchiveBlockMax)|$1|;
-	' etc/clamd.conf
+        s|^(Example)|#$1|;
+        s|^#(LogFile) .+$|$1 %{_localstatedir}/log/clamav/clamd.log|;
+        s|^#(LogFileMaxSize) .*|$1 0|;
+        s|^#(LogTime)|$1|;
+        s|^#(LogSyslog)|$1|;
+        s|^#(PidFile) .+$|$1 %{_localstatedir}/run/clamav/clamd.pid|;
+        s|^#(TemporaryDirectory) .+$|$1 %{_localstatedir}/tmp|;
+        s|^#(DatabaseDirectory) .+$|$1 %{_localstatedir}/clamav|;
+        s|^#(LocalSocket) .+$|$1 %{_localstatedir}/run/clamav/clamd.sock|;
+        s|^#(FixStaleSocket)|$1|;
+        s|^#(TCPSocket) .+$|$1 3310|;
+        s|^#(TCPAddr) .+$|$1 127.0.0.1|;
+        s|^#(MaxConnectionQueueLength) .+$|$1 30|;
+        s|^#(StreamSaveToDisk)|$1|;
+        s|^#(MaxThreads) .+$|$1 50|;
+        s|^#(ReadTimeout) .+$|$1 300|;
+        s|^#(User) .+$|$1 clamav|;
+        s|^#(AllowSupplementaryGroups).*$|$1 yes|;
+        s|^#(ScanPE) .+$|$1 yes|;
+        s|^#(ScanELF) .+$|$1 yes|;
+        s|^#(DetectBrokenExecutables)|$1|;
+        s|^#(ScanOLE2) .+$|$1 yes|;
+        s|^#(ScanMail)|$1|;
+        s|^#(ScanArchive) .+$|$1 yes|;
+        s|^#(ArchiveMaxCompressionRatio) .+|$1 300|;
+        s|^#(ArchiveBlockEncrypted)|$1|;
+        s|^#(ArchiveBlockMax)|$1|;
+    ' etc/clamd.conf
 
 %{__perl} -pi.orig -e '
-		s|^(Example)|#$1|;
-		s|^#(DatabaseDirectory) .+$|$1 %{_localstatedir}/clamav|;
-		s|^#(UpdateLogFile) .+$|$1 %{_localstatedir}/log/clamav/freshclam.log|;
-		s|^#(LogSyslog)|$1|;
-		s|^#(DatabaseOwner) .+$|$1 clamav|;
-		s|^(Checks) .+$|$1 24|;
-		s|^#(NotifyClamd) .+$|$1 %{_sysconfdir}/clamd.conf|;
-	' etc/freshclam.conf
+        s|^(Example)|#$1|;
+        s|^#(DatabaseDirectory) .+$|$1 %{_localstatedir}/clamav|;
+        s|^#(UpdateLogFile) .+$|$1 %{_localstatedir}/log/clamav/freshclam.log|;
+        s|^#(LogSyslog)|$1|;
+        s|^#(DatabaseOwner) .+$|$1 clamav|;
+        s|^(Checks) .+$|$1 24|;
+        s|^#(NotifyClamd) .+$|$1 %{_sysconfdir}/clamd.conf|;
+    ' etc/freshclam.conf
 
 %{__cat} <<EOF >clamd.logrotate
 %{_localstatedir}/log/clamav/clamd.log {
-	missingok
-	notifempty
-	create 644 clamav clamav
-	postrotate
-		killall -HUP clamd 2>/dev/null || :
-	endscript
+    missingok
+    notifempty
+    create 644 clamav clamav
+    postrotate
+        killall -HUP clamd 2>/dev/null || :
+    endscript
 }
 EOF
 
 %{__cat} <<EOF >freshclam.logrotate
 %{_localstatedir}/log/clamav/freshclam.log {
-	missingok
-	notifempty
-	create 644 clamav clamav
+    missingok
+    notifempty
+    create 644 clamav clamav
 }
 EOF
 
@@ -190,30 +190,30 @@ EOF
 ### read the documentation and tweak it as you wish.
 
 CLAMAV_FLAGS="
-	--config-file=%{_sysconfdir}/clamd.conf
-	--force-scan
-	--local
-	--max-children=10
-	--noreject
-	--outgoing
-	--quiet
+    --config-file=%{_sysconfdir}/clamd.conf
+    --force-scan
+    --local
+    --max-children=10
+    --noreject
+    --outgoing
+    --quiet
 "
 SOCKET_ADDRESS="local:%{_localstatedir}/clamav/clmilter.socket"
 EOF
 
 %build
 %configure  \
-	--program-prefix="%{?_program_prefix}" \
-	--disable-clamav \
+    --program-prefix="%{?_program_prefix}" \
+    --disable-clamav \
     --disable-static \
-	--disable-zlib-vcheck \
-	--enable-dns \
-	--enable-id-check \
+    --disable-zlib-vcheck \
+    --enable-dns \
+    --enable-id-check \
 %{!?_without_milter:--enable-milter} \
-	--with-dbdir="%{_localstatedir}/clamav" \
-	--with-group="clamav" \
-	--with-libcurl \
-	--with-user="clamav"
+    --with-dbdir="%{_localstatedir}/clamav" \
+    --with-group="clamav" \
+    --with-libcurl \
+    --with-user="clamav"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -245,18 +245,18 @@ ZONES="/usr/share/zoneinfo/zone.tab"
 CONFIG="/etc/sysconfig/clock"
 
 if [ -r "$CONFIG" -a -r "$ZONES" ]; then
-	source "$CONFIG"
-	export CODE="$(grep -E "\b$ZONE\b" "$ZONES" | head -1 | cut -f1 | tr [A-Z] [a-z])"
+    source "$CONFIG"
+    export CODE="$(grep -E "\b$ZONE\b" "$ZONES" | head -1 | cut -f1 | tr [A-Z] [a-z])"
 fi
 
 if [ -z "$CODE" ]; then
-	export CODE="local"
+    export CODE="local"
 fi
 
 %{__perl} -pi -e '
-		s|^(DatabaseMirror) database\.clamav\.net$|$1 db.$ENV{"CODE"}.clamav.net\n$1 db.local.clamav.net|;
-		s|^(DatabaseMirror) db\.\.clamav\.net$|$1 db.$ENV{"CODE"}.clamav.net\n$1 db.local.clamav.net|;
-	' %{_sysconfdir}/freshclam.conf{,.rpmnew} &>/dev/null || :
+        s|^(DatabaseMirror) database\.clamav\.net$|$1 db.$ENV{"CODE"}.clamav.net\n$1 db.local.clamav.net|;
+        s|^(DatabaseMirror) db\.\.clamav\.net$|$1 db.$ENV{"CODE"}.clamav.net\n$1 db.local.clamav.net|;
+    ' %{_sysconfdir}/freshclam.conf{,.rpmnew} &>/dev/null || :
 
 %postun -p /sbin/ldconfig
 
@@ -269,8 +269,8 @@ fi
 
 %preun -n clamd
 if [ $1 -eq 0 ]; then
-	/sbin/service clamd stop &>/dev/null || :
-	/sbin/chkconfig --del clamd
+    /sbin/service clamd stop &>/dev/null || :
+    /sbin/chkconfig --del clamd
 fi
 
 %postun -n clamd
@@ -281,8 +281,8 @@ fi
 
 %preun milter
 if [ $1 -eq 0 ]; then
-	/sbin/service clamav-milter stop &>/dev/null || :
-	/sbin/chkconfig --del clamav-milter
+    /sbin/service clamav-milter stop &>/dev/null || :
+    /sbin/chkconfig --del clamav-milter
 fi
 
 %postun milter

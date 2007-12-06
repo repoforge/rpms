@@ -48,7 +48,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 0.9.48
+Version: 0.9.50
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -555,6 +555,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/crypt32.dll.so
 %{_libdir}/wine/cryptdll.dll.so
 %{_libdir}/wine/cryptnet.dll.so
+%{_libdir}/wine/ctapi32.dll.so
 %{_libdir}/wine/ctl3d32.dll.so
 %{_libdir}/wine/d3d8.dll.so
 %{_libdir}/wine/d3d9.dll.so
@@ -605,6 +606,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/inkobj.dll.so
 %{_libdir}/wine/imagehlp.dll.so
 %{_libdir}/wine/imm32.dll.so
+%{_libdir}/wine/inetcomm.dll.so
 %{_libdir}/wine/inseng.dll.so
 %{_libdir}/wine/iphlpapi.dll.so
 %{_libdir}/wine/itss.dll.so
@@ -622,6 +624,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/mpr.dll.so
 %{_libdir}/wine/mprapi.dll.so
 %{_libdir}/wine/msacm32.dll.so
+%{_libdir}/wine/mscat32.dll.so
 %{_libdir}/wine/mscoree.dll.so
 %{_libdir}/wine/msdmo.dll.so
 %{_libdir}/wine/msftedit.dll.so
@@ -834,6 +837,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Thu Dec 06 2007 Dag Wieers <dag@wieers.com> - 0.9.50-1
+- Updated to release 0.9.50.
+
 * Tue Oct 30 2007 Dag Wieers <dag@wieers.com> - 0.9.48-1
 - Updated to release 0.9.48.
 

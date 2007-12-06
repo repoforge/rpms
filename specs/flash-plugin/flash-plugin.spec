@@ -10,14 +10,14 @@
 
 Summary: Macromedia Flash Player
 Name: flash-plugin
-Version: 9.0.48.0
+Version: 9.0.115.0
 Release: 1
 License: Commercial
 Group: Applications/Internet
 URL: http://www.macromedia.com/downloads/
 
-Source: http://macromedia.rediris.es/rpmsource/flash-player-plugin-%{version}.tar.bz2
-#Source: http://fpdownload.macromedia.com/get/flashplayer/current/install_flash_player_9_linux.tar.gz
+#Source: http://macromedia.rediris.es/rpmsource/flash-player-plugin-%{version}.tar.bz2
+Source: http://fpdownload.macromedia.com/get/flashplayer/current/install_flash_player_9_linux.tar.gz
 #Source: http://fpdownload.macromedia.com/get/shockwave/flash/english/linux/7.0r25/install_flash_player_7_linux.tar.gz
 Source1: http://macromedia.rediris.es/rpmsource/LICENSE
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -31,11 +31,11 @@ Macromedia Flash Player
 
 By downloading and installing this package you agree to the included LICENSE:
 
-	http://macromedia.rediris.es/rpmsource/LICENSE
+    http://macromedia.rediris.es/rpmsource/LICENSE
 
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n install_flash_player_9_linux/
 %{__install} -Dp -m0644 %{SOURCE1} LICENSE
 
 %build
@@ -43,7 +43,7 @@ By downloading and installing this package you agree to the included LICENSE:
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 libflashplayer.so %{buildroot}%{_libdir}/mozilla/plugins/libflashplayer.so
-%{__install} -Dp -m0755 flashplayer.xpt %{buildroot}%{_libdir}/mozilla/plugins/flashplayer.xpt
+#%{__install} -Dp -m0755 flashplayer.xpt %{buildroot}%{_libdir}/mozilla/plugins/flashplayer.xpt
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -54,6 +54,9 @@ By downloading and installing this package you agree to the included LICENSE:
 %{_libdir}/mozilla/plugins/
 
 %changelog
+* Wed Dec 05 2007 Dag Wieers <dag@wieers.com> - 9.0.115.0-1
+- Updated to release 9.0.115.0.
+
 * Thu Jul 19 2007 Dag Wieers <dag@wieers.com> - 9.0.48.0-1
 - Updated to release 9.0.48.0.
 

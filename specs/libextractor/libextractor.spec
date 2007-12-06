@@ -13,7 +13,7 @@
 
 Summary: Meta-data extraction library
 Name: libextractor
-Version: 0.5.18
+Version: 0.5.18a
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -62,16 +62,27 @@ Python bindings to libextractor.
 %setup
 
 %build
-%configure --enable-static \
-	--with-pic CFLAGS=-I/usr/include/exiv2
-%{__make} %{?_smp_mflags} datadir=%{_datadir} pkgconfigdatadir=%{_libdir}/pkgconfig
+%configure \
+    --disable-static \
+    --with-pic \
+    CFLAGS="-I/usr/include/exiv2"
+%{__make} %{?_smp_mflags} datadir="%{_datadir}" pkgconfigdatadir="%{_libdir}/pkgconfig"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}" datadir=%{_datadir} pkgconfigdatadir=%{_libdir}/pkgconfig
+%{__make} install DESTDIR="%{buildroot}" datadir="%{_datadir}" pkgconfigdatadir="%{_libdir}/pkgconfig"
 %find_lang %{name}
 
-%post -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+/sbin/install-info %{_infodir}/extract.info %{_infodir}/dir 2>/dev/null || :
+
+
+%preun
+if [ $1 -eq 0 ]; then
+    /sbin/install-info --delete %{_infodir}/extract.info %{_infodir}/dir 2>/dev/null || :
+fi
+
 %postun -p /sbin/ldconfig
 
 %clean
@@ -79,27 +90,31 @@ Python bindings to libextractor.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
+%doc %{_infodir}/extractor.info*
 %doc %{_mandir}/man1/extract.1*
 %{_bindir}/extract
 %{_libdir}/libextractor.so.*
 %{_libdir}/libextractor/
-%exclude %{_libdir}/libextractor/libextractor_*.a
+#%exclude %{_libdir}/libextractor/libextractor_*.a
 %exclude %{_libdir}/libextractor/libextractor_*.la
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man3/libextractor.3*
 %{_includedir}/extractor.h
-%{_libdir}/libextractor.a
-%exclude %{_libdir}/libextractor.la
+#%{_libdir}/libextractor.a
 %{_libdir}/libextractor.so
 %{_libdir}/pkgconfig/libextractor.pc
+%exclude %{_libdir}/libextractor.la
 
 #%files -n python-extractor
 #%defattr(-, root, root, 0755)
 #%{python_sitearch}/extractor.so
 
 %changelog
+* Thu Dec 06 2007 Dag Wieers <dag@wieers.com> - 0.5.18a-1
+- Updated to release
+
 * Sun Mar 18 2007 Dag Wieers <dag@wieers.com> - 0.5.18-1
 - Updated to release 0.5.18.
 

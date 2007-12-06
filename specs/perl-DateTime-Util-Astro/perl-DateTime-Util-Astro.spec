@@ -1,16 +1,15 @@
 # $Id$
 # Authority: dries
-# Upstream: Daisuke Maki <dmaki@cpan.org>
+# Upstream: Daisuke Maki <daisuke$endeworks,jp>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name DateTime-Util-Astro
-%define real_version 0.11.1
 
 Summary: Astronomical Calendar Calculations
 Name: perl-DateTime-Util-Astro
-Version: 0.11001
+Version: 0.12000
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DateTime/Util/Astro.pm
 
 %changelog
+* Wed Dec 05 2007 Dag Wieers <dag@wieers.com> - 0.12000-1
+- Updated to release 0.12000.
+
 * Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.11001-1
 - Switch to upstream version.
 

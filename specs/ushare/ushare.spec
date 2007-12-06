@@ -115,16 +115,20 @@ exit $RETVAL
 EOF
 
 %build
-%configure \
+./configure \
+    --prefix="%{_prefix}" \
+    --sysconfdir="%{_sysconfdir}" \
     --enable-dlna
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-%{__install} -Dp -m0755 ushare.sysv %{buildroot}%{_initrddir}/ushare
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/ushare/
 %find_lang %{name}
+
+%{__install} -Dp -m0755 ushare.sysv %{buildroot}%{_initrddir}/ushare
+%{__install} -Dp -m0644 src/ushare.1 %{buildroot}%{_mandir}/man1/ushare.1
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/ushare/
 
 %pre
 if ! /usr/bin/id ushare &>/dev/null; then

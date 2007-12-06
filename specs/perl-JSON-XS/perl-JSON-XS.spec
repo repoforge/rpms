@@ -9,13 +9,13 @@
 
 Summary: Perl module that implements JSON serialising/deserialising
 Name: perl-JSON-XS
-Version: 1.53
+Version: 2.0
 Release: 1
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/JSON-XS/
 
-Source: http://www.cpan.org/authors/id/M/ML/MLEHMANN/JSON-XS-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/JSON/JSON-XS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -57,6 +57,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/JSON/XS/
 
 %changelog
+* Wed Dec 05 2007 Dag Wieers <dag@wieers.com> - 2.0-1
+- Updated to release 2.0.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.53-1
 - Updated to release 1.53.
 

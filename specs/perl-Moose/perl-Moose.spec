@@ -7,9 +7,9 @@
 
 %define real_name Moose
 
-Summary: Perl module that implements a complete modern object system
+Summary: A complete modern object system for Perl 5
 Name: perl-Moose
-Version: 0.31
+Version: 0.32
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -58,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Moose.pm
 
 %changelog
+* Wed Dec 05 2007 Dag Wieers <dag@wieers.com> - 0.32-1
+- Updated to release 0.32.
+
 * Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 0.31-1
 - Updated to release 0.31.
 
