@@ -9,7 +9,7 @@
 
 Summary: check whether Perl module files compile correctly
 Name: perl-Test-Compile
-Version: 0.05
+Version: 0.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -23,6 +23,8 @@ BuildRequires: perl >= 0:5.6.0
 BuildRequires: perl(Test::More) >= 0.7
 BuildRequires: perl(Test::Pod)
 BuildRequires: perl(Test::Pod::Coverage)
+BuildRequires: perl(UNIVERSAL::require)
+BuildRequires: perl(Devel::CheckOS) >= 1.42
 Requires: perl >= 0:5.6.0
 
 %description
@@ -54,5 +56,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Compile.pm
 
 %changelog
+* Sat Dec 08 2007 Dag Wieers <dag@wieers.com> - 0.07-1
+- Updated to release 0.07.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.05-1
 - Initial package. (using DAR)

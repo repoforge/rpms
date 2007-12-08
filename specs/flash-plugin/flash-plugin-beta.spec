@@ -35,7 +35,7 @@ Macromedia Flash Player
 
 By downloading and installing this package you agree to the included LICENSE:
 
-	http://macromedia.rediris.es/rpmsource/LICENSE
+    http://macromedia.rediris.es/rpmsource/LICENSE
 
 
 %prep

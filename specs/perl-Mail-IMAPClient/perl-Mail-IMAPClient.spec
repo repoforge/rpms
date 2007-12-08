@@ -7,9 +7,9 @@
 
 %define real_name Mail-IMAPClient
 
-Summary: IMAP Client API
+Summary: IMAP4 client library
 Name: perl-Mail-IMAPClient
-Version: 3.00
+Version: 3.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Mail/IMAPClient.pod
 
 %changelog
+* Sat Dec 08 2007 Dag Wieers <dag@wieers.com> - 3.02-1
+- Updated to release 3.02.
+
 * Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 3.00-1
 - Updated to release 3.00.
 

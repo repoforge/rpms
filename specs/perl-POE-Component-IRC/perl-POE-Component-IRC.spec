@@ -9,7 +9,7 @@
 
 Summary: POE component for IRC
 Name: perl-POE-Component-IRC
-Version: 5.36
+Version: 5.38
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -63,6 +63,9 @@ find docs/ examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Filter/
 
 %changelog
+* Sat Dec 08 2007 Dag Wieers <dag@wieers.com> - 5.38-1
+- Updated to release 5.38.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 5.36-1
 - Updated to release 5.36.
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Adam Kennedy <adamk@cpan.org>
+# Upstream: Adam Kennedy <adamk$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Find your home and other directories, on any platform
 Name: perl-File-HomeDir
-Version: 0.66
+Version: 0.67
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/File/HomeDir.pm
 
 %changelog
+* Sat Dec 08 2007 Dag Wieers <dag@wieers.com> - 0.67-1
+- Updated to release 0.67.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.66-1
 - Updated to release 0.66.
 

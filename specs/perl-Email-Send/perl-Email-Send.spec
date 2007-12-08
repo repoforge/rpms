@@ -10,7 +10,7 @@
 Summary: Send email
 Name: perl-Email-Send
 Version: 2.192
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Send/
@@ -21,13 +21,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl(Module::Pluggable)
 
 %description
 Perl module for sending mail.
-
-This package contains the following Perl module:
-
-    Email::Send
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -59,6 +56,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Email/Send.pm
 
 %changelog
+* Sat Dec 08 2007 Dag Wieers <dag@wieers.com> - 2.192-2
+- Added missing dependency to perl(Module::Pluggable). (Max Kanat-Alexander)
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 2.192-1
 - Updated to release 2.192.
 

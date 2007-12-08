@@ -9,7 +9,7 @@
 
 Summary: Binary Data Conversion using C Types
 Name: perl-Convert-Binary-C
-Version: 0.68
+Version: 0.69
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,14 +52,17 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %doc %{_mandir}/man3/Convert::Binary::C::Cached.3pm*
 #%%doc %%{_mandir}/man3/*.3pm*
 %{_bindir}/ccconfig
+%dir %{perl_vendorarch}/auto/Convert/
+%dir %{perl_vendorarch}/auto/Convert/Binary/
+%{perl_vendorarch}/auto/Convert/Binary/C/
 %dir %{perl_vendorarch}/Convert/
 %dir %{perl_vendorarch}/Convert/Binary/
 %{perl_vendorarch}/Convert/Binary/C/
 %{perl_vendorarch}/Convert/Binary/C.pm
-%dir %{perl_vendorarch}/auto/Convert/
-%dir %{perl_vendorarch}/auto/Convert/Binary/
-%{perl_vendorarch}/auto/Convert/Binary/C/
 
 %changelog
+* Sat Dec 08 2007 Dag Wieers <dag@wieers.com> - 0.69-1
+- Updated to release 0.69.
+
 * Fri Aug 03 2007 Dag Wieers <dag@wieers.com> - 0.68-1
 - Initial package. (using DAR)
