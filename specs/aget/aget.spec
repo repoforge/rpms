@@ -3,7 +3,6 @@
 # Upstream: Murat Balaban <murat$enderunix,org>
 # Screenshot: http://www.enderunix.org/aget/aget-shot.jpg
 
-
 Summary: Console download accelerator
 Name: aget
 Version: 0.4
