@@ -9,7 +9,7 @@
 
 Summary: Perl extension to serve HTTP requests in POE
 Name: perl-POE-Component-Server-SimpleHTTP
-Version: 1.25
+Version: 1.28
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -61,6 +61,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Component/Server/SimpleHTTP.pm
 
 %changelog
+* Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 1.28-1
+- Updated to release 1.28.
+
 * Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 1.25-1
 - Updated to release 1.25.
 

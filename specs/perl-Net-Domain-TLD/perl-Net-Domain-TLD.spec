@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Alex Pavlovic <alex$taskforce-1,com>
+# Upstream: Alex Pavlovic <alexp$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,9 +9,9 @@
 
 Summary: Retrieve currently available tld names and descriptions
 Name: perl-Net-Domain-TLD
-Version: 1.65
+Version: 1.67
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Domain-TLD/
 
@@ -37,24 +37,28 @@ ccTLDs
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/Net::Domain::TLD.3pm*
+%dir %{perl_vendorlib}/Net/
+%dir %{perl_vendorlib}/Net/Domain/
+#%{perl_vendorlib}/Net/Domain/TLD/
 %{perl_vendorlib}/Net/Domain/TLD.pm
 
 %changelog
+* Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 1.67-1
+- Updated to release 1.67.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.65-1
 - Updated to release 1.65.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.62-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.62-1
 - Updated to release 1.62.

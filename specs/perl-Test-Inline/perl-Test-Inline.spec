@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Adam Kennedy <adamk@cpan.org>
+# Upstream: Adam Kennedy <adamk$cpan,org>
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
@@ -11,7 +11,7 @@
 
 Summary: Embed your tests in your code, next to what is being tested
 Name: perl-Test-Inline
-Version: 2.207
+Version: 2.208
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN

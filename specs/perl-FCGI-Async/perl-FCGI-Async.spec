@@ -7,9 +7,9 @@
 
 %define real_name FCGI-Async
 
-Summary: Allows FastCGI asynchronously
+Summary: Module to allow use of FastCGI asynchronously
 Name: perl-FCGI-Async
-Version: 0.11
+Version: 0.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/FCGI/Async.pm
 
 %changelog
+* Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 0.12-1
+- Updated to release 0.12.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.11-1
 - Updated to release 0.11.
 

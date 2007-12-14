@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Sean M. Burke <sburke$cpan,org>
+# Upstream: David Hand <cogent$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: (super)class for representing nodes in a tree
 Name: perl-Tree-DAG_Node
-Version: 1.05
-Release: 1.2
+Version: 1.06
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tree-DAG_Node/
@@ -59,5 +59,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Tree/DAG_Node.pm
 
 %changelog
+* Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 1.06-1
+- Updated to release 1.06.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.05-1
 - Initial package.

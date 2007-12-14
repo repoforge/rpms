@@ -1,17 +1,17 @@
 # $Id$
 # Authority: dag
-# Upstream: Adam Kennedy <cpan$ali,as>
+# Upstream: Adam Kennedy <adamk$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name File-Flat
 
-Summary: Perl module that implements a flat filesystem
+Summary: Implements a flat filesystem
 Name: perl-File-Flat
-Version: 1.00
+Version: 1.02
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Flat/
 
@@ -19,12 +19,15 @@ Source: http://www.cpan.org/modules/by-module/File/File-Flat-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.005
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl
+BuildRequires: perl(File::Find)
+BuildRequires: perl(Test::ClassAPI) >= 1.04
+BuildRequires: perl(Test::More) >= 0.47
+Requires: perl >= 0:5.005
 
 %description
-File-Flat is a Perl module that implements a flat filesystem.
+Implements a flat filesystem.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -48,6 +51,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes LICENSE MANIFEST META.yml README
 %doc %{_mandir}/man3/File::Flat.3pm*
 %dir %{perl_vendorlib}/File/
+#%{perl_vendorlib}/File/Flat/
 %{perl_vendorlib}/File/Flat.pm
 
 %changelog

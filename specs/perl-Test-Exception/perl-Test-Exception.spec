@@ -9,7 +9,7 @@
 
 Summary: Test exception based code
 Name: perl-Test-Exception
-Version: 0.25
+Version: 0.26
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,9 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Exception-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 1:5.6.1
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 1:5.6.1
 
 %description
 This module provides a few convenience methods for testing exception
@@ -46,11 +47,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Test::Exception.3pm*
+%dir %{perl_vendorlib}/Test/
+#%{perl_vendorlib}/Test/Exception/
 %{perl_vendorlib}/Test/Exception.pm
 
 %changelog
+* Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 0.26-1
+- Updated to release 0.26.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.25-1
 - Updated to release 0.25.
 

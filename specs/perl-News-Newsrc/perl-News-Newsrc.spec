@@ -9,8 +9,8 @@
 
 Summary: Manage newsrc files
 Name: perl-News-Newsrc
-Version: 1.08
-Release: 1.2
+Version: 1.09
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/News-Newsrc/
@@ -44,13 +44,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml Newsrc.pm README
+%doc %{_mandir}/man3/News::Newsrc.3pm*
+%dir %{perl_vendorlib}/News/
+#%{perl_vendorlib}/News/Newsrc/
 %{perl_vendorlib}/News/Newsrc.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.08-1.2
-- Rebuild for Fedora Core 5.
+* Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 1.09-1
+- Updated to release 1.09.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.08-1
 - Initial package.

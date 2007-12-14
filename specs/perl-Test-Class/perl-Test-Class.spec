@@ -9,7 +9,7 @@
 
 Summary: Easily create test classes in an xUnit/JUnit style
 Name: perl-Test-Class
-Version: 0.24
+Version: 0.26
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Class-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 1:5.6.1
+Requires: perl >= 1:5.6.1
 
 %description
 Easily create test classes in an xUnit/JUnit style.
@@ -43,20 +44,22 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/Test/Class.p*
-%{perl_vendorlib}/Test/Class
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Test::Class.3pm*
+%doc %{_mandir}/man3/Test::Class::*.3pm*
+%dir %{perl_vendorlib}/Test/
+%{perl_vendorlib}/Test/Class/
+%{perl_vendorlib}/Test/Class.pm
 
 %changelog
+* Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 0.26-1
+- Updated to release 0.26.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.24-1
 - Updated to release 0.24.
 
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.22-1
 - Updated to release 0.22.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.11-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.11-1
 - Initial package.

@@ -5,7 +5,7 @@
 
 Summary: Universal Plug'nPlay (uPNP) Media Server
 Name: ushare
-Version: 1.1
+Version: 1.1a
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -171,6 +171,9 @@ fi
 %exclude %{_sysconfdir}/init.d/ushare
 
 %changelog
+* Tue Dec 11 2007 Dag Wieers <dag@wieers.com> - 1.1a-1
+- Updated to release 1.1a.
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 1.1-1
 - Updated to release 1.1.
 

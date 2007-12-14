@@ -9,7 +9,7 @@
 
 Summary: Perl module to cache the result of http get-requests persistently
 Name: perl-HTTP-Cache-Transparent
-Version: 0.7
+Version: 1.0
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -40,17 +40,24 @@ of http get-requests persistently.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
+%doc Changes MANIFEST META.yml README examples/
 %doc %{_mandir}/man3/HTTP::Cache::Transparent.3pm*
 %dir %{perl_vendorlib}/HTTP/
 %dir %{perl_vendorlib}/HTTP/Cache/
+#%{perl_vendorlib}/HTTP/Cache/Transparent/
 %{perl_vendorlib}/HTTP/Cache/Transparent.pm
 
 %changelog
+* Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 1.0-1
+- Updated to release 1.0.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.7-1
 - Initial package. (using DAR)

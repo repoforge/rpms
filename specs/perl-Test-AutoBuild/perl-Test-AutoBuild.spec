@@ -6,19 +6,20 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Test-AutoBuild
-%define real_version 1.002000
+%define real_version 1.002001
 
 Summary: Automated build engine
 Name: perl-Test-AutoBuild
-Version: 1.2.0
+Version: 1.2.1
 Release: 1
-License: GPL
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-AutoBuild/
 
 Source: http://www.cpan.org/modules/by-module/Test/Test-AutoBuild-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl
 #BuildRequires: perl(BSD::Resource)
 BuildRequires: perl(Class::MethodMaker)
@@ -57,8 +58,8 @@ programming language used for the software.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -68,27 +69,32 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 ### Clean up docs
-find doc/ -type f -exec %{__chmod} a-x {} \;
+find doc/ examples/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS CHANGES COPYING INSTALL MANIFEST MANIFEST.SKIP META.yml README TODO doc/
+%doc AUTHORS CHANGES INSTALL LICENSE MANIFEST MANIFEST.SKIP META.yml META.yml.PL README TODO doc/ examples/
 %doc %{_mandir}/man1/auto-build.1*
+%doc %{_mandir}/man1/auto-build-clean-root.1*
 %doc %{_mandir}/man1/auto-build-make-root.1*
 %doc %{_mandir}/man3/Test::AutoBuild.3pm*
 %doc %{_mandir}/man3/Test::AutoBuild::*.3pm*
 %doc %{_mandir}/man5/auto-build.conf.5*
 #%config(noreplace) %{_sysconfdir}/auto-build.d/
 %{_bindir}/auto-build
+%{_bindir}/auto-build-clean-root
 %{_bindir}/auto-build-make-root
 %dir %{perl_vendorlib}/Test/
 %{perl_vendorlib}/Test/AutoBuild/
 %{perl_vendorlib}/Test/AutoBuild.pm
 
 %changelog
+* Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 1.2.1-1
+- Updated to release 1.2.1.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.2.0-1
 - Updated to release 1.2.0.
 

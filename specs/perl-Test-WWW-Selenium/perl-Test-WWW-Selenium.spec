@@ -9,7 +9,7 @@
 
 Summary: Test applications using Selenium Remote Control
 Name: perl-Test-WWW-Selenium
-Version: 1.13
+Version: 1.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,7 +19,6 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-WWW-Selenium-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::Exception)
@@ -59,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WWW/Selenium.pm
 
 %changelog
+* Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 1.14-1
+- Updated to release 1.14.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.13-1
 - Updated to release 1.13.
 

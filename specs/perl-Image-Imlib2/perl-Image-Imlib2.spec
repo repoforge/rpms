@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Leon Brocard <leon$astray,com>
+# Upstream: Leon Brocard <acme$astray,com>
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
@@ -21,7 +21,7 @@
 
 Summary: Interface to the Imlib2 image library
 Name: perl-Image-Imlib2
-Version: 1.13
+Version: 2.00
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,19 +54,28 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
 
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README
-%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorarch}/Image/
-%{perl_vendorarch}/Image/Imlib2.pm
+%doc CHANGES MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/Image::Imlib2.3pm*
 %dir %{perl_vendorarch}/auto/Image/
 %{perl_vendorarch}/auto/Image/Imlib2/
+%dir %{perl_vendorarch}/Image/
+%{perl_vendorarch}/Image/Imlib2.pm
 
 %changelog
+* Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 2.00-1
+- Updated to release 2.00.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.13-1
 - Updated to release 1.13.
 

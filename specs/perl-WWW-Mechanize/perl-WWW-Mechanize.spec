@@ -10,9 +10,9 @@
 
 %define real_name WWW-Mechanize
 
-Summary: Web browsing in a Perl object
+Summary: Handy web browsing in a Perl object
 Name: perl-WWW-Mechanize
-Version: 1.32
+Version: 1.34
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -26,7 +26,7 @@ BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
-This module provides perl objects for web browsing.
+Handy web browsing in a Perl object.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -57,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WWW/Mechanize.pm
 
 %changelog
+* Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 1.34-1
+- Updated to release 1.34.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 1.32-1
 - Updated to release 1.32.
 

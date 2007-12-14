@@ -11,7 +11,7 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.91.2
+Version: 0.92
 Release: 1
 License: GPL
 Group: Applications/System
@@ -308,6 +308,8 @@ fi
 %{_bindir}/freshclam
 %{_bindir}/sigtool
 %{_libdir}/libclamav.so.*
+%{_libdir}/libclamunrar.so.*
+%{_libdir}/libclamunrar_iface.so.*
 
 %files -n clamd
 %defattr(-, root, root, 0755)
@@ -355,10 +357,17 @@ fi
 %{_bindir}/clamav-config
 %{_includedir}/clamav.h
 %{_libdir}/libclamav.so
+%{_libdir}/libclamunrar.so
+%{_libdir}/libclamunrar_iface.so
 %{_libdir}/pkgconfig/libclamav.pc
 %exclude %{_libdir}/libclamav.la
+%exclude %{_libdir}/libclamunrar.la
+%exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
+* Thu Dec 13 2007 Dag Wieers <dag@wieers.com> - 0.92-1
+- Updated to release 0.92.
+
 * Tue Aug 21 2007 Dag Wieers <dag@wieers.com> - 0.91.2-1
 - Updated to release 0.91.2.
 

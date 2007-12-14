@@ -7,9 +7,9 @@
 
 %define real_name WWW-Wikipedia
 
-Summary: Lookup an entry in the wikipedia
+Summary: Automated interface to the Wikipedia
 Name: perl-WWW-Wikipedia
-Version: 1.92
+Version: 1.93
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,9 +21,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
 
 %description
-Lookup an entry in the wikipedia.
+Automated interface to the Wikipedia.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -44,14 +45,19 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/WWW::Wikipedia*
-%doc %{_mandir}/man1/wikipedia*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man1/wikipedia.1*
+%doc %{_mandir}/man3/WWW::Wikipedia.3pm*
+%doc %{_mandir}/man3/WWW::Wikipedia::*.3pm*
 %{_bindir}/wikipedia
-%{perl_vendorlib}/WWW/Wikipedia.pm
+%dir %{perl_vendorlib}/WWW/
 %{perl_vendorlib}/WWW/Wikipedia/
+%{perl_vendorlib}/WWW/Wikipedia.pm
 
 %changelog
+* Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 1.93-1
+- Updated to release 1.93.
+
 * Thu Jan 04 2007 Dries Verachtert <dries@ulyssis.org> - 1.92-1
 - Updated to release 1.92.
 

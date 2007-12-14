@@ -9,9 +9,9 @@
 
 Summary: Fast YAML loader and dumper
 Name: perl-YAML-Syck
-Version: 0.99
+Version: 1.00
 Release: 1
-License: Artistic/GPL
+License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-Syck/
 
@@ -47,6 +47,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc COPYING Changes MANIFEST META.yml README SIGNATURE
 %doc %{_mandir}/man3/JSON::Syck.3pm*
 %doc %{_mandir}/man3/YAML::Syck.3pm*
+%dir %{perl_vendorarch}/auto/YAML/
+%{perl_vendorarch}/auto/YAML/Syck/
 %dir %{perl_vendorarch}/JSON/
 %{perl_vendorarch}/JSON/Syck.pm
 %dir %{perl_vendorarch}/YAML/
@@ -55,10 +57,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %dir %{perl_vendorarch}/YAML/Loader/
 %{perl_vendorarch}/YAML/Loader/Syck.pm
 %{perl_vendorarch}/YAML/Syck.pm
-%dir %{perl_vendorarch}/auto/YAML/
-%{perl_vendorarch}/auto/YAML/Syck/
 
 %changelog
+* Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 1.00-1
+- Updated to release 1.00.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.99-1
 - Updated to release 0.99.
 
