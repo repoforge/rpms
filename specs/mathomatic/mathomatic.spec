@@ -5,7 +5,7 @@
 
 Summary: Small, portable symbolic math program
 Name: mathomatic
-Version: 12.8.0
+Version: 12.8.2
 Release: 1
 License: LGPL
 Group: Applications/Engineering
@@ -39,8 +39,13 @@ Gesslein II and has been under development since 1986.
 %doc *.txt doc/*.html
 %doc %{_mandir}/man1/mathomatic.1*
 %{_bindir}/mathomatic
+%{_datadir}/pixmaps/mathomatic.png
+%{_datadir}/applications/mathomatic.desktop
 
 %changelog
+* Sun Dec 16 2007 Dries Verachtert <dries@ulyssis.org> - 12.8.2-1
+- Updated to release 12.8.2.
+
 * Mon Nov 19 2007 Dries Verachtert <dries@ulyssis.org> - 12.8.0-1
 - Updated to release 12.8.0.
 

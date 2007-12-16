@@ -9,7 +9,7 @@
 
 Summary: SMB (samba) share browser for KDE
 Name: smb4k
-Version: 0.8.7
+Version: 0.9.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -57,13 +57,21 @@ source "/etc/profile.d/qt.sh"
 %{_bindir}/smb4k_cat
 %{_bindir}/smb4k_mv
 %{_libdir}/kde3/konqsidebar*
+%{_libdir}/kde3/libsmb4k*
 %{_libdir}/libsmb4k*
 %{_datadir}/applications/kde/smb4k.desktop
 %{_datadir}/apps/konqsidebartng/add/smb4k_add.desktop
-%{_datadir}/apps/smb4k
+%{_datadir}/apps/smb4k/
+%{_datadir}/apps/smb4knetworkbrowserpart/
+%{_datadir}/apps/smb4ksharesiconviewpart/
+%{_datadir}/apps/smb4kshareslistviewpart/
+%{_datadir}/config.kcfg/smb4k.kcfg
 %{_datadir}/icons/crystalsvg/*/apps/smb4k.png
 
 %changelog
+* Sun Dec 16 2007 Dries Verachtert <dries@ulyssis.org> - 0.9.0-1
+- Updated to release 0.9.0.
+
 * Thu Nov 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.8.7-1
 - Updated to release 0.8.7.
 
