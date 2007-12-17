@@ -3,7 +3,7 @@
 
 Summary: BitTorrent library
 Name: libtorrent
-Version: 0.11.6
+Version: 0.11.9
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -61,6 +61,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libtorrent.pc
 
 %changelog
+* Mon Dec 17 2007 Dries Verachtert <dries@ulyssis.org> - 0.11.9-1
+- Updated to release 0.11.9.
+
 * Fri Aug 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.11.6-1
 - Updated to release 0.11.6.
 
