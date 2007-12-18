@@ -1,0 +1,1095 @@
+diff -Naur php4-orig/config.m4 php4/config.m4
+--- php4-orig/config.m4	2006-06-05 15:56:46.000000000 -0400
++++ php4/config.m4	2006-06-07 15:59:40.000000000 -0400
+@@ -1,24 +1,96 @@
+-dnl $Id: config.m4 9 2001-02-25 22:30:32Z oetiker $
++dnl $Id$
++dnl config.m4 for extension rrdtool
+ 
+-PHP_ARG_WITH(rrdtool, for RRDTool support,
+-[  --with-rrdtool[=DIR]      Include RRDTool support.  DIR is the rrdtool
+-                          install directory.])
++dnl Comments in this file start with the string 'dnl'.
++dnl Remove where necessary. This file will not work
++dnl without editing.
++
++dnl
++dnl Checks for the configure options
++dnl
++
++PHP_ARG_WITH(rrdtool, for rrdtool support,
++[  --with-rrdtool[=DIR]       Include rrdtool support (requires rrdtool >= 1.0.49).])
+ 
+ if test "$PHP_RRDTOOL" != "no"; then
+-  for i in /usr/local /usr /opt/rrdtool /usr/local/rrdtool $PHP_RRDTOOL; do
+-    if test -f $i/include/rrd.h; then
+-      RRDTOOL_DIR=$i
+-    fi
+-  done
+ 
+-  if test -z "$RRDTOOL_DIR"; then
+-    AC_MSG_ERROR(Please reinstall rrdtool, or specify a directory - I cannot find rrd.h)
++  if test "$PHP_RRDTOOL" != "yes"; then
++  AC_MSG_CHECKING(if rrdtool specified path is valid)
++    if test -r $PHP_RRDTOOL/include/rrd.h && test -f $PHP_RRDTOOL/lib/librrd.$SHLIB_SUFFIX_NAME -o -f $PHP_RRDTOOL/lib/librrd.a; then # path given as parameter
++      RRDTOOL_DIR=$PHP_RRDTOOL
++      RRDTOOL_INCDIR=$PHP_RRDTOOL/include
++      RRDTOOL_LIBDIR=$PHP_RRDTOOL/lib
++    AC_MSG_RESULT([yes])
++    else
++    AC_MSG_RESULT([no])
++      AC_MSG_ERROR([The specified RRDTool path is Invalid or the installation is incomplete
++      Please specify another path or reinstall the rrdtool distribution])
++    fi
++  else
++    dnl Header path
++    AC_MSG_CHECKING([for rrdtool header files in default path])
++    for i in /usr/local/rrdtool /usr/local /usr /opt ""; do
++     test -r $i/include/rrd.h && RRDTOOL_DIR=$i && RRDTOOL_INCDIR=$i/include
++    done
++    if test -z "$RRDTOOL_INCDIR"; then
++      AC_MSG_RESULT([not found])
++      AC_MSG_ERROR([Please reinstall the rrdtool distribution])
++    else
++     AC_MSG_RESULT(found in $RRDTOOL_INCDIR)
++    fi
++    dnl Library path
++    AC_MSG_CHECKING([for rrdtool library files in default path])
++    for i in librrd.$SHLIB_SUFFIX_NAME librrd.a; do
++      test -f $RRDTOOL_DIR/lib/$i && RRDTOOL_LIBDIR=$RRDTOOL_DIR/lib
++    done
++    if test -z "$RRDTOOL_LIBDIR"; then
++      AC_MSG_RESULT([not found])
++      AC_MSG_ERROR([Please reinstall the rrdtool distribution])
++    else
++     AC_MSG_RESULT(found in $RRDTOOL_LIBDIR)
++    fi
+   fi
+-  AC_ADD_INCLUDE($RRDTOOL_DIR/include)
+-  AC_ADD_LIBRARY_WITH_PATH(rrd, $RRDTOOL_DIR/lib, RRDTOOL_SHARED_LIBADD)
+-  PHP_SUBST(RRDTOOL_SHARED_LIBADD)
+ 
+-  AC_DEFINE(HAVE_RRDTOOL,1,[ ])
++dnl Finish the setup
+ 
+-  PHP_EXTENSION(rrdtool, $ext_shared)
++  RRD_H_PATH="$RRDTOOL_INCDIR/rrd.h"
++  PHP_RRDTOOL_DIR=$RRDTOOL_DIR
++  PHP_ADD_INCLUDE($RRDTOOL_INCDIR)
++
++  PHP_CHECK_LIBRARY(rrd, rrd_create,
++  [],[
++    PHP_CHECK_LIBRARY(rrd, rrd_create,
++    [],[
++      AC_MSG_ERROR([wrong rrd lib version or lib not found])
++    ],[
++      -L$RRDTOOL_LIBDIR -ldl
++    ])
++  ],[
++    -L$RRDTOOL_LIBDIR -ldl
++  ])
++
++ AC_MSG_CHECKING([rrdtool version])
++  AC_TRY_COMPILE([
++#include <$RRD_H_PATH>
++  ], [int main() {
++    double some_variable;
++    some_variable = rrd_version();
++    }
++  ], [
++    AC_MSG_RESULT([1.2.x])
++    ac_cv_rrdversion=yes
++    ], [
++    AC_MSG_RESULT([1.0.x])
++    ac_cv_rrdversion=no
++    ])
++
++  if test "$ac_cv_rrdversion" = yes; then
++    AC_DEFINE(HAVE_RRD_12X, 1, [Whether you have rrd_verion])
++  fi 
++
++  PHP_ADD_LIBRARY_WITH_PATH(rrd, $RRDTOOL_LIBDIR, RRDTOOL_SHARED_LIBADD)
++
++  PHP_NEW_EXTENSION(rrdtool, rrdtool.c, $ext_shared)
++  PHP_SUBST(RRDTOOL_SHARED_LIBADD)
++  AC_DEFINE(HAVE_RRDTOOL, 1, [ ])
+ fi
+diff -Naur php4-orig/configure php4/configure
+--- php4-orig/configure	2006-06-06 09:31:42.000000000 -0400
++++ php4/configure	2006-06-07 15:56:06.000000000 -0400
+@@ -1159,6 +1159,7 @@
+ 
+   cat >> confdefs.h <<\EOF
+ #define HAVE_RRDTOOL 1
++#define HAVE_RRD_12X 1
+ EOF
+ 
+ 
+diff -Naur php4-orig/ltconfig php4/ltconfig
+--- php4-orig/ltconfig	2006-06-05 15:56:46.000000000 -0400
++++ php4/ltconfig	2006-06-07 17:16:50.000000000 -0400
+@@ -1247,7 +1247,8 @@
+ 
+   if test "$ld_shlibs" = yes; then
+     runpath_var=LD_RUN_PATH
+-    hardcode_libdir_flag_spec='${wl}--rpath ${wl}$libdir'
++    #hardcode_libdir_flag_spec='${wl}--rpath ${wl}$libdir'
++    hardcode_libdir_flag_spec=''
+     export_dynamic_flag_spec='${wl}--export-dynamic'
+     case $host_os in
+     cygwin* | mingw*)
+diff -Naur php4-orig/php_rrdtool.h php4/php_rrdtool.h
+--- php4-orig/php_rrdtool.h	2006-06-05 15:56:46.000000000 -0400
++++ php4/php_rrdtool.h	2006-06-07 17:26:07.000000000 -0400
+@@ -5,42 +5,60 @@
+  *
+  * Joe Miller, <joeym@inficad.com>,<joeym@ibizcorp.com>, 7/19/2000
+  *
+- * $Id: php_rrdtool.h 9 2001-02-25 22:30:32Z oetiker $
++ * $Id: php_rrdtool.h,v 1.1.1.1 2002/02/26 10:21:20 oetiker Exp $
+  *
+  */
+ 
+-#ifndef _PHP4_RRDTOOL_H
+-#define _PHP4_RRDTOOL_H
++#ifndef PHP_RRDTOOL_H
++#define PHP_RRDTOOL_H
+ 
+-#if COMPILE_DL
+-#undef HAVE_RRDTOOL
+-#define HAVE_RRDTOOL 1
++#ifdef PHP_WIN32
++#ifdef PHP_RRDTOOL_EXPORTS
++#define PHP_RRDTOOL_API __declspec(dllexport)
++#else
++#define PHP_RRDTOOL_API __declspec(dllimport)
+ #endif
+-#ifndef DLEXPORT
+-#define DLEXPORT
++#else
++#define PHP_RRDTOOL_API
+ #endif
+ 
+ #if HAVE_RRDTOOL
+ 
+-PHP_MINFO_FUNCTION(rrdtool);
+-
+ extern zend_module_entry rrdtool_module_entry;
+ #define rrdtool_module_ptr &rrdtool_module_entry
+-#define phpext_rrdtool_ptr rrdtool_module_ptr
+ 
++#ifdef ZTS
++#include "TSRM.h"
++#endif
++
++#define RRDTOOL_LOGO_GUID		"PHP25B1F7E8-916B-11D9-9A54-000A95AE92DA"
++
++/* If you declare any globals in php_rrdtool.h uncomment this:
++ZEND_BEGIN_MODULE_GLOBALS(rrdtool)
++
++ZEND_END_MODULE_GLOBALS(rrdtool)
++ */
++
++PHP_MINIT_FUNCTION(rrdtool);
++PHP_MSHUTDOWN_FUNCTION(rrdtool);
++PHP_MINFO_FUNCTION(rrdtool);
++
++PHP_FUNCTION(rrd_graph);
++PHP_FUNCTION(rrd_fetch);
+ PHP_FUNCTION(rrd_error);
+ PHP_FUNCTION(rrd_clear_error);
+ PHP_FUNCTION(rrd_update);
+ PHP_FUNCTION(rrd_last);
+ PHP_FUNCTION(rrd_create);
+-PHP_FUNCTION(rrd_graph);
+-PHP_FUNCTION(rrd_fetch);
++PHP_FUNCTION(rrdtool_info);
++PHP_FUNCTION(rrdtool_logo_guid);
+ 
+ #else
+ 
+-#define phpext_rrdtool_ptr NULL
+-
++#define rrdtool_module_ptr NULL
+ 
+ #endif /* HAVE_RRDTOOL */
+ 
+-#endif  /* _PHP4_RRDTOOL_H */
++#define phpext_rrdtool_ptr rrdtool_module_ptr
++
++#endif  /* PHP_RRDTOOL_H */
+diff -Naur php4-orig/rrdtool.c php4/rrdtool.c
+--- php4-orig/rrdtool.c	2006-06-05 15:56:46.000000000 -0400
++++ php4/rrdtool.c	2006-06-07 15:59:18.000000000 -0400
+@@ -1,6 +1,6 @@
+ /*
+  *
+- * php4_rrdtool.c
++ * php_rrdtool.c
+  *
+  *	PHP interface to RRD Tool. (for php4/zend)
+  *
+@@ -9,38 +9,59 @@
+  *          iBIZ Technology Corp,  SkyLynx / Inficad Communications
+  *          2/12/2000 & 7/18/2000
+  *
++ *       Jeffrey Wheat <jeff@cetlink.net> - 10/01/2002
++ *       - Fixed to build with php-4.2.3
+  *
+  * See README, INSTALL, and USAGE files for more details.
+  *
+- * $Id: rrdtool.c 9 2001-02-25 22:30:32Z oetiker $
++ * $Id: rrdtool.c,v 1.1.1.1 2002/02/26 10:21:20 oetiker Exp $
+  *
+  */
+ 
++/* PHP Includes */
+ #include "php.h"
+-#include "rrd.h"
++#include "php_logos.h"
++#include "ext/standard/info.h"
++#include "SAPI.h"
++
++/* rrdtool includes */
+ #include "php_rrdtool.h"
++#include "rrdtool_logo.h"
++#include <rrd.h>
++
++#ifdef HAVE_CONFIG_H
++#include "../config.h"
++#endif
+ 
+ #if HAVE_RRDTOOL
+ 
++/* If you declare any globals in php_rrdtool.h uncomment this:
++ZEND_DECLARE_MODULE_GLOBALS(rrdtool)
++ */
++ 
+ function_entry rrdtool_functions[] = {
+-	PHP_FE(rrd_error, NULL)
+-	PHP_FE(rrd_clear_error, NULL)
+-	PHP_FE(rrd_graph, NULL)
+-	PHP_FE(rrd_last, NULL)
+-	PHP_FE(rrd_fetch, NULL)
+-	PHP_FE(rrd_update, NULL)
+-	PHP_FE(rrd_create, NULL)
++	PHP_FE(rrd_graph,				NULL)
++	PHP_FE(rrd_fetch,				NULL)
++	PHP_FE(rrd_error,				NULL)
++	PHP_FE(rrd_clear_error,			NULL)
++	PHP_FE(rrd_update,				NULL)
++	PHP_FE(rrd_last,				NULL)
++	PHP_FE(rrd_create,				NULL)
++	PHP_FE(rrdtool_info,			NULL)
++	PHP_FE(rrdtool_logo_guid,		NULL)
+ 	{NULL, NULL, NULL}
+ };
+ 
+ zend_module_entry rrdtool_module_entry = {
+-	"RRDTool",
++	STANDARD_MODULE_HEADER,
++	"rrdtool",
+ 	rrdtool_functions,
+-	NULL,
+-	NULL,
++	PHP_MINIT(rrdtool),
++	PHP_MSHUTDOWN(rrdtool),
+ 	NULL,
+ 	NULL,
+ 	PHP_MINFO(rrdtool),
++	NO_VERSION_YET,
+ 	STANDARD_MODULE_PROPERTIES,
+ };
+ 
+@@ -48,220 +69,49 @@
+ ZEND_GET_MODULE(rrdtool)
+ #endif
+ 
+-PHP_MINFO_FUNCTION(rrdtool)
+-{
+-	php_info_print_table_start();
+-	php_info_print_table_header(2, "rrdtool support", "enabled");
+-	php_info_print_table_end();
+-}
+-
+-//PHP_MINIT_FUNCTION(rrdtool)
+-//{
+-//	return SUCCESS;
+-//}
+-
+-
+-/* {{{ proto string rrd_error(void)
+-	Get the error message set by the last rrd tool function call */
+-
+-PHP_FUNCTION(rrd_error)
+-{
+-	char *msg;
+-
+-	if ( rrd_test_error() )
+-	{
+-		msg = rrd_get_error();        
+-
+-		RETVAL_STRING(msg, 1);
+-		rrd_clear_error();
+-	}
+-	else
+-		return;
+-}
+-/* }}} */
+-
+-
+-
+-/* {{{ proto void rrd_clear_error(void)
+-	Clear the error set by the last rrd tool function call */
++#ifdef COMPILE_DL_RRDTOOL
++#define PHP_RRD_VERSION_STRING "1.2.x extension"
++#else
++#define PHP_RRD_VERSION_STRING "1.2.x bundled"
++#endif
+ 
+-PHP_FUNCTION(rrd_clear_error)
++/* {{{ PHP_MINIT_FUNCTION */
++PHP_MINIT_FUNCTION(rrdtool)
+ {
+-	if ( rrd_test_error() )
+-		rrd_clear_error();
+-
+-	return;
++	php_register_info_logo(RRDTOOL_LOGO_GUID   , "image/gif", rrdtool_logo   , sizeof(rrdtool_logo));
++	
++	return SUCCESS;
+ }
+ /* }}} */
+ 
+-
+-
+-/* {{{ proto int rrd_update(string file, string opt) 
+-	Update an RRD file with values specified */
+-
+-PHP_FUNCTION(rrd_update)
++/* {{{ PHP_MSHUTDOWN_FUNCTION */
++PHP_MSHUTDOWN_FUNCTION(rrdtool)
+ {
+-	pval *file, *opt;
+-	char **argv;
+-
+-	if ( rrd_test_error() )
+-		rrd_clear_error();
+-
+-	if ( ZEND_NUM_ARGS() == 2 && 
+-		 zend_get_parameters(ht, 2, &file, &opt) == SUCCESS )
+-	{
+-		convert_to_string(file);
+-		convert_to_string(opt);
+-
+-		argv = (char **) emalloc(4 * sizeof(char *));
+-
+-		argv[0] = "dummy";
+-		argv[1] = estrdup("update");
+-		argv[2] = estrdup(file->value.str.val);
+-		argv[3] = estrdup(opt->value.str.val);
+-
+-		optind = 0; opterr = 0;
+-		if ( rrd_update(3, &argv[1]) != -1 )
+-		{
+-			RETVAL_TRUE;
+-		}
+-		else
+-		{
+-			RETVAL_FALSE;
+-		}
+-		efree(argv[1]); efree(argv[2]); efree(argv[3]);
+-		efree(argv);
+-	}
+-	else
+-	{
+-		WRONG_PARAM_COUNT;
+-	}
+-	return;
++	php_unregister_info_logo(RRDTOOL_LOGO_GUID);
++	
++	return SUCCESS;
+ }
+ /* }}} */
+ 
+-
+-
+-/* {{{ proto int rrd_last(string file)
+-	Gets last update time of an RRD file */
+-
+-PHP_FUNCTION(rrd_last)
+-{
+-	pval *file;
+-	unsigned long retval;
+-
+-	char **argv = (char **) emalloc(3 * sizeof(char *));
+-    
+-	if ( rrd_test_error() )
+-		rrd_clear_error();
+-    
+-	if (zend_get_parameters(ht, 1, &file) == SUCCESS)
+-	{
+-		convert_to_string(file);
+-
+-		argv[0] = "dummy";
+-		argv[1] = estrdup("last");
+-		argv[2] = estrdup(file->value.str.val);
+-
+-		optind = 0; opterr = 0;
+-		retval = rrd_last(2, &argv[1]);
+-
+-		efree(argv[1]);  efree(argv[2]);
+-		efree(argv);
+-		RETVAL_LONG(retval);
+-	}
+-	else
+-	{
+-		WRONG_PARAM_COUNT;
+-	}
+-	return;
+-}
+-/* }}} */
+-
+-
+-/* {{{ proto int rrd_create(string file, array args_arr, int argc)
+-	Create an RRD file with the options passed (passed via array) */ 
+-
+-PHP_FUNCTION(rrd_create)
++/* {{{ PHP_MINFO_FUNCTION */
++PHP_MINFO_FUNCTION(rrdtool)
+ {
+-	pval *file, *args, *p_argc;
+-	pval *entry;
+-	char **argv;
+-	HashTable *args_arr;
+-	int argc, i;
+-
+-	if ( rrd_test_error() )
+-		rrd_clear_error();
+-
+-	if ( ZEND_NUM_ARGS() == 3 && 
+-		getParameters(ht, 3, &file, &args, &p_argc) == SUCCESS )
+-	{
+-		if ( args->type != IS_ARRAY )
+-		{ 
+-			php_error(E_WARNING, "2nd Variable passed to rrd_create is not an array!\n");
+-			RETURN_FALSE;
+-		}
+-
+-		convert_to_long(p_argc);
+-		convert_to_string(file);
+-		
+-		convert_to_array(args);
+-		args_arr = args->value.ht;
+-		zend_hash_internal_pointer_reset(args_arr);
+-
+-		argc = p_argc->value.lval + 3;
+-		argv = (char **) emalloc(argc * sizeof(char *));
+-
+-		argv[0] = "dummy";
+-		argv[1] = estrdup("create");
+-		argv[2] = estrdup(file->value.str.val);
+-
+-		for (i = 3; i < argc; i++) 
+-		{
+-			pval **dataptr;
+-
+-			if ( zend_hash_get_current_data(args_arr, (void *) &dataptr) == FAILURE )
+-				continue;
+-
+-			entry = *dataptr;
+-
+-			if ( entry->type != IS_STRING )
+-				convert_to_string(entry);
+-
+-			argv[i] = estrdup(entry->value.str.val);
+-
+-			if ( i < argc )
+-				zend_hash_move_forward(args_arr);
+-		}
+-  
+-		optind = 0;  opterr = 0;
+-
+-		if ( rrd_create(argc-1, &argv[1]) != -1 )
+-		{
+-			RETVAL_TRUE;
+-		}
+-		else
+-		{
+-			RETVAL_FALSE;
+-		}
+-		for (i = 1; i < argc; i++)
+-			efree(argv[i]);
+-
+-		efree(argv);
+-	}
+-	else
+-	{
+-	    WRONG_PARAM_COUNT;
+-	}
+-	return;
++	php_info_print_box_start(1);
++	PUTS("<a href=\"http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/\" target=\"rrdtool\"><img border=\"0\" src=\"");
++	if (SG(request_info).request_uri) {
++		PUTS(SG(request_info).request_uri);
++	}
++	PUTS("?="RRDTOOL_LOGO_GUID"\" alt=\"ClamAV logo\" /></a>\n");
++	php_printf("<h1 class=\"p\">rrdtool Version %s</h1>\n", PHP_RRD_VERSION_STRING);
++	php_info_print_box_end();
++	php_info_print_table_start();
++	php_info_print_table_row(2, "rrdtool support", "enabled");
++	php_info_print_table_end();
+ }
+ /* }}} */
+ 
+-
+-
+ /* {{{ proto mixed rrd_graph(string file, array args_arr, int argc)
+ 	Creates a graph based on options passed via an array */
+-
+ PHP_FUNCTION(rrd_graph)
+ {
+ 	pval *file, *args, *p_argc;
+@@ -269,14 +119,14 @@
+ 	zval *p_calcpr;
+ 	HashTable *args_arr;
+ 	int i, xsize, ysize, argc;
++	double ymin,ymax;
+ 	char **argv, **calcpr;
+     
+ 
+ 	if ( rrd_test_error() )
+ 		rrd_clear_error();
+     
+-	if ( ZEND_NUM_ARGS() == 3 && 
+-		zend_get_parameters(ht, 3, &file, &args, &p_argc) == SUCCESS)
++	if ( (ZEND_NUM_ARGS() >= 3 && ZEND_NUM_ARGS() <= 6) && zend_get_parameters(ht, 3, &file, &args, &p_argc) == SUCCESS)
+ 	{
+ 		if ( args->type != IS_ARRAY )
+ 		{ 
+@@ -316,7 +166,7 @@
+ 		}
+    
+ 		optind = 0; opterr = 0; 
+-		if ( rrd_graph(argc-1, &argv[1], &calcpr, &xsize, &ysize) != -1 )
++		if ( rrd_graph(argc-1, &argv[1], &calcpr, &xsize, &ysize, NULL, &ymin, &ymax) != -1 )
+ 		{
+ 			array_init(return_value);
+ 			add_assoc_long(return_value, "xsize", xsize);
+@@ -354,11 +204,8 @@
+ }
+ /* }}} */
+ 
+-
+-
+ /* {{{ proto mixed rrd_fetch(string file, array args_arr, int p_argc)
+ 	Fetch info from an RRD file */
+-
+ PHP_FUNCTION(rrd_fetch)
+ {
+ 	pval *file, *args, *p_argc;
+@@ -366,7 +213,7 @@
+ 	pval *p_start, *p_end, *p_step, *p_ds_cnt;
+ 	HashTable *args_arr;
+ 	zval *p_ds_namv, *p_data;
+-	int i, argc;
++	int i, j, argc;
+ 	time_t start, end;
+ 	unsigned long step, ds_cnt;
+ 	char **argv, **ds_namv; 
+@@ -445,7 +292,8 @@
+ 				datap = data;
+  
+ 				for (i = start; i <= end; i += step)
+-					add_next_index_double(p_data, *(datap++));
++					for (j = 0; j < ds_cnt; j++)
++						add_next_index_double(p_data, *(datap++));
+  
+ 				free(data);
+ 			}
+@@ -472,4 +320,286 @@
+ }
+ /* }}} */
+ 
++/* {{{ proto string rrd_error(void)
++	Get the error message set by the last rrd tool function call */
++PHP_FUNCTION(rrd_error)
++{
++	char *msg;
++
++	if ( rrd_test_error() )
++	{
++		msg = rrd_get_error();        
++
++		RETVAL_STRING(msg, 1);
++		rrd_clear_error();
++	}
++	else
++		return;
++}
++/* }}} */
++
++/* {{{ proto void rrd_clear_error(void)
++	Clear the error set by the last rrd tool function call */
++PHP_FUNCTION(rrd_clear_error)
++{
++	if ( rrd_test_error() )
++		rrd_clear_error();
++
++	return;
++}
++/* }}} */
++
++/* {{{ proto int rrd_update(string file, string opt) 
++	Update an RRD file with values specified */
++PHP_FUNCTION(rrd_update)
++{
++	pval *file, *opt;
++	char **argv;
++
++	if ( rrd_test_error() )
++		rrd_clear_error();
++
++	if ( ZEND_NUM_ARGS() == 2 && 
++		 zend_get_parameters(ht, 2, &file, &opt) == SUCCESS )
++	{
++		convert_to_string(file);
++		convert_to_string(opt);
++
++		argv = (char **) emalloc(4 * sizeof(char *));
++
++		argv[0] = "dummy";
++		argv[1] = estrdup("update");
++		argv[2] = estrdup(file->value.str.val);
++		argv[3] = estrdup(opt->value.str.val);
++
++		optind = 0; opterr = 0;
++		if ( rrd_update(3, &argv[1]) != -1 )
++		{
++			RETVAL_TRUE;
++		}
++		else
++		{
++			RETVAL_FALSE;
++		}
++		efree(argv[1]); efree(argv[2]); efree(argv[3]);
++		efree(argv);
++	}
++	else
++	{
++		WRONG_PARAM_COUNT;
++	}
++	return;
++}
++/* }}} */
++
++/* {{{ proto int rrd_last(string file)
++	Gets last update time of an RRD file */
++PHP_FUNCTION(rrd_last)
++{
++	pval *file;
++	unsigned long retval;
++
++	char **argv = (char **) emalloc(3 * sizeof(char *));
++    
++	if ( rrd_test_error() )
++		rrd_clear_error();
++    
++	if (zend_get_parameters(ht, 1, &file) == SUCCESS)
++	{
++		convert_to_string(file);
++
++		argv[0] = "dummy";
++		argv[1] = estrdup("last");
++		argv[2] = estrdup(file->value.str.val);
++
++		optind = 0; opterr = 0;
++		retval = rrd_last(2, &argv[1]);
++
++		efree(argv[1]);  efree(argv[2]);
++		efree(argv);
++		RETVAL_LONG(retval);
++	}
++	else
++	{
++		WRONG_PARAM_COUNT;
++	}
++	return;
++}
++/* }}} */
++
++/* {{{ proto int rrd_create(string file, array args_arr, int argc)
++	Create an RRD file with the options passed (passed via array) */ 
++PHP_FUNCTION(rrd_create)
++{
++	pval *file, *args, *p_argc;
++	pval *entry;
++	char **argv;
++	HashTable *args_arr;
++	int argc, i;
++
++	if ( rrd_test_error() )
++		rrd_clear_error();
++
++	if ( ZEND_NUM_ARGS() == 3 && 
++		getParameters(ht, 3, &file, &args, &p_argc) == SUCCESS )
++	{
++		if ( args->type != IS_ARRAY )
++		{ 
++			php_error(E_WARNING, "2nd Variable passed to rrd_create is not an array!\n");
++			RETURN_FALSE;
++		}
++
++		convert_to_long(p_argc);
++		convert_to_string(file);
++		
++		convert_to_array(args);
++		args_arr = args->value.ht;
++		zend_hash_internal_pointer_reset(args_arr);
++
++		argc = p_argc->value.lval + 3;
++		argv = (char **) emalloc(argc * sizeof(char *));
++
++		argv[0] = "dummy";
++		argv[1] = estrdup("create");
++		argv[2] = estrdup(file->value.str.val);
++
++		for (i = 3; i < argc; i++) 
++		{
++			pval **dataptr;
++
++			if ( zend_hash_get_current_data(args_arr, (void *) &dataptr) == FAILURE )
++				continue;
++
++			entry = *dataptr;
++
++			if ( entry->type != IS_STRING )
++				convert_to_string(entry);
++
++			argv[i] = estrdup(entry->value.str.val);
++
++			if ( i < argc )
++				zend_hash_move_forward(args_arr);
++		}
++  
++		optind = 0;  opterr = 0;
++
++		if ( rrd_create(argc-1, &argv[1]) != -1 )
++		{
++			RETVAL_TRUE;
++		}
++		else
++		{
++			RETVAL_FALSE;
++		}
++		for (i = 1; i < argc; i++)
++			efree(argv[i]);
++
++		efree(argv);
++	}
++	else
++	{
++	    WRONG_PARAM_COUNT;
++	}
++	return;
++}
++/* }}} */
++
++PHP_FUNCTION(rrdtool_info)
++{
++
++	if (ZEND_NUM_ARGS()!=0) {
++		ZEND_WRONG_PARAM_COUNT();
++		RETURN_FALSE;
++	}
++
++	PUTS("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"DTD/xhtml1-transitional.dtd\">\n");
++	PUTS("<html>");
++	PUTS("<head>\n");
++	PUTS("<style type=\"text/css\"><!--");
++	PUTS("body {background-color: #ffffff; color: #000000;}");
++	PUTS("body, td, th, h1, h2 {font-family: sans-serif;}");
++	PUTS("pre {margin: 0px; font-family: monospace;}");
++	PUTS("a:link {color: #000099; text-decoration: none; background-color: #ffffff;}");
++	PUTS("a:hover {text-decoration: underline;}");
++	PUTS("table {border-collapse: collapse;}");
++	PUTS(".center {text-align: center;}");
++	PUTS(".center table { margin-left: auto; margin-right: auto; text-align: left;}");
++	PUTS(".center th { text-align: center !important; }");
++	PUTS("td, th { border: 1px solid #000000; font-size: 75%; vertical-align: baseline;}");
++	PUTS("h1 {font-size: 150%;}");
++	PUTS("h2 {font-size: 125%;}");
++	PUTS(".p {text-align: left;}");
++	PUTS(".e {background-color: #ccccff; font-weight: bold; color: #000000;}");
++	PUTS(".h {background-color: #9999cc; font-weight: bold; color: #000000;}");
++	PUTS(".v {background-color: #cccccc; color: #000000;}");
++	PUTS("i {color: #666666; background-color: #cccccc;}");
++	PUTS("img {float: right; border: 0px;}");
++	PUTS("hr {width: 600px; background-color: #cccccc; border: 0px; height: 1px; color: #000000;}");
++	PUTS("//--></style>");
++	PUTS("<title>rrdtool_info()</title>");
++	PUTS("</head>\n");
++	PUTS("<body><div class=\"center\">\n");
++
++	php_info_print_box_start(1);
++	PUTS("<a href=\"http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/\" target=\"rrdtool\"><img border=\"0\" src=\"");
++	if (SG(request_info).request_uri) {
++		PUTS(SG(request_info).request_uri);
++	}
++	PUTS("?="RRDTOOL_LOGO_GUID"\" alt=\"ClamAV logo\" /></a>\n");
++	php_printf("<h1 class=\"p\">rrdtool Version %s</h1>\n", PHP_RRD_VERSION_STRING);
++	php_info_print_box_end();
++	php_info_print_table_start();
++	php_info_print_table_row(2, "System", PHP_UNAME );
++	php_info_print_table_row(2, "Build Date", __DATE__ " " __TIME__ );
++	php_info_print_table_row(2, "rrdtool Support","Enabled");
++	php_info_print_table_end();
++
++	PUTS("<h2>RRDTOOL Copyright</h2>\n");
++	php_info_print_box_start(0);
++	PUTS("COPYRIGHT STATEMENT FOLLOWS THIS LINE</p>\n<blockquote>\n");
++	PUTS("<p>Portions copyright 2005 by Dale Walsh (buildsmart@daleenterprise.com).</p>\n");
++	PUTS("<p>Portions relating to rrdtool 1999, 2000, 2001, 2002, 2003, 2004, 2005 by Tobias Oetiker.</p>\n");
++	php_info_print_box_end();
++	PUTS("<h2>RRDTOOL License</h2>\n");
++	php_info_print_box_start(0);
++	PUTS("<p><b>Permission has been granted to copy, distribute and modify rrd in any context without fee, including a commercial application, provided that this notice is present in user-accessible supporting documentation. </b></p>");
++	PUTS("<p>This does not affect your ownership of the derived work itself, and the intent is to assure proper credit for the authors of rrdtool, not to interfere with your productive use of rrdtool. If you have questions, ask. \"Derived works\" ");
++	PUTS("includes all programs that utilize the library. Credit must be given in user-accessible documentation.</p>\n");
++	PUTS("<p><b>This software is provided \"AS IS.\"</b> The copyright holders disclaim all warranties, either express or implied, including but not limited to implied warranties of merchantability and fitness for a particular purpose, ");
++	PUTS("with respect to this code and accompanying documentation.</p>\n");
++	php_info_print_box_end();
++	PUTS("<h2>Special Thanks</h2>\n");
++	php_info_print_box_start(0);
++	PUTS("<p>Perl by Larry Wall");
++	PUTS("<p>gd library by Thomas Boutell");
++	PUTS("<p>gifcode from David Koblas");
++	PUTS("<p>libpng by Glenn Randers-Pehrson / Andreas Eric Dilger / Guy Eric Schalnat");
++	PUTS("<p>cgilib by Martin Schulze");
++	PUTS("<p>zlib by Jean-loup Gailly and Mark Adler");
++	PUTS("<p>Portions relating to php4 and php5 bindings, Dale Walsh (buildsmart@daleenterprise.com)");
++	php_info_print_box_end();
++
++	PUTS("</div></body></html>");
++}
++/* }}} */
++
++PHP_FUNCTION(rrdtool_logo_guid)
++{
++	if (ZEND_NUM_ARGS() != 0) {
++		WRONG_PARAM_COUNT;
++	}
++
++	RETURN_STRINGL(RRDTOOL_LOGO_GUID, sizeof(RRDTOOL_LOGO_GUID)-1, 1);
++}
++/* }}} */
++
+ #endif	/* HAVE_RRDTOOL */
++
++/*
++ * Local variables:
++ * tab-width: 4
++ * c-basic-offset: 4
++ * End:
++ * vim600: noet sw=4 ts=4 fdm=marker
++ * vim<600: noet sw=4 ts=4
++ */
+diff -Naur php4-orig/rrdtool_logo.h php4/rrdtool_logo.h
+--- php4-orig/rrdtool_logo.h	1969-12-31 19:00:00.000000000 -0500
++++ php4/rrdtool_logo.h	2006-06-07 15:50:24.000000000 -0400
+@@ -0,0 +1,195 @@
++unsigned char rrdtool_logo[] = {
++	 71,  73,  70,  56,  57,  97, 120,   0,  34,   0,
++	243,  14,   0,  20,  25,  93,  16,  56, 139,  32,
++	 72, 150,  46,  88, 160,  56, 102, 172,  73, 116,
++	178, 113, 143, 188,  87, 134, 192, 153, 169, 181,
++	147, 174, 207, 179, 201, 222, 253, 251, 204, 255,
++	255, 255, 235, 249, 252, 214, 226, 229,   0,   0,
++	  0,  33, 249,   4,   0,   0,   0,  15,   0,  44,
++	  0,   0,   0,   0, 120,   0,  34,   0,   0,   4,
++	254, 208, 201,  73, 171, 189,  56, 235, 217,  54,
++	191,  93, 231, 136, 226, 104, 118,  11, 234, 164,
++	235,  57,  54,  41, 108,  56, 196, 113,  20, 118,
++	174, 223,  54, 238, 243, 191, 130,  16,  71,  16,
++	 22, 143, 198, 194,  17,  73, 104,  58, 159, 206,
++	  1,  65,  74, 173,  14, 174, 130,  65,  86, 203,
++	229,  10, 190, 218, 175, 120,  76, 254,   6,   4,
++	129, 192,   0, 224, 192, 237, 222, 240,  56, 220,
++	189,  11, 222, 132, 119,  95, 112, 200, 239,  23,
++	147, 127,   3,  70,  77,  74,  75,  83,   5, 130,
++	130,  69, 137,  83,  87, 142,  87,   4, 108,  57,
++	 67, 114, 149, 111,  63, 147,  64,  61,  80, 127,
++	121, 133, 126, 132,  75, 142, 127, 139, 159, 139,
++	143,  82,  81, 136, 144,  84, 141, 168,  82, 146,
++	 54,  11, 179,  14, 114,  11,   6,   7,  13, 152,
++	 61,  60, 151, 154,  66,   8, 179, 194,  11, 125,
++	 66,  11, 132,  67, 199,  74, 133, 193,  11,  52,
++	 82, 203,  81, 172, 196,   5,  11,  91, 174, 175,
++	 87, 214, 175, 108, 110,  14, 184,  11,   9, 115,
++	226, 213,  53,   9, 199, 151,  74, 121, 127, 120,
++	110, 213, 184,   6, 167, 203, 214,  80,   8, 138,
++	 77, 193,  66,  43, 143,  91,   2,  14,   8, 106,
++	  4,  32,  16,  80,  77,  77, 151,  51, 253, 190,
++	  0,  88, 144,  38, 141, 163,  88,   7, 142,  17,
++	144,  80,  64,   1, 174,   3, 181,  20, 212,  42,
++	135, 209, 153,   1, 119, 254,   4,  16,  56,  80,
++	160,   4,   1, 198, 111, 197,   4,  16,  43,  37,
++	193, 128, 148,   5,  34, 237,  13,  24, 153,  10,
++	 17,  49,  44, 196,   8, 198,  36,  72, 107, 128,
++	200, 151, 106, 158, 205, 108, 243, 197, 193, 204,
++	  2,   0, 103,  24, 205, 210, 237,  70, 184,  21,
++	 74, 194,  41, 209, 101,  96, 193,   1,   2,  13,
++	138, 156, 235,  49, 100,  69, 199, 153, 183, 206,
++	177,  91,  68, 173, 200, 173, 170,  46, 207,  46,
++	 80,  32, 112,  65,  42,  65, 244,   8, 168,  28,
++	  8, 179,  26, 192, 127,   5,   4,  84, 229,  25,
++	  0,  38,  79,   3,  85, 243, 122,   4,  67, 204,
++	 30, 211,  54,  78,  19,  36,  24,  73,  32, 220,
++	213, 149,  86,  27,  55,  17, 171,  71, 242, 148,
++	 99, 255,  46,  35,  19,  50,  96, 229, 208,  43,
++	 63,  27, 100, 105, 204,  83,  64, 147,   1, 123,
++	155, 248,  67, 240,  19,  53, 195, 127,  89, 250,
++	242,  20, 153, 230, 159,  22, 218,  12, 199,  28,
++	  3,  16, 176, 105, 129, 172,  78,  39,  34, 136,
++	 26, 245, 113,  17, 145,  53, 218, 185, 181,  89,
++	  0, 111, 103,  64, 130,  57, 103, 246, 233,  64,
++	165, 105, 149,  47,  77,  79, 105, 108, 176, 239,
++	 12, 103,  18, 238,   2,  28, 208,  87, 219, 138,
++	 52, 224, 195, 247,  61, 163,  37,  64,  53, 107,
++	135, 125,  72,  44, 231,  32, 193, 229, 226, 150,
++	171,  66, 227,  44, 177, 243,  76,   4, 154, 133,
++	254,  18, 157,  20,  63,   5, 160,  81, 103,  95,
++	144,  70,  26,  21,  42,  25, 112,  70,  99, 212,
++	 53,  84,  27,  64, 104, 108, 195, 144,  72, 108,
++	 32, 192,  27, 111, 235, 137,  17,   0,   0,  25,
++	158, 209, 141,  49, 139, 173,  69, 128,   2,  48,
++	121, 213, 216,  99,  52,  68, 196,  26,  41,  43,
++	 84,  85, 221, 116,  43, 137, 226,  89,  99, 172,
++	 29, 211,  89, 142, 246,  84, 179, 197,  21,  85,
++	241, 168,   6,  76, 193, 220,  86, 151, 108,   5,
++	245, 117,  89, 142, 103,  48,  68, 222,  23, 183,
++	192,   4, 192,  26,  52, 224, 160, 152,  56,  71,
++	 32, 160, 192,   1,   9, 148, 180,  12,  13,   4,
++	204,  96, 223,  50, 168, 217, 134,  90,  60,  33,
++	 41, 130,   8,  34, 195,  81, 129,  84, 155,  33,
++	177, 118, 192,  22,  50,  57, 226,  30,  69,  89,
++	124,  33, 146,   1, 102, 176,  86,  64,   0,   3,
++	  9, 196, 158, 131,  62,  33, 224, 160,  64, 188,
++	137, 177,  39,  66, 108, 140, 229,  71,  52,  87,
++	 13,  18,  77,  40, 156,  60, 145,  10,  20, 142,
++	172, 130,  13,  22, 168, 252, 248,   8,  66, 156,
++	 34, 148, 167, 135, 164, 182, 135, 134, 132, 105,
++	152, 129,   6, 135,  98,  52, 170, 135,  39, 143,
++	242,  65, 233,  39, 131,  84,  26, 197, 105, 107,
++	 38, 130, 202, 166, 217, 244, 227, 133,  23,  96,
++	136,  17,   6,  26, 196, 146,  74,   6,  66, 160,
++	  2, 160,  80, 149, 181, 254, 222, 138, 204,  34,
++	219, 141, 194,  10, 166, 216, 252,  24, 237,  43,
++	163, 230,  57,  44,  24,  93, 156, 218, 208,  24,
++	219, 154, 129, 234, 183, 170, 142, 171, 234,  24,
++	141,  18,  32, 206, 149, 139,  41, 160, 152,  75,
++	161,  28, 176, 229, 149,  10, 184, 155,  64,  60,
++	163,  77, 209, 165,   1, 247, 242, 123, 239, 156,
++	158,  98, 129,  64, 191, 128,  21, 108,  48, 159,
++	121, 166,  33, 111,   3,  12,  88, 148, 234, 177,
++	 14,  45, 214, 112,   2, 223, 158,  17, 128,  75,
++	 31, 125, 244, 112, 177,   0,  52,  32, 197,  72,
++	  7,  48, 192, 192,  55,   9,  48,  44,  50, 188,
++	 69,  48, 224, 143, 200, 138,  41,  32, 242, 200,
++	 90, 200, 197,   0,  46,  34,  55,  96, 128, 203,
++	 12, 216, 204,  45,  22,  56, 143, 192, 214, 203,
++	 61,  35, 187, 165, 200, 108, 178, 252, 112,  67,
++	 55,  59,  48,  51, 106,  34,  43, 144, 106,  26,
++	 12,  32,  37,  50, 133, 160,  46, 107, 154, 189,
++	  4,  48, 144, 128,  35,   9, 228, 220, 192,  85,
++	 82,  48,  80, 131, 203, 160, 122, 237,  64,   0,
++	  4,   4,  96, 179, 125,  90,  91, 108, 114,   2,
++	190,   6, 208, 245, 159,  55, 195, 221, 176, 178,
++	 35, 187, 173,   0,   0,  42,  35, 221, 244, 211,
++	  1,  72, 208, 177, 131, 105, 100, 157, 119,  67,
++	 54, 199,  51, 179, 168, 107,  44, 123, 133, 189,
++	117, 191, 213,   0, 195,  70, 165,  29, 245, 207,
++	254, 166, 105, 209,  53, 195,  87,   4, 126, 111,
++	 69, 112, 107,  97,  64, 206,  81, 115,  27, 184,
++	211, 114, 127, 126, 115,  26,   6,  52,  48, 161,
++	 81,  12, 160,  58, 249, 226, 104, 180,  27, 178,
++	132, 108,  48, 140, 186, 218, 252,  22,  32, 182,
++	178, 197,  58,  62,   0, 228,  90, 167,  34, 192,
++	236, 108,  89,  94, 166, 202,  82, 232,  69, 122,
++	231,  36, 135,  76, 113, 123, 102,  27,  84, 148,
++	 25, 252, 126, 212, 176, 197,  14, 224, 125, 103,
++	247, 166, 213,  70, 122,  67, 177,  87, 212, 128,
++	178, 114, 201,  61, 123, 218, 124, 235, 133,   0,
++	237, 101, 176, 241,  56, 219, 197,  79,  17,   0,
++	233, 240, 222,  31, 184, 200, 214, 143, 206, 176,
++	 26, 129,  83,  92, 219,  98, 243,   2,   6,   0,
++	203,  67,   3, 187, 223, 246,  28,  98,  32, 187,
++	 45, 238,   5, 114, 195, 223, 197, 206, 166,  59,
++	  3, 229, 172,   0, 254, 107,   0, 197, 238,  71,
++	 16, 162,  33, 139,  99, 162,  17, 128, 187, 134,
++	 87, 191,  43, 136, 172,  58, 157,  43, 223, 255,
++	 58, 135, 179, 188, 144, 199,  34,  43, 155,  30,
++	121,  10, 120,  40, 110, 161, 225, 102,   0,  24,
++	221, 222, 196, 149,  21,  17,  70, 237,  67,  32,
++	186,  24, 233,  40,   6, 195, 174,  37,  96,  67,
++	 32,  26, 128, 217, 120, 147,  21, 181, 253,  48,
++	120, 194, 187,  82,  46, 224, 246,   5, 151, 133,
++	 46, 133, 188, 139,  93, 254,  26, 124, 215,   6,
++	246,   4, 240,  94,  26,  68,  86,   1,  41,   6,
++	134,  41, 177, 142,  36,   3,  67, 157,  66,  24,
++	192,  37,  37,  74,  77, 100,  41, 155,  92, 247,
++	 50, 114, 191,  46, 189, 140,  79,  94, 211,  98,
++	 86, 126, 102,   0, 224,   5, 175,  99,  85, 172,
++	151,  63, 238, 165,   0, 134,  17, 202,  78,  90,
++	 67,  68, 236,  52, 146, 179,  84,  65,  79,  49,
++	254, 168,  97, 224, 102,  39,  73,  15, 241,  75,
++	  1,  97,  58, 155, 184,  98,  71, 131,  31, 118,
++	 46, 135, 213, 171, 197, 189, 234, 131,  62,  52,
++	 40, 113, 118,  76,  76,   0,  64, 158,   8,  69,
++	 54, 124,  65,  49,  21, 153, 153,   0, 106,  22,
++	 66,  68,  94, 236, 127, 155,  99,   0, 133, 204,
++	240, 141,   1,  24,  81, 140, 148,   4, 222, 147,
++	206, 232, 188, 179,  49,  74, 108, 252,  90,  92,
++	  2, 220,  21,  65, 134, 105, 200,  34,   7, 208,
++	225, 197, 220, 213, 193, 201, 185, 174,  99, 103,
++	 80, 218, 147, 202,  37,   0, 108, 138, 208, 129,
++	 20, 243, 223, 246,  18, 182,  72, 254, 221, 111,
++	118, 197,  10, 224,  44, 219,  38, 162,  60,  18,
++	171, 113, 216, 219, 219, 223, 196, 149,  64, 163,
++	 45, 147, 136, 235, 187,  83, 199, 182, 183,  76,
++	167, 137, 147, 112, 186,  80, 226,  15,  45, 134,
++	 54,  17, 185, 238, 155,   5, 248, 165,  19,  25,
++	230,  66, 242,  48,   0,   0,  24, 121, 104,   0,
++	254,  66,  70,  57, 161, 101, 140, 118,  80,  99,
++	 24,  67,  68, 133, 172, 155, 165, 204, 105, 164,
++	138,  93, 235, 140, 153,   6,   0, 184, 236, 127,
++	 80,  67, 141, 203,  56, 148, 134,  92, 146,  71,
++	109,  90,  97, 229,  25,  98, 215,  77,  77, 218,
++	107, 120, 100, 244, 221, 236,  68,  21,  53,  60,
++	114, 143, 146,  13, 249,   6, 159,  20,   0,  16,
++	214,  61, 239, 104,  30, 146, 151,  61, 102, 160,
++	 44, 130, 150, 108, 149, 168,  34, 221,   1, 252,
++	102, 143, 190, 145, 143,  97,  27, 228,  27,  96,
++	238, 247,  39, 196, 105,  18, 155,  95, 148,  30,
++	247, 170,  55, 211, 212, 209,  84,  13, 238, 172,
++	 77,  66, 125, 183, 193, 253,  13, 116,  12, 140,
++	 90,  38,  96, 242,   6,  87, 147, 198, 110, 160,
++	 22, 212,  26, 240,  62,  52, 186,  58, 150, 116,
++	116, 135,  67, 131, 202,  76,  18,  53,  14,  41,
++	 13, 164,  96, 213, 218, 251,  70,  22,  27, 129,
++	 78,  77, 136,  10, 180,  42,  27,  94, 102, 192,
++	142, 177, 102, 106, 190, 172, 217,  75, 185, 121,
++	170, 150, 188,  44,  81, 196,  98,  29,  96,  45,
++	162, 180, 111,  60, 237,  84,  24,  60, 225,  12,
++	 78, 246,  48, 173, 226, 172,   3, 148, 253, 234,
++	 65,  17, 225, 144, 180, 153, 129,  83, 127,  34,
++	  8, 135, 134, 229, 144,  79, 165,  13,  72, 108,
++	226,  19, 104, 203, 112, 219,  46, 108,  19, 174,
++	 14, 209, 210,   8,  89,  66,   5,  49, 189, 212,
++	107,  56, 204,  53,  37, 218, 178, 209, 185, 154,
++	  6,  36,  91, 193, 130,  43, 113, 203,  96, 177,
++	 99, 121,  75,  84, 219, 245,  46, 120, 137, 107,
++	174, 240, 126, 119,  99, 228,  13, 109,  43, 251,
++	  8, 162, 246, 186, 247, 189, 240, 141, 175, 124,
++	231,  75, 223, 250, 218, 247, 190, 248, 197, 111,
++	  4,   0,   0,  59 };
