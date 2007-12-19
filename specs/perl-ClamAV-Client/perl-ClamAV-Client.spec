@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Module::Build)
 
 %description
 A client class for the ClamAV C<clamd> virus scanner daemon.
