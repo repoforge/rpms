@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::CBuilder)
 BuildRequires: perl(ExtUtils::ParseXS)
+BuildRequires: perl(Module::Build)
 
 %description
 Search engine library.
