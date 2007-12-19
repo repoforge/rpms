@@ -4,10 +4,10 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-Summary: tool to impose stress on a POSIX-compliant operating system
+Summary: Tool to impose stress on a POSIX-compliant operating system
 Name: stress
-Version: 0.18.8
-Release: 1.2
+Version: 1.0.0
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://weather.ou.edu/~apw/projects/stress/
@@ -46,7 +46,7 @@ specific components thereof.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %post
 /sbin/install-info %{_infodir}/%{name}.info.gz %{_infodir}/dir
@@ -59,16 +59,15 @@ specific components thereof.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README
-%doc doc/*.html
+%doc AUTHORS ChangeLog COPYING NEWS README doc/*.html
 %doc %{_mandir}/man1/stress.1*
 %doc %{_infodir}/stress.info*
 %{_bindir}/stress
 #exclude %{_infodir}/dir
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.18.8-1.2
-- Rebuild for Fedora Core 5.
+* Tue Dec 18 2007 Dag Wieers <dag@wieers.com> - 1.0.0-1
+- Updated to release 1.0.0.
 
 * Fri Dec 09 2005 Dag Wieers <dag@wieers.com> - 0.18.8-1
 - Updated to release 0.18.8.

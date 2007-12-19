@@ -5,7 +5,7 @@
 
 Summary: FUSE-Filesystem to access remote filesystems via SSH
 Name: fuse-sshfs
-Version: 1.8
+Version: 1.9
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -47,6 +47,9 @@ mounting the filesystem is as easy as logging into the server with ssh.
 %{_libdir}/sshnodelay.so
 
 %changelog
+* Tue Dec 18 2007 Dag Wieers <dag@wieers.com> - 1.9-1
+- Updated to release 1.9.
+
 * Wed May 16 2007 Dag Wieers <dag@wieers.com> - 1.8-1
 - Updated to release 1.8.
 

@@ -46,6 +46,8 @@ importantly, the virus database is kept up to date
 Summary: The Clam AntiVirus Daemon
 Group: System Environment/Daemons
 Requires: clamav = %{version}-%{release}
+Requires(pre): /usr/sbin/groupadd
+Requires(pre): /usr/sbin/useradd
 
 ### Fedora Extras introduced them differently :(
 Obsoletes: clamav-server <= %{version}-%{release}
@@ -67,6 +69,8 @@ Summary: Virus database for %{name}
 Group: Applications/Databases
 ### Remove circular dependency
 #Requires: clamav = %{version}-%{release}
+Requires(pre): /usr/sbin/groupadd
+Requires(pre): /usr/sbin/useradd
 
 ### Fedora Extras introduced them differently :(
 Obsoletes: clamav-update <= %{version}-%{release}

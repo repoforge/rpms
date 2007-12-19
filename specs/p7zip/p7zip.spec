@@ -3,19 +3,20 @@
 
 Summary: Very high compression ratio file archiver
 Name: p7zip
-Version: 4.53
+Version: 4.57
 Release: 1
 License: LGPL
 Group: Applications/Archiving
 URL: http://p7zip.sourceforge.net/
+
 Source: http://dl.sf.net/p7zip/p7zip_%{version}_src_all.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc-c++
 
 %description
 p7zip is a port of 7za.exe for Unix. 7-Zip is a file archiver with a very high
 compression ratio. The original version can be found at http://www.7-zip.org/.
-
 
 %package plugins
 Summary: Additional plugins for p7zip
@@ -25,7 +26,6 @@ Requires: %{name} = %{version}-%{release}
 %description plugins
 Additional plugins that can be used with 7z to extend its abilities.
 This package contains also a virtual file system for Midnight Commander.
-
 
 %prep
 %setup -n %{name}_%{version}
@@ -67,10 +67,8 @@ EOF
 %{__install} -Dp -m0755 7z.sh  %{buildroot}%{_bindir}/7z
 %{__install} -Dp -m0755 7za.sh %{buildroot}%{_bindir}/7za
 
-
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files
 %defattr(-, root, root, 0755)
@@ -91,6 +89,9 @@ EOF
 #%{_libexecdir}/p7zip/Formats/
 
 %changelog
+* Tue Dec 18 2007 Dag Wieers <dag@wieers.com> - 4.57-1
+- Updated to release 4.57.
+
 * Sun Sep 02 2007 Dag Wieers <dag@wieers.com> - 4.53-1
 - Updated to release 4.53.
 

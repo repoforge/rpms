@@ -3,7 +3,7 @@
 
 Summary: Multi-purpose WAVE data processing and reporting utility
 Name: shntool
-Version: 3.0.5
+Version: 3.0.6
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -57,6 +57,9 @@ exists a format module to handle that particular file type.
 %{_bindir}/shntrim
 
 %changelog
+* Tue Dec 18 2007 Dag Wieers <dag@wieers.com> - 3.0.6-1
+- Updated to release 3.0.6.
+
 * Mon Oct 22 2007 Dag Wieers <dag@wieers.com> - 3.0.5-1
 - Updated to release 3.0.5.
 

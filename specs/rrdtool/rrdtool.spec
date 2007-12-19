@@ -40,7 +40,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, openssl-devel, cgilib-devel, libart_lgpl-devel >= 2.0
 BuildRequires: libpng-devel, zlib-devel, freetype-devel
 %{!?_without_python:BuildRequires: python-devel >= 2.3}
-%{!?_without_ruby:BuildRequires: ruby-devel}
+%{!?_without_ruby:BuildRequires: ruby, ruby-devel}
 %{!?_without_tcltk_devel:BuildRequires: tcl-devel, tk-devel}
 %{?_without_tcltk_devel:BuildRequires: tcl, tk}
 Requires: perl >= %(rpm -q --qf '%%{epoch}:%%{version}' perl)

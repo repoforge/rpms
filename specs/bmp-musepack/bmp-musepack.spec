@@ -7,7 +7,7 @@
 Summary: Mpegplus (mpc) playback plugin for the Beep Media Player
 Name: bmp-musepack
 Version: 1.2
-Release: 2%{?prever:.%{prever}}
+Release: 3%{?prever:.%{prever}}
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.musepack.net/
@@ -48,6 +48,9 @@ and is based on ("forked off") XMMS.
 
 
 %changelog
+* Mon Dec 17 2007 Dag Wieers <dag@wieers.com> - 1.2-3
+- Rebuild against libmpcdec 1.2.6.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.2-2
 - Release bump to drop the disttag number in FC5 build.
 

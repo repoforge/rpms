@@ -56,8 +56,11 @@
 %{?el2:%define _without_arts 1}
 %{?el2:%define _without_caca 1}
 %{?el2:%define _without_dv 1}
+%{?el2:%define _without_faac 1}
 %{?el2:%define _without_fribidi 1}
 %{?el2:%define _without_freedesktop 1}
+%{?el2:%define _without_gcccheck 1}
+%{?el2:%define _without_gtk2 1}
 %{?el2:%define _without_nas 1}
 %{?el2:%define _without_theora 1}
 %{?el2:%define _without_twolame 1} 
@@ -78,7 +81,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.37%{?rcver:.%{rcver}}%{?date:.%{date}}try2
+Release: 0.38%{?rcver:.%{rcver}}%{?date:.%{date}}try2
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -106,11 +109,11 @@ Patch51: asmrules_fix_20061231.diff
 Patch100: mplayer-1.0rc1-h264-static.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: mplayer-fonts
-BuildRequires: gtk2-devel, SDL-devel
 BuildRequires: libpng-devel, libjpeg-devel, libungif-devel
 BuildRequires: lame-devel, libmad-devel, flac-devel
 BuildRequires: libmatroska-devel, gcc-c++
-BuildRequires: ImageMagick
+BuildRequires: SDL-devel, ImageMagick
+%{!?_without_gtk2:BuildRequires: gtk2-devel}
 %{?_with_dvdread:BuildRequires: libdvdread-devel}
 %{!?_without_dv:BuildRequires: libdv-devel}
 %{!?_without_ladspa:BuildRequires: ladspa-devel}
@@ -215,30 +218,31 @@ popd
 
 export CFLAGS="%{optflags} -fomit-frame-pointer"
 echo | ./configure \
-    --prefix=%{_prefix} \
-    --bindir=%{_bindir} \
-    --datadir=%{_datadir}/mplayer \
-    --mandir=%{_mandir} \
-    --confdir=%{_sysconfdir}/mplayer \
-    --libdir=%{_libdir} \
-    --enable-gui \
-    --enable-largefiles \
-    --enable-joystick \
+    --prefix="%{_prefix}" \
+    --bindir="%{_bindir}" \
+    --datadir="%{_datadir}/mplayer" \
+    --mandir="%{_mandir}" \
+    --confdir="%{_sysconfdir}/mplayer" \
+    --libdir="%{_libdir}" \
     %{!?_with_dvdread:--disable-dvdread} \
+    %{?_without_gcccheck:--disable-gcc-check} \
+    --enable-dynamic-plugins \
+    --enable-gui \
+    --enable-joystick \
+    --enable-largefiles \
+    %{?_without_live:--disable-live} \
     %{!?_without_osdmenu:--enable-menu} \
-    %{!?_with_modxorg:%{!?_without_xvmc:--enable-xvmc --with-xvmclib=XvMCW}} \
+    %{!?_with_modxorg:%{!?_without_xvmc:--enable-xvmc --with-xvmclib="XvMCW"}} \
     %{?_with_modxorg:%{!?_without_xvmc:--enable-xvmc}} \
 %ifarch %{ix86}
     --enable-runtime-cpudetection \
     --enable-win32 \
-    --with-win32libdir=%{_libdir}/codecs \
-    --with-xanimlibdir=%{_libdir}/codecs \
+    --with-win32libdir="%{_libdir}/codecs" \
+    --with-xanimlibdir="%{_libdir}/codecs" \
 %endif
-    --with-reallibdir=%{_libdir}/codecs \
-    --language=all \
-    --enable-dynamic-plugins \
-    %{?_without_gcccheck:--disable-gcc-checking} \
-    %{!?_without_live:--with-livelibdir=`pwd`/live}
+    --with-reallibdir="%{_libdir}/codecs" \
+    --language="all" \
+    %{!?_without_live:--with-livelibdir="$(pwd)/live"}
 
 %{__make} %{?_smp_mflags}
 
@@ -329,6 +333,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Mon Dec 17 2007 Dag Wieers <dag@wieers.com> - 1.0-0.38.rc1try2
+- Build against libmpcdec 1.2.6 and libupnp 1.6.x.
+
 * Tue Nov 20 2007 Tom G. Christensen <swpkg@statsbiblioteket.dk> - 1.0-0.37.rc1try2
 - Build with twolame support.
 

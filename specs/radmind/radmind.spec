@@ -3,7 +3,7 @@
 
 Summary: Remotely administer the file systems of multiple unix machines
 Name: radmind
-Version: 1.8.1
+Version: 1.11.0
 Release: 1
 License: BSD-like
 Group: System Environment/Base
@@ -276,6 +276,9 @@ fi
 %dir %{_localstatedir}/radmind/transcript/
 
 %changelog
+* Tue Dec 18 2007 Dag Wieers <dag@wieers.com> - 1.11.0-1
+- Updated to release 1.11.0.
+
 * Wed May 23 2007 Dag Wieers <dag@wieers.com> - 1.8.1-1
 - Updated to release 1.8.1.
 

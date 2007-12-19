@@ -27,7 +27,7 @@
 Summary: GStreamer streaming media framework extra plugins
 Name: gstreamer-plugins-extra
 Version: 0.8.6
-Release: 1
+Release: 3
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.net/
@@ -241,6 +241,9 @@ cd ..
 
 
 %changelog
+* Mon Dec 17 2007 Dag Wieers <dag@wieers.com> - 0.8.6-3
+- Rebuild against libmpcdec 1.2.6.
+
 * Mon Mar 26 2007 Dag Wieers <dag@wieers.com> - 0.8.6-2
 - Updated to release 0.8.6.
 

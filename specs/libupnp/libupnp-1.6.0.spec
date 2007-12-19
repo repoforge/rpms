@@ -1,9 +1,9 @@
-# $Id$
+# $Id: libupnp.spec 5977 2007-11-10 12:22:14Z dag $
 # Authority: dag
 
 Summary: Universal Plug and Play (UPnP) SDK
 Name: libupnp
-Version: 1.6.1
+Version: 1.6.0
 Release: 1
 License: BSD
 Group: System Environment/Libraries
@@ -69,8 +69,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libupnp.la
 
 %changelog
-* Mon Dec 17 2007 Dag Wieers <dag@wieers.com> - 1.6.1-1
-- Updated to release 1.6.1.
+* Mon Dec 17 2007 Dag Wieers <dag@wieers.com> - 1.6.0-1
+- Updated to release 1.6.0.
 
 * Wed Feb 21 2007 Dag Wieers <dag@wieers.com> - 1.4.2-1
 - Initial package. (using DAR)

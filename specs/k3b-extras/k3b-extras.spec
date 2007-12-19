@@ -22,7 +22,7 @@
 Summary: Additional codec plugins for the k3b CD/DVD burning application
 Name: k3b-extras
 Version: %{k3b_version}
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.k3b.org/
@@ -108,6 +108,9 @@ source /etc/profile.d/qt.sh
 %{_datadir}/apps/k3b/plugins/k3bmpcdecoder.plugin
 
 %changelog
+* Mon Dec 17 2007 Dag Wieers <dag@wieers.com> - %{version}-3
+- Rebuild against libmpcdec 1.2.6.
+
 * Fri Mar 30 2007 Dag Wieers <dag@wieers.com> - %{version}-2
 - Added ffmpeg, libsndfile and mpcdec codecs.
 

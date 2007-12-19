@@ -1,16 +1,19 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
 
 Summary: Musepack audio decoding library
 Name: libmpcdec
-Version: 1.2.2
-Release: 2
+Version: 1.2.6
+Release: 1
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.musepack.net/
+
 Source: http://files2.musepack.net/source/libmpcdec-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, autoconf >= 2.58
+
+BuildRequires: gcc-c++
+#BuildRequires: autoconf >= 2.58
 
 %description
 Musepack is an audio compression format with a strong emphasis on high quality.
@@ -20,7 +23,6 @@ MPC file.
 It is based on the MPEG-1 Layer-2 / MP2 algorithms, but has rapidly developed
 and vastly improved and is now at an advanced stage in which it contains
 heavily optimized and patentless code.
-
 
 %package devel
 Summary: Development files for the Musepack audio decoding library
@@ -36,45 +38,39 @@ It is based on the MPEG-1 Layer-2 / MP2 algorithms, but has rapidly developed
 and vastly improved and is now at an advanced stage in which it contains
 heavily optimized and patentless code.
 
-
 %prep
 %setup
 
-
 %build
-%configure
+%configure \
+    --disable-static
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
-
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README
-%{_libdir}/*.so.*
+%{_libdir}/libmpcdec.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc docs/html/*
 %{_includedir}/mpcdec/
-%{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
-
+%{_libdir}/libmpcdec.so
+%exclude %{_libdir}/libmpcdec.la
 
 %changelog
+* Mon Dec 17 2007 Dag Wieers <dag@wieers.com> - 1.2.6-1
+- Updated to release 1.2.6.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.2.2-2
 - Release bump to drop the disttag number in FC5 build.
 
@@ -97,4 +93,3 @@ heavily optimized and patentless code.
 * Fri Nov 26 2004 Matthias Saou <http://freshrpms.net/> 1.0.2-1
 - Initial RPM release.
 - Include the mandatory copy of the LGPL (there is none in the sources...).
-

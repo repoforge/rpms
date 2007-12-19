@@ -49,7 +49,7 @@
 %{?el3:%define _without_jack 1}
 %{?el3:%define _without_sysfs 1}
 %{?el3:%define _without_theora 1}
-%{?el3:%define _without_upnp 1}
+#{?el3:#define _without_upnp 1}
 #{?el3:#define _without_wxwidgets 1}
 
 %{?rh9:%define _without_alsa 1}
@@ -58,7 +58,7 @@
 %{?rh9:%define _without_jack 1}
 %{?rh9:%define _without_sysfs 1}
 %{?rh9:%define _without_theora 1}
-%{?rh9:%define _without_upnp 1}
+#{?rh9:#define _without_upnp 1}
 #{?rh9:#define _without_wxwidgets 1}
 %{?rh9:%define _without_x264 1}
 
@@ -69,7 +69,7 @@
 %{?rh7:%define _without_jack 1}
 %{?rh7:%define _without_sysfs 1}
 %{?rh7:%define _without_theora 1}
-%{?rh7:%define _without_upnp 1}
+#{?rh7:#define _without_upnp 1}
 %{?rh7:%define _without_vorbis 1}
 #{?rh7:#define _without_wxwidgets 1}
 %{?rh7:%define _without_x264 1}
@@ -84,7 +84,7 @@
 %{?el2:%define _without_jack 1}
 %{?el2:%define _without_sysfs 1}
 %{?el2:%define _without_theora 1}
-%{?el2:%define _without_upnp 1}
+#{?el2:#define _without_upnp 1}
 %{?el2:%define _without_vorbis 1}
 #{?el2:#define _without_wxwidgets 1}
 %{?el2:%define _without_x264 1}
@@ -100,7 +100,7 @@
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
 Version: 0.8.6d
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -245,6 +245,7 @@ export CFLAGS="%{optflags} -maltivec -mabi=altivec"
 ### Workaround to make -lX11 work on 64bit
 export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %configure \
+    --disable-static \
     --enable-release \
     %{!?_without_dvdread:--enable-dvdread} \
     %{?_without_dvdnav:--disable-dvdnav} \
@@ -320,7 +321,7 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %doc _docs/*
 %{_bindir}/*vlc
 %{_libdir}/vlc/
-%exclude %{_libdir}/vlc/*.a
+#exclude %{_libdir}/vlc/*.a
 %{_datadir}/applications/vlc.desktop
 %{_datadir}/pixmaps/vlc.png
 %{_datadir}/vlc/
@@ -334,6 +335,9 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 
 
 %changelog
+* Mon Dec 17 2007 Dag Wieers <dag@wieers.com> - 0.8.6d-2
+- Rebuild against libmpcdec 1.2.6 and libupnp 1.6.x.
+
 * Sat Dec 01 2007 Dag Wieers <dag@wieers.com> - 0.8.6d-1
 - Updated to release 0.8.6d.
 

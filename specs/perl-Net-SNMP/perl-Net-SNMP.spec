@@ -49,7 +49,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man1/snmpkey.1*
 %doc %{_mandir}/man3/Net::SNMP.3pm*
-%doc %{_mandir}/man3/Net::SNMP::*.3pm*
 %{_bindir}/snmpkey
 %dir %{perl_vendorlib}/Net/
 %{perl_vendorlib}/Net/SNMP/

@@ -13,7 +13,7 @@
 Summary: GStreamer streaming media framework "bad" plug-ins
 Name: gstreamer-plugins-bad
 Version: 0.10.4
-Release: 1
+Release: 2
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
@@ -116,7 +116,8 @@ well enough, or the code is not of good enough quality.
 %{_libdir}/gstreamer-%{majorminor}/libgstbz2.so
 %{_libdir}/gstreamer-%{majorminor}/libgstcdaudio.so
 %{_libdir}/gstreamer-%{majorminor}/libgstdfbvideosink.so
-%{_libdir}/gstreamer-%{majorminor}/libgstdtsdec.so
+### libdca 0.0.5 no longer comes with libdts_pic.a (0.0.2 did)
+#%{_libdir}/gstreamer-%{majorminor}/libgstdtsdec.so
 %{_libdir}/gstreamer-%{majorminor}/libgstdvbsrc.so
 %{_libdir}/gstreamer-%{majorminor}/libgstfaac.so
 %{_libdir}/gstreamer-%{majorminor}/libgstfaad.so
@@ -137,6 +138,9 @@ well enough, or the code is not of good enough quality.
 
 
 %changelog
+* Mon Dec 17 2007 Dag Wieers <dag@wieers.com> - 0.10.4-2
+- Rebuild against libmpcdec 1.2.6.
+
 * Wed Mar 30 2007 Matthias Saou <http://freshrpms.net/> 0.10.4-1
 - Update to 0.10.4 for F7.
 - Disable swfdec... does anything/anyone even use it here? Once it stabilizes
