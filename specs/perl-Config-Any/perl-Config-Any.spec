@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Module::Pluggable)
 
 %description
 Load configuration from different file formats, transparently.
