@@ -9,7 +9,7 @@
 Summary: Scan ssh server logs and block hosts
 Name: denyhosts
 Version: 2.6
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Internet
 URL: http://denyhosts.sourceforge.net/
@@ -48,6 +48,19 @@ logins.
 %clean
 %{__rm} -rf %{buildroot}
 
+%post
+if [ -x %{_initrddir}/%{name} ]; then
+  /sbin/chkconfig --add %{name}
+fi
+
+%preun
+if [ "$1" = 0 ]; then
+  if [ -x %{_initrddir}/%{name} ]; then
+    %{_initrddir}/%{name} stop
+    /sbin/chkconfig --del %{name}
+  fi
+fi
+
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGELOG.txt daemon-control-dist denyhosts.cfg-dist LICENSE.txt README.txt
@@ -57,6 +70,9 @@ logins.
 /etc/init.d/denyhosts
 
 %changelog
+* Tue Dec 18 2007 Laurence Hurst <l.a.hurst@lboro.ac.uk> - 2.6-3
+- run chkconfig on the newly installed init script upon install and uninstall.
+
 * Fri Aug 10 2007 Christoph Maser <cmr$financial,com> - 2.6-2 
 - make /etc/denyhosts
 - copy dist-conf to /etc/denyhosts/denyhosts.cfg
