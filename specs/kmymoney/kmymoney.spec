@@ -16,13 +16,13 @@
 
 Summary: Double-entry accounting software package
 Name: kmymoney
-Version: 0.8.6
+Version: 0.8.8
 Release: 1
 License: GPL
 Group: Applications/Productivity
 URL: http://kmymoney2.sourceforge.net/
 
-Source: http://dl.sf.net/kmymoney2/kmymoney2-%{version}.tar.gz
+Source: http://dl.sf.net/kmymoney2/kmymoney2-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, gettext, kdelibs-devel
@@ -69,6 +69,9 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_datadir}/servicetypes/kmymoney*.desktop
 
 %changelog
+* Wed Dec 19 2007 Dries Verachtert <dries@ulyssis.org> - 0.8.8-1
+- Updated to release 0.8.8.
+
 * Mon Mar 12 2007 Dries Verachtert <dries@ulyssis.org> - 0.8.6-1
 - Updated to release 0.8.6.
 

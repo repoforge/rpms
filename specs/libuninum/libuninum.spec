@@ -4,8 +4,8 @@
 
 Summary: Library for converting unicode strings to numbers
 Name: libuninum
-%define real_version 2.6
-Version: 2.6
+%define real_version 2.7
+Version: 2.7
 Release: 1
 License: LGPL
 Group: Development/Libraries
@@ -73,6 +73,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libuninum.la
 
 %changelog
+* Wed Dec 19 2007 Dries Verachtert <dries@ulyssis.org> - 2.7-1
+- Updated to release 2.7.
+
 * Mon Sep 24 2007 Dag Wieers <dag@wieers.com> - 2.6-1
 - Updated to release 2.6.
 
