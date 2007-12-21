@@ -13,7 +13,7 @@ URL: http://www.apsis.ch/pound/index.html
 Source: http://www.apsis.ch/pound/Pound-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: openssl-devel
+BuildRequires: openssl-devel, pkgconfig
 
 %description
 Pound is a reverse HTTP proxy, load balancer, and SSL wrapper. It proxies 

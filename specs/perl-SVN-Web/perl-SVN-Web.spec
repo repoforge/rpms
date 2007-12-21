@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/SVN/SVN-Web-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(Module::Build)
 BuildRequires: perl-Template-Toolkit
 BuildRequires: perl-YAML
 BuildRequires: perl-XML-RSS

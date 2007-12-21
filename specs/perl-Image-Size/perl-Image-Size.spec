@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(ExtUtils::MakeMaker), perl(Module::Build)
 
 %description
 This module contains functions for reading the dimensions of images in several popular formats.

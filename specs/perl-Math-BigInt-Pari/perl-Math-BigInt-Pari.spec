@@ -20,7 +20,7 @@ Source: http://www.cpan.org/modules/by-module/Math/Math-BigInt-Pari-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 1:5.6.2
+BuildRequires: perl >= 1:5.6.2, perl(ExtUtils::MakeMaker)
 #BuildRequires: perl(Test::More) >= 0.62
 Requires: perl >= 1:5.6.2
 

@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-Atom-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 BuildRequires: perl-libwww-perl
 BuildRequires: perl(Class::Data::Inheritable)
 BuildRequires: perl(DateTime)

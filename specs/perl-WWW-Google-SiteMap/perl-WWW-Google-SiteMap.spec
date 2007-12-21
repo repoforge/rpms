@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/WWW/WWW-Google-SiteMap-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-WWW-Google-SiteMap is a Perl module to create sitemaps.

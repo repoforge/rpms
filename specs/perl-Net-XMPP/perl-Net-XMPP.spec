@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(ExtUtils::MakeMaker), perl(Module::Build)
 
 %description
 The Extensible Messaging and Presence Protocol (XMPP) is an IETF standard

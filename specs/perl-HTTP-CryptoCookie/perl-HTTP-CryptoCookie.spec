@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/HTTP/HTTP-CryptoCookie-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 BuildRequires: perl-SHA256
 BuildRequires: perl-Crypt-CBC
 BuildRequires: perl-Convert-ASCII-Armour

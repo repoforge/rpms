@@ -22,7 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl(Archive::Tar)
-BuildRequires: perl(ExtUtils::CBuilder)
+BuildRequires: perl(ExtUtils::CBuilder), perl(ExtUtils::Manifest)
 
 %description
 "Module::Build" is a system for building, testing, and installing Perl

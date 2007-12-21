@@ -19,7 +19,7 @@ Source: http://www.clearsilver.net/downloads/clearsilver-%{version}.tar.gz
 Patch0: clearsilver-0.10.3-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: zlib-devel, python-devel, python
+BuildRequires: zlib-devel, python-devel, python, perl(ExtUtils::MakeMaker)
 #BuildRequires: perl-devel, ruby >= 1.4.5
 
 %description
