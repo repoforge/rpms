@@ -13,6 +13,8 @@ URL: http://konst.org.ua/orpheus/
 Source: http://thekonst.net/download/orpheus-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: ncurses-devel
+
 %description
 Orpheus is a text-mode player for CDs and files of MP3 format. It can
 retrieve CDDB information for compact-discs, and save and load

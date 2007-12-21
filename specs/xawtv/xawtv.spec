@@ -40,7 +40,7 @@ Source: http://dl.bytesex.org/releases/xawtv/xawtv-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{?_without_modxorg:BuildRequires: XFree86-devel}
-%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel, libFS-devel}
 BuildRequires: ncurses-devel, Xaw3d-devel, libjpeg-devel
 BuildRequires: zvbi-devel, libpng-devel
 %{?_with_lesstif:BuildRequires: lesstif-devel}

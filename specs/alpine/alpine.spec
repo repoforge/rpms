@@ -12,7 +12,7 @@ URL: http://www.washington.edu/alpine/
 Source: ftp://ftp.cac.washington.edu/alpine/alpine-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: inews, aspell, openldap-devel, openssl-devel, krb5-devel
+BuildRequires: inews, aspell, openldap-devel, openssl-devel, krb5-devel, pam-devel
 ### RPM bug causes package to conflict with itself
 #Conflicts: pine
 Obsoletes: pine <= 4.64

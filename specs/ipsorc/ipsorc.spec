@@ -12,6 +12,8 @@ URL: http://www.informony.com/ipsorcery.html
 Source: http://www.legions.org/~phric/ipsorc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gtk+-devel
+
 %description
 A console and gtk based packet generator allowing the custom building of IP, TCP, UDP, ICMP, IGMP, RIP, OSPF packets.
 

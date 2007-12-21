@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: automake, autoconf, bison, gcc-c++, flex
 BuildRequires: readline-devel, gtkextra-devel, gtk+-devel
-BuildRequires: desktop-file-utils
+BuildRequires: desktop-file-utils, pkgconfig
 
 %description
 gpsim is a full-featured software simulator for Microchip PIC

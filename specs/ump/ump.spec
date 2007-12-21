@@ -2,6 +2,20 @@
 # Authority: dries
 # Upstream: Mattias Hultgren <konst$matildahultgren,se>
 
+%{?dtag: %{expand: %%define %dtag 1}}
+
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh8:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
+
 Summary: Advanced calculator with support for matrices and graphs
 Name: ump
 Version: 0.8.6
@@ -14,6 +28,8 @@ Source: http://dl.sf.net/u-m-p/ump-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel, gcc-c++
+%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
+%{!?_without_modxorg:BuildRequires: mesa-libGL-devel, mesa-libGLU-devel}
 
 %description
 Ump is a program in which all sorts of calculations can be done, from the 

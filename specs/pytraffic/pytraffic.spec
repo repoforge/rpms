@@ -14,7 +14,7 @@ Source: http://alpha.uhasselt.be/Research/Algebra/Members/pytraffic/pytraffic-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildArch: noarch
-BuildRequires: python-devel >= 2.2, SDL_mixer-devel
+BuildRequires: python-devel >= 2.2, SDL_mixer-devel, SDL-devel
 Requires: python >= 2.2 , pygtk2 >= 2.4
 Obsoletes: ttraffic
 

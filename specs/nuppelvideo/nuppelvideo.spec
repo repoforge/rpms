@@ -1,8 +1,20 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Roman Hochleitner <roman$mars,tuwien,ac,at>
+
+%{?dtag: %{expand: %%define %dtag 1}}
+
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh8:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
 
 %define real_name NuppelVideo
 %define real_version 0.52a
@@ -18,6 +30,8 @@ URL: http://frost.htu.tuwien.ac.at/~roman/nuppelvideo/
 Source: http://frost.htu.tuwien.ac.at/~roman/%{name}/%{real_name}-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
 
 %description
 NuppelVideo recording tool.
