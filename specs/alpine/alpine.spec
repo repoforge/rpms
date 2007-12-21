@@ -3,7 +3,7 @@
 
 Summary: Alternative Pine mail user agent implementation
 Name: alpine
-Version: 0.99999
+Version: 1.00
 Release: 1
 License: Apache License
 Group: Applications/Internet
@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: inews, aspell, openldap-devel, openssl-devel, krb5-devel
 ### RPM bug causes package to conflict with itself
 #Conflicts: pine
-#Obsoletes: pine <= 4.64
+Obsoletes: pine <= 4.64
 Provides: pine = 4.64
 
 %description
@@ -83,6 +83,9 @@ touch imap/ip6
 %{_sbindir}/mlock
 
 %changelog
+* Fri Dec 21 2007 Dag Wieers <dag@wieers.com> - 1.00-1
+- Updated to release 1.00.
+
 * Tue Nov 20 2007 Dag Wieers <dag@wieers.com> - 0.99999-1
 - Updated to release 0.99999.
 

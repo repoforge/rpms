@@ -2,14 +2,16 @@
 # Authority: dag
 # Upstream: Dag Wieers <dag$wieers,com>
 
+# ExcludeDist: rh9 el3
+
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{?el4:%define _with_openoffice.org2 1}
+%{?el4:%define _with_openoffice2 1}
 
 Summary: Tool to convert between any document format supported by OpenOffice
 Name: unoconv
 Version: 0.3
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Base
 URL: http://dag.wieers.com/home-made/unoconv/
@@ -20,8 +22,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: python >= 2.0
 Requires: python >= 2.0
-%{!?_with_openoffice.org2:Requires:openoffice.org-pyuno >= 2.0}
-%{?_with_openoffice.org2:Requires:openoffice.org2-pyuno >= 2.0}
+%{!?_with_openoffice2:Requires:openoffice.org-pyuno >= 2.0}
+%{?_with_openoffice2:Requires:openoffice.org2-pyuno >= 2.0}
 
 %description
 unoconv converts between any document format that OpenOffice understands.
@@ -52,6 +54,9 @@ and more.
 %{_bindir}/unoconv
 
 %changelog
+* Wed Dec 19 2007 Dag Wieers <dag@wieers.com> - 0.3-2
+- Fixed openoffice.org2 dependency on RHEL4.
+
 * Sat Sep 01 2007 Dag Wieers <dag@wieers.com> - 0.3-1
 - Updated to release 0.3.
 

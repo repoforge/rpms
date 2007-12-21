@@ -20,7 +20,7 @@ Wput is the opposite of wget, capable of uploading files to FTP servers
 with an easy to use command line interface similar to wget's interface.
 
 %prep
-%setup -n wput
+%setup
 
 %build
 %configure
@@ -28,7 +28,8 @@ with an easy to use command line interface similar to wget's interface.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d %{buildroot}%{_bindir} %{buildroot}%{_mandir}/man1
+%{__install} -d -m0755 %{buildroot}%{_bindir}
+%{__install} -d -m0755 %{buildroot}%{_mandir}/man1
 %{__make} install DESTDIR="%{buildroot}" bindir="%{buildroot}%{_bindir}" mandir="%{buildroot}%{_mandir}/man1/"
 %find_lang %{name}
 

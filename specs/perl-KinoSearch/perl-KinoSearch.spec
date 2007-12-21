@@ -18,10 +18,11 @@ URL: http://search.cpan.org/dist/KinoSearch/
 Source: http://www.cpan.org/authors/id/C/CR/CREAMYG/KinoSearch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl >= 2:5.8.3
 BuildRequires: perl(ExtUtils::CBuilder)
 BuildRequires: perl(ExtUtils::ParseXS)
 BuildRequires: perl(Module::Build)
+Requires: perl >= 2:5.8.3
 
 %description
 Search engine library.
