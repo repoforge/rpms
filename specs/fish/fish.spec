@@ -6,6 +6,8 @@
 %{!?dtag:%define _with_modxorg 1}
 
 %{?el5:%define _with_modxorg 1}
+%{?fc8:%define _with_modxorg 1}
+%{?fc7:%define _with_modxorg 1}
 %{?fc6:%define _with_modxorg 1}
 %{?fc5:%define _with_modxorg 1}
 
@@ -15,9 +17,9 @@ Version: 1.22.3
 Release: 1
 License: GPL
 Group: System Environment/Shells
-URL: http://roo.no-ip.org/fish/
+URL: http://fishshell.org
 
-Source: http://roo.no-ip.org/fish/files/%{version}/fish-%{version}.tar.bz2
+Source: http://fishshell.org/files/%{version}/fish-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, doxygen, groff, gettext, autoconf

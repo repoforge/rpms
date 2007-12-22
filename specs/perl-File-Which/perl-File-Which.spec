@@ -7,7 +7,7 @@
 
 %define real_name File-Which
 
-Summary: Portable implementation of the `which' utility
+Summary: Portable implementation of the 'which' utility
 Name: perl-File-Which
 Version: 0.05
 Release: 1.2

@@ -6,11 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name HTML-Mason
-%define real_version 1.32
+%define real_version 1.38
 
 Summary: Web site development and delivery system
 Name: perl-HTML-Mason
-Version: 1.3200
+Version: 1.38
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -62,6 +62,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/HTML/Mason/
 
 %changelog
+* Sun Dec 23 2007 Dries Verachtert <dries@ulyssis.org> - 1.38-1
+- Updated to release 1.38.
+
 * Fri Apr 28 2006 Dries Verachtert <dries@ulyssis.org> - 1.3200-1
 - Changed the version so it's greater as the previous version 1.3101, 
   informed the author about the problem with these versions for rpms.

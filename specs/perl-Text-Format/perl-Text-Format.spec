@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Format/
 
-Source: http://www.cpan.org/modules/by-module/Text/Text-Format0.52+NWrap%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Text/Text-Format%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
