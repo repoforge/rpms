@@ -3,8 +3,8 @@
 
 Summary: Reclaim space on your drive
 Name: freedup
-%define real_version 1.3-1
-Version: 1.3.1
+%define real_version 1.4-2
+Version: 1.4.2
 Release: 1
 License: GPL
 Group: Applications/File
@@ -24,7 +24,7 @@ provides significant space savings particularly to multimedia
 content.
 
 %prep
-%setup -n %{name}-1.3
+%setup -n %{name}-1.4
 
 %build
 %{__make} %{?_smp_mflags} freedup
@@ -44,6 +44,9 @@ content.
 %{_bindir}/freedup
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 1.4.2-1
+- Updated to release 1.4-2.
+
 * Tue Dec 18 2007 Dag Wieers <dag@wieers.com> - 1.3.1-1
 - Updated to release 1.3-1.
 

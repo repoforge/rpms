@@ -30,6 +30,8 @@ personal-preference options.
 
 %prep
 %setup
+#%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure */Makefile */*/Makefile imap/src/osdep/unix/Makefile.gss
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' imap/src/osdep/unix/Makefile.gss
 
 %build
 touch imap/ip6

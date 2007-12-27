@@ -5,13 +5,13 @@
 
 Summary: TCP/IP re-engineering and monitoring program
 Name: tcpreen
-Version: 1.4.3
-Release: 1.2
+Version: 1.4.4
+Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://www.simphalempin.com/dev/tcpreen/
+URL: http://www.remlab.net/tcpreen/
 
-Source: http://dl.sf.net/tcpreen/tcpreen-%{version}.tar.bz2
+Source: http://www.remlab.net/files/tcpreen/stable/tcpreen-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 
@@ -31,7 +31,7 @@ TCPreen supports both TCP/IPv4 and TCP/IPv6 for data transport.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %clean
@@ -44,8 +44,8 @@ TCPreen supports both TCP/IPv4 and TCP/IPv6 for data transport.
 %{_bindir}/tcpreen
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.3-1.2
-- Rebuild for Fedora Core 5.
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 1.4.4-1
+- Updated to release 1.4.4.
 
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 1.4.3-1
 - Updated to release 1.4.3.

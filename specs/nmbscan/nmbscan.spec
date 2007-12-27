@@ -4,13 +4,13 @@
 
 Summary: NMB/SMB network scanner
 Name: nmbscan
-Version: 1.2.4
-Release: 1.2
+Version: 1.2.5
+Release: 1
 License: GPL
 Group: Applications/System
-URL: http://gbarbier.free.fr/prj/dev/#nmbscan
+URL: http://nmbscan.gbarbier.org/
 
-Source: http://gbarbier.free.fr/prj/dev/down.php3?file=nmbscan-%{version}.tar.gz
+Source: http://nmbscan.gbarbier.org/down.php?file=nmbscan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
@@ -28,7 +28,7 @@ Can discover all NMB/SMB/Windows hosts on a local aera network thanks to hosts
 lists maintained by master browsers.
 
 %prep
-%setup
+%setup -c
 
 %build
 
@@ -41,11 +41,12 @@ lists maintained by master browsers.
 
 %files
 %defattr(-, root, root, 0755)
+%doc sample.txt Documentation/gplv2.txt Documentation/HOWTO_contribute.txt
 %{_bindir}/nmbscan
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.4-1.2
-- Rebuild for Fedora Core 5.
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 1.2.5-1
+- Updated to release 1.2.5.
 
 * Sun Feb 06 2005 Dag Wieers <dag@wieers.com> - 1.2.4-1
 - Updated to release 1.2.4.

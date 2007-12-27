@@ -1,5 +1,5 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
 
 %{!?audio:%define audio alsa}
 
@@ -45,16 +45,18 @@
 
 Summary: MPEG audio player
 Name: mpg123
-Version: 0.68
+Version: 1.0.0
 Release: 1
 License: GPL/LGPL
 Group: Applications/Multimedia
 URL: http://mpg123.org/
+
 Source: http://mpg123.org/download/mpg123-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: pkgconfig
-BuildRequires: SDL-devel
 BuildRequires: portaudio-devel
+BuildRequires: SDL-devel
 # We actually only need one, but it doesn't hurt to have them all
 %{!?_without_jack:BuildRequires: jack-audio-connection-kit-devel}
 %{!?_without_esound:BuildRequires: esound-devel}
@@ -68,10 +70,18 @@ Real time command line MPEG audio player for Layer 1, 2 and Layer3.
 Available rpmbuild rebuild option :
 --define 'audio {alsa,esd,jack,nas,oss,portaudio,sdl}'
 
+%package devel
+Summary: Header files, libraries and development documentation for %{name}.
+Group: Development/Libraries
+Requires: %{name} = %{version}-%{release}
+
+%description devel
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
 %setup
-
 
 %build
 %configure \
@@ -80,24 +90,34 @@ Available rpmbuild rebuild option :
     --with-audio="%{audio}"
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README doc/
 %{_bindir}/mpg123
 %{_mandir}/man1/mpg123.1*
+%{_libdir}/libmpg123.so.*
+%{_libdir}/mpg123/
+%exclude %{_libdir}/mpg123/*.la
 
+%files devel
+%defattr(-, root, root, 0755)
+%{_includedir}/mpg123.h
+%{_libdir}/libmpg123.so
+%{_libdir}/pkgconfig/libmpg123.pc
+%exclude %{_libdir}/libmpg123.la
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 1.0.0-1
+- Updated to release 1.0.0.
+- Added devel subpackage.
+
 * Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 0.68-1
 - Updated to release 0.68.
 

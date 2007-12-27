@@ -8,7 +8,7 @@
 
 Summary: Program to generate and view fractals
 Name: gnofract4d
-Version: 3.6
+Version: 3.7
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -37,6 +37,9 @@ python2 setup.py build
 %{__rm} -rf %{buildroot}
 python2 setup.py install --root="%{buildroot}"
 
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{_docdir}/gnofract4d/
+
 %post
 update-mime-database %{_datadir}/mime &>/dev/null || :
 scrollkeeper-update -q || :
@@ -64,6 +67,9 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 #%exclude %{python_sitelib}/buildtools/
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 3.7-1
+- Updated to release 3.7.
+
 * Mon Oct 29 2007 Dries Verachtert <dries@ulyssis.org> - 3.6-1
 - Updated to release 3.6.
 
