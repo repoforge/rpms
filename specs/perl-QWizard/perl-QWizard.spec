@@ -9,7 +9,7 @@
 
 Summary: Perl module to display questions and act on the answers
 Name: perl-QWizard
-Version: 3.12
+Version: 3.13
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -58,6 +58,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/QWizard_Widgets.pod
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 3.13-1
+- Updated to release 3.13.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 3.12-1
 - Updated to release 3.12.
 

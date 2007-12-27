@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Graham Barr <gbarr$pobox,com>
+# Upstream: Shlomi Fish <shlomif$iglu,org,il>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Error/exception handling in an OO-ish way
 Name: perl-Error
-Version: 0.17010
+Version: 0.17011
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -58,6 +58,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Error.pm
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.17011-1
+- Updated to release 0.17011.
+
 * Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.17010-1
 - Updated to release 0.17010.
 

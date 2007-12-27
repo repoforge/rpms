@@ -6,11 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Test-AutoBuild
-%define real_version 1.002001
+%define real_version 1.002002
 
-Summary: Automated build engine
+Summary: Framework for performing continuous, unattended, automated software builds
 Name: perl-Test-AutoBuild
-Version: 1.2.1
+Version: 1.2.2
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -26,6 +26,7 @@ BuildRequires: perl(Class::MethodMaker)
 BuildRequires: perl(Config::Record)
 BuildRequires: perl(ExtUtils::MakeMaker)
 Buildrequires: perl(Log::Log4perl)
+BuildRequires: perl(Test::More)
 
 %description
 Test-AutoBuild provides a PERL framework for performing
@@ -92,6 +93,9 @@ find doc/ examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Test/AutoBuild.pm
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 1.2.2-1
+- Updated to release 1.2.2.
+
 * Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 1.2.1-1
 - Updated to release 1.2.1.
 

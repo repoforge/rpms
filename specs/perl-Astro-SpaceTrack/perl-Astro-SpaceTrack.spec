@@ -9,7 +9,7 @@
 
 Summary: Downloads orbital elements from the Space Track web site
 Name: perl-Astro-SpaceTrack
-Version: 0.030
+Version: 0.031
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -37,7 +37,7 @@ TO THIRD PARTIES WITHOUT PRIOR PERMISSION.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" -y
+%{__perl} Makefile.PL -y INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -66,6 +66,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Astro/SpaceTrack.pm
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.031-1
+- Updated to release 0.031.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.030-1
 - Updated to release 0.030.
 

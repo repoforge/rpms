@@ -6,11 +6,10 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name PathTools
-%define real_version 3.25
 
 Summary: Tools for working with paths and file specs across platforms
 Name: perl-PathTools
-Version: 3.25
+Version: 3.2501
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -31,7 +30,7 @@ Requires: perl >= 0:5.005
 Tools for working with paths and file specs across platforms.
 
 %prep
-%setup -n PathTools-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -50,13 +49,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes INSTALL MANIFEST META.yml SIGNATURE
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Cwd.3pm*
+%doc %{_mandir}/man3/File::Spec.3pm*
+%doc %{_mandir}/man3/File::Spec::*.3pm*
+%{perl_vendorarch}/auto/Cwd/
 %dir %{perl_vendorarch}/File/
 %{perl_vendorarch}/Cwd.pm
 %{perl_vendorarch}/File/Spec.pm
 %{perl_vendorarch}/File/Spec/
-%{perl_vendorarch}/auto/Cwd/
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 3.2501-1
+- Updated to release 3.2501.
+
 * Mon Aug 06 2007 Dag Wieers <dag@wieers.com> - 3.25-1
 - Initial package. (using DAR)

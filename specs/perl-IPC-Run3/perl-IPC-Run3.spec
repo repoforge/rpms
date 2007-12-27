@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Ricardo SIGNES <rjbs$cpan,org>
+# Upstream: Barrie Slaymaker <barries$slaysys,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Run a subprocess in batch mode
 Name: perl-IPC-Run3
-Version: 0.039
+Version: 0.040
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/IPC/IPC-Run3-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.6.0
+Requires: perl >= 0:5.6.0
 
 %description
 Run a subprocess in batch mode.
@@ -51,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IPC/Run3.pm
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.040-1
+- Updated to release 0.040.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.039-1
 - Updated to release 0.039.
 
@@ -62,9 +66,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.035-1
 - Updated to release 0.035.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.034-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.034-1
 - Updated to release 0.034.

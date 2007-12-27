@@ -9,7 +9,7 @@
 
 Summary: Perl module to read all the messages from a folder as Email::Simple objects
 Name: perl-Email-Folder
-Version: 0.853
+Version: 0.854
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -24,10 +24,6 @@ BuildRequires: perl
 %description
 perl-Email-Folder is a Perl module to read all the messages from
 a folder as Email::Simple objects.
-
-This package contains the following Perl module:
-
-    Email::Folder
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -59,5 +55,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Email/Folder.pm
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.854-1
+- Updated to release 0.854.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.853-1
 - Initial package. (using DAR)

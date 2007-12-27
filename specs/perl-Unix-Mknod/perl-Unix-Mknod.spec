@@ -9,7 +9,7 @@
 
 Summary: Perl module for mknod, major, minor, and makedev
 Name: perl-Unix-Mknod
-Version: 0.03
+Version: 0.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -22,10 +22,6 @@ BuildRequires: perl
 
 %description
 perl-Unix-Mknod is a Perl module for mknod, major, minor, and makedev.
-
-This package contains the following Perl module:
-
-    Unix::Mknod
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -48,11 +44,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Unix::Mknod.3pm*
-%dir %{perl_vendorarch}/Unix/
-%{perl_vendorarch}/Unix/Mknod.pm
 %dir %{perl_vendorarch}/auto/Unix/
 %{perl_vendorarch}/auto/Unix/Mknod/
+%dir %{perl_vendorarch}/Unix/
+%{perl_vendorarch}/Unix/Mknod.pm
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.04-1
+- Updated to release 0.04.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.03-1
 - Initial package. (using DAR)

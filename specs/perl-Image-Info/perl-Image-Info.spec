@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Tels <nospam-abuse@bloodgate.com>
+# Upstream: Tels <nospam-abuse$bloodgate,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Extract meta information from image files
 Name: perl-Image-Info
-Version: 1.26
+Version: 1.27
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(IO::String)
-BuildRequires: perl(Test::More) >= 0.42
+BuildRequires: perl(Test::More) >= 0.62
 
 %description
 This Perl extention allows you to extract meta information from
@@ -56,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Image/TIFF.pm
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 1.27-1
+- Updated to release 1.27.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.26-1
 - Updated to release 1.26.
 

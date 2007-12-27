@@ -9,7 +9,7 @@
 
 Summary: Fast prototype-based OO programming in Perl
 Name: perl-Class-Prototyped
-Version: 1.10
+Version: 1.11
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Class/Prototyped.pm
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 1.11-1
+- Updated to release 1.11.
+
 * Fri Aug 03 2007 Dag Wieers <dag@wieers.com> - 1.10-1
 - Initial package. (using DAR)

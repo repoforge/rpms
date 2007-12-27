@@ -9,7 +9,7 @@
 
 Summary: Perl module to check a remote host for reachability
 Name: perl-Net-Ping
-Version: 2.33
+Version: 2.34
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,5 +49,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/Ping.pm
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 2.34-1
+- Updated to release 2.34.
+
 * Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 2.33-1
 - Initial package. (using DAR)

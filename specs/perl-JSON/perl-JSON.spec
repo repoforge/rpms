@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/JSON/
 
-Source: http://www.cpan.org/authors/id/M/MA/MAKAMAKA/JSON-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/JSON/JSON-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

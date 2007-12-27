@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Nick Ing-Simmons <nick$ing-simmons,net>
+# Upstream: Slaven Rezi# <slaven$rezic,de>
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
@@ -23,8 +23,8 @@
 
 Summary: Object Oriented Tk extension for Perl
 Name: perl-Tk
-Version: 804.027
-Release: 3.2
+Version: 804.028
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tk/
@@ -59,21 +59,28 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %{__perl} -pi -e 's|/bin/perl|%{_bindir}/perl|g' %{buildroot}%{perl_vendorarch}/Tk/reindex.pl
 %{__perl} -pi -e 's|/usr/local/bin/perl|%{_bindir}/perl|g' \
-	%{buildroot}%{perl_vendorarch}/Tk/demos/widtrib/plop.pl \
-	%{buildroot}%{perl_vendorarch}/Tk/demos/widtrib/npuz.pl \
-	%{buildroot}%{perl_vendorarch}/Tk/pTk/mkVFunc \
-	%{buildroot}%{perl_vendorarch}/Tk/pTk/Tcl-pTk \
-	%{buildroot}%{perl_vendorarch}/Tk/Text.pod
-%{__rm} -rf %{buildroot}%{perl_archlib}
+    %{buildroot}%{perl_vendorarch}/Tk/demos/widtrib/plop.pl \
+    %{buildroot}%{perl_vendorarch}/Tk/demos/widtrib/npuz.pl \
+    %{buildroot}%{perl_vendorarch}/Tk/pTk/mkVFunc \
+    %{buildroot}%{perl_vendorarch}/Tk/pTk/Tcl-pTk \
+    %{buildroot}%{perl_vendorarch}/Tk/Text.pod
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man1/*.1*
-%doc %{_mandir}/man3/*.3*
+%doc COPYING Changes INSTALL MANIFEST MANIFEST.SKIP MANIFEST.SKIP.PL README* ToDo VERSIONS
+%doc %{_mandir}/man1/ptked.1*
+%doc %{_mandir}/man1/ptksh.1*
+%doc %{_mandir}/man1/tkjpeg.1*
+%doc %{_mandir}/man1/widget.1*
+%doc %{_mandir}/man3/Tie::Watch.3pm*
+%doc %{_mandir}/man3/Tk.3pm*
+%doc %{_mandir}/man3/Tk::*.3pm*
 %{_bindir}/gedi
 %{_bindir}/ptked
 %{_bindir}/ptksh
@@ -87,6 +94,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/fix_4_os2.pl
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 804.028-1
+- Updated to release 804.028.
+
 * Sun Aug 14 2005 Dries Verachtert <dries@ulyssis.org> - 804.027-3
 - Enable XFT support (thanks to Void Main).
 

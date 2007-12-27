@@ -9,7 +9,7 @@
 
 Summary: Perl 6 Design Documentations
 Name: perl-Perl6-Bible
-Version: 0.30
+Version: 0.32
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -45,13 +45,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README SIGNATURE
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Perl6::Bible.3pm*
+%doc %{_mandir}/man3/Perl6::Bible::*.3pm*
 %{_bindir}/p6bible
 %dir %{perl_vendorlib}/Perl6/
 %{perl_vendorlib}/Perl6/Bible/
 %{perl_vendorlib}/Perl6/Bible.pm
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.32-1
+- Updated to release 0.32.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.30-1
 - Initial package. (using DAR)

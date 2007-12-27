@@ -9,7 +9,7 @@
 
 Summary: Asynchronous non-blocking DBI calls in POE made simple
 Name: perl-POE-Component-SimpleDBI
-Version: 1.17
+Version: 1.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -23,7 +23,7 @@ BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
-This module simplifies DBI usage in POE's multitasking world.
+Asynchronous non-blocking DBI calls in POE made simple.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -56,6 +56,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Component/SimpleDBI.pm
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 1.18-1
+- Updated to release 1.18.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.17-1
 - Updated to release 1.17.
 

@@ -9,7 +9,7 @@
 
 Summary: Modules that serialize data structures
 Name: perl-Data-Serializer
-Version: 0.42
+Version: 0.43
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(AutoSplit)
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(IO::File)
+BuildRequires: perl(Test::More)
 
 %description
 Modules that serialize data structures.
@@ -55,5 +59,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Data/Serializer.pm
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.43-1
+- Updated to release 0.43.
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 0.42-1
 - Initial package. (using DAR)

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: &#23665;&#31185; &#27703;&#39770; <hio$hio,jp>
+# Upstream: YAMASHINA Hio <hio@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Multiple languages in Pod
 Name: perl-Pod-MultiLang
-Version: 0.11
+Version: 0.13
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
 
 %description
 Multiple languages in Pod.
@@ -39,20 +40,32 @@ Multiple languages in Pod.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find example/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Pod::MultiLang*
-%doc %{_mandir}/man1/mlpod2*
+%doc Changes MANIFEST META.yml README SIGNATURE example/
+%doc %{_mandir}/man1/mlpod2html*.1*
+%doc %{_mandir}/man1/mlpod2pod*.1*
+%doc %{_mandir}/man3/Pod::MultiLang.3pm*
+%doc %{_mandir}/man3/Pod::MultiLang_ja.3pm*
+%doc %{_mandir}/man3/Pod::MultiLang::*.3pm*
 %{_bindir}/mlpod2html*
 %{_bindir}/mlpod2pod*
-%{perl_vendorlib}/Pod/MultiLang.*
-%{perl_vendorlib}/Pod/MultiLang_*.pod
+%dir %{perl_vendorlib}/Pod/
 %{perl_vendorlib}/Pod/MultiLang/
+%{perl_vendorlib}/Pod/MultiLang.mlpod
+%{perl_vendorlib}/Pod/MultiLang.pm
+%{perl_vendorlib}/Pod/MultiLang.pod
+%{perl_vendorlib}/Pod/MultiLang_ja.pod
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.13-1
+- Updated to release 0.13.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.11-1
 - Initial package.

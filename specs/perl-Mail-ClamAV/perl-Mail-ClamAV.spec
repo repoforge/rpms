@@ -10,7 +10,7 @@
 Summary: Perl module with bindings for the clamav virus scanner
 Name: perl-Mail-ClamAV
 Version: 0.20
-Release: 1
+Release: 2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-ClamAV/
@@ -18,12 +18,12 @@ URL: http://search.cpan.org/dist/Mail-ClamAV/
 Source: http://www.cpan.org/modules/by-module/Mail/Mail-ClamAV-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: bzip2-devel
+BuildRequires: clamav-devel
+BuildRequires: gmp-devel
 BuildRequires: perl
 BuildRequires: perl(Inline)
-BuildRequires: clamav-devel
 BuildRequires: perl(Parse::RecDescent)
-BuildRequires: bzip2-devel
-BuildRequires: gmp-devel
 Requires: perl
 
 %description
@@ -50,11 +50,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes INSTALL MANIFEST META.yml README
 %doc %{_mandir}/man3/Mail::ClamAV.3pm*
-%dir %{perl_vendorarch}/Mail/
-%{perl_vendorarch}/Mail/ClamAV.pm
 %dir %{perl_vendorarch}/auto/Mail/
 %{perl_vendorarch}/auto/Mail/ClamAV/
+%dir %{perl_vendorarch}/Mail/
+%{perl_vendorarch}/Mail/ClamAV.pm
 
 %changelog
+* Thu Dec 20 2007 Dag Wieers <dag@wieers.com> - 0.20-2
+- Rebuild against clamav 0.92.
+
 * Wed May 02 2007 Dag Wieers <dag@wieers.com> - 0.20-1
 - Initial package. (using DAR)

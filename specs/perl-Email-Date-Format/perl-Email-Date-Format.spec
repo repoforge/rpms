@@ -1,29 +1,28 @@
 # $Id$
 # Authority: dag
-# Upstream: Tim Jenness <tjenness$cpan,org>
+# Upstream: Ricardo SIGNES <rjbs$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name File-Temp
+%define real_name Email-Date-Format
 
-Summary: Return name and handle of a temporary file safely
-Name: perl-File-Temp
-Version: 0.20
+Summary: Produce RFC 8822 date strings
+Name: perl-Email-Date-Format
+Version: 1.002
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/File-Temp/
+URL: http://search.cpan.org/dist/Email-Date-Format/
 
-Source: http://www.cpan.org/modules/by-module/File/File-Temp-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Email/Email-Date-Format-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
-Return name and handle of a temporary file safely.
+Produce RFC 8822 date strings.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -44,18 +43,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog MANIFEST META.yml README
-%doc %{_mandir}/man3/File::Temp.3pm*
-%dir %{perl_vendorlib}/File/
-%{perl_vendorlib}/File/Temp.pm
-%{perl_vendorlib}/File/._Temp.pm
+%doc Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/Email::Date::Format.3pm*
+%dir %{perl_vendorlib}/Email/
+%dir %{perl_vendorlib}/Email/Date/
+#%{perl_vendorlib}/Email/Date/Format/
+%{perl_vendorlib}/Email/Date/Format.pm
 
 %changelog
-* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.20-1
-- Updated to release 0.20.
-
-* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.19-1
-- Updated to release 0.19.
-
-* Mon Aug 06 2007 Dag Wieers <dag@wieers.com> - 0.18-1
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 1.002-1
 - Initial package. (using DAR)

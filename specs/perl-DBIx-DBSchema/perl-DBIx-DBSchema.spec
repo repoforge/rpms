@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Jesse Vincent <jesse+cpan$fsck,com>
+# Upstream: Ivan Kohler <ivan-pause$420,am>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Interface to database schemas
 Name: perl-DBIx-DBSchema
-Version: 0.35
+Version: 0.36
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -28,10 +28,6 @@ you can create a database schema with an OO Perl interface.  You can read the
 schema from an existing database.  You can save the schema to disk and restore
 it from different process.  Most importantly, DBIx::DBSchema can write SQL
 CREATE statements for different databases from a single source.
-
-This package contains the following Perl module:
-
-    DBIx::DBSchema
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -60,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DBIx/DBSchema.pm
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.36-1
+- Updated to release 0.36.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.35-1
 - Updated to release 0.35.
 

@@ -9,19 +9,21 @@
 
 Summary: Defines RGB values for common color names
 Name: perl-Graphics-ColorNames
-Version: 1.06
-Release: 1.2
-License: Artistic
+Version: 2.04
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graphics-ColorNames/
 
 Source: http://www.cpan.org/modules/by-module/Graphics/Graphics-ColorNames-%{version}.tar.gz
-#Source: http://www.cpan.org/modules/by-module/Graphics/Graphics-ColorNames-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.6.0
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(FileHandle)
+BuildRequires: perl(Test::More)
+Requires: perl >= 0:5.6.0
 
 %description
 This module defines RGB values for common color names. The intention is
@@ -40,29 +42,31 @@ specifying a color by name rather than RGB value.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Graphics::ColorNames.3pm*
+%doc %{_mandir}/man3/Graphics::ColorNames::*.3pm*
+%dir %{perl_vendorlib}/Graphics/
+%{perl_vendorlib}/Graphics/ColorNames/
 %{perl_vendorlib}/Graphics/ColorNames.pm
-%{perl_vendorlib}/Graphics/ColorNames/*
-%{perl_vendorlib}/Graphics/ColourNames.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.06-1.2
-- Rebuild for Fedora Core 5.
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 2.04-1
+- Updated to release 2.04.
 
-* Sat Jun 18 2005 Dries Verachtert <dries@ulyssis.org> - 1.06
-- Update
+* Sat Jun 18 2005 Dries Verachtert <dries@ulyssis.org> - 1.06-1
+- Updated to release 1.06.
 
-* Sat Oct 30 2004 Dries Verachtert <dries@ulyssis.org> - 1.05
-- Update to release 1.05
+* Sat Oct 30 2004 Dries Verachtert <dries@ulyssis.org> - 1.05-1
+- Updated to release 1.05.
 
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.3901-1
 - Initial package.

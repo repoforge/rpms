@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dries
-# Upstream: Jeffrey Baker <jwbaker$acm,org>
+# Upstream: Casey West <casey$geeknest,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Apache-Session
 
-Summary: Session data persistence
+Summary: Persistence framework for session data
 Name: perl-Apache-Session
-Version: 1.84
+Version: 1.85
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Apache/Session.pm
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 1.85-1
+- Updated to release 1.85.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.81-1
 - Updated to release 1.81.
 

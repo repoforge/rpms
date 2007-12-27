@@ -10,7 +10,7 @@
 Summary: SQL DDL transformations and more
 Name: perl-SQL-Translator
 Version: 0.08001
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SQL-Translator/
@@ -32,6 +32,12 @@ SQL DDL transformations and more.
 
 %prep
 %setup -n %{real_name}-%{version}
+%{__cat} <<EOF >%{_tmppath}/%{name}-filter-requirements.sh
+#!/bin/bash
+%{__perl_requires} $* | grep -v '^perl(:)$'
+EOF
+%{__chmod} +x %{_tmppath}/%{name}-filter-requirements.sh
+%define __perl_requires %{_tmppath}/%{name}-filter-requirements.sh
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -71,5 +77,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/sqlt-graph
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.08001-2
+- Filtered out wrong perl(:) dependency.
+
 * Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.08001-1
 - Initial package. (using DAR)

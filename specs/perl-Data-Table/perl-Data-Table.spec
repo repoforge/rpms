@@ -9,7 +9,7 @@
 
 Summary: Table data types
 Name: perl-Data-Table
-Version: 1.51
+Version: 1.52
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/auto/Data/Table
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 1.52-1
+- Updated to release 1.52.
+
 * Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 1.51-1
 - Updated to release 1.51.
 
@@ -64,9 +67,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.47-1
 - Updated to release 1.47.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.43-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.43-1
 - Initial package.

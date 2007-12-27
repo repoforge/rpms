@@ -54,12 +54,12 @@ find example/ -type f -exec %{__chmod} a-x {} \;
 %doc %{_mandir}/man3/Geo::IP.3pm*
 %doc %{_mandir}/man3/Geo::IP::Record.3pm*
 %doc %{_mandir}/man3/Geo::Mirror.3pm*
+%dir %{perl_vendorarch}/auto/Geo/
+%{perl_vendorarch}/auto/Geo/IP/
 %dir %{perl_vendorarch}/Geo/
 %{perl_vendorarch}/Geo/IP/
 %{perl_vendorarch}/Geo/IP.pm
 %{perl_vendorarch}/Geo/Mirror.pm
-%dir %{perl_vendorarch}/auto/Geo/
-%{perl_vendorarch}/auto/Geo/IP/
 
 %changelog
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.28-1

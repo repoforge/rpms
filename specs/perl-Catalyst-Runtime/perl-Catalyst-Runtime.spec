@@ -9,7 +9,7 @@
 
 Summary: Catalyst  Runtime version
 Name: perl-Catalyst-Runtime
-Version: 5.7011
+Version: 5.7012
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -76,6 +76,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Catalyst.pm
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 5.7012-1
+- Updated to release 5.7012.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 5.7011-1
 - Updated to release 5.7011.
 

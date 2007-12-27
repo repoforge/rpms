@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements useful String functions
 Name: perl-YVDHOVE-String
-Version: 0.01
+Version: 1.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,15 +19,12 @@ Source: http://www.cpan.org/authors/id/Y/YV/YVDHOVE/YVDHOVE-String-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 3:5.8.7
+Requires: perl >= 3:5.8.7
 
 %description
 perl-YVDHOVE-String is a Perl module that implements a library of useful
 String functions.
-
-This package contains the following Perl module:
-
-    YVDHOVE::String
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -55,5 +52,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/YVDHOVE/String.pm
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 1.05-1
+- Updated to release 1.05.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.01-1
 - Initial package. (using DAR)

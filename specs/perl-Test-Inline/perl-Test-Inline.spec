@@ -48,12 +48,12 @@ to date.
 
 %prep
 %setup -n %{real_name}-%{version}
-%{__cat} <<EOF >%{_tmppath}/perl-Test-Inline-filter-requirements.sh
+%{__cat} <<EOF >%{_tmppath}/%{name}-filter-requirements.sh
 #!/bin/bash
-%{__perl_requires} $* | perl -pe 's/perl\(script\)//g'
+%{__perl_requires} $* | grep -v '^perl(script)$'
 EOF
-%{__chmod} +x %{_tmppath}/perl-Test-Inline-filter-requirements.sh
-%define __perl_requires %{_tmppath}/perl-Test-Inline-filter-requirements.sh
+%{__chmod} +x %{_tmppath}/%{name}-filter-requirements.sh
+%define __perl_requires %{_tmppath}/%{name}-filter-requirements.sh
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"

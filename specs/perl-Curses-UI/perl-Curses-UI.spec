@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Marcus Thiesen <marcus$cpan,org>
+# Upstream: Shawn Boyette <mdxi$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: Curses based OO user interface framework
 Name: perl-Curses-UI
-Version: 0.95
-Release: 1.2
+Version: 0.96
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Curses-UI/
@@ -40,24 +40,24 @@ several widgets which can be used to build a user interface.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes CREDITS README
-%doc %{_mandir}/man3/*
+%doc BUGS CREDITS Changes INSTALL MANIFEST README TODO examples/
+%doc %{_mandir}/man3/Curses::UI.3pm*
+%doc %{_mandir}/man3/Curses::UI::*.3pm*
+%dir %{perl_vendorlib}/Curses/
+%{perl_vendorlib}/Curses/UI/
 %{perl_vendorlib}/Curses/UI.pm
-%{perl_vendorlib}/Curses/UI
-
-# perl_vendorlib: /usr/lib/perl5/vendor_perl/5.8.0
-# perl_vendorarch: /usr/lib/perl5/vendor_perl/5.8.0/i386-linux-thread-multi
-# perl_archlib: /usr/lib/perl5/5.8.0/i386-linux-thread-multi
-# perl_privlib: /usr/lib/perl5/5.8.0
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.95-1.2
-- Rebuild for Fedora Core 5.
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.96-1
+- Updated to release 0.96.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.95-1
 - Initial package.

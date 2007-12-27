@@ -9,7 +9,7 @@
 
 Summary: Perl module for accessing extended attributes of files
 Name: perl-File-ExtAttr
-Version: 1.06
+Version: 1.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/File/ExtAttr/
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 1.07-1
+- Updated to release 1.07.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.06-1
 - Updated to release 1.06.
 

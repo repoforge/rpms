@@ -1,29 +1,29 @@
 # $Id$
 # Authority: dag
-# Upstream: Tim Jenness <tjenness$cpan,org>
+# Upstream: Dave Rolsky <autarch$urth,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name File-Temp
+%define real_name Time-Local
 
-Summary: Return name and handle of a temporary file safely
-Name: perl-File-Temp
-Version: 0.20
+Summary: Efficiently compute time from local and GMT time
+Summary: Perl module named Time-Local
+Name: perl-Time-Local
+Version: 1.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/File-Temp/
+URL: http://search.cpan.org/dist/Time-Local/
 
-Source: http://www.cpan.org/modules/by-module/File/File-Temp-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Time/Time-Local-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
-Return name and handle of a temporary file safely.
+Efficiently compute time from local and GMT time.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -44,18 +44,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog MANIFEST META.yml README
-%doc %{_mandir}/man3/File::Temp.3pm*
-%dir %{perl_vendorlib}/File/
-%{perl_vendorlib}/File/Temp.pm
-%{perl_vendorlib}/File/._Temp.pm
+%doc Changes LICENSE MANIFEST MANIFEST.SKIP META.yml README
+%doc %{_mandir}/man3/Time::Local.3pm*
+%dir %{perl_vendorlib}/Time/
+#%{perl_vendorlib}/Time/Local/
+%{perl_vendorlib}/Time/Local.pm
 
 %changelog
-* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.20-1
-- Updated to release 0.20.
-
-* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.19-1
-- Updated to release 0.19.
-
-* Mon Aug 06 2007 Dag Wieers <dag@wieers.com> - 0.18-1
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 1.18-1
 - Initial package. (using DAR)

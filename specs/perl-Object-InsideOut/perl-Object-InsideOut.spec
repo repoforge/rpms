@@ -9,7 +9,7 @@
 
 Summary: Comprehensive inside-out object support module
 Name: perl-Object-InsideOut
-Version: 3.34
+Version: 3.35
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -61,6 +61,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Object/InsideOut.pod
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 3.35-1
+- Updated to release 3.35.
+
 * Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 3.34-1
 - Updated to release 3.34.
 

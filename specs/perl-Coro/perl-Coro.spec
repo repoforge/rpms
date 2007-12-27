@@ -9,7 +9,7 @@
 
 Summary: Coroutine process abstraction
 Name: perl-Coro
-Version: 4.31
+Version: 4.34
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -63,6 +63,9 @@ find doc/ eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Coro.pm
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 4.34-1
+- Updated to release 4.34.
+
 * Sat Dec 08 2007 Dag Wieers <dag@wieers.com> - 4.31-1
 - Updated to release 4.31.
 

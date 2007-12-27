@@ -9,9 +9,9 @@
 
 Summary: Perl module to access to network card configuration information
 Name: perl-IO-Interface
-Version: 1.03
+Version: 1.04
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Interface/
 
@@ -47,12 +47,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/IO::Interface.3pm*
 %doc %{_mandir}/man3/IO::Interface::Simple.3pm*
+%dir %{perl_vendorarch}/auto/IO/
+%{perl_vendorarch}/auto/IO/Interface/
 %dir %{perl_vendorarch}/IO/
 %{perl_vendorarch}/IO/Interface/
 %{perl_vendorarch}/IO/Interface.pm
-%dir %{perl_vendorarch}/auto/IO/
-%{perl_vendorarch}/auto/IO/Interface/
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 1.04-1
+- Updated to release 1.04.
+
 * Wed May 02 2007 Dag Wieers <dag@wieers.com> - 1.03-1
 - Initial package. (using DAR)

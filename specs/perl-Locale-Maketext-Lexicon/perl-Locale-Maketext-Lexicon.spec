@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: &#9786;&#21776;&#23447;&#28450;&#9787; <autrijus$autrijus,org>
+# Upstream: Audrey Tang <cpan$audreyt,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Extract translatable strings from source
 Name: perl-Locale-Maketext-Lexicon
-Version: 0.64
+Version: 0.65
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,9 @@ Source: http://www.cpan.org/modules/by-module/Locale/Locale-Maketext-Lexicon-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.004
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 0:5.004
 
 %description
 Locale::Maketext::Lexicon is a module providing lexicon-handling backends,
@@ -41,17 +42,25 @@ PO files, MO files, or from databases via the "Tie" interface.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find docs/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS Changes README
-%doc %{_mandir}/man?/*
+%doc AUTHORS Changes MANIFEST META.yml README SIGNATURE docs/
+%doc %{_mandir}/man1/xgettext.pl.1*
+%doc %{_mandir}/man3/Locale::Maketext::*.3pm*
 %{_bindir}/xgettext.pl
-%{perl_vendorlib}/Locale/Maketext
+%dir %{perl_vendorlib}/Locale/
+%{perl_vendorlib}/Locale/Maketext/
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.65-1
+- Updated to release 0.65.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.64-1
 - Updated to release 0.64.
 
