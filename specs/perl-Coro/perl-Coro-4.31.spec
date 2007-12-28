@@ -9,8 +9,8 @@
 
 Summary: Coroutine process abstraction
 Name: perl-Coro
-### FIXME: Versions >= 4.31 require perl-BDB and db4 >= 4.4
-Version: 4.34
+### FIXME: Newer versions require perl-BDB and db4 >= 4.4
+Version: 4.31
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -21,7 +21,6 @@ Patch0: Coro-3.63-noprompt.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(BDB)
 BuildRequires: perl(Event) >= 0.86
 BuildRequires: perl(IO::AIO) >= 1.6
 # This would introduce a circular dependency since AnyEvent requires Coro...
@@ -65,9 +64,6 @@ find doc/ eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Coro.pm
 
 %changelog
-* Fri Dec 28 2007 Dag Wieers <dag@wieers.com> - 4.34-1
-- Updated to release 4.34.
-
 * Sat Dec 08 2007 Dag Wieers <dag@wieers.com> - 4.31-1
 - Updated to release 4.31.
 

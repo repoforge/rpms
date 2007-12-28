@@ -5,13 +5,14 @@
 Summary: Advanced Trivial File Transfer Protocol (TFTP) client
 Name: atftp
 Version: 0.7
-Release: 5.2
+Release: 6
 License: GPL
 Group: Applications/Internet
 URL: ftp://ftp.mamalinux.com/pub/atftp/
 
-Source: ftp://ftp.mamalinux.com/pub/atftp/atftp-%{version}.tar.gz
-Patch: atftp-0.7-inlines.patch
+Source: http://downloads.openwrt.org/sources/atftp-%{version}.tar.gz
+Patch0: atftp-0.7-inlines.patch
+Patch1: atftp-0.7-CLK_TCK.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libtermcap-devel, pcre-devel, ncurses-devel, readline-devel
@@ -41,11 +42,12 @@ lacks IPv6 support.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
+%patch1
 
 ### FIXME: Change location of pcre.h to pcre/pcre.h (Please fix upstream)
 if [ -r %{_includedir}/pcre/pcre.h ]; then
-	%{__perl} -pi.orig -e 's|\bpcre.h\b|pcre/pcre.h|' configure tftpd_pcre.h
+    %{__perl} -pi.orig -e 's|\bpcre.h\b|pcre/pcre.h|' configure tftpd_pcre.h
 fi
 
 %{__cat} <<EOF >tftp.xinetd
@@ -53,26 +55,26 @@ fi
 # description: The tftp server serves files using the trivial file transfer protocol. The tftp protocol is often used to boot diskless workstations, download configuration files to network-aware printers, and to start the installation process for some operating systems.
 service tftp
 {
-	disable	= yes
-	socket_type		= dgram
-	protocol		= udp
-	wait			= yes
-	user			= root
-	server			= %{_sbindir}/in.tftpd
-	server_args		= /tftpboot
-	per_source		= 11
-	cps			= 100 2
-	flags			= IPv4
+    disable         = yes
+    socket_type     = dgram
+    protocol        = udp
+    wait            = yes
+    user            = root
+    server          = %{_sbindir}/in.tftpd
+    server_args     = /tftpboot
+    per_source      = 11
+    cps             = 100 2
+    flags           = IPv4
 }
 EOF
 
 %build
 %configure \
-	--disable-dependency-tracking \
-	--enable-libreadline \
-	--enable-libwrap \
-	--enable-libpcre \
-	--enable-mtftp
+    --disable-dependency-tracking \
+    --enable-libpcre \
+    --enable-libreadline \
+    --enable-libwrap \
+    --enable-mtftp
 %{__make} %{?_smp_mflags}
 
 %install
@@ -102,6 +104,9 @@ EOF
 %{_sbindir}/in.tftpd
 
 %changelog
+* Thu Dec 27 2007 Jameson <imntreal@gmail.com> - 0.7.0-6
+- Patched CLK_TCK error
+
 * Mon Mar 13 2006 Dag Wieers <dag@wieers.com> - 0.7.0-5
 - Removed readline and readline-devel as a dependency.
 

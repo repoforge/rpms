@@ -24,7 +24,7 @@
 Summary: Object Oriented Tk extension for Perl
 Name: perl-Tk
 Version: 804.028
-Release: 1
+Release: 2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tk/
@@ -73,7 +73,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING Changes INSTALL MANIFEST MANIFEST.SKIP MANIFEST.SKIP.PL README* ToDo VERSIONS
+%doc COPYING Changes INSTALL MANIFEST README* ToDo VERSIONS
 %doc %{_mandir}/man1/ptked.1*
 %doc %{_mandir}/man1/ptksh.1*
 %doc %{_mandir}/man1/tkjpeg.1*
@@ -94,6 +94,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/fix_4_os2.pl
 
 %changelog
+* Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 804.028-2
+- Got rid of wrong /usr/local/bin/nperl dependency.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 804.028-1
 - Updated to release 804.028.
 
