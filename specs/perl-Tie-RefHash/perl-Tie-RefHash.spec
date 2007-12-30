@@ -1,29 +1,28 @@
 # $Id$
 # Authority: dag
-# Upstream: The Catalyst Core Team - see http://catalyst.perl.org/
+# Upstream: Yuval Kogman <nothingmuch$woobling,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Catalyst-Devel
+%define real_name Tie-RefHash
 
-Summary: Catalyst Development Tools
-Name: perl-Catalyst-Devel
-Version: 1.03
+Summary: Use references as hash keys
+Name: perl-Tie-RefHash
+Version: 1.37
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Catalyst-Devel/
+URL: http://search.cpan.org/dist/Tie-RefHash/
 
-Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Devel-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Tie/Tie-RefHash-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(Catalyst::Runtime)
 
 %description
-Catalyst Development Tools.
+Use references as hash keys.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -45,16 +44,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml
-%doc %{_mandir}/man3/Catalyst::Devel.3pm*
-%doc %{_mandir}/man3/Catalyst::Helper.3pm*
-%doc %{_mandir}/man3/Module::Install::Catalyst.3pm*
-%dir %{perl_vendorlib}/Catalyst/
-%{perl_vendorlib}/Catalyst/Devel.pm
-%{perl_vendorlib}/Catalyst/Helper.pm
-%dir %{perl_vendorlib}/Module/
-%dir %{perl_vendorlib}/Module/Install/
-%{perl_vendorlib}/Module/Install/Catalyst.pm
+%doc %{_mandir}/man3/Tie::RefHash.3pm*
+%dir %{perl_vendorlib}/Tie/
+#%{perl_vendorlib}/Tie/RefHash/
+%{perl_vendorlib}/Tie/RefHash.pm
 
 %changelog
-* Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 1.03-1
+* Sun Dec 30 2007 Dag Wieers <dag@wieers.com> - 1.37-1
 - Initial package. (using DAR)

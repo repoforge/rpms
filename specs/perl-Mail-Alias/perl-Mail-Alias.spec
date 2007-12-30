@@ -11,7 +11,7 @@ Summary: Direct manipulation of email alias files
 Name: perl-Mail-Alias
 Version: 1.12
 Release: 1.2
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-Alias/
 
@@ -25,12 +25,12 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 %description
 Mail::Alias allows you to directly access the contents of E-Mail alias files.
 You can perform the following actions:
-	Set the name of the current aliases file being accessed
-	Verify the presence of aliases
-	Retrieve an alias line from the file
-	Add aliases
-	Change the addresses for aliases
-	Delete aliases
+    Set the name of the current aliases file being accessed
+    Verify the presence of aliases
+    Retrieve an alias line from the file
+    Add aliases
+    Change the addresses for aliases
+    Delete aliases
 
 Direct access of the files has a small price. When files are being manipulated
 directly, operations are somewhat slower than they would be if the entire
@@ -51,21 +51,21 @@ command).
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
+%doc Changes MANIFEST README
 %doc %{_mandir}/man3/Mail::Alias.3pm*
+%dir %{perl_vendorlib}/Mail/
+#%{perl_vendorlib}/Mail/Alias/
 %{perl_vendorlib}/Mail/Alias.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.12-1.2
-- Rebuild for Fedora Core 5.
-
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.12-1
 - Initial package.

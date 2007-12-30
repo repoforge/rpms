@@ -1,21 +1,21 @@
 # $Id$
 # Authority: dag
-# Upstream: The Catalyst Core Team - see http://catalyst.perl.org/
+# Upstream: Yuval Kogman <nothingmuch$woobling,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Catalyst-Devel
+%define real_name Catalyst-Plugin-Session-State-Cookie
 
-Summary: Catalyst Development Tools
-Name: perl-Catalyst-Devel
-Version: 1.03
+Summary: Maintain session IDs using cookies
+Name: perl-Catalyst-Plugin-Session-State-Cookie
+Version: 0.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Catalyst-Devel/
+URL: http://search.cpan.org/dist/Catalyst-Plugin-Session-State-Cookie/
 
-Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Devel-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Plugin-Session-State-Cookie-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -23,7 +23,7 @@ BuildRequires: perl
 BuildRequires: perl(Catalyst::Runtime)
 
 %description
-Catalyst Development Tools.
+Maintain session IDs using cookies.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -44,17 +44,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml
-%doc %{_mandir}/man3/Catalyst::Devel.3pm*
-%doc %{_mandir}/man3/Catalyst::Helper.3pm*
-%doc %{_mandir}/man3/Module::Install::Catalyst.3pm*
+%doc Changes MANIFEST README
+%doc %{_mandir}/man3/Catalyst::Plugin::Session::State::Cookie.3pm*
 %dir %{perl_vendorlib}/Catalyst/
-%{perl_vendorlib}/Catalyst/Devel.pm
-%{perl_vendorlib}/Catalyst/Helper.pm
-%dir %{perl_vendorlib}/Module/
-%dir %{perl_vendorlib}/Module/Install/
-%{perl_vendorlib}/Module/Install/Catalyst.pm
+%dir %{perl_vendorlib}/Catalyst/Plugin/
+%dir %{perl_vendorlib}/Catalyst/Plugin/Session/
+%dir %{perl_vendorlib}/Catalyst/Plugin/Session/State/
+#%{perl_vendorlib}/Catalyst/Plugin/Session/State/Cookie/
+%{perl_vendorlib}/Catalyst/Plugin/Session/State/Cookie.pm
 
 %changelog
-* Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 1.03-1
+* Sun Dec 30 2007 Dag Wieers <dag@wieers.com> - 0.09-1
 - Initial package. (using DAR)

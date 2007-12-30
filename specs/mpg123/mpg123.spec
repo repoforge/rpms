@@ -45,7 +45,7 @@
 
 Summary: MPEG audio player
 Name: mpg123
-Version: 1.0.0
+Version: 1.0.1
 Release: 1
 License: GPL/LGPL
 Group: Applications/Multimedia
@@ -114,6 +114,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libmpg123.la
 
 %changelog
+* Sun Dec 30 2007 Dag Wieers <dag@wieers.com> - 1.0.1-1
+- Updated to release 1.0.1.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 1.0.0-1
 - Updated to release 1.0.0.
 - Added devel subpackage.

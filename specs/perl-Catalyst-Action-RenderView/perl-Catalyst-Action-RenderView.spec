@@ -1,29 +1,31 @@
 # $Id$
 # Authority: dag
-# Upstream: The Catalyst Core Team - see http://catalyst.perl.org/
+# Upstream: Marcus Ramberg <marcus@thefeed.no>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Catalyst-Devel
+%define real_name Catalyst-Action-RenderView
 
-Summary: Catalyst Development Tools
-Name: perl-Catalyst-Devel
-Version: 1.03
+Summary: Sensible default end action
+Name: perl-Catalyst-Action-RenderView
+Version: 0.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Catalyst-Devel/
+URL: http://search.cpan.org/dist/Catalyst-Action-RenderView/
 
-Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Devel-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Action-RenderView-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(Catalyst::Runtime)
+BuildRequires: perl(Catalyst::Runtime) >= 5.70
+BuildRequires: perl(Data::Visitor) >= 0.08
+BuildRequires: perl(Test::More)
 
 %description
-Catalyst Development Tools.
+Sensible default end action.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -44,17 +46,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml
-%doc %{_mandir}/man3/Catalyst::Devel.3pm*
-%doc %{_mandir}/man3/Catalyst::Helper.3pm*
-%doc %{_mandir}/man3/Module::Install::Catalyst.3pm*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Catalyst::Action::RenderView.3pm*
 %dir %{perl_vendorlib}/Catalyst/
-%{perl_vendorlib}/Catalyst/Devel.pm
-%{perl_vendorlib}/Catalyst/Helper.pm
-%dir %{perl_vendorlib}/Module/
-%dir %{perl_vendorlib}/Module/Install/
-%{perl_vendorlib}/Module/Install/Catalyst.pm
+%dir %{perl_vendorlib}/Catalyst/Action/
+#%{perl_vendorlib}/Catalyst/Action/RenderView/
+%{perl_vendorlib}/Catalyst/Action/RenderView.pm
 
 %changelog
-* Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 1.03-1
+* Sun Dec 30 2007 Dag Wieers <dag@wieers.com> - 0.07-1
 - Initial package. (using DAR)

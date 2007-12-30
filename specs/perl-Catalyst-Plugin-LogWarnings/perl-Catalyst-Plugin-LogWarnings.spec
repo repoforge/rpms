@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Catalyst::Runtime)
 BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description

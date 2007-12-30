@@ -27,7 +27,7 @@ BuildRequires: perl(Class::C3) >= 0.13
 BuildRequires: perl(Class::C3::Componentised)
 BuildRequires: perl(Class::Inspector) >= 1.18
 BuildRequires: perl(Class::Trigger)
-BuildRequires: perl(Data::Page) >= 2
+BuildRequires: perl(Data::Page) >= 2.00
 BuildRequires: perl(DBD::SQLite) >= 1.13
 BuildRequires: perl(DBI) >= 1.4
 BuildRequires: perl(DBIx::ContextualFetch)
@@ -36,9 +36,9 @@ BuildRequires: perl(Module::Find)
 BuildRequires: perl(Scalar::Util)
 BuildRequires: perl(Scope::Guard) >= 0.03
 BuildRequires: perl(SQL::Abstract) >= 1.2
-BuildRequires: perl(SQL::Abstract::Limit) >= 0.101
-BuildRequires: perl(Storable) >= 2.15
-#BuildRequires: perl(Test::Builder) >= 0.33
+BuildRequires: perl(SQL::Abstract::Limit) >= 0.10
+BuildRequires: perl(Storable)
+BuildRequires: perl(Test::Builder) >= 0.33
 Requires: perl >= 1:5.6.1
 
 %description

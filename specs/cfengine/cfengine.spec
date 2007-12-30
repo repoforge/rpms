@@ -10,13 +10,13 @@
 
 Summary: System administration tool for networks
 Name: cfengine
-Version: 2.2.2
+Version: 2.2.3
 Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://www.cfengine.org/
 
-Source: ftp://ftp.iu.hio.no/pub/cfengine/cfengine-%{version}.tar.gz
+Source: http://www.cfengine.org/downloads/cfengine-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison, flex, m4, openssl-devel, tetex, texinfo, ghostscript
@@ -55,60 +55,60 @@ EOF
 # pidfile: %{_localstatedir}/run/cfengine
 
 # Source function library.
-. %{_initrddir}/functions
+source %{_initrddir}/functions
 
 RETVAL=0
 prog="cfenvd"
 desc="cfengine anomaly detection service"
 
 if [ -r /etc/sysconfig/$prog ]; then
-	source %{_sysconfdir}/sysconfig/$prog
+    source %{_sysconfdir}/sysconfig/$prog
 fi
 
 start() {
-	echo -n $"Starting $desc ($prog): "
-	daemon $prog $OPTIONS
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Starting $desc ($prog): "
+    daemon $prog $OPTIONS
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 stop() {
-	echo -n $"Stopping $desc ($prog): "
-	killproc $prog
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Stopping $desc ($prog): "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 restart() {
-  	stop
-	start
+    stop
+    start
 }
 
 case "$1" in
   start)
-  	start
-	;;
+    start
+    ;;
   stop)
-  	stop
-	;;
+    stop
+    ;;
   restart)
-  	restart
-	;;
+    restart
+    ;;
   condrestart)
-	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-	RETVAL=$?
-	;;
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
   status)
-	status $prog
-	RETVAL=$?
-	;;
+    status $prog
+    RETVAL=$?
+    ;;
   *)
-	echo $"Usage: $0 {start|stop|restart|condrestart|status}"
-	RETVAL=1
+    echo $"Usage: $0 {start|stop|restart|condrestart|status}"
+    RETVAL=1
 esac
 
 exit $RETVAL
@@ -127,60 +127,60 @@ EOF
 # pidfile: %{_localstatedir}/run/cfengine
 
 # Source function library.
-. %{_initrddir}/functions
+source %{_initrddir}/functions
 
 RETVAL=0
 prog="cfexecd"
 desc="cfengine client daemon"
 
 if [ -r /etc/sysconfig/$prog ]; then
-	source %{_sysconfdir}/sysconfig/$prog
+    source %{_sysconfdir}/sysconfig/$prog
 fi
 
 start() {
-	echo -n $"Starting $desc ($prog): "
-	daemon $prog $OPTIONS
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Starting $desc ($prog): "
+    daemon $prog $OPTIONS
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 stop() {
-	echo -n $"Stopping $desc ($prog): "
-	killproc $prog
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Stopping $desc ($prog): "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 restart() {
-  	stop
-	start
+    stop
+    start
 }
 
 case "$1" in
   start)
-  	start
-	;;
+    start
+    ;;
   stop)
-  	stop
-	;;
+    stop
+    ;;
   restart)
-  	restart
-	;;
+    restart
+    ;;
   condrestart)
-	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-	RETVAL=$?
-	;;
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
   status)
-	status $prog
-	RETVAL=$?
-	;;
+    status $prog
+    RETVAL=$?
+    ;;
   *)
-	echo $"Usage: $0 {start|stop|restart|condrestart|status}"
-	RETVAL=1
+    echo $"Usage: $0 {start|stop|restart|condrestart|status}"
+    RETVAL=1
 esac
 
 exit $RETVAL
@@ -200,63 +200,63 @@ EOF
 # pidfile: %{_localstatedir}/run/cfengine
 
 # Source function library.
-. %{_initrddir}/functions
+source %{_initrddir}/functions
 
 RETVAL=0
 prog="cfservd"
 desc="cfengine server daemon"
 
 if [ -r /etc/sysconfig/$prog ]; then
-	source %{_sysconfdir}/sysconfig/$prog
+    source %{_sysconfdir}/sysconfig/$prog
 fi
 
 start() {
-	echo -n $"Starting $desc ($prog): "
-	if [ ! -f %{_localstatedir}/cfengine/ppkeys/localhost.priv ]; then
-	    /usr/sbin/cfkey
-	fi
-	daemon $prog $OPTIONS
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Starting $desc ($prog): "
+    if [ ! -f %{_localstatedir}/cfengine/ppkeys/localhost.priv ]; then
+        /usr/sbin/cfkey
+    fi
+    daemon $prog $OPTIONS
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 stop() {
-	echo -n $"Stopping $desc ($prog): "
-	killproc $prog
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Stopping $desc ($prog): "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 restart() {
-  	stop
-	start
+    stop
+    start
 }
 
 case "$1" in
   start)
-  	start
-	;;
+    start
+    ;;
   stop)
-  	stop
-	;;
+    stop
+    ;;
   restart)
-  	restart
-	;;
+    restart
+    ;;
   condrestart)
-	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-	RETVAL=$?
-	;;
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
   status)
-	status $prog
-	RETVAL=$?
-	;;
+    status $prog
+    RETVAL=$?
+    ;;
   *)
-	echo $"Usage: $0 {start|stop|restart|condrestart|status}"
-	RETVAL=1
+    echo $"Usage: $0 {start|stop|restart|condrestart|status}"
+    RETVAL=1
 esac
 
 exit $RETVAL
@@ -264,16 +264,16 @@ EOF
 
 %build
 %configure BERKELEY_DB_LIB="-ldb" \
-	--program-prefix="%{?_program_prefix}"
+    --program-prefix="%{?_program_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir} \
-			%{buildroot}%{_datadir}/cfengine/ \
-			%{buildroot}%{_localstatedir}/cfengine/{bin,inputs}/ \
-%makeinstall
-%makeinstall -C doc
+%{__install} -d -m0755 %{buildroot}%{_sbindir}
+%{__install} -d -m0755 %{buildroot}%{_datadir}/cfengine/
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/cfengine/{bin,inputs}/
+%{__make} install DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}" -C doc
 %{__install} -Dp -m0755 cfenvd.sysv %{buildroot}%{_initrddir}/cfenvd
 %{__install} -Dp -m0755 cfexecd.sysv %{buildroot}%{_initrddir}/cfexecd
 %{__install} -Dp -m0755 cfservd.sysv %{buildroot}%{_initrddir}/cfservd
@@ -281,10 +281,9 @@ EOF
 %{__install} -Dp -m0644 default.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/cfexecd
 %{__install} -Dp -m0644 default.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/cfservd
 %{__ln_s} -f %{_sbindir}/cfagent %{buildroot}%{_localstatedir}/cfengine/bin/
-%{__rm} -f %{buildroot}%{_infodir}/dir
 
 ### Clean up buildroot
-#%{__rm} -f %{buildroot}%{_infodir}/dir
+%{__rm} -f %{buildroot}%{_infodir}/dir
 
 %post
 %{_sbindir}/cfkey &>/dev/null || :
@@ -293,9 +292,9 @@ EOF
 /sbin/install-info %{_infodir}/cfengine-Tutorial.info.gz %{_infodir}/dir
 
 if [ $1 -eq 1 ]; then
-	chkconfig --add cfenvd
-	chkconfig --add cfexecd
-	chkconfig --add cfservd
+    chkconfig --add cfenvd
+    chkconfig --add cfexecd
+    chkconfig --add cfservd
 fi
 
 %preun
@@ -304,9 +303,9 @@ fi
 /sbin/install-info --delete %{_infodir}/cfengine-Tutorial.info.gz %{_infodir}/dir
 
 if [ $1 -eq 0 ]; then
-	chkconfig --del cfenvd
-	chkconfig --del cfexecd
-	chkconfig --del cfservd
+    chkconfig --del cfenvd
+    chkconfig --del cfexecd
+    chkconfig --del cfservd
 fi
 
 %clean
@@ -329,6 +328,9 @@ fi
 %exclude %{_libdir}/libcfengine.la
 
 %changelog
+* Fri Dec 28 2007 Dag Wieers <dag@wieers.com> - 2.2.3-1
+- Updated to release 2.2.3.
+
 * Tue Oct 02 2007 Dag Wieers <dag@wieers.com> - 2.2.2-1
 - Updated to release 2.2.2.
 

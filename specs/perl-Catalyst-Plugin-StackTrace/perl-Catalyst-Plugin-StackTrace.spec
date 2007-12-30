@@ -1,21 +1,22 @@
 # $Id$
 # Authority: dag
-# Upstream: The Catalyst Core Team - see http://catalyst.perl.org/
+# Upstream: Andy Grundman, <andy$hybridized,org>
+# Upstream: Matt S, Trout, <mst$shadowcatsystems,co,uk>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Catalyst-Devel
+%define real_name Catalyst-Plugin-StackTrace
 
-Summary: Catalyst Development Tools
-Name: perl-Catalyst-Devel
-Version: 1.03
+Summary: Display a stack trace on the debug screen
+Name: perl-Catalyst-Plugin-StackTrace
+Version: 0.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Catalyst-Devel/
+URL: http://search.cpan.org/dist/Catalyst-Plugin-StackTrace/
 
-Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Devel-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Plugin-StackTrace-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -23,7 +24,7 @@ BuildRequires: perl
 BuildRequires: perl(Catalyst::Runtime)
 
 %description
-Catalyst Development Tools.
+Display a stack trace on the debug screen.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -44,17 +45,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml
-%doc %{_mandir}/man3/Catalyst::Devel.3pm*
-%doc %{_mandir}/man3/Catalyst::Helper.3pm*
-%doc %{_mandir}/man3/Module::Install::Catalyst.3pm*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Catalyst::Plugin::StackTrace.3pm*
 %dir %{perl_vendorlib}/Catalyst/
-%{perl_vendorlib}/Catalyst/Devel.pm
-%{perl_vendorlib}/Catalyst/Helper.pm
-%dir %{perl_vendorlib}/Module/
-%dir %{perl_vendorlib}/Module/Install/
-%{perl_vendorlib}/Module/Install/Catalyst.pm
+%dir %{perl_vendorlib}/Catalyst/Plugin/
+#%{perl_vendorlib}/Catalyst/Plugin/StackTrace/
+%{perl_vendorlib}/Catalyst/Plugin/StackTrace.pm
 
 %changelog
-* Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 1.03-1
+* Sun Dec 30 2007 Dag Wieers <dag@wieers.com> - 0.06-1
 - Initial package. (using DAR)

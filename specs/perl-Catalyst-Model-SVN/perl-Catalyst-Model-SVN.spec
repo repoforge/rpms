@@ -22,6 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Catalyst::Devel)
+BuildRequires: perl(Catalyst::Runtime)
 BuildRequires: perl(ExtUtils::MakeMaker) >= 5.8.0
 BuildRequires: perl(FindBin)
 BuildRequires: perl(Test::Exception)
