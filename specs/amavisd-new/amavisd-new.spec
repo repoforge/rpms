@@ -11,7 +11,7 @@
 
 Summary: Mail virus-scanner
 Name: amavisd-new
-Version: 2.5.2
+Version: 2.5.3
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -61,10 +61,10 @@ The Amavisd-new sendmail-milter Daemon
 
 %{__cat} <<EOF >amavisd.logrotate
 %{_localstatedir}/log/amavis.log {
-        create 600 amavis amavis
-	missingok
-	copytruncate
-	notifempty
+    create 600 amavis amavis
+    missingok
+    copytruncate
+    notifempty
 }
 EOF
 
@@ -123,77 +123,77 @@ prog2="amavis-milter"
 desc="Mail Virus Scanner"
 
 start() {
-	if [ "$MILTER_SOCKET" -a -x "%{_sbindir}/$prog2" ]; then
-		echo -n $"Starting $desc ($prog2): "
-		daemon --user "$AMAVIS_USER" %{_sbindir}/$prog2 -p "$MILTER_SOCKET" $MILTER_FLAGS
-		RETVAL=$?
-		echo
-		[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog2
-	fi
-	echo -n $"Starting $desc ($prog): "
-	daemon --user "$AMAVIS_USER" %{_sbindir}/$prog -c "$CONFIG_FILE"
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    if [ "$MILTER_SOCKET" -a -x "%{_sbindir}/$prog2" ]; then
+        echo -n $"Starting $desc ($prog2): "
+        daemon --user "$AMAVIS_USER" %{_sbindir}/$prog2 -p "$MILTER_SOCKET" $MILTER_FLAGS
+        RETVAL=$?
+        echo
+        [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog2
+    fi
+    echo -n $"Starting $desc ($prog): "
+    daemon --user "$AMAVIS_USER" %{_sbindir}/$prog -c "$CONFIG_FILE"
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 stop() {
-	echo -n $"Shutting down $desc ($prog): "
-	killproc $prog
-#	su - $AMAVIS_USER -c "%{_sbindir}/$prog -c $CONFIG_FILE stop"
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
-	if [ "$MILTER_SOCKET" -o -f %{_localstatedir}/lock/subsys/$prog2 ]; then
-		echo -n $"Shutting down $desc ($prog2): "
-		killproc $prog2
-		RETVAL=$?
-		echo
-		[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog2
-	fi
-	return $RETVAL
+    echo -n $"Shutting down $desc ($prog): "
+    killproc $prog
+#   su - $AMAVIS_USER -c "%{_sbindir}/$prog -c $CONFIG_FILE stop"
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+    if [ "$MILTER_SOCKET" -o -f %{_localstatedir}/lock/subsys/$prog2 ]; then
+        echo -n $"Shutting down $desc ($prog2): "
+        killproc $prog2
+        RETVAL=$?
+        echo
+        [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog2
+    fi
+    return $RETVAL
 }
 
 reload() {
-	echo -n $"Reloading $desc ($prog): "
-	killproc $prog -HUP
-#	su - $AMAVIS_USER -c "%{_sbindir}/$prog -c $CONFIG_FILE reload"
-	RETVAL=$?
-	echo
-	return $RETVAL
+    echo -n $"Reloading $desc ($prog): "
+    killproc $prog -HUP
+#   su - $AMAVIS_USER -c "%{_sbindir}/$prog -c $CONFIG_FILE reload"
+    RETVAL=$?
+    echo
+    return $RETVAL
 }
 
 restart() {
-	stop
-	start
+    stop
+    start
 }
 
 case "$1" in
   start)
-	start
-	;;
+    start
+    ;;
   stop)
-	stop
-	;;
+    stop
+    ;;
   restart)
-	restart
-	;;
+    restart
+    ;;
   reload)
-	reload
-	;;
+    reload
+    ;;
   condrestart)
-	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-	RETVAL=$?
-	;;
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
   status)
-	status $prog
-	status $prog2
-	RETVAL=$?
-	;;
+    status $prog
+    status $prog2
+    RETVAL=$?
+    ;;
   *)
-	echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
-	RETVAL=1
+    echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
+    RETVAL=1
 esac
 
 exit $RETVAL
@@ -202,12 +202,12 @@ EOF
 %build
 cd helper-progs
 %configure \
-	--with-milterlib="%{_libdir}" \
-	--with-user="amavis" \
-	--with-sockname="%{_localstatedir}/amavis/amavisd.sock" \
-	--with-runtime-dir="%{_localstatedir}/amavis" \
-	--enable-postfix \
-	--enable-all
+    --enable-postfix \
+    --enable-all \
+    --with-milterlib="%{_libdir}" \
+    --with-runtime-dir="%{_localstatedir}/amavis" \
+    --with-sockname="%{_localstatedir}/amavis/amavisd.sock" \
+    --with-user="amavis"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -216,12 +216,12 @@ cd helper-progs
 %makeinstall -C helper-progs
 
 %{__perl} -pi.orig -e '
-		s|=\s*'\''vscan'\''|= "amavis"|;
-		s|^#*(\$MYHOME)\s*=.*$|$1 = "%{_localstatedir}/amavis";|;
-		s|^(#*\$SYSLOG.+)$|$1\n\$LOGFILE = "%{_localstatedir}/log/amavis.log";|;
-		s|^#*(\$QUARANTINEDIR)\s*=.*$|$1 = "%{_localstatedir}/virusmails";|;
-		s|^#* *(\$db_home\s+=.*)$|$1|;
-	' amavisd.conf
+        s|=\s*'\''vscan'\''|= "amavis"|;
+        s|^#*(\$MYHOME)\s*=.*$|$1 = "%{_localstatedir}/amavis";|;
+        s|^(#*\$SYSLOG.+)$|$1\n\$LOGFILE = "%{_localstatedir}/log/amavis.log";|;
+        s|^#*(\$QUARANTINEDIR)\s*=.*$|$1 = "%{_localstatedir}/virusmails";|;
+        s|^#* *(\$db_home\s+=.*)$|$1|;
+    ' amavisd.conf
 
 %{__install} -d -m0700 %{buildroot}%{_localstatedir}/virusmails/
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/amavis/{db,tmp,var}/
@@ -242,33 +242,33 @@ touch %{buildroot}%{_localstatedir}/log/amavis.log
 
 %pre
 if ! /usr/bin/id amavis &>/dev/null; then
-	/usr/sbin/useradd -r -d "/var/amavis" -s /bin/sh -c "Amavis email scan user" -M amavis || \
-		%logmsg "Unexpected error adding user \"amavis\"."
+    /usr/sbin/useradd -r -d "/var/amavis" -s /bin/sh -c "Amavis email scan user" -M amavis || \
+        %logmsg "Unexpected error adding user \"amavis\"."
 fi
 
 if ! /usr/bin/id -n -G amavis | grep -q "\<clamav\>"; then
-	/usr/sbin/usermod -G $(id -Gn clamav | tr ' ' ','),amavis clamav || \
-		%logmsg "Failed to add user \"amavis\" to group \"clamav\"."
+    /usr/sbin/usermod -G $(id -Gn clamav | tr ' ' ','),amavis clamav || \
+        %logmsg "Failed to add user \"amavis\" to group \"clamav\"."
 fi
 
 %post
 /sbin/chkconfig --add amavisd
 
 for file in /etc/postfix/aliases /etc/mail/aliases /etc/aliases; do
-	if [ -r "$file" ]; then
-		if ! grep -q "^virusalert:" "$file"; then
-			echo -e "virusalert:\troot" >> "$file"
-			/usr/bin/newaliases &>/dev/null || \
-				%logmsg "Cannot exec newaliases. Please run it manually."
-		fi
-	fi
+    if [ -r "$file" ]; then
+        if ! grep -q "^virusalert:" "$file"; then
+            echo -e "virusalert:\troot" >> "$file"
+            /usr/bin/newaliases &>/dev/null || \
+                %logmsg "Cannot exec newaliases. Please run it manually."
+        fi
+    fi
 done
 
 %post milter
 if [ -f /etc/mail/sendmail.mc ]; then
-	if ! grep -q "milter-amavis" /etc/mail/sendmail.mc; then
-		echo -e "\ndnl define(\`MILTER', 1)\ndnl INPUT_MAIL_FILTER(\`milter-amavis', \`S=local:/var/amavis/amavis-milter.sock, F=T, T=S:10m;R:10m;E:10m')" >>/etc/mail/sendmail.mc
-	fi
+    if ! grep -q "milter-amavis" /etc/mail/sendmail.mc; then
+        echo -e "\ndnl define(\`MILTER', 1)\ndnl INPUT_MAIL_FILTER(\`milter-amavis', \`S=local:/var/amavis/amavis-milter.sock, F=T, T=S:10m;R:10m;E:10m')" >>/etc/mail/sendmail.mc
+    fi
 fi
 
 %preun
@@ -279,10 +279,10 @@ fi
 
 %postun
 if [ $1 -eq 0 ]; then
-	/usr/sbin/userdel amavis || %logmsg "User \"amavis\" could not be deleted."
-	/usr/sbin/groupdel amavis || %logmsg "Group \"amavis\" could not be deleted."
+    /usr/sbin/userdel amavis || %logmsg "User \"amavis\" could not be deleted."
+    /usr/sbin/groupdel amavis || %logmsg "Group \"amavis\" could not be deleted."
 else
-	/sbin/service amavisd condrestart &>/dev/null || :
+    /sbin/service amavisd condrestart &>/dev/null || :
 fi
 
 %files
@@ -313,6 +313,9 @@ fi
 %{_sbindir}/amavis-milter
 
 %changelog
+* Mon Dec 31 2007 Dag Wieers <dag@wieers.com> - 2.5.3-1
+- Updated to release 2.5.3.
+
 * Thu Jun 28 2007 Dag Wieers <dag@wieers.com> - 2.5.2-1
 - Updated to release 2.5.2.
 

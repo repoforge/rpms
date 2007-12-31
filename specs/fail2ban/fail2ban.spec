@@ -6,18 +6,22 @@
 
 Summary: Scan logfiles and ban ip addresses with too many password failures
 Name: fail2ban
-Version: 0.6.2
+Version: 0.8.1
 Release: 1
 License: GPL
-Group: Applications/System
+Group: ystem Environment/Daemons
 URL: http://fail2ban.sourceforge.net/
 
 Source: http://dl.sf.net/fail2ban/fail2ban-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: python, dos2unix
+BuildRequires: dos2unix
+BuildRequires: python-devel >= 2.4
+Requires: gamin-python
+Requires: iptables
 Requires: python
+Requires: tcp_wrappers
 
 %description
 Fail2Ban monitors log files like /var/log/pwdfail or /var/log/apache/error_log
@@ -26,8 +30,19 @@ address or executes user defined commands.
 
 %prep
 %setup
-%{__perl} -pi -e "s|# chkconfig: 345 |# chkconfig: - |g;" config/redhat-initd
-dos2unix config/redhat-initd
+%{__perl} -pi -e 's|^# chkconfig:.+$|# chkconfig: 345 92 08|' files/redhat-initd
+
+%{__cat} <<EOF >fail2ban.logrotate
+/var/log/fail2ban.log {
+    missingok
+    notifempty
+    size 30k
+    create 0600 root root
+    postrotate
+        /usr/bin/fail2ban-client reload 2> /dev/null || true
+    endscript
+}
+EOF
 
 %build
 %{__python} setup.py build
@@ -35,10 +50,11 @@ dos2unix config/redhat-initd
 %install
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
-%{__install} -D -m0600 config/fail2ban.conf.iptables %{buildroot}%{_sysconfdir}/fail2ban.conf
-%{__install} -D -m0755 config/redhat-initd %{buildroot}%{_initrddir}/fail2ban
-%{__install} -D -m0644 man/fail2ban.conf.5 %{buildroot}%{_mandir}/man5/fail2ban.conf.5
-%{__install} -D -m0644 man/fail2ban.8 %{buildroot}%{_mandir}/man8/fail2ban.8
+%{__install} -Dp -m0755 files/redhat-initd %{buildroot}%{_initrddir}/fail2ban
+%{__install} -Dp -m0644 fail2ban.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/fail2ban
+%{__install} -Dp -m0644 man/fail2ban-client.1 %{buildroot}%{_mandir}/man1/fail2ban-client.1
+%{__install} -Dp -m0644 man/fail2ban-regex.1 %{buildroot}%{_mandir}/man1/fail2ban-regex.1
+%{__install} -Dp -m0644 man/fail2ban-server.1 %{buildroot}%{_mandir}/man1/fail2ban-server.1
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -61,15 +77,23 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG README TODO
-%doc %{_mandir}/man5/fail2ban.conf.5*
-%doc %{_mandir}/man8/fail2ban.8*
-%config(noreplace) %{_sysconfdir}/fail2ban.conf
+%doc CHANGELOG COPYING README TODO
+%doc %{_mandir}/man1/fail2ban-client.1*
+%doc %{_mandir}/man1/fail2ban-regex.1*
+%doc %{_mandir}/man1/fail2ban-server.1*
+%config(noreplace) %{_sysconfdir}/fail2ban/
+%config(noreplace) %{_sysconfdir}/logrotate.d/fail2ban
 %config %{_initrddir}/fail2ban
-%{_bindir}/fail2ban
-%{_libdir}/fail2ban/
+%{_bindir}/fail2ban-client
+%{_bindir}/fail2ban-regex
+%{_bindir}/fail2ban-server
+%{_datadir}/fail2ban/
 
 %changelog
+* Mon Dec 31 2007 Dag Wieers <dag@wieers.com> - 0.8.1-1
+- Updated to release 0.8.1.
+- Incorporated appropriate changes from fedora SPEC.
+
 * Wed Mar 21 2007 Dag Wieers <dag@wieers.com> - 0.6.2-1
 - Updated to release 0.6.2.
 

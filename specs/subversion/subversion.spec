@@ -6,6 +6,8 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
+%define _without_ruby 1
+
 #{?el3:#define _without_swig 1}
 %{?rh9:%define _without_pie 1}
 %{?rh9:%define _without_swig 1}
@@ -19,13 +21,13 @@
 # set to zero to avoid running test suite
 %define make_check 0
 
-%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 %define ruby_sitearch %(ruby -rrbconfig -e 'puts Config::CONFIG["sitearchdir"]')
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.4.4
+Version: 1.4.6
 ### FC3 comes with release 1.1
 Release: 0.1
 License: BSD
@@ -42,10 +44,12 @@ Patch2: subversion-0.20.1-deplibs.patch
 Patch3: subversion-0.31.0-rpath.patch
 Patch6: subversion-1.4.2-pie.patch
 Patch7: subversion-1.1.3-java.patch
+Patch8: subversion-1.4.4-macropen.patch
+Patch9: subversion-1.4.4-swig1333.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, libtool, python, python-devel, texinfo, which
-BuildRequires: expat-devel, docbook-style-xsl, gettext
+BuildRequires: db4-devel >= 4.1.25, expat-devel, docbook-style-xsl, gettext
 BuildRequires: apr-util-devel >= 0.9.3-2, openssl-devel
 BuildRequires: apr-devel >= 0.9.4
 BuildRequires: neon-devel >= 0.24.7-1
@@ -92,12 +96,31 @@ using HTTP, via the Apache httpd server.
 %package perl
 Group: Development/Libraries
 Summary: Perl bindings to the Subversion libraries
-BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl >= 2:5.8.0, perl(ExtUtils::MakeMaker)
 Requires: %(eval `perl -V:version`; echo "perl(:MODULE_COMPAT_$version)")
 Requires: subversion = %{version}-%{release}
 
 %description perl
 This package includes the Perl bindings to the Subversion libraries.
+
+%package javahl
+Group: Development/Libraries
+Summary: JNI bindings to the Subversion libraries
+Requires: subversion = %{version}-%{release}
+%{?_with_java:BuildRequires: java-devel}
+
+%description javahl
+This package includes the JNI bindings to the Subversion libraries.
+
+%package ruby
+Group: Development/Libraries
+Summary: Ruby bindings to the Subversion libraries
+%{!?_without_ruby:BuildRequires: ruby-devel >= 1.8.2, ruby >= 1.8.2}
+Requires: subversion = %{version}-%{release}, ruby-libs >= 1.8.2
+Requires: ruby(abi) = 1.8
+
+%description ruby
+This package includes the Ruby bindings to the Subversion libraries.
 
 %prep
 %setup -a 10
@@ -105,6 +128,9 @@ This package includes the Perl bindings to the Subversion libraries.
 %patch2 -p1 -b .deplibs
 %patch3 -p1 -b .rpath
 %{!?_without_pie:%patch6 -p1 -b .pie}
+%{?_with_java:%patch7 -p1 -b .java}
+%patch8 -p1 -b .macropen
+%patch9 -p1 -b .swig133
 
 %{__rm} -rf neon apr apr-util
 
@@ -130,47 +156,52 @@ cd -
 # fix shebang lines, #111498
 %{__perl} -pi -e 's|/usr/bin/env perl -w|/usr/bin/perl -w|' tools/hook-scripts/*.pl.in
 
+# override weird -shrext from ruby
+export svn_cv_ruby_link="%{__cc} -shared"
+export svn_cv_ruby_sitedir_libsuffix=""
+export svn_cv_ruby_sitedir_archsuffix=""
+
 export CC=gcc CXX=g++
+#export CPPFLAGS="-DSVN_NEON_0_26 -DSVN_NEON_0_25"
 %configure \
-	--disable-mod-activation \
-	--disable-static \
-	--with-apr="%{_prefix}" \
-	--with-apr-util="%{_prefix}" \
-	--with-apxs="%{_sbindir}/apxs" \
-	--with-expat \
+    --disable-mod-activation \
+    --disable-static \
+    --with-apr="%{_prefix}" \
+    --with-apr-util="%{_prefix}" \
+    --with-apxs="%{_sbindir}/apxs" \
+    --with-expat \
     --with-neon="%{_prefix}" \
     --with-ruby-sitedir="%{ruby_sitearch}" \
-	--with-ssl \
+    --with-ssl \
     --with-swig \
 %{!?_without_swig:--with-swig="swig-%{swig_version}/install"}
+#    --disable-neon-version-check \
 # 1.3.0 tarball ships with generated swig sources
-#make extraclean-swig-headers swig-headers
+#%{__make} extraclean-swig-headers swig-headers
 %{__make} %{?_smp_mflags} all
 
 %if %{!?_without_swig:1}0
-%{__make} %{?_smp_mflags} swig-pl swig-py %{swigdirs}
-
-# build the perl modules
-#pushd subversion/bindings/swig/perl
-#CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor"
-#%{__make} %{?_smp_mflags}
-#popd
+%{__make} %{?_smp_mflags} swig-py swig-py-lib %{swigdirs}
+%{__make} %{?_smp_mflags} swig-pl swig-pl-lib
+%{!?_without_ruby:%{__make} %{?_smp_mflags} swig-rb swig-rb-lib}
+%{?_with_java:%{_make} %{?_smp_mflags} javahl}
 %endif
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install \
-	DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}"
 
 %if %{!?_without_swig:1}0
-%{__make} install-swig-py install-swig-pl-lib %{swigdirs} \
-        DESTDIR="%{buildroot}"
+%{__make} install-swig-py %{swigdirs} DESTDIR="%{buildroot}"
+%{__make} install-swig-pl-lib %{swigdirs} DESTDIR="%{buildroot}"
+%{!?_without_ruby:%{__make} install-swig-rb %{swigdirs} DESTDIR="%{buildroot}"}
+%{?_with_java:%{__make} install-javahl DESTDIR="%{buildroot}"}
 
 %{__make} pure_vendor_install -C subversion/bindings/swig/perl/native \
         PERL_INSTALL_ROOT="%{buildroot}"
 %endif
 
-%{__install} -d -m0755 ${RPM_BUILD_ROOT}%{_sysconfdir}/subversion
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/subversion
 
 # Add subversion.conf configuration file into httpd/conf.d directory.
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/httpd/conf.d/subversion.conf
@@ -221,6 +252,10 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %postun -p /sbin/ldconfig
 %post perl -p /sbin/ldconfig
 %postun perl -p /sbin/ldconfig
+%{!?_without_ruby:%post ruby -p /sbin/ldconfig}
+%{!?_without_ruby:%postun ruby -p /sbin/ldconfig}
+%{?_with_java:%post javahl -p /sbin/ldconfig}
+%{?_with_java:%postun javahl -p /sbin/ldconfig}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -246,9 +281,10 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %{_datadir}/emacs/site-lisp/
 %{_datadir}/xemacs/site-packages/lisp/
 %{!?_without_swig:%exclude %{_libdir}/libsvn_swig_perl*}
-%{!?_without_swig:%exclude %{_mandir}/man*/*::*}
+%{!?_without_swig:%exclude %{_mandir}/man3/*::*.3pm*}
 %{!?_without_swig:%{python_sitearch}/svn/}
 %{!?_without_swig:%{python_sitearch}/libsvn/}
+%{!?_without_ruby:%exclude %{_libdir}/libsvn_swig_ruby*}
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -272,7 +308,24 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %{_libdir}/libsvn_swig_perl*
 %endif
 
+%if {!?_without_ruby:1}0
+%files ruby
+%defattr(-, root, root, 0755)
+%{_libdir}/libsvn_swig_ruby*
+%{ruby_sitearch}/svn/
+%endif
+
+%if %{?_with_java:1}0
+%files javahl
+%defattr(-, root, root, 0755)
+%{_libdir}/libsvnjavahl-1.*
+%{_libdir}/svn-javahl/
+%endif
+
 %changelog
+* Mon Dec 31 2007 Dag Wieers <dag@wieers.com> - 1.4.6-0.1
+- Updated to release 1.4.6.
+
 * Mon Jul 02 2007 Dag Wieers <dag@wieers.com> - 1.4.4-0.1
 - Updated to release 1.4.4.
 

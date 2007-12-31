@@ -4,8 +4,8 @@
 
 Summary: Create DOS/MS-compatible boot records
 Name: ms-sys
-Version: 2.1.2
-Release: 1.2
+Version: 2.1.3
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://ms-sys.sourceforge.net/
@@ -26,19 +26,15 @@ written.
 
 %build
 %{__make} debug \
-	SHELL="/bin/bash" \
-	PREFIX="%{_prefix}" \
-	CC="${CC:-%{__cc}}" \
-	EXTRA_CFLAGS="%{optflags} -fasm" \
-	EXTRA_LDFLAGS="%{optflags}"
+    CC="${CC:-%{__cc}}" \
+    EXTRA_CFLAGS="%{optflags} -fasm" \
+    EXTRA_LDFLAGS="%{optflags}" \
+    PREFIX="%{_prefix}" \
+    SHELL="/bin/bash"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1/
-%makeinstall \
-	PREFIX="%{buildroot}%{_prefix}" \
-	MANDIR="%{buildroot}%{_mandir}"
+%{__make} install DESTDIR="%{buildroot}" PREFIX="%{_prefix}" MANDIR="%{_mandir}"
 %find_lang %{name}
 
 %clean
@@ -46,13 +42,13 @@ written.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc CHANGELOG CONTRIBUTORS COPYING README TODO
+%doc CHANGELOG CONTRIBUTORS COPYING FAQ README TODO
 %doc %{_mandir}/man1/ms-sys.1*
 %{_bindir}/ms-sys
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.1.2-1.2
-- Rebuild for Fedora Core 5.
+* Mon Dec 31 2007 Dag Wieers <dag@wieers.com> - 2.1.3-1
+- Updated to release 2.1.3.
 
 * Sat Nov 26 2005 Dag Wieers <dag@wieers.com> - 2.1.2-1
 - Updated to release 2.1.2.
