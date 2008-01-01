@@ -4,7 +4,7 @@
 
 Summary: Graphical dvd9 to dvd5 converter
 Name: dvd95
-Version: 1.2p0
+Version: 1.3p1
 Release: 1
 License: GPL
 Group: Applications/Archiving
@@ -13,7 +13,9 @@ URL: http://dvd95.sourceforge.net/
 Source: http://dl.sf.net/dvd95/dvd95-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libdvdread-devel, gtk2-devel >= 2.6
+BuildRequires: libdvdread-devel
+BuildRequires: libgnomeui-devel
+BuildRequires: mpeg2dec-devel
 
 %description
 DVD95 is a GNOME application to convert DVD9 (8.5G) to DVD5 (4.7G).
@@ -47,11 +49,18 @@ DVD95 support two copy modes :
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO
+%doc AUTHORS ChangeLog COPYING README TODO
 %{_bindir}/dvd95
 %{_datadir}/applications/dvd95.desktop
 %{_datadir}/pixmaps/dvd95/
 
 %changelog
+* Tue Jan  1 2008 Matthias Saou <http://freshrpms.net/> 1.3p1-1
+- Update to 1.3p1.
+- Replace gtk2-devel with proper libgnomeui-devel build requirement.
+- Add missing mpeg2dec-devel build requiremnt.
+- Remove empty NEWS file.
+
 * Fri Mar 30 2007 Dag Wieers <dag@wieers.com> - 1.2p0-1
 - Initial package. (using DAR)
+
