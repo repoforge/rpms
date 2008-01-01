@@ -62,7 +62,7 @@ Static libraries and header files from GPGME, GnuPG Made Easy.
 
 %post
 /sbin/ldconfig
-chcon -t texrel_shlib_t %{_infodir}/libgpgme.so.11
+chcon -t texrel_shlib_t %{_libdir}/libgpgme.so.11
 
 %postun
 /sbin/ldconfig
