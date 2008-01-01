@@ -3,8 +3,8 @@
 
 Summary: Evolution plugin for rss feed support
 Name: evolution-rss
-Version: 0.0.6
-Release: 2
+Version: 0.0.7
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://mips.edu.ms/evo/index.php/Evolution_RSS_Reader_Plugin
@@ -47,8 +47,13 @@ RSS Evolution plugin enables evolution to read rss feeds.
 %dir %{_libdir}/evolution/*/plugins/
 %{_libdir}/evolution/*/plugins/*
 %{_libdir}/bonobo/servers/*
+%{_bindir}/evolution-import-rss
+/etc/gconf/schemas/evolution-rss.schemas
 
 %changelog
+* Thu Dec 13 2007 Heiko Adams <info-2007@fedora-blog.de> - 0.0.7-1
+- Update to 0.0.7
+
 * Sun Nov 11 2007 Dag Wieers <dag@wieers.com> - 0.0.6-2
 - Fix group tag.
 

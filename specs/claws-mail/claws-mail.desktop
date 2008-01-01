@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Claws Mail
-Comment=E-Mail client
-Exec=claws-mail
-Icon=claws-mail.png
-Terminal=false
-Type=Application
-Encoding=UTF-8
-Categories=Application;Network;

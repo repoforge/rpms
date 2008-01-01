@@ -7,13 +7,14 @@
 
 Summary: Graphical user interface for the GnuPG
 Name: gpa
-Version: 0.7.0
-Release: 1.2
+Version: 0.7.5
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.gnupg.org/gpa.html
 
-Source: ftp://ftp.gnupg.org/gcrypt/alpha/gpa/gpa-%{version}.tar.gz
+#Source: ftp://ftp.gnupg.org/gcrypt/alpha/gpa/gpa-%{version}.tar.bz2
+Source: ftp://ftp.gnupg.ca/gpa/alpha/gpa/gpa-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.0.6, gpgme-devel >= 0.4.0
@@ -75,8 +76,12 @@ EOF
 %else
 	%{_datadir}/applications/*.desktop
 %endif
+/usr/share/pixmaps/gpa.png
 
 %changelog
+* Thu Jan 01 2008 Heiko Adams <info-2007@fedora-blog.de> - 0.7.5-2
+- version update to 0.7.5
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.0-1.2
 - Rebuild for Fedora Core 5.
 

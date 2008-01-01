@@ -4,11 +4,12 @@
 
 Summary: GnuPG Made Easy
 Name: gpgme
-Version: 1.0.3
-Release: 1
+Version: 1.1.6
+Release: svn1258
 License: GPL
 Group: Applications/System
-Source: ftp://ftp.gnupg.org/gcrypt/gpgme/gpgme-%{version}.tar.bz2
+#Source: ftp://ftp.gnupg.org/gcrypt/gpgme/gpgme-%{version}-%{release}.tar.bz2
+Source: ftp://ftp.gnupg.ca/alpha/gpgme/gpgme-%{version}-%{release}.tar.bz2
 URL: http://www.gnupg.org/related_software/gpgme/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: libgpgme <= 0.3.15
@@ -42,7 +43,7 @@ Static libraries and header files from GPGME, GnuPG Made Easy.
 
 
 %prep
-%setup -n gpgme-%{version}
+%setup -n gpgme-%{version}-%{release}
 
 
 %build
@@ -80,6 +81,8 @@ fi
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README TODO
 %{_libdir}/*.so.*
+/usr/share/common-lisp/source/gpgme/*.lisp
+/usr/share/common-lisp/source/gpgme/gpgme.asd
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -91,8 +94,10 @@ fi
 %{_datadir}/aclocal/gpgme.m4
 %{_infodir}/gpgme.info*
 
-
 %changelog
+* Thu Jan 01 2008 Heiko Adams <info-2007@fedora-blog.de> - 1.1.6-svn1258
+- Update to 1.1.6-svn1258
+
 * Mon Aug 15 2005 Matthias Saou <http://freshrpms.net/> 1.0.3-1
 - Update to 1.0.3.
 
