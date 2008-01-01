@@ -56,13 +56,13 @@ Static libraries and header files from GPGME, GnuPG Made Easy.
 %makeinstall
 %{__rm} -f %{buildroot}%{_infodir}/dir || :
 
-
 %clean
 %{__rm} -rf %{buildroot}
 
 
 %post
 /sbin/ldconfig
+chcon -t texrel_shlib_t %{_infodir}/libgpgme.so.11
 
 %postun
 /sbin/ldconfig
