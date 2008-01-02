@@ -19,6 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Module::Build)
 
 %description
 Object-Oriented Vector Math Methods in Perl.
@@ -48,5 +49,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Math/Vec.pm
 
 %changelog
+* Wed Jan 02 2008 Fabian Arrotin <fabian.arrotin@arrfab.net> 
+- Added a missing BuildRequires: perl(Module::Build) to build properly in Mock
 * Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 1.01-1
 - Initial package. (using DAR)

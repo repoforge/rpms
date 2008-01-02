@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Module::Build)
 
 %description
 perl-Math-Geometry-Planar-Offset is a Perl module to calculate offset polygons.
@@ -56,5 +57,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Math/Geometry/Planar/Offset.pm
 
 %changelog
+* Wed Jan 02 2008 Fabian Arrotin <fabian.arrotin@arrfab.net> 
+- Added a missing BuildRequires: perl(Module::Build) to build properly in Mock
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 1.05-1
 - Initial package. (using DAR)
