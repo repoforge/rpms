@@ -4,7 +4,7 @@
 
 Summary: Tools for ICMPv6 Neighbor&Router Discovery and TCP/IPv6 traceroute
 Name: ndisc6
-Version: 0.9.3
+Version: 0.9.5
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -41,6 +41,7 @@ This package consists of two programs:
 %doc %{_mandir}/man8/tracert6.8*
 %doc %{_mandir}/man8/tcptraceroute6.8*
 %doc %{_mandir}/man8/rltraceroute6.8*
+%doc %{_mandir}/man8/rdnssd.8*
 %doc %{_mandir}/man1/tcpspray6.1*
 %doc %{_mandir}/man1/addr2name.1*
 %doc %{_mandir}/man1/name2addr.1*
@@ -56,8 +57,14 @@ This package consists of two programs:
 %{_bindir}/tracert6
 %{_bindir}/rltraceroute6
 %{_bindir}/tcptraceroute6
+%dir %{_sysconfdir}/rdnssd
+%{_sysconfdir}/rdnssd/merge-hook
+%{_sbindir}/rdnssd
 
 %changelog
+* Tue Jan  1 2008 Dries Verachtert <dries@ulyssis.org> - 0.9.5-1
+- Updated to release 0.9.5.
+
 * Mon Aug 13 2007 Dries Verachtert <dries@ulyssis.org> - 0.9.3-1
 - Updated to release 0.9.3.
 

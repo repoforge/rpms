@@ -4,8 +4,8 @@
 
 Summary: Proxy server for ultima online
 Name: uoproxy
-Version: 0.1.2
-Release: 1.2
+Version: 0.2
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://max.kellermann.name/projects/uoproxy/
@@ -41,6 +41,9 @@ and much more.
 %{_bindir}/uoproxy
 
 %changelog
+* Tue Jan  1 2008 Dries Verachtert <dries@ulyssis.org> - 0.2-1
+- Updated to release 0.2.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.2-1.2
 - Rebuild for Fedora Core 5.
 

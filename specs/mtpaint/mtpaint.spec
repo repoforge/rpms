@@ -4,7 +4,7 @@
 
 Summary: Painting program for creating icons and pixel-based artwork
 Name: mtpaint
-Version: 3.11
+Version: 3.20
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -44,7 +44,7 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall BIN_INSTALL=%{buildroot}%{_bindir} MT_MAN_DEST=%{buildroot}%{_mandir}/man1
+%makeinstall BIN_INSTALL=%{buildroot}%{_bindir} MT_MAN_DEST=%{buildroot}%{_mandir}/man1 MT_PREFIX=%{_buildroot}%{_usr}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor rpmforge             \
@@ -63,6 +63,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Tue Jan  1 2008 Dries Verachtert <dries@ulyssis.org> - 3.20-1
+- Updated to release 3.20.
+
 * Mon Apr 16 2007 Dries Verachtert <dries@ulyssis.org> - 3.11-1
 - Updated to release 3.11.
 

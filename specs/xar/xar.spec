@@ -3,7 +3,7 @@
 
 Summary: eXtensible ARchiver
 Name: xar
-Version: 1.5.1
+Version: 1.5.2
 Release: 1
 License: BSD
 Group: Applications/Archiving
@@ -60,6 +60,8 @@ you will need to install %{name}-devel.
 %doc %{_mandir}/man1/xar.1*
 %{_bindir}/xar
 %{_libdir}/libxar.so.*
+%exclude %{_libdir}/libxar.a
+%exclude %{_libdir}/libxar.la
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -67,6 +69,9 @@ you will need to install %{name}-devel.
 %{_libdir}/libxar.so
 
 %changelog
+* Tue Jan  1 2008 Dries Verachtert <dries@ulyssis.org> - 1.5.2-1
+- Updated to release 1.5.2.
+
 * Tue Jul 10 2007 Dries Verachtert <dries@ulyssis.org> - 1.5.1-1
 - Updated to release 1.5.1.
 
