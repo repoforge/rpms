@@ -10,7 +10,7 @@
 Summary: meatier versions of C<caller>
 Name: perl-Devel-Caller
 Version: 0.11
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-Caller/
@@ -20,6 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 BuildRequires: perl(Test::More)
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(ExtUtils::CBuilder)
 
 %description
 meatier versions of C<caller>.
@@ -52,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Devel/Caller/
 
 %changelog
+* Wed Jan 02 2008 Fabian Arrotin <fabian.arrotin@arrfab.net> - 0.11-2
+- Added a missing BuildRequires: perl(Module::Build) to build in Mock 
+- Added a missing BuildRequires: perl(ExtUtils::CBuilder)
 * Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 0.11-1
 - Initial package. (using DAR)
