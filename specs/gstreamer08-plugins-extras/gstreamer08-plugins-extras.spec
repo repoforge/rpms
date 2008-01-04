@@ -27,7 +27,7 @@
 Summary: GStreamer streaming media framework extra plugins
 Name: gstreamer-plugins-extra
 Version: 0.8.8
-Release: 3
+Release: 4
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.net/
@@ -248,6 +248,9 @@ cd ..
 
 
 %changelog
+* Mon Dec 17 2007 Dag Wieers <dag@wieers.com> - 0.8.8-4
+- Rebuild against libmpcdec 1.2.6.
+
 * Fri Jan 20 2006 Matthias Saou <http://freshrpms.net/> 0.8.8-3
 - Rename to gstreamer08-plugins-extras for 0.8.x FC5 compatibility.
 - Include patch to fix dvdread include with recent versions of the lib.
