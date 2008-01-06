@@ -6,7 +6,7 @@
 
 Summary: Object shell
 Name: osh
-Version: 0.9.1
+Version: 0.9.2
 Release: 1
 License: GPL
 Group: System Environment/Shells
@@ -53,6 +53,9 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{_datadir}/osh/
 
 %changelog
+* Sun Jan  6 2008 Dries Verachtert <dries@ulyssis.org> - 0.9.2-1
+- Updated to release 0.9.2.
+
 * Wed Oct 17 2007 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1
 - Updated to release 0.9.1.
 

@@ -6,7 +6,7 @@
 
 Summary: Typing tutor
 Name: klavaro
-Version: 1.0.5
+Version: 1.0.6
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -18,7 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libpng-devel
 BuildRequires: gcc-c++, gettext, bison
 BuildRequires: kdelibs-devel, desktop-file-utils
-BuildRequires: gtk+-devel, gtkextra-devel, gtk2-devel >= 2.6
+BuildRequires: gtk2-devel >= 2.6
 
 %description
 Klavaro  is a touch typing tutor that is very
@@ -73,6 +73,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sun Jan  6 2008 Dries Verachtert <dries@ulyssis.org> - 1.0.6-1
+- Updated to release 1.0.6.
+
 * Wed Dec  5 2007 Dries Verachtert <dries@ulyssis.org> - 1.0.5-1
 - Updated to release 1.0.5.
 
