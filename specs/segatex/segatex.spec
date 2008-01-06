@@ -4,7 +4,7 @@
 
 Summary: Create SELinux policies
 Name: segatex
-Version: 3.10
+Version: 4.20
 Release: 1
 License: GPL
 Group: Applications/System
@@ -38,12 +38,13 @@ Encoding=UTF-8
 EOF
 
 %build
+cd src
 qmake segatex.pro
 %{__make} %{?_smp_mflags} SUBLIBS="-lboost_regex -lselinux"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D segatex %{buildroot}%{_bindir}/segatex
+(cd src; %{__install} -D segatex %{buildroot}%{_bindir}/segatex)
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor rpmforge             \
@@ -61,6 +62,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*-segatex.desktop
 
 %changelog
+* Sun Jan 06 2008 Dries Verachtert <dries@ulyssis.org> - 4.20-1
+- Updated to release 4.20.
+
 * Mon Aug 06 2007 Dries Verachtert <dries@ulyssis.org> - 3.10-1
 - Updated to release 3.10.
 
