@@ -7,9 +7,9 @@
 
 %define real_name POE-Component-IRC
 
-Summary: POE component for IRC
+Summary: Fully event-driven IRC client module
 Name: perl-POE-Component-IRC
-Version: 5.40
+Version: 5.46
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -63,6 +63,9 @@ find docs/ examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Filter/
 
 %changelog
+* Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 5.46-1
+- Updated to release 5.46.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 5.40-1
 - Updated to release 5.40.
 

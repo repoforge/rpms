@@ -15,7 +15,7 @@
 
 Summary: Interface to pcap(3) LBL packet capture library
 Name: perl-Net-Pcap
-Version: 0.15
+Version: 0.16
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -62,9 +62,11 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/auto/Net/Pcap/
 %dir %{perl_vendorarch}/Net/
 %{perl_vendorarch}/Net/Pcap.pm
-%{perl_vendorarch}/Net/._Pcap.pm
 
 %changelog
+* Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 0.16-1
+- Updated to release 0.16.
+
 * Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 0.15-1
 - Updated to release 0.15.
 

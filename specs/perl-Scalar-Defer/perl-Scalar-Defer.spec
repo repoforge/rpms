@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Audrey Tang <cpan@audreyt.org>
+# Upstream: Audrey Tang <cpan$audreyt,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Lazy evaluation in Perl
 Name: perl-Scalar-Defer
-Version: 0.12
+Version: 0.13
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Scalar/Defer.pm
 
 %changelog
+* Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 0.13-1
+- Updated to release 0.13.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.12-1
 - Updated to release 0.12.
 

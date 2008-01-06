@@ -9,7 +9,7 @@
 
 Summary: Perl 6 Design Documentations
 Name: perl-Perl6-Bible
-Version: 0.32
+Version: 0.37
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,13 +47,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Perl6::Bible.3pm*
-%doc %{_mandir}/man3/Perl6::Bible::*.3pm*
 %{_bindir}/p6bible
 %dir %{perl_vendorlib}/Perl6/
-%{perl_vendorlib}/Perl6/Bible/
 %{perl_vendorlib}/Perl6/Bible.pm
 
 %changelog
+* Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 0.37-1
+- Updated to release 0.37.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.32-1
 - Updated to release 0.32.
 

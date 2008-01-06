@@ -9,7 +9,7 @@
 
 Summary: Perl module implements simplistic and perlish handling of XML data
 Name: perl-XML-Elemental
-Version: 2.0
+Version: 2.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,7 +46,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/XML::Elemental.3pm*
+%doc %{_mandir}/man3/XML::Elemental::*.3pm*
+%doc %{_mandir}/man3/XML::Parser::Style::Elemental.3pm*
 %dir %{perl_vendorlib}/XML/
 %{perl_vendorlib}/XML/Elemental/
 %{perl_vendorlib}/XML/Elemental.pm
@@ -56,5 +58,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/Parser/Style/Elemental.pm
 
 %changelog
+* Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 2.02-1
+- Updated to release 2.02.
+
 * Sun May 27 2007 Dag Wieers <dag@wieers.com> - 2.0-1
 - Initial package. (using DAR)

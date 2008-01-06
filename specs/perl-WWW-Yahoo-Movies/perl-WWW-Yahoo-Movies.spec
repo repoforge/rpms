@@ -9,7 +9,7 @@
 
 Summary: Get Yahoo Movies information
 Name: perl-WWW-Yahoo-Movies
-Version: 0.04
+Version: 0.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,19 +47,22 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST MANIFEST.SKIP META.yml README
+%doc %{_mandir}/man3/WWW::Yahoo::Movies.3pm*
+%dir %{perl_vendorlib}/WWW/
+%dir %{perl_vendorlib}/WWW/Yahoo/
+#%{perl_vendorlib}/WWW/Yahoo/Movies/
 %{perl_vendorlib}/WWW/Yahoo/Movies.pm
 
 %changelog
+* Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 0.05-1
+- Updated to release 0.05.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Updated to release 0.04.
 
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Updated to release 0.03.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1.2
-- Rebuild for Fedora Core 5.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

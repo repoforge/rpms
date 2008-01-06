@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Jeremy D. Zawodny <Jeremy$Zawodny,com>
+# Upstream: Koos van den Hout <koos$kzdoos,xs4all,nl>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: Accesses Aviation Weather Information
 Name: perl-Geo-METAR
-Version: 1.14
-Release: 1.2
+Version: 1.15
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-METAR/
@@ -39,18 +39,23 @@ With this module, you can access Aviation Weather Information.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc HACKING README TODO
-%doc %{_mandir}/man3/*
+%doc MANIFEST README TODO examples/
+%doc %{_mandir}/man3/Geo::METAR.3pm*
+%dir %{perl_vendorlib}/Geo/
+#%{perl_vendorlib}/Geo/METAR/
 %{perl_vendorlib}/Geo/METAR.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.14-1.2
-- Rebuild for Fedora Core 5.
+* Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 1.15-1
+- Updated to release 1.15.
 
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.14-1
 - Initial package.

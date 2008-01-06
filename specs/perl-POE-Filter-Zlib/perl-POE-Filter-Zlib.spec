@@ -9,7 +9,7 @@
 
 Summary: POE filter wrapped around Compress::Zlib
 Name: perl-POE-Filter-Zlib
-Version: 1.92
+Version: 1.93
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,12 +47,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/POE::Filter::Zlib.3pm*
+%doc %{_mandir}/man3/POE::Filter::Zlib::*.3pm*
 %dir %{perl_vendorlib}/POE/
 %dir %{perl_vendorlib}/POE/Filter/
 %{perl_vendorlib}/POE/Filter/Zlib/
 %{perl_vendorlib}/POE/Filter/Zlib.pm
 
 %changelog
+* Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 1.93-1
+- Updated to release 1.93.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.92-1
 - Updated to release 1.92.
 

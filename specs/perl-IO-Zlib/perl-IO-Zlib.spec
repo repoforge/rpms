@@ -9,7 +9,7 @@
 
 Summary: IO:: interface to Compress::Zlib
 Name: perl-IO-Zlib
-Version: 1.08
+Version: 1.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IO/Zlib.pm
 
 %changelog
+* Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 1.09-1
+- Updated to release 1.09.
+
 * Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 1.08-1
 - Updated to release 1.08.
 

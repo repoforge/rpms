@@ -9,8 +9,8 @@
 
 Summary: Encrypt almost any kind of dbm file
 Name: perl-Crypt-xDBM_File
-Version: 1.01
-Release: 1.2
+Version: 1.02
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-xDBM_File/
@@ -44,13 +44,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml
+%doc %{_mandir}/man3/Crypt::xDBM_File.3pm*
+%dir %{perl_vendorlib}/Crypt/
+#%{perl_vendorlib}/Crypt/xDBM_File/
 %{perl_vendorlib}/Crypt/xDBM_File.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-1.2
-- Rebuild for Fedora Core 5.
+* Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 1.02-1
+- Updated to release 1.02.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Initial package.

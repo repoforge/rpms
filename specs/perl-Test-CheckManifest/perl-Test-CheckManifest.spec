@@ -9,7 +9,7 @@
 
 Summary: Checks manifest files
 Name: perl-Test-CheckManifest
-Version: 1.0
+Version: 1.01
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,11 +44,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Test::CheckManifest*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Test::CheckManifest.3pm*
+%dir %{perl_vendorlib}/Test/
+#%{perl_vendorlib}/Test/CheckManifest/
 %{perl_vendorlib}/Test/CheckManifest.pm
 
 %changelog
+* Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 1.01-1
+- Updated to release 1.01.
+
 * Thu Jan 04 2007 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Updated to release 1.0.
 

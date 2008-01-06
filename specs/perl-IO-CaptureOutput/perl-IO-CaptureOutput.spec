@@ -9,7 +9,7 @@
 
 Summary: Capture STDOUT and STDERR from Perl code, subprocesses or XS
 Name: perl-IO-CaptureOutput
-Version: 1.06
+Version: 1.0601
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IO/CaptureOutput.pod
 
 %changelog
+* Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 1.0601-1
+- Updated to release 1.0601.
+
 * Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 1.06-1
 - Updated to release 1.06.
 
