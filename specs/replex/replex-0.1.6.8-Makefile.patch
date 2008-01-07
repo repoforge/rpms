@@ -1,0 +1,40 @@
+--- replex-0.1.6.8/Makefile.orig	2007-06-19 11:30:08.000000000 +0200
++++ replex-0.1.6.8/Makefile	2007-07-25 21:43:23.000000000 +0200
+@@ -2,8 +2,7 @@
+ DISTNAME = replex-$(VERSION)
+ TARNAME = $(DISTNAME).tar.gz	
+ INCS   = -I..
+-CFLAGS =  -g -m32 -Wall -O6 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DVERSION=\"$(VERSION)\"
+-LDFLAGS = -m32
++CFLAGS =  -Wall -O6 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DVERSION=\"$(VERSION)\"
+ LIBS   = -L. 
+ MFLAG  = -M
+ OBJS = element.o pes.o mpg_common.o ts.o ringbuffer.o avi.o multiplex.o
+@@ -11,7 +10,8 @@
+ SRC  =  avi.c  element.c mpg_common.c pes.c replex.c ringbuffer.c ts.c multiplex.c
+ HEADERS = element.h pes.h mpg_common.h ts.h ringbuffer.h avi.h replex.h multiplex.h
+ EXTRA = COPYING README TODO CHANGES
+-DESTDIR = /usr/local
++DESTDIR := /usr/local
++LIBDIR := $(DESTDIR)/lib
+ 
+ 
+ .PHONY: depend clean install uninstall
+@@ -39,13 +39,13 @@
+ 	$(CC) -c $(CFLAGS) $(INCS) $(DEFINES) $<
+ 
+ install: libreplex.a replex
+-	install -m 644 libreplex.a $(DESTDIR)/lib/
+-	install -m 755 replex $(DESTDIR)/bin/
++	install -D -s -m 644 libreplex.a $(LIBDIR)/libreplex.a
++	install -D -s -m 755 replex $(DESTDIR)/bin/replex
+ 
+ uninstall:
+-	rm -f $(DESTDIR)/lib/libreplex.a
+-	rm -f $(DESTDIR)/bin/replex
+ 
++	rm -f $(LIBDIR)/libreplex.a
++	rm -f $(DESTDIR)/bin/replex
+ 
+ .depend: 
+ 	$(CC) $(DEFINES) $(MFLAG) $(SRC) $(CSRC) $(CPPSRC) $(INCS)> .depend
