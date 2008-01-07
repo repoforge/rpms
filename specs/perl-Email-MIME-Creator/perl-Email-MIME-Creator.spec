@@ -10,7 +10,7 @@
 Summary: Constructor for Email::MIME
 Name: perl-Email-MIME-Creator
 Version: 1.454
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-MIME-Creator/
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl-Email-MIME
 
 %description
 This package contains a constructor for Email::MIME.
@@ -56,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Email/MIME/Creator.pm
 
 %changelog
+* Mon Jan  7 2008 Dries Verachtert <dries@ulyssis.org> - 1.454-2
+- Fix: perl-Email-MIME requirement added, thanks to Tom G. Christensen.
+
 * Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 1.454-1
 - Updated to release 1.454.
 

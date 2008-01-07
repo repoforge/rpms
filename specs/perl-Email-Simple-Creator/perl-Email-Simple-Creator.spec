@@ -10,7 +10,7 @@
 Summary: Email::Simple constructor for starting anew
 Name: perl-Email-Simple-Creator
 Version: 1.424
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Simple-Creator/
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 Buildrequires: perl(ExtUtils::MakeMaker)
+Requires: perl-Email-Simple
 
 %description
 Email::Simple constructor for starting anew.
@@ -52,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Email/Simple/Creator.pm
 
 %changelog
+* Mon Jan  7 2008 Dries Verachtert <dries@ulyssis.org> - 1.424-2
+- Fix: perl-Email-Simple requirement added, thanks to Tom G. Christensen.
+
 * Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 1.424-1
 - Updated to release 1.424.
 
