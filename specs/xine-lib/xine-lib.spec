@@ -10,6 +10,8 @@
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
+%{?el4:%define _with_speex104 1}
+
 %{?fc2:%define _without_gettextdevel 1}
 
 %{?fc1:%define _without_alsa 1}
@@ -64,9 +66,9 @@ Group: Applications/Multimedia
 URL: http://xinehq.de/
 
 Source: http://downloads.sf.net/xine/xine-lib-%{version}.tar.bz2
+Patch0: xine-lib-1.1.9-speex104.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Requires: libdvdcss
 BuildRequires: gcc-c++, pkgconfig, zlib-devel, libtiff-devel
 BuildRequires: libvorbis-devel, SDL-devel, bzip2-devel
 # BUG : libmng-devel should apparently require libjpeg-devel for includes
@@ -103,6 +105,7 @@ BuildRequires: libcdio-devel, vcdimager-devel, a52dec-devel, libmad-devel
 %{?fc2:BuildRequires: freeglut-devel}
 %{?fc1:BuildRequires: freeglut-devel}
 %{?rh9:BuildRequires: glut-devel}
+Requires: libdvdcss
 Obsoletes: xine-libs <= 1.0.0
 Obsoletes: libxine <= %{version}-%{release}
 Obsoletes: xine-libs-moles <= %{version}-%{release}
@@ -145,6 +148,9 @@ use the Xine library.
 
 %prep
 %setup
+
+%{?_with_speex104:%patch0 -p0}
+
 %{__perl} -pi -e 's|"/lib /usr/lib\b|"/%{_lib} %{_libdir}|' configure
 
 %build

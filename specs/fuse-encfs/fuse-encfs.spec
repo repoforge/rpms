@@ -15,6 +15,7 @@ Source: http://www.arg0.net/encfs-1.4.0.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, fuse-devel >= 2.2, rlog-devel >= 1.3
+BuildRequires: boost-devel
 Requires: fuse >= 2.2
 
 Obsoletes: encfs <= %{name}-%{version}
@@ -34,15 +35,11 @@ it does not use NFS.
 %configure \
     --disable-static
 %{__make} %{?_smp_mflags}
-### Make sure we install translations on EL5/x86_64 (bug in 1.4.0)
-%{__make} %{?_smp_mflags} -C po
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-### Make sure we install translations on EL5/x86_64 (bug in 1.4.0)
-%{__make} install DESTDIR="%{buildroot}" -C po
-%find_lang %{real_name}
+#find_lang %{real_name}
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -50,7 +47,8 @@ it does not use NFS.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{real_name}.lang
+#files -f %{real_name}.lang
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README
 %doc %{_mandir}/man1/encfs.1*

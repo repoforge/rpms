@@ -1,0 +1,20 @@
+--- src/libxineadec/xine_speex_decoder.c.orig	2008-01-01 14:30:08.000000000 +0100
++++ src/libxineadec/xine_speex_decoder.c	2008-01-08 04:32:38.278585872 +0100
+@@ -293,7 +293,7 @@
+       int ret;
+       int bitrate;
+ 
+-      ret = speex_decode_int (this->st, &this->bits, audio_buffer->mem);
++      ret = speex_decode (this->st, &this->bits, audio_buffer->mem);
+ 
+       if (ret==-1)
+ 	break;
+@@ -307,7 +307,7 @@
+       }
+ 
+       if (this->channels == 2) {
+-	speex_decode_stereo_int (audio_buffer->mem, this->frame_size, &this->stereo);
++	speex_decode_stereo (audio_buffer->mem, this->frame_size, &this->stereo);
+       }
+ 
+       speex_decoder_ctl (this->st, SPEEX_GET_BITRATE, &bitrate);
