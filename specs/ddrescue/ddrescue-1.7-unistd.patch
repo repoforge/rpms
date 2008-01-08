@@ -1,0 +1,10 @@
+--- logbook.cc.orig	2008-01-08 02:49:05.132127704 +0100
++++ logbook.cc	2008-01-08 02:49:17.513245488 +0100
+@@ -27,6 +27,7 @@
+ #include <vector>
+ 
+ #include "ddrescue.h"
++#include "unistd.h"
+ 
+ 
+ namespace {

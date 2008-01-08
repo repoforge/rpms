@@ -400,6 +400,7 @@ update-desktop-database &>/dev/null || :
 %defattr(-, root, root, 0755)
 %doc ANNOUNCE AUTHORS ChangeLog COPYING.LIB LICENSE* README VERSION
 %doc documentation/README.*
+%doc %{_mandir}/*/man1/wine.1*
 %doc %{_mandir}/man1/wine.1*
 %doc %{_mandir}/man1/wineprefixcreate.1*
 %doc %{_mandir}/man1/wineserver.1*
@@ -473,6 +474,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/rundll32.exe.so
 %{_libdir}/wine/spoolsv.exe.so
 %{_libdir}/wine/start.exe.so
+%{_libdir}/wine/svchost.exe.so
 %{_libdir}/wine/taskmgr.exe.so
 %{_libdir}/wine/uninstaller.exe.so
 %{_libdir}/wine/wineboot.exe.so
@@ -535,6 +537,7 @@ update-desktop-database &>/dev/null || :
 ### dll.so
 %{_libdir}/wine/acledit.dll.so
 %{_libdir}/wine/activeds.dll.so
+%{_libdir}/wine/actxprxy.dll.so
 %{_libdir}/wine/advapi32.dll.so
 %{_libdir}/wine/advpack.dll.so
 %{_libdir}/wine/amstream.dll.so
@@ -668,6 +671,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/pstorec.dll.so
 %{_libdir}/wine/qcap.dll.so
 %{_libdir}/wine/qmgr.dll.so
+%{_libdir}/wine/qmgrprxy.dll.so
 %{_libdir}/wine/quartz.dll.so
 %{_libdir}/wine/query.dll.so
 %{_libdir}/wine/rasapi32.dll.so

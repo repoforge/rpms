@@ -59,6 +59,7 @@ France and Switzerland.
         s|/usr/tmp|%{_localstatedir}/tmp|g;
         s|\$\(mandir\)|\$(mandir)/man1|g;
         s|/lib\b|/%{_lib}|g;
+        s|^WARN\s+\+=\s+-Wno-pointer-sign$||;
     ' Makefile
 
 %{__cat} <<EOF >%{name}.desktop
@@ -75,7 +76,7 @@ EOF
 %build
 %{__make} %{?_smp_mflags} \
     prefix="%{_prefix}" \
-    CCFLAGS="%{optflags}"
+    CFLAGS="%{optflags} \$(INCS) \$(DEFS)"
 
 %install
 %{__rm} -rf %{buildroot}

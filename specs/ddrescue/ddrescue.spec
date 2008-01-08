@@ -13,6 +13,7 @@ Group: Applications/System
 URL: http://www.gnu.org/software/ddrescue/ddrescue.html
 
 Source: http://savannah.gnu.org/download/ddrescue/ddrescue-%{version}.tar.bz2
+Patch0: ddrescue-1.7-unistd.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
@@ -31,9 +32,32 @@ etc.
 
 %prep
 %setup
+%patch0 -p0
 
 %build
 %configure
+### configure script does not accept target_platform as argument (as done on RH7 and EL2)
+### defining %%_gnu does not work !
+#./configure \
+#  CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
+#  CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
+#  FFLAGS="${FFLAGS:-%optflags}" ; export FFLAGS ; \
+#  ./configure --host="%{_host}" --build="%{_build}" \
+#    --target="%{_target_platform}" \
+#    --program-prefix="%{?_program_prefix}" \
+#    --prefix="%{_prefix}" \
+#    --exec-prefix="%{_exec_prefix}" \
+#    --bindir="%{_bindir}" \
+#    --sbindir="%{_sbindir}" \
+#    --sysconfdir="%{_sysconfdir}" \
+#    --datadir="%{_datadir}" \
+#    --includedir="%{_includedir}" \
+#    --libdir="%{_libdir}" \
+#    --libexecdir="%{_libexecdir}" \
+#    --localstatedir="%{_localstatedir}" \
+#    --sharedstatedir="%{_sharedstatedir}" \
+#    --mandir="%{_mandir}" \
+#    --infodir="%{_infodir}"
 %{__make} %{?_smp_mflags}
 
 %install

@@ -5,13 +5,13 @@
 
 Summary: Encrypted pass-thru filesystem in userspace
 Name: fuse-encfs
-Version: 1.3.2
+Version: 1.4.0
 Release: 1
 License: GPL
 Group: System Environment/Kernel
-URL: http://arg0.net/wiki/encfs/
+URL: http://www.arg0.net/encfs
 
-Source: http://arg0.net/vgough/download/encfs-%{version}-1.tgz
+Source: http://www.arg0.net/encfs-1.4.0.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, fuse-devel >= 2.2, rlog-devel >= 1.3
@@ -32,16 +32,19 @@ it does not use NFS.
 
 %build
 %configure \
-	--disable-static
+    --disable-static
 %{__make} %{?_smp_mflags}
+### Make sure we install translations on EL5/x86_64 (bug in 1.4.0)
+%{__make} %{?_smp_mflags} -C po
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
+### Make sure we install translations on EL5/x86_64 (bug in 1.4.0)
+%{__make} install DESTDIR="%{buildroot}" -C po
 %find_lang %{real_name}
 
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
 
 %clean
@@ -55,9 +58,12 @@ it does not use NFS.
 %{_bindir}/encfs
 %{_bindir}/encfsctl
 %{_bindir}/encfssh
-%exclude %{_libdir}/libencfs.la
 %{_libdir}/libencfs.so*
+%exclude %{_libdir}/libencfs.la
 
 %changelog
+* Tue Jan 08 2008 Dag Wieers <dag@wieers.com> - 1.4.0-1
+- Updated to release 1.4.0.
+
 * Sat May 12 2007 Dag Wieers <dag@wieers.com> - 1.3.2-1
 - Initial package. (using DAR)
