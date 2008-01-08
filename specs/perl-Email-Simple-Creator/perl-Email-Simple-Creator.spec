@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 Buildrequires: perl(ExtUtils::MakeMaker)
+### Pull in perl-Email-Simple because this packages provides it as well !!
 Requires: perl-Email-Simple
 
 %description

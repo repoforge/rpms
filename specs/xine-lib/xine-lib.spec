@@ -57,7 +57,7 @@
 
 Summary: Core library of the xine multimedia player
 Name: xine-lib
-Version: 1.1.8
+Version: 1.1.9
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -104,8 +104,10 @@ BuildRequires: libcdio-devel, vcdimager-devel, a52dec-devel, libmad-devel
 %{?fc1:BuildRequires: freeglut-devel}
 %{?rh9:BuildRequires: glut-devel}
 Obsoletes: xine-libs <= 1.0.0
-Obsoletes: libxine <= %{version}
+Obsoletes: libxine <= %{version}-%{release}
 Obsoletes: xine-libs-moles <= %{version}-%{release}
+Obsoletes: xine-arts <= %{version}-%{release}
+Obsoletes: xine-extras <= %{version}-%{release}
 
 %description
 Xine is a free multimedia player. It plays back CDs, DVDs, and VCDs. It also
@@ -148,19 +150,20 @@ use the Xine library.
 %build
 %{?_without_freetype2_pc:export FT2_CFLAGS="$(freetype-config --cflags)"}
 %{?_without_freetype2_pc:export FT2_LIBS="$(freetype-config --libs)"}
+export SDL_CFLAGS="$(sdl-config --cflags)" SDL_LIBS="$(sdl-config --libs)"
 %configure \
-%{?_with_modxorg:--with-xv-path="%{_libdir}"} \
 %{?_without_alsa:--disable-alsa} \
     --enable-antialiasing \
 %{!?_without_directfb:--enable-directfb} \
     --enable-ipv6 \
-%{?_with_extffmpeg:--with-external-ffmpeg} \
-%{!?_with_extdvdnav:--with-included-dvdnav} \
     --with-external-a52dec \
+%{?_with_extffmpeg:--with-external-ffmpeg} \
     --with-external-libmad \
+%{!?_with_extdvdnav:--with-included-dvdnav} \
     --with-fontconfig \
     --with-freetype \
-    --with-pic
+    --with-pic \
+%{?_with_modxorg:--with-xv-path="%{_libdir}"}
 %{__make} %{?_smp_mflags}
 
 %install
@@ -181,25 +184,28 @@ use the Xine library.
 %doc AUTHORS COPYING ChangeLog NEWS README TODO
 %doc doc/README.* doc/faq/faq.txt doc/faq/faq.html
 %doc %{_docdir}/xine-lib/hackersguide/
+%doc %{_mandir}/man5/xine.5*
+%{_datadir}/xine/
 %{_libdir}/libxine.so.*
 %{_libdir}/xine/
-%{_datadir}/xine/
-%{_mandir}/man5/xine.5*
 %exclude %{_docdir}/xine-lib/
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/hackersguide/*.html doc/hackersguide/*.png
+%doc %{_mandir}/man1/xine-config.1*
 %{_bindir}/xine-config
-%{_includedir}/xine.h
+%{_datadir}/aclocal/xine.m4
 %{_includedir}/xine/
-%exclude %{_libdir}/libxine.la
+%{_includedir}/xine.h
 %{_libdir}/libxine.so
 %{_libdir}/pkgconfig/libxine.pc
-%{_datadir}/aclocal/xine.m4
-%{_mandir}/man1/xine-config.1*
+%exclude %{_libdir}/libxine.la
 
 %changelog
+* Mon Jan 07 2008 Dag Wieers <dag@wieers.com> - 1.1.9-1
+- Updated to release 1.1.9.
+
 * Thu Oct 04 2007 Dag Wieers <dag@wieers.com> - 1.1.8-1
 - Updated to release 1.1.8.
 

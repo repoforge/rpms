@@ -13,7 +13,7 @@ URL: http://sourceforge.net/projects/segatex/
 Source: http://dl.sf.net/segatex/segatex-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, gettext, boost-devel, qt-devel >= 1:3.3
+BuildRequires: gcc-c++, gettext, boost-devel, qt-devel >= 1:3.3.4
 BuildRequires: desktop-file-utils, libselinux-devel
 
 %description

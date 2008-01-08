@@ -14,14 +14,13 @@
 
 Summary: Graphical video editing tool
 Name: avidemux2
-Version: 2.3.0
+Version: 2.4
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://fixounet.free.fr/avidemux/
 
-Source: http://prdownload.berlios.de/avidemux/avidemux_%{version}.tar.gz
-#Source: http://download.berlios.de/avidemux/avidemux-%{version}.tar.gz
+Source: http://downloads.sourceforge.net/avidemux/avidemux_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc >= 3.0, glib-devel, gtk2-devel >= 2.6
@@ -41,7 +40,7 @@ You can also process video with included filters. It requires a DivX
 compatible encoder and the Gimp Toolkit (GTK) libraries.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}_%{version}
 
 %{__cat} <<EOF >avidemux2.desktop
 [Desktop Entry]
@@ -61,25 +60,25 @@ EOF
 %{__perl} -pi.orig -e 's|/usr/X11R6/lib|%{_prefix}/X11R6/%{_lib}|g' Makefile.in */Makefile.in */*/Makefile.in
 
 %configure \
-	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
-	--disable-warnings
+    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
+    --disable-warnings
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 ### FIXME: Base kde_locale on $(datadir). (Please fix upstream)
 %makeinstall \
-	kde_locale="%{buildroot}%{_datadir}/locale"
+    kde_locale="%{buildroot}%{_datadir}/locale"
 #%find_lang %{real_name}
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -Dp -m0755 avidemux2.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/avidemux2.desktop
+    %{__install} -Dp -m0755 avidemux2.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/avidemux2.desktop
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor %{desktop_vendor}    \
-		--add-category X-Red-Hat-Base              \
-		--dir %{buildroot}%{_datadir}/applications \
-		avidemux2.desktop
+    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+    desktop-file-install --vendor %{desktop_vendor}    \
+        --add-category X-Red-Hat-Base              \
+        --dir %{buildroot}%{_datadir}/applications \
+        avidemux2.desktop
 %endif
 
 %post
@@ -100,6 +99,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/avidemux2.desktop}
 
 %changelog
+* Mon Jan 07 2008 Dag Wieers <dag@wieers.com> - 2.4-1
+- Updated to release 2.4.
+
 * Tue Dec 12 2006 Dag Wieers <dag@wieers.com> - 2.3.0-1
 - Updated to release 2.3.0.
 

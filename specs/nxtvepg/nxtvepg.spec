@@ -28,7 +28,7 @@
 
 Summary: NexTView EPG decoder and browser
 Name: nxtvepg
-Version: 2.7.7
+Version: 2.8.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -55,11 +55,11 @@ France and Switzerland.
 %setup
 
 %{__perl} -pi.orig -e '
-		s|/usr/lib|%{_datadir}|g;
-		s|/usr/tmp|%{_localstatedir}/tmp|g;
-		s|\$\(mandir\)|\$(mandir)/man1|g;
-		s|/lib\b|/%{_lib}|g;
-	' Makefile
+        s|/usr/lib|%{_datadir}|g;
+        s|/usr/tmp|%{_localstatedir}/tmp|g;
+        s|\$\(mandir\)|\$(mandir)/man1|g;
+        s|/lib\b|/%{_lib}|g;
+    ' Makefile
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
@@ -74,25 +74,25 @@ EOF
 
 %build
 %{__make} %{?_smp_mflags} \
-	prefix="%{_prefix}" \
-	CCFLAGS="%{optflags}"
+    prefix="%{_prefix}" \
+    CCFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-	resdir="%{buildroot}%{_prefix}/X11R6/%{_lib}/X11" \
-	SYS_DBDIR="%{buildroot}%{_localstatedir}/tmp/nxtvdb"
+    resdir="%{buildroot}%{_prefix}/X11R6/%{_lib}/X11" \
+    SYS_DBDIR="%{buildroot}%{_localstatedir}/tmp/nxtvdb"
 
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/nxtvepg.png
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -Dp -m0644 nxtvepg.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/nxtvepg.desktop
+    %{__install} -Dp -m0644 nxtvepg.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/nxtvepg.desktop
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor %{desktop_vendor}    \
-		--add-category X-Red-Hat-Base              \
-		--dir %{buildroot}%{_datadir}/applications \
-		nxtvepg.desktop
+    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+    desktop-file-install --vendor %{desktop_vendor}    \
+        --add-category X-Red-Hat-Base              \
+        --dir %{buildroot}%{_datadir}/applications \
+        nxtvepg.desktop
 %endif
 
 %clean
@@ -102,13 +102,18 @@ EOF
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYRIGHT README* TODO manual.html
 %doc %{_mandir}/man1/nxtvepg.1*
+%doc %{_mandir}/man1/nxtvepgd.1*
 %{_bindir}/nxtvepg
-%{_localstatedir}/tmp/nxtvdb/
-%{_prefix}/X11R6/%{_lib}/X11/app-defaults/*
+%{_bindir}/nxtvepgd
 %{_datadir}/applications/%{desktop_vendor}-nxtvepg.desktop
 %{_datadir}/pixmaps/nxtvepg.png
+%{_localstatedir}/tmp/nxtvdb/
+%{_prefix}/X11R6/%{_lib}/X11/app-defaults/*
 
 %changelog
+* Tue Jan 08 2008 Dag Wieers <dag@wieers.com> - 2.8.0-1
+- Updated to release 2.8.0.
+
 * Mon Jan 22 2007 Dag Wieers <dag@wieers.com> - 2.7.7-1
 - Updated to release 2.7.7.
 

@@ -6,7 +6,7 @@ Summary: Data recovery tool
 Name: ddrescue
 ### Epoch to override Fedora Extras stupid decision to NOT ADHERE TO THEIR OWN NAMING CONVENTION
 Epoch: 1
-Version: 1.6
+Version: 1.7
 Release: 1
 License: GPL
 Group: Applications/System
@@ -33,28 +33,22 @@ etc.
 %setup
 
 %build
-./configure \
-	--prefix="%{_prefix}" \
-	--datadir="%{_datadir}" \
-	--infodir="%{_infodir}" \
-	--mandir="%{_mandir}"
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-#{__make} install DESTDIR="%{buildroot}"
-%{__install} -Dp -m0755 ddrescue %{buildroot}%{_bindir}/ddrescue
+%{__make} install DESTDIR="%{buildroot}"
 %{__install} -Dp -m0644 doc/ddrescue.1 %{buildroot}%{_mandir}/man1/ddrescue.1
-%{__install} -Dp -m0644 doc/ddrescue.info %{buildroot}%{_infodir}/ddrescue.info
 
 %post
 if [ -e %{_infodir}/ddrescue.info.gz ]; then
-	/sbin/install-info %{_infodir}/ddrescue.info.gz %{_infodir}/dir
+    /sbin/install-info %{_infodir}/ddrescue.info.gz %{_infodir}/dir
 fi
 
 %preun
 if [ -e %{_infodir}/ddrescue.info.gz ]; then
-	/sbin/install-info --delete %{_infodir}/ddrescue.info.gz %{_infodir}/dir
+    /sbin/install-info --delete %{_infodir}/ddrescue.info.gz %{_infodir}/dir
 fi
 
 %clean
@@ -63,11 +57,14 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-%doc %{_mandir}/man1/ddrescue.1*
 %doc %{_infodir}/ddrescue.info.*
+%doc %{_mandir}/man1/ddrescue.1*
 %{_bindir}/ddrescue
 
 %changelog
+* Mon Jan 07 2008 Dag Wieers <dag@wieers.com> - 1.7-1
+- Updated to release 1.7.
+
 * Fri Nov 16 2007 Dag Wieers <dag@wieers.com> - 1.6-1
 - Updated to release 1.6.
 
