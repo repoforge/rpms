@@ -13,7 +13,7 @@
 
 Summary: Friendly interactive shell
 Name: fish
-Version: 1.22.3
+Version: 1.23.0
 Release: 1
 License: GPL
 Group: System Environment/Shells
@@ -53,8 +53,9 @@ is simple but incompatible with other shell languages.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc *.html doc_src/*.txt INSTALL README user_doc/html/
-%doc %{_mandir}/man1/count.1*
+#%doc %{_mandir}/man1/count.1*
 %doc %{_mandir}/man1/fish.1*
+%doc %{_mandir}/man1/fish_indent.1*
 %doc %{_mandir}/man1/fish_pager.1*
 %doc %{_mandir}/man1/fishd.1*
 %doc %{_mandir}/man1/mimedb.1*
@@ -63,8 +64,9 @@ is simple but incompatible with other shell languages.
 %config(noreplace) %{_sysconfdir}/fish
 #%config(noreplace) %{_sysconfdir}/fish_inputrc
 #%config(noreplace) %{_sysconfdir}/fish.d/
-%{_bindir}/count
+#%{_bindir}/count
 %{_bindir}/fish
+%{_bindir}/fish_indent
 %{_bindir}/fish_pager
 %{_bindir}/fishd
 %{_bindir}/mimedb
@@ -74,6 +76,9 @@ is simple but incompatible with other shell languages.
 %exclude %{_docdir}/fish/
 
 %changelog
+* Sun Jan 13 2008 Dries Verachtert <dries@ulyssis.org> - 1.23.0-1
+- Updated to release 1.23.0.
+
 * Sun Feb 11 2007 Dag Wieers <dag@wieers.com> - 1.22.3-1
 - Updated to release 1.22.3.
 
