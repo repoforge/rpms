@@ -6,12 +6,12 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 
 ### Temporary exclude as it loops endlessly in configure on x86_64
-# ExcludeDist: el4
+##ExcludeDist: el4
 
 Summary: Image viewer for KDE
 Name: gwenview
 Version: 1.4.2
-Release: 1
+Release: 2
 License: GPL
 Group: Amusements/Graphics
 URL: http://gwenview.sourceforge.net/
@@ -43,13 +43,11 @@ source /etc/profile.d/qt.sh
 %{__rm} -rf %{buildroot}
 source /etc/profile.d/qt.sh
 %{__make} install DESTDIR="%{buildroot}"
-#%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
-# -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING NEWS README
 %{_bindir}/gwenview
@@ -72,6 +70,9 @@ source /etc/profile.d/qt.sh
 %{_datadir}/config.kcfg/*.kcfg
 
 %changelog
+* Sun Jan 13 2008 Dag Wieers <dag@wieers.com> - 1.4.2-2
+- Rebuild against exiv2 0.16.
+
 * Wed Sep 19 2007 Dries Verachtert <dries@ulyssis.org> - 1.4.2-1
 - Updated to release 1.4.2.
 

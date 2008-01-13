@@ -12,7 +12,7 @@
 
 Summary: graphical LDAP directory browser and editor
 Name: gq
-Version: 1.2.2
+Version: 1.2.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -54,10 +54,10 @@ gq-%{langpack_version}-langpack-1/langpack .
 
 %build
 %configure \
-	--enable-cache \
-	--enable-browser-dnd \
-	--disable-update-mimedb \
-	--with-included-gettext
+    --disable-update-mimedb \
+    --enable-browser-dnd \
+    --enable-cache \
+    --with-included-gettext
 %{__make} %{?_smp_mflags}
 
 %install
@@ -66,11 +66,11 @@ gq-%{langpack_version}-langpack-1/langpack .
 %find_lang %{name}
 
 %if %{!?_without_freedesktop:1}0
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor %{desktop_vendor} --delete-original \
-		--add-category X-Red-Hat-Base                             \
-		--dir %{buildroot}%{_datadir}/applications                \
-		%{buildroot}%{_datadir}/applications/gq.desktop
+    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+    desktop-file-install --vendor %{desktop_vendor} --delete-original \
+        --add-category X-Red-Hat-Base                             \
+        --dir %{buildroot}%{_datadir}/applications                \
+        %{buildroot}%{_datadir}/applications/gq.desktop
 %endif
 
 %post
@@ -94,11 +94,14 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/gq.desktop}
 
 %changelog
+* Thu Jan 10 2008 Dag Wieers <dag@wieers.com> - 1.2.3-1
+- Updated to release 1.2.3.
+
 * Mon Apr 16 2007 Dag Wieers <dag@wieers.com> - 1.2.2-1
-- Updated to release 1.2.2. 
+- Updated to release 1.2.2.
 
 * Mon Oct 09 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.1-1
-- Updated to release 1.2.1. 
+- Updated to release 1.2.1.
 
 * Sat Sep 30 2006 Dag Wieers <dag@wieers.com> - 1.2.0-1
 - Updated to release 1.2.0.

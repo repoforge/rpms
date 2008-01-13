@@ -1,29 +1,34 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
 # Upstream: Carsten Haitzler <raster$rasterman,com>
 # Upstream: <enlightenment-devel$lists,sourceforge,net>
 
-#define date 20030417
-
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{?el4:%define _without_modxorg 1}
-%{?el3:%define _without_modxorg 1}
-%{?el2:%define _without_modxorg 1}
 %{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
 %{?fc3:%define _without_modxorg 1}
 %{?fc2:%define _without_modxorg 1}
 %{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
 
 Summary: Powerful image loading and rendering library
 Name: imlib2
-Version: 1.2.2
-Release: %{?date:0.%{date}.}1
+Version: 1.4.0
+Release: 1
 License: BSD
 Group: System Environment/Libraries
 URL: http://enlightenment.org/pages/imlib2.html
+
 Source: http://dl.sf.net/enlightenment/imlib2-%{version}.tar.gz
+Patch0: imlib2-1.2.1-X11-path.patch
+Patch1: imlib2-1.3.0-multilib.patch
+Patch2: imlib2-1.3.0-loader_overflows.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: freetype-devel >= 1.2
 BuildRequires: zlib-devel, bzip2-devel
 BuildRequires: libpng-devel, libjpeg-devel, libungif-devel, libtiff-devel
@@ -50,46 +55,55 @@ Requires: pkgconfig
 %description devel
 Header, static libraries and documentation for Imlib2.
 
-
 %prep
 %setup
+%patch0 -p1 -b .x11-path
+#patch1 -p1 -b .multilib
+%patch2 -p1 -b .overflow
+
 %{__perl} -pi.orig -e 's|/lib(?=[^/\w])|/%{_lib}|g' configure
+
+touch aclocal.m4
+touch configure
+touch config.h.in
+touch `find -name Makefile.in`
 
 %build
 %configure \
-    --with-pic \
+    --disable-dependency-tracking \
     --x-libraries="%{_prefix}/X11R6/%{_lib}" \
+    --with-pic \
 %ifarch %{ix86}
-    --enable-mmx
+    --enable-mmx \
 %else
-    --disable-mmx
+    --disable-mmx \
+%endif
+%ifarch x86_64
+    --enable-amd64
+%else
+    --disable-amd64
 %endif
 %{__make} %{?_smp_mflags}
-
+#LIBTOOL="%{_bindir}/libtool"
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-
+%{__make} install DESTDIR="%{buildroot}"
+#LIBTOOL="%{_bindir}/libtool"
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
-
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING doc/ README
 %{_bindir}/imlib2_*
+%{_datadir}/imlib2/
 %{_libdir}/libImlib2.so.*
 %{_libdir}/imlib2/
-%{_datadir}/imlib2/
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -99,14 +113,16 @@ Header, static libraries and documentation for Imlib2.
 ### Required by kdelibs bug (RHbz #142244)
 %{_libdir}/libImlib2.la
 %{_libdir}/libImlib2.so
+%{_libdir}/pkgconfig/imlib2.pc
 %exclude %{_libdir}/imlib2/filters/*.a
 %exclude %{_libdir}/imlib2/filters/*.la
 %exclude %{_libdir}/imlib2/loaders/*.a
 %exclude %{_libdir}/imlib2/loaders/*.la
-%{_libdir}/pkgconfig/imlib2.pc
-
 
 %changelog
+* Fri Jan 11 2008 Dag Wieers <dag@wieers.com> - 1.4.0-1
+- Updated to release 1.4.0.
+
 * Mon May 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.2-1
 - Updated to release 1.2.2.
 
@@ -177,4 +193,3 @@ Header, static libraries and documentation for Imlib2.
 
 * Tue Nov 2 1999 Lyle Kempler <kempler@utdallas.edu>
 - Mangled imlib 1.9.8 imlib spec file into imlib2 spec file
-

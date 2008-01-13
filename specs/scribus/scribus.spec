@@ -11,7 +11,7 @@
 
 Summary: Graphical desktop publishing (DTP) application
 Name: scribus
-Version: 1.3.3.9
+Version: 1.3.3.10
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -33,7 +33,7 @@ Scribus is a GUI desktop publishing (DTP) application for GNU/Linux.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >scribus.desktop
 [Desktop Entry]
 Name=Scribus Desktop Publishing
 Comment=%{summary}
@@ -48,25 +48,25 @@ EOF
 %build
 source "%{_sysconfdir}/profile.d/qt.sh"
 %configure \
-	--disable-dependency-tracking \
-	--with-xinerama \
-	--with-extra-libs=%{_libdir}
+    --disable-dependency-tracking \
+    --with-extra-libs="%{_libdir}" \
+    --with-xinerama
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %{__install} -Dp -m0644 scribus/icons/scribusicon.png %{buildroot}%{_datadir}/pixmaps/scribus.png
 
 %if %{?_without_freedesktop:1}0
         %{__install} -Dp -m0644 scribus.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/scribus.desktop
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor %{desktop_vendor}    \
-		--add-category X-Red-Hat-Base              \
-		--dir %{buildroot}%{_datadir}/applications \
-		%{name}.desktop
+    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+    desktop-file-install --vendor %{desktop_vendor}    \
+        --add-category X-Red-Hat-Base              \
+        --dir %{buildroot}%{_datadir}/applications \
+        scribus.desktop
 %endif
 
 ### Clean up buildroot
@@ -78,18 +78,22 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README TODO
-%{_mandir}/man1/scribus*
-%{_mandir}/pl/man1/scribus*
-%{_bindir}/*
-%{_libdir}/scribus/
-%{_includedir}/scribus/
-%{_datadir}/scribus
+%doc %{_mandir}/man1/scribus.1*
+%doc %{_mandir}/*/man1/scribus?1*
+%{_bindir}/scribus
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-scribus.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Applications/scribus.desktop}
 %{_datadir}/mime/packages/scribus.xml
-%{_datadir}/pixmaps/*
-%{?_without_freedesktop:%{_datadir}/gnome/apps/Applications/*.desktop}
-%{!?_without_freedesktop:%{_datadir}/applications/*.desktop}
+%{_datadir}/pixmaps/scribus.png
+%{_datadir}/pixmaps/scribusicon.png
+%{_datadir}/scribus
+%{_includedir}/scribus/
+%{_libdir}/scribus/
 
 %changelog
+* Wed Jan 09 2008 Dag Wieers <dag@wieers.com> - 1.3.3.10-1
+- Updated to release 1.3.3.10.
+
 * Wed May 09 2007 Dries Verachtert <dries@ulyssis.org> - 1.3.3.9-1
 - Updated to release 1.3.3.9.
 

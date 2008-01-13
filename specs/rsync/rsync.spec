@@ -30,16 +30,16 @@ package.
 %{__cat} <<EOF >rsync.xinet
 # default: off
 # description: The rsync server is a good addition to an ftp server, as it \
-#	allows crc checksumming etc.
+#   allows crc checksumming etc.
 service rsync
 {
-	disable	= yes
-	socket_type     = stream
-	wait            = no
-	user            = root
-	server          = %{_bindir}/rsync
-	server_args     = --daemon
-	log_on_failure  += USERID
+    disable = yes
+    socket_type     = stream
+    wait            = no
+    user            = root
+    server          = %{_bindir}/rsync
+    server_args     = --daemon
+    log_on_failure  += USERID
 }
 EOF
 
@@ -49,7 +49,7 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %{__install} -Dp -m0644 rsync.xinet %{buildroot}%{_sysconfdir}/xinetd.d/rsync
 
 %clean
@@ -57,7 +57,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc *.txt COPYING doc/ INSTALL NEWS OLDNEWS README support/ tech_report.tex TODO
+%doc COPYING INSTALL NEWS OLDNEWS README tech_report.tex TODO *.txt doc/ support/
 %doc %{_mandir}/man1/rsync.1*
 %doc %{_mandir}/man5/rsyncd.conf.5*
 %config(noreplace) %{_sysconfdir}/xinetd.d/rsync

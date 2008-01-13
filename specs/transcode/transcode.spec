@@ -6,29 +6,28 @@
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{!?dtag:%define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el5:%define _with_modxorg 1}
+%{?fc7:%define _with_modxorg 1}
+%{?fc6:%define _with_modxorg 1}
+%{?fc5:%define _with_modxorg 1}
+
+%{?el4:%define _without_magick 1}
+%{?el3:%define _without_magick 1}
+%{?rh9:%define _without_magick 1}
+%{?rh8:%define _without_magick 1}
+%{?el2:%define _without_magick 1}
 
 %{?fc1:%define _without_theora 1}
-
 %{?el3:%define _without_theora 1}
-
 %{?rh9:%define _without_theora 1}
-
 %{?rh8:%define _without_theora 1}
-%{?rh8:%define _without_magick 1}
-
 %{?rh7:%define _without_theora 1}
-
 %{?el2:%define _without_theora 1}
-
 %{?rh6:%define _without_theora 1}
 
 Summary: Linux video stream processing utility
 Name: transcode
-Version: 1.0.4
+Version: 1.0.5
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -84,27 +83,27 @@ Available rpmbuild rebuild options :
 export CFLAGS="%{optflags} -I%{_includedir}/postproc -DSDL_VIDEO_DRIVER_X11"
 export LDFLAGS="-L%{_usr}/X11R6/%{_lib}"
 %configure \
-    --enable-netstream \
-    --enable-v4l \
-    %{!?_without_postproc:--enable-libpostproc} \
-    --enable-freetype2 \
-    %{?_without_lame:--disable-lame} \
-    --enable-ogg \
-    --enable-vorbis \
-    %{!?_without_theora:--enable-theora} \
     %{?_without_dvdread:--disable-dvdread} \
-    --enable-libdv \
-    %{!?_without_quicktime:--enable-libquicktime} \
-    --enable-lzo \
-    --with-lzo-includes=%{_includedir}/lzo \
+    %{?_without_lame:--disable-lame} \
     %{!?_without_a52:--enable-a52 --enable-a52-default-decoder} \
-    %{!?_without_mpeg3:--enable-libmpeg3} \
-    --enable-libxml2 \
-    %{!?_without_mjpeg:--enable-mjpegtools} \
-    --enable-sdl \
+    --enable-freetype2 \
     --enable-gtk \
+    %{!?_without_magick:--enable-imagemagick} \
+    --enable-libdv \
     %{!?_without_libfame:--enable-libfame} \
-    %{!?_without_magick:--enable-imagemagick}
+    %{!?_without_mpeg3:--enable-libmpeg3} \
+    %{!?_without_postproc:--enable-libpostproc} \
+    %{!?_without_quicktime:--enable-libquicktime} \
+    --enable-libxml2 \
+    --enable-lzo \
+    %{!?_without_mjpeg:--enable-mjpegtools} \
+    --enable-netstream \
+    --enable-ogg \
+    --enable-sdl \
+    %{!?_without_theora:--enable-theora} \
+    --enable-v4l \
+    --enable-vorbis \
+    --with-lzo-includes=%{_includedir}/lzo
 %{__make} %{?_smp_mflags}
 
 
@@ -135,6 +134,9 @@ export LDFLAGS="-L%{_usr}/X11R6/%{_lib}"
 
 
 %changelog
+* Fri Jan 11 2008 Dag Wieers <dag@wieers.com> - 1.0.5-1
+- Updated to release 1.0.5.
+
 * Sat Sep 22 2007 Dag Wieers <dag@wieers.com> - 1.0.4-1
 - Updated to release 1.0.4.
 

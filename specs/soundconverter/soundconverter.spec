@@ -5,7 +5,7 @@
 
 Summary: Simple sound converter application
 Name: soundconverter
-Version: 0.9.4
+Version: 0.9.8
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -44,10 +44,14 @@ gstreamer supported formats.
 %doc %{_mandir}/man1/soundconverter.1*
 %{_bindir}/soundconverter
 %{_datadir}/applications/soundconverter.desktop
-%{_datadir}/pixmaps/soundconverter-icon.png
+%{_datadir}/icons/hicolor/scalable/apps/soundconverter.svg
+%{_datadir}/icons/hicolor/*/apps/soundconverter.png
 %{_datadir}/soundconverter/
 
 %changelog
+* Thu Jan 10 2008 Dag Wieers <dag@wieers.com> - 0.9.8-1
+- Updated to release 0.9.8.
+
 * Sun Apr 01 2007 Dag Wieers <dag@wieers.com> - 0.9.4-1
 - Updated to release 0.9.4.
 

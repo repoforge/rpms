@@ -5,13 +5,14 @@
 
 Summary: Encrypted pass-thru filesystem in userspace
 Name: fuse-encfs
-Version: 1.4.0
+Version: 1.4.1
 Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.arg0.net/encfs
 
-Source: http://www.arg0.net/encfs-1.4.0.tar.gz
+#Source: http://www.arg0.net/encfs-1.4.1.tgz
+Source: http://encfs.googlecode.com/files/encfs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, fuse-devel >= 2.2, rlog-devel >= 1.3
@@ -39,7 +40,7 @@ it does not use NFS.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-#find_lang %{real_name}
+%find_lang %{real_name}
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -47,8 +48,8 @@ it does not use NFS.
 %clean
 %{__rm} -rf %{buildroot}
 
-#files -f %{real_name}.lang
-%files
+%files -f %{real_name}.lang
+#files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README
 %doc %{_mandir}/man1/encfs.1*
@@ -60,6 +61,9 @@ it does not use NFS.
 %exclude %{_libdir}/libencfs.la
 
 %changelog
+* Sun Jan 13 2008 Dag Wieers <dag@wieers.com> - 1.4.1-1
+- Updated to release 1.4.1.
+
 * Tue Jan 08 2008 Dag Wieers <dag@wieers.com> - 1.4.0-1
 - Updated to release 1.4.0.
 

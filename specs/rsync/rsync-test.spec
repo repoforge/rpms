@@ -4,22 +4,22 @@
 
 # Tag: test
 
-# Rationale: rsync 2.6.3 uses less resources and has lots of improvements
+# Rationale: rsync 2.6.3+ uses less resources and has lots of improvements
 
-#%define real_version 2.6.4pre2
-%define real_version HEAD-20050315-1733GMT
+%define real_version 3.0.0pre8
+#define real_version HEAD-20050315-1733GMT
 
 Summary: Program for synchronizing files over a network
 Name: rsync
-Version: 2.6.4
-#Release: 0.pre2
-Release: 0.pre2.cvs20050315.2
+Version: 3.0.0
+Release: 0.pre8
+#Release: 0.pre2.cvs20050315.2
 License: GPL
 Group: Applications/Internet
 URL: http://rsync.samba.org/
 
-#Source: http://rsync.samba.org/ftp/rsync/preview/rsync-%{real_version}.tar.gz
-Source: http://rsync.samba.org/ftp/rsync/nightly/rsync-%{real_version}.tar.gz
+Source: http://rsync.samba.org/ftp/rsync/rsync-%{real_version}.tar.gz
+#Source: http://rsync.samba.org/ftp/rsync/nightly/rsync-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -34,21 +34,19 @@ package.
 %prep
 %setup -n %{name}-%{real_version}
 
-#patch -p0 < patches/delay-renames.diff
-
 %{__cat} <<EOF >rsync.xinet
 # default: off
 # description: The rsync server is a good addition to an ftp server, as it \
-#	allows crc checksumming etc.
+#   allows crc checksumming etc.
 service rsync
 {
-	disable	= yes
-	socket_type     = stream
-	wait            = no
-	user            = root
-	server          = %{_bindir}/rsync
-	server_args     = --daemon
-	log_on_failure  += USERID
+    disable = yes
+    socket_type     = stream
+    wait            = no
+    user            = root
+    server          = %{_bindir}/rsync
+    server_args     = --daemon
+    log_on_failure  += USERID
 }
 EOF
 
@@ -58,7 +56,7 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %{__install} -Dp -m0644 rsync.xinet %{buildroot}%{_sysconfdir}/xinetd.d/rsync
 
 %clean
@@ -66,15 +64,15 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc *.txt COPYING NEWS README tech_report.tex TODO
+%doc COPYING INSTALL NEWS OLDNEWS README tech_report.tex TODO *.txt doc/ support/
 %doc %{_mandir}/man1/rsync.1*
 %doc %{_mandir}/man5/rsyncd.conf.5*
 %config(noreplace) %{_sysconfdir}/xinetd.d/rsync
 %{_bindir}/rsync
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.6.4-0.pre2.cvs20050315.2
-- Rebuild for Fedora Core 5.
+* Sun Jan 13 2008 Dag Wieers <dag@wieers.com> - 3.0.0-0.pre8
+- Updated to release 3.0.0pre8.
 
 * Tue Mar 15 2005 Dag Wieers <dag@wieers.com> - 2.6.4-0.pre2.cvs20050315
 - Updated to release 2.6.4pre2-cvsHEAD-20050315-1733GMT.

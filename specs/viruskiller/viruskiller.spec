@@ -1,27 +1,23 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
 
 %define desktop_vendor rpmforge
 
-%{?dtag: %{expand: %%define %dtag 1}}
-
-%{?el2:%define _without_freedesktop 1}
-%{?rh7:%define _without_freedesktop 1}
-
 Summary: Frantic shooting game where viruses invade your computer
 Name: viruskiller
-Version: 0.9
+Version: 1.0
 Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://www.parallelrealities.co.uk/virusKiller.php
+
+#Source: http://www.parallelrealities.co.uk/download.php?file=viruskiller-1.0-1.tar.gz&type=zip
 Source: viruskiller-%{version}-1.tar.gz
-Patch0: viruskiller-0.9-makefile.patch
-Patch1: viruskiller-0.9-zzip.patch
+Patch0: viruskiller-1.0-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: gcc-c++, zlib-devel
 BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, SDL_ttf-devel
-BuildRequires: zziplib-devel, gcc-c++
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Your computer has been invaded! Dozens of little viruses are pouring in via
@@ -35,29 +31,14 @@ can survive the onslaught!
 Available rpmbuild rebuild options :
 --without : freedesktop
 
-
 %prep
 %setup
-%patch0 -p1 -b .makefile
-%patch1 -p1 -b .zzip
+%patch0 -p0 -b .orig
 
-
-%build
-%{__make} %{?_smp_mflags} PREFIX="%{_prefix}" OPTFLAGS="%{optflags}"
-
-
-%install
-%{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
-
-# Remove shipped menu entry, no Comment, wrong Exec... :-(
-%{__rm} -f %{buildroot}%{_datadir}/applications/viruskiller.desktop
-
-# Install menu entry
-%{__cat} > %{name}.desktop << EOF
+%{__cat} <<EOF >icons/viruskiller.desktop
 [Desktop Entry]
 Name=Virus Killer
-Comment=Frantic shooting game where viruses invade your computer
+Comment=Shoot viruses invading your computer
 Icon=viruskiller.png
 Exec=%{_prefix}/games/viruskiller
 Terminal=false
@@ -66,36 +47,27 @@ Categories=Application;Game;ArcadeGame;
 Encoding=UTF-8
 EOF
 
-%if %{!?_without_freedesktop:1}0
-%{__mkdir_p} %{buildroot}%{_datadir}/applications
-desktop-file-install \
-    --vendor %{desktop_vendor} \
-    --dir %{buildroot}%{_datadir}/applications \
-    %{name}.desktop
-%else
-%{__install} -Dp -m 0644 %{name}.desktop \
-    %{buildroot}%{_sysconfdir}/X11/applnk/Games/%{name}.desktop
-%endif
+%build
+%{__make} %{?_smp_mflags} PREFIX="%{_prefix}" OPTFLAGS="%{optflags}"
 
+%install
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files
 %defattr(-, root, root, 0755)
 %doc doc/*
 %{_prefix}/games/viruskiller
-%{_prefix}/share/games/viruskiller
+%{_datadir}/games/viruskiller
+%{_datadir}/applications/viruskiller.desktop
 %{_datadir}/pixmaps/viruskiller.png
-%if %{!?_without_freedesktop:1}0
-%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
-%else
-%{_sysconfdir}/X11/applnk/Games/%{name}.desktop
-%endif
-
 
 %changelog
+* Thu Jan 10 2008 Vincent Knecht <vknecht@users.sourceforge.net> 1.0-1
+- Updated to release 1.0.
+
 * Tue Jun  8 2004 Matthias Saou <http://freshrpms.net/> 0.9-1
 - Initial RPM release.
-

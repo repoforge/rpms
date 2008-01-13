@@ -43,7 +43,7 @@
 
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
-Version: 1.0.1
+Version: 1.0.2
 Release: 1%{?prever:.%{prever}}
 License: GPL
 Group: System Environment/Libraries
@@ -79,7 +79,6 @@ Libquicktime is based on the quicktime4linux library.  Libquicktime add
 features such as a GNU build tools-based build process and dynamically
 loadable CODECs.
 
-
 %package devel
 Summary: Development files from the libquicktime library
 Group: Development/Libraries
@@ -92,18 +91,15 @@ is based on the quicktime4linux library, with many extensions.
 You will need to install this development package if you intend to rebuild
 programs that need to access quicktime files using libquicktime.
 
-
 %prep
 %setup -n %{name}-%{version}%{?prever}
 %patch0 -p0 -b .plugin_dir
-
 
 %build
 %configure \
     --enable-gpl \
     --with-cpuflags="%{optflags}"
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
@@ -114,41 +110,41 @@ programs that need to access quicktime files using libquicktime.
 # (for transcode 1.0.0beta3)
 %{__ln_s} lqt %{buildroot}%{_includedir}/quicktime
 
-
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
-
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc COPYING README TODO
+%doc %{_mandir}/man1/lqtplay.1*
 %{_bindir}/lqtplay
 %{_bindir}/lqt_transcode
 %{_bindir}/qt*
 %{_libdir}/libquicktime.so.*
 %dir %{_libdir}/libquicktime/
 %{_libdir}/libquicktime/lqt_*.so
-%{_mandir}/man1/lqtplay.1*
 
 %files devel
 %defattr(-, root, root, 0755)
+%doc doc/*.html doc/*.html doc/apiref/
 %{?!_without_gtk24:%{_bindir}/libquicktime_config}
 %{_bindir}/lqt-config
 %{_datadir}/aclocal/*.m4
 %{_includedir}/lqt/
 %{_includedir}/quicktime
-%exclude %{_libdir}/*.la
 %{_libdir}/*.so
-%exclude %{_libdir}/libquicktime/*.la
 %{_libdir}/pkgconfig/libquicktime.pc
-
+%exclude %{_docdir}/libquicktime/
+%exclude %{_libdir}/*.la
+%exclude %{_libdir}/libquicktime/lqt_*.la
 
 %changelog
+* Wed Jan 09 2008 Dag Wieers <dag@wieers.com> - 1.0.2-1
+- Updated to release 1.0.2.
+
 * Sun Oct 14 2007 Dag Wieers <dag@wieers.com> - 1.0.1-1
 - Updated to release 1.0.1.
 

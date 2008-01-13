@@ -5,13 +5,27 @@
 Summary: Decoder of various derivatives of MPEG standards
 Name: libmpeg3
 Version: 1.7
-Release: 2
+Release: 3
 License: GPL
 Group: System Environment/Libraries
 URL: http://heroinewarrior.com/libmpeg3.php3
+
 Source: http://dl.sf.net/heroines/libmpeg3-%{version}-src.tar.bz2
-Patch0: libmpeg3-1.6-makefile.patch
+Patch0: libmpeg3-1.7-makefile.patch
+Patch1: libmpeg3-1.7-cinelerra_autotools.patch
+Patch2: libmpeg3-1.7-cinelerra_hacking.patch
+Patch3: libmpeg3-1.7-fix_commented.patch
+Patch4: libmpeg3-1.7-spec_in.patch
+Patch5: libmpeg3-1.7-pkgconfig.in.patch
+Patch6: libmpeg3-1.7-boostrap.patch
+# Patches 7/8 from gentoo 
+#http://sources.gentoo.org/viewcvs.py/gentoo-x86/media-libs/libmpeg3/files/
+Patch7: libmpeg3-1.5.2-gnustack.patch
+Patch8: libmpeg3-1.7-memcpy.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: a52dec-devel
+BuildRequires: libtool
 BuildRequires: nasm
 
 %description
@@ -30,6 +44,7 @@ libmpeg3 currently decodes:
 %package utils
 Summary: Utilities from libmpeg3
 Group: Applications/Multimedia
+Requires: %{name} = %{version}-%{release}
 
 %description utils
 LibMPEG3 decodes the many many derivatives of MPEG standards into
@@ -37,10 +52,10 @@ uncompressed data suitable for editing and playback.
 
 This package contains utility programs based on libmpeg3.
 
-
 %package devel
 Summary: Development files for libmpeg3
 Group: Development/Libraries
+Requires: %{name} = %{version}-%{release}
 
 %description devel
 LibMPEG3 decodes the many many derivatives of MPEG standards into
@@ -49,39 +64,44 @@ uncompressed data suitable for editing and playback.
 This package contains files needed to build applications that will use
 libmpeg3.
 
-
 %prep
 %setup
-%patch0 -p1 -b .makefile
+#patch0 -p1 -b .makefile
+%patch1 -p1
+%patch3 -p1 -b .commented
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1 -b .gnustack
+%patch8 -p1 -b .memcpy
 
+### Touch docs files:
+touch INSTALL README NEWS AUTHORS ChangeLog
+
+### Build autotools
+chmod 755 bootstrap
+./bootstrap
 
 %build
-export OBJDIR=%{_arch}
-export CFLAGS="%{optflags} -fPIC"
-# Enable USE_MMX for archs that support it, not by default on i386
-%ifarch i686 athlon
-%{__perl} -pi -e 's|^USE_MMX = 0|USE_MMX = 1|g' Makefile
-%endif
-# EOF error which requires a second make invocation. Needs to be investigated
-%{__make} %{?_smp_mflags} || %{__make} %{?_smp_mflags}
-
+%configure --enable-shared --disable-static
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-export OBJDIR=%{_arch}
-%{__make} install \
-    LIBDIR=%{_libdir} \
-    DESTDIR=%{buildroot}
-
+%{__make} install DESTDIR="%{buildroot}" \
+    LIBDIR="%{_libdir}" \
+    INSTALL="install -c -p"
 
 %clean
 %{__rm} -rf %{buildroot}
 
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
-#post -p /sbin/ldconfig
-
-#postun -p /sbin/ldconfig
-
+%files
+%defattr(-, root, root, 0755)
+%doc COPYING
+%{_libdir}/libmpeg3.so.*
 
 %files utils
 %defattr(-, root, root, 0755)
@@ -94,12 +114,15 @@ export OBJDIR=%{_arch}
 %files devel
 %defattr(-, root, root, 0755)
 %doc docs/*
-%{_libdir}/libmpeg3.a
-%{_includedir}/libmpeg3.h
-%{_includedir}/mpeg3private.h
-
+%{_libdir}/libmpeg3.so
+%{_includedir}/mpeg3/
+%{_libdir}/pkgconfig/libmpeg3.pc
+%exclude %{_libdir}/libmpeg3.la
 
 %changelog
+* Fri Jan 11 2008 Dag Wieers <dag@wieers.com> - 1.7-3
+- Added patches from Livna.
+
 * Wed Sep 20 2006 Matthias Saou <http://freshrpms.net/> 1.7-2
 - Run make twice since there is an EOF error that makes the first run abort.
 
