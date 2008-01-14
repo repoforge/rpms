@@ -1,0 +1,12 @@
+diff -Naupr r1000_v1.05.orig/src/r1000_n.c r1000_v1.05/src/r1000_n.c
+--- r1000_v1.05.orig/src/r1000_n.c	2006-11-15 03:50:32.000000000 +0100
++++ r1000_v1.05/src/r1000_n.c	2007-10-22 17:24:22.000000000 +0200
+@@ -1718,7 +1718,7 @@ static struct pci_driver r1000_pci_drive
+ 
+ static int __init r1000_init_module (void)
+ {
+-	return pci_module_init (&r1000_pci_driver);	// pci_register_driver (drv)
++	return pci_register_driver (&r1000_pci_driver);
+ }
+ 
+ static void __exit r1000_cleanup_module (void)

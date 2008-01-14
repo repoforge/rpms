@@ -1,0 +1,12 @@
+diff -Naupr r1000_v1.06.orig/src/Makefile_linux24x r1000_v1.06/src/Makefile_linux24x
+--- r1000_v1.06.orig/src/Makefile_linux24x	2006-07-07 07:20:09.000000000 +0200
++++ r1000_v1.06/src/Makefile_linux24x	2007-10-22 17:46:24.000000000 +0200
+@@ -14,7 +14,7 @@ endif
+ #standard flags for module builds
+ MODCFLAGS	+= -DLINUX -D__KERNEL__ -DMODULE -O2 -pipe -Wall
+ MODCFLAGS	+= -I$(KSRC)/include -I.
+-MODCFLAGS	+= -DMODVERSIONS -DEXPORT_SYMTAB -include $(KSRC)/include/linux/modversions.h
++MODCFLAGS	+= -DEXPORT_SYMTAB
+ SOURCE		:= r1000_n.c r1000_ioctl.c
+ OBJS		:= $(SOURCE:.c=.o)
+ 
