@@ -1,7 +1,7 @@
 Name:           gtk2-engines-aurora
-Version:        1.3
+Version:        1.4
 Packager:       Christopher Bratusek <nano-master@gmx.de>
-Release:        13.2
+Release:        1
 License:        GPL-2
 Source0:        aurora-%{version}.tar.gz
 Source10:       gtkrc_themes.tar.bz2
@@ -45,5 +45,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/*
 
 %changelog
+* Mon Jan 14 2008 Heiko Adams <info-2007@fedora-blog.de> - 1.4-1
+- version update to 1.4
+
 * Mon Nov 19 2007 Heiko Adams <info@fedora-blog.de> - 1.3-13.2
 - Rebuild for rpmforge
