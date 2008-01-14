@@ -16,8 +16,8 @@
 
 Summary: Launches a program when your X session has been idle for some time
 Name: xautolock
-Version: 2.1
-Release: 2.2
+Version: 2.2
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.ibiblio.org/pub/Linux/X11/screensavers/
@@ -25,7 +25,7 @@ URL: http://www.ibiblio.org/pub/Linux/X11/screensavers/
 Source: http://www.ibiblio.org/pub/Linux/X11/screensavers/xautolock-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel, libXScrnSaver-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
@@ -53,6 +53,9 @@ xmkmf
 %{_prefix}/X11R6/bin/xautolock
 
 %changelog
+* Sun Jan 13 2008 Dries Verachtert <dries@ulyssis.org> - 2.2-1
+- Updated to release 2.2.
+
 * Thu Feb 26 2004 Dries Verachtert <dries@ulyssis.org> 2.1-2
 - fixed: man page not installed.
   bug found by Matt Thompson, thanks Matt!

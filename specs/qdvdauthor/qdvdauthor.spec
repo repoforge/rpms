@@ -4,15 +4,17 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
+%define real_version 1.0.0-4
+
 Summary: Frontend for dvdauthor
 Name: qdvdauthor
-Version: 0.1.0
-Release: 1.2
+Version: 1.0.0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://qdvdauthor.sourceforge.net/
 
-Source: http://dl.sf.net/qdvdauthor/qdvdauthor-%{version}.tar.gz
+Source: http://dl.sf.net/qdvdauthor/qdvdauthor-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: netpbm-devel, kdelibs-devel, gcc-c++, gettext, xine-lib-devel
@@ -27,6 +29,7 @@ menus, slideshows, and videos to burn on a DVD under Linux.
 %prep
 %setup
 %{__perl} -pi -e 's|make;$|#make|g;' configure
+%{__perl} -pi -e 's|static int pthread_self|//static int pthread_self|g;' qdvdauthor/log.h
 
 # FIXME: also add .desktop icons for qrender, qslideshow, qplayer?
 
@@ -77,6 +80,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/qdvdauthor/
 
 %changelog
+* Sun Jan 13 2008 Dries Verachtert <dries@ulyssis.org> - 1.0.0-1
+- Updated to release 1.0.0.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.0-1.2
 - Rebuild for Fedora Core 5.
 
