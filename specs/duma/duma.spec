@@ -2,12 +2,12 @@
 # Authority: dries
 # Upstream:  Hayati Ayguen <h_ayguen$web,de>
 
-%define real_version 2_5_8
+%define real_version 2_5_10
 
 Summary: Detect Unintended Memory Access
 Name: duma
-Version: 2.5.8
-Release: 2
+Version: 2.5.10
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://duma.sourceforge.net/
@@ -71,9 +71,11 @@ you will need to install %{name}-devel.
 %{_libdir}/libduma.so
 
 %changelog
+* Tue Jan 15 2008 Dries Verachtert <dries@ulyssis.org> - 2.5.10-1
+- Updated to release 2.5.10.
+
 * Wed Sep  5 2007 Dries Verachtert <dries@ulyssis.org> - 2.5.8-2
 - Fix build on systems with multiple processors, thanks to Brian Watt.
-
 
 * Mon Aug 20 2007 Dries Verachtert <dries@ulyssis.org> - 2.5.8-1
 - Updated to release 2.5.8.

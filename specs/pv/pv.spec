@@ -4,7 +4,7 @@
 
 Summary: Monitor the progress of data through a pipe
 Name: pv
-Version: 0.9.6
+Version: 1.1.0
 Release: 1
 License: Artistic
 Group: Development/Tools
@@ -39,20 +39,23 @@ will be until completion.
 %clean
 %{__rm} -rf %{buildroot}
 
-%post
-/sbin/install-info %{_infodir}/%{name}.info.gz %{_infodir}/dir
+#%post
+#/sbin/install-info %{_infodir}/%{name}.info.gz %{_infodir}/dir
 
-%preun
-/sbin/install-info --delete %{_infodir}/%{name}.info.gz %{_infodir}/dir
+#%preun
+#/sbin/install-info --delete %{_infodir}/%{name}.info.gz %{_infodir}/dir
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc doc/*.html doc/*.txt doc/COPYING doc/NEWS doc/TODO README
+%doc doc/COPYING doc/NEWS doc/TODO README
 %doc %{_mandir}/man1/pv.1*
-%doc %{_infodir}/pv.info*
+#%doc %{_infodir}/pv.info*
 %{_bindir}/pv
 
 %changelog
+* Tue Jan 15 2008 Dries Verachtert <dries@ulyssis.org> - 1.1.0-1
+- Updated to release 1.1.0.
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.6-1
 - Updated to release 0.9.6.
 
