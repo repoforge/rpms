@@ -16,7 +16,7 @@
 
 Summary: Graphics Layout Engine
 Name: gle
-Version: 4.0.12
+Version: 4.1.1
 Release: 1
 License: BSD
 Group: Applications/Multimedia
@@ -57,11 +57,16 @@ JPEG, and PNG.
 %files
 %defattr(-, root, root, 0755)
 %doc README.txt LICENSE.txt
+%doc %{_mandir}/man1/gle.1*
+%{_libdir}/pkgconfig/gle-graphics.pc
 %{_bindir}/gle
 %{_bindir}/manip
 %{_datadir}/gle
 
 %changelog
+* Tue Jan 15 2008 Dries Verachtert <dries@ulyssis.org> - 4.1.1-1
+- Updated to release 4.1.1.
+
 * Sun Oct 15 2006 Jonas Frantz <jonas.frantz@welho.com> - 4.0.12-1
 - Updated to release 4.0.12.
 
