@@ -1,12 +1,14 @@
 # $Id$
 # Authority: dag
 
+%define logmsg logger -t %{name}/rpm
+
 %define real_name davfs2
 
 Summary: FUSE-Filesystem to access WebDAV servers
 Name: fuse-davfs2
 Version: 1.2.2
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Kernel
 URL: http://dav.sourceforge.net/
@@ -34,8 +36,7 @@ Neon supports TLS/SSL (using OpenSSL or GnuTLS) and access via proxy server.
 %setup -n %{real_name}-%{version}
 
 %build
-%configure \
-	--disable-static
+%configure --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
@@ -43,11 +44,23 @@ Neon supports TLS/SSL (using OpenSSL or GnuTLS) and access via proxy server.
 %{__make} install DESTDIR="%{buildroot}"
 %find_lang %{real_name}
 
+%{__install} -Dp -m0770 %{buildroot}%{_localstatedir}/cache/davfs2/
 %{__mv} -vf %{buildroot}%{_sbindir}/mount.davfs %{buildroot}/sbin/mount.davfs
 %{__mv} -vf %{buildroot}%{_sbindir}/umount.davfs %{buildroot}/sbin/umount.davfs
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_docdir}
+
+%pre
+if ! /usr/bin/getent passwd davfs2 &>/dev/null; then
+    %{_sbindir}/useradd -r -d %{_localstatedir}/cache/davfs2 -s %{_sbindir}/nologin -c "davfs2" davfs2 || \
+        %logmsg "Unexpected error adding user \"davfs2\". Aborting installation."
+fi
+
+if ! /usr/bin/getent group davfs2 &>/dev/null; then
+    %{_sbindir}/groupadd -r davfs2 &>/dev/null || \
+        %logmsg "Unexpected error adding group \"davfs2\". Aborting installation."
+fi
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -68,7 +81,13 @@ Neon supports TLS/SSL (using OpenSSL or GnuTLS) and access via proxy server.
 /sbin/umount.davfs
 %{_datadir}/davfs2/
 
+%defattr(-, davfs2, davfs2, 0770)
+%dir %{_localstatedir}/cache/davfs2/
+
 %changelog
+* Fri Jan 18 2008 Ralph Angenendt <ra@br-online.de> - 1.2.2-2
+- Updated to release 1.2.2.
+
 * Sat Nov 10 2007 Dag Wieers <dag@wieers.com> - 1.2.2-1
 - Updated to release 1.2.2.
 
