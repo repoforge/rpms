@@ -5,7 +5,7 @@
 
 Summary: Drupal CMS
 Name: drupal5
-Version: 5.3
+Version: 5.6
 Release: 1
 License: GPL
 Group: Development/Languages
@@ -45,7 +45,6 @@ EOF
 %{__install} -Dp -m0644 .htaccess %{buildroot}%{_localstatedir}/www/drupal-%{version}/.htaccess
 %{__cp} -av *.php %{buildroot}%{_localstatedir}/www/drupal-%{version}/
 %{__cp} -av includes/ misc/ modules/ profiles/ scripts/ sites/ themes/ %{buildroot}%{_localstatedir}/www/drupal-%{version}/
-%{__mkdir} %{buildroot}%{_localstatedir}/www/drupal-%{version}/files/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -58,6 +57,9 @@ EOF
 %{_localstatedir}/www/drupal-%{version}/
 
 %changelog
+* Mon Jan 14 2008 Dag Wieers <dag@wieers.com> - 5.6-1
+- Updated to release 5.6.
+
 * Sun Oct 21 2007 Dag Wieers <dag@wieers.com> - 5.3-1
 - Updated to release 5.3.
 

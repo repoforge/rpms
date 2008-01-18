@@ -5,7 +5,7 @@
 
 Summary: Drupal CMS
 Name: drupal4
-Version: 4.7.8
+Version: 4.7.11
 Release: 1
 License: GPL
 Group: Development/Languages
@@ -56,8 +56,11 @@ EOF
 %{_localstatedir}/www/drupal-%{version}/
 
 %changelog
+* Mon Jan 14 2008 Dag Wieers <dag@wieers.com> - 4.7.11-1
+- Updated to release 4.7.11
+
 * Sun Oct 21 2007 Dag Wieers <dag@wieers.com> - 4.7.8-1
-- Updated to release 4.8.1.
+- Updated to release 4.7.8.
 
 * Sun Sep 30 2007 Dag Wieers <dag@wieers.com> - 4.7.7-1
 - Initial package. (using DAR)

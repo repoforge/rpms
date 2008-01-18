@@ -8,14 +8,13 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-Version: 3.53
+Version: 3.60
 Release: 1
 License: GPL
 Group: Applications/System
 URL: http://syslinux.zytor.com/
 
 Source: ftp://ftp.kernel.org/pub/linux/utils/boot/syslinux/syslinux-%{version}.tar.bz2
-Patch: syslinux-3.53-gcc296.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386 x86_64
@@ -33,7 +32,6 @@ MEMDISK, which loads legacy operating systems from these media.
 
 %prep
 %setup
-%patch0 -p0 -b .gcc296
 
 %build
 export CFLAGS="-Werror -Wno-unused -finline-limit=2000"
@@ -47,8 +45,9 @@ export CFLAGS="-Werror -Wno-unused -finline-limit=2000"
     BINDIR="%{_bindir}" \
     INCDIR="%{_includedir}" \
     LIBDIR="%{_prefix}/lib" \
+    MANDIR="%{_mandir}" \
     SBINDIR="%{_sbindir}"
-%{__install} -p -m0755 keytab-lilo.pl mkdiskimage sys2ansi.pl %{buildroot}%{_prefix}/lib/syslinux/
+%{__install} -p -m0755 keytab-lilo.pl mkdiskimage syslinux2ansi.pl %{buildroot}%{_prefix}/lib/syslinux/
 %{__install} -p -m0755 unix/syslinux unix/syslinux-nomtools %{buildroot}%{_prefix}/lib/syslinux/
 
 ### Clean up docroot
@@ -59,7 +58,12 @@ export CFLAGS="-Werror -Wno-unused -finline-limit=2000"
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS COPYING NEWS README* TODO *.doc com32/modules/mboot.doc memdisk/memdisk.doc sample/
+%doc BUGS COPYING NEWS README TODO com32/modules/mboot.doc menu/ sample/
+%doc %{_mandir}/man1/gethostip.1*
+%doc %{_mandir}/man1/lss16toppm.1*
+%doc %{_mandir}/man1/ppmtolss16.1*
+%doc %{_mandir}/man1/syslinux.1*
+%doc %{_mandir}/man1/syslinux2ansi.1*
 %{_bindir}/gethostip
 %{_bindir}/lss16toppm
 %{_bindir}/md5pass
@@ -70,6 +74,12 @@ export CFLAGS="-Werror -Wno-unused -finline-limit=2000"
 %{_sbindir}/extlinux
 
 %changelog
+* Fri Jan 18 2008 Dag Wieers <dag@wieers.com> - 3.60-1
+- Updated to release 3.60.
+
+* Fri Jan 18 2008 Dag Wieers <dag@wieers.com> - 3.55-1
+- Updated to release 3.55.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 3.53-1
 - Updated to release 3.53.
 

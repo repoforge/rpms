@@ -1,9 +1,9 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
 
 Summary: Utility to copy DVD .vob files to disk
 Name: vobcopy
-Version: 1.0.2
+Version: 1.1.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -20,11 +20,9 @@ from the DVD. There is one drawback though: at the moment vobcopy doesn't deal
 with multi-angle-dvd's. But since these are rather sparse this shouldn't
 matter much.
 
-
 %prep
 %setup
 %patch0 -p1 -b .Makefile
-
 
 %build
 %{__make} \
@@ -32,28 +30,27 @@ matter much.
     BINDIR="%{_bindir}" \
     MANDIR="%{_mandir}"
 
-
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install \
     BINDIR="%{buildroot}%{_bindir}" \
     MANDIR="%{buildroot}%{_mandir}"
 
-
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %files
-%defattr(-,root,root,-)
-%doc Changelog COPYING README Release-Notes TODO
+%defattr(-, root, root, 0755)
+%doc Changelog FAQ README Release-Notes THANKS TODO *.txt
 %doc alternative_programs.txt
+%doc %{_mandir}/man1/vobcopy.1*
+%doc %lang(de) %{_mandir}/de/man1/vobcopy.1*
 %{_bindir}/vobcopy
-%{_mandir}/man1/vobcopy.1*
-%lang(de) %{_mandir}/de/man1/vobcopy.1*
-
 
 %changelog
+* Fri Jan 18 2008 Dag Wieers <dag@wieers.com> - 1.1.0-1
+- Updated to release 1.1.0.
+
 * Sun Jun 24 2007 Dag Wieers <dag@wieers.com> - 1.0.2-1
 - Updated to release 1.0.2.
 

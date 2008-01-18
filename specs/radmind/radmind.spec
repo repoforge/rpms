@@ -3,7 +3,7 @@
 
 Summary: Remotely administer the file systems of multiple unix machines
 Name: radmind
-Version: 1.11.0
+Version: 1.11.1
 Release: 1
 License: BSD-like
 Group: System Environment/Base
@@ -64,62 +64,62 @@ source /etc/sysconfig/network
 # See how we were called.
 case "$1" in
   start)
-	echo -n "Starting radmind: "
+    echo -n "Starting radmind: "
         daemon radmind \
-	    ${_RADMIND_BIND_ADDRESS:-"-a 0"} \
-	    ${_RADMIND_BACKLOG:-"-b 5"} \
-	    ${_RADMIND_PATH:-"-D /var/lib/radmind"} \
-	    ${_RADMIND_SYSLOG_FACILITY:-"-L local7"} \
-	    ${_RADMIND_MAXCONNECTIONS:-"-m 0"} \
-	    ${_RADMIND_PORT:-"-p 6662"} \
-	    ${_RADMIND_UMASK:-"-u 022"} \
-	    ${_RADMIND_PAM:-""} \
-	    ${_RADMIND_AUTHLEVEL:-"-w 0"} \
-	    ${_RADMIND_TLS_CA:-"-x /etc/ssl/radmind/ca.pem"} \
-	    ${_RADMIND_TLS_PUBLIC_CERT:-"-y /etc/ssl/radmind/cert.pem"} \
-	    ${_RADMIND_TLS_PRIVATE_CERT:-"-z /etc/ssl/radmind/cert.pem"}
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/radmind
-	;;
+        ${_RADMIND_BIND_ADDRESS:-"-a 0"} \
+        ${_RADMIND_BACKLOG:-"-b 5"} \
+        ${_RADMIND_PATH:-"-D /var/lib/radmind"} \
+        ${_RADMIND_SYSLOG_FACILITY:-"-L local7"} \
+        ${_RADMIND_MAXCONNECTIONS:-"-m 0"} \
+        ${_RADMIND_PORT:-"-p 6662"} \
+        ${_RADMIND_UMASK:-"-u 022"} \
+        ${_RADMIND_PAM:-""} \
+        ${_RADMIND_AUTHLEVEL:-"-w 0"} \
+        ${_RADMIND_TLS_CA:-"-x /etc/ssl/radmind/ca.pem"} \
+        ${_RADMIND_TLS_PUBLIC_CERT:-"-y /etc/ssl/radmind/cert.pem"} \
+        ${_RADMIND_TLS_PRIVATE_CERT:-"-z /etc/ssl/radmind/cert.pem"}
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch /var/lock/subsys/radmind
+    ;;
   stop)
-	echo -n "Stopping radmind: "
-	killproc radmind
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/radmind
-	;;
+    echo -n "Stopping radmind: "
+    killproc radmind
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/radmind
+    ;;
   debug)
-	echo -n "Starting radmind in debug mode: "
+    echo -n "Starting radmind in debug mode: "
         daemon radmind -d \
-	    ${_RADMIND_BIND_ADDRESS:-"-a 0"} \
-	    ${_RADMIND_BACKLOG:-"-b 5"} \
-	    ${_RADMIND_PATH:-"-D /var/lib/radmind"} \
-	    ${_RADMIND_SYSLOG_FACILITY:-"-L local7"} \
-	    ${_RADMIND_MAXCONNECTIONS:-"-m 0"} \
-	    ${_RADMIND_PORT:-"-p 6662"} \
-	    ${_RADMIND_UMASK:-"-u 022"} \
-	    ${_RADMIND_PAM:-""} \
-	    ${_RADMIND_AUTHLEVEL:-"-w 0"} \
-	    ${_RADMIND_TLS_CA:-"-x /etc/ssl/radmind/ca.pem"} \
-	    ${_RADMIND_TLS_PUBLIC_CERT:-"-y /etc/ssl/radmind/cert.pem"} \
-	    ${_RADMIND_TLS_PRIVATE_CERT:-"-z /etc/ssl/radmind/cert.pem"}
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/radmind
-	;;
+        ${_RADMIND_BIND_ADDRESS:-"-a 0"} \
+        ${_RADMIND_BACKLOG:-"-b 5"} \
+        ${_RADMIND_PATH:-"-D /var/lib/radmind"} \
+        ${_RADMIND_SYSLOG_FACILITY:-"-L local7"} \
+        ${_RADMIND_MAXCONNECTIONS:-"-m 0"} \
+        ${_RADMIND_PORT:-"-p 6662"} \
+        ${_RADMIND_UMASK:-"-u 022"} \
+        ${_RADMIND_PAM:-""} \
+        ${_RADMIND_AUTHLEVEL:-"-w 0"} \
+        ${_RADMIND_TLS_CA:-"-x /etc/ssl/radmind/ca.pem"} \
+        ${_RADMIND_TLS_PUBLIC_CERT:-"-y /etc/ssl/radmind/cert.pem"} \
+        ${_RADMIND_TLS_PRIVATE_CERT:-"-z /etc/ssl/radmind/cert.pem"}
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch /var/lock/subsys/radmind
+    ;;
   status)
-	status radmind
-	RETVAL=$?
-	;;
+    status radmind
+    RETVAL=$?
+    ;;
   restart|reload)
-	$0 stop
-	$0 start
-	RETVAL=$?
-	;;
+    $0 stop
+    $0 start
+    RETVAL=$?
+    ;;
   *)
-	echo "Usage: radmind {start|stop|status|restart|reload|debug}"
-	exit 1
+    echo "Usage: radmind {start|stop|status|restart|reload|debug}"
+    exit 1
 esac
 
 exit $RETVAL
@@ -192,15 +192,15 @@ EOF
 %build
 export CPPFLAGS="-I/usr/kerberos/include"
 %configure \
-	--with-server="localhost" \
-	--with-radminddir="%{_localstatedir}/radmind" \
-	--with-ssl="%{_prefix}"
+    --with-server="localhost" \
+    --with-radminddir="%{_localstatedir}/radmind" \
+    --with-ssl="%{_prefix}"
 
 %{__perl} -pi.orig \
-	-e "s|^GNU_DIFF.*|GNU_DIFF=%{_bindir}/diff|g;" \
-	-e "s|^CERTDIR.*|CERTDIR=%{_sysconfdir}/pki/radmind|g;" \
-	-e "s|^RADMINDSYSLOG.*|RADMINDSYSLOG=LOG_LOCAL7|g;" \
-	Makefile
+    -e "s|^GNU_DIFF.*|GNU_DIFF=%{_bindir}/diff|g;" \
+    -e "s|^CERTDIR.*|CERTDIR=%{_sysconfdir}/pki/radmind|g;" \
+    -e "s|^RADMINDSYSLOG.*|RADMINDSYSLOG=LOG_LOCAL7|g;" \
+    Makefile
 
 %{__make} %{_smp_mflags} \
     OPTOPTS="%{optflags}" \
@@ -276,6 +276,9 @@ fi
 %dir %{_localstatedir}/radmind/transcript/
 
 %changelog
+* Fri Jan 18 2008 Dag Wieers <dag@wieers.com> - 1.11.1-1
+- Updated to release 1.11.1.
+
 * Tue Dec 18 2007 Dag Wieers <dag@wieers.com> - 1.11.0-1
 - Updated to release 1.11.0.
 
