@@ -44,7 +44,7 @@ Neon supports TLS/SSL (using OpenSSL or GnuTLS) and access via proxy server.
 %{__make} install DESTDIR="%{buildroot}"
 %find_lang %{real_name}
 
-%{__install} -Dp -m0770 %{buildroot}%{_localstatedir}/cache/davfs2/
+%{__install} -dp -m0770 %{buildroot}%{_localstatedir}/cache/davfs2/
 %{__mv} -vf %{buildroot}%{_sbindir}/mount.davfs %{buildroot}/sbin/mount.davfs
 %{__mv} -vf %{buildroot}%{_sbindir}/umount.davfs %{buildroot}/sbin/umount.davfs
 
