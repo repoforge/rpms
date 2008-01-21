@@ -2,11 +2,11 @@
 # Authority: dries
 # Upstream:  Hayati Ayguen <h_ayguen$web,de>
 
-%define real_version 2_5_10
+%define real_version 2_5_11
 
 Summary: Detect Unintended Memory Access
 Name: duma
-Version: 2.5.10
+Version: 2.5.11
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -38,6 +38,8 @@ you will need to install %{name}-devel.
 
 %prep
 %setup -n duma_%{real_version}
+# disable 'testoperators' because it doesn't stop
+%{__perl} -pi.orig -e "s|..CURPATH.testoperators..EXEPOSTFIX.||g;" Makefile
 
 %build
 # duma doesn't build with _smp_mflags
@@ -71,6 +73,9 @@ you will need to install %{name}-devel.
 %{_libdir}/libduma.so
 
 %changelog
+* Mon Jan 21 2008 Dries Verachtert <dries@ulyssis.org> - 2.5.11-1
+- Updated to release 2.5.11.
+
 * Tue Jan 15 2008 Dries Verachtert <dries@ulyssis.org> - 2.5.10-1
 - Updated to release 2.5.10.
 
