@@ -3,14 +3,13 @@
 
 Summary: Geographic Information Systems Extensions to PostgreSQL
 Name: postgis
-Version: 1.2.1
+Version: 1.3.2
 Release: 1
 License: GPL
 Group: Applications/Databases
 URL: http://postgis.refractions.net/
 
 Source: http://postgis.refractions.net/download/postgis-%{version}.tar.gz
-Patch0: postgis-1.2.1-template_gis_make.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildrequires: bison
@@ -43,7 +42,7 @@ The postgis-utils package provides the utilities for PostGIS.
 
 %prep
 %setup
-%patch0 -p1 -b .buildfix
+%{__perl} -pi.orig -e "s|^SCRIPT_DOLINK=rm.*|SCRIPT_DOLINK=echo \\\\|g;" extras/template_gis/Makefile
 
 %build
 %{__make} %{?_smp_mflags} \
@@ -52,7 +51,7 @@ The postgis-utils package provides the utilities for PostGIS.
     shlib="postgis.so"
 #    LPATH="\$\(pkglibdir\)" \
 #    CFLAGS="%{optflags} -Wno-pointer-sign"
-
+%{__make} %{?_smp_mflags} templategis
 %{__make} -C utils
 
 %install
@@ -60,6 +59,8 @@ The postgis-utils package provides the utilities for PostGIS.
 %{__make} install DESTDIR="%{buildroot}" \
     PGXS="1" \
     PGSQL_SRC="/usr/lib/pgsql/pgxs"
+
+%{__make} templategis-install DESTDIR="%{buildroot}"
 
 %{__install} -Dp -m0755 lwgeom/liblwgeom.so %{buildroot}%{_libdir}/pgsql/liblwgeom.so
 %{__install} -Dp -m0755 lwgeom/postgis.so %{buildroot}%{_libdir}/pgsql/postgis.so
@@ -82,7 +83,7 @@ The postgis-utils package provides the utilities for PostGIS.
 %doc %{_mandir}/man1/createdb.postgis.1*
 %doc %{_mandir}/man1/mktemplate_gis.1*
 %doc %{_mandir}/man1/rmtemplate_gis.1*
-%config(noreplace) %{_sysconfdir}/default/postgis
+%config(noreplace) %{_datadir}/default/postgis
 %{_bindir}/createdb.postgis
 %{_bindir}/mktemplate_gis
 %{_bindir}/mktemplate_gis.sh
@@ -107,5 +108,8 @@ The postgis-utils package provides the utilities for PostGIS.
 %{_datadir}/postgis/
 
 %changelog
+* Tue Jan 22 2008 Dries Verachtert <dries@ulyssis.org> - 1.3.2-1
+- Updated to release 1.3.2.
+
 * Sun Aug 19 2007 Dag Wieers <dag@wieers.com> - 1.2.1-1
 - Initial package. (using DAR)
