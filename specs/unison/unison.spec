@@ -57,14 +57,14 @@ EOF
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/unison.png
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -Dp -m0644 unison.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/unison.desktop
+    %{__install} -Dp -m0644 unison.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/unison.desktop
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install \
-		--vendor %{desktop_vendor}                 \
-		--add-category X-Red-Hat-Base              \
-		--dir %{buildroot}%{_datadir}/applications \
-		unison.desktop
+    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+    desktop-file-install \
+        --vendor %{desktop_vendor}                 \
+        --add-category X-Red-Hat-Base              \
+        --dir %{buildroot}%{_datadir}/applications \
+        unison.desktop
 %endif
 
 %clean

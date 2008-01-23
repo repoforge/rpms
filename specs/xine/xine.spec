@@ -118,7 +118,7 @@ done
 
 %build
 %configure \
-	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
+    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
 %{?_without_lirc:--disable-lirc} \
 %{?_without_caca:--without-caca}
 %{__make} %{?_smp_mflags}

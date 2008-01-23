@@ -31,7 +31,7 @@ destination.
 If you want to make effective use of ProxyTunnel, the proxy server you are
 going to be tunneling through must support HTTP CONNECT command and must
 allow you to connect to destination machine and host, with or without HTTP
-proxy authentication
+proxy authentication.
 
 %prep
 %setup
@@ -39,7 +39,7 @@ proxy authentication
 
 %build
 ### FIXME: Bug causes proxytunnel to malfunction on EL5 (gcc4 with -D_FORTIFY_SOURCE=2 or -fstack-protector)
-#%{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
+#%{__make} %{?_smp_mflags} CFLAGS="%{optflags} -I/usr/kerberos/include"
 %{__make} %{?_smp_mflags} CFLAGS="-Wall -O2 -I/usr/kerberos/include"
 
 %install
