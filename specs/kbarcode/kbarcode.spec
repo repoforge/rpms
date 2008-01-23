@@ -14,6 +14,7 @@ Source: http://dl.sf.net/kbarcode/kbarcode-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, kdelibs-devel, gettext, barcode-devel
+BuildRequires: pcre-devel
 
 %description
 KBarcode is a barcode and label printing application for KDE 3. It can

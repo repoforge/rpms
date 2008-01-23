@@ -16,6 +16,7 @@ Source: http://ftp.gnome.org/Public/GNOME/sources/f-spot/0.0/f-spot-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: mono-devel, gtk-sharp-devel, libexif-devel, lcms-devel
+BuildRequires: perl(XML::Parser), intltool
 Requires: mono, gtk-sharp, libexif
 
 %description

@@ -26,7 +26,7 @@ Source: http://www.dtek.chalmers.se/groups/dvd/dist/xvattr-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel
-%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel, libXv-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description

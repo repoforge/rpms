@@ -20,7 +20,7 @@ Requires: gettext
 BuildRequires: libgnome-devel >= 2.0.2, libglade2-devel >= 2.0.0
 BuildRequires: libgnomeui-devel >= 2.0.2, libgnomeprintui22-devel >= 2.0.1
 BuildRequires: vte-devel, pcre-devel, libxml2-devel, gcc-c++
-BuildRequires: scrollkeeper, ncurses-devel
+BuildRequires: scrollkeeper, ncurses-devel, perl(XML::Parser), intltool
 %{!?dtag:BuildRequires: gettext-devel}
 %{?el4:BuildRequires: gettext-devel}
 %{?fc3:BuildRequires: gettext-devel}

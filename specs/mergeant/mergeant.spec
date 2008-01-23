@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgda-devel, libgnomedb-devel, gettext
 BuildRequires: scrollkeeper, gcc-c++, libgnomeprint22-devel
-BuildRequires: libgnomeprintui22-devel
+BuildRequires: libgnomeprintui22-devel, perl(XML::Parser), intltool
 Requires(post): scrollkeeper
 
 %description

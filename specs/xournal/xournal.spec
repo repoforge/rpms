@@ -12,7 +12,7 @@ URL: http://xournal.sourceforge.net/
 Source: http://dl.sf.net/xournal/xournal-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libgnomeprintui22-devel, glib2-devel >= 2.6
+BuildRequires: libgnomeprintui22-devel, glib2-devel >= 2.6, freetype-devel
 
 %description
 Xournal is an application for notetaking, sketching, keeping a journal using 

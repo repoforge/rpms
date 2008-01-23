@@ -23,7 +23,7 @@ Source: http://simon.morlat.free.fr/download/%{version}/source/linphone-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext, glib2-devel, libgnomeui-devel
-BuildRequires: libosip-devel, speex-devel
+BuildRequires: libosip-devel, speex-devel, intltool, perl(XML::Parser)
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_gnome_applet:BuildRequires: gnome-panel-devel}
 Requires: /sbin/ldconfig

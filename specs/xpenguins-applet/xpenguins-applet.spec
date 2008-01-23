@@ -29,7 +29,7 @@ Requires: xpenguins >= 1.9
 BuildRequires: gnome-libs-devel, automake, autoconf, gnome-panel-devel
 # configure checks if the themes are available
 BuildRequires: xpenguins
-%{!?_without_modxorg:BuildRequires: libXpm-devel}
+%{!?_without_modxorg:BuildRequires: libXpm-devel, libXt-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description

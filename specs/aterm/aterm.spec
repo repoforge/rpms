@@ -30,7 +30,7 @@ URL: http://aterm.sourceforge.net/
 Source: http://dl.sf.net/aterm/aterm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel, libXt-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 

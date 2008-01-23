@@ -21,7 +21,7 @@ BuildRequires: gnome-keyring-devel, pygtk2-devel >= 2.8, gnome-python2-devel
 BuildRequires: gnome-vfs2-devel, libgnomeui-devel, gnome-python2-bonobo
 BuildRequires: GConf2-devel, gnome-python2-gconf, gnome-python2-desktop
 BuildRequires: gnome-python2-applet, gnome-panel-devel, gnome-python2-extras
-BuildRequires: cracklib-devel, cracklib-dicts
+BuildRequires: cracklib-devel, cracklib-dicts, intltool, perl(XML::Parser)
 %{?el5:BuildRequires: gnome-python2-extras, gnome-panel-devel}
 %{?fc6:BuildRequires: gnome-python2-extras, gnome-panel-devel}
 %{?fc5:BuildRequires: gnome-python2-extras, gnome-panel-devel}

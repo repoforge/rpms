@@ -28,6 +28,7 @@ Source: http://www.goron.de/~froese/alevt/alevt-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{?_with_modxorg:BuildRequires: libX11-devel}
+BuildRequires: libpng-devel
 
 %description
 AleVT is a teletext/videotext decoder and browser for the bttv driver

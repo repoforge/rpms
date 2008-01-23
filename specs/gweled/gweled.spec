@@ -12,7 +12,7 @@ URL: http://sebdelestaing.free.fr/gweled/
 
 Source: http://sebdelestaing.free.fr/gweled/Release/gweled-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: libgnomeui-devel librsvg2-devel libcroco-devel
+BuildRequires: libgnomeui-devel, librsvg2-devel, libcroco-devel, mikmod-devel
 
 %description
 Gweled is a Gnome version of a popular PalmOS/Windows/Java game called
