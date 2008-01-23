@@ -38,7 +38,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-devel, glut-devel, python-numeric
 BuildRequires: tcl >= 8.3, tk >= 8.3
-%{!?_without_modxorg:BuildRequires: libX11-devel, libXext-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel, libXext-devel, libXi-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3, tk-devel}
 %{?_without_tcltk_devel:BuildRequires: tcl >= 8.3, tk}

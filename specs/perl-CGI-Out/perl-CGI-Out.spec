@@ -48,8 +48,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG MANIFEST META.yml README
-%doc %{_mandir}/man3/CGI::BigDeath.3pm*
+%doc CHANGELOG MANIFEST README
+#doc %{_mandir}/man3/CGI::BigDeath.3pm*
 %doc %{_mandir}/man3/CGI::Out.3pm*
 %doc %{_mandir}/man3/CGI::Wrap.3pm*
 %dir %{perl_vendorlib}/CGI/

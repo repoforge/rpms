@@ -14,7 +14,7 @@ Source: http://linups.org/~kal/gnome-cpufreq-applet/gnome-cpufreq-applet-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl(XML::Parser), intltool, gcc-c++, pkgconfig, gtk2-devel
-BuildRequires: gnome-panel-devel
+BuildRequires: gnome-panel-devel, gettext
 
 %description
 GNOME CPUFreq Applet is a CPU Frequency Scaling Monitor for GNOME Panel.

@@ -14,6 +14,7 @@ Patch: ximian-artwork-de.po.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel, gtk2-devel, pkgconfig, gettext, intltool, perl(XML::Parser)
+BuildRequires: gettext
 Requires: gnome-themes-extras
 
 %description

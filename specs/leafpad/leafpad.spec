@@ -18,7 +18,7 @@ URL: http://tarot.freeshell.org/leafpad/
 Source: http://savannah.nongnu.org/download/leafpad/leafpad-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk2-devel >= 2.0
+BuildRequires: gtk2-devel >= 2.0, gettext
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_freedesktop:Requires: desktop-file-utils}
 

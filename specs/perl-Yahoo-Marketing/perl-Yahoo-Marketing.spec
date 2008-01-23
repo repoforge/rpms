@@ -51,7 +51,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
-%doc %{_mandir}/man3/Yahoo::Marketing.3pm*
+%doc %{_mandir}/man3/Yahoo::Marketing*3pm*
 %dir %{perl_vendorlib}/Yahoo/
 %{perl_vendorlib}/Yahoo/Marketing/
 %{perl_vendorlib}/Yahoo/Marketing.pm

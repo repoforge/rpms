@@ -20,7 +20,7 @@ URL: http://mfcn.ilo.de/netspeed_applet/
 Source: http://www.wh-hms.uni-ulm.de/~mfcn/shared/netspeed/netspeed_applet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pkgconfig, intltool, scrollkeeper, gcc-c++
+BuildRequires: pkgconfig, intltool, scrollkeeper, gcc-c++, gettext
 BuildRequires: libgnomeui-devel >= 2.0, libgtop2-devel >= 2.14.2
 %{!?_without_gnome_panel_devel:BuildRequires: gnome-panel-devel}
 %{?_without_gnome_panel_devel:BuildRequires: gnome-panel}

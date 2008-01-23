@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
 Obsoletes: python-checker <= %{version}
-BuildRequires: python
+BuildRequires: python, python-devel
 
 %description
 PyChecker is a tool for finding common bugs in Python source code. It finds

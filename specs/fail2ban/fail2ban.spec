@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: dos2unix
-BuildRequires: python-devel >= 2.4
+BuildRequires: python-devel >= 2.4, python-devel
 Requires: gamin-python
 Requires: iptables
 Requires: python

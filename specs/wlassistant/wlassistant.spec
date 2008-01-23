@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: kdelibs-devel >= 3.2.0
 BuildRequires: gcc-c++, libstdc++-devel, libart_lgpl-devel, wireless-tools
-BuildRequires: libpng-devel, zlib-devel
+BuildRequires: libpng-devel, zlib-devel, gettext
 Requires: kdelibs, wireless-tools, libstdc++, libgcc, libart_lgpl, libpng, zlib, sudo
 Obsoletes: wirelessassisstant, wlassisant
 Provides: wirelessassisstant

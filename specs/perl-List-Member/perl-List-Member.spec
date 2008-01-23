@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 4:5.8.8
 
 %description
 PROLOG's member/2: return index of $x in @y.

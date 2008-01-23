@@ -28,7 +28,7 @@ Source: http://tuxick.net/xfrisk/files/XFrisk-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: Xaw3d-devel
-%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel, Xaw3d-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 
 Obsoletes: XFrisk

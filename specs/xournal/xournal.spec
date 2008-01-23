@@ -13,6 +13,7 @@ Source: http://dl.sf.net/xournal/xournal-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgnomeprintui22-devel, glib2-devel >= 2.6, freetype-devel
+BuildRequires: autoconf, automake
 
 %description
 Xournal is an application for notetaking, sketching, keeping a journal using 
