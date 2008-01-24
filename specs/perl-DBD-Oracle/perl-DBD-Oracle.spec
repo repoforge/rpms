@@ -9,7 +9,7 @@
 
 Summary: Perl module named DBD-Oracle
 Name: perl-DBD-Oracle
-Version: 1.19
+Version: 1.20
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -42,18 +42,21 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST MANIFEST.SKIP META.yml README README.aix.txt
-%doc README.clients.txt README.explain.txt README.help.txt README.hpux.txt
-%doc README.java.txt README.linux.txt README.login.txt README.longs.txt
-%doc README.macosx.txt README.sec.txt README.vms.txt README.win32.txt
-%doc README.wingcc.txt Todo
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README README.64bit.txt
+%doc README.aix.txt README.clients.txt README.explain.txt README.help.txt
+%doc README.hpux.txt README.java.txt README.linux.txt README.login.txt
+%doc README.longs.txt README.macosx.txt README.sec.txt README.vms.txt
+%doc README.win32.txt %doc README.wingcc.txt Todo
 %doc %{_mandir}/man3/DBD::Oracle.3pm*
 #%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorarch}/DBD/
-%{perl_vendorarch}/DBD/Oracle.pm
 %dir %{perl_vendorarch}/auto/DBD/
 %{perl_vendorarch}/auto/DBD/Oracle/
+%dir %{perl_vendorarch}/DBD/
+%{perl_vendorarch}/DBD/Oracle.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.20-1
+- Updated to release 1.20.
+
 * Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 1.19-1
 - Initial package. (using DAR)

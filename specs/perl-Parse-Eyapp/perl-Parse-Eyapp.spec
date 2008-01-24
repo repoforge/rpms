@@ -9,7 +9,7 @@
 
 Summary: Extensions for Parse::Yapp
 Name: perl-Parse-Eyapp
-Version: 1.098
+Version: 1.106
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -58,5 +58,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Parse/Eyapp.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.106-1
+- Updated to release 1.106.
+
 * Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 1.098-1
 - Initial package. (using DAR)

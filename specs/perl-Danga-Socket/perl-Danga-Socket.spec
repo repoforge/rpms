@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Brad Fitzpatrick <brad$danga,com>
+# Upstream: Matt Sergeant <msergeant$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements an event loop and event-driven async socket base class
 Name: perl-Danga-Socket
-Version: 1.57
+Version: 1.58
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Danga/Socket.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.58-1
+- Updated to release 1.58.
+
 * Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 1.57-1
 - Initial package. (using DAR)

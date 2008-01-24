@@ -9,8 +9,8 @@
 
 Summary: XS implementation of Heap::Simple
 Name: perl-Heap-Simple-XS
-Version: 0.09
-Release: 1.2
+Version: 0.10
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Heap-Simple-XS/
@@ -43,15 +43,19 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorarch}/Heap/
-%dir %{perl_vendorarch}/Heap/Simple/
-%{perl_vendorarch}/Heap/Simple/XS.pm
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README
+%doc %{_mandir}/man3/Heap::Simple::XS.3pm*
 %dir %{perl_vendorarch}/auto/Heap/
 %dir %{perl_vendorarch}/auto/Heap/Simple/
 %{perl_vendorarch}/auto/Heap/Simple/XS/
+%dir %{perl_vendorarch}/Heap/
+%dir %{perl_vendorarch}/Heap/Simple/
+%{perl_vendorarch}/Heap/Simple/XS/
+%{perl_vendorarch}/Heap/Simple/XS.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.10-1
+- Updated to release 0.10.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.09-1
 - Initial package.

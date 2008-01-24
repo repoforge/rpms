@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dag
-# Upstream: Mattia Barbon <mbarbon@cpan.org>
+# Upstream: Mattia Barbon <mbarbon$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Wx
 
-Summary: Perl module to interface to the wxWidgets cross-platform GUI toolkit
+Summary: Interface to the wxWidgets cross-platform GUI toolkit
 Name: perl-Wx
-Version: 0.80
+Version: 0.81
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -63,6 +63,9 @@ find docs/ samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Wx.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.81-1
+- Updated to release 0.81.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.80-1
 - Updated to release 0.80.
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Yuval Kogman <nothingmuch$woobling,org>
+# Upstream: Peter Karman <perl$peknet,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: FastMmap session storage backend
 Name: perl-Catalyst-Plugin-Session-Store-FastMmap
-Version: 0.03
+Version: 0.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Catalyst/Plugin/Session/Store/FastMmap.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.05-1
+- Updated to release 0.05.
+
 * Sun Dec 30 2007 Dag Wieers <dag@wieers.com> - 0.03-1
 - Initial package. (using DAR)

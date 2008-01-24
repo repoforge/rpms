@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Paul Marquess <pmqs$cpan,org>
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
@@ -10,9 +11,9 @@
 
 Summary: Perl extension for Berkeley DB version 2, 3 or 4
 Name: perl-BerkeleyDB
-Version: 0.32
+Version: 0.33
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/BerkeleyDB/
 
@@ -55,12 +56,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README Todo
 %doc %{_mandir}/man3/BerkeleyDB.3pm*
+%{perl_vendorarch}/auto/BerkeleyDB/
 %{perl_vendorarch}/BerkeleyDB/
 %{perl_vendorarch}/BerkeleyDB.pm
 %{perl_vendorarch}/BerkeleyDB.pod
-%{perl_vendorarch}/auto/BerkeleyDB/
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.33-1
+- Updated to release 0.33.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.32-1
 - Updated to release 0.32.
 

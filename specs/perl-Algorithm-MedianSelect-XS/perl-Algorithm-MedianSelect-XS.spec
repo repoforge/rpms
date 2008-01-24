@@ -9,7 +9,7 @@
 
 Summary: Median finding algorithm
 Name: perl-Algorithm-MedianSelect-XS
-Version: 0.18
+Version: 0.20
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,14 +47,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes INSTALL MANIFEST META.yml README
 %doc %{_mandir}/man3/Algorithm::MedianSelect::XS.3pm*
-%dir %{perl_vendorarch}/Algorithm/
-%dir %{perl_vendorarch}/Algorithm/MedianSelect/
-%{perl_vendorarch}/Algorithm/MedianSelect/XS.pm
 %dir %{perl_vendorarch}/auto/Algorithm/
 %dir %{perl_vendorarch}/auto/Algorithm/MedianSelect/
 %{perl_vendorarch}/auto/Algorithm/MedianSelect/XS/
+%dir %{perl_vendorarch}/Algorithm/
+%dir %{perl_vendorarch}/Algorithm/MedianSelect/
+%{perl_vendorarch}/Algorithm/MedianSelect/XS.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.20-1
+- Updated to release 0.20.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.18-1
 - Updated to release 0.18.
 

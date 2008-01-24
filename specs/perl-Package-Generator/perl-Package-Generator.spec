@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Ricardo Signes <rjbs@cpan.org>
+# Upstream: Ricardo Signes <rjbs$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Perl module to generate new packages quickly and easily
 Name: perl-Package-Generator
-Version: 0.100
+Version: 0.102
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -45,7 +45,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
+%doc Changes LICENSE MANIFEST META.yml README
 %doc %{_mandir}/man3/Package::Generator.3pm*
 %doc %{_mandir}/man3/Package::Reaper.3pm*
 %dir %{perl_vendorlib}/Package/

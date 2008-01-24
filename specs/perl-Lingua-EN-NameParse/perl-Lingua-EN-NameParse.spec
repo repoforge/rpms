@@ -7,9 +7,9 @@
 
 %define real_name Lingua-EN-NameParse
 
-Summary: Routines for manipulating a person's name
+Summary: Manipulate peoples names, titles and initials
 Name: perl-Lingua-EN-NameParse
-Version: 1.23
+Version: 1.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -40,26 +40,33 @@ the name is broken down into components.
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
 %{__perl} -pi -e 's|/usr/local/bin/perl|%{_bindir}/perl|g;' %{buildroot}%{perl_vendorlib}/Lingua/EN/*
+
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Lingua::EN::NameGrammar*
-%doc %{_mandir}/man3/Lingua::EN::NameParse*
-%{perl_vendorlib}/Lingua/EN/NameParse.pm
+%doc Changes MANIFEST META.yml README surname_prefs.txt examples/
+%doc %{_mandir}/man3/Lingua::EN::NameGrammar.3pm*
+%doc %{_mandir}/man3/Lingua::EN::NameParse.3pm*
+%dir %{perl_vendorlib}/Lingua/
+%dir %{perl_vendorlib}/Lingua/EN/
+#%{perl_vendorlib}/Lingua/EN/NameParse/
 %{perl_vendorlib}/Lingua/EN/NameGrammar.pm
+%{perl_vendorlib}/Lingua/EN/NameParse.pm
 #%{perl_vendorlib}/Lingua/EN/demo.pl
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.24-1
+- Updated to release 1.24.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.23-1
 - Updated to release 1.23.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.22-2.2
-- Rebuild for Fedora Core 5.
 
 * Mon Nov  7 2005 Dries Verachtert <dries@ulyssis.org> - 1.22-2
 - Fix the script which tries to use perl in /usr/local.

@@ -19,6 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Authen/Authen-Krb5-Admin-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
+BuildRequires: perl(Authen::Krb5) >= 1.2
 
 %description
 Perl extension for MIT Kerberos 5 admin interface.
@@ -26,8 +27,10 @@ Perl extension for MIT Kerberos 5 admin interface.
 %prep
 %setup -n %{real_name}-%{version}
 
+%{__perl} -pi.orig -e 's|<com_err.h>|<et/com_err.h>|g' Admin.c Admin.xs
+
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+echo | CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -53,4 +56,5 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %changelog
 * Mon Nov 26 2007 Dag Wieers <dag@wieers.com> - 0.09-1
+- Fixed a compilation problem on RHEL and Fedora. (Claudio Strizzolo)
 - Initial package. (using DAR)

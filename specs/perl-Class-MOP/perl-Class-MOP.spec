@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements a Meta Object Protocol
 Name: perl-Class-MOP
-Version: 0.50
+Version: 0.51
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -61,6 +61,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/metaclass.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.51-1
+- Updated to release 0.51.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.50-1
 - Updated to release 0.50.
 

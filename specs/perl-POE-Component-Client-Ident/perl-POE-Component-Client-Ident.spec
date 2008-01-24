@@ -7,9 +7,9 @@
 
 %define real_name POE-Component-Client-Ident
 
-Summary: Non-blocking Ident
+Summary: Component that provides non-blocking ident lookups to your sessions
 Name: perl-POE-Component-Client-Ident
-Version: 1.07
+Version: 1.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/POE/Filter/Ident.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.08-1
+- Updated to release 1.08.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.07-1
 - Updated to release 1.07.
 

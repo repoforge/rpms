@@ -7,9 +7,9 @@
 
 %define real_name Unicode-Japanese
 
-Summary: Japanese Character Encoding Handler
+Summary: Convert encoding of Japanese text
 Name: perl-Unicode-Japanese
-Version: 0.44
+Version: 0.45
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -23,11 +23,7 @@ BuildRequires: perl(Test)
 BuildRequires: perl(Test::More)
 
 %description
-Japanese Character Encoding Handler.
-
-This package contains the following Perl module:
-
-    Unicode::Japanese
+Convert encoding of Japanese text.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -63,5 +59,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Unicode/Japanese/
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.45-1
+- Updated to release 0.45.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.44-1
 - Initial package. (using DAR)

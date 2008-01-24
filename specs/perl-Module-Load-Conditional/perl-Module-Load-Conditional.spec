@@ -9,7 +9,7 @@
 
 Summary: Looking up module information / loading at runtime
 Name: perl-Module-Load-Conditional
-Version: 0.22
+Version: 0.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/Load/Conditional.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.24-1
+- Updated to release 0.24.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.22-1
 - Updated to release 0.22.
 

@@ -9,7 +9,7 @@
 
 Summary: Lets you build groups of accessors
 Name: perl-Class-Accessor-Grouped
-Version: 0.07000
+Version: 0.08001
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/Accessor/Grouped.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.08001-1
+- Updated to release 0.08001.
+
 * Sun Dec 30 2007 Dag Wieers <dag@wieers.com> - 0.07000-1
 - Initial package. (using DAR)

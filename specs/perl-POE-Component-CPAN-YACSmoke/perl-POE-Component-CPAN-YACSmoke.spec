@@ -7,9 +7,9 @@
 
 %define real_name POE-Component-CPAN-YACSmoke
 
-Summary: Smoke testing with POE
+Summary: Bringing the power of POE to CPAN smoke testing
 Name: perl-POE-Component-CPAN-YACSmoke
-Version: 1.09
+Version: 1.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,8 +49,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README examples/
-%doc %{_mandir}/man3/POE::Component::CPAN::YACSmoke.3pm*
 %doc %{_mandir}/man1/minismoker.1*
+%doc %{_mandir}/man3/POE::Component::CPAN::YACSmoke.3pm*
 %{_bindir}/minismoker
 %dir %{perl_vendorlib}/POE/
 %dir %{perl_vendorlib}/POE/Component/
@@ -59,6 +59,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Component/CPAN/YACSmoke.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.18-1
+- Updated to release 1.18.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.09-1
 - Updated to release 1.09.
 

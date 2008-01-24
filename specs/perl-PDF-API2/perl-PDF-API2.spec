@@ -9,7 +9,7 @@
 
 Summary: Perl module to faciliate creating and modifying PDF files
 Name: perl-PDF-API2
-Version: 0.68
+Version: 0.69
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ find contrib/ examples/ -type f -exec %{__chmod} a-x {} \;
 %exclude %{perl_vendorlib}/PDF/API2/Win32.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.69-1
+- Updated to release 0.69.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.68-1
 - Updated to release 0.68.
 

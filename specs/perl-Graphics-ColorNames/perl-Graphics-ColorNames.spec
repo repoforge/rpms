@@ -9,7 +9,7 @@
 
 Summary: Defines RGB values for common color names
 Name: perl-Graphics-ColorNames
-Version: 2.04
+Version: 2.11
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Graphics/ColorNames.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 2.11-1
+- Updated to release 2.11.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 2.04-1
 - Updated to release 2.04.
 

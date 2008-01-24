@@ -7,9 +7,9 @@
 
 %define real_name POE-Component-Server-Echo
 
-Summary: POE component implementing an RFC 862 Echo server
+Summary: POE component that implements an RFC 862 Echo server
 Name: perl-POE-Component-Server-Echo
-Version: 1.54
+Version: 1.58
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -24,7 +24,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More) >= 0.47
 
 %description
-A POE component implementing a RFC 862 Echo server.
+A POE component that implements a RFC 862 Echo server.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -56,6 +56,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Component/Server/Echo.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.58-1
+- Updated to release 1.58.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.54-1
 - Updated to release 1.54.
 

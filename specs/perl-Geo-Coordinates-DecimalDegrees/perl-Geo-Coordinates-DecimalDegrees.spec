@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Walter Mankowski <waltman$pobox,com>
+# Upstream: Walt Mankowski <waltman$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Convert between degrees/minutes/seconds and decimal degrees
 Name: perl-Geo-Coordinates-DecimalDegrees
-Version: 0.07
+Version: 0.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,11 +44,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Geo::Coordinates::DecimalDegrees*
-%{perl_vendorlib}/Geo/Coordinates/DecimalDegrees.pm
+%doc Changes INSTALL MANIFEST META.yml README SIGNATURE
+%doc %{_mandir}/man3/Geo::Coordinates::DecimalDegrees.3pm*
+%dir %{perl_vendorlib}/Geo/
 %dir %{perl_vendorlib}/Geo/Coordinates/
+#%{perl_vendorlib}/Geo/Coordinates/DecimalDegrees/
+%{perl_vendorlib}/Geo/Coordinates/DecimalDegrees.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.08-1
+- Updated to release 0.08.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Initial package.

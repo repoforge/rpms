@@ -9,7 +9,7 @@
 
 Summary: Module to allow use of FastCGI asynchronously
 Name: perl-FCGI-Async
-Version: 0.12
+Version: 0.13
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,7 +48,7 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README fcgi-spec.html examples/
+%doc Changes MANIFEST META.yml fcgi-spec.html examples/
 %doc %{_mandir}/man3/FCGI::Async.3pm*
 %doc %{_mandir}/man3/FCGI::Async::*.3pm*
 %dir %{perl_vendorlib}/FCGI/
@@ -56,6 +56,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/FCGI/Async.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.13-1
+- Updated to release 0.13.
+
 * Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 0.12-1
 - Updated to release 0.12.
 

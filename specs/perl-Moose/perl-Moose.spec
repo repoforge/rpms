@@ -9,7 +9,7 @@
 
 Summary: A complete modern object system for Perl 5
 Name: perl-Moose
-Version: 0.33
+Version: 0.34
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,7 +48,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README
 %doc %{_mandir}/man3/Moose.3pm*
 %doc %{_mandir}/man3/Moose::*.3pm*
 %doc %{_mandir}/man3/oose.3pm*
@@ -60,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Moose.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.34-1
+- Updated to release 0.34.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.33-1
 - Updated to release 0.33.
 

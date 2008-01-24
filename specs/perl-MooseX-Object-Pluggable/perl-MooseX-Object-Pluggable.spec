@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Guillermo Roditi <groditi$gmail,com>
+# Upstream: Guillermo Roditi <groditi$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,9 +9,9 @@
 
 Summary: Perl module to make your classes pluggable
 Name: perl-MooseX-Object-Pluggable
-Version: 0.0005
+Version: 0.0007
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MooseX-Object-Pluggable/
 
@@ -55,5 +55,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MooseX/Object/Pluggable.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.0007-1
+- Updated to release 0.0007.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.0005-1
 - Initial package. (using DAR)

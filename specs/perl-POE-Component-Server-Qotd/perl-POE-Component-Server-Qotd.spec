@@ -7,9 +7,9 @@
 
 %define real_name POE-Component-Server-Qotd
 
-Summary: POE component implementing a RFC 865 QotD server
+Summary: POE component that implements an RFC 865 QotD server
 Name: perl-POE-Component-Server-Qotd
-Version: 1.07
+Version: 1.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -24,7 +24,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More) >= 0.47
 
 %description
-A POE component implementing a RFC 865 QotD server.
+A POE component that implements an RFC 865 QotD server.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -56,6 +56,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Component/Server/Qotd.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.08-1
+- Updated to release 1.08.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.07-1
 - Updated to release 1.07.
 

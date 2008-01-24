@@ -7,9 +7,9 @@
 
 %define real_name POE-Component-Client-Whois
 
-Summary: Non-blocking RFC812 Whois query
+Summary: One shot non-blocking RFC 812 WHOIS query
 Name: perl-POE-Component-Client-Whois
-Version: 1.11
+Version: 1.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -58,6 +58,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Component/Client/Whois.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.12-1
+- Updated to release 1.12.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.11-1
 - Updated to release 1.11.
 

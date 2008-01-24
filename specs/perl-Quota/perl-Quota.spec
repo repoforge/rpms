@@ -6,11 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Quota
-%define real_version 1.006001
+%define real_version 1.006002
 
 Summary: Perl interface to file system quotas
 Name: perl-Quota
-Version: 1.6.1
+Version: 1.6.2
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -60,6 +60,9 @@ find contrib/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Quota.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.6.2-1
+- Updated to release 1.6.2.
+
 * Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 1.6.1-1
 - Updated to release 1.6.1.
 

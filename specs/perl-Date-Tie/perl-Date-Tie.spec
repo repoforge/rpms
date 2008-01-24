@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Fl&#225;vio Soibelmann Glock <fglock$pucrs,br>
+# Upstream: Flávio Soibelmann Glock <fglock$gmail,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: Perlish interface to dates
 Name: perl-Date-Tie
-Version: 0.17
-Release: 1.2
+Version: 0.18
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Tie/
@@ -46,16 +46,24 @@ the other keys following the common (ISO) date rules.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README
-%doc %{_mandir}/man3/*
+%doc CHANGES MANIFEST META.yml README TODO eg/
+%doc %{_mandir}/man3/Date::Tie.3pm*
+%dir %{perl_vendorlib}/Date/
+#%{perl_vendorlib}/Date/Tie/
 %{perl_vendorlib}/Date/Tie.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.18-1
+- Updated to release 0.18.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.17-1.2
 - Rebuild for Fedora Core 5.
 

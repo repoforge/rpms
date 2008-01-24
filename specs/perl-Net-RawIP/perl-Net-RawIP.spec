@@ -15,14 +15,13 @@
 
 Summary: Manipulate raw ip packets with interface to libpcap
 Name: perl-Net-RawIP
-Version: 0.21
+Version: 0.23
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-RawIP/
 
 Source: http://www.cpan.org/modules/by-module/Net/Net-RawIP-%{version}.tar.gz
-Patch: gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -36,7 +35,7 @@ with an optional feature for manipulating Ethernet headers.
 
 %prep
 %setup -n %{real_name}-%{version}
-#patch -p1
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' Makefile.PL
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -58,7 +57,7 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST MANIFEST.SKIP META.yml README README.Devel examples/
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README README.Devel TODO examples/
 %doc %{_mandir}/man3/Net::RawIP.3pm*
 %doc %{_mandir}/man3/Net::RawIP::libpcap.3pm*
 %dir %{perl_vendorarch}/auto/Net/
@@ -68,6 +67,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Net/RawIP.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.23-1
+- Updated to release 0.23.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.21-1
 - Updated to release 0.21.
 

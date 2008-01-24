@@ -9,7 +9,7 @@
 
 Summary: Perl module for unixODBC
 Name: perl-UnixODBC
-Version: 0.33
+Version: 0.34
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -22,10 +22,6 @@ BuildRequires: perl
 
 %description
 perl-UnixODBC is a Perl module for unixODBC.
-
-This package contains the following Perl module:
-
-    UnixODBC
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -51,9 +47,12 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %defattr(-, root, root, 0755)
 %doc Artistic README eg/
 %doc %{_mandir}/man3/UnixODBC.3pm*
-%{perl_vendorarch}/UnixODBC.pm
 %{perl_vendorarch}/auto/UnixODBC/
+%{perl_vendorarch}/UnixODBC.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.34-1
+- Updated to release 0.34.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.33-1
 - Initial package. (using DAR)

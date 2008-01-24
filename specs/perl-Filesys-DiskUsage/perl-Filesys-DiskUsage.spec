@@ -1,29 +1,28 @@
 # $Id$
-# Authority: dries
-# Upstream: Andy Lester <andy$petdance,com>
+# Authority: dag
+# Upstream: José Alves de Castro <cog$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name File-Next
+%define real_name Filesys-DiskUsage
 
-Summary: File-finding iterator
-Name: perl-File-Next
-Version: 1.02
+Summary: Estimate file space usage (similar to `du`)
+Name: perl-Filesys-DiskUsage
+Version: 0.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/File-Next/
+URL: http://search.cpan.org/dist/Filesys-DiskUsage/
 
-Source: http://www.cpan.org/modules/by-module/File/File-Next-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Filesys/Filesys-DiskUsage-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
-File-finding iterator.
+Estimate file space usage (similar to `du`).
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -45,16 +44,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
-%doc %{_mandir}/man3/File::Next.3pm*
-%dir %{perl_vendorlib}/File/
-%{perl_vendorlib}/File/Next.pm
+%doc %{_mandir}/man3/Filesys::DiskUsage.3pm*
+%dir %{perl_vendorlib}/Filesys/
+#%{perl_vendorlib}/Filesys/DiskUsage/
+%{perl_vendorlib}/Filesys/DiskUsage.pm
 
 %changelog
-* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.02-1
-- Updated to release 1.02.
-
-* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.00-1
-- Updated to release 1.00.
-
-* Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.38-1
-- Initial package.
+* Thu Jan 24 2008 Dag Wieers <dag@wieers.com> - 0.04-1
+- Initial package. (using DAR)

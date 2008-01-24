@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dries
-# Upstream: Kim Ryan <kimryan%20nospam$cpan,org>
+# Upstream: Kim Ryan <kimryan$cpan org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Locale-SubCountry
 
-Summary: Convert state, county, province etc names to/from code
+Summary: Convert state, province, county ... names to/from ISO 3166-2 code
 Name: perl-Locale-SubCountry
-Version: 1.38
+Version: 1.40
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -43,16 +43,24 @@ Codes for the representation of names of countries and their subdivisions".
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/Locale::SubCountry.3pm*
+%dir %{perl_vendorlib}/Locale/
+#%{perl_vendorlib}/Locale/SubCountry/
 %{perl_vendorlib}/Locale/SubCountry.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.40-1
+- Updated to release 1.40.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.38-1
 - Updated to release 1.38.
 

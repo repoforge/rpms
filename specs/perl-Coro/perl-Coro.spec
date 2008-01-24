@@ -10,7 +10,7 @@
 Summary: Coroutine process abstraction
 Name: perl-Coro
 ### FIXME: Versions >= 4.31 require perl-BDB and db4 >= 4.4
-Version: 4.34
+Version: 4.37
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -65,6 +65,9 @@ find doc/ eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Coro.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 4.37-1
+- Updated to release 4.37.
+
 * Fri Dec 28 2007 Dag Wieers <dag@wieers.com> - 4.34-1
 - Updated to release 4.34.
 

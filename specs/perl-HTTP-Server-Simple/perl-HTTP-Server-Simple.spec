@@ -9,7 +9,7 @@
 
 Summary: Simple standalone HTTP daemon
 Name: perl-HTTP-Server-Simple
-Version: 0.27
+Version: 0.28
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,14 +46,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3*
+%doc Changes MANIFEST META.yml README SIGNATURE
+%doc %{_mandir}/man3/HTTP::Server::Simple.3pm*
+%doc %{_mandir}/man3/HTTP::Server::Simple::*.3pm*
 %dir %{perl_vendorlib}/HTTP/
 %dir %{perl_vendorlib}/HTTP/Server/
-%{perl_vendorlib}/HTTP/Server/Simple.pm
 %{perl_vendorlib}/HTTP/Server/Simple/
+%{perl_vendorlib}/HTTP/Server/Simple.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.28-1
+- Updated to release 0.28.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.27-1
 - Updated to release 0.27.
 

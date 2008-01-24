@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dag
-# Upstream: Brian Cassidy <bricas@cpan.org>
+# Upstream: Brian Cassidy <bricas$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name URI-Template
 
-Summary: Perl module that provides an object for handling URI templates
+Summary: Object for handling URI templates
 Name: perl-URI-Template
-Version: 0.09
+Version: 0.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,14 +20,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Test::More)
 
 %description
 perl-URI-Template is a Perl module that provides an object
 for handling URI templates.
-
-This package contains the following Perl module:
-
-    URI::Template
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -48,12 +45,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
+%doc Changes MANIFEST META.yml
 %doc %{_mandir}/man3/URI::Template.3pm*
 %dir %{perl_vendorlib}/URI/
 #%{perl_vendorlib}/URI/Template/
 %{perl_vendorlib}/URI/Template.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.10-1
+- Updated to release 0.10.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.09-1
 - Initial package. (using DAR)

@@ -29,23 +29,24 @@ as possible.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
+%post
+if [ -x /usr/sbin/alternatives ]; then
+    /usr/sbin/alternatives --install /etc/alternatives/sh sh %{_bindir}/dash 20 --slave /etc/alternatives/sh.1.gz sh.1.gz %{_mandir}/man1/dash.1.gz
+fi
+
+%postun
+if [ -x /usr/sbin/alternatives ]; then
+    /usr/sbin/alternatives --remove sh %{_bindir}/dash
+fi
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
+%doc ChangeLog COPYING INSTALL
 %doc %{_mandir}/man1/dash.1*
 %{_bindir}/dash
-
-%post
-if [ -x /usr/sbin/alternatives ]; then
-    /usr/sbin/alternatives --install /etc/alternatives/sh sh /bin/dash 20 --slave /etc/alternatives/sh.1.gz sh.1.gz /usr/share/man/man1/dash.1.gz
-fi
-
-%postun
-if [ -x /usr/sbin/alternatives ]; then
-    /usr/sbin/alternatives --remove sh /bin/dash
-fi
 
 %changelog
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.5.4-1

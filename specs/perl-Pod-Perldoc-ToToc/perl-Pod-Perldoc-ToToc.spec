@@ -7,9 +7,9 @@
 
 %define real_name Pod-Perldoc-ToToc
 
-Summary: Translates Pod to a table of contents
+Summary: Turn one or more Pod files into a table of contents
 Name: perl-Pod-Perldoc-ToToc
-Version: 1.07
+Version: 1.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Pod/TOC.pm
 
 %changelog
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.08-1
+- Updated to release 1.08.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.07-1
 - Updated to release 1.07.
 

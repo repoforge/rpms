@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Ton Hospel <cpan$ton,iguana,be>
+# Upstream: Ton Hospel <Heap-Simple$ton,iguana,be>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: Heap structures
 Name: perl-Heap-Simple
-Version: 0.11
-Release: 1.2
+Version: 0.12
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Heap-Simple/
@@ -46,13 +46,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README
+%doc %{_mandir}/man3/Heap::Simple.3pm*
+%dir %{perl_vendorlib}/Heap/
+%{perl_vendorlib}/Heap/Simple/
 %{perl_vendorlib}/Heap/Simple.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.11-1.2
-- Rebuild for Fedora Core 5.
+* Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.12-1
+- Updated to release 0.12.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.11-1
 - Initial package.
