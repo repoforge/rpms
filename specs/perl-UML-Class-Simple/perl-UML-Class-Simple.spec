@@ -21,6 +21,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 0:5.004
 BuildRequires: perl(Test::More)
+BuildRequires: perl(File::Slurp)
+BuildRequires: perl(YAML::Syck)
+BuildRequires: perl(PPI)
+BuildRequires: perl(IPC::Run3)
+BuildRequires: perl(List::MoreUtils)
+BuildRequires: perl(Template)
 Requires: perl >= 0:5.004
 
 %description
