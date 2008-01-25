@@ -21,6 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 2:5.8.0
 BuildRequires: perl(Test::More)
+BuildRequires: perl(Best)
+BuildRequires: perl(YAML::Syck)
 Requires: perl >= 2:5.8.0
 
 %description
