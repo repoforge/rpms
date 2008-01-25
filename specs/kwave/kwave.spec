@@ -14,7 +14,7 @@ Source: http://dl.sf.net/kwave/kwave-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, libtool, gettext, recode, gsl-devel, kdelibs-devel, ImageMagick, kdesdk
-BuildRequires: libmad-devel, id3lib-devel, flac-devel, kdemultimedia-devel
+BuildRequires: libmad-devel, id3lib-devel, flac-devel, kdemultimedia-devel, cmake
 Requires: ImageMagick
 
 %description

@@ -18,7 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: scrollkeeper, gcc-c++, libgnomeui-devel
 BuildRequires: libgnomeprintui22-devel, gail-devel
-BuildRequires: intltool, gettext, perl-XML-Parser
+BuildRequires: intltool, gettext, perl-XML-Parser, desktop-file-utils
 
 %description
 GHex allows the user to load data from any file, view and edit it in either

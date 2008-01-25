@@ -13,6 +13,8 @@ Source: http://dl.sf.net/k9copy/k9copy-%{version}.tar.gz
 Source1: http://dl.sf.net/vamps/vamps-0.99.2.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: kde-devel, gettext, gcc-c++
+
 %description
 k9copy is a DVD backup utility which allows copying of one or more titles
 from a 9.6 GB DVD to a normal DVD.
