@@ -20,6 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Cache)
+BuildRequires: perl(Class::ErrorHandler)
 
 %description
 Smart URI fetching/caching.
