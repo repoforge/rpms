@@ -5,7 +5,7 @@ Name:			opensolaris-gdm-themes
 License:		LGPL
 Group:			System/GUI/GNOME
 BuildArchitectures:	noarch
-Version:		0.1
+Version:		0.2
 Release:		1
 Distribution:		Mercury
 Vendor:			OpenSolaris Project.
@@ -47,5 +47,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gdm/themes/*
 
 %changelog
+* Sat Jan 26 2008 Heiko Adams <info-2007@fedora-blog.de> 0.2-1
+- Version update to 0.2
+
 * Wed Nov 21 2007 Heiko Adams <info@fedora-blog.de> 0.1-1
 - Initial CentOS Build
