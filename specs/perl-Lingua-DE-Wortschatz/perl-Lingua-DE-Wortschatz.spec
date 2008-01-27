@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Daniel Schr&#246;er <schroeer$cpan,org>
+# Upstream: Daniel Schroeer <schroeer$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: Wortschatz.uni-leipzig.de webservice client
 Name: perl-Lingua-DE-Wortschatz
-Version: 1.23
-Release: 1.2
+Version: 1.24
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-DE-Wortschatz/
@@ -44,12 +44,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man3/*
-%doc %{_mandir}/man1/*
+%doc MANIFEST META.yml README
+%doc %{_mandir}/man1/wsws.pl.1*
+%doc %{_mandir}/man3/Lingua::DE::Wortschatz.3pm*
 %{_bindir}/wsws.pl
+%dir %{perl_vendorlib}/Lingua/
+%dir %{perl_vendorlib}/Lingua/DE/
+#%{perl_vendorlib}/Lingua/DE/Wortschatz/
 %{perl_vendorlib}/Lingua/DE/Wortschatz.pm
 
 %changelog
+* Sat Jan 26 2008 Dag Wieers <dag@wieers.com> - 1.24-1
+- Updated to release 1.24.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.23-1
 - Initial package.

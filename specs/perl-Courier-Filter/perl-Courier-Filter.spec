@@ -7,17 +7,16 @@
 
 %define real_name Courier-Filter
 
-Summary: A purely Perl-based mail filter framework for the Courier MTA
+Summary: Purely Perl-based mail filter framework for the Courier MTA
 Name: perl-Courier-Filter
 Version: 0.17
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Courier-Filter/
 
 Source: http://www.cpan.org/authors/id/J/JM/JMEHNLE/courier-filter/Courier-Filter-%{version}.tar.gz
-#Source1: pureperlfilter.conf
-#Patch0: Courier-Filter-Build.patch
+Patch0: Courier-Filter-0.17-message.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -31,7 +30,7 @@ A purely Perl-based mail filter framework for the Courier MTA.
 
 %prep
 %setup -n %{real_name}-%{version}
-#patch0 -p1
+%patch0 -p0
 
 %build
 #%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -62,5 +61,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{_datadir}/courier-filter-perl/
 
 %changelog
+* Sat Jan 26 2008 Dag Wieers <dag@wieers.com> - 0.17-2
+- Added patch.
+
 * Mon Nov 12 2007 Dag Wieers <dag@wieers.com> - 0.17-1
 - Initial package. (using DAR)

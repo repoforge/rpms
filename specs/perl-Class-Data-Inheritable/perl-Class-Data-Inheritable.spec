@@ -6,11 +6,11 @@
 
 %define real_name Class-Data-Inheritable
 
-Summary: Class-Data-Inheritable module for perl
+Summary: Inheritable, overridable class data
 Name: perl-Class-Data-Inheritable
-Version: 0.06
+Version: 0.08
 Release: 1
-License: GPL or Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Data-Inheritable/
 
@@ -22,7 +22,7 @@ BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
-Class-Data-Inheritable module for perl
+Inheritable, overridable class data.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -38,28 +38,34 @@ Class-Data-Inheritable module for perl
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find doc/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README doc/
+%doc %{_mandir}/man3/Class::Data::Inheritable.3pm*
 %dir %{perl_vendorlib}/Class/
 %dir %{perl_vendorlib}/Class/Data/
-%dir %{perl_vendorlib}/Class/Data/Inheritable.pm
+#%{perl_vendorlib}/Class/Data/Inheritable/
+%{perl_vendorlib}/Class/Data/Inheritable.pm
+
 
 %changelog
+* Sat Jan 26 2008 Dag Wieers <dag@wieers.com> - 0.08-1
+- Updated to release 0.08.
+
 * Sat Sep 23 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Updated to release 0.06.
 
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Updated to release 0.05.
 
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Updated to release 0.04.
 
 * Thu Mar 31 2005 Dag Wieers <dag@wieers.com> - 0.02-1
-Initial package. (using DAR)
+- Initial package. (using DAR)

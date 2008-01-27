@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Uri Guttman <uri$sysarch,com>
+# Upstream: Uri Guttman <uri$stemsystems,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Efficient reading and writing of complete files
 Name: perl-File-Slurp
-Version: 9999.12
+Version: 9999.13
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -37,19 +37,28 @@ in a directory.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/File::Slurp.3pm*
+%dir %{perl_vendorlib}/File/
+#%{perl_vendorlib}/File/Slurp/
 %{perl_vendorlib}/File/Slurp.pm
 
 %changelog
+* Sat Jan 26 2008 Dag Wieers <dag@wieers.com> - 9999.13-1
+- Updated to release 9999.13.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 9999.12-1
 - Updated to release 9999.12.
 

@@ -9,7 +9,7 @@
 
 Summary: Infrastructure plugin for the Catalyst
 Name: perl-Catalyst-Plugin-Authentication
-Version: 0.10004
+Version: 0.10005
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,5 +59,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Catalyst/Plugin/Authentication.pm
 
 %changelog
+* Sat Jan 26 2008 Dag Wieers <dag@wieers.com> - 0.10005-1
+- Updated to release 0.10005.
+
 * Sun Dec 30 2007 Dag Wieers <dag@wieers.com> - 0.10004-1
 - Initial package. (using DAR)

@@ -7,20 +7,23 @@
 
 %define real_name Module-Find
 
-Summary: Perl module to find and use installed modules in a (sub)category
+Summary: Find and use installed modules in a (sub)category
 Name: perl-Module-Find
-Version: 0.05
+Version: 0.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Find/
 
-Source: http://www.cpan.org/modules/by-module/Module/Module-Find-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/C/CR/CRENZ/Module-Find-%{version}.tar.gz
+#Source: http://www.cpan.org/modules/by-module/Module/Module-Find-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::Pod) >= 1.14
+BuildRequires: perl(Test::Pod::Coverage) >= 1.04
 
 %description
 Module::Find lets you and use modules in categoris. This can be very useful
@@ -41,16 +44,23 @@ looking in the category itself or in all subcategories.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Module::Find*
-%dir %{perl_vendorlib}/Module
+%doc Changes MANIFEST MANIFEST.skip META.yml README examples/
+%doc %{_mandir}/man3/Module::Find.3pm*
+%dir %{perl_vendorlib}/Module/
+#%{perl_vendorlib}/Module/Find/
 %{perl_vendorlib}/Module/Find.pm
 
 %changelog
+* Sat Jan 26 2008 Dag Wieers <dag@wieers.com> - 0.06-1
+- Updated to release 0.06.
+
 * Fri Aug 11 2006 Al Pacifico <adpacifico@users.sourceforge.net> - 0.05-1
 - Initial packaging.

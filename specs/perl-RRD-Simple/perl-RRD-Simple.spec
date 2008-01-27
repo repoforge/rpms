@@ -7,9 +7,9 @@
 
 %define real_name RRD-Simple
 
-Summary: Interface to RRDTool
+Summary: Simple interface to create and store data in RRD files
 Name: perl-RRD-Simple
-Version: 1.43
+Version: 1.44
 Release: 1
 License: Apache 2.0
 Group: Applications/CPAN
@@ -21,6 +21,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Module::Build)
+BuildRequires: perl(Test)
+BuildRequires: perl(Test::More)
+Conflicts: perl(RRDTool::Managed)
 
 %description
 RRD::Simple provides a simple interface to RRDTool's RRDs module.
@@ -49,17 +52,26 @@ RRA definitions.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE NOTICE README TODO
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/RRD/Simple.pm
+%doc Changes INSTALL LICENSE MANIFEST META.yml NOTICE README TODO complain.txt examples/
+%doc %{_mandir}/man3/RRD::Simple.3pm*
+%doc %{_mandir}/man3/RRD::Simple::*.3pm*
+%dir %{perl_vendorlib}/RRD/
+#%{perl_vendorlib}/RRD/Simple/
 %{perl_vendorlib}/RRD/Simple/
+%{perl_vendorlib}/RRD/Simple.pm
 
 %changelog
+* Sat Jan 26 2008 Dag Wieers <dag@wieers.com> - 1.44-1
+- Updated to release 1.44.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.43-1
 - Updated to release 1.43.
 

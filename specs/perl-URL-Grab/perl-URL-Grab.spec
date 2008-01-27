@@ -9,7 +9,7 @@
 
 Summary: Perl module that drastically simplifies the fetching of files
 Name: perl-URL-Grab
-Version: 1.3
+Version: 1.4
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/URL/Grab.pm
 
 %changelog
+* Sat Jan 26 2008 Dag Wieers <dag@wieers.com> - 1.4-1
+- Updated to release 1.4.
+
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.3-1
 - Updated to release 1.3.
 

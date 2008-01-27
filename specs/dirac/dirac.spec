@@ -4,7 +4,7 @@
 
 Summary: General-purpose video codec
 Name: dirac
-Version: 0.8.0
+Version: 0.9.0
 Release: 1
 License: MPL 1.1
 Group: System Environment/Libraries
@@ -79,6 +79,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libdirac_encoder.la
 
 %changelog
+* Thu Jan 24 2008 Dag Wieers <dag@wieers.com> - 0.9.0-1
+- Updated to release 0.9.0.
+
 * Wed Oct 03 2007 Dag Wieers <dag@wieers.com> - 0.8.0-1
 - Updated to release 0.8.0.
 

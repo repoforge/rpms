@@ -4,7 +4,7 @@
 
 Summary: Email filtering application using sendmail's milter interface
 Name: mimedefang
-Version: 2.63
+Version: 2.64
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -43,27 +43,26 @@ complain loudly about MIMEDefang.
 
 %build
 %configure \
-	--with-milterlib="%{_libdir}" \
-	--with-pthread-flag \
-	--with-quarantinedir="%{_localstatedir}/spool/MD-Quarantine" \
-	--with-spooldir="%{_localstatedir}/spool/MIMEDefang"
+    --with-milterlib="%{_libdir}" \
+    --with-pthread-flag \
+    --with-quarantinedir="%{_localstatedir}/spool/MD-Quarantine" \
+    --with-spooldir="%{_localstatedir}/spool/MIMEDefang"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/mimedefang/
-%{__make} install-redhat \
-	RPM_INSTALL_ROOT="%{buildroot}"
+%{__make} install-redhat RPM_INSTALL_ROOT="%{buildroot}"
 
 
 %pre
 ### Old packages may have these...
 if [ -d %{_localstatedir}/spool/mimedefang -a ! -d %{_localstatedir}/spool/MIMEDefang ]; then
-	%{__mv} -f %{_localstatedir}/spool/mimedefang %{_localstatedir}/spool/MIMEDefang
+    %{__mv} -f %{_localstatedir}/spool/mimedefang %{_localstatedir}/spool/MIMEDefang
 fi
 
 if [ -d %{_localstatedir}/spool/quarantine -a ! -d %{_localstatedir}/spool/MD-Quarantine ]; then
-	%{__mv} -f %{_localstatedir}/spool/quarantine %{_localstatedir}/spool/MD-Quarantine
+    %{__mv} -f %{_localstatedir}/spool/quarantine %{_localstatedir}/spool/MD-Quarantine
 fi
 
 useradd -M -r -d %{_localstatedir}/spool/MIMEDefang -s /bin/false -c "MIMEDefang User" defang &>/dev/null || :
@@ -84,8 +83,8 @@ useradd -M -r -d %{_localstatedir}/spool/MIMEDefang -s /bin/false -c "MIMEDefang
 
 %preun
 if [ $1 -eq 0 ] ; then
-	/sbin/service mimedefang stop &>/dev/null || :
-	/sbin/chkconfig --del mimedefang
+    /sbin/service mimedefang stop &>/dev/null || :
+    /sbin/chkconfig --del mimedefang
 fi
 
 %postun
@@ -116,6 +115,9 @@ fi
 %dir %{_localstatedir}/spool/MD-Quarantine
 
 %changelog
+* Sat Jan 26 2008 Dag Wieers <dag@wieers.com> - 2.64-1
+- Updated to release 2.64.
+
 * Thu Aug 16 2007 Dag Wieers <dag@wieers.com> - 2.63-1
 - Updated to release 2.63.
 
