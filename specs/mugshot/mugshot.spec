@@ -2,7 +2,7 @@
 # Authority: hadams
 
 Name:           mugshot
-Version:        1.1.56
+Version:        1.1.58
 Release:        1
 Summary:        Companion software for mugshot.org
 
@@ -210,6 +210,7 @@ fi
 %{_datadir}/icons/hicolor/24x24/apps/*.png
 %{_datadir}/icons/hicolor/32x32/apps/*.png
 %{_datadir}/icons/hicolor/48x48/apps/*.png
+%{_datadir}/icons/hicolor/64x64/apps/*.png
 %{_datadir}/icons/hicolor/128x128/apps/*.png
 %{_datadir}/mugshot
 %ghost %{_datadir}/mugshot/version
@@ -227,6 +228,9 @@ fi
 %{_libdir}/*.so
 
 %changelog
+* Sun Jan 27 2008 Heiko Adams <info-2007@fedora-blog.de> - 1.1.58-1
+- 1.1.58
+
 * Sat Oct 19 2007 Heiko Adams <info@fedora-blog.de> - 1.1.56-1
 - 1.1.56
 
