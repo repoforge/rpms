@@ -4,9 +4,9 @@
 
 Summary: Sort files in sophisticated ways
 Name: msort
-%define real_version 8.40
-Version: 8.40
-Release: 2
+%define real_version 8.43
+Version: 8.43
+Release: 1
 License: GPL
 Group: Applications/Publishing
 URL: http://billposer.org/Software/msort.html
@@ -48,6 +48,9 @@ by an optional GUI.
 %{_bindir}/msort
 
 %changelog
+* Sun Jan 27 2008 Dries Verachtert <dries@ulyssis.org> - 8.43-1
+- Updated to release 8.43.
+
 * Sun Jun 17 2007 Dries Verachtert <dries@ulyssis.org> - 8.40-1
 - Rebuild against libuninum 2.5.
 
