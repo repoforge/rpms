@@ -4,7 +4,7 @@
 
 Summary: Rolls dices
 Name: roll
-Version: 1.1.2
+Version: 1.1.3
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -43,6 +43,9 @@ expressions (e.g., 2d8+4).
 %{_bindir}/roll
 
 %changelog
+* Tue Jan 29 2008 Dries Verachtert <dries@ulyssis.org> - 1.1.3-1
+- Updated to release 1.1.3.
+
 * Mon Sep  3 2007 Dries Verachtert <dries@ulyssis.org> - 1.1.2-1
 - Updated to release 1.1.2.
 
