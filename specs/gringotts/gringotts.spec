@@ -8,17 +8,17 @@
 
 Summary: Electronic strongbox
 Name: gringotts
-Version: 1.2.8
-Release: 1.2
+Version: 1.2.9
+Release: 1
 License: GPL
 Group: Applications/Productivity
 URL: http://devel.pluto.linux.it/projects/Gringotts/
 
-Source: http://devel.pluto.linux.it/projects/Gringotts/current/gringotts-%{version}.tar.bz2
+Source: http://download.berlios.de/gringotts/gringotts-%{version}.tar.gz
 Patch: gringotts-1.2.8-gtk24.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk2-devel, popt, textutils, libgringotts-devel >= 1.1.1, pkgconfig
+BuildRequires: gtk2-devel >= 2.12, popt, textutils, libgringotts-devel >= 1.1.1, pkgconfig
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 BuildRequires: libmcrypt-devel, gettext
 
@@ -57,11 +57,11 @@ EOF
 %find_lang %{name}
 
 %if %{!?_without_freedesktop:1}0
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor gnome --delete-original \
-		--add-category X-Red-Hat-Base                 \
-		--dir %{buildroot}%{_datadir}/applications    \
-		%{buildroot}%{_datadir}/gnome/apps/Utilities/gringotts.desktop
+    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+    desktop-file-install --vendor gnome --delete-original \
+        --add-category X-Red-Hat-Base                 \
+        --dir %{buildroot}%{_datadir}/applications    \
+        %{buildroot}%{_datadir}/gnome/apps/Utilities/gringotts.desktop
 %endif
 
 %clean
@@ -78,8 +78,8 @@ EOF
 %{_bindir}/gringotts
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.8-1.2
-- Rebuild for Fedora Core 5.
+* Mon Jan 28 2008 Dag Wieers <dag@wieers.com> - 1.2.9-1
+- Updated to release 1.2.9.
 
 * Wed Jun 29 2004 Dag Wieers <dag@wieers.com> - 1.2.8-1
 - Fix for gtk 2.4. (Rok Mandeljc)

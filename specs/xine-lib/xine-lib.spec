@@ -6,9 +6,9 @@
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{!?dtag:%define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el5: %define _with_modxorg 1}
+%{?fc6: %define _with_modxorg 1}
+%{?fc5: %define _with_modxorg 1}
 
 %{?el4:%define _with_speex104 1}
 
@@ -59,7 +59,7 @@
 
 Summary: Core library of the xine multimedia player
 Name: xine-lib
-Version: 1.1.9.1
+Version: 1.1.10
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -209,6 +209,9 @@ export SDL_CFLAGS="$(sdl-config --cflags)" SDL_LIBS="$(sdl-config --libs)"
 %exclude %{_libdir}/libxine.la
 
 %changelog
+* Mon Jan 28 2008 Dag Wieers <dag@wieers.com> - 1.1.10-1
+- Updated to release 1.1.10.
+
 * Fri Jan 18 2008 Dag Wieers <dag@wieers.com> - 1.1.9.1-1
 - Updated to release 1.1.9.1.
 

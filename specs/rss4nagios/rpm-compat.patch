@@ -1,0 +1,71 @@
+diff -Nur -x '*.orig' -x '*.rej' rss4nagios-1.0/README mezzanine_patched_rss4nagios-1.0/README
+--- rss4nagios-1.0/README	2006-07-07 07:44:45.000000000 -0400
++++ mezzanine_patched_rss4nagios-1.0/README	2006-07-07 14:45:28.000000000 -0400
+@@ -32,7 +32,7 @@
+ 
+ Installation
+ ------------
+-By default, data is held in /usr/local/nagios/rss. Make sure this
++By default, data is held in /var/log/nagios/rss. Make sure this
+ directory exists and is writeable by nagios user. 
+ 
+ Each contact will have their own rss file in the data directory. 
+@@ -40,10 +40,10 @@
+ tree, so only the CGI can access it.
+ 
+ There are 3 files: 
+-  - etc/rss.cfg. Create this based on rss.cfg.in
+-  - bin/rss-multiuser, this is the notification script. It updates the users
++  - /etc/nagios/rss.cfg. Create this based on rss.cfg.in
++  - /usr/lib/nagios/plugins/rss-multiuser, this is the notification script. It updates the users
+ 	RSS file
+-  - sbin/rss.cgi. This is your CGI script. You can use any RSS reader
++  - /usr/lib/nagios/cgi/rss.cgi. This is your CGI script. You can use any RSS reader
+ 	to read. Requires basic HTTP authentication.
+ 
+ Note: When copying these files, it is left to you to set appropriate permissions
+@@ -52,7 +52,7 @@
+ 
+ define command {
+         command_name service-notify-by-rss
+-        command_line /usr/local/nagios/bin/rss-multiuser
++        command_line /usr/lib/nagios/plugins/rss-multiuser
+ }
+ 
+ For each contact, add service-notify-by-rss as one of their notification
+diff -Nur -x '*.orig' -x '*.rej' rss4nagios-1.0/rss.cfg.in mezzanine_patched_rss4nagios-1.0/rss.cfg.in
+--- rss4nagios-1.0/rss.cfg.in	2006-05-23 11:53:51.000000000 -0400
++++ mezzanine_patched_rss4nagios-1.0/rss.cfg.in	2006-07-07 14:44:34.000000000 -0400
+@@ -13,7 +13,7 @@
+ $extinfo = "/nagios/cgi-bin/extinfo.cgi";
+ 
+ # Which directory to store rss files, saved as contactname.rss
+-$rssdir = "/usr/local/nagios/rss";
++$rssdir = "/var/log/nagios/rss";
+ 
+ # Maximum number of RSS items
+ $max = 15;
+diff -Nur -x '*.orig' -x '*.rej' rss4nagios-1.0/rss.cgi mezzanine_patched_rss4nagios-1.0/rss.cgi
+--- rss4nagios-1.0/rss.cgi	2006-05-23 09:34:07.000000000 -0400
++++ mezzanine_patched_rss4nagios-1.0/rss.cgi	2006-07-07 14:44:34.000000000 -0400
+@@ -30,7 +30,7 @@
+ use CGI;
+ use CGI::Carp qw(fatalsToBrowser);
+ 
+-{ package Settings; do "/usr/local/nagios/etc/rss.cfg" }
++{ package Settings; do "/etc/nagios/rss.cfg" }
+ 
+ $CGI::DISABLE_UPLOADS = 1;
+ $CGI::POST_MAX = 102400;   # 100 Kb
+diff -Nur -x '*.orig' -x '*.rej' rss4nagios-1.0/rss-multiuser mezzanine_patched_rss4nagios-1.0/rss-multiuser
+--- rss4nagios-1.0/rss-multiuser	2006-06-23 10:59:55.000000000 -0400
++++ mezzanine_patched_rss4nagios-1.0/rss-multiuser	2006-07-07 14:44:34.000000000 -0400
+@@ -4,7 +4,7 @@
+ use XML::RSS;
+ use CGI;
+ 
+-{ package Settings; do "/usr/local/nagios/etc/rss.cfg" }
++{ package Settings; do "/etc/nagios/rss.cfg" }
+ 
+ my $q = new CGI;
+ 

@@ -2,15 +2,17 @@
 # Authority: dag
 # Upstream: Vladimir Ivaschenko <vi$maks,net>
 
+%define real_version 0.7
+
 Summary: Proxy ARP IP bridging daemon
 Name: parprouted
-Version: 0.63
-Release: 1.2
+Version: 0.70
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.hazard.maks.net/
 
-Source: http://www.hazard.maks.net/parprouted/parprouted-%{version}.tar.gz
+Source: http://www.hazard.maks.net/parprouted/parprouted-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -22,7 +24,7 @@ in the wired Ethernet networks. Also this daemon is useful for making
 transparent firewalls.
 
 %prep
-%setup
+%setup -n %{name}-%{real_version}
 
 %build
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
@@ -43,8 +45,8 @@ transparent firewalls.
 %{_bindir}/parprouted
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.63-1.2
-- Rebuild for Fedora Core 5.
+* Mon Jan 28 2008 Dag Wieers <dag@wieers.com> - 0.70-1
+- Updated to release 0.7.
 
 * Sun Nov 27 2005 Dag Wieers <dag@wieers.com> - 0.63-1
 - Initial package. (using DAR)

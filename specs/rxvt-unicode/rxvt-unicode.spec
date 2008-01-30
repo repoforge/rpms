@@ -24,13 +24,13 @@
 
 Summary: Unicode version of rxvt
 Name: rxvt-unicode
-Version: 8.7
+Version: 9.01
 Release: 1
 License: GPL
 Group: User Interface/X
 URL: http://software.schmorp.de/
 
-Source: http://dist.schmorp.de/rxvt-unicode/rxvt-unicode-%{version}.tar.bz2
+Source: http://dist.schmorp.de/rxvt-unicode/Attic/rxvt-unicode-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
@@ -126,6 +126,9 @@ desktop-file-install --vendor=%{desktop_vendor} \
 %{_libdir}/urxvt/
 
 %changelog
+* Mon Jan 28 2008 Dag Wieers <dag@wieers.com> - 9.0-1
+- Updated to release 9.0.
+
 * Sun Nov 25 2007 Dag Wieers <dag@wieers.com> - 8.7-1
 - Updated to release 8.7.
 
