@@ -9,8 +9,8 @@
 
 Summary: Validate XML against a subset of W3C XML Schemas
 Name: perl-XML-Validator-Schema
-Version: 1.08
-Release: 1.2
+Version: 1.09
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Validator-Schema/
@@ -49,9 +49,12 @@ the SCHEMA SUPPORT section in the module documention.
 %doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/XML/Validator/Schema.pm
-%{perl_vendorlib}/XML/Validator/Schema/*
+%{perl_vendorlib}/XML/Validator/Schema/
 
 %changelog
+* Thu Jan 31 2008 Dries Verachtert <dries@ulyssis.org> - 1.09-1
+- Updated to release 1.09.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.08-1.2
 - Rebuild for Fedora Core 5.
 

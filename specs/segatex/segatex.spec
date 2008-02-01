@@ -4,7 +4,7 @@
 
 Summary: Create SELinux policies
 Name: segatex
-Version: 4.20
+Version: 4.50
 Release: 1
 License: GPL
 Group: Applications/System
@@ -62,6 +62,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*-segatex.desktop
 
 %changelog
+* Thu Jan 31 2008 Dries Verachtert <dries@ulyssis.org> - 4.50-1
+- Updated to release 4.50.
+
 * Sun Jan 06 2008 Dries Verachtert <dries@ulyssis.org> - 4.20-1
 - Updated to release 4.20.
 
