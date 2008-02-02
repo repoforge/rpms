@@ -10,7 +10,7 @@ License: MIT
 URL: http://epydoc.sourceforge.net/
 Source: http://dl.sf.net/epydoc/epydoc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: python
+BuildRequires: python, python-devel
 BuildArch: noarch
 
 %description
