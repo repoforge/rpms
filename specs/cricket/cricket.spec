@@ -119,7 +119,7 @@ fi
 %config(noreplace) %{httpd_dir}/*
 %{app_dir}
 
-%doc [A-Z]* doc sample-config
+%doc CHANGES COPYING DEV-INFO README THANKS TODO VERSION doc sample-config
 
 %changelog
 * Wed Apr 06 2005 Wil Cooley <wcooley@nakedape.cc> - 1.0.5-6.nac.0.0
