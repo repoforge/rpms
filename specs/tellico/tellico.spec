@@ -9,7 +9,7 @@
 
 Summary: collection manager
 Name: tellico
-Version: 1.2.14
+Version: 1.3
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -39,7 +39,7 @@ directly from Amazon.com.
 
 %build
 source /etc/profile.d/qt.sh
-%configure
+%configure CPPFLAGS=-I%{_includedir}/kde
 %{__make} %{?_smp_mflags}
 
 %install
@@ -66,14 +66,19 @@ source /etc/profile.d/qt.sh
 %dir %{_datadir}/apps/kconf_update/
 %{_datadir}/apps/kconf_update/tellico.upd
 %{_datadir}/apps/kconf_update/tellico-rename.upd
+%{_datadir}/apps/kconf_update/tellico-1-3-update.pl
 %{_datadir}/apps/tellico/
 %{_datadir}/icons/hicolor/*/apps/tellico.png
-%{_datadir}/icons/hicolor/*/mimetypes/tellico.png
+%{_datadir}/icons/hicolor/*/mimetypes/application-x-tellico.png
+%{_datadir}/mime/packages/tellico.xml
 %{_datadir}/mimelnk/application/x-tellico.desktop
 %{_datadir}/config.kcfg/tellico_config.kcfg
 %{_datadir}/config/tellicorc
 
 %changelog
+* Sun Feb  3 2008 Dries Verachtert <dries@ulyssis.org> - 1.3-1
+- Updated to release 1.3.
+
 * Mon Sep 24 2007 Dries Verachtert <dries@ulyssis.org> - 12.14-1
 - Updated to release 1.2.14.
 
