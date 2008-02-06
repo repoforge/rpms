@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-%{!?audio:%define audio alsa}
+%{!?audio:%define audio alsa esd oss sdl}
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
@@ -17,22 +17,22 @@
 %{?fc2:%define _without_jack 1}
 %{?fc2:%define _without_nas 1}
 
-%{?fc1:%define audio esd}
+%{?fc1:%define audio esd oss}
 %{?fc1:%define _without_alsa 1}
 %{?fc1:%define _without_jack 1}
 %{?fc1:%define _without_nas 1}
 
-%{?el3:%define audio esd}
+%{?el3:%define audio esd oss sdl}
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_jack 1}
 %{?el3:%define _without_nas 1}
 
-%{?rh9:%define audio esd}
+%{?rh9:%define audio esd oss sdl}
 %{?rh9:%define _without_alsa 1}
 %{?rh9:%define _without_jack 1}
 %{?rh9:%define _without_nas 1}
 
-%{?rh7:%define audio esd}
+%{?rh7:%define audio esd oss sdl}
 %{?rh7:%define _without_alsa 1}
 %{?rh7:%define _without_jack 1}
 %{?rh7:%define _without_nas 1}
@@ -45,7 +45,7 @@
 
 Summary: MPEG audio player
 Name: mpg123
-Version: 1.1.0
+Version: 1.2.0
 Release: 1
 License: GPL/LGPL
 Group: Applications/Multimedia
@@ -84,6 +84,8 @@ you will need to install %{name}-devel.
 %setup
 
 %build
+export SDL_CFLAGS="$(sdl-config --cflags)"
+export SDL_LIBS="$(sdl-config --libs)"
 %configure \
     --program-prefix="%{?_program_prefix}" \
     --enable-gapless="yes" \
@@ -100,11 +102,11 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README doc/
+%doc %{_mandir}/man1/mpg123.1*
 %{_bindir}/mpg123
-%{_mandir}/man1/mpg123.1*
 %{_libdir}/libmpg123.so.*
 %{_libdir}/mpg123/
-%exclude %{_libdir}/mpg123/*.la
+#exclude %{_libdir}/mpg123/*.la
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -114,6 +116,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libmpg123.la
 
 %changelog
+* Sun Feb 03 2008 Dag Wieers <dag@wieers.com> - 1.2.0-1
+- Updated to release 1.2.0.
+
 * Fri Jan 18 2008 Dag Wieers <dag@wieers.com> - 1.1.0-1
 - Updated to release 1.1.0.
 

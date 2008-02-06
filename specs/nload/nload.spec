@@ -41,11 +41,8 @@ network usage.
 %{_bindir}/nload
 
 %changelog
-* Sun Jan  3 2008 Dries Verachtert <dries@ulyssis.org> - 0.7.0-1
+* Sun Feb 03 2008 Dag Wieers <dag@wieers.com> - 0.7.0-1
 - Updated to release 0.7.0.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.0-1.2
-- Rebuild for Fedora Core 5.
 
 * Fri Jan 27 2006 Dag Wieers <dag@wieers.com> - 0.6.0-1
 - Initial package. (using DAR)

@@ -16,7 +16,6 @@ Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-SAX/
 
 Source: http://www.cpan.org/modules/by-module/XML/XML-SAX-%{version}.tar.gz
-Source1: ParserDetails.ini
 #Patch0: perl-XML-SAX-parsers.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -34,7 +33,17 @@ perl-XML-SAX is a Perl module that implements a simple API for XML.
 
 %prep
 %setup -n %{real_name}-%{version}
-#patch
+
+%{__cat} <<EOF >ParserDetails.ini
+[XML::SAX::PurePerl]
+http://xml.org/sax/features/namespaces = 1
+
+[XML::LibXML::SAX::Parser]
+http://xml.org/sax/features/namespaces = 1
+
+[XML::LibXML::SAX]
+http://xml.org/sax/features/namespaces = 1
+EOF
 
 %build
 echo "N" | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -43,6 +52,8 @@ echo "N" | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_pre
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
+
+#%{__install} -Dp -m0644 ParserDetails.ini %{buildroot}%{perl_vendorlib}/XML/SAX/ParserDetails.ini
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -53,12 +64,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes LICENSE MANIFEST META.yml README
-%doc %{_mandir}/man3/*.3pm*
-%{perl_vendorlib}/XML/SAX.pm
+%doc %{_mandir}/man3/XML::SAX.3pm*
+%doc %{_mandir}/man3/XML::SAX*.3pm*
+%dir %{perl_vendorlib}/XML/
 %{perl_vendorlib}/XML/SAX/
+%{perl_vendorlib}/XML/SAX.pm
 
 %changelog
-* Sun Aug 05 2007 Dag Wieers <dag@wieers.com>> - 0.16-1
+* Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 0.16-1
 - Updated to release 0.16.
 
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.15-1

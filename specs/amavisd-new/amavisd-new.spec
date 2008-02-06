@@ -12,7 +12,7 @@
 Summary: Mail virus-scanner
 Name: amavisd-new
 Version: 2.5.3
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ijs.si/software/amavisd/
@@ -34,6 +34,8 @@ Requires: perl(DB_File), perl(Digest::MD5) >= 2.22, perl(DBI) >= 1.43
 Requires: perl(Net::Cmd) >= 2.24
 
 Obsoletes: amavisd
+Obsoletes: amavisd-new-utils <= %{version}-%{release}
+Provides: amavisd-new-utils = %{version}-%{release}
 
 %description
 AMaViS is a program that interfaces a mail transfer agent (MTA) with
@@ -71,6 +73,18 @@ EOF
 %{__cat} <<EOF >amavisd.cron
 /usr/sbin/tmpwatch 720 %{_localstatedir}/virusmails/
 EOF
+
+%{__perl} -pi.orig -e '
+        s|^(my\(\$db_home\))\s*=.*$|$1 = "%{_localstatedir}/amavis/db";|;
+    ' amavisd-nanny
+
+%{__perl} -pi.orig -e '
+        s|/var/amavis/db|%{_localstatedir}/amavis/db|;
+    ' amavisd-agent
+
+%{__perl} -pi.orig -e '
+        s|^(\s\$socketname)\s*=.*$|$1 = "%{_localstatedir}/amavis/amavisd.sock";|;
+    ' amavisd-release
 
 %{__cat} <<'EOF' >amavisd.sysconfig
 ### Uncomment this if you want to use amavis with sendmail milter interface.
@@ -227,6 +241,10 @@ cd helper-progs
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/amavis/{db,tmp,var}/
 
 %{__install} -Dp -m0755 amavisd %{buildroot}%{_sbindir}/amavisd
+%{__install} -Dp -m0755 amavisd-agent %{buildroot}%{_sbindir}/amavisd-agent
+%{__install} -Dp -m0755 amavisd-nanny %{buildroot}%{_sbindir}/amavisd-nanny
+%{__install} -Dp -m0755 amavisd-release %{buildroot}%{_sbindir}/amavisd-release
+%{__install} -Dp -m0755 p0f-analyzer.pl %{buildroot}%{_sbindir}/p0f-analyzer
 %{__install} -Dp -m0755 amavisd.sysv %{buildroot}%{_initrddir}/amavisd
 %{__install} -Dp -m0700 amavisd.conf %{buildroot}%{_sysconfdir}/amavisd.conf
 %{__install} -Dp -m0644 LDAP.schema %{buildroot}%{_sysconfdir}/openldap/schema/amavisd-new.schema
@@ -294,6 +312,10 @@ fi
 %config(noreplace) %{_sysconfdir}/logrotate.d/amavisd
 %config(noreplace) %{_sysconfdir}/cron.daily/amavisd
 %{_sbindir}/amavisd
+%{_sbindir}/amavisd-agent
+%{_sbindir}/amavisd-nanny
+%{_sbindir}/amavisd-release
+%{_sbindir}/p0f-analyzer
 
 %defattr(0640, root, amavis, 0755)
 %config(noreplace) %{_sysconfdir}/amavisd.conf
@@ -313,6 +335,9 @@ fi
 %{_sbindir}/amavis-milter
 
 %changelog
+* Mon Jan 28 2008 Dag Wieers <dag@wieers.com> - 2.5.3-2
+- Added missing amavisd helper-utils. (Ralph Angenendt)
+
 * Mon Dec 31 2007 Dag Wieers <dag@wieers.com> - 2.5.3-1
 - Updated to release 2.5.3.
 

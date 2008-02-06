@@ -11,8 +11,8 @@
 
 Summary: File-synchronization tool
 Name: unison
-Version: 2.13.16
-Release: 1.2
+Version: 2.27.57
+Release: 1
 License: GPL
 Group: Applications/File
 URL: http://www.cis.upenn.edu/~bcpierce/unison/
@@ -79,6 +79,9 @@ EOF
 %{_datadir}/pixmaps/unison.png
 
 %changelog
+* Sun Feb 03 2008 Dag Wieers <dag@wieers.com> - 2.27.57-1
+- Updated to release 2.27.57.
+
 * Fri Dec 02 2005 Dag Wieers <dag@wieers.com> - 2.13.16-1
 - Updated to release 2.13.16.
 

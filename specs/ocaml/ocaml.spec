@@ -40,7 +40,7 @@ BuildRequires: ncurses-devel, gdbm-devel, emacs
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3, tk-devel}
 %{?_without_tcltk_devel:BuildRequires: tcl >= 8.3, tk}
-Obsoletes: ocaml-ocamldoc, labltk, camlp4
+Obsoletes: ocaml-ocamldoc <= %{version}-%{release}
 
 %description
 Objective Caml is the latest implementation of the Caml dialect of ML. It
@@ -54,7 +54,7 @@ with possible default value.
 Summary: Tk bindings for Objective Caml
 Group: Development/Languages
 Requires: ocaml = %{version}-%{release}
-Obsoletes: labltk <= %{version}
+Obsoletes: labltk <= %{version}-%{release}
 
 %description labltk
 A library for interfacing Objective Caml with the scripting language
@@ -64,7 +64,7 @@ Tcl/Tk. It include the OCamlBrowser code editor / library browser.
 Group: Development/Languages
 Summary: Pre-Processor-Pretty-Printer for OCaml
 Requires: ocaml = %{version}-%{release}
-Obsoletes: camlp4 <= %{version}
+Obsoletes: camlp4 <= %{version}-%{release}
 
 %description camlp4
 Camlp4 is a Pre-Processor-Pretty-Printer for OCaml, parsing a source
@@ -86,12 +86,16 @@ Emacs mode for Objective Caml.
 %{__cp} -v %{SOURCE2} refman.ps.gz
 
 %build
-./configure -verbose -cc "%{__cc} %{optflags}" -with-pthread \
-	-bindir "%{_bindir}" \
-	-libdir "%{_libdir}/ocaml" \
-	-mandir "%{_mandir}" \
-	-prefix "%{_prefix}" \
-	-x11lib "%{_prefix}/X11R6/%{_lib}"
+./configure \
+    -cc "%{__cc} %{optflags}" \
+    -bindir "%{_bindir}" \
+    -libdir "%{_libdir}/ocaml" \
+    -mandir "%{_mandir}" \
+    -prefix "%{_prefix}" \
+    -verbose \
+    -with-pthread \
+%{!?_without_modxorg:-x11lib "%{_libdir}"} \
+%{?_without_modxorg:-x11lib "%{_prefix}/X11/%{_lib}"}
 #%{__make} %{?_smp_mflags} world bootstrap opt opt.opt
 %{__make} world bootstrap opt opt.opt
 %{__make} -C emacs ocamltags
@@ -167,9 +171,6 @@ Emacs mode for Objective Caml.
 %{_datadir}/emacs/site-lisp/*.elc
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.09.1-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Jan 04 2006 Dries Verachtert <dries@ulyssis.org> - 3.09.1-1
 - Updated to release 3.09.1.
 

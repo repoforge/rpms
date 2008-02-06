@@ -17,7 +17,7 @@ License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/autocutsel/
 
-Source: http://savannah.nongnu.org/download/%{name}/%{name}-%{version}.tar.gz
+Source: http://savannah.nongnu.org/download/autocutsel/autocutsel-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{!?_without_modxorg:BuildRequires: libX11-devel, libXaw-devel, libXext-devel, libXt-devel}
@@ -46,7 +46,7 @@ selection are always synchronized.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README
+%doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_bindir}/autocutsel
 %{_bindir}/cutsel
 

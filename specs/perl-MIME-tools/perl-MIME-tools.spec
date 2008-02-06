@@ -4,6 +4,8 @@
 # Upstream: David F. Skoll <dfs$roaringpenguin,com>
 # Upstream: Dave O'Neill <dmo$roaringpenguin,com>
 
+# Tag: test
+
 %{?dtag: %{expand: %%define %dtag 1}}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)

@@ -8,13 +8,14 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-Version: 3.60
+Version: 3.61
 Release: 1
 License: GPL
 Group: Applications/System
 URL: http://syslinux.zytor.com/
 
 Source: ftp://ftp.kernel.org/pub/linux/utils/boot/syslinux/syslinux-%{version}.tar.bz2
+Patch0: syslinux-3.61-extlinux.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386 x86_64
@@ -32,6 +33,7 @@ MEMDISK, which loads legacy operating systems from these media.
 
 %prep
 %setup
+%patch0 -p0
 
 %build
 export CFLAGS="-Werror -Wno-unused -finline-limit=2000"
@@ -74,6 +76,9 @@ export CFLAGS="-Werror -Wno-unused -finline-limit=2000"
 %{_sbindir}/extlinux
 
 %changelog
+* Mon Feb 04 2008 Dag Wieers <dag@wieers.com> - 3.61-1
+- Updated to release 3.61.
+
 * Fri Jan 18 2008 Dag Wieers <dag@wieers.com> - 3.60-1
 - Updated to release 3.60.
 
