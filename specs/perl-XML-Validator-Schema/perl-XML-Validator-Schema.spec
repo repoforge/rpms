@@ -7,11 +7,11 @@
 
 %define real_name XML-Validator-Schema
 
-Summary: Validate XML against a subset of W3C XML Schemas
+Summary: Validate XML against a subset of W3C XML Schema
 Name: perl-XML-Validator-Schema
-Version: 1.09
+Version: 1.10
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Validator-Schema/
 
@@ -38,8 +38,9 @@ the SCHEMA SUPPORT section in the module documention.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,16 +48,20 @@ the SCHEMA SUPPORT section in the module documention.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/XML/Validator/Schema.pm
+%doc ANNOUNCE Changes MANIFEST MANIFEST.SKIP META.yml README TODO
+%doc %{_mandir}/man3/XML::Validator::Schema.3pm*
+%doc %{_mandir}/man3/XML::Validator::Schema::*.3pm*
+%dir %{perl_vendorlib}/XML/
+%dir %{perl_vendorlib}/XML/Validator/
 %{perl_vendorlib}/XML/Validator/Schema/
+%{perl_vendorlib}/XML/Validator/Schema.pm
 
 %changelog
+* Mon Feb 04 2008 Dag Wieers <dag@wieers.com> - 1.10-1
+- Updated to release 1.10.
+
 * Thu Jan 31 2008 Dries Verachtert <dries@ulyssis.org> - 1.09-1
 - Updated to release 1.09.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.08-1.2
-- Rebuild for Fedora Core 5.
 
 * Fri Nov 05 2004 Dries Verachtert <dries@ulyssis.org> - 1.08-1
 - Updated to release 1.08.
