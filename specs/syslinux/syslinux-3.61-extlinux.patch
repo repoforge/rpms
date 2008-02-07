@@ -1,0 +1,12 @@
+--- extlinux/extlinux.c.orig	2008-02-04 05:58:50.000000000 +0100
++++ extlinux/extlinux.c	2008-02-07 20:24:03.769868064 +0100
+@@ -40,7 +40,9 @@
+ 
+ #include <linux/fd.h>		/* Floppy geometry */
+ #include <linux/hdreg.h>	/* Hard disk geometry */
++#define statfs stupid_kernel_statfs
+ #include <linux/fs.h>		/* FIGETBSZ, FIBMAP */
++#undef statfs
+ 
+ #include "ext2_fs.h"
+ #include "../version.h"
