@@ -13,7 +13,7 @@
 
 Summary: Easy to use front-end for ClamAV
 Name: clamtk
-Version: 2.32
+Version: 3.08
 Release: 1
 License: Perl
 Group: Applications/File
@@ -35,18 +35,6 @@ It supports easy signature-updates.
 %prep
 %setup
 
-%{__cat} <<EOF >clamtk.desktop
-[Desktop Entry]
-Name=ClamTk Virus Scanner
-Comment=Scan your system for viruses.
-Exec=clamtk
-Icon=clamtk.png
-Terminal=false
-Type=Application
-Categories=Application;Utility;
-StartupNotify=false
-EOF
-
 %build
 
 %install
@@ -58,14 +46,14 @@ EOF
 %{__install} -Dp -m0644 clamtk.png %{buildroot}%{_datadir}/pixmaps/clamtk.png
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -Dp -m0644 clamtk.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/clamtk.desktop
+    %{__install} -Dp -m0644 clamtk.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/clamtk.desktop
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --delete-original \
-		--vendor %{desktop_vendor}                 \
-		--dir %{buildroot}%{_datadir}/applications \
-		--add-category X-Red-Hat-Base              \
-		clamtk.desktop
+    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+    desktop-file-install --delete-original \
+        --vendor %{desktop_vendor}                 \
+        --dir %{buildroot}%{_datadir}/applications \
+        --add-category X-Red-Hat-Base              \
+        clamtk.desktop
 %endif
 
 %clean
@@ -82,6 +70,9 @@ EOF
 %{_datadir}/pixmaps/clamtk.png
 
 %changelog
+* Thu Feb 07 2008 Dag Wieers <dag@wieers.com> - 3.08-1
+- Updated to release 3.08.
+
 * Sun May 13 2007 Dag Wieers <dag@wieers.com> - 2.32-1
 - Updated to release 2.32.
 

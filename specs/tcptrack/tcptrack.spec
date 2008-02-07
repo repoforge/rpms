@@ -10,8 +10,8 @@
 
 Summary: Packet sniffer which displays TCP information like the 'top' command
 Name: tcptrack
-Version: 1.1.5
-Release: 1.2
+Version: 1.3.0
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.rhythm.cx/~steve/devel/tcptrack/
@@ -33,7 +33,7 @@ bandwidth usage.
 
 %prep
 %setup
-%patch -p1
+#patch -p1
 
 %build
 %configure
@@ -41,7 +41,7 @@ bandwidth usage.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -53,6 +53,9 @@ bandwidth usage.
 %{_bindir}/tcptrack
 
 %changelog
+* Thu Feb 07 2008 Dag Wieers <dag@wieers.com> - 1.3.0-1
+- Updated to release 1.3.0.
+
 * Mon Mar 28 2005 Dag Wieers <dag@wieers.com> - 1.1.5-1
 - Updated to release 1.1.5.
 
