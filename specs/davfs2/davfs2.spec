@@ -14,8 +14,9 @@ URL: http://dav.sourceforge.net/
 Source: http://dl.sf.net/dav/davfs2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: fuse-devel >= 2.2, neon-devel
-Requires: fuse >= 2.2
+BuildRequires: fuse-devel >= 2.2, neon-devel >= 0.25
+### Package does not require fuse, but can work with coda as well
+#Requires: fuse >= 2.2
 
 Obsoletes: fuse-davfs2 <= %{name}-%{version}
 Provides: fuse-davfs2 = %{name}-%{version}
@@ -26,7 +27,7 @@ as a local file system, like a disk drive. This way applications can access
 resources on a Web server without knowing anything about HTTP or WebDAV.
 
 davfs2 runs as a daemon in userspace. It uses the kernel file system coda or
-fuse. Most propably your Linux kernel includes at least one of this file
+fuse. Most probably your Linux kernel includes at least one of this file
 systems. To connect to the WebDAV server it makes use of the neon library.
 Neon supports TLS/SSL (using OpenSSL or GnuTLS) and access via proxy server.
 
@@ -42,7 +43,7 @@ Neon supports TLS/SSL (using OpenSSL or GnuTLS) and access via proxy server.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-%find_lang %{real_name}
+%find_lang %{name}
 
 %{__install} -dp -m0770 %{buildroot}%{_localstatedir}/cache/davfs2/
 %{__mv} -vf %{buildroot}%{_sbindir}/mount.davfs %{buildroot}/sbin/mount.davfs
@@ -65,7 +66,7 @@ fi
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{real_name}.lang
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS COPYING FAQ INSTALL NEWS README* THANKS TODO etc/davfs2.conf etc/secrets
 %doc %{_mandir}/man5/davfs2.conf.5*
