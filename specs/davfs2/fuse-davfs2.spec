@@ -3,12 +3,10 @@
 
 %define logmsg logger -t %{name}/rpm
 
-%define real_name davfs2
-
 Summary: FUSE-Filesystem to access WebDAV servers
-Name: fuse-davfs2
-Version: 1.2.2
-Release: 2
+Name: davfs2
+Version: 1.3.0
+Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://dav.sourceforge.net/
@@ -19,8 +17,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: fuse-devel >= 2.2, neon-devel
 Requires: fuse >= 2.2
 
-Obsoletes: davfs2 <= %{name}-%{version}
-Provides: davfs2 = %{name}-%{version}
+Obsoletes: fuse-davfs2 <= %{name}-%{version}
+Provides: fuse-davfs2 = %{name}-%{version}
 
 %description
 davfs2 is a FUSE file system driver that allows you to mount a WebDAV server
@@ -33,10 +31,12 @@ systems. To connect to the WebDAV server it makes use of the neon library.
 Neon supports TLS/SSL (using OpenSSL or GnuTLS) and access via proxy server.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup
 
 %build
-%configure --disable-static
+%configure \
+    --disable-rpath \
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
@@ -85,6 +85,10 @@ fi
 %dir %{_localstatedir}/cache/davfs2/
 
 %changelog
+* Thu Feb 07 2008 Dag Wieers <dag@wieers.com> - 1.3.0-1
+- Updated to release 1.3.0.
+- Renamed package to davfs2. (Werner Baumann)
+
 * Fri Jan 18 2008 Ralph Angenendt <ra@br-online.de> - 1.2.2-2
 - Updated to release 1.2.2.
 
