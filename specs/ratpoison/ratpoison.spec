@@ -5,13 +5,14 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el4:%define _without_modxorg 1}
-%{?el3:%define _without_modxorg 1}
-%{?el2:%define _without_modxorg 1}
 %{?fc4:%define _without_modxorg 1}
 %{?fc3:%define _without_modxorg 1}
 %{?fc2:%define _without_modxorg 1}
 %{?fc1:%define _without_modxorg 1}
-
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
 
 Summary: Ratpoison window manager
 Name: ratpoison
@@ -60,11 +61,11 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
+%doc %{_infodir}/ratpoison.info*
 %doc %{_mandir}/man1/ratpoison.1*
 %{_bindir}/ratpoison
 %{_bindir}/rpws
 %{_datadir}/ratpoison/
-%{_infodir}/ratpoison.info*
 %exclude %{_datadir}/doc/ratpoison/
 
 %changelog
