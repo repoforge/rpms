@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: rpm-devel
 
 %description
 Perl bindings for the RPM Package Manager API.
@@ -43,10 +44,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/RPM2*.3pm*
-%{perl_vendorarch}/RPM2.pm
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/RPM2.3pm*
 %{perl_vendorarch}/auto/RPM2/
+%{perl_vendorarch}/RPM2.pm
 
 %changelog
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.67-1
