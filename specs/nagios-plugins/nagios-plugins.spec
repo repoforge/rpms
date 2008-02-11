@@ -4,6 +4,11 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
+%{?el3:%define _without_gettextdevel 1}
+%{?rh9:%define _without_gettextdevel 1}
+%{?rh7:%define _without_gettextdevel 1}
+%{?el2:%define _without_gettextdevel 1}
+
 %{?rh7:%define _without_net_snmp 1}
 %{?el2:%define _without_net_snmp 1}
 %{?rh6:%define _without_net_snmp 1}
@@ -17,7 +22,7 @@
 
 Summary: Host/service/network monitoring program plugins for Nagios
 Name: nagios-plugins
-Version: 1.4.9
+Version: 1.4.11
 Release: 1
 License: GPL
 Group: Applications/System
@@ -39,6 +44,7 @@ BuildRequires: %{_bindir}/mailq
 #BuildRequires: radiusclient-ng-devel
 %{!?_without_net_snmp:BuildRequires: net-snmp-devel, net-snmp-utils}
 %{?_without_net_snmp:BuildRequires: ucd-snmp-devel, ucd-snmp-utils}
+%{!?_without_gettextdevel:BuildRequires: gettext-devel}
 
 #Requires: openldap, openssl, mysql, postgresql-libs
 Requires: perl, perl(Net::SNMP), fping
@@ -70,31 +76,32 @@ Nagios package.
 %prep
 %setup
 %patch0 -p0
-%patch1 -p1
+#patch1 -p1
 
 ### FIXME: Change to real perl and plugins location. (Please fix upstream)
 find contrib -type f -exec %{__perl} -pi -e '
-		s|^#!/.*bin/perl|#!%{__perl}|i;
-		s|/usr/local/nagios/libexec/|%{_libdir}/nagios/plugins/|;
-		s|/usr/libexec/nagios/plugins/|%{_libdir}/nagios/plugins/|;
-	' {} \;
+        s|^#!/.*bin/perl|#!%{__perl}|i;
+        s|/usr/local/nagios/libexec/|%{_libdir}/nagios/plugins/|;
+        s|/usr/libexec/nagios/plugins/|%{_libdir}/nagios/plugins/|;
+    ' {} \;
 
 %build
 PATH="/sbin:%{_sbindir}:$PATH" \
 %configure \
-	--with-cgiurl="/nagios/cgi-bin"
-#	--with-mysql="%{_prefix}"
-#	--with-nagios-user="nagios" \
-#	--with-nagios-group="nagios" \
+    --with-cgiurl="/nagios/cgi-bin" \
+    --with-fping-command="/usr/sbin/fping"
+#   --with-mysql="%{_prefix}"
+#   --with-nagios-user="nagios" \
+#   --with-nagios-group="nagios" \
 %{__make} %{?_smp_mflags}
 
 ### Build some extra and contrib plugins
 for plugin in %{extraplugins}; do
-	%{__make} -C plugins check_$plugin
+    %{__make} -C plugins check_$plugin
 done
 
 for plugin in contrib/*.c; do
-	${CC:-%{__cc}} %{optflags} -I. -Iplugins/ -I%{_datadir}/gettext/ -o ${plugin%.c} $plugin || :
+    ${CC:-%{__cc}} %{optflags} -I. -Iplugins/ -I%{_datadir}/gettext/ -o ${plugin%.c} $plugin || :
 done
 
 %install
@@ -171,6 +178,8 @@ done
 %{_libdir}/nagios/plugins/check_nntps
 %{_libdir}/nagios/plugins/check_nt
 %{_libdir}/nagios/plugins/check_ntp
+%{_libdir}/nagios/plugins/check_ntp_peer
+%{_libdir}/nagios/plugins/check_ntp_time
 %{_libdir}/nagios/plugins/check_nwstat
 %{_libdir}/nagios/plugins/check_oracle
 %{_libdir}/nagios/plugins/check_overcr
@@ -298,6 +307,9 @@ done
 %{_libdir}/nagios/plugins/check_icmp
 
 %changelog
+* Mon Jan 28 2008 Dag Wieers <dag@wieers.com> - 1.4.11-1
+- Updated to release 1.4.11.
+
 * Mon Jun 25 2007 Dag Wieers <dag@wieers.com> - 1.4.9-1
 - Updated to release 1.4.9.
 

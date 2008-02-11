@@ -5,7 +5,7 @@
 
 Summary: Linux kernel module for FUSE (Filesystem in USErspace)
 Name: dkms-fuse
-Version: 2.7.0
+Version: 2.7.2
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -22,13 +22,10 @@ With FUSE it is possible to implement a fully functional filesystem in a
 userspace program. This package contains the FUSE userspace tools to
 mount a FUSE filesystem.
 
-
 %prep
 %setup -n fuse-%{version}
 
-
 %build
-
 
 %install
 %{__rm} -rf %{buildroot}
@@ -51,10 +48,8 @@ DEST_MODULE_LOCATION[0]=/kernel/drivers/fs/fuse
 AUTOINSTALL="YES"
 EOF
 
-
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %post
 # Add to DKMS registry
@@ -67,13 +62,14 @@ dkms install -m %{dkms_name} -v %{dkms_vers} %{?quiet} --force || :
 # Remove all versions from DKMS registry
 dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
-
 %files
 %defattr(-, root, root, 0755)
 %{_usrsrc}/%{dkms_name}-%{dkms_vers}/
 
-
 %changelog
+* Thu Feb 07 2008 Dag Wieers <dag@wieers.com> - 2.7.2-1
+- Updated to release 2.7.2.
+
 * Mon Aug 06 2007 Dag Wieers <dag@wieers.com> - 2.7.0-1
 - Updated to release 2.7.0.
 

@@ -1,10 +1,10 @@
-# $Id$
+# $Id: ndisc6.spec 6146 2008-02-10 19:23:58Z dries $
 # Authority: dries
 # Upstream: Remi Denis-Courmont <rdenis$simphalempin,com>
 
 Summary: Tools for ICMPv6 Neighbor&Router Discovery and TCP/IPv6 traceroute
 Name: ndisc6
-Version: 0.9.6
+Version: 0.9.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -62,12 +62,6 @@ This package consists of two programs:
 %{_sbindir}/rdnssd
 
 %changelog
-* Sun Feb 10 2008 Dries Verachtert <dries@ulyssis.org> - 0.9.6-1
-- Updated to release 0.9.6.
-
-* Tue Jan  1 2008 Dries Verachtert <dries@ulyssis.org> - 0.9.5-1
-- Updated to release 0.9.5.
-
 * Mon Aug 13 2007 Dries Verachtert <dries@ulyssis.org> - 0.9.3-1
 - Updated to release 0.9.3.
 

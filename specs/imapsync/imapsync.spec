@@ -3,7 +3,7 @@
 
 Summary: Tool to migrate across IMAP servers
 Name: imapsync
-Version: 1.233
+Version: 1.241
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -56,6 +56,9 @@ EOF
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Mon Feb 11 2008 Dag Wieers <dag@wieers.com> - 1.241-1
+- Updated to release 1.241.
+
 * Thu Nov 22 2007 Dag Wieers <dag@wieers.com> - 1.233-1
 - Updated to release 1.233.
 

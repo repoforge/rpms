@@ -1,17 +1,11 @@
 # $Id$
 # Authority: dag
 
-### FIXME: configure has problems finding flex output using soapbox on RHEL3
-# Soapbox: 0
-
-# don't create debuginfo package
-%define debug_package %{nil}
-
 %{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Virtual tunnel over TCP/IP networks
 Name: vtun
-Version: 3.0.1
+Version: 3.0.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -19,7 +13,6 @@ URL: http://vtun.sourceforge.net/
 
 Source: http://dl.sf.net/vtun/vtun-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: flex, bison, cyrus-sasl-devel, openssl-devel, lzo-devel
 %{?el5:BuildRequires: glibc-kernheaders}
@@ -145,17 +138,17 @@ EOF
         MAN_DIR="%{buildroot}%{_mandir}" \
         ETC_DIR="%{buildroot}%{_sysconfdir}" \
         VAR_DIR="%{buildroot}%{_localstatedir}" \
-	INSTALL_OWNER=
+    INSTALL_OWNER=
 
 %{__install} -Dp -m0755 vtund.sysv %{buildroot}%{_initrddir}/vtund
 #%{__install} -Dp -m0755 scripts/vtund.rc.red_hat %{buildroot}%{_initrddir}/vtund
 
 %pre
 if [ ! -e /dev/net/tun ]; then
-	if [ ! -d /dev/net/ ]; then
-		%{__install} -d -m0755 /dev/net
-	fi
-	mknod -m0600 /dev/net/tun c 10 200
+    if [ ! -d /dev/net/ ]; then
+        %{__install} -d -m0755 /dev/net
+    fi
+    mknod -m0600 /dev/net/tun c 10 200
 fi
 
 %post
@@ -163,8 +156,8 @@ fi
 
 %preun
 if [ $1 -eq 0 ]; then
-        /sbin/service vtund stop &>/dev/null || :
-        /sbin/chkconfig --del vtund
+    /sbin/service vtund stop &>/dev/null || :
+    /sbin/chkconfig --del vtund
 fi
 
 %postun
@@ -176,7 +169,9 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog Credits FAQ README* TODO vtund.conf
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man5/vtund.conf.5*
+%doc %{_mandir}/man8/vtun.8*
+%doc %{_mandir}/man8/vtund.8*
 %attr(600, root, root) %config(noreplace) %{_sysconfdir}/vtund.conf
 %config %{_initrddir}/vtund
 %{_sbindir}/vtund
@@ -184,6 +179,9 @@ fi
 %{_localstatedir}/log/vtund/
 
 %changelog
+* Sun Feb 10 2008 Dag Wieers <dag@wieers.com> - 3.0.2-1
+- Updated to release 3.0.2.
+
 * Sun Jun 17 2007 Dries Verachtert <dries@ulyssis.org> - 3.0.1-1
 - Updated to release 3.0.1.
 

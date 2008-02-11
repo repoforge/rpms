@@ -10,8 +10,8 @@
 
 Summary: File System in Userspace (FUSE) utilities
 Name: fuse
-Version: 2.7.0
-Release: 2
+Version: 2.7.2
+Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://fuse.sourceforge.net/
@@ -166,8 +166,11 @@ fi
 %exclude %{_libdir}/libulockmgr.la
 
 %changelog
+* Thu Feb 07 2008 Dag Wieers <dag@wieers.com> - 2.7.2-1
+- Updated to release 2.7.2.
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 2.7.0-2
-- Added compatibility Provices and Obsoletes for ATrpms.
+- Added compatibility Provides and Obsoletes for ATrpms.
 
 * Mon Aug 06 2007 Dag Wieers <dag@wieers.com> - 2.7.0-1
 - Updated to release 2.7.0.
