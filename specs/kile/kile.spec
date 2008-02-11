@@ -16,8 +16,9 @@ License: GPL
 Group: Applications/Publishing
 URL: http://kile.sourceforge.net/
 
-Source: http://dl.sf.net/kile/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/kile/kile-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gettext, kdelibs-devel, gcc, make, gcc-c++
 %{?el4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
@@ -37,53 +38,47 @@ corresponding page in the viewer.
 the chapter etc. in your document. You can use the list to jump to the
 corresponding section.
 
-%description -l nl
-Kile is een gebruiksvriendelijke TeX/LaTeX editor met ondersteuning voor:
-* Het compileren, transformeren en bekijken van uw document met 1 klik.
-* Een nieuw document starten is eenvoudig met templates en wizards.
-* U kan eenvoudig vele standaard tags en symbolen toevoegen en ook uw eigen
-tags toevoegen.
-* Zoeken: klikken in de DVI viewer opent de overeenkomstige LaTeX lijn in
-de editor en andersom.
-* Het vinden van hoofdstukken en secties is eenvoudig: Kile maakt een lijst
-van alle hoofdstukken en dergelijke.
-
 %prep
 %setup
 
+echo "Encoding=UTF-8" >>src/kile/kile.desktop
+
+%{__perl} -pi.orig -e '
+        s|KDE Desktop Entry|Desktop Entry|g;
+        s|Categories=.*|Categories=Qt;KDE;Application;Office;|g;
+    ' src/kile/kile.desktop
+
 %build
-. /etc/profile.d/qt.sh
-%configure LDFLAGS=-L$QTDIR/lib
+source "/etc/profile.d/qt.sh"
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-. /etc/profile.d/qt.sh
-%{__make} install DESTDIR=%{buildroot}
-echo "Encoding=UTF-8" >> %{buildroot}%{_datadir}/applications/kde/kile.desktop
-sed -i "s/KDE Desktop Entry/Desktop Entry/g;" %{buildroot}%{_datadir}/applications/kde/kile.desktop
-sed -i "s/Categories=.*/Categories=Qt;KDE;Application;Office;/g;" %{buildroot}%{_datadir}/applications/kde/kile.desktop
-%{__mv} %{buildroot}%{_datadir}/applications/kde/kile.desktop %{buildroot}%{_datadir}/applications/kile.desktop
+source "/etc/profile.d/qt.sh"
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
+
+### Clean up buildroot
+%{__mv} -v %{buildroot}%{_datadir}/applications/kde/kile.desktop %{buildroot}%{_datadir}/applications/kile.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%{_datadir}/doc/HTML/*/kile/
-%{_datadir}/apps/kile/
-# conflicts with kdelibs-3.2.2-8.FC2
-%exclude %{_datadir}/apps/katepart/syntax/bibtex.xml
-%exclude %{_datadir}/apps/katepart/syntax/latex.xml
+%doc %{_datadir}/doc/HTML/*/kile/
+%{_bindir}/kile
+%{_datadir}/applications/kile.desktop
 %{_datadir}/apps/kconf_update/kile.upd
 %{_datadir}/apps/kconf_update/kile*_upd.pl
+%{_datadir}/apps/kile/
 %{_datadir}/config.kcfg/kile.kcfg
 %{_datadir}/icons/*/*/apps/kile.*
-%{_datadir}/applications/kile.desktop
 %{_datadir}/mimelnk/text/x-kilepr.desktop
-%{_bindir}/kile
-
+### Conflicts with kdelibs-3.2.2-8.FC2
+%exclude %{_datadir}/apps/katepart/syntax/bibtex.xml
+%exclude %{_datadir}/apps/katepart/syntax/latex.xml
 
 %changelog
 * Mon Feb 11 2008 Dries Verachtert <dries@ulyssis.org> - 2.0-1

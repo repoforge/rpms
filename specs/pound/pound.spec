@@ -4,7 +4,7 @@
 
 Summary: Reverse HTTP proxy, load balancer and SSL wrapper
 Name: pound
-Version: 2.3
+Version: 2.4
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -24,15 +24,15 @@ even if the backend server(s) are HTTP/1.0, and sanitizes requests.
 %prep
 %setup -n Pound-%{version}
 %{__perl} -pi -e '
-		s|-o \@I_OWNER\@ -g \@I_GRP\@||g;
-		s| -s | |g;
-	' Makefile*
+        s|-o \@I_OWNER\@ -g \@I_GRP\@||g;
+        s| -s | |g;
+    ' Makefile*
 
 %build
 ### Add correct CFLAGS for EL3 and RH9
 %{expand: %%define optflags %{optflags} %(pkg-config --cflags openssl)}
 %configure \
-	--disable-super
+    --disable-super
 %{__make} %{?_smp_mflags}
 
 %install
@@ -45,13 +45,16 @@ even if the backend server(s) are HTTP/1.0, and sanitizes requests.
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG FAQ GPL.html README
+%doc CHANGELOG FAQ GPL.txt README
 %doc %{_mandir}/man8/pound.8*
 %doc %{_mandir}/man8/poundctl.8*
 %{_sbindir}/pound
 %{_sbindir}/poundctl
 
 %changelog
+* Mon Feb 11 2008 Dag Wieers <dag@wieers.com> - 2.4-1
+- Updated to release 2.4.
+
 * Mon Apr 16 2007 Dries Verachtert <dries@ulyssis.org> - 2.3-1
 - Updated to release 2.3.
 

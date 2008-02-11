@@ -4,7 +4,7 @@
 
 Summary: Download utility with BitTorrent and Metalink support
 Name: aria2
-Version: 0.12.0
+Version: 0.12.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -23,10 +23,12 @@ Supported protocols are HTTP/HTTPS/FTP/BitTorrent/Metalink.
 %setup
  
 %build
-export CPPFLAGS="-I/usr/include/libxml2 $(pkg-config --cflags openssl)"
+### Add correct CFLAGS for EL3 and RH9
+%{expand: %%define optflags %{optflags} %(pkg-config --cflags openssl)}
+#export CPPFLAGS="-I/usr/include/libxml2 $(pkg-config --cflags openssl)"
 %configure \
-	--disable-xmltest \
-	--enable-metalink
+    --disable-xmltest \
+    --enable-metalink
 %{__make} %{?_smp_mflags}
 
 %install
@@ -45,6 +47,9 @@ export CPPFLAGS="-I/usr/include/libxml2 $(pkg-config --cflags openssl)"
 %{_bindir}/aria2c
 
 %changelog
+* Mon Feb 11 2008 Dag Wieers <dag@wieers.com> - 0.12.1-1
+- Updated to release 0.12.1.
+
 * Mon Dec 10 2007 Dries Verachtert <dries@ulyssis.org> - 0.12.0-1
 - Updated to release 0.12.0.
 
@@ -67,7 +72,7 @@ export CPPFLAGS="-I/usr/include/libxml2 $(pkg-config --cflags openssl)"
 - Updated to release 0.11.0.
 
 * Tue May 15 2007 Dag Wieers <dag@wieers.com> - 0.10.2.1-1
-- Updated to release 0.10.2+1.
+- Updated to release 0.10.2.1.
 
 * Wed Mar 28 2007 Dries Verachtert <dries@ulyssis.org> - 0.10.2-1
 - Updated to release 0.10.2.
@@ -88,13 +93,13 @@ export CPPFLAGS="-I/usr/include/libxml2 $(pkg-config --cflags openssl)"
 - Updated to release 0.8.1.
 
 * Mon Aug 21 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.2-1
-- Updated to 0.7.2.
+- Updated to release 0.7.2.
 
 * Tue Aug 15 2006 Dries Verachtert <dries@ulyssis.org>
-- Updated to 0.7.1.
+- Updated to release 0.7.1.
 
 * Sat Aug 12 2006 Dries Verachtert <dries@ulyssis.org>
-- Updated to 0.7.0.
+- Updated to release 0.7.0.
 
 * Fri Jul 28 2006 Anthony Bryan <anthonybryan@gmail.com>
 - Update to version 0.6.0+1 and FC6
