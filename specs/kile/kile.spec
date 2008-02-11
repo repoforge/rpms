@@ -10,7 +10,7 @@
 
 Summary: User friendly TeX/LaTeX editor
 Name: kile
-Version: 1.9.3
+Version: 2.0
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -86,6 +86,9 @@ sed -i "s/Categories=.*/Categories=Qt;KDE;Application;Office;/g;" %{buildroot}%{
 
 
 %changelog
+* Mon Feb 11 2008 Dries Verachtert <dries@ulyssis.org> - 2.0-1
+- Updated to release 2.0.
+
 * Mon Oct 22 2007 Dries Verachtert <dries@ulyssis.org> - 1.9.3-1
 - Updated to release 1.9.3.
 
