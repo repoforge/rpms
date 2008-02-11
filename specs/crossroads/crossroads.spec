@@ -28,6 +28,7 @@ of other back ends.
 
 %prep
 %setup
+%{__perl} -pi -e 's|use PROMPT to|Use PROMPT to|g;' src/crossroads-mgr/*
 
 %build
 %{__make} %{?_smp_mflags} PREFIX=%{_prefix} local
