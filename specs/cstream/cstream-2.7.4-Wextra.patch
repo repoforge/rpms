@@ -1,0 +1,40 @@
+--- cstream-2.7.4-orig/cstream.c	2007-09-18 21:47:49.000000000 +0200
++++ cstream-2.7.4-Wextra/cstream.c	2008-02-08 19:10:07.000000000 +0100
+@@ -97,6 +97,7 @@
+ #else
+ #ifdef HAVE_SYS_SOUNDCARD_H
+ #include <sys/soundcard.h>
++#include <sys/ioctl.h>
+ #define WANT_SOUND 1
+ #else
+ #ifdef HAVE_LINUX_SOUNDCARD_H
+@@ -266,7 +267,10 @@ static void sigreport(int signal)
+ 
+ static void sighup(int signal)
+ {
+-  write(2, "SIGHUP\n", sizeof("SIGHUP\n")-1);
++  ssize_t s = write(STDERR_FILENO, "SIGHUP\n", sizeof("SIGHUP\n")-1);
++  if (s != sizeof("SIGHUP\n")) {
++    /* ignore write error */
++  }
+   n_sighups++;
+ }
+ 
+@@ -390,7 +394,7 @@ static int open_tcp(const struct options
+   const char *spec;
+   int newfd;
+   struct sockaddr_in serv_addr;
+-  int *size;
++  socklen_t *size;
+ 
+   if (mode == O_WRONLY) {
+     spec = o->o;
+@@ -520,7 +524,7 @@ static int open_tcp(const struct options
+     } *it, funcs[3] = {
+       {getsockname, "getsockname", "Local binding"},
+       {getpeername, "getpeername", "Remote binding"},
+-      {NULL}
++      {NULL, NULL, NULL}
+     };
+     union {
+       struct sockaddr sa;
