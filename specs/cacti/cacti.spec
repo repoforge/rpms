@@ -11,7 +11,7 @@
 
 Summary: Complete network graphing solution designed on top of RRDTool
 Name: cacti
-Version: 0.8.7a
+Version: 0.8.7b
 Release: 1
 License: GPL
 Group: Applications/System
@@ -63,15 +63,15 @@ echo -e "*/5 * * * *\tcacti\tphp %{_localstatedir}/www/cacti/poller.php &>/dev/n
 %{__cat} <<EOF >cacti.httpd
 Alias /cacti/ %{_localstatedir}/www/cacti/
 <Directory %{_localstatedir}/www/cacti/>
-	DirectoryIndex index.php
-	Options -Indexes
-	AllowOverride all
-	order deny,allow
-	deny from all
-	allow from 127.0.0.1
-	AddType application/x-httpd-php .php
-	php_flag magic_quotes_gpc on
-	php_flag track_vars on
+    DirectoryIndex index.php
+    Options -Indexes
+    AllowOverride all
+    order deny,allow
+    deny from all
+    allow from 127.0.0.1
+    AddType application/x-httpd-php .php
+    php_flag magic_quotes_gpc on
+    php_flag track_vars on
 </Directory>
 EOF
 
@@ -88,13 +88,13 @@ EOF
 
 %pre
 if ! /usr/bin/id cacti &>/dev/null; then
-	/usr/sbin/useradd -r -d %{_localstatedir}/www/cacti -s /bin/sh -c "cacti" cacti || \
-		%logmsg "Unexpected error adding user \"cacti\". Aborting installation."
+    /usr/sbin/useradd -r -d %{_localstatedir}/www/cacti -s /bin/sh -c "cacti" cacti || \
+        %logmsg "Unexpected error adding user \"cacti\". Aborting installation."
 fi
 
 %postun
 if [ $1 -eq 0 ]; then
-	/usr/sbin/userdel cacti || %logmsg "User \"cacti\" could not be deleted."
+    /usr/sbin/userdel cacti || %logmsg "User \"cacti\" could not be deleted."
 fi
 
 %clean
@@ -126,6 +126,9 @@ fi
 %doc docs/*
 
 %changelog
+* Tue Feb 12 2008 Dag Wieers <dag@wieers.com> - 0.8.7b-1
+- Updated to release 0.8.7b.
+
 * Wed Nov 28 2007 Dag Wieers <dag@wieers.com> - 0.8.7a-1
 - Updated to release 0.8.7a.
 

@@ -10,7 +10,7 @@
 Summary: Nagios Service Check Acceptor
 Name: nagios-nsca
 Version: 2.6
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.nagios.org/
@@ -31,9 +31,9 @@ plugins on a remote host in as transparent a manner as possible.
 %setup -n %{real_name}-%{version}
 
 #%{__perl} -pi.orig -e '
-#		s|^(command_file)=\@localstatedir\@/rw/nagios.cmd|$1=%{_localstatedir}/spool/nagios/nagios.cmd|;
-#		s|^(alternate_dump_file)=\@localstatedir\@/rw/nsca.dump|$1=%{_localstatedir}/spool/nagios/nsca.dump|;
-#	' nsca.cfg.in
+#       s|^(command_file)=\@localstatedir\@/rw/nagios.cmd|$1=%{_localstatedir}/spool/nagios/nagios.cmd|;
+#       s|^(alternate_dump_file)=\@localstatedir\@/rw/nsca.dump|$1=%{_localstatedir}/spool/nagios/nsca.dump|;
+#   ' nsca.cfg.in
 
 %{__cat} <<EOF >nsca.xinetd.dag
 # default: off
@@ -41,8 +41,8 @@ plugins on a remote host in as transparent a manner as possible.
 service nsca
 {
         flags           = REUSE
-	type		= UNLISTED
-	port		= 5667
+        type            = UNLISTED
+        port            = 5667
         socket_type     = stream
         wait            = no
         user            = nagios
@@ -82,60 +82,60 @@ prog="nsca"
 desc="Nagios NSCA daemon"
 
 start() {
-	echo -n $"Starting $desc ($prog): "
-	daemon $prog -c "$CONFIG" -d
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Starting $desc ($prog): "
+    daemon $prog -c "$CONFIG" -d
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 stop() {
-	echo -n $"Shutting down $desc ($prog): "
-	killproc $prog
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Shutting down $desc ($prog): "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 restart() {
-	stop
-	start
+    stop
+    start
 }
 
 reload() {
-	echo -n $"Reloading $desc ($prog): "
-	killproc $prog -HUP
-	RETVAL=$?
-	echo
-	return $RETVAL
+    echo -n $"Reloading $desc ($prog): "
+    killproc $prog -HUP
+    RETVAL=$?
+    echo
+    return $RETVAL
 }
 
 case "$1" in
   start)
-	start
-	;;
+    start
+    ;;
   stop)
-	stop
-	;;
+    stop
+    ;;
   restart)
-	restart
-	;;
+    restart
+    ;;
   reload)
-	reload
-	;;
+    reload
+    ;;
   condrestart)
-	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-	RETVAL=$?
-	;;
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
   status)
-	status $prog
-	RETVAL=$?
-	;;
+    status $prog
+    RETVAL=$?
+    ;;
   *)
-	echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
-	RETVAL=1
+    echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
+    RETVAL=1
 esac
 
 exit $RETVAL
@@ -143,11 +143,11 @@ EOF
 
 %build
 %configure \
-	--sysconfdir="%{_sysconfdir}/nagios" \
-	--localstatedir="%{_localstatedir}/log/nagios" \
-	--with-nsca-user="nagios" \
-        --with-nsca-grp="nagios" \
-        --with-nsca-port="5667"
+    --sysconfdir="%{_sysconfdir}/nagios" \
+    --localstatedir="%{_localstatedir}/log/nagios" \
+    --with-nsca-user="nagios" \
+    --with-nsca-grp="nagios" \
+    --with-nsca-port="5667"
 
 %{__make} %{?_smp_mflags} all
 
@@ -186,11 +186,16 @@ fi
 %config(noreplace) %{_sysconfdir}/xinetd.d/nsca
 %config %{_initrddir}/nsca
 #%dir %{_localstatedir}/spool/nagios/
-%dir %{_localstatedir}/log/nagios/rw/
 %{_sbindir}/nsca
 %{_sbindir}/send_nsca
 
+%defattr(-, nagios, apache, 2755)
+%dir %{_localstatedir}/log/nagios/rw/
+
 %changelog
+* Mon Jan 28 2008 Dag Wieers <dag@wieers.com> - 2.6-2
+- Fixed ownership of %%{_localstatedir}/log/nagios/rw/. (Josh Kelley)
+
 * Mon Dec 11 2006 Dag Wieers <dag@wieers.com> - 2.6-1
 - Updated to release 2.6.
 

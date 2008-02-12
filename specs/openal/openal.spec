@@ -59,13 +59,13 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-	--disable-smpeg \
+    --disable-smpeg \
 %{!?_without_alsa:--enable-alsa} \
 %{!?_without_arts:--enable-arts} \
-	--enable-capture \
-	--enable-esd \
-	--enable-sdl \
-	--enable-vorbis
+    --enable-capture \
+    --enable-esd \
+    --enable-sdl \
+    --enable-vorbis
 %{__make} %{?_smp_mflags}
 
 %install
