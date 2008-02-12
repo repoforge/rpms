@@ -12,7 +12,7 @@ URL: http://wz2100.net/
 Source: http://download.gna.org/warzone/releases/2.0/warzone2100-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: physfs-devel, SDL_net-devel, openal-devel, bison, libvorbis-devel
+BuildRequires: physfs-devel, SDL_net-devel, openal-devel, bison, libvorbis-devel, flex
 
 %description
 Warzone 2100 Resurrection is an effort to continue maintainence and 
