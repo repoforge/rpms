@@ -19,7 +19,7 @@ Source: http://www.cpan.org/authors/id/C/CH/CHOCOLATE/Scope-Guard-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Lexically scoped resource management.

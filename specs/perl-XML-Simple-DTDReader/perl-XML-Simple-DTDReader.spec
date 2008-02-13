@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-Simple-DTDReader-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Simple XML file reading based on their DTDs.

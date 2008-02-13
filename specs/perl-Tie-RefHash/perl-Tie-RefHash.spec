@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Tie/Tie-RefHash-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Use references as hash keys.

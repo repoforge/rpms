@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/IO/IO-CaptureOutput-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 #BuildRequires: perl(Test::More) >= 0.62
 
 %description

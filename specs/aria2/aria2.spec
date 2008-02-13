@@ -13,7 +13,7 @@ URL: http://aria2.sourceforge.net/
 Source: http://dl.sf.net/aria2/aria2-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, gettext, openssl-devel, libxml2-devel
+BuildRequires: gcc-c++, gettext, openssl-devel, libxml2-devel, pkgconfig
 
 %description
 aria2 is a download utility with resuming and segmented downloading.

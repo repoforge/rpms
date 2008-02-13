@@ -19,7 +19,7 @@ Source: http://www.cpan.org/authors/id/O/OP/OPITZ/URL-Grab-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-URL-Grab is a Perl module that drastically simplifies

@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/JSON-DWIW/
 Source: http://www.cpan.org/modules/by-module/JSON/JSON-DWIW-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-JSON-DWIW is a Perl module that implements a JSON converter that

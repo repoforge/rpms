@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/UnixODBC/
 Source: http://www.cpan.org/authors/id/R/RK/RKIES/UnixODBC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-UnixODBC is a Perl module for unixODBC.

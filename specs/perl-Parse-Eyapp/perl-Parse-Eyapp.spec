@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Parse/Parse-Eyapp-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Extensions for Parse::Yapp.

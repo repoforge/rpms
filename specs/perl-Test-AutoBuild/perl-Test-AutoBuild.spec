@@ -27,6 +27,7 @@ BuildRequires: perl(Config::Record)
 BuildRequires: perl(ExtUtils::MakeMaker)
 Buildrequires: perl(Log::Log4perl)
 BuildRequires: perl(Test::More)
+BuildRequires: perl(Template)
 
 %description
 Test-AutoBuild provides a PERL framework for performing

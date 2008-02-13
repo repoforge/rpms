@@ -25,6 +25,7 @@ BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::More) >= 0.42
 BuildRequires: perl(Test::Pod)
 BuildRequires: perl(Test::Mock::LWP)
+BuildRequires: perl(URI::Escape))
 
 %description
 Test applications using Selenium Remote Control.

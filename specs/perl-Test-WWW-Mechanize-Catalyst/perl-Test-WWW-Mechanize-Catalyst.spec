@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-WWW-Mechanize-Catalyst-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Test::WWW::Mechanize for Catalyst.

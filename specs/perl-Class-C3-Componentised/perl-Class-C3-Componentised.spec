@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Class/Class-C3-Componentised-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 perl-Class-C3-Componentised is a Perl module.

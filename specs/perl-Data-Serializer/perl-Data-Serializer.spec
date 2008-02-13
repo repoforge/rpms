@@ -24,6 +24,7 @@ BuildRequires: perl(AutoSplit)
 BuildRequires: perl(File::Spec)
 BuildRequires: perl(IO::File)
 BuildRequires: perl(Test::More)
+BuildRequires: perl(Module::Build)
 
 %description
 Modules that serialize data structures.

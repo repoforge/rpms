@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/FCGI/FCGI-ProcManager-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Functions for managing FastCGI applications.

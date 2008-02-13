@@ -23,6 +23,7 @@ BuildRequires: perl
 BuildRequires: perl(Module::Pluggable::Object)
 BuildRequires: perl(Moose) >= 0.17
 #BuildRequires: perl(Test::More) >= 0.62
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 MooseX-Object-Pluggable is a Perl module to make your classes pluggable.

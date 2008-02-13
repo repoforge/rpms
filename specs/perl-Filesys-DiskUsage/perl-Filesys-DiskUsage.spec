@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Filesys/Filesys-DiskUsage-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Estimate file space usage (similar to `du`).
