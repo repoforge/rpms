@@ -15,6 +15,7 @@ Source: http://ipython.scipy.org/dist/ipython-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
+BuildRequires: python, python-devel
 
 %description
 IPython provides a replacement for the interactive Python interpreter with

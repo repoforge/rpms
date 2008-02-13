@@ -15,7 +15,7 @@ URL: http://www.minipop.org/index.php?file=progs/gresistor/gresistor.tpl
 Source: http://www.minipop.org/progs/gresistor/gresistor-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python
+BuildRequires: python, python-devel
 
 %description
 To allow for identification, resistors are usually marked with colored bands.
