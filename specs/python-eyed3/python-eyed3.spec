@@ -18,7 +18,7 @@ Source: http://eyed3.nicfit.net/releases/eyeD3-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: python
+BuildRequires: python, python-devel
 Obsoletes: python-eyeD3 <= %{version}
 
 %description

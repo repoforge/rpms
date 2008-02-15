@@ -16,7 +16,7 @@ Source: http://download.gna.org/fuzzyclock/src/fuzzyclock-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
-BuildRequires: python
+BuildRequires: python, python-devel
 
 %description
 Fuzzy Clock is a Python class and command line utility to generate

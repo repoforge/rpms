@@ -30,7 +30,7 @@ Group: Applications/System
 URL: http://www.insecure.org/nmap/
 Source: http://download.insecure.org/nmap/dist/nmap-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, libpcap, pcre-devel, openssl-devel
+BuildRequires: gcc-c++, libpcap, pcre-devel, openssl-devel, python-devel
 %{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_gtk24:BuildRequires: gtk2-devel >= 2.4}
