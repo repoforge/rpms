@@ -44,7 +44,7 @@ KXStitch allows the creation and editing of cross stitch patterns.
 
 %build
 source %{_sysconfdir}/profile.d/qt.sh
-%configure
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 %install

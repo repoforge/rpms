@@ -24,7 +24,7 @@ from a 9.6 GB DVD to a normal DVD.
 
 %build
 source /etc/profile.d/qt.sh
-%configure
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
 %{__make} -C vamps-* %{?_smp_mflags} PREFIX="%{_prefix}" CFLAGS="%{optflags} -DHAVE_BUILTIN_EXPECT"
 %{__make} %{?_smp_mflags}
 

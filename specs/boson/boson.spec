@@ -34,7 +34,7 @@ intelligence yet.
 %build
 source "/etc/profile.d/qt.sh"
 make -f Makefile.cvs
-%configure
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 %install

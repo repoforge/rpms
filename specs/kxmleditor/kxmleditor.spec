@@ -48,7 +48,7 @@ features:
 
 %build
 source %{_sysconfdir}/profile.d/qt.sh
-%configure
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
 sed -i "s/<UI version=\"3.2\" /<UI version=\"3.3\"/g;" $(find . | egrep "\.ui$")
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags} -fPIC" CXXFLAGS="%{optflags} -fPIC"
 

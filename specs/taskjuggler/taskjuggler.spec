@@ -30,7 +30,7 @@ communication management.
 %{__perl} -pi -e "s|/usr/share/xml/docbook/schema/dtd/4.3/docbookx.dtd|/usr/share/sgml/docbook/xml-dtd-4.3-1.0-26/docbookx.dtd|g;" docs/en/*
 
 %build
-%configure
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 %install

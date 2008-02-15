@@ -36,7 +36,7 @@ tables and views is easily accessible in a tree view.
 
 %build
 source /etc/profile.d/qt.sh
-%configure
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
 %{__perl} -pi -e "s|-Iincludedir\@| |g; s|-Llibdir\@| |g;" $(find . -type f | grep Makefile)
 %{__make} %{?_smp_mflags}
 

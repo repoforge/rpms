@@ -43,7 +43,7 @@ A wizard helps you with the first steps in using Konserve.
 
 %build
 . /etc/profile.d/qt.sh
-%configure
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 %install

@@ -32,7 +32,7 @@ used to set the LED states of the keyboard aswell.
 %setup -n %{name}
 
 %build
-%configure
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 %install

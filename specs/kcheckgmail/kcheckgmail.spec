@@ -23,7 +23,7 @@ messages you have in your Gmail account.
 dos2unix src/kcheckgmail.desktop
 
 %build
-%configure
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 %install

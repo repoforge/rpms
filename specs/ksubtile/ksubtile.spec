@@ -39,7 +39,7 @@ in the SRT subtitle format.
 
 %build
 source /etc/profile.d/qt.sh
-%configure
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
 for i in $(find . -type f | egrep '\.ui'); do sed -i 's/version="3.2"/version="3.1"/g;' $i; done
 %{__make} %{?_smp_mflags}
 

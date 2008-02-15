@@ -47,7 +47,7 @@ targeted towards the average user. It's designed for daily tasks like:
 
 %build
 source %{_sysconfdir}/profile.d/qt.sh
-%configure
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 %install

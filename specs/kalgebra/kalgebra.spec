@@ -26,7 +26,7 @@ knowledge.
 %setup -n %{name}
 
 %build
-%configure
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
 cd src
 %{__make} %{?_smp_mflags}
 

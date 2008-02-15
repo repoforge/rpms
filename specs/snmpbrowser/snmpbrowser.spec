@@ -38,7 +38,7 @@ Snmpbrowser displays data from SNMP devices.
 
 %build
 source %{_sysconfdir}/profile.d/qt.sh
-%configure LDFLAGS=-lssl
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib} -lssl"
 %{__make} %{?_smp_mflags}
 
 %install

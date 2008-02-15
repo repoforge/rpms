@@ -35,7 +35,7 @@ select your favorite one, and xmms or noatun will pick up the right stream.
 
 %build
 source /etc/profile.d/qt.sh
-%configure
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 %install

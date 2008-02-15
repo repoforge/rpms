@@ -4,13 +4,13 @@
 
 Summary: Template-based DVD authoring tool
 Name: kmediafactory
-Version: 0.5.1
+Version: 0.6.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.iki.fi/damu/software/kmediafactory/index.html
 
-Source: http://susku.pyhaselka.fi/damu/software/kmediafactory/kmediafactory-%{version}.tar.bz2
+Source: http://aryhma.oy.cx/damu/software/kmediafactory/kmediafactory-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext, kdelibs-devel, gcc-c++, libdvdread-devel, xine-lib-devel
@@ -35,19 +35,17 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall UNOPKG=echo kde_widgetdir=%{buildroot}%{_libdir}/kde3/plugins/designer
+%{__make} install DESTDIR="%{buildroot}" UNOPKG=echo kde_widgetdir=%{buildroot}%{_libdir}/kde3/plugins/designer
 %find_lang %{name}
 
-%post
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -92,5 +90,8 @@ you will need to install %{name}-devel.
 %{_libdir}/libkmf.so
 
 %changelog
+* Thu Feb  7 2008 Dries Verachtert <dries@ulyssis.org> - 0.6.0-1
+- Updated to release 0.6.0.
+
 * Fri Aug 11 2006 Dries Verachtert <dries@ulyssis.org> - 0.5.1-1
 - Initial package.

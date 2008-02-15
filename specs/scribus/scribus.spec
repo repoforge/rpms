@@ -47,7 +47,7 @@ EOF
 
 %build
 source "%{_sysconfdir}/profile.d/qt.sh"
-%configure \
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"  \
     --disable-dependency-tracking \
     --with-extra-libs="%{_libdir}" \
     --with-xinerama

@@ -45,7 +45,7 @@ you will need to install %{name}-devel.
 
 %build
 source /etc/profile.d/qt.sh
-%configure --without-gstreamer
+%configure --without-gstreamer LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 %install

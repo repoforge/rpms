@@ -25,7 +25,7 @@ graphic and an oscilloscope. It supports normal, Wien, and physical tuning.
 %{__perl} -pi -e "s|^\.#|#|g;" k3guitune/k3guitune.desktop
 
 %build
-%configure
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 %install

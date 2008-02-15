@@ -23,7 +23,7 @@ The goal is to find as many words as possible in the given time.
 %setup
 
 %build
-%configure
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 %install

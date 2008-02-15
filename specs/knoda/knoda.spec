@@ -56,7 +56,7 @@ you will need to install %{name}-devel.
 source %{_sysconfdir}/profile.d/qt.sh
 %{__perl} -pi.orig -e 's|\$\(datadir\)|\$(picsdatadir)|g' hk_kdeclasses/pics/Makefile.* knoda/pics/Makefile.*
 %{__perl} -pi.orig -e 's|^datadir|picsdatadir|g' hk_kdeclasses/pics/Makefile.* knoda/pics/Makefile.*
-%configure
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 %install

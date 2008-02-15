@@ -35,7 +35,7 @@ to press the matching note for it.
 
 %build
 source /etc/profile.d/qt.sh
-%configure
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
 %{?fc1:for i in $(find . -type f | egrep '\.ui'); do sed -i 's/version="3.."/version="3.1"/g;' $i; done}
 %{__make} %{?_smp_mflags}
 

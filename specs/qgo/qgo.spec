@@ -25,7 +25,7 @@ in Japan, China, and Korea.
 %setup
 
 %build
-%configure
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
 %{__ln_s} normaltools_gui.h src/normaltools.h
 %{__make} %{?_smp_mflags}
 

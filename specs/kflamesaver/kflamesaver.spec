@@ -31,7 +31,7 @@ A screensaver for KDE with flame effects like in Twin Peaks.
 
 %build
 . /etc/profile.d/qt.sh
-%configure
+%configure LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 %install
