@@ -10,7 +10,7 @@
 
 Summary: Convenient and transparent local/remote incremental mirror/backup
 Name: rdiff-backup
-Version: 1.1.12
+Version: 1.1.15
 Release: 1
 License: GPL
 Group: Applications/Archiving
@@ -66,6 +66,9 @@ differences from the previous backup will be transmitted.
 %{python_sitearch}/rdiff_backup/*.so
 
 %changelog
+* Tue Feb 12 2008 Dag Wieers <dag@wieers.com> - 1.1.15-1
+- Updated to release 1.1.15 (development).
+
 * Fri Aug 03 2007 Dag Wieers <dag@wieers.com> - 1.1.12-1
 - Updated to release 1.1.12 (development).
 

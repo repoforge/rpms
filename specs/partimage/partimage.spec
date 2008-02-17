@@ -4,7 +4,7 @@
 
 Summary: partition imaging utility, much like Ghost
 Name: partimage
-Version: 0.6.6
+Version: 0.6.7
 Release: 1
 License: GPL
 Group: Applications/System
@@ -23,7 +23,7 @@ files to be copied to movable media such as Zip disks or CD-R.
 
 Partition Images supports the following filesystems:
 
-	ext2fs, ext3fs, fat16, fat32, hfs, hpfs, jfs, ntfs, reiserfs, ufs, xfs
+    ext2fs, ext3fs, fat16, fat32, hfs, hpfs, jfs, ntfs, reiserfs, ufs, xfs
 
 Partition Image allows you to back up a full Linux/Windows system with a single
 operation. When problems such as viruses, crashes, or other errors occur, you
@@ -111,61 +111,61 @@ prog="partimaged"
 desc="Partition imaging daemon"
 
 start() {
-        echo -n $"Starting $desc ($prog): "
-	cd %{_localstatedir}/partimaged
-        daemon %{_sbindir}/$prog --daemon $OPTIONS
-        RETVAL=$?
-        echo
-        [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
-        return $RETVAL
+    echo -n $"Starting $desc ($prog): "
+    cd %{_localstatedir}/partimaged
+    daemon %{_sbindir}/$prog --daemon $OPTIONS
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 stop() {
-        echo -n $"Shutting down $desc ($prog): "
-        killproc $prog
-        RETVAL=$?
-        echo
-        [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
-        return $RETVAL
+    echo -n $"Shutting down $desc ($prog): "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 restart() {
-        stop
-        start
+    stop
+    start
 }
 
 reload() {
-        echo -n $"Reloading $desc ($prog): "
-        killproc $prog -HUP
-        RETVAL=$?
-        echo
-        return $RETVAL
+    echo -n $"Reloading $desc ($prog): "
+    killproc $prog -HUP
+    RETVAL=$?
+    echo
+    return $RETVAL
 }
 
 case "$1" in
   start)
-        start
-        ;;
+    start
+    ;;
   stop)
-        stop
-        ;;
+    stop
+    ;;
   restart)
-        restart
-        ;;
+    restart
+    ;;
   reload)
-        reload
-        ;;
+    reload
+    ;;
   condrestart)
-        [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-        RETVAL=$?
-        ;;
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
   status)
-        status $prog
-        RETVAL=$?
-        ;;
+    status $prog
+    RETVAL=$?
+    ;;
   *)
-        echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
-        RETVAL=1
+    echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
+    RETVAL=1
 esac
 
 exit $RETVAL
@@ -180,32 +180,32 @@ EOF
 EOF
 
 %build
-#%configure \
-#	--program-prefix="%{?_program_prefix}" \
-#	--with-log-dir="%{_localstatedir}/log" \
-#	--enable-pam \
-#	--disable-ssl \
-#	--enable-gui-text \
-#	--enable-gui-newt \
-#	--enable-all-static
+#configure \
+#   --program-prefix="%{?_program_prefix}" \
+#   --with-log-dir="%{_localstatedir}/log" \
+#   --enable-pam \
+#   --disable-ssl \
+#   --enable-gui-text \
+#   --enable-gui-newt \
+#   --enable-all-static
 #%{__make} %{?_smp_mflags}
 #%{__mv} -f src/client/partimage partimage-static
 #%{__rm} -f src/server/partimaged
 
 %configure \
-	--program-prefix="%{?_program_prefix}" \
-	--with-log-dir="%{_localstatedir}/log" \
-	--disable-ssl \
-	--with-xinerama \
-	--enable-gui-text \
-	--enable-gui-newt \
-	--enable-gui-qt
+    --program-prefix="%{?_program_prefix}" \
+    --with-log-dir="%{_localstatedir}/log" \
+    --disable-ssl \
+    --with-xinerama \
+    --enable-gui-text \
+    --enable-gui-newt \
+    --enable-gui-qt
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-#%find_lang %{name}
+%{__make} install DESTDIR="%{buildroot}"
+%find_lang %{name}
 
 #%{__install} -Dp -m0755 partimage-static %{buildroot}%{_sbindir}/partimage-static
 
@@ -225,14 +225,14 @@ touch %{buildroot}%{_localstatedir}/log/partimaged.log
 
 %post server
 if [ $1 -eq 1 ]; then
-        /sbin/chkconfig --add partimaged
+    /sbin/chkconfig --add partimaged
 fi
 /sbin/service partimaged condrestart &>/dev/null || :
 
 %preun server
 if [ $1 -eq 0 ]; then
-        /sbin/service partimaged stop &>/dev/null || :
-        /sbin/chkconfig --del partimaged
+    /sbin/service partimaged stop &>/dev/null || :
+    /sbin/chkconfig --del partimaged
 fi
 
 %postun server
@@ -241,11 +241,11 @@ fi
 %clean
 %{__rm} -rf %{buildroot}
 
-#%files -f %{name}.lang
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS BOOT* BUGS ChangeLog COPYING FUTURE README* THANKS TODO
 %{_sbindir}/partimage
+%exclude %{_docdir}/partimage/
 
 %files server
 %defattr(-, root, root, 0755)
@@ -255,7 +255,6 @@ fi
 %config(noreplace) %{_sysconfdir}/sysconfig/partimaged
 %config(noreplace) %{_sysconfdir}/pam.d/partimaged
 %{_sbindir}/partimaged
-%exclude %{_infodir}
 
 %defattr(-, partimag, partimag, 0755)
 %config(noreplace) %{_sysconfdir}/partimaged/
@@ -268,6 +267,9 @@ fi
 #%{_sbindir}/partimage-static
 
 %changelog
+* Sun Feb 17 2008 Dag Wieers <dag@wieers.com> - 0.6.7-1
+- Updated to release 0.6.7.
+
 * Thu Aug 16 2007 Dag Wieers <dag@wieers.com> - 0.6.6-1
 - Updated to release 0.6.6.
 

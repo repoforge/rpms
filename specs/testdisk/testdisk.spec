@@ -5,7 +5,7 @@
 
 Summary: Tools to check and undelete partition or recover deleted files
 Name: testdisk
-Version: 6.8
+Version: 6.9
 Release: 1
 License: GPL
 Group: Applications/System
@@ -33,7 +33,7 @@ files from filesystems.
 
 %build
 %configure \
-	--program-prefix="%{?_program_prefix}" \
+    --program-prefix="%{?_program_prefix}" \
 %{?_without_ntfs:--without-ntfs}
 %{__make} %{?_smp_mflags}
 
@@ -53,6 +53,9 @@ files from filesystems.
 %{_sbindir}/testdisk
 
 %changelog
+* Thu Feb 14 2008 Dag Wieers <dag@wieers.com> - 6.9-1
+- Updated to release 6.9.
+
 * Thu Aug 16 2007 Dag Wieers <dag@wieers.com> - 6.8-1
 - Updated to release 6.8.
 

@@ -4,7 +4,7 @@
 
 Summary: Lightweight caching nameserver with integrated DHCP server
 Name: dnsmasq
-Version: 2.40
+Version: 2.41
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -56,60 +56,60 @@ prog="dnsmasq"
 desc="Lightweight caching nameserver"
 
 start() {
-	echo -n $"Starting $desc ($prog): "
-	daemon $prog
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Starting $desc ($prog): "
+    daemon $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 stop() {
-	echo -n $"Shutting down $desc ($prog): "
-	killproc $prog
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Shutting down $desc ($prog): "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 reload() {
-	echo -n $"Reloading $desc ($prog): "
-	killproc $prog -HUP
-	RETVAL=$?
-	echo
-	return $RETVAL
+    echo -n $"Reloading $desc ($prog): "
+    killproc $prog -HUP
+    RETVAL=$?
+    echo
+    return $RETVAL
 }
 
 restart() {
-	stop
-	start
+    stop
+    start
 }
 
 case "$1" in
   start)
-	start
-	;;
+    start
+    ;;
   stop)
-	stop
-	;;
+    stop
+    ;;
   restart)
-	restart
-	;;
+    restart
+    ;;
   reload)
-	reload
-	;;
+    reload
+    ;;
   condrestart)
-	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-	RETVAL=$?
-	;;
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
   status)
-	status $prog
-	RETVAL=$?
-	;;
+    status $prog
+    RETVAL=$?
+    ;;
   *)
-	echo $"Usage $0 {start|stop|restart|reload|condrestart|status}"
-	RETVAL=1
+    echo $"Usage $0 {start|stop|restart|reload|condrestart|status}"
+    RETVAL=1
 esac
 
 exit $RETVAL
@@ -117,8 +117,8 @@ EOF
 
 %build
 %{__make} %{?_smp_mflags} \
-	CFLAGS="%{optflags}"
-#	CFLAGS="%{optflags} -DHAVE_DBUS -I%{_libdir}/dbus-1.0/include/ -I%{_includedir}/dbus-1.0/"
+    CFLAGS="%{optflags}"
+#   CFLAGS="%{optflags} -DHAVE_DBUS -I%{_libdir}/dbus-1.0/include/ -I%{_includedir}/dbus-1.0/"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -136,8 +136,8 @@ find contrib -type f -exec chmod 0644 {} \;
 
 %preun
 if [ $1 -eq 0 ]; then
-	/sbin/service dnsmasq stop &>/dev/null || :
-	/sbin/chkconfig --del dnsmasq
+    /sbin/service dnsmasq stop &>/dev/null || :
+    /sbin/chkconfig --del dnsmasq
 fi
 
 %postun
@@ -156,6 +156,9 @@ fi
 %{_localstatedir}/lib/misc/
 
 %changelog
+* Wed Feb 13 2008 Dag Wieers <dag@wieers.com> - 2.41-1
+- Updated to release 2.41.
+
 * Thu Aug 30 2007 Dag Wieers <dag@wieers.com> - 2.40-1
 - Updated to release 2.40.
 
