@@ -1,7 +1,8 @@
 # $Id$
 # Authority:    hadams
 
-Name:           gtk2-engines-nodoka
+#Name:           gtk2-engines-nodoka
+Name:           gtk-nodoka-engine
 Version:        0.6.2
 Packager:       Heiko Adams <info@fedora-blog.de>
 Release:        14.4
@@ -9,6 +10,9 @@ License:        GPL-2
 URL:            https://hosted.fedoraproject.org/projects/nodoka/wiki
 Source:         %{name}_%{version}-1nano.tar.gz
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-root
+
+Obsoletes: 	gtk2-engines-nodoka <= 0.6
+Provides: 	gtk-nodoka-engine = %{version}-%{release}
 
 BuildRequires:  gtk2-devel
 BuildRequires:  sed
@@ -25,8 +29,8 @@ and animations from left to right
 %setup -q
 
 %build
-cp new_config_sub config.sub
-cp new_config_guess config.guess
+#cp new_config_sub config.sub
+#cp new_config_guess config.guess
 ./configure --prefix=/usr --enable-macmenu --enable-animation --enable-animationtoleft
 
 %install
