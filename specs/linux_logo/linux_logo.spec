@@ -3,7 +3,7 @@
 
 Summary: The linux logo - a colorful console penguin logo
 Name: linux_logo
-Version: 4.12
+Version: 5.03
 Release: 1
 License: GPL
 Group: Applications/System
@@ -24,10 +24,11 @@ Linux logo creates a colorful penguin logo on the console.
 for logo in ./logos/*.logo ./logos/*/*.logo; do
     echo "$logo" >> logo_config
 done
+%configure
 # C_OPTS is used by linux_logo.c and C_FLAGS by libsysinfo
 %{__make} %{?_smp_mflags} \
     C_OPTS="%{optflags} -I./\$(LIBSYSINFO)" \
-    C_FLAGS="%{optflags} -I.. -I. -I../include"
+    C_FLAGS="%{optflags} -I.. -I. -I../include" PREFIX=%{_prefix}
 
 
 %install
@@ -37,7 +38,8 @@ done
 %{__make} install \
     INSTALL_BINPATH=%{buildroot}%{_bindir} \
     INSTALL_MANPATH=%{buildroot}%{_mandir} \
-    INSTALLDIR=%{buildroot}%{_datadir}/locale
+    INSTALLDIR=%{buildroot}%{_datadir}/locale \
+    PREFIX=%{buildroot}%{_prefix}
 %find_lang %{name}
 
 
@@ -53,6 +55,9 @@ done
 
 
 %changelog
+* Sun Feb 17 2008 Dries Verachtert <dries@ulyssis.org> - 5.03-1
+- Updated to release 5.03.
+
 * Mon May  2 2005 Matthias Saou <http://freshrpms.net/> 4.12-1
 - Update to 4.12.
 

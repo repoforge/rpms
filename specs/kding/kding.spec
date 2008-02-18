@@ -4,7 +4,7 @@
 
 Summary: Frontend for ding, a dictionary lookup program
 Name: kding
-Version: 0.4.1
+Version: 0.4.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -43,7 +43,7 @@ Ding.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %{_bindir}/kding
-%{_datadir}/applnk/Utilities/kding.desktop
+%{_datadir}/applications/kde/kding.desktop
 %{_datadir}/apps/kding/
 %{_datadir}/config.kcfg/kding.kcfg
 %{_datadir}/doc/HTML/*/kding/
@@ -51,6 +51,9 @@ Ding.
 %{_datadir}/icons/*/*/actions/kding_search.png
 
 %changelog
+* Sun Feb 17 2008 Dries Verachtert <dries@ulyssis.org> - 0.4.2-1
+- Updated to release 0.4.2.
+
 * Mon Sep 10 2007 Dries Verachtert <dries@ulyssis.org> - 0.4.1-1
 - Updated to release 0.4.1.
 
