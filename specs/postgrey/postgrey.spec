@@ -5,8 +5,8 @@
 
 Summary: Postfix Greylisting Policy Server
 Name: postgrey
-Version: 1.30
-Release: 2
+Version: 1.31
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://postgrey.schweikert.ch/
@@ -100,6 +100,9 @@ fi
 %dir %{_var}/spool/postfix/postgrey/
 
 %changelog
+* Thu Feb 21 2008 <david@hrbac.cz> - 1.31-1
+- Updated to release 1.31.
+
 * Mon Aug 06 2007 Dag Wieers <dag@wieers.com> - 1.30-2
 - Readded nogroup patch. (What was I thinking ?)
 
