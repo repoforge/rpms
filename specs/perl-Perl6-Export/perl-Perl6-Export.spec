@@ -10,7 +10,7 @@
 Summary: Implements the Perl 6 is export trait
 Name: perl-Perl6-Export
 Version: 0.07
-Release: 1.2
+Release: 2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Perl6-Export/
@@ -23,6 +23,11 @@ BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
+This module prototypes the Perl 6 'exported' and 'exportable' traits
+in Perl 5.
+
+Instead of messing around with @EXPORT arrays, you just declare which subs
+are to be exported (or are exportable on request) as part of those subs.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -49,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Perl6/Export.pm
 
 %changelog
+* Thu Feb 21 2008 Dries Verachtert <dries@ulyssis.org> - 0.07-2
+- Fixed the description, thanks to Bill McGonigle.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1.2
 - Rebuild for Fedora Core 5.
 
