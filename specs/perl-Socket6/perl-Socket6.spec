@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Hajimu Umemoto <ume$mahoroba,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,17 +9,17 @@
 
 Summary: IPv6 related part of the C socket.h defines and structure manipulators
 Name: perl-Socket6
-Version: 0.19
-Release: 1.2
-License: GPL
+Version: 0.20
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Socket6/
 
 Source: http://www.cpan.org/modules/by-module/Socket6/Socket6-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker) >= 0:5.00503
+BuildRequires: perl >= 0:5.00503
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.00503
 
 %description
@@ -47,13 +48,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog MANIFEST README
-%{perl_vendorarch}/Socket6.pm
+%doc ChangeLog MANIFEST META.yml README
+#%doc %{_mandir}/man3/Socket6.3pm*
 %{perl_vendorarch}/auto/Socket6/
+%{perl_vendorarch}/Socket6.pm
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.19-1.2
-- Rebuild for Fedora Core 5.
+* Thu Feb 21 2008 Dag Wieers <dag@wieers.com> - 0.20-1
+- Updated to release 0.20.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.19-1
 - Updated to release 0.19.

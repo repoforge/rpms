@@ -9,7 +9,7 @@
 
 Summary: Dispatches messages to one or more outputs
 Name: perl-Log-Dispatch
-Version: 2.20
+Version: 2.21
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -68,6 +68,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Log/Dispatch.pm
 
 %changelog
+* Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 2.21-1
+- Updated to release 2.21.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 2.20-1
 - Updated to release 2.20.
 

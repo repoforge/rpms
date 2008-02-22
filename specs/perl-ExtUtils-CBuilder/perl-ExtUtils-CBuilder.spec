@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Ken Williams <ken$mathforum,org>
+# Upstream: Ken Williams <kwilliams$cpan,or>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Compile and link C code
 Name: perl-ExtUtils-CBuilder
-Version: 0.21
+Version: 0.22
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+#BuildRequires: perl(Test)
 
 %description
 With this perl module, you can compile and link C code for perl modules
@@ -53,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/ExtUtils/bleadcheck.pl
 
 %changelog
+* Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 0.22-1
+- Updated to release 0.22.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.21-1
 - Updated to release 0.21.
 

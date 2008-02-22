@@ -6,11 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Youri-Package-RPM-Updater
-%define real_version 0.004000
+%define real_version 0.004001
 
 Summary: Perl module to update RPM packages automatically
 Name: perl-Youri-Package-RPM-Updater
-Version: 0.4.0
+Version: 0.4.1
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Youri/Package/RPM/Updater.pm
 
 %changelog
+* Thu Feb 21 2008 Dag Wieers <dag@wieers.com> - 0.4.1-1
+- Updated to release 0.4.1.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.4.0-1
 - Updated to release 0.4.0.
 

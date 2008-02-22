@@ -7,9 +7,9 @@
 
 %define real_name File-MimeInfo
 
-Summary: Perl module to determine file type
+Summary: Determine file type
 Name: perl-File-MimeInfo
-Version: 0.14
+Version: 0.15
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/File/MimeInfo.pm
 
 %changelog
+* Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 0.15-1
+- Updated to release 0.15.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.14-1
 - Updated to release 0.14.
 

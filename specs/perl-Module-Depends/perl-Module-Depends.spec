@@ -9,7 +9,7 @@
 
 Summary: Identify the dependencies of a distribution
 Name: perl-Module-Depends
-Version: 0.13
+Version: 0.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/Depends.pm
 
 %changelog
+* Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 0.14-1
+- Updated to release 0.14.
+
 * Wed Nov 14 2007 Dag Wieers <dag@wieers.com> - 0.13-1
 - Updated to release 0.13.
 

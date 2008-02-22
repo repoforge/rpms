@@ -10,7 +10,7 @@
 
 Summary: Session plugin for Egg
 Name: perl-Egg-Plugin-SessionKit
-Version: 2.10
+Version: 3.01
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,13 +50,16 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README eg/
 %doc %{_mandir}/man3/Egg::Plugin::SessionKit.3pm*
-%doc %{_mandir}/man3/Egg::Plugin::SessionKit::*.3pm*
+#%doc %{_mandir}/man3/Egg::Plugin::SessionKit::*.3pm*
 %dir %{perl_vendorlib}/Egg/
 %dir %{perl_vendorlib}/Egg/Plugin/
-%{perl_vendorlib}/Egg/Plugin/SessionKit/
+#%{perl_vendorlib}/Egg/Plugin/SessionKit/
 %{perl_vendorlib}/Egg/Plugin/SessionKit.pm
 
 %changelog
+* Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 3.01-1
+- Updated to release 3.01.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 2.10-1
 - Updated to release 2.10.
 

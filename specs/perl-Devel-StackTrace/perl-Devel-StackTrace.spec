@@ -1,18 +1,19 @@
 # $Id$
 # Authority: dag
+# Upstream: Dave Rolsky <autarch$urth,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Devel-StackTrace
 
-Summary: Devel-StackTrace module for perl
+Summary: Stack trace and stack trace frame objects
 Name: perl-Devel-StackTrace
-Version: 1.15
+Version: 1.16
 Release: 1
-License: GPL or Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/perl-Devel-StackTrace/
+URL: http://search.cpan.org/dist/Devel-StackTrace/
 
 Source: http://www.cpan.org/modules/by-module/Devel/Devel-StackTrace-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -47,20 +48,21 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE README
-%doc %{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST META.yml README SIGNATURE
+%doc %{_mandir}/man3/Devel::StackTrace.3pm*
 %dir %{perl_vendorlib}/Devel/
+#%{perl_vendorlib}/Devel/StackTrace/
 %{perl_vendorlib}/Devel/StackTrace.pm
 
 %changelog
+* Tue Feb 19 2008 Dag Wieers <dag@wieers.com> - 1.16-1
+- Updated to release 1.16.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 1.15-1
 - Updated to release 1.15.
 
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.13-1
 - Updated to release 1.13.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.12-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> - 1.12-1
 - Upgraded to version 1.12.

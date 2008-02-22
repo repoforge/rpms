@@ -6,12 +6,13 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Term-ReadLine-Gnu
+%define real_version 1.17
 
 # todo mv dir, wrong name
 
 Summary: Extension for the GNU Readline/History library
 Name: perl-Term-ReadLine-Gnu
-Version: 1.16
+Version: 1.17a
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -37,7 +38,7 @@ with Perl.  TRG may be useful for a C programmer to prototype
 a program which uses the GNU Readline Library.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{real_version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -46,8 +47,12 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
 
 %{__perl} -pi -e "s|^#!/.*bin/perl|#!%{__perl}|i;" %{buildroot}%{perl_vendorarch}/Term/ReadLine/Gnu/*.pm
 
@@ -56,16 +61,20 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%{_mandir}/man3/*.3pm*
-%dir %{perl_vendorarch}/Term/
-%dir %{perl_vendorarch}/Term/ReadLine/
-%{perl_vendorarch}/Term/ReadLine/Gnu*
+%doc INSTALL MANIFEST META.yml README eg/
+%doc %{_mandir}/man3/Term::ReadLine::Gnu.3pm*
 %dir %{perl_vendorarch}/auto/Term/
 %dir %{perl_vendorarch}/auto/Term/ReadLine/
 %{perl_vendorarch}/auto/Term/ReadLine/Gnu/
+%dir %{perl_vendorarch}/Term/
+%dir %{perl_vendorarch}/Term/ReadLine/
+%{perl_vendorarch}/Term/ReadLine/Gnu/
+%{perl_vendorarch}/Term/ReadLine/Gnu.pm
 
 %changelog
+* Thu Feb 21 2008 Dag Wieers <dag@wieers.com> - 1.17a-1
+- Updated to release 1.17a.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.16-1
 - Updated to release 1.16.
 

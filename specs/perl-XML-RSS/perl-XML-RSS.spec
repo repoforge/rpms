@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Ask Bjørn Hansen <ask$perl,org>
+# Upstream: Shlomi Fish <shlomif$iglu,org,il>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Creates and updates RSS files
 Name: perl-XML-RSS
-Version: 1.31
+Version: 1.32
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/XML/RSS.pm
 
 %changelog
+* Thu Feb 21 2008 Dag Wieers <dag@wieers.com> - 1.32-1
+- Updated to release 1.32.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.31-1
 - Updated to release 1.31.
 

@@ -7,7 +7,7 @@
 
 Summary: Linux NTFS userspace driver 
 Name: fuse-ntfs-3g
-Version: 1.1120
+Version: 1.2216
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -75,20 +75,28 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING CREDITS NEWS README
-%doc %{_mandir}/man8/*.8*
+%doc %{_mandir}/man8/mount.ntfs-3g.8*
+%doc %{_mandir}/man8/ntfs-3g.8*
+%doc %{_mandir}/man8/ntfs-3g.probe.8*
 %{_sbindir}/mount.ntfs-3g
 %{_sbindir}/mount.ntfs-fuse
 %{_bindir}/ntfs-3g
+%{_bindir}/ntfs-3g.probe
 %{_bindir}/ntfsmount
 %{_libdir}/libntfs-3g.so.*
+%exclude %{_docdir}/ntfs-3g/
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/ntfs-3g/
 %{_libdir}/libntfs-3g.so
+%{_libdir}/pkgconfig/libntfs-3g.pc
 %exclude %{_libdir}/libntfs-3g.la
 
 %changelog
+* Sun Feb 17 2008 Dag Wieers <dag@wieers.com> - 1.2216-1
+- Updated to release 1.2216.
+
 * Tue Nov 20 2007 Dag Wieers <dag@wieers.com> - 1.1120-1
 - Updated to release 1.1120.
 

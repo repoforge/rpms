@@ -9,7 +9,7 @@
 
 Summary: Capture STDOUT and STDERR from Perl code, subprocesses or XS
 Name: perl-IO-CaptureOutput
-Version: 1.0601
+Version: 1.0801
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,7 +19,10 @@ Source: http://www.cpan.org/modules/by-module/IO/IO-CaptureOutput-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
+#BuildRequires: perl(File::Spec) >= 3.27
+BuildRequires: perl(IO::File)
 #BuildRequires: perl(Test::More) >= 0.62
 
 %description
@@ -39,12 +42,15 @@ Capture STDOUT and STDERR from Perl code, subprocesses or XS.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes INSTALL LICENSE MANIFEST MANIFEST.SKIP META.yml README
+%doc Changes INSTALL LICENSE MANIFEST MANIFEST.SKIP META.yml README Todo examples/
 %doc %{_mandir}/man3/IO::CaptureOutput.3pm*
 %dir %{perl_vendorlib}/IO/
 #%{perl_vendorlib}/IO/CaptureOutput/
@@ -52,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IO/CaptureOutput.pod
 
 %changelog
+* Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 1.0801-1
+- Updated to release 1.0801.
+
 * Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 1.0601-1
 - Updated to release 1.0601.
 

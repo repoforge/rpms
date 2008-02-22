@@ -9,7 +9,7 @@
 
 Summary: Get information about a class and its structure
 Name: perl-Class-Inspector
-Version: 1.18
+Version: 1.20
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,10 +19,10 @@ Source: http://www.cpan.org/modules/by-module/Class/Class-Inspector-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.005 
+BuildRequires: perl >= 0:5.005
 BuildRequires: perl(File::Spec) >= 0.80
 BuildRequires: perl(Test::More) >= 0.47
-Requires: perl >= 0:5.005 
+Requires: perl >= 0:5.005
 
 %description
 Class::Inspector allows you to get information about a loaded class.
@@ -58,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/Inspector.pm
 
 %changelog
+* Tue Feb 19 2008 Dag Wieers <dag@wieers.com> - 1.20-1
+- Updated to release 1.20.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.18-1
 - Updated to release 1.18.
 

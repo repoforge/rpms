@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Greg Sabino Mullane <greg@turnstep.com>
+# Upstream: Greg Sabino Mullane <greg$turnstep,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: DBI PostgreSQL interface
 Name: perl-DBD-Pg
-Version: 1.49
+Version: 2.0.0
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,8 +20,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 BuildRequires: perl(DBI) >= 1.45
+BuildRequires: perl(Module::Signature) >= 0.5
 BuildRequires: perl(Test::Harness) >= 2.03
-BuildRequires: perl(Test::Simple) >= 0.3
+BuildRequires: perl(Test::Simple) >= 0.47
 
 %description
 DBI PostgreSQL interface.
@@ -47,11 +48,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST MANIFEST.SKIP META.yml README README.dev README.win32 SIGNATURE TODO
 %doc %{_mandir}/man3/DBD::Pg.3pm*
-%dir %{perl_vendorarch}/DBD/
-%{perl_vendorarch}/DBD/Pg.pm
 %dir %{perl_vendorarch}/auto/DBD/
 %{perl_vendorarch}/auto/DBD/Pg/
+%dir %{perl_vendorarch}/DBD/
+%{perl_vendorarch}/DBD/Pg.pm
 
 %changelog
+* Tue Feb 19 2008 Dag Wieers <dag@wieers.com> - 2.0.0-1
+- Updated to release 2.0.0.
+
 * Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 1.49-1
 - Initial package. (using DAR)

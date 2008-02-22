@@ -9,7 +9,7 @@
 
 Summary: Persistence framework for session data
 Name: perl-Apache-Session
-Version: 1.85
+Version: 1.86
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Apache/Session.pm
 
 %changelog
+* Sun Feb 17 2008 Dag Wieers <dag@wieers.com> - 1.86-1
+- Updated to release 1.86.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 1.85-1
 - Updated to release 1.85.
 

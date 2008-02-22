@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Shlomi Fish <shlomif$iglu,org,il>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,9 +9,9 @@
 
 Summary: Object interface for AF_INET|AF_INET6 domain sockets
 Name: perl-IO-Socket-INET6
-Version: 2.51
-Release: 1.2
-License: GPL
+Version: 2.52
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Socket-INET6/
 
@@ -46,15 +47,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog MANIFEST README
-%doc %{_mandir}/man3/*
+%doc ChangeLog MANIFEST META.yml README
+%doc %{_mandir}/man3/IO::Socket::INET6.3pm*
 %dir %{perl_vendorlib}/IO/
 %dir %{perl_vendorlib}/IO/Socket/
 %{perl_vendorlib}/IO/Socket/INET6.pm
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.51-1.2
-- Rebuild for Fedora Core 5.
+* Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 2.52-1
+- Updated to release 2.52.
 
 * Wed Mar 30 2005 Dag Wieers <dag@wieers.com> - 2.51-1
 - Initial package. (using DAR)

@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements East Asian Width properties
 Name: perl-Unicode-EastAsianWidth
-Version: 1.10
+Version: 1.30
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Unicode/EastAsianWidth.pm
 
 %changelog
+* Thu Feb 21 2008 Dag Wieers <dag@wieers.com> - 1.30-1
+- Updated to release 1.30.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 1.10-1
 - Updated to release 1.10.
 

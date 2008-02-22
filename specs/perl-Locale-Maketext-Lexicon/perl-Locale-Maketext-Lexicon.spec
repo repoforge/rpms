@@ -9,7 +9,7 @@
 
 Summary: Extract translatable strings from source
 Name: perl-Locale-Maketext-Lexicon
-Version: 0.65
+Version: 0.66
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -58,6 +58,9 @@ find docs/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Locale/Maketext/
 
 %changelog
+* Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 0.66-1
+- Updated to release 0.66.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.65-1
 - Updated to release 0.65.
 
@@ -69,9 +72,6 @@ find docs/ -type f -exec %{__chmod} a-x {} \;
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.55-1
 - Updated to release 0.55.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.53-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.53-1
 - Updated to release 0.53.

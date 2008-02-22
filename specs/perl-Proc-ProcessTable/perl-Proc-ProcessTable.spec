@@ -8,9 +8,9 @@
 
 Summary: Perl interface to the UNIX process table
 Name: perl-Proc-ProcessTable
-Version: 0.41
+Version: 0.42
 Release: 1
-License: GPL or Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Proc-ProcessTable/
 
@@ -45,13 +45,16 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find contrib/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes PORTING README* TODO
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml PORTING README* TODO contrib/
+%doc %{_mandir}/man3/Proc::*.3pm*
 %dir %{perl_vendorarch}/Proc/
 %{perl_vendorarch}/Proc/example.pl
 %{perl_vendorarch}/Proc/Killall.pm
@@ -62,11 +65,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Proc/ProcessTable/
 
 %changelog
+* Thu Feb 21 2008 Dag Wieers <dag@wieers.com> - 0.42-1
+- Updated to release 0.42.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.41-1
 - Updated to release 0.41.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.40-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.40-1
 - Updated to release 0.40.

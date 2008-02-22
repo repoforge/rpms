@@ -9,7 +9,7 @@
 
 Summary: Automatic authentication maintenance and persistence for cgi scripts
 Name: perl-CGI-Auth-Auto
-Version: 1.19
+Version: 1.20
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/CGI/Auth/Auto.pm
 
 %changelog
+* Tue Feb 19 2008 Dag Wieers <dag@wieers.com> - 1.20-1
+- Updated to release 1.20.
+
 * Wed Nov 07 2007 Dag Wieers <dag@wieers.com> - 1.19-1
 - Updated to release 1.19.
 

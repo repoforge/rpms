@@ -9,7 +9,7 @@
 
 Summary: Tools for working with paths and file specs across platforms
 Name: perl-PathTools
-Version: 3.2501
+Version: 3.2701
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/File/Spec/
 
 %changelog
+* Tue Feb 19 2008 Dag Wieers <dag@wieers.com> - 3.2701-1
+- Updated to release 3.2701.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 3.2501-1
 - Updated to release 3.2501.
 

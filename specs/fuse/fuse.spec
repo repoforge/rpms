@@ -10,7 +10,7 @@
 
 Summary: File System in Userspace (FUSE) utilities
 Name: fuse
-Version: 2.7.2
+Version: 2.7.3
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -166,6 +166,9 @@ fi
 %exclude %{_libdir}/libulockmgr.la
 
 %changelog
+* Tue Feb 19 2008 Dag Wieers <dag@wieers.com> - 2.7.3-1
+- Updated to release 2.7.3.
+
 * Thu Feb 07 2008 Dag Wieers <dag@wieers.com> - 2.7.2-1
 - Updated to release 2.7.2.
 

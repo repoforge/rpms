@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dag
-# Upstream: jean-marc boulade <jmbperl@hotmail.com>
+# Upstream: jean-marc boulade <jmbperl$hotmail,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Archive-Rar
 
-Summary: Perl module to interface with the 'rar' command
+Summary: Interface with the 'rar' command
 Name: perl-Archive-Rar
-Version: 1.93
+Version: 1.94
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Archive/Rar.pm
 
 %changelog
+* Sun Feb 17 2008 Dag Wieers <dag@wieers.com> - 1.94-1
+- Updated to release 1.94.
+
 * Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 1.93-1
 - Initial package. (using DAR)

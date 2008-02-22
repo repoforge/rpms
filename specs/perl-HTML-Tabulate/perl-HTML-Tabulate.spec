@@ -9,7 +9,7 @@
 
 Summary: HTML table rendering class
 Name: perl-HTML-Tabulate
-Version: 0.26
+Version: 0.27
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -43,12 +43,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README
+%doc MANIFEST README
 %doc %{_mandir}/man3/HTML::Tabulate.3pm*
 %dir %{perl_vendorlib}/HTML/
 #%{perl_vendorlib}/HTML/Tabulate/
 %{perl_vendorlib}/HTML/Tabulate.pm
 
 %changelog
+* Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 0.27-1
+- Updated to release 0.27.
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 0.26-1
 - Initial package. (using DAR)

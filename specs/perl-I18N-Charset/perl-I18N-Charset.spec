@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Martin Thurn <mthurn$verizon,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,7 +9,7 @@
 
 Summary: IANA Character Set Registry names and Unicode::MapUTF8 (et al.) conversion scheme names
 Name: perl-I18N-Charset
-Version: 1.385
+Version: 1.387
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -46,12 +47,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST README
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man3/I18N::Charset.3pm*
+#%doc %{_mandir}/man3/I18N::Charset::*.3pm*
 %dir %{perl_vendorlib}/I18N/
+#%{perl_vendorlib}/I18N/Charset/
 %{perl_vendorlib}/I18N/Charset.pm
-%{perl_vendorlib}/I18N/Charset/
 
 %changelog
+* Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 1.387-1
+- Updated to release 1.387.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 1.385-1
 - Updated to release 1.385.
 

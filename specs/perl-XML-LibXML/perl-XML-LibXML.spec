@@ -10,9 +10,9 @@
 
 %define real_name XML-LibXML
 
-Summary: Perl module that implements binding for libxml2
+Summary: Interface to Gnome libxml2 xml parsing and DOM library
 Name: perl-XML-LibXML
-Version: 1.65
+Version: 1.66
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -66,6 +66,9 @@ find docs/ example/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/XML/LibXML.pod
 
 %changelog
+* Thu Feb 21 2008 Dag Wieers <dag@wieers.com> - 1.66-1
+- Updated to release 1.66.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 1.65-1
 - Updated to release 1.65.
 

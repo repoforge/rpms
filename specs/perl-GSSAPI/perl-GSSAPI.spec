@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Achim Grolms <pause$grolmsnet,de>
+# Upstream: Achim Grolms <perl$grolmsnet,de>
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
@@ -11,7 +11,7 @@
 
 Summary: Perl extension providing access to the GSSAPIv2 library
 Name: perl-GSSAPI
-Version: 0.24
+Version: 0.26
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,12 +54,16 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README examples/
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/GSSAPI.3pm*
+%doc %{_mandir}/man3/GSSAPI::*.3pm*
+%{perl_vendorarch}/auto/GSSAPI/
 %{perl_vendorarch}/GSSAPI/
 %{perl_vendorarch}/GSSAPI.pm
-%{perl_vendorarch}/auto/GSSAPI/
 
 %changelog
+* Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 0.26-1
+- Updated to release 0.26.
+
 * Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 0.24-1
 - Updated to release 0.24.
 - Disabled auto-requires for examples/.

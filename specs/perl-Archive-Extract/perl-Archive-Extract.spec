@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Jos Boumans <gro,miwd$enak>
+# Upstream: Jos Boumans <kane$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Generic archive extracting mechanism
 Name: perl-Archive-Extract
-Version: 0.24
+Version: 0.26
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Archive/Extract.pm
 
 %changelog
+* Sun Feb 17 2008 Dag Wieers <dag@wieers.com> - 0.26-1
+- Updated to release 0.26.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.24-1
 - Updated to release 0.24.
 

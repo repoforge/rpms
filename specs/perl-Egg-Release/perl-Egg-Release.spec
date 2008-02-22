@@ -6,11 +6,10 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Egg-Release
-%define real_version 2.02
 
 Summary: Version of Egg WEB Application Framework
 Name: perl-Egg-Release
-Version: 2.26
+Version: 3.01
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Egg/Egg-Release-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 2:5.8.1
+Requires: perl >= 2:5.8.1
 
 %description
 Version of Egg WEB Application Framework.
@@ -54,5 +54,8 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Egg.pm
 
 %changelog
+* Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 3.01-1
+- Updated to release 3.01.
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 2.26-1
 - Initial package. (using DAR)

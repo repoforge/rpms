@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Andrew J. Korty <korty$cpan,org>
+# Upstream: Andrew J. Korty <ajk$iu,edu>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Perl extension for MIT Kerberos 5 admin interface
 Name: perl-Authen-Krb5-Admin
-Version: 0.09
+Version: 0.10
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 BuildRequires: perl(Authen::Krb5) >= 1.2
+BuildRequires: perl(Test)
 
 %description
 Perl extension for MIT Kerberos 5 admin interface.
@@ -45,7 +46,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING ChangeLog MANIFEST META.yml README
+%doc COPYING ChangeLog MANIFEST MANIFEST.SKIP META.yml README SIGNATURE
 %doc %{_mandir}/man3/Authen::Krb5::Admin.3pm*
 %dir %{perl_vendorarch}/auto/Authen/
 %dir %{perl_vendorarch}/auto/Authen/Krb5/
@@ -55,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Authen/Krb5/Admin.pm
 
 %changelog
+* Sun Feb 17 2008 Dag Wieers <dag@wieers.com> - 0.10-1
+- Updated to release 0.10.
+
 * Mon Nov 26 2007 Dag Wieers <dag@wieers.com> - 0.09-1
 - Fixed a compilation problem on RHEL and Fedora. (Claudio Strizzolo)
 - Initial package. (using DAR)

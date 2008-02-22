@@ -9,7 +9,7 @@
 
 Summary: Event-driven networkable IRC server daemon
 Name: perl-POE-Component-Server-IRC
-Version: 1.24
+Version: 1.28
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,8 +49,10 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST MANIFEST.SKIP META.yml README examples/
+%doc %{_mandir}/man1/pmkpasswd.1*
 %doc %{_mandir}/man3/POE::Component::Server::IRC.3pm*
 %doc %{_mandir}/man3/POE::Component::Server::IRC::*.3pm*
+%{_bindir}/pmkpasswd
 %dir %{perl_vendorlib}/POE/
 %dir %{perl_vendorlib}/POE/Component/
 %dir %{perl_vendorlib}/POE/Component/Server/
@@ -58,6 +60,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Component/Server/IRC.pm
 
 %changelog
+* Thu Feb 21 2008 Dag Wieers <dag@wieers.com> - 1.28-1
+- Updated to release 1.28.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.24-1
 - Updated to release 1.24.
 

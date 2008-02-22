@@ -7,9 +7,9 @@
 
 %define real_name XML-LibXSLT
 
-Summary: Interface to the gnome libxslt library
+Summary: Interface to Gnome libxslt library
 Name: perl-XML-LibXSLT
-Version: 1.63
+Version: 1.66
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -41,20 +41,26 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find example/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
+%doc Changes MANIFEST META.yml README example/
 %doc %{_mandir}/man3/XML::LibXSLT.3pm*
-%dir %{perl_vendorarch}/XML/
-%{perl_vendorarch}/XML/benchmark.pl
-%{perl_vendorarch}/XML/LibXSLT.pm
 %dir %{perl_vendorarch}/auto/XML/
 %{perl_vendorarch}/auto/XML/LibXSLT/
+%dir %{perl_vendorarch}/XML/
+%{perl_vendorarch}/XML/LibXSLT.pm
+%{perl_vendorarch}/XML/benchmark.pl
 
 %changelog
+* Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 1.66-1
+- Updated to release 1.66.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.63-1
 - Updated to release 1.63.
 

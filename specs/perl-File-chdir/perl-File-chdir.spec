@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Michael G Schwern <schwern$pobox,com>
+# Upstream: David A, Golden <dagolden$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: More sensible way to change directories
 Name: perl-File-chdir
-Version: 0.09
+Version: 0.1002
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,18 +39,25 @@ A more sensible way to change directories.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml
+%doc Changes INSTALL LICENSE MANIFEST META.yml README examples/
 %doc %{_mandir}/man3/File::chdir.3pm*
 %dir %{perl_vendorlib}/File/
 #%{perl_vendorlib}/File/chdir/
 %{perl_vendorlib}/File/chdir.pm
+%{perl_vendorlib}/File/chdir.pod
 
 %changelog
+* Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 0.1002-1
+- Updated to release 0.1002.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.09-1
 - Updated to release 0.09.
 

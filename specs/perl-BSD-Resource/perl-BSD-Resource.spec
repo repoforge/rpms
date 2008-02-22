@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Jarkko Hietaniemi <jhi@iki,fi>
+# Upstream: Jarkko Hietaniemi <jhi$iki,fi>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,9 +9,9 @@
 
 Summary: BSD process resource limit and priority functions
 Name: perl-BSD-Resource
-Version: 1.28
+Version: 1.2901
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/BSD-Resource/
 
@@ -51,14 +51,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
-%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorarch}/BSD/
-%{perl_vendorarch}/BSD/Resource.pm
+%doc ChangeLog INSTALL MANIFEST META.yml README
+%doc %{_mandir}/man3/BSD::Resource.3pm*
 %dir %{perl_vendorarch}/auto/BSD/
 %{perl_vendorarch}/auto/BSD/Resource/
+%dir %{perl_vendorarch}/BSD/
+%{perl_vendorarch}/BSD/Resource.pm
 
 %changelog
+* Mon Feb 18 2008 Dag Wieers <dag@wieers.com> - 1.2901-1
+- Updated to release 1.2901.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.28-1
 - Updated to release 1.28.
 

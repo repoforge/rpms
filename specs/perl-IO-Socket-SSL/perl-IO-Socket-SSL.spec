@@ -9,7 +9,7 @@
 
 Summary: Nearly transparent SSL encapsulation for IO::Socket::INET
 Name: perl-IO-Socket-SSL
-Version: 1.12
+Version: 1.13
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,13 +48,16 @@ find docs/ example/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS Changes MANIFEST README docs/ example/
+%doc BUGS Changes MANIFEST META.yml README docs/ example/
 %doc %{_mandir}/man3/IO::Socket::SSL.3pm*
 %dir %{perl_vendorlib}/IO/
 %dir %{perl_vendorlib}/IO/Socket/
 %{perl_vendorlib}/IO/Socket/SSL.pm
 
 %changelog
+* Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 1.13-1
+- Updated to release 1.13.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 1.12-1
 - Updated to release 1.12.
 

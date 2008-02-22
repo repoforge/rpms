@@ -9,7 +9,7 @@
 
 Summary: Parse BIND zone files
 Name: perl-Net-DNS-ZoneFile-Fast
-Version: 0.9
+Version: 0.91
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/DNS/ZoneFile/Fast.pm
 
 %changelog
+* Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 0.91-1
+- Updated to release 0.91.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.9-1
 - Updated to release 0.9.
 

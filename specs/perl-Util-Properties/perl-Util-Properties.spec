@@ -9,7 +9,7 @@
 
 Summary: Java.util.properties like class
 Name: perl-Util-Properties
-Version: 0.16
+Version: 0.17
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Util/Properties.pm
 
 %changelog
+* Thu Feb 21 2008 Dag Wieers <dag@wieers.com> - 0.17-1
+- Updated to release 0.17.
+
 * Wed Dec 05 2007 Dag Wieers <dag@wieers.com> - 0.16-1
 - Updated to release 0.16.
 

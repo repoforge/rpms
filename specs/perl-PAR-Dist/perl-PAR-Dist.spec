@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Steffen Müller <smueller$cpan,org>
+# Upstream: Audrey Tang <cpan$audreyt,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Create and manipulate PAR distributions
 Name: perl-PAR-Dist
-Version: 0.25
+Version: 0.29
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,7 +44,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README SIGNATURE
+%doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/PAR::Dist.3pm*
 %dir %{perl_vendorlib}/PAR/
 #%{perl_vendorlib}/PAR/Dist/

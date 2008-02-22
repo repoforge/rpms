@@ -9,7 +9,7 @@
 
 Summary: Component that provides non-blocking ident lookups to your sessions
 Name: perl-POE-Component-Client-Ident
-Version: 1.08
+Version: 1.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/POE/Filter/Ident.pm
 
 %changelog
+* Thu Feb 21 2008 Dag Wieers <dag@wieers.com> - 1.10-1
+- Updated to release 1.10.
+
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.08-1
 - Updated to release 1.08.
 
@@ -82,9 +85,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.9-1
 - Updated to release 0.9.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.8-1.2
-- Rebuild for Fedora Core 5.
 
 * Thu Dec 22 2005 Dries Verachtert <dries@ulyssis.org> - 0.8-1
 - Initial package.

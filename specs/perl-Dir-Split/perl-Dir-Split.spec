@@ -9,7 +9,7 @@
 
 Summary: Split files of a directory to subdirectories
 Name: perl-Dir-Split
-Version: 0.79
+Version: 0.80
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Temp)
 #BuildRequires: perl(Test::More)
 
 %description
@@ -45,13 +46,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes INSTALL MANIFEST META.yml README TODO
+%doc Changes INSTALL MANIFEST META.yml README
 %doc %{_mandir}/man3/Dir::Split.3pm*
 %dir %{perl_vendorlib}/Dir/
 #%{perl_vendorlib}/Dir/Split/
 %{perl_vendorlib}/Dir/Split.pm
 
 %changelog
+* Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 0.80-1
+- Updated to release 0.80.
+
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.79-1
 - Updated to release 0.79.
 

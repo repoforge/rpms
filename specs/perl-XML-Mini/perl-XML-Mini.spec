@@ -9,8 +9,8 @@
 
 Summary: MiniXML XML generator and parser interface
 Name: perl-XML-Mini
-Version: 1.2.8
-Release: 1.2
+Version: 1.38
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Mini/
@@ -51,14 +51,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes INSTALL LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/XML::Mini.3pm*
+%doc %{_mandir}/man3/XML::Mini::*.3pm*
+%dir %{perl_vendorlib}/XML/
+%{perl_vendorlib}/XML/Mini/
 %{perl_vendorlib}/XML/Mini.pm
-%{perl_vendorlib}/XML/Mini
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.8-1.2
-- Rebuild for Fedora Core 5.
+* Thu Feb 21 2008 Dag Wieers <dag@wieers.com> - 1.38-1
+- Updated to release 1.38.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.8-1
 - Initial package.

@@ -9,7 +9,7 @@
 
 Summary: Apparently run a function in a higher stack frame
 Name: perl-Sub-Uplevel
-Version: 0.18
+Version: 0.1901
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Carp)
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
 
 %description
 Apparently run a function in a higher stack frame.
@@ -47,13 +49,17 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST MANIFEST.SKIP META.yml README examples/
+%doc Changes INSTALL LICENSE MANIFEST MANIFEST.SKIP META.yml README Todo examples/
 %doc %{_mandir}/man3/Sub::Uplevel.3pm*
 %dir %{perl_vendorlib}/Sub/
 #%{perl_vendorlib}/Sub/Uplevel/
 %{perl_vendorlib}/Sub/Uplevel.pm
+%{perl_vendorlib}/Sub/Uplevel.pod
 
 %changelog
+* Thu Feb 21 2008 Dag Wieers <dag@wieers.com> - 0.1901-1
+- Updated to release 0.1901.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.18-1
 - Updated to release 0.18.
 

@@ -13,7 +13,7 @@
 
 Summary: Perl DNS resolver module
 Name: perl-Net-DNS
-Version: 0.62
+Version: 0.63
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -61,16 +61,19 @@ find contrib/ -type f -exec %{__chmod} a-x {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README TODO contrib/
 %doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/auto/Net/
+%{perl_vendorarch}/auto/Net/DNS/
 %dir %{perl_vendorarch}/Net/
 %{perl_vendorarch}/Net/DNS/
 %{perl_vendorarch}/Net/DNS.pm
-%dir %{perl_vendorarch}/auto/Net/
-%{perl_vendorarch}/auto/Net/DNS/
 
 ### Remove this file because it generates an rpm dependency for Win32::Registry
 %exclude %{perl_vendorarch}/Net/DNS/Resolver/Win32.pm
 
 %changelog
+* Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 0.63-1
+- Updated to release 0.63.
+
 * Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 0.62-1
 - Updated to release 0.62.
 
