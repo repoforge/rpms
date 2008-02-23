@@ -16,7 +16,7 @@
 
 Summary: Ratpoison window manager
 Name: ratpoison
-Version: 1.4.2
+Version: 1.4.3
 Release: 1
 License: GPL
 Group: User Interface/Desktops
@@ -69,5 +69,8 @@ fi
 %exclude %{_datadir}/doc/ratpoison/
 
 %changelog
+* Sat Feb 23 2008 Dries Verachtert <dries@ulyssis.org> - 1.4.3-1
+- Updated to release 1.4.3.
+
 * Fri Jan 25 2008 Juan Carlos Castro y Castro <jcastro@instant.com.br> - 1.4.2-1
 - Initial package.
