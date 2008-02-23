@@ -3,8 +3,8 @@
 
 Summary: Audio Meta-Data Library
 Name: taglib
-Version: 1.4
-Release: 1.2
+Version: 1.5
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://ktown.kde.org/~wheeler/taglib/
@@ -38,7 +38,7 @@ you will need to install %{name}-devel.
 
 %{__make} %{?_smp_mflags}
 
-pushd taglib-api
+pushd doc
 doxygen taglib.doxygen
 popd
 
@@ -57,22 +57,25 @@ popd
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING README
+%doc AUTHORS COPYING* doc/README
 %{_libdir}/libtag.so.*
 %{_libdir}/libtag_c.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc examples/ taglib-api/html/
+%doc examples/ doc/html/
 %{_bindir}/taglib-config
 %{_includedir}/taglib/
 %{_libdir}/libtag.so
 %exclude %{_libdir}/libtag.la
 %{_libdir}/libtag_c.so
 %exclude %{_libdir}/libtag_c.la
-%{_libdir}/pkgconfig/taglib.pc
+%{_libdir}/pkgconfig/taglib*.pc
 
 %changelog
+* Sat Feb 23 2008 Dries Verachtert <dries@ulyssis.org> - 1.5-1
+- Updated to release 1.5.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1.2
 - Rebuild for Fedora Core 5.
 
