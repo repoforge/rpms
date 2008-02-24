@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Data/Data-Visitor-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Visitor style traversal of Perl data structures.

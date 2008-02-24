@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::More), perl(B::Keywords)
 
 %description
 Critique Perl source code for best-practices.

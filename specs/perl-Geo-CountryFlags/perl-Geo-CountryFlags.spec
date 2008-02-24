@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(ExtUtils::MakeMaker), perl(File::SafeDO)
 
 %description
 This package contains methods for fetching images of country flags.

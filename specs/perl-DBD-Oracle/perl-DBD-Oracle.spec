@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/DBD-Oracle/
 Source: http://www.cpan.org/modules/by-module/DBD/DBD-Oracle-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(DBI)
 
 %description
 perl-DBD-Oracle is a Perl module.

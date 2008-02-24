@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Module::Build)
-BuildRequires: perl(CGI::Session)
+BuildRequires: perl(CGI::Session), perl(Apache::TestMB)
 
 %description
 Persistent session using hidden fields.
