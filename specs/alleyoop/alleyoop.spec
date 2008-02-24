@@ -16,7 +16,7 @@ Source: http://dl.sf.net/alleyoop/alleyoop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: valgrind >= 1.9.0, glib2 >= 2.2, pango-devel >= 1.2, gtk2-devel >= 2.2
-BuildRequires: GConf2-devel >= 2.2, libgnome-devel >= 2.2, libgnomeui-devel >= 2.2
+BuildRequires: GConf2-devel >= 2.2, libgnome-devel >= 2.2, libgnomeui-devel >= 2.2, gettext
 Requires: valgrind >= 1.9.0
 
 %description

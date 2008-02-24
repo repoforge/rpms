@@ -15,7 +15,7 @@ URL: http://www.giram.org/
 Source: http://www.giram.org/downloads/giram-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk2-devel >= 2.0, glib2-devel >= 2.0
+BuildRequires: gtk2-devel >= 2.0, glib2-devel >= 2.0, gettext
 
 %description
 Giram is a Persistance Of Vision (POV-Ray) oriented modeller.

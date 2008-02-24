@@ -15,7 +15,7 @@ URL: http://www.nongnu.org/gribouy/
 Source: http://savannah.nongnu.org/download/gribouy/unstable.pkg/0.0/gribouy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libgnomeui-devel >= 2.0
+BuildRequires: libgnomeui-devel >= 2.0, gettext
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description

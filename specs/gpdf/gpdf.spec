@@ -14,7 +14,7 @@ URL: http://www.inf.tu-dresden.de/~mk793652/gpdf/
 Source: http://ftp.gnome.org/pub/GNOME/sources/gpdf/%{version}/gpdf-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libbonobo-devel >= 2.2.1, gcc-c++
+BuildRequires: libbonobo-devel >= 2.2.1, gcc-c++, gettext
 BuildRequires: libgnomeui-devel >= 2.0, libbonoboui-devel >= 2.0, gnome-vfs2-devel >= 2.0
 BuildRequires: libgnomeprint22-devel >= 2.2, libgnomeprintui22-devel >= 2.2, libglade2-devel >= 2.0
 

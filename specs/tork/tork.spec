@@ -13,7 +13,7 @@ URL: http://tork.sf.net
 Source: http://dl.sf.net/tork/tork-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, kdelibs-devel
+BuildRequires: gcc-c++, kdelibs-devel, gettext
 
 %description
 TorK is a Tor Controller for KDE. It allows you to configure, run, and update 
