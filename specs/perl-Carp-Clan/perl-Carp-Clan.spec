@@ -1,18 +1,17 @@
 # $Id$
-
 # Authority: dries
-# Upstream: Steffen Beyer <sb$engelschall,com>
+# Upstream: Joshua ben Jore <jjore$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Carp-Clan
 
-Summary: Report errors which match a pattern
+Summary: Report errors from perspective of caller of a "clan" of modules
 Name: perl-Carp-Clan
-Version: 5.9
+Version: 6.00
 Release: 1
-License: GPL
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Carp-Clan/
 
@@ -40,8 +39,9 @@ echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -54,6 +54,9 @@ echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}
 %{perl_vendorlib}/Carp/Clan.pod
 
 %changelog
+* Fri Feb 22 2008 Dag Wieers <dag@wieers.com> - 6.00-1
+- Updated to release 6.00.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 5.9-1
 - Updated to release 5.9.
 
@@ -62,9 +65,6 @@ echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}
 
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 5.4-1
 - Updated to release 5.4.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 5.3-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 5.3-1
 - Initial package.

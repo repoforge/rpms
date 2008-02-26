@@ -9,9 +9,9 @@
 
 Summary: Converts Perl XS code into C code
 Name: perl-ExtUtils-ParseXS
-Version: 2.18
+Version: 2.19
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-ParseXS/
 
@@ -35,20 +35,25 @@ With this module, you can Convert Perl XS code into C code.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/*
+%doc Changes INSTALL MANIFEST META.yml README
+%doc %{_mandir}/man3/ExtUtils::ParseXS.3pm*
+%dir %{perl_vendorlib}/ExtUtils/
 %{perl_vendorlib}/ExtUtils/ParseXS.pm
 %{perl_vendorlib}/ExtUtils/xsubpp
 
 %changelog
+* Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 2.19-1
+- Updated to release 2.19.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 2.18-1
 - Updated to release 2.18.
 
@@ -57,9 +62,6 @@ With this module, you can Convert Perl XS code into C code.
 
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 2.16-1
 - Updated to release 2.16.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.15-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.15-1
 - Updated to release 2.15.

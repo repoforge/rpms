@@ -6,13 +6,13 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Net-DBus
-%define real_version 0.033005
+%define real_version 0.033006
 
 Summary: Perl module with bindings for the DBus message system
 Name: perl-Net-DBus
-Version: 0.33.5
+Version: 0.33.6
 Release: 1
-License: GPL
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DBus/
 
@@ -21,6 +21,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::Pod)
+BuildRequires: perl(Test::Pod::Coverage)
 BuildRequires: pkgconfig
 
 %description
@@ -48,7 +51,7 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS CHANGES COPYING MANIFEST MANIFEST.SKIP META.yml README examples/
+%doc AUTHORS CHANGES LICENSE MANIFEST MANIFEST.SKIP META.yml README examples/
 %doc %{_mandir}/man3/Net::DBus.3pm*
 %doc %{_mandir}/man3/Net::DBus::*.3pm*
 %dir %{perl_vendorarch}/auto/Net/
@@ -58,6 +61,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Net/DBus.pm
 
 %changelog
+* Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 0.33.6-1
+- Updated to release 0.33.6.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.33.5-1
 - Updated to release 0.33.5.
 

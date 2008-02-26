@@ -9,7 +9,7 @@
 
 Summary: Test exception based code
 Name: perl-Test-Exception
-Version: 0.26
+Version: 0.27
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Exception.pm
 
 %changelog
+* Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 0.27-1
+- Updated to release 0.27.
+
 * Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 0.26-1
 - Updated to release 0.26.
 

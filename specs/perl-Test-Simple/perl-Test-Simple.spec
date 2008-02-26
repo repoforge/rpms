@@ -12,7 +12,7 @@
 
 Summary: Basic utilities for writing tests
 Name: perl-Test-Simple
-Version: 0.74
+Version: 0.75
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,7 +53,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README SIGNATURE TODO
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Test::*.3pm*
 %dir %{perl_vendorlib}/Test/
 %{perl_vendorlib}/Test/Builder/
 %{perl_vendorlib}/Test/Builder.pm
@@ -62,6 +62,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Tutorial.pod
 
 %changelog
+* Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 0.75-1
+- Updated to release 0.75.
+
 * Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 0.74-1
 - Updated to release 0.74.
 

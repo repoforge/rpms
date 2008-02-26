@@ -1,8 +1,7 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
 
 %{?dtag: %{expand: %%define %dtag 1}}
-%{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{!?dtag:%define _with_modxorg 1}
 %{?el5:  %define _with_modxorg 1}
@@ -12,13 +11,15 @@
 
 Summary: Raw VBI, Teletext and Closed Caption decoding library
 Name: zvbi
-Version: 0.2.25
+Version: 0.2.29
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
+
 Source: http://dl.sf.net/zapping/zvbi-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: libpng-devel, gcc-c++, doxygen, gettext
 %{?_with_modxorg:BuildRequires: libXt-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
@@ -32,7 +33,6 @@ render and export functions for text pages. The library is the
 vbi decoding backbone of the Zapping Gnome TV viewer and Zapzilla
 Teletext browser. Documentation included.
 
-
 %package devel
 Summary: Static libraries and header files for zvbi development
 Group: Development/Libraries
@@ -43,53 +43,54 @@ Obsoletes: libzvbi-devel <= 0.2.4
 The static libraries and header files needed for building programs that use
 the zvbi library.
 
-
 %prep
 %setup
 
-
 %build
 %configure \
-    --disable-gtk-doc
+    --disable-gtk-doc \
+    --disable-static
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
-
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
-
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS COPYING ChangeLog NEWS README TODO doc/html
+%doc %{_mandir}/man1/zvbi-chains.1*
+%doc %{_mandir}/man1/zvbi-ntsc-cc.1*
+%doc %{_mandir}/man1/zvbid.1*
 %{_bindir}/zvbi-chains
 %{_bindir}/zvbi-ntsc-cc
+%{_libdir}/libzvbi.so.*
+%{_libdir}/libzvbi-chains.so.*
 %{_sbindir}/zvbid
-%{_libdir}/*.so.*
-%{_mandir}/man1/zvbi-chains.1*
-%{_mandir}/man1/zvbi-ntsc-cc.1*
-%{_mandir}/man1/zvbid.1*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/libzvbi.h
-%exclude %{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
-%{_libdir}/pkgconfig/*.pc
-
+%{_libdir}/libzvbi.so
+%{_libdir}/libzvbi-chains.so
+%{_libdir}/pkgconfig/zvbi-0.2*.pc
+%exclude %{_libdir}/libzvbi.la
+%exclude %{_libdir}/libzvbi-chains.la
 
 %changelog
+* Tue Feb 26 2008 Dag Wieers <dag@wieers.com> - 0.2.29-1
+- Updated to release 0.2.29.
+
+* Tue Feb 26 2008 Dag Wieers <dag@wieers.com> - 0.2.28-1
+- Updated to release 0.2.28.
+
 * Sun Mar 18 2007 Dag Wieers <dag@wieers.com> - 0.2.25-1
 - Updated to release 0.2.25.
 

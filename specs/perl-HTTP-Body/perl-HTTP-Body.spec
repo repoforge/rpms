@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Sebastian Riedel <sri$oook,de>
+# Upstream: Andy Grundman <andy$hybridized,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: HTTP Body parser
 Name: perl-HTTP-Body
-Version: 0.9
+Version: 1.01
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,17 +44,19 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/HTTP/Body.pm
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/HTTP::Body.3pm*
+%doc %{_mandir}/man3/HTTP::Body::*.3pm*
+%dir %{perl_vendorlib}/HTTP/
 %{perl_vendorlib}/HTTP/Body/
+%{perl_vendorlib}/HTTP/Body.pm
 
 %changelog
+* Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 1.01-1
+- Updated to release 1.01.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.9-1
 - Updated to release 0.9.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1
 - Updated to release 0.6.

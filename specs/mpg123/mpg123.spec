@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-%{!?audio:%define audio alsa esd oss sdl}
+%{!?audio:%define audio alsa esd oss}
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
@@ -22,17 +22,17 @@
 %{?fc1:%define _without_jack 1}
 %{?fc1:%define _without_nas 1}
 
-%{?el3:%define audio esd oss sdl}
+%{?el3:%define audio esd oss}
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_jack 1}
 %{?el3:%define _without_nas 1}
 
-%{?rh9:%define audio esd oss sdl}
+%{?rh9:%define audio esd oss}
 %{?rh9:%define _without_alsa 1}
 %{?rh9:%define _without_jack 1}
 %{?rh9:%define _without_nas 1}
 
-%{?rh7:%define audio esd oss sdl}
+%{?rh7:%define audio esd oss}
 %{?rh7:%define _without_alsa 1}
 %{?rh7:%define _without_jack 1}
 %{?rh7:%define _without_nas 1}
@@ -45,7 +45,7 @@
 
 Summary: MPEG audio player
 Name: mpg123
-Version: 1.2.0
+Version: 1.2.1
 Release: 1
 License: GPL/LGPL
 Group: Applications/Multimedia
@@ -116,6 +116,9 @@ export SDL_LIBS="$(sdl-config --libs)"
 %exclude %{_libdir}/libmpg123.la
 
 %changelog
+* Tue Feb 26 2008 Dag Wieers <dag@wieers.com> - 1.2.1-1
+- Updated to release 1.2.1.
+
 * Sun Feb 03 2008 Dag Wieers <dag@wieers.com> - 1.2.0-1
 - Updated to release 1.2.0.
 

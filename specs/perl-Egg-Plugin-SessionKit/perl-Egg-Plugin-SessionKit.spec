@@ -10,7 +10,7 @@
 
 Summary: Session plugin for Egg
 Name: perl-Egg-Plugin-SessionKit
-Version: 3.01
+Version: 3.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,14 +49,27 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README eg/
+%doc %{_mandir}/man3/Egg::Helper::Model::Session.3pm*
+%doc %{_mandir}/man3/Egg::Model::Session.3pm*
+%doc %{_mandir}/man3/Egg::Model::Session::*.3pm*
+%doc %{_mandir}/man3/Egg::Plugin::Session.3pm*
 %doc %{_mandir}/man3/Egg::Plugin::SessionKit.3pm*
-#%doc %{_mandir}/man3/Egg::Plugin::SessionKit::*.3pm*
 %dir %{perl_vendorlib}/Egg/
+%dir %{perl_vendorlib}/Egg/Helper/
+%dir %{perl_vendorlib}/Egg/Helper/Model/
+%{perl_vendorlib}/Egg/Helper/Model/Session.pm
+%dir %{perl_vendorlib}/Egg/Model/
+%{perl_vendorlib}/Egg/Model/Session/
+%{perl_vendorlib}/Egg/Model/Session.pm
 %dir %{perl_vendorlib}/Egg/Plugin/
 #%{perl_vendorlib}/Egg/Plugin/SessionKit/
+%{perl_vendorlib}/Egg/Plugin/Session.pm
 %{perl_vendorlib}/Egg/Plugin/SessionKit.pm
 
 %changelog
+* Sun Feb 24 2008 Dag Wieers <dag@wieers.com> - 3.02-1
+- Updated to release 3.02.
+
 * Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 3.01-1
 - Updated to release 3.01.
 

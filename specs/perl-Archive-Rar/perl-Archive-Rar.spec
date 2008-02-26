@@ -9,7 +9,7 @@
 
 Summary: Interface with the 'rar' command
 Name: perl-Archive-Rar
-Version: 1.94
+Version: 1.95
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Archive/Rar.pm
 
 %changelog
+* Fri Feb 22 2008 Dag Wieers <dag@wieers.com> - 1.95-1
+- Updated to release 1.95.
+
 * Sun Feb 17 2008 Dag Wieers <dag@wieers.com> - 1.94-1
 - Updated to release 1.94.
 

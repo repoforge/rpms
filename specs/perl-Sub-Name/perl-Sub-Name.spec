@@ -9,9 +9,9 @@
 
 Summary: Perl module to (re)name a sub
 Name: perl-Sub-Name
-Version: 0.02
+Version: 0.03
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sub-Name/
 
@@ -45,11 +45,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Sub::Name.3pm*
-%dir %{perl_vendorarch}/Sub/
-%{perl_vendorarch}/Sub/Name.pm
 %dir %{perl_vendorarch}/auto/Sub/
 %{perl_vendorarch}/auto/Sub/Name/
+%dir %{perl_vendorarch}/Sub/
+%{perl_vendorarch}/Sub/Name.pm
 
 %changelog
+* Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 0.03-1
+- Updated to release 0.03.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.02-1
 - Initial package. (using DAR)

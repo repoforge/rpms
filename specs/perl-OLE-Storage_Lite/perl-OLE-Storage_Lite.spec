@@ -9,7 +9,7 @@
 
 Summary: Read and write OLE storage files
 Name: perl-OLE-Storage_Lite
-Version: 0.15
+Version: 0.16
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/OLE/Storage_Lite.pm
 
 %changelog
+* Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 0.16-1
+- Updated to release 0.16.
+
 * Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 0.15-1
 - Updated to release 0.15.
 

@@ -1,4 +1,4 @@
-# $Id$
+# $Id: glabels.spec 5993 2007-11-16 02:17:11Z dag $
 # Authority: dag
 # Upstream: Jim Evins <evins$snaught,com>
 
@@ -12,8 +12,8 @@
 
 Summary: GUI program to create labels and business cards
 Name: glabels
-Version: 2.2.2
-Release: 1
+Version: 2.0.4
+Release: 1.2
 License: GPL
 Group: Applications/Publishing
 URL: http://snaught.com/glabels/
@@ -68,14 +68,14 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-    UPDATE_DESKTOP_DATABASE="echo" \
-    UPDATE_MIME_DATABASE="echo"
+	UPDATE_DESKTOP_DATABASE="echo" \
+	UPDATE_MIME_DATABASE="echo"
 %find_lang %{name}
 
 desktop-file-install --vendor gnome --delete-original \
-    --add-category X-Red-Hat-Base                 \
-    --dir %{buildroot}%{_datadir}/applications    \
-    %{buildroot}%{_datadir}/applications/glabels.desktop
+	--add-category X-Red-Hat-Base                 \
+	--dir %{buildroot}%{_datadir}/applications    \
+	%{buildroot}%{_datadir}/applications/glabels.desktop
 
 %post
 scrollkeeper-update -q || :
@@ -116,20 +116,12 @@ scrollkeeper-update -q || :
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc %{_datadir}/gtk-doc/html/libglabels/
 %{_includedir}/libglabels/
-%{_libdir}/libglabels.a
 %{_libdir}/libglabels.so
-%{_libdir}/pkgconfig/libglabels.pc
+%{_libdir}/libglabels.a
 %exclude %{_libdir}/libglabels.la
 
 %changelog
-* Tue Feb 26 2008 Dag Wieers <dag@wieers.com> - 2.2.2-1
-- Updated to release 2.2.2.
-
-* Thu Jan 24 2008 Dag Wieers <dag@wieers.com> - 2.2.1-1
-- Updated to release 2.2.1.
-
 * Thu Dec 29 2005 Dag Wieers <dag@wieers.com> - 2.0.4-1
 - Updated to release 2.0.4.
 

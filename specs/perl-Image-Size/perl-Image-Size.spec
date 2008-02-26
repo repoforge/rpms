@@ -6,12 +6,13 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Image-Size
+%define real_version 3.100001
 
-Summary: Read the dimensions of images
+Summary: Library to extract height/width from images
 Name: perl-Image-Size
-Version: 3.1
+Version: 3.1.1
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Size/
 
@@ -19,11 +20,14 @@ Source: http://www.cpan.org/modules/by-module/Image/Image-Size-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker), perl(Module::Build)
+BuildRequires: perl >= 1:5.6
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(Test::More)
+Requires: perl >= 1:5.6
 
 %description
-This module contains functions for reading the dimensions of images in several popular formats.
+A library to extract height/width from images.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -55,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/auto/Image/Size/
 
 %changelog
+* Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 3.1.1-1
+- Updated to release 3.1.1.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 3.1-1
 - Updated to release 3.1.
 

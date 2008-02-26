@@ -7,7 +7,7 @@
 
 Summary: Statistics collection daemon for filling RRD files
 Name: collectd
-Version: 4.2.2
+Version: 4.3.0
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -78,6 +78,7 @@ fi
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README contrib/
 %doc %{_mandir}/man1/collectd.1*
+%doc %{_mandir}/man1/collectdmon.1*
 %doc %{_mandir}/man1/collectd-nagios.1*
 %doc %{_mandir}/man3/Collectd::Unixsock.3pm*
 %doc %{_mandir}/man5/collectd.conf.5*
@@ -86,12 +87,14 @@ fi
 %doc %{_mandir}/man5/collectd-perl.5*
 %doc %{_mandir}/man5/collectd-snmp.5*
 %doc %{_mandir}/man5/collectd-unixsock.5*
+%doc %{_mandir}/man5/types.db.5*
 %config(noreplace) %{_sysconfdir}/collectd.conf
 %config %{_initrddir}/collectd
 %{_bindir}/collectd-nagios
 %{_libdir}/collectd/
 %{_localstatedir}/www/cgi-bin/collection.cgi
 %{_sbindir}/collectd
+%{_sbindir}/collectdmon
 %dir %{_localstatedir}/lib/collectd/
 %{perl_sitelib}/Collectd.pm
 %{perl_sitelib}/Collectd/
@@ -100,6 +103,9 @@ fi
 %exclude %{perl_sitearch}
 
 %changelog
+* Tue Feb 26 2008 Dag Wieers <dag@wieers.com> - 4.3.0-1
+- Updated to release 4.3.0.
+
 * Tue Dec 18 2007 Dag Wieers <dag@wieers.com> - 4.2.2-1
 - Updated to release 4.2.2.
 

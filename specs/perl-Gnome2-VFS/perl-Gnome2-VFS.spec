@@ -9,7 +9,7 @@
 
 Summary: Perl interface to the 2.x series of the GNOME VFS library
 Name: perl-Gnome2-VFS
-Version: 1.080
+Version: 1.081
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -65,6 +65,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/auto/Gnome2/VFS/
 
 %changelog
+* Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 1.081-1
+- Updated to release 1.081.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.080-1
 - Updated to release 1.080.
 

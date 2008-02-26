@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Tan D Nguyen <tnguyen$cpan,org>
+# Upstream: Tan D Nguyen <tdn$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: Functions for formatting monetary values
 Name: perl-Locale-Currency-Format
-Version: 1.22
-Release: 1.2
+Version: 1.24
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Locale-Currency-Format/
@@ -44,13 +44,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man3/*
+%doc MANIFEST README
+%doc %{_mandir}/man3/Locale::Currency::Format.3pm*
+%dir %{perl_vendorlib}/Locale/
+%dir %{perl_vendorlib}/Locale/Currency/
+#%{perl_vendorlib}/Locale/Currency/Format/
 %{perl_vendorlib}/Locale/Currency/Format.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.22-1.2
-- Rebuild for Fedora Core 5.
+* Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 1.24-1
+- Updated to release 1.24.
 
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.22-1
 - Initial package.

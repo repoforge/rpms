@@ -9,7 +9,7 @@
 
 Summary: Framework for SIP and Voice Over IP
 Name: perl-Net-SIP
-Version: 0.41
+Version: 0.43
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Net/SIP.pod
 
 %changelog
+* Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 0.43-1
+- Updated to release 0.43.
+
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.41-1
 - Updated to release 0.41.
 

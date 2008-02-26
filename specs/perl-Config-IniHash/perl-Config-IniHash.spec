@@ -6,10 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Config-IniHash
+%define real_version 3.00
 
 Summary: Perl module for reading and writing INI files
 Name: perl-Config-IniHash
-Version: 2.8
+Version: 3.00.00
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -43,11 +44,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README
+%doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Config::IniHash.3pm*
 %dir %{perl_vendorlib}/Config/
 %{perl_vendorlib}/Config/IniHash.pm
 
 %changelog
+* Sun Feb 24 2008 Dag Wieers <dag@wieers.com> - 3.00.00-1
+- Updated to release 3.00.00.
+
 * Fri Aug 03 2007 Dag Wieers <dag@wieers.com> - 2.8-1
 - Initial package. (using DAR)

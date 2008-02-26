@@ -9,7 +9,7 @@
 
 Summary: Perl interface to Alec Muffett's Cracklib
 Name: perl-Crypt-Cracklib
-Version: 1.1
+Version: 1.2
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Crypt/Cracklib.pm
 
 %changelog
+* Sun Feb 24 2008 Dag Wieers <dag@wieers.com> - 1.2-1
+- Updated to release 1.2.
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 1.1-1
 - Initial package. (using DAR)

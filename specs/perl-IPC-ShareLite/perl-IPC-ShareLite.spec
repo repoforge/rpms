@@ -9,8 +9,8 @@
 
 Summary: Simple shared memory interface module for perl
 Name: perl-IPC-ShareLite
-Version: 0.09
-Release: 2
+Version: 0.10
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPC-ShareLite/
@@ -55,15 +55,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST MANIFEST.SKIP README TODO
+%doc Changes MANIFEST META.yml README SIGNATURE
 %doc %{_mandir}/man3/IPC::ShareLite.3pm*
-%dir %{perl_vendorarch}/IPC/
-%{perl_vendorarch}/IPC/ShareLite.pm
 %dir %{perl_vendorarch}/auto/IPC/
 %{perl_vendorarch}/auto/IPC/ShareLite/
-
+%dir %{perl_vendorarch}/IPC/
+%{perl_vendorarch}/IPC/ShareLite.pm
 
 %changelog
+* Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 0.10-1
+- Updated to release 0.10.
+
 * Wed May 26 2004 Matthias Saou <http://freshrpms.net/> 0.09-2
 - Rebuild for Fedora Core 2.
 

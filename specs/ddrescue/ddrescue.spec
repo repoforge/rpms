@@ -6,7 +6,7 @@ Summary: Data recovery tool
 Name: ddrescue
 ### Epoch to override Fedora Extras stupid decision to NOT ADHERE TO THEIR OWN NAMING CONVENTION
 Epoch: 1
-Version: 1.7
+Version: 1.8
 Release: 1
 License: GPL
 Group: Applications/System
@@ -36,28 +36,6 @@ etc.
 
 %build
 %configure
-### configure script does not accept target_platform as argument (as done on RH7 and EL2)
-### defining %%_gnu does not work !
-#./configure \
-#  CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-#  CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-#  FFLAGS="${FFLAGS:-%optflags}" ; export FFLAGS ; \
-#  ./configure --host="%{_host}" --build="%{_build}" \
-#    --target="%{_target_platform}" \
-#    --program-prefix="%{?_program_prefix}" \
-#    --prefix="%{_prefix}" \
-#    --exec-prefix="%{_exec_prefix}" \
-#    --bindir="%{_bindir}" \
-#    --sbindir="%{_sbindir}" \
-#    --sysconfdir="%{_sysconfdir}" \
-#    --datadir="%{_datadir}" \
-#    --includedir="%{_includedir}" \
-#    --libdir="%{_libdir}" \
-#    --libexecdir="%{_libexecdir}" \
-#    --localstatedir="%{_localstatedir}" \
-#    --sharedstatedir="%{_sharedstatedir}" \
-#    --mandir="%{_mandir}" \
-#    --infodir="%{_infodir}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -86,6 +64,9 @@ fi
 %{_bindir}/ddrescue
 
 %changelog
+* Tue Feb 26 2008 Dag Wieers <dag@wieers.com> - 1.8-1
+- Updated to release 1.8.
+
 * Mon Jan 07 2008 Dag Wieers <dag@wieers.com> - 1.7-1
 - Updated to release 1.7.
 

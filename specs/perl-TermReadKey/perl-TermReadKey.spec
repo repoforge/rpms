@@ -23,7 +23,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl
 
 Obsoletes: perl-Term-ReadKey <= %{version}-%{release}
-Provides: perl-Term-ReadKeay = %{version}-%{release}
+Provides: perl-Term-ReadKey = %{version}-%{release}
 
 %description
 Term::ReadKey is a compiled perl module dedicated to providing simple

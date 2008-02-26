@@ -11,7 +11,7 @@
 
 Summary: Chess board interface for ICS and engines
 Name: eboard
-Version: 1.1.0
+Version: 1.1.1
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -77,5 +77,8 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-eboard.desktop}
 
 %changelog
+* Tue Feb 26 2008 Dag Wieers <dag@wieers.com> - 1.1.1-1
+- Updated to release 1.1.1.
+
 * Tue Nov 27 2007 Dag Wieers <dag@wieers.com> - 1.0.4-1
 - Initial package. (using DAR)

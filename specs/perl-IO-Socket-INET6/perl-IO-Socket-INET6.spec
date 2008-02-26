@@ -9,7 +9,7 @@
 
 Summary: Object interface for AF_INET|AF_INET6 domain sockets
 Name: perl-IO-Socket-INET6
-Version: 2.52
+Version: 2.54
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 0:5.00503
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
 Requires: perl >= 0:5.00503
 
 %description
@@ -54,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IO/Socket/INET6.pm
 
 %changelog
+* Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 2.54-1
+- Updated to release 2.54.
+
 * Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 2.52-1
 - Updated to release 2.52.
 
