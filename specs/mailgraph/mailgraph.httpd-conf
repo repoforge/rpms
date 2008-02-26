@@ -1,0 +1,9 @@
+Alias /mailgraph.cgi /usr/lib/mailgraph/cgi/mailgraph.cgi
+
+<Location /mailgraph.cgi>
+    Order deny,allow
+    Allow from localhost
+    Allow from none
+</Location>
+
+# vim:ft=apache

@@ -1,0 +1,45 @@
+--- ./mailgraph-init.orig	2005-07-29 17:10:21.000000000 -0700
++++ ./mailgraph-init	2005-07-29 18:43:03.000000000 -0700
+@@ -9,17 +9,14 @@
+ # processname: mailgraph.pl
+ # pidfile: /var/run/mailgraph.pid
+ 
++[ -r /etc/sysconfig/mailgraph ] && . /etc/sysconfig/mailgraph
+ 
+-MAILGRAPH_PL=/usr/local/bin/mailgraph.pl
+-MAIL_LOG=/var/log/syslog
+-PID_FILE=/var/run/mailgraph.pid
+-RRD_DIR=/var/lib
++MAILGRAPH_PL=/usr/lib/mailgraph/mailgraph.pl
+ 
+ case "$1" in
+ 'start')
+ 	echo "Starting mail statistics grapher: mailgraph";
+-	$MAILGRAPH_PL -l $MAIL_LOG -d \
+-		--daemon-pid=$PID_FILE --daemon-rrd=$RRD_DIR
++	$MAILGRAPH_PL $OPTIONS
+ 	;;
+ 
+ 'stop')
+--- ./mailgraph.cgi.orig	2005-07-29 17:10:21.000000000 -0700
++++ ./mailgraph.cgi	2005-07-29 18:40:06.000000000 -0700
+@@ -15,9 +15,9 @@
+ my $points_per_sample = 3;
+ my $ypoints = 160;
+ my $ypoints_err = 96;
+-my $rrd = 'mailgraph.rrd'; # path to where the RRD database is
+-my $rrd_virus = 'mailgraph_virus.rrd'; # path to where the Virus RRD database is
+-my $tmp_dir = '/tmp/mailgraph'; # temporary directory where to store the images
++my $rrd = '/var/lib/mailgraph/rrd/mailgraph.rrd'; # path to where the RRD database is
++my $rrd_virus = '/var/lib/mailgraph/rrd/mailgraph_virus.rrd'; # path to where the Virus RRD database is
++my $tmp_dir = '/var/lib/mailgraph/img'; # temporary directory where to store the images
+ my $rrdtool_1_0 = ($RRDs::VERSION < 1.199908);
+ 
+ my @graphs = (
+--- ./mailgraph.sysconfig.orig	2005-07-29 18:46:12.000000000 -0700
++++ ./mailgraph.sysconfig	2005-07-29 18:48:56.000000000 -0700
+@@ -0,0 +1,4 @@
++PID_FILE=/var/run/mailgraph.pid
++RRD_DIR=/var/lib/mailgraph/rrd/
++MAIL_LOG=/var/log/maillog
++OPTIONS="-l $MAIL_LOG -d --daemon-pid=$PID_FILE --daemon-rrd=$RRD_DIR"
