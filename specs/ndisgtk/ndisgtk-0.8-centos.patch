@@ -1,0 +1,14 @@
+--- ndisgtk	2007-10-03 10:34:33.000000000 -0500
++++ ndisgtk-centos	2007-10-03 17:16:18.000000000 -0500
+@@ -257,10 +257,7 @@
+ 		Opens the network configuration tool.
+ 		"""
+ 		
+-		if self.kde:
+-			subprocess.Popen(["kcmshell", "kcm_knetworkconfmodule"])
+-		else:
+-			subprocess.Popen(["network-admin"])
++		subprocess.Popen(["system-config-network"])
+ 
+ 	def install_driver_open(self, *args):
+ 		"""

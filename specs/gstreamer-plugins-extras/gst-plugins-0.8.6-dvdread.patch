@@ -1,0 +1,12 @@
+--- gst-plugins-0.8.6/ext/dvdread/dvdreadsrc.h.orig	2007-03-26 02:52:38.431625920 +0200
++++ gst-plugins-0.8.6/ext/dvdread/dvdreadsrc.h	2007-03-26 02:53:03.637794000 +0200
+@@ -22,6 +22,9 @@
+ #define __DVDREADSRC_H__
+ 
+ 
++#include <inttypes.h>
++//#include <dvdread/ifo_types.h>
++
+ #include <gst/gst.h>
+ 
+ 

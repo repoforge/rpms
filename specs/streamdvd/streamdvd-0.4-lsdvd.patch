@@ -1,0 +1,62 @@
+--- contrib/lsdvd/lsdvd.c.orig	2005-06-14 17:25:19.000000000 +0200
++++ contrib/lsdvd/lsdvd.c	2005-06-14 17:31:58.000000000 +0200
+@@ -32,6 +32,14 @@
+  printf("%s => ", name);                \
+  printf(x); printf(",\n");              \
+ }
++#define HASHI(name) {                                            \
++ INDENT;                                                        \
++ (name ?							\
++   printf((_lvl ? "%d => {\n" : "our %%%d = (\n"), name) :	\
++   printf("{\n"));						\
++ _lvl++; _lvl_type[_lvl] = 0;                                   \
++}
++
+ #define HASH(name) {                                            \
+  INDENT;                                                        \
+  (name ?							\
+@@ -287,7 +295,7 @@
+ 		pgc = vts_pgcit->pgci_srp[ifo[title_set_nr]->vts_ptt_srpt->title[vts_ttn - 1].ptt[0].pgcn - 1].pgc;
+ 
+ 		if (opt_p) {
+- 			HASH(0);
++ 			HASHI(0);
+ 			DEF("ix", "%d", j+1);
+ 			DEF("length", "%.3f", dvdtime2msec(&pgc->playback_time)/1000.0);
+ 			DEF("vts_id", "'%.12s'", vtsi_mat->vts_identifier);
+@@ -343,7 +351,7 @@
+ 				audio_attr = &vtsi_mat->vts_audio_attr[i];
+ 				sprintf(lang_code, "%c%c", audio_attr->lang_code>>8, audio_attr->lang_code & 0xff);
+ 				if (!lang_code[0]) { lang_code[0] = 'x'; lang_code[1] = 'x'; }
+-				HASH(0);
++				HASHI(0);
+ 				DEF("ix", "%d", i+1);
+ 				DEF("langcode", "'%s'", lang_code);
+ 				DEF("language", "'%s'", lang_name(lang_code));
+@@ -390,7 +398,7 @@
+ 					ms = ms + dvdtime2msec(&pgc->cell_playback[cell].playback_time);
+ 					cell++;
+ 				}
+-				HASH(0);
++				HASHI(0);
+ 				DEF("ix", "%d", i+1);
+ 				DEF("length", "%.3f", ms/1000.0);
+ 				DEF("startcell", "%d", pgc->program_map[i]);
+@@ -427,7 +435,7 @@
+ 			ARRAY("cell");
+ 			for (i=0; i<pgc->nr_of_cells; i++)
+ 			{
+-				HASH(0);
++				HASHI(0);
+ 				DEF("ix", "%d", i+1);
+ 				DEF("length", "%.3f", dvdtime2msec(&pgc->cell_playback[i].playback_time)/1000.0);
+ 				RETURN;
+@@ -452,7 +460,7 @@
+ 				sprintf(lang_code, "%c%c", subp_attr->lang_code>>8, subp_attr->lang_code & 0xff);
+ 				if (!lang_code[0]) { lang_code[0] = 'x'; lang_code[1] = 'x'; }
+ 	
+-				HASH(0);
++				HASHI(0);
+ 				DEF("ix", "%d", i+1);
+ 				DEF("langcode", "'%s'", lang_code);
+ 				DEF("language", "'%s'", lang_name(lang_code));

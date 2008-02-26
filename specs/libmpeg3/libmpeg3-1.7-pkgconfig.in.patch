@@ -1,0 +1,16 @@
+diff -uNr libmpeg3-1.7_spec/libmpeg3.pc.in libmpeg3-1.7/libmpeg3.pc.in
+--- libmpeg3-1.7_spec/libmpeg3.pc.in	1970-01-01 01:00:00.000000000 +0100
++++ libmpeg3-1.7/libmpeg3.pc.in	2007-09-11 22:08:28.000000000 +0200
+@@ -0,0 +1,12 @@
++prefix=@prefix@
++exec_prefix=@prefix@
++libdir=@libdir@
++includedir=@includedir@/mpeg3
++
++Name: @PACKAGE@
++Description: Decoder of various derivatives of MPEG standards
++Version: @VERSION@
++Requires: 
++Conflicts: 
++Libs: -L${libdir} -lmpeg3 -lpthread -la52
++Cflags: -I${includedir}

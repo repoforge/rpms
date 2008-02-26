@@ -1,0 +1,16 @@
+--- Makefile	2007-11-09 14:38:56.364663016 +0100
++++ Makefile.destdir	1999-08-27 16:01:29.000000000 +0200
+@@ -13,10 +13,10 @@
+ CFLAGS=-Wall
+ 
+ # Where to install buffer and its manual pages
+-INSTBIN=/usr/local/bin
+-INSTMAN=/usr/man/manl
++INSTBIN=$(DESTDIR)/usr/bin
++INSTMAN=$(DESTDIR)/usr/share/man/man1
+ # The manual page section (normally l or 1)
+-S=l
++S=1
+ 
+ RM=/bin/rm
+ ALL=README buffer.man Makefile buffer.c sem.c sem.h COPYING

@@ -1,0 +1,63 @@
+Index: formmagick/lib/CGI/Persistent.pm
+diff -u formmagick/lib/CGI/Persistent.pm:1.1.1.1 formmagick/lib/CGI/Persistent.pm:1.2
+--- formmagick/lib/CGI/Persistent.pm:1.1.1.1	Mon Jul 22 13:42:19 2002
++++ formmagick/lib/CGI/Persistent.pm	Fri Aug 16 14:34:05 2002
+@@ -14,22 +14,25 @@
+ use Persistence::Object::Simple; 
+ use vars qw(@ISA $VERSION);
+ use Data::Dumper;
+-@ISA = qw( CGI ); ( $VERSION ) = '$Revision: 1.00 $' =~ /(\d+\.\d+)/; 
++use File::Basename;
++@ISA = qw( CGI ); ( $VERSION ) = '$Revision: 1.00 $' =~ /(\d+\.\d+)/; 
+ 
+ sub new { 
+ 
+     my ( $class, $dope, $id ) = @_ ; 
+     $dope = "." unless $dope; 
+     my $cgi = new CGI; # print $cgi->header ();
+-    my $fn  = $cgi->param( '.id' ) || $id; 
++    $cgi->{sessiondir} = dirname($id) if $id;
++    my $fn  = basename($cgi->param( '.id' ) || $id); 
+ 
+     unless ( $fn ) { 
+         my $po = new Persistence::Object::Simple ( __Dope => $dope ); 
+-        $cgi->append( -name => '.id', -values => $po->{ __Fn } );
+-        $fn = $po->{ __Fn }; undef $po; 
++        $cgi->append( -name => '.id', -values => basename $po->{ __Fn } );
++        $fn = basename $po->{ __Fn }; undef $po; 
+     }
+ 
+-    my $po = new Persistence::Object::Simple __Fn => $fn; 
++    my $po = new Persistence::Object::Simple __Fn =>
++	join "/", ($cgi->{sessiondir},$fn); 
+     $po->{ __DOPE } = undef; 
+     my @names = $cgi->param (); 
+ 
+@@ -51,7 +54,7 @@
+ sub delete { 
+   
+     my ( $self, $param ) = @_; 
+-    my $fn = $self->param( '.id' ); 
++    my $fn = join "/", ($self->{sessiondir},$self->param( '.id' )); 
+     my $po = new Persistence::Object::Simple __Fn => $fn; 
+     delete $po->{ $param }; $po->commit ();  
+     $self->SUPER::delete ( $param ); # delete, is like, overloaded. 
+@@ -61,7 +64,7 @@
+ sub delete_all { 
+ 
+     my ( $self ) = shift; 
+-    $fn = $self->param( '.id' ); 
++    $fn = join "/", ($self->{sessiondir},$self->param( '.id' )); 
+     my $po = new Persistence::Object::Simple __Fn => $fn; 
+     $po->expire; 
+     $self->SUPER::delete_all ();
+@@ -99,7 +102,7 @@
+ 
+ }
+ 
+-"True Value";
++1;
+ 
+ =head1 NAME
+ 
+

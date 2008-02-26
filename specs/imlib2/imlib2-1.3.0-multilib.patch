@@ -1,0 +1,34 @@
+--- imlib2-1.3.0/configure.in~	2006-10-27 00:18:39.000000000 +0200
++++ imlib2-1.3.0/configure.in	2006-10-27 00:18:39.000000000 +0200
+@@ -190,7 +190,7 @@
+   AC_PATH_XTRA
+   x_dir=${x_dir:-/usr/X11R6}
+   x_cflags=${x_cflags:--I${x_includes:-$x_dir/include}}
+-  x_libs="${x_libs:--L${x_libraries:-$x_dir/lib}} -lX11 -lXext"
++  x_libs="-lX11 -lXext"
+   AM_CONDITIONAL(BUILD_X11, true)
+   AC_DEFINE(BUILD_X11, 1, [enabling X11 support])
+ else
+--- imlib2-1.3.0/configure~	2006-10-27 00:18:25.000000000 +0200
++++ imlib2-1.3.0/configure	2006-10-27 00:18:25.000000000 +0200
+@@ -23117,7 +23117,7 @@
+ 
+   x_dir=${x_dir:-/usr/X11R6}
+   x_cflags=${x_cflags:--I${x_includes:-$x_dir/include}}
+-  x_libs="${x_libs:--L${x_libraries:-$x_dir/lib}} -lX11 -lXext"
++  x_libs="-lX11 -lXext"
+ 
+ 
+ if true; then
+--- imlib2-1.3.0/imlib2-config.in~	2006-10-27 00:17:29.000000000 +0200
++++ imlib2-1.3.0/imlib2-config.in	2006-10-27 00:17:29.000000000 +0200
+@@ -45,8 +45,7 @@
+       echo $includes
+       ;;
+     --libs)
+-      libdirs=-L@libdir@
+-      echo $libdirs -lImlib2 @my_libs@
++      echo -lImlib2 @my_libs@
+       ;;
+     *)
+       echo "${usage}" 1>&2

@@ -1,0 +1,11 @@
+diff -Naupr DirectFB-0.9.25.1.orig/include/dfb_types.h DirectFB-0.9.25.1/include/dfb_types.h
+--- DirectFB-0.9.25.1.orig/include/dfb_types.h	2005-10-19 01:14:12.000000000 +0200
++++ DirectFB-0.9.25.1/include/dfb_types.h	2006-09-14 14:48:26.000000000 +0200
+@@ -1,6 +1,7 @@
+ #ifndef __DFB_TYPES_H__
+ #define __DFB_TYPES_H__
+ 
++#include <asm/types.h>
+ #include <sys/types.h>
+ 
+ #ifndef USE_KOS

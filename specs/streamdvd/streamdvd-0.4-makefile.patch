@@ -1,0 +1,27 @@
+--- Makefile.orig	2005-06-14 08:43:53.000000000 +0200
++++ Makefile	2005-06-14 08:47:18.000000000 +0200
+@@ -1,16 +1,17 @@
+-INSTALLDIR = /usr/local/bin/
++INSTALLDIR=/usr/local/bin
++CFLAGS=
+ 
+ all:
+-	g++ -g -Wall -ldvdread -lm -o streamdvd -I. -Implex streamdvd.c requant.c mplex/*.c mplex/*.cpp
++	g++ -g -Wall $(CFLAGS) -ldvdread -lm -o streamdvd -I. -Implex streamdvd.c requant.c mplex/*.c mplex/*.cpp
+ 
+ addon:
+-	gcc -g -Wall -ldvdread -o streamanalyze contrib/StreamAnalyze/streamanalyze.c
+-	gcc -g -Wall -ldvdread -DVERSION=\"0.9\" -o lsdvd contrib/lsdvd/lsdvd.c
++	gcc -g -Wall $(CFLAGS)  -ldvdread -o streamanalyze contrib/StreamAnalyze/streamanalyze.c
++	gcc -g -Wall $(CFLAGS) -ldvdread -DVERSION=\"0.9\" -o lsdvd contrib/lsdvd/lsdvd.c
+ 
+ gui:
+-	g++ -g -Wall -ldvdread -lm -o streamdvd -I. -Implex streamdvd.c requant.c mplex/*.c mplex/*.cpp
+-	gcc -g -Wall -ldvdread -o streamanalyze contrib/StreamAnalyze/streamanalyze.c
+-	gcc -g -Wall -ldvdread -DVERSION=\"0.9\" -o lsdvd contrib/lsdvd/lsdvd.c
++	g++ -g -Wall $(CFLAGS) -ldvdread -lm -o streamdvd -I. -Implex streamdvd.c requant.c mplex/*.c mplex/*.cpp
++	gcc -g -Wall $(CFLAGS) -ldvdread -o streamanalyze contrib/StreamAnalyze/streamanalyze.c
++	gcc -g -Wall $(CFLAGS) -ldvdread -DVERSION=\"0.9\" -o lsdvd contrib/lsdvd/lsdvd.c
+ 
+ clean: 
+ 	rm -f streamdvd streamanalyze lsdvd

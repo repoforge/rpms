@@ -1,0 +1,98 @@
+fix iperf locking - it was burning CPU time while polling
+unnecessarily, instead of using the proper wait primitives.
+
+Signed-off-by: Ingo Molnar 
+---
+ compat/Thread.c |    3 ---
+ src/Reporter.c  |   13 +++++++++----
+ src/main.cpp    |    2 ++
+ 3 files changed, 11 insertions(+), 7 deletions(-)
+
+Index: iperf-2.0.2/compat/Thread.c
+===================================================================
+--- iperf-2.0.2.orig/compat/Thread.c
++++ iperf-2.0.2/compat/Thread.c
+@@ -405,9 +405,6 @@ int thread_numuserthreads( void ) {
+ void thread_rest ( void ) {
+ #if defined( HAVE_THREAD )
+ #if defined( HAVE_POSIX_THREAD )
+-    // TODO add checks for sched_yield or pthread_yield and call that
+-    // if available
+-    usleep( 0 );
+ #else // Win32
+     SwitchToThread( );
+ #endif
+Index: iperf-2.0.2/src/Reporter.c
+===================================================================
+--- iperf-2.0.2.orig/src/Reporter.c
++++ iperf-2.0.2/src/Reporter.c
+@@ -111,6 +111,7 @@ report_statistics multiple_reports[kRepo
+ char buffer[64]; // Buffer for printing
+ ReportHeader *ReportRoot = NULL;
+ extern Condition ReportCond;
++extern Condition ReportDoneCond;
+ int reporter_process_report ( ReportHeader *report );
+ void process_report ( ReportHeader *report );
+ int reporter_handle_packet( ReportHeader *report );
+@@ -338,7 +339,7 @@ void ReportPacket( ReportHeader* agent, 
+             // item
+             while ( index == 0 ) {
+                 Condition_Signal( &ReportCond );
+-                thread_rest();
++                Condition_Wait( &ReportDoneCond );
+                 index = agent->reporterindex;
+             }
+             agent->agentindex = 0;
+@@ -346,7 +347,7 @@ void ReportPacket( ReportHeader* agent, 
+         // Need to make sure that reporter is not about to be "lapped"
+         while ( index - 1 == agent->agentindex ) {
+             Condition_Signal( &ReportCond );
+-            thread_rest();
++            Condition_Wait( &ReportDoneCond );
+             index = agent->reporterindex;
+         }
+         
+@@ -553,6 +554,7 @@ void reporter_spawn( thread_Settings *th
+         }
+         Condition_Unlock ( ReportCond );
+ 
++again:
+         if ( ReportRoot != NULL ) {
+             ReportHeader *temp = ReportRoot;
+             //Condition_Unlock ( ReportCond );
+@@ -575,9 +577,12 @@ void reporter_spawn( thread_Settings *th
+                 // finished with report so free it
+                 free( temp );
+                 Condition_Unlock ( ReportCond );
++               Condition_Signal( &ReportDoneCond );
++       if (ReportRoot)
++           goto again;
+             }
+-            // yield control of CPU is another thread is waiting
+-            thread_rest();
++            Condition_Signal( &ReportDoneCond );
++            usleep(10000);
+         } else {
+             //Condition_Unlock ( ReportCond );
+         }
+Index: iperf-2.0.2/src/main.cpp
+===================================================================
+--- iperf-2.0.2.orig/src/main.cpp
++++ iperf-2.0.2/src/main.cpp
+@@ -96,6 +96,7 @@ extern "C" {
+     // records being accessed in a report and also to
+     // serialize modification of the report list
+     Condition ReportCond;
++    Condition ReportDoneCond;
+ }
+ 
+ // global variables only accessed within this file
+@@ -141,6 +142,7 @@ int main( int argc, char **argv ) {
+ 
+     // Initialize global mutexes and conditions
+     Condition_Initialize ( &ReportCond );
++    Condition_Initialize ( &ReportDoneCond );
+     Mutex_Initialize( &groupCond );
+     Mutex_Initialize( &clients_mutex );
+ 
+-

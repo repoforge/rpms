@@ -1,0 +1,11 @@
+--- src/utils.cc	2007-04-30 12:30:18.000000000 -0800
++++ utils.cc	2007-09-04 01:10:29.000000000 -0800
+@@ -53,7 +53,7 @@
+ static const guint64 KILOBYTE = 1024;
+ static const guint64 MEGABYTE = 1048576; // 1024 * 1024;
+ static const guint64 GIGABYTE = 1073741824; // 1024 * 1024 * 1024;
+-static const guint64 TERABYTE = 1099511627776; // 1024 * 1024 * 1024 * 1024;
++//static const guint64 TERABYTE = 1099511627776; // 1024 * 1024 * 1024 * 1024;
+ 
+ Glib::ustring
+ i18n_printf(const Glib::ustring& format, ...)

@@ -1,0 +1,163 @@
+diff -up libmpeg3-1.7/Makefile.makefile libmpeg3-1.7/Makefile
+--- libmpeg3-1.7/Makefile.makefile	2006-02-15 06:09:31.000000000 +0100
++++ libmpeg3-1.7/Makefile	2007-09-08 03:16:05.000000000 +0200
+@@ -9,6 +9,10 @@ ifeq ("$(PREFIX)", "")
+ PREFIX=/usr
+ endif
+ 
++ifeq ("$(LIBDIR)", "")
++LIBDIR=$(PREFIX)/lib
++endif
++
+ ifeq ($(origin CFLAGS), environment)
+ HAVE_CFLAGS := y
+ else
+@@ -16,36 +20,13 @@ HAVE_CFLAGS := n
+ endif
+ 
+ 
++ifeq ("$(OBJDIR)", "")
+ OBJDIR := $(shell uname --machine)
+-
+-
+-
+-
+-ifeq ($(OBJDIR), alpha)
+-  USE_MMX = 0
+-  ifneq ($(HAVE_CFLAGS), y)
+-    CFLAGS := -O4 -arch ev67 -ieee -accept c99_keywords -gcc_messages
+-  endif
+-endif
+-
+-ifeq ($(OBJDIR), i686)
+-  USE_MMX = 1
+-  ifneq ($(HAVE_CFLAGS), y)
+-    CFLAGS := -O2 -fomit-frame-pointer -falign-loops=2 -falign-jumps=2 -falign-functions=2 -I/usr/local/include
+-  endif
+-  CFLAGS += -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE
+-endif
+-
+-ifeq ($(OBJDIR), x86_64)
+-  ifneq ($(HAVE_CFLAGS), y)
+-    CFLAGS := -O2 -fomit-frame-pointer -I/usr/local/include
+-  endif
+-  CFLAGS += -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE
+-
+-
+ endif
+ 
+ 
++CFLAGS += -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE
++
+ 
+ ifeq ($(USE_CSS), 1)
+   CFLAGS += -DHAVE_CSS
+@@ -64,8 +45,7 @@ endif
+ 
+ CFLAGS += \
+ 	-I. \
+-	-I$(A52DIR)/include \
+-	-I$(A52DIR)/liba52
++	-I/usr/include/a52dec
+ 
+ 
+ 
+@@ -136,9 +116,9 @@ DIRS := \
+ 	$(OBJDIR)/audio \
+ 	$(OBJDIR)/video
+ 
+-include Makefile.a52
++#include Makefile.a52
+ 
+-DIRS += $(A52DIRS)
++#DIRS += $(A52DIRS)
+ 
+ 
+ OUTPUT = $(OBJDIR)/libmpeg3.a
+@@ -147,40 +127,40 @@ UTILS = $(OBJDIR)/mpeg3dump $(OBJDIR)/mp
+ #$(OBJDIR)/mpeg3split
+ 
+ 
+-LIBS = -lm -lpthread
++LIBS = -lm -lpthread -la52
+ 
+ $(shell if ! test -d $(OBJDIR) \; then mkdir -p $(OBJDIR) \; fi )
+ 
+-$(shell echo $(CFLAGS) > $(OBJDIR)/c_flags)
+-$(shell echo $(A52CFLAGS) > $(OBJDIR)/a52_flags)
+-$(shell echo $(OBJS) $(ASMOBJS) $(A52OBJS) $(NASMOBJS) > $(OBJDIR)/objs)
++#(shell echo $(CFLAGS) > $(OBJDIR)/c_flags)
++#$(shell echo $(A52CFLAGS) > $(OBJDIR)/a52_flags)
++#$(shell echo $(OBJS) $(ASMOBJS) $(NASMOBJS) > $(OBJDIR)/objs)
+ $(shell mkdir -p $(DIRS) )
+ 
+ all: $(OUTPUT) $(UTILS)
+ 
+ 
+-$(OUTPUT): $(OBJS) $(ASMOBJS) $(NASMOBJS) $(A52OBJS)
+-	ar rcs $(OUTPUT) `cat $(OBJDIR)/objs`
++$(OUTPUT): $(OBJS) $(ASMOBJS) $(NASMOBJS)
++	ar rcs $(OUTPUT) $(OBJS) $(ASMOBJS) $(NASMOBJS)
+ 
+ 
+ 
+ $(OBJDIR)/mpeg3dump: $(OUTPUT) mpeg3dump.c
+-	$(CC) `cat $(OBJDIR)/c_flags` -o $(OBJDIR)/mpeg3dump mpeg3dump.c $(OUTPUT) $(LIBS)
++	$(CC) $(CFLAGS) -o $(OBJDIR)/mpeg3dump mpeg3dump.c $(OUTPUT) $(LIBS)
+ 
+ $(OBJDIR)/mpeg3peek: $(OUTPUT) mpeg3peek.c
+-	$(CC) `cat $(OBJDIR)/c_flags` -o $(OBJDIR)/mpeg3peek mpeg3peek.c $(OUTPUT) $(LIBS)
++	$(CC) $(CFLAGS) -o $(OBJDIR)/mpeg3peek mpeg3peek.c $(OUTPUT) $(LIBS)
+ 
+ $(OBJDIR)/mpeg3toc: $(OUTPUT) mpeg3toc.c
+-	$(CC) `cat $(OBJDIR)/c_flags` -o $(OBJDIR)/mpeg3toc mpeg3toc.c $(OUTPUT) $(LIBS)
++	$(CC) $(CFLAGS) -o $(OBJDIR)/mpeg3toc mpeg3toc.c $(OUTPUT) $(LIBS)
+ 
+ $(OBJDIR)/mpeg3cat: $(OUTPUT) mpeg3cat.c
+-	$(CC) `cat $(OBJDIR)/c_flags` -o $(OBJDIR)/mpeg3cat mpeg3cat.c $(OUTPUT) $(LIBS)
++	$(CC) $(CFLAGS) -o $(OBJDIR)/mpeg3cat mpeg3cat.c $(OUTPUT) $(LIBS)
+ 
+ #$(OBJDIR)/mpeg3split: $(OUTPUT)
+-#	$(CC) `cat $(OBJDIR)/c_flags` -o $(OBJDIR)/mpeg3split mpeg3split.c $(OUTPUT) $(LIBS)
++#	$(CC) $(CFLAGS) -o $(OBJDIR)/mpeg3split mpeg3split.c $(OUTPUT) $(LIBS)
+ 
+ $(OBJDIR)/mpeg2qt: $(OUTPUT)
+-	$(CC) `cat $(OBJDIR)/c_flags` -o $(OBJDIR)/mpeg2qt mpeg2qt.c \
++	$(CC) $(CFLAGS) -o $(OBJDIR)/mpeg2qt mpeg2qt.c \
+ 		$(OUTPUT) \
+ 		$(LIBS) \
+ 		-I. \
+@@ -191,9 +171,12 @@ $(OBJDIR)/mpeg2qt: $(OUTPUT)
+ 		-ldl
+ 
+ install: 
+-	cp $(UTILS) $(PREFIX)/bin
+-#	cp $(OUTPUT) $(PREFIX)/lib
+-#	cp libmpeg3.h mpeg3private.h $(PREFIX)/include
++	mkdir -p $(DESTDIR)$(PREFIX)/bin
++	cp $(UTILS) $(DESTDIR)$(PREFIX)/bin
++	mkdir -p $(DESTDIR)$(LIBDIR)
++	cp $(OUTPUT) $(DESTDIR)$(LIBDIR)
++	mkdir -p $(DESTDIR)$(PREFIX)/include
++	cp libmpeg3.h mpeg3private.h $(DESTDIR)$(PREFIX)/include
+ 
+ clean:
+ 	rm -rf $(OBJDIR)
+@@ -206,13 +189,13 @@ wc:
+ 	cat *.c *.h audio/*.c audio/*.h video/*.c video/*.h | wc
+ 
+ $(OBJS): 
+-	$(CC) -c `cat $(OBJDIR)/c_flags` $(subst $(OBJDIR)/,, $*.c) -o $*.o
++	$(CC) -c $(CFLAGS) $(subst $(OBJDIR)/,, $*.c) -o $*.o
+ $(ASMOBJS): 
+-	$(CC) -c `cat $(OBJDIR)/c_flags` $(subst $(OBJDIR)/,, $*.S) -o $*.o
++	$(CC) -c $(CFLAGS) $(subst $(OBJDIR)/,, $*.S) -o $*.o
+ $(NASMOBJS): 
+ 	$(NASM) -f elf $(subst $(OBJDIR)/,, $*.s) -o $*.o
+-$(A52OBJS):
+-	$(CC) -c `cat $(OBJDIR)/a52_flags` $(subst $(OBJDIR)/,, $*.c) -o $*.o
++#(A52OBJS):
++#	$(CC) -c $(CFLAGS) $(subst $(OBJDIR)/,, $*.c) -o $*.o
+ 
+ $(OBJDIR)/libmpeg3.o: 				    libmpeg3.c
+ $(OBJDIR)/mpeg3atrack.o: 			    mpeg3atrack.c

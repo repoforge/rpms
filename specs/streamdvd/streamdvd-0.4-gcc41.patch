@@ -1,0 +1,11 @@
+--- StreamDVD-0.4/mplex/zalphastrm.hpp	2004-03-08 23:10:53.000000000 +0100
++++ StreamDVD-0.4.new/mplex/zalphastrm.hpp	2006-01-23 13:26:31.000000000 +0100
+@@ -45,7 +45,7 @@
+     virtual bool AUBufferNeedsRefill();
+ 	virtual void NextDTSPTS( clockticks &DTS, clockticks &PTS);
+ 	virtual void ScanFirstSeqHeader();
+-    bool ZAlphaStream::RunOutComplete();
++    bool RunOutComplete();
+ 
+ private:
+     float z_min; 

@@ -1,0 +1,22 @@
+diff -ru libmpeg3-1.5.2.orig/video/mmxidct.S libmpeg3-1.5.2/video/mmxidct.S
+--- libmpeg3-1.5.2.orig/video/mmxidct.S	2006-04-24 23:13:14.000000000 +0200
++++ libmpeg3-1.5.2/video/mmxidct.S	2006-04-24 23:13:47.000000000 +0200
+@@ -673,3 +673,7 @@
+ 	ret
+ .Lfe1:
+ 	.size	 IDCT_mmx,.Lfe1-IDCT_mmx
++
++#ifdef __ELF__
++.section .note.GNU-stack,"",%progbits
++#endif
+diff -ru libmpeg3-1.5.2.orig/video/reconmmx.s libmpeg3-1.5.2/video/reconmmx.s
+--- libmpeg3-1.5.2.orig/video/reconmmx.s	2006-04-24 23:13:14.000000000 +0200
++++ libmpeg3-1.5.2/video/reconmmx.s	2006-04-24 23:13:20.000000000 +0200
+@@ -298,4 +298,6 @@
+   pop        esi
+   ret
+ 
+-
++%ifidn __OUTPUT_FORMAT__,elf
++section .note.GNU-stack noalloc noexec nowrite progbits
++%endif

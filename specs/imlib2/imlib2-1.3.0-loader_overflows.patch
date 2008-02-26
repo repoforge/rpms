@@ -1,0 +1,98 @@
+diff -Nur imlib2-1.2.1/src/modules/loaders/loader_argb.c imlib2-1.2.1.new/src/modules/loaders/loader_argb.c
+--- imlib2-1.2.1/src/modules/loaders/loader_argb.c	2006-11-06 01:27:59.000000000 -0800
++++ imlib2-1.2.1.new/src/modules/loaders/loader_argb.c	2006-11-06 01:30:41.000000000 -0800
+@@ -23,7 +23,7 @@
+ load(ImlibImage * im, ImlibProgressFunction progress,
+      char progress_granularity, char immediate_load)
+ {
+-   int                 w, h, alpha;
++   int                 w=0, h=0, alpha=0;
+    FILE               *f;
+ 
+    if (im->data)
+@@ -36,6 +36,8 @@
+    {
+       char                buf[256], buf2[256];
+ 
++      memset(buf, 0, sizeof(buf));
++      memset(buf2, 0, sizeof(buf));
+       if (!fgets(buf, 255, f))
+         {
+            fclose(f);
+diff -Nur imlib2-1.2.1/src/modules/loaders/loader_jpeg.c imlib2-1.2.1.new/src/modules/loaders/loader_jpeg.c
+--- imlib2-1.2.1/src/modules/loaders/loader_jpeg.c	2006-11-06 01:27:59.000000000 -0800
++++ imlib2-1.2.1.new/src/modules/loaders/loader_jpeg.c	2006-11-06 01:33:01.000000000 -0800
+@@ -104,8 +104,9 @@
+         im->w = w = cinfo.output_width;
+         im->h = h = cinfo.output_height;
+ 
+-        if (cinfo.rec_outbuf_height > 16)
++        if (cinfo.rec_outbuf_height > 16 || w < 1 || h < 1 || w > 16383 || h > 16383)
+           {
++	     im->w = im->h = 0;
+              jpeg_destroy_decompress(&cinfo);
+              fclose(f);
+              return 0;
+diff -Nur imlib2-1.2.1/src/modules/loaders/loader_lbm.c imlib2-1.2.1.new/src/modules/loaders/loader_lbm.c
+--- imlib2-1.2.1/src/modules/loaders/loader_lbm.c	2006-11-06 01:27:59.000000000 -0800
++++ imlib2-1.2.1.new/src/modules/loaders/loader_lbm.c	2006-11-06 01:30:41.000000000 -0800
+@@ -453,6 +453,7 @@
+         }
+     }
+     if (!full || !ok) {
++        im->w = im->h = 0;
+         freeilbm(&ilbm);
+         return ok;
+     }
+@@ -467,12 +468,13 @@
+     cancel = 0;
+     plane[0] = NULL;
+ 
++    n = ilbm.depth;
++    if (ilbm.mask == 1) n++;
++
+     im->data = malloc(im->w * im->h * sizeof(DATA32));
+-    if (im->data) {
+-        n = ilbm.depth;
+-        if (ilbm.mask == 1) n++;
++    plane[0] = malloc(((im->w + 15) / 16) * 2 * n);
++    if (im->data && plane[0]) {
+ 
+-        plane[0] = malloc(((im->w + 15) / 16) * 2 * n);
+         for (i = 1; i < n; i++) plane[i] = plane[i - 1] + ((im->w + 15) / 16) * 2;
+ 
+         z = ((im->w + 15) / 16) * 2 * n;
+@@ -511,6 +513,7 @@
+    * the memory for im->data.
+    *----------*/
+     if (!ok) {
++        im->w = im->h = 0;
+         if (im->data) free(im->data);
+         im->data = NULL;
+     }
+diff -Nur imlib2-1.2.1/src/modules/loaders/loader_pnm.c imlib2-1.2.1.new/src/modules/loaders/loader_pnm.c
+--- imlib2-1.2.1/src/modules/loaders/loader_pnm.c	2006-11-06 01:27:59.000000000 -0800
++++ imlib2-1.2.1.new/src/modules/loaders/loader_pnm.c	2006-11-06 01:30:41.000000000 -0800
+@@ -80,7 +80,7 @@
+              int                 i = 0;
+ 
+              /* read numbers */
+-             while (c != EOF && !isspace(c))
++             while (c != EOF && i+1 < sizeof(buf) && !isspace(c))
+                {
+                   buf[i++] = c;
+                   c = fgetc(f);
+diff -Nur imlib2-1.2.1/src/modules/loaders/loader_tga.c imlib2-1.2.1.new/src/modules/loaders/loader_tga.c
+--- imlib2-1.2.1/src/modules/loaders/loader_tga.c	2006-11-06 01:27:59.000000000 -0800
++++ imlib2-1.2.1.new/src/modules/loaders/loader_tga.c	2006-11-06 01:30:41.000000000 -0800
+@@ -365,7 +369,9 @@
+                   else
+                      dataptr = im->data + (y * im->w);
+ 
+-                  for (x = 0; x < im->w; x++)   /* for each pixel in the row */
++                  for (x = 0;
++                       x < im->w && bufptr+bpp/8 < bufend;
++                       x++)   /* for each pixel in the row */
+                     {
+                        switch (bpp)
+                          {

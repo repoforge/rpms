@@ -1,0 +1,57 @@
+diff -uNr libmpeg3-1.7/libmpeg3.c libmpeg3-cinelerra/libmpeg3.c
+--- libmpeg3-1.7/libmpeg3.c	2006-03-29 06:14:26.000000000 +0200
++++ libmpeg3-cinelerra/libmpeg3.c	2007-07-05 00:42:40.000000000 +0200
+@@ -181,6 +181,7 @@
+ 				strncasecmp(ext, ".mpg", 4) &&
+ 				strncasecmp(ext, ".vob", 4) &&
+ 				strncasecmp(ext, ".mpeg", 4) &&
++				strncasecmp(ext, ".m2t", 4) &&
+ 				strncasecmp(ext, ".ac3", 4))
+ 				result = 0;
+ 		}
+diff -uNr libmpeg3-1.7/libmpeg3.h libmpeg3-cinelerra/libmpeg3.h
+--- libmpeg3-1.7/libmpeg3.h	2006-03-29 06:14:26.000000000 +0200
++++ libmpeg3-cinelerra/libmpeg3.h	2007-07-05 00:42:40.000000000 +0200
+@@ -5,6 +5,7 @@
+ extern "C" {
+ #endif
+ 
++// FIXME: don't include private definitions in external header
+ #include "mpeg3private.h"
+ 
+ 
+diff -uNr libmpeg3-1.7/mpeg3toc.c libmpeg3-cinelerra/mpeg3toc.c
+--- libmpeg3-1.7/mpeg3toc.c	2005-12-23 23:54:55.000000000 +0100
++++ libmpeg3-cinelerra/mpeg3toc.c	2007-07-05 00:42:40.000000000 +0200
+@@ -574,7 +574,7 @@
+ 						if(j == vtracks - 1 && l == frame_count - 1)
+ 						{
+ 							total_frames += frame_count;
+-							fprintf(stderr, "Video: title=%lld total_frames=%d ", title_number, total_frames);
++							fprintf(stderr, "Video: title=%lld total_frames=%d (%.1f \%)", title_number, total_frames,100*((float)position)/((float) mpeg3demux_movie_size(demuxer)));
+ 						}
+ 					}
+ 				}
+
+diff -uNr libmpeg3-1.7/video/output.c libmpeg3-cinelerra/video/output.c
+--- libmpeg3-1.7/video/output.c	2006-01-07 10:55:56.000000000 +0100
++++ libmpeg3-cinelerra/video/output.c	2007-07-05 00:42:40.000000000 +0200
+@@ -104,7 +104,7 @@
+ 	*data++ = 0;
+ 
+ #define STORE_PIXEL_RGB565 \
+-	*((unsigned short*)data) = \
++	*(*(unsigned short**)(&data))++ = \
+ 		((CLIP(r_l) & 0xf8) << 8) | \
+ 		((CLIP(g_l) & 0xfc) << 3) | \
+ 		((CLIP(b_l) & 0xf8) >> 3); \
+diff -uNr libmpeg3-1.7/video/vlc.c libmpeg3-cinelerra/video/vlc.c
+--- libmpeg3-1.7/video/vlc.c	2005-04-21 05:59:42.000000000 +0200
++++ libmpeg3-cinelerra/video/vlc.c	2007-07-05 00:42:40.000000000 +0200
+@@ -1,3 +1,6 @@
++// FIXME: vlc.h redefines ERROR to 99 if and only if error is defined.
++#define ERROR
++
+ #include "mpeg3private.h"
+ #include "mpeg3protos.h"
+ #include "vlc.h"

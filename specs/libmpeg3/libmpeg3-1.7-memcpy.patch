@@ -1,0 +1,23 @@
+diff -ur libmpeg3-1.7.orig/audio/mpeg3audio.c libmpeg3-1.7/audio/mpeg3audio.c
+--- libmpeg3-1.7.orig/audio/mpeg3audio.c	2006-02-19 13:43:27.000000000 +0200
++++ libmpeg3-1.7/audio/mpeg3audio.c	2007-08-17 18:06:37.000000000 +0300
+@@ -3,7 +3,7 @@
+ 
+ #include <math.h>
+ #include <stdlib.h>
+-
++#include <string.h>
+ 
+ 
+ 
+diff -ur libmpeg3-1.7.orig/video/subtitle.c libmpeg3-1.7/video/subtitle.c
+--- libmpeg3-1.7.orig/video/subtitle.c	2006-02-27 06:14:00.000000000 +0200
++++ libmpeg3-1.7/video/subtitle.c	2007-08-17 18:07:00.000000000 +0300
+@@ -2,6 +2,7 @@
+ #include "mpeg3protos.h"
+ 
+ #include <stdlib.h>
++#include <string.h>
+ 
+ static unsigned char get_nibble(unsigned char **ptr, int *nibble)
+ {

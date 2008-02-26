@@ -1,0 +1,10 @@
+--- ./src/src.pro.strip	2004-06-10 11:40:59.254407224 +0200
++++ ./src/src.pro	2004-06-10 11:41:10.358719112 +0200
+@@ -5,6 +5,7 @@
+ # Configuration
+ TEMPLATE = app
+ CONFIG  += qt thread x11
++QMAKE_STRIP = true
+ 
+ #CONFIG += debug
+ #CONFIG += use_crash

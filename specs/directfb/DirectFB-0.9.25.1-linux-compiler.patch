@@ -1,0 +1,11 @@
+diff -Naupr DirectFB-0.9.25.1.orig/interfaces/IDirectFBVideoProvider/idirectfbvideoprovider_v4l.c DirectFB-0.9.25.1/interfaces/IDirectFBVideoProvider/idirectfbvideoprovider_v4l.c
+--- DirectFB-0.9.25.1.orig/interfaces/IDirectFBVideoProvider/idirectfbvideoprovider_v4l.c	2006-05-03 09:22:37.000000000 +0200
++++ DirectFB-0.9.25.1/interfaces/IDirectFBVideoProvider/idirectfbvideoprovider_v4l.c	2006-09-14 14:50:43.000000000 +0200
+@@ -44,7 +44,6 @@
+ #include <fcntl.h>
+ #include <sys/ioctl.h>
+ 
+-#include <linux/compiler.h>
+ #include "videodev.h"
+ 
+ #include <directfb.h>

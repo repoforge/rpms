@@ -1,0 +1,23 @@
+--- tn5250-0.16.5/linux/Makefile.in.bhc	2003-03-19 16:33:23.000000000 +0100
++++ tn5250-0.16.5/linux/Makefile.in	2003-03-19 16:34:04.000000000 +0100
+@@ -252,20 +252,12 @@
+ 	@( good=no ; \
+ 	  if [ "$$(uname -s)" = "Linux" ]; then \
+             if which tic >/dev/null 2>&1 ; then \
+-	      if [ "`whoami`" = "root" ]; then \
+ 		rm -f /usr/share/terminfo/x/xterm-5250 ; \
+ 		rm -f /usr/share/terminfo/5/5250 ; \
+ 		rm -f /usr/lib/terminfo/x/xterm-5250 ; \
+ 		rm -f /usr/lib/terminfo/5/5250 ; \
+ 		good=yes ; \
+ 		tic $(srcdir)/5250.terminfo || good=no ; \
+-	      else \
+-		mkdir -p ~/.terminfo || exit $$? ; \
+-		rm -f ~/.terminfo/x/xterm-5250 ; \
+-		rm -f ~/.terminfo/5/5250 ; \
+-		good=yes ; \
+-		tic $(srcdir)/5250.terminfo || good=no ; \
+-	      fi ; \
+ 	    fi ; \
+ 	  else \
+ 	    good=yes ; \

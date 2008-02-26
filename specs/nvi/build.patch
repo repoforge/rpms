@@ -1,0 +1,142 @@
+--- build/Makefile.in.orig	2008-01-10 16:18:46.000000000 +1100
++++ build/Makefile.in	2008-01-10 17:30:12.000000000 +1100
+@@ -76,45 +76,35 @@
+ 
+ install: all install_common
+ 	@echo "Installing vi, ex, view: $(bindir) ..."
+-	[ -d $(bindir) ] || \
+-	    ($(mkdir) $(bindir) && $(chmod) $(dmode) $(bindir))
+-	cd $(bindir) && $(rm) -f `echo vi | sed '$(transform)'`
+-	$(cp) nvi $(bindir)/`echo vi | sed '$(transform)'`
+-	cd $(bindir) && [ -f $(strip) ] && \
++	[ -d $(DESTDIR)$(bindir) ] || \
++	    ($(mkdir) $(DESTDIR)$(bindir) && $(chmod) $(dmode) $(DESTDIR)$(bindir))
++	cd $(DESTDIR)$(bindir) && $(rm) -f `echo vi | sed '$(transform)'`
++	$(cp) nvi $(DESTDIR)$(bindir)/`echo vi | sed '$(transform)'`
++	cd $(DESTDIR)$(bindir) && [ -f $(strip) ] && \
+ 	    $(strip) `echo vi | sed '$(transform)'`
+-	cd $(bindir) && $(chmod) $(emode) `echo vi | sed '$(transform)'`
+-	cd $(bindir) && $(rm) -f `echo ex | sed '$(transform)'`
+-	cd $(bindir) && $(rm) -f `echo view | sed '$(transform)'`
+-	cd $(bindir) && $(ln) \
++	cd $(DESTDIR)$(bindir) && $(chmod) $(emode) `echo vi | sed '$(transform)'`
++	cd $(DESTDIR)$(bindir) && $(rm) -f `echo ex | sed '$(transform)'`
++	cd $(DESTDIR)$(bindir) && $(rm) -f `echo view | sed '$(transform)'`
++	cd $(DESTDIR)$(bindir) && $(ln) \
+ 		`echo vi | sed '$(transform)'` `echo ex | sed '$(transform)'`
+-	cd $(bindir) && $(ln) \
++	cd $(DESTDIR)$(bindir) && $(ln) \
+ 		`echo vi | sed '$(transform)'` `echo view | sed '$(transform)'`
+-	[ -d $(mandir) ] || \
+-	    ($(mkdir) $(mandir) && $(chmod) $(dmode) $(mandir))
+-	[ -d $(mandir)/cat1 ] || \
+-	    ($(mkdir) $(mandir)/cat1 && $(chmod) $(dmode) $(mandir)/cat1)
+-	@echo "Installing man pages: $(mandir) ..."
+-	cd $(mandir)/cat1 && $(rm) -f `echo vi.0 | sed '$(transform)'`
+-	$(cp) $(srcdir)/docs/USD.doc/vi.man/vi.0 \
+-	    $(mandir)/cat1/`echo vi.0 | sed '$(transform)'`
+-	cd $(mandir)/cat1 && $(chmod) $(fmode) `echo vi.0 | sed '$(transform)'`
+-	cd $(mandir)/cat1 && $(rm) -f `echo ex.0 | sed '$(transform)'`
+-	cd $(mandir)/cat1 && $(rm) -f `echo view.0 | sed '$(transform)'`
+-	cd $(mandir)/cat1 && $(ln) \
+-	    `echo vi.0 | sed '$(transform)'` `echo ex.0 | sed '$(transform)'`
+-	cd $(mandir)/cat1 && $(ln) \
+-	    `echo vi.0 | sed '$(transform)'` `echo view.0 | sed '$(transform)'`
+-	[ -d $(mandir)/man1 ] || \
+-	    ($(mkdir) $(mandir)/man1 && $(chmod) $(dmode) $(mandir)/man1)
+-	cd $(mandir)/man1 && $(rm) -f `echo vi.1 | sed '$(transform)'`
++	[ -d $(DESTDIR)$(mandir) ] || \
++	    ($(mkdir) $(DESTDIR)$(mandir) && $(chmod) $(dmode) $(DESTDIR)$(mandir))
++	[ -d $(DESTDIR)$(mandir)/cat1 ] || \
++	    ($(mkdir) $(DESTDIR)$(mandir)/cat1 && $(chmod) $(dmode) $(DESTDIR)$(mandir)/cat1)
++	@echo "Installing man pages: $(DESTDIR)$(mandir) ..."
++	[ -d $(DESTDIR)$(mandir)/man1 ] || \
++	    ($(mkdir) $(DESTDIR)$(mandir)/man1 && $(chmod) $(dmode) $(DESTDIR)$(mandir)/man1)
++	cd $(DESTDIR)$(mandir)/man1 && $(rm) -f `echo vi.1 | sed '$(transform)'`
+ 	$(cp) $(srcdir)/docs/USD.doc/vi.man/vi.1 \
+-	    $(mandir)/man1/`echo vi.1 | sed '$(transform)'`
+-	cd $(mandir)/man1 && $(chmod) $(fmode) `echo vi.1 | sed '$(transform)'`
+-	cd $(mandir)/man1 && $(rm) -f `echo ex.1 | sed '$(transform)'`
+-	cd $(mandir)/man1 && $(rm) -f `echo view.1 | sed '$(transform)'`
+-	cd $(mandir)/man1 && $(ln) \
++	    $(DESTDIR)$(mandir)/man1/`echo vi.1 | sed '$(transform)'`
++	cd $(DESTDIR)$(mandir)/man1 && $(chmod) $(fmode) `echo vi.1 | sed '$(transform)'`
++	cd $(DESTDIR)$(mandir)/man1 && $(rm) -f `echo ex.1 | sed '$(transform)'`
++	cd $(DESTDIR)$(mandir)/man1 && $(rm) -f `echo view.1 | sed '$(transform)'`
++	cd $(DESTDIR)$(mandir)/man1 && $(ln) \
+ 	    `echo vi.1 | sed '$(transform)'` `echo ex.1 | sed '$(transform)'`
+-	cd $(mandir)/man1 && $(ln) \
++	cd $(DESTDIR)$(mandir)/man1 && $(ln) \
+ 	    `echo vi.1 | sed '$(transform)'` `echo view.1 | sed '$(transform)'`
+ 
+ cat=	dutch english french german ru_SU.KOI8-R spanish swedish
+@@ -124,44 +114,34 @@
+ 	[ -f $(ln) ]
+ 	[ -f $(mkdir) ]
+ 	[ -f $(rm) ]
+-	[ -d $(prefix) ] || \
+-	    ($(mkdir) $(prefix) && $(chmod) $(dmode) $(prefix))
++	[ -d $(DESTDIR)$(prefix) ] || \
++	    ($(mkdir) $(DESTDIR)$(prefix) && $(chmod) $(dmode) $(DESTDIR)$(prefix))
+ 	[ -d $(exec_prefix) ] || \
+-	    ($(mkdir) $(exec_prefix) && $(chmod) $(dmode) $(exec_prefix))
+-	[ -d $(datadir) ] || \
+-	    ($(mkdir) $(datadir) && $(chmod) $(dmode) $(datadir))
+-	$(rm) -rf $(datadir)/vi
+-	$(mkdir) $(datadir)/vi && $(chmod) $(dmode) $(datadir)/vi
+-	@echo "Installing message catalogs: $(datadir)/vi/catalog ..."
+-	$(mkdir) $(datadir)/vi/catalog && \
+-	    $(chmod) $(dmode) $(datadir)/vi/catalog
+-	(cd $(srcdir)/catalog && $(cp) $(cat) $(datadir)/vi/catalog && \
+-	    cd $(datadir)/vi/catalog && $(chmod) $(fmode) *)
+-	@echo "Installing Perl scripts: $(datadir)/vi/perl ..."
+-	$(mkdir) $(datadir)/vi/perl && $(chmod) $(dmode) $(datadir)/vi/perl
+-	[ -f VI.pm ] && $(cp) VI.pm $(datadir)/vi/perl && \
+-	    cd $(datadir)/vi/perl && $(chmod) $(fmode) VI.pm)
+-	(cd $(srcdir)/perl_scripts && $(cp) *.pl $(datadir)/vi/perl && \
+-	    cd $(datadir)/vi/perl && $(chmod) $(fmode) *.pl)
+-	@echo "Installing Tcl scripts: $(datadir)/vi/tcl ..."
+-	$(mkdir) $(datadir)/vi/tcl && $(chmod) $(dmode) $(datadir)/vi/tcl
+-	(cd $(srcdir)/tcl_scripts && $(cp) *.tcl $(datadir)/vi/tcl && \
+-	    cd $(datadir)/vi/tcl && $(chmod) $(fmode) *.tcl)
+-	@echo "Installing recover script: $(datadir)/vi/recover ..."
+-	($(cp) recover $(datadir)/vi/recover && \
+-	    $(chmod) $(emode) $(datadir)/vi/recover)
++	    ($(mkdir) $(DESTDIR)$(exec_prefix) && $(chmod) $(dmode) $(DESTDIR)$(exec_prefix))
++	[ -d $(DESTDIR)$(datadir) ] || \
++	    ($(mkdir) $(DESTDIR)$(datadir) && $(chmod) $(dmode) $(DESTDIR)$(datadir))
++	$(rm) -rf $(DESTDIR)$(datadir)/vi
++	$(mkdir) $(DESTDIR)$(datadir)/vi && $(chmod) $(dmode) $(DESTDIR)$(datadir)/vi
++	@echo "Installing message catalogs: $(DESTDIR)$(datadir)/vi/catalog ..."
++	$(mkdir) $(DESTDIR)$(datadir)/vi/catalog && \
++	    $(chmod) $(dmode) $(DESTDIR)$(datadir)/vi/catalog
++	(cd $(srcdir)/catalog && $(cp) $(cat) $(DESTDIR)$(datadir)/vi/catalog && \
++	    cd $(DESTDIR)$(datadir)/vi/catalog && $(chmod) $(fmode) *)
++	@echo "Installing recover script: $(DESTDIR)$(datadir)/vi/recover ..."
++	($(cp) recover $(DESTDIR)$(datadir)/vi/recover && \
++	    $(chmod) $(emode) $(DESTDIR)$(datadir)/vi/recover)
+ 
+ uninstall:
+-	$(rm) -rf $(datadir)/vi
+-	cd $(bindir) && $(rm) -f `echo ex | sed '$(transform)'`
+-	cd $(bindir) && $(rm) -f `echo vi | sed '$(transform)'`
+-	cd $(bindir) && $(rm) -f `echo view | sed '$(transform)'`
+-	cd $(mandir)/cat1 && $(rm) -f `echo ex.0 | sed '$(transform)'`
+-	cd $(mandir)/cat1 && $(rm) -f `echo vi.0 | sed '$(transform)'`
+-	cd $(mandir)/cat1 && $(rm) -f `echo view.0 | sed '$(transform)'`
+-	cd $(mandir)/man1 && $(rm) -f `echo ex.1 | sed '$(transform)'`
+-	cd $(mandir)/man1 && $(rm) -f `echo vi.1 | sed '$(transform)'`
+-	cd $(mandir)/man1 && $(rm) -f `echo view.1 | sed '$(transform)'`
++	$(rm) -rf $(DESTDIR)$(datadir)/vi
++	cd $(DESTDIR)$(bindir) && $(rm) -f `echo ex | sed '$(transform)'`
++	cd $(DESTDIR)$(bindir) && $(rm) -f `echo vi | sed '$(transform)'`
++	cd $(DESTDIR)$(bindir) && $(rm) -f `echo view | sed '$(transform)'`
++	cd $(DESTDIR)$(mandir)/cat1 && $(rm) -f `echo ex.0 | sed '$(transform)'`
++	cd $(DESTDIR)$(mandir)/cat1 && $(rm) -f `echo vi.0 | sed '$(transform)'`
++	cd $(DESTDIR)$(mandir)/cat1 && $(rm) -f `echo view.0 | sed '$(transform)'`
++	cd $(DESTDIR)$(mandir)/man1 && $(rm) -f `echo ex.1 | sed '$(transform)'`
++	cd $(DESTDIR)$(mandir)/man1 && $(rm) -f `echo vi.1 | sed '$(transform)'`
++	cd $(DESTDIR)$(mandir)/man1 && $(rm) -f `echo view.1 | sed '$(transform)'`
+ 
+ docs:
+ 	cd $(srcdir)/docs/USD.doc/vi.ref && $(MAKE)

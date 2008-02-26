@@ -1,0 +1,12 @@
+diff -Nur imlib2-1.2.1-orig/src/modules/loaders/loader_xpm.c imlib2-1.2.1/src/modules/loaders/loader_xpm.c
+--- imlib2-1.2.1-orig/src/modules/loaders/loader_xpm.c	2005-05-18 07:26:16.000000000 +0200
++++ imlib2-1.2.1/src/modules/loaders/loader_xpm.c	2005-09-21 08:55:11.000000000 +0200
+@@ -66,7 +66,7 @@
+    /* look in rgb txt database */
+    if (!rgb_txt)
+ #ifndef __EMX__
+-      rgb_txt = fopen("/usr/X11R6/lib/X11/rgb.txt", "r");
++      rgb_txt = fopen("/usr/share/X11/rgb.txt", "r");
+ #else
+       rgb_txt = fopen(__XOS2RedirRoot("/XFree86/lib/X11/rgb.txt"), "rt");
+ #endif

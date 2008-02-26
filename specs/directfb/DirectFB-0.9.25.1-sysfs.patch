@@ -1,0 +1,20 @@
+--- DirectFB-0.9.25.1/directfb.pc.in.orig	2006-07-27 02:09:28.000000000 +0200
++++ DirectFB-0.9.25.1/directfb.pc.in	2006-07-27 02:09:37.000000000 +0200
+@@ -7,5 +7,5 @@
+ Description: Graphics and windowing library for the Linux frame buffer device
+ Version: @VERSION@
+ Requires: fusion direct
+-Libs: -L${libdir} -ldirectfb @THREADLIB@ @DYNLIB@ @ZLIB_LIBS@ @OSX_LIBS@
++Libs: -L${libdir} -ldirectfb @THREADLIB@ @DYNLIB@ @ZLIB_LIBS@ @SYSFS_LIBS@ @OSX_LIBS@
+ Cflags: @THREADFLAGS@ -I@INCLUDEDIR@
+--- DirectFB-0.9.25.1/directfb-config.in.orig	2006-07-27 02:08:17.000000000 +0200
++++ DirectFB-0.9.25.1/directfb-config.in	2006-07-27 02:09:02.000000000 +0200
+@@ -300,7 +300,7 @@
+       libs=-L@libdir@
+ 
+       if test "$lib_directfb" = "yes"; then
+-	 libs="$libs -ldirectfb -lfusion -ldirect @THREADLIB@ @ZLIB_LIBS@"
++	 libs="$libs -ldirectfb -lfusion -ldirect @THREADLIB@ @ZLIB_LIBS@ @SYSFS_LIBS@"
+ 
+ 	 if test -z "$echo_static"; then
+ 	    libs="$libs @DYNLIB@"

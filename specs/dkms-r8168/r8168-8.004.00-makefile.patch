@@ -1,0 +1,11 @@
+--- r8168-8.004.00/src/Makefile.orig	2007-11-21 03:39:11.000000000 +0200
++++ r8168-8.004.00/src/Makefile	2008-02-06 16:21:07.000000000 +0200
+@@ -35,7 +35,7 @@ modules:
+ ifeq ($(KFLAG),24x)
+ 	$(MAKE) -f Makefile_linux24x
+ else
+-	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD)/src modules
++	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules
+ 	strip --strip-debug r8168.$(KEXT)
+ endif
+ 

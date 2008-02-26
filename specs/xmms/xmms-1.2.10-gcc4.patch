@@ -1,0 +1,24 @@
+--- xmms-1.2.10/General/ir/ir.h.orig	2001-03-05 23:17:44.000000000 +1000
++++ xmms-1.2.10/General/ir/ir.h	2005-03-24 20:48:31.000000000 +1000
+@@ -49,8 +49,6 @@
+ }
+ irConfig;
+ 
+-extern pthread_t irapp_thread;
+-extern gboolean keepGoing;
+ extern irConfig ircfg;
+ extern gboolean irconf_is_going;
+ 
+--- xmms-1.2.10/xmms/sm.c.orig	2004-01-11 18:33:00.000000000 +0100
++++ xmms-1.2.10/xmms/sm.c	2004-04-12 22:44:28.000000000 +0200
+@@ -147,8 +147,9 @@
+ 
+ #else
+ 
+-void sm_init(int argc, char **argv, const char *previous_session_id)
++const char * sm_init(int argc, char **argv, const char *previous_session_id)
+ {
++	return NULL;
+ }
+ 
+ void sm_cleanup(void)

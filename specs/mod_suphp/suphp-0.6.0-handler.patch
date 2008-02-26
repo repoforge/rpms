@@ -1,0 +1,14 @@
+--- src/apache/mod_suphp.c.orig	2005-08-12 06:28:50.526855736 +0200
++++ src/apache/mod_suphp.c	2005-08-12 06:29:21.277180976 +0200
+@@ -249,9 +249,9 @@
+     {"suPHP_UserGroup", suphp_handle_cmd_user_group, NULL, 
+      RSRC_CONF|ACCESS_CONF, TAKE2, "User and group scripts shall be run as"},
+ #endif 
+-    {"suPHP_AddHandler", suphp_handle_cmd_add_handler, NULL, ACCESS_CONF,
++    {"suPHP_AddHandler", suphp_handle_cmd_add_handler, NULL, RSRC_CONF|ACCESS_CONF,
+      ITERATE, "Tells mod_suphp to handle these MIME-types"},
+-    {"suphp_RemoveHandler", suphp_handle_cmd_remove_handler, NULL, ACCESS_CONF,
++    {"suphp_RemoveHandler", suphp_handle_cmd_remove_handler, NULL, RSRC_CONF|ACCESS_CONF,
+      ITERATE, "Tells mod_suphp not to handle these MIME-types"},
+     {NULL}
+ };

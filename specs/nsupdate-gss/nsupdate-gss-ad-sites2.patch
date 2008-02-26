@@ -1,0 +1,71 @@
+--- nsupdate-gss.orig	2006-01-23 06:35:10.000000000 +0100
++++ nsupdate-gss	2007-08-01 17:30:35.000000000 +0200
+@@ -5,6 +5,9 @@
+ # jmruiz@animatika.net
+ # updated, 2004-Enero
+ 
++# dag@wieers.com
++# updated, 2007-EMC
++
+ 
+ # See draft-ietf-dnsext-gss-tsig-02, RFC2845 and RFC2930
+ 
+@@ -20,21 +23,22 @@
+ 
+ # Integrity of the arguments
+ 
+-if ($#ARGV != 3) {
++if ($#ARGV < 3) {
+     print "
+-Usage: nsupdate-gss.pl HOST DOMAIN IP TTL
++Usage: nsupdate-gss.pl HOST DOMAIN IP TTL [NS]
+ ";
+     exit 1;
+ }
+ 
+ 
+ 
+-
+-my $host = $ARGV[0];
+-my $domain = $ARGV[1];
+-my $ip = $ARGV[2];
++### FIXME: Fill in all information automatically
++my $host = $ARGV[0]; # hostname -s
++my $domain = $ARGV[1]; # domainname
++my $ip = $ARGV[2]; # ifconfig
+ my $ttl = $ARGV[3];
+ my $alg = "gss.microsoft.com";
++my $ns = $ARGV[4] if ($#ARGV >= 4);
+ 
+ 
+ 
+@@ -229,7 +233,11 @@
+ # find the nameservers
+ my $nameserver = find_nameservers("$domain.");
+ 
+-print "Found nameserver $nameserver\n";
++$nameserver->nameservers($ns) if (defined($ns));
++#print $nameserver->print;
++
++#print "Found nameserver $nameserver\n";
++print "Found ".$nameserver->nameservers." nameserver(s)\n";
+ 
+ if (!defined($nameserver) || $nameserver->{'errorstring'} ne 'NOERROR') {
+     print "Failed to find a nameserver for domain $domain\n";
+@@ -238,12 +246,16 @@
+ 
+ # find the name of the DNS server
+ my $server_name = find_server_name($domain);
++$server_name = $ns if (defined($ns));
++
+ if (!defined($server_name)) {
+     print "Failed to find a DNS server name for $domain\n";
+     exit 1;
+ }
+ print "Using DNS server name $server_name\n";
+ 
++$nameserver->nameservers($server_name);
++
+ # use a long random key name
+ my $key_name = int(rand 10000000000000);
+ 

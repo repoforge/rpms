@@ -1,0 +1,14 @@
+diff -urN ../suphp-0.6.1.orig/src/apache2/mod_suphp.c ./src/apache2/mod_suphp.c
+--- ../suphp-0.6.1.orig/src/apache2/mod_suphp.c 2005-11-26 14:45:49.000000000 -0500
++++ ./src/apache2/mod_suphp.c   2006-02-26 01:28:44.941407805 -0500
+@@ -313,8 +313,8 @@
+     AP_INIT_TAKE2("suPHP_UserGroup", suphp_handle_cmd_user_group, NULL, RSRC_CONF | ACCESS_CONF,
+                   "User and group scripts shall be run as"),
+ #endif
+-    AP_INIT_ITERATE("suPHP_AddHandler", suphp_handle_cmd_add_handler, NULL, ACCESS_CONF, "Tells mod_suphp to handle these MIME-types"),
+-    AP_INIT_ITERATE("suPHP_RemoveHandler", suphp_handle_cmd_remove_handler, NULL, ACCESS_CONF, "Tells mod_suphp not to handle these MIME-types"),
++    AP_INIT_ITERATE("suPHP_AddHandler", suphp_handle_cmd_add_handler, NULL, RSRC_CONF|ACCESS_CONF, "Tells mod_suphp to handle these MIME-types"),
++    AP_INIT_ITERATE("suPHP_RemoveHandler", suphp_handle_cmd_remove_handler, NULL, RSRC_CONF|ACCESS_CONF, "Tells mod_suphp not to handle these MIME-types"),
+     {NULL}
+ };
+

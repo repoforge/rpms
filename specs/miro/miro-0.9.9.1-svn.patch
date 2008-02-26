@@ -1,0 +1,11 @@
+--- platform/gtk-x11/setup.py.orig	2007-11-16 03:27:04.364443136 +0100
++++ platform/gtk-x11/setup.py	2007-11-16 03:27:13.173104016 +0100
+@@ -342,7 +342,7 @@
+     def install_app_config(self):
+         source = os.path.join(resource_dir, 'app.config.template')
+         dest = '/usr/share/miro/resources/app.config'
+-        revision = util.queryRevision(root_dir)
++        revision = None
+         if revision is None:
+             revision = "unknown"
+             revisionurl = "unknown"

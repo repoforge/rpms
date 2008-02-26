@@ -1,0 +1,11 @@
+--- configure.orig	2005-11-27 18:00:00.117013352 +0100
++++ configure	2005-11-27 18:00:33.385955704 +0100
+@@ -3592,7 +3592,7 @@
+ # This must be Linux ELF.
+ linux*)
+   case $host_cpu in
+-  alpha* | hppa* | i*86 | ia64* | m68* | mips | mipsel | powerpc* | sparc* | s390* | sh*)
++  alpha* | hppa* | i*86 | x86_64 | ia64* | m68* | mips | mipsel | powerpc* | sparc* | s390* | sh*)
+     lt_cv_deplibs_check_method=pass_all ;;
+   *)
+     # glibc up to 2.1.1 does not perform some relocations on ARM

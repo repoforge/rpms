@@ -1,0 +1,54 @@
+--- makefile.orig	2005-05-21 19:03:45.000000000 +0200
++++ makefile	2008-01-11 02:40:22.556181856 +0100
+@@ -7,19 +7,17 @@
+ RELEASE = 1
+ USEPAK = 1
+ 
+-PREFIX=$(DESTDIR)/usr
++PREFIX = $(DESTDIR)/usr
+ BINDIR = $(PREFIX)/games/
+-DATADIR = $(PREFIX)/share/games/parallelrealities/
+-DOCDIR = $(PREFIX)/share/doc/$(PROG)-$(VERSION)-$(RELEASE)/
+-ICONDIR = $(PREFIX)/share/icons/
+-KDE = $(PREFIX)/share/applnk/Games/Arcade/
+-GNOME = $(PREFIX)/share/gnome/apps/Games/
++DATADIR = $(PREFIX)/share/games/viruskiller/
++ICONDIR = $(PREFIX)/share/pixmaps/
++GNOME = $(PREFIX)/share/applications/
+ 
+ SAFEDIR = /tmp/
+ 
+-CFLAGS += `sdl-config --cflags` -DVERSION=$(VERSION) -DRELEASE=$(RELEASE) -DUSEPAK=$(USEPAK)
++CFLAGS += $(OPTFLAGS) `sdl-config --cflags` -DVERSION=$(VERSION) -DRELEASE=$(RELEASE) -DUSEPAK=$(USEPAK)
+ CFLAGS += -DPAKNAME=\"$(PAKNAME)\" -DPAKLOCATION=\"$(DATADIR)\" -DSAFEDIR=\"$(SAFEDIR)\" -DUNIX -DGAMEPLAYMANUAL=\"$(DOCDIR)manual.html\" -Wall
+-LIBS = `sdl-config --libs` -lSDL_mixer -lSDL_image -lSDL_ttf
++LIBS = `sdl-config --libs` -lz -lSDL_mixer -lSDL_image -lSDL_ttf
+ 
+ OBJS += CAudio.o 
+ OBJS += CBase.o
+@@ -75,21 +73,10 @@
+ install:
+ 
+ 	./pak data gfx music sound $(PAKNAME)
+-	mkdir -p $(BINDIR)
+-	mkdir -p $(DATADIR)
+-	mkdir -p $(DOCDIR)
+ 	mkdir -p $(ICONDIR)
+-	mkdir -p $(ICONDIR)mini
+-	mkdir -p $(ICONDIR)large
+-	mkdir -p $(KDE)
+ 	mkdir -p $(GNOME)
+ 
+-	strip $(PROG)
+-	install -o root -g games -m 755 $(PROG) $(BINDIR)$(PROG)
+-	install -o root -g games -m 644 $(PAKNAME) $(DATADIR)$(PAKNAME)
+-	cp $(DOCS) $(DOCDIR)
+-	cp $(ICONS)$(PROG).png $(ICONDIR)
+-	cp $(ICONS)$(PROG)-mini.png $(ICONDIR)mini/$(PROG).png
+-	cp $(ICONS)$(PROG)-large.png $(ICONDIR)large/$(PROG).png
+-	cp $(ICONS)$(PROG).desktop $(KDE)
+-	cp $(ICONS)$(PROG).desktop $(GNOME)
++	install -Dp -m0755 $(PROG) $(BINDIR)$(PROG)
++	install -Dp -m0644 $(PAKNAME) $(DATADIR)$(PAKNAME)
++	install -Dp -m0644 $(ICONS)$(PROG).png $(ICONDIR)$(PROG).png
++	install -Dp -m0644 $(ICONS)$(PROG).desktop $(GNOME)$(PROG).desktop

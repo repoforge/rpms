@@ -1,0 +1,20 @@
+--- xmms-1.2.10/xmms/dock.c.bak	2001-03-08 07:48:38.000000000 +0200
++++ xmms-1.2.10/xmms/dock.c	2007-01-12 22:32:36.156705327 +0200
+@@ -625,6 +625,17 @@
+ 	
+ void dock_set_uposition(GtkWidget *w, gint x, gint y)
+ {
++	gint maxx, maxy;
++
++	maxx = gdk_screen_width();
++	maxy = gdk_screen_height();	
++	if ((maxx < (x + 15)) || (maxy < (y + 15))) {
++		x = maxx / 2;
++		y = maxy / 2;
++		g_warning("%s: current screen size %dx%d smaller than "
++			  "window position specified in config file, resetting to "
++			  "x=%d y=%d\n", __FUNCTION__, maxx, maxy, x, y);
++	}
+ 	gtk_widget_set_uposition(w, x, y);
+ 	gtk_object_set_data(GTK_OBJECT(w), "window_x", GINT_TO_POINTER(x));
+ 	gtk_object_set_data(GTK_OBJECT(w), "window_y", GINT_TO_POINTER(y));

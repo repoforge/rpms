@@ -1,0 +1,11 @@
+--- /dar/build/x264-snapshot-20070529-2245/common/cpu.c.orig	2007-06-03 22:48:45.000000000 +0200
++++ /dar/build/x264-snapshot-20070529-2245/common/cpu.c	2007-06-03 22:49:22.000000000 +0200
+@@ -217,7 +217,7 @@
+     int np;
+     cpu_set_t p_aff;
+     memset( &p_aff, 0, sizeof(p_aff) );
+-    sched_getaffinity( 0, sizeof(p_aff), &p_aff );
++    sched_getaffinity( 0, &p_aff );
+     for( np = 0, bit = 0; bit < sizeof(p_aff); bit++ )
+         np += (((uint8_t *)&p_aff)[bit / 8] >> (bit % 8)) & 1;
+     return np;

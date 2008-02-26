@@ -1,0 +1,12 @@
+diff -up libmpeg3-1.7/mpeg3protos.h.commented libmpeg3-1.7/mpeg3protos.h
+--- libmpeg3-1.7/mpeg3protos.h.commented	2006-03-29 06:14:26.000000000 +0200
++++ libmpeg3-1.7/mpeg3protos.h	2007-09-11 18:20:08.000000000 +0200
+@@ -390,7 +390,7 @@ int mpeg3demux_open_title(mpeg3_demuxer_
+ /* Go to the absolute byte given */
+ int mpeg3demux_seek_byte(mpeg3_demuxer_t *demuxer, int64_t byte);
+ 
+-/* Seek to the title and cell containing the absolute byte of the 
++/* Seek to the title and cell containing the absolute byte of the */
+ /* demuxer. */
+ /* Called at the beginning of every packet. */
+ int mpeg3_seek_phys(mpeg3_demuxer_t *demuxer);

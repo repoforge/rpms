@@ -1,0 +1,5 @@
+--- util/udev.rules	2005-11-03 19:38:05.000000000 +0100
++++ util/udev.rules	2005-11-03 19:38:13.000000000 +0100
+@@ -1 +1 @@
+-KERNEL=="fuse", MODE="0666"
++KERNEL=="fuse", NAME="%k", MODE="0660",OWNER="root",GROUP="fuse"

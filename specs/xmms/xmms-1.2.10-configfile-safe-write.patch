@@ -1,0 +1,72 @@
+--- xmms-1.2.10/libxmms/configfile.c.bak	2003-05-20 00:22:07.000000000 +0300
++++ xmms-1.2.10/libxmms/configfile.c	2006-12-30 15:08:31.045540619 +0200
+@@ -123,12 +123,27 @@ gboolean xmms_cfg_write_file(ConfigFile 
+ 	GList *section_list, *line_list;
+ 	ConfigSection *section;
+ 	ConfigLine *line;
++	gchar *tmpfn;
++	int tmpfnfd;
+ 
+ 	g_return_val_if_fail(cfg != NULL, FALSE);
+ 	g_return_val_if_fail(filename != NULL, FALSE);
+ 
+-	if (!(file = fopen(filename, "w")))
++	tmpfn = g_strconcat(filename, ".XXXXXX", NULL);
++	if (!tmpfn)
+ 		return FALSE;
++	tmpfnfd = mkstemp(tmpfn);
++	if (tmpfnfd == -1) {
++		free (tmpfn);
++		return FALSE;
++	}
++	file = fdopen(tmpfnfd, "w");
++	if (!file) {
++		unlink (tmpfn);
++		g_free (tmpfn);
++		close (tmpfnfd);		
++		return FALSE;
++	}
+ 
+ 	section_list = cfg->sections;
+ 	while (section_list)
+@@ -136,20 +151,36 @@ gboolean xmms_cfg_write_file(ConfigFile 
+ 		section = (ConfigSection *) section_list->data;
+ 		if (section->lines)
+ 		{
+-			fprintf(file, "[%s]\n", section->name);
++			if (fprintf(file, "[%s]\n", section->name) < 0)
++				goto err;
+ 			line_list = section->lines;
+ 			while (line_list)
+ 			{
+ 				line = (ConfigLine *) line_list->data;
+-				fprintf(file, "%s=%s\n", line->key, line->value);
++				if (fprintf(file, "%s=%s\n", line->key, line->value) < 0)
++					goto err;
+ 				line_list = g_list_next(line_list);
+ 			}
+-			fprintf(file, "\n");
++			if (fprintf(file, "\n") < 0)
++				goto err;
+ 		}
+ 		section_list = g_list_next(section_list);
+ 	}
+-	fclose(file);
++	if (fflush (file) == EOF)
++		goto err;
++	if (fsync (tmpfnfd) == -1) /* dir not synced */
++		goto err;
++	if (fclose(file) == EOF)
++		goto err;
++	if (rename (tmpfn, filename) == -1)
++		goto err;
+ 	return TRUE;
++
++err:
++	fclose(file);
++	unlink(tmpfn);
++	g_free (tmpfn);
++	return FALSE;
+ }
+ 
+ gboolean xmms_cfg_write_default_file(ConfigFile * cfg)

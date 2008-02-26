@@ -1,0 +1,21 @@
+===================================================================
+RCS file: /cvs/xmms/General/joystick/joy.c,v
+retrieving revision 1.8
+retrieving revision 1.9
+diff -u -p -r1.8 -r1.9
+--- xmms/General/joystick/joy.c	2001/02/04 18:00:11	1.8
++++ xmms/General/joystick/joy.c	2004/07/17 21:54:55	1.9
+@@ -177,8 +177,11 @@ static void init(void)
+ /* ---------------------------------------------------------------------- */
+ static void cleanup(void)
+ {
+-	keep_going = FALSE;
+-	pthread_join(joyapp_thread, NULL);
++	if (keep_going)
++	{
++		keep_going = FALSE;
++		pthread_join(joyapp_thread, NULL);
++	}
+ 	if (joy_fd1 > 0)
+ 		close(joy_fd1);
+ 	if (joy_fd2 > 0)

@@ -1,0 +1,27 @@
+--- ./skel/etc/zope.conf.in.config	2004-09-28 20:08:52.000000000 +0200
++++ ./skel/etc/zope.conf.in	2004-12-10 18:27:55.393492142 +0100
+@@ -138,6 +138,7 @@
+ #
+ #    effective-user chrism
+ 
++effective-user <<ZOPE_USER>>
+ 
+ # Directive: enable-product-installation
+ #
+@@ -295,6 +296,7 @@
+ #
+ #     mime-types  $INSTANCE/etc/mime.types
+ 
++mime-types /etc/mime.types
+ 
+ # Directive: structured-text-header-level
+ #
+@@ -491,7 +493,7 @@
+ #
+ # Example:
+ #
+-#    security-policy-implementation python
++security-policy-implementation python
+ 
+ # Directive: skip-authentication-checking
+ #

@@ -1,0 +1,12 @@
+--- r8168-8.004.00/src/Makefile_linux24x.orig	2007-11-21 03:39:11.000000000 +0200
++++ r8168-8.004.00/src/Makefile_linux24x	2008-02-06 14:18:34.000000000 +0200
+@@ -14,7 +14,8 @@ endif
+ #standard flags for module builds
+ MODCFLAGS	+= -DLINUX -D__KERNEL__ -DMODULE -O2 -pipe -Wall
+ MODCFLAGS	+= -I$(KSRC)/include -I.
+-MODCFLAGS	+= -DMODVERSIONS -DEXPORT_SYMTAB -include $(KSRC)/include/linux/modversions.h
++MODCFLAGS      += -DEXPORT_SYMTAB
++
+ ifeq ($(RTL_IOCTL),y)
+    SOURCE	:= r8168_n.c rtl_ioctl.c
+ else

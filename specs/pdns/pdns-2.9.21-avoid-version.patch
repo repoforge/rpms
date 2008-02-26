@@ -1,0 +1,66 @@
+--- pdns-2.9.21/modules/ldapbackend/Makefile.in.avoid-version	2007-04-24 09:02:39.000000000 +0200
++++ pdns-2.9.21/modules/ldapbackend/Makefile.in	2007-04-24 09:04:35.000000000 +0200
+@@ -214,7 +214,7 @@
+ EXTRA_DIST = OBJECTFILES OBJECTLIBS
+ libldapbackend_la_SOURCES = ldapbackend.cc ldapbackend.hh \
+ 		powerldap.hh powerldap.cc utils.hh
+-
++libldapbackend_la_LDFLAGS = -avoid-version
+ libldapbackend_la_LIBADD = -lldap
+ all: all-am
+ 
+--- pdns-2.9.21/modules/pipebackend/Makefile.in.avoid-version	2007-04-24 09:04:56.000000000 +0200
++++ pdns-2.9.21/modules/pipebackend/Makefile.in	2007-04-24 09:05:12.000000000 +0200
+@@ -217,7 +217,7 @@
+ EXTRA_DIST = OBJECTFILES OBJECTLIBS backend.pl
+ lib_LTLIBRARIES = libpipebackend.la
+ libpipebackend_la_SOURCES = pipebackend.cc pipebackend.hh coprocess.cc coprocess.hh
+-libpipebackend_la_LDFLAGS = -module
++libpipebackend_la_LDFLAGS = -module -avoid-version
+ all: all-am
+ 
+ .SUFFIXES:
+--- pdns-2.9.21/modules/gpgsqlbackend/Makefile.in.avoid-version	2007-04-24 09:00:43.000000000 +0200
++++ pdns-2.9.21/modules/gpgsqlbackend/Makefile.in	2007-04-24 09:01:19.000000000 +0200
+@@ -217,7 +217,7 @@
+ 		spgsql.hh spgsql.cc
+ 
+ libgpgsqlbackend_la_LDFLAGS = @PGSQL_lib@ -Wl,-Bstatic -lpq \
+-	-Wl,-Bdynamic 
++	-Wl,-Bdynamic -avoid-version
+ 
+ libgpgsqlbackend_la_LIBADD = -lssl -lcrypt -lcrypto
+ all: all-am
+--- pdns-2.9.21/modules/gmysqlbackend/Makefile.in.avoid-version	2007-04-24 09:00:14.000000000 +0200
++++ pdns-2.9.21/modules/gmysqlbackend/Makefile.in	2007-04-24 09:00:34.000000000 +0200
+@@ -216,7 +216,7 @@
+ libgmysqlbackend_la_SOURCES = gmysqlbackend.cc gmysqlbackend.hh \
+ 		smysql.hh smysql.cc
+ 
+-libgmysqlbackend_la_LDFLAGS = -module -lmysqlclient 
++libgmysqlbackend_la_LDFLAGS = -module -lmysqlclient -avoid-version
+ all: all-am
+ 
+ .SUFFIXES:
+--- pdns-2.9.21/modules/gsqlite3backend/Makefile.in.avoid-version	2007-04-24 09:02:09.000000000 +0200
++++ pdns-2.9.21/modules/gsqlite3backend/Makefile.in	2007-04-24 09:02:24.000000000 +0200
+@@ -216,7 +216,7 @@
+ libgsqlite3backend_la_SOURCES = gsqlite3backend.cc gsqlite3backend.hh \
+                 ssqlite3.hh ssqlite3.cc
+ 
+-libgsqlite3backend_la_LDFLAGS = -module -lsqlite3
++libgsqlite3backend_la_LDFLAGS = -module -lsqlite3 -avoid-version
+ all: all-am
+ 
+ .SUFFIXES:
+--- pdns-2.9.21/modules/geobackend/Makefile.in.avoid-version	2007-04-24 08:58:20.000000000 +0200
++++ pdns-2.9.21/modules/geobackend/Makefile.in	2007-04-24 08:59:44.000000000 +0200
+@@ -213,7 +213,7 @@
+ EXTRA_DIST = OBJECTFILES OBJECTLIBS
+ lib_LTLIBRARIES = libgeobackend.la
+ libgeobackend_la_SOURCES = geobackend.cc geobackend.hh ippreftree.cc ippreftree.hh
+-libgeobackend_la_LDFLAGS = -module
++libgeobackend_la_LDFLAGS = -module -avoid-version
+ all: all-am
+ 
+ .SUFFIXES:

@@ -1,0 +1,51 @@
+diff -Naupr lighttpd-1.4.17.orig/doc/lighttpd.conf lighttpd-1.4.17/doc/lighttpd.conf
+--- lighttpd-1.4.17.orig/doc/lighttpd.conf	2007-08-14 21:05:57.000000000 +0200
++++ lighttpd-1.4.17/doc/lighttpd.conf	2007-09-05 13:08:33.000000000 +0200
+@@ -37,7 +37,7 @@ server.modules              = (
+ 
+ ## a static document-root, for virtual-hosting take look at the
+ ## server.virtual-* options
+-server.document-root        = "/srv/www/htdocs/"
++server.document-root        = "/srv/www/lighttpd/"
+ 
+ ## where to send error-messages to
+ server.errorlog             = "/var/log/lighttpd/error.log"
+@@ -51,6 +51,7 @@ index-file.names            = ( "index.p
+ 
+ # mimetype mapping
+ mimetype.assign             = (
++  ".rpm"          =>      "application/x-rpm",
+   ".pdf"          =>      "application/pdf",
+   ".sig"          =>      "application/pgp-signature",
+   ".spl"          =>      "application/futuresplash",
+@@ -147,7 +148,7 @@ static-file.exclude-extensions = ( ".php
+ #server.error-handler-404   = "/error-handler.php"
+ 
+ ## to help the rc.scripts
+-#server.pid-file            = "/var/run/lighttpd.pid"
++server.pid-file            = "/var/run/lighttpd.pid"
+ 
+ 
+ ###### virtual hosts
+@@ -186,10 +187,10 @@ static-file.exclude-extensions = ( ".php
+ #server.chroot              = "/"
+ 
+ ## change uid to <uid> (default: don't care)
+-#server.username            = "wwwrun"
++server.username            = "lighttpd"
+ 
+ ## change uid to <uid> (default: don't care)
+-#server.groupname           = "wwwrun"
++server.groupname           = "lighttpd"
+ 
+ #### compress module
+ #compress.cache-dir         = "/var/cache/lighttpd/compress/"
+@@ -213,7 +214,7 @@ static-file.exclude-extensions = ( ".php
+ #                               ( "localhost" =>
+ #                                 (
+ #                                   "socket" => "/var/run/lighttpd/php-fastcgi.socket",
+-#                                   "bin-path" => "/usr/local/bin/php-cgi"
++#                                   "bin-path" => "/usr/bin/php-cgi"
+ #                                 )
+ #                               )
+ #                            )

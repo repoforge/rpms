@@ -1,0 +1,213 @@
+diff -uNr libmpeg3-1.7/audio/ac3.c libmpeg3-cinelerra/audio/ac3.c
+--- libmpeg3-1.7/audio/ac3.c	2006-01-11 05:42:23.000000000 +0100
++++ libmpeg3-cinelerra/audio/ac3.c	2007-07-05 00:42:40.000000000 +0200
+@@ -1,7 +1,7 @@
+ #include <stdint.h>
+ #include <stdio.h>
+ 
+-#include "a52.h"
++#include <a52dec/a52.h>
+ #include "mpeg3private.h"
+ #include "mpeg3protos.h"
+ 
+diff -uNr libmpeg3-1.7/audio/Makefile.am libmpeg3-cinelerra/audio/Makefile.am
+--- libmpeg3-1.7/audio/Makefile.am	1970-01-01 01:00:00.000000000 +0100
++++ libmpeg3-cinelerra/audio/Makefile.am	2007-07-05 00:42:40.000000000 +0200
+@@ -0,0 +1,12 @@
++noinst_LTLIBRARIES = libmpeg3_audio.la
++libmpeg3_audio_la_SOURCES = ac3.c dct.c huffman.c layer2.c layer3.c mpeg3audio.c pcm.c synthesizers.c tables.c
++libmpeg3_audio_la_LDFLAGS =
++
++noinst_HEADERS = ac3.h huffman.h mpeg3audio.h tables.h
++
++AM_CFLAGS = $(CPU_CFLAGS) $(LARGEFILE_CFLAGS)
++AM_CXXFLAGS = $(CPU_CFLAGS) $(LARGEFILE_CFLAGS)
++INCLUDES=-I$(srcdir)/..
++
++LIBTOOL = $(SHELL) $(top_builddir)/libtool $(LTC_FLAGS)
++
+diff -uNr libmpeg3-1.7/configure.in libmpeg3-cinelerra/configure.in
+--- libmpeg3-1.7/configure.in	1970-01-01 01:00:00.000000000 +0100
++++ libmpeg3-cinelerra/configure.in	2007-09-08 23:27:17.000000000 +0200
+@@ -0,0 +1,83 @@
++# Process this file with autoconf to produce a configure script.
++AC_INIT(libmpeg3, 1.7)
++AM_INIT_AUTOMAKE([dist-bzip2])
++AC_PREREQ(2.53)
++AM_CONFIG_HEADER([config.h])
++AM_PROG_AS
++AC_DISABLE_SHARED
++AC_ENABLE_STATIC
++AC_PROG_LIBTOOL
++
++LIBMPEG3_VERSION_CURRENT=1
++LIBMPEG3_VERSION_REVISION=0
++LIBMPEG3_VERSION_AGE=0
++LIBMPEG3_VERSION_INFO=$LIBMPEG3_VERSION_CURRENT:$LIBMPEG3_VERSION_REVISION:$LIBMPEG3_VERSION_AGE
++AC_SUBST(LIBMPEG3_VERSION_INFO)
++
++# Checks for programs.
++AC_PROG_CC
++
++# hack for using nasm for .S files
++CCAS="nasm --tag=$CC"
++AC_SUBST(CCAS)
++AC_SUBST(CCASFLAGS)
++
++############## MMX
++
++AC_ARG_ENABLE(mmx, 
++	AC_HELP_STRING([--enable-mmx], [enables support for mmx (default is autodetect)]),
++		[ enable_mmx=$enableval ],[ enable_mmx=auto ])
++case "$target_cpu" in
++i586 | i686)
++	test "x$enable_mmx" = "xauto" && enable_mmx=yes
++
++	CPU_CFLAGS="-DX86_CPU $CPU_CFLAGS"
++
++	if test "x$enable_mmx" = "xyes"; then
++		CPU_CFLAGS="-DHAVE_MMX -DUSE_MMX $CPU_CFLAGS" # -D_MMX_ doesn't work
++		enable_mmx32=yes
++	fi
++;;
++x86_64)
++	test "x$enable_mmx" = "xauto" && enable_mmx=yes
++	CPU_CFLAGS="-DX86_CPU $CPU_CFLAGS"
++	if test "x$enable_mmx" = "xyes"; then
++		CPU_CFLAGS="-DHAVE_MMX -DUSE_MMX $CPU_CFLAGS"
++
++       fi
++;;
++esac
++
++test "x$enable_mmx" = "xauto" && enable_mmx=no
++
++AM_CONDITIONAL(USEMMX, test "x$enable_mmx" = "xyes")
++AM_CONDITIONAL(USEMMX32, test "x$enable_mmx32" = "xyes")
++AM_CONDITIONAL(TARGET_BUILTIN_VECTOR,test "x$enable_mmx" = "xyes")
++AC_SUBST(LIBDECORE_LIBADD)
++AC_SUBST(CPU_CFLAGS)
++
++############## END OF MMX
++
++LARGEFILE_CFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64"
++AC_SUBST(LARGEFILE_CFLAGS)
++
++# Checks for header files.
++AC_HEADER_STDC
++AC_CHECK_HEADERS([stdlib.h string.h])
++
++# Checks for typedefs, structures, and compiler characteristics.
++AC_C_CONST
++AC_C_INLINE
++AC_STRUCT_TM
++
++# Checks for libraries.
++
++AC_CONFIG_FILES([
++Makefile
++audio/Makefile
++video/Makefile
++libmpeg3.spec
++libmpeg3.pc
++])
++AC_OUTPUT
++
+diff -uNr libmpeg3-1.7/Makefile.am libmpeg3-cinelerra/Makefile.am
+--- libmpeg3-1.7/Makefile.am	1970-01-01 01:00:00.000000000 +0100
++++ libmpeg3-cinelerra/Makefile.am	2007-09-08 22:58:17.000000000 +0200
+@@ -0,0 +1,61 @@
++lib_LTLIBRARIES = libmpeg3.la
++AM_CFLAGS = $(CPU_CFLAGS) $(LARGEFILE_CFLAGS)
++libmpeg3_la_LDFLAGS = -version-info @LIBMPEG3_VERSION_INFO@
++libmpeg3_la_LIBADD = -la52 video/libmpeg3_video.la audio/libmpeg3_audio.la -lm \
++		     -lpthread
++libmpeg3_la_SOURCES = libmpeg3.c mpeg3bits.c mpeg3atrack.c mpeg3css.c \
++	mpeg3demux.c \
++	mpeg3ifo.c \
++	mpeg3io.c \
++	mpeg3strack.c \
++	mpeg3title.c \
++	mpeg3tocutil.c \
++	mpeg3vtrack.c \
++	workarounds.c
++
++bin_PROGRAMS = mpeg3dump mpeg3peek mpeg3toc mpeg3cat # mpeg2qt
++mpeg3dump_SOURCES = mpeg3dump.c
++mpeg3dump_LDADD = libmpeg3.la
++mpeg3dump_CFLAGS = $(AM_CFLAGS)
++mpeg3peek_SOURCES = mpeg3peek.c
++mpeg3peek_LDADD = libmpeg3.la
++mpeg3peek_CFLAGS = $(AM_CFLAGS)
++mpeg3toc_SOURCES = mpeg3toc.c
++mpeg3toc_LDADD = libmpeg3.la
++mpeg3toc_CFLAGS = $(AM_CFLAGS)
++mpeg3cat_SOURCES = mpeg3cat.c
++mpeg3cat_LDADD = libmpeg3.la
++mpeg3cat_CFLAGS = $(AM_CFLAGS)
++#mpeg2qt_SOURCES = mpeg2qt.c # disabled to prevent circle dependencies
++#mpeg2qt_LDADD = libmpeg3.la -lpng -lz -ldl -lquicktime4linux
++#mpeg2qt_CFLAGS = $(AM_CFLAGS) -I$(includedir)/quicktime4linux
++
++SUBDIRS = audio video 
++
++EXTRA_DIST = docs
++
++noinst_HEADERS = bitstream.h \
++	ifo.h \
++	libmpeg3.h \
++	mpeg3atrack.h \
++	mpeg3css.h \
++	mpeg3css_fake.c \
++	mpeg3demux.h \
++	mpeg3io.h \
++	mpeg3private.h \
++	mpeg3private.inc \
++	mpeg3protos.h \
++	mpeg3title.h \
++	mpeg3vtrack.h \
++	timecode.h \
++	workarounds.h
++
++dist_noinst_SCRIPTS = bootstrap
++
++pkgincludedir=$(includedir)/mpeg3
++pkginclude_HEADERS=libmpeg3.h mpeg3private.h
++
++pkgconfigdir = $(libdir)/pkgconfig
++pkgconfig_DATA = libmpeg3.pc
++
++LIBTOOL = $(SHELL) $(top_builddir)/libtool $(LTC_FLAGS)
+diff -uNr libmpeg3-1.7/video/Makefile.am libmpeg3-cinelerra/video/Makefile.am
+--- libmpeg3-1.7/video/Makefile.am	1970-01-01 01:00:00.000000000 +0100
++++ libmpeg3-cinelerra/video/Makefile.am	2007-07-05 00:42:40.000000000 +0200
+@@ -0,0 +1,29 @@
++noinst_LTLIBRARIES = libmpeg3_video.la
++libmpeg3_video_la_SOURCES = getpicture.c headers.c idct.c macroblocks.c mmxtest.c motion.c \
++	mpeg3cache.c \
++	mpeg3video.c \
++	output.c \
++	reconstruct.c \
++	seek.c \
++	slice.c \
++	subtitle.c \
++	vlc.c
++
++if USEMMX
++libmpeg3_video_la_SOURCES += mmxidct.S reconmmx.s
++else
++libmpeg3_video_la_SOURCES +=
++endif
++
++noinst_HEADERS = idct.h \
++	layerdata.h \
++	mpeg3video.h \
++	mpeg3videoprotos.h \
++	slice.h \
++	vlc.h
++
++libmpeg3_video_la_LDFLAGS=
++AM_CFLAGS = $(CPU_CFLAGS) $(LARGEFILE_CFLAGS)
++INCLUDES=-I$(srcdir)/..
++
++LIBTOOL = $(SHELL) $(top_builddir)/libtool $(LTC_FLAGS)

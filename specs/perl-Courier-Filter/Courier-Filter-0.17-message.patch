@@ -1,0 +1,11 @@
+--- lib/Courier/Message.pm.orig	2008-01-26 04:11:08.302317808 +0100
++++ lib/Courier/Message.pm	2008-01-26 04:11:29.775053456 +0100
+@@ -627,7 +627,7 @@
+             
+             $decoded_word = Encode::decode($char_enc, $chunk);
+         }
+-        except {
++        otherwise {
+             # The chunk contains invalid characters, leave the encoded word as is:
+             $decoded_word = $encoded_word;
+         };

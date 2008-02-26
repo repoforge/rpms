@@ -1,0 +1,17 @@
+--- gaim-1.0.1/src/gtkutils.c.orig	2004-10-07 18:07:35.363545624 -1000
++++ gaim-1.0.1/src/gtkutils.c	2004-10-07 18:08:00.153994668 -1000
+@@ -1274,11 +1274,12 @@
+ gboolean
+ gaim_running_gnome(void)
+ {
+-	if ((g_getenv("GNOME_DESKTOP_SESSION_ID") != NULL) &&
++	/* This check is naive and wrong */
++	/*if ((g_getenv("GNOME_DESKTOP_SESSION_ID") != NULL) &&
+ 		(g_find_program_in_path("gnome-open") != NULL))
+ 	{
+ 		return TRUE;
+-	}
++	}*/
+ 
+ 	return FALSE;
+ }

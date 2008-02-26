@@ -1,0 +1,10 @@
+--- Gui/StreamDVD/Streams.pm.orig	2005-06-14 17:16:06.000000000 +0200
++++ Gui/StreamDVD/Streams.pm	2005-06-14 17:16:12.000000000 +0200
+@@ -1,6 +1,6 @@
+ # Part of the StreamDVD project
+ 
+-package StreamDVD::Audio;
++package StreamDVD::Streams;
+ 
+ use strict;
+ use vars qw($VERSION @ISA @EXPORT);

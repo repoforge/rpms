@@ -1,0 +1,11 @@
+--- Input/cdaudio/cdaudio.c~	2004-01-28 01:09:39.000000000 +0200
++++ Input/cdaudio/cdaudio.c	2005-04-30 18:39:04.000000000 +0300
+@@ -78,7 +78,7 @@
+ #   define CDDA_DIRECTORY "/cdrom/cdrom0"
+ #  endif
+ # else
+-#   define CDDA_DIRECTORY "/mnt/cdrom"
++#   define CDDA_DIRECTORY "/media/cdrecorder"
+ # endif
+ #endif
+ 

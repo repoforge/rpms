@@ -1,0 +1,22 @@
+diff -urN mpack-1.6.orig/unixos.c mpack-1.6/unixos.c
+--- mpack-1.6.orig/unixos.c	2003-07-22 00:54:05 +0400
++++ mpack-1.6/unixos.c	2005-01-25 14:23:46 +0300
+@@ -39,7 +39,6 @@
+ #endif
+ 
+ extern int errno;
+-extern char *malloc();
+ extern char *getenv();
+ 
+ int overwrite_files = 0;
+diff -urN mpack-1.6.orig/xmalloc.c mpack-1.6/xmalloc.c
+--- mpack-1.6.orig/xmalloc.c	2003-07-22 00:35:31 +0400
++++ mpack-1.6/xmalloc.c	2005-01-25 14:23:40 +0300
+@@ -24,7 +24,6 @@
+  */
+ #include <stdio.h>
+ #include <string.h>
+-extern char *malloc(), *realloc();
+ 
+ char *xmalloc (int size)
+ {

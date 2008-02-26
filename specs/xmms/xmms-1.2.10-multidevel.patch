@@ -1,0 +1,126 @@
+--- xmms-1.2.10/xmms-config.in~	2001-04-06 03:35:49.000000000 +0300
++++ xmms-1.2.10/xmms-config.in	2006-05-25 00:22:21.000000000 +0300
+@@ -18,24 +18,6 @@
+ data_dir="@datadir@/@PACKAGE@"
+ 
+ version="@VERSION@"
+-include_dir="@includedir@"
+-xmms_include_dir="@includedir@/@PACKAGE@"
+-lib_dir="@libdir@"
+-
+-if ( (gtk-config --version) > /dev/null 2>&1)  then
+-   gtk_libs=`gtk-config --libs`
+-   gtk_cflags=`gtk-config --cflags`
+-else
+-   gtk_libs="@GTK_LIBS@"
+-   gtk_cflags="@GTK_CFLAGS@"
+-fi
+-
+-plugin_dir="@plugindir@"
+-visualization_plugin_dir="@plugindir@/@VISUALIZATION_PLUGIN_DIR@"
+-input_plugin_dir="@plugindir@/@INPUT_PLUGIN_DIR@"
+-output_plugin_dir="@plugindir@/@OUTPUT_PLUGIN_DIR@"
+-effect_plugin_dir="@plugindir@/@EFFECT_PLUGIN_DIR@"
+-general_plugin_dir="@plugindir@/@GENERAL_PLUGIN_DIR@"
+ 
+ usage()
+ {
+@@ -146,24 +128,12 @@
+     echo $exec_prefix
+ fi
+ 
+-if test "$include_dir" != "/usr/include"; then
+-    cflags="-I$include_dir -I$xmms_include_dir $gtk_cflags"
+-else
+-    cflags="-I$xmms_include_dir $gtk_cflags"
+-fi
+-
+-if test "$lib_dir" != "/usr/lib"; then
+-    libs="-L$lib_dir $gtk_libs -lxmms"
+-else
+-    libs="$gtk_libs -lxmms"
+-fi
+-
+ if test "$echo_cflags" = "yes"; then
+-    echo $cflags
++    pkg-config xmms --cflags
+ fi
+ 
+ if test "$echo_libs" = "yes"; then
+-    echo $libs
++    pkg-config xmms --libs
+ fi
+ 
+ if test "$echo_data_dir" = "yes"; then
+@@ -171,25 +141,25 @@
+ fi
+ 
+ if test "$echo_plugin_dir" = "yes"; then
+-    echo $plugin_dir
++    pkg-config xmms --variable=plugin_dir
+ fi
+ 
+ if test "$echo_visualization_plugin_dir" = "yes"; then
+-    echo $visualization_plugin_dir
++    pkg-config xmms --variable=visualization_plugin_dir
+ fi
+ 
+ if test "$echo_input_plugin_dir" = "yes"; then
+-    echo $input_plugin_dir
++    pkg-config xmms --variable=input_plugin_dir
+ fi
+ 
+ if test "$echo_output_plugin_dir" = "yes"; then
+-    echo $output_plugin_dir
++    pkg-config xmms --variable=output_plugin_dir
+ fi
+ 
+ if test "$echo_general_plugin_dir" = "yes"; then
+-    echo $general_plugin_dir
++    pkg-config xmms --variable=general_plugin_dir
+ fi
+ 
+ if test "$echo_effect_plugin_dir" = "yes"; then
+-    echo $effect_plugin_dir
++    pkg-config xmms --variable=effect_plugin_dir
+ fi
+--- xmms-1.2.10/configure~	2004-02-23 23:44:32.000000000 +0200
++++ xmms-1.2.10/configure	2006-05-24 23:55:50.000000000 +0300
+@@ -19201,7 +19201,7 @@
+ 
+ 
+ 
+-                                                                                                                                                                                                                                                                                                                                                                        ac_config_files="$ac_config_files Makefile xmms.1 wmxmms.1 xmms.spec xmms-config xmms/Makefile xmms/defskin/Makefile Output/Makefile Output/OSS/Makefile Output/esd/Makefile Output/disk_writer/Makefile Output/solaris/Makefile Output/sun/Makefile Output/alsa/Makefile Input/Makefile Input/wav/Makefile Input/mpg123/Makefile Input/mikmod/Makefile Input/cdaudio/Makefile Input/tonegen/Makefile Input/vorbis/Makefile Effect/Makefile Effect/voice/Makefile Effect/echo_plugin/Makefile Effect/stereo_plugin/Makefile General/Makefile General/ir/Makefile General/joystick/Makefile General/song_change/Makefile Visualization/Makefile Visualization/blur_scope/Makefile Visualization/sanalyzer/Makefile Visualization/opengl_spectrum/Makefile wmxmms/Makefile po/Makefile.in intl/Makefile"
++                                                                                                                                                                                                                                                                                                                                                                        ac_config_files="$ac_config_files Makefile xmms.1 wmxmms.1 xmms.spec xmms-config xmms.pc xmms/Makefile xmms/defskin/Makefile Output/Makefile Output/OSS/Makefile Output/esd/Makefile Output/disk_writer/Makefile Output/solaris/Makefile Output/sun/Makefile Output/alsa/Makefile Input/Makefile Input/wav/Makefile Input/mpg123/Makefile Input/mikmod/Makefile Input/cdaudio/Makefile Input/tonegen/Makefile Input/vorbis/Makefile Effect/Makefile Effect/voice/Makefile Effect/echo_plugin/Makefile Effect/stereo_plugin/Makefile General/Makefile General/ir/Makefile General/joystick/Makefile General/song_change/Makefile Visualization/Makefile Visualization/blur_scope/Makefile Visualization/sanalyzer/Makefile Visualization/opengl_spectrum/Makefile wmxmms/Makefile po/Makefile.in intl/Makefile"
+           ac_config_commands="$ac_config_commands default"
+ cat >confcache <<\_ACEOF
+ # This file is a shell script that caches the results of configure
+@@ -19861,6 +19861,7 @@
+   "wmxmms.1" ) CONFIG_FILES="$CONFIG_FILES wmxmms.1" ;;
+   "xmms.spec" ) CONFIG_FILES="$CONFIG_FILES xmms.spec" ;;
+   "xmms-config" ) CONFIG_FILES="$CONFIG_FILES xmms-config" ;;
++  "xmms.pc" ) CONFIG_FILES="$CONFIG_FILES xmms.pc" ;;
+   "xmms/Makefile" ) CONFIG_FILES="$CONFIG_FILES xmms/Makefile" ;;
+   "xmms/defskin/Makefile" ) CONFIG_FILES="$CONFIG_FILES xmms/defskin/Makefile" ;;
+   "Output/Makefile" ) CONFIG_FILES="$CONFIG_FILES Output/Makefile" ;;
+--- xmms-1.2.10/xmms.pc.in~	2006-05-24 23:54:59.000000000 +0300
++++ xmms-1.2.10/xmms.pc.in	2006-05-24 23:54:48.000000000 +0300
+@@ -0,0 +1,18 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++data_dir=@datadir@
++plugin_dir=@plugindir@
++visualization_plugin_dir=${plugin_dir}/@VISUALIZATION_PLUGIN_DIR@
++input_plugin_dir=${plugin_dir}/@INPUT_PLUGIN_DIR@
++output_plugin_dir=${plugin_dir}/@OUTPUT_PLUGIN_DIR@
++effect_plugin_dir=${plugin_dir}/@EFFECT_PLUGIN_DIR@
++general_plugin_dir=${plugin_dir}/@GENERAL_PLUGIN_DIR@
++
++Name: XMMS
++Description: The X MultiMedia System, a media player
++Version: @VERSION@
++Requires: gtk+
++Libs: -L${libdir} -lxmms
++Cflags: -I${includedir} -I${includedir}/@PACKAGE@

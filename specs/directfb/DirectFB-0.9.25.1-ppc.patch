@@ -1,0 +1,27 @@
+diff -Naupr DirectFB-0.9.25.1.orig/lib/direct/ppcasm_memcpy_cachable.S DirectFB-0.9.25.1/lib/direct/ppcasm_memcpy_cachable.S
+--- DirectFB-0.9.25.1.orig/lib/direct/ppcasm_memcpy_cachable.S	2005-10-19 01:14:16.000000000 +0200
++++ DirectFB-0.9.25.1/lib/direct/ppcasm_memcpy_cachable.S	2006-09-15 15:38:17.000000000 +0200
+@@ -11,8 +11,6 @@
+ 
+ #define __ASSEMBLY__
+ 
+-#include <linux/config.h>
+-
+ #if defined(CONFIG_8xx) || defined(CONFIG_403GCX)
+ #define L1_CACHE_LINE_SIZE       16
+ #define LG_L1_CACHE_LINE_SIZE     4 
+diff -Naupr DirectFB-0.9.25.1.orig/lib/direct/system.c DirectFB-0.9.25.1/lib/direct/system.c
+--- DirectFB-0.9.25.1.orig/lib/direct/system.c	2006-05-03 09:22:37.000000000 +0200
++++ DirectFB-0.9.25.1/lib/direct/system.c	2006-09-15 15:56:46.000000000 +0200
+@@ -33,11 +33,7 @@
+ #include <direct/build.h>
+ #include <direct/system.h>
+ 
+-#if HAVE_ASM_PAGE_H
+-#include <asm/page.h>
+-#else
+ #define PAGE_SIZE   sysconf( _SC_PAGESIZE )
+-#endif
+ 
+ 
+ #if DIRECT_BUILD_GETTID && defined(HAVE_LINUX_UNISTD_H)
