@@ -25,7 +25,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bzip2-devel, zlib-devel, gmp-devel, curl-devel
 %{!?_without_milter:BuildRequires: sendmail-devel >= 8.12}
-Requires: clamav-db = %{version}-%{release}
+
+### Do not require the latest release of clamav-db specifically (people may use freshclam onward)
+#Requires: clamav-db = %{version}-%{release}
+Requires: clamav-db
 
 ### Fedora Extras introduced them differently :(
 Obsoletes: libclamav <= %{version}-%{release}
@@ -369,6 +372,9 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
+* Wed Feb 27 2008 Dag Wieers <dag@wieers.com> - queued
+- Do not require the latest release of clamav-db. (Federico Simoncelli)
+
 * Mon Feb 11 2008 Dag Wieers <dag@wieers.com> - 0.92.1-1
 - Updated to release 0.92.1.
 
