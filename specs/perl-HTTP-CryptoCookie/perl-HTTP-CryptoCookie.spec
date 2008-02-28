@@ -9,7 +9,7 @@
 
 Summary: Encrypted cookies
 Name: perl-HTTP-CryptoCookie
-Version: 1.13
+Version: 1.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,11 +19,12 @@ Source: http://www.cpan.org/modules/by-module/HTTP/HTTP-CryptoCookie-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
-BuildRequires: perl-SHA256
-BuildRequires: perl-Crypt-CBC
-BuildRequires: perl-Convert-ASCII-Armour
-BuildRequires: perl-FreezeThaw
+BuildRequires: perl
+BuildRequires: perl(Convert::ASCII::Armour)
+BuildRequires: perl(Crypt::CBC)
+BuildRequires: perl(Digest::SHA256)
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(FreezeThaw)
 
 %description
 HTTP::CryptoCookie provides a method for the secure storage and
@@ -53,11 +54,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/HTTP::CryptoCookie.3pm*
+%dir %{perl_vendorlib}/HTTP/
+#%{perl_vendorlib}/HTTP/CryptoCookie/
 %{perl_vendorlib}/HTTP/CryptoCookie.pm
 
 %changelog
+* Thu Feb 28 2008 Dag Wieers <dag@wieers.com> - 1.14-1
+- Updated to release 1.14.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.13-1
 - Updated to release 1.13.
 
@@ -66,9 +72,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1
 - Updated to release 1.11.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.10-1.2
-- Rebuild for Fedora Core 5.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.10-1
 - Initial package.

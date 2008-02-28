@@ -9,7 +9,7 @@
 
 Summary: Automated interface to the Wikipedia
 Name: perl-WWW-Wikipedia
-Version: 1.93
+Version: 1.94
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WWW/Wikipedia.pm
 
 %changelog
+* Thu Feb 28 2008 Dag Wieers <dag@wieers.com> - 1.94-1
+- Updated to release 1.94.
+
 * Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 1.93-1
 - Updated to release 1.93.
 

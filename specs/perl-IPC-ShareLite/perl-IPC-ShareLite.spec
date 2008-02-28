@@ -9,7 +9,7 @@
 
 Summary: Simple shared memory interface module for perl
 Name: perl-IPC-ShareLite
-Version: 0.10
+Version: 0.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -63,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/IPC/ShareLite.pm
 
 %changelog
+* Thu Feb 28 2008 Dag Wieers <dag@wieers.com> - 0.12-1
+- Updated to release 0.12.
+
 * Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 0.10-1
 - Updated to release 0.10.
 

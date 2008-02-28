@@ -9,7 +9,7 @@
 
 Summary: Perl module to make powerful application writing fun and easy
 Name: perl-CGI-Ex
-Version: 2.23
+Version: 2.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/CGI/Ex.pm
 
 %changelog
+* Thu Feb 28 2008 Dag Wieers <dag@wieers.com> - 2.24-1
+- Updated to release 2.24.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 2.23-1
 - Updated to release 2.23.
 

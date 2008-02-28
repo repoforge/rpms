@@ -9,8 +9,8 @@
 
 Summary: Report a problem, pluggable handlers and language support
 Name: perl-Log-Report
-Version: 0.14
-Release: 2
+Version: 0.15
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Report/
@@ -55,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %exclude %{perl_vendorlib}/Log/Report/Win32Locale.pod
 
 %changelog
+* Thu Feb 28 2008 Dag Wieers <dag@wieers.com> - 0.15-1
+- Updated to release 0.15.
+
 * Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.14-2
 - Exclude Win32 specific modules.
 

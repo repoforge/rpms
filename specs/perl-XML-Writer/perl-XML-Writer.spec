@@ -9,9 +9,9 @@
 
 %define real_name XML-Writer
 
-Summary: Extension for writing XML documents
+Summary: Easily generate well-formed, namespace-aware XML
 Name: perl-XML-Writer
-Version: 0.603
+Version: 0.604
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -26,7 +26,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.006
 
 %description
-This module contains a perl extension for writing XML documents.
+Easily generate well-formed, namespace-aware XML.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -42,18 +42,24 @@ This module contains a perl extension for writing XML documents.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README TODO
+%doc Changes MANIFEST META.yml README TODO examples/
 %doc %{_mandir}/man3/XML::Writer.3pm*
 %dir %{perl_vendorlib}/XML/
 #%{perl_vendorlib}/XML/Writer/
 %{perl_vendorlib}/XML/Writer.pm
 
 %changelog
+* Thu Feb 28 2008 Dag Wieers <dag@wieers.com> - 0.604-1
+- Updated to release 0.604.
+
 * Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 0.603-1
 - Updated to release 0.603.
 

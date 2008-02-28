@@ -9,7 +9,7 @@
 
 Summary: Convert between ASCII and MORSE code
 Name: perl-Convert-Morse
-Version: 0.05
+Version: 0.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 2:5.8.1
 BuildRequires: perl(ExtUtils::MakeMaker)
+#BuildRequires: perl(Test::More) >= 0.47
+BuildRequires: perl(Test::More)
 Requires: perl >= 2:5.8.1
 
 %description
@@ -45,17 +47,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README
-%doc %{_mandir}/man3/Convert::Morse*.3pm*
+%doc CHANGES LICENSE MANIFEST META.yml README SIGNATURE
+%doc %{_mandir}/man3/Convert::Morse.3pm*
 %dir %{perl_vendorlib}/Convert/
+#%{perl_vendorlib}/Convert/Morse/
 %{perl_vendorlib}/Convert/Morse.pm
 
 %changelog
+* Thu Feb 28 2008 Dag Wieers <dag@wieers.com> - 0.06-1
+- Updated to release 0.06.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Updated to release 0.05.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.

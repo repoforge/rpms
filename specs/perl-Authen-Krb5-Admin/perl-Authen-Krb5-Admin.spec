@@ -9,7 +9,7 @@
 
 Summary: Perl extension for MIT Kerberos 5 admin interface
 Name: perl-Authen-Krb5-Admin
-Version: 0.10
+Version: 0.11
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Authen/Krb5/Admin.pm
 
 %changelog
+* Thu Feb 28 2008 Dag Wieers <dag@wieers.com> - 0.11-1
+- Updated to release 0.11.
+
 * Sun Feb 17 2008 Dag Wieers <dag@wieers.com> - 0.10-1
 - Updated to release 0.10.
 

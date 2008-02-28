@@ -46,13 +46,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc README
 %doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorarch}/auto/Digest/
+%{perl_vendorarch}/auto/Digest/SHA256/
 %dir %{perl_vendorarch}/Digest/
+#%{perl_vendorarch}/Digest/SHA256/
 %{perl_vendorarch}/Digest/SHA256.pm
 %{perl_vendorarch}/Digest/SHA256.pod
 %{perl_vendorarch}/Digest/sha256.pod
-#%{perl_vendorarch}/Digest/SHA256/
-%dir %{perl_vendorarch}/auto/Digest/
-%{perl_vendorarch}/auto/Digest/SHA256/
 
 %changelog
 * Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.01b-1
