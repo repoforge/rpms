@@ -6,7 +6,7 @@
 
 Summary: SQL toolkit and object relational mapper for Python
 Name: python-sqlalchemy
-Version: 0.3.4
+Version: 0.3.11
 Release: 1
 License: MIT/X Consortium License
 Group: Development/Libraries
@@ -16,8 +16,8 @@ Source: http://dl.sf.net/sqlalchemy/SQLAlchemy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
-#BuildRequires: 
-#Requires:
+BuildRequires: python
+Requires: python
 
 %description
 SQLAlchemy is a SQL toolkit and object relational mapper for Python. It 
@@ -46,5 +46,8 @@ supports MySQL, Postgres, Oracle, and SQLite.
 %{python_sitelib}/SQLAlchemy-%{version}-py*.egg-info/
 
 %changelog
+* Thu Feb 28 2008 Dries Verachtert <dries@ulyssis.org> - 0.3.11-1
+- Updated to release 0.3.11.
+
 * Sat Jan 27 2007 Dries Verachtert <dries@ulyssis.org> - 0.3.4-1
 - Initial package.

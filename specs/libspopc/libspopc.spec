@@ -4,7 +4,7 @@
 
 Summary: POP3 client library
 Name: libspopc
-Version: 0.7.5
+Version: 0.7.6
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -66,6 +66,9 @@ you will need to install %{name}-devel.
 #%exclude %{_libdir}/*.la
 
 %changelog
+* Thu Feb 28 2008 Dries Verachtert <dries@ulyssis.org> - 0.7.6-1
+- Updated to release 0.7.6.
+
 * Thu Sep 20 2007 Dries Verachtert <dries@ulyssis.org> - 0.7.5-1
 - Updated to release 0.7.5.
 
