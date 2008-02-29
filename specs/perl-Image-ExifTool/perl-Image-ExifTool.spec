@@ -29,6 +29,8 @@ information in images.
 
 %prep
 %setup -n %{real_name}-%{version}
+# avoid dependency on 'perl(a)'
+%{__perl} -pi -e "s|use a|Use a|g;" lib/Image/ExifTool/Canon.pm
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
