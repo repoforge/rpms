@@ -4,7 +4,7 @@
 
 %define perl_version %(eval "$(%{__perl} -V:version)"; echo $version)
 
-%define vendor_desktop rpmforge
+%define desktop_vendor rpmforge
 
 Summary: Secure concurrent multi-server terminal control
 Name: clusterssh
