@@ -1,32 +1,19 @@
-# $Id: rsync.spec 2540 2004-11-23 18:39:10Z dag $
+# $Id: rsync.spec 6091 2008-01-13 19:09:42Z dag $
 # Authority: dag
 # Upstream: Martin Pool <mbp$sourcefrog,net>
-# Tag: test
 
 # Rationale: rsync 2.6.3+ uses less resources and has lots of improvements
 
-%{?dtag: %{expand: %%define %dtag 1}}
-
-%{?rh7:%define _without_acl 1}
-%{?rh7:%define _without_xattr 1}
-
-%{?el2:%define _without_acl 1}
-%{?el2:%define _without_xattr 1}
-
 Summary: Program for synchronizing files over a network
 Name: rsync
-%define real_version 3.0.0pre10
-Version: 3.0.0
-Release: 0.1.pre10
+Version: 2.6.9
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://rsync.samba.org/
 
-Source: http://rsync.samba.org/ftp/rsync/rsync-%{real_version}.tar.gz
+Source: http://rsync.samba.org/ftp/rsync/rsync-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-%{!?_without_acl:BuildRequires: libacl-devel}
-%{!?_without_xattr:BuildRequires: libattr-devel}
 
 %description
 Rsync uses a reliable algorithm to bring remote and host files into
@@ -38,7 +25,7 @@ report which describes the rsync algorithm is included in this
 package.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
 
 %{__cat} <<EOF >rsync.xinet
 # default: off
@@ -57,9 +44,7 @@ service rsync
 EOF
 
 %build
-%configure \
-%{?_without_acl:--disable-acl-support} \
-%{?_without_xattr:--disable-xattr-support}
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
@@ -79,24 +64,26 @@ EOF
 %{_bindir}/rsync
 
 %changelog
-* Sat Mar 01 2008 Dag Wieers <dag@wieers.com> - 4.0.0-0.1.pre10
-- Updated to release 3.0.0pre10.
+* Tue Nov 03 2006 Dag Wieers <dag@wieers.com> - 2.6.9-1
+- Updated to release 2.6.9-1
 
-* Sun Jan 13 2008 Dag Wieers <dag@wieers.com> - 3.0.0-0.pre8
-- Updated to release 3.0.0pre8.
+* Sun Apr 23 2006 Dag Wieers <dag@wieers.com> - 2.6.8-1
+- Updated to release 2.6.8-1
 
-* Tue Mar 15 2005 Dag Wieers <dag@wieers.com> - 2.6.4-0.pre2.cvs20050315
-- Updated to release 2.6.4pre2-cvsHEAD-20050315-1733GMT.
+* Fri Mar 17 2006 Dag Wieers <dag@wieers.com> - 2.6.7-2
+- Added stunnel and exclude patch from upstream.
 
-* Mon Mar 14 2005 Dag Wieers <dag@wieers.com> - 2.6.4-0.pre2
-- Updated to release 2.6.4pre2.
+* Sat Mar 11 2006 Dag Wieers <dag@wieers.com> - 2.6.7-1
+- Updated to release 2.6.7.
 
-* Fri Jan 14 2005 Dag Wieers <dag@wieers.com> - 2.6.4-0.cvs20050114
-- Updated to release 2.6.4-cvs20050114.
+* Fri Aug 05 2005 Dag Wieers <dag@wieers.com> - 2.6.6-1
+- Updated to release 2.6.6.
 
-* Tue Jan 11 2005 Dag Wieers <dag@wieers.com> - 2.6.4-0.cvs20050111
-- Added delay-renames patch from CVS.
-- Updated to release 2.6.4-cvs20050111.
+* Mon Jun 06 2005 Dag Wieers <dag@wieers.com> - 2.6.5-1
+- Updated to release 2.6.5.
+
+* Thu Mar 31 2005 Dag Wieers <dag@wieers.com> - 2.6.4-1
+- Updated to release 2.6.4.
 
 * Tue Nov 23 2004 Dag Wieers <dag@wieers.com> - 2.6.3-1
 - Updated to release 2.6.3.
