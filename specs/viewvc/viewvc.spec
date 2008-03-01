@@ -3,7 +3,7 @@
 
 Summary: Web-interface for CVS and Subversion version control repositories
 Name: viewvc
-Version: 1.0.4
+Version: 1.0.5
 Release: 1
 License: BSD
 Group: Development/Tools
@@ -56,10 +56,10 @@ EOF
 
 ### Fix python files perms and shellbang
 %{__perl} -pi \
-	-e 's|/usr/local/bin/python|%{_bindir}/python|g;' \
-	-e 's|\s*/usr/bin/env python|%{_bindir}/python|g;' \
-	-e 's|CONF_PATHNAME =.*|CONF_PATHNAME = r"%{_sysconfdir}/viewvc/viewvc.conf"|g;' \
-	$(find %{buildroot}%{_datadir}/viewvc/ -type f)
+    -e 's|/usr/local/bin/python|%{_bindir}/python|g;' \
+    -e 's|\s*/usr/bin/env python|%{_bindir}/python|g;' \
+    -e 's|CONF_PATHNAME =.*|CONF_PATHNAME = r"%{_sysconfdir}/viewvc/viewvc.conf"|g;' \
+    $(find %{buildroot}%{_datadir}/viewvc/ -type f)
 
 ### Install CGI's to www directory
 %{__mkdir_p} %{buildroot}%{_localstatedir}/www/cgi-bin
@@ -68,10 +68,10 @@ EOF
 
 ### Fix paths in configuration
 %{__perl} -pi \
-	-e 's|templates/|%{_datadir}/viewvc/templates/|g;' \
-	-e 's|^#docroot = .*|docroot = /viewvc-static|;' \
-	-e 's|^cvsgraph_conf = .*|cvsgraph_conf = %{_sysconfdir}/viewvc/cvsgraph.conf|;' \
-	%{buildroot}%{_datadir}/viewvc/viewvc.conf
+    -e 's|templates/|%{_datadir}/viewvc/templates/|g;' \
+    -e 's|^#docroot = .*|docroot = /viewvc-static|;' \
+    -e 's|^cvsgraph_conf = .*|cvsgraph_conf = %{_sysconfdir}/viewvc/cvsgraph.conf|;' \
+    %{buildroot}%{_datadir}/viewvc/viewvc.conf
 
 ### Install config to sysconf directory
 %{__install} -Dp -m0644 %{buildroot}%{_datadir}/viewvc/viewvc.conf %{buildroot}%{_sysconfdir}/viewvc/viewvc.conf
@@ -107,6 +107,9 @@ find %{buildroot}%{_datadir}/viewvc/lib -type f -name "*.pyc" | xargs %{__rm} -f
 %{_localstatedir}/www/viewvc/
 
 %changelog
+* Thu Feb 28 2008 Dag Wieers <dag@wieers.com> - 1.0.5-1
+- Updated to release 1.0.5.
+
 * Sun Apr 15 2007 Dag Wieers <dag@wieers.com> - 1.0.4-1
 - Updated to release 1.0.4.
 

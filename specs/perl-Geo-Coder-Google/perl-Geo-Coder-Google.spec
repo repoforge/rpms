@@ -1,6 +1,6 @@
 # $Id: $
 # Authority: dries
-# Upstream: Tatsuhiko Miyagawa <miyagawa@bulknews.net>
+# Upstream: Tatsuhiko Miyagawa <miyagawa$bulknews,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-Coder-Google/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIYAGAWA/Geo-Coder-Google-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Geo/Geo-Coder-Google-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -44,10 +44,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Geo::Coder::Google.3*
-%dir %{perl_vendorlib}/Geo
-%dir %{perl_vendorlib}/Geo/Coder
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Geo::Coder::Google.3pm*
+%dir %{perl_vendorlib}/Geo/
+%dir %{perl_vendorlib}/Geo/Coder/
+#%{perl_vendorlib}/Geo/Coder/Google/
 %{perl_vendorlib}/Geo/Coder/Google.pm
 
 %changelog

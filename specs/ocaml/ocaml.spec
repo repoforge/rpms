@@ -23,16 +23,16 @@
 
 Summary: Objective Caml
 Name: ocaml
-Version: 3.09.1
-Release: 1.2
+Version: 3.10.1
+Release: 1
 License: QPL/LGPL
 Group: Development/Languages
 URL: http://caml.inria.fr/
 
-Source: http://caml.inria.fr/distrib/ocaml-3.09/ocaml-%{version}.tar.bz2
-Source1: http://caml.inria.fr/distrib/ocaml-3.09/ocaml-3.09-refman.html.tar.gz
-Source2: http://caml.inria.fr/distrib/ocaml-3.09/ocaml-3.09-refman.ps.gz
-Source3: http://caml.inria.fr/distrib/ocaml-3.09/ocaml-3.09-refman.info.tar.gz
+Source0: http://caml.inria.fr/distrib/ocaml-3.10/ocaml-%{version}.tar.bz2
+Source1: http://caml.inria.fr/distrib/ocaml-3.10/ocaml-3.10-refman.html.tar.gz
+Source2: http://caml.inria.fr/distrib/ocaml-3.10/ocaml-3.10-refman.ps.gz
+Source3: http://caml.inria.fr/distrib/ocaml-3.10/ocaml-3.10-refman.info.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, gdbm-devel, emacs
@@ -116,18 +116,15 @@ Emacs mode for Objective Caml.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes htmlman/ INSTALL LICENSE README refman.ps.gz
-%doc %{_mandir}/man1/*
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man1/*.1*
+%doc %{_mandir}/man3/*.3*
 %doc %{_infodir}/ocaml*
 %{_bindir}/*
 %{_libdir}/ocaml/
 
 ### in ocaml-camlp4
-%exclude %{_mandir}/man1/camlp4*
-%exclude %{_mandir}/man1/mkcamlp4*
 %exclude %{_bindir}/camlp4*
 %exclude %{_bindir}/mkcamlp4
-%exclude %{_bindir}/ocpp
 %exclude %{_libdir}/ocaml/camlp4/
 
 ### in ocaml-labltk
@@ -142,11 +139,8 @@ Emacs mode for Objective Caml.
 
 %files camlp4
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man1/camlp4*
-%doc %{_mandir}/man1/mkcamlp4*
 %{_bindir}/camlp4*
 %{_bindir}/mkcamlp4
-%{_bindir}/ocpp
 %dir %{_libdir}/ocaml/
 %{_libdir}/ocaml/camlp4/
 
@@ -171,6 +165,9 @@ Emacs mode for Objective Caml.
 %{_datadir}/emacs/site-lisp/*.elc
 
 %changelog
+* Thu Feb 28 2008 Dag Wieers <dag@wieers.com> - 3.10-1
+- Updated to release 3.10.
+
 * Wed Jan 04 2006 Dries Verachtert <dries@ulyssis.org> - 3.09.1-1
 - Updated to release 3.09.1.
 

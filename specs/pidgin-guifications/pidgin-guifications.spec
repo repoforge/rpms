@@ -3,14 +3,13 @@
 
 Summary: Guifications Plugin for Pidgin
 Name: pidgin-guifications
-%define real_version 2.14
-Version: 2.14
+Version: 2.16
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://gaim.guifications.org/
 
-Source: http://downloads.guifications.org/plugins//Guifications2/pidgin-guifications-%{real_version}.tar.bz2
+Source: http://downloads.guifications.org/plugins//Guifications2/pidgin-guifications-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig, libtool, gettext, pidgin-devel, gtk2-devel
@@ -20,7 +19,7 @@ Guifications is a graphical notification plugin for the open source
 instant messaging client Pidgin
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
 
 %build
 %configure
@@ -39,11 +38,13 @@ instant messaging client Pidgin
 %doc AUTHORS ChangeLog COPYING README doc/*.dia doc/*.png
 %{_datadir}/pixmaps/pidgin/guifications/
 %dir %{_libdir}/pidgin/
-#exclude %{_libdir}/pidgin/guifications.a
-%exclude %{_libdir}/pidgin/guifications.la
 %{_libdir}/pidgin/guifications.so
+%exclude %{_libdir}/pidgin/guifications.la
 
 %changelog
+* Sat Mar 01 2008 Dag Wieers <dag@wieers.com> - 2.16-1
+- Updated to release 2.16.
+
 * Fri Jul 06 2007 Heiko Adams <info@fedora-blog.de> - 2.14-1
 - Updated to release 2.14.
 

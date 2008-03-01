@@ -11,7 +11,7 @@
 Summary: Read and write meta information in images
 Name: perl-Image-ExifTool
 Version: 7.15
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-ExifTool/
@@ -29,8 +29,9 @@ information in images.
 
 %prep
 %setup -n %{real_name}-%{version}
-# avoid dependency on 'perl(a)'
-%{__perl} -pi -e "s|use a|Use a|g;" lib/Image/ExifTool/Canon.pm
+
+### Prevent 'use a' to end up as a perl(a) dependency.
+%{__perl} -pi -e 's| use a | Use a |' lib/Image/ExifTool/Canon.pm
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -63,6 +64,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Image/ExifTool.pod
 
 %changelog
+* Thu Feb 28 2008 Dag Wieers <dag@wieers.com> - 7.15-2
+- Remove the erroneous perl(a) dependency. (Jelmer Jellema)
+
 * Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 7.15-1
 - Updated to release 7.15.
 
