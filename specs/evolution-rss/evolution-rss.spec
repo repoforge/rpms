@@ -1,20 +1,18 @@
 # $Id$
 # Authority: hadams
 
-Summary: Evolution plugin for rss feed support
-Name: evolution-rss
-Version: 0.0.7
-Release: 1
-License: GPL
-Group: Applications/Internet
-URL: http://mips.edu.ms/evo/index.php/Evolution_RSS_Reader_Plugin
-
-Source: http://mips.edu.ms/evolution-rss-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
-
-BuildRequires: gettext-devel, evolution-devel, perl(XML::Parser)
-BuildRequires: firefox-devel
-Requires: evolution
+Name:		evolution-rss
+Version:	0.0.8
+Release:	1
+Summary:	Evolution plugin for rss feed support
+URL:		http://mips.edu.ms/evo/index.php/Evolution_RSS_Reader_Plugin
+Group:		Productivity/Networking/Email/Clients
+License:	GPL
+Source:         http://mips.edu.ms/evolution-rss-%{version}.tar.gz
+Requires:       evolution
+BuildRequires:  gettext-devel, evolution-devel, perl(XML::Parser)
+BuildRequires:  firefox-devel
+BuildRoot:      %{_tmppath}/%{name}-%{version}-root
 
 %description
 RSS Evolution plugin enables evolution to read rss feeds.
@@ -42,20 +40,20 @@ RSS Evolution plugin enables evolution to read rss feeds.
 %dir %{_datadir}/evolution/*/
 %dir %{_datadir}/evolution/*/errors/
 %{_datadir}/evolution/*/errors/*
-%{_datadir}/evolution/*/glade/*
 %{_datadir}/evolution/*/images/*
 %dir %{_libdir}/evolution/*/plugins/
 %{_libdir}/evolution/*/plugins/*
 %{_libdir}/bonobo/servers/*
+%{_datadir}/evolution/*/glade/*
 %{_bindir}/evolution-import-rss
 /etc/gconf/schemas/evolution-rss.schemas
 
 %changelog
+* Mon Mar 03 2008 Heiko Adams <info-2007@fedora-blog.de> - 0.0.8-1
+- Update to 0.0.8
+
 * Thu Dec 13 2007 Heiko Adams <info-2007@fedora-blog.de> - 0.0.7-1
 - Update to 0.0.7
-
-* Sun Nov 11 2007 Dag Wieers <dag@wieers.com> - 0.0.6-2
-- Fix group tag.
 
 * Fri Oct 19 2007 Heiko Adams <info@fedora-blog.de> - 0.0.6-1
 - Version update
