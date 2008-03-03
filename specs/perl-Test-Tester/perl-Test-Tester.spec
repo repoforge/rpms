@@ -9,7 +9,7 @@
 
 Summary: Perl module to ease testing test modules built with Test::Builder
 Name: perl-Test-Tester
-Version: 0.106
+Version: 0.107
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Tester.pm
 
 %changelog
+* Mon Mar 03 2008 Dag Wieers <dag@wieers.com> - 0.107-1
+- Updated to release 0.107.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.106-1
 - Updated to release 0.106.
 

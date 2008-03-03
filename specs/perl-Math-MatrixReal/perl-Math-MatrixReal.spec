@@ -9,7 +9,7 @@
 
 Summary: Manipulate NxN matrices of real numbers
 Name: perl-Math-MatrixReal
-Version: 2.04
+Version: 2.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Spec)
 BuildRequires: perl(Test::More)
 
 %description
@@ -42,12 +43,15 @@ Perl type thanks to OPERATOR OVERLOADING.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find example/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES CREDITS Kleene.html MANIFEST META.yml README TODO
+%doc CHANGES CREDITS MANIFEST META.yml README TODO example/
 %doc %{_mandir}/man3/Math::Kleene.3pm*
 %doc %{_mandir}/man3/Math::MatrixReal.3pm*
 %dir %{perl_vendorlib}/Math/
@@ -56,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Math/funcs.pl
 
 %changelog
+* Mon Mar 03 2008 Dag Wieers <dag@wieers.com> - 2.05-1
+- Updated to release 2.05.
+
 * Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 2.04-1
 - Updated to release 2.04.
 

@@ -9,7 +9,7 @@
 
 Summary: Cross-platform basic tests for scripts
 Name: perl-Test-Script
-Version: 1.02
+Version: 1.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,12 +20,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.005
-BuildRequires: perl(Test::Builder)
-#BuildRequires: perl(Test::Builder) >= 0.32
-BuildRequires: perl(Test::More)
 #BuildRequires: perl(Test::More) >= 0.62
-BuildRequires: perl(Test::Builder::Tester)
+BuildRequires: perl(Test::More)
+#BuildRequires: perl(Test::Builder) >= 0.32
+BuildRequires: perl(Test::Builder)
 #BuildRequires: perl(Test::Builder::Tester) >= 1.02
+BuildRequires: perl(Test::Builder::Tester)
 Requires: perl >= 0:5.005
 
 %description
@@ -56,5 +56,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Script.pm
 
 %changelog
+* Mon Mar 03 2008 Dag Wieers <dag@wieers.com> - 1.03-1
+- Updated to release 1.03.
+
 * Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 1.02-1
 - Initial package. (using DAR)

@@ -6,11 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name DBD-Pg
-%define real_version 2.001003
+%define real_version 2.002000
 
 Summary: DBI PostgreSQL interface
 Name: perl-DBD-Pg
-Version: 2.1.3
+Version: 2.2.0
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -24,6 +24,7 @@ BuildRequires: perl(DBI) >= 1.52
 BuildRequires: perl(Module::Signature) >= 0.5
 BuildRequires: perl(Test::Harness) >= 2.03
 #BuildRequires: perl(Test::More) >= 0.61
+BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::Simple) >= 0.47
 BuildRequires: perl(version)
 Requires: perl >= 1:5.6.1
@@ -58,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/DBD/Pg.pm
 
 %changelog
+* Sun Mar 02 2008 Dag Wieers <dag@wieers.com> - 2.2.0-1
+- Updated to release 2.2.0.
+
 * Sun Feb 24 2008 Dag Wieers <dag@wieers.com> - 2.1.3-1
 - Updated to release 2.1.3.
 

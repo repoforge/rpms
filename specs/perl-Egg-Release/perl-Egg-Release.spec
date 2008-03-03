@@ -9,7 +9,7 @@
 
 Summary: Version of Egg WEB Application Framework
 Name: perl-Egg-Release
-Version: 3.01
+Version: 3.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Egg.pm
 
 %changelog
+* Sun Mar 02 2008 Dag Wieers <dag@wieers.com> - 3.04-1
+- Updated to release 3.04.
+
 * Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 3.01-1
 - Updated to release 3.01.
 

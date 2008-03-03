@@ -9,8 +9,8 @@
 
 Summary: Talk to a POP3 (RFC1939) server
 Name: perl-Mail-POP3Client
-Version: 2.17
-Release: 2
+Version: 2.18
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-POP3Client/
@@ -57,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Mail/POP3Client.pm
 
 %changelog
+* Mon Mar 03 2008 Dag Wieers <dag@wieers.com> - 2.18-1
+- Updated to release 2.18.
+
 * Mon Oct 15 2007 Dag Wieers <dag@wieers.com> - 2.17-2
 - Added Provides and Obsoletes for perl-POP3Client.
 

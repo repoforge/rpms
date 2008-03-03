@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Steven Philip Schubiger <schubiger$cpan,org>
+# Upstream: Steven Schubiger <schubiger$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Tie a mounted node to an array
 Name: perl-Tie-Mounted
-Version: 0.17
+Version: 0.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
 
 %description
 Tie a mounted node to an array.
@@ -44,10 +45,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Tie::Mounted*
+%doc Changes INSTALL MANIFEST META.yml README
+%doc %{_mandir}/man3/Tie::Mounted.3pm*
+%dir %{perl_vendorlib}/Tie/
+#%{perl_vendorlib}/Tie/Mounted/
 %{perl_vendorlib}/Tie/Mounted.pm
 
 %changelog
+* Mon Mar 03 2008 Dag Wieers <dag@wieers.com> - 0.18-1
+- Updated to release 0.18.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.17-1
 - Initial package.

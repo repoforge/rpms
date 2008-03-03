@@ -9,7 +9,7 @@
 
 Summary: Extensible and flexible object <-> relational mapper
 Name: perl-DBIx-Class
-Version: 0.08009
+Version: 0.08010
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -69,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DBIx/Class.pm
 
 %changelog
+* Sun Mar 02 2008 Dag Wieers <dag@wieers.com> - 0.08010-1
+- Updated to release 0.08010.
+
 * Sat Jan 26 2008 Dag Wieers <dag@wieers.com> - 0.08009-1
 - Updated to release 0.08009.
 

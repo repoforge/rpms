@@ -6,11 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name rpm-build-perl
-%define real_version 0.006006
+%define real_version 0.006007
 
 Summary: Calculate dependencies for Perl sources
 Name: perl-rpm-build-perl
-Version: 0.6.6
+Version: 0.6.7
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -61,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/fake.pm
 
 %changelog
+* Sun Mar 02 2008 Dag Wieers <dag@wieers.com> - 0.6.7-1
+- Updated to release 0.6.7.
+
 * Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.6.6-1
 - Updated to release 0.6.6.
 

@@ -9,7 +9,7 @@
 
 Summary: Perl module to fix the case of people's names
 Name: perl-Lingua-EN-NameCase
-Version: 1.14
+Version: 1.15
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,11 +44,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man3/Lingua::EN::NameCase*
-%{perl_vendorlib}/Lingua/EN/NameCase.pm
+%doc MANIFEST README
+%doc %{_mandir}/man3/Lingua::EN::NameCase.3pm*
+%dir %{perl_vendorlib}/Lingua/
 %dir %{perl_vendorlib}/Lingua/EN/
+#%{perl_vendorlib}/Lingua/EN/NameCase/
+%{perl_vendorlib}/Lingua/EN/NameCase.pm
 
 %changelog
+* Mon Mar 03 2008 Dag Wieers <dag@wieers.com> - 1.15-1
+- Updated to release 1.15.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.14-1
 - Initial package.

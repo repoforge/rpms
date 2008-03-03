@@ -9,7 +9,7 @@
 
 Summary: Get information about a class and its structure
 Name: perl-Class-Inspector
-Version: 1.20
+Version: 1.22
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -58,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/Inspector.pm
 
 %changelog
+* Sun Mar 02 2008 Dag Wieers <dag@wieers.com> - 1.22-1
+- Updated to release 1.22.
+
 * Tue Feb 19 2008 Dag Wieers <dag@wieers.com> - 1.20-1
 - Updated to release 1.20.
 

@@ -1,28 +1,35 @@
 # $Id$
 # Authority: dag
-# Upstream: Andy Lester <andy$petdance,com>
+# Upstream: Chris Thompson <cthom$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name HTML-Tagset
+%define real_name JSON-Any
 
-Summary: Data tables useful in parsing HTML
-Name: perl-HTML-Tagset
-Version: 3.20
+Summary: Wrapper Class for the various JSON classes
+Name: perl-JSON-Any
+Version: 1.16
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/HTML-Tagset/
+URL: http://search.cpan.org/dist/JSON-Any/
 
-Source: http://www.cpan.org/modules/by-module/HTML/HTML-Tagset-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/JSON/JSON-Any-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Carp)
+BuildRequires: perl(JSON)
+BuildRequires: perl(JSON::DWIW)
+BuildRequires: perl(JSON::PC)
+BuildRequires: perl(JSON::Syck)
+BuildRequires: perl(JSON::XS)
+BuildRequires: perl(Test::More)
 
 %description
-Data tables useful in parsing HTML.
+Wrapper Class for the various JSON classes.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -43,14 +50,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST MANIFEST.SKIP META.yml README
-%doc %{_mandir}/man3/HTML::Tagset.3pm*
-%dir %{perl_vendorlib}/HTML/
-%{perl_vendorlib}/HTML/Tagset.pm
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/JSON::Any.3pm*
+%dir %{perl_vendorlib}/JSON/
+#%{perl_vendorlib}/JSON/Any/
+%{perl_vendorlib}/JSON/Any.pm
 
 %changelog
-* Sun Mar 02 2008 Dag Wieers <dag@wieers.com> - 3.20-1
-- Updated to release 3.20.
-
-* Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 3.10-1
+* Sun Mar 02 2008 Dag Wieers <dag@wieers.com> - 1.16-1
 - Initial package. (using DAR)

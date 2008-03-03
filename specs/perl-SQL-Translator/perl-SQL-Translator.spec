@@ -9,8 +9,8 @@
 
 Summary: SQL DDL transformations and more
 Name: perl-SQL-Translator
-Version: 0.08001
-Release: 2
+Version: 0.09000
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SQL-Translator/
@@ -59,6 +59,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man1/sqlt.1*
 %doc %{_mandir}/man1/sqlt-diagram.1*
 %doc %{_mandir}/man1/sqlt-diff.1*
+%doc %{_mandir}/man1/sqlt-diff-old.1*
 %doc %{_mandir}/man1/sqlt-dumper.1*
 %doc %{_mandir}/man1/sqlt-graph.1*
 %doc %{_mandir}/man3/SQL::Translator.3pm*
@@ -73,10 +74,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/sqlt
 %{_bindir}/sqlt-diagram
 %{_bindir}/sqlt-diff
+%{_bindir}/sqlt-diff-old
 %{_bindir}/sqlt-dumper
 %{_bindir}/sqlt-graph
 
 %changelog
+* Mon Mar 03 2008 Dag Wieers <dag@wieers.com> - 0.09000-1
+- Updated to release 0.09000.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.08001-2
 - Filtered out wrong perl(:) dependency.
 

@@ -9,7 +9,7 @@
 
 Summary: Implements a flat filesystem
 Name: perl-File-Flat
-Version: 1.02
+Version: 1.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,5 +55,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/File/Flat.pm
 
 %changelog
+* Sun Mar 02 2008 Dag Wieers <dag@wieers.com> - 1.03-1
+- Updated to release 1.03.
+
+* Tue Dec 18 2007 Dag Wieers <dag@wieers.com> - 1.02-1
+- Updated to release 1.02.
+
 * Tue May 01 2007 Dag Wieers <dag@wieers.com> - 1.00-1
 - Initial package. (using DAR)

@@ -9,7 +9,7 @@
 
 Summary: Date and time objects
 Name: perl-DateTime
-Version: 0.41
+Version: 0.42
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -67,6 +67,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/DateTime/
 
 %changelog
+* Sun Mar 02 2008 Dag Wieers <dag@wieers.com> - 0.42-1
+- Updated to release 0.42.
+
 * Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 0.41-1
 - Updated to release 0.41.
 

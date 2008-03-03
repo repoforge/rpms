@@ -12,7 +12,7 @@
 
 Summary: Basic utilities for writing tests
 Name: perl-Test-Simple
-Version: 0.75
+Version: 0.78
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -62,6 +62,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Tutorial.pod
 
 %changelog
+* Mon Mar 03 2008 Dag Wieers <dag@wieers.com> - 0.78-1
+- Updated to release 0.78.
+
 * Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 0.75-1
 - Updated to release 0.75.
 
