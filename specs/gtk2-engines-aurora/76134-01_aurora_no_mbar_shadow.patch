@@ -1,0 +1,12 @@
+--- src/aurora_style.c	2008-03-01 00:20:47.510619198 +0100
++++ src/aurora_style.c.new	2008-03-01 00:17:33.296474373 +0100
+@@ -670,7 +670,8 @@
+ 	{
+ 		WidgetParameters params;
+ 		aurora_set_widget_parameters (widget, style, state_type, &params);
+-		aurora_draw_menubar (cr, colors, &params, x, y, width, height, aurora_style->menubarstyle);
++		if (shadow_type != GTK_SHADOW_NONE)
++			aurora_draw_menubar (cr, colors, &params, x, y, width, height, aurora_style->menubarstyle);
+ 	}
+ 	else if (DETAIL ("button") && widget && widget->parent &&
+                   (AURORA_IS_TREE_VIEW(widget->parent) ||
