@@ -8,10 +8,16 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
+%{?el4:%define _kdelibs_without_mplayer2_desktop_file 1}
+%{?fc5:%define _kdelibs_without_mplayer2_desktop_file 1}
+%{?fc4:%define _kdelibs_without_mplayer2_desktop_file 1}
+%{?fc3:%define _kdelibs_without_mplayer2_desktop_file 1}
+%{?el3:%define _kdelibs_without_mplayer2_desktop_file 1}
+
 Summary: Media player based on xine-lib
 Name: kaffeine
 Version: 0.7.1
-Release: 1.2
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://kaffeine.sourceforge.net
@@ -81,6 +87,7 @@ source /etc/profile.d/qt.sh
 %{_datadir}/applications/kde/kaffeine.desktop
 %doc %{_datadir}/doc/HTML/*/kaffeine
 %{_datadir}/icons/*/*/*/*.png
+%{!?_kdelibs_without_mplayer2_desktop_file:%exclude %{_datadir}/mimelnk/application/x-mplayer2.desktop}
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -90,6 +97,9 @@ source /etc/profile.d/qt.sh
 %{_libdir}/kde3/libkaffeinepart.so
 
 %changelog
+* Sun Mar  2 2008 Dries Verachtert <dries@ulyssis.org> - 0.7.1-2
+- Added exclude for the mplayer2 desktop file for newer kdelibs versions.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.1-1.2
 - Rebuild for Fedora Core 5.
 
