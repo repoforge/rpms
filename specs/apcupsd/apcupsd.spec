@@ -7,16 +7,16 @@
 
 Summary: APC UPS power control daemon
 Name: apcupsd
-Version: 3.10.18
-Release: 1.2
+Version: 3.14.3
+Release: 1
 License: GPL
 Group: System Environment/Daemons
-URL: http://www.sibbald.com/apcupsd/
+URL: http://www.apcupsd.com/
 
 Source: http://dl.sf.net/apcupsd/apcupsd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glibc-devel, gd-devel
+BuildRequires: glibc-devel, gd-devel, net-snmp-devel
 Requires: perl
 
 %description
@@ -113,8 +113,12 @@ fi
 %{_sbindir}/*
 %{_localstatedir}/www/apcupsd/
 %exclude %{_initrddir}/halt*
+%{_datadir}/hal/fdi/policy/20thirdparty/80-apcupsd-ups-policy.fdi
 
 %changelog
+* Sun Mar  2 2008 Dries Verachtert <dries@ulyssis.org> - 3.14.3-1
+- Updated to release 3.14.3.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.10.18-1.2
 - Rebuild for Fedora Core 5.
 
