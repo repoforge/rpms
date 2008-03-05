@@ -4,14 +4,13 @@
 
 Summary: Punching holes in HTTP(S) proxy's
 Name: proxytunnel
-Version: 1.8.0
+Version: 1.9.0
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://proxytunnel.sourceforge.net/
 
 Source: http://dl.sf.net/proxytunnel/proxytunnel-%{version}.tgz
-Patch0: proxytunnel-1.8.0-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel
@@ -35,12 +34,9 @@ proxy authentication.
 
 %prep
 %setup
-%patch0 -p0 -b .orig
 
 %build
-### FIXME: Bug causes proxytunnel to malfunction on EL5 (gcc4 with -D_FORTIFY_SOURCE=2 or -fstack-protector)
-#%{__make} %{?_smp_mflags} CFLAGS="%{optflags} -I/usr/kerberos/include"
-%{__make} %{?_smp_mflags} CFLAGS="-Wall -O2 -I/usr/kerberos/include"
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags} -I/usr/kerberos/include"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -56,6 +52,9 @@ proxy authentication.
 %{_bindir}/proxytunnel
 
 %changelog
+* Tue Mar 04 2008 Dag Wieers <dag@wieers.com> - 1.9.0-1
+- Updated to release 1.9.0.
+
 * Fri Jan 18 2008 Dag Wieers <dag@wieers.com> - 1.8.0-1
 - Updated to release 1.8.0.
 
