@@ -78,7 +78,7 @@ dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
 
 %changelog
-* Mon Jan 14 2007 Matthias Saou <http://freshrpms.net/> 1.06-2
+* Mon Jan 14 2008 Matthias Saou <http://freshrpms.net/> 1.06-2
 - Add missing make requirement.
 
 * Mon Oct 22 2007 Matthias Saou <http://freshrpms.net/> 1.06-1
