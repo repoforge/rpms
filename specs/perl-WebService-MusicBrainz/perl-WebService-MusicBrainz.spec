@@ -9,7 +9,7 @@
 
 Summary: Web service API to MusicBrainz database
 Name: perl-WebService-MusicBrainz
-Version: 0.16
+Version: 0.17
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WebService/MusicBrainz.pm
 
 %changelog
+* Fri Mar 07 2008 Dag Wieers <dag@wieers.com> - 0.17-1
+- Updated to release 0.17.
+
 * Sat Dec 08 2007 Dag Wieers <dag@wieers.com> - 0.16-1
 - Updated to release 0.16.
 

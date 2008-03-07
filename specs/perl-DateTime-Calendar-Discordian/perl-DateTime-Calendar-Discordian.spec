@@ -1,15 +1,16 @@
 # $Id$
 # Authority: dries
-# Upstream: &#2716;&#2738;&#2727;&#2736; &#2745;. &#2741;&#2765;&#2735;&#2750;&#2744; <jaldhar$braincells,com>
+# Upstream: Jaldhar H, Vyas <jaldhar$braincells,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name DateTime-Calendar-Discordian
+%define real_version 0.009005
 
 Summary: Extension for the Discordian Calendar
 Name: perl-DateTime-Calendar-Discordian
-Version: 0.9.4
+Version: 0.9.5
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,12 +47,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST MANIFEST.SKIP META.yml README SIGNATURE
+%doc %{_mandir}/man3/DateTime::Calendar::Discordian.3pm*
 %dir %{perl_vendorlib}/DateTime/
 %dir %{perl_vendorlib}/DateTime/Calendar/
 %{perl_vendorlib}/DateTime/Calendar/Discordian.pm
 
 %changelog
+* Thu Mar 06 2008 Dag Wieers <dag@wieers.com> - 0.9.5-1
+- Updated to release 0.9.5.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.4-1
 - Initial package.

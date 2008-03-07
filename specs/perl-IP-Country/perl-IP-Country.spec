@@ -7,11 +7,11 @@
 
 %define real_name IP-Country
 
-Summary: Classes for fast lookup of country codes from IP addresses for Perl
+Summary: Fast lookup of country codes from IP addresses
 Name: perl-IP-Country
-Version: 2.23
+Version: 2.24
 Release: 1
-License: distributable
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IP-Country/
 
@@ -55,13 +55,22 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES MANIFEST README
+%doc CHANGES INSTALL MANIFEST META.yml README
 %doc %{_mandir}/man1/ip2cc.1*
-%doc %{_mandir}/man3/*.3*
+%doc %{_mandir}/man3/IP::Authority.3pm*
+%doc %{_mandir}/man3/IP::Country.3pm*
+%doc %{_mandir}/man3/IP::Country::*.3pm*
 %{_bindir}/ip2cc
-%{perl_vendorlib}/IP/
+%dir %{perl_vendorlib}/IP/
+%{perl_vendorlib}/IP/Authority/
+%{perl_vendorlib}/IP/Authority.pm
+%{perl_vendorlib}/IP/Country/
+%{perl_vendorlib}/IP/Country.pm
 
 %changelog
+* Thu Mar 06 2008 Dag Wieers <dag@wieers.com> - 2.24-1
+- Updated to release 2.24.
+
 * Wed Feb 07 2007 Dag Wieers <dag@wieers.com> - 2.23-1
 - Updated to release 2.23.
 

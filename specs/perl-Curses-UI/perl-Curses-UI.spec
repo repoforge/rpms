@@ -9,7 +9,7 @@
 
 Summary: Curses based OO user interface framework
 Name: perl-Curses-UI
-Version: 0.9601
+Version: 0.9602
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::Pod)
 
 %description
 A UI framework based on the curses library. Curses::UI contains
@@ -48,7 +50,7 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS CREDITS Changes INSTALL MANIFEST README TODO examples/
+%doc BUGS CREDITS Changes INSTALL MANIFEST META.yml README TODO examples/
 %doc %{_mandir}/man3/Curses::UI.3pm*
 %doc %{_mandir}/man3/Curses::UI::*.3pm*
 %dir %{perl_vendorlib}/Curses/
@@ -56,6 +58,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Curses/UI.pm
 
 %changelog
+* Thu Mar 06 2008 Dag Wieers <dag@wieers.com> - 0.9602-1
+- Updated to release 0.9602.
+
 * Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 0.9601-1
 - Updated to release 0.9601.
 

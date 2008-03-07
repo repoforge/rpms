@@ -9,7 +9,7 @@
 
 Summary: Perl module named Class-C3-Componentised
 Name: perl-Class-C3-Componentised
-Version: 1.0001
+Version: 1.0002
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Class/Class-C3-Componentised-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-Class-C3-Componentised is a Perl module.

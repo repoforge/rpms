@@ -9,7 +9,7 @@
 
 Summary: OOP for the del.icio.us API
 Name: perl-Net-Delicious
-Version: 1.11
+Version: 1.13
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Module::Build)
+BuildRequires: perl(Test::Simple) >= 0.47
 
 %description
 OOP for the del.icio.us API.
@@ -44,12 +45,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/Net/Delicious.pm
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README
+%doc %{_mandir}/man3/Net::Delicious.3pm*
+%doc %{_mandir}/man3/Net::Delicious::*.3pm*
+%dir %{perl_vendorlib}/Net/
 %{perl_vendorlib}/Net/Delicious/
+%{perl_vendorlib}/Net/Delicious.pm
 
 %changelog
+* Fri Mar 07 2008 Dag Wieers <dag@wieers.com> - 1.13-1
+- Updated to release 1.13.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.11-1
 - Updated to release 1.11.
 

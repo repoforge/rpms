@@ -9,8 +9,8 @@
 
 Summary: Module for uuencode and uudecode
 Name: perl-Convert-UU
-Version: 0.52
-Release: 1.2
+Version: 0.5201
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-UU/
@@ -44,14 +44,19 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
-%doc %{_mandir}/man?/*
-%{_bindir}/puu*code
+%doc ChangeLog MANIFEST META.yml README
+%doc %{_mandir}/man1/puudecode.1*
+%doc %{_mandir}/man1/puuencode.1*
+%doc %{_mandir}/man3/Convert::UU.3pm*
+%{_bindir}/puudecode
+%{_bindir}/puuencode
+%dir %{perl_vendorlib}/Convert/
+#%{perl_vendorlib}/Convert/UU/
 %{perl_vendorlib}/Convert/UU.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.52-1.2
-- Rebuild for Fedora Core 5.
+* Thu Mar 06 2008 Dag Wieers <dag@wieers.com> - 0.5201-1
+- Updated to release 0.5201.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.52-1
 - Initial package.

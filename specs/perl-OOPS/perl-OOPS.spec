@@ -9,8 +9,8 @@
 
 Summary: Object Oriented Persistent Store
 Name: perl-OOPS
-Version: 0.2003
-Release: 2
+Version: 0.2004
+Release: 1
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/OOPS/
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/OOPS.pod
 
 %changelog
+* Fri Mar 07 2008 Dag Wieers <dag@wieers.com> - 0.2004-1
+- Updated to release 0.2004.
+
 * Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.2003-2
 - Added selfcontained provides.
 

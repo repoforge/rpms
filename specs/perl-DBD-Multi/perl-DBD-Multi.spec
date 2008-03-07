@@ -9,7 +9,7 @@
 
 Summary: Failover and Load Balancing of DBI Handles
 Name: perl-DBD-Multi
-Version: 0.13
+Version: 0.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,14 +19,14 @@ Source: http://www.cpan.org/modules/by-module/DBD/DBD-Multi-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.005
+BuildRequires: perl >= 2:5.8.0
 BuildRequires: perl(DBD::SQLite) >= 1.09
 BuildRequires: perl(Pod::Simple)
 BuildRequires: perl(Test::Exception) >= 0.21
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::Pod) >= 1.14
 BuildRequires: perl(Test::Pod::Coverage) >= 1.04
-Requires: perl >= 0:5.005
+Requires: perl >= 2:5.8.0
 
 %description
 Failover and Load Balancing of DBI Handles.

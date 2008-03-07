@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Xavier Guimard <perl$astola,org>
+# Upstream: Xavier Guimard <perl+cpan$astola,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Perl extension for managing Lemonldap::NG Web-SSO system
 Name: perl-Lemonldap-NG-Manager
-Version: 0.82
+Version: 0.83
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -61,6 +61,9 @@ find example/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Lemonldap/NG/Manager.pm
 
 %changelog
+* Fri Mar 07 2008 Dag Wieers <dag@wieers.com> - 0.83-1
+- Updated to release 0.83.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.82-1
 - Updated to release 0.82.
 

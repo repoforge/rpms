@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: &#20108;&#21313;&#26085;&#9734;&#40736; - IKEDA Soji <hatuka$nezumi,nu>
+# Upstream: IKEDA Soji <hatuka$nezumi,nu>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Charset Informations for MIME
 Name: perl-MIME-Charset
-Version: 0.044
+Version: 1.000
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,9 +50,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %dir %{perl_vendorlib}/MIME/
 %{perl_vendorlib}/MIME/Charset/
 %{perl_vendorlib}/MIME/Charset.pm
-%{perl_vendorlib}/MIME/Charset-*.pod
+%{perl_vendorlib}/MIME/Charset-ja_JP.pod
 
 %changelog
+* Fri Mar 07 2008 Dag Wieers <dag@wieers.com> - 1.000-1
+- Updated to release 1.000.
+
 * Wed Nov 14 2007 Dag Wieers <dag@wieers.com> - 0.044-1
 - Updated to release 0.044.
 

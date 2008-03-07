@@ -9,9 +9,9 @@
 
 Summary: Interface to SOAP
 Name: perl-SOAP-Lite
-Version: 0.69
+Version: 0.71
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SOAP-Lite/
 
@@ -20,8 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(Crypt::SSLeay)
 BuildRequires: perl(Compress::Zlib)
+BuildRequires: perl(Crypt::SSLeay)
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(XML::Parser)
 
@@ -33,6 +33,10 @@ on client and server side.
 %prep
 %setup -n %{real_name}-%{version}
 
+### FIXME: Replace /bin/env by /usr/bin/env (so it works on RH7 and EL2 as well)
+%{__perl} -pi -e 's|^#!/.*bin/env|#!%{_bindir}/env|i;' bin/*.pl
+
+
 %build
 (echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}") || echo "ignore warnings"
 %{__make} %{?_smp_mflags}
@@ -42,9 +46,12 @@ on client and server side.
 %{__make} pure_install
 
 ### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/perllocal.pod
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*/*/.packlist
-# remove dependency on MQSeries
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
+### Remove dependency on MQSeries
 %{__rm} -f %{buildroot}%{perl_vendorlib}/SOAP/Transport/MQ.pm
 
 %clean
@@ -52,20 +59,27 @@ on client and server side.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%{_mandir}/man?/*
+%doc Changes MANIFEST README examples/
+%doc %{_mandir}/man1/SOAPsh.pl.1*
+%doc %{_mandir}/man1/XMLRPCsh.pl.1*
+%doc %{_mandir}/man1/stubmaker.pl.1*
+%doc %{_mandir}/man3/*.3pm*
+%dir %{perl_vendorlib}/SOAP/
 %{_bindir}/SOAPsh.pl
 %{_bindir}/XMLRPCsh.pl
 %{_bindir}/stubmaker.pl
 %{perl_vendorlib}/Apache/
 %{perl_vendorlib}/IO/
+%{perl_vendorlib}/OldDocs/
 %{perl_vendorlib}/SOAP/
 %{perl_vendorlib}/UDDI/
 %{perl_vendorlib}/XML/
 %{perl_vendorlib}/XMLRPC/
-%{perl_vendorlib}/OldDocs/
 
 %changelog
+* Thu Mar 06 2008 Dag Wieers <dag@wieers.com> - 0.71-1
+- Updated to release 0.71.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.69-1
 - Updated to release 0.69.
 
