@@ -1,0 +1,12 @@
+diff -up l1-linux-v1.2.40.2/src/kcompat.h.orig l1-linux-v1.2.40.2/src/kcompat.h
+--- l1-linux-v1.2.40.2/src/kcompat.h.orig	2008-03-01 03:20:51.000000000 +0200
++++ l1-linux-v1.2.40.2/src/kcompat.h	2008-03-01 03:21:06.000000000 +0200
+@@ -1113,7 +1113,7 @@ static inline int _kc_skb_is_gso(const s
+ #define RHEL_VERSION 0
+ #endif
+ #if (!(( RHEL_VERSION == 4 ) && ( RHEL_UPDATE >= 5 )))
+-typedef irqreturn_t (*irq_handler_t)(int, void*, struct pt_regs *);
++//typedef irqreturn_t (*irq_handler_t)(int, void*, struct pt_regs *);
+ #endif
+ typedef irqreturn_t (*new_handler_t)(int, void*);
+ static inline irqreturn_t _kc_request_irq(unsigned int irq, new_handler_t handler, unsigned long flags, const char *devname, void *dev_id)
