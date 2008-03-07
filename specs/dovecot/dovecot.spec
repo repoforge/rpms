@@ -9,13 +9,13 @@
 
 Summary: Secure IMAP server
 Name: dovecot
-Version: 1.0.2
+Version: 1.0.12
 Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://dovecot.org/
 
-Source: http://dovecot.org/releases/dovecot-%{version}.tar.gz
+Source: http://dovecot.org/releases/1.0/dovecot-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, cyrus-sasl-devel, pam-devel
@@ -37,11 +37,11 @@ clients accessing the mailboxes directly.
 %setup
 
 %{__perl} -pi.orig -e '
-		s|/etc/ssl|%{_datadir}/ssl|;
-		s|^#(logindir) = |$1 = |;
-		s|^(mbox_locks) = .*|$1 = fcntl|;
-		s|^(auth_passdb) = |$1 = pam\n#$1 = |;
-	' dovecot-example.conf
+        s|/etc/ssl|%{_datadir}/ssl|;
+        s|^#(logindir) = |$1 = |;
+        s|^(mbox_locks) = .*|$1 = fcntl|;
+        s|^(auth_passdb) = |$1 = pam\n#$1 = |;
+    ' dovecot-example.conf
 
 %{__cat} <<EOF >dovecot.pam
 #%PAM-1.0
@@ -75,60 +75,60 @@ prog="dovecot"
 desc="IMAP daemon"
 
 start() {
-	echo -n $"Starting $desc ($prog): "
-	daemon $prog
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Starting $desc ($prog): "
+    daemon $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 stop() {
-	echo -n $"Shutting down $desc ($prog): "
-	killproc $prog
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Shutting down $desc ($prog): "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 restart() {
-	stop
-	start
+    stop
+    start
 }
 
 reload() {
-	echo -n $"Reloading $desc ($prog): "
-	killproc $prog -HUP
-	RETVAL=$?
-	echo
-	return $RETVAL
+    echo -n $"Reloading $desc ($prog): "
+    killproc $prog -HUP
+    RETVAL=$?
+    echo
+    return $RETVAL
 }
 
 case "$1" in
   start)
-	start
-	;;
+    start
+    ;;
   stop)
-	stop
-	;;
+    stop
+    ;;
   restart)
-	restart
-	;;
+    restart
+    ;;
   reload)
-	reload
-	;;
+    reload
+    ;;
   condrestart)
-	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-	RETVAL=$?
-	;;
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
   status)
-	status $prog
-	RETVAL=$?
-	;;
+    status $prog
+    RETVAL=$?
+    ;;
   *)
-	echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
-	RETVAL=1
+    echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
+    RETVAL=1
 esac
 
 exit $RETVAL
@@ -138,19 +138,19 @@ EOF
 export CPPFLAGS="-I%{_prefix}/kerberos/include -I %{_includedir}/mysql"
 export LDFLAGS="-L%{_libdir}/mysql"
 %configure \
-	--with-ssl="openssl" \
-	--with-ssldir="%{_datadir}/ssl" \
-	--with-ldap \
-	--with-pgsql \
-	--with-mysql \
-	--with-rawlog
+    --with-ldap \
+    --with-mysql \
+    --with-pgsql \
+    --with-rawlog \
+    --with-ssl="openssl" \
+    --with-ssldir="%{_datadir}/ssl"
 ### Causes crashes when used with ldap
-#	--with-cyrus-sasl2
+#   --with-cyrus-sasl2
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %{__install} -Dp -m0755 dovecot.sysv %{buildroot}%{_initrddir}/dovecot
 %{__install} -Dp -m0644 dovecot.pam %{buildroot}%{_sysconfdir}/pam.d/dovecot
 %{__mv} -f %{buildroot}%{_sysconfdir}/dovecot-example.conf %{buildroot}%{_sysconfdir}/dovecot.conf
@@ -162,10 +162,13 @@ touch %{buildroot}%{_datadir}/ssl/{certs,private}/dovecot.pem
 %{__install} -d -m0700 %{buildroot}%{_localstatedir}/run/dovecot/
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/run/dovecot-login/
 
+### Clean up buildroot
+%{__rm} -f %{buildroot}%{_sysconfdir}/dovecot-{ldap,sql}-example.conf
+
 %pre
 if ! /usr/bin/id dovecot &>/dev/null; then
-	/usr/sbin/useradd -c dovecot -u 97 -r -d "%{_libexecdir}/dovecot/" dovecot &>/dev/null || \
-		%logmsg "Unexpected error adding user \"dovecot\". Aborting installation."
+    /usr/sbin/useradd -c dovecot -u 97 -r -d "%{_libexecdir}/dovecot/" dovecot &>/dev/null || \
+        %logmsg "Unexpected error adding user \"dovecot\". Aborting installation."
 fi
 /usr/sbin/usermod -s /sbin/nologin dovecot &>/dev/null || :
 
@@ -174,8 +177,8 @@ fi
 
 # create a ssl cert
 if [ ! -f %{_datadir}/ssl/certs/dovecot.pem ]; then
-	umask 077
-	%{__cat} << EOF | openssl req -new -x509 -days 365 -nodes -out %{_datadir}/ssl/certs/dovecot.pem -keyout %{_datadir}/ssl/private/dovecot.pem &>/dev/null
+    umask 077
+    %{__cat} << EOF | openssl req -new -x509 -days 365 -nodes -out %{_datadir}/ssl/certs/dovecot.pem -keyout %{_datadir}/ssl/private/dovecot.pem &>/dev/null
 --
 SomeState
 SomeCity
@@ -184,14 +187,14 @@ SomeOrganizationalUnit
 localhost.localdomain
 root@localhost.localdomain
 EOF
-	%{__chown} root:root %{_datadir}/ssl/private/dovecot.pem %{_datadir}/ssl/certs/dovecot.pem
-	%{__chmod} 600 %{_datadir}/ssl/private/dovecot.pem %{_datadir}/ssl/certs/dovecot.pem
+    %{__chown} root:root %{_datadir}/ssl/private/dovecot.pem %{_datadir}/ssl/certs/dovecot.pem
+    %{__chmod} 600 %{_datadir}/ssl/private/dovecot.pem %{_datadir}/ssl/certs/dovecot.pem
 fi
 
 %preun
 if [ $1 -eq 0 ]; then
-	/sbin/service dovecot stop &>/dev/null || :
-	/sbin/chkconfig --del dovecot
+    /sbin/service dovecot stop &>/dev/null || :
+    /sbin/chkconfig --del dovecot
 fi
 
 %postun
@@ -205,12 +208,14 @@ fi
 %doc AUTHORS ChangeLog COPYING* INSTALL NEWS README TODO
 %doc doc/*.cnf doc/*.conf doc/*.sh doc/*.txt
 %config(noreplace) %{_sysconfdir}/dovecot.conf
-%config %{_sysconfdir}/pam.d/dovecot
+%config(noreplace) %{_sysconfdir}/pam.d/dovecot
 %config %{_initrddir}/dovecot
-%{_sbindir}/*
+%{_libdir}/dovecot/
 %{_libexecdir}/dovecot/
 %exclude %{_docdir}/dovecot/
 %{_localstatedir}/run/dovecot-login/
+%{_sbindir}/dovecot
+%{_sbindir}/dovecotpw
 
 %defattr(0600, root, root, 0755)
 %ghost %config(missingok,noreplace) %verify(not md5 size mtime) %{_datadir}/ssl/certs/dovecot.pem
@@ -222,7 +227,15 @@ fi
 %defattr(0750, root, dovecot, 0755)
 %{_localstatedir}/run/dovecot-login/
 
+%exclude %{_libdir}/dovecot/*.a
+%exclude %{_libdir}/dovecot/*.la
+%exclude %{_libdir}/dovecot/*/*.a
+%exclude %{_libdir}/dovecot/*/*.la
+
 %changelog
+* Fri Mar 07 2008 Dag Wieers <dag@wieers.com> - 1.0.12-1
+- Updated to release 1.0.12.
+
 * Thu Jul 19 2007 Dag Wieers <dag@wieers.com> - 1.0.2-1
 - Updated to release 1.0.2.
 
