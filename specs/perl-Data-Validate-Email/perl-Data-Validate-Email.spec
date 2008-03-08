@@ -20,6 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Data::Validate::Domain)
+BuildRequires: perl(Email::Address)
 
 %description
 Common email validation methods.
