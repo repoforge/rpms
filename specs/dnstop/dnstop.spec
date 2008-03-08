@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Duane Wessels <wessels$measurement-factory,com>
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
@@ -9,9 +10,9 @@
 
 Summary: Displays various tables of DNS traffic on your network
 Name: dnstop
-%define real_version 20030228
-Version: 0.0.20030228
-Release: 0.2
+%define real_version 20070510
+Version: 0.0.20070510
+Release: 1
 License: BSD
 Group: Applications/Internet
 URL: http://dnstop.measurement-factory.com/
@@ -29,10 +30,10 @@ destination IP addresses, query types, top level domains and second
 level domains.
 
 %prep
-%setup -c
+%setup -n %{name}-%{real_version}
 
 %build
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags} -DUSE_IPV6=1 -DUSE_PPP=0"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -44,10 +45,13 @@ level domains.
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE
+%doc CHANGES LICENSE
 %doc %{_mandir}/man8/dnstop.8*
 %{_sbindir}/dnstop
 
 %changelog
+* Sat Mar 08 2008 Dag Wieers <dag@wieers.com> - 0.0.20070510-1
+- Updated to release 20070510.
+
 * Wed Sep 03 2003 Dag Wieers <dag@wieers.com> - 0.0.20030228-0
 - Initial package. (using DAR)
