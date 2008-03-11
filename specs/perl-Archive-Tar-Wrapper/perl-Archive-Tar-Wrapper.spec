@@ -7,9 +7,9 @@
 
 %define real_name Archive-Tar-Wrapper
 
-Summary: API wrapper around the tar utility
+Summary: API wrapper around the 'tar' utility
 Name: perl-Archive-Tar-Wrapper
-Version: 0.10
+Version: 0.11
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Archive/Tar/Wrapper.pm
 
 %changelog
+* Tue Mar 11 2008 Dag Wieers <dag@wieers.com> - 0.11-1
+- Updated to release 0.11.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.10-1
 - Updated to release 0.10.
 

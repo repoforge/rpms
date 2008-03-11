@@ -9,7 +9,7 @@
 
 Summary: Inheritable, overridable class and instance data accessor creation
 Name: perl-Class-Data-Accessor
-Version: 0.04001
+Version: 0.04002
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Class/Class-Data-Accessor-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 1:5.6.1 
-Requires: perl >= 1:5.6.1 
+BuildRequires: perl >= 1:5.6.1
+Requires: perl >= 1:5.6.1
 
 %description
 Inheritable, overridable class and instance data accessor creation.
@@ -51,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/Data/Accessor.pm
 
 %changelog
+* Tue Mar 11 2008 Dag Wieers <dag@wieers.com> - 0.04002-1
+- Updated to release 0.04002.
+
 * Fri Aug 03 2007 Dag Wieers <dag@wieers.com> - 0.04001-1
 - Initial package. (using DAR)

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: G&#225;bor Szab&#243; <gabor$pti,co,il>
+# Upstream: Rob Casey <rob,casey$bluebottle,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: CGI class for handling browser file uploads
 Name: perl-CGI-Upload
-Version: 1.10
-Release: 1.2
+Version: 1.11
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Upload/
@@ -48,14 +48,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/CGI::Upload.3pm*
+%dir %{perl_vendorlib}/CGI/
+#%{perl_vendorlib}/CGI/Upload/
 %{perl_vendorlib}/CGI/Upload.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.10-1.2
-- Rebuild for Fedora Core 5.
+* Tue Mar 11 2008 Dag Wieers <dag@wieers.com> - 1.11-1
+- Updated to release 1.11.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.10-1
 - Initial package.
-

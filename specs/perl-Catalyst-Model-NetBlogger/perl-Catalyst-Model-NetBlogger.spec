@@ -7,10 +7,10 @@
 
 %define real_name Catalyst-Model-NetBlogger
 
-Summary: Post and retrieve blog entries
+Summary: Catalyst Model to post and retrieve blog entries using Net::Blogger
 Name: perl-Catalyst-Model-NetBlogger
-Version: 0.04
-Release: 1.2
+Version: 0.04001
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Model-NetBlogger/
@@ -19,13 +19,14 @@ Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Model-NetBlogger
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(Catalyst::Runtime)
+BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl(Catalyst::Runtime) >= 5.33
 BuildRequires: perl(ExtUtils::MakeMaker) >= 5.8.0
+BuildRequires: perl(Net::Blogger) >= 1.01
+Requires: perl >= 2:5.8.0
 
 %description
-This model class uses Net::Blogger to post and retrieve blog entries to
-various web log engines XMLRPC API.
+Catalyst Model to post and retrieve blog entries using Net::Blogger.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -46,8 +47,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST MANIFEST.SKIP META.yml README Todo
+%doc %{_mandir}/man3/Catalyst::Helper::Model::NetBlogger.3pm*
+%doc %{_mandir}/man3/Catalyst::Model::NetBlogger.3pm*
 %dir %{perl_vendorlib}/Catalyst/
 %dir %{perl_vendorlib}/Catalyst/Model/
 %{perl_vendorlib}/Catalyst/Model/NetBlogger.pm
@@ -57,8 +59,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Catalyst/Helper/Model/NetBlogger.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
-- Rebuild for Fedora Core 5.
+* Tue Mar 11 2008 Dag Wieers <dag@wieers.com> - 0.04001-1
+- Updated to release 0.04001.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.

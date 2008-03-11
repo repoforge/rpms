@@ -9,7 +9,7 @@
 
 Summary: Interface with the 'rar' command
 Name: perl-Archive-Rar
-Version: 1.95
+Version: 2.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::Simple)
 
 %description
@@ -44,7 +45,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYRIGHT ChangeLog MANIFEST META.yml README TODO
+%doc COPYRIGHT ChangeLog MANIFEST META.yml README
 %doc %{_mandir}/man3/Archive::Rar.3pm*
 #%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Archive/
@@ -52,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Archive/Rar.pm
 
 %changelog
+* Tue Mar 11 2008 Dag Wieers <dag@wieers.com> - 2.02-1
+- Updated to release 2.02.
+
 * Fri Feb 22 2008 Dag Wieers <dag@wieers.com> - 1.95-1
 - Updated to release 1.95.
 

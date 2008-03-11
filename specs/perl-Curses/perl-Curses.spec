@@ -9,7 +9,7 @@
 
 Summary: Perl module for terminal screen handling and optimization
 Name: perl-Curses
-Version: 1.22
+Version: 1.23
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,7 +21,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl
 BuildRequires: ncurses-devel
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl
 
 %description
 Perl module for terminal screen handling and optimization
@@ -53,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Curses.pm
 
 %changelog
+* Tue Mar 11 2008 Dag Wieers <dag@wieers.com> - 1.23-1
+- Updated to release 1.23.
+
 * Sun Mar 02 2008 Dag Wieers <dag@wieers.com> - 1.22-1
 - Updated to release 1.22.
 
