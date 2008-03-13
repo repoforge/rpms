@@ -11,7 +11,7 @@
 
 Summary: The Pan Newsreader
 Name: pan
-Version: 0.131
+Version: 0.132
 Release: 1
 Epoch: 1
 License: GPL
@@ -23,6 +23,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel >= 2.0.4, gtk2-devel >= 2.0.5, libxml2-devel >= 2.4.22
 BuildRequires: gnet2-devel, gtkspell-devel >= 2.0.2, pcre-devel >= 5.0, gettext
+BuildRequires: gmime-devel >= 2.1.9
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
@@ -68,6 +69,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/pan.png
 
 %changelog
+* Thu Mar 13 2008 Heiko Adams <info-2007@fedora-blog.de> - 0.132-1
+- Updated to release 0.132.
+
 * Sat Jun 16 2007 Dag Wieers <dag@wieers.com> - 0.131-1
 - Updated to release 0.131.
 
