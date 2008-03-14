@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+### FIXME: SPEC file should probably be renamed to purple-plugin_pack
+
 %define real_name purple-plugin_pack
 
 Summary: Plugin Pack for Pidgin
@@ -15,12 +17,22 @@ Source: http://downloads.guifications.org/plugins/Plugin%20Pack%20Archive/purple
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig, libtool, gettext, xmms-devel, pidgin-devel, gtk2-devel
+### Require purple-plugin_pack for translations and to help people install all the plugins
+Requires: purple-plugin_pack = %{version}-%{release}
+
 Obsoletes: gaim-plugin_pack <= %{version}-%{release}
 Provides: gaim-plugin_pack = %{version}-%{release}
 
 %description
 Plugin Pack is a collection of plugins for the open source
 instant messaging client Pidgin.
+
+%package -n purple-plugin_pack
+Summary: Plugin Pack for libpurple and derived IM clients
+Group: Applications/Internet
+
+%description -n purple-plugin_pack
+Plugin Pack is a collection of plugins for libpurple and derived IM clients.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -37,21 +49,26 @@ instant messaging client Pidgin.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f plugin_pack.lang
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO doc/*.txt
 %dir %{_libdir}/pidgin/
 %{_libdir}/pidgin/*.so
-%dir %{_libdir}/purple-2/
-%{_libdir}/purple-2/*.so
 %dir %{_datadir}/pixmaps/pidgin/
 %{_datadir}/pixmaps/pidgin/plugin_pack/
 %exclude %{_libdir}/pidgin/*.la
+
+%files -n purple-plugin_pack -f plugin_pack.lang
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING NEWS README TODO doc/*.txt
+%dir %{_libdir}/purple-2/
+%{_libdir}/purple-2/*.so
 %exclude %{_libdir}/purple-2/*.la
 
 %changelog
 * Sat Mar 01 2008 Dag Wieers <dag@wieers.com> - 2.0.0-1
 - Updated to release 2.0.0.
+- Split package into purple-plugin_pack and pidgin-plugin_pack.
 
 * Sun Jul 01 2007 Dag Wieers <dag@wieers.com> - 1.0-0.beta7
 - Updated to release 1.0beta7.

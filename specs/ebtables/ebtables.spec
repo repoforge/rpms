@@ -6,13 +6,14 @@
 
 Summary: Ethernet Bridge frame table administration tool
 Name: ebtables
-Version: 2.0.8
+%define real_version 2.0.8-2
+Version: 2.0.8.2
 Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://ebtables.sourceforge.net/
 
-Source: http://dl.sf.net/ebtables/ebtables-v%{version}-1.tar.gz
+Source: http://dl.sf.net/ebtables/ebtables-v%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -24,7 +25,9 @@ The ebtables tool can be used together with the other Linux filtering tools,
 like iptables. There are no incompatibility issues.
 
 %prep
-%setup -n ebtables-v%{version}-1
+%setup -n %{name}-v%{real_version}
+
+%{__perl} -pi.orig -e 's|__EXEC_PATH__|%{_sbindir}|g' ebtables-save
 
 %{__cat} <<'EOF' >ebtables.sysv
 #!/bin/bash
@@ -57,86 +60,86 @@ prog="ebtables"
 desc="Ethernet bridge filtering"
 
 start() {
-	echo -n $"Starting $desc ($prog): "
-	%{_sbindir}/ebtables -t filter --atomic-file %{_sysconfdir}/sysconfig/ebtables.filter --atomic-commit || RETVAL=1
-	%{_sbindir}/ebtables -t nat --atomic-file %{_sysconfdir}/sysconfig/ebtables.nat --atomic-commit | RETVAL=1
-	%{_sbindir}/ebtables -t broute --atomic-file %{_sysconfdir}/sysconfig/ebtables.broute --atomic-commit || RETVAL=1
+    echo -n $"Starting $desc ($prog): "
+    %{_sbindir}/ebtables -t filter --atomic-file %{_sysconfdir}/sysconfig/ebtables.filter --atomic-commit || RETVAL=1
+    %{_sbindir}/ebtables -t nat --atomic-file %{_sysconfdir}/sysconfig/ebtables.nat --atomic-commit | RETVAL=1
+    %{_sbindir}/ebtables -t broute --atomic-file %{_sysconfdir}/sysconfig/ebtables.broute --atomic-commit || RETVAL=1
 
-	if [ $RETVAL -eq 0 ]; then
-		success "$prog startup"
-		rm -f %{_localstatedir}/lock/subsys/$prog
-	else
-		failure "$prog startup"
-	fi
+    if [ $RETVAL -eq 0 ]; then
+        success "$prog startup"
+        rm -f %{_localstatedir}/lock/subsys/$prog
+    else
+        failure "$prog startup"
+    fi
 
-	echo
-	return $RETVAL
+    echo
+    return $RETVAL
 }
 
 stop() {
-	echo -n $"Starting $desc ($prog): "
-	%{_sbindir}/ebtables -t filter --init-table || RETVAL=1
-	%{_sbindir}/ebtables -t nat --init-table || RETVAL=1
-	%{_sbindir}/ebtables -t broute --init-table || RETVAL=1
+    echo -n $"Starting $desc ($prog): "
+    %{_sbindir}/ebtables -t filter --init-table || RETVAL=1
+    %{_sbindir}/ebtables -t nat --init-table || RETVAL=1
+    %{_sbindir}/ebtables -t broute --init-table || RETVAL=1
 
-	for mod in $(grep -E '^(ebt|ebtable)_' /proc/modules | cut -f1 -d' ') ebtables; do
-		rmmod $mod || RETVAL=1
-	done
+    for mod in $(grep -E '^(ebt|ebtable)_' /proc/modules | cut -f1 -d' ') ebtables; do
+        rmmod $mod || RETVAL=1
+    done
 
-	if [ $RETVAL -eq 0 ]; then
-		success "$prog shutdown"
-		rm -f %{_localstatedir}/lock/subsys/$prog
-	else
-		failure "$prog shutdown"
-	fi
+    if [ $RETVAL -eq 0 ]; then
+        success "$prog shutdown"
+        rm -f %{_localstatedir}/lock/subsys/$prog
+    else
+        failure "$prog shutdown"
+    fi
 
-	echo
-	return $RETVAL
+    echo
+    return $RETVAL
 }
 
 restart() {
-	stop
-	start
+    stop
+    start
 }
 
 save() {
-	echo -n $"Saving $desc ($prog): "
-	%{_sbindir}/ebtables -t filter --atomic-file %{_sysconfdir}/sysconfig/ebtables.filter --atomic-save || RETVAL=1
-	%{_sbindir}/ebtables -t nat --atomic-file %{_sysconfdir}/sysconfig/ebtables.nat --atomic-save || RETVAL=1
-	%{_sbindir}/ebtables -t broute --atomic-file %{_sysconfdir}/sysconfig/ebtables.broute --atomic-save || RETVAL=1
+    echo -n $"Saving $desc ($prog): "
+    %{_sbindir}/ebtables -t filter --atomic-file %{_sysconfdir}/sysconfig/ebtables.filter --atomic-save || RETVAL=1
+    %{_sbindir}/ebtables -t nat --atomic-file %{_sysconfdir}/sysconfig/ebtables.nat --atomic-save || RETVAL=1
+    %{_sbindir}/ebtables -t broute --atomic-file %{_sysconfdir}/sysconfig/ebtables.broute --atomic-save || RETVAL=1
 
-	if [ $RETVAL -eq 0 ]; then
-		success "$prog saved"
-	else
-		failure "$prog saved"
-	fi
-	echo
+    if [ $RETVAL -eq 0 ]; then
+        success "$prog saved"
+    else
+        failure "$prog saved"
+    fi
+    echo
 }
 
 case "$1" in
   start)
-	start
-	;;
+    start
+    ;;
   stop)
-	stop
-	;;
+    stop
+    ;;
   restart|reload)
-	restart
-	;;
+    restart
+    ;;
   condrestart)
-	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-	RETVAL=$?
-	;;
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
   save)
-	save
-	;;
+    save
+    ;;
   status)
-	status $prog
-	RETVAL=$?
-	;;
+    status $prog
+    RETVAL=$?
+    ;;
   *)
-	echo $"Usage $0 {start|stop|restart|condrestart|save|status}"
-	RETVAL=1
+    echo $"Usage $0 {start|stop|restart|condrestart|save|status}"
+    RETVAL=1
 esac
 
 exit $RETVAL
@@ -148,6 +151,8 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 ebtables %{buildroot}%{_sbindir}/ebtables
+%{__install} -Dp -m0755 ebtables-restore %{buildroot}%{_sbindir}/ebtables-restore
+%{__install} -Dp -m0755 ebtables-save %{buildroot}%{_sbindir}/ebtables-save
 %{__install} -Dp -m0755 ebtables.sysv %{buildroot}%{_initrddir}/ebtables
 %{__install} -Dp -m0644 ethertypes %{buildroot}%{_sysconfdir}/ethertypes
 %{__install} -Dp -m0644 ebtables.8 %{buildroot}%{_mandir}/man8/ebtables.8
@@ -168,8 +173,8 @@ touch %{buildroot}%{_sysconfdir}/ebtables.broute
 
 %preun
 if [ $1 -eq 0 ]; then
-	/sbin/service ebtables stop &>/dev/null || :
-	/sbin/chkconfig --del ebtables
+    /sbin/service ebtables stop &>/dev/null || :
+    /sbin/chkconfig --del ebtables
 fi
 
 %postun
@@ -184,11 +189,17 @@ fi
 %config %{_initrddir}/ebtables
 %{_libdir}/libebt*.so
 %{_sbindir}/ebtables
+%{_sbindir}/ebtables-restore
+%{_sbindir}/ebtables-save
 %ghost %{_sysconfdir}/ebtables.filter
 %ghost %{_sysconfdir}/ebtables.nat
 %ghost %{_sysconfdir}/ebtables.broute
 
 %changelog
+* Wed Jan 30 2008 Jon Peatfield <J.S.Peatfield@damtp.cam.ac.uk> - 2.0.8.2-1
+- Updated to release 2.0.8-2.
+- Added ebtables-restore and ebtables-save.
+
 * Sun Sep 30 2007 Dag Wieers <dag@wieers.com> - 2.0.8-1
 - Updated to release 2.0.8.
 
