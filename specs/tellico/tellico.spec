@@ -9,7 +9,7 @@
 
 Summary: collection manager
 Name: tellico
-Version: 1.3
+Version: 1.3.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgcrypt-devel, gcc-c++, gettext, libxslt-devel
 BuildRequires: kdelibs-devel, desktop-file-utils, libxml2-devel
-BuildRequires: kdemultimedia-devel
+#BuildRequires: kdemultimedia-devel
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
 
@@ -76,6 +76,9 @@ source /etc/profile.d/qt.sh
 %{_datadir}/config/tellicorc
 
 %changelog
+* Thu Mar 13 2008 Dries Verachtert <dries@ulyssis.org> - 1.3.1-1
+- Updated to release 1.3.1.
+
 * Sun Feb  3 2008 Dries Verachtert <dries@ulyssis.org> - 1.3-1
 - Updated to release 1.3.
 

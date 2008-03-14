@@ -8,7 +8,7 @@
 
 Summary: Battle for Wesnoth is a fantasy turn-based strategy game
 Name: wesnoth
-Version: 1.2.4
+Version: 1.4
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -32,16 +32,6 @@ and are carried over from one scenario to the next campaign.
 %prep
 %setup
 
-%{__cat} <<EOF >wesnoth.desktop
-[Desktop Entry]
-Version=1.0
-Type=Application
-Encoding=UTF-8
-Name=Wesnoth
-Exec=wesnoth
-Categories=Application;Game;ArcadeGame;
-EOF
-
 %build
 %configure
 %{__make} %{?_smp_mflags}
@@ -51,26 +41,25 @@ EOF
 %{__make} install \
 	DESTDIR="%{buildroot}"
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor %{desktop_vendor}    \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	wesnoth.desktop
-
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING MANUAL MANUAL.* README
+%doc COPYING README
 %doc %{_mandir}/man6/wesnoth*
 %doc %{_mandir}/*/man6/wesnoth*
 %{_bindir}/wesnoth
-%{_bindir}/wmlxgettext
-%{_datadir}/applications/%{desktop_vendor}-wesnoth.desktop
+#%{_bindir}/wmlxgettext
+%{_datadir}/applications/wesnoth.desktop
+%{_datadir}/icons/wesnoth-icon.png
 %{_datadir}/wesnoth/
+%doc %{_docdir}/wesnoth/
 
 %changelog
+* Thu Mar 13 2008 Dries Verachtert <dries@ulyssis.org> - 1.4-1
+- Updated to release 1.4.
+
 * Mon Apr 16 2007 Dries Verachtert <dries@ulyssis.org> - 1.2.4-1
 - Updated to release 1.2.4.
 

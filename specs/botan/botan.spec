@@ -3,7 +3,7 @@
 
 Summary: Library implementing a variety of cryptographic algorithms and formats
 Name: botan
-Version: 1.6.3
+Version: 1.6.4
 Release: 1
 License: Other
 Group: System Environment/Libraries
@@ -67,6 +67,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libbotan.a
 
 %changelog
+* Thu Mar 13 2008 Dries Verachtert <dries@ulyssis.org> - 1.6.4-1
+- Updated to release 1.6.4.
+
 * Sun Jul 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.6.3-1
 - Updated to release 1.6.3.
 
