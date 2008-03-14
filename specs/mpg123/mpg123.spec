@@ -45,7 +45,7 @@
 
 Summary: MPEG audio player
 Name: mpg123
-Version: 1.3.0
+Version: 1.3.1
 Release: 1
 License: GPL/LGPL
 Group: Applications/Multimedia
@@ -116,6 +116,9 @@ export SDL_LIBS="$(sdl-config --libs)"
 %exclude %{_libdir}/libmpg123.la
 
 %changelog
+* Sun Mar 09 2008 Dag Wieers <dag@wieers.com> - 1.3.1-1
+- Updated to release 1.3.1.
+
 * Mon Mar 03 2008 Dag Wieers <dag@wieers.com> - 1.3.0-1
 - Updated to release 1.3.0.
 

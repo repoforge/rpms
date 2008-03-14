@@ -4,7 +4,7 @@
 
 Summary: Monitor the progress of data through a pipe
 Name: pv
-Version: 1.1.0
+Version: 1.1.4
 Release: 1
 License: Artistic
 Group: Development/Tools
@@ -53,14 +53,14 @@ will be until completion.
 %{_bindir}/pv
 
 %changelog
+* Fri Mar 07 2008 Dag Wieers <dag@wieers.com> - 1.1.4-1
+- Updated to release 1.1.4.
+
 * Tue Jan 15 2008 Dries Verachtert <dries@ulyssis.org> - 1.1.0-1
 - Updated to release 1.1.0.
 
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.6-1
 - Updated to release 0.9.6.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.2-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Sep 03 2005 Dag Wieers <dag@wieers.com> - 0.9.2-1
 - Updated to release 0.9.2.

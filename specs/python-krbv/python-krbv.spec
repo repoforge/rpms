@@ -14,7 +14,7 @@ Group: Development/Languages
 URL: http://people.redhat.com/mikeb/python-krbV/
 
 Source: http://people.redhat.com/mikeb/python-krbV/python-krbV-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-devel >= 2.2
 BuildRequires: krb5-devel >= 1.2.2

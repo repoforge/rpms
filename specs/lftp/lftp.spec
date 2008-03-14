@@ -7,7 +7,7 @@
 
 Summary: Sophisticated file transfer program
 Name: lftp
-Version: 3.6.3
+Version: 3.7.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -62,6 +62,9 @@ export CPPFLAGS="-I/usr/kerberos/include"
 %{_libdir}/liblftp-tasks.so*
 
 %changelog
+* Thu Mar 13 2008 Dag Wieers <dag@wieers.com> - 3.7.0-1
+- Updated to release 3.7.0.
+
 * Mon Jan 28 2008 Dag Wieers <dag@wieers.com> - 3.6.3-1
 - Updated to release 3.6.3.
 

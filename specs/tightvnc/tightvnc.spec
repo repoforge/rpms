@@ -25,7 +25,7 @@
 Summary: Graphical remote administration system
 Name: tightvnc
 Version: 1.3.9
-Release: 1
+Release: 2
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.tightvnc.com/
@@ -73,6 +73,8 @@ server, allowing others to access the desktop on your machine.
 
 %{__perl} -pi -e 's|/usr/local/vnc/classes|%{_datadir}/vnc/classes|;' vncserver
 %{__perl} -pi -e 's|unix/:7100|unix/:-1|;' vncserver
+%{!?_without_modxorg:%{__perl} -pi -e 's|^# (\$colorPath) = .+$|$1 = "/usr/share/X11/rgb";|' vncserver}
+%{?_without_modxorg:%{__perl} -pi -e 's|^# (\$colorPath) = .+$|$1 = "/usr/X11R6/lib/X11/rgb";|' vncserver}
 
 %{__cat} <<EOF >vncservers.sysconfig
 # The VNCSERVERS variable is a list of display:user pairs.
@@ -132,63 +134,63 @@ prog="Xvnc"
 desc="TightVNC remote administration daemon"
 
 start() {
-	echo -n $"Starting $desc ($prog):"
-	ulimit -S -c 0 &>/dev/null
-	for display in ${VNCSERVERS}; do
-		echo -n "${display} "
-		unset BASH_ENV ENV
-		initlog $INITLOG_ARGS -c \
-			"su ${display##*:} -c \"cd ~${display##*:} && [ -f .vnc/passwd ] && vncserver :${display%%:*}\""
-		RETVAL=$?
-		[ "$RETVAL" -ne 0 ] && break
-	done
-	[ "$RETVAL" -eq 0 ] && success $"vncserver startup" || failure $"vncserver start"
-	echo
-	[ "$RETVAL" -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Starting $desc ($prog):"
+    ulimit -S -c 0 &>/dev/null
+    for display in ${VNCSERVERS}; do
+        echo -n "${display} "
+        unset BASH_ENV ENV
+        initlog $INITLOG_ARGS -c \
+            "su ${display##*:} -c \"cd ~${display##*:} && [ -f .vnc/passwd ] && vncserver :${display%%:*}\""
+        RETVAL=$?
+        [ "$RETVAL" -ne 0 ] && break
+    done
+    [ "$RETVAL" -eq 0 ] && success $"vncserver startup" || failure $"vncserver start"
+    echo
+    [ "$RETVAL" -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 stop() {
-	echo -n $"Shutting down $desc ($prog): "
-	for display in ${VNCSERVERS}; do
-		echo -n "${display} "
-		unset BASH_ENV ENV
-		initlog $INITLOG_ARGS -c \
-			"su ${display##*:} -c \"vncserver -kill :${display%%:*}\" &>/dev/null"
-	done
-	RETVAL=$?
-	[ "$RETVAL" -eq 0 ] && success $"vncserver shutdown" || failure $"vncserver shutdown"
-	echo
-	[ "$RETVAL" -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Shutting down $desc ($prog): "
+    for display in ${VNCSERVERS}; do
+        echo -n "${display} "
+        unset BASH_ENV ENV
+        initlog $INITLOG_ARGS -c \
+            "su ${display##*:} -c \"vncserver -kill :${display%%:*}\" &>/dev/null"
+    done
+    RETVAL=$?
+    [ "$RETVAL" -eq 0 ] && success $"vncserver shutdown" || failure $"vncserver shutdown"
+    echo
+    [ "$RETVAL" -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 restart() {
-	stop
-	start
+    stop
+    start
 }
 
 case "$1" in
   start)
-	start
-	;;
+    start
+    ;;
   stop)
-	stop
-	;;
+    stop
+    ;;
   restart|reload)
-	restart
-	;;
+    restart
+    ;;
   condrestart)
-	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-	RETVAL=$?
-	;;
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
   status)
-	status $prog
-	RETVAL=$?
-	;;
+    status $prog
+    RETVAL=$?
+    ;;
   *)
-	echo $"Usage: $0 {start|stop|restart|condrestart|status}"
-	RETVAL=1
+    echo $"Usage: $0 {start|stop|restart|condrestart|status}"
+    RETVAL=1
 esac
 
 exit $RETVAL
@@ -203,14 +205,14 @@ xmkmf -a
 cd Xvnc
 %configure
 %{__make} CDEBUGFLAGS="%{optflags}" \
-	EXTRA_DEFINES="-DUSE_LIBWRAP=1" \
-	EXTRA_LIBRARIES="-lwrap -lnss_nis"
+    EXTRA_DEFINES="-DUSE_LIBWRAP=1" \
+    EXTRA_LIBRARIES="-lwrap -lnss_nis"
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1/ \
-			%{buildroot}%{_datadir}/vnc/
+            %{buildroot}%{_mandir}/man1/ \
+            %{buildroot}%{_datadir}/vnc/
 ./vncinstall %{buildroot}%{_bindir} %{buildroot}%{_mandir}
 
 %{__cp} -apR classes %{buildroot}%{_datadir}/vnc/
@@ -219,13 +221,13 @@ cd Xvnc
 %{__install} -Dp -m0644 vncservers.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/vncservers
 
 %if %{?_without_freedesktop:1}0
-        %{__install} -Dp -m0644 vncviewer.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/vncviewer.desktop
+    %{__install} -Dp -m0644 vncviewer.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/vncviewer.desktop
 %else
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-        desktop-file-install --vendor %{desktop_vendor}    \
-                --add-category X-Red-Hat-Base              \
-                --dir %{buildroot}%{_datadir}/applications \
-                vncviewer.desktop
+    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+    desktop-file-install --vendor %{desktop_vendor}    \
+        --add-category X-Red-Hat-Base              \
+        --dir %{buildroot}%{_datadir}/applications \
+        vncviewer.desktop
 %endif
 
 %clean
@@ -236,8 +238,8 @@ cd Xvnc
 
 %preun server
 if [ $1 -eq 0 ]; then
-	/sbin/service vncserver stop &>/dev/null || :
-	/sbin/chkconfig --del vncserver
+    /sbin/service vncserver stop &>/dev/null || :
+    /sbin/chkconfig --del vncserver
 fi
 
 %postun server
@@ -267,6 +269,9 @@ fi
 %{_datadir}/vnc/
 
 %changelog
+* Thu Mar 13 2008 Dag Wieers <dag@wieers.com> - 1.3.9-2
+- Added fix for rgb.txt support. (Alberto Lusiani)
+
 * Tue May 08 2007 Dag Wieers <dag@wieers.com> - 1.3.9-1
 - Updated to release 1.3.9.
 

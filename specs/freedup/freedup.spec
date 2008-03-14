@@ -3,8 +3,8 @@
 
 Summary: Reclaim space on your drive
 Name: freedup
-%define real_version 1.5-2
-Version: 1.5.2
+%define real_version 1.5-3
+Version: 1.5.3
 Release: 1
 License: GPL
 Group: Applications/File
@@ -44,8 +44,11 @@ content.
 %{_bindir}/freedup
 
 %changelog
+* Fri Mar 07 2008 Dag Wieers <dag@wieers.com> - 1.5.3-1
+- Updated to release 1.5-3.
+
 * Mon Mar 03 2008 Dag Wieers <dag@wieers.com> - 1.5.2-1
-- Updated to release 1.5-1.
+- Updated to release 1.5-2.
 
 * Sun Feb 03 2008 Dag Wieers <dag@wieers.com> - 1.5.1-1
 - Updated to release 1.5-1.

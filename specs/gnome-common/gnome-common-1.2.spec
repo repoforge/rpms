@@ -1,17 +1,17 @@
-# $Id$
+# $Id: gnome-common.spec 4303 2006-04-18 22:05:03Z dries $
 # Authority: dag
 
-# ExclusiveDist: el5
+# ExclusiveDist: el2 rh7 rh9 el3
 
 Summary: Useful things common to building gnome packages
 Name: gnome-common
-Version: 2.12.0
+Version: 1.2.4
 Release: 1
 License: GPL
 Group: Development/Tools
-URL: http://developer.gnome.org/
+URL: http://ftp.gnome.org/pub/GNOME/sources/gnome-common/
 
-Source: http://ftp.gnome.org/pub/GNOME/sources/gnome-common/2.12/gnome-common-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/gnome-common/1.2/gnome-common-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig
@@ -39,17 +39,14 @@ every GNOME application.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README doc/*.txt
 %{_bindir}/gnome-autogen.sh
-%{_bindir}/gnome-doc-common
 %dir %{_datadir}/aclocal/
-%{_datadir}/aclocal/gnome-common.m4
-%{_datadir}/aclocal/gnome-compiler-flags.m4
-%{_datadir}/gnome-common/
+%{_datadir}/aclocal/gnome-macros/
+%{_datadir}/aclocal/gnome2-macros/
 
 %changelog
-* Thu Mar 13 2008 Dag Wieers <dag@wieers.com> - 2.12.0-1
-- Updated to release 2.12.0.
+* Tue Feb 25 2003 Dag Wieers <dag@wieers.com> - 1.2.4-1
+- Improved SPEC file.
 
 * Tue Feb 25 2003 Dag Wieers <dag@wieers.com> - 1.2.4-0
 - Initial package. (using DAR)

@@ -5,8 +5,9 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _without_embedperl 1}
-%{?rh7:%define _without_perlcache 1}
 %{?el2:%define _without_embedperl 1}
+
+%{?rh7:%define _without_perlcache 1}
 %{?el2:%define _without_perlcache 1}
 
 ### FIXME: TODO: Add sysv script based on template. (remove cmd-file on start-up)
@@ -14,13 +15,13 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: nagios
-Version: 2.10
+Version: 2.11
 Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
 
-Source: http://dl.sf.net/nagios/nagios-%{version}.tar.gz
+Source0: http://dl.sf.net/nagios/nagios-%{version}.tar.gz
 Source1: http://dl.sf.net/nagios/imagepak-base.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -52,35 +53,37 @@ you will need to install %{name}-devel.
 %prep
 %setup
 
+%{__perl} -pi.orig -e 's|/usr/local/nagios/var/rw|%{_localstatedir}/nagios/rw|g;' eventhandlers/submit_check_result
+
 %build
 %configure \
-	--datadir="%{_datadir}/nagios" \
-	--libexecdir="%{_libdir}/nagios/plugins" \
-	--localstatedir="%{_localstatedir}/log/nagios" \
-	--sbindir="%{_libdir}/nagios/cgi" \
-	--sysconfdir="%{_sysconfdir}/nagios" \
-	--with-cgiurl="/nagios/cgi-bin" \
-	--with-command-user="apache" \
-	--with-command-group="apache" \
-	--with-gd-lib="%{_libdir}" \
-	--with-gd-inc="%{_includedir}" \
-	--with-htmurl="/nagios" \
-	--with-init-dir="%{_initrddir}" \
-	--with-lockfile="%{_localstatedir}/run/nagios.pid" \
-	--with-mail="/bin/mail" \
-	--with-nagios-user="nagios" \
-	--with-nagios-group="nagios" \
+    --datadir="%{_datadir}/nagios" \
+    --libexecdir="%{_libdir}/nagios/plugins" \
+    --localstatedir="%{_localstatedir}/log/nagios" \
+    --sbindir="%{_libdir}/nagios/cgi" \
+    --sysconfdir="%{_sysconfdir}/nagios" \
+    --with-cgiurl="/nagios/cgi-bin" \
+    --with-command-user="apache" \
+    --with-command-group="apache" \
+    --with-gd-lib="%{_libdir}" \
+    --with-gd-inc="%{_includedir}" \
+    --with-htmurl="/nagios" \
+    --with-init-dir="%{_initrddir}" \
+    --with-lockfile="%{_localstatedir}/run/nagios.pid" \
+    --with-mail="/bin/mail" \
+    --with-nagios-user="nagios" \
+    --with-nagios-group="nagios" \
 %{!?_without_embedperl:--enable-embedded-perl} \
-%{?_without_embedperl:--disable-embedded-perl} \
-%{?_without_embedperl:--without-embedded-perl} \
 %{!?_without_perlcache:--with-perlcache} \
-%{?_without_perlcache:--without-perlcache} \
-%{?_without_perlcache:--disable-perlcache} \
-	--with-template-objects \
-	--with-template-extinfo \
-	--enable-event-broker
+    --with-template-objects \
+    --with-template-extinfo \
+    --enable-event-broker
 %{__make} %{?_smp_mflags} all
+
+### Apparently contrib wants to do embedded-perl stuff as well and does not obey configure !
+%if %{!?_without_embedperl:1}0
 %{__make} %{?_smp_mflags} -C contrib
+%endif
 
 %install
 %{__rm} -rf %{buildroot}
@@ -90,9 +93,12 @@ you will need to install %{name}-devel.
     COMMAND_OPTS="" \
     INIT_OPTS=""
 
+### Apparently contrib wants to do embedded-perl stuff as well and does not obey configure !
+%if %{!?_without_embedperl:1}0
 %{__make} install -C contrib \
     DESTDIR="%{buildroot}" \
     INSTALL_OPTS=""
+%endif
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/nagios/plugins/eventhandlers/
 %{__cp} -afpv contrib/eventhandlers/* %{buildroot}%{_libdir}/nagios/plugins/eventhandlers/
@@ -107,42 +113,42 @@ tar -xvz -C %{buildroot}%{_datadir}/nagios/images/logos -f %{SOURCE1}
 
 %pre
 if ! /usr/bin/id nagios &>/dev/null; then
-	/usr/sbin/useradd -r -d %{_localstatedir}/log/nagios -s /bin/sh -c "nagios" nagios || \
-		%logmsg "Unexpected error adding user \"nagios\". Aborting installation."
+    /usr/sbin/useradd -r -d %{_localstatedir}/log/nagios -s /bin/sh -c "nagios" nagios || \
+        %logmsg "Unexpected error adding user \"nagios\". Aborting installation."
 fi
 if ! /usr/bin/getent group nagiocmd &>/dev/null; then
-	/usr/sbin/groupadd nagiocmd &>/dev/null || \
-		%logmsg "Unexpected error adding group \"nagiocmd\". Aborting installation."
+    /usr/sbin/groupadd nagiocmd &>/dev/null || \
+        %logmsg "Unexpected error adding group \"nagiocmd\". Aborting installation."
 fi
 
 %post
 /sbin/chkconfig --add nagios
 
 if /usr/bin/id apache &>/dev/null; then
-	if ! /usr/bin/id -Gn apache 2>/dev/null | grep -q nagios ; then
-		/usr/sbin/usermod -G nagios,nagiocmd apache &>/dev/null
-	fi
+    if ! /usr/bin/id -Gn apache 2>/dev/null | grep -q nagios ; then
+        /usr/sbin/usermod -G nagios,nagiocmd apache &>/dev/null
+    fi
 else
-	%logmsg "User \"apache\" does not exist and is not added to group \"nagios\". Sending commands to Nagios from the command CGI is not possible."
+    %logmsg "User \"apache\" does not exist and is not added to group \"nagios\". Sending commands to Nagios from the command CGI is not possible."
 fi
 
 if [ -f %{_sysconfdir}/httpd/conf/httpd.conf ]; then
-	if ! grep -q "Include .*/nagios.conf" %{_sysconfdir}/httpd/conf/httpd.conf; then
-		echo -e "\n# Include %{_sysconfdir}/httpd/conf.d/nagios.conf" >> %{_sysconfdir}/httpd/conf/httpd.conf
-#		/sbin/service httpd restart
-	fi
+    if ! grep -q "Include .*/nagios.conf" %{_sysconfdir}/httpd/conf/httpd.conf; then
+        echo -e "\n# Include %{_sysconfdir}/httpd/conf.d/nagios.conf" >> %{_sysconfdir}/httpd/conf/httpd.conf
+#       /sbin/service httpd restart
+    fi
 fi
 
 %preun
 if [ $1 -eq 0 ]; then
-	/sbin/service nagios stop &>/dev/null || :
-	/sbin/chkconfig --del nagios
+    /sbin/service nagios stop &>/dev/null || :
+    /sbin/chkconfig --del nagios
 fi
 
 %postun
 if [ $1 -eq 0 ]; then
-	/usr/sbin/userdel nagios || %logmsg "User \"nagios\" could not be deleted."
-	/usr/sbin/groupdel nagios || %logmsg "Group \"nagios\" could not be deleted."
+    /usr/sbin/userdel nagios || %logmsg "User \"nagios\" could not be deleted."
+    /usr/sbin/groupdel nagios || %logmsg "Group \"nagios\" could not be deleted."
 fi
 /sbin/service nagios condrestart &>/dev/null || :
 
@@ -154,12 +160,12 @@ fi
 %doc Changelog INSTALLING LICENSE README UPGRADING
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/nagios.conf
 %config %{_initrddir}/nagios
-%{_bindir}/convertcfg
+%{!?_without_embedperl:%{_bindir}/convertcfg}
 %{_bindir}/nagios
 %{_bindir}/nagiostats
 %{!?_without_perlcache:%{_bindir}/p1.pl}
-%{_bindir}/mini_epn
-%{_bindir}/new_mini_epn
+%{!?_without_embedperl:%{_bindir}/mini_epn}
+%{!?_without_embedperl:%{_bindir}/new_mini_epn}
 %{_libdir}/nagios/
 %{_datadir}/nagios/
 
@@ -181,6 +187,10 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Thu Mar 13 2008 Dag Wieers <dag@wieers.com> - 2.11-1
+- Updated to release 2.11.
+- Fixed a wrong reference to /usr/local. (Christophe Sahut)
+
 * Wed Oct 24 2007 Christoph Maser <cmr@financial.com> - 2.10-1
 - Updated to release 2.10.
 

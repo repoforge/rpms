@@ -3,7 +3,7 @@
 
 Summary: Lua scripting language
 Name: lua
-Version: 5.0.2
+Version: 5.1.3
 Release: 1
 License: MIT
 Group: Development/Libraries
@@ -38,29 +38,26 @@ you will need to install %{name}-devel.
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
 %{__perl} -pi.orig -e '
-		s|^(INSTALL_ROOT=).*$|$1 \$(prefix)|;
-		s|^(INSTALL_BIN=).*$|$1 \$(bindir)|;
-		s|^(INSTALL_INC=).*$|$1 \$(includedir)|;
-		s|^(INSTALL_LIB=).*$|$1 \$(libdir)|;
-		s|^(INSTALL_MAN=).*$|$1 \$(mandir)/man1|;
-		s|^(INSTALL_EXEC=).*$|$1 %{__install} -p -m0755|;
-		s|^(INSTALL_DATA=).*$|$1 %{__install} -p -m0644|;
-	' config
+        s|^(INSTALL_ROOT=).*$|$1 \$(prefix)|;
+        s|^(INSTALL_BIN=).*$|$1 \$(bindir)|;
+        s|^(INSTALL_INC=).*$|$1 \$(includedir)|;
+        s|^(INSTALL_LIB=).*$|$1 \$(libdir)|;
+        s|^(INSTALL_MAN=).*$|$1 \$(mandir)/man1|;
+        s|^(INSTALL_EXEC=).*$|$1 %{__install} -p -m0755|;
+        s|^(INSTALL_DATA=).*$|$1 %{__install} -p -m0644|;
+    ' config
 
 %build
 %{__make} %{?_smp_mflags} all so \
-	MYCFLAGS="%{optflags} -fPIC"
+    MYCFLAGS="%{optflags} -fPIC"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 %{__install} -p -m0755 lib/*.so* %{buildroot}%{_libdir}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -79,6 +76,9 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
+* Sun Feb 10 2008 Dag Wieers <dag@wieers.com> - 5.1.3-1
+- Updated to release 5.1.3.
+
 * Tue Mar 23 2004 Dag Wieers <dag@wieers.com> - 5.0.2-1
 - Updated to release 5.0.2.
 

@@ -1,13 +1,13 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
 
-### EL ships with liboil 0.3.8-2.1
+### EL5 ships with liboil 0.3.8-2.1
 # ExclusiveDist: el2 rh7 rh9 el3 el4
 
 Summary: Library of Optimized Inner Loops, CPU optimized functions
 Name: liboil
-Version: 0.3.12
-Release: 0
+Version: 0.3.13
+Release: 0.1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://liboil.freedesktop.org/
@@ -23,7 +23,6 @@ and summing an array of N numbers. Clearly such functions are candidates for
 significant optimization using various techniques, especially by using
 extended instructions provided by modern CPUs (Altivec, MMX, SSE, etc.).
 
-
 %package devel
 Summary: Development files and static library for liboil
 Group: Development/Libraries
@@ -37,33 +36,26 @@ and summing an array of N numbers. Clearly such functions are candidates for
 significant optimization using various techniques, especially by using
 extended instructions provided by modern CPUs (Altivec, MMX, SSE, etc.).
 
-
 %prep
 %setup
-
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
-
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog
+%doc AUTHORS BUG-REPORTING COPYING HACKING NEWS README
 %{_bindir}/oil-bugreport
 %{_libdir}/liboil-0.3.so.*
 
@@ -76,8 +68,10 @@ extended instructions provided by modern CPUs (Altivec, MMX, SSE, etc.).
 %{_libdir}/pkgconfig/liboil-0.3.pc
 %doc %{_datadir}/gtk-doc/html/liboil/
 
-
 %changelog
+* Fri Mar 07 2008 Dag Wieers <dag@wieers.com> - 0.3.13-1
+- Updated to release 0.3.13.
+
 * Sat Jun 02 2007 Dag Wieers <dag@wieers.com> - 0.3.12-1
 - Updated to release 0.3.12.
 
