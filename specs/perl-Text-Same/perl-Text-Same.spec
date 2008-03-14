@@ -9,7 +9,7 @@
 
 Summary: Look for similarities between files or arrays
 Name: perl-Text-Same
-Version: 0.06
+Version: 0.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,13 +44,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Text::Same*
-%doc %{_mandir}/man1/psame*
-%{perl_vendorlib}/Text/Same.pm
-%{perl_vendorlib}/Text/Same/
+%doc Changes MANIFEST META.yml README SIGNATURE
+%doc %{_mandir}/man1/psame.1*
+%doc %{_mandir}/man3/Text::Same.3pm*
+%doc %{_mandir}/man3/Text::Same::*.3pm*
 %{_bindir}/psame
+%dir %{perl_vendorlib}/Text/
+%{perl_vendorlib}/Text/Same/
+%{perl_vendorlib}/Text/Same.pm
 
 %changelog
+* Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 0.07-1
+- Updated to release 0.07.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.

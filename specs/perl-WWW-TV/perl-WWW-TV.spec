@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dries
-# Upstream: Danial Pearce <tigris$cpan,org>
+# Upstream: Danial Pearce <cpan$tigris,id,au>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name WWW-TV
 
-Summary: arse TV.com for information about TV shows
+Summary: Parse TV.com for information about TV shows
 Name: perl-WWW-TV
-Version: 0.08
+Version: 0.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,7 +44,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE MANIFEST README
+%doc Changes LICENSE MANIFEST MANIFEST.SKIP META.yml README
 %doc %{_mandir}/man3/WWW::TV.3pm*
 %doc %{_mandir}/man3/WWW::TV::*.3pm*
 %dir %{perl_vendorlib}/WWW/
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WWW/TV.pm
 
 %changelog
+* Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 0.09-1
+- Updated to release 0.09.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.08-1
 - Updated to release 0.08.
 

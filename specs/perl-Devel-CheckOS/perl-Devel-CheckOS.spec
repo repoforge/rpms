@@ -9,7 +9,7 @@
 
 Summary: Check what OS we are running on
 Name: perl-Devel-CheckOS
-Version: 1.42
+Version: 1.43
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,5 +56,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Devel/CheckOS.pm
 
 %changelog
+* Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 1.43-1
+- Updated to release 1.43.
+
 * Sat Dec 08 2007 Dag Wieers <dag@wieers.com> - 1.42-1
 - Initial package. (using DAR)

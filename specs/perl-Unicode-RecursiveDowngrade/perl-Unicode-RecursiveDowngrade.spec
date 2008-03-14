@@ -9,7 +9,7 @@
 
 Summary: Perl module to turn off the UTF-8 flags inside of complex variable
 Name: perl-Unicode-RecursiveDowngrade
-Version: 0.03
+Version: 0.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -24,10 +24,6 @@ BuildRequires: perl
 %description
 perl-Unicode-RecursiveDowngrade is a Perl module to turn off the UTF-8 flags
 inside of complex variable.
-
-This package contains the following Perl module:
-
-    Unicode::RecursiveDowngrade
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -55,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Unicode/RecursiveDowngrade.pm
 
 %changelog
+* Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 0.04-1
+- Updated to release 0.04.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.03-1
 - Initial package. (using DAR)

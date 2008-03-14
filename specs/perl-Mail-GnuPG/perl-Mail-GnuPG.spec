@@ -7,9 +7,9 @@
 
 %define real_name Mail-GnuPG
 
-Summary: Perl module to process email with GPG
+Summary: Process email with GPG
 Name: perl-Mail-GnuPG
-Version: 0.10
+Version: 0.15
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Mail/GnuPG.pm
 
 %changelog
+* Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 0.15-1
+- Updated to release 0.15.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.10-1
 - Updated to release 0.10.
 

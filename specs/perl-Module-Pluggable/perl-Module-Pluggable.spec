@@ -9,7 +9,7 @@
 
 Summary: Automatically give your module the ability to have plugins
 Name: perl-Module-Pluggable
-Version: 3.6
+Version: 3.7
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -25,10 +25,6 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 %description
 Provides a simple but, hopefully, extensible way of having 'plugins' for
 your module.
-
-This package contains the following Perl module:
-
-    Devel::InnerPackage
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -60,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/Pluggable.pm
 
 %changelog
+* Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 3.7-1
+- Updated to release 3.7.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 3.6-1
 - Updated to release 3.6.
 

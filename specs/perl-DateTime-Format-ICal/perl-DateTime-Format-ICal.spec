@@ -1,17 +1,18 @@
 # $Id$
 # Authority: dag
 # Upstream: Dave Rolsky <autarch$urth,org>
+# Upstream: Flavio Soibelmann Glock <fglock$pucrs,br>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name DateTime-Format-ICal
 
-Summary: Perl module to parse and format iCal datetime and duration strings
+Summary: Parse and format iCal datetime and duration strings
 Name: perl-DateTime-Format-ICal
-Version: 0.08
+Version: 0.09
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Format-ICal/
 
@@ -46,12 +47,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE MANIFEST META.yml README
+%doc Changes LICENSE MANIFEST META.yml TODO
 %doc %{_mandir}/man3/DateTime::Format::ICal.3pm*
 %dir %{perl_vendorlib}/DateTime/
 %dir %{perl_vendorlib}/DateTime/Format/
 %{perl_vendorlib}/DateTime/Format/ICal.pm
 
 %changelog
+* Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 0.09-1
+- Updated to release 0.09.
+
 * Mon Apr 30 2007 Dag Wieers <dag@wieers.com> - 0.08-1
 - Initial package. (using DAR)

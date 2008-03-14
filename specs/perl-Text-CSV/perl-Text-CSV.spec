@@ -7,9 +7,9 @@
 
 %define real_name Text-CSV
 
-Summary: Comma-separated values manipulation routines
+Summary: comma-separated values manipulator (using XS or PurePerl)
 Name: perl-Text-CSV
-Version: 1.01
+Version: 1.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Text/CSV_PP.pm
 
 %changelog
+* Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 1.02-1
+- Updated to release 1.02.
+
 * Fri Mar 07 2008 Dag Wieers <dag@wieers.com> - 1.01-1
 - Updated to release 1.01.
 

@@ -1,30 +1,29 @@
 # $Id$
 # Authority: dag
-# Upstream: Dave Cross <dave$mag-sol,com>
+# Upstream: Nagios Plugin Development Team <nagiosplug-devel$lists,sourceforge,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Number-Fraction
+%define real_name Nagios-Plugin
 
-Summary: Perl extension to model fractions
-Name: perl-Number-Fraction
-Version: 1.11
+Summary: Family of perl modules to streamline writing Nagios
+Name: perl-Nagios-Plugin
+Version: 0.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Number-Fraction/
+URL: http://search.cpan.org/dist/Nagios-Plugin/
 
-Source: http://www.cpan.org/modules/by-module/Number/Number-Fraction-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/T/TO/TONVOON/Nagios-Plugin-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0
-BuildRequires: perl(Test::More)
-Requires: perl >= 0:5.6.0
+BuildRequires: perl
+BuildRequires: perl(Math::Calc::Units)
 
 %description
-Perl extension to model fractions.
+A family of perl modules to streamline writing Nagios.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -46,14 +45,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
-%doc %{_mandir}/man3/Number::Fraction.3pm*
-%dir %{perl_vendorlib}/Number/
-#%{perl_vendorlib}/Number/Fraction/
-%{perl_vendorlib}/Number/Fraction.pm
+%doc %{_mandir}/man3/Nagios::Plugin.3pm*
+%doc %{_mandir}/man3/Nagios::Plugin::*.3pm*
+%dir %{perl_vendorlib}/Nagios/
+%{perl_vendorlib}/Nagios/Plugin/
+%{perl_vendorlib}/Nagios/Plugin.pm
 
 %changelog
-* Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 1.11-1
-- Updated to release 1.11.
-
-* Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 1.09-1
+* Thu Mar 13 2008 Dag Wieers <dag@wieers.com> - 0.24-1
 - Initial package. (using DAR)

@@ -6,11 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name DateTime-Calendar-Discordian
-%define real_version 0.009005
+%define real_version 0.009006
 
-Summary: Extension for the Discordian Calendar
+Summary: Perl extension for the Discordian Calendar
 Name: perl-DateTime-Calendar-Discordian
-Version: 0.9.5
+Version: 0.9.6
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DateTime/Calendar/Discordian.pm
 
 %changelog
+* Wed Mar 12 2008 Dag Wieers <dag@wieers.com> - 0.9.6-1
+- Updated to release
+
 * Thu Mar 06 2008 Dag Wieers <dag@wieers.com> - 0.9.5-1
 - Updated to release 0.9.5.
 

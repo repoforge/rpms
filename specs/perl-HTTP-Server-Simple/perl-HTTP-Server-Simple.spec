@@ -9,7 +9,7 @@
 
 Summary: Simple standalone HTTP daemon
 Name: perl-HTTP-Server-Simple
-Version: 0.29
+Version: 0.30
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/HTTP/Server/Simple.pm
 
 %changelog
+* Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 0.30-1
+- Updated to release 0.30.
+
 * Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 0.29-1
 - Updated to release 0.29.
 

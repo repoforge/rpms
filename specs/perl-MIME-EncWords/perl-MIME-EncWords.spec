@@ -9,9 +9,9 @@
 
 Summary: Deal with RFC-1522 encoded words
 Name: perl-MIME-EncWords
-Version: 0.040
+Version: 1.002
 Release: 1
-License: Artistic/GPL
+License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-EncWords/
 
@@ -44,10 +44,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/MIME::EncWords*
+%doc ARTISTIC Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/MIME::EncWords.3pm*
+%dir %{perl_vendorlib}/MIME/
+#%{perl_vendorlib}/MIME/EncWords/
 %{perl_vendorlib}/MIME/EncWords.pm
 
 %changelog
+* Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 1.002-1
+- Updated to release 1.002.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.040-1
 - Initial package.

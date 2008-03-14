@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dag
-# Upstream: Laurent Dami <laurent dami *AT* free fr>
+# Upstream: Laurent Dami <laurent,dami$etat,ge,ch>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Hash-Type
 
-Summary: Perl module that implements pseudo-hashes as arrays
+Summary: pseudo-hashes as arrays tied to a "type" (list of fields)
 Name: perl-Hash-Type
-Version: 1.05
+Version: 1.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Hash/Type.pm
 
 %changelog
+* Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 1.08-1
+- Updated to release 1.08.
+
 * Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 1.05-1
 - Initial package. (using DAR)

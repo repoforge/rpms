@@ -9,7 +9,7 @@
 
 Summary: POE filter wrapped around Compress::Bzip2
 Name: perl-POE-Filter-Bzip2
-Version: 1.54
+Version: 1.56
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(POE::Filter::Line)
+BuildRequires: perl(POE::Filter::Stackable)
 BuildRequires: perl(Test::More) >= 0.47
 
 %description
@@ -53,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/POE/Filter/Bzip2.pm
 
 %changelog
+* Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 1.56-1
+- Updated to release 1.56.
+
 * Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 1.54-1
 - Updated to release 1.54.
 
