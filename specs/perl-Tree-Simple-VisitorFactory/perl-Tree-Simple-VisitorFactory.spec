@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Stevan Little <stevan$iinteractive,com>
+# Upstream: Stevan Little <stevan,little$iinteractive,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -10,7 +10,7 @@
 Summary: Visitor for Tree::Simple objects
 Name: perl-Tree-Simple-VisitorFactory
 Version: 0.10
-Release: 1.2
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tree-Simple-VisitorFactory/
@@ -21,6 +21,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+
+### Handle wrongly named package from the past.
+Obsoletes: perl-Tree-Simple-Visitor-FindByPath <= %{version}-%{release}
+Provides: perl-Tree-Simple-Visitor-FindByPath = %{version}-%{release}
 
 %description
 This module implements different versions of the Visitor pattern for Simple::Tree objects.
@@ -44,14 +48,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/Tree/Simple/VisitorFactory.pm
+%doc Changes MANIFEST README
+%doc %{_mandir}/man3/Tree::Simple::VisitorFactory.3pm*
+%doc %{_mandir}/man3/Tree::Simple::Visitor::*.3pm*
+%dir %{perl_vendorlib}/Tree/
+%dir %{perl_vendorlib}/Tree/Simple/
 %{perl_vendorlib}/Tree/Simple/Visitor/
+%{perl_vendorlib}/Tree/Simple/VisitorFactory.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1.2
-- Rebuild for Fedora Core 5.
+* Fri Mar 14 2008 Jose A-E <jose.auguste-etienne@cgss-guyane.fr> - 0.10-2
+- Obsolete perl-Tree-Simple-Visitor-FindByPath.
+
 
 * Thu Dec 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Initial package.

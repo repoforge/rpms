@@ -20,11 +20,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Curses)
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Term::ReadKey)
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::Pod)
-BuildRequires: perl(Curses)
-BuildRequires: perl(Term::ReadKey)
 
 %description
 A UI framework based on the curses library. Curses::UI contains
