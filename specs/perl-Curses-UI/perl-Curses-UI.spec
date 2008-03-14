@@ -23,6 +23,8 @@ BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::Pod)
+BuildRequires: perl(Curses)
+BuildRequires: perl(Term::ReadKey)
 
 %description
 A UI framework based on the curses library. Curses::UI contains
