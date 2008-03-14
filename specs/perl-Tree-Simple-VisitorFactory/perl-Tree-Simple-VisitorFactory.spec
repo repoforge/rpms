@@ -10,7 +10,7 @@
 Summary: Visitor for Tree::Simple objects
 Name: perl-Tree-Simple-VisitorFactory
 Version: 0.10
-Release: 2
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tree-Simple-VisitorFactory/
@@ -21,10 +21,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
-
-### Handle wrongly named package from the past.
-Obsoletes: perl-Tree-Simple-Visitor-FindByPath <= %{version}-%{release}
-Provides: perl-Tree-Simple-Visitor-FindByPath = %{version}-%{release}
 
 %description
 This module implements different versions of the Visitor pattern for Simple::Tree objects.
@@ -57,9 +53,5 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Tree/Simple/VisitorFactory.pm
 
 %changelog
-* Fri Mar 14 2008 Jose A-E <jose.auguste-etienne@cgss-guyane.fr> - 0.10-2
-- Obsolete perl-Tree-Simple-Visitor-FindByPath.
-
-
 * Thu Dec 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Initial package.
