@@ -8,6 +8,7 @@
 %define		libgnome	2.7.0
 %define		libgnomeui	2.7.0
 %define		evreq		2.8.0
+%define		razor		2.84
 
 Summary:	Rspam Evolution Plugin
 Name:		%{name}
@@ -21,6 +22,7 @@ URL: 		http://mips.edu.ms/
 Requires:	gtk2 >= %gtk2
 Requires:	libgnomeui >= %libgnomeui
 Requires:	evolution >= %evreq
+Requires:	razor-agents >= %razor
 BuildRequires:  evolution-devel, evolution-data-server-devel
 
 %description
