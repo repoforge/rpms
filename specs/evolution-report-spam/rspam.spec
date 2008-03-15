@@ -1,14 +1,13 @@
 # $Id$
 # Authority: 	dag
 %define         name    	rspam
-%define         version 	0.0.5
+%define         version 	0.0.6
 %define         release 	1
 %define         prefix  	/usr
 %define		gtk2		2.10.4
 %define		libgnome	2.7.0
 %define		libgnomeui	2.7.0
 %define		evreq		2.8.0
-%define		agents		2.8.4
 
 Summary:	Rspam Evolution Plugin
 Name:		%{name}
@@ -22,7 +21,6 @@ URL: 		http://mips.edu.ms/
 Requires:	gtk2 >= %gtk2
 Requires:	libgnomeui >= %libgnomeui
 Requires:	evolution >= %evreq
-Requires:	razor-agents >= %agents
 BuildRequires:  evolution-devel, evolution-data-server-devel
 
 %description
@@ -62,6 +60,9 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %{_libdir}/evolution/2.8/plugins/org-gnome-sa-rspam.eplug
 %{_libdir}/evolution/2.8/plugins/liborg-gnome-sa-rspam.so
 %{_libdir}/evolution/2.8/plugins/liborg-gnome-sa-rspam.la
+/etc/gconf/schemas/rspam.schemas
+%{_datadir}/locale/en_AU/LC_MESSAGES/rspam.mo
+%{_datadir}/locale/ro_RO/LC_MESSAGES/rspam.mo
 %doc AUTHORS
 %doc COPYING
 %doc ChangeLog
@@ -71,5 +72,8 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %doc TODO
 
 %changelog
+* Sat Mar 16 2008 Heiko Adams <info-2007{at}fedora-blog.de> - 0.0.6-1
+- update to version 0.0.6
+
 * Sat Jun 16 2007 Heiko Adams <info@fedora-blog.de>
 - Initial package for rpmForge.
