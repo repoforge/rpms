@@ -1,0 +1,12 @@
+diff -Nur wv-1.0.0-orig/wvWare.c wv-1.0.0/wvWare.c
+--- wv-1.0.0-orig/wvWare.c	2003-08-24 17:22:25.000000000 +0200
++++ wv-1.0.0/wvWare.c	2005-05-10 07:32:55.000000000 +0200
+@@ -1246,7 +1246,7 @@
+ 	   */
+ 	  printf ("\n\\resizebox{%dpt}{%dpt}\
+ 		  {\\includegraphics{%s.eps}}\
+-		  \n% -- %#.2x graphic -- \n", width, height, source, graphicstype);
++		  \n%% -- %#.2x graphic -- \n", width, height, source, graphicstype);
+       }
+     else
+       {

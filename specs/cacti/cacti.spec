@@ -12,7 +12,7 @@
 Summary: Complete network graphing solution designed on top of RRDTool
 Name: cacti
 Version: 0.8.7b
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.cacti.net/
@@ -81,7 +81,7 @@ EOF
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/cacti/
 %{__install} -p -m0644 *.php cacti.sql %{buildroot}%{_localstatedir}/www/cacti/
-%{__cp} -av docs/ images/ include/ install/ lib/ log/ resource/ rra/ scripts/ %{buildroot}%{_localstatedir}/www/cacti/
+%{__cp} -av cli/ docs/ images/ include/ install/ lib/ log/ resource/ rra/ scripts/ %{buildroot}%{_localstatedir}/www/cacti/
 
 %{__install} -Dp -m0644 cacti.crontab %{buildroot}%{_sysconfdir}/cron.d/cacti
 %{__install} -Dp -m0644 cacti.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/cacti.conf
@@ -109,6 +109,7 @@ fi
 %dir %{_localstatedir}/www/cacti/
 %{_localstatedir}/www/cacti/*.php
 %{_localstatedir}/www/cacti/cacti.sql
+%{_localstatedir}/www/cacti/cli/
 %{_localstatedir}/www/cacti/docs/
 %{_localstatedir}/www/cacti/images/
 %{_localstatedir}/www/cacti/include/
@@ -126,6 +127,9 @@ fi
 %doc docs/*
 
 %changelog
+* Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 0.8.7b-2
+- Added missing CLI interface. (William Burns)
+
 * Tue Feb 12 2008 Dag Wieers <dag@wieers.com> - 0.8.7b-1
 - Updated to release 0.8.7b.
 

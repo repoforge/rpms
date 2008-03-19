@@ -8,13 +8,13 @@
 
 Summary: Graphical BitTorrent client with support for DHT, UPnP, and PEX
 Name: deluge
-Version: 0.5.7.98
+Version: 0.5.8.6
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://deluge-torrent.org/
 
-Source: http://download.deluge-torrent.org/tarball/%{version}/deluge-%{version}.tar.gz
+Source: http://download.deluge-torrent.org/source/%{version}/deluge-%{version}.tar.gz
 Patch1: deluge-0.5.7.1-default-prefs-no-release-notifications.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -41,7 +41,7 @@ even from behind a router with virtually zero configuration of port-forwarding.
 
 %prep
 %setup -n %{real_name}-%{version}
-%patch1 -b .default-prefs-no-release-notifications
+#patch1 -b .default-prefs-no-release-notifications
 
 %build
 CFLAGS="%{optflags}" %{__python} setup.py build
@@ -81,5 +81,8 @@ touch --no-create %{_datadir}/icons/hicolor
 %{python_sitearch}/deluge/
 
 %changelog
+* Sat Mar 15 2008 Dag Wieers <dag@wieers.com> - 0.5.8.6-1
+- Updated to release 0.5.8.6.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.5.7.98-1
 Initial package. (using DAR)

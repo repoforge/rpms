@@ -1,0 +1,69 @@
+--- Makefile.in.org	2007-09-25 14:43:08.000000000 +0200
++++ Makefile.in	2007-09-25 14:45:53.000000000 +0200
+@@ -162,9 +162,7 @@
+ 
+ dirs:
+ 	mkdir -p $(DESTDIR)/$(NG_SRVEXT_DIR)
+-	chown -R $(NAGIOS_PROC_USER) $(DESTDIR)/$(NG_SRVEXT_DIR)
+ 	mkdir -p $(DESTDIR)/$(NG_RRD)
+-	chown -R $(NAGIOS_PROC_USER) $(DESTDIR)/$(NG_RRD)
+ 	mkdir -p $(DESTDIR)/$(NG_INIT_SCRIPT_DIR)
+ 	mkdir -p `dirname $(DESTDIR)/$(NG_LOGFILE)` 
+ 	mkdir -p $(DESTDIR)/$(NG_DAEMON)
+@@ -172,9 +170,16 @@
+ 	mkdir -p $(DESTDIR)/$(NAGIOS_CONTRIBUTION)
+ 	mkdir -p $(DESTDIR)/$(NG_LOGROTATE_CONF_DIR)
+ 
++command-rpm:
++	@echo " define command{"                                        >> $(DESTDIR)/$(NG_CONFIG)/ngraph-command.cfg
++	@echo "         command_name process-service-perfdata"          >> $(DESTDIR)/$(NG_CONFIG)/ngraph-command.cfg
++	@echo "         command_line $(NAGIOS_CONTRIBUTION)/udpecho "   >> $(DESTDIR)/$(NG_CONFIG)/ngraph-command.cfg
++	@echo " }"                                                      >> $(DESTDIR)/$(NG_CONFIG)/ngraph-command.cfg
++
++
++
+ logfile:
+ 	touch $(DESTDIR)/$(NG_LOGFILE)
+-	chown $(NAGIOS_PROC_USER) $(DESTDIR)/$(NG_LOGFILE)
+ 
+ config-install:
+ 	mkdir -p $(DESTDIR)/$(NG_CONFIG)
+@@ -187,15 +192,11 @@
+ 	cp -r cfg/templates/extra/*.ncfg_disabled $(DESTDIR)/$(NG_CONFIG_SUB)/templates/extra
+ 	cp -r cfg/templates/standard/*.ncfg_disabled $(DESTDIR)/$(NG_CONFIG_SUB)/templates/standard
+ 
+-	chown -R $(NAGIOS_PROC_USER) $(DESTDIR)/$(NG_CONFIG)/*.ncfg*
+-	chgrp -R $(NAGIOS_PROC_GROUP) $(DESTDIR)/$(NG_CONFIG)/*.ncfg*
+ 
+ 
+ cgi-install:
+ 	mkdir -p $(DESTDIR)/$(NAGIOS_FOLDER_CGI)
+ 	cp sbin/*.cgi $(DESTDIR)/$(NAGIOS_FOLDER_CGI)
+-	chown -R $(NAGIOS_PROC_USER) $(DESTDIR)/$(NAGIOS_FOLDER_CGI)
+-	chgrp -R $(APACHE_GROUP) $(DESTDIR)/$(NAGIOS_FOLDER_CGI)
+ 	chmod -R 0755 $(DESTDIR)/$(NAGIOS_FOLDER_CGI)
+ 
+ bin-install:
+@@ -206,8 +207,6 @@
+  		contrib/udpecho/udpecho \
+ 		$(DESTDIR)/$(NAGIOS_CONTRIBUTION)
+ 
+-	chown -R $(NAGIOS_PROC_USER) $(DESTDIR)/$(NAGIOS_CONTRIBUTION)
+-	chgrp -R $(NAGIOS_PROC_GROUP) $(DESTDIR)/$(NAGIOS_CONTRIBUTION)
+ 	chmod -R 0755 $(DESTDIR)/$(NAGIOS_CONTRIBUTION)
+ 
+ bin-compile:
+@@ -224,13 +223,9 @@
+ 	cp lib/NagiosGrapher/*.pm $(DESTDIR)/$(PERL_INC)/NagiosGrapher
+ 	cp lib/NagiosGrapher/Hooks/*.pm $(DESTDIR)/$(PERL_INC)/NagiosGrapher/Hooks
+ 
+-	chown -R $(NAGIOS_PROC_USER) $(DESTDIR)/$(PERL_INC)
+-	chgrp -R $(NAGIOS_PROC_GROUP) $(DESTDIR)/$(PERL_INC)
+ 
+ logrotate-config:
+ 	cp cfg/logrotate/nagios_grapher $(DESTDIR)/${NG_LOGROTATE_CONF_DIR}/
+-	chown root $(DESTDIR)/$(NG_LOGROTATE_CONF_DIR)/nagios_grapher
+-	chgrp root $(DESTDIR)/$(NG_LOGROTATE_CONF_DIR)/nagios_grapher
+ 	chmod 0644 $(DESTDIR)/$(NG_LOGROTATE_CONF_DIR)/nagios_grapher
+ 
+ init-script:

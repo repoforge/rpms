@@ -4,7 +4,7 @@
 
 Summary: IRC to other chat networks gateway
 Name: bitlbee
-Version: 1.0.4
+Version: 1.2
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -24,11 +24,11 @@ networks like MSN/ICQ/Jabber.
 %setup
 
 %{__perl} -pi.orig -e '
-		s|\$\(BINDIR\)|\$(sbindir)|g;
-		s|\$\(DATADIR\)|\$(datadir)/bitlbee|g;
-		s|\$\(ETCDIR\)|\$(sysconfdir)/bitlbee|g;
-		s|\$\(MANDIR\)|\$(mandir)|g;
-	' Makefile */Makefile
+        s|\$\(BINDIR\)|\$(sbindir)|g;
+        s|\$\(DATADIR\)|\$(datadir)/bitlbee|g;
+        s|\$\(ETCDIR\)|\$(sysconfdir)/bitlbee|g;
+        s|\$\(MANDIR\)|\$(mandir)|g;
+    ' Makefile */Makefile
 
 %{__cat} <<EOF >bitlbee.xinet
 # default: off
@@ -36,25 +36,25 @@ networks like MSN/ICQ/Jabber.
 
 service ircd
 {
-	disable		= yes
-	socket_type	= stream
-	protocol	= tcp
-	wait		= no
-	user		= daemon
-	server		= %{_sbindir}/bitlbee
-	port		= 6667
-	log_on_failure	+= USERID
+    disable     = yes
+    socket_type = stream
+    protocol    = tcp
+    wait        = no
+    user        = daemon
+    server      = %{_sbindir}/bitlbee
+    port        = 6667
+    log_on_failure  += USERID
 }
 EOF
 
 %build
 ./configure \
-	--prefix="%{_prefix}" \
-	--bindir="%{_sbindir}" \
-	--etcdir="%{_sysconfdir}/bitlbee" \
-	--mandir="%{_mandir}" \
-	--datadir="%{_datadir}/bitlbee" \
-	--config="%{_localstatedir}/lib/bitlbee"
+    --prefix="%{_prefix}" \
+    --bindir="%{_sbindir}" \
+    --etcdir="%{_sysconfdir}/bitlbee" \
+    --mandir="%{_mandir}" \
+    --datadir="%{_datadir}/bitlbee" \
+    --config="%{_localstatedir}/lib/bitlbee"
 %{__make} %{?_smp_mflags}
 ### FIXME: Documentation needs old sgmltools tool, deprecated.
 #%{__make} -C doc
@@ -89,6 +89,9 @@ EOF
 %{_localstatedir}/lib/bitlbee/
 
 %changelog
+* Tue Mar 18 2008 Dag Wieers <dag@wieers.com> - 1.2-1
+- Updated to release 1.2.
+
 * Mon Aug 20 2007 Dag Wieers <dag@wieers.com> - 1.0.4-1
 - Updated to release 1.0.4.
 
