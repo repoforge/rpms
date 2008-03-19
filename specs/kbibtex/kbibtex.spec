@@ -4,7 +4,7 @@
 
 Summary: BibTex editor
 Name: kbibtex
-Version: 0.2
+Version: 0.2.1
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -28,18 +28,19 @@ to .bib files, and export to both .pdf and .ps thru (pdf)latex.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %doc %{_mandir}/man1/kbibtex*
 %{_bindir}/kbibtex
 %{_libdir}/kde3/libkbibtexpart.*
-%{_datadir}/applnk/Office/kbibtex.desktop
+%{_datadir}/applications/kde/kbibtex.desktop
 %{_datadir}/apps/kbibtex/
 %{_datadir}/apps/kbibtexpart/
 %{_datadir}/doc/HTML/*/kbibtex/
@@ -47,6 +48,9 @@ to .bib files, and export to both .pdf and .ps thru (pdf)latex.
 %{_datadir}/services/kbibtex_part.desktop
 
 %changelog
+* Tue Mar 18 2008 Dries Verachtert <dries@ulyssis.org> - 0.2.1-1
+- Updated to release 0.2.1.
+
 * Mon Nov 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.2-1
 - Updated to release 0.2.
 

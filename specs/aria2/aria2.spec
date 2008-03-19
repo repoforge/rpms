@@ -4,13 +4,13 @@
 
 Summary: Download utility with BitTorrent and Metalink support
 Name: aria2
-Version: 0.12.1
+Version: 0.13.1
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://aria2.sourceforge.net/
 
-Source: http://dl.sf.net/aria2/aria2-%{version}.tar.bz2
+Source: http://dl.sf.net/aria2/aria2c-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, gettext, openssl-devel, libxml2-devel, pkgconfig
@@ -20,7 +20,7 @@ aria2 is a download utility with resuming and segmented downloading.
 Supported protocols are HTTP/HTTPS/FTP/BitTorrent/Metalink.
 
 %prep
-%setup
+%setup -n aria2c-%{version}
  
 %build
 ### Add correct CFLAGS for EL3 and RH9
@@ -36,17 +36,21 @@ Supported protocols are HTTP/HTTPS/FTP/BitTorrent/Metalink.
 %{__make} install DESTDIR="%{buildroot}"
 %find_lang aria2c
 %{__rm} -f %{buildroot}%{_datadir}/locale/locale.alias
+%{__mv} %{buildroot}%{_docdir}/aria2c _rpmdocs
 
 %clean
 %{__rm} -rf %{buildroot}
   
 %files -f aria2c.lang
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING NEWS README AUTHORS TODO
+%doc ChangeLog COPYING NEWS AUTHORS TODO _rpmdocs/*
 %doc %{_mandir}/man1/aria2c.1*
 %{_bindir}/aria2c
 
 %changelog
+* Tue Mar 18 2008 Dries Verachtert <dries@ulyssis.org> - 0.13.1-1
+- Updated to release 0.13.1.
+
 * Mon Feb 11 2008 Dag Wieers <dag@wieers.com> - 0.12.1-1
 - Updated to release 0.12.1.
 

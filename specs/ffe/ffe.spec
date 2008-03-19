@@ -4,7 +4,7 @@
 
 Summary: Flat file extractor
 Name: ffe
-Version: 0.2.4
+Version: 0.2.5
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -47,6 +47,9 @@ displaying flat file content in human readable form.
 %{_bindir}/ffe
 
 %changelog
+* Tue Mar 18 2008 Dries Verachtert <dries@ulyssis.org> - 0.2.5-1
+- Updated to release 0.2.5.
+
 * Sun Mar 2 2008 Dries Verachtert <dries@ulyssis.org> - 0.2.4-1
 - Updated to release 0.2.4.
 
