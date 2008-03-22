@@ -6,7 +6,7 @@
 Summary: Graphical media player similar to xmms
 Name: audacious
 Version: 1.3.2
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://audacious-media-player.org/
@@ -28,7 +28,7 @@ BuildRequires: zlib-devel, desktop-file-utils >= 0.9
 BuildRequires: libglade2-devel >= 2.4
 BuildRequires: GConf2-devel
 BuildRequires: gettext
-BuildRequires: libmcs-devel >= 0.1
+BuildRequires: mcs-devel >= 0.1
 
 Requires: audacious-plugins >= 1.3.0
 Requires(post): desktop-file-utils >= 0.9
@@ -53,7 +53,7 @@ Summary: Development files for Audacious
 Group: Development/Libraries
 Requires: %{name}-libs = %{version}-%{release}
 Requires: glib2-devel, gtk2-devel >= 2.6, GConf2-devel, libglade2-devel >= 2.4
-Requires: libmcs-devel >= 0.1
+Requires: mcs-devel >= 0.1
 Requires: pkgconfig
 
 Obsoletes: bmp-devel <= 0.9.7.1
@@ -150,6 +150,9 @@ touch --no-create %{_datadir}/icons/hicolor || :
 %{_libdir}/pkgconfig/*
 
 %changelog
+* Sat Mar 22 2008 Heiko Adams <info@fedora-blog.de> - 1.3.2-3
+- bugfixes
+
 * Thu Aug 30 2007 Heiko Adams <info@fedora-blog.de> - 1.3.2-2
 - Rebuild for RPMforge.
 
