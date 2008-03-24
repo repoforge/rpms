@@ -6,7 +6,7 @@
 
 Name:           audacious-plugins
 Version:        1.3.5
-Release:        3
+Release:        4
 Summary:        Plugins for the Audacious media player
 
 Group:          Applications/Multimedia
@@ -16,7 +16,8 @@ Source0:        http://static.audacious-media-player.org/release/%{name}-%{versi
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  audacious-devel >= %{aud_ver}, taglib-devel >= 1.4, alsa-lib-devel
-BuildRequires:  libmad-devel, libnotify-devel, gettext, curl-devel
+BuildRequires:  libmad-devel, libnotify-devel, gettext, curl-devel, libmms-devel
+BuildRequires:  libogg-devel >= 1.0
 #BuildRequires:  esound-devel >= 0.2, libvorbis-devel >= 1.0
 #BuildRequires:  zlib-devel, desktop-file-utils >= 0.9, alsa-lib-devel
 #BuildRequires:  libsidplay-devel, libnotify-devel
@@ -240,6 +241,9 @@ update-desktop-database %{_datadir}/applications
 
 
 %changelog
+* Mon Mar 24 2008 Heiko Adams <info-2007@fedora-blog.de> 1.3.5-4
+- added libmms-devel and libogg-devel to BuildRequires
+
 * Sat Mar 22 2008 Heiko Adams <info-2007@fedora-blog.de> 1.3.5-3
 - rebuild for rpmforge
 
