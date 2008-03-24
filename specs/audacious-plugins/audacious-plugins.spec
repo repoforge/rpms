@@ -6,7 +6,7 @@
 
 Name:           audacious-plugins
 Version:        1.3.5
-Release:        4
+Release:        5
 Summary:        Plugins for the Audacious media player
 
 Group:          Applications/Multimedia
@@ -17,14 +17,10 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  audacious-devel >= %{aud_ver}, taglib-devel >= 1.4, alsa-lib-devel
 BuildRequires:  libmad-devel, libnotify-devel, gettext, curl-devel, libmms-devel
-BuildRequires:  libogg-devel >= 1.0
-#BuildRequires:  esound-devel >= 0.2, libvorbis-devel >= 1.0
-#BuildRequires:  zlib-devel, desktop-file-utils >= 0.9, alsa-lib-devel
-#BuildRequires:  libsidplay-devel, libnotify-devel
-#BuildRequires:  libmpcdec-devel, libmusicbrainz-devel
-#BuildRequires:  taglib-devel >= 1.4, libogg-devel >= 1.0, flac-devel >= 1.1.2
-#BuildRequires:  libvisual-devel >= 0.2, SDL-devel >= 1.2.9
-#BuildRequires:  gettext, curl-devel, libbinio-devel
+BuildRequires:  libogg-devel >= 1.0,, zlib-devel, SDL-devel >= 1.2.9
+BuildRequires:	gettext, flac-devel >= 1.1.2
+#BuildRequires:  libmpcdec-devel, libmusicbrainz-devel, libsidplay-devel
+#BuildRequires:  libvisual-devel >= 0.2, libbinio-devel
 #BuildRequires:  arts-devel, libmodplug-devel, lirc-devel
 #BuildRequires:  jack-audio-connection-kit-devel, libsamplerate-devel
 #BuildRequires:  pulseaudio-devel, fluidsynth-devel
@@ -203,7 +199,7 @@ update-desktop-database %{_datadir}/applications
 #%{_datadir}/applications/fedora-audacious-plugins.desktop
 %{_datadir}/audacious/images/audioscrobbler.png
 %{_datadir}/audacious/images/audioscrobbler_badge.png
-#%{_datadir}/audacious-plugins
+%{_datadir}/audacious-plugins
 
 #%files jack
 #%defattr(-,root,root,-)
@@ -241,6 +237,9 @@ update-desktop-database %{_datadir}/applications
 
 
 %changelog
+* Mon Mar 24 2008 Heiko Adams <info-2007@fedora-blog.de> 1.3.5-5
+- added more dependencies to BuildRequires
+
 * Mon Mar 24 2008 Heiko Adams <info-2007@fedora-blog.de> 1.3.5-4
 - added libmms-devel and libogg-devel to BuildRequires
 
