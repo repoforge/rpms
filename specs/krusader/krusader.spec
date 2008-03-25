@@ -20,7 +20,7 @@
 
 Summary: File manager
 Name: krusader
-Version: 1.80.0
+Version: 1.90.0
 Release: 1
 License: GPL
 Group: User Interface/Desktops
@@ -87,6 +87,9 @@ export KDEDIR=/usr
 %{_datadir}/services/virt.protocol
 
 %changelog
+* Mon Mar 24 2008 Dries Verachtert <dries@ulyssis.org> - 1.90.0-1
+- Updated to release 1.90.0.
+
 * Fri Aug 17 2007 Dries Verachtert <dries@ulyssis.org> - 1.80.0-1
 - Updated to release 1.80.0.
 

@@ -6,7 +6,7 @@
 
 Summary: Fast lightweight source control management system
 Name: mercurial
-Version: 0.9.5
+Version: 1.0
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -53,11 +53,11 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %defattr(-, root, root, 0755)
 %doc CONTRIBUTORS COPYING README contrib/
 %doc %{_mandir}/man1/hg.1*
-%doc %{_mandir}/man1/hgmerge.1*
+#%doc %{_mandir}/man1/hgmerge.1*
 %doc %{_mandir}/man5/hgignore.5*
 %doc %{_mandir}/man5/hgrc.5*
 %{_bindir}/hg
-%{_bindir}/hgmerge
+#%{_bindir}/hgmerge
 %{python_sitearch}/hgext/
 %{python_sitearch}/mercurial/
 
@@ -66,6 +66,9 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{_bindir}/hgk
 
 %changelog
+* Mon Mar 24 2008 Dries Verachtert <dries@ulyssis.org> - 1.0-1
+- Updated to release 1.0.
+
 * Sun Oct 21 2007 Dries Verachtert <dries@ulyssis.org> - 0.9.5-1
 - Updated to release 0.9.5.
 
