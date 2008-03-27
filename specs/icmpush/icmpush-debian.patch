@@ -1,0 +1,178 @@
+--- icmpush-2.2.orig/mtu.c
++++ icmpush-2.2/mtu.c
+@@ -76,7 +76,7 @@
+        == -1 )
+   { 
+      if ( more_verbose )
+-        fprintf(stderr, "setsockopt -> %s\n", sys_errlist[errno] );
++        fprintf(stderr, "setsockopt -> %s\n", strerror(errno) );
+      return 1;
+   }
+   
+@@ -84,7 +84,7 @@
+        == -1 )
+   {
+      if ( more_verbose )
+-        fprintf( stderr,"connect -> %s\n", sys_errlist[errno] );
++        fprintf( stderr,"connect -> %s\n", strerror(errno) );
+      return 1;
+   }
+ 
+@@ -92,7 +92,7 @@
+   if ( getsockname( sock_rt, (struct sockaddr *)&iface_out, &len ) == -1 )
+   {
+      if ( more_verbose ) 
+-        fprintf(stderr,"getsockname -> %s\n", sys_errlist[errno] );
++        fprintf(stderr,"getsockname -> %s\n", strerror(errno) );
+      return 1;
+   }
+   
+@@ -134,7 +134,7 @@
+   {
+      if ( more_verbose )
+         fprintf(stderr, "When trying socket() to kernel -> %s",
+-                     sys_errlist[errno]);
++                     strerror(errno));
+      return MTU_DFL;
+   }
+   
+@@ -143,7 +143,7 @@
+   if (ioctl( sock_disp, SIOCGIFCONF, &ifc) < 0)
+   {
+      if ( more_verbose )
+-        fprintf(stderr, "SIOCGIFCONF -> %s", sys_errlist[errno]);
++        fprintf(stderr, "SIOCGIFCONF -> %s", strerror(errno));
+      return MTU_DFL;
+   }
+   ifaz = ifc.ifc_req;
+@@ -190,7 +190,7 @@
+   if (ioctl( sock_disp, SIOCGIFADDR, &if_aux) < 0)
+   {
+      if ( more_verbose )
+-        fprintf(stderr,"SIOCGIFADDR -> %s\n", sys_errlist[errno]);
++        fprintf(stderr,"SIOCGIFADDR -> %s\n", strerror(errno));
+      return 1;
+   }
+ 
+@@ -201,7 +201,7 @@
+   if (ioctl(sock_disp, SIOCGIFMTU, &if_aux) < 0)
+   {
+      if ( more_verbose )
+-        fprintf(stderr,"SIOCGIFMTU -> %s\n", sys_errlist[errno]);
++        fprintf(stderr,"SIOCGIFMTU -> %s\n", strerror(errno));
+      return 1;
+   }
+ 
+@@ -216,7 +216,7 @@
+   if ( ioctl( sock_disp, SIOCGIFFLAGS, &if_aux ) < 0 )
+   {
+      if ( more_verbose )
+-        fprintf(stderr,"SIOCGIFFLAGS -> %s\n", sys_errlist[errno]);
++        fprintf(stderr,"SIOCGIFFLAGS -> %s\n", strerror(errno));
+      return 1;
+   }
+   mi_interfaz->ifaz_flags = if_aux.ifr_flags;
+--- icmpush-2.2.orig/cuenta.c
++++ icmpush-2.2/cuenta.c
+@@ -3,7 +3,7 @@
+ /*****************************************/
+ #include <stdio.h>
+ #include <stdlib.h>
+-void main(int argc, char *argv[])
++int main(int argc, char *argv[])
+ {
+    register int i;
+    int final, princ;
+@@ -15,7 +15,7 @@
+       {
+          for ( i = princ; i <= final; i++ )
+             printf("%d ", i);
+-         return;
++         return 0;
+       }
+    }
+ #ifdef SPANISH
+@@ -23,4 +23,5 @@
+ #else
+    printf("Use:  %s  begin#  end#\n", argv[0]);
+ #endif
++   return 1; 
+ }   
+--- icmpush-2.2.orig/parser.c
++++ icmpush-2.2/parser.c
+@@ -296,7 +296,7 @@
+             add_router( packet, router_addr, preference );
+          }
+          else
+-            fprintf(stderr, "strtok() error -> %s\n", sys_errlist[errno]);         
++            fprintf(stderr, "strtok() error -> %s\n", strerror(errno));         
+          args++;
+          continue;
+       }
+@@ -513,7 +513,7 @@
+       init->router = (struct router *)malloc(sizeof(struct router));
+       if ( init->router == NULL )
+       {
+-         fprintf(stderr, "Malloc error -> %s\n", sys_errlist[errno]);
++         fprintf(stderr, "Malloc error -> %s\n", strerror(errno));
+          exit(0);
+       }
+       init->num_routers++;
+@@ -537,7 +537,7 @@
+          cursor->next = (struct router *)malloc(sizeof(struct router));
+          if (!cursor)
+          {
+-            fprintf(stderr, "Malloc error -> %s\n", sys_errlist[errno]);
++            fprintf(stderr, "Malloc error -> %s\n", strerror(errno));
+             return;
+          }
+          init->num_routers++;
+--- icmpush-2.2.orig/icmpush.c
++++ icmpush-2.2/icmpush.c
+@@ -49,6 +49,7 @@
+ #include <string.h>
+ #include <setjmp.h>
+ #include <stdlib.h>
++#include <time.h>
+ 
+ #include "compat.h"
+ #include "misc.h"
+@@ -290,17 +291,17 @@
+   if ( setsockopt( sock, SOL_SOCKET, SO_BROADCAST, (char *)&on, sizeof(on) )
+  == -1 )
+      if ( more_verbose)
+-        fprintf(stderr,"%s: SO_BROADCAST -> %s\n", prog, sys_errlist[errno] );
++        fprintf(stderr,"%s: SO_BROADCAST -> %s\n", prog, strerror(errno) );
+ 
+   if ( setsockopt( sock, SOL_SOCKET, SO_RCVBUF, (char *)&tam_sock_buf,
+                    sizeof(tam_sock_buf) ) == -1 )
+      if ( more_verbose )
+-        fprintf(stderr,"%s: SO_RCVBUF -> %s\n", prog, sys_errlist[errno] );
++        fprintf(stderr,"%s: SO_RCVBUF -> %s\n", prog, strerror(errno) );
+ 
+   if (setsockopt( sock, SOL_SOCKET, SO_SNDBUF, (char *)&tam_sock_buf,
+                   sizeof(tam_sock_buf) ) == -1 )
+      if ( more_verbose )
+-        fprintf(stderr,"%s: SO_SNDBUF -> %s\n", prog, sys_errlist[errno] );
++        fprintf(stderr,"%s: SO_SNDBUF -> %s\n", prog, strerror(errno) );
+ }
+ 
+ 
+@@ -887,7 +888,7 @@
+       else
+          fprintf(stdout, "%-2d= %s ", entry,
+                                   inet_ntoa(data_rdisc->router_addr));
+-      fprintf(stdout, " Prefer. -> %ld\n",
++      fprintf(stdout, " Prefer. -> %i\n",
+                       ntohl(data_rdisc->pref_level.s_addr) );
+     }
+ 
+@@ -1044,7 +1045,7 @@
+ void salir_con_error( int num_error )
+ {
+   fprintf(stderr,"%s: %s -> %s\n", prog, mensaje_err[num_error][LNG],
+-          sys_errlist[errno] );
++          strerror(errno) );
+   exit(num_error);
+ }
+ 

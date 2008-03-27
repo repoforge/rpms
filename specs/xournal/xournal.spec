@@ -3,7 +3,7 @@
 
 Summary: Stylus oriented notetaking
 Name: xournal
-Version: 0.4.1
+Version: 0.4.2
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -43,6 +43,9 @@ Windows Journal or to other alternatives such as Jarnal, Gournal, and NoteLab.
 %{_datadir}/xournal/
 
 %changelog
+* Wed Mar 26 2008 Dag Wieers <dag@wieers.com> - 0.4.2-1
+- Updated to release 0.4.2.
+
 * Sat Sep 22 2007 Dag Wieers <dag@wieers.com> - 0.4.1-1
 - Updated to release 0.4.1.
 

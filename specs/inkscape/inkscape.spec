@@ -25,26 +25,34 @@
 
 Summary: Vector drawing application
 Name: inkscape
-Version: 0.45.1
-Release: 2
+Version: 0.46
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://inkscape.sourceforge.net/
 
 Source: http://dl.sf.net/inkscape/inkscape-%{version}.tar.gz
-Patch0: inkscape-0.44.1-psinput.patch
-Patch1: inkscape-0.45-python.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildRequires: libsigc++2-devel, gtkmm24-devel, glibmm-devel
-BuildRequires: gtkmm2, lcms-devel
-# >= 2.4
-BuildRequires: libgc-devel,  perl(XML::Parser)
-BuildRequires: gcc-c++, pkgconfig
-BuildRequires: gettext, libpng-devel, freetype-devel, zlib-devel
-BuildRequires: gtk2-devel >= 2.8, libxml2-devel, libxslt-devel
-BuildRequires: python-devel, lcms-devel >= 1.13
+BuildRequires: freetype-devel
+BuildRequires: gcc-c++
+BuildRequires: gettext
+BuildRequires: gnome-vfs2-devel >= 2.0
+BuildRequires: gtk2-devel >= 2.8
+BuildRequires: gtkmm2
+BuildRequires: lcms-devel >= 1.13
+BuildRequires: libgc-devel
+BuildRequires: libpng-devel
+BuildRequires: libwpg-devel
+BuildRequires: libxml2-devel
+BuildRequires: libxslt-devel
 BuildRequires: loudmouth-devel >= 1.0
+BuildRequires: perl(XML::Parser)
+BuildRequires: pkgconfig
+BuildRequires: poppler-devel
+BuildRequires: python-devel
+BuildRequires: zlib-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 #%{?_without_modxorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
 %{?_without_modxorg:BuildRequires: XFree86-devel, xorg-x11-Mesa-libGLU}
@@ -59,19 +67,17 @@ Inkscape is a SVG based generic vector-drawing program.
 %prep
 %setup
 
-%patch0 -p1 -b .psinput
-%patch1 -p1 -b .python
-
 %build
 %configure \
-	--enable-inkboard \
-	--enable-lcms \
-	--enable-static="no" \
-	--with-gnome-vfs \
-	--with-inkjar \
-	--with-perl \
-	--with-python \
-	--with-xinerama
+    --enable-inkboard \
+    --enable-lcms \
+    --enable-poppler-cairo \
+    --enable-static="no" \
+    --with-gnome-vfs \
+    --with-inkjar \
+    --with-perl \
+    --with-python \
+    --with-xinerama
 %{__make} %{?_smp_mflags}
 
 %install
@@ -80,11 +86,11 @@ Inkscape is a SVG based generic vector-drawing program.
 %find_lang %{name}
 
 %if %{!?_without_freedesktop:1}0
-        desktop-file-install --delete-original             \
-		--vendor %{desktop_vendor}                 \
-                --add-category X-Red-Hat-Base              \
-                --dir %{buildroot}%{_datadir}/applications \
-                %{buildroot}%{_datadir}/applications/inkscape.desktop
+    desktop-file-install --delete-original         \
+        --vendor %{desktop_vendor}                 \
+        --add-category X-Red-Hat-Base              \
+        --dir %{buildroot}%{_datadir}/applications \
+        %{buildroot}%{_datadir}/applications/inkscape.desktop
 %endif
 
 %post
@@ -99,16 +105,21 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* HACKING*txt NEWS README TRANSLATORS
-%doc %{_mandir}/man1/ink*.1*
-%doc %{_mandir}/*/man1/ink*.1*
-%{_bindir}/ink*
-#%{_libdir}/inkscape
+%doc %{_mandir}/man1/inkscape.1*
+%doc %{_mandir}/man1/inkview.1*
+%doc %{_mandir}/*/man1/inkscape.1*
+#%doc %{_mandir}/*/man1/inkview.1*
+%{_bindir}/inkscape
+%{_bindir}/inkview
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-inkscape.desktop}
 %{?_without_freedesktop:%{_datadir}/applications/inkscape.desktop}
 %{_datadir}/inkscape/
 %{_datadir}/pixmaps/inkscape.png
 
 %changelog
+* Wed Mar 26 2008 Dag Wieers <dag@wieers.com> - 0.46-1
+- Updated to release 0.46.
+
 * Sun Jul 29 2007 Dag Wieers <dag@wieers.com> - 0.45-2
 - Rebuild against libgc-7.0.
 

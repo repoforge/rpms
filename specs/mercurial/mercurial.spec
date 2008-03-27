@@ -29,10 +29,6 @@ Requires: %{name} = %{version}-%{release}
 %description hgk
 With hgk you can browse a repository graphically.
 
-Add the following to ~/.hgrc and use 'hg view':
-[extensions]
-hgk=
-
 %prep
 %setup
 

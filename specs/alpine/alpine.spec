@@ -3,13 +3,15 @@
 
 Summary: Alternative Pine mail user agent implementation
 Name: alpine
-Version: 1.00
+Version: 1.10
 Release: 1
 License: Apache License
 Group: Applications/Internet
 URL: http://www.washington.edu/alpine/
 
-Source: ftp://ftp.cac.washington.edu/alpine/alpine-%{version}.tar.gz
+Source0: ftp://ftp.cac.washington.edu/alpine/alpine-%{version}.tar.gz
+Source1: pine.conf
+Source2: pine.conf.fixed
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: inews, aspell, openldap-devel, openssl-devel, krb5-devel, pam-devel
@@ -36,8 +38,10 @@ personal-preference options.
 %build
 touch imap/ip6
 %configure \
-    --with-passfile=".pinepwd" \
-    --with-spellcheck-prog="aspell"
+    --with-spellcheck-prog="aspell" \
+    --with-system-pinerc="%{_sysconfdir}/pine.conf" \
+    --with-system-fixed-pinerc="%{_sysconfdir}/pine.conf.fixed"
+#    --with-passfile=".pinepwd" \
 %{__make} %{?_smp_mflags}
 
 %install
@@ -57,6 +61,9 @@ touch imap/ip6
 %{__install} -Dp -m0644 doc/rpdump.1 %{buildroot}%{_mandir}/man1/rpdump.1
 %{__install} -Dp -m0644 imap/src/mailutil/mailutil.1 %{buildroot}%{_mandir}/man1/mailutil.1
 
+%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/pine.conf
+%{__install} -Dp -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/pine.conf.fixed
+
 %{__ln_s} -f alpine %{buildroot}%{_bindir}/pine
 %{__ln_s} -f alpine.1.gz %{buildroot}%{_mandir}/man1/pine.1.gz
 
@@ -73,6 +80,8 @@ touch imap/ip6
 %doc %{_mandir}/man1/pine.1*
 %doc %{_mandir}/man1/rpdump.1*
 %doc %{_mandir}/man1/rpload.1*
+%config %{_sysconfdir}/pine.conf
+%config(noreplace) %{_sysconfdir}/alpine.conf
 %{_bindir}/alpine
 %{_bindir}/mailutil
 %{_bindir}/pico
@@ -85,6 +94,14 @@ touch imap/ip6
 %{_sbindir}/mlock
 
 %changelog
+* Thu Mar 20 2008 Dag Wieers <dag@wieers.com> - 1.10-2
+- Restore original pine.conf location.
+
+* Tue Mar 18 2008 Dag Wieers <dag@wieers.com> - 1.10-1
+- Updated to release 1.10.
+- Included original pine.conf, lacking anything better.
+- Disable --passfile, use platform-specific password caching.
+
 * Fri Dec 21 2007 Dag Wieers <dag@wieers.com> - 1.00-1
 - Updated to release 1.00.
 

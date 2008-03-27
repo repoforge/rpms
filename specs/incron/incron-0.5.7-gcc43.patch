@@ -1,0 +1,24 @@
+diff -up incron-0.5.7/appargs.h.orig incron-0.5.7/appargs.h
+--- incron-0.5.7/appargs.h.orig	2008-02-09 13:45:31.000000000 +0100
++++ incron-0.5.7/appargs.h	2008-02-09 13:45:39.000000000 +0100
+@@ -23,7 +23,7 @@
+ #ifndef APPARGS_H_
+ #define APPARGS_H_
+ 
+-#include <string>
++#include <cstring>
+ #include <map>
+ #include <deque>
+ 
+diff -up incron-0.5.7/incroncfg.h.orig incron-0.5.7/incroncfg.h
+--- incron-0.5.7/incroncfg.h.orig	2008-02-09 13:45:06.000000000 +0100
++++ incron-0.5.7/incroncfg.h	2008-02-09 13:45:13.000000000 +0100
+@@ -18,7 +18,7 @@
+ #define INCRONCFG_H_
+ 
+ 
+-#include <string>
++#include <cstring>
+ #include <map>
+ 
+ /// Configuration class.

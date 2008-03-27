@@ -2,12 +2,13 @@
 # Authority: dag
 # Upstream: <bug-libidn$gnu,org>
 
-# ExcludeDist: el4
+### RHEL4 and newer ship with libidn
+# ExclusiveDist: el2 rh7 rh9 el3
 
 Summary: Internationalized string processing library
 Name: libidn
-Version: 0.4.6
-Release: 1.2
+Version: 0.5.6
+Release: 0.1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://josefsson.org/libidn/releases/
@@ -39,12 +40,13 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure
+%configure \
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %{__make} -C examples distclean
@@ -55,11 +57,8 @@ you will need to install %{name}-devel.
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_datadir}/info/dir
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %post devel
 /sbin/install-info %{_infodir}/libidn*.info.gz %{_infodir}/dir
@@ -73,25 +72,26 @@ you will need to install %{name}-devel.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog contrib COPYING* doc/libidn.html FAQ INSTALL NEWS README* THANKS TODO
-%doc %{_mandir}/man1/*
-%{_bindir}/*
-%{_datadir}/emacs/site-lisp/*.el
-%{_libdir}/*.so.*
+%doc %{_mandir}/man1/idn.1*
+%{_bindir}/idn
+%{_datadir}/emacs/site-lisp/idna.el
+%{_datadir}/emacs/site-lisp/punycode.el
+%{_libdir}/libidn.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/*.pdf doc/reference doc/specifications/ examples/ libc/example.c TODO
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3*
 %doc %{_infodir}/*.info*
-%{_libdir}/*.a
-%{_libdir}/*.so
+#%{_libdir}/libidn.a
 %{_includedir}/*.h
-%{_libdir}/pkgconfig/*.pc
-%exclude %{_libdir}/*.la
+%{_libdir}/libidn.so
+%{_libdir}/pkgconfig/libidn.pc
+%exclude %{_libdir}/libidn.la
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.6-1.2
-- Rebuild for Fedora Core 5.
+* Wed Mar 26 2008 Dag Wieers <dag@wieers.com> - 0.5.6-0.1
+- Updated to release 0.5.6.
 
 * Wed May 26 2004 Dag Wieers <dag@wieers.com> - 0.4.6-1
 - Updated to release 0.4.6.
