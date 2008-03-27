@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Dag Wieers <dag@wieers.com>
 
-### Tag as test until we have replaced fabian's fingerprint and tested the new package
+### Tag as test until we have tested the new package
 # Tag: test
 
 %{?dtag: %{expand: %%define %dtag 1}}
@@ -23,6 +23,7 @@ Source0: mirrors-rpmforge
 Source1: RPM-GPG-KEY-rpmforge-dag
 Source2: RPM-GPG-KEY-rpmforge-dries
 Source3: RPM-GPG-KEY-rpmforge-fabian
+#Source4: RPM-GPG-KEY-rpmforge-matthias
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -111,6 +112,7 @@ done >mirrors-rpmforge.yum
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag
 %{__install} -Dp -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dries
 %{__install} -Dp -m0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-fabian
+#%{__install} -Dp -m0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-matthias
 %{__install} -Dp -m0644 rpmforge.apt %{buildroot}%{_sysconfdir}/apt/sources.list.d/rpmforge.list
 %{__install} -Dp -m0644 rpmforge.smart %{buildroot}%{_sysconfdir}/smart/channels/rpmforge.channel
 %{__install} -Dp -m0644 rpmforge.up2date %{buildroot}%{_sysconfdir}/sysconfig/rhn/sources.rpmforge.txt
@@ -124,8 +126,8 @@ done >mirrors-rpmforge.yum
 %if %{!?_without_rpmpubkey:1}0
 rpm -q gpg-pubkey-6b8d79e6-3f49313d &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag || :
 rpm -q gpg-pubkey-1aa78495-3eb24301 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dries || :
-### FIXME: Insert fabian's fingerprint here
-rpm -q gpg-pubkey-e42d547b-3960bdf1 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-fabian || :
+rpm -q gpg-pubkey-59b9897b-461fe38c &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-fabian || :
+#rpm -q gpg-pubkey-e42d547b-3960bdf1 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-matthias || :
 %endif
 
 %files
@@ -152,7 +154,7 @@ rpm -q gpg-pubkey-e42d547b-3960bdf1 &>/dev/null || rpm --import %{_sysconfdir}/p
 
 %changelog
 * Thu Mar 27 2008 Dag Wieers <dag@wieers.com> - 0.4.0-1
-- Added fabian's ppc repositories.
+- Added fabian's ppc repositories and GPG key.
 - Removed a lot of cruft.
 
 * Thu Jan 18 2007 Dag Wieers <dag@wieers.com> - 0.3.6-1
