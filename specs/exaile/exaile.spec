@@ -1,15 +1,17 @@
 # $Id$
 # Authority:    hadams
 
+%define real_version 0.2.12
+
 Summary:	A music player
 Name:		exaile
-Version:	0.2.11.1
+Version:	0.2.12
 Release:	1
 Group:		Applications/Multimedia
 License:	GPL
 URL:		http://www.exaile.org
-Source0:	http://www.exaile.org/files/exaile_%{version}.tar.gz
-Patch0:		exaile-makefile.patch
+Source0:	http://www.exaile.org/files/%{name}_%{real_version}.tar.gz
+Patch0:		exaile0212-makefile.diff
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:	python-devel
 BuildRequires:	pygtk2-devel
@@ -50,7 +52,7 @@ downloading of guitar tablature from fretplay.com, and submitting played tracks
 on your iPod to last.fm
 
 %prep
-%setup -q -n %{name}_%{version}
+%setup
 %patch0 -p0 -b .fix
 
 # remove shebangs from all files as none should be executable scripts
@@ -81,7 +83,7 @@ rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-,root,root,0755)
-%doc changelog COPYING TODO
+%doc changelog COPYING INSTALL
 %{_bindir}/exaile
 %{_libdir}/exaile
 %{_datadir}/applications/*.desktop
@@ -90,6 +92,9 @@ rm -rf %{buildroot}
 %{_mandir}/man1/exaile*.*
 
 %changelog
+* Fri Mar 28 2008 Heiko Adams <info@fedora-blog.de> - 0.2.12-1
+- version update
+
 * Sat Nov 10 2007 Heiko Adams <info@fedora-blog.de> - 0.2.11.1-1
 - version update
 

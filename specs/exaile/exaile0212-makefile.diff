@@ -1,0 +1,83 @@
+--- Makefile	2008-03-25 17:21:22.000000000 +0100
++++ Makefile-new	2008-03-28 20:35:59.000000000 +0100
+@@ -18,14 +18,14 @@
+ 
+ make-install-dirs: 
+ 	mkdir -p $(DESTDIR)$(PREFIX)/bin
+-	mkdir -p $(DESTDIR)$(PREFIX)$(LIBDIR)
+-	mkdir -p $(DESTDIR)$(PREFIX)$(LIBDIR)/exaile
+-	mkdir -p $(DESTDIR)$(PREFIX)$(LIBDIR)/exaile/lib
+-	mkdir -p $(DESTDIR)$(PREFIX)$(LIBDIR)/exaile/xl
+-	mkdir -p $(DESTDIR)$(PREFIX)$(LIBDIR)/exaile/xl/gui
+-	mkdir -p $(DESTDIR)$(PREFIX)$(LIBDIR)/exaile/xl/media
+-	mkdir -p $(DESTDIR)$(PREFIX)$(LIBDIR)/exaile/xl/panels
+-	mkdir -p $(DESTDIR)$(PREFIX)$(LIBDIR)/exaile/xl/plugins
++	mkdir -p $(DESTDIR)$(LIBDIR)
++	mkdir -p $(DESTDIR)$(LIBDIR)/exaile
++	mkdir -p $(DESTDIR)$(LIBDIR)/exaile/lib
++	mkdir -p $(DESTDIR)$(LIBDIR)/exaile/xl
++	mkdir -p $(DESTDIR)$(LIBDIR)/exaile/xl/gui
++	mkdir -p $(DESTDIR)$(LIBDIR)/exaile/xl/media
++	mkdir -p $(DESTDIR)$(LIBDIR)/exaile/xl/panels
++	mkdir -p $(DESTDIR)$(LIBDIR)/exaile/xl/plugins
+ 	mkdir -p $(DESTDIR)$(PREFIX)/share/
+ 	mkdir -p $(DESTDIR)$(PREFIX)/share/pixmaps
+ 	mkdir -p $(DESTDIR)$(PREFIX)/share/applications
+@@ -41,26 +41,26 @@
+ 
+ install: make-install-dirs
+ 	install -m 644 exaile.1 $(DESTDIR)$(PREFIX)/share/man/man1
+-	install -m 644 exaile.py $(DESTDIR)$(PREFIX)$(LIBDIR)/exaile
++	install -m 644 exaile.py $(DESTDIR)$(LIBDIR)/exaile
+ 	install -m 644 exaile.glade $(DESTDIR)$(PREFIX)/share/exaile
+ 	install -m 644 equalizer.ini $(DESTDIR)$(PREFIX)/share/exaile
+ 	install -m 644 sql/*.sql $(DESTDIR)$(PREFIX)/share/exaile/sql
+-	-install -m 644 mmkeys.so $(DESTDIR)$(PREFIX)$(LIBDIR)/exaile
++	-install -m 644 mmkeys.so $(DESTDIR)$(LIBDIR)/exaile
+ 	install -m 644 images/*.png $(DESTDIR)$(PREFIX)/share/exaile/images
+ 	install -m 644 images/default_theme/*.png \
+ 	$(DESTDIR)$(PREFIX)/share/exaile/images/default_theme
+-	install -m 644 xl/*.py $(DESTDIR)$(PREFIX)$(LIBDIR)/exaile/xl
+-	-install -m 644 xl/*.py[co] $(DESTDIR)$(PREFIX)$(LIBDIR)/exaile/xl
+-	install -m 644 xl/media/*.py $(DESTDIR)$(PREFIX)$(LIBDIR)/exaile/xl/media
+-	-install -m 644 xl/media/*.py[co] $(DESTDIR)$(PREFIX)$(LIBDIR)/exaile/xl/media
+-	install -m 644 xl/panels/*.py $(DESTDIR)$(PREFIX)$(LIBDIR)/exaile/xl/panels
+-	-install -m 644 xl/panels/*.py[co] $(DESTDIR)$(PREFIX)$(LIBDIR)/exaile/xl/panels
+-	install -m 644 xl/gui/*.py $(DESTDIR)$(PREFIX)$(LIBDIR)/exaile/xl/gui
+-	-install -m 644 xl/gui/*.py[co] $(DESTDIR)$(PREFIX)$(LIBDIR)/exaile/xl/gui
+-	install -m 644 lib/*.py $(DESTDIR)$(PREFIX)$(LIBDIR)/exaile/lib
+-	-install -m 644 lib/*.py[co] $(DESTDIR)$(PREFIX)$(LIBDIR)/exaile/lib
++	install -m 644 xl/*.py $(DESTDIR)$(LIBDIR)/exaile/xl
++	-install -m 644 xl/*.py[co] $(DESTDIR)$(LIBDIR)/exaile/xl
++	install -m 644 xl/media/*.py $(DESTDIR)$(LIBDIR)/exaile/xl/media
++	-install -m 644 xl/media/*.py[co] $(DESTDIR)$(LIBDIR)/exaile/xl/media
++	install -m 644 xl/panels/*.py $(DESTDIR)$(LIBDIR)/exaile/xl/panels
++	-install -m 644 xl/panels/*.py[co] $(DESTDIR)$(LIBDIR)/exaile/xl/panels
++	install -m 644 xl/gui/*.py $(DESTDIR)$(LIBDIR)/exaile/xl/gui
++	-install -m 644 xl/gui/*.py[co] $(DESTDIR)$(LIBDIR)/exaile/xl/gui
++	install -m 644 lib/*.py $(DESTDIR)$(LIBDIR)/exaile/lib
++	-install -m 644 lib/*.py[co] $(DESTDIR)$(LIBDIR)/exaile/lib
+ 	install -m 644 data/*.ini $(DESTDIR)$(PREFIX)/share/exaile/data
+-	install -m 644 xl/plugins/*.py $(DESTDIR)$(PREFIX)$(LIBDIR)/exaile/xl/plugins
++	install -m 644 xl/plugins/*.py $(DESTDIR)$(LIBDIR)/exaile/xl/plugins
+ 	install -m 644 xl/plugins/*.glade $(DESTDIR)$(PREFIX)/share/exaile/xl/plugins
+ 	install -m 644 images/largeicon.png \
+ 	$(DESTDIR)$(PREFIX)/share/pixmaps/exaile.png
+@@ -69,7 +69,7 @@
+ 	  /bin/echo -e \
+ 	    "#!/bin/sh\n" \
+ 	    "cd $(PREFIX)/share/exaile\n" \
+-	    "exec python $(PREFIX)$(LIBDIR)/exaile/exaile.py \"\$$@\"" \
++	    "exec python $(LIBDIR)/exaile/exaile.py \"\$$@\"" \
+ 	    > exaile && \
+ 	  chmod 755 exaile
+ 	for f in `find po -name exaile.mo` ; do \
+@@ -92,7 +92,7 @@
+ 
+ uninstall:
+ 	rm -rf $(DESTDIR)$(PREFIX)/share/exaile
+-	rm -rf $(DESTDIR)$(PREFIX)$(LIBDIR)/exaile
++	rm -rf $(DESTDIR)$(LIBDIR)/exaile
+ 	rm -rf $(DESTDIR)$(PREFIX)/bin/exaile
+ 	rm -f $(DESTDIR)$(PREFIX)/share/applications/exaile.desktop
+ 	rm -f $(DESTDIR)$(PREFIX)/share/pixmaps/exaile.png
