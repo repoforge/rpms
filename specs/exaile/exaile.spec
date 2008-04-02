@@ -1,11 +1,11 @@
 # $Id$
 # Authority:    hadams
 
-%define real_version 0.2.12
+%define real_version 0.2.13
 
 Summary:	A music player
 Name:		exaile
-Version:	0.2.12
+Version:	0.2.13
 Release:	1
 Group:		Applications/Multimedia
 License:	GPL
@@ -52,7 +52,7 @@ downloading of guitar tablature from fretplay.com, and submitting played tracks
 on your iPod to last.fm
 
 %prep
-%setup
+%setup -n %{name}_%{real_version}
 %patch0 -p0 -b .fix
 
 # remove shebangs from all files as none should be executable scripts
@@ -92,6 +92,9 @@ rm -rf %{buildroot}
 %{_mandir}/man1/exaile*.*
 
 %changelog
+* Thu Apr 02 2008 Heiko Adams <info@fedora-blog.de> - 0.2.13-1
+- version update
+
 * Fri Mar 28 2008 Heiko Adams <info@fedora-blog.de> - 0.2.12-1
 - version update
 
