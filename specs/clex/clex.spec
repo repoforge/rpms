@@ -4,7 +4,7 @@
 
 Summary: File manager with an ncurses interface
 Name: clex
-Version: 3.17
+Version: 3.18
 Release: 1
 License: GPL
 Group: System Environment/Shells
@@ -45,6 +45,9 @@ configurable and all its features are explained in the on-line help.
 
 
 %changelog
+* Sun Apr  6 2008 Dries Verachtert <dries@ulyssis.org> - 3.18-1
+- Updated to release 3.18.
+
 * Mon Oct 29 2007 Dries Verachtert <dries@ulyssis.org> - 3.17-1
 - Updated to release 3.17.
 
