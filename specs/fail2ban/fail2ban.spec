@@ -6,7 +6,7 @@
 
 Summary: Scan logfiles and ban ip addresses with too many password failures
 Name: fail2ban
-Version: 0.8.1
+Version: 0.8.2
 Release: 1
 License: GPL
 Group: ystem Environment/Daemons
@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: dos2unix
-BuildRequires: python-devel >= 2.4, python-devel
+BuildRequires: python-devel >= 2.3, python-devel
 Requires: gamin-python
 Requires: iptables
 Requires: python
@@ -77,7 +77,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG COPYING README TODO
+%doc ChangeLog COPYING README TODO
 %doc %{_mandir}/man1/fail2ban-client.1*
 %doc %{_mandir}/man1/fail2ban-regex.1*
 %doc %{_mandir}/man1/fail2ban-server.1*
@@ -90,6 +90,10 @@ fi
 %{_datadir}/fail2ban/
 
 %changelog
+* Sun Apr  6 2008 Dries Verachtert <dries@ulyssis.org> - 0.8.2-1
+- Updated to release 0.8.2.
+- Python requirement changed from 2.4 to 2.3.
+
 * Mon Dec 31 2007 Dag Wieers <dag@wieers.com> - 0.8.1-1
 - Updated to release 0.8.1.
 - Incorporated appropriate changes from fedora SPEC.
