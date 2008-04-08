@@ -14,7 +14,7 @@
 
 Summary: Program for synchronizing files over a network
 Name: rsync
-Version: 3.0.0
+Version: 3.0.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -77,14 +77,20 @@ EOF
 %{_bindir}/rsync
 
 %changelog
+* Tue Apr 08 2008 Dag Wieers <dag@wieers.com> - 3.0.2-1
+- Updated to release 3.0.2.
+
+* Fri Apr 04 2008 Dag Wieers <dag@wieers.com> - 3.0.1-1
+- Updated to release 3.0.1.
+
 * Sat Mar 01 2008 Dag Wieers <dag@wieers.com> - 3.0.0-1
-- Updated to release 3.0.0-1
+- Updated to release 3.0.0.
 
 * Tue Nov 03 2006 Dag Wieers <dag@wieers.com> - 2.6.9-1
-- Updated to release 2.6.9-1
+- Updated to release 2.6.9.
 
 * Sun Apr 23 2006 Dag Wieers <dag@wieers.com> - 2.6.8-1
-- Updated to release 2.6.8-1
+- Updated to release 2.6.8.
 
 * Fri Mar 17 2006 Dag Wieers <dag@wieers.com> - 2.6.7-2
 - Added stunnel and exclude patch from upstream.

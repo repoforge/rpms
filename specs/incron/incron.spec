@@ -4,7 +4,7 @@
 Summary: Inotify cron system
 Name: incron
 Version: 0.5.7
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Base
 URL: http://inotify.aiken.cz/
@@ -50,7 +50,7 @@ desc="Filesystem event daemon"
 
 start() {
     echo -n $"Starting $desc ($prog): "
-    daemon $proc
+    daemon $prog
     RETVAL=$?
     echo
     [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
@@ -58,9 +58,9 @@ start() {
 
 stop() {
     echo -n $"Shutting down $desc ($prog): "
-    killproc $proc
+    killproc $prog
     echo
-    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$proc
+    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
 }
 
 restart() {
@@ -150,5 +150,8 @@ fi
 %{_bindir}/incrontab
 
 %changelog
+* Fri Mar 28 2008 Dag Wieers <dag@wieers.com> - 0.5.7-2
+- Fixed typo in initscript.
+
 * Thu Mar 27 2008 Dag Wieers <dag@wieers.com> - 0.5.7-1
 - Initial package. (using DAR)

@@ -59,15 +59,15 @@ GPG keys used to sign them.
 %{?rh6:name='Red Hat'; version='6.2'; path="redhat/"; builder='dag'}
 
 %{__cat} <<EOF >rpmforge.apt
-# Name: RPMforge RPM Repository for $name $version - $builder
-# URL: http://rpmforge.net/
+### Name: RPMforge RPM Repository for $name $version - $builder
+### URL: http://rpmforge.net/
 #rpm http://rpmforge.sw.be $path\$(VERSION)/en/\$(ARCH) $builder
 repomd http://rpmforge.sw.be $path\$(VERSION)/en/\$(ARCH)/rpmforge
 EOF
 
 %{__cat} <<EOF >rpmforge.smart
-# Name: RPMforge RPM Repository for $name $version - %{_arch} - $builder
-# URL: http://rpmforge.net/
+### Name: RPMforge RPM Repository for $name $version - %{_arch} - $builder
+### URL: http://rpmforge.net/
 [rpmforge]
 name = Extra packages from RPMforge.net for $name $version - %{_arch} - $builder
 baseurl = http://rpmforge.sw.be/$path$version/en/%{_arch}/rpmforge
@@ -76,8 +76,8 @@ EOF
 
 ### Yum needs hardcoded version as on RHEL4AS releasever translates to 4AS :(
 %{__cat} <<EOF >rpmforge.yum
-# Name: RPMforge RPM Repository for $name $version - $builder
-# URL: http://rpmforge.net/
+### Name: RPMforge RPM Repository for $name $version - $builder
+### URL: http://rpmforge.net/
 [rpmforge]
 name = $name \$releasever - RPMforge.net - $builder
 baseurl = http://rpmforge.sw.be/$path$version/en/\$basearch/rpmforge
@@ -90,18 +90,18 @@ gpgcheck = 1
 EOF
 
 %{__cat} <<EOF >rpmforge.up2date
-# Name: RPMforge RPM Repository for $name $version - %{_arch} - $builder
-# URL: http://rpmforge.net/
+### Name: RPMforge RPM Repository for $name $version - %{_arch} - $builder
+### URL: http://rpmforge.net/
 #
 # Add the following line to /etc/sysconfig/rhn/sources
 #
-#	yum rpmforge http://apt.sw.be/$path$version/en/%{_arch}/rpmforge
+#   yum rpmforge http://apt.sw.be/$path$version/en/%{_arch}/rpmforge
 # or
-#	apt rpmforge http://apt.sw.be $path$version/en/%{_arch} rpmforge
+#   apt rpmforge http://apt.sw.be $path$version/en/%{_arch} rpmforge
 EOF
 
 for mirror in $(%{__cat} %{SOURCE0}); do
-	echo "$mirror/$path$version/en/\$ARCH/rpmforge"
+    echo "$mirror/$path$version/en/\$ARCH/rpmforge"
 done >mirrors-rpmforge.yum
 
 %build
