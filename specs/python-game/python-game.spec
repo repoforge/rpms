@@ -7,8 +7,8 @@
 
 Summary: Python module for interfacing with the SDL multimedia library
 Name: python-game
-Version: 1.7.1
-Release: 0.2
+Version: 1.8.0
+Release: 1
 License: LGPL style
 Group: Development/Libraries
 URL: http://pygame.org/
@@ -20,8 +20,8 @@ BuildRequires: python-numeric, smpeg-devel, python-devel
 BuildRequires: SDL_mixer-devel, SDL_image-devel, SDL_ttf-devel
 Requires: SDL >= 1.2.2
 
-Obsoletes: pygame
-Provides: pygame
+Obsoletes: pygame <= %{version}-%{release}
+Provides: pygame = %{version}-%{release}
 
 %description
 pygame is a Python wrapper module for the SDL multimedia library, written by
@@ -70,12 +70,12 @@ Install pygame-doc if you need the API documentation and example programs.
 %doc docs/ examples/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.7.1-0.2
-- Rebuild for Fedora Core 5.
+* Tue Apr 08 2008 Dag Wieers <dag@wieers.com> - 1.8.0-1
+- Updated to release 1.8.0.
 
 * Wed Aug 17 2005 C.Lee Taylor <leet@leenx.co.za> - 1.7.1-0
 - Updated to release 1.7.1.
-- Fix url for new site
+- Fix URL for new site.
 
 * Thu Sep 04 2003 Dag Wieers <dag@wieers.com> - 1.6-0
 - Updated to release 1.6.
