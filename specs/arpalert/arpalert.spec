@@ -9,7 +9,7 @@
 
 Summary: Monitor ethernet networks
 Name: arpalert
-Version: 2.0.9
+Version: 2.0.10
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -57,58 +57,58 @@ prog="arpalert"
 desc="Arpalert daemon"
 
 start() {
-	echo -n $"Starting $desc ($prog): "
-	daemon $prog -d
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Starting $desc ($prog): "
+    daemon $prog -d
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 stop() {
-	echo -n $"Shutting down $desc ($prog): "
-	killproc $prog
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Shutting down $desc ($prog): "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 restart() {
-	stop
-	start
+    stop
+    start
 }
 
 reload() {
-	echo -n $"Reloading $desc ($prog): "
-	killproc $prog -HUP
-	RETVAL=$?
-	echo
-	return $RETVAL
+    echo -n $"Reloading $desc ($prog): "
+    killproc $prog -HUP
+    RETVAL=$?
+    echo
+    return $RETVAL
 }
 
 case "$1" in
-    start)
-	start
-	;;
-    stop)
-	stop
-	;;
-    restart)
-	restart
-	;;
-    condrestart)
-	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-	RETVAL=$?
-	;;
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  restart)
+    restart
+    ;;
+  condrestart)
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
   status)
-	status $prog
-	RETVAL=$?
-	;;
-    *)
-	echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
-	RETVAL=1
-	;;
+    status $prog
+    RETVAL=$?
+    ;;
+  *)
+    echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
+    RETVAL=1
+    ;;
 esac
 exit $RETVAL
 EOF
@@ -129,8 +129,8 @@ EOF
 
 %pre
 if ! /usr/bin/id arpalert &>/dev/null; then
-        /usr/sbin/useradd -r -d %{_localstatedir}/log/arpalert -s /sbin/login -c "arpalert" arpalert &>/dev/null || \
-                %logmsg "Unexpected error adding user \"dovecot\". Aborting installation."
+    /usr/sbin/useradd -r -d %{_localstatedir}/log/arpalert -s /sbin/login -c "arpalert" arpalert &>/dev/null || \
+        %logmsg "Unexpected error adding user \"dovecot\". Aborting installation."
 fi
 /usr/sbin/usermod -s /sbin/nologin arpalert &>/dev/null || :
 
@@ -139,8 +139,8 @@ fi
 
 %preun
 if [ $1 -eq 0 ]; then
-        /sbin/service arpalert stop &>/dev/null || :
-        /sbin/chkconfig --del arpalert
+    /sbin/service arpalert stop &>/dev/null || :
+    /sbin/chkconfig --del arpalert
 fi
 
 %postun
@@ -159,6 +159,9 @@ fi
 %{_localstatedir}/lib/arpalert/
 
 %changelog
+* Sun Mar 30 2008 Dag Wieers <dag@wieers.com> - 2.0.10-1
+- Updated to release 2.0.10.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 2.0.9-1
 - Updated to release 2.0.9.
 
