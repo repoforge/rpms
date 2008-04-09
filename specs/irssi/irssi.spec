@@ -7,12 +7,10 @@
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 
-%define real_version 0.8.10
-
 Summary: Modular text-mode IRC client
 Name: irssi
-Version: 0.8.10a
-Release: 4
+Version: 0.8.12
+Release: 1
 License: GPL
 Group: Applications/Communications
 URL: http://irssi.org/
@@ -21,8 +19,13 @@ Source: http://mirror.irssi.org/irssi-%{version}.tar.bz2
 Patch0: irssi-0.8.10-dcc-unregister.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: autoconf, automake, gcc-c++,
-BuildRequires: glib2-devel, imlib-devel, ncurses-devel
+BuildRequires: gcc-c++,
+BuildRequires: glib2-devel
+BuildRequires: imlib-devel
+BuildRequires: ncurses-devel
+BuildRequires: openssl-devel
+BuildRequires: perl(ExtUtils::Embed)
+BuildRequires: zlib-devel
 %{?_with_gc:BuildRequires: libgc-devel}
 
 Provides: irssi-devel = %{version}-%{release}
@@ -36,39 +39,40 @@ specific anymore, there's already a working SILC module available.
 Support for other protocols like ICQ could be created some day too.
 
 %prep
-%setup -n %{name}-%{real_version}
-%patch0 -p0
+%setup
+#patch0 -p0
 %{?el3:%{__perl} -pi.orig -e 's|^CFLAGS = |CFLAGS = -I/usr/kerberos/include |' src/core/Makefile.in}
 %{?rh9:%{__perl} -pi.orig -e 's|^CFLAGS = |CFLAGS = -I/usr/kerberos/include |' src/core/Makefile.in}
 
 %build
 %configure \
-        --enable-ipv6 \
-	--enable-ssl \
-        --with-bot \
+    --enable-ipv6 \
+    --enable-ssl \
+    --with-bot \
 %{?_with_gc:--with-gc} \
-	--with-glib2 \
-	--with-imlib \
-        --with-ncurses \
-	--with-perl-lib="%(dirname %{buildroot}%{perl_vendorarch})" \
-	--with-plugins \
-        --with-proxy \
-        --with-textui
-#	--with-perl="module" \
-#	--with-perl-lib="%{buildroot}%{perl_vendorarch}"
-#	--with-perl-lib="vendor"
+    --with-glib2 \
+    --with-imlib \
+    --with-ncurses \
+    --with-perl="yes" \
+    --with-perl-lib="vendor" \
+    --with-plugins \
+    --with-proxy \
+    --with-textui
+#    --with-perl-lib="%(dirname %{buildroot}%{perl_vendorarch})" \
+#    --with-perl="module" \
+#    --with-perl-lib="%{buildroot}%{perl_vendorarch}" \
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall PREFIX="%{buildroot}%{_prefix}"
-#	PERL_USE_LIB="%{buildroot}%{perl_vendorarch}"
+%makeinstall PERL_INSTALL_ROOT="%{buildroot}" INSTALL="%{__install} -p"
+#makeinstall PREFIX="%{buildroot}%{_prefix}"
+#   PERL_USE_LIB="%{buildroot}%{perl_vendorarch}"
 
 ### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{__rm} -f %{buildroot}%{_libdir}/irssi/modules/*.{a,la}
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/Irssi/.packlist \
-		%{buildroot}%{perl_vendorarch}/auto/Irssi/*/.packlist \
-		%{buildroot}%{perl_vendorarch}/perllocal.pod
+%{__rm} -f %{buildroot}%{perl_vendorarch}/perllocal.pod
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -90,6 +94,9 @@ Support for other protocols like ICQ could be created some day too.
 %exclude %{_docdir}/irssi/
 
 %changelog
+* Wed Apr 09 2008 Dag Wieers <dag@wieers.com> - 0.8.12-1
+- Updated to release 0.8.12.
+
 * Thu Aug 02 2007 Dag Wieers <dag@wieers.com> - 0.8.10a-4
 - Disabled libgc for all distributions. (And be done with this mess)
 

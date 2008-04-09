@@ -4,8 +4,8 @@
 
 Summary: Nice editor
 Name: ne
-Version: 1.42
-Release: 1.2
+Version: 1.43
+Release: 1
 License: GPL
 Group: Applications/Editors
 URL: http://ne.dsi.unimi.it/
@@ -38,40 +38,37 @@ This package includes the documentation for package %{name}.
 %setup
 
 %build
-%{__make} %{?_smp_mflags} -C src \
-	CFLAGS="%{optflags}"
+%{__make} %{?_smp_mflags} -C src CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 src/ne %{buildroot}%{_bindir}/ne
 %{__install} -Dp -m0644 doc/ne.1 %{buildroot}%{_mandir}/man1/ne.1
-
-%{__install} -d -m0755 %{buildroot}%{_infodir}
-%{__install} -p -m0644 doc/ne.info* %{buildroot}%{_infodir}
+%{__install} -Dp -m0644 doc/ne.info.gz %{buildroot}%{_infodir}/ne.info.gz
 
 %post
-/sbin/install-info %{_infodir}/%{name}.info.gz %{_infodir}/dir
+/sbin/install-info %{_infodir}/ne.info.gz %{_infodir}/dir
 
 %preun
-/sbin/install-info --delete %{_infodir}/%{name}.info.gz %{_infodir}/dir
+/sbin/install-info --delete %{_infodir}/ne.info.gz %{_infodir}/dir
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES COPYING doc/*.html doc/default.* doc/ne.txt README terms/
+%doc CHANGES COPYING README doc/default.* doc/ne.txt doc/ne/ terms/
 %doc %{_mandir}/man1/ne.1*
-%doc %{_infodir}/*.info*
+%doc %{_infodir}/ne.info*
 %{_bindir}/ne
 
 %files docs
 %defattr(-, root, root, 0755)
-%doc doc/*.html doc/*.pdf doc/*.ps doc/ne.txt
+%doc doc/ne/ doc/*.pdf doc/*.ps doc/ne.txt
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.42-1.2
-- Rebuild for Fedora Core 5.
+* Thu Apr 10 2008 Dag Wieers <dag@wieers.com> - 1.43-1
+- Updated to release 1.43.
 
 * Fri Jan 26 2006 Dag Wieers <dag@wieers.com> - 1.42-1
 - Updated to release 1.42.
