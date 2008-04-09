@@ -18,6 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: ant
 BuildRequires: docbook-style-xsl
+BuildRequires: java >= 1.4.2
 BuildRequires: libxslt
 
 %description
