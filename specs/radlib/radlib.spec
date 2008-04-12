@@ -4,7 +4,7 @@
 
 Summary: C language library for interprocess communications and common tasks
 Name: radlib
-Version: 2.7.4
+Version: 2.7.5
 Release: 1
 License: BSD
 Group: Development/Libraries
@@ -66,6 +66,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat Apr 12 2008 Dries Verachtert <dries@ulyssis.org> - 2.7.5-1
+- Updated to release 2.7.5.
+
 * Tue Mar 18 2008 Dries Verachtert <dries@ulyssis.org> - 2.7.4-1
 - Updated to release 2.7.4.
 
