@@ -7,7 +7,7 @@
 Summary: Scan logfiles and ban ip addresses with too many password failures
 Name: fail2ban
 Version: 0.8.2
-Release: 1
+Release: 2
 License: GPL
 Group: ystem Environment/Daemons
 URL: http://fail2ban.sourceforge.net/
@@ -31,6 +31,7 @@ address or executes user defined commands.
 %prep
 %setup
 %{__perl} -pi -e 's|^# chkconfig:.+$|# chkconfig: 345 92 08|' files/redhat-initd
+%{__perl} -pi -e 's|/tmp/fail2ban.sock|/var/run/fail2ban/fail2ban.sock|g;' files/redhat-initd
 
 %{__cat} <<EOF >fail2ban.logrotate
 /var/log/fail2ban.log {
@@ -55,6 +56,7 @@ EOF
 %{__install} -Dp -m0644 man/fail2ban-client.1 %{buildroot}%{_mandir}/man1/fail2ban-client.1
 %{__install} -Dp -m0644 man/fail2ban-regex.1 %{buildroot}%{_mandir}/man1/fail2ban-regex.1
 %{__install} -Dp -m0644 man/fail2ban-server.1 %{buildroot}%{_mandir}/man1/fail2ban-server.1
+%{__install} -d %{buildroot}%{_var}/run/fail2ban
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -88,8 +90,12 @@ fi
 %{_bindir}/fail2ban-regex
 %{_bindir}/fail2ban-server
 %{_datadir}/fail2ban/
+%dir %{_var}/run/fail2ban
 
 %changelog
+* Sat Apr 12 2008 Dries Verachtert <dries@ulyssis.org> - 0.8.2-2
+- Fix location of fail2ban.sock file in init script, thanks to John Thomas.
+
 * Sun Apr  6 2008 Dries Verachtert <dries@ulyssis.org> - 0.8.2-1
 - Updated to release 0.8.2.
 - Python requirement changed from 2.4 to 2.3.
