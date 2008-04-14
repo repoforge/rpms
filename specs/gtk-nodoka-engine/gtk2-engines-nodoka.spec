@@ -1,15 +1,14 @@
 # $Id$
 # Authority:    hadams
 
-#Name:           gtk2-engines-nodoka
 Name:           gtk-nodoka-engine
-Version:        0.6.2
+Version:        0.7.0
 Packager:       Heiko Adams <info@fedora-blog.de>
-Release:        14.4
+Release:        1
 License:        GPL-2
 URL:            https://hosted.fedoraproject.org/projects/nodoka/wiki
-Source:         %{name}_%{version}-1nano.tar.gz
-BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-root
+Source:         %{name}-%{version}.tar.gz
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Obsoletes: 	gtk2-engines-nodoka <= 0.6
 Provides: 	gtk-nodoka-engine = %{version}-%{release}
@@ -46,8 +45,11 @@ rm -rf "$RPM_BUILD_ROOT"
 %{_datadir}/*
 
 %changelog
-* Sun Feb 17 2008 Heiko Adams <info-2007@fedora-blog.de> - 0.6.2-14.4
-- Update to 0.6.2
+* Thu Apr 14 2008 Heiko Adams <info@fedora-blog.de> - 0.7.0-1
+- Update to latest version
+
+* Sun Feb 17 2008 Heiko Adams <info@fedora-blog.de> - 0.6.2-14.4
+- Update to latest version
 
 * Sat Sep 15 2007 Heiko Adams <info@fedora-blog.de> - 0.6-14.3
 - Some small updates to the specfile
