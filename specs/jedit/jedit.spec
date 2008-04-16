@@ -7,7 +7,7 @@
 Summary: Programmer's text editor written in Java
 Name: jedit
 Version: 4.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Editors
 URL: http://www.jedit.org/
@@ -34,7 +34,7 @@ in Java.
 %prep
 %setup -n %{real_name}
 
-%{__cat} <<EOF >jedit.sh
+%{__cat} <<'EOF' >jedit.sh
 #!/bin/sh
 
 ### Java heap size, in megabytes
@@ -76,5 +76,8 @@ java -classpath . installer.Install auto %{buildroot}%{_datadir}/jedit %{buildro
 %{_datadir}/jedit/
 
 %changelog
+* Thu Apr 10 2008 Dag Wieers <dag@wieers.com> - 4.2-2
+- Fix typo in wrapper script.
+
 * Wed Apr 09 2008 Dag Wieers <dag@wieers.com> - 4.2-1
 - Initial package. (using DAR)
