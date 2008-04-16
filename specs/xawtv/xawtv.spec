@@ -31,22 +31,23 @@
 Summary: Television application for video4linux compliant devices
 Name: xawtv
 Version: 3.95
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://bytesex.org/xawtv/
 
 Source: http://dl.bytesex.org/releases/xawtv/xawtv-%{version}.tar.gz
+Patch0: xawtv-3.95-modxorg.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-%{?_without_modxorg:BuildRequires: XFree86-devel}
-%{!?_without_modxorg:BuildRequires: libX11-devel, libFS-devel}
 BuildRequires: ncurses-devel, Xaw3d-devel, libjpeg-devel
 BuildRequires: zvbi-devel, libpng-devel
 %{?_with_lesstif:BuildRequires: lesstif-devel}
 %{?_with_openmotif:BuildRequires: openmotif-devel}
 %{?rh62:BuildRequires: Mesa-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel, libFS-devel, libXaw-devel}
 #BuildRequires: libdv-devel, libquicktime-devel
 
 %description
@@ -57,6 +58,7 @@ Xawtv also includes a grabber driver for vic.
 
 %prep
 %setup
+%{!?_without_modxorg:%patch0 -p1}
 
 %{__perl} -pi.orig -e 's| -o root||' Makefile.in
 
@@ -73,8 +75,9 @@ EOF
 
 %build
 ### FIXME: Work-around for buildproblems with rpm configure macro (can't find the problem) Not related to optflags, _target_platform, CFLAGS (Builds fine on rh62 though)
-%configure
 #./configure --prefix="%{_prefix}"
+%configure \
+    --disable-quicktime
 %{__make} %{?_smp_mflags}
 
 %install
@@ -82,18 +85,18 @@ EOF
 ### On RH62 it fails because %{buildroot}%{_bindir} does not exist. (Fix upstream please)
 %{__install} -d -m0755 %{buildroot}%{_bindir}
 %makeinstall \
-	DESTDIR="%{buildroot}" \
-	libdir="%{buildroot}%{_libdir}/xawtv" \
-	datadir="%{buildroot}%{_datadir}/xawtv"
+    DESTDIR="%{buildroot}" \
+    libdir="%{buildroot}%{_libdir}/xawtv" \
+    datadir="%{buildroot}%{_datadir}/xawtv"
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -Dp -m0644 xawtv.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/xawtv.desktop
+    %{__install} -Dp -m0644 xawtv.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/xawtv.desktop
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor %{desktop_vendor}    \
-		--add-category X-Red-Hat-Base              \
-		--dir %{buildroot}%{_datadir}/applications \
-		xawtv.desktop
+    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+    desktop-file-install --vendor %{desktop_vendor}    \
+        --add-category X-Red-Hat-Base              \
+        --dir %{buildroot}%{_datadir}/applications \
+        xawtv.desktop
 %endif
 
 %clean
@@ -113,6 +116,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-xawtv.desktop}
 
 %changelog
+* Wed Apr 09 2008 Ariel Dembling <arieldembling@gmail.com> 3.95-2
+- Fixed compilation errors under CentOS 5.1.
+
 * Thu Mar 29 2007 Dag Wieers <dag@wieers.com> - 3.95-1
 - Updated to release 3.95.
 

@@ -48,7 +48,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 0.9.52
+Version: 0.9.59
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -400,10 +400,11 @@ update-desktop-database &>/dev/null || :
 %defattr(-, root, root, 0755)
 %doc ANNOUNCE AUTHORS ChangeLog COPYING.LIB LICENSE* README VERSION
 %doc documentation/README.*
-%doc %{_mandir}/*/man1/wine.1*
 %doc %{_mandir}/man1/wine.1*
 %doc %{_mandir}/man1/wineprefixcreate.1*
 %doc %{_mandir}/man1/wineserver.1*
+%doc %{_mandir}/*/man1/wine.1*
+%doc %{_mandir}/*/man1/wineserver.1*
 %config %{_initrddir}/wine
 %config %{_sysconfdir}/ld.so.conf.d/wine-%{_arch}.conf
 %{_bindir}/msiexec
@@ -456,6 +457,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/clock.exe.so
 %{_libdir}/wine/cmd.exe.so
 %{_libdir}/wine/control.exe.so
+%{_libdir}/wine/cryptdlg.dll.so
 %{_libdir}/wine/eject.exe.so
 %{_libdir}/wine/expand.exe.so
 %{_libdir}/wine/explorer.exe.so
@@ -468,10 +470,13 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/ntoskrnl.exe.so
 %{_libdir}/wine/oleview.exe.so
 %{_libdir}/wine/progman.exe.so
+%{_libdir}/wine/reg.exe.so
 %{_libdir}/wine/regedit.exe.so
 %{_libdir}/wine/regsvr32.exe.so
 %{_libdir}/wine/rpcss.exe.so
 %{_libdir}/wine/rundll32.exe.so
+%{_libdir}/wine/secedit.exe.so
+%{_libdir}/wine/services.exe.so
 %{_libdir}/wine/spoolsv.exe.so
 %{_libdir}/wine/start.exe.so
 %{_libdir}/wine/svchost.exe.so
@@ -566,6 +571,20 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/d3dim.dll.so
 %{_libdir}/wine/d3drm.dll.so
 %{_libdir}/wine/d3dx8.dll.so
+%{_libdir}/wine/d3dx9_24.dll.so
+%{_libdir}/wine/d3dx9_25.dll.so
+%{_libdir}/wine/d3dx9_26.dll.so
+%{_libdir}/wine/d3dx9_27.dll.so
+%{_libdir}/wine/d3dx9_28.dll.so
+%{_libdir}/wine/d3dx9_29.dll.so
+%{_libdir}/wine/d3dx9_30.dll.so
+%{_libdir}/wine/d3dx9_31.dll.so
+%{_libdir}/wine/d3dx9_32.dll.so
+%{_libdir}/wine/d3dx9_33.dll.so
+%{_libdir}/wine/d3dx9_34.dll.so
+%{_libdir}/wine/d3dx9_35.dll.so
+%{_libdir}/wine/d3dx9_36.dll.so
+%{_libdir}/wine/d3dx9_37.dll.so
 %{_libdir}/wine/d3dxof.dll.so
 %{_libdir}/wine/dbghelp.dll.so
 %{_libdir}/wine/dciman32.dll.so
@@ -591,28 +610,34 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/dpnhpast.dll.so
 %{_libdir}/wine/dpnlobby.dll.so
 %{_libdir}/wine/dsound.dll.so
+%{_libdir}/wine/dssenh.dll.so
 %{_libdir}/wine/dswave.dll.so
 %{_libdir}/wine/dwmapi.dll.so
 %{_libdir}/wine/dxdiagn.dll.so
 %{_libdir}/wine/faultrep.dll.so
+%{_libdir}/wine/fusion.dll.so
 %{_libdir}/wine/gdi32.dll.so
 %{_libdir}/wine/gdiplus.dll.so
 %{!?_without_opengl:%{_libdir}/wine/glu32.dll.so}
 #%{_libdir}/wine/glut32.dll.so
+%{_libdir}/wine/gpkcsp.dll.so
 %{_libdir}/wine/hal.dll.so
 %{_libdir}/wine/hid.dll.so
 %{_libdir}/wine/hlink.dll.so
 %{_libdir}/wine/hnetcfg.dll.so
 %{_libdir}/wine/iccvid.dll.so
 %{_libdir}/wine/icmp.dll.so
-%{_libdir}/wine/infosoft.dll.so
-%{_libdir}/wine/inkobj.dll.so
 %{_libdir}/wine/imagehlp.dll.so
 %{_libdir}/wine/imm32.dll.so
 %{_libdir}/wine/inetcomm.dll.so
+%{_libdir}/wine/infosoft.dll.so
+%{_libdir}/wine/initpki.dll.so
+%{_libdir}/wine/inkobj.dll.so
 %{_libdir}/wine/inseng.dll.so
 %{_libdir}/wine/iphlpapi.dll.so
+%{_libdir}/wine/itircl.dll.so
 %{_libdir}/wine/itss.dll.so
+%{_libdir}/wine/jscript.dll.so
 %{_libdir}/wine/kernel32.dll.so
 %{_libdir}/wine/localspl.dll.so
 %{_libdir}/wine/localui.dll.so
@@ -637,7 +662,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/msimtf.dll.so
 %{_libdir}/wine/msnet32.dll.so
 %{_libdir}/wine/msrle32.dll.so
+%{_libdir}/wine/mssip32.dll.so
 %{_libdir}/wine/msvcirt.dll.so
+%{_libdir}/wine/msvcr71.dll.so
 %{_libdir}/wine/msvcrt.dll.so
 %{_libdir}/wine/msvcrt20.dll.so
 %{_libdir}/wine/msvcrt40.dll.so
@@ -667,9 +694,11 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/pdh.dll.so
 %{_libdir}/wine/powrprof.dll.so
 %{_libdir}/wine/printui.dll.so
+%{_libdir}/wine/propsys.dll.so
 %{_libdir}/wine/psapi.dll.so
 %{_libdir}/wine/pstorec.dll.so
 %{_libdir}/wine/qcap.dll.so
+%{_libdir}/wine/qedit.dll.so
 %{_libdir}/wine/qmgr.dll.so
 %{_libdir}/wine/qmgrprxy.dll.so
 %{_libdir}/wine/quartz.dll.so
@@ -681,6 +710,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/rpcrt4.dll.so
 %{_libdir}/wine/rsabase.dll.so
 %{_libdir}/wine/rsaenh.dll.so
+%{_libdir}/wine/sccbase.dll.so
 %{_libdir}/wine/schannel.dll.so
 %{_libdir}/wine/secur32.dll.so
 %{_libdir}/wine/security.dll.so
@@ -694,7 +724,10 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/shell32.dll.so
 %{_libdir}/wine/shfolder.dll.so
 %{_libdir}/wine/shlwapi.dll.so
+%{_libdir}/wine/slbcsp.dll.so
+%{_libdir}/wine/slc.dll.so
 %{_libdir}/wine/snmpapi.dll.so
+%{_libdir}/wine/softpub.dll.so
 %{_libdir}/wine/spoolss.dll.so
 %{_libdir}/wine/sti.dll.so
 %{_libdir}/wine/svrapi.dll.so
@@ -720,11 +753,13 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/winscard.dll.so
 %{_libdir}/wine/wintab32.dll.so
 %{_libdir}/wine/wintrust.dll.so
+%{_libdir}/wine/wmi.dll.so
 %{_libdir}/wine/wnaspi32.dll.so
 %{_libdir}/wine/wow32.dll.so
 %{_libdir}/wine/ws2_32.dll.so
 %{_libdir}/wine/wsock32.dll.so
 %{_libdir}/wine/wtsapi32.dll.so
+
 
 ### ds.so
 %{_libdir}/wine/gphoto2.ds.so
@@ -775,6 +810,12 @@ update-desktop-database &>/dev/null || :
 ### ocx.so
 %{_libdir}/wine/hhctrl.ocx.so
 %{_libdir}/wine/msisys.ocx.so
+
+### mod16
+%{_libdir}/wine/winoldap.mod16
+
+### sys.so
+%{_libdir}/wine/mountmgr.sys.so
 
 %files capi
 %defattr(-, root, root, 0755)
@@ -841,6 +882,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Sun Apr 13 2008 Dag Wieers <dag@wieers.com> - 0.9.59-1
+- Updated to release 0.9.59.
+
 * Tue Jan 08 2008 Dag Wieers <dag@wieers.com> - 0.9.52-1
 - Updated to release 0.9.52.
 

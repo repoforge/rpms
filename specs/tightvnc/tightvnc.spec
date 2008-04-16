@@ -25,7 +25,7 @@
 Summary: Graphical remote administration system
 Name: tightvnc
 Version: 1.3.9
-Release: 2
+Release: 3
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.tightvnc.com/
@@ -140,7 +140,7 @@ start() {
         echo -n "${display} "
         unset BASH_ENV ENV
         initlog $INITLOG_ARGS -c \
-            "su ${display##*:} -c \"cd ~${display##*:} && [ -f .vnc/passwd ] && vncserver :${display%%:*}\""
+            "su ${display##*:} -c \"cd ~${display##*:} && [ -f .vnc/passwd ] && vncserver :${display%%:*} ${VNCSERVERARGS[${display%:*}]}\""
         RETVAL=$?
         [ "$RETVAL" -ne 0 ] && break
     done
@@ -211,8 +211,8 @@ cd Xvnc
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_bindir} \
-            %{buildroot}%{_mandir}/man1/ \
-            %{buildroot}%{_datadir}/vnc/
+    %{buildroot}%{_mandir}/man1/ \
+    %{buildroot}%{_datadir}/vnc/
 ./vncinstall %{buildroot}%{_bindir} %{buildroot}%{_mandir}
 
 %{__cp} -apR classes %{buildroot}%{_datadir}/vnc/
@@ -269,6 +269,9 @@ fi
 %{_datadir}/vnc/
 
 %changelog
+* Thu Apr 10 2008 Dag Wieers <dag@wieers.com> - 1.3.9-3
+- Improved sysv script to include VNCSERVERARGS. (Arturo Díaz Rosemberg)
+
 * Thu Mar 13 2008 Dag Wieers <dag@wieers.com> - 1.3.9-2
 - Added fix for rgb.txt support. (Alberto Lusiani)
 

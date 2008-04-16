@@ -4,7 +4,7 @@
 
 Summary: Automatically restart SSH sessions and tunnels
 Name: autossh
-Version: 1.4a
+Version: 1.4b
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -49,6 +49,9 @@ such as connection refused.
 %{_bindir}/autossh
 
 %changelog
+* Sat Apr 12 2008 Dag Wieers <dag@wieers.com> - 1.4b-1
+- Updated to release 1.4b.
+
 * Fri Jul 14 2006 Dag Wieers <dag@wieers.com> - 1.4a-1
 - Updated to release 1.4a.
 
