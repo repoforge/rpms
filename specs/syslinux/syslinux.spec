@@ -8,7 +8,7 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-Version: 3.62
+Version: 3.63
 Release: 1
 License: GPL
 Group: Applications/System
@@ -58,7 +58,7 @@ export CFLAGS="-Werror -Wno-unused -finline-limit=2000"
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS COPYING NEWS README TODO com32/modules/mboot.doc menu/ sample/
+%doc BUGS COPYING NEWS README TODO doc/* menu/ sample/
 %doc %{_mandir}/man1/gethostip.1*
 %doc %{_mandir}/man1/lss16toppm.1*
 %doc %{_mandir}/man1/ppmtolss16.1*
@@ -74,6 +74,9 @@ export CFLAGS="-Werror -Wno-unused -finline-limit=2000"
 %{_sbindir}/extlinux
 
 %changelog
+* Sat Apr 12 2008 Dag Wieers <dag@wieers.com> - 3.63-1
+- Updated to release 3.63.
+
 * Sun Mar 02 2008 Dag Wieers <dag@wieers.com> - 3.62-1
 - Updated to release 3.62.
 
