@@ -1,6 +1,14 @@
 # $Id$
 # Authority: dag
 
+%{?dtag: %{expand: %%define %dtag 1}}
+
+%{!?dtag:%define _with_modxorg 1}
+%{?fc7:  %define _with_modxorg 1}
+%{?el5:  %define _with_modxorg 1}
+%{?fc6:  %define _with_modxorg 1}
+%{?fc5:  %define _with_modxorg 1}
+
 %define fontdir %{_datadir}/fonts/artwiz-aleczapka
 
 Summary: Set of (improved) artwiz fonts
@@ -16,7 +24,8 @@ Source: http://dl.sf.net/artwizaleczapka/artwiz-aleczapka-en-sources-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-#BuildRequires: xorg-x11-font-utils
+%{?_with_modxorg:BuildRequires: xorg-x11-font-utils}
+%{!?_with_modxorg:BuildRequires: XFree86}
 
 %description
 artwiz-aleczapka-fonts is set of (improved) artwiz fonts.
