@@ -4,7 +4,7 @@
 
 Summary: Small C editor
 Name: geany
-Version: 0.12
+Version: 0.14
 Release: 1
 License: GPL
 Group: Applications/Editors
@@ -20,6 +20,16 @@ Geany is a small C editor using GTK2 with basic features of an integrated
 development environment. It features syntax highlighting, code completion, 
 call tips, many supported filetypes (including C, Java, PHP, HTML, DocBook, 
 Perl, LateX, and Bash), and symbol lists.
+
+%package devel
+Summary: Header files, libraries and development documentation for %{name}.
+Group: Development/Libraries
+Requires: %{name} = %{version}-%{release}
+
+%description devel
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
 %setup
@@ -48,7 +58,15 @@ Perl, LateX, and Bash), and symbol lists.
 %{_datadir}/pixmaps/geany.*
 %{_datadir}/applications/geany.desktop
 
+%files devel
+%defattr(-, root, root, 0755)
+%{_includedir}/geany/
+%{_libdir}/pkgconfig/geany.pc
+
 %changelog
+* Sun Apr 20 2008 Dries Verachtert <dries@ulyssis.org> - 0.14-1
+- Updated to release 0.14.
+
 * Tue Oct 16 2007 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Updated to release 0.12.
 

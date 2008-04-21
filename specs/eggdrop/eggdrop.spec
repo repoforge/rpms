@@ -11,14 +11,14 @@
 
 Summary: IRC bot
 Name: eggdrop
-Version: 1.6.17
+Version: 1.6.19
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.eggheads.org/
 
 Source: ftp://ftp.eggheads.org/pub/eggdrop/GNU/stable/eggdrop%{version}.tar.bz2
-Patch0: eggdrop1.6.17-lib64.patch
+#Patch0: eggdrop1.6.17-lib64.patch
 Patch1: eggdrop1.6.17-64bit-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -36,15 +36,16 @@ privileged users and let them gain ops, etc.
 
 %prep
 %setup -n %{name}%{version}
-%patch0 -p1 -b .lib64
+#patch0 -p1 -b .lib64
 %patch1 -p1 -b .64bit-fixes
-  
+
+# _smp_mflags removed, compile fails on multiprocessor system  
 %build
 #reautoconf
 %configure \
 	--with-tclinc="%{_includedir}/tcl.h" \
 	--with-tcllib="%{_libdir}/libtcl.so"
-%{__make} %{?_smp_mflags} config all
+%{__make} config all
 
 %install
 %{__rm} -rf %{buildroot}
@@ -70,6 +71,9 @@ perl -pi -e 's|/path/to/executable/eggdrop|%{_libdir}/eggdrop/eggdrop|' eggdrop.
 %{_libdir}/eggdrop/
 
 %changelog
+* Sun Apr 20 2008 Dries Verachtert <dries@ulyssis.org> - 1.6.19-1
+- Updated to release 1.6.19.
+
 * Thu Nov 11 2004 Dag Wieers <dag@wieers.com> - 1.6.17-1
 - Updated to release 1.6.17.
 
