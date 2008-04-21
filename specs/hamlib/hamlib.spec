@@ -3,7 +3,7 @@
 
 Summary: HAM radio equipment control libraries
 Name: hamlib
-Version: 1.2.7
+Version: 1.2.7.1
 Release: 1
 License: LGPL
 Group: Development/Libraries
@@ -80,5 +80,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sun Apr 20 2008 Dries Verachtert <dries@ulyssis.org> - 1.2.7.1-1
+- Updated to release 1.2.7.1.
+
 * Sun Feb 17 2008 Dries Verachtert <dries@ulyssis.org> - 1.2.7-1
 - Initial package.
