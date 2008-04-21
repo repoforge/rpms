@@ -9,14 +9,14 @@
 
 Summary: Combined filter, redirector and access controller plugin for squid
 Name: squidguard
-Version: 1.2.0
-Release: 2.2
+Version: 1.3
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.squidguard.org/
 
-Source: http://ftp.teledanmark.no/pub/www/proxy/squidGuard/squidGuard-%{version}.tar.gz
-Patch0: squidguard-1.2.0-db4.patch
+Source: http://www.squidguard.org/Downloads/squidGuard-%{version}.tar.gz
+#Patch0: squidguard-1.2.0-db4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison, flex, perl
@@ -40,7 +40,7 @@ users to a list of webservers, based on keywords.
 
 %prep
 %setup -n %{real_name}-%{version}
-%patch0
+#patch0
 #{?fc3:%patch0}
 #{?fc2:%patch0}
 #{?fc1:%patch0}
@@ -55,6 +55,10 @@ users to a list of webservers, based on keywords.
 		s|\$\(logdir\)|\$(localstatedir)/log/squidguard|;
 		s|\$\(cfgdir\)|\$(sysconfdir)/squid|;
 	' src/Makefile.in
+
+%{__perl} -pi.orig -e '
+		s|chown|#chown|g;
+	' Makefile.in
 
 %{__cat} <<EOF >%{name}.logrotate
 %{_localstatedir}/log/squid/squidguard.log {
@@ -72,12 +76,19 @@ EOF
 %{__make} %{?_smp_mflags} \
 	LIBS="-ldb -lpthread"
 
+
+
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__install} -d %{buildroot}%{_sysconfdir}/squid
+%{__make} install DESTDIR="%{buildroot}" \
+	prefix="%{buildroot}%{_prefix}" \
+	exec_prefix="%{buildroot}%{_prefix}" \
+	logdir="%{buildroot}%{_localstatedir}/log/squidguard" \
+	configfile="%{buildroot}%{_sysconfdir}/squid/squidguard.conf"
 
 %{__install} -Dp -m0644 squidguard.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/squidguard
-%{__install} -Dp -m0644 samples/sample.conf %{buildroot}%{_sysconfdir}/squid/squidguard.conf
+#{__install} -Dp -m0644 samples/sample.conf %{buildroot}%{_sysconfdir}/squid/squidguard.conf
 %{__ln_s} -f squidGuard %{buildroot}%{_bindir}/squidguard
 
 %{__install} -d -m0755 \
@@ -92,12 +103,16 @@ EOF
 %doc samples/sample.conf samples/squidGuard-simple.cgi samples/squidGuard.cgi
 %doc doc/*.gif doc/*.html doc/*.txt
 %config(noreplace) %{_sysconfdir}/squid/
-%config %{_sysconfdir}/logrotate.d/*
-%{_bindir}/*
+%config %{_sysconfdir}/logrotate.d/squidguard
+%{_bindir}/squidGuard
+%{_bindir}/squidguard
 %{dbhomedir}
-%{_localstatedir}/log/squidguard/
+#%{_localstatedir}/log/squidguard/
 
 %changelog
+* Sun Apr 20 2008 Dries Verachtert <dries@ulyssis.org> - 1.3-1
+- Updated to release 1.3.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.0-2.2
 - Rebuild for Fedora Core 5.
 
