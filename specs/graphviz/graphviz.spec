@@ -41,7 +41,7 @@
 Summary: Graph Visualization Tools
 Name: graphviz
 Version: 2.14.1
-Release: 1
+Release: 2
 License: CPL
 Group: Applications/Multimedia
 URL: http://www.graphviz.org/
@@ -182,7 +182,8 @@ Some demo graphs for %{name}.
 %{expand: %%define optflags %{optflags} -ffast-math}
 %configure \
 	--with-mylibgd \
-	--with-x
+	--with-x \
+	%{?_without_java:--disable-java}
 %{__make} %{?_smp_mflags}
 
 %install
@@ -280,6 +281,9 @@ Some demo graphs for %{name}.
 %doc rpmdoc/*
 
 %changelog
+* Sun Apr 20 2008 Dries Verachtert <dries@ulyssis.org> - 2.14.1-2
+- Added --disable-java to configure when _without_java is set.
+
 * Mon Sep  3 2007 Dries Verachtert <dries@ulyssis.org> - 2.14.1-1
 - Updated to release 2.14.1.
 - Generate config file in post script, thanks to Stefan Radman.
