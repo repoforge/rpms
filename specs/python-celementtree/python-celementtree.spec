@@ -5,17 +5,17 @@
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 %define real_name cElementTree
-%define real_version 1.0.2-20050302
+%define real_version 1.0.5-20051216
 
 Summary: Fast XML parser and writer (written in C)
 Name: python-celementtree
 Version: 1.0.5
-Release: 1.2
+Release: 2
 License: MIT
 Group: Development/Libraries
 URL: http://effbot.org/zone/celementtree.htm
 
-Source: http://effbot.org/downloads/cElementTree-%{real_version}.tar.gz
+Source: http://effbot.org/media/downloads/cElementTree-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python >= 2.2, expat-devel, python-devel
@@ -47,6 +47,10 @@ between a Python list and a Python dictionary.
 %{python_sitearch}/cElementTree.so
 
 %changelog
+* Mon Apr 21 2008 Matthias Saou <http://freshrpms.net/> 1.0.5-2
+- Actually update to 1.0.5 by fixing real_version (was still 1.0.2).
+- Update source URL.
+
 * Thu Jan 05 2006 Dag Wieers <dag@wieers.com> - 1.0.5-1
 - Updated to release 1.0.5.
 
