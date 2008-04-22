@@ -4,11 +4,11 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%define real_version 1.0.0-4
+%define real_version 1.1.0
 
 Summary: Frontend for dvdauthor
 Name: qdvdauthor
-Version: 1.0.0
+Version: 1.1.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -80,6 +80,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/qdvdauthor/
 
 %changelog
+* Mon Apr 21 2008 Dries Verachtert <dries@ulyssis.org> - 1.1.0-1
+- Updated to release 1.1.0.
+
 * Sun Jan 13 2008 Dries Verachtert <dries@ulyssis.org> - 1.0.0-1
 - Updated to release 1.0.0.
 
