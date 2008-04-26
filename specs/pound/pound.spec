@@ -4,7 +4,7 @@
 
 Summary: Reverse HTTP proxy, load balancer and SSL wrapper
 Name: pound
-Version: 2.4
+Version: 2.4.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -52,6 +52,9 @@ even if the backend server(s) are HTTP/1.0, and sanitizes requests.
 %{_sbindir}/poundctl
 
 %changelog
+* Thu Apr 17 2008 Dag Wieers <dag@wieers.com> - 2.4.1-1
+- Updated to release 2.4.1.
+
 * Mon Feb 11 2008 Dag Wieers <dag@wieers.com> - 2.4-1
 - Updated to release 2.4.
 
