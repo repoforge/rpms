@@ -59,7 +59,7 @@
 
 Summary: Core library of the xine multimedia player
 Name: xine-lib
-Version: 1.1.11.1
+Version: 1.1.12
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -191,7 +191,9 @@ export SDL_CFLAGS="$(sdl-config --cflags)" SDL_LIBS="$(sdl-config --libs)"
 %doc AUTHORS COPYING ChangeLog NEWS README TODO
 %doc doc/README.* doc/faq/faq.txt doc/faq/faq.html
 %doc %{_docdir}/xine-lib/hackersguide/
+%doc %{_mandir}/man1/xine-list-1.1.1*
 %doc %{_mandir}/man5/xine.5*
+%{_bindir}/xine-list-1.1
 %{_datadir}/xine/
 %{_libdir}/libxine.so.*
 %{_libdir}/xine/
@@ -210,6 +212,9 @@ export SDL_CFLAGS="$(sdl-config --cflags)" SDL_LIBS="$(sdl-config --libs)"
 %exclude %{_libdir}/libxine.la
 
 %changelog
+* Thu Apr 17 2008 Dag Wieers <dag@wieers.com> - 1.1.12-1
+- Updated to release 1.1.12.
+
 * Tue Apr 08 2008 Dag Wieers <dag@wieers.com> - 1.1.11.1-1
 - Updated to release 1.1.11.1.
 
