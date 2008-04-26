@@ -1,0 +1,35 @@
+diff -ur nsis-2.27-src/SCons/Config/gnu nsis-2.27-src-RPM_OPT_FLAGS/SCons/Config/gnu
+--- nsis-2.27-src/SCons/Config/gnu	2007-04-13 12:28:49.000000000 +0200
++++ nsis-2.27-src-RPM_OPT_FLAGS/SCons/Config/gnu	2007-05-28 00:45:12.000000000 +0200
+@@ -1,5 +1,7 @@
+ print "Using GNU tools configuration"
+ 
++import os
++
+ Import('defenv')
+ 
+ ### imports
+@@ -80,13 +82,11 @@
+ makensis_env = defenv.Clone()
+ 
+ if not defenv['DEBUG']:
+-	makensis_env.Append(CCFLAGS = '-O2')            # optimize
++	makensis_env.Append(CCFLAGS = os.getenv('RPM_OPT_FLAGS'))            # optimize
+ makensis_env.Append(CCFLAGS = '-Wall')            # all warnings
+ makensis_env.Append(CCFLAGS = '-Wno-non-virtual-dtor') # ignore virtual dtor warnings
+ 
+ conf = FlagsConfigure(makensis_env)
+-conf.CheckLinkFlag('-m32')                        # 
+-conf.CheckCompileFlag('-m32')                     #
+ conf.CheckLinkFlag('$MAP_FLAG')                   # generate map file
+ if not defenv['DEBUG'] and defenv['STRIP']:
+ 	TestStrip(conf)                                 # strip
+@@ -113,7 +113,7 @@
+ cp_util_env = defenv.Clone()
+ 
+ if not defenv['DEBUG']:
+-	cp_util_env.Append(CCFLAGS = '-O2')             # optimize
++	cp_util_env.Append(CCFLAGS = os.getenv('RPM_OPT_FLAGS'))             # optimize
+ cp_util_env.Append(CCFLAGS = '-Wall')             # all warnings
+ cp_util_env.Append(CCFLAGS = '-fno-strict-aliasing') # not safe for strict aliasing
+ 
