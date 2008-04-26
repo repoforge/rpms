@@ -26,7 +26,7 @@ Source0: http://dl.sf.net/sourceforge/gparted/gparted-%{version}.tar.bz2
 Source1: run-gparted
 Source2: gparted-console.apps
 Source3: gparted-pam.d
-Patch0:	gparted-dont-lock-hal.patch
+Patch0: gparted-dont-lock-hal.patch
 Patch1: gparted-devices.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
