@@ -14,7 +14,7 @@ Group: System Environment/Libraries
 URL: http://www.sacredchao.net/quodlibet/wiki/Development/Mutagen
 
 Source: http://www.sacredchao.net/~piman/software/mutagen-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: python-devel >= 2.0

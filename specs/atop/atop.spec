@@ -5,7 +5,7 @@
 
 Summary: AT Computing System and Process Monitor
 Name: atop
-Version: 1.19
+Version: 1.23
 Release: 1
 License: GPL
 Group: Applications/System
@@ -31,8 +31,7 @@ information in raw format for long-term analysis.
 %setup
 
 %build
-%{__make} %{?_smp_mflags} \
-	CFLAGS="%{optflags}"
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -43,7 +42,7 @@ information in raw format for long-term analysis.
 %{__install} -Dp -m0755 atop.init %{buildroot}%{_initrddir}/atop
 %{__install} -Dp -m0644 atop.cron %{buildroot}%{_sysconfdir}/cron.d/atop
 %{__install} -Dp -m0711 atop.daily %{buildroot}%{_sysconfdir}/atop/atop.daily
-%{__install} -Dp -m0711 atop.24hours %{buildroot}%{_sysconfdir}/atop/atop.24hours
+#%{__install} -Dp -m0711 atop.24hours %{buildroot}%{_sysconfdir}/atop/atop.24hours
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/atop
 
@@ -52,30 +51,30 @@ information in raw format for long-term analysis.
 
 %preun
 if [ $1 -eq 0 ]; then
-	killall atop &>/dev/null || :
-	/sbin/chkconfig --del atop
+    killall atop &>/dev/null || :
+    /sbin/chkconfig --del atop
 fi
 
 %post
 /sbin/chkconfig --add atop
 
 if [ -f /etc/logrotate.d/psacct ]; then
-	> /tmp/atop.timeref
+    > /tmp/atop.timeref
 
-	ACCTFILE="$(awk '$2 == "{" {print $1}' /etc/logrotate.d/psacct)"
+    ACCTFILE="$(awk '$2 == "{" {print $1}' /etc/logrotate.d/psacct)"
 
-	if [ -f "$ACCTFILE" -a "$ACCTFILE" -nt /tmp/atop.timeref ]; then
-		rm -f /etc/cron.d/atop
-		%logmsg 'Install provisions for automatic daily logging manually'
-		%logmsg '(see section RAW DATA STORAGE in man-page) ....'
-	else
-		/etc/atop/atop.daily
-		%logmsg 'Automatic daily logging is activated ...'
-	fi
-	rm -f /tmp/atop.timeref
+    if [ -f "$ACCTFILE" -a "$ACCTFILE" -nt /tmp/atop.timeref ]; then
+        rm -f /etc/cron.d/atop
+        %logmsg 'Install provisions for automatic daily logging manually'
+        %logmsg '(see section RAW DATA STORAGE in man-page) ....'
+    else
+        /etc/atop/atop.daily
+        %logmsg 'Automatic daily logging is activated ...'
+    fi
+    rm -f /tmp/atop.timeref
 else
-	/etc/atop/atop.daily
-	logmsg 'Automatic daily logging is activated ...'
+    /etc/atop/atop.daily
+    logmsg 'Automatic daily logging is activated ...'
 fi
 
 %files
@@ -89,6 +88,12 @@ fi
 %dir %{_localstatedir}/log/atop/
 
 %changelog
+* Fri Mar 07 2008 Dag Wieers <dag@wieers.com> - 1.23-1
+- Updated to release 1.23.
+
+* Fri Aug 24 2007 Dag Wieers <dag@wieers.com> - 1.21-1
+- Updated to release 1.21.
+
 * Thu Jan 18 2007 Dag Wieers <dag@wieers.com> - 1.19-1
 - Updated to release 1.19.
 

@@ -20,7 +20,7 @@ URL: http://www.antigrain.com/
 Source: http://www.antigrain.com/agg-%{version}.tar.gz
 Patch0: agg-2.4-depends.patch
 Patch1: agg-2.5-pkgconfig.patch
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: automake, libtool, freetype-devel, SDL-devel
 %{?_with_modxorg:BuildRequires: libX11-devel}
