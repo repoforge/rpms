@@ -7,7 +7,7 @@
 Summary: Top clone for MySQL
 Name: mytop
 Version: 1.4
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Databases
 URL: http://jeremy.zawodny.com/mysql/mytop/
@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl(Time::HiRes), perl(Term::ReadKey), perl(Term::ANSIColor), perl >= 0:5.005
-Requires: perl >= 0:5.005
+Requires: perl >= 0:5.005, perl(Term::ReadKey)
 
 %description
 mytop is a console-based (non-gui) tool for monitoring the threads and 
@@ -52,5 +52,8 @@ queries/second stats. As of version 0.7, it even runs on Windows
 %{_bindir}/mytop
 
 %changelog
+* Sun Apr 27 2008 Dries Verachtert <dries@ulyssis.org> - 1.4-2
+- Added perl(Term::ReadKey) dependency, thanks to Michael Mansour.
+
 * Sun Mar 05 2006 Dag Wieers <dag@wieers.com> - 1.4-1
 - Initial package. (using DAR)
