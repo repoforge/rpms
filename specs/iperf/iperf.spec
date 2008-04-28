@@ -4,15 +4,15 @@
 
 Summary: Tool for measuring TCP and UDP bandwidth performance
 Name: iperf
-Version: 2.0.2
-Release: 2
+Version: 2.0.4
+Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://dast.nlanr.net/Projects/Iperf/
+#URL: http://dast.nlanr.net/Projects/Iperf/
+URL: http://iperf.sourceforge.net/
 
-#Source: http://dast.nlanr.net/Projects/Iperf/iperf-%{version}.tar.gz
-Source: http://dast.nlanr.net/Projects/Iperf2.0/iperf-%{version}.tar.gz
-Patch0: iperf-2.0.2-noyield.patch
+#Source: http://dast.nlanr.net/Projects/Iperf2.0/iperf-%{version}.tar.gz
+Source: http://dl.sf.net/iperf/iperf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, libstdc++-devel
@@ -24,7 +24,6 @@ delay jitter, datagram loss.
 
 %prep
 %setup
-%patch -p1
 
 %build
 %configure
@@ -32,8 +31,7 @@ delay jitter, datagram loss.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall -C src \
-	INSTALL_DIR="%{buildroot}%{_bindir}"
+%makeinstall -C src INSTALL_DIR="%{buildroot}%{_bindir}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -44,6 +42,10 @@ delay jitter, datagram loss.
 %{_bindir}/iperf
 
 %changelog
+* Mon Apr 28 2008 Dag Wieers <dag@wieers.com> - 2.0.4-1
+- Updated to release 2.0.4.
+- Removed patch from Ingo Molnar, accepted upstream.
+
 * Thu Sep 27 2007 Dag Wieers <dag@wieers.com> - 2.0.2-2
 - Added Ingo Molnar's noyield patch.
 
