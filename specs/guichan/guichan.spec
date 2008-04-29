@@ -6,7 +6,7 @@
 
 Summary: Small efficient C++ GUI library
 Name: guichan
-Version: 0.7.1
+Version: 0.8.1
 Release: 1
 License: BSD
 Group: Development/Libraries
@@ -54,10 +54,10 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-%{_libdir}/libguichan.so.*
-%{_libdir}/libguichan_allegro.so.*
-%{_libdir}/libguichan_opengl.so.*
-%{_libdir}/libguichan_sdl.so.*
+%{_libdir}/libguichan-%{version}.so.*
+%{_libdir}/libguichan_allegro-%{version}.so.*
+%{_libdir}/libguichan_opengl-%{version}.so.*
+%{_libdir}/libguichan_sdl-%{version}.so.*
 #%{_libdir}/libguichan_glut.so.*
 
 %files devel
@@ -74,6 +74,12 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sun Apr 27 2008 Dries Verachtert <dries@ulyssis.org> - 0.8.1-1
+- Updated to release 0.8.1.
+
+* Sun Apr  6 2008 Dries Verachtert <dries@ulyssis.org> - 0.8.0-1
+- Updated to release 0.8.0.
+
 * Mon Jul 16 2007 Dries Verachtert <dries@ulyssis.org> - 0.7.1-1
 - Updated to release 0.7.1.
 
