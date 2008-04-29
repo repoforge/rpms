@@ -5,7 +5,7 @@
 
 Summary: Web application to manage MySQL
 Name: phpmyadmin
-Version: 2.11.5.2
+Version: 2.11.6
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -70,6 +70,9 @@ EOF
 %config(noreplace) %{_datadir}/phpmyadmin/config.inc.php
 
 %changelog
+* Tue Apr 29 2008 Jim <quien-sabe@metaorg.com> - 2.11.6-1
+- Updated to release 2.11.6.
+
 * Tue Apr 22 2008 Jim <quien-sabe@metaorg.com> - 2.11.5.2-1
 - Updated to release 2.11.5.2.
 
