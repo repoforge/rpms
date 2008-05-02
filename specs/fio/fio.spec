@@ -4,7 +4,7 @@
 
 Summary: I/O benchmark and stress/hardware verification tool
 Name: fio
-Version: 1.19
+Version: 1.20
 Release: 1
 License: GPL
 Group: Applications/System
@@ -28,7 +28,7 @@ submission latencies (avg/mean/deviation), bandwidth stats, CPU, and disk
 utilization, and more. It supports Linux, FreeBSD, and OpenSolaris.
 
 %prep
-%setup
+%setup -n %{name}
 
 #%{__perl} -pi -e 's| \$\(libdir\)| \$(DESTDIR)\$(libdir)|' Makefile
 
@@ -52,6 +52,9 @@ utilization, and more. It supports Linux, FreeBSD, and OpenSolaris.
 #%{_libdir}/fio/
 
 %changelog
+* Fri May 02 2008 Dag Wieers <dag@wieers.com> - 1.20-1
+- Updated to release 1.20.
+
 * Sun Feb 24 2008 Dries Verachtert <dries@ulyssis.org> - 1.19-1
 - Updated to release 1.19.
 

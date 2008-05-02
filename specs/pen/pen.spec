@@ -4,7 +4,7 @@
 
 Summary: Load balancer for "simple" tcp based protocols
 Name: pen
-Version: 0.17.2
+Version: 0.17.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -26,11 +26,11 @@ servers. This gives high availability and scalable performance.
 %{__cat} <<EOF >pen.httpd
 ScriptAlias /pen/ %{_localstatedir}/www/pen/
 <Directory %{_localstatedir}/www/pen/>
-	DirectoryIndex penctl.cgi
-	Options ExecCGI
-	order deny,allow
-	deny from all
-	allow from 127.0.0.1
+    DirectoryIndex penctl.cgi
+    Options ExecCGI
+    order deny,allow
+    deny from all
+    allow from 127.0.0.1
 </Directory>
 EOF
 
@@ -47,10 +47,10 @@ EOF
 
 %post
 if [ -f %{_sysconfdir}/httpd/conf/httpd.conf ]; then
-        if ! grep -q "Include .*/pen.conf" %{_sysconfdir}/httpd/conf/httpd.conf; then
-                echo -e "\n# Include %{_sysconfdir}/httpd/conf.d/pen.conf" >> %{_sysconfdir}/httpd/conf/httpd.conf
-#               /sbin/service httpd restart
-        fi
+    if ! grep -q "Include .*/pen.conf" %{_sysconfdir}/httpd/conf/httpd.conf; then
+        echo -e "\n# Include %{_sysconfdir}/httpd/conf.d/pen.conf" >> %{_sysconfdir}/httpd/conf/httpd.conf
+#       /sbin/service httpd restart
+    fi
 fi
 
 %clean
@@ -59,13 +59,26 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING HOWTO NEWS README
-%doc %{_mandir}/man?/*
-%config(noreplace) %{_sysconfdir}/httpd/conf.d/*.conf
-%{_bindir}/*
+%doc %{_mandir}/man1/mergelogs.1*
+%doc %{_mandir}/man1/pen.1*
+%doc %{_mandir}/man1/penctl.1*
+%doc %{_mandir}/man1/penlog.1*
+%doc %{_mandir}/man1/penlogd.1*
+%dir %{_sysconfdir}/httpd/
+%dir %{_sysconfdir}/httpd/conf.d/
+%config(noreplace) %{_sysconfdir}/httpd/conf.d/pen.conf
+%{_bindir}/mergelogs
+%{_bindir}/pen
+%{_bindir}/penctl
+%{_bindir}/penlog
+%{_bindir}/penlogd
 %{_localstatedir}/www/pen/
 %exclude %{_prefix}/doc/
 
 %changelog
+* Fri May 02 2008 Dag Wieers <dag@wieers.com> - 0.17.3-1
+- Updated to release 0.17.3.
+
 * Sat Sep 22 2007 Dag Wieers <dag@wieers.com> - 0.17.2-1
 - Updated to release 0.17.2.
 
