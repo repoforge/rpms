@@ -9,7 +9,7 @@
 
 Summary: Create generic methods for OO Perl
 Name: perl-Class-MethodMaker
-Version: 2.10
+Version: 2.11
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Class/MethodMaker/
 
 %changelog
+* Sat May 03 2008 Dag Wieers <dag@wieers.com> - 2.11-1
+- Updated to release 2.11.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.08-1
 - Updated to release 2.08.
 

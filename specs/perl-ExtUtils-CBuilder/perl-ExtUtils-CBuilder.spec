@@ -7,9 +7,9 @@
 
 %define real_name ExtUtils-CBuilder
 
-Summary: Compile and link C code
+Summary: Compile and link C code for Perl modules
 Name: perl-ExtUtils-CBuilder
-Version: 0.22
+Version: 0.23
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/ExtUtils/bleadcheck.pl
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.23-1
+- Updated to release 0.23.
+
 * Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 0.22-1
 - Updated to release 0.22.
 

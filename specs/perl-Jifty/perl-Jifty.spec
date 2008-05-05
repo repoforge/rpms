@@ -9,7 +9,7 @@
 
 Summary: Perl package that implements an application framework
 Name: perl-Jifty
-Version: 0.71129
+Version: 0.80408
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 2:5.8.3
-BuildRequires: perl(ExtUtils::MakeMaker) >= 6.11
 BuildRequires: perl(App::CLI) >= 0.03
 BuildRequires: perl(Cache::Cache)
 BuildRequires: perl(Calendar::Simple)
@@ -52,6 +51,7 @@ BuildRequires: perl(Email::Send) >= 1.99
 BuildRequires: perl(Email::Simple)
 BuildRequires: perl(Email::Simple::Creator)
 BuildRequires: perl(Exporter::Lite)
+BuildRequires: perl(ExtUtils::MakeMaker) >= 6.11
 BuildRequires: perl(File::Find::Rule)
 BuildRequires: perl(File::MMagic)
 BuildRequires: perl(File::ShareDir) >= 0.04
@@ -139,6 +139,9 @@ find contrib/ doc/ examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Jifty.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.80408-1
+- Updated to release 0.80408.
+
 * Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 0.71129-1
 - Updated to release 0.71129.
 

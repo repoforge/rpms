@@ -7,9 +7,9 @@
 
 %define real_name DB_File
 
-Summary: Perl module providing access to Berkeley DB version 1.x
+Summary: Perl5 access to Berkeley DB version 1.x
 Name: perl-DB_File
-Version: 1.816
+Version: 1.817
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/DB_File.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 1.817-1
+- Updated to release 1.817.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.816-1
 - Updated to release 1.816.
 

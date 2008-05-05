@@ -9,7 +9,7 @@
 
 Summary: Perl interface to the cairo library
 Name: perl-Cairo
-Version: 1.045
+Version: 1.060
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -60,6 +60,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Cairo.pm
 
 %changelog
+* Sat May 03 2008 Dag Wieers <dag@wieers.com> - 1.060-1
+- Updated to release 1.060.
+
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.045-1
 - Updated to release 1.045.
 

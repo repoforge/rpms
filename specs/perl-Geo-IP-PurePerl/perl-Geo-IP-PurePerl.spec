@@ -9,9 +9,9 @@
 
 Summary: Look up country by IP Address
 Name: perl-Geo-IP-PurePerl
-Version: 1.18
+Version: 1.19
 Release: 1
-License: Artistic/GPL
+License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-IP-PurePerl/
 
@@ -44,13 +44,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Geo::IP::PurePerl*
-%doc %{_mandir}/man1/geoip-lookup*
-%{perl_vendorlib}/Geo/IP/PurePerl.pm
-%dir %{perl_vendorlib}/Geo/IP/
+%doc COPYING Changes INSTALL MANIFEST META.yml README
+%doc %{_mandir}/man1/geoip-lookup.1*
+%doc %{_mandir}/man3/Geo::IP::PurePerl.3pm*
 %{_bindir}/geoip-lookup
+%dir %{perl_vendorlib}/Geo/
+%dir %{perl_vendorlib}/Geo/IP/
+#%{perl_vendorlib}/Geo/IP/PurePerl/
+%{perl_vendorlib}/Geo/IP/PurePerl.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 1.19-1
+- Updated to release 1.19.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.18-1
 - Initial package.

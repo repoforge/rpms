@@ -9,7 +9,7 @@
 
 Summary: Perl module to run the interactive Perl debugger under mod_perl
 Name: perl-Apache-DB
-Version: 0.13
+Version: 0.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,7 +47,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man3/Apache::DB.3pm*
 %doc %{_mandir}/man3/Apache::DProf.3pm*
 %doc %{_mandir}/man3/Apache::SmallProf.3pm*
-#%doc %{_mandir}/man3/Apache::perl5db.3pm*
+%doc %{_mandir}/man3/Apache::perl5db.3pm*
 %dir %{perl_vendorarch}/Apache/
 %{perl_vendorarch}/Apache/DB.pm
 %{perl_vendorarch}/Apache/DProf.pm
@@ -57,5 +57,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Apache/DB/
 
 %changelog
+* Fri May 02 2008 Dag Wieers <dag@wieers.com> - 0.14-1
+- Updated to release 0.14.
+
 * Wed Oct 10 2007 Dag Wieers <dag@wieers.com> - 0.13-1
 - Initial package. (using DAR)

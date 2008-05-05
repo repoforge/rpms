@@ -9,8 +9,8 @@
 
 Summary: Shared data cache using memory mapped files
 Name: perl-Cache-Mmap
-Version: 0.09
-Release: 1.2
+Version: 0.11
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Cache-Mmap/
@@ -47,14 +47,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorarch}/Cache/
-%{perl_vendorarch}/Cache/Mmap.pm
+%doc Changes MANIFEST META.yml README Todo
+%doc %{_mandir}/man3/Cache::Mmap.3pm*
 %dir %{perl_vendorarch}/auto/Cache/
 %{perl_vendorarch}/auto/Cache/Mmap/
+%dir %{perl_vendorarch}/Cache/
+%{perl_vendorarch}/Cache/Mmap.pm
 
 %changelog
+* Sat May 03 2008 Dag Wieers <dag@wieers.com> - 0.11-1
+- Updated to release 0.11.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1
 - Updated to release 0.09.
 

@@ -12,11 +12,11 @@
 
 %define real_name Authen-SASL
 
-Summary: Interface to SASL
+Summary: SASL Authentication framework
 Name: perl-Authen-SASL
-Version: 2.10
+Version: 2.11
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Authen-SASL/
 
@@ -24,10 +24,11 @@ Source: http://www.cpan.org/modules/by-module/Authen/Authen-SASL-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.005
 BuildRequires: perl(Digest::HMAC_MD5)
 BuildRequires: perl(ExtUtils::MakeMaker)
 %{!?_without_gssapi:BuildRequires: perl(GSSAPI)}
+Requires: perl >= 0:5.005
 
 %description
 This module permits authentication with SASL.
@@ -44,8 +45,6 @@ This module permits authentication with SASL.
 %{__make} pure_install
 
 ### Clean up buildroot
-
-### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
@@ -53,14 +52,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc api.txt Changes example_pl
-%{_mandir}/man3/*.3*
+%doc Changes MANIFEST META.yml SIGNATURE api.txt example_pl
+%doc %{_mandir}/man3/Authen::SASL.3pm*
+%doc %{_mandir}/man3/Authen::SASL::*.3pm*
 %dir %{perl_vendorlib}/Authen/
+%{perl_vendorlib}/Authen/SASL/
 %{perl_vendorlib}/Authen/SASL.pm
 %{perl_vendorlib}/Authen/SASL.pod
-%{perl_vendorlib}/Authen/SASL/
 
 %changelog
+* Sat May 03 2008 Dag Wieers <dag@wieers.com> - 2.11-1
+- Updated to release 2.11.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 2.10-1
 - Updated to release 2.10.
 

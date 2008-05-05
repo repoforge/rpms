@@ -9,7 +9,7 @@
 
 Summary: Asynchronous Input/Output
 Name: perl-IO-AIO
-Version: 2.51
+Version: 2.62
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/IO-AIO/
 Source: http://www.cpan.org/modules/by-module/IO/IO-AIO-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-# Provided by either perl or perl-devel
+### Provided by either perl or perl-devel
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 
@@ -55,8 +55,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/IO/AIO/
 
 %changelog
+* Sat May 03 2008 Dag Wieers <dag@wieers.com> - 2.62-1
+- Updated to release 2.62.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 2.51-1
-- Updated to release
+- Updated to release 2.51.
 
 * Thu May 31 2007 Matthias Saou <http://freshrpms.net/> 2.33-1
 - Update to 2.33.
@@ -65,4 +68,3 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 * Wed Apr 19 2006 Matthias Saou <http://freshrpms.net/> 1.73-1
 - Initial RPM release.
 - Not sure if the autoconf.pm should be included or not...
-

@@ -9,7 +9,7 @@
 
 Summary: Database which maps IP blocks on countries
 Name: perl-Geo-IP
-Version: 1.30
+Version: 1.31
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -62,6 +62,9 @@ find example/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Geo/Mirror.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 1.31-1
+- Updated to release 1.31.
+
 * Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 1.30-1
 - Updated to release 1.30.
 

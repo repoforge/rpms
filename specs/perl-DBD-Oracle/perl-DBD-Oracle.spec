@@ -9,7 +9,7 @@
 
 Summary: Perl module named DBD-Oracle
 Name: perl-DBD-Oracle
-Version: 1.20
+Version: 1.21
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/DBD-Oracle/
 Source: http://www.cpan.org/modules/by-module/DBD/DBD-Oracle-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(DBI)
+BuildRequires: perl
+BuildRequires: perl(DBI)
 
 %description
 perl-DBD-Oracle is a Perl module.
@@ -55,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/DBD/Oracle.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 1.21-1
+- Updated to release 1.21.
+
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.20-1
 - Updated to release 1.20.
 

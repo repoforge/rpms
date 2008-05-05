@@ -9,7 +9,7 @@
 
 Summary: Fast permutation
 Name: perl-Algorithm-Permute
-Version: 0.11
+Version: 0.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -43,7 +43,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml
+%doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Algorithm::Permute.3pm*
 %dir %{perl_vendorarch}/auto/Algorithm/
 %{perl_vendorarch}/auto/Algorithm/Permute/
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Algorithm/Permute.pm
 
 %changelog
+* Fri May 02 2008 Dag Wieers <dag@wieers.com> - 0.12-1
+- Updated to release 0.12.
+
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.11-1
 - Updated to release 0.11.
 

@@ -10,8 +10,8 @@
 
 Summary: Generate a random password that looks like a real word
 Name: perl-Crypt-PassGen
-Version: 0.04
-Release: 2
+Version: 0.05
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-PassGen/
@@ -43,27 +43,31 @@ languages).
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
 
-### Clean up buildroot
-find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{__install} -d %{buildroot}%{perl_sitelib}/Crypt/PassGenWordFreq.dat
 %{__mv} %{buildroot}%{perl_vendorlib}/Crypt/PassGenWordFreq.dat %{buildroot}%{perl_sitelib}/Crypt/PassGenWordFreq.dat
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
-%doc %{_mandir}/man3/*
+%doc ChangeLog MANIFEST META.yml README
+%doc %{_mandir}/man3/Crypt::PassGen.3pm*
+%dir %{perl_vendorlib}/Crypt/
+#%{perl_vendorlib}/Crypt/PassGen/
 %{perl_vendorlib}/Crypt/PassGen.pm
 #%{perl_vendorlib}/Crypt/PassGenWordFreq.dat
 %{perl_sitelib}/Crypt/PassGenWordFreq.dat
 
 %changelog
+* Sat May 03 2008 Dag Wieers <dag@wieers.com> - 0.05-1
+- Updated to release 0.05.
+
 * Fri Apr 07 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-2
 - Fix so the dat file is found, thanks to Chris Croome.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.

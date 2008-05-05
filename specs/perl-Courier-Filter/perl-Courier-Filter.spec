@@ -9,19 +9,20 @@
 
 Summary: Purely Perl-based mail filter framework for the Courier MTA
 Name: perl-Courier-Filter
-Version: 0.17
-Release: 2
+Version: 0.200
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Courier-Filter/
 
-Source: http://www.cpan.org/authors/id/J/JM/JMEHNLE/courier-filter/Courier-Filter-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/J/JM/JMEHNLE/courier-filter/Courier-Filter-v%{version}.tar.gz
 Patch0: Courier-Filter-0.17-message.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 1:5.8
 BuildRequires: perl(Error)
+BuildRequires: perl(Module::Build)
 BuildRequires: perl(Test::Simple)
 Requires: perl >= 1:5.8
 
@@ -29,7 +30,7 @@ Requires: perl >= 1:5.8
 A purely Perl-based mail filter framework for the Courier MTA.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-v%{version}
 %patch0 -p0
 
 %build
@@ -54,13 +55,16 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES INSTALL MANIFEST META.yml README SIGNATURE TODO examples/
+%doc CHANGES INSTALL LICENSE MANIFEST META.yml README SIGNATURE TODO examples/
 %doc %{_mandir}/man1/test-filter-module.1*
 %doc %{_mandir}/man3/Courier::*.3pm*
 %{_bindir}/test-filter-module
 %{_datadir}/courier-filter-perl/
 
 %changelog
+* Sat May 03 2008 Dag Wieers <dag@wieers.com> - 0.200-1
+- Updated to release 0.200.
+
 * Sat Jan 26 2008 Dag Wieers <dag@wieers.com> - 0.17-2
 - Added patch.
 

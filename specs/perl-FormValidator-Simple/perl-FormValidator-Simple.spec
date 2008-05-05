@@ -9,7 +9,7 @@
 
 Summary: Validation with simple chains of constraints
 Name: perl-FormValidator-Simple
-Version: 0.22
+Version: 0.23
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,7 +59,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README
 %doc %{_mandir}/man3/FormValidator::Simple.3pm*
 %doc %{_mandir}/man3/FormValidator::Simple::Results.3pm*
 %dir %{perl_vendorlib}/FormValidator/
@@ -67,5 +67,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/FormValidator/Simple.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.23-1
+- Updated to release 0.23.
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 0.22-1
 - Initial package. (using DAR)

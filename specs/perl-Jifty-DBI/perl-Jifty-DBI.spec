@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements an object-relational persistence framework
 Name: perl-Jifty-DBI
-Version: 0.48
+Version: 0.49
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -32,8 +32,8 @@ BuildRequires: perl(DBI)
 BuildRequires: perl(DBIx::DBSchema) >= 0.34
 BuildRequires: perl(Data::Page)
 BuildRequires: perl(DateTime) >= 0.34
-BuildRequires: perl(DateTime::Format::ISO8601) >= 0.0403
-BuildRequires: perl(DateTime::Format::Strptime) >= 1.0702
+BuildRequires: perl(DateTime::Format::ISO8601)
+BuildRequires: perl(DateTime::Format::Strptime)
 BuildRequires: perl(Encode) >= 2.1
 BuildRequires: perl(Exporter::Lite)
 BuildRequires: perl(Hash::Merge)
@@ -41,7 +41,10 @@ BuildRequires: perl(Lingua::EN::Inflect)
 BuildRequires: perl(Object::Declare) >= 0.22
 BuildRequires: perl(Scalar::Defer) >= 0.1
 BuildRequires: perl(Test::More) >= 0.52
-BuildRequires: perl(UNIVERSAL::require)
+BuildRequires: perl(Test::Warn) >= 0.1
+BuildRequires: perl(Time::Duration)
+BuildRequires: perl(Time::Duration::Parse) >= 0.05
+BuildRequires: perl(UNIVERSAL::require) >= 0.11
 BuildRequires: perl(version)
 BuildRequires: perl(YAML::Syck)
 Requires: perl >= 2:5.8.3
@@ -74,11 +77,15 @@ find doc/ -type f -exec %{__chmod} a-x {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README ROADMAP SIGNATURE doc/
 %doc %{_mandir}/man3/Jifty::DBI.3pm*
+%doc %{_mandir}/man3/Jifty::DBI::*.3pm*
 %dir %{perl_vendorlib}/Jifty/
-#%{perl_vendorlib}/Jifty/DBI/
+%{perl_vendorlib}/Jifty/DBI/
 %{perl_vendorlib}/Jifty/DBI.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.49-1
+- Updated to release 0.49.
+
 * Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 0.48-1
 - Updated to release 0.48.
 

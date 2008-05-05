@@ -1,15 +1,16 @@
 # $Id$
 # Authority: dag
 # Upstream: Tim Bunce <Tim,Bunce$pobox,com>
+# Upstream: Tim Bunce <dbi-users$perl,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name DBI
 
-Summary: Perl module that implements a database independent interface
+Summary: Database independent interface for Perl
 Name: perl-DBI
-Version: 1.602
+Version: 1.604
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -73,6 +74,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %exclude %{perl_vendorarch}/DBI/W32ODBC.pm
 
 %changelog
+* Sat May 03 2008 Dag Wieers <dag@wieers.com> - 1.604-1
+- Updated to release 1.604.
+
 * Mon Feb 18 2008 Dag Wieers <dag@wieers.com> - 1.602-1
 - Updated to release 1.602.
 

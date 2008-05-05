@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dries
 # Upstream: Rafael R. Sevilla <sevillar$team,ph,inter,net>
+# Upstream: Brian D Foy <bdfoy$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +10,7 @@
 
 Summary: Crypt::CBC compliant Rijndael encryption module
 Name: perl-Crypt-Rijndael
-Version: 1.05
+Version: 1.06
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -56,6 +57,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Crypt/Rijndael.pm
 
 %changelog
+* Sun May 04 2008 Dag Wieers <dag@wieers.com> - 1.06-1
+- Updated to release 1.06.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 1.05-1
 - Updated to release 1.05.
 

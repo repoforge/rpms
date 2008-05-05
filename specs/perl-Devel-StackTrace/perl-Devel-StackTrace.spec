@@ -9,7 +9,7 @@
 
 Summary: Stack trace and stack trace frame objects
 Name: perl-Devel-StackTrace
-Version: 1.16
+Version: 1.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Devel/StackTrace.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 1.18-1
+- Updated to release 1.18.
+
 * Tue Feb 19 2008 Dag Wieers <dag@wieers.com> - 1.16-1
 - Updated to release 1.16.
 

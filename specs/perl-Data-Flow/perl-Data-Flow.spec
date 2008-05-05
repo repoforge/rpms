@@ -9,8 +9,8 @@
 
 Summary: Simple-minded recipe-controlled build of data
 Name: perl-Data-Flow
-Version: 0.09
-Release: 1.2
+Version: 1.01
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Flow/
@@ -44,14 +44,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml
+%doc %{_mandir}/man3/Data::Flow.3pm*
+%dir %{perl_vendorlib}/auto/Data/
+%{perl_vendorlib}/auto/Data/Flow/
+%dir %{perl_vendorlib}/Data/
+#%{perl_vendorlib}/Data/Flow/
 %{perl_vendorlib}/Data/Flow.pm
-%{perl_vendorlib}/auto/Data/Flow
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1.2
-- Rebuild for Fedora Core 5.
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 1.01-1
+- Updated to release 1.01.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.09-1
 - Initial package.

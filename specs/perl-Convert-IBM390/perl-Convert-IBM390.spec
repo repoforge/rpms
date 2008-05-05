@@ -9,7 +9,7 @@
 
 Summary: Functions for manipulating mainframe data
 Name: perl-Convert-IBM390
-Version: 0.23
+Version: 0.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Convert/IBM390/
 
 %changelog
+* Sat May 03 2008 Dag Wieers <dag@wieers.com> - 0.24-1
+- Updated to release 0.24.
+
 * Wed Nov 07 2007 Dag Wieers <dag@wieers.com> - 0.23-1
 - Updated to release 0.23.
 

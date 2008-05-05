@@ -8,9 +8,9 @@
 
 Summary: ExtUtils-Depends module for perl
 Name: perl-ExtUtils-Depends
-Version: 0.205
-Release: 1.2
-License: LGPL
+Version: 0.300
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-Depends/
 
@@ -49,12 +49,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README
-%doc %{_mandir}/man?/*.3pm*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/ExtUtils::Depends.3pm*
 %dir %{perl_vendorlib}/ExtUtils/
+#%{perl_vendorlib}/ExtUtils/Depends/
 %{perl_vendorlib}/ExtUtils/Depends.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.300-1
+- Updated to release 0.300.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.205-1
 - Updated to release 0.205.
 

@@ -7,9 +7,9 @@
 
 %define real_name Graph-Easy-As_svg
 
-Summary: Render Graph-Easy as SVG
+Summary: Output a Graph::Easy as Scalable Vector Graphics (SVG)
 Name: perl-Graph-Easy-As_svg
-Version: 0.21
+Version: 0.22
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,8 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl-Graph-Easy >= 0.5
-BuildRequires: perl(Image::Info) >= 1.22
+BuildRequires: perl(Graph::Easy) >= 0.5
+BuildRequires: perl(Image::Info) >= 1.28
 
 %description
 Render Graph-Easy as SVG (Scalable Vector Graphics).
@@ -43,16 +43,25 @@ that is human readable and maintainable.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README TODO
-%doc %{_mandir}/man3/*
+%doc CHANGES INSTALL LICENSE MANIFEST MANIFEST.SKIP META.yml README SIGNATURE TODO examples/
+%doc %{_mandir}/man3/Graph::Easy::As_svg.3pm*
+%dir %{perl_vendorlib}/Graph/
+%dir %{perl_vendorlib}/Graph/Easy/
+#%{perl_vendorlib}/Graph/Easy/As_svg/
 %{perl_vendorlib}/Graph/Easy/As_svg.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.22-1
+- Updated to release 0.22.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.21-1
 - Updated to release 0.21.
 
@@ -61,9 +70,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.17-1
 - Updated to release 0.17.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1
 - Updated to release 0.16.

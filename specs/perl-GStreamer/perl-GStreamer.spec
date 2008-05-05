@@ -9,9 +9,9 @@
 
 Summary: Perl module with bindings to the GStreamer library
 Name: perl-GStreamer
-Version: 0.09
+Version: 0.10
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GStreamer/
 
@@ -42,17 +42,24 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog LICENSE MANIFEST META.yml NEWS README TODO
-%doc %{_mandir}/man3/*.3pm*
-%{perl_vendorarch}/GStreamer.pm
-%{perl_vendorarch}/GStreamer/
+%doc ChangeLog LICENSE MANIFEST MANIFEST.SKIP META.yml NEWS README TODO copyright.pod examples/
+%doc %{_mandir}/man3/GStreamer.3pm*
+%doc %{_mandir}/man3/GStreamer::*.3pm*
 %{perl_vendorarch}/auto/GStreamer/
+%{perl_vendorarch}/GStreamer/
+%{perl_vendorarch}/GStreamer.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.10-1
+- Updated to release 0.10.
+
 * Tue May 01 2007 Dag Wieers <dag@wieers.com> - 0.09-1
 - Initial package. (using DAR)

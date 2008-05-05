@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dag
-# Upstream: Lincoln D. Stein <lstein$cshl,edu>
+# Upstream: Lincoln Stein <lstein$cshl,edu>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Devel-Cycle
 
-Summary: Perl module to find memory cycles in objects
+Summary: Find memory cycles in objects
 Name: perl-Devel-Cycle
-Version: 1.07
+Version: 1.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Devel/Cycle.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 1.09-1
+- Updated to release 1.09.
+
 * Tue May 01 2007 Dag Wieers <dag@wieers.com> - 1.07-1
 - Initial package. (using DAR)

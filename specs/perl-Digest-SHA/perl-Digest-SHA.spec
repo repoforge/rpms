@@ -7,20 +7,20 @@
 
 %define real_name Digest-SHA
 
-Summary: Digest-SHA Perl module
+Summary: Perl extension for SHA-1/224/256/384/512
 Name: perl-Digest-SHA
-Version: 5.45
+Version: 5.47
 Release: 1
-License: distributable
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-SHA/
 
 Source: http://www.cpan.org/modules/by-module/Digest/Digest-SHA-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.00503
+BuildRequires: perl >= 0:5.003
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl >= 0:5.00503
+Requires: perl >= 0:5.003
 
 %description
 Digest-SHA Perl module
@@ -39,21 +39,27 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
+%doc Changes MANIFEST META.yml README examples/
 %doc %{_mandir}/man1/shasum.1*
 %doc %{_mandir}/man3/Digest::SHA.3pm*
 %{_bindir}/shasum
-%dir %{perl_vendorarch}/Digest/
-%{perl_vendorarch}/Digest/SHA.pm
 %dir %{perl_vendorarch}/auto/Digest/
 %{perl_vendorarch}/auto/Digest/SHA/
+%dir %{perl_vendorarch}/Digest/
+%{perl_vendorarch}/Digest/SHA.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 5.47-1
+- Updated to release 5.47.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 5.45-1
 - Updated to release 5.45.
 

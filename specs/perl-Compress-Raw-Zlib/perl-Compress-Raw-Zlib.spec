@@ -9,7 +9,7 @@
 
 Summary: Low-Level Interface to zlib compression library
 Name: perl-Compress-Raw-Zlib
-Version: 2.008
+Version: 2.009
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,14 +48,17 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README examples/
 %doc %{_mandir}/man3/Compress::Raw::Zlib.3pm*
-%dir %{perl_vendorarch}/Compress/
-%dir %{perl_vendorarch}/Compress/Raw/
-%{perl_vendorarch}/Compress/Raw/Zlib.pm
 %dir %{perl_vendorarch}/auto/Compress/
 %dir %{perl_vendorarch}/auto/Compress/Raw/
 %{perl_vendorarch}/auto/Compress/Raw/Zlib/
+%dir %{perl_vendorarch}/Compress/
+%dir %{perl_vendorarch}/Compress/Raw/
+%{perl_vendorarch}/Compress/Raw/Zlib.pm
 
 %changelog
+* Sat May 03 2008 Dag Wieers <dag@wieers.com> - 2.009-1
+- Updated to release 2.009.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 2.008-1
 - Updated to release 2.008.
 

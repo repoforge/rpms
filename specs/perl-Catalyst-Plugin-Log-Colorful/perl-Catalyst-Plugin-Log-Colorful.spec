@@ -9,7 +9,7 @@
 
 Summary: Catalyst Plugin for Colorful Log
 Name: perl-Catalyst-Plugin-Log-Colorful
-Version: 0.03
+Version: 0.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Catalyst/Plugin/Log/Colorful.pm
 
 %changelog
+* Sat May 03 2008 Dag Wieers <dag@wieers.com> - 0.12-1
+- Updated to release 0.12.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

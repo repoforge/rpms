@@ -9,9 +9,9 @@
 
 %define real_name Module-Install
 
-Summary: Installer for perl modules
+Summary: Standalone, extensible Perl module installer
 Name: perl-Module-Install
-Version: 0.68
+Version: 0.72
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -25,6 +25,7 @@ BuildRequires: perl >= 0:5.004
 BuildRequires: perl(Archive::Tar)
 BuildRequires: perl(ExtUtils::Install) >= 0.3
 BuildRequires: perl(ExtUtils::ParseXS)
+BuildRequires: perl(File::Remove) >= 1.4
 BuildRequires: perl(File::Spec) >= 0.87
 BuildRequires: perl(Module::Build)
 BuildRequires: perl(Module::CoreList)
@@ -60,7 +61,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE MANIFEST META.yml README ToDo
+%doc Changes LICENSE MANIFEST META.yml README
 %doc %{_mandir}/man3/Module::AutoInstall.3pm.gz
 %doc %{_mandir}/man3/Module::Install.3pm.gz
 %doc %{_mandir}/man3/Module::Install::*.3pm.gz
@@ -75,6 +76,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/inc/Module/Install.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.72-1
+- Updated to release 0.72.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.68-1
 - Updated to release 0.68.
 

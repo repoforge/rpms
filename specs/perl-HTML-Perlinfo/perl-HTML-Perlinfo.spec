@@ -9,7 +9,7 @@
 
 Summary: Display a lot of Perl information in HTML format
 Name: perl-HTML-Perlinfo
-Version: 1.47
+Version: 1.50
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(App::Info)
 BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
@@ -44,13 +45,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man1/perlinfo.1*
 %doc %{_mandir}/man3/HTML::Perlinfo.3pm*
 %doc %{_mandir}/man3/HTML::Perlinfo::*.3pm*
+%{_bindir}/perlinfo
 %dir %{perl_vendorlib}/HTML/
 %{perl_vendorlib}/HTML/Perlinfo/
 %{perl_vendorlib}/HTML/Perlinfo.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 1.50-1
+- Updated to release 1.50.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.47-1
 - Initial package.

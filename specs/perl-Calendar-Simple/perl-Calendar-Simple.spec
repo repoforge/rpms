@@ -9,7 +9,7 @@
 
 Summary: Perl extension to create simple calendars
 Name: perl-Calendar-Simple
-Version: 1.19
+Version: 1.20
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,9 +19,10 @@ Source: http://www.cpan.org/modules/by-module/Calendar/Calendar-Simple-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.6.0
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More)
+Requires: perl >= 0:5.6.0
 
 %description
 Perl extension to create simple calendars.
@@ -49,9 +50,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man3/Calendar::Simple.3pm*
 %{_bindir}/pcal
 %dir %{perl_vendorlib}/Calendar/
+#%{perl_vendorlib}/Calendar/Simple/
 %{perl_vendorlib}/Calendar/Simple.pm
 
 %changelog
+* Sat May 03 2008 Dag Wieers <dag@wieers.com> - 1.20-1
+- Updated to release 1.20.
+
 * Tue Mar 11 2008 Dag Wieers <dag@wieers.com> - 1.19-1
 - Updated to release 1.19.
 

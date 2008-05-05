@@ -7,9 +7,9 @@
 
 %define real_name Params-Validate
 
-Summary: Validation of method parameters
+Summary: Validate method/function parameters
 Name: perl-Params-Validate
-Version: 0.89
+Version: 0.90
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,6 +59,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man3/Params::Validate.3pm*
 %doc %{_mandir}/man3/Params::ValidatePP.3pm*
 %doc %{_mandir}/man3/Params::ValidateXS.3pm*
+%dir %{perl_vendorarch}/auto/Params/
+%{perl_vendorarch}/auto/Params/Validate/
 %dir %{perl_vendorarch}/Attribute/
 %dir %{perl_vendorarch}/Attribute/Params/
 %{perl_vendorarch}/Attribute/Params/Validate.pm
@@ -66,10 +68,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Params/Validate.pm
 %{perl_vendorarch}/Params/ValidatePP.pm
 %{perl_vendorarch}/Params/ValidateXS.pm
-%dir %{perl_vendorarch}/auto/Params/
-%{perl_vendorarch}/auto/Params/Validate/
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.90-1
+- Updated to release 0.90.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.89-1
 - Updated to release 0.89.
 

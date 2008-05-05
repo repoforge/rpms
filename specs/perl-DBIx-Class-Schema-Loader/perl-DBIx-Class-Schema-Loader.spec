@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Brandon Black, C<blblack@gmail.com>
+# Upstream: Brandon Black <blblack$gmail,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Dynamic definition of a DBIx::Class::Schema
 Name: perl-DBIx-Class-Schema-Loader
-Version: 0.04004
+Version: 0.04005
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -69,5 +69,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DBIx/Class/Schema/Loader.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.04005-1
+- Updated to release 0.04005.
+
 * Sun Dec 30 2007 Dag Wieers <dag@wieers.com> - 0.04004-1
 - Initial package. (using DAR)

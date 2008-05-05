@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Fayland <fayland$cpan,org>
+# Upstream: Fayland Lam <fayland$gmail,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,18 +9,21 @@
 
 Summary: Retrieve the Cantonese(GuangDongHua) of Chinese character(HanZi)
 Name: perl-Lingua-Han-Cantonese
-Version: 0.04
+Version: 0.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-Han-Cantonese/
 
-Source: http://search.cpan.org/CPAN/authors/id/F/FA/FAYLAND/Lingua-Han-Cantonese-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Lingua/Lingua-Han-Cantonese-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(Lingua::Han::Utils) >= 0.1
+BuildRequires: perl(Test::More)
 
 %description
 Retrieve the Cantonese(GuangDongHua) of Chinese character(HanZi).
@@ -44,17 +47,19 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/Lingua/Han/Cantonese.pm
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Lingua::Han::Cantonese.3pm*
+%dir %{perl_vendorlib}/Lingua/
+%dir %{perl_vendorlib}/Lingua/Han/
 %{perl_vendorlib}/Lingua/Han/Cantonese/
+%{perl_vendorlib}/Lingua/Han/Cantonese.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.06-1
+- Updated to release 0.06.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Updated to release 0.04.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1.2
-- Rebuild for Fedora Core 5.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.

@@ -9,7 +9,7 @@
 
 Summary: Compare two images in a variety of ways
 Name: perl-Image-Compare
-Version: 0.3
+Version: 0.5
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,9 +20,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(Regexp::Common)
 BuildRequires: perl(Imager)
 BuildRequires: perl(LWP)
+BuildRequires: perl(Regexp::Common)
 
 %description
 Image::Compare is a module for performing comparisons of images.
@@ -46,10 +46,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Image::Compare.3pm*
+%dir %{perl_vendorlib}/Image/
+#%{perl_vendorlib}/Image/Compare/
 %{perl_vendorlib}/Image/Compare.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.5-1
+- Updated to release 0.5.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-1
 - Initial package.

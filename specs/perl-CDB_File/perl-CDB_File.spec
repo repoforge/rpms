@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Matt Sergeant <matt$sergeant,org>
+# Upstream: Matt Sergeant <msergeant$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Extension for access to cdb databases
 Name: perl-CDB_File
-Version: 0.95
+Version: 0.96
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,13 +44,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README
-%doc %{_mandir}/man3/*.3pm*
-%{perl_vendorarch}/CDB_File.pm
+%doc CHANGES COPYRIGHT INSTALL MANIFEST META.yml README
+%doc %{_mandir}/man3/CDB_File.3pm*
 %{perl_vendorarch}/auto/CDB_File/
 %{perl_vendorarch}/bun-x.pl
+%{perl_vendorarch}/CDB_File.pm
 
 %changelog
+* Sat May 03 2008 Dag Wieers <dag@wieers.com> - 0.96-1
+- Updated to release 0.96.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.95-1
 - Updated to release 0.95.
 

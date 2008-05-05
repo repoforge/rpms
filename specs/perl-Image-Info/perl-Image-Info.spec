@@ -9,7 +9,7 @@
 
 Summary: Extract meta information from image files
 Name: perl-Image-Info
-Version: 1.27
+Version: 1.28
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,10 +19,11 @@ Source: http://www.cpan.org/modules/by-module/Image/Image-Info-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 1:5.6.2
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(IO::String)
 BuildRequires: perl(Test::More) >= 0.62
+Requires: perl >= 1:5.6.2
 
 %description
 This Perl extention allows you to extract meta information from
@@ -56,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Image/TIFF.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 1.28-1
+- Updated to release 1.28.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 1.27-1
 - Updated to release 1.27.
 

@@ -9,7 +9,7 @@
 
 Summary: Code coverage metrics for Perl
 Name: perl-Devel-Cover
-Version: 0.63
+Version: 0.64
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -66,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Devel/Cover/
 
 %changelog
+* Fri May 02 2008 Dag Wieers <dag@wieers.com> - 0.64-1
+- Updated to release 0.64.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.63-1
 - Updated to release 0.63.
 

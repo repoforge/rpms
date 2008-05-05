@@ -7,9 +7,9 @@
 
 %define real_name DBIx-TextIndex
 
-Summary: full-text searching in SQL databases
+Summary: Perl extension for full-text searching in SQL databases
 Name: perl-DBIx-TextIndex
-Version: 0.27
+Version: 0.28
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -41,21 +41,27 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
+%doc Changes MANIFEST META.yml README eg/
 %doc %{_mandir}/man3/DBIx::TextIndex.3pm*
 %doc %{_mandir}/man3/DBIx::TextIndex::*.3pm*
+%dir %{perl_vendorarch}/auto/DBIx/
+%{perl_vendorarch}/auto/DBIx/TextIndex/
 %dir %{perl_vendorarch}/DBIx/
 %{perl_vendorarch}/DBIx/TextIndex.pm
 %{perl_vendorarch}/DBIx/TextIndex
-%dir %{perl_vendorarch}/auto/DBIx/
-%{perl_vendorarch}/auto/DBIx/TextIndex/
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.28-1
+- Updated to release 0.28.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.27-1
 - Updated to release 0.27.
 

@@ -9,7 +9,7 @@
 
 Summary: Disk-based many-to-many task queue
 Name: perl-IPC-DirQueue
-Version: 0.09
+Version: 1.0
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,17 +44,26 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS CHANGES README.dist TODO
-%doc %{_mandir}/man3/IPC::DirQueue*
-%doc %{_mandir}/man1/dq-*
-%{perl_vendorlib}/IPC/DirQueue.pm
-%{perl_vendorlib}/IPC/DirQueue/
+%doc BUGS CHANGES MANIFEST MANIFEST.SKIP README.dist TODO
+%doc %{_mandir}/man1/dq-deque.1*
+%doc %{_mandir}/man1/dq-indexd.1*
+%doc %{_mandir}/man1/dq-list.1*
+%doc %{_mandir}/man1/dq-server.1*
+%doc %{_mandir}/man1/dq-submit.1*
+%doc %{_mandir}/man3/IPC::DirQueue.3pm*
+%doc %{_mandir}/man3/IPC::DirQueue::*.3pm*
 %{_bindir}/dq-deque
 %{_bindir}/dq-indexd
 %{_bindir}/dq-list
 %{_bindir}/dq-server
 %{_bindir}/dq-submit
+%dir %{perl_vendorlib}/IPC/
+%{perl_vendorlib}/IPC/DirQueue/
+%{perl_vendorlib}/IPC/DirQueue.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 1.0-1
+- Updated to release 1.0.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.09-1
 - Initial package.

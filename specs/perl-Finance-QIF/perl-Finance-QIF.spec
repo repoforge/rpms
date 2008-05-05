@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dries
 # Upstream: Matthew McGillis <mmcgillis$cpan,org>
+# Upstream: Phil Lobbes <phil$perkpartners,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +10,7 @@
 
 Summary: Parse and create Quicken Interchange Format files
 Name: perl-Finance-QIF
-Version: 2.06
+Version: 2.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,15 +40,23 @@ Parse and create Quicken Interchange Format files.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Finance::QIF*
+%doc Changes MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/Finance::QIF.3pm*
+%dir %{perl_vendorlib}/Finance/
+#%{perl_vendorlib}/Finance/QIF/
 %{perl_vendorlib}/Finance/QIF.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 2.07-1
+- Updated to release 2.07.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 2.06-1
 - Initial package.

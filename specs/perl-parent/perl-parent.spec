@@ -4,25 +4,24 @@
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Archive-Any
+%define real_name parent
 
-Summary: Perl module to deal with file archives
-Name: perl-Archive-Any
-Version: 0.0932
+Summary: Establish an ISA relationship with base classes at compile time
+Name: perl-parent
+Version: 0.221
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Archive-Any/
+URL: http://search.cpan.org/dist/parent/
 
-Source: http://www.cpan.org/modules/by-module/Archive/Archive-Any-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/C/CO/CORION/parent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 
 %description
-Archive-Any is a perl module that implements a single interface to deal
-with file archives.
+Establish an ISA relationship with base classes at compile time.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -43,16 +42,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
-%doc %{_mandir}/man3/Archive::Any.3pm*
-%doc %{_mandir}/man3/Archive::Any::*.3pm*
-%dir %{perl_vendorlib}/Archive/
-%{perl_vendorlib}/Archive/Any/
-%{perl_vendorlib}/Archive/Any.pm
+%doc Changes MANIFEST META.yml
+%doc %{_mandir}/man3/parent.3pm*
+#%{perl_vendorlib}/parent/
+%{perl_vendorlib}/parent.pm
 
 %changelog
-* Sat May 03 2008 Dag Wieers <dag@wieers.com> - 0.0932-1
-- Updated to release 0.0932.
-
-* Fri Aug 03 2007 Dag Wieers <dag@wieers.com> - 0.093-1
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.221-1
 - Initial package. (using DAR)

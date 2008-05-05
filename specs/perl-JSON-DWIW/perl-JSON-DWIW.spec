@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements a JSON converter that Does What I Want
 Name: perl-JSON-DWIW
-Version: 0.21
+Version: 0.24
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/JSON/DWIW.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.24-1
+- Updated to release 0.24.
+
 * Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 0.21-1
 - Updated to release 0.21.
 

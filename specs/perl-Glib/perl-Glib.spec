@@ -9,7 +9,7 @@
 
 Summary: Perl wrappers for the GLib utility and object libraries
 Name: perl-Glib
-Version: 1.180
+Version: 1.182
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 2:5.8.0
 BuildRequires: glib2-devel
-BuildRequires: perl(ExtUtils::Depends)
+BuildRequires: perl(ExtUtils::Depends) >= 0.300
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(ExtUtils::PkgConfig)
 Requires: glib2 >= 2.0.6
@@ -60,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Glib.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 1.182-1
+- Updated to release 1.182.
+
 * Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 1.180-1
 - Updated to release 1.180.
 

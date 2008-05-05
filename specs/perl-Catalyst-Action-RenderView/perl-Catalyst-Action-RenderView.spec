@@ -9,7 +9,7 @@
 
 Summary: Sensible default end action
 Name: perl-Catalyst-Action-RenderView
-Version: 0.07
+Version: 0.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -22,6 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Catalyst::Runtime) >= 5.70
 BuildRequires: perl(Data::Visitor) >= 0.08
+BuildRequires: perl(HTTP::Request::AsCGI)
 BuildRequires: perl(Test::More)
 
 %description
@@ -54,5 +55,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Catalyst/Action/RenderView.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.08-1
+- Updated to release 0.08.
+
 * Sun Dec 30 2007 Dag Wieers <dag@wieers.com> - 0.07-1
 - Initial package. (using DAR)

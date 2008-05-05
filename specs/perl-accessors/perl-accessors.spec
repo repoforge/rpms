@@ -1,15 +1,15 @@
 # Authority: dries
-# Upstream: Steve Purkis <spurkis%20%5bat%5d%20quiup_dot_com>
+# Upstream: Steve Purkis <spurkis$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name accessors
 
-Summary: Create accessor methods
+Summary: Create accessor methods in caller's package
 Name: perl-accessors
-Version: 0.02
-Release: 1.2
+Version: 1.00
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/accessors/
@@ -18,8 +18,10 @@ Source: http://www.cpan.org/authors/id/S/SP/SPURKIS/accessors-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(Module::Build)
+BuildRequires: perl >= 0:5.6.0
+BuildRequires: perl(Module::Build) >= 0.2
+BuildRequires: perl(Test::More) >= 0.01
+Requires: perl >= 0:5.6.0
 
 %description
 The accessors pragma lets you create simple accessors at compile-time.
@@ -49,11 +51,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/accessors.pm
+%doc Changes INSTALL MANIFEST MANIFEST.SKIP META.yml README TODO
+%doc %{_mandir}/man3/accessors.3pm*
+%doc %{_mandir}/man3/accessors::*.3pm*
 %{perl_vendorlib}/accessors/
+%{perl_vendorlib}/accessors.pm
 
 %changelog
+* Fri May 02 2008 Dag Wieers <dag@wieers.com> - 1.00-1
+- Updated to release 1.00.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

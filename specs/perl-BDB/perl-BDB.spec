@@ -9,7 +9,7 @@
 
 Summary: Asynchronous Berkeley DB access
 Name: perl-BDB
-Version: 1.43
+Version: 1.45
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/BDB.pm
 
 %changelog
+* Sat May 03 2008 Dag Wieers <dag@wieers.com> - 1.45-1
+- Updated to release 1.45.
+
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.43-1
 - Updated to release 1.43.
 

@@ -1,16 +1,17 @@
 # $Id$
 # Authority: dag
+# Upstream: Dave Rolsky <autarch$urth,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Exception-Class
 
-Summary: Exception-Class module for perl
+Summary: Perl module that allows you to declare real exception classes
 Name: perl-Exception-Class
-Version: 1.23
+Version: 1.24
 Release: 1
-License: GPL or Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Exception-Class/
 
@@ -19,9 +20,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)-Class-Data-Inheritable
-BuildRequires: perl-Devel-StackTrace
+BuildRequires: perl(Class::Data::Inheritable)
+BuildRequires: perl(Devel::StackTrace)
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module allows you to declare hierarchies of exception classes for use
@@ -46,18 +47,19 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(444,root,root,755)
-%doc Changes LICENSE README
-%doc %{_mandir}/man3/*
+%defattr(-, root, root, 0755)
+%doc Changes LICENSE MANIFEST META.yml SIGNATURE
+%doc %{_mandir}/man3/Exception::Class.3pm*
 %dir %{perl_vendorlib}/Exception/
+#%{perl_vendorlib}/Exception/Class/
 %{perl_vendorlib}/Exception/Class.pm
 
 %changelog
+* Mon May 05 2008 Dag Wieers <dag@wieers.com> - 1.24-1
+- Updated to release 1.24.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.23-1
 - Updated to release 1.23.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.22-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.22-1
 - Updated to release 1.22.

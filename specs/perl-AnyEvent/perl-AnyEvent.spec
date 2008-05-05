@@ -9,7 +9,7 @@
 
 Summary: Framework for multiple event loops
 Name: perl-AnyEvent
-Version: 2.54
+Version: 3.3
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -42,17 +42,24 @@ AnyEvent provides a framework for multiple event loops.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING Changes MANIFEST META.yml README
+%doc COPYING Changes MANIFEST META.yml README eg/
 %doc %{_mandir}/man3/AnyEvent.3pm*
+%doc %{_mandir}/man3/AnyEvent::*.3pm*
 %{perl_vendorlib}/AnyEvent/
 %{perl_vendorlib}/AnyEvent.pm
 
 %changelog
+* Fri May 02 2008 Dag Wieers <dag@wieers.com> - 3.3-1
+- Updated to release 3.3.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 2.54-1
 - Updated to release 2.54.
 
