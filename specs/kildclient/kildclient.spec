@@ -4,7 +4,7 @@
 
 Summary: MUD client
 Name: kildclient
-Version: 2.5.1
+Version: 2.7.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -60,6 +60,9 @@ other clients compatible with the MudMaster or zChat protocols.
 %{_datadir}/pixmaps/kildclient.*
 
 %changelog
+* Sun May  4 2008 Dries Verachtert <dries@ulyssis.org> - 2.7.0-1
+- Updated to release 2.7.0.
+
 * Mon May 28 2007 Dries Verachtert <dries@ulyssis.org> - 2.5.1-1
 - Updated to release 2.5.1.
 

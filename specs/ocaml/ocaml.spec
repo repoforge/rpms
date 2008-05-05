@@ -23,7 +23,7 @@
 
 Summary: Objective Caml
 Name: ocaml
-Version: 3.10.1
+Version: 3.10.2
 Release: 1
 License: QPL/LGPL
 Group: Development/Languages
@@ -165,6 +165,9 @@ Emacs mode for Objective Caml.
 %{_datadir}/emacs/site-lisp/*.elc
 
 %changelog
+* Sun May  4 2008 Dries Verachtert <dries@ulyssis.org> - 3.10.2-1
+- Updated to release 3.10.2.
+
 * Thu Feb 28 2008 Dag Wieers <dag@wieers.com> - 3.10-1
 - Updated to release 3.10.
 
