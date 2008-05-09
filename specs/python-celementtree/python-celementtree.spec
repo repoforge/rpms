@@ -5,10 +5,10 @@
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 %define real_name cElementTree
-%define real_version 1.0.5-20051216
 
 Summary: Fast XML parser and writer (written in C)
 Name: python-celementtree
+%define real_version 1.0.5-20051216
 Version: 1.0.5
 Release: 2
 License: MIT

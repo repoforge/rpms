@@ -89,4 +89,3 @@ dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
 * Tue Feb  6 2007 Matthias Saou <http://freshrpms.net/> 1.3.0-0.1.pre10
 - Initial RPM release.
-
