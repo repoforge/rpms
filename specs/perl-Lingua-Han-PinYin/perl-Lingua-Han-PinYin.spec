@@ -9,13 +9,13 @@
 
 Summary: Retrieves the Mandarin of a Chinese character
 Name: perl-Lingua-Han-PinYin
-Version: 0.07
+Version: 0.11
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-Han-PinYin/
 
-Source: http://search.cpan.org//CPAN/authors/id/F/FA/FAYLAND/Lingua-Han-PinYin-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Lingua/Lingua-Han-PinYin-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -44,13 +44,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Lingua::Han::PinYin.3pm*
 %dir %{perl_vendorlib}/Lingua/
 %dir %{perl_vendorlib}/Lingua/Han/
-%{perl_vendorlib}/Lingua/Han/PinYin.pm
 %{perl_vendorlib}/Lingua/Han/PinYin/
+%{perl_vendorlib}/Lingua/Han/PinYin.pm
 
 %changelog
+* Sat May 10 2008 Dag Wieers <dag@wieers.com> - 0.11-1
+- Updated to release 0.11.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Initial package.

@@ -4,7 +4,7 @@
 
 Summary: HTTP based time synchronization tool
 Name: htpdate
-Version: 1.0.0
+Version: 1.0.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -67,60 +67,60 @@ prog="htpdate"
 desc="HTTP Time Protocol daemon"
 
 start() {
-	echo -n $"Starting $desc ($prog): "
-	daemon $prog -D $OPTIONS -i $PIDFILE $SERVERS
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Starting $desc ($prog): "
+    daemon $prog -D $OPTIONS -i $PIDFILE $SERVERS
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 stop() {
-	echo -n $"Shutting down $desc ($prog): "
-	killproc $prog
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Shutting down $desc ($prog): "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 restart() {
-	stop
-	start
+    stop
+    start
 }
 
 reload() {
-	echo -n $"Reloading $desc ($prog): "
-	killproc $prog -HUP
-	RETVAL=$?
-	echo
-	return $RETVAL
+    echo -n $"Reloading $desc ($prog): "
+    killproc $prog -HUP
+    RETVAL=$?
+    echo
+    return $RETVAL
 }
 
 case "$1" in
   start)
-	start
-	;;
+    start
+    ;;
   stop)
-	stop
-	;;
+    stop
+    ;;
   restart)
-	restart
-	;;
+    restart
+    ;;
   reload)
-	reload
-	;;
+    reload
+    ;;
   condrestart)
-	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-	RETVAL=$?
-	;;
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
   status)
-	status $prog
-	RETVAL=$?
-	;;
+    status $prog
+    RETVAL=$?
+    ;;
   *)
-	echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
-	RETVAL=1
+    echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
+    RETVAL=1
 esac
 
 exit $RETVAL
@@ -142,8 +142,8 @@ EOF
 
 %preun
 if [ $1 -eq 0 ]; then
-	/sbin/service htpdate stop &>/dev/null || :
-	/sbin/chkconfig --del htpdate
+    /sbin/service htpdate stop &>/dev/null || :
+    /sbin/chkconfig --del htpdate
 fi
 
 %postun
@@ -161,6 +161,9 @@ fi
 %{_bindir}/htpdate
 
 %changelog
+* Tue Apr 29 2008 Dag Wieers <dag@wieers.com> - 1.0.1-1
+- Updated to release 1.0.1.
+
 * Sun Mar 04 2007 Dag Wieers <dag@wieers.com> - 1.0.0-1
 - Updated to release 1.0.0.
 

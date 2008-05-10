@@ -9,8 +9,8 @@
 
 Summary: Creates a list of german holidays in a given year
 Name: perl-Date-Holidays-DE
-Version: 0.6
-Release: 1.2
+Version: 1.0.1
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Holidays-DE/
@@ -48,18 +48,24 @@ definitions.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find example/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST README example/
+%doc %{_mandir}/man3/Date::Holidays::DE.3pm*
+%dir %{perl_vendorlib}/Date/
+%dir %{perl_vendorlib}/Date/Holidays/
+#%{perl_vendorlib}/Date/Holidays/DE/
 %{perl_vendorlib}/Date/Holidays/DE.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1.2
-- Rebuild for Fedora Core 5.
+* Sat May 10 2008 Dag Wieers <dag@wieers.com> - 1.0.1-1
+- Updated to release 1.0.1.
 
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.6-1
 - Initial package.

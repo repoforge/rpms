@@ -48,7 +48,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 0.9.59
+Version: 0.9.61
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -232,7 +232,7 @@ EOF
 #!/bin/sh
 #
 # wine  Allow users to run Windows(tm) applications by just clicking on them
-#i      (or typing ./file.exe)
+#       (or typing ./file.exe)
 #
 # chkconfig: 35 98 10
 # description: Allow users to run Windows(tm) applications by just clicking \
@@ -304,7 +304,8 @@ echo "%{_libdir}/wine/" >wine.ld.conf
     --sysconfdir="%{_sysconfdir}/wine" \
     --disable-static \
 %{?_without_opengl:--without-opengl}
-%{__make} depend all
+%{__make} depend
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -421,7 +422,7 @@ update-desktop-database &>/dev/null || :
 %{_bindir}/winedbg
 %{_bindir}/winedump
 %{_bindir}/winefile
-%{_bindir}/winelauncher
+#%{_bindir}/winelauncher
 %{_bindir}/winemaker
 %{_bindir}/winemine
 %{_bindir}/winepath
@@ -563,6 +564,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/crypt32.dll.so
 %{_libdir}/wine/cryptdll.dll.so
 %{_libdir}/wine/cryptnet.dll.so
+%{_libdir}/wine/cryptui.dll.so
 %{_libdir}/wine/ctapi32.dll.so
 %{_libdir}/wine/ctl3d32.dll.so
 %{_libdir}/wine/d3d8.dll.so
@@ -882,6 +884,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Fri May 09 2008 Dag Wieers <dag@wieers.com> - 0.9.61-1
+- Updated to release 0.9.61.
+
 * Sun Apr 13 2008 Dag Wieers <dag@wieers.com> - 0.9.59-1
 - Updated to release 0.9.59.
 

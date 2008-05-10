@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Alan Schwartz <alansz$uic,edu>
+# Upstream: Ken Prows <perl$xev,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Perl module for manipulating .po entries from GNU gettext
 Name: perl-Locale-PO
-Version: 0.17
+Version: 0.20
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,8 +46,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Locale::PO.3pm*
 %dir %{perl_vendorlib}/Locale/
+#%{perl_vendorlib}/Locale/PO/
 %{perl_vendorlib}/Locale/PO.pm
 
 %changelog
+* Sat May 10 2008 Dag Wieers <dag@wieers.com> - 0.20-1
+- Updated to release 0.20.
+
 * Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 0.17-1
 - Initial package. (using DAR)

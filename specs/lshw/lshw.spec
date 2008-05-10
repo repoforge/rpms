@@ -13,8 +13,8 @@
 
 Summary: Hardware lister
 Name: lshw
-%define real_version B.02.12.01
-Version: 2.12.1
+%define real_version B.02.13
+Version: 2.13
 Release: 1
 License: GPL
 Group: Applications/System
@@ -98,6 +98,9 @@ Information can be output in plain text, XML or HTML.
 %endif
 
 %changelog
+* Sat May 10 2008 Dag Wieers <dag@wieers.com> - 2.13-1
+- Updated to release B.02.13.
+
 * Sun Oct 14 2007 Dag Wieers <dag@wieers.com> - 2.12.1-1
 - Updated to release B.02.12.01.
 

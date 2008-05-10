@@ -9,8 +9,8 @@
 
 Summary: The utility tools of Chinese character(HanZi)
 Name: perl-Lingua-Han-Utils
-Version: 0.05
-Release: 1.2
+Version: 0.10
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-Han-Utils/
@@ -21,6 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Encode::Guess)
+BuildRequires: perl(Test::More)
 
 %description
 The utility tools of Chinese character(HanZi).
@@ -44,13 +46,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Lingua::Han::Utils.3pm*
+%dir %{perl_vendorlib}/Lingua/
+%dir %{perl_vendorlib}/Lingua/Han/
+#%{perl_vendorlib}/Lingua/Han/Utils/
 %{perl_vendorlib}/Lingua/Han/Utils.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1.2
-- Rebuild for Fedora Core 5.
+* Sat May 10 2008 Dag Wieers <dag@wieers.com> - 0.10-1
+- Updated to release 0.10.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Updated to release 0.05.

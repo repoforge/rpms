@@ -9,7 +9,7 @@
 
 Summary: Validate method/function parameters
 Name: perl-Params-Validate
-Version: 0.90
+Version: 0.91
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -70,6 +70,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Params/ValidateXS.pm
 
 %changelog
+* Sat May 10 2008 Dag Wieers <dag@wieers.com> - 0.91-1
+- Updated to release 0.91.
+
 * Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.90-1
 - Updated to release 0.90.
 
