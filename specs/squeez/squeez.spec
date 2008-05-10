@@ -1,33 +1,32 @@
 # $Id: 
 # Authority: 	h.adams
 
-Summary: 	Ristretto
-Name: 		ristretto
-Version: 	0.0.19
+Summary: 	Squeeze
+Name: 		squeeze
+Version: 	0.2.3
 Release: 	1
 License: 	GPL
-Group: 		Applications/Graphics
-URL: 		http://goodies.xfce.org/projects/applications/ristretto
+Group: 		Applications/Utilities
+URL: 		http://squeeze.xfce.org
 
-Source: 	http://goodies.xfce.org/releases/ristretto/%{name}-%{version}.tar.gz
+Source: 	http://squeeze.xfce.org/downloads/%{name}-%{version}.tar.bz2
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: 	gtk2-devel >= 2.10
-BuildRequires: 	libexif-devel >= 0.6
-BuildRequires: 	Thunar-devel >= 0.9
 BuildRequires: 	libxfce4util-devel >= 4.4.0
 BuildRequires: 	libxfcegui4-devel >= 4.4.0
 BuildRequires: 	dbus-glib-devel >= 0.34
+BuildRequires: 	Thunar-devel >= 0.8
 
 Requires: 	gtk2 >= 2.10
-Requires: 	Thunar >= 0.9
 Requires: 	libxfce4util >= 4.4.0
 Requires: 	libxfcegui4 >= 4.4.0
-Requires: 	libexif >= 0.6.0
 Requires: 	dbus-glib >= 0.34
+Requires: 	Thunar >= 0.8
 
 %description
-Ristretto is a fast and lightweight picture-viewer for the Xfce desktop environment.
+Squeeze is a modern and advanced archive manager for the Xfce Desktop Environment.
+Its design adheres to the Xfce philosophy, which basically means Squeeze is designed to be both fast and easy to use. 
 
 %prep
 %setup
@@ -60,10 +59,15 @@ fi
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-%{_bindir}/ristretto
+%{_bindir}/%{name}
+%{_includedir}/libsqueeze-0.2
+%{_libdir}/*
+%{_libexecdir}/thunar-archive-plugin/%{name}.tap
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/*
 %{_datadir}/locale/*
+%{_datadir}/pixmaps/*
+%{_datadir}/gtk-doc/html/libsqueeze/*
 
 %changelog
 * Sat Apr 10 2008 Heiko Adams <info-2007@fedora-blog.de> - 0.0.19-1
