@@ -70,5 +70,5 @@ fi
 %{_datadir}/gtk-doc/html/libsqueeze/*
 
 %changelog
-* Sat Apr 10 2008 Heiko Adams <info-2007@fedora-blog.de> - 0.0.19-1
+* Sat Apr 10 2008 Heiko Adams <info-2007@fedora-blog.de> - 0.2.3-1
 - Initial package.
