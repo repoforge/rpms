@@ -4,7 +4,7 @@
 
 Summary: POP3 client library
 Name: libspopc
-Version: 0.7.6
+Version: 0.7.8
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -37,7 +37,8 @@ you will need to install %{name}-devel.
 %{__perl} -pi -e 's|DESTDIR\)/usr/lib|DESTDIR\)/%{_libdir}|g;' Makefile
 
 %build
-%{__make} %{?_smp_mflags}
+# FIXME doesn't work with _smp_mflags
+%{__make}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -66,6 +67,9 @@ you will need to install %{name}-devel.
 #%exclude %{_libdir}/*.la
 
 %changelog
+* Mon May 12 2008 Dries Verachtert <dries@ulyssis.org> - 0.7.8-1
+- Updated to release 0.7.8.
+
 * Thu Feb 28 2008 Dries Verachtert <dries@ulyssis.org> - 0.7.6-1
 - Updated to release 0.7.6.
 
