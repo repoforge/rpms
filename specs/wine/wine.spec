@@ -48,13 +48,14 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 0.9.61
-Release: 1
+%define real_version 1.0-rc1
+Version: 1.0
+Release: 0.rc1
 License: LGPL
 Group: Applications/Emulators
 URL: http://www.winehq.org/
 
-Source0: http://dl.sf.net/sourceforge/wine/wine-%{version}.tar.bz2
+Source0: http://dl.sf.net/sourceforge/wine/wine-%{real_version}.tar.bz2
 Patch0: wine-prefixfonts.patch
 Patch1: wine-rpath.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -181,7 +182,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup
+%setup -n %{name}-%{real_version}
 %patch0
 
 %{__cat} <<EOF >wine-config.desktop
@@ -326,28 +327,28 @@ echo "%{_libdir}/wine/" >wine.ld.conf
     %{__install} -Dp -m0644 wine-uninstaller.desktop %{buildroot}/etc/X11/applnk/Applications/wine-uninstaller.desktop
 %else
     desktop-file-install --delete-original             \
-        --vendor=%{desktop_vendor}                 \
-        --dir=%{buildroot}%{_datadir}/applications \
+        --vendor="%{desktop_vendor}"                   \
+        --dir="%{buildroot}%{_datadir}/applications"   \
         %{buildroot}%{_datadir}/applications/wine.desktop
 
     desktop-file-install                               \
-        --vendor=%{desktop_vendor}                 \
-        --dir=%{buildroot}%{_datadir}/applications \
+        --vendor="%{desktop_vendor}"                   \
+        --dir="%{buildroot}%{_datadir}/applications"   \
         wine-config.desktop
 
     desktop-file-install                               \
-        --vendor=%{desktop_vendor}                 \
-        --dir=%{buildroot}%{_datadir}/applications \
+        --vendor="%{desktop_vendor}"                   \
+        --dir="%{buildroot}%{_datadir}/applications"   \
         wine-fileman.desktop
 
     desktop-file-install                               \
-        --vendor=%{desktop_vendor}                 \
-        --dir=%{buildroot}%{_datadir}/applications \
+        --vendor="%{desktop_vendor}"                   \
+        --dir="%{buildroot}%{_datadir}/applications"   \
         wine-regedit.desktop
 
     desktop-file-install                               \
-        --vendor=%{desktop_vendor}                 \
-        --dir=%{buildroot}%{_datadir}/applications \
+        --vendor="%{desktop_vendor}"                   \
+        --dir="%{buildroot}%{_datadir}/applications"   \
         wine-uninstaller.desktop
 %endif
 
@@ -884,6 +885,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Tue May 13 2008 Dag Wieers <dag@wieers.com> - 1.0-0.rc1
+- Updated to release 1.0-rc1.
+
 * Fri May 09 2008 Dag Wieers <dag@wieers.com> - 0.9.61-1
 - Updated to release 0.9.61.
 

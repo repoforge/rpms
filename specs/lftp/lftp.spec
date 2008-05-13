@@ -7,7 +7,7 @@
 
 Summary: Sophisticated file transfer program
 Name: lftp
-Version: 3.7.0
+Version: 3.7.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -32,9 +32,9 @@ reliability in mind.
 ### Workaround for broken openssl on RH9 and EL3
 export CPPFLAGS="-I/usr/kerberos/include"
 %configure \
-	--with-modules \
-	--disable-static \
-	--with-openssl="/usr"
+    --with-modules \
+    --disable-static \
+    --with-openssl="/usr"
 %{__make} clean
 %{__make} %{?_smp_mflags}
 
@@ -62,6 +62,9 @@ export CPPFLAGS="-I/usr/kerberos/include"
 %{_libdir}/liblftp-tasks.so*
 
 %changelog
+* Sat May 10 2008 Dag Wieers <dag@wieers.com> - 3.7.1-1
+- Updated to release 3.7.1.
+
 * Thu Mar 13 2008 Dag Wieers <dag@wieers.com> - 3.7.0-1
 - Updated to release 3.7.0.
 
