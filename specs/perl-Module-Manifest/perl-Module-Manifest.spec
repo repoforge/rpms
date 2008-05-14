@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Adam Kennedy <cpan$ali,as>
+# Upstream: Adam Kennedy <adamk$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Parse and examine a Perl distribution MANIFEST file
 Name: perl-Module-Manifest
-Version: 0.01
+Version: 0.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,11 @@ Source: http://www.cpan.org/modules/by-module/Module/Module-Manifest-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.005
 BuildRequires: perl(ExtUtils::MakeMaker)
+#BuildRequires: perl(Test::More) >= 0.42
+BuildRequires: perl(Test::More)
+Requires: perl >= 0:5.005
 
 %description
 Parse and examine a Perl distribution MANIFEST file.
@@ -49,5 +52,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/Manifest.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.03-1
+- Updated to release 0.03.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

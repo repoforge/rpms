@@ -9,7 +9,7 @@
 
 Summary: Math::BigInt::Calc with some XS for more speed
 Name: perl-Math-BigInt-FastCalc
-Version: 0.15
+Version: 0.19
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN

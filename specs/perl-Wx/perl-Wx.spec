@@ -52,13 +52,13 @@ find docs/ samples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST MANIFEST.SKIP META.yml README.txt docs/ samples/
-#%doc %{_mandir}/man1/wx_overload.1*
-#%doc %{_mandir}/man1/wx_xspp.1*
+%doc %{_mandir}/man1/wxperl_overload.1*
+%doc %{_mandir}/man1/wxperl_xspp.1*
 #%doc %{_mandir}/man3/build::Wx::*.3pm*
 %doc %{_mandir}/man3/Wx.3pm*
 %doc %{_mandir}/man3/Wx::*.3pm*
-#%{_bindir}/wx_overload
-#%{_bindir}/wx_xspp
+%{_bindir}/wxperl_overload
+%{_bindir}/wxperl_xspp
 %{perl_vendorarch}/auto/Wx/
 %{perl_vendorarch}/Wx/
 %{perl_vendorarch}/Wx.pm

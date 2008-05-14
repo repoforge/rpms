@@ -9,7 +9,7 @@
 
 Summary: Wrapper around the Expect module
 Name: perl-Expect-Simple
-Version: 0.03
+Version: 0.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,13 +47,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog Changes LICENSE MANIFEST META.yml README
+%doc ChangeLog Changes LICENSE MANIFEST MANIFEST.SKIP META.yml README
 %doc %{_mandir}/man3/Expect::Simple.3pm*
 %dir %{perl_vendorlib}/Expect/
 #%{perl_vendorlib}/Expect/Simple/
 %{perl_vendorlib}/Expect/Simple.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.04-1
+- Updated to release 0.04.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.03-1
 - Updated to release 0.03.
 

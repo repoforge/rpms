@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: David Wheeler <david$justatheory,com>
+# Upstream: David Wheeler <david$kineticode,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: DBI Exception objects
 Name: perl-Exception-Class-DBI
-Version: 0.96
+Version: 0.98
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,9 +21,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Exception::Class)
-BuildRequires: perl(Module::Build)
+BuildRequires: perl(Module::Build) >= 0.2701
 BuildRequires: perl(Test::Harness) >= 2.03
-BuildRequires: perl(Test::Simple) >= 0.17
+BuildRequires: perl(Test::More) >= 0.17
 
 %description
 This module offers a set of DBI-specific exception classes. They inherit from
@@ -57,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Exception/Class/DBI.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.98-1
+- Updated to release 0.98.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.96-1
 - Updated to release 0.96.
 

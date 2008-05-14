@@ -9,7 +9,7 @@
 
 Summary: Simple-minded recipe-controlled build of data
 Name: perl-Data-Flow
-Version: 1.01
+Version: 1.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Data/Flow.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 1.02-1
+- Updated to release 1.02.
+
 * Mon May 05 2008 Dag Wieers <dag@wieers.com> - 1.01-1
 - Updated to release 1.01.
 

@@ -9,7 +9,7 @@
 
 Summary: Asynchronous Input/Output
 Name: perl-IO-AIO
-Version: 2.62
+Version: 3.02
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -49,12 +49,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc COPYING Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/IO::AIO.3pm*
-%dir %{perl_vendorarch}/IO/
-%{perl_vendorarch}/IO/AIO.pm
 %dir %{perl_vendorarch}/auto/IO/
 %{perl_vendorarch}/auto/IO/AIO/
+%dir %{perl_vendorarch}/IO/
+%{perl_vendorarch}/IO/AIO.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 3.02-1
+- Updated to release 3.02.
+
 * Sat May 03 2008 Dag Wieers <dag@wieers.com> - 2.62-1
 - Updated to release 2.62.
 

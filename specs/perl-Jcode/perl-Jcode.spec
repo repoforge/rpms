@@ -7,11 +7,11 @@
 
 %define real_name Jcode
 
-Summary: Jcode (Japanese Charset Handler) module for perl
+Summary: Japanese Charset Handler
 Name: perl-Jcode
-Version: 2.06
+Version: 2.07
 Release: 1
-License: GPL or Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Jcode/
 
@@ -45,14 +45,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
-%doc %{_mandir}/man3/*.3*
-%{perl_vendorlib}/Jcode.pm
+%doc Changes Changes.ver0X MANIFEST META.yml README
+%doc %{_mandir}/man3/Jcode.3pm*
+%doc %{_mandir}/man3/Jcode::*.3pm*
 %{perl_vendorlib}/Jcode/
+%{perl_vendorlib}/Jcode.pm
 
 %changelog
-* Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 2.06-1
-- Updated to release 2.06.
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 2.07-1
+- Updated to release 2.07.
 
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 2.06-1
 - Updated to release 2.06.
