@@ -9,7 +9,7 @@
 
 Summary: Asynchronous mail sending with POE
 Name: perl-POE-Component-Client-SMTP
-Version: 0.18
+Version: 0.19
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl-Module-Build
+BuildRequires: perl(Module::Build)
 
 %description
 Asynchronous mail sending with POE.
@@ -29,12 +29,15 @@ Asynchronous mail sending with POE.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Build.PL installdirs="vendor"
-%{__perl} Build
+#%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+#%{__make} %{?_smp_mflags}
+%{__perl} Build.PL
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__perl} Build install destdir="%{buildroot}"
+#%{__make} pure_install
+PERL_INSTALL_ROOT="%{buildroot}" ./Build install installdirs="vendor"
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -56,6 +59,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Component/Client/SMTP.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.19-1
+- Updated to release 0.19.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.18-1
 - Updated to release 0.18.
 

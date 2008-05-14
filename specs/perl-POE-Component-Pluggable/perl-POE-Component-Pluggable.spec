@@ -9,7 +9,7 @@
 
 Summary: Base class for creating plugin enabled POE Components
 Name: perl-POE-Component-Pluggable
-Version: 1.02
+Version: 1.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,7 +47,7 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README examples/
+%doc Changes LICENSE MANIFEST META.yml README examples/
 %doc %{_mandir}/man3/POE::Component::Pluggable.3pm*
 %doc %{_mandir}/man3/POE::Component::Pluggable::Constants.3pm*
 %doc %{_mandir}/man3/POE::Component::Pluggable::Pipeline.3pm*
@@ -57,6 +57,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Component/Pluggable.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 1.04-1
+- Updated to release 1.04.
+
 * Thu Feb 28 2008 Dag Wieers <dag@wieers.com> - 1.02-1
 - Updated to release 1.02.
 
