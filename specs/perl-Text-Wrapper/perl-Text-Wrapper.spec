@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Christopher J. Madsen <cjm$pobox,com>
+# Upstream: Christopher J. Madsen <perl$cjmweb,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Simple word wrapping routine
 Name: perl-Text-Wrapper
-Version: 1.01
+Version: 1.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,13 +19,13 @@ Source: http://www.cpan.org/modules/by-module/Text/Text-Wrapper-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.004 
+BuildRequires: perl >= 0:5.004
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(File::Spec)
 BuildRequires: perl(FindBin)
 BuildRequires: perl(Module::Build) >= 0.21
 BuildRequires: perl(Test::More)
-Requires: perl >= 0:5.004 
+Requires: perl >= 0:5.004
 
 %description
 This module provides simple word wrapping.  It breaks long lines,
@@ -37,12 +37,15 @@ Text::Format module.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+#%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+#%{__make} %{?_smp_mflags}
+%{__perl} Build.PL
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+#%{__make} pure_install
+PERL_INSTALL_ROOT="%{buildroot}" ./Build install installdirs="vendor"
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -62,6 +65,9 @@ find example/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Text/Wrapper.pm
 
 %changelog
+* Thu May 15 2008 Dag Wieers <dag@wieers.com> - 1.02-1
+- Updated to release 1.02.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 1.01-1
 - Updated to release 1.01.
 

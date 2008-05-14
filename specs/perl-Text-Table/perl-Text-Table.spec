@@ -9,7 +9,7 @@
 
 Summary: Organize Data in Tables
 Name: perl-Text-Table
-Version: 1.107
+Version: 1.114
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Text/Table.pm
 
 %changelog
+* Thu May 15 2008 Dag Wieers <dag@wieers.com> - 1.114-1
+- Updated to release 1.114.
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 1.107-1
 - Initial package. (using DAR)

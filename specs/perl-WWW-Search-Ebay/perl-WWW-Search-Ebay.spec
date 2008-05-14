@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Martin 'Kingpin' Thurn <mthurn$verizon,net>
+# Upstream: Martin Thurn <mthurn$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Backend for searching www.ebay.com
 Name: perl-WWW-Search-Ebay
-Version: 2.234
+Version: 2.242
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,15 @@ Source: http://www.cpan.org/modules/by-module/WWW/WWW-Search-Ebay-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.005
+BuildRequires: perl(Bit::Vector)
+BuildRequires: perl(Date::Manip)
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(IO::Capture::Stderr)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::Pod)
+BuildRequires: perl(WWW::Search::Test) >= 2.265
+Requires: perl >= 0:5.005
 
 %description
 This is a backend for use with the WWW::Search module for searching on Ebay.
@@ -44,7 +51,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
+%doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/WWW::Search::Ebay.3pm*
 %doc %{_mandir}/man3/WWW::Search::Ebay::*.3pm*
 %dir %{perl_vendorlib}/WWW/
@@ -53,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WWW/Search/Ebay.pm
 
 %changelog
+* Thu May 15 2008 Dag Wieers <dag@wieers.com> - 2.242-1
+- Updated to release 2.242.
+
 * Thu Feb 28 2008 Dag Wieers <dag@wieers.com> - 2.234-1
 - Updated to release 2.234.
 

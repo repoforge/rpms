@@ -9,7 +9,7 @@
 
 Summary: Event-driven networkable IRC server daemon
 Name: perl-POE-Component-Server-IRC
-Version: 1.30
+Version: 1.32
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,9 +19,10 @@ Source: http://www.cpan.org/modules/by-module/POE/POE-Component-Server-IRC-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.6.0
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More) >= 0.47
+Requires: perl >= 0:5.6.0
 
 %description
 A fully event-driven networkable IRC server daemon module.
@@ -48,7 +49,7 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST MANIFEST.SKIP META.yml README examples/
+%doc Changes LICENSE MANIFEST META.yml README examples/
 %doc %{_mandir}/man1/pmkpasswd.1*
 %doc %{_mandir}/man3/POE::Component::Server::IRC.3pm*
 %doc %{_mandir}/man3/POE::Component::Server::IRC::*.3pm*
@@ -60,6 +61,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Component/Server/IRC.pm
 
 %changelog
+* Thu May 15 2008 Dag Wieers <dag@wieers.com> - 1.32-1
+- Updated to release 1.32.
+
 * Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 1.30-1
 - Updated to release 1.30.
 

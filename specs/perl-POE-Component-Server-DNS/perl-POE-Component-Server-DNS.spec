@@ -9,7 +9,7 @@
 
 Summary: Non-blocking, concurrent DNS server component
 Name: perl-POE-Component-Server-DNS
-Version: 0.14
+Version: 0.16
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,7 +47,7 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README examples/
+%doc Changes LICENSE MANIFEST META.yml README examples/
 %doc %{_mandir}/man3/POE::Component::Server::DNS.3pm*
 %dir %{perl_vendorlib}/POE/
 %dir %{perl_vendorlib}/POE/Component/

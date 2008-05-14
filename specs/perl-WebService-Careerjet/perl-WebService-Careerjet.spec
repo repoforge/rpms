@@ -9,7 +9,7 @@
 
 Summary: Perl interface to Careerjet's public search API
 Name: perl-WebService-Careerjet
-Version: 0.05
+Version: 0.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WebService/Careerjet.pm
 
 %changelog
+* Thu May 15 2008 Dag Wieers <dag@wieers.com> - 0.06-1
+- Updated to release 0.06.
+
 * Fri Mar 07 2008 Dag Wieers <dag@wieers.com> - 0.05-1
 - Updated to release 0.05.
 
