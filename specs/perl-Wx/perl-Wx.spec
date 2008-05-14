@@ -9,7 +9,7 @@
 
 Summary: Interface to the wxWidgets cross-platform GUI toolkit
 Name: perl-Wx
-Version: 0.81
+Version: 0.82
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,17 +52,21 @@ find docs/ samples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST MANIFEST.SKIP META.yml README.txt docs/ samples/
-%doc %{_mandir}/man1/wx_xspp.pl.1*
-%doc %{_mandir}/man3/build::Wx::*.3pm*
+#%doc %{_mandir}/man1/wx_overload.1*
+#%doc %{_mandir}/man1/wx_xspp.1*
+#%doc %{_mandir}/man3/build::Wx::*.3pm*
 %doc %{_mandir}/man3/Wx.3pm*
 %doc %{_mandir}/man3/Wx::*.3pm*
-%{_bindir}/wx_overload.pl
-%{_bindir}/wx_xspp.pl
+#%{_bindir}/wx_overload
+#%{_bindir}/wx_xspp
 %{perl_vendorarch}/auto/Wx/
 %{perl_vendorarch}/Wx/
 %{perl_vendorarch}/Wx.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.82-1
+- Updated to release 0.82.
+
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.81-1
 - Updated to release 0.81.
 

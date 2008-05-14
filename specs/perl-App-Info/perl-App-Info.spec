@@ -7,9 +7,9 @@
 
 %define real_name App-Info
 
-Summary: Provides metadata about installed software packages
+Summary: Information about software packages on a system
 Name: perl-App-Info
-Version: 0.52
+Version: 0.53
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -74,6 +74,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/App/Info.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.53-1
+- Updated to release 0.53.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.52-1
 - Updated to release 0.52.
 

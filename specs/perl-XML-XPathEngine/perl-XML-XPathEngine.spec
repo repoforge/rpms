@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Michel Rodriguez <mirod$xmltwig,com>
+# Upstream: Michel Rodriguez <mirod$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Reusable XPath engine for DOM-like trees
 Name: perl-XML-XPathEngine
-Version: 0.08
+Version: 0.11
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,12 +44,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/XML/XPathEngine.pm
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/XML::XPathEngine.3pm*
+%doc %{_mandir}/man3/XML::XPathEngine::*.3pm*
+%dir %{perl_vendorlib}/XML/
 %{perl_vendorlib}/XML/XPathEngine/
+%{perl_vendorlib}/XML/XPathEngine.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.11-1
+- Updated to release 0.11.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Updated to release 0.08.
 

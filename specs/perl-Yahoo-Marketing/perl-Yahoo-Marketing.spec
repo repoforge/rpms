@@ -9,7 +9,7 @@
 
 Summary: Interface for Yahoo! Search Marketing's Web Services
 Name: perl-Yahoo-Marketing
-Version: 4.03
+Version: 4.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -58,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Yahoo/Marketing.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 4.04-1
+- Updated to release 4.04.
+
 * Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 4.03-1
 - Updated to release 4.03.
 

@@ -45,6 +45,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml
 %doc %{_mandir}/man3/URI::Title.3pm*
+%doc %{_mandir}/man3/URI::Title::*.3pm*
 %dir %{perl_vendorlib}/URI/
 %{perl_vendorlib}/URI/Title/
 %{perl_vendorlib}/URI/title.pl

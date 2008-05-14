@@ -9,7 +9,7 @@
 
 Summary: Access MySpace.com from perl
 Name: perl-WWW-Myspace
-Version: 0.75
+Version: 0.79
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -66,6 +66,9 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/WWW/Myspace.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.79-1
+- Updated to release 0.79.
+
 * Thu Feb 21 2008 Dag Wieers <dag@wieers.com> - 0.75-1
 - Updated to release 0.75.
 

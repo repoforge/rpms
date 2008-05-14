@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dries
-# Upstream: Michel Rodriguez <mirod$xmltwig,com>
+# Upstream: Michel Rodriguez <mirod$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name XML-DOM-XPath
 
-Summary: XPath support for XML::DOM
+Summary: Perl extension to add XPath support to XML::DOM, using XML::XPath engine
 Name: perl-XML-DOM-XPath
-Version: 0.13
+Version: 0.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,12 +50,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/XML::DOM::XPath.3pm*
+%dir %{perl_vendorlib}/XML/
 %dir %{perl_vendorlib}/XML/DOM/
+#%{perl_vendorlib}/XML/DOM/XPath/
 %{perl_vendorlib}/XML/DOM/XPath.pm
 
+
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.14-1
+- Updated to release 0.14.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.13-1
 - Updated to release 0.13.
 

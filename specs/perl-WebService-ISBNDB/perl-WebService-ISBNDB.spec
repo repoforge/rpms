@@ -7,9 +7,9 @@
 
 %define real_name WebService-ISBNDB
 
-Summary: Easy access to isbndb.com
+Summary: Data and communication classes for talking to isbndb.com
 Name: perl-WebService-ISBNDB
-Version: 0.33
+Version: 0.34
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -25,7 +25,7 @@ BuildRequires: perl(Test::More)
 Requires: perl >= 0:5.6.0 
 
 %description
-A Perl extension to access isbndb.com.
+Data and communication classes for talking to isbndb.com.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WebService/ISBNDB.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.34-1
+- Updated to release 0.34.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.33-1
 - Updated to release 0.33.
 

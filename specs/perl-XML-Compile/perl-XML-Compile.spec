@@ -9,7 +9,7 @@
 
 Summary: Compilation based XML processing
 Name: perl-XML-Compile
-Version: 0.69
+Version: 0.81
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,9 +46,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog MANIFEST META.yml README README.todo
+%doc %{_mandir}/man1/schema2example.1*
 %doc %{_mandir}/man1/xml2yaml.1*
 %doc %{_mandir}/man3/XML::Compile.3pm*
 %doc %{_mandir}/man3/XML::Compile::*.3pm*
+%{_bindir}/schema2example
 %{_bindir}/xml2yaml
 %dir %{perl_vendorlib}/XML/
 %{perl_vendorlib}/XML/Compile/
@@ -56,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/Compile.pod
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.81-1
+- Updated to release 0.81.
+
 * Thu Feb 21 2008 Dag Wieers <dag@wieers.com> - 0.69-1
 - Updated to release 0.69.
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Tim Keefer <tkeefer$sunflower,com>
+# Upstream: Tim Keefer <tkeefer$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Tools for building ACH (Automated Clearing House) files
 Name: perl-ACH-Builder
-Version: 0.02
+Version: 0.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,5 +49,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/ACH/Builder.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.03-1
+- Updated to release 0.03.
+
 * Wed Oct 10 2007 Dag Wieers <dag@wieers.com> - 0.02-1
 - Initial package. (using DAR)

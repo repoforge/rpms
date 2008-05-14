@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dries
-# Upstream: Martin 'Kingpin' Thurn <mthurn$verizon,net>
+# Upstream: John Heidemann <johnh$isi,edu>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name WWW-Search
 
-Summary: Perl module for WWW searches.
+Summary: Virtual base class for WWW searches
 Name: perl-WWW-Search
-Version: 2.497
+Version: 2.501
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,11 +19,20 @@ Source: http://www.cpan.org/modules/by-module/WWW/WWW-Search-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.004
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(ExtUtils::MM_Unix) >= 1.41
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(File::Temp)
+BuildRequires: perl(IO::Capture::Stderr)
+BuildRequires: perl(Test::File)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::Pod)
+BuildRequires: perl(Test::Simple)
+Requires: perl >= 0:5.004
 
 %description
-This module contains functions for WWW searches.
+Virtual base class for WWW searches.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -46,7 +55,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
+%doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man1/AutoSearch.1*
 %doc %{_mandir}/man1/WebSearch.1*
 %doc %{_mandir}/man3/WWW::Search.3pm*
@@ -60,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WWW/SearchResult.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 2.501-1
+- Updated to release 2.501.
+
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 2.497-1
 - Updated to release 2.497.
 
