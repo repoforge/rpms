@@ -1,20 +1,15 @@
-# $Id$
-# Authority: matthias
-# Dist: nodist
-# ExclusiveDist: fc6 el5 fc7
+%define desktop_vendor freshrpms
+%define nvidialibdir   %{_libdir}/nvidia
+%define nvidialib32dir %{_prefix}/lib/nvidia
 
-%define nvidialibdir    %{_libdir}/nvidia
-%define nvidialib32dir  %{_prefix}/lib/nvidia
-%define desktop_vendor  rpmforge
+%define beta .beta
 
-#define beta .beta
-
-%define debug_package   %{nil}
+%define debug_package  %{nil}
 
 Summary: Proprietary NVIDIA hardware accelerated OpenGL display driver
 Name: nvidia-x11-drv
-Version: 100.14.11
-Release: 1%{?beta}
+Version: 173.08
+Release: 1%{?beta}%{?dist}
 License: Proprietary
 Group: User Interface/X Hardware Support
 URL: http://www.nvidia.com/object/unix.html
@@ -62,7 +57,7 @@ Compatibility 32bit files for the 64bit Proprietary NVIDIA driver.
 
 
 %prep
-%setup -T -c
+%setup -q -T -c
 # Extract the proper "sources" for the current architecture
 # We need to extract to a "not yet existing" directory first, so no "."
 %ifarch i386
@@ -84,7 +79,7 @@ sh %{SOURCE1} --extract-only --target tmp/
 %{__rm} -rf %{buildroot}
 
 # Fix for FC6 kernels
-%{__perl} -pi -e 's|#include <linux/config.h>||g' usr/src/nv/nv-linux.h
+#{__perl} -pi -e 's|#include <linux/config.h>||g' usr/src/nv/nv-linux.h
 
 %define dkms_name nvidia
 %define dkms_vers %{version}-%{release}
@@ -293,6 +288,21 @@ fi
 
 
 %changelog
+* Wed May 14 2008 Matthias Saou <http://freshrpms.net/> 173.08-1
+- Update to 173.08 beta, which includes support for Fedora 9's X snapshot.
+
+* Tue Mar  4 2008 Matthias Saou <http://freshrpms.net/> 169.12-1
+- Update to 169.12.
+
+* Mon Feb 18 2008 Matthias Saou <http://freshrpms.net/> 169.09-1
+- Update to 169.09.
+
+* Sat Feb  9 2008 Matthias Saou <http://freshrpms.net/> 169.07-1
+- Update to 169.07.
+
+* Wed Sep 19 2007 Matthias Saou <http://freshrpms.net/> 100.14.19-1
+- Update to 100.14.19.
+
 * Sat Jul 14 2007 Matthias Saou <http://freshrpms.net/> 100.14.11-1
 - Update to 100.14.11.
 - Split out 32bit "compat" files to a sub-package on x86_64.
