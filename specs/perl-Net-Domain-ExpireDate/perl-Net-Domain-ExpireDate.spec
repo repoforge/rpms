@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Walery Studennikov <despairr$gmail,com>
+# Upstream: Walery Studennikov <despair$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Obtain expiration date of domain names
 Name: perl-Net-Domain-ExpireDate
-Version: 0.80
+Version: 0.90
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/Domain/ExpireDate.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.90-1
+- Updated to release 0.90.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.80-1
 - Updated to release 0.80.
 

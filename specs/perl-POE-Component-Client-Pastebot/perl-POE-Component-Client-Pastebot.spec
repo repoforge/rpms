@@ -7,9 +7,9 @@
 
 %define real_name POE-Component-Client-Pastebot
 
-Summary: Interact with Bot::Pastebot web services
+Summary: Interact with Bot::Pastebot web services from POE
 Name: perl-POE-Component-Client-Pastebot
-Version: 1.00
+Version: 1.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Component/Client/Pastebot.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 1.02-1
+- Updated to release 1.02.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.00-1
 - Updated to release 1.00.
 

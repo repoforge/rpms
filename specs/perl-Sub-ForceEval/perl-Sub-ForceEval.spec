@@ -6,11 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Sub-ForceEval
-%define real_version 0.004003
+%define real_version 0.004004
 
 Summary: Checks for subs which die by using eval
 Name: perl-Sub-ForceEval
-Version: 2.03
+Version: 2.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -67,6 +67,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Sub/ForceEval.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 2.04-1
+- Updated to release 2.04.
+
 * Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 2.03-1
 - Updated to release 2.03.
 

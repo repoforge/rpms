@@ -1,31 +1,33 @@
 # $Id$
 # Authority: dag
+# Upstream: Andreas 'ac0v' Specht - ACID$cpan,org
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Unix-PID
-%define real_version 0.000015
+%define real_name Class-Std-Fast
+%define real_version 0.000006
 
-Summary: Perl module for getting PID info
-Name: perl-Unix-PID
-Version: 0.0.15
+Summary: Faster but less secure than Class::Std
+Name: perl-Class-Std-Fast
+Version: 0.0.6
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Unix-PID/
+URL: http://search.cpan.org/dist/Class-Std-Fast/
 
-Source: http://www.cpan.org/modules/by-module/Unix/Unix-PID-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Class/Class-Std-Fast-v%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Test::More)
 
 %description
-perl-Unix-PID is a Perl module for getting PID info.
+Faster but less secure than Class::Std.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-v%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -44,14 +46,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
-%doc %{_mandir}/man3/Unix::PID.3pm*
-%dir %{perl_vendorlib}/Unix/
-#%{perl_vendorlib}/Unix/PID/
-%{perl_vendorlib}/Unix/PID.pm
+%doc %{_mandir}/man3/Class::Std::Fast.3pm*
+%doc %{_mandir}/man3/Class::Std::Fast::*.3pm*
+%dir %{perl_vendorlib}/Class/
+%dir %{perl_vendorlib}/Class/Std/
+%{perl_vendorlib}/Class/Std/Fast/
+%{perl_vendorlib}/Class/Std/Fast.pm
 
 %changelog
-* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.0.15-1
-- Updated to release 0.0.15.
-
-* Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.0.13-1
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.0.6-1
 - Initial package. (using DAR)

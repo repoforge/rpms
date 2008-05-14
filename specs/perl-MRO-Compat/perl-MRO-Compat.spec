@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(Class::C3)
+BuildRequires: perl(Class::C3) >= 0.19
 BuildRequires: perl(Class::C3::XS)
 BuildRequires: perl(Test::More) >= 0.47
 

@@ -7,9 +7,9 @@
 
 %define real_name Net-Google-Calendar
 
-Summary: Access to Google's Calendar API
+Summary: Programmatic access to Google's Calendar API
 Name: perl-Net-Google-Calendar
-Version: 0.92
+Version: 0.94
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/Google/Calendar.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.94-1
+- Updated to release 0.94.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.92-1
 - Updated to release 0.92.
 

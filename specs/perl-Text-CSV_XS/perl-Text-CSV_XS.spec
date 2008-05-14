@@ -9,7 +9,7 @@
 
 Summary: Comma-separated values manipulation routines
 Name: perl-Text-CSV_XS
-Version: 0.37
+Version: 0.45
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,8 +18,13 @@ URL: http://search.cpan.org/dist/Text-CSV_XS/
 Source: http://www.cpan.org/modules/by-module/Text/Text-CSV_XS-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl >= 0:5.005
+BuildRequires: perl(Config)
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::Harness)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Tie::Scalar)
+Requires: perl >= 0:5.005
 
 %description
 Text::CSV provides facilities for the composition and decomposition of
@@ -56,6 +61,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Text/CSV_XS.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.45-1
+- Updated to release 0.45.
+
 * Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 0.37-1
 - Updated to release 0.37.
 

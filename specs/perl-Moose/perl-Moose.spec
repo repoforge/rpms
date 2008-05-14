@@ -9,7 +9,7 @@
 
 Summary: Postmodern object system for Perl 5
 Name: perl-Moose
-Version: 0.38
+Version: 0.44
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,10 +21,17 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Carp)
+BuildRequires: perl(Class::MOP) >= 0.55
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Filter::Simple)
+BuildRequires: perl(Scalar::Util) >= 1.18
+BuildRequires: perl(Sub::Exporter) >= 0.972
+BuildRequires: perl(Sub::Name) >= 0.02
 BuildRequires: perl(Test::Exception) >= 0.21
 BuildRequires: perl(Test::LongString)
 #BuildRequires: perl(Test::More) >= 0.62
+BuildRequires: perl(Test::More)
 
 %description
 Moose is a Perl module that implements a complete modern object system.
@@ -60,6 +67,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Moose.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.44-1
+- Updated to release 0.44.
+
 * Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 0.38-1
 - Updated to release 0.38.
 

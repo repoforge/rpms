@@ -9,7 +9,7 @@
 
 Summary: Syslog services for POE
 Name: perl-POE-Component-Server-Syslog
-Version: 1.14
+Version: 1.16
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,10 @@ Source: http://www.cpan.org/modules/by-module/POE/POE-Component-Server-Syslog-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 1:5.6.1
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More) >= 0.47
+Requires: perl >= 1:5.6.1
 
 %description
 This module provides syslog services for POE.
@@ -60,6 +62,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Filter/Syslog.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 1.16-1
+- Updated to release 1.16.
+
 * Thu Feb 21 2008 Dag Wieers <dag@wieers.com> - 1.14-1
 - Updated to release 1.14.
 

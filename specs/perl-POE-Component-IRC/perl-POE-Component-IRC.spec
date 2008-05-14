@@ -9,7 +9,7 @@
 
 Summary: Fully event-driven IRC client module
 Name: perl-POE-Component-IRC
-Version: 5.70
+Version: 5.76
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,9 +19,10 @@ Source: http://www.cpan.org/modules/by-module/POE/POE-Component-IRC-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.6.0
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More) >= 0.47
+Requires: perl >= 0:5.6.0
 
 %description
 POE::Component::IRC is a POE (Perl Object Environment) component
@@ -52,7 +53,7 @@ find docs/ examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST MANIFEST.SKIP META.yml README docs/ examples/
+%doc Changes LICENSE MANIFEST MANIFEST.SKIP META.yml README docs/ examples/
 %doc %{_mandir}/man3/POE::Component::IRC.3pm*
 %doc %{_mandir}/man3/POE::Component::IRC::*.3pm*
 %doc %{_mandir}/man3/POE::Filter::*.3pm*
@@ -63,6 +64,9 @@ find docs/ examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Filter/
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 5.76-1
+- Updated to release 5.76.
+
 * Fri Mar 07 2008 Dag Wieers <dag@wieers.com> - 5.70-1
 - Updated to release 5.70.
 

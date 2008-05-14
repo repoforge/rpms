@@ -9,8 +9,8 @@
 
 Summary: Family of perl modules to streamline writing Nagios
 Name: perl-Nagios-Plugin
-Version: 0.24
-Release: 2
+Version: 0.26
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Nagios-Plugin/
@@ -53,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Nagios/Plugin.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.26-1
+- Updated to release 0.26.
+
 * Sat Mar 15 2008 Dag Wieers <dag@wieers.com> - 0.24-2
 - Added perl(Config::Tiny) as a dependency.
 

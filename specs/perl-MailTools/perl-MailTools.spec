@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Mark Overmeer <perl$overmeer,net>
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
@@ -10,7 +11,7 @@
 
 Summary: Various Mail related modules
 Name: perl-MailTools
-Version: 2.02
+Version: 2.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,6 +60,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Mail/
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 2.03-1
+- Updated to release 2.03.
+
 * Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 2.02-1
 - Updated to release 2.02.
 

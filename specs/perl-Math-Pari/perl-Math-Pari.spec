@@ -6,18 +6,18 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Math-Pari
-%define pari_version 2.1.7
+%define real_version 2.3.3
 
 Summary: Perl interface to PARI
 Name: perl-Math-Pari
-Version: 2.010709
+Version: 2.010800
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Pari/
 
-Source0: http://search.cpan.org/CPAN/authors/id/I/IL/ILYAZ/modules/Math-Pari-%{version}.tar.gz
-Source1: http://pari.math.u-bordeaux.fr/pub/pari/unix/pari-%{pari_version}.tgz
+Source: http://www.cpan.org/modules/by-module/Math/Math-Pari-%{version}.tar.gz
+Source1: http://pari.math.u-bordeaux.fr/pub/pari/unix/pari-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -63,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Math/libPARI.pod
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 2.010800-1
+- Updated to release 2.010800.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 2.010709-1
 - Updated to release 2.010709.
 

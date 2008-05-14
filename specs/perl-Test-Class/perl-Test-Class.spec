@@ -9,7 +9,7 @@
 
 Summary: Easily create test classes in an xUnit/JUnit style
 Name: perl-Test-Class
-Version: 0.28
+Version: 0.30
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Class.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.30-1
+- Updated to release 0.30.
+
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.28-1
 - Updated to release 0.28.
 

@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dries
-# Upstream: Rocco Caputo <rcaputo$pobox,com>
+# Upstream: Rocco Caputo <rcaputo$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name POE-Component-Client-Keepalive
 
-Summary: Manage connections, with keep-alive
+Summary: Manages and keeps alive client connections
 Name: perl-POE-Component-Client-Keepalive
-Version: 0.1000
+Version: 0.1001
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,12 +48,21 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README
-%doc %{_mandir}/man3/*
+%doc CHANGES MANIFEST META.yml README
+%doc %{_mandir}/man3/POE::Component::Client::Client-Keepalive.3pm*
+%doc %{_mandir}/man3/POE::Component::Client::Conn-Keepalive.3pm*
+%dir %{perl_vendorlib}/POE/
+%dir %{perl_vendorlib}/POE/Component/
+%dir %{perl_vendorlib}/POE/Component/Client/
+#%{perl_vendorlib}/POE/Component/Client/Keepalive/
 %{perl_vendorlib}/POE/Component/Client/Keepalive.pm
+%dir %{perl_vendorlib}/POE/Component/Connection/
 %{perl_vendorlib}/POE/Component/Connection/Keepalive.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.1001-1
+- Updated to release 0.1001.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.1000-1
 - Updated to release 0.1000.
 
@@ -65,9 +74,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.0701-1
 - Updated to release 0.0701.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1.2
-- Rebuild for Fedora Core 5.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.

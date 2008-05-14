@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Mark Jason Dominus (e*Pae**ae?(R)) (=Mark Jason Dominus) <mjd$plover,com>
+# Upstream: Mark Jason Dominus <mjd$plover,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: Text templates functions
 Name: perl-Text-Template
-Version: 1.44
-Release: 1.2
+Version: 1.45
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Template/
@@ -39,22 +39,25 @@ them with their values.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Artistic COPYING README
-%{_mandir}/man3/*
+%doc Artistic COPYING INSTALL MANIFEST META.yml README
+%doc %{_mandir}/man3/Text::Template.3pm*
+%doc %{_mandir}/man3/Text::Template::*.3pm*
+%dir %{perl_vendorlib}/Text/
+%{perl_vendorlib}/Text/Template/
 %{perl_vendorlib}/Text/Template.pm
-%{perl_vendorlib}/Text/Template/*
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.44-1.2
-- Rebuild for Fedora Core 5.
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 1.45-1
+- Updated to release 1.45.
 
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 1.44-1
 - Initial package.

@@ -9,7 +9,7 @@
 
 Summary: Bringing the power of POE to CPAN smoke testing
 Name: perl-POE-Component-CPAN-YACSmoke
-Version: 1.20
+Version: 1.26
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,7 +48,7 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README examples/
+%doc Changes LICENSE MANIFEST META.yml README examples/
 %doc %{_mandir}/man1/minismoker.1*
 %doc %{_mandir}/man3/POE::Component::CPAN::YACSmoke.3pm*
 %{_bindir}/minismoker

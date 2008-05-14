@@ -9,7 +9,7 @@
 
 Summary: Run only one invocation
 Name: perl-Sys-RunAlone
-Version: 0.07
+Version: 0.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,11 +44,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG README
-%doc %{_mandir}/man3/Sys::RunAlone*
+%doc CHANGELOG MANIFEST META.yml README
+%doc %{_mandir}/man3/Sys::RunAlone.3pm*
+%dir %{perl_vendorlib}/Sys/
+#%{perl_vendorlib}/Sys/RunAlone/
 %{perl_vendorlib}/Sys/RunAlone.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.08-1
+- Updated to release 0.08.
+
 * Thu Jan 04 2007 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Updated to release 0.07.
 

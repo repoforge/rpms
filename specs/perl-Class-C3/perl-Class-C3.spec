@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Algorithm::C3) >= 0.07
-BuildRequires: perl(Class::C3::XS >= 0.07
+BuildRequires: perl(Class::C3::XS) >= 0.07
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Scalar::Util) >= 1.10
 BuildRequires: perl(Test::More) >= 0.47

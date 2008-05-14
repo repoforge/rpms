@@ -55,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Math/BigInt/FastCalc.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.19-1
+- Updated to release 0.19.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.15-1
 - Updated to release 0.15.
 

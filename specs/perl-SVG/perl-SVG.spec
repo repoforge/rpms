@@ -1,6 +1,6 @@
 # $Id: perl-IP-Country.spec 171 2004-03-28 01:43:07Z dag $
 # Authority: dag
-# Upstream: Ronan Oger <cpan$roitsystems,com>
+# Upstream: Ronan Oger <ronan$cpan,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Perl extension for generating Scalable Vector Graphics (SVG) documents
 Name: perl-SVG
-Version: 2.37
+Version: 2.44
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,13 +48,16 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README examples/
+%doc Changes LICENSE MANIFEST META.yml README examples/
 %doc %{_mandir}/man3/SVG.3pm*
 %doc %{_mandir}/man3/SVG::*.3pm*
 %{perl_vendorlib}/SVG/
 %{perl_vendorlib}/SVG.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 2.44-1
+- Updated to release 2.44.
+
 * Fri Mar 07 2008 Dag Wieers <dag@wieers.com> - 2.37-1
 - Updated to release 2.37.
 

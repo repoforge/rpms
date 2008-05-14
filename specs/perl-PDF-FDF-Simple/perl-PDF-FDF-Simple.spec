@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Steffen Schwigon <schwigon$webit,de>
+# Upstream: Steffen Schwigon <ss5$renormalist,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Read and write (Acrobat) FDF files
 Name: perl-PDF-FDF-Simple
-Version: 0.11
+Version: 0.17
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -32,12 +32,15 @@ just want to read or create fdf files.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+#%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+#%{__make} %{?_smp_mflags}
+%{__perl} Build.PL
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+#%{__make} pure_install
+PERL_INSTALL_ROOT="%{buildroot}" ./Build install installdirs="vendor"
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -56,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/PDF/FDF/Simple.pod
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.17-1
+- Updated to release 0.17.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.11-1
 - Updated to release 0.11.
 

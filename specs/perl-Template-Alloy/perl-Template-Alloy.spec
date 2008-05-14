@@ -9,7 +9,7 @@
 
 Summary: TT2/3, HT, HTE, Tmpl, and Velocity Engine
 Name: perl-Template-Alloy
-Version: 1.011
+Version: 1.012
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Template/Alloy.pod
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 1.012-1
+- Updated to release 1.012.
+
 * Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 1.011-1
 - Updated to release 1.011.
 

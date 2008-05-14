@@ -7,9 +7,9 @@
 
 %define real_name POE-Component-Client-HTTP
 
-Summary: HTTP user-agent component
+Summary: Non-blocking/concurrent HTTP queries with POE
 Name: perl-POE-Component-Client-HTTP
-Version: 0.82
+Version: 0.83
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Filter/
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.83-1
+- Updated to release 0.83.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.82-1
 - Updated to release 0.82.
 

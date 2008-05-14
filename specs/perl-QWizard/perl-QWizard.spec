@@ -9,7 +9,7 @@
 
 Summary: Perl module to display questions and act on the answers
 Name: perl-QWizard
-Version: 3.13
+Version: 3.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/QWizard/QWizard-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-QWizard is a Perl module to display a series of questions, get the
@@ -47,7 +48,7 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc MANIFEST MANIFEST.SKIP META.yml README examples/
+%doc CHANGES MANIFEST MANIFEST.SKIP META.yml README examples/
 %doc %{_mandir}/man3/QWizard.3pm*
 %doc %{_mandir}/man3/QWizard::*.3pm*
 %doc %{_mandir}/man3/QWizard_Widgets.3pm*
@@ -58,6 +59,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/QWizard_Widgets.pod
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 3.14-1
+- Updated to release 3.14.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 3.13-1
 - Updated to release 3.13.
 

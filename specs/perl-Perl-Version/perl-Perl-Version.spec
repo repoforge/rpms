@@ -1,16 +1,15 @@
 # $Id$
 # Authority: dag
-# Upstream: Andy Armstrong <andy$hexten,net>
+# Upstream: Hans Dieter Pearcey <hdp$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Perl-Version
-%define real_version 1.002000
 
 Summary: Parse and manipulate Perl version strings
 Name: perl-Perl-Version
-Version: 1.004
+Version: 1.007
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +53,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Perl/Version.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 1.007-1
+- Updated to release 1.007.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.004-1
 - Updated to release 1.004.
 

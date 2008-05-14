@@ -1,17 +1,18 @@
 # $Id$
 # Authority: dries
-# Upstream: &#20108;&#21313;&#26085;&#9734;&#40736; - IKEDA Soji <hatuka$nezumi,nu>
+# Upstream: Hatuka*nezumi - IKEDA Soji <hatuka$nezumi,nu>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name MIME-EncWords
+%define real_version 1.010101
 
 Summary: Deal with RFC-1522 encoded words
 Name: perl-MIME-EncWords
-Version: 1.002
+Version: 1.010.101
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-EncWords/
 
@@ -19,8 +20,10 @@ Source: http://www.cpan.org/modules/by-module/MIME/MIME-EncWords-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.005
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test)
+Requires: perl >= 0:5.005
 
 %description
 Deal with RFC-1522 encoded words.
@@ -46,11 +49,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc ARTISTIC Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/MIME::EncWords.3pm*
+%doc %{_mandir}/man3/MIME::EncWords::JA_JP.3pm*
 %dir %{perl_vendorlib}/MIME/
-#%{perl_vendorlib}/MIME/EncWords/
+%{perl_vendorlib}/MIME/EncWords/
 %{perl_vendorlib}/MIME/EncWords.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 1.010.101-1
+- Updated to release 1.010.101.
+
 * Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 1.002-1
 - Updated to release 1.002.
 

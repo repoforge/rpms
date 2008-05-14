@@ -6,10 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name MIME-Charset
+%define real_version 1.006002
 
 Summary: Charset Informations for MIME
 Name: perl-MIME-Charset
-Version: 1.000
+Version: 1.006.2
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,13 +47,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc ARTISTIC COPYING Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/MIME::Charset.3pm*
-%doc %{_mandir}/man3/MIME::Charset-ja_JP.3pm*
+%doc %{_mandir}/man3/MIME::Charset::JA_JP.3pm*
 %dir %{perl_vendorlib}/MIME/
 %{perl_vendorlib}/MIME/Charset/
 %{perl_vendorlib}/MIME/Charset.pm
-%{perl_vendorlib}/MIME/Charset-ja_JP.pod
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 1.006.2-1
+- Updated to release 1.006.2.
+
 * Fri Mar 07 2008 Dag Wieers <dag@wieers.com> - 1.000-1
 - Updated to release 1.000.
 

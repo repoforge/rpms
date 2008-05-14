@@ -7,11 +7,11 @@
 
 %define real_name Text-NSP
 
-Summary: Ngram Statistics Package
+Summary: Extract collocations and Ngrams from text
 Name: perl-Text-NSP
-Version: 1.03
+Version: 1.09
 Release: 1
-License: Artistic/GPL
+License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-NSP/
 
@@ -42,14 +42,28 @@ what constitutes a "token" can be defined by the user.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find doc/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README
-%doc %{_mandir}/man3/*
-%doc %{_mandir}/man1/*
+%doc CHANGES FDL.txt GPL.txt INSTALL MANIFEST META.yml README TODO doc/
+%doc %{_mandir}/man1/combig.pl.1*
+%doc %{_mandir}/man1/count.pl.1*
+%doc %{_mandir}/man1/huge-combine.pl.1*
+%doc %{_mandir}/man1/huge-count.pl.1*
+%doc %{_mandir}/man1/kocos.pl.1*
+%doc %{_mandir}/man1/rank.pl.1*
+%doc %{_mandir}/man1/sort-bigrams.pl.1*
+%doc %{_mandir}/man1/split-data.pl.1*
+%doc %{_mandir}/man1/statistic.pl.1*
+%doc %{_mandir}/man3/Text::NSP.3pm*
+%doc %{_mandir}/man3/Text::NSP::*.3pm*
+%dir %{perl_vendorlib}/Text/
+#%{perl_vendorlib}/Text/NSP/
 %{_bindir}/combig-script.sh
 %{_bindir}/combig.pl
 %{_bindir}/count.pl
@@ -62,9 +76,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/sort-bigrams.pl
 %{_bindir}/split-data.pl
 %{_bindir}/statistic.pl
-%{perl_vendorlib}/Text/NSP.pm
 %{perl_vendorlib}/Text/NSP/
+%{perl_vendorlib}/Text/NSP.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 1.09-1
+- Updated to release 1.09.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.03-1
 - Initial package.

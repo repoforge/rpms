@@ -15,7 +15,7 @@
 
 Summary: Tools to manipulate MIME messages
 Name: perl-MIME-tools
-Version: 5.425
+Version: 5.426
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -27,10 +27,13 @@ Patch1: MIME-Tools.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
+BuildRequires: perl >= 2:5.8.0
 BuildRequires: perl-MailTools
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(IO::Stringy) >= 1.211
 BuildRequires: perl(File::Temp) >= 0.17
+BuildRequires: perl(IO::Stringy) >= 1.211
+BuildRequires: perl(Test::More)
+Requires: perl >= 2:5.8.0
 Requires: perl-MailTools >= 1.15
 Requires: perl(File::Temp) >= 0.17
 Requires: perl(IO::Stringy) >= 1.211
@@ -74,6 +77,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/MIME/
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 5.426-1
+- Updated to release 5.426.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 5.425-2
 - Added dependency to perl(File::Temp) >= 0.17. (Christof Damian)
 

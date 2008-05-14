@@ -9,7 +9,7 @@
 
 Summary: POE component that implements an RFC 864 Chargen server
 Name: perl-POE-Component-Server-Chargen
-Version: 1.08
+Version: 1.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Component/Server/Chargen.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 1.10-1
+- Updated to release 1.10.
+
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.08-1
 - Updated to release 1.08.
 

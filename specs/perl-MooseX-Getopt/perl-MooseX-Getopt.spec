@@ -10,7 +10,7 @@
 
 Summary: Moose role for processing command line options
 Name: perl-MooseX-Getopt
-Version: 0.11
+Version: 0.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,7 +46,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog MANIFEST MANIFEST.SKIP META.yml README
+%doc ChangeLog MANIFEST META.yml README
 %doc %{_mandir}/man3/MooseX::Getopt.3pm*
 %doc %{_mandir}/man3/MooseX::Getopt::*.3pm*
 %dir %{perl_vendorlib}/MooseX/
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MooseX/Getopt.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.12-1
+- Updated to release 0.12.
+
 * Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 0.11-1
 - Updated to release 0.11.
 

@@ -1,6 +1,6 @@
 # $Id: perl-IP-Country.spec 171 2004-03-28 01:43:07Z dag $
 # Authority: dag
-# Upstream: Ronan Oger <ronan$roasp,com>
+# Upstream: Ronan Oger<ronan$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: Perl SVG-GD module
 Name: perl-SVG-GD
-Version: 0.07
-Release: 2
+Version: 0.15
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVG-GD/
@@ -48,12 +48,15 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README examples/
+%doc Changes LICENSE MANIFEST META.yml README examples/
 %doc %{_mandir}/man3/SVG::GD.3pm*
 %dir %{perl_vendorlib}/SVG/
 %{perl_vendorlib}/SVG/GD.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.15-1
+- Updated to release 0.15.
+
 * Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 0.07-2
 - Disabled auto-requires for examples/.
 

@@ -8,7 +8,7 @@
 
 Summary: Perl module to get the titles of things on the web in a sensible way
 Name: perl-URI-Title
-Version: 1.62
+Version: 1.70
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -23,10 +23,6 @@ BuildRequires: perl
 %description
 perl-URI-Title is a Perl module to get the titles of things on the web
 in a sensible way.
-
-This package contains the following Perl module:
-
-    URI::Title
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -49,15 +45,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml
 %doc %{_mandir}/man3/URI::Title.3pm*
-%doc %{_mandir}/man3/URI::Title::HTML.3pm*
-%doc %{_mandir}/man3/URI::Title::Image.3pm*
-%doc %{_mandir}/man3/URI::Title::MP3.3pm*
-%doc %{_mandir}/man3/URI::Title::PDF.3pm*
 %dir %{perl_vendorlib}/URI/
 %{perl_vendorlib}/URI/Title/
 %{perl_vendorlib}/URI/title.pl
 %{perl_vendorlib}/URI/Title.pm
 
 %changelog
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 1.70-1
+- Updated to release 1.70.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 1.62-1
 - Initial package. (using DAR)
