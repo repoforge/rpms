@@ -18,7 +18,11 @@ URL: http://search.cpan.org/dist/DBD-mysql/
 Source: http://www.cpan.org/modules/by-module/DBD/DBD-mysql-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, mysql-devel
+
+# rhel/centos contains the perl module DBD-mysql in a package named perl-DBD-MySQL
+Obsoletes: perl-DBD-MySQL <= %{version}-%{release}
+Provides: perl-DBD-MySQL = %{version}-%{release}
 
 %description
 perl-DBD-mysql is a Perl module that implements a MySQL driver for DBI.
