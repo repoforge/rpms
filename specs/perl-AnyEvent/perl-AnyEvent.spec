@@ -9,7 +9,7 @@
 
 Summary: Framework for multiple event loops
 Name: perl-AnyEvent
-Version: 3.3
+Version: 3.41
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -27,6 +27,63 @@ BuildRequires: perl(Tk)
 
 %description
 AnyEvent provides a framework for multiple event loops.
+
+%package Qt
+Summary: Perl AnyEvent implementation for perl-Qt
+Group: Applications/CPAN
+Requires: %{name} = %{version}-%{release}
+
+%description Qt
+This subpackage contains the AnyEvent implementation for perl-Qt.
+
+%package Tk
+Summary: Perl AnyEvent implementation for perl-Tk
+Group: Applications/CPAN
+Requires: %{name} = %{version}-%{release}
+
+%description Tk
+This subpackage contains the AnyEvent implementation for perl-Tk.
+
+%package EV
+Summary: Perl AnyEvent implementation for perl-EV and libev
+Group: Applications/CPAN
+Requires: %{name} = %{version}-%{release}
+
+%description EV
+This subpackage contains the AnyEvent implementation for perl-EV and libev.
+
+%package Event
+Summary: Perl AnyEvent implementation for perl-Event
+Group: Applications/CPAN
+Requires: %{name} = %{version}-%{release}
+
+%description Event
+This subpackage contains the AnyEvent implementation for perl-Event.
+
+%package EventLib
+Summary: Perl AnyEvent implementation for perl-Event-Lib
+Group: Applications/CPAN
+Requires: %{name} = %{version}-%{release}
+
+%description EventLib
+This subpackage contains the AnyEvent implementation for perl-Event-Lib.
+
+%package POE
+Summary: Perl AnyEvent implementation for perl-POE
+Group: Applications/CPAN
+Requires: %{name} = %{version}-%{release}
+
+%description POE
+This subpackage contains the AnyEvent implementation for perl-POE.
+
+%package Glib
+Summary: Perl AnyEvent implementation for perl-Glib
+Group: Applications/CPAN
+Requires: %{name} = %{version}-%{release}
+
+%description Glib
+This subpackage contains the AnyEvent implementation for perl-Glib
+
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -53,10 +110,38 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %doc COPYING Changes MANIFEST META.yml README eg/
 %doc %{_mandir}/man3/AnyEvent.3pm*
 %doc %{_mandir}/man3/AnyEvent::*.3pm*
-%{perl_vendorlib}/AnyEvent/
+%dir %{perl_vendorlib}/AnyEvent/
+%{perl_vendorlib}/AnyEvent/*.pm
+%dir %{perl_vendorlib}/AnyEvent/Impl/
+%{perl_vendorlib}/AnyEvent/Impl/Perl.pm
 %{perl_vendorlib}/AnyEvent.pm
 
+%files Qt
+%{perl_vendorlib}/AnyEvent/Impl/Qt.pm
+
+%files Tk
+%{perl_vendorlib}/AnyEvent/Impl/Tk.pm
+
+%files EV
+%{perl_vendorlib}/AnyEvent/Impl/EV.pm
+
+%files Event
+%{perl_vendorlib}/AnyEvent/Impl/Event.pm
+
+%files EventLib
+%{perl_vendorlib}/AnyEvent/Impl/EventLib.pm
+
+%files Glib
+%{perl_vendorlib}/AnyEvent/Impl/Glib.pm
+
+%files POE
+%{perl_vendorlib}/AnyEvent/Impl/POE.pm
+
 %changelog
+* Thu May 15 2008 Dries Verachtert <dries@ulyssis.org> - 3.41-1
+- Updated to release 3.41.
+- All implementations are now in separate subpackages.
+
 * Fri May 02 2008 Dag Wieers <dag@wieers.com> - 3.3-1
 - Updated to release 3.3.
 
