@@ -3,7 +3,7 @@
 
 Summary: Utilities to limit user accounts to specific files using chroot()
 Name: jailkit
-Version: 2.1
+Version: 2.5
 Release: 1
 License: Open Source
 Group: System Environment/Base
@@ -26,10 +26,11 @@ and also on general servers with accounts where the shell accounts
 are in a chroot.
 
 %prep
-%setup -n %{name}
+%setup
 
+# apparently not needed anymore
 ### Disable broken Makefile :(
-%{__perl} -pi.orig -e 's|>>||g' Makefile.in
+#%{__perl} -pi.orig -e 's|>>||g' Makefile.in
 
 %build
 %configure
@@ -37,9 +38,7 @@ are in a chroot.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}" \
-	iniprefix="%{buildroot}%{_sysconfdir}/jailkit/" \
-	prefix="%{buildroot}%{_prefix}"
+%{__make} install DESTDIR="%{buildroot}"
 
 %{__install} -Dp -m0755 extra/jailkit %{buildroot}%{_initrddir}/jailkit
 
@@ -56,13 +55,18 @@ are in a chroot.
 
 %files
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man8/*
+%doc %{_mandir}/man8/jk_*.8*
+%doc %{_mandir}/man8/jailkit.8*
 %config(noreplace) %{_sysconfdir}/jailkit/
 %config %{_initrddir}/jailkit
-%{_sbindir}/*
+%{_sbindir}/jk_*
+%{_bindir}/jk_uchroot
 %{_datadir}/jailkit/
 
 %changelog
+* Thu May 15 2008 Dries Verachtert <dries@ulyssis.org> - 2.5-1
+- Updated to release 2.5.
+
 * Tue Sep 12 2006 Dag Wieers <dag@wieers.com> - 2.1-1
 - Updated to release 2.1.
 
