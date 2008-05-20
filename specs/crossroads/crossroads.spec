@@ -4,7 +4,7 @@
 
 Summary: Load balance and fail over utility for TCP based services
 Name: crossroads
-Version: 1.63
+Version: 1.80
 Release: 1
 License: GPLv3
 Group: Applications/Utilities
@@ -53,5 +53,8 @@ of other back ends.
 %{_bindir}/crossroads-mgr
 
 %changelog
+* Tue May 20 2008 Dries Verachtert <dries@ulyssis.org> - 1.80-1
+- Updated to release 1.80.
+
 * Sun Feb  3 2008 Dries Verachtert <dries@ulyssis.org> - 1.63-1
 - Initial package.
