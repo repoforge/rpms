@@ -59,6 +59,7 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
+    --program-prefix="%{?_program_prefix}" \
     --disable-fuse-module \
     --disable-static \
 %{!?_without_crypto:--enable-crypto} \
