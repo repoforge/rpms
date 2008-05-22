@@ -1,33 +1,26 @@
 # $Id$
 # Authority: dag
 
-%{?dtag: %{expand: %%define %dtag 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
-### EL4 and older has too old gnutls :-/
-%{?el4:%define _without_crypto 1}
-%{?el3:%define _without_crypto 1}
-%{?rh9:%define _without_crypto 1}
-%{?rh7:%define _without_crypto 1}
-%{?el2:%define _without_crypto 1}
-
-%{?rh7:%define _without_gnomevfs 1}
-%{?el2:%define _without_gnomevfs 1}
-%{?rh6:%define _without_gnomevfs 1}
+%define vfs 1
+%{?rh7:%undefine vfs}
+%{?el2:%undefine vfs}
+%{?rh6:%undefine vfs}
 
 Summary: NTFS filesystem libraries and utilities
 Name: ntfsprogs
-Version: 1.13.1
+Version: 1.9.4
 Release: 1
 License: GPL
 Group: System Environment/Base
-URL: http://linux-ntfs.sourceforge.net/
+URL: http://linux-ntfs.sf.net/
 
 Source: http://dl.sf.net/linux-ntfs/ntfsprogs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: gcc-c++
-%{!?_without_crypto:BuildRequires: libgcrypt-devel, gnutls >= 1.2.8}
-%{!?_without_gnomevfs:BuildRequires: glib2-devel, gnome-vfs2-devel}
+
+%{?vfs:BuildRequires: glib2-devel, gnome-vfs2-devel}
 
 %description
 The Linux-NTFS project aims to bring full support for the NTFS filesystem
@@ -59,19 +52,19 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-    --disable-fuse-module \
-    --disable-static \
-%{!?_without_crypto:--enable-crypto} \
-%{!?_without_gnomevfs:--enable-gnome-vfs}
+%{?vfs: --enable-gnome-vfs}
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
+%makeinstall
+
+%{__mv} -f %{buildroot}%{_libdir}/gnome-vfs-2.0/modules/libntfs-gnomevfs.so.?.?.? \
+    %{buildroot}%{_libdir}/gnome-vfs-2.0/modules/libntfs-gnomevfs.so
 
 ### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
-%{__rm} -f %{buildroot}%{_libdir}/gnome-vfs-2.0/modules/*.{a,la,so.*}
+%{__rm} -f %{buildroot}%{_libdir}/*.la \
+        %{buildroot}%{_libdir}/gnome-vfs-2.0/modules/*.{a,la,so.*}
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -82,25 +75,13 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING CREDITS ChangeLog NEWS README TODO*
-%doc %{_mandir}/man8/mkfs.ntfs.8*
 %doc %{_mandir}/man8/mkntfs.8*
 %doc %{_mandir}/man8/ntfs*.8*
-%{_bindir}/ntfscat
-%{_bindir}/ntfscluster
-%{_bindir}/ntfscmp
-%{_bindir}/ntfsfix
-%{_bindir}/ntfsinfo
-%{_bindir}/ntfsls
-%{_libdir}/libntfs.so.*
-%{_sbindir}/mkntfs
-%{_sbindir}/ntfsclone
-%{_sbindir}/ntfscp
-%{_sbindir}/ntfslabel
-%{_sbindir}/ntfsresize
-%{_sbindir}/ntfsundelete
-/sbin/mkfs.ntfs
+%{_bindir}/*
+%{_sbindir}/*
+%{_libdir}/*.so.*
 
-%if %{!?_without_gnomevfs:1}0
+%if %{?vfs:1}%{!?vfs:0}
 %files -n gnome-vfs2-ntfs
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man8/libntfs-gnomevfs.8*
@@ -110,14 +91,12 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc doc/*.txt doc/attribute_definitions doc/CodingStyle doc/template.c doc/template.h doc/tunable_settings
+%doc doc/CodingStyle doc/attribute_definitions doc/*.txt doc/tunable_settings doc/template.c doc/template.h
 %{_includedir}/ntfs/
-%{_libdir}/libntfs.so
+%{_libdir}/*.so
+%{_libdir}/*.a
 
 %changelog
-* Thu Feb 22 2007 Dag Wieers <dag@wieers.com> - 1.13.1-1
-- Updated to release 1.13.1.
-
 * Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 1.9.4-1
 - Updated to release 1.9.4.
 

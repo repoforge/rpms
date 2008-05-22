@@ -1,8 +1,7 @@
 # $Id$
 # Authority: dag
 
-### Problem when building testdisk 0.6.9 with EWF 20080501
-%define _without_ewf 1
+# Tag: test
 
 %{?rh7:%define _without_ewf 1}
 %{?rh7:%define _without_ntfs 1}
@@ -11,16 +10,18 @@
 
 Summary: Tools to check and undelete partition or recover deleted files
 Name: testdisk
-Version: 6.9
-Release: 2
+%define real_version 6.10-WIP
+Version: 6.10
+Release: 0.wip20080522
 License: GPL
 Group: Applications/System
 URL: http://www.cgsecurity.org/wiki/TestDisk
 
-Source: http://www.cgsecurity.org/testdisk-%{version}.tar.bz2
+Source: http://www.cgsecurity.org/testdisk-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: e2fsprogs-devel
+BuildRequires: libewf-devel
 BuildRequires: libjpeg-devel
 BuildRequires: ncurses-devel >= 5.2
 %{!?_without_ewf:BuildRequires: libewf-devel}
@@ -36,7 +37,7 @@ It also includes the photorec tool. This tool allows to recover deleted
 files from filesystems.
 
 %prep
-%setup
+%setup -n %{name}-%{real_version}
 
 %build
 %configure \
@@ -58,10 +59,12 @@ files from filesystems.
 %doc %{_mandir}/man1/testdisk.1*
 %{_sbindir}/photorec
 %{_sbindir}/testdisk
+%exclude %{_docdir}/%{name}-%{real_version}
 
 %changelog
-* Thu May 22 2008 Dag Wieers <dag@wieers.com> - 6.9-2
-- Built ntfs support.
+* Thu May 22 2008 Dag Wieers <dag@wieers.com> - 6.10-0.wip20080522
+- Updated to release 6.10-WIP.
+- Built with ewf and ntfs support.
 
 * Thu Feb 14 2008 Dag Wieers <dag@wieers.com> - 6.9-1
 - Updated to release 6.9.
