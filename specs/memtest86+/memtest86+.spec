@@ -8,7 +8,7 @@
 
 Summary: Thorough, stand-alone memory tester
 Name: memtest86+
-Version: 1.70
+Version: 2.01
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -42,13 +42,13 @@ often miss many of the failures that are detected by Memtest86+.
 
 %post
 if [ -x /sbin/grubby ] ; then
-        /sbin/grubby --add-kernel="%{_prefix}/%{name}-%{version}" \
-		--title "Memtest86+ v%{version}"
+  /sbin/grubby --add-kernel="%{_prefix}/%{name}-%{version}" \
+    --title "Memtest86+ v%{version}"
 fi
 
 %postun
 if [ -x /sbin/grubby ] ; then
-        /sbin/grubby --remove-kernel="%{_prefix}/%{name}-%{version}"
+  /sbin/grubby --remove-kernel="%{_prefix}/%{name}-%{version}"
 fi
 
 %files
@@ -57,6 +57,9 @@ fi
 %{_prefix}/%{name}-%{version}
 
 %changelog
+* Tue May 27 2008 Dag Wieers <dag@wieers.com> - 2.01-1
+- Updated to release 2.01.
+
 * Wed Jan 17 2007 Dag Wieers <dag@wieers.com> - 1.70-1
 - Updated to release 1.70.
 
