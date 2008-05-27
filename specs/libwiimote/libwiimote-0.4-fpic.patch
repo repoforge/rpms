@@ -1,0 +1,33 @@
+diff -up libwiimote-0.4/configure.in.BAD libwiimote-0.4/configure.in
+--- libwiimote-0.4/configure.in.BAD	2007-12-18 10:19:06.000000000 -0500
++++ libwiimote-0.4/configure.in	2007-12-18 10:29:08.000000000 -0500
+@@ -9,6 +9,29 @@ AC_CONFIG_SRCDIR([src])
+ AC_PROG_CC
+ AC_PROG_INSTALL
+ 
++if test "$GCC" = "yes"; then
++  case "${host_cpu}" in
++## Sparc has only an 8k global object table, 1024 entries on 64-bit.
++## PowerPC has 32k, not enough on ppc64 though.
++## The only other platform where this is said to matter is m68k, which
++## has 32k and so can use -fpic.
++## However, although the gcc docs do not mention it, it seems s390/s390x
++## also supports and needs -fPIC
++    sparc*|ppc64|powerpc64|s390*)
++      cpicflags="-fPIC"
++      ;;
++    *)
++      cpicflags="-fpic"
++      ;;
++  esac
++fi
++
++: ${CPICFLAGS="${cpicflags}"}
++
++AC_SUBST(CPICFLAGS)
++
++CFLAGS="${CFLAGS} ${CPICFLAGS}"
++
+ # Checks for BlueZ.
+ AC_CHECK_LIB([bluetooth], [hci_remote_name],
+ 	     [], [AC_MSG_ERROR([We require BlueZ])])

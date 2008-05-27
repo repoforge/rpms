@@ -41,6 +41,7 @@ files from filesystems.
 %build
 %configure \
     --program-prefix="%{?_program_prefix}" \
+%{?_without_ewf:--without-ewf} \
 %{?_without_ntfs:--without-ntfs}
 %{__make} %{?_smp_mflags}
 

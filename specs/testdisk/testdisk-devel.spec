@@ -21,7 +21,6 @@ Source: http://www.cgsecurity.org/testdisk-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: e2fsprogs-devel
-BuildRequires: libewf-devel
 BuildRequires: libjpeg-devel
 BuildRequires: ncurses-devel >= 5.2
 %{!?_without_ewf:BuildRequires: libewf-devel}
@@ -42,6 +41,7 @@ files from filesystems.
 %build
 %configure \
     --program-prefix="%{?_program_prefix}" \
+%{?_without_ewf:--without-ewf} \
 %{?_without_ntfs:--without-ntfs}
 %{__make} %{?_smp_mflags}
 

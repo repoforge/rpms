@@ -34,7 +34,7 @@ and scripts to glue the whole thing together.
 %setup -n %{name}-%{real_version}
 
 %build
-%{__make} %{?_smp_mflags} OSSLLIB="%{_libdir}"
+%{__make} %{?_smp_mflags} CFLAGS="-DUSEOPENSSL -I. -I%{_includedir} %{optflags}" OSSLLIB="%{_libdir}"
 
 %install
 %{__rm} -rf %{buildroot}

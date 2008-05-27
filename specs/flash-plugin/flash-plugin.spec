@@ -50,7 +50,7 @@ By downloading and installing this package you agree to the included LICENSE:
 
 %files
 %defattr(-, root, root, 0755)
-#doc Readme.*
+%doc LICENSE
 %{_libdir}/mozilla/plugins/
 
 %changelog

@@ -4,7 +4,7 @@
 
 Summary: Ping alike tool for http requests
 Name: httping
-Version: 1.2.4
+Version: 1.2.6
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -26,8 +26,8 @@ that the transmission across the network also takes time!
 
 %build
 %{__make} %{?_smp_mflags} \
-	CFLAGS="%{optflags} -DVERSION=\\\"%{version}\\\" -I/usr/kerberos/include" \
-	DEBUG=""
+    CFLAGS="%{optflags} -DVERSION=\\\"%{version}\\\" -I/usr/kerberos/include" \
+    DEBUG=""
 
 %install
 %{__rm} -rf %{buildroot}
@@ -45,6 +45,9 @@ that the transmission across the network also takes time!
 %{_bindir}/httping
 
 %changelog
+* Tue May 27 2008 Dag Wieers <dag@wieers.com> - 1.2.6-1 
+- Updated to release 1.2.6.
+
 * Wed Jul 11 2007 Dag Wieers <dag@wieers.com> - 1.2.4-1
 - Updated to release 1.2.4.
 

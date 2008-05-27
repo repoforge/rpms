@@ -1,0 +1,12 @@
+diff -up libwiimote-0.4/src/Makefile.in.jx libwiimote-0.4/src/Makefile.in
+--- libwiimote-0.4/src/Makefile.in.jx	2007-03-10 09:46:36.000000000 -0500
++++ libwiimote-0.4/src/Makefile.in	2008-01-07 18:27:23.000000000 -0500
+@@ -33,7 +33,7 @@ SOURCES = wiimote_link.c \
+ all: libcwiimote.a libcwiimote.so
+ 
+ libcwiimote.so: $(SOURCES) $(HEADERS)
+-	$(CC) $(CFLAGS) $(INCLUDES) $(SOURCES) -shared -o $@  $(LIBS)
++	$(CC) $(CFLAGS) $(INCLUDES) $(SOURCES) -shared -o $@  $(LIBS) -Wl,-soname,libcwiimote.so.0
+ 	@cp $@ $(LIBDIR)
+ 
+ libcwiimote.a: $(SOURCES) $(HEADERS)

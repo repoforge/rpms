@@ -9,20 +9,17 @@
 %define __spec_install_post /usr/lib/rpm/brp-compress
 
 %define real_name flash-player-plugin
-%define real_version 082207
+%define real_version 051508
 
 Summary: Macromedia Flash Player
 Name: flash-plugin
-Version: 9.0.48.070822
+Version: 10.0.1.218
 Release: 1
 License: Commercial
 Group: Applications/Internet
 URL: http://www.macromedia.com/downloads/
 
-Source: http://download.macromedia.com/pub/labs/flashplayer9_update/flashplayer9_install_linux_%{real_version}.tar.gz
-#Source: http://macromedia.rediris.es/rpmsource/flash-player-plugin-%{version}.tar.bz2
-#Source: http://fpdownload.macromedia.com/get/flashplayer/current/install_flash_player_9_linux.tar.gz
-#Source: http://fpdownload.macromedia.com/get/shockwave/flash/english/linux/7.0r25/install_flash_player_7_linux.tar.gz
+Source0: http://download.macromedia.com/pub/labs/flashplayer10/flashplayer10_install_linux_%{real_version}.tar.gz
 Source1: http://macromedia.rediris.es/rpmsource/LICENSE
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -39,7 +36,7 @@ By downloading and installing this package you agree to the included LICENSE:
 
 
 %prep
-%setup -n install_flash_player_9_linux/
+%setup -n install_flash_player_10_linux/
 %{__install} -Dp -m0644 %{SOURCE1} LICENSE
 
 %build
@@ -54,10 +51,19 @@ By downloading and installing this package you agree to the included LICENSE:
 
 %files
 %defattr(-, root, root, 0755)
-#doc Readme.*
+%doc LICENSE
 %{_libdir}/mozilla/plugins/
 
 %changelog
+* Sat May 17 2008 Dag Wieers <dag@wieers.com> - 10.0.1.218-1
+- Updated to release beta 051508.
+
+* Wed Apr 23 2008 Dag Wieers <dag@wieers.com> - 9.0.124.0-1
+- Updated to release 9.0.124.0.
+
+* Wed Dec 05 2007 Dag Wieers <dag@wieers.com> - 9.0.115.0-1
+- Updated to release 9.0.115.0.
+
 * Tue Aug 28 2007 Dag Wieers <dag@wieers.com> - 9.0.48.082207-1
 - Updated to release beta 082207.
 

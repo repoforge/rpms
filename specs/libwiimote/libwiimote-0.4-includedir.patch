@@ -1,0 +1,12 @@
+diff -up libwiimote-0.4/Makefile.in.jx libwiimote-0.4/Makefile.in
+--- libwiimote-0.4/Makefile.in.jx	2007-02-22 09:54:54.000000000 -0500
++++ libwiimote-0.4/Makefile.in	2007-12-18 10:45:00.000000000 -0500
+@@ -6,7 +6,7 @@ prefix = @prefix@
+ exec_prefix = @exec_prefix@
+ libdir = @libdir@
+ includedir = @includedir@
+-libwiimote_includedir = $(includedir)/libcwiimote-$(PACKAGE_VERSION)/libcwiimote
++libwiimote_includedir = $(includedir)/libcwiimote
+ 
+ INSTALL = @INSTALL@
+ 

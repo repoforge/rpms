@@ -1,0 +1,13 @@
+diff -up libwiimote-0.4/Makefile.in.jx libwiimote-0.4/Makefile.in
+--- libwiimote-0.4/Makefile.in.jx	2007-12-18 10:46:33.000000000 -0500
++++ libwiimote-0.4/Makefile.in	2007-12-18 10:47:39.000000000 -0500
+@@ -25,6 +25,9 @@ subdirs:
+ install:
+ 	mkdir -p $(DESTDIR)$(libdir) $(DESTDIR)$(libwiimote_includedir)
+ 	$(INSTALL) -m 755 $(LIBDIR)/libcwiimote.so $(DESTDIR)$(libdir)/libcwiimote.so.$(PACKAGE_VERSION)
++	cd $(DESTDIR)$(libdir) && ln -s libcwiimote.so.$(PACKAGE_VERSION) libcwiimote.so.0
++	cd $(DESTDIR)$(libdir) && ln -s libcwiimote.so.0 libcwiimote.so
++
+ 	$(INSTALL) -m 755 $(LIBDIR)/libcwiimote.a $(DESTDIR)$(libdir)/libcwiimote.a
+ 	for i in $(SRCDIR)/*.h; do \
+ 		$(INSTALL) -m 644 $$i $(DESTDIR)$(libwiimote_includedir); \

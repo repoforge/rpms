@@ -1,0 +1,11 @@
+--- Makefile.orig	2008-05-25 02:49:57.000000000 +0200
++++ Makefile	2008-05-25 03:12:19.000000000 +0200
+@@ -33,7 +33,7 @@
+ 	rm -rf $(PWD)/tmp
+ 
+ modules:
+-	$(MAKE) -C $(KSRC) SUBDIRS=$(PWD) MODVERDIR=$(PWD) modules
++	$(MAKE) -C $(KSRC) SUBDIRS=$(PWD) modules
+ 
+ MODDESTDIR := /lib/modules/$(KVER)/kernel/drivers/net/wireless
+ #MOD_ALGDESTDIR := /lib/modules/$(KVER)/kernel/drivers/net/wireless/alg

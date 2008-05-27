@@ -13,7 +13,7 @@
 
 Summary: Easy to use front-end for ClamAV
 Name: clamtk
-Version: 3.08
+Version: 3.09
 Release: 1
 License: Perl
 Group: Applications/File
@@ -70,6 +70,9 @@ It supports easy signature-updates.
 %{_datadir}/pixmaps/clamtk.png
 
 %changelog
+* Tue May 27 2008 Dag Wieers <dag@wieers.com> - 3.09-1
+- Updated to release 3.09.
+
 * Thu Feb 07 2008 Dag Wieers <dag@wieers.com> - 3.08-1
 - Updated to release 3.08.
 

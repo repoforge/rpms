@@ -1,0 +1,27 @@
+--- r8180_core.c.orig	2008-05-25 03:13:27.000000000 +0200
++++ r8180_core.c	2008-05-25 03:15:38.000000000 +0200
+@@ -135,16 +135,20 @@
+ MODULE_AUTHOR("Andrea Merello <andreamrl@tiscali.it>");
+ MODULE_DESCRIPTION("Linux driver for Realtek RTL8180 / RTL8185 WiFi cards");
+ 
+-MODULE_PARM(ifname,"s");
++/*MODULE_PARM(ifname,"s");*/
++module_param(ifname, charp, 0400);
+ MODULE_PARM_DESC(devname," Net interface name, wlan%d=default");
+ 
+-MODULE_PARM(hwseqnum,"i");
++/*MODULE_PARM(hwseqnum,"i");*/
++module_param(hwseqnum, int, 0400);
+ MODULE_PARM_DESC(hwseqnum," Try to use hardware 802.11 header sequence numbers. Zero=default");
+ 
+-MODULE_PARM(hwwep,"i");
++/*MODULE_PARM(hwwep,"i");*/
++module_param(hwwep, int, 0400);
+ MODULE_PARM_DESC(hwwep," Try to use hardware WEP support. Still broken and not available on all cards");
+ 
+-MODULE_PARM(channels,"i");
++/*MODULE_PARM(channels,"i");*/
++module_param(channels, int, 0400);
+ MODULE_PARM_DESC(channels," Channel bitmask for specific locales. NYI");
+ 
+ 
