@@ -48,9 +48,9 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-%define real_version 1.0-rc1
+%define real_version 1.0-rc2
 Version: 1.0
-Release: 0.rc1
+Release: 0.rc2
 License: LGPL
 Group: Applications/Emulators
 URL: http://www.winehq.org/
@@ -433,7 +433,6 @@ update-desktop-database &>/dev/null || :
 %{_bindir}/wine-kthread
 %{_bindir}/wine-preloader
 %{_bindir}/wine-pthread
-%{_bindir}/winhelp
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-wine.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-wine-config.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-wine-fileman.desktop}
@@ -454,6 +453,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/gdi.exe16
 %{_libdir}/wine/krnl386.exe16
 %{_libdir}/wine/user.exe16
+%{_libdir}/wine/winhelp.exe16
 
 ### exe.so
 %{_libdir}/wine/clock.exe.so
@@ -495,7 +495,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/winemine.exe.so
 %{_libdir}/wine/winepath.exe.so
 %{_libdir}/wine/winevdm.exe.so
-%{_libdir}/wine/winhelp.exe.so
+%{_libdir}/wine/winhlp32.exe.so
 %{_libdir}/wine/winver.exe.so
 %{_libdir}/wine/wordpad.exe.so
 %{_libdir}/wine/write.exe.so
@@ -885,6 +885,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Tue May 27 2008 Dag Wieers <dag@wieers.com> - 1.0-0.rc2
+- Updated to release 1.0-rc2.
+
 * Tue May 13 2008 Dag Wieers <dag@wieers.com> - 1.0-0.rc1
 - Updated to release 1.0-rc1.
 
