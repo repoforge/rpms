@@ -4,7 +4,7 @@
 
 Summary: Barcode and label printing application
 Name: kbarcode
-Version: 2.0.5
+Version: 2.0.7
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -60,6 +60,9 @@ like EAN, UPC, CODE39, and ISBN are supported.
 %{_bindir}/kbarcode
 
 %changelog
+* Fri May 30 2008 Dries Verachtert <dries@ulyssis.org> - 2.0.7-1
+- Updated to release 2.0.7.
+
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.5-1
 - Updated to release 2.0.5.
 
