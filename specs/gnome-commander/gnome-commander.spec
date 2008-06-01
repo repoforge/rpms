@@ -3,7 +3,7 @@
 
 Summary: File manager for the GNOME desktop
 Name: gnome-commander
-Version: 1.2.5
+Version: 1.2.6
 Release: 1
 License: GPL
 Group: Applications/File
@@ -65,6 +65,9 @@ scrollkeeper-update -q || :
 %{_datadir}/pixmaps/gnome-commander.png
 
 %changelog
+* Sun Jun 01 2008 Heiko Adams <info-2K8@ha-software.de> 1.2.6-1
+- Updated to release 1.2.6.
+
 * Fri Feb 29 2008 Heiko Adams <info-2007@ha-software.de> 1.2.5-1
 - Updated to release 1.2.5.
 
