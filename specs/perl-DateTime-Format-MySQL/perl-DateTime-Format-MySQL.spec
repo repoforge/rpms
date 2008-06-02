@@ -22,6 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Module::Build)
+Requires: perl(DateTime::Format::Builder)
 
 %description
 DateTime-Format-MySQL is a Perl module to parse and format
