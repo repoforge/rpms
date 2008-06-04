@@ -5,7 +5,7 @@
 
 Summary: Graphical front-end for the Subversion concurrent versioning system.
 Name: rapidsvn
-Version: 0.9.4
+Version: 0.9.6
 Release: 1
 License: BSD
 Group: Development/Tools
@@ -47,13 +47,13 @@ EOF
 %build
 export CPPFLAGS="-I/usr/include/subversion-1"
 %configure \
-	--disable-no-exceptions \
-	--with-docbook-xsl="%{_datadir}/sgml/docbook/xsl-stylesheets" \
-	--with-svn-lib="%{_libdir}"
-# --with-apr-config="%{_bindir}/apr-config" \
-# --with-apu-config="%{_bindir}/apu-config" \
-# --with-svn-include="%{_includedir}" \
-# --with-wx-config="%{_bindir}/wxgtk-2.4-config" \
+    --disable-no-exceptions \
+    --with-docbook-xsl="%{_datadir}/sgml/docbook/xsl-stylesheets" \
+    --with-svn-lib="%{_libdir}"
+#    --with-apr-config="%{_bindir}/apr-config" \
+#    --with-apu-config="%{_bindir}/apu-config" \
+#    --with-svn-include="%{_includedir}" \
+#    --with-wx-config="%{_bindir}/wxgtk-2.4-config" \
 %{__make} %{?_smp_mflags}
 
 %install
@@ -66,9 +66,9 @@ convert src/res/svn.ico rapidsvn.png
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor %{desktop_vendor}    \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	rapidsvn.desktop
+    --add-category X-Red-Hat-Base              \
+    --dir %{buildroot}%{_datadir}/applications \
+    rapidsvn.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -86,6 +86,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/rapidsvn.png
 
 %changelog
+* Wed Jun 04 2008 Dag Wieers <dag@wieers.com> - 0.9.6-1
+- Updated to release 0.9.6.
+
 * Mon Dec 11 2006 Dag Wieers <dag@wieers.com> - 0.9.4-1
 - Updated to release 0.9.4.
 
