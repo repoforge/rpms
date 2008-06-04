@@ -1,0 +1,35 @@
+--- configure.orig	2008-05-29 10:54:09.000000000 +0200
++++ configure	2008-05-29 10:54:22.000000000 +0200
+@@ -2893,11 +2893,6 @@
+ echo "$as_me: error: flex not found" >&2;}
+    { (exit 1); exit 1; }; }
+ fi
+-if test -z "`echo %%|$LEX -t|grep yypop_buffer_state`"; then
+-	{ { echo "$as_me:$LINENO: error: flex missing yypop_buffer_state - upgrade to version 2.5.33 or later" >&5
+-echo "$as_me: error: flex missing yypop_buffer_state - upgrade to version 2.5.33 or later" >&2;}
+-   { (exit 1); exit 1; }; }
+-fi
+ for ac_prog in 'bison -y' byacc
+ do
+   # Extract the first word of "$ac_prog", so it can be a program name with args.
+--- wminput/lexer.l.orig	2008-05-29 11:43:26.767822008 +0200
++++ wminput/lexer.l	2008-05-29 11:43:35.834443672 +0200
+@@ -74,15 +74,15 @@
+ 					FILE *file;
+ 					step;
+ 					if ((file = conf_push_config(cur_conf, yytext, &yylloc))) {
+-						yypush_buffer_state(yy_create_buffer(file,
+-						                                     YY_BUF_SIZE));
++//						yypush_buffer_state(yy_create_buffer(file,
++//						                                     YY_BUF_SIZE));
+ 						yylloc.first_line = yylloc.last_line = 0;
+ 						yylloc.first_column = yylloc.last_column = 0;
+ 					}
+ 					BEGIN(INITIAL);
+ 				}
+ <<EOF>>			{
+-					yypop_buffer_state();
++//					yypop_buffer_state();
+ 					conf_pop_config(cur_conf, &yylloc);
+ 					if (YY_CURRENT_BUFFER) {
+ 						BEGIN(postinc);
