@@ -1,0 +1,11 @@
+--- python-dateutil-1.1/setup.py.x86_64	2006-07-26 14:56:21.000000000 -0600
++++ python-dateutil-1.1/setup.py	2006-07-26 15:02:00.000000000 -0600
+@@ -9,7 +9,7 @@
+     os.unlink("MANIFEST")
+ 
+ # Get PYTHONLIB with no prefix so --prefix installs work.
+-PYTHONLIB = join(get_python_lib(standard_lib=1, prefix=''), 'site-packages')
++PYTHONLIB = get_python_lib(prefix='')
+ ZONEINFO = join("dateutil", "zoneinfo")
+ 
+ setup(name="python-dateutil",

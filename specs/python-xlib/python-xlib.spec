@@ -13,6 +13,7 @@ Group: Development/Libraries
 URL: http://sourceforge.net/projects/python-xlib
 
 Source: http://dl.sf.net/python-xlib/python-xlib-%{version}.tar.gz
+Patch0: python-xlib-0.13-recvbuff.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-devel
@@ -24,6 +25,7 @@ applications in Python.
 
 %prep
 %setup
+%patch -p0
 
 %build
 CFLAGS="%{optflags}" %{__python} setup.py build

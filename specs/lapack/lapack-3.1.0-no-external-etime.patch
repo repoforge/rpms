@@ -1,0 +1,20 @@
+--- lapack-3.1.0/INSTALL/dsecnd.f.BAD	2007-01-05 20:35:09.000000000 -0600
++++ lapack-3.1.0/INSTALL/dsecnd.f	2007-01-05 20:35:16.000000000 -0600
+@@ -20,7 +20,6 @@
+ *     ..
+ *     .. External Functions ..
+       REAL               ETIME
+-      EXTERNAL           ETIME
+ *     ..
+ *     .. Executable Statements ..
+ *
+--- lapack-3.1.0/INSTALL/second.f.BAD	2007-01-05 20:35:39.000000000 -0600
++++ lapack-3.1.0/INSTALL/second.f	2007-01-05 20:35:45.000000000 -0600
+@@ -20,7 +20,6 @@
+ *     ..
+ *     .. External Functions ..
+       REAL               ETIME
+-      EXTERNAL           ETIME
+ *     ..
+ *     .. Executable Statements ..
+ *

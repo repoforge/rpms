@@ -3,7 +3,7 @@
 
 Summary: GNU Common C++ class framework
 Name: commoncpp2
-Version: 1.5.5
+Version: 1.6.2
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -41,8 +41,8 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-	--disable-static \
-	--disable-dependency-tracking
+    --disable-static \
+    --disable-dependency-tracking
 %{__make} %{?_smp_mflags}
 
 %install
@@ -63,14 +63,14 @@ you will need to install %{name}-devel.
 
 %preun devel
 if [ $1 -eq 0 ]; then
-	/sbin/install-info --delete %{_infodir}/commoncpp2.info %{_infodir}/dir || :
+    /sbin/install-info --delete %{_infodir}/commoncpp2.info %{_infodir}/dir || :
 fi
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* INSTALL NEWS README THANKS TODO
-%{_libdir}/libccext2-1.5.so.*
-%{_libdir}/libccgnu2-1.5.so.*
+%{_libdir}/libccext2-1.6.so.*
+%{_libdir}/libccgnu2-1.6.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -79,13 +79,16 @@ fi
 %{_bindir}/ccgnu2-config
 %{_datadir}/aclocal/ost_check2.m4
 %{_includedir}/cc++/
-%exclude %{_libdir}/libccext2.la
 %{_libdir}/libccext2.so
-%exclude %{_libdir}/libccgnu2.la
 %{_libdir}/libccgnu2.so
 %{_libdir}/pkgconfig/libccext2.pc
 %{_libdir}/pkgconfig/libccgnu2.pc
+%exclude %{_libdir}/libccext2.la
+%exclude %{_libdir}/libccgnu2.la
 
 %changelog
+* Fri May 30 2008 Dag Wieers <dag@wieers.com> - 1.6.2-1
+- Updated to release 1.6.2.
+
 * Sat May 12 2007 Dag Wieers <dag@wieers.com> - 1.5.5-1
 - Initial package. (using DAR)

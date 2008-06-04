@@ -10,10 +10,10 @@ Name: python-bluez
 Version: 0.15
 Release: 1
 License: GPL
-Group: Development/Languages
+Group: Development/Libraries
 URL: http://code.google.com/p/pybluez/
 
-Source: http://pybluez.googlecode.com/files/PyBluez-0.15.tar.gz
+Source: http://pybluez.googlecode.com/files/PyBluez-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bluez-libs-devel
@@ -35,7 +35,6 @@ applications.
 
 %build
 CFLAGS="%{optflags}" %{__python} setup.py build
-#doc/gendoc
 
 %install
 %{__rm} -rf %{buildroot}
@@ -50,6 +49,7 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGELOG COPYING README examples/
+%dir %{python_sitearch}/bluetooth/
 %{python_sitearch}/bluetooth/_bluetooth.so
 %{python_sitearch}/bluetooth/*.py
 %{python_sitearch}/bluetooth/*.pyc

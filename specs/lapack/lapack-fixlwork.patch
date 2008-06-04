@@ -1,0 +1,40 @@
+--- LAPACK/SRC/dgesdd.f.BAD	2005-10-06 22:53:05.000000000 -0500
++++ LAPACK/SRC/dgesdd.f	2005-10-06 22:55:17.000000000 -0500
+@@ -294,6 +294,8 @@
+ *
+                WRKBL = 3*N + ( M+N )*ILAENV( 1, 'DGEBRD', ' ', M, N, -1,
+      $                 -1 )
++               MAXWRK = MAX( WRKBL, BDSPAC )
++               MINWRK = BDSPAC
+                IF( WNTQO ) THEN
+                   WRKBL = MAX( WRKBL, 3*N+N*
+      $                    ILAENV( 1, 'DORMBR', 'QLN', M, N, N, -1 ) )
+@@ -390,6 +392,8 @@
+ *
+                WRKBL = 3*M + ( M+N )*ILAENV( 1, 'DGEBRD', ' ', M, N, -1,
+      $                 -1 )
++               MAXWRK = MAX( WRKBL, BDSPAC )
++               MINWRK = BDSPAC
+                IF( WNTQO ) THEN
+                   WRKBL = MAX( WRKBL, 3*M+M*
+      $                    ILAENV( 1, 'DORMBR', 'QLN', M, M, N, -1 ) )
+--- LAPACK/SRC/sgesdd.f.BAD	2005-10-06 22:55:41.000000000 -0500
++++ LAPACK/SRC/sgesdd.f	2005-10-06 22:56:50.000000000 -0500
+@@ -294,6 +294,8 @@
+ *
+                WRKBL = 3*N + ( M+N )*ILAENV( 1, 'SGEBRD', ' ', M, N, -1,
+      $                 -1 )
++               MAXWRK = MAX( WRKBL, BDSPAC )
++               MINWRK = BDSPAC
+                IF( WNTQO ) THEN
+                   WRKBL = MAX( WRKBL, 3*N+N*
+      $                    ILAENV( 1, 'SORMBR', 'QLN', M, N, N, -1 ) )
+@@ -390,6 +392,8 @@
+ *
+                WRKBL = 3*M + ( M+N )*ILAENV( 1, 'SGEBRD', ' ', M, N, -1,
+      $                 -1 )
++               MAXWRK = MAX( WRKBL, BDSPAC )
++               MINWRK = BDSPAC
+                IF( WNTQO ) THEN
+                   WRKBL = MAX( WRKBL, 3*M+M*
+      $                    ILAENV( 1, 'SORMBR', 'QLN', M, M, N, -1 ) )

@@ -1,0 +1,29 @@
+--- lapack-3.1.0/make.inc.BAD	2006-11-14 15:58:41.000000000 -0600
++++ lapack-3.1.0/make.inc	2006-11-14 16:00:03.000000000 -0600
+@@ -10,7 +10,7 @@
+ #
+ #  The machine (platform) identifier to append to the library names
+ #
+-PLAT = _LINUX
++PLAT = 
+ #  
+ #  Modify the FORTRAN and OPTS definitions to refer to the
+ #  compiler and desired compiler options for your machine.  NOOPT
+@@ -18,12 +18,13 @@
+ #  selected.  Define LOADER and LOADOPTS to refer to the loader and 
+ #  desired load options for your machine.
+ #
+-FORTRAN  = g77 
+-OPTS     = -funroll-all-loops -O3 -Wimplicit -Wno-globals -Wunused 
++FORTRAN  = gfortran 
++#OPTS     = -funroll-all-loops -O3 -Wimplicit -Wno-globals -Wunused 
+ #OPTS     = -O0 -g -Wall
+ DRVOPTS  = $(OPTS)
+-NOOPT    = -Wimplicit -Wno-globals -Wunused 
+-LOADER   = g77
++# NOOPT    = -Wimplicit -Wno-globals -Wunused 
++NOOPT    =
++LOADER   = gfortran
+ LOADOPTS =
+ #
+ #  The archiver and the flag(s) to use when building archive (library)

@@ -1,0 +1,27 @@
+--- numpy-1.0.1/numpy/f2py/f2py.1.f2pynumpy	2007-01-03 23:07:33.000000000 -0500
++++ numpy-1.0.1/numpy/f2py/f2py.1	2007-01-03 23:10:00.000000000 -0500
+@@ -180,11 +180,7 @@
+ .SH REQUIREMENTS
+ Python 1.5.2 or higher (2.x is supported).
+ 
+-Numerical Python 13 or higher (20.x,21.x,22.x,23.x are supported).
+-
+-Optional Numarray 0.9 or higher partially supported.
+-
+-numpy_distutils from Scipy (can be downloaded from F2PY homepage)
++numpy_distutils from Numpy
+ .SH "SEE ALSO"
+ python(1)
+ .SH BUGS
+@@ -200,10 +196,8 @@
+ 
+ Mailing list: http://cens.ioc.ee/mailman/listinfo/f2py-users/
+ 
+-Scipy website: http://www.numpy.org
++Numpy website: http://numeric.scipy.org/
+ .SH COPYRIGHT
+ Copyright (c) 1999, 2000, 2001, 2002, 2003, 2004, 2005 Pearu Peterson
+ .SH LICENSE
+ NumPy License
+-.SH VERSION
+-2.45.241

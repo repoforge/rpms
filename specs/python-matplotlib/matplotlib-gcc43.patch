@@ -1,0 +1,63 @@
+diff -u -r matplotlib-0.91.2-old/ttconv/pprdrv.h matplotlib-0.91.2/ttconv/pprdrv.h
+--- matplotlib-0.91.2-old/ttconv/pprdrv.h	2007-11-29 17:36:53.000000000 -0900
++++ matplotlib-0.91.2/ttconv/pprdrv.h	2008-03-21 13:58:01.000000000 -0800
+@@ -20,7 +20,7 @@
+ */
+ 
+ #include <vector>
+-#include <assert.h>
++#include <cassert>
+ 
+ /*
+  * Encapsulates all of the output to write to an arbitrary output 
+diff -u -r matplotlib-0.91.2-old/ttconv/pprdrv_tt2.cpp matplotlib-0.91.2/ttconv/pprdrv_tt2.cpp
+--- matplotlib-0.91.2-old/ttconv/pprdrv_tt2.cpp	2007-11-29 17:36:53.000000000 -0900
++++ matplotlib-0.91.2/ttconv/pprdrv_tt2.cpp	2008-03-21 16:04:49.000000000 -0800
+@@ -31,10 +31,11 @@
+ */
+ 
+ #include "global_defines.h"
+-#include <math.h>
+-#include <stdlib.h>
+-#include <string.h>
+-#include <memory.h>
++#include <cmath>
++#include <cstdlib>
++#include <cstdio>
++#include <cstring>
++#include <memory>
+ #include "pprdrv.h" 
+ #include "truetype.h"
+ #include <algorithm>
+diff -u -r matplotlib-0.91.2-old/ttconv/pprdrv_tt.cpp matplotlib-0.91.2/ttconv/pprdrv_tt.cpp
+--- matplotlib-0.91.2-old/ttconv/pprdrv_tt.cpp	2007-11-29 17:36:53.000000000 -0900
++++ matplotlib-0.91.2/ttconv/pprdrv_tt.cpp	2008-03-21 15:57:42.000000000 -0800
+@@ -23,9 +23,9 @@
+ */
+ 
+ #include "global_defines.h"
+-#include <stdio.h>
+-#include <stdlib.h>
+-#include <string.h>
++#include <cstdio>
++#include <cstdlib>
++#include <cstring>
+ #include "pprdrv.h"
+ #include "truetype.h"
+ #include <sstream>
+diff -u -r matplotlib-0.91.2-old/ttconv/ttutil.cpp matplotlib-0.91.2/ttconv/ttutil.cpp
+--- matplotlib-0.91.2-old/ttconv/ttutil.cpp	2007-11-29 17:36:53.000000000 -0900
++++ matplotlib-0.91.2/ttconv/ttutil.cpp	2008-03-24 11:25:06.000000000 -0800
+@@ -8,9 +8,9 @@
+ /* (c) Frank Siegert 1996 */
+ 
+ #include "global_defines.h"
+-#include <stdio.h>
+-#include <stdarg.h>
+-#include <stdlib.h>
++#include <cstdio>
++#include <cstdarg>
++#include <cstdlib>
+ #include "pprdrv.h"
+ 
+ #if DEBUG_TRUETYPE

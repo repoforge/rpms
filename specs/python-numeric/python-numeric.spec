@@ -17,10 +17,10 @@ Source: http://dl.sf.net/numpy/Numeric-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: python, python-devel
 
-Obsoletes: numpy <= %{version}-%{release}
-Obsoletes: Numeric <= %{version}-%{release}
 Provides: numpy = %{version}-%{release}
 Provides: Numeric = %{version}-%{release}
+Obsoletes: numpy <= %{version}-%{release}
+Obsoletes: Numeric <= %{version}-%{release}
 
 %description
 Numerical Extension to Python with subpackages.
@@ -41,13 +41,10 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %files
 %defattr(-, root, root, 0755)
 %doc Demo/
-%{python_sitearch}/Numeric.pth
 %{python_sitearch}/Numeric/
+%{python_sitearch}/Numeric.pth
 %{_includedir}/python*/Numeric/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 23.1-0.2
-- Rebuild for Fedora Core 5.
-
 * Sat Sep 24 2005 Dries Verachtert <dries@ulyssis.org> - 23.1-1
 - changelog added.
