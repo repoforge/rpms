@@ -1,6 +1,11 @@
 # $Id$
 # Authority: dag
 
+%{?dtag: %{expand: %%define %dtag 1}}
+
+%{?el5: %define _with_apr1 1}
+%{?el5: %define _with_apu1 1}
+
 %define desktop_vendor rpmforge
 
 Summary: Graphical front-end for the Subversion concurrent versioning system.
@@ -49,10 +54,10 @@ export CPPFLAGS="-I/usr/include/subversion-1"
 %configure \
     --disable-no-exceptions \
     --with-docbook-xsl="%{_datadir}/sgml/docbook/xsl-stylesheets" \
-    --with-svn-lib="%{_libdir}"
-#    --with-apr-config="%{_bindir}/apr-config" \
-#    --with-apu-config="%{_bindir}/apu-config" \
-#    --with-svn-include="%{_includedir}" \
+    --with-svn-lib="%{_libdir}" \
+%{?_with_apr1:--with-apr-config="%{_bindir}/apr-1-config"} \
+%{?_with_apu1:--with-apu-config="%{_bindir}/apu-1-config"}
+#    --with-svn-include="%{_includedir}/subversion-1" \
 #    --with-wx-config="%{_bindir}/wxgtk-2.4-config" \
 %{__make} %{?_smp_mflags}
 
