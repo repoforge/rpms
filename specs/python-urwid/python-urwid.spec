@@ -1,13 +1,13 @@
 # $Id$
 # Authority: dag
 
-%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 %define real_name urwid
 
 Summary: Console UI Library for Python
 Name: python-urwid
-Version: 0.9.6
+Version: 0.9.8.2
 Release: 1
 License: LGPL
 Group: Development/Libraries
@@ -16,7 +16,6 @@ URL: http://excess.org/urwid/
 Source: http://excess.org/urwid/urwid-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildArch: noarch
 BuildRequires: python-devel >= 2.1
 Requires: python >= 2.1
 Obsoletes: urwid < %{version}-%{release}
@@ -52,6 +51,9 @@ widget types. It is flexible, modular, and leaves the developer in control.
 %ghost %{python_sitelib}/urwid/*.pyo
 
 %changelog
+* Fri Jun 06 2008 Dag Wieers <dag@wieers.com> - 0.9.8.2-1
+- Updated to release 0.9.8.2.
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.6-1
 - Updated to release 0.9.6.
 

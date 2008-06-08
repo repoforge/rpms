@@ -14,10 +14,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl(Mail::IMAPClient)
-#Requires: perl(IO::Socket::SSL)
+Requires: perl(Date::Manip)
+Requires: perl(IO::Socket::SSL)
 #Requires: perl(Digest::HMAC)
 #Requires: perl(Digest::MD5::M4p)
-#Requires: perl(Mail::IMAPClient)
 #Requires: perl(Net::SSLeay)
 
 %define __perl_requires %{_builddir}/%{buildsubdir}/imapsync-filter-requires.sh
