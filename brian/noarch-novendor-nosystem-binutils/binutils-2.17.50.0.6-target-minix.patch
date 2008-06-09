@@ -1,0 +1,614 @@
+diff -ruN binutils-2.17.50.0.6/bfd/config.bfd binutils-2.17.50.0.6.bs/bfd/config.bfd
+--- binutils-2.17.50.0.6/bfd/config.bfd	2006-10-20 20:50:57.000000000 +0200
++++ binutils-2.17.50.0.6.bs/bfd/config.bfd	2008-04-08 09:08:08.000000000 +0200
+@@ -638,6 +638,9 @@
+   i[3-7]86-none-*)
+     targ_defvec=i386coff_vec
+     ;;
++  i[3-7]86-*-minix)
++    targ_defvec=i386minix_vec
++    ;;
+   i[3-7]86-*-aout* | i[3-7]86*-*-vsta*)
+     targ_defvec=i386aout_vec
+     ;;
+diff -ruN binutils-2.17.50.0.6/bfd/configure binutils-2.17.50.0.6.bs/bfd/configure
+--- binutils-2.17.50.0.6/bfd/configure	2006-10-20 20:50:57.000000000 +0200
++++ binutils-2.17.50.0.6.bs/bfd/configure	2008-04-08 09:11:01.000000000 +0200
+@@ -10959,6 +10959,7 @@
+     i386lynx_aout_vec)		tb="$tb i386lynx.lo lynx-core.lo aout32.lo" ;;
+     i386lynx_coff_vec)		tb="$tb cf-i386lynx.lo cofflink.lo lynx-core.lo" ;;
+     i386mach3_vec)		tb="$tb i386mach3.lo aout32.lo" ;;
++    i386minix_vec)		tb="$tb i386minix.lo" ;;
+     i386msdos_vec)		tb="$tb i386msdos.lo" ;;
+     i386netbsd_vec)		tb="$tb i386netbsd.lo aout32.lo" ;;
+     i386os9k_vec)		tb="$tb i386os9k.lo aout32.lo" ;;
+diff -ruN binutils-2.17.50.0.6/bfd/i386minix.c binutils-2.17.50.0.6.bs/bfd/i386minix.c
+--- binutils-2.17.50.0.6/bfd/i386minix.c	1970-01-01 01:00:00.000000000 +0100
++++ binutils-2.17.50.0.6.bs/bfd/i386minix.c	2008-04-08 09:29:27.000000000 +0200
+@@ -0,0 +1,325 @@
++/* BFD back-end for i386 minix a.out binaries.
++   Copyright 1990, 1991, 1992, 1994, 1996, 1997, 2001, 2002, 2003
++   Free Software Foundation, Inc.
++
++This file is part of BFD, the Binary File Descriptor library.
++
++This program is free software; you can redistribute it and/or modify
++it under the terms of the GNU General Public License as published by
++the Free Software Foundation; either version 2 of the License, or
++(at your option) any later version.
++
++This program is distributed in the hope that it will be useful,
++but WITHOUT ANY WARRANTY; without even the implied warranty of
++MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++GNU General Public License for more details.
++
++You should have received a copy of the GNU General Public License
++along with this program; if not, write to the Free Software
++Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++
++/***************/
++/* EXEC FORMAT */
++/***************/
++#include <a.out.h>
++
++#define external_exec exec
++#define EXEC_BYTES_SIZE sizeof( struct exec )
++
++#define OMAGIC 0407		/* Object file or impure executable.  */
++#define NMAGIC 0410		/* Code indicating pure executable.  */
++#define ZMAGIC 0x0301	/* Code indicating demand-paged executable.  */
++#define BMAGIC 0415		/* Used by a b.out object.  */
++
++#ifndef QMAGIC
++#define QMAGIC 0314
++#endif
++# ifndef N_BADMAG
++#  define N_BADMAG(x)	  (N_MAGIC(x) != OMAGIC		\
++			&& N_MAGIC(x) != NMAGIC		\
++  			&& N_MAGIC(x) != ZMAGIC \
++		        && N_MAGIC(x) != QMAGIC)
++# endif /* N_BADMAG */
++
++#define N_HEADER_IN_TEXT(x) 0
++
++#define N_TXTOFF(x) EXEC_BYTES_SIZE
++#define N_TXTADDR(x) 0
++
++#define N_TXTSIZE(x) ((x).a_text)
++#ifdef SUPPORT_SEP
++#define MINIX_IS_SEP(x) 0 /*-> gcv.c HCLICK STUFF*/
++#define N_DATADDR(x) (MINIX_IS_SEP(x) ? align((x).a_text,HCLICK) : (x).a_text )
++#else
++#define N_DATADDR(x) ((x).a_text)
++#endif
++
++/* Are these values correct? */
++#define TARGET_PAGE_SIZE 1
++#define SEGMENT_SIZE 1
++
++#define DEFAULT_STACK 5 * 1024 * 1024 /* 5 MB stack */
++
++#define DEFAULT_ARCH bfd_arch_i386
++
++/* Do not "beautify" the CONCAT* macro args.  Traditional C will not
++   remove whitespace added here, and thus will fail to concatenate
++   the tokens.  */
++#define MY(OP) CONCAT2 (i386minix_,OP)
++#define NAME(a,b) i386minix_32_##b
++#define TARGETNAME "a.out-i386-minix"
++#define NO_WRITE_HEADER_KLUDGE 1
++
++#define ARCH_SIZE 32
++
++#include "bfd.h"
++#include "sysdep.h"
++/*#include "libbfd.h"*/
++#include "aout/aout64.h"
++#include "libaout.h"
++
++
++#define i386minix_32_get_section_contents _bfd_generic_get_section_contents
++
++#define SET_ARCH_MACH(abfd, exec) \
++	bfd_set_arch_mach(abfd, DEFAULT_ARCH, 0)
++
++static bfd_boolean i386minix_write_object_contents PARAMS ((bfd *));
++#define MY_write_object_contents i386minix_write_object_contents
++
++static int  MY(swap_exec_header_in)  PARAMS ((bfd *, struct external_exec *, struct internal_exec *));
++static void MY(swap_exec_header_out) PARAMS ((bfd *, struct internal_exec *, struct external_exec *));
++
++#define NAME_swap_exec_header_in	MY(swap_exec_header_in)
++#define NAME_swap_exec_header_out	MY(swap_exec_header_out)
++
++#define MY_object_p MY(object_p)
++static const bfd_target * MY(object_p) (bfd *);
++
++
++static bfd_boolean MY (set_sizes) PARAMS ((bfd *));
++
++#define MY_backend_data &MY(backend_data)
++static const struct aout_backend_data MY(backend_data) = {
++  0,				/* zmagic contiguous */
++  1,				/* text incl header */
++  0,				/* entry is text address */
++  0,				/* exec_hdr_flags */
++  0,				/* text vma? */
++  MY(set_sizes),
++  1,				/* exec header not counted */
++  0,				/* add_dynamic_symbols */
++  0,				/* add_one_symbol */
++  0,				/* link_dynamic_object */
++  0,				/* write_dynamic_symbol */
++  0,				/* check_dynamic_reloc */
++  0				/* finish_dynamic_link */
++};
++
++#include "aoutx.h"
++
++#include "aout-target.h"
++
++/****************/
++/* WRITE HEADER */
++/****************/
++static void
++MY(swap_exec_header_out) (abfd, execp, bytes)
++     bfd *abfd;
++     struct internal_exec *execp;
++     struct external_exec *bytes;
++{
++  int total;
++  int stack;
++  
++  /* Now fill in fields in the raw data, from the fields in the exec struct.  */
++  H_PUT_16 (abfd, N_MAGIC(*execp), bytes->a_magic);
++  
++  bytes->a_flags = 0;
++  if ( bytes->a_syms )
++  	bytes->a_flags |= A_NSYM;
++
++  bytes->a_cpu = A_I80386;
++  
++  bytes->a_hdrlen = EXEC_BYTES_SIZE;
++  
++  bytes->a_unused = 0;
++  bytes->a_version = 0;
++  
++  PUT_WORD (abfd, execp->a_text  , &bytes->a_text);
++  PUT_WORD (abfd, execp->a_data  , &bytes->a_data);
++  PUT_WORD (abfd, execp->a_bss   , &bytes->a_bss);
++  PUT_WORD (abfd, execp->a_entry , &bytes->a_entry);
++  
++  stack = DEFAULT_STACK;
++  total = execp->a_data + execp->a_bss + stack;
++#if 0
++	if ( MINIX_IS_SEP( abfd ) )
++		bytes->a_flags |= A_SEP;
++	else
++#endif
++		total += execp->a_text;
++		
++  PUT_WORD (abfd, total          , &bytes->a_total);		
++  PUT_WORD (abfd, execp->a_syms  , &bytes->a_syms);
++  PUT_WORD (abfd, execp->a_trsize, &bytes->a_trsize);
++  PUT_WORD (abfd, execp->a_drsize, &bytes->a_drsize);
++  
++  bytes->a_tbase = bytes->a_dbase = 0;
++}
++
++#define i386minix_32_swap_exec_header_out MY(swap_exec_header_out)
++/* WRITE_HEADERS calls NAME(aout,swap_exec_header_out)
++   which I need to overwrite. Unfortunately aoutx.h doesn't have a
++   NAME_swap_exec_header_out like it does for -_in.
++   So I have to redefine the outcome of NAME(aout,swap_exec_header_out) to 
++   my own function before using WRITE_HEADERS */
++
++/* Set the machine type correctly.  */
++static bfd_boolean
++i386minix_write_object_contents (abfd)
++     bfd *abfd;
++{
++  struct external_exec exec_bytes;
++  struct internal_exec *execp = exec_hdr (abfd);
++
++  N_SET_MACHTYPE (*execp, M_386);
++  
++  obj_reloc_entry_size (abfd) = RELOC_STD_SIZE;
++
++  WRITE_HEADERS (abfd, execp);
++
++  return TRUE;
++}
++/* undo renaming to be able to include aoutx.h */
++#undef i386minix_32_swap_exec_header_out
++
++/***************/
++/* READ HEADER */
++/***************/
++/* define if aoutx.h is included: */
++/* UNTRUE: but including it generates a conflict with swap_exe_header_out, so don't include it */
++
++/* return -1 if header is wrong
++ * otherwise return the bytes left to read */
++static int
++MY(swap_exec_header_in) (abfd, bytes, execp)
++     bfd *abfd;
++     struct external_exec *bytes;
++     struct internal_exec *execp;
++{
++  /* The internal_exec structure has some fields that are unused in this
++     configuration (IE for i960), so ensure that all such uninitialized
++     fields are zero'd out.  There are places where two of these structs
++     are memcmp'd, and thus the contents do matter.  */
++  memset ((PTR) execp, 0, sizeof (struct internal_exec));
++  /* Now fill in fields in the execp, from the bytes in the raw data.  */
++  
++  /*fill a_info*/
++  N_SET_MAGIC(*execp, H_GET_16 (abfd, bytes->a_magic));
++  N_SET_MACHTYPE(*execp, M_386);
++  N_SET_FLAGS(*execp, 0);
++  
++  /*check integrity*/
++  if ( N_BADMAG( *execp ) )
++  	return -1;
++  
++  if ( bytes->a_cpu != A_I80386 )
++  	return -1;
++  	
++  if ( bytes->a_hdrlen < A_MINHDR )
++  	return -1;
++  	
++#if 0
++	if ( bytes->a_flags & A_SEP )
++		dosomething();
++#endif
++
++  /*fill the rest*/
++  execp->a_text   = GET_WORD (abfd, &bytes->a_text);
++  execp->a_data   = GET_WORD (abfd, &bytes->a_data);
++  execp->a_bss    = GET_WORD (abfd, &bytes->a_bss);
++  execp->a_syms   = GET_WORD (abfd, &bytes->a_syms);
++  execp->a_entry  = GET_WORD (abfd, &bytes->a_entry);
++  
++  if ( bytes->a_hdrlen < A_MINHDR + 2 * sizeof(long) )
++  	return bytes->a_hdrlen - A_MINHDR;
++
++  if (bfd_bread (&bytes->a_trsize, 2 * sizeof(long), abfd) != 2 * sizeof(long))
++  	return -1;
++    
++  execp->a_trsize = GET_WORD (abfd, &bytes->a_trsize);
++  execp->a_drsize = GET_WORD (abfd, &bytes->a_drsize);
++
++  bfd_seek (abfd, -2 * sizeof(long), SEEK_CUR);  
++  
++  /*store other fields of external_exec?*/
++  return bytes->a_hdrlen - A_MINHDR;
++}
++
++static const bfd_target *
++MY(object_p) (abfd)
++     bfd *abfd;
++{
++  struct external_exec exec_bytes;	/* Raw exec header from file */
++  struct internal_exec exec;		/* Cleaned-up exec header */
++  const bfd_target *target;
++  int left;
++  bfd_size_type amt = A_MINHDR;
++  
++  if (bfd_bread ((PTR) &exec_bytes, amt, abfd) != amt)
++    {
++      if (bfd_get_error () != bfd_error_system_call)
++	bfd_set_error (bfd_error_wrong_format);
++	
++      return 0;
++    }
++
++  /* let MY(swap_exec_header_in) check the header */
++  if ( (left = MY(swap_exec_header_in) (abfd, &exec_bytes, &exec)) == -1 )
++  {
++  	/* incorrect header */
++  	return 0;
++  }
++
++  /* skip rest of header */
++  if ( bfd_seek( abfd, left, SEEK_CUR ) )
++  	return 0;
++  
++  target = NAME(aout,some_aout_object_p) (abfd, &exec, MY(callback));
++
++  int adjust = (A_MINHDR + left) - EXEC_BYTES_SIZE;
++  
++  /* adjust file positions with the bytes left to be read from the header */
++  obj_textsec (abfd)->filepos += adjust;
++  obj_datasec (abfd)->filepos += adjust;
++  
++  obj_textsec (abfd)->rel_filepos += adjust;
++  obj_datasec (abfd)->rel_filepos += adjust;
++  
++  obj_sym_filepos (abfd) += adjust;
++  obj_str_filepos (abfd) += adjust;
++
++  adata(abfd).exec_bytes_size = A_MINHDR + left;
++      
++#ifdef ENTRY_CAN_BE_ZERO
++  /* The NEWSOS3 entry-point is/was 0, which (amongst other lossage)
++   * means that it isn't obvious if EXEC_P should be set.
++   * All of the following must be true for an executable:
++   * There must be no relocations, the bfd can be neither an
++   * archive nor an archive element, and the file must be executable.  */
++
++  if (exec.a_trsize + exec.a_drsize == 0
++      && bfd_get_format(abfd) == bfd_object && abfd->my_archive == NULL)
++    {
++      struct stat buf;
++#ifndef S_IXUSR
++#define S_IXUSR 0100	/* Execute by owner.  */
++#endif
++      if (stat(abfd->filename, &buf) == 0 && (buf.st_mode & S_IXUSR))
++	abfd->flags |= EXEC_P;
++    }
++#endif /* ENTRY_CAN_BE_ZERO */
++
++  return target;
++}
+diff -ruN binutils-2.17.50.0.6/bfd/targets.c binutils-2.17.50.0.6.bs/bfd/targets.c
+--- binutils-2.17.50.0.6/bfd/targets.c	2006-10-20 20:50:58.000000000 +0200
++++ binutils-2.17.50.0.6.bs/bfd/targets.c	2008-04-08 09:10:13.000000000 +0200
+@@ -706,6 +706,7 @@
+ extern const bfd_target i386lynx_aout_vec;
+ extern const bfd_target i386lynx_coff_vec;
+ extern const bfd_target i386mach3_vec;
++extern const bfd_target i386minix_vec;
+ extern const bfd_target i386msdos_vec;
+ extern const bfd_target i386netbsd_vec;
+ extern const bfd_target i386os9k_vec;
+diff -ruN binutils-2.17.50.0.6/gas/configure binutils-2.17.50.0.6.bs/gas/configure
+--- binutils-2.17.50.0.6/gas/configure	2006-10-20 20:50:58.000000000 +0200
++++ binutils-2.17.50.0.6.bs/gas/configure	2008-04-08 09:41:46.000000000 +0200
+@@ -4866,6 +4866,8 @@
+       # for the default linux configuration
+       # i386-*-linux*-elf) emulation="i386elf i386aout" ;;
+       #
++
++      i386-*-minix-aout) ;;
+       i386-*-aout)	emulation="i386aout" ;;
+       i386-*-coff)	emulation="i386coff" ;;
+       i386-*-elf)	emulation="i386elf" ;;
+diff -ruN binutils-2.17.50.0.6/gas/configure.tgt binutils-2.17.50.0.6.bs/gas/configure.tgt
+--- binutils-2.17.50.0.6/gas/configure.tgt	2006-09-24 17:19:58.000000000 +0200
++++ binutils-2.17.50.0.6.bs/gas/configure.tgt	2008-04-08 09:42:12.000000000 +0200
+@@ -216,6 +216,7 @@
+   i386-*-nto-qnx*)			fmt=elf ;;
+   i386-*-*nt*)				fmt=coff em=pe ;;
+   i386-*-chaos)				fmt=elf ;;
++  i386-*-minix)				fmt=aout em=minix ;;
+   i386-*-rdos*)				fmt=elf ;;
+ 
+   i860-*-*)				fmt=elf endian=little ;;
+diff -ruN binutils-2.17.50.0.6/ld/Makefile.in binutils-2.17.50.0.6.bs/ld/Makefile.in
+--- binutils-2.17.50.0.6/ld/Makefile.in	2006-10-20 20:50:59.000000000 +0200
++++ binutils-2.17.50.0.6.bs/ld/Makefile.in	2008-04-08 09:46:22.000000000 +0200
+@@ -457,6 +457,7 @@
+ 	ei386linux.o \
+ 	ei386lynx.o \
+ 	ei386mach.o \
++	ei386minix.o \
+ 	ei386moss.o \
+ 	ei386msdos.o \
+ 	ei386nbsd.o \
+@@ -1896,6 +1897,9 @@
+ ei386mach.c: $(srcdir)/emulparams/i386mach.sh \
+   $(srcdir)/emultempl/generic.em $(srcdir)/scripttempl/aout.sc ${GEN_DEPENDS}
+ 	${GENSCRIPTS} i386mach "$(tdir_i386mach)"
++ei386minix.c: $(srcdir)/emulparams/i386minix.sh \
++  $(srcdir)/emultempl/generic.em $(srcdir)/scripttempl/aout.sc ${GEN_DEPENDS}
++	${GENSCRIPTS} i386minix "$(tdir_i386minix)"
+ ei386moss.c: $(srcdir)/emulparams/i386moss.sh \
+   $(ELF_DEPS) $(srcdir)/scripttempl/elf.sc ${GEN_DEPENDS}
+ 	${GENSCRIPTS} i386moss "$(tdir_i386moss)"
+diff -ruN binutils-2.17.50.0.6/ld/configure.tgt binutils-2.17.50.0.6.bs/ld/configure.tgt
+--- binutils-2.17.50.0.6/ld/configure.tgt	2006-10-20 20:50:59.000000000 +0200
++++ binutils-2.17.50.0.6.bs/ld/configure.tgt	2008-04-08 09:50:28.000000000 +0200
+@@ -145,6 +145,7 @@
+ i[3-7]86-*-bsd386)	targ_emul=i386bsd ;;
+ i[3-7]86-*-bsdi*)	targ_emul=i386bsd ;;
+ i[3-7]86-*-aout)	targ_emul=i386aout ;;
++i[3-7]86-*-minix)       targ_emul=i386minix ;;
+ i[3-7]86-*-linux*aout*)	targ_emul=i386linux
+ 			targ_extra_emuls=elf_i386
+ 			tdir_elf_i386=`echo ${targ_alias} | sed -e 's/aout//'` ;;
+diff -ruN binutils-2.17.50.0.6/include/ansi.h binutils-2.17.50.0.6.bs/include/ansi.h
+--- binutils-2.17.50.0.6/include/ansi.h	1970-01-01 01:00:00.000000000 +0100
++++ binutils-2.17.50.0.6.bs/include/ansi.h	2005-09-14 03:59:36.000000000 +0200
+@@ -0,0 +1,69 @@
++/* The <ansi.h> header attempts to decide whether the compiler has enough
++ * conformance to Standard C for Minix to take advantage of.  If so, the
++ * symbol _ANSI is defined (as 31459).  Otherwise _ANSI is not defined
++ * here, but it may be defined by applications that want to bend the rules.
++ * The magic number in the definition is to inhibit unnecessary bending
++ * of the rules.  (For consistency with the new '#ifdef _ANSI" tests in
++ * the headers, _ANSI should really be defined as nothing, but that would
++ * break many library routines that use "#if _ANSI".)
++
++ * If _ANSI ends up being defined, a macro
++ *
++ *	_PROTOTYPE(function, params)
++ *
++ * is defined.  This macro expands in different ways, generating either
++ * ANSI Standard C prototypes or old-style K&R (Kernighan & Ritchie)
++ * prototypes, as needed.  Finally, some programs use _CONST, _VOIDSTAR etc
++ * in such a way that they are portable over both ANSI and K&R compilers.
++ * The appropriate macros are defined here.
++ */
++
++#ifndef _ANSI_H
++#define _ANSI_H
++
++#if __STDC__ == 1
++#define _ANSI		31459	/* compiler claims full ANSI conformance */
++#endif
++
++#ifdef __GNUC__
++#define _ANSI		31459	/* gcc conforms enough even in non-ANSI mode */
++#endif
++
++#ifdef _ANSI
++
++/* Keep everything for ANSI prototypes. */
++#define	_PROTOTYPE(function, params)	function params
++#define	_ARGS(params)			params
++
++#define	_VOIDSTAR	void *
++#define	_VOID		void
++#define	_CONST		const
++#define	_VOLATILE	volatile
++#define _SIZET		size_t
++
++#else
++
++/* Throw away the parameters for K&R prototypes. */
++#define	_PROTOTYPE(function, params)	function()
++#define	_ARGS(params)			()
++
++#define	_VOIDSTAR	void *
++#define	_VOID		void
++#define	_CONST
++#define	_VOLATILE
++#define _SIZET		int
++
++#endif /* _ANSI */
++
++/* This should be defined as restrict when a C99 compiler is used. */
++#define _RESTRICT
++
++/* Setting any of _MINIX, _POSIX_C_SOURCE or _POSIX2_SOURCE implies
++ * _POSIX_SOURCE.  (Seems wrong to put this here in ANSI space.)
++ */
++#if defined(_MINIX) || _POSIX_C_SOURCE > 0 || defined(_POSIX2_SOURCE)
++#undef _POSIX_SOURCE
++#define _POSIX_SOURCE	1
++#endif
++
++#endif /* ANSI_H */
+diff -ruN binutils-2.17.50.0.6/include/a.out.h binutils-2.17.50.0.6.bs/include/a.out.h
+--- binutils-2.17.50.0.6/include/a.out.h	1970-01-01 01:00:00.000000000 +0100
++++ binutils-2.17.50.0.6.bs/include/a.out.h	2005-04-21 16:55:49.000000000 +0200
+@@ -0,0 +1,118 @@
++/* The <a.out> header file describes the format of executable files. */
++
++#ifndef _AOUT_H
++#define _AOUT_H
++
++struct	exec {			/* a.out header */
++  unsigned char	a_magic[2];	/* magic number */
++  unsigned char	a_flags;	/* flags, see below */
++  unsigned char	a_cpu;		/* cpu id */
++  unsigned char	a_hdrlen;	/* length of header */
++  unsigned char	a_unused;	/* reserved for future use */
++  unsigned short a_version;	/* version stamp (not used at present) */
++  long		a_text;		/* size of text segement in bytes */
++  long		a_data;		/* size of data segment in bytes */
++  long		a_bss;		/* size of bss segment in bytes */
++  long		a_entry;	/* entry point */
++  long		a_total;	/* total memory allocated */
++  long		a_syms;		/* size of symbol table */
++
++  /* SHORT FORM ENDS HERE */
++  long		a_trsize;	/* text relocation size */
++  long		a_drsize;	/* data relocation size */
++  long		a_tbase;	/* text relocation base */
++  long		a_dbase;	/* data relocation base */
++};
++
++#define A_MAGIC0      (unsigned char) 0x01
++#define A_MAGIC1      (unsigned char) 0x03
++#define BADMAG(X)     ((X).a_magic[0] != A_MAGIC0 ||(X).a_magic[1] != A_MAGIC1)
++
++/* CPU Id of TARGET machine (byte order coded in low order two bits) */
++#define A_NONE	0x00	/* unknown */
++#define A_I8086	0x04	/* intel i8086/8088 */
++#define A_M68K	0x0B	/* motorola m68000 */
++#define A_NS16K	0x0C	/* national semiconductor 16032 */
++#define A_I80386 0x10	/* intel i80386 */
++#define A_SPARC	0x17	/* Sun SPARC */
++
++#define A_BLR(cputype)	((cputype&0x01)!=0) /* TRUE if bytes left-to-right */
++#define A_WLR(cputype)	((cputype&0x02)!=0) /* TRUE if words left-to-right */
++
++/* Flags. */
++#define A_UZP	0x01	/* unmapped zero page (pages) */
++#define A_PAL	0x02	/* page aligned executable */
++#define A_NSYM	0x04	/* new style symbol table */
++#define A_IMG   0x08	/* image instead of executable (e.g. root FS) */
++#define A_EXEC	0x10	/* executable */
++#define A_SEP	0x20	/* separate I/D */
++#define A_PURE	0x40	/* pure text */		/* not used */
++#define A_TOVLY	0x80	/* text overlay */	/* not used */
++
++/* Offsets of various things. */
++#define A_MINHDR	32
++#define	A_TEXTPOS(X)	((long)(X).a_hdrlen)
++#define A_DATAPOS(X)	(A_TEXTPOS(X) + (X).a_text)
++#define	A_HASRELS(X)	((X).a_hdrlen > (unsigned char) A_MINHDR)
++#define A_HASEXT(X)	((X).a_hdrlen > (unsigned char) (A_MINHDR +  8))
++#define A_HASLNS(X)	((X).a_hdrlen > (unsigned char) (A_MINHDR + 16))
++#define A_HASTOFF(X)	((X).a_hdrlen > (unsigned char) (A_MINHDR + 24))
++#define A_TRELPOS(X)	(A_DATAPOS(X) + (X).a_data)
++#define A_DRELPOS(X)	(A_TRELPOS(X) + (X).a_trsize)
++#define A_SYMPOS(X)	(A_TRELPOS(X) + (A_HASRELS(X) ? \
++  			((X).a_trsize + (X).a_drsize) : 0))
++
++struct reloc {
++  long r_vaddr;			/* virtual address of reference */
++  unsigned short r_symndx;	/* internal segnum or extern symbol num */
++  unsigned short r_type;	/* relocation type */
++};
++
++/* r_tyep values: */
++#define R_ABBS		0
++#define R_RELLBYTE	2
++#define R_PCRBYTE	3
++#define R_RELWORD	4
++#define R_PCRWORD	5
++#define R_RELLONG	6
++#define R_PCRLONG	7
++#define R_REL3BYTE	8
++#define R_KBRANCHE	9
++
++/* r_symndx for internal segments */
++#define S_ABS		((unsigned short)-1)
++#define S_TEXT		((unsigned short)-2)
++#define S_DATA		((unsigned short)-3)
++#define S_BSS		((unsigned short)-4)
++
++struct nlist {			/* symbol table entry */
++  char n_name[8];		/* symbol name */
++  long n_value;			/* value */
++  unsigned char	n_sclass;	/* storage class */
++  unsigned char	n_numaux;	/* number of auxiliary entries (not used) */
++  unsigned short n_type;	/* language base and derived type (not used) */
++};
++
++/* Low bits of storage class (section). */
++#define	N_SECT		  07	/* section mask */
++#define N_UNDF		  00	/* undefined */
++#define N_ABS		  01	/* absolute */
++#define N_TEXT		  02	/* text */
++#define N_DATA		  03	/* data */
++#define	N_BSS		  04	/* bss */
++#define N_COMM		  05	/* (common) */
++
++/* High bits of storage class. */
++#define N_CLASS		0370	/* storage class mask */
++#define C_NULL
++#define C_EXT		0020	/* external symbol */
++#define C_STAT		0030	/* static */
++
++/* Function prototypes. */
++#ifndef _ANSI_H
++#include <ansi.h>
++#endif
++
++_PROTOTYPE( int nlist, (char *_file, struct nlist *_nl)			);
++
++#endif /* _AOUT_H */

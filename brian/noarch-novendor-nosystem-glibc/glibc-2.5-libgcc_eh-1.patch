@@ -1,0 +1,24 @@
+Submitted By: Jim Gifford (patches at jg555 dot com)
+Date: 2005-07-20
+Initial Package Version: 2.3.5
+Origin: Rene Rebe <rene@exactcode.de>
+Upstream Status: Unknown
+Description: Removes dependency for libgcc_eh
+ 
+--- glibc-2.3.5/Makeconfig.orig	2005-07-21 04:53:30.000000000 +0000
++++ glibc-2.3.5/Makeconfig	2005-07-21 04:53:49.000000000 +0000
+@@ -503,12 +503,12 @@
+   libunwind = -lunwind
+ endif
+ ifneq ($(have-as-needed),yes)
+- libgcc_eh := -lgcc_eh $(libunwind)
++ libgcc_eh := $(libunwind)
+ else
+  libgcc_eh := -Wl,--as-needed -lgcc_s$(libgcc_s_suffix) $(libunwind) -Wl,--no-as-needed
+ endif
+ gnulib := -lgcc $(libgcc_eh)
+-static-gnulib := -lgcc -lgcc_eh $(libunwind)
++static-gnulib := -lgcc $(libunwind)
+ libc.so-gnulib := -lgcc
+ endif
+ ifeq ($(elf),yes)

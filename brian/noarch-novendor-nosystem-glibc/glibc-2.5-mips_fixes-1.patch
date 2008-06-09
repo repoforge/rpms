@@ -1,0 +1,17 @@
+Submitted By: Jim Gifford (patches at jg555 dot com)
+Date: 2006-10-16
+Initial Package Version: 2.5
+Origin: Jim Gifford
+Upstream Status: Applied
+Description: Corrects Location of ld-rewrite for MIPS64
+
+diff -Naur glibc-2.5.orig/ports/sysdeps/unix/sysv/linux/mips/mips64/configure glibc-2.5/ports/sysdeps/unix/sysv/linux/mips/mips64/configure
+--- glibc-2.5.orig/ports/sysdeps/unix/sysv/linux/mips/mips64/configure	2006-03-11 08:18:41.000000000 -0800
++++ glibc-2.5/ports/sysdeps/unix/sysv/linux/mips/mips64/configure	2006-10-26 10:04:56.081721125 -0700
+@@ -1,4 +1,4 @@
+ # This file is generated from configure.in by Autoconf.  DO NOT EDIT!
+  # Local configure fragment for sysdeps/unix/sysv/linux/mips/mips64.
+ 
+-ldd_rewrite_script=$dest/ldd-rewrite.sed
++ldd_rewrite_script=../ports/sysdeps/unix/sysv/linux/mips/mips64/ldd-rewrite.sed
+

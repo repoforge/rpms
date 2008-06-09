@@ -1,0 +1,156 @@
+2006-10-23  Dwarakanath Rajagopal  <dwarak.rajagopal@amd.com>
+
+opcodes/
+	* i386-dis.c (dis386): Add support for the change in POPCNT opcode in 
+	amdfam10 architecture.
+	(PREGRP37): NEW.
+	(print_insn): Disallow REP prefix for POPCNT.
+include/
+	* i386.h :  Modify opcode to support for the change in POPCNT opcode 
+	in amdfam10 architecture.
+gas/
+	* doc/c-i386.texi : Document amdfam10,.sse4a and .abm in cpu_type.
+gas/testsuite/
+	* gas/i386/amdfam10.d : Modify to support for the change in POPCNT
+	opcode in amdfam10 architecture.
+	* gas/i386/x86-64-amdfam10.d : Ditto.
+	 
+--- opcodes/i386-dis.c	24 Sep 2006 17:25:47 -0000	1.89
++++ opcodes/i386-dis.c	23 Oct 2006 22:53:29 -0000	1.90
+@@ -471,6 +471,8 @@ fetch_data (struct disassemble_info *inf
+ #define PREGRP34  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 34, NULL, 0, NULL, 0
+ #define PREGRP35  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 35, NULL, 0, NULL, 0
+ #define PREGRP36  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 36, NULL, 0, NULL, 0
++#define PREGRP37  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 37, NULL, 0, NULL, 0
++
+ 
+ #define X86_64_0  NULL, NULL, X86_64_SPECIAL, NULL,  0, NULL, 0, NULL, 0
+ 
+@@ -1028,7 +1030,7 @@ static const struct dis386 dis386_twobyt
+   { "movz{bR|x|bR|x}",	Gv, Eb, XX, XX },
+   { "movz{wR|x|wR|x}",	Gv, Ew, XX, XX }, /* yes, there really is movzww ! */
+   /* b8 */
+-  { "popcntS",          Gv, Ev, XX, XX },
++  { PREGRP37 },
+   { "ud2b",		XX, XX, XX, XX },
+   { GRP8 },
+   { "btcS",		Ev, Gv, XX, XX },
+@@ -1820,6 +1822,13 @@ static const struct dis386 prefix_user_t
+     { "(bad)",  XX, XX, XX, XX },
+   },
+ 
++  /* PREGRP37 */
++  {
++    { "(bad)",  XX, XX, XX, XX },
++    { "popcntS",Gv, Ev, XX, XX },
++    { "(bad)",  XX, XX, XX, XX },
++    { "(bad)",  XX, XX, XX, XX },    
++  },
+ };
+ 
+ static const struct dis386 x86_64_table[][2] = {
+@@ -2827,13 +2836,14 @@ print_insn (bfd_vma pc, disassemble_info
+       uses_LOCK_prefix = 0;
+     }
+   
+-  /*"lzcnt"=0xBD is the only non-sse instruction which uses F3 in the opcode without any "rep(z|nz)"*/
+-  if (!uses_SSE_prefix && (prefixes & PREFIX_REPZ) && *codep !=0xBD)
++  /*"lzcnt"=0xBD and "popcnt"=0xB8 are the only two non-sse 
++    instruction which uses F3 in the opcode without any "rep(z|nz)"*/
++  if (!uses_SSE_prefix && (prefixes & PREFIX_REPZ) && *codep != 0xBD && *codep != 0xB8)
+     {
+       oappend ("repz ");
+       used_prefixes |= PREFIX_REPZ;
+     }
+-  if (!uses_SSE_prefix && (prefixes & PREFIX_REPNZ) && *codep !=0xBD)
++  if (!uses_SSE_prefix && (prefixes & PREFIX_REPNZ) && *codep != 0xBD && *codep != 0xB8)
+     {
+       oappend ("repnz ");
+       used_prefixes |= PREFIX_REPNZ;
+--- include/opcode/i386.h	28 Sep 2006 14:06:36 -0000	1.71
++++ include/opcode/i386.h	23 Oct 2006 22:53:28 -0000	1.72
+@@ -1472,7 +1472,7 @@ static const template i386_optab[] =
+ {"insertq",  4, 0xf20f78,  X, CpuSSE4a, NoSuf|IgnoreSize|Modrm, { Imm8, Imm8, RegXMM, RegXMM} },
+ 
+ /* ABM instructions */
+-{"popcnt",   2,   0x0fb8,  X, CpuABM, wlq_Suf|Modrm,          { WordReg|WordMem, WordReg, 0} },
++{"popcnt",   2, 0xf30fb8,  X, CpuABM, wlq_Suf|Modrm,          { WordReg|WordMem, WordReg, 0} },
+ {"lzcnt",    2, 0xf30fbd,  X, CpuABM, wlq_Suf|Modrm,          { WordReg|WordMem, WordReg, 0} },
+ 
+ 
+--- gas/doc/c-i386.texi	28 Sep 2006 14:06:36 -0000	1.16
++++ gas/doc/c-i386.texi	23 Oct 2006 22:53:28 -0000	1.17
+@@ -753,10 +753,11 @@ supported on the CPU specified.  The cho
+ @item @samp{i486} @tab @samp{i586} @tab @samp{i686} @tab @samp{pentium}
+ @item @samp{pentiumpro} @tab @samp{pentiumii} @tab @samp{pentiumiii} @tab @samp{pentium4}
+ @item @samp{prescott} @tab @samp{nocona} @tab @samp{core} @tab @samp{core2}
++@item @samp{amdfam10}
+ @item @samp{k6} @tab @samp{athlon} @tab @samp{sledgehammer} @tab @samp{k8} 
+ @item @samp{.mmx} @tab @samp{.sse} @tab @samp{.sse2} @tab @samp{.sse3}
+-@item @samp{.3dnow} @tab @samp{.3dnowa} @tab @samp{.padlock} @tab @samp{.pacifica}
+-@item @samp{.svme}
++@item @samp{.sse4a} @tab @samp{.3dnow} @tab @samp{.3dnowa} @tab @samp{.padlock}
++@item @samp{.pacifica} @tab @samp{.svme} @tab @samp{.abm}
+ @end multitable
+ 
+ Apart from the warning, there are only two other effects on
+--- gas/testsuite/gas/i386/amdfam10.d	20 Jul 2006 23:09:32 -0000	1.2
++++ gas/testsuite/gas/i386/amdfam10.d	23 Oct 2006 22:53:28 -0000	1.3
+@@ -10,15 +10,14 @@ Disassembly of section .text:
+    4:	f3 66 0f bd 19[ 	 ]+lzcnt  \(%ecx\),%bx
+    9:	f3 0f bd d9[ 	 ]+lzcnt  %ecx,%ebx
+    d:	f3 66 0f bd d9[ 	 ]+lzcnt  %cx,%bx
+-  12:	0f b8 19[ 	]+popcnt \(%ecx\),%ebx
+-  15:	66 0f b8 19[ 	]+popcnt \(%ecx\),%bx
+-  19:	0f b8 d9[ 	]+popcnt %ecx,%ebx
+-  1c:	66 0f b8 d9[ 	]+popcnt %cx,%bx
+-  20:	66 0f 79 ca[ 	]+extrq  %xmm2,%xmm1
+-  24:	66 0f 78 c1 02 04[ 	]*extrq  \$0x4,\$0x2,%xmm1
+-  2a:	f2 0f 79 ca[ 	]+insertq %xmm2,%xmm1
+-  2e:	f2 0f 78 ca 02 04[ 	]*insertq \$0x4,\$0x2,%xmm2,%xmm1
+-  34:	f2 0f 2b 09[ 	]+movntsd %xmm1,\(%ecx\)
+-  38:	f3 0f 2b 09[ 	]+movntss %xmm1,\(%ecx\)
+-  3c:	00 00 [ 	]+add    %al,\(%eax\)
+-	...
++  12:	f3 0f b8 19[ 	]+popcnt \(%ecx\),%ebx
++  16:	f3 66 0f b8 19[ 	]+popcnt \(%ecx\),%bx
++  1b:	f3 0f b8 d9[ 	]+popcnt %ecx,%ebx
++  1f:	f3 66 0f b8 d9[ 	]+popcnt %cx,%bx
++  24:	66 0f 79 ca[ 	]+extrq  %xmm2,%xmm1
++  28:	66 0f 78 c1 02 04[ 	]*extrq  \$0x4,\$0x2,%xmm1
++  2e:	f2 0f 79 ca[ 	]+insertq %xmm2,%xmm1
++  32:	f2 0f 78 ca 02 04[ 	]*insertq \$0x4,\$0x2,%xmm2,%xmm1
++  38:	f2 0f 2b 09[ 	]+movntsd %xmm1,\(%ecx\)
++  3c:	f3 0f 2b 09[ 	]+movntss %xmm1,\(%ecx\)
++
+--- gas/testsuite/gas/i386/x86-64-amdfam10.d	20 Jul 2006 23:09:32 -0000	1.2
++++ gas/testsuite/gas/i386/x86-64-amdfam10.d	23 Oct 2006 22:53:28 -0000	1.3
+@@ -12,16 +12,16 @@ Disassembly of section .text:
+    e:	f3 48 0f bd d9[ 	]+lzcnt  %rcx,%rbx
+   13:	f3 0f bd d9[ 	]+lzcnt  %ecx,%ebx
+   17:	f3 66 0f bd d9[ 	]+lzcnt  %cx,%bx
+-  1c:	48 0f b8 19[ 	]+popcnt \(%rcx\),%rbx
+-  20:	0f b8 19[ 	]+popcnt \(%rcx\),%ebx
+-  23:	66 0f b8 19[ 	]+popcnt \(%rcx\),%bx
+-  27:	48 0f b8 d9[ 	]+popcnt %rcx,%rbx
+-  2b:	0f b8 d9[ 	]+popcnt %ecx,%ebx
+-  2e:	66 0f b8 d9[ 	]+popcnt %cx,%bx
+-  32:	66 0f 79 ca[ 	]+extrq  %xmm2,%xmm1
+-  36:	66 0f 78 c1 02 04[ 	]+extrq  \$0x4,\$0x2,%xmm1
+-  3c:	f2 0f 79 ca[ 	]+insertq %xmm2,%xmm1
+-  40:	f2 0f 78 ca 02 04[ 	]+insertq \$0x4,\$0x2,%xmm2,%xmm1
+-  46:	f2 0f 2b 09[ 	]+movntsd %xmm1,\(%rcx\)
+-  4a:	f3 0f 2b 09[ 	]+movntss %xmm1,\(%rcx\)
++  1c:	f3 48 0f b8 19[ 	]+popcnt \(%rcx\),%rbx
++  21:	f3 0f b8 19[ 	]+popcnt \(%rcx\),%ebx
++  25:	f3 66 0f b8 19[ 	]+popcnt \(%rcx\),%bx
++  2a:	f3 48 0f b8 d9[ 	]+popcnt %rcx,%rbx
++  2f:	f3 0f b8 d9[ 	]+popcnt %ecx,%ebx
++  33:	f3 66 0f b8 d9[ 	]+popcnt %cx,%bx
++  38:	66 0f 79 ca[ 	]+extrq  %xmm2,%xmm1
++  3c:	66 0f 78 c1 02 04[ 	]+extrq  \$0x4,\$0x2,%xmm1
++  42:	f2 0f 79 ca[ 	]+insertq %xmm2,%xmm1
++  46:	f2 0f 78 ca 02 04[ 	]+insertq \$0x4,\$0x2,%xmm2,%xmm1
++  4c:	f2 0f 2b 09[ 	]+movntsd %xmm1,\(%rcx\)
++  50:	f3 0f 2b 09[ 	]+movntss %xmm1,\(%rcx\)
+ 	...

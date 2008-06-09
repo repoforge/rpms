@@ -1,0 +1,150 @@
+2006-10-24  Alan Modra  <amodra@bigpond.net.au>
+
+	* ld-powerpc/plt1.s: New.
+	* ld-powerpc/plt1.d: New.
+	* ld-powerpc/relbrlt.s: New.
+	* ld-powerpc/relbrlt.d: New.
+	* ld-powerpc/powerpc.exp: Run them.
+
+--- ld/testsuite/ld-powerpc/powerpc.exp	3 Mar 2006 09:32:01 -0000	1.15
++++ ld/testsuite/ld-powerpc/powerpc.exp	24 Oct 2006 13:29:37 -0000	1.16
+@@ -1,5 +1,5 @@
+ # Expect script for ld-powerpc tests
+-#   Copyright 2002, 2003, 2005 Free Software Foundation
++#   Copyright 2002, 2003, 2005, 2006 Free Software Foundation
+ #
+ # This file is free software; you can redistribute it and/or modify
+ # it under the terms of the GNU General Public License as published by
+@@ -143,4 +143,7 @@ run_ld_link_tests $ppcelftests
+ 
+ if [ supports_ppc64 ] then {
+     run_ld_link_tests $ppc64elftests
++    run_dump_test "relbrlt"
+ }
++
++run_dump_test "plt1"
+--- ld/testsuite/ld-powerpc/plt1.d	1 Jan 1970 00:00:00 -0000
++++ ld/testsuite/ld-powerpc/plt1.d	24 Oct 2006 13:29:37 -0000	1.1
+@@ -0,0 +1,20 @@
++#source: plt1.s
++#as: -a32
++#objdump: -dr
++#target: powerpc*-*-*
++
++.*:     file format elf32-powerpc
++
++Disassembly of section .text:
++
++0+ <_start>:
++   0:	42 9f 00 05 	bcl-    20,4\*cr7\+so,4 .*
++   4:	7f c8 02 a6 	mflr    r30
++   8:	3f de 00 00 	addis   r30,r30,0
++			a: R_PPC_REL16_HA	_GLOBAL_OFFSET_TABLE_\+0x6
++   c:	3b de 00 0a 	addi    r30,r30,10
++			e: R_PPC_REL16_LO	_GLOBAL_OFFSET_TABLE_\+0xa
++  10:	48 00 00 01 	bl      10 .*
++			10: R_PPC_PLTREL24	_exit
++  14:	48 00 00 00 	b       14 .*
++			14: R_PPC_REL24	_start
+--- ld/testsuite/ld-powerpc/plt1.s	1 Jan 1970 00:00:00 -0000
++++ ld/testsuite/ld-powerpc/plt1.s	24 Oct 2006 13:29:37 -0000	1.1
+@@ -0,0 +1,9 @@
++	.text
++	.global _start
++_start:
++	bcl 20,31,1f
++1:	mflr 30
++	addis 30,30,(_GLOBAL_OFFSET_TABLE_-1b)@ha
++	addi 30,30,(_GLOBAL_OFFSET_TABLE_-1b)@l
++	bl _exit@plt
++	b _start
+--- ld/testsuite/ld-powerpc/relbrlt.d	1 Jan 1970 00:00:00 -0000
++++ ld/testsuite/ld-powerpc/relbrlt.d	24 Oct 2006 13:29:37 -0000	1.1
+@@ -0,0 +1,50 @@
++#source: relbrlt.s
++#as: -a64
++#ld: -melf64ppc --emit-relocs
++#objdump: -dr
++
++.*:     file format elf64-powerpc
++
++Disassembly of section \.text:
++
++0*100000a8 <_start>:
++    100000a8:	49 bf 00 31 	bl      11bf00d8 .*
++			100000a8: R_PPC64_REL24	\.text\+0x37e0044
++    100000ac:	60 00 00 00 	nop
++    100000b0:	49 bf 00 19 	bl      11bf00c8 .*
++			100000b0: R_PPC64_REL24	\.text\+0x3bf0020
++    100000b4:	60 00 00 00 	nop
++    100000b8:	49 bf 00 25 	bl      11bf00dc .*
++			100000b8: R_PPC64_REL24	\.text\+0x57e0024
++    100000bc:	60 00 00 00 	nop
++    100000c0:	00 00 00 00 	\.long 0x0
++    100000c4:	4b ff ff e4 	b       100000a8 <_start>
++	\.\.\.
++
++0*11bf00c8 <.*plt_branch.*>:
++    11bf00c8:	3d 82 05 7e 	addis   r12,r2,1406
++    11bf00cc:	e9 6c 80 58 	ld      r11,-32680\(r12\)
++    11bf00d0:	7d 69 03 a6 	mtctr   r11
++    11bf00d4:	4e 80 04 20 	bctr
++
++0*11bf00d8 <.*long_branch.*>:
++    11bf00d8:	49 bf 00 14 	b       137e00ec <far>
++			11bf00d8: R_PPC64_REL24	\*ABS\*\+0x137e00ec
++
++0*11bf00dc <.*plt_branch.*>:
++    11bf00dc:	3d 82 05 7e 	addis   r12,r2,1406
++    11bf00e0:	e9 6c 80 60 	ld      r11,-32672\(r12\)
++    11bf00e4:	7d 69 03 a6 	mtctr   r11
++    11bf00e8:	4e 80 04 20 	bctr
++	\.\.\.
++
++0*137e00ec <far>:
++    137e00ec:	4e 80 00 20 	blr
++	\.\.\.
++
++0*13bf00c8 <far2far>:
++    13bf00c8:	4e 80 00 20 	blr
++	\.\.\.
++
++0*157e00cc <huge>:
++    157e00cc:	4e 80 00 20 	blr
+--- ld/testsuite/ld-powerpc/relbrlt.s	1 Jan 1970 00:00:00 -0000
++++ ld/testsuite/ld-powerpc/relbrlt.s	24 Oct 2006 13:29:37 -0000	1.1
+@@ -0,0 +1,34 @@
++ .text
++ .global _start
++_start:
++1:
++ bl far
++ nop
++ bl far2far
++ nop
++ bl huge
++ nop
++ .long 0
++ b 1b
++ .space 0x1bf0000
++
++ .section .text.pad1,"ax"
++ .space 0x1bf0000
++
++ .section .text.far,"ax"
++far:
++ blr
++
++ .section .text.pad2,"ax"
++ .space 0x40ffd8
++
++ .section .text.far2far,"ax"
++far2far:
++ blr
++
++ .section .text.pad3,"ax"
++ .space 0x1bf0000
++
++ .section .text.huge,"ax"
++huge:
++ blr

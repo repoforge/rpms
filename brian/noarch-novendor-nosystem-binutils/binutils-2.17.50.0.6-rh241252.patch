@@ -1,0 +1,17 @@
+2007-05-03  Alan Modra  <amodra@bigpond.net.au>
+
+	* scripttempl/elf.sc: Add .debug_pubtypes and .debug_ranges.
+
+--- ld/scripttempl/elf.sc	26 Oct 2006 00:31:59 -0000	1.79
++++ ld/scripttempl/elf.sc	3 May 2007 07:06:13 -0000	1.80
+@@ -505,6 +505,10 @@ cat <<EOF
+   .debug_typenames 0 : { *(.debug_typenames) }
+   .debug_varnames  0 : { *(.debug_varnames) }
+ 
++  /* DWARF 3 */
++  .debug_pubtypes 0 : { *(.debug_pubtypes) }
++  .debug_ranges   0 : { *(.debug_ranges) }
++
+   ${TINY_DATA_SECTION}
+   ${TINY_BSS_SECTION}
+ 

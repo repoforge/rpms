@@ -1,0 +1,57 @@
+2007-05-14  Andreas Schwab  <schwab@suse.de>
+
+	* emultempl/ppc64elf.em (gld${EMULATION_NAME}_new_vers_pattern):
+	Handle null pattern.
+
+--- ld/emultempl/ppc64elf.em	26 Mar 2007 11:10:44 -0000	1.52
++++ ld/emultempl/ppc64elf.em	14 May 2007 08:53:23 -0000	1.53
+@@ -414,17 +414,22 @@ gld${EMULATION_NAME}_new_vers_pattern (s
+   unsigned int len;
+   char *dot_pat;
+ 
+-  if (!dotsyms || entry->pattern[0] == '*' || entry->pattern[0] == '.')
++  if (!dotsyms
++      || (entry->pattern != NULL
++	  && (entry->pattern[0] == '*' || entry->pattern[0] == '.')))
+     return entry;
+ 
+   dot_entry = xmalloc (sizeof *dot_entry);
+   *dot_entry = *entry;
+   dot_entry->next = entry;
+-  len = strlen (entry->pattern) + 2;
+-  dot_pat = xmalloc (len);
+-  dot_pat[0] = '.';
+-  memcpy (dot_pat + 1, entry->pattern, len - 1);
+-  dot_entry->pattern = dot_pat;
++  if (entry->pattern != NULL)
++    {
++      len = strlen (entry->pattern) + 2;
++      dot_pat = xmalloc (len);
++      dot_pat[0] = '.';
++      memcpy (dot_pat + 1, entry->pattern, len - 1);
++      dot_entry->pattern = dot_pat;
++    }
+   if (entry->symbol != NULL)
+     {
+       len = strlen (entry->symbol) + 2;
+	* ld-elf/dl2a.list: New file.
+	* ld-elf/shared.exp: Add test using --dynamic-list=dl2a.list.
+
+--- ld/testsuite/ld-elf/dl2a.list	1 Jan 1970 00:00:00 -0000
++++ ld/testsuite/ld-elf/dl2a.list	14 May 2007 08:53:23 -0000	1.1
+@@ -0,0 +1,3 @@
++{
++  "foo";
++};
+--- ld/testsuite/ld-elf/shared.exp	14 Feb 2007 14:15:52 -0000	1.6
++++ ld/testsuite/ld-elf/shared.exp	15 May 2007 13:57:03 -0000	1.8
+@@ -72,6 +72,9 @@ set build_tests {
+   {"Build libdl2a.so with --dynamic-list=dl2.list"
+    "-shared -Wl,--dynamic-list=dl2.list" "-fPIC"
+    {dl2.c dl2xxx.c} {} "libdl2a.so"}
++  {"Build libdl2a.so with --dynamic-list=dl2a.list"
++   "-shared -Wl,--dynamic-list=dl2a.list" "-fPIC"
++   {dl2.c dl2xxx.c} {} "libdl2a.so"}
+   {"Build libdl2b.so with --dynamic-list=dl2.list and dl2xxx.list"
+    "-shared -Wl,--dynamic-list=dl2.list,--dynamic-list=dl2xxx.list" "-fPIC"
+    {dl2.c dl2xxx.c} {} "libdl2b.so"}

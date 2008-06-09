@@ -1,0 +1,2847 @@
+gas/
+2007-05-03  H.J. Lu  <hongjiu.lu@intel.com>
+
+	* config/tc-i386.c (match_template): Don't explicitly check
+	suffix for crc32 in Intel mode.
+	(process_suffix): Issue an error for crc32 if the operand size
+	is ambiguous.
+
+2007-05-01  H.J. Lu  <hongjiu.lu@intel.com>
+
+	* config/tc-i386.c (match_template): Check suffix for crc32 in
+	Intel mdoe.
+	(process_suffix): Default the suffix of 8bit crc32 to
+	BYTE_MNEM_SUFFIX.
+	(check_byte_reg): Skip check for 8bit crc32.
+
+2007-04-18  H.J. Lu <hongjiu.lu@intel.com>
+
+	* doc/c-i386.texi; Document .ssse3, .sse4.1, .sse4.2 and .sse4.
+
+2007-04-18  H.J. Lu <hongjiu.lu@intel.com>
+
+	* config/tc-i386.c (cpu_arch): Add .sse4.2 and .sse4.
+	(match_template): Handle operand size for crc32 in SSE4.2.
+	(process_suffix): Handle operand type for crc32 in SSE4.2.
+	(output_insn): Support SSE4.2.
+
+2007-04-18  H.J. Lu <hongjiu.lu@intel.com>
+
+	* config/tc-i386.c (cpu_arch): Add .sse4.1.
+	(process_operands): Adjust implicit operand for blendvpd,
+	blendvps and pblendvb in SSE4.1.
+	(output_insn): Support SSE4.1.
+
+gas/testsuite/
+2007-05-03  H.J. Lu  <hongjiu.lu@intel.com>
+
+	* gas/i386/crc32-intel.d: Updated.
+	* gas/i386/crc32.d: Likewise.
+	* gas/i386/sse4_2.d: Likewise.
+	* gas/i386/x86-64-crc32-intel.d: Likewise.
+	* gas/i386/x86-64-crc32.d: Likewise.
+	* gas/i386/x86-64-sse4_2.d: Likewise.
+
+	* gas/i386/crc32.s: Remove crc32 instructions with ambiguous
+	operand size and suffix in crc32 instructions in Intel mode.
+	* gas/i386/x86-64-crc32.s: Likewise.
+
+	* gas/i386/sse4_2.s: Remove crc32 instructions with ambiguous
+	operand size.
+	* gas/i386/x86-64-sse4_2.s: Likewise.
+
+	* gas/i386/i386.exp: Run inval-crc32 and x86-64-inval-crc32.
+
+	* gas/i386/inval-crc32.l: New.
+	* gas/i386/inval-crc32.s: Likewise.
+	* gas/i386/x86-64-inval-crc32.l: Likewise.
+	* gas/i386/x86-64-inval-crc32.s: Likewise.
+
+2007-05-01  H.J. Lu  <hongjiu.lu@intel.com>
+
+	* gas/i386/crc32-intel.d: New file.
+	* gas/i386/crc32.d:Likewise.
+	* gas/i386/crc32.s:Likewise.
+	* gas/i386/x86-64-crc32-intel.d:Likewise.
+	* gas/i386/x86-64-crc32.d:Likewise.
+	* gas/i386/x86-64-crc32.s:Likewise.
+
+	* gas/i386/i386.exp: Run crc32, crc32-intel, x86-64-crc32
+	and x86-64-crc32-intel.
+
+2007-04-18  H.J. Lu <hongjiu.lu@intel.com>
+
+	* gas/i386/i386.exp: Add sse4.2 and x86-64-sse4.2.
+
+	* gas/i386/sse4_2.d: New file.
+	* gas/i386/sse4_2.s: Likewise.
+	* gas/i386/x86-64-sse4_2.d: Likewise.
+	* gas/i386/x86-64-sse4_2.s: Likewise.
+
+2007-04-18  H.J. Lu <hongjiu.lu@intel.com>
+
+	* gas/i386/i386.exp: Add sse4.1 and x86-64-sse4.1.
+
+	* gas/i386/sse4_1.d: New file.
+	* gas/i386/sse4_1.s: Likewise.
+	* gas/i386/x86-64-sse4_1.d: Likewise.
+	* gas/i386/x86-64-sse4_1.s: Likewise.
+
+opcodes/
+2007-05-07  H.J. Lu  <hongjiu.lu@intel.com>
+
+	* i386-dis.c (threebyte_0x38_uses_DATA_prefix): Correct entries
+	for SSE4.
+	(threebyte_0x3a_uses_DATA_prefix): Likewise.
+
+2007-05-03  H.J. Lu  <hongjiu.lu@intel.com>
+
+	* i386-dis.c (CRC32_Fixup): Don't print suffix in Intel mode.
+
+	* i386-opc.c (i386_optab): Remove IgnoreSize and correct operand
+	type for crc32.
+
+2007-05-01  H.J. Lu  <hongjiu.lu@intel.com>
+
+	* i386-dis.c (CRC32_Fixup): Properly handle Intel mode and
+	check data size prefix in 16bit mode.
+
+	* i386-opc.c (i386_optab): Default crc32 to non-8bit and
+	support Intel mode.
+
+2007-04-18  H.J. Lu <hongjiu.lu@intel.com>
+
+	* i386-dis.c (CRC32_Fixup): New.
+	(PREGRP85, PREGRP86, PREGRP87, PREGRP88, PREGRP89, PREGRP90,
+	 PREGRP91): New.
+	(threebyte_0x38_uses_DATA_prefix): Updated for SSE4.2.
+	(threebyte_0x3a_uses_DATA_prefix): Likewise.
+	(prefix_user_table): Add PREGRP85, PREGRP86, PREGRP87,
+	PREGRP88, PREGRP89, PREGRP90 and PREGRP91.
+	(three_byte_table): Likewise.
+
+	* i386-opc.c (i386_optab): Add SSE4.2 opcodes.
+
+2006-11-09  H.J. Lu  <hongjiu.lu@intel.com>
+
+	* i386-dis.c (print_insn): Check PREFIX_REPNZ before
+	PREFIX_DATA when prefix user table is used.
+
+2006-11-09  H.J. Lu  <hongjiu.lu@intel.com>
+
+	* i386-dis.c (twobyte_uses_SSE_prefix): Renamed to ...
+	(twobyte_uses_DATA_prefix): This.
+	(twobyte_uses_REPNZ_prefix): New.
+	(twobyte_uses_REPZ_prefix): Likewise.
+	(threebyte_0x38_uses_DATA_prefix): Likewise.
+	(threebyte_0x38_uses_REPNZ_prefix): Likewise.
+	(threebyte_0x38_uses_REPZ_prefix): Likewise.
+	(threebyte_0x3a_uses_DATA_prefix): Likewise.
+	(threebyte_0x3a_uses_REPNZ_prefix): Likewise.
+	(threebyte_0x3a_uses_REPZ_prefix): Likewise.
+	(print_insn): Updated checking usages of DATA/REPNZ/REPZ
+	prefixes.
+
+2007-04-18  H.J. Lu <hongjiu.lu@intel.com>
+
+	* i386-dis.c (XMM_Fixup): New.
+	(Edqb): New.
+	(Edqd): New.
+	(XMM0): New.
+	(dqb_mode): New.
+	(dqd_mode): New.
+	(PREGRP39 ... PREGRP85): New.
+	(threebyte_0x38_uses_DATA_prefix): Updated for SSE4.
+	(threebyte_0x3a_uses_DATA_prefix): Likewise.
+	(prefix_user_table): Add PREGRP39 ... PREGRP85.
+	(three_byte_table): Likewise.
+	(putop): Handle 'K'.
+	(intel_operand_size): Handle dqb_mode, dqd_mode):
+	(OP_E): Likewise.
+	(OP_G): Likewise.
+
+	* i386-opc.c (i386_optab): Add SSE4.1 opcodes.
+
+	* i386-opc.h (CpuSSE4_1): New.
+	(CpuUnknownFlags): Add CpuSSE4_1.
+	(regKludge): Update comment.
+
+--- include/opcode/i386.h.jj	2007-05-07 10:48:24.000000000 +0200
++++ include/opcode/i386.h	2007-05-07 12:46:35.000000000 +0200
+@@ -1197,6 +1197,10 @@ static const template i386_optab[] =
+ {"pavgw",     2, 0x660fe3,  X, CpuSSE2,NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
+ {"pextrw",    3, 0x0fc5,    X, CpuMMX2,lq_Suf|IgnoreSize|Modrm,	{ Imm8, RegMMX, Reg32|Reg64 } },
+ {"pextrw",    3, 0x660fc5,  X, CpuSSE2,lq_Suf|IgnoreSize|Modrm,	{ Imm8, RegXMM, Reg32|Reg64 } },
++
++/* Streaming SIMD extensions 4.1 Instructions.  */
++{"pextrw",    3, 0x660f3a15,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm, { Imm8, RegXMM, Reg32|Reg64|ShortMem } },
++
+ {"pinsrw",    3, 0x0fc4,    X, CpuMMX2,lq_Suf|IgnoreSize|Modrm,	{ Imm8, Reg32|Reg64|ShortMem, RegMMX } },
+ {"pinsrw",    3, 0x660fc4,  X, CpuSSE2,lq_Suf|IgnoreSize|Modrm,	{ Imm8, Reg32|Reg64|ShortMem, RegXMM } },
+ {"pmaxsw",    2, 0x0fee,    X, CpuMMX2,NoSuf|IgnoreSize|Modrm,	{ RegMMX|LLongMem, RegMMX, 0 } },
+@@ -1410,6 +1414,71 @@ static const template i386_optab[] =
+ {"pabsd",    2,    0x0f381e,X, CpuSSSE3, NoSuf|IgnoreSize|Modrm,	{ RegMMX|LongMem, RegMMX, 0 } },
+ {"pabsd",    2,  0x660f381e,X, CpuSSSE3, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
+ 
++/* Streaming SIMD extensions 4.1 Instructions.  */
++
++{"blendpd",  3,  0x660f3a0d,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ Imm8, RegXMM|LLongMem, RegXMM } },
++{"blendps",  3,  0x660f3a0c,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ Imm8, RegXMM|LLongMem, RegXMM } },
++{"blendvpd", 3,  0x660f3815,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm|regKludge, { RegXMM, RegXMM|LLongMem, RegXMM } },
++{"blendvps", 3,  0x660f3814,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm|regKludge, { RegXMM, RegXMM|LLongMem, RegXMM } },
++{"dppd",     3,  0x660f3a41,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ Imm8, RegXMM|LLongMem, RegXMM } },
++{"dpps",     3,  0x660f3a40,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ Imm8, RegXMM|LLongMem, RegXMM } },
++{"extractps",3,  0x660f3a17,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ Imm8, RegXMM, Reg32|Reg64|LongMem } },
++{"insertps", 3,  0x660f3a21,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ Imm8, RegXMM|LongMem, RegXMM } },
++{"movntdqa", 2,  0x660f382a,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ LLongMem, RegXMM, 0 } },
++{"mpsadbw",  3,  0x660f3a42,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ Imm8, RegXMM|LLongMem, RegXMM } },
++{"packusdw", 2,  0x660f382b,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
++{"pblendvb", 3,  0x660f3810,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm|regKludge, { RegXMM, RegXMM|LLongMem, RegXMM } },
++{"pblendw",  3,  0x660f3a0e,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ Imm8, RegXMM|LLongMem, RegXMM } },
++{"pcmpeqq",  2,  0x660f3829,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
++{"pextrb",   3,  0x660f3a14,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ Imm8, RegXMM, Reg32|Reg64|ByteMem } },
++{"pextrd",   3,  0x660f3a16,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ Imm8, RegXMM, Reg32|LongMem } },
++{"pextrq",   3,  0x660f3a16,X, CpuSSE4_1|Cpu64, NoSuf|IgnoreSize|Modrm|Size64, { Imm8, RegXMM, Reg64|LLongMem } },
++{"phminposuw",2, 0x660f3841,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,      { RegXMM|LLongMem, RegXMM, 0 } },
++{"pinsrb",   3,  0x660f3a20,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ Imm8, Reg32|Reg64|ByteMem, RegXMM } },
++{"pinsrd",   3,  0x660f3a22,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ Imm8, Reg32|LongMem, RegXMM } },
++{"pinsrq",   3,  0x660f3a22,X, CpuSSE4_1|Cpu64, NoSuf|IgnoreSize|Modrm|Size64, { Imm8, Reg64|LLongMem, RegXMM } },
++{"pmaxsb",   2,  0x660f383c,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
++{"pmaxsd",   2,  0x660f383d,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
++{"pmaxud",   2,  0x660f383f,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
++{"pmaxuw",   2,  0x660f383e,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
++{"pminsb",   2,  0x660f3838,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
++{"pminsd",   2,  0x660f3839,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
++{"pminud",   2,  0x660f383b,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
++{"pminuw",   2,  0x660f383a,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
++{"pmovsxbw", 2,  0x660f3820,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
++{"pmovsxbd", 2,  0x660f3821,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LongMem, RegXMM, 0 } },
++{"pmovsxbq", 2,  0x660f3822,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|ShortMem, RegXMM, 0 } },
++{"pmovsxwd", 2,  0x660f3823,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
++{"pmovsxwq", 2,  0x660f3824,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LongMem, RegXMM, 0 } },
++{"pmovsxdq", 2,  0x660f3825,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
++{"pmovzxbw", 2,  0x660f3830,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
++{"pmovzxbd", 2,  0x660f3831,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LongMem, RegXMM, 0 } },
++{"pmovzxbq", 2,  0x660f3832,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|ShortMem, RegXMM, 0 } },
++{"pmovzxwd", 2,  0x660f3833,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
++{"pmovzxwq", 2,  0x660f3834,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LongMem, RegXMM, 0 } },
++{"pmovzxdq", 2,  0x660f3835,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
++{"pmuldq",   2,  0x660f3828,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
++{"pmulld",   2,  0x660f3840,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
++{"ptest",    2,  0x660f3817,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
++{"roundpd",  3,  0x660f3a09,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ Imm8, RegXMM|LLongMem, RegXMM } },
++{"roundps",  3,  0x660f3a08,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ Imm8, RegXMM|LLongMem, RegXMM } },
++{"roundsd",  3,  0x660f3a0b,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ Imm8, RegXMM|LLongMem, RegXMM } },
++{"roundss",  3,  0x660f3a0a,X, CpuSSE4_1, NoSuf|IgnoreSize|Modrm,	{ Imm8, RegXMM|LongMem, RegXMM } },
++
++/* Streaming SIMD extensions 4.2 Instructions.  */
++
++{"pcmpgtq",   2,  0x660f3837,X, CpuSSE4_2, NoSuf|IgnoreSize|Modrm,	{ RegXMM|LLongMem, RegXMM, 0 } },
++{"pcmpestri", 3,  0x660f3a61,X, CpuSSE4_2, NoSuf|IgnoreSize|Modrm,	{ Imm8, RegXMM|LLongMem, RegXMM } },
++{"pcmpestrm", 3,  0x660f3a60,X, CpuSSE4_2, NoSuf|IgnoreSize|Modrm,	{ Imm8, RegXMM|LLongMem, RegXMM } },
++{"pcmpistri", 3,  0x660f3a63,X, CpuSSE4_2, NoSuf|IgnoreSize|Modrm,	{ Imm8, RegXMM|LLongMem, RegXMM } },
++{"pcmpistrm", 3,  0x660f3a62,X, CpuSSE4_2, NoSuf|IgnoreSize|Modrm,	{ Imm8, RegXMM|LLongMem, RegXMM } },
++/* We put non-8bit version before 8bit so that crc32 with memory operand
++   defaults to non-8bit.  */
++{"crc32",     2,  0xf20f38f1,X, CpuSSE4_2, wl_Suf|Modrm,		{ Reg16|Reg32|ShortMem|LongMem, Reg32, 0 } },
++{"crc32",     2,  0xf20f38f1,X, CpuSSE4_2|Cpu64, q_Suf|Modrm|Rex64,	{ Reg64|LLongMem, Reg64, 0 } },
++{"crc32",     2,  0xf20f38f0,X, CpuSSE4_2, b_Suf|Modrm,			{ Reg8|ByteMem, Reg32, 0 } },
++{"crc32",     2,  0xf20f38f0,X, CpuSSE4_2|Cpu64, b_Suf|Modrm|Rex64,	{ Reg8|ByteMem, Reg64, 0 } },
++
+ /* AMD 3DNow! instructions.  */
+ 
+ {"prefetch", 1, 0x0f0d,	   0, Cpu3dnow, NoSuf|IgnoreSize|Modrm,	{ ByteMem, 0, 0 } },
+@@ -1472,7 +1541,7 @@ static const template i386_optab[] =
+ {"insertq",  4, 0xf20f78,  X, CpuSSE4a, NoSuf|IgnoreSize|Modrm, { Imm8, Imm8, RegXMM, RegXMM} },
+ 
+ /* ABM instructions */
+-{"popcnt",   2, 0xf30fb8,  X, CpuABM, wlq_Suf|Modrm,          { WordReg|WordMem, WordReg, 0} },
++{"popcnt",   2, 0xf30fb8,  X, CpuABM|CpuSSE4_2, wlq_Suf|Modrm, { WordReg|WordMem, WordReg, 0} },
+ {"lzcnt",    2, 0xf30fbd,  X, CpuABM, wlq_Suf|Modrm,          { WordReg|WordMem, WordReg, 0} },
+ 
+ 
+--- opcodes/i386-dis.c.jj	2007-05-07 10:48:24.000000000 +0200
++++ opcodes/i386-dis.c	2007-05-07 15:11:20.000000000 +0200
+@@ -105,6 +105,8 @@ static void BadOp (void);
+ static void SEG_Fixup (int, int);
+ static void VMX_Fixup (int, int);
+ static void REP_Fixup (int, int);
++static void XMM_Fixup (int, int);
++static void CRC32_Fixup (int, int);
+ 
+ struct dis_private {
+   /* Points to first byte not fetched.  */
+@@ -213,6 +215,8 @@ fetch_data (struct disassemble_info *inf
+ #define Eq OP_E, q_mode
+ #define Edq OP_E, dq_mode
+ #define Edqw OP_E, dqw_mode
++#define Edqb OP_E, dqb_mode
++#define Edqd OP_E, dqd_mode
+ #define indirEv OP_indirE, stack_v_mode
+ #define indirEp OP_indirE, f_mode
+ #define stackEv OP_E, stack_v_mode
+@@ -319,6 +323,7 @@ fetch_data (struct disassemble_info *inf
+ #define VM OP_VMX, q_mode
+ #define OPSUF OP_3DNowSuffix, 0
+ #define OPSIMD OP_SIMD_Suffix, 0
++#define XMM0 XMM_Fixup, 0
+ 
+ /* Used handle "rep" prefix for string instructions.  */
+ #define Xbr REP_Fixup, eSI_reg
+@@ -352,6 +357,8 @@ fetch_data (struct disassemble_info *inf
+ #define f_mode 13 /* 4- or 6-byte pointer operand */
+ #define const_1_mode 14
+ #define stack_v_mode 15 /* v_mode for stack-related opcodes.  */
++#define dqb_mode 18 /* registers like dq_mode, memory like b_mode.  */
++#define dqd_mode 19 /* registers like dq_mode, memory like d_mode.  */
+ 
+ #define es_reg 100
+ #define cs_reg 101
+@@ -472,7 +479,61 @@ fetch_data (struct disassemble_info *inf
+ #define PREGRP35  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 35, NULL, 0, NULL, 0
+ #define PREGRP36  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 36, NULL, 0, NULL, 0
+ #define PREGRP37  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 37, NULL, 0, NULL, 0
+-
++#define PREGRP38  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 38, NULL, 0, NULL, 0
++#define PREGRP39  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 39, NULL, 0, NULL, 0
++#define PREGRP40  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 40, NULL, 0, NULL, 0
++#define PREGRP41  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 41, NULL, 0, NULL, 0
++#define PREGRP42  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 42, NULL, 0, NULL, 0
++#define PREGRP43  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 43, NULL, 0, NULL, 0
++#define PREGRP44  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 44, NULL, 0, NULL, 0
++#define PREGRP45  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 45, NULL, 0, NULL, 0
++#define PREGRP46  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 46, NULL, 0, NULL, 0
++#define PREGRP47  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 47, NULL, 0, NULL, 0
++#define PREGRP48  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 48, NULL, 0, NULL, 0
++#define PREGRP49  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 49, NULL, 0, NULL, 0
++#define PREGRP50  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 50, NULL, 0, NULL, 0
++#define PREGRP51  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 51, NULL, 0, NULL, 0
++#define PREGRP52  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 52, NULL, 0, NULL, 0
++#define PREGRP53  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 53, NULL, 0, NULL, 0
++#define PREGRP54  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 54, NULL, 0, NULL, 0
++#define PREGRP55  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 55, NULL, 0, NULL, 0
++#define PREGRP56  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 56, NULL, 0, NULL, 0
++#define PREGRP57  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 57, NULL, 0, NULL, 0
++#define PREGRP58  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 58, NULL, 0, NULL, 0
++#define PREGRP59  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 59, NULL, 0, NULL, 0
++#define PREGRP60  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 60, NULL, 0, NULL, 0
++#define PREGRP61  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 61, NULL, 0, NULL, 0
++#define PREGRP62  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 62, NULL, 0, NULL, 0
++#define PREGRP63  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 63, NULL, 0, NULL, 0
++#define PREGRP64  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 64, NULL, 0, NULL, 0
++#define PREGRP65  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 65, NULL, 0, NULL, 0
++#define PREGRP66  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 66, NULL, 0, NULL, 0
++#define PREGRP67  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 67, NULL, 0, NULL, 0
++#define PREGRP68  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 68, NULL, 0, NULL, 0
++#define PREGRP69  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 69, NULL, 0, NULL, 0
++#define PREGRP70  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 70, NULL, 0, NULL, 0
++#define PREGRP71  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 71, NULL, 0, NULL, 0
++#define PREGRP72  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 72, NULL, 0, NULL, 0
++#define PREGRP73  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 73, NULL, 0, NULL, 0
++#define PREGRP74  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 74, NULL, 0, NULL, 0
++#define PREGRP75  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 75, NULL, 0, NULL, 0
++#define PREGRP76  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 76, NULL, 0, NULL, 0
++#define PREGRP77  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 77, NULL, 0, NULL, 0
++#define PREGRP78  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 78, NULL, 0, NULL, 0
++#define PREGRP79  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 79, NULL, 0, NULL, 0
++#define PREGRP80  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 80, NULL, 0, NULL, 0
++#define PREGRP81  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 81, NULL, 0, NULL, 0
++#define PREGRP82  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 82, NULL, 0, NULL, 0
++#define PREGRP83  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 83, NULL, 0, NULL, 0
++#define PREGRP84  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 84, NULL, 0, NULL, 0
++#define PREGRP85  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 85, NULL, 0, NULL, 0
++#define PREGRP86  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 86, NULL, 0, NULL, 0
++#define PREGRP87  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 87, NULL, 0, NULL, 0
++#define PREGRP88  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 88, NULL, 0, NULL, 0
++#define PREGRP89  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 89, NULL, 0, NULL, 0
++#define PREGRP90  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 90, NULL, 0, NULL, 0
++#define PREGRP91  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 91, NULL, 0, NULL, 0
++#define PREGRP92  NULL, NULL, USE_PREFIX_USER_TABLE, NULL, 92, NULL, 0, NULL, 0
+ 
+ #define X86_64_0  NULL, NULL, X86_64_SPECIAL, NULL,  0, NULL, 0, NULL, 0
+ 
+@@ -504,6 +565,7 @@ struct dis386 {
+    'I' => honor following macro letter even in Intel mode (implemented only
+    .      for some of the macro letters)
+    'J' => print 'l'
++   'K' => print 'd' or 'q' if rex prefix is present.
+    'L' => print 'l' if suffix_always is true
+    'N' => print 'n' if instruction has no wait "prefix"
+    'O' => print 'd', or 'o'
+@@ -1158,7 +1220,7 @@ static const unsigned char twobyte_has_m
+   /*       0 1 2 3 4 5 6 7 8 9 a b c d e f        */
+ };
+ 
+-static const unsigned char twobyte_uses_SSE_prefix[256] = {
++static const unsigned char twobyte_uses_DATA_prefix[256] = {
+   /*       0 1 2 3 4 5 6 7 8 9 a b c d e f        */
+   /*       -------------------------------        */
+   /* 00 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 0f */
+@@ -1181,6 +1243,196 @@ static const unsigned char twobyte_uses_
+   /*       0 1 2 3 4 5 6 7 8 9 a b c d e f        */
+ };
+ 
++static const unsigned char twobyte_uses_REPNZ_prefix[256] = {
++  /*       0 1 2 3 4 5 6 7 8 9 a b c d e f        */
++  /*       -------------------------------        */
++  /* 00 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 0f */
++  /* 10 */ 1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 1f */
++  /* 20 */ 0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0, /* 2f */
++  /* 30 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 3f */
++  /* 40 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 4f */
++  /* 50 */ 0,1,0,0,0,0,0,0,1,1,1,0,1,1,1,1, /* 5f */
++  /* 60 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 6f */
++  /* 70 */ 1,0,0,0,0,0,0,0,1,1,0,0,1,1,0,0, /* 7f */
++  /* 80 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 8f */
++  /* 90 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 9f */
++  /* a0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* af */
++  /* b0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* bf */
++  /* c0 */ 0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0, /* cf */
++  /* d0 */ 1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0, /* df */
++  /* e0 */ 0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0, /* ef */
++  /* f0 */ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* ff */
++  /*       -------------------------------        */
++  /*       0 1 2 3 4 5 6 7 8 9 a b c d e f        */
++};
++
++static const unsigned char twobyte_uses_REPZ_prefix[256] = {
++  /*       0 1 2 3 4 5 6 7 8 9 a b c d e f        */
++  /*       -------------------------------        */
++  /* 00 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 0f */
++  /* 10 */ 1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0, /* 1f */
++  /* 20 */ 0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0, /* 2f */
++  /* 30 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 3f */
++  /* 40 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 4f */
++  /* 50 */ 0,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1, /* 5f */
++  /* 60 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1, /* 6f */
++  /* 70 */ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1, /* 7f */
++  /* 80 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 8f */
++  /* 90 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 9f */
++  /* a0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* af */
++  /* b0 */ 0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0, /* bf */
++  /* c0 */ 0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0, /* cf */
++  /* d0 */ 0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0, /* df */
++  /* e0 */ 0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0, /* ef */
++  /* f0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* ff */
++  /*       -------------------------------        */
++  /*       0 1 2 3 4 5 6 7 8 9 a b c d e f        */
++};
++
++/* This is used to determine if opcode 0f 38 XX uses DATA prefix.  */ 
++static const unsigned char threebyte_0x38_uses_DATA_prefix[256] = {
++  /*       0 1 2 3 4 5 6 7 8 9 a b c d e f        */
++  /*       -------------------------------        */
++  /* 00 */ 1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0, /* 0f */
++  /* 10 */ 1,0,0,0,1,1,0,1,0,0,0,0,1,1,1,0, /* 1f */
++  /* 20 */ 1,1,1,1,1,1,0,0,1,1,1,1,0,0,0,0, /* 2f */
++  /* 30 */ 1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1, /* 3f */
++  /* 40 */ 1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 4f */
++  /* 50 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 5f */
++  /* 60 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 6f */
++  /* 70 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 7f */
++  /* 80 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 8f */
++  /* 90 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 9f */
++  /* a0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* af */
++  /* b0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* bf */
++  /* c0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* cf */
++  /* d0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* df */
++  /* e0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* ef */
++  /* f0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* ff */
++  /*       -------------------------------        */
++  /*       0 1 2 3 4 5 6 7 8 9 a b c d e f        */
++};
++
++/* This is used to determine if opcode 0f 38 XX uses REPNZ prefix.  */ 
++static const unsigned char threebyte_0x38_uses_REPNZ_prefix[256] = {
++  /*       0 1 2 3 4 5 6 7 8 9 a b c d e f        */
++  /*       -------------------------------        */
++  /* 00 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 0f */
++  /* 10 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 1f */
++  /* 20 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 2f */
++  /* 30 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 3f */
++  /* 40 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 4f */
++  /* 50 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 5f */
++  /* 60 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 6f */
++  /* 70 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 7f */
++  /* 80 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 8f */
++  /* 90 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 9f */
++  /* a0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* af */
++  /* b0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* bf */
++  /* c0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* cf */
++  /* d0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* df */
++  /* e0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* ef */
++  /* f0 */ 1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* ff */
++  /*       -------------------------------        */
++  /*       0 1 2 3 4 5 6 7 8 9 a b c d e f        */
++};
++
++/* This is used to determine if opcode 0f 38 XX uses REPZ prefix.  */ 
++static const unsigned char threebyte_0x38_uses_REPZ_prefix[256] = {
++  /*       0 1 2 3 4 5 6 7 8 9 a b c d e f        */
++  /*       -------------------------------        */
++  /* 00 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 0f */
++  /* 10 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 1f */
++  /* 20 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 2f */
++  /* 30 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 3f */
++  /* 40 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 4f */
++  /* 50 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 5f */
++  /* 60 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 6f */
++  /* 70 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 7f */
++  /* 80 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 8f */
++  /* 90 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 9f */
++  /* a0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* af */
++  /* b0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* bf */
++  /* c0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* cf */
++  /* d0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* df */
++  /* e0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* ef */
++  /* f0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* ff */
++  /*       -------------------------------        */
++  /*       0 1 2 3 4 5 6 7 8 9 a b c d e f        */
++};
++
++/* This is used to determine if opcode 0f 3a XX uses DATA prefix.  */ 
++static const unsigned char threebyte_0x3a_uses_DATA_prefix[256] = {
++  /*       0 1 2 3 4 5 6 7 8 9 a b c d e f        */
++  /*       -------------------------------        */
++  /* 00 */ 0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1, /* 0f */
++  /* 10 */ 0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0, /* 1f */
++  /* 20 */ 1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 2f */
++  /* 30 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 3f */
++  /* 40 */ 1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 4f */
++  /* 50 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 5f */
++  /* 60 */ 1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0, /* 6f */
++  /* 70 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 7f */
++  /* 80 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 8f */
++  /* 90 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 9f */
++  /* a0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* af */
++  /* b0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* bf */
++  /* c0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* cf */
++  /* d0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* df */
++  /* e0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* ef */
++  /* f0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* ff */
++  /*       -------------------------------        */
++  /*       0 1 2 3 4 5 6 7 8 9 a b c d e f        */
++};
++
++/* This is used to determine if opcode 0f 3a XX uses REPNZ prefix.  */ 
++static const unsigned char threebyte_0x3a_uses_REPNZ_prefix[256] = {
++  /*       0 1 2 3 4 5 6 7 8 9 a b c d e f        */
++  /*       -------------------------------        */
++  /* 00 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 0f */
++  /* 10 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 1f */
++  /* 20 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 2f */
++  /* 30 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 3f */
++  /* 40 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 4f */
++  /* 50 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 5f */
++  /* 60 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 6f */
++  /* 70 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 7f */
++  /* 80 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 8f */
++  /* 90 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 9f */
++  /* a0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* af */
++  /* b0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* bf */
++  /* c0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* cf */
++  /* d0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* df */
++  /* e0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* ef */
++  /* f0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* ff */
++  /*       -------------------------------        */
++  /*       0 1 2 3 4 5 6 7 8 9 a b c d e f        */
++};
++
++/* This is used to determine if opcode 0f 3a XX uses REPZ prefix.  */ 
++static const unsigned char threebyte_0x3a_uses_REPZ_prefix[256] = {
++  /*       0 1 2 3 4 5 6 7 8 9 a b c d e f        */
++  /*       -------------------------------        */
++  /* 00 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 0f */
++  /* 10 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 1f */
++  /* 20 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 2f */
++  /* 30 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 3f */
++  /* 40 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 4f */
++  /* 50 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 5f */
++  /* 60 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 6f */
++  /* 70 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 7f */
++  /* 80 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 8f */
++  /* 90 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* 9f */
++  /* a0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* af */
++  /* b0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* bf */
++  /* c0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* cf */
++  /* d0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* df */
++  /* e0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* ef */
++  /* f0 */ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* ff */
++  /*       -------------------------------        */
++  /*       0 1 2 3 4 5 6 7 8 9 a b c d e f        */
++};
++
+ static char obuf[100];
+ static char *obufp;
+ static char scratchbuf[100];
+@@ -1729,105 +1981,545 @@ static const struct dis386 prefix_user_t
+   },
+   /* PREGRP24 */
+   {
+-    { "(bad)", MX, EX, XX, XX },
+-    { "(bad)", XM, EX, XX, XX },
+-    { "punpckhqdq", XM, EX, XX, XX },
+-    { "(bad)", XM, EX, XX, XX },
++    { "(bad)", MX, EX, XX, XX },
++    { "(bad)", XM, EX, XX, XX },
++    { "punpckhqdq", XM, EX, XX, XX },
++    { "(bad)", XM, EX, XX, XX },
++  },
++  /* PREGRP25 */
++  {
++    { "movntq", EM, MX, XX, XX },
++    { "(bad)", EM, XM, XX, XX },
++    { "movntdq", EM, XM, XX, XX },
++    { "(bad)", EM, XM, XX, XX },
++  },
++  /* PREGRP26 */
++  {
++    { "(bad)", MX, EX, XX, XX },
++    { "(bad)", XM, EX, XX, XX },
++    { "punpcklqdq", XM, EX, XX, XX },
++    { "(bad)", XM, EX, XX, XX },
++  },
++  /* PREGRP27 */
++  {
++    { "(bad)", MX, EX, XX, XX },
++    { "(bad)", XM, EX, XX, XX },
++    { "addsubpd", XM, EX, XX, XX },
++    { "addsubps", XM, EX, XX, XX },
++  },
++  /* PREGRP28 */
++  {
++    { "(bad)", MX, EX, XX, XX },
++    { "(bad)", XM, EX, XX, XX },
++    { "haddpd", XM, EX, XX, XX },
++    { "haddps", XM, EX, XX, XX },
++  },
++  /* PREGRP29 */
++  {
++    { "(bad)", MX, EX, XX, XX },
++    { "(bad)", XM, EX, XX, XX },
++    { "hsubpd", XM, EX, XX, XX },
++    { "hsubps", XM, EX, XX, XX },
++  },
++  /* PREGRP30 */
++  {
++    { "movlpX", XM, EX, SIMD_Fixup, 'h', XX }, /* really only 2 operands */
++    { "movsldup", XM, EX, XX, XX },
++    { "movlpd", XM, EX, XX, XX },
++    { "movddup", XM, EX, XX, XX },
++  },
++  /* PREGRP31 */
++  {
++    { "movhpX", XM, EX, SIMD_Fixup, 'l', XX },
++    { "movshdup", XM, EX, XX, XX },
++    { "movhpd", XM, EX, XX, XX },
++    { "(bad)", XM, EX, XX, XX },
++  },
++  /* PREGRP32 */
++  {
++    { "(bad)", XM, EX, XX, XX },
++    { "(bad)", XM, EX, XX, XX },
++    { "(bad)", XM, EX, XX, XX },
++    { "lddqu", XM, M, XX, XX },
++  },
++  /* PREGRP33 */
++  {
++    {"movntps",Ev, XM, XX, XX},
++    {"movntss",Ev, XM, XX, XX},
++    {"movntpd",Ev, XM, XX, XX},
++    {"movntsd",Ev, XM, XX, XX},
++  },
++
++  /* PREGRP34 */
++  {
++    {"vmread", Em, Gm, XX, XX},
++    {"(bad)",  XX, XX, XX, XX},
++    {"extrq",  XS, Ib, Ib, XX},
++    {"insertq",XM, XS, Ib, Ib},
++  },
++  
++ /* PREGRP35 */  
++  {
++    {"vmwrite", Gm, Em, XX, XX},
++    {"(bad)",   XX, XX, XX, XX},
++    {"extrq",   XM, XS, XX, XX},
++    {"insertq", XM, XS, XX, XX},
++  }, 
++
++  /* PREGRP36 */
++  {
++    { "bsrS",   Gv, Ev, XX, XX },
++    { "lzcntS", Gv, Ev, XX, XX },
++    { "bsrS",  Gv, Ev, XX, XX },
++    { "(bad)",  XX, XX, XX, XX },
++  },
++
++  /* PREGRP37 */
++  {
++    { "(bad)",  XX, XX, XX, XX },
++    { "popcntS",Gv, Ev, XX, XX },
++    { "(bad)",  XX, XX, XX, XX },
++    { "(bad)",  XX, XX, XX, XX },    
++  },
++
++  /* PREGRP38 */
++  {
++    { "(bad)",  XX, XX, XX, XX },
++    { "(bad)",  XX, XX, XX, XX },
++    { "(bad)",  XX, XX, XX, XX },
++    { "(bad)",  XX, XX, XX, XX },    
++  },
++
++  /* PREGRP39 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pblendvb", XM, EX, XMM0, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP40 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "blendvps", XM, EX, XMM0, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP41 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "blendvpd", XM, EX, XMM0, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP42 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "ptest",  XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP43 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pmovsxbw", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP44 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pmovsxbd", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP45 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pmovsxbq", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP46 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pmovsxwd", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP47 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pmovsxwq", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP48 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pmovsxdq", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP49 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pmuldq", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP50 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pcmpeqq", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP51 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "movntdqa", XM, EM, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP52 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "packusdw", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP53 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pmovzxbw", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP54 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pmovzxbd", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP55 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pmovzxbq", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP56 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pmovzxwd", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP57 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pmovzxwq", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP58 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pmovzxdq", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP59 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pminsb",	XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP60 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pminsd",	XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP61 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pminuw",	XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP62 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pminud",	XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP63 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pmaxsb",	XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP64 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pmaxsd",	XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP65 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pmaxuw", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP66 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pmaxud", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP67 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pmulld", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP68 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "phminposuw", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP69 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "roundps", XM, EX, Ib, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP70 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "roundpd", XM, EX, Ib, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP71 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "roundss", XM, EX, Ib, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP72 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "roundsd", XM, EX, Ib, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP73 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "blendps", XM, EX, Ib, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP74 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "blendpd", XM, EX, Ib, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP75 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pblendw", XM, EX, Ib, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP76 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pextrb",	Edqb, XM, Ib, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP77 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pextrw",	Edqw, XM, Ib, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP78 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pextrK",	Edq, XM, Ib, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
++
++  /* PREGRP79 */
++  {
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "extractps", Edqd, XM, Ib, XX },
++    { "(bad)",	XX, XX, XX, XX },
+   },
+-  /* PREGRP25 */
++
++  /* PREGRP80 */
+   {
+-    { "movntq", EM, MX, XX, XX },
+-    { "(bad)", EM, XM, XX, XX },
+-    { "movntdq", EM, XM, XX, XX },
+-    { "(bad)", EM, XM, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pinsrb",	XM, Edqb, Ib, XX },
++    { "(bad)",	XX, XX, XX, XX },
+   },
+-  /* PREGRP26 */
++
++  /* PREGRP81 */
+   {
+-    { "(bad)", MX, EX, XX, XX },
+-    { "(bad)", XM, EX, XX, XX },
+-    { "punpcklqdq", XM, EX, XX, XX },
+-    { "(bad)", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "insertps", XM, EX, Ib, XX },
++    { "(bad)",	XX, XX, XX, XX },
+   },
+-  /* PREGRP27 */
++
++  /* PREGRP82 */
+   {
+-    { "(bad)", MX, EX, XX, XX },
+-    { "(bad)", XM, EX, XX, XX },
+-    { "addsubpd", XM, EX, XX, XX },
+-    { "addsubps", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pinsrK",	XM, Edq, Ib, XX },
++    { "(bad)",	XX, XX, XX, XX },
+   },
+-  /* PREGRP28 */
++
++  /* PREGRP83 */
+   {
+-    { "(bad)", MX, EX, XX, XX },
+-    { "(bad)", XM, EX, XX, XX },
+-    { "haddpd", XM, EX, XX, XX },
+-    { "haddps", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "dpps",	XM, EX, Ib, XX },
++    { "(bad)",	XX, XX, XX, XX },
+   },
+-  /* PREGRP29 */
++
++  /* PREGRP84 */
+   {
+-    { "(bad)", MX, EX, XX, XX },
+-    { "(bad)", XM, EX, XX, XX },
+-    { "hsubpd", XM, EX, XX, XX },
+-    { "hsubps", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "dppd",	XM, EX, Ib, XX },
++    { "(bad)",	XX, XX, XX, XX },
+   },
+-  /* PREGRP30 */
++
++  /* PREGRP85 */
+   {
+-    { "movlpX", XM, EX, SIMD_Fixup, 'h', XX }, /* really only 2 operands */
+-    { "movsldup", XM, EX, XX, XX },
+-    { "movlpd", XM, EX, XX, XX },
+-    { "movddup", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "mpsadbw", XM, EX, Ib, XX },
++    { "(bad)",	XX, XX, XX, XX },
+   },
+-  /* PREGRP31 */
++
++  /* PREGRP86 */
+   {
+-    { "movhpX", XM, EX, SIMD_Fixup, 'l', XX },
+-    { "movshdup", XM, EX, XX, XX },
+-    { "movhpd", XM, EX, XX, XX },
+-    { "(bad)", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pcmpgtq", XM, EX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
+   },
+-  /* PREGRP32 */
++
++  /* PREGRP87 */
+   {
+-    { "(bad)", XM, EX, XX, XX },
+-    { "(bad)", XM, EX, XX, XX },
+-    { "(bad)", XM, EX, XX, XX },
+-    { "lddqu", XM, M, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "crc32",	Gdq, CRC32_Fixup, b_mode, XX, XX },	
+   },
+-  /* PREGRP33 */
++
++  /* PREGRP88 */
+   {
+-    {"movntps",Ev, XM, XX, XX},
+-    {"movntss",Ev, XM, XX, XX},
+-    {"movntpd",Ev, XM, XX, XX},
+-    {"movntsd",Ev, XM, XX, XX},
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "crc32",	Gdq, CRC32_Fixup, v_mode, XX, XX },	
+   },
+ 
+-  /* PREGRP34 */
++  /* PREGRP89 */
+   {
+-    {"vmread", Em, Gm, XX, XX},
+-    {"(bad)",  XX, XX, XX, XX},
+-    {"extrq",  XS, Ib, Ib, XX},
+-    {"insertq",XM, XS, Ib, Ib},
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pcmpestrm", XM, EX, Ib, XX },
++    { "(bad)",	XX, XX, XX, XX },
+   },
+-  
+- /* PREGRP35 */  
++
++  /* PREGRP90 */
+   {
+-    {"vmwrite", Gm, Em, XX, XX},
+-    {"(bad)",   XX, XX, XX, XX},
+-    {"extrq",   XM, XS, XX, XX},
+-    {"insertq", XM, XS, XX, XX},
+-  }, 
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pcmpestri", XM, EX, Ib, XX },
++    { "(bad)",	XX, XX, XX, XX },
++  },
+ 
+-  /* PREGRP36 */
++  /* PREGRP91 */
+   {
+-    { "bsrS",   Gv, Ev, XX, XX },
+-    { "lzcntS", Gv, Ev, XX, XX },
+-    { "bsrS",  Gv, Ev, XX, XX },
+-    { "(bad)",  XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pcmpistrm", XM, EX, Ib, XX },
++    { "(bad)",	XX, XX, XX, XX },
+   },
+ 
+-  /* PREGRP37 */
++  /* PREGRP92 */
+   {
+-    { "(bad)",  XX, XX, XX, XX },
+-    { "popcntS",Gv, Ev, XX, XX },
+-    { "(bad)",  XX, XX, XX, XX },
+-    { "(bad)",  XX, XX, XX, XX },    
++    { "(bad)",	XX, XX, XX, XX },
++    { "(bad)",	XX, XX, XX, XX },
++    { "pcmpistri", XM, EX, Ib, XX },
++    { "(bad)",	XX, XX, XX, XX },
+   },
+ };
+ 
+@@ -1836,6 +2528,7 @@ static const struct dis386 x86_64_table[
+     { "arpl", Ew, Gw, XX, XX },
+     { "movs{||lq|xd}", Gv, Ed, XX, XX },
+   },
++
+ };
+ 
+ static const struct dis386 three_byte_table[][256] = {
+@@ -1860,14 +2553,14 @@ static const struct dis386 three_byte_ta
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+     /* 10 */
++    { PREGRP39 },
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
++    { PREGRP40 },
++    { PREGRP41 },
+     { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
++    { PREGRP42 },
+     /* 18 */
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+@@ -1878,44 +2571,44 @@ static const struct dis386 three_byte_ta
+     { "pabsd",		MX, EM, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+     /* 20 */
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
++    { PREGRP43 },
++    { PREGRP44 },
++    { PREGRP45 },
++    { PREGRP46 },
++    { PREGRP47 },
++    { PREGRP48 },
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+     /* 28 */
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
++    { PREGRP49 },
++    { PREGRP50 },
++    { PREGRP51 },
++    { PREGRP52 },
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+     /* 30 */
++    { PREGRP53 },
++    { PREGRP54 },
++    { PREGRP55 },
++    { PREGRP56 },
++    { PREGRP57 },
++    { PREGRP58 },
+     { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
++    { PREGRP86 },
+     /* 38 */
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
++    { PREGRP59 },
++    { PREGRP60 },
++    { PREGRP61 },
++    { PREGRP62 },
++    { PREGRP63 },
++    { PREGRP64 },
++    { PREGRP65 },
++    { PREGRP66 },
+     /* 40 */
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
++    { PREGRP67 },
++    { PREGRP68 },
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+@@ -2112,8 +2805,8 @@ static const struct dis386 three_byte_ta
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+     /* f0 */
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
++    { PREGRP87 },
++    { PREGRP88 },
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+@@ -2142,23 +2835,23 @@ static const struct dis386 three_byte_ta
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+     /* 08 */
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
++    { PREGRP69 },
++    { PREGRP70 },
++    { PREGRP71 },
++    { PREGRP72 },
++    { PREGRP73 },
++    { PREGRP74 },
++    { PREGRP75 },
+     { "palignr",	MX, EM, Ib, XX },
+     /* 10 */
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
++    { PREGRP76 },
++    { PREGRP77 },
++    { PREGRP78 },
++    { PREGRP79 },
+     /* 18 */
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+@@ -2169,9 +2862,9 @@ static const struct dis386 three_byte_ta
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+     /* 20 */
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
++    { PREGRP80 },
++    { PREGRP81 },
++    { PREGRP82 },
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+@@ -2205,9 +2898,9 @@ static const struct dis386 three_byte_ta
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+     /* 40 */
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
++    { PREGRP83 },
++    { PREGRP84 },
++    { PREGRP85 },
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+@@ -2241,10 +2934,10 @@ static const struct dis386 three_byte_ta
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+     /* 60 */
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
+-    { "(bad)",		XX, XX, XX, XX },
++    { PREGRP89 },
++    { PREGRP90 },
++    { PREGRP91 },
++    { PREGRP92 },
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+     { "(bad)",		XX, XX, XX, XX },
+@@ -2649,10 +3342,12 @@ print_insn (bfd_vma pc, disassemble_info
+   int i;
+   char *first, *second, *third, *fourth;
+   int needcomma;
+-  unsigned char uses_SSE_prefix, uses_LOCK_prefix;
++  unsigned char uses_DATA_prefix, uses_LOCK_prefix;
++  unsigned char uses_REPNZ_prefix, uses_REPZ_prefix;
+   int sizeflag;
+   const char *p;
+   struct dis_private priv;
++  unsigned char op;
+ 
+   if (info->mach == bfd_mach_x86_64_intel_syntax
+       || info->mach == bfd_mach_x86_64)
+@@ -2820,37 +3515,62 @@ print_insn (bfd_vma pc, disassemble_info
+       return 1;
+     }
+ 
++  op = 0;
+   if (*codep == 0x0f)
+     {
++      unsigned char threebyte;
+       FETCH_DATA (info, codep + 2);
+-      dp = &dis386_twobyte[*++codep];
++      threebyte = *++codep;
++      dp = &dis386_twobyte[threebyte];
+       need_modrm = twobyte_has_modrm[*codep];
+-      uses_SSE_prefix = twobyte_uses_SSE_prefix[*codep];
++      uses_DATA_prefix = twobyte_uses_DATA_prefix[*codep];
++      uses_REPNZ_prefix = twobyte_uses_REPNZ_prefix[*codep];
++      uses_REPZ_prefix = twobyte_uses_REPZ_prefix[*codep];
+       uses_LOCK_prefix = (*codep & ~0x02) == 0x20;
++      codep++;
++      if (dp->name == NULL && dp->bytemode1 == IS_3BYTE_OPCODE)
++	{
++	  FETCH_DATA (info, codep + 2);
++	  op = *codep++;
++	  switch (threebyte)
++	    {
++	    case 0x38:
++	      uses_DATA_prefix = threebyte_0x38_uses_DATA_prefix[op];
++	      uses_REPNZ_prefix = threebyte_0x38_uses_REPNZ_prefix[op];
++	      uses_REPZ_prefix = threebyte_0x38_uses_REPZ_prefix[op];
++	      break;
++	    case 0x3a:
++	      uses_DATA_prefix = threebyte_0x3a_uses_DATA_prefix[op];
++	      uses_REPNZ_prefix = threebyte_0x3a_uses_REPNZ_prefix[op];
++	      uses_REPZ_prefix = threebyte_0x3a_uses_REPZ_prefix[op];
++	      break;
++	    default:
++	      break;
++	    }
++	}
+     }
+   else
+     {
+       dp = &dis386[*codep];
+       need_modrm = onebyte_has_modrm[*codep];
+-      uses_SSE_prefix = 0;
++      uses_DATA_prefix = 0;
++      uses_REPNZ_prefix = 0;
++      uses_REPZ_prefix = 0;
+       uses_LOCK_prefix = 0;
++      codep++;
+     }
+   
+-  /*"lzcnt"=0xBD and "popcnt"=0xB8 are the only two non-sse 
+-    instruction which uses F3 in the opcode without any "rep(z|nz)"*/
+-  if (!uses_SSE_prefix && (prefixes & PREFIX_REPZ) && *codep != 0xBD && *codep != 0xB8)
++  if (!uses_REPZ_prefix && (prefixes & PREFIX_REPZ))
+     {
+       oappend ("repz ");
+       used_prefixes |= PREFIX_REPZ;
+     }
+-  if (!uses_SSE_prefix && (prefixes & PREFIX_REPNZ) && *codep != 0xBD && *codep != 0xB8)
++  if (!uses_REPNZ_prefix && (prefixes & PREFIX_REPNZ))
+     {
+       oappend ("repnz ");
+       used_prefixes |= PREFIX_REPNZ;
+     }
+ 
+-  codep++;
+-
+   if (!uses_LOCK_prefix && (prefixes & PREFIX_LOCK))
+     {
+       oappend ("lock ");
+@@ -2870,7 +3590,7 @@ print_insn (bfd_vma pc, disassemble_info
+ 	}
+     }
+ 
+-  if (!uses_SSE_prefix && (prefixes & PREFIX_DATA))
++  if (!uses_DATA_prefix && (prefixes & PREFIX_DATA))
+     {
+       sizeflag ^= DFLAG;
+       if (dp->bytemode3 == cond_jump_mode
+@@ -2887,8 +3607,7 @@ print_insn (bfd_vma pc, disassemble_info
+ 
+   if (dp->name == NULL && dp->bytemode1 == IS_3BYTE_OPCODE)
+     {
+-      FETCH_DATA (info, codep + 2);
+-      dp = &three_byte_table[dp->bytemode2][*codep++];
++      dp = &three_byte_table[dp->bytemode2][op];
+       mod = (*codep >> 6) & 3;
+       reg = (*codep >> 3) & 7;
+       rm = *codep & 7;
+@@ -2923,14 +3642,16 @@ print_insn (bfd_vma pc, disassemble_info
+ 		index = 1;
+ 	      else
+ 		{
+-		  used_prefixes |= (prefixes & PREFIX_DATA);
+-		  if (prefixes & PREFIX_DATA)
+-		    index = 2;
++		  /* We should check PREFIX_REPNZ and PREFIX_REPZ
++		     before PREFIX_DATA.  */
++		  used_prefixes |= (prefixes & PREFIX_REPNZ);
++		  if (prefixes & PREFIX_REPNZ)
++		    index = 3;
+ 		  else
+ 		    {
+-		      used_prefixes |= (prefixes & PREFIX_REPNZ);
+-		      if (prefixes & PREFIX_REPNZ)
+-			index = 3;
++		      used_prefixes |= (prefixes & PREFIX_DATA);
++		      if (prefixes & PREFIX_DATA)
++			index = 2;
+ 		    }
+ 		}
+ 	      dp = &prefix_user_table[dp->bytemode2][index];
+@@ -3569,6 +4290,13 @@ putop (const char *template, int sizefla
+ 	    break;
+ 	  *obufp++ = 'l';
+ 	  break;
++	case 'K':
++	  USED_REX (REX_MODE64);
++	  if (rex & REX_MODE64)
++	    *obufp++ = 'q';
++	  else
++	    *obufp++ = 'd';
++	  break;
+ 	case 'Z':
+ 	  if (intel_syntax)
+ 	    break;
+@@ -3879,6 +4607,7 @@ intel_operand_size (int bytemode, int si
+   switch (bytemode)
+     {
+     case b_mode:
++    case dqb_mode:
+       oappend ("BYTE PTR ");
+       break;
+     case w_mode:
+@@ -3905,6 +4634,7 @@ intel_operand_size (int bytemode, int si
+       used_prefixes |= (prefixes & PREFIX_DATA);
+       break;
+     case d_mode:
++    case dqd_mode:
+       oappend ("DWORD PTR ");
+       break;
+     case q_mode:
+@@ -3985,6 +4715,8 @@ OP_E (int bytemode, int sizeflag)
+ 	  /* FALLTHRU */
+ 	case v_mode:
+ 	case dq_mode:
++	case dqb_mode:
++	case dqd_mode:
+ 	case dqw_mode:
+ 	  USED_REX (REX_MODE64);
+ 	  if (rex & REX_MODE64)
+@@ -4239,6 +4971,8 @@ OP_G (int bytemode, int sizeflag)
+       break;
+     case v_mode:
+     case dq_mode:
++    case dqb_mode:
++    case dqd_mode:
+     case dqw_mode:
+       USED_REX (REX_MODE64);
+       if (rex & REX_MODE64)
+@@ -5530,3 +6264,76 @@ REP_Fixup (int bytemode, int sizeflag)
+       break;
+     }
+ }
++
++static void
++XMM_Fixup (int reg, int sizeflag ATTRIBUTE_UNUSED)
++{
++  sprintf (scratchbuf, "%%xmm%d", reg);
++  oappend (scratchbuf + intel_syntax);
++}
++
++static void
++CRC32_Fixup (int bytemode, int sizeflag)
++{
++  /* Add proper suffix to "crc32".  */
++  char *p = obuf + strlen (obuf);
++
++  switch (bytemode)
++    {
++    case b_mode:
++      if (intel_syntax)
++	break;
++
++      *p++ = 'b';
++      break;
++    case v_mode:
++      if (intel_syntax)
++	break;
++
++      USED_REX (REX_MODE64);
++      if (rex & REX_MODE64)
++	*p++ = 'q';
++      else if (sizeflag & DFLAG)
++	*p++ = 'l';
++      else
++	*p++ = 'w';
++      used_prefixes |= (prefixes & PREFIX_DATA);
++      break;
++    default:
++      oappend (INTERNAL_DISASSEMBLER_ERROR);
++      break;
++    }
++  *p = '\0';
++
++  if (mod == 3)
++    {
++      int add;
++
++      /* Skip mod/rm byte.  */
++      MODRM_CHECK;
++      codep++;
++
++      USED_REX (REX_EXTZ);
++      add = (rex & REX_EXTZ) ? 8 : 0;
++      if (bytemode == b_mode)
++	{
++	  USED_REX (0);
++	  if (rex)
++	    oappend (names8rex[rm + add]);
++	  else
++	    oappend (names8[rm + add]);
++	}
++      else
++	{
++	  USED_REX (REX_MODE64);
++	  if (rex & REX_MODE64)
++	    oappend (names64[rm + add]);
++	  else if ((prefixes & PREFIX_DATA))
++	    oappend (names16[rm + add]);
++	  else
++	    oappend (names32[rm + add]);
++	}
++    }
++  else
++    OP_E (bytemode, sizeflag);
++}
+--- gas/testsuite/gas/i386/x86-64-sse4_1.d.jj	2007-05-07 11:15:33.000000000 +0200
++++ gas/testsuite/gas/i386/x86-64-sse4_1.d	2007-05-07 11:15:33.000000000 +0200
+@@ -0,0 +1,110 @@
++#objdump: -dw
++#name: x86-64 SSE4.1
++
++.*:     file format .*
++
++Disassembly of section .text:
++
++0+000 <foo>:
++[ 	]*[0-9a-f]+:	66 0f 3a 0d 01 00    	blendpd \$0x0,\(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 0d c1 00    	blendpd \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 0c 01 00    	blendps \$0x0,\(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 0c c1 00    	blendps \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 15 01       	blendvpd %xmm0,\(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 15 c1       	blendvpd %xmm0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 14 01       	blendvps %xmm0,\(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 14 c1       	blendvps %xmm0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 41 01 00    	dppd   \$0x0,\(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 41 c1 00    	dppd   \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 40 01 00    	dpps   \$0x0,\(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 40 c1 00    	dpps   \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 48 0f 3a 17 c1 00 	extractps \$0x0,%xmm0,%rcx
++[ 	]*[0-9a-f]+:	66 0f 3a 17 c1 00    	extractps \$0x0,%xmm0,%ecx
++[ 	]*[0-9a-f]+:	66 0f 3a 17 01 00    	extractps \$0x0,%xmm0,\(%rcx\)
++[ 	]*[0-9a-f]+:	66 0f 3a 21 c1 00    	insertps \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 21 01 00    	insertps \$0x0,\(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 2a 01       	movntdqa \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 42 01 00    	mpsadbw \$0x0,\(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 42 c1 00    	mpsadbw \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 2b 01       	packusdw \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 2b c1       	packusdw %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 10 01       	pblendvb %xmm0,\(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 10 c1       	pblendvb %xmm0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 0e 01 00    	pblendw \$0x0,\(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 0e c1 00    	pblendw \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 29 c1       	pcmpeqq %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 29 01       	pcmpeqq \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 48 0f 3a 14 c1 00 	pextrb \$0x0,%xmm0,%rcx
++[ 	]*[0-9a-f]+:	66 0f 3a 14 c1 00    	pextrb \$0x0,%xmm0,%ecx
++[ 	]*[0-9a-f]+:	66 0f 3a 14 01 00    	pextrb \$0x0,%xmm0,\(%rcx\)
++[ 	]*[0-9a-f]+:	66 0f 3a 16 c1 00    	pextrd \$0x0,%xmm0,%ecx
++[ 	]*[0-9a-f]+:	66 0f 3a 16 01 00    	pextrd \$0x0,%xmm0,\(%rcx\)
++[ 	]*[0-9a-f]+:	66 48 0f 3a 16 c1 00 	pextrq \$0x0,%xmm0,%rcx
++[ 	]*[0-9a-f]+:	66 48 0f 3a 16 01 00 	pextrq \$0x0,%xmm0,\(%rcx\)
++[ 	]*[0-9a-f]+:	66 48 0f c5 c8 00    	pextrw \$0x0,%xmm0,%rcx
++[ 	]*[0-9a-f]+:	66 0f c5 c8 00       	pextrw \$0x0,%xmm0,%ecx
++[ 	]*[0-9a-f]+:	66 0f 3a 15 01 00    	pextrw \$0x0,%xmm0,\(%rcx\)
++[ 	]*[0-9a-f]+:	66 0f 38 41 c1       	phminposuw %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 41 01       	phminposuw \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 20 01 00    	pinsrb \$0x0,\(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 20 c1 00    	pinsrb \$0x0,%ecx,%xmm0
++[ 	]*[0-9a-f]+:	66 48 0f 3a 20 c1 00 	pinsrb \$0x0,%rcx,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 22 01 00    	pinsrd \$0x0,\(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 22 c1 00    	pinsrd \$0x0,%ecx,%xmm0
++[ 	]*[0-9a-f]+:	66 48 0f 3a 22 01 00 	pinsrq \$0x0,\(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 48 0f 3a 22 c1 00 	pinsrq \$0x0,%rcx,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3c c1       	pmaxsb %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3c 01       	pmaxsb \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3d c1       	pmaxsd %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3d 01       	pmaxsd \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3f c1       	pmaxud %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3f 01       	pmaxud \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3e c1       	pmaxuw %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3e 01       	pmaxuw \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 38 c1       	pminsb %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 38 01       	pminsb \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 39 c1       	pminsd %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 39 01       	pminsd \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3b c1       	pminud %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3b 01       	pminud \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3a c1       	pminuw %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3a 01       	pminuw \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 20 c1       	pmovsxbw %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 20 01       	pmovsxbw \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 21 c1       	pmovsxbd %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 21 01       	pmovsxbd \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 22 c1       	pmovsxbq %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 22 01       	pmovsxbq \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 23 c1       	pmovsxwd %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 23 01       	pmovsxwd \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 24 c1       	pmovsxwq %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 24 01       	pmovsxwq \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 25 c1       	pmovsxdq %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 25 01       	pmovsxdq \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 30 c1       	pmovzxbw %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 30 01       	pmovzxbw \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 31 c1       	pmovzxbd %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 31 01       	pmovzxbd \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 32 c1       	pmovzxbq %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 32 01       	pmovzxbq \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 33 c1       	pmovzxwd %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 33 01       	pmovzxwd \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 34 c1       	pmovzxwq %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 34 01       	pmovzxwq \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 35 c1       	pmovzxdq %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 35 01       	pmovzxdq \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 28 c1       	pmuldq %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 28 01       	pmuldq \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 40 c1       	pmulld %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 40 01       	pmulld \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 17 c1       	ptest  %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 17 01       	ptest  \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 09 01 00    	roundpd \$0x0,\(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 09 c1 00    	roundpd \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 08 01 00    	roundps \$0x0,\(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 08 c1 00    	roundps \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 0b 01 00    	roundsd \$0x0,\(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 0b c1 00    	roundsd \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 0a 01 00    	roundss \$0x0,\(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 0a c1 00    	roundss \$0x0,%xmm1,%xmm0
++#pass
+--- gas/testsuite/gas/i386/sse4_2.s.jj	2007-05-07 11:15:33.000000000 +0200
++++ gas/testsuite/gas/i386/sse4_2.s	2007-05-07 12:45:25.000000000 +0200
+@@ -0,0 +1,33 @@
++# Streaming SIMD extensions 4.2 Instructions
++
++	.text
++foo:
++	crc32		%cl,%ebx
++	crc32		%cx,%ebx
++	crc32		%ecx,%ebx
++	crc32b		(%ecx),%ebx
++	crc32w		(%ecx),%ebx
++	crc32l		(%ecx),%ebx
++	crc32b		%cl,%ebx
++	crc32w		%cx,%ebx
++	crc32l		%ecx,%ebx
++	pcmpgtq		(%ecx),%xmm0
++	pcmpgtq		%xmm1,%xmm0
++	pcmpestri	$0x0,(%ecx),%xmm0
++	pcmpestri	$0x0,%xmm1,%xmm0
++	pcmpestrm	$0x1,(%ecx),%xmm0
++	pcmpestrm	$0x1,%xmm1,%xmm0
++	pcmpistri	$0x2,(%ecx),%xmm0
++	pcmpistri	$0x2,%xmm1,%xmm0
++	pcmpistrm	$0x3,(%ecx),%xmm0
++	pcmpistrm	$0x3,%xmm1,%xmm0
++	popcnt		(%ecx),%bx
++	popcnt		(%ecx),%ebx
++	popcntw		(%ecx),%bx
++	popcntl		(%ecx),%ebx
++	popcnt		%cx,%bx
++	popcnt		%ecx,%ebx
++	popcntw		%cx,%bx
++	popcntl		%ecx,%ebx
++
++	.p2align	4,0
+--- gas/testsuite/gas/i386/inval-crc32.s.jj	2007-05-07 15:16:51.000000000 +0200
++++ gas/testsuite/gas/i386/inval-crc32.s	2007-05-07 12:45:25.000000000 +0200
+@@ -0,0 +1,23 @@
++# Check illegal crc32 in SSE4.2
++
++	.text
++foo:
++
++crc32b (%esi), %al
++crc32w (%esi), %ax
++crc32 (%esi), %al
++crc32 (%esi), %ax
++crc32 (%esi), %eax
++crc32  %al, %al
++crc32b  %al, %al
++crc32  %ax, %ax
++crc32w  %ax, %ax
++
++.intel_syntax noprefix
++crc32  al,byte ptr [esi]
++crc32  ax, word ptr [esi]
++crc32  al, [esi]
++crc32  ax, [esi]
++crc32  eax, [esi]
++crc32  al,al
++crc32  ax, ax
+--- gas/testsuite/gas/i386/x86-64-inval-crc32.l.jj	2007-05-07 15:16:51.000000000 +0200
++++ gas/testsuite/gas/i386/x86-64-inval-crc32.l	2007-05-07 12:45:25.000000000 +0200
+@@ -0,0 +1,65 @@
++.*: Assembler messages:
++.*:6: Error: .*
++.*:7: Error: .*
++.*:8: Error: .*
++.*:9: Error: .*
++.*:10: Error: .*
++.*:11: Error: .*
++.*:12: Error: .*
++.*:13: Error: .*
++.*:14: Error: .*
++.*:15: Error: .*
++.*:16: Error: .*
++.*:17: Error: .*
++.*:18: Error: .*
++.*:19: Error: .*
++.*:20: Error: .*
++.*:21: Error: .*
++.*:24: Error: .*
++.*:25: Error: .*
++.*:26: Error: .*
++.*:27: Error: .*
++.*:28: Error: .*
++.*:29: Error: .*
++.*:30: Error: .*
++.*:31: Error: .*
++.*:32: Error: .*
++.*:33: Error: .*
++.*:34: Error: .*
++GAS LISTING .*
++
++
++[ 	]*1[ 	]+\# Check illegal 64bit crc32 in SSE4\.2
++[ 	]*2[ 	]+
++[ 	]*3[ 	]+\.text
++[ 	]*4[ 	]+foo:
++[ 	]*5[ 	]+
++[ 	]*6[ 	]+crc32b \(%rsi\), %al
++[ 	]*7[ 	]+crc32w \(%rsi\), %ax
++[ 	]*8[ 	]+crc32 \(%rsi\), %al
++[ 	]*9[ 	]+crc32 \(%rsi\), %ax
++[ 	]*10[ 	]+crc32 \(%rsi\), %eax
++[ 	]*11[ 	]+crc32 \(%rsi\), %rax
++[ 	]*12[ 	]+crc32  %al, %al
++[ 	]*13[ 	]+crc32b  %al, %al
++[ 	]*14[ 	]+crc32  %ax, %ax
++[ 	]*15[ 	]+crc32w  %ax, %ax
++[ 	]*16[ 	]+crc32  %rax, %eax
++[ 	]*17[ 	]+crc32  %eax, %rax
++[ 	]*18[ 	]+crc32l  %rax, %eax
++[ 	]*19[ 	]+crc32l  %eax, %rax
++[ 	]*20[ 	]+crc32q  %eax, %rax
++[ 	]*21[ 	]+crc32q  %rax, %eax
++[ 	]*22[ 	]+
++[ 	]*23[ 	]+\.intel_syntax noprefix
++[ 	]*24[ 	]+crc32  al,byte ptr \[rsi\]
++[ 	]*25[ 	]+crc32  ax, word ptr \[rsi\]
++[ 	]*26[ 	]+crc32  rax,word ptr \[rsi\]
++[ 	]*27[ 	]+crc32  rax,dword ptr \[rsi\]
++[ 	]*28[ 	]+crc32  al,\[rsi\]
++[ 	]*29[ 	]+crc32  ax,\[rsi\]
++[ 	]*30[ 	]+crc32  eax,\[rsi\]
++[ 	]*31[ 	]+crc32  rax,\[rsi\]
++[ 	]*32[ 	]+crc32  al,al
++[ 	]*33[ 	]+crc32  ax, ax
++[ 	]*34[ 	]+crc32  rax,eax
+--- gas/testsuite/gas/i386/x86-64-inval-crc32.s.jj	2007-05-07 15:16:51.000000000 +0200
++++ gas/testsuite/gas/i386/x86-64-inval-crc32.s	2007-05-07 12:45:25.000000000 +0200
+@@ -0,0 +1,34 @@
++# Check illegal 64bit crc32 in SSE4.2
++
++	.text
++foo:
++
++crc32b (%rsi), %al
++crc32w (%rsi), %ax
++crc32 (%rsi), %al
++crc32 (%rsi), %ax
++crc32 (%rsi), %eax
++crc32 (%rsi), %rax
++crc32  %al, %al
++crc32b  %al, %al
++crc32  %ax, %ax
++crc32w  %ax, %ax
++crc32  %rax, %eax
++crc32  %eax, %rax
++crc32l  %rax, %eax
++crc32l  %eax, %rax
++crc32q  %eax, %rax
++crc32q  %rax, %eax
++
++.intel_syntax noprefix
++crc32  al,byte ptr [rsi]
++crc32  ax, word ptr [rsi]
++crc32  rax,word ptr [rsi]
++crc32  rax,dword ptr [rsi]
++crc32  al,[rsi]
++crc32  ax,[rsi]
++crc32  eax,[rsi]
++crc32  rax,[rsi]
++crc32  al,al
++crc32  ax, ax
++crc32  rax,eax
+--- gas/testsuite/gas/i386/sse4_2.d.jj	2007-05-07 11:15:33.000000000 +0200
++++ gas/testsuite/gas/i386/sse4_2.d	2007-05-07 14:25:52.000000000 +0200
+@@ -0,0 +1,36 @@
++#objdump: -dw
++#name: i386 SSE4.2
++
++.*:     file format .*
++
++Disassembly of section .text:
++
++0+000 <foo>:
++[ 	]*[0-9a-f]+:	f2 0f 38 f0 d9       	crc32b %cl,%ebx
++[ 	]*[0-9a-f]+:	(66 f2|f2 66) 0f 38 f1 d9    	crc32w %cx,%ebx
++[ 	]*[0-9a-f]+:	f2 0f 38 f1 d9       	crc32l %ecx,%ebx
++[ 	]*[0-9a-f]+:	f2 0f 38 f0 19       	crc32b \(%ecx\),%ebx
++[ 	]*[0-9a-f]+:	(66 f2|f2 66) 0f 38 f1 19    	crc32w \(%ecx\),%ebx
++[ 	]*[0-9a-f]+:	f2 0f 38 f1 19       	crc32l \(%ecx\),%ebx
++[ 	]*[0-9a-f]+:	f2 0f 38 f0 d9       	crc32b %cl,%ebx
++[ 	]*[0-9a-f]+:	(66 f2|f2 66) 0f 38 f1 d9    	crc32w %cx,%ebx
++[ 	]*[0-9a-f]+:	f2 0f 38 f1 d9       	crc32l %ecx,%ebx
++[ 	]*[0-9a-f]+:	66 0f 38 37 01       	pcmpgtq \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 37 c1       	pcmpgtq %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 61 01 00    	pcmpestri \$0x0,\(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 61 c1 00    	pcmpestri \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 60 01 01    	pcmpestrm \$0x1,\(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 60 c1 01    	pcmpestrm \$0x1,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 63 01 02    	pcmpistri \$0x2,\(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 63 c1 02    	pcmpistri \$0x2,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 62 01 03    	pcmpistrm \$0x3,\(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 62 c1 03    	pcmpistrm \$0x3,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	(66 f3|f3 66) 0f b8 19       	popcnt \(%ecx\),%bx
++[ 	]*[0-9a-f]+:	f3 0f b8 19          	popcnt \(%ecx\),%ebx
++[ 	]*[0-9a-f]+:	(66 f3|f3 66) 0f b8 19       	popcnt \(%ecx\),%bx
++[ 	]*[0-9a-f]+:	f3 0f b8 19          	popcnt \(%ecx\),%ebx
++[ 	]*[0-9a-f]+:	(66 f3|f3 66) 0f b8 d9       	popcnt %cx,%bx
++[ 	]*[0-9a-f]+:	f3 0f b8 d9          	popcnt %ecx,%ebx
++[ 	]*[0-9a-f]+:	(66 f3|f3 66) 0f b8 d9       	popcnt %cx,%bx
++[ 	]*[0-9a-f]+:	f3 0f b8 d9          	popcnt %ecx,%ebx
++#pass
+--- gas/testsuite/gas/i386/crc32-intel.d.jj	2007-05-07 15:16:51.000000000 +0200
++++ gas/testsuite/gas/i386/crc32-intel.d	2007-05-07 14:25:52.000000000 +0200
+@@ -0,0 +1,25 @@
++#objdump: -dwMintel
++#name: i386 crc32 (Intel disassembly)
++#source: crc32.s
++
++.*: +file format .*
++
++Disassembly of section .text:
++
++0+ <foo>:
++[ 	]*[a-f0-9]+:	f2 0f 38 f0 06       	crc32  eax,BYTE PTR \[esi\]
++[ 	]*[a-f0-9]+:	(66 f2|f2 66) 0f 38 f1 06    	crc32  eax,WORD PTR \[esi\]
++[ 	]*[a-f0-9]+:	f2 0f 38 f1 06       	crc32  eax,DWORD PTR \[esi\]
++[ 	]*[a-f0-9]+:	f2 0f 38 f0 c0       	crc32  eax,al
++[ 	]*[a-f0-9]+:	f2 0f 38 f0 c0       	crc32  eax,al
++[ 	]*[a-f0-9]+:	(66 f2|f2 66) 0f 38 f1 c0    	crc32  eax,ax
++[ 	]*[a-f0-9]+:	(66 f2|f2 66) 0f 38 f1 c0    	crc32  eax,ax
++[ 	]*[a-f0-9]+:	f2 0f 38 f1 c0       	crc32  eax,eax
++[ 	]*[a-f0-9]+:	f2 0f 38 f1 c0       	crc32  eax,eax
++[ 	]*[a-f0-9]+:	f2 0f 38 f0 06       	crc32  eax,BYTE PTR \[esi\]
++[ 	]*[a-f0-9]+:	(66 f2|f2 66) 0f 38 f1 06    	crc32  eax,WORD PTR \[esi\]
++[ 	]*[a-f0-9]+:	f2 0f 38 f1 06       	crc32  eax,DWORD PTR \[esi\]
++[ 	]*[a-f0-9]+:	f2 0f 38 f0 c0       	crc32  eax,al
++[ 	]*[a-f0-9]+:	(66 f2|f2 66) 0f 38 f1 c0    	crc32  eax,ax
++[ 	]*[a-f0-9]+:	f2 0f 38 f1 c0       	crc32  eax,eax
++#pass
+--- gas/testsuite/gas/i386/x86-64-crc32.s.jj	2007-05-07 15:16:51.000000000 +0200
++++ gas/testsuite/gas/i386/x86-64-crc32.s	2007-05-07 12:45:25.000000000 +0200
+@@ -0,0 +1,34 @@
++# Check 64bit crc32 in SSE4.2
++
++	.text
++foo:
++
++crc32b (%rsi), %eax
++crc32b (%rsi), %rax
++crc32w (%rsi), %eax
++crc32l (%rsi), %eax
++crc32q (%rsi), %rax
++crc32  %al, %eax
++crc32b  %al, %eax
++crc32  %al, %rax
++crc32b  %al, %rax
++crc32  %ax, %eax
++crc32w  %ax, %eax
++crc32  %eax, %eax
++crc32l  %eax, %eax
++crc32  %rax, %rax
++crc32q  %rax, %rax
++
++.intel_syntax noprefix
++crc32  rax,byte ptr [rsi]
++crc32  eax,byte ptr [rsi]
++crc32  eax, word ptr [rsi]
++crc32  eax,dword ptr [rsi]
++crc32  rax,qword ptr [rsi]
++crc32  eax,al
++crc32  rax,al
++crc32  eax, ax
++crc32  eax,eax
++crc32  rax,rax
++
++.p2align 4,0
+--- gas/testsuite/gas/i386/x86-64-sse4_1.s.jj	2007-05-07 11:15:33.000000000 +0200
++++ gas/testsuite/gas/i386/x86-64-sse4_1.s	2007-05-07 11:15:33.000000000 +0200
+@@ -0,0 +1,107 @@
++# Streaming SIMD extensions 4.1 Instructions
++
++	.text
++foo:
++	blendpd		$0x0,(%rcx),%xmm0
++	blendpd		$0x0,%xmm1,%xmm0
++	blendps		$0x0,(%rcx),%xmm0
++	blendps		$0x0,%xmm1,%xmm0
++	blendvpd	%xmm0,(%rcx),%xmm0
++	blendvpd	%xmm0,%xmm1,%xmm0
++	blendvps	%xmm0,(%rcx),%xmm0
++	blendvps	%xmm0,%xmm1,%xmm0
++	dppd		$0x0,(%rcx),%xmm0
++	dppd		$0x0,%xmm1,%xmm0
++	dpps		$0x0,(%rcx),%xmm0
++	dpps		$0x0,%xmm1,%xmm0
++	extractps	$0x0,%xmm0,%rcx
++	extractps	$0x0,%xmm0,%ecx
++	extractps	$0x0,%xmm0,(%rcx)
++	insertps	$0x0,%xmm1,%xmm0
++	insertps	$0x0,(%rcx),%xmm0
++	movntdqa	(%rcx),%xmm0
++	mpsadbw		$0x0,(%rcx),%xmm0
++	mpsadbw		$0x0,%xmm1,%xmm0
++	packusdw	(%rcx),%xmm0
++	packusdw	%xmm1,%xmm0
++	pblendvb	%xmm0,(%rcx),%xmm0
++	pblendvb	%xmm0,%xmm1,%xmm0
++	pblendw		$0x0,(%rcx),%xmm0
++	pblendw		$0x0,%xmm1,%xmm0
++	pcmpeqq		%xmm1,%xmm0
++	pcmpeqq		(%rcx),%xmm0
++	pextrb          $0x0,%xmm0,%rcx
++	pextrb          $0x0,%xmm0,%ecx
++	pextrb          $0x0,%xmm0,(%rcx)
++	pextrd          $0x0,%xmm0,%ecx
++	pextrd          $0x0,%xmm0,(%rcx)
++	pextrq          $0x0,%xmm0,%rcx
++	pextrq          $0x0,%xmm0,(%rcx)
++	pextrw          $0x0,%xmm0,%rcx
++	pextrw          $0x0,%xmm0,%ecx
++	pextrw          $0x0,%xmm0,(%rcx)
++	phminposuw	%xmm1,%xmm0
++	phminposuw	(%rcx),%xmm0
++	pinsrb		$0x0,(%rcx),%xmm0
++	pinsrb		$0x0,%ecx,%xmm0
++	pinsrb		$0x0,%rcx,%xmm0
++	pinsrd		$0x0,(%rcx),%xmm0
++	pinsrd		$0x0,%ecx,%xmm0
++	pinsrq		$0x0,(%rcx),%xmm0
++	pinsrq		$0x0,%rcx,%xmm0
++	pmaxsb		%xmm1,%xmm0
++	pmaxsb		(%rcx),%xmm0
++	pmaxsd		%xmm1,%xmm0
++	pmaxsd		(%rcx),%xmm0
++	pmaxud		%xmm1,%xmm0
++	pmaxud		(%rcx),%xmm0
++	pmaxuw		%xmm1,%xmm0
++	pmaxuw		(%rcx),%xmm0
++	pminsb		%xmm1,%xmm0
++	pminsb		(%rcx),%xmm0
++	pminsd		%xmm1,%xmm0
++	pminsd		(%rcx),%xmm0
++	pminud		%xmm1,%xmm0
++	pminud		(%rcx),%xmm0
++	pminuw		%xmm1,%xmm0
++	pminuw		(%rcx),%xmm0
++	pmovsxbw	%xmm1,%xmm0
++	pmovsxbw	(%rcx),%xmm0
++	pmovsxbd	%xmm1,%xmm0
++	pmovsxbd	(%rcx),%xmm0
++	pmovsxbq	%xmm1,%xmm0
++	pmovsxbq	(%rcx),%xmm0
++	pmovsxwd	%xmm1,%xmm0
++	pmovsxwd	(%rcx),%xmm0
++	pmovsxwq	%xmm1,%xmm0
++	pmovsxwq	(%rcx),%xmm0
++	pmovsxdq	%xmm1,%xmm0
++	pmovsxdq	(%rcx),%xmm0
++	pmovzxbw	%xmm1,%xmm0
++	pmovzxbw	(%rcx),%xmm0
++	pmovzxbd	%xmm1,%xmm0
++	pmovzxbd	(%rcx),%xmm0
++	pmovzxbq	%xmm1,%xmm0
++	pmovzxbq	(%rcx),%xmm0
++	pmovzxwd	%xmm1,%xmm0
++	pmovzxwd	(%rcx),%xmm0
++	pmovzxwq	%xmm1,%xmm0
++	pmovzxwq	(%rcx),%xmm0
++	pmovzxdq	%xmm1,%xmm0
++	pmovzxdq	(%rcx),%xmm0
++	pmuldq		%xmm1,%xmm0
++	pmuldq		(%rcx),%xmm0
++	pmulld		%xmm1,%xmm0
++	pmulld		(%rcx),%xmm0
++	ptest		%xmm1,%xmm0
++	ptest		(%rcx),%xmm0
++	roundpd		$0x0,(%rcx),%xmm0
++	roundpd		$0x0,%xmm1,%xmm0
++	roundps		$0x0,(%rcx),%xmm0
++	roundps		$0x0,%xmm1,%xmm0
++	roundsd		$0x0,(%rcx),%xmm0
++	roundsd		$0x0,%xmm1,%xmm0
++	roundss		$0x0,(%rcx),%xmm0
++	roundss		$0x0,%xmm1,%xmm0
++
++	.p2align	4,0
+--- gas/testsuite/gas/i386/x86-64-sse4_2.s.jj	2007-05-07 11:15:33.000000000 +0200
++++ gas/testsuite/gas/i386/x86-64-sse4_2.s	2007-05-07 12:45:25.000000000 +0200
+@@ -0,0 +1,42 @@
++# Streaming SIMD extensions 4.2 Instructions
++
++	.text
++foo:
++	crc32		%cl,%ebx
++	crc32		%cl,%rbx
++	crc32		%cx,%ebx
++	crc32		%ecx,%ebx
++	crc32		%rcx,%rbx
++	crc32b		(%rcx),%ebx
++	crc32w		(%rcx),%ebx
++	crc32l		(%rcx),%ebx
++	crc32q		(%rcx),%rbx
++	crc32b		%cl,%ebx
++	crc32b		%cl,%rbx
++	crc32w		%cx,%ebx
++	crc32l		%ecx,%ebx
++	crc32q		%rcx,%rbx
++	pcmpgtq		(%rcx),%xmm0
++	pcmpgtq		%xmm1,%xmm0
++	pcmpestri	$0x0,(%rcx),%xmm0
++	pcmpestri	$0x0,%xmm1,%xmm0
++	pcmpestrm	$0x1,(%rcx),%xmm0
++	pcmpestrm	$0x1,%xmm1,%xmm0
++	pcmpistri	$0x2,(%rcx),%xmm0
++	pcmpistri	$0x2,%xmm1,%xmm0
++	pcmpistrm	$0x3,(%rcx),%xmm0
++	pcmpistrm	$0x3,%xmm1,%xmm0
++	popcnt		(%rcx),%bx
++	popcnt		(%rcx),%ebx
++	popcnt		(%rcx),%rbx
++	popcntw		(%rcx),%bx
++	popcntl		(%rcx),%ebx
++	popcntq		(%rcx),%rbx
++	popcnt		%cx,%bx
++	popcnt		%ecx,%ebx
++	popcnt		%rcx,%rbx
++	popcntw		%cx,%bx
++	popcntl		%ecx,%ebx
++	popcntq		%rcx,%rbx
++
++	.p2align	4,0
+--- gas/testsuite/gas/i386/x86-64-sse4_2.d.jj	2007-05-07 11:15:33.000000000 +0200
++++ gas/testsuite/gas/i386/x86-64-sse4_2.d	2007-05-07 14:25:52.000000000 +0200
+@@ -0,0 +1,45 @@
++#objdump: -dw
++#name: x86-64 SSE4.2
++
++.*:     file format .*
++
++Disassembly of section .text:
++
++0+000 <foo>:
++[ 	]*[0-9a-f]+:	f2 0f 38 f0 d9       	crc32b %cl,%ebx
++[ 	]*[0-9a-f]+:	f2 48 0f 38 f0 d9    	crc32b %cl,%rbx
++[ 	]*[0-9a-f]+:	(66 f2|f2 66) 0f 38 f1 d9    	crc32w %cx,%ebx
++[ 	]*[0-9a-f]+:	f2 0f 38 f1 d9       	crc32l %ecx,%ebx
++[ 	]*[0-9a-f]+:	f2 48 0f 38 f1 d9    	crc32q %rcx,%rbx
++[ 	]*[0-9a-f]+:	f2 0f 38 f0 19       	crc32b \(%rcx\),%ebx
++[ 	]*[0-9a-f]+:	(66 f2|f2 66) 0f 38 f1 19    	crc32w \(%rcx\),%ebx
++[ 	]*[0-9a-f]+:	f2 0f 38 f1 19       	crc32l \(%rcx\),%ebx
++[ 	]*[0-9a-f]+:	f2 48 0f 38 f1 19    	crc32q \(%rcx\),%rbx
++[ 	]*[0-9a-f]+:	f2 0f 38 f0 d9       	crc32b %cl,%ebx
++[ 	]*[0-9a-f]+:	f2 48 0f 38 f0 d9    	crc32b %cl,%rbx
++[ 	]*[0-9a-f]+:	(66 f2|f2 66) 0f 38 f1 d9    	crc32w %cx,%ebx
++[ 	]*[0-9a-f]+:	f2 0f 38 f1 d9       	crc32l %ecx,%ebx
++[ 	]*[0-9a-f]+:	f2 48 0f 38 f1 d9    	crc32q %rcx,%rbx
++[ 	]*[0-9a-f]+:	66 0f 38 37 01       	pcmpgtq \(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 37 c1       	pcmpgtq %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 61 01 00    	pcmpestri \$0x0,\(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 61 c1 00    	pcmpestri \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 60 01 01    	pcmpestrm \$0x1,\(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 60 c1 01    	pcmpestrm \$0x1,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 63 01 02    	pcmpistri \$0x2,\(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 63 c1 02    	pcmpistri \$0x2,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 62 01 03    	pcmpistrm \$0x3,\(%rcx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 62 c1 03    	pcmpistrm \$0x3,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	(66 f3|f3 66) 0f b8 19       	popcnt \(%rcx\),%bx
++[ 	]*[0-9a-f]+:	f3 0f b8 19          	popcnt \(%rcx\),%ebx
++[ 	]*[0-9a-f]+:	f3 48 0f b8 19       	popcnt \(%rcx\),%rbx
++[ 	]*[0-9a-f]+:	(66 f3|f3 66) 0f b8 19       	popcnt \(%rcx\),%bx
++[ 	]*[0-9a-f]+:	f3 0f b8 19          	popcnt \(%rcx\),%ebx
++[ 	]*[0-9a-f]+:	f3 48 0f b8 19       	popcnt \(%rcx\),%rbx
++[ 	]*[0-9a-f]+:	(66 f3|f3 66) 0f b8 d9       	popcnt %cx,%bx
++[ 	]*[0-9a-f]+:	f3 0f b8 d9          	popcnt %ecx,%ebx
++[ 	]*[0-9a-f]+:	f3 48 0f b8 d9       	popcnt %rcx,%rbx
++[ 	]*[0-9a-f]+:	(66 f3|f3 66) 0f b8 d9       	popcnt %cx,%bx
++[ 	]*[0-9a-f]+:	f3 0f b8 d9          	popcnt %ecx,%ebx
++[ 	]*[0-9a-f]+:	f3 48 0f b8 d9       	popcnt %rcx,%rbx
++#pass
+--- gas/testsuite/gas/i386/x86-64-crc32-intel.d.jj	2007-05-07 15:16:51.000000000 +0200
++++ gas/testsuite/gas/i386/x86-64-crc32-intel.d	2007-05-07 14:25:52.000000000 +0200
+@@ -0,0 +1,35 @@
++#objdump: -drwMintel
++#name: x86-64 crc32 (Intel mode)
++#source: x86-64-crc32.s
++
++.*: +file format .*
++
++Disassembly of section .text:
++
++0+ <foo>:
++[ 	]*[a-f0-9]+:	f2 0f 38 f0 06       	crc32  eax,BYTE PTR \[rsi\]
++[ 	]*[a-f0-9]+:	f2 48 0f 38 f0 06    	crc32  rax,BYTE PTR \[rsi\]
++[ 	]*[a-f0-9]+:	(66 f2|f2 66) 0f 38 f1 06    	crc32  eax,WORD PTR \[rsi\]
++[ 	]*[a-f0-9]+:	f2 0f 38 f1 06       	crc32  eax,DWORD PTR \[rsi\]
++[ 	]*[a-f0-9]+:	f2 48 0f 38 f1 06    	crc32  rax,QWORD PTR \[rsi\]
++[ 	]*[a-f0-9]+:	f2 0f 38 f0 c0       	crc32  eax,al
++[ 	]*[a-f0-9]+:	f2 0f 38 f0 c0       	crc32  eax,al
++[ 	]*[a-f0-9]+:	f2 48 0f 38 f0 c0    	crc32  rax,al
++[ 	]*[a-f0-9]+:	f2 48 0f 38 f0 c0    	crc32  rax,al
++[ 	]*[a-f0-9]+:	(66 f2|f2 66) 0f 38 f1 c0    	crc32  eax,ax
++[ 	]*[a-f0-9]+:	(66 f2|f2 66) 0f 38 f1 c0    	crc32  eax,ax
++[ 	]*[a-f0-9]+:	f2 0f 38 f1 c0       	crc32  eax,eax
++[ 	]*[a-f0-9]+:	f2 0f 38 f1 c0       	crc32  eax,eax
++[ 	]*[a-f0-9]+:	f2 48 0f 38 f1 c0    	crc32  rax,rax
++[ 	]*[a-f0-9]+:	f2 48 0f 38 f1 c0    	crc32  rax,rax
++[ 	]*[a-f0-9]+:	f2 48 0f 38 f0 06    	crc32  rax,BYTE PTR \[rsi\]
++[ 	]*[a-f0-9]+:	f2 0f 38 f0 06       	crc32  eax,BYTE PTR \[rsi\]
++[ 	]*[a-f0-9]+:	(66 f2|f2 66) 0f 38 f1 06    	crc32  eax,WORD PTR \[rsi\]
++[ 	]*[a-f0-9]+:	f2 0f 38 f1 06       	crc32  eax,DWORD PTR \[rsi\]
++[ 	]*[a-f0-9]+:	f2 48 0f 38 f1 06    	crc32  rax,QWORD PTR \[rsi\]
++[ 	]*[a-f0-9]+:	f2 0f 38 f0 c0       	crc32  eax,al
++[ 	]*[a-f0-9]+:	f2 48 0f 38 f0 c0    	crc32  rax,al
++[ 	]*[a-f0-9]+:	(66 f2|f2 66) 0f 38 f1 c0    	crc32  eax,ax
++[ 	]*[a-f0-9]+:	f2 0f 38 f1 c0       	crc32  eax,eax
++[ 	]*[a-f0-9]+:	f2 48 0f 38 f1 c0    	crc32  rax,rax
++#pass
+--- gas/testsuite/gas/i386/crc32.s.jj	2007-05-07 15:16:51.000000000 +0200
++++ gas/testsuite/gas/i386/crc32.s	2007-05-07 12:45:25.000000000 +0200
+@@ -0,0 +1,24 @@
++# Check crc32 in SSE4.2
++
++	.text
++foo:
++
++crc32b (%esi), %eax
++crc32w (%esi), %eax
++crc32l (%esi), %eax
++crc32  %al, %eax
++crc32b  %al, %eax
++crc32  %ax, %eax
++crc32w  %ax, %eax
++crc32  %eax, %eax
++crc32l  %eax, %eax
++
++.intel_syntax noprefix
++crc32  eax,byte ptr [esi]
++crc32  eax, word ptr [esi]
++crc32  eax,dword ptr [esi]
++crc32  eax,al
++crc32  eax, ax
++crc32  eax,eax
++
++.p2align 4,0
+--- gas/testsuite/gas/i386/sse4_1.d.jj	2007-05-07 11:15:33.000000000 +0200
++++ gas/testsuite/gas/i386/sse4_1.d	2007-05-07 11:15:33.000000000 +0200
+@@ -0,0 +1,102 @@
++#objdump: -dw
++#name: i386 SSE4.1
++
++.*:     file format .*
++
++Disassembly of section .text:
++
++0+000 <foo>:
++[ 	]*[0-9a-f]+:	66 0f 3a 0d 01 00    	blendpd \$0x0,\(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 0d c1 00    	blendpd \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 0c 01 00    	blendps \$0x0,\(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 0c c1 00    	blendps \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 15 01       	blendvpd %xmm0,\(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 15 c1       	blendvpd %xmm0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 14 01       	blendvps %xmm0,\(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 14 c1       	blendvps %xmm0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 41 01 00    	dppd   \$0x0,\(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 41 c1 00    	dppd   \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 40 01 00    	dpps   \$0x0,\(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 40 c1 00    	dpps   \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 17 c1 00    	extractps \$0x0,%xmm0,%ecx
++[ 	]*[0-9a-f]+:	66 0f 3a 17 01 00    	extractps \$0x0,%xmm0,\(%ecx\)
++[ 	]*[0-9a-f]+:	66 0f 3a 21 c1 00    	insertps \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 21 01 00    	insertps \$0x0,\(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 2a 01       	movntdqa \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 42 01 00    	mpsadbw \$0x0,\(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 42 c1 00    	mpsadbw \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 2b 01       	packusdw \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 2b c1       	packusdw %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 10 01       	pblendvb %xmm0,\(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 10 c1       	pblendvb %xmm0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 0e 01 00    	pblendw \$0x0,\(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 0e c1 00    	pblendw \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 29 c1       	pcmpeqq %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 29 01       	pcmpeqq \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 14 c1 00    	pextrb \$0x0,%xmm0,%ecx
++[ 	]*[0-9a-f]+:	66 0f 3a 14 01 00    	pextrb \$0x0,%xmm0,\(%ecx\)
++[ 	]*[0-9a-f]+:	66 0f 3a 16 c1 00    	pextrd \$0x0,%xmm0,%ecx
++[ 	]*[0-9a-f]+:	66 0f 3a 16 01 00    	pextrd \$0x0,%xmm0,\(%ecx\)
++[ 	]*[0-9a-f]+:	66 0f c5 c8 00       	pextrw \$0x0,%xmm0,%ecx
++[ 	]*[0-9a-f]+:	66 0f 3a 15 01 00    	pextrw \$0x0,%xmm0,\(%ecx\)
++[ 	]*[0-9a-f]+:	66 0f 38 41 c1       	phminposuw %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 41 01       	phminposuw \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 20 01 00    	pinsrb \$0x0,\(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 20 c1 00    	pinsrb \$0x0,%ecx,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 22 01 00    	pinsrd \$0x0,\(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 22 c1 00    	pinsrd \$0x0,%ecx,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3c c1       	pmaxsb %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3c 01       	pmaxsb \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3d c1       	pmaxsd %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3d 01       	pmaxsd \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3f c1       	pmaxud %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3f 01       	pmaxud \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3e c1       	pmaxuw %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3e 01       	pmaxuw \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 38 c1       	pminsb %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 38 01       	pminsb \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 39 c1       	pminsd %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 39 01       	pminsd \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3b c1       	pminud %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3b 01       	pminud \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3a c1       	pminuw %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 3a 01       	pminuw \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 20 c1       	pmovsxbw %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 20 01       	pmovsxbw \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 21 c1       	pmovsxbd %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 21 01       	pmovsxbd \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 22 c1       	pmovsxbq %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 22 01       	pmovsxbq \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 23 c1       	pmovsxwd %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 23 01       	pmovsxwd \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 24 c1       	pmovsxwq %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 24 01       	pmovsxwq \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 25 c1       	pmovsxdq %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 25 01       	pmovsxdq \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 30 c1       	pmovzxbw %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 30 01       	pmovzxbw \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 31 c1       	pmovzxbd %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 31 01       	pmovzxbd \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 32 c1       	pmovzxbq %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 32 01       	pmovzxbq \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 33 c1       	pmovzxwd %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 33 01       	pmovzxwd \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 34 c1       	pmovzxwq %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 34 01       	pmovzxwq \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 35 c1       	pmovzxdq %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 35 01       	pmovzxdq \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 28 c1       	pmuldq %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 28 01       	pmuldq \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 40 c1       	pmulld %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 40 01       	pmulld \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 17 c1       	ptest  %xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 38 17 01       	ptest  \(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 09 01 00    	roundpd \$0x0,\(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 09 c1 00    	roundpd \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 08 01 00    	roundps \$0x0,\(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 08 c1 00    	roundps \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 0b 01 00    	roundsd \$0x0,\(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 0b c1 00    	roundsd \$0x0,%xmm1,%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 0a 01 00    	roundss \$0x0,\(%ecx\),%xmm0
++[ 	]*[0-9a-f]+:	66 0f 3a 0a c1 00    	roundss \$0x0,%xmm1,%xmm0
++#pass
+--- gas/testsuite/gas/i386/sse4_1.s.jj	2007-05-07 11:15:33.000000000 +0200
++++ gas/testsuite/gas/i386/sse4_1.s	2007-05-07 11:15:33.000000000 +0200
+@@ -0,0 +1,99 @@
++# Streaming SIMD extensions 4.1 Instructions
++
++	.text
++foo:
++	blendpd		$0,(%ecx),%xmm0
++	blendpd		$0,%xmm1,%xmm0
++	blendps		$0,(%ecx),%xmm0
++	blendps		$0,%xmm1,%xmm0
++	blendvpd	%xmm0,(%ecx),%xmm0
++	blendvpd	%xmm0,%xmm1,%xmm0
++	blendvps	%xmm0,(%ecx),%xmm0
++	blendvps	%xmm0,%xmm1,%xmm0
++	dppd		$0,(%ecx),%xmm0
++	dppd		$0,%xmm1,%xmm0
++	dpps		$0,(%ecx),%xmm0
++	dpps		$0,%xmm1,%xmm0
++	extractps	$0,%xmm0,%ecx
++	extractps	$0,%xmm0,(%ecx)
++	insertps	$0,%xmm1,%xmm0
++	insertps	$0,(%ecx),%xmm0
++	movntdqa	(%ecx),%xmm0
++	mpsadbw		$0,(%ecx),%xmm0
++	mpsadbw		$0,%xmm1,%xmm0
++	packusdw	(%ecx),%xmm0
++	packusdw	%xmm1,%xmm0
++	pblendvb	%xmm0,(%ecx),%xmm0
++	pblendvb	%xmm0,%xmm1,%xmm0
++	pblendw		$0,(%ecx),%xmm0
++	pblendw		$0,%xmm1,%xmm0
++	pcmpeqq		%xmm1,%xmm0
++	pcmpeqq		(%ecx),%xmm0
++	pextrb          $0,%xmm0,%ecx
++	pextrb          $0,%xmm0,(%ecx)
++	pextrd          $0,%xmm0,%ecx
++	pextrd          $0,%xmm0,(%ecx)
++	pextrw          $0,%xmm0,%ecx
++	pextrw          $0,%xmm0,(%ecx)
++	phminposuw	%xmm1,%xmm0
++	phminposuw	(%ecx),%xmm0
++	pinsrb		$0,(%ecx),%xmm0
++	pinsrb		$0,%ecx,%xmm0
++	pinsrd		$0,(%ecx),%xmm0
++	pinsrd		$0,%ecx,%xmm0
++	pmaxsb		%xmm1,%xmm0
++	pmaxsb		(%ecx),%xmm0
++	pmaxsd		%xmm1,%xmm0
++	pmaxsd		(%ecx),%xmm0
++	pmaxud		%xmm1,%xmm0
++	pmaxud		(%ecx),%xmm0
++	pmaxuw		%xmm1,%xmm0
++	pmaxuw		(%ecx),%xmm0
++	pminsb		%xmm1,%xmm0
++	pminsb		(%ecx),%xmm0
++	pminsd		%xmm1,%xmm0
++	pminsd		(%ecx),%xmm0
++	pminud		%xmm1,%xmm0
++	pminud		(%ecx),%xmm0
++	pminuw		%xmm1,%xmm0
++	pminuw		(%ecx),%xmm0
++	pmovsxbw	%xmm1,%xmm0
++	pmovsxbw	(%ecx),%xmm0
++	pmovsxbd	%xmm1,%xmm0
++	pmovsxbd	(%ecx),%xmm0
++	pmovsxbq	%xmm1,%xmm0
++	pmovsxbq	(%ecx),%xmm0
++	pmovsxwd	%xmm1,%xmm0
++	pmovsxwd	(%ecx),%xmm0
++	pmovsxwq	%xmm1,%xmm0
++	pmovsxwq	(%ecx),%xmm0
++	pmovsxdq	%xmm1,%xmm0
++	pmovsxdq	(%ecx),%xmm0
++	pmovzxbw	%xmm1,%xmm0
++	pmovzxbw	(%ecx),%xmm0
++	pmovzxbd	%xmm1,%xmm0
++	pmovzxbd	(%ecx),%xmm0
++	pmovzxbq	%xmm1,%xmm0
++	pmovzxbq	(%ecx),%xmm0
++	pmovzxwd	%xmm1,%xmm0
++	pmovzxwd	(%ecx),%xmm0
++	pmovzxwq	%xmm1,%xmm0
++	pmovzxwq	(%ecx),%xmm0
++	pmovzxdq	%xmm1,%xmm0
++	pmovzxdq	(%ecx),%xmm0
++	pmuldq		%xmm1,%xmm0
++	pmuldq		(%ecx),%xmm0
++	pmulld		%xmm1,%xmm0
++	pmulld		(%ecx),%xmm0
++	ptest		%xmm1,%xmm0
++	ptest		(%ecx),%xmm0
++	roundpd		$0,(%ecx),%xmm0
++	roundpd		$0,%xmm1,%xmm0
++	roundps		$0,(%ecx),%xmm0
++	roundps		$0,%xmm1,%xmm0
++	roundsd		$0,(%ecx),%xmm0
++	roundsd		$0,%xmm1,%xmm0
++	roundss		$0,(%ecx),%xmm0
++	roundss		$0,%xmm1,%xmm0
++
++	.p2align	4,0
+--- gas/testsuite/gas/i386/crc32.d.jj	2007-05-07 15:16:51.000000000 +0200
++++ gas/testsuite/gas/i386/crc32.d	2007-05-07 14:25:52.000000000 +0200
+@@ -0,0 +1,24 @@
++#objdump: -dw
++#name: i386 crc32
++
++.*:     file format .*
++
++Disassembly of section .text:
++
++0+ <foo>:
++[ 	]*[a-f0-9]+:	f2 0f 38 f0 06       	crc32b \(%esi\),%eax
++[ 	]*[a-f0-9]+:	(66 f2|f2 66) 0f 38 f1 06    	crc32w \(%esi\),%eax
++[ 	]*[a-f0-9]+:	f2 0f 38 f1 06       	crc32l \(%esi\),%eax
++[ 	]*[a-f0-9]+:	f2 0f 38 f0 c0       	crc32b %al,%eax
++[ 	]*[a-f0-9]+:	f2 0f 38 f0 c0       	crc32b %al,%eax
++[ 	]*[a-f0-9]+:	(66 f2|f2 66) 0f 38 f1 c0    	crc32w %ax,%eax
++[ 	]*[a-f0-9]+:	(66 f2|f2 66) 0f 38 f1 c0    	crc32w %ax,%eax
++[ 	]*[a-f0-9]+:	f2 0f 38 f1 c0       	crc32l %eax,%eax
++[ 	]*[a-f0-9]+:	f2 0f 38 f1 c0       	crc32l %eax,%eax
++[ 	]*[a-f0-9]+:	f2 0f 38 f0 06       	crc32b \(%esi\),%eax
++[ 	]*[a-f0-9]+:	(66 f2|f2 66) 0f 38 f1 06    	crc32w \(%esi\),%eax
++[ 	]*[a-f0-9]+:	f2 0f 38 f1 06       	crc32l \(%esi\),%eax
++[ 	]*[a-f0-9]+:	f2 0f 38 f0 c0       	crc32b %al,%eax
++[ 	]*[a-f0-9]+:	(66 f2|f2 66) 0f 38 f1 c0    	crc32w %ax,%eax
++[ 	]*[a-f0-9]+:	f2 0f 38 f1 c0       	crc32l %eax,%eax
++#pass
+--- gas/testsuite/gas/i386/i386.exp.jj	2006-10-20 20:50:59.000000000 +0200
++++ gas/testsuite/gas/i386/i386.exp	2007-05-07 12:45:25.000000000 +0200
+@@ -83,6 +83,11 @@ if [expr ([istarget "i*86-*-*"] ||  [ist
+     run_dump_test "nops-2-merom"
+     run_dump_test "addr16"
+     run_dump_test "addr32"
++    run_dump_test "sse4_1"
++    run_dump_test "sse4_2"
++    run_dump_test "crc32"
++    run_dump_test "crc32-intel"
++    run_list_test "inval-crc32" "-al"
+ 
+     # These tests require support for 8 and 16 bit relocs,
+     # so we only run them for ELF and COFF targets.
+@@ -163,6 +168,11 @@ if [expr ([istarget "i*86-*-*"] || [ista
+     run_dump_test "x86-64-nops-1-k8"
+     run_dump_test "x86-64-nops-1-nocona"
+     run_dump_test "x86-64-nops-1-merom"
++    run_dump_test "x86-64-sse4_1"
++    run_dump_test "x86-64-sse4_2"
++    run_dump_test "x86-64-crc32"
++    run_dump_test "x86-64-crc32-intel"
++    run_list_test "x86-64-inval-crc32" "-al"
+ 
+     if { ![istarget "*-*-aix*"]
+       && ![istarget "*-*-beos*"]
+--- gas/testsuite/gas/i386/x86-64-crc32.d.jj	2007-05-07 15:16:51.000000000 +0200
++++ gas/testsuite/gas/i386/x86-64-crc32.d	2007-05-07 14:25:52.000000000 +0200
+@@ -0,0 +1,34 @@
++#objdump: -dw
++#name: x86-64 crc32
++
++.*:     file format .*
++
++Disassembly of section .text:
++
++0+ <foo>:
++[ 	]*[a-f0-9]+:	f2 0f 38 f0 06       	crc32b \(%rsi\),%eax
++[ 	]*[a-f0-9]+:	f2 48 0f 38 f0 06    	crc32b \(%rsi\),%rax
++[ 	]*[a-f0-9]+:	(66 f2|f2 66) 0f 38 f1 06    	crc32w \(%rsi\),%eax
++[ 	]*[a-f0-9]+:	f2 0f 38 f1 06       	crc32l \(%rsi\),%eax
++[ 	]*[a-f0-9]+:	f2 48 0f 38 f1 06    	crc32q \(%rsi\),%rax
++[ 	]*[a-f0-9]+:	f2 0f 38 f0 c0       	crc32b %al,%eax
++[ 	]*[a-f0-9]+:	f2 0f 38 f0 c0       	crc32b %al,%eax
++[ 	]*[a-f0-9]+:	f2 48 0f 38 f0 c0    	crc32b %al,%rax
++[ 	]*[a-f0-9]+:	f2 48 0f 38 f0 c0    	crc32b %al,%rax
++[ 	]*[a-f0-9]+:	(66 f2|f2 66) 0f 38 f1 c0    	crc32w %ax,%eax
++[ 	]*[a-f0-9]+:	(66 f2|f2 66) 0f 38 f1 c0    	crc32w %ax,%eax
++[ 	]*[a-f0-9]+:	f2 0f 38 f1 c0       	crc32l %eax,%eax
++[ 	]*[a-f0-9]+:	f2 0f 38 f1 c0       	crc32l %eax,%eax
++[ 	]*[a-f0-9]+:	f2 48 0f 38 f1 c0    	crc32q %rax,%rax
++[ 	]*[a-f0-9]+:	f2 48 0f 38 f1 c0    	crc32q %rax,%rax
++[ 	]*[a-f0-9]+:	f2 48 0f 38 f0 06    	crc32b \(%rsi\),%rax
++[ 	]*[a-f0-9]+:	f2 0f 38 f0 06       	crc32b \(%rsi\),%eax
++[ 	]*[a-f0-9]+:	(66 f2|f2 66) 0f 38 f1 06    	crc32w \(%rsi\),%eax
++[ 	]*[a-f0-9]+:	f2 0f 38 f1 06       	crc32l \(%rsi\),%eax
++[ 	]*[a-f0-9]+:	f2 48 0f 38 f1 06    	crc32q \(%rsi\),%rax
++[ 	]*[a-f0-9]+:	f2 0f 38 f0 c0       	crc32b %al,%eax
++[ 	]*[a-f0-9]+:	f2 48 0f 38 f0 c0    	crc32b %al,%rax
++[ 	]*[a-f0-9]+:	(66 f2|f2 66) 0f 38 f1 c0    	crc32w %ax,%eax
++[ 	]*[a-f0-9]+:	f2 0f 38 f1 c0       	crc32l %eax,%eax
++[ 	]*[a-f0-9]+:	f2 48 0f 38 f1 c0    	crc32q %rax,%rax
++#pass
+--- gas/testsuite/gas/i386/inval-crc32.l.jj	2007-05-07 15:16:51.000000000 +0200
++++ gas/testsuite/gas/i386/inval-crc32.l	2007-05-07 12:45:25.000000000 +0200
+@@ -0,0 +1,43 @@
++.*: Assembler messages:
++.*:6: Error: .*
++.*:7: Error: .*
++.*:8: Error: .*
++.*:9: Error: .*
++.*:10: Error: .*
++.*:11: Error: .*
++.*:12: Error: .*
++.*:13: Error: .*
++.*:14: Error: .*
++.*:17: Error: .*
++.*:18: Error: .*
++.*:19: Error: .*
++.*:20: Error: .*
++.*:21: Error: .*
++.*:22: Error: .*
++.*:23: Error: .*
++GAS LISTING .*
++
++
++[ 	]*1[ 	]+\# Check illegal crc32 in SSE4\.2
++[ 	]*2[ 	]+
++[ 	]*3[ 	]+\.text
++[ 	]*4[ 	]+foo:
++[ 	]*5[ 	]+
++[ 	]*6[ 	]+crc32b \(%esi\), %al
++[ 	]*7[ 	]+crc32w \(%esi\), %ax
++[ 	]*8[ 	]+crc32 \(%esi\), %al
++[ 	]*9[ 	]+crc32 \(%esi\), %ax
++[ 	]*10[ 	]+crc32 \(%esi\), %eax
++[ 	]*11[ 	]+crc32  %al, %al
++[ 	]*12[ 	]+crc32b  %al, %al
++[ 	]*13[ 	]+crc32  %ax, %ax
++[ 	]*14[ 	]+crc32w  %ax, %ax
++[ 	]*15[ 	]+
++[ 	]*16[ 	]+\.intel_syntax noprefix
++[ 	]*17[ 	]+crc32  al,byte ptr \[esi\]
++[ 	]*18[ 	]+crc32  ax, word ptr \[esi\]
++[ 	]*19[ 	]+crc32  al, \[esi\]
++[ 	]*20[ 	]+crc32  ax, \[esi\]
++[ 	]*21[ 	]+crc32  eax, \[esi\]
++[ 	]*22[ 	]+crc32  al,al
++[ 	]*23[ 	]+crc32  ax, ax
+--- gas/config/tc-i386.c.jj	2006-10-20 20:50:59.000000000 +0200
++++ gas/config/tc-i386.c	2007-05-07 13:00:02.000000000 +0200
+@@ -511,6 +511,12 @@ static const arch_entry cpu_arch[] =
+    CpuMMX|CpuMMX2|CpuSSE|CpuSSE2|CpuSSE3},
+   {".ssse3", PROCESSOR_UNKNOWN,
+    CpuMMX|CpuMMX2|CpuSSE|CpuSSE2|CpuSSE3|CpuSSSE3},
++  {".sse4.1", PROCESSOR_UNKNOWN,
++   CpuMMX|CpuMMX2|CpuSSE|CpuSSE2|CpuSSE3|CpuSSSE3|CpuSSE4_1},
++  {".sse4.2", PROCESSOR_UNKNOWN,
++   CpuMMX|CpuMMX2|CpuSSE|CpuSSE2|CpuSSE3|CpuSSSE3|CpuSSE4},
++  {".sse4", PROCESSOR_UNKNOWN,
++   CpuMMX|CpuMMX2|CpuSSE|CpuSSE2|CpuSSE3|CpuSSSE3|CpuSSE4},
+   {".3dnow", PROCESSOR_UNKNOWN,
+    CpuMMX|Cpu3dnow},
+   {".3dnowa", PROCESSOR_UNKNOWN,
+@@ -2697,9 +2703,10 @@ match_template ()
+ 	      || !MATCH (overlap1, i.types[1], operand_types[1])
+ 	      /* monitor in SSE3 is a very special case.  The first
+ 		 register and the second register may have different
+-		 sizes.  */
++		 sizes.  The same applies to crc32 in SSE4.2.  */
+ 	      || !((t->base_opcode == 0x0f01
+ 		    && t->extension_opcode == 0xc8)
++		   || t->base_opcode == 0xf20f38f1
+ 		   || CONSISTENT_REGISTER_MATCH (overlap0, i.types[0],
+ 						 operand_types[0],
+ 						 overlap1, i.types[1],
+@@ -2856,19 +2863,44 @@ process_suffix (void)
+ 	{
+ 	  /* We take i.suffix from the last register operand specified,
+ 	     Destination register type is more significant than source
+-	     register type.  */
+-	  int op;
+-
+-	  for (op = i.operands; --op >= 0;)
+-	    if ((i.types[op] & Reg)
+-		&& !(i.tm.operand_types[op] & InOutPortReg))
+-	      {
+-		i.suffix = ((i.types[op] & Reg8) ? BYTE_MNEM_SUFFIX :
+-			    (i.types[op] & Reg16) ? WORD_MNEM_SUFFIX :
+-			    (i.types[op] & Reg64) ? QWORD_MNEM_SUFFIX :
++	     register type.  crc32 in SSE4.2 prefers source register
++	     type. */
++	  if (i.tm.base_opcode == 0xf20f38f1)
++	    {
++	      if ((i.types[0] & Reg))
++		i.suffix = ((i.types[0] & Reg16) ? WORD_MNEM_SUFFIX :
+ 			    LONG_MNEM_SUFFIX);
+-		break;
+-	      }
++	    }
++	  else if (i.tm.base_opcode == 0xf20f38f0)
++	    {
++	      if ((i.types[0] & Reg8))
++		i.suffix = BYTE_MNEM_SUFFIX;
++	    }
++
++	  if (!i.suffix)
++	    {
++	      int op;
++
++	      if (i.tm.base_opcode == 0xf20f38f1
++		  || i.tm.base_opcode == 0xf20f38f0)
++		{
++		  /* We have to know the operand size for crc32.  */
++		  as_bad (_("ambiguous memory operand size for `%s`"),
++			  i.tm.name);
++		  return 0;
++		}
++
++	      for (op = i.operands; --op >= 0;)
++		if ((i.types[op] & Reg)
++		    && !(i.tm.operand_types[op] & InOutPortReg))
++		  {
++		    i.suffix = ((i.types[op] & Reg8) ? BYTE_MNEM_SUFFIX :
++				(i.types[op] & Reg16) ? WORD_MNEM_SUFFIX :
++				(i.types[op] & Reg64) ? QWORD_MNEM_SUFFIX :
++				LONG_MNEM_SUFFIX);
++		    break;
++		  }
++	    }
+ 	}
+       else if (i.suffix == BYTE_MNEM_SUFFIX)
+ 	{
+@@ -3047,6 +3079,10 @@ check_byte_reg (void)
+ 	      || i.tm.base_opcode == 0xfbf))
+ 	continue;
+ 
++      /* crc32 doesn't generate this warning.  */
++      if (i.tm.base_opcode == 0xf20f38f0)
++	continue;
++
+       if ((i.types[op] & WordReg) && i.op[op].regs->reg_num < 4)
+ 	{
+ 	  /* Prohibit these changes in the 64bit mode, since the
+@@ -3302,12 +3338,45 @@ process_operands ()
+      is converted into xor %reg, %reg.  */
+   if (i.tm.opcode_modifier & regKludge)
+     {
+-      unsigned int first_reg_op = (i.types[0] & Reg) ? 0 : 1;
+-      /* Pretend we saw the extra register operand.  */
+-      assert (i.op[first_reg_op + 1].regs == 0);
+-      i.op[first_reg_op + 1].regs = i.op[first_reg_op].regs;
+-      i.types[first_reg_op + 1] = i.types[first_reg_op];
+-      i.reg_operands = 2;
++       if ((i.tm.cpu_flags & CpuSSE4_1))
++	 {
++	   /* The first operand in instruction blendvpd, blendvps and
++	      pblendvb in SSE4.1 is implicit and must be xmm0.  */
++	   assert (i.operands == 3
++		   && i.reg_operands >= 2
++		   && i.types[0] == RegXMM);
++	   if (i.op[0].regs->reg_num != 0)
++	     {
++	       if (intel_syntax)
++		 as_bad (_("the last operand of `%s' must be `xmm0'"),
++			 i.tm.name);
++	       else
++		 as_bad (_("the first operand of `%s' must be `%%xmm0'"),
++			 i.tm.name);
++	       return 0;
++	     }
++	   i.op[0] = i.op[1];
++	   i.op[1] = i.op[2];
++	   i.types[0] = i.types[1];
++	   i.types[1] = i.types[2];
++	   i.operands--;
++	   i.reg_operands--;
++
++	   /* We need to adjust fields in i.tm since they are used by
++	      build_modrm_byte.  */
++	   i.tm.operand_types [0] = i.tm.operand_types [1];
++	   i.tm.operand_types [1] = i.tm.operand_types [2];
++	   i.tm.operands--;
++	 }
++       else
++	 {
++	   unsigned int first_reg_op = (i.types[0] & Reg) ? 0 : 1;
++	   /* Pretend we saw the extra register operand.  */
++	   assert (i.op[first_reg_op + 1].regs == 0);
++	   i.op[first_reg_op + 1].regs = i.op[first_reg_op].regs;
++	   i.types[first_reg_op + 1] = i.types[first_reg_op];
++	   i.reg_operands = 2;
++	 }
+     }
+ 
+   if (i.tm.opcode_modifier & ShortForm)
+@@ -3891,11 +3960,12 @@ output_insn ()
+       unsigned char *q;
+       unsigned int prefix;
+ 
+-      /* All opcodes on i386 have either 1 or 2 bytes.  Supplemental
+-	 Streaming SIMD extensions 3 Instructions have 3 bytes.  We may
+-	 use one more higher byte to specify a prefix the instruction
+-	 requires.  */
+-      if ((i.tm.cpu_flags & CpuSSSE3) != 0)
++      /* All opcodes on i386 have either 1 or 2 bytes.  SSSE3 and
++	 SSE4 instructions have 3 bytes.  We may use one more higher
++	 byte to specify a prefix the instruction requires.  Exclude
++	 instructions which are in both SSE4 and ABM.  */
++      if ((i.tm.cpu_flags & (CpuSSSE3 | CpuSSE4)) != 0
++	  && (i.tm.cpu_flags & CpuABM) == 0)
+ 	{
+ 	  if (i.tm.base_opcode & 0xff000000)
+ 	    {
+@@ -3936,7 +4006,8 @@ output_insn ()
+ 	}
+       else
+ 	{
+-	  if ((i.tm.cpu_flags & CpuSSSE3) != 0)
++	  if ((i.tm.cpu_flags & (CpuSSSE3 | CpuSSE4)) != 0
++	      && (i.tm.cpu_flags & CpuABM) == 0)
+ 	    {
+ 	      p = frag_more (3);
+ 	      *p++ = (i.tm.base_opcode >> 16) & 0xff;
+--- gas/config/tc-i386.h.jj	2006-10-20 20:50:59.000000000 +0200
++++ gas/config/tc-i386.h	2007-05-07 12:27:46.000000000 +0200
+@@ -190,6 +190,11 @@ typedef struct
+ #define CpuSSSE3      0x80000	/* Supplemental Streaming SIMD extensions 3 required */
+ #define CpuSSE4a     0x100000   /* SSE4a New Instuctions required */ 
+ #define CpuABM       0x200000   /* ABM New Instructions required */
++#define CpuSSE4_1    0x400000	/* SSE4.1 Instructions required */
++#define CpuSSE4_2    0x800000	/* SSE4.2 Instructions required */
++
++/* SSE4.1/4.2 Instructions required */
++#define CpuSSE4			(CpuSSE4_1|CpuSSE4_2)
+ 
+   /* These flags are set by gas depending on the flag_code.  */
+ #define Cpu64	     0x4000000   /* 64bit support required  */
+@@ -198,7 +203,8 @@ typedef struct
+   /* The default value for unknown CPUs - enable all features to avoid problems.  */
+ #define CpuUnknownFlags (Cpu186|Cpu286|Cpu386|Cpu486|Cpu586|Cpu686 \
+ 	|CpuP4|CpuSledgehammer|CpuMMX|CpuMMX2|CpuSSE|CpuSSE2|CpuPNI|CpuVMX \
+-	|Cpu3dnow|Cpu3dnowA|CpuK6|CpuPadLock|CpuSVME|CpuSSSE3|CpuABM|CpuSSE4a)
++	|Cpu3dnow|Cpu3dnowA|CpuK6|CpuPadLock|CpuSVME|CpuSSSE3|CpuSSE4_1 \
++	|CpuSSE4_2|CpuABM|CpuSSE4a)
+ 
+   /* the bits in opcode_modifier are used to generate the final opcode from
+      the base_opcode.  These bits also are used to detect alternate forms of
+@@ -234,7 +240,9 @@ typedef struct
+ #define No_xSuf       0x800000  /* x suffix on instruction illegal */
+ #define FWait	     0x1000000	/* instruction needs FWAIT */
+ #define IsString     0x2000000	/* quick test for string instructions */
+-#define regKludge    0x4000000	/* fake an extra reg operand for clr, imul */
++#define regKludge    0x4000000	/* fake an extra reg operand for clr, imul
++				   and special register processing for
++				   some instructions.  */
+ #define IsPrefix     0x8000000	/* opcode is a prefix */
+ #define ImmExt	    0x10000000	/* instruction has extension in 8 bit imm */
+ #define NoRex64	    0x20000000  /* instruction don't need Rex64 prefix.  */
+--- gas/doc/c-i386.texi.jj	2007-05-07 10:48:24.000000000 +0200
++++ gas/doc/c-i386.texi	2007-05-07 11:15:33.000000000 +0200
+@@ -756,6 +756,7 @@ supported on the CPU specified.  The cho
+ @item @samp{amdfam10}
+ @item @samp{k6} @tab @samp{athlon} @tab @samp{sledgehammer} @tab @samp{k8} 
+ @item @samp{.mmx} @tab @samp{.sse} @tab @samp{.sse2} @tab @samp{.sse3}
++@item @samp{.ssse3} @tab @samp{.sse4.1} @tab @samp{.sse4.2} @tab @samp{.sse4}
+ @item @samp{.sse4a} @tab @samp{.3dnow} @tab @samp{.3dnowa} @tab @samp{.padlock}
+ @item @samp{.pacifica} @tab @samp{.svme} @tab @samp{.abm}
+ @end multitable

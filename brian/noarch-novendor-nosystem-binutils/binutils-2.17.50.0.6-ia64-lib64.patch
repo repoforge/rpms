@@ -1,0 +1,36 @@
+2004-05-14  Jakub Jelinek  <jakub@redhat.com>
+
+	* emulparams/elf64_ia64.sh (LIBPATH_SUFFIX): Use */lib64 paths on
+	ia64-linux if /lib64 tree is present.
+
+--- ld/emulparams/elf64_ia64.sh.jj	2004-02-18 20:06:03.000000000 +0100
++++ ld/emulparams/elf64_ia64.sh	2004-05-14 10:11:22.992278608 +0200
+@@ -37,3 +37,13 @@ OTHER_READONLY_SECTIONS="${OTHER_READONL
+ # .dtors.  They have to be next to .sbss/.sbss2/.sdata/.sdata2.
+ SMALL_DATA_CTOR=" "
+ SMALL_DATA_DTOR=" "
++
++# Linux modify the default library search path to first include
++# a 64-bit specific directory.
++case "$target" in
++  ia64*-linux*)
++    case "$EMULATION_NAME" in
++      *64*) test -d /lib64 && LIBPATH_SUFFIX=64 ;;
++    esac
++    ;;
++esac
+--- ltconfig	2003-02-03 16:56:49.000000000 +0900
++++ ltconfig	2003-02-03 16:56:49.000000000 +0900
+@@ -1240,10 +1240,10 @@
+ 
+   # Find out which ABI we are using (multilib hack).
+   case "$host_cpu" in
+-  x86_64*|s390*|sparc*|ppc*|powerpc*)
++  x86_64*|s390*|sparc*|ppc*|powerpc*|ia64)
+     echo "$progname:@lineno@: checking multilib ABI type" 1>&5
+     touch conftest.$ac_ext
+-    if { (eval echo $progname: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>conftest.err; } && test -s conftest.$objext; then
++    if test -d /lib64 && { (eval echo $progname: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>conftest.err; } && test -s conftest.$objext; then
+       case `/usr/bin/file conftest.o` in
+       *64-bit*)
+ 	sys_lib_dlsearch_path_spec="/lib64 /usr/lib64"

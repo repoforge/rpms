@@ -1,0 +1,26 @@
+--- ltconfig.jj	2003-02-03 16:56:49.000000000 +0900
++++ ltconfig	2003-02-03 16:56:49.000000000 +0900
+@@ -1237,6 +1237,23 @@
+   # people can always --disable-shared, the test was removed, and we
+   # assume the GNU/Linux dynamic linker is in use.
+   dynamic_linker='GNU/Linux ld.so'
++
++  # Find out which ABI we are using (multilib hack).
++  case "$host_cpu" in
++  x86_64*|s390*|sparc*|ppc*|powerpc*)
++    echo "$progname:@lineno@: checking multilib ABI type" 1>&5
++    touch conftest.$ac_ext
++    if { (eval echo $progname: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>conftest.err; } && test -s conftest.$objext; then
++      case `/usr/bin/file conftest.o` in
++      *64-bit*)
++	sys_lib_dlsearch_path_spec="/lib64 /usr/lib64"
++	sys_lib_search_path_spec="/lib64 /usr/lib64 /usr/local/lib64"
++        ;;
++      esac
++    fi
++    rm -rf conftest*
++    ;;
++  esac
+   ;;
+ 
+ netbsd*)

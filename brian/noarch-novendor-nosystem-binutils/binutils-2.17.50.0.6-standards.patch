@@ -1,0 +1,878 @@
+--- etc/standards.texi.jj	2002-02-27 11:32:17.000000000 +0100
++++ etc/standards.texi	2005-08-18 19:05:42.000000000 +0200
+@@ -3,16 +3,13 @@
+ @setfilename standards.info
+ @settitle GNU Coding Standards
+ @c This date is automagically updated when you save this file:
+-@set lastupdate February 14, 2002
++@set lastupdate June 8, 2005
+ @c %**end of header
+ 
+-@ifnottex
+-@format
+-START-INFO-DIR-ENTRY
++@dircategory GNU organization
++@direntry
+ * Standards: (standards).        GNU coding standards.
+-END-INFO-DIR-ENTRY
+-@end format
+-@end ifnottex
++@end direntry
+ 
+ @c @setchapternewpage odd
+ @setchapternewpage off
+@@ -32,9 +29,11 @@ END-INFO-DIR-ENTRY
+ @set CHAPTER node
+ @end ifnottex
+ 
+-@ifnottex
+-GNU Coding Standards
+-Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001 Free Software Foundation, Inc.
++@copying
++The GNU coding standards, last updated @value{lastupdate}.
++
++Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000,
++2001, 2002, 2003, 2004, 2005 Free Software Foundation, Inc.
+ 
+ Permission is granted to copy, distribute and/or modify this document
+ under the terms of the GNU Free Documentation License, Version 1.1
+@@ -43,32 +42,25 @@ with no Invariant Sections, with no
+ Front-Cover Texts, and with no Back-Cover Texts.
+ A copy of the license is included in the section entitled ``GNU
+ Free Documentation License''.
+-@end ifnottex
++@end copying
+ 
+ @titlepage
+ @title GNU Coding Standards
+ @author Richard Stallman, et al.
+ @author last updated @value{lastupdate}
+ @page
+-
+ @vskip 0pt plus 1filll
+-Copyright @copyright{} 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001 Free Software Foundation, Inc.
+-
+-Permission is granted to copy, distribute and/or modify this document
+-under the terms of the GNU Free Documentation License, Version 1.1
+-or any later version published by the Free Software Foundation;
+-with no Invariant Sections, with no
+-Front-Cover Texts, and with no Back-Cover Texts.
+-A copy of the license is included in the section entitled ``GNU
+-Free Documentation License''.
++@insertcopying
+ @end titlepage
+ 
+-@ifnottex
++@contents
++
++@ifnottex
+ @node Top, Preface, (dir), (dir)
+ @top Version
+ 
+-Last updated @value{lastupdate}.
+-@end ifnottex
++@insertcopying
++@end ifnottex
+ 
+ @menu
+ * Preface::                     About the GNU Coding Standards
+@@ -101,15 +93,10 @@ This release of the GNU Coding Standards
+ @cindex where to obtain @code{standards.texi}
+ @cindex downloading this manual
+ If you did not obtain this file directly from the GNU project and
+-recently, please check for a newer version.  You can ftp the GNU
+-Coding Standards from any GNU FTP host in the directory
+-@file{/pub/gnu/standards/}.  The GNU Coding Standards are available
+-there in several different formats: @file{standards.text},
+-@file{standards.info}, and @file{standards.dvi}, as well as the
+-Texinfo ``source'' which is divided in two files:
+-@file{standards.texi} and @file{make-stds.texi}.  The GNU Coding
+-Standards are also available on the GNU World Wide Web server:
+-@uref{http://www.gnu.org/prep/standards_toc.html}.
++recently, please check for a newer version.  You can get the GNU
++Coding Standards from the GNU web server in many
++different formats, including the Texinfo source, PDF, HTML, DVI, plain
++text, and more, at: @uref{http://www.gnu.org/prep/standards/}.
+ 
+ Corrections or suggestions for this document should be sent to
+ @email{bug-standards@@gnu.org}.  If you make a suggestion, please include a
+@@ -129,11 +116,15 @@ be self-consistent---try to stick to the
+ to document them as much as possible.  That way, your program will be
+ more maintainable by others.
+ 
++The GNU Hello program serves as an example of how to follow the GNU
++coding standards for a trivial program which prints @samp{Hello,
++world!}.  @uref{http://www.gnu.org/software/hello/hello.html}.
++
+ @node Legal Issues
+ @chapter Keeping Free Software Free
+ @cindex legal aspects
+ 
+-This @value{CHAPTER} discusses how you can make sure that GNU software
++This chapter discusses how you can make sure that GNU software
+ avoids legal difficulties, and other related issues.
+ 
+ @menu
+@@ -211,7 +202,7 @@ You might have to take that code out aga
+ You don't need papers for changes of a few lines here or there, since
+ they are not significant for copyright purposes.  Also, you don't need
+ papers if all you get from the suggestion is some ideas, not actual code
+-which you use.  For example, if someone send you one implementation, but
++which you use.  For example, if someone sent you one implementation, but
+ you write a different implementation of the same idea, you don't need to
+ get papers.
+ 
+@@ -221,7 +212,8 @@ result.
+ 
+ We have more detailed advice for maintainers of programs; if you have
+ reached the stage of actually maintaining a program for GNU (whether
+-released or not), please ask us for a copy.
++released or not), please ask us for a copy.  It is also available
++online for your perusal: @uref{http://www.gnu.org/prep/maintain/}.
+ 
+ @node Trademarks
+ @section Trademarks
+@@ -232,24 +224,33 @@ packages or documentation.
+ 
+ Trademark acknowledgements are the statements that such-and-such is a
+ trademark of so-and-so.  The GNU Project has no objection to the basic
+-idea of trademarks, but these acknowledgements feel like kowtowing, so
+-we don't use them.  There is no legal requirement for them.
++idea of trademarks, but these acknowledgements feel like kowtowing, 
++and there is no legal requirement for them, so we don't use them.
+ 
+ What is legally required, as regards other people's trademarks, is to
+-avoid using them in ways which a reader might read as naming or labeling
+-our own programs or activities.  For example, since ``Objective C'' is
+-(or at least was) a trademark, we made sure to say that we provide a
+-``compiler for the Objective C language'' rather than an ``Objective C
+-compiler''.  The latter is meant to be short for the former, but it does
+-not explicitly state the relationship, so it could be misinterpreted as
+-using ``Objective C'' as a label for the compiler rather than for the
+-language.
++avoid using them in ways which a reader might reasonably understand as
++naming or labeling our own programs or activities.  For example, since
++``Objective C'' is (or at least was) a trademark, we made sure to say
++that we provide a ``compiler for the Objective C language'' rather
++than an ``Objective C compiler''.  The latter would have been meant as
++a shorter way of saying the former, but it does not explicitly state
++the relationship, so it could be misinterpreted as using ``Objective
++C'' as a label for the compiler rather than for the language.
++
++Please don't use ``win'' as an abbreviation for Microsoft Windows in
++GNU software or documentation.  In hacker terminology, calling
++something a ``win'' is a form of praise.  If you wish to praise
++Microsoft Windows when speaking on your own, by all means do so, but
++not in GNU software.  Usually we write the name ``Windows'' in full,
++but when brevity is very important (as in file names and sometimes
++symbol names), we abbreviate it to ``w''.  For instance, the files and
++functions in Emacs that deal with Windows start with @samp{w32}.
+ 
+ @node Design Advice
+ @chapter General Program Design
+ @cindex program design
+ 
+-This @value{CHAPTER} discusses some of the issues you should take into
++This chapter discusses some of the issues you should take into
+ account when designing your program.
+ 
+ @c                         Standard or ANSI C
+@@ -263,7 +264,7 @@ account when designing your program.
+ @c A major revision of the C Standard appeared in 1999.
+ 
+ @menu
+-* Source Language::             Which languges to use.
++* Source Language::             Which languages to use.
+ * Compatibility::               Compatibility with other implementations
+ * Using Extensions::            Using non-standard features
+ * Standard C::                  Using Standard C features
+@@ -272,7 +273,7 @@ account when designing your program.
+ 
+ @node Source Language
+ @section Which Languages to Use
+-@cindex programming languges
++@cindex programming languages
+ 
+ When you want to use a language that gets compiled and runs at high
+ speed, the best language to use is C.  Using another language is like
+@@ -476,6 +477,7 @@ For example, please write
+     ...
+ @end smallexample
+ 
++@noindent
+ instead of:
+ 
+ @smallexample
+@@ -488,11 +490,12 @@ instead of:
+ 
+ A modern compiler such as GCC will generate exactly the same code in
+ both cases, and we have been using similar techniques with good success
+-in several projects.
++in several projects.  Of course, the former method assumes that
++@code{HAS_FOO} is defined as either 0 or 1.
+ 
+ While this is not a silver bullet solving all portability problems,
+-following this policy would have saved the GCC project alone many person
+-hours if not days per year.
++and is not always appropriate, following this policy would have saved
++GCC developers many hours, or even days, per year.
+ 
+ In the case of function-like macros like @code{REVERSIBLE_CC_MODE} in
+ GCC which cannot be simply used in @code{if( ...)} statements, there is
+@@ -510,7 +513,7 @@ an easy workaround.  Simply introduce an
+ @node Program Behavior
+ @chapter Program Behavior for All Programs
+ 
+-This @value{CHAPTER} describes conventions for writing robust
++This chapter describes conventions for writing robust
+ software.  It also describes general standards for error messages, the
+ command line interface, and how libraries should behave.
+ 
+@@ -679,10 +682,12 @@ Error messages from compilers should loo
+ @end example
+ 
+ @noindent
+-If you want to mention the column number, use this format:
++If you want to mention the column number, use one of these formats:
+ 
+ @example
+ @var{source-file-name}:@var{lineno}:@var{column}: @var{message}
++@var{source-file-name}:@var{lineno}.@var{column}: @var{message}   
++
+ @end example
+ 
+ @noindent
+@@ -692,6 +697,24 @@ of these conventions are chosen for comp
+ numbers assuming that space and all ASCII printing characters have
+ equal width, and assuming tab stops every 8 columns.
+ 
++The error message can also give both the starting and ending positions
++of the erroneous text.  There are several formats so that you can
++avoid redundant information such as a duplicate line number.
++Here are the possible formats:
++
++@example
++@var{source-file-name}:@var{lineno-1}.@var{column-1}-@var{lineno-2}.@var{column-2}: @var{message}
++@var{source-file-name}:@var{lineno-1}.@var{column-1}-@var{column-2}: @var{message}
++@var{source-file-name}:@var{lineno-1}-@var{lineno-2}: @var{message}
++@end example
++
++@noindent
++When an error is spread over several files, you can use this format:
++
++@example
++@var{file-1}:@var{lineno-1}.@var{column-1}-@var{file-2}:@var{lineno-2}.@var{column-2}: @var{message}
++@end example
++
+ Error messages from other noninteractive programs should look like this:
+ 
+ @example
+@@ -722,8 +745,9 @@ input from a source other than a termina
+ would do best to print error messages using the noninteractive style.)
+ 
+ The string @var{message} should not begin with a capital letter when
+-it follows a program name and/or file name.  Also, it should not end
+-with a period.
++it follows a program name and/or file name, because that isn't the
++beginning of a sentence.  (The sentence conceptually starts at the
++beginning of the line.)  Also, it should not end with a period.
+ 
+ Error messages from interactive programs, and other messages such as
+ usage messages, should start with a capital letter.  But they should not
+@@ -767,9 +791,9 @@ multi-column format.
+ @section Standards for Graphical Interfaces
+ @cindex graphical user interface
+ 
+-@cindex gtk
++@cindex gtk+
+ When you write a program that provides a graphical user interface,
+-please make it work with X Windows and the GTK toolkit unless the
++please make it work with X Windows and the GTK+ toolkit unless the
+ functionality specifically requires some alternative (for example,
+ ``displaying jpeg images while in console mode'').
+ 
+@@ -819,8 +843,15 @@ option as another way to specify it.  Th
+ among GNU utilities, and fewer idiosyncracies for users to remember.
+ 
+ @cindex standard command-line options
++@cindex options, standard command-line
++@cindex CGI programs, standard options for
++@cindex PATH_INFO, specifying standard options as
+ All programs should support two standard options: @samp{--version}
+-and @samp{--help}.
++and @samp{--help}.  CGI programs should accept these as command-line
++options, and also if given as the @env{PATH_INFO}; for instance,
++visiting @url{http://example.org/p.cgi/--help} in a browser should
++output the same information as invoking @samp{p.cgi --help} from the
++command line.
+ 
+ @table @code
+ @cindex @samp{--version} option
+@@ -1461,9 +1492,7 @@ Used in @code{gawk}.
+ Used in @code{su}.
+ 
+ @item machine
+-No listing of which programs already use this;
+-someone should check to
+-see if any actually do, and tell @email{gnu@@gnu.org}.
++Used in @code{uname}.
+ 
+ @item macro-name
+ @samp{-M} in @code{ptx}.
+@@ -1573,6 +1602,9 @@ Used in GDB.
+ @item no-sort
+ @samp{-p} in @code{nm}.
+ 
++@item no-splash
++Don't print a startup splash screen.
++
+ @item no-split
+ Used in @code{makeinfo}.
+ 
+@@ -1740,7 +1772,7 @@ Specify an HTTP proxy.
+ @samp{-q} in Make.
+ 
+ @item quiet
+-Used in many programs to inhibit the usual output.  @strong{Note:} every
++Used in many programs to inhibit the usual output.  Every
+ program accepting @samp{--quiet} should accept @samp{--silent} as a
+ synonym.
+ 
+@@ -1855,7 +1887,7 @@ Used by @code{recode} to chose files or 
+ 
+ @item silent
+ Used in many programs to inhibit the usual output.
+-@strong{Note:} every program accepting
++Every program accepting
+ @samp{--silent} should accept @samp{--quiet} as a synonym.
+ 
+ @item size
+@@ -2098,7 +2130,7 @@ directory.
+ @node Writing C
+ @chapter Making The Best Use of C
+ 
+-This @value{CHAPTER} provides advice on how best to use the C language
++This chapter provides advice on how best to use the C language
+ when writing GNU software.
+ 
+ @menu
+@@ -2128,13 +2160,12 @@ These tools will not work on code not fo
+ It is also important for function definitions to start the name of the
+ function in column zero.  This helps people to search for function
+ definitions, and may also help certain tools recognize them.  Thus,
+-the proper format is this:
++using Standard C syntax, the format is this:
+ 
+ @example
+ static char *
+-concat (s1, s2)        /* Name starts in column zero here */
+-     char *s1, *s2;
+-@{                     /* Open brace in column zero here */
++concat (char *s1, char *s2)
++@{
+   @dots{}
+ @}
+ @end example
+@@ -2145,8 +2176,9 @@ this:
+ 
+ @example
+ static char *
+-concat (char *s1, char *s2)
+-@{
++concat (s1, s2)        /* Name starts in column zero here */
++     char *s1, *s2;
++@{                     /* Open brace in column zero here */
+   @dots{}
+ @}
+ @end example
+@@ -2383,7 +2415,7 @@ functions.
+ @cindex temporary variables
+ It used to be common practice to use the same local variables (with
+ names like @code{tem}) over and over for different values within one
+-function.  Instead of doing this, it is better declare a separate local
++function.  Instead of doing this, it is better to declare a separate local
+ variable for each distinct purpose, and give it a name which is
+ meaningful.  This not only makes programs easier to understand, it also
+ facilitates optimization by good compilers.  You can also move the
+@@ -2584,11 +2616,20 @@ Avoid using the format of semi-internal 
+ when there is a higher-level alternative (@code{readdir}).
+ 
+ @cindex non-@sc{posix} systems, and portability
+-As for systems that are not like Unix, such as MSDOS, Windows, the
+-Macintosh, VMS, and MVS, supporting them is often a lot of work.  When
+-that is the case, it is better to spend your time adding features that
+-will be useful on GNU and GNU/Linux, rather than on supporting other
+-incompatible systems.
++As for systems that are not like Unix, such as MSDOS, Windows, VMS,
++MVS, and older Macintosh systems, supporting them is often a lot of
++work.  When that is the case, it is better to spend your time adding
++features that will be useful on GNU and GNU/Linux, rather than on
++supporting other incompatible systems.
++
++If you do support Windows, please do not abbreviate it as ``win''.  In
++hacker terminology, calling something a ``win'' is a form of praise.
++You're free to praise Microsoft Windows on your own if you want, but
++please don't do this in GNU packages.  Instead of abbreviating
++``Windows'' to ``un'', you can write it in full or abbreviate it to
++``woe'' or ``w''.  In GNU Emacs, for instance, we use @samp{w32} in
++file names of Windows-specific files, but the macro for Windows
++conditionals is called @code{WINDOWSNT}.
+ 
+ It is a good idea to define the ``feature test macro''
+ @code{_GNU_SOURCE} when compiling your C files.  When you compile on GNU
+@@ -2644,37 +2685,50 @@ while ((c = getchar()) != EOF)
+   write(file_descriptor, &c, 1);
+ @end example
+ 
+-When calling functions, you need not worry about the difference between
+-pointers of various types, or between pointers and integers.  On most
+-machines, there's no difference anyway.  As for the few machines where
+-there is a difference, all of them support Standard C prototypes, so you can
+-use prototypes (perhaps conditionalized to be active only in Standard C)
+-to make the code work on those systems.
+-
+-In certain cases, it is ok to pass integer and pointer arguments
+-indiscriminately to the same function, and use no prototype on any
+-system.  For example, many GNU programs have error-reporting functions
+-that pass their arguments along to @code{printf} and friends:
+-
+-@example
+-error (s, a1, a2, a3)
+-     char *s;
+-     char *a1, *a2, *a3;
+-@{
+-  fprintf (stderr, "error: ");
+-  fprintf (stderr, s, a1, a2, a3);
+-@}
++It used to be ok to not worry about the difference between pointers
++and integers when passing arguments to functions.  However, on most
++modern 64-bit machines pointers are wider than @code{int}.
++Conversely, integer types like @code{long long int} and @code{off_t}
++are wider than pointers on most modern 32-bit machines.  Hence it's
++often better nowadays to use prototypes to define functions whose
++argument types are not trivial.
++
++In particular, if functions accept varying argument counts or types
++they should be declared using prototypes containing @samp{...} and
++defined using @file{stdarg.h}.  For an example of this, please see the
++@uref{http://www.gnu.org/software/gnulib/, Gnulib} error module, which
++declares and defines the following function:
++
++@example
++/* Print a message with `fprintf (stderr, FORMAT, ...)';
++   if ERRNUM is nonzero, follow it with ": " and strerror (ERRNUM).
++   If STATUS is nonzero, terminate the program with `exit (STATUS)'.  */
++
++void error (int status, int errnum, const char *format, ...);
+ @end example
+ 
+-@noindent
+-In practice, this works on all machines, since a pointer is generally
+-the widest possible kind of argument; it is much simpler than any
+-``correct'' alternative.  Be sure @emph{not} to use a prototype for such
+-functions.
++A simple way to use the Gnulib error module is to obtain the two
++source files @file{error.c} and @file{error.h} from the Gnulib library
++source code repository at
++@uref{http://savannah.gnu.org/cgi-bin/viewcvs/gnulib/gnulib/lib/}.
++Here's a sample use:
+ 
+-If you have decided to use Standard C, then you can instead define
+-@code{error} using @file{stdarg.h}, and pass the arguments along to
+-@code{vfprintf}.
++@example
++#include "error.h"
++#include <errno.h>
++#include <stdio.h>
++
++char *program_name = "myprogram";
++
++FILE *
++xfopen (char const *name)
++@{
++  FILE *fp = fopen (name, "r");
++  if (! fp)
++    error (1, errno, "cannot read %s", name);
++  return fp;
++@}
++@end example
+ 
+ @cindex casting pointers to integers
+ Avoid casting pointers to integers if you can.  Such casts greatly
+@@ -3000,10 +3054,13 @@ together, we can make the whole subject 
+ 
+ The manual which discusses a program should certainly document all of
+ the program's command-line options and all of its commands.  It should
+-give examples of their use.  But don't organize the manual as a list of
+-features.  Instead, organize it logically, by subtopics.  Address the
+-questions that a user will ask when thinking about the job that the
+-program does.
++give examples of their use.  But don't organize the manual as a list
++of features.  Instead, organize it logically, by subtopics.  Address
++the questions that a user will ask when thinking about the job that
++the program does.  Don't just tell the reader what each feature can
++do---say what jobs it is good for, and show how to use it for those
++jobs.  Explain what is recommended usage, and what kinds of usage
++users should avoid.
+ 
+ In general, a GNU manual should serve both as tutorial and reference.
+ It should be set up for convenient access to each topic through Info,
+@@ -3030,9 +3087,9 @@ functions, variables, options, and impor
+ the program.  One combined Index should do for a short manual, but
+ sometimes for a complex package it is better to use multiple indices.
+ The Texinfo manual includes advice on preparing good index entries, see
+-@ref{Index Entries, , Making Index Entries, texinfo, The GNU Texinfo
+-Manual}, and see @ref{Indexing Commands, , Defining the Entries of an
+-Index, texinfo, The GNU Texinfo manual}.
++@ref{Index Entries, , Making Index Entries, texinfo, GNU Texinfo}, and
++see @ref{Indexing Commands, , Defining the Entries of an
++Index, texinfo, GNU Texinfo}.
+ 
+ Don't use Unix man pages as a model for how to write GNU documentation;
+ most of them are terse, badly structured, and give inadequate
+@@ -3041,15 +3098,15 @@ exceptions.)  Also, Unix man pages use a
+ different from what we use in GNU manuals.
+ 
+ Please include an email address in the manual for where to report
+-bugs @emph{in the manual}.
++bugs @emph{in the text of the manual}.
+ 
+ Please do not use the term ``pathname'' that is used in Unix
+ documentation; use ``file name'' (two words) instead.  We use the term
+ ``path'' only for search paths, which are lists of directory names.
+ 
+-Please do not use the term ``illegal'' to refer to erroneous input to a
+-computer program.  Please use ``invalid'' for this, and reserve the term
+-``illegal'' for activities punishable by law.
++Please do not use the term ``illegal'' to refer to erroneous input to
++a computer program.  Please use ``invalid'' for this, and reserve the
++term ``illegal'' for activities prohibited by law.
+ 
+ @node Doc Strings and Manuals
+ @section Doc Strings and Manuals
+@@ -3092,7 +3149,7 @@ Each program documented in the manual sh
+ @samp{@var{program} Invocation} or @samp{Invoking @var{program}}.  This
+ node (together with its subnodes, if any) should describe the program's
+ command line arguments and how to run it (the sort of information people
+-would look in a man page for).  Start with an @samp{@@example}
++would look for in a man page).  Start with an @samp{@@example}
+ containing a template for all the options and arguments that the program
+ uses.
+ 
+@@ -3210,6 +3267,11 @@ code.  For example, ``New function'' is 
+ you add a function, because there should be a comment before the
+ function definition to explain what it does.
+ 
++In the past, we recommended not mentioning changes in non-software
++files (manuals, help files, etc.) in change logs.  However, we've been
++advised that it is a good idea to include them, for the sake of
++copyright records.
++
+ However, sometimes it is useful to write one line to describe the
+ overall purpose of a batch of changes.
+ 
+@@ -3224,9 +3286,9 @@ Then describe the changes you made to th
+ @cindex change logs, style
+ 
+ Here are some simple examples of change log entries, starting with the
+-header line that says who made the change and when, followed by
+-descriptions of specific changes.  (These examples are drawn from Emacs
+-and GCC.)
++header line that says who made the change and when it was installed,
++followed by descriptions of specific changes.  (These examples are
++drawn from Emacs and GCC.)
+ 
+ @example
+ 1998-08-17  Richard Stallman  <rms@@gnu.org>
+@@ -3270,6 +3332,27 @@ Break long lists of function names by cl
+ (Fexecute_extended_command): Deal with `keymap' property.
+ @end example
+ 
++When you install someone else's changes, put the contributor's name in
++the change log entry rather than in the text of the entry.  In other
++words, write this:
++
++@example
++2002-07-14  John Doe  <jdoe@@gnu.org>
++
++        * sewing.c: Make it sew.
++@end example
++
++@noindent
++rather than this:
++
++@example
++2002-07-14  Usual Maintainer  <usual@@gnu.org>
++
++        * sewing.c: Make it sew.  Patch by jdoe@@gnu.org.
++@end example
++
++As for the date, that should be the date you applied the change.
++
+ @node Simple Changes
+ @subsection Simple Changes
+ 
+@@ -3291,12 +3374,17 @@ When you change just comments or doc str
+ entry for the file, without mentioning the functions.  Just ``Doc
+ fixes'' is enough for the change log.
+ 
+-There's no need to make change log entries for documentation files.
+-This is because documentation is not susceptible to bugs that are hard
+-to fix.  Documentation does not consist of parts that must interact in a
+-precisely engineered fashion.  To correct an error, you need not know
+-the history of the erroneous passage; it is enough to compare what the
+-documentation says with the way the program actually works.
++There's no technical need to make change log entries for documentation
++files.  This is because documentation is not susceptible to bugs that
++are hard to fix.  Documentation does not consist of parts that must
++interact in a precisely engineered fashion.  To correct an error, you
++need not know the history of the erroneous passage; it is enough to
++compare what the documentation says with the way the program actually
++works.
++
++However, you should keep change logs for documentation files when the
++project gets copyright assignments from its contributors, so as to
++make the records of authorship more accurate.
+ 
+ @node Conditional Changes
+ @subsection Conditional Changes
+@@ -3387,6 +3475,25 @@ page explaining that you don't maintain 
+ is more authoritative.  The note should say how to access the Texinfo
+ documentation.
+ 
++Be sure that man pages include a copyright statement and free
++license.  The simple all-permissive license is appropriate for simple
++man pages:
++
++@example
++Copying and distribution of this file, with or without modification,
++are permitted in any medium without royalty provided the copyright
++notice and this notice are preserved.
++@end example
++
++For long man pages, with enough explanation and documentation that
++they can be considered true manuals, use the GFDL (@pxref{License for
++Manuals}).
++
++Finally, the GNU help2man program
++(@uref{http://www.gnu.org/software/help2man/}) is one way to automate
++generation of a man page, in this case from @option{--help} output.
++This is sufficient in many cases.
++
+ @node Reading other Manuals
+ @section Reading other Manuals
+ 
+@@ -3486,19 +3593,26 @@ this:
+ @var{cpu}-@var{company}-@var{system}
+ @end example
+ 
+-For example, a Sun 3 might be @samp{m68k-sun-sunos4.1}.
++For example, an Athlon-based GNU/Linux system might be
++@samp{i686-pc-linux-gnu}.
+ 
+ The @code{configure} script needs to be able to decode all plausible
+-alternatives for how to describe a machine.  Thus, @samp{sun3-sunos4.1}
+-would be a valid alias.  For many programs, @samp{vax-dec-ultrix} would
+-be an alias for @samp{vax-dec-bsd}, simply because the differences
+-between Ultrix and @sc{bsd} are rarely noticeable, but a few programs
+-might need to distinguish them.
+-@c Real 4.4BSD now runs on some Suns.
+-
+-There is a shell script called @file{config.sub} that you can use
++alternatives for how to describe a machine.  Thus,
++@samp{athlon-pc-gnu/linux} would be a valid alias.
++There is a shell script called
++@uref{ftp://ftp.gnu.org/gnu/config/config.sub, @file{config.sub}}
++that you can use
+ as a subroutine to validate system types and canonicalize aliases.
+ 
++The @code{configure} script should also take the option
++@option{--build=@var{buildtype}}, which should be equivalent to a
++plain @var{buildtype} argument.  For example, @samp{configure
++--build=i686-pc-linux-gnu} is equivalent to @samp{configure
++i686-pc-linux-gnu}.  When the build type is not specified by an option
++or argument, the @code{configure} script should normally guess it
++using the shell script
++@uref{ftp://ftp.gnu.org/gnu/config/config.guess, @file{config.guess}}.
++
+ @cindex optional features, configure-time
+ Other options are permitted to specify in more detail the software
+ or hardware present on the machine, and include or exclude optional
+@@ -3558,6 +3672,11 @@ The @code{configure} script should norma
+ system as both the host and the target, thus producing a program which
+ works for the same type of machine that it runs on.
+ 
++To compile a program to run on a host type that differs from the build
++type, use the configure option @option{--host=@var{hosttype}}, where
++@var{hosttype} uses the same syntax as @var{buildtype}.  The host type
++normally defaults to the build type.
++
+ To configure a cross-compiler, cross-assembler, or what have you, you
+ should specify a target different from the host, using the configure
+ option @samp{--target=@var{targettype}}.  The syntax for
+@@ -3565,22 +3684,14 @@ option @samp{--target=@var{targettype}}.
+ look like this:
+ 
+ @example
+-./configure @var{hosttype} --target=@var{targettype}
++./configure --host=@var{hosttype} --target=@var{targettype}
+ @end example
+ 
++The target type normally defaults to the host type.
+ Programs for which cross-operation is not meaningful need not accept the
+ @samp{--target} option, because configuring an entire operating system for
+ cross-operation is not a meaningful operation.
+ 
+-Bootstrapping a cross-compiler requires compiling it on a machine other
+-than the host it will run on.  Compilation packages accept a
+-configuration option @samp{--build=@var{buildtype}} for specifying the
+-configuration on which you will compile them, but the configure script
+-should normally guess the build machine type (using
+-@file{config.guess}), so this option is probably not necessary.  The
+-host and target types normally default from the build type, so in
+-bootstrapping a cross-compiler you must specify them both explicitly.
+-
+ Some programs have ways of configuring themselves automatically.  If
+ your program is set up to do this, your @code{configure} script can simply
+ ignore most of its arguments.
+@@ -3596,6 +3707,10 @@ ignore most of its arguments.
+ @section Making Releases
+ @cindex packaging
+ 
++You should identify each release with a pair of version numbers, a
++major version and a minor.  We have no objection to using more than
++two numbers, but it is very unlikely that you really need them.
++
+ Package the distribution of @code{Foo version 69.96} up in a gzipped tar
+ file with the name @file{foo-69.96.tar.gz}.  It should unpack into a
+ subdirectory named @file{foo-69.96}.
+@@ -3644,13 +3759,6 @@ able to extract all the files even if th
+ 
+ Make sure that all the files in the distribution are world-readable.
+ 
+-Make sure that no file name in the distribution is more than 14
+-characters long.  Likewise, no file created by building the program
+-should have a name longer than 14 characters.  The reason for this is
+-that some systems adhere to a foolish interpretation of the @sc{posix}
+-standard, and refuse to open a longer name, rather than truncating as
+-they did in the past.
+-
+ Don't include any symbolic links in the distribution itself.  If the tar
+ file contains symbolic links, then people cannot even unpack it on
+ systems that don't support symbolic links.  Also, don't use multiple
+@@ -3682,16 +3790,27 @@ other files to get.
+ 
+ A GNU program should not recommend use of any non-free program.  We
+ can't stop some people from writing proprietary programs, or stop
+-other people from using them, but we can and should avoid helping to
++other people from using them, but we can and should refuse to
+ advertise them to new potential customers.  Proprietary software is a
+ social and ethical problem, and the point of GNU is to solve that
+ problem.
+ 
++The GNU definition of free software is found on the GNU web site at
++@url{http://www.gnu.org/philosophy/free-sw.html}.  A list of
++important licenses and whether they qualify as free is in
++@url{http://www.gnu.org/licenses/license-list.html}.  The terms
++``free'' and ``non-free'', used in this document, refer to that
++definition.  If it is not clear whether a license qualifies as free
++under this definition, please ask the GNU Project by writing to
++@email{licensing@@gnu.org}.  We will answer, and if the license is an
++important one, we will add it to the list.
++
+ When a non-free program or system is well known, you can mention it in
+ passing---that is harmless, since users who might want to use it
+ probably already know about it.  For instance, it is fine to explain
+-how to build your package on top of some non-free operating system, or
+-how to use it together with some widely used non-free program.
++how to build your package on top of some widely used non-free
++operating system, or how to use it together with some widely used
++non-free program.
+ 
+ However, you should give only the necessary information to help those
+ who already use the non-free program to use your program with
+@@ -3700,8 +3819,8 @@ proprietary program, and don't imply tha
+ enhances your program, or that its existence is in any way a good
+ thing.  The goal should be that people already using the proprietary
+ program will get the advice they need about how to use your free
+-program, while people who don't already use the proprietary program
+-will not see anything to lead them to take an interest in it.
++program with it, while people who don't already use the proprietary
++program will not see anything to lead them to take an interest in it.
+ 
+ If a non-free program or system is obscure in your program's domain,
+ your program should not mention or support it at all, since doing so
+@@ -3709,13 +3828,46 @@ would tend to popularize the non-free pr
+ your program.  (You cannot hope to find many additional users among
+ the users of Foobar if the users of Foobar are few.)
+ 
++Sometimes a program is free software in itself but depends on a
++non-free platform in order to run.  For instance, many Java programs
++depend on Sun's Java implementation, and won't run on the GNU Java
++Compiler (which does not yet have all the features) or won't run with
++the GNU Java libraries.  To recommend that program is inherently to
++recommend the non-free platform as well; if you should not do the
++latter, then don't do the former.
++
+ A GNU package should not refer the user to any non-free documentation
+ for free software.  Free documentation that can be included in free
+-operating systems is essential for completing the GNU system, so it is
+-a major focus of the GNU Project; to recommend use of documentation
+-that we are not allowed to use in GNU would undermine the efforts to
+-get documentation that we can include.  So GNU packages should never
+-recommend non-free documentation.
++operating systems is essential for completing the GNU system, or any
++free operating system, so it is a major focus of the GNU Project; to
++recommend use of documentation that we are not allowed to use in GNU
++would weaken the impetus for the community to produce documentation
++that we can include.  So GNU packages should never recommend non-free
++documentation.
++
++By contrast, it is ok to refer to journal articles and textbooks in
++the comments of a program for explanation of how it functions, even
++though they be non-free.  This is because we don't include such things
++in the GNU system even if we are allowed to--they are outside the
++scope of an operating system project.
++
++Referring to a web site that describes or recommends a non-free
++program is in effect promoting that software, so please do not make
++links (or mention by name) web sites that contain such material.  This
++policy is relevant particularly for the web pages for a GNU package.
++
++Following links from nearly any web site can lead to non-free
++software; this is an inescapable aspect of the nature of the web, and
++in itself is no objection to linking to a site.  As long as the site
++does not itself recommend a non-free program, there is no need be
++concerned about the sites it links to for other reasons.
++
++Thus, for example, you should not make a link to AT&T's web site,
++because that recommends AT&T's non-free software packages; you should
++not make a link to a site that links to AT&T's site saying it is a
++place to get a non-free program; but if a site you want to link to
++refers to AT&T's web site in some other context (such as long-distance
++telephone service), that is not a problem.
+ 
+ @node Copying This Manual
+ @appendix Copying This Manual
+@@ -3730,13 +3882,12 @@ recommend non-free documentation.
+ @unnumbered Index
+ @printindex cp
+ 
+-@contents
+-
+ @bye
+-@c Local variables:
+-@c eval: (add-hook 'write-file-hooks 'time-stamp)
+-@c time-stamp-start: "@set lastupdate "
+-@c time-stamp-end: "$"
+-@c time-stamp-format: "%:b %:d, %:y"
+-@c compile-command: "make just-standards"
+-@c End:
++
++Local variables:
++eval: (add-hook 'write-file-hooks 'time-stamp)
++time-stamp-start: "@set lastupdate "
++time-stamp-end: "$"
++time-stamp-format: "%:b %:d, %:y"
++compile-command: "make just-standards"
++End:

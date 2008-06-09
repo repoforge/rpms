@@ -1,0 +1,60 @@
+2006-04-24  Michael Matz  <matz@suse.de>
+	    H.J. Lu  <hongjiu.lu@intel.com>
+
+	* elf-bfd.h (bfd_elf_section_data): Add kept_section.
+	(elf_kept_section): New.
+
+	* elflink.c (_bfd_elf_check_kept_section): Cache the result in
+	elf_kept_section.
+
+--- bfd/elf-bfd.h.kept	2006-03-16 12:37:42.000000000 -0800
++++ bfd/elf-bfd.h	2006-04-24 20:11:00.000000000 -0700
+@@ -1168,6 +1168,10 @@ struct bfd_elf_section_data
+      the linker.  */
+   asection *next_in_group;
+ 
++  /* The pointer to the real kept section. It is computed from the
++     kept_section field in asection due to section group.  */ 
++  asection *kept_section;
++
+   /* A pointer used for various section optimizations.  */
+   void *sec_info;
+ };
+@@ -1180,6 +1184,7 @@ struct bfd_elf_section_data
+ #define elf_group_id(sec)      (elf_section_data(sec)->group.id)
+ #define elf_next_in_group(sec) (elf_section_data(sec)->next_in_group)
+ #define elf_sec_group(sec)	(elf_section_data(sec)->sec_group)
++#define elf_kept_section(sec) (elf_section_data(sec)->kept_section)
+ 
+ /* Return TRUE if section has been discarded.  */
+ #define elf_discarded_section(sec)				\
+--- bfd/elflink.c.kept	2006-04-24 15:36:18.000000000 -0700
++++ bfd/elflink.c	2006-04-24 20:18:03.000000000 -0700
+@@ -6798,7 +6799,14 @@ _bfd_elf_check_kept_section (asection *s
+ {
+   asection *kept;
+ 
++  kept = elf_kept_section (sec);
++  if (kept)
++    return kept;
++
+   kept = sec->kept_section;
++  if (!kept)
++    return kept;
++
+   if (kept != NULL)
+     {
+       if (elf_sec_group (sec) != NULL)
+@@ -6806,6 +6814,12 @@ _bfd_elf_check_kept_section (asection *s
+       if (kept != NULL && sec->size != kept->size)
+ 	kept = NULL;
+     }
++
++  if (kept)
++    elf_kept_section (sec) = kept;
++  else
++    sec->kept_section = NULL;
++
+   return kept;
+ }
+ 

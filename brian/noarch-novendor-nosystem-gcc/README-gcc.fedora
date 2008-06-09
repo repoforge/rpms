@@ -1,0 +1,4 @@
+This package does not include the gnu texinfo documentation because this would
+conflict with the native gcc. If you've installed the native gcc,
+you can find the info documentation there, notice that this might be for a
+different version though!

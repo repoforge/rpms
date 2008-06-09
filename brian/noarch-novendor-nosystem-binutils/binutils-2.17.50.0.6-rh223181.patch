@@ -1,0 +1,151 @@
+207-01-19  Jakub Jelinek  <jakub@redhat.com>
+
+	* elf.c (elf_sort_elf_symbol): Removed.
+	(bfd_elf_match_symbols_in_sections): Remove unnecessary expensive
+	sorting of the symbol tables.
+
+--- bfd/elf.c.jj	2006-10-20 20:50:57.000000000 +0200
++++ bfd/elf.c	2007-01-19 14:54:04.000000000 +0100
+@@ -8623,33 +8623,6 @@ _bfd_elf_get_synthetic_symtab (bfd *abfd
+   return n;
+ }
+ 
+-/* Sort symbol by binding and section. We want to put definitions
+-   sorted by section at the beginning.  */
+-
+-static int
+-elf_sort_elf_symbol (const void *arg1, const void *arg2)
+-{
+-  const Elf_Internal_Sym *s1;
+-  const Elf_Internal_Sym *s2;
+-  int shndx;
+-
+-  /* Make sure that undefined symbols are at the end.  */
+-  s1 = (const Elf_Internal_Sym *) arg1;
+-  if (s1->st_shndx == SHN_UNDEF)
+-    return 1;
+-  s2 = (const Elf_Internal_Sym *) arg2;
+-  if (s2->st_shndx == SHN_UNDEF)
+-    return -1;
+-
+-  /* Sorted by section index.  */
+-  shndx = s1->st_shndx - s2->st_shndx;
+-  if (shndx != 0)
+-    return shndx;
+-
+-  /* Sorted by binding.  */
+-  return ELF_ST_BIND (s1->st_info)  - ELF_ST_BIND (s2->st_info);
+-}
+-
+ struct elf_symbol
+ {
+   Elf_Internal_Sym *sym;
+@@ -8675,9 +8648,8 @@ bfd_elf_match_symbols_in_sections (asect
+   Elf_Internal_Shdr *hdr1, *hdr2;
+   bfd_size_type symcount1, symcount2;
+   Elf_Internal_Sym *isymbuf1, *isymbuf2;
+-  Elf_Internal_Sym *isymstart1 = NULL, *isymstart2 = NULL, *isym;
+-  Elf_Internal_Sym *isymend;
+-  struct elf_symbol *symp, *symtable1 = NULL, *symtable2 = NULL;
++  Elf_Internal_Sym *isym, *isymend;
++  struct elf_symbol *symtable1 = NULL, *symtable2 = NULL;
+   bfd_size_type count1, count2, i;
+   int shndx1, shndx2;
+   bfd_boolean result;
+@@ -8733,75 +8705,36 @@ bfd_elf_match_symbols_in_sections (asect
+   if (isymbuf1 == NULL || isymbuf2 == NULL)
+     goto done;
+ 
+-  /* Sort symbols by binding and section. Global definitions are at
+-     the beginning.  */
+-  qsort (isymbuf1, symcount1, sizeof (Elf_Internal_Sym),
+-	 elf_sort_elf_symbol);
+-  qsort (isymbuf2, symcount2, sizeof (Elf_Internal_Sym),
+-	 elf_sort_elf_symbol);
++  symtable1 = bfd_malloc2 (symcount1, sizeof (struct elf_symbol));
++  symtable2 = bfd_malloc2 (symcount2, sizeof (struct elf_symbol));
+ 
+-  /* Count definitions in the section.  */
+-  count1 = 0;
+-  for (isym = isymbuf1, isymend = isym + symcount1;
+-       isym < isymend; isym++)
+-    {
+-      if (isym->st_shndx == (unsigned int) shndx1)
+-	{
+-	  if (count1 == 0)
+-	    isymstart1 = isym;
+-	  count1++;
+-	}
++  if (symtable1 == NULL || symtable2 == NULL)
++    goto done;
+ 
+-      if (count1 && isym->st_shndx != (unsigned int) shndx1)
+-	break;
+-    }
++  /* Choose symbol definitions in the section.  */
++  count1 = 0;
++  for (isym = isymbuf1, isymend = isym + symcount1; isym < isymend; isym++)
++    if (isym->st_shndx == (unsigned int) shndx1)
++      symtable1[count1++].sym = isym;
+ 
+   count2 = 0;
+-  for (isym = isymbuf2, isymend = isym + symcount2;
+-       isym < isymend; isym++)
+-    {
+-      if (isym->st_shndx == (unsigned int) shndx2)
+-	{
+-	  if (count2 == 0)
+-	    isymstart2 = isym;
+-	  count2++;
+-	}
+-
+-      if (count2 && isym->st_shndx != (unsigned int) shndx2)
+-	break;
+-    }
++  for (isym = isymbuf2, isymend = isym + symcount2; isym < isymend; isym++)
++    if (isym->st_shndx == (unsigned int) shndx2)
++      symtable2[count2++].sym = isym;
+ 
+   if (count1 == 0 || count2 == 0 || count1 != count2)
+     goto done;
+ 
+-  symtable1 = bfd_malloc (count1 * sizeof (struct elf_symbol));
+-  symtable2 = bfd_malloc (count1 * sizeof (struct elf_symbol));
+-
+-  if (symtable1 == NULL || symtable2 == NULL)
+-    goto done;
++  for (i = 0; i < count1; i++)
++    symtable1[i].name
++      = bfd_elf_string_from_elf_section (bfd1, hdr1->sh_link,
++					 symtable1[i].sym->st_name);
++
++  for (i = 0; i < count2; i++)
++    symtable2[i].name
++      = bfd_elf_string_from_elf_section (bfd2, hdr2->sh_link,
++					 symtable2[i].sym->st_name);
+ 
+-  symp = symtable1;
+-  for (isym = isymstart1, isymend = isym + count1;
+-       isym < isymend; isym++)
+-    {
+-      symp->sym = isym;
+-      symp->name = bfd_elf_string_from_elf_section (bfd1,
+-						    hdr1->sh_link,
+-						    isym->st_name);
+-      symp++;
+-    }
+- 
+-  symp = symtable2;
+-  for (isym = isymstart2, isymend = isym + count1;
+-       isym < isymend; isym++)
+-    {
+-      symp->sym = isym;
+-      symp->name = bfd_elf_string_from_elf_section (bfd2,
+-						    hdr2->sh_link,
+-						    isym->st_name);
+-      symp++;
+-    }
+-  
+   /* Sort symbol by name.  */
+   qsort (symtable1, count1, sizeof (struct elf_symbol),
+ 	 elf_sym_name_compare);

@@ -1,0 +1,25 @@
+2006-07-11  Peter Bergner  <bergner@vnet.ibm.com>
+
+	* ppc-opc.c (POWER6): Define.
+	(powerpc_opcodes): Add "mffgpr" and "mftgpr" opcodes.
+
+--- opcodes/ppc-opc.c	15 Nov 2005 21:33:04 -0000	1.85
++++ opcodes/ppc-opc.c	11 Jul 2006 21:56:59 -0000
+@@ -1823,6 +1823,7 @@ extract_tbr (unsigned long insn,
+ #define NOPOWER4 PPC_OPCODE_NOPOWER4 | PPCCOM
+ #define POWER4	PPC_OPCODE_POWER4
+ #define POWER5	PPC_OPCODE_POWER5
++#define POWER6	PPC_OPCODE_POWER6
+ #define PPC32   PPC_OPCODE_32 | PPC_OPCODE_PPC
+ #define PPC64   PPC_OPCODE_64 | PPC_OPCODE_PPC
+ #define PPC403	PPC_OPCODE_403
+@@ -4255,6 +4256,9 @@ const struct powerpc_opcode powerpc_opco
+ 
+ { "lfdxe",   X(31,607), X_MASK,		BOOKE64,	{ FRT, RA0, RB } },
+ 
++{ "mffgpr",  XRC(31,607,0), XRA_MASK,	POWER6,		{ FRT, RB } },
++{ "mftgpr",  XRC(31,735,0), XRA_MASK,	POWER6,		{ RT, FRB } },
++
+ { "mfsri",   X(31,627), X_MASK,		PWRCOM,		{ RT, RA, RB } },
+ 
+ { "dclst",   X(31,630), XRB_MASK,	PWRCOM,		{ RS, RA } },

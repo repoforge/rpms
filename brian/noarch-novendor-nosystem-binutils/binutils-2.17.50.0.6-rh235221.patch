@@ -1,0 +1,436 @@
+2007-02-13  Alan Modra  <amodra@bigpond.net.au>
+
+	* elf64-ppc.c (create_linkage_sections): Use section ".branch_lt"
+	for branch lookup table.
+
+	* emulparams/elf64ppc.sh (OTHER_READWRITE_SECTIONS): Add ".branch_lt".
+	* emultempl/ppc64elf.em (ppc_add_stub_section): Create without
+	SEC_RELOC flag set.
+
+	* ld-powerpc/relbrlt.d: Update.
+	* ld-powerpc/tlsexe.r: Update.
+	* ld-powerpc/tlsexetoc.r: Update.
+	* ld-powerpc/tlsso.r: Update.
+	* ld-powerpc/tlstocso.r: Update.
+
+2007-02-12  Alan Modra  <amodra@bigpond.net.au>
+
+	* elf64-ppc.c (create_linkage_sections): Don't create
+	.rela.rodata.brlt for --emit-relocs.
+	(ppc_build_one_stub): Create relocs for brlt --emit-relocs here.
+	(ppc_size_one_stub): Count them.  Simplify test of stub type
+	when counting stub relocs.  Set SEC_RELOC too.
+	(ppc64_elf_size_stubs): Clear reloc_count and SEC_RELOC.
+	(ppc64_elf_finish_dynamic_sections): Output brlt relocs.
+
+	* ld-powerpc/relbrlt.d: Update.
+
+--- bfd/elf64-ppc.c	1 Feb 2007 05:35:58 -0000	1.255
++++ bfd/elf64-ppc.c	13 Feb 2007 01:53:02 -0000	1.257
+@@ -3818,45 +3818,22 @@ create_linkage_sections (bfd *dynobj, st
+     return FALSE;
+ 
+   /* Create branch lookup table for plt_branch stubs.  */
+-  if (info->shared)
+-    {
+-      flags = (SEC_ALLOC | SEC_LOAD
+-	       | SEC_HAS_CONTENTS | SEC_IN_MEMORY | SEC_LINKER_CREATED);
+-      htab->brlt
+-	= bfd_make_section_anyway_with_flags (dynobj, ".data.rel.ro.brlt",
+-					      flags);
+-    }
+-  else
+-    {
+-      flags = (SEC_ALLOC | SEC_LOAD | SEC_READONLY
+-	       | SEC_HAS_CONTENTS | SEC_IN_MEMORY | SEC_LINKER_CREATED);
+-      htab->brlt
+-	= bfd_make_section_anyway_with_flags (dynobj, ".rodata.brlt", flags);
+-    }
+-
++  flags = (SEC_ALLOC | SEC_LOAD
++	   | SEC_HAS_CONTENTS | SEC_IN_MEMORY | SEC_LINKER_CREATED);
++  htab->brlt = bfd_make_section_anyway_with_flags (dynobj, ".branch_lt",
++						   flags);
+   if (htab->brlt == NULL
+       || ! bfd_set_section_alignment (dynobj, htab->brlt, 3))
+     return FALSE;
+ 
+-  if (info->shared)
+-    {
+-      flags = (SEC_ALLOC | SEC_LOAD | SEC_READONLY
+-	       | SEC_HAS_CONTENTS | SEC_IN_MEMORY | SEC_LINKER_CREATED);
+-      htab->relbrlt
+-	= bfd_make_section_anyway_with_flags (dynobj, ".rela.data.rel.ro.brlt",
+-					      flags);
+-    }
+-  else if (info->emitrelocations)
+-    {
+-      flags = (SEC_ALLOC | SEC_LOAD | SEC_READONLY
+-	       | SEC_HAS_CONTENTS | SEC_IN_MEMORY | SEC_LINKER_CREATED);
+-      htab->relbrlt
+-	= bfd_make_section_anyway_with_flags (dynobj, ".rela.rodata.brlt",
+-					      flags);
+-    }
+-  else
++  if (!info->shared)
+     return TRUE;
+ 
++  flags = (SEC_ALLOC | SEC_LOAD | SEC_READONLY
++	   | SEC_HAS_CONTENTS | SEC_IN_MEMORY | SEC_LINKER_CREATED);
++  htab->relbrlt = bfd_make_section_anyway_with_flags (dynobj,
++						      ".rela.branch_lt",
++						      flags);
+   if (!htab->relbrlt
+       || ! bfd_set_section_alignment (dynobj, htab->relbrlt, 3))
+     return FALSE;
+@@ -8394,6 +8371,33 @@ ppc_build_one_stub (struct bfd_hash_entr
+ 	  rl += htab->relbrlt->reloc_count++ * sizeof (Elf64_External_Rela);
+ 	  bfd_elf64_swap_reloca_out (htab->relbrlt->owner, &rela, rl);
+ 	}
++      else if (info->emitrelocations)
++	{
++	  Elf_Internal_Rela *relocs, *r;
++	  struct bfd_elf_section_data *elfsec_data;
++
++	  elfsec_data = elf_section_data (htab->brlt);
++	  relocs = elfsec_data->relocs;
++	  if (relocs == NULL)
++	    {
++	      bfd_size_type relsize;
++	      relsize = htab->brlt->reloc_count * sizeof (*relocs);
++	      relocs = bfd_alloc (htab->brlt->owner, relsize);
++	      if (relocs == NULL)
++		return FALSE;
++	      elfsec_data->relocs = relocs;
++	      elfsec_data->rel_hdr.sh_size = relsize;
++	      elfsec_data->rel_hdr.sh_entsize = 24;
++	      htab->brlt->reloc_count = 0;
++	    }
++	  r = relocs + htab->brlt->reloc_count;
++	  htab->brlt->reloc_count += 1;
++	  r->r_offset = (br_entry->offset
++			 + htab->brlt->output_offset
++			 + htab->brlt->output_section->vma);
++	  r->r_info = ELF64_R_INFO (0, R_PPC64_RELATIVE);
++	  r->r_addend = off;
++	}
+ 
+       off = (br_entry->offset
+ 	     + htab->brlt->output_offset
+@@ -8623,6 +8627,11 @@ ppc_size_one_stub (struct bfd_hash_entry
+ 
+ 	      if (htab->relbrlt != NULL)
+ 		htab->relbrlt->size += sizeof (Elf64_External_Rela);
++	      else if (info->emitrelocations)
++		{
++		  htab->brlt->reloc_count += 1;
++		  htab->brlt->flags |= SEC_RELOC;
++		}
+ 	    }
+ 
+ 	  stub_entry->stub_type += ppc_stub_plt_branch - ppc_stub_long_branch;
+@@ -8630,11 +8639,11 @@ ppc_size_one_stub (struct bfd_hash_entry
+ 	  if (stub_entry->stub_type != ppc_stub_plt_branch)
+ 	    size = 28;
+ 	}
+-
+-      if (info->emitrelocations
+-	  && (stub_entry->stub_type == ppc_stub_long_branch
+-	      || stub_entry->stub_type == ppc_stub_long_branch_r2off))
+-	stub_entry->stub_sec->reloc_count += 1;
++      else if (info->emitrelocations)
++	{
++	  stub_entry->stub_sec->reloc_count += 1;
++	  stub_entry->stub_sec->flags |= SEC_RELOC;
++	}
+     }
+ 
+   stub_entry->stub_sec->size += size;
+@@ -9426,9 +9435,12 @@ ppc64_elf_size_stubs (bfd *output_bfd,
+ 	    stub_sec->rawsize = stub_sec->size;
+ 	    stub_sec->size = 0;
+ 	    stub_sec->reloc_count = 0;
++	    stub_sec->flags &= ~SEC_RELOC;
+ 	  }
+ 
+       htab->brlt->size = 0;
++      htab->brlt->reloc_count = 0;
++      htab->brlt->flags &= ~SEC_RELOC;
+       if (htab->relbrlt != NULL)
+ 	htab->relbrlt->size = 0;
+ 
+@@ -11442,6 +11454,17 @@ ppc64_elf_finish_dynamic_sections (bfd *
+ 	= PLT_ENTRY_SIZE;
+     }
+ 
++  /* brlt is SEC_LINKER_CREATED, so we need to write out relocs for
++     brlt ourselves if emitrelocations.  */
++  if (htab->brlt != NULL
++      && htab->brlt->reloc_count != 0
++      && !_bfd_elf_link_output_relocs (output_bfd,
++				       htab->brlt,
++				       &elf_section_data (htab->brlt)->rel_hdr,
++				       elf_section_data (htab->brlt)->relocs,
++				       NULL))
++    return FALSE;
++
+   /* We need to handle writing out multiple GOT sections ourselves,
+      since we didn't add them to DYNOBJ.  We know dynobj is the first
+      bfd.  */
+--- ld/emulparams/elf64ppc.sh	30 May 2006 16:45:32 -0000	1.18
++++ ld/emulparams/elf64ppc.sh	13 Feb 2007 01:53:03 -0000	1.19
+@@ -31,7 +31,8 @@ OTHER_GOT_RELOC_SECTIONS="
+   .rela.toc	${RELOCATING-0} : { *(.rela.toc) }"
+ OTHER_READWRITE_SECTIONS="
+   .toc1		${RELOCATING-0} :${RELOCATING+ ALIGN(8)} { *(.toc1) }
+-  .opd		${RELOCATING-0} :${RELOCATING+ ALIGN(8)} { KEEP (*(.opd)) }"
++  .opd		${RELOCATING-0} :${RELOCATING+ ALIGN(8)} { KEEP (*(.opd)) }
++  .branch_lt	${RELOCATING-0} :${RELOCATING+ ALIGN(8)} { *(.branch_lt) }"
+ 
+ # Treat a host that matches the target with the possible exception of "64"
+ # in the name as if it were native.
+--- ld/emultempl/ppc64elf.em	20 Jun 2006 02:22:14 -0000	1.50
++++ ld/emultempl/ppc64elf.em	13 Feb 2007 01:53:03 -0000	1.51
+@@ -225,7 +225,7 @@ ppc_add_stub_section (const char *stub_s
+     goto err_ret;
+ 
+   flags = (SEC_ALLOC | SEC_LOAD | SEC_READONLY | SEC_CODE
+-	   | SEC_HAS_CONTENTS | SEC_RELOC | SEC_IN_MEMORY | SEC_KEEP);
++	   | SEC_HAS_CONTENTS | SEC_IN_MEMORY | SEC_KEEP);
+   if (!bfd_set_section_flags (stub_file->the_bfd, stub_sec, flags))
+     goto err_ret;
+ 
+--- ld/testsuite/ld-powerpc/relbrlt.d	24 Oct 2006 13:29:37 -0000	1.1
++++ ld/testsuite/ld-powerpc/relbrlt.d	13 Feb 2007 01:53:03 -0000	1.3
+@@ -7,44 +7,44 @@
+ 
+ Disassembly of section \.text:
+ 
+-0*100000a8 <_start>:
+-    100000a8:	49 bf 00 31 	bl      11bf00d8 .*
+-			100000a8: R_PPC64_REL24	\.text\+0x37e0044
+-    100000ac:	60 00 00 00 	nop
+-    100000b0:	49 bf 00 19 	bl      11bf00c8 .*
+-			100000b0: R_PPC64_REL24	\.text\+0x3bf0020
+-    100000b4:	60 00 00 00 	nop
+-    100000b8:	49 bf 00 25 	bl      11bf00dc .*
+-			100000b8: R_PPC64_REL24	\.text\+0x57e0024
+-    100000bc:	60 00 00 00 	nop
+-    100000c0:	00 00 00 00 	\.long 0x0
+-    100000c4:	4b ff ff e4 	b       100000a8 <_start>
++0*100000b0 <_start>:
++[0-9a-f	 ]*:	49 bf 00 31 	bl      .*
++[0-9a-f	 ]*: R_PPC64_REL24	\.text\+0x37e0044
++[0-9a-f	 ]*:	60 00 00 00 	nop
++[0-9a-f	 ]*:	49 bf 00 19 	bl      .*
++[0-9a-f	 ]*: R_PPC64_REL24	\.text\+0x3bf0020
++[0-9a-f	 ]*:	60 00 00 00 	nop
++[0-9a-f	 ]*:	49 bf 00 25 	bl      .*
++[0-9a-f	 ]*: R_PPC64_REL24	\.text\+0x57e0024
++[0-9a-f	 ]*:	60 00 00 00 	nop
++[0-9a-f	 ]*:	00 00 00 00 	\.long 0x0
++[0-9a-f	 ]*:	4b ff ff e4 	b       .* <_start>
+ 	\.\.\.
+ 
+-0*11bf00c8 <.*plt_branch.*>:
+-    11bf00c8:	3d 82 05 7e 	addis   r12,r2,1406
+-    11bf00cc:	e9 6c 80 58 	ld      r11,-32680\(r12\)
+-    11bf00d0:	7d 69 03 a6 	mtctr   r11
+-    11bf00d4:	4e 80 04 20 	bctr
+-
+-0*11bf00d8 <.*long_branch.*>:
+-    11bf00d8:	49 bf 00 14 	b       137e00ec <far>
+-			11bf00d8: R_PPC64_REL24	\*ABS\*\+0x137e00ec
+-
+-0*11bf00dc <.*plt_branch.*>:
+-    11bf00dc:	3d 82 05 7e 	addis   r12,r2,1406
+-    11bf00e0:	e9 6c 80 60 	ld      r11,-32672\(r12\)
+-    11bf00e4:	7d 69 03 a6 	mtctr   r11
+-    11bf00e8:	4e 80 04 20 	bctr
++[0-9a-f	 ]*<.*plt_branch.*>:
++[0-9a-f	 ]*:	3d 82 00 00 	addis   r12,r2,0
++[0-9a-f	 ]*:	e9 6c 80 00 	ld      r11,-32768\(r12\)
++[0-9a-f	 ]*:	7d 69 03 a6 	mtctr   r11
++[0-9a-f	 ]*:	4e 80 04 20 	bctr
++
++[0-9a-f	 ]*<.*long_branch.*>:
++[0-9a-f	 ]*:	49 bf 00 14 	b       .* <far>
++[0-9a-f	 ]*: R_PPC64_REL24	\*ABS\*\+0x137e00f4
++
++[0-9a-f	 ]*<.*plt_branch.*>:
++[0-9a-f	 ]*:	3d 82 00 00 	addis   r12,r2,0
++[0-9a-f	 ]*:	e9 6c 80 08 	ld      r11,-32760\(r12\)
++[0-9a-f	 ]*:	7d 69 03 a6 	mtctr   r11
++[0-9a-f	 ]*:	4e 80 04 20 	bctr
+ 	\.\.\.
+ 
+-0*137e00ec <far>:
+-    137e00ec:	4e 80 00 20 	blr
++0*137e00f4 <far>:
++[0-9a-f	 ]*:	4e 80 00 20 	blr
+ 	\.\.\.
+ 
+-0*13bf00c8 <far2far>:
+-    13bf00c8:	4e 80 00 20 	blr
++[0-9a-f	 ]*<far2far>:
++[0-9a-f	 ]*:	4e 80 00 20 	blr
+ 	\.\.\.
+ 
+-0*157e00cc <huge>:
+-    157e00cc:	4e 80 00 20 	blr
++[0-9a-f	 ]*<huge>:
++[0-9a-f	 ]*:	4e 80 00 20 	blr
+--- ld/testsuite/ld-powerpc/tlsexe.r	17 Aug 2006 08:21:06 -0000	1.18
++++ ld/testsuite/ld-powerpc/tlsexe.r	13 Feb 2007 01:53:03 -0000	1.19
+@@ -17,10 +17,10 @@ Section Headers:
+  +\[ 5\] \.rela\.dyn +.*
+  +\[ 6\] \.rela\.plt +.*
+  +\[ 7\] \.text +PROGBITS .* 0+100 0+ +AX +0 +0 +8
+- +\[ 8\] \.rodata + PROGBITS .* 0+ 0+ +A +0 +0 +8
+- +\[ 9\] \.tdata +PROGBITS .* 0+38 0+ WAT +0 +0 +8
+- +\[10\] \.tbss +NOBITS .* 0+38 0+ WAT +0 +0 +8
+- +\[11\] \.dynamic +DYNAMIC .* 0+150 10 +WA +4 +0 +8
++ +\[ 8\] \.tdata +PROGBITS .* 0+38 0+ WAT +0 +0 +8
++ +\[ 9\] \.tbss +NOBITS .* 0+38 0+ WAT +0 +0 +8
++ +\[10\] \.dynamic +DYNAMIC .* 0+150 10 +WA +4 +0 +8
++ +\[11\] \.branch_lt + PROGBITS .* 0+ 0+ +WA +0 +0 +8
+  +\[12\] \.got +PROGBITS .* 0+30 08 +WA +0 +0 +8
+  +\[13\] \.plt +.*
+  +\[14\] \.shstrtab +.*
+@@ -67,7 +67,7 @@ Symbol table '\.dynsym' contains [0-9]+ 
+ .* TLS +GLOBAL DEFAULT +UND gd
+ .* FUNC +GLOBAL DEFAULT +UND __tls_get_addr
+ .* TLS +GLOBAL DEFAULT +UND ld
+-.* TLS +GLOBAL DEFAULT +10 ld2
++.* TLS +GLOBAL DEFAULT +9 ld2
+ .* NOTYPE +GLOBAL DEFAULT +ABS __bss_start
+ .* NOTYPE +GLOBAL DEFAULT +ABS _edata
+ .* NOTYPE +GLOBAL DEFAULT +ABS _end
+@@ -88,26 +88,26 @@ Symbol table '\.symtab' contains .* entr
+ .* SECTION LOCAL +DEFAULT +11 
+ .* SECTION LOCAL +DEFAULT +12 
+ .* SECTION LOCAL +DEFAULT +13 
+-.* TLS +LOCAL +DEFAULT +9 gd4
+-.* TLS +LOCAL +DEFAULT +9 ld4
+-.* TLS +LOCAL +DEFAULT +9 ld5
+-.* TLS +LOCAL +DEFAULT +9 ld6
+-.* TLS +LOCAL +DEFAULT +9 ie4
+-.* TLS +LOCAL +DEFAULT +9 le4
+-.* TLS +LOCAL +DEFAULT +9 le5
+-.* OBJECT +LOCAL +HIDDEN +11 _DYNAMIC
++.* TLS +LOCAL +DEFAULT +8 gd4
++.* TLS +LOCAL +DEFAULT +8 ld4
++.* TLS +LOCAL +DEFAULT +8 ld5
++.* TLS +LOCAL +DEFAULT +8 ld6
++.* TLS +LOCAL +DEFAULT +8 ie4
++.* TLS +LOCAL +DEFAULT +8 le4
++.* TLS +LOCAL +DEFAULT +8 le5
++.* OBJECT +LOCAL +HIDDEN +10 _DYNAMIC
+ .* FUNC +LOCAL +DEFAULT +UND \.__tls_get_addr
+ .* GLOBAL DEFAULT +UND gd
+-.* GLOBAL DEFAULT +10 le0
++.* GLOBAL DEFAULT +9 le0
+ .* GLOBAL DEFAULT +UND __tls_get_addr
+-.* GLOBAL DEFAULT +10 ld0
+-.* GLOBAL DEFAULT +10 le1
++.* GLOBAL DEFAULT +9 ld0
++.* GLOBAL DEFAULT +9 le1
+ .* GLOBAL DEFAULT +UND ld
+ .* NOTYPE +GLOBAL DEFAULT +7 _start
+-.* TLS +GLOBAL DEFAULT +10 ld2
+-.* TLS +GLOBAL DEFAULT +10 ld1
++.* TLS +GLOBAL DEFAULT +9 ld2
++.* TLS +GLOBAL DEFAULT +9 ld1
+ .* NOTYPE +GLOBAL DEFAULT +ABS __bss_start
+ .* NOTYPE +GLOBAL DEFAULT +ABS _edata
+ .* NOTYPE +GLOBAL DEFAULT +ABS _end
+-.* TLS +GLOBAL DEFAULT +10 gd0
+-.* TLS +GLOBAL DEFAULT +10 ie0
++.* TLS +GLOBAL DEFAULT +9 gd0
++.* TLS +GLOBAL DEFAULT +9 ie0
+--- ld/testsuite/ld-powerpc/tlsexetoc.r	17 Aug 2006 08:21:06 -0000	1.19
++++ ld/testsuite/ld-powerpc/tlsexetoc.r	13 Feb 2007 01:53:03 -0000	1.20
+@@ -17,10 +17,10 @@ Section Headers:
+  +\[ 5\] \.rela\.dyn +.*
+  +\[ 6\] \.rela\.plt +.*
+  +\[ 7\] \.text +PROGBITS .* 0+c0 0+ +AX +0 +0 +8
+- +\[ 8\] \.rodata +PROGBITS .* 0+ 0+ +A +0 +0 +8
+- +\[ 9\] \.tdata +PROGBITS .* 0+38 0+ WAT +0 +0 +8
+- +\[10\] \.tbss +NOBITS .* 0+38 0+ WAT +0 +0 +8
+- +\[11\] \.dynamic +DYNAMIC .* 0+150 10 +WA +4 +0 +8
++ +\[ 8\] \.tdata +PROGBITS .* 0+38 0+ WAT +0 +0 +8
++ +\[ 9\] \.tbss +NOBITS .* 0+38 0+ WAT +0 +0 +8
++ +\[10\] \.dynamic +DYNAMIC .* 0+150 10 +WA +4 +0 +8
++ +\[11\] \.branch_lt +PROGBITS .* 0+ 0+ +WA +0 +0 +8
+  +\[12\] \.got +PROGBITS .* 0+58 08 +WA +0 +0 +8
+  +\[13\] \.plt +.*
+  +\[14\] \.shstrtab +.*
+@@ -87,27 +87,27 @@ Symbol table '\.symtab' contains .* entr
+ .* SECTION LOCAL +DEFAULT +11 
+ .* SECTION LOCAL +DEFAULT +12 
+ .* SECTION LOCAL +DEFAULT +13 
+-.* TLS +LOCAL +DEFAULT +9 gd4
+-.* TLS +LOCAL +DEFAULT +9 ld4
+-.* TLS +LOCAL +DEFAULT +9 ld5
+-.* TLS +LOCAL +DEFAULT +9 ld6
+-.* TLS +LOCAL +DEFAULT +9 ie4
+-.* TLS +LOCAL +DEFAULT +9 le4
+-.* TLS +LOCAL +DEFAULT +9 le5
++.* TLS +LOCAL +DEFAULT +8 gd4
++.* TLS +LOCAL +DEFAULT +8 ld4
++.* TLS +LOCAL +DEFAULT +8 ld5
++.* TLS +LOCAL +DEFAULT +8 ld6
++.* TLS +LOCAL +DEFAULT +8 ie4
++.* TLS +LOCAL +DEFAULT +8 le4
++.* TLS +LOCAL +DEFAULT +8 le5
+ .* NOTYPE +LOCAL +DEFAULT +12 \.Lie0
+-.* OBJECT +LOCAL +HIDDEN +11 _DYNAMIC
++.* OBJECT +LOCAL +HIDDEN +10 _DYNAMIC
+ .* FUNC +LOCAL +DEFAULT +UND \.__tls_get_addr
+ .* TLS +GLOBAL DEFAULT +UND gd
+-.* TLS +GLOBAL DEFAULT +10 le0
++.* TLS +GLOBAL DEFAULT +9 le0
+ .* FUNC +GLOBAL DEFAULT +UND __tls_get_addr
+-.* TLS +GLOBAL DEFAULT +10 ld0
+-.* TLS +GLOBAL DEFAULT +10 le1
++.* TLS +GLOBAL DEFAULT +9 ld0
++.* TLS +GLOBAL DEFAULT +9 le1
+ .* TLS +GLOBAL DEFAULT +UND ld
+ .* NOTYPE +GLOBAL DEFAULT +7 _start
+-.* TLS +GLOBAL DEFAULT +10 ld2
+-.* TLS +GLOBAL DEFAULT +10 ld1
++.* TLS +GLOBAL DEFAULT +9 ld2
++.* TLS +GLOBAL DEFAULT +9 ld1
+ .* NOTYPE +GLOBAL DEFAULT +ABS __bss_start
+ .* NOTYPE +GLOBAL DEFAULT +ABS _edata
+ .* NOTYPE +GLOBAL DEFAULT +ABS _end
+-.* TLS +GLOBAL DEFAULT +10 gd0
+-.* TLS +GLOBAL DEFAULT +10 ie0
++.* TLS +GLOBAL DEFAULT +9 gd0
++.* TLS +GLOBAL DEFAULT +9 ie0
+--- ld/testsuite/ld-powerpc/tlsso.r	17 Oct 2006 13:41:48 -0000	1.18
++++ ld/testsuite/ld-powerpc/tlsso.r	13 Feb 2007 01:53:03 -0000	1.19
+@@ -17,8 +17,8 @@ Section Headers:
+  +\[ 6\] \.text .*
+  +\[ 7\] \.tdata +PROGBITS .* 0+38 0+ WAT +0 +0 +8
+  +\[ 8\] \.tbss +NOBITS .* 0+38 0+ WAT +0 +0 +8
+- +\[ 9\] \.data\.rel\.ro .*
+- +\[10\] \.dynamic .*
++ +\[ 9\] \.dynamic .*
++ +\[10\] \.branch_lt .*
+  +\[11\] \.got .*
+  +\[12\] \.plt .*
+  +\[13\] \.shstrtab .*
+--- ld/testsuite/ld-powerpc/tlstocso.r	17 Oct 2006 13:41:48 -0000	1.18
++++ ld/testsuite/ld-powerpc/tlstocso.r	13 Feb 2007 01:53:03 -0000	1.19
+@@ -17,8 +17,8 @@ Section Headers:
+  +\[ 6\] \.text .*
+  +\[ 7\] \.tdata +PROGBITS .* 0+38 0+ WAT +0 +0 +8
+  +\[ 8\] \.tbss +NOBITS .* 0+38 0+ WAT +0 +0 +8
+- +\[ 9\] \.data\.rel\.ro .*
+- +\[10\] \.dynamic .*
++ +\[ 9\] \.dynamic .*
++ +\[10\] \.branch_lt .*
+  +\[11\] \.got .*
+  +\[12\] \.plt .*
+  +\[13\] \.shstrtab .*

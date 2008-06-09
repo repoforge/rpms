@@ -1,0 +1,60 @@
+2007-01-05  Jakub Jelinek  <jakub@redhat.com>
+
+	* texhex.c (first_phase): Don't fall through into the default
+	case.
+	(pass_over): Replace abort () calls with return FALSE.  Fix
+	buffer overflow.
+
+--- bfd/tekhex.c.jj	2006-06-19 15:17:43.000000000 +0200
++++ bfd/tekhex.c	2007-01-05 11:08:25.000000000 +0100
+@@ -436,6 +436,7 @@ first_phase (bfd *abfd, int type, char *
+ 		if (!getvalue (&src, &val))
+ 		  return FALSE;
+ 		new->symbol.value = val - section->vma;
++		break;
+ 	      }
+ 	    default:
+ 	      return FALSE;
+@@ -457,11 +458,10 @@ pass_over (bfd *abfd, bfd_boolean (*func
+ 
+   /* To the front of the file.  */
+   if (bfd_seek (abfd, (file_ptr) 0, SEEK_SET) != 0)
+-    abort ();
++    return FALSE;
+   while (! eof)
+     {
+-      char buffer[MAXCHUNK];
+-      char *src = buffer;
++      char src[MAXCHUNK];
+       char type;
+ 
+       /* Find first '%'.  */
+@@ -471,22 +471,24 @@ pass_over (bfd *abfd, bfd_boolean (*func
+ 
+       if (eof)
+ 	break;
+-      src++;
+ 
+       /* Fetch the type and the length and the checksum.  */
+       if (bfd_bread (src, (bfd_size_type) 5, abfd) != 5)
+-	abort (); /* FIXME.  */
++	return FALSE;
+ 
+       type = src[2];
+ 
+       if (!ISHEX (src[0]) || !ISHEX (src[1]))
+ 	break;
+ 
+-      /* Already read five char.  */
++      /* Already read five chars.  */
+       chars_on_line = HEX (src) - 5;
+ 
++      if (chars_on_line >= MAXCHUNK)
++	return FALSE;
++
+       if (bfd_bread (src, (bfd_size_type) chars_on_line, abfd) != chars_on_line)
+-	abort (); /* FIXME.  */
++	return FALSE;
+ 
+       /* Put a null at the end.  */
+       src[chars_on_line] = 0;

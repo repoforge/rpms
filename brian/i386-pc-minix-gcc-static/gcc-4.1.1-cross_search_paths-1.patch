@@ -1,0 +1,49 @@
+Submitted by: Ryan Oliver <ryan.oliver@pha.com.au>
+Date: 2005-05-02
+Initial Package Version: 4.0.1
+Origin: Ryan Oliver (issue reported by Erik-Jan Post)
+        Rediffed against 4.1.0 by Chris Staub
+Upstream Status: N/A
+Description:
+  Removes standard_exec_prefix_2 from library search path when cross-compiling.
+  Removes both standard_exec_prefix_1 and standard_exec_prefix_2 from the gcc
+  executable search path when cross-compiling.
+
+  ie: if cross_compile = 1 in the specs file, do not
+      - do not add /usr/lib/gcc/${TARGET}/${GCC_VER} to the library search path
+      - do not add /usr/lib/gcc/${TARGET}/${GCC_VER} or
+                   /usr/libexec/gcc/${TARGET}/${GCC_VER}
+        to the executable search path
+
+  This avoids the possibility of linking in libraries from the host if they
+  exist under those directories.
+ 
+diff -Naur gcc-4.1.0.orig/gcc/gcc.c gcc-4.1.0/gcc/gcc.c
+--- gcc-4.1.0.orig/gcc/gcc.c	2006-01-21 13:29:08.000000000 -0500
++++ gcc-4.1.0/gcc/gcc.c	2006-02-28 22:20:05.000000000 -0500
+@@ -3818,16 +3818,22 @@
+ 	      PREFIX_PRIORITY_LAST, 2, 0);
+   add_prefix (&exec_prefixes, standard_exec_prefix, "BINUTILS",
+ 	      PREFIX_PRIORITY_LAST, 2, 0);
+-  add_prefix (&exec_prefixes, standard_exec_prefix_1, "BINUTILS",
++  if (*cross_compile == '0')
++    {
++      add_prefix (&exec_prefixes, standard_exec_prefix_1, "BINUTILS",
+ 	      PREFIX_PRIORITY_LAST, 2, 0);
+-  add_prefix (&exec_prefixes, standard_exec_prefix_2, "BINUTILS",
++      add_prefix (&exec_prefixes, standard_exec_prefix_2, "BINUTILS",
+ 	      PREFIX_PRIORITY_LAST, 2, 0);
++    }
+ #endif
+ 
+   add_prefix (&startfile_prefixes, standard_exec_prefix, "BINUTILS",
+ 	      PREFIX_PRIORITY_LAST, 1, 0);
+-  add_prefix (&startfile_prefixes, standard_exec_prefix_2, "BINUTILS",
++  if (*cross_compile == '0')
++    {
++      add_prefix (&startfile_prefixes, standard_exec_prefix_2, "BINUTILS",
+ 	      PREFIX_PRIORITY_LAST, 1, 0);
++    }
+ 
+   tooldir_prefix = concat (tooldir_base_prefix, spec_machine,
+ 			   dir_separator_str, NULL);

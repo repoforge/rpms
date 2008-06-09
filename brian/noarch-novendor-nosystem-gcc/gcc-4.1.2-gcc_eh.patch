@@ -1,0 +1,24 @@
+diff -ur gcc-4.1.2/gcc/cp/g++spec.c gcc-4.1.2-gcc_eh/gcc/cp/g++spec.c
+--- gcc-4.1.2/gcc/cp/g++spec.c	2005-06-25 02:59:41.000000000 +0200
++++ gcc-4.1.2-gcc_eh/gcc/cp/g++spec.c	2007-08-03 14:46:03.000000000 +0200
+@@ -251,7 +251,7 @@
+ #endif
+ 
+   /* Make sure to have room for the trailing NULL argument.  */
+-  num_args = argc + added + need_math + shared_libgcc + (library > 0) + 1;
++  num_args = argc + added + need_math + shared_libgcc + 2 * (library > 0) + 1;
+   arglist = xmalloc (num_args * sizeof (char *));
+ 
+   i = 0;
+@@ -311,7 +311,10 @@
+     {
+       arglist[j] = saw_profile_flag ? LIBSTDCXX_PROFILE : LIBSTDCXX;
+       if (arglist[j][0] != '-' || arglist[j][1] == 'l')
+-	added_libraries++;
++      {
++	arglist[++j] = "-lgcc_eh";
++	added_libraries += 2;
++      }
+       j++;
+     }
+   if (saw_math)

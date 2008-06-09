@@ -1,0 +1,27 @@
+diff -ruN gcc-4.1.1/gcc/Makefile.in gcc-4.1.1.bs/gcc/Makefile.in
+--- gcc-4.1.1/gcc/Makefile.in	2006-11-03 11:59:50.000000000 +0100
++++ gcc-4.1.1.bs/gcc/Makefile.in	2008-04-16 19:32:42.000000000 +0200
+@@ -1296,7 +1296,6 @@
+ cc1-dummy$(exeext): $(C_OBJS) dummy-checksum.o $(BACKEND) $(LIBDEPS)
+ 	$(CC) $(ALL_CFLAGS) $(LDFLAGS) -o $@ $(C_OBJS) dummy-checksum.o \
+ 	  $(BACKEND) $(LIBS)
+-	install -S 125Mb $@
+ 
+ cc1-checksum.c : cc1-dummy$(exeext) build/genchecksum$(build_exeext)
+ 	build/genchecksum$(build_exeext) cc1-dummy$(exeext) > $@
+@@ -1306,7 +1305,6 @@
+ cc1$(exeext): $(C_OBJS) cc1-checksum.o $(BACKEND) $(LIBDEPS)
+ 	$(CC) $(ALL_CFLAGS) $(LDFLAGS) -o $@ $(C_OBJS) cc1-checksum.o \
+ 	  $(BACKEND) $(LIBS)
+-	install -S 125Mb $@
+ 
+ # Build the version of limits.h that we will install.
+ xlimits.h: glimits.h limitx.h limity.h
+@@ -2913,7 +2911,6 @@
+ 	 build/genattrtab.o build/genautomata.o \
+ 	 $(BUILD_RTL) $(BUILD_SUPPORT) $(BUILD_PRINT) $(BUILD_ERRORS) \
+ 	 $(BUILD_VARRAY) $(BUILD_LIBS) -lm
+-	install -S 70Mb $@
+ 
+ build/genattrtab.o : genattrtab.c $(RTL_BASE_H) $(OBSTACK_H) $(BCONFIG_H) \
+   $(SYSTEM_H) coretypes.h $(GTM_H) errors.h $(GGC_H) gensupport.h genattrtab.h

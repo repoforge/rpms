@@ -1,0 +1,52 @@
+--- gcc-4.1.2/configure.cross-build-fixes	2007-01-25 16:47:43.000000000 +0100
++++ gcc-4.1.2/configure	2007-01-25 16:47:43.000000000 +0100
+@@ -3260,7 +3260,13 @@ CFLAGS_FOR_BUILD=${CFLAGS_FOR_BUILD-${CF
+ # being built; programs in there won't even run.
+ if test "${build}" = "${host}" && test -d ${srcdir}/gcc; then
+   # Search for pre-installed headers if nothing else fits.
+-  FLAGS_FOR_TARGET=$FLAGS_FOR_TARGET' -B$(build_tooldir)/bin/ -B$(build_tooldir)/lib/ -isystem $(build_tooldir)/include -isystem $(build_tooldir)/sys-include'
++  FLAGS_FOR_TARGET=$FLAGS_FOR_TARGET' -B$(build_tooldir)/bin/ -B$(build_tooldir)/lib/'
++  if test "${with_build_sysroot+set}" = set; then
++    sysroot_dir="$with_build_sysroot"
++  else
++    sysroot_dir='$(build_tooldir)/'
++  fi
++  FLAGS_FOR_TARGET=$FLAGS_FOR_TARGET" -isystem $sysroot_dir/usr/include"
+ fi
+ 
+ if test "x${use_gnu_ld}" = x &&
+--- gcc-4.1.2/gcc/mklibgcc.in.cross-build-fixes	2006-09-21 13:30:29.000000000 +0200
++++ gcc-4.1.2/gcc/mklibgcc.in	2007-01-25 16:47:43.000000000 +0100
+@@ -196,7 +196,7 @@ for ml in $MULTILIBS; do
+   shlib_slibdir_qual=
+   libgcc_a=$dir/libgcc.a
+   libgcov_a=$dir/libgcov.a
+-  libgcc_eh_a=
++  libgcc_eh_a=$dir/libgcc_eh.a
+   libgcc_s_so=
+   libunwind_a=
+   libunwind_so=
+@@ -205,7 +205,6 @@ for ml in $MULTILIBS; do
+     libunwind_a=$dir/libunwind.a
+   fi
+   if [ "$SHLIB_LINK" ]; then
+-    libgcc_eh_a=$dir/libgcc_eh.a
+     libgcc_s_so=$dir/libgcc_s${SHLIB_EXT}
+     if [ "$LIBUNWIND" ]; then
+       libunwind_so=$dir/libunwind${SHLIB_EXT}
+@@ -868,12 +867,11 @@ for ml in $MULTILIBS; do
+   echo '	$(INSTALL_DATA)' ${dir}/libgcov.a ${ldir}/
+   echo '	chmod 644'  ${ldir}/libgcov.a
+   echo '	$(RANLIB_FOR_TARGET)' ${ldir}/libgcov.a
++  echo '	$(INSTALL_DATA)' ${dir}/libgcc_eh.a ${ldir}/
++  echo '	chmod 644'  ${ldir}/libgcc_eh.a
++  echo '	$(RANLIB_FOR_TARGET)' ${ldir}/libgcc_eh.a
+ 
+   if [ "$SHLIB_LINK" ]; then
+-    echo '	$(INSTALL_DATA)' ${dir}/libgcc_eh.a ${ldir}/
+-    echo '	chmod 644'  ${ldir}/libgcc_eh.a
+-    echo '	$(RANLIB_FOR_TARGET)' ${ldir}/libgcc_eh.a
+-
+     shlib_slibdir_qual=
+     os_multilib_dir=`$GCC_FOR_TARGET $flags --print-multi-os-directory`
+     if [ "$os_multilib_dir" != . ]; then
