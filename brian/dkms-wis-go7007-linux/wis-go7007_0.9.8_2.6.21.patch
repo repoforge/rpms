@@ -1,0 +1,773 @@
+diff -ur wis-go7007-linux-0.9.8/kernel/go7007-driver.c wis-go7007-linux-0.9.8-new/kernel/go7007-driver.c
+--- wis-go7007-linux-0.9.8/kernel/go7007-driver.c	2006-04-02 00:35:48.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/go7007-driver.c	2007-02-18 23:30:59.000000000 +0100
+@@ -18,7 +18,6 @@
+ #include <linux/module.h>
+ #include <linux/version.h>
+ #include <linux/init.h>
+-#include <linux/config.h>
+ #include <linux/delay.h>
+ #include <linux/sched.h>
+ #include <linux/spinlock.h>
+@@ -34,9 +33,7 @@
+ #include <asm/system.h>
+ #include <linux/videodev.h>
+ #include <media/tuner.h>
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,16)
+ #include <media/v4l2-common.h>
+-#endif
+ 
+ #include "go7007-priv.h"
+ #include "wis-i2c.h"
+diff -ur wis-go7007-linux-0.9.8/kernel/go7007-fw.c wis-go7007-linux-0.9.8-new/kernel/go7007-fw.c
+--- wis-go7007-linux-0.9.8/kernel/go7007-fw.c	2006-04-02 00:35:55.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/go7007-fw.c	2007-02-18 23:31:34.000000000 +0100
+@@ -26,7 +26,7 @@
+ 
+ #include <linux/module.h>
+ #include <linux/init.h>
+-#include <linux/config.h>
++#include <linux/version.h>
+ #include <linux/time.h>
+ #include <linux/mm.h>
+ #include <linux/device.h>
+diff -ur wis-go7007-linux-0.9.8/kernel/go7007-i2c.c wis-go7007-linux-0.9.8-new/kernel/go7007-i2c.c
+--- wis-go7007-linux-0.9.8/kernel/go7007-i2c.c	2006-04-02 00:36:00.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/go7007-i2c.c	2007-02-18 23:34:41.000000000 +0100
+@@ -15,9 +15,8 @@
+  * Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307, USA.
+  */
+ 
+-#include <linux/config.h>
+-#include <linux/module.h>
+ #include <linux/version.h>
++#include <linux/module.h>
+ #include <linux/init.h>
+ #include <linux/delay.h>
+ #include <linux/sched.h>
+@@ -288,10 +287,6 @@
+ }
+ 
+ static struct i2c_algorithm go7007_algo = {
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,14)
+-	.name		= "go7007",
+-	.id		= I2C_ALGO_GO7007,
+-#endif
+ 	.smbus_xfer	= go7007_smbus_xfer,
+ 	.master_xfer	= go7007_i2c_master_xfer,
+ 	.algo_control	= go7007_algo_control,
+diff -ur wis-go7007-linux-0.9.8/kernel/go7007-usb.c wis-go7007-linux-0.9.8-new/kernel/go7007-usb.c
+--- wis-go7007-linux-0.9.8/kernel/go7007-usb.c	2006-04-02 00:57:04.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/go7007-usb.c	2007-02-18 23:34:20.000000000 +0100
+@@ -27,7 +27,7 @@
+ #include <linux/usb.h>
+ #include <linux/i2c.h>
+ #include <asm/byteorder.h>
+-#include <media/audiochip.h>
++#include <media/tvaudio.h>
+ 
+ #include "go7007-priv.h"
+ #include "wis-i2c.h"
+@@ -225,17 +225,17 @@
+ 		.inputs 	 = {
+ 			{
+ 				.video_input	= 1,
+-				.audio_input	= AUDIO_EXTERN,
++                .audio_input	= TVAUDIO_INPUT_EXTERN,
+ 				.name		= "Composite",
+ 			},
+ 			{
+ 				.video_input	= 8,
+-				.audio_input	= AUDIO_EXTERN,
++				.audio_input	= TVAUDIO_INPUT_EXTERN,
+ 				.name		= "S-Video",
+ 			},
+ 			{
+ 				.video_input	= 3,
+-				.audio_input	= AUDIO_TUNER,
++				.audio_input	= TVAUDIO_INPUT_TUNER,
+ 				.name		= "Tuner",
+ 			},
+ 		},
+@@ -502,11 +502,7 @@
+ 		int value, int index, void *transfer_buffer, int length, int in)
+ {
+ 	struct go7007_usb *usb = go->hpi_context;
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,12)
+-	int timeout = 5 * HZ;
+-#else
+ 	int timeout = 5000;
+-#endif
+ 
+ 	if (in) {
+ 		return usb_control_msg(usb->usbdev, 
+@@ -562,11 +558,7 @@
+ 	struct go7007_usb *usb = go->hpi_context;
+ 	int i, r;
+ 	u16 status_reg;
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,12)
+-	int timeout = HZ / 2;
+-#else
+ 	int timeout = 500;
+-#endif
+ 
+ #ifdef GO7007_USB_DEBUG
+ 	printk(KERN_DEBUG
+@@ -615,11 +607,7 @@
+ 	struct go7007_usb *usb = go->hpi_context;
+ 	u8 *tbuf;
+ 	int r;
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,12)
+-	int timeout = HZ / 2;
+-#else
+ 	int timeout = 500;
+-#endif
+ 
+ #ifdef GO7007_USB_DEBUG
+ 	printk(KERN_DEBUG
+@@ -645,8 +633,7 @@
+ 	return 0;
+ }
+ 
+-static void go7007_usb_readinterrupt_complete(struct urb *urb,
+-		struct pt_regs *pt_regs)
++static void go7007_usb_readinterrupt_complete(struct urb *urb)
+ {
+ 	struct go7007 *go = (struct go7007 *)urb->context;
+ 	u16 *regs = (u16 *)urb->transfer_buffer;
+@@ -690,8 +677,7 @@
+ 	return 0;
+ }
+ 
+-static void go7007_usb_read_video_pipe_complete(struct urb *urb,
+-		struct pt_regs *pt_regs)
++static void go7007_usb_read_video_pipe_complete(struct urb *urb)
+ {
+ 	struct go7007 *go = (struct go7007 *)urb->context;
+ 	int r;
+@@ -715,8 +701,7 @@
+ 		printk(KERN_ERR "go7007-usb: error in video pipe: %d\n", r);
+ }
+ 
+-static void go7007_usb_read_audio_pipe_complete(struct urb *urb,
+-		struct pt_regs *pt_regs)
++static void go7007_usb_read_audio_pipe_complete(struct urb *urb)
+ {
+ 	struct go7007 *go = (struct go7007 *)urb->context;
+ 	int r;
+@@ -793,11 +778,7 @@
+ {
+ 	struct go7007_usb *usb = go->hpi_context;
+ 	int transferred, pipe;
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,12)
+-	int timeout = HZ / 2;
+-#else
+ 	int timeout = 500;
+-#endif
+ 
+ #ifdef GO7007_USB_DEBUG
+ 	printk(KERN_DEBUG "go7007-usb: DownloadBuffer sending %d bytes\n", len);
+@@ -920,10 +901,6 @@
+ }
+ 
+ static struct i2c_algorithm go7007_usb_algo = {
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,14)
+-	.name		= "go7007-usb",
+-	.id		= I2C_ALGO_GO7007,
+-#endif
+ 	.master_xfer	= go7007_usb_i2c_master_xfer,
+ 	.algo_control	= go7007_usb_algo_control,
+ 	.functionality	= go7007_usb_functionality,
+@@ -1237,9 +1214,6 @@
+ }
+ 
+ static struct usb_driver go7007_usb_driver = {
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,16)
+-	.owner		= THIS_MODULE,
+-#endif
+ 	.name		= "go7007",
+ 	.probe		= go7007_usb_probe,
+ 	.disconnect	= go7007_usb_disconnect,
+diff -ur wis-go7007-linux-0.9.8/kernel/go7007-v4l2.c wis-go7007-linux-0.9.8-new/kernel/go7007-v4l2.c
+--- wis-go7007-linux-0.9.8/kernel/go7007-v4l2.c	2006-04-02 01:22:03.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/go7007-v4l2.c	2007-02-18 23:34:28.000000000 +0100
+@@ -17,7 +17,6 @@
+ 
+ #include <linux/module.h>
+ #include <linux/init.h>
+-#include <linux/config.h>
+ #include <linux/version.h>
+ #include <linux/delay.h>
+ #include <linux/sched.h>
+@@ -29,11 +28,7 @@
+ #include <linux/pagemap.h>
+ #include <linux/videodev.h>
+ #include <linux/video_decoder.h>
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,16)
+-#include <media/audiochip.h>
+-#else
+ #include <media/v4l2-common.h>
+-#endif
+ #include <linux/i2c.h>
+ #include <asm/uaccess.h>
+ #include <asm/semaphore.h>
+@@ -939,7 +934,7 @@
+ 		if (go->i2c_adapter_online) {
+ 			i2c_clients_command(&go->i2c_adapter, DECODER_SET_INPUT,
+ 				&go->board_info->inputs[*input].video_input);
+-			i2c_clients_command(&go->i2c_adapter, AUDC_SET_INPUT,
++			i2c_clients_command(&go->i2c_adapter, VIDIOC_S_AUDIO,
+ 				&go->board_info->inputs[*input].audio_input);
+ 		}
+ 		return 0;
+Only in wis-go7007-linux-0.9.8-new/kernel: Module.symvers
+diff -ur wis-go7007-linux-0.9.8/kernel/snd-go7007.c wis-go7007-linux-0.9.8-new/kernel/snd-go7007.c
+--- wis-go7007-linux-0.9.8/kernel/snd-go7007.c	2006-04-02 00:36:38.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/snd-go7007.c	2007-02-18 23:41:31.000000000 +0100
+@@ -20,7 +20,6 @@
+ #include <linux/version.h>
+ #include <linux/moduleparam.h>
+ #include <linux/init.h>
+-#include <linux/config.h>
+ #include <linux/delay.h>
+ #include <linux/sched.h>
+ #include <linux/vmalloc.h>
+@@ -41,24 +40,17 @@
+ static char *id[SNDRV_CARDS] = SNDRV_DEFAULT_STR;
+ static int enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE_PNP;
+ 
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,10)
+-static int index_num, id_num, enable_num;
+-module_param_array(index, int, index_num, 0444);
+-module_param_array(id, charp, id_num, 0444);
+-module_param_array(enable, bool, enable_num, 0444);
+-#else
+ module_param_array(index, int, NULL, 0444);
+ module_param_array(id, charp, NULL, 0444);
+ module_param_array(enable, bool, NULL, 0444);
+-#endif
+ MODULE_PARM_DESC(index, "Index value for the go7007 audio driver");
+ MODULE_PARM_DESC(index, "ID string for the go7007 audio driver");
+ MODULE_PARM_DESC(index, "Enable for the go7007 audio driver");
+ 
+ struct go7007_snd {
+-	snd_card_t *card;
+-	snd_pcm_t *pcm;
+-	snd_pcm_substream_t *substream;
++	struct snd_card *card;
++	struct snd_pcm *pcm;
++	struct snd_pcm_substream *substream;
+ 	spinlock_t lock;
+ 	int w_idx;
+ 	int hw_ptr;
+@@ -66,7 +58,7 @@
+ 	int capturing;
+ };
+ 
+-static snd_pcm_hardware_t go7007_snd_capture_hw = {
++static struct snd_pcm_hardware go7007_snd_capture_hw = {
+ 	.info			= (SNDRV_PCM_INFO_MMAP |
+ 					SNDRV_PCM_INFO_INTERLEAVED |
+ 					SNDRV_PCM_INFO_BLOCK_TRANSFER |
+@@ -87,7 +79,7 @@
+ static void parse_audio_stream_data(struct go7007 *go, u8 *buf, int length)
+ {
+ 	struct go7007_snd *gosnd = go->snd_context;
+-	snd_pcm_runtime_t *runtime = gosnd->substream->runtime;
++	struct snd_pcm_runtime *runtime = gosnd->substream->runtime;
+ 	int frames = bytes_to_frames(runtime, length);
+ 
+ 	spin_lock(&gosnd->lock);
+@@ -117,8 +109,8 @@
+ 		snd_pcm_period_elapsed(gosnd->substream);
+ }
+ 
+-static int go7007_snd_hw_params(snd_pcm_substream_t *substream,
+-				snd_pcm_hw_params_t *hw_params)
++static int go7007_snd_hw_params(struct snd_pcm_substream *substream,
++				struct snd_pcm_hw_params *hw_params)
+ {
+ 	struct go7007 *go = snd_pcm_substream_chip(substream);
+ 	unsigned int bytes;
+@@ -135,7 +127,7 @@
+ 	return 0;
+ }
+ 
+-static int go7007_snd_hw_free(snd_pcm_substream_t *substream)
++static int go7007_snd_hw_free(struct snd_pcm_substream *substream)
+ {
+ 	struct go7007 *go = snd_pcm_substream_chip(substream);
+ 
+@@ -146,7 +138,7 @@
+ 	return 0;
+ }
+ 
+-static int go7007_snd_capture_open(snd_pcm_substream_t *substream)
++static int go7007_snd_capture_open(struct snd_pcm_substream *substream)
+ {
+ 	struct go7007 *go = snd_pcm_substream_chip(substream);
+ 	struct go7007_snd *gosnd = go->snd_context;
+@@ -164,7 +156,7 @@
+ 	return r;
+ }
+ 
+-static int go7007_snd_capture_close(snd_pcm_substream_t *substream)
++static int go7007_snd_capture_close(struct snd_pcm_substream *substream)
+ {
+ 	struct go7007 *go = snd_pcm_substream_chip(substream);
+ 	struct go7007_snd *gosnd = go->snd_context;
+@@ -173,12 +165,12 @@
+ 	return 0;
+ }
+ 
+-static int go7007_snd_pcm_prepare(snd_pcm_substream_t *substream)
++static int go7007_snd_pcm_prepare(struct snd_pcm_substream *substream)
+ {
+ 	return 0;
+ }
+ 
+-static int go7007_snd_pcm_trigger(snd_pcm_substream_t *substream, int cmd)
++static int go7007_snd_pcm_trigger(struct snd_pcm_substream *substream, int cmd)
+ {
+ 	struct go7007 *go = snd_pcm_substream_chip(substream);
+ 	struct go7007_snd *gosnd = go->snd_context;
+@@ -198,7 +190,7 @@
+ 	}
+ }
+ 
+-static snd_pcm_uframes_t go7007_snd_pcm_pointer(snd_pcm_substream_t *substream)
++static snd_pcm_uframes_t go7007_snd_pcm_pointer(struct snd_pcm_substream *substream)
+ {
+ 	struct go7007 *go = snd_pcm_substream_chip(substream);
+ 	struct go7007_snd *gosnd = go->snd_context;
+@@ -206,13 +198,13 @@
+ 	return gosnd->hw_ptr;
+ }
+ 
+-static struct page *go7007_snd_pcm_page(snd_pcm_substream_t *substream,
++static struct page *go7007_snd_pcm_page(struct snd_pcm_substream *substream,
+ 					unsigned long offset)
+ {
+ 	return vmalloc_to_page(substream->runtime->dma_area + offset);
+ }
+ 
+-static snd_pcm_ops_t go7007_snd_capture_ops = {
++static struct snd_pcm_ops go7007_snd_capture_ops = {
+ 	.open		= go7007_snd_capture_open,
+ 	.close		= go7007_snd_capture_close,
+ 	.ioctl		= snd_pcm_lib_ioctl,
+@@ -224,7 +216,7 @@
+ 	.page		= go7007_snd_pcm_page,
+ };
+ 
+-static int go7007_snd_free(snd_device_t *device)
++static int go7007_snd_free(struct snd_device *device)
+ {
+ 	struct go7007 *go = device->device_data;
+ 
+@@ -235,7 +227,7 @@
+ 	return 0;
+ }
+ 
+-static snd_device_ops_t go7007_snd_device_ops = {
++static struct snd_device_ops go7007_snd_device_ops = {
+ 	.dev_free	= go7007_snd_free,
+ };
+ 
+@@ -305,7 +297,7 @@
+ 	struct go7007_snd *gosnd = go->snd_context;
+ 
+ 	snd_card_disconnect(gosnd->card);
+-	snd_card_free_in_thread(gosnd->card);
++    snd_card_free_when_closed(gosnd->card);
+ 	return 0;
+ }
+ EXPORT_SYMBOL(go7007_snd_remove);
+diff -ur wis-go7007-linux-0.9.8/kernel/wis-ov7640.c wis-go7007-linux-0.9.8-new/kernel/wis-ov7640.c
+--- wis-go7007-linux-0.9.8/kernel/wis-ov7640.c	2006-04-02 00:36:59.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/wis-ov7640.c	2007-02-18 23:36:11.000000000 +0100
+@@ -52,16 +52,10 @@
+ 	return 0;
+ }
+ 
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,12)
+-static int wis_ov7640_i2c_id = 0;
+-#endif
+ static struct i2c_driver wis_ov7640_driver;
+ 
+ static struct i2c_client wis_ov7640_client_templ = {
+ 	.name		= "OV7640 (WIS)",
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,16)
+-	.flags		= I2C_CLIENT_ALLOW_USE,
+-#endif
+ 	.driver		= &wis_ov7640_driver,
+ };
+ 
+@@ -80,9 +74,6 @@
+ 	client->adapter = adapter;
+ 	client->addr = addr;
+ 	client->flags = I2C_CLIENT_SCCB;
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,12)
+-	client->id = wis_ov7640_i2c_id++;
+-#endif
+ 
+ 	printk(KERN_DEBUG
+ 		"wis-ov7640: initializing OV7640 at address %d on %s\n",
+@@ -112,14 +103,9 @@
+ }
+ 
+ static struct i2c_driver wis_ov7640_driver = {
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,16)
+-	.owner		= THIS_MODULE,
+-	.name		= "WIS OV7640 I2C driver",
+-#else
+ 	.driver = {
+ 		.name	= "WIS OV7640 I2C driver",
+ 	},
+-#endif
+ 	.id		= I2C_DRIVERID_WIS_OV7640,
+ 	.detach_client	= wis_ov7640_detach,
+ };
+diff -ur wis-go7007-linux-0.9.8/kernel/wis-saa7113.c wis-go7007-linux-0.9.8-new/kernel/wis-saa7113.c
+--- wis-go7007-linux-0.9.8/kernel/wis-saa7113.c	2006-04-02 00:37:06.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/wis-saa7113.c	2007-02-18 23:37:16.000000000 +0100
+@@ -21,6 +21,7 @@
+ #include <linux/i2c.h>
+ #include <linux/videodev.h>
+ #include <linux/video_decoder.h>
++#include <linux/ioctl.h>
+ 
+ #include "wis-i2c.h"
+ 
+@@ -266,16 +267,10 @@
+ 	return 0;
+ }
+ 
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,12)
+-static int wis_saa7113_i2c_id = 0;
+-#endif
+ static struct i2c_driver wis_saa7113_driver;
+ 
+ static struct i2c_client wis_saa7113_client_templ = {
+ 	.name		= "SAA7113 (WIS)",
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,16)
+-	.flags		= I2C_CLIENT_ALLOW_USE,
+-#endif
+ 	.driver		= &wis_saa7113_driver,
+ };
+ 
+@@ -294,9 +289,6 @@
+ 			sizeof(wis_saa7113_client_templ));
+ 	client->adapter = adapter;
+ 	client->addr = addr;
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,12)
+-	client->id = wis_saa7113_i2c_id++;
+-#endif
+ 
+ 	dec = kmalloc(sizeof(struct wis_saa7113), GFP_KERNEL);
+ 	if (dec == NULL) {
+@@ -342,14 +334,9 @@
+ }
+ 
+ static struct i2c_driver wis_saa7113_driver = {
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,16)
+-	.owner		= THIS_MODULE,
+-	.name		= "WIS SAA7113 I2C driver",
+-#else
+ 	.driver = {
+ 		.name	= "WIS SAA7113 I2C driver",
+ 	},
+-#endif
+ 	.id		= I2C_DRIVERID_WIS_SAA7113,
+ 	.detach_client	= wis_saa7113_detach,
+ 	.command	= wis_saa7113_command,
+diff -ur wis-go7007-linux-0.9.8/kernel/wis-saa7115.c wis-go7007-linux-0.9.8-new/kernel/wis-saa7115.c
+--- wis-go7007-linux-0.9.8/kernel/wis-saa7115.c	2006-04-02 00:37:12.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/wis-saa7115.c	2007-02-18 23:37:40.000000000 +0100
+@@ -21,6 +21,7 @@
+ #include <linux/i2c.h>
+ #include <linux/videodev.h>
+ #include <linux/video_decoder.h>
++#include <linux/ioctl.h>
+ 
+ #include "wis-i2c.h"
+ 
+@@ -395,16 +396,10 @@
+ 	return 0;
+ }
+ 
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,12)
+-static int wis_saa7115_i2c_id = 0;
+-#endif
+ static struct i2c_driver wis_saa7115_driver;
+ 
+ static struct i2c_client wis_saa7115_client_templ = {
+ 	.name		= "SAA7115 (WIS)",
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,16)
+-	.flags		= I2C_CLIENT_ALLOW_USE,
+-#endif
+ 	.driver		= &wis_saa7115_driver,
+ };
+ 
+@@ -423,9 +418,6 @@
+ 			sizeof(wis_saa7115_client_templ));
+ 	client->adapter = adapter;
+ 	client->addr = addr;
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,12)
+-	client->id = wis_saa7115_i2c_id++;
+-#endif
+ 
+ 	dec = kmalloc(sizeof(struct wis_saa7115), GFP_KERNEL);
+ 	if (dec == NULL) {
+@@ -471,14 +463,9 @@
+ }
+ 
+ static struct i2c_driver wis_saa7115_driver = {
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,16)
+-	.owner		= THIS_MODULE,
+-	.name		= "WIS SAA7115 I2C driver",
+-#else
+ 	.driver = {
+ 		.name	= "WIS SAA7115 I2C driver",
+ 	},
+-#endif
+ 	.id		= I2C_DRIVERID_WIS_SAA7115,
+ 	.detach_client	= wis_saa7115_detach,
+ 	.command	= wis_saa7115_command,
+diff -ur wis-go7007-linux-0.9.8/kernel/wis-sony-tuner.c wis-go7007-linux-0.9.8-new/kernel/wis-sony-tuner.c
+--- wis-go7007-linux-0.9.8/kernel/wis-sony-tuner.c	2006-04-02 00:37:18.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/wis-sony-tuner.c	2007-02-18 23:35:22.000000000 +0100
+@@ -21,9 +21,7 @@
+ #include <linux/i2c.h>
+ #include <linux/videodev.h>
+ #include <media/tuner.h>
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,16)
+ #include <media/v4l2-common.h>
+-#endif
+ 
+ #include "wis-i2c.h"
+ 
+@@ -653,16 +651,10 @@
+ 	return 0;
+ }
+ 
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,12)
+-static int wis_sony_tuner_i2c_id = 0;
+-#endif
+ static struct i2c_driver wis_sony_tuner_driver;
+ 
+ static struct i2c_client wis_sony_tuner_client_templ = {
+ 	.name		= "Sony TV Tuner (WIS)",
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,16)
+-	.flags		= I2C_CLIENT_ALLOW_USE,
+-#endif
+ 	.driver		= &wis_sony_tuner_driver,
+ };
+ 
+@@ -682,9 +674,6 @@
+ 			sizeof(wis_sony_tuner_client_templ));
+ 	client->adapter = adapter;
+ 	client->addr = addr;
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,12)
+-	client->id = wis_sony_tuner_i2c_id++;
+-#endif
+ 
+ 	t = kmalloc(sizeof(struct wis_sony_tuner), GFP_KERNEL);
+ 	if (t == NULL) {
+@@ -721,14 +710,9 @@
+ }
+ 
+ static struct i2c_driver wis_sony_tuner_driver = {
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,16)
+-	.owner		= THIS_MODULE,
+-	.name		= "WIS Sony TV Tuner I2C driver",
+-#else
+ 	.driver = {
+ 		.name	= "WIS Sony TV Tuner I2C driver",
+ 	},
+-#endif
+ 	.id		= I2C_DRIVERID_WIS_SONY_TUNER,
+ 	.detach_client	= wis_sony_tuner_detach,
+ 	.command	= tuner_command,
+diff -ur wis-go7007-linux-0.9.8/kernel/wis-tw2804.c wis-go7007-linux-0.9.8-new/kernel/wis-tw2804.c
+--- wis-go7007-linux-0.9.8/kernel/wis-tw2804.c	2006-04-02 00:37:22.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/wis-tw2804.c	2007-02-18 23:38:08.000000000 +0100
+@@ -21,6 +21,7 @@
+ #include <linux/i2c.h>
+ #include <linux/videodev.h>
+ #include <linux/video_decoder.h>
++#include <linux/ioctl.h>
+ 
+ #include "wis-i2c.h"
+ 
+@@ -294,16 +295,10 @@
+ 	return 0;
+ }
+ 
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,12)
+-static int wis_tw2804_i2c_id = 0;
+-#endif
+ static struct i2c_driver wis_tw2804_driver;
+ 
+ static struct i2c_client wis_tw2804_client_templ = {
+ 	.name		= "TW2804 (WIS)",
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,16)
+-	.flags		= I2C_CLIENT_ALLOW_USE,
+-#endif
+ 	.driver		= &wis_tw2804_driver,
+ };
+ 
+@@ -322,9 +317,6 @@
+ 			sizeof(wis_tw2804_client_templ));
+ 	client->adapter = adapter;
+ 	client->addr = addr;
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,12)
+-	client->id = wis_tw2804_i2c_id++;
+-#endif
+ 
+ 	dec = kmalloc(sizeof(struct wis_tw2804), GFP_KERNEL);
+ 	if (dec == NULL) {
+@@ -361,14 +353,9 @@
+ }
+ 
+ static struct i2c_driver wis_tw2804_driver = {
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,16)
+-	.owner		= THIS_MODULE,
+-	.name		= "WIS TW2804 I2C driver",
+-#else
+ 	.driver = {
+ 		.name	= "WIS TW2804 I2C driver",
+ 	},
+-#endif
+ 	.id		= I2C_DRIVERID_WIS_TW2804,
+ 	.detach_client	= wis_tw2804_detach,
+ 	.command	= wis_tw2804_command,
+diff -ur wis-go7007-linux-0.9.8/kernel/wis-tw9903.c wis-go7007-linux-0.9.8-new/kernel/wis-tw9903.c
+--- wis-go7007-linux-0.9.8/kernel/wis-tw9903.c	2006-04-02 00:37:28.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/wis-tw9903.c	2007-02-18 23:36:37.000000000 +0100
+@@ -21,6 +21,7 @@
+ #include <linux/i2c.h>
+ #include <linux/videodev.h>
+ #include <linux/video_decoder.h>
++#include <linux/ioctl.h>
+ 
+ #include "wis-i2c.h"
+ 
+@@ -268,16 +269,10 @@
+ 	return 0;
+ }
+ 
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,12)
+-static int wis_tw9903_i2c_id = 0;
+-#endif
+ static struct i2c_driver wis_tw9903_driver;
+ 
+ static struct i2c_client wis_tw9903_client_templ = {
+ 	.name		= "TW9903 (WIS)",
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,16)
+-	.flags		= I2C_CLIENT_ALLOW_USE,
+-#endif
+ 	.driver		= &wis_tw9903_driver,
+ };
+ 
+@@ -296,9 +291,6 @@
+ 			sizeof(wis_tw9903_client_templ));
+ 	client->adapter = adapter;
+ 	client->addr = addr;
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,12)
+-	client->id = wis_tw9903_i2c_id++;
+-#endif
+ 
+ 	dec = kmalloc(sizeof(struct wis_tw9903), GFP_KERNEL);
+ 	if (dec == NULL) {
+@@ -342,14 +334,9 @@
+ }
+ 
+ static struct i2c_driver wis_tw9903_driver = {
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,16)
+-	.owner		= THIS_MODULE,
+-	.name		= "WIS TW9903 I2C driver",
+-#else
+ 	.driver = {
+ 		.name	= "WIS TW9903 I2C driver",
+ 	},
+-#endif
+ 	.id		= I2C_DRIVERID_WIS_TW9903,
+ 	.detach_client	= wis_tw9903_detach,
+ 	.command	= wis_tw9903_command,
+diff -ur wis-go7007-linux-0.9.8/kernel/wis-uda1342.c wis-go7007-linux-0.9.8-new/kernel/wis-uda1342.c
+--- wis-go7007-linux-0.9.8/kernel/wis-uda1342.c	2006-04-02 00:37:32.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/wis-uda1342.c	2007-02-18 23:35:55.000000000 +0100
+@@ -20,10 +20,8 @@
+ #include <linux/version.h>
+ #include <linux/i2c.h>
+ #include <linux/videodev.h>
+-#include <media/audiochip.h>
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,16)
++#include <media/tvaudio.h>
+ #include <media/v4l2-common.h>
+-#endif
+ 
+ #include "wis-i2c.h"
+ 
+@@ -38,15 +36,15 @@
+ 				unsigned int cmd, void *arg)
+ {
+ 	switch (cmd) {
+-	case AUDC_SET_INPUT:
++	case VIDIOC_S_AUDIO:
+ 	{
+ 		int *inp = arg;
+ 
+ 		switch (*inp) {
+-		case AUDIO_TUNER:
++		case TVAUDIO_INPUT_TUNER:
+ 			write_reg(client, 0x00, 0x1441); /* select input 2 */
+ 			break;
+-		case AUDIO_EXTERN:
++		case TVAUDIO_INPUT_EXTERN:
+ 			write_reg(client, 0x00, 0x1241); /* select input 1 */
+ 			break;
+ 		default:
+@@ -62,16 +60,10 @@
+ 	return 0;
+ }
+ 
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,12)
+-static int wis_uda1342_i2c_id = 0;
+-#endif
+ static struct i2c_driver wis_uda1342_driver;
+ 
+ static struct i2c_client wis_uda1342_client_templ = {
+ 	.name		= "UDA1342 (WIS)",
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,16)
+-	.flags		= I2C_CLIENT_ALLOW_USE,
+-#endif
+ 	.driver		= &wis_uda1342_driver,
+ };
+ 
+@@ -89,9 +81,6 @@
+ 			sizeof(wis_uda1342_client_templ));
+ 	client->adapter = adapter;
+ 	client->addr = addr;
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,12)
+-	client->id = wis_uda1342_i2c_id++;
+-#endif
+ 
+ 	printk(KERN_DEBUG
+ 		"wis-uda1342: initializing UDA1342 at address %d on %s\n",
+@@ -117,14 +106,9 @@
+ }
+ 
+ static struct i2c_driver wis_uda1342_driver = {
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,16)
+-	.owner		= THIS_MODULE,
+-	.name		= "WIS UDA1342 I2C driver",
+-#else
+ 	.driver = {
+ 		.name	= "WIS UDA1342 I2C driver",
+ 	},
+-#endif
+ 	.id		= I2C_DRIVERID_WIS_UDA1342,
+ 	.detach_client	= wis_uda1342_detach,
+ 	.command	= wis_uda1342_command,

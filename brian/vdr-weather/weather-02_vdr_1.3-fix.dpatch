@@ -1,0 +1,359 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 02_vdr_1.3-fix.dpatch by Thomas Schmidt <tschmidt@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Allows the plugin to be compiled for vdr 1.3.x
+
+@DPATCH@
+diff -urNad weather/display.c /tmp/dpep.f9okrN/weather/display.c
+--- weather/display.c	2005-06-25 17:17:04.000000000 +0200
++++ /tmp/dpep.f9okrN/weather/display.c	2005-06-25 17:20:01.000000000 +0200
+@@ -16,130 +16,132 @@
+ }
+ 
+ 
+-void cWeatherOsd::initBitmap(cBitmap &b, char*xpm[], eDvbColor col, bool setBg) {
++void cWeatherOsd::initBitmap(cBitmap &b, char*xpm[], tColor col, bool setBg) {
+    for (int y=0; y<100; y++) {
+       for (int x=0; x<100; x++) {
+ 			if (setBg) {
+-         	b.SetPixel(x, y, (xpm[y][x] == YES) ? col : clrBackground);
++         	b.DrawPixel(x, y, (xpm[y][x] == YES) ? col : clrTransparent);
+ 			} else {
+ 				if (xpm[y][x] == YES) {
+-					b.SetPixel(x, y, col);
++					b.DrawPixel(x, y, col);
+ 				}
+ 			}
+       }
+    }
+ }
+ 
+-void cWeatherOsd::initEastBitmap(cBitmap &b, eDvbColor col) {
++void cWeatherOsd::initEastBitmap(cBitmap &b, tColor col) {
+    for (int y=0; y<100; y++) {
+       for (int x=0; x<100; x++) {
+ 			if (e_xpm[y][x] == YES) {
+-				b.SetPixel(x, y, col);
++				b.DrawPixel(x, y, col);
+ 			}
+       }
+    }
+ }
+ 
+-void cWeatherOsd::initNorthBitmap(cBitmap &b, eDvbColor col) {
++void cWeatherOsd::initNorthBitmap(cBitmap &b, tColor col) {
+ for (int y=0; y<100; y++) {
+       for (int x=0; x<100; x++) {
+ 			if (e_xpm[y][x] == YES) {
+-				b.SetPixel(y, 100 - x, col);
++				b.DrawPixel(y, 100 - x, col);
+ 			}
+       }
+    }
+ }
+ 
+-void cWeatherOsd::initWestBitmap(cBitmap &b, eDvbColor col) {
++void cWeatherOsd::initWestBitmap(cBitmap &b, tColor col) {
+    for (int y=0; y<100; y++) {
+       for (int x=99; x>=0; x--) {
+ 			if (e_xpm[y][x] == YES) {
+-				b.SetPixel(100 - x, y, col);
++				b.DrawPixel(100 - x, y, col);
+ 			}
+       }
+    }
+ }
+ 
+-void cWeatherOsd::initSouthBitmap(cBitmap &b, eDvbColor col) {
++void cWeatherOsd::initSouthBitmap(cBitmap &b, tColor col) {
+ 	for (int y=0; y<100; y++) {
+       for (int x=0; x<100; x++) {
+ 			if (e_xpm[y][x] == YES) {
+-				b.SetPixel(y, x, col);
++				b.DrawPixel(y, x, col);
+ 			}
+       }
+    }
+ }
+ 
+-void cWeatherOsd::initSouthEastBitmap(cBitmap &b, eDvbColor col) {
++void cWeatherOsd::initSouthEastBitmap(cBitmap &b, tColor col) {
+ 	for (int y=0; y<100; y++) {
+       for (int x=0; x<100; x++) {
+ 			if (se_xpm[y][x] == YES) {
+-				b.SetPixel(x, y, col);
++				b.DrawPixel(x, y, col);
+ 			}
+       }
+    }
+ }
+ 
+-void cWeatherOsd::initNorthEastBitmap(cBitmap &b, eDvbColor col) {
++void cWeatherOsd::initNorthEastBitmap(cBitmap &b, tColor col) {
+    for (int y=0; y<100; y++) {
+       for (int x=0; x<100; x++) {
+ 			if (se_xpm[y][x] == YES) {
+-				b.SetPixel(y, 100 - x, col);
++				b.DrawPixel(y, 100 - x, col);
+ 			}
+       }
+    }
+ }
+ 
+ 
+-void cWeatherOsd::initNorthWestBitmap(cBitmap &b, eDvbColor col) {
++void cWeatherOsd::initNorthWestBitmap(cBitmap &b, tColor col) {
+ 	for (int y=0; y<100; y++) {
+       for (int x=0; x<100; x++) {
+ 			if (se_xpm[y][x] == YES) {
+-				b.SetPixel(100-x, 100-y, col);
++				b.DrawPixel(100-x, 100-y, col);
+ 			}
+       }
+    }
+ }
+ 
+-void cWeatherOsd::initSouthWestBitmap(cBitmap &b, eDvbColor col) {
++void cWeatherOsd::initSouthWestBitmap(cBitmap &b, tColor col) {
+ 	for (int y=0; y<100; y++) {
+       for (int x=99; x>=0; x--) {
+ 			if (se_xpm[y][x] == YES) {
+-				b.SetPixel(100 - x, y, col);
++				b.DrawPixel(100 - x, y, col);
+ 			}
+       }
+    }
+ }
+ 
+-void cWeatherOsd::initBorderBitmap(cBitmap &b, eDvbColor col) {
++void cWeatherOsd::initBorderBitmap(cBitmap &b, tColor col) {
+ 	for (int y=0; y<100; y++) {
+       for (int x=99; x>=0; x--) {
+ 			if (border_xpm[x][y] == YES) {
+-				b.SetPixel(x, y, col);
++				b.DrawPixel(x, y, col);
+ 			}
+       }
+    }
+ }
+ 
+-void cWeatherOsd::printMetar (cOsdBase *osd, Decoded_METAR *Mptr, int x, int y) {
+-	cFont *font = new cFont((eDvbFont)0);
+-	osd->SetFont((eDvbFont)0);
++void cWeatherOsd::printMetar (cOsd *osd, Decoded_METAR *Mptr, int x, int y) {
++	//cFont *font = new cFont();
++        const cFont *font = cFont::GetFont((eDvbFont)0);
+ 	//int cy = 0;
+ 
+ 
+ 	int lineY = y;
+ 
+-	osd->Text(x + 80 - font->Width(tr("Weather")) - gapX, y, tr("Weather"));
++	osd->DrawText(x + 80 - font->Width(tr("Weather")) - gapX, y, tr("Weather"), 
++              clrWhite, clrTransparent, font);
+ 	lineY += font->Height(tr("Weather")) + gapY;
+ 
+-	osd->Fill(x, lineY, x+80, lineY+lineHeight, clrBlue);
+-	osd->Fill(x+80, lineY, x+80+lineHeight, lineY+20, clrBlue);
++	osd->DrawRectangle(x, lineY, x+80, lineY+lineHeight, clrBlue);
++	osd->DrawRectangle(x+80, lineY, x+80+lineHeight, lineY+20, clrBlue);
+ 	drawWeather(osd, Mptr, x, lineY+20);
+ 	x += 120;
+ 
+-	osd->Text(x + 80 - font->Width(tr("Wind")) - gapX, y, tr("Wind"));
+-	osd->Fill(x, lineY, x+80, lineY+lineHeight, clrBlue);
+-	osd->Fill(x+80, lineY, x+80+lineHeight, lineY+20, clrBlue);
++	osd->DrawText(x + 80 - font->Width(tr("Wind")) - gapX, y, tr("Wind"),
++              clrWhite, clrTransparent, font);
++	osd->DrawRectangle(x, lineY, x+80, lineY+lineHeight, clrBlue);
++	osd->DrawRectangle(x+80, lineY, x+80+lineHeight, lineY+20, clrBlue);
+ 
+ 	if (Mptr->winData.windDir != MAXINT) {
+ 		drawWindRose(osd, Mptr->winData.windDir, x, lineY+20);
+@@ -150,17 +152,17 @@
+ 	drawData(osd, Mptr, 0, font, x, y);
+ }
+ 
+-void cWeatherOsd::drawWeather(cOsdBase *osd, Decoded_METAR *mptr, int x, int y) {
++void cWeatherOsd::drawWeather(cOsd *osd, Decoded_METAR *mptr, int x, int y) {
+ 	//char* filename;
+ 
+ //	sprintf("%s%s.xpm", coverage[mptr->], phenomen[]);
+ 	cBitmap weather(100, 100, 3, false);
+ 	initBitmap(weather, sun_xpm, clrYellow, true);
+ 	initBorderBitmap(weather, clrBlue);
+-	osd->SetBitmap(x, y, weather);
++	osd->DrawBitmap(x, y, weather);
+ }
+ 
+-void cWeatherOsd::drawWindRose(cOsdBase *osd, int degree, int x, int y) {
++void cWeatherOsd::drawWindRose(cOsd *osd, int degree, int x, int y) {
+ 	cBitmap windRose(100, 100, 3, false);
+ 	initBitmap(windRose, windrose_xpm, clrYellow, true);
+ 
+@@ -185,5 +187,5 @@
+ 	}
+ 
+ 	initBorderBitmap(windRose, clrBlue);
+-	osd->SetBitmap(x, y, windRose);
++	osd->DrawBitmap(x, y, windRose);
+ }
+diff -urNad weather/display.h /tmp/dpep.f9okrN/weather/display.h
+--- weather/display.h	2005-06-25 17:17:04.000000000 +0200
++++ /tmp/dpep.f9okrN/weather/display.h	2005-06-25 17:20:01.000000000 +0200
+@@ -11,20 +11,20 @@
+ 	public:
+ 		cWeatherOsd(cUpdate *metarReader);
+ 	protected:
+-		virtual void printMetar (cOsdBase *osd, Decoded_METAR *Mptr, int x, int y);
+-		void initWeatherBitmap(cBitmap &b, Decoded_METAR *mptr, eDvbColor col, bool setBg);
+-		void initBitmap(cBitmap &b, char *xpm[], eDvbColor col, bool setBg);
+-		void initNorthBitmap(cBitmap &b, eDvbColor col);
+-		void initSouthBitmap(cBitmap &b, eDvbColor col);
+-		void initWestBitmap(cBitmap &b, eDvbColor col);
+-		void initEastBitmap(cBitmap &b, eDvbColor col);
+-		void initNorthWestBitmap(cBitmap &b, eDvbColor col);
+-		void initNorthEastBitmap(cBitmap &b, eDvbColor col);
+-		void initSouthWestBitmap(cBitmap &b, eDvbColor col);
+-		void initSouthEastBitmap(cBitmap &b, eDvbColor col);
+-		void initBorderBitmap(cBitmap &b, eDvbColor col);
+-		void drawWindRose(cOsdBase *osd, int degree, int x, int y);
+-		void drawWeather(cOsdBase *osd, Decoded_METAR *mptr, int x, int y);
++		virtual void printMetar (cOsd *osd, Decoded_METAR *Mptr, int x, int y);
++		void initWeatherBitmap(cBitmap &b, Decoded_METAR *mptr, tColor col, bool setBg);
++		void initBitmap(cBitmap &b, char *xpm[], tColor col, bool setBg);
++		void initNorthBitmap(cBitmap &b, tColor col);
++		void initSouthBitmap(cBitmap &b, tColor col);
++		void initWestBitmap(cBitmap &b, tColor col);
++		void initEastBitmap(cBitmap &b, tColor col);
++		void initNorthWestBitmap(cBitmap &b, tColor col);
++		void initNorthEastBitmap(cBitmap &b, tColor col);
++		void initSouthWestBitmap(cBitmap &b, tColor col);
++		void initSouthEastBitmap(cBitmap &b, tColor col);
++		void initBorderBitmap(cBitmap &b, tColor col);
++		void drawWindRose(cOsd *osd, int degree, int x, int y);
++		void drawWeather(cOsd *osd, Decoded_METAR *mptr, int x, int y);
+ 		std::string cWeatherOsd::getIntensity(const std::string weather);
+ 		std::string cWeatherOsd::getPrecipitation(const std::string weather);
+ 		std::string cWeatherOsd::getCoverage(const std::string weather);
+diff -urNad weather/simpleDisplay.c /tmp/dpep.f9okrN/weather/simpleDisplay.c
+--- weather/simpleDisplay.c	2005-06-25 17:17:04.000000000 +0200
++++ /tmp/dpep.f9okrN/weather/simpleDisplay.c	2005-06-25 17:21:14.000000000 +0200
+@@ -18,21 +18,18 @@
+ }
+ 
+ void cSimpleWeatherOsd::Show(void) {
+-  osd = cOsd::OpenRaw(50, 50);
++  osd = cOsdProvider::NewOsd(50, 50);
++  const cFont *font = cFont::GetFont((eDvbFont)0);
+   if (osd) {
+-     osd->Create(0, 240, 612, 250, 4);
+-     osd->AddColor(clrBackground);
+-     osd->AddColor(clrRed);
+-     osd->AddColor(clrGreen);
+-     osd->AddColor(clrYellow);
+-     osd->AddColor(clrBlue);
+-     osd->Clear();
++     tArea Area = {0, 240, 611, 489, 4};
++     osd->SetAreas(&Area, 1);
++     osd->DrawRectangle(0, 240, 611, 489, clrGray50);
+ 
+ 	if (metarReader->isDataAvailable()) {
+ 		Decoded_METAR *decodedMetar = metarReader->getDecodedMetar();
+ 		this->printMetar(osd, decodedMetar, 10, 250);
+ 	} else {
+-		osd->Text(10, 250, tr("No Data available"));
++		osd->DrawText(10, 250, tr("No Data available"),clrWhite, clrTransparent, font);
+ 	}
+      osd->Flush();
+   }
+@@ -54,14 +51,13 @@
+   return state;
+ }
+ 
+-void cSimpleWeatherOsd::printMetar (cOsdBase *osd, Decoded_METAR *Mptr, int x, int y) {
++void cSimpleWeatherOsd::printMetar (cOsd *osd, Decoded_METAR *Mptr, int x, int y) {
+ 
+-	cFont *font = new cFont((eDvbFont)0);
+-	osd->SetFont((eDvbFont)0);
++	const cFont *font = cFont::GetFont((eDvbFont)0);
+ 	drawData(osd, Mptr, 0, font, x, y);
+ }
+ 
+-int cSimpleWeatherOsd::calculateMaxDescriptionFontWidth(measurement measurements[], int size, cFont *font) {
++int cSimpleWeatherOsd::calculateMaxDescriptionFontWidth(measurement measurements[], int size, const cFont *font) {
+ 	int maxSize = 0;
+ 	int strSize = 0;
+ 
+@@ -75,7 +71,7 @@
+ 	return maxSize;
+ }
+ 
+-int cSimpleWeatherOsd::calculateMaxValueFontWidth(measurement measurements[], int size, cFont *font) {
++int cSimpleWeatherOsd::calculateMaxValueFontWidth(measurement measurements[], int size, const cFont *font) {
+ 	int maxSize = 0;
+ 	int strSize = 0;
+ 
+@@ -89,7 +85,7 @@
+ 	return maxSize;
+ }
+ 
+-void cSimpleWeatherOsd::drawData(cOsdBase *osd, Decoded_METAR *Mptr, int cy, cFont *font, int x, int y) {
++void cSimpleWeatherOsd::drawData(cOsd *osd, Decoded_METAR *Mptr, int cy, const cFont *font, int x, int y) {
+ 	measurement measurements[10];
+ 
+ 	for(int i=0; i<10; i++) {
+@@ -174,18 +170,21 @@
+ 
+ 
+ 	int maxSize = x + calculateMaxDescriptionFontWidth(measurements, cy, font) + gapX;
+-	osd->Text(maxSize-font->Width(measurements[0].description)-gapX, y, measurements[0].description);
++	osd->DrawText(maxSize-font->Width(measurements[0].description)-gapX, y, 
++              measurements[0].description, clrWhite, clrTransparent, font);
+ 	y += font->Height(measurements[0].description) + gapY;
+ 	int lineY = y;
+-	osd->Fill(x, y, maxSize+gapX, y+lineHeight, clrBlue);
++	osd->DrawRectangle(x, y, maxSize+gapX, y+lineHeight, clrBlue);
+ 	y += lineHeight+gapY;
+ 
+ 	for (int i=1; i<=cy; i++) {
+-		osd->Text(maxSize-font->Width(measurements[i].description)-gapX, y, measurements[i].description);
+-		osd->Text(maxSize+lineHeight+gapX+gapX, y, measurements[i].value);
+-		osd->Fill(maxSize, y+(font->Height(measurements[0].description)/2), maxSize+gapX, y+(font->Height(measurements[0].description)/2)+lineHeight, clrBlue);
++		osd->DrawText(maxSize-font->Width(measurements[i].description)-gapX, y, 
++                      measurements[i].description, clrWhite, clrTransparent, font);
++		osd->DrawText(maxSize+lineHeight+gapX+gapX, y, measurements[i].value,
++                      clrWhite, clrTransparent, font);
++		osd->DrawRectangle(maxSize, y+(font->Height(measurements[0].description)/2), maxSize+gapX, y+(font->Height(measurements[0].description)/2)+lineHeight, clrBlue);
+ 		y += font->Height(measurements[0].description) + gapY;
+ 	}
+ 
+-	osd->Fill(maxSize+gapX, lineY, maxSize+gapX+lineHeight, y, clrBlue);
++	osd->DrawRectangle(maxSize+gapX, lineY, maxSize+gapX+lineHeight, y, clrBlue);
+ }
+diff -urNad weather/simpleDisplay.h /tmp/dpep.f9okrN/weather/simpleDisplay.h
+--- weather/simpleDisplay.h	2005-06-25 17:17:04.000000000 +0200
++++ /tmp/dpep.f9okrN/weather/simpleDisplay.h	2005-06-25 17:20:01.000000000 +0200
+@@ -17,14 +17,14 @@
+ 		virtual void Show(void);
+ 		virtual eOSState ProcessKey(eKeys Key);
+ 	protected:
+-		cOsdBase *osd;
+-		eDvbColor color;
++		cOsd *osd;
++                tColor color;
+ 		cUpdate *metarReader;
+-		virtual void printMetar (cOsdBase *osd, Decoded_METAR *Mptr, int x, int y);
+-		void drawData(cOsdBase *osd, Decoded_METAR *Mptr, int cy, cFont *font, int x, int y);
+-		int calculateMaxDescriptionFontWidth(measurement measurements[], int size, cFont *font);
+-		int calculateMaxValueFontWidth(measurement measurements[], int size, cFont *font);
+-		int calculateMaxFontWidth(char strings[][500], int size, cFont *font);
++		virtual void printMetar (cOsd *osd, Decoded_METAR *Mptr, int x, int y);
++		void drawData(cOsd *osd, Decoded_METAR *Mptr, int cy, const cFont *font, int x, int y);
++		int calculateMaxDescriptionFontWidth(measurement measurements[], int size, const cFont *font);
++		int calculateMaxValueFontWidth(measurement measurements[], int size, const cFont *font);
++		int calculateMaxFontWidth(char strings[][500], int size, const cFont *font);
+ };
+ 
+ #endif //SIMPLE_WEATHER_DISPLAY_H

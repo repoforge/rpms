@@ -1,0 +1,20 @@
+# VDR friendly permissions and ownerships for various devices.  These take
+# effect at boot time as well as on console logins and logouts.  See also
+# /etc/udev/rules.d/*-vdr.rules and https://bugzilla.redhat.com/202132
+
+# DVB devices:
+<vdrdvb>=/dev/dvb/adapter*/*
+<console>  0660 <vdrdvb>     0660 root.VDR_GROUP
+
+# Optical drives; uncomment/adjust if you want to use them with VDR:
+#<vdroptical>=/dev/cdrom* /dev/cdrw* /dev/cdwriter* /dev/dvd*
+#<console>  0660 <vdroptical> 0660 root.VDR_GROUP
+
+# Remote controller, serial port 1 (eg. vdr --rcu=/dev/ttyS0):
+#<vdrremote>=/dev/ttyS0
+# Remote controller, /dev/input/event2 (using the remote plugin):
+#<vdrremote>=/dev/input/event2
+# Remote controller using the example in /etc/udev/rules.d/*-vdr.rules:
+#<vdrremote>=/dev/input/event-remote
+# Uncomment this if you have any <vdrremote>s above uncommented:
+#<console>  0660 <vdrremote>    0660 root.VDR_GROUP

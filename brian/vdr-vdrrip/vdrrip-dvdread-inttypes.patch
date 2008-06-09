@@ -1,0 +1,12 @@
+Index: vdrrip-0.3.0/movie.c
+===================================================================
+--- vdrrip-0.3.0/movie.c
++++ vdrrip-0.3.0/movie.c	2007-11-14 16:57:30.000000000 +0200
+@@ -8,6 +8,7 @@
+ #include <math.h>
+ 
+ #ifdef VDRRIP_DVD
++  #include <inttypes.h>
+   #include <dvdread/ifo_read.h>
+ #endif //VDRRIP_DVD
+ 

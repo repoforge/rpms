@@ -1,0 +1,459 @@
+diff -ruN vdr-1.4.5/CONTRIBUTORS vdr-1.4.5-1/CONTRIBUTORS
+--- vdr-1.4.5/CONTRIBUTORS	2007-01-04 14:38:40.000000000 +0100
++++ vdr-1.4.5-1/CONTRIBUTORS	2007-01-26 15:14:33.000000000 +0100
+@@ -1014,7 +1014,7 @@
+  for reporting a bug in handling a channels.conf that contains a ":@nnn" line as
+  its last entry
+ 
+-Hermann Gausterer <mrq1@gmx.net>
++Hermann Gausterer <vdr@mrq1.org>
+  for suggesting to switch to the recording channel in case the current channel
+  becomes unavailable
+ 
+@@ -1114,6 +1114,8 @@
+  for changing the behaviour when hitting the end of a recording in fast forward mode
+  for suggesting to give the cRemote::CallPlugin() function a boolean return value
+  for fixing a possible crash in remux.c on 64-bit machines
++ for making cCommand::Execute() use cPipe instead of popen() to avoid problems
++ with open file handles when starting background commands
+ 
+ Richard Robson <richard_robson@beeb.net>
+  for reporting freezing replay if a timer starts while in Transfer Mode from the
+@@ -1720,6 +1722,7 @@
+  for reporting a bug in the initial setting of the time transponder setup parameter
+  for suggesting to extend the version number reported with the '-V' option to also
+  show the current APIVERSION
++ for fixing i18n characters for the Hungarian texts
+ 
+ David Woodhouse <dwmw2@infradead.org>
+  for his help in replacing the get/put_unaligned() macros from asm/unaligned.h with
+diff -ruN vdr-1.4.5/HISTORY vdr-1.4.5-1/HISTORY
+--- vdr-1.4.5/HISTORY	2007-01-07 14:47:19.000000000 +0100
++++ vdr-1.4.5-1/HISTORY	2007-01-28 10:58:12.000000000 +0100
+@@ -5028,3 +5028,10 @@
+ 2007-01-07: Version 1.4.5
+ 
+ - Official release.
++
++2007-01-28: Version 1.4.5-1
++
++- Fixed i18n characters for the Hungarian texts (thanks to Thomas Günther).
++- Now using cPipe instead of popen() in cCommand::Execute() to avoid problems
++  with open file handles when starting background commands (thanks to Reinhard
++  Nissl).
+diff -ruN vdr-1.4.5/config.c vdr-1.4.5-1/config.c
+--- vdr-1.4.5/config.c	2006-07-22 13:57:51.000000000 +0200
++++ vdr-1.4.5-1/config.c	2007-01-26 14:32:19.000000000 +0100
+@@ -4,7 +4,7 @@
+  * See the main source file 'vdr.c' for copyright information and
+  * how to reach the author.
+  *
+- * $Id: config.c 1.146 2006/07/22 11:57:51 kls Exp $
++ * $Id: config.c 1.147 2007/01/26 13:32:19 kls Exp $
+  */
+ 
+ #include "config.h"
+@@ -67,8 +67,8 @@
+      asprintf(&cmdbuf, "%s %s", command, Parameters);
+   const char *cmd = cmdbuf ? cmdbuf : command;
+   dsyslog("executing command '%s'", cmd);
+-  FILE *p = popen(cmd, "r");
+-  if (p) {
++  cPipe p;
++  if (p.Open(cmd, "r")) {
+      int l = 0;
+      int c;
+      while ((c = fgetc(p)) != EOF) {
+@@ -78,7 +78,7 @@
+            }
+      if (result)
+         result[l] = 0;
+-     pclose(p);
++     p.Close();
+      }
+   else
+      esyslog("ERROR: can't open pipe for command '%s'", cmd);
+diff -ruN vdr-1.4.5/config.h vdr-1.4.5-1/config.h
+--- vdr-1.4.5/config.h	2007-01-07 14:45:19.000000000 +0100
++++ vdr-1.4.5-1/config.h	2007-01-26 14:14:47.000000000 +0100
+@@ -4,7 +4,7 @@
+  * See the main source file 'vdr.c' for copyright information and
+  * how to reach the author.
+  *
+- * $Id: config.h 1.282 2007/01/07 13:45:19 kls Exp $
++ * $Id: config.h 1.282.1.1 2007/01/26 13:14:47 kls Exp $
+  */
+ 
+ #ifndef __CONFIG_H
+@@ -21,7 +21,7 @@
+ 
+ // VDR's own version number:
+ 
+-#define VDRVERSION  "1.4.5"
++#define VDRVERSION  "1.4.5-1"
+ #define VDRVERSNUM   10405  // Version * 10000 + Major * 100 + Minor
+ 
+ // The plugin API's version number:
+diff -ruN vdr-1.4.5/i18n.c vdr-1.4.5-1/i18n.c
+--- vdr-1.4.5/i18n.c	2006-10-14 11:26:41.000000000 +0200
++++ vdr-1.4.5-1/i18n.c	2007-01-26 14:10:33.000000000 +0100
+@@ -4,7 +4,7 @@
+  * See the main source file 'vdr.c' for copyright information and
+  * how to reach the author.
+  *
+- * $Id: i18n.c 1.285 2006/10/14 09:26:41 kls Exp $
++ * $Id: i18n.c 1.285.1.1 2007/01/26 13:10:33 kls Exp $
+  *
+  * Translations provided by:
+  *
+@@ -119,7 +119,7 @@
+     "iso8859-7",
+     "iso8859-1",
+     "iso8859-2",
+-    "iso8859-1",
++    "iso8859-2",
+     "iso8859-1",
+     "iso8859-5",
+     "iso8859-2",
+@@ -231,7 +231,7 @@
+     "×ñïíïğñïãñáììáôéóìïß",
+     "Timers",
+     "Timer-e",
+-    "Idözítö",
++    "Idõzítõ",
+     "Temporitzadors",
+     "ÂĞÙÜÕàë",
+     "Termini",
+@@ -385,7 +385,7 @@
+     "Ôñïğïğïßçóç ÷ñïíïğñïãñáììáôéóìïı",
+     "Ändra timer",
+     "Modificare timer",
+-    "Idözítö megváltoztatása",
++    "Idõzítõ megváltoztatása",
+     "Editar temporitzador",
+     "ÃáâĞİŞÒÚĞ âĞÙÜÕàĞ",
+     "Ureğivanje termina",
+@@ -694,7 +694,7 @@
+     "",// TODO
+     "Timer",
+     "Timer",
+-    "Idözítö",
++    "Idõzítõ",
+     "",// TODO
+     "ÂĞÙÜÕà",
+     "",// TODO
+@@ -936,7 +936,7 @@
+     "Åğüìåíï",
+     "Nästa",
+     "Urmãtor",
+-    "Következö",
++    "Következõ",
+     "Següent",
+     "´ĞÛÕÕ",
+     "Slijedi",
+@@ -1157,7 +1157,7 @@
+     "ÄéáãñáöŞ ÷ñïíïğñïãñáììáôéóìïı;?",
+     "Ta bort timern?",
+     "ªterg timer-ul?",
+-    "Idözítö törlése?",
++    "Idõzítõ törlése?",
+     "Esborrar el temporitzador?",
+     "ÃÔĞÛØâì âĞÙÜÕà?",
+     "Obrisati termin?",
+@@ -1377,7 +1377,7 @@
+     "Áíáìİíåôáé åããñáöŞ óİ %ld ëåğôÜ - ÔåëéêÜ íá ôåñìáôéóôåß?",
+     "Inspelning startar om %ld minuter, vill du avsluta?",
+     "Înregistrez peste %ld minute - închid, totuºi?",
+-    "Felvétel %ld perc mulva kezdödik - mégis kikapcsolni?",
++    "Felvétel %ld perc mulva kezdõdik - mégis kikapcsolni?",
+     "Hi ha una gravació en %ld minuts - Apagar de totes maneres?",
+     "ÇÕàÕ× %ld ÜØİãâ İĞçİñâáï ×ĞßØáì - ÔÕÙáâÒØâÕÛìİŞ ÒëÚÛîçØâì?",
+     "Snimanje za %ld minuta - svejedno iskljuèiti?",
+@@ -2149,7 +2149,7 @@
+     "Ğñşôç ìİñá",
+     "Första dag",
+     "Prima zi",
+-    "Elsö nap",
++    "Elsõ nap",
+     "Primer dia",
+     "¿ÕàÒëÙ ÔÕİì",
+     "Prvi dan",
+@@ -2172,7 +2172,7 @@
+     "Ôï êáíÜëç ÷ñéóéìïğïéåßôáé áğü ÷ñïíïğñïãñáììáôéóìü!",
+     "Kanalen används av en timer!",
+     "Canalul este utilizat de un timer!",
+-    "Az adót az idözítö használja!",
++    "Az adót az idõzítõ használja!",
+     "Canal en ús per un temporitzador!",
+     "ºĞİĞÛ ×Ğİïâ âĞÙÜÕàŞÜ!",
+     "Program je trenutno zauzet terminom za snimanje",
+@@ -2304,7 +2304,7 @@
+     "",//TODO
+     "strax VPS inspelning...",
+     "Urmeazã o înregistrare VPS!",
+-    "VPS-felvétel rögtön kezdödik!",
++    "VPS-felvétel rögtön kezdõdik!",
+     "",//TODO
+     "VPS-·ĞßØáì áÚŞàŞ İĞçİÕâáï",
+     "",//TODO
+@@ -2348,7 +2348,7 @@
+     "Ôï êáíÜëç äİí åßíáé äéáèİóéìï!",
+     "Kanalen är inte tillgänglig!",
+     "Canal indisponibil",
+-    "Az adó nem elérhetö",
++    "Az adó nem elérhetõ",
+     "Canal no disponible!",
+     "ºĞİĞÛ İÕÔŞáâãßÕİ!",
+     "Program nije dostupan!",
+@@ -2370,7 +2370,7 @@
+     "Ïé ñéèìıóåéò ôïí êáíáëéşí áëëõëïóõìğßğôïõí!",
+     "Kanalinställningarna är ej unika!",
+     "Parametrii canalului nu sunt univoci!",
+-    "Az adóbeállítások nem egyértelmüek",
++    "Az adóbeállítások nem egyértelmûek",
+     "Propietats del canal duplicades!",
+     "½ĞáâàŞÙÚØ ÚĞİĞÛĞ İÕ ãİØÚĞÛìİë!",
+     "Parametri programa nisu jednoznaèni!",
+@@ -2524,7 +2524,7 @@
+     "",//TODO
+     "Otillräcklingt diskutrymme för inspelning!",
+     "Insuficient spaşiul pe disc pentru înregistrare!",
+-    "Nincs elegendö hely a felvételre",
++    "Nincs elegendõ hely a felvételre",
+     "",//TODO
+     "½ÕÔŞáâĞâŞçİŞ ÜÕáâĞ İĞ ÔØáÚÕ ÔÛï İĞçĞÛĞ ×ĞßØáØ",
+     "",//TODO
+@@ -3120,7 +3120,7 @@
+     "×ñüíïò İíäåéîçò ìõíçìÜôùí (ä)",
+     "Tid för meddelanden (sek)",
+     "Timp afiºare mesaje (sec)",
+-    "Információ feltüntetésének idötartama",
++    "Információ feltûntetésének idõtartama",
+     "Durada dels missatges (s)",
+     "´ÛØâÕÛìİŞáâì ßŞÚĞ×Ğ áŞŞÑéÕİØÙ (áÕÚ)",
+     "Vrijeme prikaza poruka (s)",
+@@ -3142,7 +3142,7 @@
+     "×ñéóçìïğïßçóç ìéêñüí ãñáììáôïóåéñşí",
+     "Använd liten font",
+     "Utilizare fonturi mici",
+-    "Kisbetüt használni",
++    "Kisbetût használni",
+     "",// TODO
+     "¸áßŞÛì×ŞÒĞâì ÜÕÛÚØÙ èàØäâ",
+     "Koristi mala slova",
+@@ -3186,7 +3186,7 @@
+     "ÅîáñôÜôå áğü ôŞí åğéöÜíåéá",
+     "skin beroende",
+     "dep. de skin",
+-    "Menü nézetétöl függöen",
++    "Menü nézetétõl függõen",
+     "",// TODO
+     "áŞÓÛĞáİŞ âÕÜÕ",
+     "ovisno o povr¹ini",
+@@ -3252,7 +3252,7 @@
+     "÷ñüíïò İíäåéêóçò ğëçñïöïñßùí êáíáëéïı óå (ä)",
+     "Kanal information (s)",
+     "Durata afiºãrii info-canal (s)",
+-    "Adásinformáció feltüntetésének idötartama (s)",
++    "Adásinformáció feltûntetésének idõtartama (s)",
+     "",// TODO
+     "¿ŞÚĞ× ØİäŞàÜĞæØØ Ş ÚĞİĞÛÕ (áÕÚ)",
+     "Vrijeme prikaza informacije o programu (s)",
+@@ -3406,7 +3406,7 @@
+     "×ñüíïò äéÜñêåéáò åîİôáóçò EPG óå şñåò",
+     "EPG sökning timeout",
+     "Interval achizişie EPG (h)",
+-    "Fennmaradt idö az EPG-újításig (h)",
++    "Fennmaradt idõ az EPG-újításig (h)",
+     "Màxim d'Hores a cercar per la Guia",
+     "·ĞÔÕàÖÚĞ áÚĞİØàŞÒĞİØï âÕÛÕÓØÔĞ (ç)",
+     "Vrijeme do EPG pregleda (h)",
+@@ -3472,7 +3472,7 @@
+     "Óõíôïíéóìüò şñáò õğïëïãéóôŞ",
+     "Ställ in systemtid",
+     "Potriveºte ceasul sistem",
+-    "Az idö beállítása",
++    "Az idõ beállítása",
+     "Ajustar l'hora del sistema",
+     "ÃáâĞİŞÒØâì áØáâÕÜİŞÕ ÒàÕÜï",
+     "Podesi vrijeme sistema",
+@@ -3494,7 +3494,7 @@
+     "Áíáìåôáäüôçò óõíôïíéóìïı şñáò",
+     "Använd klockan från transponder",
+     "Preia ora din transponder",
+-    "Idöhöz tartozó Transponder",
++    "Idõhöz tartozó Transponder",
+     "Usar el temps del múltiplex",
+     "¸áßŞÛì×ŞÒĞâì ÒàÕÜï âàĞİáßŞİÔÕàĞ",
+     "Transponder za pode¹avanje sata",
+@@ -3560,7 +3560,7 @@
+     "Êıñéá DVB êÜñôá",
+     "Primär DVB enhet",
+     "Dispozitiv DVB primar",
+-    "Elsö DVB interface",
++    "Elsõ DVB interface",
+     "Tarja DVB primària",
+     "¾áİŞÒİŞÕ DVB-ãáâàŞÙáâÒŞ",
+     "Primarni DVB ureğaj",
+@@ -3934,7 +3934,7 @@
+     "¢íù LNB-Óõ÷íüôçôá (MHz)",
+     "Övre LNB frekvens (MHz)",
+     "Frecvnşã LNB superioarã (MHz)",
+-    "Felsö LNB-frekvencia (MHZ)",
++    "Felsõ LNB-frekvencia (MHZ)",
+     "Freqüència LNB alta (MHz)",
+     "²Õàåİïï çĞáâŞâĞ ÚŞİÒÕàâÕàĞ (¼³æ)",
+     "Gornja LNB frekv. (MHz)",
+@@ -4000,7 +4000,7 @@
+     "Ğñüóèåôïò ÷ñüíïò óôçí áñ÷Ş (ëåğôÜ)",
+     "Marginal för start (min)",
+     "Marjã la pornire (min)",
+-    "Idöeltolódás a kezdésnél (perc)",
++    "Idõeltolódás a kezdésnél (perc)",
+     "Marge d'inici de gravació (min)",
+     "¾ßÕàÕÖÕİØÕ İĞçĞÛĞ ×ĞßØáØ (ÜØİ)",
+     "Rezerva na poèetku snimanja (min)",
+@@ -4022,7 +4022,7 @@
+     "Ğñüóèåôïò ÷ñüíïò óôü ôİëïò (ëåğôÜ)",
+     "Marginal för stopp (min)",
+     "Marjã la oprire (min)",
+-    "Idöeltolódás a befejezésnél (perc)",
++    "Idõeltolódás a befejezésnél (perc)",
+     "Marge de fi de gravació (min)",
+     "·ĞßĞ×ÔëÒĞİØÕ ŞáâĞİŞÒÚØ ×ĞßØáØ (ÜØİ)",
+     "Rezerva na kraju (min)",
+@@ -4198,7 +4198,7 @@
+     "Ğåñéèşñéï VPS (ä)",
+     "VPS marginal (s)",
+     "Marjã de timp la utilizare VPS (s)",
+-    "Idöeltolódás VPS-nél (s)",
++    "Idõeltolódás VPS-nél (s)",
+     "",// TODO
+     "±ãäÕàİŞÕ ÒàÕÜï VPS (áÕÚ)",
+     "Vremenska rezerva kod VPS (s)",
+@@ -4264,7 +4264,7 @@
+     "ÄéÜñêåéá óôãìéáßáò åããñáöŞò (ëåğôÜ)",
+     "Direktinspelning längd (min)",
+     "Timpul de înregistare imediatã (min)",
+-    "Felvétel idötartama (perc)",
++    "Felvétel idõtartama (perc)",
+     "Temps de gravació instantània (min)",
+     "´ÛØâÕÛìİŞáâì àãçİŞÙ ×ĞßØáØ (ÜØİ)",
+     "Trajanje direktnog snimanja (min)",
+@@ -4396,7 +4396,7 @@
+     "ÅëÜ÷éóôïò ÷ñÜíïò ğáñåìâïëŞò (ëåğôÜ)",
+     "Minsta händelse-pause (min)",
+     "Duratã minimã emisiuni (min)",
+-    "Idözitések közötti idötartam (perc)",
++    "Idõzitések közötti idõtartam (perc)",
+     "Temps mínim en pausa (min)",
+     "¼Øİ. ÒàÕÜï ŞÖØÔĞİØï áŞÑëâØï (ÜØİ)",
+     "Minimalno vrijeme pauze",
+@@ -4506,7 +4506,7 @@
+     "",// TODO
+     "Ljudstyrka vid uppstart",
+     "Volumul la pornire",
+-    "Hangerö a bekapcsolásnál",
++    "Hangerõ a bekapcsolásnál",
+     "",// TODO
+     "³àŞÜÚŞáâì ßàØ ÒÚÛîçÕİØØ",
+     "",// TODO
+@@ -4528,7 +4528,7 @@
+     "",// TODO
+     "som förut",
+     "ca mai înainte",
+-    "ahogy az elöbb",
++    "ahogy az elõbb",
+     "",// TODO
+     "ÚĞÚ àĞİìèÕ",
+     "",// TODO
+@@ -4596,7 +4596,7 @@
+     " áÜâãäåİæçŞèéßêëìíîïüğñóòôõıö÷øùş0123456789-.#~,/_@abcdefghijklmnopqrstuvwxyz",
+     " abcdefghijklmnopqrstuvwxyzåäö0123456789-.#~,/_@",
+     " aãâbcdefghiîjklmnopqrsºtşuvwxyz0123456789-.#~,/_@",
+-    " aábcdeéfghiíjklmnoóö¿pqrstuúü¿vwxyz0123456789-.,#~,/_@",
++    " aábcdeéfghiíjklmnoóöõpqrstuúüûvwxyz0123456789-.,#~,/_@",
+     " aàbcçdeéèfghiíjklmnoòpqrstuúvwxyz0123456789-.,#~,/_@·",
+     " abcdefghijklmnopqrstuvwxyzĞÑÒÓÔÕñÖ×ØÙÚÛÜİŞßàáâãäåæçèéêëìîï0123456789-.#~,/_@",
+     " abcèædğefghijklmnopqrs¹tuvwxyz¾0123456789-.#~,/_@", // hrv
+@@ -4619,7 +4619,7 @@
+     "",//TODO
+     " 0\t-.#~,/_@1\tabcåä2\tdef3\tghi4\tjkl5\tmnoö6\tpqrs7\ttuv8\twxyz",
+     " 0\t-.#~,/_@1\taãâbc2\tdef3\tghiî4\tjkl5\tmno6\tpqrsº7\ttşuv8\twxyz9",
+-    " 0\t-.#~,/_@1\taábc2\tdeé3\tghií4\tjkl5\tmnoóö¿6\tpqrs7\ttuúü¿v8\twxyz9",
++    " 0\t-.#~,/_@1\taábc2\tdeéf3\tghií4\tjkl5\tmnoóöõ6\tpqrs7\ttuúüûv8\twxyz9",
+     "",//TODO
+     "",//TODO
+     "",//TODO
+@@ -4664,7 +4664,7 @@
+     "ÖÜóç 1: Áíß÷íåõóç êşäéêá RC",
+     "Steg1: identifiering av kod",
+     "Faza 1: Detecşia tipului telecomenzii",
+-    "Elsö lépés: távirányító kódjának meghatározása",
++    "Elsõ lépés: távirányító kódjának meghatározása",
+     "Fase 1: Detectant el tipus de receptor",
+     "ÈĞÓ 1: ¾ßàÕÔÕÛÕİØÕ âØßĞ ÚŞÔĞ ßãÛìâĞ",
+     "Faza 1: detektiranje kôda daljinskog upravljaèa.",
+@@ -5303,7 +5303,7 @@
+     "Ğñïşèçóç åìğñüò",
+     "Snabbspolning framåt",
+     "Derulare înainte",
+-    "Elöre pörgetni",
++    "Elõre pörgetni",
+     "Endavant ràpidament",
+     "¿àŞÚàãâÚĞ ÒßÕàñÔ",
+     "Naprijed",
+@@ -5347,7 +5347,7 @@
+     "",// TODO
+     "Nästa",
+     "Urmãtor",
+-    "Elöre",
++    "Elõre",
+     "",// TODO
+     "²ßÕàÕÔ",
+     "",// TODO
+@@ -5457,7 +5457,7 @@
+     "",// TODO
+     "Förra kanalen",
+     "Canal anterior",
+-    "Az elözö adás",
++    "Az elõzõ adás",
+     "",// TODO
+     "¿àÕÔëÔãéØÙ ÚĞİĞÛ",
+     "",// TODO
+@@ -5479,7 +5479,7 @@
+     "¸íôáóç+",
+     "Volym+",
+     "Volum+",
+-    "Hangerö+",
++    "Hangerõ+",
+     "Volum +",
+     "³àŞÜÚŞáâì +",
+     "Glasnije", // hrv "Glasnocca +"
+@@ -5501,7 +5501,7 @@
+     "¸íôáóç-",
+     "Volym-",
+     "Volum-",
+-    "Hangerö-",
++    "Hangerõ-",
+     "Volum -",
+     "³àŞÜÚŞáâì -",
+     "Ti¹e", // hrv Glasnocca -"
+@@ -5788,7 +5788,7 @@
+     "¸íôáóç ",
+     "Volym ",
+     "Volum ",
+-    "Hangerö",
++    "Hangerõ",
+     "Volum ",
+     "³àŞÜÚŞáâì ",
+     "Glasnoæa ",
+@@ -6008,7 +6008,7 @@
+     "ĞÜãùìá æùíôáíïı óŞìáôïò",
+     "Pausar direktinspelningen",
+     "Trec în pauzã emisiunea transmisã...",
+-    "Az élö adás megállítva...",
++    "Az élõ adás megállítva...",
+     "Pausa d'emissió en directe...",
+     "ÀÕÖØÜ ŞâÛŞÖÕİİŞÓŞ ßàŞáÜŞâàĞ...",
+     "Zaustavljanje ¾ivog signala...",

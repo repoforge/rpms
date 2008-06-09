@@ -1,0 +1,97 @@
+--- vdr-1.4.1/epg2html.pl.orig	2006-04-17 15:19:08.000000000 +0300
++++ vdr-1.4.1/epg2html.pl	2006-07-01 13:30:16.000000000 +0300
+@@ -2,12 +2,12 @@
+ 
+ # A simple EPG to HTML converter
+ #
+-# Converts the EPG data written by 'vdr' into the file /video/epg.data
++# Converts the EPG data written by 'vdr' into the file __CACHEDIR__/epg.data
+ # into a simple HTML programme listing, consisting of one file per channel
+ # plus an 'index.htm' file. All output files are written into the current
+ # directory.
+ #
+-# Usage: epg2html.pl < /video/epg.data
++# Usage: epg2html.pl < __CACHEDIR__/epg.data
+ #
+ # See the main source file 'vdr.c' for copyright information and
+ # how to reach the author.
+--- vdr-1.4.1/PLUGINS/src/sky/README.orig	2004-02-15 14:39:19.000000000 +0200
++++ vdr-1.4.1/PLUGINS/src/sky/README	2006-07-01 13:32:17.000000000 +0300
+@@ -33,7 +33,7 @@
+ data for each channel can be found (see below). Copy this file to your
+ plugins config directory, in a subdirectory named 'sky', as in
+ 
+-/video/plugins/sky/channels.conf.sky
++__CONFIGDIR__/plugins/sky/channels.conf.sky
+ 
+ The Sky EPG is available on the Internet at http://www.bleb.org.
+ The Perl script getskyepg.pl extracts the EPG data from these pages
+--- vdr-1.4.1/vdr.c.orig	2006-06-04 12:04:47.000000000 +0300
++++ vdr-1.4.1/vdr.c	2006-07-01 13:30:16.000000000 +0300
+@@ -379,7 +379,7 @@
+                "                           there may be several -D options (default: all DVB\n"
+                "                           devices will be used)\n"
+                "  -E FILE,  --epgfile=FILE write the EPG data into the given FILE (default is\n"
+-               "                           '%s' in the video directory)\n"
++               "                           __CACHEDIR__/%s)\n"
+                "                           '-E-' disables this\n"
+                "                           if FILE is a directory, the default EPG file will be\n"
+                "                           created in that directory\n"
+@@ -549,7 +549,7 @@
+         EpgDataFileName = DEFAULTEPGDATAFILENAME;
+         }
+      else if (*EpgDataFileName != '/' && *EpgDataFileName != '.')
+-        EpgDirectory = VideoDirectory;
++        EpgDirectory = "__CACHEDIR__";
+      if (EpgDirectory)
+         cSchedules::SetEpgDataFileName(AddDirectory(EpgDirectory, EpgDataFileName));
+      else
+--- vdr-1.4.1/newplugin.orig	2006-04-24 20:18:41.000000000 +0300
++++ vdr-1.4.1/newplugin	2006-07-01 13:30:16.000000000 +0300
+@@ -24,7 +24,7 @@
+ $PLUGIN_DESCRIPTION = "Enter description for '$PLUGIN_NAME' plugin";
+ $PLUGIN_MAINENTRY = $PLUGIN_CLASS;
+ 
+-$PLUGINS_SRC = "PLUGINS/src";
++$PLUGINS_SRC = ".";
+ 
+ $README = qq
+ {This is a "plugin" for the Video Disk Recorder (VDR).
+--- vdr-1.4.1/vdr.1.orig	2006-04-30 11:55:12.000000000 +0300
++++ vdr-1.4.1/vdr.1	2006-07-01 13:30:16.000000000 +0300
+@@ -45,7 +45,7 @@
+ .TP
+ .BI \-c\  dir ,\ \-\-config= dir
+ Read config files from directory \fIdir\fR
+-(default is to read them from the video directory).
++(default is to read them from __CONFIGDIR__).
+ .TP
+ .B \-d, \-\-daemon
+ Run in daemon mode (implies \-\-no\-kbd).
+@@ -56,7 +56,7 @@
+ .TP
+ .BI \-E\  file ,\ \-\-epgfile= file
+ Write the EPG data into the given \fIfile\fR
+-(default is \fI/video/epg.data\fR).
++(default is \fI__CACHEDIR__/epg.data\fR).
+ Use \fB\-E\-\fR to disable this.
+ If \fIfile\fR is a directory, the file \fIepg.data\fR
+ will be created in that directory.
+@@ -80,7 +80,7 @@
+ LOG_USER, add '.n' to LEVEL, as in 3.7 (n=0..7).
+ .TP
+ .BI \-L\  dir ,\ \-\-lib= dir
+-Search for plugins in directory \fIdir\fR (default is ./PLUGINS/lib).
++Search for plugins in directory \fIdir\fR (default is __PLUGINDIR__).
+ There can be several \fB\-L\fR options with different \fIdir\fR values.
+ Each of them will apply to the \fB\-P\fR options following it.
+ .TP
+@@ -139,7 +139,7 @@
+ .TP
+ .BI \-v\  dir ,\ \-\-video= dir
+ Use \fIdir\fR as video directory.
+-The default is \fI/video\fR.
++The default is \fI__VIDEODIR__\fR.
+ .TP
+ .B \-V, \-\-version
+ Print version information and exit.

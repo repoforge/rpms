@@ -1,0 +1,71 @@
+Index: i18n.c
+===================================================================
+RCS file: /var/cvsroot/burn/i18n.c,v
+retrieving revision 1.38
+retrieving revision 1.39
+diff -u -r1.38 -r1.39
+--- i18n.c	16 Sep 2006 18:33:36 -0000	1.38
++++ i18n.c	16 Sep 2006 22:08:38 -0000	1.39
+@@ -2,7 +2,7 @@
+  * See the files COPYING and README for copyright information and how to reach
+  * the author.
+  *
+- *  $Id: i18n.c,v 1.38 2006/09/16 18:33:36 lordjaxom Exp $
++ *  $Id: i18n.c,v 1.39 2006/09/16 22:08:38 lordjaxom Exp $
+  */
+ 
+ #include "i18n.h"
+@@ -322,7 +322,7 @@
+ 		  "",
+ 		  "",
+ 		  "",
+-		  "",
++		  "(joudutaan pienent‰m‰‰n)",
+ 		  "",
+ 		  "",
+ 		  "",
+@@ -3260,7 +3260,7 @@
+ 		  "",
+ 		  "",
+ 		  "",
+-		  "Ohita tyhj‰ p‰‰valikko",
++		  "Ohita tyhj‰ nimikevalikko",
+ 		  "",
+ 		  "",
+ 		  "",
+@@ -3286,7 +3286,7 @@
+ 		  "",
+ 		  "",
+ 		  "",
+-		  "Tarjoa p‰‰valikon ohitusta",
++		  "Tarjoa nimikevalikon ohitusta",
+ 		  "",
+ 		  "",
+ 		  "",
+@@ -3312,7 +3312,7 @@
+ 		  "",
+ 		  "",
+ 		  "",
+-		  "",
++		  "Teht‰v‰n asetukset",
+ 		  "",
+ 		  "",
+ 		  "",
+@@ -3338,7 +3338,7 @@
+ 		  "",
+ 		  "",
+ 		  "",
+-		  "",
++		  "Ohita lyhyt p‰‰valikko",
+ 		  "",
+ 		  "",
+ 		  "",
+@@ -3364,7 +3364,7 @@
+ 		  "",
+ 		  "",
+ 		  "",
+-		  "",
++		  "Tarjoa p‰‰valikon ohitusta",
+ 		  "",
+ 		  "",
+ 		  "",

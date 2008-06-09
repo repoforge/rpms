@@ -1,0 +1,16 @@
+diff -Nurp -x '*~' vdrrip-0.3.0/scripts/queuehandler.sh vdrrip-0.3.0-bg/scripts/queuehandler.sh
+--- vdrrip-0.3.0/scripts/queuehandler.sh	2004-04-22 21:54:13.000000000 +0300
++++ vdrrip-0.3.0-bg/scripts/queuehandler.sh	2007-07-20 09:44:58.000000000 +0300
+@@ -65,6 +65,12 @@
+ #################################################################
+ qh_ver="0.3.0"
+ 
++# (anssi) Added for Mandriva
++if [[ "$1" == "--background" ]]; then
++	shift
++	nohup $0 "$@" </dev/null >/dev/null 2>/dev/null &
++	exit 0
++fi
+ 
+ function initialize () {
+ #

@@ -1,0 +1,858 @@
+diff -ruN analogtv-1.0.01.org/cpuinfo.c analogtv-1.0.01/cpuinfo.c
+--- analogtv-1.0.01.org/cpuinfo.c	2003-07-31 20:10:46.000000000 +0200
++++ analogtv-1.0.01/cpuinfo.c	2008-01-23 21:32:23.000000000 +0100
+@@ -62,15 +62,18 @@
+     unsigned int edx;
+ } cpuid_regs_t;
+ 
+-static cpuid_regs_t cpuid( int func ) {
+-    cpuid_regs_t regs;
+-#define CPUID ".byte 0x0f, 0xa2; "
+-    asm("movl %4,%%eax; " CPUID
+-        "movl %%eax,%0; movl %%ebx,%1; movl %%ecx,%2; movl %%edx,%3"
+-            : "=m" (regs.eax), "=m" (regs.ebx), "=m" (regs.ecx), "=m" (regs.edx)
+-            : "g" (func)
+-            : "%eax", "%ebx", "%ecx", "%edx");
+-    return regs;
++static cpuid_regs_t
++cpuid(int func) {
++	cpuid_regs_t regs;
++#define	CPUID	".byte 0x0f, 0xa2; "
++	asm("push %%ebx; "
++	    "movl %4,%%eax; " CPUID
++	    "movl %%eax,%0; movl %%ebx,%1; movl %%ecx,%2; movl %%edx,%3; "
++	    "pop %%ebx"
++		: "=m" (regs.eax), "=m" (regs.ebx), "=m" (regs.ecx), "=m" (regs.edx)
++		: "g" (func)
++		: "%eax", "%ecx", "%edx");
++	return regs;
+ }
+ 
+ #define X86_VENDOR_INTEL 0
+diff -ruN analogtv-1.0.01.org/cpuinfo.c.orig analogtv-1.0.01/cpuinfo.c.orig
+--- analogtv-1.0.01.org/cpuinfo.c.orig	1970-01-01 01:00:00.000000000 +0100
++++ analogtv-1.0.01/cpuinfo.c.orig	2003-07-31 20:10:46.000000000 +0200
+@@ -0,0 +1,235 @@
++/**
++ * Copyright (c) 2003 Billy Biggs <vektor@dumbterm.net>.
++ *
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation; either version 2, or (at your option)
++ * any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program; if not, write to the Free Software Foundation,
++ * Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
++ */
++
++/**
++ * Uses code from:
++ *
++ *  linux/arch/i386/kernel/setup.c
++ *
++ *  Copyright (C) 1995  Linus Torvalds
++ *
++ * Found in linux 2.4.20.
++ *
++ * Also helped from code in 'cpuinfo.c' found in mplayer.
++ */
++
++#include <stdio.h>
++#include <stdint.h>
++#include <sys/time.h>
++#include <unistd.h>
++#include <string.h>
++#include <ctype.h>
++#include "player-analogtv.h"
++
++#define rdtscll(val) __asm__ __volatile__("rdtsc" : "=A" (val))
++
++double cpuinfo_get_speed( void )
++{
++    uint64_t tsc_start, tsc_end;
++    struct timeval tv_start, tv_end;
++    int usec_delay;
++
++    rdtscll( tsc_start );
++    gettimeofday( &tv_start, 0 );
++    usleep( 100000 );
++    rdtscll( tsc_end );
++    gettimeofday( &tv_end, 0 );
++
++    usec_delay = 1000000 * (tv_end.tv_sec - tv_start.tv_sec) + (tv_end.tv_usec - tv_start.tv_usec);
++
++    return (((double) (tsc_end - tsc_start)) / ((double) usec_delay));
++}
++
++typedef struct cpuid_regs {
++    unsigned int eax;
++    unsigned int ebx;
++    unsigned int ecx;
++    unsigned int edx;
++} cpuid_regs_t;
++
++static cpuid_regs_t cpuid( int func ) {
++    cpuid_regs_t regs;
++#define CPUID ".byte 0x0f, 0xa2; "
++    asm("movl %4,%%eax; " CPUID
++        "movl %%eax,%0; movl %%ebx,%1; movl %%ecx,%2; movl %%edx,%3"
++            : "=m" (regs.eax), "=m" (regs.ebx), "=m" (regs.ecx), "=m" (regs.edx)
++            : "g" (func)
++            : "%eax", "%ebx", "%ecx", "%edx");
++    return regs;
++}
++
++#define X86_VENDOR_INTEL 0
++#define X86_VENDOR_CYRIX 1
++#define X86_VENDOR_AMD 2
++#define X86_VENDOR_UMC 3
++#define X86_VENDOR_NEXGEN 4
++#define X86_VENDOR_CENTAUR 5
++#define X86_VENDOR_RISE 6
++#define X86_VENDOR_TRANSMETA 7
++#define X86_VENDOR_NSC 8
++#define X86_VENDOR_UNKNOWN 0xff
++
++struct cpu_model_info {
++    int vendor;
++    int family;
++    char *model_names[16];
++};
++
++/* Naming convention should be: <Name> [(<Codename>)] */
++/* This table only is used unless init_<vendor>() below doesn't set it; */
++/* in particular, if CPUID levels 0x80000002..4 are supported, this isn't used */
++static struct cpu_model_info cpu_models[] = {
++    { X86_VENDOR_INTEL,    4,
++      { "486 DX-25/33", "486 DX-50", "486 SX", "486 DX/2", "486 SL", 
++        "486 SX/2", NULL, "486 DX/2-WB", "486 DX/4", "486 DX/4-WB", NULL, 
++        NULL, NULL, NULL, NULL, NULL }},
++    { X86_VENDOR_INTEL,    5,
++      { "Pentium 60/66 A-step", "Pentium 60/66", "Pentium 75 - 200",
++        "OverDrive PODP5V83", "Pentium MMX", NULL, NULL,
++        "Mobile Pentium 75 - 200", "Mobile Pentium MMX", NULL, NULL, NULL,
++        NULL, NULL, NULL, NULL }},
++    { X86_VENDOR_INTEL,    6,
++      { "Pentium Pro A-step", "Pentium Pro", NULL, "Pentium II (Klamath)", 
++        NULL, "Pentium II (Deschutes)", "Mobile Pentium II",
++        "Pentium III (Katmai)", "Pentium III (Coppermine)", NULL,
++        "Pentium III (Cascades)", NULL, NULL, NULL, NULL }},
++    { X86_VENDOR_AMD,    4,
++      { NULL, NULL, NULL, "486 DX/2", NULL, NULL, NULL, "486 DX/2-WB",
++        "486 DX/4", "486 DX/4-WB", NULL, NULL, NULL, NULL, "Am5x86-WT",
++        "Am5x86-WB" }},
++    { X86_VENDOR_AMD,    5, /* Is this this really necessary?? */
++      { "K5/SSA5", "K5",
++        "K5", "K5", NULL, NULL,
++        "K6", "K6", "K6-2",
++        "K6-3", NULL, NULL, NULL, NULL, NULL, NULL }},
++    { X86_VENDOR_AMD,    6, /* Is this this really necessary?? */
++      { "Athlon", "Athlon",
++        "Athlon", NULL, "Athlon", NULL,
++        NULL, NULL, NULL,
++        NULL, NULL, NULL, NULL, NULL, NULL, NULL }},
++    { X86_VENDOR_UMC,    4,
++      { NULL, "U5D", "U5S", NULL, NULL, NULL, NULL, NULL, NULL, NULL,
++        NULL, NULL, NULL, NULL, NULL, NULL }},
++    { X86_VENDOR_NEXGEN,    5,
++      { "Nx586", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
++        NULL, NULL, NULL, NULL, NULL, NULL, NULL }},
++    { X86_VENDOR_RISE,    5,
++      { "iDragon", NULL, "iDragon", NULL, NULL, NULL, NULL,
++        NULL, "iDragon II", "iDragon II", NULL, NULL, NULL, NULL, NULL, NULL }},
++};
++
++/* Look up CPU names by table lookup. */
++static char *table_lookup_model( int vendor, int family, int model )
++{
++    struct cpu_model_info *info = cpu_models;
++    unsigned int i;
++
++    if( model >= 16 ) {
++        return NULL; /* Range check */
++    }
++
++    for( i = 0; i < sizeof(cpu_models)/sizeof(struct cpu_model_info); i++ ) {
++        if( info->vendor == vendor && info->family == family ) {
++            return info->model_names[ model ];
++        }
++        info++;
++    }
++
++    return NULL; /* Not found */
++}
++
++static int get_cpu_vendor( const char *idstr )
++{
++    if( !strcmp( idstr, "GenuineIntel" ) ) return X86_VENDOR_INTEL;
++    if( !strcmp( idstr, "AuthenticAMD" ) ) return X86_VENDOR_AMD;
++    if( !strcmp( idstr, "CyrixInstead" ) ) return X86_VENDOR_CYRIX;
++    if( !strcmp( idstr, "Geode by NSC" ) ) return X86_VENDOR_NSC;
++    if( !strcmp( idstr, "UMC UMC UMC " ) ) return X86_VENDOR_UMC;
++    if( !strcmp( idstr, "CentaurHauls" ) ) return X86_VENDOR_CENTAUR;
++    if( !strcmp( idstr, "NexGenDriven" ) ) return X86_VENDOR_NEXGEN;
++    if( !strcmp( idstr, "RiseRiseRise" ) ) return X86_VENDOR_RISE;
++    if( !strcmp( idstr, "GenuineTMx86" ) || !strcmp( idstr, "TransmetaCPU" ) ) return X86_VENDOR_TRANSMETA;
++    return X86_VENDOR_UNKNOWN;
++}
++
++
++static void store32( char *d, unsigned int v )
++{
++    d[0] =  v        & 0xff;
++    d[1] = (v >>  8) & 0xff;
++    d[2] = (v >> 16) & 0xff;
++    d[3] = (v >> 24) & 0xff;
++}
++
++void cpuinfo(void)
++{
++    cpuid_regs_t regs, regs_ext;
++    unsigned int max_cpuid;
++    int max_ext_cpuid;
++    unsigned int amd_flags;
++    int family, model, stepping;
++    char idstr[13];
++    char *model_name;
++    char processor_name[49];
++    int i;
++
++    regs = cpuid(0);
++    max_cpuid = regs.eax;
++
++    store32(idstr+0, regs.ebx);
++    store32(idstr+4, regs.edx);
++    store32(idstr+8, regs.ecx);
++    idstr[12] = 0;
++
++    regs = cpuid( 1 );
++    family = (regs.eax >> 8) & 0xf;
++    model = (regs.eax >> 4) & 0xf;
++    stepping = regs.eax & 0xf;
++
++    model_name = table_lookup_model( get_cpu_vendor( idstr ), family, model );
++
++    regs_ext = cpuid((1<<31) + 0);
++    max_ext_cpuid = regs_ext.eax;
++
++    if (max_ext_cpuid >= (1<<31) + 1) {
++        regs_ext = cpuid((1<<31) + 1);
++        amd_flags = regs_ext.edx;
++
++        if (max_ext_cpuid >= (1<<31) + 4) {
++            for (i = 2; i <= 4; i++) {
++                regs_ext = cpuid((1<<31) + i);
++                store32(processor_name + (i-2)*16, regs_ext.eax);
++                store32(processor_name + (i-2)*16 + 4, regs_ext.ebx);
++                store32(processor_name + (i-2)*16 + 8, regs_ext.ecx);
++                store32(processor_name + (i-2)*16 + 12, regs_ext.edx);
++            }
++            processor_name[48] = 0;
++            model_name = processor_name;
++        }
++    } else {
++        amd_flags = 0;
++    }
++
++    /* Is this dangerous? */
++    while( isspace( *model_name ) ) model_name++;
++
++    sprintf(CPU, "%s, family %d, model %d, stepping %d", model_name, family, model, stepping);
++
++    d(1, "CPU %s", CPU);
++    d(1, "CPU measured at %.3fMHz", CPUspeed = cpuinfo_get_speed());
++}
+diff -ruN analogtv-1.0.01.org/memcpy.c analogtv-1.0.01/memcpy.c
+--- analogtv-1.0.01.org/memcpy.c	2005-01-09 19:16:09.000000000 +0100
++++ analogtv-1.0.01/memcpy.c	2008-01-23 21:32:24.000000000 +0100
+@@ -168,9 +168,11 @@
+ /* SSE note: i tried to move 128 bytes a time instead of 64 but it
+ didn't make any measureable difference. i'm using 64 for the sake of
+ simplicity. [MF] */
+-static void * sse_memcpy(void * to, const void * from, size_t len)
++static void * sse_memcpy(void * into, const void * infrom, size_t len)
+ {
+   void *retval;
++  unsigned char* to=(unsigned char*)into;
++  unsigned char* from=(unsigned char*)infrom;
+   size_t i;
+   retval = to;
+     
+@@ -211,8 +213,8 @@
+         "movntps %%xmm2, 32(%1)\n"
+         "movntps %%xmm3, 48(%1)\n"
+         :: "r" (from), "r" (to) : "memory");
+-        ((const unsigned char *)from)+=64;
+-        ((unsigned char *)to)+=64;
++        *from+=64;
++        *to+=64;
+       }
+     else 
+       /*
+@@ -233,8 +235,8 @@
+         "movntps %%xmm2, 32(%1)\n"
+         "movntps %%xmm3, 48(%1)\n"
+         :: "r" (from), "r" (to) : "memory");
+-        ((const unsigned char *)from)+=64;
+-        ((unsigned char *)to)+=64;
++        *from+=64;
++        *to+=64;
+       }
+     /* since movntq is weakly-ordered, a "sfence"
+      * is needed to become ordered again. */
+@@ -249,9 +251,11 @@
+   return retval;
+ }
+ 
+-static void * mmx_memcpy(void * to, const void * from, size_t len)
++static void * mmx_memcpy(void * into, const void * infrom, size_t len)
+ {
+   void *retval;
++  unsigned char* to=(unsigned char*)into;
++  unsigned char* from=(unsigned char*)infrom;
+   size_t i;
+   retval = to;
+ 
+@@ -288,8 +292,8 @@
+       "movq %%mm6, 48(%1)\n"
+       "movq %%mm7, 56(%1)\n"
+       :: "r" (from), "r" (to) : "memory");
+-      ((const unsigned char *)from)+=64;
+-      ((unsigned char *)to)+=64;
++      *from+=64;
++      *to+=64;
+     }
+     __asm__ __volatile__ ("emms":::"memory");
+   }
+@@ -300,9 +304,11 @@
+   return retval;
+ }
+ 
+-void * mmx2_memcpy(void * to, const void * from, size_t len)
++void * mmx2_memcpy(void * into, const void * infrom, size_t len)
+ {
+   void *retval;
++  unsigned char* to=(unsigned char*)into;
++  unsigned char* from=(unsigned char*)infrom;
+   size_t i;
+   retval = to;
+ 
+@@ -349,8 +355,8 @@
+       "movntq %%mm6, 48(%1)\n"
+       "movntq %%mm7, 56(%1)\n"
+       :: "r" (from), "r" (to) : "memory");
+-      ((const unsigned char *)from)+=64;
+-      ((unsigned char *)to)+=64;
++      *from+=64;
++      *to+=64;
+     }
+      /* since movntq is weakly-ordered, a "sfence"
+      * is needed to become ordered again. */
+diff -ruN analogtv-1.0.01.org/memcpy.c.orig analogtv-1.0.01/memcpy.c.orig
+--- analogtv-1.0.01.org/memcpy.c.orig	1970-01-01 01:00:00.000000000 +0100
++++ analogtv-1.0.01/memcpy.c.orig	2005-01-09 19:16:09.000000000 +0100
+@@ -0,0 +1,498 @@
++/*
++ * Analogue TV Player plugin for VDR
++ *
++ * Copyright (C) 2003, 2005 Andreas Kool <akool@gmx.de>
++ *
++ * This code is distributed under the terms and conditions of the
++ * GNU GENERAL PUBLIC LICENSE. See the file COPYING for details.
++ *
++ * Version: $Id: memcpy.c,v 1.7 2005/01/09 18:16:09 akool Exp $
++ * Release: $Name:  $
++ *
++ */
++
++/*****************************************************************************
++ * memcpy.c: These are the MMX/MMX2/SSE optimized versions of memcpy
++ *****************************************************************************
++ * Copyright (C) 2001 Keuleu
++ *
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation; either version 2 of the License, or
++ * (at your option) any later version.
++ * 
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program; if not, write to the Free Software
++ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111, USA.
++ *****************************************************************************
++ *
++ * Original code:
++ *
++ * Copyright (C) 2001 the xine project
++ * 
++ * This file is part of xine, a unix video player.
++ * 
++ * This code was adapted from Linux Kernel sources by Nick Kurshev to
++ * the mplayer program. (http://mplayer.sourceforge.net)
++ *
++ * Miguel Freitas split the #ifdefs into several specialized functions that
++ * are benchmarked at runtime by xine. Some original comments from Nick
++ * have been preserved documenting some MMX/SSE oddities.
++ * Also added kernel memcpy function that seems faster than glibc one.
++ *
++ *****************************************************************************/
++#ifdef HAVE_CONFIG_H
++#include "config.h"
++#endif
++
++#include <stdlib.h>
++#include <stdio.h>
++#include <string.h>
++#include "cpu_accel.h"
++#include "memcpy.h"
++#include "player-analogtv.h"
++
++/* Original comments from mplayer (file: aclib.c)
++ This part of code was taken by me from Linux-2.4.3 and slightly modified
++for MMX, MMX2, SSE instruction set. I have done it since linux uses page aligned
++blocks but mplayer uses weakly ordered data and original sources can not
++speedup them. Only using PREFETCHNTA and MOVNTQ together have effect!
++
++>From IA-32 Intel Architecture Software Developer's Manual Volume 1,
++
++Order Number 245470:
++"10.4.6. Cacheability Control, Prefetch, and Memory Ordering Instructions"
++
++Data referenced by a program can be temporal (data will be used again) or
++non-temporal (data will be referenced once and not reused in the immediate
++future). To make efficient use of the processor's caches, it is generally
++desirable to cache temporal data and not cache non-temporal data. Overloading
++the processor's caches with non-temporal data is sometimes referred to as
++"polluting the caches".
++The non-temporal data is written to memory with Write-Combining semantics.
++
++The PREFETCHh instructions permits a program to load data into the processor
++at a suggested cache level, so that it is closer to the processors load and
++store unit when it is needed. If the data is already present in a level of
++the cache hierarchy that is closer to the processor, the PREFETCHh instruction
++will not result in any data movement.
++But we should you PREFETCHNTA: Non-temporal data fetch data into location
++close to the processor, minimizing cache pollution.
++
++The MOVNTQ (store quadword using non-temporal hint) instruction stores
++packed integer data from an MMX register to memory, using a non-temporal hint.
++The MOVNTPS (store packed single-precision floating-point values using
++non-temporal hint) instruction stores packed floating-point data from an
++XMM register to memory, using a non-temporal hint.
++
++The SFENCE (Store Fence) instruction controls write ordering by creating a
++fence for memory store operations. This instruction guarantees that the results
++of every store instruction that precedes the store fence in program order is
++globally visible before any store instruction that follows the fence. The
++SFENCE instruction provides an efficient way of ensuring ordering between
++procedures that produce weakly-ordered data and procedures that consume that
++data.
++
++If you have questions please contact with me: Nick Kurshev: nickols_k@mail.ru.
++*/
++
++/*  mmx v.1 Note: Since we added alignment of destinition it speedups
++    of memory copying on PentMMX, Celeron-1 and P2 upto 12% versus
++    standard (non MMX-optimized) version.
++    Note: on K6-2+ it speedups memory copying upto 25% and
++          on K7 and P3 about 500% (5 times). 
++*/
++
++/* Additional notes on gcc assembly and processors: [MF]
++prefetch is specific for AMD processors, the intel ones should be
++prefetch0, prefetch1, prefetch2 which are not recognized by my gcc.
++prefetchnta is supported both on athlon and pentium 3.
++
++therefore i will take off prefetchnta instructions from the mmx1 version
++to avoid problems on pentium mmx and k6-2.  
++
++quote of the day:
++"Using prefetches efficiently is more of an art than a science"
++*/
++
++
++#ifdef ARCH_X86
++
++/* for small memory blocks (<256 bytes) this version is faster */
++#define small_memcpy(to,from,n)\
++{\
++register unsigned long int dummy;\
++__asm__ __volatile__(\
++  "rep; movsb"\
++  :"=&D"(to), "=&S"(from), "=&c"(dummy)\
++  :"0" (to), "1" (from),"2" (n)\
++  : "memory");\
++}
++
++/* linux kernel __memcpy (from: /include/asm/string.h) */
++static inline void * __memcpy(void * to, const void * from, size_t n)
++{
++int d0, d1, d2;
++
++  if( n < 4 ) {
++    small_memcpy(to,from,n);
++  }
++  else
++    __asm__ __volatile__(
++    "rep ; movsl\n\t"
++    "testb $2,%b4\n\t"
++    "je 1f\n\t"
++    "movsw\n"
++    "1:\ttestb $1,%b4\n\t"
++    "je 2f\n\t"
++    "movsb\n"
++    "2:"
++    : "=&c" (d0), "=&D" (d1), "=&S" (d2)
++    :"0" (n/4), "q" (n),"1" ((long) to),"2" ((long) from)
++    : "memory");
++  
++  return (to);
++}
++
++#define SSE_MMREG_SIZE 16
++#define MMX_MMREG_SIZE 8
++
++#define MMX1_MIN_LEN 0x800  /* 2K blocks */
++#define MIN_LEN 0x40  /* 64-byte blocks */
++
++/* SSE note: i tried to move 128 bytes a time instead of 64 but it
++didn't make any measureable difference. i'm using 64 for the sake of
++simplicity. [MF] */
++static void * sse_memcpy(void * to, const void * from, size_t len)
++{
++  void *retval;
++  size_t i;
++  retval = to;
++    
++  /* PREFETCH has effect even for MOVSB instruction ;) */
++  __asm__ __volatile__ (
++    "   prefetchnta (%0)\n"
++    "   prefetchnta 64(%0)\n"
++    "   prefetchnta 128(%0)\n"
++    "   prefetchnta 192(%0)\n"
++    "   prefetchnta 256(%0)\n"
++    : : "r" (from) );
++    
++  if(len >= MIN_LEN)
++  {
++    register unsigned long int delta;
++    /* Align destinition to MMREG_SIZE -boundary */
++    delta = ((unsigned long int)to)&(SSE_MMREG_SIZE-1);
++    if(delta)
++    {
++      delta=SSE_MMREG_SIZE-delta;
++      len -= delta;
++      small_memcpy(to, from, delta);
++    }
++    i = len >> 6; /* len/64 */
++    len&=63;
++    if(((unsigned long)from) & 15)
++      /* if SRC is misaligned */
++      for(; i>0; i--)
++      {
++        __asm__ __volatile__ (
++        "prefetchnta 320(%0)\n"
++        "movups (%0), %%xmm0\n"
++        "movups 16(%0), %%xmm1\n"
++        "movups 32(%0), %%xmm2\n"
++        "movups 48(%0), %%xmm3\n"
++        "movntps %%xmm0, (%1)\n"
++        "movntps %%xmm1, 16(%1)\n"
++        "movntps %%xmm2, 32(%1)\n"
++        "movntps %%xmm3, 48(%1)\n"
++        :: "r" (from), "r" (to) : "memory");
++        ((const unsigned char *)from)+=64;
++        ((unsigned char *)to)+=64;
++      }
++    else 
++      /*
++         Only if SRC is aligned on 16-byte boundary.
++         It allows to use movaps instead of movups, which required data
++         to be aligned or a general-protection exception (#GP) is generated.
++      */
++      for(; i>0; i--)
++      {
++        __asm__ __volatile__ (
++        "prefetchnta 320(%0)\n"
++        "movaps (%0), %%xmm0\n"
++        "movaps 16(%0), %%xmm1\n"
++        "movaps 32(%0), %%xmm2\n"
++        "movaps 48(%0), %%xmm3\n"
++        "movntps %%xmm0, (%1)\n"
++        "movntps %%xmm1, 16(%1)\n"
++        "movntps %%xmm2, 32(%1)\n"
++        "movntps %%xmm3, 48(%1)\n"
++        :: "r" (from), "r" (to) : "memory");
++        ((const unsigned char *)from)+=64;
++        ((unsigned char *)to)+=64;
++      }
++    /* since movntq is weakly-ordered, a "sfence"
++     * is needed to become ordered again. */
++    __asm__ __volatile__ ("sfence":::"memory");
++    /* enables to use FPU */
++    __asm__ __volatile__ ("emms":::"memory");
++  }
++  /*
++   *	Now do the tail of the block
++   */
++  if(len) __memcpy(to, from, len);
++  return retval;
++}
++
++static void * mmx_memcpy(void * to, const void * from, size_t len)
++{
++  void *retval;
++  size_t i;
++  retval = to;
++
++  if(len >= MMX1_MIN_LEN)
++  {
++    register unsigned long int delta;
++    /* Align destinition to MMREG_SIZE -boundary */
++    delta = ((unsigned long int)to)&(MMX_MMREG_SIZE-1);
++    if(delta)
++    {
++      delta=MMX_MMREG_SIZE-delta;
++      len -= delta;
++      small_memcpy(to, from, delta);
++    }
++    i = len >> 6; /* len/64 */
++    len&=63;
++    for(; i>0; i--)
++    {
++      __asm__ __volatile__ (
++      "movq (%0), %%mm0\n"
++      "movq 8(%0), %%mm1\n"
++      "movq 16(%0), %%mm2\n"
++      "movq 24(%0), %%mm3\n"
++      "movq 32(%0), %%mm4\n"
++      "movq 40(%0), %%mm5\n"
++      "movq 48(%0), %%mm6\n"
++      "movq 56(%0), %%mm7\n"
++      "movq %%mm0, (%1)\n"
++      "movq %%mm1, 8(%1)\n"
++      "movq %%mm2, 16(%1)\n"
++      "movq %%mm3, 24(%1)\n"
++      "movq %%mm4, 32(%1)\n"
++      "movq %%mm5, 40(%1)\n"
++      "movq %%mm6, 48(%1)\n"
++      "movq %%mm7, 56(%1)\n"
++      :: "r" (from), "r" (to) : "memory");
++      ((const unsigned char *)from)+=64;
++      ((unsigned char *)to)+=64;
++    }
++    __asm__ __volatile__ ("emms":::"memory");
++  }
++  /*
++   *	Now do the tail of the block
++   */
++  if(len) __memcpy(to, from, len);
++  return retval;
++}
++
++void * mmx2_memcpy(void * to, const void * from, size_t len)
++{
++  void *retval;
++  size_t i;
++  retval = to;
++
++  /* PREFETCH has effect even for MOVSB instruction ;) */
++  __asm__ __volatile__ (
++    "   prefetchnta (%0)\n"
++    "   prefetchnta 64(%0)\n"
++    "   prefetchnta 128(%0)\n"
++    "   prefetchnta 192(%0)\n"
++    "   prefetchnta 256(%0)\n"
++    : : "r" (from) );
++
++  if(len >= MIN_LEN)
++  {
++    register unsigned long int delta;
++    /* Align destinition to MMREG_SIZE -boundary */
++    delta = ((unsigned long int)to)&(MMX_MMREG_SIZE-1);
++    if(delta)
++    {
++      delta=MMX_MMREG_SIZE-delta;
++      len -= delta;
++      small_memcpy(to, from, delta);
++    }
++    i = len >> 6; /* len/64 */
++    len&=63;
++    for(; i>0; i--)
++    {
++      __asm__ __volatile__ (
++      "prefetchnta 320(%0)\n"
++      "movq (%0), %%mm0\n"
++      "movq 8(%0), %%mm1\n"
++      "movq 16(%0), %%mm2\n"
++      "movq 24(%0), %%mm3\n"
++      "movq 32(%0), %%mm4\n"
++      "movq 40(%0), %%mm5\n"
++      "movq 48(%0), %%mm6\n"
++      "movq 56(%0), %%mm7\n"
++      "movntq %%mm0, (%1)\n"
++      "movntq %%mm1, 8(%1)\n"
++      "movntq %%mm2, 16(%1)\n"
++      "movntq %%mm3, 24(%1)\n"
++      "movntq %%mm4, 32(%1)\n"
++      "movntq %%mm5, 40(%1)\n"
++      "movntq %%mm6, 48(%1)\n"
++      "movntq %%mm7, 56(%1)\n"
++      :: "r" (from), "r" (to) : "memory");
++      ((const unsigned char *)from)+=64;
++      ((unsigned char *)to)+=64;
++    }
++     /* since movntq is weakly-ordered, a "sfence"
++     * is needed to become ordered again. */
++    __asm__ __volatile__ ("sfence":::"memory");
++    __asm__ __volatile__ ("emms":::"memory");
++  }
++  /*
++   *	Now do the tail of the block
++   */
++  if(len) __memcpy(to, from, len);
++  return retval;
++}
++
++static void *linux_kernel_memcpy(void *to, const void *from, size_t len) {
++  return __memcpy(to,from,len);
++}
++
++#endif /* ARCH_X86 */
++
++static struct {
++  int tag;
++  char *name;
++  void *(* function)(void *to, const void *from, size_t len);
++  unsigned long long time;
++  uint32_t cpu_require;
++} memcpy_methods[] = 
++{
++  { MEMCPY_GLIBC,  "glibc memcpy()", memcpy, 0, 0 },
++#ifdef ARCH_X86
++  { MEMCPY_KERNEL, "linux kernel memcpy()", linux_kernel_memcpy, 0, 0 },
++  { MEMCPY_MMX,    "MMX optimized memcpy()", mmx_memcpy, 0, MM_MMX },
++  { MEMCPY_MMXEXT, "MMXEXT optimized memcpy()", mmx2_memcpy, 0, MM_MMXEXT },
++# ifndef __FreeBSD__
++  { MEMCPY_SSE,    "SSE optimized memcpy()", sse_memcpy, 0, MM_MMXEXT|MM_SSE },
++# endif
++#endif /* ARCH_X86 */
++  { 0, NULL, NULL, 0, 0 }
++};
++
++#ifdef ARCH_X86
++static unsigned long long int rdtsc()
++{
++  unsigned long long int x;
++  __asm__ volatile (".byte 0x0f, 0x31" : "=A" (x));     
++  return x;
++}
++#else
++static unsigned long long int rdtsc()
++{
++  /* FIXME: implement an equivalent for using optimized memcpy on other
++            architectures */
++  return 0;
++}
++#endif
++
++
++#define BUFSIZE 1024*1024
++
++int probe_fast_memcpy(int method)
++{
++unsigned long long t;
++void *buf1, *buf2;
++int i, j, best = -1;
++static int config_flags = -1;
++
++#ifdef ARCH_X86
++  config_flags = mm_accel();
++#else
++  config_flags = 0;
++#endif
++
++
++  if (method)
++    d(1, "Using %s", memcpy_methods[method - 1].name);
++
++  switch (method)
++    {
++    case MEMCPY_GLIBC:
++      fast_memcpy = memcpy;
++      return(method);
++
++    case MEMCPY_KERNEL:
++      fast_memcpy = linux_kernel_memcpy;
++      return(method);
++
++    case MEMCPY_MMX:
++      fast_memcpy = mmx_memcpy;
++      return(method);
++
++    case MEMCPY_MMXEXT:
++      fast_memcpy = mmx2_memcpy;
++      return(method);
++
++    case MEMCPY_SSE:
++      fast_memcpy = sse_memcpy;
++      return(method);
++
++    case MEMCPY_PROBE:
++    default:
++      fast_memcpy = memcpy;
++      break;
++    }
++  
++  //fast_memcpy = memcpy;
++
++  if ((buf1 = malloc(BUFSIZE)) == NULL)
++    return(MEMCPY_GLIBC);
++    
++  if ((buf2 = malloc(BUFSIZE)) == NULL) {
++    free(buf1);
++    return(MEMCPY_GLIBC);
++  }
++
++  d(1, "Benchmarking memcpy() methods (smaller is better):");
++  /* make sure buffers are present on physical memory */
++  memcpy(buf1,buf2,BUFSIZE);
++
++  for(i=0; memcpy_methods[i].name; i++)
++  {
++    if( (config_flags & memcpy_methods[i].cpu_require) != 
++         memcpy_methods[i].cpu_require )
++      continue;
++    
++    t = rdtsc();
++    for(j=0;j<50;j++) {	  
++      memcpy_methods[i].function(buf2,buf1,BUFSIZE);
++      memcpy_methods[i].function(buf1,buf2,BUFSIZE);
++    }     
++    t = rdtsc() - t;
++    memcpy_methods[i].time = t;
++    
++    d(1, "%-25s : %12lld",memcpy_methods[i].name, t);
++    
++    if( best == -1 || t < memcpy_methods[best].time )
++      best = i;
++  }
++  
++  d(1, "using %s", memcpy_methods[best].name);
++  fast_memcpy = memcpy_methods[best].function;
++  
++  free(buf1);
++  free(buf2);
++
++  return(best + 1);
++}

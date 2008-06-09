@@ -1,0 +1,53 @@
+#!/bin/bash
+#
+# umts-pin      This shell script takes care of starting
+#               UMTS SIM cards
+#
+# chkconfig: - 5 24
+# description:  Script for initializing a SIM card in an UMTS phone
+#
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+MYNAME="${0##*/}"
+LINK="${MYNAME#*[SK][0-9][0-9]}"
+
+prog=${LINK}
+WVDIAL=/usr/bin/wvdial
+CONFIG=/etc/wvdial-umts.conf
+IFDOWN=/sbin/ifdown
+IFUP=/sbin/ifup
+
+start() {
+        echo -n $"Starting $prog: "
+	${WVDIAL} --config ${CONFIG} > /dev/null 2>&1
+echo $?
+	sleep 5
+	${IFUP} umts
+echo $?
+	success
+        echo
+}
+
+stop() {
+        # Stop service.
+        echo -n $"Shutting down $prog: "
+        echo
+	${IFDOWN} umts
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+        ;;
+  stop)
+	stop
+        ;;
+  *)
+        echo $"Usage: $0 {start|stop}"
+        exit 1
+esac
+
+exit 0

@@ -1,0 +1,80 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 11_fix-identify-aspect.dpatch by Thomas Günther <tom@toms-cafe.de>
+## http://toms-cafe.de/vdr/download/vdrrip-0.3.0-fix-identify-aspect.diff
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Fixes problems with newer mplayer versions and with locale settings
+## DP: (see http://vdrportal.de/board/thread.php?threadid=53225
+## DP:  and http://vdrportal.de/board/thread.php?threadid=58775)
+
+@DPATCH@
+--- vdrrip-0.3.0/movie.c
++++ vdrrip-0.3.0/movie.c
+@@ -21,8 +21,8 @@
+ 
+ #define SAVEFILE "save.vdrrip"
+ 
+-#define IDENTCMD "%s \'%s\'%s -identify -frames 0 2>/dev/null | sed -e \'s/[`\\!$\"]/\\&/g\'"
+-#define CROPCMD "%s \'%s\'%s -vo null -ao null -really-quiet -ss %i -frames %i -vop cropdetect 2>/dev/null | grep \"crop=\" | sed \"s/.*crop\\(.*\\)).*/\\1/\" | sort | uniq -c | sort -r"
++#define IDENTCMD "%s \'%s\'%s -identify -frames 1 -vo md5sum:outfile=/dev/null -ao null 2>/dev/null | sed -e \'s/[`\\!$\"]/\\&/g\'"
++#define CROPCMD "%s \'%s\'%s -vo null -ao null -quiet -ss %i -frames %i -vop cropdetect 2>/dev/null | grep \"crop=\" | sed \"s/.*crop\\(.*\\)).*/\\1/\" | sort | uniq -c | sort -r"
+ #define AUDIOCMD "%s \'%s/001.vdr\' -vo null -ao null -frames 0 -aid %i 2>/dev/null | grep AUDIO"
+ #define AUDIOCMDDVD "%s %s -vo null -ao null -frames 0 -aid %i 2>/dev/null | grep AUDIO"
+ #define MENCCMD "%s %s help 2>/dev/null"
+@@ -516,10 +516,34 @@
+     FREE(s);
+ 
+     s = strcol(strgrep("ID_VIDEO_ASPECT", p), "=", 2);
++    if (s && atof(s) == 0.0) { // Workaround for mplayer-1.0rc1: search for second aspect line
++      s = strcol(strgrep("ID_VIDEO_ASPECT", p), "=", 2);
++      dsyslog("VDRRIP-FIX: searched for second aspect line: %s", s);
++    }
+     if (s) {
+       Aspect = atof(s);
++      if (Aspect == (double)(int)Aspect) { // Workaround for locale problems
++        if (strchr(s, '.'))
++          *strchr(s, '.') = ',';
++        else if (strchr(s, ','))
++          *strchr(s, ',') = '.';
++        dsyslog("VDRRIP-FIX: tried to solve locale problem: %s", s);
++        Aspect = atof(s);
++      }
+     } else {Aspect = -1;}
+ 
++    if (Aspect <= 0.0) { // Workaround for mplayer-1.0pre7
++      pclose(p);
++      p = popen(cmd, "r");
++      if (p && strgrep("(aspect 3)", p)) {
++        Aspect = 1.7778; // 16:9
++        dsyslog("VDRRIP-FIX: found (aspect 3) - set aspect to 16:9");
++      } else {
++        Aspect = 1.3333; // 4:3
++        dsyslog("VDRRIP-FIX: (aspect 3) NOT found - set aspect to 4:3");
++      }
++    }
++
+     CalcAspect = Aspect;
+ 
+     pclose(p);
+--- vdrrip-0.3.0/scripts/queuehandler.sh
++++ vdrrip-0.3.0/scripts/queuehandler.sh
+@@ -303,8 +303,8 @@
+   shortname="$shortname(preview)"
+   
+   # start the preview in the middle of the movie
+-  local length=`"$mp" -identify -frames 0 "$dir/001.vdr" 2>/dev/null | grep ID_LENGTH | cut -d"=" -f2`
+-  let local ss=length/2
++  local length=`"$mp" -vo null -ao null -identify -frames 0 "$dir/001.vdr" 2>/dev/null | grep ID_LENGTH | cut -d"=" -f2`
++  let local ss=$(echo $length | sed -e s/[.,].*//)/2
+   previewval="-ss $ss -endpos $previewlength"
+ }
+ 
+@@ -782,7 +782,7 @@
+                  -ss $splitpos $endpos -o $tempdir/$ofile"
+ 	
+         # detect length of splitted file and add it to $splitpos
+-        local length=`$mplayer -identify -frames 0 $tempdir/$ofile 2>/dev/null | \
++        local length=`$mplayer -vo null -ao null -identify -frames 0 $tempdir/$ofile 2>/dev/null | \
+                       grep ID_LENGTH | cut -d= -f2`
+         let splitpos=splitpos+length-overlap
+         let count=count+1

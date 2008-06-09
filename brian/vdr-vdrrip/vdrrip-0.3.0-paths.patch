@@ -1,0 +1,54 @@
+diff -Nurp -x '*~' vdrrip-0.3.0/scripts/queuehandler.sh.conf vdrrip-0.3.0-pa/scripts/queuehandler.sh.conf
+--- vdrrip-0.3.0/scripts/queuehandler.sh.conf	2004-04-22 21:54:11.000000000 +0300
++++ vdrrip-0.3.0-pa/scripts/queuehandler.sh.conf	2007-07-20 06:11:02.000000000 +0300
+@@ -33,8 +33,8 @@
+ 
+   # this pathes are used for the encoding of vdr-recordings & dvd's.
+   # they _must_ point to an unpatched mencoder & mplayer
+-  mencoder="/usr/local/bin/mencoder"
+-  mplayer="/usr/local/bin/mplayer"
++  mencoder="/usr/bin/mencoder"
++  mplayer="/usr/bin/mplayer"
+ 
+   # this pathes are only used for encoding a vdr-recording with
+   # selected ac3-stream.
+@@ -52,11 +52,11 @@
+ 
+ 
+   # optional tools (only needed for ogm/matroska-container)
+-  vdrsync="/usr/local/bin/vdrsync.pl"
+-  ffmpeg="/usr/local/bin/ffmpeg"
+-  ogmmerge="/usr/local/bin/ogmmerge"
+-  ogmsplit="/usr/local/bin/ogmsplit"
+-  mkvmerge="/usr/local/bin/mkvmerge"
++  vdrsync="/usr/bin/vdrsync.pl"
++  ffmpeg="/usr/bin/ffmpeg"
++  ogmmerge="/usr/bin/ogmmerge"
++  ogmsplit="/usr/bin/ogmsplit"
++  mkvmerge="/usr/bin/mkvmerge"
+ 
+ 
+ 
+@@ -64,7 +64,7 @@
+   # from the queuehandler on your tv.
+   # You have to specify only $svdrpsend or $netcat.
+   # $netcat is only recommend, if perl isn't installed.
+-  svdrpsend="/usr/local/bin/svdrpsend.pl"
++  svdrpsend="/usr/bin/svdrpsend.pl"
+   #netcat=""
+ 
+   vdrhostname="localhost"
+diff -Nurp -x '*~' vdrrip-0.3.0/vdrrip.c vdrrip-0.3.0-pa/vdrrip.c
+--- vdrrip-0.3.0/vdrrip.c	2004-04-22 20:40:38.000000000 +0300
++++ vdrrip-0.3.0-pa/vdrrip.c	2007-07-20 06:11:52.000000000 +0300
+@@ -20,8 +20,8 @@ static const char *VERSION       = "0.3.
+ static const char *DESCRIPTION   = "A MPlayer using movie encoder";
+ static const char *MAINMENUENTRY = "Vdrrip";
+ 
+-const char *MPlayer  = "/usr/local/bin/mplayer";
+-const char *MEncoder = "/usr/local/bin/mencoder";
++const char *MPlayer  = "/usr/bin/mplayer";
++const char *MEncoder = "/usr/bin/mencoder";
+ const char *DVD      = "/dev/dvd";
+ 
+ class cPluginVdrrip : public cPlugin {

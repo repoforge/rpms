@@ -1,0 +1,31 @@
+#!/bin/sh /usr/share/dpatch/dpatch-run
+
+## maketempdir patch by Thomas Günther <tom@toms-cafe.de>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Create temporary directory.
+
+@DPATCH@
+diff -urNad /usr/src/cvs/vdr-plugin-vdrrip/scripts/queuehandler.sh vdr-plugin-vdrrip/scripts/queuehandler.sh
+--- /usr/src/cvs/vdr-plugin-vdrrip/scripts/queuehandler.sh	Sat Apr 24 14:44:56 2004
++++ vdr-plugin-vdrrip/scripts/queuehandler.sh	Thu Apr 29 02:18:11 2004
+@@ -92,6 +92,7 @@
+     log_error "usage: $scriptname queuefile tempdir" 1
+   fi
+ 
++  mkdir -p "$tempdir"
+   if [ ! -d "$tempdir" ]
+   then
+     log_error "directory $tempdir doesn't exist, aborting !" 1
+@@ -315,6 +316,11 @@
+ #
+   if [ "$error" ]; then return
+   elif [ "$dvd" ]; then return; fi
++
++  # Recreate $tempdir if removed by vdr housekeeping
++  mkdir -p "$tempdir"
++  if [ ! -d "$tempdir" ]; then return; fi
++  cd "$tempdir"
+ 
+   case "$container" in
+     "avi")

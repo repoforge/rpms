@@ -1,0 +1,15 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+
+Name=Xournal
+Comment=Take notes, sketch and annotate PDFs
+Name[fr]=Xournal
+Comment[fr]=Prise de notes manuscrites
+
+Exec=xournal %f
+Terminal=false
+StartupNotify=true
+MimeType=application/x-xoj;application/pdf;application/x-pdf
+Icon=xournal
+Categories=GNOME;GTK;Office;Graphics;Utility;TextEditor;

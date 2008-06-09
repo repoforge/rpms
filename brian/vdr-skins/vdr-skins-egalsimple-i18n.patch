@@ -1,0 +1,7 @@
+--- EgalSimple/EgalSimple.trans~	2004-10-27 18:40:25.000000000 +0300
++++ EgalSimple/EgalSimple.trans	2005-10-22 20:53:10.000000000 +0300
+@@ -13,3 +13,4 @@
+ Item=Translation,eng=R,deu=R,fin=R;
+ Item=Translation,eng=p,deu=p,fin=p;
+ Item=Translation,eng=Volume,deu=Lautstärke,fin=Äanenvoimakk.;
++Item=Translation,eng={PresentShortText} {PresentDescription},deu={PresentShortText} {PresentDescription},fin={PresentShortText} {PresentDescription};

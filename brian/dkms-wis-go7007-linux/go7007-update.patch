@@ -1,0 +1,273 @@
+Only in wis-go7007-linux-0.9.8-new/apps: gorecord
+Only in wis-go7007-linux-0.9.8-new/apps: modet
+Only in wis-go7007-linux-0.9.8-new/hotplug: wis-ezusb
+diff -ru wis-go7007-linux-0.9.8/kernel/go7007-driver.c wis-go7007-linux-0.9.8-new/kernel/go7007-driver.c
+--- wis-go7007-linux-0.9.8/kernel/go7007-driver.c	2006-04-02 00:35:48.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/go7007-driver.c	2006-08-19 10:55:47.000000000 +0200
+@@ -18,7 +18,9 @@
+ #include <linux/module.h>
+ #include <linux/version.h>
+ #include <linux/init.h>
++#if LINUX_VERSION_CODE <= KERNEL_VERSION(2,6,17)
+ #include <linux/config.h>
++#endif
+ #include <linux/delay.h>
+ #include <linux/sched.h>
+ #include <linux/spinlock.h>
+Only in wis-go7007-linux-0.9.8-new/kernel: go7007-driver.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .go7007-driver.o.cmd
+diff -ru wis-go7007-linux-0.9.8/kernel/go7007-fw.c wis-go7007-linux-0.9.8-new/kernel/go7007-fw.c
+--- wis-go7007-linux-0.9.8/kernel/go7007-fw.c	2006-04-02 00:35:55.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/go7007-fw.c	2006-08-19 11:01:51.000000000 +0200
+@@ -26,7 +26,10 @@
+ 
+ #include <linux/module.h>
+ #include <linux/init.h>
++#include <linux/version.h>
++#if LINUX_VERSION_CODE <= KERNEL_VERSION(2,6,17)
+ #include <linux/config.h>
++#endif
+ #include <linux/time.h>
+ #include <linux/mm.h>
+ #include <linux/device.h>
+Only in wis-go7007-linux-0.9.8-new/kernel: go7007-fw.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .go7007-fw.o.cmd
+diff -ru wis-go7007-linux-0.9.8/kernel/go7007-i2c.c wis-go7007-linux-0.9.8-new/kernel/go7007-i2c.c
+--- wis-go7007-linux-0.9.8/kernel/go7007-i2c.c	2006-04-02 00:36:00.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/go7007-i2c.c	2006-08-19 11:01:28.000000000 +0200
+@@ -15,9 +15,11 @@
+  * Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307, USA.
+  */
+ 
++#include <linux/version.h>
++#if LINUX_VERSION_CODE <= KERNEL_VERSION(2,6,17)
+ #include <linux/config.h>
++#endif
+ #include <linux/module.h>
+-#include <linux/version.h>
+ #include <linux/init.h>
+ #include <linux/delay.h>
+ #include <linux/sched.h>
+Only in wis-go7007-linux-0.9.8-new/kernel: go7007-i2c.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .go7007-i2c.o.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: go7007.ko
+Only in wis-go7007-linux-0.9.8-new/kernel: .go7007.ko.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: go7007.mod.c
+Only in wis-go7007-linux-0.9.8-new/kernel: go7007.mod.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .go7007.mod.o.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: go7007.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .go7007.o.cmd
+diff -ru wis-go7007-linux-0.9.8/kernel/go7007-usb.c wis-go7007-linux-0.9.8-new/kernel/go7007-usb.c
+--- wis-go7007-linux-0.9.8/kernel/go7007-usb.c	2006-04-02 00:57:04.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/go7007-usb.c	2006-04-03 12:58:44.000000000 +0200
+@@ -27,7 +27,7 @@
+ #include <linux/usb.h>
+ #include <linux/i2c.h>
+ #include <asm/byteorder.h>
+-#include <media/audiochip.h>
++#include <media/tvaudio.h>
+ 
+ #include "go7007-priv.h"
+ #include "wis-i2c.h"
+@@ -225,17 +225,17 @@
+ 		.inputs 	 = {
+ 			{
+ 				.video_input	= 1,
+-				.audio_input	= AUDIO_EXTERN,
++                .audio_input	= TVAUDIO_INPUT_EXTERN,
+ 				.name		= "Composite",
+ 			},
+ 			{
+ 				.video_input	= 8,
+-				.audio_input	= AUDIO_EXTERN,
++				.audio_input	= TVAUDIO_INPUT_EXTERN,
+ 				.name		= "S-Video",
+ 			},
+ 			{
+ 				.video_input	= 3,
+-				.audio_input	= AUDIO_TUNER,
++				.audio_input	= TVAUDIO_INPUT_TUNER,
+ 				.name		= "Tuner",
+ 			},
+ 		},
+Only in wis-go7007-linux-0.9.8-new/kernel: go7007-usb.ko
+Only in wis-go7007-linux-0.9.8-new/kernel: .go7007-usb.ko.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: go7007-usb.mod.c
+Only in wis-go7007-linux-0.9.8-new/kernel: go7007-usb.mod.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .go7007-usb.mod.o.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: go7007-usb.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .go7007-usb.o.cmd
+diff -ru wis-go7007-linux-0.9.8/kernel/go7007-v4l2.c wis-go7007-linux-0.9.8-new/kernel/go7007-v4l2.c
+--- wis-go7007-linux-0.9.8/kernel/go7007-v4l2.c	2006-04-02 01:22:03.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/go7007-v4l2.c	2006-08-19 11:01:14.000000000 +0200
+@@ -17,8 +17,10 @@
+ 
+ #include <linux/module.h>
+ #include <linux/init.h>
+-#include <linux/config.h>
+ #include <linux/version.h>
++#if LINUX_VERSION_CODE <= KERNEL_VERSION(2,6,17)
++#include <linux/config.h>
++#endif
+ #include <linux/delay.h>
+ #include <linux/sched.h>
+ #include <linux/spinlock.h>
+@@ -939,7 +941,7 @@
+ 		if (go->i2c_adapter_online) {
+ 			i2c_clients_command(&go->i2c_adapter, DECODER_SET_INPUT,
+ 				&go->board_info->inputs[*input].video_input);
+-			i2c_clients_command(&go->i2c_adapter, AUDC_SET_INPUT,
++			i2c_clients_command(&go->i2c_adapter, VIDIOC_S_AUDIO,
+ 				&go->board_info->inputs[*input].audio_input);
+ 		}
+ 		return 0;
+Only in wis-go7007-linux-0.9.8-new/kernel: go7007-v4l2.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .go7007-v4l2.o.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: Modules.symvers
+Only in wis-go7007-linux-0.9.8-new/kernel: Module.symvers
+diff -ru wis-go7007-linux-0.9.8/kernel/snd-go7007.c wis-go7007-linux-0.9.8-new/kernel/snd-go7007.c
+--- wis-go7007-linux-0.9.8/kernel/snd-go7007.c	2006-04-02 00:36:38.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/snd-go7007.c	2006-08-19 10:57:31.000000000 +0200
+@@ -20,7 +20,9 @@
+ #include <linux/version.h>
+ #include <linux/moduleparam.h>
+ #include <linux/init.h>
++#if LINUX_VERSION_CODE <= KERNEL_VERSION(2,6,17)
+ #include <linux/config.h>
++#endif
+ #include <linux/delay.h>
+ #include <linux/sched.h>
+ #include <linux/vmalloc.h>
+Only in wis-go7007-linux-0.9.8-new/kernel: snd-go7007.ko
+Only in wis-go7007-linux-0.9.8-new/kernel: .snd-go7007.ko.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: snd-go7007.mod.c
+Only in wis-go7007-linux-0.9.8-new/kernel: snd-go7007.mod.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .snd-go7007.mod.o.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: snd-go7007.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .snd-go7007.o.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: .tmp_versions
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-ov7640.ko
+Only in wis-go7007-linux-0.9.8-new/kernel: .wis-ov7640.ko.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-ov7640.mod.c
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-ov7640.mod.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .wis-ov7640.mod.o.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-ov7640.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .wis-ov7640.o.cmd
+diff -ru wis-go7007-linux-0.9.8/kernel/wis-saa7113.c wis-go7007-linux-0.9.8-new/kernel/wis-saa7113.c
+--- wis-go7007-linux-0.9.8/kernel/wis-saa7113.c	2006-04-02 00:37:06.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/wis-saa7113.c	2006-08-19 11:03:04.000000000 +0200
+@@ -21,6 +21,7 @@
+ #include <linux/i2c.h>
+ #include <linux/videodev.h>
+ #include <linux/video_decoder.h>
++#include <linux/ioctl.h>
+ 
+ #include "wis-i2c.h"
+ 
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-saa7113.ko
+Only in wis-go7007-linux-0.9.8-new/kernel: .wis-saa7113.ko.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-saa7113.mod.c
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-saa7113.mod.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .wis-saa7113.mod.o.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-saa7113.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .wis-saa7113.o.cmd
+diff -ru wis-go7007-linux-0.9.8/kernel/wis-saa7115.c wis-go7007-linux-0.9.8-new/kernel/wis-saa7115.c
+--- wis-go7007-linux-0.9.8/kernel/wis-saa7115.c	2006-04-02 00:37:12.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/wis-saa7115.c	2006-08-19 11:02:28.000000000 +0200
+@@ -21,6 +21,7 @@
+ #include <linux/i2c.h>
+ #include <linux/videodev.h>
+ #include <linux/video_decoder.h>
++#include <linux/ioctl.h>
+ 
+ #include "wis-i2c.h"
+ 
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-saa7115.ko
+Only in wis-go7007-linux-0.9.8-new/kernel: .wis-saa7115.ko.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-saa7115.mod.c
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-saa7115.mod.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .wis-saa7115.mod.o.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-saa7115.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .wis-saa7115.o.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-sony-tuner.ko
+Only in wis-go7007-linux-0.9.8-new/kernel: .wis-sony-tuner.ko.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-sony-tuner.mod.c
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-sony-tuner.mod.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .wis-sony-tuner.mod.o.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-sony-tuner.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .wis-sony-tuner.o.cmd
+diff -ru wis-go7007-linux-0.9.8/kernel/wis-tw2804.c wis-go7007-linux-0.9.8-new/kernel/wis-tw2804.c
+--- wis-go7007-linux-0.9.8/kernel/wis-tw2804.c	2006-04-02 00:37:22.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/wis-tw2804.c	2006-08-19 11:02:43.000000000 +0200
+@@ -21,6 +21,7 @@
+ #include <linux/i2c.h>
+ #include <linux/videodev.h>
+ #include <linux/video_decoder.h>
++#include <linux/ioctl.h>
+ 
+ #include "wis-i2c.h"
+ 
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-tw2804.ko
+Only in wis-go7007-linux-0.9.8-new/kernel: .wis-tw2804.ko.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-tw2804.mod.c
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-tw2804.mod.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .wis-tw2804.mod.o.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-tw2804.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .wis-tw2804.o.cmd
+diff -ru wis-go7007-linux-0.9.8/kernel/wis-tw9903.c wis-go7007-linux-0.9.8-new/kernel/wis-tw9903.c
+--- wis-go7007-linux-0.9.8/kernel/wis-tw9903.c	2006-04-02 00:37:28.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/wis-tw9903.c	2006-08-19 11:02:47.000000000 +0200
+@@ -21,6 +21,7 @@
+ #include <linux/i2c.h>
+ #include <linux/videodev.h>
+ #include <linux/video_decoder.h>
++#include <linux/ioctl.h>
+ 
+ #include "wis-i2c.h"
+ 
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-tw9903.ko
+Only in wis-go7007-linux-0.9.8-new/kernel: .wis-tw9903.ko.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-tw9903.mod.c
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-tw9903.mod.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .wis-tw9903.mod.o.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-tw9903.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .wis-tw9903.o.cmd
+diff -ru wis-go7007-linux-0.9.8/kernel/wis-uda1342.c wis-go7007-linux-0.9.8-new/kernel/wis-uda1342.c
+--- wis-go7007-linux-0.9.8/kernel/wis-uda1342.c	2006-04-02 00:37:32.000000000 +0200
++++ wis-go7007-linux-0.9.8-new/kernel/wis-uda1342.c	2006-04-03 13:07:04.000000000 +0200
+@@ -20,7 +20,7 @@
+ #include <linux/version.h>
+ #include <linux/i2c.h>
+ #include <linux/videodev.h>
+-#include <media/audiochip.h>
++#include <media/tvaudio.h>
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,16)
+ #include <media/v4l2-common.h>
+ #endif
+@@ -38,15 +38,15 @@
+ 				unsigned int cmd, void *arg)
+ {
+ 	switch (cmd) {
+-	case AUDC_SET_INPUT:
++	case VIDIOC_S_AUDIO:
+ 	{
+ 		int *inp = arg;
+ 
+ 		switch (*inp) {
+-		case AUDIO_TUNER:
++		case TVAUDIO_INPUT_TUNER:
+ 			write_reg(client, 0x00, 0x1441); /* select input 2 */
+ 			break;
+-		case AUDIO_EXTERN:
++		case TVAUDIO_INPUT_EXTERN:
+ 			write_reg(client, 0x00, 0x1241); /* select input 1 */
+ 			break;
+ 		default:
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-uda1342.ko
+Only in wis-go7007-linux-0.9.8-new/kernel: .wis-uda1342.ko.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-uda1342.mod.c
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-uda1342.mod.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .wis-uda1342.mod.o.cmd
+Only in wis-go7007-linux-0.9.8-new/kernel: wis-uda1342.o
+Only in wis-go7007-linux-0.9.8-new/kernel: .wis-uda1342.o.cmd
+Only in wis-go7007-linux-0.9.8-new/udev: wis-ezusb.rules

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=MimeType
+MimeType=application/x-xoj
+Icon=application-x-xoj
+Patterns=*.xoj;*.XOJ;*.Xoj;
+Comment=Xournal note file
+Comment[fr]=Fichier Xournal
+[Property::X-KDE-pdf]
+Type=bool
+Value=true

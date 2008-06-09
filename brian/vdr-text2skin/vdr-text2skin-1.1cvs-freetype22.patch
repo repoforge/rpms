@@ -1,0 +1,35 @@
+Index: graphtft/font.c
+===================================================================
+RCS file: /var/cvsroot/text2skin/graphtft/font.c,v
+retrieving revision 1.4
+diff -u -r1.4 font.c
+--- graphtft/font.c	30 Jan 2005 18:09:42 -0000	1.4
++++ graphtft/font.c	19 Nov 2006 15:04:06 -0000
+@@ -139,20 +139,21 @@
+ 		 error = FT_Load_Glyph( _face, glyph_index, FT_LOAD_DEFAULT ); 
+ 		 if ( error ) continue; /* ignore errors */  
+ 		 
+-		 // convert to a mono bitmap
+-		 error = FT_Render_Glyph( _face->glyph, ft_render_mode_mono ); 
+-		 if ( error ) continue;
+-		
+ 		// now, convert to vdr font data
+ 		int width = (_slot->metrics.horiAdvance / 64) + 1;
+ 		int bearingX = (_slot->metrics.horiBearingX / 64) +1;
+ 		width = (width > (int)sizeof(cFont::tPixelData) * 8) ? (((int)sizeof(cFont::tPixelData) * 8)-2) :width ;
+-		int  top = _slot->bitmap_top;
+-		int  y_off = Size - top;
+ 
+ 		font_data[(num_char_array*num_rows)+0]=width;
+ 		font_data[(num_char_array*num_rows)+1]=num_rows_global;
+ 
++		// convert to a mono bitmap
++		error = FT_Render_Glyph( _face->glyph, ft_render_mode_mono );
++		if ( error ) continue;
++
++		int  top = _slot->bitmap_top;
++		int  y_off = Size - top;
++
+ 		unsigned char *bmp = _slot->bitmap.buffer;
+ 		
+       		for (int y = 0; y < _slot->bitmap.rows; ++y , y_off++) {

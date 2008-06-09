@@ -1,0 +1,6 @@
+if ispgm perpackage; then
+    editspec \
+	's/\.so/\.dll/g' \
+	'isfiles "devel" and s!\%{_libdir}/(lib\S*\.dll)!\%{_libdir}/$1.a!' \
+	'zap /ln -s.*\.dll/'
+fi

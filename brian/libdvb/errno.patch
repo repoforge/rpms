@@ -1,0 +1,8 @@
+--- libdvb/DVB.cc	2004-09-15 20:56:21.000000000 +0200
++++ libdvb-korr/DVB.cc	2004-12-23 21:07:54.329614000 +0100
+@@ -1,4 +1,5 @@
+ #include <DVB.hh>
++#include <errno.h>
+ 
+ static const fe_code_rate_t ftab [8] = {
+         FEC_AUTO, FEC_1_2, FEC_2_3, FEC_3_4,

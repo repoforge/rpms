@@ -1,0 +1,11 @@
+--- mplayer.sh.orig	2004-11-06 23:00:00.000000000 +0200
++++ mplayer.sh	2005-07-18 20:53:04.000000000 +0300
+@@ -268,7 +268,7 @@
+   local TEMP1 MPLAYER_RETURN
+   ORIG_X=0; ORIG_Y=0
+ 
+-  TEMP1=`$MPLAYER -identify -vo null -ao null -frames 0 "$FILE" 2>/dev/null | grep -i -e "^ID_"`
++  TEMP1=`$MPLAYER -identify -vo null -nosound -frames 0 -cache-min 0 -nolirc -nojoystick "$FILE" 2>/dev/null | grep -i -e "^ID_"`
+   MPLAYER_RETURN=$?
+   debugmsg "OutputFromMPLAYER:" "$TEMP1"
+   debugmsg "MPLAYER_RETURN: " "$MPLAYER_RETURN"

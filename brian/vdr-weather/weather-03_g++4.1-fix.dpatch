@@ -1,0 +1,24 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+
+## 03_g++4.1-fix.dpatch by Martin Michlmayr <tbm@cyrius.com>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Fixes FTBFS with g++4.1 (closes: #356440)
+
+@DPATCH@
+diff -urNad vdr-plugin-weather-0.2.1e/display.h /tmp/dpep.hTuTzZ/vdr-plugin-weather-0.2.1e/display.h
+--- vdr-plugin-weather-0.2.1e/display.h	2006-03-14 17:14:01.411816750 +0100
++++ /tmp/dpep.hTuTzZ/vdr-plugin-weather-0.2.1e/display.h	2006-03-14 17:14:17.580827250 +0100
+@@ -25,9 +25,9 @@
+ 		void initBorderBitmap(cBitmap &b, tColor col);
+ 		void drawWindRose(cOsd *osd, int degree, int x, int y);
+ 		void drawWeather(cOsd *osd, Decoded_METAR *mptr, int x, int y);
+-		std::string cWeatherOsd::getIntensity(const std::string weather);
+-		std::string cWeatherOsd::getPrecipitation(const std::string weather);
+-		std::string cWeatherOsd::getCoverage(const std::string weather);
++		std::string getIntensity(const std::string weather);
++		std::string getPrecipitation(const std::string weather);
++		std::string getCoverage(const std::string weather);
+ };
+ 
+ #endif //WEATHER_DISPLAY_H

@@ -1,0 +1,24 @@
+# VDR friendly udev rules for DVB and other devices
+
+# See also /etc/security/console.perms.d/*-vdr.perms and
+# https://bugzilla.redhat.com/202132
+
+# DVB devices
+KERNEL=="dvb*", GROUP="VDR_GROUP", MODE="0660"
+
+# Remote controller, serial port 1 (eg. vdr --rcu=/dev/ttyS0):
+#KERNEL=="ttyS0", GROUP="VDR_GROUP", MODE="0660"
+
+# Remote controller, /dev/input/event2 (using the remote plugin).  Change
+# event2 to event-remote if you're using the predictable naming rule below.
+#KERNEL=="event2", GROUP="VDR_GROUP", MODE="0660"
+
+# Example rule for predictable event device name (/dev/input/event-remote).
+# Adjust the sysfs name according to your setup, see
+# /sys/class/input/input*/name.  Examples:
+
+# Hauppauge Nexus-S, some other Hauppauge/Technotrend cards:
+#SUBSYSTEM=="input", SYSFS{../name}=="DVB on-card IR receiver", SYMLINK+="input/event-remote"
+
+# Some Hauppauge Nova-T cards:
+#SUBSYSTEM=="input", SYSFS{../name}=="cx88 IR (Hauppauge Nova-T DVB-T", SYMLINK+="input/event-remote"

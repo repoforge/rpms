@@ -1,0 +1,12 @@
+# Configuration file for the vdrrip service that runs the queue handler
+
+# The user to run as
+# default: VDR_USER from /etc/sysconfig/vdr, "vdr" if not specified
+# VDR_USER="vdr"
+
+# The queue file that is filled by VDR
+# QUEUE_FILE="$VDR_CONFIGDIR/plugins/queue.vdrrip"
+
+# The directory where the actual files go
+# VDRRIP_DIR="$VDR_VIDEO/vdrrip"
+

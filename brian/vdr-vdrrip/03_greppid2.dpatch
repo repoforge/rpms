@@ -1,0 +1,20 @@
+#!/bin/sh /usr/share/dpatch/dpatch-run
+
+## greppid2 patch by Thomas Günther <tom@toms-cafe.de>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Detect second running process instead of third.
+
+@DPATCH@
+diff -urNad /usr/src/cvs/vdr-plugin-vdrrip/scripts/queuehandler.sh vdr-plugin-vdrrip/scripts/queuehandler.sh
+--- /usr/src/cvs/vdr-plugin-vdrrip/scripts/queuehandler.sh      Sat Apr 24 00:53:50 2004
++++ vdr-plugin-vdrrip/scripts/queuehandler.sh   Sat Apr 24 00:56:59 2004
+@@ -90,7 +90,7 @@
+ 
+   local pids=`pgrep -d" " "$scriptname"`
+   local pid1=`echo "$pids" | cut -d" " -f1`
+-  local pid2=`echo "$pids" | cut -d" " -f3`
++  local pid2=`echo "$pids" | cut -d" " -f2`
+ 
+   if [ "$pid1" != "$pid2" ]
+   then

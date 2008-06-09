@@ -1,0 +1,14 @@
+--- vdr-1.4.1/vdr.c~	2006-06-04 12:04:47.000000000 +0300
++++ vdr-1.4.1/vdr.c	2006-07-16 18:15:11.000000000 +0300
+@@ -102,9 +102,9 @@
+         fprintf(stderr, "vdr: cannot set user id %u: %s\n", (unsigned int)user->pw_uid, strerror(errno));
+         return false;
+         }
+-     if (prctl(PR_SET_DUMPABLE, 2, 0, 0, 0) < 0) {
++     if (prctl(PR_SET_DUMPABLE, 1, 0, 0, 0) < 0) {
+         fprintf(stderr, "vdr: warning - cannot set dumpable: %s\n", strerror(errno));
+-        // always non-fatal, and will not work with kernel < 2.6.13
++        // non-fatal
+         }
+      }
+   return true;

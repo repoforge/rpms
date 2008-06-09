@@ -1,0 +1,118 @@
+--- wapd-0.8/i18n.c~	2005-12-24 15:23:36.000000000 +0200
++++ wapd-0.8/i18n.c	2006-01-10 20:32:13.000000000 +0200
+@@ -126,7 +126,7 @@
+     "", // TODO
+     "Pas de résumé defini.",
+     "", // TODO
+-    "Yhteenvetoa ei saatavilla.",
++    "Kuvausta ei saatavilla.",
+     "", // TODO
+     "", // TODO
+     "", // TODO
+--- wapd-0.8/server.c~	2005-12-24 16:19:20.000000000 +0200
++++ wapd-0.8/server.c	2006-01-10 20:34:03.000000000 +0200
+@@ -389,7 +389,7 @@
+      "%s:" WML_BR() WML_INPUT("Nid%d", "%s", "*N") WML_BR()
+      "%s:" WML_BR() WML_INPUT("Tid%d", "%s", "*N") WML_BR()
+      "%s:" WML_BR() WML_INPUT("Rid%d", "%s", "N"),
+-     wmltr("Name"), base, name ? name : wmltr("New"),
++     wmltr("Name"), base, name ? name : "",
+      wmltr("Frequency"), base, frequency ? frequency : "",
+      wmltr("Parameters"), base, parameters ? parameters : "",
+      wmltr("Source"), base, source ? source : "",
+@@ -416,8 +416,8 @@
+         wmltr("VDR"), wmltr("Channels"),
+         wmltr("Save"), channel_nr,
+         base, base, base, base, base, base, base, base, base, base, base, base, base,
+-        wmltr("Switch"), channel_nr,
+-        wmltr("Delete"), channel_nr);
++        wmltr("Button$Switch"), channel_nr,
++        wmltr("Button$Delete"), channel_nr);
+   else
+      ReplyBuffer(WML_END(WML_DO("%s", URI_MAIN) WML_ENDDO()
+         WML_DO("%s", URI_CHANNELS) WML_ENDDO()
+@@ -447,7 +447,7 @@
+   int lifetime = Setup.DefaultLifetime;
+   char *file = NULL;
+   asprintf(&day, "%d", lt.tm_mday);
+-  asprintf(&file, "%s%02d%02d%02d", wmltr("New"), lt.tm_hour, lt.tm_min, lt.tm_sec);
++  asprintf(&file, "%s%02d%02d%02d", "wapd", lt.tm_hour, lt.tm_min, lt.tm_sec);
+   cTimer *timer = NULL;
+   if (Option("id")) {
+      if (isnumber(getopt)) {
+@@ -492,8 +492,8 @@
+         WML_DO("%s", URI_ONOFFTIMER "/?id=%s") WML_ENDDO()),
+         wmltr("VDR"), wmltr("Timers"),
+         wmltr("Save"), getopt, flags, base, base, base, base, base, base, base,
+-        wmltr("Delete"), getopt,
+-        wmltr("On/Off"), getopt);
++        wmltr("Button$Delete"), getopt,
++        wmltr("Button$On/Off"), getopt);
+   else
+      ReplyBuffer(WML_END(WML_DO("%s", URI_MAIN) WML_ENDDO()
+         WML_DO("%s", URI_TIMERS) WML_ENDDO()
+@@ -540,7 +540,7 @@
+            WML_DO("%s", URI_RECORDINGS) WML_ENDDO()
+            WML_DO("%s", URI_DELETERECORDING "/?id=%s") WML_ENDDO()),
+            wmltr("VDR"), wmltr("Recordings"),
+-           wmltr("Delete"), getopt);
++           wmltr("Button$Delete"), getopt);
+         Header(200, "OK", MIME_WAP);
+         FlushBuffer();
+         return;
+@@ -616,8 +616,8 @@
+            WML_ENDDO()),
+            wmltr("VDR"),
+            wmltr("Schedule"), channel->Number(),
+-           wmltr("Switch"), channel->Number(),
+-           wmltr("Record"), channel->Number(), tm_start.tm_mday,
++           wmltr("Button$Switch"), channel->Number(),
++           wmltr("Button$Record"), channel->Number(), tm_start.tm_mday,
+               tm_start.tm_hour, tm_start.tm_min, tm_stop.tm_hour, tm_stop.tm_min,
+               Setup.DefaultPriority, Setup.DefaultLifetime, file);
+         free(file);
+@@ -676,7 +676,7 @@
+               WML_POSTFIELD("%s", "y")
+            WML_ENDDO()),
+            wmltr("VDR"),
+-           Now ? wmltr("Next") : wmltr("Now"),
++           Now ? wmltr("Button$Next") : wmltr("Button$Now"),
+            Now ? "next" : "now",
+            offset - MAXLINES > 0 ? offset - MAXLINES : 0,
+            Now ? "now" : "next",
+@@ -734,7 +734,7 @@
+                  WML_POSTFIELD("offset", "%d")
+                  WML_POSTFIELD("channel_nr", "%d")
+               WML_ENDDO()),
+-              wmltr("VDR"), wmltr("Now"), wmltr("Next"),
++              wmltr("VDR"), wmltr("Button$Now"), wmltr("Button$Next"),
+               offset - MAXLINES > 0 ? offset - MAXLINES : 0,
+               ChannelNr,
+               offset + MAXLINES < i ? offset + MAXLINES : offset,
+@@ -786,7 +786,7 @@
+         WML_DO("%s", URI_EDITCHANNEL) WML_ENDDO()
+         WML_DO(WML_LT, URI_CHANNELS "/?offset=%d") WML_ENDDO()
+         WML_DO(WML_GT, URI_CHANNELS "/?offset=%d") WML_ENDDO()),
+-        wmltr("VDR"), wmltr("New"),
++        wmltr("VDR"), wmltr("Button$New"),
+         offset - MAXLINES > 0 ? offset - MAXLINES : 0,
+         offset + MAXLINES < i ? offset + MAXLINES : offset);
+      Header(200, "OK", MIME_WAP);
+@@ -841,7 +841,7 @@
+         WML_DO("%s", URI_EDITTIMER) WML_ENDDO()
+         WML_DO(WML_LT, URI_TIMERS "/?offset=%d") WML_ENDDO()
+         WML_DO(WML_GT, URI_TIMERS "/?offset=%d") WML_ENDDO()),
+-        wmltr("VDR"), wmltr("New"),
++        wmltr("VDR"), wmltr("Button$New"),
+         offset - MAXLINES > 0 ? offset - MAXLINES : 0,
+         offset + MAXLINES < i ? offset + MAXLINES : offset);
+      Header(200, "OK", MIME_WAP);
+@@ -852,7 +852,7 @@
+      ReplyBuffer(wmltr("No timers defined."));
+   ReplyBuffer(WML_END(WML_DO("%s", URI_MAIN) WML_ENDDO()
+      WML_DO("%s", URI_EDITTIMER) WML_ENDDO()),
+-     wmltr("VDR"), wmltr("New"));
++     wmltr("VDR"), wmltr("Button$New"));
+   Header(200, "OK", MIME_WAP);
+   FlushBuffer();
+ }

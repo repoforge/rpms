@@ -1,0 +1,90 @@
+This file describes various things about the VDR contained in this
+package.
+
+Installation layout
+-------------------
+
+As usual, "rpm -ql vdr" should give a fairly good picture where things
+are installed.  The goal in this package is to make file locations be
+natural to people who are used to packaged software, which causes
+quite a bit of deviation from the upstream layout as of 1.4.x.  Also,
+as usual, "rpm -qc vdr" lists configuration files.
+
+Configuration
+-------------
+
+First, refer to "man 5 vdr" for general upstream VDR configuration
+stuff.  Then, have a look at /etc/sysconfig/vdr.  The file is fairly
+well documented, and among other things, is where one should specify
+command line options to VDR itself.  The standard "vdr" init script
+invokes /usr/sbin/runvdr, which reads /etc/sysconfig/vdr.
+
+The init script and the runner load per-plugin configuration files
+from the /etc/sysconfig/vdr-plugins.d directory for each found plugin.
+Those files are sourced shell (bash) scripts, named like
+<pluginname>.conf (so eg. for plugin libvdr-foo.*,
+/etc/sysconfig/vdr-plugins.d/foo.conf is loaded).  Configure command
+line options for each plugin in their respective config snippets, in
+the PLUGIN_OPTIONS environment variable.
+
+The vdr user should have access to the majority of needed hardware
+devices out of the package, either directly or through the video
+group.  However some setups may need additional configuration in order
+to allow VDR or some plugins to use for example certain remote
+controllers or optical drives.  See the /etc/udev/rules.d/*-vdr.rules
+and /etc/security/console.perms.d/*-vdr.perms files for some usual
+suspects and examples.
+
+Additional plugins
+------------------
+
+While there's a bunch of pre-packaged plugins available, not
+everything obviously is.  The plugin rpm specfiles are pretty simple
+and very close to each other, so it is recommended to use them as
+examples and roll packages of extra plugins.
+
+If you wish to compile unpackaged local plugins, first make sure that
+the vdr-devel package is installed.  Then, edit the plugin's Makefile
+in the dir you extracted it into, changing VDRDIR to /usr/lib/vdr, or
+/usr/lib64/vdr if you have a 64-bit system.  That's about it, the rest
+should be set up automatically.  "make all" (or "make all
+VDRDIR=/usr/lib*/vdr" if you don't want to edit the Makefile) in the
+same dir will usually build the plugin and try to copy it into VDR's
+plugin directory.  You'll probably need root access for the copy to
+succeed.
+
+If the plugin needs command line options, add them to
+/etc/sysconfig/vdr-plugins.d/<pluginname>.conf into PLUGIN_OPTIONS
+(see previous chapter).
+
+The /usr/lib*/vdr/bin directory is in vdr's $PATH by default;
+additional VDR specific scripts such as those needed by some plugins,
+or things executed from commands.conf or reccmds.conf can be dropped
+there instead of having to pollute the usual system $PATH with them.
+
+Shutdown and ACPI wakeup
+------------------------
+
+A sample shutdown script, vdr-shutdown.sh, is shipped in the
+/usr/lib*/vdr/bin directory.  If enabled, the script writes a time
+slightly before the next configured timer (given by VDR, see the file
+INSTALL) to /var/lib/vdr/acpi-wakeup in a format suitable for catting
+to /proc/acpi/alarm, and shuts down the machine.  See commentary in
+the script for how to enable it and how to grant the required
+permissions to the vdr user so it can carry out these tasks.
+
+To use the ACPI alarm feature present in many recent systems, adding a
+script like this to /sbin/halt.local (remember to make it executable!)
+will cause the system to wake up at the time set by the above
+vdr-shutdown.sh, allowing one to shut down the system without having
+to manually start it for the next timed recording.  /sbin/halt.local,
+if it exists, is automatically executed by the system shutdown/reboot
+scripts at appropriate time.
+
+    #!/bin/bash
+    wakeupfile=/var/lib/vdr/acpi-wakeup
+    trap "rm -f $wakeupfile" EXIT
+    if [ -s $wakeupfile -a -w /proc/acpi/alarm ] ; then
+        echo -n "Setting ACPI wakeup for next VDR timer: " ; cat $wakeupfile
+        cat $wakeupfile > /proc/acpi/alarm
+    fi

@@ -1,0 +1,15 @@
+--- server.c~	2005-12-24 16:19:20.000000000 +0200
++++ server.c	2006-01-29 19:32:04.000000000 +0200
+@@ -694,7 +694,11 @@
+            int offset = strtol(getopt, NULL, 10);
+            int i = 0;
+            const cEvent *PresentEvent =
+-              Schedule->GetPresentEvent(channel->Number() == cDevice::CurrentChannel());
++              Schedule->GetPresentEvent(
++#if VDRVERSNUM < 10341
++                  channel->Number() == cDevice::CurrentChannel()
++#endif
++                  );
+            time_t now = time(NULL) - Setup.EPGLinger * 60;
+            for (const cEvent *Event = Schedule->Events()->First();
+                 Event;

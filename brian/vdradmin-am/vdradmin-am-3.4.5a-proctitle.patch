@@ -1,0 +1,10 @@
+--- vdradmind.pl~	2006-05-09 16:09:37.000000000 +0300
++++ vdradmind.pl	2006-05-18 18:31:38.000000000 +0300
+@@ -35,6 +35,7 @@
+     $0 =~ /(^.*\/)/;
+     $EXENAME  = $0;
+     $BASENAME = $1;
++    $0 = "vdradmind";
+     unshift(@INC, "/usr/share/vdradmin/lib");
+     unshift(@INC, $BASENAME . "lib/");
+ }

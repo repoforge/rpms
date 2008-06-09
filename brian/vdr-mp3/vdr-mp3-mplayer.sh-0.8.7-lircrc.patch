@@ -1,0 +1,15 @@
+--- mplayer.sh.conf~	2007-02-11 17:38:06.000000000 +0200
++++ mplayer.sh.conf	2007-02-25 13:31:21.000000000 +0200
+@@ -100,7 +100,11 @@
+ FRAMEDROP="true"
+ 
+ # Lirc RC File
+-LIRCRC="/video/.lircrc"
++if ldd "$MPLAYER" 2>/dev/null | grep liblirc_client >/dev/null 2>&1 ; then
++  LIRCRC="/etc/vdr/lircrc"
++else
++  LIRCRC=""
++fi
+ 
+ # do we have a slow CPU?
+ # if so, reduce the Y resolution to the half of the possible maximum:

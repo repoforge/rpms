@@ -1,0 +1,28 @@
+http://thread.gmane.org/gmane.linux.vdr/32109
+
+--- menu.c
++++ menu.c
+@@ -107,8 +107,7 @@
+   excl=Excl;
+ 
+   SetSource(Source); 
+-  LoadDir(currentdir);
+-  SetButtons();
++  NewDir(currentdir);
+ }
+ 
+ cMenuBrowse::~cMenuBrowse()
+@@ -157,7 +156,12 @@
+ bool cMenuBrowse::NewDir(const char *dir)
+ {
+   char *ncur=dir ? strdup(dir):0;
+-  if(LoadDir(ncur)) {
++  bool r=LoadDir(ncur);
++  if(!r && ncur) {
++    free(ncur); ncur=0;
++    r=LoadDir(ncur);
++    }
++  if(r) {
+     free(currentdir); currentdir=ncur;
+ 
+     cFileObj *item=CurrentItem();

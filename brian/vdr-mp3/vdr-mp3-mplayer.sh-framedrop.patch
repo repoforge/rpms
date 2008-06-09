@@ -1,0 +1,11 @@
+--- mplayer.sh~	2004-11-06 23:00:00.000000000 +0200
++++ mplayer.sh	2004-12-24 11:58:18.949657706 +0200
+@@ -189,7 +189,7 @@
+ 
+   if test -z "$FRAMEDROP" -o "$FRAMEDROP" != "true"; then FRAMEDROP=false; fi
+   debugvar FRAMEDROP "$FRAMEDROP"
+-  if $FRAMEDROP; then FDSTR="-framedrop"; fi 
++  if $FRAMEDROP; then FDSTR="-framedrop"; else FDSTR="-noframedrop"; fi 
+   debugvar FDSTR "$FDSTR"
+ 
+   declare LIRCSTR="" # no extra Lirc option!

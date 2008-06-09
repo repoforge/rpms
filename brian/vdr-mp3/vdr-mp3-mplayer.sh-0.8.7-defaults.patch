@@ -1,0 +1,84 @@
+--- m/mplayer.sh.conf~	2007-02-11 17:38:06.000000000 +0200
++++ m/mplayer.sh.conf	2007-02-25 13:25:00.000000000 +0200
+@@ -1,4 +1,4 @@
+-# Config File for mplayer.sh ...
++# Config File for mplayer.sh ...                                     -*- sh -*-
+ #
+ # $Id: mplayer.sh.conf,v 1.24.2.3 2007/02/11 15:19:35 juri Exp $
+ #
+@@ -67,9 +67,8 @@
+ 
+ # how to play AC3 audio?
+ # for AC3 via sound card (ALSA driver):
+-AC3AOUT="-ao alsa9 -ac hwac3"
+-# for AC3 via DVB (doesn't need AC3overDVB patch);
+-# needs MPlayer 0.90 final, or newer:
++AC3AOUT="-ao alsa -ac hwac3"
++# for AC3 via DVB (doesn't need AC3overDVB patch):
+ #AC3AOUT="-ac hwac3"
+ 
+ # what aspect ratio has your TV set?
+@@ -81,17 +80,10 @@
+ # *** Optional Setting *** Simply Remove them if they do not fit your needs...
+ # ***
+ 
+-# What detelecinig filter should we use to play NTSC material as PAL?
++# What detelecining filter should we use to play NTSC material as PAL?
+ # This is only used if you have set NTSC to false and PAL to true.
+-# If you use MPlayer versions 1.0 or higher I recommend to use the
+-# following setting "ivtc=1", but this is not supported by MPlayer 0.9x
+-#DETC_FILTER="ivtc=1"
+-DETC_FILTER="detc=dr=2:am=1"
+-
+-# What version of MPlayer do you have?
+-# if you have 0.9x then choose 'false'
+-# if you have 1.0(pre) then choose 'true'
+-MPLAYER_V1="true"
++DETC_FILTER="ivtc=1"
++#DETC_FILTER="detc=dr=2:am=1"
+ 
+ # Cache Option for MPlayer
+ CACHE="4096"
+@@ -115,10 +107,10 @@
+ DVDFiles="/video/plugins/DVD-VCD"
+ 
+ # What is your DVD-ROM device ?
+-DVD="/dev/hdc"
++DVD="/dev/dvd"
+ 
+ # What languages do your DVD's use ?
+-DVDLANG="de"
++DVDLANG="en"
+ 
+ # extra DVD options
+ #DVDOPTIONS="-af volume=+10"
+--- m/mplayer.sh~	2007-02-11 17:34:07.000000000 +0200
++++ m/mplayer.sh	2007-02-25 13:26:12.000000000 +0200
+@@ -253,13 +253,6 @@
+   SUFFIX=$(echo -e "${FILE:$[${#FILE}-4]:4}" | tr [A-Z] [a-z])
+   debugvar SUFFIX $SUFFIX
+ 
+-  if test -z "$MPLAYER_V1"; then
+-      echolog "*** MPLAYER_V1 not set! Setting it to 'false'."
+-      echolog "*** If you cannot play cue-files, then set it to 'true'."
+-      MPLAYER_V1="false"
+-  fi
+-  debugvar MPLAYER_V1 "$MPLAYER_V1"
+-
+   return;
+ }
+ 
+@@ -518,12 +511,7 @@
+     fi
+     unset FILE
+ elif test "${SUFFIX}" == ".cue"; then
+-    if $MPLAYER_V1; then      
+-        CMDLINE="$MPLAYER -vo $VO $AOUT $FDSTR $CACHESTR $REMOTE $USERDEF cue://$FILE:2"
+-	unset FILE
+-    else
+-        CMDLINE="$MPLAYER -vo $VO $AOUT $FDSTR $CACHESTR $REMOTE $USERDEF -vcd 2 -cuefile"
+-    fi
++    CMDLINE="$MPLAYER -vo $VO $AOUT $FDSTR $CACHESTR $REMOTE $USERDEF cue://$FILE:2"
+ else
+     # Try to determine the video attributes
+     if $DEBUG; then echolog "*** DEBUG: Calling getvidxy function to analyze source video stream ..."; fi

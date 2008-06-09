@@ -1,0 +1,67 @@
+#!/bin/sh
+#
+# vdradmind    WWW interface daemon for VDR
+#
+# chkconfig:   - 92 08
+# description: WWW interface daemon for VDR.
+# processname: vdradmind
+# config:      /etc/vdr/vdradmind.conf
+# pidfile:     /var/run/vdr/vdradmind.pid
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ "$NETWORKING" = "no" ] && exit 0
+
+exec="/usr/sbin/vdradmind"
+prog=$(basename $exec)
+
+lockfile=/var/lock/subsys/$prog
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon --user vdradmin "$exec >/dev/null 2>&1"
+    retval=$?
+    echo
+    [ $retval -eq 0 ] && touch $lockfile
+    return $retval
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    retval=$?
+    echo
+    [ $retval -eq 0 ] && rm -f $lockfile
+    return $retval
+}
+
+restart() {
+    stop
+    start
+}
+
+case "$1" in
+    start|stop|restart|reload)
+        $1
+        ;;
+    force-reload)
+        restart
+        ;;
+    reload)
+        exit 3 # LSB: not implemented
+        ;;
+    status)
+        status $prog
+        ;;
+    condrestart|try-restart)
+  	[ ! -f $lockfile ] || restart
+	;;
+    *)
+        echo $"Usage: $0 {start|stop|status|restart|try-restart|force-reload}"
+        exit 2
+esac

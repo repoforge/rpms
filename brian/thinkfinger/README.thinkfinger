@@ -1,0 +1,41 @@
+ThinkFinger 0.3 : Fedora specific notes.
+===============================================================================
+
+OK this README is meant for users using the Fedora distribution.
+The installation is almost the same, there are just some bits I wanted
+you to take into consideration.
+
+Installation Instructions
+=========================
+
+Please check the INSTALL and INSTALL.fedora files.
+
+General Fedora specific notes
+=============================
+
+- Where are the user bir files ?
+
+  These are located in /etc/security/pam_thinkfinger
+  In the default installs these are in /etc/pam_thinkfinger
+
+- There are some other differences we still need to clarify here.
+
+Example of a Fedora setup
+=========================
+
+'/etc/pam.d/system-auth'
+#%PAM-1.0
+# This file is auto-generated.
+# User changes will be destroyed the next time authconfig is run.
+auth        required      pam_env.so
+auth        sufficient    pam_thinkfinger.so debug
+auth        sufficient    pam_unix.so nullok try_first_pass
+auth        requisite     pam_succeed_if.so uid >= 500 quiet
+auth        required      pam_deny.so
+
+[...]
+
+Any questions?
+==============
+
+Please e-mail me at : Jose Plans <jplans@redhat.com>

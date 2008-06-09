@@ -1,0 +1,23 @@
+#!/bin/sh /usr/share/dpatch/dpatch-run
+
+## fix-ogm-ac3-vdrsync-dev patch by Thomas Günther <@toms-cafe.de>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Fix ogm/ac3: vdrsync 0.1.2.2dev1 creates bd.mpa, not bd.ac3.
+
+@DPATCH@
+diff -urNad /usr/src/cvs/e-tobi/test/scripts/queuehandler.sh test/scripts/queuehandler.sh
+--- /usr/src/cvs/e-tobi/test/scripts/queuehandler.sh	Sun May  2 21:27:54 2004
++++ test/scripts/queuehandler.sh	Sun May  2 21:29:38 2004
+@@ -360,6 +360,11 @@
+         log_info "demuxing all vdr-files from directory $dir"
+ 	evecho "demuxing vdr-files"
+         execute "$vdrsync $dir -o $tempdir"
++	# vdrsync 0.1.2.2 developer version creates bd.mpa
++	if [ -e "$tempdir/bd.mpa" ]
++	then
++	  mv "$tempdir/bd.mpa" "$tempdir/bd.ac3"
++	fi
+       fi
+       ;;
+     *)

@@ -1,0 +1,18 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 04_ftp-location.dpatch by Tobias Grimm <tg@e-tobi.net>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Anonymous ftp only possible at tgftp.nws.noaa.gov.
+
+@DPATCH@
+diff -urNad vdr-plugin-weather-0.2.1e~/metarReader.c vdr-plugin-weather-0.2.1e/metarReader.c
+--- vdr-plugin-weather-0.2.1e~/metarReader.c	2003-12-04 16:04:24.000000000 +0100
++++ vdr-plugin-weather-0.2.1e/metarReader.c	2007-02-17 20:16:19.000000000 +0100
+@@ -1,6 +1,6 @@
+ #include "metarReader.h"
+ 
+-static const char *host = "weather.noaa.gov";
++static const char *host = "tgftp.nws.noaa.gov";
+ static const char *metarDir = "/data/observations/metar/stations/";
+ 
+ cUpdate::cUpdate(cWeatherSetup *setup) {

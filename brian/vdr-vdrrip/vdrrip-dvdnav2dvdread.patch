@@ -1,0 +1,39 @@
+Index: vdrrip-0.3.0/Makefile
+===================================================================
+--- vdrrip-0.3.0/Makefile
++++ vdrrip-0.3.0/Makefile	2007-11-06 16:57:21.000000000 +0200
+@@ -54,7 +54,7 @@
+ 
+ ifdef VDRRIP_DVD
+   DEFINES += -DVDRRIP_DVD
+-  LIBS += -ldvdnav
++  LIBS += -ldvdread
+ endif
+ 
+ ### Implicit rules:
+Index: vdrrip-0.3.0/menu-vdrrip.c
+===================================================================
+--- vdrrip-0.3.0/menu-vdrrip.c
++++ vdrrip-0.3.0/menu-vdrrip.c	2007-11-06 16:56:07.000000000 +0200
+@@ -6,7 +6,7 @@
+ #include <vdr/videodir.h>
+ 
+ #ifdef VDRRIP_DVD
+-  #include <dvdnav/ifo_read.h>
++  #include <dvdread/ifo_read.h>
+ #endif //VDRRIP_DVD
+ 
+ #include "menu-vdrrip.h"
+Index: vdrrip-0.3.0/movie.c
+===================================================================
+--- vdrrip-0.3.0/movie.c
++++ vdrrip-0.3.0/movie.c	2007-11-06 16:56:21.000000000 +0200
+@@ -8,7 +8,7 @@
+ #include <math.h>
+ 
+ #ifdef VDRRIP_DVD
+-  #include <dvdnav/ifo_read.h>
++  #include <dvdread/ifo_read.h>
+ #endif //VDRRIP_DVD
+ 
+ #include <vdr/plugin.h>

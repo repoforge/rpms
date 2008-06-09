@@ -1,0 +1,7 @@
+#
+# wapaccess     This file describes user based access to the VDR WAP
+#               daemon running on this system.  Use the wappasswd utility
+#               to create entries here, like:
+#                 wappasswd username password >> wapaccess
+#
+

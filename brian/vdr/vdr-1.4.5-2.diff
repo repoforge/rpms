@@ -1,0 +1,269 @@
+diff -ruN vdr-1.4.5-1/CONTRIBUTORS vdr-1.4.5-2/CONTRIBUTORS
+--- vdr-1.4.5-1/CONTRIBUTORS	2007-01-26 15:14:33.000000000 +0100
++++ vdr-1.4.5-2/CONTRIBUTORS	2007-02-24 12:13:59.000000000 +0100
+@@ -360,6 +360,7 @@
+ Thilo Wunderlich <wunderlich@speedway.org>
+  for his help in keeping 'channels.conf' up to date
+  for reporting a problem with accessing the epg.data file before it is fully written
++ for updating satellite names in 'sources.conf'
+ 
+ Stephan Schreiber <stephan@sschreiber.de>
+  for his support in keeping the Premiere World channels up to date in 'channels.conf.cable'
+@@ -1116,6 +1117,7 @@
+  for fixing a possible crash in remux.c on 64-bit machines
+  for making cCommand::Execute() use cPipe instead of popen() to avoid problems
+  with open file handles when starting background commands
++ for fixing handling error status in cDvbTuner::GetFrontendStatus()
+ 
+ Richard Robson <richard_robson@beeb.net>
+  for reporting freezing replay if a timer starts while in Transfer Mode from the
+@@ -1389,6 +1391,7 @@
+  replay has been stopped
+  for reporting a problem with displaying the replay mode symbol in case of "Multi
+  speed mode"
++ for removing 'assert(0)' from cDvbSpuDecoder::setTime()
+ 
+ Jürgen Schmitz <j.schmitz@web.de>
+  for reporting a bug in displaying the current channel when switching via the SVDRP
+@@ -1694,6 +1697,7 @@
+ Martin Wache <M.Wache@gmx.net>
+  for adding a sleep in cDvbPlayer::Action() in case there is no data to send to the
+  device, which avoids a busy loop on very fast machines
++ for fixing a possible crash when loading an invalid XPM file
+ 
+ Matthias Lenk <matthias.lenk@amd.com>
+  for reporting an out-of-bounds memory access with audio language ids
+diff -ruN vdr-1.4.5-1/HISTORY vdr-1.4.5-2/HISTORY
+--- vdr-1.4.5-1/HISTORY	2007-01-28 10:58:12.000000000 +0100
++++ vdr-1.4.5-2/HISTORY	2007-02-24 12:13:25.000000000 +0100
+@@ -5035,3 +5035,11 @@
+ - Now using cPipe instead of popen() in cCommand::Execute() to avoid problems
+   with open file handles when starting background commands (thanks to Reinhard
+   Nissl).
++
++2007-02-24: Version 1.4.5-2
++
++- Removed 'assert(0)' from cDvbSpuDecoder::setTime() (thanks to Marco Schlüßler).
++- Fixed a possible crash when loading an invalid XPM file (thanks to Martin Wache).
++- Updated satellite names in 'sources.conf' (thanks to Thilo Wunderlich).
++- Fixed handling error status in cDvbTuner::GetFrontendStatus() (thanks to
++  Reinhard Nissl).
+diff -ruN vdr-1.4.5-1/config.h vdr-1.4.5-2/config.h
+--- vdr-1.4.5-1/config.h	2007-01-26 14:14:47.000000000 +0100
++++ vdr-1.4.5-2/config.h	2007-02-03 11:14:42.000000000 +0100
+@@ -4,7 +4,7 @@
+  * See the main source file 'vdr.c' for copyright information and
+  * how to reach the author.
+  *
+- * $Id: config.h 1.282.1.1 2007/01/26 13:14:47 kls Exp $
++ * $Id: config.h 1.282.1.2 2007/02/03 10:14:42 kls Exp $
+  */
+ 
+ #ifndef __CONFIG_H
+@@ -21,7 +21,7 @@
+ 
+ // VDR's own version number:
+ 
+-#define VDRVERSION  "1.4.5-1"
++#define VDRVERSION  "1.4.5-2"
+ #define VDRVERSNUM   10405  // Version * 10000 + Major * 100 + Minor
+ 
+ // The plugin API's version number:
+diff -ruN vdr-1.4.5-1/dvbdevice.c vdr-1.4.5-2/dvbdevice.c
+--- vdr-1.4.5-1/dvbdevice.c	2006-08-14 11:38:32.000000000 +0200
++++ vdr-1.4.5-2/dvbdevice.c	2007-02-24 12:10:14.000000000 +0100
+@@ -4,7 +4,7 @@
+  * See the main source file 'vdr.c' for copyright information and
+  * how to reach the author.
+  *
+- * $Id: dvbdevice.c 1.160 2006/08/14 09:38:32 kls Exp $
++ * $Id: dvbdevice.c 1.160.1.1 2007/02/24 11:10:14 kls Exp $
+  */
+ 
+ #include "dvbdevice.h"
+@@ -157,15 +157,14 @@
+               ; // just to clear the event queue - we'll read the actual status below
+         }
+      }
+-  do {
+-     int stat = ioctl(fd_frontend, FE_READ_STATUS, &Status);
+-     if (stat == 0)
+-        return true;
+-     if (stat < 0) {
+-        if (errno == EINTR)
++  while (1) {
++        int stat = ioctl(fd_frontend, FE_READ_STATUS, &Status);
++        if (stat == 0)
++           return true;
++        if (stat < 0 && errno == EINTR)
+            continue;
++        break;
+         }
+-     } while (0);
+   return false;
+ }
+ 
+diff -ruN vdr-1.4.5-1/dvbspu.c vdr-1.4.5-2/dvbspu.c
+--- vdr-1.4.5-1/dvbspu.c	2006-04-17 14:45:05.000000000 +0200
++++ vdr-1.4.5-2/dvbspu.c	2007-02-03 11:13:18.000000000 +0100
+@@ -8,7 +8,7 @@
+  *
+  * parts of this file are derived from the OMS program.
+  *
+- * $Id: dvbspu.c 1.21 2006/04/17 12:45:05 kls Exp $
++ * $Id: dvbspu.c 1.22 2007/02/03 10:13:18 kls Exp $
+  */
+ 
+ #include "dvbspu.h"
+@@ -504,9 +504,8 @@
+                 default:
+                     esyslog("invalid sequence in control header (%.2x)",
+                             spu[i]);
+-                    assert(0);
+-                    i++;
+-                    break;
++                    Empty();
++                    return 0;
+                 }
+             }
+             if (fodd != 0 && feven != 0) {
+diff -ruN vdr-1.4.5-1/osd.c vdr-1.4.5-2/osd.c
+--- vdr-1.4.5-1/osd.c	2006-02-26 15:31:31.000000000 +0100
++++ vdr-1.4.5-2/osd.c	2007-02-17 17:05:52.000000000 +0100
+@@ -4,7 +4,7 @@
+  * See the main source file 'vdr.c' for copyright information and
+  * how to reach the author.
+  *
+- * $Id: osd.c 1.67 2006/02/26 14:31:31 kls Exp $
++ * $Id: osd.c 1.68 2007/02/17 16:05:52 kls Exp $
+  */
+ 
+ #include "osd.h"
+@@ -218,14 +218,17 @@
+                  int w, h, n, c;
+                  if (4 != sscanf(s, "%d %d %d %d", &w, &h, &n, &c)) {
+                     esyslog("ERROR: faulty 'values' line in XPM file '%s'", FileName);
++                    isXpm = false;
+                     break;
+                     }
+                  lines = h + n + 1;
+                  Xpm = MALLOC(char *, lines);
++                 memset(Xpm, 0, lines * sizeof(char*));
+                  }
+               char *q = strchr(s, '"');
+               if (!q) {
+                  esyslog("ERROR: missing quotes in XPM file '%s'", FileName);
++                 isXpm = false;
+                  break;
+                  }
+               *q = 0;
+@@ -233,16 +236,21 @@
+                  Xpm[index++] = strdup(s);
+               else {
+                  esyslog("ERROR: too many lines in XPM file '%s'", FileName);
++                 isXpm = false;
+                  break;
+                  }
+               }
+            }
+-     if (index == lines)
+-        Result = SetXpm(Xpm);
+-     else
+-        esyslog("ERROR: too few lines in XPM file '%s'", FileName);
+-     for (int i = 0; i < index; i++)
+-         free(Xpm[i]);
++     if (isXpm) {
++        if (index == lines)
++           Result = SetXpm(Xpm);
++        else
++           esyslog("ERROR: too few lines in XPM file '%s'", FileName);
++        }
++     if (Xpm) {
++        for (int i = 0; i < index; i++)
++            free(Xpm[i]);
++        }
+      free(Xpm);
+      fclose(f);
+      }
+diff -ruN vdr-1.4.5-1/sources.conf vdr-1.4.5-2/sources.conf
+--- vdr-1.4.5-1/sources.conf	2006-06-15 12:02:28.000000000 +0200
++++ vdr-1.4.5-2/sources.conf	2007-02-17 17:15:13.000000000 +0100
+@@ -38,7 +38,7 @@
+ S39E    Hellas Sat 2
+ S40E    Express AM1
+ S42E    Turksat 1C/2A
+-S45E    PAS 12
++S45E    Intelsat 12
+ S49E    Yamal 202
+ S53E    Express AM 22
+ S55E    Insat 3E & Intelsat 702
+@@ -48,9 +48,9 @@
+ S62E    Intelsat 902
+ S64E    Intelsat 906
+ S66E    Intelsat 704
+-S68.5E  PAS 7/10
++S68.5E  Intelsat 7/10
+ S70.5E  Eutelsat W5
+-S72E    PAS 4
++S72E    Intelsat 4
+ 
+ # Asia
+ 
+@@ -98,8 +98,8 @@
+ S160E   Optus B1
+ S162E   Superbird B2
+ S164E   Optus A3
+-S166E   PAS 8
+-S169E   PAS 2
++S166E   Intelsat 8
++S169E   Intelsat 2
+ S172E   AMC 23
+ S180E   Intelsat 701
+ S177W   NSS 5
+@@ -125,12 +125,12 @@
+ S34.5W  Intelsat 903
+ S37.5W  Telstar 11 & AMC 12
+ S40.5W  NSS 806
+-S43W    PAS 3R/6B
+-S45W    PAS 1R
++S43W    Intelsat 3R/6B
++S45W    Intelsat 1R
+ S50W    Intelsat 705
+ S53W    Intelsat 707
+ S55.5W  Intelsat 805
+-S58W    PAS 9
++S58W    Intelsat 9
+ S61W    Amazonas
+ 
+ # America
+@@ -151,13 +151,13 @@
+ S85W    AMC 2
+ S85.1W  XM 3
+ S87W    AMC3
+-S89W    Intelsat Americas 8
++S89W    Galaxy 28
+ S91W    Galaxy 11 & Nimiq 1
+ S91.5W  DirecTV 2
+ S92W    Brasilsat B4
+-S93W    Intelsat Americas 6
++S93W    Galaxy 26
+ S95W    Galaxy 3C
+-S97W    Intelsat Americas 5
++S97W    Galaxy 25
+ S99W    Galaxy 4R
+ S99.2W  Spaceway 2
+ S101W   DirecTV 1R/4S/8 & AMC4
+@@ -168,11 +168,11 @@
+ S111.1W Anik F2
+ S113W   Solidaridad 2
+ S119W   Echostar 7 & DirecTV 7S
+-S121W   Echostar 9 & Intelsat Americas 13
++S121W   Echostar 9 & Galaxy 23
+ S123W   Galaxy 10R
+ S125W   Galaxy 14
+ S127W   Galaxy 13/Horizons 1
+-S129W   Echostar 5 & Intelsat Americas 7
++S129W   Echostar 5 & Galaxy 27
+ S131W   AMC 11
+ S133W   Galaxy15/1R
+ S135W   AMC 10

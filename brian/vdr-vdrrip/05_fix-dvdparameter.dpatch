@@ -1,0 +1,30 @@
+#!/bin/sh /usr/share/dpatch/dpatch-run
+
+## fix-dvdparameter patch by Thomas Günther <tom@toms-cafe.de>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Change the dvd-parameter to -dvd if the mencoder-version is 0.XX,
+## DP: from http://www.a-land.de (herbert attenberger <herbsl at a-land.de>).
+
+@DPATCH@
+diff -urNad /usr/src/cvs/vdr-plugin-vdrrip/scripts/queuehandler.sh vdr-plugin-vdrrip/scripts/queuehandler.sh
+--- /usr/src/cvs/vdr-plugin-vdrrip/scripts/queuehandler.sh	Sat Apr 24 14:28:20 2004
++++ vdr-plugin-vdrrip/scripts/queuehandler.sh	Sat Apr 24 14:33:17 2004
+@@ -216,6 +216,17 @@
+     mp=$mplayer
+   fi
+ 
++  # change the dvd-parameter to -dvd if the mencoder-version is 0.XX
++  if [ "$dvd" ]
++  then
++    local menc_ver=`$mc -v 2>/dev/null | grep "MEncoder" | sed "s/^MEncoder \(.\).*/\1/"`
++    if [ "$menc_ver" = "0" ]
++    then
++      dvd=`echo "$dvd" | sed "s/^dvd:\/\//-dvd /"`
++    fi
++    log_debug "dvd: $dvd"
++  fi
++
+   # check needed tools  
+   case "$container" in
+     "avi")

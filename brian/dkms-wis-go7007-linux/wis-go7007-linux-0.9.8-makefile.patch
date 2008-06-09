@@ -1,0 +1,37 @@
+--- wis-go7007-linux-0.9.8/Makefile~	2005-11-05 18:58:07.000000000 +0100
++++ wis-go7007-linux-0.9.8/Makefile	2006-04-04 00:47:27.000000000 +0200
+@@ -44,11 +44,15 @@
+ 	@false
+ endif
+ 
+-all:
++all: all_kmdl all_non_kmdl
++
++all_kmdl:
+ 	@echo
+ 	@echo '*****' Using kernel source in $(KSRC) '*****'
+ 	@echo
+ 	$(MAKE) modules -C $(KSRC) M=$(shell pwd)/kernel
++
++all_non_kmdl:
+ 	sed -e s/@FIRMWARE_DIR@/$(FIRMWARE_DIR_ESCAPED)/ \
+ 			-e s/@FXLOAD@/$(FXLOAD_ESCAPED)/ \
+ 		<hotplug/wis-ezusb.in >hotplug/wis-ezusb
+@@ -57,12 +61,16 @@
+ 		<udev/wis-ezusb.rules.in >udev/wis-ezusb.rules
+ 	$(MAKE) -C apps CFLAGS="-I$(KSRC)/include -I../include"
+ 
+-install:
++install: install_kmdl install_non_kmdl
++
++install_kmdl:
+ 	$(MAKE) modules_install INSTALL_MOD_PATH=$(DESTDIR) \
+ 		-C $(KSRC) M=$(shell pwd)/kernel
+ ifeq ($(SKIP_DEPMOD),)
+ 	/sbin/depmod -a
+ endif
++
++install_non_kmdl:
+ 	@echo
+ 	@echo "Installing include files into $(KSRC)/include/linux"
+ 	@echo

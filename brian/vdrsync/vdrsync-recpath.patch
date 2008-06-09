@@ -1,0 +1,21 @@
+--- vdrsync.pl~	2005-03-22 21:45:40.000000000 +0200
++++ vdrsync.pl	2005-09-20 17:34:55.000000000 +0300
+@@ -5561,13 +5561,13 @@
+     closedir $DIR;
+ 	my @files =   sort (grep { /\d{3}.vdr$/  } @allfiles);
+ 
+-	$self->{summary_file} = $indir . "summary.vdr" if (-e "$indir/summary.vdr");
+-	$self->{marks_file} = $indir . "marks.vdr" if (-e "$indir/marks.vdr");
+-	$self->{index_file} = $indir . "index.vdr" if (-e "$indir/index.vdr");
+-	$self->{chapter_marks_file} = $indir . "chapter_marks.vdr" if (-e "$indir/chapter_marks.vdr");
++	$self->{summary_file} = "$indir/summary.vdr" if (-e "$indir/summary.vdr");
++	$self->{marks_file} = "$indir/marks.vdr" if (-e "$indir/marks.vdr");
++	$self->{index_file} = "$indir/index.vdr" if (-e "$indir/index.vdr");
++	$self->{chapter_marks_file} = "$indir/chapter_marks.vdr" if (-e "$indir/chapter_marks.vdr");
+     
+ 	foreach (@files) {
+-		$_ = $indir . $_;
++		$_ = "$indir/$_";
+ 		#print "trying to open $_\n";
+ 		my $DUMMYFH;
+ 		open $DUMMYFH, "$_" or die "Can not open $_: $!\n";

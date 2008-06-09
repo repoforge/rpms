@@ -1,0 +1,5058 @@
+Index: xine-lib/configure.ac
+===================================================================
+RCS file: /cvsroot/xine/xine-lib/configure.ac,v
+retrieving revision 1.439
+diff -u -r1.439 configure.ac
+--- xine-lib/configure.ac	4 Dec 2006 22:25:13 -0000	1.439
++++ xine-lib/configure.ac	10 Dec 2006 19:07:34 -0000
+@@ -2500,6 +2500,7 @@
+ src/video_out/vidix/drivers/Makefile
+ src/xine-utils/Makefile
+ src/xine-engine/Makefile
++src/vdr/Makefile
+ win32/Makefile
+ win32/include/Makefile])
+ AC_CONFIG_COMMANDS([default],[[chmod +x ./misc/SlackBuild ./misc/build_rpms.sh ./misc/relchk.sh]],[[]])
+@@ -2535,7 +2536,7 @@
+ echo "   - stdin_fifo    - rtp"
+ echo "   - http          - mms"
+ echo "   - pnm           - rtsp"
+-echo "   - dvb"
++echo "   - dvb           - vdr"
+ if test x"$external_dvdnav" = "xyes"; then
+   echo "   - dvd (external libs)"
+ else
+@@ -2718,6 +2719,7 @@
+ echo "   - eq              - eq2"
+ echo "   - boxblur         - denoise3d"
+ echo "   - unsharp         - tvtime"
++echo "   - vdr"
+ echo "  * SFX:"
+ echo "   - goom            - oscope"
+ echo "   - fftscope        - mosaico"
+Index: xine-lib/include/xine.h.in
+===================================================================
+RCS file: /cvsroot/xine/xine-lib/include/xine.h.in,v
+retrieving revision 1.160
+diff -u -r1.160 xine.h.in
+--- xine-lib/include/xine.h.in	28 Oct 2006 18:51:08 -0000	1.160
++++ xine-lib/include/xine.h.in	10 Dec 2006 19:07:34 -0000
+@@ -1561,6 +1561,7 @@
+ #define XINE_EVENT_VDR_MUTE             331
+ #define XINE_EVENT_VDR_AUDIO            332
+ #define XINE_EVENT_VDR_INFO             333
++#define XINE_EVENT_VDR_CHANNELPREVIOUS  334
+ /* some space for further keys */
+ #define XINE_EVENT_VDR_SETVIDEOWINDOW   350
+ #define XINE_EVENT_VDR_FRAMESIZECHANGED 351
+Index: xine-lib/src/Makefile.am
+===================================================================
+RCS file: /cvsroot/xine/xine-lib/src/Makefile.am,v
+retrieving revision 1.54
+diff -u -r1.54 Makefile.am
+--- xine-lib/src/Makefile.am	14 Jan 2005 15:24:08 -0000	1.54
++++ xine-lib/src/Makefile.am	10 Dec 2006 19:07:34 -0000
+@@ -30,4 +30,5 @@
+ 	libfaad \
+ 	libflac \
+         libmusepack \
+-	post
++	post \
++	vdr
+Index: xine-lib/src/libffmpeg/libavcodec/mjpeg.c
+===================================================================
+RCS file: /cvsroot/xine/xine-lib/src/libffmpeg/libavcodec/mjpeg.c,v
+retrieving revision 1.38
+diff -u -r1.38 mjpeg.c
+--- xine-lib/src/libffmpeg/libavcodec/mjpeg.c	4 Dec 2006 22:25:19 -0000	1.38
++++ xine-lib/src/libffmpeg/libavcodec/mjpeg.c	10 Dec 2006 19:07:35 -0000
+@@ -1043,7 +1043,7 @@
+         /* only 8 bit precision handled */
+         if (get_bits(&s->gb, 4) != 0)
+         {
+-            dprintf("dqt: 16bit precision\n");
++            dprintf("dqt: 16bit precision\n%s", "");
+             return -1;
+         }
+         index = get_bits(&s->gb, 4);
+@@ -1290,7 +1290,7 @@
+     /* DC coef */
+     val = mjpeg_decode_dc(s, dc_index);
+     if (val == 0xffff) {
+-        dprintf("error dc\n");
++        dprintf("error dc\n%s", "");
+         return -1;
+     }
+     val = val * quant_matrix[0] + s->last_dc[component];
+@@ -1745,7 +1745,7 @@
+     emms_c();
+     return 0;
+  out_of_range:
+-    dprintf("decode_sos: ac/dc index out of range\n");
++    dprintf("decode_sos: ac/dc index out of range\n%s", "");
+     return -1;
+ }
+ 
+@@ -2251,7 +2251,7 @@
+ 
+     if (get_bits_long(&hgb, 32) != be2me_32(ff_get_fourcc("mjpg")))
+     {
+-        dprintf("not mjpeg-b (bad fourcc)\n");
++        dprintf("not mjpeg-b (bad fourcc)\n%s", "");
+         return 0;
+     }
+ 
+Index: xine-lib/src/libffmpeg/libavcodec/mpeg12.c
+===================================================================
+RCS file: /cvsroot/xine/xine-lib/src/libffmpeg/libavcodec/mpeg12.c,v
+retrieving revision 1.42
+diff -u -r1.42 mpeg12.c
+--- xine-lib/src/libffmpeg/libavcodec/mpeg12.c	4 Dec 2006 22:25:19 -0000	1.42
++++ xine-lib/src/libffmpeg/libavcodec/mpeg12.c	10 Dec 2006 19:07:35 -0000
+@@ -2284,7 +2284,7 @@
+     s1->frame_rate_ext.num = get_bits(&s->gb, 2)+1;
+     s1->frame_rate_ext.den = get_bits(&s->gb, 5)+1;
+ 
+-    dprintf("sequence extension\n");
++    dprintf("sequence extension\n%s", "");
+     s->codec_id= s->avctx->codec_id= CODEC_ID_MPEG2VIDEO;
+     s->avctx->sub_id = 2; /* indicates mpeg2 found */
+ 
+@@ -2356,7 +2356,7 @@
+ {
+     int i, v, j;
+ 
+-    dprintf("matrix extension\n");
++    dprintf("matrix extension\n%s", "");
+ 
+     if (get_bits1(&s->gb)) {
+         for(i=0;i<64;i++) {
+@@ -2833,10 +2833,10 @@
+             s->chroma_intra_matrix[j] = v;
+         }
+ #ifdef DEBUG
+-        dprintf("intra matrix present\n");
++        dprintf("intra matrix present\n%s", "");
+         for(i=0;i<64;i++)
+             dprintf(" %d", s->intra_matrix[s->dsp.idct_permutation[i]]);
+-        dprintf("\n");
++        dprintf("\n%s", "");
+ #endif
+     } else {
+         for(i=0;i<64;i++) {
+@@ -2858,10 +2858,10 @@
+             s->chroma_inter_matrix[j] = v;
+         }
+ #ifdef DEBUG
+-        dprintf("non intra matrix present\n");
++        dprintf("non intra matrix present\n%s", "");
+         for(i=0;i<64;i++)
+             dprintf(" %d", s->inter_matrix[s->dsp.idct_permutation[i]]);
+-        dprintf("\n");
++        dprintf("\n%s", "");
+ #endif
+     } else {
+         for(i=0;i<64;i++) {
+@@ -3061,7 +3061,7 @@
+     int ret, input_size;
+     AVFrame *picture = data;
+     MpegEncContext *s2 = &s->mpeg_enc_ctx;
+-    dprintf("fill_buffer\n");
++    dprintf("fill_buffer\n%s", "");
+ 
+     if (buf_size == 0) {
+         /* special case for last picture */
+@@ -3305,7 +3305,7 @@
+     if( !(avctx->slice_flags & SLICE_FLAG_CODED_ORDER) )
+         return -1;
+     if( !(avctx->slice_flags & SLICE_FLAG_ALLOW_FIELD) ){
+-        dprintf("mpeg12.c: XvMC decoder will work better if SLICE_FLAG_ALLOW_FIELD is set\n");
++        dprintf("mpeg12.c: XvMC decoder will work better if SLICE_FLAG_ALLOW_FIELD is set\n%s", "");
+     }
+     mpeg_decode_init(avctx);
+     s = avctx->priv_data;
+Index: xine-lib/src/libffmpeg/libavcodec/mpegaudiodec.c
+===================================================================
+RCS file: /cvsroot/xine/xine-lib/src/libffmpeg/libavcodec/mpegaudiodec.c,v
+retrieving revision 1.17
+diff -u -r1.17 mpegaudiodec.c
+--- xine-lib/src/libffmpeg/libavcodec/mpegaudiodec.c	4 Dec 2006 22:25:19 -0000	1.17
++++ xine-lib/src/libffmpeg/libavcodec/mpegaudiodec.c	10 Dec 2006 19:07:36 -0000
+@@ -1177,15 +1177,15 @@
+     if (s->nb_channels == 2) {
+         if (s->layer == 3) {
+             if (s->mode_ext & MODE_EXT_MS_STEREO)
+-                dprintf("ms-");
++                dprintf("ms-%s", "");
+             if (s->mode_ext & MODE_EXT_I_STEREO)
+-                dprintf("i-");
++                dprintf("i-%s", "");
+         }
+-        dprintf("stereo");
++        dprintf("stereo%s", "");
+     } else {
+-        dprintf("mono");
++        dprintf("mono%s", "");
+     }
+-    dprintf("\n");
++    dprintf("\n%s", "");
+ #endif
+     return 0;
+ }
+@@ -1363,7 +1363,7 @@
+         for(ch=0;ch<s->nb_channels;ch++) {
+             for(i=0;i<sblimit;i++)
+                 dprintf(" %d", bit_alloc[ch][i]);
+-            dprintf("\n");
++            dprintf("\n%s", "");
+         }
+     }
+ #endif
+@@ -1415,10 +1415,10 @@
+                 sf = scale_factors[ch][i];
+                 dprintf(" %d %d %d", sf[0], sf[1], sf[2]);
+             } else {
+-                dprintf(" -");
++                dprintf(" -%s", "");
+             }
+         }
+-        dprintf("\n");
++        dprintf("\n%s", "");
+     }
+ #endif
+ 
+@@ -2362,7 +2362,7 @@
+                            g->scfsi, gr, ch);
+                     for(i=0;i<j;i++)
+                         dprintf(" %d", g->scale_factors[i]);
+-                    dprintf("\n");
++                    dprintf("\n%s", "");
+                 }
+ #endif
+             } else {
+@@ -2424,7 +2424,7 @@
+                            gr, ch);
+                     for(i=0;i<40;i++)
+                         dprintf(" %d", g->scale_factors[i]);
+-                    dprintf("\n");
++                    dprintf("\n%s", "");
+                 }
+ #endif
+             }
+@@ -2521,7 +2521,7 @@
+             dprintf("%d-%d:", i, ch);
+             for(j=0;j<SBLIMIT;j++)
+                 dprintf(" %0.6f", (double)s->sb_samples[ch][i][j] / FRAC_ONE);
+-            dprintf("\n");
++            dprintf("\n%s", "");
+         }
+     }
+ #endif
+Index: xine-lib/src/libffmpeg/libavcodec/i386/Makefile.am
+===================================================================
+RCS file: /cvsroot/xine/xine-lib/src/libffmpeg/libavcodec/i386/Makefile.am,v
+retrieving revision 1.28
+diff -u -r1.28 Makefile.am
+--- xine-lib/src/libffmpeg/libavcodec/i386/Makefile.am	4 Dec 2006 22:25:25 -0000	1.28
++++ xine-lib/src/libffmpeg/libavcodec/i386/Makefile.am	10 Dec 2006 19:07:39 -0000
+@@ -9,7 +9,7 @@
+ AM_CPPFLAGS = $(LIBFFMPEG_CPPFLAGS) -I$(top_srcdir)/src/libffmpeg/libavutil
+ 
+ # Avoid "can't find register" failures with -O1 and higher
+-dsputil_mmx.o dsputil_mmx.lo: CFLAGS=`echo @CFLAGS@ | sed -e 's/-funroll-loops//g; s/-O[0-9]/-Os/g'`
++dsputil_mmx.o dsputil_mmx.lo: CFLAGS=`echo @CFLAGS@ | sed -e 's/-funroll-loops//g; s/-O([0-9]|s|$)/-Os /g'`
+ 
+ # Avoid errors on (at least) amd64 with -O0
+ fdct_mmx.o fdct_mmx.lo: CFLAGS=`echo @CFLAGS@ | sed -e 's/^/-Os /; s/-O0\?\s/-Os /g'`
+Index: xine-lib/src/libmpeg2/decode.c
+===================================================================
+RCS file: /cvsroot/xine/xine-lib/src/libmpeg2/decode.c,v
+retrieving revision 1.132
+diff -u -r1.132 decode.c
+--- xine-lib/src/libmpeg2/decode.c	23 Jun 2006 18:22:19 -0000	1.132
++++ xine-lib/src/libmpeg2/decode.c	10 Dec 2006 19:07:39 -0000
+@@ -236,7 +236,7 @@
+ }
+ 
+ static inline int parse_chunk (mpeg2dec_t * mpeg2dec, int code,
+-			       uint8_t * buffer)
++			       uint8_t * buffer, int next_code)
+ {
+     picture_t * picture;
+     int is_frame_done;
+@@ -393,6 +393,11 @@
+ 	    /* abort(); */
+ 	    break;
+ 	}
++
++        /* according to ISO/IEC 13818-2, an extension start code will follow.
++         * Otherwise the stream follows ISO/IEC 11172-2 which means MPEG1 */ 
++        picture->mpeg1 = (next_code != 0xb5);
++
+ 	if (mpeg2dec->force_aspect) picture->aspect_ratio_information = mpeg2dec->force_aspect;
+ 
+ 	if (mpeg2dec->is_sequence_needed ) {
+@@ -574,45 +579,135 @@
+     return is_frame_done;
+ }
+ 
++static inline int find_start_code (mpeg2dec_t * mpeg2dec,
++                                   uint8_t ** current, uint8_t * limit)
++{
++    uint8_t * p;
++
++    if (*current >= limit)
++	return 0;
++    if (mpeg2dec->shift == 0x00000100)
++	return 1;
++
++    mpeg2dec->shift = (mpeg2dec->shift | *(*current)++) << 8;
++
++    if (*current >= limit)
++	return 0;
++    if (mpeg2dec->shift == 0x00000100)
++	return 1;
++
++    mpeg2dec->shift = (mpeg2dec->shift | *(*current)++) << 8;
++
++    if (*current >= limit)
++	return 0;
++    if (mpeg2dec->shift == 0x00000100)
++	return 1;
++
++    limit--;
++
++    if (*current >= limit) {
++	mpeg2dec->shift = (mpeg2dec->shift | *(*current)++) << 8;
++	return 0;
++    }
++
++    p = *current;
++
++    while (p < limit && (p = (uint8_t *)memchr(p, 0x01, limit - p))) {
++	if (p[-2] || p[-1])
++	    p += 3;
++	else {
++	    *current = ++p;
++	    return 1;
++	}
++    }
++
++    *current = ++limit;
++    p = limit - 3;
++    mpeg2dec->shift = (mpeg2dec->shift | *p++) << 8;
++    mpeg2dec->shift = (mpeg2dec->shift | *p++) << 8;
++    mpeg2dec->shift = (mpeg2dec->shift | *p++) << 8;
++
++    return 0;
++}
++
+ static inline uint8_t * copy_chunk (mpeg2dec_t * mpeg2dec,
+ 				    uint8_t * current, uint8_t * end)
+ {
+-    uint32_t shift;
+-    uint8_t * chunk_ptr;
+     uint8_t * limit;
+-    uint8_t byte;
+ 
+-    shift = mpeg2dec->shift;
+-    chunk_ptr = mpeg2dec->chunk_ptr;
+-    limit = current + (mpeg2dec->chunk_buffer + BUFFER_SIZE - chunk_ptr);
++    /* sequence end code 0xb7 doesn't have any data and there might be the case
++     * that no start code will follow this code for quite some time (e. g. in case
++     * of a still image.
++     * Therefore, return immediately with a chunk_size of 0. Setting code to 0xb4
++     * will eat up any trailing garbage next time.
++     */
++    if (mpeg2dec->code == 0xb7) {
++       mpeg2dec->code = 0xb4;
++       mpeg2dec->chunk_size = 0;
++       return current;
++    }
++
++    limit = current + (mpeg2dec->chunk_buffer + BUFFER_SIZE - mpeg2dec->chunk_ptr);
+     if (limit > end)
+ 	limit = end;
++#if 0
++    {
++	uint32_t shift = mpeg2dec->shift;
++	uint8_t * chunk_ptr = mpeg2dec->chunk_ptr;
+ 
+-    while (1) {
++	while (1) {
+ 
+-	byte = *current++;
+-	if (shift != 0x00000100) {
+-	    shift = (shift | byte) << 8;
+-	    *chunk_ptr++ = byte;
+-	    if (current < limit)
+-		continue;
+-	    if (current == end) {
+-		mpeg2dec->chunk_ptr = chunk_ptr;
+-		mpeg2dec->shift = shift;
+-		return NULL;
+-	    } else {
+-		/* we filled the chunk buffer without finding a start code */
+-		mpeg2dec->code = 0xb4;	/* sequence_error_code */
+-		mpeg2dec->chunk_ptr = mpeg2dec->chunk_buffer;
+-		return current;
++	    uint8_t byte = *current++;
++	    if (shift != 0x00000100) {
++		shift = (shift | byte) << 8;
++		*chunk_ptr++ = byte;
++		if (current < limit)
++		    continue;
++		if (current == end) {
++		    mpeg2dec->chunk_ptr = chunk_ptr;
++		    mpeg2dec->shift = shift;
++		    return NULL;
++		} else {
++		    /* we filled the chunk buffer without finding a start code */
++		    mpeg2dec->code = 0xb4;	/* sequence_error_code */
++		    mpeg2dec->chunk_ptr = mpeg2dec->chunk_buffer;
++		    return current;
++		}
+ 	    }
++	    mpeg2dec->code = byte;
++	    mpeg2dec->chunk_size = chunk_ptr - mpeg2dec->chunk_buffer - 3;
++	    mpeg2dec->chunk_ptr = mpeg2dec->chunk_buffer;
++	    mpeg2dec->shift = 0xffffff00;
++	    return current;
+ 	}
+-	mpeg2dec->code = byte;
+-	mpeg2dec->chunk_size = chunk_ptr - mpeg2dec->chunk_buffer - 3;
++    }
++#else
++    {
++	uint8_t * data = current;
++	int found = find_start_code(mpeg2dec, &current, limit);
++	int bite = current - data;
++        if (bite) {
++	    xine_fast_memcpy(mpeg2dec->chunk_ptr, data, bite);
++	    mpeg2dec->chunk_ptr += bite;
++	}
++
++	if (found) {
++	    mpeg2dec->code = *current++;
++	    mpeg2dec->chunk_size = mpeg2dec->chunk_ptr - mpeg2dec->chunk_buffer - 3;
++	    mpeg2dec->chunk_ptr = mpeg2dec->chunk_buffer;
++	    mpeg2dec->shift = 0xffffff00;
++	    return current;
++	}
++    
++	if (current == end)
++	    return NULL;
++
++	/* we filled the chunk buffer without finding a start code */
++	mpeg2dec->code = 0xb4;	/* sequence_error_code */
+ 	mpeg2dec->chunk_ptr = mpeg2dec->chunk_buffer;
+-	mpeg2dec->shift = 0xffffff00;
+ 	return current;
+     }
++#endif
+ }
+ 
+ int mpeg2_decode_data (mpeg2dec_t * mpeg2dec, uint8_t * current, uint8_t * end,
+@@ -633,12 +728,12 @@
+     if (pts)
+       mpeg2dec->pts = pts;
+ 
+-    while (current != end) {
++    while (current != end || mpeg2dec->code == 0xb7) {
+ 	code = mpeg2dec->code;
+ 	current = copy_chunk (mpeg2dec, current, end);
+ 	if (current == NULL) 
+ 	    break;
+-	ret += parse_chunk (mpeg2dec, code, mpeg2dec->chunk_buffer);
++	ret += parse_chunk (mpeg2dec, code, mpeg2dec->chunk_buffer, mpeg2dec->code);
+     }
+ 
+     libmpeg2_accel_frame_completion(&mpeg2dec->accel, mpeg2dec->frame_format, 
+@@ -805,7 +900,7 @@
+ void mpeg2_find_sequence_header (mpeg2dec_t * mpeg2dec,
+ 				 uint8_t * current, uint8_t * end){
+ 
+-  uint8_t code;
++  uint8_t code, next_code;
+   picture_t *picture = mpeg2dec->picture;
+ 
+   mpeg2dec->seek_mode = 1;
+@@ -815,6 +910,7 @@
+     current = copy_chunk (mpeg2dec, current, end);
+     if (current == NULL)
+       return ;
++    next_code = mpeg2dec->code;
+ 
+     /* printf ("looking for sequence header... %02x\n", code);  */
+ 
+@@ -825,6 +921,11 @@
+ 	printf ("libmpeg2: bad sequence header\n");
+ 	continue;
+       }
++
++      /* according to ISO/IEC 13818-2, an extension start code will follow.
++       * Otherwise the stream follows ISO/IEC 11172-2 which means MPEG1 */ 
++      picture->mpeg1 = (next_code != 0xb5);
++
+       if (mpeg2dec->force_aspect) picture->aspect_ratio_information = mpeg2dec->force_aspect;
+ 	  
+       if (mpeg2dec->is_sequence_needed) {
+Index: xine-lib/src/post/planar/expand.c
+===================================================================
+RCS file: /cvsroot/xine/xine-lib/src/post/planar/expand.c,v
+retrieving revision 1.16
+diff -u -r1.16 expand.c
+--- xine-lib/src/post/planar/expand.c	27 Aug 2006 16:27:52 -0000	1.16
++++ xine-lib/src/post/planar/expand.c	10 Dec 2006 19:07:39 -0000
+@@ -21,7 +21,8 @@
+  *
+  * expand video filter by James Stembridge 24/05/2003
+  *            improved by Michael Roitzsch
+- * 
++ *            centre_crop_out_mode by Reinhard Nissl
++ *
+  * based on invert.c
+  *
+  */
+@@ -52,6 +53,11 @@
+  * This way, the decoder (or any other post plugin up the tree) will only
+  * see the frame area between the black bars and by that modify the
+  * enlarged version directly. No need for later copying.
++ *
++ * When centre_crop_out_mode is enabled, the plugin will detect the black
++ * bars to the left and right of the image and will then set up cropping
++ * to efficiently remove the black border around the 4:3 image, which the
++ * plugin would produce otherwise for this case.
+  */ 
+ 
+ 
+@@ -63,6 +69,7 @@
+   int enable_automatic_shift;
+   int overlay_y_offset;
+   double aspect;
++  int centre_cut_out_mode;
+ } expand_parameters_t;
+ 
+ START_PARAM_DESCR(expand_parameters_t)
+@@ -72,6 +79,8 @@
+   "manually shift the overlay vertically")
+ PARAM_ITEM(POST_PARAM_TYPE_DOUBLE, aspect, NULL, 1.0, 3.5, 0,
+   "target aspect ratio")
++PARAM_ITEM(POST_PARAM_TYPE_BOOL, centre_cut_out_mode, NULL, 0, 1, 0,
++  "cut out centered 4:3 image contained in 16:9 frame")
+ END_PARAM_DESCR(expand_param_descr)
+ 
+ typedef struct post_expand_s {
+@@ -83,6 +92,8 @@
+   int                      overlay_y_offset;
+   double                   aspect;
+   int                      top_bar_height;
++  int                      centre_cut_out_mode;
++  int                      cropping_active;
+ } post_expand_t;
+ 
+ /* plugin class functions */
+@@ -106,6 +117,8 @@
+ static vo_frame_t    *expand_get_frame(xine_video_port_t *port_gen, uint32_t width, 
+ 				       uint32_t height, double ratio, 
+ 				       int format, int flags);
++
++/* replaced vo_frame functions */
+ static int            expand_draw(vo_frame_t *frame, xine_stream_t *stream);
+ 
+ /* overlay manager intercept check */
+@@ -153,6 +166,8 @@
+   this->enable_automatic_shift = 0;
+   this->overlay_y_offset       = 0;
+   this->aspect                 = 4.0 / 3.0;
++  this->centre_cut_out_mode    = 0;
++  this->cropping_active        = 0;
+   
+   port = _x_post_intercept_video_port(&this->post, video_target[0], &input, &output);
+   port->new_port.get_frame     = expand_get_frame;
+@@ -166,8 +181,8 @@
+   input_param->data = &post_api;
+   xine_list_push_back(this->post.input, input_param);
+   
+-  input->xine_in.name     = "video";
+-  output->xine_out.name   = "expanded video";
++  input->xine_in.name   = "video";
++  output->xine_out.name = "expanded video";
+   
+   this->post.xine_post.video_input[0] = &port->new_port;
+   
+@@ -214,6 +229,8 @@
+   this->enable_automatic_shift = param->enable_automatic_shift;
+   this->overlay_y_offset       = param->overlay_y_offset;
+   this->aspect                 = param->aspect;
++  this->centre_cut_out_mode    = param->centre_cut_out_mode;
++
+   return 1;
+ }
+ 
+@@ -225,6 +242,8 @@
+   param->enable_automatic_shift = this->enable_automatic_shift;
+   param->overlay_y_offset       = this->overlay_y_offset;
+   param->aspect                 = this->aspect;
++  param->centre_cut_out_mode    = this->centre_cut_out_mode;
++  
+   return 1;
+ }
+ 
+@@ -238,22 +257,86 @@
+            "  Enable_automatic_shift: Enable automatic overlay shifting\n"
+            "  Overlay_y_offset: Manually shift the overlay vertically\n"
+            "  aspect: The target aspect ratio (default 4:3)\n"
++           "  Centre_cut_out_mode: extracts 4:3 image contained in 16:9 frame\n"
+            "\n"
+          );
+ }
+ 
+ 
++static int is_pixel_black(vo_frame_t *frame, int x, int y)
++{
++  int Y = 0x00, Cr = 0x00, Cb = 0x00;
++
++  if (x < 0)              x = 0;
++  if (x >= frame->width)  x = frame->width - 1;
++  if (y < 0)              y = 0;
++  if (y >= frame->height) y = frame->height - 1;
++  
++  switch (frame->format)
++  {
++  case XINE_IMGFMT_YV12:
++    Y  = *(frame->base[ 0 ] + frame->pitches[ 0 ] * y     + x);
++    Cr = *(frame->base[ 1 ] + frame->pitches[ 1 ] * y / 2 + x / 2);
++    Cb = *(frame->base[ 2 ] + frame->pitches[ 2 ] * y / 2 + x / 2);
++    break;
++    
++  case XINE_IMGFMT_YUY2:
++    Y  = *(frame->base[ 0 ] + frame->pitches[ 0 ] * y + x * 2 + 0);
++    x &= ~1;
++    Cr = *(frame->base[ 0 ] + frame->pitches[ 0 ] * y + x * 2 + 1);
++    Cb = *(frame->base[ 0 ] + frame->pitches[ 0 ] * y + x * 2 + 3);
++    break;
++  }
++
++  return (Y == 0x10 && Cr == 0x80 && Cb == 0x80);
++}
++
++
+ static int expand_draw(vo_frame_t *frame, xine_stream_t *stream)
+ {
+-    post_video_port_t *port = (post_video_port_t *)frame->port;
+-    post_expand_t *this = (post_expand_t *)port->post;
+-    int skip;
+-
+-    frame->ratio = this->aspect;
+-    _x_post_frame_copy_down(frame, frame->next);
+-    skip = frame->next->draw(frame->next, stream);
+-    _x_post_frame_copy_up(frame, frame->next);
+-    return skip;
++  post_video_port_t *port = (post_video_port_t *)frame->port;
++  post_expand_t     *this = (post_expand_t *)port->post;
++  int                skip;
++
++  if (this->centre_cut_out_mode && !frame->bad_frame)
++  {
++    /* expected area of inner 4:3 image */
++    int centre_width = frame->width * (9 * 4) / (16 * 3);
++    int centre_left  = (frame->width - centre_width ) / 2;
++
++    /* centre point for detecting a black frame */
++    int centre_x = frame->width  / 2;
++    int centre_y = frame->height / 2;
++
++    /* ignore a black frame as it could lead to wrong results */
++    if (!is_pixel_black(frame, centre_x, centre_y))
++    {
++      /* coordinates for testing black border near the centre area */
++      int test_left  = centre_left - 16;
++      int test_right = centre_left + 16 + centre_width;
++
++      /* enable cropping when these pixels are black */
++      this->cropping_active = is_pixel_black(frame, test_left, centre_y)
++        && is_pixel_black(frame, test_right, centre_y);
++    }
++
++    /* crop frame */
++    if (this->centre_cut_out_mode && this->cropping_active) {
++      frame->crop_left  += centre_left;
++      frame->crop_right += centre_left;
++
++      /* get_frame() allocated an extra high frame */
++      frame->crop_top    += (frame->next->height - frame->height) / 2;
++      frame->crop_bottom += (frame->next->height - frame->height) / 2;
++    }
++  }
++
++  frame->ratio = this->aspect;
++  _x_post_frame_copy_down(frame, frame->next);
++  skip = frame->next->draw(frame->next, stream);
++  _x_post_frame_copy_up(frame, frame->next);
++
++  return skip;
+ }
+ 
+ 
+@@ -338,6 +421,10 @@
+ 
+ static int expand_intercept_ovl(post_video_port_t *port)
+ {
++  post_expand_t         *this = (post_expand_t *)port->post;
++
++  if (this->centre_cut_out_mode && this->cropping_active) return 0;
++  
+   /* we always intercept overlay manager */
+   return 1;
+ }
+Index: xine-lib/src/xine-engine/post.c
+===================================================================
+RCS file: /cvsroot/xine/xine-lib/src/xine-engine/post.c,v
+retrieving revision 1.32
+diff -u -r1.32 post.c
+--- xine-lib/src/xine-engine/post.c	27 Jan 2006 07:46:15 -0000	1.32
++++ xine-lib/src/xine-engine/post.c	10 Dec 2006 19:07:40 -0000
+@@ -149,6 +149,14 @@
+   if (port->port_lock) pthread_mutex_unlock(port->port_lock);
+ }
+ 
++static void post_video_trigger_drawing(xine_video_port_t *port_gen) {
++  post_video_port_t *port = (post_video_port_t *)port_gen;
++  
++  if (port->port_lock) pthread_mutex_lock(port->port_lock);
++  port->original_port->trigger_drawing(port->original_port);
++  if (port->port_lock) pthread_mutex_unlock(port->port_lock);
++}
++
+ static int post_video_status(xine_video_port_t *port_gen, xine_stream_t *stream,
+                              int *width, int *height, int64_t *img_duration) {
+   post_video_port_t *port = (post_video_port_t *)port_gen;
+@@ -223,6 +231,7 @@
+   port->new_port.exit                = post_video_exit;
+   port->new_port.get_overlay_manager = post_video_get_overlay_manager;
+   port->new_port.flush               = post_video_flush;
++  port->new_port.trigger_drawing     = post_video_trigger_drawing;
+   port->new_port.status              = post_video_status;
+   port->new_port.get_property        = post_video_get_property;
+   port->new_port.set_property        = post_video_set_property;
+Index: xine-lib/src/xine-engine/video_out.c
+===================================================================
+RCS file: /cvsroot/xine/xine-lib/src/xine-engine/video_out.c,v
+retrieving revision 1.225
+diff -u -r1.225 video_out.c
+--- xine-lib/src/xine-engine/video_out.c	25 Mar 2006 01:26:34 -0000	1.225
++++ xine-lib/src/xine-engine/video_out.c	10 Dec 2006 19:07:40 -0000
+@@ -127,6 +127,9 @@
+   int                       frame_drop_limit;
+   int                       frame_drop_cpt;
+   int                       crop_left, crop_right, crop_top, crop_bottom;
++
++  pthread_mutex_t           trigger_drawing_mutex;
++  pthread_cond_t            trigger_drawing;
+ } vos_t;
+ 
+ 
+@@ -568,6 +571,7 @@
+     vo_append_to_img_buf_queue (this->display_img_buf_queue, img);
+     
+   } else {
++    fprintf (stderr, "bad_frame\n");
+     lprintf ("bad_frame\n");
+ 
+     if (stream) {
+@@ -1039,6 +1043,24 @@
+     this->redraw_needed = 1;
+ }
+ 
++static int interruptable_sleep(vos_t *this, int usec_to_sleep)
++{
++  struct timespec abstime;
++
++  struct timeval now;
++  gettimeofday(&now, 0);
++
++  abstime.tv_sec  = now.tv_sec + usec_to_sleep / 1000000;
++  abstime.tv_nsec = now.tv_usec * 1000 + (usec_to_sleep % 1000000) * 1000;
++
++  if (abstime.tv_nsec > 1000000000) {
++    abstime.tv_nsec -= 1000000000;
++    abstime.tv_sec++;
++  }
++
++  return pthread_cond_timedwait(&this->trigger_drawing, &this->trigger_drawing_mutex, &abstime);
++}
++
+ /* special loop for paused mode
+  * needed to update screen due overlay changes, resize, window
+  * movement, brightness adjusting etc.
+@@ -1084,7 +1106,7 @@
+     }
+     
+     pthread_mutex_unlock( &this->free_img_buf_queue->mutex );
+-    xine_usec_sleep (20000);
++    interruptable_sleep(this, 20000);
+     pthread_mutex_lock( &this->free_img_buf_queue->mutex );
+   }
+   
+@@ -1112,6 +1134,8 @@
+   nice(-2);
+ #endif /* WIN32 */
+ 
++  pthread_mutex_lock(&this->trigger_drawing_mutex);
++
+   /*
+    * here it is - the heart of xine (or rather: one of the hearts
+    * of xine) : the video output loop
+@@ -1214,7 +1238,10 @@
+ 		"video_out: vpts/clock error, next_vpts=%" PRId64 " cur_vpts=%" PRId64 "\n", next_frame_vpts,vpts);
+                
+       if (usec_to_sleep > 0)
+-        xine_usec_sleep (usec_to_sleep);
++      {
++        if (0 == interruptable_sleep(this, usec_to_sleep))
++          break;
++      }
+ 
+       if (this->discard_frames)
+         break;
+@@ -1222,6 +1249,8 @@
+     } while ( (usec_to_sleep > 0) && this->video_loop_running);
+   }
+ 
++  pthread_mutex_unlock(&this->trigger_drawing_mutex);
++
+   /*
+    * throw away undisplayed frames
+    */
+@@ -1597,6 +1626,9 @@
+   free (this->free_img_buf_queue);
+   free (this->display_img_buf_queue);
+ 
++  pthread_cond_destroy(&this->trigger_drawing);
++  pthread_mutex_destroy(&this->trigger_drawing_mutex);
++
+   free (this);
+ }
+ 
+@@ -1666,6 +1698,14 @@
+   }
+ }
+ 
++static void vo_trigger_drawing (xine_video_port_t *this_gen) {
++  vos_t      *this = (vos_t *) this_gen;
++
++  pthread_mutex_lock (&this->trigger_drawing_mutex);
++  pthread_cond_signal (&this->trigger_drawing);
++  pthread_mutex_unlock (&this->trigger_drawing_mutex);
++}
++
+ /* crop_frame() will allocate a new frame to copy in the given image
+  * while cropping. maybe someday this will be an automatic post plugin.
+  */
+@@ -1761,6 +1801,7 @@
+   this->vo.enable_ovl            = vo_enable_overlay;
+   this->vo.get_overlay_manager   = vo_get_overlay_manager;
+   this->vo.flush                 = vo_flush;
++  this->vo.trigger_drawing       = vo_trigger_drawing;
+   this->vo.get_property          = vo_get_property;
+   this->vo.set_property          = vo_set_property;
+   this->vo.status                = vo_status;
+@@ -1780,6 +1821,9 @@
+   this->overlay_source->init (this->overlay_source);
+   this->overlay_enabled       = 1;
+ 
++  pthread_mutex_init(&this->trigger_drawing_mutex, NULL);
++  pthread_cond_init(&this->trigger_drawing, NULL);
++
+   this->frame_drop_limit      = 3;
+   this->frame_drop_cpt        = 0;
+ 
+Index: xine-lib/src/xine-engine/video_out.h
+===================================================================
+RCS file: /cvsroot/xine/xine-lib/src/xine-engine/video_out.h,v
+retrieving revision 1.114
+diff -u -r1.114 video_out.h
+--- xine-lib/src/xine-engine/video_out.h	26 Sep 2006 05:19:49 -0000	1.114
++++ xine-lib/src/xine-engine/video_out.h	10 Dec 2006 19:07:40 -0000
+@@ -205,6 +205,9 @@
+   /* flush video_out fifo */
+   void (*flush) (xine_video_port_t *self);
+ 
++  /* trigger immediate drawing */
++  void (*trigger_drawing) (xine_video_port_t *self);
++
+   /* Get/Set video property
+    *
+    * See VO_PROP_* bellow
+Index: xine-lib/src/xine-engine/video_overlay.h
+===================================================================
+RCS file: /cvsroot/xine/xine-lib/src/xine-engine/video_overlay.h,v
+retrieving revision 1.21
+diff -u -r1.21 video_overlay.h
+--- xine-lib/src/xine-engine/video_overlay.h	26 Sep 2006 05:19:49 -0000	1.21
++++ xine-lib/src/xine-engine/video_overlay.h	10 Dec 2006 19:07:40 -0000
+@@ -38,7 +38,7 @@
+ 
+ #define MAX_OBJECTS   50
+ #define MAX_EVENTS    50
+-#define MAX_SHOWING   16
++#define MAX_SHOWING   (5 + 16)
+ 
+ #define OVERLAY_EVENT_NULL             0
+ #define OVERLAY_EVENT_SHOW             1
+Index: xine-lib/src/xine-engine/xine.c
+===================================================================
+RCS file: /cvsroot/xine/xine-lib/src/xine-engine/xine.c,v
+retrieving revision 1.335
+diff -u -r1.335 xine.c
+--- xine-lib/src/xine-engine/xine.c	16 Oct 2006 22:18:24 -0000	1.335
++++ xine-lib/src/xine-engine/xine.c	10 Dec 2006 19:07:40 -0000
+@@ -1954,14 +1954,14 @@
+ void xine_log (xine_t *this, int buf, const char *format, ...) {
+   va_list argp;
+   char    buffer[SCRATCH_LINE_LEN_MAX];
+-  
++/* disabled because it's not thread safe
+   if ( ! this->log_buffers[buf] )
+     this->log_buffers[buf] = _x_new_scratch_buffer(150);
+ 
+   va_start (argp, format);
+   this->log_buffers[buf]->scratch_printf (this->log_buffers[buf], format, argp);
+   va_end(argp);
+-
++*/
+   if(this->verbosity) {
+     va_start(argp, format);
+     vsnprintf(buffer, SCRATCH_LINE_LEN_MAX, format, argp);
+@@ -2016,3 +2016,91 @@
+   slave->master = master->master;
+   return 1;
+ }
++
++int _x_continue_stream_processing(xine_stream_t *stream)
++{
++  return stream->status != XINE_STATUS_STOP
++    && stream->status != XINE_STATUS_QUIT;
++}
++
++void _x_trigger_relaxed_frame_drop_mode(xine_stream_t *stream)
++{
++  stream->first_frame_flag = 2;
++}
++
++void _x_reset_relaxed_frame_drop_mode(xine_stream_t *stream)
++{
++  stream->first_frame_flag = 1;
++}
++
++void _x_query_buffer_usage(xine_stream_t *stream, int *num_video_buffers, int *num_audio_buffers, int *num_video_frames, int *num_audio_frames)
++{
++  stream->xine->port_ticket->acquire(stream->xine->port_ticket, 0);
++
++  if (num_video_buffers)
++    *num_video_buffers = (stream->video_fifo ? stream->video_fifo->size(stream->video_fifo) : 0);
++    
++  if (num_audio_buffers)
++    *num_audio_buffers = (stream->audio_fifo ? stream->audio_fifo->size(stream->audio_fifo) : 0);
++    
++  if (num_video_frames)
++    *num_video_frames = (stream->video_out ? stream->video_out->get_property(stream->video_out, VO_PROP_BUFS_IN_FIFO) : 0);
++
++  if (num_audio_frames)
++    *num_audio_frames = (stream->audio_out ? stream->audio_out->get_property(stream->audio_out, AO_PROP_BUFS_IN_FIFO) : 0);
++
++  stream->xine->port_ticket->release(stream->xine->port_ticket, 0);
++}
++
++int _x_query_unprocessed_osd_events(xine_stream_t *stream)
++{
++  video_overlay_manager_t *ovl;
++  int redraw_needed;
++  
++  stream->xine->port_ticket->acquire(stream->xine->port_ticket, 0);
++
++  ovl = stream->video_out->get_overlay_manager(stream->video_out);
++  redraw_needed = ovl->redraw_needed(ovl, 0);
++ 
++  if (redraw_needed) 
++    stream->video_out->trigger_drawing(stream->video_out);
++
++  stream->xine->port_ticket->release(stream->xine->port_ticket, 0);
++
++  return redraw_needed;
++}
++
++int _x_demux_seek(xine_stream_t *stream, off_t start_pos, int start_time, int playing)
++{
++  if (!stream->demux_plugin)
++    return -1;
++  return stream->demux_plugin->seek(stream->demux_plugin, start_pos, start_time, playing);
++}
++
++int _x_lock_frontend(xine_stream_t *stream, int ms_to_time_out)
++{
++  if (ms_to_time_out >= 0) {
++    struct timespec abstime;
++
++    struct timeval now;
++    gettimeofday(&now, 0);
++
++    abstime.tv_sec = now.tv_sec + ms_to_time_out / 1000;
++    abstime.tv_nsec = now.tv_usec * 1000 + (ms_to_time_out % 1000) * 1e6;
++
++    if (abstime.tv_nsec > 1e9) {
++      abstime.tv_nsec -= 1e9;
++      abstime.tv_sec++;
++    }
++
++    return (0 == pthread_mutex_timedlock(&stream->frontend_lock, &abstime));
++  }
++
++  pthread_mutex_lock(&stream->frontend_lock);
++  return 1;
++}
++
++void _x_unlock_frontend(xine_stream_t *stream)
++{
++  pthread_mutex_unlock(&stream->frontend_lock);
++}
+Index: xine-lib/src/xine-engine/xine_internal.h
+===================================================================
+RCS file: /cvsroot/xine/xine-lib/src/xine-engine/xine_internal.h,v
+retrieving revision 1.179
+diff -u -r1.179 xine_internal.h
+--- xine-lib/src/xine-engine/xine_internal.h	2 Oct 2006 15:56:06 -0000	1.179
++++ xine-lib/src/xine-engine/xine_internal.h	10 Dec 2006 19:07:40 -0000
+@@ -356,6 +356,15 @@
+  * private function prototypes:
+  */
+ 
++int _x_continue_stream_processing(xine_stream_t *stream) XINE_PROTECTED;
++void _x_trigger_relaxed_frame_drop_mode(xine_stream_t *stream) XINE_PROTECTED;
++void _x_reset_relaxed_frame_drop_mode(xine_stream_t *stream) XINE_PROTECTED;
++void _x_query_buffer_usage(xine_stream_t *stream, int *num_video_buffers, int *num_audio_buffers, int *num_video_frames, int *num_audio_frames) XINE_PROTECTED;
++int _x_query_unprocessed_osd_events(xine_stream_t *stream) XINE_PROTECTED;
++int _x_demux_seek(xine_stream_t *stream, off_t start_pos, int start_time, int playing) XINE_PROTECTED;
++int _x_lock_frontend(xine_stream_t *stream, int ms_to_time_out) XINE_PROTECTED;
++void _x_unlock_frontend(xine_stream_t *stream) XINE_PROTECTED;
++
+ void _x_handle_stream_end      (xine_stream_t *stream, int non_user) XINE_PROTECTED;
+ 
+ /* report message to UI. usually these are async errors */
+diff -Nurp ../xine-cvs/xine-lib/src/vdr/Makefile.am xine-lib/src/vdr/Makefile.am
+--- ../xine-cvs/xine-lib/src/vdr/Makefile.am	1970-01-01 01:00:00.000000000 +0100
++++ xine-lib/src/vdr/Makefile.am	2006-08-27 00:26:05.000000000 +0200
+@@ -0,0 +1,30 @@
++include $(top_srcdir)/misc/Makefile.common
++
++
++
++libdir = $(XINE_PLUGINDIR)
++
++AM_CFLAGS = -D_LARGEFILE64_SOURCE
++
++lib_LTLIBRARIES = \
++	xineplug_inp_vdr.la
++
++xineplug_inp_vdr_la_SOURCES = input_vdr.c
++xineplug_inp_vdr_la_LIBADD = $(XINE_LIB)
++xineplug_inp_vdr_la_LDFLAGS = -avoid-version -module @IMPURE_TEXT_LDFLAGS@
++
++include_HEADERS = input_vdr.h
++
++
++
++postlibdir = $(XINE_PLUGINDIR)/post
++
++postlib_LTLIBRARIES = \
++	xineplug_post_vdr.la
++
++xineplug_post_vdr_la_SOURCES = post_vdr.c post_vdr_video.c post_vdr_audio.c
++xineplug_post_vdr_la_LIBADD = $(XINE_LIB)
++xineplug_post_vdr_la_LDFLAGS = -avoid-version -module @IMPURE_TEXT_LDFLAGS@
++
++noinst_HEADERS = post_vdr.h
++
+diff -Nurp ../xine-cvs/xine-lib/src/vdr/input_vdr.c xine-lib/src/vdr/input_vdr.c
+--- ../xine-cvs/xine-lib/src/vdr/input_vdr.c	1970-01-01 01:00:00.000000000 +0100
++++ xine-lib/src/vdr/input_vdr.c	2006-04-17 22:53:54.000000000 +0200
+@@ -0,0 +1,2483 @@
++/*
++ * Copyright (C) 2003-2004 the xine project
++ *
++ * This file is part of xine, a free video player.
++ * 
++ * xine is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation; either version 2 of the License, or
++ * (at your option) any later version.
++ * 
++ * xine is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ * 
++ * You should have received a copy of the GNU General Public License
++ * along with this program; if not, write to the Free Software
++ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
++ *
++ * $Id: input_vdr.c,v 1.51 2003/05/02 15:02:11 miguelfreitas Exp $
++ */
++
++#ifdef HAVE_CONFIG_H
++#include "config.h"
++#endif
++
++#include <stdio.h>
++#include <stdlib.h>
++#include <string.h>
++#include <fcntl.h>
++#include <unistd.h>
++#include <sys/stat.h>
++#include <sys/poll.h>
++#include <errno.h>
++#include <pthread.h>
++
++#define LOG_MODULE "input_vdr"
++#define LOG_VERBOSE
++/*
++#define LOG
++*/
++#include "xine_internal.h"
++#include "xineutils.h"
++#include "input_plugin.h"
++
++#include "input_vdr.h"
++#include "post_vdr.h"
++
++
++
++#define VDR_MAX_NUM_WINDOWS 16
++#define VDR_ABS_FIFO_DIR "/tmp/vdr-xine"
++
++
++
++#define BUF_SIZE 1024
++
++#define LOG_OSD(x)
++/*
++#define LOG_OSD(x) x
++*/
++
++
++typedef struct
++{
++  input_plugin_t      input_plugin;
++   
++  xine_stream_t      *stream;
++  xine_stream_t      *stream_external;
++
++  int                 fh;
++  int                 fh_control;
++  int                 fh_result;
++  int                 fh_event;
++  
++  char               *mrl;
++
++  off_t               curpos;
++  char                seek_buf[ BUF_SIZE ];
++   
++  char               *preview;
++  off_t               preview_size;
++   
++  enum funcs          cur_func;
++  off_t               cur_size;
++  off_t               cur_done;
++
++  xine_osd_t         *osd_window[ VDR_MAX_NUM_WINDOWS ];
++  uint8_t            *osd_buffer;
++  uint32_t            osd_buffer_size;
++  uint8_t             osd_unscaled_blending;
++
++  uint8_t             audio_channels;
++  uint8_t             trick_speed_mode;
++  uint8_t             mute_mode;
++  uint8_t             dont_change_xine_volume;
++  int                 last_volume;
++  vdr_frame_size_changed_data_t frame_size;
++  
++  pthread_t           rpc_thread;
++  int                 rpc_thread_shutdown;
++  pthread_mutex_t     rpc_thread_shutdown_lock;
++  pthread_cond_t      rpc_thread_shutdown_cond;
++
++  xine_event_queue_t *event_queue;
++  xine_event_queue_t *event_queue_external;
++
++}
++vdr_input_plugin_t;
++
++
++
++typedef struct
++{
++  input_class_t       input_class;
++  xine_t             *xine;
++  char               *mrls[ 2 ];
++}
++vdr_input_class_t;
++
++
++
++static int vdr_write(int f, void *b, int n)
++{
++  int t = 0, r;
++  
++  while (t < n)
++  {
++    /*
++     * System calls are not a thread cancellation point in Linux
++     * pthreads.  However, the RT signal sent to cancel the thread
++     * will cause recv() to return with EINTR, and we can manually
++     * check cancellation.
++     */
++    pthread_testcancel();
++    r = write(f, ((char *)b) + t, n - t);
++    pthread_testcancel();
++
++    if (r < 0
++        && (errno == EINTR
++          || errno == EAGAIN))
++    {
++      continue;
++    }
++    
++    if (r < 0)
++      return r;
++    
++    t += r;
++  }
++  
++  return t;
++}
++
++
++
++static int internal_write_event_play_external(vdr_input_plugin_t *this, uint32_t key);
++
++static void event_handler_external(void *user_data, const xine_event_t *event)
++{
++  vdr_input_plugin_t *this = (vdr_input_plugin_t *)user_data;
++  uint32_t key = key_none;
++/*  
++  printf("event_handler_external(): event->type: %d\n", event->type);
++*/
++  switch (event->type)
++  {
++  case XINE_EVENT_UI_PLAYBACK_FINISHED:
++    break;
++
++  default:
++    return;
++  }	
++  
++  if (0 != internal_write_event_play_external(this, key))
++    xprintf(this->stream->xine, XINE_VERBOSITY_LOG, 
++            _(LOG_MODULE ": input event write: %s.\n"), strerror(errno));
++}
++
++static void external_stream_stop(vdr_input_plugin_t *this)
++{
++  if (this->stream_external)
++  {    
++    xine_stop(this->stream_external);
++    xine_close(this->stream_external);
++
++    if (this->event_queue_external)
++    {
++      xine_event_dispose_queue(this->event_queue_external);
++      this->event_queue_external = 0;
++    }
++
++    _x_demux_flush_engine(this->stream_external);
++    
++    xine_dispose(this->stream_external);    
++    this->stream_external = 0;
++  }
++}
++
++static void external_stream_play(vdr_input_plugin_t *this, char *file_name)
++{
++  external_stream_stop(this);
++
++  this->stream_external = xine_stream_new(this->stream->xine, this->stream->audio_out, this->stream->video_out);
++  
++  this->event_queue_external = xine_event_new_queue(this->stream_external);
++
++  xine_event_create_listener_thread(this->event_queue_external, event_handler_external, this);
++
++  if (!xine_open(this->stream_external, file_name)
++      || !xine_play(this->stream_external, 0, 0))
++  {
++    uint32_t key = key_none;
++    
++    if ( 0 != internal_write_event_play_external(this, key))
++      xprintf(this->stream->xine, XINE_VERBOSITY_LOG, 
++              _(LOG_MODULE ": input event write: %s.\n"), strerror(errno));
++  }
++}
++
++static off_t vdr_read_abort(xine_stream_t *stream, int fd, char *buf, off_t todo)
++{  
++  off_t ret;
++  
++  while (1)
++  {
++    /*
++     * System calls are not a thread cancellation point in Linux
++     * pthreads.  However, the RT signal sent to cancel the thread
++     * will cause recv() to return with EINTR, and we can manually
++     * check cancellation.
++     */
++    pthread_testcancel();
++    ret = _x_read_abort(stream, fd, buf, todo);
++    pthread_testcancel();
++    
++    if (ret < 0
++        && (errno == EINTR
++          || errno == EAGAIN))
++    {
++      continue;
++    }
++    
++    break;
++  }
++
++  return ret;
++}
++
++#define READ_DATA_OR_FAIL(kind, log) \
++  data_##kind##_t *data = &data_union.kind; \
++  { \
++    log; \
++    n = vdr_read_abort(this->stream, this->fh_control, (char *)data + sizeof (data->header), sizeof (*data) - sizeof (data->header)); \
++    if (n != sizeof (*data) - sizeof (data->header)) \
++      return -1; \
++    \
++    this->cur_size -= n; \
++  } 
++
++static double _now()
++{
++  struct timeval tv;
++  
++  gettimeofday(&tv, 0);
++
++  return (tv.tv_sec * 1000000.0 + tv.tv_usec) / 1000.0;
++}
++
++static off_t vdr_execute_rpc_command(vdr_input_plugin_t *this)
++{
++  data_union_t data_union;
++  off_t n;
++   
++  n = vdr_read_abort(this->stream, this->fh_control, (char *)&data_union, sizeof (data_union.header));
++  if (n != sizeof (data_union.header))
++    return -1;
++  
++  this->cur_func = data_union.header.func;
++  this->cur_size = data_union.header.len - sizeof (data_union.header);
++  this->cur_done = 0;
++
++  switch (this->cur_func)
++  {
++  case func_nop:
++    {
++      READ_DATA_OR_FAIL(nop, lprintf("got NOP\n"));
++    }
++    break;
++
++  case func_osd_new:
++    {
++      READ_DATA_OR_FAIL(osd_new, LOG_OSD(lprintf("got OSDNEW\n")));
++/*
++      LOG_OSD(lprintf("... (%d,%d)-(%d,%d)\n", data->x, data->y, data->width, data->height));
++
++      fprintf(stderr, "vdr: osdnew %d\n", data->window);
++*/    
++      if (data->window >= VDR_MAX_NUM_WINDOWS)
++        return -1;
++      
++      if (0 != this->osd_window[ data->window ])
++        return -1;
++      
++      this->osd_window[ data->window ] = xine_osd_new(this->stream
++                                                     , data->x
++                                                     , data->y
++                                                     , data->width
++                                                     , data->height);
++      
++      if (0 == this->osd_window[ data->window ])
++        return -1;
++    }
++    break;
++
++  case func_osd_free:
++    {
++      READ_DATA_OR_FAIL(osd_free, LOG_OSD(lprintf("got OSDFREE\n")));
++/*      
++      fprintf(stderr, "vdr: osdfree %d\n", data->window);
++*/      
++      if (data->window >= VDR_MAX_NUM_WINDOWS)
++        return -1;
++      
++      if (0 != this->osd_window[ data->window ])
++        xine_osd_free(this->osd_window[ data->window ]);
++      
++      this->osd_window[ data->window ] = 0;
++    }
++    break;
++    
++  case func_osd_show:
++    {
++      READ_DATA_OR_FAIL(osd_show, LOG_OSD(lprintf("got OSDSHOW\n")));
++/*      
++      fprintf(stderr, "vdr: osdshow %d\n", data->window);
++*/      
++      if (data->window >= VDR_MAX_NUM_WINDOWS)
++        return -1;
++      
++      if (0 != this->osd_window[ data->window ])
++      {
++        if (this->osd_unscaled_blending)
++          xine_osd_show_unscaled(this->osd_window[ data->window ], 0);
++        else
++          xine_osd_show(this->osd_window[ data->window ], 0);
++      }
++    }
++    break;
++    
++  case func_osd_hide:
++    {
++      READ_DATA_OR_FAIL(osd_hide, LOG_OSD(lprintf("got OSDHIDE\n")));
++/*      
++      fprintf(stderr, "vdr: osdhide %d\n", data->window);
++*/      
++      if (data->window >= VDR_MAX_NUM_WINDOWS)
++        return -1;
++      
++      if (0 != this->osd_window[ data->window ])
++      {
++        if (this->osd_unscaled_blending)
++          xine_osd_show_unscaled(this->osd_window[ data->window ], 0);
++        else
++          xine_osd_show(this->osd_window[ data->window ], 0);
++      }
++    }
++    break;
++    
++  case func_osd_flush:
++    {
++      double _t1, _t2;
++      int _n = 0;
++      int _to = 0;
++      int r = 0;
++      
++      READ_DATA_OR_FAIL(osd_flush, LOG_OSD(lprintf("got OSDFLUSH\n")));
++/*      
++      fprintf(stderr, "vdr: osdflush +\n");
++*/
++      _t1 = _now();
++      
++      while ((r = _x_query_unprocessed_osd_events(this->stream)))
++      {
++        if ((_now() - _t1) > 200)
++        {
++          _to = 1;
++          break;
++        }
++/*        
++        fprintf(stderr, "redraw_needed: 1\n");
++*/        
++/*        sched_yield(); */
++        xine_usec_sleep(5000);
++        _n++;
++      }
++
++      _t2 = _now();
++      fprintf(stderr, "vdr: osdflush: n: %d, %.1lf, timeout: %d, result: %d\n", _n, _t2 - _t1, _to, r);
++/*      
++      fprintf(stderr, "redraw_needed: 0\n");        
++      
++      fprintf(stderr, "vdr: osdflush -\n");
++*/
++    }
++    break;
++    
++  case func_osd_set_position:
++    {
++      READ_DATA_OR_FAIL(osd_set_position, LOG_OSD(lprintf("got OSDSETPOSITION\n")));
++/*
++      fprintf(stderr, "vdr: osdsetposition %d\n", data->window);    
++*/      
++      if (data->window >= VDR_MAX_NUM_WINDOWS)
++        return -1;
++      
++      if (0 != this->osd_window[ data->window ])
++        xine_osd_set_position(this->osd_window[ data->window ], data->x, data->y);
++    }
++    break;
++  
++  case func_osd_draw_bitmap:
++    {
++      READ_DATA_OR_FAIL(osd_draw_bitmap, LOG_OSD(lprintf("got OSDDRAWBITMAP\n")));
++/*
++      fprintf(stderr, "vdr: osddrawbitmap %d\n", data->window);    
++*/      
++      if (this->osd_buffer_size < this->cur_size)
++      {
++        if (this->osd_buffer)
++          free(this->osd_buffer);
++        
++        this->osd_buffer_size = 0;
++        
++        this->osd_buffer = xine_xmalloc(this->cur_size);
++        if (!this->osd_buffer)
++          return -1;
++        
++        this->osd_buffer_size = this->cur_size;
++      }
++      
++      n = vdr_read_abort (this->stream, this->fh_control, (char *)this->osd_buffer, this->cur_size);
++      if (n != this->cur_size)
++        return -1;
++      
++      this->cur_size -= n;
++      
++      if (data->window >= VDR_MAX_NUM_WINDOWS)
++        return -1;
++      
++      if (0 != this->osd_window[ data->window ])
++        xine_osd_draw_bitmap(this->osd_window[ data->window ], this->osd_buffer, data->x, data->y, data->width, data->height, 0);
++    }
++    break;
++    
++  case func_set_color:
++    {
++      uint32_t vdr_color[ 256 ];
++      
++      READ_DATA_OR_FAIL(set_color, lprintf("got SETCOLOR\n"));
++      
++      if (((data->num + 1) * sizeof (uint32_t)) != this->cur_size)
++        return -1;
++      
++      n = vdr_read_abort (this->stream, this->fh_control, (char *)&vdr_color[ data->index ], this->cur_size);
++      if (n != this->cur_size)
++        return -1;
++      
++      this->cur_size -= n;
++      
++      if (data->window >= VDR_MAX_NUM_WINDOWS)
++        return -1;
++      
++      if (0 != this->osd_window[ data->window ])
++      {
++        uint32_t color[ 256 ];
++        uint8_t trans[ 256 ];
++        
++        xine_osd_get_palette(this->osd_window[ data->window ], color, trans);
++        
++        {
++          int i;
++          
++          for (i = data->index; i <= (data->index + data->num); i++)
++          {
++            int a = (vdr_color[ i ] & 0xff000000) >> 0x18;
++            int r = (vdr_color[ i ] & 0x00ff0000) >> 0x10;
++            int g = (vdr_color[ i ] & 0x0000ff00) >> 0x08;
++            int b = (vdr_color[ i ] & 0x000000ff) >> 0x00;
++            
++            int y  = (( 66 * r + 129 * g +  25 * b + 128) >> 8) +  16;
++            int cr = ((112 * r -  94 * g -  18 * b + 128) >> 8) + 128;
++            int cb = ((-38 * r -  74 * g + 112 * b + 128) >> 8) + 128;
++
++            uint8_t *dst = (uint8_t *)&color[ i ];
++            *dst++ = cb;
++            *dst++ = cr;
++            *dst++ = y;
++            *dst++ = 0;
++
++            trans[ i ] = a >> 4;
++          }
++        }
++        
++        xine_osd_set_palette(this->osd_window[ data->window ], color, trans);
++      }
++    }
++    break;
++
++  case func_play_external:
++    {
++      char file_name[ 1024 ];
++      int file_name_len = 0;
++      
++      READ_DATA_OR_FAIL(play_external, lprintf("got PLAYEXTERNAL\n"));
++
++      file_name_len = this->cur_size;
++
++      if (0 != file_name_len)
++      {
++        if (file_name_len <= 1
++            || file_name_len > sizeof (file_name))
++        {
++          return -1;
++        }
++      
++        n = vdr_read_abort (this->stream, this->fh_control, file_name, file_name_len);
++        if (n != file_name_len)
++          return -1;
++      
++        if (file_name[ file_name_len - 1 ] != '\0')
++          return -1;
++      
++        this->cur_size -= n;
++      }
++
++      lprintf((file_name_len > 0) ? "----------- play external: %s\n" : "---------- stop external\n", file_name);
++      
++      if (file_name_len > 0)
++        external_stream_play(this, file_name);
++      else
++        external_stream_stop(this);
++    }
++    break;
++
++  case func_clear:
++    {
++      READ_DATA_OR_FAIL(clear, lprintf("got CLEAR\n"));
++
++      {
++        int orig_speed = xine_get_param(this->stream, XINE_PARAM_FINE_SPEED);
++        if (orig_speed <= 0)
++          xine_set_param(this->stream, XINE_PARAM_FINE_SPEED, XINE_FINE_SPEED_NORMAL);
++fprintf(stderr, "+++ CLEAR(%d%c)\n", data->n, data->s ? 'b' : 'a');
++/*        
++        if (!this->dont_change_xine_volume)
++          xine_set_param(this->stream, XINE_PARAM_AUDIO_VOLUME, 0);
++*/      
++        _x_demux_flush_engine(this->stream);
++fprintf(stderr, "=== CLEAR(%d.1)\n", data->n);
++        _x_demux_control_start(this->stream);
++fprintf(stderr, "=== CLEAR(%d.2)\n", data->n);
++        _x_demux_seek(this->stream, 0, 0, 0);
++fprintf(stderr, "=== CLEAR(%d.3)\n", data->n);
++
++        _x_stream_info_reset(this->stream, XINE_STREAM_INFO_AUDIO_BITRATE);
++fprintf(stderr, "=== CLEAR(%d.4)\n", data->n);
++	_x_meta_info_reset(this->stream, XINE_META_INFO_AUDIOCODEC);
++fprintf(stderr, "=== CLEAR(%d.5)\n", data->n);
++
++        _x_trigger_relaxed_frame_drop_mode(this->stream);
++/*        _x_reset_relaxed_frame_drop_mode(this->stream); */
++/*      
++        if (!this->dont_change_xine_volume)
++          xine_set_param(this->stream, XINE_PARAM_AUDIO_VOLUME, this->last_volume);
++*/
++fprintf(stderr, "--- CLEAR(%d%c)\n", data->n, data->s ? 'b' : 'a');
++        if (orig_speed <= 0)
++          xine_set_param(this->stream, XINE_PARAM_FINE_SPEED, orig_speed);
++      }
++    }
++    break;
++
++  case func_first_frame:
++    {
++      READ_DATA_OR_FAIL(first_frame, lprintf("got FIRST FRAME\n"));
++
++      _x_trigger_relaxed_frame_drop_mode(this->stream);
++/*      _x_reset_relaxed_frame_drop_mode(this->stream); */
++    }
++    break;
++
++  case func_still_frame:
++    {
++      READ_DATA_OR_FAIL(still_frame, lprintf("got STILL FRAME\n"));
++
++      _x_reset_relaxed_frame_drop_mode(this->stream);
++    }
++    break;
++
++  case func_set_video_window:
++    {
++      READ_DATA_OR_FAIL(set_video_window, lprintf("got SET VIDEO WINDOW\n"));
++/*
++      fprintf(stderr, "svw: (%d, %d)x(%d, %d), (%d, %d)\n", data->x, data->y, data->w, data->h, data->wRef, data->hRef);
++*/    
++      {
++        xine_event_t event;
++        vdr_set_video_window_data_t event_data;
++        
++        event_data.x = data->x;
++        event_data.y = data->y;
++        event_data.w = data->w;
++        event_data.h = data->h;
++        event_data.w_ref = data->w_ref;
++        event_data.h_ref = data->h_ref;
++        
++        event.type = XINE_EVENT_VDR_SETVIDEOWINDOW;
++        event.data = &event_data;
++        event.data_length = sizeof (event_data);
++        
++        xine_event_send(this->stream, &event);
++      }
++    }
++    break;
++    
++  case func_select_audio:
++    {
++      READ_DATA_OR_FAIL(select_audio, lprintf("got SELECT AUDIO\n"));
++
++      this->audio_channels = data->channels;
++      
++      {
++        xine_event_t event;
++        vdr_select_audio_data_t event_data;
++        
++        event_data.channels = this->audio_channels;
++        
++        event.type = XINE_EVENT_VDR_SELECTAUDIO;
++        event.data = &event_data;
++        event.data_length = sizeof (event_data);
++        
++        xine_event_send(this->stream, &event);
++      }
++    }
++    break;
++    
++  case func_trick_speed_mode:
++    {
++      READ_DATA_OR_FAIL(trick_speed_mode, lprintf("got TRICK SPEED MODE\n"));
++
++      this->trick_speed_mode = data->on;
++      
++      _x_demux_seek(this->stream, 0, 0, 0);
++
++      {
++        xine_event_t event;
++        
++        event.type = XINE_EVENT_VDR_TRICKSPEEDMODE;
++        event.data = 0;
++        event.data_length = this->trick_speed_mode;
++/*        fprintf(stderr, "************************: %p, %d\n", event.data, event.data_length); */
++        xine_event_send(this->stream, &event);
++      }
++    }
++    break;
++    
++  case func_flush:
++    {
++      READ_DATA_OR_FAIL(flush, lprintf("got FLUSH\n"));
++
++      if (!data->just_wait)
++      {
++        if (this->stream->video_fifo)
++        {
++          buf_element_t *buf = this->stream->video_fifo->buffer_pool_alloc(this->stream->video_fifo);
++          if (!buf)
++          {
++            xprintf(this->stream->xine, XINE_VERBOSITY_LOG, _(LOG_MODULE ": buffer_pool_alloc() failed!\n"));
++            return -1;
++          }
++          
++          buf->type = BUF_CONTROL_FLUSH_DECODER;
++          
++          this->stream->video_fifo->put(this->stream->video_fifo, buf);
++        }
++      }
++      
++      {
++        double _t1, _t2;
++        int _n = 0;
++        
++        int vb = -1, ab = -1, vf = -1, af = -1;
++        
++        uint8_t timed_out = 0;
++        
++        struct timeval now, then;
++        
++        if (data->ms_timeout >= 0)
++        {
++          gettimeofday(&now, 0);
++          
++          then = now;
++          then.tv_usec += (data->ms_timeout % 1000) * 1000;
++          then.tv_sec  += (data->ms_timeout / 1000);
++          
++          if (then.tv_usec >= 1000000)
++          {
++            then.tv_usec -= 1000000;
++            then.tv_sec  += 1;
++          }
++        }
++        else
++        {
++          then.tv_usec = 0;
++          then.tv_sec  = 0;
++        }
++
++        _t1 = _now();
++        
++        while (1)
++        {
++          _x_query_buffer_usage(this->stream, &vb, &ab, &vf, &af);
++          
++          if (vb <= 0 && ab <= 0 && vf <= 0 && af <= 0)
++            break;
++          
++          if (data->ms_timeout >= 0
++              && timercmp(&now, &then, >=))
++          {
++            timed_out++;
++            break;
++          }
++          
++/*          sched_yield(); */
++          xine_usec_sleep(5000);
++          _n++;
++          
++          if (data->ms_timeout >= 0)
++            gettimeofday(&now, 0);          
++        }
++
++        _t2 = _now();
++        fprintf(stderr, "vdr: flush: n: %d, %.1lf\n", _n, _t2 - _t1);
++        
++        xprintf(this->stream->xine
++                , XINE_VERBOSITY_LOG
++                , _(LOG_MODULE ": flush buffers (vb: %d, ab: %d, vf: %d, af: %d) %s.\n")
++                , vb, ab, vf, af
++                , (timed_out ? "timed out" : "done"));
++        
++        {
++          result_flush_t result_flush;
++          result_flush.header.func = data->header.func;
++          result_flush.header.len = sizeof (result_flush);
++          
++          result_flush.timed_out = timed_out;
++          
++          if (sizeof (result_flush) != vdr_write(this->fh_result, &result_flush, sizeof (result_flush)))
++            return -1;
++        }
++      }
++    }
++    break;
++
++  case func_mute:
++    {
++      READ_DATA_OR_FAIL(mute, lprintf("got MUTE\n"));
++      
++      xine_set_param(this->stream, XINE_PARAM_AUDIO_MUTE, data->mute);
++    }
++    break;
++
++  case func_set_volume:
++    {
++      READ_DATA_OR_FAIL(set_volume, lprintf("got SETVOLUME\n"));
++
++      {
++        int change_volume = !this->dont_change_xine_volume;
++        int do_mute   = (0 != this->last_volume && 0 == data->volume);
++        int do_unmute = (0 == this->last_volume && 0 != data->volume);
++        int report_change = 0;
++        
++        this->last_volume = data->volume;
++
++        if (do_mute || do_unmute)
++        {
++          switch (this->mute_mode)
++          {
++          case INPUT_VDR_MUTE_EXECUTE:
++            report_change = 1;
++            xine_set_param(this->stream, XINE_PARAM_AUDIO_MUTE, do_mute);
++            
++          case INPUT_VDR_MUTE_IGNORE:
++            if (do_mute)
++              change_volume = 0;
++            break;
++
++          case INPUT_VDR_MUTE_SIMULATE:
++            change_volume = 1;
++            break;
++
++          default:
++            return -1;
++          };
++        }
++        
++        if (change_volume)
++        {
++          report_change = 1;
++          xine_set_param(this->stream, XINE_PARAM_AUDIO_VOLUME, this->last_volume);
++        }
++
++        if (report_change)
++        {
++          xine_event_t            event;
++          xine_audio_level_data_t data;
++          
++          data.left
++            = data.right
++            = xine_get_param(this->stream, XINE_PARAM_AUDIO_VOLUME);
++          data.mute
++            = xine_get_param(this->stream, XINE_PARAM_AUDIO_MUTE);
++          
++          event.type        = XINE_EVENT_AUDIO_LEVEL;
++          event.data        = &data;
++          event.data_length = sizeof (data);
++          
++          xine_event_send(this->stream, &event);
++        }
++      }
++    }
++    break;
++
++  case func_set_speed:
++    {
++      READ_DATA_OR_FAIL(set_speed, lprintf("got SETSPEED\n"));
++      
++      lprintf("... got SETSPEED %d\n", data->speed);
++      
++      if (data->speed != xine_get_param(this->stream, XINE_PARAM_FINE_SPEED))
++        xine_set_param(this->stream, XINE_PARAM_FINE_SPEED, data->speed);
++    }
++    break;
++
++  case func_set_prebuffer:
++    {
++      READ_DATA_OR_FAIL(set_prebuffer, lprintf("got SETPREBUFFER\n"));
++
++      xine_set_param(this->stream, XINE_PARAM_METRONOM_PREBUFFER, data->prebuffer);
++    }
++    break;
++
++  case func_metronom:
++    {
++      READ_DATA_OR_FAIL(metronom, lprintf("got METRONOM\n"));
++
++      _x_demux_control_newpts(this->stream, data->pts, data->flags);
++    }
++    break;
++    
++  case func_start:
++    {
++      READ_DATA_OR_FAIL(start, lprintf("got START\n"));
++
++      _x_demux_control_start(this->stream);
++      _x_demux_seek(this->stream, 0, 0, 0);
++    }
++    break;
++
++  case func_wait:
++    {
++      READ_DATA_OR_FAIL(wait, lprintf("got WAIT\n"));
++
++      {
++        result_wait_t result_wait;
++        result_wait.header.func = data->header.func;
++        result_wait.header.len = sizeof (result_wait);
++          
++        if (sizeof (result_wait) != vdr_write(this->fh_result, &result_wait, sizeof (result_wait)))
++          return -1;
++      }
++    }
++    break;
++
++  case func_setup:
++    {
++      READ_DATA_OR_FAIL(setup, lprintf("got SETUP\n"));
++
++      this->osd_unscaled_blending   = data->osd_unscaled_blending;
++      this->dont_change_xine_volume = data->dont_change_xine_volume;
++      this->mute_mode               = data->mute_mode;
++    }
++    break;
++
++  case func_grab_image:
++    {
++      READ_DATA_OR_FAIL(grab_image, lprintf("got GRABIMAGE\n"));
++
++      {
++        off_t ret_val = -1;
++        
++        uint8_t *img   = 0;
++        int frame_size = 0;
++        int width      = 0;
++        int height     = 0;       
++        int ratio_code = 0;
++        int format     = 0;
++        
++        int orig_speed = xine_get_param(this->stream, XINE_PARAM_FINE_SPEED);
++        if (XINE_SPEED_PAUSE != orig_speed)
++          xine_set_param(this->stream, XINE_PARAM_FINE_SPEED, XINE_SPEED_PAUSE);
++        
++        if (xine_get_current_frame(this->stream, &width, &height, &ratio_code, &format, 0))
++        {
++          switch (format)
++          {
++          case XINE_IMGFMT_YV12:
++            frame_size = width * height
++              + ((width + 1) / 2) * ((height + 1) / 2)
++              + ((width + 1) / 2) * ((height + 1) / 2);
++            break;
++            
++          case XINE_IMGFMT_YUY2:
++            frame_size = width * height
++              + ((width + 1) / 2) * height
++              + ((width + 1) / 2) * height;
++            break;
++          }
++          
++          img = xine_xmalloc(frame_size);
++          
++          if (!xine_get_current_frame(this->stream, &width, &height, &ratio_code, &format, img))
++            frame_size = 0;
++          
++          if (ratio_code == XINE_VO_ASPECT_SQUARE)
++            ratio_code = 10000;
++          else if (ratio_code == XINE_VO_ASPECT_4_3)
++            ratio_code = 13333;
++          else if (ratio_code == XINE_VO_ASPECT_ANAMORPHIC)
++            ratio_code = 17778;
++          else if (ratio_code == XINE_VO_ASPECT_DVB)
++            ratio_code = 21100;
++          
++          if (0 == frame_size)
++          {
++            width      = 0;
++            height     = 0;
++            ratio_code = 0;
++          }          
++        }
++        
++        if (XINE_SPEED_PAUSE != orig_speed)
++          xine_set_param(this->stream, XINE_PARAM_FINE_SPEED, orig_speed);
++        
++        {
++          result_grab_image_t result_grab_image;
++          result_grab_image.header.func = data->header.func;
++          result_grab_image.header.len = sizeof (result_grab_image) + frame_size;
++          
++          result_grab_image.width  = width;
++          result_grab_image.height = height;
++          result_grab_image.ratio  = ratio_code;
++          result_grab_image.format = format;
++          
++          if (sizeof (result_grab_image) == vdr_write(this->fh_result, &result_grab_image, sizeof (result_grab_image)))
++          {
++            if (frame_size == vdr_write(this->fh_result, img, frame_size))
++              ret_val = 0;
++          }
++        }
++        
++        if (img)
++          free(img);
++        
++        if (ret_val != 0)
++          return ret_val;
++      }
++    }
++    break;
++    
++  case func_get_pts:
++    {
++      READ_DATA_OR_FAIL(get_pts, lprintf("got GETPTS\n"));
++      
++      {
++        result_get_pts_t result_get_pts;
++        result_get_pts.header.func = data->header.func;
++        result_get_pts.header.len = sizeof (result_get_pts);
++        
++        result_get_pts.pts = xine_get_current_vpts(this->stream) - this->stream->metronom->get_option(this->stream->metronom, METRONOM_VPTS_OFFSET);
++        
++        if (sizeof (result_get_pts) != vdr_write(this->fh_result, &result_get_pts, sizeof (result_get_pts)))
++          return -1;
++      }
++    }
++    break;
++
++  case func_get_version:
++    {
++      READ_DATA_OR_FAIL(get_version, lprintf("got GETVERSION\n"));
++      
++      {
++        result_get_version_t result_get_version;
++        result_get_version.header.func = data->header.func;
++        result_get_version.header.len = sizeof (result_get_version);
++        
++        result_get_version.version = XINE_INPUT_VDR_VERSION;
++        
++        if (sizeof (result_get_version) != vdr_write(this->fh_result, &result_get_version, sizeof (result_get_version)))
++          return -1;
++      }
++    }
++    break;
++
++  case func_video_size:
++    {
++      READ_DATA_OR_FAIL(video_size, lprintf("got VIDEO SIZE\n"));
++
++      {
++        int format;
++        
++        result_video_size_t result_video_size;
++        result_video_size.header.func = data->header.func;
++        result_video_size.header.len = sizeof (result_video_size);
++        
++        result_video_size.top    = -1;
++        result_video_size.left   = -1;
++        result_video_size.width  = -1;
++        result_video_size.height = -1;
++        result_video_size.ratio  = 0;
++        
++        xine_get_current_frame(this->stream, &result_video_size.width, &result_video_size.height, &result_video_size.ratio, &format, 0);
++        
++        if (result_video_size.ratio == XINE_VO_ASPECT_SQUARE)
++          result_video_size.ratio = 10000;
++        else if (result_video_size.ratio == XINE_VO_ASPECT_4_3)
++          result_video_size.ratio = 13333;
++        else if (result_video_size.ratio == XINE_VO_ASPECT_ANAMORPHIC)
++          result_video_size.ratio = 17778;
++        else if (result_video_size.ratio == XINE_VO_ASPECT_DVB)
++          result_video_size.ratio = 21100;
++        
++        if (0 != this->frame_size.x
++            || 0 != this->frame_size.y
++            || 0 != this->frame_size.w
++            || 0 != this->frame_size.h)
++        {
++          result_video_size.left   = this->frame_size.x;
++          result_video_size.top    = this->frame_size.y;
++          result_video_size.width  = this->frame_size.w;
++          result_video_size.height = this->frame_size.h;
++        }
++
++        result_video_size.zoom_x = xine_get_param(this->stream, XINE_PARAM_VO_ZOOM_X);
++        result_video_size.zoom_y = xine_get_param(this->stream, XINE_PARAM_VO_ZOOM_Y);
++        
++        if (sizeof (result_video_size) != vdr_write(this->fh_result, &result_video_size, sizeof (result_video_size)))
++          return -1;
++      }
++    }
++    break;
++
++  case func_reset_audio:
++    {
++      double _t1, _t2;
++      int _n = 0;
++      
++      READ_DATA_OR_FAIL(reset_audio, lprintf("got RESET AUDIO\n"));
++
++      if (this->stream->audio_fifo)
++      {
++        xine_set_param(this->stream, XINE_PARAM_IGNORE_AUDIO, 1);
++        xine_set_param(this->stream, XINE_PARAM_AUDIO_CHANNEL_LOGICAL, -2);
++
++        _t1 = _now();
++        
++        while (1)
++        {
++          int n = xine_get_stream_info(this->stream, XINE_STREAM_INFO_MAX_AUDIO_CHANNEL);
++          if (n <= 0)
++            break;
++          
++          /* keep the decoder running */
++          if (this->stream->audio_fifo)
++          {
++            buf_element_t *buf = this->stream->audio_fifo->buffer_pool_alloc(this->stream->audio_fifo);
++            if (!buf)
++            {
++              xprintf(this->stream->xine, XINE_VERBOSITY_LOG, _(LOG_MODULE ": buffer_pool_alloc() failed!\n"));
++              return -1;
++            }
++            
++            buf->type = BUF_CONTROL_RESET_TRACK_MAP;
++            
++            this->stream->audio_fifo->put(this->stream->audio_fifo, buf);
++          }
++          
++/*          sched_yield(); */
++          xine_usec_sleep(5000);
++          _n++;
++        }
++
++        _t2 = _now();
++        fprintf(stderr, "vdr: reset_audio: n: %d, %.1lf\n", _n, _t2 - _t1);
++        
++        xine_set_param(this->stream, XINE_PARAM_AUDIO_CHANNEL_LOGICAL, -1);
++
++        _x_stream_info_reset(this->stream, XINE_STREAM_INFO_AUDIO_BITRATE);
++        _x_meta_info_reset(this->stream, XINE_META_INFO_AUDIOCODEC);
++
++        xine_set_param(this->stream, XINE_PARAM_IGNORE_AUDIO, 0);
++      }
++    }
++    break;
++    
++  default:
++    lprintf("unknown function: %d\n", this->cur_func);
++  }
++    
++  if (this->cur_size != this->cur_done)
++  {
++    off_t skip = this->cur_size - this->cur_done;
++
++    lprintf("func: %d, skipping: %lld\n", this->cur_func, skip);
++     
++    while (skip > BUF_SIZE)
++    {
++      n = vdr_read_abort(this->stream, this->fh_control, this->seek_buf, BUF_SIZE);
++      if (n != BUF_SIZE)
++        return -1;
++
++      skip -= BUF_SIZE;
++    }
++
++    n = vdr_read_abort(this->stream, this->fh_control, this->seek_buf, skip);
++    if (n != skip)
++      return -1;
++
++    this->cur_done = this->cur_size;
++
++    return -1;
++  }
++
++  return 0;
++}
++
++static void *vdr_rpc_thread_loop(void *arg)
++{
++  vdr_input_plugin_t *this = (vdr_input_plugin_t *)arg;
++  int frontend_lock_failures = 0;
++  int failed = 0;
++  
++  while (!failed
++    && !this->rpc_thread_shutdown)
++  {
++    struct timeval timeout;
++    fd_set rset;
++  
++    FD_ZERO(&rset);
++    FD_SET(this->fh_control, &rset);
++
++    timeout.tv_sec  = 0;
++    timeout.tv_usec = 50000;
++
++    if (select(this->fh_control + 1, &rset, NULL, NULL, &timeout) > 0)
++    {
++      if (!_x_lock_frontend(this->stream, 100))
++      {
++        if (++frontend_lock_failures > 50)
++        {
++          failed = 1;
++          xprintf(this->stream->xine, XINE_VERBOSITY_LOG,
++                  LOG_MODULE ": locking frontend for rpc command execution failed, exiting ...\n");
++        }
++      }
++      else
++      {
++        frontend_lock_failures = 0;
++        
++        if (vdr_execute_rpc_command(this) < 0)
++        {
++          failed = 1;
++          xprintf(this->stream->xine, XINE_VERBOSITY_LOG,
++                  LOG_MODULE ": execution of rpc command %d (%s) failed, exiting ...\n", this->cur_func, "");
++        }
++
++        _x_unlock_frontend(this->stream);
++      }
++    }
++  }
++
++  /* close control and result channel here to have vdr-xine initiate a disconnect for the above error case ... */
++  close(this->fh_control);
++  this->fh_control = -1;
++  
++  close(this->fh_result);
++  this->fh_result = -1;
++  
++  xprintf(this->stream->xine, XINE_VERBOSITY_LOG,
++          LOG_MODULE ": rpc thread done.\n");
++
++  pthread_mutex_lock(&this->rpc_thread_shutdown_lock);
++  this->rpc_thread_shutdown = -1;
++  pthread_cond_broadcast(&this->rpc_thread_shutdown_cond);
++  pthread_mutex_unlock(&this->rpc_thread_shutdown_lock);
++  
++  return 0;
++}
++
++static int internal_write_event_key(vdr_input_plugin_t *this, uint32_t key)
++{
++  event_key_t event;
++  event.header.func = func_key;
++  event.header.len = sizeof (event);
++
++  event.key = key;
++
++  if (sizeof (event) != vdr_write(this->fh_event, &event, sizeof (event)))
++    return -1;
++  
++  return 0;
++}
++
++static int internal_write_event_frame_size(vdr_input_plugin_t *this)
++{
++  event_frame_size_t event;
++  event.header.func = func_frame_size;
++  event.header.len = sizeof (event);
++
++  event.left   = this->frame_size.x;
++  event.top    = this->frame_size.y;
++  event.width  = this->frame_size.w,
++  event.height = this->frame_size.h;
++  event.zoom_x = xine_get_param(this->stream, XINE_PARAM_VO_ZOOM_X);
++  event.zoom_y = xine_get_param(this->stream, XINE_PARAM_VO_ZOOM_Y);
++
++  if (sizeof (event) != vdr_write(this->fh_event, &event, sizeof (event)))
++    return -1;
++  
++  return 0;
++}
++
++static int internal_write_event_play_external(vdr_input_plugin_t *this, uint32_t key)
++{
++  event_play_external_t event;
++  event.header.func = func_play_external;
++  event.header.len = sizeof (event);
++
++  event.key = key;
++
++  if (sizeof (event) != vdr_write(this->fh_event, &event, sizeof (event)))
++    return -1;
++  
++  return 0;
++}
++
++static off_t vdr_plugin_read(input_plugin_t *this_gen, 
++                             char *buf, off_t len)
++{
++  vdr_input_plugin_t  *this = (vdr_input_plugin_t *) this_gen;
++  off_t n, total;
++#ifdef LOG_READ   
++  lprintf ("reading %lld bytes...\n", len);
++#endif   
++  total=0;
++  if (this->curpos < this->preview_size)
++  {
++    n = this->preview_size - this->curpos;
++    if (n > (len - total))
++      n = len - total;
++#ifdef LOG_READ
++    lprintf ("%lld bytes from preview (which has %lld bytes)\n",
++            n, this->preview_size);
++#endif
++    memcpy (&buf[total], &this->preview[this->curpos], n);
++    this->curpos += n;
++    total += n;
++  }
++   
++  if( (len-total) > 0 )
++  {
++    int retries = 0;
++    do
++    {
++      n = vdr_read_abort (this->stream, this->fh, &buf[total], len-total);
++      if (0 == n)
++        lprintf("read 0, retries: %d\n", retries);
++    }
++    while (0 == n
++           && !this->stream_external
++           && _x_continue_stream_processing(this->stream)
++           && 200 > retries++); /* 200 * 50ms */
++#ifdef LOG_READ      
++    lprintf ("got %lld bytes (%lld/%lld bytes read)\n",
++            n,total,len);
++#endif
++    if (n < 0)
++    {
++      _x_message(this->stream, XINE_MSG_READ_ERROR, NULL);
++      return 0;
++    }
++
++    this->curpos += n;
++    total += n;
++  }
++  return total;
++}
++
++static buf_element_t *vdr_plugin_read_block(input_plugin_t *this_gen, fifo_buffer_t *fifo, 
++                                            off_t todo)
++{
++  off_t          total_bytes;
++  buf_element_t *buf = fifo->buffer_pool_alloc(fifo);
++
++  buf->content = buf->mem;
++  buf->type = BUF_DEMUX_BLOCK;
++
++  total_bytes = vdr_plugin_read(this_gen, (char *)buf->content, todo);
++
++  if (total_bytes != todo)
++  {
++    buf->free_buffer(buf);
++    return NULL;
++  }
++
++  buf->size = total_bytes;
++
++  return buf;
++}
++
++/* forward reference */
++static off_t vdr_plugin_get_current_pos(input_plugin_t *this_gen);
++
++static off_t vdr_plugin_seek(input_plugin_t *this_gen, off_t offset, int origin)
++{
++  vdr_input_plugin_t *this = (vdr_input_plugin_t *)this_gen;
++
++  lprintf("seek %lld offset, %d origin...\n",
++          offset, origin);
++
++  if ((origin == SEEK_CUR) && (offset >= 0))
++  {
++    for ( ; ((int)offset) - BUF_SIZE > 0; offset -= BUF_SIZE)
++    {
++      if (!this_gen->read(this_gen, this->seek_buf, BUF_SIZE))
++        return this->curpos;
++    }
++
++    this_gen->read (this_gen, this->seek_buf, offset);
++  }
++
++  if (origin == SEEK_SET)
++  {
++    if (offset < this->curpos)
++    {
++      if (this->curpos <= this->preview_size) 
++        this->curpos = offset;
++      else
++        lprintf("cannot seek back! (%lld > %lld)\n", this->curpos, offset);
++    }
++    else
++    {
++      offset -= this->curpos;
++
++      for ( ; ((int)offset) - BUF_SIZE > 0; offset -= BUF_SIZE)
++      {
++        if (!this_gen->read(this_gen, this->seek_buf, BUF_SIZE))
++          return this->curpos;
++      }
++
++      this_gen->read(this_gen, this->seek_buf, offset);
++    }
++  }
++
++  return this->curpos;
++}
++
++static off_t vdr_plugin_get_length(input_plugin_t *this_gen)
++{
++  return 0;
++}
++
++static uint32_t vdr_plugin_get_capabilities(input_plugin_t *this_gen)
++{
++  return INPUT_CAP_NOCAP; /* INPUT_CAP_PREVIEW; */
++}
++
++static uint32_t vdr_plugin_get_blocksize(input_plugin_t *this_gen)
++{
++  return 0;
++}
++
++static off_t vdr_plugin_get_current_pos(input_plugin_t *this_gen)
++{
++  vdr_input_plugin_t *this = (vdr_input_plugin_t *)this_gen;
++
++  return this->curpos;
++}
++
++static char* vdr_plugin_get_mrl(input_plugin_t *this_gen)
++{
++  vdr_input_plugin_t *this = (vdr_input_plugin_t *)this_gen;
++
++  return this->mrl;
++}
++
++static void vdr_plugin_dispose(input_plugin_t *this_gen)
++{
++  vdr_input_plugin_t *this = (vdr_input_plugin_t *)this_gen;
++  int i;
++
++  external_stream_stop(this);
++
++  if (this->event_queue)
++    xine_event_dispose_queue(this->event_queue);
++
++  if (this->rpc_thread)
++  {
++    struct timespec abstime;
++    int ms_to_time_out = 10000;
++
++    xprintf(this->stream->xine, XINE_VERBOSITY_LOG, _(LOG_MODULE ": shutting down rpc thread (timeout: %d ms) ...\n"), ms_to_time_out);
++
++    pthread_mutex_lock(&this->rpc_thread_shutdown_lock);
++
++    if (this->rpc_thread_shutdown > -1)
++    {
++      this->rpc_thread_shutdown = 1;
++      
++      {
++        struct timeval now;
++        gettimeofday(&now, 0);
++        
++        abstime.tv_sec = now.tv_sec + ms_to_time_out / 1000;
++        abstime.tv_nsec = now.tv_usec * 1000 + (ms_to_time_out % 1000) * 1e6;
++        
++        if (abstime.tv_nsec > 1e9)
++        {
++          abstime.tv_nsec -= 1e9;
++          abstime.tv_sec++;
++        }
++      }
++      
++      if (0 != pthread_cond_timedwait(&this->rpc_thread_shutdown_cond, &this->rpc_thread_shutdown_lock, &abstime))
++      {
++        xprintf(this->stream->xine, XINE_VERBOSITY_LOG, _(LOG_MODULE ": cancelling rpc thread in function %d...\n"), this->cur_func);
++        pthread_cancel(this->rpc_thread);
++      }
++    }
++    
++    pthread_mutex_unlock(&this->rpc_thread_shutdown_lock);
++    
++    xprintf(this->stream->xine, XINE_VERBOSITY_LOG, _(LOG_MODULE ": joining rpc thread ...\n"));
++    pthread_join(this->rpc_thread, 0);
++    xprintf(this->stream->xine, XINE_VERBOSITY_LOG, _(LOG_MODULE ": rpc thread joined.\n"));
++  }
++
++  pthread_cond_destroy(&this->rpc_thread_shutdown_cond);
++  pthread_mutex_destroy(&this->rpc_thread_shutdown_lock);
++  
++  if (this->fh_result != -1)
++    close(this->fh_result);
++  
++  if (this->fh_control != -1)
++    close(this->fh_control);
++
++  if (this->fh_event != -1)
++    close(this->fh_event);
++  
++  for (i = 0; i < VDR_MAX_NUM_WINDOWS; i++)
++  {
++    if (0 == this->osd_window[ i ])
++      continue;
++
++    xine_osd_hide(this->osd_window[ i ], 0);
++    xine_osd_free(this->osd_window[ i ]);
++  }
++
++  if (this->osd_buffer)
++    free(this->osd_buffer);
++  
++  if ((this->fh != STDIN_FILENO) && (this->fh != -1))
++    close(this->fh);
++
++  free(this->mrl);
++  free(this);
++}
++
++static int vdr_plugin_get_optional_data(input_plugin_t *this_gen, 
++                                        void *data, int data_type)
++{
++  vdr_input_plugin_t *this = (vdr_input_plugin_t *)this_gen;
++  int preview_size = (this->preview_size > MAX_PREVIEW_SIZE) ? MAX_PREVIEW_SIZE : this->preview_size;
++/*
++  switch (data_type)
++  {
++  case INPUT_OPTIONAL_DATA_PREVIEW:
++    memcpy (data, this->preview, preview_size);
++    return preview_size;
++  }
++*/  
++  return INPUT_OPTIONAL_UNSUPPORTED;
++}
++
++static uint8_t preview_mpg_data[] =
++{
++/* 0x0000 */ 0x00, 0x00, 0x01, 0xb3, 0x2d, 0x02, 0x40, 0x23, 0x12, 0x4f, 0xa3, 0x80, 0x00, 0x00, 0x01, 0xb5,
++/* 0x0010 */ 0x14, 0x82, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x01, 0xb5, 0x23, 0x05, 0x05, 0x05, 0x0b, 0x42,
++/* 0x0020 */ 0x12, 0x00, 0x00, 0x00, 0x01, 0xb8, 0x00, 0x08, 0x00, 0x40, 0x00, 0x00, 0x01, 0x00, 0x00, 0x0f,
++/* 0x0030 */ 0xff, 0xf8, 0x00, 0x00, 0x01, 0xb5, 0x8f, 0xff, 0xf7, 0xdd, 0x80, 0x00, 0x00, 0x01, 0x01, 0x0b,
++/* 0x0040 */ 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x0050 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x0060 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x0070 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x0080 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x0090 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x00a0 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x00b0 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x00c0 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x00d0 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x00e0 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x00f0 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x0100 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x0110 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x0120 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00,
++/* 0x0130 */ 0x01, 0x02, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x0140 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x0150 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x0160 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x0170 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x0180 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x0190 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x01a0 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x01b0 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x01c0 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x01d0 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x01e0 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x01f0 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x0200 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x0210 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x0220 */ 0x60, 0x00, 0x00, 0x01, 0x03, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x0230 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x0240 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x0250 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x0260 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x0270 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x0280 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x0290 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x02a0 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x02b0 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x02c0 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x02d0 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x02e0 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x02f0 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x0300 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x0310 */ 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0x04, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x0320 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x0330 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x0340 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x0350 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x0360 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x0370 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x0380 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x0390 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x03a0 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x03b0 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x03c0 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x03d0 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x03e0 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x03f0 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x0400 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0x05, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3,
++/* 0x0410 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x0420 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x0430 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x0440 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x0450 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x0460 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x0470 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x0480 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x0490 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x04a0 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x04b0 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x04c0 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x04d0 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x04e0 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x04f0 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0x06, 0x0b, 0xfc,
++/* 0x0500 */ 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x0510 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x0520 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x0530 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x0540 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x0550 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x0560 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x0570 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x0580 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x0590 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x05a0 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x05b0 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x05c0 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x05d0 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x05e0 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01,
++/* 0x05f0 */ 0x07, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x0600 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x0610 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x0620 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x0630 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x0640 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x0650 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x0660 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x0670 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x0680 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x0690 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x06a0 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x06b0 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x06c0 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x06d0 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60,
++/* 0x06e0 */ 0x00, 0x00, 0x01, 0x08, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x06f0 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x0700 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x0710 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x0720 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x0730 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x0740 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x0750 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x0760 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x0770 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x0780 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x0790 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x07a0 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x07b0 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x07c0 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x07d0 */ 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0x09, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x07e0 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x07f0 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x0800 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x0810 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x0820 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x0830 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x0840 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x0850 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x0860 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x0870 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x0880 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x0890 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x08a0 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x08b0 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x08c0 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0x0a, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46,
++/* 0x08d0 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x08e0 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x08f0 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x0900 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x0910 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x0920 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x0930 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x0940 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x0950 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x0960 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x0970 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x0980 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x0990 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x09a0 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x09b0 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0x0b, 0x0b, 0xfc, 0x3e,
++/* 0x09c0 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x09d0 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x09e0 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x09f0 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x0a00 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x0a10 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x0a20 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x0a30 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x0a40 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x0a50 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x0a60 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x0a70 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x0a80 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x0a90 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x0aa0 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0x0c,
++/* 0x0ab0 */ 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x0ac0 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x0ad0 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x0ae0 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x0af0 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x0b00 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x0b10 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x0b20 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x0b30 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x0b40 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x0b50 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x0b60 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x0b70 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x0b80 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x0b90 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00,
++/* 0x0ba0 */ 0x00, 0x01, 0x0d, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x0bb0 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x0bc0 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x0bd0 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x0be0 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x0bf0 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x0c00 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x0c10 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x0c20 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x0c30 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x0c40 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x0c50 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x0c60 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x0c70 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x0c80 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x0c90 */ 0x18, 0x60, 0x00, 0x00, 0x01, 0x0e, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x0ca0 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x0cb0 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x0cc0 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x0cd0 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x0ce0 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x0cf0 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x0d00 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x0d10 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x0d20 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x0d30 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x0d40 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x0d50 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x0d60 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x0d70 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x0d80 */ 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0x0f, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x0d90 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x0da0 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x0db0 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x0dc0 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x0dd0 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x0de0 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x0df0 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x0e00 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x0e10 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x0e20 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x0e30 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x0e40 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x0e50 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x0e60 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x0e70 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0x10, 0x0b, 0xfc, 0x3e, 0xd1,
++/* 0x0e80 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x0e90 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x0ea0 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x0eb0 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x0ec0 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x0ed0 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x0ee0 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x0ef0 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x0f00 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x0f10 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x0f20 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x0f30 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x0f40 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x0f50 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x0f60 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0x11, 0x0b,
++/* 0x0f70 */ 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x0f80 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x0f90 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x0fa0 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x0fb0 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x0fc0 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x0fd0 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x0fe0 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x0ff0 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x1000 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x1010 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x1020 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x1030 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x1040 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x1050 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00,
++/* 0x1060 */ 0x01, 0x12, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x1070 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x1080 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x1090 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x10a0 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x10b0 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x10c0 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x10d0 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x10e0 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x10f0 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x1100 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x1110 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x1120 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x1130 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x1140 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x1150 */ 0x60, 0x00, 0x00, 0x01, 0x13, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x1160 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x1170 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x1180 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x1190 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x11a0 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x11b0 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x11c0 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x11d0 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x11e0 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x11f0 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x1200 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x1210 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x1220 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x1230 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x1240 */ 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0x14, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x1250 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x1260 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x1270 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x1280 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x1290 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x12a0 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x12b0 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x12c0 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x12d0 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x12e0 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x12f0 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x1300 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x1310 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x1320 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x1330 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0x15, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3,
++/* 0x1340 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x1350 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x1360 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x1370 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x1380 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x1390 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x13a0 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x13b0 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x13c0 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x13d0 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x13e0 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x13f0 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x1400 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x1410 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x1420 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0x16, 0x0b, 0xfc,
++/* 0x1430 */ 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x1440 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x1450 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x1460 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x1470 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x1480 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x1490 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x14a0 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x14b0 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x14c0 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x14d0 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x14e0 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x14f0 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x1500 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x1510 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01,
++/* 0x1520 */ 0x17, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x1530 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x1540 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x1550 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x1560 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x1570 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x1580 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x1590 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x15a0 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x15b0 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x15c0 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x15d0 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x15e0 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x15f0 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x1600 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60,
++/* 0x1610 */ 0x00, 0x00, 0x01, 0x18, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x1620 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x1630 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x1640 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x1650 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x1660 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x1670 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x1680 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x1690 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x16a0 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x16b0 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x16c0 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x16d0 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x16e0 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x16f0 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x1700 */ 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0x19, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x1710 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x1720 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x1730 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x1740 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x1750 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x1760 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x1770 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x1780 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x1790 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x17a0 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x17b0 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x17c0 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x17d0 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x17e0 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x17f0 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0x1a, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46,
++/* 0x1800 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x1810 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x1820 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x1830 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x1840 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x1850 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x1860 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x1870 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x1880 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x1890 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x18a0 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x18b0 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x18c0 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x18d0 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x18e0 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0x1b, 0x0b, 0xfc, 0x3e,
++/* 0x18f0 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x1900 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x1910 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x1920 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x1930 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x1940 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x1950 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x1960 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x1970 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x1980 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x1990 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x19a0 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x19b0 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x19c0 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x19d0 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0x1c,
++/* 0x19e0 */ 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x19f0 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x1a00 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x1a10 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x1a20 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x1a30 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x1a40 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x1a50 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x1a60 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x1a70 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x1a80 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x1a90 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x1aa0 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x1ab0 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x1ac0 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00,
++/* 0x1ad0 */ 0x00, 0x01, 0x1d, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x1ae0 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x1af0 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x1b00 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x1b10 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x1b20 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x1b30 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x1b40 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x1b50 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x1b60 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x1b70 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x1b80 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x1b90 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x1ba0 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x1bb0 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x1bc0 */ 0x18, 0x60, 0x00, 0x00, 0x01, 0x1e, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x1bd0 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x1be0 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x1bf0 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x1c00 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x1c10 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x1c20 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x1c30 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x1c40 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x1c50 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x1c60 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x1c70 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x1c80 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x1c90 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x1ca0 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x1cb0 */ 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0x1f, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x1cc0 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x1cd0 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x1ce0 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x1cf0 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x1d00 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x1d10 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x1d20 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x1d30 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x1d40 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x1d50 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x1d60 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x1d70 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x1d80 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x1d90 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x1da0 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0x20, 0x0b, 0xfc, 0x3e, 0xd1,
++/* 0x1db0 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x1dc0 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x1dd0 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x1de0 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x1df0 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x1e00 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x1e10 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x1e20 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x1e30 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x1e40 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x1e50 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x1e60 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x1e70 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x1e80 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x1e90 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0x21, 0x0b,
++/* 0x1ea0 */ 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x1eb0 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x1ec0 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x1ed0 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x1ee0 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x1ef0 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x1f00 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x1f10 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x1f20 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x1f30 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x1f40 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x1f50 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x1f60 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x1f70 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x1f80 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00,
++/* 0x1f90 */ 0x01, 0x22, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x1fa0 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x1fb0 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x1fc0 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x1fd0 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x1fe0 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x1ff0 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x2000 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x2010 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x2020 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x2030 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x2040 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x2050 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x2060 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x2070 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x2080 */ 0x60, 0x00, 0x00, 0x01, 0x23, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x2090 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x20a0 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x20b0 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61,
++/* 0x20c0 */ 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86,
++/* 0x20d0 */ 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18,
++/* 0x20e0 */ 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61,
++/* 0x20f0 */ 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86,
++/* 0x2100 */ 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b,
++/* 0x2110 */ 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x2120 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x2130 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x2140 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x2150 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x2160 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x2170 */ 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0x24, 0x0b, 0xfc, 0x3e, 0xd1, 0xa3, 0x46, 0x18, 0x6e,
++/* 0x2180 */ 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8,
++/* 0x2190 */ 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3,
++/* 0x21a0 */ 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d,
++/* 0x21b0 */ 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34,
++/* 0x21c0 */ 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1,
++/* 0x21d0 */ 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46,
++/* 0x21e0 */ 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a,
++/* 0x21f0 */ 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68,
++/* 0x2200 */ 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3,
++/* 0x2210 */ 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d,
++/* 0x2220 */ 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34,
++/* 0x2230 */ 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x6e, 0x34, 0x68, 0xd1,
++/* 0x2240 */ 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18, 0x61, 0xb8, 0xd1, 0xa3, 0x46,
++/* 0x2250 */ 0x18, 0x6e, 0x34, 0x68, 0xd1, 0x86, 0x1b, 0x8d, 0x1a, 0x34, 0x61, 0x86, 0xe3, 0x46, 0x8d, 0x18,
++/* 0x2260 */ 0x61, 0xb8, 0xd1, 0xa3, 0x46, 0x18, 0x60, 0x00, 0x00, 0x01, 0xb7
++/* 0x226b */
++};
++
++static uint8_t preview_data[ sizeof (preview_mpg_data) + ((sizeof (preview_mpg_data) - 1) / (2048 - 6 - 3) + 1) * (6 + 3) ];
++
++static int vdr_plugin_open(input_plugin_t *this_gen)
++{
++  vdr_input_plugin_t *this = (vdr_input_plugin_t *)this_gen;
++
++  lprintf("trying to open '%s'...\n", this->mrl);
++
++  if (this->fh == -1)
++  {
++    char *filename;
++    int err = 0;
++
++    filename = (char *)&this->mrl[ 4 ];
++    this->fh = open(filename, O_RDONLY | O_NONBLOCK);
++
++    lprintf("filename '%s'\n", filename);
++
++    if (this->fh == -1)
++    {
++      xprintf(this->stream->xine, XINE_VERBOSITY_LOG,
++              _(LOG_MODULE ": failed to open '%s' (%s)\n"),
++              filename,
++              strerror(errno));
++      
++      return 0;
++    }
++
++    {
++      struct pollfd poll_fh = { this->fh, POLLIN, 0 };
++      
++      int r = poll(&poll_fh, 1, 300);      
++      if (1 != r)
++      {
++        xprintf(this->stream->xine, XINE_VERBOSITY_LOG,
++                _(LOG_MODULE ": failed to open '%s' (%s)\n"),
++                filename,
++                _("timeout expired during setup phase"));
++        
++        return 0;
++      }
++    }
++    
++    fcntl(this->fh, F_SETFL, ~O_NONBLOCK & fcntl(this->fh, F_GETFL, 0));
++    
++    {
++      char *filename_control = 0;
++      asprintf(&filename_control, "%s.control", filename);
++
++      this->fh_control = open(filename_control, O_RDONLY);
++
++      if (this->fh_control == -1) {
++        xprintf(this->stream->xine, XINE_VERBOSITY_LOG,
++                _(LOG_MODULE ": failed to open '%s' (%s)\n"),
++                filename_control,
++                strerror(errno));
++
++        free(filename_control);
++        return 0;
++      }
++
++      free(filename_control);      
++    }
++
++    {
++      char *filename_result = 0;
++      asprintf(&filename_result, "%s.result", filename);
++
++      this->fh_result = open(filename_result, O_WRONLY);
++
++      if (this->fh_result == -1) {
++        perror("failed");
++        
++        xprintf(this->stream->xine, XINE_VERBOSITY_LOG,
++                _(LOG_MODULE ": failed to open '%s' (%s)\n"),
++                filename_result,
++                strerror(errno));
++        
++        free(filename_result);
++        return 0;
++      }
++
++      free(filename_result);
++    }
++
++    {
++      char *filename_event = 0;
++      asprintf(&filename_event, "%s.event", filename);
++
++      this->fh_event = open(filename_event, O_WRONLY);
++
++      if (this->fh_event == -1) {
++        perror("failed");
++
++        xprintf(this->stream->xine, XINE_VERBOSITY_LOG,
++                _(LOG_MODULE ": failed to open '%s' (%s)\n"),
++                filename_event,
++                strerror(errno));
++        
++        free(filename_event);
++        return 0;
++      }
++
++      free(filename_event);
++    }
++
++    this->rpc_thread_shutdown = 0;
++    if ((err = pthread_create(&this->rpc_thread, NULL,
++                              vdr_rpc_thread_loop, (void *)this)) != 0)
++    {
++      xprintf(this->stream->xine, XINE_VERBOSITY_LOG, 
++              _(LOG_MODULE ": can't create new thread (%s)\n"),
++              strerror(err));
++      
++      return 0;
++    }
++  }
++
++
++  /*
++   * mrl accepted and opened successfully at this point
++   *
++   * => create plugin instance
++   */
++
++  /*
++   * fill preview buffer
++   */
++
++  if (!preview_data[ 2 ])
++  {
++    uint8_t *src = preview_mpg_data;
++    uint8_t *dst = preview_data;
++    int todo = sizeof (preview_mpg_data);
++    int bite = 2048 - 6 - 3;
++
++    while (todo > 0)
++    {
++      if (bite > todo)
++        bite = todo;
++
++      *dst++ = 0x00;
++      *dst++ = 0x00;
++      *dst++ = 0x01;
++      *dst++ = 0xe0;
++
++      *dst++ = (bite + 3) >> 8;
++      *dst++ = (bite + 3) & 0xff;
++
++      *dst++ = 0x80;
++      *dst++ = 0x00;
++      *dst++ = 0x00;
++
++      memcpy(dst, src, bite);
++      dst += bite;
++      src += bite;
++
++      todo -= bite;
++    }
++  }
++
++  this->preview      = (char *)&preview_data;
++  this->preview_size = 0; /* sizeof (preview_data); */
++  this->curpos       = 0;
++
++  return 1;
++}
++
++static void event_handler(void *user_data, const xine_event_t *event)
++{
++  vdr_input_plugin_t *this = (vdr_input_plugin_t *)user_data;
++  uint32_t key = key_none;
++
++  lprintf("eventHandler(): event->type: %d\n", event->type);
++
++  if (XINE_EVENT_VDR_FRAMESIZECHANGED == event->type)
++  {
++    memcpy(&this->frame_size, event->data, event->data_length);
++
++    if (0 != internal_write_event_frame_size(this))
++      xprintf(this->stream->xine, XINE_VERBOSITY_LOG, 
++              _(LOG_MODULE ": input event write: %s.\n"), strerror(errno));
++
++    return;
++  }
++  else if (XINE_EVENT_VDR_PLUGINSTARTED == event->type)
++  {
++    if (0 == event->data_length) /* vdr_video */
++    {
++      xine_event_t event;
++        
++      event.type = XINE_EVENT_VDR_TRICKSPEEDMODE;
++      event.data = 0;
++      event.data_length = this->trick_speed_mode;
++
++      xine_event_send(this->stream, &event);
++    }
++    else if (1 == event->data_length) /* vdr_audio */
++    {
++      xine_event_t event;
++      vdr_select_audio_data_t event_data;
++        
++      event_data.channels = this->audio_channels;
++        
++      event.type = XINE_EVENT_VDR_SELECTAUDIO;
++      event.data = &event_data;
++      event.data_length = sizeof (event_data);
++        
++      xine_event_send(this->stream, &event);
++    }
++    else
++    {
++      fprintf(stderr, "input_vdr: illegal XINE_EVENT_VDR_PLUGINSTARTED: %d\n", event->data_length);
++    }
++  }
++
++  switch (event->type)
++  {
++  case XINE_EVENT_INPUT_UP:            key = key_up;               break;
++  case XINE_EVENT_INPUT_DOWN:          key = key_down;             break;
++  case XINE_EVENT_INPUT_LEFT:          key = key_left;             break;
++  case XINE_EVENT_INPUT_RIGHT:         key = key_right;            break;
++  case XINE_EVENT_INPUT_SELECT:        key = key_ok;               break;
++  case XINE_EVENT_VDR_BACK:            key = key_back;             break;
++  case XINE_EVENT_VDR_CHANNELPLUS:     key = key_channel_plus;     break;
++  case XINE_EVENT_VDR_CHANNELMINUS:    key = key_channel_minus;    break;
++  case XINE_EVENT_VDR_RED:             key = key_red;              break;
++  case XINE_EVENT_VDR_GREEN:           key = key_green;            break;
++  case XINE_EVENT_VDR_YELLOW:          key = key_yellow;           break;
++  case XINE_EVENT_VDR_BLUE:            key = key_blue;             break;
++  case XINE_EVENT_VDR_PLAY:            key = key_play;             break;
++  case XINE_EVENT_VDR_PAUSE:           key = key_pause;            break;
++  case XINE_EVENT_VDR_STOP:            key = key_stop;             break;
++  case XINE_EVENT_VDR_RECORD:          key = key_record;           break;
++  case XINE_EVENT_VDR_FASTFWD:         key = key_fast_fwd;         break;
++  case XINE_EVENT_VDR_FASTREW:         key = key_fast_rew;         break;
++  case XINE_EVENT_VDR_POWER:           key = key_power;            break;
++  case XINE_EVENT_VDR_SCHEDULE:        key = key_schedule;         break;
++  case XINE_EVENT_VDR_CHANNELS:        key = key_channels;         break;
++  case XINE_EVENT_VDR_TIMERS:          key = key_timers;           break;
++  case XINE_EVENT_VDR_RECORDINGS:      key = key_recordings;       break;
++  case XINE_EVENT_INPUT_MENU1:         key = key_menu;             break;
++  case XINE_EVENT_VDR_SETUP:           key = key_setup;            break;
++  case XINE_EVENT_VDR_COMMANDS:        key = key_commands;         break;
++  case XINE_EVENT_INPUT_NUMBER_0:      key = key_0;                break;
++  case XINE_EVENT_INPUT_NUMBER_1:      key = key_1;                break;
++  case XINE_EVENT_INPUT_NUMBER_2:      key = key_2;                break;
++  case XINE_EVENT_INPUT_NUMBER_3:      key = key_3;                break;
++  case XINE_EVENT_INPUT_NUMBER_4:      key = key_4;                break;
++  case XINE_EVENT_INPUT_NUMBER_5:      key = key_5;                break;
++  case XINE_EVENT_INPUT_NUMBER_6:      key = key_6;                break;
++  case XINE_EVENT_INPUT_NUMBER_7:      key = key_7;                break;
++  case XINE_EVENT_INPUT_NUMBER_8:      key = key_8;                break;
++  case XINE_EVENT_INPUT_NUMBER_9:      key = key_9;                break;
++  case XINE_EVENT_VDR_USER1:           key = key_user1;            break;
++  case XINE_EVENT_VDR_USER2:           key = key_user2;            break;
++  case XINE_EVENT_VDR_USER3:           key = key_user3;            break;
++  case XINE_EVENT_VDR_USER4:           key = key_user4;            break;
++  case XINE_EVENT_VDR_USER5:           key = key_user5;            break;
++  case XINE_EVENT_VDR_USER6:           key = key_user6;            break;
++  case XINE_EVENT_VDR_USER7:           key = key_user7;            break;
++  case XINE_EVENT_VDR_USER8:           key = key_user8;            break;
++  case XINE_EVENT_VDR_USER9:           key = key_user9;            break;
++  case XINE_EVENT_VDR_VOLPLUS:         key = key_volume_plus;      break;
++  case XINE_EVENT_VDR_VOLMINUS:        key = key_volume_minus;     break;
++  case XINE_EVENT_VDR_MUTE:            key = key_mute;             break;
++  case XINE_EVENT_VDR_AUDIO:           key = key_audio;            break;
++  case XINE_EVENT_VDR_INFO:            key = key_info;             break;
++  case XINE_EVENT_VDR_CHANNELPREVIOUS: key = key_channel_previous; break;
++  case XINE_EVENT_INPUT_NEXT:          key = key_next;             break;
++  case XINE_EVENT_INPUT_PREVIOUS:      key = key_previous;         break;
++  default:
++    return;
++  }
++
++  if (0 != internal_write_event_key(this, key))
++    xprintf(this->stream->xine, XINE_VERBOSITY_LOG, 
++            _(LOG_MODULE ": input event write: %s.\n"), strerror(errno));
++}
++
++static input_plugin_t *vdr_class_get_instance(input_class_t *cls_gen, xine_stream_t *stream,
++                                               const char *data)
++{
++  vdr_input_plugin_t *this;
++  char               *mrl = strdup(data);
++
++  if (!strncasecmp(mrl, "vdr:/", 5))
++  {
++    lprintf("filename '%s'\n", (char *)&mrl[ 4 ]);
++  }
++  else
++  {
++    free(mrl);
++    return NULL;
++  }
++
++  /*
++   * mrl accepted and opened successfully at this point
++   *
++   * => create plugin instance
++   */
++
++  this = (vdr_input_plugin_t *)xine_xmalloc(sizeof (vdr_input_plugin_t));
++
++  this->stream     = stream;
++  this->curpos     = 0;
++  this->mrl        = mrl;
++  this->fh         = -1;
++  this->fh_control = -1;
++  this->fh_result  = -1;
++  this->fh_event   = -1;
++
++  this->input_plugin.open              = vdr_plugin_open;
++  this->input_plugin.get_capabilities  = vdr_plugin_get_capabilities;
++  this->input_plugin.read              = vdr_plugin_read;
++  this->input_plugin.read_block        = vdr_plugin_read_block;
++  this->input_plugin.seek              = vdr_plugin_seek;
++  this->input_plugin.get_current_pos   = vdr_plugin_get_current_pos;
++  this->input_plugin.get_length        = vdr_plugin_get_length;
++  this->input_plugin.get_blocksize     = vdr_plugin_get_blocksize;
++  this->input_plugin.get_mrl           = vdr_plugin_get_mrl;
++  this->input_plugin.dispose           = vdr_plugin_dispose;
++  this->input_plugin.get_optional_data = vdr_plugin_get_optional_data;
++  this->input_plugin.input_class       = cls_gen;
++
++  this->cur_func = func_unknown;
++  this->cur_size = 0;
++  this->cur_done = 0;
++
++  memset(this->osd_window, 0, sizeof (this->osd_window));
++
++  this->osd_buffer              = 0;
++  this->osd_buffer_size         = 0;
++  this->osd_unscaled_blending   = 0;
++  this->trick_speed_mode        = 0;
++  this->audio_channels          = 0;
++  this->mute_mode               = INPUT_VDR_MUTE_SIMULATE;
++  this->dont_change_xine_volume = 0;
++  this->last_volume             = 0;
++  this->frame_size.x            = 0;
++  this->frame_size.y            = 0;
++  this->frame_size.w            = 0;
++  this->frame_size.h            = 0;
++  
++  this->stream_external      = 0;
++  this->event_queue_external = 0;
++
++  pthread_mutex_init(&this->rpc_thread_shutdown_lock, 0);
++  pthread_cond_init(&this->rpc_thread_shutdown_cond, 0);  
++  
++  this->event_queue = xine_event_new_queue(this->stream);
++  if (this->event_queue)
++    xine_event_create_listener_thread(this->event_queue, event_handler, this);
++
++  return &this->input_plugin;
++}
++
++/*
++ * vdr input plugin class stuff
++ */
++
++static char *vdr_class_get_description(input_class_t *this_gen)
++{
++  return _("VDR display device plugin");
++}
++
++static const char *vdr_class_get_identifier (input_class_t *this_gen)
++{
++  return "VDR";
++}
++
++static void vdr_class_dispose (input_class_t *this_gen)
++{
++  vdr_input_class_t *this = (vdr_input_class_t *)this_gen;
++
++  free(this);
++}
++
++static char **vdr_class_get_autoplay_list(input_class_t *this_gen,
++                                          int *num_files)
++{
++  vdr_input_class_t *class = (vdr_input_class_t *)this_gen;
++
++  *num_files = 1;
++  return class->mrls;
++}
++
++static void *init_class(xine_t *xine, void *data)
++{
++  vdr_input_class_t *this;
++  
++  lprintf("init_class\n");
++  
++  this = (vdr_input_class_t *)xine_xmalloc(sizeof (vdr_input_class_t));
++  
++  this->xine = xine;
++
++  this->mrls[ 0 ] = "vdr:" VDR_ABS_FIFO_DIR "/stream#demux:mpeg_pes";
++  this->mrls[ 1 ] = 0;
++
++  this->input_class.get_instance      = vdr_class_get_instance;
++  this->input_class.get_identifier    = vdr_class_get_identifier;
++  this->input_class.get_description   = vdr_class_get_description;
++  this->input_class.get_dir           = NULL;
++  this->input_class.get_autoplay_list = vdr_class_get_autoplay_list;
++  this->input_class.dispose           = vdr_class_dispose;
++  this->input_class.eject_media       = NULL;
++
++  return this;
++}
++
++/*
++ * exported plugin catalog entry
++ */
++
++plugin_info_t xine_plugin_info[] =
++{
++  /* type, API, "name", version, special_info, init_function */
++  { PLUGIN_INPUT, 17, "VDR", XINE_VERSION_CODE, NULL, init_class },
++  { PLUGIN_NONE, 0, "", 0, NULL, NULL }
++};
++
+diff -Nurp ../xine-cvs/xine-lib/src/vdr/input_vdr.h xine-lib/src/vdr/input_vdr.h
+--- ../xine-cvs/xine-lib/src/vdr/input_vdr.h	1970-01-01 01:00:00.000000000 +0100
++++ xine-lib/src/vdr/input_vdr.h	2006-04-17 23:00:09.000000000 +0200
+@@ -0,0 +1,588 @@
++
++#ifndef __INPUT_VDR_H
++#define __INPUT_VDR_H
++
++
++#define XINE_INPUT_VDR_VERSION 708
++
++
++enum funcs
++{
++  func_unknown = -1
++  , func_nop
++  , func_osd_new
++  , func_osd_free
++  , func_osd_show
++  , func_osd_hide
++  , func_osd_set_position
++  , func_osd_draw_bitmap
++  , func_set_color
++  , func_clear
++  , func_mute
++  , func_set_volume
++  , func_set_speed
++  , func_set_prebuffer
++  , func_metronom
++  , func_start
++  , func_wait
++  , func_setup
++  , func_grab_image
++  , func_get_pts
++  , func_flush
++  , func_first_frame
++  , func_still_frame
++  , func_video_size
++  , func_set_video_window
++  , func_osd_flush
++  , func_play_external
++  , func_key
++  , func_frame_size
++  , func_reset_audio
++  , func_select_audio
++  , func_trick_speed_mode
++  , func_get_version
++};
++
++enum keys
++{
++  key_none,
++  key_up,
++  key_down,
++  key_menu,
++  key_ok,
++  key_back,
++  key_left,
++  key_right,
++  key_red,
++  key_green,
++  key_yellow,
++  key_blue,
++  key_0,
++  key_1,
++  key_2,
++  key_3,
++  key_4,
++  key_5,
++  key_6,
++  key_7,
++  key_8,
++  key_9,
++  key_play,
++  key_pause,
++  key_stop,
++  key_record,
++  key_fast_fwd,
++  key_fast_rew,
++  key_power,
++  key_channel_plus,
++  key_channel_minus,
++  key_volume_plus,
++  key_volume_minus,
++  key_mute,
++  key_schedule,
++  key_channels,
++  key_timers,
++  key_recordings,
++  key_setup,
++  key_commands,
++  key_user1,
++  key_user2,
++  key_user3,
++  key_user4,
++  key_user5,
++  key_user6,
++  key_user7,
++  key_user8,
++  key_user9,
++  key_audio,
++  key_info,
++  key_channel_previous,
++  key_next,
++  key_previous,
++};
++
++
++
++typedef struct __attribute__((packed)) data_header_s
++{
++  uint32_t func:8;
++  uint32_t len:24;
++} 
++data_header_t;
++
++
++
++typedef data_header_t result_header_t;
++typedef data_header_t event_header_t;
++
++
++
++typedef struct __attribute__((packed)) data_nop_s
++{
++  data_header_t header;
++}
++data_nop_t;
++
++
++
++typedef struct __attribute__((packed)) data_osd_new_s
++{
++  data_header_t header;
++  
++  uint8_t  window;
++  int16_t  x;
++  int16_t  y;
++  uint16_t width;
++  uint16_t height;
++}
++data_osd_new_t;
++
++
++
++typedef struct __attribute__((packed)) data_osd_free_s
++{
++  data_header_t header;
++  
++  uint8_t window;
++}
++data_osd_free_t;
++
++
++
++typedef struct __attribute__((packed)) data_osd_show_s
++{
++  data_header_t header;
++  
++  uint8_t window;
++}
++data_osd_show_t;
++
++
++
++typedef struct __attribute__((packed)) data_osd_hide_s
++{
++  data_header_t header;
++  
++  uint8_t window;
++}
++data_osd_hide_t;
++
++
++
++typedef struct __attribute__((packed)) data_osd_flush_s
++{
++  data_header_t header;
++}
++data_osd_flush_t;
++
++
++
++typedef struct __attribute__((packed)) data_play_external_s
++{
++  data_header_t header;
++}
++data_play_external_t;
++
++
++
++typedef struct __attribute__((packed)) data_osd_set_position_s
++{
++  data_header_t header;
++  
++  uint8_t window;
++  int16_t x;
++  int16_t y;
++}
++data_osd_set_position_t;
++
++
++
++typedef struct __attribute__((packed)) data_osd_draw_bitmap_s
++{
++  data_header_t header;
++  
++  uint8_t  window;
++  int16_t  x;
++  int16_t  y;
++  uint16_t width;
++  uint16_t height;
++}
++data_osd_draw_bitmap_t;
++
++
++
++typedef struct __attribute__((packed)) data_set_color_s
++{
++  data_header_t header;
++  
++  uint8_t window;
++  uint8_t index;
++  uint8_t num;
++}
++data_set_color_t;
++
++
++
++typedef struct __attribute__((packed)) data_flush_s
++{
++  data_header_t header;
++
++  int32_t ms_timeout;
++  uint8_t just_wait;
++}
++data_flush_t;
++
++
++
++typedef struct __attribute__((packed)) result_flush_s
++{
++  result_header_t header;
++  
++  uint8_t timed_out;
++}
++result_flush_t;
++
++
++
++typedef struct __attribute__((packed)) data_clear_s
++{
++  data_header_t header;
++
++  int32_t n;
++  int8_t s;
++}
++data_clear_t;
++
++
++
++typedef struct __attribute__((packed)) data_mute_s
++{
++  data_header_t header;
++
++  uint8_t mute;
++}
++data_mute_t;
++
++
++
++typedef struct __attribute__((packed)) data_set_volume_s
++{
++  data_header_t header;
++
++  uint8_t volume;
++}
++data_set_volume_t;
++
++
++
++typedef struct __attribute__((packed)) data_set_speed_s
++{
++  data_header_t header;
++
++  int32_t speed;
++}
++data_set_speed_t;
++
++
++
++typedef struct __attribute__((packed)) data_set_prebuffer_s
++{
++  data_header_t header;
++
++  uint32_t prebuffer;
++}
++data_set_prebuffer_t;
++
++
++
++typedef struct __attribute__((packed)) data_metronom_s
++{
++  data_header_t header;
++
++  int64_t  pts;
++  uint32_t flags;
++}
++data_metronom_t;
++
++
++
++typedef struct __attribute__((packed)) data_start_s
++{
++  data_header_t header;
++}
++data_start_t;
++
++
++
++typedef struct __attribute__((packed)) data_wait_s
++{
++  data_header_t header;
++}
++data_wait_t;
++
++
++
++typedef struct __attribute__((packed)) result_wait_s
++{
++  result_header_t header;
++}
++result_wait_t;
++
++
++
++#define INPUT_VDR_MUTE_IGNORE   0
++#define INPUT_VDR_MUTE_EXECUTE  1
++#define INPUT_VDR_MUTE_SIMULATE 2
++
++typedef struct __attribute__((packed)) data_setup_s
++{
++  data_header_t header;
++
++  uint8_t osd_unscaled_blending;
++  uint8_t dont_change_xine_volume;
++  uint8_t mute_mode;
++}
++data_setup_t;
++
++
++
++typedef struct __attribute__((packed)) data_first_frame_s
++{
++  data_header_t header;
++}
++data_first_frame_t;
++
++
++
++typedef struct __attribute__((packed)) data_still_frame_s
++{
++  data_header_t header;
++}
++data_still_frame_t;
++
++
++
++typedef struct __attribute__((packed)) data_set_video_window_s
++{
++  data_header_t header;
++
++  uint32_t x;
++  uint32_t y;
++  uint32_t w;
++  uint32_t h;
++  uint32_t w_ref;
++  uint32_t h_ref;
++}
++data_set_video_window_t;
++
++
++
++typedef struct __attribute__((packed)) data_grab_image_s
++{
++  data_header_t header;
++}
++data_grab_image_t;
++
++
++
++typedef struct __attribute__((packed)) result_grab_image_s
++{
++  result_header_t header;
++
++  int32_t width;
++  int32_t height;
++  int32_t ratio;
++  int32_t format;
++}
++result_grab_image_t;
++
++
++
++typedef struct __attribute__((packed)) data_get_pts_s
++{
++  data_header_t header;
++}
++data_get_pts_t;
++
++
++
++typedef struct __attribute__((packed)) result_get_pts_s
++{
++  result_header_t header;
++
++  int64_t pts;
++}
++result_get_pts_t;
++
++
++
++typedef struct __attribute__((packed)) data_get_version_s
++{
++  data_header_t header;
++}
++data_get_version_t;
++
++
++
++typedef struct __attribute__((packed)) result_get_version_s
++{
++  result_header_t header;
++
++  int32_t version;
++}
++result_get_version_t;
++
++
++
++typedef struct __attribute__((packed)) data_video_size_s
++{
++  data_header_t header;
++}
++data_video_size_t;
++
++
++
++typedef struct __attribute__((packed)) result_video_size_s
++{
++  result_header_t header;
++
++  int32_t left;
++  int32_t top;
++  int32_t width;
++  int32_t height;
++  int32_t ratio;
++  int32_t zoom_x;
++  int32_t zoom_y;
++}
++result_video_size_t;
++
++
++
++typedef struct __attribute__((packed)) data_reset_audio_s
++{
++  data_header_t header;
++}
++data_reset_audio_t;
++
++
++
++typedef struct __attribute__((packed)) event_key_s
++{
++  event_header_t header;
++  
++  uint32_t key;
++}
++event_key_t;
++
++
++
++typedef struct __attribute__((packed)) event_frame_size_s
++{
++  event_header_t header;
++  
++  int32_t left;
++  int32_t top;
++  int32_t width;
++  int32_t height;
++  int32_t zoom_x;
++  int32_t zoom_y;
++}
++event_frame_size_t;
++
++
++
++typedef struct __attribute__((packed)) event_play_external_s
++{
++  event_header_t header;
++  
++  uint32_t key;
++}
++event_play_external_t;
++
++
++
++typedef struct __attribute__((packed)) data_select_audio_s
++{
++  data_header_t header;
++  
++  uint8_t channels;
++}
++data_select_audio_t;
++
++
++
++typedef struct __attribute__((packed)) data_trick_speed_mode_s
++{
++  data_header_t header;
++
++  uint8_t on;
++}
++data_trick_speed_mode_t;
++
++
++
++typedef union __attribute__((packed)) data_union_u
++{
++  data_header_t           header;
++  data_nop_t              nop;
++  data_osd_new_t          osd_new;
++  data_osd_free_t         osd_free;
++  data_osd_show_t         osd_show;
++  data_osd_hide_t         osd_hide;
++  data_osd_set_position_t osd_set_position;
++  data_osd_draw_bitmap_t  osd_draw_bitmap;
++  data_set_color_t        set_color;
++  data_flush_t            flush;
++  data_clear_t            clear;
++  data_mute_t             mute;
++  data_set_volume_t       set_volume;
++  data_set_speed_t        set_speed;
++  data_set_prebuffer_t    set_prebuffer;
++  data_metronom_t         metronom;
++  data_start_t            start;
++  data_wait_t             wait;
++  data_setup_t            setup;
++  data_grab_image_t       grab_image;
++  data_get_pts_t          get_pts;
++  data_first_frame_t      first_frame;
++  data_still_frame_t      still_frame;
++  data_video_size_t       video_size;
++  data_set_video_window_t set_video_window;
++  data_osd_flush_t        osd_flush;
++  data_play_external_t    play_external;
++  data_reset_audio_t      reset_audio;
++  data_select_audio_t     select_audio;
++  data_trick_speed_mode_t trick_speed_mode;
++  data_get_version_t      get_version;
++}
++data_union_t;
++
++
++
++typedef union __attribute__((packed)) result_union_u
++{
++  result_header_t         header;
++  result_grab_image_t     grab_image;
++  result_get_pts_t        get_pts;
++  result_flush_t          flush;
++  result_video_size_t     video_size;
++  result_get_version_t    get_version;
++  result_wait_t           wait;
++}
++result_union_t;
++
++
++
++typedef union __attribute__((packed)) event_union_u
++{
++  event_header_t          header;
++  event_key_t             key;
++  event_frame_size_t      frame_size;
++  event_play_external_t   play_external;
++}
++event_union_t;
++
++
++
++#endif /* __INPUT_VDR_H */
++
+diff -Nurp ../xine-cvs/xine-lib/src/vdr/post_vdr.c xine-lib/src/vdr/post_vdr.c
+--- ../xine-cvs/xine-lib/src/vdr/post_vdr.c	1970-01-01 01:00:00.000000000 +0100
++++ xine-lib/src/vdr/post_vdr.c	2005-06-29 22:39:12.000000000 +0200
+@@ -0,0 +1,44 @@
++/*
++ * Copyright (C) 2000-2004 the xine project
++ * 
++ * This file is part of xine, a free video player.
++ * 
++ * xine is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation; either version 2 of the License, or
++ * (at your option) any later version.
++ * 
++ * xine is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ * 
++ * You should have received a copy of the GNU General Public License
++ * along with this program; if not, write to the Free Software
++ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
++ *
++ * $Id: vdr.c,v 1.20 2004/04/17 19:54:32 mroi Exp $
++ */
++ 
++/*
++ * plugins for VDR
++ */
++
++#include "xine_internal.h"
++#include "post.h"
++#include "post_vdr.h"
++
++
++
++static post_info_t vdr_video_special_info = { XINE_POST_TYPE_VIDEO_FILTER };
++static post_info_t vdr_audio_special_info = { XINE_POST_TYPE_AUDIO_FILTER };
++
++plugin_info_t xine_plugin_info[] =
++{
++  /* type, API, "name", version, special_info, init_function */  
++  { PLUGIN_POST, 9, "vdr"      , XINE_VERSION_CODE, &vdr_video_special_info, &vdr_video_init_plugin },
++  { PLUGIN_POST, 9, "vdr_video", XINE_VERSION_CODE, &vdr_video_special_info, &vdr_video_init_plugin },
++  { PLUGIN_POST, 9, "vdr_audio", XINE_VERSION_CODE, &vdr_audio_special_info, &vdr_audio_init_plugin },
++  { PLUGIN_NONE, 0, "", 0, NULL, NULL }
++};
++
+diff -Nurp ../xine-cvs/xine-lib/src/vdr/post_vdr.h xine-lib/src/vdr/post_vdr.h
+--- ../xine-cvs/xine-lib/src/vdr/post_vdr.h	1970-01-01 01:00:00.000000000 +0100
++++ xine-lib/src/vdr/post_vdr.h	2005-08-14 13:56:05.000000000 +0200
+@@ -0,0 +1,71 @@
++
++#ifndef __POST_VDR_H
++#define __POST_VDR_H
++
++
++
++typedef struct vdr_set_video_window_data_s {
++  int32_t x;
++  int32_t y;
++  int32_t w;
++  int32_t h;
++  int32_t w_ref;
++  int32_t h_ref;
++
++} vdr_set_video_window_data_t;
++
++
++
++typedef struct vdr_frame_size_changed_data_s {
++  int32_t x;
++  int32_t y;
++  int32_t w;
++  int32_t h;
++
++} vdr_frame_size_changed_data_t;
++
++
++
++typedef struct vdr_select_audio_data_s {
++  uint8_t channels;
++
++} vdr_select_audio_data_t;
++
++
++
++inline static int vdr_is_vdr_stream(xine_stream_t *stream)
++{
++  if (!stream
++      || !stream->input_plugin
++      || !stream->input_plugin->input_class)
++  {
++    return 0;
++  }
++
++  {
++    input_class_t *input_class = stream->input_plugin->input_class;
++
++    if (input_class->get_identifier)
++    {
++      const char *identifier = input_class->get_identifier(input_class);
++      if (identifier
++          && 0 == strcmp(identifier, "VDR"))
++      {
++        return 1;
++      }
++    }
++  }
++
++  return 0;
++}
++
++
++
++/* plugin class initialization function */
++void *vdr_video_init_plugin(xine_t *xine, void *);
++void *vdr_audio_init_plugin(xine_t *xine, void *);
++
++
++
++#endif /* __POST_VDR_H */
++
+diff -Nurp ../xine-cvs/xine-lib/src/vdr/post_vdr_audio.c xine-lib/src/vdr/post_vdr_audio.c
+--- ../xine-cvs/xine-lib/src/vdr/post_vdr_audio.c	1970-01-01 01:00:00.000000000 +0100
++++ xine-lib/src/vdr/post_vdr_audio.c	2005-08-14 13:46:41.000000000 +0200
+@@ -0,0 +1,287 @@
++/*
++ * Copyright (C) 2000-2004 the xine project
++ * 
++ * This file is part of xine, a free video player.
++ * 
++ * xine is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation; either version 2 of the License, or
++ * (at your option) any later version.
++ * 
++ * xine is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ * 
++ * You should have received a copy of the GNU General Public License
++ * along with this program; if not, write to the Free Software
++ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
++ *
++ * $Id: vdr.c,v 1.20 2004/04/17 19:54:32 mroi Exp $
++ */
++ 
++/*
++ * select audio channel plugin for VDR
++ */
++
++#define LOG_MODULE "vdr_audio"
++#define LOG_VERBOSE
++/*
++#define LOG
++*/
++
++#include "xine_internal.h"
++#include "post.h"
++#include "post_vdr.h"
++
++
++
++typedef struct vdr_audio_post_plugin_s
++{
++  post_plugin_t post_plugin;
++
++  xine_event_queue_t *event_queue;
++  xine_stream_t      *vdr_stream;
++  
++  uint8_t audio_channels;
++  int num_channels;
++  
++}
++vdr_audio_post_plugin_t;
++
++
++static void vdr_audio_select_audio(vdr_audio_post_plugin_t *this, uint8_t channels)
++{
++  this->audio_channels = channels;
++}
++
++ 
++/* plugin class functions */
++static post_plugin_t *vdr_audio_open_plugin(post_class_t *class_gen, int inputs,
++                                            xine_audio_port_t **audio_target,
++                                            xine_video_port_t **video_target);
++static char          *vdr_audio_get_identifier(post_class_t *class_gen);
++static char          *vdr_audio_get_description(post_class_t *class_gen);
++static void           vdr_audio_class_dispose(post_class_t *class_gen);
++
++/* plugin instance functions */
++static void           vdr_audio_dispose(post_plugin_t *this_gen);
++
++/* replaced ao_port functions */
++static int            vdr_audio_port_open(xine_audio_port_t *port_gen, xine_stream_t *stream,
++                                          uint32_t bits, uint32_t rate, int mode);
++static void           vdr_audio_port_put_buffer(xine_audio_port_t *port_gen, audio_buffer_t *buf, xine_stream_t *stream);
++
++
++
++void *vdr_audio_init_plugin(xine_t *xine, void *data)
++{
++  post_class_t *class = (post_class_t *)malloc(sizeof (post_class_t));
++  
++  if (!class)
++    return NULL;
++  
++  class->open_plugin     = vdr_audio_open_plugin;
++  class->get_identifier  = vdr_audio_get_identifier;
++  class->get_description = vdr_audio_get_description;
++  class->dispose         = vdr_audio_class_dispose;
++  
++  return class;
++}
++
++static post_plugin_t *vdr_audio_open_plugin(post_class_t *class_gen, int inputs,
++				      xine_audio_port_t **audio_target,
++				      xine_video_port_t **video_target)
++{
++  vdr_audio_post_plugin_t *this = (vdr_audio_post_plugin_t *)xine_xmalloc(sizeof (vdr_audio_post_plugin_t));
++  post_in_t               *input;
++  post_out_t              *output;
++  post_audio_port_t       *port;
++/*  
++fprintf(stderr, "~~~~~~~~~~ vdr open plugin\n");
++*/
++  if (!this || !audio_target || !audio_target[ 0 ])
++  {
++    free(this);
++    return NULL;
++  }
++
++  _x_post_init(&this->post_plugin, 1, 0);
++  this->post_plugin.dispose = vdr_audio_dispose;
++
++  port = _x_post_intercept_audio_port(&this->post_plugin, audio_target[ 0 ], &input, &output);
++  port->new_port.open       = vdr_audio_port_open;
++  port->new_port.put_buffer = vdr_audio_port_put_buffer;
++
++  this->post_plugin.xine_post.audio_input[ 0 ] = &port->new_port;
++
++  
++
++  this->audio_channels = 0;
++  
++  return &this->post_plugin;
++}
++
++static char *vdr_audio_get_identifier(post_class_t *class_gen)
++{
++  return "vdr_audio";
++}
++
++static char *vdr_audio_get_description(post_class_t *class_gen)
++{
++  return "modifies every audio frame as requested by VDR";
++}
++
++static void vdr_audio_class_dispose(post_class_t *class_gen)
++{
++  free(class_gen);
++}
++
++
++static void vdr_audio_dispose(post_plugin_t *this_gen)
++{
++/*
++fprintf(stderr, "~~~~~~~~~~ vdr dispose\n");
++*/
++  if (_x_post_dispose(this_gen))
++  {
++    vdr_audio_post_plugin_t *this = (vdr_audio_post_plugin_t *)this_gen;
++    
++    if (this->vdr_stream)
++      xine_event_dispose_queue(this->event_queue);
++    
++    free(this_gen);
++  }
++}
++
++static int vdr_audio_port_open(xine_audio_port_t *port_gen, xine_stream_t *stream,
++                               uint32_t bits, uint32_t rate, int mode) {
++
++  post_audio_port_t       *port = (post_audio_port_t *)port_gen;
++  vdr_audio_post_plugin_t *this = (vdr_audio_post_plugin_t *)port->post;
++
++  _x_post_rewire(&this->post_plugin);
++  _x_post_inc_usage(port);
++/*
++fprintf(stderr, "~~~~~~~~~~ vdr port open\n");
++*/
++  port->stream = stream;
++  port->bits = bits;
++  port->rate = rate;
++  port->mode = mode;
++
++  this->num_channels = _x_ao_mode2channels(mode);
++
++  return port->original_port->open(port->original_port, stream, bits, rate, mode );
++}
++
++
++static void vdr_audio_port_put_buffer(xine_audio_port_t *port_gen, audio_buffer_t *buf, xine_stream_t *stream)
++{
++  post_audio_port_t       *port = (post_audio_port_t *)port_gen;
++  vdr_audio_post_plugin_t *this = (vdr_audio_post_plugin_t *)port->post;
++  xine_event_t *event;
++/*
++fprintf(stderr, "~~~~~~ vdr_audio\n");
++*/
++  if (this->vdr_stream
++      && !_x_continue_stream_processing(this->vdr_stream))
++  {
++    this->vdr_stream = 0;
++    
++    xine_event_dispose_queue(this->event_queue);
++    this->event_queue = 0;
++    
++    this->audio_channels = 0;
++  }
++  
++  if (!this->vdr_stream
++      && vdr_is_vdr_stream(stream))
++  {
++    this->event_queue = xine_event_new_queue(stream);
++    if (this->event_queue)
++    {
++      this->vdr_stream = stream;
++      
++      {
++        xine_event_t event;
++        
++        event.type = XINE_EVENT_VDR_PLUGINSTARTED;
++        event.data = 0;
++        event.data_length = 1; /* vdr_audio */
++        
++        xine_event_send(this->vdr_stream, &event);
++      }
++    }
++  }
++  
++  if (this->event_queue)
++  {
++    while ((event = xine_event_get(this->event_queue)))
++    {
++      if (event->type == XINE_EVENT_VDR_SELECTAUDIO)
++      {
++        vdr_select_audio_data_t *data = (vdr_select_audio_data_t *)event->data;
++        
++        vdr_audio_select_audio(this, data->channels);
++      }
++
++      xine_event_free(event);
++    }
++  }
++ 
++  if (this->num_channels == 2
++      && this->audio_channels != 0
++      && this->audio_channels != 3)
++  {
++    audio_buffer_t *vdr_buf = port->original_port->get_buffer(port->original_port);
++    vdr_buf->num_frames = buf->num_frames;
++    vdr_buf->vpts = buf->vpts;
++    vdr_buf->frame_header_count = buf->frame_header_count;
++    vdr_buf->first_access_unit = buf->first_access_unit;
++    /* FIXME: The audio buffer should contain this info.
++     *        We should not have to get it from the open call.
++     */
++    vdr_buf->format.bits = buf->format.bits;
++    vdr_buf->format.rate = buf->format.rate;
++    vdr_buf->format.mode = buf->format.mode;
++    _x_extra_info_merge(vdr_buf->extra_info, buf->extra_info);
++
++    {
++      int step = buf->format.bits / 8;
++      uint8_t *src = (uint8_t *)buf->mem;
++      uint8_t *dst = (uint8_t *)vdr_buf->mem;
++
++      if (this->audio_channels == 2)
++        src += step;
++/*      
++      fprintf(stderr, "~~~~~~~~~~ vdr port put buffer: channels: %d, %d\n"
++              , this->audio_channels
++              , buf->format.bits);
++*/      
++      int i, k;
++      for (i = 0; i < buf->num_frames; i++)
++      {
++        for (k = 0; k < step; k++)
++          *dst++ = *src++;
++
++        src -= step;
++        
++        for (k = 0; k < step; k++)
++          *dst++ = *src++;
++
++        src += step;
++      }
++    }
++    
++    /* pass data to original port */
++    port->original_port->put_buffer(port->original_port, vdr_buf, stream);
++
++    /* free data from origial buffer */
++    buf->num_frames = 0; /* UNDOCUMENTED, but hey, it works! Force old audio_out buffer free. */
++  }
++ 
++  port->original_port->put_buffer(port->original_port, buf, stream);
++
++  return;
++}
+diff -Nurp ../xine-cvs/xine-lib/src/vdr/post_vdr_video.c xine-lib/src/vdr/post_vdr_video.c
+--- ../xine-cvs/xine-lib/src/vdr/post_vdr_video.c	1970-01-01 01:00:00.000000000 +0100
++++ xine-lib/src/vdr/post_vdr_video.c	2005-08-14 13:46:29.000000000 +0200
+@@ -0,0 +1,485 @@
++/*
++ * Copyright (C) 2000-2004 the xine project
++ * 
++ * This file is part of xine, a free video player.
++ * 
++ * xine is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation; either version 2 of the License, or
++ * (at your option) any later version.
++ * 
++ * xine is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ * 
++ * You should have received a copy of the GNU General Public License
++ * along with this program; if not, write to the Free Software
++ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
++ *
++ * $Id: vdr.c,v 1.20 2004/04/17 19:54:32 mroi Exp $
++ */
++ 
++/*
++ * frame scaler plugin for VDR
++ */
++
++#define LOG_MODULE "vdr_video"
++#define LOG_VERBOSE
++/*
++#define LOG
++*/
++
++#include "xine_internal.h"
++#include "post.h"
++#include "post_vdr.h"
++
++
++
++typedef struct vdr_video_post_plugin_s
++{
++  post_plugin_t post_plugin;
++
++  xine_event_queue_t *event_queue;
++  xine_stream_t      *vdr_stream;
++  
++  int8_t trick_speed_mode;
++  int8_t enabled;
++  
++  int32_t x;
++  int32_t y;
++  int32_t w;
++  int32_t h;
++  int32_t w_ref;
++  int32_t h_ref;
++
++  int32_t old_frame_left;
++  int32_t old_frame_top;
++  int32_t old_frame_width;
++  int32_t old_frame_height;
++  
++}
++vdr_video_post_plugin_t;
++
++
++static void vdr_video_set_video_window(vdr_video_post_plugin_t *this, int32_t x, int32_t y, int32_t w, int32_t h, int32_t w_ref, int32_t h_ref)
++{
++  this->enabled = 0;
++  
++  this->x     = x;
++  this->y     = y;
++  this->w     = w;
++  this->h     = h;
++  this->w_ref = w_ref;
++  this->h_ref = h_ref;
++
++  if (w != w_ref || h != h_ref)
++    this->enabled = 1;
++}
++
++ 
++/* plugin class functions */
++static post_plugin_t *vdr_video_open_plugin(post_class_t *class_gen, int inputs,
++                                            xine_audio_port_t **audio_target,
++                                            xine_video_port_t **video_target);
++static char          *vdr_video_get_identifier(post_class_t *class_gen);
++static char          *vdr_video_get_description(post_class_t *class_gen);
++static void           vdr_video_class_dispose(post_class_t *class_gen);
++
++/* plugin instance functions */
++static void           vdr_video_dispose(post_plugin_t *this_gen);
++
++/* frame intercept check */
++static int            vdr_video_intercept_frame(post_video_port_t *port, vo_frame_t *frame);
++
++/* replaced vo_frame functions */
++static int            vdr_video_draw(vo_frame_t *frame, xine_stream_t *stream);
++
++
++void *vdr_video_init_plugin(xine_t *xine, void *data)
++{
++  post_class_t *class = (post_class_t *)malloc(sizeof (post_class_t));
++  
++  if (!class)
++    return NULL;
++  
++  class->open_plugin     = vdr_video_open_plugin;
++  class->get_identifier  = vdr_video_get_identifier;
++  class->get_description = vdr_video_get_description;
++  class->dispose         = vdr_video_class_dispose;
++  
++  return class;
++}
++
++static post_plugin_t *vdr_video_open_plugin(post_class_t *class_gen, int inputs,
++                                            xine_audio_port_t **audio_target,
++                                            xine_video_port_t **video_target)
++{
++  vdr_video_post_plugin_t *this = (vdr_video_post_plugin_t *)xine_xmalloc(sizeof (vdr_video_post_plugin_t));
++  post_in_t               *input;
++  post_out_t              *output;
++  post_video_port_t       *port;
++  
++  if (!this || !video_target || !video_target[ 0 ])
++  {
++    free(this);
++    return NULL;
++  }
++
++  _x_post_init(&this->post_plugin, 0, 1);
++  this->post_plugin.dispose = vdr_video_dispose;
++
++  port = _x_post_intercept_video_port(&this->post_plugin, video_target[ 0 ], &input, &output);
++  port->intercept_frame = vdr_video_intercept_frame;
++  port->new_frame->draw = vdr_video_draw;
++  this->post_plugin.xine_post.video_input[ 0 ] = &port->new_port;
++  
++  
++  
++  this->enabled          = 0;
++  this->vdr_stream       = 0;
++  this->event_queue      = 0;
++  this->old_frame_left   = 0;
++  this->old_frame_top    = 0;
++  this->old_frame_width  = 0;
++  this->old_frame_height = 0;
++  this->trick_speed_mode = 0;
++  
++  return &this->post_plugin;
++}
++
++static char *vdr_video_get_identifier(post_class_t *class_gen)
++{
++  return "vdr";
++}
++
++static char *vdr_video_get_description(post_class_t *class_gen)
++{
++  return "modifies every video frame as requested by VDR";
++}
++
++static void vdr_video_class_dispose(post_class_t *class_gen)
++{
++  free(class_gen);
++}
++
++
++static void vdr_video_dispose(post_plugin_t *this_gen)
++{
++  if (_x_post_dispose(this_gen))
++  {
++    vdr_video_post_plugin_t *this = (vdr_video_post_plugin_t *)this_gen;
++    
++    if (this->vdr_stream)
++    {
++      xine_event_t event;
++      vdr_frame_size_changed_data_t event_data;
++
++      event_data.x = 0;
++      event_data.y = 0;
++      event_data.w = 0;
++      event_data.h = 0;
++      
++      event.type        = XINE_EVENT_VDR_FRAMESIZECHANGED;
++      event.data        = &event_data;
++      event.data_length = sizeof (event_data);
++      
++      xine_event_send(this->vdr_stream, &event);
++
++      xine_event_dispose_queue(this->event_queue);
++    }
++    
++    free(this_gen);
++  }
++}
++
++
++static int vdr_video_intercept_frame(post_video_port_t *port, vo_frame_t *frame)
++{
++  return (frame->format == XINE_IMGFMT_YUY2
++          || frame->format == XINE_IMGFMT_YV12);
++}
++
++
++static inline void vdr_video_scale(uint8_t *src, uint8_t *dst, int y_inc, int x_inc, int w_dst, int h_dst, int x, int y, int w, int h, int w_ref, int h_ref, int init)
++{
++  int x0 = x * w_dst / w_ref;
++  int y0 = y * h_dst / h_ref;
++
++  int x1 = ((x + w) * w_dst - 1 + w_ref) / w_ref;
++  int y1 = ((y + h) * h_dst - 1 + h_ref) / h_ref;
++
++  int dx = x1 - x0;
++  int dy = y1 - y0;
++
++  int yy, xx;
++
++  int dy2    = dy + dy;
++  int h_dst2 = h_dst + h_dst;
++  int y_eps  = h_dst - dy2;
++
++  int dx2    = dx + dx;
++  int w_dst2 = w_dst + w_dst;
++  int x_eps0 = w_dst - dx2;
++    
++  for (yy = 0; yy < y0; yy++)
++  {
++    uint8_t *dst0 = dst;
++    
++    for (xx = 0; xx < w_dst; xx++)
++    {
++      *dst0 = init;
++      dst0 += x_inc;
++    }
++
++    dst += y_inc;
++  }
++
++  for (yy = y0; yy < y1; yy++)
++  {
++    uint8_t *dst0 = dst;
++    uint8_t *src0 = src;
++
++    int x_eps = x_eps0;
++    
++    for (xx = 0; xx < x0; xx++)
++    {
++      *dst0 = init;
++      dst0 += x_inc;
++    }
++    
++    for (xx = x0; xx < x1; xx++)
++    {
++      *dst0 = *src0;
++      dst0 += x_inc;
++      
++      x_eps += w_dst2;
++      while (x_eps >= 0)
++      {
++        src0  += x_inc;
++        x_eps -= dx2;
++      }
++    }
++    
++    for (xx = x1; xx < w_dst; xx++)
++    {
++      *dst0 = init;
++      dst0 += x_inc;
++    }
++
++    dst += y_inc;
++
++    y_eps += h_dst2;
++    while (y_eps >= 0)
++    {
++      src   += y_inc;
++      y_eps -= dy2;
++    }
++  }
++  
++  for (yy = y1; yy < h_dst; yy++)
++  {
++    uint8_t *dst0 = dst;
++    
++    for (xx = 0; xx < w_dst; xx++)
++    {
++      *dst0 = init;
++      dst0 += x_inc;
++    }
++
++    dst += y_inc;
++  }  
++}
++
++static void vdr_video_scale_YUY2(vdr_video_post_plugin_t *this, vo_frame_t *src, vo_frame_t *dst)
++{
++  int w = dst->width  - dst->crop_left - dst->crop_right;
++  int h = dst->height - dst->crop_top  - dst->crop_bottom;
++  int offset;
++  
++  if (w < 0)
++    w = 0;
++  
++  if (h < 0)
++    h = 0;
++
++  offset = dst->pitches[ 0 ] * dst->crop_top + 2 *   dst->crop_left;
++  vdr_video_scale(&src->base[ 0 ][ 0 ] + offset, &dst->base[ 0 ][ 0 ] + offset, dst->pitches[ 0 ], 2,  w         , h, this->x, this->y, this->w, this->h, this->w_ref, this->h_ref, 0x00);
++  offset = dst->pitches[ 0 ] * dst->crop_top + 4 * ((dst->crop_left + 1) / 2);
++  vdr_video_scale(&src->base[ 0 ][ 1 ] + offset, &dst->base[ 0 ][ 1 ] + offset, dst->pitches[ 0 ], 4, (w + 1) / 2, h, this->x, this->y, this->w, this->h, this->w_ref, this->h_ref, 0x80);
++  offset = dst->pitches[ 0 ] * dst->crop_top + 4 * ((dst->crop_left + 1) / 2);
++  vdr_video_scale(&src->base[ 0 ][ 3 ] + offset, &dst->base[ 0 ][ 3 ] + offset, dst->pitches[ 0 ], 4, (w + 1) / 2, h, this->x, this->y, this->w, this->h, this->w_ref, this->h_ref, 0x80);
++}
++
++static void vdr_video_scale_YV12(vdr_video_post_plugin_t *this, vo_frame_t *src, vo_frame_t *dst)
++{
++  int w = dst->width  - dst->crop_left - dst->crop_right;
++  int h = dst->height - dst->crop_top  - dst->crop_bottom;
++  int offset;
++  
++  if (w < 0)
++    w = 0;
++  
++  if (h < 0)
++    h = 0;
++
++  offset = dst->pitches[ 0 ] *   dst->crop_top           + 1 *   dst->crop_left;
++  vdr_video_scale(&src->base[ 0 ][ 0 ] + offset, &dst->base[ 0 ][ 0 ] + offset, dst->pitches[ 0 ], 1,  w         ,  h         , this->x, this->y, this->w, this->h, this->w_ref, this->h_ref, 0x00);
++  offset = dst->pitches[ 1 ] * ((dst->crop_top + 1) / 2) + 1 * ((dst->crop_left + 1) / 2);
++  vdr_video_scale(&src->base[ 1 ][ 0 ] + offset, &dst->base[ 1 ][ 0 ] + offset, dst->pitches[ 1 ], 1, (w + 1) / 2, (h + 1) / 2, this->x, this->y, this->w, this->h, this->w_ref, this->h_ref, 0x80);
++  offset = dst->pitches[ 2 ] * ((dst->crop_top + 1) / 2) + 1 * ((dst->crop_left + 1) / 2);
++  vdr_video_scale(&src->base[ 2 ][ 0 ] + offset, &dst->base[ 2 ][ 0 ] + offset, dst->pitches[ 2 ], 1, (w + 1) / 2, (h + 1) / 2, this->x, this->y, this->w, this->h, this->w_ref, this->h_ref, 0x80);
++}
++
++
++static int vdr_video_draw(vo_frame_t *frame, xine_stream_t *stream)
++{
++  post_video_port_t       *port = (post_video_port_t *)frame->port;
++  vdr_video_post_plugin_t *this = (vdr_video_post_plugin_t *)port->post;
++  vo_frame_t *vdr_frame;
++  xine_event_t *event;
++  int skip;
++
++  if (this->vdr_stream
++      && !_x_continue_stream_processing(this->vdr_stream))
++  {
++    this->vdr_stream = 0;
++    
++    xine_event_dispose_queue(this->event_queue);
++    this->event_queue = 0;
++    
++    this->old_frame_left   = 0;
++    this->old_frame_top    = 0;
++    this->old_frame_width  = 0;
++    this->old_frame_height = 0;
++  }
++  
++  if (!this->vdr_stream
++      && vdr_is_vdr_stream(stream))
++  {
++    this->event_queue = xine_event_new_queue(stream);
++    if (this->event_queue)
++    {
++      this->vdr_stream = stream;
++      
++      {
++        xine_event_t event;
++        
++        event.type = XINE_EVENT_VDR_PLUGINSTARTED;
++        event.data = 0;
++        event.data_length = 0; /* vdr_video */
++        
++        xine_event_send(this->vdr_stream, &event);
++      }
++    }
++  }
++  
++  if (this->event_queue)
++  {
++    while ((event = xine_event_get(this->event_queue)))
++    {
++      if (event->type == XINE_EVENT_VDR_SETVIDEOWINDOW)
++      {
++        vdr_set_video_window_data_t *data = (vdr_set_video_window_data_t *)event->data;
++        
++        vdr_video_set_video_window(this, data->x, data->y, data->w, data->h, data->w_ref, data->h_ref);
++      }
++      else if (event->type == XINE_EVENT_VDR_TRICKSPEEDMODE)
++      {
++/*
++        fprintf(stderr, "###############################: %p, %d\n", event->data, event->data_length);
++        this->trick_speed_mode = (0 != event->data_length);
++*/
++      }
++
++      xine_event_free(event);
++    }
++  }
++
++  {
++    int frame_left   = frame->crop_left;
++    int frame_width  = frame->width - frame->crop_left - frame->crop_right;
++    int frame_top    = frame->crop_top;
++    int frame_height = frame->height - frame->crop_top - frame->crop_bottom;
++
++    if (frame_left < 0)
++      frame_left = 0;
++    if (frame_width > frame->width)
++      frame_width = frame->width;
++    if (frame_top < 0)
++      frame_top = 0;
++    if (frame_height > frame->height)
++      frame_height = frame->height;
++    
++    if (this->vdr_stream
++        && (this->old_frame_left != frame_left
++          || this->old_frame_top != frame_top
++          || this->old_frame_width != frame_width
++          || this->old_frame_height != frame_height))
++    {
++      xine_event_t event;
++      vdr_frame_size_changed_data_t event_data;
++
++      event_data.x = frame_left;
++      event_data.y = frame_top;
++      event_data.w = frame_width;
++      event_data.h = frame_height;
++      
++      xprintf(this->vdr_stream->xine, XINE_VERBOSITY_LOG,
++            _(LOG_MODULE ": osd: (%d, %d)-(%d, %d)\n"), frame_left, frame_top, frame_width, frame_height);
++      
++      event.type        = XINE_EVENT_VDR_FRAMESIZECHANGED;
++      event.data        = &event_data;
++      event.data_length = sizeof (event_data);
++      
++      xine_event_send(this->vdr_stream, &event);
++    
++      this->old_frame_left   = frame_left;
++      this->old_frame_top    = frame_top;
++      this->old_frame_width  = frame_width;
++      this->old_frame_height = frame_height;
++    }
++  }
++/*
++  fprintf(stderr, "~~~~~~~~~~~~ trickspeedmode: %d\n", this->trick_speed_mode);  
++  
++  if (this->vdr_stream
++      && this->trick_speed_mode)
++  {
++    frame->pts = 0;
++    frame->next->pts = 0;
++  }
++*/  
++  if (!this->enabled 
++      || frame->bad_frame
++      || (frame->format != XINE_IMGFMT_YUY2
++          && frame->format != XINE_IMGFMT_YV12))
++  {
++    _x_post_frame_copy_down(frame, frame->next);
++    skip = frame->next->draw(frame->next, stream);
++    _x_post_frame_copy_up(frame, frame->next);
++    return skip;
++  }
++
++  vdr_frame = port->original_port->get_frame(port->original_port,
++    frame->width, frame->height, frame->ratio, frame->format, frame->flags | VO_BOTH_FIELDS);
++
++  _x_post_frame_copy_down(frame, vdr_frame);
++    
++  switch (vdr_frame->format)
++  {
++  case XINE_IMGFMT_YUY2:
++    vdr_video_scale_YUY2(this, frame, vdr_frame);
++    break;
++    
++  case XINE_IMGFMT_YV12:
++    vdr_video_scale_YV12(this, frame, vdr_frame);    
++    break;
++  }
++  
++  skip = vdr_frame->draw(vdr_frame, stream);
++  _x_post_frame_copy_up(frame, vdr_frame);
++  vdr_frame->free(vdr_frame);
++  
++  return skip;
++}

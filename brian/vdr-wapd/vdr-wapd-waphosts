@@ -1,0 +1,7 @@
+#
+# waphosts      This file describes a number of host addresses that
+#               are allowed to connect to the VDR WAP daemon running
+#               on this system.
+#
+
+127.0.0.1

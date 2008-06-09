@@ -1,0 +1,20 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 07_preserve-queue-owner.dpatch by Thomas Günther <tom@toms-cafe.de>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Preserve owner of queue.vdrrip in queuehandler.sh.
+
+@DPATCH@
+--- vdrrip-0.3.0/scripts/queuehandler.sh
++++ vdrrip-0.3.0/scripts/queuehandler.sh
+@@ -729,8 +729,8 @@
+     rm -f "$queuefile"
+   else
+     let lines=lines-1
+-    tail -n $lines "$queuefile" > /tmp/queuefile.tmp
+-    mv /tmp/queuefile.tmp $queuefile
++    cp -a "$queuefile" /tmp/queuefile.tmp
++    tail -n $lines /tmp/queuefile.tmp > "$queuefile"
+   fi
+ 
+   if [ "$error" ]

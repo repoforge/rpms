@@ -1,0 +1,52 @@
+# System configuration for VDR                                       -*- sh -*-
+
+# The "master" options.  Some examples of options you may want to set
+# here are -r, -s, -t, and --rcu.  See the vdr(8) man page for more info.
+#
+VDR_OPTIONS=(--lirc --vfat)
+
+# VDR_PLUGIN_ORDER is a space separated list of plugins that should be
+# loaded in a specific order.  This affects eg. the order the plugins'
+# menu entries are displayed OSD menus by default.  The plugins in this
+# list don't need to be installed, but if they are, they will be loaded
+# before other possibly installed plugins.  Note that it is recommended
+# to load output plugins before others so that all necessary features are
+# present when needed by other plugins at startup/shutdown.
+#
+VDR_PLUGIN_ORDER="
+dxr3
+softdevice
+streamdev-client
+xine
+xineliboutput
+tvonscreen
+osdteletext
+subtitles
+ttxtsubs
+osdpip
+femon
+sudoku
+dvd
+externalplayer
+mplayer
+mp3
+muggle
+burn
+"
+
+# I18N settings; VDR doesn't work with UTF-8.
+#
+. /etc/sysconfig/i18n 2>/dev/null || :
+LANG=${LANG%.UTF-8}
+LC_ALL=${LC_ALL%.UTF-8}
+LC_CTYPE=${LC_CTYPE%.UTF-8}
+# LC_TIME affects how dates and times are displayed.
+#export LC_TIME=fi_FI
+
+# PATH where to find the internally used executables.
+#
+PATH="/usr/lib/vdr/bin:$PATH"
+
+# For debugging: allow vdr to dump core.  Note that depending on the operating
+# environment, core dumps from setuid processes may be a security issue.
+#DAEMON_COREFILE_LIMIT="unlimited"

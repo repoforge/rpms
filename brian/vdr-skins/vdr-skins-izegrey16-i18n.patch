@@ -1,0 +1,8 @@
+--- izegrey16/izegrey16.trans~	2005-03-04 20:41:46.000000000 +0200
++++ izegrey16/izegrey16.trans	2005-10-22 20:38:54.000000000 +0300
+@@ -1,2 +1,5 @@
+ Item=Translation,eng=Volume,deu=Lautstärke,fin=Äänenvoimakkuus;
+ Item=Translation,eng=/,deu=/,fin=/;
++Item=Translation,eng={ReplayPosition} / {ReplayDuration},deu={ReplayPosition} / {ReplayDuration},fin={ReplayPosition} / {ReplayDuration};
++Item=Translation,eng={PresentStartDateTime:%d.%m. %H\:%M} - {PresentEndDateTime:%H\:%M},deu={PresentStartDateTime:%d.%m. %H\:%M} - {PresentEndDateTime:%H\:%M},fin={PresentStartDateTime:%d.%m. %H\:%M} - {PresentEndDateTime:%H\:%M};
++Item=Translation,eng=VPS: {PresentVPSDateTime:%H\:%M},deu=VPS: {PresentVPSDateTime:%H\:%M},fin=VPS: {PresentVPSDateTime:%H\:%M};

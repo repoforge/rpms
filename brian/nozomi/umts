@@ -1,0 +1,1 @@
+connect "/usr/bin/wvdial --config /etc/wvdial-umts.conf --remotename umts --chat 'umts'"

@@ -1,0 +1,15 @@
+--- configure.in.orig	2007-09-21 19:12:00.000000000 -0600
++++ configure.in	2007-09-21 19:12:52.000000000 -0600
+@@ -8,11 +8,11 @@
+ AC_ISC_POSIX
+ AC_PROG_CC
+ AM_PROG_CC_STDC
+ AC_HEADER_STDC
+ 
+-pkg_modules="gtk+-2.0 >= 2.4.0 libgnomecanvas-2.0 >= 2.4.0 libgnomeprintui-2.2 >= 2.0.0"
++pkg_modules="gtk+-2.0 >= 2.4.0 libgnomecanvas-2.0 >= 2.4.0 libgnomeprintui-2.2 >= 2.0.0 freetype2"
+ PKG_CHECK_MODULES(PACKAGE, [$pkg_modules])
+ AC_SUBST(PACKAGE_CFLAGS)
+ AC_SUBST(PACKAGE_LIBS)
+ 
+ AC_OUTPUT([

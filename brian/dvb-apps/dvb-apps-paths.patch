@@ -1,0 +1,80 @@
+diff -NarU1 linuxtv-dvb-apps-1.1.0.orig/util/av7110_loadkeys/README linuxtv-dvb-apps-1.1.0/util/av7110_loadkeys/README
+--- linuxtv-dvb-apps-1.1.0.orig/util/av7110_loadkeys/README	2004-01-17 18:59:46.000000000 +0200
++++ linuxtv-dvb-apps-1.1.0/util/av7110_loadkeys/README	2004-10-05 00:12:40.031659603 +0300
+@@ -7,3 +7,3 @@
+ 
+-   # ./av7110_loadkeys [-i|--invert] [-a|--address <num>] keymapname.(rc5|rcmm) > /proc/av7110_ir
++   # av7110_loadkeys [-i|--invert] [-a|--address <num>] keymapname.(rc5|rcmm) > /proc/av7110_ir
+ 
+@@ -17,6 +17,6 @@
+ Listen to *any* IR transmitter with uses the RC5 protocol:
+-# ./av7110_loadkeys hauppauge.rc5 > /proc/av7110_ir
++# av7110_loadkeys /usr/share/dvb-apps/hauppauge.rc5 > /proc/av7110_ir
+ 
+ Listen to RC5 transmitter with address 2:
+-# ./av7110_loadkeys -a 2 hauppauge.rc5 > /proc/av7110_ir
++# av7110_loadkeys -a 2 /usr/share/dvb-apps/hauppauge.rc5 > /proc/av7110_ir
+ 
+@@ -25,5 +25,5 @@
+ 
+-Now you can test your hardware setup using evtest
++Now you can test your hardware setup using av7110_evtest
+ 
+-   # ./evtest /dev/input/eventX
++   # av7110_evtest /dev/input/eventX
+ 
+diff -NarU1 linuxtv-dvb-apps-1.1.0.orig/util/dvbnet/net_start.pl linuxtv-dvb-apps-1.1.0/util/dvbnet/net_start.pl
+--- linuxtv-dvb-apps-1.1.0.orig/util/dvbnet/net_start.pl	2004-01-17 18:59:46.000000000 +0200
++++ linuxtv-dvb-apps-1.1.0/util/dvbnet/net_start.pl	2004-10-05 00:12:32.412917780 +0300
+@@ -14,3 +14,3 @@
+ 
+-  $DEV_NAME = `./dvbnet -a $ADAPTER -n $NETDEV -p $PID | grep created`;
++  $DEV_NAME = `dvbnet -a $ADAPTER -n $NETDEV -p $PID | grep created`;
+   chop($DEV_NAME);
+diff -NarU1 linuxtv-dvb-apps-1.1.0.orig/util/dvbnet/net_start.sh linuxtv-dvb-apps-1.1.0/util/dvbnet/net_start.sh
+--- linuxtv-dvb-apps-1.1.0.orig/util/dvbnet/net_start.sh	2004-01-17 18:59:46.000000000 +0200
++++ linuxtv-dvb-apps-1.1.0/util/dvbnet/net_start.sh	2004-10-05 00:13:40.047815421 +0300
+@@ -6,3 +6,3 @@
+ 
+-./dvbnet -p $PID
++dvbnet -p $PID
+ 
+diff -NarU1 linuxtv-dvb-apps-1.1.0.orig/util/scan/README linuxtv-dvb-apps-1.1.0/util/scan/README
+--- linuxtv-dvb-apps-1.1.0.orig/util/scan/README	2004-01-17 18:59:46.000000000 +0200
++++ linuxtv-dvb-apps-1.1.0/util/scan/README	2004-10-05 00:12:40.032659359 +0300
+@@ -9,8 +9,9 @@
+ 
+-Basic usage: ./scan dvb-s/Astra-19.2E | tee mychannels.conf
++Basic usage:
++scandvb /usr/share/dvb-apps/dvb-s/Astra-19.2E | tee mychannels.conf
+ 
+ If you want it to check a specific frequency, tune to that frequency 
+-(e.g. using szap/tzap/czap) and then use './scan -c'.
++(e.g. using szap/tzap/czap) and then use 'scandvb -c'.
+ 
+-For more scan options see ./scan -h.
++For more scandvb options see 'scandvb -h'.
+ 
+diff -NarU1 linuxtv-dvb-apps-1.1.0.orig/util/szap/README linuxtv-dvb-apps-1.1.0/util/szap/README
+--- linuxtv-dvb-apps-1.1.0.orig/util/szap/README	2004-01-25 21:23:39.000000000 +0200
++++ linuxtv-dvb-apps-1.1.0/util/szap/README	2004-10-05 00:12:40.033659116 +0300
+@@ -7,3 +7,3 @@
+ 
+-$ ./szap -c channels.conf-dvbs-astra n24
++$ szap -c /usr/share/doc/dvb-apps-*/channels.conf-dvbs-astra n24
+ 
+@@ -11,3 +11,3 @@
+ 
+-$ ./czap -c channels.conf-dvbc-berlin Arte
++$ czap -c /usr/share/doc/dvb-apps-*/channels.conf-dvbc-berlin Arte
+ 
+@@ -15,3 +15,3 @@
+ 
+-$ ./czap -c channels.conf-dvbt-berlin phoenix
++$ tzap -c /usr/share/doc/dvb-apps-*/channels.conf-dvbt-berlin phoenix
+ 
+@@ -21,3 +21,3 @@
+ 
+-$ ./czap -c channels.conf-dvbt-berlin phoenix -r
++$ czap -c /usr/share/doc/dvb-apps-*/channels.conf-dvbt-berlin phoenix -r
+ [keep it running in one console]

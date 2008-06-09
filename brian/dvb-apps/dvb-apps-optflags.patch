@@ -1,0 +1,99 @@
+diff -Naru linuxtv-dvb-apps-1.1.0.orig/test/Makefile linuxtv-dvb-apps-1.1.0/test/Makefile
+--- linuxtv-dvb-apps-1.1.0.orig/test/Makefile	2004-01-17 18:59:46.000000000 +0200
++++ linuxtv-dvb-apps-1.1.0/test/Makefile	2004-10-04 23:32:18.377000638 +0300
+@@ -1,7 +1,7 @@
+ # Makefile for Linux DVB API Version 3 test programs
+ 
+ CC = gcc
+-CFLAGS = -g -O2 -W -Wall -I../include
++CFLAGS = $(RPM_OPT_FLAGS) -W -Wall -I../include
+ 
+ TARGETS = \
+ 	diseqc		\
+diff -Naru linuxtv-dvb-apps-1.1.0.orig/util/av7110_loadkeys/Makefile linuxtv-dvb-apps-1.1.0/util/av7110_loadkeys/Makefile
+--- linuxtv-dvb-apps-1.1.0.orig/util/av7110_loadkeys/Makefile	2004-01-17 18:59:46.000000000 +0200
++++ linuxtv-dvb-apps-1.1.0/util/av7110_loadkeys/Makefile	2004-10-04 23:32:10.787375858 +0300
+@@ -1,5 +1,5 @@
+ CC = gcc
+-CFLAGS = -g -Wall -O2
++CFLAGS = $(RPM_OPT_FLAGS) -Wall
+ 
+ all: av7110_loadkeys evtest
+ 
+diff -Naru linuxtv-dvb-apps-1.1.0.orig/util/dvbdate/Makefile linuxtv-dvb-apps-1.1.0/util/dvbdate/Makefile
+--- linuxtv-dvb-apps-1.1.0.orig/util/dvbdate/Makefile	2004-01-17 18:59:46.000000000 +0200
++++ linuxtv-dvb-apps-1.1.0/util/dvbdate/Makefile	2004-10-04 23:31:58.835116342 +0300
+@@ -1,6 +1,6 @@
+ 
+ CC      = gcc
+-CFLAGS  = -g -O2 -MD -Wall -I. -I../../include
++CFLAGS  = $(RPM_OPT_FLAGS) -MD -Wall -I. -I../../include
+ LFLAGS  =
+ 
+ OBJS    = dvbdate.o
+diff -Naru linuxtv-dvb-apps-1.1.0.orig/util/dvbnet/Makefile linuxtv-dvb-apps-1.1.0/util/dvbnet/Makefile
+--- linuxtv-dvb-apps-1.1.0.orig/util/dvbnet/Makefile	2004-01-17 18:59:46.000000000 +0200
++++ linuxtv-dvb-apps-1.1.0/util/dvbnet/Makefile	2004-10-04 23:31:48.830247341 +0300
+@@ -1,6 +1,6 @@
+ 
+ CC      = gcc
+-CFLAGS  = -g -O2 -MD -Wall -I. -I../../include
++CFLAGS  = $(RPM_OPT_FLAGS) -MD -Wall -I. -I../../include
+ LFLAGS  =
+ 
+ OBJS    = dvbnet.o
+diff -Naru linuxtv-dvb-apps-1.1.0.orig/util/dvbtraffic/Makefile linuxtv-dvb-apps-1.1.0/util/dvbtraffic/Makefile
+--- linuxtv-dvb-apps-1.1.0.orig/util/dvbtraffic/Makefile	2004-01-19 19:10:16.000000000 +0200
++++ linuxtv-dvb-apps-1.1.0/util/dvbtraffic/Makefile	2004-10-04 23:31:37.418818469 +0300
+@@ -1,6 +1,6 @@
+ 
+ dvbtraffic: dvbtraffic.c
+-	gcc -MD -g -O2 -Wall -I../../include $< -o $@
++	$(CC) -MD -Wall $(RPM_OPT_FLAGS) -I../../include $< -o $@
+ 
+ clean:
+ 	rm -f *.o *.d dvbtraffic
+diff -Naru linuxtv-dvb-apps-1.1.0.orig/util/lib/Makefile linuxtv-dvb-apps-1.1.0/util/lib/Makefile
+--- linuxtv-dvb-apps-1.1.0.orig/util/lib/Makefile	2004-01-17 18:59:46.000000000 +0200
++++ linuxtv-dvb-apps-1.1.0/util/lib/Makefile	2004-10-04 23:31:08.152976759 +0300
+@@ -1,6 +1,6 @@
+ 
+ CC = gcc
+-CFLAGS = -MD -g -Wall -O2 -I../../include -I.
++CFLAGS = -MD -Wall $(RPM_OPT_FLAGS) -I../../include -I.
+ LFLAGS = -g -Wall
+ 
+ OBJS = lnb.o
+diff -Naru linuxtv-dvb-apps-1.1.0.orig/util/scan/Makefile linuxtv-dvb-apps-1.1.0/util/scan/Makefile
+--- linuxtv-dvb-apps-1.1.0.orig/util/scan/Makefile	2004-01-17 18:59:46.000000000 +0200
++++ linuxtv-dvb-apps-1.1.0/util/scan/Makefile	2004-10-04 23:30:50.443518484 +0300
+@@ -1,5 +1,5 @@
+ 
+ CC = gcc
+-CFLAGS = -MD -g -Wall -O2 -I../../include
++CFLAGS = -MD -Wall $(RPM_OPT_FLAGS) -I../../include
+ LFLAGS = -g -Wall
+ 
+diff -Naru linuxtv-dvb-apps-1.1.0.orig/util/szap/Makefile linuxtv-dvb-apps-1.1.0/util/szap/Makefile
+--- linuxtv-dvb-apps-1.1.0.orig/util/szap/Makefile	2004-01-17 18:59:46.000000000 +0200
++++ linuxtv-dvb-apps-1.1.0/util/szap/Makefile	2004-10-04 23:32:41.668711208 +0300
+@@ -1,6 +1,6 @@
+ CC = gcc
+-CFLAGS = -MD -Wall -g -O2 -I../../include -I../lib
+-LFLAGS = -Wall -g -O2
++CFLAGS = -MD -Wall $(RPM_OPT_FLAGS) -I../../include -I../lib
++LFLAGS = -Wall $(RPM_OPT_FLAGS)
+ RM = rm -f
+ 
+ TARGETS = szap tzap czap femon
+diff -Naru linuxtv-dvb-apps-1.1.0.orig/util/ttusb_dec_reset/Makefile linuxtv-dvb-apps-1.1.0/util/ttusb_dec_reset/Makefile
+--- linuxtv-dvb-apps-1.1.0.orig/util/ttusb_dec_reset/Makefile	2004-01-22 00:13:45.000000000 +0200
++++ linuxtv-dvb-apps-1.1.0/util/ttusb_dec_reset/Makefile	2004-10-04 23:30:34.373547057 +0300
+@@ -1,6 +1,6 @@
+ CC	= gcc
+ RM	= rm -f
+-CFLAGS	= -g -Wall -O2
++CFLAGS	= -Wall $(RPM_OPT_FLAGS)
+ LFLAGS	= -g -Wall
+ LDFLAGS = -lusb
+ 

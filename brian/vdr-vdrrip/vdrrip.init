@@ -1,0 +1,69 @@
+#!/bin/sh
+#
+# chkconfig: 345 70 30
+# description: vdrrip queue handler
+
+### BEGIN INIT INFO
+# Provides: vdrrip
+# Should-Start: $local_fs $remote_fs
+# Should-Stop: $local_fs $remote_fs
+# Default-Start: 3 4 5
+# Short-Description: vdrrip queue handler
+# Description: Handles the encoding queue of vdrrip VDR plugin
+### END INIT INFO
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+DAEMONNAME=vdrrip
+
+# Get config.
+VDR_USER=vdr
+VDR_CONFIGDIR=/var/lib/vdr/config
+VDR_VIDEO=/var/lib/vdr/video
+QUEUE_FILE=
+VDRRIP_DIR=
+[ -f /etc/sysconfig/vdr ] && . /etc/sysconfig/vdr
+[ -f /etc/sysconfig/vdrrip ] && . /etc/sysconfig/vdrrip
+
+[ -z "$QUEUE_FILE" ] && QUEUE_FILE=$VDR_CONFIGDIR/plugins/queue.vdrrip
+[ -z "$VDRRIP_DIR" ] && VDRRIP_DIR=$VDR_VIDEO/vdrrip
+
+LOCKFILE=/var/lock/subsys/$DAEMONNAME
+
+case "$1" in
+  start)
+  	CURPIDS="$(__pids_pidof queuehandler.sh)"
+  	if [[ -n "$CURPIDS" ]]; then
+  		echo -n "%s already running on PID %s\n" "queuehandler.sh" "$CURPIDS"
+		exit 1
+	fi
+  	echo -n $"Starting vdrrip queue handler"
+  	daemon --user $VDR_USER queuehandler.sh --background "$QUEUE_FILE" "$VDRRIP_DIR"
+  	RETVAL=$?
+  	echo
+  	touch $LOCKFILE
+  	;;
+  stop)
+  	echo -n $"Shutting down vdrrip queue handler"
+  	killproc queuehandler.sh
+  	RETVAL=$?
+  	echo
+  	rm -f $LOCKFILE
+  	;;
+  status)
+  	status queuehandler.sh
+  	RETVAL=$?
+  	;;
+  reload|restart)
+  	$0 stop
+  	sleep 1
+  	$0 start
+  	RETVAL=$?
+  	;;
+  *)
+  	echo -n $"Usage: $0 {start|stop|restart|reload|status}"
+  	exit 1
+esac
+
+exit $RETVAL

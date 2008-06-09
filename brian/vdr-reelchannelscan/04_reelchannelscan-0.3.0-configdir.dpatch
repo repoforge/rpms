@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 04_reelchannelscan-0.3.0-configdir.dpatch by Thomas Günther <tom@toms-cafe.de>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Use plugins own config directory.
+
+@DPATCH@
+diff -urNad vdr-plugin-reelchannelscan-0.4.3~r2~/transponders.c vdr-plugin-reelchannelscan-0.4.3~r2/transponders.c
+--- vdr-plugin-reelchannelscan-0.4.3~r2~/transponders.c	2007-05-04 19:19:45.000000000 +0200
++++ vdr-plugin-reelchannelscan-0.4.3~r2/transponders.c	2007-05-04 20:04:04.000000000 +0200
+@@ -536,7 +536,7 @@
+ 
+ string cTransponders::TplFileName(int satCodec)
+ {
+-  string tmp = cPlugin::ConfigDirectory();
++  string tmp = cPlugin::ConfigDirectory(PLUGIN_NAME_I18N);
+   tmp += "/transponders/";
+   if (satCodec == 0)
+   {

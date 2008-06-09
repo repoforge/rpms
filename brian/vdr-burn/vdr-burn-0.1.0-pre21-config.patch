@@ -1,0 +1,142 @@
+Index: Makefile
+===================================================================
+RCS file: /var/cvsroot/burn/Makefile,v
+retrieving revision 1.23
+diff -u -r1.23 Makefile
+--- Makefile	1 Oct 2006 21:26:44 -0000	1.23
++++ Makefile	12 Dec 2006 20:31:14 -0000
+@@ -81,11 +81,11 @@
+ endif
+ 
+ ifndef DVDDEV
+-DVDDEV=/dev/dvd
++DVDDEV=/dev/dvdwriter
+ endif
+ 
+ ifndef ISODIR
+-ISODIR=/pub/export
++ISODIR=$(shell vdr-config --videodir)
+ endif
+ 
+ DEFINES += -DTMPDIR='"$(TMPDIR)"' -DDVDDEV='"$(DVDDEV)"' -DISODIR='"$(ISODIR)"'
+Index: README
+===================================================================
+RCS file: /var/cvsroot/burn/README,v
+retrieving revision 1.11
+diff -u -r1.11 README
+--- README	16 Sep 2006 19:37:54 -0000	1.11
++++ README	12 Dec 2006 20:31:14 -0000
+@@ -92,7 +92,7 @@
+ 
+ 3b.(optional) Change the default temporary folder, the default DVD writer device
+    and the default ISO directory with TMPDIR (default: /tmp),
+-   DVDDEV (default: /dev/dvd) and ISODIR (default: /pub/export)
++   DVDDEV (default: /dev/dvdwriter) and ISODIR (default: video dir)
+ 
+    vdr-1.4.2 # make DVDDEV=/dev/cdrecorder ISODIR=/export plugins
+ 
+Index: chain-archive.c
+===================================================================
+RCS file: /var/cvsroot/burn/chain-archive.c,v
+retrieving revision 1.13
+diff -u -r1.13 chain-archive.c
+--- chain-archive.c	16 Sep 2006 18:33:36 -0000	1.13
++++ chain-archive.c	12 Dec 2006 20:31:14 -0000
+@@ -64,7 +64,7 @@
+ 									   bind( &recording::get_graft_point, _2 ),
+ 									   " "
+ 						  )));
+-		graftPoints = format("{0} /dvd.vdr={1}/counters/standard") % graftPoints % plugin::get_config_path();
++		graftPoints = format("{0} /dvd.vdr=/var/lib/vdr/burn/counters/standard") % graftPoints;
+ 
+ 		switch (get_job().get_store_mode()) {
+ 		case storemode_create:
+Index: jobs.c
+===================================================================
+RCS file: /var/cvsroot/burn/jobs.c,v
+retrieving revision 1.35
+diff -u -r1.35 jobs.c
+--- jobs.c	1 Oct 2006 21:22:27 -0000	1.35
++++ jobs.c	12 Dec 2006 20:31:14 -0000
+@@ -389,7 +389,7 @@
+ 	std::string job::get_archive_id()
+ 	{
+ 		std::string archive_id = "";
+-		std::string counter_path = format("{0}/counters/standard") % plugin::get_config_path();
++		std::string counter_path = "/var/lib/vdr/burn/counters/standard";
+ 		std::ifstream f(counter_path.c_str());
+ 		if (!f) {
+ 			proctools::logger::error(proctools::format("couldn't read {0}") % counter_path);
+Index: vdrburn-archive.sh
+===================================================================
+RCS file: /var/cvsroot/burn/vdrburn-archive.sh,v
+retrieving revision 1.5
+diff -u -r1.5 vdrburn-archive.sh
+--- vdrburn-archive.sh	24 Oct 2006 17:46:27 -0000	1.5
++++ vdrburn-archive.sh	12 Dec 2006 20:31:14 -0000
+@@ -43,12 +43,12 @@
+ 	;;
+ 
+ 	recordingmark)
+-		cp "$CONFIG_PATH/counters/standard" "$RECORDING_PATH/dvd.vdr"
++		cp "/var/lib/vdr/burn/counters/standard" "$RECORDING_PATH/dvd.vdr"
+ 	;;
+ 
+ 	archivemark)
+-		((DVD_ID = `cat $CONFIG_PATH/counters/standard | sed "s/^0*//"` + 1))
+-		printf "%04d\n" $DVD_ID > "$CONFIG_PATH/counters/standard"
++		((DVD_ID = `cat /var/lib/vdr/burn/counters/standard | sed "s/^0*//"` + 1))
++		printf "%04d\n" $DVD_ID > "/var/lib/vdr/burn/counters/standard"
+ 	;;
+ 
+ 	*)
+Index: vdrburn-dvd.sh
+===================================================================
+RCS file: /var/cvsroot/burn/vdrburn-dvd.sh,v
+retrieving revision 1.23
+diff -u -r1.23 vdrburn-dvd.sh
+--- vdrburn-dvd.sh	24 Oct 2006 17:46:27 -0000	1.23
++++ vdrburn-dvd.sh	12 Dec 2006 20:31:14 -0000
+@@ -29,11 +29,11 @@
+ #                           as $MPEG_TMP_PATH)
+ 
+ if [ -z $JAVA_HOME ]; then
+-	export JAVA_HOME=/opt/j2re1.4.2
++	export JAVA_HOME=/usr/lib/jvm/jre
+ fi
+ 
+ if [ -z $PROJECTX_HOME ]; then
+-	export PROJECTX_HOME=/opt/ProjectX
++	export PROJECTX_HOME=/usr/share/java
+ fi
+ 
+ # Some versions of growisofs refuse to start when run with sudo, and may
+@@ -61,7 +61,7 @@
+ 			CUT="-cut"
+ 		fi
+ 
+-		vdrsync.pl -o "$MPEG_TMP_PATH" \
++		vdrsync -o "$MPEG_TMP_PATH" \
+ 			-v-filter "burn-buffers" \
+ 			-a-filter "burn-buffers" \
+ 			-ac3-filter "burn-buffers" \
+@@ -197,15 +197,15 @@
+ 		echo "Deleting $TEMP_PATH/INDEX_${TRACK_ON_DVD}"
+ 		rm -rf "$TEMP_PATH/INDEX_${TRACK_ON_DVD}"
+ 		echo "Creating $RECORDING_PATH/dvd.vdr"
+-		cp "$CONFIG_PATH/counters/standard" "$RECORDING_PATH/dvd.vdr"
++		cp "/var/lib/vdr/burn/counters/standard" "$RECORDING_PATH/dvd.vdr"
+ 		printf "%04d\n" $(echo ${TRACK_ON_DVD} | sed 's/^0*//') >> "$RECORDING_PATH/dvd.vdr"
+ 	;;
+ 
+ 	archivemark)
+ 		echo "Creating $DVDAUTHOR_PATH/dvd.vdr"
+-		cp "$CONFIG_PATH/counters/standard" "$DVDAUTHOR_PATH/dvd.vdr"
+-		((DVD_ID = `cat $CONFIG_PATH/counters/standard | sed "s/^0*//"` + 1))
+-		printf "%04d\n" $DVD_ID > "$CONFIG_PATH/counters/standard"
++		cp "/var/lib/vdr/burn/counters/standard" "$DVDAUTHOR_PATH/dvd.vdr"
++		((DVD_ID = `cat /var/lib/vdr/burn/counters/standard | sed "s/^0*//"` + 1))
++		printf "%04d\n" $DVD_ID > "/var/lib/vdr/burn/counters/standard"
+ 	;;
+ 
+ 	mkiso)

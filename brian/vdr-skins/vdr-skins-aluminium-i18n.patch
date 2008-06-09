@@ -1,0 +1,12 @@
+--- Aluminium/Aluminium.trans.orig	2005-10-22 21:01:28.000000000 +0300
++++ Aluminium/Aluminium.trans	2005-10-22 21:02:11.000000000 +0300
+@@ -1,3 +1,7 @@
+-Item=Translation,eng=Total:,deu=Gesamt:;
++Item=Translation,eng=Total:,deu=Gesamt:,fin=Yhteensä:;
+ Item=Translation,eng=Current:,deu=Aktuell:;
+-Item=Translation,eng=-,deu=-;
++Item=Translation,eng=-,deu=-,fin=-;
++Item=Translation,eng={PresentStartDateTime:%d.%m. %H\:%M} - {PresentEndDateTime:%H\:%M},deu={PresentStartDateTime:%d.%m. %H\:%M} - {PresentEndDateTime:%H\:%M},fin={PresentStartDateTime:%d.%m. %H\:%M} - {PresentEndDateTime:%H\:%M};
++Item=Translation,eng=VPS: {PresentVPSDateTime:%H\:%M},deu=VPS: {PresentVPSDateTime:%H\:%M},fin=VPS: {PresentVPSDateTime:%H\:%M};
++Item=Translation,eng={PresentShortText} {PresentDescription},deu={PresentShortText} {PresentDescription},fin={PresentShortText} {PresentDescription};
++Item=Translation,eng=->,deu=->,fin=->;

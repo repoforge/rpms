@@ -1,0 +1,84 @@
+#!/bin/bash
+#
+# vdr          Video Disk Recorder
+#
+# chkconfig:   - 30 09
+# description: Video Disk Recorder (VDR) implements a complete digital \
+#              set-top-box and video recorder.  It can work with signals \
+#              received from satellites (DVB-S) as well as cable (DVB-C) \
+#              and terrestrial (DVB-T) signals.  At least one DVB card \
+#              is required to run VDR.
+# processname: vdr
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+prog=vdr
+runner=/usr/sbin/runvdr
+
+log()
+{
+    [ -x /usr/bin/logger ] && \
+        /usr/bin/logger -s -pdaemon.error -t"$prog" "$1" || echo "$1"
+}
+
+checkconf()
+{
+    cfg=/etc/vdr/channels.conf
+    if [ ! -s "$cfg" ] ; then
+        failure
+        echo
+        log $"Error: no valid $cfg found."
+        log $"Use \"scandvb -o vdr\" from the dvb-apps package to create one."
+        return 6
+    else
+        chown VDR_USER:VDR_GROUP "$cfg" && chmod 644 "$cfg"
+    fi
+}
+
+lockfile=/var/lock/subsys/$prog
+
+start() {
+    echo -n $"Starting Video Disk Recorder ($prog): "
+    checkconf || return $?
+    VDR_INIT=1 daemon --check=$prog "$runner >/dev/null 2>&1 &"
+    retval=$?
+    echo
+    [ $retval -eq 0 ] && touch $lockfile
+    return $retval
+}
+
+stop() {
+    echo -n $"Stopping Video Disk Recorder ($prog): "
+    # Shutdown can be a bit slow sometimes with some plugins or lots of them,
+    # so let's give it some time and a chance to go down gracefully.
+    killall -9 runvdr 2>/dev/null
+    killproc -d 7 $prog
+    retval=$?
+    echo
+    [ $retval -eq 0 ] && rm -f $lockfile
+    return $retval
+}
+
+restart() {
+    stop
+    start
+}
+
+case "$1" in
+    start|stop|restart)
+        $1
+        ;;
+    reload|force-reload)
+        restart
+        ;;
+    status)
+        status $prog
+        ;;
+    condrestart|try-restart)
+  	[ ! -f $lockfile ] || restart
+	;;
+    *)
+        echo $"Usage: $0 {start|stop|status|restart|try-restart|reload|force-reload}"
+        exit 2
+esac

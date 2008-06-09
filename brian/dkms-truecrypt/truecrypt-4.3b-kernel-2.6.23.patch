@@ -1,0 +1,15 @@
+diff -up ./Linux/Kernel/Dm-target.c.lfarkas ./Linux/Kernel/Dm-target.c
+--- ./Linux/Kernel/Dm-target.c.lfarkas	2007-10-31 23:05:41.000000000 +0100
++++ ./Linux/Kernel/Dm-target.c	2007-10-31 23:07:33.000000000 +0100
+@@ -656,7 +656,11 @@ int __init dm_truecrypt_init(void)
+ 		goto err;
+ 	}
+ 
++#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,23)
+ 	bio_ctx_cache = kmem_cache_create ("truecrypt-bioctx", sizeof (struct bio_ctx), 0, 0, NULL, NULL);
++#else
++	bio_ctx_cache = kmem_cache_create ("truecrypt-bioctx", sizeof (struct bio_ctx), 0, 0, NULL);
++#endif
+ 	if (!bio_ctx_cache)
+ 	{
+ 		error ("kmem_cache_create failed");

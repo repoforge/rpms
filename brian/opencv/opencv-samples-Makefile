@@ -1,0 +1,4 @@
+CFLAGS := `pkg-config --cflags opencv` $(CFLAGS)
+LDFLAGS := `pkg-config --libs opencv` $(LDFLAGS)
+
+all: $(patsubst %.c,%,$(wildcard *.c))

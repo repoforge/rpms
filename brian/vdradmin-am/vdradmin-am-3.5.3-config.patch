@@ -1,0 +1,63 @@
+--- vdradmind.pl~	2007-01-25 16:55:55.000000000 +0200
++++ vdradmind.pl	2007-01-25 18:53:33.000000000 +0200
+@@ -87,7 +87,7 @@
+ 
+ #use warnings;
+ 
+-my $SEARCH_FILES_IN_SYSTEM    = 0;
++my $SEARCH_FILES_IN_SYSTEM    = 1;
+ my $VDR_MAX_SVDRP_LENGTH      = 10000;                        # validate this value
+ my $SUPPORTED_LOCALE_PREFIXES = "^(cs|de|en|es|fi|fr|it|nl|ru)_";
+ 
+@@ -110,7 +110,7 @@
+ my %CONFIG;
+ $CONFIG{LOGLEVEL}             = 81;                # 32799
+ $CONFIG{LOGGING}              = 0;
+-$CONFIG{LOGFILE}              = "vdradmind.log";
++$CONFIG{LOGFILE}              = "vdradmin/vdradmind.log";
+ $CONFIG{MOD_GZIP}             = 0;
+ $CONFIG{CACHE_TIMEOUT}        = 60;
+ $CONFIG{CACHE_LASTUPDATE}     = 0;
+@@ -126,7 +126,7 @@
+ $CONFIG{LOCAL_NET}  = "0.0.0.0/32";
+ $CONFIG{VIDEODIR}   = "/video";
+ $CONFIG{VDRCONFDIR} = "$CONFIG{VIDEODIR}";
+-$CONFIG{EPGIMAGES}  = "$CONFIG{VIDEODIR}/epgimages";
++$CONFIG{EPGIMAGES}  = "/usr/share/vdradmin/epgimages";
+ $CONFIG{VDRVFAT}    = 1;
+ 
+ #
+@@ -191,9 +191,9 @@
+ 
+ #
+ $CONFIG{AT_SENDMAIL}    = 0;                       # set to 1 and set all the "MAIL_" things if you want email notification on new autotimers.
+-$CONFIG{MAIL_FROM}      = "from\@address.tld";
++chomp($CONFIG{MAIL_FROM} = 'vdradmin@' . (`hostname -f 2>/dev/null` || "localhost.localdomain"));
+ $CONFIG{MAIL_TO}        = "your\@email.address";
+-$CONFIG{MAIL_SERVER}    = "your.email.server";
++$CONFIG{MAIL_SERVER}    = "localhost";
+ $CONFIG{MAIL_AUTH_USER} = "";
+ $CONFIG{MAIL_AUTH_PASS} = "";
+ 
+@@ -251,10 +251,10 @@
+     $USER_CSS      = "${BASENAME}user.css";
+     bindtextdomain("vdradmin", "${BASENAME}locale");
+ } else {
+-    $ETCDIR        = "/etc/vdradmin";
++    $ETCDIR        = "/var/lib/vdradmin";
+     $TEMPLATEDIR   = "/usr/share/vdradmin/template";
+     $LOGFILE       = "/var/log/$CONFIG{LOGFILE}";
+-    $PIDFILE       = "/var/run/vdradmind.pid";
++    $PIDFILE       = "/var/run/vdradmin/vdradmind.pid";
+     $CONFFILE      = "${ETCDIR}/vdradmind.conf";
+     $AT_FILENAME   = "${ETCDIR}/vdradmind.at";
+     $DONE_FILENAME = "${ETCDIR}/vdradmind.done";
+@@ -288,7 +288,7 @@
+     EVAL_PERL    => 1,               # evaluate Perl code blocks
+     CACHE_SIZE   => 10000,           # Tuning for Templates
+     COMPILE_EXT  => 'cache',         # Tuning for Templates
+-    COMPILE_DIR  => '/tmp',          # Tuning for Templates
++    COMPILE_DIR  => '/var/cache/vdradmin', # Tuning for Templates
+     VARIABLES    => $Xtemplate_vars,
+ 
+     #DEBUG        => DEBUG_ALL,

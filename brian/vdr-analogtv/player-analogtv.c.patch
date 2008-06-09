@@ -1,0 +1,27 @@
+--- VDR.org/PLUGINS/src/analogtv-0.9.37/player-analogtv.c	2005-07-07 16:32:50.000000000 +0200
++++ VDR/PLUGINS/src/analogtv-0.9.37/player-analogtv.c	2005-07-07 16:36:30.000000000 +0200
+@@ -28,7 +28,6 @@
+ #include <sys/soundcard.h>
+
+ #include <transform.h>
+-extern void pes_in_ts(p2p *p);
+ #undef MIN
+ #undef MAX
+
+@@ -828,7 +827,7 @@
+                 pes++;
+                 spes += r;
+ 
+-                get_pes(buffer, r, &p2t, pes_in_ts); // PES -> TS
++                kpes_to_ts(&p2t, buffer, r);
+               }
+             }
+           }
+@@ -937,7 +936,7 @@
+       spes += r;
+
+       if (r > 0)
+-        get_pes(buffer, r, &p2t, pes_in_ts); // PES -> TS
++        kpes_to_ts(&p2t, buffer, r); // PES -> TS
+     }
+   }

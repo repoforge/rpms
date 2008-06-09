@@ -1,0 +1,45 @@
+--- text2skin-1.1-cvs/README.de~	2004-12-20 00:03:08.000000000 +0200
++++ text2skin-1.1-cvs/README.de	2006-11-19 18:42:54.000000000 +0200
+@@ -77,6 +77,9 @@
+ Wo die Skins hingehören:
+ ------------------------
+ 
++*** rpm package note: this text2skin package has been patched to load skins
++*** from /usr/share/vdr/text2skin instead of the path documented below.
++
+ Wie Sie vielleicht wissen, hat VDR einen Unterordner "plugins" innerhalb seines
+ Konfigurationsordners, in dem alle Dateien, die zu Plugins gehören, enthalten
+ sein sollten. Wenn Sie nicht wissen, wo das sein könnte, schauen Sie in dem
+--- text2skin-1.1-cvs/README~	2005-01-31 16:39:45.000000000 +0200
++++ text2skin-1.1-cvs/README	2006-11-19 18:42:36.000000000 +0200
+@@ -82,6 +82,9 @@
+ Where to put the skins:
+ -----------------------
+ 
++*** rpm package note: this text2skin package has been patched to load skins
++*** from /usr/share/vdr/text2skin instead of the path documented below.
++
+ As you might know, VDR has a subfolder "plugins" inside it's configuration 
+ folder, where all plugin-related files should reside. If you don't know, where
+ this could be, look into the folder you gave to VDR with the -v parameter 
+@@ -109,6 +112,9 @@
+ Where to put the fonts:
+ -----------------------
+ 
++*** rpm package note: this text2skin package has been patched to load fonts
++*** from /usr/share/vdr/text2skin instead of the path documented below.
++
+ Font files (.ttf) can be placed either in the directory of the skin itself or 
+ in a subfolder fonts inside the text2skin directory.
+ 
+--- text2skin-1.1-cvs/common.c~	2005-01-07 23:46:51.000000000 +0200
++++ text2skin-1.1-cvs/common.c	2006-11-19 18:38:31.000000000 +0200
+@@ -8,7 +8,7 @@
+ const std::string &SkinPath(void) 
+ {
+ 	// should never change
+-	static std::string path = cPlugin::ConfigDirectory(PLUGIN_NAME_I18N);
++	static std::string path = "/usr/share/vdr/text2skin";
+ 	return path;
+ }
+ 
