@@ -5,7 +5,7 @@
 Summary: Download videos from YouTube.com
 Name: youtube-dl
 Version: 0
-Release: 0.2008.04.20
+Release: 0.2008.06.08
 License: GPL
 Group: Applications/Internet
 URL: http://www.arrakis.es/~rggi3/youtube-dl/
@@ -37,6 +37,9 @@ YouTube.com.
 %{_bindir}/youtube-dl
 
 %changelog
+* Mon Jun  9 2008 Dries Verachtert <dries@ulyssis.org> - 2008.06.08-1
+- Updated to release 2008.06.08.
+
 * Sun Apr 20 2008 Dries Verachtert <dries@ulyssis.org> - 2008.04.20-1
 - Updated to release 2008.04.20.
 
