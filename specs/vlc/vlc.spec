@@ -2,6 +2,8 @@
 # Authority: matthias
 # Upstream: <vlc-devel$videolan,org>
 
+%define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")
+
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
@@ -99,8 +101,8 @@
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
-Version: 0.8.6d
-Release: 2
+Version: 0.8.6h
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -109,7 +111,7 @@ Source1: http://downloads.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpe
 Source2: http://www.live555.com/liveMedia/public/live.%{live_date}.tar.gz
 Patch0: vlc-0.8.6-ffmpegX11.patch
 Patch1: vlc-0.8.6-wx28.patch
-Patch2: vlc-0.8.6a-faad2.patch
+#Patch2: vlc-0.8.6a-faad2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, libpng-devel, libxml2-devel, libtiff-devel
 BuildRequires: libgcrypt-devel, gnutls-devel, libtar-devel
@@ -206,8 +208,13 @@ to link statically to it.
 %prep
 %setup -a 1 -a 2
 %patch0 -p1 -b .ffmpegX11
-%patch1 -p1 -b .wx28
-%patch2 -p1 -b .faad2
+#patch1 -p1 -b .wx28
+
+### Use regex to change FAAD2 interface
+#patch2 -p1 -b .faad2
+%{__perl} -pi -e 's|\bfaacDec\B|NeAACDec|g' modules/codec/faad.c
+
+
 # Fix PLUGIN_PATH path for lib64
 %{__perl} -pi -e 's|/lib/vlc|/%{_lib}/vlc|g' vlc-config.in.in configure*
 
@@ -316,7 +323,7 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 
 
 %files -f %{name}.lang
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog MAINTAINERS README THANKS
 %doc _docs/*
 %{_bindir}/*vlc
@@ -327,7 +334,7 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %{_datadir}/vlc/
 
 %files devel
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
 %doc HACKING
 %{_bindir}/vlc-config
 %{_includedir}/vlc/
@@ -335,6 +342,12 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 
 
 %changelog
+* Sun Jun 08 2008 Dag Wieers <dag@wieers.com> - 0.8.6h-1
+- Updated to release 0.8.6h.
+
+* Sat May 17 2008 Dag Wieers <dag@wieers.com> - 0.8.6g-1
+- Updated to release 0.8.6g.
+
 * Mon Dec 17 2007 Dag Wieers <dag@wieers.com> - 0.8.6d-2
 - Rebuild against libmpcdec 1.2.6 and libupnp 1.6.x.
 

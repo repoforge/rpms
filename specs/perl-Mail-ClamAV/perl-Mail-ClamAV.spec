@@ -9,7 +9,7 @@
 
 Summary: Perl module with bindings for the clamav virus scanner
 Name: perl-Mail-ClamAV
-Version: 0.21
+Version: 0.22
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Mail/ClamAV.pm
 
 %changelog
+* Wed May 28 2008 Dag Wieers <dag@wieers.com> - 0.22-1
+- Updated to release 0.22.
+
 * Tue Jan 15 2008 Dries Verachtert <dries@ulyssis.org> - 0.21-1
 - Updated to release 0.21.
 

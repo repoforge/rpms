@@ -48,9 +48,9 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-%define real_version 1.0-rc2
+%define real_version 1.0-rc3
 Version: 1.0
-Release: 0.rc2
+Release: 0.rc3
 License: LGPL
 Group: Applications/Emulators
 URL: http://www.winehq.org/
@@ -885,6 +885,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Sun Jun 08 2008 Dag Wieers <dag@wieers.com> - 1.0-0.rc3
+- Updated to release 1.0-rc3.
+
 * Tue May 27 2008 Dag Wieers <dag@wieers.com> - 1.0-0.rc2
 - Updated to release 1.0-rc2.
 
