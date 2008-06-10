@@ -34,17 +34,18 @@ you will need to install %{name}-devel.
 %prep
 %setup
 
-#%{__perl} -pi.orig -e 's|CXXFLAGS =  -g -pedantic -Wall -Werror|CXXFLAGS =  -g -pedantic -Wall|' decoder/Makefile.in
+### Disable -Werror in configure (since --disable-debug does not do this)
+%{__perl} -pi.orig -e 's|-Werror||' configure
 
 %build
 %configure CXXFLAGS="%{optflags}" CFLAGS="%{optflags}" \
+    --disable-debug \
     --disable-static \
-    --enable-debug="no" \
-%ifarch x86_64 \
+%ifarch x86_64
         --enable-mmx="yes" \
-%else \
+%else
         --enable-mmx="no" \
-%endif \
+%endif
     --enable-overlay
 %{__make} %{?_smp_mflags}
 

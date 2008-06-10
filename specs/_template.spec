@@ -52,7 +52,7 @@ EOF
 %{__autoconf}
 autoreconf --force --install --symlink
 %configure \
-	--disable-schemas-install
+    --disable-schemas-install
 %{__make} %{?_smp_mflags}
 
 %install
@@ -63,9 +63,9 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor net                  \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+    --add-category X-Red-Hat-Base              \
+    --dir %{buildroot}%{_datadir}/applications \
+    %{name}.desktop
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -87,6 +87,7 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/applications/*.desktop
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/*.h
 %{_libdir}/*.so
 %exclude %{_libdir}/*.a

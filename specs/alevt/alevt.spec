@@ -5,10 +5,10 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 
 %{!?dtag:%define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?fc7: %define _with_modxorg 1}
+%{?el5: %define _with_modxorg 1}
+%{?fc6: %define _with_modxorg 1}
+%{?fc5: %define _with_modxorg 1}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
@@ -18,8 +18,8 @@
 
 Summary: Teletext/videotext decoder and browser for the bttv driver and X
 Name: alevt
-Version: 1.6.1
-Release: 1.2
+Version: 1.6.2
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.goron.de/~froese/
@@ -57,26 +57,27 @@ EOF
 
 %build
 %{__make} %{?_smp_mflags} \
-	OPT="%{optflags}"
+    OPT="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
+#%{__make} install DESTDIR="%{buildroot}"
 %{__install} -Dp -m0755 alevt %{buildroot}%{_bindir}/alevt
-%{__install} -Dp -m0755 alevt-date %{buildroot}%{_bindir}/alevt-date
 %{__install} -Dp -m0755 alevt-cap %{buildroot}%{_bindir}/alevt-cap
+%{__install} -Dp -m0755 alevt-date %{buildroot}%{_bindir}/alevt-date
 %{__install} -Dp -m0644 alevt.1x %{buildroot}%{_mandir}/man1/alevt.1x
-%{__install} -Dp -m0644 alevt-date.1 %{buildroot}%{_mandir}/man1/alevt-date.1
 %{__install} -Dp -m0644 alevt-cap.1 %{buildroot}%{_mandir}/man1/alevt-cap.1
+%{__install} -Dp -m0644 alevt-date.1 %{buildroot}%{_mandir}/man1/alevt-date.1
 %{__install} -Dp -m0644 contrib/mini-alevt.xpm %{buildroot}%{_datadir}/pixmaps/alevt.xpm
 
 %if %{?_without_freedesktop:1}0
-        %{__install} -Dp -m0644 alevt.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/alevt.desktop
+    %{__install} -Dp -m0644 alevt.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/alevt.desktop
 %else
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-        desktop-file-install --vendor %{desktop_vendor}    \
-                --add-category X-Red-Hat-Base              \
-                --dir %{buildroot}%{_datadir}/applications \
-                alevt.desktop
+    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+    desktop-file-install --vendor %{desktop_vendor}    \
+        --add-category X-Red-Hat-Base              \
+        --dir %{buildroot}%{_datadir}/applications \
+        alevt.desktop
 %endif
 
 %clean
@@ -85,15 +86,19 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGELOG COPYRIGHT README alevt.lsm.in
-%doc %{_mandir}/man1/*
-%{_bindir}/*
+%doc %{_mandir}/man1/alevt.1*
+%doc %{_mandir}/man1/alevt-cap.1*
+%doc %{_mandir}/man1/alevt-date.1*
+%{_bindir}/alevt
+%{_bindir}/alevt-cap
+%{_bindir}/alevt-date
 %{_datadir}/pixmaps/alevt.xpm
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/alevt.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-alevt.desktop}
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.1-1.2
-- Rebuild for Fedora Core 5.
+* Mon Jun 09 2008 Dag Wieers <dag@wieers.com> - 1.6.2-1
+- Updated to release 1.6.2.
 
 * Sun Jun 06 2004 Dag Wieers <dag@wieers.com> - 1.6.1-1
 - Initial package. (using DAR)

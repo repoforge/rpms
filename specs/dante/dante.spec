@@ -8,12 +8,13 @@
 Summary: Free Socks v4/v5 client implementation
 Name: dante
 Version: 1.1.19
-Release: 1
+Release: 2
 License: BSD-type
 Group: Applications/Internet
 URL: http://www.inet.no/dante/
 
 Source: ftp://ftp.inet.no/pub/socks/dante-%{version}.tar.gz
+Patch0: dante-1.1.19-private.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: flex, bison
@@ -51,15 +52,16 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
+%patch0 -p0 -b .orig
 
 ### Example should use /var/log/sockd by default
 %{__perl} -pi -e 's|/var/log/lotsoflogs|%{_localstatedir}/log/sockd|' example/sockd.conf
 
 %{__cat} <<EOF >sockd.logrotate
 %{_localstatedir}/log/sockd {
-	missingok
-	copytruncate
-	notifempty
+    missingok
+    copytruncate
+    notifempty
 }
 EOF
 
@@ -91,49 +93,49 @@ prog="sockd"
 desc="Dante Socks server"
 
 start() {
-	echo -n $"Starting $desc ($prog): "
-	daemon $prog -D
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Starting $desc ($prog): "
+    daemon $prog -D
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 stop() {
-	echo -n $"Shutting down $desc ($prog): "
-	killproc $prog
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Shutting down $desc ($prog): "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 restart() {
-	stop
-	start
+    stop
+    start
 }
 
 case "$1" in
   start)
-	start
-	;;
+    start
+    ;;
   stop)
-	stop
-	;;
+    stop
+    ;;
   restart|reload)
-	restart
-	;;
+    restart
+    ;;
   condrestart)
-	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-	RETVAL=$?
-	;;
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
   status)
-	status $prog
-	RETVAL=$?
-	;;
+    status $prog
+    RETVAL=$?
+    ;;
   *)
-	echo $"Usage: $0 {start|stop|restart|condrestart|status}"
-	RETVAL=1
+    echo $"Usage: $0 {start|stop|restart|condrestart|status}"
+    RETVAL=1
 esac
 
 exit $RETVAL
@@ -144,7 +146,7 @@ EOF
 
 # Socksify any dynamically linked program by issuing:
 #
-#	dsocksify <program> <arguments>
+#   dsocksify <program> <arguments>
 
 LIBRARY="${SOCKS_LIBRARY-%{_libdir}/libdsocks.so}"
 LD_PRELOAD="${LD_PRELOAD} ${LIBRARY}"
@@ -160,7 +162,7 @@ EOF
 #
 # chkconfig: - 89 11
 # description: Dsocksify is a means to socksify your system transparantly \
-#	(using Dante) on start-up after the network is up and running.
+#   (using Dante) on start-up after the network is up and running.
 #
 # processname: dsocksify
 #
@@ -171,63 +173,63 @@ EOF
 source %{_initrddir}/functions
 
 disable() {
-	echo $"Warning: your installation is faulty."
-	stop
-	exit 1
+    echo $"Warning: your installation is faulty."
+    stop
+    exit 1
 }
 
 [ ! -r %{_sysconfdir}/socks.conf ] || disable
 [ ! -x %{_libdir}/libdsocks.so.0 ] || disable
 
 start() {
-	echo -n $"Socksifying system: "
-	grep "%{_libdir}/libdsocks.so" /etc/ld.so.preload &>/dev/null
-	ret=$?
-	if [ ! -f /etc/ld.so.preload -o $ret -ne 0 ]; then
-		echo $"%{_libdir}/libdsocks.so.0" >>/etc/ld.so.preload
-		success $"dsocksify startup"
-	elif [ $ret -eq 0 ]; then
-		passed $"dsocksify startup"
-	else
-		failure $"dsocksify startup"
-	fi
-	echo
+    echo -n $"Socksifying system: "
+    grep "%{_libdir}/libdsocks.so" /etc/ld.so.preload &>/dev/null
+    ret=$?
+    if [ ! -f /etc/ld.so.preload -o $ret -ne 0 ]; then
+        echo $"%{_libdir}/libdsocks.so.0" >>/etc/ld.so.preload
+        success $"dsocksify startup"
+    elif [ $ret -eq 0 ]; then
+        passed $"dsocksify startup"
+    else
+        failure $"dsocksify startup"
+    fi
+    echo
 }
 
 stop() {
-	echo -n $"Unsocksifying system: "
-	grep "%{_libdir}/libdsocks.so" /etc/ld.so.preload &>/dev/null
-	if [ $? -eq 0 ]; then
-		cat /etc/ld.so.preload | grep -v "%{_libdir}/libdsocks.so.0" >/etc/ld.so.preload.cache
-		mv -f /etc/ld.so.preload.cache /etc/ld.so.preload
-		success $"dsocksify shutdown"
-	else
-		failure $"dsocksify shutdown"
-	fi
-	if [ ! -s /etc/ld.so.preload ]; then
-		rm -f /etc/ld.so.preload
-	fi
-	echo
+    echo -n $"Unsocksifying system: "
+    grep "%{_libdir}/libdsocks.so" /etc/ld.so.preload &>/dev/null
+    if [ $? -eq 0 ]; then
+        cat /etc/ld.so.preload | grep -v "%{_libdir}/libdsocks.so.0" >/etc/ld.so.preload.cache
+        mv -f /etc/ld.so.preload.cache /etc/ld.so.preload
+        success $"dsocksify shutdown"
+    else
+        failure $"dsocksify shutdown"
+    fi
+    if [ ! -s /etc/ld.so.preload ]; then
+        rm -f /etc/ld.so.preload
+    fi
+    echo
 }
 
 restart() {
-	stop
-	start
+    stop
+    start
 }
 
 case "$1" in
   start)
-	start
-	;;
+    start
+    ;;
   stop)
-	stop
-	;;
+    stop
+    ;;
   restart)
-	restart
-	;;
+    restart
+    ;;
   *)
-	echo $"Usage: $0 {start|stop|restart}"
-	RETVAL=1
+    echo $"Usage: $0 {start|stop|restart}"
+    RETVAL=1
 esac
 
 exit $RETVAL
@@ -239,7 +241,7 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %{__install} -Dp -m0644 example/socks-simple.conf %{buildroot}%{_sysconfdir}/socks.conf
 %{__install} -Dp -m0644 example/sockd.conf %{buildroot}%{_sysconfdir}/sockd.conf
@@ -253,19 +255,16 @@ EOF
 ### FIXME: Set library as executable - prevent ldd from complaining
 %{__chmod} +x %{buildroot}%{_libdir}/*.so*
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %post server
 /sbin/chkconfig --add sockd
 
 %preun server
 if [ $1 -eq 0 ]; then
-	/sbin/service sockd stop &>/dev/null || :
-	/sbin/chkconfig --del sockd
+    /sbin/service sockd stop &>/dev/null || :
+    /sbin/chkconfig --del sockd
 fi
 
 %postun server
@@ -291,7 +290,8 @@ fi
 %files server
 %defattr(-, root, root, 0755)
 %doc example/sockd*.conf
-%doc %{_mandir}/man[58]/sockd.*
+%doc %{_mandir}/man5/sockd.conf.5*
+%doc %{_mandir}/man8/sockd.8*
 %config(noreplace) %{_sysconfdir}/sockd.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/sockd
 %config %{_initrddir}/sockd
@@ -300,14 +300,17 @@ fi
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/rfc* doc/SOCKS4.protocol INSTALL
-#%{_libdir}/libdsocks.a
-%exclude %{_libdir}/libdsocks.la
-%{_libdir}/libsocks.a
-%exclude %{_libdir}/libsocks.la
 %{_libdir}/libsocks.so
 %{_includedir}/socks.h
+#%{_libdir}/libdsocks.a
+%exclude %{_libdir}/libsocks.a
+%exclude %{_libdir}/libdsocks.la
+%exclude %{_libdir}/libsocks.la
 
 %changelog
+* Wed Jun 11 2008 Dag Wieers <dag@wieers.com> - 1.1.19-2
+- Get rid of GLIBC_PRIVATE caused by using __libc_enable_secure.
+
 * Sat Apr 29 2006 Dag Wieers <dag@wieers.com> - 1.1.19-1
 - Updated to release 1.1.19.
 

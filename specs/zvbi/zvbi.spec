@@ -4,14 +4,14 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 
 %{!?dtag:%define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el5: %define _with_modxorg 1}
+%{?fc7: %define _with_modxorg 1}
+%{?fc6: %define _with_modxorg 1}
+%{?fc5: %define _with_modxorg 1}
 
 Summary: Raw VBI, Teletext and Closed Caption decoding library
 Name: zvbi
-Version: 0.2.29
+Version: 0.2.30
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -85,6 +85,9 @@ the zvbi library.
 %exclude %{_libdir}/libzvbi-chains.la
 
 %changelog
+* Mon Jun 09 2008 Dag Wieers <dag@wieers.com> - 0.2.30-1
+- Updated to release 0.2.30.
+
 * Tue Feb 26 2008 Dag Wieers <dag@wieers.com> - 0.2.29-1
 - Updated to release 0.2.29.
 

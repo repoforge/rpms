@@ -3,7 +3,7 @@
 
 Summary: Network pipemeter is a network benchmark utility
 Name: nepim
-Version: 0.40
+Version: 0.48
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -42,5 +42,8 @@ testing, and supports IPv6.
 %{_bindir}/nepim
 
 %changelog
+* Tue Jun 10 2008 Dag Wieers <dag@wieers.com> - 0.48-1
+- Updated to release 0.48.
+
 * Fri Aug 17 2007 Dag Wieers <dag@wieers.com> - 0.40-1
 - Initial package. (using DAR)

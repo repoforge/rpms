@@ -15,7 +15,7 @@
 Summary: TV viewer for GNOME
 Name: zapping
 Version: 0.10
-Release: 0.3%{?prever:.%{prever}}
+Release: 0.4%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
@@ -85,6 +85,9 @@ scrollkeeper-update -q || :
 
 
 %changelog
+* Mon Jun 09 2008 Dag Wieers <dag@wieers.com> - 0.10-0.4.cvs6
+- Rebuild against zvbi-0.2.30.
+
 * Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 0.10-0.3.cvs6
 - Update to 0.10cvs6.
 

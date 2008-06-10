@@ -1,0 +1,172 @@
+--- pan/gui/body-pane.orig.cc	2007-08-01 13:00:00.000000000 -0400
++++ pan/gui/body-pane.cc	2007-08-16 16:14:09.000000000 -0400
+@@ -803,44 +803,137 @@
+    * Generates a GtkPixmap object from a given GMimePart that contains an image.
+    * Used for displaying attached pictures inline.
+    */
+-  GdkPixbuf* get_pixbuf_from_gmime_part (const GMimePart * part)
++
++  GdkPixbuf* 
++  get_pixbuf_from_gmime_part(
++  const GMimePart*  part)
+   {
+-    GdkPixbufLoader * l (gdk_pixbuf_loader_new ());
+-    GError * err (0);
+ 
+-    // populate the loader
+-    GMimeDataWrapper * wrapper (g_mime_part_get_content_object (part));
+-    if (wrapper)
+-    {
+-      GMimeStream * mem_stream (g_mime_stream_mem_new ());
+-      g_mime_data_wrapper_write_to_stream (wrapper, mem_stream);
+-      GByteArray * buffer (GMIME_STREAM_MEM(mem_stream)->buffer);
+-      if (buffer->len)
+-          gdk_pixbuf_loader_write (l, (guchar*)buffer->data, buffer->len, &err);
+-      g_object_unref (mem_stream);
+-      g_object_unref (wrapper);
++    GError* gdkError = NULL;
++
++    GMimeDataWrapper* wrapper(
++      g_mime_part_get_content_object(
++        part
++        )
++      );
++
++    if (wrapper == NULL) {
++      return(NULL);
+     }
+-  
+-    // create the pixbuf
+-    GdkPixbuf * pixbuf (0);
+-    if (!err)
+-      pixbuf = gdk_pixbuf_loader_get_pixbuf (l);
+-    else {
+-      Log::add_err (err->message);
+-      g_clear_error (&err);
++
++    GMimeStream* mem_stream(
++      g_mime_stream_mem_new()
++      );
++
++    g_mime_data_wrapper_write_to_stream(
++      wrapper,
++      mem_stream
++      );
++
++    GByteArray* buffer(
++      GMIME_STREAM_MEM(mem_stream)->buffer
++      );
++
++    GdkPixbufLoader* pixbufLoader(
++      gdk_pixbuf_loader_new()
++      );
++
++    // Feed the loader at a rate it hopefully can always handle properly
++
++    guchar* bufferPointer = (guchar*)buffer->data;
++    gsize bufferRemaining = buffer->len;
++
++    while (bufferRemaining > 0) {
++
++      gsize blockSize = (bufferRemaining > 8192) ? 8192 : bufferRemaining;
++
++      gboolean writeResult = gdk_pixbuf_loader_write(
++        pixbufLoader,
++        bufferPointer,
++        blockSize,
++        &gdkError
++        );
++
++      if (gdkError) {
++
++        Log::add_err(
++          gdkError->message
++          );
++
++        g_clear_error(
++          &gdkError
++          );
++
++        break;
++
++      }
++
++      if (writeResult != TRUE) {
++
++        Log::add_err(
++          "Pixbuf writer unable to accept complete data"
++          );
++
++      }
++
++      bufferPointer += blockSize;
++      bufferRemaining -= blockSize;
++
++    }
++
++    // Release Source Objects
++
++    g_object_unref(
++      mem_stream
++      );
++
++    g_object_unref(
++      wrapper
++      );
++
++    // Close the loader to flush any pending operations
++
++    gdk_pixbuf_loader_close(
++      pixbufLoader,
++      &gdkError
++      );
++
++    if (gdkError) {
++
++      Log::add_err(
++        gdkError->message
++        );
++
++      g_clear_error(
++        &gdkError
++        );
++
++    }
++
++    // Acquire Pixbuf reference 
++
++    GdkPixbuf *pixbuf = gdk_pixbuf_loader_get_pixbuf(
++      pixbufLoader
++      );
++
++    if (pixbuf) {
++
++      g_object_ref(
++        G_OBJECT(pixbuf)
++        );
++
+     }
+ 
+-    // cleanup
+-    gdk_pixbuf_loader_close (l, &err);
+-    if (err) {
+-      Log::add_err (err->message);
+-      g_clear_error (&err);
+-    }
+-    if (pixbuf)
+-      g_object_ref (G_OBJECT(pixbuf));
+-    g_object_unref (G_OBJECT(l));
+-    return pixbuf;
++    // Release Loader
++
++    g_object_unref(
++      G_OBJECT(pixbufLoader)
++      );
++
++    return(pixbuf);
++
+   }
++
+ }
+ 
+ void

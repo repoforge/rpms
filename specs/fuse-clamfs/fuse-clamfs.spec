@@ -6,7 +6,7 @@
 Summary: FUSE-based user-space file system for Linux with on-access anti-virus file scanning
 Name: fuse-clamfs
 Version: 0.9.1
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Kernel
 URL: http://clamfs.sourceforge.net/
@@ -29,7 +29,7 @@ file scanning through clamd daemon.
 
 %build
 %configure \
-	--disable-static
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
@@ -46,5 +46,8 @@ file scanning through clamd daemon.
 %{_bindir}/clamfs
 
 %changelog
+* Tue Jun 10 2008 Dag Wieers <dag@wieers.com> - 0.9.1-2
+- Rebuild against commoncpp2-1.6.2.
+
 * Sat May 12 2007 Dag Wieers <dag@wieers.com> - 0.9.1-1
 - Initial package. (using DAR)

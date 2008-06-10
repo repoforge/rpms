@@ -12,13 +12,14 @@
 Summary: The Pan Newsreader
 Name: pan
 Version: 0.132
-Release: 1
+Release: 2
 Epoch: 1
 License: GPL
 Group: Applications/Internet
 URL: http://pan.rebelbase.com/
 
 Source: http://pan.rebelbase.com/download/releases/%{version}/source/pan-%{version}.tar.bz2
+Patch0: pan-0.132-pixbuf.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel >= 2.0.4, gtk2-devel >= 2.0.5, libxml2-devel >= 2.4.22
@@ -36,26 +37,28 @@ to get a perfect score on the Good Net-Keeping Seal of Approval evalutions.
 
 %prep
 %setup
+%patch0 -b .pixbuf
+
+%{__perl} -pi.orig -e 's|StartupNotify=false|StartupNotify=true|' pan.desktop.in
 
 %build
 %configure \
-	--program-prefix="%{?_program_prefix}"
-%{__make} %{?_smp_mflags} \
-	LDFLAGS="-s"
+    --program-prefix="%{?_program_prefix}"
+%{__make} %{?_smp_mflags} LDFLAGS="-s"
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %if %{!?_without_freedesktop:1}0
 desktop-file-install --vendor %{desktop_vendor}    \
-	--delete-original                          \
-	--add-category Application                 \
-	--add-category Network                     \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	%{buildroot}%{_datadir}/applications/pan.desktop
+    --delete-original                          \
+    --add-category Application                 \
+    --add-category Network                     \
+    --add-category X-Red-Hat-Base              \
+    --dir %{buildroot}%{_datadir}/applications \
+    %{buildroot}%{_datadir}/applications/pan.desktop
 %endif
 
 %clean
@@ -69,6 +72,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/pan.png
 
 %changelog
+* Tue Jun 10 2008 Dag Wieers <dag@wieers.com> - 0.132-2
+- Added patch from Fedora.
+
 * Thu Mar 13 2008 Heiko Adams <info-2007@fedora-blog.de> - 0.132-1
 - Updated to release 0.132.
 
