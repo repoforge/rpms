@@ -90,6 +90,9 @@ you will need to install %{name}-devel.
 #exclude %{_libdir}/*.la
 
 %changelog
+* Mon Jun  9 2008 Dries Verachtert <dries@ulyssis.org> - 7.1-1
+- Updated to release 7.1.
+
 * Sun Jul 08 2007 Dries Verachtert <dries@ulyssis.org> - 7.0-1
 - Updated to release 7.0.
 
