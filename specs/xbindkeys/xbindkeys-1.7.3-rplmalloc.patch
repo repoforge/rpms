@@ -1,0 +1,11 @@
+--- ./configure.rplmalloc	2006-07-02 16:21:41.000000000 +0200
++++ ./configure	2006-07-02 16:22:06.000000000 +0200
+@@ -6191,7 +6191,7 @@
+ 
+ 
+ cat >>confdefs.h <<\_ACEOF
+-#define malloc rpl_malloc
++/* #define malloc rpl_malloc */
+ _ACEOF
+ 
+ fi
