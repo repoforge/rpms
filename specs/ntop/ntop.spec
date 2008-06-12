@@ -27,7 +27,7 @@ Source: http://dl.sf.net/ntop/ntop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, gdbm-devel, libpcap, rrdtool-devel, zlib-devel, glib-devel
-BuildRequires: gd-devel, gcc-c++, automake, autoconf, gettext
+BuildRequires: gd-devel, gcc-c++, automake, autoconf, gettext, libtool
 %{?_with_libpcapdevel:BuildRequires: libpcap-devel}
 %{?_with_tcpwrappersdevel:BuildRequires: tcp_wrappers-devel}
 %{!?_without_tcpwrappers:BuildRequires: tcp_wrappers}
