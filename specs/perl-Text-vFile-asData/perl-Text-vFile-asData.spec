@@ -10,7 +10,7 @@
 Summary: Parse vFile formatted files into data structures
 Name: perl-Text-vFile-asData
 Version: 0.05
-Release: 1.2
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-vFile-asData/
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl(Class::Accessor::Chained)
 
 %description
 With this package you can parse vFile formatted files into data structures.
@@ -49,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Text/vFile/asData.pm
 
 %changelog
+* Wed Jun 11 2008 Dries Verachtert <dries@ulyssis.org> - 0.05-2
+- Added Class::Accessor::Chained requirement, thanks to Sven Sternberger.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1.2
 - Rebuild for Fedora Core 5.
 

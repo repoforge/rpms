@@ -10,7 +10,7 @@
 Summary: Perl extension to test methods for warnings
 Name: perl-Test-Warn
 Version: 0.10
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Warn/
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl(Tree::DAG_Node)
 
 %description
 This module provides a few convenience methods for testing warning based
@@ -50,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Warn.pm
 
 %changelog
+* Wed Jun 11 2008 Dries Verachtert <dries@ulyssis.org> - 0.10-2
+- Added Tree::DAG_Node requirement, thanks to Sven Sternberger.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Updated to release 0.10.
 
