@@ -17,7 +17,7 @@
 
 Summary: Network traffic probe that shows the network usage
 Name: ntop
-Version: 3.3
+Version: 3.3.6
 Release: 1
 License: GPL
 Group: Applications/System
@@ -40,26 +40,26 @@ web interface. Optionally, data may be stored into a database for analysis or
 extracted from the web server in formats suitable for manipulation in perl or php.
 
 %prep
-%setup
+%setup -n %{name}
 
 %{__perl} -pi.orig -e 's|^NTOP_VERSION_EXTRA=.*$|NTOP_VERSION_EXTRA="(Dag Apt RPM Repository)"|;' configure configure.in
 
 %{__perl} -pi.orig -e '
-		s|\@CFG_CONFIGFILE_DIR\@|\$(sysconfdir)/ntop|;
-		s|(\$\(CFG_DBFILE_DIR\))|\$(DESTDIR)$1|;
-	' Makefile.in
+        s|\@CFG_CONFIGFILE_DIR\@|\$(sysconfdir)/ntop|;
+        s|(\$\(CFG_DBFILE_DIR\))|\$(DESTDIR)$1|;
+    ' Makefile.in
 
 %{__perl} -pi.orig -e '
-		s|user = "nobody"|user = "ntop"|;
-		s|user = "anonymous"|user = "nobody"|;
-	' main.c
+        s|user = "nobody"|user = "ntop"|;
+        s|user = "anonymous"|user = "nobody"|;
+    ' main.c
 
 %{__cat} <<EOF >ntop.logrotate
 %{_localstatedir}/log/ntop.access.log {
-	missingok
-	postrotate
-		/sbin/service ntop condrestart >/dev/null 2>&1
-	endscript
+    missingok
+    postrotate
+        /sbin/service ntop condrestart >/dev/null 2>&1
+    endscript
 }
 EOF
 
@@ -92,49 +92,49 @@ RETVAL=0
 prog="ntop"
 
 start () {
-	echo -n $"Starting $prog: "
-	daemon $prog -d -L @%{_sysconfdir}/ntop.conf
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/\$prog
-	return $RETVAL
+    echo -n $"Starting $prog: "
+    daemon $prog -d -L @%{_sysconfdir}/ntop.conf
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/\$prog
+    return $RETVAL
 }
 
 stop () {
-	echo -n $"Stopping $prog: "
-	killproc $prog
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 restart () {
-	stop
-	start
+    stop
+    start
 }
 
 case "$1" in
   start)
-	start
-	;;
+    start
+    ;;
   stop)
-	stop
-	;;
+    stop
+    ;;
   restart|reload)
-	restart
-	;;
+    restart
+    ;;
   condrestart)
-	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-	RETVAL=$?
-	;;
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
   status)
-	status $prog
-	RETVAL=$?
-	;;
+    status $prog
+    RETVAL=$?
+    ;;
   *)
-	echo $"Usage: $0 {start|stop|restart|condrestart|status}"
-	RETVAL=1
+    echo $"Usage: $0 {start|stop|restart|condrestart|status}"
+    RETVAL=1
 esac
 
 exit $RETVAL
@@ -205,23 +205,24 @@ EOF
 %{__rm} -f libtool.m4.in
 ./autogen.sh --noconfig
 %configure \
-	--program-prefix="%{?_program_prefix}" \
-	--enable-i18n \
-	--enable-largerrdpop \
-	--enable-optimize \
-	--enable-sslv3 \
+    --program-prefix="%{?_program_prefix}" \
+    --disable-static \
+    --enable-i18n \
+    --enable-largerrdpop \
+    --enable-optimize \
+    --enable-sslv3 \
 %{!?_without_tcpwrappers:--with-tcpwrap}
-#	--with-pcap-include="%{_includedir}/pcap" \
-#	--enable-xmldump \
+#   --with-pcap-include="%{_includedir}/pcap" \
+#   --enable-xmldump \
 %{__make} %{?_smp_mflags} faq.html ntop.txt ntop.html all
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_datadir}/ntop/ \
-			%{buildroot}%{_localstatedir}/ntop/ #/rrd/{flows,graphics,interfaces/eth0}
+            %{buildroot}%{_datadir}/ntop/ \
+            %{buildroot}%{_localstatedir}/ntop/ #/rrd/{flows,graphics,interfaces/eth0}
 %{__make} install install-data-local \
-	DESTDIR="%{buildroot}"
+    DESTDIR="%{buildroot}"
 
 %{__install} -Dp -m0755 ntop.sysv %{buildroot}%{_initrddir}/ntop
 %{__install} -Dp -m0644 ntop.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/ntop
@@ -229,8 +230,8 @@ EOF
 
 %pre
 if ! /usr/bin/id ntop &>/dev/null; then
-	/usr/sbin/useradd -M -s /sbin/nologin -r ntop &>/dev/null || \
-		%logmsg "Unexpected error adding user \"ntop\". Abort installation."
+    /usr/sbin/useradd -M -s /sbin/nologin -r ntop &>/dev/null || \
+        %logmsg "Unexpected error adding user \"ntop\". Abort installation."
 fi
 
 %post
@@ -238,25 +239,25 @@ fi
 /sbin/ldconfig 2>/dev/null
 
 if /usr/bin/id ntop &>/dev/null; then
-	/usr/sbin/usermod -s /sbin/nologin -c "ntop user" -g ntop \
-		-d %{_localstatedir}/ntop ntop &>/dev/null || \
-		%logmsg "Unexpected error modifying user \"ntop\". Abort installation."
+    /usr/sbin/usermod -s /sbin/nologin -c "ntop user" -g ntop \
+        -d %{_localstatedir}/ntop ntop &>/dev/null || \
+        %logmsg "Unexpected error modifying user \"ntop\". Abort installation."
 fi
 
 %preun
 if [ $1 -eq 0 ]; then
-	/sbin/service ntop stop &>/dev/null || :
-	/sbin/chkconfig --del ntop
+    /sbin/service ntop stop &>/dev/null || :
+    /sbin/chkconfig --del ntop
 fi
 
 %postun
 if [ $1 -eq 0 ]; then
-	/usr/sbin/userdel ntop || %logmsg "User \"ntop\" could not be deleted."
-	/usr/sbin/groupdel ntop || %logmsg "Group \"ntop\" could not be deleted."
+    /usr/sbin/userdel ntop || %logmsg "User \"ntop\" could not be deleted."
+    /usr/sbin/groupdel ntop || %logmsg "Group \"ntop\" could not be deleted."
 fi
 
 if [ $1 -ge 1 ]; then
-	/sbin/service ntop condrestart &>/dev/null || :
+    /sbin/service ntop condrestart &>/dev/null || :
 fi
 /sbin/ldconfig 2>/dev/null
 
@@ -279,12 +280,13 @@ fi
 
 %defattr(-, ntop, nobody, 0775)
 %{_localstatedir}/ntop/
-
-%exclude %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 #%exclude %{_libdir}/plugins/
 
 %changelog
+* Thu Jun 12 2008 Dag Wieers <dag@wieers.com> - 3.3.6-1
+- Updated to release 3.3.6.
+
 * Sun Jun 10 2007 Dag Wieers <dag@wieers.com> - 3.3-1
 - Updated to release 3.3.
 
