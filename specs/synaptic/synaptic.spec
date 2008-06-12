@@ -5,22 +5,31 @@
 Summary: Graphical package management program using apt
 Name: synaptic
 Version: 0.57.2
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/synaptic/
+
 Source: http://savannah.nongnu.org/download/synaptic/synaptic-%{version}.tar.gz
 Patch0: http://apt-rpm.org/patches/synaptic-0.57.2-gcc41.patch
 Patch1: http://apt-rpm.org/patches/synaptic-0.57.2-repomd-1.patch
 Patch2: http://apt-rpm.org/patches/synaptic-0.57.2-showprog.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: apt >= 0.5.4, usermode
+
+BuildRequires: apt-devel >= 0.5.15lorg3.2
+BuildRequires: rpm-devel >= 4.0
+BuildRequires: gtk2-devel >= 2.4
+BuildRequires: libglade2-devel >= 2.0
+BuildRequires: gcc-c++
+BuildRequires: docbook-utils
+BuildRequires: gettext
+BuildRequires: xmlto
+BuildRequires: scrollkeeper
+BuildRequires: perl(XML::Parser)
+Requires: apt >= 0.5.15lorg3.2
+Requires: usermode
 Requires(pre): scrollkeeper
 Requires(postun): scrollkeeper
-BuildRequires: apt-devel >= 0.5.4, rpm-devel >= 4.0
-BuildRequires: gtk2-devel >= 2.4, libglade2-devel >= 2.0
-BuildRequires: gcc-c++, docbook-utils, gettext, xmlto, scrollkeeper
-BuildRequires: perl(XML::Parser)
 
 %description
 Synaptic (previously known as raptor) is a graphical package management
@@ -65,34 +74,28 @@ Encoding=UTF-8
 Categories=GNOME;Application;SystemSetup;X-Red-Hat-Base;
 EOF
 
-
 %build
-%configure
+%configure --disable-dependency-tracking
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
-# Install the consolehelper symlink
+### Install the consolehelper symlink
 %{__mkdir_p} %{buildroot}%{_bindir}
 %{__ln_s} consolehelper %{buildroot}%{_bindir}/synaptic
 
-# Install the consolehelper required files
-%{__install} -Dp -m 0644 synaptic.apps \
-    %{buildroot}%{_sysconfdir}/security/console.apps/synaptic
-%{__install} -Dp -m 0644 synaptic.pam \
-    %{buildroot}%{_sysconfdir}/pam.d/synaptic
+### Install the consolehelper required files
+%{__install} -Dp -m0644 synaptic.apps %{buildroot}%{_sysconfdir}/security/console.apps/synaptic
+%{__install} -Dp -m0644 synaptic.pam %{buildroot}%{_sysconfdir}/pam.d/synaptic
 
-# Remove legacy menu entry
+### Remove legacy menu entry
 %{__rm} -f %{buildroot}%{_sysconfdir}/X11/sysconfig/synaptic.desktop
-
 
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %post
 %{_bindir}/scrollkeeper-update -q || :
@@ -100,25 +103,25 @@ EOF
 %postun
 %{_bindir}/scrollkeeper-update -q || :
 
-
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
-%{_sysconfdir}/pam.d/synaptic
-%{_sysconfdir}/security/console.apps/synaptic
+%doc %{_mandir}/man8/synaptic.8*
+%config(noreplace) %{_sysconfdir}/pam.d/synaptic
+%config(noreplace) %{_sysconfdir}/security/console.apps/synaptic
 %{_bindir}/synaptic
-%{_sbindir}/synaptic
 %{_datadir}/applications/synaptic.desktop
 %{_datadir}/applications/synaptic-kde.desktop
 %{_datadir}/gnome/help/synaptic/
 %{_datadir}/omf/synaptic/
 %{_datadir}/pixmaps/synaptic.png
 %{_datadir}/synaptic/
-%{_mandir}/man8/*
-%exclude %{_localstatedir}/scrollkeeper/
-
+%{_sbindir}/synaptic
 
 %changelog
+* Thu Jun 12 2008 Dag Wieers <dag@wieers.com> - 0.57.2-4
+- Rebuild against apt-0.5.15lorg3.2.
+
 * Fri Jun 23 2006 Dag Wieers <dag@wieers.com> - 0.57.2-3
 - Added more patches to make synaptic work with apt-0.5.15lorg3.2.
 

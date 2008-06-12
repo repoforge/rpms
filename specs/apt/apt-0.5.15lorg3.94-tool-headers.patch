@@ -1,0 +1,65 @@
+commit d6087997e31317a7fdcb53973e69e1f9b3c0a0ac
+Author: Panu Matilainen <pmatilai@laiskiainen.org>
+Date:   Fri Jan 11 23:00:35 2008 +0200
+
+    Oops, forgot to adjust tools/ for rpmhandler going private
+
+diff --git a/tools/cached_md5.cc b/tools/cached_md5.cc
+index 4df228b..5bf789b 100644
+--- a/tools/cached_md5.cc
++++ b/tools/cached_md5.cc
+@@ -17,9 +17,9 @@
+ 
+ #include <apt-pkg/error.h>
+ #include <apt-pkg/tagfile.h>
+-#include <apt-pkg/rpmhandler.h>
+ #include <apt-pkg/configuration.h>
+ #include <apt-pkg/md5.h>
++#include "rpmhandler.h"
+ 
+ #include <config.h>
+ 
+diff --git a/tools/genpkglist.cc b/tools/genpkglist.cc
+index e067790..c0c608c 100644
+--- a/tools/genpkglist.cc
++++ b/tools/genpkglist.cc
+@@ -20,9 +20,9 @@
+ #include <apt-pkg/error.h>
+ #include <apt-pkg/tagfile.h>
+ #include <apt-pkg/configuration.h>
+-#include <apt-pkg/rpmhandler.h>
+ #include <config.h>
+ 
++#include "rpmhandler.h"
+ #include "cached_md5.h"
+ 
+ #if RPM_VERSION >= 0x040100
+diff --git a/tools/gensrclist.cc b/tools/gensrclist.cc
+index ea1bb92..0597560 100644
+--- a/tools/gensrclist.cc
++++ b/tools/gensrclist.cc
+@@ -20,10 +20,10 @@
+ 
+ #include <apt-pkg/error.h>
+ #include <apt-pkg/tagfile.h>
+-#include <apt-pkg/rpmhandler.h>
+ #include <apt-pkg/configuration.h>
+ #include <config.h>
+ 
++#include "rpmhandler.h"
+ #include "cached_md5.h"
+ 
+ #if RPM_VERSION >= 0x040100
+--- a/test/versiontest.cc
++++ b/test/versiontest.cc
+@@ -17,9 +17,9 @@
+ #include <system.h>
+ #include <apt-pkg/error.h>
+ #include <apt-pkg/version.h>
+-#include <apt-pkg/rpmversion.h>
+ #include <iostream>
+ #include <fstream>
++#include "rpmversion.h"
+ 
+ using namespace std;
+ 

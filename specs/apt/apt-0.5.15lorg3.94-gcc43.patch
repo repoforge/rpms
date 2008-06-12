@@ -1,0 +1,18 @@
+commit 20a28924c7e7a2b28130f2847c097eae4bc98882
+Author: Panu Matilainen <pmatilai@laiskiainen.org>
+Date:   Mon Feb 11 19:35:15 2008 +0200
+
+    Add missing include for gcc 4.3
+
+diff --git a/methods/http.cc b/methods/http.cc
+index 82c113d..4939500 100644
+--- a/methods/http.cc
++++ b/methods/http.cc
+@@ -39,6 +39,7 @@
+ #include <errno.h>
+ #include <string.h>
+ #include <iostream>
++#include <algorithm>
+ #include <map>
+ 
+ // Internet stuff

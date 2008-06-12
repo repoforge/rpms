@@ -1,0 +1,18 @@
+diff -ur apt-0.5.15lorg3.2~/buildlib/archtable apt-0.5.15lorg3.2/buildlib/archtable
+--- apt-0.5.15lorg3.2~/buildlib/archtable	2006-06-21 18:16:11.000000000 -0400
++++ apt-0.5.15lorg3.2/buildlib/archtable	2006-10-15 19:22:09.000000000 -0400
+@@ -12,10 +12,10 @@
+ alpha.*	alpha
+ m68k	m68k
+ arm.*	arm
+-ppc	powerpc
+-powerpc	powerpc
+-ppc64		powerpc64
+-powerpc64	powerpc64
++ppc	ppc
++powerpc	ppc
++ppc64		ppc64
++powerpc64	ppc64
+ mipsel  mipsel
+ mipseb	mips
+ mips	mips
