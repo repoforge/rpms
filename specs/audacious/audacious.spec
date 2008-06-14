@@ -54,7 +54,7 @@ Summary: 	Development files for Audacious
 Group: 		Development/Libraries
 Requires: 	%{name}-libs = %{version}-%{release}
 Requires: 	glib2-devel, gtk2-devel >= 2.6, GConf2-devel, libglade2-devel >= 2.4
-Requires: 	mcs-devel = 0.4.1
+Requires: 	mcs-libs = 0.4.1
 Requires: 	pkgconfig
 
 Obsoletes: 	bmp-devel <= 0.9.7.1
