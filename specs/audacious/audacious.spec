@@ -7,7 +7,7 @@
 Summary: 	Graphical media player similar to xmms
 Name: 		audacious
 Version: 	1.3.2
-Release: 	5
+Release: 	6
 License: 	GPL
 Group: 		Applications/Multimedia
 URL: 		http://audacious-media-player.org/
@@ -29,14 +29,14 @@ BuildRequires: zlib-devel, desktop-file-utils >= 0.9
 BuildRequires: libglade2-devel >= 2.4
 BuildRequires: GConf2-devel
 BuildRequires: gettext
-BuildRequires: mcs-devel >= 0.1
+BuildRequires: mcs-devel = 0.4.1
 
 Requires: 		audacious-plugins >= %{plugin_version}
 Requires(post): 	desktop-file-utils >= 0.9
 Requires(postun): 	desktop-file-utils >= 0.9
 
 Obsoletes: 	bmp <= 0.9.7.1
-Provides: 	bmp = 0.9.7.1
+Provides: 	audacious = %{version}
 
 %description
 Audacious is a media player that currently uses a skinned
@@ -54,11 +54,11 @@ Summary: 	Development files for Audacious
 Group: 		Development/Libraries
 Requires: 	%{name}-libs = %{version}-%{release}
 Requires: 	glib2-devel, gtk2-devel >= 2.6, GConf2-devel, libglade2-devel >= 2.4
-Requires: 	mcs-libs >= 0.1
+Requires: 	mcs-devel = 0.4.1
 Requires: 	pkgconfig
 
 Obsoletes: 	bmp-devel <= 0.9.7.1
-Provides: 	bmp-devel = 0.9.7.1
+Provides: 	audacious-devel = %{version}
 
 %description devel
 Development files for Audacious
@@ -151,6 +151,9 @@ touch --no-create %{_datadir}/icons/hicolor || :
 %{_libdir}/pkgconfig/*
 
 %changelog
+* Sat Jun 14 2008 Heiko Adams <info@fedora-blog.de> - 1.3.2-6
+- force to require mcs-devel = 0.4.1 and mcs = 0.4.1
+
 * Mon Mar 31 2008 Heiko Adams <info@fedora-blog.de> - 1.3.2-5
 - bugfix
 
