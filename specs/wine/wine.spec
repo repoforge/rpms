@@ -399,8 +399,8 @@ update-desktop-database &>/dev/null || :
 
 %files core
 %defattr(-, root, root, 0755)
-%doc ANNOUNCE AUTHORS ChangeLog COPYING.LIB LICENSE* README VERSION
-%doc documentation/README.*
+%doc ANNOUNCE AUTHORS COPYING.LIB LICENSE* README VERSION
+%doc documentation/ChangeLog* documentation/README.*
 %doc %{_mandir}/man1/wine.1*
 %doc %{_mandir}/man1/wineprefixcreate.1*
 %doc %{_mandir}/man1/wineserver.1*
