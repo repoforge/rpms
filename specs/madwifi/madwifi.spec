@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+# DistExclude: el2 rh7 rh9 el3 el4 el5
+
 %define real_name madwifi-ng
 
 Summary: Multiband Atheros Driver for Wireless Fidelity

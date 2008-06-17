@@ -3,6 +3,8 @@
 # ExclusiveDist: el4 el5
 # Dist: nodist
 
+%define real_name fuse
+
 Summary: Linux kernel module for FUSE (Filesystem in USErspace)
 Name: dkms-fuse
 Version: 2.7.3
@@ -10,8 +12,10 @@ Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://fuse.sourceforge.net/
+
 Source: http://dl.sf.net/fuse/fuse-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildArch: noarch
 Requires: gcc, make
 Requires(post): dkms
@@ -23,7 +27,7 @@ userspace program. This package contains the FUSE userspace tools to
 mount a FUSE filesystem.
 
 %prep
-%setup -n fuse-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 

@@ -28,6 +28,7 @@ BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::Simple) >= 0.47
 BuildRequires: perl(version)
 Requires: perl >= 1:5.6.1
+Requires: perl(DBI) >= 1.52
 
 %description
 DBI PostgreSQL interface.

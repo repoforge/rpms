@@ -9,14 +9,13 @@
 
 Summary: Tool to access devices via the OBEX protocol
 Name: obexftp
-Version: 0.20
+Version: 0.22
 Release: 1
 License: GPL
 Group: Applications/Communications
 URL: http://openobex.triq.net/
 
-Source: http://dl.sf.net/openobex/obexftp-%{version}.tar.gz
-#Source: http://triq.net/obexftp/obexftp-%{version}.tar.gz
+Source: http://dl.sf.net/openobex/obexftp-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openobex-devel, bluez-libs-devel
@@ -69,13 +68,14 @@ pictures and alike
 %configure \
     --disable-perl \
 %{?_without_python2:--disable-python} \
+    --disable-ruby \
     --disable-static \
     --disable-tcl
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -93,28 +93,32 @@ pictures and alike
 
 %files -n libobexftp
 %defattr(-, root, root, 0755)
-%{_libdir}/*.so.*
+%{_libdir}/libbfb.so.*
+%{_libdir}/libmulticobex.so.*
+%{_libdir}/libobexftp.so.*
 
 %files -n libobexftp-devel
 %defattr(-, root, root, 0755)
 %{_includedir}/bfb/
 %{_includedir}/multicobex/
 %{_includedir}/obexftp/
-#%{_libdir}/*.a
+%{_libdir}/libbfb.so
+%{_libdir}/libmulticobex.so
+%{_libdir}/libobexftp.so
+%{_libdir}/pkgconfig/obexftp.pc
 %exclude %{_libdir}/*.la
-%{_libdir}/*.so
 
 %if %{!?_without_python2:1}0
 %files -n python-obexftp
 %defattr(-, root, root, 0755)
 %{python_sitearch}/obexftp/
-%{python_sitelib}/obexftp/
-%ghost %{python_sitelib}/obexftp/*.pyo
-%exclude %{python_sitearch}/obexftp/*.la
-%{python_sitearch}/obexftp/*.so.*
+%ghost %{python_sitearch}/obexftp/*.pyo
 %endif
 
 %changelog
+* Mon Jun 16 2008 Dag Wieers <dag@wieers.com> - 0.22-1
+- Updated to release 0.22.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.20-1
 - Updated to release 0.20.
 

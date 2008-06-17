@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Leandro Pereira <leandro$linuxmag,com,br>
+# Upstream: Leandro Pereira <leandro@hardinfo.org>
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
@@ -15,7 +15,7 @@ Version: 0.4.2.3
 Release: 1
 License: GPL
 Group: Applications/System
-URL: http://alpha.linuxmag.com.br/~leandro/hardinfo/
+URL: http://hardinfo.org/
 
 Source: http://download.berlios.de/hardinfo/hardinfo-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

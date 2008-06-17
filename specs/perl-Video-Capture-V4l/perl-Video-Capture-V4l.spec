@@ -48,12 +48,22 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %defattr(-, root, root, 0755)
 %doc COPYING Changes MANIFEST META.yml README TODO examples/
 %doc %{_mandir}/man3/Video::Capture::V4l.3pm*
+%doc %{_mandir}/man3/Video::Capture::VBI.3pm*
+%doc %{_mandir}/man3/Video::Frequencies.3pm*
+%doc %{_mandir}/man3/Video::RTjpeg.3pm*
+%doc %{_mandir}/man3/Video::XawTV.3pm*
 %dir %{perl_vendorarch}/auto/Video/
 %dir %{perl_vendorarch}/auto/Video/Capture/
 %{perl_vendorarch}/auto/Video/Capture/V4l/
+%{perl_vendorarch}/auto/Video/Capture/VBI/
+%{perl_vendorarch}/auto/Video/RTjpeg/
 %dir %{perl_vendorarch}/Video/
 %dir %{perl_vendorarch}/Video/Capture/
+%{perl_vendorarch}/Video/Capture/VBI.pm
 %{perl_vendorarch}/Video/Capture/V4l.pm
+%{perl_vendorarch}/Video/Frequencies.pm
+%{perl_vendorarch}/Video/RTjpeg.pm
+%{perl_vendorarch}/Video/XawTV.pm
 
 %changelog
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.901-1

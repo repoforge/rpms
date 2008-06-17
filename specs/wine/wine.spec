@@ -48,14 +48,13 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-%define real_version 1.0-rc3
 Version: 1.0
-Release: 0.rc3
+Release: 1
 License: LGPL
 Group: Applications/Emulators
 URL: http://www.winehq.org/
 
-Source0: http://dl.sf.net/sourceforge/wine/wine-%{real_version}.tar.bz2
+Source: http://dl.sf.net/sourceforge/wine/wine-%{version}.tar.bz2
 Patch0: wine-prefixfonts.patch
 Patch1: wine-rpath.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -182,7 +181,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
 %patch0
 
 %{__cat} <<EOF >wine-config.desktop
@@ -885,6 +884,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Tue Jun 17 2008 Dag Wieers <dag@wieers.com> - 1.0-1
+- Updated to release 1.0.
+
 * Sun Jun 08 2008 Dag Wieers <dag@wieers.com> - 1.0-0.rc3
 - Updated to release 1.0-rc3.
 

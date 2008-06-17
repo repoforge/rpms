@@ -5,17 +5,19 @@
 
 Summary: FUSE based filesystem using ObexFTP
 Name: fuse-obexfs
-Version: 0.10
+Version: 0.11
 Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://dev.zuckschwerdt.org/openobex/wiki/ObexFs/
 
-Source: http://downloads.sourceforge.net/openobex/obexfs-%{version}.tar.gz
+Source: http://dl.sf.net/openobex/obexfs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: fuse-devel >= 2.2, libobexftp-devel >= 0.19
-Requires: fuse >= 2.2, libobexftp >= 0.19
+BuildRequires: fuse-devel >= 2.2
+BuildRequires: libobexftp-devel >= 0.22
+Requires: fuse >= 2.2
+Requires: libobexftp >= 0.22
 
 Obsoletes: obexfs <= %{name}-%{version}
 Provides: obexfs = %{name}-%{version}
@@ -44,6 +46,9 @@ ObexFS is a FUSE based filesystem using ObexFTP.
 %{_bindir}/obexautofs
 
 %changelog
+* Mon Jun 16 2008 Dag Wieers <dag@wieers.com> - 0.11-1
+- Updated to release 0.11.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.10-1
 - Updated to release 0.10.
 

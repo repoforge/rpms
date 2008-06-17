@@ -4,13 +4,13 @@
 
 Summary: Tool that helps you find what software is using the most power
 Name: powertop
-Version: 1.9
+Version: 1.10
 Release: 1
 License: GPL
 Group: Applications/System
-URL: http://www.linuxpowertop.org/
+URL: http://www.lesswatts.org/projects/powertop/
 
-Source: http://www.linuxpowertop.org/download/powertop-%{version}.tar.gz
+Source: http://www.lesswatts.org/projects/powertop/download/powertop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, gettext
@@ -48,6 +48,9 @@ your system is doing, and which components are the biggest problem.
 %{_bindir}/powertop
 
 %changelog
+* Mon Jun 16 2008 Dag Wieers <dag@wieers.com> - 1.10-1
+- Updated to release 1.10.
+
 * Fri Nov 02 2007 Dag Wieers <dag@wieers.com> - 1.9-1
 - Updated to release 1.9.
 

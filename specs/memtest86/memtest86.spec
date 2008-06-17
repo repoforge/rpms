@@ -6,7 +6,7 @@
 
 Summary: Thorough, stand alone memory test
 Name: memtest86
-Version: 3.3
+Version: 3.4
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -42,13 +42,13 @@ miss many of the failures that are detected by Memtest86.
 
 %post
 if [ -x /sbin/grubby ] ; then
-        /sbin/grubby --add-kernel="/boot/%{name}-%{version}" \
-		--title "Memtest86 v%{version}"
+    /sbin/grubby --add-kernel="/boot/%{name}-%{version}" \
+        --title "Memtest86 v%{version}"
 fi
 
 %postun
 if [ -x /sbin/grubby ] ; then
-        /sbin/grubby --remove-kernel="/boot/%{name}-%{version}"
+    /sbin/grubby --remove-kernel="/boot/%{name}-%{version}"
 fi
 
 %files
@@ -57,6 +57,9 @@ fi
 /boot/%{name}-%{version}
 
 %changelog
+* Mon Jun 16 2008 Dag Wieers <dag@wieers.com> - 3.4-1
+- Updated to release 3.4.
+
 * Sun Jun 24 2007 Dag Wieers <dag@wieers.com> - 3.3-1
 - Updated to release 3.3.
 
