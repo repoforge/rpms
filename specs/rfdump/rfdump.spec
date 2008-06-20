@@ -3,7 +3,7 @@
 
 Summary: Edit RFID tags
 Name: rfdump
-Version: 1.5
+Version: 1.6
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -38,8 +38,13 @@ cookie on RFID tags.
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %{_bindir}/rfdump
 %{_datadir}/rfdump/
+%{_datadir}/pixmaps/rfdump.png
+%{_datadir}/applications/rfdump.desktop
 
 %changelog
+* Fri Jun 20 2008 Dries Verachtert <dries@ulyssis.org> - 1.6-1
+- Updated to release 1.6.
+
 * Fri Nov 02 2007 Dag Wieers <dag@wieers.com> - 1.5-1
 - Updated to release 1.5.
 

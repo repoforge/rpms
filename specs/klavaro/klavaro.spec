@@ -1,12 +1,12 @@
 # $Id$
 # Authority: dries
-# Upstream: fechjo-klavaro00$yahoo,com,br
+# Upstream: fefcas$gmail,com
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Typing tutor
 Name: klavaro
-Version: 1.0.8
+Version: 1.1.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -30,6 +30,7 @@ layouts.
 
 %prep
 %setup
+%{__perl} -pi.orig -e 's| /var/games| \$(DESTDIR)/var/games|g;' src/Makefile.*
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
@@ -52,7 +53,7 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
@@ -69,10 +70,14 @@ desktop-file-install --vendor rpmforge             \
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %doc %{_mandir}/man?/klavaro.1*
 %{_bindir}/klavaro
+%{_bindir}/klavaro_helper
 %{_datadir}/klavaro/
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Fri Jun 20 2008 Dries Verachtert <dries@ulyssis.org> - 1.1.0-1
+- Updated to release 1.1.0.
+
 * Fri May 30 2008 Dries Verachtert <dries@ulyssis.org> - 1.0.8-1
 - Updated to release 1.0.8.
 
