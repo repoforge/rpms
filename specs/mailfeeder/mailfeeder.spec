@@ -14,7 +14,10 @@ Source: http://pldaniels.com/mailfeeder/mailfeeder-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
-Mailfeeder is a tool designed to inject a mailpack back into a MTA (mail server, ie, Sendmail, Postfix) using socket calls. Currently it is used in a variety of projects such as Inflex and Xamime to perform post-filtered queue injection or delivery.
+Mailfeeder is a tool designed to inject a mailpack back into a MTA
+(mail server, ie, Sendmail, Postfix) using socket calls. Currently
+it is used in a variety of projects such as Inflex and Xamime to
+perform post-filtered queue injection or delivery.
 
 %prep
 %setup
