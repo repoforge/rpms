@@ -9,7 +9,7 @@
 
 Summary: Peer-to-peer framework
 Name: gnunet
-Version: 0.7.2
+Version: 0.8.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -67,7 +67,7 @@ you will need to install %{name}-devel.
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %doc %{_mandir}/man1/gnunet*.1*
 %doc %{_mandir}/man5/gnunet*.5*
-%{!?_without_dht:%{_bindir}/gnunet-dht-query}
+#%{!?_without_dht:%{_bindir}/gnunet-dht-query}
 %{_bindir}/gnunet-directory
 %{_bindir}/gnunet-download
 %{_bindir}/gnunet-download-manager.scm
@@ -77,12 +77,15 @@ you will need to install %{name}-devel.
 %{_bindir}/gnunet-search
 %{_bindir}/gnunet-stats
 %{_bindir}/gnunet-tbench
-%{_bindir}/gnunet-template
+#%{_bindir}/gnunet-template
 %{_bindir}/gnunet-tracekit
 %{_bindir}/gnunet-transport-check
 %{_bindir}/gnunet-unindex
 %{_bindir}/gnunet-update
 %{_bindir}/gnunet-vpn
+%{_bindir}/gnunet-auto-share
+%{_bindir}/gnunet-chat
+%{_bindir}/remotetest
 %{!?_without_guile18:%{_bindir}/gnunet-setup}
 %{_bindir}/gnunetd
 %{_libdir}/GNUnet/
@@ -103,13 +106,17 @@ you will need to install %{name}-devel.
 %{_libdir}/libgnunetstats_api.so.*
 %{_libdir}/libgnuneturitrack.so.*
 %{_libdir}/libgnunetutil.so.*
-%{_libdir}/libgnunetutil_boot.so.*
-%{_libdir}/libgnunetutil_config.so.*
-%{_libdir}/libgnunetutil_containers.so.*
-%{_libdir}/libgnunetutil_cron.so.*
-%{_libdir}/libgnunetutil_crypto.so.*
-%{_libdir}/libgnunetutil_logging.so.*
-%{_libdir}/libgnunetutil_network_client.so.*
+#%{_libdir}/libgnunetutil_boot.so.*
+#%{_libdir}/libgnunetutil_config.so.*
+#%{_libdir}/libgnunetutil_containers.so.*
+#%{_libdir}/libgnunetutil_cron.so.*
+#%{_libdir}/libgnunetutil_crypto.so.*
+#%{_libdir}/libgnunetutil_logging.so.*
+#%{_libdir}/libgnunetutil_network_client.so.*
+%{_libdir}/libgnunetchat_api.so.*
+%{_libdir}/libgnunetecrs_core.so.*
+%{_libdir}/libgnunetremote_api.so.*
+%{_libdir}/libgnunettracekit_api.so.*
 %{_datadir}/GNUnet/
 
 %files devel
@@ -132,16 +139,23 @@ you will need to install %{name}-devel.
 %{_libdir}/libgnunetstats_api.so
 %{_libdir}/libgnuneturitrack.so
 %{_libdir}/libgnunetutil.so
-%{_libdir}/libgnunetutil_boot.so
-%{_libdir}/libgnunetutil_config.so
-%{_libdir}/libgnunetutil_containers.so
-%{_libdir}/libgnunetutil_cron.so
-%{_libdir}/libgnunetutil_crypto.so
-%{_libdir}/libgnunetutil_logging.so
-%{_libdir}/libgnunetutil_network_client.so
+#%{_libdir}/libgnunetutil_boot.so
+#%{_libdir}/libgnunetutil_config.so
+#%{_libdir}/libgnunetutil_containers.so
+#%{_libdir}/libgnunetutil_cron.so
+#%{_libdir}/libgnunetutil_crypto.so
+#%{_libdir}/libgnunetutil_logging.so
+#%{_libdir}/libgnunetutil_network_client.so
+%{_libdir}/libgnunetchat_api.so
+%{_libdir}/libgnunetecrs_core.so
+%{_libdir}/libgnunetremote_api.so
+%{_libdir}/libgnunettracekit_api.so
 %exclude %{_libdir}/*.la
 
 %changelog
+* Thu Jun 19 2008 Dries Verachtert <dries@ulyssis.org> - 0.8.0-1
+- Updated to release 0.8.0.
+
 * Sun Jun 17 2007 Dries Verachtert <dries@ulyssis.org> - 0.7.2-1
 - Updated to release 0.7.2.
 
