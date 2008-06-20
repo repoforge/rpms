@@ -1,0 +1,5 @@
+#!/bin/sh
+
+/usr/sbin/faxcron | mail -s "HylaFAX Usage Report" faxmaster
+
+exit 0

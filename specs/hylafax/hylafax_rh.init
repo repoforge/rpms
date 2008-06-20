@@ -1,0 +1,124 @@
+#!/bin/sh
+#
+# chkconfig: - 95 5
+# description: Starts and stops the HylaFAX server and queue manager \
+#              used to provide FAX services
+#
+
+# Source function library.
+if [ -f /etc/init.d/functions ] ; then
+  . /etc/init.d/functions
+elif [ -f /etc/rc.d/init.d/functions ] ; then
+  . /etc/rc.d/init.d/functions
+else
+  exit 0
+fi
+
+
+# HylaFAX spool directory
+if [ -d /var/spool/hylafax ]; then
+	SPOOL=/var/spool/hylafax
+else
+	SPOOL=/var/spool/fax
+fi
+
+HFAXD_ARGS=
+if [ -f "$SPOOL/etc/pagermap" ] ; then
+    HFAXD_ARGS="-s snpp"
+fi
+
+start()	{
+	check_config || exit 1
+
+	echo -n "Starting HylaFAX queue manager (faxq): "
+	daemon faxq
+	RETVAL=$?
+	echo
+
+	echo -n "Starting HylaFAX server (hfaxd): "
+	daemon hfaxd -i hylafax $HFAXD_ARGS
+	RETVAL2=$?
+	echo
+	
+	reset_faxgetty
+	
+	[ $RETVAL -eq 0 -a $RETVAL2 -eq 0 ] && \
+		touch /var/lock/subsys/hylafax ||  RETVAL=1
+        return $RETVAL
+}
+
+stop() {
+	action "Shutting down HylaFAX queue manager (faxq): " /usr/sbin/faxquit
+	RETVAL=$?
+	
+	echo -n "Shutting down HylaFAX server (hfaxd): "
+	killproc hfaxd
+	RETVAL2=$?
+	echo
+	
+	[ $RETVAL -eq 0 -a $RETVAL2 -eq 0 ] && \
+		rm -f /var/lock/subsys/hylafax || RETVAL=1
+	return $RETVAL
+}
+
+restart() {
+	stop
+	start
+}
+
+rhstatus() {
+	status hfaxd
+	status faxq
+}
+
+check_config()	{
+	test -f $SPOOL/etc/setup.cache || {
+		cat<<-EOF
+ 
+		HylaFAX FATAL ERROR: $SPOOL/etc/setup.cache is missing!
+ 
+		The file $SPOOL/etc/setup.cache is not present. 
+		This probably means the machine has not been setup using the 
+		faxsetup(8C) command.  Read the documentation on setting up
+		HylaFAX before you startup a server system.
+ 
+		EOF
+    		
+		exit 1	
+	}
+}
+
+reset_faxgetty () {
+	pids=`pidofproc faxgetty`
+	if [ -n "$pids" ] && ps h $pids >/dev/null 2>&1; then
+		echo -n "Restarting HylaFAX modem manager (faxgetty):"
+		# will be respawned from /etc/inittab
+		killproc faxgetty
+		echo
+	fi	
+}
+
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  status)
+	rhstatus
+	;;
+  restart|reload)
+	restart
+	;;
+  condrestart)
+	[ -f /var/lock/subsys/hylafax ] && restart
+	;;
+  *)
+	echo "Usage: $0 {start|stop|status|restart|reload|condrestart}"
+	exit 1
+	;;
+esac
+
+exit $?
+
