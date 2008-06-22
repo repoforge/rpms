@@ -5,7 +5,7 @@
 
 Summary: Untrusted/encrypted backup using rsync algorithm
 Name: duplicity
-Version: 0.4.2
+Version: 0.4.11
 Release: 1
 License: GPL
 Group: Applications/Archiving
@@ -54,5 +54,8 @@ directories, symbolic links, fifos, etc., but not hard links.
 %ghost %{python_sitearch}/duplicity/*.pyo
 
 %changelog
+* Sun Jun 22 2008 Dries Verachtert <dries@ulyssis.org> - 0.4.11-1
+- Updated to release 0.4.11.
+
 * Wed Feb 14 2007 Dag Wieers <dag@wieers.com> - 0.4.2-1
 - Initial package. (using DAR)
