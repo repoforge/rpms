@@ -12,12 +12,12 @@
 %{?fc2:%define _without_modxorg 1}
 %{?fc1:%define _without_modxorg 1}
 
-%define real_version 2.0.0-pre6
+%define real_version 2.0.0
 
 Summary: Control a 1394 digital camera interactively
 Name: coriander
 Version: 2.0.0
-Release: 0.pre6
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://damien.douxchamps.net/ieee1394/coriander/
@@ -73,6 +73,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*-coriander.desktop
 
 %changelog
+* Sun Jun 22 2008 Dries Verachtert <dries@ulyssis.org> - 2.0.0-1
+- Updated to release 2.0.0.
+
 * Mon May 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.0-0.pre6
 - Updated to release 2.0.0pre6.
 
