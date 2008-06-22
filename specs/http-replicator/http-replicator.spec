@@ -5,12 +5,12 @@
 Summary: Replicating HTTP proxy server
 Name: http-replicator
 Version: 3.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
-URL: http://gertjan.freezope.org/replicator/
+URL: http://sourceforge.net/projects/http-replicator/
 
-Source: http://gertjan.freezope.org/replicator/http-replicator_%{version}.tar.gz
+Source: http://dl.sf.net/http-replicator/http-replicator_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -30,7 +30,7 @@ the Internet pipe. This is very useful for maintaining a cache of Linux
 packages.
 
 %prep
-%setup
+%setup -n http-replicator_%{version}
 
 %{__cat} <<EOF >http-replicator.logrotate
 %{_localstatedir}/log/http-replicator.* {
@@ -58,11 +58,11 @@ MIRRORS=""
 
 ### Enable "static mode": files are known to never change so files that are
 ### present are served from cache directly without contacting the server
-ENABLE_STATIC_MODE="no"
+ENABLE_STATIC_MODE=""
 
 ### Enable "flat mode" for the cache: all files are saved in a single
 ### (cache) directory.
-ENABLE_FLAT_CACHE="no"
+ENABLE_FLAT_CACHE=""
 
 ### Forward requests to an external proxy server, specified as "host:port"
 ### or "username:password@host:port" if the server requires authentication.
@@ -233,5 +233,9 @@ fi
 %{_localstatedir}/cache/http-replicator/
 
 %changelog
+* Sun Jun 22 2008 Dries Verachtert <dries@ulyssis.org> - 3.0-2
+- Fix the default values of the http-replicator.sysconfig, thanks to Izaak Branderhorst.
+- URL and source location changed.
+
 * Fri Oct 12 2007 Dag Wieers <dag@wieers.com> - 3.0-1
 - Initial package. (based on Pascal Bleser's work)
