@@ -37,9 +37,9 @@ cookie on RFID tags.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %{_bindir}/rfdump
-%{_datadir}/rfdump/
-%{_datadir}/pixmaps/rfdump.png
 %{_datadir}/applications/rfdump.desktop
+%{_datadir}/pixmaps/rfdump.png
+%{_datadir}/rfdump/
 
 %changelog
 * Fri Jun 20 2008 Dries Verachtert <dries@ulyssis.org> - 1.6-1

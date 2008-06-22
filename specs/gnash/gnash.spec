@@ -3,10 +3,13 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
+%define _without_mozplugin 1
+
 %{?el5:%define _with_modxorg 1}
 %{?fc6:%define _with_modxorg 1}
 %{?fc5:%define _with_modxorg 1}
 
+%define _without_kde32 1
 %{?fc1:%define _without_kde32 1}
 %{?el3:%define _without_kde32 1}
 %{?rh9:%define _without_kde32 1}
@@ -19,7 +22,7 @@
 
 Summary: Flash player
 Name: gnash
-Version: 0.8.2
+Version: 0.8.3
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -122,10 +125,12 @@ source %{_sysconfdir}/profile.d/qt.sh
 %doc %{_mandir}/man1/gnash.1*
 %doc %{_mandir}/man1/gprocessor.1*
 %doc %{_mandir}/man1/soldumper.1*
+%config(noreplace) %{_sysconfdir}/gnashpluginrc
+%config(noreplace) %{_sysconfdir}/gnashrc
 %{_bindir}/dumpshm
 %{_bindir}/gnash
 %{_bindir}/gtk-gnash
-%{_bindir}/kde-gnash
+%{!?_without_kde32:%{_bindir}/kde-gnash}
 #%{_bindir}/gparser
 %{_bindir}/gprocessor
 %{_bindir}/soldumper
@@ -135,13 +140,17 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_libdir}/gnash/libgnashbase*.so*
 #%{_libdir}/gnash/libgnashgeo*.so*
 %{_libdir}/gnash/libgnashmedia*.so*
+%{_libdir}/gnash/libgnashnet*.so*
 %{_libdir}/gnash/libgnashserver*.so*
+%{_libdir}/gnash/libmozsdk*.so*
 %exclude %{_libdir}/gnash/libgnashamf.la
 #%exclude %{_libdir}/gnash/libgnashbackend.la
 %exclude %{_libdir}/gnash/libgnashbase.la
 #%exclude %{_libdir}/gnash/libgnashgeo.la
 %exclude %{_libdir}/gnash/libgnashmedia.la
+%exclude %{_libdir}/gnash/libgnashnet.la
 %exclude %{_libdir}/gnash/libgnashserver.la
+%exclude %{_libdir}/gnash/libmozsdk.la
 
 %if %{!?_without_kde32:1}0
 %files -n konqueror-gnash
@@ -154,13 +163,18 @@ source %{_sysconfdir}/profile.d/qt.sh
 #%{_libdir}/kde3/libklashpart.so
 %endif
 
+%if %{!?_without_mozplugin:1}0
 %files -n mozilla-gnash
 %defattr(-, root, root, 0755)
-#%{_libdir}/libmozsdk.so*
+%dir %{_libdir}/gnash/
 %dir %{_libdir}/mozilla/
 %{_libdir}/mozilla/plugins/
+%endif
 
 %changelog
+* Wed Jun 18 2008 Dag Wieers <dag@wieers.com> - 0.8.3-1
+- Updated to release 0.8.3.
+
 * Fri Mar 07 2008 Dag Wieers <dag@wieers.com> - 0.8.2-1
 - Updated to release 0.8.2.
 

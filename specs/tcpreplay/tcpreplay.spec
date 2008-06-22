@@ -10,7 +10,7 @@
 
 Summary: Replay captured network traffic
 Name: tcpreplay
-Version: 3.3.0
+Version: 3.3.2
 Release: 1
 License: BSD
 Group: Applications/Internet
@@ -74,6 +74,9 @@ as the basis of connections.
 %{_bindir}/tcprewrite
 
 %changelog
+* Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 3.3.2-1
+- Updated to release 3.3.2.
+
 * Fri May 09 2008 Dag Wieers <dag@wieers.com> - 3.3.0-1
 - Updated to release 3.3.0.
 

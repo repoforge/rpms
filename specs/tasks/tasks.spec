@@ -3,7 +3,7 @@
 
 Summary: Tasks to-do list
 Name: tasks
-Version: 0.11
+Version: 0.13
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -57,6 +57,9 @@ touch %{_datadir}/icons/hicolor
 %{_datadir}/tasks/
 
 %changelog
+* Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 0.13-1
+- Updated to release 0.13.
+
 * Tue Aug 28 2007 Dag Wieers <dag@wieers.com> - 0.11-1
 - Updated to release 0.11.
 

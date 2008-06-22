@@ -72,7 +72,7 @@ you will need to install %{name}-devel.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc COPYING README
-%doc %{_mandir}/man1/exiv*.1*
+%doc %{_mandir}/man1/exiv2.1*
 %{_bindir}/exiv2
 %{_libdir}/libexiv2.so.*
 
@@ -83,10 +83,10 @@ you will need to install %{name}-devel.
 %{_includedir}/exiv2/
 %{_libdir}/libexiv2.so
 %{_libdir}/pkgconfig/exiv2.pc
-%exclude %{_libdir}/libexiv2*.la
+%exclude %{_libdir}/libexiv2.la
 
 %changelog
-* Sun Jun 22 2008 Dries Verachtert <dries@ulyssis.org> - 0.17.1-1
+* Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 0.17.1-1
 - Updated to release 0.17.1.
 
 * Fri Jun 06 2008 Dag Wieers <dag@wieers.com> - 0.17-1
