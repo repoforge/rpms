@@ -10,7 +10,7 @@
 
 Summary: Interface to SOAP
 Name: perl-SOAP-Lite
-Version: 0.710.05
+Version: 0.710.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -78,6 +78,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/XMLRPC/
 
 %changelog
+* Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 0.710.07-1
+- Updated to release 0.710.07.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.710.05-1
 - Updated to release 0.710.05.
 

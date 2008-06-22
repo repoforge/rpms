@@ -9,7 +9,7 @@
 
 Summary: Catalyst Development Tools
 Name: perl-Catalyst-Devel
-Version: 1.06
+Version: 1.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -68,6 +68,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/Install/Catalyst.pm
 
 %changelog
+* Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 1.07-1
+- Updated to release 1.07.
+
 * Sat May 03 2008 Dag Wieers <dag@wieers.com> - 1.06-1
 - Updated to release 1.06.
 

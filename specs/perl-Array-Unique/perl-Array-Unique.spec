@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: G&#225;bor Szab&#243; <gabor$pti,co,il>
+# Upstream: Gabor Szabo <gabor$pti,co,il>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,18 +9,21 @@
 
 Summary: Tie-able array that allows only unique values
 Name: perl-Array-Unique
-Version: 0.07
+Version: 0.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Array-Unique/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SZ/SZABGAB/Array-Unique-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Array/Array-Unique-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.006
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(Test::More) >= 0.47
+Requires: perl >= 0:5.006
 
 %description
 This package lets you create an array which will allow only one
@@ -57,16 +60,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Array::Unique.3pm*
+%dir %{perl_vendorlib}/Array/
 %{perl_vendorlib}/Array/Unique.pm
 
 %changelog
+* Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 0.08-1
+- Updated to release 0.08.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Updated to release 0.07.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.

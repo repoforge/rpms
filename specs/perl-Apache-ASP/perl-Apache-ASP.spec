@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Joshua Chamas <josh (at) chamas dot com>
+# Upstream: Joshua Chamas <josh,chamas$gmail,com>
  
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,9 +9,9 @@
 
 Summary: Active Server Pages for Apache with mod_perl
 Name: perl-Apache-ASP
-Version: 2.59
-Release: 1.2
-License: GPL
+Version: 2.61
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-ASP/
 
@@ -56,7 +56,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES LICENSE MANIFEST README
+%doc CHANGES MANIFEST README
 %doc %{_mandir}/man1/asp-perl.1*
 %doc %{_mandir}/man3/*.3*
 %dir %{perl_vendorlib}/Apache/
@@ -69,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/asp-perl
 
 %changelog
+* Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 2.61-1
+- Updated to release 2.61.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.59-1
 - Updated to release 2.59.
 

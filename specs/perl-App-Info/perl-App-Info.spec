@@ -9,7 +9,7 @@
 
 Summary: Information about software packages on a system
 Name: perl-App-Info
-Version: 0.53
+Version: 0.54
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,8 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(Module::Build)
-BuildRequires: perl(Test::Simple) >= 0.17
+BuildRequires: perl(Module::Build) >= 0.2701
+#BuildRequires: perl(Test::More) >= 0.17
 
 %description
 App::Info provides a generalized interface for providing metadata about
@@ -74,6 +74,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/App/Info.pm
 
 %changelog
+* Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 0.54-1
+- Updated to release 0.54.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.53-1
 - Updated to release 0.53.
 

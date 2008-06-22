@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements a CGI.pm compliant CGI interface
 Name: perl-CGI-Simple
-Version: 1.103
+Version: 1.105
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,5 +52,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/CGI/Simple.pm
 
 %changelog
+* Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 1.105-1
+- Updated to release 1.105.
+
+* Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.103-1
+
 * Sun Apr 29 2007 Dag Wieers <dag@wieers.com> - 0.080-1
 - Initial package. (using DAR)

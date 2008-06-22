@@ -8,7 +8,7 @@
 
 Summary: Create accessor methods in caller's package
 Name: perl-accessors
-Version: 1.00
+Version: 1.01
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -58,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/accessors.pm
 
 %changelog
+* Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 1.01-1
+- Updated to release 1.01.
+
 * Fri May 02 2008 Dag Wieers <dag@wieers.com> - 1.00-1
 - Updated to release 1.00.
 

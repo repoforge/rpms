@@ -9,7 +9,7 @@
 
 Summary: Framework for multiple event loops
 Name: perl-AnyEvent
-Version: 3.41
+Version: 4.151
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -111,33 +111,50 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %doc %{_mandir}/man3/AnyEvent.3pm*
 %doc %{_mandir}/man3/AnyEvent::*.3pm*
 %dir %{perl_vendorlib}/AnyEvent/
-%{perl_vendorlib}/AnyEvent/*.pm
-%dir %{perl_vendorlib}/AnyEvent/Impl/
+%{perl_vendorlib}/AnyEvent/
+%{perl_vendorlib}/AnyEvent/Intro.pod
 %{perl_vendorlib}/AnyEvent/Impl/Perl.pm
 %{perl_vendorlib}/AnyEvent.pm
-
-%files Qt
-%{perl_vendorlib}/AnyEvent/Impl/Qt.pm
-
-%files Tk
-%{perl_vendorlib}/AnyEvent/Impl/Tk.pm
+%exclude %{perl_vendorlib}/AnyEvent/Impl/EV.pm
+%exclude %{perl_vendorlib}/AnyEvent/Impl/Event.pm
+%exclude %{perl_vendorlib}/AnyEvent/Impl/EventLib.pm
+%exclude %{perl_vendorlib}/AnyEvent/Impl/Glib.pm
+%exclude %{perl_vendorlib}/AnyEvent/Impl/POE.pm
+%exclude %{perl_vendorlib}/AnyEvent/Impl/Qt.pm
+%exclude %{perl_vendorlib}/AnyEvent/Impl/Tk.pm
 
 %files EV
+%dir %{perl_vendorlib}/AnyEvent/Impl/
 %{perl_vendorlib}/AnyEvent/Impl/EV.pm
 
 %files Event
+%dir %{perl_vendorlib}/AnyEvent/Impl/
 %{perl_vendorlib}/AnyEvent/Impl/Event.pm
 
 %files EventLib
+%dir %{perl_vendorlib}/AnyEvent/Impl/
 %{perl_vendorlib}/AnyEvent/Impl/EventLib.pm
 
 %files Glib
+%dir %{perl_vendorlib}/AnyEvent/Impl/
 %{perl_vendorlib}/AnyEvent/Impl/Glib.pm
 
 %files POE
+%dir %{perl_vendorlib}/AnyEvent/Impl/
 %{perl_vendorlib}/AnyEvent/Impl/POE.pm
 
+%files Qt
+%dir %{perl_vendorlib}/AnyEvent/Impl/
+%{perl_vendorlib}/AnyEvent/Impl/Qt.pm
+
+%files Tk
+%dir %{perl_vendorlib}/AnyEvent/Impl/
+%{perl_vendorlib}/AnyEvent/Impl/Tk.pm
+
 %changelog
+* Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 4.151-1
+- Updated to release 4.151.
+
 * Thu May 15 2008 Dries Verachtert <dries@ulyssis.org> - 3.41-1
 - Updated to release 3.41.
 - All implementations are now in separate subpackages.

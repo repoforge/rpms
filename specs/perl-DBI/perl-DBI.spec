@@ -10,7 +10,7 @@
 
 Summary: Database independent interface for Perl
 Name: perl-DBI
-Version: 1.604
+Version: 1.605
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -74,6 +74,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %exclude %{perl_vendorarch}/DBI/W32ODBC.pm
 
 %changelog
+* Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 1.605-1
+- Updated to release 1.605.
+
 * Sat May 03 2008 Dag Wieers <dag@wieers.com> - 1.604-1
 - Updated to release 1.604.
 

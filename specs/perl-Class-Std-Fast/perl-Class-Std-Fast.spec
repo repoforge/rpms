@@ -6,11 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Class-Std-Fast
-%define real_version 0.000006
+%define real_version 0.000008
 
 Summary: Faster but less secure than Class::Std
 Name: perl-Class-Std-Fast
-Version: 0.0.6
+Version: 0.0.8
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/Std/Fast.pm
 
 %changelog
+* Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 0.0.8-1
+- Updated to release 0.0.8.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.0.6-1
 - Initial package. (using DAR)

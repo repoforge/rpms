@@ -43,7 +43,7 @@ XML Syndication Feed Support.
 %build
 #%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 #%{__make} %{?_smp_mflags}
-%{__perl} Build.PL
+echo n | %{__perl} Build.PL
 ./Build
 
 %install

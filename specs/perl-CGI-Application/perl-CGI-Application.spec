@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dries
+# Upstream: Jesse Erlbaum <jesse$erlbaum,net>
 # Upstream: Mark Stosberg <mark$summersault,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
@@ -9,7 +10,7 @@
 
 Summary: Framework for building reusable web-applications
 Name: perl-CGI-Application
-Version: 4.06
+Version: 4.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,20 +49,22 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc ARTISTIC Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/CGI::Application.3pm*
+%doc %{_mandir}/man3/CGI::Application::*.3pm*
+%dir %{perl_vendorlib}/CGI/
+%{perl_vendorlib}/CGI/Application/
 %{perl_vendorlib}/CGI/Application.pm
-%{perl_vendorlib}/CGI/Application
 
 %changelog
+* Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 4.10-1
+- Updated to release 4.10.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 4.06-1
 - Updated to release 4.06.
 
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 4.05-1
 - Updated to release 4.05.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 4.04-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> - 4.04-1
 - Updated to release 4.04.

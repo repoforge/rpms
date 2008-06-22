@@ -10,13 +10,13 @@
 
 Summary: Catalyst Model to browse Subversion repositories
 Name: perl-Catalyst-Model-SVN
-Version: 0.11
+Version: 0.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Model-SVN/
 
-Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Model-SVN-%{version}.tgz
+Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Model-SVN-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -68,6 +68,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Catalyst/Helper/Model/SVN.pm
 
 %changelog
+* Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 0.12-1
+- Updated to release 0.12.
+
 * Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 0.11-1
 - Updated to release 0.11.
 
