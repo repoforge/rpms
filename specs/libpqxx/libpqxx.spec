@@ -9,7 +9,7 @@ License: BSD
 Group: System Environment/Libraries
 URL: http://pqxx.org/
 
-Source: http://thaiopensource.org/download/software/libpqxx/libpqxx-%{version}.tar.gz
+Source: http://pqxx.org/download/software/libpqxx/libpqxx-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, postgresql-devel, postgresql-libs, gcc-c++, pkgconfig
