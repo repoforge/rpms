@@ -1,0 +1,87 @@
+#!/bin/bash
+#
+# Init file for Pound - Reverse-Proxy and Load-Balancer
+#
+# chkconfig: - 60 20
+# description: Pound - Reverse-Proxy and Load-Balancer
+#
+# processname: pound
+# config: /etc/pound.conf
+# pidfile: /var/run/pound.pid
+
+# source function library
+. /etc/rc.d/init.d/functions
+
+RETVAL=0
+prog="pound"
+
+# Some functions to make the below more readable
+POUND=/usr/sbin/pound
+PID_FILE=/var/run/pound.pid
+OPTIONS=""
+
+# pull in sysconfig settings
+#[ -f /etc/sysconfig/pound ] && . /etc/sysconfig/pound
+
+runlevel=$(set -- $(runlevel); eval "echo \$$#" )
+
+start()
+{
+	echo -n $"Starting $prog: "
+	$POUND $OPTIONS &>/dev/null && success || failure
+	RETVAL=$?
+	[ "$RETVAL" = 0 ] && touch /var/lock/subsys/$prog
+	echo
+}
+
+stop()
+{
+	echo -n $"Stopping $prog: "
+	if [ -n "`pidfileofproc $POUND`" ] ; then
+	    killproc $POUND
+	else
+	    failure $"Stopping $prog"
+	fi
+	RETVAL=$?
+	# if we are in halt or reboot runlevel kill all running sessions
+	# so the TCP connections are closed cleanly
+	if [ "x$runlevel" = x0 -o "x$runlevel" = x6 ] ; then
+	    killall $prog 2>/dev/null
+	fi
+	[ "$RETVAL" = 0 ] && rm -f /var/lock/subsys/$prog
+	echo
+}
+
+case "$1" in
+	start)
+		status $POUND &>/dev/null
+		if [ $? -ne 0 ]; then
+			start
+		fi
+		;;
+	stop)
+		stop
+		;;
+	restart)
+		stop
+		start
+		;;
+	reload)
+		stop
+		start
+		;;
+	condrestart)
+		if [ -f /var/lock/subsys/$prog ] ; then
+			stop
+			start
+		fi
+		;;
+	status)
+		status $POUND
+		RETVAL=$?
+		;;
+	*)
+		echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
+		RETVAL=1
+esac
+exit $RETVAL

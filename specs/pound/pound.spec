@@ -4,13 +4,15 @@
 
 Summary: Reverse HTTP proxy, load balancer and SSL wrapper
 Name: pound
-Version: 2.4.1
+Version: 2.4.3
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.apsis.ch/pound/index.html
 
 Source: http://www.apsis.ch/pound/Pound-%{version}.tgz
+Source1: pound.init
+Source2: pound.cfg
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, pkgconfig
@@ -37,8 +39,19 @@ even if the backend server(s) are HTTP/1.0, and sanitizes requests.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d %{buildroot}%{_sbindir} %{buildroot}%{_mandir}
+%{__install} -d %{buildroot}%{_sbindir} %{buildroot}%{_mandir}  %{buildroot}%{_sysconfdir}/init.d
 %{__make} install DESTDIR=%{buildroot}
+%{__install} %{_sourcedir}/pound.init %{buildroot}%{_sysconfdir}/init.d/pound
+%{__install} %{_sourcedir}/pound.cfg %{buildroot}%{_sysconfdir}/pound.cfg
+
+%post
+/sbin/chkconfig --add pound
+
+%preun
+if [ $1 -eq 0 ]; then
+	/sbin/service pound stop >/dev/null 2>&1
+	/sbin/chkconfig --del pound
+fi
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -50,8 +63,14 @@ even if the backend server(s) are HTTP/1.0, and sanitizes requests.
 %doc %{_mandir}/man8/poundctl.8*
 %{_sbindir}/pound
 %{_sbindir}/poundctl
+%{_sysconfdir}/init.d/pound
+%config %{_sysconfdir}/pound.cfg
 
 %changelog
+* Fri Jun 20 2008 Thomas M Steenholdt <tmus@tmus.dk> - 2.4.3-1
+- Updated to release 2.4.3
+- Added initscript and default pound.cfg (intentionally non-working as provided)
+
 * Thu Apr 17 2008 Dag Wieers <dag@wieers.com> - 2.4.1-1
 - Updated to release 2.4.1.
 
