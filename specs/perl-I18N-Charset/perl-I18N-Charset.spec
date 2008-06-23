@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Martin Thurn <mthurn$verizon,net>
+# Upstream: Martin Thurn <mthurn$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: IANA Character Set Registry names and Unicode::MapUTF8 (et al.) conversion scheme names
 Name: perl-I18N-Charset
-Version: 1.388
+Version: 1.389
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,9 +19,13 @@ Source: http://www.cpan.org/modules/by-module/I18N/I18N-Charset-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.004
+BuildRequires: perl(IO::Capture::Stderr)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::Pod)
+BuildRequires: perl(Test::Pod::Coverage)
 BuildRequires: perl(ExtUtils::MakeMaker) >= 0:5.00503
-Requires: perl >= 0:5.00503
+Requires: perl >= 0:5.004
 
 %description
 IANA Character Set Registry names and Unicode::MapUTF8 (et al.)
@@ -54,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/I18N/Charset.pm
 
 %changelog
+* Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 1.389-1
+- Updated to release 1.389.
+
 * Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 1.388-1
 - Updated to release 1.388.
 

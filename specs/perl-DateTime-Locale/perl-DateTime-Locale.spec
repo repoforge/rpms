@@ -9,7 +9,7 @@
 
 Summary: Localization support for DateTime.pm
 Name: perl-DateTime-Locale
-Version: 0.35
+Version: 0.4001
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,16 +19,12 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Locale-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(Module::Build)
+BuildRequires: perl >= 0:5.006
+Requires: perl >= 0:5.006
 
 %description
 The DateTime::Locale modules provide localization data for the
 DateTime.pm class.
-
-This package contains the following Perl module:
-
-    DateTime::Locale
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -51,14 +47,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes LICENSE LICENSE.cldr MANIFEST MANIFEST.SKIP MANIFEST.base META.yml README SIGNATURE
 %doc %{_mandir}/man3/DateTime::Locale.3pm*
-%doc %{_mandir}/man3/DateTime::Locale::Base.3pm*
 %doc %{_mandir}/man3/DateTime::LocaleCatalog.3pm*
+%doc %{_mandir}/man3/DateTime::Locale::*.3pm*
 %dir %{perl_vendorlib}/DateTime/
 %{perl_vendorlib}/DateTime/Locale/
 %{perl_vendorlib}/DateTime/Locale.pm
 %{perl_vendorlib}/DateTime/LocaleCatalog.pm
 
 %changelog
+* Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 0.4001-1
+- Updated to release 0.4001.
+
 * Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 0.35-1
 - Updated to release 0.35.
 

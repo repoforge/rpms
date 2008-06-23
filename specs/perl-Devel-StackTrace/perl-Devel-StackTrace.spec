@@ -9,7 +9,7 @@
 
 Summary: Stack trace and stack trace frame objects
 Name: perl-Devel-StackTrace
-Version: 1.18
+Version: 1.1901
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,9 @@ Source: http://www.cpan.org/modules/by-module/Devel/Devel-StackTrace-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.006
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 0:5.006
 
 %description
 Devel-StackTrace module for perl.  Simple objects to deal with stack traces.
@@ -55,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Devel/StackTrace.pm
 
 %changelog
+* Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 1.1901-1
+- Updated to release 1.1901.
+
 * Mon May 05 2008 Dag Wieers <dag@wieers.com> - 1.18-1
 - Updated to release 1.18.
 

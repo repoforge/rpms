@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Masatoshi Mizuno E<lt>lusheE<64>cpan,orgE<gt>
+# Upstream: Masatoshi Mizuno <lushe$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Version of Egg WEB Application Framework
 Name: perl-Egg-Release
-Version: 3.10
+Version: 3.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Egg.pm
 
 %changelog
+* Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 3.14-1
+- Updated to release 3.14.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 3.10-1
 - Updated to release 3.10.
 

@@ -53,8 +53,5 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-1.2
-- Rebuild for Fedora Core 5.
-
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 1.4-1
 - Initial package.

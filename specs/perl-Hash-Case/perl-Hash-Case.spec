@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements a base class for hashes with key-casing requirements
 Name: perl-Hash-Case
-Version: 1.004
+Version: 1.006
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,12 +46,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog MANIFEST META.yml README
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Hash::Case.3pm*
+%doc %{_mandir}/man3/Hash::Case::*.3pm*
 %dir %{perl_vendorlib}/Hash/
 %{perl_vendorlib}/Hash/Case/
 %{perl_vendorlib}/Hash/Case.pm
 %{perl_vendorlib}/Hash/Case.pod
 
 %changelog
+* Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 1.006-1
+- Updated to release 1.006.
+
 * Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 1.004-1
 - Initial package. (using DAR)

@@ -1,8 +1,8 @@
 # $Id$
 # Authority: dag
-# Upstream: Chris Winters E<lt>chris$cwinters,comE<gt>
-# Upstream: Stevan Little E<lt>stevan$iinteractive,comE<gt>
-# Upstream: Rob Kinyon E<lt>rob,kinyon$gmail,comE<gt>
+# Upstream: Chris Winters <chris$cwinters,com>
+# Upstream: Stevan Little <stevan$iinteractive,com>
+# Upstream: Rob Kinyon <rob,kinyon$gmail,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -11,7 +11,7 @@
 
 Summary: Mock database driver for testing
 Name: perl-DBD-Mock
-Version: 1.36
+Version: 1.37
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DBD/Mock.pm
 
 %changelog
+* Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 1.37-1
+- Updated to release 1.37.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.36-1
 - Updated to release 1.36.
 

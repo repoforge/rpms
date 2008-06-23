@@ -9,7 +9,7 @@
 
 Summary: Perl DBD module for interfacing with ODBC databases
 Name: perl-DBD-ODBC
-Version: 1.15
+Version: 1.16
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,15 +49,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README README.RH9 README.adabas README.af README.hpux README.informix README.unicode
+%doc Changes FAQ MANIFEST META.yml README README.RH9 README.adabas README.af README.hpux README.informix README.unicode
 %doc %{_mandir}/man3/DBD::ODBC.3pm*
-%dir %{perl_vendorarch}/DBD/
-%{perl_vendorarch}/DBD/ODBC.pm
-%{perl_vendorarch}/DBD/ODBC/
 %dir %{perl_vendorarch}/auto/DBD/
 %{perl_vendorarch}/auto/DBD/ODBC/
+%dir %{perl_vendorarch}/DBD/
+%{perl_vendorarch}/DBD/ODBC/
+%{perl_vendorarch}/DBD/ODBC.pm
 
 %changelog
+* Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 1.16-1
+- Updated to release 1.16.
+
 * Tue Feb 19 2008 Dag Wieers <dag@wieers.com> - 1.15-1
 - Updated to release 1.15.
 

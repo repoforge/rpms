@@ -46,13 +46,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG README
-%doc %{_mandir}/man3/*
+%doc CHANGELOG MANIFEST META.yml README
+%doc %{_mandir}/man3/File::Flock.3pm*
+%dir %{perl_vendorlib}/File/
+#%{perl_vendorlib}/File/Flock/
 %{perl_vendorlib}/File/Flock.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 104.111901-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 104.111901-1
 - Initial package.

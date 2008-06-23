@@ -56,8 +56,5 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.1902-1
 - Updated to release 1.1902.
 
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.1901-1.2
-- Rebuild for Fedora Core 5.
-
 * Fri Jan  7 2005 Dries Verachtert <dries@ulyssis.org> - 1.1901-1
 - Initial package.

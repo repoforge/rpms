@@ -9,7 +9,7 @@
 
 Summary: Date and time objects
 Name: perl-DateTime
-Version: 0.42
+Version: 0.4302
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -33,10 +33,6 @@ that historical time zone information, and more importantly, daylight
 saving time rules, can be handled transparently, simply by setting the
 correct time zone. This is done by using the DateTime::TimeZone
 module.
-
-This package contains the following Perl module:
-
-    DateTime
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -67,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/DateTime/
 
 %changelog
+* Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 0.4302-1
+- Updated to release 0.4302.
+
 * Sun Mar 02 2008 Dag Wieers <dag@wieers.com> - 0.42-1
 - Updated to release 0.42.
 

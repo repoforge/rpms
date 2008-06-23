@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Father Chrysostomos <$_%20=%20'spro%5e%5e*%25*%5e6ut%23$&$%25*c%3e%23!%5e!%23&!pan,org'%3b%20y/a-z,$//cd%3b%20print>
+# Upstream: Father Chrysostomos <sprout$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Convert between glyph names and characters
 Name: perl-Font-GlyphNames
-Version: 0.02
+Version: 0.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,11 +44,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Font::GlyphNames*
-%{perl_vendorlib}/Font/GlyphNames.pm
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Font::GlyphNames.3pm*
+%dir %{perl_vendorlib}/Font/
 %{perl_vendorlib}/Font/GlyphNames/
+%{perl_vendorlib}/Font/GlyphNames.pm
 
 %changelog
+* Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 0.03-1
+- Updated to release 0.03.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

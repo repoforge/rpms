@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Audrey Tang <autrijus$autrijus,org>
+# Upstream: Adam Kennedy <adamk$cpan,org>
 
 ##Tag: test
 
@@ -11,7 +11,7 @@
 
 Summary: Standalone, extensible Perl module installer
 Name: perl-Module-Install
-Version: 0.72
+Version: 0.75
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -76,6 +76,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/inc/Module/Install.pm
 
 %changelog
+* Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 0.75-1
+- Updated to release 0.75.
+
 * Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.72-1
 - Updated to release 0.72.
 

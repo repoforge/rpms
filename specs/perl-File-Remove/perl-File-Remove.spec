@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Richard Soderberg <perl$crystalflame,net>
+# Upstream: Adam Kennedy <adamk$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Remove files and directories
 Name: perl-File-Remove
-Version: 1.40
+Version: 1.41
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,10 @@ Source: http://www.cpan.org/modules/by-module/File/File-Remove-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.005
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More) >= 0.42
+Requires: perl >= 0:5.005
 
 %description
 Remove files and directories.
@@ -51,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/File/Remove.pm
 
 %changelog
+* Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 1.41-1
+- Updated to release 1.41.
+
 * Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 1.40-1
 - Updated to release 1.40.
 

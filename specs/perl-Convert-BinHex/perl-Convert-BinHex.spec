@@ -51,9 +51,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Convert/BinHex.pm
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.119-2.2
-- Rebuild for Fedora Core 5.
-
 * Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 1.119-2
 - Cosmetic cleanup.
 

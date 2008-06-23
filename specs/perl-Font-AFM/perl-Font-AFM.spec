@@ -9,8 +9,8 @@
 
 Summary: Interface to Adobe Font Metrics files
 Name: perl-Font-AFM
-Version: 1.19
-Release: 1.2
+Version: 1.20
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Font-AFM/
@@ -27,10 +27,6 @@ This module implements the Font::AFM class. Objects of this
 class are initialised from an AFM-file and allows you to obtain
 information about the font and the metrics of the various glyphs
 in the font.
-
-This package contains the following Perl module:
-
-    Font::AFM
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -51,7 +47,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README
+%doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Font::AFM.3pm*
 %dir %{perl_vendorlib}/Font/
 #%{perl_vendorlib}/Font/AFM/
@@ -59,5 +55,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Font/Metrics/
 
 %changelog
+* Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 1.20-1
+- Updated to release 1.20.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.19-1
 - Initial package.

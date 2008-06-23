@@ -9,8 +9,8 @@
 
 Summary: HTML output stream class
 Name: perl-HTML-Stream
-Version: 1.55
-Release: 1.2
+Version: 1.59
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Stream/
@@ -43,18 +43,23 @@ ordinary-print-output, if you like.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find docs/ examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man3/*
+%doc COPYING Changes MANIFEST META.yml README README.system docs/ examples/
+%doc %{_mandir}/man3/HTML::Stream.3pm*
+%dir %{perl_vendorlib}/HTML/
+#%{perl_vendorlib}/HTML/Stream/
 %{perl_vendorlib}/HTML/Stream.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.55-1.2
-- Rebuild for Fedora Core 5.
+* Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 1.59-1
+- Updated to release 1.59.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.55-1
 - Initial package.

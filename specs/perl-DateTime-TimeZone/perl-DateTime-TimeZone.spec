@@ -6,11 +6,10 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name DateTime-TimeZone
-%define real_version 0.69.4
 
 Summary: Time zone object base class and factory
 Name: perl-DateTime-TimeZone
-Version: 0.6904
+Version: 0.7701
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,7 +20,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(Module::Build)
 Provides: perl(DateTime::TimeZoneCatalog)
 
 %description
@@ -65,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %exclude %{perl_vendorlib}/DateTime/TimeZone/Local/Win32.pm
 
 %changelog
+* Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 0.7701-1
+- Updated to release 0.7701.
+
 * Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.6904-1
 - Switch to upstream version.
 

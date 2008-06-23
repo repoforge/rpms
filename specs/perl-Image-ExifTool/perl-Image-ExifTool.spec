@@ -10,7 +10,7 @@
 
 Summary: Read and write meta information
 Name: perl-Image-ExifTool
-Version: 7.25
+Version: 7.30
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -64,6 +64,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Image/ExifTool.pod
 
 %changelog
+* Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 7.30-1
+- Updated to release 7.30.
+
 * Mon May 05 2008 Dag Wieers <dag@wieers.com> - 7.25-1
 - Updated to release 7.25.
 

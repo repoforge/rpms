@@ -9,7 +9,7 @@
 
 Summary: Perl module to access to network card configuration information
 Name: perl-IO-Interface
-Version: 1.04
+Version: 1.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/IO/Interface.pm
 
 %changelog
+* Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 1.05-1
+- Updated to release 1.05.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 1.04-1
 - Updated to release 1.04.
 

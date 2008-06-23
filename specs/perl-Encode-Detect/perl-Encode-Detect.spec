@@ -9,9 +9,9 @@
 
 Summary: Perl module that implements an Encode::Encoding subclass that detects the encoding of data
 Name: perl-Encode-Detect
-Version: 1.00
+Version: 1.01
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Encode-Detect/
 
@@ -46,13 +46,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes LICENSE MANIFEST META.yml
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Encode::Detect.3pm*
+%doc %{_mandir}/man3/Encode::Detect::*.3pm*
+%dir %{perl_vendorarch}/auto/Encode/
+%{perl_vendorarch}/auto/Encode/Detect/
 %dir %{perl_vendorarch}/Encode/
 %{perl_vendorarch}/Encode/Detect/
 %{perl_vendorarch}/Encode/Detect.pm
-%dir %{perl_vendorarch}/auto/Encode/
-%{perl_vendorarch}/auto/Encode/Detect/
 
 %changelog
+* Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 1.01-1
+- Updated to release 1.01.
+
 * Wed May 02 2007 Dag Wieers <dag@wieers.com> - 1.00-1
 - Initial package. (using DAR)

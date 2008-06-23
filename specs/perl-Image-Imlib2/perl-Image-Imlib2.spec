@@ -21,7 +21,7 @@
 
 Summary: Interface to the Imlib2 image library
 Name: perl-Image-Imlib2
-Version: 2.00
+Version: 2.01
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -73,6 +73,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Image/Imlib2.pm
 
 %changelog
+* Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 2.01-1
+- Updated to release 2.01.
+
 * Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 2.00-1
 - Updated to release 2.00.
 

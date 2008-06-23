@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Adam Kennedy <cpan$ali,as>
+# Upstream: Adam Kennedy <adamk$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Exclude files/directories for Version Control Systems
 Name: perl-File-Find-Rule-VCS
-Version: 1.02
+Version: 1.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,11 @@ Source: http://www.cpan.org/modules/by-module/File/File-Find-Rule-VCS-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.005
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Spec) >= 0.82
+BuildRequires: perl(Test::More) >= 0.47
+Requires: perl >= 0:5.005
 
 %description
 Exclude files/directories for Version Control Systems.
@@ -44,10 +47,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/File::Find::Rule::VCS*
+%doc Changes LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/File::Find::Rule::VCS.3pm*
+%dir %{perl_vendorlib}/File/
+%dir %{perl_vendorlib}/File/Find/
+%dir %{perl_vendorlib}/File/Find/Rule/
+#%{perl_vendorlib}/File/Find/Rule/VCS/
 %{perl_vendorlib}/File/Find/Rule/VCS.pm
 
 %changelog
+* Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 1.04-1
+- Updated to release 1.04.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.02-1
 - Initial package.

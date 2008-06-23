@@ -57,8 +57,5 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.94-1
 - Updated to release 0.94.
 
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.92-1.2
-- Rebuild for Fedora Core 5.
-
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.92-1
 - Initial package.

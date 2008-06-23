@@ -9,7 +9,7 @@
 
 Summary: Output a Graph::Easy as Scalable Vector Graphics (SVG)
 Name: perl-Graph-Easy-As_svg
-Version: 0.22
+Version: 0.23
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,8 +20,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(Graph::Easy) >= 0.5
+BuildRequires: perl(Graph::Easy) >= 0.63
 BuildRequires: perl(Image::Info) >= 1.28
+#BuildRequires: perl(Test::More) >= 0.62
 
 %description
 Render Graph-Easy as SVG (Scalable Vector Graphics).
@@ -59,6 +60,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Graph/Easy/As_svg.pm
 
 %changelog
+* Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 0.23-1
+- Updated to release 0.23.
+
 * Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.22-1
 - Updated to release 0.22.
 

@@ -9,9 +9,9 @@
 
 Summary: Perl module with standard Geo:: ellipsoid a, b, f and 1/f values
 Name: perl-Geo-Ellipsoids
-Version: 0.14
+Version: 0.16
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-Ellipsoids/
 
@@ -52,5 +52,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Geo/Ellipsoids.pm
 
 %changelog
+* Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 0.16-1
+- Updated to release 0.16.
+
 * Tue May 01 2007 Dag Wieers <dag@wieers.com> - 0.14-1
 - Initial package. (using DAR)

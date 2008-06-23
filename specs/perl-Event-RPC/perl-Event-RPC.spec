@@ -9,8 +9,8 @@
 
 Summary: Event based transparent Client/Server RPC framework
 Name: perl-Event-RPC
-Version: 0.90
-Release: 2
+Version: 1.00
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Event-RPC/
@@ -40,21 +40,29 @@ Event based transparent Client/Server RPC framework.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod \
-           %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes examples/ README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/Event::RPC.3pm*
+%doc %{_mandir}/man3/Event::RPC::*.3pm*
 %dir %{perl_vendorlib}/Event/
 %{perl_vendorlib}/Event/RPC/
 %{perl_vendorlib}/Event/RPC.pm
 
 %changelog
+* Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 1.00-1
+- Updated to release 1.00.
+
 * Thu May 31 2007 Matthias Saou <http://freshrpms.net/> 0.90-2
 - Build require perl(ExtUtils::MakeMaker) for F7.
 

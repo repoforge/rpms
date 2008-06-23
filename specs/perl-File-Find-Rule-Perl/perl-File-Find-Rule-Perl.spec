@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Adam Kennedy <cpan@ali.as>
+# Upstream: Adam Kennedy <adamk$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Common rules for searching for Perl things
 Name: perl-File-Find-Rule-Perl
-Version: 0.03
+Version: 1.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,5 +55,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/File/Find/Rule/Perl.pm
 
 %changelog
+* Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 1.04-1
+- Updated to release 1.04.
+
 * Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.03-1
 - Initial package. (using DAR)
