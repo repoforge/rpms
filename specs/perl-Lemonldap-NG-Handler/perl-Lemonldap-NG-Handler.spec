@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Xavier Guimard <perl+cpan$astola,org>
+# Upstream: Xavier Guimard <x,guimard$free,fr>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Apache protection module part of Lemonldap::NG Web-SSO system
 Name: perl-Lemonldap-NG-Handler
-Version: 0.86
+Version: 0.88
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ find example/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Lemonldap/NG/Handler.pm
 
 %changelog
+* Tue Jun 24 2008 Dag Wieers <dag@wieers.com> - 0.88-1
+- Updated to release 0.88.
+
 * Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.86-1
 - Updated to release 0.86.
 

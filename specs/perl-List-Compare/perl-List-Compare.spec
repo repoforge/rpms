@@ -9,7 +9,7 @@
 
 Summary: Compare elements of two or more lists
 Name: perl-List-Compare
-Version: 0.34
+Version: 0.37
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,7 +44,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST MANIFEST.SKIP META.yml README
+%doc Changes FAQ MANIFEST MANIFEST.SKIP META.yml README
 %doc %{_mandir}/man3/List::Compare.3pm*
 %doc %{_mandir}/man3/List::Compare::*.3pm*
 %dir %{perl_vendorlib}/List/
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/List/Compare.pm
 
 %changelog
+* Tue Jun 24 2008 Dag Wieers <dag@wieers.com> - 0.37-1
+- Updated to release 0.37.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.35-1
 - Updated to release 0.35.
 

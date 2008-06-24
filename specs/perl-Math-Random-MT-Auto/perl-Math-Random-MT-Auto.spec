@@ -9,7 +9,7 @@
 
 Summary: Auto-seeded Mersenne Twister PRNGs
 Name: perl-Math-Random-MT-Auto
-Version: 6.12
+Version: 6.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -60,6 +60,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Math/Random/MT/Auto.pm
 
 %changelog
+* Tue Jun 24 2008 Dag Wieers <dag@wieers.com> - 6.14-1
+- Updated to release 6.14.
+
 * Thu Feb 28 2008 Dag Wieers <dag@wieers.com> - 6.12-1
 - Updated to release 6.12.
 

@@ -9,7 +9,7 @@ Name: mapchan
 Version: 2.0
 Release: 1
 License: GPL
-Group: Applications/
+Group: Applications/System
 URL: http://www.iceb.vc.ukrtel.net/
 
 Source: http://www.iceb.vc.ukrtel.net/download/mapchan-%{version}.tar.bz2

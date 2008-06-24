@@ -1,0 +1,164 @@
+Patch by Luciano Bello <luciano@linux.org.ar> for dsniff >= 2.4b1, which
+adds missing includes of the string header file.
+
+--- dsniff-2.4b1/arp.c			2007-06-17 16:22:49.000000000 -0300
++++ dsniff-2.4b1/arp.c.string_header	2007-06-17 16:22:49.000000000 -0300
+@@ -34,6 +34,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <unistd.h>
++#include <string.h>
+ 
+ #include "arp.h"
+ 
+--- dsniff-2.4b1/buf.c			2007-06-17 16:22:39.000000000 -0300
++++ dsniff-2.4b1/buf.c.string_header	2007-06-17 16:22:49.000000000 -0300
+@@ -17,6 +17,7 @@
+ #include <unistd.h>
+ #include <ctype.h>
+ #include <err.h>
++#include <string.h>
+ 
+ #include "buf.h"
+ 
+--- dsniff-2.4b1/decode_nntp.c		2007-06-17 16:22:39.000000000 -0300
++++ dsniff-2.4b1/decode_nntp.c.string	2007-06-17 16:22:49.000000000 -0300
+@@ -15,6 +15,7 @@
+ 
+ #include <stdio.h>
+ #include <string.h>
++#include <strlcat.h>
+ 
+ #include "base64.h"
+ #include "decode.h"
+--- dsniff-2.4b1/decode_pop.c		2007-06-17 16:22:39.000000000 -0300
++++ dsniff-2.4b1/decode_pop.c.string	2007-06-17 16:22:49.000000000 -0300
+@@ -14,6 +14,7 @@
+ 
+ #include <stdio.h>
+ #include <string.h>
++#include <strlcat.h>
+ 
+ #include "base64.h"
+ #include "options.h"
+--- dsniff-2.4b1/decode_rlogin.c	2007-06-17 16:22:39.000000000 -0300
++++ dsniff-2.4b1/decode_rlogin.c.string	2007-06-17 16:22:49.000000000 -0300
+@@ -14,6 +14,8 @@
+ 
+ #include <stdio.h>
+ #include <string.h>
++#include <strlcpy.h>
++#include <strlcat.h>
+ 
+ #include "options.h"
+ #include "decode.h"
+--- dsniff-2.4b1/decode_smb.c		2007-06-17 16:22:39.000000000 -0300
++++ dsniff-2.4b1/decode_smb.c.string	2007-06-17 16:22:49.000000000 -0300
+@@ -15,6 +15,7 @@
+ 
+ #include <stdio.h>
+ #include <string.h>
++#include <strlcat.h>
+ 
+ #include "decode.h"
+ 
+--- dsniff-2.4b1/decode_smtp.c		2007-06-17 16:22:39.000000000 -0300
++++ dsniff-2.4b1/decode_smtp.c.string	2007-06-17 16:22:49.000000000 -0300
+@@ -14,6 +14,7 @@
+ 
+ #include <stdio.h>
+ #include <string.h>
++#include <strlcat.h>
+ 
+ #include "base64.h"
+ #include "options.h"
+--- dsniff-2.4b1/decode_sniffer.c	2007-06-17 16:22:39.000000000 -0300
++++ dsniff-2.4b1/decode_sniffer.c.str	2007-06-17 16:22:49.000000000 -0300
+@@ -15,6 +15,8 @@
+ 
+ #include <stdio.h>
+ #include <string.h>
++#include <strlcat.h>
++#include <strlcpy.h>
+ 
+ #include "base64.h"
+ #include "decode.h"
+--- dsniff-2.4b1/decode_socks.c		2007-06-17 16:22:39.000000000 -0300
++++ dsniff-2.4b1/decode_socks.c.string	2007-06-17 16:22:49.000000000 -0300
+@@ -14,6 +14,7 @@
+ 
+ #include <stdio.h>
+ #include <string.h>
++#include <strlcat.h>
+ 
+ #include "decode.h"
+ 
+--- dsniff-2.4b1/decode_tds.c		2007-06-17 16:22:39.000000000 -0300
++++ dsniff-2.4b1/decode_tds.c.string	2007-06-17 16:22:49.000000000 -0300
+@@ -18,6 +18,7 @@
+ 
+ #include <stdio.h>
+ #include <string.h>
++#include <strlcat.h>
+ 
+ #include "decode.h"
+ 
+--- dsniff-2.4b1/decode_telnet.c	2007-06-17 16:22:39.000000000 -0300
++++ dsniff-2.4b1/decode_telnet.c.string	2007-06-17 16:22:49.000000000 -0300
+@@ -14,6 +14,7 @@
+ 
+ #include <stdio.h>
+ #include <string.h>
++#include <strlcpy.h>
+ 
+ #include "options.h"
+ #include "decode.h"
+--- dsniff-2.4b1/decode_x11.c		2007-06-17 16:22:39.000000000 -0300
++++ dsniff-2.4b1/decode_x11.c.string	2007-06-17 16:22:49.000000000 -0300
+@@ -14,6 +14,8 @@
+ 
+ #include <stdio.h>
+ #include <string.h>
++#include <strlcat.h>
++#include <strlcpy.h>
+ 
+ #include "decode.h"
+ 
+--- dsniff-2.4b1/dnsspoof.c		2007-06-17 16:22:49.000000000 -0300
++++ dsniff-2.4b1/dnsspoof.c.string	2007-06-17 16:22:49.000000000 -0300
+@@ -20,6 +20,7 @@
+ #include <stdlib.h>
+ #include <signal.h>
+ #include <string.h>
++#include <strlcpy.h>
+ #include <resolv.h>
+ #include <err.h>
+ #include <libnet.h>
+--- dsniff-2.4b1/magic.c		2007-06-17 16:22:39.000000000 -0300
++++ dsniff-2.4b1/magic.c.string_header	2007-06-17 16:22:49.000000000 -0300
+@@ -36,6 +36,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
++#include <strlcpy.h>
+ #include <ctype.h>
+ #include <time.h>
+ #include <err.h>
+--- dsniff-2.4b1/sshmitm.c		2007-06-17 16:22:49.000000000 -0300
++++ dsniff-2.4b1/sshmitm.c.string	2007-06-17 16:22:49.000000000 -0300
+@@ -24,6 +24,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <unistd.h>
++#include <strlcat.h>
+ 
+ #include "buf.h"
+ #include "record.h"
+--- dsniff-2.4b1/missing/strlcat.h	1969-12-31 21:00:00.000000000 -0300
++++ dsniff-2.4b1/missing/strlcat.h.str	2007-06-17 16:22:49.000000000 -0300
+@@ -0,0 +1 @@
++size_t strlcat(char *dst, const char *src, size_t siz);
+--- dsniff-2.4b1/missing/strlcpy.h	1969-12-31 21:00:00.000000000 -0300
++++ dsniff-2.4b1/missing/strlcpy.h.str	2007-06-17 16:22:49.000000000 -0300
+@@ -0,0 +1 @@
++size_t strlcpy(char *dst, const char *src, size_t siz);

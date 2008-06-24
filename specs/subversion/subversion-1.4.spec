@@ -1,4 +1,4 @@
-# $Id: subversion.spec 4608 2006-08-02 15:32:29Z dag $
+# $Id$
 # Authority: dag
 
 ##ExcludeDist: fc3
@@ -27,7 +27,7 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.5.0
+Version: 1.4.6
 ### FC3 comes with release 1.1
 Release: 0.1
 License: BSD
@@ -42,8 +42,10 @@ Source10: http://dl.sf.net/swig/swig-%{swig_version}.tar.gz
 #Patch1: subversion-0.24.2-swig.patch
 Patch2: subversion-0.20.1-deplibs.patch
 Patch3: subversion-0.31.0-rpath.patch
-Patch6: subversion-1.5.0-pie.patch
+Patch6: subversion-1.4.2-pie.patch
 Patch7: subversion-1.1.3-java.patch
+Patch8: subversion-1.4.4-macropen.patch
+Patch9: subversion-1.4.4-swig1333.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, libtool, python, python-devel, texinfo, which
@@ -127,6 +129,8 @@ This package includes the Ruby bindings to the Subversion libraries.
 %patch3 -p1 -b .rpath
 %{!?_without_pie:%patch6 -p1 -b .pie}
 %{?_with_java:%patch7 -p1 -b .java}
+%patch8 -p1 -b .macropen
+%patch9 -p1 -b .swig133
 
 %{__rm} -rf neon apr apr-util
 
@@ -256,7 +260,8 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc BUGS CHANGES COMMITTERS COPYING HACKING INSTALL README
-%doc mod_authz_svn-INSTALL contrib/ subversion/LICENSE tools/
+%doc mod_authz_svn-INSTALL subversion/LICENSE tools/
+%doc contrib/client-side/svn_load_dirs{.pl,_*,.README}
 %doc %{_mandir}/man1/svn.1*
 %doc %{_mandir}/man1/svnadmin.1*
 %doc %{_mandir}/man1/svndumpfilter.1*
@@ -318,9 +323,6 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
-* Tue Jun 24 2008 Dag Wieers <dag@wieers.com> - 1.5.0-0.1
-- Updated to release 1.5.0.
-
 * Mon Dec 31 2007 Dag Wieers <dag@wieers.com> - 1.4.6-0.1
 - Updated to release 1.4.6.
 

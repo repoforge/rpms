@@ -1,0 +1,13 @@
+diff -crN dsniff-2.4/sshow.c dsniff-2.4.fixed.FC2/sshow.c
+*** dsniff-2.4/sshow.c	Sun Mar 18 22:52:15 2001
+--- dsniff-2.4.fixed.FC2/sshow.c	Mon Nov  1 11:22:06 2004
+***************
+*** 15,20 ****
+--- 15,21 ----
+  
+  #include <sys/types.h>
+  #include <sys/times.h>
++ #include <time.h>
+  
+  #include <netinet/in_systm.h>
+  #include <netinet/in.h>

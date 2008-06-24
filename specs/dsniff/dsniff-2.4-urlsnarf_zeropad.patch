@@ -1,0 +1,15 @@
+Patch by Steve Kemp <skx@debian.org> for dsniff >= 2.4b1, which fixes the
+zero-pad date. For further information, please have a look to Debian bug ID
+#298605.
+
+--- dsniff-2.4b1/urlsnarf.c		2005-06-23 03:30:37.000000000 +0000
++++ dsniff-2.4b1/urlsnarf.c.zeropad	2005-06-23 04:04:07.000000000 +0000
+@@ -68,7 +68,7 @@
+ 		 t->tm_hour - gmt.tm_hour);
+ 	tz = hours * 60 + t->tm_min - gmt.tm_min;
+ 	
+-	len = strftime(tstr, sizeof(tstr), "%e/%b/%Y:%X", t);
++	len = strftime(tstr, sizeof(tstr), "%d/%b/%Y:%X", t);
+ 	if (len < 0 || len > sizeof(tstr) - 5)
+ 		return (NULL);
+ 	

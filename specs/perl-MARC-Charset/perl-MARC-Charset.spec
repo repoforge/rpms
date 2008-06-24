@@ -9,7 +9,7 @@
 
 Summary: Perl module to convert MARC-8 encoded strings to UTF-8
 Name: perl-MARC-Charset
-Version: 0.98
+Version: 1.0
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MARC/Charset.pm
 
 %changelog
+* Tue Jun 24 2008 Dag Wieers <dag@wieers.com> - 1.0-1
+- Updated to release 1.0.
+
 * Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 0.98-1
 - Initial package. (using DAR)

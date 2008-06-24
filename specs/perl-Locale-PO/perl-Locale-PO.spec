@@ -9,7 +9,7 @@
 
 Summary: Perl module for manipulating .po entries from GNU gettext
 Name: perl-Locale-PO
-Version: 0.20
+Version: 0.21
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Locale/PO.pm
 
 %changelog
+* Tue Jun 24 2008 Dag Wieers <dag@wieers.com> - 0.21-1
+- Updated to release 0.21.
+
 * Sat May 10 2008 Dag Wieers <dag@wieers.com> - 0.20-1
 - Updated to release 0.20.
 

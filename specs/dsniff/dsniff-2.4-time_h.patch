@@ -1,0 +1,24 @@
+Patch by Steve Kemp <skx@debian.org> for dsniff >= 2.4b1, which adds an
+include of <time.h> to fix a segfault on some architectures. For further
+information, please have a look to Debian bug ID #315969.
+
+--- dsniff-2.4b1/msgsnarf.c		2001-03-15 08:33:04.000000000 +0000
++++ dsniff-2.4b1/msgsnarf.c.time_h	2005-07-11 20:15:50.000000000 +0000
+@@ -23,6 +23,7 @@
+ #include <nids.h>
+ #include <pcap.h>
+ #include <pcaputil.h>
++#include <time.h>
+ 
+ #include "buf.h"
+ #include "decode.h"
+--- dsniff-2.4b1/sshow.c		2005-07-11 20:14:19.000000000 +0000
++++ dsniff-2.4b1/sshow.c.time_h		2005-07-11 20:15:26.000000000 +0000
+@@ -15,6 +15,7 @@
+ 
+ #include <sys/types.h>
+ #include <sys/times.h>
++#include <time.h>
+ 
+ #include <netinet/in_systm.h>
+ #include <netinet/in.h>

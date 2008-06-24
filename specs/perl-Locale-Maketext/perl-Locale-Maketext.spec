@@ -11,7 +11,7 @@
 
 Summary: framework for localization and inheritance-based lexicons for Perl
 Name: perl-Locale-Maketext
-Version: 1.12
+Version: 1.13
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Locale/Maketext.pod
 
 %changelog
+* Tue Jun 24 2008 Dag Wieers <dag@wieers.com> - 1.13-1
+- Updated to release 1.13.
+
 * Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 1.12-1
 - Updated to release 1.12.
 

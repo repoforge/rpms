@@ -1,0 +1,15 @@
+Patch by Steve Kemp <skx@debian.org> for dsniff >= 2.4b1, which fixes a
+bug in mailsnarf that caused not to parse every mail correctly. For further
+information, please have a look to Debian bug ID #149330.
+
+--- dsniff-2.4b1/mailsnarf.c		2005-06-23 03:30:37.000000000 +0000
++++ dsniff-2.4b1/mailsnarf.c.mailsnarf	2005-06-23 04:05:16.000000000 +0000
+@@ -178,7 +178,7 @@
+ 	if (smtp->state != SMTP_DATA) {
+ 		while ((i = buf_index(&buf, "\r\n", 2)) >= 0) {
+ 			line = buf_tok(&buf, NULL, i + 2);
+-			line->base[line->end] = '\0';
++			line->base[line->end-1] = '\0';
+ 			p = buf_ptr(line);
+ 			
+ 			if (strncasecmp(p, "RSET", 4) == 0) {

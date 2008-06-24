@@ -9,7 +9,7 @@
 
 Summary: IMAP4 client library
 Name: perl-Mail-IMAPClient
-Version: 3.07
+Version: 3.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,7 +48,7 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYRIGHT Changes INSTALL MANIFEST META.yml README Todo test_template.txt examples/
+%doc COPYRIGHT Changes INSTALL MANIFEST META.yml README TODO test_template.txt examples/
 %doc %{_mandir}/man3/Mail::IMAPClient.3pm*
 %doc %{_mandir}/man3/Mail::IMAPClient::*.3pm*
 %dir %{perl_vendorlib}/Mail/
@@ -57,6 +57,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Mail/IMAPClient.pod
 
 %changelog
+* Tue Jun 24 2008 Dag Wieers <dag@wieers.com> - 3.08-1
+- Updated to release 3.08.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 3.07-1
 - Updated to release 3.07.
 

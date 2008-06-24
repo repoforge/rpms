@@ -5,7 +5,7 @@
 
 Summary: Simple sound converter application
 Name: soundconverter
-Version: 1.0.0
+Version: 1.3.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -49,6 +49,12 @@ gstreamer supported formats.
 %{_datadir}/soundconverter/
 
 %changelog
+* Tue Jun 24 2008 Dag Wieers <dag@wieers.com> - 1.3.1-1
+- Updated to release 1.3.1.
+
+* Tue Jun 24 2008 Dag Wieers <dag@wieers.com> - 1.3.0-1
+- Updated to release 1.3.0.
+
 * Sun Apr  6 2008 Dries Verachtert <dries@ulyssis.org> - 1.0.0-1
 - Updated to release 1.0.0.
 
