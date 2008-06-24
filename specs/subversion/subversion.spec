@@ -147,7 +147,7 @@ cd -
 ./autogen.sh
 
 # requirement for apr 0.9.7 seems to be bogus
-%{__perl} -pi.orig -e 's/\.\[7-9\]/\.\[4-9\]/' configure
+%{__perl} -pi.orig -e 's|\.\[7-9\]|\.\[4-9\]|' configure
 
 # fix shebang lines, #111498
 %{__perl} -pi -e 's|/usr/bin/env perl -w|/usr/bin/perl -w|' tools/hook-scripts/*.pl.in
@@ -158,9 +158,9 @@ export svn_cv_ruby_sitedir_libsuffix=""
 export svn_cv_ruby_sitedir_archsuffix=""
 
 export CC=gcc CXX=g++
-#export CPPFLAGS="-DSVN_NEON_0_26 -DSVN_NEON_0_25"
 %configure \
     --disable-mod-activation \
+    --disable-neon-version-check \
     --disable-static \
     --with-apr="%{_prefix}" \
     --with-apr-util="%{_prefix}" \
