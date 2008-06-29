@@ -4,7 +4,7 @@
 
 Summary: Libraries for the Unidata network Common Data Form (NetCDF)
 Name: netcdf
-Version: 3.6.2
+Version: 3.6.3
 Release: 1
 License: BSD like
 Group: Development/Libraries
@@ -57,6 +57,7 @@ you will need to install %{name}-devel.
 %doc %{_mandir}/man1/ncdump.1*
 %doc %{_mandir}/man1/ncgen.1*
 %doc %{_mandir}/man3/netcdf*.3*
+%doc %{_infodir}/netcdf*.info*
 %{_bindir}/ncdump
 %{_bindir}/ncgen
 %{_libdir}/libnetcdf.so.*
@@ -75,5 +76,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sun Jun 29 2008 Dries Verachtert <dries@ulyssis.org> - 3.6.3-1
+- Updated to release 3.6.3.
+
 * Wed Jul 25 2007 Dries Verachtert <dries@ulyssis.org> - 3.6.2-1
 - Initial package, based on the the spec file from Mapping Hacks.
