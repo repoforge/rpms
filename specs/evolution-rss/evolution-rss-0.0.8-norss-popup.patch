@@ -1,0 +1,25 @@
+Index: evolution-rss/src/rss.c
+===================================================================
+--- evolution-rss/src/rss.c	(.../svn+ssh://lucilanga@svn.gnome.org/svn/evolution-rss/tags/EVOLUTION-RSS_0_0_8)	(revision 224)
++++ evolution-rss/src/rss.c	(.../evolution-rss)	(working copy)
+@@ -2793,10 +2793,7 @@
+ 
+         if (!rf->setup || g_hash_table_size(rf->hrname)<1)
+         {
+-                e_error_run(NULL,
+-			"org-gnome-evolution-rss:generr",
+-			_("No RSS feeds configured!"),
+-			NULL);
++		taskbar_push_message(_("No RSS feeds configured!"));
+                 return;
+         }
+ 	if (!feeds_enabled())
+@@ -2904,7 +2901,7 @@
+ 
+ 	if (!rf->setup || g_hash_table_size(rf->hrname)<1)
+ 	{
+-		e_error_run(NULL, "org-gnome-evolution-rss:generr", "No RSS feeds configured!", NULL);
++		taskbar_push_message(_("No RSS feeds configured!"));
+ 		return;
+ 	}
+ 

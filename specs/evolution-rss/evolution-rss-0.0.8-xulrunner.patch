@@ -1,0 +1,52 @@
+Index: evolution-rss-patch/src/rss.c
+===================================================================
+--- evolution-rss-patch/src/rss.c	(.../http://svn.gnome.oorg/svn/evolution-rss/trunk)	(revision 231)
++++ evolution-rss-patch/src/rss.c	(.../evolution-rss-patch)	(working copy)
+@@ -85,8 +85,12 @@
+ #ifdef HAVE_RENDERKIT
+ 
+ #ifdef HAVE_GTKMOZEMBED
++#ifdef HAVE_LIBXUL
++#include <gtkembedmoz/gtkmozembed.h>
++#else
+ #include <gtkmozembed.h>
+ #endif
++#endif
+ 
+ #ifdef HAVE_OLD_WEBKIT
+ #include "webkitgtkglobal.h"
+@@ -1512,7 +1516,7 @@
+ 				gtk_widget_set_size_request((GtkWidget *)data, width, height);
+ // apparently resizing gtkmozembed widget won't redraw if using xulrunner
+ // there is no point in reload for the rest
+-#ifdef HAVE_XULRUNNER
++#if defined(HAVE_XULRUNNER) || defined(HAVE_LIBXUL)
+ 				gtk_moz_embed_reload(rf->mozembed, GTK_MOZ_EMBED_FLAG_RELOADNORMAL);
+ #endif
+ 			}
+@@ -1527,7 +1531,13 @@
+        	g_setenv("MOZILLA_FIVE_HOME", GECKO_HOME, 1);
+ 	g_unsetenv("MOZILLA_FIVE_HOME");
+ 
++// this means xulrunner at least 1.9
++#ifdef HAVE_LIBXUL
++	gtk_moz_embed_set_path(GECKO_HOME);
++#else
+ 	gtk_moz_embed_set_comp_path(GECKO_HOME);
++#endif
++
+ 	gchar *profile_dir = g_build_filename (g_get_home_dir (),
+                                               ".evolution",
+                                               "mail",
+Index: evolution-rss-patch/src/Makefile.am
+===================================================================
+--- evolution-rss-patch/src/Makefile.am	(.../http://svn.gnome.oorg/svn/evolution-rss/trunk)	(revision 231)
++++ evolution-rss-patch/src/Makefile.am	(.../evolution-rss-patch)	(working copy)
+@@ -3,6 +3,7 @@
+ 	-I$(EVOLUTION_SOURCE)					\
+ 	-I$(top_srcdir)						\
+ 	$(GECKO_CFLAGS)						\
++	-I$(GECKO_INCLUDE_ROOT)					\
+ 	$(WEBKIT_CFLAGS)					\
+ 	$(DBUS_CFLAGS)						\
+ 	-DGETTEXT_PACKAGE="\"$(GETTEXT_PACKAGE)\""		\

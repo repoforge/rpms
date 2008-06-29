@@ -1,0 +1,14 @@
+--- evolution-rss-0.0.8/src/rss.c	2008-03-03 14:26:04.000000000 +0100
++++ evolution-rss-0.0.8a/src/rss.c	2008-03-19 13:08:11.000000000 +0100
+@@ -3398,8 +3398,9 @@
+ 			}
+ 		}
+                 if (strcasecmp (node->name, match)==0) {
+-                        if (node->children->type == 1 && (node->children != NULL 
+-			|| node->children->next != NULL)) {
++                        if (node->children != NULL 
++			&& (node->children->type == 1 
++			        || node->children->next != NULL)) {
+ #ifdef RDF_DEBUG
+ 				g_print("NODE DUMP:%s\n", xmlNodeGetContent(node->children->next));
+ #endif

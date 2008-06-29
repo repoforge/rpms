@@ -1,0 +1,55 @@
+Index: evolution-rss/src/rss.c
+===================================================================
+--- evolution-rss/src/rss.c	(.../svn+ssh://lucilanga@svn.gnome.org/svn/evolution-rss/tags/EVOLUTION-RSS_0_0_8/src/rss.c)	(revision 229)
++++ evolution-rss/src/rss.c	(.../evolution-rss/src/rss.c)	(working copy)
+@@ -2775,6 +2775,12 @@
+ 
+ void org_gnome_cooly_rss_refresh(void *ep, EMPopupTargetSelect *t);
+ 
++gboolean 
++check_if_enabled (gpointer key, gpointer value, gpointer user_data)
++{
++       return value;
++}
++
+ void
+ org_gnome_cooly_rss_refresh(void *ep, EMPopupTargetSelect *t)
+ {
+@@ -2791,6 +2797,10 @@
+ 	if (!rf->online)
+ 		return;
+ 
++       //no feeds enabled
++       if (!g_hash_table_find(rf->hre, check_if_enabled, NULL))
++               return;
++
+         if (!rf->setup || g_hash_table_size(rf->hrname)<1)
+         {
+                 e_error_run(NULL,
+@@ -2799,15 +2809,6 @@
+ 			NULL);
+                 return;
+         }
+-	if (!feeds_enabled())
+-	{
+-                e_error_run(NULL,
+-			"org-gnome-evolution-rss:feederr",
+-			_("No RSS feeds enabled!"),
+-			_("Go to Edit->Preferences->News & Blogs to enable feeds."),
+-			NULL);
+-                return;
+-	}
+ 	readrss_dialog = e_error_new(NULL, 
+ 		"org-gnome-evolution-rss:readrss",
+                 _("Reading RSS feeds..."),
+@@ -2902,6 +2903,10 @@
+ 
+ 	rf->t = t;
+ 
++       //no feeds enabled
++       if (!g_hash_table_find(rf->hre, check_if_enabled, NULL))
++               return;
++
+ 	if (!rf->setup || g_hash_table_size(rf->hrname)<1)
+ 	{
+ 		e_error_run(NULL, "org-gnome-evolution-rss:generr", "No RSS feeds configured!", NULL);
