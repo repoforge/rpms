@@ -9,7 +9,7 @@
 
 Summary: Report versions of all modules in memory
 Name: perl-Module-Versions-Report
-Version: 1.03
+Version: 1.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,16 +49,19 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
-%doc %{_mandir}/man3/*
+%doc ChangeLog MANIFEST MANIFEST.SKIP META.yml README SIGNATURE
+%doc %{_mandir}/man3/Module::Versions::Report.3pm*
+%dir %{perl_vendorlib}/Module/
+%dir %{perl_vendorlib}/Module/Versions/
+#%{perl_vendorlib}/Module/Versions/Report/
 %{perl_vendorlib}/Module/Versions/Report.pm
 
 %changelog
+* Wed Jun 25 2008 Dag Wieers <dag@wieers.com> - 1.05-1
+- Updated to release 1.05.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 1.03-1
 - Updated to release 1.03.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.02-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Dec 31 2005 Dries Verachtert <dries@ulyssis.org> - 1.02-1
 - Initial package.

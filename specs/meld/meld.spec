@@ -6,13 +6,13 @@
 
 Summary: Graphical visual diff and merge tool
 Name: meld
-Version: 1.1.5
+Version: 1.2
 Release: 1
 License: GPL
 Group: Applications/Text
 URL: http://meld.sourceforge.net/
 
-Source: http://ftp.gnome.org/pub/gnome/sources/meld/1.1/meld-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/gnome/sources/meld/1.2/meld-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pygtk2-devel >= 2.6, gnome-python2 >= 1.99.14
@@ -76,10 +76,10 @@ EOF
 
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor %{desktop_vendor}    \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	meld.desktop
+desktop-file-install --vendor %{desktop_vendor} \
+    --add-category X-Red-Hat-Base               \
+    --dir %{buildroot}%{_datadir}/applications  \
+    meld.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -94,6 +94,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/meld.png
 
 %changelog
+* Mon Jun 30 2008 Dag Wieers <dag@wieers.com> - 1.2-1
+- Updated to release 1.2.
+
 * Sun Jun 10 2007 Dag Wieers <dag@wieers.com> - 1.1.5-1
 - Updated to release 1.1.5.
 
