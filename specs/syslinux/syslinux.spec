@@ -8,7 +8,7 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-Version: 3.63
+Version: 3.70
 Release: 1
 License: GPL
 Group: Applications/System
@@ -43,12 +43,13 @@ export CFLAGS="-Werror -Wno-unused -finline-limit=2000"
 %{__make} install-all \
     INSTALLROOT="%{buildroot}" \
     BINDIR="%{_bindir}" \
-    INCDIR="%{_includedir}" \
-    LIBDIR="%{_prefix}/lib" \
     MANDIR="%{_mandir}" \
     SBINDIR="%{_sbindir}"
-%{__install} -p -m0755 keytab-lilo.pl mkdiskimage syslinux2ansi.pl %{buildroot}%{_prefix}/lib/syslinux/
-%{__install} -p -m0755 unix/syslinux unix/syslinux-nomtools %{buildroot}%{_prefix}/lib/syslinux/
+#    INCDIR="%{_includedir}" \
+#    LIBDIR="%{_prefix}/lib" \
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}/tftpboot/
 
 ### Clean up docroot
 %{__make} -C sample tidy
@@ -65,15 +66,22 @@ export CFLAGS="-Werror -Wno-unused -finline-limit=2000"
 %doc %{_mandir}/man1/syslinux.1*
 %doc %{_mandir}/man1/syslinux2ansi.1*
 %{_bindir}/gethostip
+%{_bindir}/keytab-lilo
 %{_bindir}/lss16toppm
 %{_bindir}/md5pass
+%{_bindir}/mkdiskimage
 %{_bindir}/ppmtolss16
 %{_bindir}/sha1pass
 %{_bindir}/syslinux
-%{_prefix}/lib/syslinux/
+%{_bindir}/syslinux2ansi
+%{_datadir}/syslinux/
 %{_sbindir}/extlinux
+/boot/extlinux/
 
 %changelog
+* Fri Jul 04 2008 Dag Wieers <dag@wieers.com> - 3.70-1
+- Updated to release 3.70.
+
 * Sat Apr 12 2008 Dag Wieers <dag@wieers.com> - 3.63-1
 - Updated to release 3.63.
 

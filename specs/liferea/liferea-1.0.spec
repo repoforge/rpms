@@ -6,20 +6,21 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 
 %{!?dtag: %define _without_mozilla 1}
-%{?fc6:   %define _without_mozilla 1}
-%{?fc5:   %define _without_mozilla 1}
-%{?fc1:   %define _without_mozilla 1}
+%{?fc6: %define _without_mozilla 1}
+%{?fc5: %define _without_mozilla 1}
+%{?fc1: %define _without_mozilla 1}
 
 %{!?dtag: %define with_dbus 1}
-%{?el5:   %define with_dbus 1}
-%{?fc6:   %define with_dbus 1}
+%{?el5: %define with_dbus 1}
+%{?fc6: %define with_dbus 1}
 
-%define mozilla seamonkey
-%{!?dtag:%define mozilla firefox}
-%{?el5:%define mozilla firefox}
-%{?fc6:%define mozilla firefox}
-%{?rh9:%define mozilla mozilla}
-%{?rh7:%define mozilla mozilla}
+%define mozilla xulrunner-devel nspr-devel
+%{?el5:%define mozilla xulrunner-devel nspr-devel}
+%{?el4:%define mozilla seamonkey-devel}
+%{?el3:%define mozilla seamonkey-devel}
+%{?rh9:%define mozilla mozilla-devel}
+%{?rh7:%define mozilla mozilla-devel}
+%{?el2:%define mozilla seamonkey-devel}
 
 %define desktop_vendor rpmforge
 
@@ -37,7 +38,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: GConf2-devel >= 2.2, gtkhtml2-devel, libxml2-devel >= 2.5.10
 BuildRequires: gettext, gcc-c++, desktop-file-utils, gtk2 >= 2.4
 %{?_with_dbus:BuildRequires: dbus-devel >= 0.30}
-%{!?_without_mozilla:BuildRequires: %{mozilla}-devel}
+%{!?_without_mozilla:BuildRequires: %{mozilla}}
 Requires: GConf2
 
 %description

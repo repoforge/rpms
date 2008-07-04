@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 # Upstream: Nagios Plugin Development Team <nagiosplug-devel$lists,sourceforge,net>
+# Upstream: Ton Voon <ton,voon$altinity,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +10,7 @@
 
 Summary: Family of perl modules to streamline writing Nagios
 Name: perl-Nagios-Plugin
-Version: 0.26
+Version: 0.27
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Nagios/Plugin.pm
 
 %changelog
+* Tue Jul 01 2008 Dag Wieers <dag@wieers.com> - 0.27-1
+- Updated to release 0.27.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.26-1
 - Updated to release 0.26.
 

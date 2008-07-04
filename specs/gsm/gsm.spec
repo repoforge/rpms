@@ -12,7 +12,8 @@ License: MIT
 Group: System Environment/Libraries
 URL: http://kbs.cs.tu-berlin.de/~jutta/toast.html
 
-Source: ftp://ftp.cs.tu-berlin.de/pub/local/kbs/tubmik/gsm/gsm-%{version}.tar.gz
+#Source: ftp://ftp.cs.tu-berlin.de/pub/local/kbs/tubmik/gsm/gsm-%{version}.tar.gz
+Source: http://kbs.cs.tu-berlin.de/~jutta/gsm/gsm-1.0.12.tar.gz
 Patch: gsm-makefile-dag.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -42,13 +43,12 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}" prefix="%{_prefix}" libdir="%{_libdir}"
 
 %{__ln_s} -f toast %{buildroot}%{_bindir}/untoast
 %{__ln_s} -f toast %{buildroot}%{_bindir}/tcat
 
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
 
 %clean
@@ -57,16 +57,23 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYRIGHT MACHINES MANIFEST README
-%doc %{_mandir}/man1/*
-%{_bindir}/*
-%{_libdir}/*.so.*
+#%doc %{_mandir}/man1/bitter.1*
+%doc %{_mandir}/man1/toast.1*
+#%{_bindir}/bitter
+%{_bindir}/tcat
+%{_bindir}/toast
+%{_bindir}/untoast
+%{_libdir}/libgsm.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man3/*
-%{_libdir}/*.a
-%{_libdir}/*.so
+%doc %{_mandir}/man3/gsm.3*
+%doc %{_mandir}/man3/gsm_explode.3*
+%doc %{_mandir}/man3/gsm_option.3*
+%doc %{_mandir}/man3/gsm_print.3*
 %{_includedir}/gsm/
+%{_libdir}/libgsm.so
+%exclude %{_libdir}/libgsm.a
 
 %changelog
 * Wed Mar  7 2007 Matthias Saou <http://freshrpms.net/> 1.0.12-1

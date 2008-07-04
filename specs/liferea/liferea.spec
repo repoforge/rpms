@@ -6,26 +6,27 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 
 %{!?dtag: %define _without_mozilla 1}
-%{?fc6:   %define _without_mozilla 1}
-%{?fc5:   %define _without_mozilla 1}
-%{?fc1:   %define _without_mozilla 1}
+%{?fc6: %define _without_mozilla 1}
+%{?fc5: %define _without_mozilla 1}
+%{?fc1: %define _without_mozilla 1}
 
 %{!?dtag: %define with_dbus 1}
-%{?el5:   %define with_dbus 1}
-%{?fc6:   %define with_dbus 1}
+%{?el5: %define with_dbus 1}
+%{?fc6: %define with_dbus 1}
 
-%define mozilla seamonkey
-%{!?dtag:%define mozilla firefox}
-%{?el5:%define mozilla firefox}
-%{?fc6:%define mozilla firefox}
-%{?rh9:%define mozilla mozilla}
-%{?rh7:%define mozilla mozilla}
+%define mozilla xulrunner-devel nspr-devel
+%{?el5:%define mozilla xulrunner-devel nspr-devel}
+%{?el4:%define mozilla seamonkey-devel}
+%{?el3:%define mozilla seamonkey-devel}
+%{?rh9:%define mozilla mozilla-devel}
+%{?rh7:%define mozilla mozilla-devel}
+%{?el2:%define mozilla seamonkey-devel}
 
 %define desktop_vendor rpmforge
 
 Summary: RSS/RDF feed reader
 Name: liferea
-Version: 1.4.5b
+Version: 1.4.16b
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -39,7 +40,7 @@ BuildRequires: gtk2 >= 2.4, GConf2-devel >= 2.2, gtkhtml2-devel
 BuildRequires: intltool, perl(XML::Parser)
 BuildRequires: libxml2-devel >= 2.6.27, libxslt >= 1.1.19
 %{?_with_dbus:BuildRequires: dbus-devel >= 0.30}
-%{!?_without_mozilla:BuildRequires: %{mozilla}-devel}
+%{!?_without_mozilla:BuildRequires: %{mozilla}}
 Requires: GConf2
 
 %description
@@ -95,6 +96,9 @@ gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/%{name}.schem
 %exclude %{_libdir}/liferea/*.la
 
 %changelog
+* Thu Jul 03 2008 Dag Wieers <dag@wieers.com> - 1.4.16b-1
+- Updated to release 1.4.16b.
+
 * Mon Dec 03 2007 Heiko Adams <info-2007@fedora-blog.de> - 1.4.5b-2
 - Enabled DBus (and Mozilla) usage on FC6 and EL5.
 

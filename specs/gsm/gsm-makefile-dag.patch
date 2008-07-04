@@ -20,7 +20,7 @@
  
  LD 		= $(CC)
  
-@@ -64,43 +68,27 @@
+@@ -64,43 +68,28 @@
  # LDLIB	= -lgcc
  ######### Additional libraries needed by $(LD)
  
@@ -56,6 +56,7 @@
 -TOAST_INSTALL_MAN = $(TOAST_INSTALL_ROOT)/man/man1
 +prefix = /usr/local
 +libdir = $(prefix)/lib
++bindir = $(prefix)/bin
 +includedir = $(prefix)/include
 +datadir = $(prefix)/share
 +mandir = $(datadir)/man
