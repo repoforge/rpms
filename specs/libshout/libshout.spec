@@ -5,20 +5,21 @@
 
 Summary: Library for communicating with and sending data to an icecast server
 Name: libshout
-Version: 2.2
+Version: 2.2.2
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.icecast.org/
+
 Source: http://svn.xiph.org/releases/libshout/libshout-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: libvorbis-devel, pkgconfig
 
 %description
 Libshout is a library for communicating with and sending data to an
-icecast server.  It handles the socket connection, the timing of the
+icecast server. It handles the socket connection, the timing of the
 data, and prevents bad data from getting to the icecast server.
-
 
 %package devel
 Summary: Development files for the libshout icecast library
@@ -30,47 +31,44 @@ This package contains the header files needed for developing applications
 that send data to an icecast server.  Install libshout-devel if you want to
 develop applications using libshout.
 
-
 %prep
 %setup
 
-
 %build
-%configure %{?rh9:--disable-thread}
+%configure \
+    --disable-static \
+%{?rh9:--disable-thread}
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 # Remove those docs, we include the same nicely
 test -d %{buildroot}%{_datadir}/doc && %{__rm} -rf %{buildroot}%{_datadir}/doc
-
-
-%clean
-%{__rm} -rf %{buildroot}
-
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING README examples/example.c
-%{_libdir}/*.so.*
+%doc COPYING INSTALL NEWS README examples/
+%{_libdir}/libshout.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*
-%{_libdir}/pkgconfig/*.pc
-%{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
-%{_datadir}/aclocal/*.m4
-
+%{_datadir}/aclocal/shout.m4
+%{_includedir}/shout/
+%{_libdir}/pkgconfig/shout.pc
+%{_libdir}/libshout.so
+%exclude %{_libdir}/libshout.la
 
 %changelog
+* Fri Jul 04 2008 Dag Wieers <dag@wieers.com> - 2.2.2-1
+- Updated to release 2.2.2.
+
 * Wed Jan 04 2005 Dag Wieers <dag@wieers.com> - 2.2-1
 - Updated to release 2.2.
 
