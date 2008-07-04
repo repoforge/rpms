@@ -7,27 +7,31 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%define mozilla seamonkey
-%{!?dtag:%define mozilla firefox}
-%{?el5:%define mozilla firefox}
-%{?fc7:%define mozilla firefox}
-%{?fc6:%define mozilla firefox}
+%define mozilla seamonkey-devel
+
+%{!?dtag:%define mozilla xulrunner-devel nspr-devel}
+%{?el5:%define mozilla nspr-devel xulrunner-devel}
+%{?fc7:%define mozilla firefox-devel}
+%{?fc6:%define mozilla firefox-devel}
 
 %{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}
+%{?el4:%define mozilla seamonkey-devel}
 %{?fc3:%define _without_modxorg 1}
 %{?fc2:%define _without_modxorg 1}
 %{?fc1:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
+%{?el3:%define mozilla seamonkey-devel}
 %{?rh9:%define _without_modxorg 1}
-%{?rh9:%define mozilla mozilla}
+%{?rh9:%define mozilla mozilla-devel}
 %{?rh7:%define _without_modxorg 1}
-%{?rh7:%define mozilla mozilla}
+%{?rh7:%define mozilla mozilla-devel}
 %{?el2:%define _without_modxorg 1}
+%{?el2:%define mozilla seamonkey-devel}
 
 Summary: Browser plugin for MPlayer
 Name: mplayerplug-in
-Version: 3.50
+Version: 3.55
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -36,7 +40,7 @@ URL: http://mplayerplug-in.sourceforge.net/
 Source: http://dl.sf.net/mplayerplug-in/mplayerplug-in-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: %{mozilla}-devel, gtk2-devel >= 2.2.1
+BuildRequires: %{mozilla}, gtk2-devel >= 2.2.1
 BuildRequires: gcc-c++, gettext
 %{!?_without_modxorg:BuildRequires: libXt-devel, libXpm-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
@@ -51,7 +55,7 @@ mplayerplug-in is a browser plugin that uses mplayer to play videos
 in your browser.
 
 %prep
-%setup -n %{name}
+%setup
 
 %build
 %configure
@@ -82,6 +86,9 @@ in your browser.
 %{_libdir}/mozilla/plugins/mplayerplug-in-wmp.xpt
 
 %changelog
+* Thu Jul 03 2008 Dag Wieers <dag@wieers.com> - 3.55-1
+- Updated to release 3.55.
+
 * Sun Dec 02 2007 Dag Wieers <dag@wieers.com> - 3.50-1
 - Updated to release 3.50.
 

@@ -1,0 +1,103 @@
+wip:
+-don't allow any vga modes (not even 320x200x256, mode 5) with fbdev and
+ fbdev_novga, it barfs in vgaclear.c because of outb instructions. If the
+ framebuffer can handle it, it will still be available as mode 146.
+-use /sys/bus/pci for linear fd.
+-when mem_fd == -1 (nohelper, secure) and linear_fd != -1 and trying to set
+ runinbackground and CM can handle emulatepage set emulatepage instead of
+ refusing to runinbackground.
+
+wip2:
+-fix a cut and paste error in fbdev.c which caused fbdev_set_virtual_height
+ to not do anything, leaving yres_virtual at yres .
+-add fbdev_put_vscreeninfo, which tries to put the vscreen info three times
+ before giving up:
+ 1st with yres_virtual as calculated by fbdev_set_virtual_height
+ 2nd with yres_virtual set to 2x yres
+ 3th with yres_virtual set to yres
+ This is needed because even with the max of 8192 in fbdev_set_virtual_height
+ fbdev still doesn't like the yres_virtuals we calculate for all modes,
+ with this 3 attempts approach much more modes are available.
+-update fbdev_getmodeinfo to calculate maxpixels based on the yres_virtual
+ which actually succeeded.
+-check all uses of long, replace most with int because:
+ -most of the times a 32 bit variable is enough (it works on i386 where
+  a long is 32 bit doesn't it), 64 bit is a waste of memory and slower.
+ -sometimes a long ptr is used to walk past MMIO mapped 32 bits registers,
+  which causes it to walk in steps of 64 bits, skipping a reg each time,
+  which is a plain bug. This also goes for other use of long ptrs to point
+  to 32 bits data (memsetlong, memcpylong) .
+-change modeline for 640x480@72Hz in timing.c to Xorg's builtin default
+ modeline for 640x480@72Hz, the old one makes my monitor go into powersaving
+ mode.
+-restore textmode and return an error code if chipset_setregs fails
+ in vga_setmode.
+-use the same checks done in vga_runinbackground, in
+ vga_runinbackgroundversion to determine if runinbackground is ok.
+-add fbdev_novga docs to libvga.config
+  
+wip3:
+-vga_getmodeinfo used to check for EXT_INFO_AVAILABLE in modeinfo.flags,
+ before adding __svgalib_modeinfo_linearset to modeinfo.flags. This seems wrong,
+ since lots of drivers don't set EXT_INFO_AVAILABLE but do support linear
+ just fine, so the check has been simplified to just checking for
+ CAPABLE_LINEAR . Otherwise a program could get/do:
+ -call getmodeinfo, see that mode is linear capable
+ -call setlinearaddressing, which indicates success
+ -call getmodeinfo again, still don't see the IS_LINEAR flag.
+-in setmode don't set IS_LINEAR in __svgalib_modeinfo_linearset when enabling
+ LFB because of emulating page, although the LFB has been explicitly
+ enabled, this was not on the users request, so we mustnot return
+ LINEAR_POINTER, but GM in getgraphmem hence IS_LINEAR shouldnot be set.
+ And it is also not correct to report IS_LINEAR in getmodeinfo when not
+ explicitly requested.
+ (all this happened only for cards which need the LFB explicitly enabled).
+-in restorestate enable linear mode when emulating pages on cards which
+ need it explictly enabled, checking saved_linear is no longer enough,
+ since we no longer set IS_LINEAR in this case unless explicitly requested
+ by the user.
+-320x200x256 is linear because it fits within one page, but it should be
+ accessed through GM not through LINEAR_POINTER. Fix this in: vga.c & vgapix.c.
+-Because of the above we cannot do 320x200x256 when emulating pages,
+ update vga_hasmode for this. 
+
+
+todo:
+-VESA on x86_64 ?!
+
+cleanups:
+-clean up makefiles, use TOPDIR everywhere, set include paths so that
+compilation of utils, gl threeDkit will work without install libvga first
+-check init return value in setchip xxx.
+-This has inspired me to get rid of the unneeded GM pointer in svgalib, GM
+(in drivers sometimes still called __svgalib_graph_mem) always points to
+BANKED_POINTER after a setmode, and no code checks for it not being set
+(which is ok, progs should call setmode before drawingfuncs) so tomorrow I'm
+going through the entire source and replace it all with BANKED_POINTER.
+Which imho is a better name, and makes things less confusing, why have 2
+ptrs for the same thing? 
+-vga_setchipsetandfeatures should do same sanitychecks as vga_setchipset
+-move come from background call to above forbidvtrelease=0
+-add chipset range check to disable_chipset, setchipset
+-get_perm in vga_fork is bullshit, because done already is 1 so it will do
+ nothing! Same goes for  __vga_map;
+-ioperm is not needed when doing iopl, what does iopl(value lower then 3) do?
+-ioperm does nog get inherited by fork, iopl does.
+-vga_set_LRMI_callbacks is done in a zillion places
+-move only do this once readconfig var to readconfig func.
+-move only do this once vars for map_mmio and map_mem to the funcs.
+-__svgalib_flipaway may be made static
+-__svgalib_runinbackground may be made static
+-map_mem may be made static
+-__svgalib_savemem may be removed
+-don't open /dev/mem in drivers instead use mem_fd
+-do we need to make sure fd's 0,1,2, are going somewhere in vga_init,
+ or can this be delayed till open_mem?
+-Remove release_acquire debug stuff
+-properly check mmap, fork execv and other return values.
+-make map_vgaxxxio static
+
+
+strangeness: 
+-inconsistent use of __svgalib_secondary in flip_away vs flip_back
+-vga_flip vs console switches

@@ -1,0 +1,115 @@
+--- svgalib-1.9.25/src/vga.c.defaultcfg	2005-10-25 13:13:56.000000000 +0200
++++ svgalib-1.9.25/src/vga.c	2006-07-17 13:11:20.000000000 +0200
+@@ -3710,7 +3710,9 @@
+         __svgalib_vesatext=1;
+         break;
+ #else
++#ifdef __i386__
+        fprintf(stderr,"svgalib: Warning: VESA support not enabled!\n");
++#endif
+        break;
+ #endif
+     case 57: /* Vesa save bitmap */  
+--- svgalib-1.9.25/src/config/libvga.config.defaultcfg	2005-08-03 15:07:32.000000000 +0200
++++ svgalib-1.9.25/src/config/libvga.config	2006-07-17 13:19:14.000000000 +0200
+@@ -11,7 +11,7 @@
+ 
+ Helper /dev/svga
+ 
+-# NoHelper            # Disable use of the helper-kernelmodule (/dev/svga) and
++NoHelper              # Disable use of the helper-kernelmodule (/dev/svga) and
+                       # fallback to old ioperm/iopl and /dev/mem use.
+ 
+ # If you have two vga cards with the same pci vendor id, svgalib will try
+@@ -43,14 +43,14 @@
+ # mouse MouseMan	# Logitech MouseMan
+ # mouse Spaceball	# Spacetec Spaceball
+ # mouse IntelliMouse	# Microsoft IntelliMouse or Logitech MouseMan+ on serial port
+-# mouse IMPS2		# Microsoft IntelliMouse or Logitech MouseMan+ on PS/2 port
++mouse IMPS2		# Microsoft IntelliMouse or Logitech MouseMan+ on PS/2 port
+ # mouse pnp		# plug'n'pray
+ # mouse WacomGraphire   # Wacom Graphire tablet/mouse
+ # mouse DRMOUSE4DS	# Digital Research double-wheeled mouse
+ # mouse ExplorerPS2	# Microsoft Intellimouse Explorer PS/2
+ # mouse none		# None
+ 
+-mouse unconfigured
++# mouse unconfigured
+ 
+ # (DEBIAN NOTE: the mouse used to default to microsoft, but this was changed
+ #  to fix bug #13458. If your mouse used to work fine, you can simply change
+@@ -129,6 +129,7 @@
+ # want to specify a different device for svgalib to use
+ 
+ # mdev /dev/ttyS0 # mouse is at /dev/ttyS0
++mdev /dev/input/mice
+ 
+ # Some multiprotocol mice will need one of the following:
+ 
+@@ -346,35 +347,35 @@
+ # chipset VGA		# Standard VGA
+ # chipset EGA		# EGA
+ # chipset ET3000	# Tseng ET3000
+-# chipset ET4000	# Tseng ET4000
++# chipset ET4000	# Tseng ET4000 (only available on i386)
+ # chipset Cirrus	# Cirrus Logic GD542x/543x/544x
+-# chipset TVGA		# Trident TVGA8900/9000
++# chipset TVGA		# Trident TVGA8900/9000 (only available on i386)
+ # chipset Oak		# Oak Technologies 037/067/077
+ # chipset S3		# S3 chipsets
+ # chipset GVGA6400	# Genoa 6400
+ # chipset ARK		# ARK Logic
+ # chipset ATI		# old ATI VGA
+-# chipset Mach32	# ATI Mach32
++# chipset Mach32	# ATI Mach32 (only available on i386)
+ # chipset ALI		# ALI2301
+ # chipset Mach64	# ATI Mach64 - deprecated, use RAGE driver
+ # chipset ET6000        # Tseng ET6000
+ # chipset APM	 	# Alliance Technology AT 24/25/3D
+ # chipset NV3		# nVidia Riva 128
+-# chipset VESA          # nicely behaved Vesa Bioses
++# chipset VESA          # nicely behaved Vesa Bioses (only available on i386)
+ # chipset MX		# MX86251 (some Voodoo Rush boards)
+ # chipset PARADISE 	# WD90C31
+ # chipset RAGE		# RagePro (and might work with some older mach64)
+ # chipset BANSHEE	# Banshee/V3.
+ # chipset SIS		# SiS 5597/6326/620/530 cards / integrated vga.
+ # chipset I740		# Intel i740 based cards.
+-# chipset NEOMAGIC
++# chipset NEOMAGIC	# (only available on i386)
+ # chipset LAGUNA	# Cirrus Logic Laguna series (546X)
+ # chipset FBDEV		# Use kernel fbdev, instead of direct hardware.
+ # chipset G400		# Matrox Mystique/G100/G200/G400/G450
+ # chipset R128		# Ati Rage128 and Radeon
+ # chipset SAVAGE	# S3 chipsets Savage, Virge, and some Trio64
+ # chipset MILLENNIUM	# Matrox Millennium and Millennium II
+-# chipset I810		# Intel i810/815 integrated video
++# chipset I810		# Intel i810/815 integrated video (i386 only)
+ # chipset TRIDENT	# Trident PCI and AGP chipsets
+ # chipset RENDITION	# Rendition V2100/V2200
+ # chipset G450C2
+@@ -421,11 +422,11 @@
+ # Clockchip ICD2061A  # The only one supported right now
+ 
+ 
+-# VesaText	      # Helps the VESA driver with text mode restoration
+-		      # problems.
++VesaText	      # Helps the VESA driver with text mode restoration
++		      # problems (i386 only).
+ 
+-# VesaSave 14	      # changing value might help text mode restoring
+-		      # problems with VESA driver. Legal values: 0-15
++# VesaSave 14	      # changing value might help text mode restoring problems
++		      # with VESA driver (i386 only). Legal values: 0-15
+ 
+ # NoVCControl	      # Disables svgalib's finding a new VC if run
+ 		      # from X, also disables svgalib restoring textmode when
+@@ -439,7 +440,7 @@
+                       # me (matan@svgalib.org)
+ 
+ # NeoMagicLibretto100 # Enable if you have a NeoMagic card on a Toshiba
+-                      # Libretto 100, 110, etc
++                      # Libretto 100, 110, etc (i386 only).
+ 
+ # FbdevNoVga          # When this is set the FBDEV chipset drivers doesn't
+ 		      # (try to) use standardvga modes through the vga driver.

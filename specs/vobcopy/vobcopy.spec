@@ -8,9 +8,11 @@ Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://vobcopy.org/projects/c/c.shtml
+
 Source: http://vobcopy.org/download/vobcopy-%{version}.tar.bz2
 Patch0: vobcopy-1.0.1-Makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: libdvdread-devel
 
 %description

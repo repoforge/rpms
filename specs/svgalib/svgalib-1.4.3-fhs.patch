@@ -1,0 +1,151 @@
+--- svgalib-1.4.3/doc/man1/savetextmode.1.debian	2004-07-16 17:36:23.000000000 +0200
++++ svgalib-1.4.3/doc/man1/savetextmode.1	2004-07-16 17:33:02.000000000 +0200
+@@ -10,7 +10,11 @@
+ .SH DESCRIPTION
+ These are simple scripts to save the SVGA register state when in textmode to the
+ files
+-.IR /tmp/fontdata " and " /tmp/textregs
++.IR /etc/vga/fontdata " and " /etc/vga/textregs
++.RI ( $HOME/.vga/fontdata " and " $HOME/.vga/textregs
++if directory
++.I /etc/vga
++is not writeable)
+ or to restore it from these files.
+ 
+ The actual utilities used are
+@@ -40,9 +44,13 @@
+ will understand.
+ 
+ .SH FILES
+-.I /tmp/fontdata
++.I /etc/vga/fontdata
++or
++.I $HOME/.vga/fontdata
+ .br
+-.I /tmp/textregs
++.I /etc/vga/textregs
++or
++.I $HOME/.vga/textregs
+ 
+ .SH SEE ALSO
+ 
+--- svgalib-1.4.3/doc/man1/svgakeymap.1.debian	2004-07-16 17:36:23.000000000 +0200
++++ svgalib-1.4.3/doc/man1/svgakeymap.1	2004-07-16 17:33:02.000000000 +0200
+@@ -9,7 +9,7 @@
+ Generates a keymap conversion file for
+ .BR svgalib (7)
+ from two keytable definitions. Keytables are searched for in
+-.I /usr/lib/kbd/keytables
++.I /lib/kbd/keymaps
+ and are automatically filtered through
+ .BR gzip (1)
+ if necessary.
+@@ -22,7 +22,7 @@
+ or piped in any creative manner you wish.
+ 
+ .SH FILES
+-.I /usr/lib/kbd/keytables/*.map[.gz]
++.I /lib/kbd/keymaps/*/*/*.map[.gz]
+ .RS
+ The system keytable files used by
+ .BR loadkeys "(1)."
+--- svgalib-1.4.3/doc/README.keymap.debian	2004-07-16 17:36:23.000000000 +0200
++++ svgalib-1.4.3/doc/README.keymap	2004-07-16 17:33:02.000000000 +0200
+@@ -83,7 +83,7 @@
+ equivalents in the layout expected by the program.
+ 
+ A program called svgakeymap is provided to generate these maps from the
+-keytable files in /usr/lib/kbd/keytables; you must have perl for it to work.
++keytable files in /lib/kbd/keymaps; you must have perl for it to work.
+ Creating a keymap file with svgakeymap is easy; to make a map to convert
+ scancodes from a US Dvorak keyboard to a US QWERTY keyboard as for our example
+ above:
+--- svgalib-1.4.3/utils/runx.debian	2004-07-16 17:36:24.000000000 +0200
++++ svgalib-1.4.3/utils/runx	2004-07-16 17:33:02.000000000 +0200
+@@ -5,8 +5,8 @@
+ # running X, and 'textmode' after. This will restore the textmode registers
+ # and the VGA palette in addition to the VGA font.
+ 
+-echo Saving font in /tmp/fontdata
+-restorefont -w /tmp/fontdata
++echo Saving font in $HOME/.fontdata
++restorefont -w $HOME/.fontdata
+ startx
+-echo Restoring font from /tmp/fontdata
+-restorefont -r /tmp/fontdata
++echo Restoring font from $HOME/.fontdata
++restorefont -r $HOME/.fontdata
+--- svgalib-1.4.3/utils/savetextmode.debian	2004-07-16 17:36:24.000000000 +0200
++++ svgalib-1.4.3/utils/savetextmode	2004-07-16 17:33:02.000000000 +0200
+@@ -1,4 +1,14 @@
+ #!/bin/sh
+-rm -f /etc/vga/textregs /etc/vga/fontdata
+-restoretextmode -w /etc/vga/textregs
+-restorefont -w /etc/vga/fontdata
++dir=/etc/vga
++if [ ! -w "$dir" ]; then
++  dir="$HOME/.vga"
++  mkdir -p -m 700 "$dir"
++fi
++if [ -f /etc/textregs -o -f /etc/fontdata ]; then
++  echo >&2 "WARNING: the textregs and fontdata files have moved in this"
++  echo >&2 "         release from /etc to /etc/vga; please remove or rename"
++  echo >&2 "         your old versions."
++fi
++rm -f "$dir/textregs" "$dir/fontdata"
++restoretextmode -w "$dir/textregs"
++restorefont -w "$dir/fontdata"
+--- svgalib-1.4.3/utils/svgakeymap.debian	2004-07-16 17:36:24.000000000 +0200
++++ svgalib-1.4.3/utils/svgakeymap	2004-07-16 17:33:02.000000000 +0200
+@@ -7,16 +7,16 @@
+ #   svgakeymap [physical_map [program_map]] > output.keymap
+ #
+ # The conversion map is output to stdout; you may wish to redirect it.
+-# Keymaps are searched for in /usr/lib/kbd/keytables and are automatically
++# Keymaps are searched for in /lib/kbd/keymaps and are automatically
+ # filtered through gzip if necessary.
+ #
+ # Read the file README.keymap from the svgalib distribution for more info.
+ 
+-$ktd = "/usr/lib/kbd/keytables/";
++$ktd = "/lib/kbd/keymaps/";
+ if(scalar(@ARGV) > 0) {
+     $inmap = $ARGV[0];
+ } else {
+-    $inmap = "us";
++    $inmap = "i386/qwerty/us";
+ }
+ if(scalar(@ARGV) > 1) {
+     $outmap = $ARGV[1];
+@@ -34,7 +34,7 @@
+ 
+         unless(-e $bob) {
+             # Tack a .gz on it
+-            $bob .= ".map";
++            $bob .= ".kmap";
+             #print "$bob\n";
+             
+             unless(-e $bob) {
+--- svgalib-1.4.3/utils/textmode.debian	2004-07-16 17:36:24.000000000 +0200
++++ svgalib-1.4.3/utils/textmode	2004-07-16 17:33:02.000000000 +0200
+@@ -1,4 +1,18 @@
+ #!/bin/sh
+-restoretextmode -r /etc/vga/textregs
+-restorefont -r /etc/vga/fontdata
++
++dir=/etc/vga
++[ -w "$dir" ] || dir="$HOME/.vga"
++
++if [ -f "$dir/textregs" -o -f "$dir/fontdata" ]; then
++  restoretextmode -r "$dir/textregs"
++  restorefont -r "$dir/fontdata"
++elif [ -f /etc/textregs -o -f /etc/fontdata ]; then
++  echo >&2 "WARNING: the textregs and fontdata files have moved in this"
++  echo >&2 "         release from /etc to /etc/vga; please remove or rename"
++  echo >&2 "         your old versions."
++  echo "Using old location for data files."
++  restoretextmode -r /etc/textregs
++  restorefont -r /etc/fontdata
++fi
++
+ restorepalette

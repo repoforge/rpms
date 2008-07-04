@@ -1,0 +1,69 @@
+diff -up svgalib-1.9.25/src/lrmi.6.c~ svgalib-1.9.25/src/lrmi.6.c
+--- svgalib-1.9.25/src/lrmi.6.c~	2008-05-31 15:58:26.000000000 +0200
++++ svgalib-1.9.25/src/lrmi.6.c	2008-05-31 15:58:26.000000000 +0200
+@@ -169,6 +169,13 @@ LRMI_free_real(void *m)
+ 		}
+ 	}
+ 
++#ifndef TF_MASK
++#define TF_MASK X86_EFLAGS_TF
++#define IF_MASK X86_EFLAGS_IF
++#define IOPL_MASK X86_EFLAGS_IOPL
++#define VIF_MASK X86_EFLAGS_VIF
++#define VIP_MASK X86_EFLAGS_VIP
++#endif
+ 
+ #define DEFAULT_VM86_FLAGS 	(IF_MASK | IOPL_MASK)
+ #define DEFAULT_STACK_SIZE 	0x1000
+diff -up svgalib-1.9.25/src/lrmi.9.c~ svgalib-1.9.25/src/lrmi.9.c
+--- svgalib-1.9.25/src/lrmi.9.c~	2008-05-31 15:58:25.000000000 +0200
++++ svgalib-1.9.25/src/lrmi.9.c	2008-05-31 15:58:25.000000000 +0200
+@@ -206,6 +206,13 @@ LRMI_free_real(void *m)
+ 
+ 
+ #if defined(__linux__)
++#ifndef TF_MASK
++#define TF_MASK X86_EFLAGS_TF
++#define IF_MASK X86_EFLAGS_IF
++#define IOPL_MASK X86_EFLAGS_IOPL
++#define VIF_MASK X86_EFLAGS_VIF
++#define VIP_MASK X86_EFLAGS_VIP
++#endif
+ #define DEFAULT_VM86_FLAGS 	(IF_MASK | IOPL_MASK)
+ #elif defined(__NetBSD__) || defined(__FreeBSD__) || defined(__OpenBSD__)
+ #define DEFAULT_VM86_FLAGS  (PSL_I | PSL_IOPL)
+diff -up svgalib-1.9.25/lrmi-0.6m/lrmi.c~ svgalib-1.9.25/lrmi-0.6m/lrmi.c
+--- svgalib-1.9.25/lrmi-0.6m/lrmi.c~	2008-05-31 16:10:14.000000000 +0200
++++ svgalib-1.9.25/lrmi-0.6m/lrmi.c	2008-05-31 16:10:14.000000000 +0200
+@@ -170,6 +170,14 @@ LRMI_free_real(void *m)
+ 	}
+ 
+ 
++#ifndef TF_MASK
++#define TF_MASK X86_EFLAGS_TF
++#define IF_MASK X86_EFLAGS_IF
++#define IOPL_MASK X86_EFLAGS_IOPL
++#define VIF_MASK X86_EFLAGS_VIF
++#define VIP_MASK X86_EFLAGS_VIP
++#endif
++
+ #define DEFAULT_VM86_FLAGS 	(IF_MASK | IOPL_MASK)
+ #define DEFAULT_STACK_SIZE 	0x1000
+ #define RETURN_TO_32_INT 	255
+diff -up svgalib-1.9.25/lrmi-0.9/lrmi.c~ svgalib-1.9.25/lrmi-0.9/lrmi.c
+--- svgalib-1.9.25/lrmi-0.9/lrmi.c~	2008-05-31 16:10:28.000000000 +0200
++++ svgalib-1.9.25/lrmi-0.9/lrmi.c	2008-05-31 16:10:28.000000000 +0200
+@@ -203,6 +203,13 @@ LRMI_free_real(void *m)
+ 
+ 
+ #if defined(__linux__)
++#ifndef TF_MASK
++#define TF_MASK X86_EFLAGS_TF
++#define IF_MASK X86_EFLAGS_IF
++#define IOPL_MASK X86_EFLAGS_IOPL
++#define VIF_MASK X86_EFLAGS_VIF
++#define VIP_MASK X86_EFLAGS_VIP
++#endif
+ #define DEFAULT_VM86_FLAGS 	(IF_MASK | IOPL_MASK)
+ #elif defined(__NetBSD__) || defined(__FreeBSD__) || defined(__OpenBSD__)
+ #define DEFAULT_VM86_FLAGS  (PSL_I | PSL_IOPL)

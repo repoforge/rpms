@@ -1,0 +1,431 @@
+--- svgalib-1.9.21/demos/testgl.c.demos	2002-04-03 09:31:14.000000000 +0200
++++ svgalib-1.9.21/demos/testgl.c	2005-07-01 20:51:55.000000000 +0200
+@@ -184,7 +184,7 @@
+ 
+     if (!vga_hasmode(VGAMODE)) {
+ 	printf("Mode not available.\n");
+-	exit(-1);
++	return -1;
+     }
+     VIRTUAL = 0;		/* No virtual screen. */
+     if (vga_getmodeinfo(VGAMODE)->colors == 16 ||
+@@ -224,5 +224,5 @@
+     if (VIRTUAL)
+ 	gl_freecontext(backscreen);
+     vga_setmode(TEXT);
+-    exit(0);
++    return 0;
+ }
+--- svgalib-1.9.21/demos/vgatweak.c.demos	2000-08-06 12:20:02.000000000 +0200
++++ svgalib-1.9.21/demos/vgatweak.c	2005-07-01 20:51:55.000000000 +0200
+@@ -124,7 +124,7 @@
+ 	testmode(mode);
+     else {
+ 	printf("Error: Video mode not supported by driver\n");
+-	exit(-1);
++	return -1;
+     }
+     
+     return 0;
+--- svgalib-1.9.21/demos/linearfork.c.demos	2000-01-06 13:12:36.000000000 +0100
++++ svgalib-1.9.21/demos/linearfork.c	2005-07-01 20:51:55.000000000 +0200
+@@ -82,7 +82,7 @@
+ 
+     if (!vga_hasmode(vgamode)) {
+ 	printf("Mode not available.\n");
+-	exit(1);
++	return 1;
+     }
+     vga_setmode(vgamode);
+     vga_setlinearaddressing();
+@@ -95,7 +95,7 @@
+     /* purposes. */
+     if (keyboard_init()) {
+ 	printf("Could not initialize keyboard.\n");
+-	exit(1);
++	return 1;
+     }
+     /* Translate to 4 keypad cursor keys, and unify enter key. */
+     keyboard_translatekeys(TRANSLATE_CURSORKEYS | TRANSLATE_KEYPADENTER |
+@@ -161,5 +161,5 @@
+     keyboard_close();		/* Don't forget this! */
+ 
+     vga_setmode(TEXT);
+-    exit(0);
++    return 0;
+ }
+--- svgalib-1.9.21/demos/bg_test.c.demos	2000-01-06 13:12:36.000000000 +0100
++++ svgalib-1.9.21/demos/bg_test.c	2005-07-01 20:51:55.000000000 +0200
+@@ -9,6 +9,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <unistd.h>
++#include <string.h>
+ #include <strings.h>
+ #include <vga.h>
+ #include <vgagl.h>
+--- svgalib-1.9.21/demos/accel.c.demos	2002-04-03 09:30:23.000000000 +0200
++++ svgalib-1.9.21/demos/accel.c	2005-07-01 20:51:55.000000000 +0200
+@@ -97,7 +97,7 @@
+ 
+     if (accelfuncs == 0) {
+ 	printf("No acceleration supported.\n");
+-	exit(0);
++	return 1;
+     }
+     printf("Accelflags: 0x%08X\n", accelfuncs);
+ 
+@@ -292,7 +292,7 @@
+ 	    );
+     }
+     vga_setmode(TEXT);
+-    exit(-1);
++    return 0;
+ }
+ 
+ 
+--- svgalib-1.9.21/demos/vgatest.c.demos	2005-01-27 11:34:16.000000000 +0100
++++ svgalib-1.9.21/demos/vgatest.c	2005-07-01 20:51:55.000000000 +0200
+@@ -275,7 +275,7 @@
+ 
+ 	if (mode < 1 || mode > GLASTMODE) {
+ 	    printf("Error: Mode number out of range \n");
+-	    exit(-1);
++	    return -1;
+ 	}
+     }
+     if (vga_hasmode(mode)) {
+@@ -285,7 +285,7 @@
+ 		}
+ 	} else {
+ 		printf("Error: Video mode not supported by driver\n");
+-		exit(-1);
++		return -1;
+     }
+     
+ 	vga_setmode(TEXT);
+--- svgalib-1.9.21/demos/printftest.c.demos	2000-01-06 13:12:36.000000000 +0100
++++ svgalib-1.9.21/demos/printftest.c	2005-07-01 20:51:55.000000000 +0200
+@@ -44,7 +44,7 @@
+ 
+     if (!vga_hasmode(vgamode)) {
+ 	printf("Mode not available.\n");
+-	exit(1);
++	return 1;
+     }
+ 
+     vga_setmode(vgamode);
+@@ -68,5 +68,5 @@
+ 
+     vga_setmode(TEXT);
+ 
+-    exit(retval);
++    return retval;
+ }
+--- svgalib-1.9.21/demos/fun.c.demos	2002-07-20 18:33:54.000000000 +0200
++++ svgalib-1.9.21/demos/fun.c	2005-07-01 20:51:55.000000000 +0200
+@@ -13,6 +13,7 @@
+ #include <unistd.h>
+ #include <string.h>
+ #include <time.h>
++#include <string.h>
+ #include <vga.h>
+ #include <vgagl.h>
+ 
+--- svgalib-1.9.21/demos/bankspeed.c.demos	2002-04-03 09:31:22.000000000 +0200
++++ svgalib-1.9.21/demos/bankspeed.c	2005-07-01 20:51:55.000000000 +0200
+@@ -125,7 +125,7 @@
+ 
+     if (!vga_hasmode(VGAMODE)) {
+ 	printf("Mode not available.\n");
+-	exit(-1);
++	return -1;
+     }
+     VIRTUAL = 0;		/* No virtual screen. */
+     if (vga_getmodeinfo(VGAMODE)->colors == 16 ||
+@@ -165,5 +165,5 @@
+     t2=clock();
+     printf("total:%1.2f sec\n",(1.0*t2-t1)/CLOCKS_PER_SEC); 
+     vga_setmode(TEXT);
+-    exit(0);
++    return 0;
+ }
+--- svgalib-1.9.21/demos/eventtest.c.demos	2000-01-06 13:12:36.000000000 +0100
++++ svgalib-1.9.21/demos/eventtest.c	2005-07-01 20:51:55.000000000 +0200
+@@ -3,6 +3,7 @@
+ #include <stdlib.h>
+ #include <stdio.h>
+ #include <unistd.h>
++#include <time.h>
+ #include <sys/time.h>
+ #include <sys/types.h>
+ #include <vga.h>
+@@ -254,5 +255,5 @@
+     keyboard_close();		/* Don't forget this! */
+ #endif
+     vga_setmode(TEXT);
+-    exit(0);
++    return 0;
+ }
+--- svgalib-1.9.21/demos/svidtune.c.demos	2000-01-06 13:12:36.000000000 +0100
++++ svgalib-1.9.21/demos/svidtune.c	2005-07-01 20:51:55.000000000 +0200
+@@ -48,7 +48,7 @@
+ 
+     if (!vga_hasmode(vgamode)) {
+ 	printf("Mode not available.\n");
+-	exit(1);
++	return 1;
+     }
+ 
+     vga_setmode(vgamode);
+@@ -176,5 +176,5 @@
+ 
+     vga_setmode(TEXT);
+ 
+-    exit(retval);
++    return retval;
+ }
+--- svgalib-1.9.21/demos/keytest.c.demos	2000-01-06 13:12:36.000000000 +0100
++++ svgalib-1.9.21/demos/keytest.c	2005-07-01 20:51:55.000000000 +0200
+@@ -38,7 +38,7 @@
+ 
+     if (!vga_hasmode(vgamode)) {
+ 	printf("Mode not available.\n");
+-	exit(1);
++	return 1;
+     }
+     printf("\nWARNING: This program will set the keyboard to RAW mode.\n"
+ 	   "The keyboard routines in svgalib have not been tested\n"
+@@ -61,7 +61,7 @@
+     /* purposes. */
+     if (keyboard_init()) {
+ 	printf("Could not initialize keyboard.\n");
+-	exit(1);
++	return 1;
+     }
+     /* Translate to 4 keypad cursor keys, and unify enter key. */
+     keyboard_translatekeys(TRANSLATE_CURSORKEYS | TRANSLATE_KEYPADENTER |
+@@ -126,5 +126,5 @@
+ 
+     keyboard_close();		/* Don't forget this! */
+     vga_setmode(TEXT);
+-    exit(0);
++    return 0;
+ }
+--- svgalib-1.9.21/demos/scrolltest.c.demos	2000-01-12 21:03:39.000000000 +0100
++++ svgalib-1.9.21/demos/scrolltest.c	2005-07-01 20:51:55.000000000 +0200
+@@ -304,5 +304,5 @@
+     demo3();
+ 
+     vga_setmode(TEXT);
+-    exit(0);
++    return 0;
+ }
+--- svgalib-1.9.21/demos/forktest.c.demos	2000-01-06 13:12:36.000000000 +0100
++++ svgalib-1.9.21/demos/forktest.c	2005-07-01 20:51:55.000000000 +0200
+@@ -82,7 +82,7 @@
+ 
+     if (!vga_hasmode(vgamode)) {
+ 	printf("Mode not available.\n");
+-	exit(1);
++	return 1;
+     }
+     vga_setmode(vgamode);
+     gl_setcontextvga(vgamode);
+@@ -94,7 +94,7 @@
+     /* purposes. */
+     if (keyboard_init()) {
+ 	printf("Could not initialize keyboard.\n");
+-	exit(1);
++	return 1;
+     }
+     /* Translate to 4 keypad cursor keys, and unify enter key. */
+     keyboard_translatekeys(TRANSLATE_CURSORKEYS | TRANSLATE_KEYPADENTER |
+@@ -160,5 +160,5 @@
+     keyboard_close();		/* Don't forget this! */
+ 
+     vga_setmode(TEXT);
+-    exit(0);
++    return 0;
+ }
+--- svgalib-1.9.21/demos/mjoytest.c.demos	2000-01-06 13:12:36.000000000 +0100
++++ svgalib-1.9.21/demos/mjoytest.c	2005-07-01 20:51:55.000000000 +0200
+@@ -196,7 +196,7 @@
+ 
+     if (!vga_hasmode(vgamode)) {
+ 	printf("Mode not available.\n");
+-	exit(-1);
++	return -1;
+     }
+ 
+     puts("In the demo, press\n"
+@@ -286,6 +286,6 @@
+     printf("Shutting down.\n");
+ 
+     vga_setmode(TEXT);
+-    exit(0);
++    return 0;
+ }
+ 
+--- svgalib-1.9.21/demos/speedtest.c.demos	2000-01-06 13:12:36.000000000 +0100
++++ svgalib-1.9.21/demos/speedtest.c	2005-07-01 20:51:55.000000000 +0200
+@@ -1,4 +1,3 @@
+-
+ #include <unistd.h>
+ #include <stdlib.h>
+ #include <stdio.h>
+@@ -308,5 +307,5 @@
+     speed();
+ 
+     vga_setmode(TEXT);
+-    exit(0);
++    return 0;
+ }
+--- svgalib-1.9.21/demos/linearspeed.c.demos	2003-11-07 10:26:02.000000000 +0100
++++ svgalib-1.9.21/demos/linearspeed.c	2005-07-01 20:51:55.000000000 +0200
+@@ -418,5 +418,5 @@
+     if(!fast)sysmem_speed();
+ 
+     vga_setmode(TEXT);
+-    exit(0);
++    return 0;
+ }
+--- svgalib-1.9.21/demos/testlinear.c.demos	2004-09-16 19:56:12.000000000 +0200
++++ svgalib-1.9.21/demos/testlinear.c	2005-07-01 20:51:55.000000000 +0200
+@@ -11,7 +11,7 @@
+ #include <string.h>
+ #include <vga.h>
+ #include <time.h>
+-#include "../src/libvga.h"
++#include "libvga.h"
+ 
+ 
+ #define USE_LINEAR_ADDRESSING
+@@ -66,7 +66,7 @@
+     if (!(argc == 2 && strcmp(argv[1], "--force") == 0))
+ 	if (!(vga_getmodeinfo(vga_getdefaultmode())->flags & CAPABLE_LINEAR)) {
+ 	    printf("Linear addressing not supported for this chipset.\n");
+-	    exit(1);
++	    return 1;
+ 	}
+     vga_init();
+     vga_setmode(vga_getdefaultmode());
+@@ -75,7 +75,7 @@
+     if (vga_setlinearaddressing() == -1) {
+ 	vga_setmode(TEXT);
+ 	printf("Could not set linear addressing.\n");
+-	exit(-1);
++	return -1;
+     }
+ #endif
+ 
+--- svgalib-1.9.21/demos/Makefile.demos	2004-11-16 08:59:52.000000000 +0100
++++ svgalib-1.9.21/demos/Makefile	2005-07-01 20:59:09.000000000 +0200
+@@ -4,19 +4,15 @@
+ # This file is a part of SVGAlib.
+ #----------------------------------------------------------------------
+ 
+-include ../Makefile.cfg
+-
+-srcdir    = ..
+-VPATH     = $(srcdir)/demos
+-
+ #----------------------------------------------------------------------
+-# Compiler Section (overrides Makefile.cfg)
++# Compiler Section
+ #----------------------------------------------------------------------
+ 
+-CFLAGS = $(WARN) $(OPTIMIZE) -I$(srcdir)/include -I$(srcdir)/gl $(DEBFLAGS)
+-ifeq (a.out, $(TARGET_FORMAT))
+-  CFLAGS += -DSVGA_AOUT
+-endif
++CC      = gcc
++CFLAGS  = -Wall -Wstrict-prototypes
++CFLAGS += -fomit-frame-pointer -O2 -fno-strength-reduce -pipe -g
++LDFLAGS = -s
++LIBS    = -lvgagl -lvga -lm
+ 
+ #----------------------------------------------------------------------
+ # Rules Section
+@@ -25,51 +21,12 @@
+ PROGS    = fun testgl speedtest mousetest vgatest scrolltest testlinear \
+ 	   keytest testaccel accel forktest eventtest spin bg_test printftest \
+ 	   joytest mjoytest bankspeed lineart linearspeed addmodetest \
+-	   svidtune linearfork cursor vgatweak buildcsr
+-
+-# Determine what library (static or shared) we will be linking programs with
+-ifdef INSTALLSHAREDLIB
+-  LIBS = -lvgagl -lvga
+-endif
+-ifndef LIBS
+-  LIBS    = ../staticlib/libvgagl.a ../staticlib/libvga.a -lm
+-  LVGADEP = $(LIBS)
+-endif
++	   svidtune linearfork cursor vgatweak
+ 
+ all:	$(PROGS)
+ 
+-.PHONY: all clean cleanbin dep
+-
+-$(PROGS): $(LVGADEP)
+-
+ .c:
+ 	$(CC) $(CFLAGS) $(LDFLAGS) -o $* $*.c $(LIBS)
+ 
+-rwpage: rwpage.pp
+-	$(PC) -Rintel rwpage.pp
+-
+-testaccel: testaccel.c
+-	$(CC) $(CFLAGS) $(LDFLAGS) -o testaccel testaccel.c $(LIBS) -lm
+-
+-accel: accel.c
+-	$(CC) $(CFLAGS) $(LDFLAGS) -o accel accel.c $(LIBS) -lm
+-
+-linearspeed: linearspeed.c memset.o
+-	$(CC) $(CFLAGS) $(LDFLAGS) -o linearspeed linearspeed.c memset.o $(LIBS)
+-
+-buildcsr: mkcur.o
+-	$(CC) -o buildcsr $(LDFLAGS) mkcur.o -lvgagl -lvga
+-
+-clean:	cleanbin
+-	rm -f .depend *.o *~ *.bak core
+-
+-cleanbin:
+-	rm -f $(PROGS) rwpage
+-
+-#
+-# No dependencies required here.
+-#
+-
+-dep:
+-.depend:
+-
++clean:
++	rm -f $(PROGS)
+--- svgalib-1.9.21/demos/mousetest.c.demos	2000-01-06 13:12:36.000000000 +0100
++++ svgalib-1.9.21/demos/mousetest.c	2005-07-01 20:51:55.000000000 +0200
+@@ -34,7 +34,7 @@
+ 
+     if (!vga_hasmode(vgamode)) {
+ 	printf("Mode not available.\n");
+-	exit(-1);
++	return -1;
+     }
+ #ifndef MANUALLY_SETUP_MOUSE
+     /* Enable automatic mouse setup at mode set. */
+@@ -72,7 +72,7 @@
+     /* To be able to test fake mouse events... */
+     if (keyboard_init()) {
+ 	printf("Could not initialize keyboard.\n");
+-	exit(1);
++	return 1;
+     }
+ 
+     /* Set the range for the wheel */
+@@ -136,5 +136,5 @@
+ #endif
+ 
+     vga_setmode(TEXT);
+-    exit(0);
++    return 0;
+ }
