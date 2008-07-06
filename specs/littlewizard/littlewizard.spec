@@ -4,7 +4,7 @@
 
 Summary: Development environment for children
 Name: littlewizard
-Version: 1.1.5
+Version: 1.2.0
 Release: 1
 License: GPL
 Group: Applications/Education
@@ -53,12 +53,15 @@ you will need to install %{name}-devel.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-%{_bindir}/lw
-%{_bindir}/lwtest
+%{_bindir}/littlewizard
+%{_bindir}/littlewizardtest
 %{_libdir}/liblanguage.so.*
 %{_libdir}/liblw.so.*
 %{_datadir}/pixmaps/littlewizard/
 %{_datadir}/applications/littlewizard.desktop
+%{_datadir}/icons/gnome/*/mimetypes/gnome-mime-application-x-littlewizard.png
+%{_datadir}/icons/gnome/scalable/mimetypes/gnome-mime-application-x-littlewizard.svg
+%{_datadir}/mime/packages/littlewizard.xml
 %{_datadir}/littlewizard/
 %exclude %{_prefix}/doc/littlewizard/
 
@@ -71,6 +74,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sun Jul  6 2008 Dries Verachtert <dries@ulyssis.org> - 1.2.0-1
+- Updated to release 1.2.0.
+
 * Sat Jul 28 2007 Dries Verachtert <dries@ulyssis.org> - 1.1.5-1
 - Updated to release 1.1.5.
 

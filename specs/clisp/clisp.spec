@@ -2,11 +2,11 @@
 # Authority: dries
 
 # the name of the dir in _libdir contains the following (wrong?) version
-%define real_version 2.41.1
+%define real_version 2.46
 
 Summary: ANSI Common Lisp implementation
 Name: clisp
-Version: 2.43
+Version: 2.46
 Release: 1
 License: GPL
 Group: Development/Languages
@@ -60,6 +60,12 @@ cd -
 %{_datadir}/vim/vimfiles/after/syntax/lisp.vim
 
 %changelog
+* Sun Jul  6 2008 Dries Verachtert <dries@ulyssis.org> - 2.46-1
+- Updated to release 2.46.
+
+* Sun Feb  3 2008 Dries Verachtert <dries@ulyssis.org> - 2.44-1
+- Updated to release 2.44.
+
 * Tue Nov 20 2007 Dries Verachtert <dries@ulyssis.org> - 2.43-1
 - Updated to release 2.43.
 
