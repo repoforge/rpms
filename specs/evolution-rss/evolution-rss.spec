@@ -3,7 +3,7 @@
 
 Name:		evolution-rss
 Version:	0.0.8
-Release:	2
+Release:	3
 Summary:	Evolution plugin for rss feed support
 URL:		http://gnome.eu.org/evo/index.php/Evolution_RSS_Reader_Plugin
 Group:		Productivity/Networking/Email/Clients
@@ -15,7 +15,7 @@ Patch1: 	evolution-rss-0.0.8-norss-popup.patch
 Patch2: 	evolution-rss-0.0.8-norss-enabled.patch
 Patch3: 	evolution-rss-0.0.8-xulrunner.patch
 
-Requires:       evolution
+Requires:       evolution, xulrunner
 Requires(pre): 	GConf2
 Requires(post): GConf2
 Requires(preun):GConf2
@@ -31,6 +31,7 @@ BuildRequires: gecko-libs = 1.9
 BuildRequires: gecko-devel = 1.9
 BuildRequires: perl(XML::Parser)
 BuildRequires: libtool
+BuildRequires: xulrunner-devel
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-root
 
@@ -98,6 +99,9 @@ fi
 /etc/gconf/schemas/evolution-rss.schemas
 
 %changelog
+* Mon Jul 07 2008 Heiko Adams <info-2007@fedora-blog.de> - 0.0.8-3
+- rebuild for FF3 final
+
 * Sun Jun 29 2008 Heiko Adams <info-2007@fedora-blog.de> - 0.0.8-2
 - rebuild for el5.2
 
