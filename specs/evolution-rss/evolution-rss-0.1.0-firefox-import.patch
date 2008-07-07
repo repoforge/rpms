@@ -1,0 +1,44 @@
+Index: src/misc.c
+===================================================================
+--- src/misc.c	(.../svn+ssh://lucilanga@svn.gnome.org/svn/evolution-rss/tags/EVOLUTION-RSS_0_1_0/src/misc.c)	(revision 333)
++++ src/misc.c	(.../src/misc.c)	(working copy)
+@@ -65,6 +65,8 @@
+ {
+ 	if (strstr(text, "feed//"))
+ 		text = strextr(text, "feed//");
++	if (strstr(text, "feed:"))
++		text = strextr(text, "feed:");
+ 	if (strstr(text, "feed://"))
+ 		text = strextr(text, "feed://");
+  	if (!strstr (text, "http://") 
+Index: src/network-soup.c
+===================================================================
+--- src/network-soup.c	(.../svn+ssh://lucilanga@svn.gnome.org/svn/evolution-rss/tags/EVOLUTION-RSS_0_1_0/src/network-soup.c)	(revision 333)
++++ src/network-soup.c	(.../src/network-soup.c)	(working copy)
+@@ -488,7 +488,7 @@
+ 
+ 	if (!rf->b_session)
+ 		rf->b_session = soup_sess = 
+-			soup_session_sync_new_with_options(SOUP_SESSION_TIMEOUT, SS_TIMEOUT, NULL);
++			soup_session_sync_new_with_options(SOUP_SESSION_TIMEOUT, SS_TIMEOUT, NULL);		
+ 	else
+ 		soup_sess = rf->b_session;
+ 
+@@ -499,14 +499,14 @@
+             G_CALLBACK (reauthenticate), soup_sess);
+ #endif
+ 
+-	suri = soup_uri_new(url);
+-	if (!suri)
++	req = soup_message_new(SOUP_METHOD_GET, url);
++	if (!req)
+ 	{
+ 		g_set_error(err, NET_ERROR, NET_ERROR_GENERIC,
+ 				soup_status_get_phrase(2));			//invalid url
+ 		goto out;
+ 	}
+-	req = soup_message_new_from_uri(SOUP_METHOD_GET, suri);
++	d(g_print("request ok :%d\n", req->status_code));
+ 	g_signal_connect(G_OBJECT(req), "got-chunk",
+ 			G_CALLBACK(got_chunk_blocking_cb), &info);
+ 	for (; headers; headers = headers->next) {

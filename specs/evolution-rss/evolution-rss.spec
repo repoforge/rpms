@@ -2,18 +2,21 @@
 # Authority: hadams
 
 Name:		evolution-rss
-Version:	0.0.8
-Release:	3
+Version:	0.1.0
+Release:	1
 Summary:	Evolution plugin for rss feed support
 URL:		http://gnome.eu.org/evo/index.php/Evolution_RSS_Reader_Plugin
 Group:		Productivity/Networking/Email/Clients
 License:	GPL
 Source:         hhttp://gnome.eu.org/evolution-rss-%{version}.tar.gz
 
-Patch0: 	evolution-rss-0.0.8-empty-desc.patch
-Patch1: 	evolution-rss-0.0.8-norss-popup.patch
-Patch2: 	evolution-rss-0.0.8-norss-enabled.patch
-Patch3: 	evolution-rss-0.0.8-xulrunner.patch
+#Patch0: 	evolution-rss-0.0.8-empty-desc.patch
+#Patch1: 	evolution-rss-0.0.8-norss-popup.patch
+#Patch2: 	evolution-rss-0.0.8-norss-enabled.patch
+#Patch3: 	evolution-rss-0.0.8-xulrunner.patch
+
+Patch0: 	evolution-rss-0.1.0-firefox-import.patch
+Patch1: 	evolution-rss-0.1.0-centos.patch
 
 Requires:       evolution, xulrunner
 Requires(pre): 	GConf2
@@ -40,10 +43,13 @@ RSS Evolution plugin enables evolution to read rss feeds.
 
 %prep
 %setup -q -n evolution-rss-%{version}
-%patch0 -p1 -b .empty-fix
-%patch1 -p1 -b .norss-popup
-%patch2 -p1 -b .norss-enabled
-%patch3 -p1 -b .xulrunner
+#%patch0 -p1 -b .empty-fix
+#%patch1 -p1 -b .norss-popup
+#%patch2 -p1 -b .norss-enabled
+#%patch3 -p1 -b .xulrunner
+
+%patch0 -b .firefox-import
+%patch1 -b .centos
 
 %build
 autoreconf -i -f
@@ -99,6 +105,10 @@ fi
 /etc/gconf/schemas/evolution-rss.schemas
 
 %changelog
+* Mon Jul 07 2008 Heiko Adams <info-2007@fedora-blog.de> - 0.1.0-1
+- update to 0.1.0
+- added additional patches
+
 * Mon Jul 07 2008 Heiko Adams <info-2007@fedora-blog.de> - 0.0.8-3
 - rebuild for FF3 final
 
