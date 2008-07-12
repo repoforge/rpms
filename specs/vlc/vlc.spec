@@ -10,6 +10,16 @@
 %{!?dtag:%define _with_modxorg 1}
 %{!?dtag:%define _with_avahi 1}
 
+### Firefox 3 xulrunner not supported.
+%{?el5:%undefine _with_mozilla}
+
+### Problems with dirac
+%define _without_dirac 1
+
+%ifarch %{ix86}
+%define _with_loader 1
+%endif
+
 %{?fc7:%define _with_modxorg 1}
 %{?el5:%define _with_modxorg 1}
 %{?fc6:%define _with_modxorg 1}
@@ -21,8 +31,10 @@
 %{?fc5:%define _with_avahi 1}
 
 %{?el5:%define _without_jack 1}
+%{?el5:%define mozilla xulrunner-devel nspr-devel}
 
 %{?el4:%define _without_jack 1}
+%{?el4:%define mozilla seamonkey-devel}
 %{?el4:%define _without_sysfs 1}
 %{?el4:%define _without_upnp 1}
 
@@ -49,6 +61,7 @@
 %{?el3:%define _without_fribidi 1}
 %{?el3:%define _without_hal 1}
 %{?el3:%define _without_jack 1}
+%{?el3:%define mozilla seamonkey-devel}
 %{?el3:%define _without_sysfs 1}
 %{?el3:%define _without_theora 1}
 #{?el3:#define _without_upnp 1}
@@ -84,6 +97,7 @@
 %{?el2:%define _without_glx 1}
 %{?el2:%define _without_hal 1}
 %{?el2:%define _without_jack 1}
+%{?el2:%define mozilla seamonkey-devel}
 %{?el2:%define _without_sysfs 1}
 %{?el2:%define _without_theora 1}
 #{?el2:#define _without_upnp 1}
@@ -96,82 +110,95 @@
 %{?yd3:%define _without_fribidi 1}
 
 %define desktop_vendor rpmforge
-%define ffmpeg_date    20061215
-%define live_date      2006.12.08
+#define ffmpeg_date 20061215
+#define ffmpeg_date 20071121
+#define ffmpeg_date 20080113
+%define ffmpeg_date 20080225
+%define live_date 2006.12.08
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
 Version: 0.8.6h
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
+
 Source0: http://downloads.videolan.org/pub/videolan/vlc/%{version}/vlc-%{version}.tar.bz2
-Source1: http://downloads.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
+#Source1: http://downloads.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
+Source1: http://rpm.greysector.net/livna/ffmpeg-%{ffmpeg_date}.tar.bz2
 Source2: http://www.live555.com/liveMedia/public/live.%{live_date}.tar.gz
 Patch0: vlc-0.8.6-ffmpegX11.patch
 Patch1: vlc-0.8.6-wx28.patch
 #Patch2: vlc-0.8.6a-faad2.patch
+Patch21: vlc-0.8.6e-directfb.patch
+Patch80: vlc-0.8.6e-xulrunner.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc-c++, libpng-devel, libxml2-devel, libtiff-devel
 BuildRequires: libgcrypt-devel, gnutls-devel, libtar-devel
 BuildRequires: libjpeg-devel
 Buildrequires: autoconf, automake, libtool
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%{?_with_avahi:BuildRequires: avahi-devel}
+%{?_with_avahi:BuildRequires: avahi-devel}
+%{?_with_cddax:BuildRequires: cdparanoia-devel}
+%{?_with_glide:BuildRequires: Glide3-devel}
+%{?_with_hal:BuildRequires: hal-devel}
 %{?_with_modxorg:BuildRequires: libGLU-devel, libXt-devel, libXv-devel, libXinerama-devel, libXxf86vm-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
-%{!?_without_dvdread:BuildRequires: libdvdread-devel}
-%{!?_without_dvdnav:BuildRequires: libdvdnav-devel}
-%{!?_without_smb:BuildRequires: samba-common}
+%{?_with_mozilla:BuildRequires: %{mozilla}}
+%{?_with_portaudio:BuildRequires: portaudio-devel}
+%{!?_without_a52:BuildRequires: a52dec-devel}
+%{!?_without_aa:BuildRequires: aalib-devel}
+%{!?_without_alsa:BuildRequires: alsa-lib-devel}
+%{!?_without_amr:BuildRequires: amrnb-devel amrwb-devel}
+%{!?_without_arts:BuildRequires: arts-devel}
+%{!?_without_caca:BuildRequires: libcaca-devel}
+%{!?_without_cddb:BuildRequires: libcddb-devel}
+%{!?_without_cdio:BuildRequires: libcdio-devel}
+%{!?_without_daap:BuildRequires: libopendaap-devel}
+#{!?_without_dc1394:BuildRequires: libdc1394-devel}
+%{!?_without_dca:BuildRequires: libdca-devel}
+%{!?_without_dirac:BuildRequires: dirac-devel >= 0.6.0}
+%{!?_without_directfb:BuildRequires: directfb-devel >= 1.0.0}
 %{!?_without_dvbpsi:BuildRequires: libdvbpsi-devel}
-%{!?_without_ogg:BuildRequires: libogg-devel}
+%{!?_without_dvdnav:BuildRequires: libdvdnav-devel}
+%{!?_without_dvdread:BuildRequires: libdvdread-devel}
+%{!?_without_esd:BuildRequires: esound-devel}
+%{!?_without_faad2:BuildRequires: faad2-devel >= 2.5}
+%{!?_without_ffmpeg:BuildRequires: lame-devel, faac-devel}
+%{!?_without_flac:BuildRequires: flac-devel}
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%{!?_without_fribidi:BuildRequires: fribidi-devel}
+%{!?_without_gnomevfs:BuildRequires: gnome-vfs2-devel}
+#{!?_without_goom:BuildRequires: goom-devel}
+%{!?_without_gsm:BuildRequires: gsm-devel}
+%{!?_without_hal:BuildRequires: hal-devel}
+%{!?_without_id3tag:BuildRequires: libid3tag-devel}
+%{!?_without_jack:BuildRequires: jack-audio-connection-kit-devel}
+%{!?_without_lirc:BuildRequires: lirc-devel}
+%{!?_without_mad:BuildRequires: libmad-devel}
 %{!?_without_mkv:BuildRequires: libebml-devel >= 0.7.6, libmatroska-devel}
 %{!?_without_modplug:BuildRequires: libmodplug-devel}
-%{!?_without_mad:BuildRequires: libmad-devel}
-%{!?_without_id3tag:BuildRequires: libid3tag-devel}
-%{!?_without_ffmpeg:BuildRequires: lame-devel, faac-devel}
-%{!?_without_faad2:BuildRequires: faad2-devel >= 2.5}
-%{!?_without_a52:BuildRequires: a52dec-devel}
-%{!?_without_flac:BuildRequires: flac-devel}
-%{!?_without_mpeg2dec:BuildRequires: mpeg2dec-devel}
-%{!?_without_vorbis:BuildRequires: libvorbis-devel}
-%{!?_without_speex:BuildRequires: speex-devel}
-%{!?_without_theora:BuildRequires: libtheora-devel}
-%{!?_without_x264:BuildRequires: x264-devel}
-%{!?_without_sdl:BuildRequires: SDL-devel, SDL_image-devel}
-%{!?_without_fribidi:BuildRequires: fribidi-devel}
-%{!?_without_aa:BuildRequires: aalib-devel}
-%{!?_without_caca:BuildRequires: libcaca-devel}
-%{!?_without_esd:BuildRequires: esound-devel}
-%{?_with_portaudio:BuildRequires: portaudio-devel}
-%{!?_without_arts:BuildRequires: arts-devel}
-%{!?_without_alsa:BuildRequires: alsa-lib-devel}
-%{!?_without_wxwidgets:BuildRequires: wxGTK-devel}
-%{!?_without_xosd:BuildRequires: xosd-devel}
-%{!?_without_lirc:BuildRequires: lirc-devel}
-%{?_with_mozilla:BuildRequires: mozilla-devel}
-%{?_with_ncurses:BuildRequires: ncurses-devel}
-%{?_with_glide:BuildRequires: Glide3-devel}
-%{!?_without_cdio:BuildRequires: libcdio-devel}
-# Added in 0.8.4
-%{!?_without_gnomevfs:BuildRequires: gnome-vfs2-devel}
-%{?_with_hal:BuildRequires: hal-devel}
-%{!?_without_vcd:BuildRequires: vcdimager-devel}
-%{?_with_avahi:BuildRequires: avahi-devel}
-%{!?_without_daap:BuildRequires: libopendaap-devel}
-%{!?_without_upnp:BuildRequires: libupnp-devel}
-%{?_with_avahi:BuildRequires: avahi-devel}
-# Added in 0.8.5
-%{!?_without_hal:BuildRequires: hal-devel}
 %{!?_without_mpcdec:BuildRequires: libmpcdec-devel}
-%{!?_without_cddb:BuildRequires: libcddb-devel}
-%{!?_without_dca:BuildRequires: libdca-devel}
-# Add in 0.8.6
-%{!?_without_upnp:BuildRequires: libupnp-devel}
-#{!?_without_goom:BuildRequires: goom-devel}
-%{!?_without_jack:BuildRequires: jack-audio-connection-kit-devel}
+%{!?_without_mpeg2dec:BuildRequires: mpeg2dec-devel}
+%{!?_without_ncurses:BuildRequires: ncurses-devel}
+%{!?_without_ogg:BuildRequires: libogg-devel}
+%{!?_without_sdl:BuildRequires: SDL-devel, SDL_image-devel}
+%{!?_without_shout:BuildRequires: libshout-devel >= 2.2.2}
+%{!?_without_smb:BuildRequires: samba-common}
+%{!?_without_speex:BuildRequires: speex-devel}
+%{!?_without_svgalib:BuildRequires: svgalib-devel}
 %{!?_without_sysfs:BuildRequires: libsysfs-devel}
-#{!?_without_dc1394:BuildRequires: libdc1394-devel}
+%{!?_without_theora:BuildRequires: libtheora-devel}
+%{!?_without_twolame:BuildRequires: twolame-devel}
+%{!?_without_upnp:BuildRequires: libupnp-devel}
+%{!?_without_upnp:BuildRequires: libupnp-devel}
+%{!?_without_vcd:BuildRequires: vcdimager-devel}
+%{!?_without_vorbis:BuildRequires: libvorbis-devel}
+%{!?_without_wxwidgets:BuildRequires: wxGTK-devel}
+%{!?_without_x264:BuildRequires: x264-devel}
+%{!?_without_xosd:BuildRequires: xosd-devel}
 Obsoletes: videolan-client < 0.8.5-4
 Provides: videolan-client = %{version}-%{release}
 
@@ -188,7 +215,7 @@ Available rpmbuild rebuild options :
           gnomevfs vcd daap upnp pvr live
 
 Options that would need not yet existing add-on packages :
---with tremor tarkin svgalib ggi
+--with loader ggi tarkin tremor
 
 
 %package devel
@@ -204,6 +231,20 @@ well as DVDs, VCDs, and various streaming protocols.
 Install this package if you need to build Videolan Client plugins or intend
 to link statically to it.
 
+%package -n mozilla-vlc
+Summary: VLC Media Player plugin for Mozilla compatible web browsers
+Group: Applications/Multimedia
+Requires: %{name} = %{version}-%{release}
+
+%description -n mozilla-vlc
+This package contains a VLC Media Player plugin for Mozilla compatible
+web browsers.
+
+VLC (initially VideoLAN Client) is a highly portable multimedia player
+for various audio and video formats (MPEG-1, MPEG-2, MPEG-4, DivX,
+mp3, ogg, ...) as well as DVDs, VCDs, and various streaming protocols.
+It can also be used as a server to stream in unicast or multicast in
+IPv4 or IPv6 on a high-bandwidth network.
 
 %prep
 %setup -a 1 -a 2
@@ -214,10 +255,14 @@ to link statically to it.
 #patch2 -p1 -b .faad2
 %{__perl} -pi -e 's|\bfaacDec\B|NeAACDec|g' modules/codec/faad.c
 
+%patch21 -p1 -b .directfb
+%patch80 -p1 -b .libxul
 
-# Fix PLUGIN_PATH path for lib64
+### Fix PLUGIN_PATH path for lib64
 %{__perl} -pi -e 's|/lib/vlc|/%{_lib}/vlc|g' vlc-config.in.in configure*
 
+### Fix ffmpeg to find libgsm
+%{__perl} -pi -e 's|\bgsm.h|gsm/gsm.h|g' ffmpeg-%{ffmpeg_date}/configure ffmpeg-%{ffmpeg_date}/libavcodec/libgsm.c
 
 %build
 export CFLAGS="%{optflags}"
@@ -226,12 +271,37 @@ export CFLAGS="%{optflags}"
 %if 0%{!?_without_ffmpeg:1}
 pushd ffmpeg-%{ffmpeg_date}
     ./configure \
-        --enable-mp3lame \
-        --enable-faac \
+        --extra-cflags="-fPIC -DPIC" \
+        --disable-ffmpeg \
+        --disable-ffplay \
+        --disable-ffserver \
+        --disable-optimizations \
+        --disable-protocols \
+        --disable-strip \
+        --disable-vhook \
+%{!?_without_a52:--enable-liba52} \
+%{!?_without_amr:--enable-libamr-nb --enable-libamr-wb} \
+        --enable-gpl \
+        --enable-libmp3lame \
+%{!?_without_gsm:--enable-libgsm} \
+       --enable-libfaac \
+%{!?_without_theora:--enable-libtheora} \
+%{!?_without_vorbis:--enable-libvorbis} \
+%{!?_without_x246:--enable-libx264} \
+        --enable-libxvid \
+        --enable-nonfree \
         --enable-pp \
-        --enable-gpl
+        --enable-pthreads \
+        --enable-static
+#        --enable-shared
+#        --enable-libdc1394 \
+#        --enable-libfaad \
     %{__make} %{?_smp_mflags}
 popd
+
+for pkgconfig in theora vorbis vorbisenc ogg ;do
+    %{__ln_s} -f %{_libdir}/pkgconfig/$pkgconfig.pc
+done
 %endif
 
 # Then bundled live555
@@ -252,81 +322,103 @@ export CFLAGS="%{optflags} -maltivec -mabi=altivec"
 ### Workaround to make -lX11 work on 64bit
 export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %configure \
+    --disable-dependency-tracking \
+    --disable-rpath \
     --disable-static \
+    --with-PIC \
     --enable-release \
-    %{!?_without_dvdread:--enable-dvdread} \
-    %{?_without_dvdnav:--disable-dvdnav} \
-    %{?_without_smb:--disable-smb} \
-    %{!?_without_dvbpsi:--enable-dvbpsi} \
-    %{!?_without_v4l:--enable-v4l} \
-    %{!?_without_pvr:--enable-pvr} \
-    %{?_without_cdio--disable-libcdio} \
-    %{?_without_ogg:--disable-ogg} \
-    %{?_without_mkv:--disable-mkv} \
-    %{?_without_modplug:--disable-mod} \
-    %{?_without_mad:--disable-mad} \
-    %{!?_without_ffmpeg:--enable-ffmpeg} \
-    %{!?_without_ffmpeg:--with-ffmpeg-mp3lame --with-ffmpeg-faac} \
-    %{!?_without_ffmpeg:--with-ffmpeg-tree=ffmpeg-%{ffmpeg_date}} \
-    %{!?_without_faad2:--enable-faad} \
-    %{?_without_a52:--disable-a52} \
-    %{!?_without_flac:--enable-flac} \
-    %{?_without_mpeg2dec:--disable-libmpeg2} \
-    %{?_without_vorbis:--disable-vorbis} \
-    %{?_without_speex:--disable-speex} \
-    %{!?_without_theora:--enable-theora} \
-    %{?_without_x264:--disable-x264} \
-    %{?_without_sdl:--disable-sdl} \
-    %{?_without_fribidi:--disable-fribidi} \
-    %{!?_without_aa:--enable-aa} \
-    %{!?_without_caca:--enable-caca} \
-    %{!?_without_esd:--enable-esd} \
-    %{?_with_portaudio:--enable-portaudio} \
-    %{!?_without_arts:--enable-arts} \
-    %{!?_without_alsa:--enable-alsa} \
-    %{?_without_wxwidgets:--disable-wxwidgets --disable-skins2} \
-    %{!?_without_xosd:--enable-xosd} \
-    %{!?_without_lirc:--enable-lirc} \
-    %{?_with_mozilla:--enable-mozilla} \
-    %{?_with_tremor:--enable-tremor} \
-    %{?_with_tarkin:--enable-tarkin} \
-    %{?_without_glx:--disable-glx} \
-    %{?_with_mga:--enable-mga} \
-    %{?_with_svgalib:--enable-svgalib} \
-    %{?_with_ggi:--enable-ggi} \
-    %{?_with_glide:--enable-glide} \
-    %{?_with_ncurses:--enable-ncurses} \
-    %{?_without_slp:--disable-slp} \
-    %{?_with_pth:--enable-pth} \
-    %{!?_without_upnp:--enable-upnp} \
-    %{!?_without_live:--enable-live555 --with-live555-tree="`pwd`/live"} \
-    %{!?_without_jack:--enable-jack}
-    #{!?_without_dc1394:--enable-dc1394}
-    #{!?_without_goom:--enable-goom} \
+%{?_without_a52:--disable-a52} \
+%{!?_without_aa:--enable-aa} \
+%{!?_without_alsa:--enable-alsa} \
+%{!?_without_arts:--enable-arts} \
+%{!?_without_caca:--enable-caca} \
+%{?_with_cddax:--enable-cddax} \
+%{?_without_cdio--disable-libcdio} \
+%{!?_without_dirac:--enable-dirac} \
+%{!?_without_directfb:--enable-directfb} \
+%{!?_without_directfb:--with-directfb="%{_includedir}"} \
+%{!?_without_dvbpsi:--enable-dvbpsi} \
+%{?_without_dvdnav:--disable-dvdnav} \
+%{!?_without_dvdread:--enable-dvdread} \
+%{!?_without_esd:--enable-esd} \
+%{!?_without_faad2:--enable-faad} \
+    --enable-fbosd \
+%{!?_without_flac:--enable-flac} \
+%{!?_without_ffmpeg:--enable-ffmpeg} \
+%{!?_without_ffmpeg:--with-ffmpeg-tree="ffmpeg-%{ffmpeg_date}"} \
+%{!?_without_ffmpeg:--with-ffmpeg-a52 --with-ffmpeg-faac --with-ffmpeg-mp3lame} \
+%{!?_without_ffmpeg:--enable-libamr-nb --enable-libamr-wb --with-ffmpeg-ogg} \
+%{!?_without_ffmpeg:--with-ffmpeg-theora --with-ffmpeg-vorbis --with--ffmpeg-zlib} \
+%{?_without_fribidi:--disable-fribidi} \
+    --enable-galaktos \
+%{?_with_ggi:--enable-ggi} \
+%{?_with_glide:--enable-glide} \
+%{?_without_glx:--disable-glx} \
+%{!?_without_gnomevfs:--enable-gnomevfs} \
+%{!?_without_jack:--enable-jack} \
+%{!?_without_lirc:--enable-lirc} \
+%{!?_without_live:--enable-live555 --with-live555-tree="$(pwd)/live"} \
+%{?_with_loader:--enable-loader} \
+%{?_without_mad:--disable-mad} \
+%{?_with_mga:--enable-mga} \
+%{?_without_mkv:--disable-mkv} \
+%{?_without_modplug:--disable-mod} \
+%{?_with_mozilla:--enable-mozilla} \
+%{?_without_mpeg2dec:--disable-libmpeg2} \
+    --enable-musicbrainz \
+%{!?_without_ncurses:--enable-ncurses} \
+%{?_without_ogg:--disable-ogg} \
+    --enable-opencv \
+%{?_with_portaudio:--enable-portaudio} \
+%{?_with_pth:--enable-pth} \
+    --enable-pulse \
+%{!?_without_pvr:--enable-pvr} \
+    --enable-real \
+    --enable-realrtsp \
+%{?_without_sdl:--disable-sdl} \
+%{!?_without_shout:--enable-shout} \
+%{?_without_slp:--disable-slp} \
+%{?_without_smb:--disable-smb} \
+    --enable-snapshot \
+%{?_without_speex:--disable-speex} \
+    --enable-svg \
+%{!?_without_svgalib:--enable-svgalib} \
+    --enable-switcher \
+%{?_with_tarkin:--enable-tarkin} \
+%{!?_without_theora:--enable-theora} \
+%{?_with_tremor:--enable-tremor} \
+%{!?_without_twolame:--enable-twolame} \
+%{!?_without_upnp:--enable-upnp} \
+%{!?_without_v4l:--enable-v4l} \
+%{?_without_vorbis:--disable-vorbis} \
+%{?_without_wxwidgets:--disable-wxwidgets --disable-skins2} \
+%{?_without_x264:--disable-x264} \
+%{!?_without_xosd:--enable-xosd} \
+    --enable-xvmc
+#{!?_without_dc1394:--enable-dc1394} \
+#{!?_without_goom:--enable-goom} \
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot} _docs
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 # Include the docs below, our way
 %{__mv} %{buildroot}%{_docdir}/vlc _docs
 # So that the icon gets themable (still required in 0.8.6)
 %{__mkdir_p} %{buildroot}%{_datadir}/pixmaps
-%{__cp} -ap %{buildroot}%{_datadir}/vlc/vlc48x48.png \
-    %{buildroot}%{_datadir}/pixmaps/vlc.png
-
+%{__cp} -ap %{buildroot}%{_datadir}/vlc/vlc48x48.png %{buildroot}%{_datadir}/pixmaps/vlc.png
 
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog MAINTAINERS README THANKS
 %doc _docs/*
-%{_bindir}/*vlc
+%{_bindir}/svlc
+%{_bindir}/vlc
+%{_bindir}/wxvlc
 %{_libdir}/vlc/
 #exclude %{_libdir}/vlc/*.a
 %{_datadir}/applications/vlc.desktop
@@ -340,8 +432,17 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %{_includedir}/vlc/
 %exclude %{_libdir}/libvlc.a
 
+%if %{?_with_mozilla:1}0
+%files -n mozilla-vlc
+%defattr(-, root, root, 0755)
+%{_libdir}/mozilla/plugins/libvlcplugin.so
+%endif
 
 %changelog
+* Thu Jul 03 2008 Dag Wieers <dag@wieers.com> - 0.8.6h-2
+- Recompiled statically against ffmpeg-20080113.
+- Rebuild against directfb-1.0.1.
+
 * Sun Jun 08 2008 Dag Wieers <dag@wieers.com> - 0.8.6h-1
 - Updated to release 0.8.6h.
 

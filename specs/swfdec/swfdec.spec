@@ -5,30 +5,31 @@
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{!?dtag: %define _without_gstreamer 1}
-%{?el5:   %define _without_gstreamer 1}
-%{?fc6:   %define _without_gstreamer 1}
-%{?fc5:   %define _without_gstreamer 1}
+%{?el5: %define _without_gstreamer 1}
+%{?fc6: %define _without_gstreamer 1}
+%{?fc5: %define _without_gstreamer 1}
+
 %{!?dtag: %define _with_modxorg 1}
-%{?el5:   %define _with_modxorg 1}
-%{?fc6:   %define _with_modxorg 1}
-%{?fc5:   %define _with_modxorg 1}
+%{?el5: %define _with_modxorg 1}
+%{?fc6: %define _with_modxorg 1}
+%{?fc5: %define _with_modxorg 1}
 %{!?dtag: %define gimp_plugin 1}
-%{?el5:   %define gimp_plugin 1}
-%{?fc6:   %define gimp_plugin 1}
-%{?fc5:   %define gimp_plugin 1}
-%{?fc4:   %define gimp_plugin 1}
-%{?el4:   %define gimp_plugin 1}
-%{?fc3:   %define gimp_plugin 1}
-%{?fc2:   %define gimp_plugin 1}
-%{?yd4:   %define gimp_plugin 1}
+%{?el5: %define gimp_plugin 1}
+%{?fc6: %define gimp_plugin 1}
+%{?fc5: %define gimp_plugin 1}
+%{?fc4: %define gimp_plugin 1}
+%{?el4: %define gimp_plugin 1}
+%{?fc3: %define gimp_plugin 1}
+%{?fc2: %define gimp_plugin 1}
+%{?yd4: %define gimp_plugin 1}
 
 %{!?dtag: %define _without_mozilla 1}
-%{?fc6:   %define _without_mozilla 1}
-%{?fc5:   %define _without_mozilla 1}
-%{?fc1:   %define _without_mozilla 1}
+%{?fc6: %define _without_mozilla 1}
+%{?fc5: %define _without_mozilla 1}
+%{?fc1: %define _without_mozilla 1}
 
 ### Can't figure out why only EL5 produces swfdec-mozilla-player
-%{?el5:%define _with_mozilla_player 1}
+%{?el5: %define _with_mozilla_player 1}
 
 %define mozilla seamonkey
 %{!?dtag:%define mozilla firefox}
@@ -45,7 +46,7 @@
 Summary: Flash animations rendering library
 Name: swfdec
 Version: 0.3.6
-Release: 2
+Release: 3
 License: LGPL
 Group: System Environment/Libraries
 URL: http://swfdec.freedesktop.org/wiki/
@@ -153,6 +154,9 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 
 %changelog
+* Sat Jul 05 2008 Dag Wieers <dag@wieers.com> - 0.3.6-3
+- Rebuild against directfb-1.0.1.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.3.6-2
 - Release bump to drop the disttag number in FC5 build.
 

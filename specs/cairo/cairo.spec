@@ -8,10 +8,10 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 
 %{!?dtag:%define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?fc7: %define _with_modxorg 1}
+%{?el5: %define _with_modxorg 1}
+%{?fc6: %define _with_modxorg 1}
+%{?fc5: %define _with_modxorg 1}
 
 %{?rh9:%define _without_directfb 1}
 %{?rh7:%define _without_directfb 1}
@@ -25,7 +25,7 @@
 Summary: Anti-aliased vector-based rendering for X
 Name: cairo
 Version: 1.2.4
-Release: 1
+Release: 2
 License: MIT
 Group: System Environment/Libraries
 URL: http://cairo.freedesktop.org/
@@ -68,6 +68,7 @@ you will need to install %{name}-devel.
 %{?_without_pkgconfig:export png_REQUIRES=" "}
 
 %configure \
+    --disable-static \
 %{!?_without_directfb:--enable-directfb}
 %{__make} %{?_smp_mflags}
 
@@ -90,13 +91,18 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %doc %{_datadir}/gtk-doc/html/cairo/
 %{_includedir}/cairo/
-%{_libdir}/libcairo.a
-%exclude %{_libdir}/libcairo.la
 %{_libdir}/libcairo.so
 %{_libdir}/pkgconfig/cairo.pc
 %{_libdir}/pkgconfig/cairo-*.pc
+%exclude %{_libdir}/libcairo.la
 
 %changelog
+* Fri Jul 04 2008 Dag Wieers <dag@wieers.com> - 1.2.4-2
+- Rebuild against directfb-1.0.1.
+
+* Sun Mar 25 2007 Dag Wieers <dag@wieers.com> - 1.2.4-1
+- Updated to release 1.2.4
+
 * Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 0.2.0-1
 - Updated to release 0.2.0.
 

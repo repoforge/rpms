@@ -5,7 +5,7 @@
 Summary: Tunnels tcp/ip connections over http
 Name: httptunnel
 Version: 3.0.5
-Release: 1.2
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.nocrew.org/software/httptunnel.html
@@ -29,7 +29,7 @@ say, telnet or PPP to connect to a computer outside the firewall.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -37,9 +37,14 @@ say, telnet or PPP to connect to a computer outside the firewall.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog DISCLAIMER FAQ HACKING NEWS README TODO
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/htc.1*
+%doc %{_mandir}/man1/hts.1*
+%{_bindir}/htc
+%{_bindir}/hts
 
 %changelog
+* Mon Jul 07 2008 Dag Wieers <dag@wieers.com> - 3.0.5-2
+- Updated to release 3.0.5.
+
 * Sun Mar 28 2004 Dag Wieers <dag@wieers.com> - 3.0.5-1
 - Initial package. (using DAR)

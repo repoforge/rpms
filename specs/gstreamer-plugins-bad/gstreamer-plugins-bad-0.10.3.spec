@@ -13,7 +13,7 @@
 Summary: GStreamer streaming media framework "bad" plug-ins
 Name: gstreamer-plugins-bad
 Version: 0.10.3
-Release: 6
+Release: 7
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
@@ -32,7 +32,7 @@ BuildRequires: PyXML
 Buildrequires: libXt-devel
 
 BuildRequires: liboil-devel
-BuildRequires: directfb-devel
+BuildRequires: directfb-devel >= 1.0.1
 BuildRequires: libdca-devel
 BuildRequires: faac-devel
 BuildRequires: faad2-devel
@@ -120,6 +120,9 @@ well enough, or the code is not of good enough quality.
 %exclude %{_libdir}/gstreamer-%{majorminor}/*.la
 
 %changelog
+* Wed Jul 09 2008 Dag Wieers <dag@wieers.com> - 0.10.3-7
+- Rebuild against directfb-1.0.1.
+
 * Mon Dec 17 2007 Dag Wieers <dag@wieers.com> - 0.10.3-6
 - Rebuild against libmpcdec 1.2.6.
 

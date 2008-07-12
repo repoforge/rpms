@@ -60,7 +60,7 @@
 Summary: Core library of the xine multimedia player
 Name: xine-lib
 Version: 1.1.13
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -180,11 +180,11 @@ export SDL_CFLAGS="$(sdl-config --cflags)" SDL_LIBS="$(sdl-config --libs)"
 # Remove all those unused docs
 %{__rm} -rf %{buildroot}%{_docdir}/xine/ || :
 
-%clean
-%{__rm} -rf %{buildroot}
-
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files -f %{libname}.lang
 %defattr(-, root, root, 0755)
@@ -212,6 +212,9 @@ export SDL_CFLAGS="$(sdl-config --cflags)" SDL_LIBS="$(sdl-config --libs)"
 %exclude %{_libdir}/libxine.la
 
 %changelog
+* Fri Jul 04 2008 Dag Wieers <dag@wieers.com> - 1.1.13-2
+- Rebuild against directfb-1.0.1.
+
 * Mon Jun 16 2008 Dag Wieers <dag@wieers.com> - 1.1.13-1
 - Updated to release 1.1.13.
 

@@ -4,12 +4,21 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?el5:%define _with_sysfs 1}
 
+%{?dtag: %{expand: %%define %dtag 1}}
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+
 %define real_name DirectFB
-%define real_version 0.9.25
+%define real_version 1.0-0
 
 Summary: Hardware graphics acceleration library
 Name: directfb
-Version: 0.9.25.1
+Version: 1.0.1
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -48,24 +57,28 @@ you will need to install %{name}-devel.
 
 %prep
 %setup -n %{real_name}-%{version}
-%patch0 -p1 -b .types
-%patch1 -p1 -b .linux-compiler
+#patch0 -p1 -b .types
+#patch1 -p1 -b .linux-compiler
 %patch2 -p1 -b .ppc
 %patch3 -p1 -b .sysfs
 
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure
+
 %build
 %configure \
-	--disable-dependency-tracking \
-	--disable-fast-install \
-	--disable-maintainer-mode \
+%{!?_without_modxorg:--x-libraries="%{_libdir}"} \
+%{?_without_modxorg:--x-libraries="%{_prefix}/X11R6/%{_lib}"} \
+    --disable-dependency-tracking \
+    --disable-fast-install \
+    --disable-maintainer-mode \
 %ifarch x86_64
-	--disable-mmx \
+    --disable-mmx \
 %endif
-	--enable-fbdev \
-	--enable-linux-input \
-	--enable-static \
-	--enable-video4linux2 \
-	--enable-zlib
+    --disable-static \
+    --enable-fbdev \
+    --enable-linux-input \
+    --enable-video4linux2 \
+    --enable-zlib
 %{__make} %{?_smp_mflags}
 
 %install
@@ -75,11 +88,11 @@ you will need to install %{name}-devel.
 ### Clean up the docs
 %{__rm} -f docs/html/Makefile*
 
-%clean
-%{__rm} -rf %{buildroot}
-
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
@@ -94,12 +107,12 @@ you will need to install %{name}-devel.
 %{_bindir}/dfbpenmount
 %{_bindir}/dfbscreen
 %{_bindir}/dfbsummon
-%{_datadir}/directfb-%{real_version}/
+%{_bindir}/mkdfiff
+%{_bindir}/mkdgiff
+%{_datadir}/directfb-%{version}/
 %dir %{_libdir}/directfb-%{real_version}/
 %dir %{_libdir}/directfb-%{real_version}/*/
 %dir %{_libdir}/directfb-%{real_version}/*/*/
-%{_libdir}/directfb-%{real_version}/*/*.o
-%{_libdir}/directfb-%{real_version}/*/*/*.o
 %{_libdir}/directfb-%{real_version}/*/*.so
 %{_libdir}/directfb-%{real_version}/*/*/*.so
 %{_libdir}/libdirect-*.so.*
@@ -114,19 +127,6 @@ you will need to install %{name}-devel.
 %{_bindir}/directfb-csource
 %{_includedir}/directfb/
 %{_includedir}/directfb-internal/
-%dir %{_libdir}/directfb-%{real_version}/
-%dir %{_libdir}/directfb-%{real_version}/*/
-%dir %{_libdir}/directfb-%{real_version}/*/*/
-%{_libdir}/directfb-%{real_version}/*/*.a
-%{_libdir}/directfb-%{real_version}/*/*/*.a
-%exclude %{_libdir}/directfb-%{real_version}/*/*.la
-%exclude %{_libdir}/directfb-%{real_version}/*/*/*.la
-%{_libdir}/libdirectfb.a
-%{_libdir}/libdirect.a
-%{_libdir}/libfusion.a
-%exclude %{_libdir}/libdirectfb.la
-%exclude %{_libdir}/libdirect.la
-%exclude %{_libdir}/libfusion.la
 %{_libdir}/libdirectfb.so
 %{_libdir}/libdirect.so
 %{_libdir}/libfusion.so
@@ -134,8 +134,16 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/directfb.pc
 %{_libdir}/pkgconfig/directfb-internal.pc
 %{_libdir}/pkgconfig/fusion.pc
+%exclude %{_libdir}/directfb-%{real_version}/*/*.la
+%exclude %{_libdir}/directfb-%{real_version}/*/*/*.la
+%exclude %{_libdir}/libdirectfb.la
+%exclude %{_libdir}/libdirect.la
+%exclude %{_libdir}/libfusion.la
 
 %changelog
+* Fri Jul 04 2008 Dag Wieers <dag@wieers.com> - 1.0.1-1
+- Updated to release 1.0.1.
+
 * Sun Mar 25 2007 Dag Wieers <dag@wieers.com> - 0.9.25.1-1
 - Updated to release 0.9.25.1.
 

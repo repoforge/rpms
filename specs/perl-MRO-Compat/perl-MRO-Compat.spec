@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Brandon L. Black, <blblack@gmail.com>
+# Upstream: Brandon L. Black <blblack$gmail,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: mro::* interface compatibility for Perls < 5.9.5
 Name: perl-MRO-Compat
-Version: 0.05
+Version: 0.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,5 +53,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MRO/Compat.pm
 
 %changelog
+* Tue Jul 01 2008 Dag Wieers <dag@wieers.com> - 0.09-1
+- Updated to release 0.09.
+
 * Sun Dec 30 2007 Dag Wieers <dag@wieers.com> - 0.05-1
 - Initial package. (using DAR)

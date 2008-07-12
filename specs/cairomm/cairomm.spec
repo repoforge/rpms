@@ -4,7 +4,7 @@
 Summary: Cairomm is the C++ API for the cairo graphics library
 Name: cairomm
 Version: 1.2.4
-Release: 1
+Release: 2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.cairographics.org/
@@ -13,6 +13,7 @@ Source: http://www.cairographics.org/releases/cairomm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: cairo-devel >= 1.2.0, pkgconfig
+BuildRequires: directfb-devel
 
 %description
 Cairomm is the C++ API for the cairo graphics library. It offers all the power
@@ -35,8 +36,8 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-	--enable-docs="no" \
-	--enable-static="no"
+    --enable-docs="no" \
+    --enable-static="no"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -63,5 +64,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libcairomm-1.0.la
 
 %changelog
+* Sat Jul 05 2008 Dag Wieers <dag@wieers.com> - 1.2.4-2
+- Rebuild against directfb-1.0.1.
+
 * Thu May 24 2007 Dag Wieers <dag@wieers.com> - 1.2.4-1
 - Initial package. (using DAR)

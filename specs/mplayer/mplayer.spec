@@ -81,7 +81,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.38%{?rcver:.%{rcver}}%{?date:.%{date}}try2
+Release: 0.39%{?rcver:.%{rcver}}%{?date:.%{date}}try2
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -117,6 +117,7 @@ BuildRequires: SDL-devel, ImageMagick
 %{?_with_dvdread:BuildRequires: libdvdread-devel}
 %{!?_without_dv:BuildRequires: libdv-devel}
 %{!?_without_ladspa:BuildRequires: ladspa-devel}
+%{!?_without_directfb:BuildRequires: directfb-devel >= 1.0.1}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_fribidi:BuildRequires: fribidi-devel}
 %{!?_without_aalib:BuildRequires: aalib-devel}
@@ -333,6 +334,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Wed Jul 09 2008 Dag Wieers <dag@wieers.com> - 1.0-0.39.rc1try2
+- Rebuild against directfb-1.0.1.
+
 * Mon Dec 17 2007 Dag Wieers <dag@wieers.com> - 1.0-0.38.rc1try2
 - Build against libmpcdec 1.2.6 and libupnp 1.6.x.
 

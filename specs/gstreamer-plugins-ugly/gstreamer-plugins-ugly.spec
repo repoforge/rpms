@@ -13,7 +13,7 @@
 Summary: GStreamer streaming media framework "ugly" plug-ins
 Name: gstreamer-plugins-ugly
 Version: 0.10.5
-Release: 2
+Release: 3
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
@@ -34,7 +34,7 @@ BuildRequires: lame-devel >= 3.89
 BuildRequires: libid3tag-devel >= 0.15.0
 BuildRequires: libmad-devel >= 0.15.0
 BuildRequires: mpeg2dec-devel >= 0.4.0
-BuildRequires: amrnb-devel
+BuildRequires: amrnb-devel >= 7.0.0.2
 BuildRequires: liboil-devel
 BuildRequires: PyXML
 
@@ -107,6 +107,9 @@ gstreamer-plugins-good because:
 
 
 %changelog
+* Wed Jul 09 2008 Dag Wieers <dag@wieers.com> - 0.10.5-3
+- Rebuild against amrnb-7.0.0.2.
+
 * Wed Mar 30 2007 Matthias Saou <http://freshrpms.net/> 0.10.5-2
 - Remove gtk-doc entirely, do devel package too.
 
