@@ -1,0 +1,29 @@
+diff -ruN thor-nonraid-0.0.0.5.org/Makefile thor-nonraid-0.0.0.5/Makefile
+--- thor-nonraid-0.0.0.5.org/Makefile	2008-07-12 05:27:42.000000000 +0200
++++ thor-nonraid-0.0.0.5/Makefile	2008-07-12 07:19:35.000000000 +0200
+@@ -4,8 +4,11 @@
+ # A.C. <ake at marvell dot com>
+ 
+ # default to build for the running kernel
++ifeq ("x", "x$(KERNELRELEASE)")
++	KERNELRELEASE=$(shell uname -r)
++endif
+ ifeq ("x", "x$(KERNEL_SRC)")
+-	KERNEL_SRC=/lib/modules/$(shell uname -r)/build
++	KERNEL_SRC=/lib/modules/$(KERNELRELEASE)/build
+ endif
+ 
+ # use KERNEL_SRC if not called by Mahoro
+@@ -84,6 +87,7 @@
+ ifeq ($(SUPPORT_RAID), y)
+ CFLAGS += -DRAID_DRIVER=1
+ endif
++endif
+ 
+ all:
+ 	$(MAKE) ARCH=$(ARCH_TYPE) CC=$(MV_CC) LD=$(MV_LD) CROSS_COMPILE=$(CROSS_COMPILE) V=$(V) -C $(KERNEL_BLD_DIR) M=`pwd` modules
+@@ -105,4 +109,3 @@
+ clean:  
+ 	$(MAKE) V=$(V) -C $(KERNEL_BLD_DIR) M=`pwd` clean
+ 	@rm -rf *.o *.obj
+-endif
