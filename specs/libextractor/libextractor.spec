@@ -13,7 +13,7 @@
 
 Summary: Meta-data extraction library
 Name: libextractor
-Version: 0.5.20b
+Version: 0.5.20c
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -112,6 +112,9 @@ fi
 #%{python_sitearch}/extractor.so
 
 %changelog
+* Mon Jul 14 2008 Dag Wieers <dag@wieers.com> - 0.5.20c-1
+- Updated to release 0.5.20c.
+
 * Sun Apr 27 2008 Dag Wieers <dag@wieers.com> - 0.5.20b-1
 - Updated to release 0.5.20b.
 
