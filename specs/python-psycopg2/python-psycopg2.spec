@@ -7,7 +7,7 @@
 
 Summary: PostgreSQL database adapter for Python
 Name: python-psycopg2
-Version: 2.0.4
+Version: 2.0.7
 Release: 1
 License: GPL/ZPL
 Group: Development/Libraries
@@ -41,10 +41,17 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog INSTALL README  doc/*
-%{python_sitearch}/psycopg*
+%doc AUTHORS ChangeLog INSTALL README doc/*
+%dir %{python_sitearch}/psycopg2/
+%{python_sitearch}/psycopg2/_psycopg.so
+%{python_sitearch}/psycopg2/*.py
+%{python_sitearch}/psycopg2/*.pyc
+%ghost %{python_sitearch}/psycopg2/*.pyo
 
 %changelog
+* Mon Jul 14 2008 Dag Wieers <dag@wieers.com> - 2.0.7-1
+- Updated to release 2.0.7.
+
 * Sun Aug 13 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.4-2
 - Renamed to python-psycopg2.
 
@@ -53,9 +60,6 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 
 * Mon Jul 31 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.3-1
 - Updated to release 2.0.3.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.21-1.2
-- Rebuild for Fedora Core 5.
 
 * Fri Jan 06 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.21-1
 - Updated to release 1.1.21.

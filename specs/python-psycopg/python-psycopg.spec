@@ -59,9 +59,6 @@ distribution includes ZPsycopgDA, a Zope Database Adapter.
 * Mon Jul 31 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.3-1
 - Updated to release 2.0.3.
 
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.21-1.2
-- Rebuild for Fedora Core 5.
-
 * Fri Jan 06 2006 Dries Verachtert <dries@ulyssis.org> - 1.1.21-1
 - Updated to release 1.1.21.
 

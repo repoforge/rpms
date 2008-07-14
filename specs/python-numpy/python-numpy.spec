@@ -3,8 +3,10 @@
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
+%define real_name numpy
+
 Summary: Fast multidimensional array facility for Python
-Name: numpy
+Name: python-numpy
 Version: 1.0.1
 Release: 1
 License: BSD
@@ -39,21 +41,27 @@ basic linear algebra and random number generation. Also included in
 this package is a version of f2py that works properly with NumPy.
 
 %prep
-%setup
+%setup -n %{real_name}-%{version}
 %patch0 -p1 -b .f2py
 
 %build
-ATLAS="%{_libdir}" FFTW="%{_libdir}" BLAS="%{_libdir}" \
+env ATLAS="%{_libdir}" FFTW="%{_libdir}" BLAS="%{_libdir}" \
 LAPACK="%{_libdir}" CFLAGS="%{optflags}" \
 %{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-ATLAS="%{_libdir}" FFTW="%{_libdir}" BLAS="%{_libdir}" \
+env ATLAS="%{_libdir}" FFTW="%{_libdir}" BLAS="%{_libdir}" \
 LAPACK="%{_libdir}" CFLAGS="%{optflags}" \
-%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
-%{__mv} -v %{buildroot}%{python_sitearch}/numpy/f2py/docs/ doc-rpm/
-%{__mv} -v %{buildroot}/%{python_sitearch}/numpy/f2py/f2py.1 %{buildroot}%{_mandir}/man1/
+%{__python} setup.py install -O1 --root="%{buildroot}" --prefix="%{_prefix}"
+#%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
+
+### Clean up buildroot
+%{__mv} -v %{buildroot}%{python_sitearch}/numpy/f2py/docs/ rpm-doc/
+
+%{__install} -dp -m0755 %{buildroot}%{_mandir}/man1/
+%{__mv} -v %{buildroot}/%{python_sitearch}/numpy/f2py/f2py.1 %{buildroot}%{_mandir}/man1/numpy.1
+
 %{__ln_s} -f f2py %{buildroot}%{_bindir}/f2py.numpy
 
 %clean
@@ -61,14 +69,16 @@ LAPACK="%{_libdir}" CFLAGS="%{optflags}" \
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE.txt rpm-doc/* doc/
+%doc LICENSE.txt rpm-doc/* numpy/doc/
 %doc %{_mandir}/man1/numpy.1*
 %{_bindir}/f2py
 %{_bindir}/f2py.numpy
-%dir %{python_sitearch}/numpy/
-%{python_sitearch}/numpy/*.py
-%{python_sitearch}/numpy/*.pyc
+%{python_sitearch}/numpy/
 %ghost %{python_sitearch}/numpy/*.pyo
+%ghost %{python_sitearch}/numpy/*/*.pyo
+%ghost %{python_sitearch}/numpy/*/*/*.pyo
+%ghost %{python_sitearch}/numpy/*/*/*/*.pyo
+%ghost %{python_sitearch}/numpy/*/*/*/*/*.pyo
 
 %changelog
 * Wed May 28 2008 Dag Wieers <dag@wieers.com> - 1.0.3.1-1
