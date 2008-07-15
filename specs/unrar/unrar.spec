@@ -4,7 +4,7 @@
 
 Summary: Extract, test and view RAR archives
 Name: unrar
-Version: 3.7.8
+Version: 3.8.2
 Release: 1
 License: Freeware
 Group: Applications/Archiving
@@ -48,6 +48,9 @@ archives created with the RAR archiver version 1.50 and above.
 
 
 %changelog
+* Tue Jul 15 2008 Dries Verachtert <dries@ulyssis.org> - 3.8.2-1
+- Updated to release 3.8.2.
+
 * Tue Apr  1 2008 Matthias Saou <http://freshrpms.net/> 3.7.8-1
 - Update to 3.7.8.
 
