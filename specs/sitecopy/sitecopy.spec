@@ -7,13 +7,13 @@
 
 Summary: Tool for easily maintaining remote web sites
 Name: sitecopy
-Version: 0.16.3
-Release: 1.2
+Version: 0.16.6
+Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://www.lyra.org/sitecopy/
+URL: http://www.manyfish.co.uk/sitecopy/
 
-Source: http://www.lyra.org/sitecopy/sitecopy-%{version}.tar.gz
+Source: http://www.manyfish.co.uk/sitecopy/sitecopy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -87,6 +87,9 @@ cd -
 %endif
 
 %changelog
+* Fri Jul 18 2008 Dries Verachtert <dries@ulyssis.org> - 0.16.6.-1
+- Updated to release 0.16.6.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.16.3-1.2
 - Rebuild for Fedora Core 5.
 
