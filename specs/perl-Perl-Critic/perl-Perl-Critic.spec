@@ -10,7 +10,7 @@
 Summary: Critique Perl source code for best-practices
 Name: perl-Perl-Critic
 Version: 1.082
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Perl-Critic/
@@ -22,6 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(B::Keywords)
 BuildRequires: perl(Test::More)
+Requires: perl(Module::Pluggable)
 
 %description
 Critique Perl source code for best-practices.
@@ -60,6 +61,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Perl/TODO.pod
 
 %changelog
+* Fri Jul 18 2008 Dries Verachtert <dries@ulyssis.org> - 1.082-1
+- Fix: perl(Module::Pluggable) requirement added, thanks to Philip Durbin.
+
 * Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 1.082-1
 - Updated to release 1.082.
 
