@@ -1,5 +1,5 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
 # Upstream: <libmpeg2-devel$lists,sf,net>
 
 %{?dtag: %{expand: %%define %dtag 1}}
@@ -11,91 +11,98 @@
 %{?fc6:%define _with_modxorg 1}
 %{?fc5:%define _with_modxorg 1}
 
-#define date 20040610
-
-Summary: MPEG-2 and MPEG-1 decoding library and test program
-Name: mpeg2dec
-Version: 0.4.1
-Release: 2%{?date:.%{date}}
+Summary: Free MPEG-1 and MPEG-2 video stream decoder
+Name: libmpeg2
+Version: 0.5.1
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libmpeg2.sourceforge.net/
-Source: http://libmpeg2.sourceforge.net/files/mpeg2dec-%{?date:snapshot}%{!?date:%{version}}.tar.gz
-Patch0: mpeg2dec-0.4.0b-pic.patch
-Patch1: mpeg2dec-0.4.1-automake-1.10.patch
+
+Source: http://libmpeg2.sourceforge.net/files/libmpeg2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: SDL-devel, pkgconfig, gcc-c++
 %{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
-# Required for ./bootstrap
-BuildRequires: autoconf, automake, libtool
 
 %description
 A free library for decoding MPEG-2 and MPEG-1 video streams.
 
+%package utils
+Summary: Utilities from libmpeg2
+Group: Applications/Multimedia
+Requires: %{name} = %{version}-%{release}
+Obsoletes: mpeg2dec <= %{version}-%{release}
+Provides: mpeg2dec = %{version}-%{release}
+
+%description utils
+LibMPEG2 decodes the many many derivatives of MPEG standards into
+uncompressed data suitable for editing and playback.
+
+This package contains utility programs based on libmpeg2.
 
 %package devel
-Summary: Development files for mpeg2dec's libmpeg2
+Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
-Requires: %{name} = %{version}, pkgconfig
+Requires: %{name} = %{version}-%{release}
+Obsoletes: mpeg2dec-devel <= %{version}-%{release}
+Provides: mpeg2dec-devel = %{version}-%{release}
 
 %description devel
-A free library for decoding MPEG-2 and MPEG-1 video streams.
-
-This package contains files needed to build applications that use mpeg2dec's
-libmpeg2.
-
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
-%setup -n %{name}-%{version}%{?date:-cvs}
-%patch0 -p0 -b .pic
-%patch1 -p1 -b .automake-1.10
-./bootstrap
-
+%setup
 
 %build
-CFLAGS="%{optflags}" \
 %configure \
 %ifnarch %{ix86}
     --disable-accel-detect \
 %endif
-    --enable-shared \
     --disable-static
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-
+%{__make} install DESTDIR="%{buildroot}"
 
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
-
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING NEWS README TODO
-%{_bindir}/*
-%{_libdir}/*.so.*
-%{_mandir}/man1/*
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
+%{_libdir}/libmpeg2.so.*
+%{_libdir}/libmpeg2convert.so.*
 
+%files utils
+%doc %{_mandir}/man1/extract_mpeg2.1*
+%doc %{_mandir}/man1/mpeg2dec.1*
+%{_bindir}/corrupt_mpeg2
+%{_bindir}/extract_mpeg2
+%{_bindir}/mpeg2dec
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc doc/*.c doc/*.txt
+%doc CodingStyle doc/*.c doc/*.txt
+%{_libdir}/libmpeg2.so
+%{_libdir}/libmpeg2convert.so
 %{_includedir}/mpeg2dec/
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
-%{_libdir}/pkgconfig/*
-
+%{_libdir}/pkgconfig/libmpeg2.pc
+%{_libdir}/pkgconfig/libmpeg2convert.pc
+%exclude %{_libdir}/libmpeg2.la
+%exclude %{_libdir}/libmpeg2convert.la
 
 %changelog
+* Fri Jul 18 2008 Dag Wieers <dag@wieers.com> - 0.5.1-1
+- Updated to release 0.5.1.
+
 * Thu May 31 2007 Matthias Saou <http://freshrpms.net/> 0.4.1-2
 - Include patch for bootstrap to work with automake 1.10 (F7).
 
@@ -166,4 +173,3 @@ CFLAGS="%{optflags}" \
 
 * Fri May 03 2002 Thomas Vander Stichele <thomas@apestaart.org>
 - adapted from PLD spec for 0.2.1
-
