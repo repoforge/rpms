@@ -9,9 +9,11 @@ Release: 1
 License: Freeware
 Group: Applications/Archiving
 URL: http://www.rarlab.com/
+
 Source0: http://www.rarlab.com/rar/unrarsrc-%{version}.tar.gz
 Source1: unrar.1
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc-c++
 
 %description
@@ -19,33 +21,27 @@ The unRAR utility is a freeware program, distributed with source code
 and developed for extracting, testing and viewing the contents of
 archives created with the RAR archiver version 1.50 and above.
 
-
 %prep
 %setup -n %{name}
-# Remove stripping to get useful debuginfo package
+## Remove stripping to get useful debuginfo package
 %{__perl} -pi -e 's|^STRIP=.*|STRIP=true|g' makefile.unix
-
 
 %build
 %{__make} %{?_smp_mflags} -f makefile.unix CXXFLAGS="%{optflags}"
 
-
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m755 unrar %{buildroot}%{_bindir}/unrar
-%{__install} -D -p -m644 %{SOURCE1} %{buildroot}%{_mandir}/man1/unrar.1
-
+%{__install} -Dp -m0755 unrar %{buildroot}%{_bindir}/unrar
+%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_mandir}/man1/unrar.1
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %files
 %defattr(-, root, root, 0755)
 %doc *.txt
+%doc %{_mandir}/man1/unrar.1*
 %{_bindir}/unrar
-%{_mandir}/man1/unrar.1*
-
 
 %changelog
 * Tue Jul 15 2008 Dries Verachtert <dries@ulyssis.org> - 3.8.2-1

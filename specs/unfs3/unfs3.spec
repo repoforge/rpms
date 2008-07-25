@@ -5,7 +5,7 @@
 
 Summary: UNFS3 user-space NFSv3 server
 Name: unfs3
-Version: 0.9.20
+Version: 0.9.21
 Release: 1
 License: BSD
 Group: Applications/System
@@ -26,7 +26,7 @@ the MOUNT and NFS protocol.
 
 %build
 %configure \
-	--enable-cluster
+    --enable-cluster
 %{__make} %{?_smp_mflags}
 
 %install
@@ -44,6 +44,9 @@ the MOUNT and NFS protocol.
 %{_sbindir}/unfsd
 
 %changelog
+* Wed Jul 16 2008 Dag Wieers <dag@wieers.com> - 0.9.21-1
+- Updated to release 0.9.21.
+
 * Thu Dec 06 2007 Dag Wieers <dag@wieers.com> - 0.9.20-1
 - Updated to release 0.9.20.
 

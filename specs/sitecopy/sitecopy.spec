@@ -40,15 +40,15 @@ full configuration editing and creation facilities.
 %build
 mkdir sitecopy; cd sitecopy
 CFLAGS="%{optflags}" LDFLAGS="-s" ../configure \
-	--prefix="%{_prefix}"
+    --prefix="%{_prefix}"
 %{__make} %{?_smp_mflags}
 cd -
 
 %if %{!?_without_xsitecopy:1}0
 mkdir xsitecopy; cd xsitecopy
 CFLAGS="%{optflags}" LDFLAGS="-s" ../configure \
-	--prefix="%{_prefix}" \
-	--enable-gnomefe
+    --prefix="%{_prefix}" \
+    --enable-gnomefe
 %{__make} %{?_smp_mflags}
 cd -
 %endif
@@ -56,12 +56,12 @@ cd -
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install -C sitecopy \
-	DESTDIR="%{buildroot}" \
-	mandir="%{_mandir}"
+    DESTDIR="%{buildroot}" \
+    mandir="%{_mandir}"
 %find_lang %{name}
 %if %{!?_without_xsitecopy:1}0
 %{__make} install -C xsitecopy \
-	DESTDIR="%{buildroot}"
+    DESTDIR="%{buildroot}"
 %endif
 
 %clean
@@ -87,11 +87,8 @@ cd -
 %endif
 
 %changelog
-* Fri Jul 18 2008 Dries Verachtert <dries@ulyssis.org> - 0.16.6.-1
-- Updated to release 0.16.6.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.16.3-1.2
-- Rebuild for Fedora Core 5.
+* Thu Jul 17 2008 Dag Wieers <dag@wieers.com> - 0.16.5-1
+- Updated to release 0.16.5.
 
 * Sun Mar 12 2006 Dag Wieers <dag@wieers.com> - 0.16.3-1
 - Updated to release 0.16.3.

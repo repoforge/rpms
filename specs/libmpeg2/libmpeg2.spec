@@ -14,7 +14,7 @@
 Summary: Free MPEG-1 and MPEG-2 video stream decoder
 Name: libmpeg2
 Version: 0.5.1
-Release: 1
+Release: 2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libmpeg2.sourceforge.net/
@@ -62,7 +62,8 @@ you will need to install %{name}-devel.
 %ifnarch %{ix86}
     --disable-accel-detect \
 %endif
-    --disable-static
+    --disable-static \
+    --enable-shared
 %{__make} %{?_smp_mflags}
 
 %install
@@ -100,6 +101,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libmpeg2convert.la
 
 %changelog
+* Wed Jul 23 2008 Dag Wieers <dag@wieers.com> - 0.5.1-2
+- Added --enable-shared to address SELinux text relocation issues. (David Savinkoff)
+
 * Fri Jul 18 2008 Dag Wieers <dag@wieers.com> - 0.5.1-1
 - Updated to release 0.5.1.
 

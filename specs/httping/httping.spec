@@ -45,7 +45,7 @@ that the transmission across the network also takes time!
 %{_bindir}/httping
 
 %changelog
-* Fri Jul 18 2008 Dries Verachtert <dries@ulyssis.org> - 1.2.9-1
+* Thu Jul 17 2008 Dag Wieers <dag@wieers.com> - 1.2.9-1
 - Updated to release 1.2.9.
 
 * Sun Jun 29 2008 Dries Verachtert <dries@ulyssis.org> - 1.2.8-1
