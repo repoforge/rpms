@@ -4,7 +4,7 @@
 Summary: Updates dynamic DNS entries
 Name: ddclient
 Version: 3.7.3
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://ddclient.sourceforge.net/
@@ -37,6 +37,7 @@ updates, and sending update status to syslog and through e-mail.
 %{__install} -Dp -m0755 ddclient %{buildroot}%{_sbindir}/ddclient
 %{__install} -Dp -m0755 sample-etc_rc.d_init.d_ddclient.redhat %{buildroot}%{_initrddir}/ddclient
 %{__install} -Dp -m0600 sample-etc_ddclient.conf %{buildroot}%{_sysconfdir}/ddclient/ddclient.conf
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/cache/ddclient
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -63,8 +64,12 @@ fi
 %config(noreplace) %{_sysconfdir}/ddclient/
 %config %{_initrddir}/ddclient
 %{_sbindir}/ddclient
+%dir %{_localstatedir}/cache/ddclient
 
 %changelog
+* Fri Jul 25 2008 Jim <quien-sabe@metaorg.com - 3.7.3-2
+- Added step to create new required cache directory
+
 * Mon Aug 13 2007 Dries Verachtert <dries@ulyssis.org> - 3.7.3-1
 - Updated to release 3.7.3.
 
