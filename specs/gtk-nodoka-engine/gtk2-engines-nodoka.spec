@@ -2,8 +2,8 @@
 # Authority:    hadams
 
 Name:           gtk-nodoka-engine
-Version:        0.7.0
-Packager:       Heiko Adams <info@fedora-blog.de>
+Version:        0.7.1
+Packager:       Heiko Adams <info-2007@fedora-blog.de>
 Release:        1
 License:        GPL-2
 URL:            https://hosted.fedoraproject.org/projects/nodoka/wiki
@@ -45,6 +45,9 @@ rm -rf "$RPM_BUILD_ROOT"
 %{_datadir}/*
 
 %changelog
+* Sat Jul 26 2008 Heiko Adams <info-2007@fedora-blog.de> - 0.7.1-1
+- Update to latest version
+
 * Thu Apr 14 2008 Heiko Adams <info@fedora-blog.de> - 0.7.0-1
 - Update to latest version
 
