@@ -7,7 +7,7 @@
 Summary: PEAR: Database Abstraction Layer
 Name: php-pear-db
 Version: 1.7.13
-Release: 1
+Release: 2
 License: PHP
 Group: Development/Libraries
 URL: http://pear.php.net/package/DB
@@ -53,18 +53,25 @@ DB layers itself on top of PHP's existing database extensions.
 
 %install
 %{__rm} -rf %{buildroot}
-/usr/bin/pear install --installroot="%{buildroot}" --nodeps %{SOURCE0}
+/usr/bin/pear install --packagingroot="%{buildroot}" --nodeps %{SOURCE0}
 
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{pear_dir}/{.filemap,.lock}
+%{__rm} -Rf %{buildroot}%{pear_dir}/{.channels,.depdb*,.registry}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(0644, root, root, 0755)
-%{pear_dir}/
+%{pear_dir}/DB.php
+%{pear_dir}/DB/
+%{pear_dir}/doc/DB/
+%{pear_dir}/test/DB/
 
 %changelog
+* Mon Jul 28 2008 Dries Verachtert <dries@ulyssis.org> - 1.7.13-2
+- Fix file conflicts with php-pear, thanks to Hugo van der Kooij and Brandon Amaro.
+
 * Thu Dec 20 2007 Dag Wieers <dag@wieers.com> - 1.7.13-1
 - Initial package. (using DAR)
