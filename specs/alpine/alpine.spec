@@ -4,7 +4,7 @@
 Summary: Alternative Pine mail user agent implementation
 Name: alpine
 Version: 1.10
-Release: 1
+Release: 2
 License: Apache License
 Group: Applications/Internet
 URL: http://www.washington.edu/alpine/
@@ -12,6 +12,10 @@ URL: http://www.washington.edu/alpine/
 Source0: ftp://ftp.cac.washington.edu/alpine/alpine-%{version}.tar.gz
 Source1: pine.conf
 Source2: pine.conf.fixed
+### http://staff.washington.edu/chappa/alpine/patches/
+Patch0: http://staff.washington.edu/chappa/alpine/patches/alpine-1.10/maildir.patch.gz
+Patch1: http://staff.washington.edu/chappa/alpine/patches/alpine-1.10/fillpara.patch.gz
+Patch2: alpine-1.10-select-bold-x.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: inews, aspell, openldap-devel, openssl-devel, krb5-devel, pam-devel
@@ -32,6 +36,10 @@ personal-preference options.
 
 %prep
 %setup
+%patch0 -p1
+%patch1 -p1
+%patch2 -p0 -b .orig
+
 #%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure */Makefile */*/Makefile imap/src/osdep/unix/Makefile.gss
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' imap/src/osdep/unix/Makefile.gss
 
@@ -41,7 +49,6 @@ touch imap/ip6
     --with-spellcheck-prog="aspell" \
     --with-system-pinerc="%{_sysconfdir}/pine.conf" \
     --with-system-fixed-pinerc="%{_sysconfdir}/pine.conf.fixed"
-#    --with-passfile=".pinepwd" \
 %{__make} %{?_smp_mflags}
 
 %install
@@ -67,12 +74,22 @@ touch imap/ip6
 %{__ln_s} -f alpine %{buildroot}%{_bindir}/pine
 %{__ln_s} -f alpine.1.gz %{buildroot}%{_mandir}/man1/pine.1.gz
 
+%pre
+### Clean up mess
+if [ -r %{_sysconfdir}/alpine.conf -a -r %{_sysconfdir}/pine.conf ]; then
+    %{__mv} -f %{_sysconfdir}/pine.conf %{_sysconfdir}/pine.conf.rpmsave
+fi
+
+if [ -r %{_sysconfdir}/alpine.conf ]; then
+    %{__mv} -f %{_sysconfdir}/alpine.conf %{_sysconfdir}/pine.conf
+fi
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE NOTICE README VERSION doc/*.txt
+%doc LICENSE NOTICE README* VERSION doc/*.txt doc/tech-notes/*.html
 %doc %{_mandir}/man1/alpine.1*
 %doc %{_mandir}/man1/mailutil.1*
 %doc %{_mandir}/man1/pico.1*
@@ -80,8 +97,8 @@ touch imap/ip6
 %doc %{_mandir}/man1/pine.1*
 %doc %{_mandir}/man1/rpdump.1*
 %doc %{_mandir}/man1/rpload.1*
-%config %{_sysconfdir}/pine.conf
-%config(noreplace) %{_sysconfdir}/alpine.conf
+%config(noreplace) %{_sysconfdir}/pine.conf
+%config(noreplace) %{_sysconfdir}/pine.conf.fixed
 %{_bindir}/alpine
 %{_bindir}/mailutil
 %{_bindir}/pico
@@ -94,7 +111,9 @@ touch imap/ip6
 %{_sbindir}/mlock
 
 %changelog
-* Thu Mar 20 2008 Dag Wieers <dag@wieers.com> - 1.10-2
+* Sun Jul 27 2008 Dag Wieers <dag@wieers.com> - 1.10-2
+- Added patch to show both X and bold on selection. (Dag Wieers)
+- Added maildir and fillpara patch.
 - Restore original pine.conf location.
 
 * Tue Mar 18 2008 Dag Wieers <dag@wieers.com> - 1.10-1

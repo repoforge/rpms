@@ -3,17 +3,17 @@
 # Authority: dag
 # Upstream: Petter Nordahl-Hagen <pnordahl$eunet,no>
 
-%define real_version 070923
+%define real_version 080526
 
 Summary: Offline NT password and registry editor
 Name: chntpw
-Version: 0.0.20070923
+Version: 0.0.20080526
 Release: 1
 License: GPL
 Group: Applications/System
 URL: http://home.eunet.no/~pnordahl/ntpasswd/
 
-Source: http://home.eunet.no/~pnordahl/ntpasswd/chntpw-source-%{real_version}.zip
+Source: http://home.eunet.no/pnordahl/ntpasswd/chntpw-source-%{real_version}.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel
@@ -49,6 +49,9 @@ and scripts to glue the whole thing together.
 %{_bindir}/chntpw
 
 %changelog
+* Tue Jul 29 2008 Dag Wieers <dag@wieers.com> - 0.0.20080526-1
+- Updated to release 080526.
+
 * Thu May 22 2008 Dag Wieers <dag@wieers.com> - 0.0.20070923-1
 - Updated to release 070923.
 
