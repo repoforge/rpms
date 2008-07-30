@@ -3,18 +3,18 @@
 
 Summary: File manager for the GNOME desktop
 Name: gnome-commander
-Version: 1.2.6
-Release: 2
+Version: 1.2.7
+Release: 1
 License: GPL
 Group: Applications/File
 URL: http://www.nongnu.org/gcmd/
 
-Source: http://ftp.gnome.org/pub/GNOME/sources/gnome-commander/1.2/gnome-commander-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/%{name}/1.2/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: scrollkeeper, gettext >= 0.10.36, intltool
 BuildRequires: gnome-vfs2-devel >= 2.0, libgnomeui-devel >= 2.0
-BuildRequires: gnome-doc-utils >= 0.3.2, exiv2-devel
+BuildRequires: gnome-doc-utils >= 0.3.2
 BuildRequires: glib2-devel >= 2.6, gcc-c++
 
 Requires(post): desktop-file-utils
@@ -65,17 +65,17 @@ scrollkeeper-update -q || :
 %{_datadir}/pixmaps/gnome-commander.png
 
 %changelog
-* Mon Jun 09 2008 Dag Wieers <dag@wieers.com> - 1.2.6-2
-- Rebuild against exiv2-0.17.
+* Wed Jul 30 2008 Heiko Adams <info-2K8@ha-software.de> 1.2.7-1
+- Updated to release 1.2.7
 
-* Sun Jun 01 2008 Heiko Adams <info-2K8@ha-software.de> - 1.2.6-1
+* Sun Jun 01 2008 Heiko Adams <info-2K8@ha-software.de> 1.2.6-1
 - Updated to release 1.2.6.
 
-* Fri Feb 29 2008 Heiko Adams <info-2007@ha-software.de> - 1.2.5-1
+* Fri Feb 29 2008 Heiko Adams <info-2007@ha-software.de> 1.2.5-1
 - Updated to release 1.2.5.
 
-* Sun Jun 10 2007 Dag Wieers <dag@wieers.com> - 1.2.4-1
+* Sun Jun 10 2007 Dag Wieers <dag@wieers.com> 1.2.4-1
 - Updated to release 1.2.4.
 
-* Mon Dec 11 2006 Dag Wieers <dag@wieers.com> - 1.2.2-1
+* Mon Dec 11 2006 Dag Wieers <dag@wieers.com> 1.2.2-1
 - Initial package. (using DAR)
