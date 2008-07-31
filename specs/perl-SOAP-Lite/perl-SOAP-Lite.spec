@@ -6,11 +6,10 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name SOAP-Lite
-%define real_version 0.710005
 
 Summary: Interface to SOAP
 Name: perl-SOAP-Lite
-Version: 0.710.07
+Version: 0.710.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -78,6 +77,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/XMLRPC/
 
 %changelog
+* Sat Jul 26 2008 Dag Wieers <dag@wieers.com> - 0.710.08-1
+- Updated to release 0.710.08.
+
 * Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 0.710.07-1
 - Updated to release 0.710.07.
 

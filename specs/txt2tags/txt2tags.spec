@@ -13,7 +13,7 @@
 
 Summary: Converts text files to HTML, XHTML, sgml, LaTeX, man...
 Name: txt2tags
-Version: 2.4
+Version: 2.5
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -42,7 +42,7 @@ no external commands or libraries are needed.
 
 ### Create locale files
 for file in $(ls -1 po/*.po); do
-	msgfmt -o ${file//.po/.mo} $file
+    msgfmt -o ${file//.po/.mo} $file
 done
 
 %install
@@ -53,16 +53,16 @@ done
 ### Install translated manpages
 %{__install} -Dp -m0644 doc/manpage.man %{buildroot}%{_mandir}/man1/txt2tags.1
 for file in $(ls -1 doc/manpage-*.man); do
-	lang="${file##doc/manpage-}"
-	lang="${lang%%.man}"
-	%{__install} -Dp -m0644 $file %{buildroot}%{_mandir}/$lang/man1/txt2tags.1
+    lang="${file##doc/manpage-}"
+    lang="${lang%%.man}"
+    %{__install} -Dp -m0644 $file %{buildroot}%{_mandir}/$lang/man1/txt2tags.1
 done
 
 ### Install locale files
 for file in $(ls -1 po/*.mo); do
-	basename="${file##po/}"
-	lang="${basename%%.mo}"
-	%{__install} -Dp -m0644 $file %{buildroot}%{_datadir}/locale/$lang/LC_MESSAGES/txt2tags.mo
+    basename="${file##po/}"
+    lang="${basename%%.mo}"
+    %{__install} -Dp -m0644 $file %{buildroot}%{_datadir}/locale/$lang/LC_MESSAGES/txt2tags.mo
 done
 
 %find_lang %{name}
@@ -78,5 +78,8 @@ done
 %{_bindir}/txt2tags
 
 %changelog
+* Sun Jul 27 2008 Dag Wieers <dag@wieers.com> - 2.5-1
+- Updated to release 2.5.
+
 * Mon Jan 29 2007 Dag Wieers <dag@wieers.com> - 2.4-1
 - Initial package. (using DAR)

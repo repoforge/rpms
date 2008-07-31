@@ -1,11 +1,13 @@
 # $Id$
 # Authority: dag
 
+%define _sbindir /sbin
+
 %define real_name unionfs-fuse
 
 Summary: FUSE-base user-space union filesystem
 Name: fuse-unionfs
-Version: 0.20
+Version: 0.21
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -33,18 +35,31 @@ unionfs is a FUSE-base user-space union filesystem.
 
 %install
 %{__rm} -rf %{buildroot}
+%{__install} -d -m0755 %{buildroot}%{_sbindir}
+%{__install} -d -m0755 %{buildroot}%{_mandir}/man8/
 #%{__make} install DESTDIR="%{buildroot}"
-%{__install} -Dp -m0755 unionfs %{buildroot}%{_bindir}/unionfs
+%{__install} -Dp -m0755 src/unionfs %{buildroot}%{_bindir}/unionfs
+%{__install} -Dp -m0644 man/unionfs-fuse.8 %{buildroot}%{_mandir}/man8/unionfs-fuse.8
+
+### Symlink different locations
+%{__ln_s} -f %{_bindir}/unionfs %{buildroot}%{_sbindir}/mount.unionfs
+%{__ln_s} -f unionfs-fuse.8 %{buildroot}%{_mandir}/man8/unionfs.8
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CREDITS
+%doc CREDITS LICENSE NEWS examples/
+%doc %{_mandir}/man8/unionfs-fuse.8*
+%doc %{_mandir}/man8/unionfs.8*
 %{_bindir}/unionfs
+%{_sbindir}/mount.unionfs
 
 %changelog
+* Sun Jul 27 2008 Dag Wieers <dag@wieers.com> - 0.21-1
+- Updated to release 0.21.
+
 * Tue Jun 03 2008 Dag Wieers <dag@wieers.com> - 0.20-1
 - Updated to release 0.20.
 

@@ -11,7 +11,7 @@
 
 Summary: Raw VBI, Teletext and Closed Caption decoding library
 Name: zvbi
-Version: 0.2.30
+Version: 0.2.31
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -85,6 +85,9 @@ the zvbi library.
 %exclude %{_libdir}/libzvbi-chains.la
 
 %changelog
+* Sun Jul 27 2008 Dag Wieers <dag@wieers.com> - 0.2.31-1
+- Updated to release 0.2.31.
+
 * Mon Jun 09 2008 Dag Wieers <dag@wieers.com> - 0.2.30-1
 - Updated to release 0.2.30.
 
