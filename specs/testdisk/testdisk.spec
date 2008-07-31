@@ -11,8 +11,8 @@
 
 Summary: Tools to check and undelete partition or recover deleted files
 Name: testdisk
-Version: 6.9
-Release: 2
+Version: 6.10
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.cgsecurity.org/wiki/TestDisk
@@ -61,8 +61,11 @@ files from filesystems.
 %{_sbindir}/testdisk
 
 %changelog
+* Sat Jul 26 2008 Dag Wieers <dag@wieers.com> - 6.10-1
+- Updated to release 6.10.
+
 * Thu May 22 2008 Dag Wieers <dag@wieers.com> - 6.9-2
-- Built ntfs support.
+- Built with ntfs support.
 
 * Thu Feb 14 2008 Dag Wieers <dag@wieers.com> - 6.9-1
 - Updated to release 6.9.

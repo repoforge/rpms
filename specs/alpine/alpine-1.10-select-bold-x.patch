@@ -1,0 +1,61 @@
+--- alpine/mailindx.c.orig	2008-07-29 01:06:53.124552512 +0200
++++ alpine/mailindx.c	2008-07-29 01:07:23.177983696 +0200
+@@ -1896,7 +1896,7 @@
+ 	  if(ielem && ielem->datalen > 0){
+ 	    if(ielem->datalen == 1){
+ 	      save_schar1 = ielem->data[0];
+-	      if(sel && !doing_bold){
++	      if(sel){
+ 	        ielem->data[0] = 'X';
+ 		drew_X++;
+ 	      }
+@@ -1910,7 +1910,7 @@
+ 	      }
+ 	    }
+ 	    else if(ielem->datalen > 1){
+-	      if(sel && !doing_bold){
++	      if(sel){
+ 	        ielem->data[0] = 'X';
+ 		drew_X++;
+ 	      }
+--- pith/pine.hlp.orig	2008-07-28 03:55:51.389098520 +0200
++++ pith/pine.hlp	2008-07-28 03:56:48.216459448 +0200
+@@ -30569,9 +30569,9 @@
+ specified criteria, and &quot;tag&quot; the resulting messages with an 
+ &quot;X&quot; in the
+ first column of the applicable lines in the MESSAGE INDEX.  If this feature
+-is set, instead of using the &quot;X&quot; to denote a selected message, 
++is set, while still using the &quot;X&quot; to denote a selected message, 
+ Alpine will
+-attempt to display those index lines in boldface. Whether this is
++attempt to also display those index lines in boldface. Whether this is
+ preferable to the &quot;X&quot; will depend on personal taste and the type of
+ terminal being used.
+ <P>
+--- doc/tech-notes.txt.orig	2008-07-28 04:01:31.845341304 +0200
++++ doc/tech-notes.txt	2008-07-28 04:02:19.158148664 +0200
+@@ -5992,9 +5992,9 @@
+           and  _WhereIs_  (with  the _^X_ subcommand) will search the current
+           folder  for  messages meeting a specified criteria, and _tag_ the
+           resulting messages with an _X_ in the first column of the applicable
+-          lines in the "Folder Index". If this feature is set, instead of using
++          lines in the "Folder Index". If this feature is set, while still using
+           the  _X_  to  denote  a  selected message, _Alpine_ will attempt to
+-          display those index lines in boldface. Whether this is preferable to
++          also display those index lines in boldface. Whether this is preferable to
+           the _X_ will depend on personal taste and the type of terminal being
+           used.
+    _show-sort_
+--- ./doc/tech-notes/config.html.orig	2008-07-28 04:03:00.717830632 +0200
++++ ./doc/tech-notes/config.html	2008-07-28 04:03:38.734051288 +0200
+@@ -7245,8 +7245,8 @@
+ specified criteria, and <EM>tag</EM> the resulting
+ messages with an <EM>X</EM> in the
+ first column of the applicable lines in the "Folder Index". If this feature
+-is set, instead of using the <EM>X</EM> to denote a selected message,
+-<EM>Alpine</EM> will attempt to display those index lines in boldface.
++is set, while still using the <EM>X</EM> to denote a selected message,
++<EM>Alpine</EM> will attempt to also display those index lines in boldface.
+ Whether this is preferable to the <EM>X</EM> will depend on personal
+ taste and the type of terminal being used.
+ <P>

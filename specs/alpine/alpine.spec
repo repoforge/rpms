@@ -4,7 +4,7 @@
 Summary: Alternative Pine mail user agent implementation
 Name: alpine
 Version: 1.10
-Release: 2
+Release: 3
 License: Apache License
 Group: Applications/Internet
 URL: http://www.washington.edu/alpine/
@@ -13,9 +13,13 @@ Source0: ftp://ftp.cac.washington.edu/alpine/alpine-%{version}.tar.gz
 Source1: pine.conf
 Source2: pine.conf.fixed
 ### http://staff.washington.edu/chappa/alpine/patches/
-Patch0: http://staff.washington.edu/chappa/alpine/patches/alpine-1.10/maildir.patch.gz
-Patch1: http://staff.washington.edu/chappa/alpine/patches/alpine-1.10/fillpara.patch.gz
-Patch2: alpine-1.10-select-bold-x.patch
+#Patch0: http://staff.washington.edu/chappa/alpine/patches/alpine-1.10/maildir.patch.gz
+Patch0: alpine-1.10-maildir.patch
+#Patch1: http://staff.washington.edu/chappa/alpine/patches/alpine-1.10/fillpara.patch.gz
+Patch1: alpine-1.10-fillpara.patch
+#Patch2: http://staff.washington.edu/chappa/alpine/patches/alpine-1.10/rules.patch.gz
+Patch2: alpine-1.10-rules.patch
+Patch3: alpine-1.10-select-bold-x.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: inews, aspell, openldap-devel, openssl-devel, krb5-devel, pam-devel
@@ -38,7 +42,8 @@ personal-preference options.
 %setup
 %patch0 -p1
 %patch1 -p1
-%patch2 -p0 -b .orig
+%patch2 -p1
+%patch3 -p0 -b .orig
 
 #%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure */Makefile */*/Makefile imap/src/osdep/unix/Makefile.gss
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' imap/src/osdep/unix/Makefile.gss
@@ -111,6 +116,9 @@ fi
 %{_sbindir}/mlock
 
 %changelog
+* Wed Jul 30 2008 Dag Wieers <dag@wieers.com> - 1.10-3
+- Added rules patch.
+
 * Sun Jul 27 2008 Dag Wieers <dag@wieers.com> - 1.10-2
 - Added patch to show both X and bold on selection. (Dag Wieers)
 - Added maildir and fillpara patch.
