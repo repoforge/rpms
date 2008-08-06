@@ -5,7 +5,7 @@
 Summary: Graphical scientific calculator
 Name: galculator
 Version: 1.3.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Engineering
 URL: http://galculator.sourceforge.net/
@@ -13,7 +13,7 @@ URL: http://galculator.sourceforge.net/
 Source: http://dl.sf.net/galculator/galculator-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gettext, gtk2-devel >= 2.0, libglade2-devel >= 2.0
+BuildRequires: gettext, gtk2-devel >= 2.6, libglade2-devel >= 2.6
 BuildRequires: perl(XML::Parser)
 
 %description
@@ -27,6 +27,8 @@ Reverse Polish Notation.
 %prep
 %setup
 
+%{__perl} -pi -e 's|Icon=gnome-calc2.png|Icon=galculator|' galculator.desktop.in
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
@@ -35,6 +37,8 @@ Reverse Polish Notation.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
+
+%{__install} -Dp -m0644 pixmaps/galculator_48x48.png %{buildroot}%{_datadir}/pixmaps/galculator.png
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,8 +51,12 @@ Reverse Polish Notation.
 %{_datadir}/applications/galculator.desktop
 %{_datadir}/galculator/
 %{_datadir}/pixmaps/galculator/
+%{_datadir}/pixmaps/galculator.png
 
 %changelog
+* Wed Jul 23 2008 Dag Wieers <dag@wieers.com> - 1.3.1-2
+- Replaced Gnome icon by Galculator icon.
+
 * Fri Sep 28 2007 Dag Wieers <dag@wieers.com> - 1.3.1-1
 - Updated to release 1.3.1.
 

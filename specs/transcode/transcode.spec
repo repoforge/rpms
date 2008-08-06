@@ -27,7 +27,7 @@
 
 Summary: Linux video stream processing utility
 Name: transcode
-Version: 1.0.5
+Version: 1.0.6
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -71,12 +71,10 @@ Available rpmbuild rebuild options :
 --without : lame theora dvdread quicktime a52 mpeg3 mjpeg libfame magick
             nasm postproc xvidcore
 
-
 %prep
 %setup
 %patch0 -p1 -b .lzo2
 #patch1 -p1 -b .libmpeg3
-
 
 %build
 # This is required to get "#include <postprocess.h>" to work
@@ -106,16 +104,13 @@ export LDFLAGS="-L%{_usr}/X11R6/%{_lib}"
     --with-lzo-includes=%{_includedir}/lzo
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot} _docs
 %makeinstall \
     docsdir="../_docs/"
 
-
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files
 %defattr(-, root, root, 0755)
@@ -132,8 +127,10 @@ export LDFLAGS="-L%{_usr}/X11R6/%{_lib}"
 %exclude %{_libdir}/transcode/*.la
 %{_mandir}/man1/*
 
-
 %changelog
+* Sat Jul 26 2008 Dag Wieers <dag@wieers.com> - 1.0.6-1
+- Updated to release 1.0.6.
+
 * Fri Jan 11 2008 Dag Wieers <dag@wieers.com> - 1.0.5-1
 - Updated to release 1.0.5.
 

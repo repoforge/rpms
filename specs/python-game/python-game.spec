@@ -7,7 +7,7 @@
 
 Summary: Python module for interfacing with the SDL multimedia library
 Name: python-game
-Version: 1.8.0
+Version: 1.8.1
 Release: 1
 License: LGPL style
 Group: Development/Libraries
@@ -61,7 +61,7 @@ Install pygame-doc if you need the API documentation and example programs.
 
 %files
 %defattr(-, root, root, 0755)
-%doc WHATSNEW readme.*
+%doc README.txt WHATSNEW
 %{python_sitearch}/pygame/
 %{_includedir}/python*/pygame/
 
@@ -70,6 +70,9 @@ Install pygame-doc if you need the API documentation and example programs.
 %doc docs/ examples/
 
 %changelog
+* Fri Aug 01 2008 Dag Wieers <dag@wieers.com> - 1.8.1-1
+- Updated to release 1.8.1.
+
 * Tue Apr 08 2008 Dag Wieers <dag@wieers.com> - 1.8.0-1
 - Updated to release 1.8.0.
 

@@ -4,21 +4,24 @@
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
+%define real_name Trac
+
 Name: trac
 Summary: Integrated SCM and project management tool
-Version: 0.10.4
+Version: 0.11
 Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://projects.edgewall.com/trac/
 
-Source: http://ftp.edgewall.com/pub/trac/trac-%{version}.tar.gz
+Source: http://ftp.edgewall.com/pub/trac/Trac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: python >= 2.3
-Requires: python >= 2.3, python-sqlite >= 0.4.3, subversion >= 1.0.0
-Requires: python-clearsilver >= 0.9.3, webserver
+BuildRequires: python >= 2.3, python-setuptools => 0.6
+Requires: python >= 2.3, python-sqlite >= 1.0, subversion >= 1.0.0
+Requires: python-genshi >= 0.5, python-setuptools >= 0.6, webserver
+#Requires: python-clearsilver >= 0.9.3
 #Requires: subversion-python >= 1.0.0
 
 %description
@@ -34,35 +37,35 @@ events in order, making getting an overview of the project and
 tracking progress very easy.
 
 %prep
-%setup
+%setup -n %{real_name}-%{version}
 
-%{__perl} -pi.orig -e 's|/usr/lib/|%{_libdir}|g' setup.py
+#%{__perl} -pi.orig -e 's|/usr/lib/|%{_libdir}|g' setup.py
 
-%{__cat} <<EOF >trac.httpd
-Alias /trac/ "%{_datadir}/trac/htdocs/"
-
-### Trac need to know where the database is located
-<Location "/cgi-bin/trac.cgi">
-	SetEnv TRAC_ENV "%{_datadir}/trac/myproject.db"
-</Location>
-
-### You need this to allow users to authenticate
-<Location "/cgi-bin/trac.cgi/login">
-	AuthType Basic
-	AuthName "trac"
-	AuthUserFile %{_datadir}/trac/trac.htpasswd
-	Require valid-user
-</location>
-EOF
+#%{__cat} <<EOF >trac.httpd
+#Alias /trac/ "%{_datadir}/trac/htdocs/"
+#
+#### Trac need to know where the database is located
+#<Location "/cgi-bin/trac.cgi">
+#    SetEnv TRAC_ENV "%{_datadir}/trac/myproject.db"
+#</Location>
+#
+#### You need this to allow users to authenticate
+#<Location "/cgi-bin/trac.cgi/login">
+#    AuthType Basic
+#    AuthName "trac"
+#    AuthUserFile %{_datadir}/trac/trac.htpasswd
+#    Require valid-user
+#</location>
+#EOF
 
 %build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__python} setup.py install --root="%{buildroot}"
+%{__python} setup.py install --single-version-externally-managed --optimize="1" --root="%{buildroot}"
 
-%{__install} -Dp -m0644 trac.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/trac.conf
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/trac/
+#%{__install} -Dp -m0644 trac.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/trac.conf
+#%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/trac/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -70,14 +73,21 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README THANKS UPGRADE
-%doc %{_mandir}/man1/trac*.1*
-%config(noreplace) %{_sysconfdir}/httpd/conf.d/trac.conf
+#%doc %{_mandir}/man1/trac*.1*
+#%config(noreplace) %{_sysconfdir}/httpd/conf.d/trac.conf
 %{_bindir}/trac*
-%{_datadir}/trac/
+#%{_datadir}/trac/
 %{python_sitelib}/trac/
-%{_localstatedir}/lib/trac/
+#%{_localstatedir}/lib/trac/
+%exclude %{python_sitelib}/Trac-%{version}-py*.egg-info/
 
 %changelog
+* Wed Jul 30 2008 Brandon Davidson <brandond@uoregon.edu> - 0.11-1
+- Updated to release 0.11.
+- Now requires/uses python-setuptools.
+- New upstream no longer includes shared static content, so this release also
+  drops the sample apache config, as it is invalid without any static content.
+
 * Fri Apr 27 2007 Dag Wieers <dag@wieers.com> - 0.10.4-1
 - Updated to release 0.10.4.
 

@@ -8,7 +8,7 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-Version: 3.70
+Version: 3.71
 Release: 1
 License: GPL
 Group: Applications/System
@@ -79,6 +79,9 @@ export CFLAGS="-Werror -Wno-unused -finline-limit=2000"
 /boot/extlinux/
 
 %changelog
+* Fri Aug 01 2008 Dag Wieers <dag@wieers.com> - 3.71-1
+- Updated to release 3.71.
+
 * Fri Jul 04 2008 Dag Wieers <dag@wieers.com> - 3.70-1
 - Updated to release 3.70.
 
