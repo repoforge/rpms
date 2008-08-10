@@ -10,7 +10,7 @@
 
 Summary: Network traffic analyzer
 Name: darkstat
-Version: 3.0.708
+Version: 3.0.711
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -48,6 +48,9 @@ all sorts of useless but interesting statistics.
 %{_sbindir}/darkstat
 
 %changelog
+* Sun Aug 10 2008 Dag Wieers <dag@wieers.com> - 3.0.711-1 
+- Updated to release 3.0.711.
+
 * Mon Jun 09 2008 Dag Wieers <dag@wieers.com> - 3.0.708-1
 - Updated to release 3.0.708.
 
