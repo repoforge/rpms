@@ -4,7 +4,7 @@
 
 Summary: Console MUD client
 Name: tintin
-Version: 1.98.3
+Version: 1.98.4
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -44,6 +44,9 @@ cd src
 %{_bindir}/tt++
 
 %changelog
+* Mon Aug 11 2008 Dries Verachtert <dries@ulyssis.org> - 1.98.4-1
+- Updated to release 1.98.4.
+
 * Wed Jul 16 2008 Dries Verachtert <dries@ulyssis.org> - 1.98.3-1
 - Updated to release 1.98.3.
 

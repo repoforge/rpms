@@ -3,7 +3,7 @@
 
 Summary: C++  web services client library
 Name: wsdlpull
-Version: 1.16
+Version: 1.20
 Release: 1
 License: LGPL
 Group: Applications/Internet
@@ -78,6 +78,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Mon Aug 11 2008 Dries Verachtert <dries@ulyssis.org> - 1.20-1
+- Updated to release 1.20.
+
 * Tue Jan  1 2008 Dries Verachtert <dries@ulyssis.org> - 1.16-1
 - Updated to release 1.16.
 
