@@ -13,7 +13,7 @@ URL: http://www.anrichter.net/projects/qsvn/
 Source: http://www.anrichter.net/projects/qsvn/chrome/site/qsvn-%{version}-src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: qt-devel, gcc-c++, gettext, cmake, apr-devel, subversion-devel
+BuildRequires: qt4-devel, gcc-c++, gettext, cmake, apr-devel, subversion-devel
 
 %description
 QSvn is a graphical Subversion client.

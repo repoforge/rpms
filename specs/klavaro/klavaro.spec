@@ -18,7 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libpng-devel
 BuildRequires: gcc-c++, gettext, bison
 BuildRequires: kdelibs-devel, desktop-file-utils
-BuildRequires: gtk2-devel >= 2.6
+BuildRequires: gtk2-devel >= 2.8
 
 %description
 Klavaro  is a touch typing tutor that is very
