@@ -3,7 +3,7 @@
 
 Summary: Test your typing speed and get your fingers' CPS
 Name: typespeed
-Version: 0.6.4
+Version: 0.6.5
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -51,6 +51,9 @@ echo "%{_datadir}/typespeed/" >typespeedrc
 %{_localstatedir}/games/typespeed.score
 
 %changelog
+* Wed Aug 13 2008 Dag Wieers <dag@wieers.com> - 0.6.5-1
+- Updated to release 0.6.5.
+
 * Sat Dec 01 2007 Dag Wieers <dag@wieers.com> - 0.6.4-1
 - Updated to release 0.6.4.
 
