@@ -4,7 +4,7 @@
 
 Summary: Distributed memory object caching system
 Name: memcached
-Version: 1.2.2
+Version: 1.2.6
 Release: 1
 License: BSD
 Group: System Environment/Daemons
@@ -166,6 +166,9 @@ fi
 %{_bindir}/memcached-debug
 
 %changelog
+* Wed Aug 20 2008 Michael Best <mbest@pendragon.org> 1.2.6
+- Update to 1.2.6.
+
 * Tue May 29 2007 Matthias Saou <http://freshrpms.net/> 1.2.2-1
 - Update to 1.2.2.
 - Enable new threads feature.
