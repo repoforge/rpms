@@ -6,7 +6,7 @@
 Summary:	A music player
 Name:		exaile
 Version:	0.2.13
-Release:	1
+Release:	2
 Group:		Applications/Multimedia
 License:	GPL
 URL:		http://www.exaile.org
@@ -19,7 +19,8 @@ BuildRequires:	gtk2-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	pkgconfig
 BuildRequires:	gettext intltool perl(XML::Parser)
-BuildRequires:	firefox-devel
+#BuildRequires:	firefox-devel
+BuildRequires: xulrunner-devel
 
 Requires:	python-mutagen >= 1.8
 Requires:	dbus-python
@@ -31,6 +32,7 @@ Requires:	gnome-python2-gtkmozembed
 Requires:	python-CDDB
 Requires:	python-sexy
 Requires:	gamin-python
+Requires: 	xulrunner
 
 %ifarch x86_64 ia64 ppc64 s390x
 %define gre_conf %{_sysconfdir}/gre.d/gre64.conf
@@ -92,6 +94,9 @@ rm -rf %{buildroot}
 %{_mandir}/man1/exaile*.*
 
 %changelog
+* Sun Aug 24 2008 Heiko Adams <info@fedora-blog.de> - 0.2.13-2
+- rebuild for CentOS 5.2
+
 * Thu Apr 02 2008 Heiko Adams <info@fedora-blog.de> - 0.2.13-1
 - version update
 
