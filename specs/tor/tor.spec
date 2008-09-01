@@ -8,7 +8,7 @@
 
 Summary: Send network traffic through virtual tunnels to improve your privacy
 Name: tor
-Version: 0.1.2.19
+Version: 0.2.0.30
 Release: 1
 License: BSD
 Group: Applications/Internet
@@ -83,6 +83,9 @@ fi
 %{_bindir}/tor
 %{_bindir}/torctl
 %{_bindir}/torify
+%{_bindir}/tor-gencert
+%dir %{_datadir}/tor/
+%{_datadir}/tor/geoip
 
 %defattr(-, root, %{torgroup}, 0750)
 %dir %{_sysconfdir}/tor/
@@ -99,6 +102,9 @@ fi
 %dir %{_localstatedir}/log/tor
 
 %changelog
+* Mon Sep  1 2008 Dries Verachtert <dries@ulyssis.org> - 0.2.0.30-1
+- Updated to release 0.2.0.30.
+
 * Sun Jan 20 2008 Dries Verachtert <dries@ulyssis.org> - 0.1.2.19-1
 - Updated to release 0.1.2.19.
 

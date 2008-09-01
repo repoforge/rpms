@@ -5,7 +5,7 @@
 
 Summary: PECL package to use the memcached distributed caching system
 Name: php-pecl-memcache
-Version: 2.1.2
+Version: 2.2.3
 Release: 1
 License: PHP
 Group: Development/Languages
@@ -60,6 +60,9 @@ EOF
 
 
 %changelog
+* Mon Sep  1 2008 Dries Verachtert <dries@ulyssis.org> 2.2.3-1
+- Update to 2.2.3.
+
 * Mon Sep 18 2006 Matthias Saou <http://freshrpms.net/> 2.1.2-1
 - Update to 2.1.2.
 
