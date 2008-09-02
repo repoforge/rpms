@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Imager)
 BuildRequires: perl(LWP)
-BuildRequires: perl(Regexp::Common)
+BuildRequires: perl(Regexp::Common), perl(Test::Pod), perl(Test::Pod::Coverage), perl(Pod::Coverage)
 
 %description
 Image::Compare is a module for performing comparisons of images.

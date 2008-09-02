@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 #BuildArch: noarch
 BuildRequires: perl >= 0:5.006
 BuildRequires: perl(Module::Build) >= 0.26
+BuildRequires: perl(Module::Pluggable)
 Requires: perl >= 0:5.006
 
 %description

@@ -16,7 +16,7 @@ URL: http://genshi.edgewall.org/wiki/
 Source: http://ftp.edgewall.com/pub/genshi/Genshi-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
-BuildRequires: python >= 2.3, python-setuptools >= 0.6
+BuildRequires: python >= 2.3, python-setuptools >= 0.6, python-devel
 Requires: python >= 2.3, python-setuptools => 0.6
 
 %description

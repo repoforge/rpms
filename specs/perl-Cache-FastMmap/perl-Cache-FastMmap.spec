@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Cache-FastMmap/
 Source: http://www.cpan.org/modules/by-module/Cache/Cache-FastMmap-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Uses an mmap'ed file to act as a shared memory interprocess cache.

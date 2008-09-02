@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Crypt-SMIME/
 Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-SMIME-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 S/MIME message signing, verification, encryption and decryption.

@@ -18,7 +18,7 @@ URL: http://gnunet.org/
 Source: http://gnunet.org/download/GNUnet-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: openssl-devel, curl-devel, libextractor-devel, mysql-devel
+BuildRequires: openssl-devel, curl-devel >= 7.15.4, libextractor-devel, mysql-devel
 BuildRequires: gmp-devel, libtool
 BuildRequires: libgcrypt-devel >= 1.2.0
 BuildRequires: ncurses-devel

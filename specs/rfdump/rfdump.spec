@@ -12,7 +12,7 @@ URL: http://www.rfdump.org
 Source: http://www.rfdump.org/dl/rfdump-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glib2-devel >= 2.6, gettext
+BuildRequires: glib2-devel >= 2.6, gettext, gtk2-devel >= 2.4.0
 
 %description
 RFDUMP is a GUI to edit the "User Data Fields" on RFID tags and to test if 

@@ -32,7 +32,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 BuildRequires: imlib2-devel
-BuildRequires: perl-Module-Build
+BuildRequires: perl(Module::Build), perl(ExtUtils::CBuilder)
 BuildRequires: zlib-devel
 %{!?_without_modxorg:BuildRequires: freetype-devel, libXext-devel}
 

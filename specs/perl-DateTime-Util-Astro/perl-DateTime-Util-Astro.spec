@@ -22,7 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(DateTime)
 BuildRequires: perl(DateTime::Util::Calc) >= 0.13
-BuildRequires: perl(Module::Build)
+BuildRequires: perl(Module::Build), perl(Class::Data::Inheritable)
 
 %description
 This module contains functions for astronomical calendar calculations.

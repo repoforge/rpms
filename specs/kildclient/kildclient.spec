@@ -14,7 +14,7 @@ Source: http://dl.sf.net/kildclient/kildclient-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl(XML::Parser), intltool, pkgconfig, gettext
-BuildRequires: libglade2-devel, glib2-devel >= 2.6.0, gtk2-devel
+BuildRequires: libglade2-devel, glib2-devel >= 2.6.0, gtk2-devel >= 2.10.0
 BuildRequires: desktop-file-utils
 
 %description

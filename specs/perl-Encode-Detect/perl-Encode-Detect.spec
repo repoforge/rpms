@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Module::Build)
+BuildRequires: perl(ExtUtils::CBuilder)
 
 %description
 Encode-Detect is a Perl module that implements an Encode::Encoding subclass

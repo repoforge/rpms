@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(Catalyst::Runtime)
+BuildRequires: perl(Catalyst::Runtime), perl(File::Slurp), perl(MIME::Types)
 
 %description
 Make serving static pages painless.

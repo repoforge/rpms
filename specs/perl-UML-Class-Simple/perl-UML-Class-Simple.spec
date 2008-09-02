@@ -28,6 +28,7 @@ BuildRequires: perl(IPC::Run3)
 BuildRequires: perl(List::MoreUtils)
 BuildRequires: perl(Template)
 BuildRequires: perl(Class::Inspector)
+BuildRequires: graphviz
 Requires: perl >= 0:5.004
 
 %description

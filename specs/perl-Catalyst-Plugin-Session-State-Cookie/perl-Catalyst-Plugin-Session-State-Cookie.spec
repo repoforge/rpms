@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(Catalyst::Runtime)
+BuildRequires: perl(Catalyst::Runtime), perl(Catalyst::Plugin::Session), perl(Test::MockObject)
 
 %description
 Maintain session IDs using cookies.

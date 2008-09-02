@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Devel/Devel-CheckOS-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl(ExtUtils::MakeMaker)
 
 %description
 Check what OS we are running on.

@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::More), perl(Text::Autoformat), perl(LWP::UserAgent)
 
 %description
 Automated interface to the Wikipedia.

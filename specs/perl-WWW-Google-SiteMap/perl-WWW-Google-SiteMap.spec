@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl, perl(ExtUtils::MakeMaker)
-BuildRequires: perl(XML::Twig)
+BuildRequires: perl(XML::Twig), perl(URI::Escape)
 
 %description
 perl-WWW-Google-SiteMap is a Perl module to create sitemaps.

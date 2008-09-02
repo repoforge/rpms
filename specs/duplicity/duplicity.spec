@@ -14,8 +14,8 @@ URL: http://www.nongnu.org/duplicity/
 Source: http://savannah.nongnu.org/download/duplicity/duplicity-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python-devel >= 2.2, librsync-devel >= 0.9.6
-Requires: python >= 2.2, gnupg >= 1.0.6
+BuildRequires: python-devel >= 2.4, librsync-devel >= 0.9.6
+Requires: python >= 2.4, gnupg >= 1.0.6
 
 %description
 Duplicity incrementally backs up files and directory by encrypting

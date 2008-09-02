@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 1:5.6.1
 BuildRequires: perl(MRO::Compat)
-BuildRequires: perl(Class::Inspector)
+BuildRequires: perl(Class::Inspector), perl(ExtUtils::MakeMaker)
 Requires: perl >= 1:5.6.1
 
 %description

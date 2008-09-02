@@ -45,7 +45,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST
-%doc %{_mandir}/man3/Class:Eroot.3pm*
+%doc %{_mandir}/man3/Class::Eroot.3pm*
 %dir %{perl_vendorlib}/Class/
 %{perl_vendorlib}/Class/Eroot.pm
 
