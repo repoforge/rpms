@@ -4,7 +4,7 @@
 
 Summary: Development environment for children
 Name: littlewizard
-Version: 1.2.1
+Version: 1.2.2
 Release: 1
 License: GPL
 Group: Applications/Education
@@ -74,6 +74,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Mon Sep  8 2008 Dries Verachtert <dries@ulyssis.org> - 1.2.2-1
+- Updated to release 1.2.2.
+
 * Mon Aug 18 2008 Dries Verachtert <dries@ulyssis.org> - 1.2.1-1
 - Updated to release 1.2.1.
 
