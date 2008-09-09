@@ -4,8 +4,8 @@
 
 Summary: Image Blending with Multiresolution Splines
 Name: enblend
-Version: 2.5
-Release: 1.2
+Version: 3.2
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://enblend.sourceforge.net/
@@ -13,7 +13,7 @@ URL: http://enblend.sourceforge.net/
 Source: http://dl.sf.net/enblend/enblend-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libtiff-devel, gcc-c++, boost-devel
+BuildRequires: libtiff-devel, gcc-c++, boost-devel, glew-devel
 
 %description
 Enblend is a tool for compositing images. Given a set of images that overlap
@@ -51,6 +51,12 @@ does not line up the images for you. Use a tool like Hugin to do that.
 %{_bindir}/enblend
 
 %changelog
+* Tue Sep  9 2008 Dries Verachtert <dries@ulyssis.org> - 3.2-1
+- Updated to release 3.2.
+
+* Sun Jan 28 2007 Dries Verachtert <dries@ulyssis.org> - 3.0-1
+- Updated to release 3.0.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.5-1.2
 - Rebuild for Fedora Core 5.
 
