@@ -14,7 +14,9 @@ URL: http://fuse.sourceforge.net/sshfs.html
 Source: http://dl.sf.net/sourceforge/fuse/sshfs-fuse-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glib2-devel >= 2.0, fuse-devel >= 2.2
+BuildRequires: fuse-devel >= 2.2
+BuildRequires: glib2-devel >= 2.0
+BuildRequires: openssh-clients
 Requires: fuse >= 2.2
 
 Obsoletes: sshfs <= %{version}-%{release}

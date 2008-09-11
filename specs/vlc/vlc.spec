@@ -118,8 +118,8 @@
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
-Version: 0.8.6h
-Release: 2
+Version: 0.8.6i
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -255,7 +255,7 @@ IPv4 or IPv6 on a high-bandwidth network.
 #patch2 -p1 -b .faad2
 %{__perl} -pi -e 's|\bfaacDec\B|NeAACDec|g' modules/codec/faad.c
 
-%patch21 -p1 -b .directfb
+#patch21 -p1 -b .directfb
 %patch80 -p1 -b .libxul
 
 ### Fix PLUGIN_PATH path for lib64
@@ -271,7 +271,7 @@ export CFLAGS="%{optflags}"
 %if 0%{!?_without_ffmpeg:1}
 pushd ffmpeg-%{ffmpeg_date}
     ./configure \
-        --extra-cflags="-fPIC -DPIC" \
+        --extra-cflags="-fPIC -DPIC -mdynamic-no-pic" \
         --disable-ffmpeg \
         --disable-ffplay \
         --disable-ffserver \
@@ -439,6 +439,9 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %endif
 
 %changelog
+* Tue Jul 29 2008 Dag Wieers <dag@wieers.com> - 0.8.6i-1
+- Updated to release 0.8.6i.
+
 * Thu Jul 03 2008 Dag Wieers <dag@wieers.com> - 0.8.6h-2
 - Recompiled statically against ffmpeg-20080113.
 - Rebuild against directfb-1.0.1.

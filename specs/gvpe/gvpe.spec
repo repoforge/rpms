@@ -6,7 +6,7 @@
 
 Summary: Create a virtual ethernet using host-to-host tunnels
 Name: gvpe
-Version: 2.01
+Version: 2.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -62,12 +62,20 @@ connect them together.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %doc doc/complex-example/
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man5/gvpe.5*
+%doc %{_mandir}/man5/gvpe.conf.5*
+%doc %{_mandir}/man5/gvpe.osdep.5*
+%doc %{_mandir}/man7/gvpe.protocol.7*
+%doc %{_mandir}/man8/gvpe.8*
+%doc %{_mandir}/man8/gvpectrl.8*
 %doc %{_infodir}/gvpe.info*
 %{_bindir}/gvpectrl
 %{_sbindir}/gvpe
 
 %changelog
+* Thu Sep 04 2008 Dag Wieers <dag@wieers.com> - 2.2-1
+- Updated to release 2.2.
+
 * Fri Mar 30 2007 Dag Wieers <dag@wieers.com> - 2.01-1
 - Updated to release 2.01.
 

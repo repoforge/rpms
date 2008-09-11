@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Mike D. Schiffman <mike_schiffman$hotmail,com>
 
 Summary: Routines to help with network packet contruction and handling
 Name: libnet
@@ -37,7 +38,7 @@ with little effort. With a bit more time, more complex programs can be written
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %{__install} -Dp -m0755 libnet-config %{buildroot}%{_bindir}/libnet-config
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man3/
@@ -52,9 +53,9 @@ with little effort. With a bit more time, more complex programs can be written
 %doc doc/MIGRATION doc/PACKET* doc/PORTED doc/RAWSOCKET* doc/TODO doc/html/
 %doc %{_mandir}/man3/*.3*
 %{_bindir}/libnet-config
-%{_libdir}/libnet.a
-%{_includedir}/libnet.h
 %{_includedir}/libnet/
+%{_includedir}/libnet.h
+%{_libdir}/libnet.a
 
 %changelog
 * Fri Feb 11 2005 Dag Wieers <dag@wieers.com> - 1.1.2.1-2

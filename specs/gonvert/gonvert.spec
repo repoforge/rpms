@@ -9,8 +9,8 @@
 
 Summary: Units conversion utility
 Name: gonvert
-Version: 0.2.14
-Release: 1.2
+Version: 0.2.19
+Release: 1
 License: GPL
 Group: Applications/Engineering
 URL: http://unihedron.com/projects/gonvert/gonvert.php
@@ -19,8 +19,14 @@ Source: http://www.unihedron.com/projects/gonvert/downloads/gonvert-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: python >= 1.5, pygtk2-devel >= 2.0, libglade >= 0.13, gnome-libs >= 1.2.4
-Requires: python >= 1.5, pygtk2 >= 2.0, libglade >= 0.13, gnome-libs >= 1.2.4
+BuildRequires: python >= 1.5
+BuildRequires: pygtk2-devel >= 2.0
+#BuildRequires: libglade >= 0.13
+#BuildRequires: gnome-libs >= 1.2.4
+Requires: python >= 1.5
+Requires: pygtk2 >= 2.0
+#Requires: libglade >= 0.13
+#Requires: gnome-libs >= 1.2.4
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
@@ -37,14 +43,14 @@ your own units.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %if %{!?_without_freedesktop:1}0
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor gnome --delete-original \
-		--dir %{buildroot}%{_datadir}/applications    \
-		--add-category X-Red-Hat-Base                 \
-		%{buildroot}%{_datadir}/gnome/apps/Utilities/gonvert.desktop
+    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+    desktop-file-install --vendor gnome --delete-original \
+        --dir %{buildroot}%{_datadir}/applications    \
+        --add-category X-Red-Hat-Base                 \
+        %{buildroot}%{_datadir}/gnome/apps/Utilities/gonvert.desktop
 %endif
 
 %clean
@@ -61,8 +67,8 @@ your own units.
 %exclude %{_docdir}/gonvert/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.2.14-1.2
-- Rebuild for Fedora Core 5.
+* Thu Sep 04 2008 Dag Wieers <dag@wieers.com> - 0.2.19-1
+- Updated to release 0.2.19.
 
 * Sat Dec 24 2005 Dag Wieers <dag@wieers.com> - 0.2.14-1
 - Updated to release 0.2.14.

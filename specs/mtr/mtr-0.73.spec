@@ -1,4 +1,4 @@
-# $Id$
+# $Id: mtr.spec 5067 2007-01-11 00:54:46Z dag $
 # Authority: dag
 # Upstream: Roger Wolff <R.E.Wolff$BitWizard,nl>
 
@@ -13,7 +13,7 @@
 
 Summary: Network diagnostic tool
 Name: mtr
-Version: 0.74
+Version: 0.73
 Release: 1
 Epoch: 2
 License: GPL
@@ -148,8 +148,8 @@ autoconf
 %{_sysconfdir}/security/console.apps/xmtr
 
 %changelog
-* Thu Sep 04 2008 Dag Wieers <dag@wieers.com> - 2:0.74-1
-- Updated to release 0.74.
+* Thu Sep 04 2008 Dag Wieers <dag@wieers.com> - 2:0.73-1
+- Updated to release 0.73.
 
 * Wed Jan 10 2007 Dag Wieers <dag@wieers.com> - 2:0.72-1
 - Updated to release 0.72.
