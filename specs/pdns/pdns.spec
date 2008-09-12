@@ -13,7 +13,7 @@
 
 Summary: Advanced and high performance authoritative-only nameserver
 Name: pdns
-Version: 2.9.21
+Version: 2.9.21.1
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -22,6 +22,7 @@ URL: http://powerdns.com/
 Source: http://downloads.powerdns.com/releases/pdns-%{version}.tar.gz
 Patch0: pdns-2.9.21-fixinit.patch
 Patch1: pdns-2.9.21-avoid-version.patch
+Patch2: pdns-2.9.21.1-compile-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: boost-devel
@@ -54,6 +55,7 @@ Furthermore, PowerDNS interfaces with almost any database.
 %setup
 %patch0 -p1 -b .fixinit
 %patch1 -p1 -b .avoid-version
+%patch2 -p1 -b .compile-fixes
 
 %build
 export CPPFLAGS="-DLDAP_DEPRECATED %{optflags}"
@@ -121,5 +123,8 @@ fi
 %exclude %{_libdir}/pdns/*.la
 
 %changelog
+* Fri Sep 12 2008 Dries Verachtert <dries@ulyssis.org> - 2.9.21.1-1
+- Updated to release 2.9.21.1.
+
 * Wed Nov 21 2007 Dag Wieers <dag@wieers.com> - 2.9.21-1
 - Initial package. (using DAR)

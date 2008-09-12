@@ -1,0 +1,38 @@
+diff -ur pdns-2.9.21.1-orig/modules/ldapbackend/powerldap.hh pdns-2.9.21.1/modules/ldapbackend/powerldap.hh
+--- pdns-2.9.21.1-orig/modules/ldapbackend/powerldap.hh	2007-04-21 15:56:36.000000000 +0200
++++ pdns-2.9.21.1/modules/ldapbackend/powerldap.hh	2008-09-12 14:58:52.000000000 +0200
+@@ -38,7 +38,7 @@
+ #include <sys/types.h>
+ #endif
+ 
+-
++#include <sys/time.h>
+ 
+ #ifndef POWERLDAP_HH
+ #define POWERLDAP_HH
+Only in pdns-2.9.21.1/modules/ldapbackend: powerldap.hh~
+diff -ur pdns-2.9.21.1-orig/pdns/dynmessenger.cc pdns-2.9.21.1/pdns/dynmessenger.cc
+--- pdns-2.9.21.1-orig/pdns/dynmessenger.cc	2007-04-21 15:56:36.000000000 +0200
++++ pdns-2.9.21.1/pdns/dynmessenger.cc	2008-09-12 15:01:24.000000000 +0200
+@@ -23,6 +23,7 @@
+ #include <iostream>
+ #include <sys/types.h>
+ #include <sys/stat.h>
++#include <stdlib.h>
+ 
+ DynMessenger::DynMessenger(const string &localdir, const string &fname)
+ {
+Only in pdns-2.9.21.1/pdns: dynmessenger.cc~
+diff -ur pdns-2.9.21.1-orig/pdns/misc.hh pdns-2.9.21.1/pdns/misc.hh
+--- pdns-2.9.21.1-orig/pdns/misc.hh	2007-04-21 15:56:36.000000000 +0200
++++ pdns-2.9.21.1/pdns/misc.hh	2008-09-12 13:07:49.000000000 +0200
+@@ -19,7 +19,7 @@
+ #ifndef MISC_HH
+ #define MISC_HH
+ #include <stdint.h>
+-
++#include <string.h>
+ #if 0
+ #define RDTSC(qp) \
+ do { \
+Only in pdns-2.9.21.1/pdns: misc.hh~
