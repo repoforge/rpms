@@ -7,10 +7,12 @@
 
 %define real_name Apache-AuthCookie
 
+AutoReq: no
+
 Summary: Authentication and Authorization via cookie
 Name: perl-Apache-AuthCookie
 Version: 3.12
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-AuthCookie/
@@ -21,6 +23,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: mod_perl >= 2.0
+Requires: perl(APR::Table), perl(Apache2::Access), perl(Apache2::Const)
+Requires: perl(Apache2::Log) perl(Apache2::RequestRec)
+Requires: perl(Apache2::RequestUtil) perl(Apache2::Response) perl(Apache2::Util)
 
 %description
 Apache::AuthCookie allows you to intercept a user's first unauthenticated
@@ -64,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Apache2/AuthCookie.pm
 
 %changelog
+* Fri Sep 12 2008 Dries Verachtert <dries@ulyssis.org> - 3.12-2
+- No automatic perl requires: avoid perl(mod_perl) and perl(mod_perl2) requires, thanks to Adam J. Baker.
+
 * Fri May 02 2008 Dag Wieers <dag@wieers.com> - 3.12-1
 - Updated to release 3.12.
 
