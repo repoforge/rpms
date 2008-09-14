@@ -13,7 +13,14 @@ URL: http://www.bitlbee.org/
 Source: http://get.bitlbee.org/src/bitlbee-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gnutls-devel, libgcrypt-devel, glib-devel, perl, libxslt, xmlto, pkgconfig, glib2-devel
+BuildRequires: glib-devel
+BuildRequires: glib2-devel >= 2.4
+BuildRequires: gnutls-devel
+BuildRequires: libgcrypt-devel
+BuildRequires: libxslt
+BuildRequires: perl
+BuildRequires: pkgconfig
+BuildRequires: xmlto
 
 %description
 Bitlbee is an IRC to other chat networks gateway. bitlbee can be used as

@@ -4,13 +4,13 @@
 
 Summary: Console-based network traffic monitor
 Name: vnstat
-Version: 1.4
-Release: 3.2
+Version: 1.6
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://humdi.net/vnstat/
 
-Source:	http://humdi.net/vnstat/vnstat-%{version}.tar.gz
+Source: http://humdi.net/vnstat/vnstat-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -29,15 +29,15 @@ EOF
 VNSTAT_CONFIG="%{_sysconfdir}/sysconfig/%{name}"
 
 if [ ! -r "$VNSTAT_CONFIG" ]; then
-	echo "vnstat.cron: File \"$VNSTAT_CONFIG\" could not be read." >&2
-	exit 1
+    echo "vnstat.cron: File \"$VNSTAT_CONFIG\" could not be read." >&2
+    exit 1
 fi
 
 source "$VNSTAT_CONFIG"
 
 if [ -z "$VNSTAT_OPTIONS" ]; then
-	echo "vnstat.cron: Options VNSTAT_OPTIONS not defined in file \"$VNSTAT_CONFIG\"." >&2
-	exit 1
+    echo "vnstat.cron: Options VNSTAT_OPTIONS not defined in file \"$VNSTAT_CONFIG\"." >&2
+    exit 1
 fi
 
 %{_bindir}/vnstat -u $VNSTAT_OPTIONS $@
@@ -51,7 +51,7 @@ EOF
 
 %build
 %{__make} %{?_smp_mflags} \
-	CFLAGS="%{optflags}"
+    CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -78,6 +78,9 @@ EOF
 %{_localstatedir}/lib/vnstat/
 
 %changelog
+* Sun Sep 14 2008 Dag Wieers <dag@wieers.com> - 1.6-1
+- Updated to release 1.6.
+
 * Sat Jul 23 2005 Dag Wieers <dag@wieers.com> - 1.4-3
 - Fixed permissions of /etc/cron.d/vnstat. (Alexander Dalloz)
 

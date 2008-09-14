@@ -1,10 +1,10 @@
-# $Id: alpine.spec 6434 2008-07-31 00:54:17Z dag $
+# $Id$
 # Authority: dag
 
 Summary: Alternative Pine mail user agent implementation
 Name: alpine
-Version: 2.00
-Release: 1
+Version: 1.10
+Release: 4
 License: Apache License
 Group: Applications/Internet
 URL: http://www.washington.edu/alpine/
@@ -13,12 +13,12 @@ Source0: ftp://ftp.cac.washington.edu/alpine/alpine-%{version}.tar.gz
 Source1: pine.conf
 Source2: pine.conf.fixed
 ### http://staff.washington.edu/chappa/alpine/patches/
-#Patch0: http://staff.washington.edu/chappa/alpine/patches/alpine-2.00/maildir.patch.gz
-Patch0: alpine-2.00-maildir.patch
-#Patch1: http://staff.washington.edu/chappa/alpine/patches/alpine-2.00/fillpara.patch.gz
-Patch1: alpine-2.00-fillpara.patch
-#Patch2: http://staff.washington.edu/chappa/alpine/patches/alpine-2.00/rules.patch.gz
-Patch2: alpine-2.00-rules.patch
+#Patch0: http://staff.washington.edu/chappa/alpine/patches/alpine-1.10/maildir.patch.gz
+Patch0: alpine-1.10-maildir.patch
+#Patch1: http://staff.washington.edu/chappa/alpine/patches/alpine-1.10/fillpara.patch.gz
+Patch1: alpine-1.10-fillpara.patch
+#Patch2: http://staff.washington.edu/chappa/alpine/patches/alpine-1.10/rules.patch.gz
+Patch2: alpine-1.10-rules.patch
 Patch3: alpine-1.10-select-bold-x.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -32,7 +32,7 @@ Provides: pine = 4.64
 Alpine (Alternatively Licensed Program for Internet News & Email) is a tool
 for reading, sending, and managing electronic messages. Alpine is the
 successor to Pine and was developed by Computing & Communications at the
-University of Washington.
+University of Washington.  
 
 Though originally designed for inexperienced email users, Alpine supports
 many advanced features, and an ever-growing number of configuration and
@@ -116,9 +116,6 @@ fi
 %{_sbindir}/mlock
 
 %changelog
-* Thu Sep 11 2008 Dag Wieers <dag@wieers.com> - 2.00-1
-- Updated to release 2.00.
-
 * Thu Sep 11 2008 Dag Wieers <dag@wieers.com> - 1.10-4
 - Updated rules patch. (Joe Pruett)
 
