@@ -9,7 +9,7 @@
 
 Summary: Versatile resource statistics tool
 Name: dstat
-Version: 0.6.7
+Version: 0.6.8
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -53,13 +53,15 @@ confusion, less mistakes.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README TODO *.conf docs/*.html docs/*.txt examples/
+%doc AUTHORS ChangeLog COPYING README TODO docs/*.html docs/*.txt examples/
 %doc %{_mandir}/man1/dstat.1*
-#%config(noreplace) %{_sysconfdir}/dstat.conf
 %{_bindir}/dstat
 %{_datadir}/dstat/
 
 %changelog
+* Fri Sep 12 2008 Dag Wieers <dag@wieers.com> - 0.6.8-1
+- Updated to release 0.6.8.
+
 * Tue Feb 26 2008 Dag Wieers <dag@wieers.com> - 0.6.7-1
 - Updated to release 0.6.7.
 
