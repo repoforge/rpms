@@ -26,6 +26,7 @@ BuildRequires: perl(ExtUtils::Depends)
 BuildRequires: perl(ExtUtils::PkgConfig)
 BuildRequires: perl(Glib) >= 1.0.0
 BuildRequires: perl(Test::Number::Delta) >= 1
+BuildRequires: libpng-devel
 Requires: perl >= 2:5.8.0
 
 %description
