@@ -22,7 +22,7 @@ Patch2: alpine-2.00-rules.patch
 Patch3: alpine-1.10-select-bold-x.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: inews, aspell, openldap-devel, openssl-devel, krb5-devel, pam-devel
+BuildRequires: inews, aspell, openldap-devel, openssl-devel, krb5-devel, pam-devel, ncurses-devel
 ### RPM bug causes package to conflict with itself
 #Conflicts: pine
 Obsoletes: pine <= 4.64
