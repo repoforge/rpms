@@ -6,14 +6,16 @@
 Summary: Client for ED2K Peer-to-Peer Networks based on eMule
 Name: amule
 Version: 2.1.3
-Release: 3%{?prever:.%{prever}}
+Release: 4%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Internet
 URL: http://www.amule.org/
+
 Source0: http://download.berlios.de/amule/aMule-%{version}%{?prever}.tar.bz2
 Source1: emule_logo.png
 Patch0: aMule-2.1.3-wx28.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc-c++, wxGTK-devel >= 2.6.0, zlib-devel, gettext-devel
 BuildRequires: flex, bison
 
@@ -27,13 +29,11 @@ same network.
 %setup -n aMule-%{version}%{?prever}
 %patch0 -p1 -b .wx28
 
-
 %build
 %configure \
     --enable-alc \
     --enable-utf8-systray
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot} _docs
@@ -52,17 +52,14 @@ done
 %{__perl} -pi -e 's|amule.xpm|amule.png|g' \
     %{buildroot}%{_datadir}/applications/*.desktop
 
-
 %post
 update-desktop-database -q 2>/dev/null || :
 
 %postun
 update-desktop-database -q 2>/dev/null || :
 
-
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -79,8 +76,10 @@ update-desktop-database -q 2>/dev/null || :
 %lang(hu) %{_mandir}/hu/man1/*.1*
 %{_mandir}/man1/*.1*
 
-
 %changelog
+* Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 2.1.3-4
+- Rebuild against wxGTK 2.8.8.
+
 * Wed May 30 2007 Matthias Saou <http://freshrpms.net/> 2.1.3-3
 - Include patch to rebuild against wxGTK 2.8 (F7).
 

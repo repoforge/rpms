@@ -1,0 +1,9 @@
+--- opencv-1.0.0.orig/opencv.pc.in	2006-08-02 19:13:34.000000000 +0200
++++ opencv-1.0.0/opencv.pc.in	2008-05-11 06:27:54.000000000 +0200
+@@ -8,5 +8,5 @@
+ Name: OpenCV
+ Description: Intel(R) Open Source Computer Vision Library
+ Version: @VERSION@
+-Libs: -L${libdir} -lcxcore -lcv -lhighgui -lcvaux -lml
++Libs: -L${libdir} -lhighgui -lcvaux -lcv -lml -lcxcore
+ Cflags: -I${includedir}

@@ -7,14 +7,13 @@
 Summary: Graphical client for PostgreSQL
 Name: pgadmin3
 Version: 1.4.3
-Release: 1
+Release: 2
 License: Artistic
 Group: Applications/Databases
 URL: http://www.pgadmin.org/
 
 Source: ftp://ftp.postgresql.org/pub/pgadmin3/release/v%{version}/src/pgadmin3-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: wxGTK-devel >= 2.6, postgresql-devel, wxGTK-stc, wxGTK-xrc
 BuildRequires: desktop-file-utils, gcc-c++
@@ -45,11 +44,11 @@ created, dropped and edited to the extent supported by the database.
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor %{desktop_vendor}    \
-	--add-category X-Red-Hat-Base              \
-	--add-category Application                 \
-	--add-category Development                 \
-	--dir %{buildroot}%{_datadir}/applications \
-	pkg/pgadmin3.desktop
+    --add-category X-Red-Hat-Base              \
+    --add-category Application                 \
+    --add-category Development                 \
+    --dir %{buildroot}%{_datadir}/applications \
+    pkg/pgadmin3.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -61,6 +60,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pgadmin3/
 
 %changelog
+* Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 1.4.3-2
+- Rebuild against wxGTK 2.8.8.
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.3-1
 - Updated to release 1.4.3.
 

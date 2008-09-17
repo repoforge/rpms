@@ -1,0 +1,15 @@
+diff -up ffmpeg-20070923/libavcodec/Makefile.asmreg ffmpeg-20070923/libavcodec/Makefile
+--- ffmpeg-20070923/libavcodec/Makefile.asmreg	2007-09-23 18:20:34.000000000 +0200
++++ ffmpeg-20070923/libavcodec/Makefile	2007-09-23 20:36:28.000000000 +0200
+@@ -87,6 +87,11 @@ OBJS-$(CONFIG_H263I_DECODER)           +
+ OBJS-$(CONFIG_H263_ENCODER)            += mpegvideo_enc.o motion_est.o ratecontrol.o h263.o
+ OBJS-$(CONFIG_H263P_ENCODER)           += mpegvideo_enc.o motion_est.o ratecontrol.o h263.o
+ OBJS-$(CONFIG_H264_DECODER)            += h264.o h264idct.o h264pred.o cabac.o golomb.o
++# to "fix" can't find a register in class 'GENERAL_REGS' while reloading 'asm'
++# on ix86 in cabac.h
++ifeq ($(ARCH_X86_32),yes)
++h264.o: CFLAGS += -fomit-frame-pointer
++endif
+ OBJS-$(CONFIG_H264_ENCODER)            += h264enc.o h264dspenc.o
+ OBJS-$(CONFIG_HUFFYUV_DECODER)         += huffyuv.o
+ OBJS-$(CONFIG_HUFFYUV_ENCODER)         += huffyuv.o

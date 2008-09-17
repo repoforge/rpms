@@ -1,0 +1,1301 @@
+diff -ur opencv-1.0.0.orig/aclocal.m4 opencv-1.0.0/aclocal.m4
+--- opencv-1.0.0.orig/aclocal.m4	2006-11-03 16:54:43.000000000 +0100
++++ opencv-1.0.0/aclocal.m4	2007-03-22 04:08:41.000000000 +0100
+@@ -1578,10 +1578,27 @@
+   # before this can be enabled.
+   hardcode_into_libs=yes
+ 
++  # find out which ABI we are using
++  libsuff=
++  case "$host_cpu" in
++  x86_64*|s390x*|powerpc64*)
++    echo '[#]line __oline__ "configure"' > conftest.$ac_ext
++    if AC_TRY_EVAL(ac_compile); then
++      case `/usr/bin/file conftest.$ac_objext` in
++      *64-bit*)
++        libsuff=64
++        sys_lib_search_path_spec="/lib${libsuff} /usr/lib${libsuff} /usr/local/lib${libsuff}"
++        ;;
++      esac
++    fi
++    rm -rf conftest*
++    ;;
++  esac
++
+   # Append ld.so.conf contents to the search path
+   if test -f /etc/ld.so.conf; then
+-    lt_ld_extra=`awk '/^include / { system(sprintf("cd /etc; cat %s", \[$]2)); skip = 1; } { if (!skip) print \[$]0; skip = 0; }' < /etc/ld.so.conf | $SED -e 's/#.*//;s/[:,	]/ /g;s/=[^=]*$//;s/=[^= ]* / /g;/^$/d' | tr '\n' ' '`
+-    sys_lib_dlsearch_path_spec="/lib /usr/lib $lt_ld_extra"
++    lt_ld_extra=`awk '/^include / { system(sprintf("cd /etc; cat %s 2>/dev/null", \[$]2)); skip = 1; } { if (!skip) print \[$]0; skip = 0; }' < /etc/ld.so.conf | $SED -e 's/#.*//;s/[:,	]/ /g;s/=[^=]*$//;s/=[^= ]* / /g;/^$/d' | tr '\n' ' '`
++    sys_lib_dlsearch_path_spec="/lib${libsuff} /usr/lib${libsuff} $lt_ld_extra"
+   fi
+ 
+   # We used to test for /lib/ld.so.1 and disable shared libraries on
+@@ -4288,6 +4305,9 @@
+ # Is the compiler the GNU C compiler?
+ with_gcc=$_LT_AC_TAGVAR(GCC, $1)
+ 
++gcc_dir=\`gcc -print-file-name=. | $SED 's,/\.$,,'\`
++gcc_ver=\`gcc -dumpversion\`
++
+ # An ERE matcher.
+ EGREP=$lt_EGREP
+ 
+@@ -4421,11 +4441,11 @@
+ 
+ # Dependencies to place before the objects being linked to create a
+ # shared library.
+-predep_objects=$lt_[]_LT_AC_TAGVAR(predep_objects, $1)
++predep_objects=\`echo $lt_[]_LT_AC_TAGVAR(predep_objects, $1) | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Dependencies to place after the objects being linked to create a
+ # shared library.
+-postdep_objects=$lt_[]_LT_AC_TAGVAR(postdep_objects, $1)
++postdep_objects=\`echo $lt_[]_LT_AC_TAGVAR(postdep_objects, $1) | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Dependencies to place before the objects being linked to create a
+ # shared library.
+@@ -4437,7 +4457,7 @@
+ 
+ # The library search path used internally by the compiler when linking
+ # a shared library.
+-compiler_lib_search_path=$lt_[]_LT_AC_TAGVAR(compiler_lib_search_path, $1)
++compiler_lib_search_path=\`echo $lt_[]_LT_AC_TAGVAR(compiler_lib_search_path, $1) | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Method to check whether dependent libraries are shared objects.
+ deplibs_check_method=$lt_deplibs_check_method
+@@ -4517,7 +4537,7 @@
+ link_all_deplibs=$_LT_AC_TAGVAR(link_all_deplibs, $1)
+ 
+ # Compile-time system search path for libraries
+-sys_lib_search_path_spec=$lt_sys_lib_search_path_spec
++sys_lib_search_path_spec=\`echo $lt_sys_lib_search_path_spec | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Run-time system search path for libraries
+ sys_lib_dlsearch_path_spec=$lt_sys_lib_dlsearch_path_spec
+@@ -6353,6 +6373,7 @@
+     done
+   done
+ done
++IFS=$as_save_IFS
+ lt_ac_max=0
+ lt_ac_count=0
+ # Add /usr/xpg4/bin/sed as it is typically found on Solaris
+@@ -6385,6 +6406,7 @@
+ done
+ ])
+ SED=$lt_cv_path_SED
++AC_SUBST([SED])
+ AC_MSG_RESULT([$SED])
+ ])
+ 
+diff -ur opencv-1.0.0.orig/apps/haartraining/include/Makefile.in opencv-1.0.0/apps/haartraining/include/Makefile.in
+--- opencv-1.0.0.orig/apps/haartraining/include/Makefile.in	2006-11-03 16:54:52.000000000 +0100
++++ opencv-1.0.0/apps/haartraining/include/Makefile.in	2007-03-22 04:08:54.000000000 +0100
+@@ -160,6 +160,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/apps/haartraining/Makefile.in opencv-1.0.0/apps/haartraining/Makefile.in
+--- opencv-1.0.0.orig/apps/haartraining/Makefile.in	2006-11-03 16:54:52.000000000 +0100
++++ opencv-1.0.0/apps/haartraining/Makefile.in	2007-03-22 04:08:53.000000000 +0100
+@@ -156,6 +156,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/apps/haartraining/src/Makefile.in opencv-1.0.0/apps/haartraining/src/Makefile.in
+--- opencv-1.0.0.orig/apps/haartraining/src/Makefile.in	2006-11-03 16:54:52.000000000 +0100
++++ opencv-1.0.0/apps/haartraining/src/Makefile.in	2007-03-22 04:08:54.000000000 +0100
+@@ -202,6 +202,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/apps/Makefile.in opencv-1.0.0/apps/Makefile.in
+--- opencv-1.0.0.orig/apps/Makefile.in	2006-11-03 16:54:51.000000000 +0100
++++ opencv-1.0.0/apps/Makefile.in	2007-03-22 04:08:53.000000000 +0100
+@@ -156,6 +156,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/configure opencv-1.0.0/configure
+--- opencv-1.0.0.orig/configure	2006-11-03 16:54:49.000000000 +0100
++++ opencv-1.0.0/configure	2007-03-22 04:08:47.000000000 +0100
+@@ -466,7 +466,7 @@
+ # include <unistd.h>
+ #endif"
+ 
+-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS build build_cpu build_vendor build_os host host_cpu host_vendor host_os target target_cpu target_vendor target_os INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MMAJOR MMINOR MSUBMINOR LT_VERSION CXX CXXFLAGS LDFLAGS CPPFLAGS ac_ct_CXX EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CC CFLAGS ac_ct_CC CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CPP EGREP LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB DLLTOOL ac_ct_DLLTOOL AS ac_ct_AS OBJDUMP ac_ct_OBJDUMP CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL BUILD_APPS_TRUE BUILD_APPS_FALSE ALLOCA CARBON_CFLAGS CARBON_LIBS BUILD_CARBON_TRUE BUILD_CARBON_FALSE PKG_CONFIG GTK_CFLAGS GTK_LIBS GTHREAD_CFLAGS GTHREAD_LIBS BUILD_GTK_TRUE BUILD_GTK_FALSE QUICKTIME_CFLAGS QUICKTIME_LIBS BUILD_QUICKTIME_TRUE BUILD_QUICKTIME_FALSE XINE_LIBS BUILD_XINE_TRUE BUILD_XINE_FALSE FFMPEGLIBS BUILD_FFMPEG_TRUE BUILD_FFMPEG_FALSE IEEE1394LIBS BUILD_DC1394_TRUE BUILD_DC1394_FALSE BUILD_V4L_TRUE BUILD_V4L_FALSE IMAGELIBS PYTHON PYTHON_VERSION PYTHON_PREFIX PYTHON_EXEC_PREFIX PYTHON_PLATFORM pythondir pkgpythondir pyexecdir pkgpyexecdir PYTHON_CSPEC PYTHON_LSPEC BUILD_PYTHON_WRAPPERS_TRUE BUILD_PYTHON_WRAPPERS_FALSE SWIG SWIG_VERSION SWIG_RUNTIME_LIBS_DIR SWIG_PYTHON_OPT SWIG_PYTHON_LIBS UPDATE_SWIG_WRAPPERS_TRUE UPDATE_SWIG_WRAPPERS_FALSE DEBUG LIBOBJS LTLIBOBJS'
++ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS build build_cpu build_vendor build_os host host_cpu host_vendor host_os target target_cpu target_vendor target_os INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MMAJOR MMINOR MSUBMINOR LT_VERSION CXX CXXFLAGS LDFLAGS CPPFLAGS ac_ct_CXX EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CC CFLAGS ac_ct_CC CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CPP SED EGREP LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB DLLTOOL ac_ct_DLLTOOL AS ac_ct_AS OBJDUMP ac_ct_OBJDUMP CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL BUILD_APPS_TRUE BUILD_APPS_FALSE ALLOCA CARBON_CFLAGS CARBON_LIBS BUILD_CARBON_TRUE BUILD_CARBON_FALSE PKG_CONFIG GTK_CFLAGS GTK_LIBS GTHREAD_CFLAGS GTHREAD_LIBS BUILD_GTK_TRUE BUILD_GTK_FALSE QUICKTIME_CFLAGS QUICKTIME_LIBS BUILD_QUICKTIME_TRUE BUILD_QUICKTIME_FALSE XINE_LIBS BUILD_XINE_TRUE BUILD_XINE_FALSE FFMPEGLIBS BUILD_FFMPEG_TRUE BUILD_FFMPEG_FALSE IEEE1394LIBS BUILD_DC1394_TRUE BUILD_DC1394_FALSE BUILD_V4L_TRUE BUILD_V4L_FALSE IMAGELIBS PYTHON PYTHON_VERSION PYTHON_PREFIX PYTHON_EXEC_PREFIX PYTHON_PLATFORM pythondir pkgpythondir pyexecdir pkgpyexecdir PYTHON_CSPEC PYTHON_LSPEC BUILD_PYTHON_WRAPPERS_TRUE BUILD_PYTHON_WRAPPERS_FALSE SWIG SWIG_VERSION SWIG_RUNTIME_LIBS_DIR SWIG_PYTHON_OPT SWIG_PYTHON_LIBS UPDATE_SWIG_WRAPPERS_TRUE UPDATE_SWIG_WRAPPERS_FALSE DEBUG LIBOBJS LTLIBOBJS'
+ ac_subst_files=''
+ 
+ # Initialize some variables set by options.
+@@ -4034,6 +4034,7 @@
+     done
+   done
+ done
++IFS=$as_save_IFS
+ lt_ac_max=0
+ lt_ac_count=0
+ # Add /usr/xpg4/bin/sed as it is typically found on Solaris
+@@ -4068,6 +4069,7 @@
+ fi
+ 
+ SED=$lt_cv_path_SED
++
+ echo "$as_me:$LINENO: result: $SED" >&5
+ echo "${ECHO_T}$SED" >&6
+ 
+@@ -4508,7 +4510,7 @@
+   ;;
+ *-*-irix6*)
+   # Find out which ABI we are using.
+-  echo '#line 4511 "configure"' > conftest.$ac_ext
++  echo '#line 4513 "configure"' > conftest.$ac_ext
+   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
+   (eval $ac_compile) 2>&5
+   ac_status=$?
+@@ -5651,7 +5653,7 @@
+ 
+ 
+ # Provide some information about the compiler.
+-echo "$as_me:5654:" \
++echo "$as_me:5656:" \
+      "checking for Fortran 77 compiler version" >&5
+ ac_compiler=`set X $ac_compile; echo $2`
+ { (eval echo "$as_me:$LINENO: \"$ac_compiler --version </dev/null >&5\"") >&5
+@@ -6714,11 +6716,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:6717: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:6719: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>conftest.err)
+    ac_status=$?
+    cat conftest.err >&5
+-   echo "$as_me:6721: \$? = $ac_status" >&5
++   echo "$as_me:6723: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s "$ac_outfile"; then
+      # The compiler can only warn and ignore the option if not recognized
+      # So say no if there are warnings other than the usual output.
+@@ -6982,11 +6984,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:6985: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:6987: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>conftest.err)
+    ac_status=$?
+    cat conftest.err >&5
+-   echo "$as_me:6989: \$? = $ac_status" >&5
++   echo "$as_me:6991: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s "$ac_outfile"; then
+      # The compiler can only warn and ignore the option if not recognized
+      # So say no if there are warnings other than the usual output.
+@@ -7086,11 +7088,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:7089: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:7091: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>out/conftest.err)
+    ac_status=$?
+    cat out/conftest.err >&5
+-   echo "$as_me:7093: \$? = $ac_status" >&5
++   echo "$as_me:7095: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s out/conftest2.$ac_objext
+    then
+      # The compiler can only warn and ignore the option if not recognized
+@@ -8551,10 +8553,31 @@
+   # before this can be enabled.
+   hardcode_into_libs=yes
+ 
++  # find out which ABI we are using
++  libsuff=
++  case "$host_cpu" in
++  x86_64*|s390x*|powerpc64*)
++    echo '#line 8560 "configure"' > conftest.$ac_ext
++    if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
++  (eval $ac_compile) 2>&5
++  ac_status=$?
++  echo "$as_me:$LINENO: \$? = $ac_status" >&5
++  (exit $ac_status); }; then
++      case `/usr/bin/file conftest.$ac_objext` in
++      *64-bit*)
++        libsuff=64
++        sys_lib_search_path_spec="/lib${libsuff} /usr/lib${libsuff} /usr/local/lib${libsuff}"
++        ;;
++      esac
++    fi
++    rm -rf conftest*
++    ;;
++  esac
++
+   # Append ld.so.conf contents to the search path
+   if test -f /etc/ld.so.conf; then
+-    lt_ld_extra=`awk '/^include / { system(sprintf("cd /etc; cat %s", \$2)); skip = 1; } { if (!skip) print \$0; skip = 0; }' < /etc/ld.so.conf | $SED -e 's/#.*//;s/[:,	]/ /g;s/=[^=]*$//;s/=[^= ]* / /g;/^$/d' | tr '\n' ' '`
+-    sys_lib_dlsearch_path_spec="/lib /usr/lib $lt_ld_extra"
++    lt_ld_extra=`awk '/^include / { system(sprintf("cd /etc; cat %s 2>/dev/null", \$2)); skip = 1; } { if (!skip) print \$0; skip = 0; }' < /etc/ld.so.conf | $SED -e 's/#.*//;s/[:,	]/ /g;s/=[^=]*$//;s/=[^= ]* / /g;/^$/d' | tr '\n' ' '`
++    sys_lib_dlsearch_path_spec="/lib${libsuff} /usr/lib${libsuff} $lt_ld_extra"
+   fi
+ 
+   # We used to test for /lib/ld.so.1 and disable shared libraries on
+@@ -9431,7 +9454,7 @@
+   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
+   lt_status=$lt_dlunknown
+   cat > conftest.$ac_ext <<EOF
+-#line 9434 "configure"
++#line 9457 "configure"
+ #include "confdefs.h"
+ 
+ #if HAVE_DLFCN_H
+@@ -9531,7 +9554,7 @@
+   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
+   lt_status=$lt_dlunknown
+   cat > conftest.$ac_ext <<EOF
+-#line 9534 "configure"
++#line 9557 "configure"
+ #include "confdefs.h"
+ 
+ #if HAVE_DLFCN_H
+@@ -9862,6 +9885,9 @@
+ # Is the compiler the GNU C compiler?
+ with_gcc=$GCC
+ 
++gcc_dir=\`gcc -print-file-name=. | $SED 's,/\.$,,'\`
++gcc_ver=\`gcc -dumpversion\`
++
+ # An ERE matcher.
+ EGREP=$lt_EGREP
+ 
+@@ -9995,11 +10021,11 @@
+ 
+ # Dependencies to place before the objects being linked to create a
+ # shared library.
+-predep_objects=$lt_predep_objects
++predep_objects=\`echo $lt_predep_objects | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Dependencies to place after the objects being linked to create a
+ # shared library.
+-postdep_objects=$lt_postdep_objects
++postdep_objects=\`echo $lt_postdep_objects | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Dependencies to place before the objects being linked to create a
+ # shared library.
+@@ -10011,7 +10037,7 @@
+ 
+ # The library search path used internally by the compiler when linking
+ # a shared library.
+-compiler_lib_search_path=$lt_compiler_lib_search_path
++compiler_lib_search_path=\`echo $lt_compiler_lib_search_path | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Method to check whether dependent libraries are shared objects.
+ deplibs_check_method=$lt_deplibs_check_method
+@@ -10091,7 +10117,7 @@
+ link_all_deplibs=$link_all_deplibs
+ 
+ # Compile-time system search path for libraries
+-sys_lib_search_path_spec=$lt_sys_lib_search_path_spec
++sys_lib_search_path_spec=\`echo $lt_sys_lib_search_path_spec | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Run-time system search path for libraries
+ sys_lib_dlsearch_path_spec=$lt_sys_lib_dlsearch_path_spec
+@@ -11871,11 +11897,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:11874: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:11900: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>conftest.err)
+    ac_status=$?
+    cat conftest.err >&5
+-   echo "$as_me:11878: \$? = $ac_status" >&5
++   echo "$as_me:11904: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s "$ac_outfile"; then
+      # The compiler can only warn and ignore the option if not recognized
+      # So say no if there are warnings other than the usual output.
+@@ -11975,11 +12001,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:11978: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:12004: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>out/conftest.err)
+    ac_status=$?
+    cat out/conftest.err >&5
+-   echo "$as_me:11982: \$? = $ac_status" >&5
++   echo "$as_me:12008: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s out/conftest2.$ac_objext
+    then
+      # The compiler can only warn and ignore the option if not recognized
+@@ -12507,10 +12533,31 @@
+   # before this can be enabled.
+   hardcode_into_libs=yes
+ 
++  # find out which ABI we are using
++  libsuff=
++  case "$host_cpu" in
++  x86_64*|s390x*|powerpc64*)
++    echo '#line 12540 "configure"' > conftest.$ac_ext
++    if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
++  (eval $ac_compile) 2>&5
++  ac_status=$?
++  echo "$as_me:$LINENO: \$? = $ac_status" >&5
++  (exit $ac_status); }; then
++      case `/usr/bin/file conftest.$ac_objext` in
++      *64-bit*)
++        libsuff=64
++        sys_lib_search_path_spec="/lib${libsuff} /usr/lib${libsuff} /usr/local/lib${libsuff}"
++        ;;
++      esac
++    fi
++    rm -rf conftest*
++    ;;
++  esac
++
+   # Append ld.so.conf contents to the search path
+   if test -f /etc/ld.so.conf; then
+-    lt_ld_extra=`awk '/^include / { system(sprintf("cd /etc; cat %s", \$2)); skip = 1; } { if (!skip) print \$0; skip = 0; }' < /etc/ld.so.conf | $SED -e 's/#.*//;s/[:,	]/ /g;s/=[^=]*$//;s/=[^= ]* / /g;/^$/d' | tr '\n' ' '`
+-    sys_lib_dlsearch_path_spec="/lib /usr/lib $lt_ld_extra"
++    lt_ld_extra=`awk '/^include / { system(sprintf("cd /etc; cat %s 2>/dev/null", \$2)); skip = 1; } { if (!skip) print \$0; skip = 0; }' < /etc/ld.so.conf | $SED -e 's/#.*//;s/[:,	]/ /g;s/=[^=]*$//;s/=[^= ]* / /g;/^$/d' | tr '\n' ' '`
++    sys_lib_dlsearch_path_spec="/lib${libsuff} /usr/lib${libsuff} $lt_ld_extra"
+   fi
+ 
+   # We used to test for /lib/ld.so.1 and disable shared libraries on
+@@ -12894,6 +12941,9 @@
+ # Is the compiler the GNU C compiler?
+ with_gcc=$GCC_CXX
+ 
++gcc_dir=\`gcc -print-file-name=. | $SED 's,/\.$,,'\`
++gcc_ver=\`gcc -dumpversion\`
++
+ # An ERE matcher.
+ EGREP=$lt_EGREP
+ 
+@@ -13027,11 +13077,11 @@
+ 
+ # Dependencies to place before the objects being linked to create a
+ # shared library.
+-predep_objects=$lt_predep_objects_CXX
++predep_objects=\`echo $lt_predep_objects_CXX | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Dependencies to place after the objects being linked to create a
+ # shared library.
+-postdep_objects=$lt_postdep_objects_CXX
++postdep_objects=\`echo $lt_postdep_objects_CXX | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Dependencies to place before the objects being linked to create a
+ # shared library.
+@@ -13043,7 +13093,7 @@
+ 
+ # The library search path used internally by the compiler when linking
+ # a shared library.
+-compiler_lib_search_path=$lt_compiler_lib_search_path_CXX
++compiler_lib_search_path=\`echo $lt_compiler_lib_search_path_CXX | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Method to check whether dependent libraries are shared objects.
+ deplibs_check_method=$lt_deplibs_check_method
+@@ -13123,7 +13173,7 @@
+ link_all_deplibs=$link_all_deplibs_CXX
+ 
+ # Compile-time system search path for libraries
+-sys_lib_search_path_spec=$lt_sys_lib_search_path_spec
++sys_lib_search_path_spec=\`echo $lt_sys_lib_search_path_spec | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Run-time system search path for libraries
+ sys_lib_dlsearch_path_spec=$lt_sys_lib_dlsearch_path_spec
+@@ -13545,11 +13595,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:13548: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:13598: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>conftest.err)
+    ac_status=$?
+    cat conftest.err >&5
+-   echo "$as_me:13552: \$? = $ac_status" >&5
++   echo "$as_me:13602: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s "$ac_outfile"; then
+      # The compiler can only warn and ignore the option if not recognized
+      # So say no if there are warnings other than the usual output.
+@@ -13649,11 +13699,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:13652: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:13702: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>out/conftest.err)
+    ac_status=$?
+    cat out/conftest.err >&5
+-   echo "$as_me:13656: \$? = $ac_status" >&5
++   echo "$as_me:13706: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s out/conftest2.$ac_objext
+    then
+      # The compiler can only warn and ignore the option if not recognized
+@@ -15094,10 +15144,31 @@
+   # before this can be enabled.
+   hardcode_into_libs=yes
+ 
++  # find out which ABI we are using
++  libsuff=
++  case "$host_cpu" in
++  x86_64*|s390x*|powerpc64*)
++    echo '#line 15151 "configure"' > conftest.$ac_ext
++    if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
++  (eval $ac_compile) 2>&5
++  ac_status=$?
++  echo "$as_me:$LINENO: \$? = $ac_status" >&5
++  (exit $ac_status); }; then
++      case `/usr/bin/file conftest.$ac_objext` in
++      *64-bit*)
++        libsuff=64
++        sys_lib_search_path_spec="/lib${libsuff} /usr/lib${libsuff} /usr/local/lib${libsuff}"
++        ;;
++      esac
++    fi
++    rm -rf conftest*
++    ;;
++  esac
++
+   # Append ld.so.conf contents to the search path
+   if test -f /etc/ld.so.conf; then
+-    lt_ld_extra=`awk '/^include / { system(sprintf("cd /etc; cat %s", \$2)); skip = 1; } { if (!skip) print \$0; skip = 0; }' < /etc/ld.so.conf | $SED -e 's/#.*//;s/[:,	]/ /g;s/=[^=]*$//;s/=[^= ]* / /g;/^$/d' | tr '\n' ' '`
+-    sys_lib_dlsearch_path_spec="/lib /usr/lib $lt_ld_extra"
++    lt_ld_extra=`awk '/^include / { system(sprintf("cd /etc; cat %s 2>/dev/null", \$2)); skip = 1; } { if (!skip) print \$0; skip = 0; }' < /etc/ld.so.conf | $SED -e 's/#.*//;s/[:,	]/ /g;s/=[^=]*$//;s/=[^= ]* / /g;/^$/d' | tr '\n' ' '`
++    sys_lib_dlsearch_path_spec="/lib${libsuff} /usr/lib${libsuff} $lt_ld_extra"
+   fi
+ 
+   # We used to test for /lib/ld.so.1 and disable shared libraries on
+@@ -15481,6 +15552,9 @@
+ # Is the compiler the GNU C compiler?
+ with_gcc=$GCC_F77
+ 
++gcc_dir=\`gcc -print-file-name=. | $SED 's,/\.$,,'\`
++gcc_ver=\`gcc -dumpversion\`
++
+ # An ERE matcher.
+ EGREP=$lt_EGREP
+ 
+@@ -15614,11 +15688,11 @@
+ 
+ # Dependencies to place before the objects being linked to create a
+ # shared library.
+-predep_objects=$lt_predep_objects_F77
++predep_objects=\`echo $lt_predep_objects_F77 | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Dependencies to place after the objects being linked to create a
+ # shared library.
+-postdep_objects=$lt_postdep_objects_F77
++postdep_objects=\`echo $lt_postdep_objects_F77 | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Dependencies to place before the objects being linked to create a
+ # shared library.
+@@ -15630,7 +15704,7 @@
+ 
+ # The library search path used internally by the compiler when linking
+ # a shared library.
+-compiler_lib_search_path=$lt_compiler_lib_search_path_F77
++compiler_lib_search_path=\`echo $lt_compiler_lib_search_path_F77 | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Method to check whether dependent libraries are shared objects.
+ deplibs_check_method=$lt_deplibs_check_method
+@@ -15710,7 +15784,7 @@
+ link_all_deplibs=$link_all_deplibs_F77
+ 
+ # Compile-time system search path for libraries
+-sys_lib_search_path_spec=$lt_sys_lib_search_path_spec
++sys_lib_search_path_spec=\`echo $lt_sys_lib_search_path_spec | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Run-time system search path for libraries
+ sys_lib_dlsearch_path_spec=$lt_sys_lib_dlsearch_path_spec
+@@ -15852,11 +15926,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:15855: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:15929: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>conftest.err)
+    ac_status=$?
+    cat conftest.err >&5
+-   echo "$as_me:15859: \$? = $ac_status" >&5
++   echo "$as_me:15933: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s "$ac_outfile"; then
+      # The compiler can only warn and ignore the option if not recognized
+      # So say no if there are warnings other than the usual output.
+@@ -16120,11 +16194,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:16123: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:16197: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>conftest.err)
+    ac_status=$?
+    cat conftest.err >&5
+-   echo "$as_me:16127: \$? = $ac_status" >&5
++   echo "$as_me:16201: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s "$ac_outfile"; then
+      # The compiler can only warn and ignore the option if not recognized
+      # So say no if there are warnings other than the usual output.
+@@ -16224,11 +16298,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:16227: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:16301: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>out/conftest.err)
+    ac_status=$?
+    cat out/conftest.err >&5
+-   echo "$as_me:16231: \$? = $ac_status" >&5
++   echo "$as_me:16305: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s out/conftest2.$ac_objext
+    then
+      # The compiler can only warn and ignore the option if not recognized
+@@ -17689,10 +17763,31 @@
+   # before this can be enabled.
+   hardcode_into_libs=yes
+ 
++  # find out which ABI we are using
++  libsuff=
++  case "$host_cpu" in
++  x86_64*|s390x*|powerpc64*)
++    echo '#line 17770 "configure"' > conftest.$ac_ext
++    if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
++  (eval $ac_compile) 2>&5
++  ac_status=$?
++  echo "$as_me:$LINENO: \$? = $ac_status" >&5
++  (exit $ac_status); }; then
++      case `/usr/bin/file conftest.$ac_objext` in
++      *64-bit*)
++        libsuff=64
++        sys_lib_search_path_spec="/lib${libsuff} /usr/lib${libsuff} /usr/local/lib${libsuff}"
++        ;;
++      esac
++    fi
++    rm -rf conftest*
++    ;;
++  esac
++
+   # Append ld.so.conf contents to the search path
+   if test -f /etc/ld.so.conf; then
+-    lt_ld_extra=`awk '/^include / { system(sprintf("cd /etc; cat %s", \$2)); skip = 1; } { if (!skip) print \$0; skip = 0; }' < /etc/ld.so.conf | $SED -e 's/#.*//;s/[:,	]/ /g;s/=[^=]*$//;s/=[^= ]* / /g;/^$/d' | tr '\n' ' '`
+-    sys_lib_dlsearch_path_spec="/lib /usr/lib $lt_ld_extra"
++    lt_ld_extra=`awk '/^include / { system(sprintf("cd /etc; cat %s 2>/dev/null", \$2)); skip = 1; } { if (!skip) print \$0; skip = 0; }' < /etc/ld.so.conf | $SED -e 's/#.*//;s/[:,	]/ /g;s/=[^=]*$//;s/=[^= ]* / /g;/^$/d' | tr '\n' ' '`
++    sys_lib_dlsearch_path_spec="/lib${libsuff} /usr/lib${libsuff} $lt_ld_extra"
+   fi
+ 
+   # We used to test for /lib/ld.so.1 and disable shared libraries on
+@@ -18076,6 +18171,9 @@
+ # Is the compiler the GNU C compiler?
+ with_gcc=$GCC_GCJ
+ 
++gcc_dir=\`gcc -print-file-name=. | $SED 's,/\.$,,'\`
++gcc_ver=\`gcc -dumpversion\`
++
+ # An ERE matcher.
+ EGREP=$lt_EGREP
+ 
+@@ -18209,11 +18307,11 @@
+ 
+ # Dependencies to place before the objects being linked to create a
+ # shared library.
+-predep_objects=$lt_predep_objects_GCJ
++predep_objects=\`echo $lt_predep_objects_GCJ | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Dependencies to place after the objects being linked to create a
+ # shared library.
+-postdep_objects=$lt_postdep_objects_GCJ
++postdep_objects=\`echo $lt_postdep_objects_GCJ | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Dependencies to place before the objects being linked to create a
+ # shared library.
+@@ -18225,7 +18323,7 @@
+ 
+ # The library search path used internally by the compiler when linking
+ # a shared library.
+-compiler_lib_search_path=$lt_compiler_lib_search_path_GCJ
++compiler_lib_search_path=\`echo $lt_compiler_lib_search_path_GCJ | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Method to check whether dependent libraries are shared objects.
+ deplibs_check_method=$lt_deplibs_check_method
+@@ -18305,7 +18403,7 @@
+ link_all_deplibs=$link_all_deplibs_GCJ
+ 
+ # Compile-time system search path for libraries
+-sys_lib_search_path_spec=$lt_sys_lib_search_path_spec
++sys_lib_search_path_spec=\`echo $lt_sys_lib_search_path_spec | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Run-time system search path for libraries
+ sys_lib_dlsearch_path_spec=$lt_sys_lib_dlsearch_path_spec
+@@ -18557,6 +18655,9 @@
+ # Is the compiler the GNU C compiler?
+ with_gcc=$GCC_RC
+ 
++gcc_dir=\`gcc -print-file-name=. | $SED 's,/\.$,,'\`
++gcc_ver=\`gcc -dumpversion\`
++
+ # An ERE matcher.
+ EGREP=$lt_EGREP
+ 
+@@ -18690,11 +18791,11 @@
+ 
+ # Dependencies to place before the objects being linked to create a
+ # shared library.
+-predep_objects=$lt_predep_objects_RC
++predep_objects=\`echo $lt_predep_objects_RC | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Dependencies to place after the objects being linked to create a
+ # shared library.
+-postdep_objects=$lt_postdep_objects_RC
++postdep_objects=\`echo $lt_postdep_objects_RC | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Dependencies to place before the objects being linked to create a
+ # shared library.
+@@ -18706,7 +18807,7 @@
+ 
+ # The library search path used internally by the compiler when linking
+ # a shared library.
+-compiler_lib_search_path=$lt_compiler_lib_search_path_RC
++compiler_lib_search_path=\`echo $lt_compiler_lib_search_path_RC | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Method to check whether dependent libraries are shared objects.
+ deplibs_check_method=$lt_deplibs_check_method
+@@ -18786,7 +18887,7 @@
+ link_all_deplibs=$link_all_deplibs_RC
+ 
+ # Compile-time system search path for libraries
+-sys_lib_search_path_spec=$lt_sys_lib_search_path_spec
++sys_lib_search_path_spec=\`echo $lt_sys_lib_search_path_spec | \$SED -e "s@\${gcc_dir}@\\\${gcc_dir}@g;s@\${gcc_ver}@\\\${gcc_ver}@g"\`
+ 
+ # Run-time system search path for libraries
+ sys_lib_dlsearch_path_spec=$lt_sys_lib_dlsearch_path_spec
+@@ -19079,28 +19180,28 @@
+     i686-*-*)
+         if test x"$ac_cv_c_compiler_gnu" = "xyes"; then
+           # default to i686/pentiumpro -- people can override this
+-          CXXFLAGS="-g -march=i686 -ffast-math -fomit-frame-pointer $CXXFLAGS"
++:          CXXFLAGS="-g -march=i686 -ffast-math -fomit-frame-pointer $CXXFLAGS"
+         fi
+         ;;
+     powerpc-*-*)
+         if test x"$ac_cv_c_compiler_gnu" = "xyes"; then
+             # default to G3 processors -- people can override this
+-            CXXFLAGS="-g -mcpu=G3 -mtune=G5 -fomit-frame-pointer $CXXFLAGS"
++:            CXXFLAGS="-g -mcpu=G3 -mtune=G5 -fomit-frame-pointer $CXXFLAGS"
+         fi
+         ;;
+     *-*-*)
+         if test x"$ac_cv_c_compiler_gnu" = "xyes"; then
+-            CXXFLAGS="-fomit-frame-pointer $CXXFLAGS"
++:            CXXFLAGS="-fomit-frame-pointer $CXXFLAGS"
+         fi
+         ;;
+     esac
+ 
+     CPPFLAGS="-DNDEBUG $CPPFLAGS"
+-    CXXFLAGS="-O3 $CXXFLAGS"
++:    CXXFLAGS="-O3 $CXXFLAGS"
+ fi
+ 
+ if test x"$ac_cv_c_compiler_gnu" = "xyes"; then
+-    CXXFLAGS="-Wall -fno-rtti -pipe $CXXFLAGS"
++:    CXXFLAGS="-Wall -fno-rtti -pipe $CXXFLAGS"
+ fi
+ 
+ # add libm because it is used by several libraries and OpenCV itself
+@@ -25580,6 +25681,7 @@
+ s,@am__fastdepCC_TRUE@,$am__fastdepCC_TRUE,;t t
+ s,@am__fastdepCC_FALSE@,$am__fastdepCC_FALSE,;t t
+ s,@CPP@,$CPP,;t t
++s,@SED@,$SED,;t t
+ s,@EGREP@,$EGREP,;t t
+ s,@LN_S@,$LN_S,;t t
+ s,@ECHO@,$ECHO,;t t
+diff -ur opencv-1.0.0.orig/cv/include/Makefile.in opencv-1.0.0/cv/include/Makefile.in
+--- opencv-1.0.0.orig/cv/include/Makefile.in	2006-11-03 16:54:52.000000000 +0100
++++ opencv-1.0.0/cv/include/Makefile.in	2007-03-22 04:08:55.000000000 +0100
+@@ -160,6 +160,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/cv/Makefile.in opencv-1.0.0/cv/Makefile.in
+--- opencv-1.0.0.orig/cv/Makefile.in	2006-11-03 16:54:52.000000000 +0100
++++ opencv-1.0.0/cv/Makefile.in	2007-03-22 04:08:54.000000000 +0100
+@@ -156,6 +156,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/cv/src/Makefile.in opencv-1.0.0/cv/src/Makefile.in
+--- opencv-1.0.0.orig/cv/src/Makefile.in	2006-11-03 16:54:53.000000000 +0100
++++ opencv-1.0.0/cv/src/Makefile.in	2007-03-22 04:08:55.000000000 +0100
+@@ -203,6 +203,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/cvaux/include/Makefile.in opencv-1.0.0/cvaux/include/Makefile.in
+--- opencv-1.0.0.orig/cvaux/include/Makefile.in	2006-11-03 16:54:53.000000000 +0100
++++ opencv-1.0.0/cvaux/include/Makefile.in	2007-03-22 04:08:56.000000000 +0100
+@@ -160,6 +160,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/cvaux/Makefile.in opencv-1.0.0/cvaux/Makefile.in
+--- opencv-1.0.0.orig/cvaux/Makefile.in	2006-11-03 16:54:53.000000000 +0100
++++ opencv-1.0.0/cvaux/Makefile.in	2007-03-22 04:08:55.000000000 +0100
+@@ -156,6 +156,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/cvaux/src/Makefile.in opencv-1.0.0/cvaux/src/Makefile.in
+--- opencv-1.0.0.orig/cvaux/src/Makefile.in	2006-11-03 16:54:53.000000000 +0100
++++ opencv-1.0.0/cvaux/src/Makefile.in	2007-03-22 04:08:57.000000000 +0100
+@@ -209,6 +209,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/cxcore/include/Makefile.in opencv-1.0.0/cxcore/include/Makefile.in
+--- opencv-1.0.0.orig/cxcore/include/Makefile.in	2006-11-03 16:54:54.000000000 +0100
++++ opencv-1.0.0/cxcore/include/Makefile.in	2007-03-22 04:08:57.000000000 +0100
+@@ -160,6 +160,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/cxcore/Makefile.in opencv-1.0.0/cxcore/Makefile.in
+--- opencv-1.0.0.orig/cxcore/Makefile.in	2006-11-03 16:54:53.000000000 +0100
++++ opencv-1.0.0/cxcore/Makefile.in	2007-03-22 04:08:57.000000000 +0100
+@@ -156,6 +156,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/cxcore/src/Makefile.in opencv-1.0.0/cxcore/src/Makefile.in
+--- opencv-1.0.0.orig/cxcore/src/Makefile.in	2006-11-03 16:54:54.000000000 +0100
++++ opencv-1.0.0/cxcore/src/Makefile.in	2007-03-22 04:08:58.000000000 +0100
+@@ -193,6 +193,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/data/Makefile.in opencv-1.0.0/data/Makefile.in
+--- opencv-1.0.0.orig/data/Makefile.in	2006-11-03 16:54:54.000000000 +0100
++++ opencv-1.0.0/data/Makefile.in	2007-03-22 04:08:58.000000000 +0100
+@@ -158,6 +158,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/docs/Makefile.in opencv-1.0.0/docs/Makefile.in
+--- opencv-1.0.0.orig/docs/Makefile.in	2006-11-03 16:54:54.000000000 +0100
++++ opencv-1.0.0/docs/Makefile.in	2007-03-22 04:08:58.000000000 +0100
+@@ -158,6 +158,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/interfaces/Makefile.in opencv-1.0.0/interfaces/Makefile.in
+--- opencv-1.0.0.orig/interfaces/Makefile.in	2006-11-03 16:54:54.000000000 +0100
++++ opencv-1.0.0/interfaces/Makefile.in	2007-03-22 04:08:59.000000000 +0100
+@@ -164,6 +164,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/interfaces/swig/filtered/Makefile.in opencv-1.0.0/interfaces/swig/filtered/Makefile.in
+--- opencv-1.0.0.orig/interfaces/swig/filtered/Makefile.in	2006-11-03 16:54:55.000000000 +0100
++++ opencv-1.0.0/interfaces/swig/filtered/Makefile.in	2007-03-22 04:08:59.000000000 +0100
+@@ -158,6 +158,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/interfaces/swig/general/Makefile.in opencv-1.0.0/interfaces/swig/general/Makefile.in
+--- opencv-1.0.0.orig/interfaces/swig/general/Makefile.in	2006-11-03 16:54:55.000000000 +0100
++++ opencv-1.0.0/interfaces/swig/general/Makefile.in	2007-03-22 04:09:00.000000000 +0100
+@@ -150,6 +150,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/interfaces/swig/Makefile.in opencv-1.0.0/interfaces/swig/Makefile.in
+--- opencv-1.0.0.orig/interfaces/swig/Makefile.in	2006-11-03 16:54:55.000000000 +0100
++++ opencv-1.0.0/interfaces/swig/Makefile.in	2007-03-22 04:08:59.000000000 +0100
+@@ -162,6 +162,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/interfaces/swig/python/Makefile.in opencv-1.0.0/interfaces/swig/python/Makefile.in
+--- opencv-1.0.0.orig/interfaces/swig/python/Makefile.in	2006-11-03 16:54:55.000000000 +0100
++++ opencv-1.0.0/interfaces/swig/python/Makefile.in	2007-03-22 04:09:00.000000000 +0100
+@@ -44,7 +44,7 @@
+ host_triplet = @host@
+ target_triplet = @target@
+ subdir = interfaces/swig/python
+-DIST_COMMON = $(am__pkgpython_PYTHON_DIST) $(noinst_PYTHON) \
++DIST_COMMON = $(am__pkgpyexec_PYTHON_DIST) $(noinst_PYTHON) \
+ 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
+ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
+ am__aclocal_m4_deps = $(top_srcdir)/autotools/aclocal/az_python.m4 \
+@@ -63,10 +63,10 @@
+     *) f=$$p;; \
+   esac;
+ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
+-am__installdirs = "$(DESTDIR)$(pkgpythondir)" \
+-	"$(DESTDIR)$(pkgpythondir)"
+-pkgpythonLTLIBRARIES_INSTALL = $(INSTALL)
+-LTLIBRARIES = $(pkgpython_LTLIBRARIES)
++am__installdirs = "$(DESTDIR)$(pkgpyexecdir)" \
++	"$(DESTDIR)$(pkgpyexecdir)"
++pkgpyexecLTLIBRARIES_INSTALL = $(INSTALL)
++LTLIBRARIES = $(pkgpyexec_LTLIBRARIES)
+ @BUILD_PYTHON_WRAPPERS_TRUE@_cv_la_DEPENDENCIES =  \
+ @BUILD_PYTHON_WRAPPERS_TRUE@	$(top_builddir)/cv/src/libcv.la
+ am___cv_la_SOURCES_DIST = _cv.cpp error.cpp error.h pyhelpers.cpp \
+@@ -77,7 +77,7 @@
+ @BUILD_PYTHON_WRAPPERS_TRUE@	_cv_la-pyhelpers.lo \
+ @BUILD_PYTHON_WRAPPERS_TRUE@	_cv_la-cvshadow.lo
+ _cv_la_OBJECTS = $(am__cv_la_OBJECTS)
+-@BUILD_PYTHON_WRAPPERS_TRUE@am__cv_la_rpath = -rpath $(pkgpythondir)
++@BUILD_PYTHON_WRAPPERS_TRUE@am__cv_la_rpath = -rpath $(pkgpyexecdir)
+ @BUILD_PYTHON_WRAPPERS_TRUE@_highgui_la_DEPENDENCIES = $(top_builddir)/otherlibs/highgui/libhighgui.la
+ am___highgui_la_SOURCES_DIST = _highgui.cpp pyhelpers.cpp pyhelpers.h \
+ 	highgui.i
+@@ -86,7 +86,7 @@
+ @BUILD_PYTHON_WRAPPERS_TRUE@	_highgui_la-pyhelpers.lo
+ _highgui_la_OBJECTS = $(am__highgui_la_OBJECTS)
+ @BUILD_PYTHON_WRAPPERS_TRUE@am__highgui_la_rpath = -rpath \
+-@BUILD_PYTHON_WRAPPERS_TRUE@	$(pkgpythondir)
++@BUILD_PYTHON_WRAPPERS_TRUE@	$(pkgpyexecdir)
+ DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
+ depcomp = $(SHELL) $(top_srcdir)/autotools/depcomp
+ am__depfiles_maybe = depfiles
+@@ -109,9 +109,9 @@
+ SOURCES = $(_cv_la_SOURCES) $(_highgui_la_SOURCES)
+ DIST_SOURCES = $(am___cv_la_SOURCES_DIST) \
+ 	$(am___highgui_la_SOURCES_DIST)
+-am__pkgpython_PYTHON_DIST = __init__.py cv.py adaptors.py highgui.py \
++am__pkgpyexec_PYTHON_DIST = __init__.py cv.py adaptors.py highgui.py \
+ 	matlab_syntax.py
+-pkgpythonPYTHON_INSTALL = $(INSTALL_DATA)
++pkgpyexecPYTHON_INSTALL = $(INSTALL_DATA)
+ py_compile = $(top_srcdir)/autotools/py-compile
+ ETAGS = etags
+ CTAGS = ctags
+@@ -211,6 +211,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+@@ -324,8 +325,8 @@
+ 
+ 
+ # Conditional targets #######################################################
+-@BUILD_PYTHON_WRAPPERS_TRUE@pkgpython_LTLIBRARIES = _cv.la _highgui.la
+-@BUILD_PYTHON_WRAPPERS_TRUE@pkgpython_PYTHON = \
++@BUILD_PYTHON_WRAPPERS_TRUE@pkgpyexec_LTLIBRARIES = _cv.la _highgui.la
++@BUILD_PYTHON_WRAPPERS_TRUE@pkgpyexec_PYTHON = \
+ @BUILD_PYTHON_WRAPPERS_TRUE@  __init__.py    \
+ @BUILD_PYTHON_WRAPPERS_TRUE@  cv.py          \
+ @BUILD_PYTHON_WRAPPERS_TRUE@  adaptors.py    \
+@@ -382,28 +383,28 @@
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-install-pkgpythonLTLIBRARIES: $(pkgpython_LTLIBRARIES)
++install-pkgpyexecLTLIBRARIES: $(pkgpyexec_LTLIBRARIES)
+ 	@$(NORMAL_INSTALL)
+-	test -z "$(pkgpythondir)" || $(mkdir_p) "$(DESTDIR)$(pkgpythondir)"
+-	@list='$(pkgpython_LTLIBRARIES)'; for p in $$list; do \
++	test -z "$(pkgpyexecdir)" || $(mkdir_p) "$(DESTDIR)$(pkgpyexecdir)"
++	@list='$(pkgpyexec_LTLIBRARIES)'; for p in $$list; do \
+ 	  if test -f $$p; then \
+ 	    f=$(am__strip_dir) \
+-	    echo " $(LIBTOOL) --mode=install $(pkgpythonLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) '$$p' '$(DESTDIR)$(pkgpythondir)/$$f'"; \
+-	    $(LIBTOOL) --mode=install $(pkgpythonLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) "$$p" "$(DESTDIR)$(pkgpythondir)/$$f"; \
++	    echo " $(LIBTOOL) --mode=install $(pkgpyexecLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) '$$p' '$(DESTDIR)$(pkgpyexecdir)/$$f'"; \
++	    $(LIBTOOL) --mode=install $(pkgpyexecLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) "$$p" "$(DESTDIR)$(pkgpyexecdir)/$$f"; \
+ 	  else :; fi; \
+ 	done
+ 
+-uninstall-pkgpythonLTLIBRARIES:
++uninstall-pkgpyexecLTLIBRARIES:
+ 	@$(NORMAL_UNINSTALL)
+-	@set -x; list='$(pkgpython_LTLIBRARIES)'; for p in $$list; do \
++	@set -x; list='$(pkgpyexec_LTLIBRARIES)'; for p in $$list; do \
+ 	  p=$(am__strip_dir) \
+-	  echo " $(LIBTOOL) --mode=uninstall rm -f '$(DESTDIR)$(pkgpythondir)/$$p'"; \
+-	  $(LIBTOOL) --mode=uninstall rm -f "$(DESTDIR)$(pkgpythondir)/$$p"; \
++	  echo " $(LIBTOOL) --mode=uninstall rm -f '$(DESTDIR)$(pkgpyexecdir)/$$p'"; \
++	  $(LIBTOOL) --mode=uninstall rm -f "$(DESTDIR)$(pkgpyexecdir)/$$p"; \
+ 	done
+ 
+-clean-pkgpythonLTLIBRARIES:
+-	-test -z "$(pkgpython_LTLIBRARIES)" || rm -f $(pkgpython_LTLIBRARIES)
+-	@list='$(pkgpython_LTLIBRARIES)'; for p in $$list; do \
++clean-pkgpyexecLTLIBRARIES:
++	-test -z "$(pkgpyexec_LTLIBRARIES)" || rm -f $(pkgpyexec_LTLIBRARIES)
++	@list='$(pkgpyexec_LTLIBRARIES)'; for p in $$list; do \
+ 	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+ 	  test "$$dir" != "$$p" || dir=.; \
+ 	  echo "rm -f \"$${dir}/so_locations\""; \
+@@ -499,33 +500,33 @@
+ distclean-libtool:
+ 	-rm -f libtool
+ uninstall-info-am:
+-install-pkgpythonPYTHON: $(pkgpython_PYTHON)
++install-pkgpyexecPYTHON: $(pkgpyexec_PYTHON)
+ 	@$(NORMAL_INSTALL)
+-	test -z "$(pkgpythondir)" || $(mkdir_p) "$(DESTDIR)$(pkgpythondir)"
+-	@list='$(pkgpython_PYTHON)'; dlist=''; for p in $$list; do\
++	test -z "$(pkgpyexecdir)" || $(mkdir_p) "$(DESTDIR)$(pkgpyexecdir)"
++	@list='$(pkgpyexec_PYTHON)'; dlist=''; for p in $$list; do\
+ 	  if test -f "$$p"; then b=; else b="$(srcdir)/"; fi; \
+ 	  if test -f $$b$$p; then \
+ 	    f=$(am__strip_dir) \
+ 	    dlist="$$dlist $$f"; \
+-	    echo " $(pkgpythonPYTHON_INSTALL) '$$b$$p' '$(DESTDIR)$(pkgpythondir)/$$f'"; \
+-	    $(pkgpythonPYTHON_INSTALL) "$$b$$p" "$(DESTDIR)$(pkgpythondir)/$$f"; \
++	    echo " $(pkgpyexecPYTHON_INSTALL) '$$b$$p' '$(DESTDIR)$(pkgpyexecdir)/$$f'"; \
++	    $(pkgpyexecPYTHON_INSTALL) "$$b$$p" "$(DESTDIR)$(pkgpyexecdir)/$$f"; \
+ 	  else :; fi; \
+ 	done; \
+ 	if test -n "$$dlist"; then \
+ 	  if test -z "$(DESTDIR)"; then \
+-	    PYTHON=$(PYTHON) $(py_compile) --basedir "$(pkgpythondir)" $$dlist; \
++	    PYTHON=$(PYTHON) $(py_compile) --basedir "$(pkgpyexecdir)" $$dlist; \
+ 	  else \
+-	    PYTHON=$(PYTHON) $(py_compile) --destdir "$(DESTDIR)" --basedir "$(pkgpythondir)" $$dlist; \
++	    PYTHON=$(PYTHON) $(py_compile) --destdir "$(DESTDIR)" --basedir "$(pkgpyexecdir)" $$dlist; \
+ 	  fi; \
+ 	else :; fi
+ 
+-uninstall-pkgpythonPYTHON:
++uninstall-pkgpyexecPYTHON:
+ 	@$(NORMAL_UNINSTALL)
+-	@list='$(pkgpython_PYTHON)'; dlist=''; for p in $$list; do\
++	@list='$(pkgpyexec_PYTHON)'; dlist=''; for p in $$list; do\
+ 	  f=$(am__strip_dir) \
+-	  rm -f "$(DESTDIR)$(pkgpythondir)/$$f"; \
+-	  rm -f "$(DESTDIR)$(pkgpythondir)/$${f}c"; \
+-	  rm -f "$(DESTDIR)$(pkgpythondir)/$${f}o"; \
++	  rm -f "$(DESTDIR)$(pkgpyexecdir)/$$f"; \
++	  rm -f "$(DESTDIR)$(pkgpyexecdir)/$${f}c"; \
++	  rm -f "$(DESTDIR)$(pkgpyexecdir)/$${f}o"; \
+ 	done
+ 
+ ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
+@@ -607,7 +608,7 @@
+ check: check-am
+ all-am: Makefile $(LTLIBRARIES)
+ installdirs:
+-	for dir in "$(DESTDIR)$(pkgpythondir)" "$(DESTDIR)$(pkgpythondir)"; do \
++	for dir in "$(DESTDIR)$(pkgpyexecdir)" "$(DESTDIR)$(pkgpyexecdir)"; do \
+ 	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
+ 	done
+ install: install-am
+@@ -636,7 +637,7 @@
+ 	@echo "it deletes files that may require special tools to rebuild."
+ clean: clean-am
+ 
+-clean-am: clean-generic clean-libtool clean-pkgpythonLTLIBRARIES \
++clean-am: clean-generic clean-libtool clean-pkgpyexecLTLIBRARIES \
+ 	mostlyclean-am
+ 
+ distclean: distclean-am
+@@ -655,9 +656,9 @@
+ 
+ info-am:
+ 
+-install-data-am: install-pkgpythonLTLIBRARIES install-pkgpythonPYTHON
++install-data-am:
+ 
+-install-exec-am:
++install-exec-am: install-pkgpyexecLTLIBRARIES install-pkgpyexecPYTHON
+ 
+ install-info: install-info-am
+ 
+@@ -683,22 +684,22 @@
+ 
+ ps-am:
+ 
+-uninstall-am: uninstall-info-am uninstall-pkgpythonLTLIBRARIES \
+-	uninstall-pkgpythonPYTHON
++uninstall-am: uninstall-info-am uninstall-pkgpyexecLTLIBRARIES \
++	uninstall-pkgpyexecPYTHON
+ 
+ .PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
+-	clean-libtool clean-pkgpythonLTLIBRARIES ctags distclean \
++	clean-libtool clean-pkgpyexecLTLIBRARIES ctags distclean \
+ 	distclean-compile distclean-generic distclean-libtool \
+ 	distclean-tags distdir dvi dvi-am html html-am info info-am \
+ 	install install-am install-data install-data-am install-exec \
+ 	install-exec-am install-info install-info-am install-man \
+-	install-pkgpythonLTLIBRARIES install-pkgpythonPYTHON \
++	install-pkgpyexecLTLIBRARIES install-pkgpyexecPYTHON \
+ 	install-strip installcheck installcheck-am installdirs \
+ 	maintainer-clean maintainer-clean-generic mostlyclean \
+ 	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
+ 	pdf pdf-am ps ps-am tags uninstall uninstall-am \
+-	uninstall-info-am uninstall-pkgpythonLTLIBRARIES \
+-	uninstall-pkgpythonPYTHON
++	uninstall-info-am uninstall-pkgpyexecLTLIBRARIES \
++	uninstall-pkgpyexecPYTHON
+ 
+ 
+ # SWIG #######################################################################
+diff -ur opencv-1.0.0.orig/Makefile.in opencv-1.0.0/Makefile.in
+--- opencv-1.0.0.orig/Makefile.in	2006-11-03 16:54:59.000000000 +0100
++++ opencv-1.0.0/Makefile.in	2007-03-22 04:09:06.000000000 +0100
+@@ -192,6 +192,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/ml/include/Makefile.in opencv-1.0.0/ml/include/Makefile.in
+--- opencv-1.0.0.orig/ml/include/Makefile.in	2006-11-03 16:54:56.000000000 +0100
++++ opencv-1.0.0/ml/include/Makefile.in	2007-03-22 04:09:01.000000000 +0100
+@@ -160,6 +160,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/ml/Makefile.in opencv-1.0.0/ml/Makefile.in
+--- opencv-1.0.0.orig/ml/Makefile.in	2006-11-03 16:54:55.000000000 +0100
++++ opencv-1.0.0/ml/Makefile.in	2007-03-22 04:09:00.000000000 +0100
+@@ -156,6 +156,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/ml/src/Makefile.in opencv-1.0.0/ml/src/Makefile.in
+--- opencv-1.0.0.orig/ml/src/Makefile.in	2006-11-03 16:54:56.000000000 +0100
++++ opencv-1.0.0/ml/src/Makefile.in	2007-03-22 04:09:01.000000000 +0100
+@@ -190,6 +190,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/otherlibs/highgui/Makefile.in opencv-1.0.0/otherlibs/highgui/Makefile.in
+--- opencv-1.0.0.orig/otherlibs/highgui/Makefile.in	2006-11-03 16:54:56.000000000 +0100
++++ opencv-1.0.0/otherlibs/highgui/Makefile.in	2007-03-22 04:09:02.000000000 +0100
+@@ -212,6 +212,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/otherlibs/Makefile.in opencv-1.0.0/otherlibs/Makefile.in
+--- opencv-1.0.0.orig/otherlibs/Makefile.in	2006-11-03 16:54:56.000000000 +0100
++++ opencv-1.0.0/otherlibs/Makefile.in	2007-03-22 04:09:02.000000000 +0100
+@@ -156,6 +156,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/samples/c/Makefile.in opencv-1.0.0/samples/c/Makefile.in
+--- opencv-1.0.0.orig/samples/c/Makefile.in	2006-11-03 16:54:57.000000000 +0100
++++ opencv-1.0.0/samples/c/Makefile.in	2007-03-22 04:09:03.000000000 +0100
+@@ -158,6 +158,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/samples/Makefile.in opencv-1.0.0/samples/Makefile.in
+--- opencv-1.0.0.orig/samples/Makefile.in	2006-11-03 16:54:56.000000000 +0100
++++ opencv-1.0.0/samples/Makefile.in	2007-03-22 04:09:02.000000000 +0100
+@@ -156,6 +156,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/samples/python/Makefile.in opencv-1.0.0/samples/python/Makefile.in
+--- opencv-1.0.0.orig/samples/python/Makefile.in	2006-11-03 16:54:57.000000000 +0100
++++ opencv-1.0.0/samples/python/Makefile.in	2007-03-22 04:09:03.000000000 +0100
+@@ -152,6 +152,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/tests/cv/Makefile.in opencv-1.0.0/tests/cv/Makefile.in
+--- opencv-1.0.0.orig/tests/cv/Makefile.in	2006-11-03 16:54:57.000000000 +0100
++++ opencv-1.0.0/tests/cv/Makefile.in	2007-03-22 04:09:04.000000000 +0100
+@@ -156,6 +156,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/tests/cv/src/Makefile.in opencv-1.0.0/tests/cv/src/Makefile.in
+--- opencv-1.0.0.orig/tests/cv/src/Makefile.in	2006-11-03 16:54:57.000000000 +0100
++++ opencv-1.0.0/tests/cv/src/Makefile.in	2007-03-22 04:09:04.000000000 +0100
+@@ -188,6 +188,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/tests/cxcore/Makefile.in opencv-1.0.0/tests/cxcore/Makefile.in
+--- opencv-1.0.0.orig/tests/cxcore/Makefile.in	2006-11-03 16:54:58.000000000 +0100
++++ opencv-1.0.0/tests/cxcore/Makefile.in	2007-03-22 04:09:04.000000000 +0100
+@@ -156,6 +156,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/tests/cxcore/src/Makefile.in opencv-1.0.0/tests/cxcore/src/Makefile.in
+--- opencv-1.0.0.orig/tests/cxcore/src/Makefile.in	2006-11-03 16:54:58.000000000 +0100
++++ opencv-1.0.0/tests/cxcore/src/Makefile.in	2007-03-22 04:09:05.000000000 +0100
+@@ -174,6 +174,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/tests/cxts/Makefile.in opencv-1.0.0/tests/cxts/Makefile.in
+--- opencv-1.0.0.orig/tests/cxts/Makefile.in	2006-11-03 16:54:58.000000000 +0100
++++ opencv-1.0.0/tests/cxts/Makefile.in	2007-03-22 04:09:05.000000000 +0100
+@@ -171,6 +171,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/tests/Makefile.in opencv-1.0.0/tests/Makefile.in
+--- opencv-1.0.0.orig/tests/Makefile.in	2006-11-03 16:54:57.000000000 +0100
++++ opencv-1.0.0/tests/Makefile.in	2007-03-22 04:09:03.000000000 +0100
+@@ -156,6 +156,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/tests/python/Makefile.in opencv-1.0.0/tests/python/Makefile.in
+--- opencv-1.0.0.orig/tests/python/Makefile.in	2006-11-03 16:54:58.000000000 +0100
++++ opencv-1.0.0/tests/python/Makefile.in	2007-03-22 04:09:05.000000000 +0100
+@@ -152,6 +152,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+diff -ur opencv-1.0.0.orig/utils/Makefile.in opencv-1.0.0/utils/Makefile.in
+--- opencv-1.0.0.orig/utils/Makefile.in	2006-11-03 16:54:58.000000000 +0100
++++ opencv-1.0.0/utils/Makefile.in	2007-03-22 04:09:06.000000000 +0100
+@@ -151,6 +151,7 @@
+ QUICKTIME_CFLAGS = @QUICKTIME_CFLAGS@
+ QUICKTIME_LIBS = @QUICKTIME_LIBS@
+ RANLIB = @RANLIB@
++SED = @SED@
+ SET_MAKE = @SET_MAKE@
+ SHELL = @SHELL@
+ STRIP = @STRIP@

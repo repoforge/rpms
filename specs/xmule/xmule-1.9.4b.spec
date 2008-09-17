@@ -1,23 +1,20 @@
-# $Id$
+# $Id: xmule.spec 2531 2004-11-22 11:44:35Z dude $
 # Authority: matthias
 
 Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
 Name: xmule
-Version: 1.13.6
-Release: 1
+Version: 1.9.4b
+Release: 3
 License: GPL
 Group: Applications/Internet
+Source: http://download.berlios.de/xmule/xmule-%{version}.tar.bz2
+Patch: xmule-1.9.2-install.patch
 URL: http://www.xmule.ws/
-
-Source: http://dl.sf.net/xmule/xmule-%{version}.tar.bz2
-Patch: xmule-1.10.0-install.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-BuildRequires: gcc-c++, wxGTK-devel >= 2.4.2, zlib-devel, gettext
-BuildRequires: cryptopp-devel
+Requires: wxGTK, /usr/sbin/alternatives
+BuildRequires: gcc-c++, wxGTK-devel, zlib-devel, gettext
 # Required by xrc
 BuildRequires: expat-devel
-Requires: /usr/sbin/alternatives
 Obsoletes: lmule <= 1.2.1
 
 %description
@@ -25,56 +22,47 @@ xMule is an easy to use multi-platform client for ED2K Peer-to-Peer Network.
 It is originally based on eMule, the popular windows-only client for the
 same network.
 
+
 %prep
 %setup
 %patch -p1 -b .install
 
+
 %build
-#CXXFLAGS="`echo "%{optflags}" | sed 's/-O./-O1/'`" \
+CXXFLAGS="`echo "%{optflags}" | sed 's/-O./-O1/'`" \
 %configure
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
-%find_lang xmule
-%{__mv} %{buildroot}%{_bindir}/ed2k %{buildroot}%{_bindir}/ed2k.xmule
+%makeinstall
+%find_lang xMule
+%{__mv} %{buildroot}%{_bindir}/ed2k %{buildroot}%{_bindir}/ed2k.%{name}
+
 
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %post
-/usr/sbin/alternatives --install %{_bindir}/ed2k ed2k %{_bindir}/ed2k.xmule 40 || :
+/usr/sbin/alternatives --install %{_bindir}/ed2k ed2k %{_bindir}/ed2k.%{name} 40 || :
 
 %preun
-/usr/sbin/alternatives --remove ed2k %{_bindir}/ed2k..xmule || :
+/usr/sbin/alternatives --remove ed2k %{_bindir}/ed2k.%{name} || :
 
-%files -f xmule.lang
+
+%files -f xMule.lang
 %defattr(-, root, root, 0755)
-%doc docs/*
-%{_bindir}/ed2k.xmule
-%{_bindir}/xmule
-%{_datadir}/applications/xmule.desktop
-%{_datadir}/pixmaps/xmule.xpm
+%doc AUTHORS COPYING ChangeLog ED2K-Links.HOWTO README TODO
+%{_bindir}/*
+%{_datadir}/applications/%{name}.desktop
+%{_datadir}/pixmaps/%{name}.xpm
+
 
 %changelog
-* Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 1.13.6-1
-- Updated to release 1.13.6.
-
-* Fri Oct 28 2005 Matthias Saou <http://freshrpms.net/> 1.12.0-1
-- Update to 1.12.0.
-- Source is back from BerliOS to SourceForge...
-- Re-add cryptopp dependency, as there is now a gcc4 fix to 5.2.1... but it
-  seems that the configure check is buggy and the internal lib is used.
-
-* Thu Jul 21 2005 Matthias Saou <http://freshrpms.net/> 1.10.1-1
-- Update to 1.10.1.
-- Change find_land from xMule to xmule (again!).
-- Update %%doc to docs/*.
-- Apparently, cryptopp could maybe be used again, but it doesn't build w/ gcc4.
-
-* Sun Apr 17 2005 Matthias Saou <http://freshrpms.net/> 1.10.0-1
-- Update to 1.10.0 w/ new install patch.
+* Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 1.9.4b-3
+- Rebuild against wxGTK 2.8.8.
 
 * Mon Nov 22 2004 Matthias Saou <http://freshrpms.net/> 1.9.4b-2
 - Rebuild changing -O? to -O1 to fix cryptopp error with -O2.

@@ -11,7 +11,7 @@
 
 Summary: Raw VBI, Teletext and Closed Caption decoding library
 Name: zvbi
-Version: 0.2.31
+Version: 0.2.33
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -67,9 +67,11 @@ the zvbi library.
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS COPYING ChangeLog NEWS README TODO doc/html
 %doc %{_mandir}/man1/zvbi-chains.1*
+%doc %{_mandir}/man1/zvbi-atsc-cc.1*
 %doc %{_mandir}/man1/zvbi-ntsc-cc.1*
 %doc %{_mandir}/man1/zvbid.1*
 %{_bindir}/zvbi-chains
+%{_bindir}/zvbi-atsc-cc
 %{_bindir}/zvbi-ntsc-cc
 %{_libdir}/libzvbi.so.*
 %{_libdir}/libzvbi-chains.so.*
@@ -85,6 +87,9 @@ the zvbi library.
 %exclude %{_libdir}/libzvbi-chains.la
 
 %changelog
+* Sun Sep 14 2008 Dag Wieers <dag@wieers.com> - 0.2.33-1
+- Updated to release 0.2.33.
+
 * Sun Jul 27 2008 Dag Wieers <dag@wieers.com> - 0.2.31-1
 - Updated to release 0.2.31.
 

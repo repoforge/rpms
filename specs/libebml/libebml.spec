@@ -3,19 +3,20 @@
 
 Summary: Extensible Binary Meta Language library
 Name: libebml
-Version: 0.7.7
+Version: 0.7.8
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.matroska.org/
+
 Source: http://dl.matroska.org/downloads/libebml/libebml-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc-c++
 
 %description
 This library is used for I/O operations in the Extensible Binary Meta Language
 (EBML), which is a kind of binary version of XML.
-
 
 %package devel
 Summary: Development files for the Extensible Binary Meta Language
@@ -29,48 +30,44 @@ This library is used for I/O operations in the Extensible Binary Meta Language
 This package contains the files required to rebuild applications which will
 use the Extensible Binary Meta Language.
 
-
 %prep
 %setup
-
 
 %build
 # No autotools...
 %{__make} -C make/linux %{?_smp_mflags} DEBUGFLAGS="%{optflags}"
 
-
 %install
 %{__rm} -rf %{buildroot}
 %{__make} -C make/linux install \
-    libdir=%{buildroot}%{_libdir} \
-    includedir=%{buildroot}%{_includedir}/ebml
+    libdir="%{buildroot}%{_libdir}" \
+    includedir="%{buildroot}%{_includedir}/ebml"
 
 # Needed for proper stripping of the library (0.7.5)
 %{__chmod} +x %{buildroot}%{_libdir}/*.so.*
 
-
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
-
 
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog LICENSE.LGPL
-%{_libdir}/*.so.*
+%{_libdir}/libebml.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/ebml/
-%{_libdir}/*.a
-%{_libdir}/*.so
+%{_libdir}/libebml.so
+%exclude %{_libdir}/libebml.a
 
 
 %changelog
+* Mon Sep 15 2008 Dag Wieers <dag@wieers.com> - 0.7.8-1
+- Updated to release 0.7.8.
+
 * Wed Apr 12 2006 Matthias Saou <http://freshrpms.net/> 0.7.7-1
 - Update to 0.7.7.
 

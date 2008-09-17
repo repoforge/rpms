@@ -11,7 +11,7 @@
 Summary: Graphical front-end for the Subversion concurrent versioning system.
 Name: rapidsvn
 Version: 0.9.6
-Release: 1
+Release: 2
 License: BSD
 Group: Development/Tools
 URL: http://rapidsvn.tigris.org/
@@ -83,14 +83,17 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %doc AUTHORS ChangeLog COPYING NEWS README
 #doc %{_mandir}/man1/rapidsvn.1*
 %{_bindir}/rapidsvn
-%exclude %{_libdir}/libsvncpp.a
-%exclude %{_libdir}/libsvncpp.la
-%{_libdir}/libsvncpp.so*
-%{_includedir}/svncpp/
 %{_datadir}/applications/%{desktop_vendor}-rapidsvn.desktop
 %{_datadir}/pixmaps/rapidsvn.png
+%{_includedir}/svncpp/
+%{_libdir}/libsvncpp.so*
+%exclude %{_libdir}/libsvncpp.a
+%exclude %{_libdir}/libsvncpp.la
 
 %changelog
+* Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 0.9.6-2
+- Rebuild against wxGTK 2.8.8.
+
 * Wed Jun 04 2008 Dag Wieers <dag@wieers.com> - 0.9.6-1
 - Updated to release 0.9.6.
 

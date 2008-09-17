@@ -12,7 +12,7 @@
 Summary: Powerful audio editor
 Name: audacity
 Version: 1.3.0b
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://audacity.sourceforge.net/
@@ -90,6 +90,9 @@ update-desktop-database -q || :
 
 
 %changelog
+* Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 1.3.0b-2
+- Rebuild against wxGTK 2.8.8.
+
 * Mon Mar  6 2006 Matthias Saou <http://freshrpms.net/> 1.3.0b-1
 - Update to 1.3.0b.
 - Explicitely pass --with-libsamplerate since libresample is used otherwise.

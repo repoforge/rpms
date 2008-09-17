@@ -1,27 +1,70 @@
 # $Id$
 # Authority: dag
 
+%{?dtag: %{expand: %%define %dtag 1}}
+
+%define _without_odbc 1
+
+%{?fc4:%define _without_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?fc3:%define _without_modxorg 1}
+%{?fc2:%define _without_modxorg 1}
+%{?fc1:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh8:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
+%{?rh6:%define _without_modxorg 1}
+
+### GDK on EL4 and older was build without cairo support, so we have to disable graphics_ctx
+%{?el4:%define _without_cairo 1}
+%{?el3:%define _without_cairo 1}
+%{?rh9:%define _without_cairo 1}
+%{?rh7:%define _without_cairo 1}
+%{?el2:%define _without_cairo 1}
+
 Summary: The GTK port of the wxWindows library
 Name: wxGTK
-Version: 2.8.0
+Version: 2.8.8
 Release: 1
-License: Other
+License: wxWidgets Library Licence
 Group: System Environment/Libraries
 URL: http://www.wxwindows.org/
 
 Source: http://dl.sf.net/wxwindows/wxGTK-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, gtk+-devel >= 1.2.0, zlib-devel
-BuildRequires: libjpeg-devel, libpng-devel, libtiff-devel
+%{!?_without_cairo:BuildRequires: cairo-devel}
+BuildRequires: cppunit-devel
+BuildRequires: expat-devel
+BuildRequires: gcc-c++
+BuildRequires: GConf2-devel
+BuildRequires: gettext
+BuildRequires: gstreamer-devel
+BuildRequires: gtk2-devel
+BuildRequires: libgnomeprintui22-devel
+BuildRequires: libjpeg-devel
+BuildRequires: libpng-devel
+BuildRequires: libtiff-devel
+BuildRequires: SDL-devel
+%{!?_without_odbc:BuildRequires: unixODBC-devel}
+BuildRequires: zlib-devel >= 1.1.4
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libSM-devel, libGL-devel, libGLU-devel}
+
 # all packages providing an implementation of wxWindows library (regardless of
 # the toolkit used) should provide the (virtual) wxwin package, this makes it
 # possible to require wxwin instead of requiring "wxgtk or wxmotif or wxqt..."
 Provides: wxwin
+Obsoletes: wxBase <= %{version}-%{release}
 Obsoletes: wxGTK-gl <= %{version}-%{release}
+%{!?_without_odbc:Obsoletes: wxGTK-odbc <= %{version}-%{release}}
 Obsoletes: wxGTK-stc <= %{version}-%{release}
 Obsoletes: wxGTK-xrc <= %{version}-%{release}
+Provides: wxBase = %{version}-%{release}
 Provides: wxGTK-gl = %{version}-%{release}
+%{!?_without_odbc:Provides: wxGTK-odbc = %{version}-%{release}}
 Provides: wxGTK-stc = %{version}-%{release}
 Provides: wxGTK-xrc = %{version}-%{release}
 
@@ -35,7 +78,7 @@ Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: %{name}-gl = %{version}-%{release}
-Requires: gtk+-devel, pkgconfig
+Requires: gtk2-devel, pkgconfig
 Requires: libpng-devel, libjpeg-devel, libtiff-devel
 
 %description devel
@@ -50,27 +93,35 @@ Header files for wxGTK, the GTK port of the wxWindows library.
 %setup
 
 %build
+export GDK_USE_XFT="1"
 %configure \
-	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
-	--disable-optimise \
-	--disable-rpath \
-	--enable-compat24 \
-	--enable-display \
-	--enable-graphics_ctx \
-	--enable-mediactrl \
-	--enable-no_deps \
-	--enable-shared \
-	--enable-soname \
-	--enable-sound \
-	--enable-timer \
-	--enable-unicode \
-	--with-opengl \
-	--with-sdl
+    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
+    --disable-optimise \
+    --disable-rpath \
+    --enable-compat24 \
+    --enable-debug_info \
+    --enable-display \
+    --enable-geometry \
+%{!?_without_cairo:--enable-graphics_ctx} \
+%{?_without_cairo:--disable-graphics_ctx} \
+    --enable-intl \
+    --enable-mediactrl \
+    --enable-no_deps \
+    --enable-shared \
+    --enable-soname \
+    --enable-sound \
+    --enable-timer \
+    --enable-unicode \
+    --with-gnomeprint \
+%{!?_without_odbc:--with-odbc} \
+    --with-opengl \
+    --with-sdl
 %{__make} %{?_smp_mflags}
 %{__make} %{?_smp_mflags} -C contrib/src/gizmos
 %{__make} %{?_smp_mflags} -C contrib/src/ogl
 %{__make} %{?_smp_mflags} -C contrib/src/stc
 %{__make} %{?_smp_mflags} -C contrib/src/svg
+%{__make} %{?_smp_mflags} -C locale allmo
 
 %install
 %{__rm} -rf %{buildroot}
@@ -81,10 +132,10 @@ Header files for wxGTK, the GTK port of the wxWindows library.
 %{__make} install DESTDIR="%{buildroot}" -C contrib/src/svg
 %find_lang wxstd
 %find_lang wxmsw
-#{__cat} wxstd.lang wxmsw.lang >>wx.lang
+%{__cat} wxstd.lang wxmsw.lang >>wx.lang
 
 ### Overwrite wrong symlink (includes buildroot)
-%{__ln_s} -f ../%{_lib}/wx/config/gtk2-ansi-release-2.6 %{buildroot}%{_bindir}/wx-config
+%{__ln_s} -f ../%{_lib}/wx/config/gtk2-unicode-release-2.8 %{buildroot}%{_bindir}/wx-config
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -94,22 +145,27 @@ Header files for wxGTK, the GTK port of the wxWindows library.
 
 %files -f wx.lang
 %defattr(-, root, root, 0755)
-%doc *.txt COPYING.LIB
+%doc docs/*.txt
 %{_libdir}/libwx_*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
+%doc docs/*.txt
 %{_bindir}/wx-config
-%{_bindir}/wxrc-2.6
+%{_bindir}/wxrc
+%{_bindir}/wxrc-2.8
 %{_datadir}/aclocal/*.m4
 %dir %{_datadir}/bakefile/
 %dir %{_datadir}/bakefile/presets/
 %{_datadir}/bakefile/presets/wx*.bkl
-%{_includedir}/wx-2.6/
+%{_includedir}/wx-2.8/
 %{_libdir}/wx/
 %{_libdir}/libwx_*.so
 
 %changelog
+* Mon Sep 15 2008 Dag Wieers <dag@wieers.com> - 2.8.8-1
+- Updated to release 2.8.8.
+
 * Tue Jan 16 2007 Dag Wieers <dag@wieers.com> - 2.8.0-1
 - Updated to release 2.8.0.
 

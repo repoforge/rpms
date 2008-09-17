@@ -7,7 +7,7 @@
 Summary: Application to read out information from the Belgian electronic ID card
 Name: eid-belgium
 Version: 2.6.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://eid.belgium.be/
@@ -78,60 +78,60 @@ prog="beidcrld"
 desc="Belgian eID CRL daemon"
 
 start() {
-	echo -n $"Starting $desc ($prog): "
-	daemon $prog $OPTIONS
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Starting $desc ($prog): "
+    daemon $prog $OPTIONS
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 stop() {
-	echo -n $"Shutting down $desc ($prog): "
-	killproc $prog
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Shutting down $desc ($prog): "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 restart() {
-	stop
-	start
+    stop
+    start
 }
 
 reload() {
-	echo -n $"Reloading $desc ($prog): "
-	killproc $prog -HUP
-	RETVAL=$?
-	echo
-	return $RETVAL
+    echo -n $"Reloading $desc ($prog): "
+    killproc $prog -HUP
+    RETVAL=$?
+    echo
+    return $RETVAL
 }
 
 case "$1" in
   start)
-	start
-	;;
+    start
+    ;;
   stop)
-	stop
-	;;
+    stop
+    ;;
   restart)
-	restart
-	;;
+    restart
+    ;;
   reload)
-	reload
-	;;
+    reload
+    ;;
   condrestart)
-	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-	RETVAL=$?
-	;;
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
   status)
-	status $prog
-	RETVAL=$?
-	;;
+    status $prog
+    RETVAL=$?
+    ;;
   *)
-	echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
-	RETVAL=1
+    echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
+    RETVAL=1
 esac
 
 exit $RETVAL
@@ -170,60 +170,60 @@ prog="beidpcscd"
 desc="Belgian eID PCSC daemon"
 
 start() {
-	echo -n $"Starting $desc ($prog): "
-	daemon $prog $OPTIONS
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Starting $desc ($prog): "
+    daemon $prog $OPTIONS
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 stop() {
-	echo -n $"Shutting down $desc ($prog): "
-	killproc $prog
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Shutting down $desc ($prog): "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 restart() {
-	stop
-	start
+    stop
+    start
 }
 
 reload() {
-	echo -n $"Reloading $desc ($prog): "
-	killproc $prog -HUP
-	RETVAL=$?
-	echo
-	return $RETVAL
+    echo -n $"Reloading $desc ($prog): "
+    killproc $prog -HUP
+    RETVAL=$?
+    echo
+    return $RETVAL
 }
 
 case "$1" in
   start)
-	start
-	;;
+    start
+    ;;
   stop)
-	stop
-	;;
+    stop
+    ;;
   restart)
-	restart
-	;;
+    restart
+    ;;
   reload)
-	reload
-	;;
+    reload
+    ;;
   condrestart)
-	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-	RETVAL=$?
-	;;
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
   status)
-	status $prog
-	RETVAL=$?
-	;;
+    status $prog
+    RETVAL=$?
+    ;;
   *)
-	echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
-	RETVAL=1
+    echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
+    RETVAL=1
 esac
 
 exit $RETVAL
@@ -265,26 +265,26 @@ source "/etc/profile.d/qt.sh"
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --delete-original             \
-	--vendor %{desktop_vendor}                 \
-	--add-category X-Red-Hat-Base              \
-	--add-category Utility                     \
-	--dir %{buildroot}%{_datadir}/applications \
-	%{buildroot}%{_bindir}/beidgui.desktop
+    --vendor %{desktop_vendor}                 \
+    --add-category X-Red-Hat-Base              \
+    --add-category Utility                     \
+    --dir %{buildroot}%{_datadir}/applications \
+    %{buildroot}%{_bindir}/beidgui.desktop
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/icons/
 %{__mv} -vf %{buildroot}%{_bindir}/beidgui.png %{buildroot}%{_datadir}/icons/beidgui.png
 
 ### Fix library symlinks
 for lib in $(ls %{buildroot}%{_libdir}/libbeid*.so.?.?.?); do
-	%{__ln_s} -f $(basename $lib) ${lib//%\.?\.?}
+    %{__ln_s} -f $(basename $lib) ${lib//%\.?\.?}
 done
 
 ### Fix locale files
 for file in $(ls %{buildroot}%{_datadir}/locale/beidgui_*.mo); do
-	lang="${file%.mo}"
-	lang="${lang#%{buildroot}%{_datadir}/locale/beidgui_}"
-	%{__mkdir} -p %{buildroot}%{_datadir}/locale/$lang/LC_MESSAGES/
-	%{__mv} -f $file %{buildroot}%{_datadir}/locale/$lang/LC_MESSAGES/beidgui.mo
+    lang="${file%.mo}"
+    lang="${lang#%{buildroot}%{_datadir}/locale/beidgui_}"
+    %{__mkdir} -p %{buildroot}%{_datadir}/locale/$lang/LC_MESSAGES/
+    %{__mv} -f $file %{buildroot}%{_datadir}/locale/$lang/LC_MESSAGES/beidgui.mo
 done
 %find_lang beidgui
 
@@ -339,6 +339,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{_libdir}/pkcs11/
 
 %changelog
+* Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 2.6.0-2
+- Rebuild against wxGTK 2.8.8.
+
 * Wed Oct 17 2007 Fabian Arrotin <fabian.arrotin@arrfab.net> - 2.6.0-1
 - Updated to 2.6.0 / tested on EL5
 - Removed Scons as buildrequires (use the provided mini scons)

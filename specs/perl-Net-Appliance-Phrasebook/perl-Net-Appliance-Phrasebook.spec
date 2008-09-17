@@ -9,7 +9,7 @@
 
 Summary: Network appliance command-line phrasebook
 Name: perl-Net-Appliance-Phrasebook
-Version: 0.09
+Version: 1.2
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/Appliance/Phrasebook.pm
 
 %changelog
+* Tue Sep 16 2008 Dag Wieers <dag@wieers.com> - 1.2-1
+- Updated to release 1.2.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.09-1
 - Updated to release 0.09.
 

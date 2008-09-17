@@ -3,7 +3,7 @@
 
 Summary: Tool for fitting and analyzing data
 Name: fityk
-Version: 0.8.1
+Version: 0.8.6
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -49,9 +49,6 @@ you will need to install %{name}-devel.
 ### Clean up docs
 %{__rm} -f samples/Makefile* doc/fitykhelp_img/Makefile*
 
-### Bug in fityk 0.8.1. It will be fixed upstream in the next release
-%{__mv} -f %{buildroot}%{_datadir}/fityk/tips.txt %{buildroot}%{_datadir}/fityk/fityk_tips.txt
-
 %post
 update-desktop-database || :
 /sbin/ldconfig
@@ -65,21 +62,30 @@ update-desktop-database || :
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO doc/ samples/
+%doc COPYING INSTALL NEWS README TODO doc/ samples/
 %doc %{_mandir}/man1/fityk.1*
 %{_bindir}/cfityk
 %{_bindir}/fityk
 %{_datadir}/applications/fityk.desktop
 %{_datadir}/fityk/
+%{_datadir}/mime/packages/fityk.xml
 %{_datadir}/pixmaps/fityk.png
 %{_libdir}/libfityk.so.*
+%{_libdir}/libxy.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*
-%exclude %{_libdir}/libfityk.la
+%{_includedir}/fityk/
+%{_includedir}/fityk.h
 %{_libdir}/libfityk.so
+%{_libdir}/libxy.so
+%exclude %{_libdir}/libfityk.la
+%exclude %{_libdir}/libxy.la
 
 %changelog
+* Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 0.8.6-2
+- Rebuild against wxGTK 2.8.8.
+- Updated to release 0.8.6.
+
 * Tue May 01 2007 Dag Wieers <dag@wieers.com> - 0.8.1-1
 - Initial package. (Marcin Wojdyr)

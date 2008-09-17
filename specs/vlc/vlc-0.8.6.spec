@@ -1,4 +1,4 @@
-# $Id$
+# $Id: vlc.spec 6047 2007-12-19 11:20:08Z dag $
 # Authority: matthias
 # Upstream: <vlc-devel$videolan,org>
 
@@ -10,13 +10,8 @@
 %{!?dtag:%define _with_modxorg 1}
 %{!?dtag:%define _with_avahi 1}
 
-### Firefox 3 xulrunner not supported.
-%{?el5:%undefine _with_mozilla}
-
 ### Problems with dirac
 %define _without_dirac 1
-### No opencv package yet
-%define _without_opencv 1
 
 %ifarch %{ix86}
 %define _with_loader 1
@@ -112,31 +107,23 @@
 %{?yd3:%define _without_fribidi 1}
 
 %define desktop_vendor rpmforge
-#define ffmpeg_date 20061215
-#define ffmpeg_date 20071121
-#define ffmpeg_date 20080113
-%define ffmpeg_date 20080225
-#define live_date 2006.12.08
-%define live_date 2008.09.02
+%define ffmpeg_date 20061215
+%define live_date 2006.12.08
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
-Version: 0.9.2
+Version: 0.8.6i
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
 
 Source0: http://downloads.videolan.org/pub/videolan/vlc/%{version}/vlc-%{version}.tar.bz2
-#Source1: http://downloads.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
-Source1: http://rpm.greysector.net/livna/ffmpeg-%{ffmpeg_date}.tar.bz2
+Source1: http://downloads.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
 Source2: http://www.live555.com/liveMedia/public/live.%{live_date}.tar.gz
 Patch0: vlc-0.8.6-ffmpegX11.patch
 Patch1: vlc-0.8.6-wx28.patch
 #Patch2: vlc-0.8.6a-faad2.patch
-Patch4: ffmpeg-20080225-asmreg.patch
-Patch21: vlc-0.8.6e-directfb.patch
-Patch80: vlc-0.8.6e-xulrunner.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, libpng-devel, libxml2-devel, libtiff-devel
@@ -218,7 +205,7 @@ Available rpmbuild rebuild options :
           gnomevfs vcd daap upnp pvr live
 
 Options that would need not yet existing add-on packages :
---with loader ggi tarkin tremor
+--with tremor tarkin svgalib ggi
 
 %package devel
 Summary: Header files and static library from the Videolan Client
@@ -250,15 +237,12 @@ IPv4 or IPv6 on a high-bandwidth network.
 
 %prep
 %setup -a 1 -a 2
-#patch0 -p1 -b .ffmpegX11
+%patch0 -p1 -b .ffmpegX11
 #patch1 -p1 -b .wx28
 
 ### Use regex to change FAAD2 interface
 #patch2 -p1 -b .faad2
 %{__perl} -pi -e 's|\bfaacDec\B|NeAACDec|g' modules/codec/faad.c
-
-#patch21 -p1 -b .directfb
-#patch80 -p1 -b .libxul
 
 ### Fix PLUGIN_PATH path for lib64
 %{__perl} -pi -e 's|/lib\b|/%{_lib}|g' vlc-config.in.in configure*
@@ -272,38 +256,11 @@ export CFLAGS="%{optflags}"
 ### Build bundeled ffmpeg first
 %if %{!?_without_ffmpeg:1}0
 pushd ffmpeg-%{ffmpeg_date}
-    patch -p1 <%{PATCH4}
     ./configure \
-%ifarch x86_64
-        --extra-cflags="-fPIC -DPIC" \
-%else
-        --extra-cflags="-fPIC -DPIC -fomit-frame-pointer" \
-%endif
-        --disable-ffmpeg \
-        --disable-ffplay \
-        --disable-ffserver \
-        --disable-optimizations \
-        --disable-protocols \
-        --disable-static \
-        --disable-strip \
-        --disable-vhook \
-%{!?_without_a52:--enable-liba52} \
-%{!?_without_amr:--enable-libamr-nb --enable-libamr-wb} \
+        --enable-faac \
         --enable-gpl \
-        --enable-libmp3lame \
-%{!?_without_gsm:--enable-libgsm} \
-        --enable-libfaac \
-%{!?_without_theora:--enable-libtheora} \
-%{!?_without_vorbis:--enable-libvorbis} \
-        --enable-libxvid \
-        --enable-nonfree \
-        --enable-pp \
-        --enable-pthreads \
-        --enable-shared
-#{!?_without_x246:--enable-libx264} \
-#        --enable-static
-#        --enable-libdc1394 \
-#        --enable-libfaad \
+        --enable-mp3lame \
+        --enable-pp
     %{__make} %{?_smp_mflags}
 popd
 
@@ -405,6 +362,8 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
     --enable-xvmc
 #{!?_without_dc1394:--enable-dc1394} \
 #{!?_without_goom:--enable-goom} \
+#{!?_without_ffmpeg:--with-ffmpeg-mp3lame --with-ffmpeg-faac} \
+#{!?_without_ffmpeg:--with-ffmpeg-tree=ffmpeg-%{ffmpeg_date}} \
 %{__make} %{?_smp_mflags}
 
 %install
@@ -447,15 +406,8 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %endif
 
 %changelog
-* Mon Sep 15 2008 Dag Wieers <dag@wieers.com> - 0.9.2-1
-- Updated to release 0.9.2.
-
-* Tue Jul 29 2008 Dag Wieers <dag@wieers.com> - 0.8.6i-1
+* Tue Sep 16 2008 Dag Wieers <dag@wieers.com> - 0.8.6i-1
 - Updated to release 0.8.6i.
-
-* Thu Jul 03 2008 Dag Wieers <dag@wieers.com> - 0.8.6h-2
-- Recompiled statically against ffmpeg-20080113.
-- Rebuild against directfb-1.0.1.
 
 * Sun Jun 08 2008 Dag Wieers <dag@wieers.com> - 0.8.6h-1
 - Updated to release 0.8.6h.

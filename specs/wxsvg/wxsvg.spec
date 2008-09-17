@@ -1,18 +1,20 @@
 # $Id$
 # Authority: matthias
 
-%define prever b7
 
 Summary: C++ library to create, manipulate and render SVG files
 Name: wxsvg
 Version: 1.0
-Release: 0.1.%{prever}
+%define real_version 1.0b7
+Release: 0.2.b7
 License: wxWidgets Library Licence
 Group: System Environment/Libraries
 URL: http://wxsvg.sourceforge.net/
-Source: http://dl.sf.net/wxsvg/wxsvg-%{version}%{prever}_1.tar.gz
+
+Source: http://dl.sf.net/wxsvg/wxsvg-%{real_version}_1.tar.gz
 Patch0: wxsvg-1.0b7-freetype.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: libart_lgpl-devel
 BuildRequires: pkgconfig
 BuildRequires: pango-devel
@@ -22,7 +24,6 @@ BuildRequires: wxGTK-devel
 %description
 wxSVG is C++ library to create, manipulate and render SVG files.
 
-
 %package devel
 Summary: Development files for the wxSVG library
 Group: Development/Libraries
@@ -31,30 +32,23 @@ Requires: %{name} = %{version}-%{release}
 %description devel
 wxSVG is C++ library to create, manipulate and render SVG files.
 
-
 %prep
-%setup -n %{name}-%{version}%{prever}
+%setup -n %{name}-%{real_version}
 %patch0 -p1 -b .freetype
-
 
 %build
 %configure --disable-static
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR=%{buildroot}
-
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
-
 
 %files
 %defattr(-, root, root, 0755)
@@ -66,11 +60,12 @@ wxSVG is C++ library to create, manipulate and render SVG files.
 %defattr(-, root, root, 0755)
 %{_includedir}/wxSVG/
 %{_includedir}/wxXML/
-%exclude %{_libdir}/*.la
 %{_libdir}/*.so
-
+%exclude %{_libdir}/*.la
 
 %changelog
+* Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 1.0-0.2.b7
+- Rebuild against wxGTK 1.8.8.
+
 * Fri Jan 19 2007 Matthias Saou <http://freshrpms.net/> 1.0-0.1.b7
 - Initial RPM release.
-

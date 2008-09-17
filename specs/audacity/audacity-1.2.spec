@@ -15,7 +15,7 @@
 Summary: Powerful audio editor
 Name: audacity
 Version: 1.2.4b
-Release: %{?prever:0.%{prever}.}1
+Release: %{?prever:0.%{prever}.}2
 License: GPL
 Group: Applications/Multimedia
 URL: http://audacity.sourceforge.net/
@@ -100,6 +100,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 1.2.4b-2
+- Rebuild against wxGTK 2.8.8.
+
 * Mon Mar  6 2006 Matthias Saou <http://freshrpms.net/> 1.2.4b-1
 - Update to 1.2.4b, but build untested since it's wxGTK 2.6 incompatible.
 
