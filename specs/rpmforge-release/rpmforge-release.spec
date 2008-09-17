@@ -45,6 +45,7 @@ GPG keys used to sign them.
 %{?el3:name='Red Hat Enterprise'; version='3'; path="redhat/el"; builder='dag'}
 %{?el2:name='Red Hat Enterprise'; version='2.1'; path="redhat/el"; builder='dag'}
 %endif
+%{?fc9:name='Fedora Core'; version='9'; path="fedora/"; builder='dries'}
 %{?fc8:name='Fedora Core'; version='8'; path="fedora/"; builder='dries'}
 %{?fc7:name='Fedora Core'; version='7'; path="fedora/"; builder='dries'}
 %{?fc6:name='Fedora Core'; version='6'; path="fedora/"; builder='dries'}
