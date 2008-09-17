@@ -7,7 +7,7 @@
 
 Summary: PostgreSQL database adapter for Python
 Name: python-psycopg2
-Version: 2.0.7
+Version: 2.0.8
 Release: 1
 License: GPL/ZPL
 Group: Development/Libraries
@@ -46,9 +46,13 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{python_sitearch}/psycopg2/_psycopg.so
 %{python_sitearch}/psycopg2/*.py
 %{python_sitearch}/psycopg2/*.pyc
+%{python_sitearch}/psycopg2-%{version}-py*.egg-info
 %ghost %{python_sitearch}/psycopg2/*.pyo
 
 %changelog
+* Wed Sep 17 2008 Dries Verachtert <dries@ulyssis.org> - 2.0.8-1
+- Updated to release 2.0.8.
+
 * Mon Jul 14 2008 Dag Wieers <dag@wieers.com> - 2.0.7-1
 - Updated to release 2.0.7.
 
