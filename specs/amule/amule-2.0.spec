@@ -1,30 +1,27 @@
-# $Id$
+# $Id: amule.spec 3187 2005-05-04 16:24:16Z thias $
 # Authority: matthias
 
-%{?el3:%define _without_gettextdevel 1}
-%{?rh9:%define _without_gettextdevel 1}
-%{?rh7:%define _without_gettextdevel 1}
-%{?el2:%define _without_gettextdevel 1}
+#define prever rc8
 
-Summary: Client for ED2K Peer-to-Peer Networks based on eMule
+Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
 Name: amule
-Version: 2.2.2
-Release: 1
+Version: 2.0.0
+Release: 1%{?prever:.%{prever}}.rf
 License: GPL
 Group: Applications/Internet
-URL: http://www.amule.org/
+URL: http://www.aMule.org/
 
-Source0: http://download.berlios.de/amule/aMule-%{version}.tar.bz2
-Source1: emule_logo.png
+Source: http://download.berlios.de/amule/aMule-%{version}%{?prever}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: bison
-BuildRequires: cryptopp
-BuildRequires: flex
-BuildRequires: gcc-c++
-BuildRequires: wxGTK-devel >= 2.6.0
-BuildRequires: zlib-devel
-%{!?_without_gettextdevel:BuildRequires: gettext-devel}
+BuildRequires: gcc-c++, wxGTK-devel, curl-devel >= 7.9.7, zlib-devel, gettext
+BuildRequires: gd-progs, gd-devel, libidn-devel, libjpeg-devel
+# Required on Yellow Dog Linux 3.0
+BuildRequires: openssl-devel
+# Required for a configure check (curl)
+BuildRequires: bc
+Requires(post): /usr/sbin/alternatives
+Requires(preun): /usr/sbin/alternatives
 
 %description
 aMule is an easy to use multi-platform client for ED2K Peer-to-Peer Network.
@@ -36,21 +33,14 @@ same network.
 
 %build
 %configure \
-    --disable-rpath \
-    --disable-debug \
     --enable-alc \
-    --enable-alcc \
-    --enable-amule-daemon \
-    --enable-amulecmd \
-    --enable-cas \
-    --enable-utf8-systray \
-    --enable-webserver \
-    --enable-wxcas
+    --enable-utf8-systray
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot} _docs
 %{__make} install DESTDIR=%{buildroot}
+%{__mv} %{buildroot}%{_bindir}/ed2k %{buildroot}%{_bindir}/ed2k.%{name}
 %find_lang %{name}
 # Move the docs back to be included with %%doc
 %{__mv} %{buildroot}%{_defaultdocdir}/aMule-* _docs
@@ -59,14 +49,13 @@ for file in %{buildroot}%{_datadir}/applications/*.desktop; do
     iconv -f ISO8859-1 -t UTF-8 -o tmp.desktop ${file}
     %{__mv} tmp.desktop ${file}
 done
-# Replace xpm icon with our png one
-%{__rm} -f %{buildroot}%{_datadir}/pixmaps/amule.xpm
-%{__install} -p -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/amule.png
-%{__perl} -pi -e 's|amule.xpm|amule.png|g' \
-    %{buildroot}%{_datadir}/applications/*.desktop
 
 %post
 update-desktop-database -q 2>/dev/null || :
+/usr/sbin/alternatives --install %{_bindir}/ed2k ed2k %{_bindir}/ed2k.%{name} 60 || :
+
+%preun
+/usr/sbin/alternatives --remove ed2k %{_bindir}/ed2k.%{name} || :
 
 %postun
 update-desktop-database -q 2>/dev/null || :
@@ -77,56 +66,20 @@ update-desktop-database -q 2>/dev/null || :
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc _docs/*
-%doc %{_mandir}/man1/*.1*
+%{_bindir}/*
+%{_libdir}/xchat/plugins/xas.pl
+%{_datadir}/applications/*.desktop
+#{_datadir}/cas/
+%{_datadir}/pixmaps/*.xpm
 %lang(de) %{_mandir}/de/man1/*.1*
 %lang(es) %{_mandir}/es/man1/*.1*
 %lang(fr) %{_mandir}/fr/man1/*.1*
 %lang(hu) %{_mandir}/hu/man1/*.1*
-%{_bindir}/alc
-%{_bindir}/amule
-%{_bindir}/ed2k
-%{_libdir}/xchat/plugins/xas.pl
-%{_datadir}/applications/alc.desktop
-%{_datadir}/applications/amule.desktop
-#{_datadir}/cas/
-%{_datadir}/pixmaps/alc.xpm
-%{_datadir}/pixmaps/amule.png
+%{_mandir}/man1/*.1*
 
 %changelog
-* Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 2.2.2-1
-- Updated to release 2.2.2.
-
-* Wed May 30 2007 Matthias Saou <http://freshrpms.net/> 2.1.3-3
-- Include patch to rebuild against wxGTK 2.8 (F7).
-
-* Wed Nov 15 2006 Matthias Saou <http://freshrpms.net/> 2.1.3-2
-- Remove all of the alternatives stuff.
-- Replace the default (ugly) icon with a much nicer transparent png one.
-  Haven't found any nicer replacement for alc.xpm, though.
-
-* Mon Jun 12 2006 Matthias Saou <http://freshrpms.net/> 2.1.3-1
-- Update to 2.1.3.
-
-* Mon May 29 2006 Matthias Saou <http://freshrpms.net/> 2.1.2-1
-- Update to 2.1.2.
-
-* Sat Mar 18 2006 Matthias Saou <http://freshrpms.net/> 2.1.1-1
-- Update to 2.1.1.
-
-* Mon Jan  9 2006 Matthias Saou <http://freshrpms.net/> 2.1.0-1
-- Update to 2.1.0.
-- Add flex build requirement (optional, and FC4's version it too old anyway).
-- Clean up no longer needed build requirements (many!).
-
-* Mon Nov 28 2005 Matthias Saou <http://freshrpms.net/> 2.0.3-2
-- Change build requirement s/wxGTK2/wxGTK/.
-
-* Tue Aug  2 2005 Matthias Saou <http://freshrpms.net/> 2.0.3-1
-- Update to 2.0.3.
-
-* Wed May 18 2005 Matthias Saou <http://freshrpms.net/> 2.0.1-1
-- Update to 2.0.1.
-- Change gettext to gettext-devel, since autopoint is required.
+* Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 2.0.0-2
+- Rebuild against wxGTK 2.8.8.
 
 * Wed May  4 2005 Matthias Saou <http://freshrpms.net/> 2.0.0-1
 - Update to 2.0.0 final.

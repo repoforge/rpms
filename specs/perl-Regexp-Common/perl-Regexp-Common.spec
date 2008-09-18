@@ -9,8 +9,8 @@
 
 Summary: Provide commonly requested regular expressions
 Name: perl-Regexp-Common
-Version: 2.120
-Release: 1.2
+Version: 2.122
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Regexp-Common/
@@ -44,14 +44,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man3/*
+%doc COPYRIGHT COPYRIGHT.AL COPYRIGHT.AL2 COPYRIGHT.BSD COPYRIGHT.MIT MANIFEST META.yml README TODO
+%doc %{_mandir}/man3/Regexp::Common.3pm*
+%doc %{_mandir}/man3/Regexp::Common::*.3pm*
+%dir %{perl_vendorlib}/Regexp/
+%{perl_vendorlib}/Regexp/Common/
 %{perl_vendorlib}/Regexp/Common.pm
-%{perl_vendorlib}/Regexp/Common
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.120-1.2
-- Rebuild for Fedora Core 5.
+* Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 2.122-1
+- Updated to release 2.122.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.120-1
 - Initial package.

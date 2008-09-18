@@ -9,7 +9,7 @@
 
 Summary: Visitor style traversal of Perl data structures
 Name: perl-Data-Visitor
-Version: 0.15
+Version: 0.17
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Data/Visitor.pm
 
 %changelog
+* Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 0.17-1
+- Updated to release 0.17.
+
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.15-1
 - Updated to release 0.15.
 

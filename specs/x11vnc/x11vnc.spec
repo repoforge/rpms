@@ -18,13 +18,13 @@
 
 Summary: VNC server for the current X11 session
 Name: x11vnc
-Version: 0.9.3
+Version: 0.9.4
 Release: 1
 License: GPL
 Group: User Interface/X
 URL: http://www.karlrunge.com/x11vnc/
 
-Source:	http://dl.sf.net/libvncserver/x11vnc-%{version}.tar.gz
+Source: http://dl.sf.net/libvncserver/x11vnc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libjpeg-devel, zlib-devel
@@ -66,6 +66,9 @@ fi
 %{_datadir}/x11vnc/
 
 %changelog
+* Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 0.9.4-1
+- Updated to release 0.9.4.
+
 * Fri Oct 05 2007 Dag Wieers <dag@wieers.com> - 0.9.3-1
 - Updated to release 0.9.3.
 

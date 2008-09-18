@@ -1,0 +1,16 @@
+--- twinkle-1.1/src/mwi/mwi.cpp.orig	2007-01-07 02:47:33.000000000 -0500
++++ twinkle-1.1/src/mwi/mwi.cpp	2007-12-06 09:29:31.000000000 -0500
+@@ -20,7 +20,12 @@
+ 
+ t_mwi::t_mwi() :
+ 	status(MWI_UNKNOWN)
+-{}
++{
++	voice_msg_summary.newmsgs = 0;
++	voice_msg_summary.newmsgs_urgent = 0;
++	voice_msg_summary.oldmsgs = 0;
++	voice_msg_summary.oldmsgs_urgent = 0;
++}
+ 
+ t_mwi::t_status t_mwi::get_status(void) const {
+ 	t_status result;

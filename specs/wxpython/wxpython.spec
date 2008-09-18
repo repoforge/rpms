@@ -1,20 +1,21 @@
 # $Id$
-
 # Authority: dries
-# Screenshot: http://drpython.sourceforge.net/linuxclassbrowser.2.x.jpg
-# ScreenshotURL: http://drpython.sourceforge.net/screenshots.html
 
 Summary: Python bindings for wxWindows
 Name: wxpython
-Version: 2.6.1.0
-Release: 2.2
+Version: 2.8.8.1
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://www.wxpython.org/
 
-Source: http://dl.sf.net/wxpython/wxPythonSrc-%{version}.tar.gz
+Source: http://dl.sf.net/wxpython/wxPython-src-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: wxGTK-devel, python, python-devel, gcc-c++
+
+BuildRequires: gcc-c++
+BuildRequires: python
+BuildRequires: python-devel
+BuildRequires: wxGTK-devel
 
 %description
 wxPython is a GUI toolkit for the Python programming language. It allows
@@ -34,15 +35,13 @@ platforms are 32-bit Microsoft Windows, most Unix or unix-like systems, and
 Macintosh OS X.
 
 %prep
-%setup -n wxPythonSrc-%{version}
+%setup -n wxPython-src-%{version}/wxPython
 
 %build
-cd wxPython
 python setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-cd wxPython
 python setup.py install --root %{buildroot}
 
 %clean
@@ -63,19 +62,15 @@ python setup.py install --root %{buildroot}
 %{_bindir}/pyalacarte
 %{_bindir}/pyalamode
 
-
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.6.1.0-2.2
-- Rebuild for Fedora Core 5.
+* Mon Sep 15 2008 Dag Wieers <dag@wieers.com> - 2.8.8.1-1
+- Updated to release 2.8.8.1.
 
-* Thu Dec 01 2005 Dries Verachtert <dries@ulyssis.org> - 2.7.1.0-2
-- Rebuild.
-
-* Fr Jul 01 2005 Dries Verachtert <dries@ulyssis.org> 2.6.1.0-1
+* Fri Jul 01 2005 Dries Verachtert <dries@ulyssis.org> - 2.6.1.0-1
 - Update to release 2.6.1.0.
 
-* Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> 2.5.1.5-1
-- update to 2.5.1.5
+* Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> - 2.5.1.5-1
+- Update to release 2.5.1.5.
 
-* Wed Jan 28 2004 Dries Verachtert <dries@ulyssis.org> 2.1.4-1
-- first packaging for Fedora Core 1
+* Wed Jan 28 2004 Dries Verachtert <dries@ulyssis.org> - 2.1.4-1
+- First packaging for Fedora Core 1.

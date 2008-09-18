@@ -1,0 +1,23 @@
+diff -Nur twinkle-1.2.orig/src/sockets/socket.cpp twinkle-1.2/src/sockets/socket.cpp
+--- twinkle-1.2.orig/src/sockets/socket.cpp	2008-02-26 14:10:50.000000000 -0700
++++ twinkle-1.2/src/sockets/socket.cpp	2008-03-08 18:07:16.000000000 -0700
+@@ -133,7 +133,7 @@
+ 	return ret;
+ }
+ 
+-int t_socket_udp::send(const void *data, int data_size) {
++ssize_t t_socket_udp::send(const void *data, int data_size) {
+ 	int ret = ::send(sd, data, data_size, 0);
+ 	if (ret < 0) throw errno;
+ 
+diff -Nur twinkle-1.2.orig/src/sockets/url.cpp twinkle-1.2/src/sockets/url.cpp
+--- twinkle-1.2.orig/src/sockets/url.cpp	2008-03-01 23:52:56.000000000 -0700
++++ twinkle-1.2/src/sockets/url.cpp	2008-03-08 17:44:34.000000000 -0700
+@@ -28,6 +28,7 @@
+ #include "socket.h"
+ #include "url.h"
+ #include "util.h"
++#include <cstring>
+ 
+ // TODO: handle hex charactest (eg. %20x) correctly.
+ 

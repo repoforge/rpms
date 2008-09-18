@@ -1,0 +1,31 @@
+--- GNUmakefile.orig	2007-09-23 21:03:14.000000000 +0200
++++ GNUmakefile	2008-09-17 21:37:00.000000000 +0200
+@@ -102,10 +102,12 @@
+ TESTIMPORTOBJS = $(TESTOBJS:.o=.import.o)
+ DLLTESTOBJS = dlltest.dllonly.o
+ 
+-all: cryptest.exe
++all: libcryptopp.a cryptest.exe
++
++shared: libcryptopp.so cryptest.exe
+ 
+ clean:
+-	$(RM) cryptest.exe libcryptopp.a $(LIBOBJS) $(TESTOBJS) cryptopp.dll libcryptopp.dll.a libcryptopp.import.a cryptest.import.exe dlltest.exe $(DLLOBJS) $(LIBIMPORTOBJS) $(TESTIMPORTOBJS) $(DLLTESTOBJS)
++	$(RM) cryptest.exe libcryptopp.a libcryptopp.so.* $(LIBOBJS) $(TESTOBJS) cryptopp.dll libcryptopp.dll.a libcryptopp.import.a cryptest.import.exe dlltest.exe $(DLLOBJS) $(LIBIMPORTOBJS) $(TESTIMPORTOBJS) $(DLLTESTOBJS)
+ 
+ install:
+ 	$(MKDIR) -p $(PREFIX)/include/cryptopp $(PREFIX)/lib $(PREFIX)/bin
+@@ -117,7 +119,12 @@
+ 	$(AR) $(ARFLAGS) $@ $(LIBOBJS)
+ 	$(RANLIB) $@
+ 
+-cryptest.exe: libcryptopp.a $(TESTOBJS)
++libcryptopp.so: $(LIBOBJS)
++	$(CXX) -shared  -Wl,-soname,$@.1 $(LDFLAGS) $(LDLIBS) -o $@.1.0 $(LIBOBJS)
++	ln -fs libcryptopp.so.1.0 libcryptopp.so.1
++	ln -fs libcryptopp.so.1.0 libcryptopp.so
++
++cryptest.exe: $(TESTOBJS)
+ 	$(CXX) -o $@ $(CXXFLAGS) $(TESTOBJS) -L. -lcryptopp $(LDFLAGS) $(LDLIBS)
+ 
+ nolib: $(OBJS)		# makes it faster to test changes

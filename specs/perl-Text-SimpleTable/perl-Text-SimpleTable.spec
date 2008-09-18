@@ -9,8 +9,8 @@
 
 Summary: Simple Eyecandy ASCII Tables
 Name: perl-Text-SimpleTable
-Version: 0.03
-Release: 2
+Version: 0.05
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-SimpleTable/
@@ -49,6 +49,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Text/SimpleTable.pm
 
 %changelog
+* Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 0.05-1
+- Updated to release 0.05.
+
 * Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 0.03-2
 - Changed to use destdir with perl(Module::Build).
 

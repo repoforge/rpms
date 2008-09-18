@@ -1,12 +1,12 @@
 # $Id$
-# Authority: dag
+# Authority: matthias
 
 %define desktop_vendor rpmforge
 
 Summary: Set of tools to create, alter and inspect Matroska files
 Name: mkvtoolnix
-Version: 2.3.0
-Release: 1
+Version: 1.7.0
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.bunkus.org/videotools/mkvtoolnix/
@@ -15,23 +15,14 @@ Source0: http://www.bunkus.org/videotools/mkvtoolnix/sources/mkvtoolnix-%{versio
 Source1: mkvmerge-gui.desktop
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ImageMagick
-BuildRequires: bzip2-devel
-BuildRequires: desktop-file-utils
-BuildRequires: expat-devel
-BuildRequires: flac-devel
-BuildRequires: libebml-devel
-BuildRequires: libmatroska-devel
-BuildRequires: libogg-devel
-BuildRequires: libvorbis-devel
-Buildrequires: lzo-devel
-BuildRequires: pcre-devel
+BuildRequires: libebml-devel, libmatroska-devel
+BuildRequires: libogg-devel, libvorbis-devel, flac-devel
+BuildRequires: expat-devel, zlib-devel, lzo-devel, bzip2-devel
 BuildRequires: wxGTK-devel, gcc-c++
-BuildRequires: zlib-devel
+BuildRequires: desktop-file-utils, ImageMagick
 
 %description
 MKVToolnix is a set of tools to create, alter and inspect Matroska files.
-
 
 %package gui
 Summary: Graphical User Interface to the mkvtoolnix set of tools
@@ -42,61 +33,49 @@ Requires: %{name} = %{version}-%{release}
 MKVToolnix is a set of tools to create, alter and inspect Matroska files.
 This package contains a Graphical User Interface for those tools.
 
-
 %prep
 %setup
-### Remove hardcoded -O3
+# Remove hardcoded -O3
 %{__perl} -pi -e 's|"-O3"|""|g' configure*
-
-### Rename the gui like SuSE does
+# Rename the gui like SuSE does
 %{__patch} -p1 < contrib/suse-mmg-rename.diff
-
-%{__cat} <<EOF >mkvmerge-gui.desktop
-[Desktop Entry]
-Name=MKV Merge
-Comment=Merge multimedia streams into Matroska files
-Exec=mkvmerge-gui
-Icon=mkvmerge-gui
-Terminal=false
-Type=Application
-Categories=Application;AudioVideo;
-Encoding=UTF-8
-EOF
-
 
 %build
 %configure
-### V="1" is for verbose build mode
-%{__make} %{?_smp_mflags} V="1"
+# V=1 is for verbose build mode
+%{__make} %{?_smp_mflags} V=1
 
-%install  
+%install
 %{__rm} -rf %{buildroot} mkvmerge-gui.png
+# Execute /bin/true instead of stripping the binaries to get debuginfo data
+%{__make} install DESTDIR=%{buildroot} STRIP=/bin/true
 
-### Execute /bin/true instead of stripping the binaries to get debuginfo data
-%{__make} install DESTDIR="%{buildroot}" STRIP="/bin/true"
-
-### Install the desktop file
+# Install the desktop file
 desktop-file-install \
-    --vendor="%{desktop_vendor}" \
-    --dir="%{buildroot}%{_datadir}/applications" \
-    --mode="0644" \
-    mkvmerge-gui.desktop
+    --vendor=%{desktop_vendor} \
+    --dir=%{buildroot}%{_datadir}/applications \
+    --mode=0644 \
+    %{SOURCE1}
 
 # Install the desktop file's icon
 convert src/mmg/matroskalogo.xpm mkvmerge-gui.png
-%{__install} -Dp -m0644 mkvmerge-gui.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/mkvmerge-gui.png
+%{__install} -D -m 0644 mkvmerge-gui.png \
+    %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/mkvmerge-gui.png
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %post
-update-desktop-database &>/dev/null || :
 touch --no-create %{_datadir}/icons/hicolor || :
-%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor &>/dev/null || :
+if [ -x %{_bindir}/gtk-update-icon-cache ]; then
+   %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+fi
 
 %postun
 touch --no-create %{_datadir}/icons/hicolor || :
-%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor &>/dev/null || :
+if [ -x %{_bindir}/gtk-update-icon-cache ]; then
+   %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+fi
 
 %files
 %defattr(-, root, root, 0755)
@@ -120,11 +99,8 @@ touch --no-create %{_datadir}/icons/hicolor || :
 %{_datadir}/mkvtoolnix/
 
 %changelog
-* Mon Sep 15 2008 Dag Wieers <dag@wieers.com> - 2.3.0-1
-- Updated to release 2.3.0.
-
-* Sun Aug 19 2007 Dag Wieers <dag@wieers.com> - 2.1.0-2
-- Updated to release 2.1.0.
+* Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 1.7.0-3
+- Rebuild against wxGTK 2.8.8.
 
 * Sat Jan 20 2007 Dag Wieers <dag@wieers.com> - 1.7.0-2
 - Rebuild against wxGTK 2.6.3.

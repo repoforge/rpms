@@ -9,7 +9,7 @@
 
 Summary: Comprehensive template processing system
 Name: perl-Template-Toolkit
-Version: 2.19
+Version: 2.20
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -72,6 +72,9 @@ find docs/ examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/auto/Template/
 
 %changelog
+* Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 2.20-1
+- Updated to release 2.20.
+
 * Fri Oct  5 2007 Dave Miller <justdave@mozilla.com> - 2.19-1
 - Updated to release 2.19.
 
