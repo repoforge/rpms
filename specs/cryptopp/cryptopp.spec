@@ -57,27 +57,23 @@ This package contains programs for manipulating Crypto++ routines.
 %setup -c -n %{name}-%{version}
 %patch0 -p0
 
-%{__perl} -pi.orig -e 's|\bPREFIX\b|prefix|g' GNUmakefile
-%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' GNUmakefile
-
 ### All files have ^M end of lines, fix that for the gcc4 patch to apply
 find . -type f -exec dos2unix {} \;
 
 %build
 #configure --disable-static
-#%{__make} %{?_smp_mflags} CXXFLAGS="%{optflags} -DNDEBUG -fPIC"
-%{__make} %{?_smp_mflags} CXXFLAGS="%{optflags} -DNDEBUG"
+%ifarch X86_64
+%{__make} %{?_smp_mflags} shared CXXFLAGS="%{optflags} -DNDEBUG -fPIC"
+%else
+%{__make} %{?_smp_mflags} shared CXXFLAGS="%{optflags} -DNDEBUG"
+%endif
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}" PREFIX="%{_prefix}" LIBDIR="%{_libdir}"
 
-%{__mv} -f %{buildroot}%{_bindir}/cryptest.exe %{buildroot}%{_bindir}/cryptest
 %{__ln_s} -f libcryptopp.so.1.0 %{buildroot}%{_libdir}/libcryptopp.so.1
 %{__ln_s} -f libcryptopp.so.1.0 %{buildroot}%{_libdir}/libcryptopp.so
-
-%{__install} -d -m0755 %{buildroot}%{_datadir}/cryptopp/
-%{__install} -Dp -m0644 *.dat %{buildroot}%{_datadir}/cryptopp/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -94,7 +90,7 @@ find . -type f -exec dos2unix {} \;
 %defattr(-, root, root, 0755)
 %{_includedir}/cryptopp/
 %{_libdir}/libcryptopp.so
-%exclude %{_libdir}/libcryptopp.a
+#%exclude %{_libdir}/libcryptopp.a
 #%exclude %{_libdir}/libcryptopp.la
 
 %files progs

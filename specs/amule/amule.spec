@@ -79,18 +79,29 @@ update-desktop-database -q 2>/dev/null || :
 %doc _docs/*
 %doc %{_mandir}/man1/*.1*
 %lang(de) %{_mandir}/de/man1/*.1*
+%lang(eu) %{_mandir}/eu/man1/*.1*
 %lang(es) %{_mandir}/es/man1/*.1*
 %lang(fr) %{_mandir}/fr/man1/*.1*
 %lang(hu) %{_mandir}/hu/man1/*.1*
 %{_bindir}/alc
+%{_bindir}/alcc
 %{_bindir}/amule
+%{_bindir}/amulecmd
+%{_bindir}/amuled
+%{_bindir}/amuleweb
+%{_bindir}/autostart-xas
+%{_bindir}/cas
+%{_bindir}/wxcas
 %{_bindir}/ed2k
 %{_libdir}/xchat/plugins/xas.pl
 %{_datadir}/applications/alc.desktop
 %{_datadir}/applications/amule.desktop
-#{_datadir}/cas/
+%{_datadir}/applications/wxcas.desktop
+%{_datadir}/amule/
+%{_datadir}/cas/
 %{_datadir}/pixmaps/alc.xpm
 %{_datadir}/pixmaps/amule.png
+%{_datadir}/pixmaps/wxcas.xpm
 
 %changelog
 * Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 2.2.2-1
