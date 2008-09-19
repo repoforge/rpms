@@ -7,86 +7,77 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dtag:%define _with_modxorg 1}
 %{!?dtag:%define _with_avahi 1}
 
 ### Firefox 3 xulrunner not supported.
 %{?el5:%undefine _with_mozilla}
 
-### Problems with dirac
-%define _without_dirac 1
-### No opencv package yet
-%define _without_opencv 1
+#define _without_dirac 1
+#define _without_opencv 1
 
 %ifarch %{ix86}
 %define _with_loader 1
 %endif
 
-%{?fc7:%define _with_modxorg 1}
-%{?el5:%define _with_modxorg 1}
-%{?fc6:%define _with_modxorg 1}
-%{?fc5:%define _with_modxorg 1}
-
-%{?fc7:%define _with_avahi 1}
-%{?el5:%define _with_avahi 1}
-%{?fc6:%define _with_avahi 1}
-%{?fc5:%define _with_avahi 1}
-
 %{?el5:%define mozilla xulrunner-devel nspr-devel}
+%{?el5:%define _without_glide 1}
 %{?el5:%define _without_jack 1}
 
 %{?el4:%define mozilla seamonkey-devel}
+%{?el4:%define _without_avahi 1}
+%{?el4:%define _without_glide 1}
 %{?el4:%define _without_jack 1}
+%{?el4:%define _without_modxorg 1}
 %{?el4:%define _without_sysfs 1}
-%{?el4:%define _without_upnp 1}
 
+%{?fc3:%define _without_avahi 1}
 %{?fc3:%define _without_jack 1}
+%{?fc3:%define _without_modxorg 1}
 %{?fc3:%define _without_sysfs 1}
-%{?fc3:%define _without_upnp 1}
-#{?fc3:#define _without_wxwidgets 1}
 
+%{?fc2:%define _without_avahi 1}
 %{?fc2:%define _without_hal 1}
 %{?fc2:%define _without_jack 1}
+%{?fc2:%define _without_modxorg 1}
 %{?fc2:%define _without_sysfs 1}
-%{?fc2:%define _without_upnp 1}
-#{?fc2:#define _without_wxwidgets 1}
 
+%{?fc1:%define _without_avahi 1}
 %{?fc1:%define _without_alsa 1}
 %{?fc1:%define _without_hal 1}
 %{?fc1:%define _without_jack 1}
+%{?fc1:%define _without_modxorg 1}
 %{?fc1:%define _without_sysfs 1}
 %{?fc1:%define _without_theora 1}
-%{?fc1:%define _without_upnp 1}
-#{?fc1:#define _without_wxwidgets 1}
 
 %{?el3:%define mozilla seamonkey-devel}
 %{?el3:%define _without_alsa 1}
+%{?el3:%define _without_avahi 1}
 %{?el3:%define _without_fribidi 1}
 %{?el3:%define _without_hal 1}
 %{?el3:%define _without_jack 1}
+%{?el3:%define _without_modxorg 1}
 %{?el3:%define _without_sysfs 1}
 %{?el3:%define _without_theora 1}
-#{?el3:#define _without_upnp 1}
-#{?el3:#define _without_wxwidgets 1}
 
 %{?rh9:%define _without_alsa 1}
+%{?rh9:%define _without_avahi 1}
 %{?rh9:%define _without_fribidi 1}
 %{?rh9:%define _without_hal 1}
 %{?rh9:%define _without_jack 1}
+%{?rh9:%define _without_modxorg 1}
 %{?rh9:%define _without_sysfs 1}
 %{?rh9:%define _without_theora 1}
-#{?rh9:#define _without_upnp 1}
-#{?rh9:#define _without_wxwidgets 1}
 %{?rh9:%define _without_x264 1}
 
 %{?rh7:%define _without_alsa 1}
+%{?rh7:%define _without_avahi 1}
 %{?rh7:%define _without_freedesktop 1}
 %{?rh7:%define _without_fribidi 1}
 %{?rh7:%define _without_hal 1}
 %{?rh7:%define _without_jack 1}
+%{?rh7:%define _without_modxorg 1}
 %{?rh7:%define _without_sysfs 1}
 %{?rh7:%define _without_theora 1}
-#{?rh7:#define _without_upnp 1}
 %{?rh7:%define _without_vorbis 1}
 #{?rh7:#define _without_wxwidgets 1}
 %{?rh7:%define _without_x264 1}
@@ -95,11 +86,13 @@
 %{?el2:%define mozilla seamonkey-devel}
 %{?el2:%define _without_alsa 1}
 %{?el2:%define _without_arts 1}
+%{?el2:%define _without_avahi 1}
 %{?el2:%define _without_freedesktop 1}
 %{?el2:%define _without_fribidi 1}
 %{?el2:%define _without_glx 1}
 %{?el2:%define _without_hal 1}
 %{?el2:%define _without_jack 1}
+%{?el2:%define _without_modxorg 1}
 %{?el2:%define _without_sysfs 1}
 %{?el2:%define _without_theora 1}
 #{?el2:#define _without_upnp 1}
@@ -143,20 +136,17 @@ BuildRequires: gcc-c++, libpng-devel, libxml2-devel, libtiff-devel
 BuildRequires: libgcrypt-devel, gnutls-devel, libtar-devel
 BuildRequires: libjpeg-devel
 Buildrequires: autoconf, automake, libtool
-%{?_with_avahi:BuildRequires: avahi-devel}
-%{?_with_cddax:BuildRequires: cdparanoia-devel}
-%{?_with_glide:BuildRequires: Glide3-devel}
-%{?_with_hal:BuildRequires: hal-devel}
-%{?_with_modxorg:BuildRequires: libGLU-devel, libXt-devel, libXv-devel, libXinerama-devel, libXxf86vm-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{?_with_mozilla:BuildRequires: %{mozilla}}
-%{?_with_portaudio:BuildRequires: portaudio-devel}
+%{!?_without_modxorg:BuildRequires: libGLU-devel, libXt-devel, libXv-devel, libXinerama-devel, libXxf86vm-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_a52:BuildRequires: a52dec-devel}
 %{!?_without_aa:BuildRequires: aalib-devel}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_amr:BuildRequires: amrnb-devel amrwb-devel}
 %{!?_without_arts:BuildRequires: arts-devel}
+%{!?_without_avahi:BuildRequires: avahi-devel}
 %{!?_without_caca:BuildRequires: libcaca-devel}
+%{!?_without_cddax:BuildRequires: cdparanoia-devel}
 %{!?_without_cddb:BuildRequires: libcddb-devel}
 %{!?_without_cdio:BuildRequires: libcdio-devel}
 %{!?_without_daap:BuildRequires: libopendaap-devel}
@@ -173,6 +163,7 @@ Buildrequires: autoconf, automake, libtool
 %{!?_without_flac:BuildRequires: flac-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_fribidi:BuildRequires: fribidi-devel}
+%{!?_without_glide:BuildRequires: Glide3-devel}
 %{!?_without_gnomevfs:BuildRequires: gnome-vfs2-devel}
 #{!?_without_goom:BuildRequires: goom-devel}
 %{!?_without_gsm:BuildRequires: gsm-devel}
@@ -187,6 +178,7 @@ Buildrequires: autoconf, automake, libtool
 %{!?_without_mpeg2dec:BuildRequires: mpeg2dec-devel}
 %{!?_without_ncurses:BuildRequires: ncurses-devel}
 %{!?_without_ogg:BuildRequires: libogg-devel}
+%{!?_without_portaudio:BuildRequires: portaudio-devel}
 %{!?_without_sdl:BuildRequires: SDL-devel, SDL_image-devel}
 %{!?_without_shout:BuildRequires: libshout-devel >= 2.2.2}
 %{!?_without_smb:BuildRequires: samba-common}
@@ -211,11 +203,12 @@ audio and video formats (MPEG-1, MPEG-2, MPEG-4, DivX, mp3, ogg, ...) as
 well as DVDs, VCDs, and various streaming protocols.
 
 Available rpmbuild rebuild options :
---with mga ncurses glide pth mozilla portaudio avahi hal
+--with mga pth mozilla
 --without dvdread dvdnav dvbpsi v4l avi asf aac ogg mad ffmpeg cdio
           a52 vorbis mpeg2dec flac aa caca esd arts alsa wxwidgets xosd
           lsp lirc id3tag faad2 theora mkv modplug smb speex glx x264
-          gnomevfs vcd daap upnp pvr live
+          gnomevfs vcd daap upnp pvr live portaudio avahi hal glide
+          ncurses
 
 Options that would need not yet existing add-on packages :
 --with loader ggi tarkin tremor
@@ -340,7 +333,7 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %{!?_without_alsa:--enable-alsa} \
 %{!?_without_arts:--enable-arts} \
 %{!?_without_caca:--enable-caca} \
-%{?_with_cddax:--enable-cddax} \
+%{!?_without_cddax:--enable-cddax} \
 %{?_without_cdio--disable-libcdio} \
 %{!?_without_dirac:--enable-dirac} \
 %{!?_without_directfb:--enable-directfb} \
@@ -360,7 +353,7 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %{?_without_fribidi:--disable-fribidi} \
     --enable-galaktos \
 %{?_with_ggi:--enable-ggi} \
-%{?_with_glide:--enable-glide} \
+%{!?_without_glide:--enable-glide} \
 %{?_without_glx:--disable-glx} \
 %{!?_without_gnomevfs:--enable-gnomevfs} \
 %{!?_without_jack:--enable-jack} \
@@ -377,7 +370,7 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %{!?_without_ncurses:--enable-ncurses} \
 %{?_without_ogg:--disable-ogg} \
 %{!?_without_opencv:--enable-opencv} \
-%{?_with_portaudio:--enable-portaudio} \
+%{!?_without_portaudio:--enable-portaudio} \
 %{?_with_pth:--enable-pth} \
     --enable-pulse \
 %{!?_without_pvr:--enable-pvr} \

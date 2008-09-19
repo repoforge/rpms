@@ -1,6 +1,14 @@
---- GNUmakefile.orig	2007-09-23 21:03:14.000000000 +0200
-+++ GNUmakefile	2008-09-17 21:37:00.000000000 +0200
-@@ -102,10 +102,12 @@
+--- GNUmakefile.orig	2008-09-18 12:15:13.000000000 +0200
++++ GNUmakefile	2008-09-18 12:18:32.000000000 +0200
+@@ -5,6 +5,7 @@
+ ARFLAGS = -cr	# ar needs the dash on OpenBSD
+ RANLIB = ranlib
+ CP = cp
++INSTALL = install
+ MKDIR = mkdir
+ EGREP = egrep
+ UNAME = $(shell uname)
+@@ -102,22 +103,32 @@
  TESTIMPORTOBJS = $(TESTOBJS:.o=.import.o)
  DLLTESTOBJS = dlltest.dllonly.o
  
@@ -14,8 +22,19 @@
 +	$(RM) cryptest.exe libcryptopp.a libcryptopp.so.* $(LIBOBJS) $(TESTOBJS) cryptopp.dll libcryptopp.dll.a libcryptopp.import.a cryptest.import.exe dlltest.exe $(DLLOBJS) $(LIBIMPORTOBJS) $(TESTIMPORTOBJS) $(DLLTESTOBJS)
  
  install:
- 	$(MKDIR) -p $(PREFIX)/include/cryptopp $(PREFIX)/lib $(PREFIX)/bin
-@@ -117,7 +119,12 @@
+-	$(MKDIR) -p $(PREFIX)/include/cryptopp $(PREFIX)/lib $(PREFIX)/bin
+-	$(CP) *.h $(PREFIX)/include/cryptopp
+-	$(CP) *.a $(PREFIX)/lib
+-	$(CP) *.exe $(PREFIX)/bin
++	$(INSTALL) -Dp -m0755 cryptest.exe $(DESTDIR)$(PREFIX)/bin/cryptest
++	$(INSTALL) -d -m0755 $(DESTDIR)$(LIBDIR)
++	$(INSTALL) -Dp -m0755 libcryptopp.so* $(DESTDIR)$(LIBDIR)
++	$(INSTALL) -d -m0755 $(DESTDIR)$(PREFIX)/include/cryptopp/
++	$(INSTALL) -Dp -m0644 *.h $(DESTDIR)$(PREFIX)/include/cryptopp/
++	$(INSTALL) -d -m0755 $(DESTDIR)$(PREFIX)/share/cryptopp/
++	$(INSTALL) -Dp -m0644 *.dat $(DESTDIR)$(PREFIX)/share/cryptopp/
+ 
+ libcryptopp.a: $(LIBOBJS)
  	$(AR) $(ARFLAGS) $@ $(LIBOBJS)
  	$(RANLIB) $@
  
