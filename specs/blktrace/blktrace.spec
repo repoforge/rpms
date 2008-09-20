@@ -38,12 +38,12 @@ and blkparse, a utility which formats trace data collected by blktrace.
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README doc/blktrace.tex
-%doc %{_mandir}/man1/blkrawverify.1*
 %doc %{_mandir}/man1/blkparse.1*
-%doc %{_mandir}/man1/btt.1
-%doc %{_mandir}/man1/verify_blkparse.1
-%doc %{_mandir}/man8/btrace.8*
+%doc %{_mandir}/man1/blkrawverify.1*
+%doc %{_mandir}/man1/btt.1*
+%doc %{_mandir}/man1/verify_blkparse.1*
 %doc %{_mandir}/man8/blktrace.8*
+%doc %{_mandir}/man8/btrace.8*
 %{_bindir}/blkparse
 %{_bindir}/blkrawverify
 %{_bindir}/blktrace

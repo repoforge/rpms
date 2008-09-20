@@ -87,8 +87,8 @@ cd -
 %endif
 
 %changelog
-* Thu Jul 17 2008 Dag Wieers <dag@wieers.com> - 0.16.5-1
-- Updated to release 0.16.5.
+* Thu Jul 17 2008 Dag Wieers <dag@wieers.com> - 0.16.6-1
+- Updated to release 0.16.6.
 
 * Sun Mar 12 2006 Dag Wieers <dag@wieers.com> - 0.16.3-1
 - Updated to release 0.16.3.
