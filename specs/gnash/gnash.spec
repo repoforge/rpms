@@ -3,18 +3,9 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%define _without_mozplugin 1
-
-%{?el5:%define _with_modxorg 1}
-%{?fc6:%define _with_modxorg 1}
-%{?fc5:%define _with_modxorg 1}
+%{?el5:%define mozilla xulrunner-devel nspr-devel}
 
 %define _without_kde32 1
-%{?fc1:%define _without_kde32 1}
-%{?el3:%define _without_kde32 1}
-%{?rh9:%define _without_kde32 1}
-%{?rh7:%define _without_kde32 1}
-%{?el2:%define _without_kde32 1}
 
 #ifarch x86_64
 #define _without_kde32 1
@@ -40,6 +31,7 @@ BuildRequires: boost-devel
 BuildRequires: curl-devel
 BuildRequires: ffmpeg-devel
 BuildRequires: gcc-c++
+### Gstreamer 0.10 is a *hard* requirement
 BuildRequires: gstreamer >= 0.10
 BuildRequires: libjpeg-devel
 BuildRequires: libmad-devel
@@ -47,8 +39,9 @@ BuildRequires: libogg-devel
 BuildRequires: libpng-devel
 BuildRequires: libxml2-devel
 %{!?_without_kde32:BuildRequires: kdebase-devel >= 3.2}
-%{?_with_modxorg:BuildRequires: libGLU-devel, libXmu-devel, libXi-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libGLU-devel, libXmu-devel, libXi-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_mozilla:BuildRequires: %{mozilla}}
 
 %description
 Gnash is an open-source flash player.
@@ -87,7 +80,8 @@ source %{_sysconfdir}/profile.d/qt.sh
     --enable-dom \
     --enable-extensions \
     --enable-glext \
-    --enable-gstreamer \
+%{!?_without_gstreamer:--enable-gstreamer} \
+%{?_without_gstreamer:--disable-gstreamer} \
     --enable-gui="gtk" \
     --enable-http \
     --enable-jpeg \
@@ -163,7 +157,7 @@ source %{_sysconfdir}/profile.d/qt.sh
 #%{_libdir}/kde3/libklashpart.so
 %endif
 
-%if %{!?_without_mozplugin:1}0
+%if %{!?_without_mozilla:1}0
 %files -n mozilla-gnash
 %defattr(-, root, root, 0755)
 %dir %{_libdir}/gnash/

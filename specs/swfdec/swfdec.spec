@@ -46,7 +46,7 @@
 Summary: Flash animations rendering library
 Name: swfdec
 Version: 0.3.6
-Release: 3
+Release: 4
 License: LGPL
 Group: System Environment/Libraries
 URL: http://swfdec.freedesktop.org/wiki/
@@ -64,9 +64,8 @@ BuildRequires: directfb
 
 %description
 Libswfdec is a library for rendering Flash animations. Currently it
-handles mostFlash 3 animations and some Flash 4. No interactivity is
+handles most Flash 3 animations and some Flash 4. No interactivity is
 supported yet.
-
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}
@@ -78,7 +77,6 @@ This package contains the header files, static libraries and development
 documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
-
 %package -n mozilla-swfdec
 Summary: Mozilla plugin for Flash rendering
 Group: Applications/Internet
@@ -87,29 +85,25 @@ Requires: %{name} = %{version}
 %description -n mozilla-swfdec
 Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
-
 %prep
 %setup
-
 
 %build
 %configure \
 %{?_without_mozilla:--disable-mozilla-plugin}
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR=%{buildroot}
-
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %post
 /sbin/ldconfig 2>/dev/null
-/usr/bin/update-gdk-pixbuf-loaders $(uname -i)-redhat-linux-gnu || :
+[ -x %{_bindir}/update-gdk-pixbuf-loaders ] && \
+    %{_bindir}/update-gdk-pixbuf-loaders $(uname -i)-redhat-linux-gnu || :
 
 ### Backward compatibility for gtk < 2.4.13-9
 [ -x %{_bindir}/gdk-pixbuf-query-loaders ] && \
@@ -118,13 +112,13 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 %postun
 /sbin/ldconfig 2>/dev/null
-/usr/bin/update-gdk-pixbuf-loaders $(uname -i)-redhat-linux-gnu || :
+[ -x %{_bindir}/update-gdk-pixbuf-loaders ] && \
+    %{_bindir}/update-gdk-pixbuf-loaders $(uname -i)-redhat-linux-gnu || :
 
 ### Backward compatibility for gtk < 2.4.13-9
 [ -x %{_bindir}/gdk-pixbuf-query-loaders ] && \
     %{_bindir}/gdk-pixbuf-query-loaders > \
         %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders || :
-
 
 %files
 %defattr(-, root, root, 0755)
@@ -136,12 +130,12 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/swfdec*/
-%exclude %{_libdir}/gtk-2.0/*/loaders/swf_loader.a
-%exclude %{_libdir}/gtk-2.0/*/loaders/swf_loader.la
-%{_libdir}/libswfdec*.a
-%exclude %{_libdir}/libswfdec*.la
 %{_libdir}/libswfdec*.so
 %{_libdir}/pkgconfig/swfdec*.pc
+%exclude %{_libdir}/gtk-2.0/*/loaders/swf_loader.a
+%exclude %{_libdir}/gtk-2.0/*/loaders/swf_loader.la
+%exclude %{_libdir}/libswfdec*.a
+%exclude %{_libdir}/libswfdec*.la
 
 %if %{!?_without_mozilla:1}0
 %files -n mozilla-swfdec
@@ -152,8 +146,10 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 %{_libdir}/mozilla/plugins/libswfdecmozilla.so
 %endif
 
-
 %changelog
+* Wed Sep 24 2008 Dag Wieers <dag@wieers.com> - 0.3.6-4
+- Rebuild against directfb-1.2.4.
+
 * Sat Jul 05 2008 Dag Wieers <dag@wieers.com> - 0.3.6-3
 - Rebuild against directfb-1.0.1.
 

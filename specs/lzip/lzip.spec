@@ -3,10 +3,10 @@
 
 Summary: Lossless LZMA-based data compression
 Name: lzip
-Version: 0.3
+Version: 0.4
 Release: 1
-Group: Applications/File
 License: GPL
+Group: Applications/File
 URL: http://es.geocities.com/ant_diaz2001/lzip.html
 
 Source: http://es.geocities.com/ant_diaz2001/lzip-%{version}.tar.gz
@@ -54,5 +54,8 @@ these tasks.
 %{_bindir}/lzip
 
 %changelog
+* Tue Sep 23 2008 Dag Wieers <dag@wieers.com> - 0.4-1
+- Updated to release 0.4.
+
 * Sat Sep 20 2008 Dag Wieers <dag@wieers.com> - 0.3-1
 - Initial package. (using DAR)

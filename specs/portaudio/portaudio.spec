@@ -11,6 +11,7 @@ Release: 2.2
 License: BSD-like
 Group: System Environment/Libraries
 URL: http://www.portaudio.com/
+
 Source: http://www.portaudio.com/archives/portaudio_%{rversion}.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Provides: %{name}-devel = %{version}-%{release}
@@ -48,9 +49,6 @@ and will be converted to the native format internally.
 %{_includedir}/*.h
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 18.1-2.2
-- Rebuild for Fedora Core 5.
-
 * Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 1.18-2
 - Add -devel provides.
 - Fix .so 644 mode (overidden in defattr).

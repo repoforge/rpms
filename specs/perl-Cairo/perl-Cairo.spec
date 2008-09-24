@@ -10,7 +10,7 @@
 Summary: Perl interface to the cairo library
 Name: perl-Cairo
 Version: 1.060
-Release: 2
+Release: 3
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Cairo/
@@ -62,6 +62,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Cairo.pm
 
 %changelog
+* Wed Sep 24 2008 Dag Wieers <dag@wieers.com> - 1.060-3
+- Rebuild against directfb-1.2.4.
+
 * Sat Jul 05 2008 Dag Wieers <dag@wieers.com> - 1.060-2
 - Rebuild against directfb-1.0.1.
 

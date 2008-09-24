@@ -2,12 +2,12 @@
 # Authority: dag
 # Upstream: Jean-Michel POURE <jm$poure,com>
 
-%define desktop-vendor rpmforge
+%define desktop_vendor rpmforge
 
 Summary: Graphical client for PostgreSQL
 Name: pgadmin3
-Version: 1.4.3
-Release: 2
+Version: 1.8.4
+Release: 1
 License: Artistic
 Group: Applications/Databases
 URL: http://www.pgadmin.org/
@@ -40,14 +40,14 @@ created, dropped and edited to the extent supported by the database.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-%{__install} -Dp -m0644 src/include/images/elephant48.xpm %{buildroot}%{_datadir}/pgadmin3/pgadmin3.xpm
+%{__install} -Dp -m0644 pgadmin/include/images/elephant48.xpm %{buildroot}%{_datadir}/pgadmin3/pgadmin3.xpm
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor %{desktop_vendor}    \
-    --add-category X-Red-Hat-Base              \
-    --add-category Application                 \
-    --add-category Development                 \
-    --dir %{buildroot}%{_datadir}/applications \
+desktop-file-install --vendor %{desktop_vendor} \
+    --add-category X-Red-Hat-Base               \
+    --add-category Application                  \
+    --add-category Development                  \
+    --dir %{buildroot}%{_datadir}/applications  \
     pkg/pgadmin3.desktop
 
 %clean
@@ -55,13 +55,14 @@ desktop-file-install --vendor %{desktop_vendor}    \
 
 %files
 %defattr(-, root, root, 0755)
-%{_bindir}/*
-%{_datadir}/applications/*.desktop
+%{_bindir}/pgadmin3
+%{_bindir}/pgagent
+%{_datadir}/applications/%{desktop_vendor}-pgadmin3.desktop
 %{_datadir}/pgadmin3/
 
 %changelog
-* Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 1.4.3-2
-- Rebuild against wxGTK 2.8.8.
+* Mon Sep 22 2008 Dag Wieers <dag@wieers.com> - 1.8.4-1
+- Updated to release 1.8.4.
 
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.3-1
 - Updated to release 1.4.3.

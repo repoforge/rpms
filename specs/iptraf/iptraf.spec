@@ -3,6 +3,8 @@
 # Upstream: Gerard Paul Java <riker$seul,org>
 # Upstream: <iptraf-users$seul,org>
 
+# ExclusiveDist: el2 rh7 rh9 el3 el4
+
 Summary: Console-based network monitoring utility
 Name: iptraf
 Version: 3.0.0
@@ -44,17 +46,17 @@ so it can be used on a wide variety of supported network cards.
 %{__rm} -f src/{cfconv,iptraf,rvnamed}
 
 %{__perl} -pi.orig -e '
-		s|^(TARGET)\s*=.+$|$1=\$(bindir)|;
-		s|^(WORKDIR)\s*=.+$|$1=\$(localstatedir)/run/iptraf|;
-		s|^(LOCKDIR)\s*=.+$|$1=\$(localstatedir)/lock/iptraf|;
-		s|^(LOGDIR)\s*=.+$|$1=\$(localstatedir)/log/iptraf|;
-	' src/Makefile
+        s|^(TARGET)\s*=.+$|$1=\$(bindir)|;
+        s|^(WORKDIR)\s*=.+$|$1=\$(localstatedir)/run/iptraf|;
+        s|^(LOCKDIR)\s*=.+$|$1=\$(localstatedir)/lock/iptraf|;
+        s|^(LOGDIR)\s*=.+$|$1=\$(localstatedir)/log/iptraf|;
+    ' src/Makefile
 
 %build
 %{__make} -C src \
-	CFLAGS="%{optflags}" \
-	bindir="%{_bindir}" \
-	localstatedir="%{_localstatedir}"
+    CFLAGS="%{optflags}" \
+    bindir="%{_bindir}" \
+    localstatedir="%{_localstatedir}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -68,10 +70,10 @@ so it can be used on a wide variety of supported network cards.
 
 %{__install} -d -m0700 %{buildroot}%{_localstatedir}/{lock,log,run}/iptraf/
 touch %{buildroot}%{_localstatedir}/log/iptraf/rvnamed.log \
-	%{buildroot}%{_localstatedir}/run/iptraf/iptraf.cfg \
-	%{buildroot}%{_localstatedir}/run/iptraf/iptraf-promisclist.tmp \
-	%{buildroot}%{_localstatedir}/run/iptraf/iptraf-processcount.dat \
-	%{buildroot}%{_localstatedir}/run/iptraf/iptraf-itrafmoncount.dat
+    %{buildroot}%{_localstatedir}/run/iptraf/iptraf.cfg \
+    %{buildroot}%{_localstatedir}/run/iptraf/iptraf-promisclist.tmp \
+    %{buildroot}%{_localstatedir}/run/iptraf/iptraf-processcount.dat \
+    %{buildroot}%{_localstatedir}/run/iptraf/iptraf-itrafmoncount.dat
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -79,8 +81,10 @@ touch %{buildroot}%{_localstatedir}/log/iptraf/rvnamed.log \
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES Documentation/ FAQ INSTALL LICENSE README* RELEASE-NOTES
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man8/iptraf.8*
+%doc %{_mandir}/man8/rvnamed.8*
+%{_bindir}/iptraf
+%{_bindir}/rvnamed
 
 %defattr(-, root, root, 0700)
 %config(missingok) %{_localstatedir}/run/iptraf/
@@ -88,9 +92,6 @@ touch %{buildroot}%{_localstatedir}/log/iptraf/rvnamed.log \
 %{_localstatedir}/lock/iptraf/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.0.0-1.2
-- Rebuild for Fedora Core 5.
-
 * Tue Sep 20 2005 Dag Wieers <dag@wieers.com> - 3.0.0-1
 - Updated to release 3.0.0.
 

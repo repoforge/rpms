@@ -4,36 +4,52 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?el5:%define _with_sysfs 1}
 
-%{?dtag: %{expand: %%define %dtag 1}}
 %{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}
 %{?fc3:%define _without_modxorg 1}
 %{?fc2:%define _without_modxorg 1}
 %{?fc1:%define _without_modxorg 1}
+
+%{?el3:%define _without_freetype2 1}
 %{?el3:%define _without_modxorg 1}
+%{?el3:%define _without_tslib 1}
+
+%{?rh9:%define _without_freetype2 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh9:%define _without_tslib 1}
+
+%{?rh7:%define _without_freetype2 1}
+%{?rh7:%define _without_modxorg 1}
+%{?rh7:%define _without_tslib 1}
+
+%{?el2:%define _without_freetype2 1}
 %{?el2:%define _without_modxorg 1}
+%{?el2:%define _without_tslib 1}
 
 %define real_name DirectFB
-%define real_version 1.0-0
+%define real_version 1.2-0
 
 Summary: Hardware graphics acceleration library
 Name: directfb
-Version: 1.0.1
+Version: 1.2.4
 Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.directfb.org/
 
 Source: http://www.directfb.org/download/DirectFB/DirectFB-%{version}.tar.gz
-Patch0: DirectFB-0.9.25.1-types.patch
-Patch1: DirectFB-0.9.25.1-linux-compiler.patch
-Patch2: DirectFB-0.9.25.1-ppc.patch
-Patch3: DirectFB-0.9.25.1-sysfs.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpng-devel, libjpeg-devel, zlib-devel, freetype-devel >= 2.0
-BuildRequires: SDL-devel, libtool, gcc-c++, libvncserver-devel
+BuildRequires: freetype-devel >= 2.0
+BuildRequires: gcc-c++
+BuildRequires: libjpeg-devel
+BuildRequires: libpng-devel
+BuildRequires: libtool
+BuildRequires: libvncserver-devel
+BuildRequires: SDL-devel
+BuildRequires: zlib-devel
 %{?_with_sysfs:BuildRequires: libsysfs-devel}
+%{!?_without_tslib:BuildRequires: tslib-devel}
 
 %description
 DirectFB is a thin library that provides hardware graphics acceleration,
@@ -57,10 +73,6 @@ you will need to install %{name}-devel.
 
 %prep
 %setup -n %{real_name}-%{version}
-#patch0 -p1 -b .types
-#patch1 -p1 -b .linux-compiler
-%patch2 -p1 -b .ppc
-%patch3 -p1 -b .sysfs
 
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure
 
@@ -99,16 +111,19 @@ you will need to install %{name}-devel.
 %doc AUTHORS ChangeLog COPYING docs/README.screenshots fb.modes NEWS README
 %doc %{_mandir}/man1/dfbg.1*
 %doc %{_mandir}/man5/directfbrc.5*
-%{_bindir}/dfbg
 %{_bindir}/dfbdump
+%{_bindir}/dfbfx
+%{_bindir}/dfbg
 %{_bindir}/dfbinfo
 %{_bindir}/dfbinput
+%{_bindir}/dfbinspector
 %{_bindir}/dfblayer
+%{_bindir}/dfbmaster
 %{_bindir}/dfbpenmount
 %{_bindir}/dfbscreen
-%{_bindir}/dfbsummon
+#%{_bindir}/dfbsummon
 %{_bindir}/mkdfiff
-%{_bindir}/mkdgiff
+%{!?_without_freetype2:%{_bindir}/mkdgiff}
 %{_datadir}/directfb-%{version}/
 %dir %{_libdir}/directfb-%{real_version}/
 %dir %{_libdir}/directfb-%{real_version}/*/
@@ -141,6 +156,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libfusion.la
 
 %changelog
+* Mon Sep 22 2008 Dag Wieers <dag@wieers.com> - 1.2.4-1
+- Updated to release 1.2.4.
+
 * Fri Jul 04 2008 Dag Wieers <dag@wieers.com> - 1.0.1-1
 - Updated to release 1.0.1.
 

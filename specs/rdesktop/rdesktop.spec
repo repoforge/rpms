@@ -15,15 +15,17 @@
 
 Summary: X client for remote desktop into Windows Terminal Server
 Name: rdesktop
-Version: 1.5.0
-Release: 0
+Version: 1.6.0
+Release: 0.1
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.rdesktop.org/
 
 Source: http://dl.sf.net/rdesktop/rdesktop-%{version}.tar.gz
+Patch1: rdesktop-1.6.0-gcc296.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: libsamplerate-devel
 BuildRequires: openssl-devel
 %{?_with_modxorg:BuildRequires: libXt-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
@@ -36,6 +38,7 @@ desktop. Unlike Citrix ICA, no server extensions are required.
 
 %prep
 %setup
+%patch1 -p1 -b .gcc296
 
 %build
 %configure
@@ -56,6 +59,10 @@ desktop. Unlike Citrix ICA, no server extensions are required.
 %{_datadir}/rdesktop/
 
 %changelog
+* Thu Sep  4 2008 Tom G. Christensen <swpkg@statsbiblioteket.dk> - 1.6.0-0.1
+- Fix build on el2.
+- Updated to release 1.6.0.
+
 * Sat Sep 30 2006 Dag Wieers <dag@wieers.com> - 1.5.0-0
 - Updated to release 1.5.0.
 

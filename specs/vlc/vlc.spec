@@ -14,6 +14,8 @@
 
 #define _without_dirac 1
 #define _without_opencv 1
+%define _without_directfb 1
+%define _without_portaudio 1
 
 %ifarch %{ix86}
 %define _with_loader 1
@@ -22,6 +24,7 @@
 %{?el5:%define mozilla xulrunner-devel nspr-devel}
 %{?el5:%define _without_glide 1}
 %{?el5:%define _without_jack 1}
+%{?el5:%define _without_theora 1}
 
 %{?el4:%define mozilla seamonkey-devel}
 %{?el4:%define _without_avahi 1}
@@ -29,6 +32,7 @@
 %{?el4:%define _without_jack 1}
 %{?el4:%define _without_modxorg 1}
 %{?el4:%define _without_sysfs 1}
+%{?el4:%define _without_theora 1}
 
 %{?fc3:%define _without_avahi 1}
 %{?fc3:%define _without_jack 1}
@@ -270,7 +274,7 @@ pushd ffmpeg-%{ffmpeg_date}
 %ifarch x86_64
         --extra-cflags="-fPIC -DPIC" \
 %else
-        --extra-cflags="-fPIC -DPIC -fomit-frame-pointer" \
+        --extra-cflags="-fomit-frame-pointer" \
 %endif
         --disable-ffmpeg \
         --disable-ffplay \
@@ -419,7 +423,7 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %doc _docs/*
 %{_bindir}/svlc
 %{_bindir}/vlc
-%{_bindir}/wxvlc
+#%{_bindir}/wxvlc
 %{_libdir}/vlc/
 #exclude %{_libdir}/vlc/*.a
 %{_datadir}/applications/vlc.desktop
@@ -429,9 +433,9 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %files devel
 %defattr(-, root, root, 0755)
 %doc HACKING
-%{_bindir}/vlc-config
+#%{_bindir}/vlc-config
 %{_includedir}/vlc/
-%exclude %{_libdir}/libvlc.a
+#exclude %{_libdir}/libvlc.a
 
 %if %{?_with_mozilla:1}0
 %files -n mozilla-vlc

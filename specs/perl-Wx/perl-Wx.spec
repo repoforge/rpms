@@ -9,7 +9,7 @@
 
 Summary: Interface to the wxWidgets cross-platform GUI toolkit
 Name: perl-Wx
-Version: 0.82
+Version: 0.86
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -25,6 +25,7 @@ BuildRequires: perl(ExtUtils::MakeMaker) >= 6.17
 BuildRequires: perl(File::Spec::Functions) >= 0.82
 BuildRequires: perl(Test::Harness) >= 2.26
 BuildRequires: perl(Test::More) >= 0.45
+BuildRequires: wxGTK-devel
 
 %description
 perl-Wx is a Perl module to interface to the wxWidgets cross-platform GUI toolkit.
@@ -33,7 +34,7 @@ perl-Wx is a Perl module to interface to the wxWidgets cross-platform GUI toolki
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --wx-version="$(wx-config --version)" --wx-toolkit="gtk2" --wx-unicode
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -64,6 +65,9 @@ find docs/ samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Wx.pm
 
 %changelog
+* Tue Sep 23 2008 Dag Wieers <dag@wieers.com> - 0.86-1
+- Updated to release 0.86.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.82-1
 - Updated to release 0.82.
 

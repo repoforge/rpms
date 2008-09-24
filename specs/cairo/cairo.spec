@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: <cairo$cairographics,org>
 
-### EL5 ships with version 1.2.4-1.fc6
+### EL5 ships with version 1.2.4-5.el5
 # ExclusiveDist: el2 rh7 rh9 el3 el4
 
 %{?dtag: %{expand: %%define %dtag 1}}
@@ -25,7 +25,7 @@
 Summary: Anti-aliased vector-based rendering for X
 Name: cairo
 Version: 1.2.4
-Release: 2
+Release: 2.1
 License: MIT
 Group: System Environment/Libraries
 URL: http://cairo.freedesktop.org/
@@ -97,6 +97,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libcairo.la
 
 %changelog
+* Tue Sep 23 2008 Dag Wieers <dag@wieers.com> - 1.2.4-2.1
+- Rebuild against directfb-1.2.4.
+
 * Fri Jul 04 2008 Dag Wieers <dag@wieers.com> - 1.2.4-2
 - Rebuild against directfb-1.0.1.
 

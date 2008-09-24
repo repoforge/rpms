@@ -81,7 +81,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.39%{?rcver:.%{rcver}}%{?date:.%{date}}try2
+Release: 0.40%{?rcver:.%{rcver}}%{?date:.%{date}}try2
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -334,6 +334,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Wed Sep 24 2008 Dag Wieers <dag@wieers.com> - 1.0-0.40.rc1tr2
+- Rebuild against directfb-1.2.4.
+
 * Wed Jul 09 2008 Dag Wieers <dag@wieers.com> - 1.0-0.39.rc1try2
 - Rebuild against directfb-1.0.1.
 

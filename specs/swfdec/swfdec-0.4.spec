@@ -61,7 +61,7 @@ BuildRequires: directfb
 
 %description
 Libswfdec is a library for rendering Flash animations. Currently it
-handles mostFlash 3 animations and some Flash 4. No interactivity is
+handles most Flash 3 animations and some Flash 4. No interactivity is
 supported yet.
 
 %package devel
@@ -88,7 +88,7 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 %build
 %configure \
 %{?_without_mozilla:--disable-mozilla-plugin} \
-	--enable-shared \
+    --enable-shared \
 %{!?_without_alsa:--with-audio="alsa"}
 %{__make} %{?_smp_mflags} 
 %{__make} %{?_smp_mflags} -C player
@@ -103,7 +103,8 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 %post
 /sbin/ldconfig
-/usr/bin/update-gdk-pixbuf-loaders $(uname -i)-redhat-linux-gnu || :
+[ -x %{_bindir}/update-gdk-pixbuf-loaders ] && \
+    %{_bindir}/update-gdk-pixbuf-loaders $(uname -i)-redhat-linux-gnu || :
 
 ### Backward compatibility for gtk < 2.4.13-9
 [ -x %{_bindir}/gdk-pixbuf-query-loaders ] && \
@@ -112,7 +113,8 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 %postun
 /sbin/ldconfig
-/usr/bin/update-gdk-pixbuf-loaders $(uname -i)-redhat-linux-gnu || :
+[ -x %{_bindir}/update-gdk-pixbuf-loaders ] && \
+    %{_bindir}/update-gdk-pixbuf-loaders $(uname -i)-redhat-linux-gnu || :
 
 ### Backward compatibility for gtk < 2.4.13-9
 [ -x %{_bindir}/gdk-pixbuf-query-loaders ] && \
