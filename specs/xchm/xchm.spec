@@ -1,6 +1,11 @@
 # $Id$
 # Authority: dag
 
+%{?dtag: %{expand: %%define %dtag 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+
 %define desktop_vendor rpmforge
 
 Summary: GUI front-end to chmlib
@@ -15,8 +20,8 @@ Source: http://dl.sf.net/xchm/xchm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-%{_arch}-root
 
 BuildRequires: chmlib-devel
-BuildRequires: desktop-file-utils
 BuildRequires: wxGTK-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 xCHM is a wxWidgets-based .chm viewer. xCHM can show the contents tree if
@@ -59,10 +64,14 @@ for res in 16 32 48 128; do
     %{__ln_s} -f application-x-chm.xpm %{buildroot}%{_datadir}/icons/hicolor/${res}x$res//mimetypes/gnome-mime-application-x-chm.xpm
 done
 
+%if %{?_without_freedesktop:1}0
+%{__install} -Dp -m0644 xchm.desktop %{buildroot}/etc/X11/applnk/Utilities/xchm.desktop
+%else
 %{__install} -dp -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications  \
     xchm.desktop
+%endif
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -83,6 +92,7 @@ update-desktop-database &> /dev/null ||:
 %{_bindir}/xchm
 %{_datadir}/applications/%{desktop_vendor}-xchm.desktop
 %{_datadir}/icons/hicolor/
+%exclude %{_datadir}/pixmaps/
 
 %changelog
 * Wed Sep 24 2008 Dag Wieers <dag@wieers.com> - 1.14-1

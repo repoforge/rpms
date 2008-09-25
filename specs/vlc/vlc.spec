@@ -28,6 +28,7 @@
 
 %{?el4:%define mozilla seamonkey-devel}
 %{?el4:%define _without_avahi 1}
+%{?el4:%define _without_dbus1 1}
 %{?el4:%define _without_glide 1}
 %{?el4:%define _without_jack 1}
 %{?el4:%define _without_modxorg 1}
@@ -56,6 +57,7 @@
 %{?el3:%define mozilla seamonkey-devel}
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_avahi 1}
+%{?el3:%define _without_dbus1 1}
 %{?el3:%define _without_fribidi 1}
 %{?el3:%define _without_hal 1}
 %{?el3:%define _without_jack 1}
@@ -65,6 +67,7 @@
 
 %{?rh9:%define _without_alsa 1}
 %{?rh9:%define _without_avahi 1}
+%{?rh9:%define _without_dbus1 1}
 %{?rh9:%define _without_fribidi 1}
 %{?rh9:%define _without_hal 1}
 %{?rh9:%define _without_jack 1}
@@ -75,6 +78,7 @@
 
 %{?rh7:%define _without_alsa 1}
 %{?rh7:%define _without_avahi 1}
+%{?rh7:%define _without_dbus1 1}
 %{?rh7:%define _without_freedesktop 1}
 %{?rh7:%define _without_fribidi 1}
 %{?rh7:%define _without_hal 1}
@@ -91,6 +95,7 @@
 %{?el2:%define _without_alsa 1}
 %{?el2:%define _without_arts 1}
 %{?el2:%define _without_avahi 1}
+%{?el2:%define _without_dbus1 1}
 %{?el2:%define _without_freedesktop 1}
 %{?el2:%define _without_fribidi 1}
 %{?el2:%define _without_glx 1}
@@ -136,10 +141,17 @@ Patch21: vlc-0.8.6e-directfb.patch
 Patch80: vlc-0.8.6e-xulrunner.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, libpng-devel, libxml2-devel, libtiff-devel
-BuildRequires: libgcrypt-devel, gnutls-devel, libtar-devel
+Buildrequires: autoconf
+BuildRequires: automake
+BuildRequires: gcc-c++
+BuildRequires: gnutls-devel
+BuildRequires: libgcrypt-devel
 BuildRequires: libjpeg-devel
-Buildrequires: autoconf, automake, libtool
+BuildRequires: libpng-devel
+BuildRequires: libtar-devel
+BuildRequires: libtiff-devel
+BuildRequires: libtool
+BuildRequires: libxml2-devel
 %{?_with_mozilla:BuildRequires: %{mozilla}}
 %{!?_without_modxorg:BuildRequires: libGLU-devel, libXt-devel, libXv-devel, libXinerama-devel, libXxf86vm-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
@@ -150,6 +162,7 @@ Buildrequires: autoconf, automake, libtool
 %{!?_without_arts:BuildRequires: arts-devel}
 %{!?_without_avahi:BuildRequires: avahi-devel}
 %{!?_without_caca:BuildRequires: libcaca-devel}
+%{!?_without_dbus1:BuildRequires: dbus-devel >= 1.0}
 %{!?_without_cddax:BuildRequires: cdparanoia-devel}
 %{!?_without_cddb:BuildRequires: libcddb-devel}
 %{!?_without_cdio:BuildRequires: libcdio-devel}
@@ -338,7 +351,8 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %{!?_without_arts:--enable-arts} \
 %{!?_without_caca:--enable-caca} \
 %{!?_without_cddax:--enable-cddax} \
-%{?_without_cdio--disable-libcdio} \
+%{?_without_cdio:--disable-libcdio} \
+%{?_without_dbus1:--disable-dbus1} \
 %{!?_without_dirac:--enable-dirac} \
 %{!?_without_directfb:--enable-directfb} \
 %{!?_without_directfb:--with-directfb="%{_includedir}"} \
@@ -421,21 +435,31 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog MAINTAINERS README THANKS
 %doc _docs/*
+%{_bindir}/cvlc
+%{_bindir}/nvlc
+%{_bindir}/qvlc
+%{_bindir}/rvlc
 %{_bindir}/svlc
 %{_bindir}/vlc
+%{_bindir}/vlc-wrapper
 #%{_bindir}/wxvlc
-%{_libdir}/vlc/
-#exclude %{_libdir}/vlc/*.a
 %{_datadir}/applications/vlc.desktop
 %{_datadir}/pixmaps/vlc.png
 %{_datadir}/vlc/
+%{_libdir}/libvlc.so.*
+%{_libdir}/libvlccore.so.*
+%{_libdir}/vlc/
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc HACKING
-#%{_bindir}/vlc-config
 %{_includedir}/vlc/
-#exclude %{_libdir}/libvlc.a
+%{_libdir}/libvlc.so
+%{_libdir}/libvlccore.so
+%{_libdir}/pkgconfig/libvlc.pc
+%{_libdir}/pkgconfig/vlc-plugin.pc
+%exclude %{_libdir}/libvlc.la
+%exclude %{_libdir}/libvlccore.la
 
 %if %{?_with_mozilla:1}0
 %files -n mozilla-vlc

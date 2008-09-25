@@ -7,7 +7,7 @@
 
 Summary: Serial console server daemon/client
 Name: conserver
-Version: 8.1.15
+Version: 8.1.16
 Release: 1
 License: BSD style
 Group: System Environment/Daemons
@@ -30,7 +30,7 @@ bells and whistles to accentuate that basic functionality.
 
 %build
 %configure \
-	--with-master="console"
+    --with-master="console"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -43,13 +43,13 @@ bells and whistles to accentuate that basic functionality.
 %post
 /sbin/chkconfig --add conserver
 if ! egrep -q '\<conserver\>' /etc/services; then
-	echo "console		782/tcp		conserver" >> /etc/services
+    echo "console       782/tcp     conserver" >> /etc/services
 fi
 
 %preun
 if [ $1 -eq 0 ]; then
-	/sbin/service conserver stop &>/dev/null || :
-	/sbin/chkconfig --del conserver
+    /sbin/service conserver stop &>/dev/null || :
+    /sbin/chkconfig --del conserver
 fi
 
 #%postun
@@ -71,6 +71,9 @@ fi
 %exclude %{_datadir}/examples/
 
 %changelog
+* Thu Sep 25 2008 Dag Wieers <dag@wieers.com> - 8.1.16-1
+- Updated to release 8.1.16.
+
 * Sun Mar 18 2007 Dag Wieers <dag@wieers.com> - 8.1.15-1
 - Updated to release 8.1.15.
 
