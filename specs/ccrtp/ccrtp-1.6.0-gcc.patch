@@ -1,0 +1,11 @@
+diff -up ccrtp-1.6.0/src/control.cpp.orig ccrtp-1.6.0/src/control.cpp
+--- ccrtp-1.6.0/src/control.cpp.orig	2008-02-07 08:49:22.000000000 +0100
++++ ccrtp-1.6.0/src/control.cpp	2008-02-07 08:50:09.000000000 +0100
+@@ -43,6 +43,7 @@
+ 
+ #include "private.h"
+ #include <ccrtp/cqueue.h>
++#include <cstdlib>
+ 
+ #ifdef  CCXX_NAMESPACES
+ namespace ost {
