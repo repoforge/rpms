@@ -3,28 +3,51 @@
 
 Summary: DVD ripping and encoding graphical user interface
 Name: ogmrip
-Version: 0.10.3
+Version: 0.11.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://ogmrip.sourceforge.net/
+
 Source: http://dl.sf.net/ogmrip/ogmrip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: mplayer, mencoder
-BuildRequires: gtk2-devel, libglade2-devel, GConf2-devel, libxml2-devel
-Buildrequires: hal-devel, dbus-glib-devel, enchant-devel
-Buildrequires: libdvdread-devel, libtheora-devel, libvorbis-devel, gocr-devel
-Buildrequires: gettext-devel, intltool, gcc-c++
-# Not technically build required, but configure checks for it...
-Buildrequires: mplayer, mencoder, ogmtools, vorbis-tools, theora-tools
-BuildRequires: mkvtoolnix, lame
-# Now, all the same as runtime requirements
-Requires: mplayer, mencoder, ogmtools, vorbis-tools, theora-tools
-Requires: mkvtoolnix, lame
-# We should normally provide the built srttool program, but it conflicts
+
+BuildRequires: dbus-glib-devel
+BuildRequires: enchant-devel
+BuildRequires: gcc-c++
+BuildRequires: GConf2-devel
+Buildrequires: gettext-devel
+BuildRequires: glib2-devel >= 2.6
+BuildRequires: gocr-devel
+BuildRequires: gtk2-devel
+Buildrequires: hal-devel
+BuildRequires: intltool
+Buildrequires: libdvdread-devel
+BuildRequires: libglade2-devel
+BuildRequires: libtheora-devel
+BuildRequires: libvorbis-devel
+BuildRequires: libxml2-devel
+### Not technically build required, but configure checks for it...
+BuildRequires: lame
+BuildRequires: mencoder
+BuildRequires: mkvtoolnix
+BuildRequires: mplayer
+BuildRequires: ogmtools
+BuildRequires: theora-tools
+BuildRequires: vorbis-tools
+### Now, all the same as runtime requirements
+Requires: lame
+Requires: mencoder
+Requires: mkvtoolnix
+Requires: mplayer
+Requires: ogmtools
+Requires: theora-tools
+Requires: vorbis-tools
+### We should normally provide the built srttool program, but it conflicts
+Requires: mencoder
+Requires: mplayer
 Requires: subtitleripper
-Requires(post): GConf2
-Requires(postun): GConf2
+Requires: GConf2
 
 %description
 OGMRip is an application and a set of libraries for ripping and encoding DVDs
@@ -32,38 +55,35 @@ into AVI, OGM MP4 or Matroska files using a wide variety of codecs. It relies
 on mplayer, mencoder, ogmtools, mkvtoolnix, oggenc, lame and faac to perform
 its tasks.
 
-
 %package devel
-Summary: Development files for ogmrip
+Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
 %description devel
-Development headers and libraries for ogmrip.
-
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
 %setup
-# Remove -Werror since build fails because of warn_unused_result otherwise
-%{__perl} -pi -e 's|-Wall -Werror|-Wall|g' configure*
 
+### Remove -Werror since build fails because of warn_unused_result otherwise
+%{__perl} -pi -e 's|-Wall -Werror|-Wall|g' configure*
 
 %build
 %configure \
-    --disable-static \
-    --disable-schemas-install
+    --disable-schemas-install \
+    --disable-static
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
-
 
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %post
 /sbin/ldconfig
@@ -80,30 +100,42 @@ fi
 
 %postun -p /sbin/ldconfig
 
-
 %files -f %{name}.lang
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog README TODO
+%doc %{_mandir}/man1/dvdcpy.1*
+%doc %{_mandir}/man1/srtutil.1*
+%doc %{_mandir}/man1/subp2pgm.1*
+%doc %{_datadir}/gtk-doc/html/ogmdvd/
+%doc %{_datadir}/gtk-doc/html/ogmdvd-gtk/
+%doc %{_datadir}/gtk-doc/html/ogmjob/
+%doc %{_datadir}/gtk-doc/html/ogmrip/
+%doc %{_datadir}/gtk-doc/html/ogmrip-gtk/
 %{_sysconfdir}/gconf/schemas/ogmrip.schemas
 %{_bindir}/dvdcpy
 %{_bindir}/ogmrip
 %{_bindir}/srtutil
 %{_bindir}/subp2pgm
 %{_bindir}/theoraenc
-%{_libdir}/*.so.*
 %{_datadir}/applications/ogmrip.desktop
 %{_datadir}/ogmrip/
 %{_datadir}/pixmaps/ogmrip.png
+%{_libdir}/libogm*.so.*
+%{_libdir}/ogmrip/
 
 %files devel
-%defattr(-,root,root,-)
-%{_includedir}/*
-%exclude %{_libdir}/*.la
-%{_libdir}/pkgconfig/*.pc
-%{_libdir}/*.so
-
+%defattr(-, root, root, 0755)
+%{_includedir}/ogmdvd/
+%{_includedir}/ogmjob/
+%{_includedir}/ogmrip/
+%{_libdir}/libogm*.so
+%{_libdir}/pkgconfig/ogm*.pc
+%exclude %{_libdir}/libogm*.la
 
 %changelog
+* Tue Sep 30 2008 Dag Wieers <dag@wieers.com> - 0.11.2-1
+- Updated to release 0.11.2.
+
 * Tue Mar 13 2007 Matthias Saou <http://freshrpms.net/> 0.10.3-1
 - Update to 0.10.3.
 - Remove exclude for no longer included srttool binary.

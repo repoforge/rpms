@@ -1,0 +1,19 @@
+diff -urNp fdupes-1.40.orig/md5/md5.c fdupes-1.40/md5/md5.c
+--- fdupes-1.40.orig/md5/md5.c	1999-11-05 06:34:36.000000000 +0530
++++ fdupes-1.40/md5/md5.c	2007-11-25 20:56:36.000000000 +0530
+@@ -39,6 +39,7 @@
+  */
+ 
+ #include "md5.h"
++#include <string.h>
+ 
+ #ifdef TEST
+ /*
+@@ -46,7 +47,6 @@
+  * The test program should print out the same values as given in section
+  * A.5 of RFC 1321, reproduced below.
+  */
+-#include <string.h>
+ main()
+ {
+     static const char *const test[7] = {

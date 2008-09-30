@@ -1,0 +1,11 @@
+--- syslinux-3.72/com32/lib/sys/entry.S.orig	2008-09-27 02:20:18.000000000 +0200
++++ syslinux-3.72/com32/lib/sys/entry.S	2008-09-27 02:22:14.000000000 +0200
+@@ -53,7 +53,7 @@
+ 		/* Copy COM32 invocation parameters */
+ 		leal 4(%esp),%esi		# Argument list
+ 		movl $__com32,%edi
+-		movl $COM32_ARGS,%ecx
++		movl $(COM32_ARGS),%ecx
+ 		movl %esp,-4(%edi)		# Save the initial stack ptr
+ 		cmpl (%esi),%ecx
+ 		jbe 1f

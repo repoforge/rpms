@@ -4,8 +4,7 @@
 
 Summary: Sort files in sophisticated ways
 Name: msort
-%define real_version 8.48
-Version: 8.48
+Version: 8.50
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -27,7 +26,7 @@ program has a somewhat complex command line interface, but may be driven
 by an optional GUI.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
 
 %build
 %configure
@@ -35,7 +34,7 @@ by an optional GUI.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,6 +47,9 @@ by an optional GUI.
 %{_bindir}/msort
 
 %changelog
+* Tue Sep 30 2008 Dag Wieers <dag@wieers.com> - 8.50-1
+- Updated to release 8.50.
+
 * Sun Sep 21 2008 Dries Verachtert <dries@ulyssis.org> - 8.48-1
 - Updated to release 8.48.
 

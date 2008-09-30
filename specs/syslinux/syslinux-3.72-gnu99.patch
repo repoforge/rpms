@@ -1,0 +1,223 @@
+commit 92a8de517a0bd6cfd974a85fd3f3d26645aa5347
+Author: H. Peter Anvin <hpa@zytor.com>
+Date:   Fri Sep 26 13:13:52 2008 -0700
+
+    setjmp.S: use C-style comments
+    
+    Earlier versions of cpp would get confused by the gas-style comments
+    at line starts; replace them with C-style comments.
+    
+    Signed-off-by: H. Peter Anvin <hpa@zytor.com>
+
+diff --git a/com32/lib/setjmp.S b/com32/lib/setjmp.S
+index 53b2dee..a368b78 100644
+--- a/com32/lib/setjmp.S
++++ b/com32/lib/setjmp.S
+@@ -1,18 +1,18 @@
+-#
+-# arch/i386/setjmp.S
+-#
+-# setjmp/longjmp for the i386 architecture
+-#
+-
+-#
+-# The jmp_buf is assumed to contain the following, in order:
+-#	%ebx
+-#	%esp
+-#	%ebp
+-#	%esi
+-#	%edi
+-#	<return address>
+-#
++/*
++ * arch/i386/setjmp.S
++ *
++ * setjmp/longjmp for the i386 architecture
++ *
++ *
++ *
++ * The jmp_buf is assumed to contain the following, in order:
++ *	%ebx
++ * 	%esp
++ *	%ebp
++ *	%esi
++ *	%edi
++ *	<return address>
++ */
+ 
+ 	.text
+ 	.align 4
+commit 1e67bf2647c39f057809567e6ae512d6c92fd516
+Author: H. Peter Anvin <hpa@zytor.com>
+Date:   Fri Sep 26 15:07:05 2008 -0700
+
+    Remove line-leading gas-style comments in files compiled with -std=gnu99
+    
+    Some versions of gcc barf if we have hash-style comments in files when
+    -std=gnu99 is used.  Remove from assembly files that are subject to
+    being assembled that way.
+    
+    Signed-off-by: H. Peter Anvin <hpa@zytor.com>
+
+diff --git a/com32/lib/math/pow.S b/com32/lib/math/pow.S
+index 5a124ab..56f504a 100644
+--- a/com32/lib/math/pow.S
++++ b/com32/lib/math/pow.S
+@@ -1,8 +1,8 @@
+-#
+-# pow.S
+-#
+-# double pow(double base, double exponent)
+-#
++/*
++ * pow.S
++ *
++ * double pow(double base, double exponent)
++ */
+ 
+ 	.text
+ 	.globl	pow
+diff --git a/com32/lib/sys/entry.S b/com32/lib/sys/entry.S
+index 5834d5d..d54cc50 100644
+--- a/com32/lib/sys/entry.S
++++ b/com32/lib/sys/entry.S
+@@ -1,31 +1,33 @@
+-# -----------------------------------------------------------------------
+-#
+-#   Copyright 2003-2008 H. Peter Anvin - All Rights Reserved
+-#
+-#   Permission is hereby granted, free of charge, to any person
+-#   obtaining a copy of this software and associated documentation
+-#   files (the "Software"), to deal in the Software without
+-#   restriction, including without limitation the rights to use,
+-#   copy, modify, merge, publish, distribute, sublicense, and/or
+-#   sell copies of the Software, and to permit persons to whom
+-#   the Software is furnished to do so, subject to the following
+-#   conditions:
+-#
+-#   The above copyright notice and this permission notice shall
+-#   be included in all copies or substantial portions of the Software.
+-#
+-#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+-#   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+-#   OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+-#   NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+-#   HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+-#   WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+-#   FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+-#   OTHER DEALINGS IN THE SOFTWARE.
+-#
+-# -----------------------------------------------------------------------
++/* -----------------------------------------------------------------------
++ *
++ *   Copyright 2003-2008 H. Peter Anvin - All Rights Reserved
++ *
++ *   Permission is hereby granted, free of charge, to any person
++ *   obtaining a copy of this software and associated documentation
++ *   files (the "Software"), to deal in the Software without
++ *   restriction, including without limitation the rights to use,
++ *   copy, modify, merge, publish, distribute, sublicense, and/or
++ *   sell copies of the Software, and to permit persons to whom
++ *   the Software is furnished to do so, subject to the following
++ *   conditions:
++ *
++ *   The above copyright notice and this permission notice shall
++ *   be included in all copies or substantial portions of the Software.
++ *
++ *   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++ *   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
++ *   OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
++ *   NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
++ *   HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
++ *   WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
++ *   FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ *   OTHER DEALINGS IN THE SOFTWARE.
++ *
++ * ----------------------------------------------------------------------- */
+ 
+-# COM32 start up code - must be linked first in the binary
++/*
++ * COM32 start up code - must be linked first in the binary
++ */
+ 
+ /* Number of arguments in our version of the entry structure */
+ #define COM32_ARGS 6
+@@ -34,13 +36,13 @@
+ 		.globl _start
+ 		.type _start, @function
+ _start:
+-		# This first instruction acts as COM32 magic number
++		/* This first instruction acts as COM32 magic number */
+ 		movl $0x21cd4cff,%eax
+ 
+-		# Upwards string operations
++		/* Upwards string operations */
+ 		cld
+ 
+-		# Zero the .bss segment
++		/* Zero the .bss segment */
+ 		xorl %eax,%eax
+ 		movl $__bss_start,%edi		# Symbol provided by linker
+ 		movl $_end+3,%ecx		# Symbol provided by linker
+@@ -48,7 +50,7 @@ _start:
+ 		shrl $2,%ecx
+ 		rep ; stosl
+ 
+-		# Copy COM32 invocation parameters
++		/* Copy COM32 invocation parameters */
+ 		leal 4(%esp),%esi		# Argument list
+ 		movl $__com32,%edi
+ 		movl $COM32_ARGS,%ecx
+@@ -59,14 +61,14 @@ _start:
+ 1:		inc %ecx			# Copy the argument count, too
+ 		rep ; movsl
+ 
+-		# Parse the command line (assumes REGPARM)
++		/* Parse the command line (assumes REGPARM) */
+ 		movl __com32+4,%edx		# Command line
+ 		pushl %edx			# Make space for argv
+ 		movl %esp,%eax
+ 		call __parse_argv
+ 		pushl %eax			# Save argc
+ 
+-		# Look for library initialization functions
++		/* Look for library initialization functions */
+ 		movl $__ctors_start, %esi
+ 2:
+ 		cmpl $__ctors_end, %esi
+@@ -74,9 +76,9 @@ _start:
+ 		call *(%esi)
+ 		addl $4,%esi
+ 		jmp 2b
+-#
+-# Actually run main.  This assumes REGPARM is used!!!!
+-#
++/*
++ * Actually run main.  This assumes REGPARM is used!!!!
++ */
+ 3:
+ 		popl %eax			# argc
+ 		popl %edx			# argv
+diff --git a/com32/lib/sys/exit.S b/com32/lib/sys/exit.S
+index 024aaf5..c2949fc 100644
+--- a/com32/lib/sys/exit.S
++++ b/com32/lib/sys/exit.S
+@@ -1,6 +1,6 @@
+-#
+-# Implementation of _exit() for com32 based on c32entry.S
+-#
++/*
++ * Implementation of _exit() for com32 based on c32entry.S
++ */
+ 	.text
+ 	.globl _exit
+ 	.type _exit, @function
+@@ -9,7 +9,7 @@ _exit:
+ 	pushl %eax
+ #endif
+ 
+-	# Run any destructors
++	/* Run any destructors */
+ 	movl $__dtors_start, %esi
+ 2:
+ 	cmpl $__dtors_end, %esi

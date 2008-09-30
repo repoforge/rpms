@@ -9,7 +9,7 @@
 
 Summary: building, finding and using wxWidgets binaries
 Name: perl-Alien-wxWidgets
-Version: 0.37
+Version: 0.39
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 #%{perl_vendorlib}/Alien/wxWidgets.pm
 
 %changelog
+* Sat Sep 27 2008 Dag Wieers <dag@wieers.com> - 0.39-1
+- Updated to release 0.39.
+
 * Sat Jul 26 2008 Dag Wieers <dag@wieers.com> - 0.37-1
 - Updated to release 0.37.
 
