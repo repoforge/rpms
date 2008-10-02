@@ -1,0 +1,13 @@
+diff -up rsyslog-2.0.0/rsyslog.conf.5.forwardMsg rsyslog-2.0.0/rsyslog.conf.5
+--- rsyslog-2.0.0/rsyslog.conf.5.forwardMsg	2008-01-16 18:44:00.000000000 +0100
++++ rsyslog-2.0.0/rsyslog.conf.5	2008-01-16 18:51:51.000000000 +0100
+@@ -584,6 +584,9 @@ replace control characters by spaces
+ drop-cc
+ drop control characters - the resulting string will neither contain control characters, escape sequences nor any other replacement character like space.
+ 
++.SH NOTES
++The old sysklogd logger does not send the timestamp and hostname in forwarded message. If you want to forward messages to syslogd server, define new sysklogd template. See Templates section.
++
+ .SH FILES
+ .PD 0
+ .TP

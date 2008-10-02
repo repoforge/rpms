@@ -3,7 +3,7 @@
 # rsyslog        Starts rsyslogd/rklogd.
 #
 #
-# chkconfig: 2345 12 88
+# chkconfig: - 12 88
 # description: Syslog is the facility by which many daemons use to log \
 # messages to various system log files.  It is a good idea to always \
 # run rsyslog.
@@ -11,8 +11,7 @@
 # Provides: $syslog
 # Required-Start: $local_fs $network $remote_fs
 # Required-Stop: $local_fs $network $remote_fs
-# Default-Start:  2 3 4 5
-# Default-Stop: 0 1 6
+# Default-Stop: 0 1 2 3 4 5 6
 # Short-Description: Enhanced system logging and kernel message trapping daemons
 # Description: Rsyslog is an enhanced multi-threaded syslogd supporting, 
 #              among others, MySQL, syslog/tcp, RFC 3195, permitted 
@@ -29,6 +28,12 @@ start() {
 	[ -x /sbin/rsyslogd ] || exit 5
 	[ -x /sbin/rklogd ] || exit 5
 
+	# Do not start rsyslog when sysklogd is running
+	if [ -e /var/run/syslogd.pid ] ; then
+		echo $"Shut down sysklogd before you run rsyslog";
+		exit 1;
+	fi
+
 	# Source config
 	if [ -f /etc/sysconfig/rsyslog ] ; then
         	. /etc/sysconfig/rsyslog
@@ -42,21 +47,21 @@ start() {
 	fi
 	umask $SYSLOG_UMASK
 
-        echo -n $"Starting system logger (rsyslog): "
+        echo -n $"Starting system logger: "
         daemon rsyslogd $SYSLOGD_OPTIONS
         RETVAL=$?
         echo
-        echo -n $"Starting kernel logger (rklogd): "
+        echo -n $"Starting kernel logger: "
         daemon rklogd $KLOGD_OPTIONS
         echo
         [ $RETVAL -eq 0 ] && touch /var/lock/subsys/rsyslog
         return $RETVAL
 }
 stop() {
-        echo -n $"Shutting down kernel logger (rklogd): "
+        echo -n $"Shutting down kernel logger: "
         killproc rklogd
         echo
-        echo -n $"Shutting down system logger (rsyslog): "
+        echo -n $"Shutting down system logger: "
         killproc rsyslogd
         RETVAL=$?
         echo
@@ -66,7 +71,7 @@ stop() {
 reload()  {
     RETVAL=1
     syslog=`cat /var/run/rsyslogd.pid 2>/dev/null`
-    echo -n "Reloading syslogd..."
+    echo -n "Reloading system logger..."
     if [ -n "${syslog}" ] && [ -e /proc/"${syslog}" ]; then
 	kill -HUP "$syslog";
 	RETVAL=$?
@@ -78,7 +83,7 @@ reload()  {
     fi
     echo
     RETVAL=1
-    echo -n "Reloading klogd..."
+    echo -n "Reloading kernel logger..."
     klog=`cat /var/run/rklogd.pid 2>/dev/null`
     if [ -n "${klog}" ] && [ -e /proc/"${klog}" ]; then
 	kill -USR2 "$klog";

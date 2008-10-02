@@ -1,6 +1,6 @@
 # Options to syslogd
 # -m 0 disables 'MARK' messages.
-# -r port Enables logging from remote machines. The listener will listen to the specified port.
+# -rPortNumber Enables logging from remote machines. The listener will listen to the specified port.
 # -x disables DNS lookups on messages recieved with -r
 # See syslogd(8) for more details
 SYSLOGD_OPTIONS="-m 0"

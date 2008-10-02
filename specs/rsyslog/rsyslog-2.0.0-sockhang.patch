@@ -1,0 +1,199 @@
+diff -up rsyslog-2.0.0/syslogd.c.sockHang rsyslog-2.0.0/syslogd.c
+--- rsyslog-2.0.0/syslogd.c.sockHang	2007-12-26 10:56:01.000000000 +0100
++++ rsyslog-2.0.0/syslogd.c	2008-01-22 17:53:47.000000000 +0100
+@@ -3563,7 +3563,7 @@ void logerror(char *type)
+ 	if (errno == 0)
+ 		snprintf(buf, sizeof(buf), "%s", type);
+ 	else {
+-		strerror_r(errno, errStr, sizeof(errStr));
++		rs_strerror_r(errno, errStr, sizeof(errStr));
+ 		snprintf(buf, sizeof(buf), "%s: %s", type, errStr);
+ 	}
+ 	buf[sizeof(buf)/sizeof(char) - 1] = '\0'; /* just to be on the safe side... */
+@@ -4349,7 +4349,7 @@ finalize_it:
+ 		if(fCurr != NULL)
+ 			selectorDestruct(fCurr);
+ 
+-		strerror_r(errno, errStr, sizeof(errStr));
++		rs_strerror_r(errno, errStr, sizeof(errStr));
+ 		dbgprintf("error %d processing config file '%s'; os error (if any): %s\n",
+ 			iRet, pConfFile, errStr);
+ 	}
+@@ -5466,6 +5466,20 @@ void dbgprintf(char *fmt, ...)
+ }
+ 
+ 
++char *rs_strerror_r(int errnum, char *buf, size_t buflen) {
++#ifdef STRERROR_R_CHAR_P
++	char *p = strerror_r(errnum, buf, buflen);
++	if (p != buf) {
++		strncpy(buf, p, buflen);
++		buf[buflen - 1] = '\0';
++	}
++#else
++	strerror_r(errnum, buf, buflen);
++#endif
++	return buf;
++}
++
++
+ /*
+  * The following function is resposible for handling a SIGHUP signal.  Since
+  * we are now doing mallocs/free as part of init we had better not being
+@@ -5727,7 +5741,7 @@ static rsRetVal processSelectAfter(int m
+ 				printchopped(LocalHostName, line, iRcvd,  fd, funixParseHost[i]);
+ 			} else if (iRcvd < 0 && errno != EINTR) {
+ 				char errStr[1024];
+-				strerror_r(errno, errStr, sizeof(errStr));
++				rs_strerror_r(errno, errStr, sizeof(errStr));
+ 				dbgprintf("UNIX socket error: %d = %s.\n", \
+ 					errno, errStr);
+ 				logerror("recvfrom UNIX");
+@@ -5768,7 +5782,7 @@ static rsRetVal processSelectAfter(int m
+ 				       }
+ 			       } else if (l < 0 && errno != EINTR && errno != EAGAIN) {
+ 					char errStr[1024];
+-					strerror_r(errno, errStr, sizeof(errStr));
++					rs_strerror_r(errno, errStr, sizeof(errStr));
+ 					dbgprintf("INET socket error: %d = %s.\n", errno, errStr);
+ 					       logerror("recvfrom inet");
+ 					       /* should be harmless */
+diff -up rsyslog-2.0.0/configure.ac.sockHang rsyslog-2.0.0/configure.ac
+--- rsyslog-2.0.0/configure.ac.sockHang	2007-12-28 19:02:44.000000000 +0100
++++ rsyslog-2.0.0/configure.ac	2008-01-22 17:53:47.000000000 +0100
+@@ -81,9 +81,10 @@ AC_FUNC_REALLOC
+ AC_FUNC_SELECT_ARGTYPES
+ AC_TYPE_SIGNAL
+ AC_FUNC_STAT
++AC_FUNC_STRERROR_R
+ AC_FUNC_VPRINTF
+ AC_FUNC_WAIT3
+-AC_CHECK_FUNCS([alarm clock_gettime gethostbyname gethostname gettimeofday localtime_r memset mkdir regcomp select setid socket strcasecmp strchr strdup strerror strerror_r strndup strnlen strrchr strstr strtol strtoul uname ttyname_r])
++AC_CHECK_FUNCS([alarm clock_gettime gethostbyname gethostname gettimeofday localtime_r memset mkdir regcomp select setid socket strcasecmp strchr strdup strerror strndup strnlen strrchr strstr strtol strtoul uname ttyname_r])
+ 
+ 
+ # Large file support
+diff -up rsyslog-2.0.0/omfwd.c.sockHang rsyslog-2.0.0/omfwd.c
+--- rsyslog-2.0.0/omfwd.c.sockHang	2007-12-27 23:01:20.000000000 +0100
++++ rsyslog-2.0.0/omfwd.c	2008-01-22 17:53:47.000000000 +0100
+@@ -116,6 +116,7 @@ typedef struct _instanceData {
+ 
+ BEGINcreateInstance
+ CODESTARTcreateInstance
++	pData->sock = -1;
+ ENDcreateInstance
+ 
+ 
+@@ -278,8 +279,8 @@ static rsRetVal TCPSendInit(void *pvData
+ 	instanceData *pData = (instanceData *) pvData;
+ 
+ 	assert(pData != NULL);
+-	if(pData->sock <= 0) {
+-		if((pData->sock = TCPSendCreateSocket(pData->f_addr)) <= 0)
++	if(pData->sock < 0) {
++		if((pData->sock = TCPSendCreateSocket(pData->f_addr)) < 0)
+ 			iRet = RS_RET_TCP_SOCKCREATE_ERR;
+ 	}
+ 
+@@ -440,7 +441,7 @@ CODESTARTdoAction
+ 								int eno = errno;
+ 								char errStr[1024];
+ 								dbgprintf("sendto() error: %d = %s.\n",
+-									eno, strerror_r(eno, errStr, sizeof(errStr)));
++									eno, rs_strerror_r(eno, errStr, sizeof(errStr)));
+ 							}
+ 		                                }
+ 						if (lsent == l && !send_to_all)
+diff -up rsyslog-2.0.0/syslogd.h.sockHang rsyslog-2.0.0/syslogd.h
+--- rsyslog-2.0.0/syslogd.h.sockHang	2007-12-19 08:20:16.000000000 +0100
++++ rsyslog-2.0.0/syslogd.h	2008-01-22 17:53:47.000000000 +0100
+@@ -48,6 +48,7 @@
+ #define MARK		0x008	/* this message is a mark */
+ 
+ void dbgprintf(char *, ...);
++char *rs_strerror_r(int errnum, char *buf, size_t buflen);
+ void logerror(char *type);
+ void logerrorSz(char *type, char *errMsg);
+ void logerrorInt(char *type, int iErr);
+diff -up rsyslog-2.0.0/net.c.sockHang rsyslog-2.0.0/net.c
+--- rsyslog-2.0.0/net.c.sockHang	2007-10-08 12:45:05.000000000 +0200
++++ rsyslog-2.0.0/net.c	2008-01-22 17:53:47.000000000 +0100
+@@ -66,7 +66,7 @@ int should_use_so_bsdcompat(void)
+ 	init_done = 1;
+ 	if (uname(&utsname) < 0) {
+ 		char errStr[1024];
+-		dbgprintf("uname: %s\r\n", strerror_r(errno, errStr, sizeof(errStr)));
++		dbgprintf("uname: %s\r\n", rs_strerror_r(errno, errStr, sizeof(errStr)));
+ 		return 1;
+ 	}
+ 	/* Format is <version>.<patchlevel>.<sublevel><extraversion>
+diff -up rsyslog-2.0.0/rfc3195d.c.sockHang rsyslog-2.0.0/rfc3195d.c
+--- rsyslog-2.0.0/rfc3195d.c.sockHang	2007-09-25 12:45:07.000000000 +0200
++++ rsyslog-2.0.0/rfc3195d.c	2008-01-22 17:53:47.000000000 +0100
+@@ -96,7 +96,7 @@ static void openlog()
+ 		if(LogFile < 0) {
+ 			char errStr[1024];
+ 			printf("error opening '%s': %s\n", 
+-			       pPathLogname, strerror_r(errno, errStr, sizeof(errStr)));
++			       pPathLogname, rs_strerror_r(errno, errStr, sizeof(errStr)));
+ 		}
+ 	}
+ 	if (LogFile != -1 && !connected &&
+@@ -106,7 +106,7 @@ static void openlog()
+ 	else {
+ 		char errStr[1024];
+ 		printf("error connecting '%s': %s\n", 
+-		       pPathLogname, strerror_r(errno, errStr, sizeof(errStr)));
++		       pPathLogname, rs_strerror_r(errno, errStr, sizeof(errStr)));
+ 	}
+ }
+ 
+@@ -162,7 +162,7 @@ void OnReceive(srAPIObj* pAPI, srSLMGObj
+ 			if(nWritten < 0) {
+ 				/* error, recover! */
+ 				char errStr[1024];
+-				printf("error writing to domain socket: %s\r\n", strerror_r(errno, errStr, sizeof(errStr)));
++				printf("error writing to domain socket: %s\r\n", rs_strerror_r(errno, errStr, sizeof(errStr)));
+ 				closelog();
+ 			} else {
+ 				/* prepare for (potential) next write */
+diff -up rsyslog-2.0.0/omfile.c.sockHang rsyslog-2.0.0/omfile.c
+--- rsyslog-2.0.0/omfile.c.sockHang	2007-11-21 11:52:18.000000000 +0100
++++ rsyslog-2.0.0/omfile.c	2008-01-22 17:50:47.000000000 +0100
+@@ -357,6 +357,7 @@ static void prepareFile(instanceData *pD
+ 		pData->fd = open((char*) newFileName, O_WRONLY|O_APPEND|O_CREAT|O_NOCTTY,
+ 				pData->fCreateMode);
+ 	} else {
++		pData->fd = -1;
+ 		/* file does not exist, create it (and eventually parent directories */
+ 		if(pData->bCreateDirs) {
+ 			/* we fist need to create parent dirs if they are missing
+@@ -596,6 +597,7 @@ again:
+ 
+ BEGINcreateInstance
+ CODESTARTcreateInstance
++	pData->fd = -1;
+ ENDcreateInstance
+ 
+ 
+diff -up rsyslog-2.0.0/tcpsyslog.c.sockHang rsyslog-2.0.0/tcpsyslog.c
+--- rsyslog-2.0.0/tcpsyslog.c.sockHang	2007-12-28 00:12:28.000000000 +0100
++++ rsyslog-2.0.0/tcpsyslog.c	2008-01-22 17:53:47.000000000 +0100
+@@ -1021,7 +1021,7 @@ int TCPSendCreateSocket(struct addrinfo 
+ 				} else {
+ 					char errStr[1024];
+ 					dbgprintf("create tcp connection failed, reason %s",
+-						strerror_r(errno, errStr, sizeof(errStr)));
++						rs_strerror_r(errno, errStr, sizeof(errStr)));
+ 				}
+ 
+ 			}
+@@ -1032,7 +1032,7 @@ int TCPSendCreateSocket(struct addrinfo 
+ 		}
+ 		else {
+ 			char errStr[1024];
+-			dbgprintf("couldn't create send socket, reason %s", strerror_r(errno, errStr, sizeof(errStr)));
++			dbgprintf("couldn't create send socket, reason %s", rs_strerror_r(errno, errStr, sizeof(errStr)));
+ 		}		
+ 		r = r->ai_next;
+ 	}

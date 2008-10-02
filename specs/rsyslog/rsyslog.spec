@@ -1,37 +1,53 @@
-# $id$
-# Authority: dries
+# $Id$
+# Authority: dag
 
-# Tag: test
+# Rationale: This package is part of RHEL5
 
+# ExclusiveDist: el2 rh7 rh9 el3 el4
 
-%define with_db 1
-%define	sbindir	/sbin
-%define libdir /lib
+%{?el3:%define _without_mysql4 1}
+%{?rh9:%define _without_mysql4 1}
+%{?rh7:%define _without_mysql4 1}
+%{?el2:%define _without_mysql4 1}
+
+%define _sbindir /sbin
 
 Summary: Enhanced system logging and kernel message trapping daemons
 Name: rsyslog
-Version: 1.19.2
-Release: 1
-License: GPL
+Version: 2.0.0
+Release: 0.11
+License: GPLv2+
 Group: System Environment/Daemons
 URL: http://www.rsyslog.com/
-Source0: http://download.adiscon.com/rsyslog/%{name}-%{version}.tar.gz
+
+Source0: http://download.rsyslog.com/rsyslog/rsyslog-%{version}.tar.gz
 Source1: rsyslog.init
 Source2: rsyslog.sysconfig
-Conflicts: logrotate < 3.5.2
-%if %{with_db}
-BuildRequires: mysql-devel >= 4.0
-%endif
+Source3: syslog.log
+Patch1: rsyslog-2.0.0-sockhang.patch
+Patch2: rsyslog-2.0.0-forwardMsg.patch
+Patch3: rsyslog-2.0.0-manPage.patch
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: autoconf >= 1.10
+BuildRequires: automake
+BuildRequires: libtool
 BuildRequires: zlib-devel
-Requires: logrotate
+%{!?_without_mysql4:BuildRequires: mysql-devel >= 4.0}
+Requires: logrotate >= 3.5.2
 Requires: bash >= 2.0
 Requires(post): /sbin/chkconfig coreutils
-Requires(preun): /sbin/chkconfig /sbin/chkconfig
+Requires(preun): /sbin/chkconfig /sbin/service
 Requires(postun): /sbin/service
 Provides: syslog
-Provides: sysklogd = 1.4.3-1
-Obsoletes: sysklogd < 1.4.3-1
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+#Conflicts: sysklogd < 1.4.1-43
+### A lot of packages depend on sysklogd, we provide this for RHEL4 and older
+Provides: sysklogd
+
+%package mysql
+Summary: MySQL support for rsyslog
+Group: System Environment/Daemons
+Requires: %{name} = %{version}-%{release}
 
 %description
 Rsyslog is an enhanced multi-threaded syslogd supporting, among others, MySQL,
@@ -42,104 +58,157 @@ suitable for enterprise-class, encryption protected syslog relay chains while
 at the same time being very easy to setup for the novice user.
 
 
+%description mysql
+The rsyslog-mysql package contains a dynamic shared object that will add
+MySQL database support to rsyslog.
+
 %prep
-%setup -q
+%setup
+%patch1 -p1 -b .sockHang
+%patch2 -p1 -b .forwardMsg
+%patch3 -p1 -b .manPage
 
 %build
-%configure --sbindir=%{sbindir} --enable-mysql --libdir=%{libdir}
-make %{?_smp_mflags}
+export CFLAGS="%{optflags} -DHAVE_DECL_STRERROR_R -DSTRERROR_R_CHAR_P"
+%configure --disable-static --enable-mysql
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 
-make install DESTDIR=$RPM_BUILD_ROOT
-
-install -d -m 755 $RPM_BUILD_ROOT%{_initrddir}
-install -d -m 755 $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig
-install -d -m 755 $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d
-install -p -m 755 %{SOURCE1} $RPM_BUILD_ROOT%{_initrddir}/rsyslog
-install -p -m 644 redhat/rsyslog.conf $RPM_BUILD_ROOT%{_sysconfdir}/rsyslog.conf
-install -p -m 644 redhat/rsyslog.log $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/rsyslog
-install -p -m 644 %{SOURCE2} $RPM_BUILD_ROOT/%{_sysconfdir}/sysconfig/rsyslog
+%{__install} -Dp -m0644 redhat/rsyslog.conf %{buildroot}%{_sysconfdir}/rsyslog.conf
+%{__install} -Dp -m0755 %{SOURCE1} %{buildroot}%{_initrddir}/rsyslog
+%{__install} -Dp -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/sysconfig/rsyslog
+%{__install} -Dp -m0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/logrotate.d/syslog
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 %post
-if [ $1 = 1 ]; then
-	/sbin/chkconfig --add rsyslog
-fi
-for n in /var/log/{messages,secure,maillog,spooler}
-do
-	[ -f $n ] && continue
-	umask 066 && touch $n
+/sbin/chkconfig --add rsyslog
+for log in /var/log/{messages,secure,maillog,spooler}; do
+    [ -f $log ] && continue
+    umask 066 && touch $log
 done
-#use sysklogd configuration files
-if [ -f /etc/syslog.conf ]; then
-	mv -f /etc/rsyslog.conf /etc/rsyslog.conf.rpmnew
-	mv -f /etc/syslog.conf  /etc/rsyslog.conf
-fi
-if [ -f /etc/sysconfig/syslog ]; then
-	mv -f /etc/sysconfig/rsyslog /etc/sysconfig/rsyslog.rpmnew
-	mv -f /etc/sysconfig/syslog  /etc/sysconfig/rsyslog
-fi
 
 %preun
-if [ $1 = 0 ]; then
-	service rsyslog stop >/dev/null 2>&1 ||:
-	/sbin/chkconfig --del rsyslog
+if [ $1 -eq 0 ]; then
+    service rsyslog stop &>/dev/null ||:
+    /sbin/chkconfig --del rsyslog
 fi
 
 %postun
-if [ "$1" -ge "1" ]; then
-	service rsyslog condrestart > /dev/null 2>&1 ||:
-fi	
+if [ $1 -ge 1 ]; then
+    service rsyslog condrestart &>/dev/null ||:
+fi
 
 %files
-%defattr(-,root,root,-)
-%doc AUTHORS COPYING INSTALL NEWS README doc
+%defattr(-, root, root, 0755)
+%doc AUTHORS COPYING NEWS README doc/*html
+%doc %{_mandir}/man5/rsyslog.conf.5*
+%doc %{_mandir}/man8/rfc3195d.8*
+%doc %{_mandir}/man8/rklogd.8*
+%doc %{_mandir}/man8/rsyslogd.8*
+%config(noreplace) %{_sysconfdir}/logrotate.d/syslog
 %config(noreplace) %{_sysconfdir}/rsyslog.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/rsyslog
-%config(noreplace) %{_sysconfdir}/logrotate.d/rsyslog
-%{_initrddir}/rsyslog
-%{sbindir}/rsyslogd
-%{sbindir}/rklogd
-%{sbindir}/rfc3195d
-%{_mandir}/*/*
+%config %{_initrddir}/rsyslog
+%dir %{_libdir}/rsyslog/
+%{_sbindir}/rfc3195d
+%{_sbindir}/rklogd
+%{_sbindir}/rsyslogd
 
-%package mysql
-Group: System Environment/Daemons
-Summary: MySQL plugin for rsyslog
-Requires: %{name} = %{version}
-
-%description mysql
-MySQL output module for rsyslog
-
+%if %{!?_without_mysql4:1}0
 %files mysql
-%defattr(-,root,root,-)
-%{libdir}/%{name}/ommysql.so*
-%exclude %{libdir}/%{name}/*.a
-%exclude %{libdir}/%{name}/*.la
+%defattr(-, root, root, 0755)
+%doc plugins/ommysql/createDB.sql
+%dir %{_libdir}/rsyslog/
+%{_libdir}/rsyslog/ommysql.so
+%exclude %{_libdir}/rsyslog/*.la
+%endif
 
 %changelog
-* Mon Aug 28 2007 Michael Mansour <mic@npgx.com.au> 1.19.2-1
+* Thu Oct 02 2008 Dag Wieers <dag@wieers.com> - 2.0.0-0.11
+- Initial package. (based on RHEL5)
+
+* Thu Feb 07 2008 Peter Vrabec <pvrabec@redhat.com> 2.0.0-11
+- spec file adjustment
+  Resolves: #431070
+
+* Thu Feb 07 2008 Peter Vrabec <pvrabec@redhat.com> 2.0.0-10
+- fix documentation problems
+- init sript fixes
+  Resolves: #431070, #431583
+
+* Wed Jan 23 2008 Peter Vrabec <pvrabec@redhat.com> 2.0.0-9
+- do not use autoconf in order to build it on RHEL5,
+  Resolves: #178855
+
+* Tue Jan 22 2008 Peter Vrabec <pvrabec@redhat.com> 2.0.0-8
+- strerror fix,
+  Resolves: #178855
+ 
+* Mon Jan 21 2008 Peter Vrabec <pvrabec@redhat.com> 2.0.0-7
+- change from requires sysklogd to conflicts sysklogd
+
+* Fri Jan 18 2008 Peter Vrabec <pvrabec@redhat.com> 2.0.0-6
+- change logrotate file
+- use rsyslog own pid file
+
+* Thu Jan 17 2008 Peter Vrabec <pvrabec@redhat.com> 2.0.0-5
+- fixing bad descriptor (#428775)
+
+* Wed Jan 16 2008 Peter Vrabec <pvrabec@redhat.com> 2.0.0-4
+- rename logrotate file
+
+* Wed Jan 16 2008 Peter Vrabec <pvrabec@redhat.com> 2.0.0-3
+- fix post script and init file
+
+* Wed Jan 16 2008 Peter Vrabec <pvrabec@redhat.com> 2.0.0-2
+- change pid filename and use logrotata script from sysklogd
+
+* Tue Jan 15 2008 Peter Vrabec <pvrabec@redhat.com> 2.0.0-1
+- upgrade to stable release
+- spec file clean up
+
+* Wed Jan 02 2008 Peter Vrabec <pvrabec@redhat.com> 1.21.2-1
+- new upstream release
+
+* Thu Dec 06 2007 Release Engineering <rel-eng at fedoraproject dot org> - 1.19.11-2
+- Rebuild for deps
+
+* Thu Nov 29 2007 Peter Vrabec <pvrabec@redhat.com> 1.19.11-1
+- new upstream release
+- add conflicts (#400671)
+
+* Mon Nov 19 2007 Peter Vrabec <pvrabec@redhat.com> 1.19.10-1
+- new upstream release
+
+* Wed Oct 03 2007 Peter Vrabec <pvrabec@redhat.com> 1.19.6-3
+- remove NUL character from recieved messages
+
+* Tue Sep 25 2007 Tomas Heinrich <theinric@redhat.com> 1.19.6-2
+- fix message suppression (303341)
+
+* Tue Sep 25 2007 Tomas Heinrich <theinric@redhat.com> 1.19.6-1
 - upstream bugfix release
 
-* Mon Aug 23 2007 Michael Mansour <mic@npgx.com.au> 1.19.1-1
-- upstream bugfix and enhancement release
+* Tue Aug 28 2007 Peter Vrabec <pvrabec@redhat.com> 1.19.2-1
+- upstream bugfix release
+- support for negative app selector, patch from 
+  theinric@redhat.com
 
-* Mon Aug 16 2007 Michael Mansour <mic@npgx.com.au> 1.19.0-1
-- supports dynamically loading of output plug-ins
-- the MySQL output module has been converted into a loadable plug-in
-- two RPM packages are now created, rsyslog and rsyslog-mysql
+* Fri Aug 17 2007 Peter Vrabec <pvrabec@redhat.com> 1.19.0-1
+- new upstream release with MySQL support(as plugin)
 
-* Mon Aug 13 2007 Michael Mansour <mic@npgx.com.au> 1.18.2-1
+* Wed Aug 08 2007 Peter Vrabec <pvrabec@redhat.com> 1.18.1-1
 - upstream bugfix release
 
-* Mon Aug 9 2007 Michael Mansour <mic@npgx.com.au> 1.18.1-1
-- upstream bugfix release
+* Mon Aug 06 2007 Peter Vrabec <pvrabec@redhat.com> 1.18.0-1
+- new upstream release
 
-* Mon Aug 4 2007 Michael Mansour <mic@npgx.com.au> 1.18.0-1
+* Thu Aug 02 2007 Peter Vrabec <pvrabec@redhat.com> 1.17.6-1
 - upstream bugfix release
 
 * Mon Jul 30 2007 Peter Vrabec <pvrabec@redhat.com> 1.17.5-1
