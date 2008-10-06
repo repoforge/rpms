@@ -10,7 +10,7 @@
 
 Summary: System administration tool for networks
 Name: cfengine
-Version: 2.2.3
+Version: 2.2.6
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -282,15 +282,8 @@ EOF
 %{__install} -Dp -m0644 default.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/cfservd
 %{__ln_s} -f %{_sbindir}/cfagent %{buildroot}%{_localstatedir}/cfengine/bin/
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_infodir}/dir
-
 %post
 %{_sbindir}/cfkey &>/dev/null || :
-/sbin/install-info %{_infodir}/cfengine-Anomalies.info.gz %{_infodir}/dir
-/sbin/install-info %{_infodir}/cfengine-Reference.info.gz %{_infodir}/dir
-/sbin/install-info %{_infodir}/cfengine-Tutorial.info.gz %{_infodir}/dir
-
 if [ $1 -eq 1 ]; then
     chkconfig --add cfenvd
     chkconfig --add cfexecd
@@ -298,10 +291,6 @@ if [ $1 -eq 1 ]; then
 fi
 
 %preun
-/sbin/install-info --delete %{_infodir}/cfengine-Anomalies.info.gz %{_infodir}/dir
-/sbin/install-info --delete %{_infodir}/cfengine-Reference.info.gz %{_infodir}/dir
-/sbin/install-info --delete %{_infodir}/cfengine-Tutorial.info.gz %{_infodir}/dir
-
 if [ $1 -eq 0 ]; then
     chkconfig --del cfenvd
     chkconfig --del cfexecd
@@ -314,9 +303,8 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
-%doc contrib/cfengine.el doc/*.html inputs/*
+%doc contrib/cfengine.el inputs/*
 %doc %{_mandir}/man?/*
-%doc %{_infodir}/*.info*
 %config %{_initrddir}/*
 %config(noreplace) %{_sysconfdir}/sysconfig/cfexecd
 %config(noreplace) %{_sysconfdir}/sysconfig/cfenvd
@@ -328,6 +316,9 @@ fi
 %exclude %{_libdir}/libcfengine.la
 
 %changelog
+* Mon Oct 06 2008 Dag Wieers <dag@wieers.com> - 2.2.6-1
+- Updated to release 2.2.6.
+
 * Fri Dec 28 2007 Dag Wieers <dag@wieers.com> - 2.2.3-1
 - Updated to release 2.2.3.
 

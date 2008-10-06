@@ -17,7 +17,7 @@
 
 Summary: Network traffic probe that shows the network usage
 Name: ntop
-Version: 3.3.6
+Version: 3.3.8
 Release: 1
 License: GPL
 Group: Applications/System
@@ -40,7 +40,7 @@ web interface. Optionally, data may be stored into a database for analysis or
 extracted from the web server in formats suitable for manipulation in perl or php.
 
 %prep
-%setup -n %{name}
+%setup
 
 %{__perl} -pi.orig -e 's|^NTOP_VERSION_EXTRA=.*$|NTOP_VERSION_EXTRA="(Dag Apt RPM Repository)"|;' configure configure.in
 
@@ -284,6 +284,9 @@ fi
 #%exclude %{_libdir}/plugins/
 
 %changelog
+* Mon Oct 06 2008 Dag Wieers <dag@wieers.com> - 3.3.8-1
+- Updated to release 3.3.8
+
 * Thu Jun 12 2008 Dag Wieers <dag@wieers.com> - 3.3.6-1
 - Updated to release 3.3.6.
 
