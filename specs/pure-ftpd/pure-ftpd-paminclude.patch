@@ -1,0 +1,20 @@
+--- ./pam/pure-ftpd.paminclude	2006-10-27 09:28:40.000000000 +0200
++++ ./pam/pure-ftpd	2006-10-27 09:37:22.000000000 +0200
+@@ -4,13 +4,13 @@
+ # Install it in /etc/pam.d/pure-ftpd or add to /etc/pam.conf
+ 
+ auth       required     pam_listfile.so item=user sense=deny file=/etc/ftpusers onerr=succeed
+-auth       required     pam_stack.so service=system-auth
++auth       include      system-auth
+ auth       required     pam_shells.so
+ auth       required     pam_nologin.so
+ 
+-account    required     pam_stack.so service=system-auth
++account    include      system-auth
+ 
+-password   required     pam_stack.so service=system-auth
++password   include      system-auth
+ 
+-session    required     pam_stack.so service=system-auth
++session    include      system-auth
+ 

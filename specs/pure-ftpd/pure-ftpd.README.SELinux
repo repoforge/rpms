@@ -1,0 +1,30 @@
+=============================
+SELinux support for Pure-FTPd
+=============================
+
+With this package, Pure-FTPd is now protected in the same way VSFTPd and
+ProFTPd are in Fedora.
+
+Read Access
+-----------
+To allow files to be accessed by Pure-FTPd, you need either :
+- to place them in /var/ftp
+- to label them with the public_content_t. To do that, you can use::
+    chcon -t public_content_t file_to_publish
+
+Write Access
+------------
+If you wish to grant write access, you have to use the public_content_rw_t
+type, for example with this command::
+    chcon -t public_content_rw_t file_to_publish
+and you have to turn on the allow_ftpd_anon_write boolean using 
+system-config-securitylevel, or using the following command::
+    setsebool -P allow_ftpd_anon_write 1
+
+Access to home directories
+--------------------------
+If you want to publish files in a user's home directory, you have to turn
+on the ftp_home_dir boolean, using system-config-securitylevel, or using
+the following command::
+    setsebool -P ftp_home_dir 1
+

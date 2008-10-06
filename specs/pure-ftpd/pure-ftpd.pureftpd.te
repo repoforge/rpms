@@ -1,0 +1,25 @@
+policy_module(pureftpd, 1.0)
+
+require {
+	type ftpd_t;
+};
+
+# Read /var/run/utmp
+init_read_utmp(ftpd_t)
+init_dontaudit_write_utmp(ftpd_t)
+
+### Allow connect to mysql
+# Network connect
+corenet_tcp_connect_mysqld_port(ftpd_t)
+# Socket file connect
+mysql_stream_connect(ftpd_t);
+mysql_rw_db_sockets(ftpd_t)
+
+### Allow connect to postgresql
+# Network connect
+corenet_tcp_connect_postgresql_port(ftpd_t)
+# Socket file connect
+postgresql_stream_connect(ftpd_t)
+
+# Allow connect to ldap
+sysnet_use_ldap(ftpd_t)

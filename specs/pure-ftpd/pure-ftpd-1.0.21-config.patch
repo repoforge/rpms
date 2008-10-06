@@ -1,0 +1,102 @@
+--- ./configuration-file/pure-ftpd.conf.in.config	2006-02-15 14:15:47.000000000 +0100
++++ ./configuration-file/pure-ftpd.conf.in	2006-04-09 17:31:03.000000000 +0200
+@@ -9,7 +9,7 @@
+ # instead of command-line options, please run the
+ # following command :
+ #
+-# @prefix@/sbin/pure-config.pl @prefix@/etc/pure-ftpd.conf
++# @sbindir@/pure-config.pl @sysconfdir@/pure-ftpd.conf
+ #
+ # Please don't forget to have a look at documentation at
+ # http://www.pureftpd.org/documentation.shtml for a complete list of
+@@ -107,23 +107,23 @@
+ 
+ # LDAP configuration file (see README.LDAP)
+ 
+-# LDAPConfigFile                /etc/pureftpd-ldap.conf
++# LDAPConfigFile                @sysconfdir@/pureftpd-ldap.conf
+ 
+ 
+ 
+ # MySQL configuration file (see README.MySQL)
+ 
+-# MySQLConfigFile               /etc/pureftpd-mysql.conf
++# MySQLConfigFile               @sysconfdir@/pureftpd-mysql.conf
+ 
+ 
+ # Postgres configuration file (see README.PGSQL)
+ 
+-# PGSQLConfigFile               /etc/pureftpd-pgsql.conf
++# PGSQLConfigFile               @sysconfdir@/pureftpd-pgsql.conf
+ 
+ 
+ # PureDB user database (see README.Virtual-Users)
+ 
+-# PureDB                        /etc/pureftpd.pdb
++# PureDB                        @sysconfdir@/pureftpd.pdb
+ 
+ 
+ # Path to pure-authd socket (see README.Authentication-Modules)
+@@ -134,7 +134,7 @@
+ 
+ # If you want to enable PAM authentication, uncomment the following line
+ 
+-# PAMAuthentication             yes
++PAMAuthentication             yes
+ 
+ 
+ 
+@@ -158,7 +158,7 @@
+ # 'ls' recursion limits. The first argument is the maximum number of
+ # files to be displayed. The second one is the max subdirectories depth
+ 
+-LimitRecursion              2000 8
++LimitRecursion              7500 8
+ 
+ 
+ 
+@@ -237,7 +237,14 @@
+ 
+ # Minimum UID for an authenticated user to log in.
+ 
+-MinUID                      100
++MinUID                      500
++
++
++
++# Do not use the /etc/ftpusers file to disable accounts. We're already
++# using MinUID to block users with uid < 500
++
++UseFtpUsers no
+ 
+ 
+ 
+@@ -276,7 +283,7 @@
+ 
+ # Disallow anonymous users to upload new files (no = upload is allowed)
+ 
+-AnonymousCantUpload         no
++AnonymousCantUpload         yes
+ 
+ 
+ 
+@@ -301,7 +308,7 @@
+ # fw.c9x.org - jedi [13/Dec/1975:19:36:39] "GET /ftp/linux.tar.bz2" 200 21809338
+ # This log file can then be processed by www traffic analyzers.
+ 
+-# AltLog                     clf:/var/log/pureftpd.log
++AltLog                     clf:@localstatedir@/log/pureftpd.log
+ 
+ 
+ 
+--- ./pureftpd-mysql.conf.config	2006-04-09 17:33:04.000000000 +0200
++++ ./pureftpd-mysql.conf	2006-04-09 17:33:27.000000000 +0200
+@@ -19,7 +19,7 @@
+ 
+ # Optional : define the location of mysql.sock if the server runs on this host.
+ 
+-MYSQLSocket     /tmp/mysql.sock
++MYSQLSocket     /var/lib/mysql/mysql.sock
+ 
+ 
+ # Mandatory : user to bind the server as.
