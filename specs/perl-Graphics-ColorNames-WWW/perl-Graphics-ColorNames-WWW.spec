@@ -1,16 +1,16 @@
 # $Id$
 # Authority: dries
-# Upstream: Claus F&#228;rber <perl$faerber,muc,de>
+# Upstream: Claus Färber <CFAERBER$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Graphics-ColorNames-WWW
 
-Summary: Color names and equivalent RGB values
+Summary: WWW color names and equivalent RGB values
 Name: perl-Graphics-ColorNames-WWW
-Version: 0.01
-Release: 1.2
+Version: 1.00
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graphics-ColorNames-WWW/
@@ -23,7 +23,7 @@ BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
-This module contains color names and their equivalent RGB values.
+WWW color names and equivalent RGB values.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -44,12 +44,20 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/Graphics/ColorNames/
+%doc MANIFEST META.yml
+%doc %{_mandir}/man3/Graphics::ColorNames::IE.3pm*
+%doc %{_mandir}/man3/Graphics::ColorNames::SVG.3pm*
+%doc %{_mandir}/man3/Graphics::ColorNames::WWW.3pm*
+%dir %{perl_vendorlib}/Graphics/
+%dir %{perl_vendorlib}/Graphics/ColorNames/
+#%{perl_vendorlib}/Graphics/ColorNames/WWW/
+%{perl_vendorlib}/Graphics/ColorNames/IE.pm
+%{perl_vendorlib}/Graphics/ColorNames/SVG.pm
+%{perl_vendorlib}/Graphics/ColorNames/WWW.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.01-1.2
-- Rebuild for Fedora Core 5.
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.00-1
+- Updated to release 1.00.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

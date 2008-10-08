@@ -7,11 +7,11 @@
 
 %define real_name Gtk2-Sexy
 
-Summary: Gtk2-Sexy module for perl
+Summary: Perl interface to the sexy widget collection
 Name: perl-Gtk2-Sexy
-Version: 0.03
+Version: 0.04
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gtk2-Sexy/
 
@@ -23,7 +23,7 @@ BuildRequires: perl(Gtk2::TestHelper)
 Requires: perl >= 2:5.8.0
 
 %description
-Gtk2-Sexy module for perl.
+Perl interface to the sexy widget collection.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -56,6 +56,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Gtk2/Sexy.pm
 
 %changelog
+* Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 0.04-1
+- Updated to release 0.04.
+
 * Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 0.03-1
 - Updated to release 0.03.
 

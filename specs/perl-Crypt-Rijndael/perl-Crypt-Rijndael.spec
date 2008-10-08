@@ -10,7 +10,7 @@
 
 Summary: Crypt::CBC compliant Rijndael encryption module
 Name: perl-Crypt-Rijndael
-Version: 1.06
+Version: 1.07
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Crypt/Rijndael.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.07-1
+- Updated to release 1.07.
+
 * Sun May 04 2008 Dag Wieers <dag@wieers.com> - 1.06-1
 - Updated to release 1.06.
 

@@ -10,7 +10,7 @@
 
 Summary: Parse and create Quicken Interchange Format files
 Name: perl-Finance-QIF
-Version: 2.07
+Version: 3.00
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Finance/QIF.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 3.00-1
+- Updated to release 3.00.
+
 * Mon May 05 2008 Dag Wieers <dag@wieers.com> - 2.07-1
 - Updated to release 2.07.
 

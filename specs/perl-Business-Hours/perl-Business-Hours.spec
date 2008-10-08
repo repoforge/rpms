@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jesse Vincent <jesse+cpan$fsck,com>
+# Upstream: Alex Vandiver <alexmv+pause$mit,edu>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,9 +9,9 @@
 
 Summary: Perl module to calculate business hours in a time period
 Name: perl-Business-Hours
-Version: 0.07
+Version: 0.08
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Business-Hours/
 
@@ -45,11 +45,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE MANIFEST META.yml README
+%doc Changes LICENSE MANIFEST META.yml README SIGNATURE
 %doc %{_mandir}/man3/Business::Hours.3pm*
 %dir %{perl_vendorlib}/Business/
 %{perl_vendorlib}/Business/Hours.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.08-1
+- Updated to release 0.08.
+
 * Sun Apr 29 2007 Dag Wieers <dag@wieers.com> - 0.07-1
 - Initial package. (using DAR)

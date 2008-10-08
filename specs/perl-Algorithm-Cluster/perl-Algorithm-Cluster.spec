@@ -7,9 +7,9 @@
 
 %define real_name Algorithm-Cluster
 
-Summary: Interface to the C Clustering Library
+Summary: Perl interface to the C Clustering Library
 Name: perl-Algorithm-Cluster
-Version: 1.39
+Version: 1.43
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -38,12 +38,15 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find doc/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc INSTALL MANIFEST META.yml README
+%doc INSTALL MANIFEST META.yml README doc/
 %doc %{_mandir}/man3/Algorithm::Cluster.3pm*
 %dir %{perl_vendorarch}/auto/Algorithm/
 %{perl_vendorarch}/auto/Algorithm/Cluster/
@@ -52,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Algorithm/Cluster.pm
 
 %changelog
+* Mon Oct 06 2008 Dag Wieers <dag@wieers.com> - 1.43-1
+- Updated to release 1.43.
+
 * Sat Jul 26 2008 Dag Wieers <dag@wieers.com> - 1.39-1
 - Updated to release 1.39.
 

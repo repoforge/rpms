@@ -9,7 +9,7 @@
 
 Summary: Generate world unique message-ids
 Name: perl-Email-MessageID
-Version: 1.351
+Version: 1.400
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -26,10 +26,6 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 Message-ids are optional, but highly recommended, headers that identify
 a message uniquely. This software generates a unique message-id. This
 module generates world unique message-ids.
-
-This package contains the following Perl module:
-
-    Email::MessageID
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -57,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Email/MessageID.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.400-1
+- Updated to release 1.400.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.351-1
 - Updated to release 1.351.
 

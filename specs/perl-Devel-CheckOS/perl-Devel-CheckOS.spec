@@ -9,7 +9,7 @@
 
 Summary: Check what OS we are running on
 Name: perl-Devel-CheckOS
-Version: 1.43
+Version: 1.44
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Devel/Devel-CheckOS-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 Check what OS we are running on.
@@ -56,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Devel/CheckOS.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.44-1
+- Updated to release 1.44.
+
 * Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 1.43-1
 - Updated to release 1.43.
 

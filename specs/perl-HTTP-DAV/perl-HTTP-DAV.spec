@@ -8,9 +8,9 @@
 
 Summary: WebDAV client library for Perl
 Name: perl-HTTP-DAV
-Version: 0.31
-Release: 1.2
-License: Artistic
+Version: 0.34
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-DAV/
 
@@ -20,8 +20,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl-libwww-perl
-BuildRequires: perl-libxml-enno
-Requires: perl, perl-libwww-perl
+#BuildRequires: perl-libxml-enno
+Requires: perl
+Requires: perl-libwww-perl
 
 %description
 HTTP::DAV is a Perl API for interacting with and modifying content
@@ -42,20 +43,26 @@ and PUT files and much more on a DAV-enabled webserver.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find doc/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README TODO
-%doc %{_mandir}/man?/*
+%doc Changes MANIFEST META.yml README TODO doc/
+%doc %{_mandir}/man1/dave.1*
+%doc %{_mandir}/man3/HTTP::DAV.3pm*
+%doc %{_mandir}/man3/HTTP::DAV::*.3pm*
+%dir %{perl_vendorlib}/HTTP/
 %{_bindir}/dave
 %{perl_vendorlib}/HTTP/DAV/
 %{perl_vendorlib}/HTTP/DAV.pm
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.31-1.2
-- Rebuild for Fedora Core 5.
+* Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 0.34-1
+- Updated to release 0.34.
 
-* Sat Feb 12 2005 Dag Wieers <dag@wieers.com> -
+* Sat Feb 12 2005 Dag Wieers <dag@wieers.com> - 0.31-1
 - Initial package. (using DAR)

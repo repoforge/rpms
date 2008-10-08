@@ -5,7 +5,7 @@
 
 Summary: Client/server backup system
 Name: safekeep
-Version: 1.0.3
+Version: 1.0.5
 Release: 1
 License: GPLv2+
 Group: Applications/System
@@ -119,5 +119,8 @@ if ! id %{name} &>/dev/null; then
 %dir %{_localstatedir}/lib/safekeep/.ssh/
 
 %changelog
+* Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 1.0.5-1
+- Updated to release 1.0.5.
+
 * Wed Nov 07 2007 Dag Wieers <dag@wieers.com> - 1.0.3-1
 - Initial package. (using DAR)

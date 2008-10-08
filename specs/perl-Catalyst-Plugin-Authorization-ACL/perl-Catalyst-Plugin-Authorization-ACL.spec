@@ -9,7 +9,7 @@
 
 Summary: ACL support for Catalyst applications
 Name: perl-Catalyst-Plugin-Authorization-ACL
-Version: 0.08
+Version: 0.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,9 @@ Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Plugin-Authoriza
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(Catalyst::Runtime)
+BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl(Test::More)
+Requires: perl >= 2:5.8.0
 
 %description
 ACL support for Catalyst applications.
@@ -44,7 +45,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README SIGNATURE
+%doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Catalyst::Plugin::Authorization::ACL.3pm*
 %doc %{_mandir}/man3/Catalyst::Plugin::Authorization::ACL::Engine.3pm*
 %dir %{perl_vendorlib}/Catalyst/
@@ -54,5 +55,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Catalyst/Plugin/Authorization/ACL.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.09-1
+- Updated to release 0.09.
+
 * Sun Dec 30 2007 Dag Wieers <dag@wieers.com> - 0.08-1
 - Initial package. (using DAR)

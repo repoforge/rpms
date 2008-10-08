@@ -9,8 +9,8 @@
 
 Summary: Extract distribution name and version from a distribution filename
 Name: perl-CPAN-DistnameInfo
-Version: 0.06
-Release: 1.2
+Version: 0.07
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CPAN-DistnameInfo/
@@ -19,8 +19,9 @@ Source: http://www.cpan.org/modules/by-module/CPAN/CPAN-DistnameInfo-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.004
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 0:5.004
 
 %description
 Many online services that are centered around CPAN attempt to associate
@@ -49,14 +50,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README SIGNATURE
+%doc %{_mandir}/man3/CPAN::DistnameInfo.3pm*
 %dir %{perl_vendorlib}/CPAN/
+#%{perl_vendorlib}/CPAN/DistnameInfo/
 %{perl_vendorlib}/CPAN/DistnameInfo.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1.2
-- Rebuild for Fedora Core 5.
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.07-1
+- Updated to release 0.07.
 
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.

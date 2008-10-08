@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dag
-# Upstream: Matt Simerson <matt,simerson$gmail,com>
+# Upstream: Matt Simerson <matt$tnpi,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Apache-Logmonster
 
-Summary: Apache log file splitter, processor, sorter, etc
+Summary: Apache log utility for merging, sorting, and processing web logs
 Name: perl-Apache-Logmonster
-Version: 3.04
+Version: 3.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,28 +19,27 @@ Source: http://www.cpan.org/modules/by-module/Apache/Apache-Logmonster-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(Compress::Zlib) >= 2.0
 BuildRequires: perl(Date::Parse) >= 2.0
 BuildRequires: perl(Module::Build)
 BuildRequires: perl(Params::Validate) >= 0.8
 
 %description
-Apache log file splitter, processor, sorter, etc.
+Apache log utility for merging, sorting, and processing web logs.
 
 %prep
 %setup -n %{real_name}-%{version}
 
 %build
-#%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-#%{__make} %{?_smp_mflags}
-%{__perl} Build.PL
-./Build
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
+#%{__perl} Build.PL
+#./Build
 
 %install
 %{__rm} -rf %{buildroot}
-#%{__make} pure_install
-PERL_INSTALL_ROOT="%{buildroot}" ./Build install installdirs="vendor"
+%{__make} pure_install
+#PERL_INSTALL_ROOT="%{buildroot}" ./Build install installdirs="vendor"
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -54,7 +53,7 @@ find doc/ examples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes FAQ INSTALL MANIFEST MANIFEST.SKIP META.yml README TODO doc/ examples/
-#%doc %{_mandir}/man1/logmonster.pl.1*
+%doc %{_mandir}/man1/logmonster.pl.1*
 %doc %{_mandir}/man3/Apache::Logmonster.3pm*
 %doc %{_mandir}/man3/Apache::Logmonster::Perl.3pm*
 %doc %{_mandir}/man3/Apache::Logmonster::Utility.3pm*
@@ -66,9 +65,11 @@ find doc/ examples/ -type f -exec %{__chmod} a-x {} \;
 %dir %{perl_vendorlib}/Regexp/Log/
 %{perl_vendorlib}/Regexp/Log/Monster.pm
 #%{perl_vendorlib}/Regexp/Log.pm
-%exclude %{_bindir}/install_freebsd_deps.sh
 
 %changelog
+* Mon Oct 06 2008 Dag Wieers <dag@wieers.com> - 3.05-1
+- Updated to release 3.05.
+
 * Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 3.04-1
 - Updated to release 3.04.
 

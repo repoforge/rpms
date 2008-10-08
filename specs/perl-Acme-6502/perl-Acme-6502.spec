@@ -9,7 +9,7 @@
 
 Summary: Pure Perl 65C02 simulator
 Name: perl-Acme-6502
-Version: 0.71
+Version: 0.73
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Acme/6502.pm
 
 %changelog
+* Mon Oct 06 2008 Dag Wieers <dag@wieers.com> - 0.73-1
+- Updated to release 0.73.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.71-1
 - Updated to release 0.71.
 

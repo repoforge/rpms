@@ -9,7 +9,7 @@
 
 Summary: Additional output formats for GD
 Name: perl-GD-Convert
-Version: 2.13
+Version: 2.15
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,16 +50,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST README
+%doc %{_mandir}/man3/GD::Convert.3pm*
+%dir %{perl_vendorlib}/GD/
+#%{perl_vendorlib}/GD/Convert/
 %{perl_vendorlib}/GD/Convert.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 2.15-1
+- Updated to release 2.15.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 2.13-1
 - Updated to release 2.13.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.12-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 2.12-1
 - Updated to release 2.12.

@@ -14,7 +14,10 @@ URL: http://clamfs.sourceforge.net/
 Source: http://dl.sf.net/clamfs/clamfs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: fuse-devel >= 2.2, rlog-devel, poco-devel, commoncpp2-devel
+BuildRequires: commoncpp2-devel
+BuildRequires: fuse-devel >= 2.2
+BuildRequires: poco-devel
+BuildRequires: rlog-devel
 Requires: fuse >= 2.2
 
 Obsoletes: clamfs <= %{name}-%{version}

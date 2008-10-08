@@ -9,7 +9,7 @@
 
 Summary: S/MIME message signing, verification, encryption and decryption
 Name: perl-Crypt-SMIME
-Version: 0.08
+Version: 0.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Crypt-SMIME/
 Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-SMIME-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 S/MIME message signing, verification, encryption and decryption.
@@ -42,7 +43,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST MANIFEST.SKIP MEMO.txt META.yml README
+%doc Changes MANIFEST MANIFEST.SKIP META.yml README
 %doc %{_mandir}/man3/SMIME.3pm*
 %doc %{_mandir}/man3/SMIME::JA.3pm*
 %dir %{perl_vendorarch}/auto/Crypt/
@@ -52,5 +53,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Crypt/SMIME.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.09-1
+- Updated to release 0.09.
+
 * Tue Aug 19 2008 Dag Wieers <dag@wieers.com> - 0.08-1
 - Initial package. (using DAR)

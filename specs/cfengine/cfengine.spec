@@ -10,7 +10,7 @@
 
 Summary: System administration tool for networks
 Name: cfengine
-Version: 2.2.6
+Version: 2.2.8
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -213,7 +213,7 @@ fi
 start() {
     echo -n $"Starting $desc ($prog): "
     if [ ! -f %{_localstatedir}/cfengine/ppkeys/localhost.priv ]; then
-        /usr/sbin/cfkey
+        %{_sbindir}/cfkey
     fi
     daemon $prog $OPTIONS
     RETVAL=$?
@@ -282,8 +282,14 @@ EOF
 %{__install} -Dp -m0644 default.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/cfservd
 %{__ln_s} -f %{_sbindir}/cfagent %{buildroot}%{_localstatedir}/cfengine/bin/
 
+### Clean up buildroot
+%{__rm} -f %{buildroot}%{_infodir}/dir
+
 %post
 %{_sbindir}/cfkey &>/dev/null || :
+/sbin/install-info %{_infodir}/cfengine-Reference.info.gz %{_infodir}/dir
+/sbin/install-info %{_infodir}/cfengine-Tutorial.info.gz %{_infodir}/dir
+
 if [ $1 -eq 1 ]; then
     chkconfig --add cfenvd
     chkconfig --add cfexecd
@@ -291,6 +297,9 @@ if [ $1 -eq 1 ]; then
 fi
 
 %preun
+/sbin/install-info --delete %{_infodir}/cfengine-Reference.info.gz %{_infodir}/dir
+/sbin/install-info --delete %{_infodir}/cfengine-Tutorial.info.gz %{_infodir}/dir
+
 if [ $1 -eq 0 ]; then
     chkconfig --del cfenvd
     chkconfig --del cfexecd
@@ -304,18 +313,52 @@ fi
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %doc contrib/cfengine.el inputs/*
-%doc %{_mandir}/man?/*
-%config %{_initrddir}/*
+%doc %{_infodir}/*.info*
+%doc %{_mandir}/man8/cfagent.8*
+%doc %{_mandir}/man8/cfengine.8*
+%doc %{_mandir}/man8/cfenvd.8*
+%doc %{_mandir}/man8/cfenvgraph.8*
+%doc %{_mandir}/man8/cfetoolcheck.8*
+%doc %{_mandir}/man8/cfetoolcreate.8*
+%doc %{_mandir}/man8/cfetooldump.8*
+%doc %{_mandir}/man8/cfetoolgraph.8*
+%doc %{_mandir}/man8/cfetoolimport.8*
+%doc %{_mandir}/man8/cfetoolinfo.8*
+%doc %{_mandir}/man8/cfetoolupdate.8*
+%doc %{_mandir}/man8/cfexecd.8*
+%doc %{_mandir}/man8/cfkey.8*
+%doc %{_mandir}/man8/cfrun.8*
+%doc %{_mandir}/man8/cfservd.8*
+%doc %{_mandir}/man8/cfshow.8*
 %config(noreplace) %{_sysconfdir}/sysconfig/cfexecd
 %config(noreplace) %{_sysconfdir}/sysconfig/cfenvd
 %config(noreplace) %{_sysconfdir}/sysconfig/cfservd
-%{_sbindir}/*
+%config %{_initrddir}/cfenvd
+%config %{_initrddir}/cfexecd
+%config %{_initrddir}/cfservd
+%{_sbindir}/cfagent
+%{_sbindir}/cfdoc
+%{_sbindir}/cfenvd
+%{_sbindir}/cfenvgraph
+%{_sbindir}/cfetool
+%{_sbindir}/cfetoolgraph
+%{_sbindir}/cfexecd
+%{_sbindir}/cfkey
+%{_sbindir}/cfrun
+%{_sbindir}/cfservd
+%{_sbindir}/cfshow
 %{_localstatedir}/cfengine/
 %exclude %{_datadir}/cfengine/
 %exclude %{_libdir}/libcfengine.a
 %exclude %{_libdir}/libcfengine.la
 
 %changelog
+* Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 2.2.8-1
+- Updated to release 2.2.8.
+
+* Mon Oct 06 2008 Dag Wieers <dag@wieers.com> - 2.2.6-2
+- Rebuild without info-page commands.
+
 * Mon Oct 06 2008 Dag Wieers <dag@wieers.com> - 2.2.6-1
 - Updated to release 2.2.6.
 

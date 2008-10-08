@@ -7,9 +7,9 @@
 
 %define real_name CGI-PathInfo
 
-Summary: Lightweight CGI processing package for using PATH_INFO
+Summary: Lightweight CGI processing package for using PATH_INFO like GET method form parameters
 Name: perl-CGI-PathInfo
-Version: 1.02
+Version: 1.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/CGI/PathInfo.pod
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.03-1
+- Updated to release 1.03.
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 1.02-1
 - Initial package. (using DAR)

@@ -22,9 +22,7 @@ Requires: ivtv-firmware-enc >= 2.04.024
 Requires: ivtv-firmware-audio
 
 %description
-With FUSE it is possible to implement a fully functional filesystem in a
-userspace program. This package contains the FUSE userspace tools to
-mount a FUSE filesystem.
+iTVC15/16 and CX23415/16 driver.
 
 %prep
 %setup -n %{real_name}-%{version}

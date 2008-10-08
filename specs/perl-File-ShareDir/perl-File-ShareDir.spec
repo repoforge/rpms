@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Adam Kennedy <cpan@ali.as>, L<http://ali.as/>
+# Upstream: Adam Kennedy <adamk$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Locate per-dist and per-module shared files
 Name: perl-File-ShareDir
-Version: 0.05
+Version: 1.00
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,9 +50,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man3/File::ShareDir.3pm*
 %dir %{perl_vendorlib}/File/
 %{perl_vendorlib}/File/ShareDir.pm
-%dir %{perl_vendorlib}/auto/File/
-%{perl_vendorlib}/auto/File/ShareDir/
+#%dir %{perl_vendorlib}/auto/File/
+#%{perl_vendorlib}/auto/File/ShareDir/
+%exclude %{perl_vendorlib}/auto/share/
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.00-1
+- Updated to release 1.00.
+
 * Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 0.05-1
 - Initial package. (using DAR)

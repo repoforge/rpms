@@ -1,16 +1,17 @@
 # $Id$
 # Authority: dag
+# Upstream: Vipul Ved Prakash <mail$vipul,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define rname Crypt-RSA
+%define real_name Crypt-RSA
 
-Summary: Crypt-RSA module for perl
+Summary: RSA public-key cryptosystem
 Name: perl-Crypt-RSA
-Version: 1.58
+Version: 1.98
 Release: 1
-License: distributable
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-RSA/
 
@@ -18,15 +19,15 @@ Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-RSA-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.00503
+BuildRequires: perl >= 0:5.6.0
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl >= 0:5.00503
+Requires: perl >= 0:5.6.0
 
 %description
-Crypt-RSA module for perl
+RSA public-key cryptosystem.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -44,13 +45,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc MANIFEST README
-%doc %{_mandir}/man3/*.3pm*
+%doc ARTISTIC COPYING Changes MANIFEST MANIFEST.skip META.yml README TODO
+%doc %{_mandir}/man3/Crypt::RSA.3pm*
+%doc %{_mandir}/man3/Crypt::RSA::*.3pm*
 %dir %{perl_vendorlib}/Crypt/
 %{perl_vendorlib}/Crypt/RSA/
 %{perl_vendorlib}/Crypt/RSA.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.98-1
+- Updated to release 1.98.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.58-1
 - Updated to release 1.58.
 

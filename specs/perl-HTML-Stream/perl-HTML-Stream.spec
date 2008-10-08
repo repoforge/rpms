@@ -7,11 +7,11 @@
 
 %define real_name HTML-Stream
 
-Summary: HTML output stream class
+Summary: HTML output stream class, and some markup utilities
 Name: perl-HTML-Stream
-Version: 1.59
+Version: 1.60
 Release: 1
-License: Artistic/GPL
+License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Stream/
 
@@ -58,6 +58,9 @@ find docs/ examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/HTML/Stream.pm
 
 %changelog
+* Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 1.60-1
+- Updated to release 1.60.
+
 * Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 1.59-1
 - Updated to release 1.59.
 

@@ -9,7 +9,7 @@
 
 Summary: Recursively copy Perl datatypes
 Name: perl-Clone
-Version: 0.28
+Version: 0.29
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/Clone/
 Source: http://www.cpan.org/modules/by-module/Clone/Clone-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 With this module, you can recursively copy Perl datatypes.
@@ -44,10 +45,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml
 %doc %{_mandir}/man3/Clone.3pm*
-%{perl_vendorarch}/Clone.pm
 %{perl_vendorarch}/auto/Clone/
+%{perl_vendorarch}/Clone.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.29-1
+- Updated to release 0.29.
+
 * Wed Nov 07 2007 Dag Wieers <dag@wieers.com> - 0.28-1
 - Updated to release 0.28.
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Gavin Brown <moc,ku$nworb,mapson,nivag>
+# Upstream: Gavin Brown <gbrown$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements a Gtk2 widget for displaying Plain old Documentation (POD)
 Name: perl-Gtk2-Ex-PodViewer
-Version: 0.17
+Version: 0.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,5 +56,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Gtk2/Ex/PodViewer.pm
 
 %changelog
+* Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 0.18-1
+- Updated to release 0.18.
+
 * Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 0.17-1
 - Initial package. (using DAR)

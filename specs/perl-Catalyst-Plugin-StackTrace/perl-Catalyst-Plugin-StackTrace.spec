@@ -10,7 +10,7 @@
 
 Summary: Display a stack trace on the debug screen
 Name: perl-Catalyst-Plugin-StackTrace
-Version: 0.08
+Version: 0.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Catalyst/Plugin/StackTrace.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.09-1
+- Updated to release 0.09.
+
 * Sat May 03 2008 Dag Wieers <dag@wieers.com> - 0.08-1
 - Updated to release 0.08.
 

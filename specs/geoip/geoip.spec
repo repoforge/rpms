@@ -5,13 +5,13 @@
 
 Summary: C library for country/city/organization to IP address or hostname mapping
 Name: geoip
-Version: 1.4.0
+Version: 1.4.5
 Release: 1
 License: GPL
 Group: Development/Libraries
-URL: http://www.maxmind.com/app/c            
+URL: http://www.maxmind.com/app/c
 
-Source: http://www.maxmind.com/download/geoip/api/c/GeoIP-%{version}.tar.gz 
+Source: http://www.maxmind.com/download/geoip/api/c/GeoIP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: zlib-devel
@@ -63,6 +63,7 @@ you will need to install %{name}-devel.
 %config(noreplace) %{_sysconfdir}/GeoIP.conf.default
 %config(noreplace) %{_sysconfdir}/GeoIP.conf
 %{_bindir}/geoiplookup
+%{_bindir}/geoiplookup6
 %{_bindir}/geoipupdate
 %{_datadir}/GeoIP/
 %{_libdir}/libGeoIP.so.*
@@ -73,12 +74,15 @@ you will need to install %{name}-devel.
 %{_includedir}/GeoIP.h
 %{_includedir}/GeoIPCity.h
 %{_includedir}/GeoIPUpdate.h
-%exclude %{_libdir}/libGeoIP.la
 %{_libdir}/libGeoIP.so
-%exclude %{_libdir}/libGeoIPUpdate.la
 %{_libdir}/libGeoIPUpdate.so
+%exclude %{_libdir}/libGeoIP.la
+%exclude %{_libdir}/libGeoIPUpdate.la
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.4.5-1
+- Updated to release 1.4.5.
+
 * Fri Nov 24 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.0-1
 - Updated to release 1.4.0.
 

@@ -7,9 +7,9 @@
 
 %define real_name I18N-Charset
 
-Summary: IANA Character Set Registry names and Unicode::MapUTF8 (et al.) conversion scheme names
+Summary: IANA Character Set Registry names and Unicode::MapUTF8
 Name: perl-I18N-Charset
-Version: 1.389
+Version: 1.394
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -58,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/I18N/Charset.pm
 
 %changelog
+* Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 1.394-1
+- Updated to release 1.394.
+
 * Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 1.389-1
 - Updated to release 1.389.
 

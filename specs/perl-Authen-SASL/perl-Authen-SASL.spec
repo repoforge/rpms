@@ -14,7 +14,7 @@
 
 Summary: SASL Authentication framework
 Name: perl-Authen-SASL
-Version: 2.11
+Version: 2.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -31,7 +31,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.005
 
 %description
-This module permits authentication with SASL.
+SASL Authentication framework.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -61,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Authen/SASL.pod
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 2.12-1
+- Updated to release 2.12.
+
 * Sat May 03 2008 Dag Wieers <dag@wieers.com> - 2.11-1
 - Updated to release 2.11.
 

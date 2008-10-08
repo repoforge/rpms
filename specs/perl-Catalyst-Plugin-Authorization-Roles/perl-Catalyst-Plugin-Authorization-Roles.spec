@@ -9,7 +9,7 @@
 
 Summary: Role based authorization for Catalyst based on Catalyst::Plugin::Authentication
 Name: perl-Catalyst-Plugin-Authorization-Roles
-Version: 0.05
+Version: 0.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,10 @@ Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Plugin-Authoriza
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(Catalyst::Runtime)
+BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl(Test::Exception)
+BuildRequires: perl(Test::More)
+Requires: perl >= 2:5.8.0
 
 %description
 Role based authorization for Catalyst based on Catalyst::Plugin::Authentication.
@@ -53,5 +55,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Catalyst/Plugin/Authorization/Roles.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.07-1
+- Updated to release 0.07.
+
 * Sun Dec 30 2007 Dag Wieers <dag@wieers.com> - 0.05-1
 - Initial package. (using DAR)

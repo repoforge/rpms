@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
+# Upstream: Tim Bunce
 # Upstream: Jeff Urlwin <jurlwin$bellatlantic,net>
+# Upstream: Martin J, Evans <mjevans$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +11,7 @@
 
 Summary: Perl DBD module for interfacing with ODBC databases
 Name: perl-DBD-ODBC
-Version: 1.16
+Version: 1.17
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,10 +21,13 @@ Source: http://www.cpan.org/modules/by-module/DBD/DBD-ODBC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
+BuildRequires: perl >= 0:5.006
 BuildRequires: perl(DBI) >= 1.21
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: unixODBC-devel > 2.2.5
-Requires: perl(DBI) >= 1.21, unixODBC > 2.2.5
+Requires: perl >= 0:5.006
+Requires: perl(DBI) >= 1.21
+Requires: unixODBC > 2.2.5
 
 %description
 This module is needed to access ODBC databases from within Perl. The
@@ -44,12 +49,15 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes FAQ MANIFEST META.yml README README.RH9 README.adabas README.af README.hpux README.informix README.unicode
+%doc Changes FAQ MANIFEST META.yml README README.RH9 README.adabas README.af README.hpux README.informix README.unicode examples/
 %doc %{_mandir}/man3/DBD::ODBC.3pm*
 %dir %{perl_vendorarch}/auto/DBD/
 %{perl_vendorarch}/auto/DBD/ODBC/
@@ -58,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/DBD/ODBC.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.17-1
+- Updated to release 1.17.
+
 * Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 1.16-1
 - Updated to release 1.16.
 

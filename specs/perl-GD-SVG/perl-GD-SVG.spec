@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Todd Harris <harris$cshl,edu>
+# Upstream: Todd Harris <harris$cshl,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Seamlessly enable SVG output from scripts written using GD
 Name: perl-GD-SVG
-Version: 0.28
+Version: 0.32
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -41,16 +41,24 @@ functions into SVG functions.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/GD::SVG.3pm*
+%dir %{perl_vendorlib}/GD/
+#%{perl_vendorlib}/GD/SVG/
 %{perl_vendorlib}/GD/SVG.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.32-1
+- Updated to release 0.32.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.28-1
 - Updated to release 0.28.
 

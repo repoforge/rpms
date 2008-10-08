@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Ioannis Tambouras <inputrc$yahoo,com>
+# Upstream: Ioannis Tambouras <ioannis$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Reads INI configuration files
 Name: perl-Config-Format-Ini
-Version: 0.04
+Version: 0.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -45,12 +45,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Config::Format::Ini*
-%{perl_vendorlib}/Config/Format/Ini.pm
+%doc Changes Debian_CPANTS.txt MANIFEST META.yml README TODO
+%doc %{_mandir}/man3/Config::Format::Ini.3pm*
+%doc %{_mandir}/man3/Config::Format::Ini::*.3pm*
+%dir %{perl_vendorlib}/Config/
+%dir %{perl_vendorlib}/Config/Format/
 %{perl_vendorlib}/Config/Format/Ini/
+%{perl_vendorlib}/Config/Format/Ini.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.07-1
+- Updated to release 0.07.
+
 * Thu Jan 04 2007 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Updated to release 0.04.
 

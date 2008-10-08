@@ -7,9 +7,9 @@ Version: 1.3.7
 Release: 1
 License: LGPL
 Group: Development/Libraries
-URL: http://arg0.net/wiki/rlog/
+URL: http://www.arg0.net/rlog
 
-Source: http://arg0.net/users/vgough/download/rlog-%{version}.tgz
+Source: http://rlog.googlecode.com/files/rlog-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: doxygen, tetex-latex
@@ -34,8 +34,8 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-	--disable-static \
-	--disable-valgrind
+    --disable-static \
+    --disable-valgrind
 %{__make} %{?_smp_mflags}
 
 %install
@@ -46,7 +46,6 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}%{_docdir}/rlog/
 
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
 
 %clean
@@ -61,9 +60,9 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %doc docs/html/ docs/latex/refman.pdf
 %{_includedir}/rlog/
+%{_libdir}/librlog.so
 %{_libdir}/pkgconfig/librlog.pc
 %exclude %{_libdir}/librlog.la
-%{_libdir}/librlog.so
 
 %changelog
 * Sat May 12 2007 Dag Wieers <dag@wieers.com> - 1.3.7-1

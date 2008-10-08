@@ -9,7 +9,7 @@
 
 Summary: Display a lot of Perl information in HTML format
 Name: perl-HTML-Perlinfo
-Version: 1.51
+Version: 1.54
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/HTML/Perlinfo.pm
 
 %changelog
+* Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 1.54-1
+- Updated to release 1.54.
+
 * Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 1.51-1
 - Updated to release 1.51.
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Graham Barr <gbarr@cpan.org>
+# Upstream: Graham Barr <gbarr$cpan,org>
 
 # ExcludeDist: el4
 
@@ -9,10 +9,10 @@
 
 %define real_name Convert-ASN1
 
-Summary: Perl classes implementing conversion from/to ASN.1 data structures using BER/DER rules
+Summary: Convert between perl data structures and ASN.1 encoded packets
 Name: perl-Convert-ASN1
-Version: 0.21
-Release: 2
+Version: 0.22
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-ASN1/
@@ -61,6 +61,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Convert/ASN1.pod
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.22-1
+- Updated to release 0.22.
+
 * Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 0.21-2
 - Disabled auto-requires for examples/.
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Ken Williams <ken$mathforum,org>
+# Upstream: Ken Williams <kwilliams$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: Automatically Learns Decision Trees
 Name: perl-AI-DecisionTree
-Version: 0.08
-Release: 1.2
+Version: 0.09
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AI-DecisionTree/
@@ -41,20 +41,26 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find eg/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
+%doc Changes INSTALL MANIFEST META.yml README eg/
+%doc %{_mandir}/man3/AI::DecisionTree.3pm*
+%doc %{_mandir}/man3/AI::DecisionTree::*.3pm*
+%dir %{perl_vendorarch}/auto/AI/
+%{perl_vendorarch}/auto/AI/DecisionTree/
 %dir %{perl_vendorarch}/AI/
 %{perl_vendorarch}/AI/DecisionTree/
 %{perl_vendorarch}/AI/DecisionTree.pm
-%dir %{perl_vendorarch}/auto/AI/
-%dir %{perl_vendorarch}/auto/AI/DecisionTree/
-%{perl_vendorarch}/auto/AI/DecisionTree/Instance/
 
 %changelog
+* Mon Oct 06 2008 Dag Wieers <dag@wieers.com> - 0.09-1
+- Updated to release 0.09.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Initial package.

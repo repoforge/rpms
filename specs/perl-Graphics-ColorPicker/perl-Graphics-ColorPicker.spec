@@ -9,8 +9,8 @@
 
 Summary: Creates a html form for selecting HEX color numbers
 Name: perl-Graphics-ColorPicker
-Version: 0.10
-Release: 1.2
+Version: 0.11
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graphics-ColorPicker/
@@ -39,22 +39,29 @@ safe colors only.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
+
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc ARTISTIC Changes INSTALL MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/Graphics::ColorPicker.3pm*
+%dir %{perl_vendorlib}/Graphics/
+%dir %{perl_vendorlib}/auto/Graphics/
+%{perl_vendorlib}/auto/Graphics/ColorPicker/
+#%{perl_vendorlib}/Graphics/ColorPicker/
 %{perl_vendorlib}/Graphics/ColorPicker.pm
-%{perl_vendorlib}/auto/Graphics/ColorPicker
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1.2
-- Rebuild for Fedora Core 5.
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.11-1
+- Updated to release 0.11.
 
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Updated to release 0.10.

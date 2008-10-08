@@ -9,7 +9,7 @@
 
 Summary: Functions for manipulating mainframe data
 Name: perl-Convert-IBM390
-Version: 0.24
+Version: 0.25
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,13 +52,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes INSTALL MANIFEST META.yml README
 %doc %{_mandir}/man3/Convert::IBM390.3pm*
+%dir %{perl_vendorarch}/auto/Convert/
+%{perl_vendorarch}/auto/Convert/IBM390/
 %dir %{perl_vendorarch}/Convert/
 %{perl_vendorarch}/Convert/IBM390.pm
 %{perl_vendorarch}/Convert/IBM390.pod
-%dir %{perl_vendorarch}/auto/Convert/
-%{perl_vendorarch}/auto/Convert/IBM390/
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.25-1
+- Updated to release 0.25.
+
 * Sat May 03 2008 Dag Wieers <dag@wieers.com> - 0.24-1
 - Updated to release 0.24.
 

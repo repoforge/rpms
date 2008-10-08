@@ -7,9 +7,9 @@
 
 %define real_name DateTime-Format-Strptime
 
-Summary: Strptime functionality for DateTime
+Summary: Parse and format strp and strf time patterns
 Name: perl-DateTime-Format-Strptime
-Version: 1.0702
+Version: 1.0800
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -27,10 +27,6 @@ This module replicates most of Strptime for DateTime. Strptime is the
 unix command that is the reverse of Strftime. While Strftime takes a
 DateTime and outputs it in a given format, Strptime takes a DateTime and
 a format and returns the DateTime object associated.
-
-This package contains the following Perl module:
-
-    DateTime::Format::Strptime
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -51,7 +47,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
+%doc Changes LICENSE MANIFEST META.yml README
 %doc %{_mandir}/man3/DateTime::Format::Strptime.3pm*
 %dir %{perl_vendorlib}/DateTime/
 %dir %{perl_vendorlib}/DateTime/Format/
@@ -59,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DateTime/Format/Strptime.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.0800-1
+- Updated to release 1.0800.
+
 * Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 1.0702-1
 - Updated to release 1.0702.
 

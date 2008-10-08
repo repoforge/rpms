@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: T.J. Mather <tjmather$maxmind,com>
+# Upstream: Boris Zentner <bzm$2bz,de>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Look up country by IP Address
 Name: perl-Geo-IP-PurePerl
-Version: 1.19
+Version: 1.22
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Geo/IP/PurePerl.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.22-1
+- Updated to release 1.22.
+
 * Mon May 05 2008 Dag Wieers <dag@wieers.com> - 1.19-1
 - Updated to release 1.19.
 

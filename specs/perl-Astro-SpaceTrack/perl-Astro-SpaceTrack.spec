@@ -7,9 +7,9 @@
 
 %define real_name Astro-SpaceTrack
 
-Summary: Downloads orbital elements from the Space Track web site
+Summary: Download satellite orbital elements from Space Track
 Name: perl-Astro-SpaceTrack
-Version: 0.031
+Version: 0.033
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -66,6 +66,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Astro/SpaceTrack.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.033-1
+- Updated to release 0.033.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.031-1
 - Updated to release 0.031.
 

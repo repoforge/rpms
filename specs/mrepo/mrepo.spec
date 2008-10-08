@@ -2,9 +2,9 @@
 # Authority: dag
 # Upstream: Dag Wieers <dag$wieers,com>
 
-Summary: Tool to set up a Yum/Apt mirror from various sources (ISO, RHN, rsync, http, ftp, ...)
+Summary: Set up repositories from various sources (ISO, RHN, YOU, rsync, http, ftp, ...)
 Name: mrepo
-Version: 0.8.4
+Version: 0.8.6
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: /usr/bin/python2
 Requires: python >= 2.0, createrepo
-Obsoletes: yam <= %{version}
+Obsoletes: yam <= %{version}-%{release}
 
 %description
 mrepo builds a local Apt/Yum RPM repository from local ISO files,
@@ -28,7 +28,8 @@ the repository structure and meta-data, enables HTTP access to
 the repository and creates a directory-structure for remote
 network installations using PXE/TFTP.
 
-mrepo supports ftp, http, sftp, rsync, rhn and other download methods.
+mrepo supports ftp, http, sftp, rsync, Red Hat Network and YaST 
+Online Update and other download methods.
 
 With mrepo, you can enable your laptop or a local server to provide
 updates for the whole network and provide the proper files to
@@ -75,8 +76,8 @@ EOF
 
 %preun
 if [ $1 -eq 0 ]; then
-	/service mrepo stop &>/dev/null || :
-	/sbin/chkconfig --del mrepo
+    /service mrepo stop &>/dev/null || :
+    /sbin/chkconfig --del mrepo
 fi
 
 %post
@@ -90,7 +91,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README THANKS TODO WISHLIST config/*.conf config/dists/ docs/
+%doc AUTHORS ChangeLog COPYING README THANKS TODO WISHLIST config/* docs/
 %config(noreplace) %{_sysconfdir}/cron.d/mrepo
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/mrepo.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/mrepo
@@ -98,14 +99,18 @@ fi
 %config(noreplace) %{_sysconfdir}/mrepo.conf.d/
 %config %{_initrddir}/mrepo
 %{_bindir}/gensystemid
-%{_bindir}/rhnget
 %{_bindir}/mrepo
+%{_bindir}/rhnget
+%{_bindir}/youget
 %{_datadir}/mrepo/
 %{_localstatedir}/cache/mrepo/
 %{_localstatedir}/www/mrepo/
 %{_localstatedir}/mrepo/
 
 %changelog
+* Mon Oct 06 2008 Dag Wieers <dag@wieers.com> - 0.8.6-1
+- Updated to release 0.8.6.
+
 * Wed Dec 13 2006 Dag Wieers <dag@wieers.com> - 0.8.4-1
 - Updated to release 0.8.4.
 - Package renamed from yam to mrepo.

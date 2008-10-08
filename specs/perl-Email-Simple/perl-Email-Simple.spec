@@ -9,7 +9,7 @@
 
 Summary: Simple parsing of RFC2822 message format and headers
 Name: perl-Email-Simple
-Version: 2.003
+Version: 2.004
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -24,10 +24,6 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 With this module you can parse RFC2822 message format and headers.
-
-This package contains the following Perl module:
-
-    Email::Simple
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -51,12 +47,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes LICENSE MANIFEST META.yml README
 %doc %{_mandir}/man3/Email::Simple.3pm*
 %doc %{_mandir}/man3/Email::Simple::Header.3pm*
-%doc %{_mandir}/man3/Email::Simple::Headers.3pm*
 %dir %{perl_vendorlib}/Email/
 %{perl_vendorlib}/Email/Simple/
 %{perl_vendorlib}/Email/Simple.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 2.004-1
+- Updated to release 2.004.
+
 * Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 2.003-1
 - Updated to release 2.003.
 

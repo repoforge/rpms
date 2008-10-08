@@ -7,9 +7,9 @@
 
 %define real_name DBD-Oracle
 
-Summary: Perl module named DBD-Oracle
+Summary: Oracle database driver for the DBI module
 Name: perl-DBD-Oracle
-Version: 1.21
+Version: 1.22
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -22,7 +22,7 @@ BuildRequires: perl
 BuildRequires: perl(DBI)
 
 %description
-perl-DBD-Oracle is a Perl module.
+Oracle database driver for the DBI module.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -56,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/DBD/Oracle.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.22-1
+- Updated to release 1.22.
+
 * Mon May 05 2008 Dag Wieers <dag@wieers.com> - 1.21-1
 - Updated to release 1.21.
 

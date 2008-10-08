@@ -9,9 +9,9 @@
 
 Summary: Encrypt Data using ECB Mode
 Name: perl-Crypt-ECB
-Version: 1.40
-Release: 1.2
-License: Artistic/GPL
+Version: 1.45
+Release: 1
+License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-ECB/
 
@@ -48,13 +48,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README
-%doc %{_mandir}/man3/*
+%doc CHANGES COPYING MANIFEST META.yml README
+%doc %{_mandir}/man3/Crypt::ECB.3pm*
+%dir %{perl_vendorlib}/Crypt/
+#%{perl_vendorlib}/Crypt/ECB/
 %{perl_vendorlib}/Crypt/ECB.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.40-1.2
-- Rebuild for Fedora Core 5.
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.45-1
+- Updated to release 1.45.
 
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.40-1
 - Initial package.

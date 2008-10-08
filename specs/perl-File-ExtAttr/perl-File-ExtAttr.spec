@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Richard Dawe <richdawe$gmail,com>
+# Upstream: Richard Dawe <richdawe$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Perl module for accessing extended attributes of files
 Name: perl-File-ExtAttr
-Version: 1.07
+Version: 1.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,13 +48,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes MANIFEST MANIFEST.SKIP META.yml README TODO
 %doc %{_mandir}/man3/File::ExtAttr.3pm*
 %doc %{_mandir}/man3/File::ExtAttr::Tie.3pm*
-%dir %{perl_vendorarch}/File/
-%{perl_vendorarch}/File/ExtAttr.pm
-%{perl_vendorarch}/File/ExtAttr/
 %dir %{perl_vendorarch}/auto/File/
 %{perl_vendorarch}/auto/File/ExtAttr/
+%dir %{perl_vendorarch}/File/
+%{perl_vendorarch}/File/ExtAttr/
+%{perl_vendorarch}/File/ExtAttr.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.08-1
+- Updated to release 1.08.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 1.07-1
 - Updated to release 1.07.
 

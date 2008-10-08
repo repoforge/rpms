@@ -9,7 +9,7 @@
 
 Summary: Provide an interface to ZIP archive files
 Name: perl-Archive-Zip
-Version: 1.23
+Version: 1.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -64,6 +64,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Archive/Zip.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.24-1
+- Updated to release 1.24.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 1.23-1
 - Updated to release 1.23.
 

@@ -9,7 +9,7 @@
 
 Summary: Perl module for terminal screen handling and optimization
 Name: perl-Curses
-Version: 1.23
+Version: 1.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Curses.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.24-1
+- Updated to release 1.24.
+
 * Tue Mar 11 2008 Dag Wieers <dag@wieers.com> - 1.23-1
 - Updated to release 1.23.
 

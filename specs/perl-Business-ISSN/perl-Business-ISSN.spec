@@ -1,16 +1,16 @@
 # $Id$
 # Authority: dries
-# Upstream: Sami Poikonen <sp$iki,fi>
+# Upstream: Brian D foy <bdfoy$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Business-ISSN
 
-Summary: Extension for International Standard Serial Numbers
+Summary: Work with International Standard Serial Numbers
 Name: perl-Business-ISSN
-Version: 0.90
-Release: 1.2
+Version: 0.91
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Business-ISSN/
@@ -23,7 +23,7 @@ BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
-Perl extension for International Standard Serial Numbers.
+Work with International Standard Serial Numbers.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -39,15 +39,23 @@ Perl extension for International Standard Serial Numbers.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes readme
-%doc %{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/Business::ISSN.3pm*
+%dir %{perl_vendorlib}/Business/
+#%{perl_vendorlib}/Business/ISSN/
 %{perl_vendorlib}/Business/ISSN.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.91-1
+- Updated to release 0.91.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.90-1
 - Initial package.

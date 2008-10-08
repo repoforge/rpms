@@ -16,7 +16,7 @@
 
 Summary: Perl module named DBD-Sybase
 Name: perl-DBD-Sybase
-Version: 1.08
+Version: 1.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -70,13 +70,16 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %defattr(-, root, root, 0755)
 %doc BUGS CHANGES MANIFEST META.yml README README.freetds README.vms eg/
 %doc %{_mandir}/man3/DBD::Sybase.3*
-%dir %{perl_vendorarch}/DBD/
-%{perl_vendorarch}/DBD/Sybase.pm
 %dir %{perl_vendorarch}/auto/DBD/
 %{perl_vendorarch}/auto/DBD/Sybase/
+%dir %{perl_vendorarch}/DBD/
+%{perl_vendorarch}/DBD/Sybase.pm
 %exclude %{perl_vendorarch}/DBD/dbd-sybase.pod
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.09-1
+- Updated to release 1.09.
+
 * Fri Oct 05 2007 Dag Wieers <dag@wieers.com> - 1.08-1
 - Added fixes for Sybase and freetds compilation. (Tom G. Christensen)
 - Initial package. (using DAR)

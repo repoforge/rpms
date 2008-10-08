@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dries
 # Upstream: Brian C. Thomas <bct$cpan,org>
+# Upstream: Brent Pedersen <bpederse$gmail,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +10,7 @@
 
 Summary: Mechanism for AJAX or DHTML based web applications
 Name: perl-CGI-Ajax
-Version: 0.701
+Version: 0.706
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,11 +60,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes LICENSE MANIFEST META.yml README Todo
+%doc %{_mandir}/man3/CGI::Ajax.3pm*
+%dir %{perl_vendorlib}/CGI/
+#%{perl_vendorlib}/CGI/Ajax/
 %{perl_vendorlib}/CGI/Ajax.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.706-1
+- Updated to release 0.706.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.701-1
 - Updated to release 0.701.
 

@@ -7,11 +7,11 @@
 
 %define real_name Gtk2-GladeXML
 
-Summary: Perl module to create user interfaces directly from Glade XML files
+Summary: Create user interfaces directly from Glade XML files
 Name: perl-Gtk2-GladeXML
-Version: 1.006
+Version: 1.007
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gtk2-GladeXML/
 
@@ -30,8 +30,7 @@ BuildRequires: perl(Cairo::Install::Files)
 Requires: perl >= 2:5.8.0
 
 %description
-Gtk2-GladeXML is a Perl module to create user interfaces
-directly from Glade XML files.
+Create user interfaces directly from Glade XML files.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -47,19 +46,25 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog LICENSE MANIFEST META.yml NEWS README
+%doc AUTHORS ChangeLog LICENSE MANIFEST MANIFEST.SKIP META.yml NEWS README examples/
 %doc %{_mandir}/man3/Gtk2::GladeXML.3pm*
+%dir %{perl_vendorarch}/auto/Gtk2/
+%{perl_vendorarch}/auto/Gtk2/GladeXML/
 %dir %{perl_vendorarch}/Gtk2/
 %{perl_vendorarch}/Gtk2/GladeXML.pm
 %{perl_vendorarch}/Gtk2/GladeXML/
-%dir %{perl_vendorarch}/auto/Gtk2/
-%{perl_vendorarch}/auto/Gtk2/GladeXML/
 
 %changelog
+* Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 1.007-1
+- Updated to release 1.007.
+
 * Wed May 02 2007 Dag Wieers <dag@wieers.com> - 1.006-1
 - Initial package. (using DAR)

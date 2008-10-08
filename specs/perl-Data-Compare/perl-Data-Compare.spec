@@ -9,7 +9,7 @@
 
 Summary: Compare perl data structures
 Name: perl-Data-Compare
-Version: 1.19
+Version: 1.21
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Data/Compare.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.21-1
+- Updated to release 1.21.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 1.19-1
 - Updated to release 1.19.
 

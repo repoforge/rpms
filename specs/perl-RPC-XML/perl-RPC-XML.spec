@@ -7,9 +7,9 @@
 
 %define real_name RPC-XML
 
-Summary: Set of classes for core data, message and XML handling
+Summary: Data, client and server classes for XML-RPC
 Name: perl-RPC-XML
-Version: 0.60
+Version: 0.64
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -66,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/RPC/XML.pm
 
 %changelog
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.64-1
+- Updated to release 0.64.
+
 * Fri May 02 2008 Dag Wieers <dag@wieers.com> - 0.60-1
 - Updated to release 0.60.
 

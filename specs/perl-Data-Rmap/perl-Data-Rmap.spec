@@ -9,8 +9,8 @@
 
 Summary: Recursive map, apply a block to a data structure
 Name: perl-Data-Rmap
-Version: 0.61
-Release: 1.2
+Version: 0.62
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Rmap/
@@ -67,13 +67,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes INSTALL MANIFEST META.yml README
+%doc %{_mandir}/man3/Data::Rmap.3pm*
+%dir %{perl_vendorlib}/Data/
+#%{perl_vendorlib}/Data/Rmap/
 %{perl_vendorlib}/Data/Rmap.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.61-1.2
-- Rebuild for Fedora Core 5.
+* Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.62-1
+- Updated to release 0.62.
 
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.61-1
 - Initial package.
