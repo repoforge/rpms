@@ -1,10 +1,11 @@
 # $Id$
 # Authority: dag
 
+# Tag: test
+
 Summary: ISO 9660 Rock Ridge Filesystem Manipulator
 Name: xorriso
-%define real_version 0.2.6
-Version: 0.2.6.pl01
+Version: 0.2.7
 Release: 1
 License: GPL
 Group: Applications/Archiving
@@ -30,7 +31,7 @@ formatter program nor an external burn program for CD or DVD but rather
 incorporates the libraries of libburnia-project.org.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
 
 %build
 %configure \
@@ -55,5 +56,8 @@ incorporates the libraries of libburnia-project.org.
 %exclude %{_libdir}/pkgconfig/xorriso.pc
 
 %changelog
+* Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 0.2.7-1
+- Updated to release 0.2.7.
+
 * Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 0.2.6.pl01-1
 - Initial package. (using DAR)
