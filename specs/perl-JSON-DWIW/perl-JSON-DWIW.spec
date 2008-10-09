@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Don Owens <don$regexguy,com>
+# Upstream: Don Owens <dowens$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements a JSON converter that Does What I Want
 Name: perl-JSON-DWIW
-Version: 0.24
+Version: 0.27
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -18,7 +18,8 @@ URL: http://search.cpan.org/dist/JSON-DWIW/
 Source: http://www.cpan.org/modules/by-module/JSON/JSON-DWIW-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-JSON-DWIW is a Perl module that implements a JSON converter that
@@ -53,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/JSON/DWIW.pm
 
 %changelog
+* Thu Oct 09 2008 Dag Wieers <dag@wieers.com> - 0.27-1
+- Updated to release 0.27.
+
 * Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.24-1
 - Updated to release 0.24.
 

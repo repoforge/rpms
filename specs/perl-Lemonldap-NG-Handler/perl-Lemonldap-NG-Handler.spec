@@ -9,7 +9,7 @@
 
 Summary: Apache protection module part of Lemonldap::NG Web-SSO system
 Name: perl-Lemonldap-NG-Handler
-Version: 0.88
+Version: 0.89
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ find example/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Lemonldap/NG/Handler.pm
 
 %changelog
+* Thu Oct 09 2008 Dag Wieers <dag@wieers.com> - 0.89-1
+- Updated to release 0.89.
+
 * Tue Jun 24 2008 Dag Wieers <dag@wieers.com> - 0.88-1
 - Updated to release 0.88.
 

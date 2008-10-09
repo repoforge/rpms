@@ -9,7 +9,7 @@
 
 Summary: Scaling math used in image size constraining (such
 Name: perl-Image-Math-Constrain
-Version: 1.01
+Version: 1.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,8 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.005
-BuildRequires: perl(Test::More) >= 0.47
 BuildRequires: perl(File::Spec) >= 0.82
+BuildRequires: perl(Test::More) >= 0.47
 Requires: perl >= 0:5.005
 
 %description
@@ -53,5 +53,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Image/Math/Constrain.pm
 
 %changelog
+* Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 1.02-1
+- Updated to release 1.02.
+
 * Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 1.01-1
 - Initial package. (using DAR)

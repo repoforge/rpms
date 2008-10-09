@@ -11,7 +11,7 @@
 
 Summary: Standalone, extensible Perl module installer
 Name: perl-Module-Install
-Version: 0.75
+Version: 0.77
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,9 +21,10 @@ Source: http://www.cpan.org/modules/by-module/Module/Module-Install-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.004
+BuildRequires: perl >= 0:5.005
 BuildRequires: perl(Archive::Tar)
 BuildRequires: perl(ExtUtils::Install) >= 0.3
+BuildRequires: perl(ExtUtils::MakeMaker) >= 6.11
 BuildRequires: perl(ExtUtils::ParseXS)
 BuildRequires: perl(File::Remove) >= 1.4
 BuildRequires: perl(File::Spec) >= 0.87
@@ -35,7 +36,7 @@ BuildRequires: perl(Test::Harness) >= 2.03
 BuildRequires: perl(Test::More) >= 0.42
 # needed for certain older versions of perl-Module-Build
 BuildRequires: perl(YAML::Syck)
-Requires: perl >= 0:5.004
+Requires: perl >= 0:5.005
 
 %description
 Module::Install is a standalone, extensible installer for Perl modules.  It is
@@ -74,8 +75,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %dir %{perl_vendorlib}/inc/
 %dir %{perl_vendorlib}/inc/Module/
 %{perl_vendorlib}/inc/Module/Install.pm
+%exclude %{perl_vendorlib}/auto/share/
 
 %changelog
+* Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 0.77-1
+- Updated to release 0.77.
+
 * Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 0.75-1
 - Updated to release 0.75.
 

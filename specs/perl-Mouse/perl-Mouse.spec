@@ -1,28 +1,31 @@
 # $Id$
 # Authority: dag
-# Upstream: Greg McCarroll <greg$mccarroll,org,uk>
+# Upstream: Shawn M Moore <sartak$gmail,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Jabber-SimpleSend
+%define real_name Mouse
 
-Summary: Perl module to send a Jabber message
-Name: perl-Jabber-SimpleSend
-Version: 0.03
+Summary: Moose minus the antlers
+Name: perl-Mouse
+Version: 0.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Jabber-SimpleSend/
+URL: http://search.cpan.org/dist/Mouse/
 
-Source: http://www.cpan.org/modules/by-module/Jabber/Jabber-SimpleSend-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/S/SA/SARTAK/Mouse-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 0:5.6.0
+BuildRequires: perl(Test::Exception)
+BuildRequires: perl(Test::More)
+Requires: perl >= 0:5.6.0
 
 %description
-perl-Jabber-SimpleSend is a Perl module to send a Jabber message.
+Moose minus the antlers.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -43,12 +46,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
-%doc %{_mandir}/man3/Jabber::SimpleSend.3pm*
-%dir %{perl_vendorlib}/Jabber/
-#%{perl_vendorlib}/Jabber/SimpleSend/
-%{perl_vendorlib}/Jabber/SimpleSend.pm
+%doc Changes MANIFEST META.yml SIGNATURE
+%doc %{_mandir}/man3/Mouse.3pm*
+%doc %{_mandir}/man3/Mouse::*.3pm*
+%doc %{_mandir}/man3/Squirrel.3pm*
+%{perl_vendorlib}/Mouse/
+%{perl_vendorlib}/Mouse.pm
+%{perl_vendorlib}/Squirrel/
+%{perl_vendorlib}/Squirrel.pm
 
 %changelog
-* Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 0.03-1
+* Thu Oct 09 2008 Dag Wieers <dag@wieers.com> - 0.09-1
 - Initial package. (using DAR)

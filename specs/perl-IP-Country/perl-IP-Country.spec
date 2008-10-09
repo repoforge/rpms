@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Nigel Wetters Gourlay <nigel$wetters,net>
+# Upstream: Nigel Wetters Gourlay <nwetters$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Fast lookup of country codes from IP addresses
 Name: perl-IP-Country
-Version: 2.24
+Version: 2.25
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -68,6 +68,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IP/Country.pm
 
 %changelog
+* Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 2.25-1
+- Updated to release 2.25.
+
 * Thu Mar 06 2008 Dag Wieers <dag@wieers.com> - 2.24-1
 - Updated to release 2.24.
 

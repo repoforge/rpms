@@ -9,13 +9,13 @@
 
 Summary: Distributed lock handler
 Name: perl-IPC-Locker
-Version: 1.481
+Version: 1.483
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPC-Locker/
 
-Source: http://www.cpan.org/modules/by-module/IPC/IPC-Locker-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/IPC/IPC-Locker-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -71,6 +71,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IPC/PidStat.pm
 
 %changelog
+* Thu Oct 09 2008 Dag Wieers <dag@wieers.com> - 1.483-1
+- Updated to release 1.483.
+
 * Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 1.481-1
 - Updated to release 1.481.
 
