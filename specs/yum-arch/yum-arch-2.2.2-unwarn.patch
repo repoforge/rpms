@@ -1,0 +1,12 @@
+--- yum-2.2.2/pullheaders.py.orig	2008-10-10 10:47:08.000000000 +0200
++++ yum-2.2.2/pullheaders.py	2008-10-10 10:47:22.000000000 +0200
+@@ -115,9 +115,6 @@
+     return rpms
+     
+ def main(args):
+-    log(0, '\n\n\nTHIS PROGRAM IS DEPRECATED!')
+-    log(0, 'You should be generating xml metadata instead.')
+-    log(0, 'Please see http://linux.duke.edu/metadata\n\n\n')
+     tempheaderdir = '.newheaders'
+     tempheaderinfo = tempheaderdir + '/' + 'header.info'
+     tempsrcheaderinfo = tempheaderdir + '/' + 'header.src.info'

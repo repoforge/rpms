@@ -15,7 +15,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: /usr/bin/python2
-Requires: python >= 2.0, createrepo
+Requires: createrepo
+Requires: python >= 2.0
+Requires: pyOpenSSL
 Obsoletes: yam <= %{version}-%{release}
 
 %description

@@ -29,14 +29,14 @@ of utmpaccess module, providing object oriented interface.
 
 %build
 %{__make} -f Makefile.glibc \
-	PYTHONVER="%{python_version}" \
-	PYTHONDIR="%{python_sitearch}"
+    PYTHONVER="%{python_version}" \
+    PYTHONDIR="%{python_sitearch}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall -f Makefile.glibc \
-	PYTHONVER="%{python_version}" \
-	PYTHONDIR="%{buildroot}%{python_sitearch}"
+    PYTHONVER="%{python_version}" \
+    PYTHONDIR="%{buildroot}%{python_sitearch}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -45,7 +45,11 @@ of utmpaccess module, providing object oriented interface.
 %defattr(-, root, root, 0755)
 %doc README TODO examples/*
 %{python_sitearch}/UTMPCONST.py
+%ghost %{python_sitearch}/UTMPCONST.pyc
+%ghost %{python_sitearch}/UTMPCONST.pyo
 %{python_sitearch}/utmp.py
+%ghost %{python_sitearch}/utmp.pyc
+%ghost %{python_sitearch}/utmp.pyo
 %{python_sitearch}/utmpaccessmodule.so
 
 %changelog
