@@ -2,9 +2,11 @@
 # Authority: dag
 # Upstream: Philippe Biondi <biondi$cartel-securite,fr>
 
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+
 Summary: Interactive packet manipulation tool and network scanner
 Name: scapy
-Version: 1.1.1
+Version: 2.0.0.10
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -32,22 +34,29 @@ the interpretor, and restored the next time you launch scapy.
 %setup
 
 %build
+%{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 scapy.py %{buildroot}%{_bindir}/scapy
-%{__install} -Dp -m0644 scapy.1 %{buildroot}%{_mandir}/man1/scapy.1
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
+#%{__install} -Dp -m0755 scapy.py %{buildroot}%{_bindir}/scapy
+#%{__install} -Dp -m0644 scapy.1 %{buildroot}%{_mandir}/man1/scapy.1
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS changelog* COPYING README
+#%doc AUTHORS changelog* COPYING README
 %doc %{_mandir}/man1/scapy.1*
 %{_bindir}/scapy
+%{_bindir}/UTscapy
+%{python_sitelib}
 
 %changelog
+* Sat Oct 11 2008 Dag Wieers <dag@wieers.com> - 2.0.0.10-1
+- Updated to release 2.0.0.10.
+
 * Tue Apr 17 2007 Dries Verachtert <dries@ulyssis.org> - 1.1.1-1
 - Updated to release 1.1.1.
 
