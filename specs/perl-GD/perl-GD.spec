@@ -18,12 +18,13 @@
 Summary: Interface to Gd Graphics Library
 Name: perl-GD
 Version: 2.41
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GD/
 
 Source: http://www.cpan.org/modules/by-module/GD/GD-%{version}.tar.gz
+Patch0: perl-GD-2.41-Group.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 2:5.8.0
@@ -44,6 +45,7 @@ and emit the drawings as PNG files.
 
 %prep
 %setup -n %{real_name}-%{version}
+%patch0 -p1 -b .group
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" \
@@ -78,6 +80,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/qd.pl
 
 %changelog
+* Sat Oct 11 2008 Dag Wieers <dag@wieers.com> - 2.41-2
+- Added a patch to install GD::Group. (Bob Kinney)
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 2.41-1
 - Updated to release 2.41.
 

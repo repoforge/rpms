@@ -1,0 +1,10 @@
+--- GD-2.41/Makefile.PL.orig	2008-10-11 01:34:24.000000000 +0200
++++ GD-2.41/Makefile.PL	2008-10-11 01:34:48.000000000 +0200
+@@ -232,6 +232,7 @@
+ 		    'Math::Trig' => 0,
+ 		    },
+     'PM'        => { 'GD.pm' => '$(INST_LIBDIR)/GD.pm',
++                     'GD/Group.pm' => '$(INST_LIBDIR)/GD/Group.pm',
+                      'GD/Polyline.pm' => '$(INST_LIBDIR)/GD/Polyline.pm',
+                      'GD/Polygon.pm' => '$(INST_LIBDIR)/GD/Polygon.pm',
+                      'GD/Simple.pm' => '$(INST_LIBDIR)/GD/Simple.pm',
