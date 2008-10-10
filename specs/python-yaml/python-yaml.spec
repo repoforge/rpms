@@ -7,7 +7,7 @@
 
 Summary: Python package implementing YAML parser and emitter
 Name: python-yaml
-Version: 3.05
+Version: 3.06
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -48,5 +48,8 @@ and interaction with scripting languages.
 %{python_sitelib}/yaml/
 
 %changelog
+* Wed Oct  8 2008 Dries Verachtert <dries@ulyssis.org> - 3.06-1
+- Updated to release 3.06.
+
 * Sun May 13 2007 Dag Wieers <dag@wieers.com> - 3.05-1
 - Initial package. (using DAR)
