@@ -11,7 +11,7 @@
 
 Summary: Various Mail related modules
 Name: perl-MailTools
-Version: 2.03
+Version: 2.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -60,6 +60,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Mail/
 
 %changelog
+* Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 2.04-1
+- Updated to release 2.04.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 2.03-1
 - Updated to release 2.03.
 

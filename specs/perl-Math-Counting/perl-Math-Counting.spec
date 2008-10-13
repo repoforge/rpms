@@ -9,7 +9,7 @@
 
 Summary: Combinatorial counting operations
 Name: perl-Math-Counting
-Version: 0.0704
+Version: 0.0801
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -38,6 +38,7 @@ This module contains functions for combinatorial counting operations.
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
+find %{buildroot} -name .svn -type d -exec %{__rm} -rf {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -51,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Math/Counting.pm
 
 %changelog
+* Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 0.0801-1
+- Updated to release 0.0801.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.0704-1
 - Updated to release 0.0704.
 

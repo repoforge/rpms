@@ -9,8 +9,8 @@
 
 Summary: Unit conversion
 Name: perl-Math-Units
-Version: 1.2
-Release: 1.2
+Version: 1.3
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Units/
@@ -42,18 +42,23 @@ baseline.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/Math::Units.3pm*
+%dir %{perl_vendorlib}/Math/
+#%{perl_vendorlib}/Math/Units/
 %{perl_vendorlib}/Math/Units.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1.2
-- Rebuild for Fedora Core 5.
+* Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 1.3-1
+- Updated to release 1.3.
 
 * Tue Apr 05 2005 Dries Verachtert <dries@ulyssis.org> - 1.2-1
 - Initial package.

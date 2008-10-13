@@ -9,8 +9,8 @@
 
 Summary: Algorithms for numerical integration
 Name: perl-Math-RungeKutta
-Version: 1.02
-Release: 1.2
+Version: 1.05
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-RungeKutta/
@@ -47,13 +47,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes Install MANIFEST README
+%doc %{_mandir}/man3/Math::RungeKutta.3pm*
+%dir %{perl_vendorlib}/Math/
+#%{perl_vendorlib}/Math/RungeKutta/
 %{perl_vendorlib}/Math/RungeKutta.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.02-1.2
-- Rebuild for Fedora Core 5.
+* Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 1.05-1
+- Updated to release 1.05.
 
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.02-1
 - Initial package.

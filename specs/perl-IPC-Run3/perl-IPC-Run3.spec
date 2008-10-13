@@ -7,9 +7,9 @@
 
 %define real_name IPC-Run3
 
-Summary: Run a subprocess in batch mode
+Summary: Run a subprocess with input/ouput redirection
 Name: perl-IPC-Run3
-Version: 0.040
+Version: 0.042
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IPC/Run3.pm
 
 %changelog
+* Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 0.042-1
+- Updated to release 0.042.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.040-1
 - Updated to release 0.040.
 

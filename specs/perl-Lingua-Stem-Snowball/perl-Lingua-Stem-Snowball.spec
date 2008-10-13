@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Fabien Potencier <fabpot$cpan,org>
+# Upstream: Marvin Humphrey <marvin$rectangular,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Perl interface to Snowball stemmers
 Name: perl-Lingua-Stem-Snowball
-Version: 0.941
+Version: 0.952
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,8 +18,11 @@ URL: http://search.cpan.org/dist/Lingua-Stem-Snowball/
 Source: http://www.cpan.org/modules/by-module/Lingua/Lingua-Stem-Snowball-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
-BuildRequires: perl(Module::Build)
+BuildRequires: perl >= 1:5.6.2
+BuildRequires: perl(ExtUtils::CBuilder)
+BuildRequires: perl(ExtUtils::ParseXS)
+#BuildRequires: perl(Module::Build)
+Requires: perl >= 1:5.6.2
 
 %description
 Perl interface to Snowball stemmers.
@@ -57,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 #{_bindir}/generate_tests.plx
 
 %changelog
+* Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 0.952-1
+- Updated to release 0.952.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.941-1
 - Updated to release 0.941.
 

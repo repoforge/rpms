@@ -9,7 +9,7 @@
 
 Summary: Random number generators
 Name: perl-Math-Random
-Version: 0.70
+Version: 0.71
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,20 +49,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes INSTALL MANIFEST META.yml README
 %doc %{_mandir}/man3/Math::Random.3pm*
-#%dir %{perl_vendorarch}/auto/Math/
-#%{perl_vendorarch}/auto/Math/Random/
-#%dir %{perl_vendorarch}/Math/
-#%{perl_vendorarch}/Math/Random.pm
-#%{perl_vendorarch}/Math/example.pl
-%dir %{perl_sitearch}/auto/Math/
-%{perl_sitearch}/auto/Math/Random/
-%dir %{perl_sitearch}/Math/
-%{perl_sitearch}/Math/Random.pm
-%{perl_sitearch}/Math/example.pl
-%exclude %{perl_sitearch}/Math/test1.pl
-%exclude %{perl_sitearch}/Math/test2.pl
+%dir %{perl_vendorarch}/auto/Math/
+%{perl_vendorarch}/auto/Math/Random/
+%dir %{perl_vendorarch}/Math/
+%{perl_vendorarch}/Math/Random.pm
+%{perl_vendorarch}/Math/example.pl
+%exclude %{perl_vendorarch}/Math/test1.pl
+%exclude %{perl_vendorarch}/Math/test2.pl
 
 %changelog
+* Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 0.71-1
+- Updated to release 0.71.
+
 * Wed Nov 14 2007 Dag Wieers <dag@wieers.com> - 0.70-1
 - Updated to release 0.70.
 

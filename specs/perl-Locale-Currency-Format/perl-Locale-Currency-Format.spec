@@ -9,13 +9,13 @@
 
 Summary: Functions for formatting monetary values
 Name: perl-Locale-Currency-Format
-Version: 1.25
+Version: 1.26
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Locale-Currency-Format/
 
-Source: http://www.cpan.org/modules/by-module/Locale/Locale-Currency-Format-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Locale/Locale-Currency-Format-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Locale/Currency/Format.pm
 
 %changelog
+* Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 1.26-1
+- Updated to release 1.26.
+
 * Sat May 10 2008 Dag Wieers <dag@wieers.com> - 1.25-1
 - Updated to release 1.25.
 

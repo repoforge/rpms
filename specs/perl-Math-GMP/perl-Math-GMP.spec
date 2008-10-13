@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dries
 # Upstream: Chip Turner <cturner$pattern,net>
+# Upstream: Tels <tels$bloodgate,com>
+# Upstream: Greg Sabino Mullane <greg$turnstep,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +11,8 @@
 
 Summary: High speed arbitrary size integer math
 Name: perl-Math-GMP
-Version: 2.04
-Release: 1.2
+Version: 2.05
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-GMP/
@@ -20,6 +22,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+#BuildRequires: perl(Test::More) >= 0.61
+BuildRequires: perl(Test::More)
 BuildRequires: gmp-devel
 
 %description
@@ -45,13 +49,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*.3pm*
-%dir %{perl_vendorarch}/Math/
-%{perl_vendorarch}/Math/GMP.pm
+%doc COPYING.LIB Changes INSTALL LICENSE MANIFEST MANIFEST.SKIP META.yml README SIGNATURE
+%doc %{_mandir}/man3/Math::GMP.3pm*
 %dir %{perl_vendorarch}/auto/Math/
 %{perl_vendorarch}/auto/Math/GMP/
+%dir %{perl_vendorarch}/Math/
+%{perl_vendorarch}/Math/GMP.pm
 
 %changelog
+* Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 2.05-1
+- Updated to release 2.05.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.04-1
 - Initial package.

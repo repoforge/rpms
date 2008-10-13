@@ -7,9 +7,9 @@
 
 %define real_name Locale-Maketext-Lexicon
 
-Summary: Extract translatable strings from source
+Summary: Use other catalog formats in Maketext
 Name: perl-Locale-Maketext-Lexicon
-Version: 0.66
+Version: 0.71
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,14 +50,24 @@ find docs/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS Changes MANIFEST META.yml README SIGNATURE docs/
+%doc AUTHORS Changes MANIFEST MANIFEST.SKIP META.yml README docs/
 %doc %{_mandir}/man1/xgettext.pl.1*
-%doc %{_mandir}/man3/Locale::Maketext::*.3pm*
+%doc %{_mandir}/man3/Locale::Maketext::Extract.3pm*
+%doc %{_mandir}/man3/Locale::Maketext::Extract::*.3pm*
+%doc %{_mandir}/man3/Locale::Maketext::Lexicon.3pm*
+%doc %{_mandir}/man3/Locale::Maketext::Lexicon::*.3pm*
 %{_bindir}/xgettext.pl
 %dir %{perl_vendorlib}/Locale/
-%{perl_vendorlib}/Locale/Maketext/
+%dir %{perl_vendorlib}/Locale/Maketext/
+%{perl_vendorlib}/Locale/Maketext/Extract/
+%{perl_vendorlib}/Locale/Maketext/Extract.pm
+%{perl_vendorlib}/Locale/Maketext/Lexicon/
+%{perl_vendorlib}/Locale/Maketext/Lexicon.pm
 
 %changelog
+* Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 0.71-1
+- Updated to release 0.71.
+
 * Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 0.66-1
 - Updated to release 0.66.
 

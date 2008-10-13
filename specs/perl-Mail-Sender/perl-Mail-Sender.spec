@@ -1,17 +1,18 @@
 # $Id$
 # Authority: dries
-# Upstream: Jan Krynicky (=Jan Krynicky) <Jenda$Krynicky,cz>
+# Upstream: Jan Krynicky <Jenda$Krynicky,cz>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Mail-Sender
+%define real_version 0.008016
 
 Summary: Module for sending mails with attachments
 Name: perl-Mail-Sender
-Version: 0.8.13
+Version: 0.8.16
 Release: 1
-License: Other
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-Sender/
 
@@ -37,21 +38,26 @@ echo "N" | %{__make} %{?_smp_mflags}
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 %{__rm} -f %{buildroot}%{perl_vendorlib}/Mail/Sender/CType/Win32.pm
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%{_mandir}/man3/Mail::Sender.3pm*
-%{perl_vendorlib}/Mail/Sender.pm
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Mail::Sender.3pm*
+%dir %{perl_vendorlib}/Mail/
 %{perl_vendorlib}/Mail/Sender/
+%{perl_vendorlib}/Mail/Sender.pm
 
 %changelog
+* Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 0.8.16-1
+- Updated to release 0.8.16.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.13-1
 - Updated to release 0.8.13.
 

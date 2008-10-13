@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Mark Pfeiffer <markpf$mlp-consulting,com,au>
+# Upstream: Mark Pfeiffer <cpan$mlp-consulting,com,au>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,9 +9,9 @@
 
 Summary: Automatically archive and rotate logfiles
 Name: perl-Log-Dispatch-FileRotate
-Version: 1.16
+Version: 1.18
 Release: 1
-License: Unknown
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Dispatch-FileRotate/
 
@@ -39,19 +39,26 @@ with additions.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/Log/Dispatch/FileRotate/.packlist
+
+### Clean up buildroot
+find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Log::Dispatch::FileRotate.3pm*
+%dir %{perl_vendorlib}/Log/
+%dir %{perl_vendorlib}/Log/Dispatch/
+#%{perl_vendorlib}/Log/Dispatch/FileRotate/
 %{perl_vendorlib}/Log/Dispatch/FileRotate.pm
 
 %changelog
+* Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 1.18-1
+- Updated to release 1.18.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.16-1
 - Updated to release 1.16.
 

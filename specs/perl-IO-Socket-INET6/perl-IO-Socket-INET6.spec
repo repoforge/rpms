@@ -9,7 +9,7 @@
 
 Summary: Object interface for AF_INET|AF_INET6 domain sockets
 Name: perl-IO-Socket-INET6
-Version: 2.55
+Version: 2.56
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IO/Socket/INET6.pm
 
 %changelog
+* Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 2.56-1
+- Updated to release 2.56.
+
 * Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 2.55-1
 - Updated to release 2.55.
 

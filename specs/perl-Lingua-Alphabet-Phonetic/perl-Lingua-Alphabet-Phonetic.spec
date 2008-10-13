@@ -7,9 +7,9 @@
 
 %define real_name Lingua-Alphabet-Phonetic
 
-Summary: Map ABC to phonetic alphabets
+Summary: Map ABC's to phonetic alphabets
 Name: perl-Lingua-Alphabet-Phonetic
-Version: 0.102
+Version: 0.103
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -61,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Lingua/Alphabet/Phonetic.pm
 
 %changelog
+* Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 0.103-1
+- Updated to release 0.103.
+
 * Tue Jun 24 2008 Dag Wieers <dag@wieers.com> - 0.102-1
 - Updated to release 0.102.
 

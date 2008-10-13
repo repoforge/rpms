@@ -8,7 +8,7 @@
 
 Summary: Perl module for accessing Logical Volume Manager(LVM) data structures
 Name: perl-Linux-LVM
-Version: 0.13
+Version: 0.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,7 +46,7 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README examples/
+%doc Changes MANIFEST META.yml README examples/
 %doc %{_mandir}/man3/Linux::LVM.3pm*
 %dir %{perl_vendorlib}/Linux/
 %{perl_vendorlib}/Linux/LVM.pm
@@ -54,5 +54,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/auto/Linux/LVM/
 
 %changelog
+* Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 0.14-1
+- Updated to release 0.14.
+
 * Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 0.13-1
 - Initial package. (using DAR)

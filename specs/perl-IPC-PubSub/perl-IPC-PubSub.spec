@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Audrey Tang <cpan@audreyt.org>
+# Upstream: Audrey Tang <cpan$audreyt,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Interprocess Publish/Subscribe channels
 Name: perl-IPC-PubSub
-Version: 0.27
+Version: 0.28
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IPC/PubSub.pm
 
 %changelog
+* Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 0.28-1
+- Updated to release 0.28.
+
 * Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 0.27-1
 - Initial package. (using DAR)

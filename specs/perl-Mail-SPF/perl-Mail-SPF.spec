@@ -8,9 +8,9 @@
 
 %define real_name Mail-SPF
 
-Summary: Perl module that implements Sender Policy Framework
+Summary: Object-oriented implementation of Sender Policy Framework
 Name: perl-Mail-SPF
-Version: 2.005
+Version: 2.006
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -28,7 +28,7 @@ BuildRequires: perl(Test::More)
 Requires: perl >= 0:5.6
 
 %description
-Mail-SPF is a Perl module that implements Sender Policy Framework.
+An object-oriented implementation of Sender Policy Framework.
 
 %prep
 %setup -n %{real_name}-v%{version}
@@ -49,15 +49,19 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES INSTALL LICENSE MANIFEST META.yml README SIGNATURE TODO
+%doc CHANGES INSTALL LICENSE MANIFEST MANIFEST.SKIP META.yml README SIGNATURE TODO
 %doc %{_mandir}/man1/spfquery.1*
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Mail::SPF.3pm*
+%doc %{_mandir}/man3/Mail::SPF::*.3pm*
 %{_bindir}/spfquery
 %dir %{perl_vendorlib}/Mail/
 %{perl_vendorlib}/Mail/SPF/
 %{perl_vendorlib}/Mail/SPF.pm
 
 %changelog
+* Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 2.006-1
+- Updated to release 2.006.
+
 * Sun Aug 12 2007 Dag Wieers <dag@wieers.com> - 2.005-1
 - Updated to release 2.005.
 
