@@ -9,7 +9,7 @@
 
 Summary: Produces HTML tables
 Name: perl-HTML-Table
-Version: 2.06
+Version: 2.08a
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -58,19 +58,20 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README test.pl
+%doc %{_mandir}/man3/HTML::Table.3pm*
+%dir %{perl_vendorlib}/HTML/
 %{perl_vendorlib}/HTML/Table.pm
 
 %changelog
+* Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 2.08a.
+- Updated to release 2.08a.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 2.06-1
 - Updated to release 2.06.
 
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 2.05-1
 - Updated to release 2.05.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.03-1.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.03-1
 - Updated to release 2.03.

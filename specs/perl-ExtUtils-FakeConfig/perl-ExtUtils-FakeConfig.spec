@@ -9,7 +9,7 @@
 
 Summary: Allows overriding some config values
 Name: perl-ExtUtils-FakeConfig
-Version: 0.10
+Version: 0.11
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Config_m.pod
 
 %changelog
+* Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 0.11-1
+- Updated to release 0.11.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Updated to release 0.10.
 

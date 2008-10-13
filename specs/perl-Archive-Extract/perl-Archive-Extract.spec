@@ -9,7 +9,7 @@
 
 Summary: Generic archive extracting mechanism
 Name: perl-Archive-Extract
-Version: 0.26
+Version: 0.28
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Archive/Extract.pm
 
 %changelog
+* Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 0.28-1
+- Updated to release 0.28.
+
 * Sun Feb 17 2008 Dag Wieers <dag@wieers.com> - 0.26-1
 - Updated to release 0.26.
 
