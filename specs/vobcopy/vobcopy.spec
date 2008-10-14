@@ -3,7 +3,7 @@
 
 Summary: Utility to copy DVD .vob files to disk
 Name: vobcopy
-Version: 1.1.1
+Version: 1.1.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -43,12 +43,15 @@ matter much.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changelog FAQ README THANKS TODO *.txt
+%doc Changelog README TODO *.txt
 %doc %{_mandir}/man1/vobcopy.1*
 %doc %lang(de) %{_mandir}/de/man1/vobcopy.1*
 %{_bindir}/vobcopy
 
 %changelog
+* Sun Oct 12 2008 Dag Wieers <dag@wieers.com> - 1.1.2-1
+- Updated to release 1.1.2.
+
 * Mon Mar 03 2008 Dag Wieers <dag@wieers.com> - 1.1.1-1
 - Updated to release 1.1.1.
 

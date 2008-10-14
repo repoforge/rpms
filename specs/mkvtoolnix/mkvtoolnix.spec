@@ -5,7 +5,7 @@
 
 Summary: Set of tools to create, alter and inspect Matroska files
 Name: mkvtoolnix
-Version: 2.3.0
+Version: 2.4.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -101,11 +101,9 @@ touch --no-create %{_datadir}/icons/hicolor || :
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
-%doc %{_mandir}/man1/base64tool.1*
 %doc %{_mandir}/man1/mkvextract.1*
 %doc %{_mandir}/man1/mkvinfo.1*
 %doc %{_mandir}/man1/mkvmerge.1*
-%{_bindir}/base64tool
 %{_bindir}/mkvextract
 %{_bindir}/mkvinfo
 %{_bindir}/mkvmerge
@@ -120,6 +118,9 @@ touch --no-create %{_datadir}/icons/hicolor || :
 %{_datadir}/mkvtoolnix/
 
 %changelog
+* Sun Oct 12 2008 Dag Wieers <dag@wieers.com> - 2.4.0-1
+- Updated to release 2.4.0.
+
 * Mon Sep 15 2008 Dag Wieers <dag@wieers.com> - 2.3.0-1
 - Updated to release 2.3.0.
 

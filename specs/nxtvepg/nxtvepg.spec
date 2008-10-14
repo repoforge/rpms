@@ -28,7 +28,7 @@
 
 Summary: NexTView EPG decoder and browser
 Name: nxtvepg
-Version: 2.8.0
+Version: 2.8.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -82,7 +82,8 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall \
     resdir="%{buildroot}%{_prefix}/X11R6/%{_lib}/X11" \
-    SYS_DBDIR="%{buildroot}%{_localstatedir}/tmp/nxtvdb"
+    SYS_DBDIR="%{buildroot}%{_localstatedir}/tmp/nxtvdb" \
+    cfgdir="%{buildroot}%{_datadir}/nxtvepg/"
 
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/nxtvepg.png
 
@@ -107,11 +108,15 @@ EOF
 %{_bindir}/nxtvepg
 %{_bindir}/nxtvepgd
 %{_datadir}/applications/%{desktop_vendor}-nxtvepg.desktop
+%{_datadir}/nxtvepg/
 %{_datadir}/pixmaps/nxtvepg.png
 %{_localstatedir}/tmp/nxtvdb/
 %{_prefix}/X11R6/%{_lib}/X11/app-defaults/*
 
 %changelog
+* Sun Oct 12 2008 Dag Wieers <dag@wieers.com> - 2.8.1-1
+- Updated to release 2.8.1.
+
 * Tue Jan 08 2008 Dag Wieers <dag@wieers.com> - 2.8.0-1
 - Updated to release 2.8.0.
 

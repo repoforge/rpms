@@ -4,7 +4,7 @@
 
 Summary: HTTP based time synchronization tool
 Name: htpdate
-Version: 1.0.3
+Version: 1.0.4
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -161,6 +161,9 @@ fi
 %{_bindir}/htpdate
 
 %changelog
+* Tue Oct 14 2008 Dag Wieers <dag@wieers.com> - 1.0.4-1
+- Updated to release 1.0.4.
+
 * Wed Sep 03 2008 Dag Wieers <dag@wieers.com> - 1.0.3-1
 - Updated to release 1.0.3.
 
