@@ -9,19 +9,23 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-%define real_version 3.52-pre10
-Version: 3.52
-Release: 0.pre10
+%define real_version 3.73-pre3
+Version: 3.73
+Release: 0.pre3
 License: GPL
 Group: Applications/System
 URL: http://syslinux.zytor.com/
 
 Source: ftp://ftp.kernel.org/pub/linux/utils/boot/syslinux/Testing/syslinux-%{real_version}.tar.bz2
+Patch1: syslinux-3.72-define.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386 x86_64
 BuildRequires: nasm, perl, netpbm-progs
 Requires: mtools
+
+Obsoletes: syslinux-devel <= %{version}-%{release}
+Provides: syslinux-devel = %{version}-%{release}
 
 %description
 SYSLINUX is a suite of bootloaders, currently supporting DOS FAT
@@ -31,6 +35,7 @@ MEMDISK, which loads legacy operating systems from these media.
 
 %prep
 %setup -n %{name}-%{real_version}
+%patch1 -p1
 
 %build
 %{__make} clean
@@ -38,13 +43,16 @@ MEMDISK, which loads legacy operating systems from these media.
 
 %install
 %{__rm} -rf %{buildroot}
-#%makeinstall install-lib \
-%{__make} install install-lib \
-	INSTALLROOT="%{buildroot}" \
-	BINDIR="%{_bindir}" \
-	LIBDIR="%{_prefix}/lib" \
-	INCDIR="%{_includedir}"
-%{__install} -p -m0755 mkdiskimage sys2ansi.pl keytab-lilo.pl %{buildroot}%{_prefix}/lib/syslinux/
+%{__make} install-all \
+    INSTALLROOT="%{buildroot}" \
+    BINDIR="%{_bindir}" \
+    MANDIR="%{_mandir}" \
+    SBINDIR="%{_sbindir}"
+#    INCDIR="%{_includedir}" \
+#    LIBDIR="%{_prefix}/lib" \
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}/tftpboot/
 
 ### Clean up docroot
 %{__make} -C sample tidy
@@ -54,17 +62,63 @@ MEMDISK, which loads legacy operating systems from these media.
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS COPYING NEWS README* TODO *.doc com32/modules/mboot.doc memdisk/memdisk.doc sample/
-%{_sbindir}/extlinux
+%doc BUGS COPYING NEWS README TODO doc/* menu/ sample/
+%doc %{_mandir}/man1/gethostip.1*
+%doc %{_mandir}/man1/lss16toppm.1*
+%doc %{_mandir}/man1/ppmtolss16.1*
+%doc %{_mandir}/man1/syslinux.1*
+%doc %{_mandir}/man1/syslinux2ansi.1*
 %{_bindir}/gethostip
-%{_bindir}/md5pass
+%{_bindir}/isohybrid
+%{_bindir}/keytab-lilo
 %{_bindir}/lss16toppm
+%{_bindir}/md5pass
+%{_bindir}/mkdiskimage
 %{_bindir}/ppmtolss16
 %{_bindir}/sha1pass
 %{_bindir}/syslinux
-%{_prefix}/lib/syslinux/
+%{_bindir}/syslinux2ansi
+%{_datadir}/syslinux/
+%{_sbindir}/extlinux
+/boot/extlinux/
 
 %changelog
+* Wed Oct 15 2008 Dag Wieers <dag@wieers.com> - 3.73-0.pre3
+- Updated to release 3.73pre3.
+
+* Sun Sep 28 2008 Dag Wieers <dag@wieers.com> - 3.72-2
+- Fixed Patch1.
+
+* Fri Sep 26 2008 Dag Wieers <dag@wieers.com> - 3.72-1
+- Updated to release 3.72.
+
+* Fri Aug 01 2008 Dag Wieers <dag@wieers.com> - 3.71-1
+- Updated to release 3.71.
+
+* Fri Jul 04 2008 Dag Wieers <dag@wieers.com> - 3.70-1
+- Updated to release 3.70.
+
+* Sat Apr 12 2008 Dag Wieers <dag@wieers.com> - 3.63-1
+- Updated to release 3.63.
+
+* Sun Mar 02 2008 Dag Wieers <dag@wieers.com> - 3.62-1
+- Updated to release 3.62.
+
+* Mon Feb 04 2008 Dag Wieers <dag@wieers.com> - 3.61-1
+- Updated to release 3.61.
+
+* Fri Jan 18 2008 Dag Wieers <dag@wieers.com> - 3.60-1
+- Updated to release 3.60.
+
+* Fri Jan 18 2008 Dag Wieers <dag@wieers.com> - 3.55-1
+- Updated to release 3.55.
+
+* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 3.53-1
+- Updated to release 3.53.
+
+* Wed Sep 26 2007 Dag Wieers <dag@wieers.com> - 3.52-1
+- Updated to release 3.52.
+
 * Sat Sep 08 2007 Dag Wieers <dag@wieers.com> - 3.51-2
 - Fixed the location of syslinux on x86_64. (Matt Hyclak)
 

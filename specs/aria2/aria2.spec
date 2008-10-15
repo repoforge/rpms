@@ -4,7 +4,7 @@
 
 Summary: Download utility with BitTorrent and Metalink support
 Name: aria2
-Version: 0.16.0
+Version: 0.16.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -25,7 +25,6 @@ Supported protocols are HTTP/HTTPS/FTP/BitTorrent/Metalink.
 %build
 ### Add correct CFLAGS for EL3 and RH9
 %{expand: %%define optflags %{optflags} %(pkg-config --cflags openssl)}
-#export CPPFLAGS="-I/usr/include/libxml2 $(pkg-config --cflags openssl)"
 %configure \
     --disable-xmltest \
     --enable-metalink
@@ -48,6 +47,9 @@ Supported protocols are HTTP/HTTPS/FTP/BitTorrent/Metalink.
 %{_bindir}/aria2c
 
 %changelog
+* Wed Oct 15 2008 Dag Wieers <dag@wieers.com> - 0.16.1-1
+- Updated to release 0.16.1.
+
 * Tue Oct  7 2008 Dries Verachtert <dries@ulyssis.org> - 0.16.0-1
 - Updated to release 0.16.0.
 

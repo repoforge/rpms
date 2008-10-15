@@ -13,13 +13,14 @@
 
 Summary: Flash player
 Name: gnash
-Version: 0.8.3
+Version: 0.8.4
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.gnu.org/software/gnash/
 
-Source: http://ftp.gnu.org/gnu/gnash/%{version}/gnash-%{version}.tar.bz2
+#Source: http://ftp.gnu.org/gnu/gnash/%{version}/gnash-%{version}.tar.bz2
+Source0: http://ftp.gnu.org/gnu/gnash/0.8.4/gnash-0.8.4.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel
@@ -78,7 +79,7 @@ source %{_sysconfdir}/profile.d/qt.sh
     --disable-rpath \
     --disable-static \
     --enable-dom \
-    --enable-extensions \
+    --enable-extensions="ALL" \
     --enable-glext \
 %{!?_without_gstreamer:--enable-gstreamer} \
 %{?_without_gstreamer:--disable-gstreamer} \
@@ -122,6 +123,7 @@ source %{_sysconfdir}/profile.d/qt.sh
 %config(noreplace) %{_sysconfdir}/gnashpluginrc
 %config(noreplace) %{_sysconfdir}/gnashrc
 %{_bindir}/dumpshm
+%{_bindir}/flvdumper
 %{_bindir}/gnash
 %{_bindir}/gtk-gnash
 %{!?_without_kde32:%{_bindir}/kde-gnash}
@@ -129,22 +131,9 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_bindir}/gprocessor
 %{_bindir}/soldumper
 %{_datadir}/gnash/
-%{_libdir}/gnash/libgnashamf*.so*
-#%{_libdir}/gnash/libgnashbackend*.so*
-%{_libdir}/gnash/libgnashbase*.so*
-#%{_libdir}/gnash/libgnashgeo*.so*
-%{_libdir}/gnash/libgnashmedia*.so*
-%{_libdir}/gnash/libgnashnet*.so*
-%{_libdir}/gnash/libgnashserver*.so*
-%{_libdir}/gnash/libmozsdk*.so*
-%exclude %{_libdir}/gnash/libgnashamf.la
-#%exclude %{_libdir}/gnash/libgnashbackend.la
-%exclude %{_libdir}/gnash/libgnashbase.la
-#%exclude %{_libdir}/gnash/libgnashgeo.la
-%exclude %{_libdir}/gnash/libgnashmedia.la
-%exclude %{_libdir}/gnash/libgnashnet.la
-%exclude %{_libdir}/gnash/libgnashserver.la
-%exclude %{_libdir}/gnash/libmozsdk.la
+%{_libdir}/gnash/
+%exclude %{_libdir}/gnash/*.la
+%exclude %{_libdir}/gnash/plugins/*.la
 
 %if %{!?_without_kde32:1}0
 %files -n konqueror-gnash
@@ -160,12 +149,14 @@ source %{_sysconfdir}/profile.d/qt.sh
 %if %{!?_without_mozilla:1}0
 %files -n mozilla-gnash
 %defattr(-, root, root, 0755)
-%dir %{_libdir}/gnash/
 %dir %{_libdir}/mozilla/
 %{_libdir}/mozilla/plugins/
 %endif
 
 %changelog
+* Tue Oct 14 2008 Dag Wieers <dag@wieers.com> - 0.8.4-1
+- Updated to release 0.8.4.
+
 * Wed Jun 18 2008 Dag Wieers <dag@wieers.com> - 0.8.3-1
 - Updated to release 0.8.3.
 
