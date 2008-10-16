@@ -17,7 +17,7 @@
 
 Summary: Lightning fast webserver with light system requirements
 Name: lighttpd
-Version: 1.4.19
+Version: 1.4.20
 Release: 1
 License: BSD
 Group: System Environment/Daemons
@@ -195,6 +195,9 @@ fi
 %{_libdir}/lighttpd/mod_fastcgi.so
 
 %changelog
+* Wed Oct 15 2008 Tomas Brandysky <shamot@kilian.no-ip.org> - 1.4.20
+- Updated to release 1.4.20.
+
 * Thu Apr 10 2008 Dag Wieers <dag@wieers.com> - 1.4.19-1
 - Updated to release 1.4.19.
 
