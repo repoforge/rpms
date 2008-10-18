@@ -3,7 +3,7 @@
 
 Summary: Netfilter conntrack userspace library
 Name: libnetfilter_conntrack
-Version: 0.0.50
+Version: 0.0.97
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -51,20 +51,22 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING
-%{_bindir}/ctnl_test
-%{_bindir}/new_api_test
-%{_libdir}/libnetfilter_conntrack.so.*
-%{_libdir}/libnetfilter_conntrack/nfct_*.so
+#%{_libdir}/libnetfilter_conntrack.so.*
+#%{_libdir}/libnetfilter_conntrack/nfct_*.so
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/libnetfilter_conntrack/libnetfilter_conntrack*.h
 %{_includedir}/libnetfilter_conntrack/linux_nfnetlink_conntrack.h
 %{_libdir}/libnetfilter_conntrack.so
+%{_libdir}/libnetfilter_conntrack.so.1
+%{_libdir}/libnetfilter_conntrack.so.1.2.0
 %exclude %{_libdir}/libnetfilter_conntrack.la
 %{_libdir}/pkgconfig/libnetfilter_conntrack.pc
-%exclude %{_libdir}/libnetfilter_conntrack/nfct_*.la
 
 %changelog
+* Sat Oct 18 2008 Christoph Maser <cmr@financial.com> 0.0.97-1
+- update version 0.0.97
+
 * Thu Mar 22 2007 Dag Wieers <dag@wieers.com> - 0.0.50-1
 - Initial package. (using DAR)
