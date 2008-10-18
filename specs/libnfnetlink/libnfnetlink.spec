@@ -3,7 +3,7 @@
 
 Summary: Netfilter netlink userspace library
 Name: libnfnetlink
-Version: 0.0.25
+Version: 0.0.39
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -54,10 +54,14 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %{_includedir}/libnfnetlink/libnfnetlink.h
 %{_includedir}/libnfnetlink/linux_nfnetlink.h
+%{_includedir}/libnfnetlink/linux_nfnetlink_compat.h
 %exclude %{_libdir}/libnfnetlink.la
 %{_libdir}/libnfnetlink.so
 %{_libdir}/pkgconfig/libnfnetlink.pc
 
 %changelog
+* Sat Oct 18 2008 Christoph Maser <cmr@financial.com> - 0.0.39-1
+- Update to version 0.0.39
+
 * Thu Mar 22 2007 Dag Wieers <dag@wieers.com> - 0.0.25-1
 - Initial package. (using DAR)
