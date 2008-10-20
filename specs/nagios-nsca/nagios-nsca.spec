@@ -10,7 +10,7 @@
 Summary: Nagios Service Check Acceptor
 Name: nagios-nsca
 Version: 2.7.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.nagios.org/
@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{?!rh62:BuildRequires: libmcrypt-devel}
 Provides: nsca
 Obsoletes: nsca, netsaint-nsca
-Requires: bash, nagios, libmcrypt, xinetd
+Requires: bash, nagios, libmcrypt, xinetd, nagios-nsca-client
 
 %description
 The purpose of this addon is to allow you to execute NetSaint/Nagios
@@ -191,11 +191,13 @@ fi
 %config %{_initrddir}/nsca
 #%dir %{_localstatedir}/spool/nagios/
 %{_sbindir}/nsca
-%{_sbindir}/send_nsca
 
 %defattr(-, nagios, apache, 2755)
 
 %changelog
+* Mon Oct 20 2008 Christoph Maser <cmr@financial.com> - 2.7.2-2
+- Remove client files from nagios-nsca package and make it depend on nagios-nsca-client
+
 * Fri Oct 17 2008 Christoph Maser <cmr@financial.com> - 2.7.2-1
 - Updated to release 2.7.2
 - Add -client subpackage
