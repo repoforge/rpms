@@ -9,15 +9,14 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-%define real_version 3.73-pre3
+%define real_version 3.73-pre4
 Version: 3.73
-Release: 0.pre3
+Release: 0.pre4
 License: GPL
 Group: Applications/System
 URL: http://syslinux.zytor.com/
 
 Source: ftp://ftp.kernel.org/pub/linux/utils/boot/syslinux/Testing/syslinux-%{real_version}.tar.bz2
-Patch1: syslinux-3.72-define.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386 x86_64
@@ -35,7 +34,6 @@ MEMDISK, which loads legacy operating systems from these media.
 
 %prep
 %setup -n %{name}-%{real_version}
-%patch1 -p1
 
 %build
 %{__make} clean
@@ -83,6 +81,9 @@ MEMDISK, which loads legacy operating systems from these media.
 /boot/extlinux/
 
 %changelog
+* Thu Oct 16 2008 Dag Wieers <dag@wieers.com> - 3.73-0.pre4
+- Updated to release 3.73pre4.
+
 * Wed Oct 15 2008 Dag Wieers <dag@wieers.com> - 3.73-0.pre3
 - Updated to release 3.73pre3.
 

@@ -10,7 +10,7 @@
 
 Summary: ARP scanning and fingerprinting tool
 Name: arp-scan
-Version: 1.6
+Version: 1.7
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -63,6 +63,9 @@ fingerprinted based on how it responds to non-standard ARP packets.
 %{_datadir}/arp-scan/
 
 %changelog
+* Wed Oct 15 2008 Dag Wieers <dag@wieers.com> - 1.7-1
+- Updated to release 1.7.
+
 * Sun Apr 15 2007 Dag Wieers <dag@wieers.com> - 1.6-1
 - Updated to release 1.6.
 

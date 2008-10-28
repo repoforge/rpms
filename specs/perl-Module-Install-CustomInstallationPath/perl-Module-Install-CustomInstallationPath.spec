@@ -7,11 +7,11 @@
 
 %define real_name Module-Install-CustomInstallationPath
 
-Summary: Module::Install extension for custom installation directories
+Summary: Module::Install extension that allows the user to interactively specify custom installation directories
 Name: perl-Module-Install-CustomInstallationPath
-Version: 0.1030
-Release: 1.2
-License: GPL
+Version: 0.1040
+Release: 1
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Install-CustomInstallationPath/
 
@@ -21,7 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)-File-HomeDir
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::HomeDir)
 
 %description
 A Module::Install extension that allows the user to interactively specify
@@ -46,13 +47,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README
-%doc %{_mandir}/man3/*
+%doc CHANGES LICENSE MANIFEST META.yml README
+%doc %{_mandir}/man3/Module::Install::CustomInstallationPath.3pm*
+%dir %{perl_vendorlib}/Module/
+%dir %{perl_vendorlib}/Module/Install/
+#%{perl_vendorlib}/Module/Install/CustomInstallationPath/
 %{perl_vendorlib}/Module/Install/CustomInstallationPath.pm
 
 %changelog
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.1030-1.2
-- Rebuild for Fedora Core 5.
+* Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 0.1040-1
+- Updated to release 0.1040.
 
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.1030-1
 - Initial package.

@@ -9,7 +9,7 @@
 
 Summary: Meta Object Protocol for Perl 5
 Name: perl-Class-MOP
-Version: 0.66
+Version: 0.67
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -61,6 +61,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/metaclass.pm
 
 %changelog
+* Wed Oct 15 2008 Dag Wieers <dag@wieers.com> - 0.67-1
+- Updated to release 0.67.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.66-1
 - Updated to release 0.66.
 
