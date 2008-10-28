@@ -24,17 +24,19 @@
 
 Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
-Version: 0.5.15lorg3.2
+Version: 0.5.15lorg3.94a
 Release: 3
 License: GPL
 Group: System Environment/Base
 URL: http://apt-rpm.org/
 
-Source0: http://apt-rpm.org/releases/apt-%{version}.tar.bz2
+#Source0: http://apt-rpm.org/releases/apt-%{version}.tar.bz2
+Source0: http://apt-rpm.org/testing/apt-%{version}.tar.bz2
 Source19: comps2prio.xsl
 Source51: upgradevirt.lua
 Patch0: apt-0.5.15lorg3.2-ppc.patch
 Patch1: apt-0.5.15lorg3.x-cache-corruption.patch
+Patch3: apt-0.5.15lorg3.94-gcc43.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison
@@ -47,6 +49,7 @@ BuildRequires: libxml2-devel >= 2.6.16
 BuildRequires: ncurses-devel
 BuildRequires: readline-devel
 BuildRequires: rpm-devel >= 3.0.5
+BuildRequires: sqlite-devel
 BuildRequires: zlib-devel
 %{!?_without_elfutils:BuildRequires: beecrypt-devel, elfutils-devel}
 %{?_without_elfutils:BuildRequires: libelf}
@@ -97,6 +100,7 @@ to access the APT library interface.
 %setup
 %patch0 -p1 -b .ppc
 %patch1 -p0 -b .mmap
+%patch3 -p1 -b .gcc43
 
 ### Fix docs to reference correct paths
 %{__perl} -pi -e '
@@ -192,55 +196,6 @@ EOF
 %{!?rhl:#}repomd http://ayo.freshrpms.net redhat/$(VERSION)/$(ARCH)/updates
 #rpm http://ayo.freshrpms.net redhat/$(VERSION)/$(ARCH) os updates
 EOF
-
-#%{__cat} <<EOF >apt.conf
-#APT {
-#    Clean-Installed "false";
-#    Get {
-#        Assume-Yes "false";
-#        Download-Only "false";
-#        Show-Upgraded "true";
-#        Fix-Broken "false";
-#        Ignore-Missing "false";
-#        Compile "false";
-#    };
-#    DistroVersion "$version";
-#};
-#
-#Acquire {
-#    Retries "0";
-#    HTTP {
-#        Proxy ""; // http://user:pass@host:port/
-#    };
-#};
-#
-#RPM {
-#    Ignore { };
-#    Hold { };
-#    Options { };
-#    Install-Options "";
-#    Erase-Options "";
-#//  Pre-Install-Pkgs { "/usr/bin/apt-sigchecker"; };
-#    Source {
-#        Build-Command "rpmbuild --rebuild";
-#    };
-#    Allow-Duplicated {
-#        "^kernel$";
-#        "^kernel-bigmem$";
-#        "^kernel-devel$";
-#        "^kernel-enterprise$";
-#        "^kernel-headers$";
-#        "^kernel-hugemem$";
-#        "^kernel-largesmp$";
-#        "^kernel-smp$";
-#        "^kernel-source$";
-#        "^kernel-unsupported$";
-#        "^kernel-xen$";
-#        "^gpg-pubkey$";
-#    };
-#    Order "true";
-#};
-#EOF
 
 %{__cat} <<EOF >apt.conf
 // User customizable configuration
@@ -452,8 +407,6 @@ EOF
 %find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/apt/{apt.conf.d,gpg,sources.list.d}/
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/cache/apt/{archives/partial,genpkglist,gensrclist}/
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/apt/lists/partial/
 %{__install} -d -m0755 %{buildroot}%{_libdir}/apt/scripts/
 %{__install} -Dp -m0644 apt.conf %{buildroot}%{_sysconfdir}/apt/apt.conf
 %{__install} -Dp -m0644 default.conf %{buildroot}%{_sysconfdir}/apt/apt.conf.d/default.conf
@@ -526,8 +479,7 @@ fi
 #config(noreplace) %{_sysconfdir}/apt/sources.list
 %config(noreplace) %{_sysconfdir}/apt/vendors.list
 %config %{_sysconfdir}/apt/rpmpriorities
-%config(noreplace) %{_sysconfdir}/apt/apt.conf.d/
-%config %{_sysconfdir}/apt/apt.conf.d/default.conf
+%config %{_sysconfdir}/apt/apt.conf.d/
 %config(noreplace) %{_sysconfdir}/apt/gpg/
 %config(noreplace) %{_sysconfdir}/apt/sources.list.d/
 %config(noreplace) %{_sysconfdir}/sysconfig/apt
@@ -544,7 +496,7 @@ fi
 %{_bindir}/gensrclist
 %{_datadir}/apt/
 %{_libdir}/apt/
-%{_libdir}/libapt-pkg-*.so.*
+%{_libdir}/libapt-pkg.so.*
 %{_localstatedir}/cache/apt/
 %{_localstatedir}/lib/apt/
 
@@ -552,6 +504,7 @@ fi
 %defattr(-, root, root, 0755)
 %{_includedir}/apt-pkg/
 %{_libdir}/libapt-pkg.so
+%{_libdir}/pkgconfig/libapt-pkg.pc
 %exclude %{_libdir}/libapt-pkg.la
 
 %if %{!?_without_python22:1}0
@@ -564,12 +517,16 @@ fi
 %endif
 
 %changelog
-* Thu Jun 12 2008 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.2-3
+* Thu Jun 12 2008 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.94a-2
 - Improved default configuration.
 - Added pkglog.lua by default.
 
-* Wed Jun 11 2008 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.2-2
+* Wed Jun 11 2008 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.94a-1
+- Updated to release 0.5.15lorg3.94a.
+
+* Wed Jun 11 2008 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.94-1
 - Added patches from Fedora.
+- Updated to release 0.5.15lorg3.94.
 
 * Fri Jun 23 2006 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.2-1
 - Updated to release 0.5.15lorg3.2.
