@@ -7,12 +7,14 @@
 Summary: Find common bugs in Python source code
 Name: pychecker
 Version: 0.8.17
-Release: 2.2
+Release: 3
 License: BSD
 Group: Development/Tools
 URL: http://pychecker.sourceforge.net/
 
 Source: http://dl.sf.net/pychecker/pychecker-%{version}.tar.gz
+Patch0: pychecker-0.8.17-root.patch
+Patch1: pychecker-0.8.17-spe.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
@@ -28,6 +30,8 @@ parameters to a function/method, and not using a module/variable.
 
 %prep
 %setup
+%patch0 -p1 -b .root
+%patch1 -p1 -b .spe
 
 %build
 %{__python} setup.py build
@@ -57,8 +61,8 @@ parameters to a function/method, and not using a module/variable.
 %exclude %{python_sitelib}/pychecker/VERSION
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.17-2.2
-- Rebuild for Fedora Core 5.
+* Fri Oct 31 2008 Dag Wieers <dag@wieers.com> - 0.8.17-3
+- Added Fedora patches.
 
 * Fri Mar 10 2006 Dag Wieers <dag@wieers.com> - 0.8.17-2
 - Added .pyo ghost files, renamed to pychecker.

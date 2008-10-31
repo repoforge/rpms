@@ -7,9 +7,9 @@
 Summary: Scan logfiles and ban ip addresses with too many password failures
 Name: fail2ban
 Version: 0.8.2
-Release: 2
+Release: 3
 License: GPL
-Group: ystem Environment/Daemons
+Group: System Environment/Daemons
 URL: http://fail2ban.sourceforge.net/
 
 Source: http://dl.sf.net/fail2ban/fail2ban-%{version}.tar.bz2
@@ -93,6 +93,9 @@ fi
 %dir %{_var}/run/fail2ban
 
 %changelog
+* Wed Oct 29 2008 Dag Wieers <dag@wieers.com> - 0.8.2-3
+- Fix group.
+
 * Sat Apr 12 2008 Dries Verachtert <dries@ulyssis.org> - 0.8.2-2
 - Fix location of fail2ban.sock file in init script, thanks to John Thomas.
 

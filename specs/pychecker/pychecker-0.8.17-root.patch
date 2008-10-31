@@ -1,0 +1,12 @@
+--- pychecker-0.8.17/setup.py.root	2006-02-04 04:57:49.000000000 +0100
++++ pychecker-0.8.17/setup.py	2006-02-04 04:59:00.000000000 +0100
+@@ -134,6 +134,9 @@
+          script_path = get_script_path(self.build_dir)
+          if script_path in scripts:
+             package_path = os.path.join(install_lib, "pychecker")
++            root = self.distribution.get_command_obj("install").root
++            if root:
++               package_path = package_path[len(root):]
+             self.execute(func=create_script, 
+                          args=[script_path, package_path], 
+                          msg="filling in script %s" % script_path)

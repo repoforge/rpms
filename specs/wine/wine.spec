@@ -48,7 +48,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.0
+Version: 1.0.1
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -884,6 +884,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Fri Oct 31 2008 Dag Wieers <dag@wieers.com> - 1.0.1-1
+- Updated to release 1.0.1.
+
 * Tue Jun 17 2008 Dag Wieers <dag@wieers.com> - 1.0-1
 - Updated to release 1.0.
 

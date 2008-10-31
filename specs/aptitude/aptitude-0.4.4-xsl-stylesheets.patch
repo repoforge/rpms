@@ -1,0 +1,61 @@
+--- aptitude-0.4.4/doc/cs/Makefile.am.bak	2007-04-07 12:41:22.333523353 +0200
++++ aptitude-0.4.4/doc/cs/Makefile.am	2007-04-07 15:51:38.670874812 +0200
+@@ -59,7 +59,7 @@
+ 
+ 	mkdir output-html/images/
+ 	ln -f $(srcdir)/images/*.png output-html/images/
+-	for x in caution important note tip warning; do cp -p /usr/share/xml/docbook/xsl-stylesheets/images/$$x.png output-html/images/; done
+-	for x in home next prev up; do cp -p /usr/share/xml/docbook/xsl-stylesheets/images/$$x.gif output-html/images/; done
++	for x in caution important note tip warning; do cp -p /usr/share/sgml/docbook/xsl-stylesheets/images/$$x.png output-html/images/; done
++	for x in home next prev up; do cp -p /usr/share/sgml/docbook/xsl-stylesheets/images/$$x.gif output-html/images/; done
+ 
+ 	touch doc-html-stamp
+--- aptitude-0.4.4/doc/de/Makefile.am.bak	2007-04-07 12:41:22.333523353 +0200
++++ aptitude-0.4.4/doc/de/Makefile.am	2007-04-07 15:51:38.754875476 +0200
+@@ -61,8 +61,8 @@
+ 
+ 	mkdir output-html/images/
+ 	ln -f $(srcdir)/images/*.png output-html/images/
+-	for x in caution important note tip warning; do cp -p /usr/share/xml/docbook/xsl-stylesheets/images/$$x.png output-html/images/; done
+-	for x in home next prev up; do cp -p /usr/share/xml/docbook/xsl-stylesheets/images/$$x.gif output-html/images/; done
++	for x in caution important note tip warning; do cp -p /usr/share/sgml/docbook/xsl-stylesheets/images/$$x.png output-html/images/; done
++	for x in home next prev up; do cp -p /usr/share/sgml/docbook/xsl-stylesheets/images/$$x.gif output-html/images/; done
+ 
+ 	touch doc-html-stamp
+ 
+--- aptitude-0.4.4/doc/en/Makefile.am.bak	2007-04-07 12:41:22.345523481 +0200
++++ aptitude-0.4.4/doc/en/Makefile.am	2007-04-07 15:51:38.794875792 +0200
+@@ -67,7 +67,7 @@
+ 
+ 	mkdir output-html/images/
+ 	ln -f $(srcdir)/images/*.png output-html/images/
+-	for x in caution important note tip warning; do cp -p /usr/share/xml/docbook/xsl-stylesheets/images/$$x.png output-html/images/; done
+-	for x in home next prev up; do cp -p /usr/share/xml/docbook/xsl-stylesheets/images/$$x.gif output-html/images/; done
++	for x in caution important note tip warning; do cp -p /usr/share/sgml/docbook/xsl-stylesheets/images/$$x.png output-html/images/; done
++	for x in home next prev up; do cp -p /usr/share/sgml/docbook/xsl-stylesheets/images/$$x.gif output-html/images/; done
+ 
+ 	touch doc-html-stamp
+--- aptitude-0.4.4/doc/fi/Makefile.am.bak	2007-04-07 12:41:22.345523481 +0200
++++ aptitude-0.4.4/doc/fi/Makefile.am	2007-04-07 15:51:38.894876583 +0200
+@@ -58,7 +58,7 @@
+ 
+ 	mkdir output-html/images/
+ 	ln -f $(srcdir)/images/*.png output-html/images/
+-	for x in caution important note tip warning; do cp -p /usr/share/xml/docbook/xsl-stylesheets/images/$$x.png output-html/images/; done
+-	for x in home next prev up; do cp -p /usr/share/xml/docbook/xsl-stylesheets/images/$$x.gif output-html/images/; done
++	for x in caution important note tip warning; do cp -p /usr/share/sgml/docbook/xsl-stylesheets/images/$$x.png output-html/images/; done
++	for x in home next prev up; do cp -p /usr/share/sgml/docbook/xsl-stylesheets/images/$$x.gif output-html/images/; done
+ 
+ 	touch doc-html-stamp
+--- aptitude-0.4.4/doc/fr/Makefile.am.bak	2007-04-07 12:41:22.349523524 +0200
++++ aptitude-0.4.4/doc/fr/Makefile.am	2007-04-07 15:51:38.926876836 +0200
+@@ -68,7 +68,7 @@
+ 
+ 	mkdir output-html/images/
+ 	ln -f $(srcdir)/images/*.png output-html/images/
+-	for x in caution important note tip warning; do cp -p /usr/share/xml/docbook/xsl-stylesheets/images/$$x.png output-html/images/; done
+-	for x in home next prev up; do cp -p /usr/share/xml/docbook/xsl-stylesheets/images/$$x.gif output-html/images/; done
++	for x in caution important note tip warning; do cp -p /usr/share/sgml/docbook/xsl-stylesheets/images/$$x.png output-html/images/; done
++	for x in home next prev up; do cp -p /usr/share/sgml/docbook/xsl-stylesheets/images/$$x.gif output-html/images/; done
+ 
+ 	touch doc-html-stamp

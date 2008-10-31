@@ -5,9 +5,9 @@
 Summary: Tunneling IP over ICMP
 Name: icmptx
 Version: 0.01
-Release: 1
+Release: 2
 License: GPL
-Group: Applications/Networking
+Group: Applications/Internet
 URL: http://thomer.com/icmptx/
 
 Source: http://thomer.com/icmptx/icmptx-%{version}.tar.gz
@@ -36,5 +36,8 @@ icmptx is a tool for tunneling IP over ICMP.
 %{_bindir}/icmptx
 
 %changelog
+* Wed Oct 29 2008 Dag Wieers <dag@wieers.com> - 0.01-2
+- Fix Group.
+
 * Tue Oct 14 2008 Dag Wieers <dag@wieers.com> - 0.01-1
 - Initial package. (using DAR)

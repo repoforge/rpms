@@ -1,0 +1,70 @@
+diff -up pychecker-0.8.17/pychecker2/main.py_old pychecker-0.8.17/pychecker2/main.py
+--- pychecker-0.8.17/pychecker2/main.py_old	2002-09-02 00:36:21.000000000 +0200
++++ pychecker-0.8.17/pychecker2/main.py	2008-04-29 11:41:35.000000000 +0200
+@@ -1,5 +1,29 @@
+ import sys
+ from os.path import dirname, realpath
++
++#---Patched by Stani http://pythonide.stani.be (begin)
++import os
++def userPath(dirname=''):
++    """'safer' function to find user path."""
++    # 'safer' function to find user path: look for one of these directories
++    try:
++        path = os.path.expanduser("~")
++        if os.path.isdir(path):
++            return os.path.join(path, dirname)
++    except:
++        pass
++    for evar in ('HOME', 'USERPROFILE', 'TMP'):
++        try:
++            path = os.environ[evar]
++            if os.path.isdir(path):
++                return os.path.join(path, dirname)
++        except:
++            pass
++    #if no match found, use module directory
++    return os.path.join(os.path.dirname(os.path.abspath(__file__)), dirname)
++
++CACHE_FILE = userPath(".pychecker_cache")
++#Patched by Stani http://pythonide.stani.be (end)
+ sys.path.append(dirname(dirname(realpath(sys.argv[0]))))
+ 
+ from pychecker2.Check import CheckList
+@@ -16,7 +40,6 @@ from pychecker2 import ReturnChecks
+ from pychecker2 import ConditionalChecks
+ from pychecker2 import FormatStringChecks
+ 
+-CACHE_FILE = '/tmp/t'
+ 
+ def print_warnings(f, out):
+     if not f.warnings:
+@@ -69,7 +92,8 @@ def main():
+     options = Options.Options()
+     try:
+         checker = cPickle.load(open(CACHE_FILE, 'rb'))
+-    except (EOFError, IOError):
++    #---Patched by Stani http://pythonide.stani.be (added ImportError)
++    except (EOFError, IOError, ImportError):
+         checker = create_checklist(options)
+ 
+     try:
+@@ -79,10 +103,18 @@ def main():
+         options.usage(sys.argv[0], sys.stderr)
+         return 1
+ 
++    #---Patched by Stani http://pythonide.stani.be (begin)
++    sys_path    = sys.path[:]
+     for f in files:
++        f_dir   = dirname(f.name)
++        sys.path= sys_path[:]
++        if f_dir not in sys.path:
++            sys.path.insert(0,f_dir)
+         checker.check_file(f)
+         if options.incremental and not options.profile:
+             print_warnings(f, sys.stdout)
++    sys.path    = sys_path
++    #Patched by Stani http://pythonide.stani.be (end)
+ 
+     result = 0
+     if not options.incremental and not options.profile:

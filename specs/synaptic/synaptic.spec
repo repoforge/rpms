@@ -5,7 +5,7 @@
 Summary: Graphical package management program using apt
 Name: synaptic
 Version: 0.57.2
-Release: 4
+Release: 5
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/synaptic/
@@ -119,6 +119,9 @@ EOF
 %{_sbindir}/synaptic
 
 %changelog
+* Wed Oct 29 2008 Dag Wieers <dag@wieers.com> - 0.57.2-5
+- Rebuild against apt-0.5.15lorg3.94a.
+
 * Thu Jun 12 2008 Dag Wieers <dag@wieers.com> - 0.57.2-4
 - Rebuild against apt-0.5.15lorg3.2.
 
