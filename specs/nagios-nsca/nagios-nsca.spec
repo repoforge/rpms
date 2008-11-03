@@ -10,7 +10,7 @@
 Summary: Nagios Service Check Acceptor
 Name: nagios-nsca
 Version: 2.7.2
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Internet
 URL: http://www.nagios.org/
@@ -179,6 +179,7 @@ fi
 %{__rm} -rf %{buildroot}
 
 %files client
+%attr(755,root,root) %dir %{_sysconfdir}/nagios
 %config(noreplace) %{_sysconfdir}/nagios/send_nsca.cfg
 %{_sbindir}/send_nsca
 
@@ -195,6 +196,9 @@ fi
 %defattr(-, nagios, apache, 2755)
 
 %changelog
+* Mon Nov 03 2008 Christoph Maser <cmr@financial.com> - 2.7.2-3
+- Fix permissions on %{_sysconfdir}/nagios when installing client only
+
 * Mon Oct 20 2008 Christoph Maser <cmr@financial.com> - 2.7.2-2
 - Remove client files from nagios-nsca package and make it depend on nagios-nsca-client
 
