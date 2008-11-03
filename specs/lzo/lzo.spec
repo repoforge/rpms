@@ -4,14 +4,14 @@
 
 Summary: Portable lossless data compression library
 Name: lzo
-Version: 1.08
-Release: 4.2
+Version: 2.03
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.oberhumer.com/opensource/lzo/
 
 Source: http://www.oberhumer.com/opensource/lzo/download/lzo-%{version}.tar.gz
-Patch: lzo-1.08-asm.patch
+Patch0: lzo-2.02-configure.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: zlib-devel, autoconf
@@ -36,23 +36,23 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch -p0 -b .asm
+%patch0 -p1 -z .configure
+
+# mark asm files as NOT needing execstack
+for i in asm/i386/src_gas/*.S; do
+  echo '.section .note.GNU-stack,"",@progbits' >> $i
+done
 
 %build
-#%{__autoconf}
-%configure \
-    --enable-shared
+%configure --disable-dependency-tracking --disable-static --enable-shared
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -60,18 +60,17 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog NEWS README THANKS doc/
-%{_libdir}/*.so.*
+%{_libdir}/liblzo2.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*.h
-%{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
+%{_includedir}/lzo/
+%{_libdir}/liblzo2.so
+%exclude %{_libdir}/liblzo2.la
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.08-4.2
-- Rebuild for Fedora Core 5.
+* Sun Nov 02 2008 Dag Wieers <dag@wieers.com> - 2.03-1
+- Updated to release 2.03.
 
 * Tue Feb  1 2005 Matthias Saou <http://freshrpms.net/> 1.08-4
 - Add lzo-1.08-asm.patch to fix asm detection on i386.

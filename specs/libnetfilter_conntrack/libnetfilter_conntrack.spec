@@ -12,7 +12,8 @@ URL: http://netfilter.org/
 Source: http://netfilter.org/projects/libnetfilter_conntrack/files/libnetfilter_conntrack-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libnfnetlink-devel, pkgconfig
+BuildRequires: libnfnetlink-devel
+BuildRequires: pkgconfig
 
 %description
 libnetfilter_conntrack is a userspace library providing a programming 
@@ -34,8 +35,8 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-	--disable-rpath \
-	--disable-static
+    --disable-rpath \
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 %install

@@ -8,7 +8,7 @@
 
 Summary: Convenient and transparent local/remote incremental mirror/backup
 Name: rdiff-backup
-Version: 1.0.5
+Version: 1.2.2
 Release: 1
 License: GPL
 Group: Applications/Archiving
@@ -54,7 +54,9 @@ differences from the previous backup will be transmitted.
 %defattr(-, root, root, 0755)
 %doc CHANGELOG COPYING examples.html FAQ.html README
 %doc %{_mandir}/man1/rdiff-backup.1*
+%doc %{_mandir}/man1/rdiff-backup-statistics.1*
 %{_bindir}/rdiff-backup
+%{_bindir}/rdiff-backup-statistics
 %dir %{python_sitearch}/rdiff_backup/
 %{python_sitearch}/rdiff_backup/*.py
 %{python_sitearch}/rdiff_backup/*.pyc
@@ -62,8 +64,29 @@ differences from the previous backup will be transmitted.
 %{python_sitearch}/rdiff_backup/*.so
 
 %changelog
-* Mon Dec 18 2006 Dag Wieers <dag@wieers.com> - 1.0.5-1
-- Updated to release 1.0.5.
+* Sat Oct 25 2008 Dag Wieers <dag@wieers.com> - 1.2.2-1
+- Updated to release 1.2.2.
+
+* Thu Aug 28 2008 Dag Wieers <dag@wieers.com> - 1.2.1-1
+- Updated to release 1.2.1.
+
+* Fri Jun 20 2008 Dag Wieers <dag@wieers.com> - 1.1.16-1
+- Updated to release 1.1.16.
+
+* Tue Feb 12 2008 Dag Wieers <dag@wieers.com> - 1.1.15-1
+- Updated to release 1.1.15 (development).
+
+* Fri Aug 03 2007 Dag Wieers <dag@wieers.com> - 1.1.12-1
+- Updated to release 1.1.12 (development).
+
+* Mon Jun 11 2007 Dag Wieers <dag@wieers.com> - 1.1.10-1
+- Updated to release 1.1.10 (development).
+
+* Mon Dec 18 2006 Dag Wieers <dag@wieers.com> - 1.1.7-1
+- Updated to release 1.1.7 (development).
+
+* Tue Jun 06 2006 Dag Wieers <dag@wieers.com> - 1.1.5-1
+- Updated to release 1.1.5 (development).
 
 * Thu Jan 26 2006 Dag Wieers <dag@wieers.com> - 1.0.4-1
 - Updated to release 1.0.4.

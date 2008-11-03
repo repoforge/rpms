@@ -11,6 +11,7 @@ URL: http://www.oberhumer.com/opensource/ucl/
 
 Source: http://www.oberhumer.com/opensource/ucl/download/ucl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc-c++
 
 %description
@@ -33,16 +34,14 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure \
-	--enable-shared
+%configure --enable-shared
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
 
 %clean

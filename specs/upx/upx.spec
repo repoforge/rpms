@@ -3,17 +3,19 @@
 
 Summary: The Ultimate Packer for eXecutables
 Name: upx
-Version: 2.03
+Version: 3.03
 Release: 1
 License: GPL
 Group: Applications/File
 URL: http://upx.sourceforge.net/
 
-Source: http://upx.sf.net/download/upx-%{version}-src.tar.gz
-#Source: http://dl.sf.net/upx/upx-%{version}-src.tar.gz
+Source: http://upx.sf.net/download/upx-%{version}-src.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ucl-devel, perl, gcc-c++, make >= 3.80
+BuildRequires: ucl-devel >= 1.01
+BuildRequires: perl
+BuildRequires: gcc-c++
+BuildRequires: make >= 3.80
 
 %description
 UPX is a free, portable, extendable, high-performance executable packer for
@@ -30,19 +32,10 @@ Win95/98/ME/NT/2000 programs and DLLs, DOS programs, and Linux executables.
 
 %prep
 %setup -n %{name}-%{version}-src
+%{__perl} -pi -e ' s| -O2| |; s| -Werror||;' src/Makefile
 
 %build
-# Makefile is very fucked up.. so, let hack it even more :(
-#%{__perl} -pi.orig -e '
-#		s|\s+-Werror||;
-#		s|CC \+= -march=i386 -mcpu=i586|CFLAGS = %{optflags} -fexceptions|;
-#	' src/Makefile
-
-#export UCLDIR="%{_prefix}"
-#export CFLAGS="%{optflags}"
-#export LDFLAGS="%{optflags}"
-
-#%{__make} %{?_smp_mflags} -C src target="linux"
+export CXXFLAGS="%{optflags}"
 %{__make} %{?_smp_mflags} -C src
 %{__make} -C doc
 
@@ -56,12 +49,15 @@ Win95/98/ME/NT/2000 programs and DLLs, DOS programs, and Linux executables.
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS COPYING LICENSE NEWS PROJECTS README* THANKS
+%doc BUGS COPYING LICENSE NEWS PROJECTS README* THANKS TODO doc/*.txt
 %doc doc/upx.doc doc/upx.html
 %doc %{_mandir}/man1/upx.1*
 %{_bindir}/upx
 
 %changelog
+* Sun Nov 02 2008 Dag Wieers <dag@wieers.com> - 3.03-1
+- Updated to release 3.03.
+
 * Sat Nov 11 2006 Dag Wieers <dag@wieers.com> - 2.03-1
 - Updated to release 2.03.
 
