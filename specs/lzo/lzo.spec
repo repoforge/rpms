@@ -4,17 +4,18 @@
 
 Summary: Portable lossless data compression library
 Name: lzo
-Version: 2.03
-Release: 1
+Version: 1.08
+Release: 5
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.oberhumer.com/opensource/lzo/
 
 Source: http://www.oberhumer.com/opensource/lzo/download/lzo-%{version}.tar.gz
-Patch0: lzo-2.02-configure.patch
+Patch: lzo-1.08-asm.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: zlib-devel, autoconf
+BuildRequires: autoconf
+BuildRequires: zlib-devel
 Requires: zlib >= 1.0.0
 
 %description
@@ -36,12 +37,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch0 -p1 -z .configure
-
-# mark asm files as NOT needing execstack
-for i in asm/i386/src_gas/*.S; do
-  echo '.section .note.GNU-stack,"",@progbits' >> $i
-done
+%patch -p0 -b .asm
 
 %build
 %configure --disable-dependency-tracking --disable-static --enable-shared
@@ -60,17 +56,17 @@ done
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog NEWS README THANKS doc/
-%{_libdir}/liblzo2.so.*
+%{_libdir}/liblzo.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/lzo/
-%{_libdir}/liblzo2.so
-%exclude %{_libdir}/liblzo2.la
+%{_includedir}/lzo*.h
+%{_libdir}/liblzo.so
+%exclude %{_libdir}/liblzo.la
 
 %changelog
-* Sun Nov 02 2008 Dag Wieers <dag@wieers.com> - 2.03-1
-- Updated to release 2.03.
+* Tue Nov 04 2008 Dag Wieers <dag@wieers.com> - 1.08-5
+- Reworked SPEC file.
 
 * Tue Feb  1 2005 Matthias Saou <http://freshrpms.net/> 1.08-4
 - Add lzo-1.08-asm.patch to fix asm detection on i386.

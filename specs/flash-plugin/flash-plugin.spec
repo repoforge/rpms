@@ -11,15 +11,16 @@
 Summary: Macromedia Flash Player
 Name: flash-plugin
 Version: 10.0.12.36
-Release: 1
+Release: 2
 License: Commercial
 Group: Applications/Internet
 URL: http://www.macromedia.com/downloads/
 
-#Source: http://macromedia.rediris.es/rpmsource/flash-player-plugin-%{version}.tar.bz2
 Source: http://fpdownload.macromedia.com/get/flashplayer/current/install_flash_player_10_linux.tar.gz
-#Source: http://fpdownload.macromedia.com/get/shockwave/flash/english/linux/7.0r25/install_flash_player_7_linux.tar.gz
-Source1: http://macromedia.rediris.es/rpmsource/LICENSE
+Source1: README
+Source2: LICENSE
+Source3: homecleanup
+Source4: setup
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: i386
@@ -29,30 +30,47 @@ Obsoletes: mozilla-flash <= %{version}-%{release}
 %description
 Macromedia Flash Player
 
-By downloading and installing this package you agree to the included LICENSE:
-
-    http://macromedia.rediris.es/rpmsource/LICENSE
+By downloading and installing this package you agree to the included LICENSE.
 
 %prep
 %setup -n %{real_name}
 %{__install} -Dp -m0644 %{SOURCE1} LICENSE
+%{__install} -Dp -m0644 %{SOURCE2} README
 
 %build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 libflashplayer.so %{buildroot}%{_libdir}/mozilla/plugins/libflashplayer.so
-#%{__install} -Dp -m0755 flashplayer.xpt %{buildroot}%{_libdir}/mozilla/plugins/flashplayer.xpt
+%{__install} -Dp -m0755 libflashplayer.so %{buildroot}%{_libdir}/flash-plugin/libflashplayer.so
+%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_libdir}/flash-plugin/LICENSE
+%{__install} -Dp -m0644 %{SOURCE2} %{buildroot}%{_libdir}/flash-plugin/README
+%{__install} -Dp -m0755 %{SOURCE3} %{buildroot}%{_libdir}/flash-plugin/homecleanup
+%{__install} -Dp -m0755 %{SOURCE4} %{buildroot}%{_libdir}/flash-plugin/setup
+
+%post
+if [ $1 -eq 1 ]; then
+    %{_libdir}/flash-plugin/setup install
+elif [ $1 -eq 2 ]; then
+    %{_libdir}/flash-plugin/setup upgrade
+fi
+
+%preun
+if [ $1 -eq 0 ]; then
+    %{_libdir}/flash-plugin/setup preun
+fi
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE
-%{_libdir}/mozilla/plugins/
+%doc LICENSE README
+%{_libdir}/flash-plugin/
 
 %changelog
+* Mon Nov 03 2008 Dag Wieers <dag@wieers.com> - 10.0.12.36-2
+- Include setup and homecleanup like upstream.
+
 * Tue Oct 28 2008 Dag Wieers <dag@wieers.com> - 10.0.12.36-1
 - Updated to release 10.0.12.36.
 

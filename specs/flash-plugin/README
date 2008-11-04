@@ -1,0 +1,92 @@
+Adobe Systems Incorporated
+Flash Player 10 for Linux
+Version 10.0.12.36
+2008
+
+Adobe recommends that all users upgrade to the latest version of Adobe Flash
+Player for the most recent features, bug fixes, and security fixes.  For
+more information on the new features in Flash Player 10, please visit
+http://www.adobe.com/products/flashplayer/.  For more information on system
+requirements, fixed issues, and known issues, see the release notes at
+http://www.adobe.com/go/flashplayer_releasenotes.
+
+To confirm which version of Flash Player you have currently installed, see
+http://www.adobe.com/software/flash/about/. Users should only install
+Players that have been downloaded from trusted sources, such as
+http://www.adobe.com/.
+
+Your use of this player is governed by the Adobe End User License Agreement
+found at http://www.adobe.com/products/eulas/players/flash/.
+
+
+Privacy
+-------
+
+Adobe is committed to preserving the privacy of end users. For more
+information on configuring Client-side privacy visit the Settings Manager
+Documentation: http://www.adobe.com/go/flashplayerhelp.
+
+
+Installation instructions
+-------------------------
+
+Installing the plugin tar.gz using Install script:
+   o Unpack the tar.gz file
+   o In terminal, navigate to the unpacked directory and enter:
+          + $ ./flashplayer-installer
+          + Click Enter key and follow prompts
+
+Installing the plugin using RPM:
+   o As root, enter in terminal:
+          + # rpm -Uvh <rpm_package_file>
+          + Click Enter key and follow prompts
+
+Installing the standalone player:
+   o Unpack the tar.gz file
+   o To execute the standalone player,
+          + Double-click, or 
+          + Enter in terminal: ./flashplayer
+
+
+Uninstallation instructions
+---------------------------
+
+Manual uninstallation (for users who installed the plugin via Install script):
+   o Delete libflashplayer.so binary and flashplayer.xpt file in
+   directory /home/<user>/.mozilla/plugins/
+
+RPM uninstallation: 
+   o As root, enter in terminal:
+          + # rpm -e flash-plugin
+          + Click Enter key and follow prompts
+
+
+Technical Issues and Reporting Bugs
+-----------------------------------
+
+The Adobe Flash Player Support Center at
+http://www.adobe.com/support/flashplayer/ is a free online resource for
+support and troubleshooting information. Bug reports may be submitted at
+http://www.adobe.com/go/wish. To allow us to investigate reported bugs,
+please include the following information:
+
+1) Platform and version
+2) Browser version
+3) Reproducible steps including a URL to the web site where the problem
+   was encountered.
+
+If we need further information about a bug, you will be contacted. An
+automated reply will be sent to assure you that we have received your
+bug report. Due to the volume of mail received, we are not able to
+individually respond to each report.
+
+
+Legal
+-----
+
+Adobe(R) Flash(R) Player. Copyright (C) 1996 - 2008 Adobe Systems
+Incorporated. All Rights Reserved. Protected by U.S. Patent 6,879,327;
+Patents Pending in the United States and other countries. Adobe and Flash
+are either trademarks or registered trademarks in the United States and/or
+other countries.
+

@@ -1,0 +1,51 @@
+#!/bin/sh
+
+HOMELOCATIONS="/root/.netscape \
+             /root/.mozilla \
+             /root/.firefox \
+             /home/*/.netscape \
+             /home/*/.mozilla \
+             /home/*/.firefox \
+"
+
+# Detect and warn about user plugins
+FILES="libflashplayer.so ShockwaveFlash.class flashplayer.xpt libgnashplugin.so"
+for DIR in $HOMELOCATIONS
+do
+    for F in $FILES
+    do
+        # Add old plugin files to backup and delete lists
+        if [ -f $DIR/plugins/$F ] || [ -h $DIR/plugins/$F ]
+        then
+                WARNLIST="$WARNLIST $DIR/plugins/$F"
+        fi
+    done
+done
+
+if [ "$1" = "--delete" ]; then
+    for L in $WARNLIST
+    do
+        echo "Removing $L"
+        rm -f $L
+    done
+    exit 0
+fi
+
+if [ "x$WARNLIST" != "x" ]; then
+    echo > /root/userflashplugins.list
+    for L in $WARNLIST
+    do
+        echo $L >> /root/userflashplugins.list
+    done
+    echo
+    echo "Flash plugins have been detected within user home directories  . These user plugins may possibly conflict with the global Flash plugin from this package.  A listing of these files has been created in /root/userflashplugins.list."
+    echo
+    echo "You may remove these files automatically with:"
+    echo "    /usr/lib/flash-plugin/homecleanup --delete"
+    echo
+else
+    echo
+    echo "No Flash plugin files have been detected within user home directories."
+    echo
+fi
+

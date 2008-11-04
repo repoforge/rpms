@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Petter Nordahl-Hagen <pnordahl$eunet,no>
 
@@ -8,7 +7,7 @@
 Summary: Offline NT password and registry editor
 Name: chntpw
 Version: 0.0.20080526
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://home.eunet.no/~pnordahl/ntpasswd/
@@ -39,6 +38,8 @@ and scripts to glue the whole thing together.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 chntpw %{buildroot}%{_bindir}/chntpw
+%{__install} -Dp -m0755 cpnt %{buildroot}%{_bindir}/cpnt
+%{__install} -Dp -m0755 reged %{buildroot}%{_bindir}/reged
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,8 +48,13 @@ and scripts to glue the whole thing together.
 %defattr(-, root, root, 0755)
 %doc *.txt
 %{_bindir}/chntpw
+%{_bindir}/cpnt
+%{_bindir}/reged
 
 %changelog
+* Tue Nov 04 2008 Dag Wieers <dag@wieers.com> - 0.0.20080526-2
+- Added missing cpnt and reged binaries.
+
 * Tue Jul 29 2008 Dag Wieers <dag@wieers.com> - 0.0.20080526-1
 - Updated to release 080526.
 
