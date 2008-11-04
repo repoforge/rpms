@@ -1,0 +1,10 @@
+--- progress.c.orig	2006-11-23 01:25:24.000000000 +0100
++++ progress.c	2006-11-23 01:26:25.000000000 +0100
+@@ -41,7 +41,6 @@
+ #ifdef LINUX
+ #include <inttypes.h>
+ #include <sys/stat.h>
+-#include <asm/system.h>
+ #endif
+ 
+ #include <sys/types.h>

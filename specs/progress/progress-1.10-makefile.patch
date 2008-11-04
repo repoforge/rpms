@@ -1,0 +1,20 @@
+--- Makefile.orig	2006-11-23 01:30:26.000000000 +0100
++++ Makefile	2006-11-23 01:31:02.000000000 +0100
+@@ -1,11 +1,14 @@
++CC=gcc
++CFLAGS=-O2
++
+ all: progress
+ 
+ progress: progress.o progressbar.o
+-	gcc -o progress progress.o progressbar.o
++	$(CC) -o progress progress.o progressbar.o
+ 
+ progress.o: progress.c
+-	gcc -O2  -Wall -Wstrict-prototypes -Wmissing-prototypes -Wpointer-arith -Wno-sign-compare -Wno-traditional -Wno-uninitialized  -Werror   -I. -DSTANDALONE_PROGRESS  -c    progress.c
++	$(CC) $(CFLAGS) -Wall -Wstrict-prototypes -Wmissing-prototypes -Wpointer-arith -Wno-sign-compare -Wno-traditional -Wno-uninitialized  -I. -DSTANDALONE_PROGRESS  -c    progress.c
+ 
+ progressbar.o: progressbar.c
+-	gcc -O2  -Wall -Wstrict-prototypes -Wmissing-prototypes -Wpointer-arith -Wno-sign-compare -Wno-traditional -Wno-uninitialized  -Werror   -I. -DSTANDALONE_PROGRESS  -c    progressbar.c
++	$(CC) $(CFLAGS) -Wall -Wstrict-prototypes -Wmissing-prototypes -Wpointer-arith -Wno-sign-compare -Wno-traditional -Wno-uninitialized  -I. -DSTANDALONE_PROGRESS  -c    progressbar.c
+ 

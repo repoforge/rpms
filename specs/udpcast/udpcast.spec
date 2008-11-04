@@ -2,10 +2,10 @@
 # Authority: dag
 # Upstream: <udpcast$udpcast,linux,lu>
 
-Summary: UDP broadcast installation
+Summary: UDP broadcast file distribution and installation
 Name: udpcast
-%define real_version 20070602
-Version: 0.0.20070602
+%define real_version 20080914
+Version: 0.0.20080914
 Release: 1
 License: GPL or BSD
 Group: Applications/System
@@ -18,20 +18,20 @@ BuildRequires: m4
 #Requires: netcfg
 
 %description
-Allows easy installation of client machines via UDP broadcast
+udpcast is an application for multicasting data to multiple targets.
 
 %prep
 %setup -n %{name}-%{real_version}
 
 %build
-%configure \
-	--prefix="%{buildroot}%{_prefix}" \
-	--mandir="%{buildroot}%{_mandir}"
+%configure
+#    --prefix="%{buildroot}%{_prefix}" \
+#    --mandir="%{buildroot}%{_mandir}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -41,10 +41,14 @@ Allows easy installation of client machines via UDP broadcast
 %doc Changelog.txt cmd.html COPYING *.txt
 %doc %{_mandir}/man1/udp-receiver.1*
 %doc %{_mandir}/man1/udp-sender.1*
+%{_includedir}/udpcast/
 %{_sbindir}/udp-receiver
 %{_sbindir}/udp-sender
 
 %changelog
+* Tue Nov 04 2008 Dag Wieers <dag@wieers.com> - 0.0.20080914-1
+- Updated to release 20080914.
+
 * Mon Jun 04 2007 Dag Wieers <dag@wieers.com> - 0.0.20070602-1
 - Updated to release 20070602.
 

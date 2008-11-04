@@ -1,0 +1,26 @@
+--- Makefile.orig	2008-08-23 21:52:17.000000000 +0200
++++ Makefile	2008-08-23 21:53:15.000000000 +0200
+@@ -21,9 +21,11 @@
+ VERSION = 1.2.0
+ 
+ sbindir = /sbin
++DESTDIR =
+ 
+ CC = gcc
+-CFLAGS = -O2 -fno-strict-aliasing -g -Wall
++OPTFLAGS = -O2 -g
++CFLAGS = -fno-strict-aliasing -Wall $(OPTFLAGS)
+ CPPFLAGS = $(LIBE2FS_CFLAGS) $(LFS_CFLAGS) $(DEFS)
+ DEFS = -DVERSION_STRING=\"$(VERSION)\" $(HAVE_FSYNC)
+ LDFLAGS = $(LIBE2FS_LDFLAGS) $(LFS_LDFLAGS)
+@@ -48,8 +50,8 @@
+ check:
+ 
+ install: all
+-	install -d $(sbindir)
+-	install -c clone2fs $(sbindir)
++	install -d $(DESTDIR)$(sbindir)
++	install -c clone2fs $(DESTDIR)$(sbindir)
+ 
+ uninstall:
+ 	rm -f $(sbindir)/clone2fs

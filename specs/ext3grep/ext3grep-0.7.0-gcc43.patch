@@ -1,0 +1,10 @@
+--- src/ext3grep.cc.orig	2008-07-27 22:25:42.000000000 +0200
++++ src/ext3grep.cc	2008-07-27 22:25:56.000000000 +0200
+@@ -47,6 +47,7 @@
+ #include <sstream>
+ #include <bitset>
+ #include <algorithm>
++#include <cstring>
+ #include "debug.h"
+ #endif
+ 
