@@ -1,0 +1,13 @@
+--- scalpel-1.60.orig/scalpel.c
++++ scalpel-1.60/scalpel.c
+@@ -500,8 +500,8 @@
+   realpath(state->outputdirectory,fn);
+   strncpy(state->outputdirectory,fn,MAX_STRING_LENGTH);
+ 
+-  realpath(state->conffile,fn);
+-  strncpy(state->conffile,fn,MAX_STRING_LENGTH);
++//  realpath(state->conffile,fn);
++//  strncpy(state->conffile,fn,MAX_STRING_LENGTH);
+ }
+ 
+ 

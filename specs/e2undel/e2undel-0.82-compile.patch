@@ -1,0 +1,85 @@
+Only in e2undel-0.82.new/: apprentice.o
+Only in e2undel-0.82.new/: ascmagic.o
+Only in e2undel-0.82.new/: e2undel
+Only in e2undel-0.82.new/: e2undel-file.o
+diff -ur e2undel-0.82/e2undel.h e2undel-0.82.new/e2undel.h
+--- e2undel-0.82/e2undel.h	2004-04-07 08:22:47.000000000 +0000
++++ e2undel-0.82.new/e2undel.h	2005-09-23 22:24:29.000000000 +0000
+@@ -4,6 +4,11 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <limits.h>
++#include <stdint.h>
++#define GFP_KERNEL 0
++typedef uint8_t u8;
++typedef uint16_t u16;
++typedef uint32_t u32;
+ #include <linux/ext2_fs.h>
+ #include <ext2fs/ext2fs.h>
+ #include <ext2fs/ext2_io.h>
+@@ -27,11 +32,6 @@
+    ext2_ino_t is unsigned int in ext2_types.h, but ino_t is unsigned long;
+    we print each ext2_ino_t as long with a (long) type casting. Ugly hack. */
+ 
+-#ifndef _EXT2_TYPES_H
+-typedef ino_t ext2_ino_t;
+-#endif
+-
+-
+ struct e2undel_log
+ {
+   ext2_ino_t inode;
+Only in e2undel-0.82.new/: find_del.o
+Only in e2undel-0.82.new/: is_tar.o
+Only in e2undel-0.82.new/: log.o
+diff -ur e2undel-0.82/Makefile e2undel-0.82.new/Makefile
+--- e2undel-0.82/Makefile	2004-04-07 08:22:47.000000000 +0000
++++ e2undel-0.82.new/Makefile	2005-09-23 22:25:41.000000000 +0000
+@@ -2,8 +2,8 @@
+ OBJ_UNDEL = find_del.o log.o
+ OBJ_FILE = apprentice.o ascmagic.o is_tar.o softmagic.o
+ H_FILE = e2undel.h file.h names.h tar.h magic.h common.h
+-C_FILE = libundel.c e2undel.c find_del.c log.c\
+-	 file.c apprentice.c ascmagic.c is_tar.c softmagic.c\
++C_FILE = libundel.c e2undel.c find_del.c log.c \
++	 file.c apprentice.c ascmagic.c is_tar.c softmagic.c \
+          compactlog.c
+ DOC_FILE = HISTORY BUGS README README.de INSTALL INSTALL.de
+ OTHER_FILE = Makefile
+@@ -16,7 +16,7 @@
+ 
+ 
+ e2undel-file: e2undel-file.o $(OBJ_UNDEL) $(OBJ_FILE)
+-	$(CC) $(LDFLAGS) -o e2undel e2undel-file.o\
++	$(CC) $(LDFLAGS) -o e2undel e2undel-file.o \
+ 	$(OBJ_UNDEL) $(OBJ_FILE) $(LIBS_UNDEL)
+ e2undel-file.o: e2undel.c e2undel.h
+ 	gcc $(CFLAGS) -DWITH_FILE -c -o e2undel-file.o e2undel.c
+@@ -44,7 +44,7 @@
+ 	gcc $(CFLAGS) -c $<
+ 
+ clean:
+-	rm -f $(OBJ_UNDEL) $(OBJ_FILE) file.o e2undel.o e2undel-file.o\
++	rm -f $(OBJ_UNDEL) $(OBJ_FILE) file.o e2undel.o e2undel-file.o \
+ 	libundel.so.1.0 compactlog.o compactlog e2undel
+ 	
+ 
+@@ -52,7 +52,7 @@
+ 
+ dist:	e2undel.tgz
+ e2undel.tgz:
+-	sed -e 's/#define VERSION ".*"/#define VERSION "$(VERSION)"/'\
++	sed -e 's/#define VERSION ".*"/#define VERSION "$(VERSION)"/' \
+ 	e2undel.h > tmp
+ 	if test -f tmp; then mv tmp e2undel.h; fi
+ 	mkdir e2undel-$(VERSION)
+@@ -62,7 +62,7 @@
+ 
+ dist-devel: e2undel-devel.tgz
+ e2undel-devel.tgz:
+-	sed -e 's/#define VERSION ".*"/#define VERSION "$(VERSION)"/'\
++	sed -e 's/#define VERSION ".*"/#define VERSION "$(VERSION)"/' \
+ 	e2undel.h > tmp
+ 	if test -f tmp; then mv tmp e2undel.h; fi
+ 	mkdir e2undel-$(VERSION)
+Only in e2undel-0.82.new/: softmagic.o

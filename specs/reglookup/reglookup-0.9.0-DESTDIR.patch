@@ -1,0 +1,58 @@
+--- reglookup-0.9.0//Makefile~	2008-05-01 06:06:22.000000000 +0200
++++ reglookup-0.9.0//Makefile	2008-08-11 09:17:43.452401084 +0200
+@@ -2,6 +2,7 @@
+ 
+ # Installation prefixes.  Change to install elsewhere.
+ 
++DESTDIR=
+ PREFIX=/usr/local
+ BIN_PREFIX=$(PREFIX)/bin
+ DOC_PREFIX=$(PREFIX)/share/doc/reglookup
+@@ -35,9 +36,9 @@
+ 
+ #XXX: This should be more generalized.
+ install: all
+-	mkdir -p $(BIN_PREFIX)
+-	mkdir -p $(DOC_PREFIX)
+-	mkdir -p $(MAN_PREFIX)/man1
++	mkdir -p $(DESTDIR)$(BIN_PREFIX)
++	mkdir -p $(DESTDIR)$(DOC_PREFIX)
++	mkdir -p $(DESTDIR)$(MAN_PREFIX)/man1
+ 	$(MAKE) -C bin install
+ 	$(MAKE) -C src install
+ 	$(MAKE) -C doc install
+--- reglookup-0.9.0/bin/Makefile~	2007-03-28 21:22:38.000000000 +0200
++++ reglookup-0.9.0/bin/Makefile	2008-08-11 09:18:15.615731223 +0200
+@@ -11,7 +11,7 @@
+ 	cp reglookup-timeline $@
+ 
+ install:
+-	install -m 0755 $(FILES) $(BIN_PREFIX)
++	install -m 0755 $(FILES) $(DESTDIR)$(BIN_PREFIX)
+ 
+ clean:
+ 	rm -f *~
+--- reglookup-0.9.0/doc/Makefile~	2008-08-09 07:55:45.000000000 +0200
++++ reglookup-0.9.0/doc/Makefile	2008-08-11 09:18:33.099069567 +0200
+@@ -19,8 +19,8 @@
+ 	cp man/man1/reglookup-recover.1.gz $@
+ 
+ install:
+-	cp -r $(BUILD_DOC)/* $(DOC_PREFIX)
+-	ln -sf $(DOC_PREFIX)/man/man1/*  $(MAN_PREFIX)/man1
++	cp -r $(BUILD_DOC)/* $(DESTDIR)$(DOC_PREFIX)
++	ln -sf $(DOC_PREFIX)/man/man1/*  $(DESTDIR)$(MAN_PREFIX)/man1
+ 
+ 
+ #XXX: Used during release only
+--- reglookup-0.9.0/src/Makefile~	2008-04-30 00:59:55.000000000 +0200
++++ reglookup-0.9.0/src/Makefile	2008-08-11 09:17:57.965733383 +0200
+@@ -22,7 +22,7 @@
+ 	$(CC) $(CFLAGS) $(OPTS) $(INC) -c -o $@ reglookup-recover.c
+ 
+ install:
+-	install -m 0755 $(FILES) $(BIN_PREFIX)
++	install -m 0755 $(FILES) $(DESTDIR)$(BIN_PREFIX)
+ 
+ clean:
+ 	rm -f *.o
