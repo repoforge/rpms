@@ -1,0 +1,11 @@
+diff -urNp apt-0.5.15lorg3.94a.orig/cmdline/cmdline.cc apt-0.5.15lorg3.94a/cmdline/cmdline.cc
+--- apt-0.5.15lorg3.94a.orig/cmdline/cmdline.cc	2008-01-12 11:45:07.000000000 +0200
++++ apt-0.5.15lorg3.94a/cmdline/cmdline.cc	2008-11-04 00:14:58.000000000 +0200
+@@ -11,6 +11,7 @@
+ 
+ #include <regex.h>
+ #include <sys/stat.h>
++#include <sys/ioctl.h>
+ #include <fnmatch.h>
+ #include <langinfo.h>
+ 

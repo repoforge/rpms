@@ -12,7 +12,7 @@
 
 ### FIXME: TODO: Add sysv script based on template. (remove cmd-file on start-up)
 %define logmsg logger -t %{name}/rpm
-%define logdir %{_localstatedir}/log/nagios/
+%define logdir %{_localstatedir}/log/nagios
 
 Summary: Open Source host, service and network monitoring program
 Name: nagios
@@ -59,28 +59,28 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-	--datadir="%{_datadir}/nagios" \
-	--libexecdir="%{_libdir}/nagios/plugins" \
-	--localstatedir="%{_localstatedir}/nagios" \
-	--with-checkresult-dir="%{_localstatedir}/nagios/spool/checkresults" \
-	--sbindir="%{_libdir}/nagios/cgi" \
-	--sysconfdir="%{_sysconfdir}/nagios" \
-	--with-cgiurl="/nagios/cgi-bin" \
-	--with-command-user="apache" \
-	--with-command-group="apache" \
-	--with-gd-lib="%{_libdir}" \
-	--with-gd-inc="%{_includedir}" \
-	--with-htmurl="/nagios" \
-	--with-init-dir="%{_initrddir}" \
-	--with-lockfile="%{_localstatedir}/run/nagios.pid" \
-	--with-mail="/bin/mail" \
-	--with-nagios-user="nagios" \
-	--with-nagios-group="nagios" \
+    --datadir="%{_datadir}/nagios" \
+    --libexecdir="%{_libdir}/nagios/plugins" \
+    --localstatedir="%{_localstatedir}/nagios" \
+    --with-checkresult-dir="%{_localstatedir}/nagios/spool/checkresults" \
+    --sbindir="%{_libdir}/nagios/cgi" \
+    --sysconfdir="%{_sysconfdir}/nagios" \
+    --with-cgiurl="/nagios/cgi-bin" \
+    --with-command-user="apache" \
+    --with-command-group="apache" \
+    --with-gd-lib="%{_libdir}" \
+    --with-gd-inc="%{_includedir}" \
+    --with-htmurl="/nagios" \
+    --with-init-dir="%{_initrddir}" \
+    --with-lockfile="%{_localstatedir}/run/nagios.pid" \
+    --with-mail="/bin/mail" \
+    --with-nagios-user="nagios" \
+    --with-nagios-group="nagios" \
 %{!?_without_embedperl:--enable-embedded-perl} \
 %{!?_without_perlcache:--with-perlcache} \
-	--with-template-objects \
-	--with-template-extinfo \
-	--enable-event-broker
+    --with-template-objects \
+    --with-template-extinfo \
+    --enable-event-broker
 %{__make} %{?_smp_mflags} all
 
 ### Apparently contrib wants to do embedded-perl stuff as well and does not obey configure !
@@ -91,16 +91,16 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install install-init install-commandmode install-config \
-        DESTDIR="%{buildroot}" \
-        INSTALL_OPTS="" \
-        COMMAND_OPTS="" \
-        INIT_OPTS=""
+    DESTDIR="%{buildroot}" \
+    INSTALL_OPTS="" \
+    COMMAND_OPTS="" \
+    INIT_OPTS=""
 
 ### Apparently contrib wants to do embedded-perl stuff as well and does not obey configure !
 %if %{!?_without_embedperl:1}0
 %{__make} install -C contrib \
-	DESTDIR="%{buildroot}" \
-	INSTALL_OPTS=""
+    DESTDIR="%{buildroot}" \
+    INSTALL_OPTS=""
 %endif
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/nagios/plugins/eventhandlers/
@@ -111,57 +111,58 @@ you will need to install %{name}-devel.
 
 %{__install} -Dp -m0644 sample-config/httpd.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/nagios.conf
 
-# FIX log-paths 
-%{__sed} -i -e s@log_file.*@log_file=%{logdir}nagios.log@ \
-	-e s@log_archive_path=.*@log_archive_path=%{logdir}archives@ \
-	-e s@debug_file=.*@debug_file=%{logdir}nagios.debug@ \
-	%{buildroot}%{_sysconfdir}/nagios/nagios.cfg
+### FIX log-paths
+%{__perl} -pi -e '
+        s|log_file.*|log_file=%{logdir}/nagios.log|;
+        s|log_archive_path=.*|log_archive_path=%{logdir}/archives|;
+        s|debug_file=.*|debug_file=%{logdir}/nagios.debug|;
+   ' %{buildroot}%{_sysconfdir}/nagios/nagios.cfg
 
-# make logdirs
-%{__mkdir} -p %{buildroot}%{logdir}
-%{__mkdir} -p %{buildroot}%{logdir}archives
+### make logdirs
+%{__mkdir} -p %{buildroot}%{logdir}/
+%{__mkdir} -p %{buildroot}%{logdir}/archives/
 
 ### Install logos
 tar -xvz -C %{buildroot}%{_datadir}/nagios/images/logos -f %{SOURCE1}
 
 %pre
 if ! /usr/bin/id nagios &>/dev/null; then
-	/usr/sbin/useradd -r -d %{logdir} -s /bin/sh -c "nagios" nagios || \
-		%logmsg "Unexpected error adding user \"nagios\". Aborting installation."
+    /usr/sbin/useradd -r -d %{logdir} -s /bin/sh -c "nagios" nagios || \
+        %logmsg "Unexpected error adding user \"nagios\". Aborting installation."
 fi
 if ! /usr/bin/getent group nagiocmd &>/dev/null; then
-	/usr/sbin/groupadd nagiocmd &>/dev/null || \
-		%logmsg "Unexpected error adding group \"nagiocmd\". Aborting installation."
+    /usr/sbin/groupadd nagiocmd &>/dev/null || \
+        %logmsg "Unexpected error adding group \"nagiocmd\". Aborting installation."
 fi
 
 %post
 /sbin/chkconfig --add nagios
 
 if /usr/bin/id apache &>/dev/null; then
-	if ! /usr/bin/id -Gn apache 2>/dev/null | grep -q nagios ; then
-		/usr/sbin/usermod -G nagios,nagiocmd apache &>/dev/null
-	fi
+    if ! /usr/bin/id -Gn apache 2>/dev/null | grep -q nagios ; then
+        /usr/sbin/usermod -G nagios,nagiocmd apache &>/dev/null
+    fi
 else
-	%logmsg "User \"apache\" does not exist and is not added to group \"nagios\". Sending commands to Nagios from the command CGI is not possible."
+    %logmsg "User \"apache\" does not exist and is not added to group \"nagios\". Sending commands to Nagios from the command CGI is not possible."
 fi
 
 if [ -f %{_sysconfdir}/httpd/conf/httpd.conf ]; then
-	if ! grep -q "Include .*/nagios.conf" %{_sysconfdir}/httpd/conf/httpd.conf; then
-		echo -e "\n# Include %{_sysconfdir}/httpd/conf.d/nagios.conf" >> %{_sysconfdir}/httpd/conf/httpd.conf
-#		/sbin/service httpd restart
-	fi
+    if ! grep -q "Include .*/nagios.conf" %{_sysconfdir}/httpd/conf/httpd.conf; then
+        echo -e "\n# Include %{_sysconfdir}/httpd/conf.d/nagios.conf" >> %{_sysconfdir}/httpd/conf/httpd.conf
+#       /sbin/service httpd restart
+    fi
 fi
 
 %preun
 if [ $1 -eq 0 ]; then
-	/sbin/service nagios stop &>/dev/null || :
-	/sbin/chkconfig --del nagios
+    /sbin/service nagios stop &>/dev/null || :
+    /sbin/chkconfig --del nagios
 fi
 
 %postun
 if [ $1 -eq 0 ]; then
-	/usr/sbin/userdel nagios || %logmsg "User \"nagios\" could not be deleted."
-	/usr/sbin/groupdel nagios || %logmsg "Group \"nagios\" could not be deleted."
+    /usr/sbin/userdel nagios || %logmsg "User \"nagios\" could not be deleted."
+    /usr/sbin/groupdel nagios || %logmsg "Group \"nagios\" could not be deleted."
 fi
 /sbin/service nagios condrestart &>/dev/null || :
 
@@ -189,9 +190,9 @@ fi
 %dir %{_sysconfdir}/nagios/
 %config(noreplace) %{_sysconfdir}/nagios/*.cfg
 %config(noreplace) %{_sysconfdir}/nagios/objects
-%{_localstatedir}/nagios
-%{_localstatedir}/nagios/spool
-%{logdir}
+%{_localstatedir}/nagios/
+%{_localstatedir}/nagios/spool/
+%{logdir}/
 
 %defattr(-, nagios, apache, 2755)
 %{_localstatedir}/nagios/rw/
@@ -202,15 +203,15 @@ fi
 
 %changelog
 * Thu Nov 06 2008 Christoph Maser <cmr$financial,com> - 3.0.5-1
-- Updated to release 3.0.5
+- Updated to release 3.0.5.
 
 * Tue Oct 21 2008 Christoph Maser <cmr$financial,com> - 3.0.4-1
-- Updated to release 3.0.4
+- Updated to release 3.0.4.
 
 * Wed Oct 10 2008 Christoph Maser <cmr$financial,com> - 3.0.3-1
-- Updated to release 3.0.3
-- Set localstatedir to ${_localstatedir} 
-- Because of the previous modify installed configs to put logs in %{logdir}
+- Updated to release 3.0.3.
+- Set localstatedir to ${_localstatedir}.
+- Because of the previous modify installed configs to put logs in %{logdir}.
 
 * Thu May 22 2008 Dag Wieers <dag@wieers.com> - 2.12-1
 - Updated to release 2.12.

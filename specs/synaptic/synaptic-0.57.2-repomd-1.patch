@@ -1,0 +1,128 @@
+--- synaptic-0.57.2/common/rsources.cc.repomd	2005-05-20 21:26:52.000000000 +0300
++++ synaptic-0.57.2/common/rsources.cc	2006-05-09 20:38:03.000000000 +0300
+@@ -352,8 +352,13 @@
+       Type |= RpmDir;
+    else if (S == "rpm-src-dir")
+       Type |= RpmSrcDir;
++   else if (S == "repomd")
++      Type |= Repomd;
++   else if (S == "repomd-src")
++      Type |= RepomdSrc;
+    else
+       return false;
++   cout << S << " settype " << (Type | Repomd) << endl;
+    return true;
+ }
+ 
+@@ -371,6 +376,11 @@
+       return "rpm-dir";
+    else if ((Type & RpmSrcDir) != 0)
+       return "rpm-src-dir";
++   else if ((Type & Repomd) != 0)
++      return "repomd";
++   else if ((Type & RepomdSrc) != 0)
++      return "repomd-src";
++   cout << "type " << (Type & Repomd) << endl;
+    return "unknown";
+ }
+ 
+@@ -382,6 +392,7 @@
+       return false;
+ 
+    S = SubstVar(S, "$(ARCH)", _config->Find("APT::Architecture"));
++   S = SubstVar(S, "$(VERSION)", _config->Find("APT::DistroVersion"));
+    URI = S;
+ 
+    // append a / to the end if one is not already there
+@@ -522,6 +533,10 @@
+       os << "RpmDir";
+    if ((rec.Type & SourcesList::RpmSrcDir) != 0)
+       os << "RpmSrcDir";
++   if ((rec.Type & SourcesList::Repomd) != 0)
++      os << "Repomd";
++   if ((rec.Type & SourcesList::RepomdSrc) != 0)
++      os << "RepomdSrc";
+    os << endl;
+    os << "SourceFile: " << rec.SourceFile << endl;
+    os << "VendorID: " << rec.VendorID << endl;
+--- synaptic-0.57.2/common/rsources.h.repomd	2005-05-20 21:26:52.000000000 +0300
++++ synaptic-0.57.2/common/rsources.h	2006-05-09 20:39:23.000000000 +0300
+@@ -41,11 +41,13 @@
+       Disabled = 1 << 4,
+       Comment = 1 << 5,
+       RpmDir = 1 << 6,
+-      RpmSrcDir = 1 << 7
++      RpmSrcDir = 1 << 7,
++      Repomd = 1 << 8,
++      RepomdSrc = 1 << 9
+    };
+ 
+    struct SourceRecord {
+-      unsigned char Type;
++      unsigned int Type;
+       string VendorID;
+       string URI;
+       string Dist;
+--- synaptic-0.57.2/gtk/rgrepositorywin.cc.repomd	2005-05-20 21:24:35.000000000 +0300
++++ synaptic-0.57.2/gtk/rgrepositorywin.cc	2006-05-09 18:17:15.000000000 +0300
+@@ -39,6 +39,8 @@
+    ITEM_TYPE_RPMSRC,
+    ITEM_TYPE_RPMDIR,
+    ITEM_TYPE_RPMSRCDIR,
++   ITEM_TYPE_REPOMD,
++   ITEM_TYPE_REPOMDSRC,
+    ITEM_TYPE_DEB,
+    ITEM_TYPE_DEBSRC
+ };
+@@ -48,7 +50,9 @@
+    ITEM_TYPE_RPM,
+    ITEM_TYPE_RPMSRC,
+    ITEM_TYPE_RPMDIR,
+-   ITEM_TYPE_RPMSRCDIR
++   ITEM_TYPE_RPMSRCDIR,
++   ITEM_TYPE_REPOMD,
++   ITEM_TYPE_REPOMDSRC
+ };
+ #endif
+ 
+@@ -235,6 +239,16 @@
+    gtk_menu_append(GTK_MENU(_optTypeMenu), item);
+    gtk_widget_show(item);
+    gtk_object_set_data(GTK_OBJECT(item), "id", (gpointer) ITEM_TYPE_RPMSRCDIR);
++
++   item = gtk_menu_item_new_with_label("repomd");
++   gtk_menu_append(GTK_MENU(_optTypeMenu), item);
++   gtk_widget_show(item);
++   gtk_object_set_data(GTK_OBJECT(item), "id", (gpointer) ITEM_TYPE_REPOMD);
++
++   item = gtk_menu_item_new_with_label("repomd-src");
++   gtk_menu_append(GTK_MENU(_optTypeMenu), item);
++   gtk_widget_show(item);
++   gtk_object_set_data(GTK_OBJECT(item), "id", (gpointer) ITEM_TYPE_REPOMDSRC);
+ #else
+    item = gtk_menu_item_new_with_label(_("Binary (deb)"));
+    gtk_menu_append(GTK_MENU(_optTypeMenu), item);
+@@ -512,6 +526,12 @@
+       case ITEM_TYPE_RPMSRCDIR:
+          rec->Type |= SourcesList::RpmSrcDir;
+          break;
++      case ITEM_TYPE_REPOMD:
++         rec->Type |= SourcesList::Repomd;
++         break;
++      case ITEM_TYPE_REPOMDSRC:
++         rec->Type |= SourcesList::RepomdSrc;
++         break;
+       default:
+          _userDialog->error(_("Unknown source type"));
+          return;
+@@ -642,6 +662,10 @@
+          id = ITEM_TYPE_RPMDIR;
+       else if (rec->Type & SourcesList::RpmSrcDir)
+          id = ITEM_TYPE_RPMSRCDIR;
++      else if (rec->Type & SourcesList::Repomd)
++         id = ITEM_TYPE_REPOMD;
++      else if (rec->Type & SourcesList::RepomdSrc)
++         id = ITEM_TYPE_REPOMDSRC;
+       gtk_option_menu_set_history(GTK_OPTION_MENU(me->_optType), id);
+ 
+       gtk_option_menu_set_history(GTK_OPTION_MENU(me->_optVendor),

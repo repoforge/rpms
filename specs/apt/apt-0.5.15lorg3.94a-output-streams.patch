@@ -1,0 +1,70 @@
+diff -urNp apt-0.5.15lorg3.94a.orig/cmdline/apt-cache.cc apt-0.5.15lorg3.94a/cmdline/apt-cache.cc
+--- apt-0.5.15lorg3.94a.orig/cmdline/apt-cache.cc	2008-01-12 11:45:07.000000000 +0200
++++ apt-0.5.15lorg3.94a/cmdline/apt-cache.cc	2008-11-03 23:55:49.000000000 +0200
+@@ -48,6 +48,12 @@
+ 
+ using namespace std;
+ 
++ostream c0out(0);
++ostream c1out(0);
++ostream c2out(0);
++ofstream devnull("/dev/null");
++unsigned int ScreenWidth = 80;
++
+ pkgCache *GCache = 0;
+ pkgSourceList *SrcList = 0;
+ 
+diff -urNp apt-0.5.15lorg3.94a.orig/cmdline/apt-get.cc apt-0.5.15lorg3.94a/cmdline/apt-get.cc
+--- apt-0.5.15lorg3.94a.orig/cmdline/apt-get.cc	2008-01-12 11:45:07.000000000 +0200
++++ apt-0.5.15lorg3.94a/cmdline/apt-get.cc	2008-11-03 23:56:03.000000000 +0200
+@@ -70,6 +70,13 @@
+ 
+ using namespace std;
+ 
++ostream c0out(0);
++ostream c1out(0);
++ostream c2out(0);
++ofstream devnull("/dev/null");
++unsigned int ScreenWidth = 80;
++
++
+ // class CacheFile - Cover class for some dependency cache functions	/*{{{*/
+ // ---------------------------------------------------------------------
+ /* */
+diff -urNp apt-0.5.15lorg3.94a.orig/cmdline/apt-shell.cc apt-0.5.15lorg3.94a/cmdline/apt-shell.cc
+--- apt-0.5.15lorg3.94a.orig/cmdline/apt-shell.cc	2008-01-12 11:45:07.000000000 +0200
++++ apt-0.5.15lorg3.94a/cmdline/apt-shell.cc	2008-11-03 23:56:12.000000000 +0200
+@@ -73,6 +73,13 @@
+ 
+ using namespace std;
+ 
++ostream c0out(0);
++ostream c1out(0);
++ostream c2out(0);
++ofstream devnull("/dev/null");
++unsigned int ScreenWidth = 80;
++
++
+ // class CacheFile - Cover class for some dependency cache functions	/*{{{*/
+ // ---------------------------------------------------------------------
+ /* */
+diff -urNp apt-0.5.15lorg3.94a.orig/cmdline/cmdline.h apt-0.5.15lorg3.94a/cmdline/cmdline.h
+--- apt-0.5.15lorg3.94a.orig/cmdline/cmdline.h	2008-01-12 11:45:07.000000000 +0200
++++ apt-0.5.15lorg3.94a/cmdline/cmdline.h	2008-11-03 23:55:23.000000000 +0200
+@@ -15,11 +15,11 @@
+ using std::ostream;
+ using std::ofstream;
+ 
+-static ostream c0out(0);
+-static ostream c1out(0);
+-static ostream c2out(0);
+-static ofstream devnull("/dev/null");
+-static unsigned int ScreenWidth = 80;
++extern ostream c0out;
++extern ostream c1out;
++extern ostream c2out;
++extern ofstream devnull;
++extern unsigned int ScreenWidth;
+ 
+ bool YnPrompt();
+ bool AnalPrompt(const char *Text);

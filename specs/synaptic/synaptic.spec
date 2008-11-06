@@ -5,7 +5,7 @@
 Summary: Graphical package management program using apt
 Name: synaptic
 Version: 0.57.2
-Release: 5
+Release: 6
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/synaptic/
@@ -14,6 +14,7 @@ Source: http://savannah.nongnu.org/download/synaptic/synaptic-%{version}.tar.gz
 Patch0: http://apt-rpm.org/patches/synaptic-0.57.2-gcc41.patch
 Patch1: http://apt-rpm.org/patches/synaptic-0.57.2-repomd-1.patch
 Patch2: http://apt-rpm.org/patches/synaptic-0.57.2-showprog.patch
+Patch3: http://apt-rpm.org/patches/synaptic-0.57.2-progressapi-hack.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: apt-devel >= 0.5.15lorg3.2
@@ -36,12 +37,12 @@ Synaptic (previously known as raptor) is a graphical package management
 program for apt. It provides the same features as the apt-get command line
 utility with a GUI front-end based on Gtk+
 
-
 %prep
 %setup
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %{__cat} <<EOF >synaptic.apps
 USER=root
@@ -119,6 +120,9 @@ EOF
 %{_sbindir}/synaptic
 
 %changelog
+* Thu Nov 06 2008 Dag Wieers <dag@wieers.com> - 0.57.2-6
+- Rebuild with missing patches from panu. (Nicolas Thierry-Mieg)
+
 * Wed Oct 29 2008 Dag Wieers <dag@wieers.com> - 0.57.2-5
 - Rebuild against apt-0.5.15lorg3.94a.
 

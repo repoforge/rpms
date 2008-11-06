@@ -25,7 +25,7 @@
 Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
 Version: 0.5.15lorg3.94a
-Release: 3
+Release: 4
 License: GPL
 Group: System Environment/Base
 URL: http://apt-rpm.org/
@@ -37,6 +37,8 @@ Source51: upgradevirt.lua
 Patch0: apt-0.5.15lorg3.2-ppc.patch
 Patch1: apt-0.5.15lorg3.x-cache-corruption.patch
 Patch3: apt-0.5.15lorg3.94-gcc43.patch
+Patch4: apt-0.5.15lorg3.94a-screen-width-detection.patch
+Patch5: apt-0.5.15lorg3.94a-output-streams.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison
@@ -101,6 +103,8 @@ to access the APT library interface.
 %patch0 -p1 -b .ppc
 %patch1 -p0 -b .mmap
 %patch3 -p1 -b .gcc43
+%patch4 -p1 -b .screenwidth
+%patch5 -p1 -b .outputstreams
 
 ### Fix docs to reference correct paths
 %{__perl} -pi -e '

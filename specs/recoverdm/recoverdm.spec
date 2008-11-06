@@ -4,7 +4,7 @@
 Summary: Tool to recover data from damaged disks
 Name: recoverdm
 Version: 0.19
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.vanheusden.com/recoverdm/
@@ -30,6 +30,7 @@ the "RAW mode" (without error-checking etc).
 
 %install
 %{__rm} -rf %{buildroot}
+%{__install} -Dp -m0755 mergebad %{buildroot}%{_bindir}/mergebad
 %{__install} -Dp -m0755 recoverdm %{buildroot}%{_bindir}/recoverdm
 %{__install} -Dp -m0644 recoverdm.1 %{buildroot}%{_mandir}/man1/recoverdm.1
 
@@ -40,8 +41,12 @@ the "RAW mode" (without error-checking etc).
 %defattr(-, root, root, 0755)
 %doc license.txt readme.txt
 %doc %{_mandir}/man1/recoverdm.1*
+%{_bindir}/mergebad
 %{_bindir}/recoverdm
 
 %changelog
-* Wed Jun 20 2007 Dag Wieers <dag@wieers.com> - 
+* Wed Nov 05 2008 Dag Wieers <dag@wieers.com> - 0.19-2
+- Included missing mergebad utility.
+
+* Wed Jun 20 2007 Dag Wieers <dag@wieers.com> - 0.19-1
 - Initial package. (using DAR)

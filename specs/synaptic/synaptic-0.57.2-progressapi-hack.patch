@@ -1,0 +1,37 @@
+commit 18fa763b9ebf9c5c4bc6b0a7a759190e98baaff3
+Author: Panu Matilainen <pmatilai@turre.koti.laiskiainen.org>
+Date:   Mon Mar 5 22:17:51 2007 +0200
+
+    - add ugly kludge of a patch (but that's in good company considering the
+      other stuff in rpackagemanager.h) to make synaptic use what was supposed
+      to be automatic synaptic compatibility progress stuff from new apt.. sigh
+
+diff --git a/common/rpackagemanager.h b/common/rpackagemanager.h
+index a632881..33f1c2c 100644
+--- a/common/rpackagemanager.h
++++ b/common/rpackagemanager.h
+@@ -38,6 +38,8 @@
+ 
+ #include <string>
+ #include <apt-pkg/pkgcache.h>
++#include <apt-pkg/progress.h>
++#include <apt-pkg/configuration.h>
+ 
+ #define protected public
+ #include <apt-pkg/packagemanager.h>
+@@ -57,6 +59,7 @@ class RPackageManager {
+    pkgPackageManager *pm;
+ 
+    pkgPackageManager::OrderResult DoInstallPreFork() {
++      pm->Progress = new InstPercentProgress(*_config);
+       Res = pm->OrderInstall();
+       return Res;
+    };
+@@ -71,6 +74,7 @@ class RPackageManager {
+ #endif
+ 
+    RPackageManager(pkgPackageManager *pm) : pm(pm) {};
++   ~RPackageManager() { delete pm->Progress; };
+    
+ };
+ 

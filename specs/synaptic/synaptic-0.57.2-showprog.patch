@@ -1,0 +1,10 @@
+--- synaptic-0.57.2/gtk/rgfetchprogress.cc.showprog	2006-05-09 19:14:11.000000000 +0300
++++ synaptic-0.57.2/gtk/rgfetchprogress.cc	2006-05-09 19:13:35.000000000 +0300
+@@ -337,6 +337,7 @@
+    //cout << "RGFetchProgress::Start()" << endl;
+    pkgAcquireStatus::Start();
+    _cancelled = false;
++   show();
+ 
+    RGFlushInterface();
+ }
