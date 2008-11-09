@@ -1,0 +1,30 @@
+--- Bonnie.c
++++ Bonnie.c
+@@ -170,6 +170,13 @@
+ #define o_direct 0
+ #endif
+ 
++#ifndef PAGE_SIZE
++#define PAGE_SIZE              getpagesize()
++#endif
++#ifndef PAGE_MASK
++#define PAGE_MASK              (~(PAGE_SIZE - 1))
++#endif
++
+ int main(
+   int    argc,
+   char * argv[])
+--- Makefile
++++ Makefile
+@@ -23,9 +23,9 @@
+ # Added 99/07/20, <garloff@suse.de>
+ install: Bonnie
+ 	install -d $(DESTDIR)$(PREFIX)/bin
+-	install -s -m 0755 -o root -g root Bonnie $(DESTDIR)$(PREFIX)/bin/bonnie
++	install -m 0755 Bonnie $(DESTDIR)$(PREFIX)/bin/bonnie
+ 	install -d $(DESTDIR)$(MANDIR)/man1
+-	install -m 0644 -o man -g root bonnie.1 $(DESTDIR)$(MANDIR)/man1/bonnie.1
++	install -m 0644 bonnie.1 $(DESTDIR)$(MANDIR)/man1/bonnie.1
+ 	gzip -9f $(DESTDIR)$(MANDIR)/man1/bonnie.1
+ 	
+ clean: 

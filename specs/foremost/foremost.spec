@@ -4,7 +4,7 @@
 
 Summary: Recover files based on their headers and footers
 Name: foremost
-Version: 1.5
+Version: 1.5.4
 Release: 1
 License: freeware
 Group: Applications/Archiving
@@ -43,6 +43,9 @@ headers you want to look for.
 %{_sbindir}/foremost
 
 %changelog
+* Sat Nov 08 2008 Dag Wieers <dag@wieers.com> - 1.5.4-1
+- Updated to release 1.5.4.
+
 * Wed Jun 06 2007 Dag Wieers <dag@wieers.com> - 1.5-1
 - Updated to release 1.5.
 

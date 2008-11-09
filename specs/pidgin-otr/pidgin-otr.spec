@@ -3,7 +3,7 @@
 
 Summary: Off-The-Record Messaging plugin for GAIM
 Name: pidgin-otr
-Version: 3.1.0
+Version: 3.2.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -34,11 +34,12 @@ This is a pidgin plugin which implements Off-the-Record (OTR) Messaging.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc COPYING README
 %dir %{_libdir}/pidgin/
@@ -46,6 +47,9 @@ This is a pidgin plugin which implements Off-the-Record (OTR) Messaging.
 %exclude %{_libdir}/pidgin/pidgin-otr.la
 
 %changelog
+* Thu Nov 06 2008 Dag Wieers <dag@wieers.com> - 3.2.0-1
+- Updated to release 3.2.0.
+
 * Sat Oct 13 2007 Dag Wieers <dag@wieers.com> - 3.1.0-1
 - Updated to release 3.1.0.
 

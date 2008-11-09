@@ -4,7 +4,7 @@
 
 Summary: Artificial benchmark for measuring memory bandwidth
 Name: bandwidth
-Version: 0.13
+Version: 0.15
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -37,6 +37,9 @@ useful for identifying a computer's weak areas.
 %{_bindir}/bandwidth
 
 %changelog
+* Sat Nov 08 2008 Dag Wieers <dag@wieers.com> - 0.15-1
+- Updated to release 0.15.
+
 * Thu Aug 16 2007 Dag Wieers <dag@wieers.com> - 0.13-1
 - Updated to release 0.13.
 

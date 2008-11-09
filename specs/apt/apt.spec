@@ -521,6 +521,12 @@ fi
 %endif
 
 %changelog
+* Sat Nov 08 2008 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.94a-4
+- Added patches. (Vladislav Bogdanov)
+
+* Wed Oct 29 2008 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.94a-3
+- Released 0.5.15lorg3.94a as stable.
+
 * Thu Jun 12 2008 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.94a-2
 - Improved default configuration.
 - Added pkglog.lua by default.

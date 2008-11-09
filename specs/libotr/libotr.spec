@@ -3,7 +3,7 @@
 
 Summary: Off-The-Record Messaging library and toolkit
 Name: libotr
-Version: 3.1.0
+Version: 3.2.0
 Release: 1
 License: GPL, LGPL
 Group: System Environment/Libraries
@@ -44,7 +44,7 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}" \
-	LIBINSTDIR="%{_libdir}"
+    LIBINSTDIR="%{_libdir}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -76,9 +76,13 @@ you will need to install %{name}-devel.
 %{_datadir}/aclocal/libotr.m4
 %{_includedir}/libotr/
 %{_libdir}/libotr.so
+%{_libdir}/pkgconfig/libotr.pc
 %exclude %{_libdir}/libotr.la
 
 %changelog
+* Thu Nov 06 2008 Dag Wieers <dag@wieers.com> - 3.2.0-1
+- Updated to release 3.2.0.
+
 * Sat Oct 13 2007 Dag Wieers <dag@wieers.com> - 3.1.0-1
 - Updated to release 3.1.0.
 

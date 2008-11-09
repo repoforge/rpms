@@ -5,15 +5,15 @@
 
 Summary: Berkeley VI Editor
 Name: nvi
-Version: 1.79
+Version: 1.81.6
 Release: 1
 License: BSD
 Group: Applications/Editors
 URL: http://www.bostic.com/vi/
 
-Source: ftp://ftp.sleepycat.com/pub/nvi-%{version}.tar.gz
+Source: ftp://ftp.linux.student.kuleuven.be/pub/people/skimo/nvi/nvi-%{version}.tar.bz2
 Patch0: build.patch
-BuildRoot: %{_tmppath}/%{name}-buildroot
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Nvi is an implementation of the ex/vi text editor originally distributed
@@ -21,11 +21,11 @@ as part of the Fourth Berkeley Software Distribution (4BSD), by
 the University of California, Berkeley.
 
 %prep
-%setup -n %{name}-%{version}
-%patch0 -p0
+%setup
+#patch0 -p0
 
 %build
-cd build/
+cd dist/
 %configure \
     --program-prefix="n" \
     --disable-curses
@@ -34,7 +34,7 @@ cd build/
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -dp -m0755 %{buildroot}
-%{__make} install -C build DESTDIR="%{buildroot}"
+%{__make} -C dist install DESTDIR="%{buildroot}"
 
 %post
 if [ -x /usr/sbin/alternatives ]; then
@@ -65,6 +65,9 @@ fi
 %{_datadir}/vi/
 
 %changelog
+* Sat Nov 08 2008 Dag Wieers <dag@wieers.com> - 1.81.6-1
+- Updated to release 1.81.6.
+
 * Thu Jan 10 2008 Mikel Ward <mward@aconex.com> - 1.97-1
 - Install binaries in /bin instead of /usr/bin
 - Add /etc/alternatives links

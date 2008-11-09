@@ -2,18 +2,17 @@
 # Authority: dag
 # Upstream: Russell Coker <russell$coker,com,au>
 
-%define real_version 1.03a
-
 Summary: Benchmark suite for hard drive and file system performance
 Name: bonnie++
-Version: 1.03
-Release: 1.a.2
+Version: 1.03d
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.coker.com.au/bonnie++/
 
-Source: http://www.coker.com.au/bonnie++/bonnie++-%{real_version}.tgz
+Source: http://www.coker.com.au/bonnie++/bonnie++-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc-c++
 
 %description
@@ -25,17 +24,16 @@ single number, because I don't think that a single number can be useful
 when comparing such things.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
 
 %{__perl} -pi.orig -e '
-		s|\$\(eprefix\)/sbin|\$(sbindir)|;
-		s|\$\(eprefix\)/bin|\$(bindir)|;
-		s|\@mandir\@|\$(mandir)|;
-	' Makefile.in
+        s|\$\(eprefix\)/sbin|\$(sbindir)|;
+        s|\$\(eprefix\)/bin|\$(bindir)|;
+        s|\@mandir\@|\$(mandir)|;
+    ' Makefile.in
 
 %build
-%configure \
-	--disable-schemas-install
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
@@ -49,13 +47,18 @@ when comparing such things.
 %files
 %defattr(-, root, root, 0755)
 %doc changelog.txt readme.html
-%doc %{_mandir}/man?/*
-%{_bindir}/*
-%{_sbindir}/*
+%doc %{_mandir}/man1/bon_csv2html.1*
+%doc %{_mandir}/man1/bon_csv2txt.1*
+%doc %{_mandir}/man8/bonnie++.8*
+%doc %{_mandir}/man8/zcav.8*
+%{_bindir}/bon_csv2html
+%{_bindir}/bon_csv2txt
+%{_sbindir}/bonnie++
+%{_sbindir}/zcav
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.03-1.a.2
-- Rebuild for Fedora Core 5.
+* Sat Nov 08 2008 Dag Wieers <dag@wieers.com> - 1.03d-1
+- Updated to release 1.03d.
 
 * Fri Apr 16 2004 Dag Wieers <dag@wieers.com> - 1.03-1.a
 - Initial package. (using DAR)
