@@ -2,18 +2,20 @@
 # Authority: dag
 # Upstream: Michail Brzitwa <michail$brzitwa,de>
 
-%define real_version 0.1h
+### gpart 0.1h-3.1 ships with RHEL5
+# ExclusiveDist: el2 rh7 rh9 el3 el4
 
 Summary: Guesses and recovers a damaged MBR (Master Boot Record)
 Name: gpart
-Version: 0.1
-Release: 1.h.2
+Version: 0.1h
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://home.pages.de/~michab/gpart/
 
-Source: http://www.stud.uni-hannover.de/user/76201/gpart/gpart-%{real_version}.tar.gz
-Patch: ftp://ftp.namesys.com/pub/misc-patches/gpart-0.1h-reiserfs-3.6.patch.gz
+Source: http://www.stud.uni-hannover.de/user/76201/gpart/gpart-%{version}.tar.gz
+Patch0: ftp://ftp.namesys.com/pub/misc-patches/gpart-0.1h-reiserfs-3.6.patch.gz
+Patch1: gpart-0.1h-largefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -21,8 +23,9 @@ Gpart is a small tool which tries to guess what partitions are on a PC
 type harddisk in case the primary partition table was damaged.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
 %patch0 -p2 -b .reiserfs
+%patch1 -p1 -b .largefile
 
 ### FIXME: Fix PPC build (Please fix upstream)
 %{__perl} -pi.orig -e 's/(defined\(__alpha__\))/$1 || defined(__powerpc__)/g' src/gm_ntfs.h
@@ -50,8 +53,9 @@ type harddisk in case the primary partition table was damaged.
 %{_sbindir}/gpart
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1-1.h.2
-- Rebuild for Fedora Core 5.
+* Mon Nov 10 2008 Dag Wieers <dag@wieers.com> - 0.1h-1
+- Added largefile patch.
+- Use upstream version.
 
 * Tue Aug 24 2004 Dag Wieers <dag@wieers.com> - 0.1-1.h
 - Added reiserfs patch.
