@@ -8,7 +8,7 @@
 
 Name: trac
 Summary: Integrated SCM and project management tool
-Version: 0.11
+Version: 0.11.2
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -39,24 +39,35 @@ tracking progress very easy.
 %prep
 %setup -n %{real_name}-%{version}
 
-#%{__perl} -pi.orig -e 's|/usr/lib/|%{_libdir}|g' setup.py
+%{__cat} <<EOF >trac.httpd
+###
+### Sample Trac configuration taken from http://trac.edgewall.org/wiki/TracModPython
+###
 
-#%{__cat} <<EOF >trac.httpd
-#Alias /trac/ "%{_datadir}/trac/htdocs/"
-#
-#### Trac need to know where the database is located
-#<Location "/cgi-bin/trac.cgi">
-#    SetEnv TRAC_ENV "%{_datadir}/trac/myproject.db"
-#</Location>
-#
-#### You need this to allow users to authenticate
-#<Location "/cgi-bin/trac.cgi/login">
-#    AuthType Basic
-#    AuthName "trac"
-#    AuthUserFile %{_datadir}/trac/trac.htpasswd
-#    Require valid-user
-#</location>
-#EOF
+### The recommended Trac web interface requires mod_python
+<IfModule mod_python.c>
+
+### Create your Trac environments as subdirectories of %{_localstatedir}/trac
+### They will appear in a listing on your website at /trac/, and be available 
+### at /trac/PROJECTNAME/
+<Location /trac>
+  SetHandler mod_python
+  PythonInterpreter main_interpreter
+  PythonHandler trac.web.modpython_frontend 
+  PythonOption TracEnvParentDir %{_localstatedir}/www/trac
+  PythonOption TracUriRoot /trac
+</Location>
+
+### Use htpasswd to add Trac accounts to the AuthUserFile
+<LocationMatch "/trac/[^/]+/login">
+  AuthType Basic
+  AuthName "Trac"
+  AuthUserFile %{_localstatedir}/www/trac/.htpasswd
+  Require valid-user
+</LocationMatch>
+
+</IfModule>
+EOF
 
 %build
 
@@ -64,24 +75,34 @@ tracking progress very easy.
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install --single-version-externally-managed --optimize="1" --root="%{buildroot}"
 
-#%{__install} -Dp -m0644 trac.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/trac.conf
-#%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/trac/
+%{__install} -Dp -m0644 trac.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/trac.conf
+%{__install} -d -m0755 %{buildroot}/%{_localstatedir}/www/trac
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL README THANKS UPGRADE
-#%doc %{_mandir}/man1/trac*.1*
-#%config(noreplace) %{_sysconfdir}/httpd/conf.d/trac.conf
+%doc AUTHORS ChangeLog COPYING INSTALL README THANKS UPGRADE contrib/ doc/
+%dir %{_sysconfdir}/httpd/
+%dir %{_sysconfdir}/httpd/conf.d/
+%config(noreplace) %{_sysconfdir}/httpd/conf.d/trac.conf
 %{_bindir}/trac*
-#%{_datadir}/trac/
+%dir %{_localstatedir}/www/
+%{_localstatedir}/www/trac/
 %{python_sitelib}/trac/
-#%{_localstatedir}/lib/trac/
-%exclude %{python_sitelib}/Trac-%{version}-py*.egg-info/
+%{python_sitelib}/Trac-%{version}-py*.egg-info/
 
 %changelog
+* Mon Nov 10 2008 Dag Wieers <dag@wieers.com> - 0.11.2-1
+- Updated to release 0.11.2.
+
+* Wed Aug 06 2008 Brandon Davidson <brandond@uoregon.edu> - 0.11.1-1
+- Updated to release 0.11.1.
+- Added egg.info files required for versioned autoloading by setuptools.
+- Added %{_localstatedir}/www/trac to prevent sample apache config from
+  erroring due to missing ParentDir
+
 * Wed Jul 30 2008 Brandon Davidson <brandond@uoregon.edu> - 0.11-1
 - Updated to release 0.11.
 - Now requires/uses python-setuptools.

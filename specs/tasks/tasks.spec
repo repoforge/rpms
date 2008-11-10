@@ -3,7 +3,7 @@
 
 Summary: Tasks to-do list
 Name: tasks
-Version: 0.13
+Version: 0.14
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -12,9 +12,13 @@ URL: http://pimlico-project.org/tasks.html
 Source: http://pimlico-project.org/sources/tasks/tasks-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gettext, intltool, libsexy-devel, gtk2-devel
 BuildRequires: evolution-data-server-devel >= 1.2.0
 BuildRequires: desktop-file-utils
+BuildRequires: gettext
+BuildRequires: glib2-devel >= 2.14
+BuildRequires: gtk2-devel
+BuildRequires: intltool
+BuildRequires: libsexy-devel
 
 %description
 Tasks is a simple To Do list application that eschews complicated features
@@ -57,6 +61,9 @@ touch %{_datadir}/icons/hicolor
 %{_datadir}/tasks/
 
 %changelog
+* Mon Nov 10 2008 Dag Wieers <dag@wieers.com> - 0.14-1
+- Updated to release 0.14.
+
 * Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 0.13-1
 - Updated to release 0.13.
 

@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 # Upstream: <lyx-devel$lists,lyx,org>
-# ExclusiveDist: el5
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
@@ -62,17 +61,24 @@ EOF
 
 %build
 %configure \
-	--with-frontend=qt4 \
-	--without-warnings \
-	--disable-debug \
-	--enable-optimization="%{optflags}" \
-	--with-qt4-dir="%{_libdir}/qt4"
+    --disable-assertions \
+    --disable-concept-checks \
+    --disable-debug \
+    --disable-dependency-tracking \
+    --disable-rpath \
+    --disable-stdlib-debug \
+    --enable-compression-support \
+    --enable-optimization="%{optflags}" \
+    --with-aiksaurus \
+    --with-aspell \
+    --with-frontend="qt4" \
+    --with-qt4-dir="%{_libdir}/qt4" \
+    --without-warnings
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 ### Set up the lyx-specific class files where TeX can see them
@@ -131,14 +137,13 @@ texhash &>/dev/null
 
 %changelog
 * Sat Nov 08 2008 Christoph Maser <cmr@financial.com> - 1.5.6-1
-- Updated to release 1.5.6-1
-- ExclusiveDist: el5 since it needs qt4
+- Updated to release 1.5.6.
+
+* Sat Aug 11 2007 Dag Wieers <dag@wieers.com> - 1.5.1-1
+- Updated to release 1.5.1.
 
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.1-1
 - Updated to release 1.4.1.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.5-1.2
-- Rebuild for Fedora Core 5.
 
 * Fri Nov 05 2004 Dag Wieers <dag@wieers.com> - 1.3.5-1
 - Updated to release 1.3.5.

@@ -49,7 +49,7 @@
 
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
-Version: 1.0.3
+Version: 1.1.0
 Release: 1%{?prever:.%{prever}}
 License: GPL
 Group: System Environment/Libraries
@@ -151,10 +151,13 @@ programs that need to access quicktime files using libquicktime.
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/libquicktime.pc
 %exclude %{_docdir}/libquicktime/
-%exclude %{_libdir}/*.la
+%exclude %{_libdir}/libquicktime.la
 %exclude %{_libdir}/libquicktime/lqt_*.la
 
 %changelog
+* Mon Nov 10 2008 Dag Wieers <dag@wieers.com> - 1.1.0-1
+- Updated to release 1.1.0.
+
 * Mon Jul 14 2008 Dag Wieers <dag@wieers.com> - 1.0.3-1
 - Updated to release 1.0.3.
 
