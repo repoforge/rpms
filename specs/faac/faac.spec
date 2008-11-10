@@ -1,16 +1,18 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
 
 Summary: Reference encoder and encoding library for MPEG2/4 AAC
 Name: faac
-Version: 1.25
-Release: 2
+Version: 1.26
+Release: 1
 License: LGPL
 Group: Applications/Multimedia
 URL: http://www.audiocoding.com/
+
 Source: http://dl.sf.net/faac/faac-%{version}.tar.gz
 Patch0: faac-1.25-libmp4v2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: libmp4v2-devel
 BuildRequires: autoconf >= 2.50, automake, libtool, dos2unix, gcc-c++
 
@@ -18,7 +20,6 @@ BuildRequires: autoconf >= 2.50, automake, libtool, dos2unix, gcc-c++
 FAAC is an AAC audio encoder. It currently supports MPEG-4 LTP, MAIN and LOW
 COMPLEXITY object types and MAIN and LOW MPEG-2 object types. It also supports
 multichannel and gapless encoding.
-
 
 %package devel
 Summary: Development libraries of the FAAC AAC encoder
@@ -32,52 +33,47 @@ multichannel and gapless encoding.
 
 This package contains development files and documentation for libfaac.
 
-
 %prep
 %setup -n %{name}
-%patch0 -p1 -b .libmp4v2
+#patch0 -p1 -b .libmp4v2
 # Don't ask...
 find . -type f -exec dos2unix {} \;
 find . -type f -exec chmod 644 {} \;
 find . -type d -exec chmod 755 {} \;
 
-
 %build
 sh bootstrap
-%configure \
-    --disable-static \
+%configure --disable-static \
     --with-mp4v2
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
-
-
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING README TODO
-%{_bindir}/*
-%{_libdir}/*.so.*
+%doc AUTHORS ChangeLog COPYING NEWS README TODO docs/*
+%{_bindir}/faac
+%{_libdir}/libfaac.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*.h
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
-
+%{_includedir}/faac.h
+%{_includedir}/faaccfg.h
+%{_libdir}/libfaac.so
+%exclude %{_libdir}/libfaac.la
 
 %changelog
+* Mon Nov 10 2008 Dag Wieers <dag@wieers.com> - 1.26-1
+- Updated to release 1.26.
+
 * Wed Dec 20 2006 Matthias Saou <http://freshrpms.net/> 1.25-2
 - Include patch to fix external libmp4v2 (Alexandre Silva Lopes).
 

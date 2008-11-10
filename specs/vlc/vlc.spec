@@ -123,7 +123,7 @@
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
-Version: 0.9.4
+Version: 0.9.6
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -468,6 +468,9 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %endif
 
 %changelog
+* Mon Nov 10 2008 Dag Wieers <dag@wieers.com> - 0.9.6-1
+- Updated to release 0.9.6.
+
 * Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 0.9.4-1
 - Updated to release 0.9.4.
 

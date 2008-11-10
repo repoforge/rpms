@@ -12,15 +12,17 @@
 
 Summary: Library and frontend for decoding MPEG2/4 AAC
 Name: faad2
-Version: 2.5
-Release: 2
+Version: 2.6.1
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.audiocoding.com/
+
 Source: http://dl.sf.net/faac/faad2-%{version}.tar.gz
 Patch0: faad2-2.5-buildfix.patch
 Patch1: faad2-2.5-faacDec.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: autoconf, automake, libtool
 BuildRequires: gcc-c++, zlib-devel
 %{!?_without_sysfs:BuildRequires: libsysfs-devel}
@@ -29,65 +31,58 @@ BuildRequires: gcc-c++, zlib-devel
 FAAD 2 is a LC, MAIN and LTP profile, MPEG2 and MPEG-4 AAC decoder, completely
 written from scratch.
 
-
 %package devel
-Summary: Development libraries of the FAAD 2 AAC decoder
+Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
-Requires: %{name} = %{version}
+Requires: %{name} = %{version}-%{release}
 
 %description devel
-FAAD 2 is a LC, MAIN and LTP profile, MPEG2 and MPEG-4 AAC decoder, completely
-written from scratch.
-
-This package contains development files and documentation for libfaad.
-
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
 %setup -n %{name}
-%patch0 -p1 -b .buildfix
-%patch1 -p1 -b .faacDec
+#patch0 -p1 -b .buildfix
+#patch1 -p1 -b .faacDec
 
 ### Required to make automake < 1.7 work
 %{__perl} -pi -e 's|dnl AC_PROG_CXX|AC_PROG_CXX|' configure.in
 
-
 %build
 # This is what the README.linux file recommends
 autoreconf -vif
-%configure \
-    --disable-static \
+%configure --disable-static \
     --with-drm
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
-
-
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README* TODO
-%{_bindir}/*
-%{_libdir}/*.so.*
+%{_bindir}/faad
+%{_libdir}/libfaad.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
-
+%{_includedir}/faad.h
+%{_includedir}/neaacdec.h
+%{_libdir}/libfaad.so
+%exclude %{_libdir}/libfaad.la
 
 %changelog
+* Mon Nov 10 2008 Dag Wieers <dag@wieers.com> - 2.6.1-1
+- Updated to release 2.6.1.
+
 * Mon Jan  8 2007 Matthias Saou <http://freshrpms.net/> 2.5-2
 - Add patch to remove backwards compatibility in the header so that we can
   easily identify and patch all programs requiring a rebuild.

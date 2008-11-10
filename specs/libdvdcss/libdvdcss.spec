@@ -4,13 +4,15 @@
 
 Summary: Portable abstraction library for DVD decryption
 Name: libdvdcss
-Version: 1.2.9
-Release: 2
+Version: 1.2.10
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/libdvdcss/
+
 Source: http://download.videolan.org/pub/libdvdcss/%{version}/libdvdcss-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 # For the documentation
 BuildRequires: doxygen, gcc-c++
 
@@ -19,7 +21,6 @@ This is a portable abstraction library for DVD decryption which is used by
 the VideoLAN project, a full MPEG2 client/server solution.  You will need
 to install this package in order to have encrypted DVD playback with the
 VideoLAN client and the Xine navigation plugin.
-
 
 %package devel
 Summary: Development files from the libdvdcss DVD decryption library
@@ -35,46 +36,40 @@ VideoLAN client and the Xine navigation plugin.
 You will need to install these development files if you intend to rebuild
 any of the above programs.
 
-
 %prep
 %setup
 
-
 %build
-%configure \
-    --disable-static
+%configure --disable-static
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
-
-
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
-
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README
 %{_libdir}/libdvdcss.so.*
 
-
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/html/
 %{_includedir}/dvdcss/
-%exclude %{_libdir}/libdvdcss.la
 %{_libdir}/libdvdcss.so
-
+%{_libdir}/pkgconfig/libdvdcss.pc
+%exclude %{_libdir}/libdvdcss.la
 
 %changelog
+* Mon Nov 10 2008 Dag Wieers <dag@wieers.com> - 1.2.10-1
+- Updated to release 1.2.10.
+
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.2.9-2
 - Disable/remove static library, nothing seems to require it.
 

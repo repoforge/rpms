@@ -10,16 +10,21 @@
 %{?rh7:%define _without_selinux 1}
 %{?el2:%define _without_selinux 1}
 
+%define real_version 398-2
+
 Summary: LAME Ain't an MP3 Encoder... but it's the best of all
 Name: lame
-Version: 3.97
+Version: 3.98.2
 Release: 1
 License: LGPL
 Group: Applications/Multimedia
 URL: http://lame.sourceforge.net/
-Source: http://dl.sf.net/lame/lame-%{version}.tar.gz
+
+Source: http://dl.sf.net/lame/lame-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: ncurses-devel, gcc-c++
+
+BuildRequires: gcc-c++
+BuildRequires: ncurses-devel
 %{?!_without_selinux:BuildRequires: prelink}
 %ifarch %{ix86} x86_64
 BuildRequires: nasm
@@ -33,29 +38,22 @@ the psycho acoustics, noise shaping and speed of MP3. Another goal of
 the LAME project is to use these improvements for the basis of a patent
 free audio compression codec for the GNU project.
 
-
 %package devel
-Summary: Shared and static libraries for LAME
+Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
-Requires: %{name} = %{version}
+Requires: %{name} = %{version}-%{release}
 
 %description devel
-LAME is an educational tool to be used for learning about MP3 encoding.
-This package contains both the shared and the static libraries from the
-LAME project.
-
-You will also need to install the main lame package in order to install
-these libraries.
-
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
-%setup
-
+%setup -n %{name}-%{real_version}
 
 %build
-%configure \
-    --program-prefix=%{?_program_prefix} \
-    --disable-static \
+%configure --disable-static \
+    --program-prefix="%{?_program_prefix}" \
 %ifarch %{ix86} x86_64
     --enable-nasm \
 %endif
@@ -65,10 +63,9 @@ these libraries.
     --enable-brhist
 %{__make} test CFLAGS="%{optflags}"
 
-
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 ### Some apps still expect to find <lame.h>
 %{__ln_s} -f lame/lame.h %{buildroot}%{_includedir}/lame.h
@@ -80,32 +77,31 @@ find doc/html -name "Makefile*" | xargs rm -f
 ### Clear not needed executable stack flag bit
 execstack -c %{buildroot}%{_libdir}/*.so.*.*.* || :
 
-
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
-
-
 %clean
 %{__rm} -rf %{buildroot}
 
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING doc/html/ README TODO USAGE
-%{_bindir}/*
-%{_libdir}/*.so.*
-%{_mandir}/man1/*
+%doc %{_mandir}/man1/lame.1*
+%{_bindir}/lame
+%{_libdir}/libmp3lame.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc API HACKING STYLEGUIDE
-%{_includedir}/*
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
-
+%{_includedir}/lame/
+%{_includedir}/lame.h
+%{_libdir}/libmp3lame.so
+%exclude %{_libdir}/libmp3lame.la
 
 %changelog
+* Mon Nov 10 2008 Dag Wieers <dag@wieers.com> - 3.98.2-1
+- Updated to release 3.98.2.
+
 * Mon Oct 16 2006 Matthias Saou <http://freshrpms.net/> 3.97-1
 - Update to 3.97.
 

@@ -5,7 +5,7 @@
 Summary: Allows restricted root access for specified users
 Name: op
 Version: 1.32
-Release: 2
+Release: 3
 License: BSD
 Group: Applications/System
 URL: http://swapoff.org/op/
@@ -44,53 +44,53 @@ controlled.
 ### 'op su' - gives user a root shell.
 ### Restrict a list of local users.
 #su
-#	/bin/su -;
-#	users=dag,ramses,wim
-#	environment
-#	password
+#    /bin/su -;
+#    users=dag,ramses,wim
+#    environment
+#    password
 
 ### 'op reboot' - reboot system
 ### Shows how to use a simple access list
 #reboot
-#	/sbin/reboot;
-#	users=ACCESS_LIST
-#	password
+#    /sbin/reboot;
+#    users=ACCESS_LIST
+#    password
 
 ### 'op shutdown <time>' - shutdown at a certain time.
 ### Restricts argument to valid values only.
 #shutdown
-#	/sbin/shutdown -h $1;
-#	users=ACCESS_LIST
-#	$1=(now|[0-1]?[0-9]:[0-9][0-9]|2[0-3]:[0-5][0-9]|+[0-9]+)
+#    /sbin/shutdown -h $1;
+#    users=ACCESS_LIST
+#    $1=(now|[0-1]?[0-9]:[0-9][0-9]|2[0-3]:[0-5][0-9]|+[0-9]+)
 
 ### 'op service <service> start|stop|restart|status' - Manipulate services.
 #service
-#	/sbin/service $1 $2;
-#	users=ACCESS_LIST
-#	environment
-#	$2=start|stop|restart|status
+#    /sbin/service $1 $2;
+#    users=ACCESS_LIST
+#    environment
+#    $2=start|stop|restart|status
 
 ### 'op inetd on|off' - switch inetd on and off.
 ### Shows complex shell example and 'string' arguments.
 #inetd
-#	/bin/sh -c '
-#		case $1 in
-#			on) /usr/sbin/inetd -s ;;
-#			off) /usr/bin/pkill inetd ;;
-#		esac
-#	';
-#	users=ACCESS_LIST
-#	$1=on|off
+#    /bin/sh -c '
+#    case $1 in
+#            (on) /usr/sbin/inetd -s ;;
+#            (off) /usr/bin/pkill inetd ;;
+#    esac
+#    ';
+#    users=ACCESS_LIST
+#    $1=on|off
 EOF
 
 %{__cat} <<EOF >su.conf
 ### 'op su' - gives user a root shell.
 ### Restrict a list of local users.
 #su
-#»··/bin/su -; 
-#»··users=dag,ramses,wim
-#»··environment
-#»··password
+#    /bin/su -;
+#    users=dag,ramses,wim
+#    environment
+#    password
 EOF
 
 %{__cat} <<EOF >op.pam
@@ -127,6 +127,9 @@ EOF
 %{_bindir}/op
 
 %changelog
+* Mon Nov 10 2008 Dag Wieers <dag@wieers.com> - 1.32-3
+- Fix some configuration files.
+
 * Thu Aug 16 2007 Dag Wieers <dag@wieers.com> - 1.32-2
 - Change permissions of /etc/op.d/ to 0700.
 - Added su.conf example to show how it works.
