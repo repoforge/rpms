@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 # Upstream: <lyx-devel$lists,lyx,org>
+# ExclusiveDist: el5
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
@@ -11,7 +12,7 @@
 
 Summary: WYSIWYM (What You See Is What You Mean) frontend to LaTeX
 Name: lyx
-Version: 1.4.1
+Version: 1.5.6
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -21,9 +22,9 @@ Source: ftp://ftp.lyx.org/pub/lyx/stable/lyx-%{version}.tar.bz2
 Source1: lyx-icon.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: qt-devel, gcc-c++
+BuildRequires: qt4-devel, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-Requires: qt >= 2.2.1, tetex-xdvi, tetex, tetex-latex
+Requires: qt4 >= 4.1.1, tetex-xdvi, tetex, tetex-latex
 Obsoletes: tetex-lyx
 
 %description
@@ -60,12 +61,12 @@ Categories=Application;Office;
 EOF
 
 %build
-source "%{_sysconfdir}/profile.d/qt.sh"
 %configure \
-	--with-frontend="qt" \
+	--with-frontend=qt4 \
 	--without-warnings \
 	--disable-debug \
-	--enable-optimization="%{optflags}"
+	--enable-optimization="%{optflags}" \
+	--with-qt4-dir="%{_libdir}/qt4"
 %{__make} %{?_smp_mflags}
 
 
@@ -129,6 +130,10 @@ texhash &>/dev/null
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-lyx.desktop}
 
 %changelog
+* Sat Nov 08 2008 Christoph Maser <cmr@financial.com> - 1.5.6-1
+- Updated to release 1.5.6-1
+- ExclusiveDist: el5 since it needs qt4
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.4.1-1
 - Updated to release 1.4.1.
 
