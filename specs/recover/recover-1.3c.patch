@@ -1,0 +1,21 @@
+--- Makefile	Sun Nov 12 20:55:33 2000
++++ Makefile.new	Mon Dec 11 18:48:26 2000
+@@ -3,7 +3,7 @@
+ 
+ # if you change this, don't forget to change RECOVER_QUESTIONS
+ # in recover.h
+-PREFIX=/usr
++PREFIX=$(RPM_BUILD_ROOT)/usr
+ 
+ CC=gcc
+ CFLAGS=-g -ggdb -x c	# To compile as C
+@@ -32,7 +32,7 @@
+ 	rm -f -r $(PREFIX)/share/recover
+ 	mkdir -p $(PREFIX)/bin
+ 	mkdir -p $(PREFIX)/share/recover
+-	mkdir -p $(PREFIX)/man/man1
++	mkdir -p $(PREFIX)/share/man/man1
+ 	cp recover_questions $(PREFIX)/share/recover
+ 	cp -f recover $(PREFIX)/bin
+-	cp -f recover.1.gz $(PREFIX)/man/man1
++	cp -f recover.1.gz $(PREFIX)/share/man/man1

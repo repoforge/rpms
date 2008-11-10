@@ -1,9 +1,6 @@
 # $Id$
 # Authority: matthias
 
-# Define when building a CVS shapshot
-#define	cvs	-cvs
-
 Summary: Library for reading DVD video disks
 Name: libdvdread
 Version: 0.9.7
@@ -11,17 +8,18 @@ Release: 1%{?cvs:cvs}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.dtek.chalmers.se/groups/dvd/
-Source: http://www.dtek.chalmers.se/groups/dvd/dist/libdvdread-%{version}%{?cvs}.tar.gz
+
+Source: http://www.dtek.chalmers.se/groups/dvd/dist/libdvdread-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: libdvdcss >= 1.2.5
+
 BuildRequires: gcc-c++
+Requires: libdvdcss >= 1.2.5
 
 %description
 libdvdread provides a simple foundation for reading DVD video disks.
 It provides the functionality that is required to access many DVDs.
 It parses IFO files, reads NAV-blocks, and performs CSS authentication
 and descrambling.
-
 
 %package devel
 Summary: Development files from the libdvdread library
@@ -37,42 +35,33 @@ and descrambling.
 You will need to install these development files if you intend to rebuild
 programs that use this library.
 
-
 %prep
 %setup -n %{name}-%{version}%{?cvs}
 
-
 %build
-%configure \
-    --disable-static
+%configure --disable-static
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
-
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING NEWS README TODO
-%{_libdir}/*.so.*
+%{_libdir}/libdvdread.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
-
+%{_includedir}/dvdread/
+%{_libdir}/libdvdread.so
+%exclude %{_libdir}/libdvdread.la
 
 %changelog
 * Fri Oct  6 2006 Matthias Saou <http://freshrpms.net/> 0.9.7-1
