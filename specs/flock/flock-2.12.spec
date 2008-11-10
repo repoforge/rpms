@@ -1,4 +1,4 @@
-# $Id: flock.spec 6549 2008-11-10 16:03:57Z dag $
+# $Id$
 # Authority: dag
 # Upstream: Adrian Bunk <bunk@kernel.org>
 
@@ -12,17 +12,16 @@
 %{?el2:%define _without_gettextdevel 1}
 
 %define real_name util-linux
-%define real_version 2.13-pre7
 
 Summary: Manage locks from shell scripts
 Name: flock
-Version: 2.13
-Release: 0.1.pre7
+Version: 2.12r
+Release: 0.1
 License: distributable
 Group: System Environment/Base
 URL: ftp://ftp.kernel.org/pub/linux/utils/util-linux/
 
-Source: ftp://ftp.kernel.org/pub/linux/utils/util-linux/testing/util-linux-%{real_version}.tar.bz2
+Source: ftp://ftp.kernel.org/pub/linux/utils/util-linux/util-linux-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{!?_without_gettextdevel:BuildRequires: gettext-devel}
@@ -35,7 +34,7 @@ flock is a tool to manage flock(2) locks from within shell scripts or the
 command line.
 
 %prep
-%setup -n %{real_name}-%{real_version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure
@@ -52,13 +51,10 @@ command line.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS NEWS README
+%doc HISTORY MAINTAINER README
 %doc %{_mandir}/man1/flock.1*
 %{_bindir}/flock
 
 %changelog
-* Mon Nov 10 2008 Dag Wieers <dag@wieers.com> - 2.13-0.1.pre7
-- Updated to release 2.13-pre7.
-
 * Mon Nov 10 2008 Dag Wieers <dag@wieers.com> - 2.12r-0.1
 - Initial package. (using DAR)
