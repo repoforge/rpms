@@ -4,7 +4,7 @@
 
 Summary: Load balance and fail over utility for TCP based services
 Name: crossroads
-Version: 2.12
+Version: 2.36
 Release: 1
 License: GPLv3
 Group: Applications/Utilities
@@ -31,14 +31,14 @@ of other back ends.
 %{__perl} -pi -e 's|use PROMPT to|Use PROMPT to|g;' src/crossroads-mgr/*
 
 %build
-%{__make} %{?_smp_mflags} PREFIX=%{_prefix} local
+%{__make} %{?_smp_mflags} PREFIX=%{_prefix} BINDIR=%{_sbindir} local
 #needs yo2man
-#{__make} %{?_smp_mflags} PREFIX=%{_prefix} documentation
+#{__make} %{?_smp_mflags} PREFIX=%{_prefix} BINDIR=%{_sbindir} documentation
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d %{buildroot}%{_bindir} %{buildroot}%{_mandir}/man1 %{buildroot}%{_mandir}/man7
-%{__make} install DESTDIR="%{buildroot}" PREFIX=%{buildroot}%{_prefix}
+%{__install} -d %{buildroot}%{_bindir} %{buildroot}%{_sbindir} %{buildroot}%{_mandir}/man1 %{buildroot}%{_mandir}/man7
+%{__make} install DESTDIR="%{buildroot}" BINDIR=%{buildroot}%{_sbindir} PREFIX=%{buildroot}%{_prefix}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -46,13 +46,16 @@ of other back ends.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog
-%doc %{_mandir}/man1/crossroads*.1*
-%doc %{_mandir}/man7/crossroads.conf.7*
-%{_bindir}/crossroads
-%{_bindir}/crossroads-daemon
-%{_bindir}/crossroads-mgr
+%doc %{_mandir}/man1/xr*.1*
+%doc %{_mandir}/man1/xrctl.1*
+%doc %{_mandir}/man5/xrctl.xml.5*
+%{_sbindir}/xrctl
+%{_sbindir}/xr
 
 %changelog
+* Thu Nov 20 2008 Dries Verachtert <dries@ulyssis.org> - 2.36-1
+- Updated to release 2.36.
+
 * Fri Sep 12 2008 Dries Verachtert <dries@ulyssis.org> - 2.12-1
 - Updated to release 2.12.
 
