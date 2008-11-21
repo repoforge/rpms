@@ -3,7 +3,7 @@
 
 Summary: Film collection manager application
 Name: griffith
-Version: 0.9.7.1
+Version: 0.9.8
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -40,14 +40,17 @@ related information from the Web.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO
-%doc %{_mandir}/man1/griffith*
-%doc %{_mandir}/*/man1/griffith*
+%doc %{_mandir}/man1/griffith.1*
+%doc %{_mandir}/*/man1/griffith.1*
 %{_bindir}/griffith
 %{_datadir}/griffith/
 %{_datadir}/pixmaps/griffith.*
 %{_datadir}/applications/griffith.desktop
 
 %changelog
+* Fri Nov 21 2008 Dries Verachtert <dries@ulyssis.org> - 0.9.8-1
+- Updated to release 0.9.8.
+
 * Tue Jul 29 2008 Dries Verachtert <dries@ulyssis.org> - 0.9.7.1-1
 - Updated to release 0.9.7.1.
 
