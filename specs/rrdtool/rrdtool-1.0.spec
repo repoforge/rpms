@@ -12,7 +12,7 @@ Version: 1.0.50
 Release: 3
 License: GPL
 Group: Applications/Databases
-URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
+URL: http://oss.oetiker.ch/rrdtool/
 Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/rrdtool-1.0.x/rrdtool-%{version}.tar.gz
 Patch0: rrdtool-1.0.48-php_config.patch
 Patch1: rrdtool-1.0.50-configure.patch

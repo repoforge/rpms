@@ -30,7 +30,7 @@ Version: 1.2.28
 Release: 1
 License: GPL
 Group: Applications/Databases
-URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
+URL: http://oss.oetiker.ch/rrdtool/
 
 Source0: http://oss.oetiker.ch/rrdtool/pub/rrdtool-%{version}.tar.gz
 Patch0: rrdtool-1.2.13-php.patch
