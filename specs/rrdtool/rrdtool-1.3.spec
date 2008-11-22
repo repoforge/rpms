@@ -226,7 +226,7 @@ find examples/ -name "*.pl" -exec %{__perl} -pi -e 's|\015||gi' {} \;
 %defattr(-, root, root, 0755)
 %doc bindings/python/ACKNOWLEDGEMENT bindings/python/AUTHORS bindings/python/COPYING bindings/python/README
 %{python_sitearch}/rrdtoolmodule.so
-%{python_sitearch}/py_rrdtool-*.egg-info
+#%{python_sitearch}/py_rrdtool-*.egg-info
 %endif
 
 %if %{!?_without_ruby:1}0

@@ -235,6 +235,9 @@ find examples/ -name "*.pl" -exec %{__perl} -pi -e 's|\015||gi' {} \;
 * Wed Oct 15 2008 Christoph Maser <cmr@financial.com> - 1.2.28-1
 - Updated to release 1.2.28.
 
+* Sun Feb 17 2008 Dag Wieers <dag@wieers.com> - 1.2.27-1
+- Updated to release 1.2.27.
+
 * Wed Jun 06 2007 Dag Wieers <dag@wieers.com> - 1.2.23-1
 - Updated to release 1.2.23.
 
