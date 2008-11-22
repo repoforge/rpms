@@ -3,8 +3,8 @@
 
 Summary: ISO 9660 Rock Ridge Filesystem Manipulator
 Name: xorriso
-%define real_version 0.2.6
-Version: 0.2.6.pl01
+%define real_version 0.2.8
+Version: 0.2.8.pl01
 Release: 1
 License: GPL
 Group: Applications/Archiving
@@ -55,5 +55,8 @@ incorporates the libraries of libburnia-project.org.
 %exclude %{_libdir}/pkgconfig/xorriso.pc
 
 %changelog
+* Sat Nov 22 2008 Dag Wieers <dag@wieers.com> - 0.2.8.pl01-1
+- Updated to release 0.2.8.pl01.
+
 * Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 0.2.6.pl01-1
 - Initial package. (using DAR)
