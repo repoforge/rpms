@@ -1,10 +1,9 @@
 # $Id$
 # Authority: dag
-# Upstream: 
 
 Summary: Terminal multiplexer program
 Name: tmux
-Version: 0.4
+Version: 0.5
 Release: 1
 License: BSD
 Group: Applications/System
@@ -12,9 +11,6 @@ URL: http://tmux.sourceforge.net/
 
 Source: http://downloads.sourceforge.net/tmux/tmux-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-#BuildRequires: 
-#Requires:
 
 %description
 tmux is a "terminal multiplexer". It allows a number of terminals (or windows)
@@ -43,6 +39,9 @@ a simple, modern, BSD-licensed alternative to programs such as GNU screen.
 %{_bindir}/tmux
 
 %changelog
+* Mon Nov 17 2008 Dag Wieers <dag@wieers.com> - 0.5-1
+- Updated to release 0.5.
+
 * Fri Jul 04 2008 Dag Wieers <dag@wieers.com> - 0.4-1
 - Updated to release 0.4.
 

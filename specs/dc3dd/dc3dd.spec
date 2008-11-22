@@ -10,7 +10,7 @@
 
 Summary: Patched dd with Computer Forensics Features
 Name: dc3dd
-Version: 6.12.1
+Version: 6.12.2
 Release: 1
 License: GPL
 Group: Applications/System
@@ -57,10 +57,13 @@ were rewritten for dc3dd.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING KNOWN_BUGS NEWS *.txt
+%doc ChangeLog COPYING NEWS README THANKS THANKS-to-translators *.txt
 %doc %{_mandir}/man1/dc3dd.1*
 %{_bindir}/dc3dd
 
 %changelog
+* Wed Nov 12 2008 Dag Wieers <dag@wieers.com> - 6.12.2-1
+- Updated to release 6.12.2.
+
 * Sat Nov 08 2008 Dag Wieers <dag@wieers.com> - 6.12.1-1
 - Initial package. (using DAR)

@@ -10,8 +10,8 @@
 
 Summary: Macromedia Flash Player
 Name: flash-plugin
-Version: 9.0.124.0
-Release: 1
+Version: 9.0.151.0
+Release: 2
 License: Commercial
 Group: Applications/Internet
 URL: http://www.macromedia.com/downloads/
@@ -54,6 +54,9 @@ By downloading and installing this package you agree to the included LICENSE:
 %{_libdir}/mozilla/plugins/
 
 %changelog
+* Wed Nov 12 2008 Dag Wieers <dag@wieers.com> - 9.0.151.0-1
+- Updated to release 9.0.151.0.
+
 * Wed Apr 23 2008 Dag Wieers <dag@wieers.com> - 9.0.124.0-1
 - Updated to release 9.0.124.0.
 

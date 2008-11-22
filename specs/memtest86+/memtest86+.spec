@@ -4,11 +4,19 @@
 
 # Screenshot: http://www.memtest.org/pics/i875-big.gif
 
+%{?dtag: %{expand: %%define %dtag 1}}
+
+%{?el4:%define _without_stackprotector 1}
+%{?el3:%define _without_stackprotector 1}
+%{?rh9:%define _without_stackprotector 1}
+%{?rh7:%define _without_stackprotector 1}
+%{?el2:%define _without_stackprotector 1}
+
 %define _prefix /boot
 
 Summary: Thorough, stand-alone memory tester
 Name: memtest86+
-Version: 2.01
+Version: 2.10
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -29,6 +37,8 @@ often miss many of the failures that are detected by Memtest86+.
 
 %prep
 %setup
+
+%{?_without_stackprotector:%{__perl} -pi.orig -e 's|-fno-stack-protector||' Makefile}
 
 %build
 %{__make} %{?_smp_mflags}
@@ -57,6 +67,9 @@ fi
 %{_prefix}/%{name}-%{version}
 
 %changelog
+* Mon Nov 17 2008 Dag Wieers <dag@wieers.com> - 2.10-1
+- Updated to release 2.10.
+
 * Tue May 27 2008 Dag Wieers <dag@wieers.com> - 2.01-1
 - Updated to release 2.01.
 

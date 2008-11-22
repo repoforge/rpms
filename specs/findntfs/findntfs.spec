@@ -10,7 +10,7 @@ License: GPL
 Group: Applications/System
 URL: http://mlf.linux.rulez.org/mlf/ezaz/ntfsresize.html#troubleshoot
 
-Source: http://mlf.linux.rulez.org/mlf/ezaz/findntfs-%{version}.tgz
+Source: http://ntfs-3g.org/download/findntfs-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -20,22 +20,19 @@ findntfs is a tool to find NTFS filesystems.
 %setup
 
 %build
-%configure
-%{__make} %{?_smp_mflags}
+%{__cc} %{optflags} -o findntfs findntfs.c
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
-%find_lang %{name}
+%{__install} -Dp -m0755 findntfs %{buildroot}%{_bindir}/findntfs
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS FAQ INSTALL LICENSE NEWS README THANKS TODO
 %{_bindir}/findntfs
 
 %changelog
-* Sat Nov 08 2008 Dag Wieers <dag@wieers.com> - 1.3-1
+* Tue Nov 11 2008 Dag Wieers <dag@wieers.com> - 1.3-1
 - Initial package. (using DAR)

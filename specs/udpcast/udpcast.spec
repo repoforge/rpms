@@ -4,8 +4,8 @@
 
 Summary: UDP broadcast file distribution and installation
 Name: udpcast
-%define real_version 20080914
-Version: 0.0.20080914
+%define real_version 20081116
+Version: 0.0.20081116
 Release: 1
 License: GPL or BSD
 Group: Applications/System
@@ -46,6 +46,9 @@ udpcast is an application for multicasting data to multiple targets.
 %{_sbindir}/udp-sender
 
 %changelog
+* Wed Nov 19 2008 Dag Wieers <dag@wieers.com> - 0.0.20081116-1
+- Updated to release 20081116.
+
 * Tue Nov 04 2008 Dag Wieers <dag@wieers.com> - 0.0.20080914-1
 - Updated to release 20080914.
 

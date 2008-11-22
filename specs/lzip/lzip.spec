@@ -3,13 +3,13 @@
 
 Summary: Lossless LZMA-based data compression
 Name: lzip
-Version: 1.0
+Version: 1.1
 Release: 1
 License: GPL
 Group: Applications/File
-URL: http://es.geocities.com/ant_diaz2001/lzip.html
+URL: http://www.nongnu.org/lzip/lzip.html
 
-Source: http://es.geocities.com/ant_diaz2001/lzip-%{version}.tar.gz
+Source: http://download.savannah.gnu.org/releases/lzip/lzip-%{version}.tar.bz2
 Patch1: lzip-0.3-fix_types.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-%{_arch}-root
 
@@ -48,12 +48,15 @@ these tasks.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %doc %{_infodir}/lzip.info*
 %doc %{_mandir}/man1/lzip.1*
 %{_bindir}/lzip
 
 %changelog
+* Tue Nov 18 2008 Dag Wieers <dag@wieers.com> - 1.1-1
+- Updated to release 1.1.
+
 * Tue Oct 14 2008 Dag Wieers <dag@wieers.com> - 1.0-1
 - Updated to release 1.0.
 

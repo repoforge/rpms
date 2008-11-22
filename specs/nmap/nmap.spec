@@ -68,7 +68,8 @@ be installed before installing nmap-frontend.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall nmapdatadir=%{buildroot}%{_datadir}/nmap
+%{__make} install DESTDIR="%{buildroot}"
+#nmapdatadir=%{buildroot}%{_datadir}/nmap
 
 %if %{!?_without_gtk24:1}0
 %{__mkdir_p} %{buildroot}%{_datadir}/applications

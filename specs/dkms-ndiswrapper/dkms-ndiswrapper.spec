@@ -1,41 +1,41 @@
 # $Id$
 # Authority: matthias
 
+%define real_name ndiswrapper
+
 Summary: Kernel module to allow the use of NDIS drivers 
 Name: dkms-ndiswrapper
-Version: 1.48
+Version: 1.53
 Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://ndiswrapper.sourceforge.net/
+
 Source: http://downloads.sf.net/ndiswrapper/ndiswrapper-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+ExclusiveArch: i386 x86_64
 Requires: gcc, make
 Requires(post): dkms
 Requires(preun): dkms
 Provides: ndiswrapper = %{version}-%{release}
-ExclusiveArch: i386 x86_64
 
 %description
 This kernel module implements the Microsoft NDIS (Network Driver Interface
 Specification) API within the linux kernel.  It allows the use of binary
 drivers written to this specification to be run natively in the Linux kernel.
 
-
 %prep
-%setup -n ndiswrapper-%{version}
-
+%setup -n %{real_name}-%{version}
 
 %build
 %{__make} -C utils CFLAGS="%{optflags} -I../driver"
 
-
 %install
 %{__rm} -rf %{buildroot}
-%{__make} -C utils DESTDIR=%{buildroot} install
-%{__install} -D -m 0644 -p ndiswrapper.8 \
-    %{buildroot}%{_mandir}/man8/ndiswrapper.8
-%{__mkdir_p} %{buildroot}%{_sysconfdir}/ndiswrapper
+%{__make} -C utils install DESTDIR="%{buildroot}"
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/ndiswrapper
+%{__install} -Dp -m0644 ndiswrapper.8 %{buildroot}%{_mandir}/man8/ndiswrapper.8
 
 %define dkms_name ndiswrapper
 %define dkms_vers %{version}-%{release}
@@ -56,10 +56,8 @@ DEST_MODULE_LOCATION[0]=/kernel/drivers/net/wireless/ndiswrapper
 AUTOINSTALL="YES"
 EOF
 
-
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %post
 # Add to DKMS registry
@@ -68,24 +66,24 @@ dkms add -m %{dkms_name} -v %{dkms_vers} %{?quiet} || :
 dkms build -m %{dkms_name} -v %{dkms_vers} %{?quiet} || :
 dkms install -m %{dkms_name} -v %{dkms_vers} %{?quiet} --force || :
 
-
 %preun
 # Remove all versions from DKMS registry
 dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 
-
 %files
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog INSTALL README
+%doc %{_mandir}/man8/ndiswrapper.8*
 %dir %{_sysconfdir}/ndiswrapper/
 %{_usrsrc}/%{dkms_name}-%{dkms_vers}/
 /sbin/loadndisdriver
 %{_sbindir}/ndiswrapper
 %{_sbindir}/ndiswrapper-buginfo
-%{_mandir}/man8/ndiswrapper.8*
-
 
 %changelog
+* Mon Nov 10 2008 Dag Wieers <dag@wieers.com> - 1.53-1
+- Updated to release 1.53.
+
 * Mon Oct 22 2007 Matthias Saou <http://freshrpms.net/> 1.48-1
 - Update to 1.48.
 

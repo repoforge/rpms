@@ -3,7 +3,7 @@
 
 Summary: Program for converting DAA files to ISO
 Name: daa2iso
-Version: 0.1.6
+Version: 0.1.7a
 Release: 1
 License: GPL
 Group: Applications/Archiving
@@ -42,5 +42,8 @@ which can be created through the commercial program PowerISO.
 %{_bindir}/daa2iso
 
 %changelog
+* Mon Nov 17 2008 Dag Wieers <dag@wieers.com> - 0.1.7a-1
+- Updated to release 0.1.7a.
+
 * Sat Nov 08 2008 Dag Wieers <dag@wieers.com> - 0.1.6-1
 - Initial package. (using DAR)
