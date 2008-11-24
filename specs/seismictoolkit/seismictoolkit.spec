@@ -6,13 +6,13 @@
 
 Summary: Tool for processing and displaying seismic signal data
 Name: seismictoolkit
-Version: 0.62
+Version: 0.65
 Release: 1
 License: GPL
 Group: Applications/Engineering
 URL: http://chez.mana.pf/dominique.reymond/
 
-Source: http://dl.sf.net/seismic-toolkit/stk_%{version}.tgz
+Source: http://dl.sf.net/seismic-toolkit/stk_%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: automake, gtk2-devel, desktop-file-utils
@@ -66,6 +66,12 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_datadir}/applications/%{desktop_vendor}-seismictoolkit.desktop
 
 %changelog
+* Sun Nov 24 2008 Dries Verachtert <dries@ulyssis.org> - 0.65-1
+- Updated to release 0.65.
+
+* Sat Oct 18 2008 Dries Verachtert <dries@ulyssis.org> - 0.63-1
+- Updated to release 0.63.
+
 * Tue Jul  8 2008 Dries Verachtert <dries@ulyssis.org> - 0.62-1
 - Updated to release 0.62.
 
