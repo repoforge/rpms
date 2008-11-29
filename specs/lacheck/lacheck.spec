@@ -28,6 +28,7 @@ especially those made by beginners.
 
 %install
 %{__rm} -rf %{buildroot}
+#%{__make} install DESTDIR="%{buildroot}"
 %{__install} -Dp -m0755 lacheck %{buildroot}%{_bindir}/lacheck
 %{__install} -Dp -m0644 lacheck.1 %{buildroot}%{_mandir}/man1/lacheck.1
 
@@ -40,5 +41,5 @@ especially those made by beginners.
 %{_bindir}/lacheck
 
 %changelog
-* Mon Nov 24 2008 Hoffmann Geerd-Dietger <didi@ribalba.de>
+* Mon Nov 24 2008 Hoffmann Geerd-Dietger <didi@ribalba.de> - 1.26-1
 - Initial package.
