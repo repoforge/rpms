@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Janek Schleicher <bigj$kamelfreund,de>
+# Upstream: Alexandr Ciornii <alexchorny$gmail,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +9,8 @@
 
 Summary: Perl extension to test methods for warnings
 Name: perl-Test-Warn
-Version: 0.10
-Release: 2
+Version: 0.11
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Warn/
@@ -46,11 +46,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man3/Test::Warn.3pm*
+%dir %{perl_vendorlib}/Test/
+#%{perl_vendorlib}/Test/Warn/
 %{perl_vendorlib}/Test/Warn.pm
 
 %changelog
+* Wed Nov 26 2008 Dag Wieers <dag@wieers.com> - 0.11-1
+- Updated to release 0.11.
+
 * Wed Jun 11 2008 Dries Verachtert <dries@ulyssis.org> - 0.10-2
 - Added Tree::DAG_Node requirement, thanks to Sven Sternberger.
 
