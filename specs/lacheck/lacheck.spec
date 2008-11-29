@@ -37,6 +37,7 @@ especially those made by beginners.
 
 %files
 %defattr(-, root, root, 0755)
+%doc lacheck.hlp
 %doc %{_mandir}/man1/lacheck.1*
 %{_bindir}/lacheck
 
