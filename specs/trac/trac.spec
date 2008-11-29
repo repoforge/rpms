@@ -9,7 +9,7 @@
 Name: trac
 Summary: Integrated SCM and project management tool
 Version: 0.11.2.1
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Tools
 URL: http://projects.edgewall.com/trac/
@@ -54,7 +54,7 @@ tracking progress very easy.
   SetHandler mod_python
   PythonInterpreter main_interpreter
   PythonHandler trac.web.modpython_frontend 
-  PythonOption TracEnvParentDir %{_localstatedir}/www/trac
+  PythonOption TracEnvParentDir %{_localstatedir}/trac
   PythonOption TracUriRoot /trac
 </Location>
 
@@ -94,6 +94,9 @@ EOF
 %{python_sitelib}/Trac-%{version}-py*.egg-info/
 
 %changelog
+* Sat Nov 29 2008 Dag Wieers <dag@wieers.com> - 0.11.2.1-2
+- Fixed the location for TracEnvParentDir to /var/trac. (Vincent Knecht)
+
 * Mon Nov 17 2008 Dag Wieers <dag@wieers.com> - 0.11.2.1-1
 - Updated to release 0.11.2.1.
 
