@@ -1,6 +1,6 @@
 # $Id: perl-MooseX-AttributeHelpers.spec 6212 2008-03-14 01:19:20Z dag $
 # Authority: dries
-# Upstream: Shawn M Moore <sartak$gmail,com>
+# Upstream: Stevan Little <stevan$iinteractive,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Extend your attribute interfaces
 Name: perl-MooseX-AttributeHelpers
-Version: 0.12
+Version: 0.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MooseX/AttributeHelpers.pm
 
 %changelog
+* Wed Nov 26 2008 Dag Wieers <dag@wieers.com> - 0.14-1
+- Updated to release 0.14.
+
 * Fri Jul 25 2008 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Initial package.

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Tatsuhiko Miyagawa <miyagawa$gmail,com>
+# Upstream: Benjamin Trott <cpan$stupidfool,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Atom API and Feed Support
 Name: perl-XML-Atom
-Version: 0.28
+Version: 0.32
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,18 +19,20 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-Atom-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
 BuildRequires: perl-libwww-perl
 BuildRequires: perl(Class::Data::Inheritable)
 BuildRequires: perl(DateTime)
 BuildRequires: perl(Digest::SHA1)
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(LWP::Authen::Wsse)
 BuildRequires: perl(URI)
 BuildRequires: perl(XML::LibXML) >= 1.64
+BuildRequires: perl(XML::LibXML)
 BuildRequires: perl(XML::XPath)
 
 %description
-This module implements the API and feed format of Atom.
+Atom API and Feed Support.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -59,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/Atom.pm
 
 %changelog
+* Wed Nov 26 2008 Dag Wieers <dag@wieers.com> - 0.32-1
+- Updated to release 0.32.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.28-1
 - Updated to release 0.28.
 

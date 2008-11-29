@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Matthijs van Duin <xmath-no-spam$nospam,cpan,org>
+# Upstream: Matthijs van Duin <xmath$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Perl module to (re)name a sub
 Name: perl-Sub-Name
-Version: 0.03
+Version: 0.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Sub/Name.pm
 
 %changelog
+* Wed Nov 26 2008 Dag Wieers <dag@wieers.com> - 0.04-1
+- Updated to release 0.04.
+
 * Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 0.03-1
 - Updated to release 0.03.
 

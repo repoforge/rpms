@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: mst: Matt S. Trout <mst@shadowcatsystems.co.uk>
+# Upstream: Matt S. Trout <mst$shadowcatsystems,co,uk>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
