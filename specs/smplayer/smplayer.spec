@@ -29,7 +29,7 @@ at the same point and with the same settings.
 %patch -p1
 
 %build
-export PATH=/usr/lib/qt4/bin/:${PATH}
+export PATH=%{_libdir}/qt4/bin/:${PATH}
 %{__make} %{?_smp_mflags} PREFIX=%{_prefix}
 
 %install
