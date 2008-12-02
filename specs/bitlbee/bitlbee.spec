@@ -5,12 +5,13 @@
 Summary: IRC to other chat networks gateway
 Name: bitlbee
 Version: 1.2.3
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.bitlbee.org/
 
 Source: http://get.bitlbee.org/src/bitlbee-%{version}.tar.gz
+Patch0: bitlbee-1.2.2-libresolv.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib-devel
@@ -29,6 +30,7 @@ networks like MSN/ICQ/Jabber.
 
 %prep
 %setup
+%patch0 -p1 -b .libresolv
 
 %{__perl} -pi.orig -e '
         s|\$\(BINDIR\)|\$(sbindir)|g;
@@ -55,7 +57,7 @@ service ircd
 EOF
 
 %build
-./configure \
+CFLAGS="%{optflags}" ./configure \
     --prefix="%{_prefix}" \
     --bindir="%{_sbindir}" \
     --etcdir="%{_sysconfdir}/bitlbee" \
@@ -96,6 +98,9 @@ EOF
 %{_localstatedir}/lib/bitlbee/
 
 %changelog
+* Tue Dec 02 2008 Dag Wieers <dag@wieers.com> - 1.2.3-2
+- Added patch from Fedora.
+
 * Tue Aug  9 2008 Dries Verachtert <dries@ulyssis.org> - 1.2.3-1
 - Updated to release 1.2.3.
 
