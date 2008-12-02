@@ -25,7 +25,7 @@
 Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
 Version: 0.5.15lorg3.94a
-Release: 4
+Release: 5
 License: GPL
 Group: System Environment/Base
 URL: http://apt-rpm.org/
@@ -39,6 +39,7 @@ Patch1: apt-0.5.15lorg3.x-cache-corruption.patch
 Patch3: apt-0.5.15lorg3.94-gcc43.patch
 Patch4: apt-0.5.15lorg3.94a-screen-width-detection.patch
 Patch5: apt-0.5.15lorg3.94a-output-streams.patch
+Patch6: apt-0.5.15lorg3.94a-gensrclist.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison
@@ -105,6 +106,7 @@ to access the APT library interface.
 %patch3 -p1 -b .gcc43
 %patch4 -p1 -b .screenwidth
 %patch5 -p1 -b .outputstreams
+%patch6 -p1 -b .gensrclist
 
 ### Fix docs to reference correct paths
 %{__perl} -pi -e '
@@ -521,6 +523,9 @@ fi
 %endif
 
 %changelog
+* Sat Nov 29 2008 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.94a-5
+- Added patch to make genbasedir use --cachedir with gensrclist.
+
 * Sat Nov 08 2008 Dag Wieers <dag@wieers.com> - 0.5.15lorg3.94a-4
 - Added patches. (Vladislav Bogdanov)
 

@@ -7,7 +7,7 @@
 
 Summary: Linux NTFS userspace driver 
 Name: fuse-ntfs-3g
-Version: 1.5012
+Version: 1.5130
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -21,8 +21,8 @@ Requires: fuse >= 2.6.3
 
 Provides: ntfsprogs-fuse = %{version}-%{release}
 Obsoletes: ntfsprogs-fuse <= %{version}-%{release}
-Provides: ntfs-g3 = %{version}-%{release}
-Obsoletes: ntfs-g3 <= %{version}-%{release}
+Obsoletes: ntfs-3g <= %{version}-%{release}
+Provides: ntfs-3g = %{version}-%{release}
 
 %description
 The ntfs-3g driver is an open source, GPL licensed, third generation Linux NTFS
@@ -42,6 +42,8 @@ that supports unlimited file creation and deletion.
 Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
+Obsoletes: ntfs-3g-devel <= %{version}-%{release}
+Provides: ntfs-3g-devel = %{version}-%{release}
 
 %description devel
 This package contains the header files, static libraries and development
@@ -95,6 +97,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libntfs-3g.la
 
 %changelog
+* Mon Dec 01 2008 Dag Wieers <dag@wieers.com> - 1.5130-1
+- Updated to release 1.5130.
+
 * Tue Oct 14 2008 Dag Wieers <dag@wieers.com> - 1.5012-1
 - Updated to release 1.5012.
 

@@ -5,9 +5,13 @@
 
 # Rationale: lftp 3.0+ supports sftp, http redirects and lots of important improvements
 
+%{?dtag: %{expand: %%define %dtag 1}}
+
+%{?el3:%define _without_modules 1}
+
 Summary: Sophisticated file transfer program
 Name: lftp
-Version: 3.7.5
+Version: 3.7.6
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -16,8 +20,12 @@ URL: http://lftp.yar.ru/
 Source: http://ftp.yars.free.net/pub/source/lftp/lftp-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ncurses-devel, openssl-devel, pkgconfig, readline-devel, gcc-c++
+BuildRequires: gcc-c++
 BuildRequires: libtool
+BuildRequires: ncurses-devel
+BuildRequires: openssl-devel
+BuildRequires: pkgconfig
+BuildRequires: readline-devel
 
 %description
 LFTP is a sophisticated ftp/http file transfer program. Like bash, it has job
@@ -33,8 +41,9 @@ reliability in mind.
 export CPPFLAGS="-I/usr/kerberos/include"
 %configure \
     --disable-static \
-    --with-modules \
-    --with-openssl="/usr"
+%{!?_without_modules:--with-modules} \
+%{?_without_modules:--without-modules} \
+    --with-openssl="%{_prefix}"
 %{__make} clean
 %{__make} %{?_smp_mflags}
 
@@ -56,12 +65,21 @@ export CPPFLAGS="-I/usr/kerberos/include"
 %{_bindir}/lftpget
 %{_datadir}/lftp/
 %{_libdir}/lftp/
+
+%if %{!?_without_modules:1}0
 %{_libdir}/liblftp-jobs.so*
 %{_libdir}/liblftp-tasks.so*
+%else
+%exclude %{_libdir}/liblftp-jobs.a
+%exclude %{_libdir}/liblftp-tasks.a
+%endif
 %exclude %{_libdir}/liblftp-jobs.la
 %exclude %{_libdir}/liblftp-tasks.la
 
 %changelog
+* Thu Nov 27 2008 Dag Wieers <dag@wieers.com> - 3.7.6-1
+- Updated to release 3.7.6.
+
 * Sat Nov 08 2008 Dag Wieers <dag@wieers.com> - 3.7.5-1
 - Updated to release 3.7.5.
 

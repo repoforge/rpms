@@ -1,9 +1,11 @@
 # $Id$
 # Authority: dag
 
+# Tag: test
+
 Summary: Utility to collect Linux performance data
 Name: collectl
-Version: 3.1.0
+Version: 3.1.1
 Release: 1
 License: Artistic/GPL
 Group: Applications/System
@@ -24,6 +26,8 @@ collectl is a utility to collect Linux performance data.
 
 %prep
 %setup
+
+%{__cat} <<EOF >collectl.init
 #!/bin/sh
 # Startup script for collectl
 #
@@ -158,8 +162,8 @@ EOF
 %{__install} -Dp -m0644 vmstat.ph %{buildroot}%{_libexecdir}/collectl/vmstat.ph
 %{__install} -Dp -m0644 man1/collectl.1 %{buildroot}%{_mandir}/man1/collectl.1
 %{__install} -Dp -m0644 collectl.conf %{buildroot}%{_sysconfdir}/collectl.conf
-%{__install} -Dp -m0755 %{SOURCE1} %{buildroot}%{_initrddir}/collectl
-%{__install} -Dp -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/sysconfig/collectl
+%{__install} -Dp -m0755 collectl.init %{buildroot}%{_initrddir}/collectl
+%{__install} -Dp -m0644 collectl.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/collectl
 %{__install} -Dp -m0644 collectl.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/collectl
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/collectl/
 
@@ -191,9 +195,11 @@ fi
 %{_bindir}/collectl
 %{_bindir}/readS
 %{_libexecdir}/collectl/
-%{_libexecdir}/collectl.pl
 %{_localstatedir}/log/collectl/
 
 %changelog
+* Mon Dec 01 2008 Dag Wieers <dag@wieers.com> - 3.1.1-1
+- Updated to release 3.1.1.
+
 * Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 3.1.0-1
 - Initial package based on Fedora.

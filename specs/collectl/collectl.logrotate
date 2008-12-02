@@ -1,5 +1,0 @@
-/var/log/collectl/*.log {
-    copytruncate
-    missingok
-    notifempty
-}

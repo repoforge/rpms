@@ -6,12 +6,9 @@
 ### FIXME: amavisd-new requires clamd to run as user vscan, solution needed
 ### REMINDER: Look and sync with Petr Kristof's work
 
-### sendmail has been updated on EL2, no longer true.
-#%{?el2:#define _without_milter 1}
-
 Summary: Anti-virus software
 Name: clamav
-Version: 0.94.1
+Version: 0.94.2
 Release: 1
 License: GPL
 Group: Applications/System
@@ -23,7 +20,10 @@ Source1: clamav.init
 Source2: clamav-milter.init
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: bzip2-devel, zlib-devel, gmp-devel, curl-devel
+BuildRequires: curl-devel
+BuildRequires: bzip2-devel
+BuildRequires: gmp-devel
+BuildRequires: zlib-devel
 %{!?_without_milter:BuildRequires: sendmail-devel >= 8.12}
 
 ### Do not require the latest release of clamav-db specifically (people may use freshclam onward)
@@ -372,6 +372,9 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
+* Thu Nov 27 2008 Dag Wieers <dag@wieers.com> - 0.94.2-1
+- Updated to release 0.94.2.
+
 * Mon Nov 03 2008 Dag Wieers <dag@wieers.com> - 0.94.1-1
 - Updated to release 0.94.1.
 

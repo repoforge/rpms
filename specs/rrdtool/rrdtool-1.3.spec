@@ -3,7 +3,6 @@
 # Upstream: Tobi Oetiker <oetiker$ee,ethz,ch>
 # Tag: test
 
-
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
@@ -14,7 +13,7 @@
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
 Version: 1.3.4
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
@@ -22,28 +21,28 @@ URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
 Source0: http://oss.oetiker.ch/rrdtool/pub/rrdtool-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++
-BuildRequires: libxml2-devel
 BuildRequires: cairo-devel
-BuildRequires: openssl-devel
-BuildRequires: libpng-devel
-BuildRequires: zlib-devel
 BuildRequires: freetype-devel
+BuildRequires: gcc-c++
+BuildRequires: glib2-devel
+BuildRequires: libpng-devel
+BuildRequires: libxml2-devel
+BuildRequires: openssl-devel
+BuildRequires: pango-devel
 BuildRequires: python-devel >= 2.3
 BuildRequires: ruby-devel
 BuildRequires: tcl-devel
 BuildRequires: tk-devel
-BuildRequires: pango-devel
-BuildRequires: glib2-devel
 BuildRequires: xulrunner-devel
+BuildRequires: zlib-devel
+Requires: cairo
+Requires: libxml2
+Requires: openssl
+Requires: pango
 Requires: perl >= %(rpm -q --qf '%%{epoch}:%%{version}' perl)
 Requires: python
 Requires: ruby
 Requires: zlib
-Requires: openssl
-Requires: pango
-Requires: cairo
-Requires: libxml2
 
 %description
 RRD is the Acronym for Round Robin Database. RRD is a system to store and
@@ -113,8 +112,8 @@ for the Ruby language.
 #export LIBS="-lpangocairo-1.0"
 #export CPPFLAGS="-I %{_includedir}/cairo -I %{_includedir}/pango-1.0 -I %{_includedir}/glib-2.0 -I" 
 %configure \
-	--with-tcllib=%{_libdir} \
-	--with-perl-options='INSTALLDIRS="vendor"'
+    --with-tcllib="%{_libdir}" \
+    --with-perl-options='INSTALLDIRS="vendor"'
 %{__make} %{?_smp_mflags}
 
 %install
@@ -124,7 +123,6 @@ for the Ruby language.
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/ntmake.pl
-
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -179,11 +177,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc bindings/ruby/CHANGES bindings/ruby/README
 
 %changelog
-* Sun Nov 23 2008 Christoph Maser <cmr@financial.com> - 1.3.4
-- Updated to release 1.3.4
-- removed 1.2.x patches
-- removed dependencies cgilib
-- added dependencies pango, cairo
+* Sun Nov 23 2008 Christoph Maser <cmr@financial.com> - 1.3.4-2
+- Removed 1.2.x patches.
+- Removed dependencies cgilib.
+- Added dependencies pango, cairo.
+
+* Sun Nov 23 2008 Christoph Maser <cmr@financial.com> - 1.3.4-1
+- Updated to release 1.3.4.
 
 * Wed Oct 15 2008 Christoph Maser <cmr@financial.com> - 1.2.28-1
 - Updated to release 1.2.28.

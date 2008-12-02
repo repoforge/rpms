@@ -4,7 +4,7 @@
 
 Summary: Convert filenames to a different encoding
 Name: convmv
-Version: 1.12
+Version: 1.13
 Release: 1
 License: GPL
 Group: Applications/File
@@ -40,7 +40,7 @@ tool which requires at least Perl version 5.8.0.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall DESTDIR="%{buildroot}" PREFIX="%{_prefix}"
+%{__make} install DESTDIR="%{buildroot}" PREFIX="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -52,6 +52,9 @@ tool which requires at least Perl version 5.8.0.
 %{_bindir}/convmv
 
 %changelog
+* Mon Dec 01 2008 Dag Wieers <dag@wieers.com> - 1.13-1
+- Updated to release 1.13.
+
 * Thu Jan 24 2008 Dag Wieers <dag@wieers.com> - 1.12-1
 - Updated to release 1.12.
 

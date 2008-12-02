@@ -5,8 +5,8 @@
 
 Summary: IOzone Filesystem Benchmark
 Name: iozone
-%define real_version 3_300
-Version: 3.311
+%define real_version 3_315
+Version: 3.315
 Release: 1
 License: Freeware
 Group: Applications/System
@@ -45,12 +45,16 @@ fread, fwrite, random read, pread ,mmap, aio_read, aio_write.
 
 %files
 %defattr(-, root, root, 0755)
-%doc docs/IOzone_msword_98.pdf docs/Iozone_ps.gz src/current/Gnuplot.txt
+%doc src/current/Changes.txt src/current/Gnuplot.txt
+%doc src/current/*.pl src/current/*.sh docs/*
 %doc %{_mandir}/man1/iozone.1*
 %{_bindir}/iozone
 %{_datadir}/iozone/
 
 %changelog
+* Mon Dec 01 2008 Dag Wieers <dag@wieers.com> - 3.315-1
+- Updated to release 3.315.
+
 * Sat Sep 20 2008 Dag Wieers <dag@wieers.com> - 3.311-1
 - Updated to release 3.311.
 

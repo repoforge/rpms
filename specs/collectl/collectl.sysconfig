@@ -1,4 +1,0 @@
-#
-# for list of available options see man page or /etc/collectd.conf
-#
-OPTS=-D

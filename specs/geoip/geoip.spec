@@ -29,8 +29,8 @@ using reverse DNS lookups.
 Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
-Provides: GeoIP-devel = %{version}-%{release}
 Obsoletes: GeoIP-devel < %{version}-%{release}
+Provides: GeoIP-devel = %{version}-%{release}
 
 %description devel
 This package contains the header files, static libraries and development
@@ -46,7 +46,6 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-#makeinstall
 %{__make} install DESTDIR="%{buildroot}"
 
 %post -p /sbin/ldconfig
