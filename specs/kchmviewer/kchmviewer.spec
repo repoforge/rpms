@@ -7,7 +7,7 @@
 
 Summary: CHM file viewer
 Name: kchmviewer
-Version: 3.1
+Version: 4.0
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -16,7 +16,7 @@ URL: http://kchmviewer.sourceforge.net/
 Source: http://dl.sf.net/kchmviewer/kchmviewer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, gettext
+BuildRequires: gcc-c++, gettext, cmake
 BuildRequires: qt-devel >= 3.2, chmlib-devel
 BuildRequires: kdelibs-devel, desktop-file-utils
 %{?el4:BuildRequires: libselinux-devel}
@@ -31,31 +31,32 @@ Kchmviewer is a CHM file viewer for KDE.
 %setup
 
 %build
-source /etc/profile.d/qt.sh
-%configure --with-kde LDFLAGS=-L/usr/X11R6/lib/
+%{__mkdir} build
+cd build
+cmake -DLIBINSTALL_DIR=%{_libdir} -DCMAKE_INSTALL_PREFIX=%{_prefix} ..
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-source  /etc/profile.d/qt.sh
-%makeinstall
-%find_lang %{name}
+cd build
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING
 %{_bindir}/kchmviewer
-%{_datadir}/applications/kchmviewer.desktop
-%{_libdir}/kde3/kio_msits*
-%{_datadir}/services/msits.protocol
+%{_datadir}/applications/kde4/kchmviewer.desktop
+%{_libdir}/kde4/kio_msits*
+%{_datadir}/kde4/services/msits.protocol
 %{_datadir}/icons/crystalsvg/*/apps/kchmviewer.png
-%{_libdir}/libchmfile.a
-%{_libdir}/libkdeextra.a
 
 %changelog
+* Tue Dec  2 2008 Dries Verachtert <dries@ulyssis.org> - 4.0-1
+- Updated to release 4.0.
+
 * Sun Jun 17 2007 Dries Verachtert <dries@ulyssis.org> - 3.1-1
 - Updated to release 3.1.
 
