@@ -14,7 +14,8 @@ Source: http://dl.sf.net/smplayer/smplayer-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Patch: smplayer-0.6.5.1-centos5-zyv.patch
 
-BuildRequires: qt4-devel, gcc-c++
+BuildRequires: gcc-c++
+BuildRequires: qt4-devel
 Requires: mplayer
 
 %description
@@ -29,16 +30,15 @@ at the same point and with the same settings.
 %patch -p1
 
 %build
-export PATH=%{_libdir}/qt4/bin/:${PATH}
-%{__make} %{?_smp_mflags} PREFIX=%{_prefix}
+export PATH="%{_libdir}/qt4/bin:$PATH"
+%{__make} %{?_smp_mflags} PREFIX="%{_prefix}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}" PREFIX=%{_prefix}
+%{__make} install DESTDIR="%{buildroot}" PREFIX="%{_prefix}"
 %{__mv} %{buildroot}%{_docdir}/packages/smplayer rpmdocs
 
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
 
 %clean
@@ -46,11 +46,11 @@ export PATH=%{_libdir}/qt4/bin/:${PATH}
 
 %files
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man1/smplayer.1*
 %doc rpmdocs/*
+%doc %{_mandir}/man1/smplayer.1*
 %{_bindir}/smplayer
-%{_datadir}/icons/*/*/apps/smplayer.png
 %{_datadir}/applications/smplayer*.desktop
+%{_datadir}/icons/*/*/apps/smplayer.png
 %{_datadir}/smplayer/
 
 %changelog

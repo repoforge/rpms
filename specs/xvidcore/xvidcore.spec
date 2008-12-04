@@ -14,29 +14,33 @@
 
 Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore
-Version: 1.1.3
+Version: 1.2.0
 Release: 1
 License: XviD
 Group: System Environment/Libraries
 URL: http://www.xvid.org/
+
 Source: http://downloads.xvid.org/downloads/xvidcore-%{version}.tar.bz2
 Patch0: xvidcore-1.1.0-verbose-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: yasm
 %{!?_without_selinux:BuildRequires: prelink}
+Obsoletes: lib%{name} <= %{version}-%{release}
 Provides: lib%{name} = %{version}-%{release}
 
 %description
 Free reimplementation of the OpenDivX video codec. You can play OpenDivX
 and DivX4 videos with it, as well as encode compatible files.
 
-
 %package devel
 Summary: Static library, headers and documentation of the XviD video codec
 Group: Development/Libraries
 Requires: %{name} = %{version}
-Provides: lib%{name}-devel = %{version}-%{release}
+
 Obsoletes: xvidcore-static <= 1.0.0
+Obsoletes: lib%{name}-devel <= %{version}-%{release}
+Provides: lib%{name}-devel = %{version}-%{release}
 
 %description devel
 Free reimplementation of the OpenDivX video codec. You can play OpenDivX
@@ -45,73 +49,52 @@ and DivX4 videos with it, as well as encode compatible files.
 This package contains the static library, header files and API documentation
 needed to build applications that will use the XviD video codec.
 
-
 %prep
-%setup
+%setup -n %{name}
 %patch0 -p1 -b .verbose-build
 
-
 %build
-# CFLAGS recommended in the XviD configure script :
-# -fstrength-reduce : Enabled at levels -O2, -O3, -Os.
-# -finline-functions
-# -freduce-all-givs : No longer present in gcc 4.1, so omit.
-# -ffast-math
-# -fomit-frame-pointer : Enabled at levels -O, -O2, -O3, -Os.
-# We use -Wa,--execstack to work with execshield/selinux. See :
-# http://www.crypt.gen.nz/selinux/faq.html
-%if %{?_without_selinux:1}0
-%{expand: %%define optflags %{optflags} -finline-functions -ffast-math}
-%else
-%{expand: %%define optflags %{optflags} -finline-functions -ffast-math -Wa,--execstack}
-%endif
-pushd build/generic
-    %configure
-    %{__make} %{?_smp_mflags}
-popd
-
+cd build/generic/
+%configure
+%{__make} %{?_smp_mflags}
+cd -
 
 %install
 %{__rm} -rf %{buildroot}
-pushd build/generic
-    %makeinstall
-popd
-# Make .so and .so.x symlinks to the so.x.y file, +x to get proper stripping
-pushd %{buildroot}%{_libdir}
-    %{__ln_s} lib%{name}.so.%{somaj}.%{somin} lib%{name}.so.%{somaj}
-    %{__ln_s} lib%{name}.so.%{somaj}.%{somin} lib%{name}.so
-    %{__chmod} +x lib%{name}.so.%{somaj}.%{somin}
-popd
+cd build/generic/
+%{__make} install DESTDIR="%{buildroot}"
+cd -
+### Make .so and .so.x symlinks to the so.x.y file, +x to get proper stripping
+%{__ln_s} -f lib%{name}.so.%{somaj}.%{somin} %{buildroot}%{_libdir}/lib%{name}.so.%{somaj}
+%{__ln_s} -f lib%{name}.so.%{somaj}.%{somin} %{buildroot}%{_libdir}/lib%{name}.so
+%{__chmod} +x %{buildroot}%{_libdir}/lib%{name}.so.%{somaj}.%{somin}
 # Remove unwanted files from the docs
 %{__rm} -f doc/Makefile
 # Clear executable stack flag bit (should not be needed)
-execstack -c %{buildroot}%{_libdir}/*.so.*.* || :
+#execstack -c %{buildroot}%{_libdir}/*.so.*.* || :
 
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
-
-
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog LICENSE README TODO
-%{_libdir}/*.so.*
-
+%{_libdir}/libxvidcore.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc CodingStyle doc/* examples
 %{_includedir}/xvid.h
-%{_libdir}/*.a
-%{_libdir}/*.so
-
+%{_libdir}/libxvidcore.a
+%{_libdir}/libxvidcore.so
 
 %changelog
+* Tue Dec 02 2008 Dag Wieers <dag@wieers.com> - 1.2.0-1
+- Updated to release 1.2.0.
+
 * Fri Jun 29 2007 Dag Wieers <dag@wieers.com> - 1.1.3-1
 - Updated to release 1.1.3.
 
