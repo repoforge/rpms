@@ -1,0 +1,12 @@
+--- hplip-1.6.7/fax/backend/hpfax.py.guest	2006-08-21 17:35:34.000000000 +0100
++++ hplip-1.6.7/fax/backend/hpfax.py	2006-08-21 17:38:48.000000000 +0100
+@@ -188,9 +188,6 @@
+     except IndexError:
+         input_fd = 0
+         
+-    pdb = pwd.getpwnam(username)
+-    home_folder, uid, gid = pdb[5], pdb[2], pdb[3]
+-    
+     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+     try:
+         sock.connect((prop.hpssd_host, prop.hpssd_port))

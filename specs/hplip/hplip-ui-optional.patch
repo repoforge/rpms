@@ -1,0 +1,16 @@
+--- hplip-1.7.2/base/utils.py.ui-optional	2007-02-07 19:21:31.000000000 +0000
++++ hplip-1.7.2/base/utils.py	2007-06-11 14:29:16.000000000 +0100
+@@ -644,6 +644,13 @@
+         log.error("PyQt not installed. GUI not available. Exiting.")
+         return False
+ 
++    # hplip-gui sub-package (Fedora)
++    try:
++        import ui
++    except ImportError:
++        log.error("hplip-gui not installed.  GUI not available. Exiting.")
++        return False
++
+     # check version of Qt
+     qtMajor = int(qt.qVersion().split('.')[0])
+ 

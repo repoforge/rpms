@@ -1,0 +1,17 @@
+diff -up hplip-2.8.2/prnt/hpijs/hpijs.cpp.marker-supply hplip-2.8.2/prnt/hpijs/hpijs.cpp
+--- hplip-2.8.2/prnt/hpijs/hpijs.cpp.marker-supply	2008-02-08 19:36:38.000000000 +0000
++++ hplip-2.8.2/prnt/hpijs/hpijs.cpp	2008-03-04 17:51:02.000000000 +0000
+@@ -541,11 +541,11 @@ int main (int argc, char *argv[], char *
+ 			case WARN_LOW_INK_YELLOW:
+ 			case WARN_LOW_INK_MULTIPLE_PENS:
+                         {
+-			   bug ("STATE: marker-supply-low-warning\n");
++			   bug ("STATE: +marker-supply-low-warning\n");
+                            break;
+                         }
+ 			default:
+-			   bug ("STATE: -marker-supply-low-warning");
++			   bug ("STATE: -marker-supply-low-warning\n");
+ 		}
+     }
+ 

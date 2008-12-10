@@ -1,0 +1,10 @@
+diff -up hplip-2.8.5/hplip.desktop.in.desktop hplip-2.8.5/hplip.desktop.in
+--- hplip-2.8.5/hplip.desktop.in.desktop	2008-05-08 17:26:03.000000000 +0100
++++ hplip-2.8.5/hplip.desktop.in	2008-06-03 12:03:18.000000000 +0100
+@@ -1,5 +1,5 @@
+ [Desktop Entry]
+-Version=0.6
++Encoding=UTF-8
+ Type=Application
+ Name=HP Device Manager
+ GenericName=Printer Management Application

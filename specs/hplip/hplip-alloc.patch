@@ -1,0 +1,37 @@
+diff -up hplip-2.7.12/prnt/hpijs/compression.cpp.alloc hplip-2.7.12/prnt/hpijs/compression.cpp
+--- hplip-2.7.12/prnt/hpijs/compression.cpp.alloc	2008-01-25 12:16:45.000000000 +0000
++++ hplip-2.7.12/prnt/hpijs/compression.cpp	2008-01-25 12:18:02.000000000 +0000
+@@ -104,12 +104,12 @@ Mode9::Mode9 (SystemServices* pSys,unsig
+     if (constructor_error != NO_ERROR)  // if error in base constructor
+         return;
+ 
+-	// In the worst case, compression expands data by 50%
+-	compressBuf = (BYTE*)pSS->AllocMem(RasterSize + RasterSize/2);
++	// In the worst case, compression expands data by 100%
++	compressBuf = (BYTE*)pSS->AllocMem(2 * RasterSize);
+ 	if (compressBuf == NULL)
+ 		constructor_error=ALLOCMEM_ERROR;
+ 
+-	memset(compressBuf, 0, RasterSize + RasterSize/2);
++	memset(compressBuf, 0, 2 * RasterSize);
+     memset(SeedRow,0,RasterSize);
+ 
+ 	ResetSeedRow = FALSE;
+@@ -199,7 +199,7 @@ BOOL Mode9::Process(RASTERDATA* input)
+ 		return TRUE;
+ 	}
+ 
+-	memset(compressBuf, 0, inputsize + inputsize/2);
++	memset(compressBuf, 0, 2 * inputsize);
+ 
+     unsigned int originalsize=input->rastersize[myplane];
+ 	unsigned int size=input->rastersize[myplane];
+@@ -571,7 +571,7 @@ Mode3::Mode3 (SystemServices* pSys, Prin
+     // Worst case is when two rows are completely different
+     // In that case, one command byte is added for every 8 bytes
+ 		// In the worst case, compression expands data by 50%
+-	compressBuf = (BYTE*)pSS->AllocMem(RasterSize + RasterSize/2);
++	compressBuf = (BYTE*)pSS->AllocMem(2 * RasterSize);
+ 	if (compressBuf == NULL)
+ 		constructor_error=ALLOCMEM_ERROR;
+ 	

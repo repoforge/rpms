@@ -1,0 +1,54 @@
+diff -up hplip-2.7.7/base/g.py.no-root-config hplip-2.7.7/base/g.py
+--- hplip-2.7.7/base/g.py.no-root-config	2007-06-18 17:56:32.000000000 +0100
++++ hplip-2.7.7/base/g.py	2007-09-25 15:23:23.000000000 +0100
+@@ -105,6 +105,10 @@ class Config(dict):
+ 
+         log.debug("Reading config file %s" % filename)
+ 
++        if filename.startswith ("/root/") or filename.startswith ("/var/"):
++            # Don't try opening a file in root's home directory.
++            return
++
+         try:
+             f = file(filename, 'r')
+             self.config_obj.readfp(f)
+@@ -134,23 +138,25 @@ class Config(dict):
+ # Config file: directories and ports
+ prop.sys_config_file = '/etc/hp/hplip.conf'
+ prop.user_dir = os.path.expanduser('~/.hplip')
+-
+-os.umask(0037)
+-try:
+-    if not os.path.exists(prop.user_dir):
+-        os.makedirs(prop.user_dir)
+-except OSError:
+-    pass # This is sometimes OK, if running hpfax: for example
+-    
+ prop.user_config_file = os.path.join(prop.user_dir, 'hplip.conf')
+ 
+-if not os.path.exists(prop.user_config_file):
++if (not (prop.user_config_file.startswith ("/root/") or
++         prop.user_config_file.startswith ("/var/")) and
++    not os.getuid () == 0):
++    os.umask(0037)
+     try:
+-        file(prop.user_config_file, 'w').close()
+-        s = os.stat(os.path.dirname(prop.user_config_file))
+-        os.chown(prop.user_config_file, s[stat.ST_UID], s[stat.ST_GID])
+-    except IOError:
+-        pass
++        if not os.path.exists(prop.user_dir):
++            os.makedirs(prop.user_dir)
++    except OSError:
++        pass # This is sometimes OK, if running hpfax: for example
++    
++    if not os.path.exists(prop.user_config_file):
++        try:
++            file(prop.user_config_file, 'w').close()
++            s = os.stat(os.path.dirname(prop.user_config_file))
++            os.chown(prop.user_config_file, s[stat.ST_UID], s[stat.ST_GID])
++        except IOError:
++            pass
+     
+ sys_cfg = Config(prop.sys_config_file, True)
+ user_cfg = Config(prop.user_config_file)

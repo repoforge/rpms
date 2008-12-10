@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+
+<deviceinfo version="0.2">
+  <device>
+    <!-- HPLIP-driven printers and scanners -->
+    <match key="info.subsystem" contains="usb_device">
+      <match key="usb_device.vendor_id" int="0x03f0">
+        <append key="info.capabilities" type="strlist">scanner</append>
+        <append key="access_control.grant_group" type="strlist">lp</append>
+      </match>
+    </match>
+
+    <!-- Set ACLs -->
+    <match key="info.capabilities" contains="scanner">
+      <append key="info.capabilities" type="strlist">access_control</append>
+      <merge key="access_control.file" type="copy_property">linux.device_file</merge>
+      <merge key="access_control.type" type="string">scanner</merge>
+    </match>
+  </device>
+</deviceinfo>

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Gisle Aas <gisle$ActiveState,com>
+# Upstream: Gisle Aas <gisle$activestate,com>
 
 ##ExcludeDist: el5
 # Rationale: spamassasin 3.20 needs this core package to be updated
@@ -12,17 +12,19 @@
 
 Summary: Perl module that implements a HTML parser class
 Name: perl-HTML-Parser
-Version: 3.56
+Version: 3.59
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Parser/
 
 Source: http://www.cpan.org/modules/by-module/HTML/HTML-Parser-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl >= 0:5.006
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
+Requires: perl >= 0:5.006
 
 %description
 HTML-Parser is a Perl module that implements a HTML parser class.

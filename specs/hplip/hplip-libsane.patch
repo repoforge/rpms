@@ -1,0 +1,24 @@
+diff -up hplip-2.8.6/Makefile.am.libsane hplip-2.8.6/Makefile.am
+--- hplip-2.8.6/Makefile.am.libsane	2008-06-23 12:13:10.000000000 +0100
++++ hplip-2.8.6/Makefile.am	2008-06-23 12:14:24.000000000 +0100
+@@ -187,7 +187,7 @@ else
+ libsane_hpaio_la_LDFLAGS = $(BB_SCAN_VERSION)
+ endif
+ # The following is a interlibrary dependency that must be compiled first.
+-libsane_hpaio_la_LIBADD = libhpip.la libhpmud.la $(DBUS_LIBS) -lcups
++libsane_hpaio_la_LIBADD = libhpip.la libhpmud.la $(DBUS_LIBS) -lcups -lsane
+ #libsane_hpaio_la_CFLAGS = -DWITH_NONAMESPACES -DSOAP_DEBUG
+ libsane_hpaio_la_CFLAGS = $(DBUS_CFLAGS) $(BB_SCAN_CFLAGS)
+ 
+diff -up hplip-2.8.6/Makefile.in.libsane hplip-2.8.6/Makefile.in
+--- hplip-2.8.6/Makefile.in.libsane	2008-06-23 12:13:10.000000000 +0100
++++ hplip-2.8.6/Makefile.in	2008-06-23 12:14:39.000000000 +0100
+@@ -1679,7 +1679,7 @@ lib_LTLIBRARIES = $(am__append_4)
+ @DARWIN_BUILD_FALSE@@HPLIP_BUILD_TRUE@@SCAN_BUILD_TRUE@libsane_hpaio_la_LDFLAGS = $(BB_SCAN_VERSION)
+ @DARWIN_BUILD_TRUE@@HPLIP_BUILD_TRUE@@SCAN_BUILD_TRUE@libsane_hpaio_la_LDFLAGS = -module -framework CoreFoundation $(BB_SCAN_VERSION)
+ # The following is a interlibrary dependency that must be compiled first.
+-@HPLIP_BUILD_TRUE@@SCAN_BUILD_TRUE@libsane_hpaio_la_LIBADD = libhpip.la libhpmud.la $(DBUS_LIBS) -lcups
++@HPLIP_BUILD_TRUE@@SCAN_BUILD_TRUE@libsane_hpaio_la_LIBADD = libhpip.la libhpmud.la $(DBUS_LIBS) -lcups -lsane
+ #libsane_hpaio_la_CFLAGS = -DWITH_NONAMESPACES -DSOAP_DEBUG
+ @HPLIP_BUILD_TRUE@@SCAN_BUILD_TRUE@libsane_hpaio_la_CFLAGS = $(DBUS_CFLAGS) $(BB_SCAN_CFLAGS)
+ 
