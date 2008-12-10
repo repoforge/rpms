@@ -1,0 +1,46 @@
+#!/usr/bin/env python
+# -*- Mode: Python -*-
+# vi:si:et:sw=4:sts=4:ts=4
+
+# this program regenerates the dropin.cache file for twisted,
+# or for the modules specified on the command line
+
+# we copy and adapt getPlugins from there because getPlugins does log.err()
+# on *any* exception, giving us a full traceback every time a plug-in has
+# gone away
+
+import sys
+from twisted.plugin import IPlugin, getCache
+import twisted.plugins
+
+def getPlugins(interface, package=twisted.plugins):
+    allDropins = getCache(package)
+    for dropin in allDropins.itervalues():
+        for plugin in dropin.plugins:
+            try:
+                adapted = interface(plugin, None)
+            except AttributeError:
+                # this is most likely due to a module in the cache that
+                # has now gone away, so ignore it
+                pass
+            except:
+                log.err()
+            else:
+                if adapted is not None:
+                    yield adapted
+
+which = None
+if len(sys.argv) > 1:
+    which = sys.argv[1:]
+
+if not which:
+    list(getPlugins(IPlugin))
+else:
+    from twisted.python import reflect
+    for w in which:
+        try:
+            module = reflect.namedAny(w)
+        except AttributeError:
+            sys.stderr.write("No module '%s' found.\n" % w)
+            continue
+        list(getPlugins(IPlugin, module))

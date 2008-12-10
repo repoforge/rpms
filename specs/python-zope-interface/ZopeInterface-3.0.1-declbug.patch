@@ -1,0 +1,12 @@
+diff -urN ZopeInterface-3.0.1/Dependencies/zope.interface-ZopeInterface-3.0.1/zope.interface/_zope_interface_coptimizations.c ZopeInterface-3.0.1-declbug/Dependencies/zope.interface-ZopeInterface-3.0.1/zope.interface/_zope_interface_coptimizations.c
+--- ZopeInterface-3.0.1/Dependencies/zope.interface-ZopeInterface-3.0.1/zope.interface/_zope_interface_coptimizations.c	2004-08-04 18:03:17.000000000 +0800
++++ ZopeInterface-3.0.1-declbug/Dependencies/zope.interface-ZopeInterface-3.0.1/zope.interface/_zope_interface_coptimizations.c	2005-08-23 08:05:27.376784740 +0800
+@@ -70,7 +70,7 @@
+   return 0;
+ }
+ 
+-extern PyTypeObject SpecType;   /* Forward */
++static PyTypeObject SpecType;   /* Forward */
+ 
+ static PyObject *
+ implementedByFallback(PyObject *cls)
