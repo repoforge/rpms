@@ -6,7 +6,7 @@
 
 Summary: Typing tutor
 Name: klavaro
-Version: 1.1.6
+Version: 1.1.8
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -76,6 +76,12 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Thu Dec 11 2008 Dries Verachtert <dries@ulyssis.org> - 1.1.8-1
+- Updated to release 1.1.8.
+
+* Sat Oct 18 2008 Dries Verachtert <dries@ulyssis.org> - 1.1.7-1
+- Updated to release 1.1.7.
+
 * Fri Sep 26 2008 Dries Verachtert <dries@ulyssis.org> - 1.1.6-1
 - Updated to release 1.1.6.
 
