@@ -18,28 +18,25 @@ Buildarch: noarch
 BuildRequires: python-devel
 BuildRequires: python-setuptools
 BuildRequires: python-twisted-core
-Requires: avahi-tools
-Requires: dbus-python
+#Requires: avahi-tools
+Requires: elisa-plugins-good = %{version}
+Requires: elisa-plugins-bad = %{version}
 Requires: gnome-python2-extras
-Requires: gstreamer-plugins-good
-Requires: gstreamer-python
-Requires: pigment >= 0.3.9
-Requires: pycairo
-Requires: python-coherence
-Requires: python-daap
-Requires: python-gpod
+Requires: mgopen-fonts
+#Requires: pycairo
+#Requires: python-daap
 Requires: python-imaging
-Requires: python-lirc
-Requires: python-metar
-Requires: python-pigment
+#Requires: python-lirc
+#Requires: python-metar
 Requires: python-setuptools
-Requires: python-sqlite2
-Requires: python-tag
+#Requires: python-sqlite2
+#Requires: python-tag
 Requires: python-twisted-core
 Requires: python-twisted-web
 Requires: python-twisted-web2
-Requires: python-xdg
-Requires: xdg-user-dirs
+
+Obsoletes: elisa-core <= %{version}-%{release}
+Provides: elisa-core = %{version}-%{release}
 
 %description
 Media center solution using the GStreamer multimedia framework.
@@ -55,6 +52,9 @@ Media center solution using the GStreamer multimedia framework.
 %{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}" \
     --single-version-externally-managed
 
+# Create empty plugins directory
+%{__install} -Dp -m0755 %{buildroot}%{python_sitelib}/elisa/plugins/
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -64,13 +64,13 @@ Media center solution using the GStreamer multimedia framework.
 %doc %{_mandir}/man1/elisa.1*
 %{_bindir}/elisa
 %{_datadir}/applications/elisa.desktop
-%{_datadir}/applications/elisa-mobile.desktop
-%{_datadir}/icons/elisa.png
 %{_datadir}/pixmaps/elisa.png
 %{_datadir}/dbus-1/services/com.fluendo.elisa.service
 %{python_sitelib}/elisa/
 %{python_sitelib}/elisa-*.egg-info/
 %{python_sitelib}/elisa-*-nspkg.pth
+%exclude %{_datadir}/applications/elisa-mobile.desktop
+%exclude %{_datadir}/icons/elisa.png
 
 %changelog
 * Wed Dec 10 2008 Dag Wieers <dag@wieers.com> - 0.5.21-1
