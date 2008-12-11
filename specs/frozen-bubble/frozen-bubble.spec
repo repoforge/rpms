@@ -6,24 +6,25 @@
 
 Summary: Frozen Bubble arcade game
 Name: frozen-bubble
-Version: 2.0.0
-Release: 0
+Version: 2.2.0
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://www.frozen-bubble.org/
-Source: http://zarb.org/~gc/fb/frozen-bubble-%{version}.tar.bz2
+
+Source: http://www.frozen-bubble.org/data/frozen-bubble-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: perl-SDL >= 2.1.3
+
 BuildRequires: perl-SDL >= 2.1.3, SDL_mixer-devel, SDL_Pango-devel, glib2-devel, perl(ExtUtils::MakeMaker)
 BuildRequires: gettext
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+Requires: perl-SDL >= 2.1.3
 
 %description
 Full-featured, colorful animated penguin eyecandy, 100 levels of 1p game,
 hours and hours of 2p game, 3 professional quality 20-channels musics, 15
 stereo sound effects, 7 unique graphical transition effects and a level
 editor.
-
 
 %package server
 Summary: Frozen Bubble network game dedicated server
@@ -35,10 +36,8 @@ with the game in order to be launched automatically for LAN games, so you
 only need to install this package if you want to run a full-time dedicated
 Frozen Bubble network game dedicated server.
 
-
 %prep
 %setup
-
 
 %build
 %{__make} %{?_smp_mflags} \
@@ -48,7 +47,6 @@ Frozen Bubble network game dedicated server.
     PREFIX=%{_prefix} \
     LIBDIR=%{_libexecdir} \
     DATADIR=%{_datadir}
-
 
 %install
 %{__rm} -rf %{buildroot}
@@ -97,7 +95,6 @@ desktop-file-install \
 find %{buildroot} -name '*.bs' -o -name .packlist -o -name 'perllocal.pod' \
     | xargs %{__rm} -rf
 
-
 %post server
 /usr/sbin/useradd -r -s /bin/nologin -d %{_libexecdir}/frozen-bubble fbubble || :
 /sbin/chkconfig --add fb-server
@@ -113,7 +110,6 @@ fi
 if [ $1 -ge 1 ]; then
     /sbin/service fb-server condrestart
 fi
-
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -143,8 +139,10 @@ fi
 %{_sysconfdir}/rc.d/init.d/fb-server
 %{_libexecdir}/frozen-bubble/
 
-
 %changelog
+* Wed Dec 10 2008 Dag Wieers <dag@wieers.com> - 2.2.0-1
+- Updated to release 2.2.0-1
+
 * Thu Oct 26 2006 Matthias Saou <http://freshrpms.net/> 2.0.0-0
 - Update to 2.0.0 pre-release.
 - Split out the server in its own sub-package, which can be installed alone.

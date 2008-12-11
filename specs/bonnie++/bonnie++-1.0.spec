@@ -4,7 +4,7 @@
 
 Summary: Benchmark suite for hard drive and file system performance
 Name: bonnie++
-Version: 1.03d
+Version: 1.03e
 Release: 1
 License: GPL
 Group: Applications/System
@@ -57,6 +57,9 @@ when comparing such things.
 %{_sbindir}/zcav
 
 %changelog
+* Thu Dec 11 2008 Dag Wieers <dag@wieers.com> - 1.03e-1
+- Updated to release 1.03e.
+
 * Sat Nov 08 2008 Dag Wieers <dag@wieers.com> - 1.03d-1
 - Updated to release 1.03d.
 

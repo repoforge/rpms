@@ -25,9 +25,9 @@ Requires: gstreamer-plugins-good
 Requires: gstreamer-python
 Requires: pigment >= 0.3.9
 Requires: pycairo
-#Requires: python-Coherence
+Requires: python-coherence
 Requires: python-daap
-#Requires: python-gpod
+Requires: python-gpod
 Requires: python-imaging
 Requires: python-lirc
 Requires: python-metar
@@ -39,6 +39,7 @@ Requires: python-twisted-core
 Requires: python-twisted-web
 Requires: python-twisted-web2
 Requires: python-xdg
+Requires: xdg-user-dirs
 
 %description
 Media center solution using the GStreamer multimedia framework.

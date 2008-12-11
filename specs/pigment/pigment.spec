@@ -9,6 +9,13 @@
 %{?rh7:%define _without_modxorg 1}
 %{?el2:%define _without_modxorg 1}
 
+%{?el5:%define _with_gl libGLU-devel}
+%{?el4:%define _with_gl xorg-x11-Mesa-libGLU}
+%{?el3:%define _with_gl XFree86-Mesa-libGLU}
+%{?rh9:%define _with_gl XFree86-Mesa-libGLU}
+%{?rh7:%define _with_gl Glide3-devel}
+%{?el2:%define _with_gl Mesa-devel}
+
 Summary: Media Center Toolkit
 Name: pigment
 Version: 0.3.13
@@ -28,8 +35,9 @@ BuildRequires: gtk2-devel
 BuildRequires: gtk-doc
 BuildRequires: pygobject2-devel
 BuildRequires: python-devel
-%{?_without_modxorg:BuildRequires: xorg-x11-Mesa-libGLU}
-%{!?_without_modxorg:BuildRequires: mesa-libGLU-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel libXrender-devel}
+%{?_with_gl:BuildRequires: %{_with_gl}}
 
 %description
 Pigment is a toolkit for writing Media Center software.
