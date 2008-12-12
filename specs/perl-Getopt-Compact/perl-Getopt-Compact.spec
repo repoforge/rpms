@@ -6,7 +6,7 @@
 
 %define real_name Getopt-Compact
 
-Summary: Perl module named Getopt-Compact
+Summary: getopt processing in a compact statement with both long and short options, and usage functionality
 Name: perl-Getopt-Compact
 Version: 0.04
 Release: 1
@@ -21,7 +21,8 @@ BuildArch: noarch
 BuildRequires: perl
 
 %description
-perl-Getopt-Compact is a Perl module.
+getopt processing in a compact statement with both long and short options,
+and usage functionality.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -46,6 +47,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man3/Getopt::Compact.3pm*
 %doc %{_mandir}/man3/Getopt::Compact::PodMunger.3pm*
 %dir %{perl_vendorlib}/Getopt/
+%dir %{perl_vendorlib}/Getopt/Compact/
 %{perl_vendorlib}/Getopt/Compact/PodMunger.pm
 %{perl_vendorlib}/Getopt/Compact.pm
 

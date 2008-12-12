@@ -5,7 +5,7 @@
 
 Summary: Drupal CMS
 Name: drupal5
-Version: 5.7
+Version: 5.14
 Release: 1
 License: GPL
 Group: Development/Languages
@@ -57,6 +57,9 @@ EOF
 %{_localstatedir}/www/drupal-%{version}/
 
 %changelog
+* Thu Dec 11 2008 Dag Wieers <dag@wieers.com> - 5.14-1
+- Updated to release 5.14.
+
 * Mon Feb 04 2008 Dag Wieers <dag@wieers.com> - 5.7-1
 - Updated to release 5.7.
 

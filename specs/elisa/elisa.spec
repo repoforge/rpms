@@ -6,7 +6,7 @@
 Summary: Media Center
 Name: elisa
 Version: 0.5.21
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://elisa.fluendo.com/
@@ -24,6 +24,7 @@ Requires: elisa-plugins-bad = %{version}
 Requires: gnome-python2-extras
 Requires: mgopen-fonts
 #Requires: pycairo
+Requires: python-ctypes
 #Requires: python-daap
 Requires: python-imaging
 #Requires: python-lirc
@@ -52,8 +53,8 @@ Media center solution using the GStreamer multimedia framework.
 %{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}" \
     --single-version-externally-managed
 
-# Create empty plugins directory
-%{__install} -Dp -m0755 %{buildroot}%{python_sitelib}/elisa/plugins/
+### Create empty plugins directory
+%{__install} -d -m0755 %{buildroot}%{python_sitelib}/elisa/plugins/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -73,6 +74,9 @@ Media center solution using the GStreamer multimedia framework.
 %exclude %{_datadir}/icons/elisa.png
 
 %changelog
+* Thu Dec 11 2008 Dag Wieers <dag@wieers.com> - 0.5.21-2
+- Added python-ctypes as a requirement.
+
 * Wed Dec 10 2008 Dag Wieers <dag@wieers.com> - 0.5.21-1
 - Updated to release 0.5.21.
 

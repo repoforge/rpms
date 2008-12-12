@@ -1,0 +1,18 @@
+diff -Naupr elisa-plugins-bad-0.5.2.orig/setup_bundle.py elisa-plugins-bad-0.5.2/setup_bundle.py
+--- elisa-plugins-bad-0.5.2.orig/setup_bundle.py	2008-07-21 19:24:34.000000000 +0200
++++ elisa-plugins-bad-0.5.2/setup_bundle.py	2008-07-23 16:22:10.000000000 +0200
+@@ -7,14 +7,10 @@ def setup(args, plugins):
+     if installed:
+         # Run extracted from the tarball to install
+         plugins_dir = os.path.normpath(os.path.join(script_dir, 'elisa', 'plugins'))
+-        if os.path.exists(build_dir):
+-            shutil.rmtree(build_dir)
+     else:
+         # Run from the development branch to create the tarball
+         plugins_dir = os.path.normpath(os.path.join(script_dir, '..', 'elisa-plugins', 'elisa', 'plugins'))
+ 
+     for plugin in plugins:
+-        if 'install' in args and installed and os.path.exists(build_dir):
+-            shutil.rmtree(build_dir)
+         script = os.path.join(plugins_dir, plugin, 'setup.py')
+         subprocess.call([sys.executable, script] + args)

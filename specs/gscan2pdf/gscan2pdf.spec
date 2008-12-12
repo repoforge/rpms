@@ -11,7 +11,7 @@
 
 Summary: Graphical tool for producing a multipage PDF from a scan
 Name: gscan2pdf
-Version: 0.9.26
+Version: 0.9.27
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -23,11 +23,14 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: gettext
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Gtk2::ImageView)
+BuildRequires: perl(Sane) >= 0.02
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Requires: djvulibre
 Requires: gocr
 Requires: perl(Gtk2::Ex::PodViewer)
 Requires: perl(PDF::API2)
+Requires: perl(Sane) >= 0.02
 Requires: sane-backends >= 1.0.17
 Requires: sane-frontends
 Requires: unpaper
@@ -38,6 +41,9 @@ A GUI to ease the process of producing a multipage PDF from a scan.
 
 %prep
 %setup
+
+### The Makefile from upstream has date in the future
+touch -d "now" Makefile.PL
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -75,12 +81,19 @@ touch --no-create %{_datadir}/icons/hicolor || :
 %defattr(-, root, root, 0755)
 %doc History LICENCE
 %doc %{_mandir}/man1/gscan2pdf.1*
+%doc %{_mandir}/man1/scanadf.pl.1p*
+%doc %{_mandir}/man1/scanimage.pl.1p*
 %{_bindir}/gscan2pdf
+%{_bindir}/scanadf.pl
+%{_bindir}/scanimage.pl
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-gscan2pdf.desktop}
 %{?_without_freedesktop:%{_datadir}/applications/gscan2pdf.desktop}
 %{_datadir}/gscan2pdf/
 %{perl_vendorlib}/Gscan2pdf.pm
 
 %changelog
+* Thu Dec 11 2008 Dag Wieers <dag@wieers.com> - 0.9.27-1
+- Updated to release 0.9.27.
+
 * Tue Dec 09 2008 Dag Wieers <dag@wieers.com> - 0.9.26-1
 - Initial package. (using DAR)

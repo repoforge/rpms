@@ -1,0 +1,36 @@
+--- elisa/plugins/pigment/pigment_frontend.py.orig	2008-12-11 16:14:16.000000000 +0100
++++ elisa/plugins/pigment/pigment_frontend.py	2008-12-11 16:18:24.000000000 +0100
+@@ -747,6 +747,10 @@
+             # no dbus support
+             return
+ 
++        if dbus.version < (0, 82, 0):
++            # dbus too old
++            return
++
+         bus = dbus.SessionBus()
+         self.bus_name = \
+                 dbus.service.BusName('com.fluendo.Elisa', bus)
+@@ -758,6 +762,10 @@
+             # no dbus support
+             return
+ 
++        if dbus.version < (0, 82, 0):
++            # dbus too old
++            return
++
+         bus = dbus.SessionBus()
+         self.dbus_frontend.remove_from_connection(bus,
+                 '/com/fluendo/Elisa/Plugins/Pigment/Frontend')
+--- elisa/plugins/database/dbus_browser.py.orig	2008-12-11 16:16:59.000000000 +0100
++++ elisa/plugins/database/dbus_browser.py	2008-12-11 16:22:28.000000000 +0100
+@@ -181,6 +181,9 @@
+     interface = 'com.fluendo.Elisa.Plugins.Poblesec.Browser'
+ 
+     def __init__(self, browser, *args, **kw):
++        if dbus.version < (0, 82, 0):
++            return
++
+         dbus.service.Object.__init__(self, *args, **kw)
+         self.impl = BrowserImpl(browser)
+ 

@@ -1,0 +1,30 @@
+--- elisa/plugins/gstreamer/thumbnail.py.orig	2008-12-11 16:28:35.000000000 +0100
++++ elisa/plugins/gstreamer/thumbnail.py	2008-12-11 16:28:55.000000000 +0100
+@@ -32,7 +32,6 @@
+ from elisa.core.log import Loggable
+ from elisa.core.media_uri import MediaUri, unquote
+ from elisa.core.components.metadata_provider import MetadataError
+-from elisa.plugins.gstreamer.changestride import ChangeStride
+ 
+ THUMBNAIL_DIR = os.path.join(os.path.expanduser("~"), ".thumbnails", 'large')
+ THUMBNAIL_SIZE = 256
+@@ -48,9 +47,9 @@
+ class ImageSnapshotMixIn(object):
+     __gproperties__ = {
+         'width': (gobject.TYPE_UINT, 'width',
+-                'Snapshot width', 16, (2**32) - 1, THUMBNAIL_SIZE, gobject.PARAM_READWRITE),
++                'Snapshot width', 16, (2**31) - 1, THUMBNAIL_SIZE, gobject.PARAM_READWRITE),
+         'height': (gobject.TYPE_UINT, 'height',
+-                'Snapshot height', 16, (2**32) - 1, THUMBNAIL_SIZE, gobject.PARAM_READWRITE),
++                'Snapshot height', 16, (2**31) - 1, THUMBNAIL_SIZE, gobject.PARAM_READWRITE),
+     }
+ 
+     is_video = False
+@@ -78,6 +77,7 @@
+                 self._encoder)
+ 
+         if self.is_video and platform.system() == 'Windows':
++            from elisa.plugins.gstreamer.changestride import ChangeStride
+             self._changestride = ChangeStride()
+             self.add(self._changestride)
+         else:
