@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Gautier Portet <kassoulet$gmail,com>
 
 %define desktop_vendor rpmforge
 
