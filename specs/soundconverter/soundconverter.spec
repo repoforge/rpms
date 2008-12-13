@@ -6,12 +6,13 @@
 Summary: Simple sound converter application
 Name: soundconverter
 Version: 1.4.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://soundconverter.berlios.de/
 
 Source: http://download.berlios.de/soundconverter/soundconverter-%{version}.tar.gz
+Patch0: soundconverter-1.4.0-python24.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
@@ -25,6 +26,7 @@ gstreamer supported formats.
 
 %prep
 %setup
+%patch0 -p0
 
 %build
 %configure
@@ -49,6 +51,9 @@ gstreamer supported formats.
 %{_datadir}/soundconverter/
 
 %changelog
+* Thu Dec 11 2008 Dag Wieers <dag@wieers.com> - 1.4.0-2
+- Added patch to make soundconverter work on python 2.4.
+
 * Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 1.4.0-1
 - Updated to release 1.4.0.
 

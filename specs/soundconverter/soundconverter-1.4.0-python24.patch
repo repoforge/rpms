@@ -1,0 +1,11 @@
+--- src/soundconverter.py.orig 2008-12-13 01:17:28.000000000 +0100
++++ src/soundconverter.py     2008-12-13 01:13:52.000000000 +0100
+@@ -375,7 +375,7 @@
+ 	"""
+ 	if vfs_exists(filename):
+ 		url = urlparse.urlparse(filename)
+-		if not url.scheme:
++		if not url[0]:
+ 			filename = urllib.pathname2url(filename)
+ 
+ 		return str(gnomevfs.URI(filename))
