@@ -7,7 +7,7 @@
 Summary: General-purpose resource monitoring system
 Name: mon
 Version: 1.2.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.kernel.org/software/mon/
@@ -17,7 +17,8 @@ Source1: ftp://ftp.kernel.org/pub/software/admin/mon/contrib/cgi-bin/mon.cgi/mon
 Source2: ftp://ftp.kernel.org/pub/software/admin/mon/contrib/all-alerts.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Requires: perl, perl(Authen::PAM)
+Requires: perl
+Requires: perl(Authen::PAM)
 
 %description
 Mon is a general-purpose resource monitoring system.  It can be used
@@ -67,20 +68,20 @@ hostgroup servers localhost
 
 watch servers
     service ping
-	interval 5m
-	monitor ping.monitor
-	period wd {Mon-Fri} hr {7am-10pm}
-	    alert mail.alert root@localhost
-	    alertevery 1h
-	period wd {Sat-Sun}
-	    alert mail.alert root@localhost
+    interval 5m
+    monitor ping.monitor
+    period wd {Mon-Fri} hr {7am-10pm}
+        alert mail.alert root@localhost
+        alertevery 1h
+    period wd {Sat-Sun}
+        alert mail.alert root@localhost
     service telnet
-	interval 10m
-	monitor telnet.monitor
-	period wd {Mon-Fri} hr {7am-10pm}
-	    alertevery 1h
-	    alertafter 2 30m
-	    alert mail.alert root@localhost
+    interval 10m
+    monitor telnet.monitor
+    period wd {Mon-Fri} hr {7am-10pm}
+        alertevery 1h
+        alertafter 2 30m
+        alert mail.alert root@localhost
    service http
         interval 4m
         monitor http.monitor
@@ -125,60 +126,60 @@ prog="mon"
 desc="System Monitoring daemon"
 
 start() {
-	echo -n $"Starting $desc ($prog): "
-	daemon $prog -f -c %{_sysconfdir}/mon/mon.cf
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Starting $desc ($prog): "
+    daemon $prog -f -c %{_sysconfdir}/mon/mon.cf
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 stop() {
-	echo -n $"Shutting down $desc ($prog): "
-	killproc $prog
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
+    echo -n $"Shutting down $desc ($prog): "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
 }
 
 restart() {
-	stop
-	start
+    stop
+    start
 }
 
 reload() {
-	echo -n $"Reloading $desc ($prog): "
-	killproc $prog -HUP
-	RETVAL=$?
-	echo
-	return $RETVAL
+    echo -n $"Reloading $desc ($prog): "
+    killproc $prog -HUP
+    RETVAL=$?
+    echo
+    return $RETVAL
 }
 
 case "$1" in
   start)
-	start
-	;;
+    start
+    ;;
   stop)
-	stop
-	;;
+    stop
+    ;;
   restart)
-	restart
-	;;
+    restart
+    ;;
   reload)
-	reload
-	;;
+    reload
+    ;;
   condrestart)
-	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-	RETVAL=$?
-	;;
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
   status)
-	status $prog
-	RETVAL=$?
-	;;
+    status $prog
+    RETVAL=$?
+    ;;
   *)
-	echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
-	RETVAL=1
+    echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
+    RETVAL=1
 esac
 
 exit $RETVAL
@@ -186,28 +187,25 @@ EOF
 
 %build
 %{__make} %{?_smp_mflags} -C mon.d \
-	RPM_OPT_FLAGS="%{optflags} -DUSE_VENDOR_CF_PATH=1"
+    RPM_OPT_FLAGS="%{optflags} -DUSE_VENDOR_CF_PATH=1"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man{1,8}/ \
-			%{buildroot}%{_libdir}/mon/{alert.d,mon.d}/ \
-			%{buildroot}%{_sysconfdir}/mon/ \
-			%{buildroot}%{_initrddir} \
-			%{buildroot}%{_localstatedir}/www/cgi-bin/ \
-			%{buildroot}%{_localstatedir}/lib/mon/{log.d,state.d}/
-
-%makeinstall -C mon.d \
-	MONPATH="%{buildroot}%{_libdir}/mon"
+%makeinstall -C mon.d MONPATH="%{buildroot}%{_libdir}/mon"
 
 #%{__install} -p -m0755 mon.d/*.monitor %{buildroot}%{_libdir}/mon/mon.d/
 #%{__install} -p -m0555 mon.d/dialin.monitor.wrap %{buildroot}%{_libdir}/mon/mon.d/
 
-%{__install} -p -m0755 mon clients/moncmd clients/monshow clients/skymon/skymon %{buildroot}%{_bindir}
+%{__install} -Dp -m0755 mon %{buildroot}%{_bindir}/mon
+%{__install} -Dp -m0755 clients/moncmd %{buildroot}%{_bindir}/moncmd
+%{__install} -Dp -m0755 clients/monshow %{buildroot}%{_bindir}/monshow
+%{__install} -Dp -m0755 clients/skymon/skymon %{buildroot}%{_bindir}/skymon
+
+%{__install} -d -m0755 %{buildroot}%{_mandir}/man{1,8}/
 %{__install} -p -m0644 doc/*.1 %{buildroot}%{_mandir}/man1/
 %{__install} -p -m0644 doc/*.8 %{buildroot}%{_mandir}/man8/
 
+%{__install} -d -m0755 %{buildroot}%{_libdir}/mon/{alert.d,mon.d}/
 %{__install} -p -m0755 alert.d/* %{buildroot}%{_libdir}/mon/alert.d/
 %{__install} -p -m0755 alerts/*/*.alert %{buildroot}%{_libdir}/mon/alert.d/
 
@@ -218,6 +216,8 @@ EOF
 
 %{__install} -Dp -m0755 mon.cgi-%{moncgi_version}/mon.cgi %{buildroot}%{_localstatedir}/www/cgi-bin/mon.cgi
 
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/mon/{log.d,state.d}/
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -226,8 +226,8 @@ EOF
 
 %preun
 if [ $1 -eq 0 ]; then
-        /sbin/service mon stop &>/dev/null || :
-        /sbin/chkconfig --del mon
+    /sbin/service mon stop &>/dev/null || :
+    /sbin/chkconfig --del mon
 fi
 
 %postun
@@ -235,22 +235,29 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES COPYING COPYRIGHT CREDITS README TODO doc/README.*
-%doc KNOWN-PROBLEMS utils/ VERSION
-%doc alerts/*/*.README mon.cgi-1.52/
+%doc CHANGES COPYING COPYRIGHT CREDITS KNOWN-PROBLEMS README TODO VERSION
+%doc alerts/*/*.README doc/README.* mon.cgi-1.52/ utils/
 %doc clients/{skymon,batch-example} etc/*.cf etc/example.m4 etc/example.monshowrc
+%doc %{_mandir}/man1/moncmd.1*
+%doc %{_mandir}/man1/monshow.1*
+%doc %{_mandir}/man8/mon.8*
 %config(noreplace) %{_sysconfdir}/mon/
-%config %{_initrddir}/*
-%{_mandir}/man?/*
-%{_localstatedir}/www/cgi-bin/mon.cgi
-%{_bindir}/*
-%{_localstatedir}/lib/mon/
+%config %{_initrddir}/mon
+%{_bindir}/mon
+%{_bindir}/moncmd
+%{_bindir}/monshow
+%{_bindir}/skymon
 %{_libdir}/mon/
+%{_localstatedir}/lib/mon/
+%{_localstatedir}/www/cgi-bin/mon.cgi
 
 %defattr(2555, root, uucp)
 %{_libdir}/mon/mon.d/dialin.monitor.wrap
 
 %changelog
+* Wed Dec 17 2008 Dag Wieers <dag@wieers.com> - 1.2.0-2
+- Added missing perl(Authen::PAM) requirement.
+
 * Wed Jun 27 2007 Dag Wieers <dag@wieers.com> - 1.2.0-1
 - Updated to release 1.2.0.
 

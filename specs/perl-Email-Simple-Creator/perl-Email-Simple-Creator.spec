@@ -10,7 +10,7 @@
 Summary: Email::Simple constructor for starting anew
 Name: perl-Email-Simple-Creator
 Version: 1.424
-Release: 2
+Release: 3
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Simple-Creator/
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 Buildrequires: perl(ExtUtils::MakeMaker)
+Requires: perl(Email::Date::Format)
 ### Pull in perl-Email-Simple because this packages provides it as well !!
 Requires: perl-Email-Simple
 
@@ -54,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Email/Simple/Creator.pm
 
 %changelog
+* Wed Dec 17 2008 Dag Wieers <dag@wieers.com> - 1.424-3
+- Added missing perl(Email::Date::Format) requirement. (Pierre Bourgin)
+
 * Mon Jan  7 2008 Dries Verachtert <dries@ulyssis.org> - 1.424-2
 - Fix: perl-Email-Simple requirement added, thanks to Tom G. Christensen.
 
