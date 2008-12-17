@@ -10,7 +10,7 @@
 Summary: Perl module that provides date manipulation routines
 Name: perl-Date-Manip
 Version: 5.54
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Manip/
@@ -22,6 +22,9 @@ BuildArch: noarch
 BuildRequires: perl >= 0:5.6.0
 BuildRequires: perl(Test::More)
 Requires: perl >= 0:5.6.0
+
+Obsoletes: perl-DateManip <= %{version}-%{release}
+Provides: perl-DateManip = %{version}-%{release}
 
 %description
 perl-Date-Manip is a Perl module that provides date manipulation routines.
@@ -56,6 +59,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Date/Manip.pod
 
 %changelog
+* Wed Dec 17 2008 Dag Wieers <dag@wieers.com> - 5.48-2
+- Provide and obsolete incorrect perl-DateManip.
+
 * Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 5.48-1
 - Updated to release 5.48.
 
