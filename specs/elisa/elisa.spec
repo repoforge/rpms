@@ -5,8 +5,8 @@
 
 Summary: Media Center
 Name: elisa
-Version: 0.5.21
-Release: 2
+Version: 0.5.22
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://elisa.fluendo.com/
@@ -74,6 +74,9 @@ Media center solution using the GStreamer multimedia framework.
 %exclude %{_datadir}/icons/elisa.png
 
 %changelog
+* Mon Dec 15 2008 Dag Wieers <dag@wieers.com> - 0.5.22-1
+- Updated to release 0.5.22.
+
 * Thu Dec 11 2008 Dag Wieers <dag@wieers.com> - 0.5.21-2
 - Added python-ctypes as a requirement.
 

@@ -5,7 +5,7 @@
 
 Summary: Set of tools to create, alter and inspect Matroska files
 Name: mkvtoolnix
-Version: 2.4.0
+Version: 2.4.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -32,7 +32,6 @@ BuildRequires: zlib-devel
 %description
 MKVToolnix is a set of tools to create, alter and inspect Matroska files.
 
-
 %package gui
 Summary: Graphical User Interface to the mkvtoolnix set of tools
 Group: Applications/Multimedia
@@ -41,7 +40,6 @@ Requires: %{name} = %{version}-%{release}
 %description gui
 MKVToolnix is a set of tools to create, alter and inspect Matroska files.
 This package contains a Graphical User Interface for those tools.
-
 
 %prep
 %setup
@@ -62,7 +60,6 @@ Type=Application
 Categories=Application;AudioVideo;
 Encoding=UTF-8
 EOF
-
 
 %build
 %configure
@@ -113,11 +110,14 @@ touch --no-create %{_datadir}/icons/hicolor || :
 %doc doc/mkvmerge-gui.html
 %doc %{_mandir}/man1/mkvmerge-gui.1*
 %{_bindir}/mkvmerge-gui
-%{_datadir}/applications/*mkvmerge-gui.desktop
+%{_datadir}/applications/%{desktop_vendor}-mkvmerge-gui.desktop
 %{_datadir}/icons/hicolor/32x32/apps/mkvmerge-gui.png
 %{_datadir}/mkvtoolnix/
 
 %changelog
+* Fri Dec 05 2008 Dag Wieers <dag@wieers.com> - 2.4.1-1
+- Updated to release 2.4.1.
+
 * Sun Oct 12 2008 Dag Wieers <dag@wieers.com> - 2.4.0-1
 - Updated to release 2.4.0.
 

@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Nagios Plugin Development Team <nagiosplug-devel$lists,sourceforge,net>
-# Upstream: Ton Voon <ton,voon$altinity,com>
+# Upstream: Ton Voon <ton,voon$opsera,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -16,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Nagios-Plugin/
 
-Source: http://www.cpan.org/authors/id/T/TO/TONVOON/Nagios-Plugin-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Nagios/Nagios-Plugin-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

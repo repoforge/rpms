@@ -6,8 +6,8 @@
 Summary: Client/server backup system
 Name: safekeep
 Version: 1.0.5
-Release: 1
-License: GPLv2+
+Release: 2
+License: GPL
 Group: Applications/System
 URL: http://safekeep.sourceforge.net/
 
@@ -89,10 +89,11 @@ installed on the server on which the data will be backed-up to.
 
 %pre server
 %{_sbindir}/groupadd -f -r safekeep
-if ! id %{name} &>/dev/null; then
+if ! id safekeep &>/dev/null; then
     /usr/sbin/useradd -r -g safekeep -d %{_localstatedir}/lib/safekeep/ -s /sbin/nologin \
     -c "Used by safekeep to run and store backups." safekeep || \
         %logmsg "Unexpected error adding user \"nagios\". Aborting installation."
+fi
 
 %files common
 %defattr(-, root, root, 0755)
@@ -119,6 +120,9 @@ if ! id %{name} &>/dev/null; then
 %dir %{_localstatedir}/lib/safekeep/.ssh/
 
 %changelog
+* Wed Dec 17 2008 Dag Wieers <dag@wieers.com> - 1.0.5-2
+- Fixed syntax error in %%pre script. (Eduard Malinschi)
+
 * Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 1.0.5-1
 - Updated to release 1.0.5.
 

@@ -5,8 +5,8 @@
 
 Summary: Bad Plugins for the Elisa Media Center
 Name: elisa-plugins-bad
-Version: 0.5.21
-Release: 2
+Version: 0.5.22
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://elisa.fluendo.com/
@@ -18,7 +18,7 @@ Patch2: elisa-plugins-bad-0.5.21-dbus.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: elisa = %{version}
+BuildRequires: elisa
 BuildRequires: python-devel
 Requires: dbus-python
 Requires: elisa = %{version}
@@ -84,12 +84,16 @@ This package contains the bad set of plugins for the Elisa Media Center.
 %{python_sitelib}/elisa/plugins/osso/
 %{python_sitelib}/elisa/plugins/pigment/
 %{python_sitelib}/elisa/plugins/poblesec/
+%{python_sitelib}/elisa/plugins/rss/
 %{python_sitelib}/elisa/plugins/search/
 %{python_sitelib}/elisa/plugins/shelf/
 %{python_sitelib}/elisa/plugins/yesfm/
 %{python_sitelib}/elisa_plugin_*
 
 %changelog
+* Wed Dec 17 2008 Dag Wieers <dag@wieers.com> - 0.5.22-1
+- Updated to release 0.5.22.
+
 * Thu Dec 11 2008 Dag Wieers <dag@wieers.com> - 0.5.21-2
 - Added patches to disable dbus and fix CentOS specific items.
 

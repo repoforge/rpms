@@ -5,7 +5,7 @@
 
 Summary: Good Plugins for the Elisa Media Center
 Name: elisa-plugins-good
-Version: 0.5.21
+Version: 0.5.22
 Release: 1
 License: GPL and MIT
 Group: Applications/Multimedia
@@ -16,7 +16,7 @@ Patch0: elisa-plugins-good-0.5.2-install.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: elisa = %{version}
+BuildRequires: elisa
 BuildRequires: python-devel
 Requires: elisa = %{version}
 
@@ -50,6 +50,9 @@ plugins which are considered stable and do not present any licensing issues.
 %exclude %{python_sitelib}/elisa_plugin_winscreensaver-*
 
 %changelog
+* Wed Dec 17 2008 Dag Wieers <dag@wieers.com> - 0.5.22-1
+- Updated to release 0.5.22.
+
 * Thu Dec 11 2008 Dag Wieers <dag@wieers.com> - 0.5.21-1
 - Updated to release 0.5.21.
 

@@ -1,0 +1,21 @@
+--- macros.h.orig	2007-12-05 20:56:59.000000000 -0500
++++ macros.h	2008-12-08 13:19:10.000000000 -0500
+@@ -275,4 +275,18 @@
+     Py_INCREF(self);                                    \
+     return (PyObject *) self;
+ 
++
++/* define Py_CLEAR if in Python <= 2.4 */
++#ifndef Py_CLEAR
++#define Py_CLEAR(op)                            \
++        do {                                    \
++                if (op) {                       \
++                        PyObject *tmp = (PyObject *)(op);       \
++                        (op) = NULL;            \
++                        Py_DECREF(tmp);         \
++                }                               \
++        } while (0)
++#endif /* Py_CLEAR */
++
++
+ #endif /* _macros_h */

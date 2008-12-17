@@ -5,7 +5,7 @@
 
 Summary: Ugly Plugins for the Elisa Media Center
 Name: elisa-plugins-ugly
-Version: 0.5.21
+Version: 0.5.22
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -16,7 +16,7 @@ Patch0: elisa-plugins-ugly-0.5.2-install.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: elisa = %{version}
+BuildRequires: elisa
 BuildRequires: python-devel
 Requires: elisa = %{version}
 Requires: gstreamer-plugins-ugly
@@ -51,6 +51,9 @@ plugins which present licensing issues.
 %{python_sitelib}/elisa_plugin_*
 
 %changelog
+* Wed Dec 17 2008 Dag Wieers <dag@wieers.com> - 0.5.22-1
+- Updated to release 0.5.22.
+
 * Thu Dec 11 2008 Dag Wieers <dag@wieers.com> - 0.5.21-1
 - Updated to release 0.5.21.
 
