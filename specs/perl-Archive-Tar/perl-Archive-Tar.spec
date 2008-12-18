@@ -8,7 +8,7 @@
 
 Summary: Archive-Tar module for perl
 Name: perl-Archive-Tar
-Version: 1.38
+Version: 1.40
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Archive/Tar.pm
 
 %changelog
+* Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 1.40-1
+- Updated to release 1.40.
+
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.38-1
 - Updated to release 1.38.
 

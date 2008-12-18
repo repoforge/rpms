@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements a MySQL driver for DBI
 Name: perl-DBD-mysql
-Version: 4.008
+Version: 4.010
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -61,6 +61,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Bundle/DBD/mysql.pm
 
 %changelog
+* Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 4.010-1
+- Updated to release 4.010.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 4.008-1
 - Updated to release 4.008.
 

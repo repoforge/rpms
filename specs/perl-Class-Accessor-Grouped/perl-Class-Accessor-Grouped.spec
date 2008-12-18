@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Matt S. Trout <mst@shadowcatsystems.co.uk>
+# Upstream: Matt S. Trout <mst$shadowcatsystems,co,uk>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Lets you build groups of accessors
 Name: perl-Class-Accessor-Grouped
-Version: 0.08001
+Version: 0.08002
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/Accessor/Grouped.pm
 
 %changelog
+* Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 0.08002-1
+- Updated to release 0.08002.
+
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.08001-1
 - Updated to release 0.08001.
 

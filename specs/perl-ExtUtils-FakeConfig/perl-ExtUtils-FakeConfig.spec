@@ -9,7 +9,7 @@
 
 Summary: Allows overriding some config values
 Name: perl-ExtUtils-FakeConfig
-Version: 0.11
+Version: 0.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,17 +39,27 @@ Allows you to override some config values.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find script/ spec/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README.txt
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/ExtUtils/FakeConfig.pm
+%doc Changes MANIFEST META.yml README.txt script/ spec/
+%doc %{_mandir}/man3/Config_m.3pm*
+%doc %{_mandir}/man3/Config_u.3pm*
+%doc %{_mandir}/man3/ExtUtils::FakeConfig.3pm*
 %{perl_vendorlib}/Config_m.pod
+%{perl_vendorlib}/Config_u.pm
+%dir %{perl_vendorlib}/ExtUtils/
+%{perl_vendorlib}/ExtUtils/FakeConfig.pm
 
 %changelog
+* Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 0.12-1
+- Updated to release 0.12.
+
 * Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 0.11-1
 - Updated to release 0.11.
 

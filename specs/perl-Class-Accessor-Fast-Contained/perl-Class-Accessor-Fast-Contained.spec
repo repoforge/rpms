@@ -9,7 +9,7 @@
 
 Summary: Fast accessors with data containment
 Name: perl-Class-Accessor-Fast-Contained
-Version: 0.05
+Version: 1.01
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,12 @@ Source: http://www.cpan.org/modules/by-module/Class/Class-Accessor-Fast-Containe
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 2:5.8.1
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::Pod)
+BuildRequires: perl(Test::Pod::Coverage)
+Requires: perl >= 2:5.8.1
 
 %description
 Fast accessors with data containment.
@@ -39,15 +43,25 @@ Fast accessors with data containment.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
+### Clean up docs
+find examples/ -type f -exec %{__chmod} a-x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/Class::Accessor::Fast::Contained*
+%doc Changes INSTALL MANIFEST META.yml README examples/
+%doc %{_mandir}/man3/Class::Accessor::Fast::Contained.3pm*
+%dir %{perl_vendorlib}/Class/
+%dir %{perl_vendorlib}/Class/Accessor/
+%dir %{perl_vendorlib}/Class/Accessor/Fast/
+#%{perl_vendorlib}/Class/Accessor/Fast/Contained/
 %{perl_vendorlib}/Class/Accessor/Fast/Contained.pm
 
 %changelog
+* Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 1.01-1
+- Updated to release 1.01.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Initial package.

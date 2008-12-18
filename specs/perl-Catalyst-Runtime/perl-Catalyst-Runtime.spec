@@ -9,7 +9,7 @@
 
 Summary: Catalyst  Runtime version
 Name: perl-Catalyst-Runtime
-Version: 5.7014
+Version: 5.7015
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,6 +39,8 @@ BuildRequires: perl(Module::Pluggable)
 BuildRequires: perl(Path::Class)
 BuildRequires: perl(Scalar::Util)
 BuildRequires: perl(Test::Perl::Critic)
+BuildRequires: perl(Test::Pod) >= 1.14
+BuildRequires: perl(Test::Pod::Coverage) >= 1.04
 BuildRequires: perl(Text::SimpleTable)
 BuildRequires: perl(Tree::Simple)
 BuildRequires: perl(Tree::Simple::Visitor::FindByPath)
@@ -76,6 +78,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Catalyst.pm
 
 %changelog
+* Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 5.7015-1
+- Updated to release 5.7015.
+
 * Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 5.7014-1
 - Updated to release 5.7014.
 

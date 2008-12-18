@@ -9,8 +9,8 @@
 
 Summary: Perl module that implements Object-Oriented Access to ACEDB Databases
 Name: perl-AcePerl
-Version: 1.91
-Release: 3
+Version: 1.92
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AcePerl/
@@ -66,6 +66,9 @@ find docs/ examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/GFF/
 
 %changelog
+* Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 1.92-1
+- Updated to release 1.92.
+
 * Wed Nov 14 2007 Dag Wieers <dag@wieers.com> - 1.91-3
 - Added Provides for perl(Ace::Browser::LocalSiteDefs). (Jordan Mendler)
 

@@ -9,7 +9,7 @@
 
 Summary: Marc Girod's contributed cleartool wrapper functions
 Name: perl-ClearCase-Wrapper-MGi
-Version: 0.05
+Version: 0.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -43,7 +43,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README
+%doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/ClearCase::Wrapper::MGi.3pm*
 %dir %{perl_vendorlib}/auto/ClearCase/
 %{perl_vendorlib}/auto/ClearCase/Wrapper/
@@ -53,5 +53,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/ClearCase/Wrapper/MGi.pm
 
 %changelog
+* Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 0.07-1
+- Updated to release 0.07.
+
 * Mon Nov 26 2007 Dag Wieers <dag@wieers.com> - 0.05-1
 - Initial package. (using DAR)

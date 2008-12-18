@@ -7,9 +7,9 @@
 
 %define real_name Alien-wxWidgets
 
-Summary: building, finding and using wxWidgets binaries
+Summary: Building, finding and using wxWidgets binaries
 Name: perl-Alien-wxWidgets
-Version: 0.39
+Version: 0.42
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,12 +20,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildArch: noarch
 BuildRequires: perl >= 0:5.006
-BuildRequires: perl(Module::Build) >= 0.26
+BuildRequires: perl(ExtUtils::CBuilder) >= 0.24
+BuildRequires: perl(Module::Build) >= 0.28
 BuildRequires: perl(Module::Pluggable)
 Requires: perl >= 0:5.006
 
 %description
-building, finding and using wxWidgets binaries.
+Building, finding and using wxWidgets binaries.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -57,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 #%{perl_vendorlib}/Alien/wxWidgets.pm
 
 %changelog
+* Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 0.42-1
+- Updated to release 0.42.
+
 * Sat Sep 27 2008 Dag Wieers <dag@wieers.com> - 0.39-1
 - Updated to release 0.39.
 

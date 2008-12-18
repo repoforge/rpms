@@ -9,7 +9,7 @@
 
 Summary: Load configuration from different file formats, transparently
 Name: perl-Config-Any
-Version: 0.14
+Version: 0.16
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Config/Any.pm
 
 %changelog
+* Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 0.16-1
+- Updated to release 0.16.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.14-1
 - Updated to release 0.14.
 

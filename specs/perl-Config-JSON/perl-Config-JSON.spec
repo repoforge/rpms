@@ -6,11 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Config-JSON
-%define real_version 1.001004
+%define real_version 1.003000
 
 Summary: JSON based config file system
 Name: perl-Config-JSON
-Version: 1.1.4
+Version: 1.3.0
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Config/JSON.pm
 
 %changelog
+* Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 1.3.0-1
+- Updated to release 1.3.0.
+
 * Sat Jan 26 2008 Dag Wieers <dag@wieers.com> - 1.1.4-1
 - Updated to release 1.1.4.
 

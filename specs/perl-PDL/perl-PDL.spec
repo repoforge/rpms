@@ -1,16 +1,15 @@
 # $Id$
 # Authority: dag
-# Upstream: Christian Soeller <soellermail$excite,com>
+# Upstream: Chris Marshall <chm$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name PDL
-%define real_version 2.004003
 
 Summary: Perl module that implements the Perl Data Language
 Name: perl-PDL
-Version: 2.4.3
+Version: 2.4.4
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -44,11 +43,28 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc BUGS COPYING Changes INSTALL MANIFEST MANIFEST.SKIP META.yml README Release_Notes TODO
+%doc %{_mandir}/man1/PDL::*.1*
+%doc %{_mandir}/man1/pdl.1*
+%doc %{_mandir}/man1/pdldoc.1*
+%doc %{_mandir}/man1/perldl.1*
+%doc %{_mandir}/man1/pptemplate.1*
 %doc %{_mandir}/man3/PDL.3pm*
-#%doc %{_mandir}/man3/*.3pm*
-%{perl_vendorarch}/PDL.pm
+%doc %{_mandir}/man3/PDL::*.3pm*
+%doc %{_mandir}/man3/Pdlpp.3pm*
+%{_bindir}/pdl
+%{_bindir}/pdldoc
+%{_bindir}/perldl
+%{_bindir}/pptemplate
 %{perl_vendorarch}/auto/PDL/
+%dir %{perl_vendorarch}/Inline/
+%{perl_vendorarch}/Inline/MakePdlppInstallable.pm
+%{perl_vendorarch}/Inline/Pdlpp.pm
+%{perl_vendorarch}/PDL/
+%{perl_vendorarch}/PDL.pm
 
 %changelog
+* Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 2.4.4-1
+- Updated to release 2.4.4.
+
 * Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 2.4.3-1
 - Initial package. (using DAR)

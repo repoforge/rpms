@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Mark Stosberg <mark$summersault,com>
+# Upstream: Sherzod Ruzmetov <sherzodr$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Persistent session data in CGI applications
 Name: perl-CGI-Session
-Version: 4.36
+Version: 4.38
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::Pod)
 
 %description
 CGI-Session is a Perl5 library that provides an easy, reliable and
@@ -56,10 +58,13 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %doc %{_mandir}/man3/CGI::Session.3pm*
 %doc %{_mandir}/man3/CGI::Session::*.3pm*
 %dir %{perl_vendorlib}/CGI/
-%{perl_vendorlib}/CGI/Session
+%{perl_vendorlib}/CGI/Session/
 %{perl_vendorlib}/CGI/Session.pm
 
 %changelog
+* Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 4.38-1
+- Updated to release 4.38.
+
 * Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 4.36-1
 - Updated to release 4.36.
 
