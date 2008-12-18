@@ -3,35 +3,28 @@
 # Upstream: <libquicktime-devel$lists,sourceforge,net>
 
 %{?dtag: %{expand: %%define %dtag 1}}
-%{?fedora: %{expand: %%define fc%{fedora} 1}}
-
-%{!?dtag:%define _with_modxorg 1}
-%{?el5:%define _with_modxorg 1}
-%{?fc7:%define _with_modxorg 1}
-%{?fc6:%define _with_modxorg 1}
-%{?fc5:%define _with_modxorg 1}
 
 ### Problems when compiling against EL4 alsa-lib
 %{?el4:%define _without_alsa 1}
+%{?el4:%define _without_modxorg 1}
 
 %{?fc1:%define _without_alsa 1}
 %{?fc1:%define _without_gtk24 1}
 
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_gtk24 1}
+%{?el3:%define _without_modxorg 1}
 
 %{?rh9:%define _without_alsa 1}
 %{?rh9:%define _without_gtk24 1}
+%{?rh9:%define _without_modxorg 1}
 %{?rh9:%define _without_x264 1}
-
-%{?rh8:%define _without_alsa 1}
-%{?rh8:%define _without_gtk24 1}
-%{?rh8:%define _without_x264 1}
 
 %{?rh7:%define _without_1394 1}
 %{?rh7:%define _without_alsa 1}
 %{?rh7:%define _without_faac 1}
 %{?rh7:%define _without_gtk24 1}
+%{?rh7:%define _without_modxorg 1}
 %{?rh7:%define _without_vorbis 1}
 %{?rh7:%define _without_x264 1}
 
@@ -40,23 +33,24 @@
 %{?el2:%define _without_dv 1}
 %{?el2:%define _without_faac 1}
 %{?el2:%define _without_gtk24 1}
+%{?el2:%define _without_modxorg 1}
 %{?el2:%define _without_vorbis 1}
 %{?el2:%define _without_x264 1}
 
 %{?yd3:%define _without_alsa 1}
 
-#define prever pre1
-
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
-Version: 1.1.0
-Release: 1%{?prever:.%{prever}}
+Version: 1.1.1
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sourceforge.net/
-Source: http://dl.sf.net/libquicktime/libquicktime-%{version}%{?prever}.tar.gz
+
+Source: http://dl.sf.net/libquicktime/libquicktime-%{version}.tar.gz
 Patch0: libquicktime-1.0.0-plugin_dir.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc-c++
 BuildRequires: lame-devel
 BuildRequires: libjpeg-devel
@@ -102,7 +96,7 @@ You will need to install this development package if you intend to rebuild
 programs that need to access quicktime files using libquicktime.
 
 %prep
-%setup -n %{name}-%{version}%{?prever}
+%setup
 %patch0 -p0 -b .plugin_dir
 
 %build
@@ -121,13 +115,13 @@ programs that need to access quicktime files using libquicktime.
 
 # Add compatibility symlink for "quicktime/lqt.h" includes
 # (for transcode 1.0.0beta3)
-%{__ln_s} lqt %{buildroot}%{_includedir}/quicktime
-
-%clean
-%{__rm} -rf %{buildroot}
+%{__ln_s} -f lqt %{buildroot}%{_includedir}/quicktime
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -155,6 +149,9 @@ programs that need to access quicktime files using libquicktime.
 %exclude %{_libdir}/libquicktime/lqt_*.la
 
 %changelog
+* Mon Dec 15 2008 Dag Wieers <dag@wieers.com> - 1.1.1-1
+- Updated to release 1.1.1.
+
 * Mon Nov 10 2008 Dag Wieers <dag@wieers.com> - 1.1.0-1
 - Updated to release 1.1.0.
 

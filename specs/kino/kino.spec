@@ -3,13 +3,12 @@
 # Upstream: Dan Dennedy <ddennedy$users,sf,net>
 
 %{?dtag: %{expand: %%define %dtag 1}}
-%{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?rh9:%define _without_modxorg 1}
+%{?rh7:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
 
 %{?el4: %define _without_libiec61883 1}
 %{?el3: %define _without_libiec61883 1}
@@ -19,28 +18,30 @@
 
 Summary: Simple non-linear video editor
 Name: kino
-Version: 1.1.1
-Release: 2
+Version: 1.3.2
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.kinodv.org/
+
 Source: http://downloads.sf.net/kino/kino-%{version}.tar.gz
 Patch0: kino-1.0.0-udev-rules.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: gtk2 >= 2.6
-Requires: mjpegtools
-%{?_with_extffmpeg:Requires: ffmpeg}
+
 BuildRequires: libdv-devel >= 0.102
 BuildRequires: libavc1394-devel, libraw1394-devel
 BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel
 BuildRequires: gtk2-devel >= 2.6, libglade2-devel >= 2.5, gettext
 BuildRequires: libxml2-devel, libsamplerate-devel, intltool
-%{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel}
+%{!?_without_modxorg:BuildRequires: libXt-devel, libXv-devel}
 # libtool *sigh*
 BuildRequires: gcc-c++
 %{!?_without_libiec61883:BuildRequires: libiec61883-devel}
 %{!?_without_quicktime:BuildRequires: libquicktime-devel}
 %{?_with_extffmpeg:BuildRequires: ffmpeg-devel}
+Requires: gtk2 >= 2.6
+Requires: mjpegtools
+%{?_with_extffmpeg:Requires: ffmpeg}
 Obsoletes: kino-devel <= %{version}
 Obsoletes: kino-dvtitler <= 0.2.0-2
 
@@ -50,11 +51,9 @@ format. Kino allows you to record, create, edit, and play movies recorded
 with DV camcorders. Unlike other editors, this program uses many keyboard
 commands for fast navigating and editing inside the movie.
 
-
 %prep
 %setup
 %patch0 -p1 -b .udev-rules
-
 
 %build
 %configure \
@@ -64,15 +63,10 @@ commands for fast navigating and editing inside the movie.
     %{?_with_extffmpeg:--enable-local-ffmpeg="no"}
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall 
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
-# Move plugins back where they belong (new in 0.8.0)
-%{__mkdir_p} %{buildroot}%{_libdir}/kino-gtk2/
-%{__mv} %{buildroot}%{_libdir}/*.* %{buildroot}%{_libdir}/kino-gtk2/
-
 
 %post
 update-mime-database %{_datadir}/mime &>/dev/null || :
@@ -80,29 +74,31 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 %postun
 update-mime-database %{_datadir}/mime &>/dev/null || :
 
-
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %files -f %{name}.lang
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING NEWS README*
+%doc %{_mandir}/man1/ffmpeg-kino.1*
+%doc %{_mandir}/man1/kino.1*
+%doc %{_mandir}/man1/kino2raw.1*
 %config %{_sysconfdir}/udev/rules.d/kino.rules
-%{_bindir}/*
-%{_includedir}/kino/
-%dir %{_libdir}/kino-gtk2/
-%{_libdir}/kino-gtk2/*.so*
-%exclude %{_libdir}/kino-gtk2/*.la
+%{_bindir}/ffmpeg-kino
+%{_bindir}/kino
+%{_bindir}/kino2raw
 %{_datadir}/applications/Kino.desktop
 %{_datadir}/kino/
 %{_datadir}/mime/packages/kino.xml
 %{_datadir}/pixmaps/kino.png
-%{_mandir}/man1/*
-%exclude %{_mandir}/man1/ffmpeg.1*
-
+%{_includedir}/kino/
+%{_libdir}/kino-gtk2/
+%exclude %{_libdir}/kino-gtk2/*.la
 
 %changelog
+* Wed Dec 17 2008 Dag Wieers <dag@wieers.com> - 1.3.2-1
+- Updated to release 1.3.2.
+
 * Fri Oct 12 2007 Dag Wieers <dag@wieers.com> - 1.1.1-2
 - Remove ffmpeg.1 manpage as it conflicts with ffmpeg package.
 
