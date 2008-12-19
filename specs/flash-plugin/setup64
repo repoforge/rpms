@@ -1,0 +1,114 @@
+#!/bin/bash
+
+# These are the standard browser locations as found within Red Hat, Mandrake
+# and SuSE Linux, and the tarball installers.
+LOCATIONS="/usr/lib64/mozilla /usr/lib64/mozilla-* /usr/lib64/firefox-* /usr/lib64/seamonkey-* /usr/lib64/netscape /usr/lib64/opera /usr/lib64/firefox /usr/local/netscape /usr/local/mozilla /usr/local/firefox /usr/local/seamonkey /opt/mozilla /opt/netscape /opt/firefox /opt/seamonkey" 
+
+deleteold() {
+# Detect, Backup and Delete old global Flash plugins
+# Old plugin files are saved in /root/oldflashplugins.tar.gz
+# tar and gzip must be installed
+if [ ! -f /root/oldflashplugins.tar.gz ]; then
+    FILES="libflashplayer.so ShockwaveFlash.class flashplayer.xpt libgnashplugin.so"
+    for DIR in $LOCATIONS
+    do
+        # Skip symlinks
+        if [ -h $DIR ]; then continue; fi
+
+        for F in $FILES
+        do
+            # Add old plugin files to backup and delete lists
+            if [ -f $DIR/plugins/$F ]
+            then
+                BACKUPLIST="$BACKUPLIST $DIR/plugins/$F"
+                DELETELIST="$DELETELIST $DIR/plugins/$F"
+            fi
+            # Add symbolic links to the delete list
+            if [ -h $DIR/plugins/$F ]
+            then
+                DELETELIST="$DELETELIST $DIR/plugins/$F"
+            fi
+        done
+    done
+
+    # Backup and Delete files if delete list contains files.
+    if [ "x$DELETELIST" != "x" ]
+    then
+        # If tar is available, backup files
+        tar --version >& /dev/null
+        if [ $? -eq 0 ]; then
+            tar cfz /root/oldflashplugins.tar.gz $BACKUPLIST >& /dev/null
+            rm -f $DELETELIST
+            echo 
+            echo "NOTICE:"
+            echo "Files belonging to older Flash plugins have been removed from the filesystem.  For your safety these files have been saved in /root/oldflashplugins.tar.gz.  You may remove this tarball if these files are no longer required."
+        else
+            echo
+            echo "Error: tar is unavailable."
+            echo "Unable to backup old Flash plugin files.  They were deleted in order to prevent conflicts." 
+        fi
+    fi
+fi
+
+
+# Remove /etc/flash.license as it is not used anymore
+[ -f /etc/flash.license ] && rm -f /etc/flash.license
+}
+
+detectbrowsers() {
+# Detect Mozilla plugin compatible browsers
+for DIR in $LOCATIONS
+do
+    # Skip symlinks
+    if [ -h $DIR ]; then continue; fi
+    if [ -d $DIR/plugins ]; then export LIST="$LIST $DIR"; fi
+done
+}
+
+link() {
+# Link Mozilla plugin compatible browsers
+for DIR in $LIST
+do
+    ln -sf /usr/lib64/flash-plugin/libflashplayer.so $DIR/plugins/libflashplayer.so
+done
+}
+
+deletelinks() {
+# Delete symlinks
+# Remove Mozilla plugin compatible browsers
+for DIR in $LIST
+do
+    rm -f $DIR/plugins/libflashplayer.so
+done
+}
+
+#=======================
+# Main Section
+#=======================
+# Pre-Uninstall
+if [ "$1" = "preun" ]; then
+    detectbrowsers
+    deletelinks
+    exit 0
+fi
+
+# Installation
+if [ "$1" = "install" ]; then
+    deleteold
+    detectbrowsers
+    link
+    exit 0
+fi
+
+# Upgrade
+if [ "$1" = "upgrade" ]; then
+    detectbrowsers
+    link
+    exit 0
+fi
+
+# Manual Setup
+
+detectbrowsers
+link
+

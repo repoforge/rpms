@@ -10,14 +10,15 @@
 
 Summary: Macromedia Flash Player
 Name: flash-plugin
-Version: 9.0.151.0
-Release: 2
+Version: 9.0.152.0
+Release: 1
 License: Commercial
 Group: Applications/Internet
 URL: http://www.macromedia.com/downloads/
 
 #Source: http://macromedia.rediris.es/rpmsource/flash-player-plugin-%{version}.tar.bz2
-Source: http://fpdownload.macromedia.com/get/flashplayer/current/install_flash_player_9_linux.tar.gz
+Source: http://download.macromedia.com/pub/flashplayer/installers/current/9/install_flash_player_9.tar.gz
+#Source: http://fpdownload.macromedia.com/get/flashplayer/current/install_flash_player_9_linux.tar.gz
 #Source: http://fpdownload.macromedia.com/get/shockwave/flash/english/linux/7.0r25/install_flash_player_7_linux.tar.gz
 Source1: http://macromedia.rediris.es/rpmsource/LICENSE
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -54,6 +55,9 @@ By downloading and installing this package you agree to the included LICENSE:
 %{_libdir}/mozilla/plugins/
 
 %changelog
+* Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 9.0.152.0-1
+- Updated to release 9.0.152.0.
+
 * Wed Nov 12 2008 Dag Wieers <dag@wieers.com> - 9.0.151.0-1
 - Updated to release 9.0.151.0.
 

@@ -1,29 +1,31 @@
-# $Id: flash-plugin.spec 5067 2007-01-11 00:54:46Z dag $
+# $Id$
 # Authority: dag
+
+# Tag: test
 
 # ExcludeDist: el2 rh7 rh9 el3 el4
 
 ### Disable stripping
 %define __spec_install_post /usr/lib/rpm/brp-compress
 
-%define real_name install_flash_player_10_linux
+%define real_name libflashplayer
 
 Summary: Macromedia Flash Player
 Name: flash-plugin
-Version: 10.0.15.3
+Version: 10.0.d21.1
 Release: 1
 License: Commercial
 Group: Applications/Internet
 URL: http://www.macromedia.com/downloads/
 
-Source: http://fpdownload.macromedia.com/get/flashplayer/current/install_flash_player_10_linux.tar.gz
+Source: http://download.macromedia.com/pub/labs/flashplayer10/libflashplayer-%{version}.linux-x86_64.so.tar.gz
 Source1: README
 Source2: LICENSE
 Source3: homecleanup
-Source4: setup
+Source4: setup64
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildArch: i386
+BuildArch: x86_64
 Obsoletes: mozilla-flash <= %{version}-%{release}
 #Requires: %{_libdir}/mozilla/plugins/
 
@@ -33,7 +35,7 @@ Macromedia Flash Player
 By downloading and installing this package you agree to the included LICENSE.
 
 %prep
-%setup -n %{real_name}
+%setup -c
 %{__install} -Dp -m0644 %{SOURCE1} LICENSE
 %{__install} -Dp -m0644 %{SOURCE2} README
 
@@ -68,6 +70,9 @@ fi
 %{_libdir}/flash-plugin/
 
 %changelog
+* Fri Dec 19 2008 Dag Wieers <dag@wieers.com> - 10.0.d21.1-1
+- Initial test-release for x86_64.
+
 * Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 10.0.15.3-1
 - Updated to release 10.0.15.3.
 
