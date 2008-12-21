@@ -1,0 +1,30 @@
+From 5534d57ddc156582be5ed68f0e3fb6e23c69f6e9 Mon Sep 17 00:00:00 2001
+From: Bastien Nocera <hadess@hadess.net>
+Date: Tue, 25 Nov 2008 15:54:56 +0000
+Subject: [PATCH] Fix fp_get_pollfds()
+
+It was increasing i too early, and writing past the allocated
+structures.
+---
+ libfprint/poll.c |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+diff --git a/libfprint/poll.c b/libfprint/poll.c
+index a852905..f78b658 100644
+--- a/libfprint/poll.c
++++ b/libfprint/poll.c
+@@ -308,9 +308,10 @@ API_EXPORTED size_t fp_get_pollfds(struct fp_pollfd **pollfds)
+ 
+ 	ret = g_malloc(sizeof(struct fp_pollfd) * cnt);
+ 	i = 0;
+-	while ((usbfd = usbfds[i++]) != NULL) {
++	while ((usbfd = usbfds[i]) != NULL) {
+ 		ret[i].fd = usbfd->fd;
+ 		ret[i].events = usbfd->events;
++		i++;
+ 	}
+ 
+ 	*pollfds = ret;
+-- 
+1.6.0.3
+

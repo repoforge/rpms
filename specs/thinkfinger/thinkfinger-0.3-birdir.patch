@@ -1,0 +1,40 @@
+--- thinkfinger-0.3/docs/tf-tool.1.fedora	2007-04-25 15:36:23.000000000 +0100
++++ thinkfinger-0.3/docs/tf-tool.1	2007-04-25 15:37:55.000000000 +0100
+@@ -34,15 +34,15 @@ swiped.
+ .TP
+ .BI \--add-user\ "login"
+ Acquire a fingerprint for the user identified by login.  If this user
+-or the bir folder \fI/etc/pam_thinkfinger\fP do not exist, \fBtf-tool\fP
++or the bir folder \fI/etc/security/pam_thinkfinger\fP do not exist, \fBtf-tool\fP
+ exits with an error.  If the acquiring process is successful, the fingerprint
+-is stored in the bir folder as \fI/etc/pam_thinkfinger/login.bir\fP.
++is stored in the bir folder as \fI/etc/security/pam_thinkfinger/login.bir\fP.
+ This option is available only when ThinkFinger has been compiled with
+ PAM support.
+ .TP
+ .BI \--verify-user\ "login"
+ Verify a fingerprint for the user identified by login.  If this user
+-or the bir folder \fI/etc/pam_thinkfinger\fP do not exist, \fBtf-tool\fP exits
++or the bir folder \fI/etc/security/am_thinkfinger\fP do not exist, \fBtf-tool\fP exits
+ with an error.
+ This option is available only when ThinkFinger has been compiled with
+ PAM support.
+@@ -53,7 +53,7 @@ Add more output messages.
+ .SH FILES
+ .PD 0
+ .TP
+-.I /etc/pam_thinkfinger
++.I /etc/security/pam_thinkfinger
+ The default folder where the fingerprint for login users are stored
+ .TP
+ .I /tmp/tmp.bir
+@@ -73,6 +73,9 @@ ThinkFinger was written by Timo Hoenig <
+ Machek <pavel@suse.cz> and is licensed under the terms of the GNU
+ General Public License (GPL).
+ 
++.SH ADDITIONS
++Fedora changes by Jose Plans <jplans@redhat.com>
++
+ This manual page was written by Luca Capello <luca@pca.it>.
+ Permission is granted to copy, distribute and/or modify this document
+ under the terms of the GNU General Public License (GPL).

@@ -1,0 +1,131 @@
+--- thinkfinger-0.3/data/00-thinkfinger.fdi.hal	1970-01-01 01:00:00.000000000 +0100
++++ thinkfinger-0.3/data/00-thinkfinger.fdi	2007-09-22 12:41:33.000000000 +0200
+@@ -0,0 +1,18 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<deviceinfo version="0.2">
++  <device>
++
++    <!-- Grant access to the fingerprint reader device to logged-in users.  Required
++         for gnome-screensaver (which runs as the user) to successfully initialize
++         pam_thinkfinger. -->
++
++    <match key="usb_device.vendor_id" int="1155"> <!-- SGS Thomson Microelectronics -->
++      <match key="usb_device.product_id" int="8214"> <!-- Fingerprint Reader -->
++        <append key="info.capabilities" type="strlist">access_control</append>
++        <merge key="access_control.file" type="copy_property">linux.device_file</merge>
++        <merge key="access_control.type" type="string">thinkfinger</merge>
++      </match>
++    </match>
++
++  </device>
++</deviceinfo>
+--- thinkfinger-0.3/data/Makefile.am.hal	2007-09-22 12:40:48.000000000 +0200
++++ thinkfinger-0.3/data/Makefile.am	2007-09-22 12:41:33.000000000 +0200
+@@ -4,5 +4,8 @@
+ consolepermsdir = $(sysconfdir)/security/console.perms.d
+ consoleperms_DATA = 60-thinkfinger.perms
+ endif
++ 
++halpolicydir = $(datadir)/hal/fdi/policy/10osvendor
++halpolicy_DATA = 00-thinkfinger.fdi
+ 
+-EXTRA_DIST = 60-thinkfinger.perms
++EXTRA_DIST = 60-thinkfinger.perms 00-thinkfinger.fdi
+--- thinkfinger-0.3/data/Makefile.in.hal	2007-09-22 12:40:55.000000000 +0200
++++ thinkfinger-0.3/data/Makefile.in	2007-09-22 12:41:43.000000000 +0200
+@@ -49,9 +49,11 @@
+     *) f=$$p;; \
+   esac;
+ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
+-am__installdirs = "$(DESTDIR)$(consolepermsdir)"
++am__installdirs = "$(DESTDIR)$(consolepermsdir)" \
++	"$(DESTDIR)$(halpolicydir)"
+ consolepermsDATA_INSTALL = $(INSTALL_DATA)
+-DATA = $(consoleperms_DATA)
++halpolicyDATA_INSTALL = $(INSTALL_DATA)
++DATA = $(consoleperms_DATA) $(halpolicy_DATA)
+ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+ ACLOCAL = @ACLOCAL@
+ ACL_LIBS = @ACL_LIBS@
+@@ -174,7 +176,9 @@
+ top_srcdir = @top_srcdir@
+ @USE_CONSOLE_PERMS_TRUE@consolepermsdir = $(sysconfdir)/security/console.perms.d
+ @USE_CONSOLE_PERMS_TRUE@consoleperms_DATA = 60-thinkfinger.perms
+-EXTRA_DIST = 60-thinkfinger.perms
++halpolicydir = $(datadir)/hal/fdi/policy/10osvendor
++halpolicy_DATA = 00-thinkfinger.fdi
++EXTRA_DIST = 60-thinkfinger.perms 00-thinkfinger.fdi
+ all: all-am
+ 
+ .SUFFIXES:
+@@ -230,6 +234,23 @@
+ 	  echo " rm -f '$(DESTDIR)$(consolepermsdir)/$$f'"; \
+ 	  rm -f "$(DESTDIR)$(consolepermsdir)/$$f"; \
+ 	done
++install-halpolicyDATA: $(halpolicy_DATA)
++	@$(NORMAL_INSTALL)
++	test -z "$(halpolicydir)" || $(MKDIR_P) "$(DESTDIR)$(halpolicydir)"
++	@list='$(halpolicy_DATA)'; for p in $$list; do \
++	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
++	  f=$(am__strip_dir) \
++	  echo " $(halpolicyDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(halpolicydir)/$$f'"; \
++	  $(halpolicyDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(halpolicydir)/$$f"; \
++	done
++
++uninstall-halpolicyDATA:
++	@$(NORMAL_UNINSTALL)
++	@list='$(halpolicy_DATA)'; for p in $$list; do \
++	  f=$(am__strip_dir) \
++	  echo " rm -f '$(DESTDIR)$(halpolicydir)/$$f'"; \
++	  rm -f "$(DESTDIR)$(halpolicydir)/$$f"; \
++	done
+ tags: TAGS
+ TAGS:
+ 
+@@ -267,7 +288,7 @@
+ check: check-am
+ all-am: Makefile $(DATA)
+ installdirs:
+-	for dir in "$(DESTDIR)$(consolepermsdir)"; do \
++	for dir in "$(DESTDIR)$(consolepermsdir)" "$(DESTDIR)$(halpolicydir)"; do \
+ 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
+ 	done
+ install: install-am
+@@ -312,7 +333,7 @@
+ 
+ info-am:
+ 
+-install-data-am: install-consolepermsDATA
++install-data-am: install-consolepermsDATA install-halpolicyDATA
+ 
+ install-dvi: install-dvi-am
+ 
+@@ -346,7 +367,7 @@
+ 
+ ps-am:
+ 
+-uninstall-am: uninstall-consolepermsDATA
++uninstall-am: uninstall-consolepermsDATA uninstall-halpolicyDATA
+ 
+ .MAKE: install-am install-strip
+ 
+@@ -355,12 +376,13 @@
+ 	dvi-am html html-am info info-am install install-am \
+ 	install-consolepermsDATA install-data install-data-am \
+ 	install-dvi install-dvi-am install-exec install-exec-am \
+-	install-html install-html-am install-info install-info-am \
+-	install-man install-pdf install-pdf-am install-ps \
+-	install-ps-am install-strip installcheck installcheck-am \
+-	installdirs maintainer-clean maintainer-clean-generic \
+-	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
+-	ps ps-am uninstall uninstall-am uninstall-consolepermsDATA
++	install-halpolicyDATA install-html install-html-am \
++	install-info install-info-am install-man install-pdf \
++	install-pdf-am install-ps install-ps-am install-strip \
++	installcheck installcheck-am installdirs maintainer-clean \
++	maintainer-clean-generic mostlyclean mostlyclean-generic \
++	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
++	uninstall-consolepermsDATA uninstall-halpolicyDATA
+ 
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
+ # Otherwise a system limit (for SysV at least) may be exceeded.

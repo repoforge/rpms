@@ -1,0 +1,23 @@
+--- pam/pam_thinkfinger.c	2007-03-29 17:00:45.000000000 +0200
++++ pam/pam_thinkfinger.c	2007-09-13 16:13:48.000000000 +0200
+@@ -223,6 +223,7 @@
+ {
+ 	int ret;
+ 	int retval = PAM_AUTH_ERR;
++	const char *rhost = NULL;
+ 	pam_thinkfinger_s pam_thinkfinger;
+ 	struct termios term_attr;
+ 	libthinkfinger_init_status init_status;
+@@ -237,6 +238,12 @@
+ 	if (pam_thinkfinger.isatty == 1)
+ 		tcgetattr (STDIN_FILENO, &term_attr);
+ 
++	pam_get_item (pamh, PAM_RHOST, &rhost);
++	if (rhost != NULL) {
++		pam_thinkfinger_log (&pam_thinkfinger, LOG_ERR, "Error: Remote login from host \"%s\" detected.", rhost);
++		goto out;
++	}
++
+ 	pam_get_user (pamh, &pam_thinkfinger.user, NULL);
+ 	if (pam_thinkfinger_user_sanity_check (&pam_thinkfinger) || pam_thinkfinger_user_bir_check (&pam_thinkfinger) < 0) {
+ 		pam_thinkfinger_log (&pam_thinkfinger, LOG_ERR, "User '%s' is unknown.", pam_thinkfinger.user);

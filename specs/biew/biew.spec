@@ -4,8 +4,8 @@
 
 Summary: Console hex viewer/editor with disassembler
 Name: biew
-%define real_version 564
-Version: 5.6.4
+%define real_version 570
+Version: 5.7.0
 Release: 1
 License: GPL
 Group: Applications/Editors
@@ -54,6 +54,9 @@ other features, making it invaluable for examining binary code.
 %{_datadir}/biew/
 
 %changelog
+* Sat Dec 20 2008 Dag Wieers <dag@wieers.com> - 5.7.0-1
+- Updated to release 5.7.0.
+
 * Sun Apr 15 2007 Dag Wieers <dag@wieers.com> - 5.6.4-1
 - Updated to release 5.6.4.
 

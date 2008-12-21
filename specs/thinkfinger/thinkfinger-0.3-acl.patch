@@ -1,0 +1,1204 @@
+--- thinkfinger-0.3/configure.in.acl	2007-09-22 11:58:47.000000000 +0200
++++ thinkfinger-0.3/configure.in	2007-09-22 12:02:10.000000000 +0200
+@@ -82,6 +82,20 @@
+ # Check for pthread
+ AC_CHECK_LIB(pthread, pthread_create, [PTHREAD_LIBS="-lpthread"], AC_MSG_ERROR([libpthread missing]))
+ 
++# Check for libacl
++AC_CHECK_HEADERS(sys/acl.h)
++AC_CHECK_LIB(acl, acl_set_file, [ACL_LIBS="-lacl"], AC_MSG_ERROR([libacl missing]))
++AC_SUBST(ACL_LIBS)
++
++AC_ARG_ENABLE(console-perms,
++  [  --enable-console-perms=[auto/no/yes]  Enable console perms [default=auto]],,
++  enable_console_perms=auto)
++if test "x$enable_console_perms" = "xyes"; then
++  AM_CONDITIONAL(USE_CONSOLE_PERMS, true)
++else
++  AM_CONDITIONAL(USE_CONSOLE_PERMS, false)
++fi
++
+ # Check for libusb using pkg-config
+ PKG_CHECK_MODULES(USB, libusb >= 0.1.11, usb_found=yes, AC_MSG_ERROR([libusb missing]))
+ 
+@@ -181,6 +195,7 @@
+ AC_CONFIG_FILES([Makefile
+ 		README
+ 		INSTALL
++		data/Makefile
+ 		docs/Makefile
+ 		docs/autodocs/Makefile
+ 		libthinkfinger/Makefile
+--- thinkfinger-0.3/config.h.in.acl	2007-03-30 10:23:56.000000000 +0200
++++ thinkfinger-0.3/config.h.in	2007-09-22 13:01:00.000000000 +0200
+@@ -45,6 +45,9 @@
+ /* Define to 1 if you have the <syslog.h> header file. */
+ #undef HAVE_SYSLOG_H
+ 
++/* Define to 1 if you have the <sys/acl.h> header file. */
++#undef HAVE_SYS_ACL_H
++
+ /* Define to 1 if you have the <sys/stat.h> header file. */
+ #undef HAVE_SYS_STAT_H
+ 
+--- thinkfinger-0.3/configure.acl	2007-09-22 11:58:58.000000000 +0200
++++ thinkfinger-0.3/configure	2007-09-22 12:02:22.000000000 +0200
+@@ -870,6 +870,9 @@
+ FFLAGS
+ ac_ct_F77
+ LIBTOOL
++ACL_LIBS
++USE_CONSOLE_PERMS_TRUE
++USE_CONSOLE_PERMS_FALSE
+ PKG_CONFIG
+ USB_CFLAGS
+ USB_LIBS
+@@ -1499,6 +1502,7 @@
+   --with-securedir=dir    Where to put PAM module [default=$libdir/security]
+   --with-birdir=dir       Where to put the biometric identification records
+                           (bir files) [default=$sysconfdir/pam_thinkfinger]
++  --enable-console-perms=auto/no/yes  Enable console perms default=auto
+ 
+ Optional Packages:
+   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
+@@ -4410,7 +4414,7 @@
+   ;;
+ *-*-irix6*)
+   # Find out which ABI we are using.
+-  echo '#line 4413 "configure"' > conftest.$ac_ext
++  echo '#line 4417 "configure"' > conftest.$ac_ext
+   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
+   (eval $ac_compile) 2>&5
+   ac_status=$?
+@@ -7141,11 +7145,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:7144: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:7148: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>conftest.err)
+    ac_status=$?
+    cat conftest.err >&5
+-   echo "$as_me:7148: \$? = $ac_status" >&5
++   echo "$as_me:7152: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s "$ac_outfile"; then
+      # The compiler can only warn and ignore the option if not recognized
+      # So say no if there are warnings other than the usual output.
+@@ -7409,11 +7413,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:7412: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:7416: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>conftest.err)
+    ac_status=$?
+    cat conftest.err >&5
+-   echo "$as_me:7416: \$? = $ac_status" >&5
++   echo "$as_me:7420: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s "$ac_outfile"; then
+      # The compiler can only warn and ignore the option if not recognized
+      # So say no if there are warnings other than the usual output.
+@@ -7513,11 +7517,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:7516: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:7520: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>out/conftest.err)
+    ac_status=$?
+    cat out/conftest.err >&5
+-   echo "$as_me:7520: \$? = $ac_status" >&5
++   echo "$as_me:7524: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s out/conftest2.$ac_objext
+    then
+      # The compiler can only warn and ignore the option if not recognized
+@@ -9821,7 +9825,7 @@
+   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
+   lt_status=$lt_dlunknown
+   cat > conftest.$ac_ext <<EOF
+-#line 9824 "configure"
++#line 9828 "configure"
+ #include "confdefs.h"
+ 
+ #if HAVE_DLFCN_H
+@@ -9921,7 +9925,7 @@
+   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
+   lt_status=$lt_dlunknown
+   cat > conftest.$ac_ext <<EOF
+-#line 9924 "configure"
++#line 9928 "configure"
+ #include "confdefs.h"
+ 
+ #if HAVE_DLFCN_H
+@@ -12257,11 +12261,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:12260: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:12264: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>conftest.err)
+    ac_status=$?
+    cat conftest.err >&5
+-   echo "$as_me:12264: \$? = $ac_status" >&5
++   echo "$as_me:12268: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s "$ac_outfile"; then
+      # The compiler can only warn and ignore the option if not recognized
+      # So say no if there are warnings other than the usual output.
+@@ -12361,11 +12365,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:12364: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:12368: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>out/conftest.err)
+    ac_status=$?
+    cat out/conftest.err >&5
+-   echo "$as_me:12368: \$? = $ac_status" >&5
++   echo "$as_me:12372: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s out/conftest2.$ac_objext
+    then
+      # The compiler can only warn and ignore the option if not recognized
+@@ -13931,11 +13935,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:13934: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:13938: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>conftest.err)
+    ac_status=$?
+    cat conftest.err >&5
+-   echo "$as_me:13938: \$? = $ac_status" >&5
++   echo "$as_me:13942: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s "$ac_outfile"; then
+      # The compiler can only warn and ignore the option if not recognized
+      # So say no if there are warnings other than the usual output.
+@@ -14035,11 +14039,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:14038: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:14042: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>out/conftest.err)
+    ac_status=$?
+    cat out/conftest.err >&5
+-   echo "$as_me:14042: \$? = $ac_status" >&5
++   echo "$as_me:14046: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s out/conftest2.$ac_objext
+    then
+      # The compiler can only warn and ignore the option if not recognized
+@@ -16233,11 +16237,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:16236: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:16240: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>conftest.err)
+    ac_status=$?
+    cat conftest.err >&5
+-   echo "$as_me:16240: \$? = $ac_status" >&5
++   echo "$as_me:16244: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s "$ac_outfile"; then
+      # The compiler can only warn and ignore the option if not recognized
+      # So say no if there are warnings other than the usual output.
+@@ -16501,11 +16505,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:16504: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:16508: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>conftest.err)
+    ac_status=$?
+    cat conftest.err >&5
+-   echo "$as_me:16508: \$? = $ac_status" >&5
++   echo "$as_me:16512: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s "$ac_outfile"; then
+      # The compiler can only warn and ignore the option if not recognized
+      # So say no if there are warnings other than the usual output.
+@@ -16605,11 +16609,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:16608: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:16612: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>out/conftest.err)
+    ac_status=$?
+    cat out/conftest.err >&5
+-   echo "$as_me:16612: \$? = $ac_status" >&5
++   echo "$as_me:16616: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s out/conftest2.$ac_objext
+    then
+      # The compiler can only warn and ignore the option if not recognized
+@@ -20169,6 +20173,250 @@
+ fi
+ 
+ 
++# Check for libacl
++
++for ac_header in sys/acl.h
++do
++as_ac_Header=`echo "ac_cv_header_$ac_header" | $as_tr_sh`
++if { as_var=$as_ac_Header; eval "test \"\${$as_var+set}\" = set"; }; then
++  { echo "$as_me:$LINENO: checking for $ac_header" >&5
++echo $ECHO_N "checking for $ac_header... $ECHO_C" >&6; }
++if { as_var=$as_ac_Header; eval "test \"\${$as_var+set}\" = set"; }; then
++  echo $ECHO_N "(cached) $ECHO_C" >&6
++fi
++ac_res=`eval echo '${'$as_ac_Header'}'`
++	       { echo "$as_me:$LINENO: result: $ac_res" >&5
++echo "${ECHO_T}$ac_res" >&6; }
++else
++  # Is the header compilable?
++{ echo "$as_me:$LINENO: checking $ac_header usability" >&5
++echo $ECHO_N "checking $ac_header usability... $ECHO_C" >&6; }
++cat >conftest.$ac_ext <<_ACEOF
++/* confdefs.h.  */
++_ACEOF
++cat confdefs.h >>conftest.$ac_ext
++cat >>conftest.$ac_ext <<_ACEOF
++/* end confdefs.h.  */
++$ac_includes_default
++#include <$ac_header>
++_ACEOF
++rm -f conftest.$ac_objext
++if { (ac_try="$ac_compile"
++case "(($ac_try" in
++  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
++  *) ac_try_echo=$ac_try;;
++esac
++eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
++  (eval "$ac_compile") 2>conftest.er1
++  ac_status=$?
++  grep -v '^ *+' conftest.er1 >conftest.err
++  rm -f conftest.er1
++  cat conftest.err >&5
++  echo "$as_me:$LINENO: \$? = $ac_status" >&5
++  (exit $ac_status); } && {
++	 test -z "$ac_c_werror_flag" ||
++	 test ! -s conftest.err
++       } && test -s conftest.$ac_objext; then
++  ac_header_compiler=yes
++else
++  echo "$as_me: failed program was:" >&5
++sed 's/^/| /' conftest.$ac_ext >&5
++
++	ac_header_compiler=no
++fi
++
++rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
++{ echo "$as_me:$LINENO: result: $ac_header_compiler" >&5
++echo "${ECHO_T}$ac_header_compiler" >&6; }
++
++# Is the header present?
++{ echo "$as_me:$LINENO: checking $ac_header presence" >&5
++echo $ECHO_N "checking $ac_header presence... $ECHO_C" >&6; }
++cat >conftest.$ac_ext <<_ACEOF
++/* confdefs.h.  */
++_ACEOF
++cat confdefs.h >>conftest.$ac_ext
++cat >>conftest.$ac_ext <<_ACEOF
++/* end confdefs.h.  */
++#include <$ac_header>
++_ACEOF
++if { (ac_try="$ac_cpp conftest.$ac_ext"
++case "(($ac_try" in
++  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
++  *) ac_try_echo=$ac_try;;
++esac
++eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
++  (eval "$ac_cpp conftest.$ac_ext") 2>conftest.er1
++  ac_status=$?
++  grep -v '^ *+' conftest.er1 >conftest.err
++  rm -f conftest.er1
++  cat conftest.err >&5
++  echo "$as_me:$LINENO: \$? = $ac_status" >&5
++  (exit $ac_status); } >/dev/null && {
++	 test -z "$ac_c_preproc_warn_flag$ac_c_werror_flag" ||
++	 test ! -s conftest.err
++       }; then
++  ac_header_preproc=yes
++else
++  echo "$as_me: failed program was:" >&5
++sed 's/^/| /' conftest.$ac_ext >&5
++
++  ac_header_preproc=no
++fi
++
++rm -f conftest.err conftest.$ac_ext
++{ echo "$as_me:$LINENO: result: $ac_header_preproc" >&5
++echo "${ECHO_T}$ac_header_preproc" >&6; }
++
++# So?  What about this header?
++case $ac_header_compiler:$ac_header_preproc:$ac_c_preproc_warn_flag in
++  yes:no: )
++    { echo "$as_me:$LINENO: WARNING: $ac_header: accepted by the compiler, rejected by the preprocessor!" >&5
++echo "$as_me: WARNING: $ac_header: accepted by the compiler, rejected by the preprocessor!" >&2;}
++    { echo "$as_me:$LINENO: WARNING: $ac_header: proceeding with the compiler's result" >&5
++echo "$as_me: WARNING: $ac_header: proceeding with the compiler's result" >&2;}
++    ac_header_preproc=yes
++    ;;
++  no:yes:* )
++    { echo "$as_me:$LINENO: WARNING: $ac_header: present but cannot be compiled" >&5
++echo "$as_me: WARNING: $ac_header: present but cannot be compiled" >&2;}
++    { echo "$as_me:$LINENO: WARNING: $ac_header:     check for missing prerequisite headers?" >&5
++echo "$as_me: WARNING: $ac_header:     check for missing prerequisite headers?" >&2;}
++    { echo "$as_me:$LINENO: WARNING: $ac_header: see the Autoconf documentation" >&5
++echo "$as_me: WARNING: $ac_header: see the Autoconf documentation" >&2;}
++    { echo "$as_me:$LINENO: WARNING: $ac_header:     section \"Present But Cannot Be Compiled\"" >&5
++echo "$as_me: WARNING: $ac_header:     section \"Present But Cannot Be Compiled\"" >&2;}
++    { echo "$as_me:$LINENO: WARNING: $ac_header: proceeding with the preprocessor's result" >&5
++echo "$as_me: WARNING: $ac_header: proceeding with the preprocessor's result" >&2;}
++    { echo "$as_me:$LINENO: WARNING: $ac_header: in the future, the compiler will take precedence" >&5
++echo "$as_me: WARNING: $ac_header: in the future, the compiler will take precedence" >&2;}
++    ( cat <<\_ASBOX
++## -------------------------------------------------- ##
++## Report this to http://thinkfinger.sourceforge.net/ ##
++## -------------------------------------------------- ##
++_ASBOX
++     ) | sed "s/^/$as_me: WARNING:     /" >&2
++    ;;
++esac
++{ echo "$as_me:$LINENO: checking for $ac_header" >&5
++echo $ECHO_N "checking for $ac_header... $ECHO_C" >&6; }
++if { as_var=$as_ac_Header; eval "test \"\${$as_var+set}\" = set"; }; then
++  echo $ECHO_N "(cached) $ECHO_C" >&6
++else
++  eval "$as_ac_Header=\$ac_header_preproc"
++fi
++ac_res=`eval echo '${'$as_ac_Header'}'`
++	       { echo "$as_me:$LINENO: result: $ac_res" >&5
++echo "${ECHO_T}$ac_res" >&6; }
++
++fi
++if test `eval echo '${'$as_ac_Header'}'` = yes; then
++  cat >>confdefs.h <<_ACEOF
++#define `echo "HAVE_$ac_header" | $as_tr_cpp` 1
++_ACEOF
++
++fi
++
++done
++
++{ echo "$as_me:$LINENO: checking for acl_set_file in -lacl" >&5
++echo $ECHO_N "checking for acl_set_file in -lacl... $ECHO_C" >&6; }
++if test "${ac_cv_lib_acl_acl_set_file+set}" = set; then
++  echo $ECHO_N "(cached) $ECHO_C" >&6
++else
++  ac_check_lib_save_LIBS=$LIBS
++LIBS="-lacl  $LIBS"
++cat >conftest.$ac_ext <<_ACEOF
++/* confdefs.h.  */
++_ACEOF
++cat confdefs.h >>conftest.$ac_ext
++cat >>conftest.$ac_ext <<_ACEOF
++/* end confdefs.h.  */
++
++/* Override any GCC internal prototype to avoid an error.
++   Use char because int might match the return type of a GCC
++   builtin and then its argument prototype would still apply.  */
++#ifdef __cplusplus
++extern "C"
++#endif
++char acl_set_file ();
++int
++main ()
++{
++return acl_set_file ();
++  ;
++  return 0;
++}
++_ACEOF
++rm -f conftest.$ac_objext conftest$ac_exeext
++if { (ac_try="$ac_link"
++case "(($ac_try" in
++  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
++  *) ac_try_echo=$ac_try;;
++esac
++eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
++  (eval "$ac_link") 2>conftest.er1
++  ac_status=$?
++  grep -v '^ *+' conftest.er1 >conftest.err
++  rm -f conftest.er1
++  cat conftest.err >&5
++  echo "$as_me:$LINENO: \$? = $ac_status" >&5
++  (exit $ac_status); } && {
++	 test -z "$ac_c_werror_flag" ||
++	 test ! -s conftest.err
++       } && test -s conftest$ac_exeext &&
++       $as_test_x conftest$ac_exeext; then
++  ac_cv_lib_acl_acl_set_file=yes
++else
++  echo "$as_me: failed program was:" >&5
++sed 's/^/| /' conftest.$ac_ext >&5
++
++	ac_cv_lib_acl_acl_set_file=no
++fi
++
++rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
++      conftest$ac_exeext conftest.$ac_ext
++LIBS=$ac_check_lib_save_LIBS
++fi
++{ echo "$as_me:$LINENO: result: $ac_cv_lib_acl_acl_set_file" >&5
++echo "${ECHO_T}$ac_cv_lib_acl_acl_set_file" >&6; }
++if test $ac_cv_lib_acl_acl_set_file = yes; then
++  ACL_LIBS="-lacl"
++else
++  { { echo "$as_me:$LINENO: error: libacl missing" >&5
++echo "$as_me: error: libacl missing" >&2;}
++   { (exit 1); exit 1; }; }
++fi
++
++
++
++# Check whether --enable-console-perms was given.
++if test "${enable_console_perms+set}" = set; then
++  enableval=$enable_console_perms;
++else
++  enable_console_perms=auto
++fi
++
++if test "x$enable_console_perms" = "xyes"; then
++   if true; then
++  USE_CONSOLE_PERMS_TRUE=
++  USE_CONSOLE_PERMS_FALSE='#'
++else
++  USE_CONSOLE_PERMS_TRUE='#'
++  USE_CONSOLE_PERMS_FALSE=
++fi
++
++else
++   if false; then
++  USE_CONSOLE_PERMS_TRUE=
++  USE_CONSOLE_PERMS_FALSE='#'
++else
++  USE_CONSOLE_PERMS_TRUE='#'
++  USE_CONSOLE_PERMS_FALSE=
++fi
++
++fi
++
+ # Check for libusb using pkg-config
+ 
+ 
+@@ -20511,7 +20759,7 @@
+ 
+ 
+ # AC_CONFIG_FILES
+-ac_config_files="$ac_config_files Makefile README INSTALL docs/Makefile docs/autodocs/Makefile libthinkfinger/Makefile libthinkfinger/libthinkfinger.pc pam/Makefile tf-tool/Makefile"
++ac_config_files="$ac_config_files Makefile README INSTALL data/Makefile docs/Makefile docs/autodocs/Makefile libthinkfinger/Makefile libthinkfinger/libthinkfinger.pc pam/Makefile tf-tool/Makefile"
+ 
+ 
+ # Configuration
+@@ -20663,6 +20911,20 @@
+ Usually this means the macro was only invoked conditionally." >&2;}
+    { (exit 1); exit 1; }; }
+ fi
++if test -z "${USE_CONSOLE_PERMS_TRUE}" && test -z "${USE_CONSOLE_PERMS_FALSE}"; then
++  { { echo "$as_me:$LINENO: error: conditional \"USE_CONSOLE_PERMS\" was never defined.
++Usually this means the macro was only invoked conditionally." >&5
++echo "$as_me: error: conditional \"USE_CONSOLE_PERMS\" was never defined.
++Usually this means the macro was only invoked conditionally." >&2;}
++   { (exit 1); exit 1; }; }
++fi
++if test -z "${USE_CONSOLE_PERMS_TRUE}" && test -z "${USE_CONSOLE_PERMS_FALSE}"; then
++  { { echo "$as_me:$LINENO: error: conditional \"USE_CONSOLE_PERMS\" was never defined.
++Usually this means the macro was only invoked conditionally." >&5
++echo "$as_me: error: conditional \"USE_CONSOLE_PERMS\" was never defined.
++Usually this means the macro was only invoked conditionally." >&2;}
++   { (exit 1); exit 1; }; }
++fi
+ if test -z "${BUILD_PAM_TRUE}" && test -z "${BUILD_PAM_FALSE}"; then
+   { { echo "$as_me:$LINENO: error: conditional \"BUILD_PAM\" was never defined.
+ Usually this means the macro was only invoked conditionally." >&5
+@@ -21149,6 +21411,7 @@
+     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
+     "README") CONFIG_FILES="$CONFIG_FILES README" ;;
+     "INSTALL") CONFIG_FILES="$CONFIG_FILES INSTALL" ;;
++    "data/Makefile") CONFIG_FILES="$CONFIG_FILES data/Makefile" ;;
+     "docs/Makefile") CONFIG_FILES="$CONFIG_FILES docs/Makefile" ;;
+     "docs/autodocs/Makefile") CONFIG_FILES="$CONFIG_FILES docs/autodocs/Makefile" ;;
+     "libthinkfinger/Makefile") CONFIG_FILES="$CONFIG_FILES libthinkfinger/Makefile" ;;
+@@ -21359,6 +21622,9 @@
+ FFLAGS!$FFLAGS$ac_delim
+ ac_ct_F77!$ac_ct_F77$ac_delim
+ LIBTOOL!$LIBTOOL$ac_delim
++ACL_LIBS!$ACL_LIBS$ac_delim
++USE_CONSOLE_PERMS_TRUE!$USE_CONSOLE_PERMS_TRUE$ac_delim
++USE_CONSOLE_PERMS_FALSE!$USE_CONSOLE_PERMS_FALSE$ac_delim
+ PKG_CONFIG!$PKG_CONFIG$ac_delim
+ USB_CFLAGS!$USB_CFLAGS$ac_delim
+ USB_LIBS!$USB_LIBS$ac_delim
+@@ -21380,7 +21646,7 @@
+ LTLIBOBJS!$LTLIBOBJS$ac_delim
+ _ACEOF
+ 
+-  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 23; then
++  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 26; then
+     break
+   elif $ac_last_try; then
+     { { echo "$as_me:$LINENO: error: could not make $CONFIG_STATUS" >&5
+--- thinkfinger-0.3/data/60-thinkfinger.perms.acl	1970-01-01 01:00:00.000000000 +0100
++++ thinkfinger-0.3/data/60-thinkfinger.perms	2007-09-22 12:02:10.000000000 +0200
+@@ -0,0 +1,2 @@
++<uinput>=/dev/uinput /dev/misc/uinput /dev/input/uinput
++<console> 0600 <uinput> 0600 root
+--- thinkfinger-0.3/data/Makefile.am.acl	1970-01-01 01:00:00.000000000 +0100
++++ thinkfinger-0.3/data/Makefile.am	2007-09-22 12:02:10.000000000 +0200
+@@ -0,0 +1,8 @@
++## Process this file with automake to produce Makefile.in
++
++if USE_CONSOLE_PERMS
++consolepermsdir = $(sysconfdir)/security/console.perms.d
++consoleperms_DATA = 60-thinkfinger.perms
++endif
++
++EXTRA_DIST = 60-thinkfinger.perms
+--- thinkfinger-0.3/data/Makefile.in.acl	1970-01-01 01:00:00.000000000 +0100
++++ thinkfinger-0.3/data/Makefile.in	2007-09-22 12:12:53.000000000 +0200
+@@ -0,0 +1,367 @@
++# Makefile.in generated by automake 1.10 from Makefile.am.
++# @configure_input@
++
++# Copyright (C) 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002,
++# 2003, 2004, 2005, 2006  Free Software Foundation, Inc.
++# This Makefile.in is free software; the Free Software Foundation
++# gives unlimited permission to copy and/or distribute it,
++# with or without modifications, as long as this notice is preserved.
++
++# This program is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY, to the extent permitted by law; without
++# even the implied warranty of MERCHANTABILITY or FITNESS FOR A
++# PARTICULAR PURPOSE.
++
++@SET_MAKE@
++
++VPATH = @srcdir@
++pkgdatadir = $(datadir)/@PACKAGE@
++pkglibdir = $(libdir)/@PACKAGE@
++pkgincludedir = $(includedir)/@PACKAGE@
++am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd
++install_sh_DATA = $(install_sh) -c -m 644
++install_sh_PROGRAM = $(install_sh) -c
++install_sh_SCRIPT = $(install_sh) -c
++INSTALL_HEADER = $(INSTALL_DATA)
++transform = $(program_transform_name)
++NORMAL_INSTALL = :
++PRE_INSTALL = :
++POST_INSTALL = :
++NORMAL_UNINSTALL = :
++PRE_UNINSTALL = :
++POST_UNINSTALL = :
++build_triplet = @build@
++host_triplet = @host@
++subdir = data
++DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
++ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
++am__aclocal_m4_deps = $(top_srcdir)/configure.in
++am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
++	$(ACLOCAL_M4)
++mkinstalldirs = $(install_sh) -d
++CONFIG_HEADER = $(top_builddir)/config.h
++CONFIG_CLEAN_FILES =
++SOURCES =
++DIST_SOURCES =
++am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
++am__vpath_adj = case $$p in \
++    $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
++    *) f=$$p;; \
++  esac;
++am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
++am__installdirs = "$(DESTDIR)$(consolepermsdir)"
++consolepermsDATA_INSTALL = $(INSTALL_DATA)
++DATA = $(consoleperms_DATA)
++DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
++ACLOCAL = @ACLOCAL@
++ACL_LIBS = @ACL_LIBS@
++AMTAR = @AMTAR@
++AR = @AR@
++AUTOCONF = @AUTOCONF@
++AUTOHEADER = @AUTOHEADER@
++AUTOMAKE = @AUTOMAKE@
++AWK = @AWK@
++BINDIR = @BINDIR@
++BIRDIR = @BIRDIR@
++CC = @CC@
++CCDEPMODE = @CCDEPMODE@
++CFLAGS = @CFLAGS@
++CPP = @CPP@
++CPPFLAGS = @CPPFLAGS@
++CXX = @CXX@
++CXXCPP = @CXXCPP@
++CXXDEPMODE = @CXXDEPMODE@
++CXXFLAGS = @CXXFLAGS@
++CYGPATH_W = @CYGPATH_W@
++DEFS = @DEFS@
++DEPDIR = @DEPDIR@
++DOXYGEN = @DOXYGEN@
++ECHO = @ECHO@
++ECHO_C = @ECHO_C@
++ECHO_N = @ECHO_N@
++ECHO_T = @ECHO_T@
++EGREP = @EGREP@
++EXEEXT = @EXEEXT@
++F77 = @F77@
++FFLAGS = @FFLAGS@
++GREP = @GREP@
++INSTALL = @INSTALL@
++INSTALL_DATA = @INSTALL_DATA@
++INSTALL_PROGRAM = @INSTALL_PROGRAM@
++INSTALL_SCRIPT = @INSTALL_SCRIPT@
++INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
++LDFLAGS = @LDFLAGS@
++LIBDIR = @LIBDIR@
++LIBOBJS = @LIBOBJS@
++LIBS = @LIBS@
++LIBTOOL = @LIBTOOL@
++LN_S = @LN_S@
++LTLIBOBJS = @LTLIBOBJS@
++MAKEINFO = @MAKEINFO@
++MANDIR = @MANDIR@
++MKDIR_P = @MKDIR_P@
++OBJEXT = @OBJEXT@
++PACKAGE = @PACKAGE@
++PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
++PACKAGE_NAME = @PACKAGE_NAME@
++PACKAGE_STRING = @PACKAGE_STRING@
++PACKAGE_TARNAME = @PACKAGE_TARNAME@
++PACKAGE_VERSION = @PACKAGE_VERSION@
++PAM_LIBS = @PAM_LIBS@
++PATH_SEPARATOR = @PATH_SEPARATOR@
++PKG_CONFIG = @PKG_CONFIG@
++PREFIX = @PREFIX@
++PTHREAD_LIBS = @PTHREAD_LIBS@
++RANLIB = @RANLIB@
++SBINDIR = @SBINDIR@
++SECUREDIR = @SECUREDIR@
++SET_MAKE = @SET_MAKE@
++SHELL = @SHELL@
++STRIP = @STRIP@
++USB_CFLAGS = @USB_CFLAGS@
++USB_LIBS = @USB_LIBS@
++VERSION = @VERSION@
++abs_builddir = @abs_builddir@
++abs_srcdir = @abs_srcdir@
++abs_top_builddir = @abs_top_builddir@
++abs_top_srcdir = @abs_top_srcdir@
++ac_ct_CC = @ac_ct_CC@
++ac_ct_CXX = @ac_ct_CXX@
++ac_ct_F77 = @ac_ct_F77@
++am__include = @am__include@
++am__leading_dot = @am__leading_dot@
++am__quote = @am__quote@
++am__tar = @am__tar@
++am__untar = @am__untar@
++bindir = @bindir@
++build = @build@
++build_alias = @build_alias@
++build_cpu = @build_cpu@
++build_os = @build_os@
++build_vendor = @build_vendor@
++builddir = @builddir@
++datadir = @datadir@
++datarootdir = @datarootdir@
++docdir = @docdir@
++dvidir = @dvidir@
++exec_prefix = @exec_prefix@
++host = @host@
++host_alias = @host_alias@
++host_cpu = @host_cpu@
++host_os = @host_os@
++host_vendor = @host_vendor@
++htmldir = @htmldir@
++includedir = @includedir@
++infodir = @infodir@
++install_sh = @install_sh@
++libdir = @libdir@
++libexecdir = @libexecdir@
++localedir = @localedir@
++localstatedir = @localstatedir@
++mandir = @mandir@
++mkdir_p = @mkdir_p@
++oldincludedir = @oldincludedir@
++pdfdir = @pdfdir@
++prefix = @prefix@
++program_transform_name = @program_transform_name@
++psdir = @psdir@
++sbindir = @sbindir@
++sharedstatedir = @sharedstatedir@
++srcdir = @srcdir@
++sysconfdir = @sysconfdir@
++target_alias = @target_alias@
++top_builddir = @top_builddir@
++top_srcdir = @top_srcdir@
++@USE_CONSOLE_PERMS_TRUE@consolepermsdir = $(sysconfdir)/security/console.perms.d
++@USE_CONSOLE_PERMS_TRUE@consoleperms_DATA = 60-thinkfinger.perms
++EXTRA_DIST = 60-thinkfinger.perms
++all: all-am
++
++.SUFFIXES:
++$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++	@for dep in $?; do \
++	  case '$(am__configure_deps)' in \
++	    *$$dep*) \
++	      cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh \
++		&& exit 0; \
++	      exit 1;; \
++	  esac; \
++	done; \
++	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu  data/Makefile'; \
++	cd $(top_srcdir) && \
++	  $(AUTOMAKE) --gnu  data/Makefile
++.PRECIOUS: Makefile
++Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
++	@case '$?' in \
++	  *config.status*) \
++	    cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh;; \
++	  *) \
++	    echo ' cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe)'; \
++	    cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe);; \
++	esac;
++
++$(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
++	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
++
++$(top_srcdir)/configure:  $(am__configure_deps)
++	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
++$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
++
++mostlyclean-libtool:
++	-rm -f *.lo
++
++clean-libtool:
++	-rm -rf .libs _libs
++install-consolepermsDATA: $(consoleperms_DATA)
++	@$(NORMAL_INSTALL)
++	test -z "$(consolepermsdir)" || $(MKDIR_P) "$(DESTDIR)$(consolepermsdir)"
++	@list='$(consoleperms_DATA)'; for p in $$list; do \
++	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
++	  f=$(am__strip_dir) \
++	  echo " $(consolepermsDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(consolepermsdir)/$$f'"; \
++	  $(consolepermsDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(consolepermsdir)/$$f"; \
++	done
++
++uninstall-consolepermsDATA:
++	@$(NORMAL_UNINSTALL)
++	@list='$(consoleperms_DATA)'; for p in $$list; do \
++	  f=$(am__strip_dir) \
++	  echo " rm -f '$(DESTDIR)$(consolepermsdir)/$$f'"; \
++	  rm -f "$(DESTDIR)$(consolepermsdir)/$$f"; \
++	done
++tags: TAGS
++TAGS:
++
++ctags: CTAGS
++CTAGS:
++
++
++distdir: $(DISTFILES)
++	@srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*]/\\\\&/g'`; \
++	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's/[].[^$$\\*]/\\\\&/g'`; \
++	list='$(DISTFILES)'; \
++	  dist_files=`for file in $$list; do echo $$file; done | \
++	  sed -e "s|^$$srcdirstrip/||;t" \
++	      -e "s|^$$topsrcdirstrip/|$(top_builddir)/|;t"`; \
++	case $$dist_files in \
++	  */*) $(MKDIR_P) `echo "$$dist_files" | \
++			   sed '/\//!d;s|^|$(distdir)/|;s,/[^/]*$$,,' | \
++			   sort -u` ;; \
++	esac; \
++	for file in $$dist_files; do \
++	  if test -f $$file || test -d $$file; then d=.; else d=$(srcdir); fi; \
++	  if test -d $$d/$$file; then \
++	    dir=`echo "/$$file" | sed -e 's,/[^/]*$$,,'`; \
++	    if test -d $(srcdir)/$$file && test $$d != $(srcdir); then \
++	      cp -pR $(srcdir)/$$file $(distdir)$$dir || exit 1; \
++	    fi; \
++	    cp -pR $$d/$$file $(distdir)$$dir || exit 1; \
++	  else \
++	    test -f $(distdir)/$$file \
++	    || cp -p $$d/$$file $(distdir)/$$file \
++	    || exit 1; \
++	  fi; \
++	done
++check-am: all-am
++check: check-am
++all-am: Makefile $(DATA)
++installdirs:
++	for dir in "$(DESTDIR)$(consolepermsdir)"; do \
++	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
++	done
++install: install-am
++install-exec: install-exec-am
++install-data: install-data-am
++uninstall: uninstall-am
++
++install-am: all-am
++	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
++
++installcheck: installcheck-am
++install-strip:
++	$(MAKE) $(AM_MAKEFLAGS) INSTALL_PROGRAM="$(INSTALL_STRIP_PROGRAM)" \
++	  install_sh_PROGRAM="$(INSTALL_STRIP_PROGRAM)" INSTALL_STRIP_FLAG=-s \
++	  `test -z '$(STRIP)' || \
++	    echo "INSTALL_PROGRAM_ENV=STRIPPROG='$(STRIP)'"` install
++mostlyclean-generic:
++
++clean-generic:
++
++distclean-generic:
++	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
++
++maintainer-clean-generic:
++	@echo "This command is intended for maintainers to use"
++	@echo "it deletes files that may require special tools to rebuild."
++clean: clean-am
++
++clean-am: clean-generic clean-libtool mostlyclean-am
++
++distclean: distclean-am
++	-rm -f Makefile
++distclean-am: clean-am distclean-generic
++
++dvi: dvi-am
++
++dvi-am:
++
++html: html-am
++
++info: info-am
++
++info-am:
++
++install-data-am: install-consolepermsDATA
++
++install-dvi: install-dvi-am
++
++install-exec-am:
++
++install-html: install-html-am
++
++install-info: install-info-am
++
++install-man:
++
++install-pdf: install-pdf-am
++
++install-ps: install-ps-am
++
++installcheck-am:
++
++maintainer-clean: maintainer-clean-am
++	-rm -f Makefile
++maintainer-clean-am: distclean-am maintainer-clean-generic
++
++mostlyclean: mostlyclean-am
++
++mostlyclean-am: mostlyclean-generic mostlyclean-libtool
++
++pdf: pdf-am
++
++pdf-am:
++
++ps: ps-am
++
++ps-am:
++
++uninstall-am: uninstall-consolepermsDATA
++
++.MAKE: install-am install-strip
++
++.PHONY: all all-am check check-am clean clean-generic clean-libtool \
++	distclean distclean-generic distclean-libtool distdir dvi \
++	dvi-am html html-am info info-am install install-am \
++	install-consolepermsDATA install-data install-data-am \
++	install-dvi install-dvi-am install-exec install-exec-am \
++	install-html install-html-am install-info install-info-am \
++	install-man install-pdf install-pdf-am install-ps \
++	install-ps-am install-strip installcheck installcheck-am \
++	installdirs maintainer-clean maintainer-clean-generic \
++	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
++	ps ps-am uninstall uninstall-am uninstall-consolepermsDATA
++
++# Tell versions [3.59,3.63) of GNU make to not export all variables.
++# Otherwise a system limit (for SysV at least) may be exceeded.
++.NOEXPORT:
+--- thinkfinger-0.3/Makefile.am.acl	2007-09-22 11:59:32.000000000 +0200
++++ thinkfinger-0.3/Makefile.am	2007-09-22 12:02:10.000000000 +0200
+@@ -1,5 +1,5 @@
+-if BUILD_PAM 
++if BUILD_PAM
+   PAM_SUBDIR=pam
+ endif
+ 
+-SUBDIRS = docs libthinkfinger tf-tool $(PAM_SUBDIR)
++SUBDIRS = data docs libthinkfinger tf-tool $(PAM_SUBDIR)
+--- thinkfinger-0.3/Makefile.in.acl	2007-09-22 11:59:41.000000000 +0200
++++ thinkfinger-0.3/Makefile.in	2007-09-22 12:12:53.000000000 +0200
+@@ -60,7 +60,7 @@
+   distclean-recursive maintainer-clean-recursive
+ ETAGS = etags
+ CTAGS = ctags
+-DIST_SUBDIRS = docs libthinkfinger tf-tool pam
++DIST_SUBDIRS = data docs libthinkfinger tf-tool pam
+ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+ distdir = $(PACKAGE)-$(VERSION)
+ top_distdir = $(distdir)
+@@ -73,6 +73,7 @@
+ distuninstallcheck_listfiles = find . -type f -print
+ distcleancheck_listfiles = find . -type f -print
+ ACLOCAL = @ACLOCAL@
++ACL_LIBS = @ACL_LIBS@
+ AMTAR = @AMTAR@
+ AR = @AR@
+ AUTOCONF = @AUTOCONF@
+@@ -191,7 +192,7 @@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+ @BUILD_PAM_TRUE@PAM_SUBDIR = pam
+-SUBDIRS = docs libthinkfinger tf-tool $(PAM_SUBDIR)
++SUBDIRS = data docs libthinkfinger tf-tool $(PAM_SUBDIR)
+ all: config.h
+ 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
+ 
+--- thinkfinger-0.3/tf-tool/Makefile.am.acl	2007-09-22 12:00:14.000000000 +0200
++++ thinkfinger-0.3/tf-tool/Makefile.am	2007-09-22 12:02:10.000000000 +0200
+@@ -3,5 +3,5 @@
+ INCLUDES = -I$(top_srcdir)/libthinkfinger
+ 
+ tf_tool_SOURCES = tf-tool.c
+-tf_tool_LDADD = $(top_builddir)/libthinkfinger/libthinkfinger.la 
++tf_tool_LDADD = $(ACL_LIBS) $(top_builddir)/libthinkfinger/libthinkfinger.la 
+ tf_tool_CFLAGS = $(CFLAGS)
+--- thinkfinger-0.3/tf-tool/Makefile.in.acl	2007-09-22 12:00:03.000000000 +0200
++++ thinkfinger-0.3/tf-tool/Makefile.in	2007-09-22 12:12:53.000000000 +0200
+@@ -47,7 +47,8 @@
+ PROGRAMS = $(sbin_PROGRAMS)
+ am_tf_tool_OBJECTS = tf_tool-tf-tool.$(OBJEXT)
+ tf_tool_OBJECTS = $(am_tf_tool_OBJECTS)
+-tf_tool_DEPENDENCIES =  \
++am__DEPENDENCIES_1 =
++tf_tool_DEPENDENCIES = $(am__DEPENDENCIES_1) \
+ 	$(top_builddir)/libthinkfinger/libthinkfinger.la
+ tf_tool_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+ 	--mode=link $(CCLD) $(tf_tool_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+@@ -70,6 +71,7 @@
+ CTAGS = ctags
+ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+ ACLOCAL = @ACLOCAL@
++ACL_LIBS = @ACL_LIBS@
+ AMTAR = @AMTAR@
+ AR = @AR@
+ AUTOCONF = @AUTOCONF@
+@@ -189,7 +191,7 @@
+ top_srcdir = @top_srcdir@
+ INCLUDES = -I$(top_srcdir)/libthinkfinger
+ tf_tool_SOURCES = tf-tool.c
+-tf_tool_LDADD = $(top_builddir)/libthinkfinger/libthinkfinger.la 
++tf_tool_LDADD = $(ACL_LIBS) $(top_builddir)/libthinkfinger/libthinkfinger.la 
+ tf_tool_CFLAGS = $(CFLAGS)
+ all: all-am
+ 
+--- thinkfinger-0.3/tf-tool/tf-tool.c.acl	2007-09-22 12:21:37.000000000 +0200
++++ thinkfinger-0.3/tf-tool/tf-tool.c	2007-09-22 12:21:45.000000000 +0200
+@@ -1,4 +1,5 @@
+- /*   tf-test - A simple example for libthinkfinger
++ /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*-
++  *   tf-test - A simple example for libthinkfinger
+   *
+   *   ThinkFinger - A driver for the UPEK/SGS Thomson Microelectronics
+   *   fingerprint reader.
+@@ -22,12 +23,18 @@
+   *
+   */
+ 
++#include <config.h>
++
+ #include <sys/types.h>
++#include <sys/stat.h>
+ #include <errno.h>
+ #include <libgen.h>
+ #include <pwd.h>
+ 
+-#include <config.h>
++#ifdef HAVE_SYS_ACL_H
++#include <acl/libacl.h>
++#endif
++
+ #include <libthinkfinger.h>
+ 
+ #define MODE_UNDEFINED 0
+@@ -318,6 +325,146 @@
+ 	return retval;
+ }
+ 
++static int
++set_permissions_for_user (const char *path,
++			  const char *username)
++{
++#ifdef HAVE_SYS_ACL_H
++	int res;
++	struct passwd *p;
++	acl_t acl;
++	acl_entry_t entry;
++	acl_permset_t permset;
++	uid_t uid;
++
++	/* this is so that a user is able to read his/her own file
++	 * when reauthenticating via the screensaver etc. */
++	p = getpwnam (username);
++	uid = p->pw_uid;
++
++	fprintf (stderr, "Setting ACL on aquired file: %s.\n",
++		 path);
++
++	res = -1;
++
++	acl = acl_init (4);
++
++	/* User Obj */
++	if (acl_create_entry (&acl, &entry) == -1) {
++		goto out;
++	}
++	if (acl_get_permset (entry, &permset) == -1) {
++		goto out;
++	}
++	if (acl_clear_perms (permset) == -1) {
++		goto out;
++	}
++	if (acl_add_perm (permset, ACL_READ) == -1) {
++		goto out;
++	}
++	if (acl_add_perm (permset, ACL_WRITE) == -1) {
++		goto out;
++	}
++	if (acl_set_tag_type (entry, ACL_USER_OBJ) == -1) {
++		goto out;
++	}
++	if (acl_set_permset (entry, permset) == -1) {
++		goto out;
++	}
++
++	/* Group Obj */
++	if (acl_create_entry (&acl, &entry) == -1) {
++		goto out;
++	}
++	if (acl_get_permset (entry, &permset) == -1) {
++		goto out;
++	}
++	if (acl_clear_perms (permset) == -1) {
++		goto out;
++	}
++	if (acl_set_tag_type (entry, ACL_GROUP_OBJ) == -1) {
++		goto out;
++	}
++	if (acl_set_permset (entry, permset) == -1) {
++		goto out;
++	}
++
++	/* Others */
++	if (acl_create_entry (&acl, &entry) == -1) {
++		goto out;
++	}
++	if (acl_get_permset (entry, &permset) == -1) {
++		goto out;
++	}
++	if (acl_clear_perms (permset) == -1) {
++		goto out;
++	}
++	if (acl_set_tag_type (entry, ACL_OTHER) == -1) {
++		goto out;
++	}
++	if (acl_set_permset (entry, permset) == -1) {
++		goto out;
++	}
++
++	/* Mask */
++	if (acl_create_entry (&acl, &entry) == -1) {
++		goto out;
++	}
++	if (acl_get_permset (entry, &permset) == -1) {
++		goto out;
++	}
++	if (acl_clear_perms (permset) == -1) {
++		goto out;
++	}
++	if (acl_add_perm (permset, ACL_READ) == -1) {
++		goto out;
++	}
++	if (acl_set_tag_type (entry, ACL_MASK) == -1) {
++		goto out;
++	}
++	if (acl_set_permset (entry, permset) == -1) {
++		goto out;
++	}
++
++	/* User */
++	if (acl_create_entry (&acl, &entry) == -1) {
++		goto out;
++	}
++	if (acl_set_tag_type (entry, ACL_USER) == -1) {
++		goto out;
++	}
++	if (acl_set_qualifier (entry, &uid) == -1) {
++		goto out;
++	}
++	if (acl_get_permset (entry, &permset) == -1) {
++		goto out;
++	}
++	if (acl_clear_perms (permset) == -1) {
++		goto out;
++	}
++	if (acl_add_perm (permset, ACL_READ) == -1) {
++		goto out;
++	}
++	if (acl_set_permset (entry, permset) == -1) {
++		goto out;
++	}
++
++	res = acl_set_file (path, ACL_TYPE_ACCESS, acl);
++
++ out:
++	acl_free (acl);
++	if (res != 0) {
++		fprintf (stderr, "Unable to set ACL of aquired file: %s: %s\n",
++			 path,
++			 strerror (errno));
++	}
++
++	return res;
++#else
++	return -1;
++#endif
++}
++
+ int
+ main (int argc, char *argv[])
+ {
+@@ -329,6 +476,8 @@
+ 	const char *user;
+ #endif
+ 
++	user = NULL;
++
+ 	printf ("%s\n", BANNER);
+ 
+ 	if (argc == 1) {
+@@ -472,13 +621,18 @@
+ 
+ 	}
+ 	if (tfdata.mode == MODE_ACQUIRE) {
++		umask (0077);
+ 		retval = acquire (&tfdata);
++		if (retval == 0 && user != NULL) {
++			set_permissions_for_user (tfdata.bir, user);
++		}
+ 	} else if (tfdata.mode == MODE_VERIFY) {
+ 		retval = verify (&tfdata);
+ 	} else {
+ 		usage (argv[0]);
+ 		retval = -1;
+ 	}
++
+ out:
+ 	exit (retval);
+ }

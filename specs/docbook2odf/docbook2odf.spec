@@ -4,8 +4,8 @@
 
 Summary: DocBook to OpenDocument XSLT
 Name: docbook2odf
-Version: 0.244
-Release: 2
+Version: 0.256
+Release: 1
 License: GPL
 Group: Applications/Text
 URL: http://open.comsultia.com/docbook2odf/
@@ -60,6 +60,9 @@ converting to these respective formats.
 %{_datadir}/docbook2odf/
 
 %changelog
+* Sun Dec 21 2008 Dag Wieers <dag@wieers.com> - 0.256-1
+- Updated to release 0.256 (svn).
+
 * Wed Jul 25 2007 Dag Wieers <dag@wieers.com> - 0.244-2
 - Do not install bindings and libs.
 
