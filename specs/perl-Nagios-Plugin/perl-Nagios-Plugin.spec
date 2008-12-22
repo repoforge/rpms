@@ -10,7 +10,7 @@
 Summary: Family of perl modules to streamline writing Nagios
 Name: perl-Nagios-Plugin
 Version: 0.30
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Nagios-Plugin/
@@ -22,6 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Math::Calc::Units)
 Requires: perl(Config::Tiny)
+Requires: perl(Class::Accessor::Fast)
 
 %description
 A family of perl modules to streamline writing Nagios.
@@ -53,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Nagios/Plugin.pm
 
 %changelog
+* Mon Dec 22 2008 Christoph Maser <cmr@financial.com> - 0.30-2
+- Added dependency for perl(Class::Accessor::Fast)
+
 * Mon Dec 15 2008 Christoph Maser <cmr@financial.com> - 0.30-1
 - Updated to release 0.30.
 
