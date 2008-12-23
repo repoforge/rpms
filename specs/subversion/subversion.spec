@@ -27,7 +27,7 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.5.4
+Version: 1.5.5
 ### FC3 comes with release 1.1
 Release: 0.1
 License: BSD
@@ -168,8 +168,8 @@ export CC=gcc CXX=g++
     --with-expat \
     --with-neon="%{_prefix}" \
     --with-ruby-sitedir="%{ruby_sitearch}" \
+    --with-sasl="%{_prefix}" \
     --with-ssl \
-    --with-swig \
 %{!?_without_swig:--with-swig="swig-%{swig_version}/install"}
 #    --disable-neon-version-check \
 # 1.3.0 tarball ships with generated swig sources
@@ -180,8 +180,10 @@ export CC=gcc CXX=g++
 %{__make} %{?_smp_mflags} swig-py swig-py-lib %{swigdirs}
 %{__make} %{?_smp_mflags} swig-pl swig-pl-lib
 %{!?_without_ruby:%{__make} %{?_smp_mflags} swig-rb swig-rb-lib}
-%{?_with_java:%{_make} %{?_smp_mflags} javahl}
 %endif
+
+%{?_with_java:%{_make} %{?_smp_mflags} javahl-java javahl-javah}
+%{?_with_java:%{_make} %{?_smp_mflags} javahl}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -189,13 +191,14 @@ export CC=gcc CXX=g++
 
 %if %{!?_without_swig:1}0
 %{__make} install-swig-py %{swigdirs} DESTDIR="%{buildroot}"
-%{__make} install-swig-pl-lib %{swigdirs} DESTDIR="%{buildroot}"
-%{!?_without_ruby:%{__make} install-swig-rb %{swigdirs} DESTDIR="%{buildroot}"}
-%{?_with_java:%{__make} install-javahl DESTDIR="%{buildroot}"}
+%{__make} install-swig-pl-lib DESTDIR="%{buildroot}"
+%{!?_without_ruby:%{__make} install-swig-rb DESTDIR="%{buildroot}"}
 
 %{__make} pure_vendor_install -C subversion/bindings/swig/perl/native \
         PERL_INSTALL_ROOT="%{buildroot}"
 %endif
+
+%{?_with_java:%{__make} install-javahl install-javahl-lib DESTDIR="%{buildroot}"}
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/subversion
 
@@ -206,7 +209,6 @@ export CC=gcc CXX=g++
 %{__rm} -rf %{buildroot}%{_includedir}/subversion-*/*.txt \
        %{buildroot}%{python_sitearch}/*/*.{a,la}
 
-%if %{!?_without_swig:1}0
 # remove stuff produced with Perl modules
 find %{buildroot} -type f \
     -a \( -name .packlist -o \( -name '*.bs' -a -empty \) \) \
@@ -215,7 +217,6 @@ find %{buildroot} -type f \
 # make Perl modules writable so they get stripped
 find %{buildroot}%{_libdir}/perl5 -type f -perm 555 -print0 |
         xargs -0 chmod 0755
-%endif
 
 # unnecessary libraries for swig bindings
 %{__rm} -f %{buildroot}%{_libdir}/libsvn_swig_*.{so,la,a}
@@ -303,7 +304,7 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %{_libdir}/libsvn_swig_perl*
 %endif
 
-%if {!?_without_ruby:1}0
+%if %{!?_without_ruby:1}0
 %files ruby
 %defattr(-, root, root, 0755)
 %{_libdir}/libsvn_swig_ruby*
@@ -318,6 +319,9 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
+* Tue Dec 23 2008 Dag Wieers <dag@wieers.com> - 1.5.5-0.1
+- Updated to release 1.5.5.
+
 * Sat Oct 25 2008 Dag Wieers <dag@wieers.com> - 1.5.4-0.1
 - Updated to release 1.5.4.
 

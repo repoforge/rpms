@@ -12,7 +12,7 @@
 
 Summary: GUI program to create labels and business cards
 Name: glabels
-Version: 2.2.2
+Version: 2.2.4
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -124,6 +124,9 @@ scrollkeeper-update -q || :
 %exclude %{_libdir}/libglabels.la
 
 %changelog
+* Tue Dec 23 2008 Dag Wieers <dag@wieers.com> - 2.2.4-1
+- Updated to release 2.2.4.
+
 * Tue Feb 26 2008 Dag Wieers <dag@wieers.com> - 2.2.2-1
 - Updated to release 2.2.2.
 

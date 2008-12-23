@@ -4,7 +4,7 @@
 
 Summary: Program for executing the same command on many hosts in parallel
 Name: shmux
-Version: 1.0.1
+Version: 1.0.2
 Release: 1
 License: BSD-like
 Group: System Environment/Shells
@@ -44,6 +44,9 @@ the user, or written to files for later processing.
 %{_datadir}/shmux/
 
 %changelog
+* Mon Dec 22 2008 Dag Wieers <dag@wieers.com> - 1.0.2-1
+- Updated to release 1.0.2.
+
 * Mon Aug 27 2007 Dag Wieers <dag@wieers.com> - 1.0.1-1
 - Updated to release 1.0.1.
 

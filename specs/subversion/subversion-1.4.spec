@@ -1,9 +1,6 @@
 # $Id$
 # Authority: dag
 
-##ExcludeDist: fc3
-##Tag: test
-
 %{?dtag: %{expand: %%define %dtag 1}}
 
 %define _without_ruby 1
@@ -308,7 +305,7 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %{_libdir}/libsvn_swig_perl*
 %endif
 
-%if {!?_without_ruby:1}0
+%if %{!?_without_ruby:1}0
 %files ruby
 %defattr(-, root, root, 0755)
 %{_libdir}/libsvn_swig_ruby*
