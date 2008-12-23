@@ -1,10 +1,11 @@
 # $Id$
 # Authority: dag
+# Tag: test
 
 Summary: Host-based tool to scan for rootkits, backdoors and local exploits
 Name: rkhunter
-Version: 1.2.9
-Release: 2
+Version: 1.3.2
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.rootkit.nl/
@@ -34,90 +35,10 @@ exploits by running tests like:
 	Application tests
 
 %prep
-%setup -n %{name}-%{version}/files
+%setup -n %{name}-%{version}
 
-%{__cat} <<EOF >rkhunter.conf.new
-# This is the configuration file of Rootkit Hunter. Please change
-# it to your needs.
-#
-# All lines beginning with a hash (#) or empty lines, will be ignored.
-#
-INSTALLDIR=%{_prefix}
-
-# Links to files. Don't change if you don't need to.
-LATESTVERSION=/rkhunter_latest.dat
-UPDATEFILEINFO=/rkhunter_fileinfo.dat
-
-# Send a warning message to the admin when one or more warnings
-# are available (rootkit and MD5 check). Note: uses default `mail`
-# commmand to send the warning message.
-MAIL-ON-WARNING=root@localhost
-
-# Use a custom temporary directory (you can override it with the
-# --tmpdir parameter)
-# Note: don't use /tmp as your temporary directory, because some
-# important files will be written to this directory. Be sure
-# you have setup your permissions very tight.
-TMPDIR=%{_localstatedir}/rkhunter/tmp
-
-# Use a custom database directory (you can override it with the
-# --dbdir parameter)
-DBDIR=%{_localstatedir}/rkhunter/db
-
-# Whitelist files (and their MD5 hash)
-# Usage: MD5WHITELIST=<binary>:<MD5 hash>
-#MD5WHITELIST=/bin/ps:9bd8bf260adc81d3a43a086fce6b430a
-#MD5WHITELIST=/bin/ps:404583a6b166c2f7ac1287445a9de6b3
-
-# Allow direct root login via SSH
-# Don't use this option if you don't know what the warning about
-# this option means!!
-#ALLOW_SSH_ROOT_USER=0
-
-# Allow hidden directory
-# One directory per line (use multiple ALLOWHIDDENDIR lines)
-#
-#ALLOWHIDDENDIR=/etc/.java
-#ALLOWHIDDENDIR=/dev/.udev
-#ALLOWHIDDENDIR=/dev/.udevdb
-#ALLOWHIDDENDIR=/dev/.udev.tdb
-#ALLOWHIDDENDIR=/dev/.static
-#ALLOWHIDDENDIR=/dev/.initramfs
-#ALLOWHIDDENDIR=/dev/.SRC-unix
-
-# Allow hidden file
-# One file per line (use multiple ALLOWHIDDENFILE lines)
-# 
-#ALLOWHIDDENFILE=/etc/.java
-#ALLOWHIDDENFILE=/usr/share/man/man1/..1.gz
-#ALLOWHIDDENFILE=/etc/.pwd.lock
-#ALLOWHIDDENFILE=/etc/.init.state
-
-# Allow process to use deleted files
-# One process per line (use multiple ALLOWPROCDELFILE lines)
-#
-#ALLOWPROCDELFILE=/sbin/cardmgr
-#ALLOWPROCDELFILE=/usr/sbin/gpm
-#ALLOWPROCDELFILE=/usr/libexec/gconfd-2
-#ALLOWPROCDELFILE=/usr/sbin/mysqld
-
-# Allow process to listen on any interface
-# One process per line (use multiple ALLOWPROCLISTEN lines)
-#
-#ALLOWPROCLISTEN=/sbin/dhclient
-#ALLOWPROCLISTEN=/usr/bin/dhcpcd
-#ALLOWPROCLISTEN=/usr/sbin/pppoe
-#ALLOWPROCLISTEN=/usr/sbin/tcpdump
-#ALLOWPROCLISTEN=/usr/sbin/snort-plain
-#ALLOWPROCLISTEN=/usr/local/bin/wpa_supplicant
-
-# The End
-EOF
-
-### Check what has been changed
-diff -u rkhunter.conf rkhunter.conf.new || :
-
-%{__perl} -pi.orig -e 's| /usr/man| %{_mandir}|g' rkhunter
+# FIXME: installer has /usr/local as default prefix for RPM
+%{__perl} -pi.orig -e 's|PREFIX="\${RPM_BUILD_ROOT}/usr/local"|PREFIX="\${RPM_BUILD_ROOT}/usr/"|g' installer.sh
 
 %{__cat} <<EOF >rkhunter.logrotate
 %{_localstatedir}/log/rkhunter.log {
@@ -130,47 +51,51 @@ EOF
 %build
 
 %install
-%{__rm} -rf %{buildroot}
-
-%{__install} -Dp -m0750 rkhunter %{buildroot}%{_bindir}/rkhunter
-
-%{__install} -Dp -m0644 rkhunter.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/rkhunter
-%{__install} -Dp -m0640 rkhunter.conf.new %{buildroot}%{_sysconfdir}/rkhunter.conf
-#%{__install} -Dp -m0640 rkhunter.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/rkhunter
-#%{__install} -Dp -m0750 01-rkhunter %{buildroot}%{_sysconfdir}/cron.daily/01-rkhunter
-
-%{__install} -d -m0750 %{buildroot}%{_localstatedir}/rkhunter/db/
-%{__install} -p -m640 *.dat %{buildroot}%{_localstatedir}/rkhunter/db/
-
-%{__install} -d -m0755 %{buildroot}%{_mandir}/man8/
-%{__install} -p -m0644 -p development/*.8 %{buildroot}%{_mandir}/man8/
-
-%{__install} -d -m0755 %{buildroot}%{_prefix}/lib/rkhunter/scripts/
-%{__install} -p -m0750 *.pl check_*.sh %{buildroot}%{_prefix}/lib/rkhunter/scripts/
-
-%{__install} -d -m0750 %{buildroot}%{_localstatedir}/rkhunter/tmp/
-
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/
-touch %{buildroot}%{_localstatedir}/log/rkhunter.log
-%{__chmod} 0640 %{buildroot}%{_localstatedir}/log/rkhunter.log
+RPM_BUILD_ROOT=%{buildroot} ./installer.sh --layout RPM --install 
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root, 0755)
-%doc CHANGELOG LICENSE README WISHLIST
-%doc %{_mandir}/man8/*.8*
-%config(noreplace) %{_sysconfdir}/rkhunter.conf
-#%config(noreplace) %{_sysconfdir}/sysconfig/rkhunter
-#%config %{_sysconfdir}/cron.daily/01-rkhunter
-%config %{_sysconfdir}/logrotate.d/rkhunter
+%{_sysconfdir}/rkhunter.conf
 %{_bindir}/rkhunter
-%{_prefix}/lib/rkhunter/
-%{_localstatedir}/rkhunter/
-%ghost %{_localstatedir}/log/rkhunter.log
+%{_libdir}/rkhunter/scripts/check_modules.pl
+%{_libdir}/rkhunter/scripts/check_port.pl
+%{_libdir}/rkhunter/scripts/check_update.sh
+%{_libdir}/rkhunter/scripts/filehashmd5.pl
+%{_libdir}/rkhunter/scripts/filehashsha1.pl
+%{_libdir}/rkhunter/scripts/readlink.sh
+%{_libdir}/rkhunter/scripts/showfiles.pl
+%{_libdir}/rkhunter/scripts/stat.pl
+%{_defaultdocdir}/rkhunter-1.3.2/ACKNOWLEDGMENTS
+%{_defaultdocdir}/rkhunter-1.3.2/CHANGELOG
+%{_defaultdocdir}/rkhunter-1.3.2/FAQ
+%{_defaultdocdir}/rkhunter-1.3.2/LICENSE
+%{_defaultdocdir}/rkhunter-1.3.2/README
+%{_defaultdocdir}/rkhunter-1.3.2/WISHLIST
+%{_mandir}/man8/rkhunter.8.gz
+/var/lib/rkhunter/db/backdoorports.dat
+/var/lib/rkhunter/db/defaulthashes.dat
+/var/lib/rkhunter/db/i18n/cn
+/var/lib/rkhunter/db/i18n/en
+/var/lib/rkhunter/db/i18n/zh
+/var/lib/rkhunter/db/i18n/zh.utf8
+/var/lib/rkhunter/db/md5blacklist.dat
+/var/lib/rkhunter/db/mirrors.dat
+/var/lib/rkhunter/db/os.dat
+/var/lib/rkhunter/db/programs_bad.dat
+/var/lib/rkhunter/db/programs_good.dat
+/var/lib/rkhunter/db/suspscan.dat
+%dir /var/lib/rkhunter/tmp
 
+
+ 
 %changelog
+* Tue Dec 23 2008 Christoph Maser <cmr@financial.com> - 1.3.2 - 1
+- Update to 1.3.2
+- use --layout RPM from installer.sh
+- patch installer to use "/usr" prefix in RPM mode
+
 * Thu May 17 2007 Dag Wieers <dag@wieers.com> - 1.2.9-2
 - Fixed the INSTALLDIR location in rkhunter.conf. (Phil Schaffner)
 
