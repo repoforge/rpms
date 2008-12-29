@@ -22,7 +22,7 @@
 
 Summary: Host/service/network monitoring program plugins for Nagios
 Name: nagios-plugins
-Version: 1.4.12
+Version: 1.4.13
 Release: 1
 License: GPL
 Group: Applications/System
@@ -307,6 +307,9 @@ done
 %{_libdir}/nagios/plugins/check_icmp
 
 %changelog
+* Mon Dec 29 2008 Christoph Maser <cmr@financial.com> - 1.4.12-1
+- Updated to release 1.4.13.
+
 * Thu Jul 24 2008 Christoph Maser <cmr@financial.com> - 1.4.12-1
 - Updated to release 1.4.12.
 
