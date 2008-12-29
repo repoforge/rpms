@@ -25,76 +25,53 @@ text-based databases, and optional Perl modules.  It should run on almost
 every Unix clone.  This tool scans for rootkits, backdoors and local
 exploits by running tests like: 
 
-	MD5 hash compare,
-	Look for default files used by rootkits,
-	Wrong file permissions for binaries,
-	Look for suspected strings in LKM and KLD modules,
-	Look for hidden files,
-	Optional scan within plaintext and binary files,
-	Software version checks and
-	Application tests
+    MD5 hash compare,
+    Look for default files used by rootkits,
+    Wrong file permissions for binaries,
+    Look for suspected strings in LKM and KLD modules,
+    Look for hidden files,
+    Optional scan within plaintext and binary files,
+    Software version checks and
+    Application tests
 
 %prep
-%setup -n %{name}-%{version}
+%setup
 
-# FIXME: installer has /usr/local as default prefix for RPM
-%{__perl} -pi.orig -e 's|PREFIX="\${RPM_BUILD_ROOT}/usr/local"|PREFIX="\${RPM_BUILD_ROOT}/usr/"|g' installer.sh
+### FIXME: installer has /usr/local as default prefix for RPM
+%{__perl} -pi.orig -e 's|PREFIX="\${RPM_BUILD_ROOT}/usr/local"|PREFIX="\${RPM_BUILD_ROOT}%{_prefix}"|g' installer.sh
 
 %{__cat} <<EOF >rkhunter.logrotate
 %{_localstatedir}/log/rkhunter.log {
-	weekly
-	notifempty
-	create 640 root root
+    weekly
+    notifempty
+    create 640 root root
 }
 EOF
 
 %build
 
 %install
-RPM_BUILD_ROOT=%{buildroot} ./installer.sh --layout RPM --install 
+%{__rm} -rf %{buildroot}
+RPM_BUILD_ROOT="%{buildroot}" ./installer.sh --layout RPM --install
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
-%{_sysconfdir}/rkhunter.conf
+%defattr(-, root, root 0755)
+%doc files/ACKNOWLEDGMENTS files/CHANGELOG files/FAQ files/LICENSE files/README files/WISHLIST
+%doc %{_mandir}/man8/rkhunter.8*
+%config(noreplace) %{_sysconfdir}/rkhunter.conf
 %{_bindir}/rkhunter
-%{_libdir}/rkhunter/scripts/check_modules.pl
-%{_libdir}/rkhunter/scripts/check_port.pl
-%{_libdir}/rkhunter/scripts/check_update.sh
-%{_libdir}/rkhunter/scripts/filehashmd5.pl
-%{_libdir}/rkhunter/scripts/filehashsha1.pl
-%{_libdir}/rkhunter/scripts/readlink.sh
-%{_libdir}/rkhunter/scripts/showfiles.pl
-%{_libdir}/rkhunter/scripts/stat.pl
-%{_defaultdocdir}/rkhunter-1.3.2/ACKNOWLEDGMENTS
-%{_defaultdocdir}/rkhunter-1.3.2/CHANGELOG
-%{_defaultdocdir}/rkhunter-1.3.2/FAQ
-%{_defaultdocdir}/rkhunter-1.3.2/LICENSE
-%{_defaultdocdir}/rkhunter-1.3.2/README
-%{_defaultdocdir}/rkhunter-1.3.2/WISHLIST
-%{_mandir}/man8/rkhunter.8.gz
-/var/lib/rkhunter/db/backdoorports.dat
-/var/lib/rkhunter/db/defaulthashes.dat
-/var/lib/rkhunter/db/i18n/cn
-/var/lib/rkhunter/db/i18n/en
-/var/lib/rkhunter/db/i18n/zh
-/var/lib/rkhunter/db/i18n/zh.utf8
-/var/lib/rkhunter/db/md5blacklist.dat
-/var/lib/rkhunter/db/mirrors.dat
-/var/lib/rkhunter/db/os.dat
-/var/lib/rkhunter/db/programs_bad.dat
-/var/lib/rkhunter/db/programs_good.dat
-/var/lib/rkhunter/db/suspscan.dat
-%dir /var/lib/rkhunter/tmp
-
-
+%{_libdir}/rkhunter/
+%{_localstatedir}/lib/rkhunter/
+%exclude %{_docdir}
  
 %changelog
 * Tue Dec 23 2008 Christoph Maser <cmr@financial.com> - 1.3.2 - 1
-- Update to 1.3.2
-- use --layout RPM from installer.sh
-- patch installer to use "/usr" prefix in RPM mode
+- Updated to release 1.3.2.
+- Use --layout RPM from installer.sh.
+- Patch installer to use "/usr" prefix in RPM mode.
 
 * Thu May 17 2007 Dag Wieers <dag@wieers.com> - 1.2.9-2
 - Fixed the INSTALLDIR location in rkhunter.conf. (Phil Schaffner)

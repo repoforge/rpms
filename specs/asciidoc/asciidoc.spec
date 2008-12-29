@@ -3,7 +3,7 @@
 
 Summary: Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
 Name: asciidoc
-Version: 8.2.6
+Version: 8.3.1
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -67,6 +67,9 @@ DocBook markups using the asciidoc(1) command.
 %{_datadir}/asciidoc/
 
 %changelog
+* Sun Dec 21 2008 Dag Wieers <dag@wieers.com> - 8.3.1-1
+- Updated to release 8.3.1.
+
 * Sun May 04 2008 Dag Wieers <dag@wieers.com> - 8.2.6-1
 - Updated to release 8.2.6.
 
