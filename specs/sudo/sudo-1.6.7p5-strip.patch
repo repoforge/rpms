@@ -1,0 +1,11 @@
+--- sudo-1.6.7p5/install-sh.strip	2005-07-21 14:28:25.000000000 +0200
++++ sudo-1.6.7p5/install-sh	2005-07-21 14:29:18.000000000 +0200
+@@ -138,7 +138,7 @@
+ 	fi
+ 	;;
+     X-s)
+-	STRIPIT=true
++	#STRIPIT=true
+ 	;;
+     X--)
+ 	shift

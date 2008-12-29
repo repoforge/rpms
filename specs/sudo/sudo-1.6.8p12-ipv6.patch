@@ -1,0 +1,611 @@
+--- sudo-1.6.8p12/Makefile.in.ipv6	2005-11-08 19:21:58.000000000 +0100
++++ sudo-1.6.8p12/Makefile.in	2006-07-16 23:33:58.000000000 +0200
+@@ -187,14 +187,14 @@
+ @DEV@PARSESRCS = sudo.tab.h sudo.tab.c lex.yy.c def_data.c def_data.h
+ 
+ # Uncomment the following if you intend to modify parse.yacc
+-@DEV@sudo.tab.c sudo.tab.h: parse.yacc
+-@DEV@	rm -f sudo.tab.h sudo.tab.c
+-@DEV@	$(YACC) -d -b sudo $(srcdir)/parse.yacc
++sudo.tab.c sudo.tab.h: parse.yacc
++	rm -f sudo.tab.h sudo.tab.c
++	$(YACC) -d -b sudo $(srcdir)/parse.yacc
+ 
+ # Uncomment the following if you intend to modify parse.lex
+-@DEV@lex.yy.c: parse.lex
+-@DEV@	rm -f lex.yy.c
+-@DEV@	$(LEX) $(srcdir)/parse.lex
++lex.yy.c: parse.lex
++	rm -f lex.yy.c
++	$(LEX) $(srcdir)/parse.lex
+ 
+ # Uncomment the following if you intend to modify def_data.in
+ @DEV@def_data.h def_data.c: def_data.in
+--- sudo-1.6.8p12/visudo.c.ipv6	2004-11-25 18:32:40.000000000 +0100
++++ sudo-1.6.8p12/visudo.c	2006-07-16 23:33:58.000000000 +0200
+@@ -87,6 +87,7 @@
+ static int check_syntax		__P((int));
+ int command_matches		__P((char *, char *));
+ int addr_matches		__P((char *));
++int addr6_matches		__P((char *));
+ int hostname_matches		__P((char *, char *, char *));
+ int netgr_matches		__P((char *, char *, char *, char *));
+ int usergr_matches		__P((char *, char *, struct passwd *));
+@@ -515,6 +516,12 @@
+     return(TRUE);
+ }
+ 
++int addr6_matches(n)
++    char *n;
++{
++    return(TRUE);
++}
++
+ int
+ hostname_matches(s, l, p)
+     char *s, *l, *p;
+--- sudo-1.6.8p12/parse.lex.ipv6	2004-05-17 22:51:13.000000000 +0200
++++ sudo-1.6.8p12/parse.lex	2006-07-16 23:33:58.000000000 +0200
+@@ -84,6 +84,29 @@
+ 
+ OCTET			(1?[0-9]{1,2})|(2[0-4][0-9])|(25[0-5])
+ DOTTEDQUAD		{OCTET}(\.{OCTET}){3}
++
++IPV6_8HEX               ([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4}
++
++IPV6_COMP0              :(:[0-9A-Fa-f]{1,4}){1,7}
++IPV6_COMP1              ([0-9A-Fa-f]{1,4}){1}:(:[0-9A-Fa-f]{1,4}){0,6}
++IPV6_COMP2              ([0-9A-Fa-f]{1,4}){2}:(:[0-9A-Fa-f]{1,4}){0,5}
++IPV6_COMP3              ([0-9A-Fa-f]{1,4}){3}:(:[0-9A-Fa-f]{1,4}){0,4}
++IPV6_COMP4		([0-9A-Fa-f]{1,4}){4}:(:[0-9A-Fa-f]{1,4}){0,3}
++IPV6_COMP5              ([0-9A-Fa-f]{1,4}){5}:(:[0-9A-Fa-f]{1,4}){0,2}
++IPV6_COMP6              ([0-9A-Fa-f]{1,4}){6}:(:[0-9A-Fa-f]{1,4}){0,1}
++IPV6_COMPHEX            {IPV6_COMP0}|{IPV6_COMP1}|{IPV6_COMP2}|{IPV6_COMP3}|{IPV6_COMP4}|{IPV6_COMP5}|{IPV6_COMP6}
++
++IPV6_6H4D               [0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4}){5}{DOTTEDQUAD}
++
++IPV6_COMP6H4D0          ([0-9A-Fa-f]{1,4}){1}:(:[0-9A-Fa-f]{1,4}){1,4}:{DOTTEDQUAD}
++IPV6_COMP6H4D1          ([0-9A-Fa-f]{1,4}){2}:(:[0-9A-Fa-f]{1,4}){1,3}:{DOTTEDQUAD}
++IPV6_COMP6H4D2          ([0-9A-Fa-f]{1,4}){3}:(:[0-9A-Fa-f]{1,4}){1,2}:{DOTTEDQUAD}
++IPV6_COMP6H4D3          ([0-9A-Fa-f]{1,4}){4}:(:[0-9A-Fa-f]{1,4}){1}:{DOTTEDQUAD}
++IPV6_COMP6H4D           {IPV6_COMP6H4D0}|{IPV6_COMP6H4D1}|{IPV6_COMP6H4D2}|{IPV6_COMP6H4D3}
++
++IPV6ADDR                {IPV6_8HEX}|{IPV6_COMPHEX}|{IPV6_6H4D}|{IPV6_COMP6H4D}
++IPV6PREFIX		[1-9]|[1-9][0-9]|10[0-9]|11[0-9]|12[0-8]
++
+ HOSTNAME		[[:alnum:]_-]+
+ WORD			([^#>@!=:,\(\) \t\n\\]|\\[^\n])+
+ ENVAR			([^#!=, \t\n\\]|\\[^\n])([^#=, \t\n\\]|\\[^\n])*
+@@ -253,6 +276,11 @@
+ 			    LEXTRACE("NTWKADDR ");
+ 			    return(NTWKADDR);
+ 			}
++{IPV6ADDR}(\/{IPV6PREFIX})? {
++			    fill(yytext, yyleng);
++                            LEXTRACE("NTWKADDR6 ");
++                            return(NTWKADDR6);
++			}
+ 
+ <INITIAL>\(		{
+ 				BEGIN GOTRUNAS;
+--- sudo-1.6.8p12/ldap.c.ipv6	2006-07-16 23:45:35.000000000 +0200
++++ sudo-1.6.8p12/ldap.c	2006-07-16 23:59:56.000000000 +0200
+@@ -160,6 +160,7 @@
+     if (
+          !strcasecmp(*p,"ALL") ||
+          addr_matches(*p) ||
++         addr6_matches(*p) ||
+          netgr_matches(*p,user_host,user_shost,NULL) ||
+          !hostname_matches(user_shost,user_host,*p)
+        )
+--- sudo-1.6.8p12/parse.h.ipv6	2005-06-19 20:58:19.000000000 +0200
++++ sudo-1.6.8p12/parse.h	2006-07-16 23:33:58.000000000 +0200
+@@ -93,6 +93,7 @@
+  * Prototypes
+  */
+ int addr_matches	__P((char *));
++int addr6_matches	__P((char *));
+ int command_matches	__P((char *, char *));
+ int hostname_matches	__P((char *, char *, char *));
+ int netgr_matches	__P((char *, char *, char *, char *));
+--- sudo-1.6.8p12/interfaces.h.ipv6	2004-02-13 22:36:43.000000000 +0100
++++ sudo-1.6.8p12/interfaces.h	2006-07-16 23:33:58.000000000 +0200
+@@ -27,8 +27,11 @@
+  * IP address and netmask pairs for checking against local interfaces.
+  */
+ struct interface {
+-    struct in_addr addr;
++    struct in_addr addr;	/* IPv4 */
+     struct in_addr netmask;
++    struct in6_addr addr6;	/* IPv6 */
++    struct in6_addr netmask6;
++    sa_family_t sa_family;	/* AF_INET ? AF_INET6 */
+ };
+ 
+ /*
+--- sudo-1.6.8p12/parse.c.ipv6	2005-06-19 22:03:24.000000000 +0200
++++ sudo-1.6.8p12/parse.c	2006-07-16 23:57:20.000000000 +0200
+@@ -370,38 +370,134 @@
+     int i;
+     char *m;
+     struct in_addr addr, mask;
++    struct addrinfo hints, *ai;
++
++    memset(&hints, '\0', sizeof(hints));
++    hints.ai_flags = AI_ADDRCONFIG | AI_NUMERICHOST;
++    hints.ai_family = AF_INET;
+ 
+     /* If there's an explicit netmask, use it. */
+     if ((m = strchr(n, '/'))) {
++
+ 	*m++ = '\0';
+-	addr.s_addr = inet_addr(n);
++	if (getaddrinfo(n, NULL, &hints, &ai)!=0)
++	    return(FALSE);
++	memcpy(&addr.s_addr, &((struct sockaddr_in *)ai->ai_addr)->sin_addr,
++		  sizeof(struct in_addr));
++	freeaddrinfo(ai);
++
+ 	if (strchr(m, '.'))
+-	    mask.s_addr = inet_addr(m);
+-	else {
+-	    i = 32 - atoi(m);
+-	    mask.s_addr = 0xffffffff;
+-	    mask.s_addr >>= i;
+-	    mask.s_addr <<= i;
+-	    mask.s_addr = htonl(mask.s_addr);
++	{
++	    if (getaddrinfo(m, NULL, &hints, &ai)!=0)
++		return(FALSE);
++	    memcpy(&mask.s_addr,    /* IPv4 netmask from dotted quad */
++			&((struct sockaddr_in *)ai->ai_addr)->sin_addr,
++			sizeof(struct in_addr));
+ 	}
++       	else
++       	{
++       	    i = 32 - atoi(m);	/* IPv4 netmask from CIDR */
++       	    mask.s_addr = 0xffffffff;
++       	    mask.s_addr >>= i;
++            mask.s_addr <<= i;
++       	    mask.s_addr = htonl(mask.s_addr);
++       	}
++
+ 	*(m - 1) = '/';
+ 
+-	for (i = 0; i < num_interfaces; i++)
+-	    if ((interfaces[i].addr.s_addr & mask.s_addr) == addr.s_addr)
+-		return(TRUE);
++	for (i = 0; i <  num_interfaces; ++i)
++	    if (interfaces[i].sa_family == AF_INET)	/* IPv4 intf. only */
++		if ((interfaces[i].addr.s_addr & mask.s_addr) == addr.s_addr)
++		    return (TRUE);
+     } else {
+-	addr.s_addr = inet_addr(n);
++	if (getaddrinfo(n, NULL, &hints, &ai)!=0)
++	    return(FALSE);
++        memcpy(&addr.s_addr, &((struct sockaddr_in *)ai->ai_addr)->sin_addr,
++                  sizeof(struct in_addr));
++	freeaddrinfo(ai);
+ 
+ 	for (i = 0; i < num_interfaces; i++)
+-	    if (interfaces[i].addr.s_addr == addr.s_addr ||
+-		(interfaces[i].addr.s_addr & interfaces[i].netmask.s_addr)
+-		== addr.s_addr)
+-		return(TRUE);
++	    if (interfaces[i].sa_family == AF_INET)     /* IPv4 intf. only */
++	        if (interfaces[i].addr.s_addr == addr.s_addr ||
++	            (interfaces[i].addr.s_addr & interfaces[i].netmask.s_addr)
++			 == addr.s_addr)
++		    return(TRUE);
+     }
+ 
+     return(FALSE);
+ }
+ 
++int
++addr6_matches(n)
++char *n;
++{
++    int i, j;
++    uint32_t msk[4] = {0, 0, 0, 0};	/* 32x4 */
++    uint32_t addr[4], i_msk[4], i_addr[4];
++    char *m;
++    struct addrinfo hints, *ai;
++
++    memset(&hints, '\0', sizeof(hints));
++    hints.ai_flags = AI_ADDRCONFIG | AI_NUMERICHOST;
++    hints.ai_family = AF_INET6;
++	
++    /* we have IPv6 prefix */
++    if ((m = strchr(n, '/'))) {
++	*m++ = '\0';
++	if (getaddrinfo(n, NULL, &hints, &ai)!=0)
++            return(FALSE);
++	memcpy(&addr, &((struct sockaddr_in6 *)ai->ai_addr)->sin6_addr, 16);
++	freeaddrinfo(ai);
++
++	for (i=0; i < (atoi(m)/32); ++i)
++	    msk[i] = 0xffffffff;
++	if (atoi(m)<128 && (atoi(m) % 32))
++	{
++	    msk[atoi(m)/32] = 0xffffffff;
++	    msk[atoi(m)/32] >>= ( 32 - (atoi(m) % 32) );
++	    msk[atoi(m)/32] <<= ( 32 - (atoi(m) % 32) );
++	}
++	for (i=0; i<4; ++i)
++	    msk[i] = htonl(msk[i]);
++	
++	*(m - 1) = '/';
++	
++	for (i=0; i < num_interfaces; i++)
++	    if (interfaces[i].sa_family == AF_INET6)	/* compare only IPv6 intf. */
++	    {
++		/* nasty */
++	        memcpy(&i_addr, &interfaces[i].addr6, 16);
++		if ( ((i_addr[0] & msk[0]) == addr[0]) &&
++		     ((i_addr[1] & msk[1]) == addr[1]) &&
++		     ((i_addr[2] & msk[2]) == addr[2]) &&
++		     ((i_addr[3] & msk[3]) == addr[3]))
++		    return(TRUE);
++	    }	     
++    } else {
++        if (getaddrinfo(n, NULL, &hints, &ai)!=0)
++	    return(FALSE);
++        memcpy(&addr, &((struct sockaddr_in6 *)ai->ai_addr)->sin6_addr, 16);
++        freeaddrinfo(ai);
++
++	for (i=0; i < num_interfaces; ++i)
++	    if (interfaces[i].sa_family == AF_INET6) /* IPv6 intf. only */
++	    {
++	        memcpy(&i_addr, &interfaces[i].addr6, 16);
++		if ((i_addr[0] == addr[0]) && (i_addr[1] == addr[1]) &&
++		    (i_addr[2] == addr[2]) && (i_addr[3] == addr[3]))
++		    return(TRUE); /* found my own address in sudoers */
++
++		memcpy(&i_msk, &interfaces[i].netmask6, 16);
++		if (((i_addr[0]&i_msk[0]) == addr[0]) &&
++		    ((i_addr[1]&i_msk[1]) == addr[1]) &&
++		    ((i_addr[2]&i_msk[2]) == addr[2]) &&
++		    ((i_addr[3]&i_msk[3]) == addr[3]))
++		    return(TRUE); /* found my netw. address in sudoers */
++	    }
++    }
++    return(FALSE);
++}
++
+ /*
+  * Returns 0 if the hostname matches the pattern and non-zero otherwise.
+  */
+--- sudo-1.6.8p12/sudo.c.ipv6	2006-07-16 23:33:58.000000000 +0200
++++ sudo-1.6.8p12/sudo.c	2006-07-16 23:33:58.000000000 +0200
+@@ -1007,24 +1007,34 @@
+ void
+ set_fqdn()
+ {
+-    struct hostent *hp;
++    struct addrinfo hints, *ai;
+     char *p;
+ 
+-    if (!(hp = gethostbyname(user_host))) {
+-	log_error(MSG_ONLY|NO_EXIT,
+-	    "unable to lookup %s via gethostbyname()", user_host);
+-    } else {
+-	if (user_shost != user_host)
++    memset(&hints, '\0', sizeof(hints));
++    hints.ai_flags = AI_ADDRCONFIG;
++    
++    if (getaddrinfo(user_host, NULL, &hints, &ai) != 0)
++    {
++        log_error(MSG_ONLY|NO_EXIT,
++		"unable to lookup %s via gethostbyname()", user_host);
++    }
++    else
++    {
++	char h_name[NI_MAXHOST];
++
++        if (user_host != user_host)
+ 	    free(user_shost);
++
++	getnameinfo(ai->ai_addr, ai->ai_addrlen, h_name, sizeof(h_name), NULL, 0, 0);
+ 	free(user_host);
+-	user_host = estrdup(hp->h_name);
++	user_host = estrdup(h_name);
+     }
+     if ((p = strchr(user_host, '.'))) {
+-	*p = '\0';
+-	user_shost = estrdup(user_host);
+-	*p = '.';
++        *p = '\0';
++        user_shost = estrdup(user_host);
++        *p = '.';
+     } else {
+-	user_shost = user_host;
++        user_shost = user_host;
+     }
+ }
+ 
+--- sudo-1.6.8p12/parse.yacc.ipv6	2005-06-19 20:24:32.000000000 +0200
++++ sudo-1.6.8p12/parse.yacc	2006-07-16 23:33:58.000000000 +0200
+@@ -250,6 +250,7 @@
+ %token <tok>	 RUNASALIAS		/* Runas_Alias keyword */
+ %token <tok>	 ':' '=' ',' '!' '+' '-' /* union member tokens */
+ %token <tok>	 ERROR
++%token <string>  NTWKADDR6		/* IPv6 address */
+ 
+ /*
+  * NOTE: these are not true booleans as there are actually 4 possible values:
+@@ -395,6 +396,13 @@
+ 				$$ = NOMATCH;
+ 			    free($1);
+ 			}
++		|	NTWKADDR6 {
++			    if (addr6_matches($1))
++				$$ = TRUE;
++			    else
++				$$ = NOMATCH;
++			    free($1);
++			}
+ 		|	NETGROUP {
+ 			    if (netgr_matches($1, user_host, user_shost, NULL))
+ 				$$ = TRUE;
+--- sudo-1.6.8p12/testsudoers.c.ipv6	2004-08-02 20:44:58.000000000 +0200
++++ sudo-1.6.8p12/testsudoers.c	2006-07-17 00:03:50.000000000 +0200
+@@ -175,6 +175,10 @@
+     }
+ }
+ 
++/*
++ * Returns TRUE if "n" is one of our ip addresses or if
++ * "n" is a network that we are on, else returns FALSE.
++ */
+ int
+ addr_matches(n)
+     char *n;
+@@ -182,39 +186,136 @@
+     int i;
+     char *m;
+     struct in_addr addr, mask;
++    struct addrinfo hints, *ai;
++
++    memset(&hints, '\0', sizeof(hints));
++    hints.ai_flags = AI_ADDRCONFIG | AI_NUMERICHOST;
++    hints.ai_family = AF_INET;
+ 
+     /* If there's an explicit netmask, use it. */
+     if ((m = strchr(n, '/'))) {
+-	*m++ = '\0';
+-	addr.s_addr = inet_addr(n);
+-	if (strchr(m, '.'))
+-	    mask.s_addr = inet_addr(m);
+-	else {
+-	    i = 32 - atoi(m);
+-	    mask.s_addr = 0xffffffff;
+-	    mask.s_addr >>= i;
+-	    mask.s_addr <<= i;
+-	    mask.s_addr = htonl(mask.s_addr);
+-	}
+-	*(m - 1) = '/';
+ 
+-	for (i = 0; i < num_interfaces; i++)
+-	    if ((interfaces[i].addr.s_addr & mask.s_addr) == addr.s_addr)
+-		return(TRUE);
++        *m++ = '\0';
++        if (getaddrinfo(n, NULL, &hints, &ai)!=0)
++	    return(FALSE);
++        memcpy(&addr.s_addr, &((struct sockaddr_in *)ai->ai_addr)->sin_addr,
++                  sizeof(struct in_addr));
++        freeaddrinfo(ai);
++
++        if (strchr(m, '.'))
++        {
++            if (getaddrinfo(m, NULL, &hints, &ai)!=0)
++		return(FALSE);
++            memcpy(&mask.s_addr,    /* IPv4 netmask from dotted quad */
++                        &((struct sockaddr_in *)ai->ai_addr)->sin_addr,
++                        sizeof(struct in_addr));
++        }
++        else
++        {
++            i = 32 - atoi(m);   /* IPv4 netmask from CIDR */
++            mask.s_addr = 0xffffffff;
++            mask.s_addr >>= i;
++            mask.s_addr <<= i;
++            mask.s_addr = htonl(mask.s_addr);
++        }
++
++        *(m - 1) = '/';
++
++        for (i = 0; i <  num_interfaces; ++i)
++            if (interfaces[i].sa_family == AF_INET)     /* IPv4 intf. only */
++                if ((interfaces[i].addr.s_addr & mask.s_addr) == addr.s_addr)
++                    return(TRUE);
+     } else {
+-	addr.s_addr = inet_addr(n);
+-
+-	for (i = 0; i < num_interfaces; i++)
+-	    if (interfaces[i].addr.s_addr == addr.s_addr ||
+-		(interfaces[i].addr.s_addr & interfaces[i].netmask.s_addr)
+-		== addr.s_addr)
+-		return(TRUE);
++        if (getaddrinfo(n, NULL, &hints, &ai)!=0)
++	    return(FALSE);
++        memcpy(&addr.s_addr, &((struct sockaddr_in *)ai->ai_addr)->sin_addr,
++                  sizeof(struct in_addr));
++        freeaddrinfo(ai);
++
++        for (i = 0; i < num_interfaces; i++)
++            if (interfaces[i].sa_family == AF_INET)     /* IPv4 intf. only */
++                if (interfaces[i].addr.s_addr == addr.s_addr ||
++                    (interfaces[i].addr.s_addr & interfaces[i].netmask.s_addr)
++                         == addr.s_addr)
++                    return(TRUE);
+     }
+ 
+     return(FALSE);
+ }
+ 
+ int
++addr6_matches(n)
++char *n;
++{
++    int i, j;
++    uint32_t msk[4] = {0, 0, 0, 0};     /* 32x4 */
++    uint32_t addr[4], i_msk[4], i_addr[4];
++    char *m;
++    struct addrinfo hints, *ai;
++
++    memset(&hints, '\0', sizeof(hints));
++    hints.ai_flags = AI_ADDRCONFIG | AI_NUMERICHOST;
++    hints.ai_family = AF_INET6;
++
++    /* we have IPv6 prefix */
++    if ((m = strchr(n, '/'))) {
++        *m++ = '\0';
++        if (getaddrinfo(n, NULL, &hints, &ai)!=0)
++	    return(FALSE);
++        memcpy(&addr, &((struct sockaddr_in6 *)ai->ai_addr)->sin6_addr, 16);
++        freeaddrinfo(ai);
++
++        for (i=0; i < (atoi(m)/32); ++i)
++            msk[i] = 0xffffffff;
++        if (atoi(m)<128 && (atoi(m) % 32))
++        {
++            msk[atoi(m)/32] = 0xffffffff;
++            msk[atoi(m)/32] >>= ( 32 - (atoi(m) % 32) );
++            msk[atoi(m)/32] <<= ( 32 - (atoi(m) % 32) );
++        }
++        for (i=0; i<4; ++i)
++            msk[i] = htonl(msk[i]);
++
++        *(m - 1) = '/';
++
++        for (i=0; i < num_interfaces; i++)
++            if (interfaces[i].sa_family == AF_INET6)    /* compare only IPv6 intf. */
++            {
++                /* nasty */
++                memcpy(&i_addr, &interfaces[i].addr6, 16);
++                if ( ((i_addr[0] & msk[0]) == addr[0]) &&
++                     ((i_addr[1] & msk[1]) == addr[1]) &&
++                     ((i_addr[2] & msk[2]) == addr[2]) &&
++                     ((i_addr[3] & msk[3]) == addr[3]))
++                    return (TRUE);
++            }
++    } else {
++        if (getaddrinfo(n, NULL, &hints, &ai)!=0)
++	    return(FALSE);
++        memcpy(&addr, &((struct sockaddr_in6 *)ai->ai_addr)->sin6_addr, 16);
++        freeaddrinfo(ai);
++
++        for (i=0; i < num_interfaces; ++i)
++            if (interfaces[i].sa_family == AF_INET6) /* IPv6 intf. only */
++            {
++                memcpy(&i_addr, &interfaces[i].addr6, 16);
++                if ((i_addr[0] == addr[0]) && (i_addr[1] == addr[1]) &&
++                    (i_addr[2] == addr[2]) && (i_addr[3] == addr[3]))
++                    return (TRUE); /* found my own address in sudoers */
++
++                memcpy(&i_msk, &interfaces[i].netmask6, 16);
++                if (((i_addr[0]&i_msk[0]) == addr[0]) &&
++                    ((i_addr[1]&i_msk[1]) == addr[1]) &&
++                    ((i_addr[2]&i_msk[2]) == addr[2]) &&
++                    ((i_addr[3]&i_msk[3]) == addr[3]))
++                    return (TRUE); /* found my netw. address in sudoers */
++            }
++    }
++    return(FALSE);
++}
++
++
++int
+ hostname_matches(shost, lhost, pattern)
+     char *shost;
+     char *lhost;
+--- sudo-1.6.8p12/interfaces.c.ipv6	2004-02-13 22:36:43.000000000 +0100
++++ sudo-1.6.8p12/interfaces.c	2006-07-16 23:33:58.000000000 +0200
+@@ -102,7 +102,7 @@
+ load_interfaces()
+ {
+     struct ifaddrs *ifa, *ifaddrs;
+-    /* XXX - sockaddr_in6 sin6; */
++    struct sockaddr_in6 *sin6;
+     struct sockaddr_in *sin;
+     int i;
+ 
+@@ -117,12 +117,15 @@
+ 	    continue;
+ 
+ 	switch(ifa->ifa_addr->sa_family) {
+-	    /* XXX - AF_INET6 */
+ 	    case AF_INET:
+ 		num_interfaces++;
+ 		break;
++	    case AF_INET6:
++		num_interfaces++;
++		break;
+ 	}
+     }
++
+     if (num_interfaces == 0)
+ 	return;
+     interfaces =
+@@ -136,8 +139,8 @@
+ 		continue;
+ 
+ 	switch(ifa->ifa_addr->sa_family) {
+-	    /* XXX - AF_INET6 */
+ 	    case AF_INET:
++		interfaces[i].sa_family = AF_INET;
+ 		sin = (struct sockaddr_in *)ifa->ifa_addr;
+ 		memcpy(&interfaces[i].addr, &sin->sin_addr,
+ 		    sizeof(struct in_addr));
+@@ -146,6 +149,16 @@
+ 		    sizeof(struct in_addr));
+ 		i++;
+ 		break;
++	    case AF_INET6:
++		interfaces[i].sa_family = AF_INET6;
++		sin6 = (struct sockaddr_in6 *)ifa->ifa_addr;
++		memcpy(&interfaces[i].addr6, &sin6->sin6_addr,
++		    sizeof(struct in6_addr));
++		sin6 = (struct sockaddr_in6 *)ifa->ifa_netmask;
++                memcpy(&interfaces[i].netmask6, &sin6->sin6_addr,
++                    sizeof(struct in6_addr));	
++		i++;
++		break;
+ 	}
+     }
+ #ifdef HAVE_FREEIFADDRS
+@@ -306,10 +319,30 @@
+ void
+ dump_interfaces()
+ {
+-    int i;
++    int i, j, ip6_prefix=0; 	/* for counting IPv6 prefix length (in bits!!) */
++    uint8_t u6_addr8[16]; 	/* for storing IPv6 netmask */
+ 
+     puts("Local IP address and netmask pairs:");
+     for (i = 0; i < num_interfaces; i++)
+-	printf("\t%s / 0x%x\n", inet_ntoa(interfaces[i].addr),
+-	    (unsigned int)ntohl(interfaces[i].netmask.s_addr));
++    {
++	char name[NI_MAXHOST], netmask[NI_MAXHOST];
++	ip6_prefix=0;
++	
++	switch (interfaces[i].sa_family)
++	{
++	    case AF_INET:
++		inet_ntop(AF_INET, &interfaces[i].addr, name, NI_MAXHOST);
++		inet_ntop(AF_INET, &interfaces[i].netmask, netmask, NI_MAXHOST);
++		printf("\t%s / %s\n", name, netmask);
++		break;
++	    case AF_INET6:
++		inet_ntop(AF_INET6, &interfaces[i].addr6, name, NI_MAXHOST);
++		memcpy(u6_addr8, &interfaces[i].netmask6, 16);
++		for (j=0; j<16; ++j) 
++		    if (u6_addr8[j] == 255)		/* 255 == 0xff */
++			 ip6_prefix=ip6_prefix+8;	/* eight bits */
++		printf("\t%s / %d\n", name, ip6_prefix);
++		break;
++	}
++    }
+ }

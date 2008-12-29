@@ -1,0 +1,296 @@
+diff -up sudo-1.6.8p12/set_perms.c.audit sudo-1.6.8p12/set_perms.c
+--- sudo-1.6.8p12/set_perms.c.audit	2004-05-28 01:12:02.000000000 +0200
++++ sudo-1.6.8p12/set_perms.c	2008-03-03 17:57:42.000000000 +0100
+@@ -48,6 +48,10 @@
+ #ifdef HAVE_LOGIN_CAP_H
+ # include <login_cap.h>
+ #endif
++#if defined(WITH_AUDIT) && defined(HAVE_LIBCAP)
++# include <sys/prctl.h>
++# include <sys/capability.h>
++#endif
+ 
+ #include "sudo.h"
+ 
+@@ -112,15 +116,46 @@ set_perms_posix(perm)
+ 			      	break;
+ 
+ 	case PERM_FULL_RUNAS:
+-				/* headed for exec(), assume euid == ROOT_UID */
+-				runas_setup();
+-				if (def_stay_setuid)
+-				    error = seteuid(runas_pw->pw_uid);
+-				else
+-				    error = setuid(runas_pw->pw_uid);
+-				if (error)
+-				    fatal("unable to change to runas uid", 1);
+-				break;
++#if defined(WITH_AUDIT) && defined(HAVE_LIBCAP)
++                                { /* BEGIN CAP BLOCK */
++                                cap_t new_caps;
++                                cap_value_t cap_list[] = { CAP_AUDIT_WRITE };
++ 
++                                if (runas_pw->pw_uid != ROOT_UID) {
++                                    new_caps = cap_init ();
++                                    if (!new_caps)
++                                        err(1, "Error initing capabilities, aborting.\n");
++                                    
++                                    if(cap_set_flag(new_caps, CAP_PERMITTED, 1, cap_list, CAP_SET) ||
++                                       cap_set_flag(new_caps, CAP_EFFECTIVE, 1, cap_list, CAP_SET)) {
++                                         err(1, "Error setting capabilities, aborting\n");   
++                                    }
++                                                                
++                                    if (prctl(PR_SET_KEEPCAPS, 1, 0, 0, 0))
++                                        err(1, "Error setting KEEPCAPS, aborting\n");
++                                }
++#endif                          
++                                /* headed for exec(), assume euid == ROOT_UID */                                      
++                                runas_setup ();
++                                if (setresuid(def_stay_setuid ? 
++                                    user_uid : runas_pw->pw_uid,
++                                    runas_pw->pw_uid, runas_pw->pw_uid))
++                                    err(1, "unable to change to runas uid");
++
++#if defined(WITH_AUDIT) && defined(HAVE_LIBCAP)
++                                if (runas_pw->pw_uid != ROOT_UID) {
++                                    if (prctl(PR_SET_KEEPCAPS, 0, 0, 0, 0) < 0)
++                                        err(1, "Error resetting KEEPCAPS, aborting\n");
++                                
++                                    if (cap_set_proc(new_caps))
++                                        err(1, "Error dropping capabilities, aborting\n");
++                            
++                                    if (cap_free (new_caps))
++                                        err(1, "Error freeing caps\n");                        
++                                }
++	                        } /* END CAP BLOCK */
++#endif
++	                         break;
+ 
+ 	case PERM_SUDOERS:
+ 				/* assume euid == ROOT_UID, ruid == user */
+diff -up sudo-1.6.8p12/sudo.c.audit sudo-1.6.8p12/sudo.c
+--- sudo-1.6.8p12/sudo.c.audit	2008-03-03 17:57:42.000000000 +0100
++++ sudo-1.6.8p12/sudo.c	2008-03-03 17:57:42.000000000 +0100
+@@ -88,6 +88,10 @@
+ # endif
+ #endif
+ 
++#ifdef WITH_AUDIT
++#include <libaudit.h>
++#endif
++
+ #include "sudo.h"
+ #include "interfaces.h"
+ #include "version.h"
+@@ -278,6 +282,10 @@ main(argc, argv, envp)
+     if (safe_cmnd == NULL)
+ 	safe_cmnd = user_cmnd;
+ 
++#if defined(WITH_AUDIT)
++    audit_help_open ();
++#endif
++
+     /*
+      * If we are using set_perms_posix() and the stay_setuid flag was not set,
+      * set the real, effective and saved uids to 0 and use set_perms_nosuid()
+@@ -436,6 +444,18 @@ main(argc, argv, envp)
+ 	(void) sigaction(SIGTSTP, &saved_sa_tstp, NULL);
+ 	(void) sigaction(SIGCHLD, &saved_sa_chld, NULL);
+ 
++        if (access(safe_cmnd, X_OK) != 0) {
++                 warn ("unable to execute %s", safe_cmnd);
++#ifdef WITH_AUDIT
++                audit_logger(AUDIT_USER_CMD,  safe_cmnd, user_args, 0);
++#endif
++                exit(127);
++        }
++#ifdef WITH_AUDIT
++        audit_logger(AUDIT_USER_CMD,  safe_cmnd, user_args, 1);
++#endif
++
++
+ #ifndef PROFILING
+ 	if (ISSET(sudo_mode, MODE_BACKGROUND) && fork() > 0)
+ 	    exit(0);
+@@ -447,10 +467,16 @@ main(argc, argv, envp)
+ 	/*
+ 	 * If we got here then the exec() failed...
+ 	 */
++#ifdef WITH_AUDIT
++        audit_logger(AUDIT_USER_CMD,  safe_cmnd, user_args, 0);
++#endif
+ 	warn("unable to execute %s", safe_cmnd);
+ 	exit(127);
+     } else if (ISSET(validated, FLAG_NO_USER) || (validated & FLAG_NO_HOST)) {
+ 	log_auth(validated, 1);
++#ifdef WITH_AUDIT
++        audit_logger(AUDIT_USER_CMD,  safe_cmnd, user_args, 0);
++#endif
+ 	exit(1);
+     } else if (ISSET(validated, VALIDATE_NOT_OK)) {
+ 	if (def_path_info) {
+@@ -471,6 +497,9 @@ main(argc, argv, envp)
+ 	    /* Just tell the user they are not allowed to run foo. */
+ 	    log_auth(validated, 1);
+ 	}
++#ifdef WITH_AUDIT
++        audit_logger(AUDIT_USER_CMD,  safe_cmnd, user_args, 0);
++#endif
+ 	exit(1);
+     } else {
+ 	/* should never get here */
+diff -up /dev/null sudo-1.6.8p12/audit_help.c
+--- /dev/null	2008-02-05 17:16:01.642928004 +0100
++++ sudo-1.6.8p12/audit_help.c	2008-03-03 18:50:35.000000000 +0100
+@@ -0,0 +1,100 @@
++/*
++ *  Audit helper functions used throughout sudo
++ *
++ *  Copyright (C) 2007, Red Hat, Inc.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ * 1. Redistributions of source code must retain the above copyright
++ *    notice, this list of conditions and the following disclaimer.
++ * 2. Redistributions in binary form must reproduce the above copyright
++ *    notice, this list of conditions and the following disclaimer in the
++ *    documentation and/or other materials provided with the distribution.
++ * 3. Neither the name of Julianne F. Haugh nor the names of its contributors
++ *    may be used to endorse or promote products derived from this software
++ *    without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY JULIE HAUGH AND CONTRIBUTORS ``AS IS'' AND
++ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED.  IN NO EVENT SHALL JULIE HAUGH OR CONTRIBUTORS BE LIABLE
++ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
++ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
++ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
++ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
++ * SUCH DAMAGE.
++ */
++
++#include <config.h>
++
++#ifdef WITH_AUDIT
++
++#include <stdlib.h>
++#include <syslog.h>
++#include <stdarg.h>
++#include <libaudit.h>
++#include <errno.h>
++#include <stdio.h>
++#include <unistd.h>
++#include <sys/types.h>
++
++int audit_fd;
++
++void audit_help_open (void)
++{
++	audit_fd = audit_open ();
++	if (audit_fd < 0) {
++        	/* You get these only when the kernel doesn't have
++                 * audit compiled in. */
++		if (errno == EINVAL || errno == EPROTONOSUPPORT ||
++		    errno == EAFNOSUPPORT)
++			return;
++		fprintf (stderr, "Cannot open audit interface - aborting.\n");
++		exit (1);
++	}
++}
++
++/*
++ * This function will log a message to the audit system using a predefined
++ * message format. Parameter usage is as follows:
++ *
++ * type - type of message: AUDIT_USER_CMD
++ * command - the command being logged
++ * params - command parameters 
++ * result - 1 is "success" and 0 is "failed"
++ *
++ */
++void audit_logger (int type, const char *command, const char *params, int result)
++{
++	int err;
++	char *msg;
++
++	if( audit_fd < 0 )
++		return;
++	else {
++
++		if( params ) 
++	                err = asprintf(&msg, "%s %s", command, params);
++		else 
++	                err = asprintf(&msg, "%s", command);
++                if (err < 0) {
++                        fprintf (stderr, "Memory allocation for audit message wasn’t possible.\n");
++                        return;
++                }
++		
++		err = audit_log_user_command (audit_fd, type, msg, NULL, result);
++               /* The kernel supports auditing and we had 
++                  enough privilege to write to the socket. */
++		if( err <= 0 && !(errno == EPERM && getuid() != 0) ) {
++			perror("audit_log_user_command()");
++		}
++
++		free(msg);
++	}
++}
++
++#endif                         /* WITH_AUDIT */
++
+diff -up sudo-1.6.8p12/Makefile.in.audit sudo-1.6.8p12/Makefile.in
+--- sudo-1.6.8p12/Makefile.in.audit	2008-03-03 17:57:42.000000000 +0100
++++ sudo-1.6.8p12/Makefile.in	2008-03-03 17:57:42.000000000 +0100
+@@ -118,11 +118,13 @@ HDRS = compat.h def_data.h defaults.h in
+ 
+ AUTH_OBJS = sudo_auth.o @AUTH_OBJS@
+ 
++AUDIT_OBJS = audit_help.o 
++
+ PARSEOBJS = sudo.tab.o lex.yy.o alloc.o defaults.o
+ 
+ SUDOBJS = check.o env.o getspwuid.o gettime.o goodpath.o fileops.o find_path.o \
+ 	  interfaces.o logging.o parse.o set_perms.o sudo.o sudo_edit.o \
+-	  tgetpass.o zero_bytes.o @SUDO_OBJS@ $(AUTH_OBJS) $(PARSEOBJS)
++	  tgetpass.o zero_bytes.o @SUDO_OBJS@ $(AUTH_OBJS) $(PARSEOBJS) $(AUDIT_OBJS)
+ 
+ VISUDOBJS = visudo.o fileops.o gettime.o goodpath.o find_path.o $(PARSEOBJS)
+ 
+@@ -265,6 +267,9 @@ securid5.o: $(authdir)/securid5.c $(AUTH
+ sia.o: $(authdir)/sia.c $(AUTHDEP)
+ 	$(CC) -c $(CPPFLAGS) $(CFLAGS) $(DEFS) $(OPTIONS) $(authdir)/sia.c
+ 
++audit_help.o: audit_help.c sudo.h
++	$(CC) -c $(CPPFLAGS) $(CFLAGS) $(DEFS) $(OPTIONS) $(LIBADUIT) $(srcdir)/audit_help.c
++
+ sudo.man.in: $(srcdir)/sudo.pod
+ 	@rm -f $(srcdir)/$@
+ 	( cd $(srcdir); mansectsu=`echo @MANSECTSU@|tr A-Z a-z`; mansectform=`echo @MANSECTFORM@|tr A-Z a-z`; sed -n -e 1d -e '/^=pod/q' -e 's/^/.\\" /p' sudo.pod > $@; pod2man --quotes=none --date="`date '+%B %e, %Y'`" --section=$$mansectsu --release=$(VERSION) --center="MAINTENANCE COMMANDS" sudo.pod | sed -e "s/(5)/($$mansectform)/" -e "s/(8)/($$mansectsu)/" >> $@ )
+diff -up sudo-1.6.8p12/sudo.h.audit sudo-1.6.8p12/sudo.h
+--- sudo-1.6.8p12/sudo.h.audit	2008-03-03 17:57:42.000000000 +0100
++++ sudo-1.6.8p12/sudo.h	2008-03-03 17:57:42.000000000 +0100
+@@ -23,6 +23,8 @@
+ #ifndef _SUDO_SUDO_H
+ #define _SUDO_SUDO_H
+ 
++#include <config.h>
++
+ #include <pathnames.h>
+ #include <limits.h>
+ #include "compat.h"
+@@ -259,4 +261,10 @@ extern void (*set_perms) __P((int));
+ extern int errno;
+ #endif
+ 
++#ifdef WITH_AUDIT
++extern int audit_fd;
++extern void audit_help_open (void);
++extern void audit_logger (int, const char *, const char *, int);
++#endif
++
+ #endif /* _SUDO_SUDO_H */

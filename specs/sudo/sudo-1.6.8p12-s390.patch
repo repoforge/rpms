@@ -1,0 +1,23 @@
+--- sudo-1.6.8p12/configure.in.old	2007-09-24 17:15:25.000000000 -0400
++++ sudo-1.6.8p12/configure.in	2007-09-24 17:17:03.000000000 -0400
+@@ -2145,6 +2145,8 @@
+     SUDO_LIBS="${SUDO_LIBS}${LDAP_LIBS}"
+     LIBS="$_LIBS"
+     LDFLAGS="$_LDFLAGS"
++    # XXX - OpenLDAP has deprecated ldap_get_values()
++    CPPFLAGS="${CPPFLAGS} -DLDAP_DEPRECATED"
+ fi
+ 
+ dnl
+--- sudo-1.6.8p12/configure.old	2007-09-24 17:18:06.000000000 -0400
++++ sudo-1.6.8p12/configure	2007-09-24 17:19:53.000000000 -0400
+@@ -30131,6 +30131,8 @@
+     SUDO_LIBS="${SUDO_LIBS}${LDAP_LIBS}"
+     LIBS="$_LIBS"
+     LDFLAGS="$_LDFLAGS"
++    # XXX - OpenLDAP has deprecated ldap_get_values()
++    CPPFLAGS="${CPPFLAGS} -DLDAP_DEPRECATED"
+ fi
+ 
+ if test -n "$blibpath"; then
+

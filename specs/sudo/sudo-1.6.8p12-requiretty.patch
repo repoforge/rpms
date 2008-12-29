@@ -1,0 +1,15 @@
+--- sudo-1.6.8p12/sudoers.tty	2006-05-29 15:10:30.000000000 +0200
++++ sudo-1.6.8p12/sudoers	2006-05-29 15:17:03.000000000 +0200
+@@ -13,6 +13,12 @@
+ 
+ # Defaults specification
+ 
++#
++# Disable "ssh hostname sudo <cmd>", because it will show the password in clear. 
++#         You have to run "ssh -t hostname sudo <cmd>".
++#
++Defaults    requiretty
++
+ Defaults    env_reset
+ Defaults    env_keep = "COLORS DISPLAY HOSTNAME HISTSIZE INPUTRC KDEDIR \
+                         LS_COLORS MAIL PS1 PS2 QTDIR USERNAME \

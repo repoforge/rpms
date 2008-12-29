@@ -1,0 +1,17 @@
+--- sudo-1.6.8p12/sudoers.env_reset	2006-02-08 16:58:15.000000000 +0100
++++ sudo-1.6.8p12/sudoers	2006-02-08 16:59:02.000000000 +0100
+@@ -13,6 +13,14 @@
+ 
+ # Defaults specification
+ 
++Defaults    env_reset
++Defaults    env_keep = "COLORS DISPLAY HOSTNAME HISTSIZE INPUTRC KDEDIR \
++                        LS_COLORS MAIL PS1 PS2 QTDIR USERNAME \
++                        LANG LC_ADDRESS LC_CTYPE LC_COLLATE LC_IDENTIFICATION \
++                        LC_MEASUREMENT LC_MESSAGES LC_MONETARY LC_NAME LC_NUMERIC \
++                        LC_PAPER LC_TELEPHONE LC_TIME LC_ALL LANGUAGE LINGUAS \
++                        _XKB_CHARSET"
++
+ # Runas alias specification
+ 
+ # User privilege specification

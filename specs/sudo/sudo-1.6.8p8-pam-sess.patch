@@ -1,0 +1,32 @@
+--- sudo-1.6.8p8/auth/pam.c.sess	2005-05-24 16:38:35.976866872 +0200
++++ sudo-1.6.8p8/auth/pam.c	2005-05-24 16:39:50.061604280 +0200
+@@ -175,6 +175,8 @@
+ pam_prep_user(pw)
+     struct passwd *pw;
+ {
++    int error;
++
+     if (pamh == NULL)
+ 	pam_init(pw, NULL, NULL);
+ 
+@@ -195,6 +197,20 @@
+      */
+     (void) pam_setcred(pamh, PAM_ESTABLISH_CRED);
+ 
++    /*
++     * That's enough initialize PAM session in this function, because
++     * sudo calls it before exec()
++     */
++    if ((error = pam_open_session(pamh, 0))!=PAM_SUCCESS) {
++	    pam_end(pamh, error);
++	    return(AUTH_FAILURE);
++    }
++    /*
++     * For example settings from pam_limits are persistent after pam_session_close() and
++     * it's probably more clean call pam_close_session() than omit it.
++     */
++    pam_close_session(pamh, 0);
++   
+     if (pam_end(pamh, PAM_SUCCESS | PAM_DATA_SILENT) == PAM_SUCCESS)
+ 	return(AUTH_SUCCESS);
+     else
