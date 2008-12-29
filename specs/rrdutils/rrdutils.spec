@@ -8,8 +8,8 @@
 
 Summary: Utilities to deal with RRD files and graphs
 Name: rrdutils
-Version: 5.0.1
-Release: 1.2
+Version: 5.2.1
+Release: 1
 License: BSD
 Group: Applications/Databases
 URL: http://rrdutils.sourceforge.net/
@@ -55,6 +55,9 @@ create new instances of a RRD, and to generate the graphs for them.
 %{_localstatedir}/lib/rrd/
 
 %changelog
+* Mon Dec 08 2008 Christoph Maser <cmr@financial.com> - 5.1.2-1
+- Update version to 5.1.2
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 5.0.1-1.2
 - Rebuild for Fedora Core 5.
 
