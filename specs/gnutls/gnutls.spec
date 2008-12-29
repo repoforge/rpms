@@ -25,7 +25,6 @@ Quoting from RFC2246 - the TLS 1.0 protocol specification:
 "The TLS protocol provides communications privacy over the Internet.
  The protocol allows client/server applications to communicate in a way that
 
-
 %package devel
 Summary: Header files, libraries and development documentation for GnuTLS
 Group: Development/Libraries
@@ -40,7 +39,6 @@ This package contains the header files, static libraries and development
 documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
-
 %package utils
 Summary: Utilities for the GNU Transport Layer Security library
 Group: Applications/System
@@ -53,10 +51,8 @@ implements the proposed standards by the IETF's TLS working group.
 
 This package contains some tools using for GnuTLS.
 
-
 %prep
 %setup
-
 
 %build
 %configure --with-included-libtasn1
@@ -70,22 +66,16 @@ This package contains some tools using for GnuTLS.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-
-%post
-/sbin/ldconfig 2>/dev/null
-%postun
-/sbin/ldconfig 2>/dev/null
-
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* doc/TODO NEWS README THANKS
 %{_libdir}/*.so.*
-
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -98,12 +88,10 @@ This package contains some tools using for GnuTLS.
 %exclude %{_libdir}/*.so
 %{_datadir}/aclocal/*.m4
 
-
 %files utils
 %defattr(-, root, root, 0755)
 %{_bindir}/gnutls-*
 %{_bindir}/*tool
-
 
 %changelog
 * Mon May 17 2004 Dag Wieers <dag@wieers.com> - 1.0.13-1
@@ -114,4 +102,3 @@ This package contains some tools using for GnuTLS.
 
 * Wed Dec 31 2003 Dag Wieers <dag@wieers.com> - 0.8.10-0
 - Initial package. (using DAR)
-

@@ -1,0 +1,12 @@
+diff -up xdelta-1.1.4/Makefile.am.edsio xdelta-1.1.4/Makefile.am
+--- xdelta-1.1.4/Makefile.am.edsio	2007-01-28 21:23:52.000000000 +0100
++++ xdelta-1.1.4/Makefile.am	2008-10-03 14:19:25.000000000 +0200
+@@ -17,7 +17,7 @@ noinst_HEADERS  = xdeltapriv.h getopt.h
+ lib_LTLIBRARIES = libxdelta.la
+ 
+ libxdelta_la_SOURCES = xdelta.c xdapply.c $(SER_SOURCES)
+-libxdelta_la_LIBADD  = $(GLIB_LIBS)
++libxdelta_la_LIBADD  = $(GLIB_LIBS) $(top_srcdir)/libedsio/*.lo
+ 
+ EXTRA_DIST = xd.ser $(SER_OUT) xdelta.magic xdelta.prj xdelta.m4	\
+ 	autogen.sh stamp-ser xdrsync.c

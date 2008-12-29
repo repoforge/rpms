@@ -8,14 +8,13 @@
 
 Summary: Simple and pythonic XML template language
 Name: python-kid
-Version: 0.9.6
-Release: 1
+Version: 0.6.3
+Release: 1.2
 License: MIT
 Group: Development/Libraries
 URL: http://www.lesscode.org/projects/kid/
 
-Source0: http://www.kid-templating.org/dist/%{version}/dist/kid-%{version}.tar.gz
-Source1: http://cheeseshop.python.org/packages/2.4/s/setuptools/setuptools-0.6c6-py2.4.egg
+Source: http://lesscode.org/dist/kid/kid-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -29,7 +28,6 @@ triangle between XSLT, TAL, and PHP.
 
 %prep
 %setup -n %{real_name}-%{version}
-%{__cp} -v %{SOURCE1} .
 
 %build
 %{__python} setup.py build
@@ -47,11 +45,10 @@ triangle between XSLT, TAL, and PHP.
 %{_bindir}/kid
 %{_bindir}/kidc
 %{python_sitelib}/kid/
-%exclude %{python_sitelib}/kid-0.9.6-py*.egg-info/
 
 %changelog
-* Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.9.6-1
-- Updated to release 0.9.6.
+* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6.3-1.2
+- Rebuild for Fedora Core 5.
 
 * Mon May 09 2005 Dag Wieers <dag@wieers.com> - 0.6.3-1
 - Initial package. (using DAR)

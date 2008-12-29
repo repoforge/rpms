@@ -4,7 +4,7 @@
 
 Summary: Graphical dvd9 to dvd5 converter
 Name: dvd95
-Version: 1.3p1
+Version: 1.4p0
 Release: 1
 License: GPL
 Group: Applications/Archiving
@@ -55,6 +55,9 @@ DVD95 support two copy modes :
 %{_datadir}/pixmaps/dvd95/
 
 %changelog
+* Mon Aug 11 2008 Dag Wieers <dag@wieers.com> - 1.4p0-1
+- Updated to release 1.4p0.
+
 * Tue Jan  1 2008 Matthias Saou <http://freshrpms.net/> 1.3p1-1
 - Update to 1.3p1.
 - Replace gtk2-devel with proper libgnomeui-devel build requirement.

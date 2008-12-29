@@ -3,107 +3,128 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{?fc4:%define _without_modxorg 1}
+#{?el5:#undefine _with_mozilla}
+%{?el5:%define mozilla xulrunner-devel nspr-devel}
+
+%{?el4:%define mozilla seamonkey-devel}
 %{?el4:%define _without_modxorg 1}
-%{?fc3:%define _without_modxorg 1}
-%{?fc2:%define _without_modxorg 1}
-%{?fc1:%define _without_modxorg 1}
+
+%{?el3:%define mozilla seamonkey-devel}
 %{?el3:%define _without_modxorg 1}
+
 %{?rh9:%define _without_modxorg 1}
 %{?rh7:%define _without_modxorg 1}
+
+%{?el2:%define mozilla seamonkey-devel}
 %{?el2:%define _without_modxorg 1}
 
 Summary: DjVu viewers, encoders and utilities
 Name: djvulibre
-Version: 3.5.17
+Version: 3.5.20
 Release: 1
 License: GPL
 Group: Applications/Publishing
 URL: http://djvu.sourceforge.net/
+
 Source: http://dl.sf.net/djvu/djvulibre-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: gcc-c++
+BuildRequires: gettext
+BuildRequires: libjpeg-devel
+BuildRequires: libstdc++-devel
+BuildRequires: libtiff-devel
+BuildRequires: qt-devel
 %{!?_without_modxorg:BuildRequires: libXext-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
-BuildRequires: qt-devel, libjpeg-devel
-BuildRequires: libstdc++-devel, gcc-c++, mozilla, gettext, libtiff-devel
-# Provide these here, they're so small, it's not worth splitting them out
+%{?_with_mozilla:BuildRequires: %{mozilla}}
+### Provide these here, they're so small, it's not worth splitting them out
+Provides: djvulibre-libs = %{version}-%{release}
+Obsoletes: djvulibre-libs <= %{version}-%{release}
+Provides: djvulibre-mozplugin = %{version}-%{release}
+Obsoletes: djvulibre-mozplugin <= %{version}-%{release}
 Provides: mozilla-djvulibre = %{version}-%{release}
-Provides: djvulibre-devel = %{version}-%{release}
+Obsoletes: mozilla-djvulibre <= %{version}-%{release}
 
 %description
 DjVu is a web-centric format and software platform for distributing documents
-and images.  DjVu content downloads faster, displays and renders faster, looks
+and images. DjVu content downloads faster, displays and renders faster, looks
 nicer on a screen, and consume less client resources than competing formats.
 DjVu was originally developed at AT&T Labs-Research by Leon Bottou, Yann
-LeCun, Patrick Haffner, and many others.  In March 2000, AT&T sold DjVu to
+LeCun, Patrick Haffner, and many others. In March 2000, AT&T sold DjVu to
 LizardTech Inc. who now distributes Windows/Mac plug-ins, and commercial
 encoders (mostly on Windows)
 
 In an effort to promote DjVu as a Web standard, the LizardTech management was
 enlightened enough to release the reference implementation of DjVu under the
-GNU GPL in October 2000.  DjVuLibre (which means free DjVu), is an enhanced
+GNU GPL in October 2000. DjVuLibre (which means free DjVu), is an enhanced
 version of that code maintained by the original inventors of DjVu. It is
 compatible with version 3.5 of the LizardTech DjVu software suite.
 
+%package devel
+Summary: Header files, libraries and development documentation for %{name}.
+Group: Development/Libraries
+Requires: %{name} = %{version}-%{release}
+
+%description devel
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
 %setup
-
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-#find_lang %{name}
 
 %{__mkdir_p} %{buildroot}%{_libdir}/mozilla/plugins
-%{__ln_s} ../../netscape/plugins/nsdejavu.so \
-    %{buildroot}%{_libdir}/mozilla/plugins/
+%{__ln_s} ../../netscape/plugins/nsdejavu.so %{buildroot}%{_libdir}/mozilla/plugins/
 
 # Fix for the libs to get stripped correctly (debuginfo)
 find %{buildroot}%{_libdir} -name '*.so*' | xargs %{__chmod} +x
 
-
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %post
 /sbin/ldconfig
-update-desktop-database /usr/share/applications || :
+%{_datadir}/djvu/djview3/desktop/register-djview-menu install || :
+%{_datadir}/djvu/osi/desktop/register-djvu-mime install || :
 
-%postun
+%preun
 /sbin/ldconfig
-update-desktop-database /usr/share/applications || :
+if [ $1 -eq 0 ]; then
+    %{_datadir}/djvu/djview3/desktop/register-djview-menu uninstall || :
+    %{_datadir}/djvu/osi/desktop/register-djvu-mime uninstall || :
+fi
 
-
-#%files -f %{name}.lang
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING COPYRIGHT doc NEWS README TODO
+%doc COPYING COPYRIGHT NEWS README TODO doc/
+%doc %{_mandir}/man1/*.1*
+%doc %{_mandir}/ja/man1/*.1*
 %{_bindir}/*
-%{_includedir}/libdjvu/
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so*
-%{_libdir}/*/plugins/*.so
-%{_datadir}/application-registry/djvu.applications
-%{_datadir}/applications/djview.desktop
-%{_datadir}/icons/hicolor/??x??/mimetypes/djvu.png
-%{_datadir}/mimelnk/image/x-djvu.desktop
-%{_datadir}/mime-info/djvu.*
 %{_datadir}/djvu/
-%{_datadir}/pixmaps/djvu.png
-%{_mandir}/man1/*.1*
-%{_mandir}/ja/man1/*.1*
-%{_libdir}/pkgconfig/ddjvuapi.pc
-#%{_datadir}/mimelnk/image/x-djvu.desktop
+%{_includedir}/libdjvu/
+%{_libdir}/libdjvulibre.so.*
+%{_libdir}/*/plugins/*.so
 
+%files devel
+%defattr(-, root, root, 0755)
+%doc doc/
+%{_libdir}/libdjvulibre.so
+%{_libdir}/pkgconfig/ddjvuapi.pc
+%exclude %{_libdir}/libdjvulibre.la
 
 %changelog
+* Tue Dec 09 2008 Dag Wieers <dag@wieers.com> - 3.5.20-1
+- Updated to release 3.5.20.
+
 * Fri Nov 24 2006 Dries Verachtert <dries@ulyssis.org> - 3.5.17-1
 - Updated to release 3.5.17.
 

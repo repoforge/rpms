@@ -21,7 +21,7 @@ Version: 0.3.0
 Release: 3
 License: LGPL
 Group: System Environment/Libraries
-URL: http://www.opaque.net/ming/
+URL: http://www.libming.org/
 
 Source0: http://dl.sf.net/ming/ming-%{version}.tar.gz
 Source1: http://dl.sf.net/ming/ming-perl-%{version}.tar.gz

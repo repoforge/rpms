@@ -8,13 +8,15 @@
 
 Summary: Python interface for BerkeleyDB 3.x and 4.x
 Name: python-bsddb3
-Version: 4.4.2
+Version: 4.6.2
 Release: 1
 License: Unknown
 Group: Development/Libraries
-URL: http://pybsddb.sourceforge.net/
+URL: http://www.argo.es/~jcea/programacion/pybsddb.htm
+#URL: http://pybsddb.sourceforge.net/
 
-Source: http://dl.sf.net/pybsddb/bsddb3-%{version}.tar.gz
+Source: http://pypi.python.org/packages/source/b/bsddb3/bsddb3-%{version}.tar.gz
+#Source: http://dl.sf.net/pybsddb/bsddb3-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python, python-devel
@@ -38,9 +40,9 @@ Python object!
 %prep
 %setup -n %{real_name}-%{version}
 %{__perl} -pi.orig -e '
-		s|^(\s*incdir = ).*$|\1 "%{_includedir}/db4"|;
-		s|^(\s*libdir = ).*$|\1 "%{_libdir}"|;
-	' setup.py
+        s|^(\s*incdir = ).*$|\1 "%{_includedir}/db4"|;
+        s|^(\s*libdir = ).*$|\1 "%{_libdir}"|;
+    ' setup.py
 
 %build
 CFLAGS="%{optflags}" %{__python} setup.py build
@@ -58,6 +60,9 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{python_sitearch}/bsddb3/
 
 %changelog
+* Wed Mar 26 2008 Dag Wieers <dag@wieers.com> - 4.6.2-1
+- Updated to release 4.6.2.
+
 * Fri Apr 07 2006 Dries Verachtert <dries@ulyssis.org> - 4.4.2-1
 - Updated to release 4.4.2.
 

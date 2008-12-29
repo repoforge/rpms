@@ -11,7 +11,7 @@
 Summary: Image viewer for KDE
 Name: gwenview
 Version: 1.4.2
-Release: 2
+Release: 3
 License: GPL
 Group: Amusements/Graphics
 URL: http://gwenview.sourceforge.net/
@@ -50,11 +50,8 @@ source /etc/profile.d/qt.sh
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING NEWS README
+%doc %{_mandir}/man1/gwenview*
 %{_bindir}/gwenview
-%{_libdir}/kde3/libgv*
-%{_libdir}/kde3/gwenview.*
-%{_libdir}/libgwenview*
-%{_libdir}/libkdeinit_gwenview.*
 %{_datadir}/doc/HTML/*/gwenview/
 %{_datadir}/apps/gv*
 %{_datadir}/apps/kconf_update/gwenview*
@@ -66,10 +63,16 @@ source /etc/profile.d/qt.sh
 %{_datadir}/icons/*/*/apps/gvdirpart.*
 #%{_datadir}/icons/*/*/apps/imagegallery.png
 %{_datadir}/services/gv*.desktop
-%{_datadir}/man/man1/gwenview*
 %{_datadir}/config.kcfg/*.kcfg
+%{_libdir}/kde3/libgv*
+%{_libdir}/kde3/gwenview.*
+%{_libdir}/libgwenview*
+%{_libdir}/libkdeinit_gwenview.*
 
 %changelog
+* Wed Dec 24 2008 Dag Wieers <dag@wieers.com> - 1.4.2-3
+- Rebuild against exiv2 0.17.
+
 * Sun Jan 13 2008 Dag Wieers <dag@wieers.com> - 1.4.2-2
 - Rebuild against exiv2 0.16.
 
