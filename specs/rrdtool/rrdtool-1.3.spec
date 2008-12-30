@@ -12,8 +12,8 @@
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
-Version: 1.3.4
-Release: 2
+Version: 1.3.5
+Release: 1
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
@@ -35,6 +35,8 @@ BuildRequires: tcl-devel
 BuildRequires: tk-devel
 BuildRequires: xulrunner-devel
 BuildRequires: zlib-devel
+BuildRequires: gettext-devel
+BuildRequires: ruby
 Requires: cairo
 Requires: libxml2
 Requires: openssl
@@ -43,6 +45,7 @@ Requires: perl >= %(rpm -q --qf '%%{epoch}:%%{version}' perl)
 Requires: python
 Requires: ruby
 Requires: zlib
+Requires: gettext
 
 %description
 RRD is the Acronym for Round Robin Database. RRD is a system to store and
@@ -109,8 +112,10 @@ for the Ruby language.
 %prep
 %setup
 %build
-#export LIBS="-lpangocairo-1.0"
-#export CPPFLAGS="-I %{_includedir}/cairo -I %{_includedir}/pango-1.0 -I %{_includedir}/glib-2.0 -I" 
+%if 0%{?fc10}
+export CPPFLAGS="-I %{_includedir}/cairo -I %{_includedir}/pango-1.0 -I %{_includedir}/glib-2.0 " 
+%endif
+
 %configure \
     --with-tcllib="%{_libdir}" \
     --with-perl-options='INSTALLDIRS="vendor"'
@@ -171,12 +176,23 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc bindings/python/ACKNOWLEDGEMENT bindings/python/AUTHORS bindings/python/COPYING bindings/python/README
 %{python_sitearch}/rrdtoolmodule.so
+%if 0%{?fc10}
+%{python_sitearch}/py_rrdtool-0.2.1-py2.5.egg-info
+%endif
 
 %files -n ruby-rrdtool
 %defattr(-, root, root, 0755)
 %doc bindings/ruby/CHANGES bindings/ruby/README
+%{ruby_sitearch}/RRD.so
 
 %changelog
+* Tue Dec 30 2008 Christoph Maser <cmr@financial.com> - 1.3.5-1
+- Update version
+- Add BuildRequires: ruby for macro expansion
+- Add BuildRequires: gettext-devel
+- Add Requires: gettext
+- Add fc10 conditionals
+
 * Sun Nov 23 2008 Christoph Maser <cmr@financial.com> - 1.3.4-2
 - Removed 1.2.x patches.
 - Removed dependencies cgilib.
