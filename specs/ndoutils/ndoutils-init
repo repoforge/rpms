@@ -1,0 +1,67 @@
+#!/bin/sh
+# Startup script for ndo-daemon
+#
+# chkconfig: 2345 95 05
+# description: Nagios Database Objects daemon
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+
+BINARY=ndo2db-3x
+DAEMON=@SBINDIR@/$BINARY
+CONFIG=@CONFDIR@/ndo2db.cfg
+
+[ -f $DAEMON ] || exit 0
+
+prog="ndo2db"
+
+start() {
+    echo -n $"Starting $prog: " 
+    daemon --user nagios $DAEMON -c $CONFIG
+    RETVAL=$?
+    echo
+    return $RETVAL
+}
+
+stop() {
+    if test "x`pidof $BINARY`" != x; then
+        echo -n $"Stopping $prog: "
+        killproc ndo2db-3x
+        echo
+    fi
+    RETVAL=$?
+    return $RETVAL
+}
+
+case "$1" in
+        start)
+            start
+            ;;
+
+        stop)
+            stop
+            ;;
+
+        status)
+            status $BINARY
+            ;;
+        restart)
+            stop
+            start
+            ;;
+        condrestart)
+            if test "x`pidof $BINARY`" != x; then
+                stop
+                start
+            fi
+            ;;
+
+        *)
+            echo $"Usage: $0 {start|stop|restart|condrestart|status}"
+            exit 1
+
+esac
+
+exit $RETVAL
+
