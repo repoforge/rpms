@@ -18,7 +18,7 @@ Source: http://www.cpan.org/modules/by-module/Apache2/Apache2-ModProxyPerlHtml-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ModPerl::MM)
+BuildRequires: perl, perl(ModPerl::MM), mod_perl-devel
 
 %description
 Apache2::ModProxyPerlHtml is a mod_perl2 replacement of the Apache2
