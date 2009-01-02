@@ -4,7 +4,7 @@
 Summary: Nagios plugin to store Nagios data in a relational database 
 Name: ndoutils
 Version: 1.4
-Release: 0.beta7.1
+Release: 0.beta7.2
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
@@ -12,6 +12,7 @@ URL: http://www.nagios.org/
 Source: http://dl.sf.net/sourceforge/nagios/ndoutils-%{version}b7.tar.gz
 Source1: ndoutils-init
 Source2: ndoutils-config
+Source3: ndomod-config
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: mysql-devel
@@ -36,10 +37,13 @@ data sources.
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 src/ndomod-3x.o %{buildroot}%{_libexecdir}/ndomod-3x.o
 %{__install} -Dp -m0755 src/ndo2db-3x %{buildroot}%{_sbindir}/ndo2db-3x
+%{__mkdir} -p %{buildroot}/%{_datarootdir}/ndoutils
+%{__cp} -r  db/* %{buildroot}%{_datarootdir}/ndoutils
 %{__mkdir} -p %{buildroot}/%{_sysconfdir}/init.d
 %{__mkdir} -p %{buildroot}/%{_sysconfdir}/nagios
 %{__sed} -e 's*@CONFDIR@*%{_sysconfdir}/nagios*' -e 's*@SBINDIR@*%{_sbindir}*' %{SOURCE1} > %{buildroot}/%{_sysconfdir}/init.d/ndoutils
 %{__sed} -e 's*@localstatedir@*%{_localstatedir}*' %{SOURCE2} > %{buildroot}/%{_sysconfdir}/nagios/ndo2db.cfg
+%{__sed} -e 's*@localstatedir@*%{_localstatedir}*' %{SOURCE3} > %{buildroot}/%{_sysconfdir}/nagios/ndomod.cfg
 
 %post
 /sbin/chkconfig --add ndoutils
@@ -61,9 +65,15 @@ fi
 %{_sbindir}/ndo2db-3x
 %attr(755,root,root) %{_sysconfdir}/init.d/ndoutils
 %{_sysconfdir}/nagios/ndo2db.cfg
+%{_sysconfdir}/nagios/ndomod.cfg
+%{_datarootdir}/ndoutils/*
 
 
 %changelog
+* Fri Jan 02 2009 Christoph Maser <cmr@financial.com> - 1.4-0.beta7.2
+- Added ndomod.cfg
+- Added database scripts
+
 * Tue Dec 30 2008 Christoph Maser <cmr@financial.com> - 1.4-0.beta7.1
 - Changed version String so it can be updated by a 1.4 final
 - Added init-script
