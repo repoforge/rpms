@@ -2,11 +2,17 @@
 # Authority: dries
 # Upstream: Matt Mackall <mpm$selenic,com>
 
+%{?dtag: %{expand: %%define %dtag 1}}
+
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+
+%define _with_python_egginfo 0
+%{?fc10:%define _with_python_egginfo 1}
+%{?fc9:%define _with_python_egginfo 1}
 
 Summary: Fast lightweight source control management system
 Name: mercurial
-Version: 1.0.2
+Version: 1.1.2
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -56,12 +62,19 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 #%{_bindir}/hgmerge
 %{python_sitearch}/hgext/
 %{python_sitearch}/mercurial/
+%{?_with_python_egginfo:%{python_sitearch}/mercurial-*.egg-info}
 
 %files hgk
 %defattr(-, root, root, 0755)
 %{_bindir}/hgk
 
 %changelog
+* Thu Jan  1 2009 Dries Verachtert <dries@ulyssis.org> - 1.1.2-1
+- Updated to release 1.1.2.
+
+* Thu Dec 11 2008 Dries Verachtert <dries@ulyssis.org> - 1.1-1
+- Updated to release 1.1.
+
 * Mon Aug 18 2008 Dries Verachtert <dries@ulyssis.org> - 1.0.2-1
 - Updated to release 1.0.2.
 

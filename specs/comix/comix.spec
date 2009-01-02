@@ -4,7 +4,7 @@
 
 Summary: Comic book viewer
 Name: comix
-Version: 3.6.4
+Version: 4.0.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -30,7 +30,7 @@ archives (often called .cbz, .cbr and .cbt) as well as normal image files.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{_prefix}
-%{__python} install.py install --no-mime --installdir %{buildroot}%{_prefix}
+%{__python} install.py install --no-mime --dir %{buildroot}%{_prefix}
 %find_lang %{name}
 
 %clean
@@ -39,17 +39,23 @@ archives (often called .cbz, .cbr and .cbt) as well as normal image files.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING README
-#%doc %{_mandir}/man1/comicthumb.1*
 %doc %{_mandir}/man1/comix.1*
-#%{_bindir}/comicthumb
 %{_bindir}/comix
 %{_datadir}/applications/*comix.desktop
 %{_datadir}/icons/hicolor/*/apps/comix.png
 %{_datadir}/icons/hicolor/*/apps/comix.svg*
-%{_datadir}/pixmaps/comix.png
-%{_datadir}/pixmaps/comix/
+%{_datadir}/comix/
 
 %changelog
+* Fri Jan  2 2009 Dries Verachtert <dries@ulyssis.org> - 4.0.2-1
+- Updated to release 4.0.2.
+
+* Thu Jan  1 2009 Dries Verachtert <dries@ulyssis.org> - 4.0.1-1
+- Updated to release 4.0.1.
+
+* Thu Dec 11 2008 Dries Verachtert <dries@ulyssis.org> - 4.0.0-1
+- Updated to release 4.0.0.
+
 * Mon May 28 2007 Dries Verachtert <dries@ulyssis.org> - 3.6.4-1
 - Updated to release 3.6.4.
 
