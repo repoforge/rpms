@@ -10,10 +10,11 @@
 %define ruby_sitearch %(ruby -rrbconfig -e "puts Config::CONFIG['sitearchdir']")
 %define ruby_archdir %(ruby -rrbconfig -e "puts Config::CONFIG['archdir']")
 
+
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
 Version: 1.3.5
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
@@ -21,31 +22,43 @@ URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
 Source0: http://oss.oetiker.ch/rrdtool/pub/rrdtool-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: cairo-devel
 BuildRequires: freetype-devel
 BuildRequires: gcc-c++
-BuildRequires: glib2-devel
 BuildRequires: libpng-devel
 BuildRequires: libxml2-devel
 BuildRequires: openssl-devel
-BuildRequires: pango-devel
 BuildRequires: python-devel >= 2.3
 BuildRequires: ruby-devel
 BuildRequires: tcl-devel
 BuildRequires: tk-devel
-BuildRequires: xulrunner-devel
 BuildRequires: zlib-devel
 BuildRequires: gettext-devel
 BuildRequires: ruby
-Requires: cairo
 Requires: libxml2
 Requires: openssl
-Requires: pango
 Requires: perl >= %(rpm -q --qf '%%{epoch}:%%{version}' perl)
 Requires: python
 Requires: ruby
 Requires: zlib
 Requires: gettext
+
+%if 0%{?el4}
+BuildRequires: evolution28-pango-devel
+BuildRequires: evolution28-cairo-devel
+BuildRequires: evolution28-glib2-devel
+Requires: evolution28-pango
+Requires: evolution28-cairo
+Requires: evolution28-glib2
+%else
+BuildRequires: pango-devel
+BuildRequires: cairo-devel
+BuildRequires: glib2-devel
+BuildRequires: xulrunner-devel
+Requires: pango
+Requires: cairo
+Requires: glib2
+%endif
+
 
 %description
 RRD is the Acronym for Round Robin Database. RRD is a system to store and
@@ -110,16 +123,40 @@ The ruby-%{name} package includes a library that implements RRDtool bindings
 for the Ruby language.
 
 %prep
+%if 0%{?el4}
+# Filter auto-requires for pango
+cat > find-requires-%{name} <<EOT
+#!/bin/sh
+%{__find_requires} | grep -v 'pango'
+exit 0
+EOT
+chmod 755 find-requires-%{name}
+%define __find_requires %{_builddir}/find-requires-%{name}
+%define _use_internal_dependency_generator 0
+%endif
+
 %setup
+
+
 %build
-%if 0%{?fc10}
-export CPPFLAGS="-I %{_includedir}/cairo -I %{_includedir}/pango-1.0 -I %{_includedir}/glib-2.0 " 
+%if 0%{?el4}
+export LD_LIBRARY_PATH=/usr/evolution28/%{_lib}
+export PKG_CONFIG_PATH=/usr/evolution28/%{_lib}/pkgconfig
+export RUBYARCHDIR=%{ruby_sitearch}
+export CFLAGS="`pkg-config --cflags cairo pangocairo pango pangoft2`"
+export LDFLAGS="`pkg-config --libs  cairo pangocairo pango pangoft2`"
 %endif
 
 %configure \
     --with-tcllib="%{_libdir}" \
-    --with-perl-options='INSTALLDIRS="vendor"'
+    --with-perl-options='INSTALLDIRS="vendor"' \
+    --enable-ruby-site-install
+
+%if 0%{?el4}
+%{__make} %{?_smp_mflags}  LDFLAGS="-Wl,-rpath-link /usr/evolution28/%{_lib} -Wl,-rpath /usr/evolution28/%{_lib} $LDFLAGS"
+%else
 %{__make} %{?_smp_mflags}
+%endif
 
 %install
 %{__rm} -rf %{buildroot}
@@ -129,8 +166,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/ntmake.pl
 
+
 %clean
 %{__rm} -rf %{buildroot}
+%if 0%{?el4}
+%{__rm} -f %{_builddir}/find-requires-%{name}
+%endif
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -176,9 +218,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc bindings/python/ACKNOWLEDGEMENT bindings/python/AUTHORS bindings/python/COPYING bindings/python/README
 %{python_sitearch}/rrdtoolmodule.so
-%if 0%{?fc10}
-%{python_sitearch}/py_rrdtool-0.2.1-py2.5.egg-info
-%endif
 
 %files -n ruby-rrdtool
 %defattr(-, root, root, 0755)
@@ -186,6 +225,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{ruby_sitearch}/RRD.so
 
 %changelog
+* Mon Jan 05 2009 Christoph Maser <cmr@financial.com> - 1.3.5-2
+- Remove fc10 conditionals
+- Compile against evolution28 version of pango,cairo,glib on el4
+
 * Tue Dec 30 2008 Christoph Maser <cmr@financial.com> - 1.3.5-1
 - Update version
 - Add BuildRequires: ruby for macro expansion
