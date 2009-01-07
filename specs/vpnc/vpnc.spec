@@ -5,18 +5,15 @@
 
 Summary: IPSec VPN client compatible with Cisco equipment
 Name: vpnc
-Version: 0.3.3
-Release: 1.2
+Version: 0.5.3
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.unix-ag.uni-kl.de/~massar/vpnc/
 
 Source: http://www.unix-ag.uni-kl.de/~massar/vpnc/vpnc-%{version}.tar.gz
-#Patch0: vpnc-0.3.2-pie.patch
-#Patch1: vpnc-0.3.2-64bit.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: libgcrypt-devel > 1.1.90
 BuildRequires: libgcrypt-devel
 Requires: kernel >= 2.4
 
@@ -28,8 +25,6 @@ shared-secret IPSec authentication, 3DES, MD5, and IP tunneling.
 
 %prep
 %setup
-#%patch0 -p1
-#%patch1 -p1
 
 %{__cat} <<EOF >vpnc.conf
 ### This is the gateway configuration
@@ -47,7 +42,10 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 vpnc %{buildroot}%{_sbindir}/vpnc
-%{__install} -Dp -m0600 vpnc.conf %{buildroot}%{_sysconfdir}/vpnc.conf
+%{__install} -Dp -m0755 vpnc-disconnect %{buildroot}%{_sbindir}/vpnc-disconnect
+%{__install} -Dp -m0755 pcf2vpnc %{buildroot}%{_sbindir}/pcf2vpnc
+%{__install} -Dp -m0600 vpnc.conf %{buildroot}%{_sysconfdir}/vpnc/vpnc.conf
+%{__install} -Dp -m0600 vpnc-script %{buildroot}%{_sysconfdir}/vpnc/vpnc-script
 %{__install} -Dp -m0644 vpnc.8 %{buildroot}%{_mandir}/man8/vpnc.8
 
 %clean
@@ -55,13 +53,21 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING README TODO vpnc-*
+%doc ChangeLog COPYING README TODO
 %doc %{_mandir}/man8/vpnc.8*
-%config(noreplace) %{_sysconfdir}/vpnc.conf
+%dir %{_sysconfdir}/vpnc
+%config(noreplace) %{_sysconfdir}/vpnc/vpnc.conf
+%config(noreplace) %{_sysconfdir}/vpnc/vpnc-script
 %{_sbindir}/vpnc
+%{_sbindir}/vpnc-disconnect
+%{_sbindir}/pcf2vpnc
 %dev(c, 10, 200) /dev/tun
 
 %changelog
+* Tue Jan 06 2009 Kenneth Porter <shiva+vpncrpm@sewingwitch.com> - 0.5.3-1
+- Update to 0.5.3.
+- Include helper scripts.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.3-1.2
 - Rebuild for Fedora Core 5.
 
