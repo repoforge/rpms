@@ -7,22 +7,25 @@
 %{?rh7:%define _without_db4 1}
 %{?el2:%define _without_db4 1}
 %{?rh6:%define _without_db4 1}
+%{?el4:%define _without_texinfotex 1}
 
 Summary: System administration tool for networks
 Name: cfengine
-Version: 2.2.8
+Version: 2.2.9
 Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://www.cfengine.org/
 
 Source: http://www.cfengine.org/downloads/cfengine-%{version}.tar.gz
+Patch0: cfengine-missing-images-patch
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: bison, flex, m4, openssl-devel, tetex, texinfo, ghostscript
-BuildRequires: tetex-latex, tetex-dvips
+BuildRequires: bison, flex, m4, openssl-devel 
 %{!?_without_db4:BuildRequires: db4-devel}
 %{?_without_db4:BuildRequires: db3-devel >= 3.2}
+
 
 %description
 Cfengine, or the configuration engine is an agent/software robot and a
@@ -33,8 +36,20 @@ the configuration and maintenance of system state, for small to huge
 configurations. Cfengine is designed to be a part of a computer immune
 system.
 
+%package docs
+Summary: System administration tool for networks (documentation pack)
+Group: System Environment/Base
+BuildRequires: tetex-latex, tetex-dvips, texinfo
+%{!?_without_texinfotex:BuildRequires: texinfo-tex}
+
+%description docs
+Full documentation for cfengine
+
+
+
 %prep
 %setup
+%patch0
 
 %{__cat} <<EOF >default.sysconfig
 # OPTIONS defines additional command line options to execute the program
@@ -264,7 +279,8 @@ EOF
 
 %build
 %configure BERKELEY_DB_LIB="-ldb" \
-    --program-prefix="%{?_program_prefix}"
+    --program-prefix="%{?_program_prefix}" \
+    --with-docs
 %{__make} %{?_smp_mflags}
 
 %install
@@ -272,8 +288,8 @@ EOF
 %{__install} -d -m0755 %{buildroot}%{_sbindir}
 %{__install} -d -m0755 %{buildroot}%{_datadir}/cfengine/
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/cfengine/{bin,inputs}/
-%{__make} install DESTDIR="%{buildroot}"
-%{__make} install DESTDIR="%{buildroot}" -C doc
+%{__make} install DESTDIR="%{buildroot}" 
+%{__make} install-pdf DESTDIR="%{buildroot}" -C doc
 %{__install} -Dp -m0755 cfenvd.sysv %{buildroot}%{_initrddir}/cfenvd
 %{__install} -Dp -m0755 cfexecd.sysv %{buildroot}%{_initrddir}/cfexecd
 %{__install} -Dp -m0755 cfservd.sysv %{buildroot}%{_initrddir}/cfservd
@@ -308,6 +324,14 @@ fi
 
 %clean
 %{__rm} -rf %{buildroot}
+
+%files docs
+%{_datadir}/cfengine/doc/cfengine-Reference.pdf
+%{_datadir}/cfengine/doc/cfengine-Reference.ps
+%{_datadir}/cfengine/doc/cfengine-Tutorial.pdf
+%{_datadir}/cfengine/doc/cfengine-Tutorial.ps
+%{_datadir}/cfengine/html/*
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -353,6 +377,11 @@ fi
 %exclude %{_libdir}/libcfengine.la
 
 %changelog
+* Wed Jan 14 2009 Christoph Maser <cmr@financial.com> - 2.2.9-1
+- Updated to release 2.2.9.
+- Use --with-docs on configure
+- subpackage for ps/pdf/html docs
+
 * Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 2.2.8-1
 - Updated to release 2.2.8.
 
