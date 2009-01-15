@@ -4,7 +4,7 @@
 Summary: Nagios plugin to store Nagios data in a relational database 
 Name: ndoutils
 Version: 1.4
-Release: 0.beta7.2
+Release: 0.beta7.3
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
@@ -37,8 +37,8 @@ data sources.
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 src/ndomod-3x.o %{buildroot}%{_libexecdir}/ndomod-3x.o
 %{__install} -Dp -m0755 src/ndo2db-3x %{buildroot}%{_sbindir}/ndo2db-3x
-%{__mkdir} -p %{buildroot}/%{_datarootdir}/ndoutils
-%{__cp} -r  db/* %{buildroot}%{_datarootdir}/ndoutils
+%{__mkdir} -p %{buildroot}/%{_datadir}/ndoutils
+%{__cp} -r  db/* %{buildroot}%{_datadir}/ndoutils
 %{__mkdir} -p %{buildroot}/%{_sysconfdir}/init.d
 %{__mkdir} -p %{buildroot}/%{_sysconfdir}/nagios
 %{__sed} -e 's*@CONFDIR@*%{_sysconfdir}/nagios*' -e 's*@SBINDIR@*%{_sbindir}*' %{SOURCE1} > %{buildroot}/%{_sysconfdir}/init.d/ndoutils
@@ -66,10 +66,13 @@ fi
 %attr(755,root,root) %{_sysconfdir}/init.d/ndoutils
 %{_sysconfdir}/nagios/ndo2db.cfg
 %{_sysconfdir}/nagios/ndomod.cfg
-%{_datarootdir}/ndoutils/*
+%{_datadir}/ndoutils/*
 
 
 %changelog
+* Thu Jan 15 2009 Christoph Maser <cmr@financial.com> - 1.4-0.beta7.3
+- fix %{_datarootdir} -> %{_datadir}
+
 * Fri Jan 02 2009 Christoph Maser <cmr@financial.com> - 1.4-0.beta7.2
 - Added ndomod.cfg
 - Added database scripts
