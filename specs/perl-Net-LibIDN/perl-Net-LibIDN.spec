@@ -9,7 +9,7 @@
 
 Summary: Perl module with bindings for GNU Libidn
 Name: perl-Net-LibIDN
-Version: 0.10
+Version: 0.11
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Net/LibIDN.pm
 
 %changelog
+* Fri Jan 16 2009 Christoph Maser <cmr@financial.com> - 0.11-1
+- Updated to release 0.11.
+
 * Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 0.10-1
 - Updated to release 0.10.
 
