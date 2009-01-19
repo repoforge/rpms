@@ -6,7 +6,6 @@
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
-%define _with_python_egginfo 0
 %{?fc10:%define _with_python_egginfo 1}
 %{?fc9:%define _with_python_egginfo 1}
 

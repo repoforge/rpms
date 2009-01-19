@@ -27,7 +27,7 @@ cmospwd works with the following BIOSes:
     Phoenix (1.00.09.AC0 1994, a486 1.03, 1.04, 1.10 A03, 4.05 rev 1.02.943, 4.06 rev 1.13.1107, 4 release 6),
     Gateway Solo (Phoenix 4.0 release 6),
     Toshiba and
-    Zenith AMI 
+    Zenith AMI
 
 With cmospwd, you can also backup, restore and erase/kill cmos. 
 

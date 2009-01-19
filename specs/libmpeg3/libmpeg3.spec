@@ -4,8 +4,8 @@
 
 Summary: Decoder of various derivatives of MPEG standards
 Name: libmpeg3
-Version: 1.7
-Release: 3
+Version: 1.8
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://heroinewarrior.com/libmpeg3.php3
@@ -40,7 +40,6 @@ libmpeg3 currently decodes:
  - IFO files
  - VOB files
 
-
 %package utils
 Summary: Utilities from libmpeg3
 Group: Applications/Multimedia
@@ -73,7 +72,7 @@ libmpeg3.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1 -b .gnustack
-%patch8 -p1 -b .memcpy
+#patch8 -p1 -b .memcpy
 
 ### Touch docs files:
 touch INSTALL README NEWS AUTHORS ChangeLog
@@ -92,11 +91,11 @@ chmod 755 bootstrap
     LIBDIR="%{_libdir}" \
     INSTALL="install -c -p"
 
-%clean
-%{__rm} -rf %{buildroot}
-
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
@@ -120,6 +119,9 @@ chmod 755 bootstrap
 %exclude %{_libdir}/libmpeg3.la
 
 %changelog
+* Wed Dec 24 2008 Dag Wieers <dag@wieers.com> - 1.8-1
+- Updated to release 1.8.
+
 * Fri Jan 11 2008 Dag Wieers <dag@wieers.com> - 1.7-3
 - Added patches from Livna.
 

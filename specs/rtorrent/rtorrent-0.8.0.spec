@@ -5,7 +5,7 @@
 
 Summary: Console based bittorrent client
 Name: rtorrent
-Version: 0.8.4
+Version: 0.8.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -33,8 +33,6 @@ management.
 ### FIXME: Why does curl-compilation fail without the libsigc++20 includes on EL4 ?
 %{?_without_curl_pc:export STUFF_CFLAGS="$(curl-config --cflags) $(pkg-config sigc++-2.0 --cflags)"}
 %{?_without_curl_pc:export STUFF_LIBS="$(curl-config --libs) $(pkg-config sigc++-2.0 --libs) -ltorrent"}
-%{?_without_curl_pc:export libcurl_CFLAGS="$(curl-config --cflags) $(pkg-config sigc++-2.0 --cflags)"}
-%{?_without_curl_pc:export libcurl_LIBS="$(curl-config --libs) $(pkg-config sigc++-2.0 --libs) -ltorrent"}
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -52,9 +50,6 @@ management.
 %{_bindir}/rtorrent
 
 %changelog
-* Thu Jan  1 2009 Dries Verachtert <dries@ulyssis.org> - 0.8.4-1
-- Updated to release 0.8.4.
-
 * Tue Jan 29 2008 Dries Verachtert <dries@ulyssis.org> - 0.8.0-1
 - Updated to release 0.8.0.
 

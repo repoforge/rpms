@@ -4,8 +4,8 @@
 
 Summary: Graphical scientific calculator
 Name: galculator
-Version: 1.3.1
-Release: 2
+Version: 1.3.2
+Release: 1
 License: GPL
 Group: Applications/Engineering
 URL: http://galculator.sourceforge.net/
@@ -38,8 +38,6 @@ Reverse Polish Notation.
 %{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
-%{__install} -Dp -m0644 pixmaps/galculator_48x48.png %{buildroot}%{_datadir}/pixmaps/galculator.png
-
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -50,10 +48,13 @@ Reverse Polish Notation.
 %{_bindir}/galculator
 %{_datadir}/applications/galculator.desktop
 %{_datadir}/galculator/
-%{_datadir}/pixmaps/galculator/
-%{_datadir}/pixmaps/galculator.png
+%{_datadir}/pixmaps/galculator.svg
+%{_datadir}/pixmaps/galculator_48x48.png
 
 %changelog
+* Tue Jan 06 2009 Dag Wieers <dag@wieers.com> - 1.3.2-1
+- Updated to release 1.3.2.
+
 * Wed Jul 23 2008 Dag Wieers <dag@wieers.com> - 1.3.1-2
 - Replaced Gnome icon by Galculator icon.
 

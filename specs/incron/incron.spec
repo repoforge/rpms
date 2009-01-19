@@ -3,14 +3,13 @@
 
 Summary: Inotify cron system
 Name: incron
-Version: 0.5.7
-Release: 2
+Version: 0.5.8
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://inotify.aiken.cz/
 
 Source: http://inotify.aiken.cz/download/incron/incron-%{version}.tar.bz2
-Patch0: incron-0.5.7-gcc43.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: /sbin/chkconfig
@@ -24,7 +23,6 @@ time periods.
 
 %prep
 %setup
-%patch0 -p1
 
 %{__cat} <<'EOF' >incrond.sysv
 #!/bin/bash
@@ -150,6 +148,9 @@ fi
 %{_bindir}/incrontab
 
 %changelog
+* Tue Jan 06 2009 Dag Wieers <dag@wieers.com> - 0.5.8-1
+- Updated to release 0.5.8.
+
 * Fri Mar 28 2008 Dag Wieers <dag@wieers.com> - 0.5.7-2
 - Fixed typo in initscript.
 

@@ -10,7 +10,7 @@
 
 Summary: Replay captured network traffic
 Name: tcpreplay
-Version: 3.3.2
+Version: 3.4.0
 Release: 1
 License: BSD
 Group: Applications/Internet
@@ -35,8 +35,8 @@ as the basis of connections.
 
 %build
 %configure \
-    --enable-tcpreplay-edit
-#   --enable-flowreplay
+    --enable-tcpreplay-edit \
+    --enable-flowreplay
 %{__make} %{?_smp_mflags}
 
 %install
@@ -74,6 +74,9 @@ as the basis of connections.
 %{_bindir}/tcprewrite
 
 %changelog
+* Mon Jan 19 2009 Dag Wieers <dag@wieers.com> - 3.4.0-1
+- Updated to release 3.4.0.
+
 * Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 3.3.2-1
 - Updated to release 3.3.2.
 

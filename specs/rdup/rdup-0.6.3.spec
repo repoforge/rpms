@@ -4,7 +4,7 @@
 
 Summary: Prints filenames for backup
 Name: rdup
-Version: 0.6.4
+Version: 0.6.3
 Release: 1
 License: GPL
 Group: Applications/File
@@ -54,9 +54,6 @@ this list and implement the backup strategy.
 #%doc %{_mandir}/man1/rdup-snap.1*
 #%doc %{_mandir}/man1/rdup-snap-link.1*
 #%doc %{_mandir}/man1/rdup-snapshot.1*
-%doc %{_mandir}/man1/rdup-tr.1*
-%doc %{_mandir}/man1/rdup-up.1*
-%doc %{_mandir}/man7/rdup-backups.7*
 %{_bindir}/rdup
 #%{_bindir}/rdup-cp
 #%{_bindir}/rdup-crypt
@@ -71,13 +68,12 @@ this list and implement the backup strategy.
 #%{_bindir}/rdup-snap
 #%{_bindir}/rdup-snap-link
 #%{_bindir}/rdup-snapshot
-%{_bindir}/rdup-up
+#%{_bindir}/rdup-up
 %{_datadir}/rdup/
-%{_libdir}/rdup/
 
 %changelog
-* Fri Jan 02 2009 Dag Wieers <dag@wieers.com> - 0.6.4-1
-- Updated to release 0.6.4.
+* Fri Jan 02 2009 Dag Wieers <dag@wieers.com> - 0.6.3-1
+- Updated to release 0.6.3.
 
 * Tue Jun 03 2008 Dag Wieers <dag@wieers.com> - 0.6.0-1
 - Updated to release 0.6.0.

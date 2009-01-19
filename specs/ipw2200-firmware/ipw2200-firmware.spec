@@ -2,6 +2,8 @@
 # Authority: matthias
 # Dist: nodist
 
+%define real_name ipw2200-fw
+
 Summary: Firmware for Intel® PRO/Wireless 2200 network adaptors
 Name: ipw2200-firmware
 Version: 3.0
@@ -9,12 +11,14 @@ Release: 3
 License: Distributable
 Group: System Environment/Kernel
 URL: http://ipw2200.sourceforge.net/firmware.php
+
 # License agreement must be displayed before download (referer protection)
 Source0: ipw2200-fw-%{version}.tgz
 Source1: ipw2200-fw-2.4.tgz
 Source2: ipw2200-fw-2.3.tgz
 Source3: ipw2200-fw-2.2.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildArch: noarch
 
 %description
@@ -22,31 +26,24 @@ This package contains the firmware files required by the ipw2200 driver for
 Linux. Usage of the firmware is subject to the terms and conditions contained
 in /lib/firmware/LICENSE.ipw2200. Please read it carefully.
 
-
 %prep
-%setup -n ipw2200-fw-%{version} -a 1 -a 2 -a 3
-
+%setup -n %{real_name}-%{version} -a 1 -a 2 -a 3
 
 %build
 
-
 %install
 %{__rm} -rf %{buildroot}
-%{__mkdir_p} %{buildroot}/lib/firmware
-# Terms state that the LICENSE *must* be in the same directory as the firmware
-%{__install} -p -m 0644 *.fw %{buildroot}/lib/firmware/
-%{__install} -p -m 0644 LICENSE %{buildroot}/lib/firmware/LICENSE.ipw2200
-
+### Terms state that the LICENSE *must* be in the same directory as the firmware
+%{__install} -Dp -m0644 LICENSE %{buildroot}/lib/firmware/LICENSE.ipw2200
+%{__install} -p -m0644 *.fw %{buildroot}/lib/firmware/
 
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files
 %defattr(-, root, root, 0755)
 %doc /lib/firmware/LICENSE.ipw2200
 /lib/firmware/*.fw
-
 
 %changelog
 * Tue Oct 17 2006 Matthias Saou <http://freshrpms.net> 3.0-3
