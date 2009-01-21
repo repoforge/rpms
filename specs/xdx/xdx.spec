@@ -4,8 +4,8 @@
 
 Summary: Client to connect to a DX-cluster for amateur radio
 Name: xdx
-Version: 2.2
-Release: 2
+Version: 2.4.2
+Release: 1
 License: GPL
 Group: Applications/Communications
 URL: http://www.qsl.net/pg4i/linux/xdx.html
@@ -46,6 +46,9 @@ control the radio and set the frequency simply by double clicking a DX-spot
 %{_datadir}/applications/Xdx.desktop
 
 %changelog
+* Wed Jan 21 2009 Dries Verachtert <dries@ulyssis.org> - 2.4.2-1
+- Updated to release 2.4.2.
+
 * Fri Mar 09 2007 Dag Wieers <dag@wieers.com> - 2.2-2
 - Fixed group.
 
