@@ -5,7 +5,7 @@
 
 Summary: Postfix Greylisting Policy Server
 Name: postgrey
-Version: 1.31
+Version: 1.32
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -61,14 +61,14 @@ pod2man \
 %{__install} -Dp -m0644 postgrey.8 %{buildroot}%{_mandir}/man8/postgrey.8
 %{__install} -Dp -m0755 contrib/postgreyreport %{buildroot}%{_sbindir}/postgreyreport
 
-%{__mkdir_p} %{buildroot}%{_var}/spool/postfix/postgrey
+%{__mkdir_p} %{buildroot}%{_localstatedir}/spool/postfix/postgrey
 touch %{buildroot}%{confdir}/postgrey_whitelist_clients.local
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %pre
-/usr/sbin/useradd -d %{_var}/spool/postfix/postgrey -s /sbin/nologin \
+/usr/sbin/useradd -d %{_localstatedir}/spool/postfix/postgrey -s /sbin/nologin \
     -M -r postgrey &>/dev/null || :
 
 %post
@@ -97,9 +97,12 @@ fi
 %{_sbindir}/postgreyreport
 
 %defattr(0751, postgrey, postfix, 0751)
-%dir %{_var}/spool/postfix/postgrey/
+%dir %{_localstatedir}/spool/postfix/postgrey/
 
 %changelog
+* Tue Jan 20 2009 Dag Wieers <dag@wieers.com> - 1.32-1
+- Updated to release 1.32.
+
 * Thu Feb 21 2008 <david@hrbac.cz> - 1.31-1
 - Updated to release 1.31.
 

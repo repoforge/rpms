@@ -12,7 +12,7 @@
 
 Summary: Apache module that enables running PHP scripts under different users
 Name: mod_suphp
-Version: 0.6.3
+Version: 0.7.0
 Release: 1
 License: GPL/Apache License
 Group: System Environment/Daemons
@@ -35,8 +35,8 @@ applies many restrictions on the scripts.
 
 %prep
 %setup -n %{real_name}-%{version}
-%patch0
-%patch1
+#patch0
+#patch1
 
 %{__cat} <<EOF >suphp.conf
 [global]
@@ -152,6 +152,9 @@ EOF
 %{_sbindir}/suphp
 
 %changelog
+* Tue Jan 20 2009 Dag Wieers <dag@wieers.com> - 0.7.0-1
+- Updated to release 0.7.0.
+
 * Mon Aug 18 2008 Dries Verachtert <dries@ulyssis.org> - 0.6.3-1
 - Updated to release 0.6.3.
 

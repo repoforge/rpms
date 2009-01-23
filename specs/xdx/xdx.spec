@@ -13,7 +13,7 @@ URL: http://www.qsl.net/pg4i/linux/xdx.html
 Source: http://www.qsl.net/pg4i/download/xdx-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk2-devel >= 2.6
+BuildRequires: gtk2-devel >= 2.12
 
 %description
 Xdx is a client to connect to a DX-cluster for amateur radio. DX messages 
@@ -31,7 +31,7 @@ control the radio and set the frequency simply by double clicking a DX-spot
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %clean
@@ -42,8 +42,8 @@ control the radio and set the frequency simply by double clicking a DX-spot
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %doc %{_mandir}/man1/xdx.1*
 %{_bindir}/xdx
-%{_datadir}/xdx/
 %{_datadir}/applications/Xdx.desktop
+%{_datadir}/xdx/
 
 %changelog
 * Wed Jan 21 2009 Dries Verachtert <dries@ulyssis.org> - 2.4.2-1

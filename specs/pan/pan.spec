@@ -11,20 +11,23 @@
 
 Summary: The Pan Newsreader
 Name: pan
-Version: 0.132
-Release: 2
+Version: 0.133
+Release: 1
 Epoch: 1
 License: GPL
 Group: Applications/Internet
 URL: http://pan.rebelbase.com/
 
 Source: http://pan.rebelbase.com/download/releases/%{version}/source/pan-%{version}.tar.bz2
-Patch0: pan-0.132-pixbuf.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glib2-devel >= 2.0.4, gtk2-devel >= 2.0.5, libxml2-devel >= 2.4.22
-BuildRequires: gnet2-devel, gtkspell-devel >= 2.0.2, pcre-devel >= 5.0, gettext
+BuildRequires: glib2-devel >= 2.0.4
 BuildRequires: gmime-devel >= 2.1.9
+BuildRequires: gnet2-devel
+BuildRequires: gtk2-devel >= 2.0.5
+BuildRequires: gtkspell-devel >= 2.0.2
+BuildRequires: libxml2-devel >= 2.4.22
+BuildRequires: pcre-devel >= 5.0, gettext
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
@@ -37,7 +40,6 @@ to get a perfect score on the Good Net-Keeping Seal of Approval evalutions.
 
 %prep
 %setup
-%patch0 -b .pixbuf
 
 %{__perl} -pi.orig -e 's|StartupNotify=false|StartupNotify=true|' pan.desktop.in
 
@@ -52,12 +54,12 @@ to get a perfect score on the Good Net-Keeping Seal of Approval evalutions.
 %find_lang %{name}
 
 %if %{!?_without_freedesktop:1}0
-desktop-file-install --vendor %{desktop_vendor}    \
-    --delete-original                          \
-    --add-category Application                 \
-    --add-category Network                     \
-    --add-category X-Red-Hat-Base              \
-    --dir %{buildroot}%{_datadir}/applications \
+desktop-file-install --vendor %{desktop_vendor} \
+    --delete-original                           \
+    --add-category Application                  \
+    --add-category Network                      \
+    --add-category X-Red-Hat-Base               \
+    --dir %{buildroot}%{_datadir}/applications  \
     %{buildroot}%{_datadir}/applications/pan.desktop
 %endif
 
@@ -72,6 +74,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/pan.png
 
 %changelog
+* Wed Dec 31 2008 Dag Wieers <dag@wieers.com> - 0.133-1
+- Updated to release 0.133.
+
 * Tue Jun 10 2008 Dag Wieers <dag@wieers.com> - 0.132-2
 - Added patch from Fedora.
 

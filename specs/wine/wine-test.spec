@@ -50,13 +50,13 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.1.10
+Version: 1.1.13
 Release: 1
 License: LGPL
 Group: Applications/Emulators
 URL: http://www.winehq.org/
 
-Source: http://dl.sf.net/sourceforge/wine/wine-%{version}.tar.bz2
+Source: http://dl.sf.net/wine/wine-%{version}.tar.bz2
 Patch0: wine-prefixfonts.patch
 Patch1: wine-rpath.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -456,6 +456,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/winhelp.exe16
 
 ### exe.so
+%{_libdir}/wine/cacls.exe.so
 %{_libdir}/wine/clock.exe.so
 %{_libdir}/wine/cmd.exe.so
 %{_libdir}/wine/control.exe.so
@@ -632,6 +633,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/hid.dll.so
 %{_libdir}/wine/hlink.dll.so
 %{_libdir}/wine/hnetcfg.dll.so
+%{_libdir}/wine/httpapi.dll.so
 %{_libdir}/wine/iccvid.dll.so
 %{_libdir}/wine/icmp.dll.so
 %{_libdir}/wine/imagehlp.dll.so
@@ -647,6 +649,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/itss.dll.so
 %{_libdir}/wine/jscript.dll.so
 %{_libdir}/wine/kernel32.dll.so
+%{_libdir}/wine/loadperf.dll.so
 %{_libdir}/wine/localspl.dll.so
 %{_libdir}/wine/localui.dll.so
 %{_libdir}/wine/lz32.dll.so
@@ -702,6 +705,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/olethk32.dll.so
 %{!?_without_opengl:%{_libdir}/wine/opengl32.dll.so}
 %{_libdir}/wine/pdh.dll.so
+%{_libdir}/wine/pidgen.dll.so
 %{_libdir}/wine/powrprof.dll.so
 %{_libdir}/wine/printui.dll.so
 %{_libdir}/wine/propsys.dll.so
@@ -744,6 +748,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/sxs.dll.so
 %{_libdir}/wine/tapi32.dll.so
 %{_libdir}/wine/unicows.dll.so
+%{_libdir}/wine/updspapi.dll.so
 %{_libdir}/wine/url.dll.so
 %{_libdir}/wine/urlmon.dll.so
 %{_libdir}/wine/user32.dll.so
@@ -769,6 +774,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/ws2_32.dll.so
 %{_libdir}/wine/wsock32.dll.so
 %{_libdir}/wine/wtsapi32.dll.so
+%{_libdir}/wine/wuapi.dll.so
 %{_libdir}/wine/xinput1_1.dll.so
 %{_libdir}/wine/xinput1_2.dll.so
 %{_libdir}/wine/xinput1_3.dll.so
@@ -895,6 +901,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Wed Jan 21 2009 Dag Wieers <dag@wieers.com> - 1.1.13-1
+- Updated to release 1.1.13.
+
 * Wed Dec 10 2008 Dag Wieers <dag@wieers.com> - 1.1.10-1
 - Updated to release 1.1.10.
 

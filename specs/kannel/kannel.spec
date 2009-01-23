@@ -17,17 +17,19 @@
 
 Summary: WAP and SMS gateway
 Name: kannel
-Version: 1.4.1
-Release: 3
+Version: 1.4.2
+Release: 1
 License: Kannel
 Group: System Environment/Daemons
 URL: http://www.kannel.org/
+
 Source0: http://www.kannel.org/download/%{version}/gateway-%{version}.tar.bz2
 Source1: kannel.logrotate
 Source2: kannel.init
 Source3: kannel.conf
 Patch0: kannel-1.4.1-depend.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: bison, byacc, flex, ImageMagick
 BuildRequires: libxml2-devel, openssl-devel, zlib-devel
 BuildRequires: pcre-devel
@@ -43,7 +45,6 @@ via UDP. The SMS part is fairly mature, the WAP part is early in its
 development. In this release, the GET request for WML pages and WMLScript
 files via HTTP works, including compilation for WML and WMLScript to binary
 forms. Only the data call bearer (UDP) is supported, not SMS.
-
 
 %package devel
 Summary: Development files for the kannel WAP and SMS gateway
@@ -61,16 +62,15 @@ forms. Only the data call bearer (UDP) is supported, not SMS.
 Install this package if you need to develop or recompile applications that
 use the kannel WAP and SMS gateway.
 
-
 %prep
 %setup -n gateway-%{version}
-%{!?rh73:%patch0 -p1 -b .depend}
+#{!?rh73:#patch0 -p1 -b .depend}
 
-%{?el3:%{__perl} -pi.orig -e 's|^(CFLAGS)=|$1=-I/usr/kerberos/include |' Makefile.in}
-%{?rh9:%{__perl} -pi.orig -e 's|^(CFLAGS)=|$1=-I/usr/kerberos/include |' Makefile.in}
-
+#{?el3:%{__perl} -pi.orig -e 's|^(CFLAGS)=|$1=-I/usr/kerberos/include |' Makefile.in}
+#{?rh9:%{__perl} -pi.orig -e 's|^(CFLAGS)=|$1=-I/usr/kerberos/include |' Makefile.in}
 
 %build
+%{expand: %%define optflags %{optflags} %(pkg-config --cflags openssl)}
 %configure \
     --enable-start-stop-daemon \
     --enable-pcre \
@@ -78,33 +78,29 @@ use the kannel WAP and SMS gateway.
 %{?_without_sqlite:--with-sqlite}
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-# Install fakesmsc and fakewap, useful for monitoring
-%{__install} -m 0755 test/{fakesmsc,fakewap} %{buildroot}%{_bindir}/
-# Logrotate entry
-%{__install} -D -m 0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/logrotate.d/kannel
-# Init script
-%{__install} -D -m 0755 %{SOURCE2} %{buildroot}%{_sysconfdir}/rc.d/init.d/kannel
-# Default configuration file
-%{__install} -D -m 0640 %{SOURCE3} %{buildroot}%{_sysconfdir}/kannel.conf
-# Empty log directory
-%{__mkdir_p} %{buildroot}%{_var}/log/kannel/
-# Rename start-stop-daemon to start-stop-kannel
-%{__mv} %{buildroot}%{_sbindir}/start-stop-daemon \
-        %{buildroot}%{_sbindir}/start-stop-kannel
-
+### Install fakesmsc and fakewap, useful for monitoring
+%{__install} -p -m0755 test/{fakesmsc,fakewap} %{buildroot}%{_bindir}/
+### Logrotate entry
+%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/logrotate.d/kannel
+### Init script
+%{__install} -Dp -m0755 %{SOURCE2} %{buildroot}%{_sysconfdir}/rc.d/init.d/kannel
+### Default configuration file
+%{__install} -Dp -m0640 %{SOURCE3} %{buildroot}%{_sysconfdir}/kannel.conf
+### Empty log directory
+%{__mkdir_p} %{buildroot}%{_localstatedir}/log/kannel/
+### Rename start-stop-daemon to start-stop-kannel
+%{__mv} %{buildroot}%{_sbindir}/start-stop-daemon %{buildroot}%{_sbindir}/start-stop-kannel
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %pre
 # Create system account
 /usr/sbin/useradd -c "Kannel WAP and SMS gateway" -r -M -s '' \
-    -d %{_var}/lib/kannel kannel &>/dev/null || :
+    -d %{_localstatedir}/lib/kannel kannel &>/dev/null || :
 
 %post
 /sbin/chkconfig --add kannel
@@ -121,25 +117,30 @@ if [ $1 -ge 1 ]; then
     /sbin/service kannel condrestart &>/dev/null || :
 fi
 
-
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README STATUS
-%attr(0640, kannel, kannel) %config(noreplace) %{_sysconfdir}/kannel.conf
+%doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/logrotate.d/kannel
 %config %{_sysconfdir}/rc.d/init.d/kannel
 %{_bindir}/*
 %{_sbindir}/*
-%{_mandir}/man?/*
-%attr(0750, kannel, kannel) %dir %{_var}/log/kannel/
+
+%defattr(0640, kannel, kannel, 0755)
+%config(noreplace) %{_sysconfdir}/kannel.conf
+
+%defattr(0750, kannel, kannel, 0750)
+%dir %{_localstatedir}/log/kannel/
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/kannel/
 %exclude %{_libdir}/kannel/*.a
 
-
 %changelog
+* Wed Jan 21 2009 Dag Wieers <dag@wieers.com> - 1.4.2-1
+- Updated to release 1.4.2.
+
 * Tue Sep  4 2007 Dries Verachtert <dries@ulyssis.org> - 1.4.1-3
 - Use sqlite 3 if possible, thanks to Stefan Radman.
 
