@@ -1,18 +1,20 @@
 # $Id$
-# Authority: Fabian
+# Authority: ned
 # Dist: nodist
 
 %define real_name iwlwifi-4965-ucode
 
 Summary: Firmware for IntelÂ® Wireless WiFi Link 4965AGN network adapter
 Name: iwl4965-firmware
-Version: 228.57.1.21
+Version: 228.57.2.23
 Release: 1
-License: Distributable
+License: Redistributable, no modification permitted
 Group: System Environment/Kernel
 URL: http://intellinuxwireless.org/
 
-Source: http://intellinuxwireless.org/iwlwifi/downloads/iwlwifi-4965-ucode-%{version}.tgz
+Source0: http://intellinuxwireless.org/iwlwifi/downloads/iwlwifi-4965-ucode-%{version}.tgz
+Source1: http://intellinuxwireless.org/iwlwifi/downloads/iwlwifi-4965-ucode-228.57.1.21.tgz
+Source2: http://intellinuxwireless.org/iwlwifi/downloads/iwlwifi-4965-ucode-4.44.17.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-build
 
 BuildArch: noarch
@@ -22,26 +24,32 @@ This package provides the firmware required for running an Intel
 Wireless WiFi Link 4965AGN adapter with the Linux kernel iwl4965 driver.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -c %{real_name} -a 1 -a 2
+
+### Copy the latest LICENSE and README
+%{__cp} -av %{real_name}-%{version}/{LICENSE,README}* .
 
 %build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0644 iwlwifi-4965-1.ucode %{buildroot}/lib/firmware/iwlwifi-4965-1.ucode
-%{__install} -p -m0644 LICENSE.iwlwifi-4965-ucode %{buildroot}/lib/firmware/LICENSE.iwlwifi-4965-ucode
-%{__install} -p -m0644 README.iwlwifi-4965-ucode %{buildroot}/lib/firmware/README.iwlwifi-4965-ucode
+%{__install} -d -m0755 %{buildroot}/lib/firmware/
+%{__install} -Dp -m0644 */*.ucode %{buildroot}/lib/firmware/
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc /lib/firmware/LICENSE.iwlwifi-4965-ucode
-%doc /lib/firmware/README.iwlwifi-4965-ucode
-/lib/firmware/iwlwifi-4965-1.ucode
+%doc LICENSE* README*
+/lib/firmware/iwlwifi-4965*.ucode
 
 %changelog
+* Thu Jan 22 2009 Philip J Perry <ned at unixmail.co.uk> - 228.57.2.23-1
+- Add firmware v2 228.57.2.23 required for (el-5.3) iwlagn driver.
+- keep firmware v1 228.57.1.21 required for (el-5.2) iwl4965 driver.
+- Bundle firmware v 4.44.17 required for older driver revisions.
+
 * Thu Jan 15 2009 Fabian Arrotin <fabian.arrotin@arrfab.net> - 228.57.1.21-1
 - Cosmetic changes for RPMforge integration.
 
