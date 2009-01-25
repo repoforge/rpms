@@ -5,7 +5,7 @@
 
 Summary: Kernel module to allow the use of NDIS drivers 
 Name: dkms-ndiswrapper
-Version: 1.53
+Version: 1.54
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -81,6 +81,9 @@ dkms remove -m %{dkms_name} -v %{dkms_vers} %{?quiet} --all || :
 %{_sbindir}/ndiswrapper-buginfo
 
 %changelog
+* Sun Jan 25 2009 Dag Wieers <dag@wieers.com> - 1.54-1
+- Updated to release 1.54.
+
 * Mon Nov 10 2008 Dag Wieers <dag@wieers.com> - 1.53-1
 - Updated to release 1.53.
 
