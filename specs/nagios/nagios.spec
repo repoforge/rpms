@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 # Upstream: Ethan Galstad <nagios$nagios,org>
+# Tag: test
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
@@ -16,7 +17,7 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: nagios
-Version: 3.0.6
+Version: 3.1.0
 Release: 1
 License: GPL
 Group: Applications/System
@@ -202,6 +203,9 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Mon Jan 26 2009 Christoph Maser <cmr$financial,com> - 3.1.0-1
+- Updated to release 3.1.0.
+
 * Thu Dec 02 2008 Christoph Maser <cmr$financial,com> - 3.0.6-1
 - Updated to release 3.0.6.
 
