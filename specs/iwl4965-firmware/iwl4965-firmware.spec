@@ -4,7 +4,7 @@
 
 %define real_name iwlwifi-4965-ucode
 
-Summary: Firmware for IntelÂ® Wireless WiFi Link 4965AGN network adapter
+Summary: Firmware for Intel Wireless WiFi Link 4965AGN network adapter
 Name: iwl4965-firmware
 Version: 228.57.2.23
 Release: 1
@@ -21,7 +21,7 @@ BuildArch: noarch
 
 %description
 This package provides the firmware required for running an Intel
-Wireless WiFi Link 4965AGN adapter with the Linux kernel iwl4965 driver.
+Wireless WiFi Link 4965AGN adapter with the Linux kernel iwl4965/iwlagn driver.
 
 %prep
 %setup -c %{real_name} -a 1 -a 2
