@@ -72,6 +72,7 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %ifarch i386
+%{?el5:%{__install} -Dp -m0755 nmon_x86_rhel4 %{buildroot}%{_bindir}/nmon}
 %{?fc6:%{__install} -Dp -m0755 nmon_x86_fedora5 %{buildroot}%{_bindir}/nmon}
 %{?fc5:%{__install} -Dp -m0755 nmon_x86_fedora5 %{buildroot}%{_bindir}/nmon}
 %{?el4:%{__install} -Dp -m0755 nmon_x86_rhel4 %{buildroot}%{_bindir}/nmon}
@@ -80,10 +81,12 @@ EOF
 %{?rh9:%{__install} -Dp -m0755 nmon_x86_redhat9 %{buildroot}%{_bindir}/nmon}
 %endif
 %ifarch x86_64
+%{?el5:%{__install} -Dp -m0755 nmon_x86_64_rhel4 %{buildroot}%{_bindir}/nmon}
 %{?fc6:%{__install} -Dp -m0755 nmon_x86_64_fedora6 %{buildroot}%{_bindir}/nmon}
 %{?el4:%{__install} -Dp -m0755 nmon_x86_64_rhel4 %{buildroot}%{_bindir}/nmon}
 %endif
 %ifarch ppc ppc64
+%{?el5:%{__install} -Dp -m0755 nmon_power_rhel4 %{buildroot}%{_bindir}/nmon}
 %{?el4:%{__install} -Dp -m0755 nmon_power_rhel4 %{buildroot}%{_bindir}/nmon}
 %{?el3:%{__install} -Dp -m0755 nmon_power_rhel3 %{buildroot}%{_bindir}/nmon}
 %endif
