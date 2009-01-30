@@ -14,8 +14,8 @@
 
 Summary: Enhanced system logging and kernel message trapping daemons
 Name: rsyslog
-Version: 2.0.0
-Release: 0.11
+Version: 2.0.6
+Release: 0.1
 License: GPLv2+
 Group: System Environment/Daemons
 URL: http://www.rsyslog.com/
@@ -24,9 +24,7 @@ Source0: http://download.rsyslog.com/rsyslog/rsyslog-%{version}.tar.gz
 Source1: rsyslog.init
 Source2: rsyslog.sysconfig
 Source3: syslog.log
-Patch1: rsyslog-2.0.0-sockhang.patch
-Patch2: rsyslog-2.0.0-forwardMsg.patch
-Patch3: rsyslog-2.0.0-manPage.patch
+Patch1: rsyslog-2.0.0-forwardMsg.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf >= 1.10
@@ -47,6 +45,7 @@ Provides: sysklogd
 %package mysql
 Summary: MySQL support for rsyslog
 Group: System Environment/Daemons
+BuildRequires: mysql-devel >= 4.0
 Requires: %{name} = %{version}-%{release}
 
 %description
@@ -64,9 +63,7 @@ MySQL database support to rsyslog.
 
 %prep
 %setup
-%patch1 -p1 -b .sockHang
-%patch2 -p1 -b .forwardMsg
-%patch3 -p1 -b .manPage
+%patch1 -p1 -b .forwardMsg
 
 %build
 export CFLAGS="%{optflags} -DHAVE_DECL_STRERROR_R -DSTRERROR_R_CHAR_P"
@@ -105,7 +102,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING NEWS README doc/*html
+%doc AUTHORS ChangeLog COPYING README doc/*html
 %doc %{_mandir}/man5/rsyslog.conf.5*
 %doc %{_mandir}/man8/rfc3195d.8*
 %doc %{_mandir}/man8/rklogd.8*
@@ -129,8 +126,15 @@ fi
 %endif
 
 %changelog
+* Fri Jan 30 2009 Dag Wieers <dag@wieers.com> - 2.0.6-0.1
+- Updated to release 2.0.6. (based on RHEL5.3)
+
 * Thu Oct 02 2008 Dag Wieers <dag@wieers.com> - 2.0.0-0.11
 - Initial package. (based on RHEL5)
+
+* Wed Aug 20 2008 Peter Vrabec <pvrabec@redhat.com> 2.0.6-1
+- bugfix rebase
+  Resolves: ##446066
 
 * Thu Feb 07 2008 Peter Vrabec <pvrabec@redhat.com> 2.0.0-11
 - spec file adjustment
