@@ -77,8 +77,9 @@ EOF
 %{?fc5:%{__install} -Dp -m0755 nmon_x86_fedora5 %{buildroot}%{_bindir}/nmon}
 %{?el4:%{__install} -Dp -m0755 nmon_x86_rhel4 %{buildroot}%{_bindir}/nmon}
 %{?el3:%{__install} -Dp -m0755 nmon_x86_rhel3 %{buildroot}%{_bindir}/nmon}
+%{?rh9:%{__install} -Dp -m0755 nmon_x86_rhel3 %{buildroot}%{_bindir}/nmon}
+%{?rh7:%{__install} -Dp -m0755 nmon_x86_rhel2 %{buildroot}%{_bindir}/nmon}
 %{?el2:%{__install} -Dp -m0755 nmon_x86_rhel2 %{buildroot}%{_bindir}/nmon}
-%{?rh9:%{__install} -Dp -m0755 nmon_x86_redhat9 %{buildroot}%{_bindir}/nmon}
 %endif
 %ifarch x86_64
 %{?el5:%{__install} -Dp -m0755 nmon_x86_64_rhel4 %{buildroot}%{_bindir}/nmon}
