@@ -3,7 +3,7 @@
 
 Summary: Powerful and fullfeatured server logfile analyzer
 Name: awstats
-Version: 6.8
+Version: 6.9
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -111,6 +111,9 @@ dos2unix tools/logresolvemerge.pl
 %{_localstatedir}/www/awstats/
 
 %changelog
+* Thu Feb 25 2009 Christoph Maser <cmr@financial.com> - 6.9-1
+- Updated to release 6.9.
+
 * Fri Jul 25 2008 Christoph Maser <cmr@financial.com> - 6.8-1
 - Updated to release 6.8.
 
