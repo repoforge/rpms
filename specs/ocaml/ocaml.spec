@@ -20,19 +20,20 @@
 %{?rh7:%define _without_tcltk_devel 1}
 %{?el2:%define _without_tcltk_devel 1}
 %{?rh6:%define _without_tcltk_devel 1}
+%define major 3.11
 
 Summary: Objective Caml
 Name: ocaml
-Version: 3.10.2
+Version: %{major}.0
 Release: 1
 License: QPL/LGPL
 Group: Development/Languages
 URL: http://caml.inria.fr/
 
-Source0: http://caml.inria.fr/distrib/ocaml-3.10/ocaml-%{version}.tar.bz2
-Source1: http://caml.inria.fr/distrib/ocaml-3.10/ocaml-3.10-refman.html.tar.gz
-Source2: http://caml.inria.fr/distrib/ocaml-3.10/ocaml-3.10-refman.ps.gz
-Source3: http://caml.inria.fr/distrib/ocaml-3.10/ocaml-3.10-refman.info.tar.gz
+Source0: http://caml.inria.fr/distrib/ocaml-%{major}/ocaml-%{version}.tar.bz2
+Source1: http://caml.inria.fr/distrib/ocaml-%{major}/ocaml-%{major}-refman.html.tar.gz
+Source2: http://caml.inria.fr/distrib/ocaml-%{major}/ocaml-%{major}-refman.ps.gz
+Source3: http://caml.inria.fr/distrib/ocaml-%{major}/ocaml-%{major}-refman.info.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, gdbm-devel, emacs
@@ -165,6 +166,9 @@ Emacs mode for Objective Caml.
 %{_datadir}/emacs/site-lisp/*.elc
 
 %changelog
+* Sun May  4 2008 Dries Verachtert <dries@ulyssis.org> - 3.11.0-1
+- Updated to release 3.11.0.
+
 * Sun May  4 2008 Dries Verachtert <dries@ulyssis.org> - 3.10.2-1
 - Updated to release 3.10.2.
 
