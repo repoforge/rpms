@@ -6,7 +6,7 @@
 Summary: IPSec VPN client compatible with Cisco equipment
 Name: vpnc
 Version: 0.5.3
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.unix-ag.uni-kl.de/~massar/vpnc/
@@ -57,13 +57,16 @@ EOF
 %doc %{_mandir}/man8/vpnc.8*
 %dir %{_sysconfdir}/vpnc
 %config(noreplace) %{_sysconfdir}/vpnc/vpnc.conf
-%config(noreplace) %{_sysconfdir}/vpnc/vpnc-script
+%attr(-, root, root, 0700) %config(noreplace) %{_sysconfdir}/vpnc/vpnc-script
 %{_sbindir}/vpnc
 %{_sbindir}/vpnc-disconnect
 %{_sbindir}/pcf2vpnc
 %dev(c, 10, 200) /dev/tun
 
 %changelog
+* Tue Jan 06 2009 Christoph Maser <cmr@financial.com> - 0.5.3-2
+- Set permissions on vpnc-script to 0700
+
 * Tue Jan 06 2009 Kenneth Porter <shiva+vpncrpm@sewingwitch.com> - 0.5.3-1
 - Update to 0.5.3.
 - Include helper scripts.
