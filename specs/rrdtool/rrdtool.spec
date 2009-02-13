@@ -26,7 +26,7 @@
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
-Version: 1.2.29
+Version: 1.2.30
 Release: 1
 License: GPL
 Group: Applications/Databases
@@ -225,6 +225,9 @@ find examples/ -name "*.pl" -exec %{__perl} -pi -e 's|\015||gi' {} \;
 %endif
 
 %changelog
+* Fri Feb 13 2009 Christoph Maser <cmr@financial.com> - 1.2.30
+- Update to 1.2.30
+
 * Mon Dec 29 2008 Christoph Maser <cmr@financial.com> - 1.2.29-1
 - Update to 1.2.29
 - Remove fontpath patch as the problem is fixed in this release 
