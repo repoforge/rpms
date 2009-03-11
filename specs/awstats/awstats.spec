@@ -4,7 +4,7 @@
 Summary: Powerful and fullfeatured server logfile analyzer
 Name: awstats
 Version: 6.9
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://awstats.sourceforge.net/
@@ -76,6 +76,10 @@ ScriptAlias /awstats/ %{_localstatedir}/www/awstats/
 EOF
 
 dos2unix tools/logresolvemerge.pl
+dos2unix tools/awstats_exportlib.pl
+dos2unix tools/urlaliasbuilder.pl
+dos2unix wwwroot/cgi-bin/awredir.pl
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -111,6 +115,11 @@ dos2unix tools/logresolvemerge.pl
 %{_localstatedir}/www/awstats/
 
 %changelog
+* Thu Feb 25 2009 Christoph Maser <cmr@financial.com> - 6.9-2
+- dos2unix for tools/awstats_exportlib.pl tools/urlaliasbuilder.pl 
+   wwwroot/cgi-bin/awredir.pl, reported by Cristian Othon Martinez Vera
+
+
 * Thu Feb 25 2009 Christoph Maser <cmr@financial.com> - 6.9-1
 - Updated to release 6.9.
 
