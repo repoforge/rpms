@@ -4,12 +4,12 @@
 
 Summary: GnuPG Made Easy
 Name: gpgme
-Version: 1.1.6
-Release: svn1258
+Version: 1.1.8
+Release: 1
 License: GPL
 Group: Applications/System
 #Source: ftp://ftp.gnupg.org/gcrypt/gpgme/gpgme-%{version}-%{release}.tar.bz2
-Source: ftp://ftp.gnupg.ca/alpha/gpgme/gpgme-%{version}-%{release}.tar.bz2
+Source: ftp://ftp.gnupg.ca/gpgme/gpgme-%{version}.tar.bz2
 URL: http://www.gnupg.org/related_software/gpgme/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: libgpgme <= 0.3.15
@@ -43,7 +43,7 @@ Static libraries and header files from GPGME, GnuPG Made Easy.
 
 
 %prep
-%setup -n gpgme-%{version}-%{release}
+%setup
 
 
 %build
@@ -95,6 +95,9 @@ fi
 %{_infodir}/gpgme.info*
 
 %changelog
+* Thu Mar 12 2009 Dries Verachtert <dries@ulyssis.org> - 1.1.8-1
+- Updated to release 1.1.8.
+
 * Thu Jan 01 2008 Heiko Adams <info-2007@fedora-blog.de> - 1.1.6-svn1258
 - Update to 1.1.6-svn1258
 
