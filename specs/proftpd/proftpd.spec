@@ -9,7 +9,7 @@
 
 Summary: Flexible, stable and highly-configurable FTP server
 Name: proftpd
-Version: 1.3.1
+Version: 1.3.2
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -186,6 +186,7 @@ fi
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/proftpd/
+%{_libdir}/pkgconfig/proftpd.pc
 
 %files ldap
 %defattr(-, root, root, 0755)
@@ -208,6 +209,9 @@ fi
 %endif
 
 %changelog
+* Thu Mar 12 2009 Dries Verachtert <dries@ulyssis.org> - 1.3.2-1
+- Updated to release 1.3.2.
+
 * Sat Oct 06 2007 Dag Wieers <dag@wieers.com> - 1.3.1-1
 - Updated to release 1.3.1.
 
