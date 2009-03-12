@@ -86,7 +86,6 @@
 %{?rh9:%define _without_ltdl_devel 1}
 %{?rh9:%define _without_lua 1}
 %{?rh9:%define _without_ocaml 1}
-%{?rh9:%define _without_ruby 1}
 %{?rh9:%define _without_pangocairo 1}
 %{?rh9:%define _without_php 1}
 %{?rh9:%define _without_python 1}
@@ -101,7 +100,6 @@
 %{?rh8:%define _without_ltdl_devel 1}
 %{?rh8:%define _without_lua 1}
 %{?rh8:%define _without_ocaml 1}
-%{?rh8:%define _without_ruby 1}
 %{?rh8:%define _without_pangocairo 1}
 %{?rh8:%define _without_php 1}
 %{?rh8:%define _without_python 1}
@@ -116,7 +114,6 @@
 %{?rh7:%define _without_ltdl_devel 1}
 %{?rh7:%define _without_lua 1}
 %{?rh7:%define _without_ocaml 1}
-%{?rh7:%define _without_ruby 1}
 %{?rh7:%define _without_pangocairo 1}
 %{?rh7:%define _without_php 1}
 %{?rh7:%define _without_python 1}
