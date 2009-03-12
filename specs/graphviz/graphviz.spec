@@ -3,45 +3,148 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{?el5:%define _without_java 1}
-%{?fc6:%define _without_java 1}
-%{?fc5:%define _without_java 1}
+%{?el5:%define _without_lua 1}
+%{?el5:%define _without_ocaml 1}
+%{?el5:%define _without_php 1}
+
+%{?fc5:%define _without_lua 1}
+%{?fc5:%define _without_pangocairo 1}
+%{?fc5:%define _without_rsvg 1}
 
 %{?fc4:%define _without_java 1}
+%{?fc4:%define _without_lua 1}
 %{?fc4:%define _without_modxorg 1}
+%{?fc4:%define _without_ocaml 1}
+%{?fc4:%define _without_pangocairo 1}
+%{?fc4:%define _without_php 1}
+%{?fc4:%define _without_rsvg 1}
 
 %{?el4:%define _without_java 1}
+%{?el4:%define _without_ltdl_devel 1}
+%{?el4:%define _without_lua 1}
 %{?el4:%define _without_modxorg 1}
+%{?el4:%define _without_ocaml 1}
+%{?el4:%define _without_pangocairo 1}
+%{?el4:%define _without_php 1}
+%{?el4:%define _without_rsvg 1}
 
+%{?fc3:%define _without_guile 1}
 %{?fc3:%define _without_java 1}
+%{?fc3:%define _without_ltdl_devel 1}
+%{?fc3:%define _without_lua 1}
 %{?fc3:%define _without_modxorg 1}
+%{?fc3:%define _without_ocaml 1}
+%{?fc3:%define _without_pangocairo 1}
+%{?fc3:%define _without_php 1}
+%{?fc3:%define _without_python 1}
+%{?fc3:%define _without_rsvg 1}
+%{?fc3:%define _without_ruby 1}
 
+%{?fc2:%define _without_guile 1}
+%{?fc2:%define _without_ipsepcola 1}
 %{?fc2:%define _without_java 1}
+%{?fc2:%define _without_ltdl_devel 1}
+%{?fc2:%define _without_lua 1}
 %{?fc2:%define _without_modxorg 1}
+%{?fc2:%define _without_ocaml 1}
+%{?fc2:%define _without_pangocairo 1}
+%{?fc2:%define _without_php 1}
+%{?fc2:%define _without_python 1}
+%{?fc2:%define _without_rsvg 1}
+%{?fc2:%define _without_ruby 1}
 
+%{?fc1:%define _without_guile 1}
+%{?fc1:%define _without_ipsepcola 1}
 %{?fc1:%define _without_java 1}
+%{?fc1:%define _without_ltdl_devel 1}
+%{?fc1:%define _without_lua 1}
 %{?fc1:%define _without_modxorg 1}
+%{?fc1:%define _without_ocaml 1}
+%{?fc1:%define _without_pangocairo 1}
+%{?fc1:%define _without_php 1}
+%{?fc1:%define _without_python 1}
+%{?fc1:%define _without_rsvg 1}
+%{?fc1:%define _without_ruby 1}
 
+%{?el3:%define _without_guile 1}
 %{?el3:%define _without_java 1}
+%{?el3:%define _without_ltdl_devel 1}
+%{?el3:%define _without_lua 1}
 %{?el3:%define _without_modxorg 1}
+%{?el3:%define _without_ocaml 1}
+%{?el3:%define _without_pangocairo 1}
+%{?el3:%define _without_perl 1}
+%{?el3:%define _without_php 1}
+%{?el3:%define _without_python 1}
+%{?el3:%define _without_rsvg 1}
+%{?el3:%define _without_ruby 1}
 
+%{?rh9:%define _without_fontconfig 1}
+%{?rh9:%define _without_guile 1}
+%{?rh9:%define _without_ipsepcola 1}
 %{?rh9:%define _without_java 1}
+%{?rh9:%define _without_ltdl_devel 1}
+%{?rh9:%define _without_lua 1}
+%{?rh9:%define _without_ocaml 1}
+%{?rh9:%define _without_ruby 1}
+%{?rh9:%define _without_pangocairo 1}
+%{?rh9:%define _without_php 1}
+%{?rh9:%define _without_python 1}
+%{?rh9:%define _without_rsvg 1}
+%{?rh9:%define _without_ruby 1}
 %{?rh9:%define _without_tcltk_devel 1}
 
+%{?rh8:%define _without_fontconfig 1}
+%{?rh8:%define _without_guile 1}
+%{?rh8:%define _without_ipsepcola 1}
 %{?rh8:%define _without_java 1}
+%{?rh8:%define _without_ltdl_devel 1}
+%{?rh8:%define _without_lua 1}
+%{?rh8:%define _without_ocaml 1}
+%{?rh8:%define _without_ruby 1}
+%{?rh8:%define _without_pangocairo 1}
+%{?rh8:%define _without_php 1}
+%{?rh8:%define _without_python 1}
+%{?rh8:%define _without_rsvg 1}
+%{?rh8:%define _without_ruby 1}
 %{?rh8:%define _without_tcltk_devel 1}
 
+%{?rh7:%define _without_fontconfig 1}
+%{?rh7:%define _without_guile 1}
+%{?rh7:%define _without_ipsepcola 1}
 %{?rh7:%define _without_java 1}
+%{?rh7:%define _without_ltdl_devel 1}
+%{?rh7:%define _without_lua 1}
+%{?rh7:%define _without_ocaml 1}
+%{?rh7:%define _without_ruby 1}
+%{?rh7:%define _without_pangocairo 1}
+%{?rh7:%define _without_php 1}
+%{?rh7:%define _without_python 1}
+%{?rh7:%define _without_rsvg 1}
+%{?rh7:%define _without_ruby 1}
 %{?rh7:%define _without_tcltk_devel 1}
 
+%{?el2:%define _without_fontconfig 1}
+%{?el2:%define _without_freetype 1}
+%{?el2:%define _without_guile 1}
+%{?el2:%define _without_ipsepcola 1}
 %{?el2:%define _without_java 1}
+%{?el2:%define _without_ltdl_devel 1}
+%{?el2:%define _without_lua 1}
 %{?el2:%define _without_modxorg 1}
+%{?el2:%define _without_ocaml 1}
+%{?el2:%define _without_pangocairo 1}
+%{?el2:%define _without_perl 1}
+%{?el2:%define _without_php 1}
+%{?el2:%define _without_python 1}
+%{?el2:%define _without_rsvg 1}
+%{?el2:%define _without_ruby 1}
 %{?el2:%define _without_tcltk_devel 1}
 
 Summary: Graph Visualization Tools
 Name: graphviz
-Version: 2.14.1
-Release: 2
+Version: 2.22.0
+Release: 3
 License: CPL
 Group: Applications/Multimedia
 URL: http://www.graphviz.org/
@@ -49,27 +152,31 @@ URL: http://www.graphviz.org/
 Source: http://www.graphviz.org/pub/graphviz/ARCHIVE/graphviz-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: freetype-devel >= 2.0, bison, m4, flex, ruby-devel, libtool-ltdl-devel
+BuildRequires: bison, m4, flex, swig, tcl >= 8.3, tk
 BuildRequires: libjpeg-devel, libpng-devel, zlib-devel, expat-devel, gcc-c++
-BuildRequires: python-devel, php-devel, guile-devel, perl
-#BuildRequires: /bin/ksh
+BuildRequires: perl
 %{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3, tk-devel}
-%{?_without_tcltk_devel:BuildRequires: tcl >= 8.3, tk}
-# needs version 2.0.29 of gdlib but fc3 contains 2.0.28
+# needs version 2.0.34 of gdlib
 # BuildRequires: gd-progs, gd-devel
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_modxorg:BuildRequires: libXext-devel, libXt-devel, libXaw-devel}
-%{!?_without_java:BuildRequires: java}
+%{!?_without_java:BuildRequires: java-devel libgcj-devel}
+%{!?_without_ltdl_devel:BuildRequires: libtool-ltdl-devel}
+%{?_without_ltdl_devel:BuildRequires: libtool}
+%{!?_without_guile:BuildRequires: guile-devel}
+%{!?_without_lua:BuildRequires: lua-devel}
+%{!?_without_ocaml:BuildRequires: ocaml}
+%{!?_without_python:BuildRequires: python python-devel}
+%{!?_without_ruby:BuildRequires: ruby, ruby-devel}
+%{!?_without_php:BuildRequires: php-devel}
+%{!?_without_fontconfig:BuildRequires: fontconfig-devel}
+%{!?_without_freetype:BuildRequires: freetype-devel >= 2.0}
+%{!?_without_rsvg:BuildRequires: librsvg2-devel}
+%{!?_without_pangocairo:BuildRequires: cairo-devel pango-devel gmp-devel gtk2-devel}
 
 %description
 A collection of tools and tcl packages for the manipulation and layout
 of graphs (as in nodes and edges, not as in barcharts).
-
-%post
-/sbin/ldconfig
-%{_bindir}/dot -c
-
-%postun -p /sbin/ldconfig
 
 %package tcl
 Group: Applications/Multimedia
@@ -178,12 +285,25 @@ Some demo graphs for %{name}.
 %prep
 %setup
 
+# Make sure we get the system ltdl.h and not the one in libltdl
+%{__perl} -pi -e 's/INCLTDL=.*/INCLTDL=/' configure
+
 %build
 %{expand: %%define optflags %{optflags} -ffast-math}
 %configure \
 	--with-mylibgd \
 	--with-x \
-	%{?_without_java:--disable-java}
+	%{?_without_java:--disable-java} \
+	%{?_without_ruby:--disable-ruby} \
+	%{?_without_ocaml:--disable-ocaml} \
+	%{?_without_python:--disable-python} \
+	%{?_without_lua:--disable-lua} \
+	%{?_without_php:--disable-php} \
+	%{?_without_perl:--disable-perl} \
+	%{?_without_pangocairo:--without-pangocairo} \
+	%{?_without_rsvg:--without-rsvg} \
+	%{!?_without_ipsepcola:--with-ipsepcola} \
+	%{!?_with_gdk_pixbuf:--without-gdk-pixbuf}
 %{__make} %{?_smp_mflags}
 
 %install
@@ -194,8 +314,17 @@ Some demo graphs for %{name}.
 %{__mv} %{buildroot}%{_datadir}/graphviz/doc rpmdoc
 %{__chmod} -x %{buildroot}%{_datadir}/graphviz/lefty/*
 
+#check || :
+#{__make} -C rtest rtest
+
 %clean
 %{__rm} -rf %{buildroot}
+
+%post
+/sbin/ldconfig
+%{_bindir}/dot -c
+
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
@@ -206,70 +335,94 @@ Some demo graphs for %{name}.
 %dir %{_datadir}/graphviz/
 %{_datadir}/graphviz/lefty/
 %{_libdir}/graphviz/*.so.*
-#exclude %{_libdir}/graphviz/lib*tcl*.so.*
-#exclude %{_libdir}/graphviz/libtk*.so.*
-#exclude %{_bindir}/dotneato-config
-#exclude %{_mandir}/man1/dotneato-config.1*
-%{_libdir}/lib*.so.*
+%{_libdir}/*.so.*
 
 %files tcl
 %defattr(-, root, root, 0755)
-#%doc doc/tcldot.html
-%doc %{_mandir}/mann/*.n*
+%doc %{_mandir}/man3/*.3tcl*
+%doc %{_mandir}/man3/*3tk*
 %{_libdir}/graphviz/tcl/
-%{_datadir}/graphviz/demo/
-#{_libdir}/graphviz/lib*tcl*.so.*
-#{_libdir}/graphviz/libtk*.so.*
-%{_libdir}/graphviz/pkgIndex.tcl
-#exclude %{_libdir}/%{name}/lib*tcl*.so.?
-#exclude %{_libdir}/%{name}/libtk*.so.?
+%{_libdir}/tcl*/*
+%{_datadir}/graphviz/demo/*.tcl*
+%{_datadir}/graphviz/demo/*_data
 
 %files devel
 %defattr(-, root, root, 0755)
-#%doc %{_mandir}/man1/dotneato-config.1*
-%doc %{_mandir}/man3/*
-#%{_bindir}/dotneato-config
+%doc %{_mandir}/man3/*.3.*
 %{_includedir}/graphviz/
-%{_libdir}/graphviz/*.so
 %{_libdir}/lib*.so
-# %{_libdir}/graphviz/*.a
 %{_libdir}/pkgconfig/*.pc
 %exclude %{_libdir}/graphviz/*.la
 %exclude %{_libdir}/*.la
+%exclude %{_libdir}/graphviz/libgvplugin*
+%exclude %{_libdir}/graphviz/*.so
 
+%if %{!?_without_ruby:1}0
 %files ruby
 %defattr(-, root, root, 0755)
+%doc %{_mandir}/man3/*.3ruby*
 %{_libdir}/graphviz/ruby/
+%{_libdir}/*ruby*/*
+%{_datadir}/graphviz/demo/*.rb*
+%endif
 
+%if %{!?_without_python:1}0
 %files python
 %defattr(-, root, root, 0755)
+%doc %{_mandir}/man3/*.3python*
 %{_libdir}/graphviz/python/
+%{_libdir}/python*/*
+%{_datadir}/graphviz/demo/*.py*
+%endif
 
+%if %{!?_without_php:1}0
 %files php
 %defattr(-, root, root, 0755)
+%doc %{_mandir}/man3/*.3php*
 %{_libdir}/graphviz/php/
+%{_libdir}/php*/*
+%{_datadir}/graphviz/demo/*.php*
+%{_datadir}/php/gv.php
+%endif
 
+%if %{!?_without_ocaml:1}0
 %files ocaml
 %defattr(-, root, root, 0755)
+%doc %{_mandir}/man3/*.3ocaml*
 %{_libdir}/graphviz/ocaml/
+%endif
 
+%if %{!?_without_guile:1}0
 %files guile
 %defattr(-, root, root, 0755)
+%doc %{_mandir}/man3/*.3guile*
 %{_libdir}/graphviz/guile/
+%endif
 
 %if %{!?_without_java:1}0
 %files java
 %defattr(-, root, root, 0755)
+%doc %{_mandir}/man3/*.3java*
 %{_libdir}/graphviz/java/
 %endif
 
+%if %{!?_without_lua:1}0
 %files lua
 %defattr(-, root, root, 0755)
+%doc %{_mandir}/man3/*.3lua*
 %{_libdir}/graphviz/lua/
+%{_libdir}/lua*/*
+%{_datadir}/graphviz/demo/*.lua*
+%endif
 
+%if %{!?_without_perl:1}0
 %files perl
 %defattr(-, root, root, 0755)
+%doc %{_mandir}/man3/*.3perl*
 %{_libdir}/graphviz/perl/
+%{_libdir}/perl*/*
+%{_datadir}/graphviz/demo/*.pl*
+%endif
 
 %files graphs
 %defattr(-, root, root, 0755)
@@ -281,6 +434,17 @@ Some demo graphs for %{name}.
 %doc rpmdoc/*
 
 %changelog
+* Thu Mar  5 2009 Tom G. Christensen <swpkg@statsbiblioteket.dk> - 2.22.0-3
+- Updated to release 2.22.0.
+
+* Fri Feb 27 2009 Tom G. Christensen <swpkg@statsbiblioteket.dk> - 2.20.3-2
+- Fix BR so that language bindings are actually built correctly
+- Make subpackages match upstream more closely
+
+* Wed Feb 25 2009 Tom G. Christensen <swpkg@statsbiblioteket.dk> - 2.20.3-1
+- BR libtool where libtool-ltdl-devel is not available
+- Updated to release 2.20.3.
+
 * Sun Apr 20 2008 Dries Verachtert <dries@ulyssis.org> - 2.14.1-2
 - Added --disable-java to configure when _without_java is set.
 

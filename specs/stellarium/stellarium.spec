@@ -18,16 +18,16 @@
 
 Summary: Stellarium renders 3D photo-realistic skies in real time
 Name: stellarium
-Version: 0.8.0
+Version: 0.10.2
 Release: 1
 License: GPL
 Group: Amusements/Graphics
 URL: http://stellarium.free.fr/
 
 Source: http://dl.sf.net/stellarium/%{name}-%{version}.tar.gz
-Patch: gcc.patch
+#Patch: gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: dos2unix, gcc-c++, SDL-devel, libpng-devel
+BuildRequires: dos2unix, gcc-c++, SDL-devel, libpng-devel, cmake
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_modxorg:BuildRequires: mesa-libGL-devel, mesa-libGLU-devel, freetype-devel}
 
@@ -53,7 +53,7 @@ telescope.
 
 %prep
 %setup
-%patch -p1
+#patch -p1
 %{__cat} > stellarium.desktop <<EOF
 [Desktop Entry]
 Version=1.0
@@ -65,23 +65,13 @@ Categories=Application;Graphics;X-Red-Hat-Extra;
 EOF
 
 %build
-dos2unix configure
-%{__chmod} +x configure
-%configure
+cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} .
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-# {__make} DESTDIR=%{buildroot} install-strip
-%{__mv} %{buildroot}/%{_bindir}/stellarium %{buildroot}/%{_bindir}/run-stellarium
+%{__make} install DESTDIR="%{buildroot}"
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
-%{__cat} > %{buildroot}%{_bindir}/stellarium <<EOF
-#!/bin/bash
-mkdir -p ~/.stellarium/%{version}
-run-stellarium
-EOF
-%{__chmod} +x %{buildroot}%{_bindir}/stellarium
 
 %if %{?_without_freedesktop:1}0
         %{__install} -Dp -m0644 stellarium.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/stellarium.desktop
@@ -93,6 +83,8 @@ EOF
                 stellarium.desktop
 %endif
 %find_lang %{name}
+%find_lang %{name}-skycultures
+%{__cat} %{name}-skycultures.lang >> %{name}.lang
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -100,13 +92,18 @@ EOF
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc README
-%doc %{_mandir}/man?/*
-%{_bindir}/run-stellarium
+%doc %{_mandir}/man1/stellarium.1*
 %{_bindir}/stellarium
 %{_datadir}/stellarium
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Thu Mar 12 2009 Dries Verachtert <dries@ulyssis.org> - 0.10.2-1
+- Updated to release 0.10.2.
+
+* Fri Jan  1 2008 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1
+- Updated to release 0.9.1.
+
 * Sat May 06 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.0-1
 - Updated to release 0.8.0.
 

@@ -12,11 +12,11 @@
 %{?fc2:%define _without_modxorg 1}
 %{?fc1:%define _without_modxorg 1}
 
-%define real_version 233
+%define real_version 241
 
 Summary: Command line utility for creating charts and plots
 Name: ploticus
-Version: 2.33
+Version: 2.41
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -49,7 +49,7 @@ or create complex scripts with rich and detailed color and style operations.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_bindir} %{buildroot}%{_datadir}/ploticus/pltestsuite/
-%makeinstall -C src BIN=%{buildroot}%{_bindir}
+%{__make} install -C src INSTALLBIN=%{buildroot}%{_bindir} DESTDIR="%{buildroot}"
 %{__install} -D prefabs/* %{buildroot}%{_datadir}/ploticus
 %{__install} -D pltestsuite/* %{buildroot}%{_datadir}/ploticus/pltestsuite
 
@@ -63,6 +63,9 @@ or create complex scripts with rich and detailed color and style operations.
 %{_datadir}/ploticus/
 
 %changelog
+* Thu Mar 12 2009 Dries Verachtert <dries@ulyssis.org> - 2.41-1
+- Updated to release 2.41.
+
 * Sat Aug 12 2006 Dries Verachtert <dries@ulyssis.org> - 2.33-1
 - Updated to release 2.33.
 
