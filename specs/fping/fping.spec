@@ -68,8 +68,8 @@ will be considered unreachable.
 %doc ChangeLog COPYING README
 %doc %{_mandir}/man8/fping.8*
 %doc %{_mandir}/man8/fping6.8*
-%attr(4750, root, adm) %{_sbindir}/fping
-%attr(4750, root, adm) %{_sbindir}/fping6
+%attr(4755,root,root) %{_sbindir}/fping
+%attr(4755,root,root) %{_sbindir}/fping6
 
 %changelog
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.4-1.b2.2
