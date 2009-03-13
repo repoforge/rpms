@@ -10,7 +10,7 @@
 Summary: Perl module to parse nmap scan data
 Name: perl-Nmap-Parser
 Version: 1.19
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Nmap-Parser/
@@ -37,6 +37,9 @@ perl-Nmap-Parser is a Perl module to parse nmap scan data.
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
+# some macos editors metafiles accidently in the upstream package
+find %{buildroot} -name "._*" -exec %{__rm} {} \;
+
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,9 +50,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man3/Nmap::Parser.3pm*
 %dir %{perl_vendorlib}/Nmap/
 %{perl_vendorlib}/Nmap/Parser.pm
-%{perl_vendorlib}/Nmap/._Parser.pm
 
 %changelog
+* Fri Mar 13 2009 Dries Verachtert <cmr@financial.com> - 1.19-2
+- Remove ._ files
+
+- Updated to release 1.19.
 * Thu Mar 12 2009 Dries Verachtert <dries@ulyssis.org> - 1.19-1
 - Updated to release 1.19.
 
