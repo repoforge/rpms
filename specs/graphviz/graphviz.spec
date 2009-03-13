@@ -85,6 +85,7 @@
 %{?rh9:%define _without_java 1}
 %{?rh9:%define _without_ltdl_devel 1}
 %{?rh9:%define _without_lua 1}
+%{?rh9:%define _without_modxorg 1}
 %{?rh9:%define _without_ocaml 1}
 %{?rh9:%define _without_pangocairo 1}
 %{?rh9:%define _without_php 1}
@@ -99,6 +100,7 @@
 %{?rh8:%define _without_java 1}
 %{?rh8:%define _without_ltdl_devel 1}
 %{?rh8:%define _without_lua 1}
+%{?rh8:%define _without_modxorg 1}
 %{?rh8:%define _without_ocaml 1}
 %{?rh8:%define _without_pangocairo 1}
 %{?rh8:%define _without_php 1}
@@ -113,6 +115,7 @@
 %{?rh7:%define _without_java 1}
 %{?rh7:%define _without_ltdl_devel 1}
 %{?rh7:%define _without_lua 1}
+%{?rh7:%define _without_modxorg 1}
 %{?rh7:%define _without_ocaml 1}
 %{?rh7:%define _without_pangocairo 1}
 %{?rh7:%define _without_php 1}
@@ -141,7 +144,7 @@
 Summary: Graph Visualization Tools
 Name: graphviz
 Version: 2.22.0
-Release: 3
+Release: 4
 License: CPL
 Group: Applications/Multimedia
 URL: http://www.graphviz.org/
@@ -299,6 +302,8 @@ Some demo graphs for %{name}.
 	%{?_without_perl:--disable-perl} \
 	%{?_without_pangocairo:--without-pangocairo} \
 	%{?_without_rsvg:--without-rsvg} \
+	%{?_without_freetype:--without-freetype2} \
+	%{?_without_fontconfig:--without-fontconfig} \
 	%{!?_without_ipsepcola:--with-ipsepcola} \
 	%{!?_with_gdk_pixbuf:--without-gdk-pixbuf}
 %{__make} %{?_smp_mflags}
@@ -431,6 +436,10 @@ Some demo graphs for %{name}.
 %doc rpmdoc/*
 
 %changelog
+* Thu Mar 13 2009 Tom G. Christensen <swpkg@statsbiblioteket.dk> - 2.22.0-4
+- Fix BR for rh7-9
+- Explicitly disable freetype/fontconfig when requested to build without
+
 * Thu Mar  5 2009 Tom G. Christensen <swpkg@statsbiblioteket.dk> - 2.22.0-3
 - Updated to release 2.22.0.
 
