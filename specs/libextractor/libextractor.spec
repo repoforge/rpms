@@ -13,7 +13,7 @@
 
 Summary: Meta-data extraction library
 Name: libextractor
-Version: 0.5.21
+Version: 0.5.22
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -94,6 +94,7 @@ fi
 %doc %{_mandir}/man1/extract.1*
 %{_bindir}/extract
 %{_libdir}/libextractor.so.*
+%{_libdir}/libextractor_common.so.*
 %{_libdir}/libextractor/
 #%exclude %{_libdir}/libextractor/libextractor_*.a
 %exclude %{_libdir}/libextractor/libextractor_*.la
@@ -104,14 +105,19 @@ fi
 %{_includedir}/extractor.h
 #%{_libdir}/libextractor.a
 %{_libdir}/libextractor.so
+%{_libdir}/libextractor_common.so
 %{_libdir}/pkgconfig/libextractor.pc
 %exclude %{_libdir}/libextractor.la
+%exclude %{_libdir}/libextractor_common.la
 
 #%files -n python-extractor
 #%defattr(-, root, root, 0755)
 #%{python_sitearch}/extractor.so
 
 %changelog
+* Sun Feb 22 2009 Dag Wieers <dag@wieers.com> - 0.5.22-1
+- Updated to release 0.5.22.
+
 * Mon Nov 03 2008 Dag Wieers <dag@wieers.com> - 0.5.21-1
 - Updated to release 0.5.21.
 

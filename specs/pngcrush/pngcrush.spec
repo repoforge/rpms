@@ -4,7 +4,7 @@
 
 Summary: Optimizer for PNG (Portable Network Graphics) files
 Name: pngcrush
-Version: 1.6.10
+Version: 1.6.14
 Release: 1
 License: GPL
 Group: Applications/File
@@ -44,6 +44,9 @@ tRNS, iCCP, and textual chunks.
 %{_bindir}/pngcrush
 
 %changelog
+* Sun Feb 22 2009 Dag Wieers <dag@wieers.com> - 1.6.14-1
+- Updated to release 1.6.14.
+
 * Wed Aug 27 2008 Dag Wieers <dag@wieers.com> - 1.6.10-1
 - Updated to release 1.6.10.
 

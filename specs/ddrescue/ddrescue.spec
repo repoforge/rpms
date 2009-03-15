@@ -6,13 +6,14 @@ Summary: Data recovery tool
 Name: ddrescue
 ### Epoch to override Fedora Extras stupid decision to NOT ADHERE TO THEIR OWN NAMING CONVENTION
 Epoch: 1
-Version: 1.9
+Version: 1.10
 Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.gnu.org/software/ddrescue/ddrescue.html
 
-Source: http://savannah.gnu.org/download/ddrescue/ddrescue-%{version}.tar.bz2
+Source: http://ftp.gnu.org/gnu/ddrescue/ddrescue-%{version}.tar.gz
+#Source: http://savannah.gnu.org/download/ddrescue/ddrescue-%{version}.tar.gz
 Patch0: ddrescue-1.7-unistd.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -58,12 +59,15 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %doc %{_infodir}/ddrescue.info.*
 %doc %{_mandir}/man1/ddrescue.1*
 %{_bindir}/ddrescue
 
 %changelog
+* Mon Mar 02 2009 Dag Wieers <dag@wieers.com> - 1.10-1
+- Updated to release 1.10.
+
 * Tue Nov 18 2008 Dag Wieers <dag@wieers.com> - 1.9-1
 - Updated to release 1.9.
 

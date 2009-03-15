@@ -3,7 +3,7 @@
 
 Summary: Userspace filesystem defragmenter
 Name: shake
-Version: 0.30
+Version: 0.99
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -49,6 +49,9 @@ cmake ..
 %{_bindir}/unattr
 
 %changelog
+* Sun Feb 22 2009 Dag Wieers <dag@wieers.com> - 0.99-1
+- Updated to release 0.99.
+
 * Sun Feb 03 2008 Dag Wieers <dag@wieers.com> - 0.30-1
 - Updated to release 0.30.
 

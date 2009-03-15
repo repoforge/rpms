@@ -1,0 +1,24 @@
+--- python-ethtool/ethtool.c.orig	2009-03-10 16:24:18.000000000 +0100
++++ python-ethtool/ethtool.c	2009-03-10 16:24:30.000000000 +0100
+@@ -863,7 +863,7 @@
+ 	PyModule_AddIntConstant(m, "IFF_MULTICAST", IFF_MULTICAST);	/* Supports multicast. */
+ 	PyModule_AddIntConstant(m, "IFF_PORTSEL", IFF_PORTSEL);		/* Can set media type. */
+ 	PyModule_AddIntConstant(m, "IFF_AUTOMEDIA", IFF_AUTOMEDIA);	/* Auto media select active. */
+-	PyModule_AddIntConstant(m, "IFF_DYNAMIC", IFF_DYNAMIC);		/* Dialup device with changing addresses.  */
++//	PyModule_AddIntConstant(m, "IFF_DYNAMIC", IFF_DYNAMIC);		/* Dialup device with changing addresses.  */
+ }
+ 
+ 
+--- pifconfig.py.orig	2009-03-10 16:53:49.000000000 +0100
++++ pifconfig.py	2009-03-10 16:54:03.000000000 +0100
+@@ -53,8 +53,8 @@
+ 		string += "PORTSEL "
+ 	if flags & ethtool.IFF_AUTOMEDIA:
+ 		string += "AUTOMEDIA "
+-	if flags & ethtool.IFF_DYNAMIC:
+-		string += "DYNAMIC "
++#	if flags & ethtool.IFF_DYNAMIC:
++#		string += "DYNAMIC "
+ 
+ 	return string.strip()
+ 

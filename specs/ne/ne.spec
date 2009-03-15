@@ -4,7 +4,7 @@
 
 Summary: Nice editor
 Name: ne
-Version: 1.43
+Version: 2.0.3
 Release: 1
 License: GPL
 Group: Applications/Editors
@@ -46,6 +46,9 @@ This package includes the documentation for package %{name}.
 %{__install} -Dp -m0644 doc/ne.1 %{buildroot}%{_mandir}/man1/ne.1
 %{__install} -Dp -m0644 doc/ne.info.gz %{buildroot}%{_infodir}/ne.info.gz
 
+%{__install} -dp -m0755 %{buildroot}%{_libdir}/ne/syntax/
+%{__cp} -av syntax/* %{buildroot}%{_libdir}/ne/syntax/
+
 %post
 /sbin/install-info %{_infodir}/ne.info.gz %{_infodir}/dir
 
@@ -57,16 +60,20 @@ This package includes the documentation for package %{name}.
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES COPYING README doc/default.* doc/ne.txt doc/ne/ terms/
+%doc CHANGES COPYING README doc/default.* doc/ne.txt doc/ne/
 %doc %{_mandir}/man1/ne.1*
 %doc %{_infodir}/ne.info*
 %{_bindir}/ne
+%{_libdir}/ne/
 
 %files docs
 %defattr(-, root, root, 0755)
-%doc doc/ne/ doc/*.pdf doc/*.ps doc/ne.txt
+%doc doc/ne/ doc/*.pdf doc/ne.txt
 
 %changelog
+* Sun Feb 22 2009 Dag Wieers <dag@wieers.com> - 2.0.3-1
+- Updated to release 2.0.3.
+
 * Thu Apr 10 2008 Dag Wieers <dag@wieers.com> - 1.43-1
 - Updated to release 1.43.
 

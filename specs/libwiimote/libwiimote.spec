@@ -4,7 +4,7 @@
 Summary: Simple Wiimote Library for Linux
 Name: libwiimote
 Version: 0.4
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://libwiimote.sourceforge.net/
@@ -14,6 +14,7 @@ Patch0: libwiimote-0.4-fpic.patch
 Patch1: libwiimote-0.4-includedir.patch
 Patch2: libwiimote-0.4-dso-symlinks.patch
 Patch3: libwiimote-0.4-soname.patch
+Patch4: libwiimote-0.4-svn20090207.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf
@@ -29,6 +30,7 @@ applications with the wiimote.
 Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
+Requires: bluez-libs-devel
 
 %description devel
 This package contains the header files, static libraries and development
@@ -41,6 +43,9 @@ you will need to install %{name}-devel.
 %patch1 -p1 -b .includedir
 %patch2 -p1 -b .dso-symlinks
 %patch3 -p1 -b .soname
+%patch4 -p1 -b .svn20090207
+
+%{__perl} -pi.orig -e 's|#-D_DISABLE_NONBLOCK_UPDATES -D_DISABLE_AUTO_SELECT_DEVICE|-D_DISABLE_BLOCKING_UPDATE|' config.mk.in
 
 %build
 autoconf
@@ -69,5 +74,8 @@ autoconf
 %exclude %{_libdir}/libcwiimote.a
 
 %changelog
+* Sat Feb 07 2009 Dag Wieers <dag@wieers.com> - 0.4-2
+- Added -D_DISABLE_BLOCKING_UPDATE.
+
 * Sat May 24 2008 Dag Wieers <dag@wieers.com> - 0.4-1
 - Initial package. (using DAR)

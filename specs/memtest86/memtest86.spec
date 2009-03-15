@@ -6,7 +6,7 @@
 
 Summary: Thorough, stand alone memory test
 Name: memtest86
-Version: 3.4
+Version: 3.5
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -57,6 +57,9 @@ fi
 /boot/%{name}-%{version}
 
 %changelog
+* Sat Feb 21 2009 Dag Wieers <dag@wieers.com> - 3.5-1
+- Updated to release 3.5.
+
 * Mon Jun 16 2008 Dag Wieers <dag@wieers.com> - 3.4-1
 - Updated to release 3.4.
 
