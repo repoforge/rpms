@@ -11,10 +11,12 @@ Release: 1
 License: LGPL
 Group: Applications/Internet
 URL: http://www.twistedmatrix.com/
+
 Source: http://twisted.sourceforge.net/Twisted-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: python-devel
 Requires: python
-BuildRequires: python, python-devel
 Obsoletes: python-Twisted < 1.3.0
 Provides: python-Twisted = %{version}-%{release}
 
@@ -23,7 +25,6 @@ An event-driven networking framework written in Python and licensed
 under the LGPL. Twisted supports TCP, UDP, SSL/TLS, multicast, Unix
 sockets, a large number of protocols (including HTTP, NNTP, SSH, IRC,
 FTP, and others), and much more.
-
 
 %package docs
 Summary: Documentation for the Twisted networking framework
@@ -37,14 +38,11 @@ FTP, and others), and much more.
 
 This package contains all the documentation for Twisted.
 
-
 %prep
 %setup -n Twisted-%{version}
 
-
 %build
 %{__python} setup.py build_ext
-
 
 %install
 %{__rm} -rf %{buildroot}
@@ -63,10 +61,8 @@ done
 # inconsistent
 find doc -type f -exec chmod 644 {} \;
 
-
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files
 %defattr(-, root, root, 0755)
@@ -78,7 +74,6 @@ find doc -type f -exec chmod 644 {} \;
 %files docs
 %defattr(-, root, root, 0755)
 %doc doc/*
-
 
 %changelog
 * Tue Jun 22 2004 Matthias Saou <http://freshrpms.net> 1.3.0-1

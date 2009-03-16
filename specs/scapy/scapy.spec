@@ -16,7 +16,8 @@ Source: http://www.secdev.org/projects/scapy/files/scapy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-Requires: python >= 2.2, nmap
+BuildRequires: python >= 2.4
+Requires: python >= 2.4, nmap
 
 %description
 Scapy is a powerful interactive packet manipulation tool, packet generator,
@@ -39,8 +40,6 @@ the interpretor, and restored the next time you launch scapy.
 %install
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
-#%{__install} -Dp -m0755 scapy.py %{buildroot}%{_bindir}/scapy
-#%{__install} -Dp -m0644 scapy.1 %{buildroot}%{_mandir}/man1/scapy.1
 
 %clean
 %{__rm} -rf %{buildroot}
