@@ -29,23 +29,23 @@ showing users, IP addresses, bytes, sites and times.
 %{__chmod} u+wx sarg-php/locale/
 
 %{__perl} -pi.orig -e '
-		s|^#(access_log) (.+)$|#$1 $2\n$1 %{_localstatedir}/log/squid/access.log|;
-		s|^#(output_dir) (.+)$|#$1 $2\n$1 %{_localstatedir}/www/sarg/ONE-SHOT|;
-		s|^#(resolve_ip) (.+)$|#$1 $2\n$1 yes|;
-		s|^#(show_successful_message) (.+)$|#$1 $2\n$1 no|;
-		s|^#(mail_utility) (.+)$|#$1 $2\n$1 mail|;
-		s|^#(external_css_file) (.+)$|#$1 $2\n$1 %{_localstatedir}/www/sarg/sarg.css|;
-	' sarg.conf
+        s|^#(access_log) (.+)$|#$1 $2\n$1 %{_localstatedir}/log/squid/access.log|;
+        s|^#(output_dir) (.+)$|#$1 $2\n$1 %{_localstatedir}/www/sarg/ONE-SHOT|;
+        s|^#(resolve_ip) (.+)$|#$1 $2\n$1 yes|;
+        s|^#(show_successful_message) (.+)$|#$1 $2\n$1 no|;
+        s|^#(mail_utility) (.+)$|#$1 $2\n$1 mail|;
+        s|^#(external_css_file) (.+)$|#$1 $2\n$1 %{_localstatedir}/www/sarg/sarg.css|;
+    ' sarg.conf
 
 %{__cat} <<'EOF' >sarg.daily
 #!/bin/bash
 
 # Get yesterday's date
-YESTERDAY=$(date --date "1 days ago" +%d/%m/%Y)
+YESTERDAY=$(date --date "1 day ago" +%d/%m/%Y)
 
 exec %{_bindir}/sarg \
-	-o %{_localstatedir}/www/sarg/daily \
-	-d $YESTERDAY &>/dev/null
+    -o %{_localstatedir}/www/sarg/daily \
+    -d $YESTERDAY &>/dev/null
 exit 0
 EOF
 
@@ -53,22 +53,22 @@ EOF
 #!/bin/bash
 LOG_FILES=
 if [ -s %{_localstatedir}/log/squid/access.log.1.gz ]; then
-	LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log.1.gz"
+    LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log.1.gz"
 fi
 if [ -s %{_localstatedir}/log/squid/access.log ]; then
-	LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log"
+    LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log"
 fi
 
 # Get yesterday's date
-YESTERDAY=$(date --date "1 days ago" +%d/%m/%Y)
+YESTERDAY=$(date --date "1 day ago" +%d/%m/%Y)
 
 # Get one week ago date
 WEEKAGO=$(date --date "7 days ago" +%d/%m/%Y)
 
 exec %{_bindir}/sarg \
-	$LOG_FILES \
-	-o %{_localstatedir}/www/sarg/weekly \
-	-d $WEEKAGO-$YESTERDAY &>/dev/null
+    $LOG_FILES \
+    -o %{_localstatedir}/www/sarg/weekly \
+    -d $WEEKAGO-$YESTERDAY &>/dev/null
 exit 0
 EOF
 
@@ -76,19 +76,19 @@ EOF
 #!/bin/bash
 LOG_FILES=
 if [ -s %{_localstatedir}/log/squid/access.log.4.gz ]; then
-	LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log.4.gz"
+    LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log.4.gz"
 fi
 if [ -s %{_localstatedir}/log/squid/access.log.3.gz ]; then
-	LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log.3.gz"
+    LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log.3.gz"
 fi
 if [ -s %{_localstatedir}/log/squid/access.log.2.gz ]; then
-	LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log.2.gz"
+    LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log.2.gz"
 fi
 if [ -s %{_localstatedir}/log/squid/access.log.1.gz ]; then
-	LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log.1.gz"
+    LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log.1.gz"
 fi
 if [ -s %{_localstatedir}/log/squid/access.log ]; then
-	LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log"
+    LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log"
 fi
 
 # Get yesterday's date
@@ -98,9 +98,9 @@ YESTERDAY=$(date --date "1 day ago" +%d/%m/%Y)
 MONTHAGO=$(date --date "1 month ago" +%d/%m/%Y)
 
 exec %{_bindir}/sarg \
-	$LOG_FILES \
-	-o %{_localstatedir}/www/sarg/monthly \
-	-d $MONTHAGO-$YESTERDAY &>/dev/null
+    $LOG_FILES \
+    -o %{_localstatedir}/www/sarg/monthly \
+    -d $MONTHAGO-$YESTERDAY &>/dev/null
 exit 0
 EOF
 
@@ -109,44 +109,44 @@ EOF
 <!DOCTYPE html PUBLIC "XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<title>Squid User's Access Report</title>
-	<style type="text/css">
-		#content         { width:20em; margin-left:auto; margin-right:auto; }
-		h1               { color:green; font-size:1.2em; text-align:center; }
-		table#reports    { border-collapse:collapse; width:20em; margin-left:auto; margin-right:auto; font-size:0.8em; }
-		table#reports td { padding:2px; background-color:#f5f5dc; border:solid white 1px; }
-		table#reports th { background-color:#feebcd; border:solid white 1px; color:#00008b; }
-	</style>
+    <title>Squid User's Access Report</title>
+    <style type="text/css">
+        #content         { width:20em; margin-left:auto; margin-right:auto; }
+        h1               { color:green; font-size:1.2em; text-align:center; }
+        table#reports    { border-collapse:collapse; width:20em; margin-left:auto; margin-right:auto; font-size:0.8em; }
+        table#reports td { padding:2px; background-color:#f5f5dc; border:solid white 1px; }
+        table#reports th { background-color:#feebcd; border:solid white 1px; color:#00008b; }
+    </style>
 </head>
 <body>
 
 <div id="content">
-	<h1>Squid User's Access Report</h1>
+    <h1>Squid User's Access Report</h1>
 
-	<table summary="" id="reports">
-	<tbody>
-	<tr>
-		<th>DIRECTORY</th>
-		<th>DESCRIPTION</th>
-	</tr>
-	<tr>
-		<td><a href="ONE-SHOT/index.html">ONE-SHOT</a></td>
-		<td>One shot reports</td>
-	</tr>
-	<tr>
-		<td><a href="daily/index.html">daily</a></td>
-		<td>Daily reports</td>
-	</tr>
-	<tr>
-		<td><a href="weekly/index.html">weekly</a></td>
-		<td>Weekly reports</td>
-	</tr>
-	<tr>
-		<td><a href="monthly/index.html">monthly</a></td>
-		<td>Monthly reports</td>
-	</tr>
-	</tbody>
-	</table>
+    <table summary="" id="reports">
+    <tbody>
+    <tr>
+        <th>DIRECTORY</th>
+        <th>DESCRIPTION</th>
+    </tr>
+    <tr>
+        <td><a href="ONE-SHOT/index.html">ONE-SHOT</a></td>
+        <td>One shot reports</td>
+    </tr>
+    <tr>
+        <td><a href="daily/index.html">daily</a></td>
+        <td>Daily reports</td>
+    </tr>
+    <tr>
+        <td><a href="weekly/index.html">weekly</a></td>
+        <td>Weekly reports</td>
+    </tr>
+    <tr>
+        <td><a href="monthly/index.html">monthly</a></td>
+        <td>Monthly reports</td>
+    </tr>
+    </tbody>
+    </table>
 </div>
 </body>
 </html>
@@ -156,21 +156,21 @@ EOF
 Alias /sarg %{_localstatedir}/www/sarg
 
 <Directory %{_localstatedir}/www/sarg>
-	DirectoryIndex index.html
-	Order deny,allow
-	Deny from all
-	Allow from 127.0.0.1
-	Allow from ::1
-	# Allow from your-workstation.com
+    DirectoryIndex index.html
+    Order deny,allow
+    Deny from all
+    Allow from 127.0.0.1
+    Allow from ::1
+    # Allow from your-workstation.com
 </Directory>
 EOF
 
 %build
 %configure \
-	--enable-bindir=%{_bindir} \
-	--enable-sysconfdir=%{_sysconfdir}/sarg \
-	--enable-mandir=%{_mandir}/man1 \
-	--enable-htmldir=%{_localstatedir}/www/sarg
+    --enable-bindir=%{_bindir} \
+    --enable-sysconfdir=%{_sysconfdir}/sarg \
+    --enable-mandir=%{_mandir}/man1 \
+    --enable-htmldir=%{_localstatedir}/www/sarg
 
 %{__make} %{?_smp_mflags}
 
@@ -218,7 +218,7 @@ EOF
 * Thu Jun 19 2008 Dries Verachtert <dries@ulyssis.org> - 2.2.5-1
 - Updated to release 2.2.5.
 
-* Sun Sep 16 2007 Dries Verachtert <dries@ulyssis.org> - 2.2.3.1-1
+* Sat Aug 25 2007 Dag Wieers <dag@wieers.com> - 2.2.3.1-1
 - Updated to release 2.2.3.1.
 
 * Sat Aug 25 2007 Dag Wieers <dag@wieers.com> - 2.2.3-1
