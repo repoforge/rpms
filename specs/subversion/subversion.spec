@@ -16,7 +16,7 @@
 %{?el2:%define _without_pie 1}
 %{?el2:%define _without_swig 1}
 
-%define swig_version 1.3.25
+%define swig_version 1.3.36
 
 # set to zero to avoid running test suite
 %define make_check 0
@@ -27,7 +27,7 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.5.5
+Version: 1.5.6
 ### FC3 comes with release 1.1
 Release: 0.1
 License: BSD
@@ -319,6 +319,9 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
+* Tue Mar 17 2009 Christoph Maser <cmr@financial.com> - 1.5.6-0.1
+- Updated to release 1.5.6, swig 1.3.36.
+
 * Tue Dec 23 2008 Dag Wieers <dag@wieers.com> - 1.5.5-0.1
 - Updated to release 1.5.5.
 
