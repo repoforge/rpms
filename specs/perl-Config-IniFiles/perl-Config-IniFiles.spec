@@ -8,8 +8,8 @@
 
 Summary: Module for reading .ini-style configuration files
 Name: perl-Config-IniFiles
-Version: 2.39
-Release: 1.2
+Version: 2.47
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-IniFiles/
@@ -50,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Config/IniFiles.pm
 
 %changelog
+* Tue Mar 17 2009 Dries Verachtert <dries@ulyssis.org> - 2.47-1
+- Updated to release 2.47.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.39-1
 - Updated to release 2.39.
 
