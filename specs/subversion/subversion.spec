@@ -16,7 +16,7 @@
 %{?el2:%define _without_pie 1}
 %{?el2:%define _without_swig 1}
 
-%define swig_version 1.3.36
+%define swig_version 1.3.38
 
 # set to zero to avoid running test suite
 %define make_check 0
@@ -29,7 +29,7 @@ Summary: Modern Version Control System designed to replace CVS
 Name: subversion
 Version: 1.5.6
 ### FC3 comes with release 1.1
-Release: 0.1
+Release: 0.2
 License: BSD
 Group: Development/Tools
 URL: http://subversion.tigris.org/
@@ -138,7 +138,7 @@ echo dtag: %dtag
 %if %{!?_without_swig:1}0
 cd swig-%{swig_version}
 [ ! -r configure ] && ./autogen.sh
-%configure --prefix="$(pwd)/install" --exec-prefix="$(pwd)/install" --bindir="$(pwd)/install/bin" --datadir="$(pwd)/install/share"
+%configure --prefix="$(pwd)/install" --exec-prefix="$(pwd)/install" --bindir="$(pwd)/install/bin" --datadir="$(pwd)/install/share" --mandir="$(pwd)/install/man"
 %{__make}
 %{__make} install
 cd -
@@ -319,6 +319,10 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
+* Wed Mar 18 2009 Christoph Maser <cmr@financial.com> - 1.5.6-0.2
+- Updated to swig 1.3.38
+- Added --mandir= to swig configure
+
 * Tue Mar 17 2009 Christoph Maser <cmr@financial.com> - 1.5.6-0.1
 - Updated to release 1.5.6, swig 1.3.36.
 
