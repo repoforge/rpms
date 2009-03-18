@@ -18,7 +18,7 @@
 Summary: Lightning fast webserver with light system requirements
 Name: lighttpd
 Version: 1.4.22
-Release: 1
+Release: 2
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.lighttpd.net/
@@ -83,7 +83,7 @@ recompile PHP yourself.
     notifempty
     sharedscripts
     postrotate
-        /bin/kill -HUP $(cat %{_localstatedir}/run/lighttpd.pid 2>/dev/null) 2>/dev/null || :
+        /sbin/service lighttpd reload > /dev/null 2>/dev/null || true
     endscript
 }
 EOF
@@ -195,6 +195,9 @@ fi
 %{_libdir}/lighttpd/mod_fastcgi.so
 
 %changelog
+ * Sun Mar 15 2009 Stanis Trendelenburg <stanis.trendelenburg@gmail.com> - 1.4.22-2
+- Fix the logrotate script.
+
 * Fri Mar 13 2009 Dries Verachtert <dries@ulyssis.org> - 1.4.22-1
 - Updated to release 1.4.22.
 
