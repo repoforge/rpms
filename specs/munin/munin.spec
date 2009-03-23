@@ -8,7 +8,7 @@
 Summary: Network-wide graphing framework (grapher/gatherer)
 Name: munin
 Version: 1.2.5
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Daemons
 URL: http://munin.projects.linpro.no/
@@ -130,7 +130,7 @@ Alias /munin/ %{_localstatedir}/www/munin/
 EOF
 
 %build
-%{__make} build CONFIG="dists/redhat/Makefile.config"
+%{__make} build CONFIG="dists/redhat/Makefile.config" HTMLDIR="/var/www/munin"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -248,10 +248,10 @@ fi
 %{_datadir}/munin/munin-limits
 %{_datadir}/munin/munin-update
 %{_datadir}/munin/VeraMono.ttf
-%{_localstatedir}/www/munin/
 %{perl_vendorlib}/Munin.pm
 
 %defattr(-, munin, munin, 0755)
+%{_localstatedir}/www/munin/
 %dir %{_localstatedir}/lib/munin/
 %dir %{_localstatedir}/log/munin/
 %dir %{_localstatedir}/run/munin/
@@ -287,6 +287,9 @@ fi
 %dir %{_localstatedir}/log/munin/
 
 %changelog
+* Mon Mar 23 2009 Dries Verachtert <dries@ulyssis.org> - 1.2.5-2
+- Fixes by Mitsuru Hayasaka.
+
 * Sun Apr 29 2007 Dag Wieers <dag@wieers.com> - 1.2.5-1
 - Cosmetic changes.
 
