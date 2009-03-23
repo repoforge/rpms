@@ -4,13 +4,13 @@
 
 Summary: GEOS (Geometry Engine, Open Source) topology library
 Name: geos
-Version: 3.0.0
+Version: 3.1.0
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://geos.refractions.net/
 
-Source: http://geos.refractions.net/downloads/geos-%{version}.tar.bz2
+Source: http://download.osgeo.org/geos/geos-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
@@ -58,7 +58,7 @@ you will need to install %{name}-devel.
 
 %files devel
 %{_bindir}/geos-config
-%{_bindir}/XMLTester
+#%{_bindir}/XMLTester
 %{_includedir}/geos*.h
 %{_includedir}/geos/
 %{_libdir}/libgeos*.so
@@ -66,6 +66,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libgeos*.la
 
 %changelog
+* Mon Mar 23 2009 Dries Verachtert <dries@ulyssis.org> - 3.1.0-1
+- Updated to release 3.1.0.
+
 * Sun Jan  6 2008 Dries Verachtert <dries@ulyssis.org> - 3.0.0-1
 - Updated to release 3.0.0.
 

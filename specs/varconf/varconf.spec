@@ -3,7 +3,7 @@
 
 Summary: Configuration handling library
 Name: varconf
-Version: 0.6.5
+Version: 0.6.6
 Release: 1
 License: LGPL
 Group: Development/Libraries
@@ -60,6 +60,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/varconf-1.0.pc
 
 %changelog
+* Mon Mar 23 2009 Dries Verachtert <dries@ulyssis.org> - 0.6.6-1
+- Updated to release 0.6.6.
+
 * Sun Jan 14 2007 Dries Verachtert <dries@ulyssis.org> - 0.6.5-1
 - Updated to release 0.6.5.
 
