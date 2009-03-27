@@ -50,7 +50,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.1.13
+Version: 1.1.17
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -61,7 +61,7 @@ Patch0: wine-prefixfonts.patch
 Patch1: wine-rpath.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-ExclusiveArch: %{ix86}
+ExclusiveArch: %{ix86} x86_64
 
 BuildRequires: bison, flex, libstdc++-devel
 BuildRequires: audiofile-devel, esound-devel
@@ -305,6 +305,9 @@ echo "%{_libdir}/wine/" >wine.ld.conf
 %configure \
     --sysconfdir="%{_sysconfdir}/wine" \
     --disable-static \
+%ifarch x86_64
+    --enable-win64 \
+%endif
 %{?_without_opengl:--without-opengl}
 %{__make} depend
 %{__make} %{?_smp_mflags}
@@ -412,13 +415,10 @@ update-desktop-database &>/dev/null || :
 %config %{_sysconfdir}/ld.so.conf.d/wine-%{_arch}.conf
 %{_bindir}/msiexec
 %{_bindir}/notepad
-%{_bindir}/progman
 %{_bindir}/regedit
 %{_bindir}/regsvr32
-%{_bindir}/uninstaller
 %{_bindir}/wine
 %{_bindir}/wineboot
-%{_bindir}/winebrowser
 %{_bindir}/winecfg
 %{_bindir}/wineconsole
 %{_bindir}/winedbg
@@ -430,9 +430,7 @@ update-desktop-database &>/dev/null || :
 %{_bindir}/winepath
 %{_bindir}/wineprefixcreate
 %{_bindir}/wineserver
-%{_bindir}/wine-kthread
 %{_bindir}/wine-preloader
-%{_bindir}/wine-pthread
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-wine.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-wine-config.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-wine-fileman.desktop}
@@ -453,7 +451,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/gdi.exe16
 %{_libdir}/wine/krnl386.exe16
 %{_libdir}/wine/user.exe16
-%{_libdir}/wine/winhelp.exe16
+
+### exe16.so
+%{_libdir}/wine/winhelp.exe16.so
 
 ### exe.so
 %{_libdir}/wine/cacls.exe.so
@@ -467,6 +467,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/hh.exe.so
 %{_libdir}/wine/icinfo.exe.so
 %{_libdir}/wine/iexplore.exe.so
+%{_libdir}/wine/lodctr.exe.so
 %{_libdir}/wine/msiexec.exe.so
 %{_libdir}/wine/net.exe.so
 %{_libdir}/wine/notepad.exe.so
@@ -485,6 +486,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/svchost.exe.so
 %{_libdir}/wine/taskmgr.exe.so
 %{_libdir}/wine/uninstaller.exe.so
+%{_libdir}/wine/unlodctr.exe.so
 %{_libdir}/wine/wineboot.exe.so
 %{_libdir}/wine/winebrowser.exe.so
 %{_libdir}/wine/winecfg.exe.so
@@ -505,45 +507,48 @@ update-desktop-database &>/dev/null || :
 ### dll16
 %{_libdir}/wine/avifile.dll16
 %{_libdir}/wine/commdlg.dll16
-%{_libdir}/wine/compobj.dll16
 %{_libdir}/wine/ctl3d.dll16
 %{_libdir}/wine/ctl3dv2.dll16
 %{_libdir}/wine/ddeml.dll16
-%{_libdir}/wine/dispdib.dll16
 %{_libdir}/wine/imm.dll16
-%{_libdir}/wine/lzexpand.dll16
 %{_libdir}/wine/mmsystem.dll16
-%{_libdir}/wine/msacm.dll16
 %{_libdir}/wine/msvideo.dll16
-%{_libdir}/wine/ole2.dll16
-%{_libdir}/wine/ole2conv.dll16
-%{_libdir}/wine/ole2disp.dll16
-%{_libdir}/wine/ole2nls.dll16
-%{_libdir}/wine/ole2prox.dll16
-%{_libdir}/wine/ole2thk.dll16
-%{_libdir}/wine/olecli.dll16
-%{_libdir}/wine/olesvr.dll16
 %{_libdir}/wine/rasapi16.dll16
 %{_libdir}/wine/setupx.dll16
 %{_libdir}/wine/shell.dll16
-%{_libdir}/wine/storage.dll16
-%{_libdir}/wine/stress.dll16
 %{_libdir}/wine/toolhelp.dll16
-%{_libdir}/wine/typelib.dll16
 %{_libdir}/wine/ver.dll16
 %{_libdir}/wine/w32sys.dll16
 %{_libdir}/wine/win32s16.dll16
-%{_libdir}/wine/win87em.dll16
 %{_libdir}/wine/winaspi.dll16
-%{_libdir}/wine/windebug.dll16
 %{_libdir}/wine/wing.dll16
 %{_libdir}/wine/winnls.dll16
 %{_libdir}/wine/winsock.dll16
 %{_libdir}/wine/wintab.dll16
 %{_libdir}/wine/wprocs.dll16
 
+### dll16.so
+%{_libdir}/wine/compobj.dll16.so
+%{_libdir}/wine/dispdib.dll16.so
+%{_libdir}/wine/lzexpand.dll16.so
+%{_libdir}/wine/msacm.dll16.so
+%{_libdir}/wine/ole2.dll16.so
+%{_libdir}/wine/ole2conv.dll16.so
+%{_libdir}/wine/ole2disp.dll16.so
+%{_libdir}/wine/ole2nls.dll16.so
+%{_libdir}/wine/ole2prox.dll16.so
+%{_libdir}/wine/ole2thk.dll16.so
+%{_libdir}/wine/olecli.dll16.so
+%{_libdir}/wine/olesvr.dll16.so
+%{_libdir}/wine/storage.dll16.so
+%{_libdir}/wine/stress.dll16.so
+%{_libdir}/wine/typelib.dll16.so
+%{_libdir}/wine/win87em.dll16.so
+%{_libdir}/wine/windebug.dll16.so
+
 ### dll.so
 %{_libdir}/wine/acledit.dll.so
+%{_libdir}/wine/aclui.dll.so
 %{_libdir}/wine/activeds.dll.so
 %{_libdir}/wine/actxprxy.dll.so
 %{_libdir}/wine/advapi32.dll.so
@@ -551,6 +556,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/amstream.dll.so
 %{_libdir}/wine/appwiz.cpl.so
 %{_libdir}/wine/atl.dll.so
+%{_libdir}/wine/authz.dll.so
 %{_libdir}/wine/avicap32.dll.so
 %{_libdir}/wine/avifil32.dll.so
 %{_libdir}/wine/browseui.dll.so
@@ -591,6 +597,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/d3dx9_35.dll.so
 %{_libdir}/wine/d3dx9_36.dll.so
 %{_libdir}/wine/d3dx9_37.dll.so
+%{_libdir}/wine/d3dx9_38.dll.so
+%{_libdir}/wine/d3dx9_39.dll.so
+%{_libdir}/wine/d3dx9_40.dll.so
 %{_libdir}/wine/d3dxof.dll.so
 %{_libdir}/wine/dbghelp.dll.so
 %{_libdir}/wine/dciman32.dll.so
@@ -656,6 +665,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/mapi32.dll.so
 %{_libdir}/wine/mciavi32.dll.so
 %{_libdir}/wine/mcicda.dll.so
+%{_libdir}/wine/mciqtz32.dll.so
 %{_libdir}/wine/mciseq.dll.so
 %{_libdir}/wine/mciwave.dll.so
 %{_libdir}/wine/midimap.dll.so
@@ -665,6 +675,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/msacm32.dll.so
 %{_libdir}/wine/mscat32.dll.so
 %{_libdir}/wine/mscoree.dll.so
+%{_libdir}/wine/msctf.dll.so
 %{_libdir}/wine/msdmo.dll.so
 %{_libdir}/wine/msftedit.dll.so
 %{_libdir}/wine/mshtml.dll.so
@@ -674,6 +685,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/msisip.dll.so
 %{_libdir}/wine/msnet32.dll.so
 %{_libdir}/wine/msrle32.dll.so
+%{_libdir}/wine/mssign32.dll.so
 %{_libdir}/wine/mssip32.dll.so
 %{_libdir}/wine/mstask.dll.so
 %{_libdir}/wine/msvcirt.dll.so
@@ -718,6 +730,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/quartz.dll.so
 %{_libdir}/wine/query.dll.so
 %{_libdir}/wine/rasapi32.dll.so
+%{_libdir}/wine/rasdlg.dll.so
 %{_libdir}/wine/resutils.dll.so
 %{_libdir}/wine/riched20.dll.so
 %{_libdir}/wine/riched32.dll.so
@@ -747,6 +760,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/svrapi.dll.so
 %{_libdir}/wine/sxs.dll.so
 %{_libdir}/wine/tapi32.dll.so
+%{_libdir}/wine/traffic.dll.so
 %{_libdir}/wine/unicows.dll.so
 %{_libdir}/wine/updspapi.dll.so
 %{_libdir}/wine/url.dll.so
@@ -785,13 +799,15 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/sane.ds.so
 
 ### drv16
-%{_libdir}/wine/comm.drv16
-%{_libdir}/wine/display.drv16
-%{_libdir}/wine/keyboard.drv16
-%{_libdir}/wine/mouse.drv16
 %{_libdir}/wine/sound.drv16
 %{_libdir}/wine/system.drv16
 %{_libdir}/wine/wineps16.drv16
+
+### drv16.so
+%{_libdir}/wine/comm.drv16.so
+%{_libdir}/wine/display.drv16.so
+%{_libdir}/wine/keyboard.drv16.so
+%{_libdir}/wine/mouse.drv16.so
 
 ### drv.so
 %{_libdir}/wine/msacm32.drv.so
@@ -830,8 +846,8 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/hhctrl.ocx.so
 %{_libdir}/wine/msisys.ocx.so
 
-### mod16
-%{_libdir}/wine/winoldap.mod16
+### mod16.so
+%{_libdir}/wine/winoldap.mod16.so
 
 ### sys.so
 %{_libdir}/wine/mountmgr.sys.so
@@ -901,6 +917,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Mon Mar 16 2009 Dag Wieers <dag@wieers.com> - 1.1.17-1
+- Updated to release 1.1.17.
+
 * Wed Jan 21 2009 Dag Wieers <dag@wieers.com> - 1.1.13-1
 - Updated to release 1.1.13.
 

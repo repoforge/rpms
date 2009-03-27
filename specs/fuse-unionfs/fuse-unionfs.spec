@@ -5,9 +5,9 @@
 
 %define real_name unionfs-fuse
 
-Summary: FUSE-base user-space union filesystem
+Summary: Fuse-based user-space union filesystem
 Name: fuse-unionfs
-Version: 0.22
+Version: 0.23
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -57,6 +57,9 @@ unionfs is a FUSE-base user-space union filesystem.
 %{_sbindir}/mount.unionfs
 
 %changelog
+* Mon Mar 23 2009 Dag Wieers <dag@wieers.com> - 0.23-1
+- Updated to release 0.23.
+
 * Thu Sep 04 2008 Dag Wieers <dag@wieers.com> - 0.22-1
 - Updated to release 0.22.
 

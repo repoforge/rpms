@@ -7,7 +7,7 @@
 
 Summary: Statistics collection daemon for filling RRD files
 Name: collectd
-Version: 4.5.0
+Version: 4.6.2
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -32,6 +32,16 @@ system  statistics  and updates  RRD files,  creating  them if neccessary.
 Since the daemon doesn't need to startup every time it wants to update the
 files it's very fast and easy on the system. Also, the statistics are very
 fine grained since the files are updated every 10 seconds.
+
+%package devel
+Summary: Header files, libraries and development documentation for %{name}.
+Group: Development/Libraries
+Requires: %{name} = %{version}-%{release}
+
+%description devel
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
 %setup
@@ -93,17 +103,28 @@ fi
 %{_bindir}/collectd-nagios
 %{_datadir}/collectd/
 %{_libdir}/collectd/
+%{_libdir}/libcollectdclient.so.*
 %{_localstatedir}/www/cgi-bin/collection.cgi
 %{_sbindir}/collectd
 %{_sbindir}/collectdmon
 %dir %{_localstatedir}/lib/collectd/
 %{perl_sitelib}/Collectd.pm
 %{perl_sitelib}/Collectd/
-%exclude %{_libdir}/collectd/*.la
 %exclude %{perl_archlib}
 %exclude %{perl_sitearch}
 
+%files devel
+%defattr(-, root, root, 0755)
+%{_includedir}/collectd/
+%{_libdir}/libcollectdclient.so
+%{_libdir}/pkgconfig/libcollectdclient.pc
+%exclude %{_libdir}/collectd/*.la
+%exclude %{_libdir}/libcollectdclient.la
+
 %changelog
+* Mon Mar 23 2009 Dag Wieers <dag@wieers.com> - 4.6.2-1
+- Updated to release 4.6.2.
+
 * Sun Sep 14 2008 Dag Wieers <dag@wieers.com> - 4.5.0-1
 - Updated to release 4.5.0.
 

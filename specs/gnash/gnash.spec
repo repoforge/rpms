@@ -13,14 +13,13 @@
 
 Summary: Flash player
 Name: gnash
-Version: 0.8.4
+Version: 0.8.5
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.gnu.org/software/gnash/
 
-#Source: http://ftp.gnu.org/gnu/gnash/%{version}/gnash-%{version}.tar.bz2
-Source0: http://ftp.gnu.org/gnu/gnash/0.8.4/gnash-0.8.4.tar.bz2
+Source: http://ftp.gnu.org/gnu/gnash/%{version}/gnash-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel
@@ -154,6 +153,9 @@ source %{_sysconfdir}/profile.d/qt.sh
 %endif
 
 %changelog
+* Fri Mar 13 2009 Dag Wieers <dag@wieers.com> - 0.8.5-1
+- Updated to release 0.8.5.
+
 * Tue Oct 14 2008 Dag Wieers <dag@wieers.com> - 0.8.4-1
 - Updated to release 0.8.4.
 

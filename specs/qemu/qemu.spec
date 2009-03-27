@@ -4,28 +4,30 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{?el5:%define _with_compat_gcc_version 34}
+%define audio_drv_list alsa,esd,oss,sdl
 
-%{?el3:%define _without_alsa 1}
-%{?rh9:%define _without_alsa 1}
-%{?rh7:%define _without_alsa 1}
-%{?el2:%define _without_alsa 1}
+%{?el5:%define _with_compat_gcc_version 34}
+%{?el4:%define _without_bluez 1}
+%{?el3:%define audio_drv_list esd,oss,sdl}
+%{?el3:%define _without_bluez 1}
+%{?rh9:%define audio_drv_list esd,oss,sdl}
+%{?rh9:%define _without_bluez 1}
+%{?rh7:%define audio_drv_list esd,oss,sdl}
+%{?rh7:%define _without_bluez 1}
+%{?el2:%define audio_drv_list esd,oss,sdl}
+%{?el2:%define _without_bluez 1}
 
 Summary: CPU emulator
 Name: qemu
-Version: 0.9.1
+Version: 0.10.1
 Release: 1
 License: GPL
 Group: Applications/Emulators
 URL: http://qemu.org/
 
-Source: http://qemu.org/qemu-%{version}.tar.gz
+Source: http://download.savannah.gnu.org/releases/qemu/qemu-%{version}.tar.gz
 Patch0: qemu-0.7.0-build.patch
-Patch1: qemu-0.9.1-rtcfreq-quiet.patch
 Patch2: qemu-0.9.1-dhcp.patch
-Patch3: qemu-0.9.1-security.patch
-Patch4: qemu-0.9.1-nic-defaults.patch
-Patch5: qemu-0.9.1-pty-rawmode.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: zlib-devel, SDL-devel
@@ -53,11 +55,7 @@ reasonnable speed while being easy to port on new host CPUs.
 %prep
 %setup
 %patch0 -p1
-%patch1 -p1
 %patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
 
 %{__cat} <<'EOF' >qemu.sysv
 #!/bin/sh
@@ -164,7 +162,9 @@ EOF
     --prefix="%{_prefix}" \
     --cc="gcc%{?_with_compat_gcc_version}" \
     --interp-prefix="%{_prefix}/qemu-%%M" \
-%{!?_without_alsa:--enable-alsa}
+    --audio-drv-list="%{audio_drv_list}" \
+    --audio-card-list="ac97,adlib,cs4231a,es1370,gus,sb16" \
+%{?_without_bluez:--disable-bluez}
 #   --disable-gcc-check
 %{__make} %{?_smp_mflags}
 
@@ -198,11 +198,15 @@ fi
 %doc Changelog COPYING* LICENSE README* TODO *.html
 %doc %{_mandir}/man1/qemu.1*
 %doc %{_mandir}/man1/qemu-img.1*
+%doc %{_mandir}/man8/qemu-nbd.8*
 %config %{_initrddir}/qemu
 %{_bindir}/qemu*
 %{_datadir}/qemu/
 
 %changelog
+* Mon Mar 23 2009 Dag Wieers <dag@wieers.com> - 0.10.1-1
+- Updated to release 0.10.1.
+
 * Sat May 10 2008 Dag Wieers <dag@wieers.com> - 0.9.1-1
 - Updated to release 0.9.1.
 

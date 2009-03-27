@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 # Upstream: Ethan Galstad <nagios$nagios,org>
+
 # Tag: test
 
 %{?dtag: %{expand: %%define %dtag 1}}

@@ -3,13 +3,13 @@
 
 Summary: Console hex editor
 Name: shed
-Version: 1.14
+Version: 1.15
 Release: 1
 License: GPL
 Group: Applications/Editors
 URL: http://shed.sourceforge.net/
 
-Source: http://dl.sf.net/shed/shed%{version}.tar.gz
+Source: http://dl.sf.net/shed/shed-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel
@@ -39,6 +39,9 @@ with a friendly pico-style interface.
 %{_bindir}/shed
 
 %changelog
+* Wed Mar 25 2009 Dag Wieers <dag@wieers.com> - 1.15-1
+- Updated to release 1.15.
+
 * Thu Dec 04 2008 Dag Wieers <dag@wieers.com> - 1.14-1
 - Updated to release 1.14.
 

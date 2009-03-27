@@ -2,21 +2,20 @@
 # Authority: dag
 # Upstream: <clamav-devel$lists,sf,net>
 
-### FIXME: Sysv script does not have condrestart option (redo sysv script)
-### FIXME: amavisd-new requires clamd to run as user vscan, solution needed
-### REMINDER: Look and sync with Petr Kristof's work
+# Tag: test
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el3:%define _without_milter 1}
-%{?rh9:%define _without_milter 1}
-%{?rh7:%define _without_milter 1}
-%{?el2:%define _without_milter 1}
+
+### FIXME: Sysv script does not have condrestart option (redo sysv script)
+### FIXME: amavisd-new requires clamd to run as user vscan, solution needed
+### REMINDER: Look and sync with Petr Kristof's work
 
 Summary: Anti-virus software
 Name: clamav
 Version: 0.95
-Release: 1
+Release: 0.1
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -260,7 +259,7 @@ CONFIG="/etc/sysconfig/clock"
 
 if [ -r "$CONFIG" -a -r "$ZONES" ]; then
     source "$CONFIG"
-    export CODE="$(grep -E "\b$ZONE\b" "$ZONES" | head -1 | cut -f1 | tr '[A-Z]' '[a-z]')"
+    export CODE="$(grep -E "\b$ZONE\b" "$ZONES" | head -1 | cut -f1 | tr [A-Z] [a-z])"
 fi
 
 if [ -z "$CODE" ]; then
@@ -382,7 +381,7 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
-* Tue Mar 24 2009 Dag Wieers <dag@wieers.com> - 0.95-1
+* Tue Mar 24 2009 Dag Wieers <dag@wieers.com> - 0.95-0.1
 - Updated to release 0.95.
 
 * Thu Nov 27 2008 Dag Wieers <dag@wieers.com> - 0.94.2-1
