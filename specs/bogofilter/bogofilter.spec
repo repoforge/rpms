@@ -8,7 +8,7 @@
 
 Summary: Fast anti-spam filtering by Bayesian statistical analysis
 Name: bogofilter
-Version: 1.1.7
+Version: 1.2.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -84,6 +84,9 @@ done
 %{_datadir}/bogofilter/
 
 %changelog
+* Fri Apr 3 2009 Quien Sabe (aka Jim) <quien-sabe@metaorg.com> - 1.2.0-1
+- Updated to release 1.2.0
+
 * Sun May 4 2008 Quien Sabe (aka Jim) <quien-sabe@metaorg.com> - 1.1.7-1
 - Updated to release 1.1.7
 
