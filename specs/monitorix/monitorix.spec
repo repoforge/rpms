@@ -125,6 +125,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc COPYING Changes Configuration.help README README.Debian README.Slackware TODO
 
 %changelog
+* Mon Apr 06 2009 Fabian Arrotin <fabian.arrotin@arrfab.net> 1.2.4-1
+- Updated to 1.2.4
 * Mon Mar 30 2009 Fabian Arrotin <fabian.arrotin@arrfab.net> 1.2.3-1
 - Cosmetic changes for RPMforge inclusion
 * Thu Sep 01 2005 Jordi Sanfeliu <admin@fibranet.cat>
