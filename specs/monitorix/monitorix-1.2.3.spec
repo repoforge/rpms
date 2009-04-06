@@ -2,10 +2,12 @@
 # Authority: fabian
 # Upstream: Jordi Sanfeliu <admin@fibranet.cat>
 
+# Tag: test
+
 
 Summary: Monitorix system monitoring tool
 Name: monitorix
-Version: 1.2.4
+Version: 1.2.3
 Release: 1
 License: GPL
 Group: Applications/System 
