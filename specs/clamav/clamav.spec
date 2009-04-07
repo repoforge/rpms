@@ -16,7 +16,7 @@
 Summary: Anti-virus software
 Name: clamav
 Version: 0.95
-Release: 1
+Release: 3
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -324,6 +324,10 @@ fi
 %{_libdir}/libclamav.so.*
 %{_libdir}/libclamunrar.so.*
 %{_libdir}/libclamunrar_iface.so.*
+# moved from -devel to here so clamd can work with rars when clamav-devel is not installed.
+%{_libdir}/libclamav.so
+%{_libdir}/libclamunrar.so
+%{_libdir}/libclamunrar_iface.so
 
 %files -n clamd
 %defattr(-, root, root, 0755)
@@ -373,15 +377,15 @@ fi
 %defattr(-, root, root, 0755)
 %{_bindir}/clamav-config
 %{_includedir}/clamav.h
-%{_libdir}/libclamav.so
-%{_libdir}/libclamunrar.so
-%{_libdir}/libclamunrar_iface.so
 %{_libdir}/pkgconfig/libclamav.pc
 %exclude %{_libdir}/libclamav.la
 %exclude %{_libdir}/libclamunrar.la
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
+* Tue Apr  7 2009 Dries Verachtert <dries@ulyssis.org> - 0.95-3
+- Ugly fix for clamd which needs the .so files.
+
 * Tue Mar 24 2009 Dag Wieers <dag@wieers.com> - 0.95-1
 - Updated to release 0.95.
 
