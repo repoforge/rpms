@@ -4,13 +4,13 @@
 
 Summary: Download utility with BitTorrent and Metalink support
 Name: aria2
-Version: 1.0.1
+Version: 1.3.0
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://aria2.sourceforge.net/
 
-Source: http://dl.sf.net/aria2/aria2c-%{version}.tar.bz2
+Source: http://dl.sf.net/aria2/aria2-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, gettext, openssl-devel, libxml2-devel, pkgconfig
@@ -20,7 +20,7 @@ aria2 is a download utility with resuming and segmented downloading.
 Supported protocols are HTTP/HTTPS/FTP/BitTorrent/Metalink.
 
 %prep
-%setup -n aria2c-%{version}
+%setup
  
 %build
 ### Add correct CFLAGS for EL3 and RH9
@@ -33,20 +33,26 @@ Supported protocols are HTTP/HTTPS/FTP/BitTorrent/Metalink.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-%find_lang aria2c
+%find_lang aria2
 %{__rm} -f %{buildroot}%{_datadir}/locale/locale.alias
-%{__mv} %{buildroot}%{_docdir}/aria2c _rpmdocs
+%{__mv} %{buildroot}%{_docdir}/aria2 _rpmdocs
 
 %clean
 %{__rm} -rf %{buildroot}
   
-%files -f aria2c.lang
+%files -f aria2.lang
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING NEWS AUTHORS _rpmdocs/*
 %doc %{_mandir}/man1/aria2c.1*
 %{_bindir}/aria2c
 
 %changelog
+* Tue Apr  7 2009 Dries Verachtert <dries@ulyssis.org> - 1.3.0-1
+- Updated to release 1.3.0.
+
+* Sat Jan  3 2009 Dries Verachtert <dries@ulyssis.org> - 1.1.2-1
+- Updated to release 1.1.2.
+
 * Wed Nov 26 2008 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1
 - Updated to release 1.0.1.
 

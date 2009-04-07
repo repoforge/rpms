@@ -7,7 +7,7 @@
 
 Summary: Python Expect-like module
 Name: python-pexpect
-Version: 2.1
+Version: 2.3
 Release: 1
 License: Python Software Foundation License
 Group: Development/Libraries
@@ -60,8 +60,20 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{python_sitelib}/pxssh.py
 %{python_sitelib}/pxssh.pyc
 %ghost %{python_sitelib}/pxssh.pyo
+%{python_sitelib}/ANSI.py
+%{python_sitelib}/ANSI.pyc
+%ghost %{python_sitelib}/ANSI.pyo
+%{python_sitelib}/FSM.py
+%{python_sitelib}/FSM.pyc
+%ghost %{python_sitelib}/FSM.pyo
+%{python_sitelib}/screen.py
+%{python_sitelib}/screen.pyc
+%ghost %{python_sitelib}/screen.pyo
 
 %changelog
+* Tue Apr  7 2009 Dries Verachtert <dries@ulyssis.org> - 2.3-1
+- Updated to release 2.3.
+
 * Sat Sep 22 2007 Dag Wieers <dag@wieers.com> - 2.1-1
 - Updated to release 2.1.
 
