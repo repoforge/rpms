@@ -4,13 +4,13 @@
 
 Summary: Very nasty tetris game
 Name: bastet
-Version: 0.41
-Release: 2
+Version: 0.43
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://fph.altervista.org/prog/bastet.shtml
 
-Source: http://fph.altervista.org/prog/bastet-%{version}.tgz
+Source: http://fph.altervista.org/prog/files/bastet-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel
@@ -49,6 +49,9 @@ touch %{buildroot}%{_localstatedir}/games/bastet.scores
 %{_localstatedir}/games/bastet.scores
 
 %changelog
+* Tue Apr  7 2009 Dries Verachtert <dries@ulyssis.org> - 0.43-1
+- Updated to release 0.43.
+
 * Fri Apr 28 2006 Dries Verachtert <dries@ulyssis.org> - 0.41-2
 - Changed the ownership of bastet.scores to root.games so users just 
   need to add themselves to the games group, thanks to Edward Rudd.

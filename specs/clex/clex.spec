@@ -4,7 +4,7 @@
 
 Summary: File manager with an ncurses interface
 Name: clex
-Version: 4.2
+Version: 4.4
 Release: 1
 License: GPL
 Group: System Environment/Shells
@@ -48,6 +48,9 @@ configurable and all its features are explained in the on-line help.
 %{_bindir}/kbd-test
 
 %changelog
+* Tue Apr  7 2009 Dries Verachtert <dries@ulyssis.org> - 4.4-1
+- Updated to release 4.4.
+
 * Tue Mar 17 2009 Dries Verachtert <dries@ulyssis.org> - 4.2-1
 - Updated to release 4.2.
 

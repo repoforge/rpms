@@ -3,7 +3,7 @@
 
 Summary: Library (C API) for accessing CDDB servers
 Name: libcddb
-Version: 1.3.0
+Version: 1.3.1
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -65,5 +65,8 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libcddb.pc
 
 %changelog
+* Tue Apr  7 2009 Dries Verachtert <dries@ulyssis.org> - 1.3.1-1
+- Updated to release 1.3.1.
+
 * Mon Dec 11 2006 Dag Wieers <dag@wieers.com> - 1.3.0-1
 - Initial package. (using DAR)
