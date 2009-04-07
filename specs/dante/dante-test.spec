@@ -181,8 +181,8 @@ disable() {
     exit 1
 }
 
-[ ! -r %{_sysconfdir}/socks.conf ] || disable
-[ ! -x %{_libdir}/libdsocks.so ] || disable
+[ -r %{_sysconfdir}/socks.conf ] || disable
+[ -x %{_libdir}/libdsocks.so ] || disable
 
 start() {
     echo -n $"Socksifying system: "
@@ -308,6 +308,9 @@ fi
 %exclude %{_libdir}/libsocks.la
 
 %changelog
+* Tue Apr  7 2009 Dries Verachtert <dries@ulyssis.org> - 1.2.0-0.pre1
+- Applied a fix by Thomas M Steenholdt for the dsocksify sysv init script.
+
 * Wed Dec 17 2008 Dag Wieers <dag@wieers.com> - 1.2.0-0.pre1
 - Updated to release 1.2.0-pre1.
 
