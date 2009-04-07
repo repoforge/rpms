@@ -1,0 +1,30 @@
+diff -Naur libpqxx-2.6.9.orig/include/pqxx/prepared_statement.hxx
+libpqxx-2.6.9/include/pqxx/prepared_statement.hxx
+--- libpqxx-2.6.9.orig/include/pqxx/prepared_statement.hxx
+2007-01-29 14:18:52.000000000 -0500
++++ libpqxx-2.6.9/include/pqxx/prepared_statement.hxx   2009-04-06
+21:27:43.000000000 -0400
+@@ -141,7 +141,7 @@
+ namespace internal
+ {
+ /// Internal representation of a prepared statement definition
+-struct PQXX_PRIVATE prepared_def
++struct PQXX_LIBEXPORT prepared_def
+ {
+  /// Parameter definition
+  struct param
+diff -Naur libpqxx-2.6.9.orig/include/pqxx/result.hxx
+libpqxx-2.6.9/include/pqxx/result.hxx
+--- libpqxx-2.6.9.orig/include/pqxx/result.hxx  2007-01-29
+14:18:52.000000000 -0500
++++ libpqxx-2.6.9/include/pqxx/result.hxx       2009-04-06
+21:27:14.000000000 -0400
+@@ -60,7 +60,7 @@
+  ~result_data();
+ };
+
+-void freemem_result_data(result_data *) throw ();
++void PQXX_LIBEXPORT freemem_result_data(result_data *) throw ();
+ template<> inline
+ void PQAlloc<result_data>::freemem() throw () { freemem_result_data(m_Obj); }
+ } // namespace internal

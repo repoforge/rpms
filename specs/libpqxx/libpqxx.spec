@@ -4,12 +4,14 @@
 Summary: C++ client API for PostgreSQL
 Name: libpqxx
 Version: 2.6.9
-Release: 2
+Release: 3
 License: BSD
 Group: System Environment/Libraries
 URL: http://pqxx.org/
 
 Source: http://pqxx.org/download/software/libpqxx/libpqxx-%{version}.tar.gz
+Patch0: libpqxx-2.6.9-visibility.patch
+Patch1: libpqxx-2.6.9-gcc43.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, postgresql-devel, postgresql-libs, gcc-c++, pkgconfig
@@ -34,6 +36,8 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
+%patch0 -p1
+%patch1 -p2
 %{__perl} -pi -e "s|.Werror||g;" configure*
 
 %build
@@ -67,6 +71,10 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libpqxx.pc
 
 %changelog
+* Tue Apr  7 2009 Dries Verachtert <dries@ulyssis.org> - 2.6.9-3
+- Added a patch by Filipe Brandenburger which fixes the visibility of freemem_result_data.
+- Added a patch by Holger Ackermann which fixes the compile problems with gcc 4.3 (strlen not declared).
+
 * Sun Jun 22 2008 David Rennalls <drennalls@gmail.com> - 2.6.9-2
 - Various fixes.
 
