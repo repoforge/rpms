@@ -11,14 +11,13 @@
 
 Summary: System administration tool for networks
 Name: cfengine
-Version: 2.2.9
+Version: 2.2.10
 Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://www.cfengine.org/
 
 Source: http://www.cfengine.org/downloads/cfengine-%{version}.tar.gz
-Patch0: cfengine-missing-images-patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -49,7 +48,6 @@ Full documentation for cfengine
 
 %prep
 %setup
-%patch0
 
 %{__cat} <<EOF >default.sysconfig
 # OPTIONS defines additional command line options to execute the program
@@ -377,6 +375,9 @@ fi
 %exclude %{_libdir}/libcfengine.la
 
 %changelog
+* Wed Apr 15 2009 Christoph Maser <cmr@financial.com> - 2.2.10-1
+- Bump version 2.2.10.
+
 * Wed Jan 14 2009 Christoph Maser <cmr@financial.com> - 2.2.9-1
 - Updated to release 2.2.9.
 - Use --with-docs on configure
