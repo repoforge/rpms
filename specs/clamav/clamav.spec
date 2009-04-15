@@ -32,6 +32,7 @@ BuildRequires: curl-devel
 BuildRequires: gmp-devel
 BuildRequires: zlib-devel
 %{!?_without_milter:BuildRequires: sendmail-devel >= 8.12}
+BuildRequires: ncurses-devel
 
 ### Do not require the latest release of clamav-db specifically (people may use freshclam onward)
 #Requires: clamav-db = %{version}-%{release}
@@ -383,6 +384,9 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
+* Wed Apr 15 2009 Fabian Arrotin <fabian.arrotin@arrfab.net> - 0.95-3
+- Added a missing BuildRequires: ncurses-devel to build clamdtop
+
 * Tue Apr  7 2009 Dries Verachtert <dries@ulyssis.org> - 0.95-3
 - Ugly fix for clamd which needs the .so files.
 
